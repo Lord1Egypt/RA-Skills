@@ -1,49 +1,29 @@
 ---
 name: smart-followups
-version: 2.1.8
-description: Generate contextual follow-up suggestions after AI responses. Shows 3 clickable buttons (Quick, Deep Dive, Related) when user types "/followups".
-metadata: {"openclaw":{"requires":{"bins":["node"],"note":"No API keys needed. Uses OpenClaw-native auth."}}}
-triggers:
-  - /followups
-  - followups
-  - follow-ups
-  - suggestions
-  - give me suggestions
-  - what should I ask
-commands:
-  - name: followups
-    description: Generate 3 smart follow-up suggestions based on conversation context
-    aliases: [fu, suggestions, next]
-channels:
-  - telegram
-  - discord
-  - slack
-  - signal
-  - whatsapp
-  - imessage
-  - sms
-  - matrix
-  - email
+version: 2.2.0
+description: Generate contextual follow-up suggestions after AI responses. Offers three next questions (Quick, Deep Dive, Related) when the user runs /smart-followups or asks for suggestions.
+metadata:
+  openclaw:
+    requires:
+      bins: ["node"]
+    note: "No API keys needed. The slash command is /smart-followups, derived from the skill name."
 ---
 
 # Smart Follow-ups Skill
 
 Generate contextual follow-up suggestions for OpenClaw conversations.
 
-## 🚀 Slash Command (New in v2.1.0!)
+## Slash Command
 
-**Primary command:**
-```
-/followups
-```
+The command name is derived from the skill's `name` field:
 
-**Aliases:**
 ```
-/fu
-/suggestions
+/smart-followups
 ```
 
-When you type `/followups`, I'll generate 3 contextual follow-up questions based on our conversation:
+OpenClaw 2.0 registers no aliases (`/fu`, `/suggestions`, and `/next` do not work), and separate `commands:`, `triggers:`, or `channels:` frontmatter fields are ignored.
+
+When you run `/smart-followups`, the skill generates 3 contextual follow-up questions based on the conversation:
 
 1. ⚡ **Quick** — Clarification or immediate next step
 2. 🧠 **Deep Dive** — Technical depth or detailed exploration
@@ -53,12 +33,11 @@ When you type `/followups`, I'll generate 3 contextual follow-up questions based
 
 ## How to Trigger
 
-| Method | Example | Recommended |
-|--------|---------|-------------|
-| `/followups` | Just type it! | ✅ Yes |
-| `/fu` | Short alias | ✅ Yes |
-| Natural language | "give me suggestions" | Works too |
-| After any answer | "what should I ask next?" | Works too |
+| Method | Example |
+|--------|---------|
+| Slash command | `/smart-followups` |
+| Natural language | "give me suggestions" |
+| After any answer | "what should I ask next?" |
 
 ## Usage
 
@@ -68,7 +47,7 @@ Say "followups" in any conversation:
 You: What is Docker?
 Bot: Docker is a containerization platform...
 
-You: /followups
+You: /smart-followups
 
 Bot: 💡 What would you like to explore next?
 [⚡ How do I install Docker?]
@@ -76,9 +55,7 @@ Bot: 💡 What would you like to explore next?
 [🔗 Docker vs Kubernetes?]
 ```
 
-**On button channels (Telegram/Discord/Slack):** Tap a button to ask that question.
-
-**On text channels (Signal/WhatsApp/iMessage/SMS):** Reply with 1, 2, or 3.
+The skill produces the 3 suggestions. How they are rendered depends on the channel: the agent can show buttons only on channels that support interactive buttons, and only if it builds them there. Otherwise it posts a numbered text list — reply with 1, 2, or 3.
 
 ## Categories
 
@@ -103,10 +80,12 @@ Each generation produces 3 suggestions:
 ```json
 {
   "skills": {
-    "smart-followups": {
-      "enabled": true,
-      "provider": "openclaw",
-      "model": null
+    "entries": {
+      "smart-followups": {
+        "enabled": true,
+        "provider": "openclaw",
+        "model": null
+      }
     }
   }
 }
@@ -120,34 +99,36 @@ Each generation produces 3 suggestions:
 
 ## Channel Support
 
-| Channel | Mode | Interaction |
-|---------|------|-------------|
-| Telegram | Buttons | Tap to ask |
-| Discord | Buttons | Click to ask |
-| Slack | Buttons | Click to ask |
-| Signal | Text | Reply 1-3 |
-| WhatsApp | Text | Reply 1-3 |
-| iMessage | Text | Reply 1-3 |
-| SMS | Text | Reply 1-3 |
-| Matrix | Text | Reply 1-3 |
-| Email | Text | Reply with number |
+The skill generates the suggestions; the agent decides how to render them within each channel's capabilities.
+
+| Channel | Rendering |
+|---------|-----------|
+| Telegram | Buttons possible (agent-built) |
+| Discord | Buttons possible (agent-built) |
+| Slack | Buttons possible (agent-built) |
+| Signal | Numbered text |
+| WhatsApp | Numbered text |
+| iMessage | Numbered text |
+| SMS | Numbered text |
+| Matrix | Numbered text |
+| Email | Numbered text |
 
 See [CHANNELS.md](CHANNELS.md) for detailed channel documentation.
 
 ## How It Works
 
-1. User types `/followups`
-2. Handler captures recent conversation context
-3. OpenClaw generates 3 contextual questions (using current model/auth)
-4. Formatted as buttons or text based on channel
-5. User clicks button or replies with number
+1. User runs `/smart-followups`
+2. The agent gathers recent conversation context (OpenClaw does not load `handler.js`; skills are instruction packs)
+3. The agent generates 3 contextual questions (using the current model/auth)
+4. The agent renders them as buttons or as a numbered text list, depending on what the channel supports
+5. User taps a button or replies with a number
 6. OpenClaw answers that question
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `handler.js` | Command handler and channel formatting |
+| `handler.js` | Formatting helper; OpenClaw does not load it as a command handler |
 | `cli/followups-cli.js` | Standalone CLI for testing/scripting |
 | `README.md` | Full documentation |
 | `CHANNELS.md` | Channel-specific guide |

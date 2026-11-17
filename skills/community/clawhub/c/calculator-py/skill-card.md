@@ -1,40 +1,49 @@
-## Description: <br>
-A local Python calculator skill that lets agents delegate arithmetic, matrix, statistics, high-precision, optimization, integration, and signal-processing tasks to numerical computing libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local Python calculator skill that lets agents run numerical, matrix, statistics, arbitrary-precision, optimization, integration, and signal-processing computations with numpy, scipy, and mpmath.
 
-## Publisher: <br>
-[leonardo-lb](https://clawhub.ai/user/leonardo-lb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonardo-lb](https://clawhub.ai/user/leonardo-lb)
 
-## Use Case: <br>
-Developers and agents use this skill to run local numerical computations when model-only arithmetic may be unreliable, including matrix operations, statistics, arbitrary precision, optimization, integration, and signal processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted expressions passed to the calculator may execute local shell commands. <br>
-Mitigation: Use only with trusted expressions in an isolated environment; replace eval-style parsing with a strict math parser or AST allowlist and add runtime limits before accepting untrusted input. <br>
+## Use Case:
 
+Developers and external agent users use this skill when an agent needs reliable local mathematical computation instead of estimating results in text. It is suited for scripted arithmetic, matrices, statistics, arbitrary precision, optimization, integration, and signal-processing tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leonardo-lb/calculator-py) <br>
-- [README_EN.md](README_EN.md) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text stdout with section headers; errors are written to stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local numerical results through Python command invocations and returns nonzero exit codes for errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted math expressions can execute local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly isolated environment, do not pass expressions from untrusted prompts or documents, and replace unsafe eval behavior with a restricted math parser before normal agent use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leonardo-lb/skills/calculator-py)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with stdout results and stderr errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are grouped under a subcommand header; successful commands exit 0 and failures return nonzero exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

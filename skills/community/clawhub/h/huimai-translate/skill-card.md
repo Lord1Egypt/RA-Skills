@@ -1,42 +1,54 @@
-## Description: <br>
-中英日韩多语言互译，保留原格式，支持整段/全文/文档翻译。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中英日韩多语言互译，保留原格式，支持整段/全文/文档翻译。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Students, researchers, workplace users, and international students use this skill to translate Chinese, English, Japanese, and Korean text while preserving document structure and terminology consistency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims offline translation and privacy protection, but the security evidence treats those claims as unverified. <br>
-Mitigation: Use it as a prompt-based translation helper unless an offline translation engine is independently verified, and avoid pasting confidential documents based only on the privacy claim. <br>
-Risk: Translation quality may be limited for rare terms, literary text, poetry, or important documents. <br>
-Mitigation: Review important translations manually and verify key terminology before relying on the output. <br>
-Risk: The artifact install command names a different package slug than the server-resolved skill slug. <br>
-Mitigation: Confirm the package slug before installing; prefer the server-resolved page for the current release. <br>
+## Use Case:
 
+Students, researchers, workplace users, and international students use this skill to translate Chinese, English, Japanese, and Korean text while preserving paragraph structure, formatting, and terminology consistency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/huimai-translate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text translation output with preserved source formatting where possible] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include language-direction confirmation, translated text, and terminology notes depending on mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact changelog) <br>
+Risk: The documented offline/privacy claim is not backed by executable implementation in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the claim as publisher documentation and verify runtime behavior in the target agent environment before relying on it for sensitive documents.
+
+Risk: Translations of important or specialized documents may contain terminology or nuance errors.
+
+Mitigation: Have a qualified human review critical translations and key terminology before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-translate)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Translated text or Markdown that preserves the user's requested structure and formatting.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include terminology explanations or sentence-by-sentence translation when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog, released 2026-05-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

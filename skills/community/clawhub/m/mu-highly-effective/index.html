@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>职场高效能习惯养成教练 · mu-highly-effective</title>
+<meta name="description" content="基于 Stephen Covey《高效能人士的七个习惯》的 AI 教练 Skill，21题习惯诊断 + 3档打卡计划 + 12个职场场景建议。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<style>
+:root{
+  --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+  --border:#e8e2db;--border-light:#f0ebe5;
+  --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+  --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+  --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;--red:#c0705a;
+  --radius:12px;--radius-sm:8px;
+  --transition:0.25s ease;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-serif:'Georgia','Noto Serif SC','Source Han Serif SC',serif;
+  --font-mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+html.dark{
+  --bg:#1a1815;--bg-warm:#252220;--bg-card:#2a2624;--bg-code:#1e1c1a;
+  --border:#3a3631;--border-light:#332f2b;
+  --text:#e8e0d5;--text-secondary:#a89e92;--text-muted:#7a7068;
+  --accent:#e8a07a;--accent-light:#c96442;--accent-bg:rgba(232,160,122,0.08);
+}
+html.dark nav{background:rgba(26,24,21,0.9)!important;border-bottom-color:var(--border)!important}
+html.dark .btn-secondary{background:var(--bg-card)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:960px;margin:0 auto;padding:0 28px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.nav-logo{font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex-shrink:1}
+.nav-links{display:flex;gap:20px;list-style:none;flex-shrink:0}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color var(--transition)}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.lang-toggle,.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:30px;border:1px solid var(--border);border-radius:6px;background:none;cursor:pointer;font-size:0.9rem;transition:all var(--transition);color:var(--text-muted)}
+.lang-toggle:hover,.theme-toggle:hover{border-color:var(--accent);color:var(--text)}
+.nav-cta{padding:7px 18px;border-radius:7px;font-size:0.82rem;font-weight:600;background:var(--text);color:var(--bg);text-decoration:none;transition:all var(--transition)}
+.nav-cta:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+/* Hero */
+.hero{padding:130px 0 80px;background:linear-gradient(180deg,var(--bg-warm) 0%,var(--bg) 100%);text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-bg);color:var(--accent);border:1px solid rgba(201,100,66,0.2);border-radius:999px;padding:0.3rem 1rem;font-size:0.85rem;font-weight:600;margin-bottom:1.5rem}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+.hero h1{font-family:var(--font-serif);font-size:3rem;font-weight:700;line-height:1.3;margin-bottom:1.2rem;color:var(--text)}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1.15rem;color:var(--text-secondary);max-width:600px;margin:0 auto 2.5rem}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.6rem;border-radius:var(--radius-sm);font-size:0.95rem;font-weight:600;text-decoration:none;transition:all var(--transition);cursor:pointer;border:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(201,100,66,0.25)}
+.btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+/* Stats — 数字在上，emoji+标签同行在下 */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;max-width:720px;margin:0 auto;background:var(--border-light);border-radius:var(--radius);overflow:hidden}
+.stat{text-align:center;padding:1.2rem 0.5rem;background:var(--bg-card)}
+.stat-num{font-size:2.6rem;font-weight:800;color:var(--accent);line-height:1}
+.stat-label{font-size:0.85rem;color:var(--text-muted);margin-top:0.4rem}
+
+/* Section */
+section{padding:5rem 0}
+.section-title{text-align:center;font-family:var(--font-serif);font-size:2rem;font-weight:700;margin-bottom:0.8rem;color:var(--text)}
+.section-title em{font-style:normal;color:var(--accent)}
+.section-desc{text-align:center;max-width:600px;margin:0 auto 3rem;font-size:1.05rem;color:var(--text-secondary)}
+
+/* Scenario Row — 一行一个场景，三列 */
+.scenario-list{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.scenario-row{display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:16px;padding:18px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+.scenario-row:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.scenario-name{display:flex;align-items:center;gap:10px;font-weight:700;font-size:0.95rem;white-space:nowrap}
+.scenario-name .sc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;background:var(--bg-warm);flex-shrink:0}
+.scenario-desc{font-size:0.85rem;color:var(--text-secondary);line-height:1.6}
+.scenario-tag{display:inline-block;padding:4px 12px;border-radius:4px;font-size:0.72rem;font-weight:600;background:var(--accent-bg);color:var(--accent);white-space:nowrap}
+
+/* Cards Grid */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
+.card{padding:28px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:16px;background:var(--bg-warm)}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.card p{font-size:0.85rem;color:var(--text-secondary);line-height:1.7}
+
+/* Comparison Table — 自身列在前 */
+.table-wrap{max-width:960px;margin:0 auto;overflow-x:auto}
+.comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light)}
+.comparison-table th,.comparison-table td{padding:14px 18px;text-align:left;font-size:0.85rem;border-bottom:1px solid var(--border-light)}
+.comparison-table thead th{background:var(--bg-warm);font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary)}
+.comparison-table thead th:nth-child(2){color:var(--accent)}
+.comparison-table tbody tr{background:var(--bg-card);transition:background var(--transition)}
+.comparison-table tbody tr:hover{background:var(--bg-warm)}
+.comparison-table tbody tr:last-child td{border-bottom:none}
+.comparison-table td:first-child{font-weight:600}
+.comparison-table td:nth-child(2){background:var(--accent-bg)}
+.check{color:var(--green);font-weight:700}
+.cross{color:var(--red)}
+.partial{color:#c9a44e}
+
+/* Workflow Section */
+.workflow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
+.wf-card{padding:24px 20px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition)}
+.wf-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.wf-card h3{font-size:0.95rem;font-weight:700;margin-bottom:6px}
+.wf-card p{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
+.wf-card .wf-trigger{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:4px;font-size:0.68rem;font-weight:600;background:var(--accent-bg);color:var(--accent);font-family:var(--font-mono)}
+
+/* Interaction Modes */
+.modes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:2rem auto 0}
+.mode-card{padding:20px;border-radius:var(--radius);background:var(--bg-warm);border:1px solid var(--border-light)}
+.mode-card h4{font-size:0.9rem;font-weight:700;margin-bottom:4px}
+.mode-card p{font-size:0.8rem;color:var(--text-secondary);line-height:1.6}
+
+/* CTA */
+.cta-section{padding:5rem 0;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-warm) 100%)}
+.cta-section h2{font-family:var(--font-serif);font-size:2.5rem;font-weight:700;line-height:1.3;margin-bottom:1rem;color:var(--text)}
+.cta-section h2 em{font-style:normal;color:var(--accent)}
+.cta-section p{font-size:1.1rem;color:var(--text-secondary);margin-bottom:2.5rem}
+
+/* Footer */
+footer{padding:2rem 0 2.5rem;border-top:1px solid var(--border-light);background:var(--bg-warm)}
+.footer-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.footer-badges img{height:20px}
+
+/* Responsive */
+@media(max-width:768px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards-grid,.workflow-grid,.modes-grid{grid-template-columns:1fr}
+  .scenario-row{grid-template-columns:1fr;gap:8px}
+  .scenario-tag{justify-self:start}
+  .nav-links{display:none}
+  .hero{padding:120px 0 80px}
+  .hero h1{font-size:2rem}
+  .section-title{font-size:1.6rem}
+  .cta-section h2{font-size:1.8rem}
+  .comparison-table th,.comparison-table td{padding:8px 10px;font-size:0.78rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav><div class="nav-inner">
+<div class="nav-logo">🧭 mu-highly-effective · <span data-en="Effective Habits Coach" data-zh="职场高效能习惯养成教练">职场高效能习惯养成教练</span></div>
+<ul class="nav-links">
+<li><a href="#scenarios"><span data-en="Scenarios" data-zh="场景">场景</span></a></li>
+<li><a href="#highlights"><span data-en="Highlights" data-zh="亮点">亮点</span></a></li>
+<li><a href="#compare"><span data-en="Compare" data-zh="对比">对比</span></a></li>
+<li><a href="#workflows"><span data-en="Workflows" data-zh="工作流">工作流</span></a></li>
+</ul>
+<div class="nav-right">
+<button class="lang-toggle" id="langToggle" aria-label="Toggle language">中</button>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☀️</button>
+<a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta">Skill合集</a>
+</div></div></nav>
+
+<!-- Hero -->
+<section class="hero"><div class="container">
+<div class="hero-badge"><span class="dot"></span><span data-en="v1.2.0 · Open Source" data-zh="v1.2.0 · 开源发布">v1.2.0 · 开源发布</span></div>
+<h1><span data-en="Don't just <em>read</em> the book.<br><em>Practice</em> the 7 Habits." data-zh="别再<em>纸上谈兵</em>。<br>把七个习惯<em>用起来</em>。">别再<em>纸上谈兵</em>。<br>把七个习惯<em>用起来</em>。</span></h1>
+<p class="hero-sub"><span data-en="An AI coach based on Stephen Covey's classic — diagnose your habit gaps in 21 questions, get a personalized check-in plan, and apply habits across 12 real workplace scenarios." data-zh="基于柯维经典著作的 AI 教练 Skill，21 题诊断你的习惯短板，生成个性化打卡计划，覆盖 12 个真实职场场景。">基于柯维经典著作的 AI 教练 Skill，21 题诊断你的习惯短板，生成个性化打卡计划，覆盖 12 个真实职场场景。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-highly-effective" class="btn btn-primary" target="_blank"><span data-en="🌟 GitHub Code" data-zh="🌟 GitHub代码">🌟 GitHub代码</span></a>
+<a href="https://github.com/muippt/mu-highly-effective/archive/refs/tags/v1.2.0.zip" class="btn btn-secondary" target="_blank"><span data-en="📦 Install Skill" data-zh="📦 安装 Skill">📦 安装 Skill</span></a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-num">21</div><div class="stat-label"><span data-en="🔍 Diagnostic Questions" data-zh="🔍 题习惯诊断">🔍 题习惯诊断</span></div></div>
+<div class="stat"><div class="stat-num">3</div><div class="stat-label"><span data-en="📅 Check-in Plans" data-zh="📅 档打卡计划">📅 档打卡计划</span></div></div>
+<div class="stat"><div class="stat-num">12</div><div class="stat-label"><span data-en="🏢 Mapped Scenarios" data-zh="🏢 个职场场景">🏢 个职场场景</span></div></div>
+<div class="stat"><div class="stat-num">6</div><div class="stat-label"><span data-en="🚀 Workflows" data-zh="🚀 个工作流">🚀 个工作流</span></div></div>
+</div>
+</div></section>
+
+<!-- 💡 使用场景示例 -->
+<section id="scenarios"><div class="container">
+<h2 class="section-title"><span data-en="💡 <em>Usage</em> Scenarios" data-zh="💡 <em>使用场景</em>示例">💡 <em>使用场景</em>示例</span></h2>
+<p class="section-desc"><span data-en="Seven habits aren't just theory &mdash; each one maps to a concrete workplace action." data-zh="七个习惯不只是理论，每一个都能落地到你的日常工作里。">七个习惯不只是理论，每一个都能落地到你的日常工作里。</span></p>
+<div class="scenario-list">
+
+<div class="scenario-row">
+<div class="scenario-name"><div class="sc-icon">🔥</div><span data-en="Overloaded at Work" data-zh="工作过载求助">工作过载求助</span></div>
+<div class="scenario-desc"><span data-en="Diagnosis (Habit 3 + Habit 1) → underlying principle → 2-3 actions for tomorrow" data-zh="诊断（习惯3 + 习惯1）→ 背后原则 → 明天就能落地的动作">诊断（习惯3 + 习惯1）→ 背后原则 → 明天就能落地的动作</span></div>
+<div class="scenario-tag"><span data-en="Quick Mode" data-zh="快捷模式">快捷模式</span></div>
+</div>
+
+<div class="scenario-row">
+<div class="scenario-name"><div class="sc-icon">📊</div><span data-en="Full Habit Diagnosis" data-zh="完整习惯诊断">完整习惯诊断</span></div>
+<div class="scenario-desc"><span data-en="21 self-scored questions → habit portrait with progress bars → 105-point total" data-zh="21 道自评题 → 习惯画像进度条 → 105 分总分 + 薄弱项标记">21 道自评题 → 习惯画像进度条 → 105 分总分 + 薄弱项标记</span></div>
+<div class="scenario-tag"><span data-en="Guided Mode" data-zh="引导模式">引导模式</span></div>
+</div>
+
+<div class="scenario-row">
+<div class="scenario-name"><div class="sc-icon">📋</div><span data-en="21-Day Check-in Plan" data-zh="21 天打卡计划">21 天打卡计划</span></div>
+<div class="scenario-desc"><span data-en="Pick 3 weakest habits → 7-day deep-dive each → pass/fail completion standards" data-zh="锁定最弱 3 个习惯 → 每个排 7 天深耕 → 每个任务带判定标准">锁定最弱 3 个习惯 → 每个排 7 天深耕 → 每个任务带判定标准</span></div>
+<div class="scenario-tag"><span data-en="Check-in Mode" data-zh="打卡模式">打卡模式</span></div>
+</div>
+
+<div class="scenario-row">
+<div class="scenario-name"><div class="sc-icon">✍️</div><span data-en="Mission Statement" data-zh="使命宣言撰写">使命宣言撰写</span></div>
+<div class="scenario-desc"><span data-en="Role inventory → funeral visualization → values → first draft → decision test" data-zh="角色梳理 → 葬礼想象 → 价值观提炼 → 初稿撰写 → 决策检验">角色梳理 → 葬礼想象 → 价值观提炼 → 初稿撰写 → 决策检验</span></div>
+<div class="scenario-tag"><span data-en="Guided Mode" data-zh="引导模式">引导模式</span></div>
+</div>
+
+<div class="scenario-row">
+<div class="scenario-name"><div class="sc-icon">💰</div><span data-en="Emotional Bank Account" data-zh="情感账户盘点">情感账户盘点</span></div>
+<div class="scenario-desc"><span data-en="6 deposit types audit → balance rating → concrete deposits for next week" data-zh="六大存款类型盘点 → 余额评级 → 下周具体存款动作">六大存款类型盘点 → 余额评级 → 下周具体存款动作</span></div>
+<div class="scenario-tag"><span data-en="Guided Mode" data-zh="引导模式">引导模式</span></div>
+</div>
+
+<div class="scenario-row">
+<div class="scenario-name"><div class="sc-icon">📅</div><span data-en="Time Matrix Cleanup" data-zh="时间矩阵整理">时间矩阵整理</span></div>
+<div class="scenario-desc"><span data-en="Brain-dump → four-quadrant tagging → ratio computation → Quadrant II scheduling" data-zh="脑中倾倒 → 四象限标注 → 比例计算 → 第II象限排期">脑中倾倒 → 四象限标注 → 比例计算 → 第II象限排期</span></div>
+<div class="scenario-tag"><span data-en="Guided Mode" data-zh="引导模式">引导模式</span></div>
+</div>
+
+</div>
+</div></section>
+
+<!-- ✨ 核心亮点 -->
+<section id="highlights" style="background:var(--bg-warm)"><div class="container">
+<h2 class="section-title"><span data-en="✨ Core <em>Highlights</em>" data-zh="✨ <em>核心</em>亮点">✨ <em>核心</em>亮点</span></h2>
+<p class="section-desc"><span data-en="Not another book summary &mdash; a habit operating system you can actually run." data-zh="不是又一个读书笔记，而是一套可以直接跑起来的习惯操作系统。">不是又一个读书笔记，而是一套可以直接跑起来的习惯操作系统。</span></p>
+<div class="cards-grid">
+<div class="card">
+<div class="card-icon">🚫</div>
+<h3><span data-en="Not a Concept Reciter" data-zh="不做概念复读机">不做概念复读机</span></h3>
+<p><span data-en="Hard rules baked into the skill: no long theory recaps, no book quotations as filler, no motivational fluff. Every reply anchors to your specific situation." data-zh="硬规则写死在 Skill 里：禁止大段复述理论、禁止鸡汤式激励。每次回复都锚定你的具体处境。">硬规则写死在 Skill 里：禁止大段复述理论、禁止鸡汤式激励。每次回复都锚定你的具体处境。</span></p>
+</div>
+<div class="card">
+<div class="card-icon">📏</div>
+<h3><span data-en="Every Task Is Verifiable" data-zh="每个打卡任务都可验证">每个打卡任务都可验证</span></h3>
+<p><span data-en="Each daily task has an explicit pass/fail standard. Done or not done is unambiguous, capped at 15-30 minutes." data-zh="每个每日任务都带明确完成标准——做没做一目了然，且每个任务耗时控制在 15-30 分钟。">每个每日任务都带明确完成标准——做没做一目了然，且每个任务耗时控制在 15-30 分钟。</span></p>
+</div>
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3><span data-en="Full 7-Habit Coverage" data-zh="诊断覆盖全貌，不偏科">诊断覆盖全貌，不偏科</span></h3>
+<p><span data-en="21 questions, exactly 3 per habit, 5-tier scoring. You get a full portrait, not a spotlight on one habit." data-zh="21 题，严格每个习惯 3 题，五档评级。你拿到的是完整画像，不是只照亮一个习惯。">21 题，严格每个习惯 3 题，五档评级。你拿到的是完整画像，不是只照亮一个习惯。</span></p>
+</div>
+<div class="card">
+<div class="card-icon">🗺️</div>
+<h3><span data-en="12 Mapped Scenarios" data-zh="12 个已映射职场场景">12 个已映射职场场景</span></h3>
+<p><span data-en="From overload to burnout to first-time management &mdash; each scenario maps to specific habits with diagnosis, principle, and actions." data-zh="从工作过载到倦怠到新任管理者——每个场景都配好了对应习惯、诊断、原则和行动。">从工作过载到倦怠到新任管理者——每个场景都配好了对应习惯、诊断、原则和行动。</span></p>
+</div>
+<div class="card">
+<div class="card-icon">✋</div>
+<h3><span data-en="Guidance Only, No Ghostwriting" data-zh="使命宣言只引导，绝不代笔">使命宣言只引导，绝不代笔</span></h3>
+<p><span data-en="An explicit constraint prevents the skill from drafting your mission statement. The words stay yours." data-zh="显式约束禁止 Skill 替你起草使命宣言。它可以提问、反馈，但字必须是你自己的。">显式约束禁止 Skill 替你起草使命宣言。它可以提问、反馈，但字必须是你自己的。</span></p>
+</div>
+<div class="card">
+<div class="card-icon">🎙️</div>
+<h3><span data-en="Supportive Follow-up, Never Pressure" data-zh="打卡跟进有分寸，不施压">打卡跟进有分寸，不施压</span></h3>
+<p><span data-en="Completed a task? Specific praise, not generic &amp;ldquo;great job.&amp;rdquo; Missed a day? No judgment, just curiosity. Hitting a wall? The skill lightens the load instead of pushing harder." data-zh="完成了给具体肯定，没完成不评判只探索原因，连续困难主动帮你减负。教练的温度，不是监工的压力。">完成了给具体肯定，没完成不评判只探索原因，连续困难主动帮你减负。教练的温度，不是监工的压力。</span></p>
+</div>
+</div>
+</div></section>
+
+<!-- 📌 对比 — 自身列放第2列（最前） -->
+<section id="compare"><div class="container">
+<h2 class="section-title"><span data-en="📌 Quick <em>Comparison</em>" data-zh="📌 <em>能力</em>对比">📌 <em>能力</em>对比</span></h2>
+<p class="section-desc"><span data-en="How mu-highly-effective compares to reading the book, generic AI chat, and habit tracker apps." data-zh="和直接读书、通用 AI 对话、习惯打卡 App 相比，mu-highly-effective 做了什么不同。">和直接读书、通用 AI 对话、习惯打卡 App 相比，mu-highly-effective 做了什么不同。</span></p>
+<div class="table-wrap">
+<table class="comparison-table"><thead><tr>
+<th><span data-en="Dimension" data-zh="维度">维度</span></th>
+<th>🧭 mu-highly-effective</th>
+<th><span data-en="Reading the Book" data-zh="直接读书">直接读书</span></th>
+<th><span data-en="Generic AI Chat" data-zh="通用 AI 对话">通用 AI 对话</span></th>
+<th><span data-en="Habit Tracker Apps" data-zh="习惯打卡 App">习惯打卡 App</span></th>
+</tr></thead><tbody>
+<tr>
+<td><span data-en="Habit Assessment" data-zh="习惯测评">习惯测评</span></td>
+<td><span class="check"><span data-en="✅ 21 Q, 5-tier" data-zh="✅ 21题，五档评级">✅ 21题，五档评级</span></span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="partial">⚠️</span></td>
+</tr>
+<tr>
+<td><span data-en="Situation-specific Advice" data-zh="场景化建议">场景化建议</span></td>
+<td><span class="check"><span data-en="✅ 12 mapped scenarios" data-zh="✅ 12 个已映射场景">✅ 12 个已映射场景</span></span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Output Structure" data-zh="输出结构">输出结构</span></td>
+<td><span class="check"><span data-en="✅ Fixed 3-part format" data-zh="✅ 诊断→原则→行动">✅ 诊断→原则→行动</span></span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="partial">⚠️</span></td>
+</tr>
+<tr>
+<td><span data-en="Check-in Plans" data-zh="打卡计划">打卡计划</span></td>
+<td><span class="check"><span data-en="✅ 7/21/49-day with standards" data-zh="✅ 7/21/49天，带完成标准">✅ 7/21/49天，带完成标准</span></span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="check">✅</span></td>
+</tr>
+<tr>
+<td><span data-en="Personalization" data-zh="计划个性化">计划个性化</span></td>
+<td><span class="check"><span data-en="✅ Targets 3 weakest" data-zh="✅ 自动锁定最弱 3 个">✅ 自动锁定最弱 3 个</span></span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="partial">⚠️</span></td>
+</tr>
+<tr>
+<td><span data-en="Mission Statement" data-zh="使命宣言">使命宣言</span></td>
+<td><span class="check"><span data-en="✅ 5-step guided, no ghostwriting" data-zh="✅ 五步引导，禁止代笔">✅ 五步引导，禁止代笔</span></span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Relationship Diagnostics" data-zh="关系诊断">关系诊断</span></td>
+<td><span class="check"><span data-en="✅ 6 deposit types audit" data-zh="✅ 情感账户六大存款">✅ 情感账户六大存款</span></span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+<tr>
+<td><span data-en="Time Management" data-zh="时间管理">时间管理</span></td>
+<td><span class="check"><span data-en="✅ 4-quadrant + Q2 scheduling" data-zh="✅ 四象限＋第II象限排期">✅ 四象限＋第II象限排期</span></span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="partial">⚠️</span></td>
+<td><span class="partial">⚠️</span></td>
+</tr>
+<tr>
+<td><span data-en="Self-contained" data-zh="离线自包含">离线自包含</span></td>
+<td><span class="check"><span data-en="✅ Pure Markdown, zero deps" data-zh="✅ 纯 Markdown，零依赖">✅ 纯 Markdown，零依赖</span></span></td>
+<td><span class="check">✅</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+</tbody></table>
+</div>
+</div></section>
+
+<!-- 🚀 工作流 -->
+<section id="workflows" style="background:var(--bg-warm)"><div class="container">
+<h2 class="section-title"><span data-en="🚀 <em>Workflows</em>" data-zh="🚀 <em>工作流</em>">🚀 <em>工作流</em></span></h2>
+<p class="section-desc"><span data-en="6 independent workflows. Trigger and run on demand." data-zh="6 个独立工作流，触发即跑，互不依赖。">6 个独立工作流，触发即跑，互不依赖。</span></p>
+<div class="workflow-grid">
+<div class="wf-card">
+<h3><span data-en="Habit Diagnosis" data-zh="习惯诊断流程">习惯诊断流程</span></h3>
+<p><span data-en="Assess strength across all 7 habits and produce a habit portrait with progress bars and 5-tier scoring." data-zh="评估七个习惯强弱，输出带进度条和五档评级的习惯画像。">评估七个习惯强弱，输出带进度条和五档评级的习惯画像。</span></p>
+<div class="wf-trigger"><span data-en="&quot;run a diagnosis&quot;" data-zh="「做个诊断」">「做个诊断」</span></div>
+</div>
+<div class="wf-card">
+<h3><span data-en="Workplace Q&amp;A" data-zh="职场疑惑解答流程">职场疑惑解答流程</span></h3>
+<p><span data-en="Decode a specific work problem through the 7 habits framework with the diagnose-principle-action format." data-zh="用七个习惯框架解析具体的职场困惑，按诊断→原则→行动格式输出。">用七个习惯框架解析具体的职场困惑，按诊断→原则→行动格式输出。</span></p>
+<div class="wf-trigger"><span data-en="Paste any situation" data-zh="贴出职场场景">贴出职场场景</span></div>
+</div>
+<div class="wf-card">
+<h3><span data-en="Check-in Plan Generation" data-zh="打卡计划生成流程">打卡计划生成流程</span></h3>
+<p><span data-en="Build a customized 7/21/49-day daily practice plan with verifiable completion standards." data-zh="生成 7/21/49 天个性化打卡计划，每个任务带完成判定标准。">生成 7/21/49 天个性化打卡计划，每个任务带完成判定标准。</span></p>
+<div class="wf-trigger"><span data-en="&quot;check-in plan&quot;" data-zh="「打卡计划」">「打卡计划」</span></div>
+</div>
+<div class="wf-card">
+<h3><span data-en="Mission Statement Guidance" data-zh="使命宣言引导流程">使命宣言引导流程</span></h3>
+<p><span data-en="Guide you through writing your own personal mission statement in 5 steps. No ghostwriting." data-zh="五步引导你写出个人使命宣言。全程只提问只引导，绝不代笔。">五步引导你写出个人使命宣言。全程只提问只引导，绝不代笔。</span></p>
+<div class="wf-trigger"><span data-en="&quot;mission statement&quot;" data-zh="「使命宣言」">「使命宣言」</span></div>
+</div>
+<div class="wf-card">
+<h3><span data-en="Emotional Bank Account Audit" data-zh="情感账户盘点流程">情感账户盘点流程</span></h3>
+<p><span data-en="Analyze deposits and withdrawals in key relationships against the 6 deposit types." data-zh="分析重要关系的存取款收支，按六大存款类型盘点，评估余额。">分析重要关系的存取款收支，按六大存款类型盘点，评估余额。</span></p>
+<div class="wf-trigger"><span data-en="&quot;emotional bank account&quot;" data-zh="「情感账户」">「情感账户」</span></div>
+</div>
+<div class="wf-card">
+<h3><span data-en="Time Matrix Organization" data-zh="时间矩阵整理流程">时间矩阵整理流程</span></h3>
+<p><span data-en="Sort tasks into four quadrants, compute ratios, and build a Quadrant II weekly plan." data-zh="事务四象限归类，计算比例，制定第II象限周计划。">事务四象限归类，计算比例，制定第II象限周计划。</span></p>
+<div class="wf-trigger"><span data-en="&quot;time matrix&quot;" data-zh="「时间矩阵」">「时间矩阵」</span></div>
+</div>
+</div>
+
+<!-- 三种交互模式 -->
+<h3 style="text-align:center;margin-top:3rem;margin-bottom:1rem;font-size:1.1rem;font-weight:700"><span data-en="Three Interaction Modes" data-zh="三种交互模式">三种交互模式</span></h3>
+<div class="modes-grid">
+<div class="mode-card">
+<h4><span data-en="🚀 Quick Mode" data-zh="🚀 快捷模式">🚀 快捷模式</span></h4>
+<p><span data-en="Paste a workplace situation. Get instant diagnosis + principle + action in a fixed format." data-zh="直接贴出职场场景，即刻获得诊断→原则→行动三段式回复。">直接贴出职场场景，即刻获得诊断→原则→行动三段式回复。</span></p>
+</div>
+<div class="mode-card">
+<h4><span data-en="💬 Guided Mode" data-zh="💬 引导模式">💬 引导模式</span></h4>
+<p><span data-en="Request a diagnosis, mission statement, check-in plan, bank account audit, or time matrix. Enter the matching multi-step sub-flow." data-zh="要求做诊断/写使命宣言/定打卡计划/盘点情感账户/整理时间矩阵，进入对应多步子流程。">要求做诊断/写使命宣言/定打卡计划/盘点情感账户/整理时间矩阵，进入对应多步子流程。</span></p>
+</div>
+<div class="mode-card">
+<h4><span data-en="📋 Check-in Mode" data-zh="📋 打卡模式">📋 打卡模式</span></h4>
+<p><span data-en="Mention check-ins, 7/21/49 days. Confirms plan length, requires diagnosis for 21-day version, outputs the full plan table." data-zh="提到打卡、7天/21天/49天，确认计划长度后输出完整打卡表与记录模板。">提到打卡、7天/21天/49天，确认计划长度后输出完整打卡表与记录模板。</span></p>
+</div>
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-section"><div class="container">
+<h2><span data-en="Your <em>first check-in</em> is<br>one click <em>away</em>." data-zh="你的<em>第一个打卡</em>，<br>只差<em>一个点击</em>。">你的<em>第一个打卡</em>，<br>只差<em>一个点击</em>。</span></h2>
+<p><span data-en="Download the Skill, import into your AI assistant, run a 3-minute diagnosis, and start your personalized habit plan today." data-zh="下载 Skill，导入 AI 助手，3 分钟完成诊断，今天就开启你的专属习惯计划。">下载 Skill，导入 AI 助手，3 分钟完成诊断，今天就开启你的专属习惯计划。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-highly-effective/archive/refs/tags/v1.2.0.zip" class="btn btn-primary" target="_blank"><span data-en="📦 Install Skill" data-zh="📦 安装 Skill">📦 安装 Skill</span></a>
+<a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-secondary" target="_blank"><span data-en="📚 Browse the Skill Hub" data-zh="📚 浏览 Skill合集">📚 浏览 Skill合集</span></a>
+</div>
+</div></section>
+
+<!-- Footer -->
+<footer><div class="container">
+<div class="footer-badges" style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/%E6%9C%A8%E5%85%88%E7%94%9FiPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/%E6%9C%A8%E5%85%88%E7%94%9FiPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/%E8%91%97%E4%BD%9C-%E3%80%8A%E5%9B%BE%E8%A7%A3%E5%9B%A2%E9%98%9F%E7%AE%A1%E7%90%86%E3%80%8B-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill%E9%9B%86%E5%90%88-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div></footer>
+
+<script>
+// 语言切换（单按钮 toggle）
+(function(){
+  var btn=document.getElementById('langToggle');
+  var lang='zh';
+  function applyLang(l){
+    lang=l;
+    document.querySelectorAll('[data-'+l+']').forEach(function(el){
+      el.innerHTML=el.getAttribute('data-'+l);
+    });
+    document.querySelectorAll('img[data-'+l+'-src]').forEach(function(img){
+      var s=img.getAttribute('data-'+l+'-src');if(s)img.src=s;
+    });
+    document.documentElement.lang=l==='zh'?'zh':'en';
+    btn.textContent=l==='zh'?'中':'EN';
+  }
+  applyLang('zh');
+  btn.addEventListener('click',function(){applyLang(lang==='zh'?'en':'zh')});
+})();
+
+// 主题切换（单按钮 toggle）
+(function(){
+  var btn=document.getElementById('themeToggle');
+  function setTheme(dark){
+    document.documentElement.classList.toggle('dark',dark);
+    btn.textContent=dark?'🌙':'☀️';
+  }
+  setTheme(false);
+  btn.addEventListener('click',function(){
+    setTheme(!document.documentElement.classList.contains('dark'));
+  });
+})();
+</script>
+</body>
+</html>

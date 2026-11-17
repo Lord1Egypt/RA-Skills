@@ -1,47 +1,61 @@
-## Description: <br>
-Find flights during Chinese peak travel seasons, including Spring Festival, Golden Week, Labor Day, and Dragon Boat Festival, with demand warnings and booking-window guidance powered by flyai-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds flights during Chinese peak travel seasons including Spring Festival, Golden Week, Labor Day, and Dragon Boat, using the flyai CLI to return real-time travel results with booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search holiday flight options, compare peak-season travel results, and produce booking-oriented Markdown summaries from flyai-cli output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and run a global npm dependency. <br>
-Mitigation: Require user approval before installing @fly-ai/flyai-cli, avoid sudo installs, and follow local dependency policies. <br>
-Risk: The skill may maintain hidden local logs of travel queries. <br>
-Mitigation: Review or disable .flyai-execution-log.json logging and avoid storing sensitive travel details unless the user has agreed. <br>
-Risk: The release is scoped to flight search, while the artifact description mentions broader travel categories. <br>
-Mitigation: Treat non-flight travel requests as unsupported unless the publisher documents the behavior clearly. <br>
+## Use Case:
 
+Travel agents, developers, and end users use this skill to search holiday flight availability, compare peak-season options, and format real-time flyai CLI results into readable Markdown with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/holiday-flights) <br>
-- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai-cli results for real-time flight data and may include booking links, demand warnings, fallback guidance, and a flyai attribution tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.1 (source: server release metadata; artifact frontmatter reports 3.2.0) <br>
+Risk: The skill may install and run a third-party CLI globally, including possible sudo use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandboxed or pinned local CLI installation, avoid sudo, and approve CLI execution only after reviewing the package source and permissions.
+
+Risk: Raw travel queries may be logged persistently by the skill workflow.
+
+Mitigation: Disable or restrict persistent logging unless users have reviewed and accepted the privacy implications for travel searches.
+
+Risk: The skill relies on shell-style command execution for live travel results.
+
+Mitigation: Limit the agent to documented flyai parameters, inspect generated commands before execution, and do not substitute model knowledge for failed CLI results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/holiday-flights)
+- [Parameter and output templates](references/templates.md)
+- [Holiday flight playbooks](references/playbooks.md)
+- [Fallback recovery guidance](references/fallbacks.md)
+- [Execution log runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires successful flyai CLI execution for travel data; final responses should include booking links and avoid raw JSON.]
+
+## Skill Version(s):
+
+v3.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

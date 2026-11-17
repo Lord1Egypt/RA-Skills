@@ -1,0 +1,1 @@
+{"version":3,"file":"router.js","sourceRoot":"","sources":["../../src/daemon/router.ts"],"names":[],"mappings":";;;AAGA,MAAa,mBAAmB;IACV;IAAqB;IAAzC,YAAoB,IAAY,EAAS,IAAsB;QAA3C,SAAI,GAAJ,IAAI,CAAQ;QAAS,SAAI,GAAJ,IAAI,CAAkB;IAAG,CAAC;IACnE,KAAK,CAAC,KAAK,CAAC,GAAgB;QAC1B,OAAO,EAAC,OAAO,EAAC,KAAK,EAAC,KAAK,EAAC,qGAAqG,EAAC,CAAC;IACrI,CAAC;CACF;AALD,kDAKC"}

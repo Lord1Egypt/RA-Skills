@@ -1,0 +1,33 @@
+{
+  "objectClassName": "ip network",
+  "handle": "NET-8-8-8-0-2",
+  "startAddress": "8.8.8.0",
+  "endAddress": "8.8.8.255",
+  "ipVersion": "v4",
+  "name": "GOGL",
+  "type": "DIRECT ALLOCATION",
+  "country": null,
+  "parentHandle": "NET-8-0-0-0-0",
+  "status": [
+    "active"
+  ],
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "handle": "GOGL",
+      "roles": [
+        "registrant"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "eventAction": "last changed",
+      "eventDate": "2023-12-28T17:24:56-05:00"
+    },
+    {
+      "eventAction": "registration",
+      "eventDate": "2023-12-28T17:24:33-05:00"
+    }
+  ]
+}

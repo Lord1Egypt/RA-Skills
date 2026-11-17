@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches real-time part-time job and gig listings from the Kuaijiejian backend based on a user's earning or job-search request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+xzk-money-maker helps users find part-time or gig-work opportunities by sending job-search requests to the 快结荐 platform and returning matched listings with pay, time, location, and signup links.
 
-## Publisher: <br>
-[heqq-github](https://clawhub.ai/user/heqq-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heqq-github](https://clawhub.ai/user/heqq-github)
 
-## Use Case: <br>
-External users ask for part-time work, gig work, or earning opportunities; the skill sends the request to the Kuaijiejian backend and returns matching listings with pay, time, location, and application links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job-search prompts are sent to the Kuaijiejian backend and may contain personal details. <br>
-Mitigation: Keep requests minimal and avoid phone numbers, identity documents, financial details, or full employment history. <br>
-Risk: Returned listings may include pay claims and signup links that require user judgment. <br>
-Mitigation: Verify compensation, schedule, location, and application links before applying. <br>
+## Use Case:
 
+External users seeking flexible part-time, gig, or temporary work use this skill to request real-time opportunities and receive matched listings from the 快结荐 platform. Agents use it to route eligible earning or job-search prompts into a structured listing response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heqq-github/xzk-money-maker) <br>
-- [Kuaijiejian skill API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Plain text or Markdown job listings with preserved backend links; JSON error objects on script failure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves backend-provided signup and mini-program links on independent lines; script timeout is 30 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Job-search or money-making prompts may include personal data and are sent in full to an external test backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for user consent before invocation and avoid sending phone numbers, addresses, identity documents, credentials, or detailed resume information unless privacy and redaction controls are documented.
+
+Risk: Broad auto-routing for employment-related phrases can invoke the skill when a user did not expect data to leave the agent environment.
+
+Mitigation: Use explicit confirmation before sending sensitive employment, income, or personal-data requests to the external service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heqq-github/skills/xzk-money-maker)
+- [快结荐 skill API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text job-listing summaries with pay, time, address, and signup links; API errors are returned as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Signup and mini-program links should be preserved on standalone lines; the API call script uses a 30-second timeout.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

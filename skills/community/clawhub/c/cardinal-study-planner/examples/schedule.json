@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-17",
+  "timezone": "America/Los_Angeles",
+  "window": {"start": "08:00", "end": "18:00"},
+  "block_minutes": 45,
+  "total_minutes": 90,
+  "break_minutes": 10,
+  "buffer_minutes": 5,
+  "busy": [
+    {"title": "Fictional seminar", "start": "09:00", "end": "10:00"},
+    {"title": "Fictional project review", "start": "09:30", "end": "10:30"},
+    {"title": "Fictional lab", "start": "13:00", "end": "14:00"}
+  ]
+}

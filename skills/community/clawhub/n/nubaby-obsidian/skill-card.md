@@ -1,53 +1,67 @@
-## Description: <br>
-Routes Arthur-OS and Obsidian note work by deciding where content belongs, how to search it, and when to read, edit, move, create, or defer note operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents working with Arthur-OS and Obsidian on where notes and project materials belong, how to search the vault, and when to read, update, move, or create notes.
 
-## Publisher: <br>
-[arthurlin1979](https://clawhub.ai/user/arthurlin1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arthurlin1979](https://clawhub.ai/user/arthurlin1979)
 
-## Use Case: <br>
-Developers and operators working with Arthur-OS or Obsidian use this skill to route notes, reports, project documents, server documents, skill documents, and AI outputs into the right vault areas. It also guides local and read-only gateway search, post-search decisions, and cautious note operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports exposed fixed Obsidian gateway or plugin credentials and private network details. <br>
-Mitigation: Remove those credentials from the release, rotate them before installation, and require user-supplied scoped credentials outside the skill text. <br>
-Risk: The security evidence reports note mutation and deletion workflows. <br>
-Mitigation: Keep remote access read-only and LAN-limited, and require explicit confirmation before create, move, rename, direct edit, or delete actions. <br>
-Risk: The skill depends on local Obsidian tooling and gateway access. <br>
-Mitigation: Declare required local tools and verify the vault path before performing any operation that affects files. <br>
+## Use Case:
 
+Developers and agents use this skill to route Arthur-OS and Obsidian work into the right vault areas, search notes with obsidian-cli or a read-only gateway, and decide whether search results should be read, updated, moved, or replaced by a new note.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arthurlin1979/nubaby-obsidian) <br>
-- [QUICK_INDEX.md](references/QUICK_INDEX.md) <br>
-- [VAULT_AND_PATHS.md](references/VAULT_AND_PATHS.md) <br>
-- [ARTHUR_OS_STRUCTURE.md](references/ARTHUR_OS_STRUCTURE.md) <br>
-- [SEARCH_RULES.md](references/SEARCH_RULES.md) <br>
-- [READONLY_GATEWAY_BOUNDARIES.md](references/READONLY_GATEWAY_BOUNDARIES.md) <br>
-- [POST_SEARCH_DECISION_RULES.md](references/POST_SEARCH_DECISION_RULES.md) <br>
-- [OPERATIONS_RULES.md](references/OPERATIONS_RULES.md) <br>
-- [WRITING_RULES.md](references/WRITING_RULES.md) <br>
-- [SKILLS_RULES.md](references/SKILLS_RULES.md) <br>
-- [MULTI_VAULT_ROUTING.md](references/MULTI_VAULT_ROUTING.md) <br>
-- [NETWORK_SEARCH_DESIGN_HISTORY.md](references/NETWORK_SEARCH_DESIGN_HISTORY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file path recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are decision guidance for Obsidian vault routing, search, and note operations; actions that create, move, rename, edit, or delete notes require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security evidence reports live-looking authentication secrets and unsafe gateway details in this version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or publish as-is; rotate exposed credentials, remove real tokens, replace them with placeholders or secret-store instructions, and secure non-loopback gateway access.
+
+Risk: Installing and using the skill can expose private Obsidian vault content through search or note operations.
+
+Mitigation: Require explicit user direction before search, edit, move, or delete operations, and keep cross-node gateway use read-only.
+
+Risk: The helper script may pass ripgrep options after the search pattern in skill search mode.
+
+Mitigation: Patch the helper so ripgrep options are placed before `--`, then test search behavior before release.
+
+## Reference(s):
+
+- [QUICK_INDEX](references/QUICK_INDEX.md)
+- [ARTHUR_OS_STRUCTURE](references/ARTHUR_OS_STRUCTURE.md)
+- [VAULT_AND_PATHS](references/VAULT_AND_PATHS.md)
+- [SEARCH_RULES](references/SEARCH_RULES.md)
+- [READONLY_GATEWAY_BOUNDARIES](references/READONLY_GATEWAY_BOUNDARIES.md)
+- [POST_SEARCH_DECISION_RULES](references/POST_SEARCH_DECISION_RULES.md)
+- [OPERATIONS_RULES](references/OPERATIONS_RULES.md)
+- [WRITING_RULES](references/WRITING_RULES.md)
+- [SKILLS_RULES](references/SKILLS_RULES.md)
+- [MULTI_VAULT_ROUTING](references/MULTI_VAULT_ROUTING.md)
+- [NETWORK_SEARCH_DESIGN_HISTORY](references/NETWORK_SEARCH_DESIGN_HISTORY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown or plain text guidance with inline shell commands and file path recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local Obsidian vault paths, read-only gateway endpoints, and obsidian-cli commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

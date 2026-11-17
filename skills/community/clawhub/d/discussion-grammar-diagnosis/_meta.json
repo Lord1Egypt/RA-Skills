@@ -1,0 +1,27 @@
+{
+  "name": "discussion-grammar-diagnosis",
+  "version": "1.0.0",
+  "description": "Diagnose grammar in the Discussion of an English psychology research paper. Covers tense choice (Present Simple for permanent truths vs Past Simple for study-specific findings), subject-verb agreement, article usage, voice (active vs passive), and punctuation.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "grammar",
+    "tense",
+    "voice",
+    "academic-writing"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "✏️",
+      "triggers": [
+        "check Discussion tense",
+        "grammar check",
+        "tense diagnosis",
+        "Discussion 时态",
+        "Discussion 语法"
+      ],
+      "theory_basis": "Glasman-Deal (2021) Science Research Writing Unit 4.2.2 (tense choice by claim type)"
+    }
+  }
+}

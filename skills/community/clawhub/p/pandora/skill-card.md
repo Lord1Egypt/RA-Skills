@@ -1,38 +1,53 @@
-## Description: <br>
-Pandora is a ClawHub skill for a secrets and configuration management vault namespace with documented commands for storing, rotating, and listing secret keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pandora namespace for Netsnek e.U. secrets and configuration management vault. Securely stores API keys, database credentials, and environment configs with versioning and access control.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and operators use Pandora for ClawHub-based guidance and shell command stubs around storing, rotating, and listing secret keys. Review it before production use because security evidence says the implementation is only a stub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Pandora presents itself as a secure secrets vault, but security evidence says the included code is only a stub and does not implement the promised secret protection. <br>
-Mitigation: Treat it as review-required placeholder content, and do not provide real API keys, passwords, or database credentials unless a complete reviewed implementation, secure input handling, backend configuration, and provenance are provided. <br>
+## Use Case:
 
+Developers and operations teams use Pandora for proposed secrets and configuration management workflows such as storing, rotating, and listing credential keys.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/pandora) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Linux and requests exec permission per release metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata, SKILL.md frontmatter, claw.json) <br>
+Risk: The release presents itself as a secure secrets vault, but evidence.security says the artifacts only include a placeholder command script and may make users believe secrets were stored or rotated when no vault action occurred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and do not use this skill for real secrets unless the publisher implements real storage, encryption, listing, and rotation behavior with clear failures.
+
+Risk: The documented command-line example could expose a secret value in shell history or process logs.
+
+Mitigation: Avoid passing real secrets directly on the command line; require safe prompt-based or stdin input before handling production credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/pandora)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact declares Linux support and exec permission.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

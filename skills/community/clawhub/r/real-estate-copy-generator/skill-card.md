@@ -1,41 +1,54 @@
-## Description: <br>
-Generate professional real estate copy for agents, including MLS listing descriptions, buyer and seller emails, Instagram captions, open house scripts, follow-up sequences, objection handling, agent bios, and market update newsletters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional real estate copy for agents, including MLS listing descriptions, buyer and seller emails, social media captions, open house scripts, follow-up sequences, objection handling, agent bios, and market update newsletters.
 
-## Publisher: <br>
-[domzephyr1](https://clawhub.ai/user/domzephyr1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[domzephyr1](https://clawhub.ai/user/domzephyr1)
 
-## Use Case: <br>
-Real estate agents and marketing staff use this skill to draft listing copy, client communications, social posts, showing scripts, nurture sequences, objection responses, bios, and newsletters from property or market details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated real estate copy can be inaccurate, noncompliant with MLS rules, or inconsistent with fair-housing requirements. <br>
-Mitigation: Review all outputs for factual accuracy, fair-housing language, MLS compliance, and local brokerage requirements before publishing. <br>
-Risk: Property, client, or transaction details may include confidential information. <br>
-Mitigation: Provide only the details needed for the draft and avoid unnecessary confidential client information. <br>
+## Use Case:
 
+External real estate agents and marketing teams use this skill to draft polished property listings, client communications, social posts, scripts, bios, and newsletters from property, client, and local market details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/domzephyr1/real-estate-copy-generator) <br>
-- [ClawHub metadata homepage](https://clawhub.ai/skills/real-estate-copy-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text marketing copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafted copy and prompt guidance for review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may provide confidential client, property, or local market details while requesting copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential client information unless appropriate for the intended use and handling environment.
+
+Risk: Generated real-estate copy may include inaccurate legal, pricing, interest-rate, or market-stat claims.
+
+Mitigation: Verify legal language, prices, interest rates, and market statistics before publishing or sending the copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/domzephyr1/skills/real-estate-copy-generator)
+- [ClawHub metadata homepage](https://clawhub.ai/skills/real-estate-copy-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text copy drafts with optional templates, variations, and follow-up prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing copy from user-provided real estate context; no code execution or system access is described in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

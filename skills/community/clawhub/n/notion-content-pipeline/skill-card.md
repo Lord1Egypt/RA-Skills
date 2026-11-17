@@ -1,44 +1,65 @@
-## Description: <br>
-Two-way markdown to Notion sync for blog and content workflows, including local draft push and pull, content pipeline database management, status tracking, and batch or per-file operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Two-way Markdown and Notion sync for blog and content workflows, including local draft push/pull, tracked page mappings, and content pipeline database management.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and content operators use this skill to move blog drafts between local Markdown files and Notion, create or manage a content pipeline database, and advance posts through review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Notion integration token. <br>
-Mitigation: Use a least-privilege Notion integration, share only the required pages or databases with it, and manage the token with your own secure secret-handling process. <br>
-Risk: Normal workflows can overwrite local drafts, archive Notion pages, update workflow status, and modify the local sync map. <br>
-Mitigation: Keep drafts under version control or backed up, run the advance workflow with --dry-run first, and confirm the target file and Notion page mapping before push or pull operations. <br>
-Risk: The advance workflow can run a sibling fact-checker if present and may otherwise skip that step. <br>
-Mitigation: Verify the fact-checker behavior before relying on it, review generated reports, or use --skip-factcheck when that dependency is not trusted or not available. <br>
+## Use Case:
 
+Developers and content operators use this skill to move Markdown drafts between local files and Notion, keep a sync map of page IDs, and advance blog content through review-oriented pipeline statuses.
 
-## Reference(s): <br>
-- [Notion API Notes](references/api_notes.md) <br>
-- [ClawHub release page](https://clawhub.ai/nissan/notion-content-pipeline) <br>
-- [Notion integration setup](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script usage; scripts can create or update local Markdown, JSON sync maps, diffs, reports, and Notion pages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a NOTION_API_KEY; outbound network access is used for Notion API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requires a Notion integration token that can create, edit, archive, and query pages in shared workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Notion integration, share only the intended parent page or database, protect the token, and configure parent page and database IDs explicitly before use.
+
+Risk: Push and pipeline advance flows can archive existing Notion pages, overwrite local Markdown from Notion pulls, and mutate pipeline status fields.
+
+Mitigation: Review backups and sync-map entries before pull, push overwrite, or pipeline advance; pull before pushing when Notion edits may exist; use no-overwrite behavior when preserving an existing page matters.
+
+Risk: Dry-run mode should not be treated as a full no-execution sandbox because the workflow still initializes configuration and may inspect pipeline state.
+
+Mitigation: Run dry-run only with intentionally scoped credentials and workspace IDs, and use separate test pages or databases for validation.
+
+Risk: The pipeline advance workflow can execute a sibling fact-checker script outside this package when that script exists.
+
+Mitigation: Remove, review, or pin the sibling fact-checker dependency before routine use, and skip fact-checking when the external script has not been approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/notion-content-pipeline)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+- [Notion API Notes](references/api_notes.md)
+- [Notion API](https://api.notion.com/v1)
+- [Notion integrations](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, environment variable examples, and generated local report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown files, sync-map JSON, humanizer diff reports, fact-check reports, Notion pages, and Notion database status fields.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

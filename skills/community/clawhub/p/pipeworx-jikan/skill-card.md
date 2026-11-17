@@ -1,41 +1,50 @@
-## Description: <br>
-Jikan MCP wraps the Jikan v4 API for free, unauthenticated anime and manga data lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jikan MCP wraps the Jikan v4 API for free, no-auth anime and manga data lookups.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an MCP-capable agent to Jikan-backed anime, manga, and character lookup tools without managing an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Anime, manga, and character lookup queries are routed through Pipeworx and its remote Jikan MCP service. <br>
-Mitigation: Avoid putting private or sensitive information in lookup terms. <br>
-Risk: The connection example runs mcp-remote@latest through npx, so connector behavior may change as new package versions are published. <br>
-Mitigation: Pin the mcp-remote package version when reproducible installs are required. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to a Pipeworx-hosted Jikan MCP server for anime, manga, and character lookups without an API key.
 
-## Reference(s): <br>
-- [Pipeworx Jikan pack homepage](https://pipeworx.io/packs/jikan) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-jikan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Shell commands, Text, JSON] <br>
-**Output Format:** [Markdown with JSON configuration snippets and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; lookups route through the Pipeworx-hosted Jikan MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The connection instructions run mutable third-party code on the user's machine through mcp-remote.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the connection command before installation, prefer a pinned mcp-remote version or managed lockfile, and run the MCP server with only the local and network access needed for Jikan lookups.
+
+## Reference(s):
+
+- [Pipeworx Jikan Pack](https://pipeworx.io/packs/jikan)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-jikan)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON configuration and inline command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs MCP connection guidance for using the remote Jikan service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

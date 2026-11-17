@@ -1,38 +1,52 @@
-## Description: <br>
-Lofy Life Coach helps an agent manage morning briefings, evening reviews, weekly reports, goal tracking, habit monitoring, streak counts, and adaptive nudges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal accountability system for the Lofy AI assistant that supports morning briefings, evening reviews, weekly reports, goal tracking, habit monitoring, streak counting, and adaptive nudges.
 
-## Publisher: <br>
-[harrey401](https://clawhub.ai/user/harrey401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harrey401](https://clawhub.ai/user/harrey401)
 
-## Use Case: <br>
-Users of a personal assistant use this skill to track routines, goals, workouts, career progress, and habit streaks through briefings, reviews, weekly resets, and natural-language updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal routine, workout, habit, career-progress, and daily-log data in a local goals file. <br>
-Mitigation: Review or delete data/goals.json when needed, and avoid connecting calendar, fitness, or application context you do not want included in briefings. <br>
-Risk: Automated nudges may feel intrusive or unhelpful when the user's current context is incomplete. <br>
-Mitigation: Keep nudges limited and context-aware; the artifact caps nudges to one per topic per day and instructs the agent not to push harder when the user is having a rough day. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to track goals, habits, routines, workouts, job applications, daily logs, and scheduled accountability check-ins through concise coaching interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Concise text or Markdown briefings and reviews, with JSON updates to data/goals.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Morning briefings are capped at 200 words and nudges are capped at 50 words.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to keep a persistent local goals file containing habit, fitness, career, and daily-log information.
+
+Mitigation: Use it only when local retention of this personal information is acceptable, and periodically review or delete the goals file when that history is no longer needed.
+
+Risk: Accountability nudges and coaching summaries may be based on incomplete or outdated goal data.
+
+Mitigation: Review the stored goal and habit data before relying on progress summaries or course-correction guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrey401/skills/lofy-life-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Concise natural-language coaching responses and structured JSON goal-tracking updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Briefings are intended to stay under 200 words, with nudges under 50 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

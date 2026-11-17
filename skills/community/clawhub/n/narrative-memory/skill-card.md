@@ -1,45 +1,63 @@
-## Description: <br>
-Narrative Memory captures meaningful life moments, applies a three-layer filter to keep salient memories, and supports pattern recognition and decision reflection for milestones, decisions, value judgments, emotional turns, first experiences, and deep reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Narrative Memory helps an agent capture meaningful life events as structured personal narrative records using layered filtering, signal detection, pattern recognition, and decision reflection.
 
-## Publisher: <br>
-[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub)
 
-## Use Case: <br>
-External users and agent developers use this skill to identify meaningful personal events, store narrative memories, review timelines, and analyze recurring topics, emotions, and values. It can also process proactive-engine signals for automatic capture of important moments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive life events, moods, values, reflections, and raw source text locally. <br>
-Mitigation: Review stored files under ~/.openclaw/workspace/.soul, redact or delete sensitive records before sharing the workspace, and avoid entering information that should not be retained. <br>
-Risk: Automatic signal processing may capture more personal context than the user intended. <br>
-Mitigation: Enable proactive capture only after reviewing trigger behavior and keep manual review, deletion, and backup practices in place. <br>
-Risk: The current artifacts do not document encryption or automatic data minimization for the local memory files. <br>
-Mitigation: Treat the local storage location as sensitive, apply host-level access controls or encryption as appropriate, and avoid assuming records are minimized by default. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to identify milestones, decisions, values, emotional turning points, first experiences, and reflections from text, then store and review them as a personal narrative memory timeline.
 
-## Reference(s): <br>
-- [Narrative Memory Guidelines](references/narrative-guidelines.md) <br>
-- [Narrative Templates](references/templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaoguoqiang-hub/narrative-memory) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhaoguoqiang-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text and JSON-backed local memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes narrative records and configuration under the local .openclaw workspace when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release metadata) <br>
+Risk: The skill can store personal reflections, emotional context, values, and decision history as plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with informed consent, avoid highly sensitive entries, restrict filesystem access to the .soul directory, and add external encryption or access controls where needed.
+
+Risk: Documented privacy protections may overstate what the reviewed code implements.
+
+Mitigation: Treat stored memories as plaintext records, verify retention and deletion procedures outside the skill, and review the code before relying on privacy claims.
+
+Risk: Automatic signal processing may capture content the user did not intend to preserve.
+
+Mitigation: Require explicit confirmation before automatic capture and review generated narrative records before retaining them.
+
+Risk: Runtime dependencies may be outdated by the time of installation.
+
+Mitigation: Update and audit dependencies before use, then rerun security scanning in the deployment environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhaoguoqiang-hub/skills/narrative-memory)
+- [Narrative Guidelines](references/narrative-guidelines.md)
+- [Narrative Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown guidance, JSON configuration, and JSONL narrative records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the scripts persist narrative, accumulation, daily-context, user-values, and configuration files under ~/.openclaw/workspace/.soul.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata; artifact/package.json reports 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

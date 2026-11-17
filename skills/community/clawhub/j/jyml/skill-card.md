@@ -1,43 +1,50 @@
-## Description: <br>
-This skill guides agents through converting YAML files to JSON and JSON files to YAML with the jyml CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+jyml helps agents convert YAML and JSON files with the jyml CLI, including file output, custom output paths, indentation, and structured JSON output.
 
-## Publisher: <br>
-[waldekmastykarz](https://clawhub.ai/user/waldekmastykarz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waldekmastykarz](https://clawhub.ai/user/waldekmastykarz)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert configuration, OpenAPI, GitHub Actions, and API response files between YAML and JSON formats. It also helps agents produce shell commands for one-off, custom-output, indented, structured, and batch conversions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install or run an external npm package. <br>
-Mitigation: Use npx for one-off conversions or verify the package source before installing jyml globally. <br>
-Risk: Default conversion writes a new file next to the input, and custom output paths can write elsewhere. <br>
-Mitigation: Review input and output paths before conversion and use explicit output paths when overwrites or directory changes matter. <br>
-Risk: Invalid or unexpected YAML or JSON input can cause conversion errors or produce unexpected structured output. <br>
-Mitigation: Confirm file extensions and syntax before conversion, and inspect structured JSON output before piping it into other tools. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need an agent to convert YAML and JSON configuration files, API specs, workflow files, or API responses with the jyml command-line tool.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/waldekmastykarz/jyml) <br>
-- [Publisher profile](https://clawhub.ai/user/waldekmastykarz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline jyml, npx, npm, jq, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe file outputs written next to the input file or to a custom output path; structured mode can emit JSON to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Installing or running the jyml npm package, especially through unpinned npm or npx commands, executes third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the intended jyml package and version before use, prefer pinned npm exec commands such as npm exec --package=jyml@<version>, and use isolation when converting sensitive configuration files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waldekmastykarz/skills/jyml)
+- [Publisher profile](https://clawhub.ai/user/waldekmastykarz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce converted YAML or JSON files through the jyml CLI, or structured JSON to stdout when using --json.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

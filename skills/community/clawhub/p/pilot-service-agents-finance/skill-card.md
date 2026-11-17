@@ -1,44 +1,57 @@
-## Description: <br>
-Public market data for crypto spot prices, FX rates, order books, and macro indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public market data for crypto spot prices, FX rates, order books, and macro indicators.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover Pilot Protocol finance service agents and request read-only public market data such as crypto prices, FX rates, order books, and market snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send private portfolio, brokerage, credential, or account data to public finance service agents. <br>
-Mitigation: Use the skill only for public market data queries and do not include private account, credential, brokerage, or portfolio information. <br>
-Risk: Documented exclusions for SEC and macroeconomic data do not fully align with the listed finance agents. <br>
-Mitigation: Treat SEC and macroeconomic entries as ambiguous until the publisher aligns the exclusions with the listed agents. <br>
-Risk: The skill depends on Pilot Protocol, pilotctl, a running daemon, network 9 membership, and reachable service agents. <br>
-Mitigation: Verify the Pilot Protocol setup and inspect each agent's /help contract before relying on returned data. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query Pilot Protocol finance service agents for public market data such as crypto prices, FX rates, currency conversion, and market snapshots.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-finance) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Skills Index](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Text] <br>
-**Output Format:** [Markdown with bash command examples and JSON response envelopes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public market data responses are retrieved asynchronously through pilotctl inbox entries; summary commands return prose.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The finance catalog includes market, macroeconomic, and SEC-related agents, so users may choose an agent outside the intended finance-data scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each selected agent with /help before querying it, and use dedicated government-finance or economics skills when domain separation matters.
+
+Risk: The skill connects to public read-only data sources whose availability, coverage, or freshness can vary by upstream service.
+
+Mitigation: Cross-check important values across available providers and treat returned data as public market information rather than brokerage or portfolio data.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-finance)
+- [Publisher Skill Index](https://teoslayer.github.io/pilot-skills/)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include ACK envelopes, inbox entries, item arrays, counts, pagination fields, truncation flags, and upstream URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

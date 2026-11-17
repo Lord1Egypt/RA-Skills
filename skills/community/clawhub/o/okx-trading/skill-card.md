@@ -1,43 +1,63 @@
-## Description: <br>
-Trade crypto on OKX with a strict human-in-the-loop confirmation gate for balances, prices, trade proposals, confirmed execution, DCA, grid strategies, snapshots, and PnL digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade crypto on OKX with a strict human-in-the-loop confirmation gate for balances, prices, trade proposals, confirmed execution, DCA, grid strategies, snapshots, and PnL digests.
 
-## Publisher: <br>
-[vm-development](https://clawhub.ai/user/vm-development) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vm-development](https://clawhub.ai/user/vm-development)
 
-## Use Case: <br>
-External users and operators use this skill to inspect OKX account state, prepare crypto trade proposals, execute only explicitly confirmed trades, and manage DCA or grid workflows with configured guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confirmed grids can continue placing automatic restock orders, including with live OKX credentials. <br>
-Mitigation: Use demo mode first, set strict OKX_ALLOWED_SYMBOLS and notional caps, and switch to live keys only after accepting the ongoing-order behavior. <br>
-Risk: Stopping or rescaling a grid may delete local tracking even if some exchange cancellations fail. <br>
-Mitigation: Verify open orders directly on OKX after any stop or rescale failure and cancel remaining orders on the exchange if needed. <br>
-Risk: The skill requires sensitive OKX API credentials with trade permission. <br>
-Mitigation: Keep credentials out of chat, use the narrowest practical OKX permissions, and prefer low notional limits for initial operation. <br>
+## Use Case:
 
+External users and their agents use this skill to inspect OKX account and market data, prepare DCA or grid trading plans, and execute only explicitly confirmed OKX trades. It is intended for operators who can review trading proposals and manage exchange credentials, limits, and live-trading risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vm-development/okx-trading) <br>
-- [OKX website](https://www.okx.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local pending-trade, strategy, snapshot, audit, and notional-log files under ~/.aeon/okx when scripts run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Approval and guardrail design may not reliably prevent unintended live orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use demo mode first, keep live trading disabled until reviewed, require explicit confirmation for order placement, and set small per-trade and daily notional caps.
+
+Risk: OKX credentials can authorize high-impact trading actions if over-scoped or exposed.
+
+Mitigation: Use tightly scoped OKX API keys with no withdrawal permission, apply IP restrictions where available, and rotate keys after testing or suspected exposure.
+
+Risk: Grid automation can restock or rescale within pre-authorized bounds and may amplify losses if limits are misconfigured.
+
+Mitigation: Avoid live grid autonomy until the confirmation-token, guardrail recheck, and concurrency issues are fixed; when testing, configure conservative position caps, daily caps, and maximum rescales.
+
+Risk: Unpinned dependencies can change trading behavior after installation.
+
+Mitigation: Pin reviewed dependency versions before use and re-test OKX calls after dependency updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vm-development/skills/okx-trading)
+- [ClawHub publisher profile](https://clawhub.ai/user/vm-development)
+- [OKX account and API setup](https://www.okx.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts emit text or JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local pending proposal, strategy, notional, snapshot, and audit files; trading commands require OKX credentials and configured guardrail environment variables.]
+
+## Skill Version(s):
+
+0.3.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

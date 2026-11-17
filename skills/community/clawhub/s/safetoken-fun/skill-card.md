@@ -1,43 +1,62 @@
-## Description: <br>
-Discover and use SafeToken.fun, a fair memecoin launchpad on BNB Chain where agents can create tokens without an API key, read contract addresses and ABI from GET /api, and register tokens with POST /api/tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and use SafeToken.fun, a fair memecoin launchpad on BNB Chain that lets agents create tokens without an API key, read contracts and ABI from GET /api, and register tokens with POST /api/tokens.
 
-## Publisher: <br>
-[panagot](https://clawhub.ai/user/panagot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panagot](https://clawhub.ai/user/panagot)
 
-## Use Case: <br>
-External developers, crawlers, and AI agents use this skill to discover SafeToken.fun endpoints, create BNB Chain memecoins, register created tokens, and read token, bonding-curve, holder, and metadata information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create real BNB Chain mainnet memecoins from a funded wallet. <br>
-Mitigation: Use only a limited dedicated wallet, verify chain ID 56, contract address, and ABI independently, simulate where possible, and manually approve every wallet transaction. <br>
-Risk: Token registration and public launchpad interactions can publish irreversible or public information. <br>
-Mitigation: Review token metadata, creator address, burn percent, launchpad address, and registration payload before submitting any transaction or POST request. <br>
+## Use Case:
 
+External developers, agents, and crawlers use this skill to discover SafeToken.fun endpoints, create or register BNB Chain memecoins, and retrieve token, bonding-curve, holder, and metadata information.
 
-## Reference(s): <br>
-- [SafeToken.fun](https://safetoken.fun) <br>
-- [SafeToken.fun API manifest](https://safetoken.fun/api) <br>
-- [SafeToken.fun API docs](https://safetoken.fun/api-docs) <br>
-- [ClawHub skill page](https://clawhub.ai/panagot/safetoken-fun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, API calls] <br>
-**Output Format:** [Markdown guidance with endpoint URLs, JSON payload examples, and on-chain transaction steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key required; on-chain token creation requires a funded BNB Chain wallet and manual transaction approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide agents to initiate real BNB Chain mainnet wallet transactions that spend funds and cannot be undone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before any transaction, use a dedicated low-balance wallet, and simulate transactions before signing.
+
+Risk: The skill relies on mutable remote contract metadata and ABI returned by the SafeToken.fun API.
+
+Mitigation: Verify contract addresses and ABI against trusted sources before use, and re-check them immediately before transaction creation.
+
+Risk: Security evidence marks the release suspicious because transaction safeguards and validation are insufficient for mainnet use.
+
+Mitigation: Review the skill carefully before installation or use, and restrict operation to approved workflows with clear wallet and chain controls.
+
+## Reference(s):
+
+- [SafeToken.fun](https://safetoken.fun)
+- [SafeToken.fun API manifest](https://safetoken.fun/api)
+- [SafeToken.fun API docs](https://safetoken.fun/api-docs)
+- [SafeToken.fun token listings](https://safetoken.fun/tokens)
+- [ClawHub skill page](https://clawhub.ai/panagot/skills/safetoken-fun)
+- [ClawHub publisher profile](https://clawhub.ai/user/panagot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with endpoint descriptions, JSON request examples, and blockchain transaction steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents toward BNB Chain mainnet transactions that require human approval and wallet safeguards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-AnySkill manages, syncs, dynamically loads, uploads, shares, and batch installs agent skills from a GitHub-backed repository for OpenClaw, Antigravity, Claude Code, and Cursor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AnySkill manages a GitHub-backed private skill cloud for agents, including skill discovery, on-demand loading, local download, upload, update, deletion, and pack installation.
 
-## Publisher: <br>
-[lanyijianke](https://clawhub.ai/user/lanyijianke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lanyijianke](https://clawhub.ai/user/lanyijianke)
 
-## Use Case: <br>
-Developers and agent users use AnySkill to connect a private GitHub skill repository, load matching skills on demand, and synchronize skill files across supported IDEs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles write-capable GitHub tokens for private skill repositories. <br>
-Mitigation: Use a fine-grained token limited to one repository and store it in a secure environment or platform secret store instead of pasting it into chat or plaintext configuration. <br>
-Risk: The skill can persistently change agent or workspace behavior through skill downloads, workspace configuration updates, infrastructure changes, commits, pushes, or delete workflows. <br>
-Mitigation: Review any TOOLS.md, AGENTS.md, downloaded skill, infrastructure update, commit, push, or delete action before allowing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AnySkill homepage](https://github.com/lanyijianke/AnySkill) <br>
-- [ClawHub skill page](https://clawhub.ai/lanyijianke/anyskill) <br>
+## Use Case:
 
+Developers and agent users use AnySkill to connect an agent to a private GitHub-backed skill repository, then find, load, download, publish, update, or remove agent skills across supported IDEs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local skill files, configuration files, and Git commits during repository management workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a GitHub token to read from and write to a private skill repository.
+
+Mitigation: Use a fine-grained token scoped to one repository, prefer read-only access unless upload or deletion features are needed, and avoid storing tokens in plaintext when the environment supports safer storage.
+
+Risk: Mutable remote skill instructions can change what an agent loads or executes over time.
+
+Mitigation: Install or load skills only from trusted sources and revisions, review remote changes before use, and do not install public packs unless the source is trusted.
+
+Risk: Repository mutation features can modify persistent skill files and push or delete content.
+
+Mitigation: Review diffs before git push or deletion, require explicit confirmation for destructive actions, and keep a recoverable repository history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyijianke/skills/anyskill)
+- [AnySkill GitHub homepage](https://github.com/lanyijianke/AnySkill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce setup guidance, repository operations, file changes, and skill-management summaries based on the selected mode.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Headless-detection-resistant browser automation in Docker for authorized QA, compatibility testing, and defensive security research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless-detection-resistant browser automation in Docker for authorized QA, compatibility testing, and defensive security research.
 
-## Publisher: <br>
-[psyb0t](https://clawhub.ai/user/psyb0t) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psyb0t](https://clawhub.ai/user/psyb0t)
 
-## Use Case: <br>
-Developers, QA engineers, and defensive security testers use this skill to run authorized browser automation against owned or written-authorized targets where standard headless browsers trigger false-positive detection. It helps test anti-bot controls, compatibility behavior, and human-like interaction flows while preserving explicit authorization boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-power browser automation can be misused against unauthorized third-party services. <br>
-Mitigation: Use only for owned systems or targets with written authorization, and avoid scraping, access-control evasion, account abuse, rate-limit abuse, or unauthorized CAPTCHA bypass. <br>
-Risk: An exposed browser API or noVNC viewer can let others control the browser and any active sessions. <br>
-Mitigation: Bind services to localhost, require a strong AUTH_TOKEN for any non-local deployment, avoid query-string tokens, and do not expose noVNC beyond localhost. <br>
-Risk: Persistent profiles can retain live cookies, credentials, fingerprints, and other sensitive session data. <br>
-Mitigation: Use isolated test accounts, treat profile volumes as secrets, avoid sharing them across environments, delete them after testing, and rotate exercised test credentials. <br>
-Risk: Mutable container tags or unreviewed compose files can change deployed behavior. <br>
-Mitigation: Pin reviewed Docker image digests, inspect compose files before use, and upgrade only after conscious review. <br>
+## Use Case:
 
+Developers and security testers use this skill to exercise anti-bot behavior, browser compatibility, and authorized security tests on sites they own or have written permission to assess.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psyb0t/stealthy-auto-browse) <br>
-- [Setup](references/setup.md) <br>
-- [Project homepage](https://github.com/psyb0t/docker-stealthy-auto-browse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash, JSON, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser API requests, structured JSON responses, screenshots, page text, HTML, cookies, storage data, and script-mode result JSON when used against an authorized running service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The security evidence flags the mutable `latest` container image as a medium-confidence supply-chain risk; some reference checks were incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup guidance and use only a container image version whose identity has been verified. Be cautious with credentials, browser sessions, and writable host folders.
+
+Risk: Without `AUTH_TOKEN`, anyone who can reach the browser API can control the browser and its session.
+
+Mitigation: Bind the API to localhost or an authenticating proxy, set `AUTH_TOKEN` for non-localhost deployments, and keep the noVNC viewer private.
+
+Risk: Browser actions can capture page content and may automatically accept dialogs that trigger state changes.
+
+Mitigation: Use only authorized targets, limit capture to test needs, and disable dialog auto-accept before actions on stateful sites.
+
+## Reference(s):
+
+- [Setup guide](references/setup.md)
+- [Project homepage](https://github.com/psyb0t/docker-stealthy-auto-browse)
+- [Humanized input API reference](https://github.com/psyb0t/docker-stealthy-auto-browse/blob/main/docs/api.md#humanized-input)
+- [Script mode control flow](https://github.com/psyb0t/docker-stealthy-auto-browse/blob/main/docs/script-mode.md#control-flow)
+- [ClawHub release page](https://clawhub.ai/psyb0t/skills/stealthy-auto-browse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Screenshots, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON browser responses, extracted page text or DOM data, screenshots, files, and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected browser action and the authorized test target.]
+
+## Skill Version(s):
+
+3.6.0 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

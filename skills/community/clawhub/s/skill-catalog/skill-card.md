@@ -1,40 +1,49 @@
-## Description: <br>
-Auto-scan all installed skills, generate a categorized INDEX.md, and keep it in sync via git hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-scan all installed skills, generate a categorized INDEX.md, and keep it in sync via git hooks.
 
-## Publisher: <br>
-[kenwang-dev](https://clawhub.ai/user/kenwang-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenwang-dev](https://clawhub.ai/user/kenwang-dev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain a searchable Markdown inventory of installed skills. It helps agents and humans find skill paths and trigger descriptions without manually crawling every SKILL.md file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hook installer can overwrite existing pre-commit and post-merge hooks and persistently change repository behavior. <br>
-Mitigation: Inspect existing .git/hooks/pre-commit and .git/hooks/post-merge files before running install-hooks.sh, and merge any existing hook behavior manually. <br>
-Risk: The installed pre-commit hook can regenerate and stage skills/INDEX.md automatically when skills change. <br>
-Mitigation: Prefer running register.sh manually for lower-risk use, and review the generated INDEX.md diff before committing. <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to inventory installed agent skills, generate a searchable skills/INDEX.md file, and optionally keep that index current through Git hooks.
 
-## Reference(s): <br>
-- [Skill Index on ClawHub](https://clawhub.ai/kenwang-dev/skill-catalog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown index file with shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates skills/INDEX.md and can install Git hooks that keep the index updated during commit and pull workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional hook installer persistently replaces repository pre-commit and post-merge hooks, which can cause future repository scripts to run automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running install-hooks.sh, inspect and back up existing hooks; use register.sh manually when automatic commit or pull updates are not needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kenwang-dev/skills/skill-catalog)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown file and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates skills/INDEX.md and can install repository Git hooks when the optional installer is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

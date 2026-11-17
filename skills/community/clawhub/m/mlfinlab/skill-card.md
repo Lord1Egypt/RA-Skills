@@ -1,41 +1,55 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Mlfinlab concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Mlfinlab concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve local Mlfinlab reference material, including introductions, quickstarts, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic reference content may be incomplete, outdated, or misleading for a specific Mlfinlab implementation. <br>
-Mitigation: Verify important implementation advice against official or project-specific documentation before applying it. <br>
-Risk: The shell script VERSION value differs from the server release and SKILL.md frontmatter version. <br>
-Mitigation: Confirm version labels before publishing or relying on version-specific behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference for Mlfinlab concepts, quickstart steps, patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Mlfinlab on ClawHub](https://clawhub.ai/xueyetianya/mlfinlab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local heredoc output; no API keys, credentials, external API calls, or network access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: evidence release and SKILL.md frontmatter; script VERSION is 2.0.1) <br>
+Risk: The reference output is generic and may not be authoritative for real Mlfinlab work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance against official project documentation and local engineering requirements before applying it.
+
+Risk: The packaged script reports VERSION="2.0.1" while the skill frontmatter and server release evidence report version 2.0.2.
+
+Mitigation: Use the server release and SKILL.md version for release tracking, and reconcile the script constant before relying on in-tool version output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/mlfinlab)
+- [Publisher Profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credential requirements, or network access are described by the artifact.]
+
+## Skill Version(s):
+
+2.0.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Guides an agent to delegate complex coding tasks to Codex, Claude Code, OpenCode, or Pi through PTY-backed bash sessions and background process monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Codex, Claude Code, OpenCode, or Pi agents through PTY-backed bash sessions, including background monitoring and review workflows.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to launch and supervise coding agents for feature work, refactoring, PR review, and other multi-step codebase tasks. It is intended for complex delegation workflows, not simple edits or code reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: No-approval or unsandboxed agent modes can make broad workspace or host changes. <br>
-Mitigation: Use temporary clones or worktrees, avoid --yolo unless the workspace is disposable, and inspect diffs before commits. <br>
-Risk: Background coding-agent sessions can continue acting after launch without enough user checkpoints. <br>
-Mitigation: Monitor session logs and status, terminate stale runs, and require explicit approval before pushes, PR creation, package installs, or GitHub comments. <br>
-Risk: Host notification commands may trigger external side effects when appended to long-running prompts. <br>
-Mitigation: Require explicit user approval before host notification commands and keep completion messages limited to task status. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate complex coding, review, refactoring, and feature-building work to external coding agents while monitoring interactive PTY sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/coding-agent-cp3d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a bash-capable environment with PTY support and the selected coding agent CLI installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide an agent to launch other coding agents with broad local authority, including unsandboxed or auto-approved modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer sandboxed runs, isolated worktrees or containers, pinned dependencies, and manual review before commits, pushes, PR comments, or PR creation.
+
+Risk: The skill includes workflows involving package installs and remote GitHub changes.
+
+Mitigation: Avoid `--yolo` examples on sensitive or untrusted repositories and require review before dependency installation or remote repository writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/coding-agent-cp3d)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose launching background PTY sessions and local coding-agent commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

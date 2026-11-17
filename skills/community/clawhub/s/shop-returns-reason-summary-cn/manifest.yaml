@@ -1,0 +1,23 @@
+name: shop-returns-reason-summary-cn
+slug: shop-returns-reason-summary-cn
+display_name: 售后原因汇总与商品改进
+description: 将脱敏退款或退货原因和商品信息整理为可追溯的原因分类、按原始记录核算的计数与商品页改进建议，适合中文小店、小说作者和自媒体创作者复盘售后；缺少关键字段时明确列出缺口，不编造事实、不作财务结论或代替客服回复。
+version: 1.0.1
+license: MIT-0
+repository: https://github.com/xxjrq/shop-returns-reason-summary-cn
+tags:
+  - after-sales
+  - return-analysis
+  - product-listing
+  - chinese-commerce
+trigger_words:
+  - 售后原因汇总
+  - 退货原因分析
+  - 商品页改进建议
+triggers:
+  - 汇总退款退货原因
+  - 根据售后记录优化商品页
+  - 统计退货原因和商品问题
+icon: icon-512.png
+entrypoint: SKILL.md
+self_test: sh scripts/self-test.sh

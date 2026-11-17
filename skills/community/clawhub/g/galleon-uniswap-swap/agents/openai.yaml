@@ -1,0 +1,6 @@
+interface:
+  display_name: "Uniswap Swap"
+  short_description: "Uniswap Swap workflow and evidence"
+  default_prompt: "Use $uniswap-swap for this protocol task and return concrete next steps with evidence."
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn73ybwd3ca944grf4vc90j1qx828eh9",
-  "slug": "smart-ppt-generator",
-  "version": "1.0.1",
-  "publishedAt": 1772614059715
+  "owner": "openclaw",
+  "slug": "ppt-generator",
+  "displayName": "PPT Generator - 智能演示文稿生成器",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772609818000,
+    "commit": "initial"
+  },
+  "description": "一键生成专业演示文稿！智能识别风格（科技/商务/教育等），自动调用设计技能布局，预览确认后生成PPTX文件。无需手动设计，轻松做出高质量PPT！",
+  "keywords": ["ppt", "powerpoint", "presentation", "slides", "generator", "design", "office"],
+  "tags": ["productivity", "design", "office", "automation"],
+  "features": [
+    "✅ 无需API：纯本地计算，不依赖任何付费服务",
+    "智能风格识别：科技/商务/教育/营销/创意等10+种风格",
+    "自动设计布局：调用专业设计技能",
+    "预览确认机制：生成前先看效果",
+    "动态配色方案：10种风格×5套配色",
+    "高级模式：Canvas设计，艺术级效果",
+    "联网配色搜索：用户反馈后自动更新",
+    "一键下载：自动上传到文件托管服务"
+  ],
+  "requirements": {
+    "node": ">=18",
+    "skills": ["frontend-design", "canvas-design"],
+    "tools": ["puppeteer", "pptxgenjs"],
+    "services": ["filebrowser"]
+  },
+  "usage": "说'帮我做个XX的PPT'即可自动生成"
 }

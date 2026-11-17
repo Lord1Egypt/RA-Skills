@@ -1,46 +1,59 @@
-## Description: <br>
-Self-writing meta-extension that forges new capabilities by researching documentation and writing extensions, tools, hooks, and skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-writing meta-extension that forges new capabilities — researches docs, writes extensions, tools, hooks, and skills
 
-## Publisher: <br>
-[lekt9](https://clawhub.ai/user/lekt9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lekt9](https://clawhub.ai/user/lekt9)
 
-## Use Case: <br>
-Developers and agent builders use Foundry to research OpenClaw documentation, generate OpenClaw extensions and AgentSkills-compatible skills, and add new capabilities to an OpenClaw environment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Foundry can install external plugin code and add new tools, hooks, extensions, and skills. <br>
-Mitigation: Review the npm package and source repository before installation, pin the installed version, and test changes in a separate OpenClaw profile. <br>
-Risk: Self-modification and generated code can change agent behavior or write files that affect future runs. <br>
-Mitigation: Require manual diff review and approval before generated code, self-changes, or new capabilities are enabled. <br>
-Risk: Automatic learning can retain patterns from documentation, experience, arXiv, and GitHub sources without clear enough controls. <br>
-Mitigation: Disable auto-learning sources until the retention behavior and data boundaries are configured for the environment. <br>
-Risk: Marketplace publishing can expose generated patterns or abilities beyond the local environment. <br>
-Mitigation: Keep automatic publishing disabled unless a reviewer has approved the content and publishing destination. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lekt9/foundry) <br>
-- [Foundry Homepage](https://getfoundry.app) <br>
-- [OpenClaw Foundry Repository](https://github.com/lekt9/openclaw-foundry) <br>
-- [Foundry Marketplace](https://api.claw.getfoundry.app) <br>
+## Use Case:
 
+Developers and engineers use Foundry with OpenClaw to research documentation, generate extensions, tools, hooks, and skill packages, and capture learning from implementation outcomes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or generate extension, hook, tool, skill, and configuration changes that require review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Foundry can create and modify OpenClaw capabilities, including self-extension behavior.
+
+Mitigation: Review generated code before enabling it and require explicit confirmation before self-extension.
+
+Risk: Automatic learning from agent activity and external sources can persist new patterns or capabilities.
+
+Mitigation: Disable autoLearn by default unless the operator has reviewed the behavior and approved the learning sources.
+
+Risk: Unpinned or auto-enabled installation and marketplace actions can introduce unreviewed capabilities.
+
+Mitigation: Pin and verify the plugin version, and require explicit confirmation before marketplace publishing or community ability installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lekt9/skills/foundry)
+- [Foundry Homepage](https://getfoundry.app)
+- [OpenClaw Repository Metadata](https://github.com/lekt9/openclaw-foundry)
+- [Foundry Marketplace](https://api.claw.getfoundry.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell-command, code, and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify OpenClaw extensions, skills, hooks, tools, and configuration when invoked through Foundry workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-A MongoDB companion skill for read-only query planning, analysis, evidence interpretation, and fail-closed rejection of mutation or administrative requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Companion skill de MongoDB para consultas y análisis read-only, con degradación y rechazo fail-closed.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to plan and interpret read-only MongoDB inspections, document queries, samples, aggregations, and summaries while preserving fail-closed boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a separate mongodb plugin and cannot technically enforce database permissions. <br>
-Mitigation: Configure the mongodb plugin with read-only MongoDB permissions before use. <br>
-Risk: Ambiguous requests, limited samples, or heterogeneous schemas can lead to unsupported conclusions. <br>
-Mitigation: Use explicit filters and limits, label confidence, and degrade to a permitted read-only next step when evidence is insufficient. <br>
-Risk: Mutation, administrative, or operational workaround requests are outside the skill's read-only scope. <br>
-Mitigation: Reject write and administration tasks, including manual write scripts and change-validation procedures. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, constrain, and explain read-only MongoDB inspections, document queries, aggregations, and result interpretation through the configured mongodb plugin. It is intended to fail closed when requests are ambiguous, unsupported, or outside the read-only boundary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kansodata/kansodata-mongodb-companion) <br>
-- [Publisher profile](https://clawhub.ai/user/kansodata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown with structured read-only analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include resultado, evidencia_observada, limites, nivel_confianza, estado_madurez, and siguiente_paso_permitido.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill depends on a configured mongodb plugin and cannot provide observed database results when that plugin is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where the mongodb plugin is configured for the intended read-only databases, and require the agent to state insufficient context rather than simulate access.
+
+Risk: Users may ask for writes, administrative changes, migrations, repairs, or operational validation that are outside the skill's read-only scope.
+
+Mitigation: Keep the fail-closed boundary active: reject mutation or administration requests and offer only permitted read-only next steps.
+
+Risk: The artifact appears to force Spanish structured responses, which may not match every deployment's user expectations.
+
+Mitigation: Review localization requirements before deployment and override or revise response-language behavior when the target users need another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kansodata/skills/kansodata-mongodb-companion)
+- [ClawHub publisher profile](https://clawhub.ai/user/kansodata)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses follow a fixed evidence-first pattern with result, observed evidence, limits, confidence level, maturity state, and a permitted read-only next step.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

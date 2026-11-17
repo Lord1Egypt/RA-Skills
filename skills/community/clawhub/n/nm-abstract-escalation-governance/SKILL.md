@@ -1,7 +1,7 @@
 ---
 name: escalation-governance
 description: Assess whether to escalate models
-version: 1.9.8
+version: 1.10.3
 triggers:
   - escalation
   - model-selection
@@ -14,27 +14,7 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [The Iron Law](#the-iron-law)
-- [When to Escalate](#when-to-escalate)
-- [When NOT to Escalate](#when-not-to-escalate)
-- [Decision Framework](#decision-framework)
-- [1. Have I understood the problem?](#1-have-i-understood-the-problem)
-- [2. Have I investigated systematically?](#2-have-i-investigated-systematically)
-- [3. Is escalation the right solution?](#3-is-escalation-the-right-solution)
-- [4. Can I justify the trade-off?](#4-can-i-justify-the-trade-off)
-- [Escalation Protocol](#escalation-protocol)
-- [Common Rationalizations](#common-rationalizations)
-- [Agent Schema](#agent-schema)
-- [Orchestrator Authority](#orchestrator-authority)
-- [Red Flags - STOP and Investigate](#red-flags-stop-and-investigate)
-- [Integration with Agent Workflow](#integration-with-agent-workflow)
-- [Quick Reference](#quick-reference)
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Escalation Governance
@@ -50,7 +30,6 @@ Model escalation (haiku→sonnet→opus) trades speed/cost for reasoning capabil
 ```
 NO ESCALATION WITHOUT INVESTIGATION FIRST
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 Escalation is never a shortcut. If you haven't understood why the current model is insufficient, escalation is premature.
 
@@ -60,7 +39,7 @@ Escalation is never a shortcut. If you haven't understood why the current model 
 
 | Trigger | Description | Example |
 |---------|-------------|---------|
-| Genuine complexity | Task inherently requires nuanced judgment | Security policy trade-offs |
+| Genuine complexity | Task inherently requires judgment across trade-offs | Security policy trade-offs |
 | Reasoning depth | Multiple inference steps with uncertainty | Architecture decisions |
 | Novel patterns | No existing patterns apply | First-of-kind implementation |
 | High stakes | Error cost justifies capability investment | Production deployment |
@@ -95,6 +74,13 @@ Before escalating, answer these questions:
 - [ ] Did I read error messages/outputs carefully?
 - [ ] Did I check for similar solved problems?
 - [ ] Did I form and test a hypothesis?
+- [ ] How many ways does this codebase already implement the concern,
+  and which one is current?
+
+Two coexisting implementations of one concern make a task look harder
+than it is. That is a knowledge gap: count them with a reference search
+and read both before escalating (`docs/knowledge-corpus/decoherence.md`,
+which calls them models of a concern).
 
 **If not investigated:** Complete investigation first.
 
@@ -123,16 +109,24 @@ When escalation IS justified:
 3. **Define success** - How will you know the escalated task succeeded?
 4. **Return promptly** - Drop back to efficient model after reasoning task
 
-## Common Rationalizations
+## Reasons That Do Not Justify Escalation
 
-| Excuse | Reality |
-|--------|---------|
-| "This is complex" | Complex for whom? Have you tried? |
-| "Better safe than sorry" | Safety theater wastes resources |
-| "I tried and failed" | How many times? Did you investigate why? |
-| "The user expects quality" | Quality comes from process, not model size |
-| "Just this once" | Exceptions become habits |
-| "Time is money" | Systematic approach is faster than thrashing |
+Escalation needs a reason tied to the task. These common ones fail
+the four steps above, and the constraint behind each says why:
+
+- "This is complex" needs the attempt that showed the current model
+  falls short. Complexity alone does not predict model failure.
+- "Better safe than sorry" names no risk. A larger model spends more
+  without reducing a risk nobody identified.
+- "I tried and failed" needs the attempt count and why it failed. A
+  failure not yet investigated is often a context problem that a
+  larger model would repeat.
+- "The user expects quality" is met by process: tests, review and
+  evidence. Model size does not supply them.
+- "Just this once" still needs the documented reason, since an
+  exception repeated without one becomes the default.
+- "Time is money" favors investigation. Thrashing on a larger model
+  is slower than a systematic pass on the current one.
 
 ## Agent Schema
 
@@ -148,7 +142,6 @@ escalation:
     - novel_pattern          # No existing patterns apply
     - high_stakes            # Error would be costly
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 **Key points:**
 - Hints are advisory, not mandatory
@@ -181,7 +174,6 @@ If you catch yourself thinking:
 ## Integration with Agent Workflow
 
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 Agent starts task at assigned model
 ├── Task succeeds → Complete
 └── Task struggles →
@@ -191,13 +183,12 @@ Agent starts task at assigned model
     └── Don't investigate → WRONG PATH
         └── "Maybe escalate?" → NO. Investigate first.
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Quick Reference
 
 | Situation | Action |
 |-----------|--------|
-| Task inherently requires nuanced reasoning | Escalate |
+| Task inherently requires multi-step reasoning | Escalate |
 | Agent uncertain but hasn't investigated | Investigate first |
 | Multiple attempts failed | Question approach, not model |
 | Security/high-stakes decision | Escalate |
@@ -249,7 +240,7 @@ reliably across all deployment configurations.
 Vertex, and Microsoft Foundry now default to Opus 4.6
 (was Opus 4.1). Subagent `model: opus`/`sonnet`/`haiku`
 aliases now resolve to the current version on all
-providers; previously they were silently downgraded to
+providers. Previously they were silently downgraded to
 older versions (e.g., Opus 4.1 instead of 4.6). This
 fix means agent dispatch workflows on third-party
 providers now match first-party API behavior.
@@ -275,3 +266,14 @@ Effort controls do NOT replace the escalation governance
 framework: they provide an additional axis. The Iron Law
 still applies: investigate before changing either model
 or effort level.
+
+## Exit Criteria
+
+- [ ] A decision (escalate / stay) is stated with a named trigger from the "When to Escalate" or
+  "When NOT to Escalate" tables, not a vague claim of complexity.
+- [ ] If escalation is recommended, the specific target model and the subtask scope are documented
+  before the escalation occurs.
+- [ ] Any instance of escalation triggered by "maybe a smarter model will figure it out" is flagged
+  as an Iron Law violation and blocked.
+- [ ] If the task is decomposable into smaller pieces that each fit the current model, that
+  decomposition is proposed instead of escalation.

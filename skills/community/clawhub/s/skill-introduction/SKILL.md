@@ -15,7 +15,7 @@ description: >
 
 # skill-introduction
 
-- **Version**: 1.0.0
+- **Version**: 1.0.3
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/skill-introduction
@@ -152,6 +152,22 @@ If no hook is configured, the skill prints `[INFO] No deploy hook configured` an
 - Empty sections (highlights / features / roadmap) are hidden — no fake content.
 - If the user does not provide a skill path, ask them; do not auto-guess.
 
+## Dependencies
+
+- **Python 3.8+** (stdlib only; no `pip install` required)
+- **`mistune` v3.x** — BSD-3-Clause, vendored unmodified at `vendor/mistune/`. If you delete `vendor/`, the script automatically falls back to a built-in regex renderer (simpler output, no crash).
+
+## Environment Variables
+
+| Env | Default | Purpose |
+|-----|---------|---------|
+| `SKILL_INTRO_AUTHOR` | (unset) | Override maintainer name (highest priority, before `git config` / `$USER`) |
+| `SKILL_INTRO_CACHE` | `~/.cache/skill-introduction/cache.json` | Cache file location (skill-name → dashboardId) |
+| `XDG_CACHE_HOME` | `~/.cache` | XDG base for cache when `SKILL_INTRO_CACHE` is unset |
+| `SKILL_INTRO_DEPLOY_CMD` | (unset) | Path to deploy hook executable. ⚠️ Treated as trusted; only point at scripts you control. |
+| `SKILL_INTRO_UPDATE_ID` | (set by skill) | Passed to deploy hook when updating an existing page |
+
 ## Third-party Notice
 
-- `vendor/mistune/` — [mistune](https://github.com/lepture/mistune) v3.x, BSD-3-Clause License, © Hsiaoming Yang. Vendored unmodified for offline rendering.
+- `vendor/mistune/` — [mistune](https://github.com/lepture/mistune) v3.x, BSD-3-Clause License, © Hsiaoming Yang.
+  Full license text: [`vendor/mistune/LICENSE`](vendor/mistune/LICENSE). Summary: [`NOTICE`](NOTICE).

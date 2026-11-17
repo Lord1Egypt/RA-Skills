@@ -1,78 +1,79 @@
-# 阿里云 CLI Profile 配置指南
+# Alibaba Cloud CLI Profile Configuration Guide
 
-> 本文档提供阿里云CLI profile的配置指导，适用于首次使用本skill的用户。
-
----
-
-## 📋 什么是Profile？
-
-Profile是阿里云CLI用来存储认证信息（AccessKey ID、AccessKey Secret等）的配置项。使用profile可以：
-- ✅ 安全地管理多套账号/环境
-- ✅ 避免在命令中明文传递密钥
-- ✅ 提高命令的可移植性和安全性
+> This document provides configuration guidance for Alibaba Cloud CLI profiles, suitable for users using this skill for the first time.
 
 ---
 
-## 🔧 配置步骤
+## What is a Profile?
 
-### 前置条件：安装阿里云CLI
+A profile is a configuration item used by Alibaba Cloud CLI to store authentication information (AccessKey ID, AccessKey Secret, etc.). Using a profile allows you to:
+- ✅ Securely manage multiple accounts/environments
+- ✅ Avoid passing credentials in plain text in commands
+- ✅ Improve portability and security of commands
 
-**macOS (使用Homebrew)**：
+---
+
+## Configuration Steps
+
+### Prerequisite: Install Alibaba Cloud CLI
+
+**macOS (using Homebrew)**:
 ```bash
 brew install aliyun-cli
-aliyun version  # 验证版本 >= 3.3.3
+aliyun version  # Verify version >= 3.3.3
 ```
 
-**Linux**：
+**Linux**:
 ```bash
 wget https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz
 tar -xzf aliyun-cli-linux-latest-amd64.tgz
-sudo mv aliyun /usr/local/bin/
+mkdir -p ~/.local/bin && mv aliyun ~/.local/bin/
+export PATH="$HOME/.local/bin:$PATH"  # Add to ~/.bashrc or ~/.zshrc for persistence
 aliyun version
 ```
 
-**Windows**：
-1. 下载：https://aliyuncli.alicdn.com/aliyun-cli-windows-latest-amd64.zip
-2. 解压并添加到PATH环境变量
-3. 验证：`aliyun version`
+**Windows**:
+1. Download: https://aliyuncli.alicdn.com/aliyun-cli-windows-latest-amd64.zip
+2. Extract and add to PATH environment variable
+3. Verify: `aliyun version`
 
 ---
 
-### 第1步：获取AccessKey
+### Step 1: Obtain AccessKey
 
-1. 登录阿里云RAM控制台：https://ram.console.aliyun.com
-2. 在左侧导航栏选择 **人员管理** → **用户**
-3. 找到您要使用的RAM用户，点击进入详情
-4. 点击 **创建AccessKey** 或使用已有的AccessKey
-5. ⚠️ **立即保存AccessKey Secret**（只显示一次）
+1. Log in to Alibaba Cloud RAM Console: https://ram.console.aliyun.com
+2. In the left navigation, select **Identity Management** → **Users**
+3. Find the RAM user you want to use, click to enter details
+4. Click **Create AccessKey** or use an existing AccessKey
+5. ⚠️ **Save the AccessKey Secret immediately** (only shown once)
 
-> **安全提示**：
-> - ❌ 不要使用阿里云主账号的AccessKey
-> - ✅ 创建RAM用户并遵循最小权限原则
-> - ✅ 定期轮换AccessKey
+> **Security Tips**:
+> - ❌ Do NOT use the primary account's AccessKey
+> - ✅ Create a RAM user and follow the principle of least privilege
+> - ✅ Rotate AccessKeys regularly
 
 ---
 
-### 第2步：配置Profile（交互式）
+### Step 2: Configure Profile (Interactive)
 
-运行以下命令，按提示输入信息：
+Run the following command and follow the prompts:
 
 ```bash
 aliyun configure
 ```
 
-系统会提示您输入：
-- **Access Key Id**: 粘贴您的AccessKey ID
-- **Access Key Secret**: 粘贴您的AccessKey Secret
-- **Default Region Id**: 输入 `cn-hangzhou`（国内服务）或 `ap-southeast-1`（海外服务）
-- **Default Output Format**: 直接回车（默认json）
-- **Default Language**: 输入 `zh`（中文）
+The system will prompt you to enter:
+- **Access Key Id**: Paste your AccessKey ID
+- **Access Key Secret**: Paste your AccessKey Secret
+- **Default Region Id**: Enter `cn-hangzhou` (domestic) or `ap-southeast-1` (overseas)
+- **Default Output Format**: Press Enter directly (default json)
+- **Default Language**: Enter `en` (English)
 
 ---
 
-### 第2步（替代方案）：配置Profile（非交互式）
+### Step 2 (Alternative): Configure Profile (Non-Interactive)
 
-如果您希望在脚本中自动配置，可以使用非交互式命令：
+If you want to configure automatically in a script, you can use the non-interactive command:
 
 ```bash
 aliyun configure set \
@@ -82,56 +83,55 @@ aliyun configure set \
   --region cn-hangzhou
 ```
 
-> ⚠️ **安全警告**：非交互式命令会在shell历史中留下密钥记录，建议使用交互式配置或在使用后清理shell历史。
+> ⚠️ **Security Warning**: Non-interactive commands will leave credential traces in shell history. It is recommended to use interactive configuration or clear shell history after use.
 
 ---
 
-### 第3步：配置SLS日志查询凭证（仅WAF技能需要）
+### Step 3: Configure SLS Log Query Credentials (Required for WAF Skill)
 
-WAF日志查询使用`aliyunlog`工具，需要单独配置：
+WAF log queries use the `aliyun sls get-logs-v2` command, which requires the SLS plugin:
 
 ```bash
-# 安装aliyunlog（如果未安装）
-pip3 install aliyun-log-cli
+# Install SLS plugin (if not installed)
+aliyun plugin install --names aliyun-cli-sls
 
-# 配置凭证
-aliyunlog configure
+# Verify installation
+aliyun sls get-logs-v2 --help
 ```
 
-按提示输入相同的AccessKey ID和Secret。
+Credentials use the same default credential chain configured in Step 2.
 
 ---
 
-## ✅ 验证配置
+## Verify Configuration
 
-### 验证aliyun CLI
-
-```bash
-# 查看所有profile
-aliyun configure list
-
-# 测试认证（查询可用区域）
-aliyun ecs describe-regions --profile <profile-name> --user-agent AlibabaCloud-Agent-Skills
-```
-
-如果配置成功，您将看到JSON格式的区域列表。
-
-### 验证aliyunlog（WAF技能）
+### Verify aliyun CLI
 
 ```bash
-# 测试STS身份获取
-aliyun sts get-caller-identity --profile <profile-name> --user-agent AlibabaCloud-Agent-Skills
+# Test authentication (query available regions)
+aliyun ecs describe-regions \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
-如果配置成功，您将看到AccountId等信息。
+If configuration is successful, you will see a JSON-formatted list of regions.
+
+### Verify SLS Query
+
+```bash
+# Test STS identity retrieval
+aliyun sts get-caller-identity \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
+```
+
+If configuration is successful, you will see AccountId and other information.
 
 ---
 
-## 📂 Profile存储位置
+## Profile Storage Location
 
-配置文件存储在：`~/.aliyun/config.json`
+The configuration file is stored at: `~/.aliyun/config.json`
 
-示例内容：
+Example content:
 ```json
 {
   "current": "default",
@@ -143,101 +143,81 @@ aliyun sts get-caller-identity --profile <profile-name> --user-agent AlibabaClou
       "access_key_secret": "8dXXXXXXXXXXXXXXXXXXXXXXXX",
       "region_id": "cn-hangzhou",
       "output_format": "json",
-      "language": "zh"
+      "language": "en"
     }
   ]
 }
 ```
 
-> 🔒 **安全提示**：确保此文件权限正确：`chmod 600 ~/.aliyun/config.json`
+> 🔒 **Security Tip**: Ensure this file has correct permissions: `chmod 600 ~/.aliyun/config.json`
 
 ---
 
-## 🔀 管理多个Profile
+## Important: Do NOT Use --profile Parameter in This Skill
 
-### 创建命名Profile
+**CRITICAL**: This Skill relies on the **default credential chain**. Do NOT use the `--profile` parameter in any CLI command.
 
+- ❌ `aliyun waf-openapi describe-instance --profile waf-diag` (FORBIDDEN)
+- ✅ `aliyun waf-openapi describe-instance` (rely on default credential chain)
+
+If you have multiple profiles, set the desired profile as default before using this Skill:
 ```bash
-aliyun configure set --profile waf-diag \
-  --mode AK \
-  --access-key-id <your-access-key-id> \
-  --access-key-secret <your-access-key-secret> \
-  --region cn-hangzhou
-```
-
-### 使用特定Profile
-
-```bash
-# 在命令中指定
-aliyun waf-openapi describe-instance --profile waf-diag --user-agent AlibabaCloud-Agent-Skills
-
-# 或通过环境变量
-export ALIBABA_CLOUD_PROFILE=waf-diag
-aliyun waf-openapi describe-instance --user-agent AlibabaCloud-Agent-Skills
-```
-
-### 列出和切换Profile
-
-```bash
-# 列出所有profile
-aliyun configure list
-
-# 切换默认profile
-aliyun configure set --current waf-diag
+# Set default profile
+aliyun configure set --current <profile-name>
 ```
 
 ---
 
-## 🔐 认证模式
+## Authentication Modes
 
-本skill支持以下认证模式：
+This skill supports the following authentication modes:
 
-| 模式 | 适用场景 | 配置示例 |
+| Mode | Use Case | Configuration Example |
 |------|---------|---------|
-| **AK** | 个人账号/脚本 | `aliyun configure --mode AK` |
-| **StsToken** | 临时访问（1-12小时） | `aliyun configure --mode StsToken` |
-| **EcsRamRole** | ECS实例RAM角色 | `aliyun configure --mode EcsRamRole` |
-| **RamRoleArn** | 跨账号/提权访问 | `aliyun configure --mode RamRoleArn` |
+| **AK** | Personal account/scripts | `aliyun configure --mode AK` |
+| **StsToken** | Temporary access (1-12 hours) | `aliyun configure --mode StsToken` |
+| **EcsRamRole** | ECS instance RAM role | `aliyun configure --mode EcsRamRole` |
+| **RamRoleArn** | Cross-account/elevated access | `aliyun configure --mode RamRoleArn` |
 
-> 💡 **推荐**：日常使用AK模式即可，企业环境建议使用RAM角色或STS临时凭证。
-
----
-
-## 🚨 常见问题
-
-### Q: 命令返回"InvalidAccessKeyId.NotFound"
-**A**: AccessKey ID错误，请检查是否正确复制。
-
-### Q: 命令返回"SignatureDoesNotMatch"
-**A**: AccessKey Secret错误，请重新配置。
-
-### Q: 命令返回"Forbidden.RAM"
-**A**: 权限不足，请检查RAM用户是否附加了正确的策略。
-
-### Q: 找不到aliyun命令
-**A**: 未安装或未添加到PATH，请参考前置条件重新安装。
-
-### Q: aliyunlog命令不存在
-**A**: 需要单独安装：`pip3 install aliyun-log-cli`
+> 💡 **Recommendation**: Daily use with AK mode is sufficient. For enterprise environments, RAM roles or STS temporary credentials are recommended.
 
 ---
 
-## 📚 参考资源
+## Common Issues
 
-- 官方文档：https://help.aliyun.com/zh/cli/
-- RAM控制台：https://ram.console.aliyun.com/
-- AccessKey管理：https://ram.console.aliyun.com/manage/ak
+### Q: Command returns "InvalidAccessKeyId.NotFound"
+**A**: AccessKey ID is incorrect, please check if it was copied correctly.
+
+### Q: Command returns "SignatureDoesNotMatch"
+**A**: AccessKey Secret is incorrect, please reconfigure.
+
+### Q: Command returns "Forbidden.RAM"
+**A**: Insufficient permissions, please check if the RAM user has the correct policies attached.
+
+### Q: aliyun command not found
+**A**: Not installed or not in PATH, please refer to prerequisites to reinstall.
+
+### Q: aliyun sls get-logs-v2 command not found
+**A**: SLS plugin not installed, run: `aliyun plugin install --names aliyun-cli-sls`
 
 ---
 
-## 🔒 安全最佳实践
+## Reference Resources
 
-1. **使用RAM用户而非主账号**：创建专门的RAM用户并授予最小权限
-2. **定期轮换密钥**：建议每90天更换一次AccessKey
-3. **使用临时凭证**：对于CI/CD或临时访问，使用STS Token
-4. **保护配置文件**：`chmod 600 ~/.aliyun/config.json`
-5. **不要提交密钥到代码库**：将config.json添加到.gitignore
+- Official documentation: https://help.aliyun.com/zh/cli/
+- RAM Console: https://ram.console.aliyun.com/
+- AccessKey Management: https://ram.console.aliyun.com/manage/ak
 
 ---
 
-> 配置完成后，您就可以使用本skill进行WAF/云防火墙的诊断和查询了！
+## Security Best Practices
+
+1. **Use RAM users instead of primary account**: Create a dedicated RAM user and grant minimum permissions
+2. **Rotate keys regularly**: Recommend changing AccessKey every 90 days
+3. **Use temporary credentials**: For CI/CD or temporary access, use STS Token
+4. **Protect configuration files**: `chmod 600 ~/.aliyun/config.json`
+5. **Do NOT commit credentials to code repositories**: Add config.json to .gitignore
+
+---
+
+> Once configuration is complete, you can use this skill for WAF diagnosis and queries!

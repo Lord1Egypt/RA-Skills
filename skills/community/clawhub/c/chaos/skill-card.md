@@ -1,37 +1,49 @@
-## Description: <br>
-Controlled fault injection and resilience validation for testing failover or dependency assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controlled fault injection and resilience validation. Use when testing failover or dependency assumptions.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Developers, reliability engineers, and operations teams use this skill to structure chaos engineering planning, fault-injection reviews, game days, and resilience validation with explicit goals, blast-radius controls, abort criteria, and follow-through. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chaos experiments can affect production systems if treated as permission to execute without authorization or scope control. <br>
-Mitigation: Confirm authorization, scope, protected systems, monitoring, abort criteria, rollback ownership, and stakeholder communication before applying the guidance to real infrastructure. <br>
+## Use Case:
 
+Developers, operators, and reliability engineers use this skill to structure chaos engineering discussions, plan controlled fault injection, validate failover assumptions, and define verification and follow-up steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and staged recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only planning aid; produces no executable code and has no credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Chaos engineering guidance can lead to disruptive production fault injection if applied without controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit experiment scope, abort criteria, observability, and rollback ownership before running any real fault injection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/chaos)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with staged checklists and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; does not call tools, execute commands, or modify systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

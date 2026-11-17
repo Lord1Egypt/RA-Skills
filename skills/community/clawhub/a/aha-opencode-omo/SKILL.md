@@ -1,18 +1,20 @@
 ---
 name: aha-opencode-omo
-description: "OpenCode+OMO optimized capability orchestration skill. Use this when in OpenCode with OMO installed. Activates full delegation mode with OMO-specific capability discovery and task-driven orchestration."
+description: "OpenCode+OMO orchestration: keep this session as decision maker/integrator; for non-trivial work prefer bounded available agents for search, reading, research, testing, review, and mutually exclusive writes. Preserve confirmation gates and the lowest-sufficient route."
 license: MIT-0
-compatibility: "OpenCode with OMO installed"
 metadata:
+  compatibility: "OpenCode with OMO installed"
   repository: https://github.com/its-How/aha-orch
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # aha-opencode-omo
 
 ## What This Mode Activates
 
-Full-delegation capability orchestration for [OpenCode](https://github.com/sst/opencode) with [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent) installed. This skill enables the agent to autonomously discover, select, combine, and reselect available capability surfaces (native runtime, enhancement layer, skill, MCP, command, subagent, worktree) to build the lowest-sufficient execution route for each task unit.
+Agent-facing, brain-led capability orchestration for [OpenCode](https://github.com/sst/opencode) with [oh-my-openagent (OMO)](https://github.com/code-yeongyu/oh-my-openagent) installed. This skill enables the agent to discover, select, combine, and reselect available capability surfaces (native runtime, enhancement layer, skill, MCP, command, subagent, worktree) to build the lowest-sufficient task-lifecycle capability route for the task.
+
+For non-trivial work, keep the current OpenCode session as the decision maker and final integrator: own goal, constraints, decomposition, permission checks, integration, acceptance, verification, and final answer. Resolve available agents at runtime and prefer bounded lanes for separable units when they improve evidence; do not delegate merely to create fan-out.
 
 ## Pre-Check
 
@@ -30,17 +32,21 @@ Run detection at multiple levels. Do not collapse a partial failure into a full 
 Run discovery on every orchestration pass. Capability surfaces change across sessions, projects, versions, and permission modes.
 
 1. **Primary tool**: `opencode agent list` to enumerate available agents and enhancement layers
-2. **Secondary scan**: use `librarian` to query installed skills, MCPs, commands, validators, and native subagent surfaces
-3. **Permission envelope**: determine read-only vs write, external-write, network, approval policy, and destructive-action limits
+2. **Delegation-first scan**: mandatory for non-trivial work before equivalent inline work; identify bounded units suitable for OMO/native subagents, background lanes, review lanes, or QA lanes; delegate suitable units, but keep urgent blockers, tightly coupled integration, secret/session boundaries, and write-conflict risks in the primary session; if no unit is delegated, state the concrete reason when it affects collaboration shape or evidence
+3. **Secondary scan**: use `librarian` to query installed skills, MCPs, commands, validators, and native subagent surfaces
+4. **Permission envelope**: determine read-only vs write, external-write, network, approval policy, and destructive-action limits
+
+Use the closest available OMO/native agent capability for exploration, research, diagnosis, testing, review, or a single bounded writer; do not promise role names that discovery did not expose. The shared v1.1 delegation contract defines the unit matrix, `write_set` rule, direct-work exceptions, and tool-composition boundary.
 
 See `./references/capability-orchestration.md` for the 7-field discovery schema.
 
-If discovery fails, transparently tell the user, fall back to built-in reference knowledge, mark it as possibly outdated, and invite the user to provide current capability information. Do not overclaim actual availability.
+If discovery fails, transparently disclose, fall back to built-in reference knowledge, mark it as possibly outdated, and request current capability information only when needed. Do not overclaim actual availability.
 
 ## Do NOT Use This Mode For
 
 - Trivial single-step edits or read-only Q&A where native OpenCode is sufficient
-- Tasks that require explicit human confirmation at every step
+- Tasks that require explicit operator confirmation at every step
+- Cases where delegation would expose secrets/session material, create unbounded write conflicts, or add coordination cost without improving outcome evidence
 - Environments where OMO is not installed and cannot be installed
 
 ## Rollback / Deactivation

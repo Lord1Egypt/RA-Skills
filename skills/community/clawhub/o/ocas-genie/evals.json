@@ -1,0 +1,25 @@
+{
+  "skill": "ocas-genie",
+  "version": "1.0.0",
+  "description": "VPS disk space monitor and safe cleanup",
+  "evals": [
+    {
+      "description": "Disk cleanup should trigger genie skill",
+      "input": "The VPS disk is getting full, can you clean it up?",
+      "expected_output": "Should trigger ocas-genie skill, run assess then dry-run then clean",
+      "skills_loaded": ["ocas-genie"]
+    },
+    {
+      "description": "Disk usage check should trigger genie",
+      "input": "Check disk usage on the server",
+      "expected_output": "Should trigger ocas-genie skill",
+      "skills_loaded": ["ocas-genie"]
+    },
+    {
+      "description": "General system monitoring should NOT trigger genie",
+      "input": "Check the health of all OCAS skills",
+      "expected_output": "Should trigger ocas-custodian, not ocas-genie",
+      "skills_loaded": ["ocas-custodian"]
+    }
+  ]
+}

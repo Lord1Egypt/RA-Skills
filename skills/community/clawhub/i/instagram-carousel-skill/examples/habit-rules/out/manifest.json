@@ -1,0 +1,73 @@
+{
+  "slides": 9,
+  "size": "1080x1350",
+  "ratio": "4:5",
+  "files": [
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-01.jpg",
+      "bytes": 105029,
+      "type": "cover",
+      "alt": "Cover: Missed a day? Your habit is fine. Four rules for people who restart every Monday.",
+      "text": "4 rules for people who restart every Monday Missed a day? Your habit is fine."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-02.jpg",
+      "bytes": 97041,
+      "type": "step",
+      "alt": "Rule 1: one missed day is noise, two is a pattern. Never miss twice in a row.",
+      "text": "One missed day is noise. Two is a pattern. 1 Protect one line: never miss twice in a row."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-03.jpg",
+      "bytes": 104782,
+      "type": "myth",
+      "alt": "Myth: a habit takes 21 days. Fact: 66 days on average in a 2010 study, and missing one day didn't matter.",
+      "text": "A habit takes 21 days 66 days on average. Missing one didn't matter."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-04.jpg",
+      "bytes": 94882,
+      "type": "step",
+      "alt": "Rule 2: shrink it on bad days. Do two minutes instead of twenty.",
+      "text": "Shrink it on bad days 2 No time for 20 minutes? Do 2. On a bad day, the rep counts, not the size."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-05.jpg",
+      "bytes": 96587,
+      "type": "step",
+      "alt": "Rule 3: count weeks, not days. Six out of seven is a good week.",
+      "text": "Count weeks, not days 3 A streak counter calls 6 out of 7 a failure. Your week calls it a good week."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-06.jpg",
+      "bytes": 112633,
+      "type": "step",
+      "alt": "Rule 4: tie the habit to something you already do, like coffee or opening the laptop.",
+      "text": "Tie it to something you already do 4 After coffee. Before email. When the laptop opens. Pick a cue you never skip."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-07.jpg",
+      "bytes": 82430,
+      "type": "list",
+      "alt": "Recap of the four rules: never miss twice, shrink it on bad days, count weeks not days, tie it to a cue.",
+      "text": "The 4 rules Never miss twice Shrink it on bad days Count weeks, not days Tie it to a cue"
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-08.jpg",
+      "bytes": 106752,
+      "type": "screenshot",
+      "alt": "Screenshot of plodd's week view: 6 of 7 days done, Wednesday missed.",
+      "text": "plodd counts your week Miss Wednesday. Still a good week."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/slide-09.jpg",
+      "bytes": 103905,
+      "type": "cta",
+      "alt": "Closing slide: send this to the friend who restarts every Monday.",
+      "text": "Send this to the friend who restarts every Monday."
+    }
+  ],
+  "contactSheet": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/contact-sheet.png",
+  "coverGrid": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/habit-rules/out/cover-grid.png",
+  "warnings": []
+}

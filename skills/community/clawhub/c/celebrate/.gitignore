@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# renderer scratch
+.html/
+
+# a working folder from a real celebration does not belong in the repo;
+# examples/ is committed on purpose as the worked example
+/work/
+/out/
+
+# proof screenshots are personal: they are never committed
+proof/

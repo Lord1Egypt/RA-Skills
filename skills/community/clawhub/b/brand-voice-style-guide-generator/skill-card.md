@@ -1,41 +1,59 @@
-## Description: <br>
-Generates a complete brand voice and content style guide with a voice audit, messaging framework, content rules, examples library, and team training materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a complete brand voice and content style guide including voice audit, messaging framework, content rules, and team training materials for consistent branding.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Marketing leaders, agencies, startup founders, freelancers, and SaaS content teams use this skill to turn company inputs and sample content into a consistent brand voice system for writing, review, onboarding, and team training. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company or client samples pasted into the prompts may contain confidential strategy, customer, or unreleased campaign details. <br>
-Mitigation: Review inputs for permission and confidentiality before use, and redact sensitive details from samples. <br>
+## Use Case:
 
+Marketing teams, agencies, founders, and freelance copywriters use this skill to turn company positioning, target audience details, sample content, and brand goals into a practical voice guide. The generated materials support consistent content creation, channel-specific messaging, editorial rules, and team onboarding.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/gitflopez/brand-voice-style-guide-generator) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Example: BuildRight Tools](artifact/examples/buildright-tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown documents with tables, checklists, examples, and training materials] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt sequence produces a voice audit, messaging guide, content rules library, and team training kit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Users may include private brand strategy, customer examples, or unpublished marketing copy in prompt inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content the user is comfortable sharing with the model or provider running the skill.
+
+Risk: Generated messaging, examples, and training materials may not fully match the user's brand, market, or legal review standards.
+
+Mitigation: Have qualified brand, marketing, and legal reviewers check the outputs before using them in production channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/brand-voice-style-guide-generator)
+- [Skill source](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Prompt 1: Brand Voice Audit + Personality Profile](artifact/prompts/01-voice-audit-personality.md)
+- [Prompt 2: Messaging Framework + Tone Guide](artifact/prompts/02-messaging-tone-guide.md)
+- [Prompt 3: Content Rules + Examples Library](artifact/prompts/03-content-rules-examples.md)
+- [Prompt 4: Team Training Kit](artifact/prompts/04-team-training-kit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections, tables, examples, checklists, and scoring rubrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Four sequential prompt outputs: brand voice audit, messaging guide, content rules library, and team training kit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

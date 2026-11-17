@@ -1,0 +1,86 @@
+type	id	lenses	scope	pattern	tag
+# stack rows name the platform; signal rows fire lenses; seed rows pre-locate candidate sites for lens.probe; special rows only count
+# scope: path = regex on file path | dep = regex on manifest contents | code = all source files | ext,ext = those extensions | test: prefix = test files only
+stack	ios	evolution	path	\.xcodeproj/|(^|/)Info\.plist$|\.entitlements$	-
+stack	swift	-	path	(^|/)Package\.swift$|\.swift$	-
+stack	android	evolution	path	(^|/)AndroidManifest\.xml$	-
+stack	jvm	-	path	(^|/)(build\.gradle(\.kts)?|pom\.xml)$	-
+stack	flutter	evolution,ux	dep	sdk:\s*flutter	-
+stack	react-native	evolution,ux	dep	\"(react-native|expo)\"\s*:	-
+stack	web-frontend	ux	dep	\"(react|next|vue|nuxt|svelte|@sveltejs/kit|@angular/core|solid-js|astro)\"\s*:	-
+stack	node-server	data	dep	\"(express|fastify|hono|koa|@nestjs/core)\"\s*:	-
+stack	python	-	path	(^|/)(pyproject\.toml|requirements[^/]*\.txt|setup\.py)$|\.py$	-
+stack	go	-	path	(^|/)go\.mod$	-
+stack	rust	-	path	(^|/)Cargo\.toml$	-
+stack	ruby	-	path	(^|/)Gemfile$	-
+signal	ui	ux	code	import SwiftUI|import UIKit|androidx\.compose|package:flutter/|from ['\"]react['\"]|<template>|<!DOCTYPE html	-
+signal	database	data,evolution	path	(^|/)migrations?/|\.sql$|(^|/)schema\.prisma$|(^|/)supabase/|(^|/)firestore\.rules$|(^|/)firebase\.json$	-
+signal	database-dep	data,evolution	dep	prisma|sqlalchemy|django|typeorm|drizzle|mongoose|supabase|firebase|psycopg|\"pg\"|GRDB|sqflite|drift|androidx\.room	-
+signal	server-api	data	code	FastAPI\(|@app\.(get|post|route)|express\(\)|router\.(get|post)|Deno\.serve|export (async )?function (GET|POST)|@(Get|Post)Mapping	-
+signal	local-store	evolution	code	NSPersistentContainer|ModelContainer|@Model\b|RealmSwift|@Database\(|sqflite|Hive\.|AsyncStorage|indexedDB	-
+signal	ai	ai	dep	openai|anthropic|generative-?ai|langchain|llama|ollama|transformers|\"torch\"|tensorflow|onnxruntime|mlkit|tesseract	-
+signal	ai-code	ai	code	VNRecognizeText|VisionKit|import CoreML|MLModel\(|FoundationModels|LanguageModelSession|TextRecognizer|messages\.create\(|chat\.completions|generateContent\(|[\"']claude[\"'],\s*[\"']-p	-
+signal	money	money	dep	stripe|revenuecat|purchases_flutter|in_app_purchase|billingclient|com\.android\.billingclient|react-native-iap|paddle|lemonsqueezy	-
+signal	money-code	money	code	import StoreKit|Product\.products|Transaction\.updates|BillingClient|Purchases\.shared|stripe\.(checkout|subscriptions|paymentIntents)	-
+seed	types.parse-at-edge	-	code	\[String: ?Any\]|Map<String, ?dynamic>|JSON\.parse\(|json\.loads\(|Dict\[str, ?Any\]|as! |try! |\bas any\b|: any\b|@ts-ignore|# type: ignore	type-escapes
+seed	types.primitive-obsession	-	code	\w+\s*:\s*(String|string|str|Int|int|UUID|number|Double)\s*,\s*\w+\s*:\s*\1\b	-
+seed	types.stringly-typed	-	code	[=!]==?\s*['\"](active|inactive|pending|done|completed|failed|success|error|free|pro|premium|admin|draft|open|closed)['\"]	-
+seed	types.boolean-blindness	-	code	\(\s*(true|false)\s*,\s*(true|false)\b|(\bvar|\blet|\bval)\s+is\w+\s*:\s*Bool	-
+seed	types.catch-all	-	code	^\s*default\s*:|\belse\s*->|^\s*_\s*=>|^\s*case _\s*:	catch-alls
+seed	types.units-and-time	-	code	\b86400\b|\*\s*1000\b|/\s*1000\b|toISOString\(\)\.(slice|substring)|datetime\.(now|utcnow)\(\)|new Date\(\)	-
+seed	state.runs-twice	-	code	[Ww]ebhook|idempot|enqueue|offlineQueue|pendingMutations|outbox	-
+seed	state.out-of-order	-	code	updated_?[aA]t\s*[:=]|lastWriteWins|last_write|\bversion\s*[:=]\s*\w+\s*\+\s*1	-
+seed	state.calendar-adversary	-	code	Calendar\.current|TimeZone\.current|weekOfYear|getDay\(\)|getTimezoneOffset|ZoneId\.systemDefault|startOfDay|isDateInToday|\bcron\b	-
+seed	state.truth-owner	-	code	UserDefaults|@AppStorage|localStorage\.|SharedPreferences|AsyncStorage|NSCache|lru_cache|\bcache\b	-
+seed	state.lifetime	-	code	\bTask \{|Task\.detached|useEffect\(|GlobalScope|StreamSubscription|setInterval\(|addObserver\(|\.listen\(|\.subscribe\(|Timer\.scheduledTimer	-
+seed	failure.await-race	-	code	^\s*(public |private |internal )?actor \w+|FOR UPDATE|\.transaction\(|BEGIN\b	-
+seed	failure.pull-the-plug	-	code	\.write\(to:|writeFileSync|fs\.writeFile|open\([^)]*['\"]w|FileManager\.default\.(createFile|moveItem)|\.save\(\)	-
+seed	failure.silent-catch	-	code	try\?|catch\s*(\([^)]*\))?\s*\{\s*\}|except[^:\n]*:\s*pass|\.catch\(\(\)\s*=>\s*(\{\s*\}|null|undefined)\)|runCatching|_ = err\b|\?\?\s*(\[\]|\"\"|0)\b	swallowed-errors
+seed	failure.no-screen	-	code	isLoading\s*=\s*true|setLoading\(true\)|setIsLoading\(true\)|loading\s*=\s*true|ProgressView\(\)|CircularProgressIndicator	-
+seed	failure.logs-only-debug	-	code	(print|console\.log|NSLog|Log\.[dew]|logger\.\w+|os_log)\(.*(token|password|email|secret|authorization)	-
+seed	failure.timeouts-retries	-	code	\bsleep\(|Thread\.sleep|setTimeout\(|Task\.sleep|asyncio\.sleep|time\.Sleep|Future\.delayed|asyncAfter|[Rr]etry\w*\(|max_?[Rr]etries	sleeps-retries
+seed	data.constraints	-	sql,prisma	(?i)create table|alter table|^model \w+	-
+seed	data.user-b	-	code,sql,rules	(?i)row level security|using \(true\)|security definer|service_role|allow read, write|req\.body\.user_?[iI]d|params\.user_?[iI]d	-
+seed	data.migration-on-real-data	-	sql	(?i)add constraint|set not null|create (unique )?index (?!concurrently)|alter column .* type	-
+seed	data.delete-account	-	code,sql	(?i)delete_?account|deleteUser|delete_user|on delete (cascade|set null)|auth\.admin\.deleteUser	-
+seed	security.secrets	-	code,json,yaml,yml,plist,xml	(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"][A-Za-z0-9_\-]{16,}['\"]|sk_live_[0-9a-zA-Z]{10,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY	-
+seed	security.injection	-	code	execute\(f['\"]|execute\([^)]*\+|\.raw\(|\$queryRawUnsafe|innerHTML\s*=|dangerouslySetInnerHTML|\beval\(|shell=True|Runtime\.getRuntime\(\)\.exec|child_process|NSPredicate\(format: ?\"[^\"]*\\\(	-
+seed	security.local-storage	-	code	(?i)(UserDefaults|localStorage\.setItem|SharedPreferences|AsyncStorage\.setItem)[^\n]*(token|password|jwt|secret|session)	-
+seed	security.transport	-	code,plist,xml	http://(?!localhost|127\.0\.0\.1|schemas|www\.w3\.org)|NSAllowsArbitraryLoads|usesCleartextTraffic|verify\s*=\s*False|rejectUnauthorized:\s*false|InsecureSkipVerify	-
+seed	security.entry-points	-	code,xml,plist	onOpenURL|open url:|CFBundleURLSchemes|intent-filter|WKWebView|WebView\(|addJavascriptInterface|javaScriptEnabled|postMessage\(|multipart/form-data	-
+seed	security.confused-deputy	-	code	(fetch|axios\.get|requests\.get|URLSession\.shared\.data)\(\s*(req|request|params|body|url)\b|createSignedUrl\(|service_?[rR]ole	-
+seed	security.supply-chain	-	json	\"[\w@/.-]+\"\s*:\s*\"(\^|~|\*|latest)|\"postinstall\"	-
+seed	security.privacy-flows	-	code	Analytics\.|analytics\.|\.track\(|logEvent\(|Sentry\.|Crashlytics|Mixpanel|Amplitude|PostHog|posthog	-
+seed	performance.main-thread	-	code	DispatchQueue\.main\.sync|runBlocking|readFileSync|Data\(contentsOf:|String\(contentsOf:|\.sync\s*\{	-
+seed	performance.render	-	code	ForEach\(|FlatList|ListView\(|LazyColumn|ScrollView\s*\{|\.map\(\(?\w+\)?\s*=>\s*\(?\s*<	-
+seed	performance.quadratic	-	code	\.(contains|includes|indexOf|firstIndex|filter|find)\(.*\)\s*\}?\s*$	-
+seed	performance.query	-	code,sql	(?i)select \*|\.findMany\(\s*\)|\.all\(\)|\.select\(\s*['\"]\*['\"]\s*\)	-
+seed	performance.memory	-	code	static var \w+\s*[:=]\s*\[|static let cache|\[unowned self\]|strongSelf|retainCycle	-
+seed	evolution.old-client	-	code	Decodable|@Serializable|JsonSerializable|fromJson|z\.object\(|BaseModel\)|/api/v\d|/v\d/	-
+seed	evolution.local-migrations	-	code	NSPersistentContainer|ModelContainer|SchemaMigrationPlan|VersionedSchema|@Database\(|onUpgrade|schemaVersion|migrat	-
+seed	evolution.kill-switch	-	code	(?i)feature_?flag|isEnabled\(|remote_?config|kill_?switch	-
+seed	evolution.forced-update	-	code	(?i)minimum_?version|min_?app_?version|force_?update|required_?version	-
+seed	evolution.config-drift	-	code	process\.env\.\w+|os\.environ(\.get)?\[?|ProcessInfo\.processInfo\.environment|Deno\.env\.get|BuildConfig\.\w+|#if DEBUG	-
+seed	ai.wrong-meaning	-	code	(?i)JSONDecoder\(\)\.decode|response_format|json_schema|structured_?output|tool_choice|\.parse\(.*(response|completion|output)	-
+seed	ai.fail-safe-direction	-	code	(?i)confidence|threshold|safety_?level|alert_?level|severity	-
+seed	ai.output-as-instructions	-	code	(?i)(innerHTML|dangerouslySetInnerHTML|execute|eval|URL\(string:)[^\n]*(completion|response|output|model)	-
+seed	ai.cost-bounds	-	code	(?i)max_?tokens|timeout|rate_?limit	-
+seed	money.entitlement-source	-	code	(?i)is_?pro\b|is_?premium|has_?premium|entitlement|is_?subscribed	-
+seed	money.counter-integrity	-	code	(?i)(credit|quota|remaining|usage|scans?_?left|scans?_?used)\w*\s*(-=|\+=|--|\+\+|=\s*\w+\s*[-+]\s*1)	-
+seed	money.store-webhooks	-	code	(?i)app_?store_?server_?notification|DID_RENEW|REFUND|stripe-signature|constructEvent|rtdn|purchases\.subscriptions	-
+seed	money.money-arithmetic	-	code	(?i)(price|amount|total|cost|balance)\w*\s*:\s*(Double|Float|double|float|number)\b|parseFloat\([^)]*(price|amount)	-
+seed	ux.cardinality	-	code	ContentUnavailableView|[Ee]mpty_?[Ss]tate|ListEmptyComponent|[Nn]o_?[Rr]esults|[Nn]o_?[Ii]tems	-
+seed	ux.copy-lie	-	code,strings,xml,json	[\"'>](Saved|Synced|All set|Up to date|Fresh|Deleted|Backed up|Secure|Private)[.!\"'<]	-
+seed	ux.no-undo	-	code	role:\s*\.destructive|\.destructive\b|onDelete|confirm\(|DestructiveButton|swipeActions	-
+seed	ux.locale-adversary	-	code	NumberFormatter|DateFormatter\(\)|dateFormat\s*=|toLocaleString|String\(format:|\+\s*\" items\"|firstName|lastName|postal|zip_?code	-
+seed	ux.a11y-extremes	-	code	lineLimit\(1\)|maxLines\s*[=:]\s*1\b|text-overflow:\s*ellipsis|\.frame\(height:\s*\d|accessibilityLabel|contentDescription|semanticLabel|\balt=	-
+seed	tests.classify	-	test:code	(^|[^A-Za-z_.])xit\(|xdescribe\(|\b(it|describe|test)\.skip|@Disabled|@Ignore|XCTSkip|pytest\.mark\.skip|t\.Skip\(|#\[ignore\]|\.disabled\(	disabled-tests
+seed	tests.classify	-	test:code	expect\(true\)|assert True\b|XCTAssert\(true\)|assertTrue\(true\)|#expect\(true\)	-
+seed	tests.classify	-	test:code	\bsleep\(|Thread\.sleep|Task\.sleep|setTimeout\(|Date\(\)|new Date\(\)|datetime\.now	-
+signal	ci-or-deploy	operations	path	(^|/)\.github/workflows/|\.gitlab-ci\.yml$|(^|/)\.circleci/|(^|/)Dockerfile$|(^|/)fastlane/|(^|/)(vercel|netlify)\.(json|toml)$|(^|/)fly\.toml$|\.tf$|(^|/)bitrise\.yml$|(^|/)codemagic\.yaml$|(^|/)render\.yaml$	-
+seed	operations.ci-gates	-	yml,yaml	continue-on-error:\s*true|\|\|\s*true\b|allow_failure:\s*true|--passWithNoTests|--no-verify	-
+seed	operations.secrets-handling	-	yml,yaml	echo\s+\$\{\{\s*secrets\.|set -x|ACTIONS_STEP_DEBUG	-
+seed	security.crypto	-	code	(?i)\bmd5\b|sha1\(|createHash\(['\"](md5|sha1)['\"]|Math\.random\(\)|random\.random\(|Insecure\.(MD5|SHA1)|AES/ECB|kCCOptionECBMode|==\s*(token|secret|signature|hmac)\b	-
+seed	failure.dependency-outage	-	code	new (Stripe|Twilio|OpenAI|Anthropic|Resend|Postmark)\(|createClient\(|initializeApp\(|Purchases\.configure|GoogleGenerativeAI\(	-
+seed	design.docs-drift	-	md	`(npm|pnpm|yarn|npx|make|python3?|swift|xcodebuild|flutter|go|cargo|bundle|supabase) [^`]+`	-
+special	hack-markers	-	code	\b(HACK|FIXME|XXX)\b|(?i:workaround)	hack-markers

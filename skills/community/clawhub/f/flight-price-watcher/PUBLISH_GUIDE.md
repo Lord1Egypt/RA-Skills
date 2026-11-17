@@ -60,9 +60,9 @@ cd ~/.openclaw/skills/flight-price-watcher
 clawhub publish . \
   --slug flight-price-watcher \
   --name "Flight Price Watcher - 机票价格监控" \
-  --version 2.2.2 \
+  --version 2.1.0 \
   --tags "机票，监控，降价提醒，飞猪，旅行" \
-  --changelog "v2.2.2 完整版：
+  --changelog "v2.1.0 完整版：
 - 支持用户自定义选择监控航班
 - 提醒加入完整航班信息（起飞/到达/机场）
 - 展示所有监控航班价格（即使未触发阈值）
@@ -102,7 +102,7 @@ Flight Price Watcher - 机票价格监控
 
 ### 版本
 ```
-2.2.2
+2.1.0
 ```
 
 ### 标签
@@ -137,7 +137,7 @@ ls -la skills/flight-price-watcher/
 ## 💡 注意事项
 
 1. **GitHub 账号** - 需要至少 7 天以上的 GitHub 账号才能发布
-2. **版本号** - 首次发布用 `1.0.0` 或 `2.2.2`，后续更新递增
+2. **版本号** - 首次发布用 `1.0.0` 或 `2.1.0`，后续更新递增
 3. **公开可见** - ClawHub 上所有技能都是公开的，任何人都可以查看和安装
 4. **不可删除** - 发布后无法彻底删除，只能隐藏或标记为废弃
 
@@ -168,4 +168,4 @@ ls -la skills/flight-price-watcher/
 
 ---
 
-_最后更新：2026-04-02 | 版本：2.2.2_
+_最后更新：2026-04-02 | 版本：2.1.0_

@@ -1,39 +1,53 @@
-## Description: <br>
-Provides professional code review and Git commit workflow management for Git submission workflows, including pre-commit checks, build verification, and commit guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional code review and Git commit workflow management for commit and push operations.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers use this skill to review code changes and manage Git commit and push workflows with approval checkpoints, build checks, commit-message guidance, and sensitive-data checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe auto-commit behavior may stage and commit all current changes before user approval. <br>
-Mitigation: Require explicit approval before every git add, git commit, git pull, and git push; review git status and the staged diff; scan for secrets; and confirm the remote, branch, and account before pushing. <br>
+## Use Case:
 
+Developers and engineers use this skill to review code changes, prepare Chinese conventional commit messages, run build checks, and coordinate Git pull and push workflows.
 
-## Reference(s): <br>
-- [Reference Documentation for Code Review](references/api_reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/yinwuzhe/tosr-test-pub-update-1774335120) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Git commands and commit messages; Git actions should require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The security review reports contradictory behavior: the skill says Git actions require user approval but also instructs the agent to automatically stage and commit existing changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval of exact files and commit message before staging or committing, or remove the automatic commit step before installation.
+
+Risk: The skill can guide Git operations that affect repository history or publish local work.
+
+Mitigation: Review proposed Git commands, changed files, build output, and remote target before allowing commit or push actions.
+
+## Reference(s):
+
+- [API Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Git staging, commit, build, pull, and push commands for user approval.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

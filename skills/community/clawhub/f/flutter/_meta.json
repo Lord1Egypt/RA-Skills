@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "flutter",
-  "version": "1.0.1",
-  "publishedAt": 1771104461490
+  "displayName": "Flutter",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764942
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1785066064441
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771104461490
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770671523065
+    }
+  ]
 }

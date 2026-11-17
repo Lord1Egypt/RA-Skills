@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Envcheck concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Envcheck.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Envcheck concepts, common devtools workflows, troubleshooting, performance, security, migration, and command cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executable shell script may be run by an agent during use. <br>
-Mitigation: Review the script before installation and restrict use to the documented reference commands; security evidence says the reviewed script prints bundled text and makes no system changes. <br>
-Risk: Reference guidance may be generic or stale for a specific environment. <br>
-Mitigation: Treat the output as starting-point guidance and validate operational or security recommendations against the current project requirements. <br>
+## Use Case:
 
+Developers and engineers use Envcheck as a local quick-reference helper for devtools topics and implementation patterns. It provides command-selected reference guidance without requiring credentials, network access, or external API calls.
 
-## Reference(s): <br>
-- [Envcheck ClawHub listing](https://clawhub.ai/ckchzh/envcheck) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints bundled reference content; evidence reports no credential use, network access, persistence, or system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata; artifact frontmatter shows 2.0.3 and script shows 2.0.2) <br>
+Risk: The reference documentation is generic and may not match a user's actual Envcheck environment or operational standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance against local requirements before using it for production decisions.
+
+Risk: Some documentation examples mention credentials even though the script does not request or access secrets.
+
+Mitigation: Keep credentials out of copied examples, shell history, and committed configuration.
+
+## Reference(s):
+
+- [Envcheck ClawHub skill page](https://clawhub.ai/ckchzh/skills/envcheck)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local command output; no API calls or network access according to security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata; artifact frontmatter reports 2.0.3 and script reports 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

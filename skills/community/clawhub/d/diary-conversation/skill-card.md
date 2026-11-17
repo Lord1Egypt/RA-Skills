@@ -1,43 +1,56 @@
-## Description: <br>
-Guides users through natural conversation to record daily life, generate prose-style diary entries, and include uploaded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过自然对话引导用户记录每日生活，生成散文式日记并支持图片上传。使用场景：当用户想要记录日记、回顾一天、写日记、记录今天、daily journal、生活记录时触发此技能。自动组织日记和图片，生成连贯的散文叙事。
 
-## Publisher: <br>
-[yinrenkun4916-hash](https://clawhub.ai/user/yinrenkun4916-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinrenkun4916-hash](https://clawhub.ai/user/yinrenkun4916-hash)
 
-## Use Case: <br>
-External users use this skill to reflect on their day through a short, conversational exchange and produce a polished Markdown diary entry. It can also organize diary entries and image references into a local journals folder. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Diary entries, mood scores, keywords, and photos may contain private personal information saved in a local journals/ folder. <br>
-Mitigation: Keep the journals/ folder private and avoid publishing it through public repositories or unintended cloud sync. <br>
-Risk: Image paths supplied by the user may copy photos into the local diary archive. <br>
-Mitigation: Only provide images or file paths that should be preserved in the diary archive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinrenkun4916-hash/diary-conversation) <br>
-- [Prose diary format guide](references/diary-formats.md) <br>
-- [Local file storage guide](references/file-storage.md) <br>
-- [Image handling guide](references/image-handling.md) <br>
-- [Question templates](references/question-templates.md) <br>
+## Use Case:
 
+People who want a personal journaling assistant use this skill to turn a short natural conversation about their day into a polished diary entry. It can also organize related images and save the entry as local Markdown with index metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, code, shell commands, guidance] <br>
-**Output Format:** [Markdown diary entries with local file paths, image references, and optional JSON index updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diary content intended for local storage under journals/ with optional image organization.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Personal reflections, mood details, keywords, and photos may be saved in the local journals directory.
+
+Mitigation: Review the storage location before use and delete or encrypt sensitive diary entries and images as needed.
+
+Risk: Backups, Git, or cloud sync can copy private diary data outside the immediate workspace.
+
+Mitigation: Enable syncing or backups only deliberately and confirm that the destination is appropriate for private journal content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinrenkun4916-hash/skills/diary-conversation)
+- [Diary format guide](references/diary-formats.md)
+- [File storage guide](references/file-storage.md)
+- [Image handling guide](references/image-handling.md)
+- [Question template guide](references/question-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown diary entries with local file paths and JSON index metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local journals directory containing diary Markdown, image files, thumbnails, and index data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

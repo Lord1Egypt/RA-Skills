@@ -1,41 +1,57 @@
-## Description: <br>
-Manage Things 3 tasks through Things Cloud using the maintained things-cloud-sdk CLI and MCP server, with dry-run safety for agent writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Things 3 tasks through Things Cloud using the maintained things-cloud-sdk CLI and MCP server, with dry-run safety for agent writes.
 
-## Publisher: <br>
-[pdurlej](https://clawhub.ai/user/pdurlej) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pdurlej](https://clawhub.ai/user/pdurlej)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect Things 3 tasks and safely create, edit, or complete tasks through Things Cloud using MCP tools or CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent access to Things Cloud can expose or modify personal task data. <br>
-Mitigation: Install only if comfortable granting the agent access; prefer THINGS_TOKEN over THINGS_PASSWORD and keep credentials out of repositories and skill files. <br>
-Risk: Write operations could unintentionally change user-visible Things tasks. <br>
-Mitigation: Use the documented dry-run preview, summarize planned changes, and require explicit confirmation before running non-dry-run writes. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect, search, and safely update Things 3 tasks through Things Cloud with MCP tools or CLI commands.
 
-## Reference(s): <br>
-- [Things Cloud SDK homepage](https://github.com/pdurlej/things-cloud-sdk) <br>
-- [ClawHub skill page](https://clawhub.ai/pdurlej/things-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses dry-run previews for writes, asks for explicit confirmation before real task changes, and keeps raw command output as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill depends on external Things Cloud CLI and MCP tools that can access task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the referenced things-cloud-sdk project.
+
+Risk: Things Cloud credentials may expose personal task data or allow task changes.
+
+Mitigation: Prefer a revocable automation token, keep credentials out of repositories, and avoid storing credentials in skill files.
+
+Risk: Agent-generated writes could create, edit, complete, or repeat the wrong task.
+
+Mitigation: Use dry-run previews, summarize planned changes, require user confirmation, and use task UUIDs returned by Things Cloud output.
+
+## Reference(s):
+
+- [things-cloud-sdk](https://github.com/pdurlej/things-cloud-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Raw command output should remain JSON; summaries should include task title, UUID, view or status, and whether a write was a dry run or executed.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

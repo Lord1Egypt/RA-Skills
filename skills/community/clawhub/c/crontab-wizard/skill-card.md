@@ -1,40 +1,48 @@
-## Description: <br>
-Crontab Wizard helps users explain, generate, validate, and preview standard 5-field cron expressions and common shortcuts without external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crontab Wizard helps agents explain, generate, validate, and preview standard crontab expressions and common cron shortcuts without external dependencies.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to understand existing cron schedules, create new cron expressions, validate syntax, and preview upcoming run times before applying schedules to jobs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or interpreted cron schedules may be applied incorrectly and cause jobs to run at unintended times.
+
+Mitigation: Review generated expressions, validate them, and preview upcoming run times before using them for production jobs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to understand existing cron schedules, create new cron expressions, validate cron syntax, and preview upcoming run times before applying scheduled jobs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an executable local Python script. <br>
-Mitigation: Review or run it like any local tool before installation or use, consistent with the security guidance. <br>
-Risk: Cron expression output may need adjustment for scheduler-specific behavior beyond standard 5-field syntax. <br>
-Mitigation: Review generated expressions against the target scheduler before deploying them to production crontabs. <br>
+**Output Format:** [Plain text or Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Crontab Wizard on ClawHub](https://clawhub.ai/Johnnywang2001/crontab-wizard) <br>
+**Other Properties Related to Output:** [Local command-line output; no network access or external dependencies are described.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain text cron expressions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cron expressions, natural-language explanations, validation results, and upcoming run previews for local command-line use.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

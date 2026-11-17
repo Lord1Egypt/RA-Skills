@@ -209,6 +209,6 @@
 ## 实现备注与文档勘误
 
 1. 官方“应用场景”里把银联二维码 JS 写成了 `U_JSAP`，按上下文应理解为 `U_JSAPI`。
-2. 官方示例返回里出现了 `combinedpay_fee_amt` 顶层字段，但返回参数表没有该字段；实现时不要把它当成稳定协议字段，优先按参数表中的 `tx_metadata` 和 `split_fee_info` 解析。
+2. `[官方文档口径冲突]` 参数表把 `acct_split_bunch/split_fee_info` 放在 String(JSON) `data.tx_metadata` 内，成功示例却把 `acct_split_bunch` 直接放在 `data` 顶层，且另有未列入参数表的顶层 `combinedpay_fee_amt`。解析端应分别记录“表定义路径”和“示例兼容路径”，不得把两者静默合并；生成稳定 DTO 前需以真实报文或官方答复确认。
 3. `org_req_seq_id` 在这个接口里是退款请求流水号，不是原支付流水号；这是最容易接错的字段语义。
 4. `trans_stat=I` 属于罕见初始态，若查询到该状态，按官方建议联系汇付技术支持处理。

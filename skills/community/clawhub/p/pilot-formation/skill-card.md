@@ -1,43 +1,58 @@
-## Description: <br>
-Deploy predefined network topologies such as star, ring, mesh, and tree formations for structured swarms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy predefined network topologies (star, ring, mesh, tree) for structured swarms.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to generate command-oriented guidance for forming structured Pilot Protocol swarms with predefined communication patterns and trust handshakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill examples automate peer handshakes and approvals, which could establish trust with unintended peers. <br>
-Mitigation: Review the peer list manually before approval and avoid approving all pending peers blindly. <br>
-Risk: The publish example can disclose swarm name, hub address, and formation time to a configured registry host. <br>
-Mitigation: Remove or gate the publish command unless registry disclosure is intentional and the registry host is trusted. <br>
-Risk: The skill depends on the Pilot network, pilotctl, a running daemon, and any configured registry host. <br>
-Mitigation: Install and run it only in environments where those components are trusted and configured as expected. <br>
+## Use Case:
 
+Developers and engineers use this skill to form structured Pilot Protocol swarms with star, ring, mesh, tree, or line communication patterns when connection overhead or hierarchy needs to be controlled.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-formation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces topology deployment guidance and shell-command examples for pilotctl-based swarm formation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pending peer trust requests may be approved too broadly during topology formation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify pending peer identities before approval and avoid approving unrelated pending handshakes.
+
+Risk: Publishing topology details to a registry can expose swarm layout information.
+
+Mitigation: Remove the publishing step or explicitly configure it only when topology details are intended to be shared.
+
+Risk: The skill can change peer trust and network topology in a live Pilot environment.
+
+Mitigation: Review before installing and use it only in a controlled pilot environment.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-formation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the pilotctl binary, jq, the pilot-protocol skill, and a running Pilot daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Deploy apps to CapRover and set up GitHub Actions CI/CD workflows for new or existing projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys apps to CapRover and helps set up GitHub Actions CI/CD workflows, captain-definition files, and GitHub secrets for new or existing projects.
 
-## Publisher: <br>
-[guim4dev](https://clawhub.ai/user/guim4dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guim4dev](https://clawhub.ai/user/guim4dev)
 
-## Use Case: <br>
-Developers and engineers use this skill to trigger CapRover deployments, check deployment status, and scaffold GitHub Actions workflows and CapRover deployment files for application projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real GitHub Actions and CapRover deployments using stored credentials. <br>
-Mitigation: Require manual confirmation of the app, repository, branch, environment, and deploy strategy before any live deployment. <br>
-Risk: Credential exposure or overly broad credentials could expand deployment access. <br>
-Mitigation: Protect config.json, prefer per-app CapRover tokens or webhook URLs over a master password, and use a least-privilege GitHub token. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guim4dev/caprover-ci-deploys) <br>
+## Use Case:
 
+Developers and engineers use this skill to trigger CapRover deployments, check GitHub Actions deployment status, and scaffold GitHub Actions deployment workflows for application projects.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML workflow templates, JSON configuration examples, and deployment status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can trigger GitHub Actions workflow dispatches, CapRover webhooks, or CapRover CLI deploys when configured with credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger live deployments through GitHub Actions, CapRover webhooks, or the CapRover CLI.
+
+Mitigation: Require manual confirmation before running deploy commands and scope credentials to the specific app or environment being deployed.
+
+Risk: Configuration may contain high-value CapRover credentials, GitHub tokens, app tokens, and webhook URLs.
+
+Mitigation: Prefer per-app CapRover tokens over the master password, keep local config out of version control, and redact webhook URLs and tokens from logs.
+
+Risk: Bundled GitHub Actions templates reference external actions and package tooling that may change over time.
+
+Mitigation: Pin GitHub Actions and package versions before production use and review generated workflows before committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guim4dev/skills/caprover-ci-deploys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, YAML workflow snippets, JSON configuration, and deployment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also produce or modify GitHub Actions workflow files and captain-definition configuration when used to scaffold a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

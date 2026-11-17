@@ -1,44 +1,55 @@
-## Description: <br>
-Query and filter court-released Jeffrey Epstein email records through a structured JSON API that uses x402 payments in USDC on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and filter 383,000+ court-released Jeffrey Epstein emails with structured JSON data through a pay-per-request API using USDC on Base.
 
-## Publisher: <br>
-[BlockBoy32](https://clawhub.ai/user/BlockBoy32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockboy32](https://clawhub.ai/user/blockboy32)
 
-## Use Case: <br>
-Developers, researchers, and records analysts use this skill to preview, search, and retrieve structured email records from the court-released Epstein archive while managing x402 payment consent and spending limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet private key exposure could compromise funds. <br>
-Mitigation: Use a dedicated low-balance Base wallet, provide the key only through an environment variable, and never log, display, or echo it. <br>
-Risk: Paid API requests or pagination could spend more USDC than intended. <br>
-Mitigation: Use the free preview endpoint first, estimate request cost, set a spending limit when supported, and get explicit user approval before paid calls or pagination. <br>
-Risk: Public-record email data could be misused to harass, doxx, or expose unnecessary personal details. <br>
-Mitigation: Use the archive for legitimate records research and avoid unnecessary disclosure of personal details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BlockBoy32/epstein-emails) <br>
-- [Epstein Emails API](https://epsteinemails.xyz) <br>
-- [x402 protocol](https://x402.org) <br>
-- [U.S. Department of Justice Epstein source documents](https://www.justice.gov/epstein) <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to search, filter, preview, and retrieve structured records from court-released Epstein email documents while estimating and confirming paid API requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Code, Shell commands] <br>
-**Output Format:** [Markdown with JSON examples and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API request guidance and structured JSON response examples for preview, search, filtering, and pagination workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Paid API requests can spend wallet funds during searches or pagination.
+
+Mitigation: Confirm cost before paid or paginated queries, use the free preview endpoint for estimates, and set a spending limit where supported.
+
+Risk: A reused or high-value private key could expose funds if mishandled.
+
+Mitigation: Use a fresh low-balance hot wallet funded only with the USDC needed for approved requests, and avoid logging, displaying, or echoing the private key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockboy32/skills/epstein-emails)
+- [Epstein Emails API](https://epsteinemails.xyz)
+- [U.S. Department of Justice Epstein source documents](https://www.justice.gov/epstein)
+- [x402 Protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON examples, tables, and Python/bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include paid API request guidance, pagination cost estimates, and x402 payment setup instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

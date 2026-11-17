@@ -1,42 +1,57 @@
-## Description: <br>
-Operate autonomous onchain-governed entities via agents: identity, governance, contracts, and registry/community workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate autonomous onchain-governed entities via agents: identity, governance, contracts, and registry/community workflows.
 
-## Publisher: <br>
-[unifiedh](https://clawhub.ai/user/unifiedh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unifiedh](https://clawhub.ai/user/unifiedh)
 
-## Use Case: <br>
-External developers and operator agents use Autobahn to manage autonomous on-chain entity workflows, including identity, governance, formation documents, contracts, lending, litigation preparation, and registry/community operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release installs an unverified external CLI that may handle wallet keys and high-impact legal or financial actions. <br>
-Mitigation: Install only when the publisher and release source are trusted, verify the downloaded CLI out of band, and begin with a low-value wallet or entity. <br>
-Risk: Autobahn workflows can trigger irreversible on-chain, governance, transfer, document-signing, public-posting, bounty, and legal-document actions. <br>
-Mitigation: Manually review every transaction, governance action, document hash, public post, bounty, and transfer before confirming execution. <br>
-Risk: Secrets may be exposed if private keys or passwords are passed or logged through command-line workflows. <br>
-Mitigation: Avoid passing private keys or passwords on the command line and keep outputs redacted when handling secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Autobahn ClawHub release](https://clawhub.ai/unifiedh/autobahn) <br>
-- [Autobahn homepage](https://autobahn.surf) <br>
+## Use Case:
 
+External developers and operators use Autobahn to guide agents through identity, governance, legal-document, lending, litigation-preparation, and community workflows for autonomous on-chain entities.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI/API instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs agents to use the autobahn CLI with --json and route human-readable progress to stderr.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.11 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release uses a downloaded CLI for wallet, legal, financial, and on-chain actions.
+
+Mitigation: Install only after independently verifying the release source or digest, and review every irreversible transaction or legal document before signing.
+
+Risk: Examples and workflows may expose private keys, master passwords, or JWTs through shell history, logs, environment variables, or secret-inclusive output.
+
+Mitigation: Use limited-purpose wallets, avoid entering real secrets in commands or logs, and do not use secret-printing output with production credentials.
+
+Risk: The skill can prepare legal and court-related materials that may be unsuitable for direct filing.
+
+Mitigation: Route court filings and legal documents through qualified human counsel before submission or execution.
+
+## Reference(s):
+
+- [Autobahn ClawHub skill page](https://clawhub.ai/unifiedh/skills/autobahn)
+- [Autobahn homepage](https://autobahn.surf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-oriented workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to request structured JSON from the Autobahn CLI and route human-readable progress to stderr.]
+
+## Skill Version(s):
+
+0.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

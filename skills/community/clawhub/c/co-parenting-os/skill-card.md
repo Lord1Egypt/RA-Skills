@@ -1,45 +1,60 @@
-## Description: <br>
-A co-parenting support skill for separated or divorced families that helps an assistant structure child-centered handoff planning, growth records, relationship repair, conflict observation, developmental prompts, and risk-aware action plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+协同养育操作系统是一个中文 AI skill，帮助离异家庭围绕孩子优先原则规划接送、记录成长、观察亲子关系与冲突风险，并生成可执行的协同养育建议和记录模板。
 
-## Publisher: <br>
-[web-seeker](https://clawhub.ai/user/web-seeker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[web-seeker](https://clawhub.ai/user/web-seeker)
 
-## Use Case: <br>
-Parents, caregivers, and family-support assistants use this skill to organize co-parenting conversations, records, handoff plans, and child-centered next steps after separation or divorce. It is intended as supportive framing, not as legal, custody, child-safety, or therapy advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad activation language around sensitive family conflict topics. <br>
-Mitigation: Review and narrow trigger terms before deployment if casual mentions of an ex, relatives, custody, or family conflict should not activate the skill. <br>
-Risk: Users may treat supportive co-parenting framing as legal, custody, child-safety, or therapy advice. <br>
-Mitigation: Present outputs as planning and reflection support only, and direct legal, custody, safety, or clinical questions to qualified professionals or appropriate emergency resources. <br>
+## Use Case:
 
+External parents and caregivers use this skill to structure co-parenting logistics, growth records, conflict observations, and child-centered action plans after divorce or separation. It is designed for supportive planning and documentation, not for legal advice, mediation, or clinical care.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/web-seeker/co-parenting-os) <br>
-- [Publisher Profile](https://clawhub.ai/user/web-seeker) <br>
-- [Source Repository](https://github.com/web-seeker/co-parenting-os) <br>
-- [Related Skill: energy-guardian](https://github.com/web-seeker/energy-guardian) <br>
-- [Related Skill: insight-relations](https://github.com/web-seeker/insight-relations) <br>
-- [WorkBuddy Platform](https://www.codebuddy.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured checklists, tables, plans, and record templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose family-support records and export-oriented formats such as cards, reports, calendars, and tables; generated content should be reviewed before use in sensitive family contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may structure sensitive family, child, schedule, contact, and conflict information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing details that should not be stored in chat or local files, and prefer explicit invocation for sensitive family workflows.
+
+Risk: Users may mistake supportive co-parenting guidance for legal, mediation, or clinical advice.
+
+Mitigation: Use the output as planning and documentation support only, and consult qualified professionals for legal, safety, or mental-health decisions.
+
+Risk: Conflict-related templates could be misused to build accusations rather than child-centered records.
+
+Mitigation: Review generated records for factual, non-judgmental wording and keep recommendations aligned with the stated child-first and non-escalation principles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/web-seeker/skills/co-parenting-os)
+- [WorkBuddy platform](https://www.codebuddy.cn)
+- [energy-guardian related project](https://github.com/web-seeker/energy-guardian)
+- [insight-relations related project](https://github.com/web-seeker/insight-relations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables, reports, checklists, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include handover plans, growth records, conflict observation templates, risk warnings, and parent-child relationship reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

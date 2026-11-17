@@ -1,7 +1,7 @@
 ---
 name: workflow-setup
 description: Configures GitHub Actions CI/CD workflows for testing, linting, and deployment
-version: 1.9.8
+version: 1.10.3
 triggers:
   - github-actions
   - ci-cd
@@ -16,27 +16,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When To Use](#when-to-use)
-- [Standard Workflows](#standard-workflows)
-- [Python Workflows](#python-workflows)
-- [Rust Workflows](#rust-workflows)
-- [TypeScript Workflows](#typescript-workflows)
-- [Workflow](#workflow)
-- [1. Check Existing Workflows](#1-check-existing-workflows)
-- [2. Identify Missing Workflows](#2-identify-missing-workflows)
-- [3. Render Workflow Templates](#3-render-workflow-templates)
-- [4. Validate Workflows](#4-validate-workflows)
-- [Workflow Best Practices](#workflow-best-practices)
-- [Use Latest Action Versions](#use-latest-action-versions)
-- [Matrix Testing (Python)](#matrix-testing-python)
-- [Caching Dependencies](#caching-dependencies)
-- [Updating Workflows](#updating-workflows)
-- [Related Skills](#related-skills)
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Workflow Setup Skill
@@ -204,3 +184,16 @@ To update workflows to latest versions:
 
 - `Skill(attune:project-init)` - Full project initialization
 - `Skill(sanctum:pr-prep)` - PR preparation with CI checks
+
+## Exit Criteria
+
+- [ ] All required workflow files for the detected language exist under `.github/workflows/`
+  (Python: test.yml + lint.yml + typecheck.yml; Rust: ci.yml; TypeScript: test.yml + lint.yml +
+  build.yml) and contain valid YAML syntax verified by
+  `python3 -c "import yaml; yaml.safe_load(open('...'))"`.
+- [ ] `gh workflow list` returns each created workflow file as an entry, confirming GitHub
+  recognizes the workflow definitions.
+- [ ] Any inline shell script in a workflow uses `set -eo pipefail` or explicit exit-code
+  capture. Pipeline-masked failures (`cmd | grep`) without pipefail are flagged as errors.
+- [ ] If the project uses a CI platform other than GitHub Actions (GitLab CI, CircleCI), the
+  skill reports this incompatibility and stops rather than generating GitHub-specific files.

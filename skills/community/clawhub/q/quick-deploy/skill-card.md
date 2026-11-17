@@ -1,41 +1,58 @@
-## Description: <br>
-Deploy projects to Vercel, Netlify, or Fly.io with framework auto-detection, deployment reporting, and rollback support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick Deploy helps agents deploy projects to Vercel, Netlify, or Fly.io by detecting the framework, choosing a hosting target, running deployment commands, and reporting the resulting URL.
 
-## Publisher: <br>
-[vanthienha199](https://clawhub.ai/user/vanthienha199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanthienha199](https://clawhub.ai/user/vanthienha199)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy web, Python, Node.js, static, or container projects to Vercel, Netlify, or Fly.io and inspect deployment status, logs, rollback options, and domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Activation language is broad for workflows that can affect live deployments. <br>
-Mitigation: Require explicit confirmation of the project, platform, and target environment before executing deployment commands. <br>
-Risk: Deployment commands may use hosting credentials and affect production environments. <br>
-Mitigation: Use the hosting CLI's built-in authentication, avoid storing or exposing API tokens, and default to preview or staging unless production is explicitly requested. <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent detect common web and backend project types, select Vercel, Netlify, or Fly.io, and run the corresponding deploy, status, rollback, log, or domain commands. It defaults to preview or staging deployment and requires confirmation before production deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vanthienha199/quick-deploy) <br>
-- [Publisher profile](https://clawhub.ai/user/vanthienha199) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and deployment reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose deployment, status, rollback, log, and domain-management commands; production deployment should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can install mutable external deployment CLIs globally and run the Fly.io remote installer before deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, prefer manually installed and trusted pinned CLIs, and only allow remote installer use after explicit approval.
+
+Risk: The skill can deploy real projects and affect production environments.
+
+Mitigation: Default to preview or staging deployment, require explicit confirmation for production targets, and verify the selected platform, project, and environment before execution.
+
+Risk: Deployment workflows may involve service credentials or API tokens.
+
+Mitigation: Use each provider CLI's built-in authentication flow and do not store, print, or expose API tokens.
+
+## Reference(s):
+
+- [Quick Deploy on ClawHub](https://clawhub.ai/vanthienha199/skills/quick-deploy)
+- [Fly.io installer referenced by artifact](https://fly.io/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and deployment status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment URLs, framework detection results, platform recommendations, command output, errors, and suggested fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

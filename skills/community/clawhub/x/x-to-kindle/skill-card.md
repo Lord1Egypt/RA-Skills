@@ -1,41 +1,53 @@
-## Description: <br>
-Send X/Twitter posts and local files to Kindle for distraction-free reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send X/Twitter posts to Kindle for distraction-free reading. Use when user shares an X/Twitter link and wants to read it on Kindle, or asks to send a tweet/thread to their Kindle device.
 
-## Publisher: <br>
-[brianlu365ai](https://clawhub.ai/user/brianlu365ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[brianlu365ai](https://clawhub.ai/user/brianlu365ai)
 
-## Use Case: <br>
-External users and developers use this skill to convert X/Twitter posts or local documents into Kindle-readable attachments and email them to a configured Kindle address. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Stored SMTP app passwords may be exposed if placed in markdown configuration files. <br>
-Mitigation: Keep SMTP credentials in protected environment secrets or a secret manager, and use a dedicated revocable app password for the sender account. <br>
-Risk: The helper can email any local file available to the agent process. <br>
-Mitigation: Only provide file paths for content explicitly intended for Kindle delivery, and review the file before invoking the helper. <br>
+## Use Case:
 
+External users and developers use this skill to turn X/Twitter posts or threads into Kindle-readable attachments and send local PDF, HTML, or TXT files to a configured Kindle email address.
 
-## Reference(s): <br>
-- [X To Kindle ClawHub page](https://clawhub.ai/brianlu365ai/x-to-kindle) <br>
-- [FxTwitter status API example](https://api.fxtwitter.com/status/1234567890) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML and Python snippets, shell command invocation, and a helper-script email attachment workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SMTP credentials from environment variables and sends the selected local file as an email attachment to KINDLE_EMAIL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: package.json and server release metadata) <br>
+Risk: The skill can email any readable local file path supplied to its helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with tightly controlled generated files and require explicit confirmation of the exact source path and Kindle recipient before sending.
+
+Risk: SMTP credentials may be exposed if stored in shared project files or plaintext setup notes.
+
+Mitigation: Keep SMTP app passwords in environment variables or a proper secret store, and do not place app passwords in TOOLS.md or shared project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianlu365ai/skills/x-to-kindle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline code blocks, generated HTML attachments, and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided SMTP and Kindle email configuration; sends selected local files as email attachments.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

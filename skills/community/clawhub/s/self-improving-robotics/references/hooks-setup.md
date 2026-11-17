@@ -5,7 +5,7 @@ Configure automatic robotics self-improvement triggers for AI coding agents.
 ## Overview
 
 Hooks enable proactive robotics-pattern capture by injecting reminders at key moments:
-- **UserPromptSubmit**: Reminder after each prompt to evaluate robotics learnings
+- **UserPromptSubmit**: Reminder after matching prompts to evaluate robotics learnings
 - **PostToolUse (Bash)**: Error detection when autonomy, telemetry, or hardware diagnostics surface failures
 
 ## Claude Code Setup
@@ -19,22 +19,11 @@ Create `.claude/settings.json` in your project root:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "robot|localization|planner|control|safety|sensor|lidar|imu|thermal",
         "hooks": [
           {
             "type": "command",
             "command": "./skills/self-improving-robotics/scripts/activator.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "./skills/self-improving-robotics/scripts/error-detector.sh"
           }
         ]
       }
@@ -43,16 +32,16 @@ Create `.claude/settings.json` in your project root:
 }
 ```
 
-### Option 2: User-Level Configuration
+### Option 2: User-Level Configuration (discouraged)
 
-Add to `~/.claude/settings.json` for global activation:
+Do **not** install this hook globally. User-level hooks persist across all repositories and sessions. Keep hooks project-scoped. The example below is shown only so you can recognize and remove it:
 
 ```json
 {
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "robot|localization|planner|control|safety|sensor|lidar|imu|thermal",
         "hooks": [
           {
             "type": "command",
@@ -74,7 +63,7 @@ For lower overhead, use only the UserPromptSubmit hook:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "robot|localization|planner|control|safety|sensor|lidar|imu|thermal",
         "hooks": [
           {
             "type": "command",
@@ -96,7 +85,7 @@ Codex uses the same hook system. Create `.codex/settings.json`:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "robot|localization|planner|control|safety|sensor|lidar|imu|thermal",
         "hooks": [
           {
             "type": "command",
@@ -130,7 +119,7 @@ Promote recurring patterns to safety checklist, calibration playbook, or tuning 
 
 1. Enable the hook configuration
 2. Start a new Claude Code session
-3. Send any prompt
+3. Send a prompt that matches the domain matcher
 4. Verify you see `<robotics-self-improvement-reminder>` in the context
 
 ### Test Error Detector Hook
@@ -172,12 +161,12 @@ If using relative paths, ensure you're in the correct directory or use absolute 
 }
 ```
 
-### Too Much Overhead
+### Matcher is required
 
-If the activator feels intrusive:
+Never use an empty matcher. If the activator still feels intrusive:
 
 1. **Use minimal setup**: Only UserPromptSubmit, skip PostToolUse
-2. **Add matcher filter**: Only trigger for robotics-related prompts:
+2. **Narrow the matcher further**. Current domain matcher examples: robotics-related prompts:
 
 ```json
 {

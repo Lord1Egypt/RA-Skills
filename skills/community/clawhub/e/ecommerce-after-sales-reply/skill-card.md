@@ -1,38 +1,53 @@
-## Description: <br>
-Generates standardized Simplified Chinese ecommerce after-sales replies for refunds, returns, exchanges, reshipments, evidence requests, timing updates, policy explanations, and buyer reassurance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized Simplified Chinese ecommerce after-sales replies for refunds, returns, exchanges, reshipments, policy explanations, evidence requests, and buyer reassurance.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External ecommerce sellers and customer-support agents use this skill to draft buyer-facing Simplified Chinese replies for refund, return, exchange, reshipment, evidence, timing, and after-sales policy questions. It helps produce clear, polite, policy-bound responses that can be checked against the actual order, platform rules, and shop policy before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may be inaccurate if platform rules, shop policy, order status, refund timing, return address, or customer/order details are missing or stale. <br>
-Mitigation: Verify the real platform rules, shop policy, order status, refund timing, addresses, and customer/order details before sending the reply to a buyer. <br>
+## Use Case:
 
+External ecommerce customer service teams use this skill to draft buyer-ready Simplified Chinese responses for after-sales cases. It helps keep replies polite, rule-aware, and aligned with supplied platform rules, shop policies, order facts, and review outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ecommerce-after-sales-reply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text in Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Buyer-facing customer-service reply only; no analysis process is emitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill could draft replies that promise refunds, returns, exchanges, reshipments, or exceptions beyond the applicable platform rules or shop policy if incomplete facts are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide current platform rules, shop policies, order status, product category, responsibility determination, evidence status, and approval limits before using the reply.
+
+Risk: After-sales disputes may require review or platform adjudication, and an over-specific reply could misstate the final outcome.
+
+Mitigation: Use review-qualified language such as "核实后处理" or "以平台审核结果为准" when facts, authority, or eligibility are uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/ecommerce-after-sales-reply)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text Simplified Chinese customer-service reply]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces only the final buyer-facing reply and depends on supplied platform rules, shop policies, order facts, and evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Install, enable, verify, pair, and manage PrivateClaw OpenClaw sessions, preferring same-conversation /privateclaw QR replies and falling back to the local CLI when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, enable, verify, pair, and manage PrivateClaw OpenClaw sessions, preferring same-conversation /privateclaw QR replies and falling back to the local CLI when needed.
 
-## Publisher: <br>
-[topcheer](https://clawhub.ai/user/topcheer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[topcheer](https://clawhub.ai/user/topcheer)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install and configure the PrivateClaw plugin, verify command registration, and choose the appropriate QR pairing flow for chat-backed or local sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default install path uses an unsafe-install override for an unpinned external plugin package. <br>
-Mitigation: Install only when the publisher and package source are trusted, prefer a pinned version or reviewed local checkout, and avoid bypassing install safety checks unless the reason is understood. <br>
-Risk: PrivateClaw pairing sessions can remain active in a background daemon after the QR is printed. <br>
-Mitigation: Review active sessions after pairing and close or remove sessions that should no longer remain open. <br>
+## Use Case:
 
+Developers and operators use this skill to install and enable the PrivateClaw OpenClaw plugin, configure pairing flows, and troubleshoot encrypted chat sessions across OpenClaw-backed conversations or the local CLI.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/topcheer/privateclaw-plugin-setup) <br>
-- [PrivateClaw provider homepage](https://github.com/topcheer/PrivateClaw/tree/main/packages/privateclaw-provider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and configuration changes should be reviewed before execution in the user's OpenClaw environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter and release evidence) <br>
+Risk: The skill may install a third-party plugin through an unsafe install override using a mutable latest package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the publisher and package source, prefer a pinned and verified package version, and require explicit confirmation before using unsafe install overrides.
+
+Risk: The skill can guide actions that restart OpenClaw, kill sessions, or remove participants.
+
+Mitigation: Confirm the target OpenClaw instance, session, and participant before running restart, killall, or kick commands.
+
+## Reference(s):
+
+- [PrivateClaw provider homepage](https://github.com/topcheer/PrivateClaw/tree/main/packages/privateclaw-provider)
+- [PrivateClaw desktop releases](https://github.com/topcheer/PrivateClaw/releases)
+- [YourClaw iOS app](https://apps.apple.com/us/app/yourclaw/id6760531637)
+- [PrivateClaw Android closed alpha](https://play.google.com/store/apps/details?id=gg.ai.privateclaw)
+- [PrivateClaw Android tester group](https://groups.google.com/g/gg-studio-ai-products)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend OpenClaw plugin installation, enablement, restart, verification, pairing, session inspection, and participant removal commands.]
+
+## Skill Version(s):
+
+1.1.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

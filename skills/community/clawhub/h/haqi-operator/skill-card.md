@@ -1,49 +1,61 @@
-## Description: <br>
-MagicHaqi Operator is a developer- and owner-use agent that runs recurring MagicHaqi operations for marketing drafts, BYOC content production, demo pet care, and growth analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MagicHaqi Operator is an owner-only agent skill for running MagicHaqi operations across companionship care, content production, marketing material generation, and analytics.
 
-## Publisher: <br>
-[paraengine](https://clawhub.ai/user/paraengine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paraengine](https://clawhub.ai/user/paraengine)
 
-## Use Case: <br>
-Developers and MagicHaqi owners use this skill to run a small recurring operations loop that creates owner-approved marketing assets, generates and verifies MagicHaqi content, maintains a demo pet, and writes daily KPI summaries from local state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL-token login can expose account access if copied into screenshots, logs, or shared links. <br>
-Mitigation: Treat the URL token as a secret and avoid sharing screenshots or logs that include it. <br>
-Risk: Autonomous recurring operation could produce unwanted marketing, content, or spending actions if left unsupervised. <br>
-Mitigation: Install only in the MagicHaqi owner/developer environment, keep the documented cadence limits, and require explicit owner approval for spending or real third-party publishing. <br>
-Risk: Persistent local state, journal, audit, marketing, and memory outputs may retain operational details longer than intended. <br>
-Mitigation: Periodically inspect or clear the agent/ state, journal, audit, marketing, and memory outputs. <br>
-Risk: Telemetry handling is unclear when sdk.remoteLog is accessible to analytics. <br>
-Mitigation: Review what sdk.remoteLog exposes before enabling analytics. <br>
+## Use Case:
 
+Developers or owners of a MagicHaqi workspace use this skill to run a recurring operational loop that maintains a demo pet, produces owner-reviewed content and marketing assets, and summarizes local operational KPIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paraengine/haqi-operator) <br>
-- [Haqi Operator playbook](artifact/PLAYBOOK.md) <br>
-- [Haqi Operator schedule](artifact/schedule.md) <br>
-- [Content production task](artifact/tasks/content.md) <br>
-- [Marketing task](artifact/tasks/marketing.md) <br>
-- [Analytics task](artifact/tasks/analytics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, JSON state updates, generated content artifacts, KPI summaries, and shareable deep links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local agent/ state, journal, audit, marketing, and content outputs; third-party publishing and spending require explicit owner approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests long-running authority to mutate local MagicHaqi state and generated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an owner-controlled MagicHaqi workspace and route local content or state writes through review or staging before publishing or committing generated files.
+
+Risk: The skill uses URL token login patterns that can expose credentials if real tokens are embedded in links or logs.
+
+Mitigation: Avoid putting real tokens in URLs and review logs or shared artifacts for token leakage.
+
+Risk: Analytics may include sdk.remoteLog telemetry if it is available in the workspace.
+
+Mitigation: Clarify or disable sdk.remoteLog unless remote telemetry is intentionally part of the analytics workflow.
+
+Risk: Content and marketing tasks could create spammy output or use unauthorized external intellectual property.
+
+Mitigation: Keep the documented production throttles, require owner approval before third-party publishing, and keep external IP only when it is explicitly marked authorized.
+
+## Reference(s):
+
+- [MagicHaqi Operator on ClawHub](https://clawhub.ai/paraengine/skills/haqi-operator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline commands, local file updates, generated content drafts, and KPI summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces material for owner review and local MagicHaqi workspace state; it is not intended to auto-publish to third-party services.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

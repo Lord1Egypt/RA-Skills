@@ -9,7 +9,7 @@
       "expectations": [
         "Uses deploy_vm_from_ova tool with correct OVA path and VM name",
         "Powers on the VM after deployment",
-        "Sets TTL to 480 minutes using vm_set_ttl"
+        "Sets TTL to 480 minutes using set_vm_ttl"
       ]
     },
     {
@@ -40,9 +40,9 @@
       "expected_output": "Execution plan created with correct order and rollback",
       "files": [],
       "expectations": [
-        "Uses vm_create_plan with sequential power_off and power_on operations",
+        "Uses create_vm_plan with sequential power_off and power_on operations",
         "Order is correct: replica off → primary off → primary on → replica on",
-        "Shows plan summary and waits for user approval before vm_apply_plan"
+        "Shows plan summary and waits for user approval before apply_vm_plan"
       ]
     }
   ]

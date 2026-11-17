@@ -1,39 +1,53 @@
-## Description: <br>
-Delegates coding, refactoring, PR review, and iterative file-exploration tasks to the Cursor Agent CLI through a PTY-capable bash tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Cursor Agent CLI for feature work, PR review, large refactors, and iterative code changes that need file exploration.
 
-## Publisher: <br>
-[rare](https://clawhub.ai/user/rare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rare](https://clawhub.ai/user/rare)
 
-## Use Case: <br>
-Developers and engineers use this skill to spawn Cursor CLI agents for feature work, refactoring, code review, and scripted codebase analysis. It is intended for focused work directories, temporary clones, or git worktrees where the spawned agent can be monitored. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unattended Cursor CLI delegation can change code and publish repository updates without strong approval boundaries. <br>
-Mitigation: Prefer plan or interactive modes, use isolated worktrees or temporary clones, avoid --yolo in sensitive repositories, and manually review diffs and generated text before any commit, push, PR creation, or GitHub comment. <br>
-Risk: Interactive Cursor CLI sessions can hang or produce unreliable behavior when launched without PTY support. <br>
-Mitigation: Run Cursor CLI commands with pty:true and monitor background sessions so the user can provide input or terminate stalled work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cursor CLI Agent on ClawHub](https://clawhub.ai/rare/cursor-cli-agent) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to delegate coding, refactoring, scripted analysis, and read-only review tasks to the Cursor Agent CLI from a focused workspace.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional JSON output from Cursor CLI print mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Cursor CLI agent binary and a PTY-capable bash tool; long-running tasks may be managed through background sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unattended agent sessions can edit, commit, or push repository changes without a review checkpoint.
+
+Mitigation: Prefer --plan or interactive mode first, inspect git status and diffs before committing, and require a separate explicit decision before any push or PR creation.
+
+Risk: Broad workspaces or trusted execution modes can expose more code, credentials, or account access than the task requires.
+
+Mitigation: Use isolated temporary worktrees or narrow project directories, and avoid --yolo, --trust, background execution, and broad project roots unless their access is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rare/skills/cursor-cli-agent)
+- [Publisher profile](https://clawhub.ai/user/rare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch interactive or background Cursor Agent sessions that inspect and modify repository files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

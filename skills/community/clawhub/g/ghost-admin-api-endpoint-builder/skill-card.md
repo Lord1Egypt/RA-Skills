@@ -1,38 +1,48 @@
-## Description: <br>
-Creates or extends Ghost Admin API endpoint code by guiding controller files, route wiring, module registration, validation, and matching e2e API tests in the standard Ghost core structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or extend Ghost Admin REST API endpoint implementations, route wiring, module registration, validation, and e2e tests in the standard Ghost core structure.
 
-## Publisher: <br>
-[kukudadasd](https://clawhub.ai/user/kukudadasd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kukudadasd](https://clawhub.ai/user/kukudadasd)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to add or extend Ghost Admin REST API endpoints, including controller files, route registration, module registration, validation, and matching e2e tests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Ghost Admin API route or controller changes can affect exposed admin functionality.
+
+Mitigation: Review route registration, controller actions, validation, and e2e tests before merging generated changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to add or modify Ghost Admin REST API endpoints, connect routes and modules, add validation or serializer code, and create matching e2e API tests. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated endpoint changes may affect Ghost Admin API behavior if used outside the intended REST endpoint workflow. <br>
-Mitigation: Use only for Ghost Admin API endpoint work, review generated source and test changes before relying on them, and run the targeted Ghost e2e API test command. <br>
+**Output Format:** [Markdown with code snippets and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kukudadasd/ghost-admin-api-endpoint-builder) <br>
+**Other Properties Related to Output:** [Produces implementation guidance for Ghost Admin API source changes; no hidden execution, credential use, or persistence is identified by the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on Ghost Admin REST endpoint source files, route/module wiring, validation or serializer code, and e2e API tests.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

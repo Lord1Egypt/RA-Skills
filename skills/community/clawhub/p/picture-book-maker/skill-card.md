@@ -1,43 +1,55 @@
-## Description: <br>
-Creates illustrated picture books through theme planning, story writing, character design, storyboard layout, page image generation, and HTML packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picture Book Maker helps agents create illustrated picture books from theme planning and story writing through character design, storyboarding, image generation, metadata preparation, and HTML packaging.
 
-## Publisher: <br>
-[lishuailibertine](https://clawhub.ai/user/lishuailibertine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lishuailibertine](https://clawhub.ai/user/lishuailibertine)
 
-## Use Case: <br>
-Educators, parents, writers, and agents use this skill to plan and assemble children's picture books, including story structure, character cards, storyboard prompts, metadata, page assets, and a browsable HTML book. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaging script can fetch arbitrary image URLs from metadata. <br>
-Mitigation: Use trusted image sources, prefer local images under the intended pages directory, and avoid untrusted URLs unless network access is explicitly intended. <br>
-Risk: The packaging script can read local paths referenced by book metadata. <br>
-Mitigation: Run it only on trusted book folders and review metadata.json before packaging. <br>
+## Use Case:
 
+External creators, educators, and developers use this skill to guide an agent through planning, writing, illustrating, and packaging children's picture books for education, fables, and emotional learning scenarios.
 
-## Reference(s): <br>
-- [Story Creation Template](references/story-template.md) <br>
-- [Picture Book Page Design Guide](references/page-guide.md) <br>
-- [Packaging Script](scripts/pack-book.py) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lishuailibertine/picture-book-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON metadata, image assets, and packaged HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create ./picture-book-output/<book-name>/ with metadata.json, pages/, and book.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Book metadata can cause the packer to read local files or contact arbitrary remote image URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the packer only on trusted metadata.json files and trusted image sources; avoid arbitrary remote image URLs.
+
+Risk: Generated book.html files should be treated as active web content.
+
+Mitigation: Review generated HTML before sharing or hosting, and keep it in a controlled environment until path containment, URL restrictions, strict image validation, and HTML escaping are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lishuailibertine/skills/picture-book-maker)
+- [Story creation template](references/story-template.md)
+- [Picture book page guide](references/page-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON metadata and shell command examples; the packaging script produces an HTML picture book file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated books use metadata.json plus page image assets; the packer can embed local or URL-based images into book.html.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

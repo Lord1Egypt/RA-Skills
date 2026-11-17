@@ -1,44 +1,64 @@
-## Description: <br>
-Analyze listed company financials to detect 21 fraud risk indicators with severity ratings and cross-validation for accounting anomalies and governance issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans listed company financial statements for potential fraud risks, accounting anomalies, audit concerns, and governance red flags using 21 financial risk indicators.
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-Financial analysts, auditors, compliance reviewers, and developers use this skill to scan Chinese A-share listed companies for accounting anomalies, fraud-risk indicators, audit concerns, and governance red flags. It supports preliminary risk triage and report generation, not final investment, audit, or compliance decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Tushare API token is required to fetch financial data. <br>
-Mitigation: Provide the token through the TUSHARE_TOKEN environment variable, keep it out of source control and chat transcripts, and run the skill in a Python virtual environment. <br>
-Risk: Generated financial-risk reports are saved locally and may contain sensitive company analysis. <br>
-Mitigation: Restrict access to the report directory and delete reports from ~/.openclaw/workspace/memory/financial-risk when they are no longer needed. <br>
-Risk: Automated risk indicators can be incomplete, stale, or misleading without human review. <br>
-Mitigation: Validate findings against original filings, company announcements, audit reports, and qualified financial judgment before making investment, audit, or compliance decisions. <br>
+## Use Case:
 
+External analysts, investors, and developers use this skill to review Chinese A-share listed companies for financial statement red flags and produce a structured risk assessment report. The output supports follow-up review and cross-validation against filings, annual reports, and company announcements.
 
-## Reference(s): <br>
-- [Risk Indicators Reference](references/risk_indicators.md) <br>
-- [Tushare API Field Mapping Reference](references/api_reference.md) <br>
-- [Tushare Pro API](https://tushare.pro) <br>
+### Deployment Geography for Use:
 
+Global, with analysis scope limited to Chinese A-share listed companies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown risk report with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves generated reports locally under ~/.openclaw/workspace/memory/financial-risk unless an explicit output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Dependency versions are not pinned to exact releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment and pin approved versions of tushare, pandas, and their transitive dependencies before operational use.
+
+Risk: Generated report filenames may include unsanitized company names.
+
+Mitigation: Use the explicit output path option or sanitize report filenames before running in shared or sensitive workspaces.
+
+Risk: Missing financial data can lead some checks to score as no risk.
+
+Mitigation: Review data completeness warnings and validate generated conclusions against annual reports, regulatory filings, and company announcements.
+
+Risk: The Tushare API token is required for financial data access.
+
+Mitigation: Use a dedicated token limited to this workflow and avoid exposing it outside the runtime environment.
+
+## Reference(s):
+
+- [Risk Indicators Reference](references/risk_indicators.md)
+- [Tushare API Field Mapping Reference](references/api_reference.md)
+- [Tushare Pro](https://tushare.pro)
+- [ClawHub Skill Page](https://clawhub.ai/laigen/skills/financial-risk-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report files with terminal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a single Tushare stock code and TUSHARE_TOKEN; the default report path is ~/.openclaw/workspace/memory/financial-risk/.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

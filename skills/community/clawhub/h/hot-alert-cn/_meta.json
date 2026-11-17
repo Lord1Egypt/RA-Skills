@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "hot-alert-cn",
+  "name": "hot-alert-cn",
   "version": "1.0.0",
-  "publishedAt": 1771680203425
+  "description": "热点提醒器 | Hot Topics Alert System",
+  "author": "guohongbin-git",
+  "tags": ["alert", "monitor", "hot", "keyword", "chinese"]
 }

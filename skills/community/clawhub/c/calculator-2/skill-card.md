@@ -1,40 +1,53 @@
-## Description: <br>
-Provides basic arithmetic calculation support for addition, subtraction, multiplication, division, chained expressions, and step-by-step result explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides basic arithmetic calculation support for addition, subtraction, multiplication, division, and chained expression evaluation.
 
-## Publisher: <br>
-[CexFree](https://clawhub.ai/user/CexFree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cexfree](https://clawhub.ai/user/cexfree)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to parse ordinary arithmetic requests, show the calculation process, and return a clear result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Arithmetic output may be wrong or insufficient for high-stakes decisions because the skill is an agent instruction prompt, not a certified calculator. <br>
-Mitigation: Use it for ordinary arithmetic help and independently verify any high-stakes calculations. <br>
-Risk: Division by zero or complex chained expressions can produce misleading results if the agent skips validation or omits intermediate steps. <br>
-Mitigation: Check for division by zero, follow standard order of operations, and show the calculation process before returning the result. <br>
+## Use Case:
 
+External users and agents use this skill to parse and solve basic arithmetic expressions while showing the calculation process. It is suited for routine numeric computations involving addition, subtraction, multiplication, division, and standard order of operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CexFree/calculator-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown with arithmetic steps and a final result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, file access, network access, or persistence indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broadly worded math requests may invoke the skill for work beyond basic arithmetic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for arithmetic expressions and route advanced mathematics or domain-specific calculations to a more capable math tool or reviewer.
+
+Risk: Arithmetic mistakes can mislead downstream decisions if results are used without checking.
+
+Mitigation: Review the displayed calculation steps and independently verify high-impact results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cexfree/skills/calculator-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with calculation steps and a final numeric answer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows the calculation process, follows standard order of operations, and warns on division by zero.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

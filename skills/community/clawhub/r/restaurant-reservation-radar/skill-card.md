@@ -1,44 +1,59 @@
-## Description: <br>
-旅行目的地米其林与热门餐厅空位监控、自动预约与定金提醒助手。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+旅行目的地米其林与热门餐厅空位监控、自动预约与定金提醒助手。
 
-## Publisher: <br>
-[lmercy](https://clawhub.ai/user/lmercy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmercy](https://clawhub.ai/user/lmercy)
 
-## Use Case: <br>
-External travelers use this skill to monitor Michelin and popular restaurant availability for a destination, match options to trip dates and dining preferences, and receive reservation status, confirmation, deposit, or fallback guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can monitor reservation platforms and act using personal contact details. <br>
-Mitigation: Require explicit user confirmation before each booking submission and before sharing contact details with any reservation platform or notification service. <br>
-Risk: Reservation flows may request verification codes, card guarantees, deposits, or payment. <br>
-Mitigation: Pause for user approval before using verification codes, card details, guarantees, deposits, or any payment-related step. <br>
-Risk: Collected phone numbers, email addresses, and booking details may expose sensitive travel or contact information. <br>
-Mitigation: Mask contact details in responses, avoid persistent storage, and provide a clear stop-monitoring command. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to identify Michelin or popular restaurants, monitor reservation availability, submit reservation requests, and return confirmations or alternatives for a destination itinerary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lmercy/restaurant-reservation-radar) <br>
-- [Platform reference manual](reference.md) <br>
-- [Usage examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style conversational responses, structured restaurant lists, status updates, and notification templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reservation options, confirmation prompts, masked contact details, deposit warnings, and fallback recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can direct an agent to submit third-party restaurant reservation requests using personal contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before every reservation submission, account login, deposit, card guarantee, cancellation-penalty booking, or payment-related step.
+
+Risk: Reservation monitoring may interact with platform limits or booking rules.
+
+Mitigation: Use platform-appropriate polling intervals and comply with each reservation platform's access and booking requirements.
+
+Risk: The workflow may handle phone numbers, email addresses, verification codes, or payment-related information.
+
+Mitigation: Collect only the details needed for the booking, avoid persistent storage, and ask the user to provide sensitive confirmations through secure, deliberate steps.
+
+## Reference(s):
+
+- [Platform Reference Manual](reference.md)
+- [Usage Examples](examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/lmercy/skills/restaurant-reservation-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured reservation status updates and notification templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include restaurant candidates, availability status, confirmation details, maps links, cancellation notes, and alternative options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

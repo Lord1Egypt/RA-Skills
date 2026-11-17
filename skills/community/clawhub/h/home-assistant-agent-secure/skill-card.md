@@ -1,43 +1,63 @@
-## Description: <br>
-Control Home Assistant smart home devices securely using the Assist (Conversation) API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Home Assistant smart home devices securely using the Assist (Conversation) API while routing natural-language commands through Home Assistant's built-in NLU with a restricted non-admin user.
 
-## Publisher: <br>
-[szafranski](https://clawhub.ai/user/szafranski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[szafranski](https://clawhub.ai/user/szafranski)
 
-## Use Case: <br>
-External users and developers use this skill to send natural-language smart-home requests through Home Assistant Assist while limiting agent behavior to the Conversation API and a restricted non-admin Home Assistant user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A Home Assistant long-lived access token can authorize actions beyond the Conversation API according to the permissions of the Home Assistant user. <br>
-Mitigation: Use a dedicated non-admin Home Assistant user with limited area and entity access, protect the token, and rotate it if exposed. <br>
-Risk: Trusted Networks login bypass can undermine the restricted-user security model. <br>
-Mitigation: Disable trusted-network login bypass by setting allow_bypass_login to false or removing the trusted_networks provider. <br>
-Risk: Using curl with -k skips certificate verification for self-signed Home Assistant instances. <br>
-Mitigation: Remove the -k option when the Home Assistant certificate is trusted. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to let an agent send natural-language commands to Home Assistant Assist while limiting access to a restricted non-admin Home Assistant user and the Conversation API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/szafranski/home-assistant-agent-secure) <br>
-- [Publisher Profile](https://clawhub.ai/user/szafranski) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, HOME_ASSISTANT_URL, and HOME_ASSISTANT_TOKEN; sends requests to the Home Assistant Assist conversation endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: _meta.json and server release metadata) <br>
+Risk: A long-lived Home Assistant token can retain access until revoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated non-admin Home Assistant user with the smallest practical device and entity access, and revoke or rotate the token if it may have been exposed.
+
+Risk: The default curl example allows insecure TLS for self-signed Home Assistant certificates.
+
+Mitigation: Remove curl -k when Home Assistant is configured with trusted certificates, and only keep it when the certificate trust decision has been made explicitly.
+
+Risk: Storing the Home Assistant token in shell profiles or broadly readable files can expose smart-home access.
+
+Mitigation: Prefer a locked-down token file or managed environment injection, avoid echoing the token, and restrict file permissions.
+
+Risk: Trusted Networks login bypass can undermine the restricted-user security model.
+
+Mitigation: Set allow_bypass_login to false for the trusted_networks auth provider or remove that provider before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szafranski/skills/home-assistant-agent-secure)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, HOME_ASSISTANT_URL, and HOME_ASSISTANT_TOKEN; relays Home Assistant Assist responses to the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

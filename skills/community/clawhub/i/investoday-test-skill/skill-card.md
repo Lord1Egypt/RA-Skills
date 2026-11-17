@@ -1,38 +1,52 @@
-## Description: <br>
-提供消费电子、半导体和 AI 应用板块的短期与中期投资优先级分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language priority commentary comparing consumer electronics, semiconductors, and AI applications.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill as static Chinese-language background commentary for comparing sector priorities across consumer electronics, semiconductors, and AI applications.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Investment-related statements may be mistaken for current financial advice.
+
+Mitigation: Treat the skill output as static commentary and verify current market conditions with authoritative financial sources before making decisions.
+
+Risk: The skill is narrowly scoped to Chinese-language market-sector priority commentary.
+
+Mitigation: Use it only for that sector-priority comparison use case or supplement it with broader analysis when needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and analysts use this skill to receive concise sector-priority commentary for consumer electronics, semiconductors, and AI applications over short- and medium-term horizons. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Market-sector rankings could be mistaken for personalized investment advice. <br>
-Mitigation: Treat the output as financial commentary only, and independently verify assumptions, dates, valuation data, and risk factors before making financial decisions. <br>
+**Output Format:** [Markdown text in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-test-skill) <br>
+**Other Properties Related to Output:** [Static market-sector commentary; not current financial advice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language investment sector commentary; not personalized financial advice.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

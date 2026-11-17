@@ -1,42 +1,55 @@
-## Description: <br>
-Offline, zero-dependency health monitoring for LLM agents with multi-framework support and a web dashboard for real-time diagnostics and grading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mingjing provides offline, zero-dependency health monitoring for LLM agents with framework adapters, real-time diagnostics, health grading, and a local web dashboard.
 
-## Publisher: <br>
-[wulun811](https://clawhub.ai/user/wulun811) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulun811](https://clawhub.ai/user/wulun811)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate Mingjing for local health monitoring, diagnostics, and grading of LLM agent systems across supported frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow installs external packages and an OpenClaw plugin. <br>
-Mitigation: Verify the `mingjing` package and `mingjing-probe` plugin provenance before installation. <br>
-Risk: The workflow starts a local daemon and web dashboard. <br>
-Mitigation: Confirm what telemetry is stored locally and stop the daemon and dashboard when they are not in use. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate a local AI-agent health center that monitors agent activity, diagnoses runtime issues, grades health states, and displays live telemetry in a web panel.
 
-## Reference(s): <br>
-- [Mingjing ClawHub Page](https://clawhub.ai/wulun811/mngjing) <br>
-- [Mingjing GitHub Repository](https://github.com/wulun811/Ming_qiankun) <br>
-- [Mingjing GitHub Issues](https://github.com/wulun811/Ming_qiankun/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with bash code blocks and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation steps, feature summaries, diagnostic coverage, and local dashboard instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.11.14 (source: server release metadata) <br>
+Risk: The skill asks users to install and run unpinned external components that observe agent activity and run as background services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package and plugin provenance before installing, prefer exact pinned versions or verified artifacts, and run the daemon and web panel under a least-privileged account.
+
+Risk: Collected agent telemetry may include sensitive local operational data and may be exposed through local storage or the web panel.
+
+Mitigation: Treat telemetry as sensitive data and confirm storage, retention, web-panel exposure, and uninstall or disable steps before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wulun811/skills/mngjing)
+- [Mingjing GitHub repository](https://github.com/wulun811/Ming_qiankun)
+- [Mingjing issue tracker](https://github.com/wulun811/Ming_qiankun/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides local installation, daemon startup, web-panel access, diagnostic coverage, and health-grading workflows.]
+
+## Skill Version(s):
+
+0.11.14 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

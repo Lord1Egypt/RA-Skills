@@ -1,43 +1,60 @@
-## Description: <br>
-Queries pollen concentration levels and health protection guidance for supported mainland China cities using China Weather Network pollen data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pollen Monitor queries China Weather Network pollen concentration levels and protection advice for supported mainland China cities.
 
-## Publisher: <br>
-[NoviaRick](https://clawhub.ai/user/NoviaRick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noviarick](https://clawhub.ai/user/noviarick)
 
-## Use Case: <br>
-External users and agents use this skill to check current and forecast pollen levels for supported mainland China cities and receive allergy protection guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use; data coverage is limited to supported mainland China cities. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries send the requested city and date range to the documented weather-data endpoint. <br>
-Mitigation: Use the skill only when that outbound request is acceptable, and avoid entering sensitive information as city arguments. <br>
-Risk: The optional Bash helper depends on jq and may fail where jq is unavailable. <br>
-Mitigation: Prefer the Python helper unless jq is installed in the runtime environment. <br>
+## Use Case:
 
+External users and agents use this skill to look up recent and forecast pollen levels for supported mainland China cities and summarize practical exposure guidance.
 
-## Reference(s): <br>
-- [Pollen Monitor on ClawHub](https://clawhub.ai/NoviaRick/pollen-monitor) <br>
-- [China Weather Network Pollen Channel](https://m.weather.com.cn/huafen/) <br>
-- [Supported City List](https://m.weather.com.cn/huafen/cityChoose.html) <br>
-- [Pollen Data Endpoint](https://graph.weatherdt.com/ty/pollen/v2/hfindex.html) <br>
+### Deployment Geography for Use:
 
+Global, with pollen data coverage limited to supported mainland China cities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with pollen levels, dates, forecast status, and health guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; the optional Bash helper also requires jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence) <br>
+Risk: Queries send the selected city and date range to an external weather data service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with queries that are appropriate to share with that service, and review network access expectations before deployment.
+
+Risk: The skill is limited to supported mainland China cities and may return no data or delayed forecast information.
+
+Mitigation: Confirm the city is on the supported list and treat forecasts as informational rather than guaranteed real-time conditions.
+
+Risk: Pollen protection advice may be incomplete for a user's medical situation.
+
+Mitigation: Use the report for general awareness and rely on clinical or official public health guidance for medical decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/noviarick/skills/pollen-monitor)
+- [China Weather Network Pollen Channel](https://m.weather.com.cn/huafen/)
+- [Supported City List](https://m.weather.com.cn/huafen/cityChoose.html)
+- [Pollen Data Endpoint](https://graph.weatherdt.com/ty/pollen/v2/hfindex.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text report with command-line invocation examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3; Bash helper also requires jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-ARK V1.1 (Declarative) - universal constitutional layer that loads ARK.yaml from this skill folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ARK V1.1 (Declarative) is a universal constitutional layer that loads ARK.yaml to guide an agent's epistemic discipline.
 
-## Publisher: <br>
-[mattlab69](https://clawhub.ai/user/mattlab69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mattlab69](https://clawhub.ai/user/mattlab69)
 
-## Use Case: <br>
-External users and agent builders use this skill to add a prompt-level constitutional framework for epistemic structure, integrity, truth, and coherence. It is declarative; enforcement depends on how the agent applies the included ARK.yaml rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies broad prompt-level constitutional guidance across an agent session. <br>
-Mitigation: Install it only when that broad behavioral influence is intended, and review ARK.yaml before use. <br>
-Risk: The security summary flags under-scoped monitoring, self-repair, and reasoning-disclosure instructions for review. <br>
-Mitigation: Inspect those sections in ARK.yaml and decide whether they are acceptable for the target agent before deployment. <br>
-Risk: The skill is declarative and does not include a runtime enforcement wrapper. <br>
-Mitigation: Treat ARK compliance as dependent on the host agent's instruction-following behavior and deployment controls. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a declarative constitutional prompt layer that emphasizes structure, integrity, truth, coherence, uncertainty marking, and scoped responses for important answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mattlab69/ark-v1-core) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [ARK.yaml](artifact/ARK.yaml) <br>
-- [readme.md](artifact/readme.md) <br>
-- [ARK_COMPLIANCE_BADGE.md](artifact/ARK_COMPLIANCE_BADGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and YAML-backed prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Declarative prompt-level guidance; no runtime enforcement wrapper is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill applies a broad session-wide constitutional ruleset that may constrain, redirect, block, or reshape normal agent responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, and review activation scope, rule precedence, and response-blocking behavior before deployment.
+
+Risk: The skill may require confidence labels, uncertainty marking, validation prompts, and refusal or downgrade behavior for important answers.
+
+Mitigation: Use it in workflows where those controls are acceptable, and verify that downstream users understand the declarative limits of the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mattlab69/skills/ark-v1-core)
+- [ARK README](artifact/readme.md)
+- [ARK declarative ruleset](artifact/ARK.yaml)
+- [ARK compliance badge](artifact/ARK_COMPLIANCE_BADGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text agent responses guided by declarative configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require confidence labels, explicit uncertainty, refusal or downgrade behavior, and separation of operational and exploratory content for important answers.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,9 +2,11 @@
 
 Use this reference when you need to configure DNS records for an OBS static website custom domain via Huawei Cloud DNS (hcloud CLI).
 
+> **⚠️ Production infrastructure warning:** Creating or updating DNS records with this reference is a **public, production-facing change**. It can re-route or interrupt live traffic for the affected hostname and de-register/re-point the custom domain. Confirm with the user the exact zone, hostname, and target value before executing `DNS CreateRecordSet`, and warn them that this modifies public DNS.
+
 ## Prerequisites
 
-- `hcloud` CLI installed and configured with AK/SK credentials (see `references/hcloud-install-config.md`)
+- `hcloud` CLI installed and configured with AK/SK credentials (see `references/cli-installation-guide.md`)
 - The DNS zone for your domain already exists in Huawei Cloud DNS
 
 ## Workflow
@@ -74,6 +76,7 @@ dig +short <custom_domain> CNAME
 ```
 
 Expected output:
+
 ```
 <bucket_name>.obs.<region>.myhuaweicloud.com.
 ```
@@ -83,12 +86,12 @@ Expected output:
 - **Trailing dot**: Both the `--name` and `--records.1` values must end with a `.` (period) — this is the fully qualified domain name (FQDN) format required by Huawei Cloud DNS API.
 - **DNS propagation**: After creation, the record status may show `PENDING_CREATE`. Propagation typically completes within minutes.
 - **OBS custom domain registration**: Creating a DNS CNAME record alone is NOT sufficient. You must also register the custom domain on the OBS bucket via `setBucketCustomDomain` (see `references/obs-python-sdk-website.md`). Use the `--custom-domain` flag of `scripts/set_obs_website_sdk.py`.
-- **HTTPS**: The OBS website endpoint serves HTTP by default. For HTTPS, consider using CDN (Content Delivery Network) with an SSL certificate.
-- **Bucket name with dots**: If the bucket name contains dots, HTTPS access may be problematic. A custom domain with CDN+SSL is recommended.
+- **HTTPS**: The OBS website endpoint serves HTTP by default, but HTTPS **is supported on a custom domain** by binding an SSL certificate directly to the bucket custom domain (see `references/obs-python-sdk-website.md`) — no CDN required. The default bucket domain is automatically HTTPS-managed by Huawei Cloud. CDN is an optional acceleration layer (also supports HTTPS). `verify_obs_website.py` always verifies both HTTP and HTTPS (including TLS certificate validation), so a custom domain without a bound certificate is reported with a TLS remediation step.
+- **Bucket name with dots**: If the bucket name contains dots, HTTPS access may be problematic (certificate verification failures). A custom domain (with a bound certificate) is recommended.
 
 ## Troubleshooting
 
-| Symptom | Likely Cause | Solution |
-|---------|-------------|----------|
-| `dig` returns no result | DNS not propagated or record not created | Check `hcloud DNS ListRecordSets` to confirm record exists |
+| Symptom                     | Likely Cause                                  | Solution                                                    |
+| --------------------------- | --------------------------------------------- | ----------------------------------------------------------- |
+| `dig` returns no result     | DNS not propagated or record not created      | Check `hcloud DNS ListRecordSets` to confirm record exists  |
 | Custom domain not reachable | Missing `setBucketCustomDomain` on OBS bucket | Re-run `set_obs_website_sdk.py` with `--custom-domain` flag |

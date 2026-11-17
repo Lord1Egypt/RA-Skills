@@ -1,0 +1,6 @@
+interface:
+  display_name: Concept design
+  short_description: Design software with concepts and synchronization rules
+  default_prompt: Use $concept-design for the requested task. Start from purpose, test the assumptions, and load only the workflow and references needed.
+policy:
+  allow_implicit_invocation: false

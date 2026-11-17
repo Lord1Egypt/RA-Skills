@@ -1,42 +1,53 @@
-## Description: <br>
-Manage and secure local high-privilege storage serving workflows for creating, starting, stopping, or hardening a full-drive file server and related operational controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and secure local high-privilege storage serving workflows for creating, starting, stopping, or hardening a full-drive file server and related operational controls.
 
-## Publisher: <br>
-[manlight87](https://clawhub.ai/user/manlight87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manlight87](https://clawhub.ai/user/manlight87)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run a local storage manager with token authentication, loopback binding, root path controls, and file listing, reading, or download workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad local file exposure can make sensitive files browseable or downloadable if the configured root is too wide. <br>
-Mitigation: Set GOD_MODE_ROOT to a narrow dedicated folder, keep the host bound to 127.0.0.1, and stop the server when finished. <br>
-Risk: Tokens in URLs may be shared or logged unintentionally. <br>
-Mitigation: Prefer header-based authentication, avoid sharing UI URLs, and rotate GOD_MODE_TOKEN if it appears in logs or messages. <br>
-Risk: Disabling token authentication removes the primary access control for the local file server. <br>
-Mitigation: Keep GOD_MODE_TOKEN_REQUIRED enabled and use a strong token for normal operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ops Runbook](artifact/references/ops.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/manlight87/telegrambot) <br>
+## Use Case:
 
+Developers and operators use this skill to run a local high-privilege storage manager with token authentication, loopback binding, directory listing, file reading, and binary download workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration values, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local HTTP endpoints, token-auth setup steps, and filesystem path configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes a local high-privilege file server with broad default root access.
+
+Mitigation: Use a narrow GOD_MODE_ROOT instead of a full drive, keep GOD_MODE_HOST on 127.0.0.1, and run only when this local file-serving workflow is intentionally required.
+
+Risk: Authentication and UI handling weaknesses could expose sensitive files or tokens.
+
+Mitigation: Use a strong unique token, keep token authentication enabled, avoid putting tokens in URLs, rotate tokens if shared in logs, and patch UI rendering and symlink containment issues before handling sensitive files.
+
+## Reference(s):
+
+- [Ops Runbook](references/ops.md)
+- [ClawHub Skill Page](https://clawhub.ai/manlight87/skills/telegrambot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local server run commands, environment variable settings, operational checks, and risk guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

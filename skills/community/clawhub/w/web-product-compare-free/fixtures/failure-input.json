@@ -1,0 +1,7 @@
+{
+  "browserId": "<browserId>",
+  "readDate": "2026-10-04",
+  "products": [
+    {"name":"仅一个商品","url":"https://shop.example.test/products/only-one","visiblePrice":"¥99"}
+  ]
+}

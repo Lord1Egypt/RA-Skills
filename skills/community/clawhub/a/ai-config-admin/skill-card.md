@@ -1,40 +1,57 @@
-## Description: <br>
-Manage AI configuration for OpenClaw, OpenCode, Codex CLI, and Claude Code by helping add or remove models and providers, change defaults, and update supported JSON or TOML config files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AI configuration for OpenClaw, OpenCode, Codex CLI, and Claude Code, including provider and model changes and supported config file updates.
 
-## Publisher: <br>
-[mkuiwu](https://clawhub.ai/user/mkuiwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkuiwu](https://clawhub.ai/user/mkuiwu)
 
-## Use Case: <br>
-Developers and AI tool users use this skill to convert requests for local AI tool configuration changes into supported script commands for OpenClaw, OpenCode, Codex CLI, and Claude Code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist API keys or auth tokens in local AI tool configuration files. <br>
-Mitigation: Verify the exact target file and credential values before approving writes, prefer scoped or replaceable keys, and protect or delete backup files that may contain old secrets. <br>
-Risk: Provider URLs, model IDs, auth-file replacements, and memory-search settings can change future agent behavior. <br>
-Mitigation: Review each proposed provider, model, authentication, and memory-search change before execution, and use summary commands after edits to confirm the resulting configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to translate natural-language or structured requests into supported configuration actions for OpenClaw, OpenCode, Codex CLI, and Claude Code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mkuiwu/ai-config-admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled scripts to write supported local AI configuration files and create same-directory backups before writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can persistently rewrite sensitive agent settings and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for deliberate AI configuration changes and inspect diffs before full-file replacements.
+
+Risk: Provider credentials may be exposed through command-line arguments or generated configuration files.
+
+Mitigation: Avoid passing real secrets as command-line arguments and check permissions on generated config files.
+
+Risk: Backup files may retain old or rotated credentials.
+
+Mitigation: Review and remove old backups that may contain sensitive credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkuiwu/skills/ai-config-admin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON/TOML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create backup files and rewrite supported local JSON/TOML agent configuration files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

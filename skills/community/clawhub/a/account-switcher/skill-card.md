@@ -1,42 +1,59 @@
-## Description: <br>
-通过 HTTP API 控制「多账号矩阵管理工具」，实现浏览器账号的启动、关闭和信息查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 HTTP API 控制多账号矩阵管理工具，实现浏览器账号的启动、关闭及信息查询。
 
-## Publisher: <br>
-[wociaozhongyunonghaole](https://clawhub.ai/user/wociaozhongyunonghaole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wociaozhongyunonghaole](https://clawhub.ai/user/wociaozhongyunonghaole)
 
-## Use Case: <br>
-Developers and agent users use this skill to list, start, and stop local browser accounts managed by the separate multi-account matrix tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start or stop local browser account sessions through a separate local tool. <br>
-Mitigation: Review requested start and stop commands before execution, especially when active account sessions may be interrupted. <br>
-Risk: The helper depends on a local HTTP API for the separate multi-account matrix tool. <br>
-Mitigation: Use it only with a trusted local installation and keep the API bound to localhost. <br>
+## Use Case:
 
+Agents and users managing browser account sessions use this skill to list accounts and start or stop a selected account by name or index through a local multi-account management application.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wociaozhongyunonghaole/account-switcher) <br>
-- [Multi-account matrix tool](https://zmt.scys6688.com/) <br>
-- [Python downloads](https://www.python.org/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text results and Markdown instructions with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes UTF-8 command results to last_result.txt after local API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Start and stop commands can affect active browser account sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit account names or indexes and confirm the intended account before running start or stop commands.
+
+Risk: The skill depends on a third-party local multi-account management application.
+
+Mitigation: Install and run the skill only when the third-party application is trusted and its local server is intentionally enabled.
+
+Risk: Python dependency installation can affect the user's environment.
+
+Mitigation: Install Python dependencies such as requests in a virtual environment when possible.
+
+## Reference(s):
+
+- [账号切换器 ClawHub release](https://clawhub.ai/wociaozhongyunonghaole/skills/account-switcher)
+- [Multi-account management tool website](https://zmt.scys6688.com/)
+- [Python downloads](https://www.python.org/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands and status results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes command results to last_result.txt for UTF-8 result retrieval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

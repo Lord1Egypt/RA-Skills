@@ -1,47 +1,60 @@
-## Description: <br>
-Kubernetes Agent Swarm is an instruction-only multi-agent system for Kubernetes and OpenShift platform operations, covering orchestration, cluster operations, GitOps, security, observability, artifact management, and developer experience workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kubernetes Agent Swarm is an instruction-only, coordinated multi-agent system for Kubernetes and OpenShift platform operations across orchestration, cluster operations, GitOps, security, observability, artifacts, and developer experience.
 
-## Publisher: <br>
-[kcns008](https://clawhub.ai/user/kcns008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kcns008](https://clawhub.ai/user/kcns008)
 
-## Use Case: <br>
-Platform engineers, SREs, and Kubernetes administrators use this skill to coordinate agent-guided cluster operations, GitOps deployments, security reviews, observability triage, artifact handling, and developer onboarding across Kubernetes and OpenShift environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents with live Kubernetes/OpenShift and optional cloud or registry authority. <br>
-Mitigation: Use least-privilege kubeconfig, cloud, and registry credentials; scope access to non-production resources unless production access is explicitly required. <br>
-Risk: Write, delete, secret, production, git, pull request, PagerDuty, Slack, and Teams actions can affect infrastructure or external incident workflows. <br>
-Mitigation: Require explicit human approval before these actions and keep action logs for review. <br>
-Risk: Broad repository commits such as git add -A can include unrelated or sensitive files. <br>
-Mitigation: Use path-limited staging after human review, and inspect diffs before commit, push, or pull request creation. <br>
+## Use Case:
 
+Platform engineers, SREs, security engineers, and developer-experience teams use this skill to coordinate Kubernetes and OpenShift operations, triage incidents, manage GitOps workflows, inspect cluster state, and prepare operational reports. The skill provides markdown guidance and command patterns that rely on host-installed tools such as kubectl, oc, helm, and jq.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kcns008/kubernetes) <br>
-- [Publisher Profile](https://clawhub.ai/user/kcns008) <br>
-- [README](artifact/README.md) <br>
-- [Swarm Configuration and Protocols](artifact/AGENTS.md) <br>
-- [Quick Reference Operating Rules](artifact/QUICKREF.md) <br>
-- [Troubleshooting Guide](artifact/troubleshooting/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands, YAML examples, checklists, and operational handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable scripts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server evidence and SKILL.md metadata) <br>
+Risk: Broad cluster, cloud, and repository authority could expose or change sensitive operational state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled operations environment with narrowed kubeconfig and cloud permissions, and require explicit approval for upgrades, secret reads, and external incident transmissions.
+
+Risk: Operational logs, alerts, and incident messages could disclose sensitive data.
+
+Mitigation: Apply strict redaction rules before writing logs, sending alerts, or sharing incident details.
+
+Risk: Automated repository update flows could persist unintended changes.
+
+Mitigation: Disable or rewrite broad git add and auto-PR workflows, and require human review before repository changes are submitted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kcns008/skills/kubernetes)
+- [Skill Definition](artifact/SKILL.md)
+- [Swarm README](artifact/README.md)
+- [Swarm Configuration and Protocols](artifact/AGENTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell command examples and YAML or JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; no executable scripts are bundled.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

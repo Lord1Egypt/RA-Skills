@@ -1,41 +1,56 @@
-## Description: <br>
-Automate repetitive computer tasks including file operations, data processing, web scraping, and API integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate repetitive computer tasks including file operations, data processing, web scraping, and API integrations.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-Developers and operators use this skill to automate repetitive file, data conversion, API sync, web monitoring, scheduling, and e-commerce workflows with configurable tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The automation runner can move or overwrite files when executing file organization and conversion tasks. <br>
-Mitigation: Use --dry-run first, review exact source and destination paths, avoid broad or sensitive folders, and require confirmation before moving or overwriting files. <br>
-Risk: API, e-commerce, email alert, and scheduled workflows can affect external systems or repeat unintended actions. <br>
-Mitigation: Do not connect real endpoints, credentials, stores, alerts, or scheduled jobs until endpoints, credentials, rate limits, and rollback plans are explicit. <br>
-Risk: The skill is broad and was flagged suspicious by ClawScan because it combines file operations with API and scheduled workflow guidance. <br>
-Mitigation: Supervise executions closely, inspect task configuration before use, and keep credentials in environment variables rather than committed files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinanping-CPU/yinan-task-automator) <br>
+## Use Case:
 
+Developers and automation users use this skill to create and run file organization, data conversion, API sync, web monitoring, e-commerce, and scheduled workflow automations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task execution may create log files and can move, overwrite, or write files when run outside dry-run mode.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automation configurations can move or write files outside the intended destination when paths or folder rules are unsafe.
+
+Mitigation: Use only trusted configuration files, avoid absolute paths or '..' in folder and output values, review source and destination paths, and run with --dry-run before live execution.
+
+Risk: Recurring jobs can continue running without adequate audit or disable controls.
+
+Mitigation: Create scheduled automations only when there is a documented way to audit, monitor, and disable the job.
+
+Risk: API, web, and e-commerce automations can act on live systems or expose secrets if configured carelessly.
+
+Mitigation: Store credentials outside configs, use environment variables, rate limit external calls, and review configs before running against production systems.
+
+## Reference(s):
+
+- [Task Automator on ClawHub](https://clawhub.ai/yinanping-cpu/skills/yinan-task-automator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON, YAML, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce task logs and JSON status results when the included runner executes local automations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

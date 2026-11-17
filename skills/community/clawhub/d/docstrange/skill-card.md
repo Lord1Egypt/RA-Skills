@@ -1,45 +1,60 @@
-## Description: <br>
-Document extraction API by Nanonets. Convert PDFs and images to markdown, JSON, or CSV with confidence scoring. Use when you need to OCR documents, extract invoice fields, parse receipts, or convert tables to structured data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document extraction API by Nanonets. Convert PDFs and images to markdown, JSON, or CSV with confidence scoring. Use when you need to OCR documents, extract invoice fields, parse receipts, or convert tables to structured data.
 
-## Publisher: <br>
-[shhdwi](https://clawhub.ai/user/shhdwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-UNLICENSED <br>
+## Publisher:
 
+[shhdwi](https://clawhub.ai/user/shhdwi)
 
-## Use Case: <br>
-Developers and agents use this skill to call Nanonets DocStrange for OCR and document extraction, including invoices, receipts, contracts, bank statements, forms, and scanned document images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+UNLICENSED
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents are sent to Nanonets external servers for processing and may contain sensitive or regulated data. <br>
-Mitigation: Review Nanonets privacy, retention, and compliance terms before use; test with non-sensitive documents first and avoid highly sensitive documents unless the account terms meet the deployment requirements. <br>
-Risk: The skill requires a DocStrange API key, and exposing it could allow unauthorized document extraction or account usage. <br>
-Mitigation: Store the API key in an environment variable or secret manager, never commit it to repositories, rotate it regularly, and limit permissions where supported. <br>
-Risk: Synchronous extraction is documented for documents of five pages or fewer and may time out on larger files. <br>
-Mitigation: Use the async extraction endpoint for documents over five pages and poll for results. <br>
+## Use Case:
 
+Developers and agents use this skill to send selected documents to Nanonets DocStrange for OCR and structured extraction. It is suited for invoices, receipts, contracts, bank statements, forms, scanned document images, and table extraction workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shhdwi/docstrange) <br>
-- [DocStrange API docs](https://docstrange.nanonets.com/docs) <br>
-- [DocStrange dashboard](https://docstrange.nanonets.com/app) <br>
-- [Nanonets extraction API endpoint](https://extraction-api.nanonets.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown, JSON, Text] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response patterns for document extraction outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DOCSTRANGE_API_KEY and sends selected documents to the Nanonets extraction API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact package.json reports 1.0.0) <br>
+Risk: Selected documents are uploaded to Nanonets' external extraction service, which can expose sensitive document contents to a third-party processor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents appropriate for that service, review the provider's retention and compliance terms, and avoid highly sensitive PII until the service posture is approved.
+
+Risk: The skill requires DOCSTRANGE_API_KEY, and exposed credentials could allow unauthorized extraction API use.
+
+Mitigation: Store the key in an environment variable or secret store, avoid committing keys to configuration files, scope permissions where possible, and rotate keys regularly.
+
+Risk: Synchronous extraction is recommended only for documents of five pages or fewer and may time out on larger documents.
+
+Mitigation: Use the async extraction endpoint for larger documents and poll for results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shhdwi/skills/docstrange)
+- [DocStrange API Docs](https://docstrange.nanonets.com/docs)
+- [DocStrange Dashboard](https://docstrange.nanonets.com/app)
+- [DocStrange Homepage](https://docstrange.nanonets.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON, CSV]
+
+**Output Format:** [Markdown guidance with curl commands, configuration snippets, and JSON examples; extraction results may be returned as Markdown, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DOCSTRANGE_API_KEY and sends selected documents to https://extraction-api.nanonets.com.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

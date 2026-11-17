@@ -1,42 +1,50 @@
-## Description: <br>
-Jokes MCP wraps JokeAPI v2 for free joke retrieval, search, category lookup, and flag lookup without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jokes MCP - wraps JokeAPI v2 (free, no auth).
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Pipeworx joke tools for retrieving, searching, and categorizing jokes from JokeAPI v2. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party Pipeworx MCP gateway for joke queries. <br>
-Mitigation: Install only when third-party gateway use is acceptable for the target environment. <br>
-Risk: The connection example uses mcp-remote@latest through npx. <br>
-Mitigation: For stricter supply-chain control, review or pin the mcp-remote package version before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to connect agents to Pipeworx joke tools for retrieving, searching, and listing JokeAPI categories and flags.
 
-## Reference(s): <br>
-- [Pipeworx Jokes Pack](https://pipeworx.io/packs/jokes) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-jokes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Text responses and JSON MCP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key required; tool access is provided through a remote Pipeworx MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The release evidence flags automatic use of an unpinned third-party package as a supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version or use a controlled local install, then run the skill in a restricted environment without sensitive environment variables or broad filesystem access.
+
+## Reference(s):
+
+- [Pipeworx Jokes Pack](https://pipeworx.io/packs/jokes)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-jokes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [Text responses and JSON MCP server configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Joke content is retrieved through the configured Pipeworx MCP server; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

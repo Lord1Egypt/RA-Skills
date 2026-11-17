@@ -1,41 +1,55 @@
-## Description: <br>
-Use when the user wants to check washing machine or dryer status, laundry room availability, or which machines are free at Shanghai Jiao Tong University Minhang campus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to check washing machine or dryer status, laundry room availability, or which machines are free at Shanghai Jiao Tong University Minhang campus.
 
-## Publisher: <br>
-[rexeno56](https://clawhub.ai/user/rexeno56) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rexeno56](https://clawhub.ai/user/rexeno56)
 
-## Use Case: <br>
-Students, residents, and campus users at Shanghai Jiao Tong University Minhang campus use this skill to check washing machine and dryer availability, status, and estimated finish times for supported dormitory buildings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends selected SJTU building queries to Haier's laundry-status service. <br>
-Mitigation: Review the endpoint and network behavior before installation, especially in environments with strict external request policies. <br>
-Risk: The skill depends on the availability and accuracy of the external Haier status service. <br>
-Mitigation: Treat returned machine status and estimated finish times as service-provided operational data and retry later if the API is unavailable. <br>
+## Use Case:
 
+External users and agents use this skill to answer SJTU Minhang campus laundry availability questions, including free washers or dryers, building-specific laundry room status, and estimated machine finish times.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rexeno56/laundry-status) <br>
-- [Haier IoT laundry status endpoint](https://yshz-user.haier-ioc.com/position/deviceDetailPage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text status report with grouped machine availability and optional estimated finish times] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script can query the default building, a supported specific building, or all supported buildings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release) <br>
+Risk: The skill contacts Haier's IoT service when invoked, so results depend on network availability and the service response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Surface timeout, network, and API errors to the user and retry later or check connectivity when the service is unavailable.
+
+Risk: Broad English triggers such as washer, dryer, and laundry may activate outside the intended SJTU Minhang campus laundry context.
+
+Mitigation: Invoke the skill only for clearly campus-laundry requests and consider narrowing or documenting triggers during maintenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rexeno56/skills/laundry-status)
+- [ClawHub publisher profile](https://clawhub.ai/user/rexeno56)
+- [Haier IoT device detail endpoint](https://yshz-user.haier-ioc.com/position/deviceDetailPage)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text machine status grouped by building, device type, and status, with stderr messages for timeout, network, unknown-building, or API errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-backed lookup; defaults to 西21楼 and can query 西16楼 or all configured buildings.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

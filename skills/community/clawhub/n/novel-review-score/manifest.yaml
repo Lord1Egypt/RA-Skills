@@ -1,0 +1,21 @@
+name: "novel-review-score"
+display_name: "小说审稿评分"
+slug: "novel-review-score"
+version: "1.0.2"
+category: "writing"
+author: "xxjrq"
+repository: "https://github.com/xxjrq/novel-review-score"
+description: "由 AI 阅读实际文本并按六维提供证据、阅读影响和修改建议；脚本仅校验和排版结果。"
+trigger_words:
+  - "小说评分"
+  - "小说审稿"
+  - "章节点评"
+  - "网文改稿"
+tags:
+  - "novel"
+  - "review"
+  - "editing"
+  - "score"
+  - "中文写作"
+license: MIT-0
+self_test: "python3 scripts/self_test.py self-test"

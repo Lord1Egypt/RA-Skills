@@ -1,44 +1,58 @@
-## Description: <br>
-Send physical letters anywhere in Germany with a single command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send physical letters anywhere in Germany with a single command, using an API key from agentic-letters.com.
 
-## Publisher: <br>
-[EiSiMo](https://clawhub.ai/user/EiSiMo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eisimo](https://clawhub.ai/user/eisimo)
 
-## Use Case: <br>
-Agents and end users use this skill to generate or submit PDFs for physical mailing to German recipients, including cancellations, legal notices, data access requests, complaints, and greeting cards. It also supports checking sent-letter status, listing letters, and checking remaining mailing credits. <br>
-
-### Deployment Geography for Use: <br>
-Germany <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send paid physical mail with user PDFs and recipient addresses without a built-in final confirmation step. <br>
-Mitigation: Require explicit user approval after showing the final document, recipient, country, and credit impact before running the send command. <br>
-Risk: PDFs, postal addresses, account metadata, and a bearer key are shared with agentic-letters.com. <br>
-Mitigation: Install and use the skill only when the user trusts the service with those documents, addresses, metadata, and mailing credits. <br>
-Risk: Local JSON records retain recipient and letter metadata on disk. <br>
-Mitigation: Delete old local records periodically when recipient data should not remain stored locally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agentic Letters ClawHub Release](https://clawhub.ai/EiSiMo/agentic-letters) <br>
-- [Agentic Letters Service](https://agentic-letters.com) <br>
-- [Agentic Letters API Key Purchase](https://agentic-letters.com/buy) <br>
-- [Agentic Letters API Endpoint](https://agentic-letters.com/api) <br>
+## Use Case:
 
+External users and agents use this skill to send A4 PDF letters, cancellations, legal notices, data access requests, complaints, and similar documents to German postal addresses via agentic-letters.com.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI responses are JSON and local records are JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AGENTIC_LETTERS_API_KEY; can send paid physical mail and stores local letter records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Germany
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive PDFs, recipient names, addresses, and letter metadata are sent to agentic-letters.com.
+
+Mitigation: Use only with user consent for the exact document and recipient, minimize sensitive content, and delete records that are no longer needed.
+
+Risk: Sending a letter consumes credits and initiates real postal mail.
+
+Mitigation: Require final manual confirmation of the exact PDF, recipient, country, and expected cost or credit impact before running the send command.
+
+Risk: API keys and local letter records can expose account access and PII if stored with broad permissions.
+
+Mitigation: Store the API key and generated records with owner-only permissions and periodically remove obsolete records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eisimo/skills/agentic-letters)
+- [Agentic Letters Website](https://agentic-letters.com)
+- [Agentic Letters API Key Purchase](https://agentic-letters.com/buy)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands; the CLI returns JSON to stdout and stores local JSON letter records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AGENTIC_LETTERS_API_KEY; sent-letter records include recipient and letter metadata.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

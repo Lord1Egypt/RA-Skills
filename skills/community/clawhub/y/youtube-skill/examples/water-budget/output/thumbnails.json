@@ -1,0 +1,26 @@
+{
+  "thumbnails": [
+    {
+      "name": "a",
+      "file": "thumb-a.jpg",
+      "bytes": 190030,
+      "size": "1920x1080",
+      "quality": 92
+    },
+    {
+      "name": "b",
+      "file": "thumb-b.jpg",
+      "bytes": 153612,
+      "size": "1920x1080",
+      "quality": 92
+    },
+    {
+      "name": "c",
+      "file": "thumb-c.jpg",
+      "bytes": 184534,
+      "size": "1920x1080",
+      "quality": 92
+    }
+  ],
+  "warnings": []
+}

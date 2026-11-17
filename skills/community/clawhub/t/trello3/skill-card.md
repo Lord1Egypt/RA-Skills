@@ -1,40 +1,52 @@
-## Description: <br>
-这是我的测试32323 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+这是我的测试32323
 
-## Publisher: <br>
-[yequanzheng](https://clawhub.ai/user/yequanzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yequanzheng](https://clawhub.ai/user/yequanzheng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill as a compact GitHub CLI reference for checking pull request CI, listing workflow runs, inspecting failed runs, querying GitHub API fields, and producing JSON-filtered issue output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The GitHub CLI commands can use the installing user's existing GitHub authentication and access repositories that user is authorized to view.
+
+Mitigation: Review commands before running them, specify the intended repository explicitly, and use least-privileged GitHub credentials when working across organizations or private repositories.
+
+Risk: The skill metadata is vague, which can make the intended behavior harder to assess before installation.
+
+Mitigation: Inspect the short artifact contents and confirm it is only a GitHub CLI reference before deploying it to agents.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to get concise GitHub CLI guidance for pull requests, workflow runs, failed logs, issues, and GitHub API queries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use the user's existing GitHub account access through the gh CLI. <br>
-Mitigation: Confirm which GitHub account gh is authenticated with before using generated commands. <br>
-Risk: Commands that write to GitHub, change issues or pull requests, trigger workflows, or use broad gh api access can affect repositories. <br>
-Mitigation: Keep repository scopes explicit and review write-oriented or broad API commands before execution. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yequanzheng/trello3) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may depend on the user's authenticated gh CLI account and repository scope.] <br>
+1.0.3 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

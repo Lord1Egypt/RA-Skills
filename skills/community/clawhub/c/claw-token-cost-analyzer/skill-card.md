@@ -1,40 +1,54 @@
-## Description: <br>
-Analyzes Claw AI workflows to estimate token usage and costs, identify runaway-loop risks, and suggest optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Claw AI workflows to estimate token usage and cost, identify runaway loop risk, and suggest optimizations before deployment.
 
-## Publisher: <br>
-[ShowMeTheMoney2023](https://clawhub.ai/user/ShowMeTheMoney2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[showmethemoney2023](https://clawhub.ai/user/showmethemoney2023)
 
-## Use Case: <br>
-Developers and AI agent builders use this skill to review Claw workflows, prompts, or task descriptions before deployment and estimate token cost exposure. It highlights retry loops, recursive calls, large context growth, expensive model usage, and practical optimization steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow text submitted for analysis may contain secrets, customer data, proprietary prompts, or business-sensitive automation details. <br>
-Mitigation: Review and redact workflow content before pasting it into the analyzer. <br>
-Risk: Cost estimates and loop-risk labels are planning guidance rather than guaranteed billing outcomes. <br>
-Mitigation: Validate estimates against actual model pricing, usage telemetry, and budget controls before relying on them for production decisions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to review Claw workflows, prompts, or task descriptions for token usage, estimated cost per run, runaway-loop risk, and cost-control improvements before deploying automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ShowMeTheMoney2023/claw-token-cost-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a risk level, estimated token and cost range, detected issues, and optimization suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Cost estimates may be inaccurate if the supplied workflow, prompt, model pricing, or runtime behavior is incomplete or changes after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat estimates as advisory and validate them against actual model usage, current pricing, and production telemetry before relying on them for budgeting.
+
+Risk: Workflow or prompt examples submitted for analysis may contain API keys, credentials, or confidential prompt text.
+
+Mitigation: Avoid including secrets or confidential content unless it is necessary for the analysis, and redact sensitive values where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/showmethemoney2023/skills/claw-token-cost-analyzer)
+- [Publisher profile](https://clawhub.ai/user/showmethemoney2023)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with risk level, token estimate, cost estimate, issues detected, and optimization suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost estimates are advisory and depend on the workflow, prompt, model pricing, and execution behavior supplied by the user.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

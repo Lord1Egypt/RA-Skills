@@ -1,47 +1,63 @@
-## Description: <br>
-Guides agents through PDF extraction, creation, conversion, OCR, form filling, security, comparison, repair, and batch utility workflows using bundled scripts and library examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+docs-pdf helps agents guide PDF extraction, creation, editing, conversion, OCR, form filling, security, metadata, comparison, repair, and batch workflows with bundled scripts and examples.
 
-## Publisher: <br>
-[echodjx](https://clawhub.ai/user/echodjx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[echodjx](https://clawhub.ai/user/echodjx)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect, extract from, create, transform, secure, compare, repair, and batch-process PDF documents with Python libraries, CLI tools, and bundled scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents broad local PDF-changing workflows, including batch operations, repair, password removal, and form filling. <br>
-Mitigation: Review commands before execution, keep backups before batch operations, and only decrypt documents the user is authorized to access. <br>
-Risk: Setup guidance includes privileged system package installation and powerful local document-processing tools. <br>
-Mitigation: Prefer a virtual environment or container, review setup commands before running them, and avoid sudo unless system-level changes are intentional. <br>
-Risk: The included form-filling workflow has a --flatten option that does not reliably make filled forms non-editable. <br>
-Mitigation: Do not rely on that flag for final non-editable documents; use a vetted PDF form workflow when flattening is required. <br>
+## Use Case:
 
+Developers, engineers, and document operations users use this skill to choose and run PDF workflows such as extracting text or tables, generating or editing PDFs, converting between images and PDFs, applying OCR, filling forms, and producing comparison or metadata reports.
 
-## Reference(s): <br>
-- [ClawHub docs-pdf release page](https://clawhub.ai/echodjx/docs-pdf) <br>
-- [PDF form filling guide](FORMS.md) <br>
-- [Creating PDFs with reportlab](references/create.md) <br>
-- [PDF extraction reference](references/extract.md) <br>
-- [OCR reference](references/ocr.md) <br>
-- [PDF security reference](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline code blocks and optional generated or modified PDF, image, text, spreadsheet, or HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Python scripts and external PDF/OCR tools when the agent chooses to execute the provided workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Setup may require powerful, unpinned system and package-manager installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment or container, pin dependencies before use, avoid --break-system-packages where possible, and treat sudo package installation as an administrator setup step.
+
+Risk: PDF batch, OCR, extraction, metadata, and decrypt operations can process sensitive or unauthorized documents.
+
+Mitigation: Run these operations only on PDFs the user owns or is authorized to process, and review any generated text, PDF, report, or metadata outputs before sharing.
+
+Risk: Generated files may be written to task-specific output paths and could expose document contents if saved in the wrong location.
+
+Mitigation: Confirm output paths before execution and inspect saved artifacts after each operation.
+
+## Reference(s):
+
+- [PDF Skill guide](SKILL.md)
+- [PDF form filling guide](FORMS.md)
+- [Creating PDFs with reportlab](references/create.md)
+- [Advanced extraction reference](references/extract.md)
+- [OCR reference](references/ocr.md)
+- [PDF security reference](references/security.md)
+- [ClawHub skill page](https://clawhub.ai/echodjx/skills/docs-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline Python and shell commands; bundled scripts may write PDF, TXT, XLSX, image, JSON, or HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local file and document operations whose exact artifacts depend on the selected PDF task.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

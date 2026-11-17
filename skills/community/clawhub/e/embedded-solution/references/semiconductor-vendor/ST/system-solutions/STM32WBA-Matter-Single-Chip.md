@@ -1,0 +1,54 @@
+# STM32WBA Matter Single-Chip
+
+> **Source:** ST-published reference design using the STM32WBA ST BLE 5.3 + 802.15.4 single-chip with SESIP Level 3 secure element.
+> BOM is **ST-only** (single-vendor). For multi-vendor st ble 5.3 + 802.15.4 single-chip with sesip level 3 secure element solutions, see
+> `references/application-solution/` (when applicable).
+
+## Overview
+
+An ST Matter-ready reference design using the STM32WBA — successor to STM32WB55 with integrated secure element for Matter devices.
+
+Common application: typical ST reference design example using the STM32WBA.
+
+- **Vendor:** ST
+- **Published as:** ST reference design in datasheet / SDK example
+- **Document type:** Reference design (typical application schematic)
+- **Date reviewed:** 2026-06-27
+- **Document revision:** "ST-published, no formal revision number" — refer to vendor product page for the latest reference.
+
+## Reference Design
+
+- **Product page:** See `references/semiconductor-vendor/ST/product_families.md#stm32wba`
+- **Datasheet:** product page → Documents & Downloads
+- **YAML:** `specs/ST/STM32WBA.yaml` *(maintainer-only — not shipped in the public release; for verification use `references/semiconductor-vendor/ST/product_families.md` and the datasheet)*
+
+## BOM Candidates (ST only)
+
+| Function | Part | Datasheet | Notes |
+|----------|------|-----------|-------|
+| Hero part (MCU / SoC) | **STM32WBA** | [link](../product_families.md#stm32wba) | ST BLE 5.3 + 802.15.4 single-chip with SESIP Level 3 secure element |
+| Decoupling / passives | (external) | — | 100 nF per VDD + bulk caps |
+| Crystal (if external) | (external) | — | Verify frequency with datasheet |
+
+External to ST (out of BOM scope for this single-vendor solution):
+- Decoupling capacitors
+- Crystal or resonator (if not internal)
+- Antenna matching network (for wireless parts)
+- Sensors / actuators (application-dependent)
+
+## Reference Design Verification Status
+
+- [x] Hero part (STM32WBA) has a vendor product page URL in
+      `references/semiconductor-vendor/ST/product_families.md`
+- [ ] Specific reference design / schematic from ST documentation
+      was not downloaded in this entry. **This file documents the *type* of
+      reference design, not the exact ST-published schematic.**
+
+## Numerical Specs
+
+> Per the skill's no-fabrication policy, **no numerical parameters are
+> written into this system-solution file**. The STM32WBA spec values
+> live in the maintainer's private spec database (`specs/ST/STM32WBA.yaml`, if installed)
+> and are cross-checked against the official vendor datasheet PDF
+> Public-release users should download the datasheet directly from the vendor product page (see Main Page column above); the embedded_dev/ path is for development cloning with the datasheets plug-in.
+> `references/semiconductor-vendor/ST/product_families.md#stm32wba`.

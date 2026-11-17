@@ -6,6 +6,73 @@ Product slug: `x-twitter-automation`
 
 x402 availability: not enabled for this product.
 
+## `count_posts`
+
+Action slug: `count-posts`
+
+Price: `5` credits
+
+Count posts matching a query over the last 7 days, bucketed by minute, hour, or day.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `end_time` | `string` | no | Optional RFC3339 end time. |
+| `granularity` | `string` | no | Bucket size; default hour. |
+| `pagination_token` | `string` | no | Next token from a previous count response. |
+| `query` | `string` | yes | X query to count. |
+| `start_time` | `string` | no | Optional RFC3339 start time. |
+
+Sample parameters:
+
+```json
+{
+  "end_time": "example end time",
+  "granularity": "minute",
+  "pagination_token": "example pagination token",
+  "query": "example search query",
+  "start_time": "example start time"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "end_time": {
+    "description": "Optional RFC3339 end time.",
+    "required": false,
+    "type": "string"
+  },
+  "granularity": {
+    "description": "Bucket size; default hour.",
+    "enum": [
+      "minute",
+      "hour",
+      "day"
+    ],
+    "required": false,
+    "type": "string"
+  },
+  "pagination_token": {
+    "description": "Next token from a previous count response.",
+    "required": false,
+    "type": "string"
+  },
+  "query": {
+    "description": "X query to count.",
+    "required": true,
+    "type": "string"
+  },
+  "start_time": {
+    "description": "Optional RFC3339 start time.",
+    "required": false,
+    "type": "string"
+  }
+}
+```
+
 ## `create_list`
 
 Action slug: `create-list`
@@ -66,17 +133,32 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
+| `community_id` | `string` | no | Community ID to post to. |
+| `made_with_ai` | `boolean` | no | Disclose AI-generated media. |
 | `media_ids` | `array` | no | Media IDs to attach, max 4. |
+| `paid_partnership` | `boolean` | no | Disclose paid partnership. |
+| `place_id` | `string` | no | Place ID for location tag. |
+| `poll_duration_minutes` | `integer` | no | Poll duration, 5-10080 minutes. |
+| `poll_options` | `array` | no | Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes and text; cannot combine with media. |
+| `reply_settings` | `string` | no | Who can reply. |
 | `text` | `string` | no | Link-free post text. Required unless media_ids is provided. |
 
 Sample parameters:
 
 ```json
 {
+  "community_id": "example community id",
+  "made_with_ai": true,
   "media_ids": [
     "example media id"
   ],
-  "text": "example text"
+  "paid_partnership": true,
+  "place_id": "example place id",
+  "poll_duration_minutes": 1,
+  "poll_options": [
+    "example poll option"
+  ],
+  "reply_settings": "following"
 }
 ```
 
@@ -84,6 +166,16 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "community_id": {
+    "description": "Community ID to post to.",
+    "required": false,
+    "type": "string"
+  },
+  "made_with_ai": {
+    "description": "Disclose AI-generated media.",
+    "required": false,
+    "type": "boolean"
+  },
   "media_ids": {
     "description": "Media IDs to attach, max 4.",
     "items": {
@@ -91,6 +183,40 @@ Generated JSON parameter schema:
     },
     "required": false,
     "type": "array"
+  },
+  "paid_partnership": {
+    "description": "Disclose paid partnership.",
+    "required": false,
+    "type": "boolean"
+  },
+  "place_id": {
+    "description": "Place ID for location tag.",
+    "required": false,
+    "type": "string"
+  },
+  "poll_duration_minutes": {
+    "description": "Poll duration, 5-10080 minutes.",
+    "required": false,
+    "type": "integer"
+  },
+  "poll_options": {
+    "description": "Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes and text; cannot combine with media.",
+    "items": {
+      "type": "string"
+    },
+    "required": false,
+    "type": "array"
+  },
+  "reply_settings": {
+    "description": "Who can reply.",
+    "enum": [
+      "following",
+      "mentionedUsers",
+      "subscribers",
+      "verified"
+    ],
+    "required": false,
+    "type": "string"
   },
   "text": {
     "description": "Link-free post text. Required unless media_ids is provided.",
@@ -112,17 +238,32 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
+| `community_id` | `string` | no | Community ID to post to. |
+| `made_with_ai` | `boolean` | no | Disclose AI-generated media. |
 | `media_ids` | `array` | no | Media IDs to attach, max 4. |
+| `paid_partnership` | `boolean` | no | Disclose paid partnership. |
+| `place_id` | `string` | no | Place ID for location tag. |
+| `poll_duration_minutes` | `integer` | no | Poll duration, 5-10080 minutes. |
+| `poll_options` | `array` | no | Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes; cannot combine with media. |
+| `reply_settings` | `string` | no | Who can reply. |
 | `text` | `string` | yes | Post text containing at least one web link. |
 
 Sample parameters:
 
 ```json
 {
+  "community_id": "example community id",
+  "made_with_ai": true,
   "media_ids": [
     "example media id"
   ],
-  "text": "example text"
+  "paid_partnership": true,
+  "place_id": "example place id",
+  "poll_duration_minutes": 1,
+  "poll_options": [
+    "example poll option"
+  ],
+  "reply_settings": "following"
 }
 ```
 
@@ -130,6 +271,16 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "community_id": {
+    "description": "Community ID to post to.",
+    "required": false,
+    "type": "string"
+  },
+  "made_with_ai": {
+    "description": "Disclose AI-generated media.",
+    "required": false,
+    "type": "boolean"
+  },
   "media_ids": {
     "description": "Media IDs to attach, max 4.",
     "items": {
@@ -137,6 +288,40 @@ Generated JSON parameter schema:
     },
     "required": false,
     "type": "array"
+  },
+  "paid_partnership": {
+    "description": "Disclose paid partnership.",
+    "required": false,
+    "type": "boolean"
+  },
+  "place_id": {
+    "description": "Place ID for location tag.",
+    "required": false,
+    "type": "string"
+  },
+  "poll_duration_minutes": {
+    "description": "Poll duration, 5-10080 minutes.",
+    "required": false,
+    "type": "integer"
+  },
+  "poll_options": {
+    "description": "Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes; cannot combine with media.",
+    "items": {
+      "type": "string"
+    },
+    "required": false,
+    "type": "array"
+  },
+  "reply_settings": {
+    "description": "Who can reply.",
+    "enum": [
+      "following",
+      "mentionedUsers",
+      "subscribers",
+      "verified"
+    ],
+    "required": false,
+    "type": "string"
   },
   "text": {
     "description": "Post text containing at least one web link.",
@@ -158,7 +343,14 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
+| `community_id` | `string` | no | Community ID to post to. |
+| `made_with_ai` | `boolean` | no | Disclose AI-generated media. |
 | `media_ids` | `array` | no | Media IDs to attach, max 4. |
+| `paid_partnership` | `boolean` | no | Disclose paid partnership. |
+| `place_id` | `string` | no | Place ID for location tag. |
+| `poll_duration_minutes` | `integer` | no | Poll duration, 5-10080 minutes. |
+| `poll_options` | `array` | no | Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes and text; cannot combine with media. |
+| `reply_settings` | `string` | no | Who can reply. |
 | `reply_to_post_id` | `string` | yes | Post ID to reply to. |
 | `text` | `string` | no | Link-free reply text. Required unless media_ids is provided. |
 
@@ -166,11 +358,18 @@ Sample parameters:
 
 ```json
 {
+  "community_id": "example community id",
+  "made_with_ai": true,
   "media_ids": [
     "example media id"
   ],
-  "reply_to_post_id": "example reply to post id",
-  "text": "example text"
+  "paid_partnership": true,
+  "place_id": "example place id",
+  "poll_duration_minutes": 1,
+  "poll_options": [
+    "example poll option"
+  ],
+  "reply_settings": "following"
 }
 ```
 
@@ -178,6 +377,16 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "community_id": {
+    "description": "Community ID to post to.",
+    "required": false,
+    "type": "string"
+  },
+  "made_with_ai": {
+    "description": "Disclose AI-generated media.",
+    "required": false,
+    "type": "boolean"
+  },
   "media_ids": {
     "description": "Media IDs to attach, max 4.",
     "items": {
@@ -185,6 +394,40 @@ Generated JSON parameter schema:
     },
     "required": false,
     "type": "array"
+  },
+  "paid_partnership": {
+    "description": "Disclose paid partnership.",
+    "required": false,
+    "type": "boolean"
+  },
+  "place_id": {
+    "description": "Place ID for location tag.",
+    "required": false,
+    "type": "string"
+  },
+  "poll_duration_minutes": {
+    "description": "Poll duration, 5-10080 minutes.",
+    "required": false,
+    "type": "integer"
+  },
+  "poll_options": {
+    "description": "Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes and text; cannot combine with media.",
+    "items": {
+      "type": "string"
+    },
+    "required": false,
+    "type": "array"
+  },
+  "reply_settings": {
+    "description": "Who can reply.",
+    "enum": [
+      "following",
+      "mentionedUsers",
+      "subscribers",
+      "verified"
+    ],
+    "required": false,
+    "type": "string"
   },
   "reply_to_post_id": {
     "description": "Post ID to reply to.",
@@ -211,7 +454,14 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
+| `community_id` | `string` | no | Community ID to post to. |
+| `made_with_ai` | `boolean` | no | Disclose AI-generated media. |
 | `media_ids` | `array` | no | Media IDs to attach, max 4. |
+| `paid_partnership` | `boolean` | no | Disclose paid partnership. |
+| `place_id` | `string` | no | Place ID for location tag. |
+| `poll_duration_minutes` | `integer` | no | Poll duration, 5-10080 minutes. |
+| `poll_options` | `array` | no | Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes; cannot combine with media. |
+| `reply_settings` | `string` | no | Who can reply. |
 | `reply_to_post_id` | `string` | yes | Post ID to reply to. |
 | `text` | `string` | yes | Reply text containing at least one web link. |
 
@@ -219,11 +469,18 @@ Sample parameters:
 
 ```json
 {
+  "community_id": "example community id",
+  "made_with_ai": true,
   "media_ids": [
     "example media id"
   ],
-  "reply_to_post_id": "example reply to post id",
-  "text": "example text"
+  "paid_partnership": true,
+  "place_id": "example place id",
+  "poll_duration_minutes": 1,
+  "poll_options": [
+    "example poll option"
+  ],
+  "reply_settings": "following"
 }
 ```
 
@@ -231,6 +488,16 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "community_id": {
+    "description": "Community ID to post to.",
+    "required": false,
+    "type": "string"
+  },
+  "made_with_ai": {
+    "description": "Disclose AI-generated media.",
+    "required": false,
+    "type": "boolean"
+  },
   "media_ids": {
     "description": "Media IDs to attach, max 4.",
     "items": {
@@ -239,6 +506,40 @@ Generated JSON parameter schema:
     "required": false,
     "type": "array"
   },
+  "paid_partnership": {
+    "description": "Disclose paid partnership.",
+    "required": false,
+    "type": "boolean"
+  },
+  "place_id": {
+    "description": "Place ID for location tag.",
+    "required": false,
+    "type": "string"
+  },
+  "poll_duration_minutes": {
+    "description": "Poll duration, 5-10080 minutes.",
+    "required": false,
+    "type": "integer"
+  },
+  "poll_options": {
+    "description": "Poll choices, 2-4 items of 1-25 characters. Requires poll_duration_minutes; cannot combine with media.",
+    "items": {
+      "type": "string"
+    },
+    "required": false,
+    "type": "array"
+  },
+  "reply_settings": {
+    "description": "Who can reply.",
+    "enum": [
+      "following",
+      "mentionedUsers",
+      "subscribers",
+      "verified"
+    ],
+    "required": false,
+    "type": "string"
+  },
   "reply_to_post_id": {
     "description": "Post ID to reply to.",
     "required": true,
@@ -246,6 +547,40 @@ Generated JSON parameter schema:
   },
   "text": {
     "description": "Reply text containing at least one web link.",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `delete_dm`
+
+Action slug: `delete-dm`
+
+Price: `5` credits
+
+Delete a direct message event sent by the authenticated user.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `event_id` | `string` | yes | DM event ID to delete. |
+
+Sample parameters:
+
+```json
+{
+  "event_id": "example event id"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "event_id": {
+    "description": "DM event ID to delete.",
     "required": true,
     "type": "string"
   }
@@ -315,6 +650,72 @@ Generated JSON parameter schema:
   "post_id": {
     "description": "Post ID to delete.",
     "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `lookup_communities`
+
+Action slug: `lookup-communities`
+
+Price: `5` credits
+
+Look up a Community by ID or search Communities by keyword.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `community_id` | `string` | no | Required for id mode. |
+| `discovery_mode` | `string` | yes | id or search. |
+| `max_results` | `integer` | no | Search results, 10-100. |
+| `pagination_token` | `string` | no | Search pagination token. |
+| `query` | `string` | no | Required for search mode. |
+
+Sample parameters:
+
+```json
+{
+  "community_id": "example community id",
+  "discovery_mode": "id",
+  "max_results": 1,
+  "pagination_token": "example pagination token",
+  "query": "example search query"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "community_id": {
+    "description": "Required for id mode.",
+    "required": false,
+    "type": "string"
+  },
+  "discovery_mode": {
+    "description": "id or search.",
+    "enum": [
+      "id",
+      "search"
+    ],
+    "required": true,
+    "type": "string"
+  },
+  "max_results": {
+    "description": "Search results, 10-100.",
+    "required": false,
+    "type": "integer"
+  },
+  "pagination_token": {
+    "description": "Search pagination token.",
+    "required": false,
+    "type": "string"
+  },
+  "query": {
+    "description": "Required for search mode.",
+    "required": false,
     "type": "string"
   }
 }
@@ -478,6 +879,66 @@ Generated JSON parameter schema:
 }
 ```
 
+## `lookup_liked_posts`
+
+Action slug: `lookup-liked-posts`
+
+Price: `5` credits
+
+List posts liked by a user; defaults to the authenticated user.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `max_results` | `integer` | no | Maximum results, 1-100. |
+| `pagination_token` | `string` | no | Pagination token. |
+| `user_id` | `string` | no | Optional user ID. |
+| `verbosity` | `string` | no | Post response detail level. |
+
+Sample parameters:
+
+```json
+{
+  "max_results": 1,
+  "pagination_token": "example pagination token",
+  "user_id": "example user id",
+  "verbosity": "minimal"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "max_results": {
+    "description": "Maximum results, 1-100.",
+    "required": false,
+    "type": "integer"
+  },
+  "pagination_token": {
+    "description": "Pagination token.",
+    "required": false,
+    "type": "string"
+  },
+  "user_id": {
+    "description": "Optional user ID.",
+    "required": false,
+    "type": "string"
+  },
+  "verbosity": {
+    "description": "Post response detail level.",
+    "enum": [
+      "minimal",
+      "standard",
+      "expanded"
+    ],
+    "required": false,
+    "type": "string"
+  }
+}
+```
+
 ## `lookup_list_contents`
 
 Action slug: `lookup-list-contents`
@@ -625,6 +1086,72 @@ Generated JSON parameter schema:
       "standard",
       "expanded"
     ],
+    "required": false,
+    "type": "string"
+  }
+}
+```
+
+## `lookup_news`
+
+Action slug: `lookup-news`
+
+Price: `5` credits
+
+Look up a news story by ID or search current news.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `discovery_mode` | `string` | yes | id or search. |
+| `max_age_hours` | `integer` | no | Maximum news age, 1-720 hours. |
+| `max_results` | `integer` | no | Search result limit, 1-100. |
+| `news_id` | `string` | no | News story ID for id mode. |
+| `query` | `string` | no | News search query. |
+
+Sample parameters:
+
+```json
+{
+  "discovery_mode": "id",
+  "max_age_hours": 1,
+  "max_results": 1,
+  "news_id": "example news id",
+  "query": "example search query"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "discovery_mode": {
+    "description": "id or search.",
+    "enum": [
+      "id",
+      "search"
+    ],
+    "required": true,
+    "type": "string"
+  },
+  "max_age_hours": {
+    "description": "Maximum news age, 1-720 hours.",
+    "required": false,
+    "type": "integer"
+  },
+  "max_results": {
+    "description": "Search result limit, 1-100.",
+    "required": false,
+    "type": "integer"
+  },
+  "news_id": {
+    "description": "News story ID for id mode.",
+    "required": false,
+    "type": "string"
+  },
+  "query": {
+    "description": "News search query.",
     "required": false,
     "type": "string"
   }
@@ -833,6 +1360,58 @@ Generated JSON parameter schema:
 }
 ```
 
+## `lookup_trends`
+
+Action slug: `lookup-trends`
+
+Price: `5` credits
+
+Get location trends by WOEID or personalized trends.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `discovery_mode` | `string` | yes | location or personalized. |
+| `max_results` | `integer` | no | Location trend limit, up to 50. |
+| `woeid` | `integer` | no | Location WOEID, required for location mode. |
+
+Sample parameters:
+
+```json
+{
+  "discovery_mode": "location",
+  "max_results": 1,
+  "woeid": 1
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "discovery_mode": {
+    "description": "location or personalized.",
+    "enum": [
+      "location",
+      "personalized"
+    ],
+    "required": true,
+    "type": "string"
+  },
+  "max_results": {
+    "description": "Location trend limit, up to 50.",
+    "required": false,
+    "type": "integer"
+  },
+  "woeid": {
+    "description": "Location WOEID, required for location mode.",
+    "required": false,
+    "type": "integer"
+  }
+}
+```
+
 ## `lookup_users`
 
 Action slug: `lookup-users`
@@ -985,6 +1564,66 @@ Generated JSON parameter schema:
   },
   "verbosity": {
     "description": "Response detail level: minimal, standard, or expanded.",
+    "enum": [
+      "minimal",
+      "standard",
+      "expanded"
+    ],
+    "required": false,
+    "type": "string"
+  }
+}
+```
+
+## `search_users`
+
+Action slug: `search-users`
+
+Price: `5` credits
+
+Search X users by name or username.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `max_results` | `integer` | no | Maximum results, 1-100. |
+| `pagination_token` | `string` | no | Next token from a prior response. |
+| `query` | `string` | yes | User search text, 1-50 characters. |
+| `verbosity` | `string` | no | Response detail level. |
+
+Sample parameters:
+
+```json
+{
+  "max_results": 1,
+  "pagination_token": "example pagination token",
+  "query": "example search query",
+  "verbosity": "minimal"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "max_results": {
+    "description": "Maximum results, 1-100.",
+    "required": false,
+    "type": "integer"
+  },
+  "pagination_token": {
+    "description": "Next token from a prior response.",
+    "required": false,
+    "type": "string"
+  },
+  "query": {
+    "description": "User search text, 1-50 characters.",
+    "required": true,
+    "type": "string"
+  },
+  "verbosity": {
+    "description": "Response detail level.",
     "enum": [
       "minimal",
       "standard",
@@ -1287,6 +1926,116 @@ Generated JSON parameter schema:
 }
 ```
 
+## `set_media_metadata`
+
+Action slug: `set-media-metadata`
+
+Price: `5` credits
+
+Set uploaded media alt text or video download permission.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `allow_download` | `boolean` | no | Whether to allow video download. |
+| `alt_text` | `string` | no | Accessible description, up to 1000 characters. |
+| `media_id` | `string` | yes | Uploaded media ID. |
+
+Sample parameters:
+
+```json
+{
+  "allow_download": true,
+  "alt_text": "example alt text",
+  "media_id": "example media id"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "allow_download": {
+    "description": "Whether to allow video download.",
+    "required": false,
+    "type": "boolean"
+  },
+  "alt_text": {
+    "description": "Accessible description, up to 1000 characters.",
+    "required": false,
+    "type": "string"
+  },
+  "media_id": {
+    "description": "Uploaded media ID.",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `set_media_subtitles`
+
+Action slug: `set-media-subtitles`
+
+Price: `5` credits
+
+Attach or remove a subtitle track from an uploaded video.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `media_id` | `string` | yes | Uploaded video media ID. |
+| `subtitle_display_name` | `string` | no | Optional language display name. |
+| `subtitle_language_code` | `string` | yes | Two-letter uppercase language code. |
+| `subtitle_media_id` | `string` | no | Uploaded subtitle file media ID, required when attaching. |
+| `subtitles_enabled` | `boolean` | yes | True to attach, false to remove. |
+
+Sample parameters:
+
+```json
+{
+  "media_id": "example media id",
+  "subtitle_display_name": "example subtitle display name",
+  "subtitle_language_code": "example subtitle language code",
+  "subtitle_media_id": "example subtitle media id",
+  "subtitles_enabled": true
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "media_id": {
+    "description": "Uploaded video media ID.",
+    "required": true,
+    "type": "string"
+  },
+  "subtitle_display_name": {
+    "description": "Optional language display name.",
+    "required": false,
+    "type": "string"
+  },
+  "subtitle_language_code": {
+    "description": "Two-letter uppercase language code.",
+    "required": true,
+    "type": "string"
+  },
+  "subtitle_media_id": {
+    "description": "Uploaded subtitle file media ID, required when attaching.",
+    "required": false,
+    "type": "string"
+  },
+  "subtitles_enabled": {
+    "description": "True to attach, false to remove.",
+    "required": true,
+    "type": "boolean"
+  }
+}
+```
+
 ## `set_reply_hidden`
 
 Action slug: `set-reply-hidden`
@@ -1437,7 +2186,7 @@ Parameters:
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `file_id` | `string` | no | AgentPMT File Manager file ID to upload. |
-| `media_type` | `string` | yes | Media kind: image, gif, or video. |
+| `media_type` | `string` | yes | Media kind: image, gif, video, or subtitle (.srt/.vtt). |
 | `source_url` | `string` | no | Public URL to fetch and upload. |
 | `usage_context` | `string` | yes | Where the media will be used: post or dm. |
 
@@ -1462,11 +2211,12 @@ Generated JSON parameter schema:
     "type": "string"
   },
   "media_type": {
-    "description": "Media kind: image, gif, or video.",
+    "description": "Media kind: image, gif, video, or subtitle (.srt/.vtt).",
     "enum": [
       "image",
       "gif",
-      "video"
+      "video",
+      "subtitle"
     ],
     "required": true,
     "type": "string"

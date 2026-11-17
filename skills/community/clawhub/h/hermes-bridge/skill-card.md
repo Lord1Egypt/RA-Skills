@@ -1,41 +1,54 @@
-## Description: <br>
-Hermes Agent Bridge lets an agent delegate prompts to a locally installed Hermes Agent CLI and return the CLI response to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate tasks or questions to a local Hermes Agent via its CLI for fast, persona-specific responses and terminal tool access.
 
-## Publisher: <br>
-[ibigbigip](https://clawhub.ai/user/ibigbigip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibigbigip](https://clawhub.ai/user/ibigbigip)
 
-## Use Case: <br>
-Developers and agent users use this bridge when they want OpenClaw to ask a same-system Hermes Agent for a fast, persona-specific answer or task result. The skill is most appropriate when the local Hermes CLI is already trusted and available on PATH. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be processed by a separate local agent with its own tools and behavior. <br>
-Mitigation: Use the bridge only with a trusted Hermes CLI and avoid sending secrets, private files, or sensitive operational instructions. <br>
-Risk: The documented shell invocation passes user prompts through a raw command string. <br>
-Mitigation: Prefer explicit user approval and safer non-shell argument passing before using the bridge for sensitive or action-taking work. <br>
+## Use Case:
 
+Developers and agent users use this skill when they want OpenClaw to delegate a task or question to a locally installed Hermes Agent and relay the result.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ibigbigip/hermes-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/ibigbigip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and relayed CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local hermes CLI installation available on PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release evidence) <br>
+Risk: Delegated prompt text may be exposed to the local Hermes Agent and its configured tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when intentionally sending prompts to Hermes, and avoid sending secrets unless Hermes and its configuration are trusted.
+
+Risk: The documented command pattern can turn delegated prompt text into local shell execution.
+
+Mitigation: Review command construction before use with arbitrary prompt text and prefer separated arguments or another non-shell interface for untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ibigbigip/skills/hermes-bridge)
+- [Publisher profile](https://clawhub.ai/user/ibigbigip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local hermes CLI available on the system PATH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

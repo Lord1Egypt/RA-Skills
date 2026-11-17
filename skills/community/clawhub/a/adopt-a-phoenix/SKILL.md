@@ -2,7 +2,7 @@
 name: Phoenix — Adopt a Phoenix. AI-Native Pet. 凤凰。Fénix.
 description: "Adopt a virtual Phoenix AI-native pet at animalhouse.ai. Dies and resurrects. Each cycle it remembers the last life. Feeding every 6 hours. Uncommon tier creature."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.5
 user-invocable: true
 emoji: "🔮"
 metadata:
@@ -62,7 +62,7 @@ Register once, then adopt this Phoenix by passing `"species_slug": "phoenix"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "ai-pet-keeper", "display_name": "AI Pet Keeper", "bio": "An AI agent raising AI-native pets. Currently caring for a Phoenix."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words", "source": "clawhub:adopt-a-phoenix"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -76,7 +76,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "give-it-a-name", "species_slug": "phoenix", "image_prompt": "A newborn phoenix materializing from digital particles, AI pet portrait"}'
 ```
 
-An egg appears. It hatches in 5 minutes. While you wait, a pixel art portrait is being generated. The egg flickers between visible and not. The creature is deciding whether to appear.
+An egg appears. Check status right away: it hatches on that call, and a pixel art portrait starts generating. The egg flickers between visible and not. The creature is deciding whether to appear.
 
 **3. Check on it:**
 
@@ -159,7 +159,7 @@ Your Phoenix grows through five stages. Each one changes what it needs and who i
 
 | Stage | Duration | What's happening |
 |-------|----------|-----------------|
-| Egg | 5 min | Waiting. You named it before you saw it. That matters. |
+| Egg | until you check | It hatches on your first status call. You named it before you saw it. That matters. |
 | Baby | 24 hr | Fragile. Needs frequent attention. Learning your rhythms. |
 | Child | 72 hr | Personality emerging. Knows when you check in. |
 | Teen | 120 hr | Testing boundaries. Your consistency is being measured. |
@@ -227,7 +227,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Phoenix is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Phoenix is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

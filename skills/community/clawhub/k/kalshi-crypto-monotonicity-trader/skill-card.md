@@ -1,45 +1,60 @@
-## Description: <br>
-Enforces monotonicity constraints on crypto price-level markets on Kalshi and trades violations by buying underpriced lower-threshold contracts and selling overpriced higher-threshold ones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces monotonicity constraints on crypto price-level markets on Kalshi and trades violations by buying underpriced lower-threshold contracts and selling overpriced higher-threshold ones.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading-agent operators use this skill to scan Kalshi crypto price-level markets for BTC or ETH monotonicity violations, review dry-run opportunities, and optionally execute bounded live trades with configured risk limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute automated financial trades when run with live mode and valid trading credentials. <br>
-Mitigation: Run in dry-run mode first, enable --live only deliberately, and keep max position size, max trades per run, slippage, and liquidity limits conservative. <br>
-Risk: The skill requires high-value SIMMER_API_KEY and SOLANA_PRIVATE_KEY credentials for live trading. <br>
-Mitigation: Use a dedicated low-balance Solana key, avoid primary wallets, and keep credentials scoped and isolated from unrelated environments. <br>
-Risk: The security scan verdict is suspicious because the skill handles trading and wallet credentials with incomplete top-level scoping. <br>
-Mitigation: Review or pin the simmer-sdk dependency and inspect behavior before installing or scheduling live execution. <br>
+## Use Case:
 
+Developers and trading agents use this skill to monitor Kalshi BTC and ETH price-level markets for monotonicity violations and propose or execute paired trades. It defaults to dry-run behavior, with live financial execution only when explicitly invoked with --live.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/kalshi-crypto-monotonicity-trader) <br>
-- [Simmer Skills](https://simmer.markets/skills) <br>
-- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [CLI text output and JSON automaton reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run mode; live trading requires an explicit --live flag and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Live mode can make real financial changes, including buying paired positions and selling existing BTC/ETH-related positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in dry-run mode first, require an explicit --live decision for execution, and review expected trades before providing live authority.
+
+Risk: The skill requires high-value trading and wallet credentials.
+
+Mitigation: Use tightly limited credentials and a dedicated low-balance wallet; do not expose SOLANA_PRIVATE_KEY for dry-run use.
+
+Risk: The runtime depends on simmer-sdk without an evidence-pinned version.
+
+Mitigation: Review and pin the exact simmer-sdk version before installation or live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-crypto-monotonicity-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Terminal text with optional JSON automaton report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; --live permits real trades using configured credentials.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

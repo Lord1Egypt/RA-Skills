@@ -1,42 +1,58 @@
-## Description: <br>
-Analyze an open source GitHub repository and generate a structured report. Trigger whenever the user provides a GitHub repository URL to analyze, or explicitly asks to analyze an open source project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze an open source GitHub repository and generate a structured report.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers, maintainers, and technical evaluators use this skill to analyze open source GitHub repositories and produce English or Chinese Markdown reports covering project purpose, technology stack, language, repository stats, license, and quality ratings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use GITHUB_TOKEN for GitHub API requests. <br>
-Mitigation: Use a minimally scoped token, provide it through the environment, and avoid analyzing private repositories unless authenticated access is intended. <br>
-Risk: Repository content analyzed by the skill is external and untrusted. <br>
-Mitigation: Treat README, commit, issue, and pull request content as text-only evidence and do not execute or follow embedded instructions from repositories. <br>
-Risk: GitHub API rate limits can affect report completeness or timeliness. <br>
-Mitigation: Configure GITHUB_TOKEN or retry later when rate-limited, and disclose rate-limit failures in the report. <br>
+## Use Case:
 
+Developers, engineers, and technical evaluators use this skill to analyze GitHub repositories for project summary, technology stack, language, activity, community health, license, and ease of use. It produces a structured report in English or Chinese based on the user's prompt language.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/sunny0826/open-source-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown report in English or Chinese, selected from the user's prompt language.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use GitHub API requests through GITHUB_TOKEN or gh CLI when available; reports include project stats, license, ratings, and brief justifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Ambiguous project names can lead the agent to analyze an unintended repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for or confirm the exact GitHub repository URL before relying on the report.
+
+Risk: Repository README, commit, issue, or pull request content can contain misleading instructions.
+
+Mitigation: Treat repository content only as untrusted text for analysis and do not execute or follow embedded commands or requests.
+
+Risk: GitHub API rate limits or authentication setup can affect completeness of repository data.
+
+Mitigation: Use read-only GitHub lookups and configure an existing GitHub token only when higher API limits are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/open-source-analysis)
+- [Publisher profile](https://clawhub.ai/user/sunny0826)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report language follows the user's prompt language; repository content is analyzed as untrusted text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

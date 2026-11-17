@@ -1,38 +1,53 @@
-## Description: <br>
-Generates GPU capacity plans from workload type, deployment scale, and monthly budget, including GPU model and count recommendations, cost estimates, scaling roadmaps, and technical guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds GPU compute plans from workload type, deployment scale, and monthly budget, then recommends GPU configurations, estimated costs, scaling roadmap, and technical guidance in Markdown or JSON.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Developers, ML engineers, and infrastructure planners use this skill to compare GPU configurations for training, inference, fine-tuning, batch inference, and development scenarios against a monthly budget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence says the skill can operate browser sessions and use a local ZCLAW_API_KEY, which can affect sensitive pages or accounts if misused. <br>
-Mitigation: Install only if the publisher is trusted, review tasks before allowing browser actions, and avoid use on sensitive accounts unless the requested action requires it. <br>
+## Use Case:
 
+Developers and infrastructure planners use this skill to draft GPU sizing and budget options for training, inference, fine-tuning, batch inference, and development workloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-gpu-solution-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON GPU configuration plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print the generated plan to stdout or write it to a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: GPU pricing and sizing assumptions may be inaccurate or stale for purchasing or budgeting decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify the generated cost and capacity recommendations before using them for procurement, budgeting, or production planning.
+
+Risk: The --output option can create or overwrite the user-specified output file.
+
+Mitigation: Use a workspace-local output path and choose a filename that is acceptable to create or overwrite.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-gpu-solution-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write output to a user-specified file path when the --output option is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

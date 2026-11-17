@@ -1,42 +1,58 @@
-## Description: <br>
-Query teacher-facing JWGL systems for course schedules, invigilation duties, exam arrangements, and locally managed school and teacher account settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query a university JWGL/education administration system for teacher-facing schedules and exam-related arrangements, and help manage saved school URLs and teacher credentials through natural-language interaction.
 
-## Publisher: <br>
-[jovial-liu](https://clawhub.ai/user/jovial-liu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jovial-liu](https://clawhub.ai/user/jovial-liu)
 
-## Use Case: <br>
-Teachers, school staff, and supporting agents use this skill to query JWGL academic systems for weekly course schedules, invigilation duties, course exam arrangements, and exam information. Agents can also help manage local school URLs and teacher credentials needed for repeat queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Teacher-side JWGL usernames and passwords are stored locally in config.json. <br>
-Mitigation: Keep config.json out of Git, backups, and shared folders; use a dedicated low-privilege account or secure secret storage where available. <br>
-Risk: Debug and probe tools can save authenticated HTML pages and screenshots. <br>
-Mitigation: Use debug or probe output only when needed for troubleshooting, store it locally, and delete captured output after review. <br>
+## Use Case:
 
+External users and developers use this skill to query teacher weekly course schedules, invigilation duties, course exam arrangements, and exam information from legacy JWGL sites. The agent gathers missing school, teacher, term, and credential details in natural language, then runs the underlying local scripts and summarizes results in Chinese.
 
-## Reference(s): <br>
-- [Config Format](references/config-format.md) <br>
-- [Query Types](references/query-types.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jovial-liu/jwgl-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON query results from the runtime scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query result JSON includes fields such as query_type, teacher, term, count, rows, and details for aggregated exam queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata) <br>
+Risk: The skill stores teacher JWGL usernames and passwords locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, least-privileged accounts where possible, keep config.json out of shared folders and source control, and avoid passing passwords on the command line.
+
+Risk: The skill automates authenticated logins to user-configured school URLs and trusts those configured URLs broadly.
+
+Mitigation: Verify each school URL is the real HTTPS institutional domain before saving it, and configure only trusted JWGL sites.
+
+Risk: Debug and probe modes may create local output files from authenticated JWGL pages.
+
+Mitigation: Use debug or probe modes only when needed, protect their output directories, and delete generated artifacts after troubleshooting.
+
+## Reference(s):
+
+- [Config format](artifact/references/config-format.md)
+- [Query types](artifact/references/query-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese natural-language summaries, Markdown guidance, shell command examples, and JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query JSON includes fields such as query_type, teacher, term, count, rows, and details for aggregate exam queries.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

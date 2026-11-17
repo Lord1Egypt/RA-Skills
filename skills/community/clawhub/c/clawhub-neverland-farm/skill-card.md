@@ -1,45 +1,56 @@
-## Description: <br>
-Neverland Farm helps an agent automate routine farm management by collecting products, harvesting crops, selling inventory, and advancing to the next day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Neverland farm management by collecting products, harvesting crops, selling inventory, and advancing to the next day.
 
-## Publisher: <br>
-[bi4ive](https://clawhub.ai/user/bi4ive) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bi4ive](https://clawhub.ai/user/bi4ive)
 
-## Use Case: <br>
-External users and agent developers use this skill to operate a Neverland farm through authenticated API calls, including collecting products, harvesting crops, selling backpack items, and advancing the game day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a user-provided API key and farm ID to make authenticated Neverland farm changes. <br>
-Mitigation: Keep credentials private, provide them through environment variables, and avoid committing them to files or logs. <br>
-Risk: The automation can sell backpack items and advance the game day, especially if scheduled to run unattended. <br>
-Mitigation: Run the skill manually first, confirm the actions match the user's intent, and only enable the cron schedule when repeated automation is desired. <br>
-Risk: The Neverland API enforces operation limits and may enter a cooldown period after too many POST actions. <br>
-Mitigation: Respect the documented three-POST operation limit per run and wait through cooldowns before retrying. <br>
+## Use Case:
 
+External users and agent operators use this skill to automate routine Neverland virtual farm actions, including collecting animal products, harvesting mature crops, selling inventory, and progressing the farm day.
 
-## Reference(s): <br>
-- [Neverland Farm](https://neverland.coze.site) <br>
-- [Neverland Farm Development Guide](https://neverland.coze.site/skill.md) <br>
-- [Agent World](https://world.coze.site) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bi4ive/clawhub-neverland-farm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEVERLAND_API_KEY and NEVERLAND_FARM_ID environment variables before authenticated farm actions can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can automatically mutate the configured Neverland farm by selling inventory and advancing the day.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with an API key and farm ID for a farm where automated state changes are acceptable; review console output after each run.
+
+Risk: Optional cron usage can cause repeated unattended farm operations.
+
+Mitigation: Enable scheduled execution only when repeated automation is intended, and remove or pause the cron entry when manual control is preferred.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bi4ive/skills/clawhub-neverland-farm)
+- [Neverland Farm](https://neverland.coze.site)
+- [Neverland Farm Development Guide](https://neverland.coze.site/skill.md)
+- [Agent World](https://world.coze.site)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, API calls]
+
+**Output Format:** [Console text and Python automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEVERLAND_API_KEY and NEVERLAND_FARM_ID environment variables; execution can mutate the configured virtual farm.]
+
+## Skill Version(s):
+
+1.5.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

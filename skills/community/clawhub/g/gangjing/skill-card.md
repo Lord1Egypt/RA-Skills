@@ -1,47 +1,60 @@
-## Description: <br>
-Gangjing is a bilingual contrarian review and red-team skill that challenges product, architecture, and code decisions, escalating to controlled code attack harnesses only when explicitly requested or when users make strong claims about workspace code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+杠精 Gangjing is a Chinese-language contrarian review and red-team skill for product, architecture, and code decisions that starts with verbal critique and escalates to code attack validation only when requested or when strong claims are made about workspace code.
 
-## Publisher: <br>
-[blurooo](https://clawhub.ai/user/blurooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blurooo](https://clawhub.ai/user/blurooo)
 
-## Use Case: <br>
-Developers, engineers, and technical reviewers use this skill to stress-test requirements, architecture choices, API designs, data models, and code-quality claims before committing to a decision. It can provide verbal critique by default and, when explicitly permitted, generate and run local attack harnesses against workspace code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and run local attack harnesses against workspace code. <br>
-Mitigation: Require explicit user confirmation before code execution and run harnesses only in an isolated workspace or container. <br>
-Risk: Attack harnesses may execute target module top-level code and could expose secrets or production data if pointed at sensitive repositories. <br>
-Mitigation: Avoid repositories with credentials, production data, unsafe top-level code, or paths outside the intended workspace. <br>
-Risk: The skill is intentionally adversarial and may produce forceful critique. <br>
-Mitigation: Use it for review and red-team workflows where contrarian feedback is desired, and validate recommendations before applying changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to challenge product, architecture, API, data model, and code decisions before release. It surfaces vague requirements, hidden assumptions, alternatives, scalability and rollback risks, then provides remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blurooo/gangjing) <br>
-- [Skill homepage](https://github.com/agent-dance/harness-engineering/tree/main/skills/gangjing) <br>
-- [Attack dimensions](references/attack-dimensions.md) <br>
-- [Attack patterns](references/attack-patterns.md) <br>
-- [Intensity calibration](references/intensity-calibration.md) <br>
-- [Tool integration](references/tool-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with optional JSON configuration and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local attack configuration, temporary harness code, result summaries, and remediation recommendations when code execution is explicitly allowed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill can create and run attack harnesses against workspace code without strong enforced isolation or explicit execution consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before allowing code testing, use an isolated disposable workspace or container, remove secrets from the environment, disable network access where possible, and require clear manual confirmation before any harness is written or run.
+
+Risk: The skill uses an aggressive Chinese-language red-team review posture that may be unsuitable for routine assistance or users expecting neutral tone.
+
+Mitigation: Install and invoke it only when an aggressive reviewer is desired, and use its documented intensity controls to downgrade or stop the review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blurooo/skills/gangjing)
+- [Clawdis homepage](https://github.com/agent-dance/harness-engineering/tree/main/skills/gangjing)
+- [Attack Dimensions](references/attack-dimensions.md)
+- [Attack Pattern Library](references/attack-patterns.md)
+- [Intensity Calibration](references/intensity-calibration.md)
+- [Tool Integration](references/tool-integration.md)
+- [Attack Engine Kit](templates/attack-engine-kit.md)
+- [Decision Autopsy Template](templates/decision-autopsy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown with optional JSON attack configurations and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce temporary harness instructions or reports only when code testing is explicitly authorized by the user.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

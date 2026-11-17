@@ -9,10 +9,54 @@ from typing import Any
 
 ARTICLE_CREATE_TASK_TYPES = {"create_article", "repurpose_article"}
 ARTICLE_UPDATE_TASK_TYPES = {"refresh_article"}
-OPS_TASK_TYPES = {"update_article", "hide_article"}
+OPS_TASK_TYPES = {
+    "update_article",
+    "hide_article",
+    "delete_article",
+    "update_section",
+    "update_translation",
+    "delete_translation",
+    "regenerate_translation",
+}
 PRIMARY_GOALS = {"asset_maintenance", "seo_growth", "brand_expression", "conversion"}
 PUBLISH_INTENTS = {"draft", "public"}
 MONETIZATION_INTENTS = {"free_default", "paid_explicit"}
+
+# Required field lists (used for batch missing-field precheck so the caller
+# gets the full missing set in one shot instead of fail-fast one-by-one).
+# NOTE: monetizationIntent is intentionally absent here — it has a code-level
+# default of free_default (brief.get("monetizationIntent", "free_default")),
+# so omitting it is valid and should not be reported as missing.
+ARTICLE_BRIEF_REQUIRED_FIELDS = [
+    "taskType",
+    "primaryGoal",
+    "targetAudience",
+    "publishIntent",
+    "reasoning",
+    "selectedAngle",
+    "alternativesConsidered",
+]
+OPS_BRIEF_REQUIRED_FIELDS = [
+    "taskType",
+    "primaryGoal",
+    "reasoning",
+    "expectedOutcome",
+]
+
+# Human-readable fix suggestion per field. Surfaced in the validation error so
+# an Agent that omitted a field knows exactly how to repair the brief and retry,
+# instead of having to re-read SKILL.md and guess.
+FIELD_SUGGESTIONS: dict[str, str] = {
+    "taskType": "for article create/refresh (publish command): create_article / refresh_article / repurpose_article; for ops actions (manage update-article / hide-article / delete-article / update-section / save-translation / delete-translation / regenerate-translation): update_article / hide_article / delete_article / update_section / update_translation / delete_translation / regenerate_translation — must exactly match the subcommand you are calling",
+    "primaryGoal": "specify one of asset_maintenance / seo_growth / brand_expression / conversion",
+    "targetAudience": "non-empty string describing the reader, e.g. \"developers learning RAG\"",
+    "publishIntent": "specify draft / public",
+    "reasoning": "non-empty string explaining the strategy rationale",
+    "selectedAngle": "non-empty string naming the chosen angle",
+    "alternativesConsidered": "list of 1-3 rejected candidate angles you considered but did not choose, e.g. [\"broad overview\", \"tactical checklist\"]. At least 1 item is required. If only one obvious angle exists, still list it and briefly note why other directions were not viable — the goal is to show you thought it through, not to hit a number",
+    "monetizationIntent": "specify free_default / paid_explicit",
+    "expectedOutcome": "non-empty string describing the expected outcome of the ops action",
+}
 
 
 class StrategyValidationError(Exception):
@@ -62,6 +106,7 @@ def ensure_article_brief(
     cli_publish: bool,
     cli_draft: bool,
 ) -> dict[str, Any]:
+    _raise_missing_fields(brief, ARTICLE_BRIEF_REQUIRED_FIELDS)
     task_type = _require_enum(
         brief,
         "taskType",
@@ -72,7 +117,7 @@ def ensure_article_brief(
     publish_intent = _require_enum(brief, "publishIntent", PUBLISH_INTENTS)
     reasoning = _require_non_empty_string(brief, "reasoning")
     selected_angle = _require_non_empty_string(brief, "selectedAngle")
-    alternatives = _require_string_list(brief, "alternativesConsidered", min_items=2, max_items=3)
+    alternatives = _require_string_list(brief, "alternativesConsidered", min_items=1, max_items=3)
 
     if selected_angle in alternatives:
         raise StrategyValidationError(
@@ -139,7 +184,14 @@ def apply_article_strategy(
 
     adjusted = dict(payload)
     publish_intent = normalized["publishIntent"]
-    adjusted["viewStatus"] = publish_intent == "public"
+    is_public = publish_intent == "public"
+    adjusted["viewStatus"] = is_public
+    submit_to_search = _resolve_boolean(
+        adjusted,
+        "submitToSearchEngine",
+        default=True,
+    )
+    adjusted["submitToSearchEngine"] = submit_to_search if is_public else False
 
     if adjusted["viewStatus"]:
         adjusted.pop("password", None)
@@ -179,6 +231,7 @@ def ensure_ops_brief(brief: dict[str, Any], *, expected_task_type: str) -> dict[
             details={"expectedTaskType": expected_task_type},
         )
 
+    _raise_missing_fields(brief, OPS_BRIEF_REQUIRED_FIELDS)
     task_type = _require_enum(brief, "taskType", {expected_task_type})
     primary_goal = _require_enum(brief, "primaryGoal", PRIMARY_GOALS)
     reasoning = _require_non_empty_string(brief, "reasoning")
@@ -203,12 +256,23 @@ def apply_ops_strategy(
 
     if expected_task_type == "hide_article":
         adjusted["viewStatus"] = False
+        adjusted["submitToSearchEngine"] = False
         if not _has_text(adjusted.get("password")):
             adjusted["password"] = f"hidden-{adjusted.get('id', 'article')}"
         if not _has_text(adjusted.get("tips")):
             adjusted["tips"] = "Article hidden by strategy brief."
         return {key: value for key, value in adjusted.items() if value is not None}
 
+    if expected_task_type == "delete_article":
+        # 删除进回收站：不改写任何字段，仅借 brief 记录策略与审计字段（taskType/reasoning/expectedOutcome）
+        return {key: value for key, value in adjusted.items() if value is not None}
+
+    if expected_task_type == "update_article":
+        adjusted["submitToSearchEngine"] = _resolve_boolean(
+            adjusted,
+            "submitToSearchEngine",
+            default=True,
+        )
     if adjusted.get("viewStatus") is False:
         raise StrategyValidationError(
             "Use hide-article instead of update-article for takedown behavior.",
@@ -223,6 +287,16 @@ def apply_ops_strategy(
         )
 
     return {key: value for key, value in adjusted.items() if value is not None}
+
+
+def _resolve_boolean(source: dict[str, Any], key: str, *, default: bool) -> bool:
+    value = source.get(key, default)
+    if not isinstance(value, bool):
+        raise StrategyValidationError(
+            f"{key} must be a boolean.",
+            details={"field": key, "value": value},
+        )
+    return value
 
 
 def _require_non_empty_string(source: dict[str, Any], key: str) -> str:
@@ -283,3 +357,48 @@ def _require_string_list(
 
 def _has_text(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
+
+
+def _collect_missing_fields(brief: dict[str, Any], required: list[str]) -> list[str]:
+    """Return required fields that are absent or blank in brief.
+
+    A field counts as missing when it is None, an empty/whitespace string,
+    or an empty list. Used for batch precheck so the caller sees every missing
+    field at once instead of fail-fast one-by-one (which forces multiple
+    round-trips for an Agent that omitted several fields).
+    """
+    missing: list[str] = []
+    for key in required:
+        value = brief.get(key)
+        if value is None:
+            missing.append(key)
+        elif isinstance(value, str) and not value.strip():
+            missing.append(key)
+        elif isinstance(value, list) and len(value) == 0:
+            missing.append(key)
+    return missing
+
+
+def _raise_missing_fields(brief: dict[str, Any], required: list[str]) -> None:
+    """Batch-precheck required fields; raise a structured error listing all
+    missing fields together with per-field fix suggestions.
+
+    No-op when nothing is missing. Called at the top of ensure_article_brief /
+    ensure_ops_brief so the value-level _require_* checks afterwards only deal
+    with wrong (not absent) values.
+    """
+    missing = _collect_missing_fields(brief, required)
+    if not missing:
+        return
+    suggestions = {f: FIELD_SUGGESTIONS.get(f, "provide a valid value") for f in missing}
+    hint_lines = [f"  - {f}: {suggestions[f]}" for f in missing]
+    raise StrategyValidationError(
+        f"Strategy brief is missing {len(missing)} required field(s): {missing}.\n"
+        f"Add them to the _brief block (or ops brief) and retry. Field-specific suggestions:\n"
+        + "\n".join(hint_lines),
+        details={
+            "missing_fields": missing,
+            "suggestions": suggestions,
+            "required_fields": required,
+        },
+    )

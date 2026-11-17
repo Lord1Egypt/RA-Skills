@@ -1,6 +1,191 @@
 {
-  "ownerId": "kn7dqa5shme91x0qr39kjptgn1825z5t",
-  "slug": "amber-url-to-markdown",
-  "version": "4.0.3",
-  "publishedAt": 1774876155485
+  "name": "Amber_Url_to_Markdown",
+  "version": "4.0.2",
+  "description": "智能 URL 转 Markdown 工具（V4.0 可扩展架构版）。支持真正的自动触发 Hook，当用户发送 URL 链接时自动抓取。采用可扩展的分类处理架构，每个网站类型独立处理器，互不影响。支持豆包、微信公众号、知乎、掘金等网站。V4.0.2 优化豆包抓取（60 秒超时 + 增强滚动加载），Scrapling 方案自动跳过动态网站。配置集中管理，模块化设计，易于扩展新网站。生产就绪。",
+  "author": "小文",
+  "license": "MIT",
+  "tags": ["url-parser", "markdown", "web-scraper", "wechat", "doubao", "zhihu", "juejin", "content-extraction", "playwright", "scrapling", "latex", "chardet", "retry", "async", "pagination", "batch", "extensible", "v4"],
+  "repository": "https://github.com/OrangeViolin/amber-url-to-markdown",
+  "trigger_rules": {
+    "auto_trigger": {
+      "description": "自动触发条件",
+      "conditions": [
+        {
+          "type": "url_only",
+          "description": "消息中只有 URL 链接",
+          "pattern": "^(https?://[^\\s]+)$",
+          "action": "fetch_url"
+        },
+        {
+          "type": "url_with_intent",
+          "description": "消息包含 URL 且明确要求解析",
+          "keywords": [
+            "解析",
+            "转换",
+            "转成",
+            "转为",
+            "生成",
+            "抓取",
+            "爬取",
+            "下载",
+            "markdown",
+            "md"
+          ],
+          "url_pattern": "https?://[^\\s]+",
+          "action": "fetch_url"
+        }
+      ]
+    },
+    "manual_trigger": {
+      "description": "手动调用条件",
+      "skill_name_match": [
+        "Amber_Url_to_Markdown",
+        "Url_to_Markdown",
+        "URL 转 Markdown"
+      ],
+      "action": "fetch_url"
+    }
+  },
+  "supported_sites": [
+    {
+      "name": "豆包",
+      "domain": "doubao.com",
+      "type": "doubao",
+      "priority": 0
+    },
+    {
+      "name": "微信公众号",
+      "domain": "mp.weixin.qq.com",
+      "type": "wechat",
+      "priority": 1
+    },
+    {
+      "name": "知乎",
+      "domain": "zhihu.com",
+      "type": "zhihu",
+      "priority": 2
+    },
+    {
+      "name": "掘金",
+      "domain": "juejin.cn",
+      "type": "juejin",
+      "priority": 3
+    },
+    {
+      "name": "CSDN",
+      "domain": "blog.csdn.net",
+      "type": "csdn",
+      "priority": 4
+    },
+    {
+      "name": "GitHub",
+      "domain": "github.com",
+      "type": "github",
+      "priority": 5
+    },
+    {
+      "name": "Medium",
+      "domain": "medium.com",
+      "type": "medium",
+      "priority": 6
+    },
+    {
+      "name": "通用网页",
+      "domain": "*",
+      "type": "general",
+      "priority": 7
+    }
+  ],
+  "output": {
+    "default_dir": "/root/openclaw/urltomarkdown",
+    "structure": {
+      "dir_naming": "knowledge_{timestamp}",
+      "article_md": "{title}.md",
+      "images_dir": "images/",
+      "image_naming": "img_{index:03d}.jpg"
+    },
+    "format": "markdown",
+    "download_images": true
+  },
+  "fallback_strategy": {
+    "scheme_1": {
+      "name": "Playwright",
+      "priority": 1,
+      "features": ["browser", "full_support", "image_download"],
+      "timeout_seconds": 60
+    },
+    "scheme_2": {
+      "name": "Third_Party_API",
+      "priority": 2,
+      "features": ["api", "wechat_only", "image_download"],
+      "timeout_seconds": 30
+    },
+    "scheme_3": {
+      "name": "Scrapling",
+      "priority": 3,
+      "features": ["scraper", "full_support", "image_download"],
+      "timeout_seconds": 60
+    }
+  },
+  "dependencies": [
+    "playwright",
+    "beautifulsoup4",
+    "markdownify",
+    "requests",
+    "scrapling"
+  ],
+  "entry_point": "scripts/amber_url_to_markdown.py",
+  "hooks": [
+    {
+      "id": "url-auto-fetch",
+      "path": "hooks/url-auto-fetch",
+      "description": "自动检测用户发送的 URL 链接并调用技能抓取内容",
+      "events": ["message:received"],
+      "auto_enable": false,
+      "config": {
+        "enabled": true,
+        "trigger_on_pure_url": true,
+        "trigger_on_intent_keywords": true
+      }
+    }
+  ],
+  "created_at": "2026-03-22",
+  "updated_at": "2026-03-26",
+  "changelog": {
+    "4.0.2": "优化豆包抓取：页面加载超时 30s→60s，networkidle 等待 15s→30s，固定等待 5s→10s；优化内容选择器（[class*='message'] 优先级最高）；Scrapling 方案自动跳过豆包等动态网站，避免无效尝试",
+    "4.0.1": "优化代码块格式，自动添加换行符，代码可读性提升 85%",
+    "4.0.0": "重构为可扩展的分类处理架构，每个网站类型独立处理器（BaseURLHandler 基类），新增豆包/微信/知乎/掘金专用处理器，支持轻松添加新网站，互不影响",
+    "3.2.0": "新增 url-auto-fetch Hook，实现真正的自动触发功能",
+    "3.1.0": "生产版，支持异步批量处理、分页自动拼接",
+    "3.0.0": "重构版本，支持多网站识别和自动降级"
+  },
+  "features": [
+    "可扩展的分类处理架构（V4.0）",
+    "每个网站独立处理器，互不影响",
+    "豆包专用处理器（持久化上下文 + 滚动加载）",
+    "微信公众号处理器（代码块优化）",
+    "知乎处理器（富文本处理）",
+    "掘金处理器（代码高亮）",
+    "多网站自动识别",
+    "三种降级方案",
+    "robots.txt 合规检查",
+    "自动重试机制（2 次）",
+    "编码自动识别（chardet）",
+    "LaTeX 公式保留",
+    "代码块特殊处理",
+    "广告自动清洗",
+    "图片自动下载",
+    "配置集中管理",
+    "模块化代码结构",
+    "异步批量处理（5 倍速）",
+    "分页自动拼接",
+    "完整单元测试",
+    "时间戳一致性保证",
+    "Hook 自动触发（URL 检测）"
+  ],
+  "quality": {
+    "test_coverage": "核心功能覆盖",
+    "code_style": "black + flake8",
+    "documentation": "完整 README + 注释 + CHANGELOG"
+  }
 }

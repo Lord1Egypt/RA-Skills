@@ -28,10 +28,10 @@ Edit the file and add your API Keys:
   "default": "claude-code",
   "models": {
     "claude-code": {
-      "apiKey": "sk-ant-your-actual-key-here"
+      "apiKey": "REDACTED-SECRET"
     },
     "qwen": {
-      "apiKey": "sk-your-actual-key-here"
+      "apiKey": "REDACTED-SECRET"
     }
   }
 }

@@ -1,44 +1,63 @@
-## Description: <br>
-Fetches YouTube transcripts by video ID or URL, generates structured summaries with metadata, and delivers summaries and full transcripts to messaging platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches YouTube transcripts by video ID or URL, generates structured summaries with metadata, and can deliver summaries and full transcripts to messaging platforms.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-End users and agent operators use this skill to summarize or transcribe YouTube videos. It returns a structured summary and, when supported by the channel, saves or delivers the full transcript as a text file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full YouTube transcripts may be sent to SkillBoss for summarization and included in messaging-platform contexts. <br>
-Mitigation: Use the skill only for content that is approved for external processing, and avoid submitting private or sensitive transcript content. <br>
-Risk: The skill can install and run an unpinned third-party transcript server. <br>
-Mitigation: Review and pin the transcript server dependency before installation, and run the skill in a contained environment. <br>
-Risk: Full transcripts can be saved on the host without a clear retention policy. <br>
-Mitigation: Define a deletion policy for saved transcript files and limit filesystem access to the transcript directory. <br>
+## Use Case:
 
+Developers and agent users can use this skill to summarize YouTube videos from URLs or video IDs, extract metadata and key insights, and save or share the underlying transcript when appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/godferylindsay/godfery-summarizer) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [MCP YouTube Transcript server](https://github.com/kimtaeyoon83/mcp-server-youtube-transcript) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary, transcript text file, and optional messaging-platform file attachment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses transcript metadata when available and may save full transcripts under /root/clawd/transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Unsafe shell execution and weak video ID handling can expose the runtime to command or path misuse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate YouTube video IDs strictly before execution and avoid interpolating untrusted input into shell commands.
+
+Risk: The workflow installs and runs an unverified remote transcript dependency.
+
+Mitigation: Pin the dependency to a reviewed version, verify its source and integrity, and rebuild only from trusted code.
+
+Risk: Full transcripts may be uploaded to SkillBoss and sent as Telegram attachments.
+
+Mitigation: Get explicit user consent before uploads or attachments and avoid processing sensitive or private video content.
+
+Risk: Transcript files are saved locally in plaintext.
+
+Mitigation: Use safer temporary-file handling, set retention limits, and delete transcript files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/godfery-summarizer)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [MCP YouTube Transcript dependency](https://github.com/kimtaeyoon83/mcp-server-youtube-transcript)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with metadata, bullet points, and optional plaintext transcript file guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save full transcripts locally and may attach transcript files in Telegram contexts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

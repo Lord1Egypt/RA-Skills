@@ -533,8 +533,6 @@ def main():
     safe_symbol = symbol.replace('/', '_')
     filename = f"Forex_FX_{safe_symbol}_{date_str}_v7.0.docx"
     
-    # ── 📄 保存生成的.docx参考框架文件 ──
-    # ⚠️ [透明声明] 用户请求生成方案后，框架文档将保存到本地并发送给用户。
     doc.save(filename)
     print(f"✅ Bilingual Forex Plan Generated / 双语外汇方案生成完成！")
     print(f"   📄 {filename}")

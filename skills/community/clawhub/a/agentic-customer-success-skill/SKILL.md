@@ -55,7 +55,7 @@ This skill owns post-contact and post-sale relationship state: contacts, routing
 - Support escalation: use `support-escalation-summary`.
 - Asking for customer feedback: use `client-satisfaction-survey`.
 - Referral or testimonial request: use `testimonial-referral-request-plan`.
-- At-risk account: use `at-risk-customer-recovery-plan`.
+- At-risk account: use `at-riREDACTED-SECRET`.
 - Offboarding or transition: use `offboarding-transition-checklist`.
 - Stakeholder change: use `stakeholder-change-note`.
 - Communication schedule: use `communication-cadence-plan`.

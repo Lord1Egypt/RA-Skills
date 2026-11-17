@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn75mmeqmz6rt3hwpt8qy83cj1858fnw",
-  "slug": "agent-os-zhelun",
+  "name": "agent-os",
   "version": "0.1.1",
-  "publishedAt": 1780323256539
+  "description": "Lightweight collaboration layer for multi-agent systems — file-based protocols for findings, context, health views, and agent handoffs.",
+  "author": "zhelunSun",
+  "license": "MIT",
+  "homepage": "",
+  "keywords": ["multi-agent", "collaboration", "audit", "findings", "context-pack", "mission-control", "flight-recorder", "agent-handoff"],
+  "scripts": [
+    "scripts/upsert_finding.py",
+    "scripts/compile_context_pack.py",
+    "scripts/mission_control.py"
+  ],
+  "references": [
+    "references/schemas.md",
+    "references/workflows.md",
+    "references/templates.md"
+  ]
 }

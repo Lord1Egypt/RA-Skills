@@ -1,7 +1,7 @@
 ---
 name: safety-critical-patterns
 description: Applies NASA Power of 10 rules for safety-critical verifiable code
-version: 1.9.8
+version: 1.10.3
 triggers:
   - safety
   - defensive-coding
@@ -12,12 +12,12 @@ triggers:
   - auditing financial
   - medical
   - or high-reliability system code
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.pensive:shared", "night-market.pensive:code-refinement"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.pensive:code-refinement", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Safety-Critical Coding Patterns
@@ -31,6 +31,12 @@ Guidelines adapted from NASA's Power of 10 rules for safety-critical software.
 **Light touch**: Scripts, prototypes, non-critical utilities
 
 > "Match rigor to consequence" - The real engineering principle
+
+## When NOT To Use
+
+- Ordinary application code, where these defensive checks become the
+  bloat that `prefer-invariants-over-fallbacks` targets (use
+  `conserve:code-quality-principles`)
 
 ## The 10 Rules (Adapted)
 
@@ -53,19 +59,19 @@ while not_done:  # When does this end?
     process_next()
 ```
 
-**Adaptation**: Document expected bounds; add safety limits on potentially unbounded loops.
+**Adaptation**: Document expected bounds. Add safety limits on potentially unbounded loops.
 
 ### 3. No Dynamic Memory After Initialization
 Avoid heap allocation in critical paths after startup.
 
 **Why**: Prevents allocation failures at runtime.
-**Adaptation**: Pre-allocate pools; use object reuse patterns in hot paths.
+**Adaptation**: Pre-allocate pools. Use object reuse patterns in hot paths.
 
 ### 4. Function Length ~60 Lines
 Functions should fit on one screen/page.
 
 **Why**: Cognitive limits on comprehension remain valid.
-**Adaptation**: Flexible for declarative code; strict for complex logic.
+**Adaptation**: Flexible for declarative code, strict for complex logic.
 
 ### 5. Assertion Density
 Include defensive assertions documenting expectations.
@@ -78,7 +84,7 @@ def transfer_funds(from_acct, to_acct, amount):
     # ... implementation
 ```
 
-**Adaptation**: Focus on boundary conditions and invariants, not arbitrary quotas.
+**Adaptation**: Focus on boundary conditions and invariants rather than arbitrary quotas.
 
 ### 6. Minimal Variable Scope
 Declare variables at narrowest possible scope.
@@ -97,7 +103,7 @@ for item in items:
 ```
 
 ### 7. Check Return Values and Parameters
-Validate inputs; never ignore return values.
+Validate inputs. Never ignore return values.
 
 ```python
 # Good
@@ -113,10 +119,10 @@ parse_config(path)  # Ignored return
 Restrict macros, decorators, and code generation.
 
 **Why**: Makes static analysis possible.
-**Adaptation**: Document metaprogramming thoroughly; prefer explicit over magic.
+**Adaptation**: Document metaprogramming thoroughly. Prefer explicit over magic.
 
 ### 9. Pointer/Reference Discipline
-Limit indirection levels; be explicit about ownership.
+Limit indirection levels. Be explicit about ownership.
 
 **Adaptation**: Use type hints, avoid deep nesting of optionals, prefer immutable data.
 
@@ -144,9 +150,48 @@ tsc --strict --noImplicitAny
 ## Integration
 
 Reference this skill from:
-- `pensive:code-refinement` - Clean code dimension
-- `pensive:code-refinement` - Quality checks
+- `pensive:code-refinement` - Clean code and quality dimension
 - `sanctum:pr-review` - Code quality phase
+- `/harden` - composed in the hardening pipeline
+- `/full-review safety-critical` - focused entry point, and an
+  auto-detection row when assertion density is low, loops are
+  unbounded, or recursion lacks a termination proof
+
+## Violation Output Format
+
+For each rule violation, report:
+
+```
+Rule N: <rule name>
+Location: file.py:42
+Anchor: `<verbatim source text at line 42>`
+Issue: <what violates the rule>
+Fix: <concrete remediation>
+```
+
+### Verify Findings Are Grounded (`safety-critical:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
+## Exit Criteria
+
+- [ ] Each of the 10 rules has an explicit verdict for the target
+  (applies / violated / not applicable), not a silent skip
+- [ ] Every reported violation cites a concrete `file:line` and the
+  rule number it breaks
+- [ ] Rules deemed not applicable name the reason (e.g. "no dynamic
+  allocation in this module") rather than being omitted
+- [ ] Loops flagged under Rule 2 are checked for a statically
+  provable upper bound; unbounded loops are reported
+- [ ] Recursion flagged under Rule 1 is reported when it lacks a
+  termination argument
+- [ ] A summary states whether the target is suitable for
+  safety-critical use, or which rules block that judgment
+- [ ] Every reported violation carries a `Location` + verbatim `Anchor`
+  confirmed by `citation_verifier.py` (exit `0`), or unverified
+  violations were dropped or labeled `UNVERIFIED`.
 
 ## Sources
 

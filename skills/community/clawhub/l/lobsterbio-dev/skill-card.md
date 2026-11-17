@@ -1,55 +1,73 @@
-## Description: <br>
-Helps developers extend, test, and contribute to Lobster AI, a multi-agent bioinformatics engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop, extend, and contribute to Lobster AI, a multi-agent bioinformatics engine for building agents, services, tests, and plugin packages.
 
-## Publisher: <br>
-[cewinharhar](https://clawhub.ai/user/cewinharhar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cewinharhar](https://clawhub.ai/user/cewinharhar)
 
-## Use Case: <br>
-Developers and bioinformatics engineers use this skill when working on the Lobster AI codebase, creating agents or services, fixing bugs, adding features, writing tests, or building plugin packages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys and provider credentials may be exposed during setup or command-line use. <br>
-Mitigation: Use environment variables or a secret manager, avoid command-line API-key flags, and keep credential files out of version control. <br>
-Risk: Persisted Lobster session or workspace files may contain sensitive bioinformatics data or derived analysis state. <br>
-Mitigation: Review, protect, or delete persisted session and workspace files when they may contain sensitive data. <br>
-Risk: Installing packages or scaffolding plugins can affect the active Python environment. <br>
-Mitigation: Use a dedicated Python 3.12 virtual environment and review package contents before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LobsterBio - Dev release page](https://clawhub.ai/cewinharhar/lobsterbio-dev) <br>
-- [AQUADIF Tool Taxonomy Contract](references/aquadif-contract.md) <br>
-- [AQUADIF Migration](references/aquadif-migration.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [BioSkills Bridge](references/bioskills-bridge.md) <br>
-- [CLI](references/cli.md) <br>
-- [Code Layout](references/code-layout.md) <br>
-- [Creating Agents](references/creating-agents.md) <br>
-- [Creating Services](references/creating-services.md) <br>
-- [Planning Workflow](references/planning-workflow.md) <br>
-- [Plugin Architecture](references/plugin-architecture.md) <br>
-- [Scaffold](references/scaffold.md) <br>
-- [Testing](references/testing.md) <br>
-- [Omics-OS Component Registry documentation](https://docs.omics-os.com/docs/core/component-registry) <br>
-- [GPTomics bioSkills repository](https://github.com/GPTomics/bioSkills) <br>
+## Use Case:
 
+Developers and engineers use this skill to work on Lobster AI code: understand the architecture, scaffold bioinformatics agents and plugins, create services, apply AQUADIF metadata and provenance rules, and validate tests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, checklists, and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated or modified Python package code, plugin configuration, validation commands, and test instructions for Lobster AI development workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.402 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can prompt automatic installation of unpinned Lobster packages, which may pull an unexpected package version or source.
+
+Mitigation: Review the exact Lobster package source and version before installation, and prefer pinned dependencies or a lockfile.
+
+Risk: API keys or long-lived credentials could be exposed if pasted into chat or passed directly on command lines.
+
+Mitigation: Use safer secret handling such as restricted-permission credential files or environment management, and avoid sharing secrets in chat.
+
+Risk: Broad development trigger phrases could activate the skill outside its intended Lobster-specific context.
+
+Mitigation: Use the skill only for Lobster AI development, plugin, service, and validation tasks.
+
+## Reference(s):
+
+- [LobsterBio - Dev release page](https://clawhub.ai/cewinharhar/skills/lobsterbio-dev)
+- [Planning Workflow for New Capabilities](references/planning-workflow.md)
+- [Scaffold Reference](references/scaffold.md)
+- [Creating Agents](references/creating-agents.md)
+- [Creating Services](references/creating-services.md)
+- [AQUADIF Tool Taxonomy Contract](references/aquadif-contract.md)
+- [AQUADIF Migration Guide](references/aquadif-migration.md)
+- [Architecture Reference](references/architecture.md)
+- [Code Layout](references/code-layout.md)
+- [Omics Plugin Architecture](references/plugin-architecture.md)
+- [CLI Reference](references/cli.md)
+- [Testing Guide](references/testing.md)
+- [Domain Knowledge Bridge: GPTomics Bio-Skills](references/bioskills-bridge.md)
+- [Omics-OS Component Registry docs](https://docs.omics-os.com/docs/core/component-registry)
+- [Omics-OS Architecture docs](https://docs.omics-os.com/docs/architecture/overview)
+- [Omics-OS Entry Points docs](https://docs.omics-os.com/docs/extending/entry-points)
+- [Omics-OS Plugin Contract docs](https://docs.omics-os.com/docs/extending/plugin-contract)
+- [GPTomics BioSkills repository](https://github.com/GPTomics/bioSkills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, validation checklists, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for Lobster-specific development workflows and may include local install, scaffold, test, and validation steps.]
+
+## Skill Version(s):
+
+1.1.402 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

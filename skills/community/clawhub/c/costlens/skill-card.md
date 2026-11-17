@@ -1,45 +1,60 @@
-## Description: <br>
-Calculate OpenClaw usage cost from offline event logs, apply budget thresholds, and export operator-facing reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate OpenClaw usage cost from offline event logs, apply budget thresholds, and export operator-facing reports.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Developers and operators use CostLens to analyze OpenClaw token usage logs, check spend against budgets, and export cost reports for handoff or audit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may contain content derived from local usage logs. <br>
-Mitigation: Review exported reports before sharing and use trusted event logs as input. <br>
-Risk: Event-provided pricing overrides can change budget results. <br>
-Mitigation: Verify event pricing fields and budget thresholds before relying on the output for enforcement. <br>
-Risk: Incorrect input or output paths can read the wrong log file or write reports to an unintended location. <br>
-Mitigation: Confirm --events and --out paths before running the CLI. <br>
+## Use Case:
 
+Developers and operators use CostLens to analyze offline token usage event logs, estimate model costs, check budget thresholds, and export local reports for handoff or audit.
 
-## Reference(s): <br>
-- [CostLens ClawHub page](https://clawhub.ai/mike007jd/costlens) <br>
-- [CostLens README](README.md) <br>
-- [CostLens source homepage](https://github.com/mike007jd/openclaw-skills/tree/main/costlens) <br>
-- [CostLens issue tracker](https://github.com/mike007jd/openclaw-skills/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, code] <br>
-**Output Format:** [CLI text tables, JSON envelopes, and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected JSON event files, optionally writes report files, and returns exit code 2 for critical budget overruns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill reads the event log path supplied by the user, and those logs may contain sensitive usage data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use event logs that are appropriate for local cost analysis, and avoid pointing the skill at sensitive logs unless aggregate cost data can be included in local output.
+
+Risk: Report mode can create or overwrite the output file path supplied by the user.
+
+Mitigation: Choose an explicit report path and review it before running report export in automation.
+
+Risk: Cost calculations use built-in default rates unless events provide explicit rate overrides.
+
+Mitigation: Use per-event rate overrides when accurate billing or audit estimates require rates different from the built-in defaults.
+
+## Reference(s):
+
+- [CostLens ClawHub page](https://clawhub.ai/mike007jd/skills/costlens)
+- [CostLens source homepage](https://github.com/mike007jd/openclaw-skills/tree/main/costlens)
+- [CostLens README](artifact/README.md)
+- [CostLens skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; CLI output may be table text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report mode writes a JSON report file; budget checks may return a blocking exit code for critical overruns.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

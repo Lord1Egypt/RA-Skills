@@ -1,44 +1,60 @@
-## Description: <br>
-Read academic papers from local PDF files, arXiv URLs, or paper titles and generate structured reading notes in Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read academic papers from local PDF files, arXiv URLs, or paper titles and generate structured reading notes in Chinese.
 
-## Publisher: <br>
-[fourierer](https://clawhub.ai/user/fourierer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fourierer](https://clawhub.ai/user/fourierer)
 
-## Use Case: <br>
-Developers, researchers, and technical readers use this skill to fetch or read academic PDFs, extract text, analyze the paper, and create standardized Chinese reading notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact arXiv and download PDFs based on a URL or title. <br>
-Mitigation: Confirm the requested paper source before network access and use non-sensitive inputs when possible. <br>
-Risk: The skill can write downloaded PDFs, extracted text, and generated notes to user-specified paths. <br>
-Mitigation: Choose output paths deliberately and avoid paths that could overwrite important existing files. <br>
-Risk: PDF text extraction can miss content from complex layouts, figures, equations, or tables. <br>
-Mitigation: Review extracted text against the source PDF and ask for clarification when important sections are incomplete. <br>
+## Use Case:
 
+Developers, researchers, and students use this skill to fetch or load academic PDFs, extract paper text, and produce structured Chinese reading notes for paper review.
 
-## Reference(s): <br>
-- [Paper note template](references/note-template.md) <br>
-- [mHC example note](references/mHC.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fourierer/paper-reading-fourier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown notes with optional shell commands and extracted PDF text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese prose with English technical terms preserved; formulas use LaTeX; optional PDF and text files are written to user-specified paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The PDF downloader can reach non-arXiv network locations despite presenting itself as arXiv-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local PDFs or trusted arXiv URLs, and run the skill in an environment without private-network access when reviewing unfamiliar inputs.
+
+Risk: The workflow writes downloaded PDFs, extracted text, and notes to user-specified paths.
+
+Mitigation: Use a constrained workspace, avoid sensitive writable paths, and avoid privileged execution.
+
+Risk: The PDF extraction workflow depends on runtime Python dependencies such as pdfplumber.
+
+Mitigation: Pin dependencies before adopting the skill in a repeatable environment.
+
+## Reference(s):
+
+- [Paper note template](references/note-template.md)
+- [mHC example note](references/mHC.md)
+- [arXiv API](http://export.arxiv.org/api/query)
+- [ClawHub skill page](https://clawhub.ai/fourierer/skills/paper-reading-fourier)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown notes in Chinese with LaTeX formulas, image links, info blocks, and optional Python code blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save notes or extracted paper text to user-specified output paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

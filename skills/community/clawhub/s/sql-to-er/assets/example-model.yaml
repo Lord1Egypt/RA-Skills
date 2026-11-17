@@ -1,0 +1,37 @@
+entities:
+  Customer:
+    attributes:
+      - id: {pk: true, type: int}
+      - name: {type: string}
+      - email: {type: string, unique: true}
+  Order:
+    attributes:
+      - id: {pk: true, type: int}
+      - customer_id: {fk: Customer, type: int}
+      - total: {type: decimal}
+      - created_at: {type: datetime}
+  Product:
+    attributes:
+      - id: {pk: true, type: int}
+      - name: {type: string}
+      - price: {type: decimal}
+  OrderItem:
+    attributes:
+      - id: {pk: true, type: int}
+      - order_id: {fk: Order, type: int}
+      - product_id: {fk: Product, type: int}
+      - quantity: {type: int}
+
+relationships:
+  - from: Customer
+    to: Order
+    cardinality: one-to-many
+    label: places
+  - from: Order
+    to: OrderItem
+    cardinality: one-to-many
+    label: contains
+  - from: Product
+    to: OrderItem
+    cardinality: one-to-many
+    label: ordered_in

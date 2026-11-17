@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Encodian"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["encodian"]
   icon: "https://static.oomol.com/logo/third-party/Encodian.svg"
 ---
@@ -37,11 +37,11 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `compress_pdf` — Compress one PDF document with Encodian and return the optimized PDF file as base64 content.
+- `compress_pdf` — Compress one PDF document with Encodian and return the optimized PDF file as base64 content. [write]
 - `extract_pdf_pages` — Extract selected pages from one PDF document and return the resulting PDF file as base64 content.
 - `get_pdf_text_layer` — Extract the text layer from one PDF document with optional page-range and encoding controls.
-- `secure_pdf_document` — Encrypt one PDF document with optional open and edit passwords, then return the protected PDF as base64 content.
-- `unlock_pdf_document` — Remove password protection from one PDF document and return the unlocked PDF as base64 content. [write]
+- `secure_pdf_document` — Encrypt one PDF document with optional open and edit passwords, then return the protected PDF as base64 content. [write]
+- `unlock_pdf_document` — Remove password protection from one PDF document and return the unlocked PDF as base64 content.
 
 ## Safety
 
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Encodian is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=encodian
+  https://console.oomol.com/connections/encodian
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Encodian homepage: https://www.encodian.com
+- API documentation: https://support.encodian.com/hc/en-gb/articles/13253632800284-Direct-API-Integration

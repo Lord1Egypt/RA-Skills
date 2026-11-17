@@ -1,45 +1,63 @@
-## Description: <br>
-Automates local desktop tasks on Windows, macOS, and Linux with mouse and keyboard control, screenshots, OCR, image recognition, macro recording, and macro replay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local desktop tasks across Windows, macOS, and Linux using mouse and keyboard control, screenshots, OCR, image recognition, clipboard operations, and macro recording and replay.
 
-## Publisher: <br>
-[JordaneParis](https://clawhub.ai/user/JordaneParis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jordaneparis](https://clawhub.ai/user/jordaneparis)
 
-## Use Case: <br>
-Developers and power users use this skill to automate local desktop workflows when an application does not expose an API. It is suited for reviewed, non-sensitive GUI tasks that need screenshots, OCR, image matching, clipboard actions, or repeatable macros. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control the local desktop, including mouse clicks, keyboard input, clipboard operations, and macro replay. <br>
-Mitigation: Keep safe mode enabled, test workflows with dry_run first, and run only macros that were created or reviewed by the user. <br>
-Risk: Screen reading, OCR, screenshots, and keyboard recording can expose passwords, private messages, payment data, or other sensitive information. <br>
-Mitigation: Use the skill only for non-sensitive workflows and keep credentials and private screens out of view while recording, OCR, or screenshots are active. <br>
-Risk: Saved macros, screenshots, logs, and reports can retain sensitive workflow details after execution. <br>
-Mitigation: Treat generated files as sensitive, store them in restricted locations, and review them before sharing or replaying. <br>
+## Use Case:
 
+Developers, operators, and automation users use this skill to automate repeatable desktop workflows when an application does not expose a suitable API. It is suited to local UI interaction, screen reading, window control, and macro-based task replay in environments where desktop control is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JordaneParis/desktop-automation-ultra) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact license](artifact/LICENSE.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON action results, and local file outputs such as screenshots, macros, logs, and reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create sensitive local artifacts, including recorded macros, screenshots, OCR output, audit logs, and execution reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact skill.yaml) <br>
+Risk: The skill can control mouse and keyboard input, interact with windows, use the clipboard, and capture the screen in the active desktop session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a dedicated profile or non-sensitive environment, keep safe mode enabled, and test actions with dry-run before allowing real desktop changes.
+
+Risk: Macro recording can capture sensitive keystrokes, window titles, screenshots, logs, and other local workflow data.
+
+Mitigation: Do not record while entering passwords, payment data, private messages, or tokens; store generated macros, logs, screenshots, and reports as sensitive files.
+
+Risk: Macro replay can execute a sequence of clicks, keystrokes, clipboard actions, and screen-driven operations from a file.
+
+Mitigation: Play only trusted macros, inspect macro JSON before use, run macros in dry-run or at reduced speed first, and avoid macros from untrusted sources.
+
+Risk: OCR, screenshots, clipboard operations, and report generation can expose data visible on screen or copied locally.
+
+Mitigation: Limit use to workflows where screen and clipboard contents are appropriate to process, and clean up or protect generated output files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jordaneparis/skills/desktop-automation-ultra)
+- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON action results, Markdown or text guidance, shell commands, configuration snippets, saved screenshots, macro JSON files, and optional HTML/JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local logs, screenshots, recorded macros, encrypted macro files, clipboard contents, and execution reports depending on the requested action.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

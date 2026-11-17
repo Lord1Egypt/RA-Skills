@@ -1,42 +1,57 @@
-## Description: <br>
-Drafts real estate appraisal reports from a project workfile, producing Word narratives with tracked changes and Excel adjustment grids from master templates for user review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts real estate appraisal reports from project workfiles, producing Word narratives with tracked changes and Excel adjustment grids from user-provided master templates.
 
-## Publisher: <br>
-[chadru](https://clawhub.ai/user/chadru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chadru](https://clawhub.ai/user/chadru)
 
-## Use Case: <br>
-Licensed appraisers use this skill to speed up narrative report drafting, adjustment grid preparation, and quality review for appraisal assignments while retaining control over professional judgments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation or setup steps from the linked project could ask the user to run code in their environment. <br>
-Mitigation: Review the linked setup instructions and code before installing, and run only the commands needed for the intended appraisal workflow. <br>
-Risk: Extracted fields, formulas, or compliance checks could be incomplete or incorrect in a generated appraisal report. <br>
-Mitigation: Review extracted data, tracked changes, formulas, and compliance findings before relying on the generated Word or Excel output. <br>
-Risk: Automated drafting could be mistaken for professional appraisal judgment. <br>
-Mitigation: Keep comparable selection, adjustments, value conclusions, and final acceptance of report changes under licensed appraiser review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/cruby9/appraisal_ai) <br>
-- [ClawHub skill page](https://clawhub.ai/chadru/appraisal-ai) <br>
+## Use Case:
 
+Licensed real estate appraisers use this skill to draft narrative appraisal reports, fill adjustment grids, and check drafts against project data while retaining responsibility for professional judgment and final acceptance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with command snippets and generated Word and Excel files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated appraisal narratives use tracked changes, and generated adjustment grids preserve formulas and appraiser-entered adjustments for review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Appraisal workfiles may contain sensitive property, client, or assignment data.
+
+Mitigation: Use the skill only with workfiles you are comfortable processing locally or through the tools required by the implementation.
+
+Risk: Drafted narratives, adjustment grids, or quality review findings may be incomplete or inaccurate for a regulated appraisal assignment.
+
+Mitigation: Have the licensed appraiser review extracted data, accept or reject tracked changes, and retain final responsibility for professional judgments and conclusions.
+
+Risk: Installation behavior is described through the project homepage rather than bundled executable code.
+
+Mitigation: Review the project homepage setup instructions before installing or running supporting tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chadru/skills/appraisal-ai)
+- [Project homepage](https://github.com/cruby9/appraisal_ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown guidance for producing Word document narratives, Excel adjustment grids, setup steps, and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

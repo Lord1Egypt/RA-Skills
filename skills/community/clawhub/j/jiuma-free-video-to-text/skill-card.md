@@ -1,41 +1,54 @@
-## Description: <br>
-Jiuma AI skill for downloading Douyin videos and extracting text from video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents resolve Douyin video download links and optionally extract text from the video through Jiuma's remote service.
 
-## Publisher: <br>
-[dddcn1](https://clawhub.ai/user/dddcn1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dddcn1](https://clawhub.ai/user/dddcn1)
 
-## Use Case: <br>
-External users and agents use this skill to resolve Douyin share links into downloadable video URLs and, when requested, submit the resolved video for text extraction through Jiuma's service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided Douyin links, resolved video URLs, task IDs, and extracted text to Jiuma's service. <br>
-Mitigation: Avoid private, sensitive, proprietary, or token-bearing links unless the user trusts Jiuma's handling and retention practices. <br>
-Risk: Text extraction depends on an external API and may fail, return delayed status, or produce incomplete content. <br>
-Mitigation: Check task status before relying on extracted text and review returned content before using it in downstream work. <br>
+## Use Case:
 
+External users and agents use this skill to turn a Douyin video or share link into a resolved video download URL, then optionally submit and poll a Jiuma text-extraction task.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dddcn1/jiuma-free-video-to-text) <br>
-- [Jiuma API endpoint](https://api.jiuma.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-like command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return resolved video URLs, download URLs, task IDs, task status, errors, and extracted text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: User-provided Douyin links, resolved video URLs, and task IDs are sent to Jiuma's remote service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with links that are appropriate to share with Jiuma, and avoid private, sensitive, or tracking-bearing URLs unless the service is trusted for that data.
+
+Risk: Text extraction depends on remote service availability and task completion status.
+
+Mitigation: Check task status before relying on extracted content, and handle failed or still-processing responses in the agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dddcn1/skills/jiuma-free-video-to-text)
+- [Jiuma API endpoint](https://api.jiuma.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-like command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns resolved video URLs, download URLs, task IDs, task status, or extracted text depending on the selected action.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

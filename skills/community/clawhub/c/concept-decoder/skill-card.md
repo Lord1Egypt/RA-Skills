@@ -1,42 +1,53 @@
-## Description: <br>
-Deconstructs complex concepts with a layered, intuition-first pipeline from prerequisites through motivation, analogies, math, connections, and tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Concept Decoder deconstructs complex scientific and mathematical concepts through a layered, intuition-first pipeline that scans prerequisites, explains motivation, builds analogies, translates formulas, maps connections, and tests understanding.
 
-## Publisher: <br>
-[onlybelter](https://clawhub.ai/user/onlybelter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlybelter](https://clawhub.ai/user/onlybelter)
 
-## Use Case: <br>
-External users and developers use this skill to build intuition for abstract, formula-heavy scientific or mathematical concepts through a structured explanation workflow. It is suited for requests such as understanding a concept from scratch, clarifying the intuition behind formulas, or identifying prerequisite gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary flags high-impact moderation authority and a review helper that can run nested Codex with full sandbox bypass by default. <br>
-Mitigation: Install only from the trusted publisher account, avoid sandbox bypass for review workflows unless full local access is intended, and require explicit targets, reasons, confirmation, and authorized accounts for staff moderation commands. <br>
-Risk: The skill produces explanatory educational content that may be incomplete or misleading for complex scientific topics. <br>
-Mitigation: Review generated explanations against authoritative references before relying on them for teaching, research, or decision-making. <br>
+## Use Case:
 
+External users, developers, researchers, and learners use this skill to turn opaque or formula-heavy concepts into structured explanations with prerequisite checks, intuitive motivation, essential math, connections, and diagnostic questions.
 
-## Reference(s): <br>
-- [Concept Decoder on ClawHub](https://clawhub.ai/onlybelter/concept-decoder) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured as layered explanatory prose with prerequisite maps, analogies, equations when relevant, concept maps, and diagnostic questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and calibrates depth to quick, standard, or deep modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Structured educational explanations can still contain conceptual mistakes, weak analogies, or incorrect formulas for specialized topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review formulas, citations, and conclusions against authoritative sources before relying on the explanation in high-stakes scientific, engineering, medical, legal, or financial contexts.
+
+Risk: Standard and deep modes can produce long responses after an initial prerequisite check.
+
+Mitigation: Use quick mode or narrow the requested concept when a short explanation is sufficient.
+
+## Reference(s):
+
+- [Concept Decoder ClawHub skill page](https://clawhub.ai/onlybelter/skills/concept-decoder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown explanation with optional LaTeX equations, text trees, Mermaid diagrams, and spoiler-style checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language; supports quick, standard, and deep depth modes; no external tools or API calls are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

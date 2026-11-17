@@ -1,37 +1,52 @@
-## Description: <br>
-Team Communication helps agents coordinate with predefined team sessions by using sessions_send and sessions_list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team Communication guides agents on using sessions_send and sessions_list for internal team coordination, task handoffs, help requests, and status updates.
 
-## Publisher: <br>
-[ebly](https://clawhub.ai/user/ebly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ebly](https://clawhub.ai/user/ebly)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route coordination requests, task handoffs, testing updates, design requests, and support needs to named team sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent may accidentally share secrets, credentials, private customer data, or excessive conversation history with another session. <br>
-Mitigation: Verify the sessionKey and recipient authorization before sending, and omit sensitive data unless the recipient is trusted and authorized. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ebly/team-communication) <br>
+## Use Case:
 
+Agents and team operators use this skill to route messages to named team sessions, request help, assign testing, coordinate design or support work, and keep communication concise.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes team session routing guidance and example sessions_send commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Messages sent with sessions_send may become shared task context and could expose secrets or private data.
+
+Mitigation: Do not include secrets or private data unless sharing that information is explicitly appropriate.
+
+Risk: The documented session keys are team-specific and may misroute messages in teams that use different session names.
+
+Mitigation: Install only for teams that use these session keys, and verify available sessions with sessions_list before relying on the directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ebly/skills/team-communication)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance with predefined team session keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

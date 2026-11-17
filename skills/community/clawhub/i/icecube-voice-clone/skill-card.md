@@ -1,44 +1,58 @@
-## Description: <br>
-IceCube Voice Clone is an AI voice cloning guide covering tool choices, API examples, deployment options, consent practices, and monetization paths for services such as ElevenLabs, Fish Audio, Resemble AI, Descript, and GPT-SoVITS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Voice Clone provides guidance for evaluating voice-cloning tools and integrating services such as ElevenLabs, Fish Audio, Resemble AI, Descript, and GPT-SoVITS.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-Developers, creators, and teams use this skill to compare voice-cloning tools, plan authorized voice cloning workflows, and produce implementation guidance or API-oriented examples for text-to-speech integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning can expose sensitive voice data or be used without clear consent. <br>
-Mitigation: Use only your own voice or voices with explicit permission, and apply the consent guidance before uploading audio or generating cloned speech. <br>
-Risk: Uploaded voice samples and provider API keys may be mishandled. <br>
-Mitigation: Protect API keys, review each provider's retention and deletion policies, and upload only audio that is authorized for the intended workflow. <br>
-Risk: Generated speech may be mistaken for a real person speaking. <br>
-Mitigation: Disclose AI-generated audio clearly and avoid deceptive, fraudulent, or unauthorized impersonation uses. <br>
+## Use Case:
 
+Developers, creators, and operators use this skill to compare voice-cloning providers, understand setup paths, and draft integration steps for authorized voice cloning and text-to-speech workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ares521521-design/icecube-voice-clone) <br>
-- [ElevenLabs voice creation API endpoint](https://api.elevenlabs.io/v1/voices/add) <br>
-- [ElevenLabs text-to-speech API endpoint](https://api.elevenlabs.io/v1/text-to-speech/{voice_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with comparison tables, checklists, and inline API examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference third-party voice cloning services, API keys, and consent requirements; no automatic actions are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice samples uploaded to third-party services may expose privacy-sensitive or biometric data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the user's own voice or documented authorization, review each provider's retention and deletion policies before upload, and avoid sensitive or third-party recordings.
+
+Risk: Generated cloned audio can mislead listeners if presented without context.
+
+Mitigation: Disclose AI-generated audio where appropriate and avoid fraud, impersonation, or other deceptive uses.
+
+Risk: The skill may be invoked for broad AI voice questions and steer users toward voice-cloning workflows.
+
+Mitigation: Review the skill before installing or enabling it for general AI voice support scenarios.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ares521521-design/skills/icecube-voice-clone)
+- [Publisher profile](https://clawhub.ai/user/ares521521-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with comparison tables, checklists, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider recommendations, pricing comparisons, API examples, compliance reminders, and local deployment guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

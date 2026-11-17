@@ -1,0 +1,33 @@
+{
+  "my_asins": [
+    "B01LP0VI3G",
+    "B0FX33GJ5D"
+  ],
+  "competitor_asins": [],
+  "targets": {
+    "B01LP0VI3G": {
+      "keyword": "yoga mat",
+      "category_path": [
+        "Sports & Outdoors",
+        "Exercise & Fitness",
+        "Yoga"
+      ],
+      "category_source": "keyword(categories API, broadened to 'yoga')",
+      "added": "2026-07-23"
+    },
+    "B0FX33GJ5D": {
+      "keyword": "walking pad",
+      "category_path": [
+        "Sports & Outdoors",
+        "Exercise & Fitness",
+        "Cardio Training",
+        "Treadmills"
+      ],
+      "category_source": "realtime/product categoryPath (no extra credit)",
+      "added": "2026-07-27"
+    }
+  },
+  "alert_preferences": "default",
+  "created": "2026-07-23",
+  "updated": "2026-07-27"
+}

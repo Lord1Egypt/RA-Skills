@@ -1,44 +1,59 @@
-## Description: <br>
-Motor specification and selection tool <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Motor specification and selection tool.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators can use this skill to run a local shell tool for recording, listing, searching, exporting, and managing motor-related entries. It should not be relied on as a validated motor selection system without review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill behaves like a persistent local entry store rather than a real motor specification or selection tool. <br>
-Mitigation: Review the tool before installation and do not treat saved entries as validated motor selection guidance. <br>
-Risk: The security guidance warns that entries are stored as plaintext under ~/.motor by default. <br>
-Mitigation: Avoid storing secrets or sensitive project data and set MOTOR_DIR to an approved local directory when needed. <br>
-Risk: The security guidance notes that export and remove behavior copies or mutates saved entries. <br>
-Mitigation: Review generated exports and deletion targets before running export or remove. <br>
+## Use Case:
 
+Developers and operators can use this skill to run a command-line helper for recording, listing, searching, exporting, and configuring local motor-related entries. Server security evidence notes that the artifact behaves as a generic local data store rather than performing substantive motor selection.
 
-## Reference(s): <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [Skill page](https://clawhub.ai/bytesagain1/motor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Plain text stdout with JSONL storage and optional JSON or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under MOTOR_DIR or ~/.motor by default and can export motor-export.json or motor-export.csv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The artifact does not perform the motor-selection task it claims and may mislead users about its capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended motor-selection behavior before deployment and treat current command output as local record management only.
+
+Risk: The shell script writes persistent local files and can delete or overwrite its own data and export files.
+
+Mitigation: Run only in a contained environment with a dedicated MOTOR_DIR and review file-changing commands before use.
+
+Risk: Server security guidance reports an unsafe config command and command-injection risk.
+
+Mitigation: Fix shell input handling and validate configuration keys and values before enabling the skill for shared or production use.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/motor)
+- [Publisher profile](https://clawhub.ai/user/bytesagain1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output and JSONL/CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MOTOR_DIR when set and otherwise writes persistent data under ~/.motor/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

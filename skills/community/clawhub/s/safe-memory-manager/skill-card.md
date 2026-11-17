@@ -1,40 +1,59 @@
-## Description: <br>
-When building OpenClaw agents that read untrusted text, use this skill to prevent prompt injection and memory poisoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw agents sanitize untrusted memory writes and read bounded memory context to reduce prompt injection and memory poisoning risk.
 
-## Publisher: <br>
-[horn111](https://clawhub.ai/user/horn111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horn111](https://clawhub.ai/user/horn111)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a local memory helper that sanitizes untrusted text before writing it to memory files and reads bounded memory excerpts back into an agent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security and integrity claims may be stronger than the protections enforced by the helper. <br>
-Mitigation: Review carefully before installing, use only with a dedicated memory directory, and do not treat the ISNAD label or regex sanitizer as a strong protection against prompt injection or tampering. <br>
-Risk: Memory files may contain sensitive data or untrusted content that later influences an agent. <br>
-Mitigation: Avoid storing secrets and keep human or automated review in place before relying on persisted memory in sensitive workflows. <br>
+## Use Case:
 
+Developers and engineers building OpenClaw agents use this skill to add a lightweight memory helper that sanitizes stored user text, appends memory entries, and reads limited recent memory context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horn111/safe-memory-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python helper responses and sanitized memory file entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to a dedicated local memory directory and returns status metadata for append and read operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Stored memory can preserve unsafe instructions that later influence an agent if memory is treated as trusted context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat retrieved memory as untrusted quoted data, sanitize or structure every stored field, and review memory content before relying on it for decisions.
+
+Risk: The advertised ISNAD verification should not be treated as proof of authenticity or as a security boundary.
+
+Mitigation: Use the manifest only as a lightweight integrity signal and verify release provenance through server-resolved metadata when available.
+
+Risk: Memory file access could affect unintended files if the memory directory is not constrained by the integrating agent.
+
+Mitigation: Configure a dedicated memory directory with least-privilege filesystem access and avoid sharing it with sensitive agent state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horn111/skills/safe-memory-manager)
+- [Publisher profile](https://clawhub.ai/user/horn111)
+- [ISNAD manifest](artifact/isnad_manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-style status responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes sanitized memory entries to files and returns bounded tail reads from configured memory files.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

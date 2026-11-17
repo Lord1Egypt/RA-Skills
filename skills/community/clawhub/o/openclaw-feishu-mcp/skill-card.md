@@ -1,41 +1,53 @@
-## Description: <br>
-OpenClaw FEISHU MCP configures OpenClaw agents to use Feishu MCP tools for reading, creating, updating, and table-editing cloud documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw FEISHU MCP configures OpenClaw agents to use Feishu MCP for cloud document and table operations.
 
-## Publisher: <br>
-[cry779](https://clawhub.ai/user/cry779) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cry779](https://clawhub.ai/user/cry779)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure an agent for Feishu document workflows, including reading documents, extracting or updating tables, creating documents, and appending or replacing document content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configuration example includes a live-looking app secret that users might copy into their OpenClaw configuration. <br>
-Mitigation: Do not use the embedded secret; create scoped Feishu app credentials, store them securely, and rotate any credential that may have been exposed. <br>
-Risk: The skill enables agent-initiated document write, replace, append, create, and table update actions in Feishu. <br>
-Mitigation: Require explicit user confirmation before document-changing actions and restrict the Feishu app permissions to the minimum required scope. <br>
-Risk: The configured MCP endpoint and referenced Feishu OpenClaw plugin determine how document actions are executed. <br>
-Mitigation: Verify the MCP endpoint and plugin source before installation or production use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure Feishu MCP access so agents can read, create, replace, and append Feishu documents, and read or write document tables.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with JSON configuration and tool invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu document tokens, table block identifiers, app credentials, and markdown document content supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release publishes a concrete Feishu app secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the secret as exposed, rotate it if owned, and configure a user-owned Feishu app credential before use.
+
+Risk: Auto-authenticated Feishu actions can read from or modify cloud documents and tables.
+
+Mitigation: Use least-privilege docx permissions and require explicit user intent before write, append, create, or table-write actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cry779/skills/openclaw-feishu-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-owned Feishu app with appropriate docx permissions and explicit authorization before write, append, create, or table-write actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

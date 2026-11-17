@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "customer-gap",
+  "workflow": "audit",
+  "focus": "promise",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

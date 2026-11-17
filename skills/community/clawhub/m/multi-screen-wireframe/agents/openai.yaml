@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multi Screen Wireframe"
+  short_description: "生成无需构建、可离线用浏览器打开且可编辑的多屏原型"
+  default_prompt: "Use $multi-screen-wireframe to create a complete offline multi-screen prototype from my requirements."

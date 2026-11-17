@@ -1,42 +1,49 @@
-## Description: <br>
-Provides a quantitative agent evaluation framework with yes/no checklists, scoring tiers, recurring self-review, and improvement loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a quantitative yes/no evaluation framework for agent performance with scoring rules, scheduled self-review, and feedback loops for continuous improvement.
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-Developers and team leads use this skill to define quantifiable yes/no evaluations for specialized agents, score historical tasks, and route failures into improvement loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring evaluation of historical task logs can expose sensitive task details. <br>
-Mitigation: Set explicit allowed memory paths and review sensitive records before evaluation. <br>
-Risk: Persistent improvement records can create unintended memory writes. <br>
-Mitigation: Require confirmation before writing evaluation results, patterns, or agent evolution records. <br>
-Risk: Scheduled reports can send performance or task details to unintended recipients. <br>
-Mitigation: Define approved recipients before enabling scheduled reports and avoid sharing sensitive details without review. <br>
+## Use Case:
 
+Developers and agent operators use this skill to define measurable evaluation checklists across content, legal, research, literature, analysis, and medical agents, score task outputs, and trigger improvement actions from recurring reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luaqnyin/agent-eval) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, scoring rules, and scheduled workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces evaluation criteria, score thresholds, memory update patterns, and reporting workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The automatic workflow can read broad task-history memory and write persistent agent-memory records without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized task summaries, require explicit approval before SOUL.md or model/config inspection, and review persistent pattern or PAT updates before they are saved.
+
+## Reference(s):
+
+- [Agent Eval on ClawHub](https://clawhub.ai/luaqnyin/skills/agent-eval)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown checklists, scoring rubrics, workflow schedules, and record templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes weighted yes/no criteria, score tiers, recurring review triggers, and persistent evaluation record formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

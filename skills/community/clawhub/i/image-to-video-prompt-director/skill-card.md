@@ -1,41 +1,54 @@
-## Description: <br>
-Turns still images, product photos, portraits, posters, scenes, or rough video ideas into structured prompts for image-to-video AI tools with motion direction, stability constraints, and platform-ready settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns still images, product photos, portraits, posters, scenes, and rough video ideas into structured prompts for image-to-video AI tools.
 
-## Publisher: <br>
-[gpt-img-2](https://clawhub.ai/user/gpt-img-2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gpt-img-2](https://clawhub.ai/user/gpt-img-2)
 
-## Use Case: <br>
-External users, creators, marketers, and developers use this skill to convert still-image concepts into concise image-to-video prompts that define camera motion, subject and scene motion, stability requirements, and suggested clip settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may upload private or sensitive images to an optional third-party video-generation site after using the generated prompt. <br>
-Mitigation: Use normal caution with private images and review the third-party site's privacy and data-handling terms before upload. <br>
-Risk: Generated image-to-video prompts may not preserve exact text, product details, or identity when used in downstream video tools. <br>
-Mitigation: Review generated videos before publication and keep explicit stability constraints in prompts for logos, labels, faces, and composition. <br>
+## Use Case:
 
+External users and creators use this skill to turn static visuals or image-to-video concepts into clear motion prompts with camera movement, subject motion, stability constraints, suggested settings, and optional variants.
 
-## Reference(s): <br>
-- [Image to Video Prompt Director ClawHub page](https://clawhub.ai/gpt-img-2/image-to-video-prompt-director) <br>
-- [Image to AI Video optional testing site](https://imagetoai.video/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown prompt template with labeled sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, local file access, command execution, or account credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may try generated prompts on an optional third-party testing site that handles uploaded images outside this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the third-party site's terms and data handling before use, and avoid uploading private or sensitive images unless the site is trusted.
+
+Risk: Image-to-video tools may distort text, product packaging, faces, or identity details when animating still images.
+
+Mitigation: Use the skill's stability constraints, keep motion intensity controlled, and review generated videos before publication.
+
+## Reference(s):
+
+- [Image to Video Prompt Director on ClawHub](https://clawhub.ai/gpt-img-2/skills/image-to-video-prompt-director)
+- [Image to AI Video optional testing site](https://imagetoai.video/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured plain text prompt template with Markdown-style section labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No command execution, file access, credentials, API calls, or persistence; optional variants may be included.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

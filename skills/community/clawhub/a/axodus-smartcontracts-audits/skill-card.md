@@ -1,43 +1,53 @@
-## Description: <br>
-Audit Solidity contracts for common vulnerabilities and design risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Solidity contracts for common vulnerabilities and design risks.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Solidity contracts before deployment, after high-risk logic changes, or when integrating with external protocols. It produces prioritized findings with impacted locations, risk explanations, and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output may be mistaken for a formal security audit or an absolute claim that a contract is secure. <br>
-Mitigation: Treat output as advisory review guidance, require qualified review for value-bearing contracts, and avoid claiming contracts are secure based only on the skill output. <br>
-Risk: Users may provide private keys, seed phrases, wallet files, live credentials, or other secrets while supplying contract context. <br>
-Mitigation: Provide contract source and non-secret context only; do not provide private keys, seed phrases, wallet files, or live credentials. <br>
-Risk: The skill explicitly avoids exploit code, so reproduction details may be incomplete for high-risk live targets. <br>
-Mitigation: Use responsible disclosure practices and escalate funds-at-risk or governance-impacting findings to a stricter review process. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to review Solidity contract scopes before deployment or after changes to access control, external calls, accounting, token logic, upgradeability, or protocol integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-smartcontracts-audits) <br>
-- [Publisher profile](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with a YAML audit report schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include severity, location, description, impact, recommendation, and assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.yml, release metadata) <br>
+Risk: Malformed trigger metadata may make automatic activation less predictable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace malformed trigger metadata with explicit smart-contract audit trigger phrases before relying on automatic activation.
+
+Risk: Audit reports can miss vulnerabilities or overstate confidence if they are not reviewed against the full contract scope, threat model, and deployment assumptions.
+
+Mitigation: Use the skill as review support, require human security review for value-bearing contracts, and avoid treating reports as a guarantee that contracts are secure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-smartcontracts-audits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with a structured YAML finding schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a system summary, prioritized findings, assumptions, impacted locations, impact, and remediation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.yml, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

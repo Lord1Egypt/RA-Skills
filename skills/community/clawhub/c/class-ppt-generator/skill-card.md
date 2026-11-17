@@ -1,40 +1,56 @@
-## Description: <br>
-Generates PPT outlines for junior high class meetings or English classes, then uses an AI PPT generator to create the final presentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates junior-high class meeting or English class PPT outlines and presentation content when the user asks for class meeting, homeroom, English lesson, open-class, or related PPT materials.
 
-## Publisher: <br>
-[zhouyuzhy](https://clawhub.ai/user/zhouyuzhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouyuzhy](https://clawhub.ai/user/zhouyuzhy)
 
-## Use Case: <br>
-Teachers and education-content creators use this skill to turn class-meeting or junior high English lesson requests into structured PPT outlines with activities, speaker notes, and slide-format guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [BARF Prompts Framework](references/barf.md) <br>
-- [Class Meeting Topic Library](references/class-topics.md) <br>
-- [English Class Topic Library](references/english-topics.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhouyuzhy/class-ppt-generator) <br>
+Teachers, education staff, and agent users use this skill to turn junior-high class meeting or English lesson requests into structured PPT outlines, teaching activities, speaker notes, and final presentation content through an AI PPT generation workflow.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown outline and presentation-generation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review retrieved teaching material and generated slides before classroom use.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated classroom material may contain inaccurate, age-inappropriate, or locally unsuitable lesson content.
+
+Mitigation: Review generated lesson plans, activities, and speaker notes for accuracy, age appropriateness, and preferred classroom language before use.
+
+Risk: A referenced class-topic link in the skill text appears mistyped, which may prevent an agent from finding the intended local reference.
+
+Mitigation: Confirm local reference paths before relying on retrieved topic material; use artifact/references/class-topics.md as the available class meeting topic library.
+
+## Reference(s):
+
+- [BARF Prompts Framework](artifact/references/barf.md)
+- [Class Meeting Topic Library](artifact/references/class-topics.md)
+- [English Lesson Topic Library](artifact/references/english-topics.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhouyuzhy/skills/class-ppt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style PPT outline and lesson-planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May hand off the generated outline to ai-ppt-generator for final presentation creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

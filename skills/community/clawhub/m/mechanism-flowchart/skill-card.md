@@ -1,46 +1,64 @@
-## Description: <br>
-Generates Mermaid flowchart code and visual representations of medical mechanisms, pathophysiology, and drug action pathways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Mermaid flowchart code and visual representations of medical mechanisms, pathophysiology, and drug action pathways.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, educators, and medical-content authors use this skill to turn supplied mechanism or pathway text into Mermaid flowchart code and diagram metadata for educational diagrams, presentation figures, and pathway visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mechanism diagrams may be mistaken for medical advice or clinical decision support. <br>
-Mitigation: Use the skill only for non-sensitive educational or publication diagram drafting, and review outputs with qualified domain judgment before use. <br>
-Risk: The local Python script and unpinned dependencies create dependency hygiene and execution-review needs. <br>
-Mitigation: Review the script before running it, execute it in a controlled workspace, and avoid installing unnecessary unpinned dependencies. <br>
-Risk: Complex or stress-case pathway inputs can produce weaker boundary handling or diagrams that need refinement. <br>
-Mitigation: Keep prompts scoped to supplied mechanism or pathway text, validate assumptions explicitly, and manually refine complex mechanisms. <br>
+## Use Case:
 
+Developers, educators, and medical content authors use this skill to turn mechanism descriptions into Mermaid diagrams for pathophysiology, disease pathway, drug action, presentation, and publication figure workflows.
 
-## Reference(s): <br>
-- [Mechanism Flowchart Skill Page](https://clawhub.ai/aipoch-ai/mechanism-flowchart) <br>
-- [Mechanism Flowchart Guidelines](references/guidelines.md) <br>
-- [Mermaid Documentation](https://mermaid.js.org/intro/) <br>
-- [Mermaid Flowchart Syntax](https://mermaid.js.org/syntax/flowchart.html) <br>
-- [Mermaid Live Editor](https://mermaid.live/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Mermaid code blocks and JSON metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mermaid visualization requires a Mermaid renderer, and generated medical pathway diagrams should be manually reviewed for accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented install path uses unnecessary unpinned dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove unnecessary dependencies or pin and verify packages before installation.
+
+Risk: Mermaid output generated from untrusted text can carry rendering risk.
+
+Mitigation: Treat generated Mermaid as untrusted content and render it with a restrictive Mermaid security configuration.
+
+Risk: The activation scope is broader than the stated medical diagram purpose.
+
+Mitigation: Invoke the skill only for documented medical mechanism and pathophysiology diagram tasks, and confirm scope before execution.
+
+Risk: Stress and boundary scenarios showed weaker consistency in the audit evidence.
+
+Mitigation: Use fixed output sections for assumptions, constraints, risks, unresolved items, and fallback behavior when inputs are incomplete or complex.
+
+## Reference(s):
+
+- [Mechanism Flowchart Guidelines](artifact/references/guidelines.md)
+- [Mermaid Documentation](https://mermaid.js.org/intro/)
+- [Mermaid Flowchart Syntax](https://mermaid.js.org/syntax/flowchart.html)
+- [Mermaid Live Editor](https://mermaid.live/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Mermaid code blocks and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated diagrams require a Mermaid renderer for visualization; complex mechanisms may need manual refinement.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

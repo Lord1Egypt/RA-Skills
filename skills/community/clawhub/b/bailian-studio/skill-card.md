@@ -1,42 +1,57 @@
-## Description: <br>
-Call Aliyun Bailian through DashScope for OCR, TTS, text-to-image, and image-to-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call Aliyun Bailian via DashScope; support OCR, TTS, text-to-image and image-to-image.
 
-## Publisher: <br>
-[yab](https://clawhub.ai/user/yab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yab](https://clawhub.ai/user/yab)
 
-## Use Case: <br>
-Developers and agents use this skill to run Alibaba Cloud DashScope/Bailian media tasks, including extracting text from images, synthesizing speech, and generating or transforming images from prompts and optional references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, OCR text, and selected local images may be sent to Alibaba Cloud DashScope and related OSS storage. <br>
-Mitigation: Avoid confidential documents, private images, and sensitive prompts unless retention, access control, and deletion behavior are acceptable. <br>
-Risk: Local images used for OCR or image-to-image workflows may be uploaded to configured OSS storage before processing. <br>
-Mitigation: Use URL inputs or non-sensitive local files when possible, and verify OSS bucket access controls and cleanup expectations before use. <br>
-Risk: TTS can play generated audio in the local environment. <br>
-Mitigation: Use the WAV output option or confirm the playback environment is appropriate before running TTS in shared spaces. <br>
+## Use Case:
 
+Developers and agents use Bailian Studio to call Aliyun DashScope for OCR text extraction, TTS synthesis or playback, and text-to-image or image-to-image generation. Local image inputs can be uploaded to OSS when a remote image URL is required by the service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yab/bailian-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime scripts produce plain text, local PNG files, WAV files, or audio playback.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images default to local PNG files under tmp/bailian-studio; OCR prints recognized text; TTS can play audio or save WAV output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Images and text submitted through the skill may be sent to Aliyun DashScope, and local images may be uploaded to OSS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive media and text unless that external processing is acceptable; prefer private buckets, short-lived URLs, and narrowly scoped credentials.
+
+Risk: Untrusted endpoint overrides could expose credentials or private media.
+
+Mitigation: Use documented Aliyun HTTPS endpoints and avoid untrusted DASHSCOPE_BASE_URL, --base-url, or OSS_ENDPOINT values.
+
+Risk: Runtime dependency or environment drift could affect command behavior.
+
+Mitigation: Run the skill in an isolated virtual environment with reviewed, pinned dependencies.
+
+## Reference(s):
+
+- [Bailian Studio on ClawHub](https://clawhub.ai/yab/skills/bailian-studio)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text, command-line output, saved PNG files, and optional WAV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DashScope credentials; OSS credentials are required when local images need to be uploaded before cloud processing.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

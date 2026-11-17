@@ -1,43 +1,54 @@
-## Description: <br>
-Converts Mandarin or Cantonese text into natural Cantonese phrasing and generates Cantonese MP3 speech with selectable tone and voice options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Mandarin or Cantonese text into Cantonese-style speech and generates an MP3 with selectable tone and voice options.
 
-## Publisher: <br>
-[jimpenn](https://clawhub.ai/user/jimpenn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimpenn](https://clawhub.ai/user/jimpenn)
 
-## Use Case: <br>
-External users, developers, and content creators use this skill to convert Chinese text into Cantonese phrasing and generate spoken Cantonese MP3 files for localized audio assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text is synthesized through the edge-tts dependency, so text may be handled by an external TTS service. <br>
-Mitigation: Use only text appropriate for that service and review dependency and service terms before processing sensitive content. <br>
-Risk: The script writes timestamped MP3 files to the current working directory. <br>
-Mitigation: Run it from the intended output directory and review generated files before sharing or committing them. <br>
-Risk: Automatic Cantonese phrasing may change meaning, register, or tone. <br>
-Mitigation: Have a Cantonese speaker review important or customer-facing audio before release. <br>
+## Use Case:
 
+External users and developers can use this skill to turn Mandarin or Cantonese text into spoken Cantonese MP3 output for narration, testing, or content workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimpenn/cantonese-tts) <br>
-- [Publisher profile](https://clawhub.ai/user/jimpenn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown or terminal text with generated MP3 file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates timestamped MP3 files in the current working directory; tone options are normal, slow, fast, and angry; voice options are hiuMaan, hiuGaai, and wanLung.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Speech generation uses edge-tts and may send submitted text to an external network-backed service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential, regulated, or credential-like text unless external processing is acceptable.
+
+Risk: Dependency behavior can change when installing edge-tts without fixed versions.
+
+Mitigation: Install dependencies in a virtual environment and pin versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimpenn/skills/cantonese-tts)
+- [Publisher profile](https://clawhub.ai/user/jimpenn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [CLI command guidance, console status text, and MP3 audio file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports normal, slow, fast, and angry tone settings with hiuMaan, hiuGaai, or wanLung voice selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

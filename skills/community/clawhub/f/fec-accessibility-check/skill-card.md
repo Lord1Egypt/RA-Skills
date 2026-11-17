@@ -1,42 +1,55 @@
-## Description: <br>
-Accessibility Check helps agents review and improve frontend accessibility across semantic structure, keyboard support, focus management, ARIA, screen reader behavior, WCAG 2.2, touch accessibility, and assistive-technology regressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews frontend interfaces for WCAG 2.2 AA accessibility issues across semantics, keyboard navigation, focus, screen readers, and touch interaction.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Frontend developers and reviewers use this skill to audit UI code and interaction flows for WCAG 2.2 AA accessibility issues, then produce a prioritized Markdown report with concrete remediation suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Accessibility guidance or proposed code changes may be incomplete or incorrect for a specific product flow. <br>
-Mitigation: Review findings and any proposed changes before applying them, then verify key flows with keyboard and assistive-technology checks. <br>
-Risk: The skill may inspect UI or source files and write a local report in the workspace. <br>
-Mitigation: Run it only in the intended workspace and review the generated report before sharing or acting on it. <br>
+## Use Case:
 
+Frontend developers and accessibility reviewers use this skill to inspect interfaces, identify barriers against WCAG 2.2 AA, and prepare prioritized findings with suggested fixes.
 
-## Reference(s): <br>
-- [Report Template](references/report-template.md) <br>
-- [Screen Reader Testing](references/screen-reader-testing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-accessibility-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown accessibility review report with prioritized findings and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected report path: reports/accessibility-review-YYYY-MM-DD-HHmmss.md] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence) <br>
+Risk: Broad accessibility-related triggers may activate a review when one was not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm audit scope before inspecting UI or code paths.
+
+Risk: An automated review may overlook barriers in keyboard or assistive-technology use.
+
+Mitigation: Verify critical paths with a keyboard and at least one assistive technology or equivalent check before treating findings as complete.
+
+## Reference(s):
+
+- [Accessibility inspection report template](references/report-template.md)
+- [Screen reader testing guide](references/screen-reader-testing.md)
+- [Project homepage (package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Code]
+
+**Output Format:** [Markdown accessibility review with file-and-line findings and suggested code changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be saved to reports/accessibility-review-YYYY-MM-DD-HHmmss.md.]
+
+## Skill Version(s):
+
+2.9.0 (source: release metadata, README.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

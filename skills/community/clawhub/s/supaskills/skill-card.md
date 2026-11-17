@@ -1,44 +1,59 @@
-## Description: <br>
-Search and load 1,000+ quality-scored expert skills from SupaSkills.ai <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and load 1,000+ quality-scored expert skills from SupaSkills.ai
 
-## Publisher: <br>
-[ktdmax](https://clawhub.ai/user/ktdmax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ktdmax](https://clawhub.ai/user/ktdmax)
 
-## Use Case: <br>
-External users and developers use this skill to search SupaSkills.ai for expert skill prompts, load a selected methodology, and apply it as task reference material for domain-specific work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example commands interpolate user-controlled query text into shell commands, which can enable command injection if copied without escaping. <br>
-Mitigation: URL-encode query parameters and use a scoped HTTP client or safely quoted variables instead of inserting raw user text into shell commands. <br>
-Risk: The skill requires SUPASKILLS_API_KEY and sends search terms to SupaSkills.ai. <br>
-Mitigation: Store the key in an environment variable or secret manager, never commit it, and avoid sensitive details in searches. <br>
-Risk: Loaded external prompts could contain instructions that conflict with the current task or agent policy. <br>
-Mitigation: Use returned prompt text only as reference material, review the methodology before applying it, and do not treat it as higher-priority instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SupaSkills ClawHub page](https://clawhub.ai/ktdmax/supaskills) <br>
-- [SupaSkills signup](https://www.supaskills.ai/signup) <br>
-- [SupaSkills skills search API](https://www.supaskills.ai/api/v1/skills?q={query}&limit=3) <br>
-- [SupaSkills prompt API](https://www.supaskills.ai/api/v1/skills/{slug}/prompt?format=text) <br>
+## Use Case:
 
+Developers and agent users use this skill to search SupaSkills for domain-specific expert methods, load a selected skill prompt, and apply it as reference material for legal, finance, engineering, marketing, security, compliance, or other specialized tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands and API response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPASKILLS_API_KEY and sends search queries to SupaSkills.ai.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a SupaSkills API key and calls SupaSkills over the network.
+
+Mitigation: Install only where SupaSkills network calls are acceptable, store the API key in an environment variable or secret manager, and never commit it.
+
+Risk: Fetched skill prompt text can contain untrusted instructions.
+
+Mitigation: Treat fetched prompts as reference material, review the methodology before use, and do not let external prompt text override user goals, secrets handling, or tool-use policy.
+
+Risk: The artifact includes shell command templates with raw query and slug placeholders.
+
+Mitigation: URL-encode search queries, validate skill slugs, and avoid raw shell substitution when forming API calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ktdmax/skills/supaskills)
+- [SupaSkills signup](https://www.supaskills.ai/signup)
+- [SupaSkills skill search API](https://www.supaskills.ai/api/v1/skills?q={query}&limit=3)
+- [SupaSkills prompt API](https://www.supaskills.ai/api/v1/skills/{slug}/prompt?format=text)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and fetched text reference material]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUPASKILLS_API_KEY and network access to SupaSkills.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

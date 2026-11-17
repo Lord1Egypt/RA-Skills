@@ -1,43 +1,60 @@
-## Description: <br>
-Your personal AI assistant platform - multi-agent orchestration, task management, and autonomous workflow execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal AI assistant platform for multi-agent orchestration, task management, and autonomous workflow execution.
 
-## Publisher: <br>
-[shiyanhui](https://clawhub.ai/user/shiyanhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiyanhui](https://clawhub.ai/user/shiyanhui)
 
-## Use Case: <br>
-Developers use this skill to connect an agent to the 1Person personal assistant service for multi-agent orchestration, autonomous task management, reusable workflows, and persistent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to an external 1Person service using an API key. <br>
-Mitigation: Confirm trust in the service and homepage before installing, and use the narrowest API key available. <br>
-Risk: Persistent memory and multi-agent workflows may retain or share context in ways that affect sensitive data handling. <br>
-Mitigation: Review the service documentation for memory retention, data sharing between agents, workflow approvals, and deletion controls before use. <br>
+## Use Case:
 
+Developers use this skill to connect an agent to the 1Person assistant service for multi-agent task orchestration, workflow execution, persistent memory, and task management.
 
-## Reference(s): <br>
-- [1Person homepage](https://1person.pro) <br>
-- [1Person documentation](https://docs.1person.pro) <br>
-- [ClawHub skill page](https://clawhub.ai/shiyanhui/1person) <br>
-- [Publisher profile](https://clawhub.ai/user/shiyanhui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ONEPERSON_API_KEY for service access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill uses an external assistant service and requires ONEPERSON_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect ONEPERSON_API_KEY like a password and rotate or revoke it if it is exposed.
+
+Risk: Sensitive work sent to the external 1Person service may be handled outside the local agent environment.
+
+Mitigation: Review 1Person's policies before sending sensitive data or regulated work through the skill.
+
+Risk: Persistent memory may retain task context across sessions.
+
+Mitigation: Confirm how stored memory can be reviewed or deleted before using the skill for sensitive workflows.
+
+## Reference(s):
+
+- [1Person homepage](https://1person.pro)
+- [1Person documentation](https://docs.1person.pro)
+- [ClawHub skill page](https://clawhub.ai/shiyanhui/skills/1person)
+- [Publisher profile](https://clawhub.ai/user/shiyanhui)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with environment variable setup instructions and service-directed task output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ONEPERSON_API_KEY and use of the external 1Person service.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

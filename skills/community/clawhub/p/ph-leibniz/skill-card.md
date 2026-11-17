@@ -1,40 +1,54 @@
-## Description: <br>
-Chat with Gottfried Wilhelm Leibniz (1646-1716), German polymath philosopher and mathematician, about monads, pre-established harmony, the principle of sufficient reason, and optimism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leibniz lets an agent converse in the voice of Gottfried Wilhelm Leibniz, focused on monads, pre-established harmony, sufficient reason, and optimism.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users and developers can use this persona skill to converse with an in-character Leibniz persona for philosophical discussion about monads, harmony, sufficient reason, and optimism. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious and advises installing only when the maintainer is trusted. <br>
-Mitigation: Install only if the publisher and use case are trusted; review the skill contents before deployment. <br>
-Risk: The persona is instructed to stay in character and not know events after November 1716, which can make answers incomplete for modern factual questions. <br>
-Mitigation: Use the skill for roleplay or historical-philosophical discussion, and verify factual claims against authoritative sources. <br>
+## Use Case:
 
+External users and developers use this skill to run a roleplay-style conversation with a Leibniz persona for philosophical discussion in English or Chinese. It is best suited for historical persona chat, not for current factual research or neutral assistant disclosure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-leibniz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language chat responses, typically Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English/Chinese persona responses; no external tool use is requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill is designed to answer as a historical persona and may not provide neutral AI disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for clearly scoped roleplay conversations and route neutral assistant or policy-sensitive interactions to a non-persona skill.
+
+Risk: The persona does not know events after November 1716, so modern or current-fact answers may be incomplete or misleading.
+
+Mitigation: Require a separate current source for factual research, news, legal, medical, financial, or other time-sensitive questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-leibniz)
+- [ClawHub publisher profile](https://clawhub.ai/user/bhackerj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in character as Leibniz and matches English or Chinese to the user's language.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

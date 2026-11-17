@@ -1,37 +1,52 @@
-## Description: <br>
-Plan complex codebase migrations, including framework upgrades, language transitions, and architecture refactors, by analyzing dependencies, estimating effort, mapping migration paths, generating phased plans, and tracking progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan complex codebase migrations, including framework upgrades, language transitions, architecture refactors, dependency analysis, effort estimation, migration path mapping, phased planning, and progress tracking.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to assess migration scope, compare source and target stacks, estimate effort, plan phased execution, identify codemods, track progress, and document migration risks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Suggested codemod or npx commands can modify many repository files or pull unreviewed packages.
+
+Mitigation: Pin tool versions, run from a clean git checkpoint, review package sources when appropriate, and inspect generated diffs before committing.
+
+Risk: Migration plans and effort estimates are heuristic and may miss project-specific constraints.
+
+Mitigation: Validate estimates with maintainers, CI results, dependency compatibility checks, and staged migration reviews.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to assess migration scope, identify migration risks and codemods, estimate effort, and create phased plans for major codebase changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown, plain text, JSON, and shell command snippets]
 
-## Reference(s): <br>
-- [Codebase Migration Planner on ClawHub](https://clawhub.ai/charlie-morrison/codebase-migration-planner) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [May include migration assessments, phased plans, effort estimates, codemod suggestions, progress tables, and risk notes.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON with assessment summaries, phased plans, risk tables, effort estimates, codemod recommendations, and migration tracking tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository inspection commands and a MIGRATION.md tracking template; estimates are heuristic and should be reviewed before execution.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+1.0.1 (source: server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

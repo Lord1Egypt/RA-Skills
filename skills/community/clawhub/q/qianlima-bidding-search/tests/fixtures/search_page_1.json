@@ -1,0 +1,34 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 3,
+    "pageCount": 2,
+    "list": [
+      {
+        "id": 101,
+        "title": "北京市第一医院实验室设备采购招标公告",
+        "purchasingUnit": "北京市第一医院",
+        "areaName": "北京市-北京市-东城区",
+        "infoType": "公告-招标公告",
+        "budgetAmount": "1200000.00",
+        "biddingAmount": "",
+        "publishTime": "2026-04-10",
+        "url": "https://www.qianlima.com/bid-101.html",
+        "hasAnnex": true
+      },
+      {
+        "id": 102,
+        "title": "北京市第二医院实验室仪器采购招标公告",
+        "purchasingUnit": "北京市第二医院",
+        "areaName": "北京市-北京市-西城区",
+        "infoType": "公告-招标公告",
+        "budgetAmount": "900000.00",
+        "biddingAmount": "",
+        "publishTime": "2026-04-11",
+        "url": "https://www.qianlima.com/bid-102.html",
+        "hasAnnex": false
+      }
+    ]
+  }
+}

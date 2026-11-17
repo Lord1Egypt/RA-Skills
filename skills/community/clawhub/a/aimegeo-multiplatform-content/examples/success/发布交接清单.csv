@@ -1,0 +1,4 @@
+platform,content_type,title,article,text_status,asset_status,rules_status,handoff_status,source_ids,pending_actions
+zhihu,explainer,整理品牌资料前，先分清格式检查与事实核验,zhihu.md,complete,not_requested,pending_confirmation,待规则确认,S01,目标账号当前标题、外链和编辑器格式规则待确认；本稿未使用表格。
+csdn,tutorial,为青禾知识卡准备 CSV：用 Python 做本地导入前预检,csdn.md,complete,not_requested,pending_confirmation,待规则确认,S01,目标账号当前标题、代码块和附件呈现方式待确认。
+xiaohongshu,note,整理品牌资料，先核对这些边界,xiaohongshu.md,complete,pending_creation,pending_confirmation,待素材及规则确认,S01,小红书选用前检查图：依次呈现 CSV 格式、单批 200 行、无 OCR、无同步或自动发布；适配目标账号当前图文画幅，图片待制作，不使用虚构界面、客户评价或 Logo。；目标账号当前标题、图文图片要求与标签规则待确认。

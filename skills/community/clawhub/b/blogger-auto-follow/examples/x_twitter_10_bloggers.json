@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "sama",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AI领袖",
+    "fans": "300万"
+  },
+  {
+    "id": 2,
+    "name": "karpathy",
+    "industry": "科技 · 数码 · 编程",
+    "category": "深度学习",
+    "fans": "110万"
+  },
+  {
+    "id": 3,
+    "name": "ylecun",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AI首席科学家",
+    "fans": "75万"
+  },
+  {
+    "id": 4,
+    "name": "levelsio",
+    "industry": "商业 · 财经 · 创业",
+    "category": "独立开发者",
+    "fans": "50万"
+  },
+  {
+    "id": 5,
+    "name": "paulg",
+    "industry": "商业 · 财经 · 创业",
+    "category": "硅谷创投",
+    "fans": "180万"
+  },
+  {
+    "id": 6,
+    "name": "EMostaque",
+    "industry": "科技 · 数码 · 编程",
+    "category": "开源AI",
+    "fans": "30万"
+  },
+  {
+    "id": 7,
+    "name": "bilawalsidhu",
+    "industry": "设计 · 视觉 · 创意",
+    "category": "空间计算",
+    "fans": "20万"
+  },
+  {
+    "id": 8,
+    "name": "swyx",
+    "industry": "科技 · 数码 · 编程",
+    "category": "AI工程师",
+    "fans": "15万"
+  },
+  {
+    "id": 9,
+    "name": "OfficialLoganK",
+    "industry": "科技 · 数码 · 编程",
+    "category": "开发者生态",
+    "fans": "22万"
+  },
+  {
+    "id": 10,
+    "name": "Linus__Torvalds",
+    "industry": "科技 · 数码 · 编程",
+    "category": "开源操作系统",
+    "fans": "80万"
+  }
+]

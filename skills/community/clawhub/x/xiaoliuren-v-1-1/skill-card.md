@@ -1,42 +1,54 @@
-## Description: <br>
-A Chinese Xiao Liu Ren assistant for casting, charting, explaining, and teaching Xiao Liu Ren divination using numbers or Beijing-time lunar date inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Liu Ren Instant Divination helps an agent perform Chinese Xiao Liu Ren casting, charting, and interpretation using current Beijing time, user-provided numbers, lunar time inputs, or direct palace selections.
 
-## Publisher: <br>
-[yinongcai](https://clawhub.ai/user/yinongcai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinongcai](https://clawhub.ai/user/yinongcai)
 
-## Use Case: <br>
-External users use this skill for Xiao Liu Ren divination requests, including casting, charting, terminology lookup, and reflective interpretation. It is intended for entertainment or personal reflection, not medical, legal, financial, or life-critical decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides divination-style interpretations that could be mistaken for authoritative advice. <br>
-Mitigation: Treat results as reflective or entertainment guidance and do not rely on them for medical, legal, financial, or life-critical decisions. <br>
-Risk: The skill may trigger on broad divination phrasing and defaults to Chinese output. <br>
-Mitigation: Install it only when a Chinese Xiao Liu Ren casting assistant is desired, and review outputs for fit before using them. <br>
+## Use Case:
 
+External users and agents use this skill for Chinese-language Xiao Liu Ren cultural divination, including casting, chart explanation, and reflective interpretation. The skill is intended for trend analysis and self-reflection rather than deterministic, professional, or high-stakes advice.
 
-## Reference(s): <br>
-- [小六壬参考资料](references/xiaoliuren-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yinongcai/xiaoliuren-v-1-1) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yinongcai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with Chinese explanatory text, tables, details blocks, and divination chart results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local deterministic Python calculator for Xiao Liu Ren charting when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Users may treat divination results as health, legal, financial, dispute, or other professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as cultural or reflective content and direct users to qualified experts for important decisions.
+
+Risk: Repeated readings for the same matter can create overreliance or conflicting interpretations.
+
+Mitigation: Apply the skill's one-matter-one-reading posture, ask for clarification only when needed, and show the calculation process for user review.
+
+## Reference(s):
+
+- [小六壬参考资料](references/xiaoliuren-reference.md)
+- [ClawHub skill release](https://clawhub.ai/yinongcai/skills/xiaoliuren-v-1-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown with optional JSON chart data from the deterministic calculator script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include the casting method, input values, palace results, calculation process, and interpretive guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

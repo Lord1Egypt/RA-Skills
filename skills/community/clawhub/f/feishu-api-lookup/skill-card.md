@@ -1,41 +1,55 @@
-## Description: <br>
-Looks up Feishu Open API documentation for endpoint discovery, parameters, responses, scripts, and API error troubleshooting using web search and page fetch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up Feishu Open API documentation for endpoint discovery, parameter and response details, API-calling scripts, and troubleshooting Feishu API errors.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and engineers use this skill to find Feishu Open Platform API endpoints, understand request and response shapes, identify required permissions, and draft or troubleshoot Feishu API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to read local Feishu app credentials and use them for tenant API actions. <br>
-Mitigation: Provide narrowly scoped credentials explicitly, avoid exposing unrelated local configuration secrets, and review credential-handling code before execution. <br>
-Risk: Generated Feishu API calls may perform real create, update, delete, permission, message, file, document, or record operations. <br>
-Mitigation: Review each generated API call and its required permissions before execution, especially operations that change data or access rights. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/deadblue22/feishu-api-lookup) <br>
-- [Feishu Open Platform API Documentation](https://open.feishu.cn/document/server-docs/im-v1/message/create) <br>
-- [Feishu Apifox API Mirror](https://feishu.apifox.cn) <br>
+## Use Case:
 
+Developers and engineers use this skill to find Feishu Open Platform API documentation, identify endpoints, understand request and response formats, and draft or troubleshoot scripts that call Feishu APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with API endpoint summaries, request details, response notes, and code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu API paths, headers, request and response JSON, permission requirements, pagination notes, and error-code guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to access local Feishu app credentials and request tenant access tokens.
+
+Mitigation: Use placeholders or a dedicated secret manager, avoid exposing local credential files to the agent, and require explicit user confirmation before token requests.
+
+Risk: Authenticated Feishu API calls may affect tenant data, including write-capable operations.
+
+Mitigation: Review requested API scopes and require explicit confirmation before any write-capable or tenant-affecting Feishu API call.
+
+## Reference(s):
+
+- [Feishu message create API documentation](https://open.feishu.cn/document/server-docs/im-v1/message/create)
+- [Feishu Apifox documentation mirror](https://feishu.apifox.cn)
+- [ClawHub skill release page](https://clawhub.ai/deadblue22/skills/feishu-api-lookup)
+- [Publisher profile](https://clawhub.ai/user/deadblue22)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with API endpoint summaries and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu HTTP methods, paths, headers, request bodies, response fields, error codes, required permissions, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

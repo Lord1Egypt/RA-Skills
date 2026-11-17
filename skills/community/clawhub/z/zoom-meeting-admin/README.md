@@ -15,6 +15,14 @@ Manage and schedule Zoom meetings REST API directly via Server-to-Server OAuth �
 
 ## Credentials
 
+> ⚠️ **The `ZOOM_CLIENT_SECRET` in `.env` is equivalent to an account-admin password.** Anyone holding the `ACCOUNT_ID + CLIENT_ID + CLIENT_SECRET` triple can mint a 1-hour account-level access token that reads all meeting metadata, cloud recordings, and can delete meetings.
+>
+> - Never commit `.env` to git. Confirm your IDE, backup tools, and file-sync services (iCloud / Dropbox / OneDrive / Nutstore) are not auto-uploading it.
+> - `chmod 600 .env`. The token cache at `~/.zoom-s2s-token.json` is auto-set to `chmod 600` by the script.
+> - Use the **minimum scopes** you actually need (see table below). Do not enable `meeting:write:delete`, `cloud_recording:read:*`, or `user:read:list_users` unless required.
+> - Create a **dedicated** Server-to-Server App for this skill — do not reuse credentials from other business apps.
+> - If leaked: delete the App in Zoom Marketplace → re-create and rotate all four values → `rm -f ~/.zoom-s2s-token.json`.
+
 Edit the `.env` file with your Zoom Server-to-Server OAuth App credentials:
 
 ```env
@@ -74,6 +82,6 @@ zoom-s2s-oauth/
 | Protocol | MCP (JSON-RPC) | Standard REST (pure Python, no deps) |
 | Token | User-Managed OAuth | Server-to-Server OAuth |
 | Complexity | High (proxy+OAuth) | Low (direct call) |
-| Features | Zoom MCP tools | All Zoom REST API |
+| Features | Zoom MCP tools | 7 whitelisted CLI actions (list/get/create/delete meeting, get/list user, list recordings) |
 
 If you only need core Zoom meeting/recording features, Server-to-Server REST is simpler.

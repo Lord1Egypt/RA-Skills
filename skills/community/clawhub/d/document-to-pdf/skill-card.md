@@ -1,42 +1,54 @@
-## Description: <br>
-Convert office documents (DOCX, DOC, PPT, PPTX, XLS, XLSX, CSV, TXT, ODT, RTF) to PDF via the PDFAPIHub cloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert office documents (DOCX, DOC, PPT, PPTX, XLS, XLSX, CSV, TXT, ODT, RTF) to PDF via the PDFAPIHub cloud API.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and automation teams use this skill to convert Word, presentation, spreadsheet, text, ODT, and RTF documents into PDFs through the PDFAPIHub hosted API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents and the PDFAPIHub API key are sent to a third-party cloud service for conversion. <br>
-Mitigation: Use only with documents and credentials approved for PDFAPIHub processing; avoid confidential, regulated, or highly sensitive files unless that service and its retention policy have been reviewed. <br>
-Risk: Converted files may remain with the service provider for a retention period disclosed by the skill. <br>
-Mitigation: Account for the stated 30-day auto-deletion period when deciding whether a document is appropriate to upload. <br>
+## Use Case:
 
+Developers and workflow builders use this skill to convert Word, spreadsheet, presentation, and text documents to PDF through the PDFAPIHub hosted API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/document-to-pdf) <br>
-- [PDFAPIHub Documentation](https://pdfapihub.com/docs) <br>
-- [PDFAPIHub API Base](https://pdfapihub.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a PDF URL, base64 PDF content, both, or a file response depending on the requested output mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Documents and the API key are sent to PDFAPIHub for conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the document contents and credential handling are acceptable for PDFAPIHub; avoid confidential, regulated, or proprietary files unless the provider's handling and retention practices have been independently accepted.
+
+Risk: Converted files are handled by a third-party cloud service and the artifact notes a 30-day auto-deletion period.
+
+Mitigation: Review retention requirements before use and avoid uploading files that require stricter deletion, residency, or confidentiality controls.
+
+## Reference(s):
+
+- [PDFAPIHub Documentation](https://pdfapihub.com/docs)
+- [PDFAPIHub API](https://pdfapihub.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header. Documents may be provided by public URL, base64 payload, or multipart upload, and responses can include a PDF URL, base64 content, or file output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

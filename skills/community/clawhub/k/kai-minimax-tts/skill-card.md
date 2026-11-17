@@ -1,43 +1,55 @@
-## Description: <br>
-Generate voice audio and transcribe speech using MiniMax TTS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate voice audio and transcribe speech using MiniMax TTS API.
 
-## Publisher: <br>
-[ogdegenblaze](https://clawhub.ai/user/ogdegenblaze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ogdegenblaze](https://clawhub.ai/user/ogdegenblaze)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate English or Spanish speech audio through MiniMax and to transcribe local audio files into text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text provided for speech generation is sent to MiniMax. <br>
-Mitigation: Avoid sending secrets, regulated content, or sensitive personal data unless that use is approved. <br>
-Risk: Generated audio and transcript files are saved locally and may contain sensitive content. <br>
-Mitigation: Use an appropriate workspace location and delete generated files when they are no longer needed. <br>
-Risk: The skill depends on a MiniMax API key and local command-line tools. <br>
-Mitigation: Keep MINIMAX_API_KEY protected and confirm whisper, curl, and xxd are installed before use. <br>
+## Use Case:
 
+Developers and agents use this skill to generate English or Spanish speech audio through MiniMax TTS and to transcribe supplied audio files with local Whisper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ogdegenblaze/kai-minimax-tts) <br>
-- [MiniMax text-to-audio API endpoint](https://api-uw.minimax.io/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands; generated MP3 audio and TXT transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY plus whisper, curl, and xxd; writes Kai.mp3 and latest_from_blaze.txt in the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Text sent for speech generation is submitted to MiniMax using the configured API key and may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets or highly sensitive text, and review MiniMax data handling requirements before use.
+
+Risk: Generated audio and transcript files are saved in a predictable workspace path by default.
+
+Mitigation: Set KAI_MINIMAX_WORKSPACE to an access-controlled location and manage generated files according to local retention and privacy policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ogdegenblaze/skills/kai-minimax-tts)
+- [MiniMax TTS API endpoint used by the skill](https://api-uw.minimax.io/v1/t2a_v2)
+- [Publisher profile](https://clawhub.ai/user/ogdegenblaze)
+
+## Skill Output:
+
+**Output Type(s):** [audio, text, shell commands, configuration]
+
+**Output Format:** [MP3 audio file, plain-text transcript file, and Markdown setup or usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated voice is saved as Kai.mp3, and transcription output is saved as latest_from_blaze.txt in the configured workspace.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

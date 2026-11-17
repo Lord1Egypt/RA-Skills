@@ -2,6 +2,11 @@
 
 Detailed advanced command usage, loaded on demand.
 
+These are manual command references for an authorized human in a trusted
+offline session. Agents use only `scripts/agent-crash.sh` operations; an
+unsupported query needs a precise human handoff, not direct interpreter input.
+Protect dumps and output, and bound traversals to the object or range needed.
+
 ## list - Linked List Traversal
 
 Traverse kernel linked lists, automatically following next/prev pointers:
@@ -44,6 +49,10 @@ crash> list -B -h <start_addr>
 
 Read and display memory contents:
 
+The `-r` option below writes a file. It is human-only: use a protected output
+path for an explicitly requested offline export. The agent wrapper rejects
+`-r` and other arbitrary options, even though the command is named `rd`.
+
 ```
 # Basic syntax
 rd [options] <address|symbol> [count]
@@ -67,8 +76,8 @@ rd [options] <address|symbol> [count]
 # Data size options
 -8      # 8-bit
 -16     # 16-bit
--32     # 32-bit (default)
--64     # 64-bit
+-32     # 32-bit (default on 32-bit targets)
+-64     # 64-bit (default on 64-bit targets; default unit is sizeof(long))
 
 # Range options
 -e addr     # display up to specified address
@@ -329,7 +338,9 @@ crash> bt -R spin_lock         # only stacks containing spin_lock
 crash> bt -I ffffffff81000000 -S ffff880000000000  # custom start point
 ```
 
-## GDB Passthrough Mode
+## GDB Passthrough Mode — Human Reference Only
+
+Only an authorized human may use these examples in a trusted offline session. Agents must not bypass the restricted wrapper with GDB, shell escapes, command files, extensions, or output redirection. Review any scripts first and protect dump/output access.
 
 Directly use GDB commands:
 

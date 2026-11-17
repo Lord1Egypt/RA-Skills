@@ -1,42 +1,51 @@
-## Description: <br>
-Creates a pending HiJavis to-do card with a ready-to-paste Claude brainstorming prompt from recent voice or keyboard transcript context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns brainstorm-worthy voice or keyboard transcripts into pending to-do cards with prompts for a guided brainstorming session in Claude.
 
-## Publisher: <br>
-[samuel-wei](https://clawhub.ai/user/samuel-wei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samuel-wei](https://clawhub.ai/user/samuel-wei)
 
-## Use Case: <br>
-External HiJavis users and agent operators use this skill to turn recent brainstorm-worthy voice or keyboard transcript units into pending calendar to-do cards that hand off to Claude for an interactive brainstorming session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect recent voice or keyboard transcript units to identify brainstorm-worthy content. <br>
-Mitigation: Install only when this transcript review behavior is desired, and review or discard unwanted pending cards in the HiJavis Calendar tab. <br>
-Risk: Manual runs can scan the recent transcript window by default and may create a card from context the user did not intend to keep. <br>
-Mitigation: Use the pending-card Confirm/Discard gate before saving cards to the calendar. <br>
+## Use Case:
 
+HiJavis users can turn recent voice notes or keyboard input into a pending calendar card and a ready-to-paste prompt for brainstorming in Claude. The skill can run automatically after each completed input or on request, using the last 24 hours of transcripts by default for manual requests.
 
-## Reference(s): <br>
-- [Brainstorming on ClawHub](https://clawhub.ai/samuel-wei/javis-brainstorming) <br>
-- [HiJavis iPhone App](https://apps.apple.com/us/app/hijavis/id6745134765) <br>
-- [to-do card contract](references/todo-card-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [JSON transcript fetch output and to-do-card payloads, Markdown chat digests, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces pending HiJavis calendar cards with ready-to-paste Claude prompts and source transcript references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence and package.json) <br>
+Risk: Automatic processing can examine sensitive voice and keyboard transcripts before a user confirms a card; manual use reads the last 24 hours by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only if transcript processing is acceptable; review pending cards and prompts before confirming or using them, and disable the skill if automatic transcript-derived cards or chat digests are unwanted.
+
+## Reference(s):
+
+- [Brainstorming release on ClawHub](https://clawhub.ai/samuel-wei/skills/javis-brainstorming)
+- [To-do card contract](references/todo-card-contract.md)
+- [HiJavis iPhone app](https://apps.apple.com/us/app/hijavis/id6745134765)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Pending to-do card with a ready-to-paste prompt and a Markdown chat digest]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cards require confirmation or discard; the skill does not perform the brainstorming itself.]
+
+## Skill Version(s):
+
+0.6.4 (source: server-resolved release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

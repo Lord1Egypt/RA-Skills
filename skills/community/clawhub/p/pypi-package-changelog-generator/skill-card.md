@@ -1,45 +1,60 @@
-## Description: <br>
-Analyzes changes between PyPI package versions and produces structured changelog evidence for upgrade summaries, version diffs, release notes, dependency changes, compatibility risks, and breaking-change review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes changes between PyPI package versions and generates structured changelog evidence for upgrade notes, release notes, dependency changes, compatibility risks, and breaking changes.
 
-## Publisher: <br>
-[annangela](https://clawhub.ai/user/annangela) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[annangela](https://clawhub.ai/user/annangela)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare two PyPI package releases or a version range before upgrading dependencies. It helps summarize evidence from PyPI metadata, GitHub compare data when available, source archives, and package metadata changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make outbound network requests to PyPI and GitHub while resolving package metadata, release archives, commits, reviews, and file changes. <br>
-Mitigation: Run it only in environments where those outbound requests are acceptable, and review warnings when GitHub compare data is unavailable or archive fallback is used. <br>
-Risk: An optional GitHub token may be used to improve API reliability and rate-limit headroom. <br>
-Mitigation: Provide only a short-lived, least-privilege read-only token through GITHUB_TOKEN or a secret manager, and avoid placing real tokens in persistent configuration, chat messages, logs, or command arguments. <br>
-Risk: Generated summaries may be incomplete if source evidence is truncated, rate limited, or based on archive diffs instead of Git history. <br>
-Mitigation: Tell users when truncation, rate limiting, repository lookup failure, or archive fallback appears in the structured JSON result. <br>
+## Use Case:
 
+Developers and maintainers use this skill to compare PyPI package versions or version ranges and produce upgrade-focused changelog evidence, including release notes, dependency changes, compatibility risks, and breaking-change signals.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/AnnAngela/pypi-package-changelog-generator) <br>
-- [Output schema](artifact/references/output-schema.md) <br>
-- [Failure modes](artifact/references/failure-modes.md) <br>
-- [OpenClaw configuration](artifact/references/openclaw-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON evidence from the wrapper, typically summarized by the agent as concise Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PyPI package name plus either an explicit from/to version pair or a version range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: release metadata) <br>
+Risk: The skill makes outbound requests to PyPI and GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where those outbound requests are acceptable.
+
+Risk: The skill can process source archives from requested PyPI packages, including untrusted or unusually large packages.
+
+Mitigation: Run it with normal agent time, memory, and temporary-storage limits.
+
+Risk: The artifact includes a plaintext GitHub token configuration example.
+
+Mitigation: Prefer no GitHub token, or inject a short-lived read-only token through environment or apiKey configuration instead of storing direct plaintext token values.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/AnnAngela/pypi-package-changelog-generator)
+- [Output schema](references/output-schema.md)
+- [Failure modes](references/failure-modes.md)
+- [OpenClaw config](references/openclaw-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [Structured JSON evidence and concise Markdown summary sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report truncation, archive fallback, weak evidence, warnings, or errors when those conditions appear in the JSON result.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

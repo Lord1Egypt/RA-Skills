@@ -1,49 +1,66 @@
-## Description: <br>
-Gate dual investment skill for dual currency product discovery, target price settlement analysis, position and balance queries, and confirmation-gated dual order placement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate dual investment skill for product discovery, settlement simulation, position management, balance queries, and confirmation-gated dual order placement.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to browse Gate dual investment products, simulate settlement outcomes, review dual positions and balances, and prepare dual investment orders with explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Gate dual investment orders when connected to an authenticated Gate MCP server. <br>
-Mitigation: Use a dedicated least-privilege API key and require explicit user confirmation after showing the full order draft before any placement. <br>
-Risk: Dual investment is not principal-protected and settlement may occur in a different currency than the investment currency. <br>
-Mitigation: Show settlement scenarios and product risk disclaimers, and ask the user to verify the amount, target price, APY, and settlement outcome before confirming. <br>
-Risk: Minimum investment requirements or product constraints may differ from the skill output. <br>
-Mitigation: Double-check minimum investment requirements and conflicting product details in the Gate app or website before placing an order. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Gate dual investment products, model settlement outcomes, review positions and balances, and prepare dual investment orders through a Gate MCP session. Write actions require explicit confirmation and should be used only with appropriate Gate credentials and user review.
 
-## Reference(s): <br>
-- [Gate Exchange Dual Investment Skill](https://clawhub.ai/gate-exchange/gate-exchange-dual) <br>
-- [Gate Skills Repository](https://github.com/gate/gate-skills) <br>
-- [Gate MCP Repository](https://github.com/gate/gate-mcp) <br>
-- [MCP Execution Specification](references/mcp.md) <br>
-- [Product Query Reference](references/product-query.md) <br>
-- [Subscription Reference](references/subscription.md) <br>
-- [Settlement Assets Reference](references/settlement-assets.md) <br>
-- [Gate Runtime Rules](references/gate-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown responses with tables, order drafts, settlement summaries, and risk disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform authenticated Gate MCP read operations and confirmation-gated order placement when the user explicitly approves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can place non-cancelable financial orders through Gate dual investment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Gate MCP credential limited to the minimum Earn:Write scope the user accepts, and require explicit immediate confirmation before every order placement.
+
+Risk: Financial output can mislead users if APY, minimum amount, guarantee wording, or raw error messages are handled incorrectly.
+
+Mitigation: Review displayed APY calculations, product terms, and user-facing wording against Gate data before relying on responses or placing orders.
+
+Risk: Dual investment is not principal-protected and settlement may occur in a different currency than the initial investment.
+
+Mitigation: Show both settlement scenarios and the non-principal-protected risk note before any investment decision or order confirmation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-exchange-dual)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/gate-exchange)
+- [ClawHub Metadata Homepage](https://github.com/gate/gate-skills)
+- [Gate MCP Dependency](https://github.com/gate/gate-mcp)
+- [README](artifact/README.md)
+- [MCP Execution Specification](artifact/references/mcp.md)
+- [Product Query Workflows](artifact/references/product-query.md)
+- [Subscription and Order Placement Workflows](artifact/references/subscription.md)
+- [Settlement and Assets Workflows](artifact/references/settlement-assets.md)
+- [Runtime Rules](artifact/references/gate-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown with tables, order drafts, settlement scenarios, and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Gate MCP tools with required API credentials; order placement is confirmation-gated.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

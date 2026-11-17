@@ -1,44 +1,60 @@
-## Description: <br>
-Cross-system permission orchestration, workflow automation, and data consistency for enterprise software. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-system permission orchestration, workflow automation, and data consistency for enterprise software.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Enterprise developers and IT or security operations teams use this skill to check and reconcile permissions across SaaS systems, define cross-system workflows, and export audit evidence for compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to configure sensitive SaaS credentials and service-account material. <br>
-Mitigation: Keep .env files and service-account JSON outside repositories, use least-privilege test credentials first, and rotate tokens on a regular schedule. <br>
-Risk: Permission checks, workflow execution, and audit exports can affect production services or expose sensitive access data. <br>
-Mitigation: Require explicit confirmation before high-impact actions, review generated API calls before execution, and restrict admin or test endpoints to non-production environments. <br>
-Risk: The server security verdict is suspicious because the documentation describes high-impact enterprise operations without enough scoping or safety controls. <br>
-Mitigation: Review the skill before production installation, validate connected-system scopes, and deploy first in a demo or staging environment. <br>
+## Use Case:
 
+Enterprise operators, administrators, and developers use this skill to coordinate permission checks, workflow automation, data consistency, and compliance reporting across systems such as Salesforce, SAP, Workday, Google Workspace, and Jira.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/enterprise-hub) <br>
-- [Project homepage](https://github.com/ZhenRobotics/openclaw-enterprise-hub) <br>
-- [Project documentation](https://github.com/ZhenRobotics/openclaw-enterprise-hub/tree/main/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with REST, GraphQL, YAML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce API calls, workflow definitions, configuration steps, and audit-report guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog list 1.0.0-alpha) <br>
+Risk: Broad enterprise credentials may be exposed or overused during setup and workflow execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege service accounts, store secrets in a secret manager, avoid production credentials in local .env files, and test first in an isolated environment.
+
+Risk: Automated workflows, exports, and admin actions can change enterprise systems or expose sensitive data without enough scoping.
+
+Mitigation: Narrow auto-invocation, require explicit approval for workflows, exports, and admin actions, and verify server-side authorization before relying on examples.
+
+Risk: The release references mutable remote code without enough safety controls.
+
+Mitigation: Use a pinned, verified release and review the package before installing it in a real enterprise environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/enterprise-hub)
+- [Project homepage](https://github.com/ZhenRobotics/openclaw-enterprise-hub)
+- [Project documentation](https://github.com/ZhenRobotics/openclaw-enterprise-hub/tree/main/docs)
+- [Project issues](https://github.com/ZhenRobotics/openclaw-enterprise-hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JSON, YAML, REST, and GraphQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow definitions, configuration steps, API requests, audit-report guidance, and compliance-oriented operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog list 1.0.0-alpha)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

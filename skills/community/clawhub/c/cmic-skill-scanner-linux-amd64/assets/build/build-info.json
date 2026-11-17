@@ -1,8 +1,8 @@
 {
-  "version": "v0.9.0",
+  "version": "v0.11.1",
   "target_os": "linux",
   "target_arch": "amd64",
   "binary_name": "skillscan",
-  "built_at_unix": 1779962644,
-  "checksum": "864f9a0189268139878c06bce7a127687f9e491a070d7c7345d22932c899bcd8"
+  "built_at_unix": 1785134501,
+  "checksum": "bb3847f3afca734ef0cf6c061f553602b3df5dad23f726215d25812b74d01bf0"
 }

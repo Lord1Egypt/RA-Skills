@@ -1,51 +1,70 @@
-## Description: <br>
-Enables AI-powered parsing and key information extraction from high-frequency documents including invoices, orders, receipts, long texts, and common Chinese identity and credential documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI-powered parsing and key information extraction from high-frequency documents including invoices, orders, receipts, long texts, and common Chinese identity and credential documents.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-External users, business operators, and agent developers use this skill to parse documents, extract structured fields, query processing tasks, and manage custom extraction applications through the Laiye ADP CLI. It is suited to finance, administrative, HR, procurement, and document automation workflows that need JSON-ready OCR and extraction results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends document contents to Laiye-hosted cloud services, which may expose sensitive IDs, HR files, invoices, contracts, or other regulated information. <br>
-Mitigation: Use it only after confirming approval to process those documents with Laiye ADP and understanding the service's data handling terms. <br>
-Risk: The skill requires API credentials and can write batch outputs containing sensitive extracted data. <br>
-Mitigation: Store API keys securely, avoid sharing credentials in prompts or logs, and write exported results only to restricted directories. <br>
-Risk: The artifact documents remote installer commands that pipe downloaded scripts into a shell. <br>
-Mitigation: Prefer a pinned package installation, or inspect and verify downloaded installer scripts before execution. <br>
-Risk: The service uses credits and may incur commercial cost for document parsing, invoice extraction, order extraction, or custom extraction. <br>
-Mitigation: Check the account credit balance and confirm the intended processing scope before running batch or high-volume jobs. <br>
+## Use Case:
 
+Developers, AI agent builders, and enterprise operations teams use this skill to configure and invoke Laiye ADP CLI workflows for document parsing, structured field extraction, custom extraction apps, batch processing, and asynchronous result queries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/laiye-ocr) <br>
-- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh) <br>
-- [OpenAPI User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd) <br>
-- [Public Cloud Operation Manual](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe) <br>
-- [Command Reference](references/commands.md) <br>
-- [Response Schema Reference](references/response-schema.md) <br>
-- [Error Handling Guide](references/error-handling.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON result handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying CLI returns structured JSON for parsing, extraction, task query, configuration, app management, and credit-balance operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.3 (source: server-resolved release metadata) <br>
+Risk: First-use setup may install mutable remote or unpinned global software before processing sensitive documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, use a pinned and verified CLI installation path, and avoid pipe-to-shell or immediate PowerShell execution from mutable URLs.
+
+Risk: The workflow can upload invoices, identity documents, HR files, financial records, local files, or URL lists to Laiye ADP.
+
+Mitigation: Only process documents the user is authorized to send to Laiye ADP, and confirm the selected regional API base URL before use.
+
+Risk: API keys and app caches are required for operation and may be stored outside the conversation.
+
+Mitigation: Confirm where credentials and application caches are stored, avoid exposing API keys in prompts or logs, and clear configuration when it is no longer needed.
+
+Risk: The artifact license says commercial use requires explicit written authorization.
+
+Mitigation: Confirm Laiye's commercial authorization terms before using the skill for revenue-generating or customer-facing work.
+
+## Reference(s):
+
+- [ADP CLI command reference](references/commands.md)
+- [ADP CLI response schema](references/response-schema.md)
+- [ADP CLI examples](references/examples.md)
+- [ADP CLI error handling guide](references/error-handling.md)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh)
+- [OpenAPI User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd)
+- [Public Cloud Operation Manual](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe)
+- [ADP China portal](https://adp.laiye.com/)
+- [ADP Global portal](https://adp-global.laiye.com/)
+- [Laiye Technology](https://laiye.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing CLI workflows may create exported result files when ADP commands are run with export options.]
+
+## Skill Version(s):
+
+1.10.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,31 @@
+{
+  "name": "任务会话 (Task Session)",
+  "description": "每次 /qa 任务执行的完整会话记录",
+  "version": "1.0",
+  "fields": {
+    "id": { "type": "string", "format": "session-YYYYMMDD-NNN", "required": true },
+    "created_at": { "type": "string", "format": "ISO 8601", "required": true },
+    "updated_at": { "type": "string", "format": "ISO 8601" },
+    "status": { "type": "string", "enum": ["planning", "in_progress", "completed", "cancelled"] },
+    "task_description": { "type": "string", "description": "用户原始输入" },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "integer" },
+          "action": { "type": "string", "enum": ["prd", "case", "bug", "report", "team", "agent"] },
+          "description": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "running", "completed", "failed"] },
+          "output_memory_id": { "type": "string", "description": "此步骤输出写入的记忆库条目 ID" },
+          "input_memory_ids": { "type": "array", "items": { "type": "string" }, "description": "此步骤读取的记忆库条目 ID" }
+        }
+      }
+    },
+    "memory_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本次任务涉及的所有记忆库条目 ID"
+    }
+  }
+}

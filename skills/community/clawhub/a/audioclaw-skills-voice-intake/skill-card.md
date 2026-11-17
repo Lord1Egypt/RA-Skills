@@ -1,43 +1,59 @@
-## Description: <br>
-Use when AudioClaw Skills needs to understand a user voice message with AudioClaw ASR, including speech-to-text, model routing for deepthink or pro features, optional timestamps or sentiment, and packaging the result into a ready-to-use AudioClaw user turn payload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when AudioClaw Skills needs to understand a user voice message with AudioClaw ASR, including speech-to-text, model routing for deepthink or pro features, optional timestamps or sentiment, and packaging the result into a ready-to-use AudioClaw user turn payload.
 
-## Publisher: <br>
-[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn inbound voice messages into transcribed, normalized AudioClaw user turn payloads for downstream dialogue workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected voice messages are uploaded to AudioClaw ASR/SenseAudio for remote transcription. <br>
-Mitigation: Use only with audio that is approved for remote processing, and apply the organization's privacy and compliance requirements before broad deployment. <br>
-Risk: Sensitive transcript text and audio metadata can appear in command output or saved JSON files. <br>
-Mitigation: Limit access to generated manifests and logs, avoid storing unnecessary transcripts, and handle saved JSON as potentially sensitive user data. <br>
-Risk: Credential handling depends on local shared helper modules and SENSEAUDIO_API_KEY or workspace credential state. <br>
-Mitigation: Review the credential helper path and secret injection process before enabling the skill in regulated or multi-user environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to convert inbound voice messages into transcripts and AudioClaw-ready user turn payloads before the normal dialogue pipeline continues.
 
-## Reference(s): <br>
-- [OpenClaw Voice Intake Reference](references/openclaw_voice_intake.md) <br>
-- [SenseAudio Speech Recognition HTTP API](https://senseaudio.cn/docs/speech_recognition/http_api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON manifest with transcript text, routing details, AudioClaw turn payload, and optional saved JSON file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads selected audio to AudioClaw ASR/SenseAudio for transcription and may include transcript and audio metadata in command output or saved JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Voice recordings are sent to the documented remote ASR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the deployment is allowed to send user audio to the AudioClaw/SenseAudio ASR endpoint and users have appropriate notice or consent.
+
+Risk: The skill depends on unbundled shared runtime code and local credential bootstrap.
+
+Mitigation: Constrain runtime access to trusted shared modules and make credential lookup explicit before production use.
+
+Risk: A default prompt references a prepared cloned voice handoff.
+
+Mitigation: Review or remove the cloned voice handoff unless it is approved for the deployment.
+
+## Reference(s):
+
+- [AudioClaw Voice Intake Reference](artifact/references/openclaw_voice_intake.md)
+- [SenseAudio Speech Recognition HTTP API](https://senseaudio.cn/docs/speech_recognition/http_api)
+- [AudioClaw Skills Voice Intake on ClawHub](https://clawhub.ai/kikidouloveme79/skills/audioclaw-skills-voice-intake)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration]
+
+**Output Format:** [JSON manifest with transcript text and an AudioClaw user turn payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include routing metadata, audio metadata, clarification status, raw ASR response, and an optional --out-json file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

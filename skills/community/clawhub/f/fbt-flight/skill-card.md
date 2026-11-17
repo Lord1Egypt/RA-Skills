@@ -1,43 +1,62 @@
-## Description: <br>
-分贝通机票助手实现国内航班搜索、舱位查询、预订下单、机票改期和机票退票。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分贝通机票助手帮助代理通过分贝通机票服务完成国内航班搜索、舱位价格查询、订单创建、订单查询、取消订单、改期和退票流程。
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users and travel coordinators use this skill to search domestic flights, compare seat pricing, create flight orders, inspect order details, and submit cancellation, change, or refund requests through Fenbeitong flight services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles credentials, passenger identity data, order records, bookings, changes, and refunds. <br>
-Mitigation: Use only in a trusted local environment, avoid logging or echoing passenger and order data, and require explicit user confirmation before booking, cancelling, changing, or refunding tickets. <br>
-Risk: Server security evidence reports weak transport and privacy safeguards, including a TLS verification bypass. <br>
-Mitigation: Fix TLS certificate verification before using the skill with real accounts or sensitive travel data. <br>
-Risk: Command output can include passenger and order data. <br>
-Mitigation: Treat command output as sensitive and redact passenger phone numbers, identity numbers, API keys, and order details from logs and shared transcripts. <br>
+## Use Case:
 
+Travel agents and assistants use this skill to search Chinese domestic flights, compare seat pricing and rules, and carry out booking, cancellation, rescheduling, and refund workflows after user authentication and confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryan-zry/fbt-flight) <br>
-- [Fenbeitong Flight Skill API Endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with plaintext tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, phone-based authentication, and user-supplied trip, passenger, order, and confirmation details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles real flight booking, cancellation, change, and refund operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any transaction-changing action, including booking, cancellation, rescheduling, and refund submission.
+
+Risk: Passenger identity data, phone numbers, order details, and authentication tokens may be exposed through output or local storage.
+
+Mitigation: Do not use production accounts or real passenger identity data until sensitive output is redacted and credentials are stored in a protected per-user secret location.
+
+Risk: Network and endpoint handling are called out by the security evidence as unsafe.
+
+Mitigation: Restore TLS certificate verification and constrain endpoint overrides before operational use.
+
+Risk: Temporary transaction files can retain seat or change workflow state.
+
+Mitigation: Secure or remove temporary transaction files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/fbt-flight)
+- [Publisher profile](https://clawhub.ai/user/ryan-zry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plaintext tables with inline shell commands, order identifiers, prices, and payment or detail links when returned by the service.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and authenticated access to the Fenbeitong flight service; flight, price, passenger, order, cancellation, change, and refund results are displayed from script output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

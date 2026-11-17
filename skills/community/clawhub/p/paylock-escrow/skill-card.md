@@ -1,42 +1,58 @@
-## Description: <br>
-PayLock Escrow helps agents use the PayLock API to create non-custodial SOL escrow contracts, verify delivery, release payments, post or bid on jobs, and check trust scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PayLock Escrow helps agents create and manage non-custodial SOL escrow contracts, verify delivery, release payments, post or bid on jobs, and check trust scores.
 
-## Publisher: <br>
-[kgnvsk](https://clawhub.ai/user/kgnvsk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kgnvsk](https://clawhub.ai/user/kgnvsk)
 
-## Use Case: <br>
-External developers and AI agents use this skill to coordinate SOL-backed escrow workflows for agent services, including contract creation, delivery verification, payment release, marketplace jobs, bids, agent profiles, and trust lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may initiate real SOL escrow, payment release, job, bid, verification, or profile actions without enough human confirmation. <br>
-Mitigation: Require manual confirmation for every contract, job, bid, verification, release, and profile update, and do not allow autonomous use with real SOL. <br>
-Risk: Wallet, contract, earnings, job, bid, contact, and delivery metadata may be visible to PayLock or through its no-login dashboard. <br>
-Mitigation: Share only the minimum required information and avoid confidential data in milestones, profiles, contact fields, and delivery proofs. <br>
+## Use Case:
 
+External developers and agent operators use this skill to prepare PayLock API calls for SOL escrow contracts, marketplace jobs, agent profiles, delivery verification, fund release, and trust-score checks.
 
-## Reference(s): <br>
-- [PayLock API Reference](references/api.md) <br>
-- [PayLock public API docs](https://paylock.xyz/paylock.md) <br>
-- [ClawHub release page](https://clawhub.ai/kgnvsk/paylock-escrow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Payment and marketplace actions should require manual confirmation before use with real SOL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can lead an agent toward cryptocurrency contract creation and fund-release actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval for every transaction and independently verify recipient, payee, amount, and contract ID before submitting PayLock API calls.
+
+Risk: The security summary flags weakly scoped authority and under-disclosed financial risk.
+
+Mitigation: Limit agent autonomy for payment workflows, document financial fees and responsibilities, and route disputed or high-value actions to a human operator.
+
+Risk: Dashboard links based only on agent_id can expose earnings or contract data.
+
+Mitigation: Avoid sharing dashboard URLs or agent IDs outside intended operators, and open dashboard links only in trusted contexts.
+
+## Reference(s):
+
+- [PayLock API Reference](references/api.md)
+- [PayLock Full Docs](https://paylock.xyz/paylock.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PayLock endpoint paths, request payloads, contract IDs, agent IDs, wallet addresses, and transaction-review steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, created 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

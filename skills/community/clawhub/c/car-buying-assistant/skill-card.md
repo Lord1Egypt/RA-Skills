@@ -1,43 +1,54 @@
-## Description: <br>
-Help Justin research, compare, and decide on new/used cars in Ontario, Canada and nearby markets using structured workflows, web research, and local files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps a car buyer research public vehicle listings, compare options, assess fair value and red flags, draft negotiation messages, and produce local car-search reports.
 
-## Publisher: <br>
-[justintsmith](https://clawhub.ai/user/justintsmith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justintsmith](https://clawhub.ai/user/justintsmith)
 
-## Use Case: <br>
-External users and agent operators use this skill to research car listings, compare candidates, identify red flags, and prepare negotiation drafts while keeping purchase decisions and seller contact under user control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent local car-shopping notes under ~/Documents/CarSearch/. <br>
-Mitigation: Install only if that local storage behavior is acceptable, and review generated files for sensitive personal information. <br>
-Risk: Seller message drafts could include inaccurate, incomplete, or sensitive information if sent without review. <br>
-Mitigation: Review every draft before sending and avoid including payment details, SIN, banking information, credit-card numbers, or a full home address. <br>
+## Use Case:
 
+Car buyers use this skill to clarify search criteria, gather and normalize public vehicle listings, compare candidates, identify purchase risks, and prepare negotiation drafts for manual sending.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justintsmith/car-buying-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/justintsmith) <br>
-- [Report Template](artifact/scripts/report_template.md) <br>
-- [Listing Normalizer](artifact/scripts/normalize_listings.py) <br>
+### Deployment Geography for Use:
 
+Canada and nearby North American markets
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON listing data, negotiation drafts, and optional shell commands for local helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local car-search session files under ~/Documents/CarSearch/ when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Vehicle listing data may be incomplete, outdated, approximate, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat research as preliminary and confirm condition, title, accident history, recalls, price, and mechanical status through official reports and pre-purchase inspection.
+
+Risk: Car buying can involve sensitive payment, identity, address, login, and seller-contact decisions.
+
+Mitigation: Keep payments, credit applications, logins, personal data entry, and seller outreach under the user's direct control; use the skill only to organize information and draft messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justintsmith/skills/car-buying-assistant)
+- [Publisher profile](https://clawhub.ai/user/justintsmith)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON listing files, negotiation drafts, and concise guidance with optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local car-search reports under ~/Documents/CarSearch/ and does not perform purchases, logins, payments, or direct seller contact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

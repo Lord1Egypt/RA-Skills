@@ -1,39 +1,53 @@
-## Description: <br>
-Reports current AI model details including model name, provider, API endpoint, and session status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get 100% accurate current model details including model name, provider, API endpoint, and session status.
 
-## Publisher: <br>
-[viratkumar123](https://clawhub.ai/user/viratkumar123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viratkumar123](https://clawhub.ai/user/viratkumar123)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect the active OpenClaw model, provider, session status, token usage, cost, and runtime configuration during debugging or multi-model workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface model, provider, endpoint/key-source, token/cost, session, and runtime details in chat output. <br>
-Mitigation: Invoke it only when those details are needed, prefer explicit prompts such as "model-info status", and avoid sharing the output publicly. <br>
+## Use Case:
 
+Developers and agent users use this skill to ask for the currently active model, provider, API endpoint, session status, token and cost usage, and runtime configuration. It is useful for debugging and understanding multi-model runtime sessions.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/viratkumar123/model-info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status summary with model, provider, API key source, session, token, cost, and runtime fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive runtime, endpoint, key-source, token, cost, and session details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: Broad model-status trigger phrases may cause the skill to answer during ordinary model-related conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly with a clear request such as "model info" and review responses before sharing them outside the session.
+
+Risk: Responses can disclose local runtime/session metadata, including provider, API key source/type, endpoint, token usage, cost, and configuration details.
+
+Mitigation: Use only in sessions where exposing that metadata is acceptable, and avoid sharing output in public or untrusted channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viratkumar123/skills/model-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text status response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports runtime/session metadata such as current model, provider, API key source/type, endpoint, token usage, cost, and configuration when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

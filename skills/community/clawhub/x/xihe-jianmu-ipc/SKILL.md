@@ -80,10 +80,6 @@ ipc_subscribe(topic="alerts", action="subscribe")
 3. Use `ipc_sessions` to discover available sessions before sending.
 4. Use descriptive content in messages — the recipient needs enough context to act.
 
-## Security Note
-
-This skill uses WebSocket connections, HTTP requests, and child process spawning to route messages between AI sessions. These are core networking operations required for IPC — not malicious behavior. VirusTotal may flag the skill as suspicious due to these patterns. Source code is fully open at [github.com/xihe-forge/xihe-jianmu-ipc](https://github.com/xihe-forge/xihe-jianmu-ipc), MIT licensed.
-
 ## About
 
 Built by [xihe-forge](https://github.com/xihe-forge) — Xihe AI's open-source forge, where practical AI tools are hammered from ideas into ready-to-use projects. Named after 建木 (Jiànmù), the mythical World Tree bridging heaven and earth in Chinese mythology.

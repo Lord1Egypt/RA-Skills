@@ -1,52 +1,66 @@
-## Description: <br>
-Provides portable ComfyUI workflow and API guidance for building, validating, troubleshooting, and submitting image or video workflows across unknown local, remote, or cloud installs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comfy UI Complete Toolkit provides portable ComfyUI workflow and API guidance for building, validating, submitting, and troubleshooting image and video workflows across local, remote, and cloud installs.
 
-## Publisher: <br>
-[zambav](https://clawhub.ai/user/zambav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zambav](https://clawhub.ai/user/zambav)
 
-## Use Case: <br>
-Developers and ComfyUI operators use this skill to build, validate, submit, and debug portable image/video workflows while discovering live server capabilities before relying on models, nodes, paths, or hardware assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting an agent to an untrusted ComfyUI server can expose prompts, workflow details, or generated outputs. <br>
-Mitigation: Use only trusted ComfyUI servers and avoid putting secrets or private credentials in setup notes. <br>
-Risk: Large batches or cloud GPU runs can create unexpected cost or resource usage. <br>
-Mitigation: Confirm with the user before starting large batches or paid cloud GPU work. <br>
-Risk: Retrieving outputs from hosted systems or interrupting active jobs can affect user data or running work. <br>
-Mitigation: Confirm before retrieving hosted outputs or interrupting active jobs, and rely on user-provided server and output rules. <br>
+## Use Case:
 
+Developers, artists, and workflow operators use this skill to have an agent discover a ComfyUI install, build or repair workflow JSON, submit jobs through the ComfyUI API, monitor results, and troubleshoot model, LoRA, node, or output issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zambav/comfyui-complete-toolkit-skill) <br>
-- [Setup and onboarding](references/setup.md) <br>
-- [ComfyUI API guidance](references/api.md) <br>
-- [Workflow patterns](references/workflow-patterns.md) <br>
-- [Model-family guidance](references/models.md) <br>
-- [Compatibility checks](references/compatibility.md) <br>
-- [LoRA guidance](references/lora.md) <br>
-- [Graph conventions](references/graph-conventions.md) <br>
-- [Config template](references/config-template.md) <br>
-- [Prompting guidance](references/prompting.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON workflow examples, API endpoint references, and inline shell or code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the agent to discover ComfyUI server capabilities and user-owned configuration before submitting workflows or retrieving outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and references/changelog.md) <br>
+Risk: Remote or cloud ComfyUI submissions may consume paid compute or affect shared infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target server is controlled by, or authorized for, the user before queueing jobs, especially on hosted deployments.
+
+Risk: Incorrect node, model, encoder, VAE, LoRA, or scheduler assumptions can produce failed jobs or wasted GPU time.
+
+Mitigation: Discover node classes and dropdown values with /object_info and validate family compatibility before submitting workflows.
+
+Risk: Install-specific paths, secrets, or private environment details could leak if embedded in reusable workflow guidance.
+
+Mitigation: Keep setup values in user-owned configuration, avoid absolute filesystem paths, and never store API tokens or credentials in skill docs or workflow JSON.
+
+## Reference(s):
+
+- [ComfyUI API guidance](references/api.md)
+- [Setup and onboarding](references/setup.md)
+- [Workflow patterns](references/workflow-patterns.md)
+- [Model-family guidance](references/models.md)
+- [Compatibility checks](references/compatibility.md)
+- [LoRA guidance](references/lora.md)
+- [Graph conventions](references/graph-conventions.md)
+- [Config template](references/config-template.md)
+- [Prompting guidance](references/prompting.md)
+- [ClawHub skill page](https://clawhub.ai/zambav/skills/comfyui-complete-toolkit-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, and ComfyUI workflow JSON when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output should be based on live ComfyUI discovery and user-provided install details rather than hardcoded local paths or model names.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and references/changelog.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

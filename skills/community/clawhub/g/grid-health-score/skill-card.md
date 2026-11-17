@@ -1,42 +1,60 @@
-## Description: <br>
-Comprehensive grid health score with recommendations for optimisation <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns comprehensive grid health score with recommendations for optimisation.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and trading workflow operators use this skill to request a paid, real-time grid health signal and optimisation recommendations before adjusting grid parameters or preparing performance reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires EVM_PRIVATE_KEY, which can authorize USDC spending on Base mainnet for paid signal calls. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid keys with unrelated funds, and verify each paid call before execution. <br>
-Risk: Automatic x402 payment authorization may result in paid calls without clear per-call consent controls. <br>
-Mitigation: Configure the agent workflow to require explicit user confirmation before each paid request and review the quoted price before proceeding. <br>
+## Use Case:
 
+Crypto grid operators and developers use the endpoint to review grid performance, inform parameter changes, and prepare weekly reports. It returns a score, grade, and recommendations based on live market data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/grid-health-score) <br>
-- [APEX Runner Grid Health Score Signal](https://apexrunner.ai/signals/grid-health-score) <br>
-- [APEX Runner Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Guidance] <br>
-**Output Format:** [JSON returned from an authenticated signal request, typically summarized by the agent in text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns score, grade, and recommendation fields when the paid request succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The paid request uses an EVM private key to authorize a USDC payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the private key in a secret store, use a dedicated wallet funded only for intended calls, and set an explicit maximum payment amount.
+
+Risk: Recommendations could influence changes to a live crypto grid.
+
+Mitigation: Check recommendations against independent strategy and risk limits before changing live parameters.
+
+Risk: ClawScan reports no issues in its completed scan of the single Markdown component, while noting that a benign result is not risk-free.
+
+Mitigation: Review the skill's stated purpose and linked resources before installing.
+
+## Reference(s):
+
+- [Grid Health Score endpoint](https://apexrunner.ai/signals/grid-health-score)
+- [Related Grid Health signal](https://apexrunner.ai/signals/grid-health)
+- [Related Grid Levels signal](https://apexrunner.ai/signals/grid-levels)
+- [ClawHub skill release](https://clawhub.ai/kynto2001-ctrl/skills/grid-health-score)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON containing a grid health score, grade, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A paid x402 request using USDC on Base mainnet returns the endpoint response.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,49 @@
-## Description: <br>
-Generates iOS26 liquid glass style multi-page travel websites from travel plans. Invoke when user wants to create a travel website, trip planner page, or provides detailed travel itinerary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates iOS26 liquid glass style multi-page travel websites from travel plans.
 
-## Publisher: <br>
-[dustink66](https://clawhub.ai/user/dustink66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dustink66](https://clawhub.ai/user/dustink66)
 
-## Use Case: <br>
-External users and developers use this skill to turn a detailed travel itinerary into a static multi-page trip website with itinerary, preparation, notes, and budget pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trip pages may expose private itinerary details if published publicly. <br>
-Mitigation: Review generated pages before publishing and remove private trip details, secrets, or sensitive personal information. <br>
-Risk: User-provided itinerary text or inserted SVG/HTML content could create misleading or unsafe page content. <br>
-Mitigation: Inspect generated HTML and embedded markup before deployment, especially when source itinerary content comes from an untrusted party. <br>
-Risk: Generated content defaults to Chinese unless the user asks otherwise. <br>
-Mitigation: Specify the desired language during generation and review the generated copy for the intended audience. <br>
+## Use Case:
 
+External users and developers use this skill to turn detailed travel plans into static, multi-page trip websites with itinerary, preparation checklist, notes, and budget pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dustink66/trip-website-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Generated HTML, CSS, and JavaScript files with Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a static website directory with itinerary, preparation checklist, notes, budget, shared styles, and shared JavaScript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Untrusted itinerary, checklist, style, class, or SVG/icon content can become executable website code in the generated pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate sites only from trusted travel-plan content, or escape and validate all substituted template values before publishing or hosting the pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dustink66/skills/trip-website-generator)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [HTML, CSS, JavaScript, and concise generation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dedicated static website directory with index, preparation, notes, budget, shared style, and shared script files.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

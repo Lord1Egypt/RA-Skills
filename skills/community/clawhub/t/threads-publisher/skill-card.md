@@ -1,42 +1,63 @@
-## Description: <br>
-Publish posts and threads to Threads (by Meta), including text posts, photo or video posts, carousels, multi-post threads, and replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish posts and threads to Threads (by Meta). Use when the user says 'post to Threads', 'create a thread', 'publish thread', 'write a Threads post', 'reply on Threads', or wants to create text posts, photo/video posts, carousels, or multi-post threads on Threads.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and developers use this skill to publish, schedule, and reply to Threads content through Boring after connecting a Threads account. It guides the agent in choosing the right Boring MCP tool, splitting long content into threads, preparing media, and reporting publish results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Boring MCP Connector URL grants persistent third-party publishing authority for connected Threads accounts. <br>
-Mitigation: Treat the connector URL like a password, connect only intended accounts, confirm exact content and schedules before publishing, and revoke or regenerate the token if it is exposed or no longer needed. <br>
-Risk: The security review notes inconsistent data-flow disclosure for a workflow that sends publishing and analytics requests through Boring. <br>
-Mitigation: Review Boring's data handling before use and avoid submitting content, media, or account access unless that service is trusted for the intended account. <br>
+## Use Case:
 
+External users use this skill to publish, schedule, and reply to Threads posts through a Boring MCP connector after connecting a Threads account. It supports text posts, media posts, carousels, multi-post threads, and replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snoopyrain/threads-publisher) <br>
-- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring API documentation](https://boring-doc.aiagent-me.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Configuration] <br>
-**Output Format:** [Markdown guidance with MCP tool call examples and publishing status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Boring MCP Connector URL that contains an embedded authentication token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The MCP connector URL contains an embedded authentication token with social publishing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the URL as a password, avoid sharing it, and regenerate or revoke it if exposed.
+
+Risk: The connected Boring account may have access to multiple social or brand accounts.
+
+Mitigation: Connect only intended accounts and verify the target Threads account before each publish, reply, or schedule action.
+
+Risk: Publishing or scheduling can create public content, upload media, or post replies on behalf of the connected account.
+
+Mitigation: Review post text, media, scheduling time, and target post before invoking publish, thread, reply, upload, or schedule tools.
+
+Risk: Local-file upload instructions may cause unintended files to be sent to the third-party service.
+
+Mitigation: Upload only explicit media files selected for the Threads post.
+
+## Reference(s):
+
+- [Threads Publisher on ClawHub](https://clawhub.ai/snoopyrain/skills/threads-publisher)
+- [Boring MCP Connector Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring Documentation](https://boring-doc.aiagent-me.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool call examples and publishing result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Threads post IDs, thread URLs, scheduling details, uploaded media references, or error summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

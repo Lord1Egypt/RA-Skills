@@ -1,42 +1,55 @@
-## Description: <br>
-Professional entry-level robotics engineering career roadmap platform that generates personalized learning and development paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional entry-level robotics engineering career roadmap platform that generates personalized learning and development paths.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External learners, recent graduates, career changers, and self-taught engineers use this skill to generate personalized robotics engineering learning roadmaps from assessment data about experience, skills, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment details may be sent to an external API provider. <br>
-Mitigation: Use a null or pseudonymous userId when possible and avoid sending sensitive personal, employer, or contact information beyond what is needed for the roadmap. <br>
-Risk: Generated career guidance may be incomplete or unsuitable for a user's circumstances. <br>
-Mitigation: Review the roadmap before relying on it and compare recommendations with current job requirements, trusted educators, or career advisors. <br>
+## Use Case:
 
+External users, developers, and career changers use this skill to generate personalized robotics engineering learning roadmaps from experience, skills, and career-goal assessment data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/robotics-engineer) <br>
-- [Robotics Engineer API route](https://api.mkkpro.com/career/robotics-engineer) <br>
-- [Robotics Engineer API docs](https://api.mkkpro.com:8054/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces phase-based career roadmap content, skill progression, milestones, and estimated outcomes from submitted assessment data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Career assessment details, session IDs, timestamps, and optional user IDs are sent to api.mkkpro.com, while privacy and retention practices are not detailed in the evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid directly identifying information unless necessary, and review the provider's privacy and retention practices before production or organizational use.
+
+Risk: Generated career roadmaps may contain incomplete or overly optimistic learning, salary, or job-readiness guidance.
+
+Mitigation: Review recommendations with current hiring requirements, local market data, and human career judgment before relying on them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/robotics-engineer)
+- [Robotics Engineer API docs](https://api.mkkpro.com:8054/docs)
+- [Robotics Engineer API route](https://api.mkkpro.com/career/robotics-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON responses and human-readable roadmap guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces phase-based learning plans, skill progression, milestones, projects, resources, and estimated career outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

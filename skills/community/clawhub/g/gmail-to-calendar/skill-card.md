@@ -1,48 +1,62 @@
-## Description: <br>
-Promote schedule details from Gmail into Google Calendar via Maton by reading Gmail messages, extracting structured or free-text event information, and creating Google Calendar events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Promote schedule details from Gmail into Google Calendar via Maton by reading Gmail messages, extracting structured or free-text event information, and creating Google Calendar events.
 
-## Publisher: <br>
-[orulink](https://clawhub.ai/user/orulink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orulink](https://clawhub.ai/user/orulink)
 
-## Use Case: <br>
-External users and developers use this skill to turn scheduling details in Gmail into Google Calendar events through Maton-backed Gmail and Calendar connections. It can also guide agents through Gmail message listing, reading, and related helper workflows before creating an event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Maton API key grants access to Gmail content and Google Calendar writes through active OAuth connections. <br>
-Mitigation: Store MATON_API_KEY only in the local .env file or environment, do not commit it, and install the skill only when that account access is intended. <br>
-Risk: Free-text date and timezone parsing can create calendar events with incorrect timing. <br>
-Mitigation: Run the helper with --dry-run first and verify the extracted event payload, especially dates, timezones, and default durations. <br>
-Risk: The documentation includes broader Gmail send, label, trash, draft, and connection-management examples beyond the Gmail-to-Calendar workflow. <br>
-Mitigation: Use those account-management actions only when explicitly needed and review each command before execution. <br>
+## Use Case:
 
+People managing schedules from email use this skill to read Gmail messages, extract event details, and create matching Google Calendar events through Maton.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orulink/gmail-to-calendar) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton connection management](https://ctrl.maton.ai) <br>
-- [Gmail API reference](https://developers.google.com/gmail/api/reference/rest) <br>
-- [Gmail users.messages.list](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/list) <br>
-- [Gmail users.messages.get](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/get) <br>
-- [Gmail users.messages.send](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, API endpoints, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Google Calendar event payloads or helper-script JSON output; requires MATON_API_KEY and active Maton Gmail and Google Calendar connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.0) <br>
+Risk: The skill handles private Gmail and Calendar data through Maton and needs broad account authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable with that access, keep Maton Gmail and Calendar connections limited to intended accounts, and review event payloads before writing.
+
+Risk: MATON_API_KEY may be stored in a local .env file and examples may load it into shell commands.
+
+Mitigation: Do not print or commit .env; use a safer secret store or tightly permissioned environment variable where possible.
+
+Risk: Free-text extraction can misread dates, times, locations, or thread context.
+
+Mitigation: Run with --dry-run first, confirm extracted fields and event payload, and avoid importing confidential thread history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orulink/skills/gmail-to-calendar)
+- [Gmail API reference](https://developers.google.com/gmail/api/reference/rest)
+- [Gmail messages list](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/list)
+- [Gmail messages get](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/get)
+- [Maton](https://maton.ai)
+- [Maton support](mailto:support@maton.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python examples; the helper script emits JSON results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MATON_API_KEY plus active Maton google-mail and google-calendar connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,66 @@
-## Description: <br>
-Find, verify, and reserve parking worldwide with provider selection, live-signal triage, and local memory for favorite places and cities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, verify, and reserve parking worldwide with provider selection, live-signal triage, and local memory for favorite places and cities.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to find nearby parking, pre-book airport or event parking, compare local parking providers, and research parking APIs or market coverage. It helps an agent separate discovery, payment, and reservation workflows before recommending or handing off to a provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local parking memory may store recurring locations, vehicle constraints, favorite facilities, or provider preferences. <br>
-Mitigation: Ask before creating persistent memory, offer one-off mode, and store reusable parking knowledge rather than raw payment details, credentials, or full booking receipts. <br>
-Risk: Provider handoffs can send destination, timing, route context, plate number, or vehicle details to parking services. <br>
-Mitigation: Require user approval before live booking, plate entry, or payment flows, and confirm the provider, destination, time window, price, cancellation terms, and data being sent. <br>
-Risk: Static listings or payment apps can be mistaken for guaranteed reservations or live occupancy. <br>
-Mitigation: Label each recommendation as discovery, payment, reservation, or occupancy evidence, and claim guaranteed inventory only when the provider exposes confirmed reservation status. <br>
+## Use Case:
 
+External users use this skill to find nearby parking, compare reservation and payment providers, pre-book airport or event parking, and preserve approved local parking preferences for recurring trips. Developers and operators can also use it for parking platform and API research.
 
-## Reference(s): <br>
-- [Parking Radar on ClawHub](https://clawhub.ai/ivangdavila/parking) <br>
-- [Parking Radar Homepage](https://clawic.com/skills/parking) <br>
-- [Setup - Parking Radar](artifact/setup.md) <br>
-- [Execution Playbook - Parking Radar](artifact/execution-playbook.md) <br>
-- [Provider Registry - Parking Radar](artifact/provider-registry.md) <br>
-- [API Notes - Parking Radar](artifact/api-notes.md) <br>
-- [Source Ledger - Parking Radar](artifact/source-ledger.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with provider comparisons, verification notes, setup instructions, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce provider handoff guidance and local memory update suggestions after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may save local parking notes such as favorite garages, home-city patterns, and vehicle constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use one-off mode or decline memory creation when you do not want local parking notes saved.
+
+Risk: Live provider handoff can disclose destination, time window, route context, plate, or vehicle details to parking, map, or city-data services.
+
+Mitigation: Approve live provider handoff only for services you trust and only when the requested data is needed for the parking task.
+
+Risk: Static listings, payment apps, and discovery surfaces can be mistaken for guaranteed parking inventory.
+
+Mitigation: Treat availability as guaranteed only when a provider exposes reservation inventory or confirmed booking status.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/parking)
+- [Provider Registry](artifact/provider-registry.md)
+- [City Patterns](artifact/city-patterns.md)
+- [Execution Playbook](artifact/execution-playbook.md)
+- [API Notes](artifact/api-notes.md)
+- [Source Ledger](artifact/source-ledger.md)
+- [Parkopedia](https://www.parkopedia.com)
+- [SpotHero](https://spothero.com)
+- [ParkWhiz API](https://api.parkwhiz.com)
+- [Hong Kong Parking Vacancy API](https://api.data.gov.hk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with provider links, comparison notes, verification status, and optional local memory instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider handoff recommendations and concise local note updates when the user approves memory]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

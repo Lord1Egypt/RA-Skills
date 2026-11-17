@@ -1,42 +1,53 @@
-## Description: <br>
-Perfect Automation helps agents identify workflow automation opportunities, calculate ROI, and draft robust automation plans with idempotency, error handling, retries, human review queues, and auditable outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perfect Automation helps agents identify automation opportunities, calculate ROI, and design reliable workflows with idempotency, error handling, retries, human review queues, and auditable outputs.
 
-## Publisher: <br>
-[jiayilin686-sys](https://clawhub.ai/user/jiayilin686-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiayilin686-sys](https://clawhub.ai/user/jiayilin686-sys)
 
-## Use Case: <br>
-Developers, operators, and business teams use this skill to decide which repetitive workflows are worth automating and to design automation plans for tools such as Zapier, Make, and n8n. The skill emphasizes ROI, safe reruns, explicit failure handling, alerts, review queues, and documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automation plans may touch customer data, permissions, notifications, or production accounts if implemented without review. <br>
-Mitigation: Review data fields, permissions, consent requirements, notification behavior, and test-environment behavior before enabling a generated automation. <br>
-Risk: A workflow design may be treated as executable even though the skill itself is planning guidance. <br>
-Mitigation: Treat outputs as proposals and test them in a non-production environment before connecting real accounts or credentials. <br>
+## Use Case:
 
+Developers, operators, and business teams use this skill to evaluate tasks for automation and draft robust workflow specifications for tools such as Zapier, Make, and n8n.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jiayilin686-sys/perfect-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/jiayilin686-sys) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, code] <br>
-**Output Format:** [Markdown guidance with workflow templates and optional n8n JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance only; generated workflows should be reviewed before connecting production accounts or credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter metadata) <br>
+Risk: Generated workflow plans may affect external systems or customer data if activated without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated workflows before activation, especially workflows that post publicly, create invoices, update CRM records, or touch customer data.
+
+Risk: Workflow JSON or configuration can expose secrets if credentials are inserted directly.
+
+Mitigation: Keep credentials out of generated JSON and use environment variables or named credential stores with least-privilege access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiayilin686-sys/skills/perfect-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown workflow specifications with optional JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ROI calculations, workflow templates, error handling plans, and credential-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

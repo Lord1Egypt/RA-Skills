@@ -1,46 +1,62 @@
-## Description: <br>
-Polymarket BTC Trader helps agents configure and operate a BTC 5-minute Up/Down trading bot with AI-assisted signals, risk checks, and a local web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Polymarket BTC 5-minute Up/Down trading decisions using AI and rule-based signals, risk controls, and a local status panel.
 
-## Publisher: <br>
-[billychoiu](https://clawhub.ai/user/billychoiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billychoiu](https://clawhub.ai/user/billychoiu)
 
-## Use Case: <br>
-External developers and trading automation operators use this skill to set up, configure, and monitor a Polymarket BTC 5-minute Up/Down trading bot that combines AI decisions with price-divergence signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated trading behavior may place real-money Polymarket orders despite paper-trading language in parts of the artifact. <br>
-Mitigation: Review and modify before installation, default to dry-run or paper mode, and require explicit confirmation, position limits, and loss limits before enabling live orders. <br>
-Risk: The local dashboard and related web actions are weakly controlled. <br>
-Mitigation: Bind the dashboard to localhost, add authentication before remote access, and isolate or remove the Simmer trading panel unless it is intentionally used. <br>
-Risk: API keys and wallet credentials used by the bot could be exposed through local configuration or browser-facing code. <br>
-Mitigation: Keep secrets out of frontend assets, store credentials only in protected local environment files or a secret manager, and rotate any credentials previously entered into unsafe locations. <br>
+## Use Case:
 
+External developers and trading operators use this skill to configure and run an automated Polymarket BTC Up/Down trading bot with AI-assisted signals, paper-trading telemetry, and live-trading code paths.
 
-## Reference(s): <br>
-- [Strategy Details](references/STRATEGY.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/billychoiu/polymarket-btc-trader) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket Data API](https://data-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands, environment variable configuration, and operational notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to run local scripts, configure API credentials, and inspect dashboard or bot status files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill includes code paths that can place real-money Polymarket trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode or a segregated low-balance wallet until behavior is reviewed, tested, and explicitly approved for live trading.
+
+Risk: The dashboard exposes trading controls and account data without authentication.
+
+Mitigation: Keep the panel local only, block network exposure, and add authentication before operating it with sensitive accounts or funds.
+
+Risk: API keys and wallet credentials are required for operation.
+
+Mitigation: Store credentials outside committed artifacts where possible, rotate any keys placed into the package, and use least-privilege credentials.
+
+Risk: Documentation describes paper trading while security evidence reports live-trading capability.
+
+Mitigation: Verify the configured trading mode and require an explicit live-trading opt-in before connecting funded accounts.
+
+## Reference(s):
+
+- [Polymarket BTC 5m Bot Strategy](references/STRATEGY.md)
+- [ClawHub skill page](https://clawhub.ai/billychoiu/skills/polymarket-btc-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local runtime files for bot execution and dashboard status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-FounderClaw is a multi-agent engineering team for OpenClaw with 29 skills, six agents, a structured workspace, auto mode, and vision sub-agent routing for building startups with AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FounderClaw is a multi-agent engineering team for OpenClaw with 29 skills, 6 agents, a structured workspace, auto mode, and vision sub-agent routing.
 
-## Publisher: <br>
-[ashish797](https://clawhub.ai/user/ashish797) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashish797](https://clawhub.ai/user/ashish797)
 
-## Use Case: <br>
-Developers and engineering teams use FounderClaw to add an OpenClaw-based multi-agent software organization for planning, code review, QA, browser testing, safety checks, debugging, and release workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FounderClaw grants broad local automation authority through agent workflows, browser control, and configuration-changing installation steps. <br>
-Mitigation: Review the installed skills, daemon, extension behavior, and OpenClaw configuration changes before use; install only in environments where that authority is acceptable. <br>
-Risk: Cookie import can allow the headless browser to access real logged-in accounts. <br>
-Mitigation: Avoid cookie import on shared or untrusted machines, import only necessary domains, and treat imported sessions as sensitive account access. <br>
-Risk: Install or upgrade commands may modify local FounderClaw files and OpenClaw configuration. <br>
-Mitigation: Back up or avoid local modifications in the install directory before running upgrade or install commands, and inspect configuration patches before applying them. <br>
+## Use Case:
 
+Developers and engineering teams use FounderClaw to add an OpenClaw-based agent organization for product planning, design review, code review, QA, browser testing, security checks, deployment, and retrospectives.
 
-## Reference(s): <br>
-- [ClawHub FounderClaw Listing](https://clawhub.ai/ashish797/founderclaw) <br>
-- [FounderClaw README](README.md) <br>
-- [FounderClaw Skill Definition](SKILL.md) <br>
-- [FounderClaw Architecture](ARCHITECTURE.md) <br>
-- [FounderClaw GitHub Repository](https://github.com/ashish797/FounderClaw) <br>
-- [FounderClaw Landing Page](https://founderclaw.hashqy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands, generated reports, configuration guidance, and code edits when a selected workflow permits changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by sub-skill and can include review findings, QA reports, browser automation results, security guidance, release steps, and installation or configuration commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The installer can modify OpenClaw configuration and create a broad local agent workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release before installation and prefer a cloned, pinned source version over pipe-to-shell installation.
+
+Risk: The browser automation service can operate with authenticated browser sessions.
+
+Mitigation: Avoid using authenticated sessions on shared or untrusted machines and stop the browser daemon before handling sensitive web accounts.
+
+Risk: Cookie import and browser session handling can expose sensitive account state if used carelessly.
+
+Mitigation: Import only the cookies needed for testing and do not import cookies on machines or workspaces you do not fully trust.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ashish797/skills/founderclaw)
+- [FounderClaw README](README.md)
+- [Architecture](ARCHITECTURE.md)
+- [FounderClaw Workspace Structure](docs/founderclaw-design.md)
+- [QA Issue Taxonomy](qa/references/issue-taxonomy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration changes, and generated project artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local OpenClaw configuration, workspace files, browser automation state, review reports, QA reports, release notes, and deployment logs when the agent follows the skill workflows.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "earnings-call-processor",
+  "name": "earnings-call-processor",
   "version": "3.0.0",
-  "publishedAt": 1778544860859
+  "description": "Transcribe earnings call audio via Whisper, analyze stock price data, and generate structured Feishu documents summarizing financial results.",
+  "tags": ["earnings", "transcription", "whisper", "feishu", "finance"],
+  "entry": "src/process_earnings_call.py",
+  "requires": {
+    "bins": ["whisper"],
+    "python": [">=3.10"],
+    "packages": ["pandas"]
+  }
 }

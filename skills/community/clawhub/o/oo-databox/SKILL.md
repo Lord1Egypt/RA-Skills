@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Databox"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["databox"]
   icon: "https://static.oomol.com/logo/third-party/databox.svg"
 ---
@@ -43,7 +43,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_dataset` — Delete a Databox dataset by ID. [destructive]
 - `get_dataset_ingestion_status` — Get the processing status of a Databox dataset ingestion.
 - `list_accounts` — List Databox accounts accessible to the API key.
-- `push_dataset_data` — Push JSON records into a Databox dataset.
+- `push_dataset_data` — Push JSON records into a Databox dataset. [write]
 
 ## Safety
 
@@ -74,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Databox is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=databox
+  https://console.oomol.com/connections/databox
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Databox homepage: https://databox.com/
+- API documentation: https://developers.databox.com/docs/api/overview

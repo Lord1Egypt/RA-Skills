@@ -1,0 +1,21 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:图标网格单元卡(图标 + 标题 + 说明 + 可选例子行)—— 原型 23 的单元
+  结构形状(反模式 2/7 豁免):不计卡片矩阵限额、不计装饰预算。
+  参数:
+    {{X}} {{Y}} {{W}} {{H}}   卡片位置尺寸(2×2 网格常用 W=840,H=290;1×3 常用 W=546,H=460)
+    {{ICON}}          图标整行(从 assets/icons.md 复制,stroke 用 var() 变量名,全页同色)
+    {{TITLE}}         要点标题(≤10 字)      {{BODY}}  说明(≤2 行)
+    {{EXAMPLE}}       例子/证据一行(可整行删除)
+  用法:
+    方式 A:直接用;同页多张时整页内替换 {{X}} 后再复制下一张
+    方式 C:删 style 里的 position/left/top/width/height,改挂 data-layout-h="{{H}}"(见 html-spec 2 章)
+  纪律: 图标全页同色系;卡片只用"细边框+圆角"或"浅底+圆角"其一,禁三件套
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:36px 40px;">
+  <div style="display:flex;align-items:center;gap:20px;">
+    {{ICON}}
+    <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);">{{TITLE}}</div>
+  </div>
+  <div style="font-size:26px;line-height:1.6;color:var(--text-primary);margin-top:20px;">{{BODY}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:14px;">{{EXAMPLE}}</div>
+</div>

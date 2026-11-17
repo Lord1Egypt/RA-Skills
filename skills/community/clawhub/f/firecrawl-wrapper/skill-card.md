@@ -1,42 +1,65 @@
-## Description: <br>
-Scrape, search, crawl, interact with websites, and extract structured page data through Firecrawl in plain language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web data for everyone. Powered by Firecrawl. Scrape, search, crawl, interact with websites - all in plain language. No technical skills needed.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and developers use the skill to search the web, retrieve page markdown, map or crawl sites, perform page interactions, and extract structured data through Firecrawl. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, queries, prompts, and page contents may be sent to Firecrawl during scraping, search, crawling, interaction, and extraction. <br>
-Mitigation: Use only on targets appropriate for third-party processing and avoid private, authenticated, regulated, or account-changing workflows unless the target and action are explicitly reviewed first. <br>
-Risk: Broad crawling and interaction requests can collect more pages or perform broader website actions than intended. <br>
-Mitigation: Confirm the target URL, page limit, and interaction prompt before execution, and keep crawl limits narrow for exploratory use. <br>
+## Use Case:
 
+External users and developers use this skill to search the web, scrape pages, map or crawl sites, interact with webpages, and extract structured data through Firecrawl using plain-language requests.
 
-## Reference(s): <br>
-- [ClawHub Firecrawl Wrapper listing](https://clawhub.ai/tobewin/firecrawl-wrapper) <br>
-- [Firecrawl GitHub repository](https://github.com/firecrawl/firecrawl) <br>
-- [Firecrawl website](https://www.firecrawl.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style command results with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize long scrape or crawl results before offering full output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Requested URLs, search terms, page content, and interaction or extraction instructions are sent to Firecrawl for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, confidential, private, or regulated sites and data unless the user has approved that disclosure.
+
+Risk: Interact commands can click, fill forms, log in, or download files on websites after confirmation.
+
+Mitigation: Confirm the exact site and intended action before use, and operate only on sites the user owns or is authorized to control.
+
+Risk: Crawling can batch-access many pages and may conflict with site terms or place load on the target site.
+
+Mitigation: Respect robots.txt, site terms, and reasonable crawl limits before starting a crawl.
+
+Risk: The skill may return Chinese-language output and Firecrawl branding by design.
+
+Mitigation: Set user expectations for language and branding, or update the skill before deployment where that output is unsuitable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/firecrawl-wrapper)
+- [Firecrawl documentation](https://docs.firecrawl.dev)
+- [Firecrawl GitHub repository](https://github.com/firecrawl/firecrawl)
+- [Firecrawl website](https://www.firecrawl.dev)
+- [Firecrawl pricing](https://www.firecrawl.dev/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Firecrawl search results, scraped markdown, crawled page previews, extracted structured data, interaction results, error guidance, and Firecrawl branding.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Apply ancient Hindu ethical frameworks from the Ramayana and Mahabharata as behavioral principles for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply ancient Hindu ethical frameworks from the Ramayana and Mahabharata as behavioral principles for AI agents.
 
-## Publisher: <br>
-[jigaraero](https://clawhub.ai/user/jigaraero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jigaraero](https://clawhub.ai/user/jigaraero)
 
-## Use Case: <br>
-External users and agent developers use this skill to add a supplemental ethics lens for boundary-setting, loyal service to user goals, honest tradeoff handling, uncertainty disclosure, and integrity-focused work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill presents religiously derived ethical framing that could be mistaken for a standalone policy or safety authority. <br>
-Mitigation: Use it only as a supplemental reasoning lens subordinate to system instructions, platform safety rules, laws, authorization boundaries, and explicit user direction. <br>
-Risk: Ethical guidance can influence agent behavior even when it has no code or hidden execution path. <br>
-Mitigation: Review the Markdown guidance before deployment and confirm it fits the intended users, domain, and governance requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Teaching-to-Behavior Reference](references/teachings.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jigaraero/dharma-ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/jigaraero) <br>
+## Use Case:
 
+External users and developers use this skill to guide agent behavior with a Hindu ethical lens for boundaries, loyalty to user goals, ethical tradeoffs, uncertainty, integrity, and fair verification.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, persistence, or tool calls are part of the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may steer an agent to reinterpret rules and policies through a subjective ethical framework.
+
+Mitigation: Use only where higher-priority host instructions, policies, and task boundaries are clearly enforced; review before deployment.
+
+## Reference(s):
+
+- [Teaching-to-Behavior Reference](references/teachings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; no tool calls, code generation, or configuration output are described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

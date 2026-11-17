@@ -1,44 +1,59 @@
-## Description: <br>
-FlowCrawl is a local OpenClaw web scraping skill that extracts website content as markdown, text, or JSON using a three-tier fetcher cascade that escalates from plain HTTP to stealth and JavaScript-based fetching when blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowCrawl is a local CLI skill for extracting website content as markdown, text, or JSON using a three-tier fetch cascade that can escalate from plain HTTP to browser-based fetching when blocked.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Developers, researchers, and agents use FlowCrawl to extract clean content from authorized websites for research, knowledge-base ingestion, and data pipeline workflows. It can scrape a single URL or crawl same-site pages with depth and page limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is framed and implemented to bypass bot protections on arbitrary sites without built-in authorization controls. <br>
-Mitigation: Install and run it only for authorized scraping or defensive testing of sites where the user has permission, and require users to respect site terms, robots.txt, and rate limits. <br>
-Risk: Deep crawls can create unwanted load or collect more content than intended. <br>
-Mitigation: Use conservative depth and page limits, review output paths before running, and keep the built-in crawl delay or stronger local throttling for sensitive targets. <br>
-Risk: Recommended alias setup modifies the user's shell startup file. <br>
-Mitigation: Review the alias command before applying it and add it manually when shell configuration changes need approval. <br>
+## Use Case:
 
+Developers and researchers use this skill to collect clean page content from authorized websites for AI knowledge bases, research workflows, and data pipelines.
 
-## Reference(s): <br>
-- [FlowCrawl ClawHub listing](https://clawhub.ai/windseeker1111/flowcrawl) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, Files, Shell commands] <br>
-**Output Format:** [Markdown, plain text, structured JSON metadata, or saved .md/.txt files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-page scraping, same-site crawling with depth and page limits, optional combined output, quiet mode, and configurable output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill is designed to escalate to stealth and browser-based fetching when a site blocks ordinary requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for sites you own or are explicitly authorized to test, and respect site terms, robots.txt, and rate limits.
+
+Risk: Crawling can collect sensitive page content and write local markdown, text, or combined output files.
+
+Mitigation: Use a controlled output directory, review collected content before sharing it, and delete unneeded crawl output.
+
+Risk: The runtime depends on Scrapling and browser-backed fetching behavior.
+
+Mitigation: Run in an isolated environment and pin dependencies before operational use.
+
+## Reference(s):
+
+- [ClawHub FlowCrawl release](https://clawhub.ai/windseeker1111/skills/flowcrawl)
+- [Scrapling](https://github.com/D4Vinci/Scrapling)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, shell commands, guidance]
+
+**Output Format:** [Markdown, plain text, or JSON; deep crawls can write per-page files and a combined markdown file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deep crawls default to depth 3 and 50 pages, with local output under ./flowcrawl-output unless overridden.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Gets daily and historical Hong Kong stock short selling data from HKEX and ETNet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets daily and historical Hong Kong stock short selling data from HKEX and ETNet.
 
-## Publisher: <br>
-[KadinXu](https://clawhub.ai/user/KadinXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadinxu](https://clawhub.ai/user/kadinxu)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to retrieve public Hong Kong short-selling data for selected stock codes, rankings, and local CSV history tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Network requests to HKEX and ETNet reveal the stock codes and pages queried from the runtime environment. <br>
-Mitigation: Use the skill only where outbound requests to those public market-data sites are acceptable, and review requested symbols before execution. <br>
-Risk: Collection and history features may store fetched public market data as local CSV files. <br>
-Mitigation: Run in a controlled Python virtual environment and choose or clean the local data directory according to retention needs. <br>
-Risk: Market-data freshness and availability depend on HKEX and ETNet publishing schedules and page structure. <br>
-Mitigation: Check returned dates and source availability before relying on results for analysis or workflow decisions. <br>
+## Use Case:
 
+External users, developers, and market-data analysts use this skill to retrieve Hong Kong short-selling data for individual stocks, rankings, and local historical tracking.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/KadinXu/hk-stock-short-selling) <br>
-- [HKEX short selling statistics](https://www.hkex.com.hk/chi/stat/smstat/) <br>
-- [ETNet](https://www.etnet.com.hk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; runtime scripts may produce terminal tables, pandas DataFrames, and CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public HKEX and ETNet market-data pages and may save fetched data under a local CSV data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill contacts HKEX and ETNet during data retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation or execution.
+
+Risk: History-saving functions and collection scripts can create or update local CSV files.
+
+Mitigation: Run the skill in an approved workspace and monitor local market-data cache paths.
+
+Risk: Documented examples may need import-path fixes.
+
+Mitigation: Test the command-line and Python examples in the target agent environment before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kadinxu/skills/hk-stock-short-selling)
+- [HKEX short selling statistics](https://www.hkex.com.hk/chi/stat/smstat/)
+- [ETNet](https://www.etnet.com.hk/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime helpers produce tabular pandas DataFrames and CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact HKEX and ETNet and may create or update local CSV market-data caches when history-saving functions or collection scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

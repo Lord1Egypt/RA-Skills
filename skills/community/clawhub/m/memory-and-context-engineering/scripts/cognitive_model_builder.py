@@ -300,7 +300,7 @@ class CognitiveModel(BaseModel):
     created_at: datetime = Field(default_factory=datetime.now)
     updated_at: datetime = Field(default_factory=datetime.now)
 
-    def to_context_string(self) -> str:
+    def to_context_string(self, max_length: int = 2000) -> str:
         """
         转换为模型可直接使用的上下文字符串
 
@@ -314,7 +314,8 @@ class CognitiveModel(BaseModel):
         sections.append(f"- 目标: {self.task_context.goal}")
         if self.task_context.sub_goals:
             sections.append(f"- 子目标: {', '.join(self.task_context.sub_goals)}")
-        sections.append(f"- 进度: {self.task_context.progress_percentage:.0f}% - {self.task_context.current_phase}")
+        phase_display = self.task_context.current_phase or "exploration"
+        sections.append(f"- 进度: {self.task_context.progress_percentage:.0f}% - {phase_display}")
         if self.task_context.current_focus:
             sections.append(f"- 当前焦点: {self.task_context.current_focus}")
         sections.append("")
@@ -323,8 +324,8 @@ class CognitiveModel(BaseModel):
         if self.completed_path:
             sections.append("### 已完成路径")
             for i, step in enumerate(self.completed_path, 1):
-                result_icon = {"success": "✓", "failure": "✗", "in_progress": "→"}.get(
-                    step.result.value, "?"
+                result_icon = {"success": "[完成]", "failure": "[失败]", "in_progress": "[进行中]"}.get(
+                    step.result.value, "[未知]"
                 )
                 sections.append(f"{i}. {step.description} {result_icon}")
                 if step.key_findings:
@@ -406,7 +407,11 @@ class CognitiveModel(BaseModel):
             sections.append("### 建议下一步")
             sections.append(self.suggested_next_step)
 
-        return "\n".join(sections)
+        result = "\n".join(sections)
+        # 限制长度防止上下文注入
+        if len(result) > max_length:
+            result = result[:max_length] + "\n[上下文已截断]"
+        return result
 
 
 # ============================================================================
@@ -772,13 +777,22 @@ class CognitiveModelBuilder:
         # 导入进度
         if hasattr(task_progress, "get_progress_report"):
             report = task_progress.get_progress_report()
-            self._task_context.progress_percentage = report.completion_rate * 100
-            self._task_context.current_phase = report.current_phase.value
+            if report is not None:
+                rate = getattr(report, "completion_rate", 0.0) or 0.0
+                self._task_context.progress_percentage = rate * 100
+                phase = getattr(report, "current_phase", None)
+                if phase is not None:
+                    self._task_context.current_phase = phase.value if hasattr(phase, "value") else str(phase)
 
         # 导入步骤
         if hasattr(task_progress, "_steps"):
             for step_id, step in task_progress._steps.items():
-                result = StepResult.SUCCESS if step.status.value == "completed" else StepResult.IN_PROGRESS
+                status = getattr(step, "status", None)
+                is_completed = False
+                if status is not None:
+                    status_val = status.value if hasattr(status, "value") else str(status)
+                    is_completed = status_val.lower() in ("completed", "success", "done")
+                result = StepResult.SUCCESS if is_completed else StepResult.IN_PROGRESS
                 self.add_completed_step(
                     description=step.name,
                     result=result,

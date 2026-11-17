@@ -1,43 +1,58 @@
-## Description: <br>
-Simple text-based memory system for AI assistants with an auto-install script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple text-based memory system for AI assistants - auto-install script included
 
-## Publisher: <br>
-[crystaria](https://clawhub.ai/user/crystaria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystaria](https://clawhub.ai/user/crystaria)
 
-## Use Case: <br>
-Developers and AI assistant users use Memory Boost to preserve user preferences, project history, decisions, and session logs across conversations and multiple assistants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive or private information in local memory files across sessions. <br>
-Mitigation: Do not store secrets, credentials, regulated data, client-confidential material, or private personal details; inspect and prune memory files regularly. <br>
-Risk: Shared memory files can carry stale, incorrect, or overbroad context into later sessions or other assistants. <br>
-Mitigation: Review memory files before relying on them, keep entries concise, and correct or remove outdated decisions and preferences. <br>
-Risk: The install script creates and updates workspace-level memory files. <br>
-Mitigation: Run it only in the intended project directory and consider project-specific memory storage instead of shared home-level memory. <br>
+## Use Case:
 
+Developers and AI assistant users use Memory Boost to create and maintain local Markdown memory files for preferences, project history, decisions, quick indexes, and daily session logs across conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crystaria/memory-boost) <br>
-- [Clawdis homepage](https://clawhub.ai/skills/memory-boost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and generated local Markdown memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates MEMORY.md, MEMORY_INDEX.md, and dated memory/*.md files when the install script and skill workflow are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Persistent memory files can accumulate sensitive preferences, project context, or personal data across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict memory files to a specific project location, avoid storing secrets or sensitive personal data, and periodically review or delete retained notes.
+
+Risk: Automatically loaded memory can contain outdated, incorrect, or adversarial notes that influence future assistant behavior.
+
+Mitigation: Treat memory content as untrusted context, review it before relying on it, and confirm important decisions with the user before acting.
+
+Risk: Automatic writes may record information the user did not intend to preserve.
+
+Mitigation: Review every proposed memory write and require explicit approval before adding durable preferences, decisions, or project history.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.ai/skills/memory-boost)
+- [ClawHub skill page](https://clawhub.ai/crystaria/skills/memory-boost)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Markdown memory files such as MEMORY.md, MEMORY_INDEX.md, and daily logs when the install script is run.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

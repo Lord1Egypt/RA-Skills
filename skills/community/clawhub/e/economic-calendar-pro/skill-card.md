@@ -1,47 +1,59 @@
-## Description: <br>
-Runs a local script to fetch economic calendar events for a date range, using TradingEconomics when TRADING_ECONOMICS_API_KEY is present and Yahoo Finance otherwise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a local script to fetch economic calendar events for a date range. Defaults to 7 days inclusive from the query day. Uses TradingEconomics when TRADING_ECONOMICS_API_KEY is present and falls back to Yahoo Finance otherwise.
 
-## Publisher: <br>
-[youpele52](https://clawhub.ai/user/youpele52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youpele52](https://clawhub.ai/user/youpele52)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve forward-looking macroeconomic calendar events for today, this week, or a custom date range before trading or planning market analysis. It can also help set up recurring daily economic calendar briefings through a separate reminder workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact TradingEconomics or Yahoo Finance to fetch calendar data. <br>
-Mitigation: Install and run it only in environments where external calendar-data requests to those services are acceptable. <br>
-Risk: The optional TradingEconomics credential can be exposed if stored carelessly in a repository .env file. <br>
-Mitigation: Prefer TRADING_ECONOMICS_API_KEY in the runtime environment; if a .env file is used, keep it gitignored and limited to this credential. <br>
-Risk: Recurring calendar briefings can continue running after they are no longer needed. <br>
-Mitigation: Review the recurring briefing before confirming it and manage or cancel it through the remind-me workflow. <br>
-Risk: Yahoo Finance fallback results may omit importance, forecast, or market-expectation fields and may return country codes instead of full country names. <br>
-Mitigation: Treat fallback output as lower-detail calendar guidance and use TradingEconomics credentials when richer metadata is required. <br>
+## Use Case:
 
+External users and agents use this skill to fetch scheduled macroeconomic calendar events for a default seven-day window or a specified date range. It can also guide setup of recurring daily economic calendar briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youpele52/economic-calendar-pro) <br>
-- [TradingEconomics economic calendar snapshot documentation](https://docs.tradingeconomics.com/economic_calendar/snapshot/) <br>
-- [TradingEconomics API base URL](https://api.tradingeconomics.com) <br>
-- [Yahoo Finance calendar events fallback endpoint](https://query1.finance.yahoo.com/ws/screeners/v1/finance/calendar-events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text calendar report with grouped events and markdown command examples in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and optionally TRADING_ECONOMICS_API_KEY; without the key, output uses the Yahoo Finance fallback with reduced metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Credential and .env handling is broader than documented, and the TradingEconomics credential may appear in provider or proxy URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run from a controlled directory, use a narrowly scoped TradingEconomics key, avoid placing unrelated secrets in nearby .env files, and rotate the key if logs are exposed.
+
+Risk: Recurring briefing setup creates a remind-me cron that can continue running and delivering calendar output.
+
+Mitigation: Confirm the schedule, timezone, destination channel, and cancellation path before creating the reminder; periodically list and remove unused reminders.
+
+Risk: The Yahoo Finance fallback can omit importance, forecast, and market-expectation fields or return country codes, reducing data completeness.
+
+Mitigation: Prefer a valid TradingEconomics API key when those fields matter, and label fallback output as lower fidelity for downstream decisions.
+
+## Reference(s):
+
+- [TradingEconomics Economic Calendar API documentation](https://docs.tradingeconomics.com/economic_calendar/snapshot/)
+- [Yahoo Finance economic calendar fallback endpoint](https://query1.finance.yahoo.com/ws/screeners/v1/finance/calendar-events)
+- [ClawHub release page](https://clawhub.ai/youpele52/skills/economic-calendar-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell commands and formatted calendar entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts optional start and end dates; uses a TradingEconomics credential when configured and otherwise falls back to lower-fidelity Yahoo Finance data.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

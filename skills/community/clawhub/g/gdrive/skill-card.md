@@ -1,38 +1,58 @@
-## Description: <br>
-Access Google Drive in a privacy-safe way by only working inside an allow-listed set of approved folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Google Drive in a privacy-safe way by only working inside an allow-listed set of approved folders.
 
-## Publisher: <br>
-[nasusuna](https://clawhub.ai/user/nasusuna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nasusuna](https://clawhub.ai/user/nasusuna)
 
-## Use Case: <br>
-Agents use this skill to browse, read, search, and upload Google Drive files only within admin-approved folders. It is intended for workflows that need Drive access while keeping files outside the approved folder set off-limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved-folder limits may not be enforced if the underlying Google Drive integration does not implement the same restrictions. <br>
-Mitigation: Confirm the selected Google Drive CLI, API, or MCP server enforces approved-folder limits and admin-only folder changes before installation. <br>
+## Use Case:
 
+External users and developers use this skill to browse, search, read, and upload Google Drive files only within folders that have been explicitly approved.
 
-## Reference(s): <br>
-- [ClawHub gdrive release page](https://clawhub.ai/nasusuna/gdrive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing Google Drive CLI, API, or MCP server that enforces approved-folder limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The approved-folder boundary depends on the underlying Google Drive connector enforcing the allow-list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm the connector prevents access outside approved folders.
+
+Risk: Approved folders are accessible to the agent for reading, searching, downloading, and upload when enabled.
+
+Mitigation: Approve only intended folders and restrict upload permissions to folders where agent writes are expected.
+
+Risk: Admin-only folder approval changes could expand the agent's accessible Drive scope.
+
+Mitigation: Limit add and remove approval privileges to trusted administrators.
+
+## Reference(s):
+
+- [ClawHub gdrive skill page](https://clawhub.ai/nasusuna/skills/gdrive)
+- [nasusuna publisher profile](https://clawhub.ai/user/nasusuna)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs and actions should remain within approved Google Drive folders and respect configured permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

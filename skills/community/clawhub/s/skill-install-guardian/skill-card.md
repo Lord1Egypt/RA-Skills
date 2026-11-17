@@ -1,39 +1,53 @@
-## Description: <br>
-Security and due diligence layer for installing external skills from ClawHub. Performs DEEP content scanning for malicious patterns, security checks, integration analysis, and requires owner confirmation before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security and due diligence layer for installing external skills from ClawHub. Performs DEEP content scanning for malicious patterns, security checks, integration analysis, and requires owner confirmation before installation.
 
-## Publisher: <br>
-[zendenho7](https://clawhub.ai/user/zendenho7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zendenho7](https://clawhub.ai/user/zendenho7)
 
-## Use Case: <br>
-Developers and workspace owners use this skill to inspect ClawHub skills before installation, review security and integration findings, and keep owner confirmation as an explicit gate. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated checks can miss issues or produce false positives. <br>
-Mitigation: Review the generated findings manually and keep owner approval as a required step before installation. <br>
-Risk: The skill relies on `npx clawhub` inspection commands. <br>
-Mitigation: Use a trusted or pinned ClawHub CLI when running inspections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zendenho7/skill-install-guardian) <br>
+## Use Case:
 
+Developers and agents use this skill before installing external ClawHub skills to run security and integration checks, produce a review report, and require owner confirmation before installation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown report with shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx for ClawHub inspection commands; owner confirmation remains required before installation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter, server release metadata, changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automated checks can miss or misreport risky skills.
+
+Mitigation: Treat this skill as a helper, manually inspect upstream security reports, and do not rely on its deep scan for final approval.
+
+Risk: The skill relies on unpinned npx execution.
+
+Mitigation: Pin or preinstall a trusted ClawHub CLI and run the check in a low-privilege environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zendenho7/skills/skill-install-guardian)
+- [Publisher profile](https://clawhub.ai/user/zendenho7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report with JSON output and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and manual owner confirmation before installation.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,67 @@
-## Description: <br>
-Build complete local lead generation websites with SEO optimization, conversion tracking, and RGPD compliance. Use for creating service-based websites targeting local markets (plumbers, electricians, home services, etc.) with 10-20 pages, structured data, analytics, and legal compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build complete local lead generation websites with SEO optimization, conversion tracking, and RGPD compliance for service businesses targeting local markets.
 
-## Publisher: <br>
-[LucasGulino](https://clawhub.ai/user/LucasGulino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucasgulino](https://clawhub.ai/user/lucasgulino)
 
-## Use Case: <br>
-Developers and site-building agents use this skill to plan, build, optimize, and validate local service lead generation websites with SEO, conversion tracking, RGPD-oriented legal pages, cookie consent, and local marketing deliverables. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled contact form handles personal lead data and currently logs submitted form data in the browser console. <br>
-Mitigation: Replace the placeholder submission handler with a secured backend or CRM flow, remove console logging, and avoid exposing personal lead data in client-side logs. <br>
-Risk: The skill claims RGPD/GDPR compliance, but privacy notice, lawful basis, consent handling, and recipient disclosure must be implemented for each generated site. <br>
-Mitigation: Add visible privacy information near forms, disclose analytics, UTM, CRM, and WhatsApp recipients, and ensure non-essential tracking loads only after valid consent. <br>
-Risk: Lead records and WhatsApp conversation logs can create retention and access-control obligations. <br>
-Mitigation: Define retention, deletion, access-control, and anonymization rules before production use, and document how users can exercise data rights. <br>
-Risk: Local lead-generation SEO can drift into doorway pages, scaled generic content, fake addresses, or misleading service claims. <br>
-Mitigation: Apply the bundled anti-spam guardrails: keep pages original and intent-focused, avoid cloned city pages, use real NAP/business details, and disclose intermediary lead-generation models on key pages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LucasGulino/lead-gen-website) <br>
-- [Publisher profile](https://clawhub.ai/user/LucasGulino) <br>
-- [SEO Checklist for Lead Generation Websites](references/seo-checklist.md) <br>
-- [Conversion Best Practices for Lead Generation Websites](references/conversion-best-practices.md) <br>
-- [RGPD Compliance Guide for Lead Generation Websites](references/rgpd-compliance.md) <br>
-- [Garde-fous anti-spam (Google Spam Policies + March 2024)](references/google-spam-guardrails-2024.md) <br>
-- [GBP Playbook (Local SEO) - Relevance / Distance / Prominence](references/gbp-local-seo-playbook.md) <br>
-- [Micro-budget Ads (4 EUR/jour) - Playbook](references/ads-micro-budget-4eur-playbook.md) <br>
-- [WhatsApp Ops - Qualification & Log](references/whatsapp-ops-qualification.md) <br>
-- [Design Philosophy Examples for Lead Generation Websites](references/design-philosophies.md) <br>
+## Use Case:
 
+Developers and website-building agents use this skill to plan and generate local lead-generation websites with service pages, SEO metadata, structured data, contact flows, cookie consent, and legal pages. It is aimed at local service businesses such as trades, repairs, and professional services.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, JSON examples, generated project files, React templates, and SEO/legal configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce content structures, design ideas, React components/pages, robots.txt, sitemap.xml, JSON-LD snippets, GBP and ads checklists, validation notes, and delivery summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Page generation can write files based on user-provided JSON and templates.
+
+Mitigation: Use only trusted templates and data, then add filename containment checks and schema validation before production use.
+
+Risk: The bundled contact form logs lead data and shows success without confirmed backend delivery.
+
+Mitigation: Remove lead-data console logging, submit over HTTPS to a real backend or CRM, and show success only after delivery is confirmed.
+
+Risk: Lead-generation websites can become misleading or spam-like if they use cloned location pages, fake proof, or unclear marketplace disclosure.
+
+Mitigation: Apply the bundled anti-spam guardrails, use original local content and real proof, and disclose lead-generation or intermediary status on key pages.
+
+Risk: The RGPD materials are templates and may not satisfy every legal or jurisdiction-specific requirement.
+
+Mitigation: Have legal and privacy reviewers adapt the cookie, privacy, legal notice, consent, and data-retention language before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucasgulino/skills/lead-gen-website)
+- [SEO Checklist for Lead Generation Websites](references/seo-checklist.md)
+- [Conversion Best Practices for Lead Generation Websites](references/conversion-best-practices.md)
+- [RGPD Compliance Guide for Lead Generation Websites](references/rgpd-compliance.md)
+- [Garde-fous anti-spam](references/google-spam-guardrails-2024.md)
+- [GBP Playbook](references/gbp-local-seo-playbook.md)
+- [Micro-budget Ads Playbook](references/ads-micro-budget-4eur-playbook.md)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript/React templates, JSON examples, generated files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces website plans, React components and pages, SEO files, structured-data guidance, conversion tracking patterns, and compliance checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

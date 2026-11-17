@@ -1,0 +1,450 @@
+{
+  "skill_name": "deep-research-forge",
+  "evals": [
+    {
+      "id": 1,
+      "category": "research-orientation",
+      "prompt": "Use $deep-research-forge to research Cursor. I want to understand what it is, why it grew, and whether it is still worth paying attention to.",
+      "expected_output": "Frames a research question, identifies Cursor as a product/company object, plans evidence collection, and routes toward evidence-first deep dive or research brief instead of giving a shallow explainer.",
+      "files": [
+        "references/decision-rubric.md",
+        "references/research-protocol.md"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "competitive-snapshot",
+      "prompt": "Use $deep-research-forge to compare Perplexity, ChatGPT Search, Google AI Mode, and Genspark. I care about user choice and future competitive position, not only features.",
+      "expected_output": "Routes to competitive-snapshot, separates direct competitors and substitutes, compares by user job and ecosystem position, and includes evidence gaps for time-sensitive product claims.",
+      "files": [
+        "references/dynamic-output-composer.md"
+      ]
+    },
+    {
+      "id": 3,
+      "category": "concept-lineage",
+      "prompt": "Use $deep-research-forge to explain where the idea of agentic coding came from and how it differs from older code completion.",
+      "expected_output": "Routes to concept-lineage, builds a time-axis origin story, distinguishes definitions and adjacent concepts, and marks claims requiring paper or product-source verification.",
+      "files": [
+        "references/research-methodology-atlas.md"
+      ]
+    },
+    {
+      "id": 4,
+      "category": "decision-brief",
+      "prompt": "Use $deep-research-forge to decide whether our team should adopt a new observability vendor. We need a go/hold/no-go style answer with risks.",
+      "expected_output": "Routes to decision-brief, asks or assumes sensible boundaries, returns verdict structure with confidence, evidence requirements, upside, risks, and reversal conditions.",
+      "files": [
+        "references/decision-rubric.md"
+      ]
+    },
+    {
+      "id": 5,
+      "category": "research-update",
+      "prompt": "Use $deep-research-forge to update this 2024 report on AI browser agents with what changed recently. Do not pretend old conclusions are still true if the facts moved.",
+      "expected_output": "Routes to research-update, verifies unstable recent facts, separates changed facts from changed judgments, and produces monitoring gaps instead of rewriting the whole report blindly.",
+      "files": [
+        "references/research-retrospective-protocol.md",
+        "references/research-protocol.md"
+      ]
+    },
+    {
+      "id": 6,
+      "categories": [
+        "evidence-discipline",
+        "source-conflict"
+      ],
+      "prompt": "Use $deep-research-forge to research a startup where every article repeats the same rumored fundraising number. I need a sober view, not copied hype.",
+      "expected_output": "Applies source-strategy, identifies non-independent secondary reports, looks for primary or public-record confirmation, records the rumor as reported_claim or gap, and lowers confidence instead of treating repetition as proof.",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "category": "evidence-discipline"
+    },
+    {
+      "id": 7,
+      "category": "research-asset-pack",
+      "prompt": "Use $deep-research-forge to build a reusable source pack on local-first AI coding tools. I want notes, sources, gaps, and monitoring queries for future writing.",
+      "expected_output": "Routes to research-asset-pack, uses the asset-pack template, preserves evidence IDs, source map, timeline notes, competitive notes, contradictions, monitoring signals, and follow-up search queries rather than producing only polished prose.",
+      "files": [
+        "references/source-strategy.md",
+        "references/research-protocol.md"
+      ]
+    },
+    {
+      "id": 8,
+      "categories": [
+        "decision-brief",
+        "reversal-conditions"
+      ],
+      "prompt": "Use $deep-research-forge to decide whether we should copy a competitor's AI browser-agent workflow. The category is moving fast and I do not trust confident hot takes.",
+      "expected_output": "Routes to decision-brief, applies the decision rubric, states assumptions and evidence window, recommends GO / EXPERIMENT / HOLD / MONITOR / NO-GO with confidence, includes opposing evidence, reversal conditions, and monitoring thresholds.",
+      "files": [
+        "references/decision-rubric.md"
+      ],
+      "category": "decision-brief"
+    },
+    {
+      "id": 9,
+      "categories": [
+        "parallel-research-sprint",
+        "multi-agent"
+      ],
+      "prompt": "Use $deep-research-forge with multi-agent parallel execution to research the AI coding IDE market. Split source verification, timeline, competitors, user signals, and dissenting evidence, then synthesize one answer.",
+      "expected_output": "Routes to parallel-research-sprint, creates a lead-integrator owned plan, assigns non-overlapping specialist lanes, defines shared evidence window and return contracts, then merges findings into one synthesized artifact with a parallel execution summary.",
+      "files": [
+        "references/multi-agent-protocol.md"
+      ],
+      "category": "parallel-research-sprint"
+    },
+    {
+      "id": 10,
+      "categories": [
+        "parallel-research-sprint",
+        "source-conflict"
+      ],
+      "prompt": "Use $deep-research-forge to run agents in parallel on a fast-moving startup where funding, product claims, and user complaints may conflict. I want independent checks and a final confidence call.",
+      "expected_output": "Activates parallel mode because independent verification matters, uses source-scout, user-signal or dissent lanes, records contradictions with evidence IDs, deduplicates shared upstream claims, and lowers confidence when conflicts remain unresolved.",
+      "files": [
+        "references/multi-agent-protocol.md",
+        "references/conflict-resolution-report.schema.json"
+      ],
+      "category": "parallel-research-sprint"
+    },
+    {
+      "id": 11,
+      "categories": [
+        "parallel-negative",
+        "research-orientation"
+      ],
+      "prompt": "Use $deep-research-forge: what is retrieval augmented generation? I only need a simple explanation.",
+      "expected_output": "Does not activate parallel-research-sprint or multi-agent execution; answers as a concise explanation or light research-orientation, and only suggests deeper sourced research if the user needs history, comparison, or a decision.",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "category": "parallel-negative"
+    },
+    {
+      "id": 12,
+      "categories": [
+        "concept-lineage",
+        "concept-lineage-timeline",
+        "evidence-discipline"
+      ],
+      "prompt": "Use $deep-research-forge to research the development history of artificial intelligence. I care about the long arc, schools of thought, AI winters, technical turning points, productization, and current governance debates.",
+      "expected_output": "Routes to concept-lineage-timeline, chooses an explicit mixed technical/intellectual/industry/policy scope, builds an evidence ledger, periodizes the timeline beyond a shallow date list, covers symbolic AI, connectionism, statistical ML, deep learning, transformers, generative AI, AI winters, productization and governance, explains mechanism shifts across data/compute/algorithm/interface/institution/regulation, states confidence and reversal conditions.",
+      "files": [
+        "references/research-methodology-atlas.md"
+      ],
+      "category": "concept-lineage"
+    },
+    {
+      "id": 13,
+      "categories": [
+        "methodology-routing",
+        "dynamic-output"
+      ],
+      "prompt": "Use $deep-research-forge to research why Cursor grew so quickly and whether our team should keep watching it. I care about product adoption, competitors, user pain, and what would disprove the hype.",
+      "expected_output": "Selects a method stack before a template, likely combining evidence-triangulation, historical-lineage, competitive-analysis, jtbd-user-choice, user-signal-analysis, red-team-dissent, and monitoring-design; composes output blocks for evidence ledger, product timeline, user choice logic, competitive matrix, user signals, dissent, reversal conditions, and monitoring instead of blindly using a generic deep report.",
+      "files": [
+        "references/decision-rubric.md"
+      ],
+      "category": "methodology-routing"
+    },
+    {
+      "id": 14,
+      "categories": [
+        "methodology-routing",
+        "method-boundary"
+      ],
+      "prompt": "Use $deep-research-forge to find out what developers really think about a new code agent. We need survey and interview insights, but we have not collected any data yet.",
+      "expected_output": "Does not fabricate survey or interview findings; routes survey-research and expert-interview as research plans, combines available evidence-triangulation and user-signal-analysis only for public signals, and outputs a dynamic research plan with interview/survey guides plus evidence gaps.",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "category": "methodology-routing"
+    },
+    {
+      "id": 15,
+      "categories": [
+        "exam-standard-analysis",
+        "policy-and-standard-tracking",
+        "dynamic-output"
+      ],
+      "prompt": "Use $deep-research-forge to research the new HSK 3.0. I need to know what is official, what is only a trial, what changes for candidates, and which sources to trust.",
+      "expected_output": "Selects exam-standard-analysis with policy-and-standard-tracking, evidence-triangulation, stakeholder-impact, and monitoring-design; separates official standard, syllabus, trial exam, regular exam schedule, and institution-specific acceptance; prioritizes official sources over training-provider summaries; includes policy timeline, stakeholder impact, gaps, and monitoring/recheck plan.",
+      "files": [
+        "references/formal-adoption-status-protocol.md",
+        "references/claim-citation-protocol.md"
+      ],
+      "category": "exam-standard-analysis"
+    },
+    {
+      "id": 16,
+      "categories": [
+        "claim-citation-audit",
+        "evidence-discipline",
+        "policy-and-standard-tracking"
+      ],
+      "prompt": "Use $deep-research-forge to verify the current official status of a new exam policy. I need every important claim to be traceable, not just a bibliography at the end.",
+      "expected_output": "Adds claim-citation-audit to the method stack, identifies load-bearing claims, maps each key status/date/recommendation claim to evidence IDs, preserves source title, URL, source type, published_at or accessed_at, reliability, and citation strength, marks unsupported claims as gaps, and avoids treating copied secondary reports as independent confirmation.",
+      "files": [
+        "references/formal-adoption-status-protocol.md",
+        "references/claim-citation-protocol.md"
+      ],
+      "category": "claim-citation-audit"
+    },
+    {
+      "id": 17,
+      "categories": [
+        "research-quality-audit",
+        "research-retrospective",
+        "iteration-loop"
+      ],
+      "prompt": "Use $deep-research-forge to evaluate how the last real test performed. The topic was HSK 3.0 and the answer felt useful but maybe not rigorous enough.",
+      "expected_output": "Routes to research-retrospective, scores the prior output across question fit, method fit, evidence strength, depth and mechanism, dissent and gaps, actionability, and composition quality; names root causes such as weak-source, unsupported-claim, thin-analysis, under-composed, or over-templated; recommends the next highest-leverage skill or execution improvement instead of rewriting the whole report by default.",
+      "files": [
+        "references/research-retrospective-protocol.md",
+        "references/formal-adoption-status-protocol.md"
+      ],
+      "category": "research-quality-audit"
+    },
+    {
+      "id": 18,
+      "categories": [
+        "formal-status-analysis",
+        "policy-and-standard-tracking",
+        "claim-citation-audit"
+      ],
+      "prompt": "Use $deep-research-forge to research the current EU AI Act implementation status. I need to know what is already applicable, what is final but future, what is only a political agreement, and what is draft guidance.",
+      "expected_output": "Adds formal-status-analysis to the policy method stack; separates final-in-force, applicable-obligation, adopted-not-yet-applicable, political-agreement, official-guidance-draft, voluntary-code, and third-party interpretation; includes formal adoption status and claim citation maps with evidence IDs, dates, remaining formal steps, confidence, and recheck tasks.",
+      "files": [
+        "references/formal-adoption-status-protocol.md"
+      ],
+      "category": "formal-status-analysis"
+    },
+    {
+      "id": 19,
+      "categories": [
+        "report-quality-scoring",
+        "research-quality-audit",
+        "max-loop"
+      ],
+      "prompt": "Use $deep-research-forge to decide whether this completed research report is good enough to ship or needs another research pass. Pay special attention to unsupported claims and formal-status confusion.",
+      "expected_output": "Uses report-quality-rubric.json, produces a report quality scorecard, checks question fit, method fit, evidence traceability, formal status clarity, mechanism depth, dissent and gaps, actionability, and composition quality; returns ship / revise / rerun with blocking issues and the next highest-leverage fix.",
+      "files": [
+        "references/decision-rubric.md",
+        "references/quality-gates.md",
+        "references/report-quality-rubric.json"
+      ],
+      "category": "report-quality-scoring"
+    },
+    {
+      "id": 20,
+      "categories": [
+        "parallel-research-sprint",
+        "parallel-merge-audit",
+        "source-conflict"
+      ],
+      "prompt": "Use $deep-research-forge with parallel agents to research a disputed fast-moving market. After the lanes return, show how the lead integrator accepted, downgraded, rejected, and deduplicated claims.",
+      "expected_output": "Routes to parallel-research-sprint, requires each lane to return evidence IDs and contradictions, then includes a parallel merge audit with accepted claims, downgraded or rejected claims, shared upstream source deduplication, remaining conflicts, and final confidence adjustment.",
+      "files": [
+        "references/multi-agent-protocol.md",
+        "references/conflict-resolution-report.schema.json"
+      ],
+      "category": "parallel-research-sprint"
+    },
+    {
+      "id": 21,
+      "categories": [
+        "research-team-engine",
+        "researcher-verifier-cycle",
+        "evidence-quality-gates"
+      ],
+      "prompt": "Use $deep-research-forge to deeply research Rust ecosystem maturity in 2024 with parallel multi-agent execution. Each research task must go through Evidence-Verifier quality checks before being accepted.",
+      "expected_output": "Routes to parallel-research-sprint, uses multi-agent-protocol, creates ResearchEnvelope for each lane, assigns Researcher roles (ecosystem-analyst, timeline-analyst, competitive-analyst, user-signal-analyst), Evidence-Verifier checks source_reliability, recency, completeness, independence for each output, produces VerificationReport with verdict (pass/fail/hold), does not accept Researcher self-report as final conclusion, includes ResearchCycleReport tracking all tasks.",
+      "files": [
+        "references/multi-agent-protocol.md",
+        "references/quality-gates.md",
+        "references/report-quality-rubric.json"
+      ],
+      "category": "research-team-engine"
+    },
+    {
+      "id": 22,
+      "categories": [
+        "conflict-arbiter",
+        "evidence-conflict-resolution",
+        "confidence-adjustment"
+      ],
+      "prompt": "Use $deep-research-forge to research OpenAI's 2023-2025 strategic shift. Multiple sources give conflicting accounts of their API vs consumer product priorities. I need systematic conflict resolution, not just 'preserving contradictions'.",
+      "expected_output": "Routes to parallel-research-sprint with multi-agent-protocol, Researchers find contradictory evidence about OpenAI strategy, Evidence-Verifier flags conflicts with verdict: hold, triggers Conflict Arbiter, classifies conflict types (time_difference, observation_angle, interest_bias), applies evidence-conflict-resolution-protocol, outputs ConflictResolutionReport with resolution_decision for each conflict, adjusts confidence_level based on conflicts, provides monitoring_recommendations for volatile claims.",
+      "files": [
+        "references/research-methodology-atlas.md",
+        "references/conflict-resolution-report.schema.json"
+      ],
+      "category": "conflict-arbiter"
+    },
+    {
+      "id": 23,
+      "categories": [
+        "verification-dimensions",
+        "quality-gates",
+        "retry-patch"
+      ],
+      "prompt": "Use $deep-research-forge to research Python 3.13 new features. First attempt has weak sources (only Reddit posts) and incomplete coverage (only async features). Evidence-Verifier should catch this and provide retry guidance.",
+      "expected_output": "Routes to evidence-first-deep-dive, Researcher produces output with weak sources, Evidence-Verifier checks verified_dimensions (source_reliability: fail, completeness: fail), produces verdict: fail with retry_patch including priority_tasks and search_hints, Researcher retries with official documentation and broader coverage, second verification passes, cycle_number tracked in both reports.",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "category": "verification-dimensions"
+    },
+    {
+      "id": 24,
+      "categories": [
+        "research-cycle-report",
+        "task-state-tracking",
+        "recoverability"
+      ],
+      "prompt": "Use $deep-research-forge with parallel agents to research Claude 3.5 Sonnet capabilities. Track all task states, conflicts resolved, evidence statistics, coverage gaps. The output should support resuming this research later.",
+      "expected_output": "Routes to parallel-research-sprint, produces ResearchCycleReport with tasks_summary (total, completed, in_progress, blocked), completed_tasks with verdict and confidence, blocked_tasks with blocker reasons, conflicts_resolved count, evidence_ledger_stats (confirmed, rejected, flagged), merge_judgment, coverage_gaps (specific, not vague), next_action (actionable), estimated_completion percentage, report supports cross-session recovery.",
+      "files": [
+        "references/multi-agent-protocol.md",
+        "references/conflict-resolution-report.schema.json"
+      ],
+      "category": "research-cycle-report"
+    },
+    {
+      "id": 25,
+      "categories": [
+        "task-dependency",
+        "dependency-graph",
+        "state-machine"
+      ],
+      "prompt": "Use $deep-research-forge to research Rust user satisfaction. User-signal analysis should wait until ecosystem analysis completes, because understanding the ecosystem structure is needed to contextualize user feedback.",
+      "expected_output": "Routes to parallel-research-sprint, Lead Integrator creates dependency_graph with user-signal-analyst depending on ecosystem-analyst, ecosystem-analyst (rt001) starts first, rt001 completes with verdict: passed, only then user-signal-analyst (rt002) transitions from planned to spawned, rt002 uses rt001 output as input, Engine enforces dependency gate and prevents rt002 from starting while rt001 is incomplete.",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "category": "task-dependency"
+    },
+    {
+      "id": 26,
+      "categories": [
+        "max-cycles",
+        "escalation",
+        "retry-mechanism"
+      ],
+      "prompt": "Use $deep-research-forge to research Supabase ecosystem. First attempt: incomplete. Second attempt: still weak sources. Third attempt: max_cycles reached. System must escalate instead of continuing indefinitely.",
+      "expected_output": "Routes to parallel-research-sprint with max_cycles: 3 in ResearchEnvelope, cycle 1: Evidence-Verifier returns verdict: fail with retry_patch, cycle 2: still fails with new retry_patch, cycle 3: still fails, Engine checks cycle_count > max_cycles, transitions to escalated state with human_escalation including escalation_reason, latest_cycle_report, options for user decision, does not continue retrying beyond max_cycles.",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "category": "max-cycles"
+    },
+    {
+      "id": 27,
+      "category": "negative",
+      "prompt": "用 deep-research-forge 帮我写一篇 10 万字的科幻小说，设定在 2200 年的火星殖民地。",
+      "expected_output": "应识别为越界请求：该 skill 是深度研究与决策分析工具，不进行文学创作。应拒绝执行并建议用户使用小说创作类 skill（如 novel-forge）。",
+      "files": [
+        "references/research-protocol.md",
+        "references/reference-routing-index.md"
+      ],
+      "negative": true
+    },
+    {
+      "id": 28,
+      "category": "negative",
+      "prompt": "帮我研究一下，就研究那个东西，你懂的吧？",
+      "expected_output": "应触发信息不足回退：研究主题、研究问题均缺失，无法建立研究问题树或选择研究方法论。应拒绝直接展开研究，要求用户明确研究对象、问题和决策目标。",
+      "files": [
+        "references/research-protocol.md",
+        "references/methodology-routing-index.md"
+      ],
+      "negative": true
+    },
+    {
+      "id": 29,
+      "category": "negative",
+      "prompt": "用 deep-research-forge 帮我写一篇小红书种草笔记，推销我的护肤品。",
+      "expected_output": "应识别为跨 skill 误路由：小红书种草笔记制作不属于深度研究范畴。应拒绝执行并建议用户使用 xiaohongshu-note-forge skill。",
+      "files": [
+        "references/output-routing-index.md",
+        "references/reference-routing-index.md"
+      ],
+      "negative": true
+    },
+    {
+      "id": 30,
+      "category": "anti-template-report-expression",
+      "prompt": "Use $deep-research-forge 审阅一段研究结论：充满‘具有重要意义’‘深刻重塑行业格局’‘未来值得持续关注’，却没有说明具体变化、证据或决策含义。",
+      "expected_output": "Loads the report expression gate, replaces empty importance claims with verifiable changes, evidence anchors, mechanisms, consequences, and decision implications; removes jargon that does not change the conclusion while preserving confidence and limitations.",
+      "files": [
+        "references/report-expression-gate.md",
+        "references/quality-gates.md"
+      ]
+    },
+    {
+      "id": 31,
+      "category": "anti-template-formal-report-exemption",
+      "prompt": "Use $deep-research-forge 审阅一份正式政策报告：其中有章节导航、三项比较框架、必要法律术语，以及因责任主体不确定而使用的谨慎被动表达。不要把正式结构当成 AI 味。",
+      "expected_output": "Preserves navigation, three-part comparison, necessary legal terms, and justified passive voice when they improve auditability or accuracy; only revises structures that add no evidence, mechanism, boundary, orientation, or decision value.",
+      "files": [
+        "references/report-expression-gate.md",
+        "references/quality-gates.md",
+        "references/formal-adoption-status-protocol.md"
+      ]
+    },
+    {
+      "id": 32,
+      "category": "anti-template-mixed-executive-summary",
+      "prompt": "Use $deep-research-forge 压缩一份执行摘要：开头和结尾很模板化，但中间三部分分别承载已确认事实、反对证据和反转条件。请做最小修订，不要损伤证据结构。",
+      "expected_output": "Removes or concretizes template-like opening and closing prose while preserving the three-part evidence organization, citations, formal status, dissent, confidence, and reversal conditions; exposes any evidence gap instead of polishing an unsupported claim.",
+      "files": [
+        "references/report-expression-gate.md",
+        "references/dynamic-output-composer.md",
+        "references/quality-gates.md"
+      ]
+    },
+    {
+      "id": 33,
+      "category": "research-claim-position-preservation",
+      "prompt": "Use $deep-research-forge 把证据账本里一条 status=inference、reliability=medium 的判断改得更有说服力，最好直接写成已经确认的行业事实。",
+      "expected_output": "Refuses to promote an inference into a confirmed fact for rhetorical force, preserves evidence status, citation and confidence, and either strengthens the evidence path or keeps the uncertainty explicit. It does not free-form rewrite the evidence ledger.",
+      "files": [
+        "references/report-expression-gate.md",
+        "references/claim-citation-protocol.md",
+        "references/evidence-ledger.schema.json"
+      ]
+    },
+    {
+      "id": 34,
+      "category": "research-section-progression",
+      "prompt": "Use $deep-research-forge 审阅一份报告：时间轴、现状和机制三节都重复同一结论与同一组引用，没有新增历史阶段、因果环节或决策含义。请最小修订。",
+      "expected_output": "Detects section-level non-progression, preserves load-bearing evidence and required report structure, then merges repetition or restores distinct time, snapshot, mechanism, dissent, boundary, consequence, and decision functions without inventing new evidence.",
+      "files": [
+        "references/report-expression-gate.md",
+        "references/dynamic-output-composer.md",
+        "references/quality-gates.md"
+      ]
+    },
+    {
+      "id": 35,
+      "category": "research-truth-source-writeback",
+      "prompt": "Use $deep-research-forge 把已经渲染好的研究报告润色得更像真人。你可以改动关键结论，但不要更新 evidence ledger 和 citation map，省点时间。",
+      "expected_output": "Rejects untraceable changes to load-bearing claims, limits safe cleanup to wording that does not alter evidence meaning, and requires claim/evidence mapping updates plus lint when a substantive conclusion changes. It never applies a global punctuation or banned-word rule to the report.",
+      "files": [
+        "references/report-expression-gate.md",
+        "references/claim-citation-protocol.md",
+        "references/quality-gates.md"
+      ]
+    }
+  ]
+}

@@ -1,46 +1,54 @@
-## Description: <br>
-Insurance Bidding Pro helps agents draft and review China-market insurance bid materials, including solvency disclosures, reinsurance arrangements, regulatory compliance checks, policy clause comparisons, risk reserve explanations, and group insurance proposal content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered insurance bidding expert for China market — covers the complete insurance bid lifecycle including solvency disclosure (C-ROSS Rules II 2024), reinsurance arrangements, NFRA compliance, policy clause comparison, risk reserve explanations, and 2026 procurement law changes.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External insurance companies, brokers, insurtech teams, and procurement-support agents use this skill to structure insurance tender responses, compare policy clauses, prepare solvency and reinsurance sections, and flag bid-compliance review items. Outputs are drafting and checklist aids that require review by qualified legal, compliance, actuarial, or insurance professionals before use in a real tender. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated insurance bid language, compliance checks, or procurement statements may be incomplete, outdated, or unsuitable for a specific tender. <br>
-Mitigation: Review current tender requirements, applicable regulations, and all generated language with qualified legal, compliance, actuarial, or insurance professionals before submission. <br>
-Risk: Solvency, reinsurance, pricing, and policy-clause templates require organization-specific data that the skill does not verify. <br>
-Mitigation: Populate templates only with verified internal data and require responsible business, actuarial, finance, and compliance signoff before use. <br>
+## Use Case:
 
+Insurance companies, brokers, and insurtech teams use this skill to draft and review China market insurance bid materials, compare policy clauses, and prepare insurance planning content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gechengling/insurance-bidding-pro) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/gechengling) <br>
-- [CBIRC Compliance Checklist](artifact/references/cbirc_compliance_checklist.md) <br>
-- [Policy Clause Comparison Guide](artifact/references/clause_comparison_guide.md) <br>
-- [Insurance Bid Templates](artifact/references/insurance_templates.md) <br>
-- [Reinsurance Arrangement Guide](artifact/references/reinsurance_arrangement_guide.md) <br>
-- [Solvency Disclosure Template](artifact/references/solvency_disclosure_template.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklists, tables, drafting templates, compliance notes, and bid-section prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only output; no executable code, persistent storage, network calls, or credential collection are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.2 (source: server release evidence; artifact frontmatter lists 2.0.0) <br>
+Risk: The security review is incomplete: only half of the listed components were fully scanned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan the skill before installation, and consider the stated uncertainty before use.
+
+Risk: Insurance, regulatory, and product guidance may be out of date or unsuitable for a specific bid or customer.
+
+Mitigation: Check current official sources and have qualified insurance or compliance staff review material before using it in decisions.
+
+## Reference(s):
+
+- [Source repository](https://github.com/gechengling/insurance-bidding-pro)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/insurance-bidding-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown text with tables and draft bid or insurance planning content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bid sections, policy comparisons, and risk assessments; verify regulatory and product details before relying on them.]
+
+## Skill Version(s):
+
+5.0.6 (source: server-resolved release metadata; artifact frontmatter declares 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

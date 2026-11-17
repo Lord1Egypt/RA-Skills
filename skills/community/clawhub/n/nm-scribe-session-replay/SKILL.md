@@ -1,7 +1,7 @@
 ---
 name: session-replay
 description: Converts a Claude Code session JSONL file into an animated GIF terminal replay
-version: 1.9.8
+version: 1.10.3
 triggers:
   - recording
   - demo
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Session Replay
@@ -59,11 +59,11 @@ session files from `~/.claude/projects/`.
 The function returns a list of `SessionInfo` objects sorted by
 modification time (most recent first), each containing:
 
-- `path` -- full path to the .jsonl file
-- `modified` -- mtime timestamp
-- `first_user_message` -- preview of the first human message
-- `turn_count` -- number of user turns in the session
-- `project_name` -- parent directory name
+- `path`: full path to the .jsonl file
+- `modified`: mtime timestamp
+- `first_user_message`: preview of the first human message
+- `turn_count`: number of user turns in the session
+- `project_name`: parent directory name
 
 Present the list to the user as a numbered menu:
 
@@ -162,3 +162,17 @@ Generated tape: /tmp/session-replay-1711234567.tape
 Rendering GIF via scry...
 Done: session-replay.gif (18s, 960x540)
 ```
+
+## Exit Criteria
+
+- [ ] VHS tape file written to `{tempdir}/session-replay-{timestamp}.tape`
+      before rendering is attempted
+- [ ] GIF produced at the path specified in the tape's `Output`
+      directive and its size reported (duration, dimensions)
+- [ ] Temp tape file deleted after the GIF renders successfully
+- [ ] If VHS is not installed, error reported with the install command
+      `go install github.com/charmbracelet/vhs@latest` rather than
+      silently failing
+- [ ] If no JSONL path is given and `list_sessions()` returns empty,
+      user is told no sessions were found and directed to provide a
+      path directly

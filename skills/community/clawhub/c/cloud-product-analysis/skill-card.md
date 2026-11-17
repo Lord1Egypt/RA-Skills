@@ -1,49 +1,61 @@
-## Description: <br>
-A documentation aggregation skill that scrapes official Alibaba Cloud, Huawei Cloud, AWS, and Tencent Cloud product documentation and generates structured comparison reports for technical evaluation and learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates official Alibaba Cloud, Huawei Cloud, AWS, and Tencent Cloud documentation and generates structured cloud product comparison material for technical evaluation and learning.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-Developers, architects, and technical evaluators use this skill to collect official cloud product documentation, compare provider capabilities, and produce source-grounded markdown reports for product selection, learning, and architecture planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The scraper opens a headless browser and contacts official cloud documentation sites. <br>
-Mitigation: Install and run it only in workspaces where outbound documentation access is expected, and review fetched content before relying on generated comparisons. <br>
-Risk: Generated output files may overwrite existing workspace files if filenames are reused. <br>
-Mitigation: Choose explicit output filenames and inspect the target path before running the scraper. <br>
-Risk: Optional stealth mode changes browser behavior for compatibility with JavaScript-heavy sites. <br>
-Mitigation: Keep stealth mode disabled unless needed and consider the target site’s automation terms before enabling it. <br>
+## Use Case:
 
+Developers, architects, and technical evaluators use this skill to collect official cloud-provider documentation and produce structured comparison reports for cloud migration, multi-cloud planning, architecture design, and product learning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/cloud-product-analysis) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Cloud documentation scraper](scripts/cloud_doc_scraper.py) <br>
-- [Alibaba Cloud documentation entry pattern](https://help.aliyun.com/zh/{product}) <br>
-- [Huawei Cloud documentation entry pattern](https://support.huaweicloud.cn/{product}/index.html) <br>
-- [AWS Chinese documentation entry pattern](https://docs.aws.amazon.com/zh_cn/{service}/) <br>
-- [Tencent Cloud documentation entry example](https://cloud.tencent.com/document/product/213) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with extracted documentation, comparison tables, source notes, and concise chat summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write fetched documentation and analysis reports to workspace files; supports provider, product, output filename, page limit, and optional stealth mode parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Browser-based scraping uses unsafe settings and loose URL validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a low-privilege environment without mounted secrets or sensitive workspaces, and prefer a revised version that removes --no-sandbox and enforces strict hostname and redirect allowlists.
+
+Risk: Generated reports can be written to user-selected output paths.
+
+Mitigation: Choose report output paths deliberately and review generated markdown before relying on it for technical decisions.
+
+Risk: The optional --stealth mode changes browser behavior for JavaScript-heavy documentation sites.
+
+Mitigation: Avoid --stealth unless normal scraping fails and the target documentation source is expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/cloud-product-analysis)
+- [Alibaba Cloud documentation entry](https://help.aliyun.com/zh/{product})
+- [Huawei Cloud documentation entry](https://support.huaweicloud.cn/{product}/index.html)
+- [AWS documentation entry](https://docs.aws.amazon.com/zh_cn/{service}/)
+- [Tencent Cloud documentation entry](https://cloud.tencent.com/document/product)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with comparison tables, sourced documentation excerpts, update logs, and inline shell commands when installation or execution steps are needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write markdown report files to a user-selected workspace path.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Daily TOEIC practice coach for a user scoring 600+. Delivers one focused session daily for Parts 5, 6, and 7, explains answers with grammar and vocabulary notes, and targets improvement toward 700+. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily TOEIC practice coach for a user scoring 600+. Delivers one focused session daily for Parts 5, 6, and 7, explains answers with grammar and vocabulary notes, and targets improvement toward 700+.
 
-## Publisher: <br>
-[cngvc](https://clawhub.ai/user/cngvc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cngvc](https://clawhub.ai/user/cngvc)
 
-## Use Case: <br>
-External TOEIC learners use this skill for daily reading-focused homework across Parts 5, 6, and 7. It generates original practice questions, waits for answers, and then explains correct choices, grammar, vocabulary, and distractors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes a small local state file to track the last delivered TOEIC part. <br>
-Mitigation: Installers should allow the skill to write only its intended memory/toeic-state.md state file and review changes if the path differs. <br>
-Risk: Automatically routed agents could invoke the skill for non-TOEIC study requests. <br>
-Mitigation: Route this skill only for TOEIC reading practice, TOEIC Parts 5 to 7 homework, or answer-explanation requests. <br>
+## Use Case:
 
+TOEIC learners scoring around 600+ use this skill for daily reading-focused homework in Parts 5, 6, and 7, with answer explanations that reinforce grammar, vocabulary, and distractor analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cngvc/toeic-practice) <br>
-- [Publisher profile](https://clawhub.ai/user/cngvc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown and plain text practice sessions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a small local memory file to rotate TOEIC Parts 5, 6, and 7 across sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes a small local state file to track the TOEIC part rotation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an agent workspace where this local memory behavior is expected.
+
+Risk: The skill is scoped to English TOEIC reading practice and may not meet needs for listening sections or non-English explanations.
+
+Mitigation: Use it for Parts 5, 6, and 7 practice, and request a different explanation language explicitly if needed.
+
+## Reference(s):
+
+- [Toeic Practice on ClawHub](https://clawhub.ai/cngvc/skills/toeic-practice)
+- [Publisher profile](https://clawhub.ai/user/cngvc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style instructional text with original TOEIC practice questions and explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Practice is limited to TOEIC Parts 5, 6, and 7 and uses a small local state file to rotate the daily part.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

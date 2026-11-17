@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for API Router concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for API Router concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers use this skill to quickly retrieve API Router reference material, including introductions, quickstarts, patterns, debugging guidance, performance notes, security considerations, migration guidance, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply generic API Router guidance that does not match their project or platform. <br>
-Mitigation: Treat outputs as reference material and validate recommendations against project-specific documentation and review processes before applying them. <br>
-Risk: Installing a third-party Bash helper requires trust in the publisher and release artifact. <br>
-Mitigation: Review the artifact before installation; the server security summary reports no credentials, network access, persistence, or system-changing behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill as a static reference helper for API Router topics, including introductions, quickstarts, patterns, debugging, performance, security, migration, and cheat sheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/api-router) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands print static documentation; no API keys, network access, persistence, or system changes are indicated by the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata; artifact frontmatter lists 3.0.1 and script lists 3.0.0) <br>
+Risk: The skill output is generic reference material and may not be authoritative API Router documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a quick reference and verify important implementation or security decisions against authoritative project documentation before use.
+
+Risk: Examples or workflows may prompt users to think about credentials or access configuration.
+
+Mitigation: Do not paste real credentials into prompts, examples, or documentation workflows generated from this skill.
+
+## Reference(s):
+
+- [Api Router ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/api-router)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no credentials, network calls, or persisted changes.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

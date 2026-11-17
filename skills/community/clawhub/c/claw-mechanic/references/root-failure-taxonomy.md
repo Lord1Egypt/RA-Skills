@@ -34,6 +34,7 @@ Typical tells:
 - Restart/update output reports failure but a detached gateway is still serving.
 - Duplicate gateway processes or two listeners compete for the same role.
 - A service reinstall changes the managed Node/Bun path and channels or providers fail only through the new runtime.
+- The gateway is repeatedly stopped by an outside job: ready, then SIGTERM seconds later on a fixed cycle (check for a relaunching `launchctl submit` job; see failure-map macOS traps).
 
 Fast proof:
 - Compare service-manager status, process owner, listener port, `gateway status --deep`, and `/health`.
@@ -63,11 +64,13 @@ Root failure: old sidecars, task/cron records, plugin indexes, or SQLite migrati
 
 Typical tells:
 - Doctor mentions legacy storage or ignored stale records.
-- Task audit shows lost, stale running, blocked restart, or timestamp anomalies.
+- `status --all` task/audit totals show lost, stale running, blocked restart, or timestamp anomalies.
 - Cron views disagree between files, SQLite, CLI, and Gateway state.
+- Update admission refuses with `retired-state-format`, or Doctor repeats "imported"/"unreferenced" for the same legacy files on every run.
+- Package rolled back after a failed update but the database was already migrated forward (`SQLite schema is incomplete or noncanonical`).
 
 Fast proof:
-- Run doctor without fixing, `tasks audit`, cron list/status, and targeted cron/run history.
+- Run doctor without fixing, `status --all`, cron list/status, and targeted cron/run history.
 - Inspect legacy sidecars only as evidence, not as the first edit target.
 
 Mechanic move: use supported normalization first. If direct state surgery is unavoidable, back up files and prove the live Gateway sees the repair afterward.
@@ -94,6 +97,7 @@ Typical tells:
 - CLI checks fail but the service works, or the service fails while shell probes work.
 - Security tools report unresolved refs, unauthenticated access, or stale generated model catalogs.
 - Channel or provider auth errors appear only after restart.
+- Exec/keychain SecretRefs resolve for the GUI-session gateway but not for SSH CLI commands.
 
 Fast proof:
 - Compare service env, SecretRefs, `secrets audit`, auth profiles, and a real authenticated/unauthenticated probe when relevant.
@@ -126,13 +130,13 @@ Typical tells:
 - Default model changes do not affect cron cost.
 - Isolated jobs still carry channel/direct-session keys.
 - Cron timeouts continue after model config looks fixed.
-- Task audit is dirty while plugin and gateway checks are green.
+- Task/audit totals in `status --all` are dirty while plugin and gateway checks are green.
 
 Fast proof:
 - Count cron payload models/fallbacks by job class.
 - Identify deterministic shell/script jobs still stored as isolated agent turns; those are usually command cron candidates rather than approval-policy problems.
 - Inspect recent run history for affected jobs, not only job definitions.
-- Compare `sessionTarget`, persisted session keys, `lightContext`, task audit, and timeout lines.
+- Compare `sessionTarget`, persisted session keys, `lightContext`, `status --all` task totals, and timeout lines.
 
 Mechanic move: patch the exact job class through supported cron edit or Gateway RPC. Convert deterministic scheduled scripts to command cron jobs, and leave agent-turn crons only where model reasoning is required. Do not flatten intentionally different cron routes into one model.
 
@@ -203,7 +207,9 @@ Typical tells:
 Fast proof:
 - From an outside shell, verify installed version, service manager, process, `/health`, channel status, and fresh CLI diagnostics.
 
-Mechanic move: trust the post-update host state, not the transcript. Reconcile package and service lifecycle before changing models or plugins.
+Also covers an operator's own update failing half-way: the package rolls back while state has migrated forward, so neither old nor new code runs cleanly.
+
+Mechanic move: trust the post-update host state, not the transcript. Never roll state backwards; back up and roll the package forward (see failure-map update recovery). Reconcile package and service lifecycle before changing models or plugins.
 
 ## 14. Supply Chain And Install Artifact Uncertainty
 

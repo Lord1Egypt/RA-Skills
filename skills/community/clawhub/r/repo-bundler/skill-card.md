@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Repo Bundler concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools -- covers intro, quickstart, patterns and more, with quick lookup for Repo Bundler concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Repo Bundler concepts, setup, operating patterns, debugging, performance, security, migration, and command cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference documentation can be incomplete or too generic for a specific repository workflow. <br>
-Mitigation: Review generated guidance against the target repository's own documentation and operational requirements before acting on it. <br>
-Risk: The artifact is a shell command dispatcher, so installation or execution should be reviewed before broader environment access is granted. <br>
-Mitigation: Inspect the shell script and run it with least privilege; the available security evidence reports no hidden, deceptive, or disproportionate behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise Repo Bundler reference documentation for devtools workflows, including quickstart guidance, common patterns, debugging, performance, security, migration, and cheatsheet material.
 
-## Reference(s): <br>
-- [Repo Bundler on ClawHub](https://clawhub.ai/bytesagain1/repo-bundler) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release metadata) <br>
+Risk: Generic reference guidance may not match a user's specific repository, environment, or policy requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference text before applying it to production workflows.
+
+Risk: The documentation mentions credentials as a concept even though the inspected artifact does not request or access them.
+
+Mitigation: Do not provide secrets to this skill; use it as local reference material only.
+
+## Reference(s):
+
+- [Repo Bundler on ClawHub](https://clawhub.ai/bytesagain1/skills/repo-bundler)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, network access, or persistent settings are required according to the security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

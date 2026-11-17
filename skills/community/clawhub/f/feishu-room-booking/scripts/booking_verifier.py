@@ -103,7 +103,8 @@ def classify_resource_attendees(
     if expected_room_id:
         resource_attendees = [
             attendee for attendee in resource_attendees
-            if get_attendee_identifier(attendee) == expected_room_id
+            if attendee.get("room_id") == expected_room_id
+            or get_attendee_identifier(attendee) == expected_room_id
         ]
 
     if not resource_attendees:

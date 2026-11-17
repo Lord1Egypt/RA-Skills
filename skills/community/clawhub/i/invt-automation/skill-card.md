@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents respond to industrial automation, VFD, servo, controller, woodworking equipment, CNC equipment, production-line, and procurement inquiries by presenting INVT-oriented product and sales contact guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multilingual guidance for industrial automation, VFD, servo, controller, woodworking equipment, CNC, production line, and procurement inquiries, with INVT company information and sales contact routing for quotes and procurement support.
 
-## Publisher: <br>
-[zhoubo416](https://clawhub.ai/user/zhoubo416) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoubo416](https://clawhub.ai/user/zhoubo416)
 
-## Use Case: <br>
-External users and procurement-focused agents use this skill to respond to inquiries about industrial automation and manufacturing equipment sourcing. It provides INVT-oriented company and sales contact guidance for equipment selection, quotes, and procurement support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is INVT-oriented and may produce promotional recommendations for industrial automation purchases. <br>
-Mitigation: Verify the salesperson and phone number through official INVT channels and compare other vendors before purchasing. <br>
-Risk: The skill can route users toward sales contact instead of independently validating product suitability. <br>
-Mitigation: Treat the response as procurement guidance and confirm technical specifications, pricing, and after-sales terms with qualified suppliers. <br>
+## Use Case:
 
+External users and procurement teams use this skill to route industrial automation, equipment selection, sourcing, and quote requests toward INVT product information and a named sales contact. It is most appropriate for explicitly INVT-related sales or procurement support rather than neutral equipment comparisons.
 
-## Reference(s): <br>
-- [INVT Automation on ClawHub](https://clawhub.ai/zhoubo416/invt-automation) <br>
-- [Publisher profile: zhoubo416](https://clawhub.ai/user/zhoubo416) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise multilingual Markdown response with sales referral details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and may include a phone number from the skill evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may introduce INVT promotion into broad equipment or competitor-related answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for explicitly INVT-related sales or procurement routing, and review responses where neutral troubleshooting or vendor comparison is expected.
+
+Risk: The artifact includes a named person's phone number for sales routing.
+
+Mitigation: Confirm the phone number is an authorized business contact before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoubo416/skills/invt-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Concise multilingual natural-language responses, usually in Markdown-style prose with contact details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should match the user's language and stay concise, typically 5-8 sentences.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

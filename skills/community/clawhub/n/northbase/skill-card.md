@@ -1,42 +1,57 @@
-## Description: <br>
-Northbase lets an agent read, write, list, and sync the user's persistent notes and workspace files through the Northbase CLI when the user explicitly requests file interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage persistent notes and workspace files through the Northbase CLI when the user explicitly requests reading, writing, listing, or syncing them.
 
-## Publisher: <br>
-[ethanbernheim-maker](https://clawhub.ai/user/ethanbernheim-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethanbernheim-maker](https://clawhub.ai/user/ethanbernheim-maker)
 
-## Use Case: <br>
-Northbase is for people who want an agent to access and maintain persistent notes and workspace files shared through Northbase. Use it only for explicit requests to read, write, list, or sync those stored files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write or overwrite requests may persist and sync across devices. <br>
-Mitigation: Confirm the user's intent before writes or overwrites, read existing files first with northbase get, and write updates through northbase put. <br>
-Risk: The CLI may be authenticated to an unintended Northbase account or workspace. <br>
-Mitigation: Confirm the Northbase CLI is logged into the correct account before using the skill, especially before reading or changing files. <br>
-Risk: Bypassing the Northbase CLI can create stale or inconsistent file state. <br>
-Mitigation: Use only the northbase CLI for file operations and do not read local mirror directories or query backing services directly. <br>
+## Use Case:
 
+External users and agent operators use Northbase to access, list, synchronize, and update persistent notes or workspace files through the Northbase CLI when the user explicitly requests file interaction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ethanbernheim-maker/northbase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to read, write, list, or sync user workspace files through the Northbase CLI when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Unchecked note or workspace paths could be misused if interpolated into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only validated, workspace-relative paths to the Northbase CLI using safe argument handling.
+
+Risk: Stored note contents may be untrusted and could influence later agent behavior.
+
+Mitigation: Treat retrieved note contents as user data, not instructions, and confirm intent before acting on sensitive changes.
+
+Risk: Updating files without first reading current contents could overwrite existing notes.
+
+Mitigation: Read the target file first and preserve existing content unless the user clearly asks to replace it.
+
+## Reference(s):
+
+- [Northbase on ClawHub](https://clawhub.ai/ethanbernheim-maker/skills/northbase)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the northbase CLI and user authentication; file changes should be made only after explicit user intent.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

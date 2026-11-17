@@ -1,46 +1,58 @@
-## Description: <br>
-Routes fake-completion diagnosis and verification-workflow search intent back to the canonical VeriClaw skill and related public install surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes fake completion diagnosis and related agent-evaluation queries to the canonical VeriClaw skill and reference pages.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this alias skill to find VeriClaw resources when they describe the problem as fake completion, agent evaluation, or verification workflow diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat this alias as the canonical VeriClaw install surface and skip review of downstream VeriClaw components. <br>
-Mitigation: Install or review VeriClaw from the canonical ClawHub skill, plugin, download, or review-kit links before using downstream components. <br>
-Risk: Downstream VeriClaw resources may have their own permissions, credential, or local file access considerations. <br>
-Mitigation: Review the separate VeriClaw skill, plugin, or download page before installation, especially when system permissions, credentials, or local file access are requested. <br>
+## Use Case:
 
+Developers and agents use this skill to recognize fake completion diagnosis, AI fake-completion, agent evaluation, and verification workflow wording and route users toward VeriClaw's canonical install and review surfaces.
 
-## Reference(s): <br>
-- [Fake Completion Diagnosis skill page](https://clawhub.ai/sheygoodbai/fake-completion-diagnosis) <br>
-- [VeriClaw skill page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw plugin page](https://clawhub.ai/plugins/vericlaw) <br>
-- [VeriClaw fake completion diagnosis page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/) <br>
-- [VeriClaw landing page](https://sheygoodbai.github.io/vericlaw/) <br>
-- [VeriClaw download page](https://sheygoodbai.github.io/vericlaw/download/) <br>
-- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline shell command guidance and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [This alias produces routing guidance rather than executable code or generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and frontmatter) <br>
+Risk: This routing alias points to external VeriClaw pages and a separate `vericlaw` package that are not audited or contained in this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked VeriClaw pages and the separate `vericlaw` package before installing or relying on that external component.
+
+Risk: Users may mistake this alias for the canonical VeriClaw install surface.
+
+Mitigation: Use this skill only for routing fake-completion diagnosis queries, and follow the canonical VeriClaw install or review links when the user wants the main package.
+
+## Reference(s):
+
+- [Fake Completion Diagnosis skill page](https://clawhub.ai/sheygoodbai/skills/fake-completion-diagnosis)
+- [VeriClaw ClawHub homepage](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw plugin page](https://clawhub.ai/plugins/vericlaw)
+- [Fake Completion Diagnosis reference page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis/)
+- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+- [Search intents](references/search-intents.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with links and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes intent aliases to canonical VeriClaw pages; does not generate or execute code.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

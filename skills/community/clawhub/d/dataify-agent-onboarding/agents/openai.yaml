@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Agent Onboarding"
+  short_description: "Configure Dataify and complete the first successful task"
+  default_prompt: "Set up Dataify for my current environment and continue my original task."

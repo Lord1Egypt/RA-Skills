@@ -1,44 +1,59 @@
-## Description: <br>
-Tencent Cloud TI-ONE query toolkit for inspecting training jobs, online services, notebooks, resource groups, model repositories, datasets, logs, and events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Cloud TI-ONE query toolkit for training tasks, online services, notebooks, resource groups, model repositories, datasets, logs, and events.
 
-## Publisher: <br>
-[alger-z](https://clawhub.ai/user/alger-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alger-z](https://clawhub.ai/user/alger-z)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to query Tencent Cloud TI-ONE resources, inspect logs and events, and generate console links while reviewing training and inference workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Tencent Cloud TI-ONE regions listed by the skill: Beijing, Shanghai, Guangzhou, Shanghai ADC, Zhongwei, and Nanjing. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tencent Cloud API credentials can expose TI-ONE data visible to the provided key. <br>
-Mitigation: Use a dedicated read-only, least-privileged Tencent Cloud key for this skill. <br>
-Risk: TI-ONE log and metadata queries may return sensitive operational details in the agent conversation. <br>
-Mitigation: Keep log queries narrowly scoped and review returned data before sharing it outside the intended audience. <br>
-Risk: The skill depends on external command-line tools. <br>
-Mitigation: Install tccli and jq from trusted sources before use. <br>
+## Use Case:
 
+Developers and cloud operations teams use this skill to inspect Tencent Cloud TI-ONE resources through predefined read-only query scripts and to generate console links for supported resources.
 
-## Reference(s): <br>
-- [TI-ONE tool parameter reference](references/cmd-reference.md) <br>
-- [TI-ONE console reference](references/tione-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/alger-z/tencentcloud-tione-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, formatted JSON query results, and Tencent Cloud console URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only TI-ONE Describe queries through bundled scripts; requires Tencent Cloud credentials, tccli, jq, and an optional default region.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Tencent Cloud credentials are required and could expose cloud account access if reused broadly or shown in responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated Tencent Cloud credentials limited to read-only TI-ONE Describe permissions, and never display secret values.
+
+Risk: The dependency instructions install tccli without a pinned version.
+
+Mitigation: Install tccli in an isolated environment and pin or verify the package version before exposing cloud credentials.
+
+Risk: Unsupported actions or direct API calls could exceed the skill's intended read-only query scope.
+
+Mitigation: Use only the predefined scripts under artifact/scripts and refuse create, modify, delete, or direct tccli/API workflows.
+
+## Reference(s):
+
+- [Tencent Cloud TIONE ClawHub Release](https://clawhub.ai/alger-z/skills/tencentcloud-tione-skill)
+- [TI-ONE Tool Parameter Reference](artifact/references/cmd-reference.md)
+- [TI-ONE Console Reference](artifact/references/tione-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Configuration guidance]
+
+**Output Format:** [Markdown guidance with bash script invocations and JSON-formatted cloud query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials, tccli, jq, and an optional default TI-ONE region.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

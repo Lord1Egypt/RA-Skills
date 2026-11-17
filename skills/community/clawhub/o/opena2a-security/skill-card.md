@@ -1,42 +1,59 @@
-## Description: <br>
-Security hardening for OpenClaw. Audit your configuration, scan installed skills for malware, detect CVE-2026-25253, check credential exposure, and get actionable fix recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenA2A Security helps agents audit OpenClaw configuration, scan installed skills for security issues, detect CVE-2026-25253 exposure, check credential handling, and provide actionable remediation guidance.
 
-## Publisher: <br>
-[abdelsfane](https://clawhub.ai/user/abdelsfane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abdelsfane](https://clawhub.ai/user/abdelsfane)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw installations, scan installed skills for malware patterns, check credential handling, and receive prioritized hardening recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run an unpinned npm scanner against sensitive OpenClaw files. <br>
-Mitigation: Trust and verify the `hackmyagent` package before use; prefer a pinned reviewed version or a preinstalled reviewed binary. <br>
-Risk: Security scans may touch credential-bearing OpenClaw directories. <br>
-Mitigation: Run scans in a contained environment and avoid scanning sensitive directories unless the scanner and execution context have been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abdelsfane/opena2a-security) <br>
-- [hackmyagent npm package](https://www.npmjs.com/package/hackmyagent) <br>
-- [hackmyagent source repository](https://github.com/opena2a-org/hackmyagent) <br>
-- [OpenClaw trust threat model](https://github.com/openclaw/trust/pull/7) <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw installations, check installed skills and configuration for security issues, detect CVE-2026-25253 exposure, and receive remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and optional scanner report formats including text, JSON, SARIF, HTML, and ASP.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local security reports when the scanner is invoked with an output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to run an unpinned npm scanner against sensitive OpenClaw files.
+
+Mitigation: Run only a pinned, trusted HackMyAgent version or a locked local install; prefer mounting ~/.openclaw read-only during scans.
+
+Risk: The security evidence notes a no-network-use claim while the scanner is invoked through npx.
+
+Mitigation: Block outbound network during scans when possible and review the scanner package before execution.
+
+Risk: Generated reports may contain sensitive configuration findings or file paths.
+
+Mitigation: Treat reports as sensitive local artifacts and avoid sharing them without review and redaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdelsfane/skills/opena2a-security)
+- [HackMyAgent npm package](https://www.npmjs.com/package/hackmyagent)
+- [HackMyAgent repository](https://github.com/opena2a-org/hackmyagent)
+- [OpenClaw trust threat model](https://github.com/openclaw/trust/pull/7)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and scanner report references; reports may be generated as text, JSON, SARIF, HTML, or ASP.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local OpenClaw security checks through HackMyAgent and may produce security findings, remediation steps, and report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

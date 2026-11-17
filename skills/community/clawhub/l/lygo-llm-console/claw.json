@@ -1,0 +1,55 @@
+{
+  "name": "lygo-llm-console",
+  "displayName": "LYGO LLM Console",
+  "version": "2.0.3",
+  "description": "Pointer-only ClawHub skill for LYGO LLM Console 1.7.0. No bundled runtime, no Python, no executables. Links to the official 1.7.0 PC and USB installers, SkillHub Builds card, GitHub source and the online API portal. Console runs standalone or with the API portal.",
+  "slug": "lygo-llm-console",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://chatagent.ca/lygo-llm-console.html",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-llm-console",
+  "signature": "LYGO-LLM-CONSOLE-POINTER-v2.0.3",
+  "steward": "Justin Helmer / Excavationpro / Lightfather",
+  "console_release": "1.7.0",
+  "package_kind": "pointer",
+  "bundled_runtime": false,
+  "tags": [
+    "latest",
+    "lygo",
+    "llm",
+    "console",
+    "local",
+    "gguf",
+    "llama-cpp",
+    "agent-portal",
+    "openclaw"
+  ],
+  "entry": "SKILL.md",
+  "permissions": {
+    "skill": {
+      "network": false,
+      "subprocess": false,
+      "shell": false,
+      "filesystem": {
+        "read": "skill only",
+        "write": false
+      }
+    },
+    "console_runtime": {
+      "separate_download": true,
+      "network": "loopback HTTP + HTTPS GET",
+      "listen": "127.0.0.1:9641 and 127.0.0.1:11441",
+      "filesystem": "kit workspace/ and save/ only",
+      "sandbox": false
+    }
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_autoupdate": true,
+    "no_telemetry": true,
+    "bundled_runtime": false,
+    "pointer_only": true,
+    "version": "2.0.3"
+  }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Automatically create a new OpenClaw agent, translate its name, and initialize its persona/system prompt based on user requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically create a new OpenClaw agent, translate its name, and initialize its persona/system prompt based on user requests.
 
-## Publisher: <br>
-[freesaber](https://clawhub.ai/user/freesaber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freesaber](https://clawhub.ai/user/freesaber)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to turn a natural-language role request into an independent peer agent with a generated ID, display name, persona prompt, and initialized workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent OpenClaw agents and changes local OpenClaw state. <br>
-Mitigation: Review the generated agent ID, display name, workspace path, and full persona prompt before execution, and back up ~/.openclaw/openclaw.json. <br>
-Risk: Persona text may place sensitive or inappropriate instructions into the new agent's memory. <br>
-Mitigation: Do not include secrets in persona text and review the prompt before it is injected. <br>
-Risk: The documented Windows PowerShell path references a script that is not included in the artifact. <br>
-Mitigation: Do not use the Windows PowerShell path unless the missing script is supplied and reviewed. <br>
+## Use Case:
 
+OpenClaw users and agent developers use this skill to create durable peer agents from natural-language role requests, including agent IDs, display names, and detailed identity prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freesaber/agent-creator-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style guidance with inline shell commands and generated persona text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent OpenClaw agents, updates local OpenClaw configuration, and injects the generated persona prompt into the new agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Risk: The skill creates persistent peer agents and stores generated operating instructions without a clear confirmation or review step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before each run, require the agent to show the exact agent ID, display name, workspace path, and full identity prompt, then approve execution explicitly.
+
+Risk: Untrusted or copied prompt text could be injected into a durable agent identity.
+
+Mitigation: Avoid using the skill with untrusted prompt text and review the generated identity prompt before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freesaber/skills/agent-creator-skill)
+- [README](artifact/README.md)
+- [README zh-CN](artifact/README.zh-CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with generated command arguments and shell execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent OpenClaw agent configuration and injects a generated identity prompt when executed.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

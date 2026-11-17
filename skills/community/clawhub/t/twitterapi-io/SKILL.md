@@ -1,29 +1,48 @@
 ---
 name: twitterapi-io
-description: Interact with Twitter/X via TwitterAPI.io — search tweets, get user info, post tweets, like, retweet, follow, send DMs, and more. Covers all 67 active endpoints. Use when the user wants to read or write Twitter data.
+description: Interact with Twitter/X via TwitterAPI.io — search tweets, get user info, post tweets, like, retweet, follow, send DMs, and more. Covers all 76 active endpoints. Use when the user wants to read or write Twitter data.
 metadata:
-  version: 3.8.5
-  updated: 2026-04-29
+  version: 3.8.32
+  updated: "2026-11-13"
   author: dorukardahan
 ---
 
-# TwitterAPI.io skill v3.8.5
+# TwitterAPI.io skill v3.8.32
 
 Access Twitter/X data and perform actions via [TwitterAPI.io](https://twitterapi.io) REST API.
 Use TwitterAPI.io REST API for read, write, webhook, and stream operations.
 
 Docs: https://docs.twitterapi.io | Dashboard: https://twitterapi.io/dashboard
 
+## Agent safety default
+
+This skill documents both read and write endpoints, but agents should treat Twitter/X operations as **read-only by default**. Use public/read endpoints for search, timelines, user/tweet lookup, replies, quotes, trends, pagination, deduplication, and analysis.
+
+Do not use write, login, cookie, proxy, private-data, DM, follow, like, retweet, post, or profile-update endpoints unless the user gives explicit confirmation for the exact action and account. Never ask for or store account passwords, `auth_token`, `ct0`, `login_cookies`, or proxy credentials for a read-only workflow.
+
 ---
 
 ## Setup
 
 1. Get API key: https://twitterapi.io/dashboard ($0.10 free credits, no CC)
-2. Store the key in a `.env` file or your shell's secure config (do not use raw `export` with the actual key in the terminal -- it gets saved to shell history).
+2. Store the key once in your OS secret store. Do not put it in shell startup files (`.zshenv`, `.bashrc`, `.profile`), where every process inherits it, and do not type a raw `export` with the value (it lands in shell history). These commands prompt for the key, so it never touches history:
+   - macOS Keychain: `security add-generic-password -a "$USER" -s twitterapi-io -w`
+   - Linux (libsecret): `secret-tool store --label="TwitterAPI.io" service twitterapi-io`
+   - Fallback: a file only you can read, `${XDG_CONFIG_HOME:-$HOME/.config}/twitterapi-io/api_key` (mode `0600`)
 3. For write actions, you also need `login_cookies` from v2 login + residential `proxy`.
 
 Base URL: `https://api.twitterapi.io`
 Auth header: `X-API-Key: $TWITTERAPI_IO_KEY` (all requests)
+
+### Load the key for a command
+
+The curl examples read `$TWITTERAPI_IO_KEY`. When it is not already set, start the shell command with this line. It loads the key for that one shell and never prints it. Agents that run each tool call in a new shell need it at the start of every call that hits the API:
+
+```bash
+export TWITTERAPI_IO_KEY="${TWITTERAPI_IO_KEY:-$(security find-generic-password -s twitterapi-io -w 2>/dev/null || secret-tool lookup service twitterapi-io 2>/dev/null || cat "${XDG_CONFIG_HOME:-$HOME/.config}/twitterapi-io/api_key" 2>/dev/null)}"
+```
+
+Never echo, print, log, or paste the key. Do not run `set -x`, `env`, or `printenv` in a shell that holds it, and never write it into files, commits, or chat.
 
 ---
 
@@ -33,18 +52,21 @@ Auth header: `X-API-Key: $TWITTERAPI_IO_KEY` (all requests)
 |----------|---------|-------------|
 | Tweets (per returned tweet) | 15 | $0.15 |
 | Profiles (per returned profile) | 18 | $0.18 |
-| Profiles batch 100+ (per profile) | 10 | $0.10 |
-| Followers (per returned follower) | 15 | $0.15 |
+| Profiles batch 100+ (per profile) | 1 | $0.01 |
+| Followers (tiered, per follower) | 1-3 | $0.01-0.03 |
+| Followings (tiered, per following) | 1-3 | $0.01-0.03 |
+| Follower IDs (tiered, per ID) | 0.45-2 | $0.0045-0.02 |
 | Verified followers (per follower) | 30 | $0.30 |
 | Minimum per API call | 15 | $0.00015 |
 | List endpoint calls | 150 | $0.0015 |
 | Check follow relationship | 100 | $0.001 |
 | Get article | 100 | $0.001 |
 | Community info | 20 | $0.0002 |
-| Write actions (tweet, like, RT, follow) | 200-300 | $0.002-0.003 |
-| Login | 300 | $0.003 |
+| V2 actions, DM, and media upload (per call) | 60 | $0.0006 |
+| Login V2 | 10,000 | $0.10 |
+| Legacy login (step 1 / 2FA) | 300 | $0.003 |
 
-Note: If the API returns 0 or 1 item, you are still charged the minimum (15 credits).
+Note: If the API returns 0 or 1 item, you are still charged the minimum (15 credits). Follower/following endpoints use tiered pricing: 1 credit/item at max page size (200), 2 credits (100-199 returned), 3 credits (20-99 returned); minimum 60 credits/call. Follower IDs: 0.45 credits/ID (4000-5000 returned), 1 credit (200-3999), 2 credits (50-199); minimum 100 credits/call.
 
 ---
 
@@ -65,13 +87,13 @@ Note: If the API returns 0 or 1 item, you are still charged the minimum (15 cred
 OpenAPI now also exposes several legacy auth/write paths alongside V2 endpoints. Prefer V2 where available.
 V3 endpoints were taken offline by TwitterAPI.io in March 2026. Use V2 for write operations. For mission-critical tweet posting, consider Twitter's official API.
 
-### login_cookie vs login_cookies -- API Inconsistency
+### Login cookie field naming
 
-The API has an inconsistency in naming:
-- `user_login_v2` **response** returns the field as `login_cookie` (singular)
-- All v2 **action** endpoints expect the field as `login_cookies` (plural)
+The current OpenAPI uses `login_cookies` (plural) consistently:
+- `user_login_v2` **response** includes `login_cookies`, `status`, and `message`.
+- V2 **action** request bodies expect `login_cookies` (plural).
 
-**Always use `login_cookies` (plural) in request bodies.** The value is the same string.
+Use the returned `login_cookies` value in action requests. DM history takes `login_cookies` in the query.
 
 ---
 
@@ -110,6 +132,32 @@ The API has an inconsistency in naming:
   "retweeted_tweet": null
 }
 ```
+
+#### Gotcha: `displayTextRange` on long tweets (X Premium / "note tweets")
+
+`displayTextRange` is the start and end index (in Unicode code points) of the **abbreviated 280-character preview** of a tweet — designed to trim trailing media URLs and quote-context URLs that the X UI hides on short tweets.
+
+For X Premium long tweets (body > 280 chars), the API delivers the FULL body in the `text` field directly — there is no separate `note_tweet` field in this response schema. **However, `displayTextRange[1]` still points to the abbreviated preview length** (e.g., `[0, 213]` on a 623-char body), pointing at the cut-off point of the short preview, not the end of the full tweet.
+
+Naively applying `text[:displayTextRange[1]]` will **chop a long tweet at ~280 chars** and silently lose the rest of the body.
+
+**Rule:** only apply `displayTextRange` trimming when `len(text) <= 280` — i.e., the body fits in a classic short tweet. For longer tweets, use the `text` field as-is; it already contains the full author-visible body, and `displayTextRange` points only at the preview boundary.
+
+```python
+# WRONG — truncates X Premium long tweets at ~280 chars
+text = tweet["text"]
+dtr = tweet.get("displayTextRange")
+if dtr:
+    text = text[:dtr[1]]
+
+# RIGHT — only trim on short tweets where displayTextRange is meaningful
+text = tweet["text"]
+dtr = tweet.get("displayTextRange")
+if dtr and len(text) <= 280:
+    text = text[:dtr[1]]
+```
+
+**Edge case (281–320 chars):** the body could be either a short tweet with trailing media URLs (where trimming would be correct) OR a short long-tweet body (where trimming chops the body). `displayTextRange` alone cannot distinguish the two. If you need to handle this range precisely, inspect `entities.urls` and `extendedEntities.media`: when the hidden tail (`text[displayTextRange[1]:]`) consists only of URLs already listed in those fields, trimming is safe; otherwise treat it as long-tweet body and keep `text` whole.
 
 ### User object
 ```json
@@ -162,10 +210,10 @@ The API has an inconsistency in naming:
 
 For detailed endpoint documentation with curl examples, consult the reference files:
 
-- For READ endpoint documentation (31 endpoints), consult `references/read-endpoints.md`
-- For WRITE endpoint documentation (28 endpoints), consult `references/write-endpoints.md`
-- For Webhook and Stream endpoint documentation (8 endpoints), consult `references/webhook-stream-endpoints.md`
-- For the complete endpoint index table (all 67 endpoints), consult `references/endpoint-index.md`
+- For READ endpoint documentation (36 GET endpoints total; 33 non-webhook entries in `references/read-endpoints.md`), consult `references/read-endpoints.md`
+- For WRITE endpoint documentation (40 POST/PATCH/PUT/DELETE endpoints total; 35 non-webhook entries in `references/write-endpoints.md`), consult `references/write-endpoints.md`
+- For Webhook and Stream endpoint documentation (8 `/oapi/` endpoints: 3 GET + 5 write), consult `references/webhook-stream-endpoints.md`
+- For the complete endpoint index table (all 76 active endpoints), consult `references/endpoint-index.md`
 
 ---
 
@@ -260,7 +308,7 @@ Pass `cursor=NEXT_CURSOR` to get next page. First page: omit cursor or `cursor="
 |-------|-------|-----|
 | Invalid API key | Wrong or missing `X-API-Key` header | Check key in dashboard |
 | Invalid login_cookie | Expired or faulty cookie | Re-login via `user_login_v2` with valid `totp_secret` |
-| 400 on v2 actions | Faulty cookie from login without proper `totp_secret` | Re-login with 16-char string `totp_secret` |
+| 400 on v2 actions | Faulty cookie from login without proper `totp_secret` | Re-login with the base32 TOTP seed (not a 6-digit code) |
 | Proxy error | Bad proxy format or dead proxy | Format: `http://user:pass@host:port`, use residential |
 | Rate limited | Exceeded QPS for your balance tier | Back off, add balance for higher QPS |
 | Account suspended | Twitter account banned | Use different account |
@@ -309,9 +357,9 @@ Also available: `twitterapi-docs` MCP server for querying this documentation pro
 
 ## Important notes
 
-- **Read endpoints** need only API key. No Twitter account needed.
-- **Write endpoints** need `login_cookies` from v2 login + residential proxy.
-- **V3 endpoints are offline. Only V2 write endpoints are available.**
-- **2FA strongly recommended** -- use 16-character string `totp_secret` for reliable login.
-- **Proxy mandatory** for all write actions. Use high-quality residential proxies.
+- **Most read endpoints** need only the API key; DM history also requires `login_cookies` in the query.
+- **V2 account actions** need `login_cookies` from v2 login + residential proxy. Login itself uses account credentials; legacy actions use `auth_session`, and `/oapi/` mutations use the API key.
+- **V3 endpoints are offline.** Prefer V2; the active legacy auth/write paths are also documented in `references/write-endpoints.md`.
+- **2FA strongly recommended** -- `totp_secret` is optional; when provided, use the base32 seed shown by X, not a 6-digit code. No exact 16-character length is specified by the OpenAPI.
+- **Proxy mandatory** for Twitter account login/actions. Use high-quality residential proxies. `/oapi/` mutations do not take a proxy.
 - **Credits never expire** once recharged. Bonus credits valid 30 days.

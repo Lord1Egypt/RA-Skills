@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically analyzes and improves code for performance, readability, security, and best practices in JavaScript, TypeScript, Python, Go, Rust, and Java. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically analyze and improve code for performance, readability, security, and best practices in JavaScript, Python, Go, Rust, and Java.
 
-## Publisher: <br>
-[fxm1618](https://clawhub.ai/user/fxm1618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fxm1618](https://clawhub.ai/user/fxm1618)
 
-## Use Case: <br>
-Developers use this skill to ask an agent to analyze code files and propose or apply performance, readability, security, and best-practice improvements across supported languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can analyze and potentially change source code, including production or security-sensitive code. <br>
-Mitigation: Review before/after output and diffs carefully before accepting changes, especially for authentication, cryptographic, or large codebases. <br>
-Risk: Optimization suggestions may alter behavior while improving readability, performance, or style. <br>
-Mitigation: Run the project's normal tests and code review process before merging generated changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent to review source files, identify optimization opportunities, and produce refactoring or improvement suggestions for supported programming languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fxm1618/ai-code-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with code snippets and before/after comparisons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file edits or suggested diffs when the agent applies optimizations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill broadly tells agents to automatically modify code without clear confirmation or scope limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for suggestion-only review or a diff before applying changes, especially for authentication, security, infrastructure, or production code.
+
+Risk: Optimization or refactoring changes may alter behavior while trying to improve performance, readability, security, or best practices.
+
+Mitigation: Review generated changes and run the relevant tests, linters, and security checks before merging or deploying the modified code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fxm1618/skills/ai-code-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with code snippets, suggested changes, and before/after comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply source-code edits when the user requests optimization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

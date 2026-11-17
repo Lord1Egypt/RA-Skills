@@ -1,75 +1,85 @@
-# 🎯 Taste
+# ⚙️ Taste
 
-Taste builds a personalized taste model from real consumption signals -- restaurant visits, food delivery orders, hotel stays, purchases, music plays, and movie watches. It scans the user's email and calendar to automatically extract these signals, enriches venue entities with taste-relevant attributes (cuisine, price point, neighborhood, vibe) via Google Maps, and generates discovery-focused recommendations that only suggest new places and respect dietary restrictions.
+  <img src="./assets/readme/hero.jpg" width="100%" alt="Taste">
+
+Behavior-driven taste model built from real consumption signals. Scans
+
+**Skill name:** `ocas-taste`
+**Version:** 3.6.4
+**Type:** 
+**Layer:** data-science
+**Author:** <agent-name>
 
 ---
 
-## Overview
+## 📖 Overview
 
-Taste is a recommendation engine grounded entirely in real consumption behavior -- not editorial lists, not collaborative filtering, not popularity signals. It automatically extracts consumption signals from email and calendar data (DoorDash, Instacart, Tock, OpenTable, Amazon, hotel bookings, and more), deduplicates across confirmation/reminder/cancellation chains, and enriches venue entities with taste-relevant attributes via Google Maps and web search. Every recommendation names the specific purchases, visits, and frequency patterns that justify it, only suggests places the user hasn't been, and respects stated dietary restrictions. Signals decay over time using a configurable half-life so that stale history loses influence unless reinforced by fresh behavior.
+Behavior-driven taste model built from real consumption signals. Scans
 
-## Commands
+---
 
-| Command | Description |
+## 🔧 Capabilities
+
+- `taste.scan` — scan the user's email and calendar for consumption signals; extract, deduplicate, and promote to signals; queue new items for enrichment
+- `taste.scan.calendar` — scan Google Calendar for consumption signals (restaurant reservations, hotel bookings, travel); use for historical backfill of calendar data
+- `taste.scan.report` — summarize last scan: extractions processed, signals created, cancellations, dedup matches pending review
+- `taste.ingest.signal` — manually record a consumption signal (purchase, visit, play, watch, stay)
+- `taste.enrich.item` — enrich an item with taste-relevant attributes via Google Maps lookup and web search
+- `taste.query.recommend` — generate recommendations grounded in consumption history, enriched attributes, and frequency patterns; respects dietary restrictions; only suggests new places
+- `taste.query.serendipity` — find novel but defensible cross-domain connections
+- `taste.model.status` — return model state: signal count, domains active, enrichment coverage, staleness
+- `taste.report.weekly` — generate a weekly taste pattern summary
+- `taste.journal` — write journal for the current run; called at end of every run
+- `taste.update` — pull latest from GitHub source; preserves journals and data
+- `taste.sync.spotify` — pull recent Spotify listening history via `scripts/spotify_history_puller.py` (direct API, not MCP); creates/updates music ConsumptionSignals; runs daily via scheduled task. Requires `SPOTIFY_REFRESH_TOKEN` env var.
+- **`taste_full_enrich.py` does NOT persist `enriched: true` on source items** — After running the script, verify with: `python3 -c \"import json; items=[json.loads(l) for l in open('items.jsonl') if l.strip()]; print(sum(1 for i in items if not i.get('enriched',False)))\"`. If count unchanged, the enrichment data was effectively lost. Use inline Python enrichment (direct urllib calls to legacy Places API) for reliable persistence. See gotcha \"taste_full_enrich.py enriches items but doesn't set enriched: true\".
+- **`scan-calendar` output `signals_created` conflates Styx delta with calendar signals** — The JSON output's `signals_created` field reports the count from the Styx delta step, **not** the calendar promotion step. Calendar signals are promoted to the root `signals.jsonl` via `_process_extractions()` but the output number reflects Styx purchases. To find actual calendar signal count, query `signals.jsonl` for `extraction_source == 'calendar'`. See `references/storage_layout.md` for the two-store architecture.
+- **`scan-calendar` is calendar-only — NOT the full pipeline** — `taste_scan.py scan-calendar N` only scans Google Calendar. It does NOT run Styx delta or email scan. Its `signals_created` output field correctly reflects only calendar signals (unlike the `taste:scan` cron job which chains calendar + Styx delta and reports Styx's count). For calendar-only historical backfill, use `scan-calendar 365`. For the full pipeline, use `taste_full_enrich.py`.
+- **`scan-historical` DATE BUG — stamps every signal with the scan time (CRITICAL)** — `_extract_from_email` parses the email `Date` header with one rigid `strptime("%a, %d %b %Y %H:%M:%S %z")` and falls back to `datetime.now()` on ANY parse failure. In practice the fallback fires for the vast majority of emails (their `Date` headers don't match that exact format), so all emitted signals get `event_date` = the scan timestamp, NOT the real consumption date. Confirmed 2026-07-07: a 365-day run produced 137/141 signals dated `2026-07-07T09:06:23.xxx` (microsecond-spaced = the loop time). This **maximizes recency bias** — the opposite of the goal — and corrupts the model's temporal decay. **Do NOT use `scan-historical` for historical coverage.** Use `scripts/taste_backfill_v2.py` (designated historical backfill; emits correctly-dated signals, as the existing 5,133-signal dataset shows). Fix: replace the strptime with `email.utils.parsedate_to_datetime()` (robust to varied Date formats). See `references/scan_historical_date_bug.md`.
+- **`scan-historical` is email-only — NOT the full pipeline** — `taste_scan.py scan-historical N` only scans Gmail. It does NOT run Styx delta or enrichment. For the full pipeline (Styx delta + enrichment of unenriched items), use `taste_full_enrich.py` instead. The daily `taste:scan` cron (13:12) runs email/calendar scan then delegates to `taste_full_enrich.py` for Styx delta + enrichment. If OAuth is broken, `scan-historical` fails entirely but `taste_full_enrich.py` still works.
+- **`scan-historical` output is NOT dedupable by `taste_signals_dedup.py`** — The dedup tool's `signal_key` reads `name`/`normalized_name`, but scan signals use `venue_name` and lack `name`/`normalized_name`. All scan signals get an empty venue key and are silently skipped (false "0 dupes" on `--dry-run`). Combined with the date bug above, re-running `scan-historical` over an already-populated dataset silently pollutes it with un-dedupable, mis-dated signals. If you must run it, verify against the actual signal schema (not the tool's count) and revert if dates are wrong.
+- **`taste_scan.py status` and `data-quality` report 0 when run outside the venv** — Both commands use the `TasteSkill` class which resolves `data_dir` differently than the actual data location. Always run via the venv Python (`<hermes-home>/commons/data/ocas-taste/venv/bin/python3`) and verify the data path. For a quick count, use `wc -l signals.jsonl items.jsonl` directly. The `data-quality` subcommand has the same bug as `status` — it is NOT documented in `--help` but it exists and returns 0 for all counts when run outside the venv.
+- **`taste_full_enrich.py` schema drift — prefer inline enrichment** — The script at `<hermes-home>/profiles/indigo/skills/ocas-taste/scripts/taste_full_enrich.py` generates `item_id` as `item-{safe_name}` (not UUID), uses `strength` field (not `signal_type`), and produces signals with `source: 'enrichment'` that lack the full schema from `references/styx_delta.md`. Items created by this script have `domain: 'restaurant'` instead of `'food'`. **Preferred approach for cron:** write inline Python via `terminal()` that calls Places API directly via `urllib.request` and writes properly structured records. Confirmed 100% enrichment rate with inline approach (2026-06-16, 36/36 transactions).
+
+---
+
+## 📊 Outputs
+
+See `SKILL.md` for outputs, journals, and persistence rules.
+
+---
+
+## 📄 Files
+
+| File | Purpose |
 |---|---|
-| `taste.scan` | Scan user's email and calendar for consumption signals; extract, deduplicate, promote |
-| `taste.scan.report` | Summarize last scan: extractions, signals created, cancellations, pending dedup matches |
-| `taste.ingest.signal` | Manually record a consumption signal (purchase, visit, play, watch, stay) |
-| `taste.enrich.item` | Enrich an item with taste-relevant attributes via Google Maps + web search |
-| `taste.query.recommend` | Generate discovery recommendations grounded in consumption history and enriched attributes |
-| `taste.query.serendipity` | Find novel but defensible cross-domain connections |
-| `taste.model.status` | Model state: signal count, domains active, enrichment coverage, staleness |
-| `taste.report.weekly` | Generate a weekly taste pattern summary |
-| `taste.journal` | Write journal for the current run |
-| `taste.update` | Pull latest from GitHub source (preserves journals and data) |
+| `SKILL.md` | Skill definition |
+| `references/` | Supporting documentation |
+| `scripts/` | Helper scripts |
 
-## Setup
-
-`taste.init` runs automatically on first invocation and creates all required directories, config.json, and JSONL files. No manual setup is required. It also registers the `taste:update` cron job (midnight daily) for automatic self-updates.
-
-## Dependencies
-
-**OCAS Skills**
-- [Sift](https://github.com/indigokarasu/sift) -- additional item enrichment via web research
-- [Elephas](https://github.com/indigokarasu/elephas) -- Chronicle entity context (read-only)
-- [Thread](https://github.com/indigokarasu/thread) -- may use thread signals to detect emerging taste patterns
-
-**External**
-- User's email account -- for scanning transactional emails
-- User's Google Calendar -- for restaurant/hotel reservation data
-- Google Maps -- for entity enrichment (cuisine, price, neighborhood, ratings)
-- Web search -- backup enrichment source
-
-## Scheduled Tasks
-
-| Job | Mechanism | Schedule | Command |
-|---|---|---|---|
-| `taste:update` | cron | `0 0 * * *` (midnight daily) | Self-update from GitHub source |
 
 ## Changelog
 
-### v3.0.0 -- March 27, 2026
-- Email and calendar scanning: automatic extraction of consumption signals from transactional emails (DoorDash, Instacart, Good Eggs, Tock, OpenTable, Yelp, Amazon, hotel bookings) and Google Calendar
-- Deduplication engine: handles confirmation/reminder/cancellation chains with composite dedup keys
-- Entity enrichment: enriches venues and items with taste-relevant attributes (cuisine, price level, neighborhood, vibe) via Google Maps and web search
-- Strength model: frequency bonuses, recency bonuses, and extraction confidence thresholds
-- Recommendation rules: discovery-only (never recommend visited places, except seasonal menu changes), dietary restriction enforcement, enrichment-aware pattern reasoning
-- User preferences: dietary restrictions, dietary preferences, and cuisine dislikes in config
-- New schemas: ExtractionRecord, extended ConsumptionSignal, extended ItemRecord with enrichment fields
-- New reference docs: strength_model.md, email_extraction.md, enrichment.md
-- New OKRs: email_extraction_coverage, dedup_accuracy, enrichment_coverage
+- [3.6.1] - 2026-05-23
+- Security
+- Quality
+- [3.5.2] - 2026-04-26
+- Removed
+- [3.5.1] - 2026-04-26
+- Security
+- [3.5.0] - 2026-04-18
 
-### v3.0.1 -- March 27, 2026
-- Added `taste.update` command and midnight cron for automatic version-checked self-updates
-
-### v2.2.0 -- March 22, 2026
-- Routing improvements
-
-### v2.1.0 -- March 22, 2026
-- Journal documentation and initialization with storage setup
-
-### v2.0.0 -- March 18, 2026
-- Initial release as part of the unified OCAS skill suite
 ---
 
-*Taste is part of the [OpenClaw Agent Suite](https://github.com/indigokarasu) -- a collection of interconnected skills for personal intelligence, autonomous research, and continuous self-improvement. Each skill owns a narrow responsibility and communicates with others through structured signal files, shared journals, and Chronicle, a long-term knowledge graph that accumulates verified facts over time.*
+## 📚 Documentation
+
+Read `SKILL.md` for operational details, schemas, and validation rules.
+
+Read `references/` for detailed specifications and examples.
+
+
+---
+
+## 📄 License
+
+MIT License — see `LICENSE` for details.

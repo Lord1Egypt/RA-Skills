@@ -1,39 +1,54 @@
-## Description: <br>
-Navigate enterprise software development with legacy integration, compliance requirements, stakeholder management, and architectural decisions at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate enterprise software development with legacy integration, compliance requirements, stakeholder management, and architectural decisions at scale.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, architects, and enterprise engineering teams use this skill to plan and review software work involving legacy systems, compliance obligations, stakeholder alignment, and architecture decisions at scale. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Enterprise planning guidance may not match an organization's specific legal, security, compliance, or operational requirements. <br>
-Mitigation: Treat the content as planning advice and verify decisions against the organization's policies and responsible stakeholder reviews before applying it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Architecture Decisions](artifact/architecture.md) <br>
-- [Compliance](artifact/compliance.md) <br>
-- [Legacy Integration](artifact/legacy.md) <br>
+## Use Case:
 
+Developers, architects, security reviewers, product stakeholders, and technical leads use this skill to reason through enterprise software decisions involving legacy integration, compliance obligations, stakeholder communication, and architecture trade-offs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable commands, required binaries, credentials, or generated files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Enterprise architecture or compliance guidance may be applied without confirming current organizational policies, legal requirements, or system ownership.
+
+Mitigation: Validate decisions with the relevant policy owners, legal stakeholders, security reviewers, and system owners before implementation.
+
+Risk: Legacy integration or architecture changes can create migration, rollback, data residency, or audit gaps if treated as direct implementation instructions.
+
+Mitigation: Use architecture decision records, data classification, migration paths, rollback plans, and audit logging before executing changes.
+
+## Reference(s):
+
+- [Architecture Decisions - Enterprise](artifact/architecture.md)
+- [Compliance - Enterprise](artifact/compliance.md)
+- [Legacy Integration - Enterprise](artifact/legacy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, templates, and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

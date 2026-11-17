@@ -1,44 +1,56 @@
-## Description: <br>
-Adds a Telegram private-chat footer with model, thinking-level, and context-usage details to OpenClaw replies, with dry-run preview, backup, syntax validation, rollback, and restart guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add a Telegram private-chat footer (`🧠 Model + 💭 Think + 📊 Context`) to OpenClaw replies, with dry-run preview, backup, syntax validation, rollback, and restart guidance.
 
-## Publisher: <br>
-[c-joey](https://clawhub.ai/user/c-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[c-joey](https://clawhub.ai/user/c-joey)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw operators use this skill to patch installed OpenClaw Telegram reply bundles so private-chat responses include model, thinking level, and context usage footer details. It is intended for controlled OpenClaw environments where the operator can dry-run, back up, apply, restart, and verify the patch through a real Telegram private-chat reply.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill persistently modifies installed OpenClaw JavaScript bundle files.
+
+Mitigation: Run the dry-run flow first, inspect the target files, and apply the patch only on systems you control, preferably in a staging instance before production.
+
+Risk: Rollback may be unreliable after repeated patch or upgrade cycles.
+
+Mitigation: Keep an independent clean backup of the OpenClaw dist directory and verify rollback behavior before relying on the included revert script.
+
+Risk: Static marker checks and smoke tests do not prove the live Telegram reply path was patched.
+
+Mitigation: After applying the patch, perform a true gateway restart with a new process and confirm a real Telegram private-chat reply shows the footer.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenClaw operators and developers use this skill to preview, apply, verify, and roll back a patch that appends model, thinking-level, and context-usage details to Telegram private-chat replies. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently patches OpenClaw live dist JavaScript files. <br>
-Mitigation: Run the dry-run first, review the exact target files, use a controlled or staging instance, confirm backups, and test rollback before production use. <br>
-Risk: The applied delivery-path patch reads local OpenClaw session records and exposes provider, model, thinking-level, and context details in Telegram private-chat replies. <br>
-Mitigation: Use only on OpenClaw instances you control and confirm that disclosing these details in private-chat replies is acceptable for the deployment. <br>
-Risk: Static marker and syntax checks do not prove the live Telegram send path was fixed. <br>
-Mitigation: Perform a true gateway process restart and validate with an actual Telegram private-chat reply before considering the patch accepted. <br>
+**Output Format:** [Markdown guidance with inline shell commands and Python script usage]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/c-joey/telegram-footer-patch) <br>
-- [README.md](README.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+**Other Properties Related to Output:** [Produces patch, verification, rollback, and restart guidance; it does not produce model outputs directly.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and patch/revert script behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the bundled scripts can modify OpenClaw dist JavaScript files, create timestamped backups, verify syntax with node --check, and restore from backups.] <br>
+1.0.11 (source: server release metadata and changelog)
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata and CHANGELOG.md) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

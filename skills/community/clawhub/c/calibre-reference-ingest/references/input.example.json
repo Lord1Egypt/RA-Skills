@@ -1,0 +1,21 @@
+{
+  "file": "/absolute/downloaded-manual.pdf",
+  "source_url": "https://publisher.example.org/manual.pdf",
+  "title": "製品マニュアル",
+  "authors": [
+    "Example Project"
+  ],
+  "tags": [
+    "資料",
+    "種別.マニュアル",
+    "製品名",
+    "用途.設定"
+  ],
+  "language": "jpn",
+  "kind": "マニュアル",
+  "coverage": "full",
+  "capture_method": "出版社配布PDF原本",
+  "publisher": "Example Project",
+  "location": "設定手順の章",
+  "summary": "製品の設定項目と接続確認の手順。"
+}

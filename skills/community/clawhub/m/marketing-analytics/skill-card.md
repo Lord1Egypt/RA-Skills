@@ -1,40 +1,58 @@
-## Description: <br>
-Analyze marketing campaign data to generate performance reports and optimization recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze marketing campaign data to generate performance reports and optimization recommendations
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-Marketing and business teams use this skill to analyze campaign context and data, produce performance reports, and identify optimization recommendations for decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing, strategic, compliance, financial, or customer-facing recommendations may be incomplete or misleading if treated as authoritative advice. <br>
-Mitigation: Treat outputs as advisory and have qualified people review sensitive, regulated, or externally published work before use. <br>
-Risk: The skill depends on accurate and complete business context and marketing data. <br>
-Mitigation: Validate inputs and review generated reports against campaign records, benchmarks, and business constraints. <br>
+## Use Case:
 
+Marketing and business teams use this skill to analyze campaign data, create performance reports, and identify optimization recommendations for operations and strategic decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/marketing-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown narrative with insights, recommendations, deliverables, and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may provide confidential strategy, personal customer information, credentials, regulated data, or contracts as marketing context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the minimum data needed and redact sensitive or regulated information unless authorized to share it.
+
+Risk: Outputs may be incorrect, incomplete, or too generic when the input data is inaccurate or incomplete.
+
+Mitigation: Validate recommendations against business context, industry standards, and available campaign evidence before using them.
+
+Risk: Generated recommendations may affect business operations or specialized industry decisions.
+
+Mitigation: Treat outputs as advisory and review them with appropriate domain experts before implementation.
+
+## Reference(s):
+
+- [Marketing Analytics ClawHub listing](https://clawhub.ai/1970168137/skills/marketing-analytics)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory marketing analysis, deliverables, implementation guidance, and best practices that should be reviewed with business judgment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Scraper for SpielerPlus/TeamPlus team management platform. Extracts events, members, absences, finances, participation stats, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scraper for SpielerPlus/TeamPlus team management platform. Extracts events, members, absences, finances, participation stats, and more.
 
-## Publisher: <br>
-[firstsanny](https://clawhub.ai/user/firstsanny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firstsanny](https://clawhub.ai/user/firstsanny)
 
-## Use Case: <br>
-External developers and authorized team administrators use this skill to collect SpielerPlus/TeamPlus team information such as events, members, absences, finances, participation, roles, and full reports through CLI or programmatic workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user-provided SpielerPlus credentials and can access team data. <br>
-Mitigation: Install only for authorized teams, use a dedicated or least-privilege account where possible, and keep SPIELERPLUS_EMAIL and SPIELERPLUS_PASSWORD out of commits, screenshots, CI logs, and shell history. <br>
-Risk: Exported or console-printed member, absence, participation, role, and finance data may be sensitive. <br>
-Mitigation: Treat generated outputs as sensitive data and limit storage, sharing, and logging to authorized users and systems. <br>
-Risk: Browser automation depends on Playwright and Chromium runtime components. <br>
-Mitigation: Prefer updating or locking Playwright to a patched release before running browser installs. <br>
+## Use Case:
 
+Developers and team administrators use this skill to guide authenticated extraction of SpielerPlus/TeamPlus team data such as events, members, absences, finances, participation statistics, profiles, and roles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/firstsanny/spielerplus-scraper) <br>
-- [SpielerPlus/TeamPlus platform](https://www.spielerplus.de) <br>
-- [npm package listing](https://www.npmjs.com/package/spielerplus-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text or JSON data, with JavaScript API usage guidance and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SPIELERPLUS_EMAIL and SPIELERPLUS_PASSWORD for authentication; outputs may include sensitive team member, absence, participation, role, and finance data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json, CHANGELOG) <br>
+Risk: The scraper uses account credentials and can access private team data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for accounts and teams you are authorized to access, and store SPIELERPLUS_EMAIL and SPIELERPLUS_PASSWORD outside committed files.
+
+Risk: Scraped results may include sensitive absence, member, participation, or financial information.
+
+Mitigation: Limit sharing of generated output and avoid writing full reports to shared logs or public workspaces.
+
+Risk: Dependency or browser automation behavior may change over time.
+
+Mitigation: Use a reviewed lockfile or pinned dependency versions before running the scraper in shared or production environments.
+
+Risk: Automated scraping may conflict with platform rules or expectations.
+
+Mitigation: Review and follow SpielerPlus/TeamPlus terms and account policies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/firstsanny/skills/spielerplus-scraper)
+- [SpielerPlus/TeamPlus](https://www.spielerplus.de)
+- [README](README.md)
+- [Docker usage example](examples/example-docker.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript examples, environment-variable configuration, and optional JSON scraper output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SPIELERPLUS_EMAIL and SPIELERPLUS_PASSWORD; generated outputs may contain sensitive team, absence, and financial data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, CHANGELOG released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

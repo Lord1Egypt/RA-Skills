@@ -1,41 +1,49 @@
-## Description: <br>
-Logvibe colorizes HTTP status codes in log files so developers and system administrators can quickly identify successes, redirects, client errors, and server errors in terminal output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logvibe colorizes HTTP status codes in log files so successes, redirects, client errors, and server errors are easier to identify in a terminal.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and system administrators use this skill to inspect local or streamed HTTP logs and make status-code classes visually distinguishable while troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The usage examples refer to logvibe.py, while the packaged executable file is tool.py. <br>
-Mitigation: Run the packaged tool.py script explicitly or provide a wrapper with the documented name before sharing commands with end users. <br>
-Risk: Log files can contain sensitive operational data, and the tool echoes processed log lines to the terminal. <br>
-Mitigation: Use the tool only on logs approved for local inspection and avoid sharing terminal output that may contain sensitive values. <br>
+## Use Case:
 
+Developers and sysadmins use Logvibe to scan web server logs quickly by highlighting common HTTP status-code classes in file, piped, or single-line log input.
 
-## Reference(s): <br>
-- [ClawHub Logvibe release page](https://clawhub.ai/albionaiinc-del/logvibe) <br>
-- [Publisher profile](https://clawhub.ai/user/albionaiinc-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and ANSI-colored terminal text from the tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The packaged tool reads a file path or stdin and prints colorized log lines; it does not write output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Attacker-controlled logs can contain terminal control sequences that make terminal output misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Logvibe with trusted or sanitized logs, and strip or escape control characters before printing untrusted log content.
+
+## Reference(s):
+
+- [Logvibe ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/logvibe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with ANSI color highlighting and markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads from a log file, stdin, or a single piped line and highlights standalone 2xx, 3xx, 4xx, and 5xx status codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

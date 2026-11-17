@@ -1,43 +1,58 @@
-## Description: <br>
-Diagnoses and repairs OpenClaw Feishu gateway, permission configuration, and message delivery issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Repair diagnoses and repairs OpenClaw Feishu gateway, permission configuration, and message delivery issues.
 
-## Publisher: <br>
-[amd5](https://clawhub.ai/user/amd5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amd5](https://clawhub.ai/user/amd5)
 
-## Use Case: <br>
-OpenClaw administrators use this skill to diagnose Feishu gateway status, restore Feishu allowlists from local configuration or backups, restart the gateway, verify configuration and logs, and send Feishu test messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change OpenClaw Feishu settings and restart the gateway. <br>
-Mitigation: Run it only in an administered OpenClaw Feishu environment, review the affected configuration first, and prefer requiring an explicit repair flag before changes are applied. <br>
-Risk: The skill can use Feishu app credentials to send verification messages to all configured users and chats. <br>
-Mitigation: Limit test recipients when possible, confirm the recipient lists before execution, and avoid exposing app credentials in logs or prompts. <br>
-Risk: Repairs are not read-only and can affect live message delivery. <br>
-Mitigation: Use a dry-run or wrapper for diagnosis-only operation where available, and schedule repair runs during an acceptable maintenance window. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw Feishu connectivity, permission, and message delivery failures and to restore configuration from local OpenClaw configuration or backup files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amd5/feishu-repair) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/amd5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text diagnostic report, or structured JSON when invoked with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update Feishu allowlists, restart the OpenClaw gateway, and send Feishu verification messages when repairs are triggered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence, SKILL.md frontmatter, and skill.json) <br>
+Risk: The skill can automatically change OpenClaw Feishu allowlists and restart the OpenClaw Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned changes before execution, run during a maintenance window, and keep a known-good OpenClaw configuration backup available for rollback.
+
+Risk: The skill can send verification messages to every configured Feishu group and user after validation.
+
+Mitigation: Confirm the target allowlists before repair and notify affected channels or users before running the skill.
+
+Risk: The security scan notes sensitive values handled through shell-interpolated curl and openclaw commands.
+
+Mitigation: Prefer a revised implementation using native HTTP and process APIs, and avoid running it with untrusted or user-controlled configuration values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amd5/skills/feishu-repair)
+- [ClawHub publisher profile](https://clawhub.ai/user/amd5)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Text or JSON diagnostic and repair report with configuration, restart, verification, and messaging results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May restart the OpenClaw Gateway and send Feishu verification messages after applying repairs.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

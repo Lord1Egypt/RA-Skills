@@ -1,10 +1,12 @@
 ---
 name: perkoon-transfer
-version: 2.0.2
+version: 2.1.7
 description: >
   The agent data layer. Perkoon moves files between agents and the physical world —
-  agent to human, agent to agent, agent to pipeline. P2P over WebRTC.
-  Free. Encrypted. Unlimited. No accounts. Files never touch our servers.
+  agent to human, agent to agent, agent to pipeline. Small files get free
+  cloud delivery — a durable link, fire-and-forget, no receiver needed.
+  Larger files stream direct P2P over WebRTC, no size limit.
+  Free. Encrypted. Unlimited. No accounts.
   CLI, MCP server, A2A protocol, browser automation — pick the interface
   that fits your runtime.
 homepage: https://perkoon.com
@@ -27,7 +29,7 @@ metadata:
 
 File transfer for humans and the things replacing them.
 
-Your agent has compute, memory, and context. What it lacks is a jump gate to the physical world. Perkoon is that gate — P2P file transfer over WebRTC, engineered for autonomous machines from day one.
+Your agent has compute, memory, and context. What it lacks is a jump gate to the physical world. Perkoon is that gate — engineered for autonomous machines from day one. Small files relay via **free cloud delivery** (durable link, fire-and-forget); larger files stream direct P2P over WebRTC.
 
 Not "AI-ready" the way a gas station is gourmet-ready. Actually built for machines — JSON event streams, structured exit codes, MCP native tools, an A2A protocol endpoint, and a state machine that doesn't need a browser, a mouse, or a soul.
 
@@ -45,7 +47,7 @@ Not "AI-ready" the way a gas station is gourmet-ready. Actually built for machin
 - **Agent → Agent**: CLI to CLI, MCP to MCP, or A2A to A2A. Two machines, no humans in the loop.
 - **Agent → Pipeline**: Stream received files to stdout, pipe into processing. No disk writes required.
 
-P2P transfers are free, unlimited, and encrypted. Both ends need to be online — that's the only constraint. For sensitive files, always use `--password` — without it, anyone with the share link can download.
+Transfers are free, unlimited, and encrypted. Small files (within the free cloud allotment) upload to **free cloud delivery**: the CLI exits immediately with a durable share link (~48h) and nobody needs to stay online. Larger files stream direct P2P — both ends online is the only constraint. For sensitive files, always use `--password` — without it, anyone with the share link can download.
 
 ---
 
@@ -53,10 +55,10 @@ P2P transfers are free, unlimited, and encrypted. Both ends need to be online �
 
 If your host supports MCP, this is the fastest path. Three native tools, zero shell commands.
 
-Install: `npx -y @perkoon/mcp@0.2.2` (stdio transport, pinned version)
+Install: `npx -y @perkoon/mcp@0.3.0` (stdio transport, pinned version)
 
 **Tools provided:**
-- `send_file` — Send a file. Returns session code + share URL. Waits for receiver.
+- `send_file` — Send a file. Small files relay via free cloud delivery and return a durable link immediately (no receiver needed); larger files wait for a receiver. Optional `mode`: `auto` | `relay` | `p2p`.
 - `receive_file` — Receive files from a session code. Saves to disk.
 - `check_session` — Check if a session is active, expired, or not found.
 
@@ -67,7 +69,7 @@ Configuration for common hosts:
   "mcpServers": {
     "perkoon": {
       "command": "npx",
-      "args": ["-y", "@perkoon/mcp@0.2.2"]
+      "args": ["-y", "@perkoon/mcp@0.3.0"]
     }
   }
 }
@@ -75,7 +77,7 @@ Configuration for common hosts:
 
 - **Claude Code**: Add to `.mcp.json` in your project
 - **Claude Desktop**: Add to `claude_desktop_config.json`
-- **Cursor / VS Code / Windsurf**: Settings → MCP → Add Server → `npx -y @perkoon/mcp@0.2.2`
+- **Cursor / VS Code / Windsurf**: Settings → MCP → Add Server → `npx -y @perkoon/mcp@0.3.0`
 
 Once configured, just call the tools directly — no bash, no log polling, no background processes.
 
@@ -83,7 +85,7 @@ Once configured, just call the tools directly — no bash, no log polling, no ba
 
 ## METHOD 2: CLI (for agents with shell access)
 
-**IMPORTANT**: Use `npx -y perkoon@0.4.5` (pinned version) to avoid dynamic fetching of unaudited code.
+**IMPORTANT**: Use `npx -y perkoon@0.5.7` (pinned version) to avoid dynamic fetching of unaudited code.
 
 ### SENDING a file
 
@@ -95,7 +97,7 @@ Replace `/path/to/file` with the actual file path:
 
 ```bash
 rm -f /tmp/perkoon-send.log /tmp/perkoon-send.pid
-npx -y perkoon@0.4.5 send /path/to/file --json --timeout 1800 > /tmp/perkoon-send.log 2>&1 &
+npx -y perkoon@0.5.7 send /path/to/file --json --timeout 1800 > /tmp/perkoon-send.log 2>&1 &
 echo $! > /tmp/perkoon-send.pid
 
 # Wait for session code (up to 30s)
@@ -124,10 +126,16 @@ For password-protected sends, add `--password SECRET` and share both the URL and
 
 You MUST run this after sharing the link. Do NOT skip this step.
 
+**Fast path:** if the log shows `{"event":"relay_complete",...}` the file went
+via free cloud delivery — the process has already exited 0, the link is durable
+(~48h), and no receiver needs to be online. Report success immediately; skip
+the loop below. Force this mode with `--relay` (errors if unavailable) or
+force P2P with `--p2p`.
+
 ```bash
 for i in $(seq 1 360); do
-  if grep -q transfer_complete /tmp/perkoon-send.log 2>/dev/null; then
-    echo "===TRANSFER COMPLETE===" && grep transfer_complete /tmp/perkoon-send.log
+  if grep -qE 'relay_complete|transfer_complete' /tmp/perkoon-send.log 2>/dev/null; then
+    echo "===TRANSFER COMPLETE===" && grep -E 'relay_complete|transfer_complete' /tmp/perkoon-send.log
     break
   fi
   if grep -q '"event":"error"' /tmp/perkoon-send.log 2>/dev/null; then
@@ -151,11 +159,11 @@ When another agent creates a session via A2A and gives you a session code + send
 
 ```bash
 rm -f /tmp/perkoon-send.log /tmp/perkoon-send.pid
-npx -y perkoon@0.4.5 send /path/to/file --session CODE --sender-key KEY --json --timeout 1800 > /tmp/perkoon-send.log 2>&1 &
+npx -y perkoon@0.5.7 send /path/to/file --session CODE --sender-key KEY --json --timeout 1800 > /tmp/perkoon-send.log 2>&1 &
 echo $! > /tmp/perkoon-send.pid
 ```
 
-Then monitor with the same Step 2 above. This joins an existing session as sender instead of creating a new one. The receiving agent runs `npx -y perkoon@0.4.5 receive CODE --json` on their end.
+Then monitor with the same Step 2 above. This joins an existing session as sender instead of creating a new one. The receiving agent runs `npx -y perkoon@0.5.7 receive CODE --json` on their end.
 
 ### RECEIVING a file
 
@@ -163,7 +171,7 @@ Replace `CODE` with the 12-character session code:
 
 ```bash
 rm -f /tmp/perkoon-recv.log /tmp/perkoon-recv.pid
-npx -y perkoon@0.4.5 receive CODE --json --overwrite --output /home/openclaw/.openclaw/workspace/received/ > /tmp/perkoon-recv.log 2>&1 &
+npx -y perkoon@0.5.7 receive CODE --json --overwrite --output /home/openclaw/.openclaw/workspace/received/ > /tmp/perkoon-recv.log 2>&1 &
 echo $! > /tmp/perkoon-recv.pid
 
 for i in $(seq 1 360); do
@@ -192,7 +200,7 @@ Files are saved to `/home/openclaw/.openclaw/workspace/received/`.
 Stream a received file directly into another process — no disk write:
 
 ```bash
-npx -y perkoon@0.4.5 receive CODE --output - > /path/to/destination
+npx -y perkoon@0.5.7 receive CODE --output - > /path/to/destination
 ```
 
 ---
@@ -341,10 +349,12 @@ curl https://perkoon.com/perkoon_receive.mjs > receive.mjs && node receive.mjs S
 | Flag | Description |
 |------|-------------|
 | `--json` | Machine-readable JSON events (always use for automation) |
+| `--relay` | Force free cloud delivery (fails if unavailable). Default is auto: relay when granted and the file fits, else P2P |
+| `--p2p` / `--wait` | Force direct P2P streaming (process stays alive) |
 | `--session <code>` | Join an existing session as sender (A2A agent-to-agent) |
 | `--sender-key <key>` | Auth key for `--session` (provided by session creator) |
 | `--password <pw>` | Password-protect the session (transfer is WebRTC/DTLS-encrypted regardless) |
-| `--timeout <sec>` | Peer wait time (default: 300, use 1800 for sends) |
+| `--timeout <sec>` | Peer wait time in P2P mode (default: 300, use 1800 for sends) |
 | `--output <dir>` | Save directory (default: ./received) |
 | `--output -` | Stream to stdout (no disk write) |
 | `--overwrite` | Replace existing files |
@@ -360,7 +370,9 @@ Events appear in order on stdout when using `--json`. The sequence **differs by 
 |-------|---------|------------|
 | `file_ready` | File queued for send | `name`, `size` |
 | `session_created` | Ready — share the link now | `session_code`, `share_url` |
-| `waiting_for_receiver` | Session live, no peer yet | |
+| `mode` | Delivery mode chosen (relay path only) | `mode` |
+| `relay_complete` | Cloud upload done — link durable, process exits 0 | `session_code`, `share_url`, `expires_at`, `duration_ms` |
+| `waiting_for_receiver` | Session live, no peer yet (P2P path) | |
 | `receiver_connected` | Peer joined | |
 | `transfer_accepted` | Receiver accepted the transfer | |
 | `webrtc_connected` | Direct P2P link established | |
@@ -389,7 +401,7 @@ Either direction emits `error` (`message`, `exit_code`) on failure.
 | 2 | File not found |
 | 3 | Network/session error |
 | 4 | Wrong password |
-| 5 | Timeout — no peer joined |
+| 5 | Timeout — no peer joined (P2P mode only; relay sends never wait) |
 
 ## Rate limits
 
@@ -414,10 +426,10 @@ Exceeding a limit returns HTTP `429` with a `Retry-After` value (seconds). On `/
 3. Once `session_created` appears, share the URL with the user
 4. ALWAYS use `--timeout 1800` for sends (30 min for the human to open the link)
 5. ALWAYS use `--overwrite` for receives
-6. ALWAYS monitor until `transfer_complete` or `error` — then **tell the user the result**
-7. NEVER kill the process mid-transfer
+6. ALWAYS monitor until `relay_complete` (cloud), `transfer_complete` (P2P), or `error` — then **tell the user the result**
+7. NEVER kill the process mid-transfer (relay sends exit on their own — nothing to babysit after `relay_complete`)
 8. The receiver does NOT need perkoon installed — the browser link works for everyone
-9. Use pinned versions: `npx -y perkoon@0.4.5` — never use `@latest`
+9. Use pinned versions: `npx -y perkoon@0.5.7` — never use `@latest`
 10. NEVER send files from sensitive directories (~/.ssh, ~/.gnupg, /etc) without explicit user approval
 
 ## Discovery endpoints

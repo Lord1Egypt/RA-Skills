@@ -1,39 +1,58 @@
-## Description: <br>
-Auto-learns how you learn best. Adapts teaching style, format, and depth to you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches any topic in adaptive sessions: probes prior knowledge, calibrates depth and format, and checks retention before advancing.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to keep compact notes about a user's learning preferences and adapt future explanations by style, format, tools, and exclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved learning preferences may become inaccurate, too broad, or more personal than intended. <br>
-Mitigation: Periodically review the saved preference sections and delete inaccurate, broad, or overly personal entries. <br>
+## Use Case:
 
+External learners and agents use this skill for adaptive tutoring sessions across topics, including diagnostic probes, explanations, worked examples, retrieval checks, misconception repair, and retention-oriented review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/learning) <br>
-- [Criteria for Learning Preferences](artifact/criteria.md) <br>
-- [Learning Dimensions to Detect](artifact/dimensions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compact preference entries grouped by Style, Format, Tools, and Never.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local learning history and preferences may retain sensitive study context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete files under ~/Clawic/data/learning/ if retained learning history is not desired.
+
+Risk: Shared language or locale defaults may be read from ~/Clawic/profile.yaml.
+
+Mitigation: Review that local profile before use if shared defaults should not influence tutoring sessions.
+
+Risk: Text-only tutoring cannot fully validate speaking, listening, or motor-skill practice.
+
+Mitigation: Use the skill for theory and planning, then route real practice to the appropriate activity, tool, or coach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/learning)
+- [Clawic skill page](https://clawic.com/skills/learning)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational Markdown with teaching prompts, worked examples, retrieval checks, and optional local learning notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local learning preference and topic-progress files under ~/Clawic/data/learning/.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

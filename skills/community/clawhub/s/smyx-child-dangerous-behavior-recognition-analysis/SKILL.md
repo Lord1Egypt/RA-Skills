@@ -1,7 +1,7 @@
 ---
 name: "child-dangerous-behavior-recognition-analysis"
 description: "Detects climbing, playing with fire, touching power sources, and dangerous actions near windows, providing real-time alerts. It is suitable for child safety supervision in scenarios such as homes, kindergartens, and nurseries. | 儿童危险行为识别技能，识别攀爬、玩火、触电源、窗边危险动作并实时预警，适用于家庭、幼儿园、托儿所等场景儿童安全监护"
-version: "1.0.5"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

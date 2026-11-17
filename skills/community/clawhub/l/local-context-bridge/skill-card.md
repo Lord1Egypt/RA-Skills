@@ -1,42 +1,54 @@
-## Description: <br>
-Searches local personal and internal Word, Excel, PDF, and Markdown documents with semantic keywords and returns relevant snippets and file paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches local personal and internal Word, Excel, PDF, and Markdown documents with semantic keywords and returns relevant snippets and file paths.
 
-## Publisher: <br>
-[whyischen](https://clawhub.ai/user/whyischen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyischen](https://clawhub.ai/user/whyischen)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to locate information in approved local or internal document folders and decide whether retrieved snippets are enough to answer a user request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search selected local or internal folders that may contain private or sensitive documents. <br>
-Mitigation: Limit watched directories to approved locations and avoid adding folders that contain secrets, personal records, or highly sensitive material. <br>
-Risk: Automatic local search can expose private document snippets without clear consent boundaries. <br>
-Mitigation: Configure workflows so the agent asks before searching or reading private documents, and review snippets before using them in responses. <br>
-Risk: The skill depends on an external local package for indexing and search behavior. <br>
-Mitigation: Review the cbridge-agent package before installation or updates and install only versions approved for the environment. <br>
+## Use Case:
 
+Employees, external users, and agent developers use this skill to retrieve relevant context from local or internal document collections without manually browsing files. It is suited for questions where the answer may exist in private documents already added to ContextBridge.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/whyischen/local-context-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and retrieved text snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include local file paths and excerpts from indexed documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: Broad local document searches can expose private or business data from watched directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped document folder, avoid credential stores or unrelated private records, and require confirmation before searches that may touch sensitive local or business data.
+
+Risk: Unpinned package installation and update behavior can change the reviewed software version.
+
+Mitigation: Review the cbridge-agent package and version before installing or updating.
+
+## Reference(s):
+
+- [ContextBridge GitHub repository](https://github.com/whyischen/context-bridge)
+- [ClawHub skill page](https://clawhub.ai/whyischen/skills/local-context-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local search result snippets with file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pip and the cbridge-agent CLI; searches only directories the user adds to ContextBridge.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

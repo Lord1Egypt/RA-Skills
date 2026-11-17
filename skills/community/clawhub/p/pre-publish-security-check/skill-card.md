@@ -1,43 +1,58 @@
-## Description: <br>
-Pre-Publish Security Check scans a skill folder before ClawHub publishing for possible API keys, tokens, private keys, precise coordinates, personal email addresses, and Chinese phone numbers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans an agent skill directory before publication for possible API keys, tokens, private keys, personal contact data, and precise coordinates.
 
-## Publisher: <br>
-[vlalamoon](https://clawhub.ai/user/vlalamoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vlalamoon](https://clawhub.ai/user/vlalamoon)
 
-## Use Case: <br>
-Developers and skill publishers use this skill before publishing to ClawHub to check a local skill directory for common secret and personal-data patterns that should be removed or replaced with placeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner output can expose real secrets or personal data when matches are found. <br>
-Mitigation: Run it only on the intended local skill folder and keep the output private while remediation is in progress. <br>
-Risk: A clean scan does not prove the skill is safe to publish. <br>
-Mitigation: Treat the result as a pre-check and still review the skill contents, examples, and configuration before release. <br>
-Risk: Scanning the wrong path may reveal unrelated local files in terminal output. <br>
-Mitigation: Pass the specific skill directory path rather than a broad parent directory. <br>
+## Use Case:
 
+Developers and skill publishers use this skill before a ClawHub release to run a lightweight local scan for obvious secrets and sensitive personal data in skill files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vlalamoon/pre-publish-security-check) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/vlalamoon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Analysis] <br>
-**Output Format:** [Markdown guidance with bash commands; terminal text from the scanner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner output may include matched secrets or personal data and should be kept private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The checker can miss important secret patterns and incorrectly report that a skill is safe to publish.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a lightweight helper alongside a mature secret scanner and manual review before publishing.
+
+Risk: Current scanner behavior may provide incomplete coverage for private keys, generic tokens, and coordinates.
+
+Mitigation: Add targeted coverage for those patterns before using the skill as part of a release workflow.
+
+Risk: User-facing output is Chinese-only.
+
+Mitigation: Confirm the intended operators can read the output or add localized messages for the release audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vlalamoon/skills/pre-publish-security-check)
+- [Publisher profile](https://clawhub.ai/user/vlalamoon)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, shell commands, guidance]
+
+**Output Format:** [Terminal text with remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language command output; exits nonzero when potential sensitive information is found.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

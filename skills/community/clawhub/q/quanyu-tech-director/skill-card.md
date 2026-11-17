@@ -1,38 +1,60 @@
-## Description: <br>
-A Chinese-language software R&D director workflow that helps a project manager dispatch engineering tasks to agents, track progress, handle timeouts, and report results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A software development director skill for Quanyu Tech that activates a project-manager mode for dispatching tasks, tracking progress, handling timeouts, and reporting results.
 
-## Publisher: <br>
-[worm-tribe](https://clawhub.ai/user/worm-tribe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[worm-tribe](https://clawhub.ai/user/worm-tribe)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Project managers and development leads use this skill to coordinate software development, review, and deployment work through delegated agent tasks. It emphasizes task sizing, status tracking in TASK-TRACKER.json, timeout handling, and progress reports to the designated founder or owner.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Mandatory delegation can cause agent work to proceed beyond the user's intended scope.
+
+Mitigation: Require user approval for delegated development, review, build, deployment, and follow-up tasks before agents are launched.
+
+Risk: TASK-TRACKER.json updates may modify project state without clear approval boundaries.
+
+Mitigation: Confirm the tracker path and whether file writes require approval before enabling the skill in a workspace.
+
+Risk: Timeout handling can create repeated follow-up tasks without an explicit retry limit.
+
+Mitigation: Set a maximum retry count and require review of intermediate outputs before continuing timed-out work.
+
+Risk: Progress reports may be sent to an ambiguous founder or owner recipient.
+
+Mitigation: Define the reporting recipient and acceptable report contents before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Project managers and engineering coordinators use this skill to break down software work, delegate implementation or review tasks to agents, maintain TASK-TRACKER.json, and report status to stakeholders. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can dispatch agents and update a local task tracker based on trigger wording. <br>
-Mitigation: Review the trigger wording and tracker update expectations before installation if you require explicit confirmation before delegation or local tracker changes. <br>
+**Output Format:** [Markdown and structured task-tracking updates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Quanyu Tech Director on ClawHub](https://clawhub.ai/worm-tribe/quanyu-tech-director) <br>
+**Other Properties Related to Output:** [May update TASK-TRACKER.json and produce short status reports during task dispatch, completion, timeout, or failure.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Configuration] <br>
-**Output Format:** [Markdown-style instructions and tracker updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to update TASK-TRACKER.json as part of the coordination workflow.] <br>
+0.1.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

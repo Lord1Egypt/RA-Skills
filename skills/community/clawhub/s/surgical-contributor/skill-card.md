@@ -1,40 +1,54 @@
-## Description: <br>
-Deliver small, high-signal repository fixes by reproducing one real pain point, applying the narrowest safe change, adding regression protection, and writing a maintainer-friendly PR summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surgical Contributor guides agents to deliver small, high-signal code or documentation contributions by isolating one real pain point, applying the narrowest safe change, adding regression protection, and writing a maintainer-friendly PR summary.
 
-## Publisher: <br>
-[dj-shortcut](https://clawhub.ai/user/dj-shortcut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dj-shortcut](https://clawhub.ai/user/dj-shortcut)
 
-## Use Case: <br>
-Developers and engineers use this skill to make small, reviewable bug fixes or workflow paper-cut improvements with a reproduced issue, focused regression protection, and a maintainer-ready PR summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to modify project files and tests, so an incorrect patch could change repository behavior. <br>
-Mitigation: Review the resulting diff and verification output before committing, merging, or publishing changes. <br>
-Risk: A selected pain point may be underspecified or incorrectly reproduced, leading to a narrow fix that does not address the intended problem. <br>
-Mitigation: Require a minimal reproduction, explicit assumptions, and one focused regression protection tied to the observed issue. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to make one focused repository fix or documentation correction with reproduction, minimal patching, regression protection, self-review, and a PR-ready summary.
 
-## Reference(s): <br>
-- [Risk Map](references/risk-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown response with concise analysis, file-edit summaries, verification commands, and PR summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify repository files and tests as part of a narrow, verified fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: An agent may propose an incorrect or incomplete code or documentation change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed edits, regression protection, and verification notes before merging or deployment.
+
+Risk: The skill can modify repository files when used by an agent with write access.
+
+Mitigation: Use normal repository review controls and confirm that each changed line traces to the selected narrow issue.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dj-shortcut/skills/surgical-contributor)
+- [Risk Map](references/risk-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with code changes, shell commands, verification notes, and PR-summary sections when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one focused contribution plan, patch, regression protection, self-review, and maintainer-facing summary.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

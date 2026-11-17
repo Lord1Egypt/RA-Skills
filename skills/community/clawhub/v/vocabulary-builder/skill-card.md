@@ -1,40 +1,53 @@
-## Description: <br>
-Build and review vocabulary from books, podcasts, and daily encounters with reading-session support, word collection, pronunciation guidance, spaced repetition, quizzes, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and reviews vocabulary from books, podcasts, and daily encounters using reading sessions, word collection, three-step learning, spaced repetition, quiz scheduling, and progress tracking.
 
-## Publisher: <br>
-[winlinvip](https://clawhub.ai/user/winlinvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winlinvip](https://clawhub.ai/user/winlinvip)
 
-## Use Case: <br>
-Learners and reading assistants use this skill to capture unfamiliar words, generate clear pronunciation and meaning notes, practice words through a three-step flow, and schedule spaced-review quizzes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vocabulary entries and quiz history may include sensitive reading excerpts or personal information saved in the workspace tracker. <br>
-Mitigation: Avoid storing sensitive excerpts or personal details in memory/vocabulary.md, and review tracker contents before sharing the workspace. <br>
-Risk: Scheduled quizzes can create unwanted recurring prompts if configured for an unsuitable channel or frequency. <br>
-Mitigation: Enable scheduled quizzes only for welcome delivery channels and frequencies, and keep sleep-hour and pending-quiz checks in the cron message. <br>
+## Use Case:
 
+External users and personal learning agents use this skill to capture unfamiliar words, generate pronunciation-first word cards, practice vocabulary, track review progress, and optionally schedule recurring quizzes.
 
-## Reference(s): <br>
-- [Why I Stopped Using Flashcards and Started Using AI](https://youtu.be/wjWrVpZZXSg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown word cards, vocabulary tracker entries, quiz prompts, pronunciation guidance, and cron setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes vocabulary data to memory/vocabulary.md and references user-provided audio clips under docs/tts-fr/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: ClawHub release evidence) <br>
+Risk: Vocabulary data, source and page details, context sentences, quiz history, and quiz state are stored locally by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory/vocabulary.md before sharing the workspace and avoid adding sensitive source material or personal context.
+
+Risk: Scheduled quizzes can create recurring reminders when the user enables them.
+
+Mitigation: Set up reminders only after confirming the frequency, delivery channel, target, and sleep-hour constraints with the user.
+
+## Reference(s):
+
+- [Why I Stopped Using Flashcards and Started Using AI](https://youtu.be/wjWrVpZZXSg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with vocabulary cards, tracker entries, quiz state, and optional cron setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores vocabulary progress in memory/vocabulary.md and references optional pronunciation audio in docs/tts-fr/.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Helps frontend teams fix mobile responsiveness, navigation layout, and cross-device UI issues with practical workflows, checklists, analysis, and implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps frontend teams create practical workflows, checklists, analysis, and implementation support for fixing mobile responsiveness, navigation layout, and cross-device UI issues.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Frontend developers, designers, startup teams, and maintainers use this skill to diagnose and fix mobile layout, responsive navigation, and cross-device usability problems. It produces actionable guidance, implementation support, reusable workflows, checklists, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate too broadly during general frontend conversations. <br>
-Mitigation: Prefer explicit invocation for mobile layout, responsive design, navbar, or cross-device UI work. <br>
-Risk: Some requirement-plan citations are weak or unrelated to responsive layout work. <br>
-Mitigation: Treat demand-evidence links as supporting context only and validate layout recommendations against the user's actual application and device tests. <br>
+## Use Case:
 
+Frontend developers, designers, startup teams, and maintainers use this skill to plan, implement, and verify responsive layout and navigation fixes across phone and desktop screens.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/mobile-responsive-layout-fixer-133318) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Improve navbar responsiveness across all devices](https://github.com/anushkasark08/The-Lighthouse/issues/222) <br>
-- [Make Navbar Sticky Across All Pages](https://github.com/adithyan-css/Brownie-Bliss/issues/773) <br>
-- [Improve navbar responsiveness across all devices](https://github.com/aanjalii01/SMART_DELIVERY_SYSTEM/issues/28) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with optional code blocks, checklists, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state assumptions, limits, validation steps, and remaining risks when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may activate on broad frontend or layout requests because implicit invocation is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is actually about responsive layout or navigation before relying on the skill's workflow.
+
+Risk: Responsive layout advice or code changes may be incomplete or incorrect for the target application.
+
+Mitigation: Review proposed changes and test them across the application's supported viewport sizes and navigation states before release.
+
+Risk: The README cites demand evidence that should not be treated as strong validation of release quality.
+
+Mitigation: Use the cited links as background only and rely on normal review, testing, and security checks before adopting the skill.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/mobile-responsive-layout-fixer-133318)
+- [Improve navbar responsiveness across all devices](https://github.com/anushkasark08/The-Lighthouse/issues/222)
+- [Make Navbar Sticky Across All Pages](https://github.com/adithyan-css/Brownie-Bliss/issues/773)
+- [Improve navbar responsiveness across all devices](https://github.com/aanjalii01/SMART_DELIVERY_SYSTEM/issues/28)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with checklists, analysis, implementation notes, and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, and follow-up work for responsive UI changes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

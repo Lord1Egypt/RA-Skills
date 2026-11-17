@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_app_group_delete",
+    "description": "Delete an existing application group in the company. (Dangerous operation, only allowed when the user explicitly requests to delete a specific application group; deletion is not allowed if applications exist under this group)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Application group ID (must exist)."
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

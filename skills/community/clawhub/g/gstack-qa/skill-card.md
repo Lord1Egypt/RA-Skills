@@ -1,41 +1,56 @@
-## Description: <br>
-Systematically QA test a web application and fix bugs found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically QA tests a web application, fixes discovered bugs in source code with atomic commits, re-verifies fixes, and reports health scores, evidence, and ship readiness.
 
-## Publisher: <br>
-[loocor](https://clawhub.ai/user/loocor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[loocor](https://clawhub.ai/user/loocor)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run browser-based QA on web applications, document reproducible issues, apply scoped source fixes, and produce QA reports for release readiness.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can edit source code and create git commits while fixing QA findings.
+
+Mitigation: Run it on a clean branch, review each commit, and keep the target app and fix scope explicit before execution.
+
+Risk: QA flows may require authentication and could expose sensitive credentials if handled carelessly.
+
+Mitigation: Use test accounts where possible, avoid production credentials unless necessary, and redact secrets from reports.
+
+Risk: Browser-driven testing and generated reports may create local artifacts such as screenshots and QA reports.
+
+Mitigation: Review generated artifacts before sharing and remove sensitive application data from screenshots or reports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to run structured QA on web applications, document issues with evidence, fix eligible bugs, re-verify changes, and produce ship-readiness reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can actively test a web application, submit forms, edit source code, and create git commits. <br>
-Mitigation: Use it on a clean feature branch against staging or disposable test accounts, then review screenshots, reports, diffs, and commits before pushing or deploying. <br>
-Risk: Browser sessions and authentication flows may expose sensitive accounts or production workflows if scoped poorly. <br>
-Mitigation: Avoid production cookies, live destructive workflows, and privileged credentials; prefer test accounts and explicit target scope. <br>
+**Output Format:** [Markdown reports, concise status text, shell commands, and source code changes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loocor/gstack-qa) <br>
-- [Publisher profile](https://clawhub.ai/user/loocor) <br>
+**Other Properties Related to Output:** [May create QA report files, screenshots, and atomic git commits when fixes are applied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with screenshots, repro steps, health scores, fix summaries, commit references, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create QA report files, screenshots, code edits, and git commits when authorized by the workflow.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

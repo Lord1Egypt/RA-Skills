@@ -1,43 +1,58 @@
-## Description: <br>
-A cognitive growth framework that helps your AI truly know you and help you know yourself through personality profiling, behavioral pattern detection, reflective mirroring, and Socratic questioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A cognitive growth framework that helps your AI truly know you - and help you know yourself, including personality profiling, behavioral pattern detection, reflective mirroring, and Socratic questioning.
 
-## Publisher: <br>
-[EvanL1](https://clawhub.ai/user/EvanL1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanl1](https://clawhub.ai/user/evanl1)
 
-## Use Case: <br>
-External users use this skill to have an assistant build a long-term self-reflection profile, observe behavioral patterns, mirror insights, ask Socratic questions, and generate concise cognitive snapshots or cards on request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages silent, long-term personal and behavioral profiling. <br>
-Mitigation: Use it only when the user intentionally wants persistent self-reflection support, and confirm how to pause the skill and review, edit, or delete saved memories. <br>
-Risk: Personal, workplace, health, financial, family, or relationship details may be retained across future chats if shared. <br>
-Mitigation: Avoid sharing or saving sensitive details unless the user is comfortable with long-term retention of that information. <br>
-Risk: Reflections and Socratic questions can feel invasive if they overreach beyond observed behavior. <br>
-Mitigation: Keep reflections brief, grounded in actual observations, and stop or narrow the behavior when the user dismisses or opts out. <br>
+## Use Case:
 
+External users use Sage Cognitive to guide an AI assistant in building a long-term self-reflection profile, mirroring behavioral patterns, asking Socratic questions, and producing cognitive snapshots or cards from saved memory.
 
-## Reference(s): <br>
-- [Sage Cognitive ClawHub release](https://clawhub.ai/EvanL1/sage-cognitive) <br>
-- [Project homepage](https://github.com/nicholasgasior/sage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monospace cognitive cards, narrative snapshots, daily reflections, Socratic questions, and memory guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and frontmatter) <br>
+Risk: The skill builds and stores long-term personal, behavioral, and workplace profiles, which may include sensitive identity, reporting-line, stakeholder, belief, or tension details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit opt-in memory controls, review, correction, and deletion controls, and policies that prevent sensitive workplace details from being saved.
+
+Risk: Silent observation and reflection can feel invasive if users are not aware that profile-building is active.
+
+Mitigation: Disclose the profiling behavior before activation and provide clear ways to pause profiling or run without memory.
+
+Risk: Generated cognitive cards or snapshots can expose personal traits or workplace context if shared.
+
+Mitigation: Keep generated cards privacy-minimal by omitting email addresses, company names, manager names, project code names, financial data, and personnel data.
+
+## Reference(s):
+
+- [Sage GitHub Homepage](https://github.com/nicholasgasior/sage)
+- [ClawHub Skill Page](https://clawhub.ai/evanl1/skills/sage-cognitive)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational prose and Markdown code blocks for cognitive snapshots and cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on persistent memory tiers for identity, personality, behavioral patterns, and recent work context.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

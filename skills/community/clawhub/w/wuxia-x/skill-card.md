@@ -1,43 +1,54 @@
-## Description: <br>
-武侠X is a Chinese-language text-adventure game engine powered by Drive Engine v3, generating wuxia narratives, goals, challenges, crises, progress tracking, action options, and up to five local save slots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+武侠X is a Chinese-language wuxia text adventure skill powered by Drive Engine v3 for goals, challenges, crises, progress tracking, five local save slots, and direct story generation.
 
-## Publisher: <br>
-[jayshna](https://clawhub.ai/user/jayshna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayshna](https://clawhub.ai/user/jayshna)
 
-## Use Case: <br>
-External users and agent operators use this skill to run an interactive wuxia text RPG in Chinese, with the agent generating story turns, meaningful action choices, world-state updates, and local JSON save files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create, update, read, and delete local game save files in ./sms-rpg-saves/. <br>
-Mitigation: Use a dedicated workspace for play sessions and avoid storing sensitive personal information in game saves. <br>
+## Use Case:
 
+External users and developers use this skill to run a Chinese wuxia text adventure, create or continue local save slots, and generate turn-by-turn narrative with goals, challenges, crisis events, state tracking, and action choices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jayshna/wuxia-x) <br>
-- [Drive Engine 驱动引擎](references/drive-engine.md) <br>
-- [Cultivation goal templates](templates/goals/cultivation.yaml) <br>
-- [Relationship goal templates](templates/goals/relationship.yaml) <br>
-- [Enemy crisis templates](templates/crises/enemy.yaml) <br>
-- [Relationship crisis templates](templates/crises/relationship.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style interactive narrative with structured JSON save data and occasional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manages up to five local game save files under ./sms-rpg-saves/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md version history, released 2026-04-22) <br>
+Risk: The skill can create, update, and delete local save files under ./sms-rpg-saves/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm overwrite and deletion requests before changing save files, and keep file operations scoped to ./sms-rpg-saves/.
+
+Risk: Generated game state can become inconsistent across long play sessions or damaged save files.
+
+Mitigation: Use the skill's stated consistency rules, state-change records, and damaged-save handling before continuing a session.
+
+## Reference(s):
+
+- [Drive Engine 驱动引擎](references/drive-engine.md)
+- [ClawHub skill page](https://clawhub.ai/jayshna/skills/wuxia-x)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown-style game turns with structured JSON save-state data and local shell commands for save discovery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses up to five local JSON save files under ./sms-rpg-saves/ and requires each turn to end with three to four action choices.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and SKILL.md version history, released 2026-04-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Memoria provides a structured local Markdown memory vault for AI agents with commands to store, recall, search, manage sessions, and optionally sync memories to Notion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured memory system for AI agents with a local markdown vault and Notion sync.
 
-## Publisher: <br>
-[kitakitsune0x](https://clawhub.ai/user/kitakitsune0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kitakitsune0x](https://clawhub.ai/user/kitakitsune0x)
 
-## Use Case: <br>
-Developers and AI-agent operators use Memoria to give agents a persistent local Markdown memory vault, retrieve prior context, manage wake/checkpoint/sleep handoffs, and optionally sync selected vault content with Notion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad proactive memory capture can store personal or sensitive information without a clear consent gate. <br>
-Mitigation: Store only user-approved or task-necessary memories, avoid secrets and credentials, and review the vault regularly. <br>
-Risk: Notion sync can transmit saved local memories to a third-party service. <br>
-Mitigation: Disable or avoid auto-sync for sensitive content, use Notion sync only for intended vaults, and confirm the Notion workspace before pushing data. <br>
-Risk: Persistent memory can retain stale or sensitive context longer than intended. <br>
-Mitigation: Periodically audit, update, or delete vault entries and protect the vault path with appropriate local access controls. <br>
+## Use Case:
 
+Developers and agent operators use Memoria to store, search, retrieve, and sync structured memories across sessions, including decisions, facts, preferences, lessons, commitments, relationships, and projects.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kitakitsune0x/memoria) <br>
-- [README](artifact/README.md) <br>
-- [Usage Instructions](artifact/INSTRUCTIONS.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown vault files and, when configured, sync memory content to Notion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: ClawHub release evidence; artifact package.json reports 0.1.1) <br>
+Risk: The skill encourages persistent recording of conversation details, which can capture sensitive personal or third-party information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory capture before use, remove proactive capture guidance when inappropriate, and avoid storing secrets, health data, or third-party personal details.
+
+Risk: Notion sync can copy local memories to a user-configured external workspace.
+
+Mitigation: Keep Notion auto-sync disabled unless needed, use explicit sync choices, and verify workspace access before syncing.
+
+Risk: Notion tokens entered on the command line may be exposed through shell history or process logs.
+
+Mitigation: Rotate any token entered this way and prefer safer credential handling before deployment.
+
+Risk: Security evidence reports a vault path validation issue.
+
+Mitigation: Fix path validation before deployment and restrict the vault to intended directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kitakitsune0x/skills/memoria)
+- [Notion integrations](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and structured memory content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local markdown vault files and optionally synchronize them with a user-configured Notion workspace.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata; package.json is 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

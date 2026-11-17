@@ -1,40 +1,50 @@
-## Description: <br>
-Designs form structure, validation rules, error handling, and accessible form UX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs form structure, validation rules, error handling, and accessible form UX.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers use this skill to design and implement form structure, validation timing, field-level errors, accessibility wiring, and duplicate-submit handling for application forms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad mentions of forms, submission, or errors. <br>
-Mitigation: Confirm the user's current task and project context before producing detailed implementation guidance. <br>
-Risk: Generated validation and accessibility code may not match project-specific requirements. <br>
-Mitigation: Review generated code against the target framework, backend validation contract, and accessibility expectations before shipping. <br>
+## Use Case:
 
+Developers and engineers use this skill to design accessible frontend forms, choose state and validation approaches, handle field and submission errors, and plan duplicate-submit protection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/forms-and-validation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with validation tables and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool or API calls are required; generated recommendations should be reviewed against the project's framework, backend contract, and accessibility requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger terms may invoke this skill for general form or submission discussions where specialized form-validation guidance is unnecessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking about form structure, validation behavior, error handling, or accessible submission flow before applying the skill's recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/forms-and-validation)
+- [Publisher Profile](https://clawhub.ai/user/wangzhiming1999)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with tables, checklists, and code examples when implementation help is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or external tool calls are bundled with the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and ClawHub artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

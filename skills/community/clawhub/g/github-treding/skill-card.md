@@ -1,39 +1,50 @@
-## Description: <br>
-Fetch top trending GitHub repositories today/this-week/this-month and summarize top 15 with stars, language, description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch top trending GitHub repositories today/this-week/this-month and summarize top 15 with stars, language, description.
 
-## Publisher: <br>
-[brunovu20](https://clawhub.ai/user/brunovu20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brunovu20](https://clawhub.ai/user/brunovu20)
 
-## Use Case: <br>
-Developers and technical users use this skill to fetch and summarize recently created GitHub repositories ranked by stars. It supports quick repository discovery over default or custom date ranges and result counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script contacts GitHub and can use GH_TOKEN if that environment variable is set. <br>
-Mitigation: Run it without GH_TOKEN unless authenticated GitHub API quota is intentionally needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch and summarize recently created GitHub repositories ranked by stars, including language, star and fork counts, descriptions, and links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brunovu20/github-treding) <br>
-- [GitHub Search repositories API endpoint](https://api.github.com/search/repositories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text formatted from GitHub API JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; optionally uses GH_TOKEN for higher GitHub API rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optional GitHub token handling is unsafe enough to require review or patching before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use unauthenticated mode, or patch the script to pass curl headers with an argument-safe Bash array and use only a short-lived, minimally scoped GitHub token.
+
+## Reference(s):
+
+- [GitHub Search Repositories API](https://api.github.com/search/repositories)
+- [ClawHub skill page](https://clawhub.ai/brunovu20/skills/github-treding)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text with repository summaries and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; optional GH_TOKEN increases GitHub API rate limits after token handling is patched.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

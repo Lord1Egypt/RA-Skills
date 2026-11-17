@@ -76,7 +76,7 @@ key determines what can be *called*, not what is *listed*:
   `candidate.decline_invitation`, `candidate.withdraw_application`,
   `candidate.set_saved_job`, `candidate.get_saved_jobs` — see
   `candidate-catalog.md`
-- Employer (visible to all, callable with an EMPLOYER key): 18 tools —
+- Employer (visible to all, callable with an EMPLOYER key): 19 tools —
   see `employer-catalog.md`
 
 An anonymous or candidate-scoped caller seeing `employer.*` in the list

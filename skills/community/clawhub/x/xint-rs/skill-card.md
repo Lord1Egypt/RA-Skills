@@ -1,45 +1,63 @@
-## Description: <br>
-Fast X Intelligence CLI for searching, monitoring, analyzing, and engaging with X/Twitter from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast X Intelligence CLI (Rust) for searching, monitoring, analyzing, and engaging with X/Twitter from the terminal.
 
-## Publisher: <br>
-[0xNyk](https://clawhub.ai/user/0xNyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xnyk](https://clawhub.ai/user/0xnyk)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to run terminal-based X/Twitter search, monitoring, profile lookup, trend discovery, sentiment analysis, intelligence reports, and selected account actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can request broad X account authority through OAuth for actions such as bookmarks, likes, follows, lists, blocks, and mutes. <br>
-Mitigation: Prefer read_only policy mode, avoid OAuth setup unless account actions are required, and review requested X scopes before authorizing. <br>
-Risk: Collection and bookmark knowledge-base features can upload selected local files or bookmark-derived content to xAI. <br>
-Mitigation: Do not run collection upload, directory sync, or bookmark cloud sync on private material; review paths and files before use. <br>
-Risk: Webhook and network-facing modes can send data to external services or expose a server mode. <br>
-Mitigation: Use only webhook endpoints you control and require explicit approval before network-facing modes such as watch webhooks or MCP SSE. <br>
+## Use Case:
 
+Developers, researchers, and operators use this skill to run X/Twitter search, monitoring, profile, thread, trend, follower-tracking, and Grok-assisted analysis workflows from a CLI or optional MCP server. It is suitable for intelligence reports, social listening, and structured exports when the required X and xAI credentials are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xNyk/xint-rs) <br>
-- [X API access documentation](https://developer.x.com) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON, JSONL, CSV, or report file outputs from xint commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write cache, exports, snapshots, and OAuth token data under the skill data directory when those commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.2.26 (source: server release metadata) <br>
+Risk: Installer execution may run code retrieved over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer first, prefer a trusted package manager, or build from a reviewed source tag.
+
+Risk: OAuth and engagement commands can mutate an X account or expose broad account scopes.
+
+Mitigation: Use read_only policy by default and run OAuth setup only when account actions are intentional.
+
+Risk: Webhooks, collections, bookmark knowledge-base sync, and package API features can share data with remote services.
+
+Mitigation: Use only endpoints and workspaces you control, and review exported or synced content before sharing.
+
+Risk: Local caches, exports, snapshots, media, and OAuth tokens may contain sensitive search queries or account data.
+
+Mitigation: Keep local data paths private, preserve restrictive token permissions, and review generated files before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xnyk/skills/xint-rs)
+- [X API access](https://developer.x.com)
+- [Rust language](https://www.rust-lang.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, JSONL, CSV, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal output, Markdown reports, structured JSON/JSONL, CSV exports, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write cache, exports, snapshots, OAuth tokens, and downloaded media under local data paths when commands request it.]
+
+## Skill Version(s):
+
+2026.2.26 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

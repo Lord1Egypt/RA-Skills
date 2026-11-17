@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CompetitiveIntelRecord",
+  "description": "竞品情报雷达单条情报的标准结构。先产出记录数组，再渲染 Markdown / 表格 / 卡片 / HTML，并可回推 BI / 做趋势分析。",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "competitor", "dimension", "event", "source_level", "impact", "published_at", "collected_at", "sources", "action"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string", "description": "稳定唯一 ID，如 2026-09-13-qianfan-price-01，用于跨天去重与趋势对齐" },
+      "competitor": { "type": "string", "description": "竞品名称（已按主体/官网域名消歧）" },
+      "dimension": { "type": "string", "enum": ["产品更新", "定价变动", "融资/商务", "招聘动态", "API上新", "其他"] },
+      "event": { "type": "string", "description": "一句话事件摘要，关键变动可加粗" },
+      "detail": { "type": "string", "description": "可选补充细节" },
+      "source_level": { "type": "string", "enum": ["P0", "P1", "P2", "P3"], "description": "轴一·信源可信度：P0 官方一手 / P1 官方转述 / P2 权威媒体 / P3 社媒自媒体" },
+      "impact": { "type": "string", "enum": ["I1", "I2", "I3"], "description": "轴二·情报影响度：I1 高(当日上报) / I2 中(周度研判) / I3 低(存档)" },
+      "priority": { "type": "string", "enum": ["act", "verify", "record", "archive"], "description": "由可信度×影响度象限推导：act=立即行动/上报, verify=优先核实, record=记录归档, archive=忽略/存档" },
+      "confidence_note": { "type": "string", "description": "可信度补充，如『单源未证实』『全文受限未核实』" },
+      "published_at": { "type": "string", "format": "date", "description": "事件发布日期（判断是否本期的依据）" },
+      "collected_at": { "type": "string", "format": "date", "description": "采集日期" },
+      "sources": {
+        "type": "array",
+        "minItems": 1,
+        "description": "全部出处；多源时 source_level 取最高，cross_validated 置真",
+        "items": {
+          "type": "object",
+          "required": ["name", "url", "level"],
+          "properties": {
+            "name": { "type": "string" },
+            "url": { "type": "string", "description": "可点击溯源链接；无公开链接时填受限说明" },
+            "level": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+            "restricted": { "type": "boolean", "description": "是否付费墙/登录墙等受限源" }
+          }
+        }
+      },
+      "cross_validated": { "type": "boolean", "description": "是否多源交叉验证（≥2 独立来源）" },
+      "recycled": { "type": "boolean", "description": "是否旧闻回收（发布日远早于采集日）" },
+      "needs_review": { "type": "boolean", "description": "是否待人工复核（低信源独报/矛盾/受限未核实）；为真时禁止直接进对外材料" },
+      "suspected_ad": { "type": "boolean", "description": "是否疑似软文/通稿" },
+      "tags": { "type": "array", "items": { "type": "string" } },
+      "action": { "type": "string", "description": "由象限推导的行动建议，如『48h 内评估我方定价应对』" }
+    }
+  }
+}

@@ -1,42 +1,57 @@
-## Description: <br>
-Switch between AI models dynamically to optimize costs and performance. Use when the user says mode commands like "eco mode", "balanced mode", "smart mode", or "max mode", or when they want to check their current mode with "/modes status" or configure modes with "/modes setup". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switch between AI models dynamically to optimize costs and performance. Use when the user says mode commands like "eco mode", "balanced mode", "smart mode", or "max mode", or when they want to check their current mode with "/modes status" or configure modes with "/modes setup".
 
-## Publisher: <br>
-[serudda](https://clawhub.ai/user/serudda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[serudda](https://clawhub.ai/user/serudda)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to set up, check, and switch among named model modes so they can choose lower-cost or higher-capability models for different tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change OpenClaw's default model, which may affect later sessions, behavior, and cost. <br>
-Mitigation: Use explicit mode phrases, check the active mode with /modes status after switching, and review the configured model before high-cost SMART or MAX usage. <br>
-Risk: Short standalone words such as eco, smart, or max may be interpreted as mode switch requests. <br>
-Mitigation: Confirm ambiguous standalone requests before editing configuration, especially when the requested mode would increase cost or capability. <br>
-Risk: Invalid or unavailable model IDs can prevent the intended mode from working. <br>
-Mitigation: Run /modes setup, verify model IDs and provider access, and preserve existing OpenClaw settings when updating only the model field. <br>
+## Use Case:
 
+OpenClaw users use this skill to configure four named model modes, check the active mode, and switch the default model for cost, performance, or task-fit reasons.
 
-## Reference(s): <br>
-- [Switch Modes Reference Guide](REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local OpenClaw model configuration when the agent executes the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can persistently rewrite the global OpenClaw model setting, affecting cost and future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before writing changes, back up ~/.openclaw/openclaw.json, and use explicit slash commands where possible.
+
+Risk: Ambiguous words such as eco, balanced, smart, or max can trigger model changes.
+
+Mitigation: Ask for confirmation when a user request is ambiguous or lacks clear mode-switching intent.
+
+Risk: Configuration files may contain API keys or other sensitive OpenClaw settings.
+
+Mitigation: Avoid exposing full configuration contents in chat, logs, or error messages.
+
+## Reference(s):
+
+- [Switch Modes Reference Guide](artifact/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with JSON configuration changes and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local OpenClaw configuration files for the active user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

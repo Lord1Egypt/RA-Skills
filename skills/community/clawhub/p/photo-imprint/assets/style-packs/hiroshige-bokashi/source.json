@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Driving Rain at Shono (Station 46) from the series Fifty-Three Stations of the Tokaido",
+  "creator": "Utagawa Hiroshige",
+  "institution": "Artvee",
+  "item_record_url": "https://artvee.com/dl/driving-rain-at-shono-station-46-from-the-series-fifty-three-stations-of-the-tokaido/",
+  "official_image_url": "https://mdl.artvee.com/sftb/50378jp.jpg",
+  "object_number": "50378jp",
+  "medium": "woodblock print",
+  "date": "1833",
+  "rights_status": "PUBLIC DOMAIN",
+  "rights_statement": "This work is in the public domain. Artvee marks it as: All public domain files can be freely used for personal and commercial projects.",
+  "license_url": "https://artvee.com/dl/driving-rain-at-shono-station-46-from-the-series-fifty-three-stations-of-the-tokaido/",
+  "retrieval_date": "2026-08-30",
+  "download_date": "2026-08-30",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "JPEG",
+    "width": 1198,
+    "height": 800,
+    "bytes": 356829,
+    "sha256": "d19453cd237c315c5dd59c00f05e1b46c09f448b4cfad023f8b93c0a444dd234"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 1198,
+    "height": 800,
+    "long_edge_px": 1198,
+    "bytes": 233244,
+    "sha256": "0f4d88955c70406c027a3afb2540ce80481a6496067cde434826592defc24277",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "flat color area grouping",
+    "bokashi gradient transition",
+    "paper-white breathing room with subtle background wash",
+    "stylized contour simplification"
+  ],
+  "subject_exclusions": [
+    "landscape",
+    "figures with umbrellas",
+    "road and station",
+    "rain lines and weather",
+    "reference composition"
+  ]
+}

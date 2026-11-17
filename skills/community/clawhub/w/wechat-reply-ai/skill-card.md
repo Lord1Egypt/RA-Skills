@@ -1,45 +1,62 @@
-## Description: <br>
-Helps an agent read recent messages in Windows PC WeChat, draft short Chinese replies, send text or media, capture latest image previews, and use a local daemon for faster repeated replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local Windows PC WeChat workflows for reading recent chats with OCR, generating short Chinese replies, sending text or media, capturing recent image previews, and optionally reusing a local daemon for faster repeated replies.
 
-## Publisher: <br>
-[pddsa](https://clawhub.ai/user/pddsa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pddsa](https://clawhub.ai/user/pddsa)
 
-## Use Case: <br>
-People using Codex on a Windows desktop use this skill to operate their logged-in PC WeChat: locate chats, read recent messages with OCR, draft context-fit Chinese replies, and send text, images, videos, or files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent powerful control over private WeChat conversations. <br>
-Mitigation: Install only when this behavior is intended, and review recipients, message text, and file paths before sending. <br>
-Risk: Background daemon, screenshot, and auto-reply behavior can continue operating beyond a single reply task. <br>
-Mitigation: Use the daemon only for active reply sessions, avoid sensitive chats, and stop the daemon when finished. <br>
-Risk: Smart-reply behavior may send chat text to the configured LLM provider. <br>
-Mitigation: Do not use smart-reply unless sharing chat text with that provider is acceptable. <br>
+## Use Case:
 
+Developers and automation-capable agents use this skill to operate a logged-in Windows PC WeChat client: locate a contact, read the latest visible conversation, draft a natural Chinese reply, and send text or files on the user's behalf.
 
-## Reference(s): <br>
-- [Fast Reply Workflow](references/fast-reply-workflow.md) <br>
-- [OCR and Window Rules](references/ocr-and-window-rules.md) <br>
-- [Reply Style Guide](references/reply-style-guide.md) <br>
-- [Runtime Requirements](references/runtime-requirements.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language replies with command invocations and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send messages or files through a logged-in local WeChat session when invoked by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read private WeChat conversations, capture chat screenshots, and manipulate the clipboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on accounts and chats where the user has consent and a clear task; limit reads to the latest needed messages and avoid exposing screenshots or transcripts beyond the task.
+
+Risk: The skill can send messages and files as the logged-in WeChat user, including through daemon-assisted repeated operations.
+
+Mitigation: Confirm the recipient, message text, and file paths before sending; reserve daemon use for explicitly authorized sessions and stop the daemon when finished.
+
+Risk: Smart-reply mode may upload visible chat transcript text to the configured LLM endpoint.
+
+Mitigation: Use a dedicated limited API key, verify the endpoint and model configuration, and avoid smart-reply mode for sensitive personal, medical, legal, financial, or confidential conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pddsa/skills/wechat-reply-ai)
+- [Runtime requirements](artifact/references/runtime-requirements.md)
+- [Fast reply workflow](artifact/references/fast-reply-workflow.md)
+- [OCR and window rules](artifact/references/ocr-and-window-rules.md)
+- [Reply style guide](artifact/references/reply-style-guide.md)
+- [Persona](artifact/persona.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text, JSON status messages, saved image files, and Markdown guidance with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Windows PC WeChat session; smart-reply mode may send chat transcript text to the configured LLM endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

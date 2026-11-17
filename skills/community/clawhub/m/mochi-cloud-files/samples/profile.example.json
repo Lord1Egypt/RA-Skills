@@ -1,0 +1,5 @@
+{
+  "url": "https://YOUR_HOST/YOUR_COLLECTION/",
+  "username": "YOUR_USERNAME",
+  "passwordEnv": "MOCHI_DAV_PASSWORD"
+}

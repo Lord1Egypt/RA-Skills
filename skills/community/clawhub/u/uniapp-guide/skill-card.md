@@ -1,44 +1,67 @@
-## Description: <br>
-Provides step-by-step guidance for uni-app cross-platform application development, from environment setup and project creation through debugging and release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uniapp Guide provides practical uni-app cross-platform development guidance covering environment setup, project creation, configuration, lifecycle patterns, components, API calls, debugging, and publishing.
 
-## Publisher: <br>
-[w333bao](https://clawhub.ai/user/w333bao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[w333bao](https://clawhub.ai/user/w333bao)
 
-## Use Case: <br>
-Developers use this skill to get concise uni-app guidance for configuring tools, creating Vue 2 or Vue 3 projects, writing components, making API calls, debugging across H5, app, and mini program targets, and preparing releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example setup commands and developer-tool configuration may install packages, use templates, or open local service ports. <br>
-Mitigation: Verify package and template sources, review dependencies, and enable developer-tool service ports only in a trusted local environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise guidance and examples for building, debugging, and releasing uni-app applications across web, mobile app, and mini program targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/w333bao/uniapp-guide) <br>
-- [uni-app official documentation](https://uniapp.dcloud.net.cn/) <br>
-- [HBuilderX](https://www.dcloud.io/hbuilderx.html) <br>
-- [WeChat Developer Tools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html) <br>
-- [uni-ui components](https://uniapp.dcloud.net.cn/component/uniui/) <br>
-- [DCloud community](https://ask.dcloud.net.cn/) <br>
-- [DCloud plugin marketplace](https://ext.dcloud.net.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users should review commands and dependency sources before executing examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and skill.json) <br>
+Risk: Copy-pasted setup commands may fetch templates or packages that change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify repository names and pin package or template versions where possible before running setup commands.
+
+Risk: Running npm setup with elevated privileges can expand the impact of malicious or compromised packages.
+
+Mitigation: Run package installation as a normal user in a project workspace rather than as an administrator.
+
+Risk: Disabling WeChat URL checks outside local debugging can weaken request origin protections.
+
+Mitigation: Keep WeChat urlCheck enabled for non-local and production builds.
+
+Risk: Example API code reads a stored token and attaches it to requests.
+
+Mitigation: Only send stored tokens to trusted API origins and adapt authentication handling before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/w333bao/skills/uniapp-guide)
+- [uni-app Documentation](https://uniapp.dcloud.net.cn/)
+- [uni-ui Components](https://uniapp.dcloud.net.cn/component/uniui/)
+- [DCloud Community](https://ask.dcloud.net.cn/)
+- [DCloud Plugin Marketplace](https://ext.dcloud.net.cn/)
+- [HBuilderX](https://www.dcloud.io/hbuilderx.html)
+- [WeChat Developer Tools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides human-facing development guidance; generated examples should be reviewed before execution or production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

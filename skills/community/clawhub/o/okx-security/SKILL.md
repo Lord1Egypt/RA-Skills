@@ -169,7 +169,7 @@ Before executing ANY security command, you **MUST** read the corresponding refer
 |---|---|
 | Token safety, honeypot, is this token safe, 代币安全, 蜜罐检测, 貔貅盘 | `references/risk-token-detection.md` |
 | DApp/URL phishing, is this site safe, 钓鱼网站 | `references/risk-domain-detection.md` |
-| Transaction safety, tx pre-execution, signature safety, approve safety, 交易安全, 签名安全 | `references/risk-transaction-detection.md` |
+| Transaction safety, tx pre-execution, signature safety, approve safety, 交易安全, 签名安全 | `references/riREDACTED-SECRET.md` |
 | Approvals, allowance, Permit2, revoke, 授权管理, 授权查询, 风险授权 | `references/risk-approval-monitoring.md` |
 
 > When a workflow involves multiple commands (e.g., token-scan then tx-scan), load each reference before executing that command.

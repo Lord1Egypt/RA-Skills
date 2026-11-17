@@ -1,44 +1,58 @@
-## Description: <br>
-Simulates developer and engineering interviews across coding, system design, behavioral, and technology-specific practice, with optional CV-based tailoring and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates developer and engineering interviews, including coding rounds, system design discussions, behavioral questions for engineers, tech-specific Q&A, CV-based interview tailoring, and interview progress review.
 
-## Publisher: <br>
-[phantue2002](https://clawhub.ai/user/phantue2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phantue2002](https://clawhub.ai/user/phantue2002)
 
-## Use Case: <br>
-Developers and engineers use this skill to practice mock technical interviews, coding questions, system design prompts, engineer behavioral answers, company-style prep, and CV-tailored interview sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores interview progress and optional CV-derived details in local files. <br>
-Mitigation: Use it only with profile and CV information you are comfortable storing locally, and review or delete ~/.openclaw/developer-interview-simulator to reset retained data. <br>
-Risk: CV-based tailoring may retain derived profile details such as skills and project summaries. <br>
-Mitigation: Avoid providing a sensitive CV unless those derived details are acceptable for local tailoring, and confirm profile updates before saving when prompted. <br>
-Risk: Interview scores and model answers are practice guidance rather than hiring decisions or official company-specific questions. <br>
-Mitigation: Treat scores as preparation feedback, verify technical advice against trusted sources when needed, and avoid assuming company-style prep reflects current interview processes. <br>
+## Use Case:
 
+Developers and engineers use this skill to practice mock software engineering interviews, receive scored feedback, prepare for coding and system design rounds, and tailor interview questions from a local CV or resume summary.
 
-## Reference(s): <br>
-- [Developer Interview Simulator reference](reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/phantue2002/developer-interview-simulator) <br>
-- [Publisher profile](https://clawhub.ai/user/phantue2002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown interview prompts, feedback blocks, code review notes, and occasional JSON or shell snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local profile, history, weak-area, and saved-answer files under ~/.openclaw/developer-interview-simulator when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill stores interview history and CV-derived profile fields locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when local storage of interview practice data is acceptable, and review or remove saved JSON files under ~/.openclaw/developer-interview-simulator as needed.
+
+Risk: The skill suggests an unrelated unpinned `npx skills` command for listing installed skills.
+
+Mitigation: Do not run that command unless the package and publisher have been independently verified; prefer checking the local skills directory.
+
+Risk: Broad triggers such as code review or solution rating may route generic engineering feedback requests into interview-style scoring.
+
+Mitigation: Confirm the user wants interview simulation or interview-style evaluation before applying the scoring workflow.
+
+## Reference(s):
+
+- [Developer Interview Simulator reference question bank](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/phantue2002/skills/developer-interview-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured interview prompts, feedback blocks, code snippets, JSON file shapes, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local profile, history, weak-area, and saved-answer JSON files under ~/.openclaw/developer-interview-simulator.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

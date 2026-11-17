@@ -1,43 +1,54 @@
-## Description: <br>
-Remove signs of AI-generated writing from text by identifying and revising common AI-writing patterns so the result sounds more natural and human-written. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes signs of AI-generated writing from drafts by identifying formulaic patterns and rewriting text to sound more natural while preserving meaning and tone.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
 
-## Use Case: <br>
-Writers, editors, students, and professionals use this skill to revise AI-assisted or overly formulaic drafts while preserving the intended meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten text may affect disclosure, originality, or authorship expectations in school, work, publishing, reviews, or public comments. <br>
-Mitigation: Review the rewritten output before use and follow the disclosure and originality rules for the setting. <br>
-Risk: File-editing access could modify documents beyond the intended draft. <br>
-Mitigation: Limit file access to the documents intended for editing and review proposed changes before accepting them. <br>
-Risk: Stylistic rewriting can change nuance, voice, or meaning. <br>
-Mitigation: Compare the revision against the source text and restore important details, tone, or claims before publication. <br>
+## Use Case:
 
+External users, editors, and developers use this skill to revise drafts they are allowed to edit so the text reads more naturally and less formulaic.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [ClawHub Skill Page](https://clawhub.ai/builtbyecho/builtbyecho-humanizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text containing rewritten text and, when helpful, a brief summary of changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may propose direct edits to user-provided documents when file access is granted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can be used to hide signs that writing was AI-generated when disclosure is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on drafts the user is allowed to edit, and do not use it to conceal AI authorship where disclosure is required.
+
+Risk: The rewritten text could support academic dishonesty, impersonation, spam, or misleading provenance claims.
+
+Mitigation: Limit use to legitimate editing and review workflows, and reject requests involving academic misconduct, impersonation, spam, or false authorship claims.
+
+## Reference(s):
+
+- [BuiltByEcho Humanizer ClawHub page](https://clawhub.ai/builtbyecho/skills/builtbyecho-humanizer)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language text or Markdown, typically rewritten text plus an optional brief summary of edits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the source meaning and tone while changing wording; the change summary is optional when it is not helpful.]
+
+## Skill Version(s):
+
+2.1.1 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

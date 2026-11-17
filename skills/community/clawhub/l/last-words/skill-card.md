@@ -1,44 +1,66 @@
-## Description: <br>
-Auto-deliver final messages to loved ones after 30 days of inactivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-deliver final messages to loved ones after 30 days of inactivity for users who want to record a final message, configure email delivery, manage voice messages, or check configuration status.
 
-## Publisher: <br>
-[dilboy](https://clawhub.ai/user/dilboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dilboy](https://clawhub.ai/user/dilboy)
 
-## Use Case: <br>
-External OpenClaw users use this skill to record a text or voice final message, configure email delivery, and monitor inactivity so the message can be sent after 30 days without activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive final messages and email credentials locally. <br>
-Mitigation: Use only test content until credential storage uses a real secret store or encryption without plaintext fallback. <br>
-Risk: Debug and delivery flows may send final messages too easily. <br>
-Mitigation: Use a test recipient until debug sending is isolated from real messages and delivery flows require clearer confirmation. <br>
-Risk: Warning and status flows may reveal recipient or message details. <br>
-Mitigation: Redact sensitive status output and ensure warning emails go only to the user. <br>
+## Use Case:
 
+External users and developers use this skill to configure a local final-message workflow that stores text or audio messages, monitors inactivity, sends warnings, and delivers the configured message by email after the inactivity threshold.
 
-## Reference(s): <br>
-- [Last Words ClawHub page](https://clawhub.ai/dilboy/last-words) <br>
-- [Publisher profile](https://clawhub.ai/user/dilboy) <br>
-- [QQ Mail](https://mail.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown chat guidance with inline shell commands and configuration prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite records, local audio files, and email delivery configuration when the agent runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and changelog, released 2024-03-25) <br>
+Risk: The skill stores final messages, audio paths, recipient details, and SMTP credentials locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated app password or authorization code, prefer environment-based configuration over chat or command arguments, and protect the local OpenClaw data directory.
+
+Risk: The scheduled inactivity check can send email automatically, including a final message and optional audio attachment.
+
+Mitigation: Test with non-sensitive content first, confirm the recipient address, and review scheduled job configuration before enabling routine checks.
+
+Risk: Debug mode can bypass the normal 30-day inactivity wait and send immediately.
+
+Mitigation: Use debug mode only for controlled testing and disable it after verification.
+
+Risk: Warning messages may be sent to the configured contact address.
+
+Mitigation: Verify warning delivery behavior with test addresses before configuring real recipients.
+
+Risk: Reset behavior is expected to remove stored messages and configuration, but sensitive remnants would be harmful.
+
+Mitigation: After reset, check status and local storage to confirm messages, audio, and credentials were removed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dilboy/skills/last-words)
+- [QQ Mail](https://mail.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent guidance can lead to local data storage, scheduled checks, audio handling, and outbound email when the user runs the provided commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

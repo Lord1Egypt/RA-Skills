@@ -1,44 +1,60 @@
-## Description: <br>
-Guides agents through Structs ore mining and ore refining into Alpha Matter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Structs resource extraction by mining ore, refining it into Alpha Matter, and verifying resource state.
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-Structs players and agents use this skill to check planet ore, launch mining and refining commands, track long-running jobs, and verify resource changes after completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mining and refining commands can sign and broadcast transactions with a configured key. <br>
-Mitigation: Review each command before execution, confirm the selected struct and key, and run only in trusted, authorized Structs contexts. <br>
-Risk: Mining and refining are long-running jobs that may auto-submit completion transactions hours after launch, when game state may have changed. <br>
-Mitigation: Use the approval checks before launch, track job PIDs, and re-check running job state before taking follow-up actions. <br>
+## Use Case:
 
+Developers and Structs operators use this skill to plan and run ore mining, ore refining, and post-transaction verification with the Structs CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abstrct/structs-mining) <br>
-- [Structs safety contract](https://structs.ai/SAFETY) <br>
-- [Structs async operations](https://structs.ai/awareness/async-operations) <br>
-- [Structs resource mechanics](https://structs.ai/knowledge/mechanics/resources) <br>
-- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes approval checks, timing guidance, and verification steps for long-running mining and refining jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: Mining and refining commands can launch long-running transactions that auto-submit completion later, after game state may have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the struct ID, owner key, current ore, and acceptance of deferred auto-submission before launch; re-check running jobs through the documented reconnect flow.
+
+Risk: Ore remains stealable until it is refined into Alpha Matter.
+
+Mitigation: Refine promptly after mining completes and verify planet, struct, and player resource state after completion.
+
+## Reference(s):
+
+- [Structs Safety](https://structs.ai/SAFETY)
+- [Structs Async Operations](https://structs.ai/awareness/async-operations)
+- [Structs Async Operations Reconnect Protocol](https://structs.ai/awareness/async-operations#reconnecting-to-a-long-job)
+- [Structs Resource Mechanics](https://structs.ai/knowledge/mechanics/resources)
+- [Structs Planet Mechanics](https://structs.ai/knowledge/mechanics/planet)
+- [Alpha Matter Lore](https://structs.ai/knowledge/lore/alpha-matter)
+- [structsd Install Skill](https://structs.ai/skills/structsd-install/SKILL)
+- [Structs Mining on ClawHub](https://clawhub.ai/abstrct/skills/structs-mining)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include long-running background transaction guidance and verification steps.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

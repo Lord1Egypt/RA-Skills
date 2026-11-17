@@ -1,41 +1,49 @@
-## Description: <br>
-Formats drafts and source material into Apple Notes-friendly notes with clear Title, Heading, Subheading, Body, highlight, list, table, quote, monospaced, and link conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to beautify, restructure, or rewrite content into an Apple Notes-friendly note, especially article summaries, knowledge cards, topic research notes, study notes, or long Chinese notes that need clear Title/Heading/Subheading/Body hierarchy, restrained bolding, semantic highlight colors, and deliberate use of lists, tables, quotes, code style, and note links.
 
-## Publisher: <br>
-[evonne528](https://clawhub.ai/user/evonne528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evonne528](https://clawhub.ai/user/evonne528)
 
-## Use Case: <br>
-Employees and external users can use this skill to turn articles, research notes, study notes, meeting notes, or rough drafts into structured Apple Notes content for long-term storage, retrieval, and reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to Chinese output, which may be unexpected for users who want another language. <br>
-Mitigation: State the desired output language explicitly when requesting Apple Notes formatting. <br>
-Risk: Formatting guidance may over-structure or misrepresent source material if the input is incomplete. <br>
-Mitigation: Provide the full source text or draft and review the generated note before saving or sharing it. <br>
+## Use Case:
 
+External users and knowledge workers use this skill to turn drafts, article summaries, research notes, study notes, and long Chinese notes into Apple Notes-friendly Markdown with clear hierarchy, restrained emphasis, semantic highlights, lists, tables, quotes, code style, and links.
 
-## Reference(s): <br>
-- [Apple Notes Style Guide](references/apple-notes-style-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/evonne528/apple-notes-formatting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown or plain text with Apple Notes style labels when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Chinese by default unless the user specifies another language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may answer in Chinese by default or apply Apple Notes-style structure to general note-cleanup requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the desired language and output format when a different style is needed, and review the formatted note before reuse.
+
+## Reference(s):
+
+- [Apple Notes Style Guide](references/apple-notes-style-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with Apple Notes style labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include labels such as [Title], [Heading], [Subheading], [Highlight: Yellow], [Checklist], [Table], [Quote], [Monospaced], and [Link].]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

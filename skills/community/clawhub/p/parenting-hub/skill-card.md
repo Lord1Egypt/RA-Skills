@@ -1,45 +1,66 @@
-## Description: <br>
-Parenting Hub provides read-only, source-linked parenting guidance from the public Mom AI Agent evidence intelligence API with explicit scope, urgency, source, and coverage boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs source-linked parenting guidance from the public Mom AI Agent evidence intelligence API.
 
-## Publisher: <br>
-[jupitlunar](https://clawhub.ai/user/jupitlunar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jupitlunar](https://clawhub.ai/user/jupitlunar)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve source-linked parenting answers, safety boundaries, urgency guidance, and next reading paths from Mom AI Agent's public KB and insight API surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled crawler playbook could lead an agent with matching local project access to run scraping or ingestion workflows despite the normal skill posture being read-only. <br>
-Mitigation: Remove the crawler playbook reference before deployment or restrict the agent environment so it cannot execute those operational scraping and ingestion steps. <br>
-Risk: Parenting and postpartum answers may be mistaken for individualized medical advice if evidence scope, urgency, or coverage boundaries are omitted. <br>
-Mitigation: Keep answers constrained to returned public API evidence, preserve urgent escalation language for high-risk scenarios, and avoid diagnosis, treatment selection, or clearance language. <br>
+## Use Case:
 
+External users and agents use this skill to answer parenting questions with source-linked guidance from the public Mom AI Agent knowledge API. It is intended for read-only retrieval with explicit age, locale, urgency, source, and coverage boundaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jupitlunar/parenting-hub) <br>
-- [Mom AI Agent public KB API](https://www.momaiagent.com/api/kb) <br>
-- [API Reference](references/api.md) <br>
-- [Architecture Boundary](references/architecture.md) <br>
-- [High-Risk Examples](references/high-risk-examples.md) <br>
-- [Current-Site Deep Search Playbook](references/current-site-deep-search-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown-style parenting guidance with source, scope, urgency, and read-next sections when supported by the API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public API retrieval; no private user data, account actions, or write operations are part of the normal skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundle includes an operational crawler playbook that describes scraper execution and database or local content writes outside the stated read-only parenting retrieval scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy the skill as read-only retrieval only, or remove/split the crawler playbook into a separately reviewed administrator skill with explicit write access, browser automation limits, domain limits, and user confirmation.
+
+Risk: Parenting questions can include sensitive family, child, location, or medical details that would be forwarded to an external public API.
+
+Mitigation: Ask users to avoid names, contact details, exact addresses, and unnecessary medical history; send only the minimum context needed for the source-linked parenting question.
+
+Risk: Retrieved parenting evidence could be mistaken for individualized diagnosis, treatment, or emergency clearance.
+
+Mitigation: Keep responses educational and source-bound, preserve the skill's urgency ladder, and escalate fever in young infants, breathing trouble, dehydration, seizures, unresponsiveness, allergic reactions, heavy postpartum bleeding, chest pain, or self-harm risk to clinician or emergency care.
+
+Risk: A weak or missing match in the public KB API could be misread as proof that the broader website has no relevant content.
+
+Mitigation: State coverage limits clearly: the skill searches public KB, evidence-qualified insight, and topic surfaces, not the full website article corpus.
+
+## Reference(s):
+
+- [Mom AI Agent public knowledge API](https://www.momaiagent.com/api/kb)
+- [ClawHub skill page](https://clawhub.ai/jupitlunar/skills/parenting-hub)
+- [API Reference](references/api.md)
+- [Architecture Boundary](references/architecture.md)
+- [High-Risk Examples](references/high-risk-examples.md)
+- [Current-Site Deep Search Playbook](references/current-site-deep-search-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown with source, scope, urgency, read-next, and evidence sections when supported by retrieved API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay within public /api/kb/* retrieval results and should not present individualized diagnosis, treatment, or emergency clearance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

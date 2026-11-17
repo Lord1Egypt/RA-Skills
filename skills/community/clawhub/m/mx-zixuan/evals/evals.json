@@ -1,0 +1,31 @@
+{
+  "skill_name": "mx-zixuan",
+  "positive": [
+    {
+      "prompt": "查询我的自选股列表",
+      "assertions": [
+        "uses mx-zixuan",
+        "runs query action",
+        "summarizes count and file path"
+      ]
+    },
+    {
+      "prompt": "把300059加入自选",
+      "assertions": [
+        "uses mx-zixuan",
+        "recognizes add as explicit account mutation",
+        "does not ask unnecessary follow-up"
+      ]
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "300059最新价是多少",
+      "expected_route": "mx-data"
+    },
+    {
+      "prompt": "筛选适合加入自选的AI股票",
+      "expected_route": "mx-xuangu or analysis, not direct mutation"
+    }
+  ]
+}

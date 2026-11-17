@@ -1,47 +1,68 @@
-## Description: <br>
-Provides time-limited, self-revoking SSH access for AI agents using certificate TTL, user expiry, forced command restrictions, and scheduled automated cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides time-limited, self-revoking SSH access for AI agents using certificate TTL, user expiry, forced command restrictions, and scheduled automated cleanup.
 
-## Publisher: <br>
-[sanjeevneo](https://clawhub.ai/user/sanjeevneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sanjeevneo](https://clawhub.ai/user/sanjeevneo)
 
-## Use Case: <br>
-Developers, operators, and support engineers use Sparkey to give an AI agent temporary, auditable SSH access for diagnosing or remediating Linux hosts. It is best suited for controlled support sessions where the operator can review privileged shell administration steps before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Privileged SSH administration can change accounts, SSH configuration, timers, and local files on the operator or target host. <br>
-Mitigation: Review the scripts before use, run grant-access.sh with --dry-run first, and execute only against the intended host from a controlled operator account. <br>
-Risk: The CA private key is a persistent credential that can authorize future sessions if compromised. <br>
-Mitigation: Keep the CA key on a hardened operator host, restrict it to root-only access, rotate it on a schedule, and consider offline or HSM-backed storage for high-security environments. <br>
-Risk: Broader access profiles such as full or PTY mode can bypass the intended command restrictions. <br>
-Mitigation: Prefer diagnostic mode with an agent-provided public key and escalate to remediation, full, or PTY only after explicit operator review. <br>
-Risk: Cleanup can fail if at or systemd-run is unavailable or if sessions are interrupted. <br>
-Mitigation: Confirm cleanup scheduling during grant, then run audit.sh and revoke-access.sh after each session to find and remove orphaned accounts, keys, shells, and timers. <br>
+## Use Case:
 
+Developers and operators use Sparkey to grant AI agents temporary, auditable SSH access for remote diagnostics or remediation while limiting session duration, command scope, and leftover access artifacts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sanjeevneo/sparkey) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [License](LICENSE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run privileged Linux SSH administration scripts; dry-run and diagnostic modes are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill provisions temporary SSH access and can perform root-level account, key, SSH configuration, timer, and log operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on hosts where the operator authorizes root-level SSH access tooling, use dry-run or review steps before execution, and keep an independent recovery path available.
+
+Risk: The CA private key is a persistent operator-side credential that can sign future session certificates if compromised.
+
+Mitigation: Keep the CA private key on a secured operator host, restrict permissions, rotate it on a defined schedule, and consider an offline CA or HSM for high-security environments.
+
+Risk: Broader command profiles increase access scope, and the full profile removes command restrictions.
+
+Mitigation: Prefer the default diagnostic profile, escalate to remediation only when necessary, and avoid the full profile unless a human operator explicitly accepts unrestricted shell access.
+
+Risk: Server security guidance identifies command-restriction and revocation weaknesses that need review before important use.
+
+Mitigation: Review and fix the remediation dispatcher and revoke-access.sh --user validation before using the skill on important hosts, then run audit.sh to check for orphaned accounts, keys, support shells, cleanup scripts, and timers.
+
+Risk: Authorized_keys-only mode relies on server-side expiry and local cleanup rather than CA-backed cryptographic certificate expiry.
+
+Mitigation: Prefer CA-backed sessions when feasible, verify OpenSSH expiry support before using authorized_keys-only mode, and pair expiry-time with immutable authorized_keys and scheduled cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanjeevneo/skills/sparkey)
+- [Skill definition](SKILL.md)
+- [README](README.md)
+- [Agent Skills open standard](https://github.com/anthropics/skills/blob/main/spec/agent-skills-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose root-level SSH access commands, temporary key and certificate workflows, cleanup commands, and audit steps.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,7 +11,6 @@ import stat
 import zipfile
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE_DIR = ROOT / "release"
 
@@ -53,7 +52,7 @@ def clean_python_cache(package_dir: Path) -> None:
 def write_wiki_index(package_dir: Path) -> None:
     wiki = package_dir / "wiki"
     wiki.mkdir(parents=True, exist_ok=True)
-    today = _dt.date.today().isoformat()
+    today = _dt.datetime.now(_dt.UTC).date().isoformat()
     (wiki / "index.md").write_text(
         "\n".join(
             [
@@ -112,13 +111,23 @@ def build_release(version: str) -> tuple[Path, Path]:
     if sources_readme.exists():
         shutil.copy2(sources_readme, sources_dir / "README.md")
 
-    for name in ["SKILL.md", "CLAUDE.md", "AGENTS.md", "README.md", "ROADMAP.md", ".gitignore"]:
+    for name in [
+        "SKILL.md",
+        "CLAUDE.md",
+        "AGENTS.md",
+        "README.md",
+        "ROADMAP.md",
+        "config.yaml.example",
+        ".gitignore",
+    ]:
         copy_file(name, package_dir)
 
     if (ROOT / "log.md").exists():
         copy_file("log.md", package_dir)
     else:
-        (package_dir / "log.md").write_text("# Log\n\nNo activity yet.\n", encoding="utf-8")
+        (package_dir / "log.md").write_text(
+            "# Log\n\nNo activity yet.\n", encoding="utf-8"
+        )
 
     write_wiki_index(package_dir)
     clean_python_cache(package_dir)
@@ -127,8 +136,14 @@ def build_release(version: str) -> tuple[Path, Path]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Create an llm-wiki release zip package.")
-    parser.add_argument("--print-version", action="store_true", help="Print the version from SKILL.md and exit.")
+    parser = argparse.ArgumentParser(
+        description="Create an llm-wiki release zip package."
+    )
+    parser.add_argument(
+        "--print-version",
+        action="store_true",
+        help="Print the version from SKILL.md and exit.",
+    )
     parser.add_argument("version", nargs="?", default=read_version())
     args = parser.parse_args()
 

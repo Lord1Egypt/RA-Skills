@@ -1,39 +1,54 @@
-## Description: <br>
-PanSclaw model manager for adding, deleting, switching, and listing custom model provider configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PansModel Manager helps PanSclaw users add, remove, list, and switch custom model provider configurations.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Developers and OpenClaw/PanSclaw users use this skill to manage custom model access, switch the default model, and maintain configured providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store API keys in local OpenClaw/PanSclaw model configuration. <br>
-Mitigation: Use it only where plaintext local key storage is acceptable, avoid production API keys when that is not acceptable, and restrict local file permissions. <br>
-Risk: The skill can change or delete configured model providers. <br>
-Mitigation: Back up ~/.openclaw-pansclaw/openclaw.json before switching or deleting providers and double-check provider names before running commands. <br>
+## Use Case:
 
+Developers and PanSclaw users use this skill to manage model provider entries and select the default model in their local OpenClaw/PanSclaw configuration.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or terminal text with command examples and local JSON configuration updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update ~/.openclaw-pansclaw/openclaw.json when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: API keys may be entered through commands and stored in the local PanSclaw/OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use disposable or restricted provider keys, rotate keys after setup when appropriate, and verify permissions on ~/.openclaw-pansclaw/openclaw.json.
+
+Risk: Switching or deleting model providers can disrupt the active default model configuration.
+
+Mitigation: Back up the configuration before using delete or switch commands and confirm the selected provider/model before restarting the gateway.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pansmodel-manager)
+- [Publisher profile](https://clawhub.ai/user/dashiming)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model provider names, base URLs, API keys, model IDs, and local configuration file paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

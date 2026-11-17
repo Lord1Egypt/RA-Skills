@@ -1,40 +1,53 @@
-## Description: <br>
-Track, analyze, and optimize LLM API spending across providers with spend summaries, per-model cost analysis, budget threshold alerts, and cost reduction recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, analyze, and optimize LLM API spending across providers including OpenAI, Anthropic, Google, and DeepSeek.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor LLM provider spend, review token and model-level cost breakdowns, configure budget thresholds, and identify cost optimization opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read LLM provider API keys from environment variables and query usage or billing data. <br>
-Mitigation: Run it only in environments scoped to the intended provider accounts, use least-privilege keys where available, and avoid exposing logs that include billing metadata. <br>
-Risk: Budget and usage summaries are stored under ~/.openclaw, and external alert channels could share billing or usage metadata. <br>
-Mitigation: Review local file permissions and enable only trusted alert destinations approved to receive usage and billing information. <br>
+## Use Case:
 
+Developers and teams use this skill to inspect LLM API spend, compare provider and model costs, set budget thresholds, and receive cost reduction guidance.
 
-## Reference(s): <br>
-- [API Cost Optimization Guide](references/optimization-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with tables plus inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read provider API keys from environment variables and store local budget or usage data under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect API spending data and use provider credentials from environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where use of the configured provider API keys and billing or usage data is approved.
+
+Risk: Budget settings and usage history may be retained in local OpenClaw files.
+
+Mitigation: Review or delete ~/.openclaw/cost-tracker.json and ~/.openclaw/cost-data when local retention is not desired.
+
+## Reference(s):
+
+- [API Cost Optimization Guide](references/optimization-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, command examples, JSON configuration snippets, and plain-text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use provider API keys from environment variables and local usage history to generate summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

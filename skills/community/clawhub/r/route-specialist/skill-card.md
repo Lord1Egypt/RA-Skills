@@ -1,40 +1,52 @@
-## Description: <br>
-Classifies incoming tasks by domain and routes them to specialized system prompts, tuned model choices, and retrieval strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies coding tasks by domain and routes them to specialist prompts with recommended models and structured routing metadata.
 
-## Publisher: <br>
-[stephenlthorn](https://clawhub.ai/user/stephenlthorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stephenlthorn](https://clawhub.ai/user/stephenlthorn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill to classify incoming coding tasks, select an appropriate domain specialist, and return prompt and model-routing metadata before implementation begins.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Task text and file paths may be sent to the configured LLM endpoint during ambiguous classification.
+
+Mitigation: Confirm the OpenClaw LLM endpoint and model routing are acceptable for proprietary code, client work, or other sensitive task context before installation.
+
+Risk: Incorrect routing could select a specialist prompt or model that is not suitable for the task.
+
+Mitigation: Review the returned domain, specialist, and model metadata before relying on the generated implementation path.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill as a first-pass router that classifies coding and analysis requests into specialist domains and returns the prompt, model, and metadata needed for focused handling. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Task text or file-path context could expose credentials, customer data, or sensitive business details to the configured LLM endpoint. <br>
-Mitigation: Limit file_context to the intended project and avoid sensitive data in ambiguous requests unless the LLM endpoint is approved for that data. <br>
-Risk: A routing or classification error could send a task to an unsuitable specialist prompt or model. <br>
-Mitigation: Review the returned domain, specialist, and model before using the generated prompt in high-impact coding, trading, VC, or infrastructure workflows. <br>
+**Output Format:** [Structured JSON-style routing metadata with specialist prompt text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Route Specialist on ClawHub](https://clawhub.ai/stephenlthorn/route-specialist) <br>
+**Other Properties Related to Output:** [Includes the selected domain, specialist name, system prompt, recommended model, detected frameworks, project path, multi-hop flag, and hard-gate status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Structured routing metadata with prompt text and model recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes domain, specialist, system_prompt, model, detected frameworks, iOS version, multi-hop status, project path, and hard-gate status when available.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

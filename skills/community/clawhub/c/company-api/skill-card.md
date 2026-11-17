@@ -1,40 +1,58 @@
-## Description: <br>
-Company Api helps teams using a Tuoluojiang back-office platform query and manage company data such as daily reports, projects, finances, customers, contracts, and products through shell-based API commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with the Tuoluojiang company platform API to query daily reports, projects, finances, customers, contracts, products, and related business data with automatic token refresh.
 
-## Publisher: <br>
-[mr-j-j](https://clawhub.ai/user/mr-j-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-j-j](https://clawhub.ai/user/mr-j-j)
 
-## Use Case: <br>
-Employees, developers, and operations teams use this skill to configure authenticated access to a Tuoluojiang company platform and run commands for querying or updating operational records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores internal platform API keys, a login password, and token material locally. <br>
-Mitigation: Use a least-privilege or test account, verify the configured base URL, and keep generated configuration and token files out of shared, synced, or versioned folders. <br>
-Risk: Some commands can create or modify company records. <br>
-Mitigation: Review arguments and target environment before running production-changing commands such as project-add, task-add, and product-add. <br>
+## Use Case:
 
+Employees, operations staff, and developers who use the Tuoluojiang backend can retrieve and create company records such as daily reports, projects, tasks, bills, customers, contracts, and products through shell-driven API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mr-j-j/company-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Shell command output and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local configuration and token cache files during setup; some commands can create or modify company records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill stores company API credentials and cached tokens in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, protect the configuration and token files, avoid shared machines, and rotate credentials if exposure is possible.
+
+Risk: The skill can run mutating company API operations such as creating projects, tasks, and products.
+
+Mitigation: Review commands and inputs before execution and avoid mutating commands until input handling and confirmation gates are fixed.
+
+Risk: The skill sends credentials and business data to a configured API endpoint.
+
+Mitigation: Use only trusted HTTPS endpoints controlled by the intended company platform.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mr-j-j/skills/company-api)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/mr-j-j)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided company API endpoint and credentials; writes local configuration and token cache files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

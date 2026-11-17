@@ -13,7 +13,7 @@ metadata:
             {
               "id": "go",
               "kind": "go",
-              "module": "github.com/galjos/odh-cli/cmd/odh@v0.4.0",
+              "module": "github.com/galjos/odh-cli/cmd/odh@v0.7.1",
               "bins": ["odh"],
               "label": "Install odh CLI (go)",
             },
@@ -30,21 +30,21 @@ Use `odh` instead of scraping Open Data Hub pages. Most practical data is South 
 
 ```bash
 odh version
-odh doctor --timeout 10s
+odh doctor --timeout 10s # local doctor flag, not the global --timeout
 ```
 
-Need `odh v0.4.0+` for the current command contracts, dataset guidance, source/provenance fields, traffic helpers, GTFS/transit, filtered latest measurements, comma-safe `--param`, `transit journey --with-realtime`, and MCP server mode.
+Need `odh v0.7.1` or newer for the current command contracts, dataset guidance, source/provenance fields, traffic helpers, GTFS/transit, filtered latest measurements, comma-safe `--param`, `transit journey --with-realtime`, and MCP server mode. Installs below pin v0.7.1.
 
 Preferred manual install options:
 
 ```bash
-go install github.com/galjos/odh-cli/cmd/odh@v0.4.0
+go install github.com/galjos/odh-cli/cmd/odh@v0.7.1
 brew install galjos/odh/odh
 ```
 
 Agent hosts can also use the declared OpenClaw Go installer metadata in this skill. If running from the source repo, use `./odh`.
 
-Agent hosts that prefer MCP over shell commands can run the same curated surface as Model Context Protocol tools with `odh mcp serve`; tool outputs follow the same JSON contracts and warnings as the CLI.
+Agent hosts that prefer MCP over shell commands can run the same curated surface as Model Context Protocol tools with `odh mcp serve`; tools advertise read-only behavior and return structured JSON alongside text, with the same contracts and warnings as the CLI.
 
 ## Output Rules
 
@@ -52,11 +52,12 @@ Agent hosts that prefer MCP over shell commands can run the same curated surface
 - This applies especially to `traffic`, `a22 status`, `transit`, `tourism types`, `mobility types`, and `mobility datatypes`.
 - Treat stderr as diagnostics, not data.
 - Nonzero exit means failure. Exit `2` usually means bad invocation.
-- For bounded agent loops, put the global timeout before the subcommand, for example `odh --timeout 20s traffic today --area bozen-unterland --json`.
+- For bounded agent loops, put the global timeout before the subcommand, for example `odh --timeout 20s traffic today --area bozen-unterland --json`. `odh doctor --timeout` is a separate local flag.
 - When unsure about command shape, run `odh <command> --help`; current help includes task-focused examples.
 - Prefer discovery commands before guessing provider names, data types, stop IDs, or zone IDs.
 - Prefer returned `source`, `source_detail`, `endpoint`, `archive`, `realtime`, and `warnings` fields over inferred provenance.
 - Stable curated JSON fields are documented in `docs/json-contracts.md` in the repo.
+- Traffic and normalized `mobility latest` results include `coverage` with fetched, matched, and returned counts. Check `result_truncated` and `upstream_may_have_more` before claiming a complete list; matched counts cover only the fetched rows. Content traffic also reports `upstream_total` when supplied by the source.
 
 ## Discovery
 
@@ -75,6 +76,8 @@ For unfamiliar data questions, run `odh datasets guide <topic> --format json` fi
 
 Always run `odh mobility origins --station-type <type>` before filtering any query with `--origin`, even when the origin seems obvious (A22, ALPERIA, PROVINCE_BZ): origin names are upstream vocabulary, and a catalogued origin or datatype is not proof that open measurement rows exist.
 
+`mobility origins`, `mobility stations`, `mobility datatypes`, and `mobility events` add a *truncation* entry to `warnings` whenever the result filled `--limit`, including the default limit; raise `--limit` until that truncation entry disappears before claiming a complete list. Other `warnings` entries are unrelated to `--limit` and do not go away — `mobility events` always carries the Timeseries feed caveat, so its `warnings` array is never empty.
+
 Use `odh call <api> <path> --param key=value` for known endpoints. `--param` is repeatable and values may contain commas.
 
 ## Traffic
@@ -87,9 +90,16 @@ odh traffic categories --json
 odh traffic today --area ueberetsch-unterland --type roadworks --json
 odh traffic search badia --today --zone-id 6 --json
 odh traffic today --near 46.42,11.25 --radius 15km --json
+odh traffic today --source content --json
+odh traffic today --source content --area pustertal --json
+odh traffic search radroute --today --source content --json
 ```
 
-Prefer `traffic` over raw `mobility events --origin PROVINCE_BZ`. Surface stale/source warnings. Do not present stale open-ended rows as confirmed current closures.
+Prefer `traffic` over raw `mobility events --origin PROVINCE_BZ`. Surface stale/source warnings. Do not present stale open-ended rows as confirmed current closures. The default `--source odh` is a Mobility Timeseries event feed, not a live bulletin: an empty result is not evidence that roads are clear. Report the newest row date the command returns.
+
+`--source content` runs the same commands against the Content API `/v1/Announcement` bulletin, which is where the province still publishes. It supports `--from`/`--to`/`--today`, `--near`/`--radius`, `--search`, `--type`, `--limit`, `--include-expired` and `--zone-id`/`--area`, and rejects `--road` and `--type bike` with exit code 2 rather than returning a partial list. Its results omit `zone_id`, `zone`, `zone_it`, `road`, `road_name`, `severity` and `series_id` because this source cannot populate them. An absent `end` means the announcement is still open; use `event.get("end")` to read it. Already-ended ones are hidden unless `--include-expired` is passed, and `stale` there only means "unchanged for 30 days", which is normal for long-running restrictions.
+
+`--zone-id` and `--area` are geographic inference on this source, not a field read: the announcement's coordinates are matched against a committed table of ~1100 coordinates whose zone the Mobility feed recorded, matching when the nearest is within 2.0 km. Announcements beyond that, or without coordinates, are excluded as unassignable and counted in a warning. No inferred zone is written into the output. Surface that warning and phrase the answer as "in that area", not "filed under that zone". Municipality aliases such as `--area kaltern` narrow only to the zone here — the response warns — so use `--search` when the answer must be about the village.
 
 A22:
 
@@ -98,17 +108,19 @@ odh a22 status --limit 10 --json
 odh mobility events --origin A22 --latest --limit 20
 ```
 
-`a22 status` is current/live-oriented. Do not infer live incidents from `TrafficForecast`. For past local A22 incidents, say ODH/A22 live feeds may not retain history and use dated external sources if needed.
+`a22 status` inspects a Mobility Timeseries event feed alongside `TrafficForecast`; neither is a live bulletin. Do not infer live incidents from `TrafficForecast`. Report an empty or stale event feed as "this feed returned no current data", never as evidence that the motorway is clear, and get current notices from `odh call tourism /v1/Announcement --param source=a22 --param rawsort=-LastChange`. For past local A22 incidents, say these feeds may not retain history and use dated external sources if needed.
 
 ## Mobility Measurements
 
 For current availability, discover origin/datatype first, then filter freshness:
 
 ```bash
-odh diagnostics ev-charging --origin ALPERIA --fresh-within 24h
+odh diagnostics ev-charging --origin <ORIGIN> --fresh-within 24h   # <ORIGIN> from mobility origins
 odh diagnostics parking-forecasts --origin "Municipality Merano" --fresh-within 2h --forecast-minutes 60
 odh mobility latest --station-type ParkingStation --data-type free --origin "Municipality Merano" --active --fresh-within 2h --sort newest --request-limit 10000 --limit 10 --format table
 ```
+
+`EChargingStation` carries rows from well outside South Tyrol, and most fresh rows are not local. Check `scoordinate` before turning a count into a local claim.
 
 Raw latest rows can contain stale inactive stations. Surface `warnings`. If diagnostics says `current_only`, report current occupancy but not stale forecasts.
 

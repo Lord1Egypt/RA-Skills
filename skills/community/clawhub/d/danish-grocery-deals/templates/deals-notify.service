@@ -1,0 +1,9 @@
+[Unit]
+Description=Weekly tilbudsavis notification to ntfy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=YOUR_USER
+ExecStart=/usr/bin/python3 /PATH/TO/notify.py

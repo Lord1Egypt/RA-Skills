@@ -1,41 +1,53 @@
-## Description: <br>
-Stock technical analysis scanner based on swing trading principles with multi-timeframe resonance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Trend Scanner scans listed stock symbols with multi-timeframe trend alignment, MACD, volume-price, support and resistance analysis, and composite buy, sell, or hold signals.
 
-## Publisher: <br>
-[eddieguan801-oss](https://clawhub.ai/user/eddieguan801-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddieguan801-oss](https://clawhub.ai/user/eddieguan801-oss)
 
-## Use Case: <br>
-External users and developers use this skill to run local Python-based stock scans that analyze ticker symbols for multi-timeframe trend alignment, MACD status, volume-price behavior, support and resistance levels, and composite buy, sell, or hold-style signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates buy, sell, and hold-style technical-analysis signals that could be mistaken for professional financial advice. <br>
-Mitigation: Treat outputs as educational technical-analysis summaries and verify investment decisions with independent research or a qualified financial professional. <br>
-Risk: The Python scanner contacts yfinance/Yahoo and depends on third-party market data and packages. <br>
-Mitigation: Run it only in an environment where local Python execution and outbound market-data requests are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to run technical scans for named stock symbols and compare heuristic buy, sell, or hold signals based on trend, MACD, volume, and support/resistance indicators.
 
-## Reference(s): <br>
-- [Sample Stock Scanner Output](artifact/references/sample_output.md) <br>
-- [ClawHub skill page](https://clawhub.ai/eddieguan801-oss/stock-trend-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and terminal text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ticker-level reports and a ranked stock table; results depend on yfinance/Yahoo market data availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill emits buy/sell labels that may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as heuristic technical-analysis signals and remind users not to treat them as personalized financial advice.
+
+Risk: Market data downloaded through yfinance may be unavailable, delayed, or incomplete.
+
+Mitigation: Ask users for explicit ticker symbols and treat failed or sparse data as a data limitation rather than a recommendation.
+
+## Reference(s):
+
+- [Sample Stock Scanner Output](artifact/references/sample_output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text console reports with tabular ranking output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reports; depends on public market data from yfinance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

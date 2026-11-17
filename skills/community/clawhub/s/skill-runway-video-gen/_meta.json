@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-runway-video-gen",
+  "name": "skill-runway-video-gen",
   "version": "1.0.0",
-  "publishedAt": 1772326970288
+  "description": "Generate short product videos from images using Runway Gen4 Turbo. Use for TikTok ads, UGC-style product demos.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

@@ -1,0 +1,183 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_positions",
+      "description": "获取当前所有持仓。返回 PositionModel 数组，包含合约代码、方向（LONG/SHORT）、总手数、今昨仓拆分、开仓成本、开仓均价、持仓盈亏、占用保证金。sim 和 live 环境均适用。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_open_orders",
+      "description": "获取近 3 日所有未完结委托（已报、部分成交等状态）。返回 RtnOrderModel 数组，含委托状态、合约、方向、开平标志、价格、手数等信息。sim 和 live 环境均适用。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_trades",
+      "description": "获取成交记录。live 环境默认返回近 3 日，sim 环境返回全部历史。支持按合约代码、交易所、时间范围过滤。平仓成交时 profit 字段有值（柜台返回的实际盈亏）；开仓成交时为 null。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "description": "可选。按合约代码过滤，如 'cu2506'、'au2606'。"
+          },
+          "exchangeId": {
+            "type": "string",
+            "description": "可选。按交易所代码过滤，如 'SHFE'、'DCE'、'CZCE'、'INE'、'CFFEX'。"
+          },
+          "insertTimeStart": {
+            "type": "string",
+            "description": "可选。开始时间过滤，格式 'yyyy-MM-dd HH:mm:ss'，如 '2026-03-27 09:00:00'。"
+          },
+          "insertTimeEnd": {
+            "type": "string",
+            "description": "可选。结束时间过滤，格式 'yyyy-MM-dd HH:mm:ss'，如 '2026-03-27 15:30:00'。"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "place_order",
+      "description": "下达期货委托（开仓或平仓）。请优先通过注册工具调用，不要手写 HTTP。下单前建议先调用 catalog_contract 校对合约代码、交易时段、是否主力，并调用 market_snapshot 获取参考价。sim 模式下 orderRef 必填且须在本次会话内唯一；live 模式下 orderRef 由服务端自动生成，客户端传入值被忽略，撤单须使用响应中的 orderRef。注意：SHFE/INE 实盘平仓时服务端可能自动拆成两笔（先平昨仓再平今仓），请保存完整响应以备撤单。若返回 success=false，请按 errorInfo 中的“下一步”修正参数后重试。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "pattern": "^[A-Za-z]+\\d+$",
+            "description": "合约代码，如 'cu2506'、'au2606'、'IF2506'。必须为字母+数字，不带交易所后缀；商品期货常见小写，中金所常见大写，请保持目录接口返回的原样大小写。"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "BUY",
+              "SELL"
+            ],
+            "description": "买卖方向。BUY=买入/开多/平空，SELL=卖出/开空/平多。"
+          },
+          "offsetFlag": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "CLOSE",
+              "CLOSE_TODAY",
+              "CLOSE_YESTERDAY"
+            ],
+            "description": "开平标志。OPEN=开仓，CLOSE=平仓（服务端自动处理 SHFE/INE 拆单），CLOSE_TODAY=只平今仓，CLOSE_YESTERDAY=只平昨仓。"
+          },
+          "priceType": {
+            "type": "string",
+            "enum": [
+              "LIMIT",
+              "ANY",
+              "BEST",
+              "LAST"
+            ],
+            "description": "价格类型。LIMIT=限价，ANY=市价（任意价），BEST=最优价，LAST=最新价。"
+          },
+          "limitPrice": {
+            "type": "number",
+            "description": "报单价格，须符合合约 priceTick 精度。市价单也需传合理价格（服务端用作参考）。"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "委托手数，须为正整数。平仓时不得超过可用持仓。"
+          },
+          "orderRef": {
+            "type": "string",
+            "pattern": "^\\d{1,13}$",
+            "description": "报单引用。sim 模式必填，须为 1～13 位纯数字，同一会话内唯一。live 模式可省，服务端自动生成；撤单须使用响应中的 orderRef。"
+          },
+          "positionDateType": {
+            "type": "string",
+            "enum": [
+              "今",
+              "昨"
+            ],
+            "description": "可选。仅 SHFE/INE 合约有效。'今'=只平今仓，'昨'=只平昨仓；不传由服务端自动选择。"
+          },
+          "timeCondition": {
+            "type": "string",
+            "enum": [
+              "GFD",
+              "GTC"
+            ],
+            "description": "可选。有效期。GFD=当日有效（默认），GTC=撤销前有效。"
+          }
+        },
+        "required": [
+          "instrumentId",
+          "direction",
+          "offsetFlag",
+          "priceType",
+          "limitPrice",
+          "count"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "cancel_order",
+      "description": "撤销一笔未成交或部分成交的委托。所有必填字段均须来自下单回报（RtnOrderModel）或 orders_open 当前委托。live 模式下 orderRef 必须使用服务端生成的值（来自下单响应），不能使用客户端原始传入值。成功时返回被撤委托的最新状态（orderStatus=CANCELED）。若返回 success=false，请按 errorInfo 中的“下一步”修正参数后重试。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "pattern": "^[A-Za-z]+\\d+$",
+            "description": "合约代码，须与下单时一致，如 'cu2506'、'IF2506'。必须为字母+数字，不带交易所后缀；请保持目录接口返回的原样大小写。"
+          },
+          "exchangeId": {
+            "type": "string",
+            "description": "交易所代码，从下单回报中获取，如 'SHFE'、'DCE'、'CZCE'、'INE'、'CFFEX'。"
+          },
+          "orderRef": {
+            "type": "string",
+            "pattern": "^\\d{1,13}$",
+            "description": "报单引用，须使用下单回报中的 orderRef（live 模式特别重要，服务端生成）。"
+          },
+          "orderSysId": {
+            "type": "string",
+            "description": "交易所报单编号，从下单回报中获取。"
+          },
+          "frontID": {
+            "type": "integer",
+            "description": "前置编号，从下单回报中获取。"
+          },
+          "sessionId": {
+            "type": "integer",
+            "description": "可选。会话编号，从下单回报中获取；不传则使用当前 CTP 会话。"
+          }
+        },
+        "required": [
+          "instrumentId",
+          "exchangeId",
+          "orderRef",
+          "orderSysId",
+          "frontID"
+        ]
+      }
+    }
+  }
+]

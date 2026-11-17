@@ -1,42 +1,57 @@
-## Description: <br>
-Aggregates and scores technology news from configured RSS feeds, GitHub endpoints, and web sources to produce daily digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and scores technology news daily from RSS feeds, GitHub releases, and web sources, producing customizable filtered digests.
 
-## Publisher: <br>
-[pyh-pan](https://clawhub.ai/user/pyh-pan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pyh-pan](https://clawhub.ai/user/pyh-pan)
 
-## Use Case: <br>
-Developers and operators use this skill to collect technology headlines, rank them by configurable relevance signals, and generate concise daily news digests or item lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled trigger configuration enables an auto-start daily digest with Telegram notifications. <br>
-Mitigation: Review trigger_config.json before installation and disable auto_start or notifications if daily digest delivery is not wanted. <br>
-Risk: Python dependencies are specified with lower-bound version ranges rather than pinned audited versions. <br>
-Mitigation: Pin and audit requests, feedparser, and beautifulsoup4 before managed or enterprise deployment. <br>
-Risk: The 109+ source claim is not fully supported by the bundled default implementation. <br>
-Mitigation: Treat the source-count claim as unverified until the maintainer expands the configured sources or documents the source inventory. <br>
+## Use Case:
 
+Developers and operators use this skill to fetch, score, filter, and format technology news from configured RSS, GitHub, and web sources into daily digests or item lists.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pyh-pan/multi-source-news-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, configuration] <br>
-**Output Format:** [Markdown-style digest text or JSON status/data objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports digest, list, and refresh actions using configurable source lists and scoring thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json, config.json, skill.py) <br>
+Risk: The skill fetches remote news data through generated python -c subprocess execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace generated subprocess fetchers with direct safe HTTP and RSS library calls, and validate or allowlist source URLs before fetching.
+
+Risk: The packaged trigger configuration enables an auto-start daily cron action with Telegram notifications.
+
+Mitigation: Disable auto-start scheduling and notifications by default unless the installer explicitly opts in and reviews the destination channel.
+
+Risk: Dependencies are not pinned consistently across the packaged Python and package metadata.
+
+Mitigation: Pin dependencies with the correct package manager and review updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pyh-pan/skills/multi-source-news-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown digest text or JSON status and news item data from command-line actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports digest, list, and refresh actions; output depends on configured sources, scoring threshold, and network availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/config.json, artifact/package.json, and artifact/skill.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

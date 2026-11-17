@@ -1,0 +1,13 @@
+interface:
+  display_name: "Publish service-change feed"
+  short_description: "Gate a GTFS Schedule release"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-gtfs-feed-check"
+      description: "GTFS Feed Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/gtfs-feed-check/mcp"

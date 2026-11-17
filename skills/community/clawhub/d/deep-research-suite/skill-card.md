@@ -1,39 +1,54 @@
-## Description: <br>
-Deep Research Suite aggregates, analyzes, and synthesizes research from multiple sources into structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Suite guides an agent through multi-source search, extraction, synthesis, and structured research report generation.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers, analysts, and other agent users use this skill to run multi-source public research, compare findings, identify contradictions, and produce concise Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Synthesized research may include inaccurate, outdated, or poorly sourced claims. <br>
-Mitigation: Review generated sources, verify dates and statistics, and require clear citations before relying on reports for decisions. <br>
-Risk: Generated reports may retain confidential or sensitive research topics locally under memory/research/. <br>
-Mitigation: Avoid confidential topics unless local retention is acceptable, and remove generated reports according to the user's data handling policy. <br>
+## Use Case:
 
+Researchers, analysts, and developers use this skill to gather public-source information, compare findings, and produce concise research reports for decision support or follow-up work.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown research reports and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended to be saved under memory/research/ when local retention is acceptable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Research outputs may persist under memory/research/ and retain sensitive prompts, summaries, or source notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive prompts unless local storage is acceptable, and delete generated reports when they are no longer needed.
+
+Risk: Public-source research can include outdated, contradictory, or low-credibility information.
+
+Mitigation: Check source dates, credibility, contradictions, and cited URLs before relying on the report.
+
+## Reference(s):
+
+- [Source skill artifact](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/aptratcn/skills/deep-research-suite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown research reports with source lists and optional comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be saved under memory/research/ when the workflow is followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

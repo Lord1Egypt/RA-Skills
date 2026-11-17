@@ -1,0 +1,11 @@
+interface:
+  display_name: "Mermail"
+  short_description: "Route broad Mermail requests to the right skill"
+  default_prompt: "Use $mermail to route this Mermail request to the correct skill before doing any mailbox, compose, wallet, or x402 work."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

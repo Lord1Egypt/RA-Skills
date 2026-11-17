@@ -1,41 +1,57 @@
-## Description: <br>
-Search and track active or completed state bills by keywords and state using the LegiScan API with customizable filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and track active or completed state bills by keyword and state using the LegiScan API with configurable filters.
 
-## Publisher: <br>
-[n4cra](https://clawhub.ai/user/n4cra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[n4cra](https://clawhub.ai/user/n4cra)
 
-## Use Case: <br>
-Developers, policy analysts, and advocacy teams use this skill to query LegiScan for state bills matching selected keywords and produce concise bill summaries for legislative monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A LegiScan API key and selected state and keyword searches are sent to LegiScan. <br>
-Mitigation: Use a LegiScan key intended for this workflow and choose search terms with the expectation that they are processed by LegiScan. <br>
-Risk: Command logs or traces may expose full request URLs that include sensitive API key material. <br>
-Mitigation: Avoid sharing raw command logs and redact request URLs or API keys before storing or sending troubleshooting output. <br>
-Risk: Scheduled cron usage can create recurring external API searches. <br>
-Mitigation: Configure cron only when recurring legislative searches are intended and review the configured state and keyword filters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LegiScan API](https://legiscan.com/legiscan) <br>
+## Use Case:
 
+Developers and policy-focused users can use this skill to query state legislative activity by state, keyword, and bill status. It helps produce concise bill summaries and links for monitoring topics such as cryptocurrency, bitcoin, and blockchain legislation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown-formatted plain text printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LEGISCAN_API_KEY; optional state, keyword, and include-passed filters control results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The LegiScan API key, selected state, and configured search keywords are sent to LegiScan during searches.
+
+Mitigation: Use a dedicated revocable LegiScan API key and choose search terms with that data sharing in mind.
+
+Risk: Request URLs include the API key, which can be exposed if URLs are logged by surrounding tooling.
+
+Mitigation: Avoid logging full request URLs and rotate the API key if exposure is suspected.
+
+Risk: Scheduled runs can consume API quota depending on frequency and keyword volume.
+
+Mitigation: Run scheduled searches at a cadence compatible with the LegiScan API quota.
+
+## Reference(s):
+
+- [LegiScan API](https://legiscan.com/legiscan)
+- [ClawHub Skill Page](https://clawhub.ai/n4cra/skills/legiscan-bill-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown text with bill summaries, last-action dates, descriptions, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LegiScan API key supplied through the LEGISCAN_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

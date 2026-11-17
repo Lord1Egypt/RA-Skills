@@ -1,0 +1,165 @@
+'''
+35任务管理
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+cancel_task - 撤销任务
+调用方法cancel_task(taskId,accountId,accountType,ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+taskId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了撤销任务信号，返回值含义：
+
+True：是
+
+False：否
+
+示例
+
+python
+
+#coding:gbk
+'''
+（1）根据get_trade_detail_data函数返回任务的信息,获取任务编号（m_nTaskId），任务状态等等；
+（2）根据任务编号，用cancel_task取消委托。
+'''
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'
+
+def handlebar(ContextInfo):
+    # 获取当前客户端所有的任务
+    if ContextInfo.is_last_bar():
+        objlist = get_trade_detail_data(ContextInfo.accid,'stock','task')
+        for obj in objlist:
+            cancel_task(str(obj.m_nTaskId),ContextInfo.accid,'stock',ContextInfo)
+pause_task - 暂停任务
+暂停智能算法任务
+
+调用方法 pause_task(taskId,accountId,accountType,ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+taskId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了暂停任务信号，返回值含义：
+
+True：是
+
+False：否
+
+示例
+
+python
+
+#coding:gbk
+'''
+（1）根据get_trade_detail_data函数返回任务的信息,获取任务编号（m_nTaskId），任务状态等等；
+（2）根据任务编号，用pause_task暂停智能算法任务。
+'''
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'    
+
+def handlebar(ContextInfo):
+    
+    if ContextInfo.is_last_bar():
+        # 获取当前客户端所有的任务
+        objlist = get_trade_detail_data(ContextInfo.accid,'stock','task')
+        for obj in objlist:
+            pause_task(obj.m_nTaskId,ContextInfo.accid,'stock',ContextInfo)
+resume_task - 继续任务
+继续智能算法任务
+
+调用方法resume_task(taskId,accountId,accountType,ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+taskId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了重启任务信号，返回值含义：
+
+True：是
+
+False：否
+
+示例
+
+python
+
+#coding:gbk
+'''
+（1）根据get_trade_detail_data函数返回任务的信息,获取任务编号（m_nTaskId），任务状态等等；
+（2）根据任务编号，用resume_task启动已暂停智能算法任务。
+'''
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'    
+def handlebar(ContextInfo):
+    if ContextInfo.is_last_bar():
+        # 获取当前客户端所有的任务
+        objlist = get_trade_detail_data(ContextInfo.accid,'stock','task')
+        for obj in objlist:
+            resume_task(obj.m_nTaskId,ContextInfo.accid,'stock',ContextInfo)
+get_basket-获取股票篮子
+用法： get_basket(basketName)
+
+释义： 获取股票篮子
+
+参数：
+
+basketName：股票篮子名称
+示例：
+
+
+print( get_basket('basket1') )
+set_basket-设置股票篮子
+用法： set_basket(basketDict)
+
+释义： 设置passorder的股票篮子,仅用于passorder进行篮子交易,设置成功后,用get_basket可以取出后即可进行passorder组合交易下单
+
+参数：
+
+basketDict：股票篮子 {'name':股票篮子名称,'stocks':[{'stock':股票名称,'weight',权重,'quantity':数量,'optType':交易类型}]} 。
+示例：
+
+
+table=[
+    {'stock':'600000.SH','weight':0.11,'quantity':100,'optType':23},
+    {'stock':'600028.SH','weight':0.11,'quantity':200,'optType':24},
+]
+basket={'name':'basket1','stocks':table}
+set_basket(basket)
+#一键买卖2份(2101代表用篮子里quantity字段)basket1里面的股票组合，即600000.SH买入200股，600028.SH卖出400股
+passorder(35,2101,ContextInfo.accid,'basket1',5,-1,2,'basketOrder',2,'basketOrder',ContextInfo)

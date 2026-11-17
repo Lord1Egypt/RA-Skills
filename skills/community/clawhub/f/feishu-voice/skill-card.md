@@ -1,42 +1,59 @@
-## Description: <br>
-Feishu Voice converts text into speech, converts the audio to Feishu-compatible opus format, uploads it, and sends it as a playable Feishu voice message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Voice converts text to speech with coze-tts, converts the audio to Feishu-compatible opus format, uploads it, and sends it as a playable Feishu voice message.
 
-## Publisher: <br>
-[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang)
 
-## Use Case: <br>
-Developers and operators use this skill to send generated voice messages into Feishu chats from agent workflows. It is suited for automating text-to-speech notification flows that rely on Feishu bot credentials and a configured Coze TTS dependency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provided text is processed by the configured TTS dependency and the resulting audio is uploaded and sent through Feishu. <br>
-Mitigation: Use this skill only for approved data flows, and avoid sending secrets, regulated data, or sensitive business content unless that use is authorized. <br>
-Risk: Feishu bot credentials authorize message upload and send actions. <br>
-Mitigation: Use least-privilege Feishu bot credentials and keep the coze-tts dependency from a trusted installation. <br>
+## Use Case:
 
+Developers and operators use this skill to automate sending generated voice messages into Feishu chats from text input, with optional voice, speed, and receiver parameters.
 
-## Reference(s): <br>
-- [Feishu Voice API Reference](references/feishu_voice_api.md) <br>
-- [Feishu Message Create API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create) <br>
-- [ClawHub Feishu Voice Listing](https://clawhub.ai/franklu0819-lang/feishu-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Text with shell command invocations and configuration requirements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the bundled script may create temporary audio files and send audio messages through Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill sends user text and generated audio through external Feishu and Coze services while using local credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimally scoped Feishu and Coze credentials, restrict the Feishu app permissions to the needed chat workflow, and avoid sensitive text unless the data path is approved.
+
+Risk: The skill executes a local coze-tts dependency that may inherit environment secrets.
+
+Mitigation: Install coze-tts only from a trusted local path and review that dependency before running this skill with production credentials.
+
+Risk: Temporary audio files are created on the local machine during conversion.
+
+Mitigation: Run the skill in a trusted or isolated workspace and avoid shared machines for sensitive voice content until temporary-file handling is hardened.
+
+## Reference(s):
+
+- [ClawHub Feishu Voice skill page](https://clawhub.ai/franklu0819-lang/skills/feishu-voice)
+- [Feishu voice API reference](artifact/references/feishu_voice_api.md)
+- [Feishu message create documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API Calls, Files, Text]
+
+**Output Format:** [Markdown guidance with bash command examples; runtime output is terminal status text and a Feishu voice message side effect.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg, ffprobe, jq, Feishu credentials, a Coze API key, and the coze-tts dependency; generates temporary local audio files during execution.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

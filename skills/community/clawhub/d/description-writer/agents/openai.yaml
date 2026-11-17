@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 商品描述优化"
+  short_description: "基于证据改善商品描述的信息传达"
+  default_prompt: "使用 $amazon-product-description-writer 根据商品详情和评论反馈改善 Amazon 商品描述。"

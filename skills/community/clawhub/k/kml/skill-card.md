@@ -1,41 +1,59 @@
-## Description: <br>
-Inspect, validate, summarize, and extract data from KML and KMZ files, including Placemark geometry counts, Folder structure, coordinate ranges, bbox generation, altitude tuples, Google Earth packaging issues, and conversion guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect, validate, summarize, and extract KML/KMZ structure and placemark data, including geometry counts, bounding boxes, folder and overlay counts, and coordinate issues.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers, analysts, and geospatial data reviewers use this skill to inspect KML or KMZ structure, summarize placemarks and geometry counts, validate coordinate tuples, and identify common packaging or XML problems before cleanup or conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KML/KMZ files can contain private place names and precise location data. <br>
-Mitigation: Use the skill only with files that are acceptable to summarize in the conversation, and avoid sharing sensitive location data. <br>
-Risk: Coordinate summaries can be misleading when the source export workflow or intended CRS is misunderstood. <br>
-Mitigation: Confirm the source workflow when precision matters, and route reprojection, clipping, deterministic conversion, or geometry repair to a dedicated GIS skill. <br>
+## Use Case:
 
+Developers and GIS-adjacent analysts use this skill to inspect local KML/KMZ files, validate coordinate and packaging issues, and produce lightweight placemark summaries before deeper GIS work.
 
-## Reference(s): <br>
-- [KML and KMZ patterns](references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/kml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON output from helper commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries include source type, document name, placemark and geometry counts, folder and overlay counts, bounding boxes, validation errors, and suspicious coordinate patterns when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted or very large KML/KMZ files can consume local CPU or memory during XML or archive parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run inspection with file size, CPU, memory, and timeout limits when inputs are untrusted or unusually large.
+
+Risk: The skill provides lightweight inspection and validation, not deterministic GIS conversion, reprojection, clipping, or geometry repair.
+
+Mitigation: Route conversion, reprojection, clipping, and batch GIS processing to a dedicated GIS tool such as qgis.
+
+Risk: Automatic invocation on local files may process inputs before a user has confirmed trust and expected size.
+
+Mitigation: Confirm the file source and expected scope before running the helper on local KML or KMZ files.
+
+## Reference(s):
+
+- [KML And KMZ Notes](references/patterns.md)
+- [OGC KML 2.2 Namespace](http://www.opengis.net/kml/2.2)
+- [Google KML Extensions Namespace](http://www.google.com/kml/ext/2.2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON command output when the local helper script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python helper inspects .kml and .kmz files and returns summaries, placemark extracts, or validation errors; no external API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

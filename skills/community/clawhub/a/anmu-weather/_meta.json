@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn755y87neksfrcj84dqczxn5982ggav",
-  "slug": "anmu-weather",
   "version": "1.0.0",
-  "publishedAt": 1773719862394
+  "author": "anmu14641",
+  "tags": ["weather", "forecast", "temperature"],
+  "homepage": "",
+  "license": "MIT",
+  "platform": "openclaw",
+  "minOpenClawVersion": "1.0.0",
+  "description": "增强版天气查询技能，支持7天预报、穿衣建议、多城市对比",
+  "features": [
+    "当前天气查询",
+    "7天天气预报",
+    "穿衣建议",
+    "多城市对比",
+    "空气质量查询"
+  ],
+  "config": {
+    "dataSources": ["wttr.in", "open-meteo"],
+    "requiresApiKey": false
+  }
 }

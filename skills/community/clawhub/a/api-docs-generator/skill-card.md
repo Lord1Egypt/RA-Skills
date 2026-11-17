@@ -1,40 +1,53 @@
-## Description: <br>
-Generates API documentation from code comments, including OpenAPI and Swagger outputs in JSON or YAML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates API documentation from code comments with OpenAPI/Swagger support and JSON or YAML output.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and API maintainers use this skill to generate API documentation artifacts from source code comments for OpenAPI, Swagger, Postman, Swagger UI, Redoc, and similar documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: VirusTotal was pending in the available scan context. <br>
-Mitigation: Review requested permissions before installation and avoid providing credentials or sensitive data unless clearly required. <br>
-Risk: Generated API documentation can be incomplete or misleading if source comments and routes are incomplete. <br>
-Mitigation: Review and validate generated OpenAPI, Swagger, or Postman artifacts before publishing or using them with downstream tools. <br>
+## Use Case:
 
+Developers and API maintainers can use this skill to draft API documentation artifacts for web services and route-based applications. Review is needed before relying on the output as complete generated documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/api-docs-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, YAML, Shell commands] <br>
-**Output Format:** [OpenAPI, Swagger, or Postman documentation files in JSON or YAML, with shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell script writes a JSON OpenAPI example to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: The skill may overstate its automatic API documentation generation capability because the bundled script writes a fixed OpenAPI sample.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated documentation against the source application routes and comments before publishing or integrating it.
+
+Risk: The output path may overwrite an existing file.
+
+Mitigation: Choose a new output path or back up existing documentation files before running the script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/api-docs-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/YAML API documentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled shell script writes a fixed OpenAPI JSON sample to the requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

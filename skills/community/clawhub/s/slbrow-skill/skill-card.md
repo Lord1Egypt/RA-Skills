@@ -1,42 +1,62 @@
-## Description: <br>
-Browser automation via SLBrow MCP and HTTP API for navigating pages, analyzing content, managing tabs, searching history, extracting text, controlling the browser, and issuing curl commands through a local SLBrow server and browser extension. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via SLBrow MCP and HTTP API for navigating pages, analyzing content, managing tabs, searching history, extracting text, and controlling the browser when the SLBrow server and browser extension are installed.
 
-## Publisher: <br>
-[adeted](https://clawhub.ai/user/adeted) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adeted](https://clawhub.ai/user/adeted)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate browser navigation, page analysis, content extraction, tab management, history search, selected-text reading, and Seelink video AI actions through SLBrow MCP tools or REST API calls. It is intended for environments where the local SLBrow service and browser extension are installed and trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read browser history, selected text, and page content through the local SLBrow service. <br>
-Mitigation: Use it only with trusted browser profiles and confirm explicitly before allowing history searches, selected-text reads, or page-content extraction. <br>
-Risk: The skill can control browser tabs and apply Seelink video AI functions. <br>
-Mitigation: Keep the SLBrow service bound to localhost, run it only when needed, and review tab-closing or video-AI actions before execution. <br>
+## Use Case:
 
+Developers and browser-automation users use this skill to guide agents through SLBrow browser control workflows, including page navigation, content extraction, tab management, browser history search, and Seelink player AI actions.
 
-## Reference(s): <br>
-- [SLBrow REST API Reference](references/api-reference.md) <br>
-- [SLBrow Workflow Checklist](SKILL_COMPACT.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/adeted/slbrow-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local SLBrow server and connected browser extension; API responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to access browser history and page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before history searches or page extraction, and use a separate browser profile for agent-driven browsing.
+
+Risk: The skill can guide an agent to navigate pages, close tabs, or manipulate active browser sessions.
+
+Mitigation: Confirm target tabs and URLs before navigation or tab changes, and avoid using the skill in browser profiles with sensitive active sessions.
+
+Risk: The skill relies on a local SLBrow server package and browser extension.
+
+Mitigation: Pin and verify the SLBrow server package and extension, and keep the server bound to localhost.
+
+Risk: Seelink/VAI player actions can alter media presentation on web pages.
+
+Mitigation: Require explicit user approval before applying Seelink/VAI player actions and verify selected player IDs or positions before execution.
+
+## Reference(s):
+
+- [SLBrow REST API Reference](references/api-reference.md)
+- [SLBrow Workflow Checklist](SKILL_COMPACT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool names, JSON request examples, curl commands, and JavaScript CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on a local SLBrow server, connected browser extension, and selected browser or VAI tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

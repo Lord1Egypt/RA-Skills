@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">黑白荧光卡片</title><desc id="desc">高反差、模块卡片、大标题，适合路演和强表达</desc>
+  <rect width="800" height="450" fill="#f4f2e9"/><path d="M0 90H800M0 180H800M0 270H800M0 360H800M100 0V450M200 0V450M300 0V450M400 0V450M500 0V450M600 0V450M700 0V450" stroke="#050505" opacity=".08"/>
+  <rect x="42" y="34" width="72" height="20" fill="#d8ff19" stroke="#050505" stroke-width="3"/><text x="43" y="101" font-family="Arial Black,PingFang SC,sans-serif" font-size="52" font-weight="900" fill="#050505">黑白荧光</text><text x="43" y="154" font-family="Arial Black,PingFang SC,sans-serif" font-size="52" font-weight="900" fill="#050505">卡片</text>
+  <rect x="43" y="208" width="262" height="132" fill="#050505"/><rect x="54" y="219" width="262" height="132" fill="#fffdf5" stroke="#050505" stroke-width="4"/><rect x="75" y="240" width="80" height="20" fill="#d8ff19"/><rect x="75" y="279" width="180" height="13" fill="#050505"/><rect x="75" y="306" width="140" height="9" fill="#050505" opacity=".45"/>
+  <rect x="364" y="72" width="186" height="132" fill="#d8ff19" stroke="#050505" stroke-width="4"/><text x="389" y="156" font-family="Arial Black,sans-serif" font-size="66" font-weight="900">12</text><rect x="585" y="100" width="164" height="132" fill="#050505"/><rect x="598" y="113" width="164" height="132" fill="#ff5c00" stroke="#050505" stroke-width="4"/>
+  <rect x="364" y="268" width="398" height="112" fill="#050505"/><rect x="382" y="286" width="150" height="20" fill="#d8ff19"/><rect x="382" y="326" width="328" height="12" fill="#fffdf5"/>
+</svg>

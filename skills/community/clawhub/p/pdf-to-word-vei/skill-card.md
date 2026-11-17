@@ -1,42 +1,55 @@
-## Description: <br>
-PDF转Word converts PDF documents to Word (.docx) files through a local document-conversion workflow with task status checks, downloads, batch conversion, and conversion history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF documents to Word (.docx) files and guides agents through upload, conversion, status checks, downloads, batch conversion, and conversion history.
 
-## Publisher: <br>
-[veilei](https://clawhub.ai/user/veilei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veilei](https://clawhub.ai/user/veilei)
 
-## Use Case: <br>
-External users and developers use this skill to convert uploaded PDF files into downloadable Word documents and to inspect the conversion task status, output, and history through the local conversion service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow calls an unauthenticated local document-conversion service that stores uploaded files and conversion history. <br>
-Mitigation: Run the service only in a trusted local environment, keep it bound to localhost, and avoid uploading highly sensitive PDFs unless storage and retention behavior are understood. <br>
-Risk: Broad document-conversion prompts may cause the agent to use conversion paths beyond the intended PDF-to-Word workflow. <br>
-Mitigation: Use explicit PDF-to-Word requests and verify the selected conversion type before uploading or converting documents. <br>
+## Use Case:
 
+External users and developers use this skill to convert PDFs into DOCX documents and manage conversion tasks through a local document-conversion workflow.
 
-## Reference(s): <br>
-- [PDF转Word ClawHub release](https://clawhub.ai/veilei/pdf-to-word-vei) <br>
-- [API 参考](references/api.md) <br>
-- [系统架构](references/architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with API request examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for uploading PDFs, creating conversion tasks, polling status, downloading DOCX results, and viewing conversion history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unauthenticated file, download, history, and deletion APIs could expose or modify converted documents if the service is reachable by untrusted users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only on localhost or another access-controlled endpoint, and add authentication plus ownership checks before exposing it beyond a single trusted user environment.
+
+Risk: Uploaded PDFs and conversion history may contain sensitive document content or metadata.
+
+Mitigation: Avoid sensitive documents unless storage, retention, and history handling are understood and acceptable for the environment.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [System Architecture](references/architecture.md)
+- [ClawHub Skill Page](https://clawhub.ai/veilei/skills/pdf-to-word-vei)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for document conversion; converted document files are produced by the referenced conversion service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

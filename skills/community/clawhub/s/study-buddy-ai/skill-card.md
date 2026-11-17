@@ -1,39 +1,52 @@
-## Description: <br>
-Study Buddy helps users study by creating flashcards, quizzes, notes, study plans, Pomodoro sessions, spaced repetition reviews, topic explanations, practice questions, and progress summaries while keeping data local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study Buddy helps learners create flashcards, take quizzes, review with spaced repetition, plan study sessions, manage notes, use Pomodoro timing, and track progress while keeping study data local.
 
-## Publisher: <br>
-[mkpareek0315](https://clawhub.ai/user/mkpareek0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkpareek0315](https://clawhub.ai/user/mkpareek0315)
 
-## Use Case: <br>
-Students and self-directed learners use this skill to manage local study workflows: create and review flashcards, take quizzes, save notes, build study plans, track progress, and get topic explanations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Study notes, flashcards, quiz results, plans, and history are saved locally on the user's device. <br>
-Mitigation: Avoid storing sensitive personal information in Study Buddy data and review or delete local files under ~/.openclaw/study-buddy/ when they are no longer needed. <br>
-Risk: Broad phrases such as "explain" or "review" may activate the skill outside an intended study context. <br>
-Mitigation: Apply the skill only when the surrounding conversation is clearly about studying, learning, reviewing material, or managing study data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mkpareek0315/study-buddy-ai) <br>
+## Use Case:
 
+External learners use this skill as a local study assistant for flashcards, quizzes, spaced repetition, study plans, Pomodoro sessions, notes, practice questions, and progress tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with code blocks and local JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update study data under ~/.openclaw/study-buddy/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local study records may include sensitive notes, cards, quiz scores, plans, and history.
+
+Mitigation: Review the stored data under ~/.openclaw/study-buddy/ and add clear delete or export controls before using the skill with sensitive material.
+
+Risk: Broad activation phrases may cause the study assistant to run when the user intended a different learning-related task.
+
+Mitigation: Narrow activation phrases during deployment if the environment needs more precise skill routing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkpareek0315/skills/study-buddy-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style conversational responses with occasional JSON examples and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local study data files under ~/.openclaw/study-buddy/.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Agent Experience Graph recommends tools, skills, and workflow lessons from sanitized prior agent execution traces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent should learn from prior task-solving traces, recommend tools or skills for a new decomposed task, record reusable execution experience, or compare current subtasks with solved tasks from other agents.
 
-## Publisher: <br>
-[yao23](https://clawhub.ai/user/yao23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yao23](https://clawhub.ai/user/yao23)
 
-## Use Case: <br>
-Developers and agent builders use this skill to query sanitized prior task traces, compare subtasks with solved work, and record reusable lessons for future tool and skill recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trace libraries may expose secrets, private customer data, proprietary snippets, or raw workspace content if users record unsanitized traces. <br>
-Mitigation: Use only trusted, sanitized trace libraries and avoid storing sensitive or proprietary content in shared traces. <br>
-Risk: Implicit invocation can select the skill automatically for recommendation tasks where users do not want trace-based guidance. <br>
-Mitigation: Disable implicit invocation when automatic selection is not desired. <br>
-Risk: Recommendations from prior traces can be misleading when prior constraints, environments, or outcomes differ from the current task. <br>
-Mitigation: Review matched traces, outcomes, lessons, and current constraints before applying recommendations. <br>
+## Use Case:
 
+Developers and agent builders use this skill to retrieve similar solved traces, recommend reusable tools, skills, workflow patterns, and warnings, and record sanitized traces for future agent work.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/yao23/agent-experience-graph) <br>
-- [ClawHub listing](https://clawhub.ai/yao23/agent-experience-graph) <br>
-- [Trace Schema](references/trace_schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON examples; the helper script emits JSON recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and sanitized JSON trace libraries; no network access indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: Trace libraries may contain secrets, private user data, proprietary snippets, or raw customer content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only sanitized summaries and redact sensitive content before appending or sharing traces.
+
+Risk: Recommendations from stale or untrusted traces can mislead an agent.
+
+Mitigation: Treat retrieved traces as evidence, review matched subtasks and outcomes, and apply only recommendations that fit the current constraints.
+
+Risk: Automatically following recommended tools, skills, or lessons from untrusted traces can transfer unsafe practices.
+
+Mitigation: Require review before an agent follows recommendations from untrusted trace libraries.
+
+## Reference(s):
+
+- [Agent Experience Graph repository](https://github.com/yao23/agent-experience-graph)
+- [Agent Experience Graph on ClawHub](https://clawhub.ai/yao23/skills/agent-experience-graph)
+- [Trace Schema](references/trace_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown instructions with JSON examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and a readable JSON trace library; network access is not required.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

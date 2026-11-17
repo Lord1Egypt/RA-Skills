@@ -1,38 +1,55 @@
-## Description: <br>
-Use inline buttons when communicating with Rahul on Telegram (message tool) to reduce typing and force crisp decisions. Trigger when drafting Telegram messages that ask for confirmation, choices (A/B, Y/N), scheduling, approvals, or next-step selection; also when the user asks to "use inline buttons". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use inline buttons when communicating with Rahul on Telegram to reduce typing and force crisp decisions for confirmations, choices, scheduling, approvals, and next-step selection.
 
-## Publisher: <br>
-[RahulSinghalChicago](https://clawhub.ai/user/RahulSinghalChicago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rahulsinghalchicago](https://clawhub.ai/user/rahulsinghalchicago)
 
-## Use Case: <br>
-People communicating with Rahul over Telegram use this skill to turn confirmation, scheduling, approval, and next-step prompts into short inline-button choices. It helps agents keep Telegram decision flows concise and avoid duplicate follow-up messages after a button is selected. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Button prompts can over-constrain a conversation when Rahul needs to paste or enter a custom value. <br>
-Mitigation: Use inline buttons only for finite choices, and ask for text input when the user needs to provide a value. <br>
-Risk: A completed button flow can create duplicate or confusing Telegram updates if the selection is repeated in a separate message. <br>
-Mitigation: Edit the original message to remove the inline keyboard and append the selected choice; send another message only when additional context or results are needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Agents use this skill when communicating with Rahul over Telegram and asking for simple choices, confirmations, scheduling decisions, approvals, or next-step selection. It guides the agent to use concise inline button layouts and edit the original Telegram message after a selection instead of asking for free-text replies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Inline buttons may be used for cases that require free-text input or more than a few options, which can make the Telegram interaction less useful.
+
+Mitigation: Use buttons only for simple decisions, ask for text input when a value must be entered, and summarize large option sets before offering a small follow-up choice.
+
+Risk: Automatic edits after a button click may not match a user's expected Telegram interaction style.
+
+Mitigation: Review the NO_REPLY convention and message-edit behavior before deployment, as recommended by the security guidance.
+
+Risk: Duplicate or stale callbacks could repeat a completed action if the surrounding agent flow does not honor the skill's callback guidance.
+
+Mitigation: Ignore callbacks after the original message has been finalized and the selection has already been committed.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with Telegram button layout examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces communication behavior guidance for inline buttons, message edits, callback handling, and concise Telegram prompts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+**Output Type(s):** [guidance, text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance for Telegram prompt text, inline button layouts, and post-selection behavior.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not produce executable code, credentials, persistent storage, or shell commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

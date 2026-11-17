@@ -1,43 +1,63 @@
-## Description: <br>
-健康管理基于用户提交的体检、化验和检查报告等个人医疗数据，通过外部医疗模型评估常见疾病风险并生成个性化健康干预报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+健康管理 collects structured personal health information, sends it to a configured medical model API, and returns the resulting disease-risk assessment and optional report.
 
-## Publisher: <br>
-[lantian888](https://clawhub.ai/user/lantian888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lantian888](https://clawhub.ai/user/lantian888)
 
-## Use Case: <br>
-External users use this skill to collect structured health history, medication, and lab-report information, send it for risk assessment, and receive the returned health report without summarization. It can also generate an optional HTML health risk report from assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects sensitive medical details and may send broad conversation history to external services. <br>
-Mitigation: Obtain explicit user consent, disclose external processing, and transmit only the minimum health data needed for the assessment. <br>
-Risk: Credentials or token-fetching behavior may expose access to external services. <br>
-Mitigation: Remove exposed credentials from artifacts and use a managed secret store with rotation and least-privilege access. <br>
-Risk: Generated health reports may contain sensitive personal information in local files. <br>
-Mitigation: Avoid patient names in filenames, store reports securely, and sanitize report content before rendering. <br>
+## Use Case:
 
+External users use this skill to structure personal health details, submit them to a configured health assessment model API, and receive the returned risk assessment text or an optional HTML report. It is positioned as a health management aid and not as a substitute for clinician diagnosis or emergency care.
 
-## Reference(s): <br>
-- [API documentation](artifact/references/api_docs.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lantian888/jiankangguanli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown responses with optional HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams model output, preserves returned formatting, and may write sensitive local report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and target metadata) <br>
+Risk: The skill collects identifiable medical details and sends full conversation context to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit consent and privacy disclosure, minimize or de-identify medical data before transmission, and document the external data processor before use.
+
+Risk: Server evidence reports an exposed API key and runtime token retrieval behavior.
+
+Mitigation: Remove exposed credentials, rotate affected keys, and use a managed secret mechanism with scoped access before installation.
+
+Risk: Generated local HTML reports can include unsanitized assessment or user-provided content.
+
+Mitigation: Escape or sanitize all substituted HTML fields and disable script-capable content before saving or opening reports.
+
+Risk: The skill may show health screening promotions and hotline details in generated reports.
+
+Mitigation: Gate promotional screening content behind clear user intent, consent, and relevance checks, especially for cancer-related content.
+
+## Reference(s):
+
+- [API documentation reference](artifact/references/api_docs.md)
+- [ClawHub skill page](https://clawhub.ai/lantian888/skills/jiankangguanli)
+- [Publisher profile](https://clawhub.ai/user/lantian888)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown responses and optional local HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Streams model responses, preserves returned assessment content, and may save a rendered HTML report on request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

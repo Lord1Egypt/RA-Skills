@@ -1,45 +1,60 @@
-## Description: <br>
-妙言小智 (PicTech.cc) 专业级跨境电商图片翻译 Skill，支持批量翻译、主图保护、多语言映射、在线编辑与自动化工作流集成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+妙言小智 (PicTech.cc) 专业级跨境电商图片翻译 Skill，支持批量翻译、主图保护、多语言映射、在线编辑与自动化工作流集成。
 
-## Publisher: <br>
-[pictechai](https://clawhub.ai/user/pictechai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pictechai](https://clawhub.ai/user/pictechai)
 
-## Use Case: <br>
-External sellers, localization teams, and agent users use this skill to translate text in ecommerce product images from local files, folders, or image URLs while preserving layout and optionally protecting primary product visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a VK API key and processes user-supplied images. <br>
-Mitigation: Install only after confirming you are comfortable supplying the API key and sending selected images to the external translation provider. <br>
-Risk: Credential storage and deletion behavior may not be sufficiently documented for all users. <br>
-Mitigation: Prefer secure credential storage, document where the key is saved, and provide a clear key removal process before broad deployment. <br>
-Risk: Remote image URLs and large files can create privacy, reliability, or cost exposure. <br>
-Mitigation: Validate image URLs, keep file-size limits enabled, and ask before uploading sensitive images. <br>
+## Use Case:
 
+External sellers and agent users use this skill to translate text in ecommerce product images from local files, folders, or image URLs while preserving layout and optionally protecting main product visuals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pictechai/myxz-image-translator-skill) <br>
-- [PicTech official website](https://www.pictech.cc) <br>
-- [PicTech VK setup page](https://www.pictech.cc/newpictech/skills/openclaw-image-translation-skill) <br>
-- [PicTech API service domain](https://stableai.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Structured JSON result with concise Markdown-ready user summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local output paths, preview URLs, editor URLs, batch status, counts, skipped items, and error summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Selected images are sent to PicTech/stableai.com.cn for translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data transfer is acceptable for the images being processed.
+
+Risk: VK API keys could be exposed if pasted into chat or logs.
+
+Mitigation: Store the VK key in plugin configuration and do not include it in prompts, filenames, logs, or summaries.
+
+Risk: The skill can fetch arbitrary image URLs without enough safeguards.
+
+Mitigation: Avoid untrusted image URLs until URL allowlisting, private-network blocking, redirect validation, image/type checks, and download size limits are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pictechai/skills/myxz-image-translator-skill)
+- [PicTech Official Website](https://www.pictech.cc)
+- [PicTech Skill VK Setup](https://www.pictech.cc/newpictech/skills/openclaw-image-translation-skill)
+- [PicTech API Service Domain](https://stableai.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [Structured JSON-style task result with translated image file paths, preview and editor URLs, counts, errors, and skipped items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save translated image files locally and return remote result/editor URLs; caches repeated translations and marks no-text images as skipped.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

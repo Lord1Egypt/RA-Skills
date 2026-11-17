@@ -140,7 +140,7 @@ Default marketplace is **1** (US). Use domain `1` when the user doesn't specify 
 
 - **API 端点**：`POST /keepa/productSearch`（完整参数/响应/错误码见 `references/api.md`）
 - **Python 脚本**：`python scripts/keepa_product_search.py '<JSON 参数>' [--inline]`
-- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+- **成本约束**：本工具会消耗算力；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
 **输出策略（脚本默认行为）**：
 - **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-keepa-product-search-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
@@ -149,6 +149,14 @@ Default marketplace is **1** (US). Use domain `1` when the user doesn't specify 
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## How to Build Queries
 
@@ -250,6 +258,11 @@ Construct the request parameters based on the user's intent:
 
 **Boundary judgment**: When users say "product research" or "find products", if it involves filtering by sales metrics, BSR, price, category, and other structured criteria, this skill applies. If they want to see what appears on the actual Amazon search page for a keyword, use Amazon Search instead. If they want search term analytics, use ABA data.
 
+## 算力消耗规则
+
+按动态规则计费：消耗算力 = 0.045 × (找商品阶段消耗的 Keepa token + 拉取商品详情阶段消耗的 Keepa token)。先找商品，再拉商品详情；若第一段未找到商品，则只计找商品阶段消耗。
+
+> **重要**：本技能的服务按倍数动态计算，可能一次性消耗大量算力，必须提醒用户，由用户决定是否继续。
 
 **Feedback:**
 

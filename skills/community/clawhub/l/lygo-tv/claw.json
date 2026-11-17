@@ -1,0 +1,96 @@
+{
+  "name": "lygo-tv",
+  "displayName": "LYGO TV",
+  "version": "1.3.1",
+  "description": "LYGO TV: the free TV player at https://chatagent.ca/sources/, plus the embed code that runs the same player on a website \u2014 Rumble room first, channels from the public LYGO catalog. Use when LYGO TV, /lygo-tv, or the player's embed code is named. The local scripts touch no network; the embed runs in visitors' browsers and contacts chatagent.ca, cdn.jsdelivr.net (hls.js, SRI-pinned) and the platform the channel belongs to.",
+  "slug": "lygo-tv",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://chatagent.ca/sources/",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-tv",
+  "repository": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-tv",
+  "signature": "Delta9Phi963-LYGO-TV-v1.3.1",
+  "tags": [
+    "bookmark",
+    "chatagent",
+    "delta9",
+    "embed",
+    "free-tv",
+    "iptv",
+    "kick",
+    "latest",
+    "lygo",
+    "m3u",
+    "player",
+    "rumble",
+    "tv",
+    "twitch",
+    "widget"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "plain": "scripts/lygo_tv.py plain",
+    "urls": "scripts/lygo_tv.py urls",
+    "map": "scripts/lygo_tv.py map",
+    "demo": "scripts/lygo_tv.py demo",
+    "bookmark": "scripts/lygo_tv.py bookmark",
+    "donate": "scripts/lygo_tv.py donate",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "\ud83d\udcfa",
+    "homepage": "https://chatagent.ca/sources/",
+    "requires": {
+      "anyBins": [
+        "python",
+        "python3"
+      ]
+    },
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ]
+  },
+  "permissions": {
+    "scripts": {
+      "network": false,
+      "shell": false,
+      "subprocess": false,
+      "filesystem": {
+        "read": "skill files only",
+        "write": false
+      }
+    },
+    "embed": {
+      "network": true,
+      "runs_in": "the visitor's browser, on the embedding site",
+      "origins": [
+        "https://chatagent.ca",
+        "https://cdn.jsdelivr.net",
+        "https://rumble.com",
+        "https://player.kick.com",
+        "https://player.twitch.tv",
+        "https://www.youtube-nocookie.com",
+        "https-only hosts named by catalog.json, for plain streams"
+      ],
+      "integrity": {
+        "hls_js_1_5_18": "sha384-R2JqybiEexSXz60H6Zz28MdsqWWnMQlP+NDb7nIhDHWxx6sM7Otw7OWCq9EBCPsz",
+        "lygo_tv_ninja_js": "sha256-5t6Gc5TAM3WvRTF51cBuqA3PjiS65GJmhMvsoGsVdBQ=",
+        "lygo_tv_ninja_css": "sha256-oqJabOyasBTBrwHmXHihIInv7XjlpAHc1NqpFhuhe0o="
+      }
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network": true,
+    "listed_urls_are_documentation": true,
+    "public_tentacle": true,
+    "version": "1.2.0"
+  },
+  "install": "npx clawhub@0.23.3 install deepseekoracle/lygo-tv@1.3.1",
+  "security_audit": "https://clawhub.ai/deepseekoracle/skills/lygo-tv/security-audit"
+}

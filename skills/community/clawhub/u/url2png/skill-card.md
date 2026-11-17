@@ -1,41 +1,54 @@
-## Description: <br>
-Convert URL to PNG suitable for mobile reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert URL to PNG suitable for mobile reading.
 
-## Publisher: <br>
-[guoqiao](https://clawhub.ai/user/guoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqiao](https://clawhub.ai/user/guoqiao)
 
-## Use Case: <br>
-Developers and users can ask an agent to capture a webpage URL as a PNG optimized for mobile reading, then receive the generated image file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs shot-scraper and Chromium through uvx. <br>
-Mitigation: Install only when you are comfortable with uvx downloading those dependencies in the execution environment. <br>
-Risk: Rendering a URL from the local environment may load internal or sensitive pages if the agent is given those URLs. <br>
-Mitigation: Use URLs you intentionally want rendered and avoid internal or sensitive URLs unless that access is deliberate. <br>
-Risk: The output directory argument is passed through the shell script without quoting. <br>
-Mitigation: Use simple trusted directory names, or review and adjust the script before passing paths with spaces or shell metacharacters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqiao/url2png) <br>
+## Use Case:
 
+Developers and external users use this skill to capture a supplied web page as a mobile-width PNG screenshot for easier reading and sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image file with brief delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Captures a mobile-width, retina webpage screenshot and saves it under the requested output directory or ~/Pictures by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can render arbitrary supplied URLs from the user's machine, which may expose internal-network content in generated screenshots.
+
+Mitigation: Use it only with trusted public URLs, preferably from a sandbox or container with restricted network access.
+
+Risk: The screenshot workflow depends on shot-scraper and Chromium components installed at runtime.
+
+Mitigation: Pin shot-scraper and Chromium dependencies before deployment and review the installation path before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guoqiao/skills/url2png)
+- [ClawHub Homepage Metadata](https://clawhub.ai/guoqiao/url2png)
+- [URL to PNG Examples](https://github.com/guoqiao/skills/tree/main/url2png/examples)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [PNG file with concise agent-facing delivery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a mobile-width Chromium screenshot workflow and defaults to saving generated PNG files under ~/Pictures when no output path is supplied.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

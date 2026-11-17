@@ -1,43 +1,55 @@
-## Description: <br>
-Self-improvement through conversation analysis that extracts learnings from corrections and success patterns and encodes them into agent definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improvement through conversation analysis that extracts learnings from corrections and success patterns and proposes persistent updates to agent definitions.
 
-## Publisher: <br>
-[mmyg11](https://clawhub.ai/user/mmyg11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmyg11](https://clawhub.ai/user/mmyg11)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to analyze conversations for corrections, successful patterns, and reusable learnings, then propose agent or skill updates for explicit review before applying them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved changes can alter future assistant behavior by updating agent instructions or creating skills. <br>
-Mitigation: Review every proposed diff and target file before approval, and keep auto-reflection disabled unless intentionally needed. <br>
-Risk: Reflection logs or proposed changes may retain sensitive conversation details. <br>
-Mitigation: Avoid approving raw quotes that contain secrets or sensitive project details, and periodically inspect or delete configured reflection state directories. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review recent conversations, identify corrections or successful patterns, and propose approved updates to agent instructions or new skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmyg11/agent-reflect-temp) <br>
-- [README.md](artifact/README.md) <br>
-- [Signal detection patterns](artifact/signal_patterns.md) <br>
-- [Agent mappings reference](artifact/agent_mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with proposed diffs, status summaries, configuration snippets, and review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write approved learning logs and reflection state to configured project-level or user-level locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persistently change agent instructions and create new skills from conversation-derived content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the exact source quote, target path, and diff before approving any proposed change; avoid approving global changes or new skill creation unless intended.
+
+Risk: Conversation-derived learnings can encode incorrect, overbroad, or unwanted guidance if accepted without review.
+
+Mitigation: Approve only specific, verified learnings and keep auto-reflection disabled unless continuous reflection is deliberately needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mmyg11/skills/agent-reflect-temp)
+- [Signal Detection Patterns](artifact/signal_patterns.md)
+- [Agent Mappings Reference](artifact/agent_mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with tables, diffs, file paths, status summaries, and approval prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update reflection logs, state files, metrics, agent instructions, and new skill files after explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

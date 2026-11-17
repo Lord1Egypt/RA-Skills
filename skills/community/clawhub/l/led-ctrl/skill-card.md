@@ -1,42 +1,57 @@
-## Description: <br>
-Control Raspberry Pi GPIO pins remotely by setting specified pins HIGH or LOW through RPC calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Raspberry Pi GPIO pins remotely by setting specified pins HIGH or LOW through RPC calls.
 
-## Publisher: <br>
-[yevladimir](https://clawhub.ai/user/yevladimir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yevladimir](https://clawhub.ai/user/yevladimir)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent invoke Raspberry Pi GPIO on and off actions against a controlled local Raspberry Pi setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change physical hardware state through Raspberry Pi GPIO pins. <br>
-Mitigation: Use it only with hardware you control, avoid safety-critical or high-power devices, and require explicit human confirmation for sensitive actions. <br>
-Risk: The GPIO request path relies on a hardcoded local HTTP endpoint. <br>
-Mitigation: Edit the endpoint for the target Raspberry Pi, keep it on a controlled local network, and restrict access before deployment. <br>
-Risk: Unvalidated actions or pin numbers could reach the Pi-side service. <br>
-Mitigation: Add local validation for allowed actions and safe GPIO pins before use. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent request simple Raspberry Pi GPIO on/off actions for configured pins through a remote Pi control endpoint.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yevladimir/led-ctrl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an action and GPIO pin parameter for gpio_on and gpio_off operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill sends unauthenticated plaintext hardware commands to a Raspberry Pi endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted, isolated network with a Pi server that independently authenticates requests.
+
+Risk: The local script does not enforce the documented action or pin limits before sending requests.
+
+Mitigation: Enforce action and pin allowlists on the Pi server, reject malformed JSON, and run with least GPIO privilege.
+
+Risk: Connected hardware such as relays or actuators may switch if the endpoint is reachable or traffic is modified.
+
+Mitigation: Limit network exposure and review connected hardware impact before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yevladimir/skills/led-ctrl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Text]
+
+**Output Format:** [Shell command invocation that sends a JSON HTTP request and returns command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable Raspberry Pi control endpoint and caller-supplied action and pin values.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

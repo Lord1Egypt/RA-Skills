@@ -1,46 +1,62 @@
-## Description: <br>
-Generates production-style SQL query result and chart reports with tables, matrices, slicers, multi-format exports, and statistics-driven insight recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SQL query result and chart reports with tables, matrices, slicers, multi-format exports, and statistics-driven insights.
 
-## Publisher: <br>
-[sqlskills](https://clawhub.ai/user/sqlskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moniq888](https://clawhub.ai/user/moniq888)
 
-## Use Case: <br>
-Developers, analysts, and business teams use this skill to turn SQL query outputs, tabular data, and chart artifacts into reusable operational, financial, product, marketing, and executive reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports may include untrusted data or report text. <br>
-Mitigation: Use trusted inputs or sanitize and escape report text before opening or sharing generated HTML. <br>
-Risk: Customer profiling or SMS/push marketing recommendations may raise privacy, consent, or legal review needs. <br>
-Mitigation: Review privacy and legal requirements before acting on those recommendations and use only approved data. <br>
-Risk: The skill installs local Python dependencies with version ranges. <br>
-Mitigation: Pin and review dependencies in a controlled environment before production use. <br>
+## Use Case:
 
+Developers, data analysts, and business teams use this skill to turn SQL outputs, DataFrame-style data, and chart assets into structured business reports and dashboards. It supports reusable templates, statistical insight generation, and HTML, JSON, and PDF-oriented report workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sqlskills/sql-report-generator) <br>
-- [Chart Guidelines](artifact/references/chart-guidelines.md) <br>
-- [Chart Planning](artifact/references/chart-planning.md) <br>
-- [Insight Patterns](artifact/references/insight-patterns.md) <br>
-- [Templates Index](artifact/references/templates-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python examples; generated report artifacts may be HTML, JSON, Markdown, or image-embedded files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python dependencies including pandas, numpy, matplotlib, and jinja2.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated HTML may include user- or data-controlled values without escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reports before distribution; do not host generated HTML on authenticated or trusted origins until text escaping, base64/image validation, CSS/class restrictions, and an appropriate CSP are in place.
+
+Risk: Reports generated from uploaded, third-party, database, or customer-controlled data may expose privacy, legal, or content risks.
+
+Mitigation: Review inputs and outputs, add privacy and legal guardrails for templates that profile users or recommend outreach, and limit use to approved datasets.
+
+Risk: Unpinned or incomplete dependencies can make installs non-reproducible.
+
+Mitigation: Pin and verify Python dependencies before production installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moniq888/skills/sql-report-generator)
+- [Templates index](artifact/references/templates-index.md)
+- [Chart guidelines](artifact/references/chart-guidelines.md)
+- [Chart planning](artifact/references/chart-planning.md)
+- [Insight patterns](artifact/references/insight-patterns.md)
+- [Dashboard templates](artifact/DASHBOARD_TEMPLATES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python code examples, with generated report artifacts in HTML, JSON, and PDF-oriented formats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python dependencies; full report generation depends on pandas, numpy, matplotlib, jinja2, and scipy.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and user changelog, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Review products on Reveal as an AI agent reviewer. Browse available review tasks, navigate target websites using agent-browser, take screenshots, record observations, and submit structured feedback to earn rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review products on Reveal by browsing available tasks, navigating target websites with agent-browser, capturing observations, and submitting structured feedback.
 
-## Publisher: <br>
-[tolulopeayo](https://clawhub.ai/user/tolulopeayo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tolulopeayo](https://clawhub.ai/user/tolulopeayo)
 
-## Use Case: <br>
-External reviewers and agent operators use this skill to find Reveal review tasks, inspect target products with browser evidence, and submit structured findings. It also supports proactive self-reviews when no aligned vendor-created task exists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can browse websites and submit review findings, screenshots, notes, or videos to Reveal. <br>
-Mitigation: Use it only for intended Reveal review workflows, inspect captured evidence and structured findings, and confirm before final submission. <br>
-Risk: The skill depends on a Reveal reviewer API key and the agent-browser dependency. <br>
-Mitigation: Keep REVEAL_REVIEWER_API_KEY private and review the agent-browser dependency separately before use. <br>
-Risk: Reviewed pages may contain personal or confidential information. <br>
-Mitigation: Avoid reviewing pages that contain sensitive data and remove unnecessary sensitive details from notes, screenshots, or recordings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reveal Reviewer API Reference](references/api-reference.md) <br>
-- [Reveal Homepage](https://testreveal.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tolulopeayo/reveal-reviewer) <br>
+## Use Case:
 
+External reviewers and agent operators use this skill to complete Reveal product review tasks or proactive self-reviews, capture screenshots and observations, and submit structured findings through the Reveal API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, api calls] <br>
-**Output Format:** [Markdown and JSON API payloads with structured review findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include screenshots, notes, video URLs, task submissions, and self-review completion records when supported by the reviewing environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote Reveal task instructions can steer browser actions and screenshot capture.
+
+Mitigation: Use an isolated browser profile with no unrelated logged-in accounts, review task instructions before acting, and confirm screenshots do not contain sensitive information before submission.
+
+Risk: The skill requires access to a Reveal reviewer API key.
+
+Mitigation: Provide the key only through the documented environment variable, avoid exposing it in chat or files, and rotate it if disclosure is suspected.
+
+Risk: Submitted reviews may be incorrect if observations are fabricated or incomplete.
+
+Mitigation: Submit only after actually navigating the product, record completed steps, and confirm with the user before sending the review.
+
+## Reference(s):
+
+- [Reveal Reviewer API Reference](references/api-reference.md)
+- [Reveal homepage](https://testreveal.ai)
+- [ClawHub skill listing](https://clawhub.ai/tolulopeayo/skills/reveal-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON review findings and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include screenshot URLs when supported by the browser tool.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

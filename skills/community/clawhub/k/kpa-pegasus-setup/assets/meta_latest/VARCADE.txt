@@ -1,0 +1,461 @@
+collection: VARCADE
+sort-by: 10
+shortname: varcade
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mame2003_plus_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: acrobatm
+file: acrobatm.zip
+assets.box_front: Imgs/acrobatm.png
+description: 《acrobatm》，由 UPL (Taito license) 出品，1991 年发行，街机 平台。
+publisher: UPL (Taito license)
+release: 1991
+game: aerofgt
+file: aerofgt.zip
+assets.box_front: Imgs/aerofgt.png
+description: 《aerofgt》，由 Video System Co. 出品，1992 年发行，街机 平台。
+publisher: Video System Co.
+release: 1992
+game: alibaba
+file: alibaba.zip
+assets.box_front: Imgs/alibaba.png
+description: 《alibaba》，由 Sega 出品，1982 年发行，街机 平台。
+publisher: Sega
+release: 1982
+game: alpine
+file: alpine.zip
+assets.box_front: Imgs/alpine.png
+description: 《alpine》，由 Taito Corporation 出品，1982 年发行，街机 平台。
+publisher: Taito Corporation
+release: 1982
+game: arkanoid
+file: arkanoid.zip
+assets.box_front: Imgs/arkanoid.png
+description: 《arkanoid》，由 Taito Corporation Japan 出品，街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: arknoid2
+file: arknoid2.zip
+assets.box_front: Imgs/arknoid2.png
+description: 《arknoid2》，由 Taito Corporation Japan 出品，1987 年发行，街机 平台。
+publisher: Taito Corporation Japan
+release: 1987
+game: asuka
+file: asuka.zip
+assets.box_front: Imgs/asuka.png
+description: 《asuka》，由 Taito Corporation 出品，1988 年发行，街机 平台。
+publisher: Taito Corporation
+release: 1988
+game: battroad
+file: battroad.zip
+assets.box_front: Imgs/battroad.png
+description: 《battroad》，由 Irem 出品，1984 年发行，街机 平台。
+publisher: Irem
+release: 1984
+game: bombjack
+file: bombjack.zip
+assets.box_front: Imgs/bombjack.png
+description: 《bombjack》，由 Martina Pau'ulu 出品，2002 年发行，动作类游戏，街机 平台。
+publisher: Martina Pau'ulu
+developer: Martina Pau'ulu
+release: 2002
+genre: Action
+game: bwcasino
+file: bwcasino.zip
+assets.box_front: Imgs/bwcasino.png
+description: 《bwcasino》，由 Epos Corporation 出品，1983 年发行，街机 平台。
+publisher: Epos Corporation
+release: 1983
+game: bwing
+file: bwing.zip
+assets.box_front: Imgs/bwing.png
+description: 《bwing》，由 Data East Corporation 出品，街机 平台。
+publisher: Data East Corporation
+developer: Data East Corporation
+game: calibr50
+file: calibr50.zip
+assets.box_front: Imgs/calibr50.png
+description: 《calibr50》，由 Seta 出品，1989 年发行，街机 平台。
+publisher: Seta
+release: 1989
+game: circusc
+file: circusc.zip
+assets.box_front: Imgs/circusc.png
+description: 《circusc》，由 Konami 出品，1984 年发行，街机 平台。
+publisher: Konami
+release: 1984
+game: citybomb
+file: citybomb.zip
+assets.box_front: Imgs/citybomb.png
+description: 《citybomb》，由 Konami 出品，1987 年发行，街机 平台。
+publisher: Konami
+release: 1987
+game: crshrace
+file: crshrace.zip
+assets.box_front: Imgs/crshrace.png
+description: 《crshrace》，由 Video System Co. 出品，1993 年发行，街机 平台。
+publisher: Video System Co.
+release: 1993
+game: devstors
+file: devstors.zip
+assets.box_front: Imgs/devstors.png
+description: 《devstors》，由 Konami 出品，1988 年发行，街机 平台。
+publisher: Konami
+release: 1988
+game: drivfrcp
+file: drivfrcp.zip
+assets.box_front: Imgs/drivfrcp.png
+description: 《drivfrcp》，由 Shinkai Inc. (Magic Electronics Inc. license) 出品，1984 年发行，街机 平台。
+publisher: Shinkai Inc. (Magic Electronics Inc. license)
+release: 1984
+game: drtoppel
+file: drtoppel.zip
+assets.box_front: Imgs/drtoppel.png
+description: 《drtoppel》，由 Kaneko / Taito Corporation Japan 出品，1987 年发行，街机 平台。
+publisher: Kaneko / Taito Corporation Japan
+release: 1987
+game: dyger
+file: dyger.zip
+assets.box_front: Imgs/dyger.png
+description: 《dyger》，由 Philko 出品，1989 年发行，街机 平台。
+publisher: Philko
+release: 1989
+game: eyes
+file: eyes.zip
+assets.box_front: Imgs/eyes.png
+description: 《eyes》，由 Techstar (Rock-Ola license) 出品，1982 年发行，街机 平台。
+publisher: Techstar (Rock-Ola license)
+release: 1982
+game: fstarfrc
+file: fstarfrc.zip
+assets.box_front: Imgs/fstarfrc.png
+description: 《fstarfrc》，由 Tecmo 出品，1992 年发行，街机 平台。
+publisher: Tecmo
+release: 1992
+game: gbusters
+file: gbusters.zip
+assets.box_front: Imgs/gbusters.png
+description: 《gbusters》，由 Konami 出品，1988 年发行，街机 平台。
+publisher: Konami
+release: 1988
+game: gunfront
+file: gunfront.zip
+assets.box_front: Imgs/gunfront.png
+description: 《gunfront》，由 Taito Corporation Japan 出品，1990 年发行，街机 平台。
+publisher: Taito Corporation Japan
+release: 1990
+game: gunnail
+file: gunnail.zip
+assets.box_front: Imgs/gunnail.png
+description: 《gunnail》，由 NMK / Tecmo 出品，1993 年发行，街机 平台。
+publisher: NMK / Tecmo
+release: 1993
+game: gyruss
+file: gyruss.zip
+assets.box_front: Imgs/gyruss.png
+description: 《gyruss》，由 Konami 出品，1983 年发行，街机 平台。
+publisher: Konami
+release: 1983
+game: hbarrel
+file: hbarrel.zip
+assets.box_front: Imgs/hbarrel.png
+description: 《hbarrel》，由 Data East Corporation 出品，1987 年发行，街机 平台。
+publisher: Data East Corporation
+release: 1987
+game: hustler
+file: hustler.zip
+assets.box_front: Imgs/hustler.png
+description: 《hustler》，由 Konami 出品，1981 年发行，街机 平台。
+publisher: Konami
+release: 1981
+game: jumpshot
+file: jumpshot.zip
+assets.box_front: Imgs/jumpshot.png
+description: 《jumpshot》，由 Bally Midway 出品，1985 年发行，街机 平台。
+publisher: Bally Midway
+release: 1985
+game: kicker
+file: kicker.zip
+assets.box_front: Imgs/kicker.png
+description: 《kicker》，由 Starbyte Software 出品，1991 年发行，模拟类游戏，街机 平台。
+publisher: Starbyte Software
+developer: Starbyte Software
+release: 1991
+genre: Simulation
+game: lizwiz
+file: lizwiz.zip
+assets.box_front: Imgs/lizwiz.png
+description: 《lizwiz》，由 Techstar (Sunn license) 出品，1985 年发行，街机 平台。
+publisher: Techstar (Sunn license)
+release: 1985
+game: losttomb
+file: losttomb.zip
+assets.box_front: Imgs/losttomb.png
+description: 《losttomb》，由 Datasoft 出品，1984 年发行，动作类游戏，街机 平台。
+publisher: Datasoft
+developer: Datasoft
+release: 1984
+genre: Action
+game: macrossp
+file: macrossp.zip
+assets.box_front: Imgs/macrossp.png
+description: 《macrossp》，由 MOSS / Banpresto 出品，1996 年发行，街机 平台。
+publisher: MOSS / Banpresto
+release: 1996
+game: madshark
+file: madshark.zip
+assets.box_front: Imgs/madshark.png
+description: 《madshark》，由 Allumer 出品，1993 年发行，街机 平台。
+publisher: Allumer
+release: 1993
+game: manybloc
+file: manybloc.zip
+assets.box_front: Imgs/manybloc.png
+description: 《manybloc》，由 Bee-Oh 出品，1991 年发行，街机 平台。
+publisher: Bee-Oh
+release: 1991
+game: mikie
+file: mikie.zip
+assets.box_front: Imgs/mikie.png
+description: 《mikie》，由 Konami 出品，1984 年发行，街机 平台。
+publisher: Konami
+release: 1984
+game: minefld
+file: minefld.zip
+assets.box_front: Imgs/minefld.png
+description: 《minefld》，由 Gene Carman 出品，1992 年发行，策略类游戏，街机 平台。
+publisher: Gene Carman
+developer: Gene Carman
+release: 1992
+genre: Strategy
+game: mrflea
+file: mrflea.zip
+assets.box_front: Imgs/mrflea.png
+description: 《mrflea》，由 Pacific Novelty 出品，1982 年发行，街机 平台。
+publisher: Pacific Novelty
+release: 1982
+game: mrtnt
+file: mrtnt.zip
+assets.box_front: Imgs/mrtnt.png
+description: 《mrtnt》，由 Techstar (Telko license) 出品，1983 年发行，街机 平台。
+publisher: Techstar (Telko license)
+release: 1983
+game: mspacman
+file: mspacman.zip
+assets.box_front: Imgs/mspacman.png
+description: 《mspacman》，由 George M. Tzoumas 出品，1997 年发行，动作类游戏，街机 平台。
+publisher: George M. Tzoumas
+developer: George M. Tzoumas
+release: 1997
+genre: Action
+game: mustache
+file: mustache.zip
+assets.box_front: Imgs/mustache.png
+description: 《mustache》，由 Seibu Kaihatsu (March license) 出品，1987 年发行，街机 平台。
+publisher: Seibu Kaihatsu (March license)
+release: 1987
+game: mystston
+file: mystston.zip
+assets.box_front: Imgs/mystston.png
+description: 《mystston》，由 Technos Japan 出品，1984 年发行，街机 平台。
+publisher: Technos Japan
+release: 1984
+game: nitrobal
+file: nitrobal.zip
+assets.box_front: Imgs/nitrobal.png
+description: 《nitrobal》，由 Data East Corporation 出品，1992 年发行，街机 平台。
+publisher: Data East Corporation
+release: 1992
+game: nmouse
+file: nmouse.zip
+assets.box_front: Imgs/nmouse.png
+description: 《nmouse》，由 Amenip (Palcom Queen River) 出品，1981 年发行，街机 平台。
+publisher: Amenip (Palcom Queen River)
+release: 1981
+game: nost
+file: nost.zip
+assets.box_front: Imgs/nost.png
+description: 《nost》，由 Face 出品，1993 年发行，街机 平台。
+publisher: Face
+release: 1993
+game: pacplus
+file: pacplus.zip
+assets.box_front: Imgs/pacplus.png
+description: 《pacplus》，由 Namco (Midway license) 出品，1982 年发行，街机 平台。
+publisher: Namco (Midway license)
+release: 1982
+game: pengo
+file: pengo.zip
+assets.box_front: Imgs/pengo.png
+description: 《pengo》，由 Sega 出品，1982 年发行，街机 平台。
+publisher: Sega
+release: 1982
+game: perfrman
+file: perfrman.zip
+assets.box_front: Imgs/perfrman.png
+description: 《perfrman》，由 Toaplan / Data East Corporation 出品，1985 年发行，街机 平台。
+publisher: Toaplan / Data East Corporation
+release: 1985
+game: pooyan
+file: pooyan.zip
+assets.box_front: Imgs/pooyan.png
+description: 《pooyan》，由 Konami 出品，1982 年发行，街机 平台。
+publisher: Konami
+release: 1982
+game: porky
+file: porky.zip
+assets.box_front: Imgs/porky.png
+description: 《porky》，由 Shinkai Inc. (Magic Electronics Inc. license) 出品，1985 年发行，街机 平台。
+publisher: Shinkai Inc. (Magic Electronics Inc. license)
+release: 1985
+game: raflesia
+file: raflesia.zip
+assets.box_front: Imgs/raflesia.png
+description: 《raflesia》，由 Coreland / Sega 出品，1986 年发行，街机 平台。
+publisher: Coreland / Sega
+release: 1986
+game: repulse
+file: repulse.zip
+assets.box_front: Imgs/repulse.png
+description: 《repulse》，由 Crux / Sega 出品，1985 年发行，街机 平台。
+publisher: Crux / Sega
+release: 1985
+game: ryujin
+file: ryujin.zip
+assets.box_front: Imgs/ryujin.png
+description: 《ryujin》，由 Taito Corporation 出品，街机 平台。
+publisher: Taito Corporation
+developer: Taito Corporation
+game: sandscrp
+file: sandscrp.zip
+assets.box_front: Imgs/sandscrp.png
+description: 《sandscrp》，由 Face 出品，1992 年发行，街机 平台。
+publisher: Face
+release: 1992
+game: skysmash
+file: skysmash.zip
+assets.box_front: Imgs/skysmash.png
+description: 《skysmash》，由 Nihon System 出品，1990 年发行，街机 平台。
+publisher: Nihon System
+release: 1990
+game: srdarwin
+file: srdarwin.zip
+assets.box_front: Imgs/srdarwin.png
+description: 《srdarwin》，由 Data East Corporation 出品，1987 年发行，街机 平台。
+publisher: Data East Corporation
+release: 1987
+game: srdmissn
+file: srdmissn.zip
+assets.box_front: Imgs/srdmissn.png
+description: 《srdmissn》，由 Kyugo / Taito Corporation 出品，1986 年发行，街机 平台。
+publisher: Kyugo / Taito Corporation
+release: 1986
+game: ssi
+file: ssi.zip
+assets.box_front: Imgs/ssi.png
+description: 《ssi》，由 Taito Corporation Japan 出品，街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: ssmissin
+file: ssmissin.zip
+assets.box_front: Imgs/ssmissin.png
+description: 《ssmissin》，由 Comad 出品，1992 年发行，街机 平台。
+publisher: Comad
+release: 1992
+game: superbon
+file: superbon.zip
+assets.box_front: Imgs/superbon.png
+description: 《superbon》，由 Signatron USA 出品，1985 年发行，街机 平台。
+publisher: Signatron USA
+release: 1985
+game: suprglob
+file: suprglob.zip
+assets.box_front: Imgs/suprglob.png
+description: 《suprglob》，由 Epos Corporation 出品，1983 年发行，街机 平台。
+publisher: Epos Corporation
+release: 1983
+game: swat
+file: swat.zip
+assets.box_front: Imgs/swat.png
+description: 《swat》，由 Coreland / Sega 出品，1984 年发行，街机 平台。
+publisher: Coreland / Sega
+release: 1984
+game: tazmania
+file: tazmania.zip
+assets.box_front: Imgs/tazmania.png
+description: 《tazmania》，由 Stern Electronics 出品，1982 年发行，街机 平台。
+publisher: Stern Electronics
+release: 1982
+game: thunderl
+file: thunderl.zip
+assets.box_front: Imgs/thunderl.png
+description: 《thunderl》，由 Seta 出品，1990 年发行，街机 平台。
+publisher: Seta
+release: 1990
+game: tigerh
+file: tigerh.zip
+assets.box_front: Imgs/tigerh.png
+description: 《tigerh》，由 Toaplan / Taito America Corp. 出品，1985 年发行，街机 平台。
+publisher: Toaplan / Taito America Corp.
+release: 1985
+game: tokiob
+file: tokiob.zip
+assets.box_front: Imgs/tokiob.png
+description: 《tokiob》，由 bootleg 出品，1986 年发行，街机 平台。
+publisher: bootleg
+release: 1986
+game: tsamurai
+file: tsamurai.zip
+assets.box_front: Imgs/tsamurai.png
+description: 《tsamurai》，由 Kaneko / Taito 出品，1985 年发行，街机 平台。
+publisher: Kaneko / Taito
+release: 1985
+game: twinbee
+file: twinbee.zip
+assets.box_front: Imgs/twinbee.png
+description: 《twinbee》，由 Konami 出品，1985 年发行，街机 平台。
+publisher: Konami
+release: 1985
+game: upndown
+file: upndown.zip
+assets.box_front: Imgs/upndown.png
+description: 《upndown》，由 SEGA Enterprises 出品，1987 年发行，动作类游戏，街机 平台。
+publisher: SEGA Enterprises
+developer: SEGA Enterprises
+release: 1987
+genre: Action
+game: vandyke
+file: vandyke.zip
+assets.box_front: Imgs/vandyke.png
+description: 《vandyke》，由 UPL 出品，1990 年发行，街机 平台。
+publisher: UPL
+release: 1990
+game: vanvan
+file: vanvan.zip
+assets.box_front: Imgs/vanvan.png
+description: 《vanvan》，由 Sanritsu 出品，1983 年发行，街机 平台。
+publisher: Sanritsu
+release: 1983
+game: wrestwar
+file: wrestwar.zip
+assets.box_front: Imgs/wrestwar.png
+description: 《wrestwar》，由 Sega 出品，1989 年发行，街机 平台。
+publisher: Sega
+release: 1989
+game: yamagchi
+file: yamagchi.zip
+assets.box_front: Imgs/yamagchi.png
+description: 《yamagchi》，由 Kaneko / Taito 出品，1985 年发行，街机 平台。
+publisher: Kaneko / Taito
+release: 1985
+game: youjyudn
+file: youjyudn.zip
+assets.box_front: Imgs/youjyudn.png
+description: 《youjyudn》，由 Irem 出品，1986 年发行，街机 平台。
+publisher: Irem
+release: 1986
+game: zingzip
+file: zingzip.zip
+assets.box_front: Imgs/zingzip.png
+description: 《zingzip》，由 Allumer / Tecmo 出品，1992 年发行，街机 平台。
+publisher: Allumer / Tecmo
+release: 1992

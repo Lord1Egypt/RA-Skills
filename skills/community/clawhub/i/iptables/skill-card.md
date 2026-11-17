@@ -1,41 +1,50 @@
-## Description: <br>
-Iptables reference tool. Use when working with iptables in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iptables reference tool. Use when working with iptables in sysops contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, operators, and system administrators use this skill as a quick iptables reference for concepts, setup checklists, common patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic iptables reference guidance that may be incomplete or unsuitable for a specific production firewall. <br>
-Mitigation: Verify any real firewall change against authoritative iptables documentation, local policy, and a tested rollback plan before applying it. <br>
-Risk: Misapplied firewall guidance can interrupt network access or weaken host protections. <br>
-Mitigation: Review proposed commands with an experienced operator and test changes in a staging or maintenance window before production use. <br>
+## Use Case:
 
+Developers and sysops practitioners use this skill as a quick static reference for iptables concepts, checklists, troubleshooting, and basic operational topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/iptables) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted command-line reference text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command argument selects one reference topic; the skill itself does not write files or change firewall settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The security guidance identifies this as a basic static placeholder reference that lacks concrete iptables commands, examples, and firewall-specific safety guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lightweight orientation, and verify firewall administration steps against authoritative iptables documentation or local operational runbooks before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/iptables)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reference text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static placeholder reference content; no hidden access, credential use, persistence, network activity, or system changes were reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

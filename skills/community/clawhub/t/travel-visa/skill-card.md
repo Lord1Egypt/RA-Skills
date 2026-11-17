@@ -1,45 +1,57 @@
-## Description: <br>
-Travel visa advisor that helps outbound travelers check visa requirements, application locations, and trip-preparation steps for a known destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A travel visa consultation and pre-trip verification advisor for outbound travelers who know their destination and need visa requirements, application locations, and itinerary coordination guidance.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to check visa requirements, application paths, required materials, timelines, and nearby visa center or consulate options for planned outbound trips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa requirements or processing timelines may be incomplete, outdated, or inconsistent across search results. <br>
-Mitigation: Verify visa conclusions with official government, embassy, consulate, or visa center sources before booking or traveling. <br>
-Risk: Travel-planning details and optional API credentials may be sent to FlyAI/Fliggy services through the CLI workflow. <br>
-Mitigation: Use the skill only when the FlyAI CLI package and service are trusted, configure a dedicated API key if needed, and avoid sharing unnecessary personal details. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to check visa requirements, identify application paths and locations, plan timing, and coordinate nearby itinerary needs such as lodging or transit. It is intended for actionable pre-trip checklists and visa-path recommendations, not broad destination inspiration.
 
-## Reference(s): <br>
-- [FlyAI homepage](https://open.fly.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/travel-visa) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Templates](references/templates.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with checklists, tables, links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses booking or jump links from FlyAI/Fliggy outputs when present; visa conclusions should be verified with official sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: The skill asks users to install a mutable third-party CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a local, pinned CLI install where possible, avoid administrator or root execution, and review generated commands before running them.
+
+Risk: Visa information and provider links may be incomplete, outdated, or commercially routed.
+
+Mitigation: Verify visa requirements, timelines, and links against official government or consular sources before booking travel or taking application action.
+
+## Reference(s):
+
+- [FlyAI homepage](https://open.fly.ai/)
+- [Playbooks](references/playbooks.md)
+- [Templates](references/templates.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with headings, checklists, comparison tables, links, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider image URLs and booking or jump links when returned by FlyAI/Fliggy data.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md metadata.version and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Free agentic tools API at nixus.pro. No API key needed. Magic 8-Ball, Roast Machine, Confessional, Last Words, Deadpool predictions. Fun interactive tools any agent can call via simple HTTP. 30 req/min rate limit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nixus Agentic Tools helps agents call unauthenticated novelty endpoints on nixus.pro for Magic 8-Ball answers, roasts, confessional text, last words, and Deadpool predictions with a 30 requests/minute rate limit.
 
-## Publisher: <br>
-[cassh100k](https://clawhub.ai/user/cassh100k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cassh100k](https://clawhub.ai/user/cassh100k)
 
-## Use Case: <br>
-External users and developers can use this skill to call free entertainment-oriented HTTP tools for Magic 8-Ball answers, roasts, confessional text, last-words prompts, and technology deadpool predictions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted to the examples is sent to nixus.pro. <br>
-Mitigation: Use only non-sensitive text and avoid passwords, tokens, private prompts, personal details, internal business information, or regulated data. <br>
-Risk: The tool depends on unauthenticated remote HTTP endpoints and may be unavailable or rate limited. <br>
-Mitigation: Design agent workflows to handle request failures and the documented 30 requests per minute per IP rate limit. <br>
+## Use Case:
 
+Developers and agents use this skill to call free interactive API tools for lightweight entertainment or novelty interactions without an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cassh100k/nixus-tools) <br>
-- [Nixus tools discovery endpoint](https://nixus.pro/api/tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and HTTP API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls remote nixus.pro endpoints with a documented 30 requests per minute per IP rate limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitted questions, names, confessions, last words, or predictions are sent to the external nixus.pro service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets, API keys, private conversations, system prompts, personal data, or proprietary information.
+
+Risk: The API is rate-limited to 30 requests per minute per IP.
+
+Mitigation: Throttle requests and handle rate-limit or service failures before relying on responses in an agent workflow.
+
+## Reference(s):
+
+- [Nixus Tools API Catalog](https://nixus.pro/api/tools)
+- [ClawHub Skill Page](https://clawhub.ai/cassh100k/skills/nixus-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [External HTTP calls to nixus.pro; no API key required; 30 requests/minute per IP.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

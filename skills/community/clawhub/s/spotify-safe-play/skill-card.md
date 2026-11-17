@@ -1,41 +1,54 @@
-## Description: <br>
-Safer Spotify playback for OpenClaw on setups where direct spogo play is unreliable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safer Spotify playback for OpenClaw on setups where direct spogo play is unreliable.
 
-## Publisher: <br>
-[surdragon-design](https://clawhub.ai/user/surdragon-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surdragon-design](https://clawhub.ai/user/surdragon-design)
 
-## Use Case: <br>
-OpenClaw users use this skill to search Spotify and control playback through spogo when direct spogo playback is unreliable. It guides the agent toward safer queue-and-skip playback flows for tracks, albums, and playlists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references a spotify-safe-play wrapper script that was not included in the reviewed package. <br>
-Mitigation: Verify the wrapper script source and behavior before relying on it, or use only the documented spogo commands that are present in the reviewed skill instructions. <br>
-Risk: The skill can direct an agent to use an authenticated Spotify setup to queue, skip, pause, resume, and select playback devices. <br>
-Mitigation: Install and use it only where agent-driven Spotify playback control is acceptable for the authenticated account and active Spotify Connect devices. <br>
+## Use Case:
 
+External users and developers use this skill to control Spotify playback through spogo when direct playback commands are unreliable. It helps search Spotify content, select devices, and start tracks, albums, or playlists with safer command sequencing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/surdragon-design/spotify-safe-play) <br>
-- [Skill metadata homepage](https://github.com/surdragon-design/spotify-safe-player) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Spotify Premium, authenticated spogo, Bash, curl, grep, awk, and an active Spotify Connect target.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v0.1.0 (source: server release evidence) <br>
+Risk: The documented spotify-safe-play wrapper script is missing from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify or install the wrapper before relying on the safe playback command.
+
+Risk: Playback commands operate through the user's authenticated Spotify account and active playback device.
+
+Mitigation: Use the skill only on trusted machines with a known Spotify Connect target and a trusted spogo installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/surdragon-design/skills/spotify-safe-play)
+- [Skill homepage](https://github.com/surdragon-design/spotify-safe-player)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate through spogo and the user's authenticated Spotify account.]
+
+## Skill Version(s):
+
+v0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Use this skill when migrating a project's database layer from MySQL to PostgreSQL, including SQL dialect conversion, MyBatis/MyBatis-Plus configuration, JDBC setup, data type pitfalls, and common runtime error fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when migrating a project's database layer from MySQL to PostgreSQL; it covers SQL dialect conversion, MyBatis/MyBatis-Plus configuration, JDBC setup, data type pitfalls, and common runtime error fixes.
 
-## Publisher: <br>
-[LawrenceHe](https://clawhub.ai/user/LawrenceHe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lawrencehe](https://clawhub.ai/user/lawrencehe)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and execute migration of Java, Spring Boot, MyBatis, and MyBatis-Plus database layers from MySQL to PostgreSQL. It provides conversion checklists, configuration guidance, SQL examples, and troubleshooting notes for common migration failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SQL and configuration snippets may be incorrect for a specific schema, data model, PostgreSQL version, or production environment. <br>
-Mitigation: Review generated migration diffs, back up data, and validate changes in staging before applying them to production databases. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and review Java Spring Boot/MyBatis migrations from MySQL to PostgreSQL, including SQL rewrite patterns, ORM configuration, JDBC settings, sequences, and runtime error fixes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL, YAML, and Java snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only migration guidance; no hidden code execution or credential handling reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Database migration changes can affect production data if suggested SQL replacements or sequence creation are applied without schema-specific review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested SQL replacements and sequence creation against the target schema before applying them.
+
+Risk: The migration reference is written in Chinese, which may increase misunderstanding risk for readers who are not comfortable with the language.
+
+Mitigation: Install and use the skill only when the team is comfortable using a Chinese-language migration reference.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lawrencehe/skills/mysql2postgres)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with SQL, YAML, and Java examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language migration reference; produces advisory guidance rather than executable code.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

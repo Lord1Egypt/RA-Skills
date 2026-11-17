@@ -1,45 +1,60 @@
-## Description: <br>
-WPS Web Builder helps agents plan, scaffold, implement, validate, and serve static, SPA, full-stack, or separated web projects through a structured workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds websites and web applications from scratch using a structured planning workflow for static sites, SPAs, full-stack apps, and separated frontend/backend projects.
 
-## Publisher: <br>
-[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123)
 
-## Use Case: <br>
-Developers and builders use this skill to turn web project requests into a plan, choose an appropriate architecture, implement pages and components, run build validation, and start a local preview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and modify many project files and maintain local project state. <br>
-Mitigation: Run it in a non-sensitive project directory and review generated files before committing or deploying them. <br>
-Risk: The skill may install packages and run build commands. <br>
-Mitigation: Review package manifests and dependency choices before installation, and run builds in an isolated development environment. <br>
-Risk: The skill can start a preview server that may be exposed beyond localhost. <br>
-Mitigation: Prefer localhost-only serving unless LAN access is intentional and appropriate for the workspace. <br>
+## Use Case:
 
+Developers and builders use this skill to plan, implement, validate, and launch web projects. It guides requirement gathering, architecture selection, UI planning, coding, build verification, and local preview delivery.
 
-## Reference(s): <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Frontend design guidance](artifact/frontend-design.md) <br>
-- [Web Builder plan template](artifact/plan-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xixihaha123123123123/wps-web-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project files, a local plan file, README content, and preview-server instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may create project files, update .web-builder/plan.md, install dependencies, run npm, pip, or build commands, and start a local Vite preview server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a disposable or trusted workspace, review generated package files before install, and stop the server after use.
+
+Risk: The skill starts Vite with network host exposure by default during preview delivery.
+
+Mitigation: Bind previews to localhost unless LAN sharing is intentional.
+
+Risk: Generated dependency files may introduce unpinned or unexpected packages.
+
+Mitigation: Review generated package files and pin dependencies before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihaha123123123123/skills/wps-web-builder)
+- [Publisher profile](https://clawhub.ai/user/xixihaha123123123123)
+- [Frontend design guidance](artifact/frontend-design.md)
+- [Web builder plan template](artifact/plan-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, configuration files, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project files, plan documentation, package configuration, README content, and local preview commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

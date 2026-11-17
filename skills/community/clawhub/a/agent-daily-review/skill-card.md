@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents conduct structured end-of-day review, reflection, documentation, activity categorization, and Markdown report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents conduct structured end-of-day review, reflection, and documentation by scanning records, categorizing activities, analyzing progress, and generating Markdown review reports.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Agents and their operators use this skill to review a day's workspace notes and artifacts, categorize work, identify highlights and blockers, and create an archived daily review report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local workspace notes, daily memory files, MEMORY.md, and Markdown artifacts while building the review. <br>
-Mitigation: Run it only against the intended workspace path and avoid workspaces containing notes that should not be summarized. <br>
-Risk: The default run writes a review report and appends a summary to MEMORY.md. <br>
-Mitigation: Use --no-memory when the review should not modify MEMORY.md, and set --output to a known destination when testing. <br>
-Risk: The documented cron setup can repeatedly trigger local reads and writes without a manual prompt. <br>
-Mitigation: Enable scheduled runs only after verifying the workspace path, output behavior, and retention expectations. <br>
+## Use Case:
 
+Agents and developers use this skill to summarize daily work records, categorize progress and blockers, reflect on activity, and generate a Markdown daily review report.
 
-## Reference(s): <br>
-- [Agent Daily Review on ClawHub](https://clawhub.ai/openlark/agent-daily-review) <br>
-- [Core review script](artifact/scripts/daily_review.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report with structured review sections and optional memory summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reviews/review_YYYY-MM-DD.md and can append a summary to MEMORY.md unless --no-memory is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read workspace memory and more entries than users expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it manually first with --no-memory and review what records it scans before scheduling it.
+
+Risk: The skill writes persistent review reports and appends summaries to MEMORY.md by default.
+
+Mitigation: Review generated reports before sharing them, and use --no-memory when persistent memory updates are not desired.
+
+## Reference(s):
+
+- [Agent Daily Review on ClawHub](https://clawhub.ai/openlark/skills/agent-daily-review)
+- [OpenLark Publisher Profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown daily review report with command examples and optional memory summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write review files under reviews/ and append a summary to MEMORY.md unless run with --no-memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

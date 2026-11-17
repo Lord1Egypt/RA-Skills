@@ -1,40 +1,57 @@
-## Description: <br>
-Automates nightly maintenance tasks such as skill audits, updates, cleanup, health checks, and a morning report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates nightly maintenance tasks like skill audits, updates, cleanup, and health checks, then summarizes a morning report.
 
-## Publisher: <br>
-[0xRaini](https://clawhub.ai/user/0xRaini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xraini](https://clawhub.ai/user/0xraini)
 
-## Use Case: <br>
-Developers and operators use this skill to schedule recurring local workspace maintenance and receive a summarized report of system, git, disk, memory, cleanup, and skill inventory checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unattended scheduled maintenance can run local commands in the workspace. <br>
-Mitigation: Keep the job report-only or tightly scoped unless updates and cleanup have been explicitly approved. <br>
-Risk: Update and cleanup tasks may affect local repositories, logs, or workspace state. <br>
-Mitigation: Inspect the configured commands and paths before enabling the cron entry, and keep the cron entry easy to disable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nightly Build on ClawHub](https://clawhub.ai/0xRaini/nightly-build) <br>
-- [The Nightly Build](https://www.moltbook.com/post/562faad7-f9cc-49a3-8520-2bdf362606bb) <br>
+## Use Case:
 
+Developers and agent operators use Nightly Build to schedule unattended workspace maintenance and receive a concise morning report covering system health, disk usage, skill inventory, git status, cleanup, and memory statistics.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a nightly report file and emits the report text for the agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unattended nightly maintenance can run update and cleanup tasks while the operator is away.
+
+Mitigation: Before enabling cron, restrict exactly which repositories and paths may be updated or cleaned, and review any auto-update behavior.
+
+Risk: Security audit reporting may be misleading if npm audit failures are handled as successful checks.
+
+Mitigation: Fix or review audit failure handling before relying on the generated security summary.
+
+Risk: The schedule and report timestamps use an Asia/Shanghai timezone in the provided setup and script.
+
+Mitigation: Adjust the cron timezone and script timezone to match the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xraini/skills/nightly-build)
+- [The Nightly Build inspiration](https://www.moltbook.com/post/562faad7-f9cc-49a3-8520-2bdf362606bb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown report with system, disk, skill inventory, git, cleanup, and memory sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local nightly report file when run by the script.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; changelog v1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

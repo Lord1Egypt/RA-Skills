@@ -1,50 +1,58 @@
-## Description: <br>
-Captures and analyzes Android Perfetto traces via CLI and config files, covering trace collection, TraceConfig editing, and analysis of jank, latency, overdraw, and power. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures and analyzes Android Perfetto traces via CLI and config files, covering trace collection for CPU, GPU, memory, rendering, and power, TraceConfig editing, and analysis of jank, latency, overdraw, and power in Perfetto UI or trace_processor.
 
-## Publisher: <br>
-[linkecoding](https://clawhub.ai/user/linkecoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkecoding](https://clawhub.ai/user/linkecoding)
 
-## Use Case: <br>
-Developers and performance engineers use this skill to collect Android Perfetto traces, tune TraceConfig files, and analyze traces for CPU scheduling, rendering jank, latency, overdraw, and power behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Perfetto trace capture can collect sensitive device, app, timing, or process information. <br>
-Mitigation: Limit collection to the intended device, app, and time window, and treat generated trace files as sensitive. <br>
-Risk: adb and Perfetto commands can run device-side collection or leave background capture active. <br>
-Mitigation: Review commands and TraceConfig files before execution, and stop any background capture promptly. <br>
-Risk: Installing trace processing tooling from untrusted locations could introduce supply-chain risk. <br>
-Mitigation: Install Perfetto tooling only from trusted sources. <br>
+## Use Case:
 
+Developers and performance engineers use this skill to capture Android Perfetto traces, select or edit TraceConfig files, and analyze jank, latency, overdraw, CPU scheduling, GPU rendering, memory, and power behavior.
 
-## Reference(s): <br>
-- [Perfetto configuration reference](reference.md) <br>
-- [CPU-only TraceConfig template](configs/cpu_only.pbtx.txt) <br>
-- [UI jank TraceConfig template](configs/ui_jank.pbtx.txt) <br>
-- [Power TraceConfig template](configs/power.pbtx.txt) <br>
-- [Trace query helper script](scripts/query_trace.py) <br>
-- [Perfetto UI](https://ui.perfetto.dev) <br>
-- [TraceConfig Reference](https://perfetto.dev/docs/reference/trace-config-proto) <br>
-- [Trace Processor](https://perfetto.dev/docs/analysis/trace-processor) <br>
-- [Trace Processor Python](https://perfetto.dev/docs/analysis/trace-processor-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, TraceConfig snippets, and SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce PerfettoSQL queries, adb/perfetto commands, and configuration templates for trace capture and analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Android trace data can contain sensitive application, device, timing, and process information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in environments where Android trace data can be handled safely.
+
+Risk: The helper depends on the Perfetto Python package and may direct users to download a trace_processor binary.
+
+Mitigation: Prefer pinned and reviewed dependency versions, verify downloaded trace_processor binaries when possible, and avoid running install or analysis commands as root or with unnecessary privileges.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linkecoding/skills/perfetto-analyse)
+- [Perfetto Configuration Reference](artifact/reference.md)
+- [Perfetto UI](https://ui.perfetto.dev)
+- [TraceConfig Reference](https://perfetto.dev/docs/reference/trace-config-proto)
+- [Trace Processor](https://perfetto.dev/docs/analysis/trace-processor)
+- [Trace Processor Python](https://perfetto.dev/docs/analysis/trace-processor-python)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands, PerfettoSQL examples, and TraceConfig snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local .pbtx.txt templates and a Python trace query helper for command-line analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

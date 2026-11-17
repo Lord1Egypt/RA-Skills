@@ -1,50 +1,66 @@
-## Description: <br>
-Analyze stocks and cryptocurrencies using Yahoo Finance data, with portfolio management, watchlists and alerts, dividend analysis, stock scoring, viral trend detection, and rumor or early-signal detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze stocks and cryptocurrencies using Yahoo Finance data, with portfolio management, watchlists, alerts, dividend analysis, stock scoring, viral trend detection, and rumor or early signal detection.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-External users and developers use this skill to analyze public market tickers and crypto assets, compare securities, manage local portfolios and watchlists, review dividend metrics, and scan for trending or early market signals. Outputs should support research and monitoring, not replace professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Twitter/X integration can require live session credentials such as auth_token and ct0. <br>
-Mitigation: Leave social scanning disabled unless needed; if enabled, store credentials outside shared repositories, protect and rotate them, and avoid granting broad browser or disk permissions. <br>
-Risk: The skill makes network requests for analyzed tickers, portfolio entries, market data, news, SEC data, crypto data, and optional social signals. <br>
-Mitigation: Use the skill only when those requests are acceptable for the assets being reviewed, and prefer --fast or --no-social modes when enrichment is unnecessary. <br>
-Risk: Portfolio and watchlist data are stored locally and may contain sensitive financial interests. <br>
-Mitigation: Keep local portfolio and watchlist files out of synced folders and source repositories, and apply normal local file protections. <br>
-Risk: Financial market data and rumor signals may be delayed, incomplete, or misleading. <br>
-Mitigation: Treat results as research inputs, verify material facts against authoritative sources, and do not use outputs as sole investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to analyze public stock and cryptocurrency market data, compare tickers, manage watchlists and portfolios, evaluate dividends, and surface trending or rumor-driven market signals. Outputs are informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yinwuzhe/0602-tosr2-06) <br>
-- [Publisher profile](https://clawhub.ai/user/yinwuzhe) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [README](README.md) <br>
-- [Usage Guide](docs/USAGE.md) <br>
-- [Hot Scanner Guide](docs/HOT_SCANNER.md) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text, with optional JSON output from scanner scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local Python scripts through uv, write local portfolio and watchlist JSON files, and make network requests to market, news, SEC, crypto, and optional social data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata); artifact frontmatter reports 6.2.0 <br>
+Risk: Optional Twitter/X scanning can expose active browser session credentials and pass broad environment data to a third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid enabling Twitter/X scanning as written; do not paste primary X/Twitter session cookies, do not grant Terminal Full Disk Access, and run the bird integration only if the CLI is pinned, trusted, and given minimum required environment variables.
+
+Risk: Market data, social signals, rumors, and generated recommendations can be delayed, incomplete, or misleading.
+
+Mitigation: Treat outputs as informational only, verify material signals against primary sources, and consult a licensed financial advisor before making investment decisions.
+
+Risk: External market data sources may be rate-limited or unavailable, which can reduce output quality.
+
+Mitigation: Use fast or no-social modes when appropriate, cache repeated checks, and confirm critical results outside the skill before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yinwuzhe/skills/0602-tosr2-06)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [CoinGecko](https://coingecko.com)
+- [CNN Fear & Greed](https://money.cnn.com/data/fear-and-greed/)
+- [SEC EDGAR](https://www.sec.gov/edgar)
+- [Google News](https://news.google.com)
+- [bird CLI](https://github.com/steipete/bird)
+- [Usage Guide](docs/USAGE.md)
+- [Hot Scanner](docs/HOT_SCANNER.md)
+- [Architecture](docs/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with optional JSON output and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local portfolio, watchlist, hot-scan, or rumor-scan JSON files when the corresponding scripts are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter version: 6.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,12 @@
 {
   "id": "hk-horse-racing",
   "name": "HK Horse Racing",
-  "description": "Fetches HKJC race cards, filters SB horses, and recommends top picks per race with optional advanced scoring (trainer/jockey bonuses, barrier effectiveness, weight penalty). Supports exclusions, single-race fetch, and rate limiting (60s).",
-  "version": "1.2.2",
+  "description": "Fetches HKJC race cards from the public racing page, adds WIN/PLA odds when available, filters SB horses, and recommends top picks. Also fetches official race results and dividends.",
+  "version": "1.2.4",
   "tools": [
     {
       "name": "fetchRaceCard",
-      "description": "Fetch race card for a given date (default: today) with odds, horse details, and recommendations",
+      "description": "Fetch race card for a given date (default: today) with runner details, available WIN/PLA odds, and recommendations",
       "input": {
         "type": "object",
         "properties": {
@@ -111,6 +111,80 @@
                       "horseName": { "type": "string" },
                       "reason": { "type": "string" },
                       "winProbability": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "source": { "type": "string" },
+          "oddsSource": { "type": "string" },
+          "timestamp": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "fetchRaceResults",
+      "description": "Fetch official race placings, final WIN odds, and dividends for a date (default: latest available results)",
+      "input": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date in YYYY-MM-DD format. Omit to fetch the latest available results."
+          },
+          "raceNo": {
+            "type": "number",
+            "description": "Optional race number. If omitted, returns all races for that date."
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string" },
+          "venue": { "type": "string" },
+          "races": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "raceNo": { "type": "number" },
+                "raceId": { "type": "number" },
+                "raceName": { "type": "string" },
+                "class": { "type": "string" },
+                "distance": { "type": "number" },
+                "going": { "type": "string" },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "position": { "type": "string" },
+                      "horseNo": { "type": "number" },
+                      "horseName": { "type": "string" },
+                      "horseId": { "type": "string" },
+                      "jockey": { "type": "string" },
+                      "trainer": { "type": "string" },
+                      "actualWeight": { "type": "number" },
+                      "declaredHorseWeight": { "type": "number" },
+                      "barrier": { "type": "number" },
+                      "lengthsBehind": { "type": "string" },
+                      "runningPosition": { "type": "string" },
+                      "finishTime": { "type": "string" },
+                      "winOdds": { "type": "number" }
+                    }
+                  }
+                },
+                "dividends": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "pool": { "type": "string" },
+                      "winningCombination": { "type": "string" },
+                      "dividend": { "type": "number" }
                     }
                   }
                 }

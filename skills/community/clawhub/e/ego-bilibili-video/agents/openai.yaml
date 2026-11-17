@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bilibili video"
+  short_description: "Publish a Bilibili video with separate 4:3 and 16:9 covers via Ego Lite; login-check first"
+  default_prompt: "Use bilibili-video: check-login, then publish a local video file with --cover-4x3 and --cover-16x9 and --yes. Success is 投稿成功 / 审核中."

@@ -1,45 +1,61 @@
-## Description: <br>
-Guides users through installing the Maton API Plan browser-capture Chrome extension and using exported or relay-fetched matonPlan JSON with API Gateway to suggest Maton OAuth connectors based on browsing activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to help users install the Maton browsing capture extension and use exported matonPlan signals with API Gateway to suggest Maton OAuth connectors based on real browsing activity.
 
-## Publisher: <br>
-[robert0812](https://clawhub.ai/user/robert0812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robert0812](https://clawhub.ai/user/robert0812)
 
-## Use Case: <br>
-Developers and agent users use this skill to install or pair the Maton browser-capture extension, ingest matonPlan JSON from downloads or a local relay, and decide which Maton API Gateway OAuth connectors to add with user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browsing-derived summaries and connector suggestions can reveal sensitive activity. <br>
-Mitigation: Exclude sensitive origins, install from the Chrome Web Store when possible, and share exported matonPlan data only when comfortable with agent analysis. <br>
-Risk: OAuth connector setup can affect accounts and data access. <br>
-Mitigation: Require clear user approval before opening or completing any Maton OAuth connector flow. <br>
-Risk: The local relay may expose recent browser-derived exports if left enabled or unprotected. <br>
-Mitigation: Enable the relay only when needed, use a relay token, and protect MATON_API_KEY and relay credentials. <br>
+## Use Case:
 
+Developers and external users use this skill to connect browsing-derived Maton plan signals with the API Gateway skill, compare those signals with existing Maton connections, and ask before starting relevant OAuth connector flows.
 
-## Reference(s): <br>
-- [Maton browse plan homepage](https://github.com/Robert0812/maton-browse-plan) <br>
-- [Maton API Plan Chrome Web Store listing](https://chromewebstore.google.com/detail/dgecpbbjdgiindogaboidejihbmkhnai) <br>
-- [API Gateway skill](https://clawhub.ai/byungkyu/api-gateway) <br>
-- [matonPlan JSON Schema](artifact/maton-plan.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON field references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May analyze matonPlan JSON and local relay responses; requires MATON_API_KEY for API Gateway operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill directs users to a browser extension that can access browsing history and tabs and make browsing-derived plans available to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable with those permissions, review captured data before sharing it, and prefer one-shot downloaded JSON for tighter control.
+
+Risk: The skill can repeatedly read browsing-derived data through a local relay when the relay is running.
+
+Mitigation: Run the relay only when needed, use the narrowest browser and install option available, and fall back to downloaded JSON when continuous relay access is unnecessary.
+
+Risk: The optional native-host installer expands local browser integration for popup-controlled relay start and stop.
+
+Mitigation: Avoid the native-host installer unless that control is needed and verify the browser extension ID before registering it.
+
+## Reference(s):
+
+- [Maton browse plan homepage](https://github.com/Robert0812/maton-browse-plan)
+- [Maton API Plan browsing capture Chrome Web Store listing](https://chromewebstore.google.com/detail/dgecpbbjdgiindogaboidejihbmkhnai)
+- [API Gateway skill](https://clawhub.ai/byungkyu/api-gateway)
+- [Maton plan JSON schema](https://maton-browse-plan/schema/maton-plan/v1.json)
+- [ClawHub skill page](https://clawhub.ai/robert0812/skills/maton-browse-plan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MATON_API_KEY for Maton operations; uses user-provided or relay-fetched matonPlan JSON as input evidence.]
+
+## Skill Version(s):
+
+1.3.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

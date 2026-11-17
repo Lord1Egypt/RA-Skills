@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T5 - 多列布局（Grid + Flexbox）</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #f8f9fa; padding: 40px; }
+    h1 { text-align: center; margin-bottom: 40px; color: #333; }
+
+    /* Grid 布局 */
+    .grid-section { margin-bottom: 50px; }
+    .grid-section h2 { text-align: center; margin-bottom: 20px; color: #555; }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .grid-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .grid-card:hover { transform: translateY(-4px); }
+    .grid-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .grid-card h3 { font-size: 18px; margin-bottom: 8px; color: #333; }
+    .grid-card p { font-size: 14px; color: #666; line-height: 1.6; }
+
+    /* Flexbox 布局 */
+    .flex-section { margin-bottom: 50px; }
+    .flex-section h2 { text-align: center; margin-bottom: 20px; color: #555; }
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+    .flex-item {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      padding: 16px 24px;
+      min-width: 180px;
+      text-align: center;
+    }
+    .flex-item .num { font-size: 28px; font-weight: bold; }
+    .flex-item .label { font-size: 12px; opacity: 0.9; margin-top: 4px; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .grid-container { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .grid-container { grid-template-columns: 1fr; }
+      .flex-item { min-width: 140px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>📐 T5 - 多列布局测试</h1>
+
+  <div class="grid-section">
+    <h2>🔲 CSS Grid 三列布局</h2>
+    <div class="grid-container">
+      <div class="grid-card">
+        <div class="icon">🚀</div>
+        <h3>快速部署</h3>
+        <p>一键部署到生产环境，无需复杂配置。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">🔒</div>
+        <h3>安全可靠</h3>
+        <p>企业级安全防护，数据加密存储。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">📊</div>
+        <h3>数据分析</h3>
+        <p>实时数据看板，多维度分析报表。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">🔄</div>
+        <h3>自动同步</h3>
+        <p>多端数据实时同步，永不丢失。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">🎨</div>
+        <h3>灵活定制</h3>
+        <p>支持自定义主题和布局配置。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">💬</div>
+        <h3>团队协作</h3>
+        <p>多人协作编辑，权限精细控制。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">📱</div>
+        <h3>移动适配</h3>
+        <p>完美适配手机、平板、桌面端。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">⚡</div>
+        <h3>高性能</h3>
+        <p>毫秒级响应，支持高并发访问。</p>
+      </div>
+      <div class="grid-card">
+        <div class="icon">🔧</div>
+        <h3>开放 API</h3>
+        <p>完整的 API 文档，轻松集成。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-section">
+    <h2>〰️ Flexbox 响应式布局</h2>
+    <div class="flex-container">
+      <div class="flex-item"><div class="num">99.9%</div><div class="label">可用性</div></div>
+      <div class="flex-item"><div class="num">50ms</div><div class="label">响应时间</div></div>
+      <div class="flex-item"><div class="num">10K+</div><div class="label">用户数</div></div>
+      <div class="flex-item"><div class="num">24/7</div><div class="label">技术支持</div></div>
+      <div class="flex-item"><div class="num">50+</div><div class="label">集成服务</div></div>
+      <div class="flex-item"><div class="num">100%</div><div class="label">数据安全</div></div>
+    </div>
+  </div>
+
+  <div class="grid-section">
+    <h2>📐 四列布局</h2>
+    <div class="grid-container" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="grid-card"><div class="icon">👤</div><h3>用户</h3><p>账户管理</p></div>
+      <div class="grid-card"><div class="icon">⚙️</div><h3>设置</h3><p>系统配置</p></div>
+      <div class="grid-card"><div class="icon">📁</div><h3>文件</h3><p>文档管理</p></div>
+      <div class="grid-card"><div class="icon">📈</div><h3>统计</h3><p>数据分析</p></div>
+    </div>
+  </div>
+</body>
+</html>

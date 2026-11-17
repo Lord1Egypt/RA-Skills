@@ -1,45 +1,58 @@
-## Description: <br>
-门诊病历内涵质控：未记录肿瘤名称。给定门诊病历文本，调用内部医疗大模型，输出无缺陷或有缺陷及原因。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks outpatient medical records for cases where a tumor or cancer history is recorded without a specific tumor name, using a medical LLM to return pass/fail status and a reason.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical quality-control teams and authorized operators use this skill to check de-identified outpatient EMR text for missing tumor names in the history fields. It returns a concise defect result for review by qualified medical staff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical record content may be sent to the configured remote LLM endpoint. <br>
-Mitigation: Use only de-identified records, confirm authorization and provider retention terms, and route requests only to approved endpoints. <br>
-Risk: Authentication keys are required for the remote model call. <br>
-Mitigation: Keep appkeys out of repositories and pass them through approved secret-handling workflows. <br>
-Risk: Optional prepared-text debug output can persist sensitive medical content locally. <br>
-Mitigation: Avoid --save-prepared for real patient data and delete any temporary prepared files created during testing. <br>
-Risk: The result is an auxiliary quality-control signal, not a medical diagnosis. <br>
-Mitigation: Require review by qualified medical staff before acting on any defect result. <br>
+## Use Case:
 
+Healthcare quality-control teams and developers use this skill to screen de-identified outpatient record text for a specific documentation defect: tumor or cancer history without a specific tumor name. The output supports review workflows and should be checked by qualified clinicians.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-missing-tumor-name) <br>
-- [HiVoice MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [UTF-8 text result: 无缺陷, or 有缺陷 followed by a reason] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also write the result to a local output file when run through the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive medical record content and the API key may be sent to a configurable external endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified records, use an approved medical-LLM endpoint, and do not pass an untrusted --base value.
+
+Risk: Generated output files and saved prepared text can contain sensitive medical data.
+
+Mitigation: Store, restrict, or delete output and --save-prepared files according to the applicable privacy policy.
+
+Risk: The skill is an auxiliary quality-control aid and may produce incorrect or incomplete conclusions.
+
+Mitigation: Require review by qualified clinicians before using results in medical documentation workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-missing-tumor-name)
+- [HiVoice MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [UTF-8 text containing pass/fail status and, when defective, a reason.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the quality-control result to an output path and prints the same result to stdout.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

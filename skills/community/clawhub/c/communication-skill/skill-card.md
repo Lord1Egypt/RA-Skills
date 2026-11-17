@@ -1,42 +1,56 @@
-## Description: <br>
-Helps agents draft context-aware, empathetic messages by gathering relevant context, listening for emotional subtext, applying communication principles, and producing ready-to-send drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents craft context-aware, empathetic messages by listening for explicit context, emotional subtext, relationship dynamics, and the user's communication objective.
 
-## Publisher: <br>
-[aatmaan1](https://clawhub.ai/user/aatmaan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aatmaan1](https://clawhub.ai/user/aatmaan1)
 
-## Use Case: <br>
-External users and employees use this skill to draft replies, emails, and difficult-conversation messages that reflect the user's objective, relationship context, and desired tone. It is intended for communication support, not autonomous message sending. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may use sensitive communication history, connected sources, or user notes when available. <br>
-Mitigation: Install and use it only when this context access is appropriate, and avoid providing private information that is not needed for the communication task. <br>
-Risk: Generated drafts may misread tone, relationship context, or workplace sensitivity. <br>
-Mitigation: Review and edit every generated message before sending, especially for sensitive personal or professional situations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Deep Listening Framework](references/listening-framework.md) <br>
-- [Communication Principles](references/principles.md) <br>
-- [Psychology & Human Behavior Patterns](references/psychology-patterns.md) <br>
-- [Response Crafting Guide](references/response-crafting.md) <br>
+## Use Case:
 
+External users and developers use this skill to draft replies, emails, messages, and difficult-conversation responses that account for relationship context, tone, objectives, and relevant user-provided history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with rationale, draft message, and optional notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise context summaries, tone rationale, alternative considerations, and follow-up suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may use available conversation history or user-provided notes to improve draft quality, which can involve sensitive personal, workplace, or third-party information.
+
+Mitigation: Confirm the user is comfortable using that context and avoid including private details that are unnecessary for the message.
+
+Risk: Generated drafts for sensitive relationships or workplace issues can affect tone, trust, or outcomes if sent without review.
+
+Mitigation: Have the user review and adjust the draft before sending, especially for high-stakes or emotionally charged situations.
+
+## Reference(s):
+
+- [Communication Skill on ClawHub](https://clawhub.ai/aatmaan1/skills/communication-skill)
+- [Deep Listening Framework](references/listening-framework.md)
+- [Communication Principles](references/principles.md)
+- [Psychology & Human Behavior Patterns](references/psychology-patterns.md)
+- [Response Crafting Guide](references/response-crafting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a brief context summary, approach rationale, draft message, and optional notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are advisory and should be reviewed by the user before sending.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

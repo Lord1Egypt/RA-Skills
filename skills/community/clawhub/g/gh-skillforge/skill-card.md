@@ -1,40 +1,58 @@
-## Description: <br>
-Generate valid, ClawHub-ready SKILL.md files from product metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate valid, ClawHub-ready SKILL.md files from product metadata.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and skill publishers use Skillforge to turn product metadata, instructions, optional environment variables, and optional binary requirements into ClawHub-ready SKILL.md content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SKILL.md content may carry incorrect or unsuitable instructions when the input instructions come from an untrusted source. <br>
-Mitigation: Review and scan generated SKILL.md files before publishing or deployment. <br>
-Risk: Use requires installing Python dependencies and running a local FastAPI server. <br>
-Mitigation: Install only if the dependency set is acceptable for the target environment and run the server locally. <br>
+## Use Case:
 
+Developers and skill publishers use Skillforge to generate ClawHub-ready SKILL.md files from product metadata, instructions, optional environment variables, and optional binary requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/gh-skillforge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, text] <br>
-**Output Format:** [JSON response containing generated SKILL.md Markdown and a normalized slug.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SKILL.md content can include optional environment variable and binary requirement declarations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Running the local API server in an inappropriate environment may expose the generator service beyond intended local use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where a local Python API server is acceptable, and do not expose the localhost service to untrusted networks.
+
+Risk: Unpinned Python dependencies can reduce reproducibility or assurance for high-control deployments.
+
+Mitigation: Review or pin FastAPI, Uvicorn, Pydantic, and PyYAML dependencies before use in reproducible or high-assurance environments.
+
+Risk: Generated SKILL.md content is based on user-supplied metadata and instructions and may contain incomplete or incorrect skill guidance.
+
+Mitigation: Review generated skill content before publishing or installing it.
+
+## Reference(s):
+
+- [ClawHub Skillforge listing](https://clawhub.ai/mirni/skills/gh-skillforge)
+- [ClawHub publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [JSON response containing generated Markdown skill content and a normalized slug]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated SKILL.md includes YAML frontmatter, Markdown instructions, slug normalization, and optional OpenClaw requirements metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

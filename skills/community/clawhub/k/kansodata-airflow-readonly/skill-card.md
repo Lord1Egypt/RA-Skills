@@ -1,43 +1,57 @@
-## Description: <br>
-Provides read-only inspection of Apache Airflow DAGs, DAG runs, and task instances through the Airflow REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent inspect Apache Airflow DAGs, DAG runs, and task instances through read-only REST API queries.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Developers and Airflow operators use this skill to inspect DAG inventories, recent DAG runs, and task instances without changing Airflow state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external Airflow plugin and credential permissions determine the real operational impact. <br>
-Mitigation: Use an Airflow credential limited to read-only API access and install only when the referenced plugin is trusted. <br>
-Risk: The skill requires valid host configuration and authentication to inspect Airflow. <br>
-Mitigation: Report missing configuration or authentication errors explicitly instead of inventing values or assuming Airflow state. <br>
-Risk: Accidental mutation requests would exceed the intended scope. <br>
-Mitigation: Use only the listed read-only tools and decline trigger, pause, delete, patch, update, or other state-changing actions. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect Airflow workflow metadata, diagnose DAG run or task status, and keep investigations read-only.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kansodata/kansodata-airflow-readonly) <br>
-- [kansodata publisher profile](https://clawhub.ai/user/kansodata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, api calls, guidance] <br>
-**Output Format:** [Concise Markdown summaries with exact Airflow identifiers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only responses should report missing configuration, authentication errors, or empty results explicitly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Airflow credentials could expose more metadata than intended if configured with broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only Airflow token with the narrowest practical scope before enabling the skill.
+
+Risk: A misconfigured or untrusted Airflow plugin could return incorrect or unintended data.
+
+Mitigation: Verify that the referenced Airflow plugin is the trusted plugin before configuring credentials.
+
+Risk: Operational diagnosis can be misleading if DAG or run identifiers are guessed.
+
+Mitigation: Use exact identifiers returned by read-only list operations and stop when authentication, configuration, or lookup errors occur.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kansodata/skills/kansodata-airflow-readonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with brief lists and exact Airflow identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses only read-only Airflow list operations and reports configuration or authentication errors without guessing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

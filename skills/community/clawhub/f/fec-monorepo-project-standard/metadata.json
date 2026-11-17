@@ -1,6 +1,6 @@
 {
   "id": "fec-monorepo-project-standard",
-  "name": "Monorepo 项目规范",
+  "name": "Monorepo project specifications",
   "category": "project-standard",
   "tags": [
     "monorepo",
@@ -9,8 +9,8 @@
     "nx",
     "workspace"
   ],
-  "summary": "Frontend Craft skill for Monorepo 项目规范.",
-  "version": "2.4.0",
+  "summary": "Structure frontend packages, workspace boundaries, and tasks in pnpm, Turborepo, or Nx monorepos.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when creating, reviewing, or restructuring frontend monorepos with pnpm workspace, Turborepo, Nx, multi-package dependency boundaries, task orchestration, package naming, or package publishing; Chinese triggers include monorepo, workspace, 多包.",
+  "description": "Use when creating, reviewing, or restructuring frontend monorepos with pnpm workspace, Turborepo, Nx, multi-package dependency boundaries, task orchestration, package naming, or package publishing; Chinese triggers include monorepo, workspace, multi-package.",
   "source": "skills/fec-monorepo-project-standard",
   "references": []
 }

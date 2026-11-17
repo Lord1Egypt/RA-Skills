@@ -1,39 +1,52 @@
-## Description: <br>
-Write winning grant proposals for nonprofits and social impact organizations, covering grant research and selection, proposal structure, narrative writing, budget development, evaluation plans, and submission best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grant Writing Framework helps nonprofits and social impact organizations research funding opportunities, structure grant proposals, write persuasive narratives, build budgets, plan evaluations, and prepare submissions.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Nonprofit and social impact teams use this skill to structure grant research, draft funder-aligned proposals, build budgets, plan evaluation metrics, and prepare submission materials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Grant proposals may contain outdated or incorrect funder eligibility, deadline, budget, or submission details. <br>
-Mitigation: Manually verify funder requirements, eligibility, deadlines, budget figures, and final submissions before use. <br>
-Risk: Proposal drafting can expose confidential financial, donor, staff, or beneficiary information. <br>
-Mitigation: Share only the minimum necessary sensitive information and remove unnecessary confidential details from prompts and drafts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Grant Writing Framework on ClawHub](https://clawhub.ai/JK-0001/grant-writing-framework) <br>
+## Use Case:
 
+External nonprofit and social impact teams use this skill to plan, draft, review, and submit grant proposals for foundation grants, government funding, corporate sponsorships, and capacity-building grants.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with templates, checklists, examples, tables, and proposal drafting prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, tool calls, credentials, or automatic actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated grant content may omit or misstate funder-specific eligibility, budget, legal, formatting, or submission requirements.
+
+Mitigation: Verify all proposal claims, eligibility rules, budget figures, required attachments, deadlines, and submission instructions against the specific funder's official materials before submission.
+
+Risk: The skill may activate for broad funding or fundraising questions where grant-writing guidance is only partly relevant.
+
+Mitigation: Confirm that the user's request is actually about grant proposal planning, drafting, or review before applying the full framework.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jk-0001/skills/grant-writing-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with templates, checklists, tables, and proposal examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content guide only; users should verify funder requirements, eligibility, budgets, legal requirements, and submission rules before relying on generated proposals.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

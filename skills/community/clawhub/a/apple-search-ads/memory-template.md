@@ -1,13 +1,12 @@
 # Memory Template — Apple Search Ads
 
-Create `~/apple-search-ads/memory.md` with this structure:
+Create `~/Clawic/data/apple-search-ads/memory.md` with this structure:
 
 ```markdown
 # Apple Search Ads Memory
 
 ## Status
 status: ongoing
-version: 1.0.0
 last: YYYY-MM-DD
 integration: pending | done | declined
 
@@ -83,7 +82,7 @@ integration: pending | done | declined
 
 ## Credentials Template
 
-Create `~/apple-search-ads/credentials.md`:
+Create `~/Clawic/data/apple-search-ads/credentials.md`:
 
 ```markdown
 # Apple Search Ads Credentials
@@ -99,7 +98,7 @@ Get these from: https://app.searchads.apple.com/cm/app/settings/apicertificates
 | `ASA_CLIENT_ID` | API client ID | API settings page |
 | `ASA_TEAM_ID` | Your team ID | API settings page |
 | `ASA_KEY_ID` | Key identifier | API settings page |
-| `ASA_PRIVATE_KEY` | Private key (PEM) | Downloaded when created |
+| `ASA_PRIVATE_KEY_FILE` | Path to the .p8 private key | Downloaded once at key creation |
 | `ASA_ORG_ID` | Organization ID | Account settings |
 
 ## Setting Environment Variables
@@ -111,15 +110,15 @@ export ASA_TEAM_ID="your-team-id"
 export ASA_KEY_ID="your-key-id"
 export ASA_ORG_ID="your-org-id"
 
-# For private key, reference a file
-export ASA_PRIVATE_KEY="$(cat ~/.secrets/asa-private-key.pem)"
+# The key stays in a file; only its PATH goes in the environment
+export ASA_PRIVATE_KEY_FILE="$HOME/.secrets/asa-private-key.p8"
 ```
 
 ## Testing Connection
 
 ```bash
-# After setting variables, test with:
-source ~/apple-search-ads/scripts/get-token.sh
+# After setting variables, a token should come back non-empty:
+~/Clawic/data/apple-search-ads/scripts/get-token.sh
 ```
 ```
 

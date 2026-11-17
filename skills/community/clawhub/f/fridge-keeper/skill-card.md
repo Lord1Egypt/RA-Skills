@@ -1,43 +1,53 @@
-## Description: <br>
-Fridge Keeper helps users record fridge inventory, track expiration dates, surface near-expiry items, and recommend recipes from available ingredients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+冰箱食物管理助手。用于记录食物的入库与出库、追踪保质期、提醒临期食品、提供烹饪建议。
 
-## Publisher: <br>
-[lz6060788](https://clawhub.ai/user/lz6060788) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lz6060788](https://clawhub.ai/user/lz6060788)
 
-## Use Case: <br>
-Household users and assistants use this skill to maintain a fridge inventory, configure local or database storage, check expiring food, and get recipe suggestions that prioritize food that should be used soon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Household food inventory data may reveal personal routines or preferences when stored locally or in a database. <br>
-Mitigation: Prefer local storage unless database access is needed, and store only the food records required for the workflow. <br>
-Risk: Database mode requires user-provided connection details and could expose broader data if over-privileged credentials are reused. <br>
-Mitigation: Use a dedicated low-privilege database user and avoid reusing important passwords. <br>
-Risk: Expiry dates and recipe suggestions rely on user-provided shelf-life values or general AI food knowledge. <br>
-Mitigation: Ask users to confirm uncertain shelf-life values and treat food-safety decisions as user-verified guidance. <br>
+## Use Case:
 
+External users and household assistants use this skill to track fridge inventory, record food entry and removal, identify food nearing expiration, and generate recipe suggestions from available ingredients.
 
-## Reference(s): <br>
-- [Food expiry storage notes](references/food_expiry.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lz6060788/fridge-keeper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown or plain text responses, with JSON configuration and inventory records when storage is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local fridge inventory and configuration files, or connect to a user-provided MySQL, PostgreSQL, or MongoDB database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store fridge inventory and database credentials on disk or in a configured database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restrictive file permissions, avoid shared configuration files, and use a dedicated low-privilege database account for database mode.
+
+Risk: Database mode needs review before use because the security summary flags unsafe database update code.
+
+Mitigation: Harden database update handling before deployment, including limiting updateable fields and reviewing database permissions.
+
+## Reference(s):
+
+- [Food Expiry Reference](references/food_expiry.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, files]
+
+**Output Format:** [Markdown or plain text responses with JSON-backed local or database storage records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write fridge inventory and configuration data to local files or a user-selected database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Generate or edit images through OpenRouter's multimodal image generation endpoint (`/api/v1/chat/completions`) using OpenRouter-compatible image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images through OpenRouter's multimodal image generation endpoint (`/api/v1/chat/completions`) using OpenRouter-compatible image models.
 
-## Publisher: <br>
-[Bawerlacher](https://clawhub.ai/user/Bawerlacher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bawerlacher](https://clawhub.ai/user/bawerlacher)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate new images or edit existing images through OpenRouter-compatible image models, with configurable model, aspect ratio, image size, and provider-specific image options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to OpenRouter for generation or editing. <br>
-Mitigation: Use a scoped OpenRouter API key and do not provide sensitive prompts or local images unless they are intended to be shared with the provider. <br>
-Risk: Generated files may be written outside the expected handoff directory if a different filename path is provided. <br>
-Mitigation: Use the recommended outbound media directory or another intentional safe output path. <br>
-Risk: Model or provider-specific image configuration may be rejected by OpenRouter. <br>
-Mitigation: Remove unsupported image configuration options or switch to a model that supports the requested aspect ratio, image size, and modality. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenRouter image generation documentation](https://openrouter.ai/docs/guides/overview/multimodal/image-generation) <br>
-- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions) <br>
-- [ClawHub skill page](https://clawhub.ai/Bawerlacher/openrouter-image-generation) <br>
-- [Publisher profile](https://clawhub.ai/user/Bawerlacher) <br>
+## Use Case:
 
+Developers and agents use this skill to generate new images or edit existing images through OpenRouter-compatible image models, with support for model selection, aspect ratio, image size, and provider-specific image configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated PNG image files saved to the requested output path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper prints the saved file path and supports base64 data URL image responses from OpenRouter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and selected input images are sent to OpenRouter for generation or editing.
+
+Mitigation: Use the skill only when those prompts and images are appropriate to share with OpenRouter.
+
+Risk: Passing the API key as a command-line argument can expose it through shell history or process listings.
+
+Mitigation: Set OPENROUTER_API_KEY in the environment instead of using --api-key.
+
+Risk: Generated files can overwrite existing outputs if reused filenames are supplied.
+
+Mitigation: Save outputs under ~/.openclaw/media/outbound with fresh timestamped filenames.
+
+Risk: Model or image_config choices may be unsupported by a selected OpenRouter model.
+
+Mitigation: If a request fails, remove unsupported image_config options or switch to a compatible image-capable model.
+
+## Reference(s):
+
+- [OpenRouter image generation documentation](https://openrouter.ai/docs/guides/overview/multimodal/image-generation)
+- [OpenRouter Chat Completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+- [ClawHub skill page](https://clawhub.ai/bawerlacher/skills/openrouter-image-generation)
+- [Publisher profile](https://clawhub.ai/user/bawerlacher)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with shell command examples and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves the first returned image to a requested file path and prints the saved path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

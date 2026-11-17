@@ -1,40 +1,58 @@
-## Description: <br>
-AI Agent Immune System - Security scanner, PII sanitizer, and intent-action mismatch detector with 285+ patterns, OWASP Agentic AI Top 10 coverage, and local-only operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawGuard helps agents run local security scans, sanitize possible PII, check suspicious text, and compare intended actions with proposed commands.
 
-## Publisher: <br>
-[NeuZhou](https://clawhub.ai/user/NeuZhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuzhou](https://clawhub.ai/user/neuzhou)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run local security scans, sanitize possible PII before sharing text with external services, and compare intended actions against potentially dangerous commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells agents to run an unpinned external npm command automatically across broad situations. <br>
-Mitigation: Prefer manual scans, pin and verify the CLI package before use, and require explicit user control for recurring or background scans. <br>
-Risk: The sanitizer may process sensitive text or real secrets before the CLI source and data handling are fully audited. <br>
-Mitigation: Do not run sanitizer commands on real secrets until the CLI implementation and local data handling have been reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local security checks around skill installs, workspace scans, PII handling, suspicious prompts, and intent-action mismatches before executing risky actions.
 
-## Reference(s): <br>
-- [ClawGuard homepage](https://github.com/NeuZhou/clawguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, analysis] <br>
-**Output Format:** [Markdown with inline bash code blocks and concise scan or warning summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill invokes Node-based CLI commands through npx and may produce text, JSON, or SARIF scan output depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to run a third-party npm package through an unpinned latest tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed CLI version before allowing automatic scans or checks.
+
+Risk: The skill encourages repeated inspection of local skill and workspace content.
+
+Mitigation: Enable patrol scans only for directories the user has approved for local security review.
+
+Risk: The sanitizer examples pass sensitive text as command-line arguments.
+
+Mitigation: Avoid placing secrets directly in shell command arguments; use safer input handling where the CLI supports it.
+
+## Reference(s):
+
+- [ClawGuard homepage](https://github.com/NeuZhou/clawguard)
+- [ClawGuard issue tracker](https://github.com/NeuZhou/ClawGuard-ai/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands invoke a Node-based CLI through npx; scan output can be requested as text, JSON, or SARIF.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

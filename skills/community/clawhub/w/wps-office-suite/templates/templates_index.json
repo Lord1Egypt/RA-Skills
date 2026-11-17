@@ -1,0 +1,423 @@
+{
+  "version": "4.9.0",
+  "total": 56,
+  "categories": {
+    "official": {
+      "label": "公文模板",
+      "count": 12,
+      "description": "政府/企业公文标准格式"
+    },
+    "contract": {
+      "label": "合同模板",
+      "count": 10,
+      "description": "各类商务合同范本"
+    },
+    "resume": {
+      "label": "简历模板",
+      "count": 8,
+      "description": "求职简历多种风格"
+    },
+    "bid": {
+      "label": "标书模板",
+      "count": 8,
+      "description": "投标书标准格式"
+    },
+    "report": {
+      "label": "报告模板",
+      "count": 10,
+      "description": "各类工作报告/调研报告"
+    },
+    "meeting": {
+      "label": "会议模板",
+      "count": 8,
+      "description": "会议纪要/议程/记录"
+    }
+  },
+  "templates": [
+    {
+      "name": "通知",
+      "category": "official",
+      "format": "docx",
+      "description": "标准公文通知格式",
+      "placeholders": ["标题", "正文", "发文单位", "日期"]
+    },
+    {
+      "name": "请示",
+      "category": "official",
+      "format": "docx",
+      "description": "向上级请示标准格式",
+      "placeholders": ["标题", "正文", "请示事项", "日期"]
+    },
+    {
+      "name": "报告",
+      "category": "official",
+      "format": "docx",
+      "description": "向上级报告标准格式",
+      "placeholders": ["标题", "正文", "工作概况", "日期"]
+    },
+    {
+      "name": "函",
+      "category": "official",
+      "format": "docx",
+      "description": "商务往来函标准格式",
+      "placeholders": ["标题", "正文", "发函单位", "收函单位", "日期"]
+    },
+    {
+      "name": "会议纪要",
+      "category": "official",
+      "format": "docx",
+      "description": "公文会议纪要标准格式",
+      "placeholders": ["会议名称", "会议时间", "参会人员", "会议内容", "决议事项"]
+    },
+    {
+      "name": "决定",
+      "category": "official",
+      "format": "docx",
+      "description": "行政决定标准格式",
+      "placeholders": ["标题", "正文", "发文单位", "日期"]
+    },
+    {
+      "name": "批复",
+      "category": "official",
+      "format": "docx",
+      "description": "上级批复标准格式",
+      "placeholders": ["标题", "正文", "批复单位", "日期"]
+    },
+    {
+      "name": "通报",
+      "category": "official",
+      "format": "docx",
+      "description": "通报标准格式",
+      "placeholders": ["标题", "正文", "发文单位", "日期"]
+    },
+    {
+      "name": "公告",
+      "category": "official",
+      "format": "docx",
+      "description": "公开公告标准格式",
+      "placeholders": ["标题", "正文", "发布单位", "日期"]
+    },
+    {
+      "name": "议案",
+      "category": "official",
+      "format": "docx",
+      "description": "人大/政协议案标准格式",
+      "placeholders": ["案由", "理由", "办法", "提案人", "日期"]
+    },
+    {
+      "name": "工作总结",
+      "category": "official",
+      "format": "docx",
+      "description": "年度/季度工作总结",
+      "placeholders": ["标题", "工作概况", "主要成绩", "存在问题", "下步计划", "日期"]
+    },
+    {
+      "name": "工作计划",
+      "category": "official",
+      "format": "docx",
+      "description": "年度/季度工作计划",
+      "placeholders": ["标题", "指导思想", "工作目标", "具体措施", "时间安排", "日期"]
+    },
+    {
+      "name": "买卖合同",
+      "category": "contract",
+      "format": "docx",
+      "description": "标准商品买卖合同范本",
+      "placeholders": ["买方", "卖方", "标的物", "数量", "单价", "总价", "交货地点", "付款方式", "违约责任", "签订日期"]
+    },
+    {
+      "name": "租赁合同",
+      "category": "contract",
+      "format": "docx",
+      "description": "房屋租赁/设备租赁合同",
+      "placeholders": ["出租方", "承租方", "租赁物", "租赁期限", "租金", "押金", "签订日期"]
+    },
+    {
+      "name": "服务合同",
+      "category": "contract",
+      "format": "docx",
+      "description": "咨询服务/技术服务合同",
+      "placeholders": ["委托方", "受托方", "服务内容", "服务期限", "费用", "签订日期"]
+    },
+    {
+      "name": "劳动合同",
+      "category": "contract",
+      "format": "docx",
+      "description": "标准劳动合同范本",
+      "placeholders": ["用人单位", "劳动者", "合同期限", "工作地点", "岗位", "薪资", "签订日期"]
+    },
+    {
+      "name": "保密协议",
+      "category": "contract",
+      "format": "docx",
+      "description": "商业秘密保密协议",
+      "placeholders": ["甲方", "乙方", "保密内容", "保密期限", "违约责任", "签订日期"]
+    },
+    {
+      "name": "竞业限制协议",
+      "category": "contract",
+      "format": "docx",
+      "description": "竞业禁止协议范本",
+      "placeholders": ["用人单位", "劳动者", "限制期限", "补偿金", "签订日期"]
+    },
+    {
+      "name": "投资协议",
+      "category": "contract",
+      "format": "docx",
+      "description": "股权投资/融资协议",
+      "placeholders": ["投资方", "融资方", "投资金额", "股权比例", "签订日期"]
+    },
+    {
+      "name": "合伙协议",
+      "category": "contract",
+      "format": "docx",
+      "description": "合伙企业合伙协议",
+      "placeholders": ["合伙人", "出资方式", "利润分配", "入伙退伙", "签订日期"]
+    },
+    {
+      "name": "委托书",
+      "category": "contract",
+      "format": "docx",
+      "description": "授权委托书标准格式",
+      "placeholders": ["委托人", "受托人", "委托事项", "委托权限", "委托期限", "日期"]
+    },
+    {
+      "name": "和解协议",
+      "category": "contract",
+      "format": "docx",
+      "description": "民事/商事和解协议",
+      "placeholders": ["甲方", "乙方", "纠纷事实", "和解条款", "签订日期"]
+    },
+    {
+      "name": "经典简历",
+      "category": "resume",
+      "format": "docx",
+      "description": "经典简洁风格简历",
+      "placeholders": ["姓名", "联系方式", "求职意向", "教育背景", "工作经历", "技能特长"]
+    },
+    {
+      "name": "现代简历",
+      "category": "resume",
+      "format": "docx",
+      "description": "现代蓝色主题简历",
+      "placeholders": ["姓名", "联系方式", "求职意向", "教育背景", "工作经历", "技能特长"]
+    },
+    {
+      "name": "商务简历",
+      "category": "resume",
+      "format": "docx",
+      "description": "深色商务风格简历",
+      "placeholders": ["姓名", "联系方式", "求职意向", "教育背景", "工作经历", "技能特长"]
+    },
+    {
+      "name": "应届生简历",
+      "category": "resume",
+      "format": "docx",
+      "description": "应届生专用简历模板",
+      "placeholders": ["姓名", "联系方式", "求职意向", "教育背景", "实习经历", "获奖情况"]
+    },
+    {
+      "name": "英文简历",
+      "category": "resume",
+      "format": "docx",
+      "description": "标准英文简历模板",
+      "placeholders": ["Name", "Contact", "Objective", "Education", "Experience", "Skills"]
+    },
+    {
+      "name": "简历封面",
+      "category": "resume",
+      "format": "docx",
+      "description": "简历封面页模板",
+      "placeholders": ["姓名", "应聘职位", "毕业院校", "联系方式"]
+    },
+    {
+      "name": "自荐信",
+      "category": "resume",
+      "format": "docx",
+      "description": "求职自荐信模板",
+      "placeholders": ["姓名", "应聘职位", "自我介绍", "能力优势", "期望薪资", "联系方式"]
+    },
+    {
+      "name": "转岗申请",
+      "category": "resume",
+      "format": "docx",
+      "description": "内部转岗申请模板",
+      "placeholders": ["姓名", "现岗位", "申请岗位", "转岗原因", "相关经验", "日期"]
+    },
+    {
+      "name": "投标书封面",
+      "category": "bid",
+      "format": "docx",
+      "description": "投标书封面/封套模板",
+      "placeholders": ["项目名称", "招标编号", "投标人", "日期"]
+    },
+    {
+      "name": "技术标书",
+      "category": "bid",
+      "format": "docx",
+      "description": "技术标书模板（技术方案部分）",
+      "placeholders": ["项目名称", "技术方案", "实施计划", "项目团队", "质量保证"]
+    },
+    {
+      "name": "商务标书",
+      "category": "bid",
+      "format": "docx",
+      "description": "商务标书模板（报价/资质部分）",
+      "placeholders": ["项目名称", "总报价", "分项报价", "资质证明", "业绩证明"]
+    },
+    {
+      "name": "施工组织设计",
+      "category": "bid",
+      "format": "docx",
+      "description": "工程施工组织设计模板",
+      "placeholders": ["工程名称", "编制依据", "施工部署", "进度计划", "资源配置"]
+    },
+    {
+      "name": "项目管理方案",
+      "category": "bid",
+      "format": "docx",
+      "description": "IT项目管理实施方案模板",
+      "placeholders": ["项目名称", "项目范围", "实施计划", "风险管理", "验收标准"]
+    },
+    {
+      "name": "售后服务承诺",
+      "category": "bid",
+      "format": "docx",
+      "description": "售后服务及质保承诺模板",
+      "placeholders": ["服务承诺", "响应时间", "质保期限", "培训计划", "联系方式"]
+    },
+    {
+      "name": "财务报表",
+      "category": "bid",
+      "format": "xlsx",
+      "description": "财务报表模板（资产负债表/利润表/现金流量表）",
+      "placeholders": ["编制单位", "会计期间", "金额"]
+    },
+    {
+      "name": "报价表",
+      "category": "bid",
+      "format": "xlsx",
+      "description": "分项报价明细表模板",
+      "placeholders": ["项目名称", "规格型号", "单位", "数量", "单价", "合价"]
+    },
+    {
+      "name": "调研报告",
+      "category": "report",
+      "format": "docx",
+      "description": "调研报告标准模板",
+      "placeholders": ["调研背景", "调研方法", "调研结果", "分析结论", "对策建议"]
+    },
+    {
+      "name": "市场分析报告",
+      "category": "report",
+      "format": "docx",
+      "description": "市场分析/行业研究报告模板",
+      "placeholders": ["报告摘要", "行业概况", "市场分析", "竞争格局", "趋势预测"]
+    },
+    {
+      "name": "项目总结报告",
+      "category": "report",
+      "format": "docx",
+      "description": "项目完成总结报告模板",
+      "placeholders": ["项目背景", "实施过程", "成果效益", "经验教训", "后续计划"]
+    },
+    {
+      "name": "财务分析报告",
+      "category": "report",
+      "format": "docx",
+      "description": "企业财务分析报告模板",
+      "placeholders": ["报告期间", "财务概况", "偿债能力", "盈利能力", "运营能力", "发展能力"]
+    },
+    {
+      "name": "可行性分析报告",
+      "category": "report",
+      "format": "docx",
+      "description": "项目可行性分析报告模板",
+      "placeholders": ["项目概述", "市场分析", "技术方案", "投资估算", "效益分析", "风险分析"]
+    },
+    {
+      "name": "审计报告",
+      "category": "report",
+      "format": "docx",
+      "description": "内部审计/离任审计报告模板",
+      "placeholders": ["审计对象", "审计范围", "审计发现", "审计意见", "整改建议"]
+    },
+    {
+      "name": "尽职调查报告",
+      "category": "report",
+      "format": "docx",
+      "description": "投资/并购尽职调查报告模板",
+      "placeholders": ["公司概况", "业务分析", "财务分析", "法律风险", "投资建议"]
+    },
+    {
+      "name": "述职报告",
+      "category": "report",
+      "format": "docx",
+      "description": "领导干部/员工述职报告模板",
+      "placeholders": ["岗位职责", "履职情况", "存在问题", "改进方向", "工作计划"]
+    },
+    {
+      "name": "PPT方案汇报",
+      "category": "report",
+      "format": "pptx",
+      "description": "项目方案/工作汇报PPT模板",
+      "placeholders": ["汇报人", "项目名称", "核心内容", "实施计划", "预期成果"]
+    },
+    {
+      "name": "会议议程",
+      "category": "meeting",
+      "format": "docx",
+      "description": "会议议程/日程安排模板",
+      "placeholders": ["会议名称", "会议时间", "会议地点", "参会人员", "议程安排"]
+    },
+    {
+      "name": "会议签到表",
+      "category": "meeting",
+      "format": "xlsx",
+      "description": "会议签到/考勤表模板",
+      "placeholders": ["会议名称", "会议时间", "参会人员", "签到时间"]
+    },
+    {
+      "name": "董事会决议",
+      "category": "meeting",
+      "format": "docx",
+      "description": "董事会决议标准模板",
+      "placeholders": ["会议名称", "会议时间", "出席董事", "议案内容", "表决结果"]
+    },
+    {
+      "name": "股东会决议",
+      "category": "meeting",
+      "format": "docx",
+      "description": "股东会决议标准模板",
+      "placeholders": ["会议名称", "会议时间", "出席股东", "议案内容", "表决结果"]
+    },
+    {
+      "name": "办公会纪要",
+      "category": "meeting",
+      "format": "docx",
+      "description": "总经理办公会/例会纪要模板",
+      "placeholders": ["会议名称", "会议时间", "主持人", "参会人员", "议题内容", "会议决议"]
+    },
+    {
+      "name": "培训签到表",
+      "category": "meeting",
+      "format": "xlsx",
+      "description": "培训签到/记录表模板",
+      "placeholders": ["培训主题", "培训时间", "培训讲师", "参训人员", "签到时间"]
+    },
+    {
+      "name": "会议记录表",
+      "category": "meeting",
+      "format": "docx",
+      "description": "会议过程详细记录表模板",
+      "placeholders": ["会议名称", "会议时间", "记录人", "发言内容", "决议事项"]
+    },
+    {
+      "name": "工作周报",
+      "category": "meeting",
+      "format": "docx",
+      "description": "个人工作周报模板",
+      "placeholders": ["姓名", "部门", "本周完成", "下周计划", "需要协调"]
+    }
+  ]
+}

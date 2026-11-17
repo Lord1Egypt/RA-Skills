@@ -1,42 +1,55 @@
-## Description: <br>
-Loop Stability Check provides a structured protocol for detecting workflow loops, drift, retry waste, and missing feedback, then recommending guardrails or a halt condition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Loop Stability Check helps agents detect repeated retries, oscillation, workflow drift, and wasted cycles, then recommend guardrails or a halt condition.
 
-## Publisher: <br>
-[clarkchenkai](https://clawhub.ai/user/clarkchenkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarkchenkai](https://clawhub.ai/user/clarkchenkai)
 
-## Use Case: <br>
-Developers, operators, and workflow owners use this skill to diagnose stuck or unstable agent and human-bot workflows, classify the failure mode, and choose a small guardrail or halt condition that restores convergence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be invoked implicitly and may impose its loop-analysis format when the agent judges that a task is not converging. <br>
-Mitigation: Review its recommendations before applying them to important workflows, especially when creative exploration or open-ended iteration is intended. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to diagnose unstable workflow loops and choose the smallest guardrail, escalation, ownership boundary, or halt condition that restores convergence.
 
-## Reference(s): <br>
-- [Failure Modes](references/failure-modes.md) <br>
-- [Guardrails](references/guardrails.md) <br>
-- [Wiener Reference](references/wiener.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarkchenkai/loop-stability-check-clarkchenkai) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/clarkchenkai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with six labeled sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The response contract ends with Loop Objective, Observed Behavior, Stability Risks, Likely Failure Mode, Guardrails, and Recommended Intervention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Implicit invocation may shape repeated-retry or workflow-drift discussions into the skill's fixed loop-analysis format when a user expected a freer response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit activation or narrow implicit invocation in contexts where users need open-ended ideation instead of convergence analysis.
+
+Risk: A loop diagnosis could recommend unnecessary guardrails if the objective or observed behavior is incomplete.
+
+Mitigation: Confirm the loop objective and concrete repeated behavior before applying retry caps, ownership boundaries, escalation triggers, or halt conditions.
+
+## Reference(s):
+
+- [Failure Modes](references/failure-modes.md)
+- [Guardrails](references/guardrails.md)
+- [Wiener Reference](references/wiener.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with six required sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a fixed output contract: Loop Objective, Observed Behavior, Stability Risks, Likely Failure Mode, Guardrails, and Recommended Intervention.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Build, integrate, and troubleshoot SharePlay GroupActivities features, including GroupActivity definitions, activation flows, GroupSession lifecycle, messaging and journals, ShareLink and SharePlay UI surfaces, and visionOS spatial coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, integrate, and troubleshoot SharePlay GroupActivities features, including GroupActivity definitions, activation flows, GroupSession lifecycle, messaging and journals, ShareLink and SharePlay UI surfaces, and visionOS spatial coordination.
 
-## Publisher: <br>
-[tomkrikorian](https://clawhub.ai/user/tomkrikorian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomkrikorian](https://clawhub.ai/user/tomkrikorian)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement and debug SharePlay experiences across Apple platforms, including GroupActivity definitions, activation flows, session lifecycle handling, state synchronization, and visionOS spatial coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SharePlay implementations can expose participant or app state if examples are applied without data minimization. <br>
-Mitigation: Send only the minimal state required for the shared experience and avoid placing private data in shared journals. <br>
-Risk: Incoming SharePlay messages or attachments may be malformed or inappropriate for local app state. <br>
-Mitigation: Validate incoming messages and attachments before applying them. <br>
-Risk: The SharePlay entitlement could be enabled on unintended app targets. <br>
-Mitigation: Enable the Group Activities entitlement only on intended targets. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement and debug SharePlay experiences across Apple platforms, especially GroupActivities flows for activation, session lifecycle, state synchronization, UI sharing surfaces, and visionOS spatial coordination.
 
-## Reference(s): <br>
-- [SharePlay Example Code References](references/REFERENCE.md) <br>
-- [SharePlay Activation UI](references/activation-ui.md) <br>
-- [visionOS SharePlay Group Immersive Space](references/visionos-immersive-space.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with Swift code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only helper; does not execute tools or modify projects by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated SharePlay code or guidance may affect app collaboration behavior through entitlements, activation paths, or shared GroupSessionJournal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed app changes before applying them, with particular attention to Group Activities entitlements, SharePlay activation paths, and data shared through GroupSessionJournal.
+
+Risk: Incorrect SharePlay session lifecycle or spatial-coordination code can lead to broken joins, stale shared state, or participants not colocating in visionOS immersive spaces.
+
+Mitigation: Verify session references are retained, SystemCoordinator is configured before join, late joiners receive state snapshots, and teardown calls leave or end sessions cleanly.
+
+## Reference(s):
+
+- [SharePlay Developer Skill Page](https://clawhub.ai/tomkrikorian/skills/shareplay-developer)
+- [SharePlay Example Code References](artifact/references/REFERENCE.md)
+- [SharePlay Activation UI](artifact/references/activation-ui.md)
+- [visionOS SharePlay Group Immersive Space](artifact/references/visionos-immersive-space.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with Swift code examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include entitlement, activation-flow, session-lifecycle, synchronization, and visionOS spatial-coordination recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

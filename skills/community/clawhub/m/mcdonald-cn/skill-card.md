@@ -1,42 +1,61 @@
-## Description: <br>
-麦当劳助手 - 查询/领取优惠券、活动日历、餐品营养信息、门店查询 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+McDonald's China assistant for querying and claiming coupons, viewing campaign calendars, checking menu nutrition, and finding stores.
 
-## Publisher: <br>
-[hi-yu](https://clawhub.ai/user/hi-yu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hi-yu](https://clawhub.ai/user/hi-yu)
 
-## Use Case: <br>
-External users use this skill to query McDonald's China coupons, promotions, nutrition information, store information, and meal options through the configured MCP service. <br>
-
-### Deployment Geography for Use: <br>
-China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses MCD_TOKEN to authenticate against the MCP service. <br>
-Mitigation: Keep MCD_TOKEN private, avoid logging or pasting it into public chats, and install only when the configured MCP endpoint is trusted. <br>
-Risk: The skill can claim coupons through the one-click coupon workflow. <br>
-Mitigation: Ask the agent to list available coupons and get clear confirmation before invoking coupon claiming. <br>
-Risk: Coupon, promotion, and campaign data can change quickly. <br>
-Mitigation: Query the live service close to the time of use and present validity dates or conditions when available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [McDonald's China MCP service](https://mcp.mcd.cn) <br>
-- [ClawHub release page](https://clawhub.ai/hi-yu/mcdonald-cn) <br>
+## Use Case:
 
+External users can use this skill to ask an agent for McDonald's China coupon availability, coupon claiming, campaign timing, menu nutrition, calorie-aware meal suggestions, and store information.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and optional tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MCD_TOKEN; may use MCD_MCP_URL; coupon, promotion, and nutrition responses depend on the live MCP service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses MCD_TOKEN for account-related McDonald's coupon requests.
+
+Mitigation: Keep the token out of logs, shared terminals, and public prompts, and rotate it if exposure is suspected.
+
+Risk: The configurable MCD_MCP_URL endpoint receives authenticated requests.
+
+Mitigation: Use only a trusted MCP endpoint, preferably the documented default unless there is a verified reason to change it.
+
+Risk: One-click coupon claiming modifies account state.
+
+Mitigation: Confirm with the user before invoking automatic coupon-claiming actions.
+
+Risk: Coupon, campaign, and nutrition data may change or calls may be rate limited.
+
+Mitigation: Query live data when answering time-sensitive questions and retry later after rate-limit errors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hi-yu/skills/mcdonald-cn)
+- [McDonald's China MCP service](https://mcp.mcd.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional tables, JSON-derived summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require MCD_TOKEN and an optional MCD_MCP_URL endpoint configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

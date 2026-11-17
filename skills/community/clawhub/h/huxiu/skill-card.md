@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches and summarizes Huxiu articles, homepage hot topics, and 24-hour news items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Huxiu's latest articles across technology, business, finance, and other topics and presents their published details without inventing missing information.
 
-## Publisher: <br>
-[lvliangbo](https://clawhub.ai/user/lvliangbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huxiu](https://clawhub.ai/user/huxiu)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Huxiu homepage hot topics, 24-hour module updates, and individual article details for concise news summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched articles and summaries may contain third-party news content that is incomplete, outdated, or time-sensitive. <br>
-Mitigation: Verify important or time-sensitive information against primary sources before relying on it. <br>
-Risk: Article extraction and summarization can omit context from the original Huxiu page. <br>
-Mitigation: Review the source article URL when accuracy, attribution, or full context matters. <br>
+## Use Case:
 
+Readers and researchers use this skill to check Huxiu's newest articles and follow links to recent reporting and commentary.
 
-## Reference(s): <br>
-- [Huxiu](https://www.huxiu.com) <br>
-- [Huxiu 24-Hour Module](https://www.huxiu.com/moment/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lvliangbo/huxiu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style summary with title, source or author, publish time, and content summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are based on public Huxiu pages fetched by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Fetching articles contacts Huxiu's API over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authorize external network access under the environment's policy before requesting the feed.
+
+Risk: Article details may be missing or the feed may fail.
+
+Mitigation: Report failures and omit unavailable details rather than inventing them.
+
+## Reference(s):
+
+- [Huxiu News on ClawHub](https://clawhub.ai/huxiu/skills/huxiu)
+- [Huxiu latest articles feed](https://api-ms-mcp.huxiu.com/skills/latestArticles)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Article list with titles, dates, authors, links, and available snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source order and reports missing or failed results without fabrication]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

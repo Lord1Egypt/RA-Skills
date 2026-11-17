@@ -1,42 +1,57 @@
-## Description: <br>
-Generate structured shift handover summaries from EHR records, highlighting critical events, vital sign changes, and pending tasks for incoming clinical staff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured shift handover summaries from EHR records, highlighting critical events, vital sign changes, and pending tasks for incoming clinical staff.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical staff and authorized healthcare operations teams use this skill to generate structured end-of-shift handover summaries from supplied EHR records, with patients prioritized by critical events, abnormal vitals, medication changes, procedures, and pending tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes EHR records that may contain protected health information. <br>
-Mitigation: Use it only with authorized records, run it in a restricted working directory, and avoid writing summaries containing PHI to shared or unintended locations. <br>
-Risk: Generated handover summaries may omit context or classify events imperfectly because event priority is based on supplied records, thresholds, and keywords. <br>
-Mitigation: Require qualified clinical staff to manually verify all outputs before handover, treatment decisions, triage, or physician sign-off. <br>
-Risk: Shift filtering can be incorrect when shift times omit timezone offsets. <br>
-Mitigation: Provide explicit ISO 8601 timezone offsets for shift start and end times, and review the stated shift period before using the summary. <br>
+## Use Case:
 
+Clinical staff and support agents use this skill to turn structured EHR shift records into handover summaries that prioritize patients, call out key events, summarize vitals and medications, and list pending tasks. It is intended for handover support and requires qualified clinical review before decisions are made.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/shift-handover-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON summary, plain-text handover narrative, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a JSON summary file when an output path is provided; otherwise prints JSON to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The implementation does not enforce the documented shift, department, or timezone boundaries for sensitive clinical records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pre-filter records to the intended shift, department, and timezone before running the skill, and have clinical staff verify the generated handover against source records.
+
+Risk: The skill processes EHR data and may produce incomplete or misleading handover summaries if input records are incomplete or out of scope.
+
+Mitigation: Use it only for structured handover support, keep patient data handling compliant with applicable privacy requirements, and do not use outputs as a substitute for direct clinical handover, real-time assessment, emergency triage, diagnosis, or treatment decisions.
+
+Risk: The provided requirements list includes unnecessary standard-library modules as installable packages.
+
+Mitigation: Review and remove or lock dependencies through a trusted process before installing requirements in modern Python environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/shift-handover-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown guidance and optional JSON summary output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries include patient priority ranking, key events, vitals and medication summaries, pending tasks, assumptions, risks, and manual checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

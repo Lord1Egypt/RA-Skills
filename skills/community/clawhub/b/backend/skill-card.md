@@ -1,38 +1,49 @@
-## Description: <br>
-Build reliable backend services with proper error handling, security, and observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build reliable backend services with proper error handling, security, and observability.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineering agents use this skill as backend service guidance when planning or implementing APIs, persistence, operational reliability, security hygiene, and observability practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-produced backend changes may still introduce issues in authentication, authorization, logging, database behavior, or deployment settings. <br>
-Mitigation: Review generated backend code and configuration before use, with particular attention to access control, sensitive logging, database changes, and deployment settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/backend) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill as a backend service review checklist for error handling, input validation, timeouts, retries, database practices, caching, rate limiting, health checks, logging, API design, security hygiene, and observability.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code] <br>
-**Output Format:** [Markdown guidance and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, credentials, persistence, or hidden behavior were identified by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: General backend recommendations may not match a team's system architecture, compliance requirements, or operational constraints.
+
+Mitigation: Review and adapt timeout values, logging choices, dependency policies, and other recommendations before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/backend)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with checklist-style recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference guidance; no executable code, install hooks, network behavior, credential use, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-12306 查询与订票辅助技能，支持余票查询、经停站查询、中转换乘、候补查询与提交/取消、登录状态检查、密码登录与二维码登录、下单与支付链接获取；当用户提到火车票、高铁票、经停站、中转、候补或 12306 查票时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use a Python CLI to query China Railway 12306 train availability, routes and transfers, manage login status, inspect orders and passengers, submit or cancel standby requests, book tickets, and retrieve payment links.
 
-## Publisher: <br>
-[myxtype](https://clawhub.ai/user/myxtype) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myxtype](https://clawhub.ai/user/myxtype)
 
-## Use Case: <br>
-External users and agents use this skill to query China Railway 12306 train availability, routes, transfer options, waitlist state, passenger records, and order status, and to assist with booking, cancellation, and payment-link workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for China Railway 12306 workflows <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform real booking, cancellation, and payment-link workflows against a live 12306 account. <br>
-Mitigation: Use query-only commands where possible, run dry-run checks before booking, and require explicit user confirmation before booking, canceling, or paying. <br>
-Risk: The skill can access passenger records, orders, and account login state. <br>
-Mitigation: Install only for accounts the user is authorized to operate, keep outputs private, and avoid sharing passenger or order details unnecessarily. <br>
-Risk: The skill stores cookies, cache data, QR-login state, and payment QR files locally. <br>
-Mitigation: Protect or delete cache, cookie, QR-login, and payment QR files after use. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent assist with China Railway 12306 ticket search, route planning, standby ticket management, booking preparation, and payment-link retrieval through the bundled CLI.
 
-## Reference(s): <br>
-- [12306 official service](https://kyfw.12306.cn) <br>
-- [ClawHub release page](https://clawhub.ai/myxtype/12306-train-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON, often summarized in Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths for login or payment QR images when those commands are used] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: release evidence) <br>
+Risk: The skill can access a user's 12306 account, passenger records, ticket orders, payment workflow, and cached session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, avoid exposing passwords in visible command lines, and protect or clear the cookie cache after use.
+
+Risk: Booking, cancellation, standby ticket, and payment-related commands can affect real travel purchases.
+
+Mitigation: Require the agent to present proposed actions for manual confirmation before running any booking, cancellation, or payment command.
+
+Risk: The CLI supports overriding the 12306 base URL, which could send account or order data to an untrusted destination.
+
+Mitigation: Do not use a custom base URL unless the destination is fully controlled and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myxtype/skills/12306-train-assistant)
+- [China Railway 12306 service](https://kyfw.12306.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to text output for readability; JSON output is used when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

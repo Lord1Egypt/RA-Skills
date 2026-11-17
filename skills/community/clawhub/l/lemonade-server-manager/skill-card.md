@@ -1,43 +1,55 @@
-## Description: <br>
-Manage Lemonade Servers natively. Use when checking system info, health status, listing available models, pulling or loading new models, completing LLM chats, or generating stable-diffusion images on a local or remote AI NPU/GPU cluster. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Lemonade Servers natively for system info, health status, model listing, model lifecycle actions, LLM chats, and stable-diffusion image generation on local or remote AI NPU/GPU clusters.
 
-## Publisher: <br>
-[james-martinez](https://clawhub.ai/user/james-martinez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-martinez](https://clawhub.ai/user/james-martinez)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Lemonade server health, manage model lifecycle actions, and submit chat or image-generation requests to a selected local or remote Lemonade server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, model requests, and commands are sent to the configured Lemonade server URL. <br>
-Mitigation: Use trusted server URLs, prefer HTTPS or a private network for remote hosts, and confirm the intended target before sending sensitive content. <br>
-Risk: The optional LEMONADE_API_KEY can authenticate actions against a Lemonade server. <br>
-Mitigation: Store the key in the environment, avoid exposing it in chat or logs, and rotate it if it may have been disclosed. <br>
-Risk: Pulling, loading, or unloading large models can consume resources or disrupt active workloads. <br>
-Mitigation: Check health and available VRAM first, and ask for confirmation before model download, load, or unload operations. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Lemonade Server health, manage model downloads and memory state, and send text or image generation requests to trusted local or remote servers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/james-martinez/lemonade-server-manager) <br>
-- [Project homepage](https://github.com/james-martinez/lemonade-server-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl against a user-selected Lemonade server URL and optional LEMONADE_API_KEY authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: Prompts and API keys may be sent to local or remote Lemonade Server endpoints, including plain HTTP URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted endpoints only, prefer localhost or HTTPS remote URLs, and avoid sending sensitive prompts to untrusted servers.
+
+Risk: Model pull, load, and unload operations can change server state and consume disk, bandwidth, and accelerator memory.
+
+Mitigation: Confirm the intended server and model before state-changing operations, check health and available resources first, and unload inactive models when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-martinez/skills/lemonade-server-manager)
+- [Publisher profile](https://clawhub.ai/user/james-martinez)
+- [Project homepage](https://github.com/james-martinez/lemonade-server-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl commands and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an optional LEMONADE_API_KEY and a Lemonade server URL, defaulting to http://localhost:8000 when the user does not specify one.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

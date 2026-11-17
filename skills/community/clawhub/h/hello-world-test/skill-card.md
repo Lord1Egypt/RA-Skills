@@ -1,40 +1,56 @@
-## Description: <br>
-Use when the user asks for a hello, a greeting, says hi, or wants to test that the hello-world plugin is loaded. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hello World helps an agent respond to greeting and setup-test requests by calling a simple hello tool.
 
-## Publisher: <br>
-[kevin-li-okg](https://clawhub.ai/user/kevin-li-okg) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevin-li-okg](https://clawhub.ai/user/kevin-li-okg)
 
-## Use Case: <br>
-External users and developers use this skill to route simple greeting or plugin-test requests to the hello-world OpenClaw plugin and return its greeting text directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on ordinary greetings such as hi. <br>
-Mitigation: Install it only when automatic greeting-tool behavior is desired and keep the exposed tool allowlist limited to hello. <br>
+## Use Case:
 
+Developers and testers use this skill to confirm that the hello-world OpenClaw plugin is installed, enabled, and able to return a greeting. It routes hello, hi, and named greeting requests to the plugin's hello tool.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kevin-li-okg/hello-world-test) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Plain text greeting returned through the agent response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional name parameter; defaults to world when omitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may respond to ordinary greetings by calling the hello tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the plugin only in environments where greeting requests are expected to exercise the hello-world tool.
+
+Risk: Strict reproducible builds may be affected by unpinned dependency ranges.
+
+Mitigation: Pin dependency versions before using the package in production-like validation workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kevin-li-okg/skills/hello-world-test)
+- [Artifact README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+- [Plugin Manifest](artifact/openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text greeting returned by the plugin, with Markdown skill guidance for the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts an optional name parameter; defaults to world when no name is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

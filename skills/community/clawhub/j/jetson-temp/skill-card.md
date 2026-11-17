@@ -1,40 +1,53 @@
-## Description: <br>
-Monitors CPU, GPU, and thermal zone temperatures on NVIDIA Jetson devices running Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors CPU, GPU, and thermal-zone temperatures on NVIDIA Jetson devices running Linux.
 
-## Publisher: <br>
-[wxd9199](https://clawhub.ai/user/wxd9199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxd9199](https://clawhub.ai/user/wxd9199)
 
-## Use Case: <br>
-Developers and Jetson operators use this skill to check local device temperatures from Linux thermal sensor files while diagnosing thermal behavior or monitoring system health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a shell script that reads local thermal sensor files. <br>
-Mitigation: Review the script before use and run it without elevated privileges on systems where local thermal sensor access is expected. <br>
-Risk: On non-Jetson systems or Linux systems without thermal subsystem support, output may be incomplete or unavailable. <br>
-Mitigation: Use the skill on NVIDIA Jetson hardware with Linux thermal subsystem support and treat missing readings as an environment compatibility issue. <br>
+## Use Case:
 
+Developers and operators working with NVIDIA Jetson devices use this skill to check live local thermal readings while diagnosing device temperature or cooling behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page: Jetson Temperature](https://clawhub.ai/wxd9199/jetson-temp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command snippets and terminal output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local /sys/class/thermal thermal sensor files; no credentials, network access, admin privileges, or background execution are expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on Linux thermal subsystem files and is intended for NVIDIA Jetson hardware.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on supported Jetson/Linux devices and treat missing or empty readings as an environment compatibility issue.
+
+Risk: Thermal zone readings may not be self-describing on every device.
+
+Mitigation: Confirm the target device's thermal zone mapping before using readings for operational or hardware decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wxd9199/skills/jetson-temp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and terminal output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local Linux thermal sensor files and prints temperature values; security evidence reports no network access, credential use, persistence, or file modification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,35 @@
+# agentSAFE MCP Server (not the audit worker!)
+# This container runs the FastMCP server that accepts audit requests and dispatches to GitHub Actions.
+# Secrets are injected via environment variables at runtime.
+
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PORT=8000 \
+    HOST=0.0.0.0
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY pyproject.toml ./
+COPY src ./src
+
+# Install the MCP server with x402 payment support
+RUN pip install --no-cache-dir . "x402[evm]==2.25.0"
+
+# Create data directory for SQLite persistence
+RUN mkdir -p /app/data && chown -R root:root /app/data
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/mcp/tools/health || exit 1
+
+EXPOSE 8000
+
+CMD ["fastmcp", "run", "agentsafe.server:create_app", "--host", "0.0.0.0", "--port", "8000"]

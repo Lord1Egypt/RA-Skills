@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slides del webinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{
+  --fondo:#0F172A; --fondo-2:#020617; --card:#111C33; --linea:#22304A;
+  --tx:#E2E8F0; --tx-2:#94A3B8; --tx-3:#64748B;
+  --acento:#E11D74; --ok:#34D399; --falta:#FB7185; --falta-bg:rgba(251,113,133,.14);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo-2);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.6}
+button{font:inherit;cursor:pointer}
+.mono{font-family:"Space Grotesk",ui-monospace,monospace}
+.pc{background:var(--falta-bg);color:var(--falta);border-radius:4px;padding:0 .25em;font-weight:600}
+
+/* barra */
+.top{position:sticky;top:0;z-index:10;background:var(--fondo);border-bottom:1px solid var(--linea)}
+.top .in{max-width:64rem;margin:0 auto;padding:.7rem 1rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.top h1{font-size:1rem;margin:0;flex:1;min-width:12rem;line-height:1.2}
+.top h1 small{display:block;font-weight:500;color:var(--tx-3);font-size:.72rem;font-family:"Space Grotesk",monospace;letter-spacing:.06em}
+.b{background:var(--card);border:1px solid var(--linea);color:var(--tx);border-radius:.55rem;padding:.45rem .75rem;font-size:.8rem;font-weight:700}
+.b.on,.b.pri{background:var(--acento);border-color:var(--acento);color:#fff}
+.b:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+
+.wrap{max-width:64rem;margin:0 auto;padding:1.2rem 1rem 4rem}
+.ob{border-left:4px solid var(--acento);padding:.6rem 0 .6rem 1rem;margin:0 0 1rem;font-size:1.35rem;font-weight:900;line-height:1.25;color:#fff}
+.ob span{display:block;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-3);font-weight:700;font-family:"Space Grotesk",monospace}
+.faltan{background:var(--falta-bg);border:1px solid rgba(251,113,133,.35);border-radius:.8rem;padding:.8rem 1rem;margin:0 0 1rem}
+.faltan h2{font-size:.85rem;margin:0 0 .3rem;color:var(--falta)}
+.faltan ul{margin:0;padding-left:1.1rem;font-size:.85rem}
+.mapa{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 1rem}
+.mapa span{font-family:"Space Grotesk",monospace;font-size:.7rem;font-weight:700;border-radius:.35rem;padding:.2rem .45rem;border:1px solid var(--linea);color:var(--tx-3)}
+.mapa span.si{border-color:var(--ok);color:var(--ok)}
+.mapa span.no{border-color:var(--falta);color:var(--falta)}
+.filtros{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 1rem}
+
+/* modo copiar */
+.lista{display:flex;flex-direction:column;gap:.8rem}
+.sl{display:grid;grid-template-columns:minmax(0,15rem) 1fr;gap:1rem;background:var(--card);border:1px solid var(--linea);border-radius:.9rem;padding:.9rem}
+@media (max-width:44rem){.sl{grid-template-columns:1fr}}
+.mini{aspect-ratio:16/9;background:var(--fondo);border:1px solid var(--linea);border-radius:.5rem;padding:.7rem;display:flex;flex-direction:column;justify-content:center;gap:.3rem;overflow:hidden}
+.mini .t{font-weight:900;font-size:.95rem;line-height:1.15;color:#fff}
+.mini .p{font-size:.68rem;color:var(--tx-2);line-height:1.35;white-space:pre-line}
+.meta{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;font-family:"Space Grotesk",monospace;font-size:.7rem;color:var(--tx-3)}
+.meta .ac{background:var(--acento);color:#fff;border-radius:.3rem;padding:.05rem .4rem;font-weight:700}
+.campo{margin-top:.5rem}
+.campo .lbl{display:flex;justify-content:space-between;align-items:center;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tx-3);font-weight:700;font-family:"Space Grotesk",monospace}
+.campo .txt{white-space:pre-line;font-size:.88rem;color:var(--tx)}
+.campo.dices .txt{color:var(--tx-2)}
+.cp{background:none;border:1px solid var(--linea);color:var(--tx-2);border-radius:.35rem;padding:.1rem .45rem;font-size:.65rem;font-weight:700;letter-spacing:.04em}
+.cp.ok{border-color:var(--ok);color:var(--ok)}
+
+/* modo presentar */
+#pres{display:none;position:fixed;inset:0;background:#000;z-index:50;align-items:center;justify-content:center;flex-direction:column}
+#pres.on{display:flex}
+.stage{width:min(100vw,177.78vh);aspect-ratio:16/9;background:var(--fondo);display:flex;flex-direction:column;justify-content:center;padding:6% 8%;gap:2.5vh;position:relative}
+.stage .t{font-weight:900;font-size:clamp(1.6rem,6.2vh,4.4rem);line-height:1.06;color:#fff;letter-spacing:-.02em}
+.stage .p{font-size:clamp(.9rem,3vh,1.9rem);color:var(--tx-2);white-space:pre-line;line-height:1.35}
+.stage .v{position:absolute;bottom:4%;left:8%;font-family:"Space Grotesk",monospace;font-size:clamp(.6rem,1.5vh,.9rem);color:var(--tx-3)}
+.stage.ob-final .t{color:var(--acento)}
+.prog{position:fixed;left:0;bottom:0;height:3px;background:var(--acento);transition:width .2s}
+.hud{position:fixed;right:1rem;bottom:.8rem;font-family:"Space Grotesk",monospace;font-size:.75rem;color:#888;display:flex;gap:.6rem;align-items:center}
+.notas{position:fixed;left:1rem;right:1rem;bottom:1.4rem;max-width:52rem;margin:0 auto;background:rgba(15,23,42,.96);border:1px solid var(--linea);border-radius:.8rem;padding:.8rem 1rem;font-size:.9rem;display:none;max-height:40vh;overflow:auto}
+.notas.on{display:block}
+.notas b{color:var(--acento)}
+</style>
+</head>
+<body>
+
+<!-- ═══ DATOS: la skill reemplaza SOLO el contenido de este bloque ═══ -->
+<script id="datos" type="application/json">
+{
+  "titulo": "Arma tu semana de comidas en 60 minutos",
+  "oneBelief": "Comes lo que ya decidiste",
+  "duracion": 60,
+  "estructura": "Taller compacto de 60 min",
+  "faltan": ["Historia propia real para el gancho (lámina 2)", "Captura real de una alumna (lámina 11)", "Precio, crédito y garantía (láminas 21 y 22)"],
+  "laminas": [
+    {"n":1,"bloque":"Gancho","min":"00:00","acuerdo":"","titulo":"Arma tu semana de comidas en 60 minutos","pantalla":"Hoy sales con tu lunes a domingo resuelto","dices":"Bienvenidas. En una hora vas a salir de aquí con tu semana de comidas armada: no una idea, tu semana, con tu lista de compras.","nota":"Pide que escriban en el chat de dónde se conectan: calienta el chat para después.","visual":"Foto tuya o nada"},
+    {"n":2,"bloque":"Gancho","min":"00:02","acuerdo":"A4","titulo":"Las 8 de la noche","pantalla":"","dices":"[por completar: tu momento real: dónde estabas, qué pasó, qué pensaste]. Y ese momento en que abres la refri, la cierras y la vuelves a abrir como si algo nuevo fuera a aparecer.","nota":"Señal: gente escribiendo «yo» o «me pasa». Si no, pregunta: ¿a quién le pasa?","visual":"Nada: solo el título"},
+    {"n":3,"bloque":"Gancho","min":"00:03","acuerdo":"OB","titulo":"Comes lo que ya decidiste","pantalla":"","dices":"Aquí creemos una sola cosa: comes lo que ya decidiste. Hoy lo vas a comprobar tú.","nota":"No la expliques. Sigue.","visual":"Solo la frase"},
+    {"n":4,"bloque":"Método","min":"00:05","acuerdo":"A1","titulo":"Cuatro noches a la semana","pantalla":"Nada decidido → hambre → delivery","dices":"No es que te falte comer mejor. Es que son las 8, no hay nada decidido, y terminas pidiendo lo de siempre. Cuatro noches a la semana son dieciséis al mes.","nota":"Señal: cuentan su versión.","visual":"Esquema de 3 flechas"},
+    {"n":5,"bloque":"Método","min":"00:08","acuerdo":"A2","titulo":"Empezar el lunes no funciona","pantalla":"Y no es culpa tuya","dices":"Puedes empezar el lunes veinte veces más y va a pasar lo mismo. No es fuerza de voluntad.","nota":"Buscas alivio, no vergüenza.","visual":"Calendario con lunes tachados"},
+    {"n":6,"bloque":"Método","min":"00:09","acuerdo":"A3","titulo":"Decidir cansa","pantalla":"Las que comen bien no tienen más disciplina.\nDeciden menos.","dices":"Cada comida que decides en el momento gasta la misma energía que usas para todo lo demás del día. A las 8 ya no te queda. Es como hacer el súper con hambre: compras lo que el hambre decide.","nota":"Señal: «wow», «nunca lo había visto así». Es la lámina más importante.","visual":"Batería que se vacía durante el día"},
+    {"n":7,"bloque":"Método","min":"00:12","acuerdo":"A5","titulo":"No una dieta más estricta","pantalla":"Decides una vez el domingo.\nLa semana ya no te pregunta nada.","dices":"No te voy a dar una dieta más estricta. Te voy a quitar decisiones.","nota":"Dejan de preguntar por otras dietas y preguntan cómo.","visual":"Nada"},
+    {"n":8,"bloque":"Hacer en vivo","min":"00:13","acuerdo":"","titulo":"Estación 1 · Tus 5 cenas base","pantalla":"1. Abre tu plantilla\n2. Escribe 5 cenas que ya sabes hacer\n3. Pega la lista en el chat","dices":"Empezamos por lo que ya sabes hacer. Nada nuevo.","nota":"Recibo: la lista en el chat.","visual":"Captura de la plantilla"},
+    {"n":9,"bloque":"Hacer en vivo","min":"00:22","acuerdo":"","titulo":"Estación 2 · Reparte la semana","pantalla":"Lunes a domingo, una cena por día","dices":"Ahora las repartes. Las que tardan más, al fin de semana.","nota":"Recibo: su lunes y martes en el chat.","visual":"Tabla de 7 días"},
+    {"n":10,"bloque":"Hacer en vivo","min":"00:32","acuerdo":"","titulo":"Estación 3 · Tu lista de compras","pantalla":"Sale sola de tu semana","dices":"Y de tu semana sale tu lista. Esto es lo que te llevas.","nota":"Muestra que lo siguiente (desayunos y almuerzos) existe, sin darlo.","visual":"Lista de compras"},
+    {"n":11,"bloque":"Celebración","min":"00:40","acuerdo":"A7","titulo":"Tu semana ya está decidida","pantalla":"Pega tu semana en el chat","dices":"Esto lo hiciste tú. Hace 40 minutos no existía. [Lee nombres y semanas del chat en voz alta].","nota":"No cortes este bloque. Aquí se cierra el acuerdo 7.","visual":"[por completar: captura real del chat o de una alumna]"},
+    {"n":12,"bloque":"Celebración","min":"00:46","acuerdo":"A7","titulo":"Si la tuya no salió hoy","pantalla":"","dices":"Si la tuya no salió hoy, no te fuiste sin ella: se te movió de día. La grabación y la plantilla quedan contigo.","nota":"Frase de rescate: dila antes de pasar al cierre.","visual":"Nada"},
+    {"n":13,"bloque":"La brecha","min":"00:48","acuerdo":"OB","titulo":"Comes lo que ya decidiste","pantalla":"","dices":"¿Se acuerdan de lo que dijimos al principio? Comes lo que ya decidiste.","nota":"Mismas palabras. Todavía no gires.","visual":"Solo la frase"},
+    {"n":14,"bloque":"La brecha","min":"00:49","acuerdo":"","titulo":"Hoy: una semana. Falta: todas las demás","pantalla":"Desayunos · almuerzos · ajustes · cuando se rompe el plan","dices":"Hoy resolviste las cenas de una semana. Lo que no te llevas es el sistema para que cada semana salga sola, con alguien que revise lo que armas.","nota":"Aquí se abre la oferta sin nombrarla todavía.","visual":"Dos columnas: hoy / lo que falta"},
+    {"n":15,"bloque":"Cierre","min":"00:52","acuerdo":"C1","titulo":"Hasta aquí, la clase","pantalla":"Ahora te cuento para qué fue","dices":"Hasta aquí, la clase. Ahora te cuento para qué fue.","nota":"Nombrar el cambio lo desactiva.","visual":"Nada"},
+    {"n":16,"bloque":"Cierre","min":"00:52","acuerdo":"OB","titulo":"Hoy no hiciste un menú","pantalla":"Dejaste de decidir a las 8 de la noche","dices":"Hoy no hiciste un menú. Dejaste de decidir a las 8 de la noche.","nota":"Tres segundos de silencio después.","visual":"Solo la frase"},
+    {"n":17,"bloque":"Cierre","min":"00:53","acuerdo":"A8","titulo":"Dieciséis noches al mes","pantalla":"Lo que cuesta seguir igual","dices":"Si nada cambia, son dieciséis deliveries al mes, más los lunes en que vuelves a empezar. Haz la cuenta.","nota":"Señal: silencio. Si el chat sigue movido, no aterrizó.","visual":"Nada"},
+    {"n":18,"bloque":"Cierre","min":"00:54","acuerdo":"C2","titulo":"Lo que vas a poder hacer","pantalla":"8 semanas de menús\nAjustes cuando se rompe el plan\nRevisión de lo que armas\nComunidad","dices":"Esto es lo que vas a poder hacer, dicho como lo vas a vivir, no como módulos.","nota":"Siempre antes del precio.","visual":"Lista con iconos"},
+    {"n":19,"bloque":"Cierre","min":"00:55","acuerdo":"C3","titulo":"[por completar: precio]","pantalla":"Contra dieciséis noches al mes","dices":"[por completar: precio y crédito, dicho contra el costo de no hacerlo]","nota":"Nunca contra lo que cobran otras.","visual":"Nada"},
+    {"n":20,"bloque":"Cierre","min":"00:56","acuerdo":"C4","titulo":"[por completar: garantía]","pantalla":"El link está en el chat","dices":"[por completar: tu garantía]. El link ya está en el chat.","nota":"Justo después del precio.","visual":"Nada"},
+    {"n":21,"bloque":"Cierre","min":"00:57","acuerdo":"C5","titulo":"«No tengo tiempo»","pantalla":"Es un domingo de 40 minutos, no una dieta","dices":"Lo que acabas de hacer en 40 minutos es lo más largo del sistema.","nota":"Objeciones DESPUÉS de pedir.","visual":"Nada"},
+    {"n":22,"bloque":"Cierre","min":"00:58","acuerdo":"A9","titulo":"Empieza con esta semana","pantalla":"","dices":"No es un truco: quiero que empieces con la semana que armaste hoy todavía fresca, no dentro de un mes cuando ya se te olvidó.","nota":"Urgencia verdadera o ninguna.","visual":"Nada"},
+    {"n":23,"bloque":"Cierre","min":"00:59","acuerdo":"C7","titulo":"La que ya decidió","pantalla":"","dices":"Hoy dejaste de ser la que decide a las 8 con hambre. Lo que hagas en las próximas 48 horas decide si esto fue un martes más o la semana en que dejaste de empezar cada lunes.","nota":"Identidad, no producto.","visual":"Nada"},
+    {"n":24,"bloque":"Cierre","min":"01:00","acuerdo":"OB","titulo":"Comes lo que ya decidiste","pantalla":"","dices":"Comes lo que ya decidiste.","nota":"Última lámina: la frase sola.","visual":"Solo la frase"}
+  ]
+}
+</script>
+
+<div class="top">
+  <div class="in">
+    <h1 id="t-titulo">Slides</h1>
+    <button class="b on" id="m-copiar">Copiar</button>
+    <button class="b" id="m-presentar">Presentar ▶</button>
+    <button class="b" id="c-todo">Copiar todo</button>
+    <button class="b" id="c-gamma">Copiar para Gamma</button>
+    <button class="b" id="d-md">Descargar .md</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="ob" id="ob"></p>
+  <div class="faltan" id="faltan" hidden><h2>Te falta antes de salir en vivo</h2><ul></ul></div>
+  <div class="mapa" id="mapa" aria-label="Acuerdos cubiertos"></div>
+  <div class="filtros" id="filtros"></div>
+  <div class="lista" id="lista"></div>
+</div>
+
+<div id="pres" aria-hidden="true">
+  <div class="stage" id="stage"><div class="t"></div><div class="p"></div><div class="v"></div></div>
+  <div class="notas" id="notas"></div>
+  <div class="prog" id="prog"></div>
+  <div class="hud"><span id="hud-n"></span><span>← → avanzar · N notas · F pantalla completa · Esc salir</span></div>
+</div>
+
+<script>
+(function(){
+  var D;
+  try{D=JSON.parse(document.getElementById('datos').textContent)}catch(e){
+    document.body.innerHTML='<p style="padding:2rem;color:#FB7185;font-family:sans-serif">El bloque de datos no es un JSON válido: '+String(e.message).replace(/</g,'&lt;')+'</p>';return;
+  }
+  var L=D.laminas||[];
+  if(D.colores){var r=document.documentElement.style;if(D.colores.acento)r.setProperty('--acento',D.colores.acento);if(D.colores.fondo)r.setProperty('--fondo',D.colores.fondo)}
+  document.title=(D.titulo||'Slides')+' · slides';
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function marca(s){return esc(s).replace(/\[por completar[^\]]*\]/gi,function(m){return '<span class="pc">'+m+'</span>'})}
+  function $(s){return document.querySelector(s)}
+
+  $('#t-titulo').innerHTML=esc(D.titulo)+'<small>'+esc(D.estructura||'')+' · '+L.length+' láminas'+(D.duracion?' · '+D.duracion+' min':'')+'</small>';
+  $('#ob').innerHTML='<span>One Belief</span>'+esc(D.oneBelief||'');
+  var falt=(D.faltan||[]).slice();
+  var NOM={titulo:'título',pantalla:'pantalla',dices:'guion',visual:'visual'};
+  L.forEach(function(l){var ks=['titulo','pantalla','dices','visual'].filter(function(k){return /\[por completar/i.test(l[k]||'')});if(ks.length)falt.push('Lámina '+l.n+' tiene huecos en: '+ks.map(function(k){return NOM[k]}).join(', '))});
+  if(falt.length){$('#faltan').hidden=false;$('#faltan ul').innerHTML=falt.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')}
+
+  var usados={};L.forEach(function(l){if(l.acuerdo)usados[l.acuerdo]=true});if(usados.A9)usados.C6=true;if(usados.C6)usados.A9=true;
+  var claves=['A1','A2','A3','A4','A5','A6','A7','A8','A9','OB','C1','C2','C3','C4','C5','C6','C7'];
+  var nOB=L.filter(function(l){return l.acuerdo==='OB'}).length;
+  $('#mapa').innerHTML=claves.map(function(k){return '<span class="'+(usados[k]?'si':'no')+'" title="'+(usados[k]?'Tiene lámina':'Sin lámina')+'">'+k+(k==='OB'?' ×'+nOB:'')+'</span>'}).join('');
+
+  var bloques=[];L.forEach(function(l){if(l.bloque&&bloques.indexOf(l.bloque)<0)bloques.push(l.bloque)});
+  var filtro='';
+  $('#filtros').innerHTML='<button class="b on" data-f="">Todas</button>'+bloques.map(function(b){return '<button class="b" data-f="'+esc(b)+'">'+esc(b)+'</button>'}).join('');
+  document.querySelectorAll('#filtros .b').forEach(function(b){b.addEventListener('click',function(){filtro=b.dataset.f;document.querySelectorAll('#filtros .b').forEach(function(x){x.classList.toggle('on',x===b)});pinta()})});
+
+  function campo(l,k,lbl,cls){
+    if(!l[k])return '';
+    return '<div class="campo '+(cls||'')+'"><div class="lbl">'+lbl+' <button class="cp" data-n="'+l.n+'" data-k="'+k+'">Copiar</button></div><div class="txt">'+marca(l[k])+'</div></div>';
+  }
+  function pinta(){
+    $('#lista').innerHTML=L.filter(function(l){return !filtro||l.bloque===filtro}).map(function(l){
+      return '<article class="sl"><div class="mini"><div class="t">'+marca(l.titulo)+'</div>'+(l.pantalla?'<div class="p">'+marca(l.pantalla)+'</div>':'')+'</div>'+
+        '<div><div class="meta"><b style="color:#fff">'+l.n+'</b><span>'+esc(l.bloque||'')+'</span><span>'+esc(l.min||'')+'</span>'+(l.acuerdo?'<span class="ac">'+esc(l.acuerdo)+'</span>':'')+
+        '<button class="cp" data-n="'+l.n+'" data-k="*">Copiar lámina</button></div>'+
+        campo(l,'titulo','Título')+campo(l,'pantalla','En pantalla')+campo(l,'dices','Lo que dices','dices')+campo(l,'nota','Nota para ti')+campo(l,'visual','Visual')+'</div></article>';
+    }).join('');
+    document.querySelectorAll('#lista .cp').forEach(function(b){b.addEventListener('click',function(){
+      var l=L.filter(function(x){return String(x.n)===b.dataset.n})[0];
+      copiar(b.dataset.k==='*'?texto(l):l[b.dataset.k],b);
+    })});
+  }
+  function texto(l){
+    return 'Lámina '+l.n+(l.acuerdo?' ['+l.acuerdo+']':'')+' · '+(l.bloque||'')+' · '+(l.min||'')+'\n'+
+      'TÍTULO: '+(l.titulo||'')+(l.pantalla?'\nEN PANTALLA: '+l.pantalla:'')+(l.dices?'\nLO QUE DICES: '+l.dices:'')+(l.nota?'\nNOTA: '+l.nota:'')+(l.visual?'\nVISUAL: '+l.visual:'');
+  }
+  function md(){
+    return '# '+(D.titulo||'')+'\n\n**One Belief:** '+(D.oneBelief||'')+'\n\n'+L.map(function(l){
+      return '## '+l.n+'. '+(l.titulo||'')+'\n'+(l.pantalla?l.pantalla+'\n':'')+'\n> '+(l.dices||'').replace(/\n/g,'\n> ')+'\n\n_'+[l.bloque,l.min,l.acuerdo,l.nota].filter(Boolean).join(' · ')+'_'+(l.visual?'\n\nVisual: '+l.visual:'');
+    }).join('\n\n');
+  }
+  function gamma(){
+    return L.map(function(l){return '# '+(l.titulo||'')+(l.pantalla?'\n'+l.pantalla:'')}).join('\n\n---\n\n');
+  }
+  function copiar(t,b){
+    function ok(){if(!b)return;var o=b.textContent;b.textContent='¡Copiado!';b.classList.add('ok');setTimeout(function(){b.textContent=o;b.classList.remove('ok')},1500)}
+    function fb(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){}document.body.removeChild(ta)}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb();
+  }
+  $('#c-todo').addEventListener('click',function(){copiar(L.map(texto).join('\n\n'),this)});
+  $('#c-gamma').addEventListener('click',function(){copiar(gamma(),this)});
+  $('#d-md').addEventListener('click',function(){
+    var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md()],{type:'text/markdown'}));
+    a.download=(D.titulo||'webinar').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.md';
+    document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+  });
+
+  /* presentar */
+  var i=0, pres=$('#pres');
+  function show(){
+    var l=L[i]||{}, st=$('#stage');
+    st.querySelector('.t').innerHTML=marca(l.titulo);
+    st.querySelector('.p').innerHTML=marca(l.pantalla||'');
+    st.querySelector('.v').innerHTML=l.visual&&!/^nada|^solo/i.test(l.visual)?'Visual: '+marca(l.visual):'';
+    st.classList.toggle('ob-final',l.acuerdo==='OB');
+    $('#notas').innerHTML='<b>'+esc(l.acuerdo||l.bloque||'')+'</b> · '+esc(l.min||'')+'<br>'+marca(l.dices||'')+(l.nota?'<br><br><b>Nota:</b> '+marca(l.nota):'');
+    $('#hud-n').textContent=(i+1)+' / '+L.length;
+    $('#prog').style.width=((i+1)/L.length*100)+'%';
+  }
+  function abrir(){if(!L.length)return;pres.classList.add('on');pres.setAttribute('aria-hidden','false');show()}
+  function cerrar(){pres.classList.remove('on');pres.setAttribute('aria-hidden','true');if(document.fullscreenElement)document.exitFullscreen()}
+  $('#m-presentar').addEventListener('click',abrir);
+  $('#m-copiar').addEventListener('click',cerrar);
+  pres.addEventListener('click',function(e){if(e.target.closest('.notas'))return;i=Math.min(L.length-1,i+1);show()});
+  document.addEventListener('keydown',function(e){
+    if(!pres.classList.contains('on'))return;
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){i=Math.min(L.length-1,i+1);show();e.preventDefault()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){i=Math.max(0,i-1);show()}
+    else if(e.key==='n'||e.key==='N'){$('#notas').classList.toggle('on')}
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();else document.exitFullscreen()}
+    else if(e.key==='Escape'){cerrar()}
+  });
+  pinta();
+})();
+</script>
+</body>
+</html>

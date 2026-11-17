@@ -1,42 +1,58 @@
-## Description: <br>
-Huahua Dream helps an agent run scheduled memory organization and self-reflection by consolidating conversation memories, pruning stale notes, and summarizing behavior patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huahua Dream helps an agent periodically organize conversation memory, prune stale entries, and write self-reflection notes for long-term continuity.
 
-## Publisher: <br>
-[baiye1997](https://clawhub.ai/user/baiye1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiye1997](https://clawhub.ai/user/baiye1997)
 
-## Use Case: <br>
-External users and developers use this skill to give an agent a scheduled routine for reviewing past sessions, maintaining long-term memory files, and producing self-reflection notes. It is intended for environments where users can inspect and control memory updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read past conversation logs and persist inferred user memories or relationship notes. <br>
-Mitigation: Review the generated sessionsPath, keep automatic writes disabled for a trial run, and confirm that stored memories can be inspected, rolled back, and deleted. <br>
-Risk: Automatic memory edits may preserve incorrect or unwanted inferences. <br>
-Mitigation: Inspect dream summaries and proposed memory changes before relying on them, especially after enabling scheduled execution or auto-approval. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure a recurring memory-maintenance workflow that reviews session history, updates long-term memory files, and produces concise dream/self-reflection reports.
 
-## Reference(s): <br>
-- [Huahua Dream on ClawHub](https://clawhub.ai/baiye1997/huahua-dream) <br>
-- [README](README.md) <br>
-- [Memory Types Classification Guide](references/memory-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON script output, and memory file updates or proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update or propose updates to MEMORY.md, memory topic files, dream reports, and dream-config.json when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release and SKILL.md frontmatter) <br>
+Risk: Recurring access to private conversation logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for intended workspaces and verify dream-config.json points to the intended agent session path before scheduling cron.
+
+Risk: Persistent long-term memory files can be changed during unattended runs.
+
+Mitigation: Keep MEMORY.md backups, review proposed memory changes, and prefer explicit opt-in or manual review instead of autoApprove.
+
+Risk: Session discovery may select an unintended agent or workspace.
+
+Mitigation: Inspect and correct dream-config.json after setup, including workspace, sessionsPath, timezone, and memory paths.
+
+## Reference(s):
+
+- [Memory Types Classification Guide](references/memory-types.md)
+- [Huahua Dream ClawHub Page](https://clawhub.ai/baiye1997/skills/huahua-dream)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status or configuration output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update memory files, dream records, backups, proposed memory changes, and configuration files.]
+
+## Skill Version(s):
+
+1.1.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

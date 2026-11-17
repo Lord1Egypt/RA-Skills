@@ -1,0 +1,6 @@
+interface:
+  display_name: "degital_sub｜企业全情报订阅"
+  short_description: "查询企业近24小时舆情并完成微信扫码绑定"
+  default_prompt: "使用 $degital-sub 查询这家企业或股票代码的最新舆情信息。"
+policy:
+  allow_implicit_invocation: true

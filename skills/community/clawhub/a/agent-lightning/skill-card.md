@@ -1,46 +1,61 @@
-## Description: <br>
-Microsoft Research's Agent Lightning framework helps developers optimize AI agents with reinforcement learning, automatic prompt optimization, and supervised fine-tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Research's agent training framework optimizes AI agents with reinforcement learning, automatic prompt optimization, and supervised fine-tuning while working with LangChain, AutoGen, CrewAI, OpenAI Agent SDK, and plain Python OpenAI agents.
 
-## Publisher: <br>
-[olmmlo-cmd](https://clawhub.ai/user/olmmlo-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[olmmlo-cmd](https://clawhub.ai/user/olmmlo-cmd)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure, instrument, train, evaluate, export, and serve optimized AI agents with Agent Lightning across common agent frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent tracing and training workflows may capture prompts, responses, tool calls, or other sensitive workflow data. <br>
-Mitigation: Avoid tracing production or secret-bearing workflows by default, review collected traces before training, and use scoped API keys. <br>
-Risk: Nightly or unpinned package installation can introduce unexpected upstream changes. <br>
-Mitigation: Prefer stable pinned package versions and only install upstream packages that the user trusts. <br>
-Risk: Optional remote storage can expose training traces or checkpoints if cloud permissions are too broad. <br>
-Mitigation: Configure S3 storage with encryption, limited IAM permissions, retention limits, and access logging. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, instrument, train, evaluate, export, and serve AI agents with Agent Lightning workflows. It is intended for agent optimization tasks that use reinforcement learning, prompt optimization, supervised fine-tuning, evaluation tasks, checkpoints, logs, and optional remote storage.
 
-## Reference(s): <br>
-- [Agent Lightning ClawHub Release](https://clawhub.ai/olmmlo-cmd/agent-lightning) <br>
-- [Agent Lightning Documentation](https://microsoft.github.io/agent-lightning/) <br>
-- [Agent Lightning GitHub Repository](https://github.com/microsoft/agent-lightning) <br>
-- [Agent Lightning API Reference](https://microsoft.github.io/agent-lightning/stable/reference/) <br>
-- [Agent Lightning Paper](https://arxiv.org/abs/2508.03680) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include training configuration, instrumentation examples, command-line workflows, and operational recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Install instructions use unpinned packages and include an optional nightly TestPyPI path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or container, prefer a pinned stable PyPI release, and review nightly package sources before use.
+
+Risk: Training workflows may expose API keys or cloud credentials.
+
+Mitigation: Provide only required credentials, avoid unnecessary cloud secrets during install and training, and scope credentials to the task.
+
+Risk: Training can write checkpoints, logs, traces, dashboards, and optional remote storage outputs.
+
+Mitigation: Review local and remote output locations before running training, and avoid storing sensitive prompts, traces, or credentials in logs and checkpoints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/olmmlo-cmd/skills/agent-lightning)
+- [Agent Lightning Documentation](https://microsoft.github.io/agent-lightning/)
+- [Train SQL Agent with RL](https://microsoft.github.io/agent-lightning/stable/how-to/train-sql-agent/)
+- [Agent Lightning API Reference](https://microsoft.github.io/agent-lightning/stable/reference/)
+- [Agent Lightning arXiv Paper](https://arxiv.org/abs/2508.03680)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, Python, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include install commands, training configuration, instrumentation examples, evaluation guidance, and checkpoint or logging paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

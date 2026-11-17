@@ -1,41 +1,58 @@
-## Description: <br>
-Converts Mercurial repositories to Git while preserving history, branches, and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Mercurial (hg) repositories to Git while preserving history, branches, and tags during VCS migration.
 
-## Publisher: <br>
-[poeticflowerhome](https://clawhub.ai/user/poeticflowerhome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poeticflowerhome](https://clawhub.ai/user/poeticflowerhome)
 
-## Use Case: <br>
-Developers and engineers use this skill when migrating legacy Mercurial repositories to Git, including extracting author mappings and running standard or large-repository conversion scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts can install or download executable conversion tooling into the local environment. <br>
-Mitigation: Prefer installing hg-fast-export from a trusted source before use, and review the resolved executable before running repository conversions. <br>
-Risk: Repository conversion modifies local files and one large-repository script can remove an existing target folder. <br>
-Mitigation: Run conversions only on backed-up repositories and choose a destination path that does not already exist or contain data you care about. <br>
+## Use Case:
 
+Developers and engineers use this skill to migrate legacy Mercurial repositories into Git repositories, including author mapping and post-conversion verification steps.
 
-## Reference(s): <br>
-- [Mercurial to Git Converter on ClawHub](https://clawhub.ai/poeticflowerhome/hg-to-git) <br>
-- [hg-fast-export](https://github.com/frej/fast-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and generated author-map configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The conversion scripts can create a Git repository, write an authors.map file, and install or download hg-fast-export when it is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The conversion scripts may automatically install or run external hg-fast-export tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and pin a trusted hg-fast-export version before running conversion commands.
+
+Risk: A large-repository conversion script can delete an existing destination repository path without confirmation.
+
+Mitigation: Use a fresh empty target directory and back up important data before running the scripts.
+
+Risk: The scripts may change system packages or leave downloaded tooling under the user's home directory.
+
+Mitigation: Review install behavior in advance and run the conversion in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/poeticflowerhome/skills/hg-to-git)
+- [hg-fast-export](https://github.com/frej/fast-export)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository paths, author-map guidance, conversion commands, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

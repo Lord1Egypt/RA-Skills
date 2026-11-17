@@ -1,44 +1,59 @@
-## Description: <br>
-General-purpose Coda document manager via REST API v1 for managing docs, tables, rows, pages, automations, and doc structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General-purpose Coda document manager via REST API v1 for listing, creating, updating, and deleting docs, tables, rows, pages, automations, and document structure using a Coda API token.
 
-## Publisher: <br>
-[0x7466](https://clawhub.ai/user/0x7466) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x7466](https://clawhub.ai/user/0x7466)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to work with Coda workspaces through the REST API, including document discovery, row updates, exports, and automation triggers. It is intended for users who have a Coda API token and appropriate workspace permissions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A Coda API token may expose all docs available to the token holder. <br>
-Mitigation: Use a token with only the access you are comfortable delegating, keep it in CODA_API_TOKEN, and do not commit or paste it into shared outputs. <br>
-Risk: Delete, publish, or permission-changing actions can modify or expose Coda content. <br>
-Mitigation: Review the requested operation and target resource before confirming; use force-style overrides only in controlled automation. <br>
-Risk: Exports and row data can contain sensitive workspace information. <br>
-Mitigation: Inspect exported JSON, CSV, or table output before sharing it outside the trusted workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0x7466/coda) <br>
-- [Coda API Documentation](https://coda.io/developers/apis/v1) <br>
-- [Coda OpenAPI Specification](https://coda.io/apis/v1/openapi.yaml) <br>
-- [Coda API Rate Limiting](https://coda.io/developers/apis/v1#section/Rate-Limiting) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage Coda documents through the Coda REST API, including document discovery, table and row operations, page listing, automation triggers, and data export.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI output in table, JSON, or CSV form] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CODA_API_TOKEN and network access to the Coda REST API; destructive operations use explicit confirmation unless forced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change or delete Coda documents and rows available to the API token.
+
+Mitigation: Review mutating commands before execution, keep confirmation prompts enabled, and use --force only for deliberate automation.
+
+Risk: The Coda API token can expose documents and row data available to the user.
+
+Mitigation: Prefer CODA_API_TOKEN over command-line tokens, use the least access needed for the task, and handle JSON or CSV exports as sensitive data.
+
+Risk: Retries or repeated execution may repeat mutating operations.
+
+Mitigation: Check command results and request IDs before retrying create, insert, update, delete, or automation-trigger commands.
+
+## Reference(s):
+
+- [ClawHub Coda skill page](https://clawhub.ai/0x7466/skills/coda)
+- [Coda API documentation](https://coda.io/developers/apis/v1)
+- [Coda OpenAPI specification](https://coda.io/apis/v1/openapi.yaml)
+- [Coda API rate limits](https://coda.io/developers/apis/v1#section/Rate-Limiting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, CSV]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI responses may be tables, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CODA_API_TOKEN; mutating requests act on Coda documents available to the token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

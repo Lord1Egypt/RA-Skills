@@ -1,42 +1,55 @@
-## Description: <br>
-Use when a user pastes a meeting transcript and needs a structured summary with action items and decision owners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes pasted meeting transcripts into structured summaries with decisions, action items, owners, deadlines when stated, and open items.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Employees, external collaborators, developers, and project teams use this skill to convert pasted meeting transcripts into concise summaries with decisions, action items, assignees, deadlines when stated, and unresolved open items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts may contain secrets, regulated personal data, or confidential internal discussions. <br>
-Mitigation: Use the skill only with transcripts the user is authorized to process, and avoid pasting sensitive or regulated content unless the agent session is approved for that data. <br>
-Risk: The README mentions API-key and write-mode usage without enough detail to confirm what service is used or where outputs are written. <br>
-Mitigation: Before using any API key or write mode, confirm the service, whether transcript text leaves the environment, and where generated outputs are stored. <br>
+## Use Case:
 
+Employees, external users, and productivity-focused agents use this skill to turn pasted meeting transcripts into concise summaries, decisions, assigned action items, and unresolved follow-ups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/wangjipeng-meeting-transcript-to-summary) <br>
-- [Metadata source: MiniMax-AI skills](https://github.com/MiniMax-AI/skills) <br>
-- [Skill references index](artifact/references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured summary with sections for summary, decisions, action items, and open items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include uncertainty notes, missing-section statements, speaker-label assumptions, and follow-up questions for ambiguous transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; artifact frontmatter and changelog report 1.0) <br>
+Risk: The README mentions API-key configuration and write-mode examples, but the security evidence does not identify a concrete implementation requiring those privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill as a passive transcript summarization prompt and do not provide API credentials or file-write authority unless the publisher supplies implementation details.
+
+Risk: Meeting transcripts may contain sensitive business or personal information.
+
+Mitigation: Keep transcript handling within the current agent session and avoid storing or forwarding transcript content unless the deployment has approved data-handling controls.
+
+## Reference(s):
+
+- [Skill reference index](artifact/references/index.md)
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/wangjipeng-meeting-transcript-to-summary)
+- [Source URL from skill metadata](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include explicit notes when decisions, action items, speaker names, or dates are missing from the transcript.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata and changelog report 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Diagram as contract for agreed-upon AI development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagram as contract for agreed-upon AI development.
 
-## Publisher: <br>
-[nonlinear](https://clawhub.ai/user/nonlinear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nonlinear](https://clawhub.ai/user/nonlinear)
 
-## Use Case: <br>
-Developers and agents use this skill to open a local Mermaid-backed contract diagram for a Markdown file, visualize agreed implementation state, and update phase badges and notes during AI development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local server exposes broad local file access and automatic write behavior without enough safeguards. <br>
-Mitigation: Review before installing, use only with non-sensitive Markdown files, stop the localhost server when done, and avoid exposing port 8080 beyond the local machine. <br>
-Risk: The skill may modify Markdown files while claiming diagrams or updating phase badges. <br>
-Mitigation: Use a controlled workspace or explicit target file, keep backups or version control available, and confirm changes before relying on updated diagrams. <br>
+## Use Case:
 
+Developers and engineers use this skill to view Mermaid-based contract diagrams, track agreed implementation phases, and work with Markdown contract files through a local viewer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nonlinear/contract-diagram) <br>
-- [Contract Diagram skill source link](https://github.com/nonlinear/skills/tree/main/contract-diagram/SKILL.md) <br>
-- [Marked Markdown parser](https://github.com/markedjs/marked) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Mermaid diagrams, localhost commands, and local file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a localhost viewer on port 8080 and may write updates to the selected Markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; SKILL.md frontmatter lists 1.0.0) <br>
+Risk: An unauthenticated local server can expose read/write behavior for Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the server only on loopback, narrowly allowlist file paths, and avoid exposing the port to other hosts.
+
+Risk: Automatic file rewriting can alter private or important Markdown files.
+
+Mitigation: Use disposable or version-controlled files, remove write access where possible, and require explicit confirmation before writes.
+
+Risk: Rendered Markdown or diagram content may be unsafe when input is not trusted.
+
+Mitigation: Sanitize Markdown before rendering and use the viewer only with trusted contract files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nonlinear/skills/contract-diagram)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with Mermaid diagrams and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch a local hot-reload viewer and update diagram metadata in Markdown files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Manages WhatsApp whitelists so agents can send messages only to approved numbers, track delivery status, and verify OpenClaw WhatsApp connectivity through word-trigger commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages WhatsApp whitelists to send messages only to approved numbers, track delivery status, and verify OpenClaw connectivity via word-trigger commands.
 
-## Publisher: <br>
-[Santanu-Kumar-prusty](https://clawhub.ai/user/Santanu-Kumar-prusty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[santanu-kumar-prusty](https://clawhub.ai/user/santanu-kumar-prusty)
 
-## Use Case: <br>
-Developers and operators use this skill to manage approved WhatsApp recipient sets, send text or media messages through a connected OpenClaw account, and check message status by ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WhatsApp messages are sent from the user's connected OpenClaw account and may reach unintended recipients if whitelist sets are stale or too broad. <br>
-Mitigation: Keep whitelist sets small and reviewed, verify the target set before sending, and confirm WhatsApp connectivity before message actions. <br>
-Risk: Local whitelist and message-store files can contain sensitive phone numbers and message metadata. <br>
-Mitigation: Use the skill only from a trusted, non-shared workspace and protect or delete the local data files when they are no longer needed. <br>
-Risk: The skill invokes the openclaw command available in PATH. <br>
-Mitigation: Ensure the openclaw command resolves to the trusted OpenClaw CLI before using the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to manage approved WhatsApp recipient sets, send text or media messages through OpenClaw only to those sets, and check delivery status for sent messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Santanu-Kumar-prusty/whatclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON files for whitelist sets and message status records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send real WhatsApp messages to whitelisted recipients with limited confirmation before delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with trusted operators and carefully controlled recipient sets; add a preview or confirmation step before sends in higher-risk deployments.
+
+Risk: The skill can send local media files externally when a file path is supplied.
+
+Mitigation: Use non-sensitive media paths and restrict local media access to an approved directory.
+
+Risk: Word-trigger commands may be unsafe in automated contexts where untrusted text can invoke actions.
+
+Mitigation: Avoid wiring untrusted input directly to this skill and require an operator review before message-sending commands run.
+
+Risk: Whitelist and message log data are stored locally in JSON files.
+
+Mitigation: Document retention expectations and set appropriate filesystem permissions for the local data directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/santanu-kumar-prusty/skills/whatclaw)
+- [Artifact usage guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw CLI, a connected WhatsApp channel, and local JSON storage for whitelist and message status data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

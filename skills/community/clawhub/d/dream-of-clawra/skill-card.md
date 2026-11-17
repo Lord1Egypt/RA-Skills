@@ -1,44 +1,62 @@
-## Description: <br>
-Dream Of Clawra helps an OpenClaw agent choose hosted Haocun dancing or selfie images and send them to messaging channels such as WhatsApp or Signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dream Of Clawra helps an OpenClaw agent select fixed Haocun dancing or selfie images from a CDN and send them to messaging channels.
 
-## Publisher: <br>
-[qidu](https://clawhub.ai/user/qidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qidu](https://clawhub.ai/user/qidu)
 
-## Use Case: <br>
-External users and developers use this skill to add persona-driven image selection and messaging to an OpenClaw agent. It supports requests for dancing or selfie-style images and sends a hosted image after the user provides the channel and recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send images through messaging accounts. <br>
-Mitigation: Require explicit confirmation for each recipient, channel, caption, and image before sending. <br>
-Risk: The installer can persistently change the agent identity and persona files. <br>
-Mitigation: Back up IDENTITY.md and SOUL.md and review the installer before running it. <br>
-Risk: OpenClaw gateway credentials and broad tool access can increase impact if misused. <br>
-Mitigation: Keep the gateway token private and narrow allowed tools to the minimum needed for the deployment. <br>
+## Use Case:
 
+External OpenClaw users can add a persona-oriented selfie and dancing-image capability to an agent. The skill chooses a fixed hosted image based on user context and sends it through a configured messaging channel.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/qidu/dream-of-clawra) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [Hosted Image Asset Source](https://cdn.jsdelivr.net/gh/christoagent/haoclaw@main/assets/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and messaging API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Selects hosted image URLs and can invoke OpenClaw messaging with channel, target, caption, and media parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server evidence, package.json, manifest.json) <br>
+Risk: The installer can persistently rewrite OpenClaw identity and persona files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install first in a test agent or back up IDENTITY.md and SOUL.md before running the CLI.
+
+Risk: Broad tool permissions and casual triggers may lead to unintended media sending.
+
+Mitigation: Require explicit confirmation of the selected image, channel, and recipient before sending any outbound message.
+
+Risk: The skill sends hosted image URLs through configured messaging channels.
+
+Mitigation: Verify recipient consent, target identifiers, and OpenClaw gateway settings before enabling automatic or repeated use.
+
+## Reference(s):
+
+- [Dream Of Clawra on ClawHub](https://clawhub.ai/qidu/skills/dream-of-clawra)
+- [Publisher profile](https://clawhub.ai/user/qidu)
+- [Project repository](https://github.com/qidu/dream-of-clawra)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Hosted image assets](https://cdn.jsdelivr.net/gh/christoagent/haoclaw@main/assets/)
+- [Clawra](https://clawra.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, OpenClaw messaging parameters, and selected media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate outbound media messages through the configured OpenClaw channel and target.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata, manifest.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

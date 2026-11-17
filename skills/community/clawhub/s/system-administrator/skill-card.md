@@ -1,43 +1,51 @@
-## Description: <br>
-Professional System Administration Career Roadmap Platform that generates personalized career development paths based on skills assessment and experience level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional System Administration Career Roadmap Platform that generates personalized career development paths based on skills assessment and experience level.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, system administrators, IT managers, and organizations use this skill to generate personalized system administration career roadmaps from experience, technical skill, and specialization assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment payloads may include personal career history or sensitive employer context sent to an external service. <br>
-Mitigation: Provide only the career and skill assessment details needed for roadmap generation; avoid confidential employer information, passwords, API keys, private infrastructure details, and persistent personal identifiers. <br>
-Risk: Generated career guidance may not reflect a user's current employer needs, local market, or certification requirements. <br>
-Mitigation: Review roadmap phases, skill gaps, and certification recommendations before acting on them, and validate them against current role expectations and trusted certification sources. <br>
+## Use Case:
 
+System administrators, IT managers, and organizations use this skill to generate personalized career roadmaps from experience, technical skill ratings, and specialization preferences. The output helps identify skill gaps, prioritize learning objectives, and plan certification paths.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/system-administrator) <br>
-- [API Docs](https://api.mkkpro.com:8051/docs) <br>
-- [API Gateway Route](https://api.mkkpro.com/career/system-administrator) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON roadmap data with structured career phases, skill gaps, certification recommendations, and estimated timeline.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires career assessment input such as experience, technical skill ratings, specialization preferences, session ID, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: The skill sends assessment data and identifiers to an external third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid unnecessary personal identifiers, use opaque session IDs where possible, and review the provider's privacy and retention terms before submitting real user assessment data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/system-administrator)
+- [System Administrator Roadmap API docs](https://api.mkkpro.com:8051/docs)
+- [System Administrator Roadmap API route](https://api.mkkpro.com/career/system-administrator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Text]
+
+**Output Format:** [JSON response containing roadmap phases, skill gaps, certification recommendations, and estimated timeline]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from assessment data, session identifier, optional user identifier, and timestamp submitted to an external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

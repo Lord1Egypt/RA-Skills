@@ -4,10 +4,9 @@
 
 import json
 from unittest.mock import MagicMock, patch
-import pytest
 
-from scripts.explore import ExploreAction
 from scripts.client import XiaohongshuClient
+from scripts.explore import ExploreAction
 
 
 class TestExtractFeeds:

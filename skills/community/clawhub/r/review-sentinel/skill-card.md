@@ -1,47 +1,63 @@
-## Description: <br>
-Monitor, analyze, and respond to Google reviews for local businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Sentinel monitors, analyzes, and drafts responses to Google reviews for local businesses while tracking review changes in local state files.
 
-## Publisher: <br>
-[rolarenagent-cpu](https://clawhub.ai/user/rolarenagent-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rolarenagent-cpu](https://clawhub.ai/user/rolarenagent-cpu)
 
-## Use Case: <br>
-External operators and business teams use this skill to monitor Google reviews, detect rating or review-count changes, analyze themes, draft human-approved replies, and generate reputation reports for local businesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Google Places API key. <br>
-Mitigation: Use the GOOGLE_PLACES_API_KEY environment variable, restrict the key in Google Cloud, and avoid storing credentials in local files unless necessary. <br>
-Risk: Review monitoring stores business review data, state snapshots, and reports locally. <br>
-Mitigation: Periodically remove old state and report files that are no longer needed, especially for sensitive business contexts. <br>
-Risk: Drafted review replies can affect customer relationships or regulated communications. <br>
-Mitigation: Keep replies human-approved and manual, and avoid referencing patient conditions or other sensitive details in healthcare or professional-service responses. <br>
-Risk: The fallback web scraping scripts are fragile and may break when Google changes page structure. <br>
-Mitigation: Prefer the Google Places API workflow and treat scraping output as best-effort evidence that should be checked before action. <br>
+## Use Case:
 
+External local business operators and their agents use this skill to monitor Google review changes, analyze reputation trends, draft human-reviewed responses, and generate reputation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rolarenagent-cpu/review-sentinel) <br>
-- [State schema](references/state-schema.md) <br>
-- [Google Places API Text Search endpoint](https://places.googleapis.com/v1/places:searchText) <br>
-- [Google Places API Place Details endpoint](https://places.googleapis.com/v1/{place_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON summaries, local state files, report files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Google Places API key and may store local business review state and generated reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill needs access to a Google Places API key for its primary review-fetching workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the key through GOOGLE_PLACES_API_KEY where possible, avoid storing credential files, and restrict who can access the runtime environment.
+
+Risk: Local state and report files can contain business reputation data and review text.
+
+Mitigation: Keep review-sentinel state and report folders private, and apply normal retention and access controls for customer-facing business data.
+
+Risk: Drafted review responses may be unsuitable for public posting without business review.
+
+Mitigation: Review every drafted response before posting, especially for negative reviews and privacy-sensitive businesses.
+
+Risk: Recurring cron monitoring can repeatedly call external review services and store new snapshots.
+
+Mitigation: Enable scheduled checks only when recurring monitoring is intended, and use a conservative cadence.
+
+## Reference(s):
+
+- [Review Sentinel ClawHub Page](https://clawhub.ai/rolarenagent-cpu/skills/review-sentinel)
+- [Publisher Profile](https://clawhub.ai/user/rolarenagent-cpu)
+- [State Schema](references/state-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, JSON summaries, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GOOGLE_PLACES_API_KEY for Google Places API workflows; local review state and reports may be written under review-sentinel/.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Integrates AutoResearchClaw to autonomously generate conference-ready academic papers from user research topics with real citations and experimental code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates AutoResearchClaw so an agent can configure and run an autonomous research workflow that returns academic papers, citations, experiment code, and review artifacts.
 
-## Publisher: <br>
-[nffdasilva](https://clawhub.ai/user/nffdasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nffdasilva](https://clawhub.ai/user/nffdasilva)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent install and operate AutoResearchClaw for academic research, literature review, experiment generation, and paper drafting from a research topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A simple research request can trigger installation of external code and execution of an autonomous code-generating research pipeline. <br>
-Mitigation: Review or pin the external repository first, run the workflow in an isolated environment, and inspect generated code and research outputs before relying on them. <br>
-Risk: The documented workflow uses auto-approval and can reduce user checkpoints during research and experiment generation. <br>
-Mitigation: Avoid auto-approval for sensitive work and add explicit review gates before installation, experiment execution, and publication use. <br>
-Risk: The workflow may require API keys and optional integrations for memory, messaging, scheduled runs, sub-session spawning, and lesson-to-skill behavior. <br>
-Mitigation: Provide credentials only through environment variables or a secret manager, and leave optional integrations disabled unless they are explicitly needed. <br>
+## Use Case:
 
+Developers, researchers, and research-support agents use this skill to turn a research topic into an AutoResearchClaw run that can produce papers, citation files, experiment code, figures, verification reports, and peer-review notes.
 
-## Reference(s): <br>
-- [AutoResearchClaw Integration on ClawHub](https://clawhub.ai/nffdasilva/autoresearchclaw-integration) <br>
-- [AutoResearchClaw GitHub repository](https://github.com/aiming-lab/AutoResearchClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and YAML examples, plus generated research artifacts from the external toolchain.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce LaTeX, bibliography files, experiment code, charts, review notes, and citation verification reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may install and run unpinned third-party code with approvals disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a sandbox or isolated workspace, pin AutoResearchClaw to a trusted commit, and avoid auto-approval for normal use.
+
+Risk: The workflow can use network access, API credentials, scheduled jobs, messaging, browser automation, spawned sessions, memory, and skill creation integrations.
+
+Mitigation: Limit credentials passed to the process and enable cron, memory, messaging, browser, sessions, or MetaClaw skill creation only when explicitly needed.
+
+Risk: Autonomous research and paper generation can produce incorrect, misleading, or unsupported conclusions.
+
+Mitigation: Review generated papers, citation files, verification reports, experiment code, and results before relying on or sharing the output.
+
+## Reference(s):
+
+- [AutoResearchClaw project link from artifact resources](https://github.com/aiming-lab/AutoResearchClaw)
+- [AutoResearchClaw Integration ClawHub listing](https://clawhub.ai/nffdasilva/skills/autoresearchclaw-integration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code]
+
+**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, and references to generated research deliverable files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to produce LaTeX, BibTeX, JSON verification reports, experiment outputs, figures, and review notes through AutoResearchClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Provides free web, image, news search, and autocomplete suggestions through the Claw Search API without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides free web, image, news search, and autocomplete suggestions via the Claw Search API without requiring an API key.
 
-## Publisher: <br>
-[yuanchao193](https://clawhub.ai/user/yuanchao193) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanchao193](https://clawhub.ai/user/yuanchao193)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add web, image, news, and autocomplete search to OpenClaw agents without managing a search API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to an external service and may be routed through its DuckDuckGo fallback. <br>
-Mitigation: Do not use the skill for secrets, credentials, personal data, confidential project names, regulated information, or queries whose disclosure would be unacceptable. <br>
-Risk: The external search service may enforce rate limits or become unavailable. <br>
-Mitigation: Handle failed requests and rate-limit responses in the calling agent before relying on search results. <br>
+## Use Case:
 
+Developers and agent builders use this skill when an OpenClaw agent needs web search, image search, news search, or autocomplete suggestions through a no-key external search API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanchao193/claw-search-free) <br>
-- [Claw Search API search endpoint](https://www.claw-search.com/api/search) <br>
-- [Claw Search API image endpoint](https://www.claw-search.com/api/images) <br>
-- [Claw Search API news endpoint](https://www.claw-search.com/api/news) <br>
-- [Claw Search API suggestions endpoint](https://www.claw-search.com/api/suggest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries are sent to the Claw Search service and may use its DuckDuckGo fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Search terms, image queries, news topics, and autocomplete text are sent to claw-search.com and may be sent to its upstream search provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, credentials, private internal names, regulated personal data, or confidential investigations unless that external disclosure is acceptable.
+
+Risk: The free API documents a default rate limit of 100 requests per minute.
+
+Mitigation: Design agent workflows with request throttling, retries, or fallback behavior for high-volume use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yuanchao193/skills/claw-search-free)
+- [Claw Search API](https://www.claw-search.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript snippets, configuration examples, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search endpoints return JSON results from an external service with documented count and offset parameters.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact package.json states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,64 @@
-## Description: <br>
-视觉-动作-进化闭环框架 —— 将感知、规划、执行、评估、进化五阶段融合为自迭代认知循环 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A vision-action-evolution loop framework that combines perception, planning, execution, evaluation, and evolution into a self-iterating embodied cognition cycle.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure an embodied AI workflow that connects visual perception, planning, execution, evaluation, and iterative learning. It is intended for agents exploring 2D detection, 3D spatial understanding, action planning, feedback, and self-updating knowledge loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes physical robot actions and automation loops without enough safety limits or user control. <br>
-Mitigation: Use only in a scoped workspace and require explicit human confirmation before any real-world action or hardware control. <br>
-Risk: The skill describes recurring heartbeat tasks and self-updating memory that could persist or change behavior over time. <br>
-Mitigation: Disable or tightly control heartbeat tasks, and review memory or world-model updates before enabling persistent operation. <br>
-Risk: Separate implementation code could add file, tool, robotics, or external-system behavior not visible in the documentation-only artifact. <br>
-Mitigation: Inspect implementation code and run security review before connecting the skill to external tools, files, robotics, or automation systems. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure an agent workflow that turns visual inputs into staged 2D detection, 3D spatial reasoning, action planning, execution review, and iterative model updates for embodied AI tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/vision-action-evolution-loop) <br>
-- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [Vlaser: Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027) <br>
-- [Efficient VLA Models for Embodied Manipulation](https://arxiv.org/abs/2510.17111) <br>
-- [From 2D CAD to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe action plans, confidence values, feedback records, and knowledge updates for a closed-loop agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, README, server release metadata) <br>
+Risk: The workflow describes robot-arm execution without clear user-controlled safety limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in simulation or a supervised, physically safe workcell until human approval, collision checks, force and speed limits, and emergency-stop controls are defined.
+
+Risk: The workflow describes self-updating behavior that can change the internal world model over repeated cycles.
+
+Mitigation: Require update logging, confidence thresholds, review gates, and rollback controls before allowing any persisted evolution step.
+
+Risk: The skill depends on related skills for visual detection, self-evolution, human review, and paper discovery.
+
+Mitigation: Pin and review related skills before installation and re-scan the assembled workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/vision-action-evolution-loop)
+- [Publisher profile](https://clawhub.ai/user/kingofzhao)
+- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [Vlaser: Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027)
+- [Efficient VLA Models for Embodied Manipulation](https://arxiv.org/abs/2510.17111)
+- [From 2D CAD to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892)
+- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255)
+- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe staged visual perception, action planning, robot-arm execution review, feedback injection, and self-update workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

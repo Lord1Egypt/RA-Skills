@@ -1,40 +1,52 @@
-## Description: <br>
-AI video generation workflow on Volcengine. Use when users need text-to-video, image-to-video, generation parameter tuning, or async task troubleshooting for video jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI video generation workflow on Volcengine for text-to-video, image-to-video, generation parameter tuning, and async task troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and external users use this skill to plan and operate Volcengine text-to-video or image-to-video generation jobs, tune generation parameters, poll asynchronous task status, and handle retry or failure guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, input media, task IDs, and resulting URLs may be handled through Volcengine during normal use. <br>
-Mitigation: Avoid sensitive or rights-restricted media unless use of Volcengine for that content matches privacy and licensing requirements. <br>
-Risk: Video generation jobs can fail or require retries during asynchronous processing. <br>
-Mitigation: Log task IDs, use bounded polling intervals, surface failure reasons, and provide rerun suggestions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/volcengine-ai-video-generation) <br>
-- [sources.md](references/sources.md) <br>
+## Use Case:
 
+Developers and operators use this skill to submit and monitor Volcengine text-to-video or image-to-video generation jobs, tune generation parameters, and troubleshoot asynchronous job failures.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with optional shell commands, API workflow steps, task metadata, and final video URL or path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, polling status, failure reasons, retry suggestions, and resulting video URLs or paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Video prompts or source images may be sent to Volcengine.
+
+Mitigation: Confirm the user's Volcengine configuration and policy permit the submission, and avoid sensitive media unless it is approved for that provider.
+
+Risk: Video generation jobs and retries may consume provider quota or incur costs.
+
+Mitigation: Monitor Volcengine account limits and costs before running or retrying generation jobs.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured task details and inline commands or configuration when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include final video URL or path, task ID, status metadata, and failure reason.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

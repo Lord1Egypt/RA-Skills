@@ -1,39 +1,54 @@
-## Description: <br>
-Guides mechanical keyboard buyers through switch type, layout, form factor, actuation force, connectivity, and use-case questions to identify the specs they need without sales bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides mechanical keyboard buyers through switch type, layout, form factor, actuation force, connectivity, and use-case questions to determine the exact specs they need in a brand-neutral way.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose a mechanical keyboard by answering structured questions about typing context, noise constraints, layout needs, platform, connectivity, build quality, customization, and region. The agent returns prioritized specs, a summary card, and matched product suggestions after the critical purchase requirements are known. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence verdict is suspicious and reports potentially powerful repository, GitHub, and moderation authority. <br>
-Mitigation: Install only when those workflows are expected, review commands before execution, avoid full-access defaults unless explicitly needed, and use moderation actions only with confirmed targets, reasons, and appropriate credentials. <br>
+## Use Case:
 
+External users use this skill when buying or upgrading a mechanical keyboard and need a structured consultation that translates their use case, environment, layout, connectivity, and regional needs into practical purchase specifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbazex/mechanical-keyboard-buying-consultant) <br>
-- [Project Homepage](https://github.com/arbazex/personal-tech-buying-consultants/tree/master/mechanical-keyboard-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown consultation with prioritized spec lists, a spec summary table, and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs or runtime dependencies; product availability should be verified when suggestions are made.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may ask about work environment, typing habits, country, and keyboard layout to tailor recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users can provide general purchasing context rather than sensitive personal details.
+
+Risk: Suggested keyboards may change in availability, price, or specification after the recommendation is generated.
+
+Mitigation: Verify current availability, regional layout, switch option, and final specifications before purchasing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/mechanical-keyboard-buying-consultant)
+- [Skill Homepage](https://github.com/arbazex/personal-tech-buying-consultants/tree/master/mechanical-keyboard-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured lists, a specification summary table, and product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask follow-up questions before producing final recommendations; product availability should be checked before purchase.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

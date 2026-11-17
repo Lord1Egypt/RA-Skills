@@ -1,40 +1,53 @@
-## Description: <br>
-Auto Article Writer helps agents generate platform-tailored self-media articles for WeChat Official Accounts, Zhihu, Xiaohongshu, Toutiao, and related channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Article Writer helps agents generate Chinese-language self-media articles adapted for platforms such as WeChat Official Accounts, Zhihu, Xiaohongshu, and Toutiao.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Content creators, marketers, and publishing teams use this skill to draft or batch-generate articles, answers, notes, and SEO content adapted to Chinese content platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may contain inaccurate, unoriginal, copyrighted, or platform-noncompliant content. <br>
-Mitigation: Review and edit generated articles for factual accuracy, originality, copyright, and platform policy compliance before publishing. <br>
-Risk: Batch generation can place generated content in unintended locations when output paths are too broad. <br>
-Mitigation: Keep batch output paths inside a dedicated workspace folder and inspect generated files before publication or reuse. <br>
+## Use Case:
 
+Content creators, marketing teams, and publishing agents use this skill to draft Chinese-language articles, Q&A answers, social posts, and SEO content in platform-specific styles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/auto-article-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown, Word document, or HTML content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform style adaptation, image suggestions, SEO optimization, and deduplication guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Batch generation may create multiple article files in the requested output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a new dedicated output folder and inspect generated files before publishing or distributing them.
+
+Risk: Generated publishing content may need editorial review before public use.
+
+Mitigation: Review generated articles, posts, and answers for accuracy, originality, platform fit, and compliance before publishing.
+
+## Reference(s):
+
+- [Auto Article Writer ClawHub listing](https://clawhub.ai/bingze00000/skills/auto-article-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown, Word, or HTML article drafts with platform-specific writing guidance and image suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create multiple article files when batch generation is requested; review generated content before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, target metadata, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

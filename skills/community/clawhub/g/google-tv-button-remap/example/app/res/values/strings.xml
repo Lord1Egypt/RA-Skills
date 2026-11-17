@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RCU Remap</string>
+    <string name="service_label">RCU Remap (Netflix -> Spotify)</string>
+    <string name="service_desc">Intercepts remote-control app-button key events and remaps the Netflix button to Spotify.</string>
+</resources>

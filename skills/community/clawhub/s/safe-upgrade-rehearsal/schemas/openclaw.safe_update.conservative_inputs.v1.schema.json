@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.conservative_inputs.v1.schema.json",
+  "title": "OpenClaw Safe Update Conservative Inputs",
+  "type": "object",
+  "required": [
+    "schema",
+    "satisfied_gates",
+    "operator_escalations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.conservative_inputs.v1"
+    },
+    "satisfied_gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "evidence_digest"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "lifecycle-download-evidence",
+              "state-migration-rehearsal",
+              "rollback-evidence",
+              "plugin-sdk-contract",
+              "launcher-service-contract",
+              "permissions-contract",
+              "protocol-contract",
+              "channel-crypto-contract",
+              "environment-matched-rehearsal"
+            ]
+          },
+          "evidence_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "operator_escalations": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "candidate-closure-resolved",
+          "installation-attestation-fresh-complete",
+          "authority-input-lossless",
+          "lifecycle-download-evidence",
+          "state-migration-rehearsal",
+          "rollback-evidence",
+          "plugin-sdk-contract",
+          "launcher-service-contract",
+          "permissions-contract",
+          "protocol-contract",
+          "channel-crypto-contract",
+          "environment-matched-rehearsal",
+          "native-optional-dependency-known"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

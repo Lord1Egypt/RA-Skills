@@ -1,45 +1,56 @@
-## Description: <br>
-将任意舆情事件按Duncan五阶段方法论（发生→爆发→高潮→缓和→降温→反馈）进行结构化分析，输出标准化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public-opinion events with the Duncan five-stage lifecycle framework and produces structured Markdown reports for crisis, brand, policy, and social-event analysis.
 
-## Publisher: <br>
-[aeroic-w](https://clawhub.ai/user/aeroic-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aeroic-w](https://clawhub.ai/user/aeroic-w)
 
-## Use Case: <br>
-External communications, public relations, policy, and operations teams use this skill to structure public-opinion incident reviews and draft five-stage Markdown reports. It is suited to crisis retrospectives, brand response planning, policy sentiment analysis, and team training when users provide current event data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill as a live monitoring or alerting system. <br>
-Mitigation: Use it as an analysis and report-writing aid; provide current event data and verify platform metrics independently. <br>
-Risk: Reports can be inaccurate when event facts, sources, or timestamps are incomplete. <br>
-Mitigation: Supply authorized source material, cover at least three independent sources where possible, and label missing data in the report. <br>
-Risk: The skill may be over-relied on for legal, regulatory, or crisis-response decisions. <br>
-Mitigation: Treat generated recommendations as drafting support and route consequential decisions through qualified human review. <br>
+## Use Case:
 
+Communications, public relations, policy, and crisis-response teams use this skill to draft Chinese-language public-opinion analysis reports from user-supplied event data. It helps map an event through occurrence, outbreak, climax, mitigation, and cooling stages, then produce benchmarked findings and practical recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aeroic-w/sentiment-analyzer-pro) <br>
-- [Five-stage methodology details](artifact/references/五阶段方法论详解.md) <br>
-- [Public-opinion analysis case library](artifact/references/舆情分析案例库.md) <br>
-- [Five-stage report template](artifact/assets/五阶段报告模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured sections, tables, stage analysis, benchmark comparisons, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied event facts, timestamps, current platform metrics, and authorized source material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is a methodology and reporting framework, not a real-time monitoring data source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require users to provide verified, lawful, current source data and re-check 2026 thresholds against the event date, platforms, and geography.
+
+Risk: Outputs may be misleading if template thresholds or example cases are treated as live facts or as the sole basis for crisis, legal, or regulatory decisions.
+
+Mitigation: Use the generated report as a draft analysis and route consequential decisions through domain, legal, regulatory, and crisis-management review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aeroic-w/skills/sentiment-analyzer-pro)
+- [五阶段方法论详解](references/五阶段方法论详解.md)
+- [舆情分析案例库](references/舆情分析案例库.md)
+- [五阶段报告模板](assets/五阶段报告模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables, staged analysis sections, benchmark comparisons, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied, current, lawful source data; embedded thresholds and examples are based on 2026 assumptions and should be revalidated before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

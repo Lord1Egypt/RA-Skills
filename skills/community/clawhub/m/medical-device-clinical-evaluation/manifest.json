@@ -1,0 +1,36 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械临床评价专家",
+  "version": "1.0.0",
+  "author": "注册老炮 (MedXpert)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T15:54:11.684127+00:00",
+  "timestamp_local": "2026-08-27T23:54:11.684134",
+  "package_fingerprint_sha256": "dda80d0865b2ab108d2e4481696229e3d4c01dca21f772f91fed0098f7f25cb0",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "5416746360f13e79761cd77b2a7655ff5446803e513f206e31e93a7abd3091ac"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "afcecaca8650e2ab7cb53001e92cb735f9b5e500fbc0a0f9dedb5f59d643ee66"
+    },
+    {
+      "path": "references/临床评价知识库.md",
+      "sha256": "f686f361ad5546ecac2e00968b2c60c2a8633f9717e259ccad8f909e83a85767"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "fd749fa5c5841425fd772469a9a1a84757e387e1f0eed7004efb15bc30adf3e5"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "f2b157a13d131dbe572650f3812db814bcb2ae715630857eeab576d3ff7c2dd3"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "e1a804da8531bce1a497570de9b9ea75c5415c7a53f3d73272bb5b99fa9100b5"
+    }
+  ]
+}

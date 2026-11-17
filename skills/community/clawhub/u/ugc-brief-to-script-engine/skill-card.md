@@ -1,41 +1,54 @@
-## Description: <br>
-Convert a brand or campaign brief into creator-native UGC script packs with hooks, shot lists, and revision-safe variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a brand or campaign brief into creator-native UGC script packs with hooks, shot lists, and revision-safe variants.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, agencies, and marketing teams use this skill to turn brand briefs into UGC script packs with angles, hooks, shot notes, CTAs, proof points, and revision-safe variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated advertising scripts may contain unsupported or misleading claims, especially for regulated health, financial, or scientific topics. <br>
-Mitigation: Review generated claims before publishing and require proof or softer wording where the brief does not substantiate a claim. <br>
-Risk: The artifact license text states that commercial use requires a separate paid commercial license from Razestar. <br>
-Mitigation: Confirm commercial licensing rights before using the skill or its outputs in paid client, agency, or brand workflows. <br>
+## Use Case:
 
+External creators, agencies, and marketing teams use this skill to turn sponsor or campaign briefs into filmable UGC script packs with hooks, shot notes, CTA lines, proof points, and revision options.
 
-## Reference(s): <br>
-- [UGC Script Pack Template](references/script-pack-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/ugc-brief-to-script-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown script pack with structured variants, notes, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes angles, hooks, shot lists, CTA options, claim-safety notes, and approval-ready summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated advertising claims may be inaccurate, unsupported, or unsuitable for regulated product categories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated scripts as drafts and verify claims against the brand brief, substantiation, platform rules, and any legal, medical, or scientific review requirements before publishing.
+
+Risk: Commercial use may be restricted by the artifact's included non-commercial license language.
+
+Mitigation: Confirm the authoritative license terms and obtain any required paid commercial license before using the skill in paid work.
+
+## Reference(s):
+
+- [UGC Script Pack Template](artifact/references/script-pack-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/ugc-brief-to-script-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown script pack with variants, hooks, shot notes, CTA lines, proof points, compliance notes, and filming checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes three script variants, revision-safe options, and claim-safety notes; generated claims should be reviewed against the source brief and applicable brand, platform, legal, medical, or scientific requirements.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

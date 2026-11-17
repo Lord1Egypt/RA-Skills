@@ -1,41 +1,58 @@
-## Description: <br>
-Docx Cn guides agents through creating, reading, editing, converting, validating, and analyzing Word .docx documents, including formatting, tables, images, comments, and tracked changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, reads, edits, validates, and analyzes Microsoft Word .docx documents, including formatting, tables, images, tracked changes, comments, and format conversion.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Anthropic Consumer or Commercial Terms of Service <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to create, read, convert, edit, validate, and analyze Microsoft Word .docx documents, including formatting, tables, images, comments, and tracked changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Anthropic Consumer Terms of Service or Commercial Terms of Service
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports under-contained native injection and persistent temporary LibreOffice automation. <br>
-Mitigation: Review before installing, run only in an isolated workspace, and clear or protect /tmp/lo_socket_shim.so and /tmp/libreoffice_docx_profile. <br>
-Risk: Processing untrusted Office files in shared environments can expose the host to document-processing and automation risks. <br>
-Mitigation: Avoid processing untrusted Office files in a shared multi-user environment and prefer versions that use private per-run temporary directories, exact macro and shim verification, timeout failures, and pinned dependencies. <br>
+## Use Case:
 
+Developers and document-processing agents use this skill to create, inspect, convert, edit, validate, and repair Microsoft Word documents. It is especially relevant when an agent needs to work directly with DOCX XML, comments, tracked changes, tables, images, or LibreOffice-based conversions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/docx-cn) <br>
-- [OpenClaw homepage metadata](https://clawhub.com/skills/docx-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify .docx files through the bundled document-processing scripts when the agent executes the recommended commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill invokes LibreOffice and local document-processing code, including mechanisms that may compile or preload native components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a sandboxed environment where local execution, native code, and document conversion are acceptable.
+
+Risk: Office documents can be unpacked, edited, converted, and repacked, which can alter document contents or expose parser risks when inputs are untrusted.
+
+Mitigation: Process only trusted files where possible, work on copies, and validate generated documents before sharing or relying on them.
+
+Risk: The skill writes to /tmp and may use persistent LibreOffice temporary profiles.
+
+Mitigation: Clear or isolate temporary directories and LibreOffice profiles between runs, especially when handling sensitive documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/docx-cn)
+- [OpenClaw fork reference](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, and generated or modified Office document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, unpack, validate, repair, or modify .docx, .doc, .pdf, image, XML, and temporary LibreOffice profile files through local tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

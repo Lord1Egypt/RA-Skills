@@ -1,47 +1,62 @@
-## Description: <br>
-Midas helps agents turn user-provided daily-life streams such as messages, photos, browsing summaries, complaints, and purchases into ranked money signals, demand gaps, arbitrage windows, monetization paths, and deal analyses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Midas helps agents turn user-provided daily-life information streams into money-signal reports, opportunity rankings, deal analyses, and pattern matches against reference wealth playbooks.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users and agents use this skill to analyze voluntarily provided or public daily-life information for business opportunities, monetization ideas, and deal-structure brainstorming. It is intended for opportunity discovery and planning support, not professional financial, legal, or compliance advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages users to mine sensitive personal and workplace data over time. <br>
-Mitigation: Share only information you are authorized to use, redact unnecessary sensitive details, and avoid confidential employer data, private third-party messages, credentials, regulated personal data, full browsing histories, or raw camera rolls. <br>
-Risk: Business, investment, or deal outputs may be mistaken for professional financial, legal, or compliance advice. <br>
-Mitigation: Use outputs as brainstorming prompts and validate any investment, business, legal, tax, or compliance decision with qualified professionals and independent evidence. <br>
-Risk: Cumulative evolution logs can preserve sensitive context across sessions. <br>
-Mitigation: Store local memory deliberately, review it regularly, and remove entries that contain private, third-party, employer, credential, or regulated information. <br>
+## Use Case:
 
+External users and agent operators use Midas to analyze voluntarily provided or public daily-life inputs, surface monetization opportunities, and structure next-action recommendations or deal reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realteamprinz/midas) <br>
-- [Signal Extraction Framework](references/signal-extraction-framework.md) <br>
-- [Noise-to-Gold Pipeline](references/noise-to-gold-pipeline.md) <br>
-- [Deal Analysis Template](references/deal-template.md) <br>
-- [Sources Guide](references/sources-guide.md) <br>
-- [Famous Models Reference](references/famous-models/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown reports with optional JSON evolution-log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on user-provided or public inputs and should be treated as brainstorming rather than professional financial, legal, or compliance advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: Users may provide broad private, workplace, or sensitive personal data while asking the skill to mine everyday information streams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only sanitized, user-owned, public, or explicitly authorized inputs; avoid employer Slack exports, DMs, raw browsing history, receipts, photos with people or locations, secrets, customer data, and confidential business details.
+
+Risk: The self-learning workflow can encourage retained cumulative logs of prior inputs and opportunity profiles.
+
+Mitigation: Disable or avoid evolution logs unless retained state is intentional, and delete prior inputs, generated logs, and derived examples after use.
+
+Risk: Monetization and deal recommendations may be mistaken for financial, legal, tax, or investment advice.
+
+Mitigation: Treat outputs as brainstorming and analysis only; independently validate assumptions and consult qualified professionals before acting on financial, legal, tax, or investment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realteamprinz/skills/midas)
+- [Signal Extraction Framework](references/signal-extraction-framework.md)
+- [Noise-to-Gold Pipeline](references/noise-to-gold-pipeline.md)
+- [Deal Analysis Template](references/deal-template.md)
+- [Sources Guide](references/sources-guide.md)
+- [Famous Wealth Operating Systems](references/famous-models/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown reports with optional JSON evolution log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, ranked opportunities, deal analysis fields, and next-action recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

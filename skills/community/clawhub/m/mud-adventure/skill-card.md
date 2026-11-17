@@ -1,41 +1,55 @@
-## Description: <br>
-文字冒险型 MUD 游戏创作助手。用于快速搭建文字冒险游戏的世界观、地图、NPC、物品、任务与对话树。当用户说"做 MUD"、"写文字冒险"、"创建mud游戏"、"搭建mud世界"时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mud Adventure is a Chinese-language skill that helps agents create runnable Python text-adventure and MUD games with world design, maps, NPCs, items, quests, dialogue trees, and example code.
 
-## Publisher: <br>
-[weistiger](https://clawhub.ai/user/weistiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weistiger](https://clawhub.ai/user/weistiger)
 
-## Use Case: <br>
-Developers, writers, and game designers use this skill to create single-file Python MUD-style text adventure games with world design, room maps, NPCs, items, quests, dialogue trees, and combat systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python game files may contain mistakes or create local save files in the working directory. <br>
-Mitigation: Review generated Python before running it, and run game files from a normal project folder so savegame.json files are created where expected. <br>
+## Use Case:
 
+Developers, game designers, writers, and external users use this skill to have an agent draft Chinese-language MUD/text-adventure worlds and assemble runnable single-file Python game templates.
 
-## Reference(s): <br>
-- [World Design Guide](references/world-design.md) <br>
-- [Game Systems Guide](references/game-systems.md) <br>
-- [Example Code Snippets](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/weistiger/mud-adventure) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable design guidance and runnable single-file Python game templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated examples that adopt save/load behavior may create or overwrite a local savegame.json file in the game directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated file paths before running the game and keep save files scoped to the intended project directory.
+
+Risk: The documentation and generated examples are Chinese-first, which may cause usability or review issues for non-Chinese-language users.
+
+Mitigation: Review user-facing text and translate or localize generated game content before sharing it with the intended audience.
+
+## Reference(s):
+
+- [World Design Guide](artifact/references/world-design.md)
+- [Game Systems Design Guide](artifact/references/game-systems.md)
+- [Example Code Snippets](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first content; generated game examples may include local save-game persistence when save/load patterns are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

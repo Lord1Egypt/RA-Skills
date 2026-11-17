@@ -1,42 +1,57 @@
-## Description: <br>
-Helps migrate Windows developer-tool caches, plugins, and application data directories to a user-selected drive by copying the data, replacing the original directory with an NTFS Junction, and verifying the redirect. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide Windows users through moving developer tool cache, plugin, and data directories to another drive using NTFS Junctions.
 
-## Publisher: <br>
-[sunliangzesmile](https://clawhub.ai/user/sunliangzesmile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunliangzesmile](https://clawhub.ai/user/sunliangzesmile)
 
-## Use Case: <br>
-Developers and Windows power users use this skill to identify large application cache or data directories, move them off the system drive, synchronize related tool configuration, and verify NTFS Junction migration status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move, delete, and permanently redirect local application folders. <br>
-Mitigation: Back up important data, close affected applications, confirm exact source and destination paths, and verify the Junction after migration. <br>
-Risk: Broad or incorrect source paths could affect more data than intended. <br>
-Mitigation: Use exact cache or application data directories only, avoid system-wide or broad profile paths, and prefer a preliminary scan before running migration commands. <br>
-Risk: VSCode migration can modify launcher and settings files. <br>
-Mitigation: Review those file changes first, keep a copy of the original launcher/settings files, or use skip options when launcher edits are not desired. <br>
+## Use Case:
 
+Developers and power users use this skill to identify large Windows application cache or data directories, migrate them to a specified destination, and verify Junction-based redirection after migration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunliangzesmile/cache-migration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with PowerShell and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows 10/11 focused; scripts operate on local filesystem paths and NTFS Junctions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Migration scripts can delete source directories and create persistent NTFS Junctions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only after confirming exact source and destination paths, closing affected applications, and making a backup or restore point.
+
+Risk: VS Code migration can modify launcher scripts and settings.
+
+Mitigation: Avoid launcher-editing options with untrusted or unusual destination strings, and prefer app-supported cache or extension path settings when available.
+
+Risk: Running PowerShell with elevated privileges increases impact if paths are wrong.
+
+Mitigation: Avoid administrator PowerShell unless required and review all generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunliangzesmile/skills/cache-migration)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with PowerShell and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Windows 10/11 NTFS Junction workflows and requires user-supplied source and destination paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

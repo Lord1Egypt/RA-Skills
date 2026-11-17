@@ -1,40 +1,59 @@
-## Description: <br>
-PulseMindX supports data analysis, administrative reporting, and decision support by turning user-provided requests or datasets into structured insights, summaries, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PulseMindX is an assistant for data analysis, administrative tasks, report generation, and decision support.
 
-## Publisher: <br>
-[deanasam](https://clawhub.ai/user/deanasam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanasam](https://clawhub.ai/user/deanasam)
 
-## Use Case: <br>
-Business users and operators use this skill to summarize CSV, Excel, JSON, or text inputs, identify trends and key metrics, and produce concise reports or documentation drafts for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes that the documentation describes broader memory, scheduling, tool-use, and prompt-file behavior than the packaged instructions clearly define. <br>
-Mitigation: Review the skill before using it with business or sensitive data, and confirm whether memory, saved snippets, external tools, and referenced prompt files are actually present and appropriate for the environment. <br>
-Risk: Data analysis and reporting outputs can be incomplete or misleading when source data is missing, low quality, or ambiguous. <br>
-Mitigation: Validate source data, ask for clarification when needed, and review generated insights or reports before relying on them. <br>
+## Use Case:
 
+External users and teams use PulseMindX to summarize datasets, identify trends, organize information, and draft simple reports for decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deanasam/pulsemindx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown or plain text summaries, insights, and reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the user before decisions or follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may provide confidential datasets or memory snippets while using the assistant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data before sharing it with the skill and avoid submitting sensitive or confidential information unless the deployment environment is approved for that data.
+
+Risk: Tool integrations or scheduling behavior may depend on separately installed skills rather than this package itself.
+
+Mitigation: Review and approve any separately installed skills before using them with PulseMindX workflows.
+
+Risk: Insights and reports may be limited by incomplete, low-quality, or ambiguous source data.
+
+Mitigation: Validate inputs, ask clarifying questions when needed, and have users confirm outputs before relying on them for decisions or actions.
+
+## Reference(s):
+
+- [PulseMindX ClawHub listing](https://clawhub.ai/deanasam/skills/pulsemindx)
+- [Artifact README](artifact/readme.md)
+- [Artifact skill prompt](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize user-provided CSV or Excel data and draft reports; quality depends on the provided data.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Alpha Finder (x402) provides prediction market intelligence for Polymarket and Kalshi research, probability assessments, market sentiment analysis, and arbitrage opportunity identification at $0.03 USDC per request on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alpha Finder (x402) researches prediction markets across Polymarket, Kalshi, and other sources to produce market intelligence, probability assessments, sentiment analysis, and arbitrage leads.
 
-## Publisher: <br>
-[TzannetosGiannis](https://clawhub.ai/user/TzannetosGiannis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tzannetosgiannis](https://clawhub.ai/user/tzannetosgiannis)
 
-## Use Case: <br>
-Traders, researchers, and analysts use this skill to research prediction markets, compare odds and sentiment, and identify possible market inefficiencies or arbitrage opportunities across Polymarket, Kalshi, and related sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide a raw Base wallet private key and exposes it to external npm code. <br>
-Mitigation: Use only a dedicated low-balance Base wallet, avoid main wallet private keys, and restrict permissions on any x402 config file. <br>
-Risk: Each request may charge $0.03 USDC via x402 on Base. <br>
-Mitigation: Confirm the intended request before running the skill and keep only the spending amount needed in the dedicated wallet. <br>
-Risk: The skill runs external npm code that is not pinned or fully reviewed in the bundle. <br>
-Mitigation: Review the external package and command before use and run the skill in a constrained environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TzannetosGiannis/alpha-finder) <br>
+## Use Case:
 
+External users and market researchers use this skill to query prediction-market data and commentary, assess probabilities and sentiment, and identify possible mispriced or arbitrage opportunities before trading or research decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [$0.03 USDC per request via x402 on Base; requires X402_PRIVATE_KEY or x402-config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a wallet private key and passes it to a third-party npm package downloaded at runtime.
+
+Mitigation: Use a dedicated low-balance Base wallet, avoid primary wallet keys, restrict plaintext config file permissions, and prefer a pinned, reviewed package version or safer signing flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tzannetosgiannis/skills/alpha-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown market research response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [$0.03 USDC per request via x402 on Base; requires a wallet private key through X402_PRIVATE_KEY or x402-config.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Detect centralization risks in proposals and designs; output structural critiques and safer decentralization alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect centralization risks in proposals and designs; output structural critiques and safer decentralization alternatives.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mzfshark](https://clawhub.ai/user/mzfshark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, governance reviewers, and operators use this skill to evaluate proposals, permission changes, and system designs for single points of control, dependency chains, and safer decentralization alternatives.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad dependency trigger may route this skill during ordinary dependency discussions.
+
+Mitigation: Use the skill for governance or structural review contexts, or narrow routing triggers before deployment when dependency discussions are common.
+
+Risk: Centralization critiques can be incomplete or misleading if the proposal omits actors, permissions, or critical paths.
+
+Mitigation: Review the input proposal for complete control-point and dependency information before relying on the analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Governance reviewers, developers, and external contributors use this skill to assess proposals, permission changes, and system designs for single points of control, dependency chains, and safer decentralization alternatives. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate when generic dependencies or authority relationships are mentioned. <br>
-Mitigation: Treat its findings as a prompt for structural review and confirm relevance before acting on the critique. <br>
-Risk: Its output can resemble governance, operational, or financial advice when proposals involve funds or permissions. <br>
-Mitigation: Use it as risk analysis only; route final custody, financial, legal, or operational decisions through qualified human review. <br>
+**Output Format:** [Structured text with centralization risk findings, red flags, alternatives, and a response draft]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/anti-centralization-probe) <br>
-- [Publisher profile](https://clawhub.ai/user/mzfshark) <br>
+**Other Properties Related to Output:** [Analysis-only governance output; no shell execution, credentials, persistence, or data access requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown or JSON-like text containing single points, risk level, red flags, alternatives, and a response draft.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structural critique only; no custody, financial-action, or abuse-enabling operational instructions.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

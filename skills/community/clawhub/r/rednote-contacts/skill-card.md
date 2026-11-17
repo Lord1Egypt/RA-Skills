@@ -1,42 +1,54 @@
-## Description: <br>
-Run the installed red-crawler CLI for Xiaohongshu contact discovery. Requires the red-crawler command and Playwright browser runtime; not instruction-only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the installed red-crawler CLI for Xiaohongshu contact discovery. Requires the red-crawler command and Playwright browser runtime; not instruction-only.
 
-## Publisher: <br>
-[batxent](https://clawhub.ai/user/batxent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[batxent](https://clawhub.ai/user/batxent)
 
-## Use Case: <br>
-Developers and operators use this skill to run red-crawler workflows for Xiaohongshu creator discovery, login session handling, scheduled collection, reporting, and contactable creator exports from a local workspace database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser authentication, proxy credentials, and session-related details may appear in command output, job JSON, logs, or status results. <br>
-Mitigation: Use a private workspace, avoid real credentials unless the exposure is acceptable, and keep storage-state files, job directories, logs, and databases out of shared folders and version control. <br>
-Risk: The skill depends on the installed red-crawler binary and Playwright browser runtime. <br>
-Mitigation: Install only a trusted red-crawler binary and review bootstrap flags before allowing dependency or browser installation. <br>
+## Use Case:
 
+Developers and operators use this skill to run installed red-crawler workflows for Xiaohongshu creator and contact discovery, browser login state capture, scheduled collection, weekly reports, and contactable-creator exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/batxent/rednote-contacts) <br>
-- [red-crawler project homepage](https://github.com/Batxent/red-crawler) <br>
-- [Publisher profile](https://clawhub.ai/user/batxent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Structured status objects, command summaries, logs, and generated CSV or JSON artifact paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return background job identifiers, heartbeat state, stdout, stderr, metrics, reports, and contact export artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The configurable runner_command can broaden command execution beyond the expected crawler wrapper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a dedicated workspace, keep runner_command fixed to the expected red-crawler command, and do not allow untrusted prompts or workflows to set it.
+
+Risk: Browser authentication values and Playwright storage-state files may appear in returned output, job files, or logs.
+
+Mitigation: Avoid supplying browser_auth unless this exposure is acceptable, keep storage-state files private, and review generated job files and logs before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/batxent/skills/rednote-contacts)
+- [Publisher profile](https://clawhub.ai/user/batxent)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [JSON action results with command strings, artifact paths, stdout/stderr text, and optional background job state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Crawler actions may produce CSV exports, JSON reports, job state files, heartbeat files, and stdout/stderr logs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

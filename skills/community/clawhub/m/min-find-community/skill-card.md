@@ -1,40 +1,50 @@
-## Description: <br>
-Helps users identify and evaluate communities that could support a minimalist business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users identify and evaluate communities that could support a minimalist business, using a Chinese-language coaching flow based on The Minimalist Entrepreneur methodology.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-Entrepreneurs and business builders use this skill to find communities they already understand, evaluate whether those communities have meaningful problems, and narrow their focus to one to three communities they can serve. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad startup-advice prompts when a user expects general ideation rather than community-focused business guidance. <br>
-Mitigation: Review trigger keywords and activation rules before deployment so the skill is invoked only for community-discovery and target-user questions. <br>
-Risk: The skill is written primarily for Chinese-language users and may be less effective for non-Chinese users without adaptation. <br>
-Mitigation: Localize prompts and examples before deploying it to audiences that do not use Chinese. <br>
+## Use Case:
 
+External users and entrepreneurs use this skill to narrow broad startup interests into 1-3 reachable communities and identify recurring problems within each community.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/min-find-community) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown coaching guidance with a structured comparison table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a narrowed list of 1-3 communities with each community's persistent problems, user connection, and online or offline gathering places.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may receive startup-community coaching in Chinese when they expected another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Document the language expectation or narrow trigger phrases so the skill is invoked for Chinese-language community discovery workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-china/skills/min-find-community)
+- [ClawHub publisher profile](https://clawhub.ai/user/ethan-china)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown table and concise coaching prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language startup community discovery guidance]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

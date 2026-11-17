@@ -1,45 +1,63 @@
-## Description: <br>
-Fetches WeChat Official Account articles from a public account name or article URL, returning article content, account metadata, and optional account article lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch WeChat Official Account articles from either a public account name or a WeChat article URL, with URL-first extraction and graceful fallback when account search is unreliable.
 
-## Publisher: <br>
-[nasplycc](https://clawhub.ai/user/nasplycc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nasplycc](https://clawhub.ai/user/nasplycc)
 
-## Use Case: <br>
-External users and developers use this skill to extract WeChat Official Account article content, identify the publishing account, search account candidates, manage MP sessions, and produce Markdown or structured JSON for archives or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can obtain and persist logged-in WeChat MP backend session credentials in local files. <br>
-Mitigation: Use public article extraction when possible; only scan the QR code or provide WECHAT_MP_COOKIE and WECHAT_MP_TOKEN in trusted runtimes, prefer a low-risk WeChat MP account, and delete scripts/cache/session.json plus login-state artifacts after use. <br>
-Risk: Account search and article-list features depend on valid WeChat MP backend cookies and tokens. <br>
-Mitigation: Check session validity before backend operations and fall back to article-URL-based extraction when the session is missing, invalid, or untrusted. <br>
-Risk: WeChat pages and backend endpoints are brittle and can return verification or shell pages. <br>
-Mitigation: Treat browser fallback and partial-success warnings as normal outcomes, and review extracted Markdown or JSON before downstream use. <br>
+## Use Case:
 
+Developers and content-operations users use this skill to extract full WeChat Official Account article content, identify the publishing account, retrieve recent account articles, and manage the WeChat MP session needed for account-level queries.
 
-## Reference(s): <br>
-- [WeChat MP Reader skill page](https://clawhub.ai/nasplycc/nasply-wechat-mp-reader) <br>
-- [WeChat MP Reader Design](references/design.md) <br>
-- [WeChat MP Reader Usage Guide](references/usage.md) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON objects, with shell commands when invoking the bundled CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local session, login, and cache files during session workflows; article extraction can include HTML, Markdown, images, account metadata, and warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill stores WeChat MP backend session cookies and tokens in plaintext session cache files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace, prefer environment variables for temporary credentials, and do not commit, publish, or share scripts/cache session files.
+
+Risk: The article command can fetch user-supplied URLs, and the security review specifically flags arbitrary URL fetching.
+
+Mitigation: Pass only real https://mp.weixin.qq.com article URLs and review network activity before installation or execution.
+
+Risk: Account search and article listing depend on a valid WeChat MP backend session and brittle WeChat endpoints.
+
+Mitigation: Check session status before account-level queries, treat partial results and warnings as expected, and prefer URL-first extraction when search is unreliable.
+
+Risk: The artifact handoff references external memory files that are not part of the packaged evidence.
+
+Mitigation: Avoid following external memory-file checklists unless you explicitly intend to expose that local context.
+
+## Reference(s):
+
+- [WeChat MP Reader Design](references/design.md)
+- [WeChat MP Reader Usage Guide](references/usage.md)
+- [ClawHub Skill Listing](https://clawhub.ai/nasplycc/skills/nasply-wechat-mp-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-shaped article, account, session, and warning objects plus shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article HTML, cleaned markdown content, image URLs, account metadata, session status, account article lists, and warnings about fallbacks or missing session state.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

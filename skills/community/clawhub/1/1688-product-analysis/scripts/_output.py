@@ -14,7 +14,7 @@ def make_output(success: bool, markdown: str, data: dict) -> dict:
 
 def print_output(success: bool, markdown: str, data: dict):
     """打印标准 JSON 输出"""
-    print(json.dumps(make_output(success, markdown, data), ensure_ascii=False, indent=2))
+    print(json.dumps(make_output(success, markdown, data), ensure_ascii=True, indent=2))
 
 def print_error(e: Exception, default_data: dict = None):
     """将异常转为标准错误输出并打印"""

@@ -1,48 +1,59 @@
-## Description: <br>
-Discovers, collects, ranks, and summarizes recent trending open-source AI and LLM projects from public sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents discover, collect, and summarize the latest trending and viral open-source AI or LLM projects from public sources.
 
-## Publisher: <br>
-[leon0401](https://clawhub.ai/user/leon0401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leon0401](https://clawhub.ai/user/leon0401)
 
-## Use Case: <br>
-Developers, researchers, and product teams use this skill to monitor recent open-source AI project momentum and receive a ranked, source-linked trend report for follow-up evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs live public web research across multiple third-party sources and saves a local JSON report. <br>
-Mitigation: Use it only where outbound requests to the listed public sources and local report output are acceptable; constrain sources and output paths for stricter privacy or network requirements. <br>
-Risk: Broad activation and source-use guidance can lead an agent to perform wider research than the user intended. <br>
-Mitigation: Confirm the requested scope before running the fetcher or manual fallback, and narrow sources, language filters, or look-back windows when needed. <br>
-Risk: Trend reports can become stale or overrepresent the public sources and communities queried by the skill. <br>
-Mitigation: Date-stamp outputs, disclose stale data when it is older than three days, and review source coverage before relying on rankings. <br>
+## Use Case:
 
+Developers, researchers, and AI product teams use this skill to track recent open-source AI, LLM, multimodal, agent, and tooling projects and turn public trend signals into a concise Markdown intelligence report.
 
-## Reference(s): <br>
-- [Skill source guide](artifact/references/sources.md) <br>
-- [Report template](artifact/references/report_template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/leon0401/ai-trending-models) <br>
-- [GitHub repository search API](https://api.github.com/search/repositories) <br>
-- [Hugging Face trending models](https://huggingface.co/models?sort=trending) <br>
-- [arXiv recent AI papers](https://arxiv.org/list/cs.AI/recent) <br>
-- [Papers With Code trending](https://paperswithcode.com/trending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown report with source links, supported by a local JSON data file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes collection date, ranked project tables, category grouping, paper highlights, trend analysis, and stale-data notices when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes live requests to public trend sources and writes a local trending_report.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound public web requests and local report creation are acceptable.
+
+Risk: Generated links, paper metadata, and trend rankings may be incomplete or stale, and one arXiv fetch path uses HTTP.
+
+Mitigation: Treat generated results as research leads and verify project licenses, release status, and important paper metadata before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leon0401/skills/ai-trending-models)
+- [AI Trending Sources Reference Guide](references/sources.md)
+- [AI Trending Models Report Template](references/report_template.md)
+- [GitHub Trending Python](https://github.com/trending?since=weekly&l=python)
+- [Hugging Face Trending Models](https://huggingface.co/models?sort=trending)
+- [Papers With Code Trending](https://paperswithcode.com/trending)
+- [arXiv cs.AI Recent](https://arxiv.org/list/cs.AI/recent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report, with optional JSON trend data from the fetcher]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's language when possible and includes dated trend summaries, ranked tables, project links, paper links, and trend observations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

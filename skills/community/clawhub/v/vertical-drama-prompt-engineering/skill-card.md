@@ -1,40 +1,55 @@
-## Description: <br>
-Helps agents write 9:16 vertical short-drama storyboard and image-generation prompts using Z-axis depth, vertical shot types, and composition checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual prompt-engineering guide for creating 9:16 vertical short-drama storyboard prompts with Z-axis depth, layered composition, shot-type guidance, and quality checks.
 
-## Publisher: <br>
-[beermanzz](https://clawhub.ai/user/beermanzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beermanzz](https://clawhub.ai/user/beermanzz)
 
-## Use Case: <br>
-External creators, prompt engineers, and storyboard planners use this skill to structure vertical short-drama scenes, AI image prompts, and shot guidance around foreground, midground, background, power hierarchy, and 9:16 framing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with separate image or video generation tools that have their own API keys, network access, copyright, or safety considerations. <br>
-Mitigation: Review the security, credential, copyright, and safety posture of any downstream generation tools before using outputs from this skill in production. <br>
+## Use Case:
 
+External creators, prompt writers, and agents use this skill to plan vertical short-drama storyboards and draft AI image prompts that preserve 9:16 composition, Z-axis staging, depth layering, and shot-specific framing.
 
-## Reference(s): <br>
-- [Z-Axis Depth](references/z-axis-depth.md) <br>
-- [Vertical Shot Types](references/vertical-shot-types.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/beermanzz/vertical-drama-prompt-engineering) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt examples and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Chinese and English framing terms and prompt snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Most explanatory text is in Chinese with English prompt phrases, so users who cannot review that bilingual format may misapply the guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a Chinese-proficient reviewer validate generated prompts and storyboards before production use.
+
+Risk: Prompt and storyboard guidance can still produce incorrect or misleading creative direction if accepted without review.
+
+Mitigation: Use the included quality checklist and human creative review before using outputs in production.
+
+## Reference(s):
+
+- [Z-Axis Depth](references/z-axis-depth.md)
+- [Vertical Shot Types](references/vertical-shot-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/beermanzz/skills/vertical-drama-prompt-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with bilingual prompt examples and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no commands, code execution, API calls, credentials, or system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

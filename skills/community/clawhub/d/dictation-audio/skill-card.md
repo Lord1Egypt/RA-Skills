@@ -1,42 +1,58 @@
-## Description: <br>
-Generates dictation audio from English word lists, reading each word twice with a one-second pause. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates English dictation audio from word lists, reading each word twice with a one-second pause between readings.
 
-## Publisher: <br>
-[effeceee](https://clawhub.ai/user/effeceee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effeceee](https://clawhub.ai/user/effeceee)
 
-## Use Case: <br>
-External learners, educators, and developers use this skill to turn English vocabulary lists into repeated MP3 dictation practice audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Input words may be processed by the configured text-to-speech provider. <br>
-Mitigation: Avoid confidential words or names unless you accept the provider's data handling. <br>
-Risk: The skill depends on edge-tts and ffmpeg binaries. <br>
-Mitigation: Install dependencies from trusted sources and review generated commands before execution. <br>
-Risk: Each run writes to /tmp/dictation.mp3 and may replace an existing file. <br>
-Mitigation: Move or rename any existing /tmp/dictation.mp3 file before running if it should be preserved. <br>
+## Use Case:
 
+External users, educators, and language-learning developers use this skill to generate MP3 dictation practice audio from English word lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/effeceee/dictation-audio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated runtime output is an MP3 file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires edge-tts and ffmpeg; writes the generated audio to /tmp/dictation.mp3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an unpinned pip package and local edge-tts and ffmpeg binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where those dependencies are approved and maintained.
+
+Risk: The generated audio is written to /tmp/dictation.mp3 and can overwrite an existing file at that path.
+
+Mitigation: Check or move any existing /tmp/dictation.mp3 file before running the skill.
+
+Risk: Sensitive words may be exposed on shared machines through generated audio output in /tmp.
+
+Mitigation: Avoid processing sensitive word lists on shared systems or clean up the generated file immediately after use.
+
+## Reference(s):
+
+- [Dictation Audio ClawHub Skill Page](https://clawhub.ai/effeceee/skills/dictation-audio)
+- [ClawHub Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [MP3 audio file with brief terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the generated audio to /tmp/dictation.mp3.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

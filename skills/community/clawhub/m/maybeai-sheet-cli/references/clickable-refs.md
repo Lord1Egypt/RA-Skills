@@ -25,7 +25,7 @@ Worksheet:
 - Only use `sheet-ref` tags for references that were confirmed from the workbook, a tool result, or a reliable Maybe Sheet API response.
 - Do not use `sheet-ref` tags for examples, guesses, inferred locations, hypothetical formulas, external workbook references, or uncertain references.
 - Include the current workbook document ID in the `docId` attribute. Use the exact document ID from the Maybe Sheet URL or API response.
-- Include the target worksheet gid in the `gid` attribute. Use the exact gid from the Maybe Sheet URL, worksheet list, or API response.
+- Include the target worksheet gid in the `gid` attribute. Use the exact gid from the Maybe Sheet URL, `mbs worksheet list` output, or an API response.
 - Preserve the exact worksheet name from the workbook or tool result in the `sheet` attribute.
 - Use A1 notation in the `range` attribute. For a single cell, either `A1` or `A1:A1` is acceptable; prefer the form returned or required by the active tool.
 - Use a concise visible label, usually `SheetName!A1`, `SheetName!A1:B2`, or the worksheet name.

@@ -1,44 +1,55 @@
-## Description: <br>
-Neural web search and code context via Exa AI API. Requires EXA_API_KEY. Use for finding documentation, code examples, research papers, or company info. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neural web search and code context via Exa AI API. Requires EXA_API_KEY. Use for finding documentation, code examples, research papers, or company info.
 
-## Publisher: <br>
-[fardeenxyz](https://clawhub.ai/user/fardeenxyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fardeenxyz](https://clawhub.ai/user/fardeenxyz)
 
-## Use Case: <br>
-Developers and researchers use this skill to run Exa web searches, retrieve code and documentation context, and extract page content from URLs through the Exa API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, and requested page content are sent to Exa. <br>
-Mitigation: Avoid submitting internal, confidential, or sensitive URLs or queries unless that data may be shared with Exa. <br>
-Risk: The skill depends on an EXA_API_KEY in the local environment. <br>
-Mitigation: Keep the API key private, rotate it if exposed, and avoid logging or committing environment values. <br>
-Risk: The shell scripts rely on local jq and curl binaries. <br>
-Mitigation: Use trusted local installations of jq and curl before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Exa skill page](https://clawhub.ai/fardeenxyz/exa) <br>
-- [Exa API key dashboard](https://dashboard.exa.ai/api-keys) <br>
-- [Exa search API endpoint](https://api.exa.ai/search) <br>
-- [Exa contents API endpoint](https://api.exa.ai/contents) <br>
+## Use Case:
 
+Developers and engineers use this skill to query Exa for web search, code/documentation context, research papers, company information, and extracted URL content from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EXA_API_KEY and local jq and curl installations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries, code-search prompts, and requested URLs are sent to Exa.
+
+Mitigation: Avoid submitting secrets, private source snippets, internal URLs, or confidential project details unless organizational policy permits Exa use.
+
+Risk: The skill requires an EXA_API_KEY to make Exa API calls.
+
+Mitigation: Configure the API key through the environment and rotate or revoke it according to normal credential handling practices.
+
+## Reference(s):
+
+- [ClawHub Exa Skill](https://clawhub.ai/fardeenxyz/skills/exa)
+- [Exa API Keys Dashboard](https://dashboard.exa.ai/api-keys)
+- [Exa Search API Endpoint](https://api.exa.ai/search)
+- [Exa Contents API Endpoint](https://api.exa.ai/contents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON API responses and Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EXA_API_KEY and sends user-provided queries or URLs to Exa.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

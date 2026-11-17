@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents search and parse bearing models, brands, specifications, cross-references, and selection guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Bearings Skill helps agents answer bearing model, brand, specification, code parsing, cross-reference, and selection questions using packaged reference material and a local lookup script.
 
-## Publisher: <br>
-[openfindbearings](https://clawhub.ai/user/openfindbearings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openfindbearings](https://clawhub.ai/user/openfindbearings)
 
-## Use Case: <br>
-Developers, engineers, and procurement users can use this skill to answer bearing model, brand, specification, cross-reference, and selection questions. It is intended for lookup and decision support, not as the sole authority for safety-critical engineering choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearing specifications or selection advice may be incomplete or unsuitable for purchasing or safety-critical engineering decisions. <br>
-Mitigation: Confirm dimensions, load ratings, speed limits, and application fit against trusted manufacturer documentation before acting. <br>
-Risk: The optional Python helper reads local bearing JSON data from a separate data folder. <br>
-Mitigation: Use bearing data files from trusted sources and review them before relying on helper output. <br>
+## Use Case:
 
+External users, developers, and maintenance teams can use this skill to look up bearing models, parse common bearing codes, compare brand equivalents, and draft bearing selection guidance for application scenarios.
 
-## Reference(s): <br>
-- [Bearing Brand Reference](references/brands.md) <br>
-- [Bearing Data Structure](references/data-structure.md) <br>
-- [Bearing Model Code Rules](references/model-codes.md) <br>
-- [SKF](https://www.skf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands] <br>
-**Output Format:** [Markdown or plain text, with optional terminal output from the Python helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local bearing JSON data when the optional helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The lookup script reads bearing data from an ancestor-level data/models path outside the packaged skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the data path so it reads only packaged skill data, and avoid using it where unrelated or sensitive JSON files may exist in that ancestor path.
+
+Risk: The package may overstate implemented capabilities relative to the current local lookup behavior.
+
+Mitigation: Confirm the implemented search, parsing, brand lookup, and selection behavior before relying on outputs in operational decisions.
+
+## Reference(s):
+
+- [Bearing Data Structure](artifact/references/data-structure.md)
+- [Bearing Model Codes](artifact/references/model-codes.md)
+- [Bearing Brands Reference](artifact/references/brands.md)
+- [SKF](https://www.skf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command snippets and tabular bearing details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include bearing dimensions, type explanations, suffix parsing, brand cross-references, and selection guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

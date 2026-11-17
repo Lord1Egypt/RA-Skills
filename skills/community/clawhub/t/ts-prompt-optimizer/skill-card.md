@@ -1,44 +1,54 @@
-## Description: <br>
-Optimizes prompt-style user requests into clearer, more specific task descriptions using prefix triggers, configurable model routing, and personalized rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TS Prompt Optimizer turns vague user requests into clearer, more specific task prompts using configurable model routing and personalization.
 
-## Publisher: <br>
-[chen435636097](https://clawhub.ai/user/chen435636097) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen435636097](https://clawhub.ai/user/chen435636097)
 
-## Use Case: <br>
-External users and developers use this skill to turn short or ambiguous prompts into structured task instructions for coding, writing, analysis, and creative workflows. It is designed for OpenClaw-style agents and uses optional API keys for DeepSeek and Bailian/Qwen model providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt history may be retained locally, including sensitive prompt content. <br>
-Mitigation: Avoid confidential prompts unless history retention is disabled or cleaned regularly, and review local OpenClaw files after use. <br>
-Risk: API keys may be stored or exposed through local configuration flows. <br>
-Mitigation: Keep credentials in environment variables or an operating-system secret store, and avoid displaying configuration with real keys present. <br>
-Risk: Generated optimized prompts may add assumptions or constraints the user did not intend. <br>
-Mitigation: Review optimized prompts before execution, especially for code, security, legal, financial, or operational tasks. <br>
+## Use Case:
 
+Developers and AI assistant users use this skill to rewrite underspecified prompts into clearer instructions for coding, writing, analysis, and creative tasks. It can route optimization through configured model providers and apply local preferences or prompt history.
 
-## Reference(s): <br>
-- [ClawHub listing for ts-prompt-optimizer](https://clawhub.ai/chen435636097/ts-prompt-optimizer) <br>
-- [Publisher profile: chen435636097](https://clawhub.ai/user/chen435636097) <br>
-- [OpenClaw ClawHub homepage](https://github.com/openclaw/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional inline code blocks and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local configuration and prompt-history files when its setup and optimization scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter and release notes list 1.0.0) <br>
+Risk: Setup can persist API keys in local config or shell profile files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege keys, avoid entering live credentials unless local persistence is acceptable, and rotate any keys already processed by the skill.
+
+Risk: Diagnostics and prompt history can expose credentials or sensitive prompts.
+
+Mitigation: Avoid show or get diagnostics with live credentials, and disable, clear, or review memory and history files before submitting sensitive prompts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chen435636097/skills/ts-prompt-optimizer)
+- [ClawHub project homepage from metadata](https://github.com/openclaw/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text prompts with optional inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local configuration and memory files when setup or learning features are enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

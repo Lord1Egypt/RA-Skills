@@ -1,43 +1,53 @@
-## Description: <br>
-Helps agents support pool service business operations including pricing, chemical management, routing, licensing, hiring, and scaling from solo technician to multi-crew teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents support pool service business operations, including pricing, chemical management, route planning, licensing considerations, hiring, and growth planning from solo operator to multi-crew teams.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Business operators and agents use this skill to plan pool service pricing, route density, staffing, equipment needs, compliance tasks, and growth from a solo route to multi-crew operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill with customer lists, routes, employee details, pricing, or financial data may expose sensitive business information. <br>
-Mitigation: Share operational or financial data only with agents and platforms already trusted for that data. <br>
-Risk: Pricing, margins, chemical costs, licensing, insurance, and health department obligations vary by market and may change over time. <br>
-Mitigation: Verify local requirements, supplier pricing, and insurance obligations before relying on generated operational plans. <br>
+## Use Case:
 
+Business owners, operators, and agents use this skill to plan and analyze pool service operations such as service pricing, chemical costs, route density, staffing, compliance checkpoints, and growth stages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-pool-service) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown business operations guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational guidance only; no code, automation, or install-time behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Pricing, licensing, insurance, and compliance details may be outdated or vary by jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current local regulations, insurance requirements, and market costs before using the guidance for business decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-pool-service)
+- [Publisher Profile](https://clawhub.ai/user/afrexai-cto)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and structured operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; business recommendations should be checked against current local market costs and regulations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

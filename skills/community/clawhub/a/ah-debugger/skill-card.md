@@ -1,40 +1,52 @@
-## Description: <br>
-Debugger helps agents diagnose complex issues, analyze root causes, and approach debugging systematically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert debugger specializing in complex issue diagnosis, root cause analysis, and systematic problem-solving. Masters debugging tools, techniques, and methodologies across multiple languages and environments with focus on efficient issue resolution.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to diagnose complex software issues, analyze logs, traces, dumps, code paths, and system behavior, and identify root causes with validated fixes and prevention steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Debugging evidence can include production incidents, logs, dumps, traces, environment details, secrets, personal data, or customer-sensitive records.
+
+Mitigation: Confirm the target system and redact secrets, tokens, personal data, and customer-sensitive records before sharing debugging evidence with the agent.
+
+Risk: Debugging guidance can lead to code, configuration, or operational changes that may affect system behavior.
+
+Mitigation: Review proposed changes, validate fixes in an appropriate environment, and check side effects before production deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to guide debugging sessions, interpret logs and symptoms, isolate root causes, and decide on corrective next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging logs, stack traces, or environment output can contain secrets or sensitive system details. <br>
-Mitigation: Provide only the details needed for the issue and redact secrets before sharing diagnostic material with the agent. <br>
-Risk: Proposed production fixes or code changes may be incomplete or incorrect. <br>
-Mitigation: Review and test proposed changes before applying them, especially in production systems. <br>
+**Output Format:** [Markdown guidance with diagnostic analysis, proposed fixes, validation steps, and optional code or shell command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-debugger) <br>
+**Other Properties Related to Output:** [May summarize debugging evidence, root cause findings, side effects, and prevention measures.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with diagnostic steps, code snippets, and shell commands when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plain instruction skill; no executable code or hidden install behavior found in security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

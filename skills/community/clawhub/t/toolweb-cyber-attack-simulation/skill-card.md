@@ -1,43 +1,60 @@
-## Description: <br>
-Professional security testing and vulnerability assessment tool for simulating cyber attacks and generating comprehensive security reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional security testing and vulnerability assessment tool for simulating cyber attacks and generating comprehensive security reports.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, penetration testers, MSSPs, and compliance-focused organizations use this skill to run authorized cyber attack simulations, retrieve attack-type and vulnerability data, and generate security assessment results with remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes high-risk attack simulation actions without clearly limiting use to authorized targets. <br>
-Mitigation: Install and use it only for owned or explicitly authorized security testing, and confirm target scope before invoking simulations. <br>
-Risk: DDoS, brute force, phishing, high-intensity tests, and privilege-escalation simulations can create legal, operational, or safety risk. <br>
-Mitigation: Apply extra review and safeguards for these scenarios, and avoid third-party or production systems unless formally approved. <br>
+## Use Case:
 
+External security teams, penetration testers, MSSPs, and compliance-focused organizations use this skill to run controlled cyber attack simulations, retrieve supported attack vectors, and generate vulnerability assessment reports with remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cyber-attack-simulation) <br>
-- [Cyber Attack Simulation API Documentation](https://api.mkkpro.com:8120/docs) <br>
-- [Cyber Attack Simulation API Route](https://api.mkkpro.com/security/cyber-attack-simulation) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown guidance and JSON API request or response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Simulation requests include target details, attack types, intensity, session identifiers, user identifier, and timestamps; API responses may include findings, vulnerability details, attack summaries, security scores, and remediation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: The skill can run cyber attack simulations against caller-specified targets without clearly enforcing authorization boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only under a documented governance process for authorized security testing, and confirm each target is owned or explicitly approved before running a simulation.
+
+Risk: Submitted target, user, session, timestamp, and simulation details may be shared with the external provider.
+
+Mitigation: Avoid sensitive production or third-party systems unless separately authorized, and treat all submitted simulation data as external-provider data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cyber-attack-simulation)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb Hub](https://hub.toolweb.in)
+- [OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+- [API Route](https://api.mkkpro.com/security/cyber-attack-simulation)
+- [API Documentation](https://api.mkkpro.com:8120/docs)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses with vulnerability findings, attack summaries, security scores, and remediation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on caller-provided target details, attack types, intensity, session identifiers, and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

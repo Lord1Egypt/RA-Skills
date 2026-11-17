@@ -1,40 +1,53 @@
-## Description: <br>
-Use this skill when a K-12 teacher, instructional coach, or curriculum designer needs a standards-aligned lesson plan for a specific subject, grade, and duration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps K-12 teachers, instructional coaches, and curriculum designers produce complete standards-aligned lesson plans with gradual-release sequencing, tiered differentiation, formative assessment, exit tickets, and standards-alignment tables.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-K-12 teachers, instructional coaches, and curriculum designers use this skill to turn lesson intake into a complete, standards-aligned plan with objectives, gradual-release activities, differentiation, checks for understanding, and an exit ticket. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lesson planning can involve sensitive learner profiles, accommodations, or other identifiable student information. <br>
-Mitigation: Use generalized learner needs where possible, avoid names and identifying details, and remove any PII before relying on or sharing the plan. <br>
-Risk: Incorrect or unverifiable standards text could lead to a misaligned classroom plan. <br>
-Mitigation: Ask for the exact standard text when a code cannot be verified and have the teacher confirm standards alignment before classroom use. <br>
+## Use Case:
 
+External K-12 teachers, instructional coaches, and curriculum designers use this skill to draft standards-aligned daily or weekly lesson plans, differentiated tasks, formative assessments, and substitute-teacher-ready materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/lesson-plan-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown lesson plan with tables, checklists, prompts, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires teacher-provided standard text when standards cannot be verified and avoids student names or personally identifiable learner details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and CHANGELOG, released 2026-05-28) <br>
+Risk: Student privacy exposure through names or identifying accommodation details in learner-profile inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to omit student names and identifying accommodation details, and use only the minimum learner-profile information needed for differentiation.
+
+Risk: Incorrect standards alignment if the user provides only a standard code or incomplete standard information.
+
+Mitigation: Require the user to provide the standard text when the skill cannot verify the code, and avoid inventing standard codes, URLs, page numbers, or chapter references.
+
+## Reference(s):
+
+- [Lesson Plan Architect ClawHub Page](https://clawhub.ai/archlab-space/skills/lesson-plan-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lesson plans include objectives, materials, vocabulary, activity sequence, differentiation, exit ticket, homework or extension, and standards-alignment tables.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

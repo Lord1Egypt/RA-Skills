@@ -1,41 +1,53 @@
-## Description: <br>
-When a client mentions a competitor, quickly generate a differentiation comparison and counter-talking-points card. Pure rules engine - no external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese ToB competitor-response cards from competitor, industry, and customer concern inputs, including differentiated comparison points, sales talk tracks, and practical next steps.
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Sales and presales teams use this local CLI skill to draft competitor-response cards when a customer raises price, feature, brand, or comparison concerns. It produces a rule-based framing, comparison table, talking points, and suggested next steps for follow-up validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive claims, example metrics, and generated talking points may be mistaken for verified market intelligence. <br>
-Mitigation: Treat generated content as a template and validate business claims, customer examples, and metrics against approved materials before customer use. <br>
-Risk: The skill does not query live competitor data or an external knowledge base. <br>
-Mitigation: Supplement the output with approved local knowledge, customer materials, or explicitly authorized research when accurate competitor intelligence is required. <br>
+## Use Case:
 
+Sales and presales teams use this CLI skill to turn a named competitor, industry, and customer concern into a Chinese Markdown response card for ToB competitive selling conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/william202404/tob-competitor-snip) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; accepts competitor, industry, concern, and quick-mode CLI inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Generated competitor-response claims, examples, or talk tracks may be inaccurate or unsuitable for a specific customer conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated cards before customer use and adapt claims to verified facts about the competitor, customer, and sales context.
+
+Risk: The skill uses embedded generic and sanitized experience rules and does not verify facts about real competitors.
+
+Mitigation: Treat outputs as drafting assistance, supplement them with current competitive intelligence, and avoid presenting unverifiable examples as confirmed customer evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/tob-competitor-snip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown competitor-response card with comparison tables, talk tracks, and numbered practical guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language CLI output; supports interactive, quick, and argument-driven modes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

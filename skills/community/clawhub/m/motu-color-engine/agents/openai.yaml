@@ -1,0 +1,10 @@
+interface:
+  display_name: "MotuArt Color Engine"
+  short_description: "Portrait grading, AI headshots, outfits, masks, and ID photos"
+  icon_small: "./assets/motu-color-engine-logo.svg"
+  icon_large: "./assets/motu-color-engine-logo.png"
+  brand_color: "#F2542D"
+  default_prompt: "Use $motu-color-engine to preserve identity and produce the requested portrait grade, AI headshot, approved outfit, mask, or ID photo."
+
+policy:
+  allow_implicit_invocation: true

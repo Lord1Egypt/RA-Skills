@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "batch-search-monitor",
+  "name": "batch-search-monitor",
   "version": "1.0.0",
-  "publishedAt": 1776400192200
+  "author": "小鸣 🦞",
+  "description": "批量搜索监控 - 关键词定时搜索、结果告警、数据导出",
+  "tags": ["search", "monitor", "alert", "batch"],
+  "requires": {"bins": ["curl"]}
 }

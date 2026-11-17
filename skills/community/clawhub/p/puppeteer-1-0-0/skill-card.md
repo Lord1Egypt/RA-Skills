@@ -1,49 +1,62 @@
-## Description: <br>
-Automate Chrome and Chromium with Puppeteer for scraping, testing, screenshots, and browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Chrome and Chromium with Puppeteer for scraping, testing, screenshots, PDF generation, and browser workflows.
 
-## Publisher: <br>
-[1215656](https://clawhub.ai/user/1215656) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1215656](https://clawhub.ai/user/1215656)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide Puppeteer-based browser automation for scraping, testing, screenshots, PDF generation, and repetitive Chrome or Chromium workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to create or update hidden local memory in ~/puppeteer/memory.md. <br>
-Mitigation: Require explicit approval before creating or updating local memory, and review stored site, selector, and workflow notes. <br>
-Risk: The skill includes bot-detection avoidance guidance for browser automation. <br>
-Mitigation: Automate only sites or applications where the user has permission, respect rate limits and terms, and supervise scraping behavior. <br>
-Risk: The skill may lead an agent to install npm packages or save executable Puppeteer scripts. <br>
-Mitigation: Approve npm install commands directly and review generated scripts before saving or running them. <br>
-Risk: Persistent browser profiles can retain cookies, sessions, or other local browsing data. <br>
-Mitigation: Use a dedicated browser profile for automation and avoid storing credentials in scripts or shared profile data. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create and troubleshoot Puppeteer workflows for scraping, end-to-end testing, screenshots, PDFs, and repetitive Chrome or Chromium browser tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1215656/puppeteer-1-0-0) <br>
-- [Puppeteer skill homepage](https://clawic.com/skills/puppeteer) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Selectors guide](artifact/selectors.md) <br>
-- [Waiting patterns](artifact/waiting.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Puppeteer script templates, setup commands, selector and waiting guidance, and local workflow notes when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may keep a local record of sites, selectors, and auth workflow patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect or disable ~/puppeteer/memory.md when retained workflow history is not desired, and avoid storing credentials or secrets in scripts or memory files.
+
+Risk: Anti-detection guidance could conflict with website rules or authorization boundaries.
+
+Mitigation: Use the skill only for permitted automation and review target-site terms, authorization, and rate-limit expectations before running scripts.
+
+Risk: Generated browser automation can collect scraped data or operate in authenticated sessions.
+
+Mitigation: Review scripts before execution, keep collected data local unless intentionally exported, and scope browser profiles and output directories to the intended workflow.
+
+## Reference(s):
+
+- [ClawHub Puppeteer Release](https://clawhub.ai/1215656/skills/puppeteer-1-0-0)
+- [Puppeteer Skill Homepage](https://clawic.com/skills/puppeteer)
+- [Setup Guide](artifact/setup.md)
+- [Selectors Guide](artifact/selectors.md)
+- [Waiting Patterns](artifact/waiting.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JavaScript and shell code blocks; generated local scripts and browser output files when used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Puppeteer workflow files under ~/puppeteer/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact frontmatter, and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

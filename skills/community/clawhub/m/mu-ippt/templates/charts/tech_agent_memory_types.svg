@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    Agent 5 种记忆类型模板（放射结构）
+    中心 Agent Core，放射出 Sensory / Working / Episodic / Semantic / Procedural Memory
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    语义形状：Agent=六边形，短期记忆=虚线边框圆角矩形，
+    长期记忆=实线圆柱体，LLM=双边框圆角矩形⚡
+    LLM 生成时参考此结构，自由增减记忆类型。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="arrow-read" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="10 0, 0 3.5, 10 7" fill="{{ACCENT2_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 中心：Agent Core（六边形） ====== -->
+  <polygon points="400,215 470,215 505,250 470,285 400,285 365,250"
+           fill="{{ACCENT_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT_COLOR}}" stroke-width="3" filter="url(#shadow)"/>
+  <text x="435" y="245" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="15" font-weight="bold" fill="{{TEXT_COLOR}}">{{AGENT_CORE}}</text>
+  <text x="435" y="265" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{AGENT_CORE_DESC}}</text>
+
+  <!-- ====== 记忆 1: Sensory Memory（左上，虚线 = 短期） ====== -->
+  <rect x="60" y="65" width="200" height="90" rx="12"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2" stroke-dasharray="6,3" filter="url(#shadow)"/>
+  <text x="160" y="92" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{MEMORY_1}}</text>
+  <line x1="60" y1="102" x2="260" y2="102" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+  <text x="160" y="120" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{MEMORY_1_DESC}}</text>
+  <text x="160" y="140" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">{{MEMORY_1_EXAMPLE}}</text>
+
+  <!-- 连线：Agent → Sensory -->
+  <line x1="385" y1="225" x2="250" y2="155" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 260 150 Q 330 175 380 222" fill="none"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- ====== 记忆 2: Working Memory（右上，虚线 = 短期） ====== -->
+  <rect x="620" y="65" width="200" height="90" rx="12"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" stroke-dasharray="6,3" filter="url(#shadow)"/>
+  <text x="720" y="92" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{MEMORY_2}}</text>
+  <line x1="620" y1="102" x2="820" y2="102" stroke="{{BORDER_COLOR}}" stroke-width="0.8"/>
+  <text x="720" y="120" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{MEMORY_2_DESC}}</text>
+  <text x="720" y="140" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT2_COLOR}}">{{MEMORY_2_EXAMPLE}}</text>
+
+  <!-- 连线：Agent → Working -->
+  <line x1="500" y1="225" x2="630" y2="155" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 625 150 Q 555 180 505 222" fill="none"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- ====== 记忆 3: Episodic Memory（左下，圆柱体 = 长期） ====== -->
+  <ellipse cx="130" cy="310" rx="65" ry="14" fill="{{ACCENT3_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <rect x="65" y="310" width="130" height="60" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="130" cy="370" rx="65" ry="14" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="130" y="335" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{MEMORY_3}}</text>
+  <text x="130" y="355" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{MEMORY_3_DESC}}</text>
+  <text x="130" y="400" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT3_COLOR}}">{{MEMORY_3_EXAMPLE}}</text>
+
+  <!-- 连线：Agent → Episodic -->
+  <line x1="375" y1="270" x2="195" y2="320" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 记忆 4: Semantic Memory（正下方，圆柱体 = 长期） ====== -->
+  <ellipse cx="435" cy="355" rx="65" ry="14" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <rect x="370" y="355" width="130" height="60" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="435" cy="415" rx="65" ry="14" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="435" y="380" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{MEMORY_4}}</text>
+  <text x="435" y="400" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{MEMORY_4_DESC}}</text>
+  <text x="435" y="445" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">{{MEMORY_4_EXAMPLE}}</text>
+
+  <!-- 连线：Agent → Semantic -->
+  <line x1="435" y1="285" x2="435" y2="343" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 记忆 5: Procedural Memory（右下，圆柱体 = 长期） ====== -->
+  <ellipse cx="740" cy="310" rx="65" ry="14" fill="{{ACCENT2_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <rect x="675" y="310" width="130" height="60" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="740" cy="370" rx="65" ry="14" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="740" y="335" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{MEMORY_5}}</text>
+  <text x="740" y="355" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{MEMORY_5_DESC}}</text>
+  <text x="740" y="400" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT2_COLOR}}">{{MEMORY_5_EXAMPLE}}</text>
+
+  <!-- 连线：Agent → Procedural -->
+  <line x1="495" y1="270" x2="685" y2="320" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="455" width="440" height="35" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="477" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{TITLE_COLOR}}">图例:</text>
+
+  <!-- Agent -->
+  <polygon points="70,474 82,474 88,478 82,482 70,482 64,478"
+           fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="98" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">Agent Core</text>
+
+  <!-- 短期记忆 -->
+  <rect x="155" y="470" width="24" height="14" rx="4"
+        fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="187" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">短期记忆</text>
+
+  <!-- 长期记忆 -->
+  <ellipse cx="255" cy="474" rx="14" ry="5" fill="none"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1"/>
+  <rect x="241" y="474" width="28" height="8" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="0.8"/>
+  <text x="285" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">长期记忆</text>
+
+  <!-- 数据流 -->
+  <line x1="330" y1="477" x2="355" y2="477" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="365" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">读写数据流</text>
+</svg>

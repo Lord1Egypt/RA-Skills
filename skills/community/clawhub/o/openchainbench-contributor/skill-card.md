@@ -1,47 +1,58 @@
-## Description: <br>
-Walks a contributor through adding a new benchmark to OpenChainBench. Covers spec format, harness contract, Prometheus scrape wiring, local validation, and PR conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Walks a contributor through adding a new benchmark to OpenChainBench. Covers spec format, harness contract, Prometheus scrape wiring, local validation, and PR conventions.
 
-## Publisher: <br>
-[flotapponnier](https://clawhub.ai/user/flotapponnier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flotapponnier](https://clawhub.ai/user/flotapponnier)
 
-## Use Case: <br>
-Developers and contributors use this skill to add OpenChainBench benchmark specs, harnesses, Prometheus scrape jobs, and pull requests using the project conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository commands such as pnpm install, validation, development server, and build may execute project code from the OpenChainBench repository. <br>
-Mitigation: Review the OpenChainBench repository before running commands and use a controlled development environment. <br>
-Risk: Benchmark harnesses can depend on provider API keys and a public /metrics endpoint. <br>
-Mitigation: Keep API keys in environment variables, do not commit secrets, and verify that public metrics do not expose sensitive data. <br>
-Risk: Hosted harnesses can create ongoing infrastructure cost or availability obligations for contributors. <br>
-Mitigation: Choose an appropriate hosting platform, monitor the harness runtime, and confirm the /metrics endpoint remains stable. <br>
+## Use Case:
 
+Developers and external contributors use this skill to add OpenChainBench benchmarks with a valid spec, metrics harness, Prometheus scrape configuration, local validation, and pull request conventions.
 
-## Reference(s): <br>
-- [OpenChainBench repository](https://github.com/OpenChainBench/OpenChainBench) <br>
-- [Propose a benchmark issue template](https://github.com/OpenChainBench/OpenChainBench/issues/new?template=new-benchmark.yml) <br>
-- [OpenChainBench ideas discussions](https://github.com/OpenChainBench/OpenChainBench/discussions/categories/ideas) <br>
-- [OpenChainBench Prometheus endpoint](https://prom.openchainbench.com) <br>
-- [ClawHub skill page](https://clawhub.ai/flotapponnier/openchainbench-contributor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/flotapponnier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guided six-step contribution flow for benchmark specs, harnesses, Prometheus scrape configuration, validation, and pull requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: A contributor may expose provider API keys while building or hosting a benchmark harness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials in environment variables, provide only a .env.example for local runs, and review changes before committing.
+
+Risk: A long-running hosted harness can create operational cost or availability obligations for the contributor.
+
+Mitigation: Review the target repository, hosting platform, harness logs, and budget before deployment, and choose a stable HTTPS host that can support continuous metrics collection.
+
+Risk: An incomplete benchmark proposal can lead to misleading or rejected benchmark results.
+
+Mitigation: Open the proposal issue first, document methodology and timeouts, avoid fake fallback numbers, and run the local validation commands before opening the pull request.
+
+## Reference(s):
+
+- [OpenChainBench GitHub Repository](https://github.com/OpenChainBench/OpenChainBench)
+- [OpenChainBench Prometheus Endpoint](https://prom.openchainbench.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guided six-step contribution workflow for issue creation, benchmark spec authoring, harness implementation, hosting, Prometheus scrape setup, local validation, and pull request preparation.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

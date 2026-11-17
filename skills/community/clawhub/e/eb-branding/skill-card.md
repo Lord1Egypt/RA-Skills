@@ -1,41 +1,53 @@
-## Description: <br>
-Create brand identity and visual guidelines for products, including personality, color palettes, typography, design tokens, and tone of voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create brand identity and visual guidelines for products by defining personality, color palettes, typography, design tokens, and tone of voice.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-External users, founders, designers, and developers use this skill to define concise brand guidelines before implementing a product interface or marketing presence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated design-token or Tailwind configuration may not fit the target application without review. <br>
-Mitigation: Review generated snippets before applying them and test color contrast, dark mode, and typography in the actual product. <br>
-Risk: Font, logo, and trademark recommendations can create publication or licensing issues if used without independent checks. <br>
-Mitigation: Verify font licenses, logo originality, and trademark conflicts before publishing brand assets. <br>
+## Use Case:
 
+Founders, designers, and developers use this skill to define a practical brand identity before implementation, including archetype, voice, OKLCH color palette, typography, Tailwind design tokens, and concise usage guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emersonbraun/eb-branding) <br>
-- [Brand Guidelines Reference](references/brand-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured brand guidelines and inline TypeScript configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OKLCH color values, typography choices, Tailwind design-token configuration, and voice guidelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Broad invocation wording may cause the skill to appear for general product look-and-feel requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when brand identity, brand guidelines, color, typography, voice, or design-token decisions are intended.
+
+Risk: Brand guidance can be subjective or misaligned with a product's market, accessibility needs, or implementation constraints.
+
+Mitigation: Review proposed palettes, typography, and voice decisions before adoption, including contrast checks for user-facing text.
+
+## Reference(s):
+
+- [Brand Guidelines Reference](artifact/references/brand-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured brand guidelines and Tailwind configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OKLCH color values, font recommendations, voice guidelines, and a one-page quick reference.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

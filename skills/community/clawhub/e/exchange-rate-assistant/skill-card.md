@@ -1,42 +1,62 @@
-## Description: <br>
-exchange_rate_assistant helps users query exchange rates, calculate currency conversions, analyze exchange-rate trends, and retrieve historical exchange rates for major global currencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides exchange-rate lookup, currency conversion, trend analysis, and historical exchange-rate lookup for major global currencies.
 
-## Publisher: <br>
-[luokeer52](https://clawhub.ai/user/luokeer52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luokeer52](https://clawhub.ai/user/luokeer52)
 
-## Use Case: <br>
-External users can use this skill for exchange-rate lookups, currency conversion calculations, trend analysis, and historical rate checks. Developers or operators can run the included client scripts to send requests to the configured Prana/Claw service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, API keys, and payment-history requests to the configured Prana/Claw service. <br>
-Mitigation: Install only if you trust that service with the data being sent, and avoid submitting sensitive prompts unless approved for that environment. <br>
-Risk: API key handling can leave credential material available to the local runtime. <br>
-Mitigation: Use scoped and revocable credentials, set PRANA_SKILL_SKIP_WRITE_API_KEY=1 when plaintext key caching is not acceptable, and delete any generated config/api_key.txt after use. <br>
-Risk: Prior conversation context can carry over through the stored thread ID. <br>
-Mitigation: Use --new-session when a request should not reuse previous conversation context. <br>
+## Use Case:
 
+External users and developers use this skill to request exchange-rate lookups, currency conversions, exchange-rate trend analysis, and historical rate information through a ClawHub/OpenClaw wrapper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luokeer52/exchange-rate-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and service-returned JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session thread IDs; payment-history links should be passed directly to the user without logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The remote execution boundary is broad for an exchange-rate lookup skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher clearly documents what remote service is invoked, what data is sent, and which HTTPS origins are trusted.
+
+Risk: The client fetches, stores, and forwards API credentials, with plaintext persistence enabled by default in the artifact behavior.
+
+Mitigation: Use environment-provided credentials where possible, set PRANA_SKILL_SKIP_WRITE_API_KEY=1 to avoid local plaintext key files, and rotate any PRANA_SKILL keys that were stored or exposed.
+
+Risk: Purchase-history URL access is bundled with the exchange-rate wrapper.
+
+Mitigation: Remove or separate purchase-history access unless that capability is explicitly required for the deployment.
+
+Risk: Runtime dependencies are not pinned in the artifact instructions.
+
+Mitigation: Pin and review the Node.js and Python dependencies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luokeer52/skills/exchange-rate-assistant)
+- [Runtime instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON response content from the remote exchange-rate assistant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session thread metadata for follow-up requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,65 @@
-## Description: <br>
-Temu Price Global helps agents use LinkFox gateway scripts and reference docs for Temu Global price and supply-price APIs, including price-order queries, recommended prices, SKU supply-price lists, and batch SKU price changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Temu全球站-定价 helps agents use LinkFox-mediated Temu Global pricing APIs for price orders, recommended prices, SKU supplier-price queries, and batch supplier-price changes.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External developers, ecommerce operators, and agent builders use this skill to prepare authenticated Temu Global pricing API calls through LinkFox for supply-price lookup, recommended-price review, price-order inspection, and controlled SKU price updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global for Temu Global workflows, excluding the dedicated US and EU Temu site skills. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires LinkFox and Temu seller credentials, and helper scripts can save Temu access tokens locally. <br>
-Mitigation: Use least-privilege dedicated Temu tokens, avoid saving production tokens locally when possible, protect command history and logs, and remove stored tokens when no longer needed. <br>
-Risk: The artifact includes generic proxy and file-download helpers beyond the narrow pricing workflow. <br>
-Mitigation: Use only the pricing-specific scripts required for the task, and remove or avoid generic proxy and download helpers when they are not needed. <br>
-Risk: The batch price-change endpoint can modify SKU supply prices. <br>
-Mitigation: Require explicit human approval before any batch price change and verify request payloads and post-change query results. <br>
+## Use Case:
 
+External sellers, operators, and developers use this skill to query Temu Global pricing data, estimate or retrieve recommended supplier prices, inspect SKU supplier prices, and perform controlled supplier-price updates through LinkFox gateway scripts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linkfox-ai/linkfox-temu-price-global) <br>
-- [API reference](references/api.md) <br>
-- [Access token authorization](references/access-token.md) <br>
-- [Authorization flow](references/authorization-flow.md) <br>
-- [Partner Global catalog](references/partner-global-catalog.md) <br>
-- [Endpoint documentation index](references/apis/README.md) <br>
-- [Temu Partner Global documentation](https://partner-global.temu.com/documentation?menu_code=fb16b05f7a904765aac4af3a24b87d4a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request and response JSON, credential setup steps, and operational cautions for pricing changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release security summary flags broad proxy, download, billing, and credential-storage powers around real seller credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted environments, review the skill before installation, restrict access to credentials and token stores, and avoid exposing raw token values.
+
+Risk: The skill can submit batch supplier-price changes and other actions that may affect seller operations.
+
+Mitigation: Require explicit human confirmation and parameter review before price changes, billing/order actions, or repeated cost-incurring operations.
+
+Risk: Gateway configuration and API keys control access to LinkFox-mediated Temu actions.
+
+Mitigation: Verify gateway environment variables, scope API keys appropriately, and remove or rotate credentials when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-price-global)
+- [API reference](references/api.md)
+- [Temu accessToken authorization](references/access-token.md)
+- [Authorization flow](references/authorization-flow.md)
+- [Onboarding and billing troubleshooting](references/onboarding.md)
+- [Partner Global price catalog](references/partner-global-catalog.md)
+- [Price API document index](references/apis/README.md)
+- [Temu Partner Global documentation](https://partner-global.temu.com/documentation?menu_code=fb16b05f7a904765aac4af3a24b87d4a)
+- [Temu Global OpenAPI router](https://openapi-b-global.temu.com/openapi/router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and saved JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may print small JSON responses directly, summarize larger responses, and save full API responses under a linkfox output directory.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

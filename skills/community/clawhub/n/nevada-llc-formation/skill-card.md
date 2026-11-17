@@ -1,45 +1,56 @@
-## Description: <br>
-Provides guidance on forming a Nevada LLC, including filing steps, costs, registered agent rules, privacy, compliance, and state comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance on forming a Nevada LLC, including filing steps, costs, registered agent rules, privacy, compliance, and state comparisons.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-External users and agents use this skill to answer common questions about Nevada LLC formation costs, filing steps, registered agents, privacy, compliance, and comparisons with other states. It is for general education and marketing guidance, not legal or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for users evaluating Nevada LLC formation under United States and Nevada requirements <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags unqualified legal, privacy, and tax claims that could mislead users. <br>
-Mitigation: Treat the skill as general education or marketing guidance; verify Nevada, federal BOI, IRS, and home-state obligations with official sources or a qualified professional before acting. <br>
-Risk: The artifact implementation content appears to answer Wyoming LLC questions even though the release metadata identifies the skill as Nevada LLC Formation. <br>
-Mitigation: Review generated answers for state-specific accuracy and correct Nevada-specific fees, timelines, and compliance details before relying on the skill. <br>
-Risk: LLC filing fees, processing times, privacy rules, BOI obligations, and tax requirements can change. <br>
-Mitigation: Confirm current requirements with Nevada, federal, IRS, and applicable home-state sources before formation or compliance decisions. <br>
+## Use Case:
 
+External users and business formation advisors use this skill to get Nevada LLC formation guidance, including filing workflow, fees, registered agent requirements, privacy considerations, annual compliance, and state comparisons.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zlc000190/nevada-llc-formation) <br>
-- [LLCClass Nevada guide](https://llcclass.com/nevada) <br>
-- [LLCClass formation hub](https://llcclass.com/get-started) <br>
-- [LLCClass LLC name generator](https://llcclass.com/llc-name-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with links and occasional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should disclose that fees and rules can change and should not be treated as legal or tax advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The release is advertised as Nevada LLC guidance, but the executable returns Wyoming LLC advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the skill for Nevada LLC decisions until the state mismatch is fixed and outputs are checked against current official Nevada sources.
+
+Risk: The skill includes broad legal, tax, privacy, and fee claims and may surface LLCClass commercial links.
+
+Mitigation: Verify claims with official Nevada, federal, and qualified professional sources before filing or advising users, and disclose or review commercial links before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlc000190/skills/nevada-llc-formation)
+- [LLCClass Nevada Guide](https://llcclass.com/nevada)
+- [LLCClass Formation Hub](https://llcclass.com/get-started)
+- [LLCClass Name Generator](https://llcclass.com/llc-name-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style prose with links and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes LLCClass commercial links and legal, tax, privacy, and fee guidance that should be verified against current official and professional sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

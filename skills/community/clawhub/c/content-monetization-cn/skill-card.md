@@ -1,40 +1,54 @@
-## Description: <br>
-内容变现助手 - 帮助用户通过技术内容赚钱，从选题到发布到变现的全流程指导。适合技术博主、公众号作者、掘金/知乎创作者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language content monetization assistant that guides technical creators from topic selection through publishing strategy and monetization.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Technical bloggers, public account authors, Juejin/Zhihu creators, and knowledge-product builders use this skill to plan monetizable technical content from topic selection through article structure, publishing strategy, and conversion copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Revenue and click-through estimates may be inaccurate if treated as guarantees. <br>
-Mitigation: Use estimates only for rough planning and verify assumptions against current platform analytics or campaign data before making business decisions. <br>
-Risk: Generated promotional copy could be misleading, inaccurate, spam-like, or inconsistent with platform policies. <br>
-Mitigation: Review all generated content for factual accuracy, disclosure needs, policy compliance, and tone before publication. <br>
+## Use Case:
 
+External technical creators use this skill to plan Chinese-language technical content, generate article structures and titles, choose publishing tactics, and draft monetization or private-channel conversion copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/content-monetization-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown with structured article plans, title options, publishing recommendations, tags, revenue estimates, and monetization copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance; no code execution, credential access, or automatic publishing behavior is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated income estimates or conversion language may be interpreted as guaranteed outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and qualify monetary claims before publishing, and present estimates as illustrative rather than guaranteed.
+
+Risk: Platform timing, tagging, SEO, and topic recommendations may become stale or vary by channel.
+
+Mitigation: Check current platform rules, audience expectations, and market conditions before using the guidance in public content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/content-monetization-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style content plans, title options, outlines, publishing recommendations, tags, and monetization copy.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes estimated performance and revenue ranges that should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Earn CLAW by running a 20MB blockchain node. Your OpenClaw agent becomes a miner — 4 min setup, zero cost. Built for OpenClaw and all AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw and other agents to use ClawNetwork blockchain capabilities, including running a lightweight node, earning CLAW as a miner, and managing balances, transfers, identity registration, faucet access, and service discovery.
 
-## Publisher: <br>
-[flute](https://clawhub.ai/user/flute) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[flute](https://clawhub.ai/user/flute)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and agent users use this skill to operate ClawNetwork blockchain capabilities through an agent, including checking node status and balances, transferring CLAW, registering identities or services, using a faucet, and discovering services.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A CLAW transfer could be sent to the wrong recipient or for the wrong amount.
+
+Mitigation: Require explicit user confirmation, show the full recipient address, validate 64-character hex addresses, and confirm the amount before executing transfers.
+
+Risk: Agent identity or service registration may publish information on-chain.
+
+Mitigation: Confirm that the user intends to register the identity or service and review submitted names, endpoints, descriptions, and prices before registration.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent users with a ClawNetwork node or wallet use this skill to check node status and balances, request testnet CLAW, register identities or services, search services, and initiate transfers with explicit confirmation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, API Calls, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to perform on-chain wallet, transfer, and registration actions through a separate plugin. <br>
-Mitigation: Install only when that behavior is intended, use a test or low-value wallet first, verify the separate clawnetwork plugin, and require clear confirmation for transfers and public registrations. <br>
-Risk: Incorrect transfer details could move CLAW to the wrong address or for the wrong amount. <br>
-Mitigation: Require explicit user confirmation, show the full recipient address, validate 64-character hex addresses, and report balances in human-readable CLAW amounts before transfer decisions. <br>
+**Output Format:** [Markdown or plain text responses with plugin calls and occasional inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawNetwork Node on ClawHub](https://clawhub.ai/flute/clawnetwork-node) <br>
+**Other Properties Related to Output:** [May require explicit user confirmation before token transfers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the separate clawnetwork plugin for node, wallet, transfer, identity, faucet, and service operations.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

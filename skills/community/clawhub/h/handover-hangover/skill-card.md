@@ -1,40 +1,58 @@
-## Description: <br>
-Seamless model handoff for OpenClaw agents that preserves continuity when the gateway switches to a fallback model mid-session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seamless model handoff for OpenClaw agents, helping preserve continuity when the gateway switches to a fallback model mid-session.
 
-## Publisher: <br>
-[tensusds](https://clawhub.ai/user/tensusds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tensusds](https://clawhub.ai/user/tensusds)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve task continuity when OpenClaw switches models during a session. It records handoff notes, checks for pending handoffs, and helps the incoming model recover context before continuing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Handoff notes may contain task names, file paths, git status, or other workspace context. <br>
-Mitigation: Review or delete memory/handoff-note*.md in sensitive workspaces and avoid recording secrets in handoff notes. <br>
-Risk: The optional integration installer enables a persistent local OpenClaw hook. <br>
-Mitigation: Run the installer only when automatic handoff continuity is desired, and use the included status script to confirm hook state. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help OpenClaw agents leave, detect, and recover handoff notes when model fallback or session-boundary changes could disrupt task continuity.
 
-## Reference(s): <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown handoff notes, local state files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes handoff state under memory/ and can optionally install a local OpenClaw hook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The skill is active every turn and writes persistent handoff files under memory/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and confirm that persistent handoff files are expected for the workspace.
+
+Risk: The skill may install an OpenClaw lifecycle hook.
+
+Mitigation: Review scripts/install-integration.sh and hooks/handover-hangover/handler.js before enabling integration, and keep a clear disable or uninstall path.
+
+Risk: Editable handoff files can contain stale or misleading workspace state.
+
+Mitigation: Treat handoff notes as untrusted context and re-ground important claims before taking irreversible actions.
+
+## Reference(s):
+
+- [Handover Hangover on ClawHub](https://clawhub.ai/tensusds/skills/handover-hangover)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and persistent handoff files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for the agent and may create or update handoff notes under memory/ when integrated.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter, changelog, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,61 @@
-## Description: <br>
-PixVerse CLI helps agents generate, edit, post-process, manage, and download AI images and videos from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PixVerse CLI - generate AI videos and images from the command line with PixVerse video and image models, third-party model options, and PixVerse effect templates.
 
-## Publisher: <br>
-[pixverse-official](https://clawhub.ai/user/pixverse-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pixverse-official](https://clawhub.ai/user/pixverse-official)
 
-## Use Case: <br>
-AI agents, developers, and creative automation users use this skill to script PixVerse media generation workflows, including text-to-video, image-to-video, image editing, prompt enhancement, post-processing, workspace management, and asset handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generation actions can consume PixVerse account credits. <br>
-Mitigation: Require explicit user confirmation before paid generations and check account credits before starting a workflow. <br>
-Risk: Local media supplied to creation or editing commands can be uploaded for cloud processing. <br>
-Mitigation: Confirm uploads before execution and avoid sensitive, private, confidential, or voice media. <br>
-Risk: Asset management commands can delete generated images or videos. <br>
-Mitigation: Require confirmation before deletion and verify the asset ID and workspace context. <br>
-Risk: Workspace switching changes which credits and assets the CLI operates on. <br>
-Mitigation: Require confirmation before workspace switches and check the active workspace before creating, deleting, or downloading assets. <br>
-Risk: Authentication and workspace state can persist in ~/.pixverse/ or be overridden with PIXVERSE_TOKEN. <br>
-Mitigation: Protect stored credentials, avoid exposing environment tokens, and log out when shared environments are used. <br>
-Risk: Bundled update scripts can modify a local git checkout. <br>
-Mitigation: Run update scripts only in a trusted checkout after reviewing local changes and expected remote updates. <br>
+## Use Case:
 
+External developers, AI agents, and creative automation teams use this skill to generate and edit PixVerse images and videos from the command line, manage assets and workspaces, and run repeatable media-production workflows.
 
-## Reference(s): <br>
-- [PixVerse Homepage](https://pixverse.ai) <br>
-- [PixVerse App](https://app.pixverse.ai) <br>
-- [Mondo Artist Styles](references/mondo-poster/artist-styles.md) <br>
-- [Mondo Composition Patterns](references/mondo-poster/composition-patterns.md) <br>
-- [Mondo Genre Templates](references/mondo-poster/genre-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, JSON, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide agents through PixVerse CLI operations that create, modify, download, or delete generated media assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill directs users to install or run an external PixVerse npm CLI that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified PixVerse CLI version from a trusted package source before running generated commands.
+
+Risk: PixVerse authentication uses account tokens and generated media may be uploaded to cloud services.
+
+Mitigation: Avoid uploading sensitive local media, keep tokens protected, and re-check authentication state before automated workflows.
+
+Risk: Commands can consume paid credits or affect team workspace assets.
+
+Mitigation: Check account credits and the active workspace before generation, deletion, or batch operations, and confirm asset IDs before destructive commands.
+
+## Reference(s):
+
+- [PixVerse homepage](https://pixverse.ai)
+- [PixVerse web app](https://app.pixverse.ai)
+- [Mondo Poster Artist Styles Reference](references/mondo-poster/artist-styles.md)
+- [Mondo Poster Composition Patterns Reference](references/mondo-poster/composition-patterns.md)
+- [Mondo Poster Genre Templates Reference](references/mondo-poster/genre-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands commonly use PixVerse CLI JSON mode for machine-readable stdout.]
+
+## Skill Version(s):
+
+1.5.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

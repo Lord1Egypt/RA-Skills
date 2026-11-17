@@ -1,0 +1,49 @@
+{
+  "name": "finance-consumer-guard",
+  "displayName": "金融消保合规护栏",
+  "version": "1.0.0",
+  "description": "银行理财 / 保险 / 基金 / 资管等金融产品营销与销售场景的发布前实时合规护栏。在营销文案、销售话术、广告、官网介绍、对外宣传发布前，自动拦截「保本保收益（刚性兑付）/ 稳赚不赔 / 低风险高收益 / 代客理财 / 最佳理财」等 6 类金融消保高频危险表述，按风险分级（high / medium）给出整改建议。纯本地运行，零网络请求、零动态执行、零依赖，文本输入即可用。依据资管新规（银发〔2018〕106号，打破刚兑）、《商业银行理财业务监督管理办法》、《理财公司理财产品销售管理暂行办法》、《保险销售行为管理办法》（2024年施行）、《广告法》第二十五条，法规全文公开。与深度检查 / 审计工具互补：护栏做日常高频拦截，深度检查做上线前全面体检。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "keywords": [
+    "护栏",
+    "guardrail",
+    "金融消保",
+    "理财合规",
+    "资管新规",
+    "保本保收益",
+    "广告法",
+    "保险销售",
+    "compliance"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "guard": "python3 scripts/guard.py",
+    "detect": "python3 scripts/guard.py --format json",
+    "categories": "python3 scripts/guard.py --list-categories"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "cn",
+    "dependencies": [],
+    "emoji": "🛡️"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/finance-consumer-guard"
+  },
+  "homepage": "https://github.com/wwumit/finance-consumer-guard"
+}

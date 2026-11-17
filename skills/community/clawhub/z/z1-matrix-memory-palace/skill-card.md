@@ -1,45 +1,57 @@
-## Description: <br>
-Build and operate a file-driven Memory Palace for multi-agent systems, combining a spatial memory shell with a continuously maintained LLM Wiki reflection layer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate a file-driven Memory Palace for multi-agent systems that combines spatial project rooms, task corridors, and a continuously maintained LLM Wiki reflection layer.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Developers, agent builders, and multi-agent teams use this skill to design a durable file-based memory operating system with project rooms, task corridors, reflection pages, and a silent archivist workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The memory workflow can accumulate sensitive project material if broad workspace folders are included. <br>
-Mitigation: Limit the palace and archivist to approved folders and completed task cards, and keep secrets or private drafts out of compiled memory. <br>
-Risk: Compiled reflection pages can preserve outdated or incorrect lessons if local experiences are promoted too quickly. <br>
-Mitigation: Review completed cards before promotion and reserve constitution candidates for rules that have been validated across multiple tasks. <br>
+## Use Case:
 
+Developers and agent-system builders use this skill to design durable file-based memory systems for multi-agent teams, separating project facts, task state, and reusable reflection. It is suited to long-running projects that need lower token waste, reduced context drift, and repeatable memory maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/z1one0415/z1-matrix-memory-palace) <br>
-- [Architecture Reference](references/architecture.md) <br>
-- [Naming Quick Reference](references/naming-quickref.md) <br>
-- [Publishing Note](references/publishing-note.md) <br>
-- [Z1 Matrix Memory Palace Method | English Release Copy](references/release-copy-en.md) <br>
-- [Z1矩阵宫殿记忆法｜中文发布介绍](references/release-copy-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with file and directory naming patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory architecture, task-card, reflection, archivist, naming, and routing guidance; no executable scripts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A persistent file-based memory structure can retain project materials longer than expected if memory folders are too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope memory folders to materials the agent is intended to read and summarize, and review retained files during routine project cleanup.
+
+Risk: Archivist or Librarian workflows can promote incomplete project observations into reusable guidance.
+
+Mitigation: Compile reflections only from completed task cards and review candidate principles, prompt kernels, and constitution entries before reuse.
+
+## Reference(s):
+
+- [Architecture Reference](artifact/references/architecture.md)
+- [Publishing Note](artifact/references/publishing-note.md)
+- [Naming Quick Reference](artifact/references/naming-quickref.md)
+- [Z1 Matrix Memory Palace Method | English Release Copy](artifact/references/release-copy-en.md)
+- [Z1矩阵宫殿记忆法｜中文发布介绍](artifact/references/release-copy-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with directory structures, naming conventions, task-card patterns, and memory maintenance workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-based memory architecture guidance; no API keys, MCP tools, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

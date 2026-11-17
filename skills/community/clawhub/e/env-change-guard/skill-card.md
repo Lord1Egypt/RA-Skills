@@ -1,40 +1,49 @@
-## Description: <br>
-在修改环境变量或系统变量时，记录改了什么，并用电脑小白能听懂的话解释这次改动会带来什么影响；当程序、命令、环境或系统功能出现不明问题时，优先查看相关日志、报错或可见线索，再继续排查其他可能原因。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users record environment or system variable changes and explains their impact in beginner-friendly language, while checking logs, errors, or visible clues first when troubleshooting unclear environment issues.
 
-## Publisher: <br>
-[marerlee](https://clawhub.ai/user/marerlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marerlee](https://clawhub.ai/user/marerlee)
 
-## Use Case: <br>
-Developers, support staff, and less technical users use this skill to record environment or system variable changes and understand their impact in plain language. It is also used for beginner-friendly troubleshooting that starts from logs, error messages, or visible clues before moving to broader environment checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Environment changes can break commands or applications if the proposed value is wrong. <br>
-Mitigation: Ask the agent to show the exact change and a rollback plan before applying real environment changes. <br>
-Risk: Local change logs may accidentally capture secrets such as API keys, tokens, or passwords. <br>
-Mitigation: Redact secrets from any local change log before saving or sharing it. <br>
+## Use Case:
 
+External users and developers use this skill when changing PATH, JAVA_HOME, Python, Node, ADB, Android SDK, or related environment settings, and when troubleshooting unclear command, tool, log, or system behavior. The skill guides the agent to record what changed and explain the likely impact and next troubleshooting steps in plain language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marerlee/env-change-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with explanations, change records, and command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes environment change records to logs/env-change-log.md when variables are changed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Plaintext environment-variable logs can expose API keys, passwords, cloud credentials, database URLs, private paths, or sensitive troubleshooting details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with clear user direction and redact secret values, or record only variable names, timestamps, reasons, and success status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marerlee/skills/env-change-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and environment-change log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update logs/env-change-log.md when environment variables are changed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

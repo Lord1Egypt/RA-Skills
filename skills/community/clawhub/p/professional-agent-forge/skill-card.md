@@ -1,58 +1,66 @@
-## Description: <br>
-Builds complete OpenClaw agent packages for real professions or job roles, centered on core role files and a supporting-skill recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a complete OpenClaw agent package for a real profession or job role.
 
-## Publisher: <br>
-[aliciawque](https://clawhub.ai/user/aliciawque) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aliciawque](https://clawhub.ai/user/aliciawque)
 
-## Use Case: <br>
-External users and developers use this skill to generate role-ready OpenClaw agent packages for professions such as product manager, software engineer, lawyer, data analyst, designer, and marketer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated packages can recommend MCP servers, account integrations, filesystem access, database access, or long-term memory. <br>
-Mitigation: Review and explicitly approve each generated integration or access recommendation before enabling it. <br>
-Risk: Profession-specific packages may be applied to legal, client, business, or production data. <br>
-Mitigation: Have a qualified human review generated agent behavior and boundaries before using the package in sensitive workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate role-ready OpenClaw agent packages for professions such as product manager, software engineer, lawyer, data analyst, designer, and marketer. The generated package centers on role identity, memory, behavior, tools, and supporting skill recommendations.
 
-## Reference(s): <br>
-- [Data Analyst Full Agent Reference](references/data-analyst.md) <br>
-- [UI/UX Designer Full Agent Reference](references/designer.md) <br>
-- [Lawyer Full Agent Reference](references/lawyer.md) <br>
-- [Marketer Full Agent Reference](references/marketer.md) <br>
-- [Product Manager Full Agent Reference](references/product-manager.md) <br>
-- [Software Engineer Full Agent Reference](references/software-engineer.md) <br>
-- [Apache Superset](https://github.com/apache/superset) <br>
-- [Evidence](https://github.com/evidence-dev/evidence) <br>
-- [Great Expectations](https://github.com/great-expectations/great_expectations) <br>
-- [dbt Core](https://github.com/dbt-labs/dbt-core) <br>
-- [Backstage](https://github.com/backstage/backstage) <br>
-- [NocoDB](https://github.com/nocodb/nocodb) <br>
-- [Appsmith](https://github.com/appsmithorg/appsmith) <br>
-- [PostHog](https://github.com/PostHog/posthog) <br>
-- [Visual Studio Code](https://github.com/microsoft/vscode) <br>
-- [Neovim](https://github.com/neovim/neovim) <br>
-- [lazygit](https://github.com/jesseduffield/lazygit) <br>
-- [bat](https://github.com/sharkdp/bat) <br>
-- [ripgrep](https://github.com/BurntSushi/ripgrep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown package with sections for soul.md, identity.md, memory.md, agents.md, tools.md, and skills-recommendation.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific agent package content and recommends supporting skills and tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated professional role packages may include inaccurate, incomplete, or overconfident domain guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated role files before deployment and require qualified human review for legal, compliance, engineering, analytics, or business-critical use.
+
+Risk: Tool and MCP recommendations may involve sensitive systems such as files, Docker, email, calendars, CRMs, analytics, legal documents, or long-term memory.
+
+Mitigation: Approve each recommended integration separately and limit permissions to the minimum needed for the deployed agent.
+
+Risk: Broad trigger wording can cause the skill to be used for roles or industries where the bundled references are only a starting point.
+
+Mitigation: Customize outputs for the actual profession, industry, jurisdiction, and operating context before treating the package as deployment-ready.
+
+## Reference(s):
+
+- [Product Manager Reference](references/product-manager.md)
+- [Software Engineer Reference](references/software-engineer.md)
+- [Lawyer Reference](references/lawyer.md)
+- [Data Analyst Reference](references/data-analyst.md)
+- [Designer Reference](references/designer.md)
+- [Marketer Reference](references/marketer.md)
+- [Apache Superset](https://github.com/apache/superset)
+- [Evidence](https://github.com/evidence-dev/evidence)
+- [Great Expectations](https://github.com/great-expectations/great_expectations)
+- [dbt Core](https://github.com/dbt-labs/dbt-core)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown agent package with role-specific configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces soul.md, identity.md, memory.md, agents.md, tools.md, and skills-recommendation.md content for the requested profession.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

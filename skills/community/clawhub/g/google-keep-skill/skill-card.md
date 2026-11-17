@@ -1,44 +1,59 @@
-## Description: <br>
-Integrates with Google Keep through nodriver and Chrome so agents can create, read, update, archive, and delete notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integration with Google Keep via nodriver (undetectable Chrome). Creates, reads, updates, and deletes notes.
 
-## Publisher: <br>
-[RicardoReichert](https://clawhub.ai/user/RicardoReichert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ricardoreichert](https://clawhub.ai/user/ricardoreichert)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent manage Google Keep notes through a local Chrome session, including listing, reading, creating, updating, archiving, and deleting notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable Google session material and can read or modify Google Keep notes through a persistent logged-in browser session. <br>
-Mitigation: Install only when persistent agent access to the Google Keep account is acceptable, and prefer a dedicated Google account or Chrome profile. <br>
-Risk: Update, archive, and delete actions can affect the wrong note if a title is ambiguous or the requested operation is misunderstood. <br>
-Mitigation: Confirm exact note titles before destructive or replacing actions, and read the note before updating content. <br>
-Risk: Saved Chrome profile and cookie data under ~/.config/google-keep-skill can expose account access if mishandled. <br>
-Mitigation: Protect the session directory, never read or transmit its contents, and run logout when saved access is no longer needed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to manage Google Keep notes through command-line browser automation after a one-time Google login.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RicardoReichert/google-keep-skill) <br>
-- [Google Keep](https://keep.google.com/) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the underlying CLI returns structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Chrome session and user-confirmed Google Keep account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter 1.0.0 and pyproject.toml 0.3.0 differ) <br>
+Risk: The skill stores reusable Google Keep session material on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Google account or isolated OS user, protect ~/.config/google-keep-skill, and exclude that directory from unsafe backups.
+
+Risk: The skill can headlessly update, delete, archive, or log out of notes and sessions.
+
+Mitigation: Require explicit user confirmation before running update, delete, archive, or logout commands.
+
+Risk: The skill depends on browser automation through nodriver.
+
+Mitigation: Review or pin the nodriver dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub Google Keep Skill page](https://clawhub.ai/ricardoreichert/skills/google-keep-skill)
+- [Google Keep](https://keep.google.com/)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return structured JSON for agent interpretation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agents should interpret note data for users instead of exposing raw JSON.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter 1.0.0 and pyproject.toml 0.3.0 differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

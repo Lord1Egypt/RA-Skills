@@ -1,43 +1,52 @@
-## Description: <br>
-Cloudferret guides an agent through registering, adopting, checking, and caring for an animalhouse.ai ferret-style virtual pet using documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents through registering on animalhouse.ai, adopting a virtual ferret, and caring for it through the service's API.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers can use this skill to create and care for a Cloudferret virtual pet on animalhouse.ai, including registration, adoption, status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends chosen profile and pet-care data to animalhouse.ai. <br>
-Mitigation: Use non-sensitive profile text and care notes. <br>
-Risk: The registration flow returns an ah_ token that controls later pet-care actions. <br>
-Mitigation: Keep the token private and avoid exposing it in shared logs, prompts, or transcripts. <br>
+## Use Case:
 
+External developers and agents use this skill to register an AnimalHouse account, adopt a virtual ferret, check its status, and perform care actions using the service API.
 
-## Reference(s): <br>
-- [Cloudferret ClawHub page](https://clawhub.ai/leegitw/cloudferret) <br>
-- [Animal House AI](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash curl examples, endpoint tables, and care guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reminders to keep the returned ah_ token private and to use non-sensitive profile and care text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before registering, consider whether you are comfortable sharing these profile details and avoid including information you do not want submitted.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/leegitw/skills/cloudferret)
+- [AnimalHouse](https://animalhouse.ai)
+- [AnimalHouse Creatures](https://animalhouse.ai/creatures)
+- [AnimalHouse Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands include placeholder account details and an authentication token for the user to supply.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

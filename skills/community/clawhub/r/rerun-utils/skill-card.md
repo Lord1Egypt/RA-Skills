@@ -1,38 +1,52 @@
-## Description: <br>
-Static 3D visualization utilities wrapping Rerun SDK for adding point clouds, trajectories, cameras, planes, and chessboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static 3D visualization utilities wrapping Rerun SDK for adding point clouds, trajectories, cameras, planes, and chessboards.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and robotics or computer-vision engineers use this skill to add Rerun-based 3D visualizations for point clouds, SLAM trajectories, robot poses, camera calibration targets, and debugging scenes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the Rerun SDK and discloses auto-download behavior through gettool. <br>
-Mitigation: Confirm the Rerun SDK and gettool source are trusted before installation or use in sensitive environments. <br>
-Risk: The visualization workflow may launch a local Rerun viewer for the data being inspected. <br>
-Mitigation: Confirm local viewer launch is acceptable and avoid displaying sensitive data unless the environment is approved for it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to add Rerun SDK visualizations for point clouds, trajectories, cameras, planes, and chessboards when debugging SLAM, robot poses, calibration targets, and 3D scenes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides static-method usage examples and data-format constraints for Rerun visualizations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the external Rerun SDK resolved by gettool.
+
+Mitigation: Install the Rerun SDK from a trusted source and prefer a pinned, reviewed version.
+
+Risk: Visualization calls may consume image or data paths supplied by the user.
+
+Mitigation: Only pass paths and datasets that are intended for visualization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangyendt/skills/rerun-utils)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Rerun SDK and numeric inputs in the documented shapes and data types.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -38,6 +38,8 @@
 | `req_seq_id` | 请求流水号 | String | 64 | Y | 同一 `huifu_id` 下当天唯一 |
 | `huifu_id` | 商户号 | String | 32 | Y | 商户开户自动生成 |
 | `acct_id` | 收款汇付账户号 | String | 32 | N | 仅支持基本户、现金户；不传默认基本户；仅微信、支付宝、网银支持指定收款账户 |
+| `channel_no` | 通道号 | String | 32 | N | 指定路由通道时传真实通道号；不要传空字符串 |
+| `pay_scene` | 支付场景 | String | 2 | N | 官网列值为 N；指定 `channel_no` 时条件必填 |
 | `trans_amt` | 交易金额 | String | 14 | Y | 单位元，保留 2 位小数，最低 `0.01` |
 | `goods_desc` | 商品描述 | String | 40 | Y | 商品描述 |
 | `pre_order_type` | 预下单类型 | String | 1 | Y | H5/PC 固定为 `1` |
@@ -78,6 +80,7 @@
 ## 顶层字段约束
 
 - `multi_pay_way_flag=Y` 时，用户选定一种支付方式后仍可切换到其他支付方式。
+- 指定 `channel_no` 时必须同时提供 `pay_scene`；不指定通道时两个字段均省略，不传空字符串占位。
 - 若启用支付方式切换，对账可选两种主键策略：
   - 以支付成功返回的 `hf_seq_id` 作为唯一标识。
   - 仍以请求流水号作为唯一标识时，解析账单需忽略请求流水号中 `-` 及其后缀。
@@ -155,3 +158,13 @@
 - `acct_split_bunch`、`hosting_data`、`biz_info` 在官方文档中都属于“字符串承载 JSON”类型，传参时不要直接把对象塞给 SDK。
 - `request_type` 实际上用于区分 PC 页面版和 H5 页面版；如果已经指定了单一 `trans_type`，建议显式传值，避免汇付侧按默认 PC 逻辑处理。
 - `person_payer.cert_no`、后文的 `largeamt_data.bank_card_no` 都涉及加密，接入时应复用 base skill 中的 RSA 工具链。
+
+## 2026-10-08 字段复核
+
+官方新增 `request.data.alipay_data.fq_mer_discount_flag`：String(1)，N，商户贴息标记，Y 为商家全部贴息，P 为商家部分贴息；选 P 时必须在 `ali_business_params` 传入支付宝约定的活动参数。编码位置和完整说明见 `payment-complete-field-catalog.md`，位于一层 String(JSON Object) 的 `alipay_data` 内；不传为非商户贴息（默认），不能放进 `hosting_data`。
+
+2026-10-10官网明确 `request.data.dy_data.coupon_info:String(1024)`，保留JSON格式优惠信息；不把与抖音协商的可选字段设为无条件必填。`dy_data.h5_info`、平台标识及银联收款/服务商信息说明同步完整目录。
+
+## 2026-10-25 合单请求
+
+新增 `request.data.merge_pay_flag:String(1) N` 与 `request.data.sub_orders_request:String(JSON Array) N`，以及子单金额、商户、请求流水、账户、延时标志和备注。必须读取 `hostingpay-preorder-h5-pc.md` 本轮增量与 `payment-complete-field-catalog.md` 对应完整父路径；子单是逐层编码的字符串数组，不能合并为顶层主订单字段。

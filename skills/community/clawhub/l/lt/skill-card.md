@@ -1,41 +1,57 @@
-## Description: <br>
-Agents can sign plugins, rotate credentials without losing identity, and publicly attest to behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agents can sign plugins, rotate credentials without losing identity, and publicly attest to behavior.
 
-## Publisher: <br>
-[ltte](https://clawhub.ai/user/ltte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ltte](https://clawhub.ai/user/ltte)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure 0.protocol identity and attestation workflows, including signed plugin claims, wallet queries, and authenticated task handoffs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent identity records or public transfer payloads may expose secrets, credentials, customer data, personal data, internal identifiers, or sensitive task context if included by the user. <br>
-Mitigation: Review express and transfer payloads and visibility settings before execution, and omit sensitive data from public or durable records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [0.protocol README / Spec](https://github.com/0isone/0protocol) <br>
-- [0.protocol API Reference](https://github.com/0isone/0protocol/blob/main/API.md) <br>
-- [0.protocol Migration Guide](https://github.com/0isone/0protocol/blob/main/migration.md) <br>
-- [0.protocol Why](https://github.com/0isone/0protocol/blob/main/WHY.md) <br>
-- [0.protocol MCP Endpoint](https://mcp.0protocol.dev/mcp) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure access to the 0.protocol MCP service, sign plugin artifacts, record behavior attestations, query identity state, and transfer task handoffs with witnessed receipts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter for the recommended setup path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Plugin hashes, attestations, identity metadata, and handoff payloads may be sent to the 0.protocol MCP service, and public claims may be durable.
+
+Mitigation: Avoid secrets, private customer data, sensitive incident context, and confidential operational details; choose claim and transfer visibility deliberately.
+
+Risk: Signed expressions are recorded claims, not authentication, reputation, consensus, payments, or mandatory execution controls.
+
+Mitigation: Treat expressions as provenance and handoff signals while continuing to use existing authentication, review, and trust processes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ltte/skills/lt)
+- [README / Spec](https://github.com/0isone/0protocol)
+- [API Reference](https://github.com/0isone/0protocol/blob/main/API.md)
+- [Migration Guide](https://github.com/0isone/0protocol/blob/main/migration.md)
+- [Why](https://github.com/0isone/0protocol/blob/main/WHY.md)
+- [0.protocol MCP Endpoint](https://mcp.0protocol.dev/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP server configuration, mcporter commands, and guidance for signed claims, identity queries, and authenticated handoffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

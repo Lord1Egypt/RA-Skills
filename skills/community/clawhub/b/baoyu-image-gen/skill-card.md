@@ -1,49 +1,71 @@
-## Description: <br>
-AI image generation with OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope, Z.AI GLM-Image, MiniMax, Jimeng, Seedream, Replicate, Agnes, and Codex CLI APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image generation with OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope, Z.AI GLM-Image, MiniMax, Jimeng, Seedream, Replicate and Agnes APIs.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to generate images from prompts, reference images, aspect ratios, and saved batch prompt files across supported external image providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images may be sent to external image providers. <br>
-Mitigation: Use only provider accounts and endpoints approved for the data being submitted, and avoid sensitive local reference images. <br>
-Risk: The optional codex-cli provider uses the logged-in Codex session and runs a local subprocess with broad filesystem authority. <br>
-Mitigation: Prefer direct API providers for normal use; choose codex-cli only when the user intentionally wants that path and accepts the local execution risk. <br>
-Risk: Wrapper or base-url override environment variables can redirect generation through untrusted targets. <br>
-Mitigation: Set provider base URLs and wrapper override variables only for endpoints and binaries the operator fully trusts. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate images from prompts, prompt files, reference images, aspect ratios, provider-specific options, and batch payloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimliu/baoyu-image-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/jimliu) <br>
-- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-image-gen) <br>
-- [Usage Examples](references/usage-examples.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
-- [Codex CLI Provider](references/providers/codex-cli.md) <br>
-- [Codex OAuth vs OpenAI API key](references/codex-oauth-vs-openai-api-key.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Image files with optional JSON status and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate one image at a time or multiple image files through batch prompt jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and frontmatter) <br>
+Risk: Prompts and reference images may be sent to the selected image provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use providers whose data handling is acceptable for the input, and avoid sending confidential prompts or images unless that provider is approved.
+
+Risk: The optional codex-cli provider can launch a Codex subprocess with broad local execution authority.
+
+Mitigation: Use codex-cli only for trusted prompts and repositories, and prefer direct provider APIs when local execution authority is not needed.
+
+Risk: Project-local configuration can redirect provider choices and sensitive execution settings.
+
+Mitigation: Review project-local .baoyu-skills configuration and .env files before running the skill in an unfamiliar workspace.
+
+Risk: The npx bun fallback can fetch tooling at runtime.
+
+Mitigation: Prefer a pinned, trusted Bun installation over the npx fallback for repeatable or security-sensitive use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimliu/skills/baoyu-image-gen)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-image-gen)
+- [Usage Examples](references/usage-examples.md)
+- [First-Time Setup](references/config/first-time-setup.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Codex OAuth vs OpenAI API Key](references/codex-oauth-vs-openai-api-key.md)
+- [Codex Image2 Fallback](references/codex-image2-fallback.md)
+- [Codex CLI Provider](references/providers/codex-cli.md)
+- [DashScope Provider](references/providers/dashscope.md)
+- [OpenRouter Provider](references/providers/openrouter.md)
+- [Replicate Provider](references/providers/replicate.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON batch payloads, configuration snippets, and generated image file paths or structured errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can call external image provider APIs and save generated images to user-specified paths.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

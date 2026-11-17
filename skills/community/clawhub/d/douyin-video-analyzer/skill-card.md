@@ -1,44 +1,65 @@
-## Description: <br>
-Analyzes Douyin videos by collecting basic metrics, extracting frames and audio locally, and generating a structured content, visual, transcript, and copywriting report with Zhipu AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Douyin videos and produces a structured report covering engagement data, content structure, visual style, captions, speech transcription, and reusable creative elements.
 
-## Publisher: <br>
-[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang)
 
-## Use Case: <br>
-Content creators, marketing teams, and developers use this skill to analyze Douyin links or local video files and produce structured reports about engagement metrics, visual style, speech content, hooks, and reusable creative elements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video frames and audio clips are sent to Zhipu AI for recognition and analysis. <br>
-Mitigation: Use only videos approved for external AI processing and disclose this data flow to users before running analysis. <br>
-Risk: Crafted links or local file names could trigger local shell command execution paths reported by the security evidence. <br>
-Mitigation: Avoid untrusted URLs and oddly named local files, run the skill in a constrained workspace, and update when the maintainer replaces shell-string execution with argument-array execution. <br>
-Risk: Temporary media files may remain on disk after errors or interrupted runs. <br>
-Mitigation: Run in a workspace with appropriate storage controls and remove temp downloads, frames, and audio files after failed or interrupted analyses. <br>
+## Use Case:
 
+Content creators, marketers, and developers use this skill to inspect Douyin links or local video files and generate a Markdown breakdown of metrics, visual patterns, speech content, hooks, and reusable production tactics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/franklu0819-lang/douyin-video-analyzer) <br>
-- [Zhipu AI Chat Completions Endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Console text and Markdown-style analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg, yt-dlp, node, Playwright Chromium, and ZHIPU_API_KEY; sends selected video frames and audio clips to Zhipu AI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.7.4 (source: server evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Video frames and audio segments may be sent to Zhipu AI for analysis and transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public or approved videos, avoid private or sensitive content unless that external processing is acceptable, and disclose the data transfer to users.
+
+Risk: The security summary flags unsafe execution and network-scoping risks around local tools and user-provided URLs or file paths.
+
+Mitigation: Run the skill in an isolated workspace or container, restrict inputs to trusted Douyin URLs or local files, and require shell-execution hardening plus URL allowlisting before broader deployment.
+
+Risk: Installer and dependency behavior may change over time because the install command and dependency ranges are not fully pinned.
+
+Mitigation: Pin installer inputs and dependency versions, review lockfile changes, and scan dependencies before release.
+
+Risk: Temporary video, frame, and audio files may remain if analysis exits early or cleanup fails.
+
+Mitigation: Use a dedicated temporary directory per run, inspect and delete temporary media after failures, and strengthen cleanup paths before handling sensitive media.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/franklu0819-lang/skills/douyin-video-analyzer)
+- [Zhipu AI chat completions endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions)
+- [Zhipu AI audio transcriptions endpoint](https://open.bigmodel.cn/api/paas/v4/audio/transcriptions)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+- [Douyin website](https://www.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report printed to stdout with structured sections and AI-derived analysis content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One CLI run produces one report; selected frames and audio segments are processed through Zhipu AI, and temporary media files are intended to be cleaned after analysis.]
+
+## Skill Version(s):
+
+3.7.4 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

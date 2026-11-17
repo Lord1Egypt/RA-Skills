@@ -1,41 +1,54 @@
-## Description: <br>
-Scans a macOS or Linux host for Docker containers, system services, and listening TCP ports, then generates a human-readable Markdown homelab runbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan and document running services on this machine, including Docker containers, system services on macOS or Linux, and open listening ports, then generate a human-readable Markdown runbook.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers, operators, and homelab administrators use this skill to inventory local services and produce a runbook for maintenance, troubleshooting, or documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated runbooks can expose sensitive local system details, including running services, containers, mounts, open ports, processes, and PIDs. <br>
-Mitigation: Treat runbooks as sensitive operational documents, review and redact them before sharing, and store output only in trusted locations. <br>
-Risk: Scheduled or repeated runs can accumulate fresh host inventory data in files the user may forget about. <br>
-Mitigation: Use scheduled runs only after confirming the output path, retention expectations, and access controls. <br>
+## Use Case:
 
+Developers, homelab operators, and system administrators use this skill to inventory active services on a host and produce a Markdown runbook for documentation, review, or scheduled snapshots.
 
-## Reference(s): <br>
-- [Customization Guide](references/customization.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/homelab-runbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown runbook with concise agent summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the runbook to a user-specified file path; scanner JSON is an intermediate input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated runbooks can expose sensitive host inventory details such as services, ports, container names, images, mount names, and process details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated reports out of public repositories and shared folders, and share them only with people who should see the host inventory.
+
+Risk: Running port scans with elevated privileges may reveal broader host details than an ordinary user-level scan.
+
+Mitigation: Use sudo only when intentionally seeking broader port visibility.
+
+## Reference(s):
+
+- [Customization Guide](references/customization.md)
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/homelab-runbook)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown runbook with summarized agent guidance and optional JSON scanner inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the generated runbook to a user-specified file path; scanner scripts emit JSON to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

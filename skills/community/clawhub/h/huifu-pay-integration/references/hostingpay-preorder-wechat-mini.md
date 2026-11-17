@@ -13,7 +13,7 @@
 - [文档勘误与实现备注](#文档勘误与实现备注)
 
 # 微信小程序预下单
-> 本文依据 2026-05-26 官方文档整理，适用于 `v2/trade/hosting/payment/preorder` 的微信小程序场景。
+> 本文依据 2026-10-10 官方文档整理，适用于 `v2/trade/hosting/payment/preorder` 的微信小程序场景。
 
 ## 接口概述
 | 属性 | 值 |
@@ -80,13 +80,15 @@
 | req_seq_id | 请求流水号 | String | 64 | Y | 同一 `huifu_id` 下当天唯一 |
 | huifu_id | 商户号 | String | 32 | Y | 开户自动生成 |
 | acct_id | 收款汇付账户号 | String | 32 | N | 仅支持基本户、现金户；不填默认基本户；仅微信、支付宝、网银支持指定收款账户 |
+| channel_no | 通道号 | String | 32 | N | 指定路由通道时传真实通道号；不要传空字符串 |
+| pay_scene | 支付场景 | String | 2 | N | 官网列值为 N；指定 `channel_no` 时条件必填 |
 | trans_amt | 交易金额 | String | 14 | Y | 单位元，保留两位小数，最低 `0.01` |
 | goods_desc | 商品描述 | String | 40 | Y | 商品描述 |
 | delay_acct_flag | 是否延迟交易 | String | 1 | N | `Y`=延迟，`N`=不延迟，默认 `N` |
 | split_pay_flag | 是否拆单支付 | String | 1 | N | `Y`=拆单支付，`N`=非拆单支付，默认 `N`；需预开通拆单支付权限 |
 | split_pay_data | 拆单支付参数集合 | String(JSON Object) | 2000 | N | 拆单支付参数集合 |
 | acct_split_bunch | 分账对象 | String(JSON Object) | 2000 | N | 分账对象；拆单支付时不生效 |
-| hosting_data | 统一收银台扩展参数集合 | String(JSON Object) | 2000 | N | 可传项目号等托管扩展 |
+| hosting_data | 统一收银台扩展参数集合 | String(JSON Object) | 2000 | N | 可传项目号等托管扩展；不得因 H5/PC 为 Y 而提升为必填 |
 | miniapp_data | 微信小程序扩展参数集合 | String(JSON Object) | 2000 | Y | 微信小程序扩展参数集合 |
 | time_expire | 交易失效时间 | String | 14 | N | `yyyyMMddHHmmss`；默认 10 分钟 |
 | biz_info | 业务信息 | String(JSON Object) | 2000 | N | 交易相关信息 |
@@ -276,7 +278,7 @@
 | resp_code | 业务返回码 | String | 8 | Y | 业务返回码 |
 | resp_desc | 业务返回信息 | String | 512 | Y | 业务返回描述 |
 | req_date | 请求时间 | String | 8 | Y | 原样返回，格式 `yyyyMMdd` |
-| req_seq_id | 请求流水号 | String | 32 | Y | 文档此处写为 `32` |
+| req_seq_id | 请求流水号 | String | 64 | Y | 请求流水原样返回，长度64 |
 | hf_seq_id | 全局流水号 | String | 40 | N | 汇付全局流水号 |
 | out_trans_id | 用户账单上的交易订单号 | String | 64 | N | 用户账单交易订单号 |
 | party_order_id | 用户账单上的商户订单号 | String | 64 | N | 用户账单商户订单号 |
@@ -288,7 +290,7 @@
 | acct_date | 入账时间 | String | 8 | N | `yyyyMMdd` |
 | trans_stat | 交易状态 | String | 1 | N | `S`=成功，`F`=失败 |
 | end_time | 支付完成时间 | String | 14 | N | `yyyyMMddHHmmss` |
-| trans_finish_time | 汇付侧交易完成时间 | String | 6 | N | 文档原表长度列为 `6`，格式说明为 `yyyyMMddHHmmss` |
+| trans_finish_time | 汇付侧交易完成时间 | String | 13 | N | 毫秒时间戳；String(13)，示例1791598928000 |
 | debit_flag | 借贷记标识 | String | 1 | N | `D`=借记卡，`C`=信用卡，`Z`=借贷合一卡 |
 | wx_user_id | 微信用户唯一标识码 | String | 128 | N | 微信用户唯一标识码 |
 | wx_response | 微信返回的响应报文 | String(JSON Object) | 6000 | N | JSON Object 格式 |
@@ -403,7 +405,7 @@
 | resp_desc | 业务返回信息 | String | 512 | Y | 业务返回描述 |
 | huifu_id | 商户号 | String | 32 | Y | 商户号 |
 | req_date | 请求时间 | String | 8 | Y | 原样返回，格式 `yyyyMMdd` |
-| req_seq_id | 请求流水号 | String | 32 | Y | 原样返回 |
+| req_seq_id | 请求流水号 | String | 64 | Y | 原样返回 |
 | trans_stat | 交易状态 | String | 1 | Y | `S`=成功，`F`=失败 |
 | sys_id | 系统号 | String | 32 | Y | 渠道商/商户的 `huifu_id` |
 
@@ -415,7 +417,55 @@
 
 ## 文档勘误与实现备注
 - 请求示例里出现了 `checkout_id`，但参数表没有定义该字段；当前 skill 不将其视为正式接入参数。
-- 异步字段 `trans_finish_time` 的长度列写为 `6`，但格式说明为 `yyyyMMddHHmmss`；实现时按 14 位时间串处理更合理。
-- 主异步与拆单异步中的 `req_seq_id` 长度列写为 `32`，但请求参数表与同步返回都写为 `64`；当前按官方原表保留并显式记录该冲突。
+- 2026-10-10官网已明确通知 `trans_finish_time:String(13)` 为毫秒时间戳；`end_time:String(14)` 仍为 `yyyyMMddHHmmss`，分别解析。
+- 2026-10-10官网主异步、拆单异步 `req_seq_id` 均为 String(64)，与请求/同步一致，旧长度冲突已关闭。
 - 同步返回 `miniapp_data` 的官方子表只定义了 `gh_id`、`path`、`scheme_code`；官方成功示例还出现了 `appid`、`need_scheme`、`private_info`、`seq_id`，当前只作为示例可见键记录，不能升级成官方稳定字段。
 - `wx_response`、`trans_fee_allowance_info` 在父表中写成 `String` 且说明为 JsonObject/JsonArray，同时又展开了子字段；当前文档按“JSON 字符串承载对象/数组”的方式描述。
+
+## 2026-10-25 官网更新同步
+
+本地当前来源SHA-256：`d2d91fb6b25a2f6477b5ca1531d7bc4349b4760f63c4033d6e1b307c31ba48f6`。
+
+本轮新增合单/子单请求、查询或通知字段；同名父容器按本接口和方向建模。官网通知中的`sub_trams_amt`拼写原样保留，不更改为其他字段名；split_fee_details的Object/String/数组语义也不得跨接口外推。完整嵌套类型、长度、条件和解码路径见 `payment-complete-field-catalog.md` 对应接口。
+
+| 新增完整合同路径 | 中文名 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- | --- |
+| `async.resp_data.sub_orders_response[]` | 子单信息 | `String` | `—` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_date` | 子单入账日期 | `String` | `8` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_split_bunch` | 分账对象 | `String` | `—` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_split_bunch.acct_infos[]` | 分账明细 | `String` | `—` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_split_bunch.acct_infos[].acct_id` | 分账接收方账户号 | `String` | `9` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_split_bunch.acct_infos[].div_amt` | 分账金额 | `String` | `14` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_split_bunch.acct_infos[].huifu_id` | 分账接收方ID | `String` | `32` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].acct_stat` | 子单账务状态 | `String` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos` | 交易手续费信息 | `String` | `—` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos.fee_acct_id` | 手续费扣款账户号 | `String` | `9` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos.fee_amount` | 手续费金额 | `String` | `16` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos.fee_flag` | 手续费扣款标志 | `Integer` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos.fee_formula` | 手续费计算公式 | `String` | `512` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos.fee_huifu_id` | 手续费扣款商户号 | `String` | `32` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fee_infos.fee_rec_type` | 手续费扣取方式 | `Integer` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].fund_freeze_stat` | 资金冻结状态 | `String` | `16` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].is_div` | 是否分账交易 | `String` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info` | 分账手续费信息 | `String` | `—` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info.split_fee_details` | 分账手续费信息 | `String` | `—` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info.split_fee_details.split_fee_acct_id` | 分账手续费承担方账号 | `String` | `9` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info.split_fee_details.split_fee_amt` | 分账手续费金额(元) | `String` | `16` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info.split_fee_details.split_fee_huifu_id` | 分账手续费承担方商户号 | `String` | `32` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info.split_fee_flag` | 分账手续费扣款标志 | `Integer` | `1` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].split_fee_info.total_split_fee_amt` | 分账手续费总金额(元) | `String` | `14` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_acct_id` | 子单账户号 | `String` | `9` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_hf_seq_id` | 子单全局流水号 | `String` | `128` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_huifu_id` | 子单商户号 | `String` | `32` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_remark` | 子单备注信息 | `String` | `255` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_req_seq_id` | 子单请求流水号 | `String` | `128` | `Y` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_settlement_amt` | 子单结算金额 | `String` | `14` | `N` | 条件与完整原文见对应完整目录 |
+| `async.resp_data.sub_orders_response[].sub_trams_amt` | 子单交易金额 | `String` | `14` | `Y` | 条件与完整原文见对应完整目录 |
+| `request.data.merge_pay_flag` | 是否合单支付 | `String` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[]` | 子单信息列表 | `String` | `—` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].delay_acct_flag` | 是否延迟交易 | `String` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_acct_id` | 子单账户号 | `String` | `9` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_huifu_id` | 子单商户号 | `String` | `32` | `Y` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_remark` | 子单备注 | `String` | `255` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_req_seq_id` | 子单请求流水号 | `String` | `128` | `Y` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_trans_amt` | 子单交易金额 | `String` | `18` | `Y` | 条件与完整原文见对应完整目录 |

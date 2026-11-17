@@ -1,43 +1,59 @@
-## Description: <br>
-Meta-skill for AI agent self-improvement that analyzes runtime logs to detect error patterns, regressions, and inefficiencies, then generates structured improvement proposals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-skill for AI agent self-improvement that analyzes runtime logs to detect error patterns, regressions, and inefficiencies, then generates structured improvement proposals.
 
-## Publisher: <br>
-[sinasu](https://clawhub.ai/user/sinasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sinasu](https://clawhub.ai/user/sinasu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze structured runtime logs, compute health signals, and generate prioritized improvement proposals for agent reliability and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package metadata requests crypto, purchase, and sensitive credential capabilities that are not clearly needed for the local log-analysis behavior described by the artifact. <br>
-Mitigation: Verify the exact publisher, slug, and version before installation, and do not grant purchase, crypto, or credential permissions unless the publisher clearly explains why they are required. <br>
-Risk: Runtime logs submitted for analysis may contain secrets, credentials, personal data, or other sensitive operational details. <br>
-Mitigation: Redact secrets and sensitive data before submitting logs, and constrain invocation to explicit log-analysis requests. <br>
-Risk: Generated recommendations may be incomplete or unsuitable for a production system without engineering review. <br>
-Mitigation: Review recommendations before applying them and scan any resulting changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze agent runtime logs, identify recurring failures or inefficiencies, score system health, and generate prioritized improvement recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sinasu/capability-evolver-pro-bak) <br>
-- [Claw0x capability page](https://claw0x.com/skills/capability-evolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, JSON] <br>
-**Output Format:** [JSON objects with structured analysis results, health scores, recommendations, evolution proposals, and status metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyze and evolve actions require a non-empty logs array; artifact behavior limits results to 50 patterns and 20 recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Input logs may contain secrets, tokens, personal data, or sensitive internal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive data before passing logs to the skill.
+
+Risk: Unbounded production or fleet log streams can create operational and data-exposure risk.
+
+Mitigation: Use request-size, runtime, and rate limits before wiring the skill into production or fleet-scale pipelines.
+
+Risk: Rule-based recommendations can miss semantic context or produce incomplete guidance.
+
+Mitigation: Review proposed changes before applying them to agent code or deployment processes.
+
+## Reference(s):
+
+- [Capability Evolver Pro.Bak on ClawHub](https://clawhub.ai/sinasu/skills/capability-evolver-pro-bak)
+- [Claw0x](https://claw0x.com)
+- [Capability Evolver cloud version](https://claw0x.com/skills/capability-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured JSON containing detected patterns, health scores, recommendations, evolution proposals, or status details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyze and evolve actions require structured log entries; status returns supported actions, strategies, and limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

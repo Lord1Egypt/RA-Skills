@@ -1,39 +1,53 @@
-## Description: <br>
-天气播报格式化技能。当用户询问天气、查看天气预报、或需要生成天气报告时触发。技能包含完整的天气信息格式化模板，支持今天/明天/后天三种类型，以及时间段的斜体规则。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天气播报格式化技能。当用户询问天气、查看天气预报、或需要生成天气报告时触发。技能包含完整的天气信息格式化模板，支持今天/明天/后天三种类型，以及时间段的斜体规则。
 
-## Publisher: <br>
-[zhjx94264](https://clawhub.ai/user/zhjx94264) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhjx94264](https://clawhub.ai/user/zhjx94264)
 
-## Use Case: <br>
-External users and agents use this skill to fetch Tianjin weather data and format Chinese weather reports for today, tomorrow, or the day after tomorrow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes a live request to wttr.in and may disclose the queried location to that public weather service. <br>
-Mitigation: Confirm that live lookup and the location are appropriate before use, and adjust the hardcoded Tianjin location when needed. <br>
+## Use Case:
 
+External users and agents use this skill to fetch weather data and format Chinese weather reports for today, tomorrow, or the day after tomorrow. It provides markdown tables, emoji conventions, summary bullets, and rules for italicizing elapsed time periods in same-day reports.
 
-## Reference(s): <br>
-- [Weather Report Template](references/weather_template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhjx94264/weather-report-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Chinese Markdown weather report with tables, emoji, separators, and bullet summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses wttr.in weather data for Tianjin by default and applies time-sensitive formatting for past time blocks when reporting today's weather.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may prompt the agent to make an outbound request to wttr.in for weather data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that public weather-data request is acceptable, or modify the template to use an approved weather-data integration.
+
+Risk: The report template has a fixed Chinese tone, locale style, and formatting rules.
+
+Mitigation: Review and adapt the template before deployment when another language, location policy, or communication style is required.
+
+## Reference(s):
+
+- [Weather Report Complete Template](references/weather_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown weather report with tables, bullet points, emojis, and optional inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-formatted weather reports using templates for today, tomorrow, and the day after tomorrow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

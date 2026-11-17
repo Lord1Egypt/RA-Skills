@@ -1,43 +1,59 @@
-## Description: <br>
-ApiFlash helps agents operate ApiFlash through an OOMOL-connected account to capture website screenshots, check quota information, and retrieve screenshot metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use ApiFlash through the OOMOL-connected account to capture website screenshots, check quota, and retrieve screenshot metadata.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run ApiFlash screenshot and quota actions through the oo CLI after connecting an OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require installing or using the oo CLI before actions can run. <br>
-Mitigation: Install the CLI only from trusted OOMOL documentation, inspect remote installer scripts before execution, or use a pinned package when available. <br>
-Risk: The skill operates through connected ApiFlash credentials. <br>
-Mitigation: Use it only when the user intends to access ApiFlash through an OOMOL-connected account and follow the skill's auth recovery steps only after a command fails. <br>
+## Use Case:
 
+Developers and agents use this skill to capture website screenshots with ApiFlash, check screenshot quota and reset time, and retrieve metadata for previously generated screenshots.
 
-## Reference(s): <br>
-- [ApiFlash ClawHub page](https://clawhub.ai/oomol/oo-apiflash) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ApiFlash homepage](https://apiflash.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return ApiFlash screenshot URLs, quota details, screenshot metadata, and oo CLI recovery guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The CLI may automatically install additional agent skills that are not described by this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 for every invocation when only ApiFlash is intended, and review any skills installed by the CLI.
+
+Risk: The automatic download-and-execute fallback and remote connector implementations are unverified.
+
+Mitigation: Prefer a reviewed, pinned CLI installation and review the remote components before use.
+
+Risk: Screenshot requests may use account quota or incur costs.
+
+Mitigation: Connect only the intended account and check screenshot quota before making requests.
+
+## Reference(s):
+
+- [ApiFlash homepage](https://apiflash.com)
+- [ApiFlash API documentation](https://apiflash.com/documentation)
+- [OOMOL oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON]
+
+**Output Format:** [JSON action responses with screenshot URLs, quota details, or screenshot HTTP metadata, plus concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The available actions capture screenshots, retrieve quota and reset information, and read metadata for previously returned screenshot URLs.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

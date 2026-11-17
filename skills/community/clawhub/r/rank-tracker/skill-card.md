@@ -1,43 +1,60 @@
-## Description: <br>
-Tracks keyword positions, SERP feature ownership, and AI visibility over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks keyword positions, SERP feature ownership, and AI visibility over time from provided exports or connected tools.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-SEO practitioners, marketers, and developers use this skill to configure rank tracking, compare keyword positions over time, monitor SERP features and AI visibility, and prepare ranking reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad ranking-related prompts and can involve private analytics, paid-tool credentials, or proprietary SEO data. <br>
-Mitigation: Phrase requests clearly and provide only the data or credentials needed for the specific ranking task. <br>
-Risk: Ranking-change hypotheses can be mistaken when based on incomplete exports, volatile SERP data, or unverified competitor signals. <br>
-Mitigation: Treat findings as analysis to review, spot-check important keywords manually, and compare against Search Console or trusted rank-tracking exports before acting. <br>
+## Use Case:
 
+SEO and marketing teams use this skill to set up keyword rank tracking, compare current rankings against baselines, and produce ranking delta reports with source labels.
 
-## Reference(s): <br>
-- [ClawHub Rank Tracker release page](https://clawhub.ai/aaron-he-zhu/rank-tracker) <br>
-- [Project homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Ranking Analysis Output Templates](references/ranking-analysis-templates.md) <br>
-- [Rank Tracking Setup Guide](references/tracking-setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown ranking reports, delta summaries, setup checklists, and handoff summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally summarize monitoring results for memory/monitoring when the user asks to save results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: evidence release and artifact frontmatter) <br>
+Risk: Ledger command examples include user-supplied placeholders that could be unsafe if copied into a shell with untrusted values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate domains and keyword data first, pass structured arguments, and review shell commands before execution.
+
+Risk: Estimated ranking, traffic, or AI visibility values could be mistaken for measured data.
+
+Mitigation: Label every metric as measured, user-provided, estimated, or N/A, and avoid inventing missing metrics.
+
+Risk: Ranking changes can be confounded by algorithm updates, competitors, location, device, or tool differences.
+
+Mitigation: Compare against baselines and controls, document hypotheses as unconfirmed, and spot-check data quality before acting.
+
+## Reference(s):
+
+- [Ranking Analysis Output Templates](references/ranking-analysis-templates.md)
+- [Rank Tracking Setup Guide](references/tracking-setup-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/skills/rank-tracker)
+- [Project Homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and concise summaries, optionally including shell commands for ledger-based snapshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Metrics are labeled as measured, user-provided, estimated, or N/A.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

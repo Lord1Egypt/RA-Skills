@@ -1,90 +1,99 @@
 # Emergencies — Spain
 
-## Número Único: 112
+## Single Number: 112
 
-**Funciona para todo:** Policía, ambulancia, bomberos.
-**Multilingüe:** Operadores hablan inglés.
-**Sin SIM:** Funciona incluso sin tarjeta o con móvil bloqueado.
+**Works for everything:** Police, ambulance, fire.
+**Multilingual:** Operators speak English.
+**No SIM:** Works without a card or with a locked phone.
 
-## Policías (Sí, hay varias)
+## Police (Yes, There Are Several)
 
-| Cuerpo | Cuándo |
+| Force | When |
 |--------|--------|
-| Policía Nacional (091) | Ciudades, denuncias, documentos |
-| Guardia Civil (062) | Carreteras, rural, costas |
-| Policía Local/Municipal (092) | Asuntos locales, tráfico urbano |
-| Mossos (Cataluña) | Todo en Cataluña |
-| Ertzaintza (País Vasco) | Todo en Euskadi |
+| Policía Nacional (091) | Cities, reports, documents |
+| Guardia Civil (062) | Highways, rural, coasts |
+| Local/Municipal Police (092) | Local matters, urban traffic |
+| Mossos (Catalonia) | Everything in Catalonia |
+| Ertzaintza (Basque Country) | Everything in the Basque Country |
 
-**Para turistas:** Normalmente Policía Nacional (comisaría) para denuncias de robo.
+**For tourists:** Policía Nacional (or Mossos/Ertzaintza in their regions) for theft reports.
 
-## Si Te Roban
+## If You Get Robbed
 
-1. **Denuncia** en comisaría (necesaria para seguro)
-2. **Bloquea tarjetas** llamando a tu banco
-3. **Bloquea móvil** con IMEI
+1. **File a report (denuncia)** — needed for insurance and passport replacement
+2. **Block your cards** by calling your bank
+3. **Block your phone** with the IMEI
 
-**Denuncia online:** denuncias.policia.es (algunas cosas)
+**In English:** call 902 102 112 (phone-report line with English support) — you dictate the report, then sign it at the station you choose, skipping the full queue. In Madrid, SATE (tourist victim service, Calle Leganitos 19, near Plaza de España) has English-speaking staff and handles the whole process.
 
-## Carteristas (Realidad)
+**Online report:** denuncias.policia.es (some categories only).
 
-**Zonas calientes:**
-- La Rambla (Barcelona) — infame
-- Metro Barcelona/Madrid — hora punta
+## Pickpockets (Reality)
+
+**Hot spots:**
+- La Rambla (Barcelona) — infamous
+- Barcelona/Madrid metro — rush hour
 - Sagrada Família, Park Güell
-- Rastro (Madrid) — domingos
+- El Rastro (Madrid) — Sundays
 
-**Cómo operan:**
-- Distracción (firma petición, vendedor insistente)
-- Aglomeraciones
-- Tirón de móvil/bolso
+**How they operate:**
+- Distraction (sign a petition, pushy vendor)
+- Crowds
+- Phone/bag snatching
 
-**Protección:**
-- Móvil en bolsillo delantero
-- Mochila delante en metro
-- Nada valioso visible en mesa de terraza
-- Riñonera bajo la ropa (sí, feo pero efectivo)
+**Protection:**
+- Phone in your front pocket
+- Backpack worn on your front in the metro
+- Nothing valuable visible on the terrace table
+- Money belt under clothing (yes, ugly but effective)
 
-## Farmacias
+**Violent crime is rare** — the realistic threat model is theft, not assault. Act accordingly: guard the phone, walk anywhere.
 
-**Cruz verde.** Muchas medicinas sin receta.
+## Pharmacies
 
-**De guardia:** Siempre hay una 24h. Busca "farmacia de guardia [ciudad]" o mira el cartel en cualquier farmacia cerrada.
+**Green cross.** Many medicines sold without a prescription — but antibiotics and strong painkillers DO need one, so bring your prescription (generic drug name, not the US brand name).
 
-## Urgencias Médicas
+**On-call (de guardia):** There's always a 24h one. Search "farmacia de guardia [city]" or check the sign posted on any closed pharmacy.
 
-- **Leve:** Farmacia primero
-- **Moderado:** Centro de salud / urgencias hospital
-- **Grave:** 112
+## Medical Emergencies
 
-**Tarjeta sanitaria europea (TSE):** Si eres de la UE, tráela. Cubre urgencias.
+- **Minor:** Pharmacy first — pharmacists triage and recommend
+- **Moderate:** Health center (centro de salud) / hospital ER (urgencias)
+- **Serious:** 112
 
-**Seguro de viaje:** Muy recomendable si no eres de la UE.
+**EHIC (EU visitors):** covers the PUBLIC system only. Trap: clinics in coastal tourist towns are often private and will bill you — ask "¿es de la Seguridad Social?" before treatment.
 
-## Sol y Calor
+**Non-EU:** travel insurance strongly recommended; ER treats first regardless, but you'll be billed.
 
-**Julio-agosto interior/sur:** 40°C+ real.
+## Sun and Heat
 
-- Hidratación constante
-- Evitar 14:00-18:00 en la calle
-- Gorra/protector solar
-- Aire acondicionado en comercios/museos para descansar
+**July-August inland/south:** 40°C+ for real. Check AEMET (the state weather agency) warnings.
 
-**Golpe de calor:** 112 inmediatamente
+- Constant hydration; avoid the streets 14:00-18:00
+- Hat/sunscreen; duck into shops/museums for air conditioning
+- **Heatstroke** (confusion, no sweating, hot dry skin): 112 immediately
 
-## Playas
+**Tap water:** safe everywhere in Spain. On parts of the Mediterranean coast it tastes bad (desalinated) — bottled is for taste, not safety.
 
-**Banderas:**
-- 🟢 Verde: OK
-- 🟡 Amarilla: Precaución
-- 🔴 Roja: Prohibido bañarse
+## Beaches
 
-**Corrientes:** Mediterráneo generalmente tranquilo. Atlántico (Galicia, Cádiz, Canarias) puede tener corrientes fuertes.
+**Flags:**
+- 🟢 Green: OK
+- 🟡 Yellow: Caution — swim close to shore
+- 🔴 Red: Swimming forbidden (fines apply, and they mean it)
+- Jellyfish pennant: shallow water stings likely that day
 
-## Consulados
+**Currents:** The Mediterranean is generally calm. The Atlantic (Galicia, Cádiz, Canaries) has real currents — respect the flags there especially.
 
-Si pierdes pasaporte o emergencia grave, contacta tu consulado:
+## Other Numbers
 
-**En Madrid y Barcelona** hay consulados de prácticamente todos los países.
+| Number | What |
+|--------|------|
+| 016 | Gender-violence helpline (doesn't appear on the phone bill) |
+| 061 | Medical emergencies in several regions (112 always works too) |
 
-Busca: "[tu país] consulado Madrid/Barcelona"
+## Consulates
+
+Lost passport or serious trouble: contact your consulate. **Madrid and Barcelona** have consulates for practically every country. First step for a lost passport: the denuncia (→ If You Get Robbed), then the consulate with the report.
+
+Search: "[your country] consulate Madrid/Barcelona"

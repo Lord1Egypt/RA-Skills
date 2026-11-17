@@ -1,43 +1,59 @@
-## Description: <br>
-OpenClaw PC Control lets an agent operate a Windows PC through local CLI and HTTP API actions for screenshots, keyboard and mouse control, clipboard access, file operations, process and window management, browser automation, and shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw PC Control lets an agent operate a Windows PC through local CLI and HTTP interfaces for screenshots, keyboard and mouse actions, clipboard access, file operations, process and window management, browser automation, and shell commands.
 
-## Publisher: <br>
-[lukenccode](https://clawhub.ai/user/lukenccode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukenccode](https://clawhub.ai/user/lukenccode)
 
-## Use Case: <br>
-Developers and users who intentionally install a Windows remote-control skill use it to let an agent inspect and operate a desktop through local API or CLI actions. Typical tasks include taking screenshots, sending keyboard and mouse input, reading or writing files, managing processes and windows, automating a browser, and running shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes host-control actions including shell execution, file writes, process termination, clipboard access, screenshots, and browser JavaScript execution. <br>
-Mitigation: Install only when this control surface is intended, keep the API local unless network access is required, and review each proposed host action before execution. <br>
-Risk: The artifact includes a bundled API key and the security evidence describes weak/default authentication. <br>
-Mitigation: Rotate the API key before use and require bearer-token authentication for any non-public endpoint. <br>
-Risk: Disabled or relaxed security modes reduce sandboxing for high-impact host operations. <br>
-Mitigation: Use strict mode for normal operation and avoid disabled or relaxed mode unless operating in an isolated test environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent inspect and control a Windows desktop session through screenshots, input automation, file/process/window operations, browser automation, and shell command execution. It is suited to tightly controlled local or test environments where full logged-in-session control is intentional.
 
-## Reference(s): <br>
-- [PC Control API documentation](references/api-doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lukenccode/openclaw-pc-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, HTTP API examples, and JSON request or response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and command/API invocations for host-control workflows; API responses use success, data, and error fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Authentication and safety boundaries are weak for the level of Windows PC control exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated test environment unless the maintainer fixes the default shared API key, network binding, TLS/auth model, security-mode downgrade endpoint, file sandbox, shell validation, and browser security flags.
+
+Risk: If the service is reachable, it can expose or control the logged-in Windows session through screenshots, input automation, file access, process control, browser automation, and shell execution.
+
+Mitigation: Run with a least-privileged account, restrict network reachability, keep the strongest security mode enabled, rotate the API key before use, and review each action before execution.
+
+Risk: Browser automation behavior can weaken normal browser isolation and certificate protections.
+
+Mitigation: Use a dedicated browser profile with no sensitive sessions or stored credentials, and avoid using the browser automation endpoints on untrusted sites.
+
+## Reference(s):
+
+- [PC Control API documentation](references/api-doc.md)
+- [ClawHub skill page](https://clawhub.ai/lukenccode/skills/openclaw-pc-control)
+- [ClawHub publisher profile](https://clawhub.ai/user/lukenccode)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, HTTP API examples, and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime endpoints return JSON objects with success, data, and error fields.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

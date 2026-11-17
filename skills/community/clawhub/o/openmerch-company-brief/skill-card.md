@@ -1,44 +1,55 @@
-## Description: <br>
-Look up a company's profile by domain - industry, size, location, founding year, and funding data when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up a company's profile by domain - industry, size, location, founding year, and funding data when available. Powered by OpenMerch.
 
-## Publisher: <br>
-[kernel-gd](https://clawhub.ai/user/kernel-gd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernel-gd](https://clawhub.ai/user/kernel-gd)
 
-## Use Case: <br>
-Developers and agents use this skill to enrich a known company domain with firmographic details, technologies, LinkedIn presence, funding data when available, and the OpenMerch job and cost metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each successful lookup can consume OpenMerch account credits. <br>
-Mitigation: Review the /v1/plan quoted cost before execution and use the skill only when paid OpenMerch enrichment is intended. <br>
-Risk: OPENMERCH_API_KEY grants access to the user's OpenMerch account. <br>
-Mitigation: Keep the key private and provide it only through the required environment variable. <br>
-Risk: Setting OPENMERCH_BASE_URL to an untrusted endpoint could send the API key and lookup domain outside OpenMerch. <br>
-Mitigation: Use the default https://api.openmerch.dev endpoint unless a trusted staging or testing endpoint is explicitly required. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve a concise company profile for a known domain through OpenMerch, including firmographic fields and funding data when available.
 
-## Reference(s): <br>
-- [OpenMerch Documentation](https://docs.openmerch.dev) <br>
-- [OpenMerch API Base URL](https://api.openmerch.dev) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kernel-gd/openmerch-company-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [JSON object on stdout, with Markdown instructions and inline bash or JSON examples for agent-driven use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENMERCH_API_KEY and Node 18+ or curl. Always includes domain, raw, and job_id; includes cost_usd and firmographic fields when OpenMerch returns them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: OPENMERCH_BASE_URL can redirect requests containing the OpenMerch API key to a configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave OPENMERCH_BASE_URL unset for normal use, or set it only to a trusted HTTPS OpenMerch staging endpoint with a separate non-production key.
+
+Risk: Lookups can consume credits from the user's OpenMerch account.
+
+Mitigation: Review the live /v1/plan quote before execution and keep the max_cost bound from the plan response.
+
+## Reference(s):
+
+- [OpenMerch Documentation](https://docs.openmerch.dev)
+- [ClawHub Skill Page](https://clawhub.ai/kernel-gd/skills/openmerch-company-brief)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Normalized JSON result with optional Markdown summary and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One company-domain lookup per run; domain, raw, and job_id are always present, while company details and cost_usd are included only when returned by OpenMerch.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

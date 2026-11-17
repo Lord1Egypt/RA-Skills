@@ -1,45 +1,58 @@
-## Description: <br>
-Generate executable Hyperliquid trading strategy code from natural language prompts. Use when a user wants to create automated trading strategies for Hyperliquid exchange based on their trading ideas, technical indicators, or VibeTrading signals. The skill generates complete Python code with proper error handling, logging, and configuration using actual Hyperliquid API wrappers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate executable Hyperliquid trading strategy code from natural language prompts.
 
-## Publisher: <br>
-[liuhaonan00](https://clawhub.ai/user/liuhaonan00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liuhaonan00](https://clawhub.ai/user/liuhaonan00)
 
-## Use Case: <br>
-Developers and trading-system builders use this skill to turn natural-language Hyperliquid strategy ideas into Python strategy files, configuration, requirements, usage instructions, and optional backtest artifacts. It supports reviewable strategy development but does not certify that generated strategies are safe, profitable, or ready for live funds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated strategies can produce and run live Hyperliquid exchange automation with weak safety boundaries. <br>
-Mitigation: Review generated strategy code manually and run it in a sandbox or Hyperliquid testnet before considering any live trading. <br>
-Risk: API credentials used by generated strategies could expose trading authority. <br>
-Mitigation: Use least-privilege API keys with no withdrawal authority, small limits, and a separate account. <br>
-Risk: The validator and sample backtests do not prove strategy safety, profitability, or production readiness. <br>
-Mitigation: Treat validation and backtests as preliminary checks only; add live-trading confirmation, dry-run behavior, explicit risk limits, and a kill switch before using real funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuhaonan00/vibetrading-code-gen) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Hyperliquid API endpoint](https://api.hyperliquid.xyz) <br>
-- [Hyperliquid testnet API endpoint](https://api.hyperliquid-testnet.xyz) <br>
+## Use Case:
 
+Developers and trading automation users use this skill to turn natural-language strategy ideas into Python strategy files, configuration, usage guidance, and validation or backtesting commands for Hyperliquid workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python strategy files, JSON configuration, requirements text, Markdown usage instructions, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code may call Hyperliquid APIs and should be reviewed, sandboxed, and tested on testnet before any live trading use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated trading strategies can be run against live exchange credentials and may cause financial loss.
+
+Mitigation: Manually audit generated code and API behavior, start with testnet or paper trading, and use restricted no-withdrawal API keys with small limits.
+
+Risk: Generated or downloaded strategy files and validator or backtester inputs are executable Python.
+
+Mitigation: Treat strategy files as untrusted code and run validation or backtesting only in a sandboxed environment.
+
+Risk: The documented cleanup command permanently deletes local logs, sessions, and simulation results.
+
+Mitigation: Review cleanup targets before running destructive shell commands and preserve any files needed for audit or troubleshooting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuhaonan00/skills/vibetrading-code-gen)
+- [Hyperliquid API endpoint](https://api.hyperliquid.xyz)
+- [Hyperliquid testnet API endpoint](https://api.hyperliquid-testnet.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Python files, JSON configuration, Markdown usage instructions, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated strategies may include validation reports, backtesting output, requirements, and risk warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

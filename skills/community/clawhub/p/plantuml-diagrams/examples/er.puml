@@ -1,0 +1,22 @@
+@startuml
+entity users {
+  * id : bigint <<PK>>
+  --
+  * name : varchar(64)
+  email : varchar(128)
+}
+entity orders {
+  * id : bigint <<PK>>
+  --
+  * user_id : bigint <<FK>>
+  amount : decimal(10,2)
+}
+entity order_items {
+  * id : bigint <<PK>>
+  --
+  * order_id : bigint <<FK>>
+  * sku_id : bigint <<FK>>
+}
+users ||--o{ orders : "下单"
+orders ||--|{ order_items : "包含"
+@enduml

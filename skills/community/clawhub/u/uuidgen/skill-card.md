@@ -1,39 +1,54 @@
-## Description: <br>
-Generate UUIDs, short IDs, and nano IDs. Use when creating database keys, minting session tokens, generating unique filenames, or producing batch IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates UUID v4 values and short identifiers, validates UUID strings, extracts UUIDs from text, and produces batches of UUIDs for developer workflows.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and agents use Uuidgen to generate UUID v4 values, create batches of IDs, validate UUID strings, extract UUIDs from text, and create short identifiers for local workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Short 8-character IDs may be too small for security-sensitive tokens. <br>
-Mitigation: Use full UUID v4 values or a dedicated token generator for security-sensitive identifiers. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate database keys, session or batch identifiers, unique filenames, and log/search identifiers, and to validate or extract UUIDs while working in an agent-assisted shell workflow.
 
-## Reference(s): <br>
-- [Uuidgen on ClawHub](https://clawhub.ai/ckchzh/uuidgen) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and terminal-formatted command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local execution; no external services or API keys required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill description advertises nano ID generation, but the artifact implements UUID v4 generation, batch generation, validation, extraction, and 8-character short IDs only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat nano ID generation as unsupported for this release and use the implemented UUID and short-ID commands instead.
+
+Risk: The 8-character short IDs are lightweight identifiers and are not appropriate as strong security tokens.
+
+Mitigation: Use full UUID v4 values or a dedicated secret-generation tool when a token needs strong security properties.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/uuidgen)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and terminal-style text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce UUID v4 values, batches up to 1000 UUIDs, validation details, extracted UUID lists, and 8-character short IDs.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

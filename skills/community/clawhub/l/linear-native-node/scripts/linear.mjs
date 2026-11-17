@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // linear-native-node/scripts/linear.mjs
-// Direct Linear GraphQL helper - native Node.js, zero dependencies.
+// Linear GraphQL helper - native Node.js, zero dependencies.
 // Requires Node 18+ for global fetch. Reads LINEAR_API_KEY from the process environment only.
 
 const ENDPOINT = "https://api.linear.app/graphql";
@@ -43,11 +43,15 @@ function requireApiKey() {
 
 function parseGlobal(argv) {
   const out = { json: false, execute: false, args: [] };
-  for (const arg of argv) {
+  let index = 0;
+  while (index < argv.length) {
+    const arg = argv[index];
     if (arg === "--json") out.json = true;
     else if (arg === "--execute") out.execute = true;
-    else out.args.push(arg);
+    else break;
+    index += 1;
   }
+  out.args = argv.slice(index);
   return out;
 }
 
@@ -118,12 +122,12 @@ async function graphql(query, variables = {}) {
     die(`Linear authentication failed or endpoint access was denied (HTTP ${response.status}). Check LINEAR_API_KEY permissions.${denyReason} The key was not printed.`);
   }
   if (!response.ok) {
-    const detail = payload?.errors?.map(e => e.message).join("; ") || payload?.message || text || response.statusText;
-    die(`Linear HTTP ${response.status}: ${String(detail).slice(0, 700)}`);
+    const statusText = response.statusText ? ` ${response.statusText}` : "";
+    die(`Linear HTTP ${response.status}${statusText}; response body omitted because it may contain workspace-sensitive data.`);
   }
-  if (!payload) die(`Linear returned non-JSON response: ${text.slice(0, 300)}`);
+  if (!payload) die("Linear returned a non-JSON response; response body omitted because it may contain workspace-sensitive data.");
   if (payload.errors?.length) {
-    die(`Linear GraphQL error: ${payload.errors.map(e => e.message).join("; ")}`);
+    die(`Linear GraphQL error (${payload.errors.length} item${payload.errors.length === 1 ? "" : "s"}); response details omitted because they may contain workspace-sensitive data.`);
   }
   return payload.data;
 }
@@ -487,7 +491,7 @@ async function cmdStandup(args, json) {
 }
 
 function printHelp() {
-  process.stdout.write(`Linear Native Node helper\n\nUsage:\n  node scripts/linear.mjs <command> [args] [--json]\n\nRead-only commands:\n  viewer                                      Show the authenticated Linear user\n  organization                                Show the workspace organization\n  teams                                       List workspace teams\n  projects [--team TEAM] [--limit N]          List projects, optionally scoped to a team\n  states <TEAM_KEY>                           List workflow states for a team\n  issues [--team TEAM] [--mine] [--state STATE] [--limit N]\n                                              List issues with optional filters\n  my-issues [--team TEAM] [--state STATE] [--limit N]\n                                              List issues assigned to the viewer\n  my-todos [--team TEAM] [--limit N]          List assigned unstarted/started issues\n  urgent [--team TEAM] [--mine] [--limit N]   List urgent issues\n  standup [--team TEAM] [--limit N]           Summarize assigned active/recently completed work\n  issue <IDENTIFIER>                          Show issue details, e.g. TEAM-123\n  branch <IDENTIFIER>                         Print a branch slug from an issue title\n\nWrite commands:\n  project-create [TEAM_KEY] "Name" ["Description"]\n                                              Create a project; TEAM_KEY may come from LINEAR_DEFAULT_TEAM\n  create [TEAM_KEY] "Title" ["Description"] [--priority urgent|high|medium|low|none]\n                                              Create an issue; TEAM_KEY may come from LINEAR_DEFAULT_TEAM\n  comment <IDENTIFIER> "Comment"             Add a comment to an issue\n  status <IDENTIFIER> <state-name>            Move an issue to a workflow state\n  priority <IDENTIFIER> <urgent|high|medium|low|none>\n                                              Update issue priority\n\nGlobal flags:\n  --json                                      Print JSON where supported\n  --execute                                   Required for write commands after explicit approval\n  -h, --help, help                            Show this help\n\nCredentials:\n  LINEAR_API_KEY from process environment\n  Optional LINEAR_DEFAULT_TEAM, e.g. TEAM\n`);
+  process.stdout.write(`Linear Native Node helper\n\nUsage:\n  node scripts/linear.mjs [--json] [--execute] <command> [args]\n\nRead-only commands:\n  viewer                                      Show the authenticated Linear user\n  organization                                Show the workspace organization\n  teams                                       List workspace teams\n  projects [--team TEAM] [--limit N]          List projects, optionally scoped to a team\n  states <TEAM_KEY>                           List workflow states for a team\n  issues [--team TEAM] [--mine] [--state STATE] [--limit N]\n                                              List issues with optional filters\n  my-issues [--team TEAM] [--state STATE] [--limit N]\n                                              List issues assigned to the viewer\n  my-todos [--team TEAM] [--limit N]          List assigned unstarted/started issues\n  urgent [--team TEAM] [--mine] [--limit N]   List urgent issues\n  standup [--team TEAM] [--limit N]           Summarize assigned active/recently completed work\n  issue <IDENTIFIER>                          Show issue details, e.g. TEAM-123\n  branch <IDENTIFIER>                         Print a branch slug from an issue title\n\nWrite commands:\n  project-create [TEAM_KEY] "Name" ["Description"]\n                                              Create a project; TEAM_KEY may come from LINEAR_DEFAULT_TEAM\n  create [TEAM_KEY] "Title" ["Description"] [--priority urgent|high|medium|low|none]\n                                              Create an issue; TEAM_KEY may come from LINEAR_DEFAULT_TEAM\n  comment <IDENTIFIER> "Comment"             Add a comment to an issue\n  status <IDENTIFIER> <state-name>            Move an issue to a workflow state\n  priority <IDENTIFIER> <urgent|high|medium|low|none>\n                                              Update issue priority\n\nGlobal flags:\n  --json                                      Print JSON where supported; place before the command\n  --execute                                   Required before write commands after explicit approval\n  -h, --help, help                            Show this help\n\nCredentials:\n  LINEAR_API_KEY from process environment\n  Optional LINEAR_DEFAULT_TEAM, e.g. TEAM\n`);
 }
 
 async function main() {

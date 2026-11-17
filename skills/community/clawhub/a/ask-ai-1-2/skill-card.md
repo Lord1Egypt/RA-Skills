@@ -1,46 +1,65 @@
-## Description: <br>
-When an agent is stuck, this skill automatically asks Doubao, Qianwen, Kimi, or DeepSeek for a concrete solution and then applies the response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically asks Doubao, Qianwen, Kimi, or DeepSeek for a concrete solution when the agent encounters a difficult problem.
 
-## Publisher: <br>
-[danielwang20150225-source](https://clawhub.ai/user/danielwang20150225-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielwang20150225-source](https://clawhub.ai/user/danielwang20150225-source)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an OpenClaw agent cannot confidently solve a task and needs structured help from external AI chat services. It organizes the question, submits it through a persisted browser profile, polls for an answer, and decides whether to execute, follow up, or switch providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task details may be sent to third-party AI chat services through persisted logged-in browser sessions. <br>
-Mitigation: Use the skill only for information that is approved for those services, and add confirmation or redaction before sending private code, credentials, personal data, business-sensitive material, or regulated information. <br>
-Risk: Responses from external models may be incomplete, misleading, or unsuitable for direct execution. <br>
-Mitigation: Review model output before applying changes, especially commands, code edits, and recommendations that affect security, data, or production systems. <br>
-Risk: The skill can keep records of model replies and execution state. <br>
-Mitigation: Define a memory-retention policy and avoid storing sensitive prompts or responses unless retention is explicitly approved. <br>
+## Use Case:
 
+External developers and OpenClaw agent users use this skill to route hard technical questions to third-party AI chat services, collect responses, and apply or summarize proposed solutions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielwang20150225-source/ask-ai-1-2) <br>
-- [Doubao Chat](https://www.doubao.com/chat/) <br>
-- [Qianwen](https://qianwen.aliyun.com) <br>
-- [Kimi](https://kimi.moonshot.cn) <br>
-- [DeepSeek](https://www.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Code] <br>
-**Output Format:** [Markdown with command snippets, status markers, and summarized external model responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include follow-up questions, execution decisions, and memory notes about provider failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: ClawHub release evidence) <br>
+Risk: User prompts and context may be submitted to third-party AI services through persistent logged-in browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact prompts before use; do not include secrets, regulated data, private source code, internal URLs, account details, or other sensitive data.
+
+Risk: Model responses and execution details may be stored in agent memory.
+
+Mitigation: Use only with information approved for retention, or change the skill to require opt-in memory storage.
+
+Risk: The skill requires acting on third-party model advice without fresh user approval.
+
+Mitigation: Require explicit user approval and human review before executing model-suggested commands, code changes, or operational steps.
+
+Risk: Persistent logged-in browser profiles may reuse cookies and account access across sessions.
+
+Mitigation: Use dedicated accounts with minimal access and clear or revoke sessions when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielwang20150225-source/skills/ask-ai-1-2)
+- [Doubao chat](https://www.doubao.com/chat/)
+- [Qianwen](https://qianwen.aliyun.com)
+- [Kimi](https://kimi.moonshot.cn)
+- [DeepSeek](https://www.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or conversational text with command and code snippets when returned by the selected model]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single conversational stream with required status markers, response summaries, and follow-up decisions.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

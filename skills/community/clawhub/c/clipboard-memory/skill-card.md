@@ -1,42 +1,62 @@
-## Description: <br>
-Recall what the user copied on this Mac via the local clipmem archive: text, commands, URLs, file paths, HTML, images, PDFs, with ranked recall, timeline, search, export, pagination, and filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clipboard Memory helps agents recover text, commands, URLs, file paths, images, PDFs, and other items previously copied on a Mac from the local clipmem archive.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to recover clipboard items they previously copied, including commands, URLs, snippets, file paths, images, and PDFs. It helps agents query the local clipmem archive before using unrelated web, repository, or filesystem search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tristanmanchester/clipboard-memory) <br>
-- [Commands Reference](references/commands.md) <br>
-- [JSON Schema](references/json-schema.md) <br>
-- [Setup Check](references/setup-check.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Worked Examples](references/examples.md) <br>
+Developers and end users on macOS use this skill when they need an agent to recover or inspect clipboard history from the local clipmem archive. It supports exact text recall, URL and file-path recovery, chronological timelines, targeted search, binary export, and setup diagnosis.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented parsing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only; requires the clipmem binary. Security evidence is clean, but clipboard history may include secrets or private files, so use retention, ignored apps, and API-key filtering where available and require explicit confirmation before exporting raw bytes, deleting history, changing settings, or managing background services.] <br>
+Global
 
-## Skill Version(s): <br>
-1.3.7 (source: server release evidence and OpenClaw metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can expose sensitive clipboard data stored in a persistent local archive.
+
+Mitigation: Install only from a trusted publisher, prefer narrow read-only recall/search/timeline/get workflows, and avoid broad searches when clipboard history may include passwords, tokens, private documents, or other sensitive data.
+
+Risk: The skill documents export, restore, delete, purge, setup, service, settings, launch-at-login, update-check, and install/uninstall commands that can change local state.
+
+Mitigation: Require explicit user confirmation before state-changing commands and use candidate, detail, or dry-run commands where available before broad mutations.
+
+Risk: Stale capture services or inaccessible archives can cause misleading empty or weak recall results.
+
+Mitigation: Run the setup check, doctor, service status, or agent context workflow before concluding that requested clipboard content is unavailable.
+
+## Reference(s):
+
+- [Clipboard Memory Skill Page](https://clawhub.ai/tristanmanchester/skills/clipboard-memory)
+- [Clipboard Memory Commands Reference](artifact/references/commands.md)
+- [Clipboard Memory JSON Schema](artifact/references/json-schema.md)
+- [Clipboard Memory Worked Examples](artifact/references/examples.md)
+- [Clipboard Memory Setup Check](artifact/references/setup-check.md)
+- [Clipboard Memory Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-oriented command examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes JSON or toon output parsing, pagination checks, setup checks, and explicit confirmation for state-changing clipmem commands.]
+
+## Skill Version(s):
+
+1.3.9 (source: server release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

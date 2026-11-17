@@ -1,39 +1,54 @@
-## Description: <br>
-Guides a user through a structured interview to define requirements, collect supporting materials, and produce a complete reusable Skill package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Interview Builder guides Chinese-speaking users through a structured interview to define requirements and produce a complete, ready-to-use skill package.
 
-## Publisher: <br>
-[irenerachel](https://clawhub.ai/user/irenerachel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[irenerachel](https://clawhub.ai/user/irenerachel)
 
-## Use Case: <br>
-Developers and agent users use this skill to create a new Skill by answering guided interview questions instead of writing the Skill package structure directly. It is intended for new Skill creation, not small edits to an existing complete SKILL.md or one-off prompt requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Skill packages can include user-provided files, so sensitive or proprietary material could be bundled unintentionally. <br>
-Mitigation: Review the file list before delivery and exclude credentials, private keys, sensitive personal data, or proprietary documents unless they are intentionally part of the Skill package. <br>
-Risk: The skill can write folders or create a zip archive as part of delivery, so an incorrect destination could place files somewhere unintended. <br>
-Mitigation: Confirm the destination path or archive name before writing and review the completed package contents. <br>
+## Use Case:
 
+Developers and skill authors use this agent to turn a conversational requirements interview into a structured skill package with SKILL.md, optional references, examples, scripts, assets, validation checks, and delivery guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown conversation output plus generated Skill package files or a zip archive when the runtime supports packaging] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create SKILL.md, references, examples, scripts, assets, placeholder README files, and test prompts based on the interview results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated skill packages may contain incorrect requirements, incomplete instructions, or unsuitable delivery choices if interview answers are vague or inconsistent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated package, validation checklist, and test prompts before deployment.
+
+Risk: User-uploaded scripts or materials can be included in the output package.
+
+Mitigation: Inspect and scan included scripts and uploaded files before using or sharing the generated package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/irenerachel/skills/skill-interview-builder)
+- [Publisher profile](https://clawhub.ai/user/irenerachel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated skill package files, with optional shell commands for packaging.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SKILL.md, reference folders, example files, script or asset placeholders, test prompts, and a ZIP package when the runtime supports it.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

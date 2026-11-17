@@ -1,40 +1,54 @@
-## Description: <br>
-Provides AI-assisted demand forecasting, sales forecasting, replenishment planning, seasonal analysis, promotion impact analysis, and forecast-error analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-supported demand and sales forecasting with replenishment planning.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and retail or supply-chain teams can use this skill to generate demand and sales forecasts, estimate promotion and seasonality effects, and plan replenishment decisions. Treat replenishment outputs as recommendations unless human approvals and purchasing safeguards are in place. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact describes installation of code that is not bundled in the artifact. <br>
-Mitigation: Inspect the linked repository and its requirements before installation or execution. <br>
-Risk: Forecast and replenishment outputs could lead to incorrect purchasing or inventory changes. <br>
-Mitigation: Use outputs as recommendations unless explicit human approval, spending limits, and operational safeguards are in place. <br>
+## Use Case:
 
+External retail, supply chain, and inventory-planning teams use this skill to forecast demand or sales and draft replenishment plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-demand-forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with optional shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include forecast analysis, replenishment guidance, installation commands, and operational recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The install path references mutable remote Python code that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository, pin a specific commit, and install only in an isolated environment before use.
+
+Risk: Forecasting or replenishment recommendations may drive incorrect purchasing or inventory decisions.
+
+Mitigation: Require human approval before acting on forecasts, replenishment plans, purchases, or inventory changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-demand-forecast)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise recommendations and inline shell commands when setup is discussed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecasting and replenishment outputs should be treated as recommendations requiring human approval before purchasing or inventory changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

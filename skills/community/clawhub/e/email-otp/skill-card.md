@@ -1,41 +1,53 @@
-## Description: <br>
-Create temporary email addresses and monitor for registration OTP codes or validation links <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create temporary email addresses and monitor for registration OTP codes or validation links.
 
-## Publisher: <br>
-[etopro](https://clawhub.ai/user/etopro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[etopro](https://clawhub.ai/user/etopro)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to create disposable email inboxes for low-risk signup or verification flows, then extract OTP codes or validation links from incoming messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary mailbox credentials, OTPs, and validation links are stored locally under ~/.tempmail_otp/. <br>
-Mitigation: Treat the state directory as sensitive and delete ~/.tempmail_otp/ after the verification flow. <br>
-Risk: The workflow depends on the third-party mail.tm disposable email service. <br>
-Mitigation: Use it only for low-risk verification flows and avoid high-value personal, financial, recovery, or work accounts. <br>
+## Use Case:
 
+Developers and agents use this skill to create disposable email inboxes, monitor incoming messages, and extract OTP codes or validation links during registration and verification workflows.
 
-## Reference(s): <br>
-- [Email OTP on ClawHub](https://clawhub.ai/etopro/email-otp) <br>
-- [mail.tm API](https://api.mail.tm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text or JSON CLI output, plus local state files for the active mailbox, latest OTP, and first validation link.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python standard library commands and stores state under ~/.tempmail_otp/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: OTP codes, verification links, mailbox passwords, and JWT tokens may remain in plaintext files and terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-stakes disposable email workflows, avoid personal or account-recovery data, and delete ~/.tempmail_otp/ after use.
+
+Risk: Persistent mailbox state can outlive the immediate verification task.
+
+Mitigation: Review the generated files before installation or reuse, and clear stored state when the workflow is complete.
+
+## Reference(s):
+
+- [mail.tm API](https://api.mail.tm)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON CLI output, plus files containing the latest OTP code, validation link, and mailbox account state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent state under ~/.tempmail_otp/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

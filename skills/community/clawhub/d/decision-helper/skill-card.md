@@ -1,40 +1,52 @@
-## Description: <br>
-Decision Helper provides concise, structured decision analysis using frameworks such as pros and cons, decision matrices, worst-case testing, 10-10-10 reflection, and reversibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision Helper helps users structure important choices with concise frameworks such as pros and cons, decision matrices, worst-case testing, 10-10-10 reflection, and reversibility checks.
 
-## Publisher: <br>
-[payne-openclaw](https://clawhub.ai/user/payne-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[payne-openclaw](https://clawhub.ai/user/payne-openclaw)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill as a decision-support aid when they are uncertain about important life, career, investment, relationship, housing, or similar choices. It prompts the agent to provide brief structured analysis and a recommendation while preserving caution for high-stakes topics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may proactively offer structured advice for major life, financial, career, or relationship decisions.
+
+Mitigation: Use the output as a thinking aid and seek qualified professional advice for financial, legal, medical, relationship, or other high-stakes decisions.
+
+Risk: Concise recommendations can appear more certain than the available context supports.
+
+Mitigation: Review the assumptions, compare alternatives, and ask the agent to surface uncertainties before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to turn important or emotionally uncertain choices into short structured analyses and recommendations. It is most relevant for career, investment, relationship, housing, relocation, and other consequential decisions where trade-offs need to be made explicit. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Structured recommendations may be mistaken for professional financial, legal, medical, career, or relationship advice. <br>
-Mitigation: Use the output as reflection support and confirm important choices with appropriate human or professional judgment. <br>
-Risk: The skill may proactively suggest decision analysis for major choices. <br>
-Mitigation: Install it only when proactive structured decision analysis is desired, and review recommendations before acting. <br>
+**Output Format:** [Markdown-style structured text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/payne-openclaw/decision-helper) <br>
+**Other Properties Related to Output:** [Bilingual English and Chinese response patterns; text-only and no code execution or data access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise framework-based analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, private data access, or user actions.] <br>
+1.0.0 (source: server release evidence and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

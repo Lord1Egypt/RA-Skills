@@ -1,41 +1,50 @@
-## Description: <br>
-Multi-version ContactFlowCRM planning skill that helps agents review CFCRM status, version plans, launch checklists, next actions, and roadmap summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-version build plan for ContactFlowCRM (CFCRM) that guides agents through phased v1-v5 development with deliverables, checklists, and success criteria.
 
-## Publisher: <br>
-[vega6dev](https://clawhub.ai/user/vega6dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vega6dev](https://clawhub.ai/user/vega6dev)
 
-## Use Case: <br>
-Developers, builders, and project agents use this skill to plan ContactFlowCRM delivery across v1 through v5, inspect version-specific deliverables, run launch checklists, and decide the next build action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CFCRM progress may be stored in project memory when the host environment supports it, which can affect who can view or update roadmap status. <br>
-Mitigation: Confirm the intended project memory location and access expectations before using checklist status updates. <br>
-Risk: Generic roadmap or sprint discussions could activate CFCRM planning behavior unexpectedly. <br>
-Mitigation: Use explicit /cfcrm-build commands when possible, and ask for confirmation before applying progress changes. <br>
+## Use Case:
 
+Developers and project operators use this skill to plan, review, and track ContactFlowCRM development across fixed version phases. It helps an agent produce roadmap summaries, version plans, launch checklists, next actions, and progress status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vega6dev/cfcrm-build) <br>
-- [ContactFlowCRM](https://contactflowcrm.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with command-style responses, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize roadmap status, version plans, checklists, next actions, and completion updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Checklist completion and status updates may be stored persistently and reused later.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording sensitive project details unless persistent workspace storage is appropriate.
+
+## Reference(s):
+
+- [ContactFlowCRM](https://contactflowcrm.com)
+- [ClawHub skill listing](https://clawhub.ai/vega6dev/skills/cfcrm-build)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, command responses, and short action summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference persisted roadmap status when available; otherwise defaults to a v1 pre-launch state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-盘口变化监控助手 - 实时监控足球、篮球等体育赛事的亚盘、欧赔、大小球盘口变化。检测异常波动、大额注单信号、机构态度转变。支持多平台对比、历史趋势分析、自动预警通知。当用户需要监控盘口变化、追踪赔率走势、发现投注机会时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors sports betting line and odds movement for football, basketball, and related markets, highlighting abnormal fluctuations, bookmaker shifts, trend history, and alert-worthy signals.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users and analysts use this skill to monitor sports betting odds and line movements, compare bookmaker changes, and generate alerts or reports for market volatility. It is intended as a data-monitoring aid, not as a substitute for human judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evidence security summary reports direct billing code that can charge a user identifier through an external payment service without a clear per-run approval flow. <br>
-Mitigation: Install only if the publisher and billing provider are trusted, review billing terms before use, and control or sandbox SkillPay-related environment variables and network access. <br>
-Risk: The skill can transmit a SkillPay user identifier to an external billing service and may incur USDT charges. <br>
-Mitigation: Keep SkillPay user configuration unset unless paid use is intended, and run the skill in an environment where outbound billing calls can be reviewed or blocked. <br>
-Risk: Odds movement reports and detected market signals may be incomplete or misleading if source data is unavailable, delayed, or interpreted without broader context. <br>
-Mitigation: Treat outputs as monitoring signals only, verify data sources independently, and require human review before making betting or financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to monitor sports odds and betting line movement, compare market changes across platforms, review trend history, and receive alerts about abnormal movements or possible betting signals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shenmeng/shenmeng-odds-monitor-2025) <br>
-- [The Odds API](https://the-odds-api.com/) <br>
-- [SkillPay](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text monitoring reports with console alerts, shell commands, and JSON or SQLite-backed odds data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live monitoring requires an odds API key; billing behavior may depend on SkillPay-related environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release.version, artifact _meta.json and config.json) <br>
+Risk: The bundled billing module exposes a hard-coded SkillPay API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded key, rotate it before any release or deployment, and use deployment-specific secret storage such as environment variables or a managed secrets service.
+
+Risk: The billing flow can perform user-linked charge operations without clear per-charge user control.
+
+Mitigation: Authenticate billing identity server-side and require explicit user approval before each charge.
+
+Risk: The skill can make outbound odds-provider and billing requests and retain odds snapshots in a local SQLite database.
+
+Mitigation: Disclose required network endpoints, protect ODDS_API_KEY and SkillPay user identifiers, and define data retention and deletion practices for local SQLite files.
+
+Risk: Odds-monitoring output may be mistaken for betting advice.
+
+Mitigation: Present outputs as data monitoring and analysis only, preserve the disclaimer that reports are not betting advice, and require users to make independent decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/shenmeng-odds-monitor-2025)
+- [The Odds API](https://the-odds-api.com/)
+- [The Odds API v4 endpoint](https://api.the-odds-api.com/v4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown monitoring reports with signal summaries, command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language output, odds snapshots, trend summaries, alert recommendations, and local SQLite-backed report data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact _meta.json, config.json, and __init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

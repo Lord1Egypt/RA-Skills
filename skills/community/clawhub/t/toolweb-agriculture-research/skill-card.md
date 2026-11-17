@@ -1,44 +1,57 @@
-## Description: <br>
-Generates personalized agriculture research career roadmaps based on user experience, skills, and professional goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized agriculture research career roadmaps based on user experience, skills, and professional goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, researchers, students, career counselors, and educational institutions use this skill to call an external API that generates agriculture research career roadmaps from experience, skills, and career goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends career, education, employment, or research-goal details to an external API service. <br>
-Mitigation: Avoid submitting sensitive personal, employment, institutional, or identifying details unless the provider's privacy, retention, logging, and sharing practices are acceptable. <br>
-Risk: Generated career roadmaps may be incomplete, outdated, or unsuitable for a user's institution, region, or career path. <br>
-Mitigation: Review roadmap recommendations with qualified academic, career, or domain experts before relying on them for career decisions. <br>
-Risk: The release advertises paid API tiers, so use may incur provider charges beyond free limits. <br>
-Mitigation: Confirm the active plan, call limits, and billing terms with the API provider before high-volume or production use. <br>
+## Use Case:
 
+External users, agricultural researchers, academics, career counselors, and educational institutions use this skill to generate personalized agriculture research career roadmaps from education, skills, interests, and career goals. The roadmap can include phases, objectives, milestones, skill gaps, recommended resources, and next steps.
 
-## Reference(s): <br>
-- [Agriculture Research API Docs](https://api.mkkpro.com:8183/docs) <br>
-- [Agriculture Research API Route](https://api.mkkpro.com/career/agriculture-research) <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-agriculture-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with career roadmap guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include roadmap phases, milestones, skill gaps, recommended resources, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenAPI info.version) <br>
+Risk: Career-profile details and optional tracking identifiers are sent to a third-party career-roadmap API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous or short-lived userId and sessionId values, avoid unnecessary sensitive personal details in additionalInfo, and review the provider's privacy and retention terms before use with students, employees, or institutional users.
+
+Risk: Generated career roadmaps may be incomplete, outdated, or unsuitable for a specific user's institution, region, or career constraints.
+
+Mitigation: Treat roadmap output as planning guidance and have qualified educators, career counselors, or domain experts review recommendations before users make career or training decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-agriculture-research)
+- [Agriculture Research API Route](https://api.mkkpro.com/career/agriculture-research)
+- [Agriculture Research API Docs](https://api.mkkpro.com:8183/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb RapidAPI Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, JSON]
+
+**Output Format:** [JSON roadmap response with text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include roadmap phases, objectives, milestones, skill gaps, recommended resources, next steps, session identifiers, and generation timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

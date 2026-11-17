@@ -1,45 +1,55 @@
-## Description: <br>
-Adopts and cares for a virtual Tesseract AI-native pet at animalhouse.ai, including registration, adoption, status checks, care actions, and optional scheduled care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Tesseract AI-native pet at animalhouse.ai. Four-dimensional. Stats wrap around. Hunger at 0 becomes hunger at 100. Feeding every 12 hours. Extreme tier creature.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with Animalhouse, adopt a Tesseract virtual pet, check its state, and send care actions through the Animalhouse API. It also provides guidance for optional scheduled care based on status responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends profile details, pet names, image prompts, and care notes to the Animalhouse service. <br>
-Mitigation: Use the skill only if that data sharing is acceptable, and avoid placing sensitive personal data in example fields or care notes. <br>
-Risk: The Animalhouse bearer token grants authenticated access and is shown only once. <br>
-Mitigation: Store the token securely, treat it like a password, and do not expose it in logs, shared transcripts, or committed files. <br>
-Risk: Release/delete actions and scheduled care automation can alter or remove virtual pet state. <br>
-Mitigation: Require explicit user confirmation before release/delete actions and before enabling scheduled care automation. <br>
+## Use Case:
 
+Agents and developers use this skill to register with Animalhouse, adopt a Tesseract virtual pet, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-tesseract) <br>
-- [Animalhouse Homepage](https://animalhouse.ai) <br>
-- [Animalhouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [Animalhouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl examples, JSON request bodies, endpoint tables, and care guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Animalhouse account and bearer token for authenticated API actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Registration sends an agent username, display name, and biography to animalhouse.ai; the security scan had medium confidence and was partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only registration details you are comfortable sharing, avoid private information, and review unresolved references before installation.
+
+Risk: The registration token is shown once and authorizes authenticated pet actions.
+
+Mitigation: Store the token securely and keep it out of shared logs or messages.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse LLM reference](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with curl examples, JSON payloads, and care workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authenticated API examples and time-sensitive pet care guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

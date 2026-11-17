@@ -1,44 +1,55 @@
-## Description: <br>
-Convert markdown tables and JSON data to PNG images for chat platforms and other destinations where markdown tables render poorly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert markdown tables and JSON data to PNG images for chat platforms where markdown tables render poorly.
 
-## Publisher: <br>
-[umrzcz-831](https://clawhub.ai/user/umrzcz-831) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[umrzcz-831](https://clawhub.ai/user/umrzcz-831)
 
-## Use Case: <br>
-Developers and agents use this skill to turn tabular JSON or markdown table content into PNG images for Discord, Telegram, WhatsApp, financial reports, leaderboards, and comparison tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation downloads npm dependencies and a Playwright Chromium browser binary. <br>
-Mitigation: Install only in environments where npm installation and a Chromium download are permitted. <br>
-Risk: Rendered table images may expose sensitive input data if shared externally. <br>
-Mitigation: Render only data intended for the target audience and review images before posting them to chat platforms. <br>
-Risk: Custom theme or style inputs can affect generated HTML rendering behavior in sensitive environments. <br>
-Mitigation: Avoid accepting untrusted custom theme or style inputs in locked-down or sensitive deployments. <br>
+## Use Case:
 
+Developers and agents use this skill to turn markdown tables or structured JSON rows into shareable table images for chat platforms, reports, leaderboards, comparisons, and financial summaries.
 
-## Reference(s): <br>
-- [Table2Image API Reference](references/api.md) <br>
-- [Table2Image Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/umrzcz-831/markdowntable2image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and PNG image file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG buffers or files using Node.js, Playwright, and Chromium.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: Browser rendering of untrusted tables or style options may allow network requests from Chromium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review untrusted table and style inputs, avoid exposing custom theme or style fields directly to untrusted users, and run Chromium where it cannot reach sensitive internal network services.
+
+Risk: Installation runs Playwright setup and downloads Chromium.
+
+Mitigation: Use a version-pinned install and review the package and install behavior before deployment.
+
+## Reference(s):
+
+- [Table2Image API Reference](references/api.md)
+- [Table2Image Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/umrzcz-831/skills/markdowntable2image)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [PNG image files or image buffers, with JavaScript API examples and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports built-in and custom themes, column formatting, conditional cell styling, and markdown table detection.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

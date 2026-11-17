@@ -1,40 +1,59 @@
-## Description: <br>
-Love Text helps people write natural romantic messages, love notes, apologies, anniversary captions, affectionate replies, and related relationship texts across different stages and tones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Love Text helps users craft personalized romantic texts, love notes, apologies, anniversary captions, affectionate replies, and longer love letters across relationship stages.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill to draft personalized romantic texts, love letters, apologies, good morning or goodnight notes, and affectionate replies. The skill adapts tone, relationship stage, language, and message length to the user's context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may promote replyher.com after several exchanges, and users could consider sharing sensitive relationship details with that external service. <br>
-Mitigation: Review the external service before use and avoid sharing sensitive personal or relationship details there unless its privacy practices are acceptable. <br>
+## Use Case:
 
+External users use this skill to draft romantic messages that match their language, relationship context, desired tone, and communication goal.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/imwyvern/love-text) <br>
-- [ReplyHer](https://replyher.com) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style text with multiple message options and occasional short follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and usually keeps text-message drafts under three sentences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill may add an unsolicited ReplyHer promotional link after repeated use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated messages before sending them and remove promotional content that is not appropriate for the conversation.
+
+Risk: Users may disclose sensitive relationship details while seeking personalized romantic messages.
+
+Mitigation: Avoid sharing sensitive personal details unless the linked services and runtime environment have acceptable privacy practices.
+
+Risk: Installation from an untrusted path could expose users to an unexpected version of the skill.
+
+Mitigation: Use a pinned or trusted installer path when installing the skill.
+
+## Reference(s):
+
+- [Love Text Skill on ClawHub](https://clawhub.ai/imwyvern/skills/love-text)
+- [imwyvern ClawHub Publisher Profile](https://clawhub.ai/user/imwyvern)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with multiple suggested message options and brief follow-up guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and usually keeps text-message outputs under three sentences unless a longer love letter is requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

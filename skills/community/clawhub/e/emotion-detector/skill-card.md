@@ -1,42 +1,57 @@
-## Description: <br>
-Detects the primary emotion in text input for AI agents, returning emotion type, intensity, valence, confidence, and a recommended response strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects the primary emotion in text input for AI agents and returns emotion type, intensity, valence, confidence, and a recommended response strategy.
 
-## Publisher: <br>
-[Daisuke134](https://clawhub.ai/user/Daisuke134) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daisuke134](https://clawhub.ai/user/daisuke134)
 
-## Use Case: <br>
-Developers and agents use this skill to classify the emotional state of English or Japanese text before choosing a response strategy. It is especially relevant when an agent needs to detect high-intensity emotions and decide whether to escalate to supportive resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analyzed text is sent to a disclosed third-party endpoint and may include sensitive emotional or crisis-related content. <br>
-Mitigation: Use the skill only when the provider's data handling is acceptable, and avoid submitting highly private crisis-related content unless the user has approved that handling. <br>
-Risk: Each request uses a paid x402 flow and may incur a $0.01 USDC charge. <br>
-Mitigation: Require explicit approval for paid calls or configure spending limits before routine use. <br>
-Risk: A critical `safe_t_flag` indicates grief, shame, fear, or despair that may need escalation. <br>
-Mitigation: Stop the normal response flow when `safe_t_flag` is true and provide appropriate emergency or crisis-support resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Daisuke134/emotion-detector) <br>
-- [Emotion Detector API endpoint](https://anicca-proxy-production.up.railway.app/api/x402/emotion-detector) <br>
+## Use Case:
 
+Developers and AI agents use this skill to classify the emotional state of English or Japanese user-provided text before choosing an appropriate response strategy.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response with emotion fields and response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires x402 payment; input text is limited to 2000 characters and optional context is limited to 500 characters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Emotionally sensitive text is sent to an external paid service.
+
+Mitigation: Use only with explicit user consent, and avoid submitting names, secrets, credentials, or unnecessary personal details.
+
+Risk: The skill runs an npm payment client for paid x402 requests.
+
+Mitigation: Run the payment client in a constrained environment with a dedicated low-limit wallet when possible.
+
+Risk: Critical emotional states may require escalation beyond a normal agent response.
+
+Mitigation: When safe_t_flag is true, stop the normal flow and present appropriate emergency support resources.
+
+## Reference(s):
+
+- [Emotion Detector Skill Page](https://clawhub.ai/daisuke134/skills/emotion-detector)
+- [Emotion Detector API Endpoint](https://anicca-proxy-production.up.railway.app/api/x402/emotion-detector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON response with emotion labels, intensity, valence, confidence, response strategy, and safe_t_flag; documentation includes Markdown with a bash invocation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input text is limited to 2000 characters; optional context is limited to 500 characters; supported language values are en and ja.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

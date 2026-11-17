@@ -1,42 +1,53 @@
-## Description: <br>
-Generates data visualization charts with Python matplotlib, supporting seven chart types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates data visualization charts with Python matplotlib across seven chart types.
 
-## Publisher: <br>
-[ttguy0707](https://clawhub.ai/user/ttguy0707) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ttguy0707](https://clawhub.ai/user/ttguy0707)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to turn numeric data into local chart images for reports, summaries, and comparisons. It supports line, bar, pie, scatter, area, multi-line, and grouped bar charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Charts can contain sensitive source data, and the documentation includes optional Telegram-send examples. <br>
-Mitigation: Use the local chart generation workflow for sensitive data and only send chart images externally when the data is approved for that destination. <br>
-Risk: The generator writes chart images to a caller-selected output path. <br>
-Mitigation: Choose output paths deliberately and review generated files before sharing or attaching them to downstream workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to turn supplied numeric data into local PNG charts for reports, comparisons, trends, distributions, and multi-series analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ttguy0707/chart-py-generator) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Chart generator script](artifact/chart_gen.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated chart image files such as PNG] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python and matplotlib; chart type, data, labels, title, dimensions, color, and output path are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary flags an under-documented Telegram sending workflow that may send chart data outside the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local chart generation only unless the recipient, credentials, logging, and confirmation behavior for external sending are documented and approved.
+
+Risk: The security summary flags a broad Python import-path change.
+
+Mitigation: Review the import path behavior before installation and prefer a narrowly scoped package or environment path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ttguy0707/skills/chart-py-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG chart files plus Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports line, bar, pie, scatter, area, multi-line, and grouped bar charts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

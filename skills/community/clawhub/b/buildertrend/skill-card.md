@@ -1,49 +1,65 @@
-## Description: <br>
-Complete Buildertrend automation via Browser Relay - 43 playbooks covering sales, project management, financials, scheduling, change orders, daily logs, RFIs, punch lists, invoicing, procurement, with no API required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Buildertrend automation via Browser Relay, with 43 playbooks covering sales, project management, financials, scheduling, change orders, daily logs, RFIs, punch lists, invoicing, and procurement without using a public API.
 
-## Publisher: <br>
-[elevateson](https://clawhub.ai/user/elevateson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elevateson](https://clawhub.ai/user/elevateson)
 
-## Use Case: <br>
-Construction operations teams and their agents use this skill to operate Buildertrend through Browser Relay for project setup, client communication, financial workflows, scheduling, documents, and QuickBooks Online reconciliation. The skill is intended for logged-in Buildertrend users who want guided browser automation rather than API-based integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or change financial records and sync items to QuickBooks Online. <br>
-Mitigation: Test on a non-production project first and require explicit confirmation for every accounting or external-system action. <br>
-Risk: Browser control of a logged-in Buildertrend account can modify live project and business data. <br>
-Mitigation: Use the skill only with an authenticated user session, verify the page state before each action, and review each proposed change before execution. <br>
-Risk: The skill may store project data in local memory, Google Drive, Reminders, or other agent workspaces. <br>
-Mitigation: Confirm storage destinations before use, minimize sensitive data retention, and review workspace sharing and retention settings. <br>
+## Use Case:
 
+Construction teams and operations staff use this skill to guide an agent through Buildertrend workflows in an attached browser session. It supports project setup, sales pipeline tasks, client and vendor coordination, financial workflows, reporting, scheduling, and closeout procedures.
 
-## Reference(s): <br>
-- [Buildertrend OpenClaw Skill Homepage](https://github.com/elevateson/buildertrend-openclaw) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Buildertrend Help Center](https://buildertrend.com/help-articles/) <br>
-- [Buildertrend Job Management Help](https://buildertrend.com/help-article/job-management/) <br>
-- [Playbook Index](playbooks/README.md) <br>
-- [Buildertrend UI Patterns](bt-ui-patterns.md) <br>
-- [QuickBooks Online Sync Guide](qbo-sync-guide.md) <br>
-- [Buildertrend Workflows](workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown playbooks with browser-action checklists, inline shell commands, and optional JSON or Markdown tables for extracted Buildertrend data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated Buildertrend browser session through OpenClaw Browser Relay; financial and accounting actions should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill can guide live business actions in Buildertrend, including financial updates, recurring report delivery, cloud folder changes, reminders, and agent configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with a dedicated test Buildertrend project and require explicit per-action approval before any live financial, reporting, cloud-storage, reminder, or configuration change.
+
+Risk: Some playbooks include approval-on-behalf and e-signature steps that may require organizational authorization.
+
+Mitigation: Remove or disable approval-on-behalf and e-signature steps unless the organization has a documented authorization policy for those actions.
+
+Risk: Browser automation can act on the wrong project or stale page state if the session changes or the UI does not match expectations.
+
+Mitigation: Use the documented snapshot, read, act, and verify pattern before each action, and stop for user guidance when login, loading, modal, or element identity checks fail.
+
+## Reference(s):
+
+- [ClawHub Buildertrend Skill Listing](https://clawhub.ai/elevateson/skills/buildertrend)
+- [Buildertrend Skill Instructions](artifact/SKILL.md)
+- [Buildertrend Skill README](artifact/README.md)
+- [Buildertrend Playbook Index](artifact/playbooks/README.md)
+- [Browser Relay UI Patterns](artifact/bt-ui-patterns.md)
+- [QuickBooks Online Sync Guide](artifact/qbo-sync-guide.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Buildertrend Help Articles](https://buildertrend.com/help-articles/)
+- [Buildertrend Job Management Help](https://buildertrend.com/help-article/job-management/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, checklists, tables, and structured action summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Buildertrend browser session through OpenClaw Browser Relay; financial and administrative actions should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

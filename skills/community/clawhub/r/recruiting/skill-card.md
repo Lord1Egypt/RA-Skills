@@ -1,46 +1,60 @@
-## Description: <br>
-Hiring workflow management with structured processes and candidate tracking for job descriptions, resume screening, interviews, candidate pipelines, and offer communications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hiring workflow management with structured processes and candidate tracking for job descriptions, resume screening, interviews, candidate pipelines, and offer-related communications.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Recruiting teams and hiring managers use this skill as a local, human-reviewed aid for creating job descriptions, screening candidates against criteria, preparing interview questions, tracking hiring stages, and drafting candidate communications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate scoring, ratings, interview labels, and hired or rejected statuses could be mistaken for automated hiring recommendations. <br>
-Mitigation: Use the skill only as a human-reviewed workflow record; require a qualified human to make and document all hiring decisions. <br>
-Risk: Recruiting records may include sensitive candidate information. <br>
-Mitigation: Keep candidate data minimal, avoid protected-class or unnecessary sensitive information, and manage retention and deletion in the local workspace. <br>
-Risk: Resume screening and pipeline outputs can reflect incomplete or biased criteria. <br>
-Mitigation: Review screening criteria, scores, and communications for fairness, job relevance, and compliance with applicable employment laws before use. <br>
+## Use Case:
 
+Recruiting teams and hiring managers use this skill to structure job descriptions, candidate screening, interview preparation, pipeline tracking, and candidate communications while keeping hiring decisions under human control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIstack/recruiting) <br>
-- [Publisher profile](https://clawhub.ai/user/AGIstack) <br>
-- [Job Descriptions](references/job-descriptions.md) <br>
-- [Resume Screening](references/resume-screening.md) <br>
-- [Pipeline Tracking](references/pipeline-tracking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores recruiting workflow records locally under memory/recruiting or the configured local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server-resolved release metadata) <br>
+Risk: Applicant data and hiring assessments are stored locally in plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize stored personal data, enforce private file permissions, and apply explicit retention and deletion practices.
+
+Risk: Scores, ratings, interview labels, and reject labels could be treated as automated hiring decisions.
+
+Mitigation: Require human review and approval for all candidate disposition changes, and treat assessments as advisory inputs only.
+
+Risk: Structured recruiting workflows can still introduce or preserve hiring bias.
+
+Mitigation: Use consistent criteria, document evidence for decisions, and maintain human oversight at every decision point.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agistack/skills/recruiting)
+- [Job Description Creation](references/job-descriptions.md)
+- [Resume Screening](references/resume-screening.md)
+- [Pipeline Tracking](references/pipeline-tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with JSON-backed local records and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores recruiting records locally in plaintext JSON files under the agent workspace.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

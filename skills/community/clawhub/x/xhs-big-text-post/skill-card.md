@@ -1,42 +1,49 @@
-## Description: <br>
-小红书大字图全流程制作技能。当用户需要制作小红书配图（带文字的大图、卖点图）时触发。完整流程：理解需求、精炼文案、用 AI 生成底图、叠加文字，并通过飞书发出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书大字图全流程制作技能。当用户需要制作小红书配图（带文字的大图、卖点图）时触发。完整流程：理解需求 → 精炼文案 → 用 AI 生成底图 → 叠加文字 → 通过飞书发出。所有图片存 /workspace/xhs/。
 
-## Publisher: <br>
-[cleanbinggmail](https://clawhub.ai/user/cleanbinggmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cleanbinggmail](https://clawhub.ai/user/cleanbinggmail)
 
-## Use Case: <br>
-External creators and social media operators use this skill to turn short marketing or idea text into Xiaohongshu-style cover images with concise large-text copy. The workflow guides an agent through copy refinement, visual metaphor design, image generation, text overlay, and optional delivery through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can send generated images through Feishu to a named recipient without an explicit confirmation step. <br>
-Mitigation: Require confirmation that shows the exact generated file and Feishu destination before sending, or edit the skill so Feishu delivery is optional. <br>
-Risk: Generated poster content may be used with private, client, business, or personal material. <br>
-Mitigation: Review prompts, final image content, file path, and destination before delivery when sensitive or proprietary content is involved. <br>
+## Use Case:
 
+Content creators and social media operators use this skill to turn short topics into Xiaohongshu-style poster images with concise cover copy, generated visuals, overlaid text, and Feishu delivery.
 
-## Reference(s): <br>
-- [小红书大字图 — 详细工作流](artifact/references/workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cleanbinggmail/xhs-big-text-post) <br>
-- [Publisher profile](https://clawhub.ai/user/cleanbinggmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown guidance with image file paths and generated image assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are stored under /workspace/xhs/ and final images may be sent through Feishu when that tool is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated user-derived images may contain private, client, unpublished, or business-sensitive material and the workflow sends final images to a fixed Feishu recipient without an explicit confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and generated images before installation or use; modify the workflow to stop after local image generation and require explicit approval before sending through Feishu when sensitive material may be present.
+
+## Reference(s):
+
+- [小红书大字图 — 详细工作流](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, guidance, API calls]
+
+**Output Format:** [Image files plus concise completion text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are written under /workspace/xhs/ and final images are sent through Feishu according to the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Generates security hardening recommendations and configurations for Kubernetes clusters based on specified hardening options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates security hardening recommendations and configurations for Kubernetes clusters based on specified hardening options.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-DevSecOps teams, security engineers, platform engineers, and compliance-focused organizations use this skill to generate Kubernetes hardening recommendations and configuration examples for RBAC, network policy, pod security, and audit logging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external Kubernetes hardening API provider. <br>
-Mitigation: Confirm that the provider is trusted and that its data-handling terms are acceptable before use. <br>
-Risk: Generated Kubernetes manifests or recommendations may not match a specific cluster's security, compliance, or operational requirements. <br>
-Mitigation: Review and test generated manifests and recommendations before applying them, especially in production. <br>
-Risk: Submitting kubeconfigs, cluster credentials, tokens, or secrets to the service could expose sensitive information. <br>
-Mitigation: Do not submit secrets or credentials unless the service and its data-handling terms have been separately verified. <br>
+## Use Case:
 
+Developers, DevSecOps teams, platform engineers, and security engineers use this skill to request Kubernetes hardening recommendations and configuration drafts for RBAC, network policy, pod security, and audit logging workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-kubernetes-hardening) <br>
-- [Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
-- [Kubernetes Hardening API Docs](https://api.mkkpro.com:8126/docs) <br>
-- [Kubernetes Hardening API Route](https://api.mkkpro.com/hardening/kubernetes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown with JSON examples and Kubernetes configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated manifests, policies, and recommendations should be reviewed before use in production clusters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requests are sent to a documented third-party API and may include session identifiers, user identifiers, timestamps, and hardening choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review request content before use and avoid sending sensitive operational details unless the third-party API is approved for that data.
+
+Risk: Generated Kubernetes manifests and recommendations may be incomplete or unsuitable for a specific cluster.
+
+Mitigation: Treat outputs as drafts, test them in a non-production environment, and apply them through normal change controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-kubernetes-hardening)
+- [Kubernetes Hardening API route](https://api.mkkpro.com/hardening/kubernetes)
+- [Kubernetes Hardening API docs](https://api.mkkpro.com:8126/docs)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, guidance, text]
+
+**Output Format:** [JSON containing Kubernetes configuration drafts and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated manifests and recommendations should be reviewed and tested before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

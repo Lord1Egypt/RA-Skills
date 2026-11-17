@@ -1,43 +1,64 @@
-## Description: <br>
-Guides an agent through setting up local OpenClaw memory embeddings on Windows, including downloading the GGUF model, installing the local runtime dependency, editing configuration, restarting OpenClaw, and verifying status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide Windows users through configuring OpenClaw local embedding and memory retrieval with a local GGUF model, local memorySearch provider settings, restart checks, and troubleshooting.
 
-## Publisher: <br>
-[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure local memory retrieval embeddings on Windows and diagnose common setup failures such as missing dependencies, incorrect paths, inactive local provider settings, or incomplete restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup downloads a model file and installs node-llama-cpp from external sources. <br>
-Mitigation: Confirm the Hugging Face model URL and npm package are trusted before running the commands. <br>
-Risk: The setup changes a local OpenClaw installation and its openclaw.json configuration. <br>
-Mitigation: Back up openclaw.json and run commands only in the intended OpenClaw installation. <br>
-Risk: Application updates may overwrite files changed inside bundled OpenClaw resources. <br>
-Mitigation: Recheck the local embedding dependency and memory status after OpenClaw updates. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up local memory embedding on Windows, including downloading the nomic embed GGUF model, configuring openclaw.json, installing the required local runtime dependency, and verifying behavior.
 
-## Reference(s): <br>
-- [Windows local embedding setup guide](references/windows-setup.md) <br>
-- [nomic-embed-text-v1.5 GGUF model card](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PowerShell, JavaScript, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces procedural guidance for local Windows setup and verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Installing unpinned native npm code into the OpenClaw application directory can introduce dependency or binary supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed node-llama-cpp version or lockfile before installation.
+
+Risk: Ignoring high or critical npm vulnerability reports can leave the local OpenClaw runtime exposed to known issues.
+
+Mitigation: Review npm vulnerability output and resolve high or critical findings before relying on the setup.
+
+Risk: Loading an unverified downloaded GGUF model can introduce integrity or provenance uncertainty.
+
+Mitigation: Verify the GGUF model using a trusted hash or immutable release before loading it.
+
+Risk: Incorrect Windows paths or configuration edits can prevent local memory retrieval from activating.
+
+Mitigation: Confirm escaped Windows paths, provider settings, full application restart, and the provided verification output.
+
+## Reference(s):
+
+- [Windows local embedding setup reference](references/windows-setup.md)
+- [nomic-embed-text-v1.5 GGUF model page](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF)
+- [nomic-embed-text-v1.5.Q8_0.gguf download](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF/resolve/main/nomic-embed-text-v1.5.Q8_0.gguf)
+- [ClawHub skill page](https://clawhub.ai/dnaxxx-hub/skills/windows-embedding-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with PowerShell, JavaScript, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend local file downloads, npm installation, OpenClaw configuration edits, application restart, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Memory Tree generates weekly OpenClaw memory reports, marks important memories as permanent, and searches saved memories by keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Tree helps OpenClaw generate weekly memory reports, search saved memories by keyword, and mark important memories as permanent.
 
-## Publisher: <br>
-[masongmx](https://clawhub.ai/user/masongmx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[masongmx](https://clawhub.ai/user/masongmx)
 
-## Use Case: <br>
-OpenClaw users use Memory Tree to summarize weekly memory changes, locate saved memory entries, and preserve important memories for later use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and modifies OpenClaw memory files, which may contain sensitive personal or project information. <br>
-Mitigation: Install only if you are comfortable granting access to those memory files, and review changed memory files and generated weekly reports before relying on or sharing them. <br>
-Risk: Generated weekly reports may expose sensitive memory content through enabled Feishu or OpenClaw channels. <br>
-Mitigation: Review enabled channels before running weekly reports and treat generated reports as sensitive. <br>
-Risk: The release evidence notes inconsistent documentation about automation, cloud use, and report sharing. <br>
-Mitigation: Use the reviewed ClawHub artifact as the source of truth and do not follow external install instructions unless you verify they match this artifact. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to inspect local memory files, produce weekly memory summaries, search remembered items, and pin important memories for long-term retention.
 
-## Reference(s): <br>
-- [Memory Tree on ClawHub](https://clawhub.ai/masongmx/memory-tree) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Terminal text with Markdown report files and memory-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and modify OpenClaw memory files and write weekly report files in the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill reads local OpenClaw memory files and channel configuration, which may contain sensitive personal or workspace information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this access is acceptable and review generated weekly reports before sharing them.
+
+Risk: Generated weekly reports may be sent to a configured Feishu destination if a user runs the printed send command.
+
+Mitigation: Review the generated report path and Feishu target before running any printed send command.
+
+Risk: Documentation and inspected behavior differ around cron, cloud APIs, and automatic decay.
+
+Mitigation: Use the server security guidance as authoritative and do not rely on unsupported documentation claims about automation, cloud APIs, or decay behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/masongmx/skills/memory-tree)
+- [Memory-Like-A-Tree](https://github.com/loryoncloud/Memory-Like-A-Tree)
+- [Lobster Doctor](https://github.com/Masongmx/lobster-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Terminal text, Markdown weekly reports, and suggested shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weekly reports are written under the local OpenClaw memory workspace; send commands are printed for review rather than executed by the skill.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

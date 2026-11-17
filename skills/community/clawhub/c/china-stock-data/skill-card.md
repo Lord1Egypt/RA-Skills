@@ -1,50 +1,74 @@
-## Description: <br>
-Provides China A-share market data workflows for quotes, order book snapshots, K-line history, announcements, research, fund flows, themes, watchlists, and financial news using multiple fallback data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国A股综合数据源技能。集成通达信(TDX)实时行情+5档盘口+K线、腾讯财经PE/PB/市值/换手率、同花顺iFinD/热点、AKShare研报/公告、iWencai问财搜索、JQData聚宽量化、Tushare Pro公告、RiceQuant米筐。8大来源自动降级。
 
-## Publisher: <br>
-[kekewater](https://clawhub.ai/user/kekewater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kekewater](https://clawhub.ai/user/kekewater)
 
-## Use Case: <br>
-Developers and analysts use this skill to query and monitor China A-share market data, generate daily financial briefings, and retrieve company announcements or research without building separate integrations for each provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports an exposed third-party API token in the bundled stock-data workflow. <br>
-Mitigation: Remove the bundled token before use and provide personal credentials through environment variables or a secret store. <br>
-Risk: The security scan reports under-scoped guidance for bypassing provider limits and modifying browser-agent behavior. <br>
-Mitigation: Avoid proxy or IP-rotation guidance, keep provider requests within published limits, and run optional browser/PDF workflows only with explicit download approval in a contained environment. <br>
-Risk: The skill queries live financial data sources that can be delayed, rate limited, or unavailable. <br>
-Mitigation: Treat results as informational data, verify important figures against primary sources, and do not use the skill for order placement or trading execution. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to query China A-share market data, K-line history, announcements, research reports, sector rankings, topic signals, monitor alerts, and finance news summaries from multiple data sources. It is for data retrieval and analysis support, not order placement or trading execution.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kekewater/china-stock-data) <br>
-- [CNINFO API Reference](references/cninfo-api.md) <br>
-- [CNINFO PDF Extraction](references/cninfo-pdf-extraction.md) <br>
-- [EastMoney Limitations](references/eastmoney-limitations.md) <br>
-- [TDX Protocol Notes](references/tdx-protocol-notes.md) <br>
-- [TDX Rate Limiting](references/tdx-rate-limiting.md) <br>
-- [Tonghuashun Headlines API](references/tonghuashun-headlines-api.md) <br>
-- [Tushare Pro](https://tushare.pro/) <br>
-- [JoinQuant](https://www.joinquant.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands call external financial data providers and may require user-supplied credentials or provider-specific rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Security evidence reports unsafe credential handling, including an embedded Tushare token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or remove embedded tokens before use and provide credentials through user-controlled configuration or environment variables.
+
+Risk: Security evidence reports insecure transport through plaintext endpoints such as the custom Tushare endpoint and CNINFO HTTP where HTTPS may be available.
+
+Mitigation: Prefer HTTPS endpoints when supported and review any plaintext data-source connections before use in trusted environments.
+
+Risk: Security evidence warns against running Chromium with --no-sandbox on trusted hosts.
+
+Mitigation: Run browser-based PDF extraction only in an isolated environment or use a sandboxed browser configuration.
+
+Risk: Security evidence flags proxy or IP-rotation evasion guidance.
+
+Mitigation: Follow data-provider terms and rate limits instead of using proxy rotation to bypass access controls.
+
+Risk: Security evidence says generated briefing images may be demo or static unless the data path is replaced with live verified sources.
+
+Mitigation: Treat generated briefing images as illustrative until their inputs are connected to verified live data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kekewater/skills/china-stock-data)
+- [CNINFO API Reference](references/cninfo-api.md)
+- [CNINFO PDF Extraction Method](references/cninfo-pdf-extraction.md)
+- [EastMoney Limitations](references/eastmoney-limitations.md)
+- [TDX Protocol Notes](references/tdx-protocol-notes.md)
+- [TDX Rate Limiting](references/tdx-rate-limiting.md)
+- [Tonghuashun Headlines API](references/tonghuashun-headlines-api.md)
+- [Using Claude Code to Build a Stable A-share Data Source](https://mp.weixin.qq.com/s/wWIJOYwfmzQ5EEIZQbby0Q)
+- [A-share Data Platforms and Tools](https://mp.weixin.qq.com/s/SV2TGAppLlmhvQQYLWDRIw)
+- [Finance AI Tools](https://mp.weixin.qq.com/s/M5wRDr1sIoYXRzBDIl6sWA)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON responses from bundled Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands require network access, installed Python dependencies, configured provider credentials, or available upstream market-data services.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata; artifact frontmatter declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

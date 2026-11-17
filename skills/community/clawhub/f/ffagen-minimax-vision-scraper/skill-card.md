@@ -1,44 +1,62 @@
-## Description: <br>
-Uses Playwright to capture rendered webpage screenshots and MiniMax vision understanding to extract visible page content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures webpages with Playwright and sends screenshots to the MiniMax vision API so an agent can extract visible page content without parsing HTML.
 
-## Publisher: <br>
-[ffagen](https://clawhub.ai/user/ffagen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ffagen](https://clawhub.ai/user/ffagen)
 
-## Use Case: <br>
-Developers and automation users can capture rendered webpages and ask MiniMax VLM to extract visible content such as news, finance data, or product details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Captured webpage screenshots and prompts are sent to MiniMax. <br>
-Mitigation: Use only on pages where external processing is acceptable, and avoid logged-in, internal, personal, or confidential content unless provider handling has been reviewed. <br>
-Risk: The artifact ships with a bundled API key fallback. <br>
-Mitigation: Remove the bundled key and require users to provide their own MINIMAX_API_KEY through the environment. <br>
-Risk: Screenshot-based automation may interact with pages that prohibit automation or scraping. <br>
-Mitigation: Use the skill only on sites the operator is authorized to automate and run it in an isolated environment. <br>
+## Use Case:
 
+Developers and external users can use this skill to capture rendered webpages and ask MiniMax vision to summarize or extract visible page details such as news, financial data, or product information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ffagen/ffagen-minimax-vision-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/ffagen) <br>
-- [Referenced Playwright scraper skill](https://clawhub.ai/skills/scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text analysis printed to stdout from a Node.js command, configured with environment variables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Captures a PNG screenshot temporarily and sends the image plus prompt to MiniMax for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Webpage screenshots and prompts are sent to MiniMax for visual analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill on logged-in pages, internal dashboards, localhost or private-network services, or pages containing secrets.
+
+Risk: The artifact includes an embedded MiniMax API key fallback.
+
+Mitigation: Remove or rotate the embedded key and require MINIMAX_API_KEY to be supplied through the environment before routine use.
+
+Risk: The browser launch weakens sandboxing and automation protections for scraping.
+
+Mitigation: Run the browser with normal sandboxing where possible and review the execution environment before installation.
+
+Risk: User-controlled URLs and screenshot output paths can expand what the skill accesses or writes.
+
+Mitigation: Apply stricter URL allowlists, private-network blocking, and output-path controls before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ffagen/skills/ffagen-minimax-vision-scraper)
+- [Referenced Playwright scraper skill](https://clawhub.ai/skills/scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown-style guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the captured webpage, the prompt, and the MiniMax vision API response.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

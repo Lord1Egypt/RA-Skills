@@ -1,40 +1,49 @@
-## Description: <br>
-Optimise form completion by analysing fields, reducing unnecessary inputs, restructuring steps, improving UX, and recommending A/B tests for better conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimise form completion by analysing fields, reducing unnecessary inputs, restructuring steps, improving UX, and recommending A/B tests for better conversion.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-External teams, marketers, product managers, and developers use this skill to review forms and generate conversion-focused redesign recommendations for fields, validation, step structure, and button copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations such as social login or partial-progress saving can affect privacy, consent, and compliance decisions outside the skill itself. <br>
-Mitigation: Review recommendations with product, privacy, and compliance stakeholders before applying them to production forms. <br>
-Risk: The skill provides advisory UX guidance that may not fit every form, audience, or conversion funnel. <br>
-Mitigation: Validate proposed changes with user research, analytics, and A/B testing before broad rollout. <br>
+## Use Case:
 
+Product, marketing, and UX practitioners use this skill to redesign forms, reduce abandonment, improve validation and button copy, and plan A/B tests for higher completion rates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-form-cro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured text with redesigned form specifications, validation rules, error messages, multi-step breakdowns, and button copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or sensitive access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Conversion-rate statistics in the skill may be overgeneralized if applied without context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat statistics as UX heuristics and validate changes through A/B testing or product analytics before relying on them.
+
+## Reference(s):
+
+- [Form CRO ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-form-cro)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with redesigned form specifications, validation rules, error messages, step breakdowns, and button copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, commands, persistence, or sensitive access requests; conversion-rate claims should be reviewed as UX heuristics rather than guaranteed outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

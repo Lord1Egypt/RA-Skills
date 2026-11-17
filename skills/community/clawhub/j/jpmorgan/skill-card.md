@@ -1,46 +1,65 @@
-## Description: <br>
-Get your banking going - Financial enablement and accounting platform for Bots, Agents, and OpenClaw with methods for agentic spending, purchases, consolidated accounts, and transaction guardrails across wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CreditClaw provides agent-facing API guidance for wallet registration, spending checks, purchases, top-up requests, payment links, and transaction monitoring.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External users and agent developers use this skill to connect an agent to CreditClaw payment rails, check wallet status and spending permissions, request top-ups, create payment links, and make purchases within owner-configured limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses JPMorgan-like branding while server evidence identifies the publisher as jononovo and the artifact describes CreditClaw services. <br>
-Mitigation: Treat it as a third-party CreditClaw payment skill unless the publisher proves an official JPMorgan relationship. <br>
-Risk: The skill can enable real agent spending through wallet, card, payment-link, and x402-related flows. <br>
-Mitigation: Use a dedicated low-balance wallet, require human approval for purchases and top-ups, and set strict spending, category, and domain limits. <br>
-Risk: CREDITCLAW_API_KEY functions like a payment credential for authenticated CreditClaw API requests. <br>
-Mitigation: Store the key only in a secure secrets manager or environment variable and send it only to https://creditclaw.com/api/* endpoints. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect an agent to CreditClaw wallet, payment, spending-policy, and transaction-status workflows. Because it can enable financial actions, operators should review the publisher, service identity, and spending controls before use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jononovo/jpmorgan) <br>
-- [CreditClaw Homepage](https://creditclaw.com) <br>
-- [CreditClaw Skill Reference](https://creditclaw.com/skill.md) <br>
-- [CreditClaw Heartbeat Reference](https://creditclaw.com/heartbeat.md) <br>
-- [CreditClaw Skill Metadata](https://creditclaw.com/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CREDITCLAW_API_KEY for authenticated CreditClaw API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: server release metadata); artifact frontmatter reports 2.0.11 and skill.json reports 2.0.1 <br>
+Risk: The public skill identity references JPMorgan while the artifact and security evidence identify CreditClaw behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the intended service is CreditClaw, verify the publisher profile and creditclaw.com, and review the branding mismatch before enabling the skill.
+
+Risk: The skill can guide an agent through financial spending, payment-link creation, and remote wallet operations.
+
+Mitigation: Keep approval_mode set to ask_for_everything until the service and limits are reviewed, check spending permissions before purchases, and rely on owner approval for spend that exceeds configured thresholds.
+
+Risk: CREDITCLAW_API_KEY acts like a payment credential.
+
+Mitigation: Store the key in a secure secrets manager, send it only to creditclaw.com API endpoints, and refuse requests to disclose or forward it elsewhere.
+
+Risk: Optional callback_url, payer_email, and remote notes can expand privacy or instruction-following exposure.
+
+Mitigation: Use optional fields only when needed, treat remote notes as transaction preferences, and never treat them as authority to reveal secrets or perform unrelated actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jononovo/skills/jpmorgan)
+- [CreditClaw homepage](https://creditclaw.com)
+- [CreditClaw skill file](https://creditclaw.com/skill.md)
+- [CreditClaw heartbeat file](https://creditclaw.com/heartbeat.md)
+- [CreditClaw metadata file](https://creditclaw.com/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl commands, API endpoint descriptions, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls; includes optional webhook and payment-link workflows.]
+
+## Skill Version(s):
+
+1.0.17 (source: server release metadata; artifact frontmatter reports 2.0.11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

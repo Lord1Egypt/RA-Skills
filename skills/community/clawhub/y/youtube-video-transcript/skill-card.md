@@ -1,40 +1,64 @@
-## Description: <br>
-Fetch, summarize, and save YouTube transcripts with timestamp navigation, chapter detection, and searchable content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch, summarize, and save YouTube transcripts with timestamp navigation, chapter detection, and searchable content.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, researchers, students, and content creators use this skill to extract readable YouTube transcripts, find timestamped moments, summarize videos, and export transcript content for notes or downstream work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches YouTube transcript and metadata content and may save transcripts or preferences locally. <br>
-Mitigation: Use it for videos the user is allowed to access, ask before caching, disclose saved file locations, and delete saved data when requested. <br>
-Risk: Using browser cookies or private video access can expose account-scoped data to local tooling. <br>
-Mitigation: Avoid cookies or private-video workflows unless the user explicitly authorizes them, and review any dependency installation prompt before proceeding. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/youtube-video-transcript) <br>
-- [Skill homepage](https://clawic.com/skills/youtube-video-transcript) <br>
+## Use Case:
 
+External users, researchers, creators, students, and developers use this skill to extract YouTube transcripts, preserve timestamps, search within video content, summarize videos, and export transcript data in useful formats.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with timestamped transcript text, deep links, shell commands, and optional local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can export transcripts as Markdown, SRT, plain text, or JSON; cached transcripts are stored locally only with user consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on yt-dlp installed from Homebrew or pip.
+
+Mitigation: Use a trusted package source and pin a reviewed yt-dlp version when your environment requires dependency control.
+
+Risk: Transcript caches and preferences may create local records of watched or processed videos.
+
+Mitigation: Cache transcripts and preferences only after explicit user consent, disclose the save location, and honor requests to show or delete saved files.
+
+Risk: Browser cookies can grant yt-dlp access to age-restricted content.
+
+Mitigation: Do not provide browser cookies unless intentionally authorizing access for a specific video.
+
+Risk: Auto-generated subtitles may contain transcription errors or weak punctuation.
+
+Mitigation: Prefer manual subtitles when available and tell users when auto-generated subtitles are used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/youtube-video-transcript)
+- [Skill homepage](https://clawic.com/skills/youtube-video-transcript)
+- [Setup process](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+- [Advanced patterns](artifact/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with timestamped transcript text, summaries, export guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local transcript cache files and preference files only after user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

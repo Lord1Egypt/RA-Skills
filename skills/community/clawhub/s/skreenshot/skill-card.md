@@ -1,46 +1,64 @@
-## Description: <br>
-Organize, tag, search, and manage macOS screenshots with OCR, bulk renaming, folder categorization, cleanup, and CleanShot X integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize, tag, search, and manage screenshots on macOS.
 
-## Publisher: <br>
-[10OSS](https://clawhub.ai/user/10OSS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[10oss](https://clawhub.ai/user/10oss)
 
-## Use Case: <br>
-External users and developers use this skill to find, organize, rename, archive, and search macOS screenshots, including OCR-based search and CleanShot X workflow integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk screenshot moves or renames may affect many local files at once. <br>
-Mitigation: Ask the agent to preview matched files first, use dry-run options where available, and confirm source and destination folders before running mutating commands. <br>
-Risk: Changing the macOS screenshot location is persistent and may confuse later capture workflows. <br>
-Mitigation: Record the previous screenshot location and the exact command used so the change can be undone. <br>
-Risk: OCR indexing and cloud-upload workflows can expose sensitive screenshot contents. <br>
-Mitigation: Avoid cloud upload for sensitive screenshots and review OCR/index destinations before processing private image collections. <br>
-Risk: Cleanup automation can remove or archive screenshots that are still needed. <br>
-Mitigation: Use date thresholds conservatively, preview affected files, and keep archive or trash recovery paths clear before enabling scheduled cleanup. <br>
+## Use Case:
 
+External users and developers use this skill to find, organize, rename, archive, and search macOS screenshots, including OCR-based content search and CleanShot X workflows.
 
-## Reference(s): <br>
-- [OCR Setup for Screenshot Search](references/ocr-setup.md) <br>
-- [CleanShot X Workflows](references/cleancast-x.md) <br>
-- [Automation Patterns](references/automation-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local screenshot-management workflows and may suggest file-moving, renaming, OCR, and macOS screenshot-location commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Screenshot cleanup and archive workflows may move or delete files unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry runs and folder previews before applying changes, and keep backups before enabling cleanup rules.
+
+Risk: OCR workflows may index private information contained in screenshots.
+
+Mitigation: Avoid OCR indexing for sensitive screenshot folders and review generated indexes before sharing or storing them broadly.
+
+Risk: CleanShot X cloud upload workflows may expose screenshots outside the local device.
+
+Mitigation: Disable automatic cloud upload for sensitive captures and confirm sharing settings before generating links.
+
+Risk: Changing the macOS screenshot save location is a persistent system preference change.
+
+Mitigation: Confirm the intended destination folder before applying the preference change and document how to revert it.
+
+## Reference(s):
+
+- [Skreenshot ClawHub Skill Page](https://clawhub.ai/10oss/skills/skreenshot)
+- [OCR Setup for Screenshot Search](references/ocr-setup.md)
+- [CleanShot X Workflows](references/cleancast-x.md)
+- [Automation Patterns](references/automation-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include local file-management commands, OCR setup steps, and optional automation workflows.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,66 @@
-## Description: <br>
-Automates ITSM ticket submission through Chromium and Selenium for quote requests, batch queries, and issue feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ITSM ticket submission through a local Chromium browser and Selenium for head-leg inquiries, tail-leg inquiries, batch queries, and issue feedback.
 
-## Publisher: <br>
-[Tutututu2020](https://clawhub.ai/user/Tutututu2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tutututu2020](https://clawhub.ai/user/tutututu2020)
 
-## Use Case: <br>
-Operations and support users can use this skill to submit ITSM tickets from an agent workflow, including ticket type, SKU, warehouse, remarks, and optional attachment details. It drives a browser session to interact with the ITSM system rather than producing a draft only. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds credentials that may be real. <br>
-Mitigation: Review the code before installation, remove or replace embedded credentials, and rotate the credential if it is valid. <br>
-Risk: The skill can submit real ITSM tickets without a separate review step. <br>
-Mitigation: Run it only after confirming the ticket details and use an isolated environment or browser profile for execution. <br>
-Risk: The setup flow may install packages or execute downloaded setup code on the user's machine. <br>
-Mitigation: Review the setup behavior first and allow dependency installation only in an environment where those changes are acceptable. <br>
+## Use Case:
 
+Operations or support users use this skill to fill and submit logistics-related ITSM tickets in an enterprise IT service management system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tutututu2020/itsm-skill) <br>
-- [ITSM service endpoint used by the skill](https://itsm.westmonth.com/#/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Terminal logs and screenshot files from browser automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submits real tickets to an external ITSM system and may install local browser or Python dependencies during setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release evidence and package.json) <br>
+Risk: Embedded ITSM credentials could expose account access if the package or logs are shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hard-coded credentials, rotate the exposed account password, and pass secrets through a managed secret store or environment variables.
+
+Risk: The automation can submit a live ITSM ticket without an explicit final approval step.
+
+Mitigation: Add a confirmation prompt or dry-run mode before clicking the final submit action.
+
+Risk: Automatic sudo, apt, pip, and bootstrap downloads can change the host environment during startup.
+
+Mitigation: Install reviewed prerequisites in advance and disable network bootstrap installation in production environments.
+
+Risk: Screenshots and debug output may capture usernames, ticket contents, attachment paths, or other sensitive service data.
+
+Mitigation: Disable automatic screenshots and password logging, or store redacted screenshots with restricted retention and access controls.
+
+Risk: A Chromium remote debugging port is opened for browser control during automation.
+
+Mitigation: Bind browser debugging to local trusted contexts only and close the browser process after each controlled run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tutututu2020/skills/itsm-skill)
+- [Publisher profile](https://clawhub.ai/user/tutututu2020)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
+
+**Output Format:** [Terminal logs, browser actions, and screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit a live ITSM ticket and save local screenshots during execution.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

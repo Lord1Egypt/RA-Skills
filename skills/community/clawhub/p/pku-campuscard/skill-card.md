@@ -1,40 +1,54 @@
-## Description: <br>
-PKU Campus Card is an agent skill for working on the Rust campuscard CLI for PKU campus card authentication, balance, recharge, payment QR, transaction history, and monthly spending workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PKU Campus Card (校园卡) CLI tool built in Rust for working on the campuscard crate, debugging campus card commands, adding features, and handling campus-card workflows such as balance, recharge, payment QR, transaction history, monthly spending, and authentication constraints.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to understand, debug, and extend the Rust campuscard CLI for PKU campus card workflows, including authentication, balance, recharge, payment QR, transaction history, spending stats, and TOTP management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may access campus-card credentials from a keyring or environment variables, or use a locally stored session token. <br>
-Mitigation: Install only from a trusted source and review credential and session handling before allowing login or authenticated campus-card actions. <br>
-Risk: Payment QR and recharge workflows can initiate payment-related or balance-changing actions. <br>
-Mitigation: Require deliberate approval for payment or recharge actions and verify the account, amount, and intended action before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to work with a Rust CLI for PKU campus-card operations, including authentication, balance lookup, payment QR display, recharge, transaction history, monthly statistics, and OTP management. It is most relevant when maintaining or operating the campuscard crate against PKU's Synjones campus-card platform.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjsoj/pku-campuscard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill can guide an agent through authenticated PKU campus-card operations, including login, payment QR generation, recharge, OTP changes, and transaction-history access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before login, payment QR generation, recharge, OTP changes, or viewing transaction history.
+
+Risk: The skill describes auto-login with stored credentials.
+
+Mitigation: Review how the underlying CLI stores and clears sessions before using real credentials, and avoid exposing credentials or session data in agent-visible logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjsoj/skills/pku-campuscard)
+- [Publisher profile](https://clawhub.ai/user/wjsoj)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell commands and code identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve authenticated campus-card operations and Chinese-language CLI output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

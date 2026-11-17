@@ -1,40 +1,53 @@
-## Description: <br>
-A red-team advisor that challenges assumptions, stress-tests ideas, and gives blunt GO/NO-GO/PIVOT feedback before users commit to business ideas, workflows, automations, or strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A red-team advisor that challenges assumptions, stress-tests ideas, and gives brutally honest GO/NO-GO feedback.
 
-## Publisher: <br>
-[mpbshhx](https://clawhub.ai/user/mpbshhx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mpbshhx](https://clawhub.ai/user/mpbshhx)
 
-## Use Case: <br>
-Individuals and teams use this skill to route plans through a critical review sub-agent that identifies weak assumptions, opportunity costs, and de-risking steps before they commit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intentionally adversarial and may overstate negatives or produce misleading judgment if treated as authoritative. <br>
-Mitigation: Use it as an advisory review step and compare recommendations against evidence, domain expertise, and simpler alternatives before acting. <br>
-Risk: Pasted plans or business context are sent to the configured sub-agent model. <br>
-Mitigation: Avoid sharing sensitive information unless the model and execution environment are approved for that content. <br>
+## Use Case:
 
+Developers, operators, and decision-makers use this skill to stress-test business ideas, workflows, automations, strategies, or priority reviews before committing time or money.
 
-## Reference(s): <br>
-- [Ruthless Mentor ClawHub page](https://clawhub.ai/mpbshhx/ruthless-mentor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown/text critique with a GO, NO-GO, or PIVOT recommendation and de-risking steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a spawned sub-agent for advisory review; the skill itself does not generate files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitted business plans or workflow details may be evaluated by the configured sub-agent or model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts and avoid sending confidential plans unless that evaluation path is acceptable.
+
+Risk: Broad trigger wording could cause the reviewer to be used as a gate in more workflows than intended.
+
+Mitigation: Enable workflow gates or weekly reviews only after clear confirmation and keep the review scope specific.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mpbshhx/skills/ruthless-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown or plain text critique with a GO, NO-GO, or PIVOT recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May delegate the submitted plan to a configured sub-agent or model for critique.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

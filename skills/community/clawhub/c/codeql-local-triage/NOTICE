@@ -1,0 +1,31 @@
+Third-party attribution
+=======================
+
+This project references and re-implements definitions from the CodeQL
+Standard Libraries:
+
+    github/codeql — https://github.com/github/codeql
+    Copyright GitHub, Inc.
+    Licensed under the MIT License.
+
+Specifically, the following files were consulted and transcribed/ported:
+
+  shared/concepts/codeql/concepts/internal/SensitiveDataHeuristics.qll
+      -> the classification regexes (maybeSecret / maybePassword /
+         maybeAccountInfo / maybeCertificate / maybePrivate) and the
+         exclusion regex (notSensitiveRegexp), re-implemented in
+         scripts/scan_sensitive_sources.py
+
+  python/ql/lib/semmle/python/dataflow/new/SensitiveDataSources.qll
+      -> the seven "sensitive data source" categories, mirrored by the
+         AST checks in scripts/scan_sensitive_sources.py
+
+  python/ql/lib/semmle/python/security/dataflow/CleartextStorageCustomizations.qll
+      -> documented in references/sensitive-data-heuristics.md (which
+         sources/sinks the CWE-312 query actually uses)
+
+  python/ql/src/Security/CWE-312/CleartextStorage.ql
+      -> the query used in all examples and test fixtures
+
+These are readable restatements and equivalent ports, not official GitHub
+artifacts. Upstream is authoritative; if the two disagree, upstream wins.

@@ -1,42 +1,53 @@
-## Description: <br>
-Reads only ~/.openclaw/agents/main/sessions/sessions.json to show where OpenClaw tokens and estimated costs are going by session type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads OpenClaw session usage totals to show where tokens and estimated cost are going by session type.
 
-## Publisher: <br>
-[whooshinglander](https://clawhub.ai/user/whooshinglander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whooshinglander](https://clawhub.ai/user/whooshinglander)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local session token usage, estimated spend, and category-level anomalies such as high-volume logging or costly scheduled tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local token usage and estimated cost summaries may reveal private workflow or spend details if shared. <br>
-Mitigation: Use explicit prompts when invoking the skill and review generated summaries before sharing them. <br>
-Risk: Broad token-cost prompts could activate the diagnostic skill unintentionally. <br>
-Mitigation: Invoke the skill deliberately for token usage analysis and confirm the requested time window. <br>
-Risk: The optional savings log writes a local record when the user explicitly asks to track savings. <br>
-Mitigation: Request logging only when a persistent local token-diet record is desired. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose token and cost usage by session category, identify high-volume or high-cost drains, and decide where to reduce waste.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whooshinglander/whereamiburningtokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table with concise diagnostic insight lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports token counts, estimated cost, percentages, and anomaly flags for the selected time window.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: OpenClaw session usage totals may reveal model choices, timestamps, costs, and session categories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where the agent is permitted to read OpenClaw session usage data.
+
+Risk: The optional savings log creates or updates a local token-diet-log.md history file when the user explicitly asks to track improvements.
+
+Mitigation: Request savings logging only when maintaining that local history is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/whooshinglander/skills/whereamiburningtokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table with concise insight lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports session count, token totals, estimated cost, category percentages, and anomaly flags for the selected time window.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

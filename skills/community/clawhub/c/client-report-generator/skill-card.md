@@ -1,43 +1,55 @@
-## Description: <br>
-Generate professional client-facing reports from raw data, metrics, and KPIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional client-facing reports from raw data, metrics, and KPIs.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Agencies, consultants, and client-facing teams use this skill to turn CSV, JSON, analytics exports, or plain text metrics into polished performance, campaign, project status, and analytics reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client reports may process sensitive client metrics or proprietary business data. <br>
-Mitigation: Only provide files, URLs, and metrics that are approved for processing and sharing in the target report. <br>
-Risk: Generated HTML may retain active untrusted text or links from source data. <br>
-Mitigation: Review generated HTML before sharing it with clients or publishing it externally. <br>
-Risk: Broad prompts such as "weekly report" may invoke the skill when the user intended a different task. <br>
-Mitigation: Confirm the reporting intent and desired data sources before generating or exporting a client-facing report. <br>
+## Use Case:
 
+External teams, agencies, and business users use this skill to turn CSV, JSON, analytics exports, or raw metrics into client-ready performance, campaign, project status, and analytics reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/client-report-generator) <br>
-- [Report Templates](references/report-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports by default, with optional HTML, plain text, or JSON summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include normalized metrics, trend analysis, recommendations, styled HTML with inline CSS, and commands for local parsing or HTML export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: HTML export can carry unsafe HTML or JavaScript into client-facing reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Markdown output, review generated HTML before sharing or hosting it, and avoid publishing HTML generated from untrusted content until escaping and link-scheme validation are fixed.
+
+Risk: Generated client reports may include incorrect conclusions when source data is incomplete or untrusted.
+
+Mitigation: Review metrics, assumptions, and recommendations against the source data before client delivery.
+
+## Reference(s):
+
+- [Report Templates](references/report-templates.md)
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/client-report-generator)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports by default, with optional HTML, plain text, and JSON summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can parse CSV, TSV, and JSON inputs into normalized metrics; HTML export uses inline CSS themes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

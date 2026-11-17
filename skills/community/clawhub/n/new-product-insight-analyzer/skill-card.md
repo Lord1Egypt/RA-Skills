@@ -1,38 +1,54 @@
-## Description: <br>
-Analyzes a company's latest product release by extracting public technical parameters, comparing generational and market positioning, and producing a concise competitive assessment brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise Chinese-language competitive assessment briefs for newly released products by extracting public technical specifications, comparing upgrades, and evaluating market barriers.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Product strategy, investment, procurement, and competitive intelligence teams use this skill to evaluate recent product launches, technical differentiation, target customers, and likely market barriers from public sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent product-release information may be incomplete, promotional, or based on public media and forum sources rather than official disclosures. <br>
-Mitigation: Require source links, prefer official company disclosures for hard parameters, and treat industry comparisons or barrier assessments as analysis unless independently verified. <br>
+## Use Case:
 
+Business development, investment, procurement, and competitive analysis teams use this skill to identify a company's latest product release, summarize core technical parameters, compare generational or industry baselines, and assess competitive moat strength.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/new-product-insight-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown competitive assessment brief with bullet lists and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should cite public sources, distinguish disclosed parameters from inferred comparisons, and mark missing product parameters rather than inventing them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Business, investment, or procurement decisions could be affected by incomplete or inaccurate public product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cited or named official releases and authoritative sources before relying on the brief for decisions.
+
+Risk: Prompts may reveal confidential strategy details while the workflow performs external searches.
+
+Mitigation: Use only public or non-sensitive context in prompts and omit confidential plans, pricing, sourcing, or strategy details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/new-product-insight-analyzer)
+- [Publisher profile](https://clawhub.ai/user/daviddatamining)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown competitive assessment brief with bullets or tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language report covering product basics, core specifications, technical highlights, target market, customer segments, pain points, and low/medium/high barrier assessment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

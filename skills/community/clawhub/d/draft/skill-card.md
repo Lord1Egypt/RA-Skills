@@ -1,37 +1,48 @@
-## Description: <br>
-Professional first-draft generator that turns topics, notes, or rough input into complete drafts for emails, reports, articles, proposals, memos, cover letters, READMEs, social posts, and similar documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional first-draft generator for emails, reports, articles, proposals, memos, cover letters, blog posts, scripts, READMEs, pitch decks, social posts, and other documents.
 
-## Publisher: <br>
-[EthAgent](https://clawhub.ai/user/EthAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ethagent](https://clawhub.ai/user/ethagent)
 
-## Use Case: <br>
-Developers, business users, and other writers use this skill to convert a brief, bullet points, or rough notes into a complete first draft with an appropriate structure, tone, and length for the requested document type. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill activates broadly for draft-writing requests and may produce text for sensitive, legal, financial, business, or public communications. <br>
-Mitigation: Review generated text before sending or publishing, especially where accuracy, compliance, or public representation matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EthAgent/draft) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn topics, bullet points, rough notes, or short prompts into complete first drafts for common professional and creative documents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Plain text or Markdown, with code blocks for READMEs and social posts when appropriate.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may include exactly three targeted refinement options after the draft.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for many writing-related prompts and produce drafts with tone, accuracy, or sensitive-detail issues.
+
+Mitigation: Review and edit generated drafts before sending, publishing, or using them in sensitive contexts.
+
+## Reference(s):
+
+- [Draft skill page](https://clawhub.ai/ethagent/skills/draft)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Plain text or Markdown, with code blocks for README and social-post outputs when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are complete first drafts with optional targeted refinement suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Manage blog posts with drafts, scheduling, and SEO optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage blog posts with drafts, scheduling, and SEO optimization. Use when creating articles, optimizing metadata, or scheduling publication dates.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, writers, and content teams use this skill to record blog drafts, outlines, edits, SEO notes, publication schedules, translations, headlines, hooks, CTAs, and reusable social promotion material from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blog drafts, schedules, SEO notes, and exports are saved as plaintext under ~/.local/share/blog. <br>
-Mitigation: Avoid entering secrets, embargoed material, or highly sensitive business information unless the local account and machine protections are appropriate. <br>
+## Use Case:
 
+External users and content teams use this skill to record local blog workflow notes, including drafts, outlines, edits, SEO notes, schedules, headlines, translations, hooks, CTAs, and exports.
 
-## Reference(s): <br>
-- [ClawHub Blog Skill](https://clawhub.ai/bytesagain3/blog) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Plain-text command output with optional JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries and exports under ~/.local/share/blog using local plaintext files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Blog workflow notes are stored as plaintext local log files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering passwords, API keys, embargoed drafts, sensitive business plans, or other confidential content unless plaintext local storage is acceptable.
+
+Risk: Exported CSV files may expose logged content when opened or shared in spreadsheet tools.
+
+Mitigation: Review exported files before sharing and delete retained logs or exports when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/blog)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and command-line output, with optional JSON, CSV, or text exports from local log files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists blog workflow entries as plaintext logs under ~/.local/share/blog.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

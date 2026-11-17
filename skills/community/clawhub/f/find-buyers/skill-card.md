@@ -1,40 +1,50 @@
-## Description: <br>
-Find likely buyers, wholesale prospects, procurement targets, and commerce demand-side opportunities for ecommerce and trade workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find likely buyers, wholesale prospects, procurement targets, and demand-side commerce opportunities by category, region, buyer type, and purchasing signals.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External users and commerce teams use this skill to identify and prioritize plausible wholesale buyers, procurement leads, distributors, and demand-side targets by category, market, business type, and purchasing signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buyer recommendations may be based on incomplete or outdated public signals. <br>
-Mitigation: Verify buyer information independently, include supporting signals, and call out missing evidence before outreach. <br>
-Risk: Outreach based on generated buyer lists may implicate privacy, anti-spam, or commercial-contact rules. <br>
-Mitigation: Follow applicable privacy, anti-spam, and commercial-contact requirements before using the shortlist for outreach. <br>
+## Use Case:
 
+External commerce, ecommerce, and trade users use this skill to identify and prioritize plausible wholesale buyers, procurement leads, distributors, and other demand-side targets before outreach.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown shortlist with supporting rationale, risks or unknowns, and suggested outreach angles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes buyer candidates using public demand-side signals and flags evidence gaps for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Suggested buyer candidates or supporting signals may be incomplete, outdated, or weakly supported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify buyer evidence and relevance before outreach, and treat risks or unknowns as follow-up checks.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/find-buyers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shortlist with buyer-fit reasoning, supporting signals, risks or unknowns, and suggested outreach angles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritizes plausible buyer fit and calls out missing evidence for user verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

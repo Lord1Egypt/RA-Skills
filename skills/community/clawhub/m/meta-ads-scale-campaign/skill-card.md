@@ -1,43 +1,54 @@
-## Description: <br>
-[Didoo AI] Guides Meta Ads campaign scaling by helping increase budget, expand audiences, and replicate proven campaigns to new geographies after a testing campaign has exited Learning Phase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Guides Meta Ads campaign scaling - increases budget, expands audiences, replicates to new geos for campaigns that have exited Learning Phase and have stable cost metrics.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing operators and agents use this skill to decide when and how to scale Meta Ads campaigns by increasing budget, expanding audiences, or duplicating winners into new geographies. It is intended for campaigns with stable recent results, acceptable CPL or CPA, and completed learning phase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meta ad-account credentials can expose sensitive campaign data. <br>
-Mitigation: Use the narrowest Meta access token possible, keep credentials out of chat logs and files, and prefer read-only ads_read access for analysis. <br>
-Risk: Scaling guidance can lead to spend increases or campaign duplication that affects advertising budgets. <br>
-Mitigation: Review all budget changes, targeting changes, and duplicated campaigns before activation; keep new campaign copies paused until manually approved. <br>
-Risk: A companion publishing skill may modify live ads if granted write access. <br>
-Mitigation: Verify any publishing skill separately and restrict write-capable tokens to accounts and actions that are explicitly approved. <br>
+## Use Case:
 
+External marketers and operators use this skill to decide whether a Meta Ads testing campaign is ready to scale, then choose budget, audience, or geography scaling actions and monitor post-scale performance.
 
-## Reference(s): <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/meta-ads-scale-campaign) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, and decision criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; recommendations should be reviewed before applying campaign budget or targeting changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Meta credentials could expose ad account data if the token is broader than the advertised read-only ads scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Meta token limited to ads_read and only provide the required ad account identifier.
+
+Risk: Scaling recommendations can still lead to ad spend changes or campaign activation decisions even though the artifact does not automate them.
+
+Mitigation: Review proposed budget, audience, and geo changes in Meta Ads Manager before activation and monitor CPL, frequency, spend, and learning status after scaling.
+
+## Reference(s):
+
+- [Didoo AI Blog](https://didoo.ai/blog)
+- [ClawHub skill page](https://clawhub.ai/elias-didoo/skills/meta-ads-scale-campaign)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with decision criteria, scaling steps, monitoring signals, and troubleshooting reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires META_ACCESS_TOKEN and META_AD_ACCOUNT_ID when the agent checks Meta Ads status or insights; guidance is read-only and does not automate budget or campaign activation changes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Integrate TapSDK v4 into Godot 4 Android games: login, anti-addiction, cloud save, leaderboard, friends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate TapSDK v4 into Godot 4 Android games: login, anti-addiction, cloud save, leaderboard, friends. Invoke when adding TapTap features to a Godot Android project.
 
-## Publisher: <br>
-[reallycsc](https://clawhub.ai/user/reallycsc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reallycsc](https://clawhub.ai/user/reallycsc)
 
-## Use Case: <br>
-External game developers and engineers use this skill to integrate TapSDK v4 features into Godot 4 Android games, including login, anti-addiction, cloud save, leaderboard, friends, and Godot-to-Android plugin bridging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Login, friend, profile, and cloud-save features may process player data that users expect to be disclosed. <br>
-Mitigation: Add clear player-facing privacy notices and request only the friend or profile scopes the game actually needs. <br>
-Risk: Cloud-save payloads can contain secrets or unnecessary personal data if the game serializes too much state. <br>
-Mitigation: Minimize saved fields and avoid placing secrets or unnecessary personal data in save files before upload. <br>
-Risk: Cloud restore behavior can replace newer or preferred local progress. <br>
-Mitigation: Compare cloud and local saves and ask for confirmation before replacing local save data. <br>
+## Use Case:
 
+Developers and engineers use this skill to add TapSDK v4 login, anti-addiction, cloud save, leaderboard, friends, and update integration patterns to Godot 4 Android games.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/reallycsc/taptap-godot-integration) <br>
-- [TapTap Developer Portal](https://developer.taptap.cn/) <br>
-- [TapTap Website](https://www.taptap.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Kotlin, GDScript, Gradle, XML, and INI code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes integration steps, Android plugin code, Godot autoload code, configuration snippets, and module-specific implementation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Anti-addiction checks may fail open if sample control flow is copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require fail-closed anti-addiction handling before game entry and test denial, timeout, and network-error paths.
+
+Risk: Cloud-save snippets may upload sensitive or unnecessary game-state data.
+
+Mitigation: Minimize saved fields, document what is synchronized, and validate serialization before enabling cloud save.
+
+Risk: Avatar loading and update-launch behavior can expose users to unbounded remote content or external app/browser launches.
+
+Mitigation: Validate avatar URL schemes and image sizes, and remove or gate external update launches behind explicit user action.
+
+## Reference(s):
+
+- [TapTap Developer Portal](https://developer.taptap.cn/)
+- [TapTap](https://www.taptap.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Gradle, INI, XML, Kotlin, and GDScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation snippets and integration guidance for adaptation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

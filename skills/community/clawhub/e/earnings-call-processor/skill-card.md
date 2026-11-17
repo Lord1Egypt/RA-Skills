@@ -1,42 +1,50 @@
-## Description: <br>
-Transcribe earnings call audio via Whisper, analyze stock price data, and generate structured Feishu documents summarizing financial results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe earnings call audio via Whisper, analyze stock price data, and generate structured Feishu documents summarizing financial results.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and finance analysts use this skill to turn earnings call audio and stock history CSV data into a transcript, computed financial indicators, and Feishu-ready summary content for review and publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes selected earnings call audio and stock CSV data on the local machine. <br>
-Mitigation: Use trusted local input files, run the skill in a dedicated output directory, and avoid placing sensitive recordings or market data in shared paths. <br>
-Risk: Generated Feishu-ready content may contain transcription errors or misleading financial summaries. <br>
-Mitigation: Review the transcript, computed indicators, and generated Feishu content before sharing or publishing. <br>
-Risk: The pipeline depends on local Whisper and pandas installations. <br>
-Mitigation: Install dependencies from trusted sources and verify the local environment before processing earnings call material. <br>
+## Use Case:
 
+Developers and finance teams use this skill to turn earnings-call audio and stock history CSV data into local transcripts, financial indicators, and Feishu-ready Markdown for review and publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/earnings-call-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Local files containing a transcript, financial indicators JSON, and Feishu-ready Markdown content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-selected audio and stock CSV inputs plus local Whisper and pandas installations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The default shared temporary output folder can retain or expose full earnings-call transcripts, summaries, and Feishu-ready content, and may be vulnerable to local tampering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, user-owned output directory, inspect generated Feishu content before publishing, and delete transcripts and summaries when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/earnings-call-processor)
+- [ClawHub publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands]
+
+**Output Format:** [Local text transcript, JSON indicators, and Feishu-ready Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes transcript.txt, financial_indicators.json, and feishu_content.md under the selected output directory.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, server release evidence, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

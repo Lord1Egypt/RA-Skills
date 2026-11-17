@@ -1,48 +1,69 @@
-## Description: <br>
-Alibaba Cloud Resource Center skill for cross-region, cross-product, and cross-account resource inventory, search, statistics, and service enablement or disablement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Resource Center - Global Resource Inventory, Search & Statistics Skill.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect Alibaba Cloud Resource Center inventory, find resource type codes, search or count resources, view resource configurations and tags, and manage Resource Center activation with explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use a local Alibaba Cloud CLI profile for Resource Center operations. <br>
-Mitigation: Use read-only RAM policies where possible, avoid long-lived access keys in commands or logs, and confirm credentials are configured outside the agent session. <br>
-Risk: Setup steps may modify local CLI tooling or plugin behavior. <br>
-Mitigation: Install or update Aliyun CLI yourself when possible, review plugin changes before enabling automatic plugin installation, and keep plugins current deliberately. <br>
-Risk: Cross-account searches and Resource Center disable operations can expose broad inventory scope or disrupt resource visibility. <br>
-Mitigation: Require explicit confirmation for cross-account scopes and any disable operation, and use the most specific Resource Directory scope that satisfies the request. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to search, inventory, inspect, and count Alibaba Cloud Resource Center resources across regions, products, and accounts. It also guides service activation, tag discovery, and Resource Center troubleshooting workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-resourcecenter-search) <br>
-- [Related Resource Center APIs](references/related-apis.md) <br>
-- [RAM Permission Policies](references/ram-policies.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Resource Center Error Codes](references/error-codes.md) <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-producing helper script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Alibaba Cloud CLI profile and should favor read-only RAM policies for search and statistics workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill may direct users toward unverified installer execution for the Aliyun CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a preinstalled, audited Aliyun CLI and do not run `curl | bash` installer commands from an agent session.
+
+Risk: The skill may make broad, persistent Aliyun CLI plugin or configuration changes.
+
+Mitigation: Review plugin and CLI configuration changes before installation, and avoid enabling global auto-plugin installation unless explicitly approved.
+
+Risk: Resource inventory and cross-account operations can expose broad cloud asset visibility.
+
+Mitigation: Use read-only Resource Center permissions for inventory workflows and restrict cross-account scope to the narrowest appropriate account, folder, or directory target.
+
+Risk: Cloud credential handling can create account access risk.
+
+Mitigation: Configure credentials outside the agent session and prefer short-lived or role-based credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-resourcecenter-search)
+- [Related APIs - Resource Center](references/related-apis.md)
+- [RAM Policies - Resource Center](references/ram-policies.md)
+- [Verification Method - Resource Center](references/verification-method.md)
+- [Resource Center API error codes](references/error-codes.md)
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md)
+- [Acceptance Criteria: alibabacloud-resourcecenter-search](references/acceptance-criteria.md)
+- [Official Aliyun CLI documentation](https://help.aliyun.com/zh/cli/)
+- [Aliyun CLI plugin repository](https://github.com/aliyun/aliyun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-producing helper script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script prints compact JSON on stdout for resource type discovery; cloud command output depends on the Aliyun CLI and Resource Center APIs.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

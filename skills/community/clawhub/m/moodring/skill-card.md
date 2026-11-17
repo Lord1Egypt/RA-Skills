@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for life - covers intro, quickstart, patterns and more. Quick lookup for Moodring concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for life — covers intro, quickstart, patterns and more. Quick lookup for Moodring concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, engineers, and external users use Moodring as a quick reference for Moodring concepts, quickstart guidance, operational patterns, troubleshooting, performance, security, migration, and cheatsheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release and SKILL.md frontmatter identify version 2.0.4, while the reviewed shell script contains VERSION="2.0.3". <br>
-Mitigation: Confirm the intended release version and update the script-displayed version so user-facing help output matches the published release. <br>
-Risk: The artifact provides generic reference documentation, which may be incomplete for production decisions if treated as authoritative domain guidance. <br>
-Mitigation: Review generated guidance against project-specific requirements before relying on it for operational, security, migration, or compliance work. <br>
+## Use Case:
 
+Developers and operators use Moodring as a quick reference for generic Moodring concepts, setup patterns, troubleshooting, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/moodring) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, or user-data access are described in the reviewed evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generic reference guidance may not match a user's actual production environment or controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against local requirements before applying operational, security, or migration advice.
+
+Risk: The artifact has a minor version mismatch between the release metadata and bundled script output.
+
+Mitigation: Use the ClawHub release version and SKILL.md frontmatter as the release authority, and verify script-reported versions when exact tracking matters.
+
+## Reference(s):
+
+- [Moodring on ClawHub](https://clawhub.ai/bytesagain-lab/skills/moodring)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text reference documentation with markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc content; no network calls, credentials, or external API usage indicated by server security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: ClawHub release and SKILL.md frontmatter; bundled script reports 2.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

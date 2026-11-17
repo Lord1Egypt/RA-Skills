@@ -1,39 +1,52 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use BEFORE installing any skill from ClawHub, GitHub, or other sources. Checks for red flags, dangerous patterns, permission scope, and suspicious code. Protects the agent and user from malicious skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents that checks external skills for red flags, dangerous patterns, permission scope, and suspicious code before installation.
 
-## Publisher: <br>
-[MissCrx](https://clawhub.ai/user/MissCrx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[misscrx](https://clawhub.ai/user/misscrx)
 
-## Use Case: <br>
-Developers and agent users use this skill to review external skills before installation, scan for critical security red flags, and decide whether flagged behavior needs manual review or blocking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated regex-based scanning may miss malicious behavior or flag benign patterns. <br>
-Mitigation: Use the skill as a vetting aid and manually review flagged files, commands, and context before installing a reviewed skill. <br>
-Risk: Scanner reports may include file paths or code snippets from the reviewed skill. <br>
-Mitigation: Run the scanner only against the intended skill directory and inspect reports before sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Security Pattern Reference](references/patterns.md) <br>
+## Use Case:
 
+Developers, agent operators, and external users use this skill to vet third-party skills before installation. It helps review source files, scripts, and documented behavior for malicious patterns, sensitive-file access, risky network use, and boundary-zone concerns.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional scanner reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner output groups findings into critical issues, warnings, informational notes, boundary findings, and an overall recommendation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled scanner can follow symlinks out of the scanned skill directory and may expose unrelated local file snippets in reports.
+
+Mitigation: Run scans in a sandbox or on a copied skill tree, and avoid scanning untrusted archives that preserve symlinks unless path boundaries are enforced.
+
+Risk: The server security verdict is suspicious, so automated use may create review or disclosure risk.
+
+Mitigation: Review the skill before installing or using it in automation, and treat scanner reports as advisory until findings are manually confirmed.
+
+## Reference(s):
+
+- [Security Pattern Reference](artifact/references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown security review with shell command examples and optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pass, caution, or block verdicts with critical, warning, and info findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

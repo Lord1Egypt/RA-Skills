@@ -1,0 +1,30 @@
+{
+  "fictional": true,
+  "timezone": "America/Los_Angeles",
+  "tasks": [
+    {
+      "id": "demo-1",
+      "title": "Draft a fictional research follow-up",
+      "category": "networking",
+      "due_at": "2026-11-12T01:44:16.711Z",
+      "estimated_minutes": 20,
+      "status": "todo"
+    },
+    {
+      "id": "demo-2",
+      "title": "Complete a fictional coursework assignment",
+      "category": "academics",
+      "due_at": "2026-11-13T01:44:16.719Z",
+      "estimated_minutes": 120,
+      "status": "todo"
+    },
+    {
+      "id": "demo-3",
+      "title": "Implement a fictional project evaluation",
+      "category": "project",
+      "due_at": "2026-11-15T01:44:16.719Z",
+      "estimated_minutes": 90,
+      "status": "todo"
+    }
+  ]
+}

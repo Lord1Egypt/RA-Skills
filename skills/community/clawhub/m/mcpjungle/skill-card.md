@@ -1,40 +1,52 @@
-## Description: <br>
-Manage MCPJungle gateway through its CLI for listing, registering, deregistering, enabling, disabling, invoking, and inspecting MCP servers, tools, prompts, and tool groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage MCPJungle gateway through its CLI for listing, registering, deregistering, enabling, disabling, invoking, and inspecting MCP servers, tools, prompts, and tool groups.
 
-## Publisher: <br>
-[ctxinf](https://clawhub.ai/user/ctxinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ctxinf](https://clawhub.ai/user/ctxinf)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to administer a running MCPJungle registry through CLI commands, including server registration, tool and prompt lifecycle management, configuration export, and direct tool invocation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: State-changing registry administration commands could affect MCP servers, tools, prompts, or groups if run against the wrong target.
+
+Mitigation: Confirm the registry URL, server, tool, and prompt names before running state-changing commands.
+
+Risk: Tool invocations may pass sensitive input to target MCP servers.
+
+Mitigation: Avoid passing secrets or sensitive data into tool invocations unless the target server is trusted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to manage a running MCPJungle registry from an agent-assisted workflow, including server lifecycle operations, tool and prompt visibility, direct tool invocation, and configuration export. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Disable or deregister commands can change MCP server, tool, or prompt availability. <br>
-Mitigation: Confirm the target registry, server name, and expected impact before running disable or deregister commands. <br>
-Risk: Invoked MCP tools may receive sensitive prompts, files, credentials, or private data. <br>
-Mitigation: Use only trusted MCP servers and avoid passing sensitive data unless that disclosure is intentional. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ctxinf/mcpjungle) <br>
+**Other Properties Related to Output:** [Documentation-only guidance for operating an installed MCPJungle CLI against a running registry.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are command-oriented guidance for interacting with an existing MCPJungle CLI and registry.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

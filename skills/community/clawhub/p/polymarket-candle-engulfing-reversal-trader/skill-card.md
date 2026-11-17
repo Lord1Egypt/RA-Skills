@@ -1,44 +1,55 @@
-## Description: <br>
-Detects engulfing reversal patterns in crypto 5-minute interval markets on Polymarket and targets BTC, ETH, SOL, and XRP Up or Down bundles with conviction-based position sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects engulfing reversal patterns in crypto 5-minute interval markets on Polymarket for BTC, ETH, SOL, and XRP, using conviction-based sizing for post-engulfing continuation trades.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading agents use this skill to run a configurable Polymarket trading strategy that detects engulfing reversal patterns in crypto 5-minute interval markets. It defaults to paper trading and can place live Polymarket trades only when explicitly run with the live flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated live trading can create real USDC exposure on Polymarket. <br>
-Mitigation: Start in paper mode, use the live flag only intentionally, keep position limits small, and actively monitor trading behavior. <br>
-Risk: The skill requires SIMMER_API_KEY, which grants trading authority. <br>
-Mitigation: Protect the key as a high-value credential and scope or rotate it where the provider supports that. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review the dependency before deployment and keep it pinned or monitored according to the deployment environment's dependency policy. <br>
+## Use Case:
 
+External trading agents and developers use this skill to monitor Polymarket crypto interval markets, identify engulfing reversal setups, and submit simulated or explicit live trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-candle-engulfing-reversal-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance, Python execution, and console logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires an explicit live flag and a SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades using a Simmer/Polymarket trading key, and the security review notes that advertised limits are not complete live-trading safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless the strategy and limits have been reviewed, use the smallest practical API permissions and balances, and set conservative trading tunables.
+
+Risk: Trading behavior depends on the external simmer-sdk package.
+
+Mitigation: Pin or review the SDK version before live use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-candle-engulfing-reversal-trader)
+- [simmer-sdk PyPI package](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Plain text console logs and Simmer trade API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence; artifact frontmatter metadata reports 1.0.0 and clawhub.json reports 0.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

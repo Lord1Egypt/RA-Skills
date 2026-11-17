@@ -1,42 +1,56 @@
-## Description: <br>
-Facebook Page AI management for auto-reply, posting, bookings, review responses, lead capture, analytics, and other business Page workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook Page AI management for 9 business types, with ready-made skills for auto-reply, posting, bookings, lead capture, analytics, and review management.
 
-## Publisher: <br>
-[proship1](https://clawhub.ai/user/proship1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[proship1](https://clawhub.ai/user/proship1)
 
-## Use Case: <br>
-Business operators and agent builders use this skill to connect an OpenClaw agent with PageClaw for Facebook Page workflows such as customer replies, content posting, bookings, review management, and lead capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting a Facebook Page can grant PageClaw access to sensitive Page management workflows. <br>
-Mitigation: Review the Meta OAuth permission screen, connect only the intended business Page, and start with conservative approval settings for posts, replies, bookings, review responses, and lead capture. <br>
-Risk: Regulated or sensitive workflows may introduce privacy, retention, or compliance obligations. <br>
-Mitigation: Avoid medical, education, or other sensitive deployments unless PageClaw's privacy, retention, and compliance terms meet the user's requirements. <br>
+## Use Case:
 
+External business users use this skill to set up PageClaw for Facebook Page operations such as customer replies, content posting, bookings, lead capture, review management, and analytics reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/proship1/pageclaw-setup) <br>
-- [PageClaw website](https://pageclaw.onechat.ai) <br>
-- [OneChat.ai](https://onechat.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Setup-oriented guidance for connecting and configuring PageClaw-managed Facebook Page workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Connecting a Facebook Page may grant a third-party service access to customer messages, contact details, booking data, and account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm the requested Facebook permissions, stored data categories, retention period, and revocation process.
+
+Risk: Automated posts, replies, or review responses could publish inaccurate or inappropriate content on behalf of a business.
+
+Mitigation: Require human approval for posts and replies, especially for regulated or sensitive businesses such as clinics.
+
+## Reference(s):
+
+- [PageClaw Website](https://pageclaw.onechat.ai)
+- [OneChat.ai](https://onechat.ai)
+- [ClawHub Skill Page](https://clawhub.ai/proship1/skills/pageclaw-setup)
+- [Publisher Profile](https://clawhub.ai/user/proship1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup and product guidance for connecting and using a third-party Facebook Page automation service.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

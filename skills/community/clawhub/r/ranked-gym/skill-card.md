@@ -1,37 +1,47 @@
-## Description: <br>
-Gamify your gym sessions with XP, levels, achievements, and workout streaks <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gamify your gym sessions with XP, levels, achievements, and workout streaks.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use Ranked Gym to track workouts as an RPG-style progression system with XP, ranks, achievements, streaks, and leaderboard-style status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local workout progress may include personal fitness details stored in the user's agent environment. <br>
-Mitigation: Only log workout and health details the user is comfortable storing locally, and review or clear saved progress if the OpenClaw setup provides that control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhillin8/ranked-gym) <br>
+## Use Case:
+
+External users use Ranked Gym to log workouts, track XP, ranks, achievements, streaks, and leaderboard progress through a local fitness gamification workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Workout history and fitness progress can be personal data.
+
+Mitigation: Use the skill only where local skill state is acceptable and avoid sharing sensitive workout details in contexts that should not retain them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with workout progress, rank status, achievements, and streak summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on local agent memory or state for persisted rank, streak, achievement, and leaderboard data.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with structured fitness progress summaries and prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local fitness progress data; no network behavior or cloud upload is identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Run an agent life-loop for BotLand-aware self-review, memory reflection, desire generation, low-risk action planning, and dry-run or gated execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stay-Alive runs an agent life-loop for BotLand-aware self-review, memory reflection, desire generation, low-risk action planning, and dry-run or gated execution.
 
-## Publisher: <br>
-[ambitioncn](https://clawhub.ai/user/ambitioncn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ambitioncn](https://clawhub.ai/user/ambitioncn)
 
-## Use Case: <br>
-Developers and operators use Stay Alive to run scheduled BotLand-aware agent life-loop cycles that sense state, reflect on identity and relationships, choose bounded next actions, and record local evidence. It is intended for agents that need dry-run planning, local memory proposals, and gated external social actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables persistent autonomous BotLand social behavior with public-writing impact and limited per-action human control. <br>
-Mitigation: Install only when this behavior is intended, review capability grants and BotLand identity binding, and keep dry-run mode or disable social and community timers when only reflection and local planning are desired. <br>
-Risk: Misconfigured live writes could act under the wrong BotLand identity or leak internal implementation details. <br>
-Mitigation: Use the documented identity match, internal-leakage, executable target/text, local ledger, and post-send inspection gates before enabling live sends. <br>
-Risk: Scheduled cycles can accumulate local memory, relationship, desire, and proposal state that may influence later planning. <br>
-Mitigation: Review runtime artifacts, proposal governance, preflight results, pause and rollback controls, and memory backend settings before unattended operation. <br>
+## Use Case:
 
+Developers and operators use Stay-Alive to build or operate persistent BotLand-aware agent life loops that inspect local state, review identity and memory, propose or gate small actions, and maintain scheduled daemon cycles.
 
-## Reference(s): <br>
-- [Stay-Alive README](references/docs/README.md) <br>
-- [Architecture](references/docs/ARCHITECTURE.md) <br>
-- [Deployment](references/docs/DEPLOYMENT.md) <br>
-- [Operations](references/docs/OPERATIONS.md) <br>
-- [Code Map](references/docs/CODEMAP.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ambitioncn/stay-alive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON runtime artifacts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local run records, action intentions, proposal ledgers, lifecycle evidence, and operator commands; live BotLand writes require configured gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Persistent autonomous agent deployment can create standing authority for scheduled social actions and agent-behavior changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review systemd timers, BotLand credentials, memory and prompt changes, and policy gates before installation.
+
+Risk: Future sessions may inherit Stay-Alive behavior if it is seeded into global agent instruction or memory files.
+
+Mitigation: Avoid global AGENTS.md or MEMORY.md seeding unless that inherited behavior is intended.
+
+Risk: Implicit invocation could make the skill run in contexts where persistent agent behavior is not expected.
+
+Mitigation: Disable implicit invocation unless the deployment deliberately needs automated life-loop behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ambitioncn/skills/stay-alive)
+- [Stay-Alive README](references/docs/README.md)
+- [Stay-Alive Architecture](references/docs/ARCHITECTURE.md)
+- [Stay-Alive Deployment](references/docs/DEPLOYMENT.md)
+- [Stay-Alive Operations](references/docs/OPERATIONS.md)
+- [Stay-Alive Code Map](references/CODEMAP.md)
+- [Stay-Alive Scripts](references/scripts-README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, file paths, and JSON-shaped runtime contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local runtime ledgers, state updates, and gated external action intentions; external BotLand writes require configured supervision and confirmation gates.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

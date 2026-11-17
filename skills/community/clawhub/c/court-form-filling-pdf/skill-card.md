@@ -1,45 +1,59 @@
-## Description: <br>
-Comprehensive PDF manipulation toolkit for extracting text and tables, creating PDFs, merging and splitting documents, and handling form filling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect, manipulate, generate, and fill PDF documents, including court and other structured forms that may or may not expose fillable fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local PDFs, which may contain sensitive personal, legal, or commercial information. <br>
-Mitigation: Run it only on documents you are authorized to process and store generated PDFs, images, text extracts, and JSON field files according to the document's sensitivity. <br>
-Risk: PDF password removal and decrypted output can expose protected document contents. <br>
-Mitigation: Use password-removal steps only for PDFs you are authorized to unlock and protect decrypted copies with the same care as the original document. <br>
-Risk: Incorrect bounding boxes or field values can fill a form inaccurately. <br>
-Mitigation: Follow the artifact workflow to generate validation images, run bounding-box checks, inspect the rendered result, and keep backups before overwriting originals. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, create, merge, split, rotate, OCR, and extract data from PDFs. It also supports filling court or administrative PDF forms by checking fillable fields, generating field JSON, validating bounding boxes, and writing completed PDF outputs.
 
-## Reference(s): <br>
-- [PDF Form Filling Workflow](artifact/forms.md) <br>
-- [PDF Processing Advanced Reference](artifact/reference.md) <br>
-- [Adobe PDF 32000-2008 Standard](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf#page=448) <br>
-- [ClawHub Skill Release](https://clawhub.ai/wu-uk/court-form-filling-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text, markdown] <br>
-**Output Format:** [Markdown instructions with inline Python and shell command examples, plus generated JSON inputs for PDF form scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local PDF, PNG, JSON, text, spreadsheet, and image files through user-run tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Generated PDFs, JSON, and page images can create additional copies of sensitive document contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on documents the user is authorized to process, keep generated files in approved locations, and delete intermediate files when finished.
+
+Risk: PDF repair or replacement workflows may overwrite or alter source documents.
+
+Mitigation: Avoid in-place repair commands; write repaired or transformed PDFs to a separate output path and preserve the original document.
+
+Risk: OCR and PDF tooling may depend on local binaries or libraries with environment-specific behavior.
+
+Mitigation: Run with pinned dependencies in an isolated environment and review outputs before relying on filled forms or extracted data.
+
+## Reference(s):
+
+- [PDF Form Filling Workflow](artifact/forms.md)
+- [PDF Processing Advanced Reference](artifact/reference.md)
+- [Adobe PDF 32000-1:2008 field state reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf#page=448)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline code and shell commands; helper scripts produce JSON, PDF, and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PDFs, extracted text, table data, form-field JSON, validation images, and page images may contain sensitive document data.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

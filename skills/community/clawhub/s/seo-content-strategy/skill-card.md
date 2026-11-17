@@ -1,40 +1,53 @@
-## Description: <br>
-Professional SEO content strategy generator with keyword research, content calendar, competitor analysis, and ranking tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional SEO content strategy generator with keyword research, content calendar, competitor analysis, and ranking tracking.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-Marketing teams, content strategists, and SEO practitioners use this skill to plan organic growth work, including keyword research, content calendars, competitor gap analysis, content briefs, audits, and ranking performance tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO ranking, crawling, publishing, and integration requests may be treated as live external actions even though the artifact is prompt-only. <br>
-Mitigation: Treat those features as planning guidance unless the agent separately connects authorized external tools. <br>
-Risk: Crawling, monitoring, analytics, Search Console, CMS, or spreadsheet integrations can expose data or violate site and service restrictions if used without authorization. <br>
-Mitigation: Only crawl or monitor authorized sites, respect robots.txt and service terms, and use read-only or least-privilege access for integrations. <br>
+## Use Case:
 
+Marketing teams, SEO practitioners, content strategists, and external agencies use this skill to plan keyword-led content strategies, build editorial calendars, analyze competitors, prepare SEO content briefs, audit existing content, and monitor ranking performance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ahmed181283/seo-content-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with strategy summaries, tables, calendars, content briefs, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; any crawling, ranking, analytics, CMS, spreadsheet, or publishing action requires separately connected tools and user-approved access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: Connected site crawling, rank tracking, project-management sync, or CMS publishing may affect external accounts, websites, or production content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact connected account or site before use and require human approval before making external changes, especially CMS publishing.
+
+Risk: SEO recommendations, competitor analysis, and ranking alerts may be inaccurate, outdated, or misaligned with the business context.
+
+Mitigation: Review strategy outputs against current analytics, search-console data, editorial standards, and business priorities before execution.
+
+## Reference(s):
+
+- [ClawHub skill release: SEO Content Strategy Generator](https://clawhub.ai/ahmed181283/skills/seo-content-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured strategy plans, keyword research summaries, content calendars, competitor analyses, ranking reports, content briefs, audit findings, and optional CSV or JSON export guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include schedules, scoring tables, alert recommendations, integration setup guidance, and publishing or reporting workflow recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

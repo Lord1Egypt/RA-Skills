@@ -1,41 +1,53 @@
-## Description: <br>
-Design, preview, and generate UI code using Google Stitch (via MCP). Helps developers choose the best UI by generating previews first, allowing iteration, and then exporting code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, previews, iterates on, and exports UI code using Google Stitch through MCP.
 
-## Publisher: <br>
-[a2mus](https://clawhub.ai/user/a2mus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a2mus](https://clawhub.ai/user/a2mus)
 
-## Use Case: <br>
-Developers and designers use this skill to generate UI concepts from text, review preview images, iterate on feedback, and export HTML/CSS after approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup can persistently add a Stitch MCP server that runs the external npm package stitch-mcp-auto through npx. <br>
-Mitigation: Review the package before installing, prefer pinning or independently verifying it, and confirm the mcporter configuration change before applying it. <br>
-Risk: The workflow may require Google Cloud authentication and project access. <br>
-Mitigation: Use a dedicated least-privileged Google Cloud account or project and manually confirm authentication, project creation, and file write actions. <br>
-Risk: Generated UI code may not match project requirements or may be produced before the design is approved. <br>
-Mitigation: Review preview images first, iterate on feedback, and fetch or save HTML/CSS only after explicit user approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a2mus/stitch-ui-designer) <br>
+## Use Case:
 
+Developers and engineers use this skill to create UI concepts from text prompts, review preview images, refine designs, and export HTML/CSS after approval.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, images] <br>
-**Output Format:** [Markdown guidance with inline shell commands, MCP tool calls, preview images, and generated HTML/CSS code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and mcporter; generated code is fetched only after user approval of a preview.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup runs an unpinned npm package through npx.
+
+Mitigation: Review and pin the `stitch-mcp-auto` package version before configuring the MCP server.
+
+Risk: The MCP process may use local Google Cloud authentication context.
+
+Mitigation: Use a dedicated least-privilege Google Cloud project or account and review the mcporter configuration before running the skill.
+
+## Reference(s):
+
+- [Stitch UI Designer on ClawHub](https://clawhub.ai/a2mus/skills/stitch-ui-designer)
+- [Publisher profile: a2mus](https://clawhub.ai/user/a2mus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and HTML/CSS code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UI preview image references or generated HTML/CSS after user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

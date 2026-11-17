@@ -1,40 +1,54 @@
-## Description: <br>
-Cool Agent Tools helps agents inspect system health, diagnose network issues, process files, review logs, manage processes and Docker, and run common Git checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent general tools provide command references for system monitoring, log analysis, process management, file handling, network diagnostics, Docker inspection, and Git operations.
 
-## Publisher: <br>
-[chuangyinbot-boop](https://clawhub.ai/user/chuangyinbot-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuangyinbot-boop](https://clawhub.ai/user/chuangyinbot-boop)
 
-## Use Case: <br>
-Developers and operators use this skill as a command reference for common system administration tasks such as resource checks, network diagnostics, log review, file inspection, process management, Docker inspection, and Git status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends operations commands that can delete files, terminate processes, change Docker state, or affect system paths. <br>
-Mitigation: Require explicit approval before delete, kill, Docker-changing, system-path, or background commands, and ask the agent to preview affected files, processes, and targets. <br>
-Risk: Network diagnostic commands may contact outbound hosts supplied during use. <br>
-Mitigation: Confirm the destination host or URL before running outbound network checks. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to help an agent propose common system administration, diagnostics, file-processing, Docker, log-analysis, process-management, and Git commands during operational troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chuangyinbot-boop/cool-agent-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may affect local files, processes, Docker resources, system paths, or network targets depending on user approval and execution context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill gives agents broad system administration commands that can delete files, terminate processes, run background jobs, or perform network checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before destructive, process-ending, background, or external network commands, and run agents with the least OS permissions needed.
+
+Risk: Command suggestions may be too broad for the user's current system scope.
+
+Mitigation: Ask the agent to state the target path, process, service, host, or container before execution and verify that scope with the operator.
+
+## Reference(s):
+
+- [Cool Agent Tools on ClawHub](https://clawhub.ai/chuangyinbot-boop/skills/cool-agent-tools)
+- [Publisher profile](https://clawhub.ai/user/chuangyinbot-boop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before execution, especially when commands can delete files, terminate processes, start background jobs, or perform external network checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and OpenClaw frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

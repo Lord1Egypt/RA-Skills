@@ -1,42 +1,53 @@
-## Description: <br>
-Guides developers through OWL (Odoo Web Library) front-end component development for Odoo 15+, including QWeb templates, reactive state, lifecycle hooks, services, routing, styling, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for OWL (Odoo Web Library) front-end component development, including QWeb templates, reactive state management, and component lifecycle patterns.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers building Odoo 15+ front-end modules use this skill as a concise reference for OWL components, QWeb templates, state management, service integration, and module asset configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A review helper may launch nested Codex review with sandbox and approval bypass enabled, increasing local access risk. <br>
-Mitigation: Use --no-yolo or disable the yolo environment setting for autoreview, and verify targets before moderation or PR-publishing workflows. <br>
-Risk: License evidence differs between the server release record and artifact metadata. <br>
-Mitigation: Confirm the authoritative release license before public submission. <br>
+## Use Case:
 
+Developers and engineers use this skill for Chinese-language reference guidance and examples when building Odoo OWL front-end components with QWeb templates, reactive state, lifecycle hooks, services, routing, styling, and tests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaobod1/huo15-owl-dev) <br>
-- [ClawHub Metadata Homepage](https://clawhub.ai/skills/huo15-owl-dev) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhaobod1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, XML, Python manifest, and SCSS code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language OWL/Odoo front-end development reference] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Generated or adapted Odoo code involving RPC or ORM calls can affect application data if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, test, and permission-check generated RPC and ORM examples before deploying them in an Odoo module.
+
+Risk: Template examples that use raw HTML rendering can create XSS exposure if applied to user-controlled input.
+
+Mitigation: Prefer escaped rendering for user input and audit any use of raw rendering before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhaobod1/skills/huo15-owl-dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript, XML, Python, SCSS, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance focused on OWL v2.x and Odoo 16+ patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

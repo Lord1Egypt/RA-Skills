@@ -1,41 +1,57 @@
-## Description: <br>
-Multi-agent adversarial verification with convergence loop. Two independent review agents must both pass before output ships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent adversarial verification with a convergence loop, where two independent review agents must both pass an output before it ships.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers, content teams, and operators use this skill to add an adversarial review gate before publishing, deploying, or shipping user-facing output. It is intended for high-stakes work where accuracy, completeness, compliance, or brand constraints need independent review before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vague or subjective review rubrics can lead to inconsistent reviews, unnecessary fix loops, or weak approvals. <br>
-Mitigation: Define objective pass/fail criteria for each review, cap the number of iterations, and escalate unresolved issues to a human reviewer. <br>
-Risk: Review logs may contain the original task content and generated output. <br>
-Mitigation: Handle review records according to the sensitivity of the source task and avoid retaining unnecessary content. <br>
+## Use Case:
 
+Developers and teams use this skill to add independent adversarial review to high-stakes outputs such as published content, production code, compliance-sensitive material, and customer-facing documentation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangxiaofei860208-source/lobster-santa-method) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with structured review JSON examples and workflow pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no installed code, secrets, or hidden behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The original task and generated output may be sent to multiple review agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted review agents and approved environments for any confidential, regulated, or customer-sensitive content.
+
+Risk: Dual review and iterative fix cycles can increase token cost and latency.
+
+Mitigation: Reserve full review for high-stakes outputs, use budget caps or sampling for large batches, and escalate when the iteration cap is reached.
+
+Risk: Reviewer quality can degrade if rubrics are vague or if reviewers share context.
+
+Mitigation: Use objective pass/fail criteria, keep reviewers context-isolated, and re-run fresh reviewers after fixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-santa-method)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with workflow steps, pseudocode, prompts, tables, and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review rubrics, independent reviewer prompts, verdict-gating guidance, fix-loop guidance, and escalation criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

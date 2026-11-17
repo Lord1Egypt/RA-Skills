@@ -1,0 +1,7 @@
+# llm-wiki private/local state
+/var/
+/temp/
+/sources/zotero/
+.mcp.json
+config.yaml
+log.md

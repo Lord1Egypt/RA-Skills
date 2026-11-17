@@ -15,7 +15,16 @@ import argparse
 sys.stdout.reconfigure(line_buffering=True)
 
 
-def format_usd(amount: float) -> str:
+def format_usd(amount) -> str:
+    """Format as USD. None means unavailable, not zero.
+
+    The API returns null whenever it cannot report the balance -- an API key
+    with no linked account, a sim-only query, or a failed lookup. Printing
+    $0.00 would invent a number; naming one of those causes would guess at
+    which one, so stay neutral.
+    """
+    if amount is None:
+        return "n/a"
     return f"${amount:,.2f}"
 
 
@@ -31,7 +40,7 @@ def main():
         sys.exit(1)
 
     try:
-        client = SimmerClient.from_env()
+        client = SimmerClient.readonly()
     except Exception as e:
         print(f"Error: {e}")
         print("   Set SIMMER_API_KEY or get your key from: https://simmer.markets/dashboard")
@@ -45,7 +54,7 @@ def main():
         print(f"API Error: {e}")
         sys.exit(1)
 
-    balance = portfolio.get("balance_usdc", 0)
+    balance = portfolio.get("balance_usdc")
     exposure = portfolio.get("total_exposure", 0)
     positions_count = portfolio.get("positions_count", 0)
     pnl_total = portfolio.get("pnl_total")

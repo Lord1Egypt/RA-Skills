@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "conversion-copy",
+  "version": "1.5.3",
+  "workflow": "listing",
+  "focus": "conversion",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 2
+}

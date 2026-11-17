@@ -1,42 +1,56 @@
-## Description: <br>
-Agent Longevity helps long-running autonomous agents diagnose and reduce degradation patterns such as output homogeneity, circular value reasoning, memory bloat, perception waste, and inner-loop suffocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Longevity helps long-running autonomous agents audit output repetition, value contamination, decision logs, memory bloat, and perception scheduling using documented patterns and local scripts.
 
-## Publisher: <br>
-[citriac](https://clawhub.ai/user/citriac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[citriac](https://clawhub.ai/user/citriac)
 
-## Use Case: <br>
-Developers and operators of long-running autonomous agents use this skill to audit degradation patterns, tune perception scheduling, structure memory tiers, and log decisions so agents remain inspectable over extended operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local decision logs may contain sensitive agent context. <br>
-Mitigation: Scope AGENT_DATA_DIR to a private agent data folder and review or rotate logs if they may contain sensitive context. <br>
-Risk: Operators who cannot review the Chinese reference material may miss implementation caveats. <br>
-Mitigation: Provide an English or bilingual summary before operational use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect degradation modes in long-running autonomous agents, including repetitive output, circular preference claims, unbounded memory, and wasteful perception loops. It provides audit scripts and operational guidance for deciding what to measure, log, compress, and review externally.
 
-## Reference(s): <br>
-- [Anti-Homogenization](artifact/references/anti_homogenization.md) <br>
-- [Memory Architecture](artifact/references/memory_architecture.md) <br>
-- [Perception Scheduling](artifact/references/perception_scheduling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSONL decision logs under AGENT_DATA_DIR when scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Persistent plain-text memory can capture secrets, API keys, precise locations, or private personal and family information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive data out of MEMORY.md, USER.md, FAMILY.md, and raw logs unless consent, redaction, retention, and file-permission controls are added.
+
+Risk: Audit scripts inspect local files and the decision logger writes local JSONL records.
+
+Mitigation: Run the scripts only on files intended for inspection and set AGENT_DATA_DIR deliberately before logging decisions.
+
+## Reference(s):
+
+- [Agent Longevity on ClawHub](https://clawhub.ai/citriac/skills/agent-longevity)
+- [anti_homogenization.md](references/anti_homogenization.md)
+- [memory_architecture.md](references/memory_architecture.md)
+- [perception_scheduling.md](references/perception_scheduling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Python script outputs and JSONL log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts read supplied text or JSONL files and may write local decision logs under AGENT_DATA_DIR or ./data.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

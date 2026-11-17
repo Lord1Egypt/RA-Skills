@@ -48,7 +48,7 @@ Inbound is just as alive — incoming SMS, missed calls, and notifications get b
 
 Five minutes of you reading six sentences is enough to clone your voice. From that moment on, every voice note your agent sends, every line it speaks over Bluetooth, every reply it dictates back through your phone — all of it goes out in **your** voice.
 
-> The person on the other end of a Telegram voice note hears **you**. Not a stock voice. Not a robot. You.
+> A voice note from your agent sounds like **you** — a faithful clone of your own voice rather than a stock robot. Use it for your own communications, and always let recipients know a message was AI-generated in your voice. Paired is not for impersonation.
 
 ### Word-level audio splicing
 
@@ -91,7 +91,7 @@ Your phone has a SIM, a carrier, a real number, contacts, message history, a mic
 
 ### Because you do not want a robot voice on your behalf
 
-A generic TTS voice on a voice note from "your assistant" is uncanny. A 48kHz clone of **your** voice, with your name pronounced by you, is — strangely — completely natural to the listener. Nobody asks questions.
+A generic TTS voice on a voice note from "your assistant" is uncanny. A 48kHz clone of **your** voice, with your name pronounced by you, sounds natural rather than uncanny — while remaining your own voice, used for your own messages, with recipients told it was AI-generated.
 
 ### Because you care about privacy
 
@@ -145,7 +145,7 @@ clawhub install paired
 
 # 2. Bring up the voice-cloning service
 cd skills/paired/skill/engines
-docker build -t paired-voxcpm:latest -f voxcpm.Dockerfile .
+docker build -t paired-voxcpm:latest -f voxcpm.Dockerfile.txt .   # .txt is a ClawHub packaging suffix; -f takes any filename
 docker run -d --name paired-voxcpm --gpus all --restart unless-stopped \
   -p 8056:8056 \
   -v ~/.config/paired/voice:/refs \

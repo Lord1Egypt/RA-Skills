@@ -1,39 +1,57 @@
-## Description: <br>
-Establishes portfolio discipline through a mini IPS, risk budgeting, and no-margin position sizing for Vietnam equity investors; converts recommendations into conditional triggers, invalidation rules, horizon, and confidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Establishes portfolio discipline through a mini IPS, risk budgeting, and no-margin position sizing for Vietnam equity investors; converts recommendations into conditional triggers, invalidation rules, horizon, and confidence.
 
-## Publisher: <br>
-[ndtchan](https://clawhub.ai/user/ndtchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teahann](https://clawhub.ai/user/teahann)
 
-## Use Case: <br>
-External Vietnam equity investors use this skill to turn a confirmed watchlist, holdings, risk profile, and cash-flow assumptions into a mini investment policy statement, no-margin sizing policy, per-ticker risk plan, rebalance plan, and review checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat target weights, triggers, or portfolio plans as financial advice or broker orders. <br>
-Mitigation: Treat outputs as planning support only, require user confirmation for target-state updates, and verify assumptions before making any investment decision. <br>
-Risk: Missing holdings, weights, cash-flow, or confidence data can make position-specific sizing unsuitable. <br>
-Mitigation: When required data is missing, provide a general policy, disclose assumptions, and list the exact data needed for a position-specific plan. <br>
+## Use Case:
 
+External Vietnam equity investors use this skill to create a mini investment policy statement, no-margin sizing policy, per-ticker risk plan, rebalance plan, and review checklist from a confirmed watchlist and optional holdings or risk-profile data.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global (focused on Vietnam equity investing)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with five required planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ACTIVE_WATCHLIST and optional holdings, risk profile, and confidence inputs; assumes monthly cash inflow of 10000000 VND if missing and discloses the assumption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Portfolio-planning output could be mistaken for broker orders or personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning support, verify assumptions and holdings data, and require user review before acting on target weights.
+
+Risk: Missing holdings, weights, or cash-flow inputs can make position-specific recommendations unreliable.
+
+Mitigation: Disclose assumptions, list required missing data, and provide a general policy when position-specific inputs are unavailable.
+
+Risk: Concentration or leverage risk could increase if guidance is applied outside the skill scope.
+
+Mitigation: Keep leverage at 0%, avoid margin and derivatives, cap single-name exposure, and use conditional triggers and invalidation rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teahann/skills/portfolio-risk-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with five required sections: IPS Mini, Sizing Policy, Per-Ticker Risk Plan, Rebalance Plan, and Next Review Checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, account access, broker execution, margin, derivatives, or leverage; outputs use conditional framing and require user confirmation for target-state changes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

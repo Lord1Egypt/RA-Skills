@@ -1,42 +1,53 @@
-## Description: <br>
-Red Alarm reviews Xiaohongshu-style AI content compliance for submitted text and media descriptions, producing structured risk findings, scores, and revision guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Red Alarm helps agents review Xiaohongshu draft posts and copy for AI-content compliance, returning an explainable risk assessment and concrete revision guidance.
 
-## Publisher: <br>
-[mars2003](https://clawhub.ai/user/mars2003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars2003](https://clawhub.ai/user/mars2003)
 
-## Use Case: <br>
-External creators, operators, and reviewers use this skill to pre-check Xiaohongshu posts, captions, media descriptions, and account behavior context for AI-content policy risks and get remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's compliance conclusions are advisory and may not match final platform enforcement decisions. <br>
-Mitigation: Treat results as guidance, review material facts before publishing, and escalate borderline decisions to a human reviewer. <br>
-Risk: Submitted account history or moderation context may contain sensitive data. <br>
-Mitigation: Redact personal, private, or unnecessary account details before using the skill. <br>
-Risk: Image and video review is based on user-provided descriptions rather than direct media inspection. <br>
-Mitigation: Provide accurate media descriptions and keep uncertain visual issues as risk points rather than definitive violations. <br>
+## Use Case:
 
+External creators, operators, and content review teams use this skill to review Xiaohongshu notes, copy, and media descriptions before posting or during quality checks. It produces a structured compliance report with risk level, score, violations or risk points, disposition guidance, and revision suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mars2003/red-alarm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown content review report with risk score, risk level, findings, and suggested revisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language report; image and video assessment depends on user-provided descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat the skill's deletion, ban, reporting, or distribution recommendations as platform-enforced actions or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report as advisory review only and confirm final publication, enforcement, and legal decisions through the relevant platform policies and qualified human review.
+
+Risk: The skill reviews images and videos only from user-provided text descriptions, so missing visual details can affect the risk assessment.
+
+Mitigation: Provide complete descriptions of visual content and account behavior context, and mark uncertain findings as risk points for human review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mars2003/skills/red-alarm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown content review report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes content summary, layered reasoning, risk level, risk score, violation and risk-point tables, disposition guidance, revision suggestions, and compliance tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

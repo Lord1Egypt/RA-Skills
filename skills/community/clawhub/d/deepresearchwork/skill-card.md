@@ -1,43 +1,54 @@
-## Description: <br>
-Comprehensive research framework that combines web search, content analysis, source verification, and iterative investigation to conduct in-depth research on any topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research Work is a comprehensive research framework that combines web search, content analysis, source verification, and iterative investigation to conduct in-depth research on any topic.
 
-## Publisher: <br>
-[jiacode](https://clawhub.ai/user/jiacode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiacode](https://clawhub.ai/user/jiacode)
 
-## Use Case: <br>
-External users, developers, analysts, and researchers use this skill to plan, gather, validate, synthesize, and report findings from multiple sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research outputs may include inaccurate, outdated, biased, or misleading claims from web and browser-style source gathering. <br>
-Mitigation: Review the final report, verify important claims against authoritative sources, and preserve source attribution before relying on or sharing results. <br>
-Risk: Research topics can include confidential business, personal, or proprietary information. <br>
-Mitigation: Avoid submitting sensitive data when possible, redact sensitive details from notes and reports, and review outputs before external sharing. <br>
-Risk: The included workflow script uses mock source and content generation as a placeholder for real retrieval. <br>
-Mitigation: Use actual web, browser, and content retrieval tools for real research and do not treat sample workflow output as factual evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiacode/deepresearchwork) <br>
-- [README](artifact/README.md) <br>
-- [Deep Research Report Template](artifact/research_template.md) <br>
+## Use Case:
 
+Researchers, analysts, developers, and other external users use this skill to plan, gather, validate, synthesize, and report findings from multi-source investigations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown research reports, structured findings, and JavaScript workflow objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve source attribution and be reviewed before sharing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The included JavaScript workflow can generate mock sources and placeholder findings while the package presents itself as verified research.
+
+Mitigation: Review outputs for real source URLs, citations, and provenance before relying on findings; treat the JavaScript as scaffold code unless it is changed to perform real retrieval and provenance tracking.
+
+Risk: Sensitive research topics may be exposed through console logs or saved research files.
+
+Mitigation: Avoid sensitive topics when logs or generated files may be retained, and review local retention practices before use.
+
+## Reference(s):
+
+- [Deep Research Skill README](artifact/README.md)
+- [Deep Research Report Template](artifact/research_template.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiacode/skills/deepresearchwork)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research report with source attribution, confidence notes, limitations, and remaining questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured findings, source credibility assessment, contradictions or debates, and follow-up research areas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

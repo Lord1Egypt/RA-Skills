@@ -1,40 +1,59 @@
-## Description: <br>
-Use MiniMax speech-2.8-hd to generate high-quality text-to-speech audio with selected Chinese and English voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use MiniMax speech-2.8-hd model for high-quality text-to-speech synthesis with multiple Chinese and English voices.
 
-## Publisher: <br>
-[jlin53882](https://clawhub.ai/user/jlin53882) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlin53882](https://clawhub.ai/user/jlin53882)
 
-## Use Case: <br>
-Developers and external users can use this skill to call MiniMax text-to-speech from an agent workflow and produce MP3 audio from supplied text. The skill requires a MiniMax API key and supports configurable voice, speed, and output path options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [MiniMax Platform](https://platform.minimax.io) <br>
-- [MiniMax API Default Base URL](https://api.minimax.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jlin53882/minimax-tts-voice) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/jlin53882) <br>
+Developers and agents use this skill to generate MP3 speech from text through MiniMax speech-2.8-hd, selecting supported Chinese or English voices and speech speed.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [MP3 audio files and JSON status objects produced through a Python command-line interface.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and sends input text to MiniMax. Security evidence recommends reviewing the skill before installing, trusting any MINIMAX_BASE_URL override, and treating the package as having an extra image-generation command until that behavior is removed or clearly documented.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill sends user text and the MiniMax API key to the configured MiniMax endpoint.
+
+Mitigation: Use only a trusted MiniMax endpoint, keep MINIMAX_API_KEY scoped and protected, and avoid submitting sensitive text.
+
+Risk: MINIMAX_BASE_URL can redirect requests and credentials to a different endpoint.
+
+Mitigation: Leave MINIMAX_BASE_URL unset unless the endpoint is fully controlled and trusted.
+
+Risk: The package includes an undocumented image-generation and download command in addition to text-to-speech.
+
+Mitigation: Review intended command usage before installation and restrict use to the documented TTS workflow when image generation is not needed.
+
+## Reference(s):
+
+- [MiniMax Platform](https://platform.minimax.io)
+- [MiniMax API Base URL](https://api.minimax.io)
+- [ClawHub Skill Page](https://clawhub.ai/jlin53882/skills/minimax-tts-voice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON status output with generated file paths and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MP3 audio files for TTS requests; the artifact also contains an image-generation command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

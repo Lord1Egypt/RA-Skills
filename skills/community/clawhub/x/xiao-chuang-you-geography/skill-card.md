@@ -1,40 +1,53 @@
-## Description: <br>
-Provides human-geography and travel-oriented destination guidance, including historical context, literary references, notable figures, architecture, local customs, terrain, climate, economy, development, and walking suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides human-geography and travel context for destinations, including history, literary references, notable figures, architecture, local culture, climate, economy, and walking suggestions.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users and agents use this skill to answer city, region, heritage-town, travel, and human-geography questions with structured cultural background and practical route suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms may cause the skill to answer general city, current-affairs, weather, political, or economic questions better handled by specialized sources. <br>
-Mitigation: Use it for cultural geography and travel framing; route weather, news, live local conditions, and sensitive political or current-affairs questions to authoritative or specialized tools. <br>
-Risk: Destination descriptions can become inaccurate where facts change, such as weather, transportation, development plans, population, or economic status. <br>
-Mitigation: Verify time-sensitive facts with current authoritative sources before using the guidance for travel or decision-making. <br>
+## Use Case:
 
+External users and agent builders use this skill to answer destination, city, travel, and human-geography questions with culturally grounded context and practical route suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-geography) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text destination guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured sections, quotes, route suggestions, seasonal advice, and brief local details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can activate for broad city, weather, politics, economy, or future-development questions where facts may be current or sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for destination and human-geography context, and verify current weather, planning, political, and economic facts from fresh authoritative sources.
+
+Risk: Destination guidance may be incomplete or outdated for real travel decisions.
+
+Mitigation: Review outputs before relying on them and confirm transportation, access, seasonal, and safety details from current local sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-geography)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destination summaries, cultural context, route suggestions, and prompts for user preferences.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

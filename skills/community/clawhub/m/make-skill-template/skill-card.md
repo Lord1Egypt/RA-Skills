@@ -1,40 +1,49 @@
-## Description: <br>
-Create new Agent Skills for GitHub Copilot from prompts or by duplicating this template, including SKILL.md frontmatter, directory structure, and optional bundled-resource folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create new Agent Skills for GitHub Copilot from prompts or by duplicating this template.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and skill authors use this skill to scaffold or update agent skills with required frontmatter, recommended documentation sections, validation checks, and optional folders for scripts, references, assets, and templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: New or updated skill files can change future agent behavior. <br>
-Mitigation: Review proposed skill content and target paths before approving writes, then validate or scan the skill before use. <br>
-Risk: Optional bundled resources such as scripts or templates may introduce executable or reusable content. <br>
-Mitigation: Inspect any generated scripts, templates, assets, and references before installation or distribution. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold new Agent Skills for GitHub Copilot, including SKILL.md frontmatter, recommended directory structure, and optional bundled resources.
 
-## Reference(s): <br>
-- [Agent Skills official spec](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML frontmatter examples, directory trees, checklists, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local skill files and optional bundled-resource folders for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated skills may contain inaccurate discovery descriptions or optional scripts that introduce behavior the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skills before enabling them, especially discovery descriptions and any optional scripts they add.
+
+## Reference(s):
+
+- [Agent Skills official specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, shell, and directory structure examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scaffolding guidance for Agent Skill files and optional resource folders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

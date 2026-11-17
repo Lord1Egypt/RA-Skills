@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn724ne395pg09hjr4gr2aah2980cy7e",
-  "slug": "obsidian-writer",
+  "name": "obsidian-writer",
   "version": "1.0.0",
-  "publishedAt": 1773113076872
+  "description": "Write Obsidian-compatible .md notes and .canvas files for vault sync via Git.",
+  "author": "Rocky",
+  "license": "MIT",
+  "tags": ["obsidian", "markdown", "canvas", "notes", "vault"]
 }

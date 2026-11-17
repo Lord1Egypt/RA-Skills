@@ -1,45 +1,66 @@
-## Description: <br>
-Fund Manager is a finance research assistant for monitoring a small fund portfolio, analyzing market conditions, producing investment reports, and suggesting risk-aware portfolio adjustments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+猎金者私人基金经理AI — 集成巴菲特投资哲学、专业财务分析、技术分析、宏观经济研判、基金投资框架于一体的完整投研系统。管理约5,000元人民币基金组合，覆盖8只场外基金持仓，支持每日监控、深度分析、调仓建议、风险预警。
 
-## Publisher: <br>
-[amateur6](https://clawhub.ai/user/amateur6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amateur6](https://clawhub.ai/user/amateur6)
 
-## Use Case: <br>
-External users can use this skill as a fund and market research assistant to review holdings, monitor daily fund performance, analyze macro and technical signals, and draft portfolio reports or rebalancing suggestions. Its financial outputs should be treated as research support rather than personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides actionable fund allocations, buy or sell signals, and named fund suggestions that may be unsuitable or inaccurate for a user's financial situation. <br>
-Mitigation: Treat outputs as unverified research, review recommendations independently, and consult qualified financial guidance before acting on investment decisions. <br>
-Risk: The skill may read local portfolio-memory files and write financial reports that could expose sensitive balances or account details. <br>
-Mitigation: Keep sensitive account information out of persistent memory unless intentionally stored, and review generated reports before sharing or publishing them. <br>
+## Use Case:
 
+External retail investors and agent users use this skill to monitor fund portfolios, analyze financial, technical, and macro signals, and generate research reports, risk alerts, and rebalancing suggestions. Trading suggestions should be treated as informational rather than licensed financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amateur6/fund-manager) <br>
-- [Buffett Core Reference](references/buffett-core.md) <br>
-- [Financial Metrics Reference](references/financial-metrics.md) <br>
-- [Fund Framework Reference](references/fund-framework.md) <br>
-- [Macro Indicators Reference](references/macro-indicators.md) <br>
-- [Technical Analysis Reference](references/technical-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with tables, concise recommendations, and optional shell commands for related data tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local portfolio-memory files and write financial report files when the user authorizes those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The package includes real portfolio details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or replace personal portfolio data before installing or sharing the skill.
+
+Risk: The skill directs agents to read a hard-coded persistent memory path and write reports automatically.
+
+Mitigation: Replace the hard-coded path with a user-selected portfolio file and require confirmation before reading or writing local files.
+
+Risk: The skill can produce trading or rebalancing suggestions.
+
+Mitigation: Treat financial guidance as informational and review recommendations with appropriate financial expertise before taking action.
+
+Risk: The skill requests broad read, write, command, and web capabilities.
+
+Mitigation: Install only in environments where those permissions are acceptable and review commands before execution.
+
+## Reference(s):
+
+- [Fund Manager ClawHub Skill Page](https://clawhub.ai/amateur6/skills/fund-manager)
+- [巴菲特投资哲学精华浓缩版](references/buffett-core.md)
+- [完整财务指标公式库](references/financial-metrics.md)
+- [基金投资专用框架](references/fund-framework.md)
+- [宏观经济指标手册](references/macro-indicators.md)
+- [技术分析完整指南](references/technical-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with tables, risk alerts, action proposals, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include portfolio monitoring summaries, market analysis, fund research, and rebalancing suggestions; outputs should be reviewed before acting on financial recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

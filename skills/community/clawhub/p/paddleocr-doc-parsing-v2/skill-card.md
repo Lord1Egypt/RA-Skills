@@ -1,43 +1,56 @@
-## Description: <br>
-Parse documents using PaddleOCR's API. Supports both sync and async modes for images and PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse documents using PaddleOCR's API. Supports both sync and async modes for images and PDFs.
 
-## Publisher: <br>
-[hioTEC](https://clawhub.ai/user/hioTEC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hiotec](https://clawhub.ai/user/hiotec)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to send selected images or PDFs to a configured PaddleOCR endpoint and receive structured OCR results, including Markdown text and layout parsing data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to the configured PaddleOCR API endpoint for OCR processing. <br>
-Mitigation: Use only trusted HTTPS values for PADDLEOCR_API_URL and PADDLEOCR_JOB_URL, and avoid confidential or regulated documents unless external processing is approved. <br>
-Risk: The skill requires a PaddleOCR access token for API calls. <br>
-Mitigation: Use a scoped, revocable token and rotate it if endpoint trust or local environment security is uncertain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PaddleOCR Official Website](https://www.paddleocr.com) <br>
-- [PaddleOCR API Documentation](https://ai.baidu.com/ai-doc/AISTUDIO/Cmkz2m0ma) <br>
-- [PaddleOCR GitHub](https://github.com/PaddlePaddle/PaddleOCR) <br>
-- [PaddleOCR Quota Information](https://ai.baidu.com/ai-doc/AISTUDIO/Xmjclapam) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hioTEC/paddleocr-doc-parsing-v2) <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to parse image and PDF documents through a configured PaddleOCR API endpoint and receive structured OCR and layout output for downstream review or automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses containing structured OCR results and Markdown document text, with shell command examples and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-configured PaddleOCR API credentials and endpoint URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected documents, document URLs, and API tokens can be sent to configured PaddleOCR or Baidu endpoints.
+
+Mitigation: Use trusted HTTPS endpoints, avoid confidential or regulated files unless approved, and protect and scope PADDLEOCR_ACCESS_TOKEN.
+
+Risk: Async mode follows a result URL provided by the OCR service.
+
+Mitigation: Enable async processing only with approved endpoints and review the configured service behavior before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hiotec/skills/paddleocr-doc-parsing-v2)
+- [PaddleOCR Official Website](https://www.paddleocr.com)
+- [PaddleOCR API Documentation](https://ai.baidu.com/ai-doc/AISTUDIO/Cmkz2m0ma)
+- [PaddleOCR GitHub Repository](https://github.com/PaddlePaddle/PaddleOCR)
+- [PaddleOCR Quota Documentation](https://ai.baidu.com/ai-doc/AISTUDIO/Xmjclapam)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON OCR results that can include extracted Markdown document text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured PaddleOCR endpoints and an access token; sync mode prints JSON or writes it to a file, while async mode polls for service-hosted results.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

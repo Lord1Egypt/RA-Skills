@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_role_permission_list",
+    "description": "Query the list of available role permissions supported by the system. Call this before creating or editing a role to get available permission IDs.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  }
+}

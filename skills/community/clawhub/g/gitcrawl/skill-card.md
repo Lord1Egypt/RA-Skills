@@ -1,41 +1,55 @@
-## Description: <br>
-GitHub archive: issue/PR search, sync freshness, duplicate clusters, gh-shim PR status, and Gitcrawl repo work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches local GitHub issue and pull request archives for related threads, duplicate clusters, sync freshness, and pull request status before live GitHub triage.
 
-## Publisher: <br>
-[openclaw](https://clawhub.ai/user/openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclaw](https://clawhub.ai/user/openclaw)
 
-## Use Case: <br>
-Developers and maintainers use Gitcrawl to inspect cached OpenClaw GitHub issue and PR history, find related threads or duplicate candidates, and verify actionable decisions with live GitHub checks before write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install metadata uses an unpinned latest-version Go module, so upstream CLI behavior may change over time. <br>
-Mitigation: Pin a known Gitcrawl module version for sensitive workflows and review changes before upgrading. <br>
-Risk: Cached archives or similarity results may be stale or insufficient for issue and PR triage decisions. <br>
-Mitigation: Check archive freshness, report source gaps, and use live GitHub verification before comments, labels, closes, reviews, merges, or other write actions. <br>
+## Use Case:
 
+Developers and maintainers use Gitcrawl to inspect local OpenClaw GitHub issue and pull request archives, find related or duplicate threads, and verify live GitHub state before taking mutating triage actions.
 
-## Reference(s): <br>
-- [Gitcrawl project homepage](https://github.com/openclaw/gitcrawl) <br>
-- [Gitcrawl on ClawHub](https://clawhub.ai/openclaw/gitcrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gitcrawl CLI and recommends live gh verification before GitHub write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Go install command uses @latest, so the installed gitcrawl version can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the exact gitcrawl module version before installation in controlled environments.
+
+Risk: Cached issue and pull request archives can be stale or incomplete for decisions that mutate GitHub state.
+
+Mitigation: Check archive freshness and verify the live GitHub issue or pull request state before labeling, closing, reopening, commenting, reviewing, or merging.
+
+## Reference(s):
+
+- [Gitcrawl homepage](https://github.com/openclaw/gitcrawl)
+- [Gitcrawl ClawHub skill page](https://clawhub.ai/openclaw/skills/gitcrawl)
+- [OpenClaw publisher profile](https://clawhub.ai/user/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gitcrawl CLI; live GitHub verification is expected before mutating actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

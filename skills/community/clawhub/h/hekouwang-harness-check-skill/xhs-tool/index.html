@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f2eb">
+  <meta name="description" content="hekouwang Harness Doctor 离线评分卡演示">
+  <title>Harness Doctor · 离线评分卡</title>
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">H</div>
+        <div>
+          <p class="brand-kicker">HEKOUWANG / HARNESS</p>
+          <h1>Harness Doctor</h1>
+        </div>
+      </div>
+      <span class="offline-badge">离线样例</span>
+    </header>
+
+    <main>
+      <section class="hero-card" aria-labelledby="reportTitle">
+        <div class="hero-meta">
+          <span class="status-pill"><i></i>证据扫描示例</span>
+          <span id="generatedAt">2026.08.17</span>
+        </div>
+        <p class="report-kicker">真实扫描示例 · 内容 Agent</p>
+        <h2 id="reportTitle">让 Harness 不只会跑，<br><em>还要能被证明。</em></h2>
+        <div class="score-line">
+          <div class="score-value"><span id="scoreValue">86</span><small>/100</small></div>
+          <div class="score-context">
+            <span id="decisionValue" class="decision conditional">CONDITIONAL</span>
+            <strong id="maturityValue">跨宿主治理</strong>
+            <span>置信度 <b id="confidenceValue">71</b></span>
+          </div>
+        </div>
+        <div class="confidence-track" aria-label="置信度"><i id="confidenceBar"></i></div>
+        <p class="hero-note">这是可交互的报告阅读器，不会在小红书内执行 Python、Shell 或联网扫描。</p>
+      </section>
+
+      <nav class="mode-tabs" aria-label="报告视图" role="tablist">
+        <button class="mode-tab active" type="button" data-mode="overview" role="tab" aria-selected="true">总览</button>
+        <button class="mode-tab" type="button" data-mode="executions" role="tab" aria-selected="false">执行证据</button>
+        <button class="mode-tab" type="button" data-mode="profile" role="tab" aria-selected="false">内容 Profile</button>
+      </nav>
+
+      <section class="metric-grid" aria-label="扫描摘要">
+        <div class="metric-card"><strong id="localChecks">734</strong><span>本地检查</span></div>
+        <div class="metric-card"><strong id="ciChecks">177</strong><span>CI 检查</span></div>
+        <div class="metric-card"><strong id="hostUnknown">4</strong><span>宿主待烟测</span></div>
+      </section>
+
+      <section id="viewRoot" class="view-root" aria-live="polite"></section>
+
+      <section class="boundary-card">
+        <div class="boundary-icon">!</div>
+        <div>
+          <strong>边界要说清</strong>
+          <p>配置存在不等于 Hook 已触发；自动化通过也不等于真实宿主和人工验收已经完成。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>MIT · hekouwang Harness Doctor</span>
+      <span>数据随报告重新打包更新</span>
+    </footer>
+  </div>
+
+  <script src="scorecard-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

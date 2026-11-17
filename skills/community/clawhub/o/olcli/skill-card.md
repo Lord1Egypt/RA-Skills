@@ -1,45 +1,56 @@
-## Description: <br>
-Sync and manage Overleaf LaTeX projects from the command line, including pulling projects locally, pushing changes, compiling PDFs, and downloading compile outputs like .bbl files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync and manage Overleaf LaTeX projects from the command line, including pull, push, PDF compilation, and compile-output downloads.
 
-## Publisher: <br>
-[aloth](https://clawhub.ai/user/aloth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aloth](https://clawhub.ai/user/aloth)
 
-## Use Case: <br>
-External users, developers, researchers, and technical writers use this skill to manage Overleaf LaTeX projects from the command line, including authentication, synchronization, compilation, and export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a live Overleaf session cookie and may store it in environment variables, a local `.olauth` file, or global config. <br>
-Mitigation: Avoid shell history, shared terminals, screenshots, project folders, and source control; protect `.olauth` and config files; refresh the cookie if exposure is suspected. <br>
-Risk: Push, sync, and force overwrite workflows can change or overwrite project files. <br>
-Mitigation: Use dry runs, backups, and status checks before `push`, `sync`, or forced overwrite commands. <br>
-Risk: The workflow installs and uses the external `olcli` package. <br>
-Mitigation: Review the package source and installer path before installing through Homebrew or npm. <br>
+## Use Case:
 
+Developers, researchers, and academic authors use this skill to operate the olcli command-line tool for synchronizing Overleaf projects, compiling PDFs, and retrieving build artifacts such as .bbl files for arXiv submissions.
 
-## Reference(s): <br>
-- [Overleaf API Reference](references/API.md) <br>
-- [olcli GitHub repository](https://github.com/aloth/olcli) <br>
-- [olcli npm package](https://www.npmjs.com/package/@aloth/olcli) <br>
-- [Overleaf](https://www.overleaf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install, authentication, synchronization, compilation, export, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to handle a live Overleaf session cookie, which can grant access to Overleaf projects if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the overleaf_session2 cookie like a password: avoid shell history, shared terminals, logs, screenshots, project directories, and source control; revoke the browser session if it may have leaked.
+
+Risk: The install workflow depends on the upstream olcli package and grants that tool access to Overleaf projects.
+
+Mitigation: Install only if the upstream olcli package is trusted and review commands before executing them.
+
+## Reference(s):
+
+- [Overleaf API Reference](references/API.md)
+- [olcli GitHub Repository](https://github.com/aloth/olcli)
+- [@aloth/olcli npm Package](https://www.npmjs.com/package/@aloth/olcli)
+- [Overleaf](https://www.overleaf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that authenticate with Overleaf, install olcli, sync project files, compile PDFs, and download compile outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ctn51g7anq93bwgz7gfckxs80c6ze",
+  "name": "PinchTab Helper",
   "slug": "pinchtab-helper",
   "version": "0.1.0",
-  "publishedAt": 1773280922869
+  "description": "让 AI 通过 PinchTab 控制浏览器 - 比传统自动化更高效",
+  "author": "小溪",
+  "tags": ["浏览器", "automation", "pinchtab", "爬虫"],
+  "trigger": ["打开浏览器", "浏览网页", "搜索", "访问网站", "操作浏览器"]
 }

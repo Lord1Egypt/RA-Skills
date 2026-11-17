@@ -1,45 +1,56 @@
-## Description: <br>
-Táve (vsco.co). Use this skill for Táve requests involving searching and reading data through the OOMOL connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Táve studio and contact data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect the live Táve connector contract and run contact or studio read actions through an already connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected service account and sensitive credentials managed by OOMOL. <br>
-Mitigation: Install only when the connector provider is trusted and the user intends the agent to operate the connected Táve account. <br>
-Risk: The release is described as read-oriented, while the skill body includes guidance for possible write or destructive connector actions. <br>
-Mitigation: Treat connector actions as potentially write-capable and require explicit confirmation before any create, update, delete, post, or account-changing action. <br>
-Risk: Connector payloads can become stale if constructed without the live action schema. <br>
-Mitigation: Run `oo connector schema "tave" --action "<action_name>"` before building payloads for connector execution. <br>
+## Use Case:
 
+Users with a connected Táve account can retrieve their studio profile and find or read contact records through an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-tave) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Táve homepage](https://www.vsco.co/workspace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed oo CLI, OOMOL sign-in, and a connected Táve API key before connector actions can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup executes downloaded software without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified oo CLI release deliberately and require approval before downloaded installers run.
+
+Risk: Startup synchronization may make undisclosed changes to other agent skills.
+
+Mitigation: Review skill changes and consider setting OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization.
+
+## Reference(s):
+
+- [Táve workspace](https://www.vsco.co/workspace)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Táve ClawHub release](https://clawhub.ai/oomol/skills/oo-tave)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text]
+
+**Output Format:** [Natural-language responses based on JSON connector results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only studio and contact lookups; the skill checks each action's live schema before running it.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Generates Chinese Xiaohongshu-style posts with emoji-rich title options, first-person body copy, targeted hashtags, note diagnostics, and posting-time suggestions for categories such as beauty, fashion, food, local shops, and tech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为用户生成小红书风格的中文种草笔记，包括 emoji 标题候选、第一人称正文、标签、笔记诊断和发布时间建议。
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External creators, marketers, and agent users use this skill to draft Xiaohongshu notes for product recommendations, shopping guides, local-shop posts, and lifestyle content. It asks for missing category or topic details, then produces title candidates, body copy, hashtags, diagnostics, and publishing-time guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy can include unsupported product, health, finance, or performance claims if the user prompt asks for them. <br>
-Mitigation: Review factual claims before publication and follow the skill's refusal boundary for false medical promotion, financial scams, and other prohibited content. <br>
-Risk: Template-driven social copy can become too close to existing creator content or platform-sensitive phrasing. <br>
-Mitigation: Use the templates as structure, avoid copying third-party original text, and check the final post against Xiaohongshu community rules and brand guidelines. <br>
+## Use Case:
 
+External users and content creators use this skill to draft Xiaohongshu-style promotional notes for products, shops, outfits, food, travel, home goods, technology, and related lifestyle topics. It is intended for Chinese-language posts that need catchy titles, conversational body copy, categorized hashtags, and posting suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-xiaohongshu-copywriter) <br>
-- [Detailed content reference](references/details.md) <br>
-- [Template library](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown-style copy with title candidates, body text, hashtag lists, diagnostics, and publishing-time suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for Xiaohongshu-style social posts and should be reviewed for platform policy, factual claims, and brand compliance before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated marketing copy may include product-performance, endorsement, health, finance, or other claims that need verification before publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims before posting, especially for regulated or high-impact topics, and remove unsupported or noncompliant language.
+
+Risk: The skill is designed for Xiaohongshu-style persuasive copy, which can be misused for misleading promotions.
+
+Mitigation: Use the generated draft as editable copy and check it against platform rules, advertising obligations, and the artifact's stated content-safety boundaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-xiaohongshu-copywriter)
+- [小红书爆款文案生成器 - 详细内容](artifact/references/details.md)
+- [小红书爆款模板库](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown-like structured text with title options, body copy, hashtags, diagnostics, and posting-time suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include five emoji title candidates, first-person body copy, at least fifteen hashtags grouped by purpose, and concise optimization guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

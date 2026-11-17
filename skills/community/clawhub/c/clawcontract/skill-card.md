@@ -1,45 +1,62 @@
-## Description: <br>
-AI-powered smart contract generator, analyzer, and deployer for BNB Chain (BSC/opBNB) that helps generate Solidity, run security analysis, compile and deploy contracts, verify source on BscScan/opBNBScan, interact with deployed contracts, or run a full generate-analyze-deploy-verify pipeline across BSC and opBNB chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawContract is an AI-powered smart contract generator, analyzer, and deployer for BNB Chain (BSC/opBNB) that can generate Solidity, analyze security, compile, deploy, verify, interact with contracts, and run a full generate-analyze-deploy-verify pipeline.
 
-## Publisher: <br>
-[sufnoobzac](https://clawhub.ai/user/sufnoobzac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sufnoobzac](https://clawhub.ai/user/sufnoobzac)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive smart contract workflows on BNB Chain from an agent: generate Solidity, analyze it, deploy to testnet or mainnet when explicitly configured, verify source, and interact with deployed contracts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent can use wallet keys to make automatic blockchain deployments and transactions. <br>
-Mitigation: Use a dedicated low-value testnet wallet first, avoid production .env files, and require manual review before deploy, full, mainnet, or state-changing interact commands. <br>
-Risk: Mainnet deployment proceeds automatically after a warning when a funded key is present and a mainnet chain is explicitly selected. <br>
-Mitigation: Keep the default bsc-testnet chain for initial use and require explicit human approval before selecting bsc-mainnet or opbnb-mainnet. <br>
-Risk: The full workflow can automatically modify generated contract source while attempting to fix high-severity findings before deployment. <br>
-Mitigation: Use --skip-fix to disable automatic fixes or --skip-deploy to review the final source and analysis before any on-chain action. <br>
-Risk: The skill requires API keys and may require a private key for deployment workflows. <br>
-Mitigation: Provide scoped credentials only for the intended environment and verify which private-key variable the CLI actually reads before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawContract command reference](references/commands.md) <br>
-- [ClawHub release page](https://clawhub.ai/sufnoobzac/clawcontract) <br>
-- [Project homepage declared by skill](https://github.com/cvpfus/clawcontract) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate, analyze, deploy, verify, and interact with Solidity smart contracts on BNB Smart Chain and opBNB. It is suited for agent-assisted CLI workflows that need contract source generation, security review, deployment metadata, and scanner verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; CLI workflows may produce Solidity source files and JSON deployment metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default chain is bsc-testnet; deploy and full workflows require user-provided credentials and can create on-chain transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installation path uses an unpinned npm CLI that can access API keys and a wallet private key.
+
+Mitigation: Install only from a trusted package source, pin or review the CLI implementation before use, and avoid storing private keys in plaintext .env files.
+
+Risk: Deploy and state-changing interact commands can sign blockchain transactions with the configured wallet key.
+
+Mitigation: Prefer testnet chains and throwaway low-value wallets, and require explicit human review before mainnet deployment or any state-changing interaction.
+
+Risk: Mainnet deployment warns but does not block when a mainnet chain is selected.
+
+Mitigation: Keep the default testnet chain for trials and require manual approval before passing bsc-mainnet or opbnb-mainnet.
+
+Risk: Automatic AI-powered fix attempts can modify generated Solidity before deployment in the full pipeline.
+
+Mitigation: Use --skip-fix or --skip-deploy when review is required, and inspect the final Solidity and analysis results before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sufnoobzac/skills/clawcontract)
+- [ClawContract CLI Commands](references/commands.md)
+- [ClawContract GitHub repository](https://github.com/cvpfus/clawcontract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, Solidity source files, and JSON deployment metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated contracts are written under contracts/ and deployment records under .deployments/ during normal CLI operation.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

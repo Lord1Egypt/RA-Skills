@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7fmancdqqe7nms1sae67xegs80tqc5",
-  "slug": "clawhub-jira-pat-skill",
-  "version": "0.0.1",
-  "publishedAt": 1770644149903
+  "owner": "dejanb",
+  "slug": "jira-pat-skill",
+  "name": "Jira PAT",
+  "description": "Manage Jira issues on self-hosted/enterprise instances using Personal Access Tokens (PAT). For SSO/SAML environments where Basic Auth fails.",
+  "tags": ["jira", "enterprise", "sso", "pat", "issue-tracking"],
+  "releases": []
 }

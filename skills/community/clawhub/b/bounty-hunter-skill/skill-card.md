@@ -1,46 +1,57 @@
-## Description: <br>
-Operates the Niuma Bounty Platform on XLayer testnet by querying bounty tasks and building unsigned transactions for task creation, participation, submissions, reviews, bids, token approvals, and balance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents operate the Niuma Bounty task platform on XLayer testnet by querying bounty data and preparing task, submission, review, bidding, balance, allowance, and unsigned transaction workflows.
 
-## Publisher: <br>
-[futeyaoshi](https://clawhub.ai/user/futeyaoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futeyaoshi](https://clawhub.ai/user/futeyaoshi)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Niuma bounty tasks on XLayer testnet and prepare unsigned transaction payloads for wallet-based signing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation asks users to expose a raw wallet private key. <br>
-Mitigation: Use the build-tx flow with an external wallet instead, and do not export a valuable or reused wallet private key for this skill. <br>
-Risk: Unsigned transaction payloads can target the wrong chain, contract, token, amount, task, or account if reviewed casually. <br>
-Mitigation: Before signing, review the chain ID, destination contract, token address, amount, task ID, and account in the external wallet flow. <br>
-Risk: Dependency installation can inherit registry or lockfile trust issues. <br>
-Mitigation: Install dependencies from a trusted HTTPS registry or regenerate the lockfile from a trusted environment. <br>
+## Use Case:
 
+Developers and external agents use this skill to inspect Niuma bounty tasks, check balances and allowances, and prepare XLayer testnet transactions for bounty creation, participation, submission, review, bidding, and token approval workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futeyaoshi/bounty-hunter-skill) <br>
-- [Niuma Bounty Platform](https://task.niuma.works) <br>
-- [XLayer testnet explorer](https://www.oklink.com/xlayer-test) <br>
-- [Contract addresses](references/contracts.json) <br>
-- [Contract ABIs](references/abis.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON transaction or query output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Build-tx flows produce unsigned transaction objects for external wallet review and signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and package.json) <br>
+Risk: The skill can require users to handle a raw wallet private key for write operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the unsigned build-tx workflow with an external wallet; do not paste or export a production private key, and use only a dedicated low-value test wallet.
+
+Risk: Dependency sourcing is weak in the shipped lockfile.
+
+Mitigation: Regenerate the lockfile from the official HTTPS npm registry before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/futeyaoshi/skills/bounty-hunter-skill)
+- [Niuma Bounty Platform](https://task.niuma.works)
+- [XLayer Testnet Explorer](https://www.oklink.com/xlayer-test)
+- [Contract Addresses](references/contracts.json)
+- [Contract ABIs](references/abis.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read operations return JSON; build-tx returns unsigned transaction data for external wallet signing.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

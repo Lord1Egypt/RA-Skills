@@ -1,0 +1,47 @@
+{
+  "version": "2.9.0",
+  "source_id": "hkust-ir",
+  "status": "blocked",
+  "checked_at": "2026-10-16T12:24:47.986Z",
+  "entry": {
+    "url": "https://repository.hkust.edu.hk/ir/",
+    "title": "HKUST SPD | The Institutional Repository",
+    "status": "captcha-gated",
+    "note": "所有未通过验证的请求 302 到 /ir/captcha?redirect=…；直连 HTTP 只拿到 HTML 壳。"
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "hkust-ir:fulltext",
+      "source_id": "hkust-ir",
+      "title": "取学位论文全文 PDF",
+      "task_kind": "fulltext",
+      "status": "blocked",
+      "parameters": [
+        "title"
+      ],
+      "steps": [
+        "在检索或题录页定位论文记录，形如 /ir/Record/<id>。",
+        "在“Files in this item”表中取 bitstream 直链：/ir/bitstream/<id>/<n>/<file>.pdf。",
+        "通过可见 Chrome 会话内的请求取回 PDF：复用已通过验证的会话，而不是外部直接下载。"
+      ],
+      "notes": [
+        "实测（2026-10-16）：外部直接 GET 任何路径都 302 到 /ir/captcha；返回体是 2580 字节的 HTML 壳，不是 PDF。",
+        "验证码在可见窗口内由用户完成后，同一会话内请求放行；随后再用会话内请求（等价于 Playwright 的 request 复用同一 context）下载 PDF 成功。",
+        "学位论文多为早期扫描件：实测某 1993 年论文 153 页无文本层，文本提取为空，须逐页导出图像识别。",
+        "题录页页脚标注的物理页码与扫描 PDF 序可能相差固定偏移（实测为 +14），按题目页码定位前必须核对。"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "captcha",
+      "detail": "所有请求重定向到 /ir/captcha，须在可见浏览器会话内完成人机验证",
+      "first_seen": "2026-10-16T12:24:47.986Z"
+    }
+  ],
+  "provenance": {
+    "observed_at": "2026-10-16T12:24:47.986Z",
+    "evidence": "实测：直连返回 HTML 壳；可见会话内取回 5304341 字节 PDF（题录页标注同为此值）。"
+  }
+}

@@ -1,43 +1,52 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/data/get_author_hot_comment_tokens/v1 for Douyin Creator Marketplace (Xingtu) KOL Comment Keyword Analysis through JustOneAPI with oAuthorId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/data/get_author_hot_comment_tokens/v1 for Douyin Creator Marketplace (Xingtu) KOL Comment Keyword Analysis through JustOneAPI with oAuthorId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Douyin Creator Marketplace endpoint for a creator author ID and summarize comment keyword analysis results for audience language and comment-topic research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token is sent to api.justoneapi.com as a URL query parameter, which can be exposed through copied URLs, logs, or diagnostics. <br>
-Mitigation: Use a scoped or short-lived JUST_ONE_API_TOKEN when available, avoid logging full request URLs, and rotate the token if exposure is suspected. <br>
-Risk: The skill sends requests to a third-party JustOneAPI endpoint. <br>
-Mitigation: Install and run it only if you trust justoneapi and the endpoint fits your data handling requirements. <br>
+## Use Case:
 
+Developers and agents use this skill to call a focused JustOneAPI endpoint for Douyin Creator Marketplace (Xingtu) KOL comment keyword analysis by author ID. It supports audience language analysis and comment-topic research by returning endpoint results for the requested creator.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_get_author_hot_comment_tokens&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_get_author_hot_comment_tokens&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-data-get-author-hot-comment-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the endpoint when available, with inline shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and oAuthorId; backend errors should include the operation ID and returned payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is sent as a URL query parameter and may be captured by infrastructure, proxy, or service logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token and avoid logging full request URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-gw-api-data-get-author-hot-comment-tokens)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_get_author_hot_comment_tokens&utm_content=project_link)
+- [Generated operation reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with JSON response payloads and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and oAuthorId; raw JSON is returned after a short endpoint-specific summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

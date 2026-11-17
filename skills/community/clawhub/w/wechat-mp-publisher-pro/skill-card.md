@@ -1,49 +1,61 @@
-## Description: <br>
-A WeChat Official Account operations skill for collecting topic data, planning article ideas, drafting and formatting posts, preparing account publishing details, and structuring post-publication review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat Official Account operations across data collection, topic planning, article drafting, image and layout preparation, account metadata, publishing support, and post-publication review.
 
-## Publisher: <br>
-[luemery](https://clawhub.ai/user/luemery) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luemery](https://clawhub.ai/user/luemery)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to produce WeChat Official Account content workflows: research topics, choose titles, draft articles, generate Markdown or HTML previews, prepare publishing checklists, and review performance after posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, publishing settings, or post-publication analysis may be inaccurate or unsuitable for public release. <br>
-Mitigation: Review article drafts, cited sources, account settings, publish timing, and tracking metrics before posting or relying on results. <br>
-Risk: Research and image-selection workflows may surface unauthorized copied content or media with unclear rights. <br>
-Mitigation: Use public or authorized sources, verify data citations, and confirm image licensing before publication. <br>
-Risk: Local configuration and generated workspace files may expose sensitive account or user information if secrets are stored there. <br>
-Mitigation: Do not store passwords, API tokens, cookies, or private user data in local config files or generated workspaces. <br>
-Risk: Generated public-facing content may include unsupported claims, especially in regulated topics such as health, finance, or legal advice. <br>
-Mitigation: Fact-check names, dates, links, numerical claims, and regulated-topic statements before publishing. <br>
+## Use Case:
 
+Content operators, marketers, and creators use this skill to plan, draft, format, and prepare WeChat Official Account posts with data-backed topic selection, visual guidance, publishing checklists, and performance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luemery/wechat-mp-publisher-pro) <br>
-- [Content style reference](artifact/references/content-style.md) <br>
-- [Design guide reference](artifact/references/design-guide.md) <br>
-- [Article template](artifact/assets/article_template.md) <br>
-- [Publishing checklist](artifact/assets/publish_checklist.md) <br>
-- [Sogou WeChat search](https://weixin.sogou.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles and checklists, JSON/CSV research outputs, HTML previews, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local workspace outputs for collected data, article previews, article statistics, and account configuration templates; users should review all draft and publishing details before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML previews may preserve unsafe Markdown HTML or image attributes when drafts come from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize generated previews before opening them, and avoid using downloaded or untrusted Markdown until preview escaping is fixed.
+
+Risk: Topic keywords, competitor names, and search queries may be sent to Sogou WeChat and saved in local collection outputs.
+
+Mitigation: Avoid sensitive terms in collection runs and review workspace/wechat_data outputs before sharing or retaining them.
+
+Risk: Account configuration files can accumulate sensitive account details if users store secrets in them.
+
+Mitigation: Keep secrets out of the WeChat configuration template and review saved config files before committing or sharing them.
+
+## Reference(s):
+
+- [Content Style Reference](references/content-style.md)
+- [Design Guide](references/design-guide.md)
+- [Article Template](assets/article_template.md)
+- [Publish Checklist](assets/publish_checklist.md)
+- [Sogou WeChat Search](https://weixin.sogou.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown articles, HTML previews, JSON/CSV data files, configuration templates, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local files under workspace/wechat_data and workspace/wechat_output when scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

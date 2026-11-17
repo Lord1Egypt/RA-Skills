@@ -1,46 +1,60 @@
-## Description: <br>
-Helps education operations teams create structured work plans, operating proposals, campaign plans, service-system plans, reports, and retrospectives with data-grounded goals and staged review checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language operations planning skill that guides education-industry operators through structured work plans, campaign plans, service-system designs, reports, and retrospectives with data-driven checks.
 
-## Publisher: <br>
-[gerrybin](https://clawhub.ai/user/gerrybin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiaoyifu1203](https://clawhub.ai/user/jiaoyifu1203)
 
-## Use Case: <br>
-Education operations practitioners use this skill to draft planning, campaign, service-system, and reporting documents that tie conclusions, diagnostics, goals, methods, and execution steps together. It is designed to produce module files and a consolidated Markdown plan after user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow creates local Markdown files for plan modules and consolidated outputs. <br>
-Mitigation: Use a dedicated project folder, confirm the directory before writes, and review generated files before relying on them. <br>
-Risk: Planning and reporting prompts may include sensitive business data that could be saved locally or uploaded to Coze if the optional bot workflow is used. <br>
-Mitigation: Avoid entering sensitive data unless it is intended to be stored in the selected location or shared with the configured platform. <br>
+## Use Case:
 
+External users and operators use this skill to produce executable Chinese operations plans, campaign plans, service-system plans, and business reports using a five-section structure and staged review checkpoints.
 
-## Reference(s): <br>
-- [Jiaoyifu Workplanning on ClawHub](https://clawhub.ai/gerrybin/jiaoyifu-workplanning) <br>
-- [Planning reference](references/planning.md) <br>
-- [Campaign reference](references/campaign.md) <br>
-- [Service-system reference](references/service-system.md) <br>
-- [Report reference](references/report.md) <br>
-- [Shared frameworks](references/shared-frameworks.md) <br>
-- [Coze bot configuration](coze-bot-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown plans, review notes, module files, and optional bot configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create multiple local Markdown module files and a consolidated Markdown plan after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: The workflow can save intermediate and final Markdown drafts locally, which may retain confidential business planning data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a dedicated output folder and avoid including confidential business data unless local storage is acceptable.
+
+Risk: Broad activation phrases can trigger the skill for loosely related planning or reporting requests.
+
+Mitigation: Confirm the skill is relevant before proceeding when the request only loosely mentions a plan, report, or strategy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiaoyifu1203/skills/jiaoyifu-workplanning)
+- [ClawHub publisher profile](https://clawhub.ai/user/jiaoyifu1203)
+- [README](artifact/README.md)
+- [Planning template](artifact/references/planning.md)
+- [Campaign template](artifact/references/campaign.md)
+- [Service-system template](artifact/references/service-system.md)
+- [Report and retrospective template](artifact/references/report.md)
+- [Shared analysis frameworks](artifact/references/shared-frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown documents with structured sections, tables, checklists, and concise review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create intermediate and final local Markdown drafts after user confirmation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

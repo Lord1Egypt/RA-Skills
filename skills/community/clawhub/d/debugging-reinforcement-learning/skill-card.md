@@ -1,41 +1,50 @@
-## Description: <br>
-Debug non-deterministic agent behavior in reinforcement learning environments with stochasticity control, reproducibility tools, behavior analysis, and reward debugging strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug non-deterministic agent behavior in reinforcement learning environments with stochasticity control, reproducibility tools, behavior analysis, and reward debugging strategies.
 
-## Publisher: <br>
-[roamer-remote](https://clawhub.ai/user/roamer-remote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roamer-remote](https://clawhub.ai/user/roamer-remote)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose stochastic RL agent behavior, reproduce trajectories, compare divergent runs, inspect policy behavior, and investigate reward-signal issues in Gym/Gymnasium, PettingZoo, or custom environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trajectory data and debug reports may contain sensitive experiment details. <br>
-Mitigation: Run the skill locally and review or sanitize trajectory, reward, and environment data before sharing outputs outside the project. <br>
-Risk: Debugging heuristics can produce misleading conclusions when input trajectories, rewards, seeds, or environment state are incomplete. <br>
-Mitigation: Treat reports as diagnostic evidence and confirm findings with controlled reruns, seed tracking, and environment-specific validation. <br>
+## Use Case:
 
+Developers and reinforcement learning engineers use this skill to make stochastic experiments reproducible, isolate nondeterminism, inspect policy behavior, and diagnose reward signal problems in Gym/Gymnasium, PettingZoo, and custom environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roamer-remote/debugging-reinforcement-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/roamer-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, analysis] <br>
-**Output Format:** [Markdown guidance and JSON-like structured analysis objects from JavaScript helper APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local trajectory, stochasticity, behavior, and reward debugging reports; no network activity, persistence, or destructive behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trajectory records and debug reports may contain sensitive experiment observations, actions, rewards, or environment metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle generated reports according to the sensitivity of the experiment data, redact sensitive fields before sharing, and avoid committing raw trajectory captures unless they are approved for disclosure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roamer-remote/skills/debugging-reinforcement-learning)
+- [Publisher profile](https://clawhub.ai/user/roamer-remote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance, JSON, CSV]
+
+**Output Format:** [Markdown guidance, JavaScript code utilities, JSON trajectory/debug objects, CSV-style logs, and structured debug reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated records may include observations, actions, rewards, seeds, RNG states, and environment info supplied by the user's experiment code.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

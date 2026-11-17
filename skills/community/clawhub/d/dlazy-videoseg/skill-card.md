@@ -1,44 +1,55 @@
-## Description: <br>
-Segments humans in videos using Aliyun's asynchronous SegmentVideoBody service and returns a same-length black-and-white mask video for compositing or matting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Segments people in a video and returns a same-length black-and-white mask video for downstream compositing or matting.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and creative-production agents use this skill to generate human segmentation masks from input videos for downstream compositing, matting, and video-editing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key, which is sensitive credential material. <br>
-Mitigation: Use a scoped organization key where possible, store it only through the documented CLI or environment variable path, and rotate or revoke it from the dLazy dashboard if exposure is suspected. <br>
-Risk: Input video files may be uploaded to dLazy-hosted services for processing. <br>
-Mitigation: Avoid submitting confidential or regulated media unless the applicable service terms and data-handling requirements have been reviewed. <br>
-Risk: The workflow depends on an external npm/npx CLI package and hosted API endpoints. <br>
-Mitigation: Review the package and install command before use, pin the documented version, and expect failures when network access, account authorization, or account credits are unavailable. <br>
+## Use Case:
 
+Developers and video editors use the skill to create a human-segmentation mask from a source video for downstream compositing or matting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-videoseg) <br>
-- [dLazy homepage](https://dlazy.com) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with bash examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key; successful calls return hosted output URLs or asynchronous task identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Video inputs and request details are sent to dLazy-hosted services, and the partial scan could not verify the external CLI's internal behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only videos you are authorized to upload, and review the service terms and CLI package before use.
+
+Risk: The scanner reported a medium-confidence benign verdict, a purpose-mismatch flag, and a partial review; it could not confirm the declared segmentation workflow.
+
+Mitigation: Check that the installed package and skill files match the stated video-segmentation purpose before running them.
+
+## Reference(s):
+
+- [dLazy CLI project link declared in skill metadata](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service homepage](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Video files, JSON]
+
+**Output Format:** [Same-length black-and-white mask video, provided as a result URL or saved file with a JSON task/result response.]
+
+**Output Parameters:** [1D video output]
+
+**Other Properties Related to Output:** [Asynchronous tasks may return a task identifier before the result is ready.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

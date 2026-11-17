@@ -1,43 +1,55 @@
-## Description: <br>
-Access and manage Firefly III finance data programmatically, including transactions, accounts, recurring rules, and automation through the Firefly III API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Firefly III API Client helps agents access and manage Firefly III finance data through a token-authenticated REST API wrapper.
 
-## Publisher: <br>
-[josetseph](https://clawhub.ai/user/josetseph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josetseph](https://clawhub.ai/user/josetseph)
 
-## Use Case: <br>
-Developers and automation agents use this skill to interact with a user's Firefly III personal finance instance for account, transaction, recurrence, rule, and related API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad live access to financial and administrative Firefly III API operations. <br>
-Mitigation: Use the least-privileged token available, prefer read-only prompts for routine work, and require explicit human confirmation before mutating, administrative, webhook, rule-trigger, destroy, or purge requests. <br>
-Risk: The OAuth token controls access to personal financial data. <br>
-Mitigation: Store the token only in secure environment variables, avoid hardcoding or sharing it, and use a trusted network path to the Firefly III instance. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent query and update a Firefly III instance for accounts, transactions, recurring rules, rules, and related automation. It is suited to workflows where the user intentionally grants an agent API access to personal finance data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/josetseph/firefly-iii-published) <br>
-- [Firefly III API Documentation](https://docs.firefly-iii.org/references/firefly-iii/api/) <br>
-- [Firefly III API v6.5.5 OpenAPI Specification](artifact/firefly-iii-6.5.5-v1.yaml) <br>
-- [Security Considerations](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON API responses and concise Markdown or shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FIREFLY_URL and FIREFLY_TOKEN environment variables for live API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata) <br>
+Risk: The skill can expose broad Firefly III financial mutation and administration authority to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged token available and require explicit human confirmation before exports, bulk edits, deletes, cron, webhook, or user-administration calls.
+
+Risk: Bearer tokens can be sent over HTTP if FIREFLY_URL is configured with an insecure URL.
+
+Mitigation: Configure FIREFLY_URL with HTTPS and avoid the documented HTTP example except in isolated local development.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josetseph/skills/firefly-iii-published)
+- [Firefly III API documentation](https://docs.firefly-iii.org/references/firefly-iii/api/)
+- [Firefly III project site](https://firefly-iii.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIREFLY_URL and FIREFLY_TOKEN environment variables; API results depend on the connected Firefly III instance and token permissions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

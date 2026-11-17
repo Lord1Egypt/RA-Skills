@@ -1,43 +1,62 @@
-## Description: <br>
-Run local ComfyUI workflows via the HTTP API. Use when the user asks to run ComfyUI, execute a workflow by file path/name, or supply raw API-format JSON; supports the default workflow bundled in assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run local ComfyUI workflows via the HTTP API. Use when the user asks to run ComfyUI, execute a workflow by file path/name, or supply raw API-format JSON; supports the default workflow bundled in assets.
 
-## Publisher: <br>
-[kelvincai522](https://clawhub.ai/user/kelvincai522) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kelvincai522](https://clawhub.ai/user/kelvincai522)
 
-## Use Case: <br>
-Developers and image-generation users use this skill to edit ComfyUI workflow JSON, queue workflows on a local ComfyUI server, download model weights, and return generated image outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run pget to download model files. <br>
-Mitigation: Use --no-pget or install pget yourself from a verified source before using model downloads. <br>
-Risk: User-supplied model URLs can persist downloaded files under the local ComfyUI models directory. <br>
-Mitigation: Use trusted model URLs, verify hashes when available, and avoid --overwrite for untrusted files. <br>
-Risk: Workflow JSON is submitted to a local ComfyUI server for execution. <br>
-Mitigation: Review workflow JSON before running it and use the local server intentionally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub ComfyUI skill page](https://clawhub.ai/kelvincai522/comfyui) <br>
-- [ComfyUI repository](https://github.com/comfyanonymous/ComfyUI.git) <br>
-- [pget download helper](https://github.com/replicate/pget) <br>
+## Use Case:
 
+Developers and image-generation users use this skill to edit and run local ComfyUI workflow JSON, queue workflows through the ComfyUI HTTP API, and locate generated image outputs. It also helps place model weight files under a local ComfyUI installation when users provide model URLs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON, API calls, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, edited workflow JSON, API responses, and generated image file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write temporary workflow JSON, download model files under the local ComfyUI models directory, and return generated images from ComfyUI output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically install or run external software in a local ComfyUI setup.
+
+Mitigation: Review the skill before installation, use only trusted ComfyUI environments, and pin or verify ComfyUI dependencies where possible.
+
+Risk: Model weight downloads can come from arbitrary user-provided URLs.
+
+Mitigation: Use only trusted model URLs, verify downloaded files when possible, and avoid pasted URL lists from untrusted sources.
+
+Risk: The downloader may install pget automatically if it is missing.
+
+Mitigation: Prefer --no-pget unless pget is already installed from a trusted source.
+
+Risk: Custom workflow JSON can affect local ComfyUI execution behavior.
+
+Mitigation: Inspect workflow JSON before running it and avoid workflows from untrusted sources.
+
+## Reference(s):
+
+- [ComfyUI Skill on ClawHub](https://clawhub.ai/kelvincai522/skills/comfyui)
+- [ComfyUI upstream project](https://github.com/comfyanonymous/ComfyUI.git)
+- [pget downloader](https://github.com/replicate/pget)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local workflow JSON edits, ComfyUI API run results, model download paths, and generated image file paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

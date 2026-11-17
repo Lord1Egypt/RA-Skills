@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-list-virtualization",
-  "version": "2.6.0",
-  "description": "Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include 虚拟列表, 大列表优化, 滚动性能.",
+  "version": "2.9.0",
+  "description": "Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include virtual lists, large list optimization, scroll performance.",
   "type": "module",
   "license": "MIT",
   "author": {

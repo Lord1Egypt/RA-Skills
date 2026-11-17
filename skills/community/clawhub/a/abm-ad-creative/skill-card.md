@@ -1,45 +1,63 @@
-## Description: <br>
-Generates, iterates, and organizes ad creative such as headlines, descriptions, primary text, visual directions, and full ad variations for paid advertising platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and iterates paid advertising creative, including headlines, descriptions, primary text, full ad variations, and performance-informed recommendations across major ad platforms.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing teams, growth operators, and external agency users use this skill to draft platform-specific ad copy, generate creative variations, analyze performance data, and prepare structured outputs for creative testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer agents toward ad platform campaign actions, uploads, or budget-impacting workflows. <br>
-Mitigation: Keep campaign creation, uploads, spend changes, and API-key use under explicit human approval and route campaign strategy or budget decisions to a tighter workflow. <br>
-Risk: Generated ad media or voiceovers can raise rights, consent, and commercial-use concerns, especially for cloned or spokesperson voices. <br>
-Mitigation: Verify commercial rights for media assets and require documented permission before using any cloned or spokesperson voice. <br>
+## Use Case:
 
+Marketing teams, growth practitioners, and agents use this skill to create platform-specific ad copy, test angles, and iterate creative from performance data for Google Ads, Meta, LinkedIn, TikTok, and Twitter/X.
 
-## Reference(s): <br>
-- [Ad Creative on ClawHub](https://clawhub.ai/mariokarras/abm-ad-creative) <br>
-- [Platform Specs Reference](references/platform-specs.md) <br>
-- [Generative AI Tools for Ad Creative](references/generative-tools.md) <br>
-- [Gemini Image Generation](https://ai.google.dev/gemini-api/docs/image-generation) <br>
-- [Replicate Flux](https://replicate.com/black-forest-labs/flux-2-pro) <br>
-- [BFL API](https://docs.bfl.ml/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown with optional CSV snippets and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized by platform, angle, character count, and iteration recommendations when performance data is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0) <br>
+Risk: The skill can guide agents beyond copywriting into ad-account workflows, including campaign upload or creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any campaign upload, campaign creation, or account-changing action.
+
+Risk: The skill references generative media workflows, including voice and audio generation, that can raise consent or licensing concerns.
+
+Mitigation: Use only consented or licensed voices, brand assets, and media inputs, and review applicable platform and legal requirements before publication.
+
+Risk: The skill includes copy-paste remote execution and local development command guidance.
+
+Mitigation: Inspect commands, repositories, and third-party packages before running them, and pin dependencies where practical.
+
+Risk: Generated ad creative may exceed platform limits or fail platform policy review if not checked before launch.
+
+Mitigation: Validate character counts, claims, disclaimers, and previews in the target ad platform before using generated creative.
+
+## Reference(s):
+
+- [Platform Specs Reference](artifact/references/platform-specs.md)
+- [Generative AI Tools for Ad Creative](artifact/references/generative-tools.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-ad-creative)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, lists, CSV blocks, and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform character counts, trimmed alternatives, CSV-ready rows, iteration reports, visual production guidance, and recommendations for what to test next.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

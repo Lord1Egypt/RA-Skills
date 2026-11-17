@@ -1,0 +1,35 @@
+# Restaurant Menu Copy Writer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+menu:
+  name: ""
+  concept: ""
+  price_tier: ""
+  sections:
+    - name: ""
+      items:
+        - name: ""
+          description: ""
+          price: 0
+          portion: ""
+          allergens:
+            - ""
+          spice: ""
+          substitutions:
+            - ""
+          vegetarian: false
+          vegan: false
+          gluten_free: false
+          bestseller: false
+shared_notes:
+  allergen_statement: ""
+  calorie_disclosure_required: false
+  calorie_source: ""
+  sourcing_claims:
+    - ""
+  alcohol_items:
+    - name: ""
+      proof: ""
+  style:
+    max_description_words: 0
+    uppercase: false
+    updated_on: ""

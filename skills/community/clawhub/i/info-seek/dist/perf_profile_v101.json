@@ -1,0 +1,192 @@
+{
+  "version": "2.6.1",
+  "generated_at": "2026-10-06 01:49 UTC",
+  "subject": "行业 2026 竞争格局",
+  "scale": 1000,
+  "tool": "cProfile+pstats",
+  "cumulative_top": [
+    {
+      "ncalls": "1",
+      "tottime": 0.003,
+      "cumtime": 22.456,
+      "func": "/root/.skills/infoseek/scripts/infoseek_core_v2.py:519(research)"
+    },
+    {
+      "ncalls": "2000",
+      "tottime": 0.017,
+      "cumtime": 9.703,
+      "func": "/root/.skills/infoseek/core/ner.py:549(extract_entities_cached)"
+    },
+    {
+      "ncalls": "2001",
+      "tottime": 0.875,
+      "cumtime": 9.615,
+      "func": "/root/.skills/infoseek/core/ner.py:376(extract_entities)"
+    },
+    {
+      "ncalls": "1",
+      "tottime": 0.003,
+      "cumtime": 7.077,
+      "func": "/root/.skills/infoseek/core/conflict_v3.py:397(detect_conflicts_v3)"
+    },
+    {
+      "ncalls": "1",
+      "tottime": 0.001,
+      "cumtime": 5.475,
+      "func": "/root/.skills/infoseek/core/conflict_v3.py:301(ingest_all)"
+    },
+    {
+      "ncalls": "1000",
+      "tottime": 0.007,
+      "cumtime": 5.474,
+      "func": "/root/.skills/infoseek/core/conflict_v3.py:275(ingest_source)"
+    },
+    {
+      "ncalls": "1000",
+      "tottime": 0.011,
+      "cumtime": 5.427,
+      "func": "/root/.skills/infoseek/core/conflict_v3.py:99(_extract_fact_claims)"
+    },
+    {
+      "ncalls": "1",
+      "tottime": 0.009,
+      "cumtime": 5.191,
+      "func": "/root/.skills/infoseek/scripts/infoseek_core_v2.py:415(detect_conflicts)"
+    },
+    {
+      "ncalls": "2114",
+      "tottime": 0.028,
+      "cumtime": 5.133,
+      "func": "/root/.skills/infoseek/core/entity_tracker.py:183(record_hit)"
+    },
+    {
+      "ncalls": "2114",
+      "tottime": 0.021,
+      "cumtime": 5.087,
+      "func": "/root/.skills/infoseek/core/entity_tracker.py:121(_save_state)"
+    },
+    {
+      "ncalls": "1270288",
+      "tottime": 1.008,
+      "cumtime": 5.084,
+      "func": "/usr/local/lib/python3.12/json/encoder.py:414(_iterencode)"
+    },
+    {
+      "ncalls": "1",
+      "tottime": 0.008,
+      "cumtime": 4.847,
+      "func": "/root/.skills/infoseek/core/entity_graph.py:55(build_from_sources)"
+    },
+    {
+      "ncalls": "2000",
+      "tottime": 0.048,
+      "cumtime": 4.465,
+      "func": "/root/.skills/infoseek/scripts/infoseek_core_v2.py:148(score_source)"
+    },
+    {
+      "ncalls": "2114",
+      "tottime": 0.013,
+      "cumtime": 4.374,
+      "func": "/usr/local/lib/python3.12/json/__init__.py:183(dumps)"
+    },
+    {
+      "ncalls": "2114",
+      "tottime": 0.476,
+      "cumtime": 4.36,
+      "func": "/usr/local/lib/python3.12/json/encoder.py:183(encode)"
+    }
+  ],
+  "tottime_top": [
+    {
+      "ncalls": "3583650/1270288",
+      "tottime": 3.082,
+      "cumtime": 4.071,
+      "func": "/usr/local/lib/python3.12/json/encoder.py:334(_iterencode_dict)"
+    },
+    {
+      "ncalls": "5992361",
+      "tottime": 2.73,
+      "cumtime": 2.73,
+      "func": "{method 'get' of 'dict' objects}"
+    },
+    {
+      "ncalls": "1270288",
+      "tottime": 1.008,
+      "cumtime": 5.084,
+      "func": "/usr/local/lib/python3.12/json/encoder.py:414(_iterencode)"
+    },
+    {
+      "ncalls": "2001",
+      "tottime": 0.875,
+      "cumtime": 9.615,
+      "func": "/root/.skills/infoseek/core/ner.py:376(extract_entities)"
+    },
+    {
+      "ncalls": "1854452",
+      "tottime": 0.775,
+      "cumtime": 0.775,
+      "func": "{built-in method builtins.id}"
+    },
+    {
+      "ncalls": "438146",
+      "tottime": 0.664,
+      "cumtime": 1.204,
+      "func": "/root/.skills/infoseek/core/entity_aliases.py:138(get_prioritized_aliases)"
+    },
+    {
+      "ncalls": "292146",
+      "tottime": 0.643,
+      "cumtime": 1.155,
+      "func": "/root/.skills/infoseek/core/ner.py:156(_budget_entity)"
+    },
+    {
+      "ncalls": "2001",
+      "tottime": 0.606,
+      "cumtime": 1.821,
+      "func": "/root/.skills/infoseek/core/ner.py:247(_runtime_alias_patterns)"
+    },
+    {
+      "ncalls": "1328313",
+      "tottime": 0.594,
+      "cumtime": 0.6,
+      "func": "{built-in method builtins.isinstance}"
+    },
+    {
+      "ncalls": "2000",
+      "tottime": 0.539,
+      "cumtime": 2.189,
+      "func": "/root/.skills/infoseek/scripts/domain_router.py:441(_extract_trust_sources)"
+    },
+    {
+      "ncalls": "2114",
+      "tottime": 0.476,
+      "cumtime": 4.36,
+      "func": "/usr/local/lib/python3.12/json/encoder.py:183(encode)"
+    },
+    {
+      "ncalls": "292146",
+      "tottime": 0.453,
+      "cumtime": 0.721,
+      "func": "/root/.skills/infoseek/core/ner.py:92(_match_entity)"
+    },
+    {
+      "ncalls": "2001",
+      "tottime": 0.402,
+      "cumtime": 1.489,
+      "func": "/root/.skills/infoseek/scripts/domain_router.py:199(detect_domain)"
+    },
+    {
+      "ncalls": "748951",
+      "tottime": 0.375,
+      "cumtime": 0.375,
+      "func": "{method 'lower' of 'str' objects}"
+    },
+    {
+      "ncalls": "338169",
+      "tottime": 0.345,
+      "cumtime": 0.753,
+      "func": "/root/.skills/infoseek/scripts/domain_router.py:175(_keyword_hit)"
+    }
+  ],
+  "note": "P2-6/D-3：research 融合阶段函数级热点；cumulative=含子调用累计，tottime=自身耗时"
+}

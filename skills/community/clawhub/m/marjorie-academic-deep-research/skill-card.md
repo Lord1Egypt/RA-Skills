@@ -1,43 +1,60 @@
-## Description: <br>
-Academic Deep Research guides agents through transparent, rigorous deep research with user checkpoints, two-cycle investigation per theme, evidence hierarchy, APA-style citations, and reproducible methodology for literature reviews, competitive intelligence, and complex analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Deep Research guides an agent through scoped, multi-cycle web research with visible methodology, source-confidence checks, APA-style citations, and human checkpoints before producing a research report.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to plan and execute exhaustive multi-source investigations with explicit methodology, user-approved research plans, contradiction handling, and APA-style final reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can perform broad online research and memory lookups, which may be inappropriate for sensitive or narrowly scoped topics if invoked too broadly. <br>
-Mitigation: Invoke it explicitly, answer the initial scoping questions carefully, and narrow source counts or disable parallel sessions for sensitive topics. <br>
-Risk: The artifact README describes the skill as offline, but the security guidance identifies it as an online research workflow. <br>
-Mitigation: Treat use of this skill as online research and review the proposed research plan before approving execution. <br>
+## Use Case:
 
+External users, researchers, analysts, and developers use this skill to plan and conduct rigorous deep research, literature reviews, competitive intelligence, and multi-source verification where methodology and limitations need to be visible.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/marjorie-academic-deep-research) <br>
-- [README](artifact/README.md) <br>
-- [Quick reference](artifact/quickref.md) <br>
-- [Example workflow](artifact/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research plans and narrative reports with APA-style citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before execution; final reports emphasize prose, source citations, confidence annotations, contradictions, and limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can send research topics and source requests through web search and page-fetching tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for topics approved for network research, and avoid confidential, regulated, or proprietary queries unless the agent environment permits external lookup.
+
+Risk: The skill asks the agent to consult persistent memory, but the appropriate memory scope may not be clear.
+
+Mitigation: Disable or limit persistent memory access unless the available memory is known to contain only relevant and permitted prior work.
+
+Risk: The final report may sound authoritative even when sources conflict or evidence is weak.
+
+Mitigation: Require human review of cited sources, confidence annotations, unresolved contradictions, and limitations before relying on conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/marjorie-academic-deep-research)
+- [Artifact README](artifact/README.md)
+- [Artifact quick reference](artifact/quickref.md)
+- [Artifact example workflow](artifact/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans and narrative reports with APA-style citations and source-confidence notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions, research plans, tool-use rationale, confidence annotations, limitations, and final report sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

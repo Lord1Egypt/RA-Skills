@@ -1,43 +1,62 @@
-## Description: <br>
-Creates and maintains a standardized project guide system with start.md and guide/ documentation for initialization, changelog and pitfalls updates, and agent context recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and maintains a standardized Chinese-language project guide system, including start.md and guide/ documents for design, architecture, plans, changelogs, pitfalls, and context recovery.
 
-## Publisher: <br>
-[RevolGMPHL](https://clawhub.ai/user/RevolGMPHL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[revolgmphl](https://clawhub.ai/user/revolgmphl)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to create a repeatable documentation structure for projects, keep changelogs and pitfalls current, and help agents recover project context in later sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local project documentation files, so it can overwrite or change start.md and guide/ content if pointed at the wrong project root. <br>
-Mitigation: Confirm the project root before running scripts, review generated Markdown changes, and avoid --force unless replacing existing documentation is intentional. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/RevolGMPHL/guide-creator) <br>
-- [Guide system specification](references/guide-spec.md) <br>
-- [Guide template](references/templates/guide-template.md) <br>
-- [Start template](references/templates/start-template.md) <br>
-- [Changelog template](references/templates/changelog-template.md) <br>
-- [Pitfalls template](references/templates/pitfalls-template.md) <br>
-- [Sub-document templates](references/templates/sub-doc-templates.md) <br>
+## Use Case:
 
+Developers and agents use this skill to initialize and maintain structured project documentation for ongoing development work. It helps create project overviews, technical architecture notes, development plans, changelogs, pitfalls records, and context-recovery material.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and guidance with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project documentation scaffolds and update entries under start.md and guide/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Documentation may be written to the wrong project root or existing guide files may be overwritten.
+
+Mitigation: Review the target --root before running scripts and avoid --force unless overwriting documentation is intended.
+
+Risk: Future agents may read guide notes and pitfalls as project context.
+
+Mitigation: Review generated documentation for accuracy, sensitive content, and misleading instructions before relying on it as context.
+
+Risk: Project documentation can become stale or inconsistent after code changes.
+
+Mitigation: Synchronize changelog entries, guide version metadata, and file inventories after feature work, bug fixes, new files, and architecture changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/revolgmphl/skills/guide-creator)
+- [Guide System Specification](references/guide-spec.md)
+- [Start Document Template](references/templates/start-template.md)
+- [Guide Overview Template](references/templates/guide-template.md)
+- [Changelog Template](references/templates/changelog-template.md)
+- [Pitfalls Template](references/templates/pitfalls-template.md)
+- [Sub-document Templates](references/templates/sub-doc-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, concise guidance, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update start.md and guide/ documentation under the selected project root.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

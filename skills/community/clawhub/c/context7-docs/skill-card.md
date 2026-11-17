@@ -1,47 +1,63 @@
-## Description: <br>
-Fetches up-to-date, version-specific documentation and code examples for programming libraries and frameworks from Context7. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches up-to-date, version-specific documentation and code examples for programming libraries and frameworks from Context7.
 
-## Publisher: <br>
-[jaylane](https://clawhub.ai/user/jaylane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jaylane](https://clawhub.ai/user/jaylane)
 
-## Use Case: <br>
-Developers and engineers use this skill to resolve Context7 library IDs and fetch current API documentation, setup guidance, migration details, and code examples for specific libraries or framework versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation questions and library identifiers are sent to Context7. <br>
-Mitigation: Avoid including secrets, private code, customer data, credentials, or other sensitive details in documentation queries. <br>
-Risk: A Context7 API key can be exposed if placed in prompts, logs, or shared command output. <br>
-Mitigation: Use a Context7-specific CONTEXT7_API_KEY and keep it in the environment rather than in prompts or copied command text. <br>
-Risk: Fetched documentation or examples may not fully match the user's project constraints. <br>
-Mitigation: Review returned examples before applying them and prefer version-specific library IDs when the user names a version. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to resolve Context7 library IDs and retrieve current API documentation, setup guidance, configuration details, and code examples for a specific library or version.
 
-## Reference(s): <br>
-- [Context7 API Reference](references/API-REFERENCE.md) <br>
-- [Context7 Library ID Format](references/LIBRARY-ID-FORMAT.md) <br>
-- [Context7 API](https://context7.com/api) <br>
-- [Context7 Dashboard](https://context7.com/dashboard) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaylane/context7-docs) <br>
-- [Publisher Profile](https://clawhub.ai/user/jaylane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Context7 library IDs, selected documentation excerpts, API usage guidance, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Library names and documentation questions are sent to Context7.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential source details, customer data, internal URLs, secrets, credentials, or incident information in queries.
+
+Risk: The security review flags the curl permission as broader than the skill's fixed Context7 API purpose requires.
+
+Mitigation: Prefer a version that restricts curl to the Context7 search and context endpoints or only permits the bundled scripts.
+
+Risk: The skill depends on internet access and Context7 API availability.
+
+Mitigation: Validate retrieved documentation before relying on it and have a fallback when the service is unavailable or rate limited.
+
+## Reference(s):
+
+- [Context7 API Reference](references/API-REFERENCE.md)
+- [Context7 Library ID Format](references/LIBRARY-ID-FORMAT.md)
+- [Context7 API](https://context7.com/api)
+- [Context7 API Search Endpoint](https://context7.com/api/search)
+- [Context7 API Context Endpoint](https://context7.com/api/context)
+- [Context7 Dashboard](https://context7.com/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/jaylane/skills/context7-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include library IDs, API documentation excerpts, version-specific guidance, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

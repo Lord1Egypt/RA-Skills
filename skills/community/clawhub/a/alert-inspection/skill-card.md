@@ -1,44 +1,58 @@
-## Description: <br>
-When a user requests device health inspection, alert review, inspection report generation, or monitored-alert export to Excel, this skill uses Python to fetch monitoring data, generate a Markdown inspection report, and export a four-sheet Excel workbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a Python-based device health inspection that reviews monitoring alerts, writes a Markdown report, normalizes host and problem JSON, and exports a four-sheet Excel workbook.
 
-## Publisher: <br>
-[Lerwee](https://clawhub.ai/user/Lerwee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lerwee](https://clawhub.ai/user/lerwee)
 
-## Use Case: <br>
-Operations engineers and monitoring administrators use this skill to inspect Lerwee-monitored device health, review active alerts, and produce paired Markdown and Excel inspection deliverables. It supports full inspections, classification-filtered inspections, and reuse of existing host and problem JSON data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a monitoring API secret to access the Lerwee backend. <br>
-Mitigation: Use a least-privilege API secret, store it in the configured environment file or environment variables, and rotate it if it is exposed. <br>
-Risk: Generated Markdown, JSON, and Excel files may contain hostnames, IP addresses, alert details, and raw backend records. <br>
-Mitigation: Treat generated inspection artifacts as sensitive operational data and store or share them only in approved locations. <br>
-Risk: The skill depends on network access to the monitoring API for live inspections. <br>
-Mitigation: Prefer HTTPS or a trusted internal network, and use the local JSON reuse mode when live API access is unavailable or inappropriate. <br>
+## Use Case:
 
+Operations engineers and infrastructure support teams use this skill to inspect monitored device health, review current or historical alerts, and return both a Markdown inspection conclusion and an Excel workbook from the same data set.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Lerwee/alert-inspection) <br>
-- [Publisher Profile](https://clawhub.ai/user/Lerwee) <br>
-- [Excel Export Template](artifact/references/export_excel_template.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown report, normalized JSON files, and a four-sheet Excel workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LWJK_API_URL and LWJK_API_SECRET for live API collection; can also reuse existing hosts and problems JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses API credentials and live monitoring data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted internal environment, require HTTPS for LWJK_API_URL, and keep LWJK_API_SECRET out of shared files.
+
+Risk: The workflow generates and executes a temporary Excel export script.
+
+Mitigation: Inspect or replace the temporary exporter workflow before deployment and execute only scripts generated from the trusted template.
+
+Risk: Generated reports and intermediate JSON files can retain sensitive infrastructure data.
+
+Mitigation: Restrict the output directory and delete intermediate JSON and temporary files when they are no longer needed.
+
+## Reference(s):
+
+- [Excel export template](artifact/references/export_excel_template.py)
+- [ClawHub skill page](https://clawhub.ai/lerwee/skills/alert-inspection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown report text, JSON file paths, shell commands, and an Excel workbook path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a Markdown report, normalized hosts/problems JSON files, and one Excel workbook with four required sheets.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

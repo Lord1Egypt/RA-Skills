@@ -110,4 +110,4 @@ def get_api_key(key_name: str = "default_api_key") -> Optional[str]:
 
 def init_default_key():
     """初始化默认密钥（用于测试）"""
-    store_api_key("sk-kdwjy-4ee6de0b5a8f4b92b8e0c8b8b8b8b8b8")
+    store_api_key("REDACTED-SECRET")

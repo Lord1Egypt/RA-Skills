@@ -1,41 +1,57 @@
-## Description: <br>
-BOSS Zhipin desktop automation skill that detects BOSS windows, captures screenshots, reads page content with OCR or vision workflows, and can run broader recruiting actions such as greeting candidates, processing chats, and collecting resumes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boss Zhipin Watcher helps an agent find and capture BOSS Zhipin desktop windows, inspect screenshots, and support recruiting workflows such as chat review, candidate screening, greetings, resume handling, and reporting.
 
-## Publisher: <br>
-[lxj20060702-del](https://clawhub.ai/user/lxj20060702-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxj20060702-del](https://clawhub.ai/user/lxj20060702-del)
 
-## Use Case: <br>
-Recruiters or operators use this skill to inspect BOSS Zhipin desktop windows, capture chat and candidate information, and coordinate repetitive recruiting workflows. It is also able to execute active desktop actions, so use should be supervised in environments where candidate messaging or resume handling is sensitive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill goes beyond screenshot watching and can actively click, message candidates, collect resumes, run workflow commands, and store recruiting data. <br>
-Mitigation: Install only when active BOSS desktop automation is intended, keep a human supervisor in the loop, and remove or disable bulk greeting, messaging, resume, offer, shell workflow, and persistent storage steps that are not needed. <br>
-Risk: Recruiting workflows may expose candidate chats, resumes, personal information, and workplace communication details through screenshots or saved metadata. <br>
-Mitigation: Limit output directories and retained captures to approved locations, review generated files before sharing, and follow the organization's candidate-data handling rules. <br>
+## Use Case:
 
+Recruiters and operators use this skill to inspect BOSS Zhipin desktop activity, capture local window screenshots and metadata, and run guided recruiting workflows. It can also help an agent prepare or execute scripted actions such as opening chats, sending recruiting messages, collecting resumes, and producing daily recruiting status output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxj20060702-del/boss-zhipin-watcher) <br>
-- [Publisher profile](https://clawhub.ai/user/lxj20060702-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with executable command examples and generated screenshot or metadata files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save screenshots, JSON metadata, workflow state, and recruitment records to local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The security review states that this skill can automate recruiting actions, messages, screenshots, and local data storage more broadly than a simple BOSS window screenshot helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, use only when the operator explicitly wants an agent to control a BOSS account, and require confirmation before every outbound message or resume action.
+
+Risk: The skill can capture candidate screens and store local recruiting records.
+
+Mitigation: Apply retention and redaction rules for captured candidate data, and prefer a narrower screenshot-only workflow when full recruiting automation is not required.
+
+Risk: Desktop automation can click, scroll, type, and send messages in a live recruiting account.
+
+Mitigation: Keep PyAutoGUI fail-safe enabled and stop for user confirmation when page detection or action verification is uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxj20060702-del/skills/boss-zhipin-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, local file paths, workflow configuration, screenshots, and JSON metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local captures, workflow state records, candidate-related screenshots, and structured metadata files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

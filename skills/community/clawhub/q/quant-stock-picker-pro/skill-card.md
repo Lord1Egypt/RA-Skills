@@ -1,43 +1,62 @@
-## Description: <br>
-AI-powered stock screening tool for Chinese A-shares. Daily picks using multi-factor analysis (fundamentals + technical + sentiment). Use when user asks about stock screening, quantitative trading, or investment opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered stock screening tool for Chinese A-shares. Daily picks using multi-factor analysis (fundamentals + technical + sentiment). Use when user asks about stock screening, quantitative trading, or investment opportunities.
 
-## Publisher: <br>
-[ERIC961](https://clawhub.ai/user/ERIC961) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eric961](https://clawhub.ai/user/eric961)
 
-## Use Case: <br>
-External users and developers use this skill to screen Chinese A-share stocks, generate daily ranked stock-pick reports, and review multi-factor signals, AI model scores, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the skill changes network proxy settings and imports code from a hard-coded local path outside the package. <br>
-Mitigation: Before running it, remove the hard-coded sys.path entry and remove or make the proxy environment changes explicitly opt-in. <br>
-Risk: The skill fetches external market and sentiment data and may be scheduled to run every weekday. <br>
-Mitigation: Review the data sources, network access, and schedule before deployment, and choose an output directory appropriate for the local environment. <br>
-Risk: Generated stock picks could be mistaken for financial advice. <br>
-Mitigation: Treat all recommendations as informational, keep the risk disclosures visible, and require human review before any investment decision. <br>
+## Use Case:
 
+External users and developers use this skill to generate Chinese A-share stock screening reports with ranked candidates, factor scores, risk notes, and setup guidance. The reports are for informational review and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [Factor Library Documentation](references/factors.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/ERIC961/quant-stock-picker-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown stock-screening report with ranked tables and risk notes; scripts may also write CSV output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces informational stock picks and risk disclosures; results should not be treated as investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can be configured for unattended weekday execution and may act on changing market data without user review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enable the cron schedule unless unattended runs are intended; review each generated report before using it for any decision.
+
+Risk: The scripts install broad dependencies and make live network requests to financial and sentiment data sources.
+
+Mitigation: Run in an isolated environment with pinned dependencies and network access limited to approved data sources.
+
+Risk: The main script changes proxy-related environment variables and includes a hard-coded local path.
+
+Mitigation: Remove local path assumptions and proxy overrides before deployment in a shared or production environment.
+
+Risk: The skill produces stock recommendations that may be inaccurate, stale, or unsuitable for a user's risk profile.
+
+Mitigation: Treat outputs as experimental screening information, not investment advice, and require qualified human review.
+
+## Reference(s):
+
+- [Factor Library](references/factors.md)
+- [ClawHub Skill Page](https://clawhub.ai/eric961/skills/quant-stock-picker-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with ranked stock picks, risk disclosures, setup commands, configuration examples, and optional CSV output from the provided script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on live market and sentiment data sources and include informational financial screening content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

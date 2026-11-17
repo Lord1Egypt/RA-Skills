@@ -1,46 +1,58 @@
-## Description: <br>
-整理 Visual Components 官方论坛高价值精华帖，覆盖 CAD 转 3D、不同工件加工时间、Works Library 路径查找和 Python 脚本入门资源。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+整合 Visual Components 官方论坛高浏览、高实用价值的精华帖，涵盖 CAD 转 3D、加工时间脚本、AGV 路径规划和 Python 脚本入门资源。
 
-## Publisher: <br>
-[qujingyang28](https://clawhub.ai/user/qujingyang28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qujingyang28](https://clawhub.ai/user/qujingyang28)
 
-## Use Case: <br>
-Developers and engineers working with Visual Components use this skill to find curated forum guidance, examples, and links for simulation modeling, CAD layout conversion, AGV path planning, and Python scripting tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External forum downloads or ZIP attachments may contain third-party content outside the skill package. <br>
-Mitigation: Review and scan external downloads before opening, installing, or running their contents. <br>
-Risk: Curated forum examples may become outdated as Visual Components versions change. <br>
-Mitigation: Check the linked forum thread and applicable Visual Components version before applying a workflow or script. <br>
+## Use Case:
 
+Visual Components users and simulation engineers use this skill to quickly find curated forum resources for CAD-to-3D conversion, process-time scripting, AGV pathfinding, and Python scripting. It is most useful as a reference guide for learning and troubleshooting Visual Components workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qujingyang28/vc-forum-essentials) <br>
-- [CAD Attribute Reader example](https://forum.visualcomponents.com/t/cad-attribute-reader-example/3205) <br>
-- [DWG to 3D converter](https://forum.visualcomponents.com/t/dwg-to-3d-converter/8952) <br>
-- [Different processing time for each part on same machine](https://forum.visualcomponents.com/t/different-processing-time-for-each-part-on-same-machine/1411) <br>
-- [Works Library pathfinding reference guide](https://forum.visualcomponents.com/t/works-library-pathfinding-reference-guide/502) <br>
-- [Getting started with Python scripting](https://forum.visualcomponents.com/t/getting-started-with-python-scripting-and-finding-approach-to-model-using-python/8555) <br>
-- [Python scripts resource thread](https://forum.visualcomponents.com/t/python-scripts/1456) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown summaries with inline Python examples and external forum links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curated Visual Components forum references; linked forum attachments remain external third-party resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill links to an external CAD Attribute Reader ZIP attachment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the archive is from the expected Visual Components forum source, inspect its contents before use, and verify compatibility with the installed Visual Components version.
+
+Risk: Forum summaries and example scripts may become outdated as Visual Components versions change.
+
+Mitigation: Check the linked forum posts and official Visual Components documentation before applying guidance in production simulations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qujingyang28/skills/vc-forum-essentials)
+- [CAD Attribute Reader example](https://forum.visualcomponents.com/t/cad-attribute-reader-example/3205)
+- [Different processing time for each part on same machine](https://forum.visualcomponents.com/t/different-processing-time-for-each-part-on-same-machine/1411)
+- [Works Library pathfinding reference guide](https://forum.visualcomponents.com/t/works-library-pathfinding-reference-guide/502)
+- [Getting started with Python scripting](https://forum.visualcomponents.com/t/getting-started-with-python-scripting/8555)
+- [Python scripts](https://forum.visualcomponents.com/t/python-scripts/1456)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown reference material with links, summaries, tables, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language curated reference content for Visual Components forum resources]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

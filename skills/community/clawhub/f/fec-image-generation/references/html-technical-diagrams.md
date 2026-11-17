@@ -226,7 +226,7 @@ node skills/fec-image-generation/scripts/png-qa.mjs \
 Repair the source JSON or rendering dimensions rather than editing pixels:
 
 - Overlap: split dense lanes or add rows/lanes/stages.
-- Truncated label: shorten labels, add `sublabel`, or widen nodes.
+- Truncated label: wrap complete labels, preserve text, or widen nodes.
 - Connector through label: reduce edge labels or separate nearby nodes.
 - Dense flow: split into overview and detail diagrams.
 - Edge clipping: increase output space or simplify the path.
@@ -234,3 +234,10 @@ Repair the source JSON or rendering dimensions rather than editing pixels:
 ## Delivery Notes
 
 Deliver the `.html` source together with any exported SVG/PNG/JPG requested by the user. Report the route used, source file, exported file, QA result, and any naming or domain assumptions that still need human confirmation.
+
+
+## Quality delivery contract
+
+Prefer local Mermaid for standard sequence/workflow diagrams, reuse fec-drawio-studio for manually editable architecture, and optionally use Graphviz for dense topology. Fall back to compatible JSON/HTML if local tools are missing, without automatic installation/downloads. Preview, standalone SVG and PNG share source theme styles; export with `--theme light|dark`. PNG export waits for fonts and measures text; use `--manifest source.layout.json --output-manifest image.actual.json` for scaled pixel coordinates. QA must read the actual manifest, not reuse estimated coordinates unchanged for a 2x PNG.
+
+The extended manifest retains canvas/boxes/connectors and adds coordinateSpace, scale, measurement, groups, labels and issues. Group containment is not node overlap. New checks include node-text-overflow, label-content-loss, label-out-of-bounds, edge-label-collision, text-overlap and degenerate-connector. Legacy manifests retain estimated checks. Diagnose constrained explicit sizes/waypoints without dropping text, changing relationships or silently moving coordinates. Increasing export resolution cannot fix source overflow. Visually review the final PNG and record tool availability/version, theme, scale, repair rounds and remaining defects; report partial acceptance when unresolved.

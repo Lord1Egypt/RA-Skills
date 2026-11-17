@@ -1,45 +1,63 @@
-## Description: <br>
-Complete local memory system for OpenClaw with a four-layer memory pipeline, local vector search, an ontology knowledge graph, and Nomic Atlas visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete local memory system for OpenClaw agents with a four-layer memory pipeline, local vector search, ontology knowledge graph, and Nomic Atlas visualization.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add persistent local memory, semantic recall, structured knowledge graph operations, and memory visualization to an agent. It is intended for agents that need conversation capture, memory extraction, persona generation, and retrieval across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records conversations persistently and may store sensitive memory data. <br>
-Mitigation: Use the default local SQLite mode, review retention needs, and avoid storing secrets or regulated data unless the deployment policy allows it. <br>
-Risk: Tencent Cloud, remote embedding, or offload paths may send memory data to external services when enabled. <br>
-Mitigation: Keep those integrations disabled unless intentionally configured, and review service terms, credentials, and data handling requirements before use. <br>
-Risk: Postinstall or patch scripts may alter the host OpenClaw installation. <br>
-Mitigation: Review the patch script before execution, run installation in a controlled environment, and keep backups of host configuration and plugin files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add persistent local conversation memory, semantic recall, structured ontology records, and memory visualization to agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paudyyin/tdai-memory-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/paudyyin) <br>
-- [Ontology schema reference](components/tdai-ontology/references/schema.md) <br>
-- [Ontology query reference](components/tdai-ontology/references/queries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, memory records, ontology JSONL, and generated HTML visualization files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist conversation-derived memories, persona files, ontology data, and visualization artifacts on disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: Automatic OpenClaw runtime or configuration changes can grant conversation access with limited user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed patching and prefer a manually approved configuration before installation.
+
+Risk: Conversation-memory surfaces and optional remote storage/offload can expose sensitive conversation data or host identifiers.
+
+Mitigation: Keep the gateway bound to loopback with authentication or network isolation, and enable remote services only after accepting the data-sharing implications.
+
+Risk: Installer paths that resolve latest dependencies can change behavior across installs.
+
+Mitigation: Avoid unpinned @latest installer paths and review the exact version being installed.
+
+## Reference(s):
+
+- [TDaí Memory Suite on ClawHub](https://clawhub.ai/paudyyin/skills/tdai-memory-suite)
+- [paudyyin ClawHub profile](https://clawhub.ai/user/paudyyin)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [sqlite-vec](https://github.com/asg017/sqlite-vec)
+- [node-llama-cpp](https://github.com/withcatai/node-llama-cpp)
+- [Ontology schema reference](components/tdai-ontology/references/schema.md)
+- [Ontology query reference](components/tdai-ontology/references/queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell snippets; runtime memory context is text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local memory records, persona summaries, ontology JSONL, and HTML visualization files during use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

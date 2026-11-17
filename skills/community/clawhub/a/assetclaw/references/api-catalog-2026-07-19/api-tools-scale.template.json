@@ -1,0 +1,18 @@
+{
+  "_note": "占位文件 — 完整 OpenAI function-calling 格式快照 (1709 tools) 可由 refresh.sh 重生成，或通过已认证 token 调用 /api/api-documentation/export/openai-tools 端点获取。",
+  "schema": "openai-function-calling-v1",
+  "generatedAt": "2026-07-19T15:12:38.578Z",
+  "server": {
+    "baseUrl": "http://localhost:5183",
+    "authHeader": "Authorization",
+    "tenantHeader": "X-Tenant-Id"
+  },
+  "auth": {
+    "type": "Bearer",
+    "header": "Authorization",
+    "tenantHeader": "X-Tenant-Id",
+    "note": "除公开健康检查等少数接口外，所有接口需 JWT 鉴权；多租户通过 X-Tenant-Id 请求头隔离"
+  },
+  "toolCount": 1709,
+  "moduleCount": 97
+}

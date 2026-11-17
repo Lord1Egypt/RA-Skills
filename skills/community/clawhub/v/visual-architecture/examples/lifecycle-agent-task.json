@@ -1,0 +1,21 @@
+{
+  "mode": "lifecycle",
+  "title": "Agent Task Lifecycle",
+  "summary": "A task moves through planning, execution, verification, repair, and terminal receipt states.",
+  "nodes": [
+    { "id": "queued", "label": "Queued", "subtitle": "brief accepted", "kind": "service", "x": 120, "y": 160 },
+    { "id": "working", "label": "Working", "subtitle": "edits in scope", "kind": "agent", "x": 360, "y": 160 },
+    { "id": "verify", "label": "Verify", "subtitle": "tests + checks", "kind": "agent", "x": 600, "y": 160 },
+    { "id": "repair", "label": "Repair", "subtitle": "diagnosed fix", "kind": "agent", "x": 600, "y": 320 },
+    { "id": "done", "label": "Done", "subtitle": "receipt written", "kind": "memory", "x": 840, "y": 160 },
+    { "id": "blocked", "label": "Blocked", "subtitle": "needs input", "kind": "memory", "x": 840, "y": 320 }
+  ],
+  "edges": [
+    { "from": "queued", "to": "working", "kind": "control", "label": "start", "label_offset": [0, -28] },
+    { "from": "working", "to": "verify", "kind": "primary-data", "label": "candidate", "label_offset": [0, -28] },
+    { "from": "verify", "to": "done", "kind": "memory-write", "label": "pass", "label_offset": [0, -28] },
+    { "from": "verify", "to": "repair", "kind": "control", "label": "fail" },
+    { "from": "repair", "to": "working", "kind": "control", "label": "retry", "source_side": "left", "target_side": "bottom", "via": [{ "x": 360, "y": 320 }], "label_segment": 1 },
+    { "from": "repair", "to": "blocked", "kind": "control", "label": "no progress" }
+  ]
+}

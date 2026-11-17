@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>__TITLE__</title>
+<style>
+body{margin:0;padding:10px;background:#fafafa;color:#1f2937;text-align:center;
+font:14px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+h1{font-size:14px;font-weight:500;margin:0 0 10px;color:#111827;word-break:break-word}
+video{display:block;width:100%;height:auto;background:#000;border-radius:6px}
+p{margin:9px 0 0;font-size:12px;color:#94a1b8}
+a{color:#57606a}
+.tip{font-size:11px;color:#aab2c0;margin-top:3px}
+@media(min-width:700px){video{width:auto;max-width:100%;max-height:78vh;margin:0 auto}}
+</style>
+</head>
+<body>
+<h1>__TITLE__</h1>
+<video id="v" playsinline webkit-playsinline controls preload="metadata"></video>
+<p>__DUR__ · __SIZE__ · <a id="dl" href="#" download="__FILENAME__.bin">导出视频</a></p>
+<p class="tip">导出视频后把后缀改成 .mp4 即可播放</p>
+<script type="text/plain" id="d">__B64__</script>
+<script>
+(function(){
+var b64=document.getElementById('d').textContent.replace(/\s+/g,'');
+var v=document.getElementById('v'),dl=document.getElementById('dl');
+function u8(s){var n=atob(s),i=0,a=new Uint8Array(n.length);for(;i<n.length;i++)a[i]=n.charCodeAt(i);return a}
+var bytes=u8(b64);
+v.src=URL.createObjectURL(new Blob([bytes],{type:'video/mp4'}));
+v.load();
+dl.href=URL.createObjectURL(new Blob([bytes],{type:'application/octet-stream'}));
+})();
+</script>
+</body>
+</html>

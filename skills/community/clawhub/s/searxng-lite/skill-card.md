@@ -1,42 +1,53 @@
-## Description: <br>
-SearXNG-lite provides local, script-based multi-engine web search aggregation for agents across general web, developer, academic, knowledge, news, and other search categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SearXNG-lite provides lightweight multi-engine web search aggregation through a local Python script without requiring Docker, a server, or a SearXNG instance.
 
-## Publisher: <br>
-[mrzhangkris](https://clawhub.ai/user/mrzhangkris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrzhangkris](https://clawhub.ai/user/mrzhangkris)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to run local Python-based searches across multiple web, code, academic, knowledge, discussion, model, and news sources when a task needs broader or engine-specific search coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries can be sent to selected providers and any configured proxy, which may expose sensitive terms or private URLs. <br>
-Mitigation: Do not search for secrets, credentials, customer data, private internal URLs, or sensitive proprietary topics; only configure a proxy you trust. <br>
-Risk: Python dependencies and runtime setup can affect the local agent environment. <br>
-Mitigation: Install dependencies in a virtual environment when possible and review the dependency commands before running the search script. <br>
-Risk: Search coverage can vary by enabled engines, proxy availability, provider blocking, or silent skips for proxy-required engines. <br>
-Mitigation: Review the returned engines_used and errors fields, and configure only the engines and trusted proxy settings needed for the task. <br>
+## Use Case:
 
+Developers and agents use this skill to run aggregated web, code, academic, news, and community searches from a local Python command-line tool. It is useful when multiple search engines or specific search categories are needed beyond a single quick lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrzhangkris/searxng-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results by default, with optional compact human-readable text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include title, URL, content, source engines, score, result count, elapsed time, engines used, and errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries may be sent to multiple external search providers or through a configured proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for secrets, confidential terms, regulated personal data, proprietary incident details, or other sensitive queries.
+
+Risk: Dependency behavior can change if packages are installed without version controls.
+
+Mitigation: Install the skill in a virtual environment and pin dependencies when reproducible behavior is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrzhangkris/skills/searxng-lite)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results by default, with optional compact human-readable text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output includes result titles, URLs, snippets, source engines, scores, elapsed time, and non-fatal engine errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

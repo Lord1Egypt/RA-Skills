@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentsafe"
+version = "0.1.0"
+description = "agentSAFE - EVM smart contract audit MCP server (Ethereum Mainnet, AI-assisted risk screening)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "fastmcp>=2.3",
+    "markdown>=3.6",
+    # Pinned official x402 SDK (coinbase/x402-python). The payment adapter is
+    # written against THIS version's API surface. Declared as a MAIN dependency
+    # so cloud builds (which install only base deps, no extras) include it
+    # when PAYMENTS_ENABLED=true is baked into the deployment environment.
+    "x402[evm]==2.25.0",
+    # Redis client for Upstash/Redis task store (serverless deployments)
+    "redis>=5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "S", "ASYNC"]
+ignore = ["S101"]  # asserts are fine in tests
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106", "S108"]

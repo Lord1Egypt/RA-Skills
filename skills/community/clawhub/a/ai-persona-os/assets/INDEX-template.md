@@ -14,7 +14,6 @@
 | `SECURITY.md` | Security rules | Monthly review |
 | `MEMORY.md` | Permanent facts | When you learn something permanent |
 | `AGENTS.md` | Operating rules | When lessons are learned |
-| `HEARTBEAT.md` | Daily checklist | When priorities change |
 | `WORKFLOWS.md` | Reusable processes | After 3rd repetition of a task |
 | `TOOLS.md` | Tool gotchas | When you learn tool quirks |
 | `INDEX.md` | This file | When organization changes |

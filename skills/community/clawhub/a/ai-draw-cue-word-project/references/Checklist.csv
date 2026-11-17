@@ -1,0 +1,14 @@
+Priority,Validation item,Validation standard,Pass threshold,Result,Failure fix guide
+P0,Identity anchor preserved,"Mole, accessory, identity settings 100% matched",Weight ≥1.6,✅/❌,Raise the anchor weight / add --cref / change seed
+P0,Core features preserved,Face / hairstyle / core outfit elements 100% kept,Weight ≥1.3,✅/❌,Raise the core feature weights / add a reference image
+P0,Anchor-description reuse,Anchor sentences in natural-language models are verbatim-identical to Character Anchors,No synonym rewriting,✅/❌,Delete rewritten sentences; copy the anchor sentences verbatim
+P0,Negative-word coverage,All conflicting features are in the negative-word list,No omissions,✅/❌,Complete category by category per the Negative Word Bank
+P1,Reference image enabled,The model's reference-image method is enabled (--cref / native reference / LoRA),Enabled,✅/❌,Pick a method per the Reference Image Capability Matrix
+P1,Temperament match,No incongruent expressions / motions / scene elements,Negative weight ≥1.0,✅/❌,Front-load the temperament description + add temperament negative words
+P1,Weight logic compliant,Main description weight within 0-2; core > auxiliary,No out-of-range,✅/❌,Fix per the weight semantics master table
+P1,Proportion parameters compliant,Head-to-body ratio and limb lengths match the version baseline,Error ≤5%,✅/❌,Check the Aspect Ratio Baselines + lower --stylize
+P1,Aspect ratio match,Frame ratio matches the use case,Matches the config,✅/❌,Change --ar / recompose
+P2,Layering correct,No misalignment/clipping among foreground/midground/background,Layer weights match,✅/❌,Adjust the layer descriptions and occlusion
+P2,Negative space compliant,The subject does not cover the reserved negative-space area,No occlusion,✅/❌,Switch to negative-space composition / move the subject to the edge
+P2,No color conflict,Scene + character palette has no incongruent colors,No color conflict,✅/❌,Add palette positive words + color negative words
+P2,Lighting consistent,Light direction matches the description; no contradictory shadows,Single light source,✅/❌,Unify the light direction/type description

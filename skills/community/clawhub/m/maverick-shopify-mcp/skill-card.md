@@ -1,46 +1,51 @@
-## Description: <br>
-Search, read, and work with Shopify products, orders, customers, and shop data through a local MCP wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, read, and work with Shopify products, orders, customers, and shop data through a local MCP wrapper.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Shopify operators and developers use this skill to inspect and manage products, orders, customers, and store data from an agent through a local MCP wrapper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad Shopify admin access, including access to sensitive commerce data and live store changes. <br>
-Mitigation: Use a narrowly scoped Shopify token, avoid production write permissions unless needed, and require explicit human approval before product mutations or raw admin_graphql calls. <br>
-Risk: Write operations can create, publish, update, or expose products, variants, orders, customers, or externally visible product links. <br>
-Mitigation: Confirm clear user intent before write tools, search before assuming product or variant IDs, and read product or variant details before recommending or linking items. <br>
-Risk: The install metadata uses an unpinned mcporter package, which may not meet strict supply-chain controls. <br>
-Mitigation: Pin or override the mcporter install version in controlled deployments. <br>
-Risk: Shopify access token and shop environment variables are sensitive credentials. <br>
-Mitigation: Provide credentials through secret management and avoid passing unrelated sensitive content through the Shopify tools. <br>
+## Use Case:
 
+External Shopify merchants and store operators use this skill to inspect shop data and manage products, orders, customers, and other Shopify data through the connected store.
 
-## Reference(s): <br>
-- [Maverick Shopify MCP on ClawHub](https://clawhub.ai/maverick/maverick-shopify-mcp) <br>
-- [mcporter MCP CLI](https://github.com/steipete/mcporter) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses from MCP tool calls, with Markdown or shell commands when the agent explains setup or invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Shopify shop and access token environment variables; tool result size depends on Shopify query limits and requested records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The unrestricted admin tool permits destructive store changes beyond the dedicated product tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only Shopify token for exploration. Before enabling writes, restrict or disable the generic admin tool and require explicit approval for each proposed change, especially deletion. Verify the configured shop hostname before supplying the token.
+
+## Reference(s):
+
+- [Shopify skill release on ClawHub](https://clawhub.ai/maverick/skills/maverick-shopify-mcp)
+- [mcporter project](https://github.com/openclaw/mcporter)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured JSON from Shopify tools, with optional natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results reflect the connected Shopify store and token permissions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

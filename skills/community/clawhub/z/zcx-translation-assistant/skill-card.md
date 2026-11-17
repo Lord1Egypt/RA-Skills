@@ -1,38 +1,53 @@
-## Description: <br>
-Professional multilingual translation with domain-specific terminology handling for finance, law, and technology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides domain-aware translation between Chinese and English and other requested language pairs, with formatting preservation and terminology handling for finance, legal, technology, and medical content.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to translate Chinese, English, and other requested language pairs while preserving Markdown, tables, code blocks, structured documents, and domain terminology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or regulated documents may be read or copied when a user asks the agent to translate a file path. <br>
-Mitigation: Use normal care with private or regulated documents and review translated output files before sharing or deployment. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to translate documents, Markdown, tables, code comments, and structured content while preserving formatting and domain terminology.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/zcx-translation-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Plain text or Markdown with format-preserving translated content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve document structure and create translated copies for user-provided file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: When a user provides a file path, the agent may read the file contents and create a translated copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only files that may be processed in the agent environment, and review the translated copy before sharing it.
+
+Risk: Legal, financial, medical, or technical translations can have downstream impact if terminology is wrong or context is ambiguous.
+
+Mitigation: Use bilingual or format-preserving output for sensitive content and have a qualified reviewer check terminology, numbers, dates, and omissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/skills/zcx-translation-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Plain text or Markdown translations, with optional bilingual side-by-side or interlinear output and translated file copies.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves user-provided formatting where requested and may write translated file copies with a language or translated suffix when given a file path.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

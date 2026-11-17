@@ -1,42 +1,60 @@
-## Description: <br>
-Generate high-density editorial HTML info cards in a modern magazine and Swiss-international style, then capture them as ratio-specific screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-density editorial HTML info cards in a modern magazine and Swiss-international style, then capture them as ratio-specific screenshots.
 
-## Publisher: <br>
-[shaom](https://clawhub.ai/user/shaom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaom](https://clawhub.ai/user/shaom)
 
-## Use Case: <br>
-Designers, content creators, and developers use this skill to turn supplied text or core information into structured editorial HTML cards and optional ratio-specific screenshot commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendered cards may contact Google Fonts during screenshot rendering. <br>
-Mitigation: Use bundled or system fonts, or remove the font import, before rendering confidential, unpublished, or offline-only content. <br>
-Risk: PNG capture depends on a local Chrome or Chromium binary. <br>
-Mitigation: Install a supported browser binary or set CHROME_BIN before running the screenshot helper. <br>
+## Use Case:
 
+External users, designers, and developers use this skill to turn supplied text or core information into screenshot-ready editorial HTML cards and optional PNG captures across supported aspect ratios.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaom/infocard-skills) <br>
-- [Editorial Card Prompt](references/editorial-card-prompt.md) <br>
-- [Supported Ratios](references/ratios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown response containing a density sentence, a complete HTML code block, optional screenshot command, and a readability self-check.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports fixed visual ratios including 3:4, 4:3, 1:1, 16:9, 9:16, 2.35:1, 3:1, and 5:2; PNG capture requires Chrome or Chromium.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The screenshot helper launches a local Chrome or Chromium binary to render user-provided HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before capture, use a trusted browser binary through CHROME_BIN, and run the helper only in an environment where local rendering is acceptable.
+
+Risk: The default template loads Google Fonts during rendering, which may make a network request.
+
+Mitigation: Remove the remote font import or replace it with local fonts when offline-only or locale-neutral rendering is required.
+
+Risk: Dense editorial layouts can become misleading or hard to read if text overlaps or the selected ratio is overloaded.
+
+Mitigation: Apply the built-in self-checks for readability, title/body separation, ratio fit, and visual density before using the HTML or PNG.
+
+## Reference(s):
+
+- [Editorial card prompt spec](references/editorial-card-prompt.md)
+- [Supported ratios](references/ratios.md)
+- [ClawHub skill page](https://clawhub.ai/shaom/skills/infocard-skills)
+- [Default Google Fonts stylesheet](https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown response with one density sentence, a complete HTML code block, optional screenshot command, and optional PNG file output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports fixed ratio presets 3:4, 4:3, 1:1, 16:9, 9:16, 2.35:1, 3:1, and 5:2; PNG capture requires a local Chrome or Chromium binary.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

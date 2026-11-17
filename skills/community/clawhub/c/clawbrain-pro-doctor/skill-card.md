@@ -1,44 +1,57 @@
-## Description: <br>
-Diagnoses OpenClaw configuration and runtime health for ClawBrain Pro, including output validation, backend model health, knowledge graph status, memory source attribution, degradation notices, and long-conversation truncation checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses OpenClaw configuration and runtime state, including output validation, backend model health, knowledge graph status, memory source attribution, degradation notices, and long-conversation truncation behavior.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw and ClawBrain-backed setups, review likely configuration or runtime issues, and run targeted curl-based health checks against the relevant service endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated curl checks make real external API calls and can expose API keys if copied into shared logs or transcripts. <br>
-Mitigation: Review each command before running it, use scoped or low-privilege keys where possible, and avoid sharing logs that contain credentials. <br>
-Risk: Graph and memory diagnostics send requests to api.factorhub.cn. <br>
-Mitigation: Run those diagnostics only when you are comfortable sending the request to that service and limit checks to the needed troubleshooting scope. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw or ClawBrain configuration, model backend health, knowledge graph state, and memory-related behavior. It provides diagnostic guidance and authenticated curl checks for relevant service endpoints.
 
-## Reference(s): <br>
-- [ClawBrain Doctor on ClawHub](https://clawhub.ai/michaelfeng/clawbrain-pro-doctor) <br>
-- [ClawBrain Dashboard](https://clawbrain.dev/dashboard) <br>
-- [FactorHub backend health endpoint](https://api.factorhub.cn/v1/health/backends) <br>
-- [FactorHub graph stats endpoint](https://api.factorhub.cn/v1/graph/stats) <br>
-- [FactorHub models endpoint](https://api.factorhub.cn/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for optional authenticated health, graph, and model endpoint checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The diagnostic curl checks send authenticated requests to api.factorhub.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that api.factorhub.cn is the intended trusted service endpoint before running the checks.
+
+Risk: Bearer tokens used for diagnostics could expose broader account access if copied from a high-privilege credential.
+
+Mitigation: Use a scoped token for diagnostics instead of a broad account credential.
+
+## Reference(s):
+
+- [ClawBrain Dashboard](https://clawbrain.dev/dashboard)
+- [Backend health endpoint](https://api.factorhub.cn/v1/health/backends)
+- [Knowledge graph stats endpoint](https://api.factorhub.cn/v1/graph/stats)
+- [Model list endpoint](https://api.factorhub.cn/v1/models)
+- [ClawHub skill page](https://clawhub.ai/michaelfeng/skills/clawbrain-pro-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands that require a trusted endpoint and scoped bearer token.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

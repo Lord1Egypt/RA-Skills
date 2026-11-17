@@ -1,45 +1,56 @@
-## Description: <br>
-Lightweight anti-infinite-loop guard for LLM agents that detects repeated, cyclic, low-novelty, and pre-flight loop patterns, then returns healing, pause, or abort directives for agent runtimes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight anti-infinite-loop guard for LLM agents that detects repeated or collapsing behavior and returns healing, pause, or abort directives with zero required runtime dependencies.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and engineers use this skill to add an anti-loop guard to LLM agent loops across Claude, OpenAI, Hermes, LangChain, AutoGen, or custom harnesses. It observes agent actions and intent, detects likely loops, and produces a directive to heal, pause, or abort the run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Loop history is saved locally under ~/.anti_loop/loops.json by default and may include samples of agent actions. <br>
-Mitigation: Use a controlled storage_path, apply restrictive file permissions, avoid storing sensitive prompts or customer data in observed action text, and delete the history file when retention is not needed. <br>
-Risk: Healing directives can alter agent behavior during a task if they are applied without review or policy checks. <br>
-Mitigation: Route directives through the host agent's existing safety, logging, and approval controls, especially before using pause or hard_kill modes in production workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor LLM agent loops, check plans before execution, and receive structured intervention directives when an agent begins repeating actions, drifting from intent, or entering a cycle.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kofna3369/morgana-anti-infinite-loop-v2) <br>
-- [Publisher Profile](https://clawhub.ai/user/kofna3369) <br>
-- [PyPI Package](https://pypi.org/project/anti-loop/) <br>
-- [README-listed Repository](https://github.com/kofna336/anti-loop) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown documentation, Python API return dictionaries, and CLI JSON/status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Core package uses Python stdlib by default; optional extras add numpy or torch for advanced paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence; artifact frontmatter and pyproject.toml list 2.0.0) <br>
+Risk: Observed agent text can be promoted into a returned system_message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review host integration so returned system_message values are separated, sanitized, or downgraded before they affect privileged prompts.
+
+Risk: Raw loop action samples may be stored locally under ~/.anti_loop/loops.json by default.
+
+Mitigation: Clear, relocate, or patch local LoopDNA storage when the agent handles sensitive prompts, customer data, credentials, or powerful tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kofna3369/skills/morgana-anti-infinite-loop-v2)
+- [PyPI Package](https://pypi.org/project/anti-loop/)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and Python code examples with JSON-like directive objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime directives may include heal, pause, or abort actions; the CLI can emit stats as JSON.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata; artifact frontmatter and pyproject.toml list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

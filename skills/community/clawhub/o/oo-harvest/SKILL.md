@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Harvest"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["harvest"]
-  icon: "https://static.oomol.com/logo/third-party/Harvest.svg"
+  icon: "https://static.oomol.com/logo/third-party/harvest.svg"
 ---
 
 # Harvest
@@ -50,7 +50,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_tasks` — List tasks available in the connected Harvest account.
 - `list_time_entries` — List Harvest time entries with optional resource and date filters.
 - `restart_time_entry` — Restart a stopped Harvest time entry. [write]
-- `stop_time_entry` — Stop a running Harvest time entry. [write]
+- `stop_time_entry` — Stop a running Harvest time entry. [destructive]
 - `update_time_entry` — Update an existing Harvest time entry. [write]
 
 ## Safety
@@ -82,11 +82,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Harvest is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=harvest
+  https://console.oomol.com/connections/harvest
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Harvest homepage: https://www.getharvest.com
+- API documentation: https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/

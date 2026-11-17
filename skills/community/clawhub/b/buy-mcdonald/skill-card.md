@@ -1,41 +1,58 @@
-## Description: <br>
-Helps users in China buy McDonald's products with Claw wallet balance and receive a redemption link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+购买麦当劳商品的技能，通过claw_pay接口实现余额支付。仅适用于中国地区。Invoke when user wants to buy McDonald's products using claw wallet balance in China.
 
-## Publisher: <br>
-[vikky-lin](https://clawhub.ai/user/vikky-lin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vikky-lin](https://clawhub.ai/user/vikky-lin)
 
-## Use Case: <br>
-External users in China use this skill to check Claw wallet balance, view on-sale McDonald's items, and purchase a selected item with an access token before redeeming it in store. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend wallet balance when purchasing products. <br>
-Mitigation: Require explicit user confirmation for the item, price, token, and account name before every purchase. <br>
-Risk: The access token functions as a payment credential and may expose wallet balance if shared or logged. <br>
-Mitigation: Treat the token as sensitive, avoid sharing or logging it, and install only if the Claw wallet provider, API host, and recharge contact are trusted. <br>
+## Use Case:
 
+External users in China use this skill to check claw wallet balance, view available McDonald's items, purchase items through the claw_pay service, and receive a redemption link for in-store pickup or dine-in redemption.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vikky-lin/buy-mcdonald) <br>
-- [Claw Pay API host](https://www.stonetech.top) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [JSON responses and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return balance details, on-sale product data, payment status, and a McDonald's redemption link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can initiate real purchases through a third-party claw_pay service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the item, price, wallet identity, and user intent before any purchase request.
+
+Risk: The access_token functions like a wallet credential and may be exposed through URLs or logs.
+
+Mitigation: Treat the token as secret, avoid sharing it in prompts or logs, and prefer versions that redact tokens from request paths and error output.
+
+Risk: The payment service, revocation, and dispute process are insufficiently disclosed in the provided evidence.
+
+Mitigation: Install only after trusting the service operator and documenting how users can revoke credentials or dispute failed purchases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vikky-lin/skills/buy-mcdonald)
+- [Publisher profile](https://clawhub.ai/user/vikky-lin)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON-like API responses and concise user-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet balance, product listings, purchase status, payment time, and a McDonald's redemption link.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

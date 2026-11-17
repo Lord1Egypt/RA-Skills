@@ -1,40 +1,58 @@
-## Description: <br>
-GitHub 操作工具 - 通过 GitHub API 管理仓库、Issues、PRs、Actions 等 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub 操作工具 - 通过 GitHub API 管理仓库、Issues、PRs、Actions 等
 
-## Publisher: <br>
-[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch)
 
-## Use Case: <br>
-Developers and maintainers use this skill to draft and run GitHub REST API workflows for repositories, issues, pull requests, commits, Actions, search, files, and user information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide state-changing GitHub actions such as creating or closing issues, creating or merging pull requests, adding labels, assigning users, and dispatching workflows. <br>
-Mitigation: Review proposed GitHub writes before execution and use a token scoped only to the repositories and operations needed. <br>
-Risk: GitHub token exposure would grant access according to the token's configured permissions. <br>
-Mitigation: Store GITHUB_TOKEN in environment or agent configuration, avoid hardcoding it in commands or files, and redact it from logs and shared transcripts. <br>
+## Use Case:
 
+Developers and technical operators use this skill to manage GitHub repositories, issues, pull requests, commits, Actions workflows, searches, files, and user information through GitHub API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaoren36-arch/github-api-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a GITHUB_TOKEN environment variable for authenticated GitHub REST API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill asks for broad GitHub token access and can perform repository-changing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained, short-lived GitHub token limited to the repositories and actions required for the task.
+
+Risk: Issue, pull request, merge, review, edit, close, and workflow-dispatch actions can change repository state.
+
+Mitigation: Require explicit user confirmation before creating, closing, editing, merging, reviewing, or dispatching workflows.
+
+Risk: A leaked token could expose private repositories or allow unwanted changes.
+
+Mitigation: Store the token only in protected configuration or environment variables and avoid writing it to code, logs, or shared files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoren36-arch/skills/github-api-tool)
+- [GitHub REST API endpoint pattern](https://api.github.com/{endpoint})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and API call templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitHub token supplied through configuration or environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

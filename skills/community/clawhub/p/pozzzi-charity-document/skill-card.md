@@ -1,45 +1,58 @@
-## Description: <br>
-噗滋（pozzzi）慈善 - 帮助中小型 NGO 生成日常行政文书，支持合同协议、会议纪要、公函、感谢信和工作计划五类文书，内置固定法律条款直通机制避免模型改写关键条款。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+噗滋（pozzzi）慈善文书助手帮助中小型 NGO 生成合同协议、会议纪要、公函、感谢信和工作计划，并通过固定合同条款降低关键条款被模型改写的风险。
 
-## Publisher: <br>
-[aikawabigsky309](https://clawhub.ai/user/aikawabigsky309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aikawabigsky309](https://clawhub.ai/user/aikawabigsky309)
 
-## Use Case: <br>
-NGO staff and administrators use this skill to draft routine operational documents such as contracts, meeting minutes, official letters, thank-you letters, and work plans. It is intended to produce review-ready drafts with required disclaimers and fixed contract clauses preserved outside model generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft document content may be sent to the user's chosen model provider. <br>
-Mitigation: Confirm the chosen provider is acceptable for the document content before use and avoid submitting unnecessary personal or sensitive data. <br>
-Risk: Generated contracts, letters, meeting minutes, and plans may contain inaccurate or incomplete formal guidance. <br>
-Mitigation: Require human review before use, and have legal or formal documents reviewed by a qualified person. <br>
-Risk: User inputs may contain personal data, especially minors' data. <br>
-Mitigation: Avoid unnecessary personal data, do not process minors' data, and use the skill's validation and PII-filtering workflow as a gate before model calls. <br>
-Risk: Local generation metadata may remain on the device. <br>
-Mitigation: Confirm local retention is acceptable for the organization and avoid storing prompt text or generated document bodies in logs. <br>
+## Use Case:
 
+External NGO operators and administrative staff use this skill to draft routine Chinese-language administrative documents, including agreements, meeting minutes, official letters, thank-you letters, and work plans. The skill is suited for draft preparation and requires human legal or administrative review before real-world use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aikawabigsky309/pozzzi-charity-document) <br>
-- [Ministry of Civil Affairs reference used by volunteer agreement template](https://www.mca.gov.cn/article/yw/hjzcbz/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown document drafts with injected AI-use and disclaimer notices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated document metadata such as model/provider, duration, degradation status, and fixed-clause count; formal or legal documents require human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may process sensitive contract, meeting, donor, or official-correspondence fields through the configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all document fields as potentially model-bound, avoid entering personal data unless necessary, and prefer roles or placeholders over real names.
+
+Risk: Generated contracts or official documents may contain incomplete, incorrect, or non-final language.
+
+Mitigation: Require human legal or administrative review before signing, sending, filing, or publishing generated drafts.
+
+Risk: Evidence security review reports that privacy and prompt-safety controls are narrower than the skill's assurances for sensitive administrative and contract content.
+
+Mitigation: Review the skill before installation for real administrative use, keep sensitive inputs minimal, and validate outputs against organizational policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aikawabigsky309/skills/pozzzi-charity-document)
+- [Ministry of Civil Affairs charity policy reference](https://www.mca.gov.cn/article/yw/hjzcbz/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown document drafts with validation warnings and generation metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document type controls template, tone, token budget, and fixed-clause handling; generated drafts include AI-use and review disclaimers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Web scraping using Chrome + WebMCP as the primary method for web crawling tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping using Chrome + WebMCP. Primary method for all web crawling tasks.
 
-## Publisher: <br>
-[sweihub](https://clawhub.ai/user/sweihub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sweihub](https://clawhub.ai/user/sweihub)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scrape and interact with JavaScript-rendered websites through Chrome + WebMCP, especially finance pages, stock forums, news pages, and search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls the user's host Chrome browser, which may expose logged-in pages, private pages, or active browsing state. <br>
-Mitigation: Use a separate browser profile or sandbox where possible, and avoid logged-in or private pages unless that access is intentional. <br>
-Risk: The skill instructs the agent to close tabs and leave only one about:blank tab during cleanup. <br>
-Mitigation: Save or separate important tabs before use, and keep scraping work isolated from normal browsing. <br>
-Risk: Dynamic finance and news sites may block scraping or return incomplete content while JavaScript is still loading. <br>
-Mitigation: Wait for page snapshots after JavaScript loads, retry carefully, and use fallback sources when anti-scraping controls interfere. <br>
+## Use Case:
 
+Developers and agents use this skill to scrape JavaScript-rendered web pages through Chrome and WebMCP, especially finance and news pages that may require browser interaction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sweihub/spider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Chrome/WebMCP action examples and URL templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser action payloads, target URLs, extraction steps, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can control a live Chrome session and interact with pages under the user's browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile without sensitive logins before invoking the skill.
+
+Risk: Cleanup instructions may close browser tabs during broad scraping or search tasks.
+
+Mitigation: Constrain the agent to tabs it opened and review tab-cleanup actions before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sweihub/skills/spider)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Markdown]
+
+**Output Format:** [Markdown guidance with inline commands and browser-action request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Chrome/WebMCP browser actions, scraping URLs, interaction steps, and cleanup steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

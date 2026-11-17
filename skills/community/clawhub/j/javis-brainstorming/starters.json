@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "title": "Brainstorm",
+  "icon": "lightbulb",
+  "starters": [
+    {
+      "id": "bs-latest",
+      "label": "Turn my latest idea into a brief",
+      "prompt": "brainstorm this",
+      "source": "recordings",
+      "requires": ["has_recording"],
+      "order": 20
+    }
+  ]
+}

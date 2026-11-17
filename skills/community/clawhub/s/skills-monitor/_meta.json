@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn76em77yfft3zbr7anygfxpgh836eh9",
   "slug": "skills-monitor",
-  "version": "1.0.0",
-  "publishedAt": 1773899987083
+  "name": "Skills Monitor",
+  "version": "0.7.0",
+  "author": "MerkyorLynn",
+  "source": "clawhub",
+  "installed_at": "",
+  "description": "AI Skills 一站式监控评估平台 — 7因子评估引擎、跨模型基准评测、中心化 Dashboard、智能推荐"
 }

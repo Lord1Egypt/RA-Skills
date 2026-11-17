@@ -3,7 +3,7 @@ name: linux-firewall-hardening
 title: Linux Firewall Hardening
 description: Safe Linux firewall hardening with backend detection, idempotent atomic rules, rollback protection, and AI-executable state-machine workflows. Covers ufw, firewalld, nftables, iptables, Docker, Kubernetes CNI awareness, and fail2ban with compliance mapping to CIS/PCI-DSS/SOC2.
 license: Dual MIT / Apache-2.0
-skill_version: 2.5.0
+skill_version: 2.7.0
 schema_version: 2
 tags: [security, firewall, ufw, iptables, nftables, firewalld, hardening, docker, fail2ban, policy-as-code, devsecops, ipv6]
 ---
@@ -27,7 +27,8 @@ tags: [security, firewall, ufw, iptables, nftables, firewalld, hardening, docker
 | Inside a container | Escalate to host operator |
 | WSL2, macOS, or shared/managed hosting | See `references/special-environments.md` |
 
-> **Support files**: `scripts/audit-firewall.sh` (run first), `scripts/firewall-plan.sh` (dry-run), `scripts/firewall-verify.sh` (post-apply).
+> **Support files**: `scripts/audit-firewall.sh` (run first), `scripts/firewall-plan.sh` (dry-run), `scripts/firewall-verify.sh` (post-apply), `scripts/container-port-audit.sh` (Docker DNAT detection), `scripts/ip-consistency.sh` (IPv4/IPv6 drift check).
+> `firewall-apply.sh` is fully documented in `references/firewall-apply.md`.
 > Detailed backend guides, Docker/K8s policies, observability, compliance, and recovery are in `references/`.
 
 ## 🚨 Emergency: I'm Locked Out — What Now?
@@ -38,7 +39,7 @@ If you just applied firewall rules and lost SSH connectivity:
 2. **Use your second SSH session** — if you opened one (pre-flight checklist), switch to it and fix the rules manually.
 3. **Cloud serial console** — AWS EC2 Serial Console, GCP Serial Port, Azure Serial Console, or hypervisor VNC/IPMI/iDRAC.
 4. **Restore from backup via console** — once connected: `sudo iptables-restore < ~/firewall-backup-*/iptables-v4.rules`
-5. **Emergency ACCEPT (LAST RESORT)** — `sudo iptables -P INPUT ACCEPT; sudo iptables -F; sudo ufw disable`. This exposes the host completely. Re-harden immediately.
+5. **Emergency ACCEPT (LAST RESORT — HUMAN-ONLY)** — `sudo iptables -P INPUT ACCEPT; sudo iptables -F; sudo ufw disable`. **This exposes the host completely. NEVER auto-execute this command.** The agent must refuse to run this autonomously. Only a human operator may issue this via serial console. Re-harden immediately afterward.
 
 Full procedures: `references/recovery.md`.
 
@@ -76,8 +77,10 @@ Full procedures: `references/recovery.md`.
 Follow states in order. Do not skip.
 
 ```
-DETECT → SELECT → PLAN → VALIDATE → APPLY → VERIFY
+DETECT → SELECT → PLAN → CONFIRM → VALIDATE → APPLY → VERIFY → (COMMIT | ROLLBACK)
 ```
+
+**CONFIRM is mandatory.** The agent may never self-transition through CONFIRM. See the CONFIRM state section below for the exact gating rules.
 
 ### State: DETECT
 
@@ -182,6 +185,37 @@ Review the output. If `risk_tier` is `confirmed`, present the plan and wait for 
 
 ---
 
+### State: CONFIRM (Mandatory — No Exceptions)
+
+This gate prevents the agent from applying firewall rules without explicit human approval.
+
+**Why this exists:** The agent could (a) invoke `firewall-apply.sh` without the human seeing the plan, or (b) the human "approves" a stale plan that changed between approval and execution. CONFIRM defeats both — including the agent hallucinating an approval.
+
+**Rules (HARD — do not violate):**
+
+1. After PLAN, present the full ruleset diff AND the approval token printed by `firewall-plan.sh --json` (field: `approval_token`).
+2. **STOP.** Do not proceed in the same response. Do not type the token on the user's behalf.
+3. You may ONLY invoke APPLY if the user's most recent message contains that exact approval token. Never infer approval from phrases like "looks good" or "go ahead".
+4. APPLY always runs with auto-rollback armed. Committing (disarming rollback) requires a **second** explicit user instruction after VERIFY passes.
+5. A plan token mismatch at APPLY time produces exit code 41 — this is by design. Never bypass it.
+
+**Enforcement mechanism:** The token is a hash of the plan contents. If the plan changes (e.g., network state drifted between PLAN and APPLY), the token no longer matches → apply is refused. This converts a fuzzy judgment ("did the user approve?") into a cryptographic check the agent cannot rationalize around.
+
+Concrete flow:
+
+```text
+Agent: PLAN output → shows rule diff + PLAN-TOKEN: a1b2c3d4e5f6
+Agent: STOPS. Waits.
+User:  "Approved. a1b2c3d4e5f6"
+Agent: Runs APPLY with --approved-plan=a1b2c3d4e5f6
+Agent: After APPLY → runs VERIFY
+Agent: STOPS. Shows VERIFY results.
+User:  "VERIFY passed. Commit."
+Agent: Runs COMMIT (disarms rollback timer)
+```
+
+---
+
 ### State: VALIDATE
 
 #### 1. Create Backup (Mandatory)
@@ -231,6 +265,23 @@ fi
 ```
 
 See `references/recovery.md` for advanced recovery scenarios.
+
+#### 2a. Verify Rollback Timer Is Armed (Mandatory, Before Apply)
+
+After scheduling the rollback but BEFORE applying new rules, confirm the timer is actually running:
+
+```bash
+# For systemd-run
+systemctl is-active --quiet firewall-rollback-$$.timer 2>/dev/null \
+  && systemctl list-timers firewall-rollback-$$.timer --no-pager 2>/dev/null | grep -q firewall-rollback \
+  || { echo "FATAL: rollback timer not scheduled — aborting before applying rules" >&2; exit 1; }
+
+# For at
+atq | grep -q "$ROLLBACK_JOB_ID" \
+  || { echo "FATAL: rollback job $ROLLBACK_JOB_ID not found in queue — aborting" >&2; exit 1; }
+```
+
+**Ordering constraint:** This check runs AFTER scheduling but BEFORE apply. If the timer cannot be confirmed as armed, the script exits with code 31 and **no rule change ever happens.**
 
 #### 3. Pre-Flight Checklist
 
@@ -283,18 +334,41 @@ Docker bypasses ufw by default. Use DOCKER-USER chain. Full guide: `references/d
 
 ### State: VERIFY
 
-Run post-hardening checks:
+**Phase 1 — Host-local verification** (`scripts/firewall-verify.sh`):
 
 ```bash
 bash scripts/firewall-verify.sh
 ```
 
+**Phase 2 — External reachability check** (`scripts/container-port-audit.sh`):
+
+> **Requirement:** All connectivity verification steps MUST be executed from a second, external host with an independent network path. Verifying from the target itself cannot detect a lockout.
+
+From a **second host** on the same network segment, run:
+
+```bash
+bash scripts/container-port-audit.sh <target-ip> <target-ip6>
+```
+
+This uses `nc` + `/dev/tcp` (not nmap) to verify expected-open ports are reachable and expected-closed canary ports are filtered, for both IPv4 and IPv6. UDP probes use `nc -uzvw3`; note that a "pass" may be a false-positive due to UDP being connectionless (a silently-dropping firewall produces the same result as an open port). Use local `ss -ulnp` as the deterministic anchor for UDP state.
+
+If a second host is unavailable, the VERIFY stage also runs the container port audit and IPv4/IPv6 consistency checks locally:
+
+```bash
+bash scripts/container-port-audit.sh   # local-only: container DNAT detection
+bash scripts/ip-consistency.sh          # compare iptables vs ip6tables
+```
+
+**Phase 3 — Container port DNAT audit:**
+
+Detects ports published by container runtimes that bypass the host's INPUT chain. Checks `ss` listeners + `iptables -t nat` DNAT rules + FORWARD chain entries. Flags any published port not reflected in explicit INPUT rules.
+
 **Success criteria** (all must pass):
 1. SSH remains reachable from current and second session
-2. Only intended ports are externally reachable
+2. Only intended ports are externally reachable (verified from second host if available; otherwise local audit)
 3. Rules survive reboot (verified via service persistence)
-4. IPv6 exposure matches IPv4 policy
-5. Docker-published ports are intentional (no accidental `0.0.0.0`)
+4. IPv6 exposure matches IPv4 policy (verified by `ip-consistency.sh`)
+5. Docker-published ports are intentional (verified by `container-port-audit.sh`, no accidental `0.0.0.0`)
 6. fail2ban jails active (if installed) with correct backend
 7. Rollback timer cancelled after successful verification
 

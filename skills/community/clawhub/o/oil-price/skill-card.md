@@ -1,42 +1,55 @@
-## Description: <br>
-获取全国各省市油价信息，无需 API Key，适用于查询中国燃油价格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取全国各省市油价信息，无需 API Key; use when a user asks about gas prices or fuel costs in China.
 
-## Publisher: <br>
-[chenzihao0731](https://clawhub.ai/user/chenzihao0731) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenzihao0731](https://clawhub.ai/user/chenzihao0731)
 
-## Use Case: <br>
-External users and agents use this skill to fetch current regional fuel prices in China for lookup, reporting, or lightweight script integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party oil-price API, so availability, rate limits, and returned prices depend on that service. <br>
-Mitigation: Use it where outbound API access is acceptable, avoid excessive polling, and verify critical price data with an authoritative source. <br>
-Risk: The script requires curl and jq at runtime. <br>
-Mitigation: Install those dependencies from trusted package sources before use and review execution environments that restrict shell tools. <br>
+## Use Case:
 
+External users and developers use this skill to fetch current regional gasoline and diesel prices in China for answers, scripts, or command-line workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenzihao0731/oil-price) <br>
-- [Oil price API endpoint](https://v2.xxapi.cn/api/oilPrice) <br>
-- [API service homepage](https://v2.xxapi.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text pipe-delimited rows containing region, 92, 95, 98, and diesel prices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; sends an HTTPS request to a third-party oil-price API and does not use an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The skill sends requests to the disclosed v2.xxapi.cn oil price API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that using this external API is acceptable for the deployment environment before installing or running the skill.
+
+Risk: The skill depends on curl and jq and can fail if the API is unavailable, rate-limited, or returns an unexpected response.
+
+Mitigation: Install the required binaries and handle command failures or stale data in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenzihao0731/skills/oil-price)
+- [Oil price API endpoint](https://v2.xxapi.cn/api/oilPrice)
+- [API homepage](https://v2.xxapi.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Pipe-delimited text rows with region, 92, 95, 98, and diesel price fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; fetches public oil-price data from the disclosed v2.xxapi.cn API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

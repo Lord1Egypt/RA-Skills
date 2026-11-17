@@ -1,48 +1,62 @@
-## Description: <br>
-A universal self-improving agent that learns from all skill experiences, uses semantic, episodic, and working memory, and supports hooks-based self-correction on skill completion or errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A universal self-improving agent that learns from skill experiences using semantic, episodic, and working memory to propose codebase and skill-guidance improvements.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture lessons from agent skill runs, extract reusable patterns, and propose updates to related skills and persistent memory. It is intended for environments where human review can govern automatic hooks and proposed skill changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly observes agent activity and can store persistent memory. <br>
-Mitigation: Define redaction, review, retention, and deletion rules before installation, and keep automatic hooks disabled in sensitive projects. <br>
-Risk: The skill can propose or make changes to other skills based on learned patterns. <br>
-Mitigation: Require visible diffs, human approval, and security review before applying generated skill changes. <br>
-Risk: Captured tool inputs or outputs may include project details that should not become long-lived memory. <br>
-Mitigation: Limit what hook scripts record and review memory files before sharing, publishing, or reusing them across projects. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture lessons from skill executions, extract reusable patterns, and prepare reviewable updates to memory or related skill guidance. It is intended for teams that deliberately want cross-skill learning with human review of proposed changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/selfgrowth-kay) <br>
-- [Appendix](artifact/references/appendix.md) <br>
-- [SimpleMem: Efficient Lifelong Memory for LLM Agents](https://arxiv.org/html/2601.02553v1) <br>
-- [A Survey on the Memory Mechanism of Large Language Model Agents](https://dl.acm.org/doi/10.1145/3748302) <br>
-- [Lifelong Learning of LLM based Agents](https://arxiv.org/html/2501.07278v1) <br>
-- [Evo-Memory: DeepMind's Benchmark](https://shothota.medium.com/evo-memory-deepminds-new-benchmark) <br>
-- [Let's Build a Self-Improving AI Agent](https://medium.com/@nomannayeem/lets-build-a-self-improving-ai-agent-that-learns-from-your-feedback-722d2ce9c2d9) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, YAML, shell command, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent memory updates, hook configuration, and skill-file changes that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill asks for broad cross-skill authority and persistent memory, which can affect unrelated skills if updates are accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual invocation or require reviewable diffs before any memory or skill guidance changes are applied.
+
+Risk: The documented global hooks can log raw tool input and output, which may expose sensitive command data or file contents.
+
+Mitigation: Do not enable global hooks unless raw logging is removed or heavily redacted.
+
+Risk: Automatic self-improvement can preserve incorrect or over-generalized lessons as reusable patterns.
+
+Mitigation: Validate proposed patterns against current repository behavior and keep confidence tracking and human feedback in the review loop.
+
+## Reference(s):
+
+- [Appendix](artifact/references/appendix.md)
+- [SimpleMem: Efficient Lifelong Memory for LLM Agents](https://arxiv.org/html/2601.02553v1)
+- [A Survey on the Memory Mechanism of Large Language Model Agents](https://dl.acm.org/doi/10.1145/3748302)
+- [Lifelong Learning of LLM based Agents](https://arxiv.org/html/2501.07278v1)
+- [Evo-Memory: DeepMind's Benchmark](https://shothota.medium.com/evo-memory-deepminds-new-benchmark)
+- [Let's Build a Self-Improving AI Agent](https://medium.com/@nomannayeem/lets-build-a-self-improving-ai-agent-that-learns-from-your-feedback-722d2ce9c2d9)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON memory patterns, shell hook commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent memory updates, skill edits, and reviewable diffs based on captured execution experience.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

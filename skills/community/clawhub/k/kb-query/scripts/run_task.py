@@ -1,280 +1,474 @@
-from __future__ import annotations
-
-import argparse
-import json
+﻿import argparse
 import re
 import sys
 from pathlib import Path
 
-import catalog
-import frontmatter
-import gitea_api as g
-import result_schema
-import task_schema
+from query_context import fetch_evidence, prepare_context
+from qa_writer import apply_answer
+from task_io import parse_json_lenient, print_json, read_json_file, read_json_file_lenient, read_payload, write_json_file, write_result
 
 
-INSUFFICIENT_ANSWER = "知识库中没有足够资料回答这个问题。"
-GENERAL_FALLBACK = """以下是非知识库结论的一般性说明：
-
-可以先补充与问题直接相关的 README、说明文档、会议记录、实验记录或论文摘要，再重新入库后查询。若问题涉及项目或代码，建议优先上传完整项目根目录，让知识库形成代码库总览页；若问题涉及论文或调研，建议上传原文、笔记和关键结论说明。"""
-CATALOG_KEYS = ["documents", "concepts", "resources", "people", "projects", "reviews", "imports"]
-STOP_WORDS = {
-    "what", "when", "where", "which", "about", "does", "with", "from", "the", "and", "for",
-    "请问", "什么", "哪些", "如何", "怎么", "是否", "这个", "问题", "一下", "请", "呢", "吗",
-}
-
-
-def read_task(args: argparse.Namespace) -> dict:
-    if args.stdin:
-        return json.load(sys.stdin)
-    if args.task_json:
-        return json.loads(Path(args.task_json).read_text(encoding="utf-8"))
-    raise SystemExit("--stdin or --task-json is required")
+ANSWER_BOUNDARY_KEYS = (
+    "knowledgeSufficient",
+    "sources",
+    "usedAttachments",
+    "highValue",
+    "qaEvaluation",
+    "qa",
+    "errors",
+)
 
 
-def unique(values: list[str]) -> list[str]:
-    seen = set()
-    result = []
-    for value in values:
-        if value and value not in seen:
-            seen.add(value)
-            result.append(value)
-    return result
+def main():
+    parser = argparse.ArgumentParser(description="Research KB query helper")
+    subparsers = parser.add_subparsers(dest="command", required=True)
 
+    prepare = subparsers.add_parser("prepare", help="Read KB catalog, page cards, and reference attachments into a query planning context")
+    prepare.add_argument("--input", required=True, help="Backend payload JSON path")
+    prepare.add_argument("--context-output", required=True, help="Where to write the generated context JSON")
 
-def normalize_path(path: str) -> str:
-    clean = (path or "").replace("\\", "/").strip()
-    clean = clean.lstrip("/")
-    if "#" in clean:
-        clean = clean.split("#", 1)[0]
-    return clean
+    fetch = subparsers.add_parser("fetch", help="Read OpenClaw-selected KB pages into an evidence bundle")
+    fetch.add_argument("--input", required=True, help="Backend payload JSON path")
+    fetch.add_argument("--context", required=True, help="Context JSON produced by prepare")
+    fetch.add_argument("--selection", required=True, help="OpenClaw page-selection JSON path")
+    fetch.add_argument("--evidence-output", required=True, help="Where to write fetched evidence JSON")
 
+    apply = subparsers.add_parser("apply", help="Validate OpenClaw answer, optionally persist QA, and write backend result")
+    apply.add_argument("--input", required=True, help="Backend payload JSON path")
+    apply.add_argument("--context", required=True, help="Context JSON produced by prepare")
+    apply.add_argument("--evidence", required=True, help="Evidence JSON produced by fetch")
+    apply.add_argument("--answer", required=True, help="OpenClaw-generated answer JSON path")
+    apply.add_argument("--result-output", help="Where to write backend result JSON; defaults to payload.resultFile")
 
-def question_terms(text: str) -> list[str]:
-    tokens: set[str] = set()
-    for word in re.findall(r"[A-Za-z0-9][A-Za-z0-9_.-]*", text or ""):
-        value = word.lower().strip("._-")
-        if len(value) > 1 and value not in STOP_WORDS:
-            tokens.add(value)
-    for segment in re.findall(r"[\u4e00-\u9fff]+", text or ""):
-        if segment not in STOP_WORDS and len(segment) >= 2:
-            tokens.add(segment)
-        for size in (2, 3, 4):
-            if len(segment) < size:
-                continue
-            for index in range(0, len(segment) - size + 1):
-                value = segment[index : index + size]
-                if value not in STOP_WORDS:
-                    tokens.add(value)
-    return sorted(tokens, key=lambda item: (-len(item), item))
-
-
-def is_identity_question(text: str) -> bool:
-    lower = (text or "").lower()
-    return any(
-        marker in lower
-        for marker in ["你是谁", "介绍一下自己", "介绍你自己", "你能做什么", "who are you", "what can you do"]
-    )
-
-
-def catalog_paths(cat: dict) -> list[str]:
-    paths = []
-    for key in CATALOG_KEYS:
-        for item in cat.get(key, []) or []:
-            if isinstance(item, dict):
-                paths.append(normalize_path(item.get("file", "")))
-    return unique(paths)
-
-
-def index_paths(index_text: str) -> list[str]:
-    paths = ["index.md"]
-    for value in re.findall(r"\[\[([^\]|#]+)", index_text or ""):
-        path = normalize_path(value)
-        if path and not path.endswith(".md"):
-            path += ".md"
-        paths.append(path)
-    for value in re.findall(r"\]\(([^)#]+\.md(?:#[^)]*)?)\)", index_text or ""):
-        paths.append(normalize_path(value))
-    return unique(paths)
-
-
-def tree_paths(owner: str, repo: str) -> list[str]:
-    paths = []
-    try:
-        for item in g.list_tree(owner, repo):
-            path = normalize_path(str(item.get("path", "")))
-            if item.get("type") == "blob" and path.endswith(".md") and not path.startswith("source_files/"):
-                paths.append(path)
-    except Exception:
-        return []
-    return unique(paths)
-
-
-def heading_text(content: str) -> str:
-    body = frontmatter.strip_frontmatter(content)
-    return "\n".join(line.lstrip("#").strip() for line in body.splitlines() if line.lstrip().startswith("#"))
-
-
-def score_candidate(terms: list[str], title: str, path: str, content: str) -> int:
-    if not terms:
-        return 0
-    title_text = title.lower()
-    path_text = path.lower()
-    headings = heading_text(content).lower()
-    body = frontmatter.strip_frontmatter(content).lower()
-    score = 0
-    for term in terms:
-        lower = term.lower()
-        if lower in title_text:
-            score += 16
-        if lower in path_text:
-            score += 8
-        if lower in headings:
-            score += 6
-        count = body.count(lower)
-        if count:
-            score += min(count, 4) * (3 if len(lower) >= 3 else 2)
-    return score
-
-
-def compact(text: str) -> str:
-    cleaned = re.sub(r"^#+\s*", "", text or "", flags=re.MULTILINE)
-    return re.sub(r"\s+", " ", cleaned).strip()
-
-
-def best_snippet(content: str, terms: list[str], max_chars: int = 280) -> str:
-    body = frontmatter.strip_frontmatter(content).strip()
-    if not body:
-        return ""
-    lower = body.lower()
-    positions = [lower.find(term.lower()) for term in terms if term and lower.find(term.lower()) >= 0]
-    if positions:
-        start = max(0, min(positions) - 80)
-        end = min(len(body), start + max_chars)
-        snippet = body[start:end]
-    else:
-        paragraphs = [part.strip() for part in re.split(r"\n\s*\n", body) if part.strip()]
-        snippet = paragraphs[0] if paragraphs else body[:max_chars]
-    return compact(snippet)[:max_chars]
-
-
-def read_candidates(target: dict, question: str) -> list[dict]:
-    owner = target["repoOwner"]
-    repo = target["repoName"]
-    repo_full = target.get("repoFullName", f"{owner}/{repo}")
-    candidates: list[dict] = []
-    cat = catalog.read(owner, repo)
-    try:
-        index_text = g.read_text(owner, repo, "index.md")
-    except Exception:
-        index_text = ""
-    paths = unique(catalog_paths(cat) + index_paths(index_text) + tree_paths(owner, repo))
-    if not paths:
-        return []
-    terms = question_terms(question)
-    for path in paths[:240]:
-        if not path.endswith(".md"):
-            continue
-        try:
-            content = g.read_text(owner, repo, path)
-        except Exception:
-            continue
-        title = frontmatter.parse_title(content, Path(path).stem)
-        candidates.append({
-            "score": score_candidate(terms, title, path, content),
-            "kbType": target.get("kbType"),
-            "repoFullName": repo_full,
-            "path": path,
-            "title": title,
-            "content": content,
-        })
-    candidates.sort(key=lambda item: (item["score"], item["title"]), reverse=True)
-    return candidates
-
-
-def insufficient_payload(task: dict) -> dict:
-    return {
-        "answer": INSUFFICIENT_ANSWER + "\n\n" + GENERAL_FALLBACK,
-        "citations": [],
-        "usedScopes": unique([t.get("kbType", "") for t in task.get("kbTargets", [])]),
-        "readPages": [],
-    }
-
-
-def run(task: dict) -> dict:
-    errors = task_schema.validate_task(task)
-    if errors:
-        return result_schema.result(task, False, None, errors)
-
-    question = task["payload"]["question"]
-    terms = question_terms(question)
-    max_citations = max(1, min(int(task["payload"].get("maxCitations", 8)), 12))
-    all_candidates: list[dict] = []
-    for target in task["kbTargets"]:
-        try:
-            all_candidates.extend(read_candidates(target, question))
-        except Exception:
-            continue
-
-    all_candidates.sort(key=lambda item: (item["score"], item["title"]), reverse=True)
-    selected = [item for item in all_candidates if item["score"] >= 3][:max_citations]
-    if is_identity_question(question):
-        identity_pages = [
-            item for item in all_candidates
-            if item["path"].lower() in {"readme.md", "agents.md", "index.md", "identity.md"}
-        ]
-        if identity_pages:
-            selected = identity_pages[:max_citations]
-    non_index_selected = [item for item in selected if item["path"].lower() != "index.md"]
-    if non_index_selected:
-        selected = non_index_selected[:max_citations]
-    if not selected:
-        return result_schema.result(task, True, insufficient_payload(task), [])
-
-    citations = []
-    read_pages = []
-    answer_lines = ["根据知识库中已读页面，可以得到以下回答：", ""]
-    for index, item in enumerate(selected, start=1):
-        snippet = best_snippet(item["content"], terms)
-        if not snippet:
-            continue
-        citations.append({
-            "kbType": item["kbType"],
-            "repoFullName": item["repoFullName"],
-            "path": item["path"],
-            "title": item["title"],
-            "snippet": snippet,
-            "anchor": "",
-        })
-        read_pages.append({
-            "kbType": item["kbType"],
-            "repoFullName": item["repoFullName"],
-            "path": item["path"],
-            "title": item["title"],
-        })
-        answer_lines.append(f"{index}. {item['title']}：{snippet}")
-
-    if not citations:
-        return result_schema.result(task, True, insufficient_payload(task), [])
-
-    answer_lines.append("")
-    answer_lines.append("以上内容只来自本次读取的知识库页面；来源清单见回答下方。")
-    payload = {
-        "answer": "\n".join(answer_lines),
-        "citations": citations,
-        "usedScopes": unique([t.get("kbType", "") for t in task.get("kbTargets", [])]),
-        "readPages": read_pages,
-    }
-    return result_schema.result(task, True, payload, [])
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--stdin", action="store_true")
-    parser.add_argument("--task-json", default="")
     args = parser.parse_args()
-    print(json.dumps(run(read_task(args)), ensure_ascii=False))
+    if args.command == "prepare":
+        run_prepare(args)
+    elif args.command == "fetch":
+        run_fetch(args)
+    elif args.command == "apply":
+        run_apply(args)
+
+
+def run_prepare(args):
+    payload = read_payload(args.input)
+    try:
+        context = prepare_context(payload)
+        write_json_file(args.context_output, context)
+        print_json(context_summary(context, args.context_output))
+    except Exception as exc:
+        result = {"success": False, "errors": [str(exc)], "commitId": ""}
+        result_path = payload.get("resultFile")
+        if result_path:
+            write_result(result_path, result)
+        print_json(result)
+        sys.exit(1)
+
+
+def run_fetch(args):
+    payload = read_payload(args.input)
+    try:
+        context = read_json_file(args.context)
+        try:
+            selection_doc = read_json_file_lenient(args.selection)
+        except Exception as selection_exc:
+            selection_doc = invalid_selection_doc(selection_exc)
+        evidence = fetch_evidence(payload, context, selection_doc)
+        write_json_file(args.evidence_output, evidence)
+        print_json(evidence_summary(evidence, args.evidence_output))
+    except Exception as exc:
+        result = {"success": False, "errors": [str(exc)], "commitId": ""}
+        result_path = payload.get("resultFile")
+        if result_path:
+            write_result(result_path, result)
+        print_json(result)
+        sys.exit(1)
+
+
+def run_apply(args):
+    payload = read_payload(args.input)
+    try:
+        context = read_json_file(args.context)
+        evidence = read_json_file(args.evidence)
+        context = merge_evidence_context(context, evidence)
+        try:
+            answer_doc = read_json_file_lenient(args.answer)
+        except Exception as answer_exc:
+            answer_doc = recover_invalid_answer_doc(args.answer, context, answer_exc)
+        result = apply_answer_safely(payload, answer_doc, context)
+        result_path = args.result_output or payload.get("resultFile")
+        if result_path:
+            write_result(result_path, result)
+        print_json(result)
+    except Exception as exc:
+        context = failure_context(payload, locals().get("context") if isinstance(locals().get("context"), dict) else {})
+        result = apply_answer(payload, invalid_answer_doc(context, exc), context)
+        result_path = args.result_output or payload.get("resultFile")
+        if result_path:
+            write_result(result_path, result)
+        print_json(result)
+
+
+def apply_answer_safely(payload, answer_doc, context):
+    try:
+        return apply_answer(payload, answer_doc, context)
+    except Exception as exc:
+        if not isinstance(answer_doc, dict) or not answer_doc.get("_recoveredFromMalformedAnswerJson"):
+            raise
+        fallback = dict(answer_doc)
+        fallback["sources"] = evidence_page_sources(context)
+        if bool(fallback.get("knowledgeSufficient")) and not fallback["sources"]:
+            fallback["knowledgeSufficient"] = False
+        fallback["highValue"] = False
+        fallback["qa"] = {"write": False}
+        fallback["qaEvaluation"] = recovered_qa_evaluation(
+            "Recovered from malformed answer JSON; QA persistence is disabled."
+        )
+        errors = fallback.get("errors") if isinstance(fallback.get("errors"), list) else []
+        fallback["errors"] = errors + [f"Recovered answer source fallback: {exc}"]
+        try:
+            return apply_answer(payload, fallback, context)
+        except Exception as fallback_exc:
+            final = invalid_answer_doc(context, fallback_exc)
+            final["errors"] = final.get("errors", []) + fallback["errors"]
+            return apply_answer(payload, final, context)
+
+
+def merge_evidence_context(context, evidence):
+    merged = dict(context or {})
+    kb = dict(merged.get("kb") or {})
+    kb["evidencePages"] = evidence.get("evidencePages") or []
+    merged["kb"] = kb
+    merged["evidence"] = evidence
+    return merged
+
+
+def invalid_selection_doc(exc):
+    message = str(exc)
+    return {
+        "selectedPages": [],
+        "rationale": "OpenClaw page-selection.json was not valid JSON, so no KB page could be fetched deterministically.",
+        "unresolvedQuestions": [
+            "page-selection.json parse failed; answer must treat fetched KB evidence as insufficient."
+        ],
+        "selectionParseError": message,
+    }
+
+
+def recover_invalid_answer_doc(answer_path, context, exc):
+    message = str(exc)
+    raw = read_text_lossy(answer_path)
+    answer = extract_loose_json_string_field(raw, "answer")
+    if not answer:
+        return invalid_answer_doc(context, exc)
+
+    metadata = recover_answer_metadata(answer_metadata_region(raw))
+    sources = metadata.get("sources") if isinstance(metadata.get("sources"), list) else []
+    if not sources:
+        sources = evidence_page_sources(context)
+
+    knowledge_sufficient = metadata.get("knowledgeSufficient")
+    if not isinstance(knowledge_sufficient, bool):
+        knowledge_sufficient = bool(sources)
+
+    errors = metadata.get("errors") if isinstance(metadata.get("errors"), list) else []
+    return {
+        "answer": answer,
+        "knowledgeSufficient": knowledge_sufficient,
+        "sources": sources,
+        "usedAttachments": metadata.get("usedAttachments") if isinstance(metadata.get("usedAttachments"), list) else [],
+        "highValue": False,
+        "qaEvaluation": recovered_qa_evaluation(
+            "Recovered from malformed answer JSON; QA persistence is disabled."
+        ),
+        "qa": {"write": False},
+        "errors": errors + [f"answer.json was malformed and recovered: {message}"],
+        "_recoveredFromMalformedAnswerJson": True,
+    }
+
+
+def recover_answer_metadata(raw):
+    metadata = {}
+    for key in ["knowledgeSufficient", "highValue"]:
+        match = re.search(rf'"{re.escape(key)}"\s*:\s*(true|false)', raw, flags=re.IGNORECASE)
+        if match:
+            metadata[key] = match.group(1).lower() == "true"
+
+    for key in ["sources", "usedAttachments", "errors"]:
+        value_text = extract_json_value(raw, key)
+        if not value_text:
+            continue
+        try:
+            value = parse_json_lenient(value_text, f"answer.{key}")
+        except Exception:
+            continue
+        metadata[key] = value
+    return metadata
+
+
+def read_text_lossy(path):
+    try:
+        return Path(path).read_bytes().decode("utf-8-sig", errors="replace")
+    except Exception:
+        return ""
+
+
+def answer_metadata_region(raw):
+    if not raw:
+        return ""
+    match = re.search(r'"answer"\s*:\s*"', raw)
+    if not match:
+        return raw
+    tail = raw[match.end():]
+    boundary = find_answer_metadata_boundary(tail)
+    return tail[boundary.start():] if boundary else raw
+
+
+def extract_loose_json_string_field(raw, field):
+    if not raw:
+        return ""
+    match = re.search(rf'"{re.escape(field)}"\s*:\s*"', raw)
+    if not match:
+        return ""
+    start = match.end()
+    tail = raw[start:]
+    boundary = find_answer_metadata_boundary(tail)
+    if boundary:
+        content = tail[:boundary.start()]
+    else:
+        content = tail
+        brace = content.rfind("}")
+        if brace >= 0:
+            content = content[:brace]
+    content = strip_json_string_terminator(content)
+    return decode_jsonish_string(content).strip()
+
+
+def find_answer_metadata_boundary(tail):
+    key_pattern = "(?:" + "|".join(re.escape(key) for key in ANSWER_BOUNDARY_KEYS) + ")"
+    patterns = [
+        r'"\s*,\s*"' + key_pattern + r'"\s*:',
+        r'"\s*\n\s*"' + key_pattern + r'"\s*:',
+    ]
+    matches = [match for pattern in patterns for match in [re.search(pattern, tail, flags=re.DOTALL)] if match]
+    if not matches:
+        return None
+    return min(matches, key=lambda match: match.start())
+
+
+def strip_json_string_terminator(value):
+    content = str(value or "").rstrip()
+    if content.endswith(","):
+        content = content[:-1].rstrip()
+    if content.endswith('"'):
+        content = content[:-1]
+    return content
+
+
+def decode_jsonish_string(value):
+    result = []
+    index = 0
+    while index < len(value):
+        char = value[index]
+        if char != "\\" or index + 1 >= len(value):
+            result.append(char)
+            index += 1
+            continue
+
+        next_char = value[index + 1]
+        if next_char == "n":
+            result.append("\n")
+            index += 2
+        elif next_char == "r":
+            result.append("\r")
+            index += 2
+        elif next_char == "t":
+            result.append("\t")
+            index += 2
+        elif next_char == "b":
+            result.append("\b")
+            index += 2
+        elif next_char == "f":
+            result.append("\f")
+            index += 2
+        elif next_char in {'"', "\\", "/"}:
+            result.append(next_char)
+            index += 2
+        elif next_char == "u" and index + 5 < len(value):
+            hex_value = value[index + 2:index + 6]
+            try:
+                result.append(chr(int(hex_value, 16)))
+                index += 6
+            except ValueError:
+                result.append(char)
+                index += 1
+        else:
+            result.append(char)
+            index += 1
+    return "".join(result)
+
+
+def extract_json_value(raw, key):
+    match = re.search(rf'"{re.escape(key)}"\s*:', raw)
+    if not match:
+        return ""
+    index = match.end()
+    while index < len(raw) and raw[index].isspace():
+        index += 1
+    if index >= len(raw):
+        return ""
+
+    if raw[index] in "[{":
+        return extract_balanced_json(raw, index)
+
+    literal = re.match(r"(true|false|null|-?\d+(?:\.\d+)?)", raw[index:], flags=re.IGNORECASE)
+    return literal.group(1) if literal else ""
+
+
+def extract_balanced_json(raw, start):
+    open_char = raw[start]
+    close_char = "]" if open_char == "[" else "}"
+    depth = 0
+    in_string = False
+    escape = False
+    for index in range(start, len(raw)):
+        char = raw[index]
+        if in_string:
+            if escape:
+                escape = False
+            elif char == "\\":
+                escape = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == open_char:
+            depth += 1
+        elif char == close_char:
+            depth -= 1
+            if depth == 0:
+                return raw[start:index + 1]
+    return ""
+
+
+def evidence_page_sources(context):
+    pages = (context.get("kb") or {}).get("evidencePages") or []
+    sources = []
+    for page in pages:
+        path = page.get("path") or ""
+        if not path:
+            continue
+        content = str(page.get("content") or "")
+        snippet = first_text_line(content)[:240]
+        sources.append({
+            "path": path,
+            "title": page.get("title") or path,
+            "type": page.get("type") or path.split("/", 1)[0],
+            "snippet": snippet,
+        })
+    return sources
+
+
+def first_text_line(text):
+    for line in str(text or "").splitlines():
+        clean = line.strip().lstrip("#").strip()
+        if clean:
+            return clean
+    return ""
+
+
+def recovered_qa_evaluation(reason):
+    return {
+        "reuseValue": 0,
+        "synthesisDepth": 0,
+        "evidenceQuality": 0,
+        "stability": 0,
+        "actionability": 0,
+        "attachmentDriven": False,
+        "ephemeral": True,
+        "reason": reason,
+    }
+
+
+def invalid_answer_doc(context, exc):
+    message = str(exc)
+    question = context.get("question") or ""
+    return {
+        "answer": (
+            "OpenClaw 没有写出可用的 answer.json，且无法从文件中救出可展示答案，因此本轮没有可用答案。\n\n"
+            f"问题：{question}\n\n"
+            f"错误信息：{message}\n\n"
+            "可以重新提问，或把问题范围缩小后再试。"
+        ),
+        "knowledgeSufficient": False,
+        "sources": [],
+        "usedAttachments": [],
+        "highValue": False,
+        "qaEvaluation": recovered_qa_evaluation("OpenClaw answer JSON was invalid; QA persistence is not allowed."),
+        "qa": {"write": False},
+        "errors": [message],
+    }
+
+
+def failure_context(payload, context):
+    merged = dict(context or {})
+    merged.setdefault("question", payload.get("question") or "")
+    kb = dict(merged.get("kb") or {})
+    kb.setdefault("evidencePages", [])
+    merged["kb"] = kb
+    merged.setdefault("evidence", {
+        "schema": "research-kb/kb-query-evidence@1",
+        "question": merged.get("question") or "",
+        "evidencePages": [],
+        "missingPages": [],
+        "attachments": merged.get("attachments") or [],
+    })
+    return merged
+
+
+def context_summary(context, context_output):
+    kb = context.get("kb") or {}
+    return {
+        "success": True,
+        "mode": "prepare",
+        "contextFile": context_output,
+        "schema": context.get("schema"),
+        "question": context.get("question") or "",
+        "catalogPageCount": kb.get("catalogPageCount") or 0,
+        "visibleCatalogPageCount": len(kb.get("catalogPages") or []),
+        "rankedCatalogPageCount": len(kb.get("rankedCatalogPages") or []),
+        "starterPageCardCount": len(kb.get("starterPageCards") or []),
+        "attachmentCount": len(context.get("attachments") or []),
+        "analysisLimits": context.get("analysisLimits") or {},
+        "next": "Read contextFile from disk, keep it out of chat, write page-selection.json, then run fetch.",
+    }
+
+
+def evidence_summary(evidence, evidence_output):
+    pages = evidence.get("evidencePages") or []
+    return {
+        "success": True,
+        "mode": "fetch",
+        "evidenceFile": evidence_output,
+        "schema": evidence.get("schema"),
+        "evidencePageCount": len(pages),
+        "evidenceChars": sum(len(page.get("content") or "") for page in pages),
+        "evidencePages": [
+            {
+                "path": page.get("path") or "",
+                "title": page.get("title") or "",
+                "type": page.get("type") or "",
+                "contentChars": len(page.get("content") or ""),
+            }
+            for page in pages
+        ],
+        "missingPageCount": len(evidence.get("missingPages") or []),
+        "analysisLimits": evidence.get("analysisLimits") or {},
+        "next": "Read evidenceFile from disk, keep it out of chat, write valid answer.json, then run apply.",
+    }
 
 
 if __name__ == "__main__":
     main()
+
+

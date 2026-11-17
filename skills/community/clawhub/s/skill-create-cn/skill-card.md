@@ -1,38 +1,54 @@
-## Description: <br>
-在需要新建或优化技能、判断复用还是重建、并生成最小可用技能文件时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在需要新建或优化技能、判断复用还是重建、并生成最小可用技能文件时使用。
 
-## Publisher: <br>
-[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create or improve OpenClaw skills, decide whether to reuse an existing skill or create a new one, and produce a minimal usable skill package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or revised skills may contain incorrect guidance or optional script and package files that introduce unwanted behavior. <br>
-Mitigation: Review SKILL.md and pay extra attention to any proposed .js, .sh, or package.json files before relying on or deploying the generated skill. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or refine OpenClaw skills, decide whether to reuse an existing skill or create a new one, and produce a minimal viable SKILL.md-centered artifact.
 
-## Reference(s): <br>
-- [Create-Skill release page](https://clawhub.ai/yangjinghua0127/skill-create-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or revise SKILL.md by default, with optional .js, .sh, or package.json files only when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can guide an agent to create or modify files under a workspace skills directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skill files and any optional scripts before installing or deploying them.
+
+Risk: Skill-generation guidance may produce unclear or overlapping skills if similar existing skills are not checked first.
+
+Mitigation: Search for similar skills first and prefer extending an existing skill when it covers the requested use case.
+
+## Reference(s):
+
+- [Create-Skill on ClawHub](https://clawhub.ai/yangjinghua0127/skills/skill-create-cn)
+- [Publisher profile](https://clawhub.ai/user/yangjinghua0127)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and optional generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is a minimal SKILL.md; scripts or package metadata are generated only when needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

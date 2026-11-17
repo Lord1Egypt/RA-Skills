@@ -1,42 +1,54 @@
-## Description: <br>
-MemDDC helps agents maintain project documentation and code iteration context by scanning repositories, generating docs, building DDD models, compressing project memory, and synchronizing changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemDDC helps agents scan software projects, generate and synchronize project documentation, build DDD-oriented context, and use structured memory snapshots during code iteration.
 
-## Publisher: <br>
-[qihao123](https://clawhub.ai/user/qihao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qihao123](https://clawhub.ai/user/qihao123)
 
-## Use Case: <br>
-Developers and engineering teams use MemDDC to create and refresh project knowledge, DDD constraints, relation maps, VCS summaries, and implementation guidance for ongoing maintenance or refactoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read and store sensitive project knowledge, including code, configs, commit history, IDE metadata, and user documents. <br>
-Mitigation: Install it only in repositories where that access is acceptable, and review .memddc contents before committing or sharing them. <br>
-Risk: Database or integration discovery could expose live credentials or sensitive operational details. <br>
-Mitigation: Provide redacted schema, DDL exports, or sanitized samples instead of live database credentials. <br>
-Risk: Scans, AI submissions, and file updates can change or disclose project context without clear consent boundaries. <br>
-Mitigation: Require explicit approval before scans, AI submission, or file updates. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create and maintain project knowledge bases, DDD models, code-change impact context, and synchronized documentation for long-lived software projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qihao123/memddc-ai-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration examples, and proposed code or shell-command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .memddc project memory, documentation, VCS analysis, and DDD model files when permitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release metadata and target metadata) <br>
+Risk: The skill may scan broad local project content, VCS history, configuration files, user documents, and possible database connection material into persistent shared artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on repositories where that analysis and storage is acceptable; exclude secrets and environment files, avoid live database credentials, and review .memddc contents before committing or sharing.
+
+Risk: Generated project memory and documentation may expose sensitive implementation or business context if shared with a team or committed to version control.
+
+Mitigation: Prefer sanitized schema exports and curated documentation, and apply repository access controls before synchronizing generated artifacts.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/qihao123/skills/memddc-ai-skill)
+- [Project homepage listed in artifact](https://github.com/qihao123/memddc-ai-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .memddc documentation, memory snapshots, logs, diagrams, and configuration files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact skill information)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

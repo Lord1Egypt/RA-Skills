@@ -1,46 +1,59 @@
-## Description: <br>
-Manages a local ChromaDB-backed enterprise knowledge base for document upload, document management, semantic search, and retrieval-augmented question answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise Knowledge Base Manager helps agents upload, manage, search, and answer questions from enterprise documents using a local ChromaDB-backed knowledge base.
 
-## Publisher: <br>
-[apanghu](https://clawhub.ai/user/apanghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apanghu](https://clawhub.ai/user/apanghu)
 
-## Use Case: <br>
-Employees, support teams, and developers use this skill to upload enterprise documents, maintain a shared local knowledge base, and answer business or policy questions through retrieval before generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document text, chunks, user queries, and reranking inputs may leave the local machine when DashScope or OpenAI is configured. <br>
-Mitigation: Use only approved embedding providers for confidential data, protect API keys, and disclose external processing to operators before deployment. <br>
-Risk: The skill uses a shared local knowledge-base directory and supports delete operations. <br>
-Mitigation: Restrict filesystem permissions on the shared KB directory and require operator confirmation or backups before delete or reset workflows. <br>
-Risk: Server security evidence marks the release as suspicious because external processing, shared storage, and destructive deletion behavior are under-disclosed. <br>
-Mitigation: Review before installing in sensitive or enterprise environments and document provider, storage, and deletion behavior for users. <br>
+## Use Case:
 
+Employees, support teams, and developers use this skill to build and operate an enterprise knowledge base for document upload, semantic retrieval, and RAG-style question answering over PDF, DOCX, TXT, and Markdown content.
 
-## Reference(s): <br>
-- [Enterprise Knowledge Base Manager on ClawHub](https://clawhub.ai/apanghu/enterprise-kb-manager) <br>
-- [Publisher profile: apanghu](https://clawhub.ai/user/apanghu) <br>
-- [DashScope compatible embedding API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
-- [README.md](artifact/README.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text with inline shell commands, JSON configuration examples, and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces document-management responses, retrieval results, and setup guidance; uploaded document text, chunks, queries, and reranking inputs may be processed by configured embedding providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: Uploaded document text, search queries, and reranked passages may be transmitted to configured external embedding or compatible API providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider configuration before use, lock allowed endpoints, protect API keys, and avoid uploading confidential documents unless external transmission is approved.
+
+Risk: Shared knowledge-base storage and delete or reset commands can affect data used by multiple agents.
+
+Mitigation: Run the skill under a restricted account, use external access controls, and keep backups before enabling document deletion or reset workflows.
+
+Risk: Documented privacy and access-control claims may overstate the protections provided by the artifact.
+
+Mitigation: Validate the deployment with independent controls and do not rely on the skill alone for tenant isolation, confidentiality, or policy enforcement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apanghu/skills/enterprise-kb-manager)
+- [Publisher profile](https://clawhub.ai/user/apanghu)
+- [DashScope compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create and update local knowledge-base files, vector database entries, document chunks, and retrieval responses.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

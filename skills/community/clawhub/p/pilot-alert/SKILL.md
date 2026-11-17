@@ -65,7 +65,7 @@ curl -X POST "$WEBHOOK_URL" -H "Content-Type: application/json" -d "$payload"
 #!/bin/bash
 SOURCE="production-app"
 TOPIC="alerts.error.*"
-WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK"
+WEBHOOK_URL="REDACTED-SECRET"
 
 pilotctl --json subscribe "$SOURCE" "$TOPIC" --timeout 600 | \
   jq -c '.data.events[]' | \

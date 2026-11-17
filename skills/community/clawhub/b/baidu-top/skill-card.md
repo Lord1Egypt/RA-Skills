@@ -1,44 +1,59 @@
-## Description: <br>
-获取百度首页热搜、小说、电影、电视剧等榜单。当用户说：百度今天热搜榜？热播剧榜单，或类似百度榜单问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取百度首页热搜、小说、电影、电视剧等榜单。当用户说：百度今天热搜榜？热播剧榜单，或类似百度榜单问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current Baidu homepage ranking lists for hot searches, novels, movies, and TV dramas, then return either readable grouped text or JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live requests to Baidu ranking pages and depends on Baidu page availability and structure. <br>
-Mitigation: Use it only when live Baidu ranking data is needed, expect occasional fetch or parsing failures, and review results before relying on them. <br>
-Risk: The skill may require Python dependencies that are not already installed. <br>
-Mitigation: Install the documented Python packages in the execution environment before running the script. <br>
-Risk: High request frequency may trigger Baidu rate limits or other access controls. <br>
-Mitigation: Run requests at a reasonable frequency and adjust timeout or User-Agent only when appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and summarize Baidu homepage ranking lists for hot searches, novels, movies, and TV series.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisuapi/baidu-top) <br>
-- [Baidu Top Source Page](https://top.baidu.com/board?platform=pc&tab=homepage&sa=pc_index_homepage_all) <br>
-- [JisuAPI Publisher Site](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Readable grouped text by default, or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live Baidu page fetch with configurable limit, timeout, and User-Agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill contacts Baidu to retrieve public ranking pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and run it only in environments where outbound requests to the source page are acceptable.
+
+Risk: The skill asks users to install Python packages from pip.
+
+Mitigation: Install dependencies in a virtual environment and consider pinning package versions for stricter environments.
+
+Risk: The ranking parser depends on Baidu page structure and may fail if the page changes or rate limits requests.
+
+Mitigation: Review results before relying on them and adjust parsing rules or request frequency if the source page changes or returns errors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/baidu-top)
+- [Baidu Top ranking source](https://top.baidu.com/board?platform=pc&tab=homepage&sa=pc_index_homepage_all)
+- [JisuAPI publisher site](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Human-readable text or JSON containing ranked Baidu board entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports result limits up to 50 items per board, request timeout configuration, and optional custom User-Agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

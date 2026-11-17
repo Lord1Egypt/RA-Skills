@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Portada noticiero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#1a1a1a; font-family:'Poppins',sans-serif; padding:40px 0; display:flex; justify-content:center; }
+  /* La foto hero: apunta a recursos/cover.png (imagen Higgsfield). Ajusta el 'center 8%' al encuadre. */
+  .slide { width:1080px; height:1350px; position:relative; overflow:hidden;
+    background:#0b0a10 url("recursos/cover.png") center 8% / cover no-repeat;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+  .grad-top { position:absolute; top:0; left:0; width:100%; height:340px;
+    background:linear-gradient(to bottom, rgba(11,10,16,0.78) 0%, rgba(11,10,16,0) 100%); }
+  .grad-bottom { position:absolute; bottom:0; left:0; width:100%; height:720px;
+    background:linear-gradient(to bottom, rgba(11,10,16,0) 0%, rgba(11,10,16,0.55) 42%, rgba(11,10,16,0.9) 72%, rgba(8,7,12,0.98) 100%); }
+  .breaking { position:absolute; top:66px; left:50%; transform:translateX(-50%);
+    background:#D8352B; color:#fff; padding:14px 34px; font-weight:800; font-size:30px; letter-spacing:4px; box-shadow:0 8px 22px rgba(0,0,0,0.45); }
+  .breaking .dot { color:#FFE881; }
+  .headline { position:absolute; bottom:250px; left:60px; width:970px;
+    font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:1px;
+    font-size:118px; line-height:0.96; color:#fff; text-shadow:0 6px 26px rgba(0,0,0,0.72), 0 2px 6px rgba(0,0,0,0.6); }
+  .headline .amber { color:#F7C948; text-shadow:0 6px 26px rgba(0,0,0,0.65); }
+  .swipe { position:absolute; bottom:150px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .swipe .txt { font-family:'Poppins',sans-serif; font-weight:700; font-size:24px; letter-spacing:3px; color:rgba(255,255,255,0.92); }
+  .swipe .dots { display:flex; gap:12px; }
+  .swipe .dots i { width:11px; height:11px; border-radius:50%; background:rgba(255,255,255,0.45); }
+  .swipe .dots i.on { background:#F4C75B; }
+  .handle { position:absolute; bottom:44px; left:44px; font-family:'Poppins'; font-size:22px; font-weight:600; color:rgba(255,255,255,0.8); letter-spacing:0.5px; }
+  .num { position:absolute; bottom:40px; right:48px; font-family:'Caveat'; font-size:34px; color:rgba(255,255,255,0.65); }
+  .tape { position:absolute; top:38px; left:70px; width:150px; height:34px; background:rgba(244,199,91,0.6); transform:rotate(-8deg); box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+  .tape.r { left:auto; right:80px; transform:rotate(10deg); background:rgba(216,90,78,0.55); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="grad-top"></div>
+  <div class="grad-bottom"></div>
+  <div class="tape"></div>
+  <div class="tape r"></div>
+  <div class="breaking"><span class="dot">🔴</span> ÚLTIMA HORA · IA</div>
+  <!-- Titular Anton: 2-3 líneas, palabra clave en <span class="amber"> -->
+  <div class="headline">‹Titular impacto<br>línea 2…<br><span class="amber">y el giro›</span></div>
+  <div class="swipe">
+    <div class="txt">DESLIZA PARA ENTENDER →</div>
+    <div class="dots"><i class="on"></i><i></i><i></i></div>
+  </div>
+  <div class="handle">@tuhandle</div>
+  <div class="num">1 / 8</div>
+</div>
+</body>
+</html>

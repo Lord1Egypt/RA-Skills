@@ -1,5 +1,5 @@
 ## Description: <br>
-全国招标中标采购信息搜索 - 保标招标 - 支持多条件筛选的招投标数据搜索，返回项目金额、甲方、乙方、代理机构、采集源网址等核心字段。 <br>
+Provides workflow guidance and helper scripts for querying Baobiao bid-search APIs, converting natural-language search intent into structured search parameters, and retrieving bid project, contract, company, and planned-project details. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and business researchers use this skill to search Chinese tender, bid award, contract, procurement-intent, and auction-rental project records with filters for keywords, category, region, dates, and pagination. <br>
+Developers and external teams use this skill to plan, test, and implement Baobiao bid-search workflows, including natural-language search condition conversion, project detail retrieval, attachments, source URLs, contracts, company profiles, and planned-project queries. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Tender-search terms, company names, locations, bid IDs, URLs, and similar business research inputs are sent to the stated Biaozhaozhao/Zhiliaobiaoxun API. <br>
-Mitigation: Avoid entering secrets, regulated personal data, or confidential deal strategy as search terms. <br>
-Risk: The skill requires an API key for the external bid-data service. <br>
-Mitigation: Keep BID_API_KEY scoped, stored outside code, monitored, and rotated according to the provider's guidance. <br>
+Risk: The skill calls an external bid-search API and requires a dedicated API key. <br>
+Mitigation: Use BAOBIAO_ZTB_API_KEY from secure environment configuration, keep it out of logs and code, and avoid changing the base URL or key variable unless testing a trusted endpoint. <br>
+Risk: API responses or AI-derived fields may be mistaken for official structured bid data. <br>
+Mitigation: Preserve the distinction between official fields, raw interface fields, and AI-inferred fields in agent output. <br>
+Risk: A successful HTTP response may still represent a business-level failure. <br>
+Mitigation: Check HTTP status, response code, and subCode before reporting success. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brade888/sbkj-bidsearch) <br>
-- [Official website](https://www.bog-bid.com) <br>
-- [API endpoint](https://gate.gov-bid.com/outer-gateway/bid/SearchProjectForAI) <br>
-- [Interface documentation](http://faq.zhvac.com/web/#/p/50f55291c248b58163e9ae4aa178eb12) <br>
+- [Skill page](https://clawhub.ai/brade888/skills/sbkj-bidsearch) <br>
+- [API reference](references/api-reference.md) <br>
+- [Natural-language search workflow](references/natural-language-search-workflow.md) <br>
+- [Project detail workflow](references/project-detail-workflow.md) <br>
+- [Enums and response rules](references/enums-and-response-rules.md) <br>
+- [Brand and promotion guidance](references/brand-and-promotion.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; API responses are JSON.] <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
+**Output Format:** [Markdown guidance with JSON examples, Python helper script usage, and shell command snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BID_API_KEY and optionally BID_SERVER_URL; sends search parameters to the stated bid-data API.] <br>
+**Other Properties Related to Output:** [May produce API request payloads and parsed JSON outputs when the caller provides a valid BAOBIAO_ZTB_API_KEY.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+1.0.3 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

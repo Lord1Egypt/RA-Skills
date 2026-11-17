@@ -1,0 +1,11 @@
+# Vendor Comparison Sheet - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+vendor,unit_price_usd,setup_fee_usd,recurring_fee_usd,min_order_qty,lead_time_days,warranty_months,returns_window_days,total_cost_12mo_usd,source_document,captured_on
+vendor-a,0,0,0,0,0,0,0,0,quote email,2026-01-15
+vendor-b,0,0,0,0,0,0,0,0,quote email,2026-01-15
+vendor-c,0,0,0,0,0,0,0,0,web pricing page,2026-01-15
+vendor-d,0,0,0,0,0,0,0,0,web pricing page,2026-01-15
+vendor-e,0,0,0,0,0,0,0,0,phone call log,2026-01-16
+vendor-f,0,0,0,0,0,0,0,0,phone call log,2026-01-16
+vendor-g,0,0,0,0,0,0,0,0,no quote received,
+vendor-h,0,0,0,0,0,0,0,0,no quote received,

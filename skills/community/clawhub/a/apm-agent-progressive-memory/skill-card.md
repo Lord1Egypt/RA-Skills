@@ -1,43 +1,63 @@
-## Description: <br>
-APM Protocol (Agent Progressive Memory): Progressive disclosure protocol for group chat AND DM (main session) memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APM Protocol (Agent Progressive Memory): Progressive disclosure protocol for group chat AND DM (main session) memory.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Developers and operators use this skill to give agents progressive workspace memory for direct sessions and group chats, with hooks that load context at session start and record memory flush state. It is most appropriate where persistent memory behavior is intentionally configured and reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent workspace memory hooks may expose private direct-session memory in group chats when group-name mapping is missing or the fallback path is left open. <br>
-Mitigation: Configure memory/groups/group_names.json before using group chats, review the injected memory scope before deployment, and change unmapped groups to fail closed instead of falling back to direct-session memory. <br>
-Risk: Automatic and scheduled flush behavior records session memory metadata and can preserve more context than intended. <br>
-Mitigation: Review scheduled and precompact flush settings, inspect stored flush-state metadata, and deploy only in workspaces where persistent memory retention is expected. <br>
+## Use Case:
 
+Developers and operators use this skill to structure agent memory for private sessions and group chats, with progressive loading, memory write-back rules, and hooks for session bootstrap and flush tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biociao/apm-agent-progressive-memory) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [HOOKS.md](artifact/HOOKS.md) <br>
-- [apm_session_start hook documentation](artifact/hooks/apm_session_start/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript hook code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes memory file templates, OpenClaw hook handlers, installation commands, and configurable group-name mapping for chat-specific memory routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release metadata) <br>
+Risk: Private DM memory can be exposed in group sessions when chat mapping or detection fails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid group use until the DM fallback fails closed, keep group_names.json mappings complete, and review behavior before installing in workspaces with private notes or group chats.
+
+Risk: Automatic memory bootstrap and persistence can surface or retain sensitive workspace context.
+
+Mitigation: Install only in workspaces where automatic memory loading and persistence are acceptable, and review the bundled hooks before enabling them.
+
+Risk: Flush-state handling can blur DM and group boundaries in the current hook design.
+
+Mitigation: Avoid group workflows until flush-state separation is fixed and verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biociao/skills/apm-agent-progressive-memory)
+- [SKILL.md](artifact/SKILL.md)
+- [HOOKS.md](artifact/HOOKS.md)
+- [ADDENDUM.md](artifact/ADDENDUM.md)
+- [apm_session_start hook documentation](artifact/hooks/apm_session_start/HOOK.md)
+- [remem-flush hook documentation](artifact/hooks/remem-flush/HOOK.md)
+- [precompact-remem hook documentation](artifact/hooks/precompact-remem/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with file templates, hook installation commands, and JavaScript hook code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bootstrap and flush hooks that can read or update workspace memory state when installed.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

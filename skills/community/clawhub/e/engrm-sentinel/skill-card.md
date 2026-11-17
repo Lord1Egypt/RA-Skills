@@ -1,40 +1,52 @@
-## Description: <br>
-Use Engrm packs and Sentinel context to surface likely mistakes, risky patterns, and lessons that would have prevented them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Engrm packs and Sentinel context to surface likely mistakes, risky patterns, and lessons that would have prevented them.
 
-## Publisher: <br>
-[dr12hes](https://clawhub.ai/user/dr12hes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dr12hes](https://clawhub.ai/user/dr12hes)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill during security-sensitive or high-risk code work to surface likely mistakes, connect them to available Engrm pack lessons, and suggest practical safer paths.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may increase advisory risk-prevention comments on broad security-sensitive coding tasks.
+
+Mitigation: Use it as review support and narrow activation criteria when teams need tighter behavior.
+
+Risk: Agents could overstate Engrm availability or invent unsupported Engrm commands.
+
+Mitigation: Only use Engrm when it is already connected and avoid inventing setup steps or shell commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill during risky coding work to apply Engrm packs and Sentinel context before mistakes spread. It helps review authentication, secrets, API boundaries, security-sensitive data, refactors, deployment, and recurring problem areas. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested lessons, standards, or review conclusions could be incorrect or misleading if the available Engrm or Sentinel context is incomplete. <br>
-Mitigation: Use trusted context and review suggested new lessons or standards before relying on them in later sessions. <br>
-Risk: An agent could invent unavailable Engrm setup steps or shell commands when Engrm is not connected. <br>
-Mitigation: State that Engrm Sentinel context is not connected and continue without inventing setup steps or commands. <br>
+**Output Format:** [Markdown or plain-text review guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dr12hes/engrm-sentinel) <br>
+**Other Properties Related to Output:** [Does not add commands, tools, persistence, or hidden access; depends on Engrm already being connected when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory review output; no code execution or credential handling is included.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -25,7 +25,7 @@ A diagnostic conclusion is **incomplete** unless ALL four criteria are satisfied
 
 The root cause must be independently measurable and verifiable. If you cannot test it, it is a hypothesis, not a root cause.
 
-- ✅ "Datastore latency exceeded 50ms because IOPS hit the SAN cap of 10,000" — directly testable via `get_metrics datastore.iops`
+- ✅ "Datastore latency exceeded 50ms because IOPS hit the SAN cap of 10,000" — directly testable via `get_resource_metrics` on the host (`datastore|numberReadAveraged_average`, `datastore|numberWriteAveraged_average`)
 - ❌ "Network was congested" — too vague to verify
 
 ### 2. Sufficiency (充分性)
@@ -118,23 +118,23 @@ Missing:
 
 ### Good — Complete Diagnosis
 
-> 🔴 [ROOT] Host `esx-03` CPU ready time exceeds 15% (validated via `get_metrics host.cpu.ready`)
+> 🔴 [ROOT] Host `esx-03` CPU ready time exceeds 15% (validated via `get_resource_metrics` on the host, `cpu|max_cpu_ready`)
 >   → [PROPAGATION] vCPU contention from 4-VM reservation collision in resource pool `prod-rp`
 >     → [AMPLIFICATION] DRS is in manual mode, so VMs are not rebalanced
 >       → [IMPACT] Application p99 latency doubled from 200 ms to 400 ms
 >
-> ✅ Falsifiability: `host.cpu.ready` metric directly observable; threshold defined in vSphere docs
+> ✅ Falsifiability: `cpu|max_cpu_ready` (worst VM CPU Ready %) directly observable; threshold defined in vSphere docs
 > ✅ Sufficiency: vMotion `vm-A` off `esx-03` reduced ready time to 3% and p99 latency back to 200 ms
 > ✅ Necessity: only VMs in `prod-rp` with active reservations are affected; identical workloads in `staging-rp` are healthy
-> ✅ Mechanism: cpu.ready = vCPU waiting for pCPU → guest perceives as CPU starvation → app threadpool exhaustion → tail latency
+> ✅ Mechanism: CPU Ready = vCPU waiting for pCPU → guest perceives as CPU starvation → app threadpool exhaustion → tail latency
 
 ## Related Skills
 
 A complete investigation often chains across skills:
 
 - **vmware-aria** (this skill): metrics, alerts, anomaly detection — primary L1/L2 data source
-- [vmware-monitor](https://github.com/zw008/VMware-Monitor): inventory, alarms, events — additional read-only data source, code-level safe
-- [vmware-aiops](https://github.com/zw008/VMware-AIops): VM/host state, deployment history; can also remediate at L3+
-- [vmware-pilot](https://github.com/zw008/VMware-Pilot): orchestrate the investigation itself as a multi-step Dispatcher → Subagent workflow
+- [vmware-monitor](https://github.com/vmware-skills/VMware-Monitor): inventory, alarms, events — additional read-only data source, code-level safe
+- [vmware-aiops](https://github.com/vmware-skills/VMware-AIops): VM/host state, deployment history; can also remediate at L3+
+- [vmware-pilot](https://github.com/vmware-skills/VMware-Pilot): orchestrate the investigation itself as a multi-step Dispatcher → Subagent workflow
 
 The agent should treat investigation as **read-heavy first**: gather across skills, reason centrally, only invoke L3+ write tools after the four criteria are satisfied AND the user has approved a remediation plan.

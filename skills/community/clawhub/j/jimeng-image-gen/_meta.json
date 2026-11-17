@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn783k3wfxrh2xjppf1cnea8cs82z9m0",
-  "slug": "jimeng-image-gen",
+  "name": "jimeng-ai",
   "version": "1.0.0",
-  "publishedAt": 1773687236503
+  "summary": "即梦 AI 图片生成技能（火山引擎图片生成 4.0）。支持文生图、图生图、字体设计、4K 高清输出，零依赖纯 Node.js 实现。",
+  "description": "基于火山引擎即梦 AI 图片生成 4.0 异步接口，支持文生图、图生图（多图参考）、字体设计海报模式，最高 4K 分辨率，AI 自动推理比例，纯 Node.js 内置模块零依赖。需配置 JIMENG_ACCESS_KEY 和 JIMENG_SECRET_KEY 环境变量。",
+  "tags": ["image-generation", "ai", "jimeng", "volcengine", "china", "text-to-image", "image-to-image", "4k", "chinese"],
+  "homepage": "https://www.volcengine.com/product/jimeng",
+  "author": "qclaw",
+  "license": "MIT",
+  "requires": {
+    "bins": ["node"],
+    "env": ["JIMENG_ACCESS_KEY", "JIMENG_SECRET_KEY"]
+  }
 }

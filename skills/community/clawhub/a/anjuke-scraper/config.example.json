@@ -1,0 +1,14 @@
+{
+  "city": "重庆",
+  "city_pinyin": "cq",
+  "keyword": "两江新区互联网产业园",
+  "max_pages": 8,
+  "target_places": [
+    "重庆两江数字经济产业园 互联网园一期",
+    "重庆两江新区互联网产业园一期",
+    "重庆两江数字经济产业园"
+  ],
+  "max_rent": 2000,
+  "cdp_port": 9222,
+  "output_dir": "output"
+}

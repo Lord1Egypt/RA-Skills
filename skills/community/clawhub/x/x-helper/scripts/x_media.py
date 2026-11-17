@@ -190,14 +190,8 @@ def main():
     if len(sys.argv) >= 3:
         token = sys.argv[2]
     else:
-        # Try to get token from auth module
-        try:
-            from x_auth import get_valid_token
-            t = get_valid_token()
-            if t:
-                token = t
-        except ImportError:
-            pass
+        # Token comes only from the user-set X_BEARER_TOKEN env var.
+        token = os.environ.get("X_BEARER_TOKEN", "").strip()
     media_id = upload(filepath, token)
     print(media_id)
 

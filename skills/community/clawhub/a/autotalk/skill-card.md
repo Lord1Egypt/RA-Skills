@@ -1,41 +1,50 @@
-## Description: <br>
-Autotalk turns dense professional analysis reports into teleprompter-ready spoken scripts for short-video and social media platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Specialized in converting dense professional analysis reports into high-conversion spoken scripts.
 
-## Publisher: <br>
-[tsingliuwin](https://clawhub.ai/user/tsingliuwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsingliuwin](https://clawhub.ai/user/tsingliuwin)
 
-## Use Case: <br>
-External creators, marketers, and education or industry analysts use Autotalk to turn dense reports, research, or planning material into concise spoken scripts with platform-specific pacing and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may exaggerate claims or introduce factual inaccuracies when adapting dense reports into persuasive short-video language. <br>
-Mitigation: Review scripts against the source report before publishing, especially statistics, comparisons, and career or policy claims. <br>
-Risk: Pasted reports may contain confidential or sensitive business, education, or personal information. <br>
-Mitigation: Avoid providing confidential reports unless the agent environment is approved for that data. <br>
-Risk: The broad trigger scope and opinionated style can produce aggressive marketing language that may not suit every brand or audience. <br>
-Mitigation: Check tone, platform fit, and compliance requirements before using the script publicly. <br>
+## Use Case:
 
+External creators, marketers, educators, and analysts use this skill to turn dense professional reports, industry research, or planning documents into short-form spoken scripts for platforms such as Douyin, Xiaohongshu, Bilibili, TikTok, and YouTube.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text spoken-script sections with optional tone notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Teleprompter-ready script text without timecodes, scene descriptions, visual cues, or camera directions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Generated scripts may overstate source material, use an aggressive tone, or introduce inaccuracies while adapting dense reports for short-form delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script against the source report before publication, with extra attention to factual claims, numbers, sensitive topics, and brand tone.
+
+## Reference(s):
+
+- [Autotalk ClawHub Skill Page](https://clawhub.ai/tsingliuwin/skills/autotalk)
+- [tsingliuwin Publisher Profile](https://clawhub.ai/user/tsingliuwin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with oral script sections and brief tone suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces teleprompter-ready spoken script text without timecodes, scene descriptions, camera directions, or visual cues.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

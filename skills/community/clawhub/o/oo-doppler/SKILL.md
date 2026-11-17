@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Doppler"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["doppler"]
   icon: "https://static.oomol.com/logo/third-party/Doppler.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `clone_config` — Clone a Doppler branch config and its secrets.
+- `clone_config` — Clone a Doppler branch config and its secrets. [write]
 - `create_change_request` — Create a Doppler change request with one or more units. [write]
 - `create_config` — Create a branch config under a Doppler project and environment. [write]
 - `create_environment` — Create an environment under a Doppler project. [write]
@@ -59,8 +59,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_integration` — Get the details of a Doppler integration.
 - `get_project` — Get the details of a single Doppler project.
 - `get_secret` — Get the value and metadata of a single secret for a specific project and config.
-- `get_sync` — Get the details of a Doppler secrets sync. [write]
-- `issue_dynamic_secret_lease` — Issue a short-lived lease for a Doppler dynamic secret.
+- `get_sync` — Get the details of a Doppler secrets sync.
+- `issue_dynamic_secret_lease` — Issue a short-lived lease for a Doppler dynamic secret. [write]
 - `list_change_requests` — List Doppler workplace change requests.
 - `list_config_logs` — List config change logs for a specific project and config.
 - `list_configs` — List configs under a specific Doppler project.
@@ -70,17 +70,17 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_secret_names` — List only the secret names for a Doppler project and config.
 - `list_secrets` — List all secrets and their metadata for a specific project and config.
 - `list_service_tokens` — List service tokens for a specific project and config.
-- `review_change_request_unit` — Submit an approving review for one Doppler change request unit.
+- `review_change_request_unit` — Submit an approving review for one Doppler change request unit. [write]
 - `revoke_dynamic_secret_lease` — Revoke a lease issued for a Doppler dynamic secret. [destructive]
 - `set_config_inheritable` — Update whether a Doppler config can be inherited by other configs. [write]
 - `update_change_request` — Update a Doppler change request's metadata or units. [write]
-- `update_change_request_assignees` — Replace the reviewers assigned to a Doppler change request. [write]
-- `update_change_request_unit_status` — Update the status of one Doppler change request unit. [write]
+- `update_change_request_assignees` — Replace the reviewers assigned to a Doppler change request. [destructive]
+- `update_change_request_unit_status` — Update the status of one Doppler change request unit. [destructive]
 - `update_config` — Rename a Doppler config. [write]
 - `update_environment` — Rename a Doppler environment or update personal config settings. [write]
 - `update_project` — Update a Doppler project's name or description. [write]
 - `update_secret_note` — Update the note for a specific secret. [write]
-- `update_secrets` — Create or update secrets in bulk for a specific project and config. [write]
+- `update_secrets` — Create or update secrets in bulk for a specific project and config. [destructive]
 
 ## Safety
 
@@ -111,11 +111,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Doppler is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=doppler
+  https://console.oomol.com/connections/doppler
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Doppler homepage: https://www.doppler.com
+- API documentation: https://docs.doppler.com/reference/api

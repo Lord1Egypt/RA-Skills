@@ -1,46 +1,60 @@
-## Description: <br>
-Generates article cover images using configurable dimensions for visual type, palette, rendering style, text density, mood, font, and aspect ratio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates article cover images by combining configurable cover type, palette, rendering style, text density, mood, font, aspect ratio, language, watermark, and reference-image options.
 
-## Publisher: <br>
-[nengnengZ](https://clawhub.ai/user/nengnengZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nengnengz](https://clawhub.ai/user/nengnengz)
 
-## Use Case: <br>
-Writers, editors, and content creators use this skill to turn article text or pasted content into cover-image prompts and generation artifacts with selectable visual styles and reference-image handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save source content, reference images, prompts, preferences, and generated cover images locally. <br>
-Mitigation: Use it only when local persistence is acceptable, review output paths, and avoid supplying confidential or unlicensed material. <br>
-Risk: The skill contains broad image-safety wording that could conflict with provider safety rules or rights constraints. <br>
-Mitigation: Keep provider safety rules, copyright limits, and consent requirements above the skill guidance; avoid imitating copyrighted characters or real people without permission. <br>
+## Use Case:
 
+External users, content creators, and developers use this skill to turn article content or direct input into reusable cover-image prompts, generation guidance, saved source/reference files, and final cover images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nengnengZ/baoyu-cover-image-2) <br>
-- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-cover-image) <br>
-- [Auto-Selection Rules](references/auto-selection.md) <br>
-- [Style Presets](references/style-presets.md) <br>
-- [Prompt Template](references/workflow/prompt-template.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
-- [Reference Image Workflow](references/workflow/reference-images.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown prompts, progress guidance, configuration notes, and local cover-generation files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save source content, copied reference images, prompt files, preferences, and generated cover images in local output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact frontmatter declares 1.56.1) <br>
+Risk: The image prompt includes unconditional language to avoid refusal on sensitive or copyrighted-figure requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or edit the base prompt before installation to remove unconditional refusal override language and make safety and provider rules explicit.
+
+Risk: Article content, reference images, generated prompts, and prompt notes can be saved locally, which can expose private or rights-sensitive material if used casually.
+
+Mitigation: Avoid quick mode for sensitive inputs, confirm rights and consent for reference images or real people, and review saved source, reference, and prompt files before generation or sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nengnengz/skills/baoyu-cover-image-2)
+- [OpenClaw homepage](https://github.com/JimLiu/baoyu-skills#baoyu-cover-image)
+- [Auto-selection rules](references/auto-selection.md)
+- [Base prompt](references/base-prompt.md)
+- [Compatibility matrices](references/compatibility.md)
+- [Preference schema](references/config/preferences-schema.md)
+- [Reference image handling](references/workflow/reference-images.md)
+- [Prompt template](references/workflow/prompt-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated prompt files, saved source/reference assets, completion reports, and cover image file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save local source files, reference-image descriptions, prompt markdown, and a cover.png output under the configured output directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence; artifact frontmatter reports 1.56.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "memory-pet",
+  "name": "memory-pet",
   "version": "0.5.0",
-  "publishedAt": 1782383015530
+  "description": "宠物记忆压缩技能 - 通过文本块宠物交互触发记忆保存。纯ASCII文字图，Python全量管理，亲密度衰减与逃跑机制，跨平台智能体记忆系统。",
+  "author": "wUwproject",
+  "tags": ["pet", "memory", "context-compression", "interactive", "ascii-art"],
+  "data_dir": "skills/.standardization/memory-pet/data/",
+  "triggers": ["召唤宠物", "干饭/散步/贴贴/回忆", "上下文压缩", "记忆保存"]
 }

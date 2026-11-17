@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "new-ai-news-digest",
+  "schema_version": "1",
+  "name": "ai-news-digest",
   "version": "1.0.0",
-  "publishedAt": 1772549619311
+  "description": "自动抓取并汇总 AI、科技行业新闻，生成每日/每周简报",
+  "author": {
+    "name": "Sunshine-del-ux",
+    "email": "",
+    "url": ""
+  },
+  "keywords": ["ai", "news", "digest", "newsletter", "automation"],
+  "license": "MIT"
 }

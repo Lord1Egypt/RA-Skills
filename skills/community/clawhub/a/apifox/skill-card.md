@@ -1,43 +1,54 @@
-## Description: <br>
-Summarizes and organizes public YApi product and open-source documentation, including feature notes, documentation links, and repository examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents summarize and organize public YApi product and open-source documentation pages.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External developers and documentation maintainers use this skill to collect concise summaries and link sets from public YApi product, deployment, and open-source pages without account or project changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry display name is Apifox, while the artifact content describes a YApi documentation helper. <br>
-Mitigation: Confirm the release label before publishing or make the YApi scope explicit in downstream review materials. <br>
-Risk: Users may provide private project URLs, credentials, or sensitive internal API details to a skill intended for public documentation. <br>
-Mitigation: Use only public product, documentation, or open-source URLs and redact secrets or internal endpoint details before prompting the agent. <br>
-Risk: Summaries of dynamically loaded pages may omit or misread content if the page is not fully loaded. <br>
-Mitigation: Wait for page load completion and verify generated summaries against the source page before using them. <br>
+## Use Case:
 
+Developers and external users can use this skill to gather concise summaries, feature lists, version differences, documentation indexes, and public links for YApi-related product and open-source documentation. It is bounded to public-page research and does not support account actions, project writes, API mutation, or reverse engineering.
 
-## Reference(s): <br>
-- [ClawHub Apifox Skill Page](https://clawhub.ai/CodeKungfu/apifox) <br>
-- [YApi Homepage](https://yapi.pro/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, private URLs, or sensitive internal API details should be included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may be misapplied to private YApi projects, account actions, or sensitive API data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public-page summaries and link collection, and avoid private projects, account actions, or sensitive API data.
+
+Risk: Summaries of dynamically loaded public pages may be incomplete or stale.
+
+Mitigation: Wait for pages to finish loading, respect platform rate limits, and verify important documentation details against the source page.
+
+## Reference(s):
+
+- [YApi homepage](https://yapi.pro/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/apifox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to public-page summaries, document indexes, feature descriptions, version comparisons, and relevant links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

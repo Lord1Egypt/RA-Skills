@@ -1,46 +1,63 @@
-## Description: <br>
-Clinical Doc Assistant helps clinicians, practice managers, and healthcare developers draft clinical documentation from FHIR R4 patient data or manually supplied patient context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clinical Doc Assistant helps clinicians, practice managers, and healthcare developers draft clinical documentation from FHIR R4 data or manual patient context, including SOAP notes, referrals, prior authorizations, discharge summaries, and care-plan narratives; it is not for diagnosis, prescribing, or unsupervised clinical judgment.
 
-## Publisher: <br>
-[optimusprime19](https://clawhub.ai/user/optimusprime19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[optimusprime19](https://clawhub.ai/user/optimusprime19)
 
-## Use Case: <br>
-Clinicians, practice managers, and healthcare developers use this skill to retrieve relevant FHIR R4 data and generate draft SOAP notes, referrals, prior authorization narratives, discharge summaries, care plans, and after-visit summaries. Outputs are documentation drafts for licensed clinical review, not diagnosis, prescribing, or independent clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles patient data and can forward patient context to a hosted backend or model provider. <br>
-Mitigation: Use sandbox or synthetic data for testing; before using real PHI, minimize or redact PHI and confirm HIPAA-eligible hosting plus BAAs with every service that receives PHI. <br>
-Risk: The included backend scaffold is not safe to deploy unchanged for real patient data. <br>
-Mitigation: Require real account-bound API keys, restrict CORS to approved origins, add rate limiting and audit controls, and complete production security review before deployment. <br>
-Risk: Generated clinical documents may be incomplete, stale, or misleading if source data is missing or interpreted incorrectly. <br>
-Mitigation: Treat all outputs as drafts that must be reviewed, edited, and signed by a licensed clinician; do not use the skill for diagnosis, prescribing, or independent clinical judgment. <br>
+## Use Case:
 
+Clinicians, practice managers, and healthcare developers use this skill to retrieve relevant FHIR R4 data or enter patient context manually, then produce reviewable documentation drafts for common clinical workflows. Generated text requires licensed clinician review before use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/optimusprime19/clinical-doc-assistant) <br>
-- [Project Homepage](https://github.com/optimusprime19/clinical-doc-assistant) <br>
-- [FHIR R4 Reference](artifact/FHIR-REFERENCE.md) <br>
-- [HL7 FHIR ICD-10-CM System](http://hl7.org/fhir/sid/icd-10-cm) <br>
-- [HAPI FHIR R4 Sandbox](https://hapi.fhir.org/baseR4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text clinical documentation drafts with optional shell commands, configuration snippets, FHIR query guidance, and backend code scaffolding] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts may include missing-data placeholders and require licensed clinician review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and frontmatter) <br>
+Risk: Patient data or PHI may be sent to external services when hosted generation is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic sandbox data unless compliant infrastructure and BAAs are verified for every service that can receive PHI; minimize or redact patient data before LLM calls.
+
+Risk: The hosted backend scaffold is not production-ready for healthcare use.
+
+Mitigation: Before deployment, replace test-key authentication, persist credit accounting, restrict CORS, add rate limits, and complete compliance review.
+
+Risk: Generated clinical documentation may be incomplete, inaccurate, or misleading if used without review.
+
+Mitigation: Require licensed clinician review, editing, and signature before any generated draft is used in patient care or records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/optimusprime19/skills/clinical-doc-assistant)
+- [Publisher profile](https://clawhub.ai/user/optimusprime19)
+- [Project homepage](https://github.com/optimusprime19/clinical-doc-assistant)
+- [FHIR R4 Reference](FHIR-REFERENCE.md)
+- [HAPI FHIR R4 sandbox](https://hapi.fhir.org/baseR4)
+- [Epic FHIR developer portal](https://fhir.epic.com)
+- [Cerner developer portal](https://code.cerner.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text clinical documentation drafts with optional setup commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts may include missing-data placeholders and must be reviewed, edited, and signed by a licensed clinician before use.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

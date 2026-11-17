@@ -1,45 +1,59 @@
-## Description: <br>
-Use this skill whenever the user wants to publish, update, or batch-upload blog content to a WordPress site via the REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The WordPress Blog Publisher skill helps agents publish, update, and batch-upload blog content to WordPress via the REST API, including authentication, markdown conversion, media uploads, scheduling, and permalink writeback.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Content operators, developers, and publishing teams use this skill to publish, update, schedule, and batch-upload WordPress posts through the WordPress REST API while preserving content formatting, media handling, taxonomy IDs, and upstream status tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use WordPress application-password credentials and change live WordPress content. <br>
-Mitigation: Use a dedicated least-privilege WordPress user, store credentials in environment variables or a secret manager, and explicitly confirm live publish, update, batch, or remote media operations. <br>
-Risk: Batch publishing can propagate formatting, taxonomy, media, or scheduling mistakes across many posts. <br>
-Mitigation: Run and review a dry-run or first-post validation before processing the remaining batch, keep error logging enabled, and review the final publish summary. <br>
-Risk: Credential or site configuration files may expose sensitive access if committed. <br>
-Mitigation: Do not commit config/sites.json or secrets; keep site credentials outside source control. <br>
+## Use Case:
 
+Developers, content operators, and publishing teams use this skill to prepare WordPress posts from markdown, upload media, schedule or update posts through the REST API, and record published permalinks back to upstream tracking systems.
 
-## Reference(s): <br>
-- [WordPress REST API Quick Reference](artifact/references/api-reference.md) <br>
-- [Markdown to HTML Conversion Rules](artifact/references/markdown-to-html-rules.md) <br>
-- [WordPress Publishing Quality Checklist](artifact/assets/wp-publish-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/wordpress-blog-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, JSON examples, REST API calls, checklists, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run and confirmation steps before live publish, update, batch, or remote media operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can guide agents to publish or update live WordPress content while handling WordPress Application Password credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS, create a dedicated least-privilege WordPress account, avoid login passwords, and confirm permissions before publishing.
+
+Risk: Raw markdown, HTML, external images, or embeds may introduce unsafe, broken, or unwanted site content.
+
+Mitigation: Review content and media sources before upload, avoid untrusted markdown, and require explicit review before mirroring external images or raw embeds.
+
+Risk: Batch publishing can propagate a formatting, scheduling, category, tag, or permalink writeback error across many posts.
+
+Mitigation: Run the first post as a dry run or draft, confirm the rendered result, log failures explicitly, and apply rate-limited batch processing.
+
+## Reference(s):
+
+- [WordPress REST API Quick Reference](references/api-reference.md)
+- [Markdown to HTML Conversion Rules](references/markdown-to-html-rules.md)
+- [WordPress Publishing Quality Checklist](assets/wp-publish-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with REST API request examples, JSON payloads, checklists, and publishing workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WordPress post payloads, media upload instructions, category and tag lookup guidance, scheduling steps, and upstream status writeback patterns.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

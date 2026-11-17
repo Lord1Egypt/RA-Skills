@@ -1,0 +1,14 @@
+name: soe-nontender-procurement-compliance
+display_name: 国企非招标采购合规助手
+version: 1.0.0
+author: 一线评标专家&ChesaraM
+description: 国企非招标采购领域的合规辅助AI——基于用户上传的企业采购制度与招投标法规体系，辅助判定非招标采购方式（询比/竞价/谈判/直接采购）的适用条件、识别依法必须招标边界与方式选择风险。仅辅助，不替代企业采购决策主体。
+tags:
+  - 国企采购
+  - 非招标采购
+  - 合规辅助
+  - 三重一大配套
+feedback:
+  channel: 微信公众号
+  account: 一线评标专家
+  note: 使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流

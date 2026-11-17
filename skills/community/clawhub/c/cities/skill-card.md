@@ -1,39 +1,53 @@
-## Description: <br>
-提供关于网红城市的推荐清单、打卡路线与指南。用户搜索网红城市或规划相关出行时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供关于网红城市的推荐清单、打卡路线与指南。用户搜索网红城市或规划相关出行时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users use this skill to request popular city destination recommendations, check-in routes, travel timing, transport options, photo spots, amenities, safety notes, and practical planning tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger phrase may cause the skill to activate for general travel prompts outside popular-city route planning. <br>
-Mitigation: Ask the agent to confirm whether the request is specifically about popular-city recommendations, check-in routes, or related travel guides before applying the skill. <br>
-Risk: Travel recommendations may become stale as popularity, weather, reservation rules, queues, and on-site restrictions change. <br>
-Mitigation: Verify current local conditions, reservation requirements, posted rules, and safety constraints before following an itinerary. <br>
+## Use Case:
 
+Travel planners and external users use this skill to produce popular-city recommendation lists, check-in routes, and concise guides with filters for difficulty, season, weather, access, amenities, and safety.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown recommendations and travel-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route details, timing, transportation, amenities, photo highlights, weather alerts, equipment checklists, risk points, and reservation or queue guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Route quality can change with local conditions, weather, reservation rules, crowding, and on-site restrictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current weather, access requirements, venue rules, and local advisories before using the guidance for travel decisions.
+
+Risk: Popular check-in locations may involve queues, photography limits, minimum charges, or suitability constraints for children or pets.
+
+Mitigation: Use the skill output as planning guidance and confirm site-specific rules, costs, safety constraints, and accessibility before visiting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/cities)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown travel guidance with lists and route details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route maps as described text, timing, transportation, amenities, weather cautions, gear, and risk notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

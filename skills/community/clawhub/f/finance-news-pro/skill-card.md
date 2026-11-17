@@ -1,52 +1,72 @@
-## Description: <br>
-财经新闻深度分析技能。从多个财经源抓取内容，进行情感分析（利好/利空/中性）、影响评估（行业/公司/市场）、关键信息提取，生成专业投资简报。支持 A 股/港股/美股、行业板块、个股分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+财经新闻深度分析技能：从多个财经源抓取内容，进行情感分析、影响评估、关键信息提取，并生成专业投资简报。
 
-## Publisher: <br>
-[SuCriss](https://clawhub.ai/user/SuCriss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sucriss](https://clawhub.ai/user/sucriss)
 
-## Use Case: <br>
-Investors, analysts, and finance-focused agent users use this skill to gather financial news from multiple public sources and produce Chinese-language investment briefings with sentiment, impact level, stock association, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can auto-activate on broad finance or news keywords and may browse public financial websites. <br>
-Mitigation: Use explicit invocations, review configured sources and cron/watch settings, and confirm that browsing is expected before enabling automated runs. <br>
-Risk: Generated reports can include investment-oriented labels, market sentiment, and operation advice that may be incomplete or misleading. <br>
-Mitigation: Treat outputs as research summaries rather than financial advice, verify material claims against original sources, and include source links and timestamps in reports. <br>
-Risk: The skill may save local reports and cached news data. <br>
-Mitigation: Choose an appropriate output directory, avoid entering sensitive portfolio details unless needed, and review stored files before sharing or retaining them. <br>
+## Use Case:
 
+External users and agents use this skill to gather Chinese-language financial news across A-share, Hong Kong, and U.S. market topics, classify sentiment and impact, link mentioned stocks, and draft Markdown briefings for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SuCriss/finance-news-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/SuCriss) <br>
-- [财联社电报](https://www.cls.cn/telegraph) <br>
-- [华尔街见闻快讯](https://www.wallstreetcn.com/live) <br>
-- [东方财富快讯](https://news.eastmoney.com/kx/) <br>
-- [雪球热点](https://xueqiu.com/hots) <br>
-- [财新](https://www.caixin.com/) <br>
-- [第一财经](https://www.yicai.com/) <br>
-- [界面新闻](https://www.jiemian.com/) <br>
-- [央行官网](http://www.pbc.gov.cn/) <br>
-- [证监会](http://www.csrc.gov.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Chinese Markdown investment briefing plus structured JSON output and optional local report/cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include source links, timestamps, sentiment labels, impact levels, related stock mappings, operation advice, and market filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can activate on broad finance, stock, market, investment, company, or industry language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep activation explicit and limit use to finance-news requests where the user clearly wants a briefing.
+
+Risk: Generated sentiment labels and operation guidance may look like investment advice.
+
+Mitigation: Treat outputs as non-personalized market information, preserve source links, and require human review before any trading or portfolio decision.
+
+Risk: The fetch script can persist reports and cache files locally.
+
+Mitigation: Use --no-save when local persistence is not desired, or review and clear the configured output directory.
+
+Risk: Cron or watch-style usage can create recurring runs and repeated finance briefings.
+
+Mitigation: Avoid scheduled or watch-mode execution unless a user intentionally configures it.
+
+Risk: Optional HTTP, HTML parsing, RSS, and data-processing dependencies expand the local execution environment.
+
+Mitigation: Install optional dependencies only in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sucriss/skills/finance-news-pro)
+- [财联社电报](https://www.cls.cn/telegraph)
+- [华尔街见闻 Live](https://www.wallstreetcn.com/live)
+- [东方财富快讯](https://news.eastmoney.com/kx/)
+- [雪球热门](https://xueqiu.com/hots)
+- [中国人民银行](http://www.pbc.gov.cn/)
+- [中国证券监督管理委员会](http://www.csrc.gov.cn/)
+- [Seeking Alpha](https://seekingalpha.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown financial briefings with JSON-formatted processed news when the fetch script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save local Markdown reports and JSON cache files unless run with --no-save.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

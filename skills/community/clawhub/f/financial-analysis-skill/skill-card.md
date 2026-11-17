@@ -1,45 +1,61 @@
-## Description: <br>
-Runs offline multi-asset portfolio risk-parity analysis, rolling rebalancing backtests, and report/chart generation from local CSV market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill analyzes local CSV market data to run rolling-window risk parity portfolio backtests and generate text reports, JSON metrics, and charts.
 
-## Publisher: <br>
-[wzratgit](https://clawhub.ai/user/wzratgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wzratgit](https://clawhub.ai/user/wzratgit)
 
-## Use Case: <br>
-Financial analysts, developers, and agent users can use this skill to evaluate local CSV market data with rolling risk-parity backtests and generate portfolio performance metrics, reports, and charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stale documentation may suggest installing or using dependencies that are not needed for this offline release. <br>
-Mitigation: Install only the dependencies listed in the manifest or README and ignore the stale yfinance example in SKILL.md. <br>
-Risk: Generated reports can include local file paths and financial analysis results. <br>
-Mitigation: Use non-sensitive CSV data for testing and review generated reports before sharing them. <br>
-Risk: The skill writes reports, JSON data, and charts to a local output directory. <br>
-Mitigation: Choose a dedicated empty output directory before running the backtest. <br>
+## Use Case:
 
+Developers, analysts, and investment researchers use this skill to evaluate multi-asset portfolio allocations from local CSV data, including rolling risk parity weights, returns, volatility, drawdown, Sharpe ratio, and asset correlations. It is intended for local analytical workflows and does not require API keys or network access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzratgit/financial-analysis-skill) <br>
-- [README.md](artifact/README.md) <br>
-- [NETWORK_SECURITY.md](artifact/NETWORK_SECURITY.md) <br>
-- [INSTALLATION.md](artifact/INSTALLATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files, shell commands, guidance] <br>
-**Output Format:** [Plain text reports, JSON data files, PNG charts, and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local CSV path and writes reports and charts to a chosen local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Local CSV data may contain sensitive financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill on non-sensitive CSVs first and keep input data and generated outputs in a dedicated local folder.
+
+Risk: Generated reports include backtest metrics and investment-style suggestions that may be mistaken for validated financial advice.
+
+Mitigation: Treat outputs as analytical references, review data quality and assumptions, and validate results before using them in financial decisions.
+
+Risk: Documentation shows dependency hygiene issues between minimal dependencies and broader older commands.
+
+Mitigation: Install in a dedicated virtual environment and use the minimal manifest or README dependency set: pandas, numpy, matplotlib, and seaborn.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wzratgit/skills/financial-analysis-skill)
+- [Publisher Profile](https://clawhub.ai/user/wzratgit)
+- [README](artifact/README.md)
+- [Network Security Notes](artifact/NETWORK_SECURITY.md)
+- [Installation Guide](artifact/INSTALLATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime output includes text reports, JSON metrics, and PNG charts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to the selected local output directory, including rolling_risk_parity_report.txt, rolling_risk_parity_data.json, and rolling_*.png chart files.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

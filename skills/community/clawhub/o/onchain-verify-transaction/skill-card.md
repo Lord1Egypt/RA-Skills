@@ -1,43 +1,54 @@
-## Description: <br>
-Verify an EVM transaction's calldata via Tenderly before signing. Confirms which tokens move, in what amounts, and to which addresses. Designed to be called by other skills as a pre-execution safety gate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify EVM transaction calldata via Tenderly before signing by confirming token movements, amounts, and recipient addresses as a pre-execution safety gate for other skills.
 
-## Publisher: <br>
-[dougalcantara](https://clawhub.ai/user/dougalcantara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougalcantara](https://clawhub.ai/user/dougalcantara)
 
-## Use Case: <br>
-Developers and agents use this skill before sending EVM transactions to verify calldata-derived token movements, recipient addresses, amounts, drains, and unexpected approvals against the stated intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification may be unavailable when the Tenderly access key is missing, Tenderly returns an error, rate limits apply, or the chainId is unsupported. <br>
-Mitigation: Warn that verification did not complete, surface the specific condition, and require explicit user confirmation before proceeding. <br>
-Risk: A transaction may move tokens to an unexpected recipient, substitute output tokens, return less than expected, drain excess input, or grant unexpected approvals. <br>
-Mitigation: Compare Tenderly asset and balance changes with the stated intent, halt on discrepancies, and require explicit confirmation before execution. <br>
-Risk: Cross-chain swaps are verified only on the source chain where the transaction is sent. <br>
-Mitigation: Treat verification as covering the outbound leg only and communicate that scope before proceeding. <br>
+## Use Case:
 
+Developers and agents use this skill before sending EVM transactions to simulate calldata with Tenderly and compare resulting token and native asset changes against the user's stated intent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dougalcantara/onchain-verify-transaction) <br>
-- [Tenderly](https://tenderly.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and transaction-verification narration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TENDERLY_NODE_ACCESS_KEY and a supported EVM chainId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter, release evidence) <br>
+Risk: The skill is used as a financial transaction safety gate, and the security summary says its approval checks are under-specified and could miss dangerous permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before relying on it for real transactions and require stronger approval and authorization-state checks, especially for token approvals, Permit or Permit2, NFT operator approvals, multicalls, and proxy-mediated calls.
+
+Risk: Verification may be unavailable when the Tenderly access key is missing, a chain is unsupported, Tenderly returns an error, or rate limits are reached.
+
+Mitigation: Treat unavailable verification as a failure path, surface the condition clearly, and require explicit user confirmation before proceeding without verification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dougalcantara/skills/onchain-verify-transaction)
+- [Tenderly](https://tenderly.co)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash and JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TENDERLY_NODE_ACCESS_KEY and supports the EVM chain IDs listed in the skill.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

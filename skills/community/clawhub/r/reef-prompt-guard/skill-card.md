@@ -1,40 +1,57 @@
-## Description: <br>
-Detects and filters prompt injection attacks in untrusted text before it is passed to an LLM, covering direct injection, jailbreaks, data exfiltration, privilege escalation, and context manipulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and filter prompt injection attacks in untrusted input before that content is passed to an LLM.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Developers and agent builders use Reef Prompt Guard to scan external content such as emails, web scrapes, API payloads, Discord messages, and sub-agent outputs before sending that text to an LLM. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A documented JavaScript shell-string integration pattern could expose an application to command injection if copied with untrusted input. <br>
-Mitigation: Use the direct Python import, pass input through stdin or JSON as data, or invoke child processes with an argument array instead of interpolating untrusted text into a shell command. <br>
-Risk: Regex-based scanning catches known patterns but may miss novel semantic, multimodal, or obfuscated prompt-injection attempts. <br>
-Mitigation: Use the filter as one layer in a broader control set, review suspicious outputs, keep detection patterns current, and avoid treating a clean result as a complete security guarantee. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Injection Attack Patterns & Defense Strategies](references/attack-patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/staybased/reef-prompt-guard) <br>
+## Use Case:
 
+Developers and agent builders use Reef Prompt Guard to scan untrusted text before passing it to an LLM and to integrate prompt-injection filtering into email, web, API, Discord, and sub-agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code examples and JSON scanner results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI exits with clean, suspicious, or blocked status and returns score, sanitized text, and detected threats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented Node.js execSync integration constructs a shell command around untrusted input and could expose adopters to command injection if copied.
+
+Mitigation: Use an argument-array API such as execFileSync, call the Python scanner directly, and apply timeouts and input-size limits.
+
+Risk: Regex-based filtering can miss novel semantic, multimodal, or heavily obfuscated prompt-injection attacks.
+
+Mitigation: Use this skill as one layer in a defense-in-depth design, keep untrusted content isolated, review suspicious outputs, and update detection patterns as attacks evolve.
+
+Risk: Security research discussions or benign examples of attack strings may be flagged as suspicious or blocked.
+
+Mitigation: Review blocked or suspicious results before enforcement in sensitive workflows and tune context thresholds or patterns for the deployment.
+
+## Reference(s):
+
+- [Reef Prompt Guard on ClawHub](https://clawhub.ai/staybased/skills/reef-prompt-guard)
+- [Prompt Injection Attack Patterns and Defense Strategies](references/attack-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON scan results from the CLI, Python helper return values, and Markdown guidance with shell and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code 0 means clean, 1 means blocked, and 2 means suspicious; verbose mode can include context and input length.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, created 2026-02-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

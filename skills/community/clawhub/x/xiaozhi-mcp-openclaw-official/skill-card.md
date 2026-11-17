@@ -1,40 +1,54 @@
-## Description: <br>
-Bridges XiaoZhi AI devices to OpenClaw or OpenAI-compatible backends through MCP so agents can call an openclaw_query(message) tool for short spoken responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaozhi Mcp Openclaw Official connects XiaoZhi AI devices through an MCP endpoint to OpenClaw or other OpenAI-compatible backends using an `openclaw_query(message)` MCP tool.
 
-## Publisher: <br>
-[joe12801](https://clawhub.ai/user/joe12801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joe12801](https://clawhub.ai/user/joe12801)
 
-## Use Case: <br>
-Developers and XiaoZhi AI integrators use this skill to add OpenClaw or OpenAI-compatible assistant capability to XiaoZhi devices without modifying XiaoZhi source code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice prompts, MCP tool traffic, and backend requests may be sent to external services. <br>
-Mitigation: Install only when you intentionally want this routing, configure MCP_ENDPOINT, OPENAI_BASE, and OPENAI_KEY explicitly, and use service providers you trust. <br>
-Risk: Secrets or tokenized MCP endpoint URLs may be exposed if configuration files or logs are shared. <br>
-Mitigation: Do not publish real .env files or logs that include secrets, and avoid routing sensitive voice content unless the configured providers are acceptable for that data. <br>
+## Use Case:
 
+Developers and external users use this skill to bridge an existing XiaoZhi MCP endpoint to an OpenClaw or OpenAI-compatible assistant backend without modifying XiaoZhi source code. It is suited for adding external assistant capability that returns short Chinese responses for voice playback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joe12801/xiaozhi-mcp-openclaw-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses and Markdown setup guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The MCP tool returns concise Chinese text intended for voice playback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: API keys, user queries, and MCP endpoint tokens may be exposed through under-disclosed network defaults or logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set OPENAI_BASE to the intended HTTPS backend, use a narrowly scoped and rotated OPENAI_KEY, avoid reusable tokens in URLs where logs may capture them, and review logging before deployment.
+
+Risk: The bridge forwards XiaoZhi requests to an external OpenAI-compatible backend.
+
+Mitigation: Use the skill only when both the XiaoZhi MCP endpoint and backend are trusted, and consider pinning dependencies before deployment.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/joe12801/skills/xiaozhi-mcp-openclaw-official)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; MCP tool output is short Chinese text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The MCP tool sends one message string to the configured backend and requests responses capped at 512 max_tokens.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

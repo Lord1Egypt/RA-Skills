@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Test Skill"
+  short_description: "Validate a portable OpenClaw skill fixture."
+  default_prompt: "Use $openclaw-test-skill to validate this fixture directory."

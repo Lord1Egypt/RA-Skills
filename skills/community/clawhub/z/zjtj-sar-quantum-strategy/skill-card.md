@@ -1,41 +1,57 @@
-## Description: <br>
-ZJTJ+SAR+成交量+市场情绪四维选股策略，结合主力动向、趋势判断、资金验证和环境分析，适合A股短线波段操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZJTJ+SAR+成交量+市场情绪四维选股策略，结合主力动向、趋势判断、资金验证和环境分析，适合A股短线波段操作。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External users and agents use this skill to present an educational A-share short-term stock-selection workflow that combines ZJTJ, SAR, volume, and market-sentiment checks. It provides entry conditions, exit rules, position guidance, daily review steps, and risk warnings for disciplined strategy discussion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses short-term stock selection and may be misused as direct trading advice. <br>
-Mitigation: Treat outputs as educational strategy guidance only and require independent financial review before making trades. <br>
-Risk: The server security guidance flags the SAR condition as ambiguous until corrected. <br>
-Mitigation: Confirm the intended SAR rule before using the skill for generic stock-picking requests. <br>
-Risk: The artifact warns that indicators can fail in sideways markets and that concentrated positions can increase losses. <br>
-Mitigation: Apply the stated stop-loss discipline and position cap, including not allocating more than 30% to a single stock. <br>
+## Use Case:
 
+External users can ask the skill to explain a four-factor A-share short-term stock screening workflow using ZJTJ, SAR, volume, and market sentiment. The skill provides entry, exit, position-sizing, no-trade, and daily review criteria as trading guidance that requires independent verification.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with tables, ordered workflow steps, and formula snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, account access, credentials, persistence, or hidden behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Speculative short-term trading guidance may be wrong or misapplied as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require independent signal verification and human financial judgment; do not connect outputs to automated order placement.
+
+Risk: The SAR explanation appears inconsistent with the provided formula.
+
+Mitigation: Review the intended SAR condition against the target trading platform before using the strategy.
+
+Risk: Technical indicators can fail in sideways or abnormal markets.
+
+Mitigation: Apply the stated position sizing, stop-loss, no-trade constraints, and market sentiment checks before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/zjtj-sar-quantum-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables and formula snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial-risk caveats and strategy constraints are included; no code execution or external tool use is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

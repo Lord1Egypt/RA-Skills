@@ -1,41 +1,54 @@
-## Description: <br>
-Provides practical organic growth tactics for indie projects and bootstrapped SaaS products without a marketing budget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides tactical guidance for growing indie projects or bootstrapped SaaS products without a marketing budget.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Founders, indie hackers, and growth-focused agents use this skill to plan low-budget customer acquisition through community participation, public building, personalized outreach, useful free content, and audience partnerships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends direct outreach and community posting, which can create spam, privacy, or platform-policy issues if applied carelessly. <br>
-Mitigation: Review outreach copy manually, respect community rules, follow anti-spam requirements, and avoid collecting or using personal data without a valid basis. <br>
-Risk: The artifact links to a third-party product for simulated user testing. <br>
-Mitigation: Review the third-party service, its terms, and any privacy implications before submitting landing pages, product details, or other information. <br>
+## Use Case:
 
+Indie hackers, founders, and growth-focused agents use this skill to choose low-cost acquisition tactics, avoid common early marketing mistakes, and plan organic distribution experiments for a product or SaaS launch.
 
-## Reference(s): <br>
-- [Growth Indie Hacker on ClawHub](https://clawhub.ai/wellyxy/growth-indie-hacker) <br>
-- [Racoonn](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with a tactical checklist and comparison table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, or configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The final section promotes Racoonn specifically and may read as product promotion rather than neutral product-testing guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the Racoonn mention as disclosed third-party promotional content and independently evaluate alternatives before relying on it.
+
+Risk: Growth advice can be misapplied as spammy community promotion or unsolicited outreach.
+
+Mitigation: Follow each community's rules, build reputation before posting, and keep outreach targeted, relevant, and compliant with applicable messaging rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wellyxy/skills/growth-indie-hacker)
+- [Racoonn waitlist](https://racoonn.me)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with tactical rules, a comparison table, and concise cautions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static advisory content; no code execution, data access, persistence, or hidden system behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

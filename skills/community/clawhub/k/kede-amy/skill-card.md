@@ -1,44 +1,50 @@
-## Description: <br>
-A school teaching-management agent for lesson review, academic coordination, student support, family communication, teacher feedback, and Cognia evidence organization for the Kede High School International Department. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国子监 · 科德高中教务教学管理 / Amy helps Kede High School's International Department analyze lesson plans, classroom practice, academic support, teacher feedback, home-school communication, and Cognia evidence using ICAP and cognitive-load frameworks.
 
-## Publisher: <br>
-[maxliu1979](https://clawhub.ai/user/maxliu1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxliu1979](https://clawhub.ai/user/maxliu1979)
 
-## Use Case: <br>
-School administrators, academic coordinators, and teaching staff use this skill to turn classroom observations, schedules, exams, student cases, teacher feedback, parent communication, and accreditation needs into structured decisions and action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with student information, school schedules, parent communications, or teacher routing rules. <br>
-Mitigation: Install and use it only for authorized school users, with normal school privacy controls for student and staff data. <br>
-Risk: Administrative recommendations, sensitive decisions, or outbound messages could affect students, teachers, or families. <br>
-Mitigation: Keep human approval for sensitive decisions and outbound communications. <br>
-Risk: The artifact explicitly warns against fabricating grades, admissions outcomes, school achievements, or using AI to replace student work. <br>
-Mitigation: Require factual evidence for academic claims and keep student assignments or application core content under student authorship. <br>
+## Use Case:
 
+School leaders, academic coordinators, homeroom teachers, and subject teachers use this skill to turn teaching operations, student cases, meeting notes, assessment reviews, and Cognia evidence into structured judgments, action plans, and communication drafts. It supports teaching-management decisions; humans remain responsible for final decisions and communications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxliu1979/kede-amy) <br>
-- [Publisher profile](https://clawhub.ai/user/maxliu1979) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global, with content tailored to Kede High School's International Department.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured sections, tables, checklists, communication drafts, and action-plan templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewed administrative and teaching-support guidance; no executable behavior is disclosed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: release evidence) <br>
+Risk: The artifact says only Max can decide to pause or continue work, which can reduce ordinary user control in shared environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before shared deployment, revise that rule so any authorized current-session user can pause, stop, or defer work, and keep platform safety and user-control rules higher priority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxliu1979/skills/kede-amy)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with tables, checklists, action items, and communication drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include RAG, KPI, DDL, owner fields, Cognia evidence mapping, and Chinese or English wording depending on the task.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

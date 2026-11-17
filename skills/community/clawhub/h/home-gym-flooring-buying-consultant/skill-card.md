@@ -1,43 +1,55 @@
-## Description: <br>
-Guide users buying home gym flooring through space, subfloor, activity, and noise questions to determine the exact material type, thickness, and format they need — region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying home gym flooring through space, subfloor, activity, and noise questions to determine the exact material type, thickness, and format they need - region-aware, brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and agents use this skill to run a structured home gym flooring buying consultation. It collects space, subfloor, activity, noise, and installation details, then returns material, thickness, format, coverage, and product-research guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions may become outdated or may not match current regional availability, price, warranty, safety certification, or indoor air-quality claims. <br>
-Mitigation: Treat recommendations as research starting points and verify current product details with retailers or manufacturers before purchase. <br>
-Risk: Incomplete or inaccurate user inputs can produce flooring specifications that do not fit the space, subfloor, noise constraints, or activity load. <br>
-Mitigation: Collect the required space, subfloor, activity, noise, and installation answers before generating specs, and ask targeted follow-up questions when answers are vague. <br>
-Risk: The artifact homepage points to a different buying-consultant page. <br>
-Mitigation: Use the server-resolved ClawHub listing and publisher profile as the public release references, and verify any upstream repository link before relying on it. <br>
+## Use Case:
 
+External users use this skill through an AI agent to choose home gym flooring for a specific space, subfloor, activity profile, and noise situation. The skill produces a guided consultation, a prioritized flooring specification, a coverage calculation, and limited product starting points after the required inputs are collected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/home-gym-flooring-buying-consultant) <br>
-- [Publisher profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown consultation questions, structured specification lists, coverage calculations, and product-research suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to five product suggestions only after collecting required buying-context inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Product specifications, prices, availability, certifications, and building requirements can change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current product details, indoor air-quality certifications, and applicable building requirements before relying on or publishing purchase recommendations.
+
+Risk: The artifact homepage URL appears mismatched to the home gym flooring skill.
+
+Mitigation: Do not treat the homepage as provenance for this release unless server-resolved provenance is later provided or the source link is corrected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/home-gym-flooring-buying-consultant)
+- [Publisher Profile](https://clawhub.ai/user/arbazex)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown consultation questions and structured Markdown recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes grouped buyer questions, non-negotiable/recommended/optional spec lists, a coverage calculation, and up to five product suggestions after required inputs are collected.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

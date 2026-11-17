@@ -1,43 +1,53 @@
-## Description: <br>
-Military Civilian Talent (EN) provides English prompt templates, safety checklists, and reference patterns for agriculture, machinery, construction, electrical repair, food preservation, rural business, and field knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Military-Civilian Dual-Use Talent Assistant provides reference prompt templates, safety checklists, and method patterns for agriculture, machinery, construction, electrical work, cooking, rural business, management, and military knowledge.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-External users can use this skill as educational reference material and as reusable prompts for practical rural, machinery, construction, food preservation, business, and field-knowledge questions. It is reference-only for hazardous or regulated work and should be checked against official manuals, local codes, and qualified professionals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce practical advice about machinery, electrical, structural, pesticide, food-preservation, or fieldcraft tasks where mistakes can cause harm. <br>
-Mitigation: Treat outputs as reference material only and verify real-world decisions with licensed professionals, official manuals, local codes, and relevant safety authorities. <br>
-Risk: The artifact includes templates that ask for step-by-step troubleshooting, repairs, and construction procedures. <br>
-Mitigation: Use the included safety gates before applying recommendations, especially lockout/tagout, PPE, food-safety checks, and professional review for regulated work. <br>
+## Use Case:
 
+External users and agents use this skill to draft structured markdown guidance for rural, agricultural, mechanical, construction, food preservation, business, and military-civilian knowledge tasks. High-risk topics require supervision and authoritative local or professional guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/johnsmithfan/military-civilian-talent) <br>
-- [Military-Civilian Talent - Method Patterns](artifact/references/method-patterns.md) <br>
-- [Military-Civilian Talent - Copy-Paste Prompt Templates](artifact/01-implement-method.md) <br>
-- [Military-Civilian Talent - Robustness and Safety Checklists](artifact/02-robustness-checks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, checklists, and structured reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only educational guidance; no code execution, dependencies, or declared side effects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact changelog, released 2026-04-26) <br>
+Risk: The security scan marked the release suspicious because the markdown-only skill includes broad, actionable military fieldcraft and hazardous practical templates without tight enough limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when these topics are intended, supervise high-risk outputs, and require qualified professional or authoritative local guidance for tactical military help, structural or electrical work, pesticide use, machinery repair, and food preservation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/military-civilian-talent)
+- [Publisher profile](https://clawhub.ai/user/johnsmithfan)
+- [Copy-Paste Prompt Templates](artifact/01-implement-method.md)
+- [Robustness and Safety Checklists](artifact/02-robustness-checks.md)
+- [Method Patterns](artifact/references/method-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompts, checklists, and step-by-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only; no declared dependencies or tool calls.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md changelog, released 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

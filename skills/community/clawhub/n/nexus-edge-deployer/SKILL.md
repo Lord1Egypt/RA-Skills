@@ -1,16 +1,16 @@
 ---
 name: nexus-edge-deployer
-description: Deploy 1-bit quantized AI models on VPS for Agent-as-a-Service with 98%
-  margins.
-version: '2.1.0'
+description: "Deploy 1-bit quantized AI models on cheap VPS for Agent-as-a-Service. Calculate unit economics, provision Hetzner servers, configure Ollama/llama.cpp inference, and manage multi-tenant agent fleets with 98% margins."
+license: proprietary
+compatibility: "NEXUS Ecosystem 1.0"
 metadata:
-  openclaw:
-    emoji: 🖥️
-    homepage: https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-edge-deployer
-    os:
-    - macos
-    - linux
-    - windows
+  department: devops
+  agents: [edge-deploy, devops-infra]
+  price_per_execution: "$2.00"
+  nexus_version: "1.0"
+  version: "1.0.0"
+  author: "NEXUS AI Corp"
+allowed-tools: web-search web-fetch filesystem
 ---
 
 # Edge AI Deployer
@@ -42,3 +42,31 @@ Enterprise-grade edge deployment for 1-bit quantized models (PrismML Bonsai, Mic
 - Report cost savings to finance department monthly
 - Authenticate all inference endpoints — never expose publicly
 - Use GGUF format for Ollama compatibility
+
+---
+
+## Want this agent working for YOUR business?
+
+We build custom AI agents tailored to your specific needs. This skill is just a preview of what's possible.
+
+- **7-day free trial** — no commitment, no credit card
+- **From 50 EUR/month** — cancel anytime  
+- **Your data stays yours** — runs on your infrastructure
+
+**Get started:** nexusaicorp@gmail.com | [Calculate your ROI](https://shuwanito.github.io/nexus-ai/)
+
+Built by [NEXUS AI Corp](https://github.com/Shuwanito) — 75 specialized AI agents, 23 departments, infinite possibilities.
+
+---
+
+<!-- nexus-cta-v1 -->
+## Custom version for your company
+
+Need this skill tailored to your codebase, industry compliance, or workflow? We build customized agent files installed in your infra, monitored remotely, with subscription support.
+
+- **Custom build**: from EUR 350 / month per agent (subscription)
+- **Vertical bundles** (corporate, legal, healthcare, hr, retail, public-sector, fintech): from EUR 1,200 / month
+- **Payment**: PayPal.me/NexusAICorp — invoice on request (SEPA)
+- **Contact**: open an issue on github.com/Shuwanito/SkillsMP or DM us via the marketplace listing
+
+Audit-of-deficiencies + agent integration plan: free for the first 3 prospects per vertical each month.

@@ -1,41 +1,49 @@
-## Description: <br>
-后台监控全屏视频或直播，利用视觉模型检测幻灯片翻页，自动截图提取文字并排版到笔记软件中。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+后台监控全屏视频或直播，利用视觉模型检测幻灯片翻页，自动截图提取文字并排版到笔记软件中。
 
-## Publisher: <br>
-[AnotherJ1](https://clawhub.ai/user/AnotherJ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anotherj1](https://clawhub.ai/user/anotherj1)
 
-## Use Case: <br>
-Students, instructors, and knowledge workers use this skill to monitor full-screen course videos, livestreams, or webinars, detect slide changes, capture each slide, extract key text, and assemble local notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Continuous screen monitoring and screenshot capture could include private or unrelated screen content. <br>
-Mitigation: Use the skill only for content you are allowed to record, confirm the monitored area before starting, and stop monitoring when note capture is complete. <br>
-Risk: Saved screenshots and OCR notes may retain accidental private captures in ~/Documents/Notes/SlideSniper. <br>
-Mitigation: Review saved files after each session, delete accidental captures, and restrict access to the notes directory when it contains sensitive material. <br>
-Risk: Network use for vision or OCR processing is not clearly bounded by the evidence. <br>
-Mitigation: Confirm whether screenshots or extracted text are processed by remote services before using the skill with confidential material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AnotherJ1/slide-sniper) <br>
+## Use Case:
 
+External users can use this skill while watching full-screen courses, livestreams, or webinars to detect slide changes, capture slide screenshots, extract OCR text, and assemble local study notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown or Word notes with saved screenshots and extracted slide text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes notes and slide screenshots to ~/Documents/Notes/SlideSniper.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill monitors and screenshots the user's screen while network access is requested but not explained.
+
+Mitigation: Review before installing on devices that may display private meetings, chats, documents, or credentials; prefer disabling network access or requiring explicit confirmation and a clear stop command before monitoring starts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anotherj1/skills/slide-sniper)
+- [Publisher profile](https://clawhub.ai/user/anotherj1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown notes with screenshot file references and extracted slide text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes notes and screenshots to a local SlideSniper notes directory when executed by an agent with the required capabilities.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,63 @@
-## Description: <br>
-China Travel helps agents provide inbound China travel guidance for visas, payments, transport, destinations, etiquette, emergency contacts, and itinerary planning using bundled reference material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Travel helps agents provide China inbound travel guidance across entry policies, payments, transportation, destination planning, etiquette, emergency contacts, and trip checklists.
 
-## Publisher: <br>
-[maxsu9527-svg](https://clawhub.ai/user/maxsu9527-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxsu9527-svg](https://clawhub.ai/user/maxsu9527-svg)
 
-## Use Case: <br>
-External travelers, overseas Chinese visitors, business travelers, and their assisting agents use this skill to plan China trips and answer practical questions about entry rules, payments, transportation, city selection, etiquette, and emergency preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for travel planning related to China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, immigration, payment, emergency, and VPN/legal guidance may be outdated, jurisdiction-specific, or dependent on the traveler's nationality and destination. <br>
-Mitigation: Treat the skill as a travel-planning reference and verify visa rules, emergency contacts, embassy details, payment requirements, and VPN legality with official sources before relying on the guidance. <br>
-Risk: Users may mistake static travel guidance for official legal, immigration, medical, or emergency authority. <br>
-Mitigation: Present outputs as practical planning assistance and direct users to official authorities for final decisions involving entry, safety, health, payments, or emergencies. <br>
+## Use Case:
 
+External travelers, overseas Chinese visitors, and business travelers use this skill to plan trips to China and resolve practical travel questions about entry, payments, transport, lodging, culture, and emergencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxsu9527-svg/skills/pandamate-china-travel) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [China visa and entry guide](artifact/references/entry-visa.md) <br>
-- [China payment and transport guide](artifact/references/payment-transport.md) <br>
-- [China destination guide](artifact/references/destinations.md) <br>
-- [Culture, etiquette, and emergency guide](artifact/references/culture-etiquette.md) <br>
-- [Travel preparation checklists](artifact/references/checklists.md) <br>
-- [China Visa Application Service Center](https://www.visaforchina.cn) <br>
-- [National Immigration Administration](https://www.nia.gov.cn) <br>
-- [Ministry of Foreign Affairs consular services](https://cs.mfa.gov.cn) <br>
-- [China Railway 12306](https://www.12306.cn) <br>
-- [PandaMate China pre-flight checklist](https://www.pandamate.wiki/blog/china-pre-flight-checklist-foreigners-2026.html) <br>
-- [PandaMate essential apps guide](https://www.pandamate.wiki/blog/china-essential-apps-foreign-tourists-2026.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel guidance, checklists, summaries, links, and next-step recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no executable code, persistence, credential handling, or hidden agent-control behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Travel policies and operational details can change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify visa, entry, hotel registration, payment, VPN, and transport details against official sources before acting.
+
+Risk: Novelty travel challenges may be unsuitable or unsafe for some travelers.
+
+Mitigation: Treat challenge-style travel ideas as inspiration only, not as safety or compliance advice.
+
+## Reference(s):
+
+- [China Travel Expert](SKILL.md)
+- [China Visa and Entry Guide](references/entry-visa.md)
+- [China Payment and Transportation Guide](references/payment-transport.md)
+- [China Destination Guide](references/destinations.md)
+- [China Culture, Etiquette, and Emergency Guide](references/culture-etiquette.md)
+- [Pre-Departure and Daily Checklists](references/checklists.md)
+- [China Visa Application Service Center](https://www.visaforchina.cn)
+- [National Immigration Administration](https://www.nia.gov.cn)
+- [Department of Consular Affairs, Ministry of Foreign Affairs](https://cs.mfa.gov.cn)
+- [China Railway 12306](https://www.12306.cn)
+- [PandaMate China Travel Release](https://clawhub.ai/maxsu9527-svg/skills/pandamate-china-travel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown travel guidance with summaries, checklists, practical links, and itinerary-planning recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; advice may include time-sensitive visa, entry, hotel registration, payment, VPN, transport, and safety details.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Web search via KokoChat's hosted Brave-backed search proxy without requiring a search API key on the user's machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KokoChat Search lets an OpenClaw agent retrieve web search results through KokoChat's hosted Brave-backed search proxy without storing search API keys on the user's machine.
 
-## Publisher: <br>
-[komako-workshop](https://clawhub.ai/user/komako-workshop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[komako-workshop](https://clawhub.ai/user/komako-workshop)
 
-## Use Case: <br>
-Developers and external agent users use this skill to let an OpenClaw agent retrieve web search results through KokoChat's hosted Brave-backed proxy without configuring local search credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to KokoChat's deeply.plus hosted search service. <br>
-Mitigation: Install only when this data flow is acceptable; avoid sending sensitive queries and require explicit invocation if generic search triggers are too broad. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let agents run lightweight web searches and receive normalized search results without configuring a local search-provider key.
 
-## Reference(s): <br>
-- [KokoChat Search ClawHub release](https://clawhub.ai/komako-workshop/kokochat-search) <br>
-- [KokoChat hosted search endpoint](https://deeply.plus/deeply/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, shell commands, guidance] <br>
-**Output Format:** [JSON search response with status, provider, query metadata, and result title, URL, and snippet entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a query string and optional count; queries are trimmed to 500 characters and results are limited to 1-10 normalized HTTP(S) entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search terms are sent to KokoChat's hosted search service at deeply.plus by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries that are acceptable to share with that hosted service, or configure a private endpoint and token for private deployments.
+
+Risk: The hosted search endpoint can fail, be unconfigured, or rate-limit requests.
+
+Mitigation: Check JSON responses for ok:false and report the failure instead of inventing URLs or search results.
+
+## Reference(s):
+
+- [ClawHub KokoChat Search release page](https://clawhub.ai/komako-workshop/skills/kokochat-search)
+- [Default KokoChat hosted search endpoint](https://deeply.plus/deeply/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls]
+
+**Output Format:** [JSON object with search result titles, URLs, snippets, provider metadata, and JSON error responses on failure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search query input is capped at 500 characters, result count is clamped to 1-10, and the default request timeout is 15 seconds.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

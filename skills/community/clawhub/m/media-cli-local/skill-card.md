@@ -1,42 +1,59 @@
-## Description: <br>
-Single-file Bash CLI for the *arr media stack that lets agents manage Sonarr, Radarr, Prowlarr, qBittorrent, Bazarr, Jellyseerr, and Tdarr from the terminal on the same machine as the services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Single-file Bash CLI for managing Sonarr, Radarr, Prowlarr, qBittorrent, Bazarr, Jellyseerr, and Tdarr from a local terminal or AI agent.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-External users, developers, and homelab operators use this skill to let an agent inspect and control a local media automation stack, including media search, library status, download monitoring, and setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to run local media-stack commands that add media, pause downloads, remove torrents, refresh libraries, or delete files. <br>
-Mitigation: Require explicit user confirmation before any destructive or state-changing command is executed. <br>
-Risk: The install flow depends on an external Bash script referenced by the artifact. <br>
-Mitigation: Review the script before installation and pin it to a trusted commit or release when possible. <br>
-Risk: The setup stores service URLs and API keys in a local configuration file. <br>
-Mitigation: Protect the generated config file, keep restrictive permissions, and avoid exposing it to untrusted agents or users. <br>
+## Use Case:
 
+External homelab users and developers use this skill to let an agent produce local media-stack shell commands for searching, adding, monitoring, pausing, resuming, and inspecting movies, TV shows, downloads, subtitles, requests, and transcoding status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/media-cli-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target local media services and may require user confirmation for state-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The install flow asks users to run code from an unpinned external repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream media script before installation and prefer a pinned commit or verified release.
+
+Risk: Agent-issued commands can change local media services or delete downloads when destructive command options are used.
+
+Mitigation: Grant this skill only to trusted agents and require explicit user confirmation before pause, resume, remove, or delete-file operations.
+
+Risk: The CLI stores media-service API URLs and keys in a local configuration file.
+
+Mitigation: Keep the configuration file permissions restricted and avoid exposing its contents in logs, prompts, or shared terminal output.
+
+## Reference(s):
+
+- [Media Cli Source Repository](https://github.com/solomonneas/media-cli)
+- [ClawHub Skill Page](https://clawhub.ai/solomonneas/skills/media-cli-local)
+- [Publisher Profile](https://clawhub.ai/user/solomonneas)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target local media services and may return parseable terminal output from the media CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

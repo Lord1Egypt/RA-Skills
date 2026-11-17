@@ -1,43 +1,60 @@
-## Description: <br>
-Send native Feishu voice bubble messages via MiniMax TTS, converting text to 16kHz opus audio and delivering it as a playable Feishu audio bubble. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send native Feishu voice bubble messages via MiniMax TTS, converting text to 16kHz opus audio and delivering it as a playable Feishu audio bubble.
 
-## Publisher: <br>
-[raydoomed](https://clawhub.ai/user/raydoomed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raydoomed](https://clawhub.ai/user/raydoomed)
 
-## Use Case: <br>
-Developers and agent operators use this skill to send generated voice replies as native Feishu audio bubbles instead of MP3 attachments. It is useful when a workflow needs text converted to speech with MiniMax and delivered to a Feishu recipient by open_id. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice-message text is sent to MiniMax for TTS processing. <br>
-Mitigation: Do not use the skill for secrets, regulated data, or sensitive personal information unless MiniMax is approved for that use. <br>
-Risk: Generated audio and recipient open_id are uploaded or sent through Feishu. <br>
-Mitigation: Use only approved Feishu app permissions and recipients, and confirm the Feishu workspace policy allows this data flow. <br>
-Risk: The skill depends on locally stored MiniMax and Feishu credentials. <br>
-Mitigation: Store credentials only in the expected private config files, restrict file access, and rotate keys if they may have been exposed. <br>
+## Use Case:
 
+Developers and Feishu workspace operators use this skill to let an agent turn text into MiniMax speech and send it as a native Feishu voice bubble to a Feishu open_id recipient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raydoomed/minimax-feishu-voice) <br>
-- [MiniMax system voice IDs](https://platform.minimaxi.com/docs/faq/system-voice-id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends generated audio through MiniMax TTS and Feishu APIs; requires ffmpeg with libopus support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can send externally generated voice messages through Feishu, so accidental or unauthorized sends may reach real recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before running the send command and verify the recipient open_id and message text before execution.
+
+Risk: Message text and generated audio are processed by MiniMax and Feishu services.
+
+Mitigation: Avoid sending secrets, regulated data, or private content unless that third-party processing is acceptable for the deployment.
+
+Risk: The skill depends on local credentials for MiniMax and Feishu.
+
+Mitigation: Store API keys and app secrets outside shared logs or prompts and review configuration permissions before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raydoomed/skills/minimax-feishu-voice)
+- [MiniMax system voice ID documentation](https://platform.minimaxi.com/docs/faq/system-voice-id)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [MiniMax API endpoint](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script returns a Feishu message_id after generating, converting, uploading, and sending the voice message.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

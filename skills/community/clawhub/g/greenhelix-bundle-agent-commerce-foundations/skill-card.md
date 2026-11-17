@@ -1,39 +1,50 @@
-## Description: <br>
-A six-guide bundle for building agent-to-agent commerce systems, covering autonomous B2B transactions, API migration, security hardening, payment rails, pricing strategy, and multi-agent orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A six-guide foundation for agent-to-agent commerce covering B2B transactions, API migration, security hardening, payment rails, pricing strategy, and multi-agent orchestration.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and teams building agent commerce systems use this bundle as guidance for autonomous B2B transactions, API migration, security hardening, payment rails, pricing strategy, and multi-agent orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is tagged for commerce workflows, possible purchases, and sensitive credentials. <br>
-Mitigation: Review the guidance before enabling transactions, keep API and signing keys out of shared prompts or logs, and require human approval for purchase or payment actions until controls are verified. <br>
+## Use Case:
 
+Developers and external teams use this guide bundle to plan autonomous agent commerce systems, including B2B transactions, API migration, security hardening, payment rails, pricing strategy, and multi-agent orchestration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-bundle-agent-commerce-foundations) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mirni) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; the release metadata declares GREENHELIX_API_KEY, AGENT_SIGNING_KEY, and STRIPE_API_KEY as required environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Risk: The guide bundle requests sensitive commerce, signing, and Stripe credentials without evidence explaining how they are used or stored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review publisher documentation before enabling the skill; use scoped test or restricted credentials and avoid production Stripe or signing keys unless the need and handling are clear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-bundle-agent-commerce-foundations)
+- [Publisher Profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guide bundle]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable bundle that declares GREENHELIX_API_KEY, AGENT_SIGNING_KEY, and STRIPE_API_KEY as required environment variables.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

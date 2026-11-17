@@ -1,43 +1,57 @@
-## Description: <br>
-Monitors competitor prices across Amazon, Walmart, Shopify, and Etsy with AI-driven normalization, alerts, and historical trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors competitor prices across Amazon, Walmart, Shopify, and Etsy with AI-driven normalization, alerts, and historical trend analysis.
 
-## Publisher: <br>
-[juntinglu-229](https://clawhub.ai/user/juntinglu-229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juntinglu-229](https://clawhub.ai/user/juntinglu-229)
 
-## Use Case: <br>
-Developers, operators, and ecommerce teams use this skill to monitor competitor product URLs, track historical price changes, and receive configurable alerts or market reports for pricing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scrapes product URLs from user watchlists and may send product names, platforms, prices, percent changes, and recommendations to configured Slack or Telegram services. <br>
-Mitigation: Use trusted watchlists, restrict monitored URLs in sensitive environments, and configure only approved notification services. <br>
-Risk: Price extraction depends on third-party ecommerce page structure and can be inaccurate, blocked, or out of date. <br>
-Mitigation: Review important alerts before pricing decisions, keep rate limits enabled, and manually verify high-impact price changes. <br>
+## Use Case:
 
+E-commerce operators, pricing teams, and developers use this skill to monitor competitor product URLs, record price history, and receive alerts or reports when pricing changes may require action.
 
-## Reference(s): <br>
-- [ClawHub PriceWatch listing](https://clawhub.ai/juntinglu-229/pricewatch) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Configuration example](artifact/scripts/config.example.yaml) <br>
-- [PriceWatch monitoring script](artifact/scripts/price_watch.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration, shell commands, and JSON or text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores price history locally in SQLite and can send configured Slack or Telegram alert payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Configured product URLs may cause the skill to send requests to unintended internal systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only add trusted public product URLs and run the skill in an environment that cannot reach internal admin panels or cloud metadata services.
+
+Risk: User-configured notification endpoints can expose alert data or route messages to untrusted services.
+
+Mitigation: Use trusted Slack, Telegram, email, or webhook endpoints and review destination credentials before enabling notifications.
+
+Risk: Live latest-resolution install commands can change behavior between runs.
+
+Mitigation: Prefer pinned install and run commands for repeatable deployments.
+
+## Reference(s):
+
+- [ClawHub PriceWatch Listing](https://clawhub.ai/juntinglu-229/skills/pricewatch)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON CLI output with configuration examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local SQLite price history and send user-configured Slack or Telegram notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

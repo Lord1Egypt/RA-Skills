@@ -1,17 +1,17 @@
-# TanStack Query 数据获取
+# TanStack Query data acquisition
 
-Frontend Craft skill for TanStack Query 数据获取.
+Design server-state queries, caching, invalidation, mutations, and optimistic updates.
 
 ## Skill
 
 - ID: `fec-data-fetching`
 - Category: `implementation-capability`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-data-fetching/SKILL.md`
 
 ## Description
 
-Use when implementing or reviewing frontend server-state flows: typed queries, request caching, invalidation, mutations, optimistic updates, infinite queries, prefetch, SSR hydration, or API-layer integration. Do not use for local UI state or Service Worker caching; Chinese triggers include 数据获取, 缓存, 乐观更新.
+Use when implementing or reviewing frontend server-state flows: typed queries, request caching, invalidation, mutations, optimistic updates, infinite queries, prefetch, SSR hydration, or API-layer integration. Do not use for local UI state or Service Worker caching; Chinese triggers include data fetch, cache, optimistic updates.
 
 ## Usage
 

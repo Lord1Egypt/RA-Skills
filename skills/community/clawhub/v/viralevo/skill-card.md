@@ -1,45 +1,67 @@
-## Description: <br>
-Self-evolving viral content trend advisor that monitors public trend signals, predicts what to post and when, and improves its own accuracy over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-evolving viral content trend advisor. Monitors 11 platforms, predicts what to post and when, and improves its own accuracy every week automatically.
 
-## Publisher: <br>
-[0xF69](https://clawhub.ai/user/0xF69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xf69](https://clawhub.ai/user/0xf69)
 
-## Use Case: <br>
-Content creators, marketers, and operators use ViralEvo with an agent to collect public trend signals, generate posting guidance, log post outcomes, and adjust trend-scoring weights over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Tavily API key and makes outbound trend-search requests. <br>
-Mitigation: Install only when external public trend searches are acceptable, and provide a scoped Tavily key through the documented environment or OpenClaw configuration path. <br>
-Risk: Optional cron setup can run recurring background collection, verification, and weekly configuration changes. <br>
-Mitigation: Enable scheduled jobs only when recurring reports and weekly model-weight updates are desired, and review the cron commands before adding them. <br>
-Risk: Uninstall instructions include an optional data-deletion command for the ViralEvo workspace directory. <br>
-Mitigation: Back up the local ViralEvo data directory before running the optional deletion step. <br>
-Risk: Trend predictions are probabilistic and may be incorrect or misleading for business decisions. <br>
-Mitigation: Treat reports as directional guidance, compare them with current platform context, and avoid relying on them as the sole basis for posting or revenue decisions. <br>
+## Use Case:
 
+External creators, marketers, and operators use this skill to monitor public trend signals, choose content topics and posting windows, and refine future recommendations from logged post performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xF69/viralevo) <br>
-- [OpenClaw cron jobs documentation](https://docs.openclaw.ai/automation/cron-jobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with command and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English and Chinese operation; may create local configuration, SQLite trend data, logs, and Markdown reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence; artifact frontmatter states 0.6.4) <br>
+Risk: The skill requires a Tavily API key and makes outbound requests for public trend discovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped Tavily key where possible and avoid placing personal or sensitive data in monitored search terms.
+
+Risk: Scheduled OpenClaw jobs may run collection, verification, and weekly review actions automatically.
+
+Mitigation: Review cron entries before enabling them and start with manual runs until the generated reports and stored data match expectations.
+
+Risk: Local profile, report, log, and database files may be deleted by the optional uninstall cleanup command.
+
+Mitigation: Back up the Viralevo workspace before running destructive cleanup commands.
+
+Risk: The inspected artifact is documentation-only and references implementation scripts that were not present for inspection.
+
+Mitigation: Verify the installed package contents before relying on collection, scoring, reporting, or self-evolution behavior.
+
+Risk: Trend scores and posting windows are probabilistic and may not predict actual business outcomes.
+
+Mitigation: Use recommendations as decision support and compare them against platform analytics and human editorial judgment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xf69/skills/viralevo)
+- [Publisher Profile](https://clawhub.ai/user/0xf69)
+- [OpenClaw Cron Jobs Documentation](https://docs.openclaw.ai/automation/cron-jobs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, shell commands, JSON configuration snippets, and natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local reports, profile data, SQLite trend data, logs, and OpenClaw cron configuration when the referenced scripts are available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 0.6.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

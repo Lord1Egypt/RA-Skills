@@ -1,46 +1,57 @@
-## Description: <br>
-Turn a single long-tail query into a publish-ready blog post that ranks in search and gets quoted by AI assistants by classifying the topic, researching real sources, drafting clean HTML, auditing AI-SEO structure, and preparing a Ghost, WordPress, or static-site publishing bundle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a single long-tail query into a publish-ready blog post by classifying the topic, researching real sources, drafting clean HTML, auditing AI-SEO structure, and preparing publication through Ghost, WordPress, or static-site output.
 
-## Publisher: <br>
-[automatelab](https://clawhub.ai/user/automatelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[automatelab](https://clawhub.ai/user/automatelab)
 
-## Use Case: <br>
-External creators, founders, content marketers, and developer-marketing teams use this skill to turn a focused search query into a reviewed blog draft or publishing bundle. It supports static-site output by default and can publish through Ghost or WordPress adapters when credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing adapters can use sensitive Ghost or WordPress credentials. <br>
-Mitigation: Configure least-privilege integrations where possible, keep admin keys and application passwords out of git, and install the skill only for agents trusted to create blog drafts or posts. <br>
-Risk: Generated drafts may contain private material or content that should not go live without editorial review. <br>
-Mitigation: Review generated drafts before using publish or schedule flags, and periodically clean tmp/blog-drafts when drafts may include private material. <br>
-Risk: Live or scheduled publishing can make content public through the connected platform. <br>
-Mitigation: Use the default draft flow for normal operation and reserve publish or publish-at flags for posts that have passed review. <br>
+## Use Case:
 
+External users, founders, indie hackers, content marketers, and developers use this skill to turn a specific long-tail topic into a reviewed blog-post bundle. It is suited for draft-first publication workflows where a human reviews source grounding, SEO structure, CMS settings, and publishing credentials before release.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/automatelab/automatelab-seo-blog-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/automatelab) <br>
-- [Glossary Schema Reference](references/glossary-schema.md) <br>
-- [Glossary Tooltip Decorator](references/decorate.js) <br>
-- [ai-seo MCP](https://github.com/AutomateLab-tech/ai-seo-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files, API calls] <br>
-**Output Format:** [Markdown guidance with HTML, JSON, JSON-LD, and shell command snippets; generated post bundles include draft HTML, schema HTML, metadata JSON, and optional image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a static draft bundle; Ghost and WordPress publishing paths require platform credentials and default to draft unless publish flags are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and release evidence) <br>
+Risk: The workflow may use unpinned external installs or unbundled publishing scripts that interact with CMS accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin optional dependencies, inspect local scripts before use, and run static or draft-only output until the generated post and platform settings are confirmed.
+
+Risk: Publishing adapters may require CMS credentials and can create or publish content through Ghost or WordPress.
+
+Mitigation: Use least-privilege CMS credentials and avoid live publish flags unless a human has reviewed the generated post, metadata, and target platform configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/automatelab/skills/automatelab-seo-blog-writer)
+- [Publishing Skills Repository](https://github.com/AutomateLab-tech/publishing-skills)
+- [ai-seo-mcp README](https://github.com/AutomateLab-tech/ai-seo-mcp)
+- [glossary-schema.md](references/glossary-schema.md)
+- [decorate.js](references/decorate.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JSON-LD, JSON metadata, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft-first blog publishing artifacts such as clean HTML, schema blocks, metadata, research notes, and platform adapter commands.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

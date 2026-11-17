@@ -1,42 +1,59 @@
-## Description: <br>
-Submits websites to the DomainRank.app AI directory through the DomainRank submission API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits website listings to DomainRank.app through its authenticated submission API, including support for batch submissions after explicit user confirmation.
 
-## Publisher: <br>
-[domainrankhq](https://clawhub.ai/user/domainrankhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[domainrankhq](https://clawhub.ai/user/domainrankhq)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and submit one or more website listings to DomainRank.app with a selected price plan. It is intended for workflows where the user has a DomainRank API key and must review website details and expected credit cost before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends website names, URLs, selected price plans, and bearer-token authenticated requests to an external DomainRank service. <br>
-Mitigation: Use a dedicated API key if available, provide credentials only at execution time, and verify the destination API endpoint before sending requests. <br>
-Risk: Single or batch submissions can spend DomainRank credits according to the chosen price plan. <br>
-Mitigation: Review the website list, URL, price plan, and expected total credit cost, and require explicit confirmation before each single or batch submission. <br>
+## Use Case:
 
+External users and developers use this skill to submit one or more websites to the DomainRank.app AI directory while reviewing the target site list, price plan, and expected credit use before requests are made.
 
-## Reference(s): <br>
-- [DomainRank submission API endpoint](https://domainrank.app/api/submit-item) <br>
-- [DomainRank AI SEO skills](https://domainrank.app/ai-seo-skills) <br>
-- [ClawHub release page](https://clawhub.ai/domainrankhq/domainrank-submit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided DomainRank bearer token and explicit user confirmation before batch submissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Website URLs and related metadata are sent to DomainRank.app during submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination service and review each site before making API requests.
+
+Risk: Submissions may consume DomainRank account credits, especially when using pro or ultra price plans or batch submissions.
+
+Mitigation: Review the pricePlan and expected total credit use with the user before submitting.
+
+Risk: API credentials could be exposed if hardcoded into commands or files.
+
+Mitigation: Pass the DomainRank API key through an environment variable or another secure credential mechanism.
+
+## Reference(s):
+
+- [DomainRank submission API endpoint](https://domainrank.app/api/submit-item)
+- [DomainRank AI SEO skills](https://domainrank.app/ai-seo-skills)
+- [ClawHub skill page](https://clawhub.ai/domainrankhq/skills/domainrank-submit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided DomainRank API key and explicit confirmation before batch submissions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

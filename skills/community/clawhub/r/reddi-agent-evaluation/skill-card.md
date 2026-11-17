@@ -1,42 +1,58 @@
-## Description: <br>
-Reddi Agent Evaluation helps test and benchmark LLM agents with behavioral testing, capability assessment, reliability metrics, regression testing, and production monitoring guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Testing and benchmarking LLM agents, including behavioral testing, capability assessment, reliability metrics, and production monitoring.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and quality engineers use this skill to design agent evaluations, including behavioral contracts, adversarial tests, statistical reliability checks, and regression test plans for LLM agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluating real agents may expose confidential customer data, private prompts, or sensitive outputs to a configured LLM provider. <br>
-Mitigation: Use only approved LLM providers for the relevant data class and avoid including sensitive data in evaluation inputs unless approval is explicit. <br>
-Risk: Single-run tests can give misleading results for non-deterministic LLM agents. <br>
-Mitigation: Run tests multiple times and use statistical measures such as distributions or confidence intervals before drawing reliability conclusions. <br>
-Risk: Test data can leak into training data, prompts, or evaluation setup and inflate apparent performance. <br>
-Mitigation: Separate evaluation data from training and prompt construction, and review evaluation workflows for data leakage before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to design agent evaluations, benchmark agent behavior, and reason about reliability risks before production use. It focuses on behavioral regression tests, capability assessments, statistical evaluation, adversarial testing, and data leakage prevention.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/nissan/reddi-agent-evaluation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, checklists, rubrics, and test plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference configured LLM API evaluation scoring when an agent evaluation workflow requires it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may activate for broad agent-testing requests and provide general evaluation guidance where project-specific review is needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated evaluation plans against the target agent, production environment, and reliability goals before adopting them.
+
+Risk: LLM API scoring depends on the user's configured environment rather than executable code bundled with this skill.
+
+Mitigation: Confirm any external scorer configuration, credentials, and model behavior before relying on score outputs.
+
+Risk: Agent evaluations can miss production failures if based on single runs, narrow happy paths, or leaked test data.
+
+Mitigation: Use repeated trials, adversarial and edge-case tests, behavioral contracts, and data leakage checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/reddi-agent-evaluation)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and evaluation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend evaluation patterns, test plans, rubrics, reliability metrics, and review checks for agent behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata, released 2026-03-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

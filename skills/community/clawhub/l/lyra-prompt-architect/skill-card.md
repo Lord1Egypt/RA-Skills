@@ -1,38 +1,53 @@
-## Description: <br>
-Advanced prompt architect (Lyra v2) that builds precise, high-performance prompts from scratch through structured dialogue and advanced reasoning frameworks (CoT/ToT/GoT/AoT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms raw ideas into precisely engineered prompts via structured dialogue and a four-phase process for complex, high-performance AI prompting tasks.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, prompt engineers, and AI users use this skill to turn raw ideas into structured prompts through dialogue, blueprinting, synthesis, and refinement. It is suited for complex prompt engineering, task decomposition, and cognitive architecture design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt-building guidance may produce incorrect or misleading outputs in legal, financial, or other accuracy-critical work. <br>
-Mitigation: Independently verify generated prompts and downstream outputs before using them in high-stakes contexts. <br>
+## Use Case:
 
+AI users, prompt engineers, and developers use this skill to turn early-stage ideas into structured prompts through guided dialogue, blueprint selection, prompt synthesis, and refinement.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/lyra-prompt-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured prompt blocks and explanatory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive dialogue precedes prompt construction; high-stakes use cases add self-correction or verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated prompts for high-stakes tasks may contain incorrect, incomplete, or misleading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated high-stakes prompts for accuracy before use and apply the skill's self-correction or verification steps where appropriate.
+
+Risk: Users may place private or regulated data into prompts intended for a target AI that is not approved for that data.
+
+Mitigation: Avoid including private or regulated data unless the target AI and workflow are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/lyra-prompt-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive dialogue followed by an architected prompt, blueprint explanation, key enhancements, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

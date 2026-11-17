@@ -1,40 +1,53 @@
-## Description: <br>
-Tracks home appliances, service history, contractors, warranties, costs, and upcoming maintenance across one or more properties. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track everything about your home, appliances, service history, contractors, and upcoming maintenance.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-Homeowners and property managers use this skill to maintain a persistent local record of home systems, service visits, contractor details, maintenance schedules, warranties, and repair costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist household details, contractor contacts, service costs, warranties, and possibly addresses in home-data.json. <br>
-Mitigation: Store only details needed for maintenance tracking, review confirmations after casual mentions, and periodically inspect or delete home-data.json if the record is no longer needed. <br>
-Risk: Casual home-related statements may be interpreted as records to save, which can retain inaccurate or sensitive details. <br>
-Mitigation: Review each logged confirmation and correct or remove records promptly when the captured details are wrong or too sensitive. <br>
+## Use Case:
 
+External users use this agent skill to maintain a conversational home record across appliances, service history, contractors, costs, warranties, and maintenance reminders for one or more properties.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chris-openclaw/home-maintenance-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with structured updates to a local JSON data file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains home-data.json as the persistent local record when the host agent supports skill data storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and changelog, released 2026-05-13) <br>
+Risk: The skill saves household records locally, including addresses, appliance details, contractor contact information, warranty dates, service notes, and repair costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details you are comfortable storing on the device, and review or delete home-data.json when household records change or the machine is shared.
+
+Risk: Maintenance reminders and cost summaries depend on the completeness and accuracy of stored user-provided records.
+
+Mitigation: Review logged entries after updates, correct missing dates or costs, and treat reminders as planning aids rather than professional inspection or safety advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris/skills/home-maintenance-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown responses with structured JSON records persisted locally]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a local home-data.json record for properties, appliances, service history, contractors, schedules, warranties, notes, and costs.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

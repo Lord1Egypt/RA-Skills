@@ -1,0 +1,190 @@
+{
+  "language": "fr",
+  "stopwords": [
+    "de",
+    "la",
+    "le",
+    "et",
+    "les",
+    "des",
+    "en",
+    "un",
+    "du",
+    "une",
+    "que",
+    "est",
+    "pour",
+    "qui",
+    "dans",
+    "par",
+    "sur",
+    "pas",
+    "plus",
+    "avec"
+  ],
+  "patterns": [
+    {
+      "id": "FR001",
+      "type": "SLOP_PHRASE",
+      "pattern": "dans\\s+le\\s+monde\\s+trépidant\\s+d'aujourd'hui",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR002",
+      "type": "SLOP_PHRASE",
+      "pattern": "il\\s+est\\s+important\\s+de\\s+noter\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR003",
+      "type": "SLOP_PHRASE",
+      "pattern": "force\\s+est\\s+de\\s+constater\\s+que",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR004",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+conclusion",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR005",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+résumé",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR006",
+      "type": "SLOP_PHRASE",
+      "pattern": "de\\s+plus",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR007",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+outre",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR008",
+      "type": "SLOP_PHRASE",
+      "pattern": "joue\\s+un\\s+rôle\\s+crucial",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR009",
+      "type": "SLOP_PHRASE",
+      "pattern": "une\\s+tapisserie\\s+de",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR010",
+      "type": "SLOP_PHRASE",
+      "pattern": "un\\s+témoignage\\s+de",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR011",
+      "type": "SLOP_PHRASE",
+      "pattern": "plonger\\s+dans",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR012",
+      "type": "SLOP_PHRASE",
+      "pattern": "non\\s+seulement",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR013",
+      "type": "SLOP_PHRASE",
+      "pattern": "mais\\s+aussi",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR014",
+      "type": "SLOP_PHRASE",
+      "pattern": "à\\s+l'ère\\s+du\\s+numérique",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR015",
+      "type": "SLOP_PHRASE",
+      "pattern": "il\\s+convient\\s+de\\s+souligner",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR016",
+      "type": "SLOP_PHRASE",
+      "pattern": "sans\\s+aucun\\s+doute",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR017",
+      "type": "SLOP_PHRASE",
+      "pattern": "dans\\s+le\\s+paysage\\s+actuel",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR018",
+      "type": "SLOP_PHRASE",
+      "pattern": "au\\s+fil\\s+du\\s+temps",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR019",
+      "type": "SLOP_PHRASE",
+      "pattern": "en\\s+fin\\s+de\\s+compte",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR020",
+      "type": "SLOP_PHRASE",
+      "pattern": "ouvrir\\s+la\\s+voie\\s+à",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR021",
+      "type": "SLOP_PHRASE",
+      "pattern": "changer\\s+la\\s+donne",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR022",
+      "type": "SLOP_PHRASE",
+      "pattern": "dans\\s+un\\s+monde\\s+en\\s+constante\\s+évolution",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR023",
+      "type": "SLOP_PHRASE",
+      "pattern": "une\\s+approche\\s+holistique",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR024",
+      "type": "SLOP_PHRASE",
+      "pattern": "des\\s+informations\\s+précieuses",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR025",
+      "type": "SLOP_PHRASE",
+      "pattern": "il\\s+est\\s+essentiel\\s+de",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "FR026",
+      "type": "DEFINITIONAL_OPENING",
+      "pattern": "^(?:Dans le contexte de|Dans le domaine de|Dans le monde de) [\\w\\s]+,",
+      "scope": "paragraph-start",
+      "fixInstruction": "Start with the specific subject or event instead of a generic framing clause."
+    },
+    {
+      "id": "FR027",
+      "type": "STRUCTURAL_CLICHE",
+      "pattern": "\\bnon\\s+seulement\\b[\\s\\S]{0,100}?\\bmais\\s+aussi\\b",
+      "fixInstruction": "State both claims directly without the stock paired construction."
+    }
+  ]
+}

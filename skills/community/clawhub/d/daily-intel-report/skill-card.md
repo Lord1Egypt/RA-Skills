@@ -1,44 +1,57 @@
-## Description: <br>
-Daily Intel Report collects AI industry news and Zhejiang public procurement notices, filters recent and keyword-matched items, and formats a Chinese daily digest for Feishu or email delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Intel Report collects AI industry news and procurement notices, filters them by recency and keywords, and formats a Chinese daily report for Feishu or email delivery.
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-External users and agents use this skill to produce Chinese daily intelligence reports that combine current AI news with keyword-matched Zhejiang public procurement notices. It is suited for scheduled daily delivery, manual news retrieval, and procurement lead screening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public web sources and can include untrusted or stale source material in a daily report. <br>
-Mitigation: Treat fetched articles and procurement notices as untrusted input, verify important items against the original source, and keep the documented timestamp filtering and deduplication checks enabled. <br>
-Risk: Cron delivery can send reports to unintended recipients if Feishu, SMTP, or schedule settings are misconfigured. <br>
-Mitigation: Confirm the schedule, recipient list, Feishu target, and SMTP settings before enabling automated delivery. <br>
+## Use Case:
 
+External users and operators use this skill to gather public AI news and Zhejiang procurement information, then produce a concise Chinese daily intelligence report for scheduled or on-demand delivery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lgugeng/daily-intel-report) <br>
-- [Data Sources](references/data-sources.md) <br>
-- [AIBase News](https://www.aibase.com/news) <br>
-- [IT Home AI Channel](https://www.ithome.com/tags/AI/) <br>
-- [Zhejiang Government Procurement Search](http://www.ccgp-zhejiang.gov.cn/portal/searchHome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, API calls, Guidance] <br>
-**Output Format:** [Chinese Markdown or plain text digest with optional Python script output and delivery configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run on a daily Asia/Shanghai schedule, can send through Feishu DM or optional email, and maintains deduplication state in memory/last-pushed.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches public news and procurement data, including procurement items from an HTTP source that could be inaccurate if intercepted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat collected procurement items as untrusted public data and verify important notices against the official source before making decisions.
+
+Risk: Scheduled delivery to Feishu or email could send reports to unintended recipients if notification settings are misconfigured.
+
+Mitigation: Review recipient and SMTP or Feishu configuration before enabling scheduled delivery.
+
+## Reference(s):
+
+- [Data Sources](references/data-sources.md)
+- [AIBase News](https://www.aibase.com/news)
+- [IT Home AI Channel](https://www.ithome.com/tags/AI/)
+- [Zhejiang Government Procurement Search](http://www.ccgp-zhejiang.gov.cn/portal/searchHome)
+- [ClawHub Skill Page](https://clawhub.ai/lgugeng/skills/daily-intel-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese daily report text or Markdown with source links and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include procurement titles, buyers, regions, bid opening dates, and links from public sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

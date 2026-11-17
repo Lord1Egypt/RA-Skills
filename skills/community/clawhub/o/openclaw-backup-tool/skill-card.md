@@ -1,39 +1,56 @@
-## Description: <br>
-OpenClaw backup and restore tool that creates local backups before installation or debugging work, restores selected snapshots from the terminal, and restarts the OpenClaw Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 备份还原工具。每次安装调试功能前自动备份，支持终端一键还原和重启。让技术小白也能放心折腾。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to protect local OpenClaw state before configuration, installation, or debugging changes. It helps create backups, restore a selected backup snapshot, and restart the Gateway after recovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Backups may contain sensitive OpenClaw memory, profile, tools, and configuration data. <br>
-Mitigation: Keep the backup folder private and limit access to trusted local users. <br>
-Risk: Restoring the wrong backup can replace current OpenClaw files. <br>
-Mitigation: Review the selected backup snapshot before confirming restore. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/openclaw-backup-tool) <br>
+## Use Case:
 
+OpenClaw users and maintainers use this skill to back up local OpenClaw configuration and agent state before installation, debugging, or configuration work, then restore a selected backup or restart the OpenClaw Gateway when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local backup, restore, and restart command guidance for OpenClaw state management.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backups may contain sensitive OpenClaw identity, user, memory, tool, soul, and configuration files.
+
+Mitigation: Keep the backup directory private and treat backup snapshots as sensitive local data.
+
+Risk: Restoring an untrusted or incorrect backup can replace current OpenClaw configuration and agent state.
+
+Mitigation: Restore only trusted backup snapshots and confirm the selected backup before proceeding.
+
+Risk: Restarting the OpenClaw Gateway can briefly interrupt local gateway availability.
+
+Mitigation: Run the restart command during a maintenance window or when a short interruption is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/openclaw-backup-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local backup, restore, and restart command guidance for an OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

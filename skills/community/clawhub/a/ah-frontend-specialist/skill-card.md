@@ -1,38 +1,52 @@
-## Description: <br>
-Frontend Specialist helps agents produce frontend component code, styling, interface implementation guidance, and optimization advice for modern web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend Specialist helps agents build modern web frontends across frameworks, state management, TypeScript, styling, responsiveness, performance, accessibility, and testing.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to guide frontend implementation work, including component architecture, framework selection, styling, responsive behavior, accessibility, performance optimization, and frontend testing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be selected for a broad range of frontend-related prompts, which can reduce routing precision.
+
+Mitigation: Review activation descriptions before deployment and narrow them if the skill should only handle specific frontend frameworks or workflows.
+
+Risk: Generated frontend guidance or code may not fully match project requirements, accessibility expectations, or browser support targets.
+
+Mitigation: Review proposed code and test it against the target application's design, accessibility, compatibility, and performance requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, test, and optimize frontend application components across frameworks such as React, Vue.js, Angular, and Svelte. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Code, Markdown, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide frontend engineering advice that affects authentication, deployment, payments, or other production-sensitive areas. <br>
-Mitigation: Review proposed code and configuration changes before applying them, and explicitly approve any credential, payment, authentication, or production deployment changes. <br>
+**Output Format:** [Markdown with code blocks and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-frontend-specialist) <br>
+**Other Properties Related to Output:** [May include component implementations, styling, prop types or interfaces, usage examples, and performance recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with code snippets and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include component examples, styling, TypeScript interfaces, usage examples, testing strategy, and performance recommendations.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

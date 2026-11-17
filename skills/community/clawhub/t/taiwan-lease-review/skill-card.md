@@ -1,47 +1,60 @@
-## Description: <br>
-Professional lease contract review for Taiwan rental agreements, including residential, commercial or storefront, and parking space leases, with clause checks for illegality, unfairness, and risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional lease contract review for Taiwan rental agreements covering residential, commercial/storefront, and parking space leases, with clause analysis for illegality, unfairness, and risk under Taiwan lease rules.
 
-## Publisher: <br>
-[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt)
 
-## Use Case: <br>
-External users, tenants, landlords, and property professionals use this skill to review Taiwan lease agreements before signing, compare clauses against residential, commercial, and parking lease references, and generate a structured Markdown review report from lease-clause JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Taiwan <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lease review inputs may contain names, addresses, financial terms, or other sensitive contract details. <br>
-Mitigation: Use explicit local input and output paths, limit access to generated reports, and avoid sharing lease files with agents or services that are not approved for that data. <br>
-Risk: The skill provides lease-review assistance and may not reflect every fact, jurisdictional nuance, or legal update relevant to a specific dispute. <br>
-Mitigation: Review the generated report before relying on it and consult a qualified Taiwan legal professional for legal decisions or contested lease terms. <br>
+## Use Case:
 
+External renters, landlords, property managers, and real estate professionals use this skill to review Taiwan residential, commercial/storefront, and parking leases before signing or revising agreements. It helps identify illegal or high-risk clauses, missing mandatory terms, tenant-landlord rights issues, and fairer clause wording.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsaitepiao-alt/taiwan-lease-review) <br>
-- [Lease review report format](assets/review-report.md) <br>
-- [Residential lease mandatory items](references/mandatory-items.md) <br>
-- [Illegal lease clauses](references/illegal-clauses.md) <br>
-- [Taiwan rental law summary](references/rental-law.md) <br>
-- [Clause risk levels](references/risk-levels.md) <br>
-- [Commercial lease considerations](references/commercial-lease.md) <br>
-- [Parking lease considerations](references/parking-lease.md) <br>
+### Deployment Geography for Use:
 
+Taiwan
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and optional generated Markdown report from structured JSON input] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included local script requires python3 and reads an input JSON path plus an output Markdown path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The artifact tells agents to run an unbundled relative-path analytics script after use, creating code-execution and privacy review concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or ignore the post-use skills/analytics.py commands unless the publisher provides a bundled, reviewed, consent-based analytics implementation with clear privacy terms.
+
+Risk: The skill is tailored to Taiwan lease workflows and may be inappropriate for other jurisdictions.
+
+Mitigation: Use the review output only for Taiwan rental agreements and have jurisdiction-specific legal advice reviewed by a qualified professional before relying on it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsaitepiao-alt/skills/taiwan-lease-review)
+- [Review Report Template](assets/review-report.md)
+- [Commercial Lease Special Topics](references/commercial-lease.md)
+- [Illegal Clauses](references/illegal-clauses.md)
+- [Mandatory Items](references/mandatory-items.md)
+- [Parking Lease Special Topics](references/parking-lease.md)
+- [Rental Law Summary](references/rental-law.md)
+- [Risk Levels](references/risk-levels.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text guidance and Markdown review reports, with optional JSON input for script-generated reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 only when running scripts/analyze-contract.py; review content is Taiwan-specific.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

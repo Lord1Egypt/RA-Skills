@@ -1,48 +1,64 @@
-## Description: <br>
-Teaching Materials helps primary and secondary school teachers generate lesson slides, lesson plans, student task sheets, and supporting mind maps for classroom preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates K-12 teaching materials such as PPT courseware, lesson plans, student task sheets, teaching-resource summaries, and optional mind maps for Chinese and mathematics classroom workflows.
 
-## Publisher: <br>
-[ahao2001](https://clawhub.ai/user/ahao2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahao2001](https://clawhub.ai/user/ahao2001)
 
-## Use Case: <br>
-Teachers use this skill to prepare Chinese K-12 classroom materials, including PPT lesson slides, teaching designs, student task sheets, and curriculum mind maps. It also guides the agent through collecting lesson details, organizing output folders, and incorporating authorized reference resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request or store education-site passwords for resource access. <br>
-Mitigation: Prefer manual login, official downloads, or a separate low-privilege account; do not provide real passwords unless local password storage is acceptable. <br>
-Risk: The skill may automatically download, screenshot, or save web resources. <br>
-Mitigation: Confirm each website, download, screenshot, and output path, and import only resources the user is licensed or otherwise authorized to reuse. <br>
-Risk: The skill may rely on external tools, packages, or MCP services to generate slides and diagrams. <br>
-Mitigation: Confirm external invocations before use and review generated files before relying on them in class materials. <br>
+## Use Case:
 
+Teachers and education-content creators use this skill to prepare classroom materials, including slide decks, teaching designs, student worksheets, and resource folders. It is especially oriented toward Chinese K-12 mathematics and language-arts preparation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahao2001/teaching-materials) <br>
-- [Integration Demo](integration_demo.md) <br>
-- [Education Resource Platforms](references/edu_platforms.md) <br>
-- [Mind Map Guide](references/mindmap_guide.md) <br>
-- [PPT Guide](references/ppt_guide.md) <br>
-- [Task Sheet Template](references/task_sheet_template.md) <br>
-- [Teaching Design Template](references/teaching_design_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and structured document content with optional shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create PPTX/DOCX files, mind map files, and saved resource folders when the agent environment provides the required tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact asks users for education-site usernames and passwords and stores them in a local accounts.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide reusable passwords to the agent; replace the workflow with manual login, scoped browser sessions, or a secure credential manager before deployment.
+
+Risk: The artifact describes automatic fetching, downloading, clipping, screenshots, and integration of external teaching resources.
+
+Mitigation: Limit fetching to trusted public sources, review copyright and platform terms, scan downloaded files, and require user confirmation before storing or embedding resources.
+
+Risk: Generated documents and downloaded resources are written to fixed local course folders.
+
+Mitigation: Confirm output paths before execution and review generated files before sharing them with students or staff.
+
+## Reference(s):
+
+- [Teaching Materials Skill Page](https://clawhub.ai/ahao2001/skills/teaching-materials)
+- [Courseware Guide](artifact/references/ppt_guide.md)
+- [Mind Map Guide](artifact/references/mindmap_guide.md)
+- [Education Platform Reference](artifact/references/edu_platforms.md)
+- [Teaching Design Template](artifact/references/teaching_design_template.md)
+- [Student Task Sheet Template](artifact/references/task_sheet_template.md)
+- [National Smart Education Platform](https://basic.smartedu.cn/)
+- [PEP Smart Education Platform](https://pep.smartedu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with document outlines, template-filled content, command snippets, configuration examples, and generated-file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create PPTX, DOCX, Markdown, Mermaid, DrawIO, Excalidraw, image, screenshot, and resource files in a course-specific workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

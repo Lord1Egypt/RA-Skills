@@ -1,44 +1,61 @@
-## Description: <br>
-Guides developers through modular complex-app development using staged design, independent modules, confirmation-based locking, sequential testing, and final verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides modular complex app development using five principles for controlled planning, module boundaries, developer confirmation, sequential testing, and final verification.
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, scaffold, test, lock, and review modules for complex app builds or refactors. It is especially oriented toward modular APP workflows that require clear interfaces, staged confirmation, and final delivery checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local helper scripts can create module folders, README files, lock records, and symlinks in the working project. <br>
-Mitigation: Run scripts only from the intended project directory and review generated changes in version control before accepting them. <br>
-Risk: The workflow may influence cleanup or refactoring decisions during modular development. <br>
-Mitigation: Review proposed cleanup, locking, and refactoring changes against project requirements before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, build, refactor, test, and verify complex app modules with documented module boundaries, API contracts, lock records, and delivery checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smxtx/complex-app-dev-principles) <br>
-- [Module Design Template](references/module_design_template.md) <br>
-- [API Specification](references/api_specification.md) <br>
-- [Test Case Template](references/test_case_template.md) <br>
-- [Delivery Checklist](references/delivery_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with optional generated project files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create module folders, README files, lock records, and symlinks when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Bundled scripts can create directories, README files, source and test folders, and lock records in the working tree.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a version-controlled workspace, constrain output paths, and review diffs before accepting generated files.
+
+Risk: The skill text includes an under-scoped automatic cleanup instruction for code that is inconsistent with confirmed functionality.
+
+Mitigation: Require explicit user confirmation and a reviewed change plan before any cleanup, deletion, or lock operation.
+
+Risk: Untrusted module names or output paths could create files in unintended locations.
+
+Mitigation: Use trusted module names and project-local output directories, and reject path traversal or unexpected absolute paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smxtx/skills/complex-app-dev-principles)
+- [Module design template](references/module_design_template.md)
+- [API interface specification](references/api_specification.md)
+- [Test case template](references/test_case_template.md)
+- [Delivery checklist](references/delivery_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional generated files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create module scaffold directories, README files, source and test folders, and lock record files when bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

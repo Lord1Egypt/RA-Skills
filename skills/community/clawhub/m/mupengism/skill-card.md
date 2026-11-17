@@ -1,45 +1,60 @@
-## Description: <br>
-Enables AI agents to maintain session continuity, develop self-identity, and manage file-based long-term memory anchored by human partners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to maintain session continuity, develop self-identity, and manage file-based long-term memory anchored by human partners.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a local file-based continuity framework for personal, team, or autonomous agents. It provides templates and operating guidance for persistent identity notes, layered memory files, and session-start context loading. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory files may contain sensitive configuration or personal context. <br>
-Mitigation: Keep SOUL.md, MEMORY.md, and memory/*.md in a trusted workspace and review them regularly. <br>
-Risk: Raw conversation dumps, secrets, credentials, private keys, mnemonic phrases, or regulated personal data could be loaded into future agent sessions if stored in memory files. <br>
-Mitigation: Do not store secrets or sensitive personal data in the generated memory files. <br>
-Risk: Installing the framework changes how an agent preserves and reloads local context. <br>
-Mitigation: Install only when persistent local agent memory is intended and review the files before reuse. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupengism) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [MEMORY-SYSTEM.md](artifact/MEMORY-SYSTEM.md) <br>
-- [SOUL-TEMPLATE.md](artifact/SOUL-TEMPLATE.md) <br>
-- [PRINCIPLES.md](artifact/PRINCIPLES.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a file-based continuity framework for personal, team, or autonomous agents. It provides principles, templates, and memory routines for preserving working context across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory and identity setup guidance; no executable code is included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory files can preserve sensitive personal or project context longer than intended.
+
+Mitigation: Avoid storing secrets or sensitive personal data, keep memory files under human review, and periodically prune or delete stored context.
+
+Risk: Self-modifying identity and agent guidance can cause later sessions to trust stale or unsafe instructions.
+
+Mitigation: Require human review for SOUL.md and AGENTS.md changes and prevent routine sessions from automatically rewriting identity or tool guidance.
+
+Risk: Workspace-level memory may be inappropriate for shared, external, or group-chat sessions.
+
+Mitigation: Install only when persistent workspace memory is intentional and restrict loading of sensitive memory files to appropriate sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mupengi-bot/skills/mupengism)
+- [SKILL.md](artifact/SKILL.md)
+- [Five Principles of Mupengism](artifact/PRINCIPLES.md)
+- [Memory System](artifact/MEMORY-SYSTEM.md)
+- [SOUL Template](artifact/SOUL-TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace memory-file conventions and human-reviewed agent identity templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

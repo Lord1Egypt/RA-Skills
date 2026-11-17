@@ -1,0 +1,18 @@
+{
+  "topicZh": "特性一览",
+  "coreIdeaZh": "OpenClaw 是「本地优先」的：智能体、工具和数据都留在你自己的机器上，每一项能力都要经过显式策略放行。",
+  "explanationZh": "## 你会得到什么\n\n一个本地网关、一个 Control UI，以及一批可用聊天渠道驱动的智能体运行时。\n\n| 能力 | 在哪里 |\n|---|---|\n| 智能体 | `openclaw agents add <name>` |\n| 工具 | 受策略约束 |\n\n<Note>\n运行 `openclaw dashboard` 可以重新打开 Control UI。\n</Note>\n\n<img src=\"/assets/install-script.svg\" alt=\"install script\" />\n\n网关默认绑定 `127.0.0.1:18789`，你不开口，它就什么都不对外暴露。",
+  "quoteZh": "功能列表不是重点，重点是：什么留在本地、什么才被允许行动。",
+  "pointsZh": [
+    "一切从本地网关起步：默认只绑定 127.0.0.1，不主动对外暴露。",
+    "Control UI 与 CLI 是同一套能力的两个入口，`openclaw dashboard` 可随时打开。",
+    "工具调用受策略约束，`<plugin-spec>` 这类占位符要替换成真实插件名。",
+    "渠道（聊天软件）只是入口，真正的执行发生在你自己的机器上。"
+  ],
+  "terminologyZh": {
+    "Gateway": "网关",
+    "Control UI": "控制界面（Control UI）",
+    "Agent runtime": "智能体运行时",
+    "Tool policy": "工具策略"
+  }
+}

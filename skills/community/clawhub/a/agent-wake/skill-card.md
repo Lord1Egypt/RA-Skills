@@ -1,42 +1,57 @@
-## Description: <br>
-Wake an OpenClaw agent session from an external script or process when background work completes and the agent should be notified in the correct Discord channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wake an OpenClaw agent session from an external script or process so the agent receives a notification and responds in the correct Discord channel when asynchronous work completes.
 
-## Publisher: <br>
-[krisco65](https://clawhub.ai/user/krisco65) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krisco65](https://clawhub.ai/user/krisco65)
 
-## Use Case: <br>
-Developers and operators use this skill to let trusted local scripts, scheduled jobs, webhooks, or CLI tasks wake an OpenClaw agent after asynchronous work completes. It helps route the agent response to the intended Discord channel without manual prompting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Gateway tokens could be exposed if stored carelessly or committed with local configuration. <br>
-Mitigation: Keep the gateway token private, avoid committing .env files, and use only trusted local configuration sources. <br>
-Risk: Untrusted wake-message text could steer the agent toward unintended actions or disclosure. <br>
-Mitigation: Send only trusted, summarized task status in wake messages and do not pass raw webhook content, logs, prompts, or credentials. <br>
-Risk: An exposed or broadly enabled gateway could allow unwanted wake events. <br>
-Mitigation: Keep the gateway local or access-controlled and enable only the cron tool required by this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Setup Guide](references/setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/krisco65/agent-wake) <br>
+## Use Case:
 
+Developers and operators use this skill to wake an OpenClaw agent when background work, scheduled jobs, command-line tasks, webhooks, or alerts finish and require agent follow-up in a target Discord channel.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included Python script sends a wake event through the configured OpenClaw gateway and prints a success or error message.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates a high-trust external control path that can wake an agent and inject event text into the agent session.
+
+Mitigation: Allow only trusted local processes to call the script, avoid connecting it directly to untrusted webhooks or user-controlled text, and review the agent tools available during automatic wake events.
+
+Risk: The script handles a gateway token and can read it from environment variables, a local .env file, or the OpenClaw gateway command file.
+
+Mitigation: Protect the gateway token and local .env file, restrict file access on systems that run the script, and rotate the token if it may have been exposed.
+
+Risk: A misconfigured GATEWAY_URL could send wake requests and authorization headers to an unintended endpoint.
+
+Mitigation: Keep GATEWAY_URL pinned to a trusted local gateway and review endpoint configuration before use in automation.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/krisco65/skills/agent-wake)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a gateway token and a trusted local OpenClaw gateway endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

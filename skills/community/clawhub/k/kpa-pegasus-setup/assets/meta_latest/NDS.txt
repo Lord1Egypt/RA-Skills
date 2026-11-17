@@ -1,0 +1,377 @@
+collection: NDS
+sort-by: 10
+shortname: nds
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/melonds_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: DS眼力训练
+file: DS眼力训练.nds
+assets.box_front: Imgs/DS眼力训练.png
+description: 《DS眼力训练》，任天堂 NDS 平台。
+game: 世界树迷宫
+file: 世界树迷宫.nds
+assets.box_front: Imgs/世界树迷宫.png
+description: 《世界树迷宫》，任天堂 NDS 平台。
+game: 世界树迷宫2：诸王的圣杯
+file: 世界树迷宫2：诸王的圣杯.nds
+assets.box_front: Imgs/世界树迷宫2：诸王的圣杯.png
+description: 《世界树迷宫2：诸王的圣杯》，任天堂 NDS 平台。
+game: 世界树迷宫3：星海的访客
+file: 世界树迷宫3：星海的访客.nds
+assets.box_front: Imgs/世界树迷宫3：星海的访客.png
+description: 《世界树迷宫3：星海的访客》，任天堂 NDS 平台。
+game: 乌龙派出所DS
+file: 乌龙派出所DS.nds
+assets.box_front: Imgs/乌龙派出所DS.png
+description: 《乌龙派出所DS》，任天堂 NDS 平台。
+game: 二之国：漆黑的魔导士
+file: 二之国：漆黑的魔导士.nds
+assets.box_front: Imgs/二之国：漆黑的魔导士.png
+description: 《二之国：漆黑的魔导士》，任天堂 NDS 平台。
+game: 任天狗：拉布拉多与朋友
+file: 任天狗：拉布拉多与朋友.nds
+assets.box_front: Imgs/任天狗：拉布拉多与朋友.png
+description: 《任天狗：拉布拉多与朋友》，任天堂 NDS 平台。
+game: 伊苏II DS
+file: 伊苏II DS.nds
+assets.box_front: Imgs/伊苏II DS.png
+description: 《伊苏II DS》，任天堂 NDS 平台。
+game: 侠盗猎车手：血战唐人街
+file: 侠盗猎车手：血战唐人街.nds
+assets.box_front: Imgs/侠盗猎车手：血战唐人街.png
+description: 《侠盗猎车手：血战唐人街》，任天堂 NDS 平台。
+game: 俄罗斯方块DS
+file: 俄罗斯方块DS.nds
+assets.box_front: Imgs/俄罗斯方块DS.png
+description: 《俄罗斯方块DS》，任天堂 NDS 平台。
+game: 全脑系列Vol.03 秋山仁教授监修 全脑JINJIN 2 全文本
+file: 全脑系列Vol.03 秋山仁教授监修 全脑JINJIN 2 全文本.nds
+assets.box_front: Imgs/全脑系列Vol.03 秋山仁教授监修 全脑JINJIN 2 全文本.png
+description: 《全脑系列Vol.03 秋山仁教授监修 全脑JINJIN 2 全文本》，任天堂 NDS 平台。
+game: 动物森友会：野生世界
+file: 动物森友会：野生世界.nds
+assets.box_front: Imgs/动物森友会：野生世界.png
+description: 《动物森友会：野生世界》，任天堂 NDS 平台。
+game: 勇者斗恶龙4：被引导的人们
+file: 勇者斗恶龙4：被引导的人们.nds
+assets.box_front: Imgs/勇者斗恶龙4：被引导的人们.png
+description: 《勇者斗恶龙4：被引导的人们》，任天堂 NDS 平台。
+game: 勇者斗恶龙5：天空的新娘
+file: 勇者斗恶龙5：天空的新娘.nds
+assets.box_front: Imgs/勇者斗恶龙5：天空的新娘.png
+description: 《勇者斗恶龙5：天空的新娘》，任天堂 NDS 平台。
+game: 勇者斗恶龙6：幻之大地
+file: 勇者斗恶龙6：幻之大地.nds
+assets.box_front: Imgs/勇者斗恶龙6：幻之大地.png
+description: 《勇者斗恶龙6：幻之大地》，任天堂 NDS 平台。
+game: 勇者斗恶龙9：星空的守护者
+file: 勇者斗恶龙9：星空的守护者.nds
+assets.box_front: Imgs/勇者斗恶龙9：星空的守护者.png
+description: 《勇者斗恶龙9：星空的守护者》，任天堂 NDS 平台。
+game: 合金弹头7
+file: 合金弹头7.nds
+assets.box_front: Imgs/合金弹头7.png
+description: 《合金弹头7》，任天堂 NDS 平台。
+game: 圣洁传说
+file: 圣洁传说.nds
+assets.box_front: Imgs/圣洁传说.png
+description: 《圣洁传说》，任天堂 NDS 平台。
+game: 塞尔达传说：大地的汽笛
+file: 塞尔达传说：大地的汽笛.nds
+assets.box_front: Imgs/塞尔达传说：大地的汽笛.png
+description: 《塞尔达传说：大地的汽笛》，任天堂 NDS 平台。
+game: 塞尔达传说：幻影沙漏
+file: 塞尔达传说：幻影沙漏.nds
+assets.box_front: Imgs/塞尔达传说：幻影沙漏.png
+description: 《塞尔达传说：幻影沙漏》，任天堂 NDS 平台。
+game: 大航海时代4：罗塔诺瓦
+file: 大航海时代4：罗塔诺瓦.nds
+assets.box_front: Imgs/大航海时代4：罗塔诺瓦.png
+description: 《大航海时代4：罗塔诺瓦》，任天堂 NDS 平台。
+game: 大金刚：丛林攀越者
+file: 大金刚：丛林攀越者.nds
+assets.box_front: Imgs/大金刚：丛林攀越者.png
+description: 《大金刚：丛林攀越者》，任天堂 NDS 平台。
+game: 太鼓达人DS：七岛大冒险
+file: 太鼓达人DS：七岛大冒险.nds
+assets.box_front: Imgs/太鼓达人DS：七岛大冒险.png
+description: 《太鼓达人DS：七岛大冒险》，任天堂 NDS 平台。
+game: 太鼓达人DS：妖怪大决战
+file: 太鼓达人DS：妖怪大决战.nds
+assets.box_front: Imgs/太鼓达人DS：妖怪大决战.png
+description: 《太鼓达人DS：妖怪大决战》，任天堂 NDS 平台。
+game: 女神异闻录 恶魔幸存者2
+file: 女神异闻录 恶魔幸存者2.nds
+assets.box_front: Imgs/女神异闻录 恶魔幸存者2.png
+description: 《女神异闻录 恶魔幸存者2》，任天堂 NDS 平台。
+game: 宝可梦：黑
+file: 宝可梦：黑.nds
+assets.box_front: Imgs/宝可梦：黑.png
+description: 《宝可梦：黑》，任天堂 NDS 平台。
+game: 宝可梦：黑2
+file: 宝可梦：黑2.nds
+assets.box_front: Imgs/宝可梦：黑2.png
+description: 《宝可梦：黑2》，任天堂 NDS 平台。
+game: 实况足球2008
+file: 实况足球2008.nds
+assets.box_front: Imgs/实况足球2008.png
+description: 《实况足球2008》，任天堂 NDS 平台。
+game: 川岛隆太教授之脑力锻炼 大人的DS练习
+file: 川岛隆太教授之脑力锻炼 大人的DS练习.nds
+assets.box_front: Imgs/川岛隆太教授之脑力锻炼 大人的DS练习.png
+description: 《川岛隆太教授之脑力锻炼 大人的DS练习》，任天堂 NDS 平台。
+game: 幽灵诡计
+file: 幽灵诡计.nds
+assets.box_front: Imgs/幽灵诡计.png
+description: 《幽灵诡计》，任天堂 NDS 平台。
+game: 影之传说2
+file: 影之传说2.nds
+assets.box_front: Imgs/影之传说2.png
+description: 《影之传说2》，任天堂 NDS 平台。
+game: 心跳回忆：女生版2
+file: 心跳回忆：女生版2.nds
+assets.box_front: Imgs/心跳回忆：女生版2.png
+description: 《心跳回忆：女生版2》，任天堂 NDS 平台。
+game: 忍者龙剑传：龙剑
+file: 忍者龙剑传：龙剑.nds
+assets.box_front: Imgs/忍者龙剑传：龙剑.png
+description: 《忍者龙剑传：龙剑》，任天堂 NDS 平台。
+game: 恶魔城：废墟的肖像
+file: 恶魔城：废墟的肖像.nds
+assets.box_front: Imgs/恶魔城：废墟的肖像.png
+description: 《恶魔城：废墟的肖像》，任天堂 NDS 平台。
+game: 恶魔城：苍月的十字架
+file: 恶魔城：苍月的十字架.nds
+assets.box_front: Imgs/恶魔城：苍月的十字架.png
+description: 《恶魔城：苍月的十字架》，任天堂 NDS 平台。
+game: 恶魔城：被夺走的刻印
+file: 恶魔城：被夺走的刻印.nds
+assets.box_front: Imgs/恶魔城：被夺走的刻印.png
+description: 《恶魔城：被夺走的刻印》，任天堂 NDS 平台。
+game: 押忍!战斗!应援团
+file: 押忍!战斗!应援团.nds
+assets.box_front: Imgs/押忍!战斗!应援团.png
+description: 《押忍!战斗!应援团》，任天堂 NDS 平台。
+game: 数独 格子大师 个人完全
+file: 数独 格子大师 个人完全.nds
+assets.box_front: Imgs/数独 格子大师 个人完全.png
+description: 《数独 格子大师 个人完全》，任天堂 NDS 平台。
+game: 新超级马力欧兄弟
+file: 新超级马力欧兄弟.nds
+assets.box_front: Imgs/新超级马力欧兄弟.png
+description: 《新超级马力欧兄弟》，任天堂 NDS 平台。
+game: 星之卡比：呐喊团
+file: 星之卡比：呐喊团.nds
+assets.box_front: Imgs/星之卡比：呐喊团.png
+description: 《星之卡比：呐喊团》，任天堂 NDS 平台。
+game: 星之卡比：超究极豪华版
+file: 星之卡比：超究极豪华版.nds
+assets.box_front: Imgs/星之卡比：超究极豪华版.png
+description: 《星之卡比：超究极豪华版》，任天堂 NDS 平台。
+game: 星之卡比：集合!卡比
+file: 星之卡比：集合!卡比.nds
+assets.box_front: Imgs/星之卡比：集合!卡比.png
+description: 《星之卡比：集合!卡比》，任天堂 NDS 平台。
+game: 最终幻想4
+file: 最终幻想4.nds
+assets.box_front: Imgs/最终幻想4.png
+description: 《最终幻想4》，任天堂 NDS 平台。
+game: 最终幻想水晶编年史：时间回响
+file: 最终幻想水晶编年史：时间回响.nds
+assets.box_front: Imgs/最终幻想水晶编年史：时间回响.png
+description: 《最终幻想水晶编年史：时间回响》，任天堂 NDS 平台。
+game: 植物大战僵尸
+file: 植物大战僵尸.nds
+assets.box_front: Imgs/植物大战僵尸.png
+description: 《植物大战僵尸》，任天堂 NDS 平台。
+game: 汀格尔的蔷薇色卢比乐园
+file: 汀格尔的蔷薇色卢比乐园.nds
+assets.box_front: Imgs/汀格尔的蔷薇色卢比乐园.png
+description: 《汀格尔的蔷薇色卢比乐园》，任天堂 NDS 平台。
+game: 沙迦2：秘宝传说
+file: 沙迦2：秘宝传说.nds
+assets.box_front: Imgs/沙迦2：秘宝传说.png
+description: 《沙迦2：秘宝传说》，任天堂 NDS 平台。
+game: 沙迦3：时空之霸者
+file: 沙迦3：时空之霸者.nds
+assets.box_front: Imgs/沙迦3：时空之霸者.png
+description: 《沙迦3：时空之霸者》，任天堂 NDS 平台。
+game: 洛克人ZX：降临
+file: 洛克人ZX：降临.nds
+assets.box_front: Imgs/洛克人ZX：降临.png
+description: 《洛克人ZX：降临》，任天堂 NDS 平台。
+game: 海贼王：巨人战争
+file: 海贼王：巨人战争.nds
+assets.box_front: Imgs/海贼王：巨人战争.png
+description: 《海贼王：巨人战争》，任天堂 NDS 平台。
+game: 游戏王5D's：星尘驱动者 世界冠军大会2009
+file: 游戏王5D's：星尘驱动者 世界冠军大会2009.nds
+assets.box_front: Imgs/游戏王5D's：星尘驱动者 世界冠军大会2009.png
+description: 《游戏王5D's：星尘驱动者 世界冠军大会2009》，任天堂 NDS 平台。
+game: 游戏王5D’s：世界冠军大赛2011
+file: 游戏王5D’s：世界冠军大赛2011.nds
+assets.box_front: Imgs/游戏王5D’s：世界冠军大赛2011.png
+description: 《游戏王5D’s：世界冠军大赛2011》，任天堂 NDS 平台。
+game: 热血高校：超热血大运动会
+file: 热血高校：超热血大运动会.nds
+assets.box_front: Imgs/热血高校：超热血大运动会.png
+description: 《热血高校：超热血大运动会》，任天堂 NDS 平台。
+game: 牧场物语：幸福之岛
+file: 牧场物语：幸福之岛.nds
+assets.box_front: Imgs/牧场物语：幸福之岛.png
+description: 《牧场物语：幸福之岛》，任天堂 NDS 平台。
+game: 牧场物语：风之集市
+file: 牧场物语：风之集市.nds
+assets.box_front: Imgs/牧场物语：风之集市.png
+description: 《牧场物语：风之集市》，任天堂 NDS 平台。
+game: 王国之心：358／2天
+file: 王国之心：358／2天.nds
+assets.box_front: Imgs/王国之心：358／2天.png
+description: 《王国之心：358／2天》，任天堂 NDS 平台。
+game: 玩具总动员3
+file: 玩具总动员3.nds
+assets.box_front: Imgs/玩具总动员3.png
+description: 《玩具总动员3》，任天堂 NDS 平台。
+game: 瓦里奥制造：DIY
+file: 瓦里奥制造：DIY.nds
+assets.box_front: Imgs/瓦里奥制造：DIY.png
+description: 《瓦里奥制造：DIY》，任天堂 NDS 平台。
+game: 生化危机：死寂
+file: 生化危机：死寂.nds
+assets.box_front: Imgs/生化危机：死寂.png
+description: 《生化危机：死寂》，任天堂 NDS 平台。
+game: 祖玛的复仇
+file: 祖玛的复仇.nds
+assets.box_front: Imgs/祖玛的复仇.png
+description: 《祖玛的复仇》，任天堂 NDS 平台。
+game: 精灵宝可梦：心灵之金
+file: 精灵宝可梦：心灵之金.nds
+assets.box_front: Imgs/精灵宝可梦：心灵之金.png
+description: 《精灵宝可梦：心灵之金》，任天堂 NDS 平台。
+game: 精灵宝可梦：灵魂之银
+file: 精灵宝可梦：灵魂之银.nds
+assets.box_front: Imgs/精灵宝可梦：灵魂之银.png
+description: 《精灵宝可梦：灵魂之银》，任天堂 NDS 平台。
+game: 精灵宝可梦：白2
+file: 精灵宝可梦：白2.nds
+assets.box_front: Imgs/精灵宝可梦：白2.png
+description: 《精灵宝可梦：白2》，任天堂 NDS 平台。
+game: 终极真人快打
+file: 终极真人快打.nds
+assets.box_front: Imgs/终极真人快打.png
+description: 《终极真人快打》，任天堂 NDS 平台。
+game: 绘心教室DS
+file: 绘心教室DS.nds
+assets.box_front: Imgs/绘心教室DS.png
+description: 《绘心教室DS》，任天堂 NDS 平台。
+game: 美少女麻将3 Remix
+file: 美少女麻将3 Remix.nds
+assets.box_front: Imgs/美少女麻将3 Remix.png
+description: 《美少女麻将3 Remix》，任天堂 NDS 平台。
+game: 耀西岛DS
+file: 耀西岛DS.nds
+assets.box_front: Imgs/耀西岛DS.png
+description: 《耀西岛DS》，任天堂 NDS 平台。
+game: 节奏天国：黄金版
+file: 节奏天国：黄金版.nds
+assets.box_front: Imgs/节奏天国：黄金版.png
+description: 《节奏天国：黄金版》，任天堂 NDS 平台。
+game: 计算力瞬间解答 计算DS练习
+file: 计算力瞬间解答 计算DS练习.nds
+assets.box_front: Imgs/计算力瞬间解答 计算DS练习.png
+description: 《计算力瞬间解答 计算DS练习》，任天堂 NDS 平台。
+game: 超时空之轮
+file: 超时空之轮.nds
+assets.box_front: Imgs/超时空之轮.png
+description: 《超时空之轮》，任天堂 NDS 平台。
+game: 超级碧奇公主
+file: 超级碧奇公主.nds
+assets.box_front: Imgs/超级碧奇公主.png
+description: 《超级碧奇公主》，任天堂 NDS 平台。
+game: 超级马里奥64DS
+file: 超级马里奥64DS.nds
+assets.box_front: Imgs/超级马里奥64DS.png
+description: 《超级马里奥64DS》，任天堂 NDS 平台。
+game: 跳跃终极明星
+file: 跳跃终极明星.nds
+assets.box_front: Imgs/跳跃终极明星.png
+description: 《跳跃终极明星》，任天堂 NDS 平台。
+game: 逆转裁判4：阿波罗·正义
+file: 逆转裁判4：阿波罗·正义.nds
+assets.box_front: Imgs/逆转裁判4：阿波罗·正义.png
+description: 《逆转裁判4：阿波罗·正义》，任天堂 NDS 平台。
+game: 逆转裁判：复苏的逆转
+file: 逆转裁判：复苏的逆转.nds
+assets.box_front: Imgs/逆转裁判：复苏的逆转.png
+description: 《逆转裁判：复苏的逆转》，任天堂 NDS 平台。
+game: 集合!卡比
+file: 集合!卡比.nds
+assets.box_front: Imgs/集合!卡比.png
+description: 《集合!卡比》，任天堂 NDS 平台。
+game: 雷顿教授与不可思议的小镇
+file: 雷顿教授与不可思议的小镇.nds
+assets.box_front: Imgs/雷顿教授与不可思议的小镇.png
+description: 《雷顿教授与不可思议的小镇》，任天堂 NDS 平台。
+game: 雷顿教授与最后的时间旅行
+file: 雷顿教授与最后的时间旅行.nds
+assets.box_front: Imgs/雷顿教授与最后的时间旅行.png
+description: 《雷顿教授与最后的时间旅行》，任天堂 NDS 平台。
+game: 马力欧卡丁车DS
+file: 马力欧卡丁车DS.nds
+assets.box_front: Imgs/马力欧卡丁车DS.png
+description: 《马力欧卡丁车DS》，任天堂 NDS 平台。
+game: 马里奥与索尼克在奥运会
+file: 马里奥与索尼克在奥运会.nds
+assets.box_front: Imgs/马里奥与索尼克在奥运会.png
+description: 《马里奥与索尼克在奥运会》，任天堂 NDS 平台。
+game: 马里奥与路易吉RPG2：时间伙伴
+file: 马里奥与路易吉RPG2：时间伙伴.nds
+assets.box_front: Imgs/马里奥与路易吉RPG2：时间伙伴.png
+description: 《马里奥与路易吉RPG2：时间伙伴》，任天堂 NDS 平台。
+game: 马里奥与路易吉RPG3：库巴内脏大冒险
+file: 马里奥与路易吉RPG3：库巴内脏大冒险.nds
+assets.box_front: Imgs/马里奥与路易吉RPG3：库巴内脏大冒险.png
+description: 《马里奥与路易吉RPG3：库巴内脏大冒险》，任天堂 NDS 平台。
+game: 马里奥派对DS
+file: 马里奥派对DS.nds
+assets.box_front: Imgs/马里奥派对DS.png
+description: 《马里奥派对DS》，任天堂 NDS 平台。
+game: 马里奥篮球3对3
+file: 马里奥篮球3对3.nds
+assets.box_front: Imgs/马里奥篮球3对3.png
+description: 《马里奥篮球3对3》，任天堂 NDS 平台。
+game: 高级战争：毁灭之日
+file: 高级战争：毁灭之日.nds
+assets.box_front: Imgs/高级战争：毁灭之日.png
+description: 《高级战争：毁灭之日》，任天堂 NDS 平台。
+game: 魂斗罗4
+file: 魂斗罗4.nds
+assets.box_front: Imgs/魂斗罗4.png
+description: 《魂斗罗4》，任天堂 NDS 平台。
+game: 黄金太阳：漆黑的黎明
+file: 黄金太阳：漆黑的黎明.nds
+assets.box_front: Imgs/黄金太阳：漆黑的黎明.png
+description: 《黄金太阳：漆黑的黎明》，任天堂 NDS 平台。
+game: 黑白棋大战
+file: 黑白棋大战.nds
+assets.box_front: Imgs/黑白棋大战.png
+description: 《黑白棋大战》，任天堂 NDS 平台。
+game: 龙珠DS
+file: 龙珠DS.nds
+assets.box_front: Imgs/龙珠DS.png
+description: 《龙珠DS》，任天堂 NDS 平台。
+game: 龙珠DS2：突击!红缎带军
+file: 龙珠DS2：突击!红缎带军.nds
+assets.box_front: Imgs/龙珠DS2：突击!红缎带军.png
+description: 《龙珠DS2：突击!红缎带军》，任天堂 NDS 平台。
+game: 龙珠Z：舞空斗剧2
+file: 龙珠Z：舞空斗剧2.nds
+assets.box_front: Imgs/龙珠Z：舞空斗剧2.png
+description: 《龙珠Z：舞空斗剧2》，任天堂 NDS 平台。
+game: 龙珠改：究极武斗传
+file: 龙珠改：究极武斗传.nds
+assets.box_front: Imgs/龙珠改：究极武斗传.png
+description: 《龙珠改：究极武斗传》，任天堂 NDS 平台。
+game: 龙珠改：赛亚人来袭
+file: 龙珠改：赛亚人来袭.nds
+assets.box_front: Imgs/龙珠改：赛亚人来袭.png
+description: 《龙珠改：赛亚人来袭》，任天堂 NDS 平台。

@@ -1,44 +1,62 @@
-## Description: <br>
-Use when users need command-line operations on Alibaba Cloud resources, credential and profile setup, region or endpoint selection, or API discovery from the aliyun CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need command-line operations on Alibaba Cloud resources, including list, query, create, update, delete, credential and profile setup, region and endpoint selection, or API discovery from the CLI.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud resources through the official aliyun CLI, including read-only discovery and bounded create, update, or delete operations. It also guides credential configuration, profile selection, regional endpoints, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled version guard can download and replace the local aliyun executable from the latest official package. <br>
-Mitigation: Prefer installing the Alibaba Cloud CLI from verified official instructions, or review the installer behavior and target path before allowing automatic updates. <br>
-Risk: The skill can use powerful Alibaba Cloud credentials for create, update, or delete operations, and saved outputs may include cloud resource details. <br>
-Mitigation: Use a dedicated least-privilege profile, verify connectivity with read-only queries first, review mutating commands before execution, and protect or clean generated output files. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud resources through the official aliyun CLI, with guidance for installation, credential configuration, API discovery, bounded execution, and troubleshooting.
 
-## Reference(s): <br>
-- [Alibaba Cloud CLI documentation hub](https://help.aliyun.com/zh/cli) <br>
-- [Install Alibaba Cloud CLI on Linux](https://help.aliyun.com/zh/cli/install-cli-on-linux) <br>
-- [Configure credentials for Alibaba Cloud CLI](https://help.aliyun.com/zh/cli/configure-credentials) <br>
-- [Alibaba Cloud OpenAPI Explorer](https://api.aliyun.com) <br>
-- [Release page](https://clawhub.ai/cinience/aliyun-cli-manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save CLI version checks, API outputs, and error logs under output/aliyun-cli-manage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can install or replace the local aliyun executable before running cloud operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a manually verified Alibaba Cloud CLI installation, or review the downloaded package source and target install path before allowing the helper script to update the executable.
+
+Risk: The skill operates on Alibaba Cloud resources using user credentials and can perform mutating actions.
+
+Mitigation: Use least-privilege or short-lived credentials, confirm region and resource identifiers, run a minimal read-only query first, and validate one item in a small scope before batch or destructive operations.
+
+Risk: Command outputs and saved logs may contain sensitive cloud resource details or credential-related errors.
+
+Mitigation: Avoid placing access-key secrets in prompts or command arguments, prefer environment variables, and review saved output logs for sensitive data before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-cli-manage)
+- [Sources](references/sources.md)
+- [Alibaba Cloud CLI documentation hub](https://help.aliyun.com/zh/cli)
+- [Install Alibaba Cloud CLI on Linux](https://help.aliyun.com/zh/cli/install-cli-on-linux)
+- [Configure credentials for Alibaba Cloud CLI](https://help.aliyun.com/zh/cli/configure-credentials)
+- [Alibaba Cloud OpenAPI Explorer](https://api.aliyun.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to save CLI version checks, API outputs, request parameters, result summaries, and error logs under output/aliyun-cli-manage/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Direct REST API reader for Infisical secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infisical Reader helps an agent fetch Infisical secrets directly through the REST API using a local machine identity.
 
-## Publisher: <br>
-[achikochikorogaru](https://clawhub.ai/user/achikochikorogaru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[achikochikorogaru](https://clawhub.ai/user/achikochikorogaru)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with Infisical through Universal Auth, list accessible projects, and retrieve secret values for a selected workspace and environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve and print Infisical secret values, including raw values when requested. <br>
-Mitigation: Use a least-privilege Machine Identity scoped only to needed projects and environments, avoid bulk or raw secret output, and request raw values only when necessary. <br>
-Risk: Compromised or over-broad Infisical credentials could expose many downstream API keys or credentials to an agent session. <br>
-Mitigation: Store credentials securely, rotate them if exposed, and review agent prompts and outputs before allowing secret retrieval. <br>
+## Use Case:
 
+Developers and engineers use this skill when an agent needs to list Infisical projects or retrieve secrets for a specific workspace, environment, path, or key.
 
-## Reference(s): <br>
-- [Infisical Reader on ClawHub](https://clawhub.ai/achikochikorogaru/infisical-reader) <br>
-- [Infisical](https://infisical.com) <br>
-- [API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Secret values are masked by default unless raw output is explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose Infisical secret values to the agent session or downstream logs, especially when raw or JSON output is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped machine identities and avoid raw or JSON output unless the workflow requires it.
+
+Risk: A broad Infisical machine identity could give the agent access to more projects, environments, or paths than needed.
+
+Mitigation: Restrict the machine identity to the minimum required projects, environments, and paths.
+
+Risk: The local Infisical client secret can grant access if it is copied, logged, or stored insecurely.
+
+Mitigation: Store the client secret carefully and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [Infisical](https://infisical.com)
+- [Infisical API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/achikochikorogaru/skills/infisical-reader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text or JSON, with Markdown documentation and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secret values are masked by default unless raw output is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

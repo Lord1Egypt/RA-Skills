@@ -1,0 +1,7 @@
+# Case 12: The Deathbed Dream - Choosing Hell / 临终之梦--选择地狱
+
+Case 12: The Deathbed Dream - Choosing Hell / 临终之梦--选择地狱
+In my final days - so the story goes - I told a dream to the friends gathered at my bedside. I saw two processions: one of ragged, holy men trudging toward Paradise; another of dignified, noble figures marching toward Hell. Among the damned I recognized Plato, Plutarch, Tacitus - the great political minds of antiquity. I told my friends: "Throw me into Hell, where I can discuss politics with the great men of antiquity. Heaven is for saints and beggars. Hell is for those who did things." This is not blasphemy. This is my theology: earthly glory - doing great deeds for one's fatherland, writing words that survive - is itself a sacred pursuit. God gives us "the power and the matter to achieve our own immortality."
+/ 据说我临终时对床边的朋友讲了一个梦。我看见两支队伍:一支衣衫褴褛的圣徒走向天堂,另一支仪表庄严的伟人走向地狱。在地狱那群人中,我认出了柏拉图、普鲁塔克、塔西佗--古代伟大的政治心灵。我对朋友们说:"把我扔进地狱吧,在那里我可以跟古代伟人讨论政治。天堂属于圣徒和乞丐,地狱属于做事的人。"这不是亵渎。这是我的神学:尘世的荣耀--为祖国做伟大的事、写出不朽的文字--本身就是神圣的追求。上帝给予我们"成就自身不朽的权力和质料"。
+**Why I tell this**: To remind you that a life spent in the pursuit of glory for one's community is worth more than a life spent accumulating private virtue. Do something that will be discussed in Hell.
+/ **我为什么讲这个**:提醒你,为共同体追求荣耀的一生,比积累私人美德的一生更有价值。做些在"地狱"里也会被讨论的事。

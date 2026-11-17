@@ -47,16 +47,27 @@ The catalog exposes a `verified_mode` field per service. The discover
 skill reads it and tags each record with a `payment_mode` string:
 
 - **`charge`** (`✓ verified charge`) — end-to-end verified to work with
-  this skill's Stellar charge flow. Safe to call. Currently known-good:
-  `exa_search`, `firecrawl_scrape`, `parallel_search`, `alchemy_rpc`,
-  `storage_upload`.
+  this skill's Stellar charge flow. Safe to call. Known-good as of
+  2026-08-10 (12): `anthropic_chat_completions`, `coingecko_simple_price`,
+  `deepgram_deepgram_list-models`, `deepseek_chat`, `exa_search`,
+  `firecrawl_scrape`, `grok_grok_chat`, `groq_chat`, `mistral_mistral_chat`,
+  `parallel_search`, `perplexity_perplexity_chat`, `storage_upload`
+  (plus `tavily_tavily_search`, first paid-verified 2026-08-10).
+  Every service on this list was verified with a **real paid call through
+  the production Router**. For the live view, read the catalog's
+  `charge_rozo_verified` / `charge_rozo_verified_at` fields — newly
+  verified services appear there in real time — and the tx-hash audit
+  trail of verification payments is published in
+  [`rozo-mpprouter/docs/verified-runs.json`](https://github.com/mpprouter/rozo-mpprouter/blob/main/docs/verified-runs.json).
 - **`session`** (`⚠ session-only`) — upstream merchant is session-mode
   only. The router now correctly advertises `stellar.intents: ["channel"]`
   (no `charge`) for these services. To use them, the agent must have a
   registered Stellar channel contract — see the `stellar-agent-wallet`
   root SKILL.md "Out of scope" section. Affected:
-  `gemini_generate`, `openai_chat`, `openrouter_chat`, `tempo_rpc`.
+  `anthropic_messages`, `openai_chat`, `openrouter_chat`, `tempo_rpc`.
   Charge-mode clients cannot call these services.
+  (`gemini_generate` is currently `payment_status: unavailable` — the
+  upstream merchant's Google API key is invalid; do not offer it.)
 - **`unverified`** (`· unverified`) — the router hasn't labeled
   `verified_mode` (or labeled it as the literal string `"false"`, which
   is a router-side catalog-generator bug). ~97% of the catalog is in
@@ -71,18 +82,23 @@ When the user asks to call a paid API via MPP Router:
 1. Fetch the catalog fresh.
 2. Find the best service match.
 3. Check its `payment_mode`:
-   - `charge` → proceed silently.
-   - `session` → **refuse to call it.** Tell the user: "This service is
-     currently in session-only mode on MPP Router. Paying via Stellar
-     charge mode would succeed but the upstream would reject the
+   - `charge` → proceed to pay-per-call. This is still a real-money
+     mainnet payment: pay-per-call's own confirmation gate applies (it
+     prompts before every mainnet payment unless the user has set a
+     session `--max-auto` ceiling). "Verified" describes the service
+     record, not permission to spend without the user seeing it.
+   - `session` → **do not call it by default.** Tell the user: "This
+     service is currently in session-only mode on MPP Router. Paying via
+     Stellar charge mode would succeed but the upstream would reject the
      receipt, so you'd lose the fee with no result. Waiting on a
-     router-side fix. Alternative service?"
-   - `unverified` → proceed but surface a brief caveat in your
-     response ("this service isn't formally verified for Stellar charge
-     mode; proceeding anyway — let me know if the call fails after
-     payment").
-4. Never override the user's explicit instruction to call a `session`
-   service, but do warn them loudly before doing it.
+     router-side fix. Alternative service?" The ONE exception: the user,
+     after reading exactly that warning, explicitly says to proceed
+     anyway and accepts the fee is likely lost — then proceed. There is
+     no other path to calling a `session` service.
+   - `unverified` → proceed (through the same confirmation gate) but
+     surface a brief caveat in your response ("this service isn't
+     formally verified for Stellar charge mode; proceeding anyway — let
+     me know if the call fails after payment").
 
 ## Service record shape
 
@@ -140,16 +156,16 @@ third-party APIs.
 
 ```bash
 # List all services
-npx tsx skills/discover/run.ts
+./node_modules/.bin/tsx skills/discover/run.ts
 
 # Filter by category
-npx tsx skills/discover/run.ts --category search
+./node_modules/.bin/tsx skills/discover/run.ts --category search
 
 # Match a free-text intent (uses simple keyword match)
-npx tsx skills/discover/run.ts --query "web search"
+./node_modules/.bin/tsx skills/discover/run.ts --query "web search"
 
 # JSON output for piping
-npx tsx skills/discover/run.ts --json
+./node_modules/.bin/tsx skills/discover/run.ts --json
 ```
 
 ## Full end-to-end example
@@ -158,7 +174,7 @@ npx tsx skills/discover/run.ts --json
 # Discover which service to use — capture path, method, and the
 # catalog-advertised payment expectations so pay-per-call can refuse
 # a 402 that tries to redirect funds or inflate the price.
-SERVICE_JSON=$(npx tsx skills/discover/run.ts --query "web search" --pick-one --json)
+SERVICE_JSON=$(./node_modules/.bin/tsx skills/discover/run.ts --query "web search" --pick-one --json)
 SERVICE=$(echo "$SERVICE_JSON" | jq -r '.public_path')
 METHOD=$(echo "$SERVICE_JSON" | jq -r '.method')
 EXPECT_AMT=$(echo "$SERVICE_JSON" | jq -r '.expect.amount_usdc // empty')
@@ -167,7 +183,7 @@ EXPECT_TO=$(echo "$SERVICE_JSON" | jq -r '.expect.pay_to // empty')
 # Call it — pay-per-call handles the 402 → pay → retry loop.
 # The --expect-* flags cross-check the 402 challenge against the
 # catalog. Any drift aborts before signing.
-npx tsx skills/pay-per-call/run.ts "https://apiserver.mpprouter.dev$SERVICE" \
+./node_modules/.bin/tsx skills/pay-per-call/run.ts "https://apiserver.mpprouter.dev$SERVICE" \
   --method "$METHOD" \
   --body '{"query": "Summarize https://stripe.com/docs"}' \
   ${EXPECT_AMT:+--expect-amount "$EXPECT_AMT"} \

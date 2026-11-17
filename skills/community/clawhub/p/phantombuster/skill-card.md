@@ -1,45 +1,58 @@
-## Description: <br>
-Control PhantomBuster automation agents via API to list agents, launch automations, get output and results, check status, and abort running agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control PhantomBuster automation agents via API to list agents, launch automations, get output and results, check status, and abort running agents.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-Developers, operators, and go-to-market teams use this skill to operate their PhantomBuster workspace from an agent, including launching automations, checking runs, and retrieving output or CSV result data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a PhantomBuster workspace, including launching and aborting automation agents. <br>
-Mitigation: Keep the PhantomBuster API key in a trusted environment and double-check agent IDs before launch or abort. <br>
-Risk: Fetched CSV and output data may contain sensitive scraped, lead, or workspace data. <br>
-Mitigation: Treat fetched results as sensitive data and avoid exposing them outside approved workflows. <br>
-Risk: An exposed PhantomBuster API key can allow unauthorized workspace actions. <br>
-Mitigation: Rotate the API key if it is exposed and avoid committing or sharing it in prompts, logs, or files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PhantomBuster](https://phantombuster.com) <br>
-- [PhantomBuster Workspace Settings](https://phantombuster.com/workspace-settings) <br>
-- [PhantomBuster API v2](https://api.phantombuster.com/api/v2) <br>
-- [ClawHub Skill Page](https://clawhub.ai/capt-marbles/phantombuster) <br>
-- [Publisher Profile](https://clawhub.ai/user/capt-marbles) <br>
+## Use Case:
 
+Developers and operators use this skill to control PhantomBuster automations from an agent workflow, including launching configured phantoms, checking run status, retrieving output, aborting runs, and downloading result CSV data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text, JSON, and CSV data fetched from PhantomBuster runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PHANTOMBUSTER_API_KEY and a PhantomBuster agent ID or name for most commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can launch or abort PhantomBuster automations in the user's workspace.
+
+Mitigation: Install only when agent control of the PhantomBuster workspace is intended, and review agent IDs and arguments before launch or abort commands.
+
+Risk: PHANTOMBUSTER_API_KEY authorizes API access to the user's PhantomBuster workspace.
+
+Mitigation: Keep the API key private, scoped according to workspace policy, and stored only in the environment required for the agent session.
+
+Risk: Downloaded result CSVs may contain personal or business-sensitive data.
+
+Mitigation: Handle result files according to platform terms, privacy law, and internal retention and sharing rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/capt-marbles/skills/phantombuster)
+- [PhantomBuster](https://phantombuster.com)
+- [PhantomBuster Workspace Settings](https://phantombuster.com/workspace-settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PHANTOMBUSTER_API_KEY for authenticated PhantomBuster API calls.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

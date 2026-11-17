@@ -178,7 +178,11 @@ def run_test(test: dict, baseline_dir: Path) -> dict:
     # Call the LLM
     try:
         provider = get_provider(provider_name, model)
-        output = provider.chat([{"role": "user", "content": prompt}])
+        messages = []
+        if system_prompt := test.get("system_prompt"):
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
+        output = provider.chat(messages)
         result["output"] = output
         result["output_preview"] = output[:200]
     except EnvironmentError as e:

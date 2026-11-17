@@ -1,45 +1,56 @@
-## Description: <br>
-Hologres BSI profile analysis helps agents guide user profile and tag calculation workflows in Hologres, including BSI table design, data import, audience selection, GMV analysis, distribution statistics, Top K queries, and bucketed parallel computation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hologres BSI (bit-sliced index) profile analysis helps agents guide user profiling and tag calculation workflows in Hologres, including table design, data import, crowd selection, GMV analysis, tag distribution statistics, Top K queries, and bucketed parallel computation.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Developers and data engineers use this skill to design and operate Hologres BSI and Roaring Bitmap profile-analysis patterns for behavioral and attribute tag analysis. It is useful for generating SQL guidance, CLI commands, schema patterns, and query examples for audience selection and aggregate behavior analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose Hologres commands that modify database state, including extension installation, table creation, UID dictionary initialization, and data import. <br>
-Mitigation: Review every command using `hologres sql run --write`, confirm the target instance and schema, and run write operations only with appropriate DDL or DML authorization. <br>
-Risk: Generated UID dictionary, bitmap, and BSI tables can contain sensitive user-profile or behavioral data. <br>
-Mitigation: Protect generated tables according to data-governance rules and limit access to approved operators and workloads. <br>
-Risk: Incorrect source table names, bucket choices, or incremental maintenance assumptions can produce incomplete or misleading analysis results. <br>
-Mitigation: Require users to provide source table names, validate bucket strategy against data volume and cluster size, and define an explicit maintenance process for incremental updates. <br>
+## Use Case:
 
+Developers and data engineers use this skill to design and operate Hologres BSI and Roaring Bitmap profile-analysis workflows for user segmentation, behavior-tag analysis, aggregate metrics, distribution statistics, and Top K queries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenbingyu/hologres-bsi-profile-analysis) <br>
-- [Alibaba Cloud Hologres BSI profile analysis documentation](https://help.aliyun.com/zh/hologres/use-cases/profile-analysis-bsi-optimization-beta) <br>
-- [BSI Function Reference](references/bsi-functions.md) <br>
-- [BSI Table Design Patterns](references/table-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with SQL and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Hologres DDL, DML, read-only query examples, table design notes, and operational caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and VERSION) <br>
+Risk: The skill includes package installation guidance and Hologres SQL examples that may create extensions, create tables, or insert data when run in write mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, pin or verify the hologres-cli package, scope the database identity to the task, and review each hologres sql run --write command before execution.
+
+Risk: The workflow depends on user-provided source tables, UID dictionary maintenance, and bucket choices, which can affect correctness and performance.
+
+Mitigation: Confirm source table names, populate and maintain dws_uid_dict before BSI or Roaring Bitmap import, and tune bucketing with domain and cluster-size knowledge.
+
+## Reference(s):
+
+- [Hologres BSI profile analysis documentation](https://help.aliyun.com/zh/hologres/use-cases/profile-analysis-bsi-optimization-beta)
+- [BSI Function Reference](references/bsi-functions.md)
+- [BSI Table Design Patterns](references/table-design.md)
+- [ClawHub skill page](https://clawhub.ai/wenbingyu/skills/hologres-bsi-profile-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include Hologres SQL for read-only analysis and reviewed write-mode setup or import commands.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and artifact/VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

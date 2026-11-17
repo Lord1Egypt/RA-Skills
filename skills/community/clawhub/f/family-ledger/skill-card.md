@@ -1,41 +1,58 @@
-## Description: <br>
-Family Ledger helps a household record, query, and summarize daily expenses, social gift records, loans, and reimbursements in shared JSON ledger files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family Ledger helps a household record, query, and summarize daily expenses, social-gift exchanges, loans, and reimbursements in shared JSON ledgers.
 
-## Publisher: <br>
-[liumeixin](https://clawhub.ai/user/liumeixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumeixin](https://clawhub.ai/user/liumeixin)
 
-## Use Case: <br>
-External household users use this skill to maintain a family ledger across daily income and expenses, social gift exchanges, loans, and reimbursements. It guides entries into local JSON files and supports lookups and summaries by date, category, person, status, child, or property. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores household finance details and user identity mappings in shared local JSON files. <br>
-Mitigation: Restrict access to ~/.openclaw/workspace/shared/ledger/ and avoid recording sensitive details that are not needed for bookkeeping. <br>
-Risk: Ledger entries, loan status, reimbursement status, or summaries may be incorrect when a command is ambiguous or a file is overwritten incorrectly. <br>
-Mitigation: Review ambiguous entries before accepting them, keep versioned backups of the JSON ledger files, and verify loan and reimbursement status changes. <br>
+## Use Case:
 
+Household members use this skill to add, query, and summarize family ledger entries for daily income and expenses, social-gift records, loans, and reimbursements. It supports shared bookkeeping where entries may be attributed to mapped household users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liumeixin/family-ledger) <br>
-- [Publisher profile](https://clawhub.ai/user/liumeixin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with JSON ledger updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local ledger records for shared JSON files under ~/.openclaw/workspace/shared/ledger/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill stores shared household financial records and identity mappings on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted household or workspace, remove real personal identifiers from the package, and restrict permissions on the ledger directory.
+
+Risk: The skill does not define clear privacy or authorization boundaries for writes or cross-user queries.
+
+Mitigation: Require explicit confirmation and authorization before allowing ledger writes, status changes, or queries across mapped users.
+
+Risk: Ledger updates are implemented by reading and overwriting JSON files, which can lose or corrupt records if changes are not reviewed.
+
+Mitigation: Review proposed JSON changes before execution and keep backups or change history for shared ledger files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumeixin/skills/family-ledger)
+- [Publisher profile](https://clawhub.ai/user/liumeixin)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Natural-language responses and JSON ledger records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains daily, social-gift, loan, reimbursement, and user-mapping ledger data in shared JSON files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

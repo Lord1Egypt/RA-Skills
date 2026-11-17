@@ -1,38 +1,47 @@
-## Description: <br>
-Log workouts, track progress, get exercise suggestions, and track personal records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log workouts, track progress, get exercise suggestions and PR tracking.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to record strength, cardio, flexibility, and sports workouts in natural language, review workout history, track PRs, and get exercise suggestions based on past activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workout logs can reveal health, schedule, and habit patterns. <br>
-Mitigation: Use the skill only where storing that information is acceptable, and review the host application's export, retention, and deletion controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Workout Logger on ClawHub](https://clawhub.ai/jhillin8/workout-logger) <br>
-- [Publisher profile on ClawHub](https://clawhub.ai/user/jhillin8) <br>
+## Use Case:
+
+External users use this skill to log workouts conversationally, review workout history, track personal records, view progress, and get exercise suggestions based on prior activity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Workout history, exercise performance, and routine patterns may be retained for progress tracking.
+
+Mitigation: Install only when comfortable with that retention, and prefer releases that clearly explain where data is stored, how long it is kept, and how to review or delete it.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with workout log entries, summaries, progress views, suggestions, and CSV export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workout history summaries, PR summaries, exercise suggestions, progress chart descriptions, and CSV export instructions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Conversational text and markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workout logs, progress summaries, personal record summaries, exercise suggestions, and CSV export guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

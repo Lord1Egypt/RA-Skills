@@ -1,39 +1,52 @@
-## Description: <br>
-Monitor service health, heartbeat freshness, stuck workflows, and trigger recovery or degraded mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor service health, heartbeat freshness, stuck workflows, and trigger recovery or degraded mode.
 
-## Publisher: <br>
-[sunbinnju-star](https://clawhub.ai/user/sunbinnju-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sunbinnju-star](https://clawhub.ai/user/sunbinnju-star)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to review service liveness, heartbeat freshness, stuck workflows, and recovery recommendations for a resident OpenClaw system.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recovery recommendations could affect service availability if restart or degraded-mode authority is broader than intended.
+
+Mitigation: Keep the monitored service list and any authority to restart or degrade services explicitly scoped by environment controls.
+
+Risk: Incomplete monitoring data can lead to unknown service health or missed failures.
+
+Mitigation: Surface missing monitoring fields as observability gaps, report affected services as unknown, and escalate gaps on critical services.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to review service health, heartbeat freshness, and workflow progress in a resident OpenClaw system, then identify recovery or degraded-mode recommendations when issues appear. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may surface service health data, heartbeat history, and workflow status that could be sensitive in production environments. <br>
-Mitigation: Install only where sharing that operational data is acceptable and keep the monitored service list scoped. <br>
-Risk: Recovery recommendations such as restarts or degraded-mode changes could affect availability if executed automatically without review. <br>
-Mitigation: Require explicit human or policy approval before separate automation performs restarts or degraded-mode changes. <br>
+**Output Format:** [Structured Markdown or JSON-like operational summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reports service health, expired heartbeats, stuck workflows, recovery recommendations, degraded-mode impact, and observability gaps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Configuration] <br>
-**Output Format:** [Structured text with JSON-like report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces service health summaries, expired heartbeat lists, stuck workflow lists, recovery recommendations, degraded-mode recommendations, and watchdog logs.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

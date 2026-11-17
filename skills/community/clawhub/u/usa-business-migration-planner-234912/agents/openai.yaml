@@ -1,0 +1,7 @@
+interface:
+  display_name: "USA Business Migration Planner"
+  short_description: "Helps with People repeatedly need a practical, repeatable way..."
+  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle 24 小时，用 AI Studio 手搓一个 2000 年西方哲学宇宙交互网状图."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,40 +1,53 @@
-## Description: <br>
-Manages multiple independent work windows for an agent, saving and restoring local progress and conversation context during window switches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages multiple independent agent work windows by creating local window records, saving summaries, and saving or restoring recent conversation history when switching.
 
-## Publisher: <br>
-[philonis](https://clawhub.ai/user/philonis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philonis](https://clawhub.ai/user/philonis)
 
-## Use Case: <br>
-Developers and agent users use this skill to organize separate work streams as named windows, resume prior progress, list or query windows, and mark work complete. It is intended for local workflow continuity where persisted conversation history is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local conversation transcripts may include secrets or confidential work and are saved for later reuse. <br>
-Mitigation: Install only when transcript persistence is desired, avoid using it around sensitive material, and manage or delete files under ~/.openclaw/workspace/memory/tasks as needed. <br>
-Risk: Switching windows may copy the latest local session rather than a session definitively tied to the window being left. <br>
-Mitigation: Verify the active window and review restored history after switching before relying on it for context. <br>
+## Use Case:
 
+Developers and agent users use this skill to organize separate work threads, preserve per-window progress, and return to prior context without mixing unrelated conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/philonis/multi-windows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown/text status responses plus local JSON, Markdown, and JSONL files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists window state, summaries, and transcript history under ~/.openclaw/workspace/memory/tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: Conversation transcripts may include secrets or confidential content and are persisted in local window folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where transcript persistence is acceptable, avoid sensitive chats, and redact or delete saved transcripts when needed.
+
+Risk: The skill may save the wrong session's transcript into a window during switching.
+
+Mitigation: Confirm the active window before switching and review saved transcript files; prefer explicit session binding before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philonis/skills/multi-windows)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text status output with local JSON, Markdown, and JSONL files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists per-window metadata, summaries, and transcripts under the user's local OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

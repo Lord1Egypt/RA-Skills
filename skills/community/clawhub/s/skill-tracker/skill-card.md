@@ -1,40 +1,56 @@
-## Description: <br>
-Track skill execution details including matched skills, decomposed tasks, execution status, outputs, and timestamps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks skill execution details, including matched skills, decomposed tasks, execution status, outputs, and timestamps.
 
-## Publisher: <br>
-[Abo-hub](https://clawhub.ai/user/Abo-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abo-hub](https://clawhub.ai/user/abo-hub)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep an append-only audit trail of skill matches, task decomposition, execution status, outputs, timestamps, and generated artifacts across conversation turns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad per-turn audit logging can retain prompts, replies, outputs, and file paths locally. <br>
-Mitigation: Install only where this logging is intentional, and define retention, deletion, and redaction rules before use. <br>
-Risk: The skill performs PM2/.env inspection and a public-IP network check to locate a Deck URL. <br>
-Mitigation: Review whether the deployment environment permits that system and network discovery before enabling the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abo-hub/skill-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/Abo-hub) <br>
+## Use Case:
 
+Developers and operators use this skill to record skill and tool execution details across conversation turns for analysis and debugging.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSONL records and short text reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Append-only local tracking records may include prompts, replies, outputs, timestamps, statuses, and artifact paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation content may be retained in tracking records.
+
+Mitigation: Install only where users have consented to logging and where retention, access controls, and deletion procedures are defined.
+
+Risk: Assistant replies may be altered by an appended Deck reminder.
+
+Mitigation: Review whether reply modification is acceptable for the deployment and disclose the behavior to users or administrators.
+
+Risk: Local service and network probing may expose environment details such as a Deck URL.
+
+Mitigation: Run only in environments where local service discovery and external IP checks are permitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abo-hub/skills/skill-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Text, Shell commands]
+
+**Output Format:** [JSONL records and short text reminder]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends one record per tracked conversation turn and may append a Deck reminder to the assistant reply.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

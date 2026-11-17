@@ -1,44 +1,53 @@
-## Description: <br>
-Convert JSON arrays of objects into CSV format using local Expanso Edge pipelines for CLI or MCP workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert JSON arrays of objects into CSV format using local Expanso Edge CLI or MCP workflows.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert JSON object arrays into CSV output for data export, spreadsheet generation, report creation, and API response formatting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: MCP mode starts an HTTP server that binds to 0.0.0.0 by default. <br>
-Mitigation: Restrict or firewall MCP mode, choose an appropriate port, and stop the background server when finished. <br>
-Risk: Remote deployment depends on the Expanso Cloud pipeline URL. <br>
-Mitigation: Verify the Expanso Cloud pipeline URL before deploying. <br>
-Risk: The skill depends on Expanso Edge tooling to execute pipelines. <br>
-Mitigation: Install and run it only in environments where the Expanso tooling is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-json-to-csv) <br>
-- [Expanso publisher profile](https://clawhub.ai/user/aronchick) <br>
-- [Expanso](https://expanso.io) <br>
-- [Expanso Cloud json-to-csv pipeline](https://skills.expanso.io/json-to-csv/pipeline-cli.yaml) <br>
+## Use Case:
 
+Developers and engineers use this skill to convert JSON object arrays into CSV strings for data export, spreadsheet generation, report creation, and API response formatting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The pipeline returns CSV text with row count, detected columns, and metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: MCP server mode binds broadly by default and could be reachable from untrusted networks.
+
+Mitigation: Bind the server to 127.0.0.1 or place it behind a firewall before use.
+
+Risk: CSV generated from untrusted JSON can be unsafe to open directly in spreadsheet tools.
+
+Mitigation: Treat generated CSV as untrusted unless formula neutralization and complete CSV escaping are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-json-to-csv)
+- [Expanso website](https://expanso.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill returns a CSV string with row count, detected columns, and metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

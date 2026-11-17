@@ -1,45 +1,61 @@
-## Description: <br>
-Auto-generated skill for mcp-server-chart tools via OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generated skill for mcp-server-chart tools via OneKey Gateway.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to send structured chart, spreadsheet, diagram, and map payloads to OneKey Gateway and receive generated outputs through a unified tool interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chart, spreadsheet, diagram, and map inputs are sent to OneKey Gateway, an external service. <br>
-Mitigation: Use the skill only for data appropriate to that service and review the provider's data-handling terms before submitting confidential, regulated, private address, or sensitive location data. <br>
-Risk: The scripts include a shared demo-key fallback when no OneKey Gateway API key is set. <br>
-Mitigation: Configure a scoped OneKey Gateway API key with DEEPNLP_ONEKEY_ROUTER_ACCESS for normal use instead of relying on the demo fallback. <br>
+## Use Case:
 
+Developers and data-focused agents use this skill to send structured chart, map, diagram, and spreadsheet requests through OneKey Gateway and receive generated visualization outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AI-Hub-Admin/mcp-server-chart) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent) <br>
-- [GitHub AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, chart visualizations, diagram visualizations, spreadsheet outputs, map visualizations] <br>
-**Output Format:** [JSON responses printed by command-line helper scripts after invoking OneKey Gateway tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Inputs are JSON payloads supplied inline or from a file; an API key is required and the scripts include a shared demo-key fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill sends chart, map, diagram, and spreadsheet payloads to an external gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private spreadsheet data and sensitive home, work, medical, or travel locations in payloads.
+
+Risk: The scripts and documentation include unpinned npm, pip, and npx dependency usage.
+
+Mitigation: Use pinned, audited dependency versions and run the tools in a constrained environment.
+
+Risk: The scripts fall back to a shared demo access key when no OneKey key is configured.
+
+Mitigation: Set DEEPNLP_ONEKEY_ROUTER_ACCESS to an owned key before use and avoid relying on the fallback key.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ai-hub-admin/skills/mcp-server-chart)
+- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router)
+- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent)
+- [GitHub AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON responses printed by Python wrapper scripts and documented shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a OneKey Gateway access key; chart payloads are supplied as JSON strings or JSON files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

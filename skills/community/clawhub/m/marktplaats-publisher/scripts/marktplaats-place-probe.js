@@ -19,8 +19,10 @@ function parseArgs(argv) {
     cookie: null,
     cookieFile: null,
     header: [],
-    bodyLimit: 12000,
+    bodyLimit: 0,
     userAgent: 'safari',
+    openBackground: null,
+    waitMs: 1500,
     help: false,
     selfTest: false,
   };
@@ -44,6 +46,10 @@ function parseArgs(argv) {
       out.save = argv[++i];
     } else if (arg === '--url') {
       out.url = argv[++i];
+    } else if (arg === '--open-background') {
+      out.openBackground = argv[++i];
+    } else if (arg === '--wait-ms') {
+      out.waitMs = Math.max(0, Number(argv[++i] ?? 1500));
     } else if (arg === '--cookie') {
       out.cookie = argv[++i];
     } else if (arg === '--cookie-file') {
@@ -82,6 +88,26 @@ function loadCookieFile(pathname) {
   const name = parts.at(-2);
   const value = parts.at(-1);
   return `${name}=${value}`;
+}
+
+function detectSecuritySignals(text = '', url = '') {
+  const haystack = `${url}\n${text}`;
+  const signals = [];
+  const add = (name, pattern) => {
+    if (pattern.test(haystack) && !signals.includes(name)) signals.push(name);
+  };
+  add('login', /\/identity\/v2\/login\b|inloggen op uw account|log in om verder te gaan/i);
+  add('captcha', /captcha|robot|automatisch verkeer|ben je een mens/i);
+  add('mfa', /\b(mfa|2fa|twee[- ]?staps|verificatiecode)\b/i);
+  add('security-challenge', /beveiligingscontrole|security check|challenge|controleer je browser/i);
+  add('waf', /\b(waf|cloudflare|akamai|access denied|forbidden)\b/i);
+  add('payment-prompt', /betaling|betaalpagina|plaatsingskosten|promotie|topadvertentie|urgent|etalage/i);
+  return {
+    challengeSignals: signals,
+    isLoginOrSecurityChallenge: signals.some((signal) => signal !== 'payment-prompt'),
+    hasPaymentPrompt: signals.includes('payment-prompt'),
+    bodyLength: String(text || '').length,
+  };
 }
 
 function isSensitiveField(name) {
@@ -150,6 +176,7 @@ function normalizeSnapshot(snapshot) {
     source: snapshot?.source ?? 'browser-dom',
     title: snapshot?.title ?? '',
     url: snapshot?.url ?? '',
+    security: snapshot?.security ?? detectSecuritySignals('', snapshot?.url ?? ''),
     forms,
     form: form
       ? {
@@ -200,7 +227,49 @@ function normalizeSnapshot(snapshot) {
   };
 }
 
-function safariProbe() {
+function hostFromUrl(value) {
+  try {
+    return new URL(value).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+}
+
+function runSafariJavaScript(js, { targetUrl = '', requireMatch = false } = {}) {
+  const targetHost = hostFromUrl(targetUrl);
+  const applescript = `tell application "Safari"
+    set targetUrl to ${JSON.stringify(targetUrl)}
+    set targetHost to ${JSON.stringify(targetHost)}
+    set requireMatch to ${requireMatch ? 'true' : 'false'}
+    set docCount to count of documents
+    if docCount is 0 then error "Safari has no open documents"
+    if targetUrl is not "" or targetHost is not "" then
+      repeat with i from 1 to docCount
+        set docUrl to URL of document i
+        if targetUrl is not "" and (docUrl contains targetUrl or targetUrl contains docUrl) then
+          set probeResult to do JavaScript ${JSON.stringify(js)} in document i
+          return probeResult
+        end if
+      end repeat
+      if targetHost is not "" then
+        repeat with i from 1 to docCount
+          set docUrl to URL of document i
+          if docUrl contains targetHost then
+            set probeResult to do JavaScript ${JSON.stringify(js)} in document i
+            return probeResult
+          end if
+        end repeat
+      end if
+      if requireMatch then error "No Safari document matched the requested Marktplaats URL or host"
+    end if
+    set probeResult to do JavaScript ${JSON.stringify(js)} in front document
+    return probeResult
+  end tell`;
+
+  return execFileSync('osascript', ['-e', applescript], { encoding: 'utf8' }).trim();
+}
+
+function safariProbe(options = {}) {
   const js = String.raw`
     JSON.stringify((() => {
       const collectInputs = (root) => Array.from(root.querySelectorAll('input, textarea, select')).map((el) => {
@@ -225,6 +294,26 @@ function safariProbe() {
         source: 'safari-dom',
         title: document.title,
         url: location.href,
+        security: (() => {
+          const text = document.body?.innerText || '';
+          const haystack = location.href + '\n' + text;
+          const signals = [];
+          const add = (name, pattern) => {
+            if (pattern.test(haystack) && !signals.includes(name)) signals.push(name);
+          };
+          add('login', /\/identity\/v2\/login\b|inloggen op uw account|log in om verder te gaan/i);
+          add('captcha', /captcha|robot|automatisch verkeer|ben je een mens/i);
+          add('mfa', /\b(mfa|2fa|twee[- ]?staps|verificatiecode)\b/i);
+          add('security-challenge', /beveiligingscontrole|security check|challenge|controleer je browser/i);
+          add('waf', /\b(waf|cloudflare|akamai|access denied|forbidden)\b/i);
+          add('payment-prompt', /betaling|betaalpagina|plaatsingskosten|promotie|topadvertentie|urgent|etalage/i);
+          return {
+            challengeSignals: signals,
+            isLoginOrSecurityChallenge: signals.some((signal) => signal !== 'payment-prompt'),
+            hasPaymentPrompt: signals.includes('payment-prompt'),
+            bodyLength: text.length,
+          };
+        })(),
         forms: Array.from(document.forms).map((form) => ({
           action: form.action,
           method: form.method,
@@ -236,12 +325,11 @@ function safariProbe() {
     })());
   `;
 
-  const applescript = `tell application "Safari"
-    set probeResult to do JavaScript ${JSON.stringify(js)} in front document
-    return probeResult
-  end tell`;
-
-  const raw = execFileSync('osascript', ['-e', applescript], { encoding: 'utf8' }).trim();
+  const targetUrl = options.openBackground ?? options.url ?? '';
+  const raw = runSafariJavaScript(js, {
+    targetUrl,
+    requireMatch: Boolean(targetUrl),
+  });
   return JSON.parse(raw);
 }
 
@@ -284,6 +372,26 @@ function safariFetchProbe(options) {
         ok: xhr.status >= 200 && xhr.status < 300,
         isLoginRedirect: /\/identity\/v2\/login\b/.test(xhr.responseURL || '') || /Inloggen op uw account/i.test(xhr.responseText),
         bodyLength: xhr.responseText.length,
+        security: (() => {
+          const text = doc.body?.innerText || xhr.responseText || '';
+          const haystack = (xhr.responseURL || target) + '\n' + text;
+          const signals = [];
+          const add = (name, pattern) => {
+            if (pattern.test(haystack) && !signals.includes(name)) signals.push(name);
+          };
+          add('login', /\/identity\/v2\/login\b|inloggen op uw account|log in om verder te gaan/i);
+          add('captcha', /captcha|robot|automatisch verkeer|ben je een mens/i);
+          add('mfa', /\b(mfa|2fa|twee[- ]?staps|verificatiecode)\b/i);
+          add('security-challenge', /beveiligingscontrole|security check|challenge|controleer je browser/i);
+          add('waf', /\b(waf|cloudflare|akamai|access denied|forbidden)\b/i);
+          add('payment-prompt', /betaling|betaalpagina|plaatsingskosten|promotie|topadvertentie|urgent|etalage/i);
+          return {
+            challengeSignals: signals,
+            isLoginOrSecurityChallenge: signals.some((signal) => signal !== 'payment-prompt'),
+            hasPaymentPrompt: signals.includes('payment-prompt'),
+            bodyLength: text.length,
+          };
+        })(),
         requestHeaders: {
           'user-agent': navigator.userAgent,
           accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -300,12 +408,10 @@ function safariFetchProbe(options) {
     })());
   `.replace('TARGET_URL', JSON.stringify(targetUrl));
 
-  const applescript = `tell application "Safari"
-    set probeResult to do JavaScript ${JSON.stringify(js)} in front document
-    return probeResult
-  end tell`;
-
-  const raw = execFileSync('osascript', ['-e', applescript], { encoding: 'utf8' }).trim();
+  const raw = runSafariJavaScript(js, {
+    targetUrl,
+    requireMatch: Boolean(targetUrl),
+  });
   return JSON.parse(raw);
 }
 
@@ -336,7 +442,8 @@ async function curlProbe(options) {
   });
   const body = await response.text();
   const isLoginRedirect = /\/identity\/v2\/login\b/.test(response.url) || /Inloggen op uw account/i.test(body);
-  const bodyLimit = Number.isFinite(options.bodyLimit) ? options.bodyLimit : 12000;
+  const security = detectSecuritySignals(body, response.url);
+  const bodyLimit = Number.isFinite(options.bodyLimit) ? options.bodyLimit : 0;
   const bodyPreview = bodyLimit === 0 ? '' : body.slice(0, bodyLimit);
   return {
     source: 'curl',
@@ -344,6 +451,7 @@ async function curlProbe(options) {
     status: response.status,
     ok: response.ok,
     isLoginRedirect,
+    security,
     requestHeaders: {
       'user-agent': userAgent,
       accept: headers.get('Accept'),
@@ -364,13 +472,16 @@ function printHelp() {
 Options:
   --browser            Read the live place page from the active Safari tab (default)
   --browser-fetch      Fetch a same-origin page inside Safari with its logged-in session
+  --open-background URL
+                       Open URL in Safari in the background before probing
+  --wait-ms N          Wait after --open-background before probing (default 1500)
   --curl               Fetch the given URL with fetch/curl-style headers
   --url URL            URL to fetch in curl mode
   --cookie STRING       Raw Cookie header for curl mode
   --cookie-file PATH    File with a raw Cookie header or Netscape cookie export
   --header NAME:VALUE   Extra request header (repeatable)
   --user-agent VALUE    "safari", "chrome", or a custom UA string (default safari)
-  --body-limit N       Max body chars to keep in curl mode (default 12000)
+  --body-limit N       Max body chars to keep in curl mode (default 0)
   --json               Emit JSON only
   --save PATH          Write the JSON snapshot to a file
   --self-test          Run a deterministic normalizer test
@@ -423,6 +534,17 @@ function selfTest() {
   console.log('self-test ok');
 }
 
+function openSafariInBackground(url) {
+  if (!url) return;
+  execFileSync('open', ['-g', '-a', 'Safari', url], { stdio: 'ignore' });
+}
+
+function delay(ms) {
+  return new Promise((resolveDelay) => {
+    setTimeout(resolveDelay, Math.max(0, Number(ms) || 0));
+  });
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
@@ -434,11 +556,16 @@ async function main() {
     return;
   }
 
+  if (args.openBackground) {
+    openSafariInBackground(args.openBackground);
+    await delay(args.waitMs);
+  }
+
   let result;
   if (args.browserFetch) {
     result = normalizeSnapshot(safariFetchProbe(args));
   } else if (args.browser) {
-    result = normalizeSnapshot(safariProbe());
+    result = normalizeSnapshot(safariProbe(args));
   } else {
     result = await curlProbe(args);
   }
@@ -458,6 +585,9 @@ async function main() {
   if (result.placeAction) console.log(`form action: ${result.placeAction}`);
   if (result.hasXsrfToken) console.log('xsrf token: [redacted]');
   if (result.isLoginRedirect) console.log('login redirect: yes');
+  if (result.security?.challengeSignals?.length) {
+    console.log(`security signals: ${result.security.challengeSignals.join(', ')}`);
+  }
   if (result.category?.l1 || result.category?.l2 || result.category?.bucket) {
     console.log(`category: l1=${result.category.l1} l2=${result.category.l2} bucket=${result.category.bucket}`);
   }

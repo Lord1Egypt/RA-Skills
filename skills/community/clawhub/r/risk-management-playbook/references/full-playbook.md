@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [Risk Governance Deep Dive](#1-risk-governance-deep-dive)
+1. [Risk Governance Deep Dive](#1-riREDACTED-SECRET)
 2. [Enterprise Risk Assessment Details](#2-enterprise-risk-assessment-details)
 3. [Business Continuity Planning Advanced](#3-business-continuity-planning-advanced)
 4. [Disaster Recovery Advanced](#4-disaster-recovery-advanced)
@@ -14,7 +14,7 @@
 10. [Insurance & Risk Transfer Advanced](#10-insurance--risk-transfer-advanced)
 11. [Crisis Communication Playbook](#11-crisis-communication-playbook)
 12. [Testing & Exercises Advanced](#12-testing--exercises-advanced)
-13. [Key Risk Indicators & Dashboards](#13-key-risk-indicators--dashboards)
+13. [Key Risk Indicators & Dashboards](#13-key-riREDACTED-SECRET)
 14. [Implementation Roadmap](#14-implementation-roadmap)
 15. [Multi-Jurisdictional Compliance Matrix](#15-multi-jurisdictional-compliance-matrix)
 16. [Templates & Checklists](#16-templates--checklists)

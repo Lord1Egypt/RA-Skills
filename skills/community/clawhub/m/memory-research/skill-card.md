@@ -1,43 +1,58 @@
-## Description: <br>
-Research an external subject using web search, synthesize findings into a structured Basic Memory entity. Use when asked to research a company, person, technology, or topic, or when a bare name or URL is provided that implies a research request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches an external company, person, technology, or topic using web search and synthesizes findings into a structured Basic Memory entity proposal.
 
-## Publisher: <br>
-[phernandez](https://clawhub.ai/user/phernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phernandez](https://clawhub.ai/user/phernandez)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to research public companies, people, technologies, or topics, compare findings with existing Basic Memory notes, and propose structured memory entries or updates with sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public web research can capture outdated, incomplete, or misleading information. <br>
-Mitigation: Review the cited sources and the proposed note content before approving a Basic Memory write or update. <br>
-Risk: A bare name or URL can be interpreted as a research request when the user did not intend persistent follow-up. <br>
-Mitigation: Be explicit when a name or URL is only contextual and should not trigger research or note creation. <br>
-Risk: Approved notes can retain sensitive personal or business context supplied during the request. <br>
-Mitigation: Avoid approving storage of sensitive context unless retention in Basic Memory is intended. <br>
+## Use Case:
 
+External users and developers use this skill to research organizations, people, technologies, or topics and turn cited findings into proposed Basic Memory notes. It is suited for building or updating a personal knowledge graph with user approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phernandez/memory-research) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown research summaries with source lists and Basic Memory write/edit call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Proposes note creation or updates only after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad bare-name and URL triggers may cause unintended web research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm intent before researching when a prompt is ambiguous or only contains a name or URL.
+
+Risk: Research findings can be outdated, incomplete, or uncertain before they are saved into memory.
+
+Mitigation: Use cited sources, hedged language, research dates, and user review before creating or updating a note.
+
+Risk: User-provided context can be captured in a Basic Memory entity.
+
+Mitigation: Review proposed note content before approval and omit sensitive or unnecessary context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phernandez/skills/memory-research)
+- [Publisher Profile](https://clawhub.ai/user/phernandez)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown research summaries with structured Basic Memory note templates and Python-style note operation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user approval before creating or updating Basic Memory notes; includes source URLs and hedged statements.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

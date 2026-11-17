@@ -16,7 +16,7 @@ Preferred pattern for all Codex full-auto tasks on this machine. Avoids SIGTERM,
 ## Environment (this machine)
 
 ```bash
-OPENAI_API_KEY="sk-5Ds6eFbTEE1zu5fQ14F4FfB5892b419dB1BfC7292147B9Ef"
+OPENAI_API_KEY="REDACTED-SECRET"
 OPENAI_BASE_URL="http://152.53.52.170:3003/v1"
 ```
 

@@ -1,43 +1,63 @@
-## Description: <br>
-Controls AdGuard Home DNS filtering through its HTTP API to check domains, manage allowlists and blocklists, view status and statistics, toggle protection, and clear DNS cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control AdGuard Home DNS filtering via HTTP API. Use when managing blocklists/allowlists, checking domain filtering status, toggling protection, or clearing DNS cache. Supports blocking/allowing domains, viewing statistics, and protecting/disabling DNS filtering.
 
-## Publisher: <br>
-[rowbotik](https://clawhub.ai/user/rowbotik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rowbotik](https://clawhub.ai/user/rowbotik)
 
-## Use Case: <br>
-Developers and network operators use this skill to administer an AdGuard Home instance from the command line. It supports routine DNS filtering tasks such as checking filtered domains, changing custom rules, viewing statistics, toggling protection, and clearing DNS cache. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Credentials could be sent to an unintended AdGuard Home host if the URL is not explicitly configured. <br>
-Mitigation: Set ADGUARD_URL to the intended AdGuard Home address and verify the host before running commands that authenticate. <br>
-Risk: Allow, block, toggle, and cache-clear commands can change DNS filtering behavior. <br>
-Mitigation: Require explicit user approval before running commands that alter rules, protection state, or cache. <br>
-Risk: The status command accesses DNS query-log data while reporting summary statistics. <br>
-Mitigation: Avoid status checks in sensitive environments unless query-log access is appropriate for the user and deployment. <br>
+## Use Case:
 
+Developers and administrators use this skill to manage an AdGuard Home DNS filtering instance from an agent-assisted command-line workflow. It supports checking domain filtering status, changing allowlist or blocklist rules, viewing statistics, toggling protection, and clearing DNS cache.
 
-## Reference(s): <br>
-- [AdGuard Home API Reference](references/api.md) <br>
-- [Official AdGuard Home API documentation](https://github.com/AdguardTeam/AdGuardHome/wiki/API) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured AdGuard Home URL and admin credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Administrator access could expose sensitive DNS or admin data if used over an unprotected channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only against an AdGuard instance you administer and prefer HTTPS or a protected local-only channel.
+
+Risk: Storing the AdGuard admin password in shell startup files could expose credentials.
+
+Mitigation: Do not store the admin password in shell startup files; provide it through a safer secret-handling workflow.
+
+Risk: Protection toggles and rule changes can immediately affect DNS filtering for all clients using the server.
+
+Mitigation: Review requested DNS filtering changes before execution and confirm the target AdGuard instance.
+
+Risk: The allow/block implementation may overwrite existing custom rules.
+
+Mitigation: Fix or carefully test allow/block behavior before relying on it in an active AdGuard deployment.
+
+## Reference(s):
+
+- [AdGuard Home API Reference](references/api.md)
+- [Official AdGuard Home API Documentation](https://github.com/AdguardTeam/AdGuardHome/wiki/API)
+- [ClawHub skill page](https://clawhub.ai/rowbotik/skills/adguard)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command output summaries, DNS filtering status, rule-change instructions, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

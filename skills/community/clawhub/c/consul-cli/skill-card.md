@@ -1,40 +1,57 @@
-## Description: <br>
-Consul CLI command reference for service discovery, key-value store, health checks, cluster management, and service mesh operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consul CLI command reference for service discovery, key-value store, health checks, cluster management, and service mesh operations.
 
-## Publisher: <br>
-[jonasgao](https://clawhub.ai/user/jonasgao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonasgao](https://clawhub.ai/user/jonasgao)
 
-## Use Case: <br>
-Developers and operators use this skill as a Consul CLI reference when managing agents, service discovery, key-value operations, ACLs, cluster operations, snapshots, and service mesh workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mutating Consul administration commands can alter cluster state, remove services or keys, restore snapshots, or change Raft membership. <br>
-Mitigation: Confirm the cluster, datacenter, namespace, token, target nodes, and backup state before execution; require explicit approval for recursive deletes, snapshot restores, force-leave, Raft changes, service deregistration, locks, watch handlers, consul exec, and writes under `/etc`. <br>
-Risk: ACL root tokens, SecretIDs, cloud join secrets, and TLS material may be exposed if pasted into chat logs or shell history. <br>
-Mitigation: Keep secrets out of prompts, logs, and command history; prefer token files or secure secret stores and redact sensitive command examples before sharing. <br>
+## Use Case:
 
+Developers and platform engineers use this skill as a Consul CLI reference for agent management, key-value operations, service registration, ACL workflows, cluster operations, snapshots, and service mesh commands.
 
-## Reference(s): <br>
-- [Consul CLI Reference](references/cli-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with CLI examples, command snippets, configuration samples, and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not install or run hidden code; outputs should be reviewed before executing mutating Consul administration commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill presents high-impact Consul administration commands, including destructive, remote-exec, network-exposing, backup, restore, delete, watch, and exec operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of targets, selectors, backups, command scope, and execution context before running generated commands.
+
+Risk: The skill references ACL SecretIDs, Consul tokens, keyring values, and credential-like values used in cloud auto-join or Consul administration workflows.
+
+Mitigation: Treat these values as secrets and avoid exposing them in logs, shell history, shared prompts, generated output, or public artifacts.
+
+Risk: The skill includes examples that expose Consul on broad network interfaces such as 0.0.0.0.
+
+Mitigation: Bind Consul only to intended interfaces and use authentication, TLS, firewalling, and access controls before exposing network services.
+
+## Reference(s):
+
+- [Consul CLI Reference](references/cli-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, HCL, and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference content for human-reviewed Consul CLI command generation; no automated execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

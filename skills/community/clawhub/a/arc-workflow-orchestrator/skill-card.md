@@ -1,41 +1,57 @@
-## Description: <br>
-Chain skills into automated pipelines with conditional logic, error handling, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chain skills into automated pipelines with conditional logic, error handling, and audit logging.
 
-## Publisher: <br>
-[Trypto1019](https://clawhub.ai/user/Trypto1019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trypto1019](https://clawhub.ai/user/trypto1019)
 
-## Use Case: <br>
-Developers and operators use this skill to define, validate, dry-run, and execute multi-step agent workflows from YAML or JSON files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workflow files can run broad local commands hands-free. <br>
-Mitigation: Review workflow files as executable code, use validate and dry-run first, and avoid workflows from untrusted sources. <br>
-Risk: Sensitive values may be exposed through command lines or saved output. <br>
-Mitigation: Do not place secrets in workflow commands or saved outputs. <br>
-Risk: Rollback handling has weak safety boundaries. <br>
-Mitigation: Do not rely on rollback unless explicit reversal steps are implemented and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/Trypto1019/arc-workflow-orchestrator) <br>
+## Use Case:
 
+Developers and operators use this skill to define YAML or JSON workflows that run multi-step agent operations, such as security-gated deployments, scheduled maintenance, and audit-backed automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and YAML or JSON workflow definitions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports validation and dry-run output before workflow execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run local commands hands-free from workflow files.
+
+Mitigation: Run only trusted, reviewed workflows and use dry-run before executing state-changing workflows.
+
+Risk: Saved outputs and conditional controls may be weaker than expected for security decisions.
+
+Mitigation: Avoid using untrusted saved outputs in later commands and do not rely on dotted JSON conditions or rollback as primary security controls.
+
+Risk: State-changing workflows can affect the local environment.
+
+Mitigation: Run state-changing workflows in a contained, low-privilege environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trypto1019/skills/arc-workflow-orchestrator)
+- [ClawHub publisher profile](https://clawhub.ai/user/trypto1019)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow definitions, validation guidance, dry-run instructions, and command-line usage patterns.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

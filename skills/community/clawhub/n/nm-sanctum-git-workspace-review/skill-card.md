@@ -1,42 +1,54 @@
-## Description: <br>
-Verifies workspace state and staged changes as a read-only preflight for commits, pull requests, and release preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies workspace state and staged changes as a read-only preflight. Use before commits or PRs to confirm staged set is clean and correct
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill before commits, pull requests, or release notes to inspect repository state, staged changes, and relevant diffs. It helps confirm that the intended work is staged and that code quality checks have been considered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is described as read-only but can lead an agent to stage or unstage files and run formatting fixes. <br>
-Mitigation: Require explicit confirmation before staging, unstaging, formatting, or applying fixes, and review git status and diffs before continuing. <br>
-Risk: Project-defined formatting and lint commands may modify files or execute repository-specific tooling. <br>
-Mitigation: Run the skill only in trusted repositories or an isolated workspace, and inspect the relevant build scripts before allowing automated commands. <br>
+## Use Case:
 
+Developers use this skill before commits, pull requests, or release-note work to inspect repository status, check code quality, review staged or unstaged diffs, and prepare a summary for downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-git-workspace-review) <br>
-- [ClawHub metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
-- [Git commands reference](modules/git-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a progress checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve git status, diff, staging, formatting, and lint commands depending on agent execution policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+Risk: Instructions to stage or unstage files and abort merges conflict with the read-only preflight description and can change repository state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow before use and require explicit approval before changing staged files or merge state.
+
+Risk: The security analysis is incomplete because a referenced local path was missing.
+
+Mitigation: Inspect the referenced files and confirm the instructions match the intended workflow before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-sanctum-git-workspace-review)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands]
+
+**Output Format:** [Markdown review notes with Git shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes repository status, staged changes, quality-check results, and diff themes for downstream workflows.]
+
+## Skill Version(s):
+
+1.10.3 (source: skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

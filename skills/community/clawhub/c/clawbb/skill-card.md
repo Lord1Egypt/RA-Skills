@@ -1,46 +1,61 @@
-## Description: <br>
-ClawBB is a macOS voice-to-text helper for dictating text into applications with Google Gemini. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBB is a free macOS voice-to-text skill for installing and configuring XiaBB, a Globe-key dictation app powered by Google Gemini.
 
-## Publisher: <br>
-[dyz2102](https://clawhub.ai/user/dyz2102) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyz2102](https://clawhub.ai/user/dyz2102)
 
-## Use Case: <br>
-Developers and creators on macOS use ClawBB to dictate prompts, code-adjacent notes, and other text into the active application without switching context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing ClawBB requires trusting an external native macOS app with microphone, Accessibility, and Gemini API access. <br>
-Mitigation: Verify the DMG checksum, confirm you trust the GitHub release or source, and grant macOS permissions only if that access is acceptable. <br>
-Risk: Dictated audio is sent to Google Gemini for transcription. <br>
-Mitigation: Avoid dictating secrets or sensitive material unless that processing is acceptable for the user's environment. <br>
-Risk: The Gemini API key may be stored locally for app use. <br>
-Mitigation: Use a dedicated Gemini API key when possible and protect the local key file with restrictive permissions. <br>
+## Use Case:
 
+Developers and external users use this skill to install, configure, and operate a macOS voice-to-text app that transcribes speech into the active cursor location for coding and prompt-writing workflows.
 
-## Reference(s): <br>
-- [ClawBB on ClawHub](https://clawhub.ai/dyz2102/clawbb) <br>
-- [XiaBB Website](https://xiabb.lol) <br>
-- [XiaBB GitHub Repository](https://github.com/dyz2102/xiabb) <br>
-- [Google AI Studio API Key](https://aistudio.google.com/apikey) <br>
-- [XiaBB v1.1.3 macOS DMG](https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with installation commands, setup steps, and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key and local macOS permissions for microphone and Accessibility access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: frontmatter and server release metadata) <br>
+Risk: The optional build-from-source path runs an unpinned remote install script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the verified DMG path when possible; if building from source, pin and inspect a specific commit before running install commands.
+
+Risk: The app requires Microphone and Accessibility permissions, allowing audio capture and text insertion at the active cursor.
+
+Mitigation: Grant these macOS permissions only after reviewing whether voice capture and cursor-level text insertion are acceptable for the intended environment.
+
+Risk: The downloaded DMG could be tampered with if the checksum is skipped.
+
+Mitigation: Verify the documented SHA-256 checksum before opening the DMG.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dyz2102/skills/clawbb)
+- [XiaBB Website](https://xiabb.lol)
+- [Google AI Studio API Keys](https://aistudio.google.com/apikey)
+- [XiaBB GitHub Repository](https://github.com/dyz2102/xiabb)
+- [XiaBB v1.1.3 Notarized DMG](https://github.com/dyz2102/xiabb/releases/download/v1.1.3/XiaBB-v1.1.3-macOS-arm64.dmg)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Gemini API key and macOS Microphone and Accessibility permissions.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

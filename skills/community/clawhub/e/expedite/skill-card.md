@@ -1,38 +1,53 @@
-## Description: <br>
-Use when the user wants to act on an audit, fix the findings in a line-check/bug-hunt/security-sweep report, work a prioritized backlog, or asks to "fix the findings", "work the backlog", "clear the audit", or "do the high-leverage items". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to work through prioritized findings from an audit report, applying focused fixes and verifying each one.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and engineers use this skill to execute an existing audit backlog in leverage order, applying one focused fix at a time and verifying each finding before moving on. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to modify a repository, run verification, and make commits while resolving an audit backlog. <br>
-Mitigation: Use it only for repositories where active audit-fix work is desired, keep changes isolated on a branch, and review the resulting commits before merging. <br>
+## Use Case:
 
+Developers use Expedite to execute prioritized findings from an audit backlog. It guides focused code changes, verification of each fix, and reporting of completed, skipped, parked, or remaining work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/expedite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status report with code changes, shell commands, verification notes, and commit references as applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may produce repository edits and commits when used to resolve audit findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Repository edits, tests, and commits may introduce unintended changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the audit backlog and resulting diffs, and inspect test results before accepting the changes.
+
+Risk: Referenced helper skills or lint scripts may have behavior that has not been reviewed.
+
+Mitigation: Review referenced helper skills and scripts separately before relying on them.
+
+## Reference(s):
+
+- [Expedite on ClawHub](https://clawhub.ai/solomonneas/skills/expedite)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Repository code changes and a Markdown progress report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused changes are verified one finding at a time; unresolved items are reported as parked or remaining.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

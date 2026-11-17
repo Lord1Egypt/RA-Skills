@@ -1,44 +1,59 @@
-## Description: <br>
-Use when illustrating a Markdown article with high-finish editorial visuals, visual-bible planning, structured prompts, optional Qiniu upload, and inserted image references for article publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when illustrating a Markdown article with high-finish editorial visuals, visual-bible planning, structured prompts, optional Qiniu upload, and inserted image references for article publishing workflows.
 
-## Publisher: <br>
-[zhylq](https://clawhub.ai/user/zhylq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhylq](https://clawhub.ai/user/zhylq)
 
-## Use Case: <br>
-Developers, editors, and publishing teams use this skill to plan, generate, and insert editorial illustrations into Markdown articles. It creates a visual bible, illustration outline, structured prompts, local image assets, an illustrated article copy, and optional CDN URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article content and image-generation requests may be sent to external image services or an under-disclosed third-party image relay. <br>
-Mitigation: Use only articles that may be shared with external image services, set IMAGE_BASE_URL or XIAOMI_BASE_URL to a trusted endpoint, and avoid relying on defaults. <br>
-Risk: API keys for image providers or Qiniu upload can expose broader account access than the skill needs. <br>
-Mitigation: Use least-privilege API keys, store them outside committed files, and rotate or revoke keys after testing. <br>
-Risk: Enabling upload can publish generated images through Qiniu/CDN when local-only output was intended. <br>
-Mitigation: Keep upload=false unless remote hosting is intentional, and review generated assets before enabling upload. <br>
+## Use Case:
 
+Developers, writers, and content teams use this skill to add planned editorial illustrations to Markdown articles. It analyzes article structure, creates a visual bible and outline, generates prompts and images, optionally uploads images to Qiniu, and writes an illustrated article copy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhylq/zhy-article-illustrator) <br>
-- [Configuration schema](references/config-schema.md) <br>
-- [Prompt guide](references/prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text prompts, Image files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown files, prompt text files, PNG image files, local paths, and optional CDN URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates article.illustrated.md plus illustration planning assets under illustrations/<slug>/; optional upload returns CDN URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Risk: Article content, reference images, and API keys may be sent to the configured image generation endpoint, including the default third-party relay reported by the security scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set IMAGE_BASE_URL or XIAOMI_BASE_URL to a trusted official or self-controlled endpoint before use, and avoid running the skill on confidential drafts or private reference images.
+
+Risk: Passing API keys on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Provide credentials through environment variables or a local .env file, and avoid using the --api-key argument.
+
+Risk: Optional Qiniu upload can transmit generated images to the configured storage bucket and expose them through the configured CDN domain.
+
+Mitigation: Enable upload only when the Qiniu bucket, domain, and access policy are approved for the article content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhylq/skills/zhy-article-illustrator)
+- [config-schema.md](artifact/references/config-schema.md)
+- [prompt-guide.md](artifact/references/prompt-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance, generated Markdown files, structured prompts, image files, JSON summaries, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce an illustrated article copy, visual-bible.md, outline.md, prompt files, PNG images, optional CDN URLs, and success/failure counts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

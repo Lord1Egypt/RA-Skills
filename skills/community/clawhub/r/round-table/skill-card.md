@@ -1,40 +1,54 @@
-## Description: <br>
-Jinx provides a Chinese structured roundtable discussion mode that facilitates multi-role, truth-seeking dialogue when invoked with roundtable trigger phrases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jinx provides a Chinese roundtable discussion mode for structured, truth-seeking, multi-role deep-dive dialogue on a user-provided topic.
 
-## Publisher: <br>
-[jingxxxxx](https://clawhub.ai/user/jingxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingxxxxx](https://clawhub.ai/user/jingxxxxx)
 
-## Use Case: <br>
-Agent users invoke this skill to run a structured Chinese roundtable discussion on a topic, with a moderator coordinating multiple distinct perspectives, summaries, ASCII framework diagrams, and a final knowledge network on request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger language may activate the roundtable mode on loosely similar requests. <br>
-Mitigation: Invoke it explicitly with phrases such as "圆桌：<topic>" or "roundtable: <topic>", and confirm the topic when activation is ambiguous. <br>
-Risk: The mode generates simulated perspectives from selected representative figures and MBTI-style framing, which can be misleading if treated as factual attribution. <br>
-Mitigation: Treat generated viewpoints as synthesized discussion aids and verify factual claims or real-person attributions before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to invoke a moderated Chinese roundtable dialogue that compares 3-4 distinct viewpoints, synthesizes disputes, and develops a knowledge network around a topic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingxxxxx/round-table) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured Chinese dialogue, lists, and ASCII diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces facilitated discussion rounds, concise summaries, deeper follow-up questions, and a final knowledge network when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can activate broadly around roundtable or multi-perspective discussion requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger terms and deploy it only where users expect a structured roundtable discussion mode.
+
+Risk: The skill defaults all dialogue to Chinese.
+
+Mitigation: Deploy it for Chinese-language workflows or adjust the language expectation before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jingxxxxx/skills/round-table)
+- [ClawHub publisher profile](https://clawhub.ai/user/jingxxxxx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured Chinese dialogue, summaries, and ASCII framework diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults dialogue to Chinese and waits for user commands to continue, deepen, add a participant, or conclude.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

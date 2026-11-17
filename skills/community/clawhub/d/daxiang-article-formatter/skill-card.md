@@ -1,44 +1,53 @@
-## Description: <br>
-Formats Chinese social-media articles into readable, visually structured, mobile-friendly Markdown for platforms such as WeChat public accounts, Xiaohongshu, and Knowledge Planet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats Chinese-language social-media articles with clearer structure, visual emphasis, information layout, and mobile-friendly Markdown for platforms such as WeChat, Xiaohongshu, and Knowledge Planet.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Content creators and social-media operators use this skill to restructure long-form articles, add visual emphasis, improve mobile readability, and prepare copy-ready posts for Chinese publishing platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional sections, contact details, or calls to action may be inaccurate or unsuitable for the final publishing context. <br>
-Mitigation: Review formatted articles before publishing, especially CTA text, contact information, and any claims added or emphasized during formatting. <br>
-Risk: Private drafts or sensitive unpublished content may be exposed to the agent processing the article. <br>
-Mitigation: Avoid submitting sensitive private drafts unless the user is comfortable with the agent processing that content. <br>
+## Use Case:
 
+Content creators, social-media operators, and agents assisting them use this skill to transform draft Chinese long-form articles into polished, readable Markdown layouts for publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/daxiang-article-formatter) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Long-form article template](artifact/templates/干货文章模板.md) <br>
-- [Formatted example](artifact/examples/claud-vs-chatgpt-formatted.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces copy-ready formatted article text and publishing guidance; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata, package.json) <br>
+Risk: The skill is documented for Chinese-language social-media article formatting and may not match multilingual or non-social-media publishing needs by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target language, platform, and article type before applying the formatting guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/skills/daxiang-article-formatter)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Dry-Goods Article Template](artifact/templates/干货文章模板.md)
+- [Formatted Article Example](artifact/examples/claud-vs-chatgpt-formatted.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown article text with headings, lists, quote blocks, tables, emoji markers, and CTA sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optimized for Chinese-language social-media publishing; color rendering depends on the target platform.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

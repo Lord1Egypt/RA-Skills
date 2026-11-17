@@ -1,45 +1,60 @@
-## Description: <br>
-Discord CLI with YAML-first structured output for AI agents - fetch chat history, search messages, sync channels, and AI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discord CLI gives agents structured terminal access to fetch Discord chat history, search messages, sync channels, export local data, and request AI analysis.
 
-## Publisher: <br>
-[jackwener](https://clawhub.ai/user/jackwener) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[jackwener](https://clawhub.ai/user/jackwener)
 
-## Use Case: <br>
-Developers and agents use this skill to operate discord-cli for local-first Discord message retrieval, search, export, syncing, and optional AI summarization. It is intended for accounts and machines the user controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recover and store a Discord user-session token. <br>
-Mitigation: Use it only on accounts and machines you control, and avoid storing tokens in a project .env or sharing raw token values. <br>
-Risk: Broad sync commands can create local archives of Discord messages across accessible channels. <br>
-Mitigation: Review the channels that sync-all will collect and limit queries or sync scope where possible. <br>
-Risk: AI analysis can send private message content to the configured AI provider. <br>
-Mitigation: Use AI analysis only when you are comfortable sharing the selected message content with that provider. <br>
+## Use Case:
 
+Developers and agents use this skill to operate the discord-cli command-line tool for local-first Discord message sync, search, export, and summarization workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackwener/discord-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/jackwener) <br>
-- [Structured output schema](SCHEMA.md) <br>
-- [PyPI package](https://pypi.org/project/kabi-discord-cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON, YAML] <br>
-**Output Format:** [Markdown guidance with inline shell commands; invoked CLI commands can produce YAML or JSON envelopes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Machine-readable CLI output uses an ok/schema_version/data or error envelope; non-TTY stdout defaults to YAML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata, pyproject.toml, CHANGELOG) <br>
+Risk: The skill can give an agent access to a sensitive Discord user token and may save it in a plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts and servers where automation is allowed, avoid discord auth --save unless local plaintext storage is acceptable, and protect or remove any saved token.
+
+Risk: Broad sync and summary commands can cache or process large amounts of accessible Discord message content.
+
+Mitigation: Prefer channel-specific commands, small -n limits, and explicit export destinations; avoid sync-all or broad summaries unless that scope is intended.
+
+Risk: AI analysis and summary commands can send raw chat content to Anthropic.
+
+Mitigation: Do not run AI commands on private, confidential, or regulated channels unless participants and organizational policy permit external processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackwener/skills/discord-cli)
+- [Structured Output Schema](./SCHEMA.md)
+- [README](./README.md)
+- [PyPI package](https://pypi.org/project/kabi-discord-cli/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI results are YAML or JSON structured envelopes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agents should prefer bounded result sets, structured output, and file export for large datasets.]
+
+## Skill Version(s):
+
+0.2.3 (source: ClawHub release evidence and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

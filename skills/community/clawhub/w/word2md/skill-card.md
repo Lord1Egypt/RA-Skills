@@ -1,42 +1,52 @@
-## Description: <br>
-Document to Markdown converter that converts DOCX, PPTX, and Excel files to Markdown for content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. Use when extracting content from Word documents, PowerPoint presentations, or Excel spreadsheets.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, employees, and external users use this skill to extract Markdown content from Word documents, PowerPoint presentations, and Excel spreadsheets for reading, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The conversion workflow uploads selected documents to MinerU's cloud API for processing. <br>
-Mitigation: Only process documents the user is permitted to upload, and avoid confidential, regulated, or highly sensitive files unless MinerU handling terms and permissions have been reviewed. <br>
-Risk: The skill relies on the third-party mineru-open-api CLI package. <br>
-Mitigation: Install it only from trusted package sources and review the package before use in sensitive environments. <br>
+## Use Case:
 
+Developers and agents use this skill to extract readable Markdown from Word documents, PowerPoint presentations, and Excel spreadsheets provided as local files or URLs.
 
-## Reference(s): <br>
-- [Word2md ClawHub release](https://clawhub.ai/tanis90/word2md) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI download](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Markdown extracted from Office documents; embedded images may be replaced with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may send selected office documents or document URLs to MinerU's cloud API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before upload and avoid confidential, regulated, or enterprise documents unless external processing is approved.
+
+## Reference(s):
+
+- [MinerU](https://mineru.net)
+- [MinerU CLI download](https://mineru.net/ecosystem?tab=cli)
+- [mineru-open-api npm package](https://www.npmjs.com/package/mineru-open-api)
+- [MinerU Open API Go install path](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs Markdown extracted from DOCX, PPTX, XLS, or XLSX inputs; embedded images may be replaced with placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

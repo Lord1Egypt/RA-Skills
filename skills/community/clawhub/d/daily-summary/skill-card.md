@@ -1,40 +1,54 @@
-## Description: <br>
-Generates a daily learning summary with date, achievements, task status, plans, and token usage statistics from OpenClaw status data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Summary generates a dated learning and progress summary with task status, next plans, and token usage statistics from local OpenClaw status data.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-OpenClaw users can trigger this skill to create a dated daily summary of accomplishments, task status, plans, and token usage. It is useful for maintaining a lightweight daily work log in the user's workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes or updates a dated summary file in the user's OpenClaw workspace. <br>
-Mitigation: Check whether memory/YYYY-MM-DD.md already contains notes that should be preserved, and review the generated summary before relying on it. <br>
-Risk: The release references separate cron_daily_summary.py automation that is not included in the artifact. <br>
-Mitigation: Inspect that automation before running any scheduled or automated workflow that uses this skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to create a daily Markdown summary of work completed, task status, follow-up plans, and token consumption for a local OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asterisk622/daily-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown summary file with a brief text confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or updates memory/YYYY-MM-DD.md under the user's OpenClaw workspace when used as documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The generated daily summary may expose token usage totals or work-summary details that are sensitive in some environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated memory/YYYY-MM-DD.md file before sharing it outside the local workspace.
+
+Risk: The skill runs openclaw status --json locally and writes a dated Markdown file in the workspace memory directory.
+
+Mitigation: Install and run it only in workspaces where local OpenClaw status access and memory-file updates are expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/daily-summary)
+- [Publisher profile](https://clawhub.ai/user/asterisk622)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown daily summary plus a brief text response with token totals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates memory/YYYY-MM-DD.md in the user's local OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

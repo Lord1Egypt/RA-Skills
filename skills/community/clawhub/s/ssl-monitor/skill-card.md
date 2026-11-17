@@ -1,40 +1,57 @@
-## Description: <br>
-查询域名 SSL 证书过期时间，并根据剩余天数返回正常、注意或紧急状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询域名 SSL 证书过期时间。用法：说「查 xxx.cn 证书」或「SSL 证书 xxx.com」即可。
 
-## Publisher: <br>
-[sunny-lobster-api](https://clawhub.ai/user/sunny-lobster-api) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny-lobster-api](https://clawhub.ai/user/sunny-lobster-api)
 
-## Use Case: <br>
-Developers, operators, and site owners use this skill to check SSL certificate expiry for one domain or a batch of domains and identify certificates that need renewal soon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to user-provided domains on port 443, so batch runs can reveal which domains are being checked to the local network path. <br>
-Mitigation: Review domain lists before running batch checks and use the skill only for domains the user is permitted to inspect. <br>
-Risk: Failed OpenSSL connections or date parsing issues can produce failed or incomplete certificate results. <br>
-Mitigation: Treat failed checks as items for manual review and verify urgent renewal decisions against a second trusted source. <br>
+## Use Case:
 
+Developers and operators use this skill to check SSL certificate expiry for a single domain from a natural-language request, or to run batch checks from a local domains file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunny-lobster-api/ssl-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with shell command snippets; the optional batch script can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires openssl and network access to queried domains on port 443; batch checks may return a nonzero exit code for critical or failed domains.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: Batch checks may use a local domains file that includes unintended or unreviewed hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or control the domains file before running batch checks.
+
+Risk: JSON output may be unsafe to trust in automation because evidence flags an escaping issue.
+
+Mitigation: Treat JSON output as informational until JSON escaping is fixed and validated.
+
+Risk: SSL status depends on local openssl behavior, network access, and platform date parsing.
+
+Mitigation: Confirm openssl is available and manually review failed, urgent, or automation-triggering results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny-lobster-api/skills/ssl-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires openssl; batch mode reads a local domain list and supports warning and critical day thresholds.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Validate Agent provides an agent validation and quality-assurance checklist for reducing silent errors and producing reproducible evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate Agent provides agent validation and quality-assurance guidance to reduce silent system errors and produce reproducible evidence.
 
-## Publisher: <br>
-[Jack123255829](https://clawhub.ai/user/Jack123255829) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jack123255829](https://clawhub.ai/user/jack123255829)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to prompt validation before task completion, after fixes, before important answers, and when tracking cross-session commitments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may run often and add validation overhead to routine agent work.
+
+Mitigation: Review or narrow the trigger language when the skill should apply only to higher-risk tasks.
+
+Risk: Cross-session commitment tracking may create a simple promises.md file.
+
+Mitigation: Review generated tracking files and remove or limit them when persistent commitment records are not desired.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent users and developers use this skill as a validation checklist before important answers, after code or document fixes, at task completion, and when tracking cross-session commitments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic activation may create noisy validation work. <br>
-Mitigation: Use the checklist deliberately for important answers, code fixes, and handoffs when broad activation becomes distracting. <br>
-Risk: Cross-session promise tracking could capture secrets or sensitive business details if used carelessly. <br>
-Mitigation: Keep promise records minimal and do not store secrets or sensitive business details in promises.md. <br>
+**Output Format:** [Markdown/plain-text guidance with checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May add validation overhead and may create a simple promises.md tracking file for cross-session commitments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown checklist and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only content; no code execution, credential access, networking, or hidden behavior.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

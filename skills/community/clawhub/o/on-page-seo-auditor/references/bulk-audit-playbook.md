@@ -1,6 +1,6 @@
 # On-Page SEO — Site-Wide / Bulk Audit Playbook
 
-Referenced from [SKILL.md](https://github.com/aaron-he-zhu/seo-geo-claude-skills/blob/main/optimize/on-page-seo-auditor/SKILL.md). Use when the user wants on-page audits across >5 pages at once.
+Referenced from [SKILL.md](../SKILL.md). Use when the user wants on-page audits across >5 pages at once.
 
 ---
 
@@ -76,7 +76,7 @@ P2 (single-page refinements):
 - **Key Findings / Output**: per-cluster pattern findings + portfolio priority
 - **Evidence**: "Sampled N/M URLs; extrapolated to cluster level; confidence flagged per finding"
 - **Open Loops**: un-sampled clusters, URLs flagged for individual attention, data gaps (no keyword data, etc.)
-- **Recommended Next Skill**: `content-refresher` (for bulk content edits) OR `meta-tags-optimizer` (for title/description template work) OR `internal-linking-optimizer` (if linking pattern is the dominant issue)
+- **Recommended Next Skill**: `content-writer` (for bulk content edits) OR `serp-markup-builder` (for title/description template work) OR `site-structure-optimizer` (if linking pattern is the dominant issue)
 
 ## Template suggestions (common bulk outputs)
 

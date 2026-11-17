@@ -1,41 +1,53 @@
-## Description: <br>
-Lightweight multi-agent team orchestration with output structure simplified to two folders: agents/ and projects/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight multi-agent team orchestration. Output structure simplified to two folders: agents/ and projects/.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and teams use this skill to define small multi-agent teams, distribute tasks, and manage versioned deliverables without a complex workflow engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to spawn other agent sessions. <br>
-Mitigation: Keep spawned sessions scoped to the intended task and review their prompts and outputs. <br>
-Risk: Secrets could be exposed if they are placed in role files or task prompts. <br>
-Mitigation: Do not include secrets in SOUL.md files, role definitions, or task distribution prompts. <br>
-Risk: Generated project artifacts may contain incorrect or sensitive content. <br>
-Mitigation: Review generated artifacts before sharing or using them downstream. <br>
+## Use Case:
 
+Developers and teams use this skill to define lightweight multi-agent roles, distribute tasks, and preserve versioned deliverables without a complex workflow engine.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with folder layouts, role-definition examples, and task prompt templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a simple agents/ and projects/ structure with versioned artifact paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated role and project files may encode task assumptions or role behavior that is not appropriate for the collaboration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated agent role files and scoped task assignments before relying on the team output.
+
+Risk: The workflow can become insufficient for complex multi-stage or large-scale coordination.
+
+Mitigation: Use it for small, scoped collaborations and move complex workflows to a more explicit tracking or orchestration system.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/lightweight-team-orchestration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file structure examples and task handoff snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local role definitions and versioned project artifacts when followed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

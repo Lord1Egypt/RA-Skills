@@ -1,0 +1,33 @@
+'''
+2设置定时器
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.run_time - 设置定时器
+设置定时器函数，可以指定时间间隔，定时触发用户定义的回调函数。适用与在盘中，持续判断交易信号的模型。
+
+用法： ContextInfo.run_time(funcName,period,startTime) 定时触发指定的 funcName函数, funcName函数由用户定义, 入参为ContextInfo对象。
+
+参数：
+
+funcName：回调函数名
+period：重复调用的时间间隔,'5nSecond'表示每5秒运行1次回调函数,'5nDay'表示每5天运行一次回调函数,'500nMilliSecond'表示每500毫秒运行1次回调函数
+startTime：表示定时器第一次启动的时间,如果要定时器立刻启动,可以设置历史的时间
+回调函数参数： ContextInfo：策略模型全局对象
+
+示例：
+
+python
+
+import time
+def init(ContextInfo):
+    ContextInfo.run_time("f","5nSecond","2019-10-14 13:20:00")
+def f(ContextInfo):
+    print('hello world')
+
+#此例为自2019-10-14 13:20:00后每5s运行一次函数f
+注意
+
+模型回测时无效
+定时器没有结束方法，会随着策略的结束而结束。
+period有nMilliSecond、nSecond和Day三个周期单元，部分周期下定时器函数在第一次运行之前会先等待一个period
+stop - 停止处理函数

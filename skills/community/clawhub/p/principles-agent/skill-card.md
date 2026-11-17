@@ -1,41 +1,58 @@
-## Description: <br>
-A first-principles iterative agent framework that decomposes complex goals into atomic tasks, validates intermediate results, and schedules dependency-aware execution for final delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Principles Agent helps OpenClaw users decompose complex goals into first-principles facts, atomic tasks, dependency-aware execution batches, and final markdown reports.
 
-## Publisher: <br>
-[lingxinsuixing](https://clawhub.ai/user/lingxinsuixing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingxinsuixing](https://clawhub.ai/user/lingxinsuixing)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn complex goals into first-principles task plans with dependency ordering, validation checks, and an integrated report inside OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User goals and intermediate task outputs may be routed through the host-configured LLM callable. <br>
-Mitigation: Use only with an approved LLM environment, and avoid secrets, regulated data, or private customer data unless that environment is approved for them. <br>
-Risk: Parsing or validation failures can produce incorrect task validation or incomplete results. <br>
-Mitigation: Review generated plans and final reports before acting on them, especially for high-impact or customer-facing work. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn complex objectives into clarified goals, basic assumptions, ordered subtasks, validation checkpoints, and an integrated final answer. It is suited to planning multi-step analysis or implementation work inside OpenClaw, where the main agent performs LLM calls and external actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lingxinsuixing/principles-agent) <br>
-- [Referenced principles project](https://github.com/miltonian/principles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with structured task, validation, and integration results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a report only when the user provides an output path; LLM calls are supplied by the host environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: evidence.release.version and artifact/package.json) <br>
+Risk: The validation flow may be unreliable and should not be treated as a safety gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans, task outputs, and final reports before relying on them for decisions or deployment.
+
+Risk: The skill may make multiple LLM calls through the OpenClaw main agent.
+
+Mitigation: Run it only in sessions where the prompt content, cost, and data handling expectations are acceptable.
+
+Risk: The optional --output path writes a report file.
+
+Mitigation: Use --output only with paths where you intend to create or overwrite a report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingxinsuixing/skills/principles-agent)
+- [Original principles project](https://github.com/miltonian/principles)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report and structured result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the generated report to a user-specified path when the --output option is used.]
+
+## Skill Version(s):
+
+0.2.0 (source: evidence.json release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

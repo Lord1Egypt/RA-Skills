@@ -1,41 +1,54 @@
-## Description: <br>
-Designs academic poster layouts with section placement, visual hierarchy, size recommendations, and content flow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs academic poster layouts with structured assumptions, bounded scope, and clear output boundaries.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to plan academic poster layouts from poster dimensions and content sections. It helps structure a bounded poster layout workflow and return explicit assumptions, section placement, and design recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security guidance notes that the skill's broad description can exceed its poster-specific capability. <br>
-Mitigation: Treat the skill as an academic poster layout helper and confirm poster dimensions, sections, and scope before use. <br>
-Risk: The artifact includes local Python execution and may read or write workspace files if adapted for user inputs. <br>
-Mitigation: Review commands before execution, run in a sandboxed workspace, and keep output paths restricted to the intended project directory. <br>
+## Use Case:
 
+Researchers, educators, and academic teams use this skill to plan poster section placement, visual hierarchy, size recommendations, and content flow for academic posters.
 
-## Reference(s): <br>
-- [Poster Layout Planner References](references/guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/poster-layout-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON] <br>
-**Output Format:** [Markdown response with optional shell commands and JSON layout output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires poster dimensions and a list of content sections; packaged script uses fixed demonstration inputs unless adapted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill has broad activation wording that may apply beyond academic poster layout tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for academic poster layout planning and confirm poster size, sections, scope, and output expectations before execution.
+
+Risk: Future versions that add file output or dependencies could change the risk profile.
+
+Mitigation: Review and scan future versions before deployment, especially when file writes or new dependencies are introduced.
+
+## Reference(s):
+
+- [Poster Layout Planner references](references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/poster-layout-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON layout plan and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The packaged script emits a JSON layout plan with section placement and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,50 @@
-## Description: <br>
-Closing playbook for converting a successful ToB POC into a contract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Closing playbook for converting a successful ToB POC into a contract. Use when a POC is technically accepted, near final demo, has cleared P0 issues, or has stalled after success and the team needs a structured contract path, gap list, one-page recap, quote action, and launch-node plan.
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Sales, PM, and technical teams use this skill after a POC is closeable or near acceptance to convert POC evidence into a contract path. It produces a readiness assessment, gap list, one-page recap, customer message, quote action, launch node, and risk list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer, procurement, budget, or deal data entered into the skill may be business-sensitive. <br>
-Mitigation: Use appropriate internal handling for customer information and avoid entering data that should not be processed in the local agent session. <br>
-Risk: Generated customer messages or closing recommendations could be inaccurate or misaligned with commercial strategy. <br>
-Mitigation: Review and approve generated messages, quote actions, and contract-path recommendations before sending or acting on them. <br>
-Risk: If the procurement path, closing window, cooling threshold, decision maker, or unresolved P0 issues are missing, the output may correctly mark the deal as not ready rather than advancing to quote. <br>
-Mitigation: Treat missing readiness inputs as action items and confirm the buying path before using the plan for customer-facing commercial steps. <br>
+## Use Case:
 
+Sales, product, project, and technical teams use this skill after a successful ToB proof of concept to turn validated POC evidence into a structured contract-closing plan. It helps identify readiness, gaps, decision-maker and procurement path needs, quote actions, launch nodes, and momentum risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/william202404/poc-to-contract-closer) <br>
-- [Publisher profile](https://clawhub.ai/user/william202404) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown closing plan with checklist tables and customer-message draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May be produced interactively or from CLI arguments; generated content should be reviewed before customer use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan skill before deployment.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/william202404/tob-skills/tree/main/poc-to-contract-closer)
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/poc-to-contract-closer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown closing plan with checklists, tables, recap draft, customer message, commercial action, launch node, and risk sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute business actions or send customer messages; generated materials require review before customer use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

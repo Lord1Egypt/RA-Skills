@@ -1,41 +1,55 @@
-## Description: <br>
-Detect disposable and temporary email addresses — validate emails and check domains against known throwaway services <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect disposable and temporary email addresses - validate emails and check domains against known throwaway services.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and operations teams use this skill to validate sign-up, lead-generation, user-database, and anti-abuse workflows for disposable or malformed email usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email addresses or domains checked with the skill are sent to Pipeworx's remote Disify service. <br>
-Mitigation: Avoid sensitive, regulated, or bulk customer data unless your organization has reviewed Pipeworx's privacy, logging, and retention practices. <br>
+## Use Case:
 
+External developers and operators use this skill to validate signup or lead email addresses, check whether domains are associated with disposable email services, and support anti-abuse workflows.
 
-## Reference(s): <br>
-- [Pipeworx Disify homepage](https://pipeworx.io/packs/disify) <br>
-- [Pipeworx Disify MCP endpoint](https://gateway.pipeworx.io/disify/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-disify) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and MCP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented direct API example and uses a remote Pipeworx MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Setup uses an unpinned remote npm bridge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed mcp-remote version or another controlled deployment method before using the skill in a sensitive environment.
+
+Risk: Email-checking workflows send submitted email addresses or domains to a third-party Pipeworx service.
+
+Mitigation: Only submit addresses or domains you are allowed to share with Pipeworx's service, and assess privacy requirements before deployment.
+
+## Reference(s):
+
+- [Pipeworx disify homepage](https://pipeworx.io/packs/disify)
+- [Pipeworx disify MCP gateway](https://gateway.pipeworx.io/disify/mcp)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-disify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool-call examples and configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

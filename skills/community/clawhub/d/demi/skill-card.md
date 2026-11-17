@@ -1,40 +1,49 @@
-## Description: <br>
-Use before implementing, scaffolding, prototyping, or adding a feature when the work should start with the smallest useful code path, avoid speculative architecture, or prevent overbuilding before reduce would be needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use before implementing, scaffolding, prototyping, or adding a feature when the work should start with the smallest useful code path, avoid speculative architecture, or prevent overbuilding before reduce would be needed.
 
-## Publisher: <br>
-[escoffier-labs](https://clawhub.ai/user/escoffier-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[escoffier-labs](https://clawhub.ai/user/escoffier-labs)
 
-## Use Case: <br>
-Developers and coding agents use this skill before implementation or prototyping to choose the smallest useful code path, follow existing repository patterns, avoid speculative architecture, and verify the resulting slice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privileged maintenance workflows may affect production users, content, packages, email, or Convex data if applied to the wrong target. <br>
-Mitigation: Use the skill only in a maintainer or developer context, confirm targets, review dry-run output when available, and approve write operations deliberately. <br>
-Risk: Generated guidance can lead to incorrect or misleading implementation choices if followed without review. <br>
-Mitigation: Review the proposed scope and run the smallest meaningful check before deployment. <br>
+## Use Case:
 
+Developers use demi before implementing a feature to identify the smallest useful slice, follow existing repository patterns, and verify it without speculative architecture.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/escoffier-labs/demi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional plans, code references, commands, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing guidance for scope control before code changes] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can recommend implementation changes that are incorrect for a repository, and its referenced companion skills and lint script are not bundled here.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes against the target repository and inspect companion skills and lint resources separately before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/escoffier-labs/skills/demi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Code, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance, implementation code, and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Varies by task; may include a short implementation plan and verification steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

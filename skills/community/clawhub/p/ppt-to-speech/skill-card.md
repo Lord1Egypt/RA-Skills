@@ -1,43 +1,59 @@
-## Description: <br>
-Converts a user-provided PPTX presentation into a structured Markdown speech script by extracting slide text, speaker notes, and slide thumbnails for the agent to rewrite into a coherent talk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PPTX presentations into structured content, slide thumbnails, and a polished Markdown speech draft written by the agent.
 
-## Publisher: <br>
-[qigaiai](https://clawhub.ai/user/qigaiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qigaiai](https://clawhub.ai/user/qigaiai)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to turn a PPTX file into a polished Markdown speech draft with slide-thumbnail references. It is suited for presentation preparation, internal talks, training material, and converting slide content into a more natural spoken narrative. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically download large LibreOffice and Poppler dependencies during normal use. <br>
-Mitigation: Install LibreOffice and poppler-utils manually before running the skill when download provenance, network access, or reproducibility matters. <br>
-Risk: On Linux, missing Poppler dependencies may trigger package-manager installation that can require sudo. <br>
-Mitigation: Run the agent without passwordless sudo and preinstall required packages in a controlled environment. <br>
-Risk: The final Markdown speech draft may overwrite an intermediate Markdown file generated from the PPTX. <br>
-Mitigation: Keep backups of generated Markdown outputs and review the output path before allowing the agent to write final content. <br>
+## Use Case:
 
+External users and developers use this skill to turn a provided .pptx deck into a readable Markdown speech or presentation script with supporting slide thumbnails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qigaiai/ppt-to-speech) <br>
-- [Example speech output](examples/sample_speech.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown speech draft with relative image references and companion PNG thumbnail files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May overwrite the intermediate Markdown output; the extraction script also creates a thumbnail directory next to the input file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter lists 3.1.0) <br>
+Risk: The security evidence says the skill performs broad automatic dependency setup, including unverified executable downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a disposable or locked-down environment, preinstall LibreOffice and Poppler, and avoid allowing automatic downloads in production.
+
+Risk: The security evidence says Linux dependency setup may use privileged package-manager installation and create global symlinks.
+
+Mitigation: Do not run the skill with sudo or administrator rights; review and remove privileged installation behavior before deployment.
+
+Risk: The artifact workflow can overwrite generated Markdown output.
+
+Mitigation: Run the skill on copies of input files and preserve existing outputs before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qigaiai/skills/ppt-to-speech)
+- [Sample speech output](artifact/examples/sample_speech.md)
+- [Poppler Windows binary release used by the artifact](https://github.com/oschwartz10612/poppler-windows/releases/download/v25.12.0-0/Release-25.12.0-0.zip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown speech draft with generated PNG slide thumbnails and inline shell commands for extraction.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports .pptx input only; outputs are written near the input presentation.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter reports 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

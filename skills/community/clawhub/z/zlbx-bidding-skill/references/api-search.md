@@ -1,10 +1,21 @@
+<!-- request-identity:start -->
+**请求身份**：使用已配置的 API Key，并保留本包的 X-Client，携带下列完整身份头；不得沿用其它包的版本或来源。
+```text
+X-Client: zlbx-bidding/2.5.0
+X-Skill-Package: zlbx-bidding-skill/1.4.10
+X-Skill-Source: clawhub/liu-jiapeng
+```
+<!-- request-identity:end -->
+
 # 标讯搜索类工具 API 详情
 
 ## 目录
 - [search_bids - 常规搜索](#search_bids)
 - [query_bids_advanced - 高级搜索](#query_bids_advanced)
 - [get_bid_detail - 标讯详情](#get_bid_detail)
+- [get_bid_timeline - 项目全阶段时间线](#get_bid_timeline)
 - [search_expiring_projects - 临期项目](#search_expiring_projects)
+- [search_proposed_projects - 拟建项目](#search_proposed_projects)
 
 ---
 
@@ -19,14 +30,16 @@
 | `keywords` | list[str] | 是 | 搜索关键词，如 `["大模型", "人工智能"]` |
 | `match_modes` | list[str] | 否 | 匹配模式，默认 `["all"]` |
 | `bid_type` | str | 否 | 公告类型：`招标`/`中标`/`全部`，默认 `全部` |
-| `bid_process` | list[int] | 否 | 公告阶段，默认 `[1,2,4,7,8]` |
+| `bid_process` | list[int] | 否 | 公告阶段，不传则不限制阶段，默认返回全部阶段 |
 | `begin_date` | str | 否 | 开始日期 `YYYY-MM-DD` |
 | `end_date` | str | 否 | 结束日期 `YYYY-MM-DD` |
+| `create_begin_time` | str | 否 | 数据上线时间起，`YYYY-MM-DD HH:MM:SS`（只传日期自动补 `00:00:00`） |
+| `create_end_time` | str | 否 | 数据上线时间止，`YYYY-MM-DD HH:MM:SS`（只传日期自动补 `23:59:59`） |
 | `provinces` | list[str] | 否 | 省份列表，如 `["北京", "广东"]` |
 | `cities` | list[str] | 否 | 城市列表 |
 | `counties` | list[str] | 否 | 区县列表 |
-| `min_amount` | float | 否 | 最低金额（元） |
-| `max_amount` | float | 否 | 最高金额（元） |
+| `min_amount` | float | 否 | 最低金额，**单位万元**（服务端会 ×10000 转成元再过滤） |
+| `max_amount` | float | 否 | 最高金额，**单位万元** |
 | `page` | int | 否 | 页码，默认 1 |
 | `page_size` | int | 否 | 每页数量，默认 20，最大 50 |
 
@@ -85,7 +98,8 @@
 | `sort_field` | str | 排序字段，默认 `pub_time` |
 | `sort_order` | str | 排序方向 `asc`/`desc`，默认 `desc` |
 
-**注意**：`query_bids_advanced` 金额参数名为 `min_money`/`max_money`（不是 min_amount/max_amount）
+**注意**：`query_bids_advanced` 的金额参数与 `search_bids` 完全一致——`min_amount`/`max_amount`，
+单位**万元**。旧参数名 `min_money`/`max_money`（单位元）已移除，不再用于金额筛选；REST可能忽略未知字段，MCP可能报参数错误，不要继续使用旧参数。
 
 ### keyword_groups 结构
 
@@ -174,6 +188,8 @@
 | `agency_name` | 代理机构 |
 | `source` | 信息来源 |
 | `service_end_date` | 服务截止日期 |
+| `signup_time` | 获取标书截止时间（仅招标类公告有值） |
+| `tender_time` | 投标截止时间（仅招标类公告有值） |
 | `fulltext` | 公告原文 |
 
 ### 示例
@@ -188,6 +204,38 @@
 
 ---
 
+## get_bid_timeline - 项目全阶段时间线 {#get_bid_timeline}
+
+给一条标讯，返回**同一项目所有阶段的公告**，按时间正序排列。
+用于回答「这个项目后来怎么样了」「改过几次」「从发标到定标花了多久」
+「中标候选人和最终中标是不是同一家」。
+
+**请求**：`POST /api_v2/get_bid_timeline`
+
+```json
+{"bid_id": 484460619, "bid_type": 2}
+```
+
+也可以直接传知了标讯链接，工具会自行解析出 `bid_id` 与 `bid_type`：
+
+```json
+{"bid_url": "https://www.zhiliaobiaoxun.com/content/xxx/b1"}
+```
+
+| 参数 | 说明 |
+|---|---|
+| `bid_id` | 标讯 ID，与 `bid_url` 二选一 |
+| `bid_type` | 1=招标类公告，2=中标类公告；传 `bid_id` 时必填 |
+| `bid_url` | 知了标讯详情页链接，可替代上面两个参数 |
+
+**返回**：字段结构同 `search_bids`，按 `pub_time` 升序。
+典型阶段顺序：采购意向 → 招标公告 → 变更公告 → 中标候选人 → 中标结果 → 合同。
+
+> 项目没有其他阶段公告时返回 `total=0`（不计费）。
+> 这不代表项目不存在，只说明该项目目前只有这一条公告。
+
+---
+
 ## search_expiring_projects - 临期项目 {#search_expiring_projects}
 
 查询即将到期的周期性项目，用于商机预测和续期机会挖掘。
@@ -198,11 +246,11 @@
 |------|------|------|
 | `keywords` | list[str] | 必填，产品/服务关键词 |
 | `begin_date` | str | 到期开始日期，默认今天 |
-| `end_date` | str | 到期结束日期，默认今天起90天后 |
+| `end_date` | str | 到期结束日期，**默认今天起 180 天后** |
 | `provinces` | list[str] | 省份列表 |
 | `cities` | list[str] | 城市列表 |
 | `counties` | list[str] | 区县列表 |
-| `min_amount` | float | 最低金额（元） |
+| `min_amount` | float | 最低金额，**单位万元** |
 | `company_type` | list[str] | 招标公司类型，如 `["学校", "医院"]` |
 | `page` | int | 页码，默认 1 |
 | `page_size` | int | 每页数量，默认 20 |
@@ -234,3 +282,56 @@
   "end_date": "2026-07-28"
 }
 ```
+
+---
+
+## search_proposed_projects - 拟建项目 {#search_proposed_projects}
+
+查询还在**立项审批阶段**的项目，比招标公告早 6-18 个月。
+用于回答「有哪些项目正在立项」「哪些还没发标但快了」这类需要提前布局的问题。
+
+**请求**：`POST /api_v2/search_proposed_projects`
+
+```json
+{
+  "keywords": ["智慧校园"],
+  "provinces": ["广东"],
+  "cities": ["深圳"],
+  "min_amount": 100,
+  "begin_date": "2026-04-01",
+  "approval_status_code": 3,
+  "match_type": 0,
+  "page_size": 20
+}
+```
+
+| 参数 | 说明 |
+|---|---|
+| `keywords` | 搜索关键词，字符串或列表 |
+| `approval_status_code` | 1=未审批 2=审批中 3=办结（通过） 4=审批未通过 5=撤销 6=其他；0/不传=全部。**办结的最接近落地** |
+| `match_type` | 0=标题智能匹配（默认，匹配项目名+立项单位），3=全文匹配（连带返回正文） |
+| `min_amount` / `max_amount` | **单位万元**（拟建索引金额字段本身即万元，不做转换） |
+| `provinces` / `cities` | 地区筛选 |
+| `begin_date` / `end_date` | 发布日期范围，YYYY-MM-DD |
+
+**返回关键字段**：`project_name`（项目名）、`project_code`（发改委项目代码）、
+`caller_name`（立项单位）、`money` / `money_format`、`approval_status`、`pub_time`、
+`url`（带 sk 免登录参数，可直接点击）。
+
+> **金额单位**：本工具、`search_expiring_projects`、`search_bids`、`get_company_partners` 都用**万元**；
+> `query_bids_advanced`、`aggregate_bids_advanced`、Top 类工具用**元**。完整对照见 SKILL.md 的金额单位速查表。
+>
+> **`money_format` 暂不可靠**：拟建索引的 `money` 本身是万元，但服务端格式化时按元又除了一次 10000，
+> 会把「500 万」显示成「500元」。**请用 `money` 原值自行按万元展示，不要直接引用 `money_format`。**
+
+<!-- package-identity:start -->
+**安装包身份与升级检查**：所有发往知了标讯 API 的请求（包括账户查询）必须额外携带以下两个请求头：
+```text
+X-Skill-Package: zlbx-bidding-skill/1.4.10
+X-Skill-Source: clawhub/liu-jiapeng
+```
+这些值是当前安装包的固定身份，复用已有API Key时也要携带；不要用X-Client产品版本替代包版本，不要将Key的注册渠道当作安装来源。
+请求鉴权：使用已配置的 API Key，并保留本包的 X-Client。每个会话首次使用本Skill时，在已有凭证可用后先调用免费账户接口 `GET https://mcp-server.zhiliaobiaoxun.com/api_v2/account/balance` 检查升级提醒；该查询不扣积分，不触发购买。
+**版本提醒转达**：响应出现 `skill_update_notice` 时，将其中 `message` 原样转达用户；兼容提示只说明检查版本，不能宣称已确认当前包过期。
+**展示后确认**：只有将提醒发送到用户可见对话之后，才使用同一凭证和请求头，按 `display_ack` 提交 POST 回执（MCP客户端可调用 `confirm_skill_update_display`）（`notice_id` 和 `displayed: true`）。只读取工具响应、在思考中提过、尚未转达时不得确认。不能在展示后调用接口则不确认，服务端继续保留待提醒状态。回执免费，不扣积分；失败不影响查询结果，不向用户展示技术回执。同一会话同一 `notice_id` 只展示一次。
+<!-- package-identity:end -->

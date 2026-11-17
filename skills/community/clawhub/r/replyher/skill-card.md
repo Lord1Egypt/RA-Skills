@@ -1,43 +1,60 @@
-## Description: <br>
-ReplyHer is an AI reply and message coach for people who need the right chat response fast, helping decode texting context, read screenshots, generate copy-ready replies, and choose tone for dating, workplace, family, and social conversations across WeChat, WhatsApp, iMessage, and Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ReplyHer is an AI reply and message coach that decodes messages, reads screenshots, generates copy-ready replies, and helps choose tone for dating, workplace, family, and social conversations.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users and agents use ReplyHer to analyze interpersonal messages, conversation screenshots, and social context, then draft concise replies or coaching guidance for dating, workplace, family, and awkward social conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share private conversations, screenshots, or sensitive personal context while seeking reply advice. <br>
-Mitigation: Redact names, phone numbers, addresses, workplace secrets, financial details, intimate content, and unrelated third-party messages before use. <br>
-Risk: The referenced pro service may involve memory, screenshot, or personality-profiling features outside this instruction-only skill. <br>
-Mitigation: Review replyher.com separately before using those features or sending additional personal data. <br>
+## Use Case:
 
+External users use this skill to interpret chat messages and produce emotionally aware reply options for dating, workplace, family, and social situations. It also supports conversation analysis and tactical communication coaching in the user's language.
 
-## Reference(s): <br>
-- [ReplyHer ClawHub listing](https://clawhub.ai/imwyvern/replyher) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer product site](https://replyher.com) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational response with analysis, strategy guidance, and copy-ready reply options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies are intended to be concise, language-matched, and directly copyable when the user asks for message options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: Users may share private or sensitive message content while seeking reply advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact names, phone numbers, employer details, addresses, screenshots with identifiers, and confidential workplace content before use.
+
+Risk: The skill can append a promotional replyher.com link during sensitive or complex conversations.
+
+Mitigation: Review generated replies before sending them and remove promotional content when it is inappropriate for the conversation.
+
+Risk: The artifact includes a manual publishing script that can commit, push, and publish the skill.
+
+Mitigation: Do not run artifact/publish.sh unless you are the maintainer and have reviewed the working tree, Git remote, and npx package version.
+
+## Reference(s):
+
+- [ReplyHer ClawHub Skill Page](https://clawhub.ai/imwyvern/skills/replyher)
+- [Publisher Profile](https://clawhub.ai/user/imwyvern)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise analysis, copy-ready reply options, and coaching guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the same language as the user and may include a promotional replyher.com link in complex or multi-turn conversations.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-agent-pack-n-go helps an OpenClaw agent migrate to a new Linux device by packaging configs, memory, skills, credentials, SSH keys, and selected system settings, then transferring and deploying them over SSH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clone an OpenClaw Agent to a new Linux device by packaging configs, memory, skills, credentials, and related runtime setup, then transferring and deploying them over SSH.
 
-## Publisher: <br>
-[AICodeLion](https://clawhub.ai/user/AICodeLion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aicodelion](https://clawhub.ai/user/aicodelion)
 
-## Use Case: <br>
-External developers and OpenClaw operators use this skill to move, replicate, or recover a configured OpenClaw and Claude Code agent on another trusted Linux device. It is intended for device migration, team setup, lab-to-cloud moves, and point-in-time restoration workflows where the user wants the agent to guide SSH setup, packaging, transfer, deployment, and verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill clones credentials, tokens, SSH keys, and other sensitive agent state into a migration archive. <br>
-Mitigation: Install only for an intentionally trusted target device; review archive contents before transfer, exclude or rotate unnecessary keys and tokens, and delete migration archives from both machines after verification. <br>
-Risk: The workflow can make broad remote system and persistence changes, including cron jobs, /etc/hosts entries, proxy settings, OpenClaw services, and passwordless sudo setup. <br>
-Mitigation: Inspect copied skills, memory, exec approvals, cron jobs, /etc/hosts, and proxy settings before use; remove passwordless sudo immediately after migration verification. <br>
-Risk: Permission-skipping or automated remote execution can increase impact if the target host or transferred configuration is not fully trusted. <br>
-Mitigation: Avoid permission-skipping execution unless the commands and generated files have been reviewed, and keep the old device available for rollback until the new deployment is verified. <br>
+## Use Case:
 
+Developers and engineers use this skill to migrate or clone a configured OpenClaw agent from one trusted Linux device to another, including agent configuration, memory, skills, credentials, and runtime setup. It supports device moves, backup snapshots, team setup replication, and local-to-cloud deployment workflows.
 
-## Reference(s): <br>
-- [OpenClaw Device Migration Operations Manual](references/migration-guide.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw Migration Guide](https://docs.openclaw.ai/install/migrating) <br>
-- [ClawHub skill page](https://clawhub.ai/AICodeLion/agent-pack-n-go) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated migration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces migration archives, setup/deploy scripts, progress files, and user-facing verification guidance during a device migration workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: server release metadata) <br>
+Risk: The migration can copy sensitive credentials, tokens, OAuth data, SSH keys, memory, and agent configuration to another device.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only when both devices are fully trusted; exclude or regenerate SSH private keys where possible, encrypt the migration archive, and delete transferred archives and temporary files immediately after verification.
+
+Risk: The workflow may request broad system access, including sudo-capable remote setup and temporary passwordless sudo.
+
+Mitigation: Avoid NOPASSWD:ALL where possible, prefer limited or manually approved sudo operations, and remove any temporary sudoers entry after the clone is verified.
+
+Risk: Restored cron entries, host mappings, proxy settings, and system service configuration may introduce unwanted behavior on the destination device.
+
+Mitigation: Review cron entries, system configuration changes, proxy settings, service status, and skipped-permission automation before and after deployment.
+
+## Reference(s):
+
+- [OpenClaw Device Migration Operations Manual](references/migration-guide.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [agent-life](https://agent-life.ai/)
+- [OpenClaw Migration Guide](https://docs.openclaw.ai/install/migrating)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated migration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a local migration archive, setup and deployment shell scripts, progress logs, checksums, and fallback migration instructions.]
+
+## Skill Version(s):
+
+2.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

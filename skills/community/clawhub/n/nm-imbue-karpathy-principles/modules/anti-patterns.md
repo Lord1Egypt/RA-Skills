@@ -7,7 +7,7 @@ test you can apply to your own diff. Naming the rail
 helps recall.
 
 Adapted from observations distilled by Forrest Chang
-from Karpathy's notes; see
+from Karpathy's notes. See
 `references/source-attribution.md` for the citation
 chain. Examples are rewritten in our own prose to
 illustrate the failure shape, not lifted verbatim.
@@ -23,10 +23,10 @@ The agent picks one silently and ships.
 **Bad shape**
 
 ```python
-def export_users(format='json'):
+def export_users(format="json"):
     users = User.query.all()
-    if format == 'json':
-        with open('users.json', 'w') as f:
+    if format == "json":
+        with open("users.json", "w") as f:
             json.dump([u.to_dict() for u in users], f)
 ```
 
@@ -98,9 +98,14 @@ class DiscountStrategy(ABC):
     @abstractmethod
     def calculate(self, amount: float) -> float: ...
 
+
 class PercentageDiscount(DiscountStrategy):
-    def __init__(self, p): self.p = p
-    def calculate(self, a): return a * (self.p / 100)
+    def __init__(self, p):
+        self.p = p
+
+    def calculate(self, a):
+        return a * (self.p / 100)
+
 
 # Plus FixedDiscount, DiscountConfig, DiscountCalculator
 # for what should be one function
@@ -208,7 +213,9 @@ and a flattened control flow.
 
 **Test**: the diff should not change quote style,
 type hint presence, docstring presence, or whitespace
-patterns unless the request named them.
+patterns unless the request named them. It also adds
+no second helper, client or idiom for a concern the
+module already handles.
 
 ## AP-7: Vague Success Criteria
 
@@ -216,8 +223,8 @@ patterns unless the request named them.
 
 **Trigger**: "Fix the authentication system." The
 agent responds "I will review the code, identify
-issues, make improvements, and test." That is a plan
-shape, not a verification plan.
+issues, make improvements, and test." That has the
+shape of a plan with no verification in it.
 
 **Bad shape**: a four-step list of verbs (review,
 identify, improve, test) with no checkable signal per

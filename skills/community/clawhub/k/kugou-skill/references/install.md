@@ -13,6 +13,7 @@
 | `kugou-cli install --hermes` | 安装到 Hermes skills 目录 |
 | `kugou-cli install --openclaw` | 安装到 Openclaw skills 目录 |
 | `kugou-cli install --codex` | 安装到 Codex skills 目录 |
+| `kugou-cli install --workbuddy` | 安装到 Workbuddy skills 目录 |
 
 ---
 
@@ -40,7 +41,7 @@ kugou-cli install --hermes --claude  # 安装到 Hermes 和 Claude
 
 - 无参数时输出"平台选择提示"，列出可用平台选项，不会进行任何安装操作
 - 只会在目标平台的 skills 父目录存在时才安装（不自动创建父目录）
-- npm 安装时会自动调用 install.js 安装 SKILL.md
+- npm 安装时会自动安装 SKILL.md
 - `kugou-cli install` 命令用于手动重新安装或更新 SKILL.md
 
 ---
@@ -49,6 +50,6 @@ kugou-cli install --hermes --claude  # 安装到 Hermes 和 Claude
 
 | 命令 | 说明 |
 |------|------|
-| `kugou-cli --version` / `kugou-cli version` | 输出版本号 |
+| `kugou-cli --version` / `kugou-cli version` | 输出版本号（`--version` 是 root flag，`version` 是子命令，两者输出相同） |
 | `kugou-cli --help` | 显示帮助信息 |
 | `kugou-cli <子命令> --help` | 显示子命令帮助（如 `kugou-cli music search --help`）|

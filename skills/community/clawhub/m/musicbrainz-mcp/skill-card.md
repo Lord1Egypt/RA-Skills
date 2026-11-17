@@ -1,40 +1,54 @@
-## Description: <br>
-Search and browse the MusicBrainz music encyclopedia, fetch Cover Art Archive images, resolve musicbrainz.org URLs, and, with OAuth configured, submit user-approved tags, ratings, and collection edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and browse the MusicBrainz music encyclopedia (artists, releases, recordings, labels, works), fetch Cover Art Archive images, resolve musicbrainz.org URLs, and — with OAuth configured — submit your own tags, ratings, and collection edits. Use when the user asks about music metadata, discographies, album/artist/recording details, MBIDs, cover art, or wants to tag/rate music on MusicBrainz.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill to look up music metadata, discographies, MusicBrainz identifiers, release details, and cover art. Users with configured MusicBrainz OAuth credentials can also prepare and approve account-specific tag, rating, and collection edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account edit tools can modify the user's MusicBrainz tags, ratings, or collections when OAuth credentials are configured. <br>
-Mitigation: Use the dry-run preview first and only repeat the write action with confirm:true after the user reviews and approves the change. <br>
-Risk: OAuth credentials are required for write actions and should be treated as sensitive. <br>
-Mitigation: Configure credentials only in trusted environments and avoid using write tools unless the account action is intentional. <br>
+## Use Case:
 
+External users and developers can use the skill to find and inspect music metadata, discographies, MusicBrainz identifiers, and cover art. With OAuth configured, it can also submit user-approved tags, ratings, and collection edits to the user's MusicBrainz account.
 
-## Reference(s): <br>
-- [MusicBrainz](https://musicbrainz.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Markdown and structured tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only lookups do not require credentials; account edits require MusicBrainz OAuth credentials and explicit confirm:true approval after a dry-run preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: OAuth-enabled actions can change the user's MusicBrainz tags, ratings, or collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure OAuth only when account edits are needed, review each confirmation preview, and submit only after user approval.
+
+Risk: The security review did not cover external server code or setup.
+
+Mitigation: Review the server implementation and deployment configuration separately before enabling OAuth writes.
+
+## Reference(s):
+
+- [MusicBrainz](https://musicbrainz.org)
+- [Clawhub skill release](https://clawhub.ai/chrischall/skills/musicbrainz-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Structured MusicBrainz lookup results, cover art URLs, and account-change previews or receipts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only lookups need no credentials; account edits require OAuth and user confirmation.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

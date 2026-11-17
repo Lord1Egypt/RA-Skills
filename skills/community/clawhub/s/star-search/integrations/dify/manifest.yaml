@@ -1,0 +1,49 @@
+name: star-search
+author: muchenhengxin
+version: 20.41.0
+description: 16 引擎中文 AI 搜索 + LLM 答案层
+icon: icon.svg
+label:
+  en_US: Star Search
+  zh_CN: 星搜索
+description_i18n:
+  en_US: Free Chinese + English AI search API with 16 engines
+  zh_CN: 16 引擎中文 AI 搜索 + LLM 答案层，免费
+tags:
+  - search
+  - web
+  - chinese
+  - rag
+provider: local
+plugins:
+  - name: star-search
+    description: 中英文 AI 搜索工具
+    credentials: []
+    tools:
+      - name: search
+        description: |
+          使用 16 个搜索引擎（搜狗 / Bing CN / 百度 / 知乎 / GitHub 等）+ LLM 答案层。
+          输入: 查询关键词
+          输出: 搜索结果 + AI 整理的答案 + 来源链接
+        parameters:
+          - name: query
+            type: string
+            required: true
+            label:
+              en_US: Search query
+              zh_CN: 搜索关键词
+          - name: mode
+            type: select
+            required: false
+            default: deep
+            options:
+              - deep
+              - quick
+              - news
+              - policy
+              - stock
+              - dev
+              - global
+            label:
+              en_US: Search mode
+              zh_CN: 搜索模式

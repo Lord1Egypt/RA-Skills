@@ -1,46 +1,61 @@
-## Description: <br>
-Advanced security validation for Clawdbot - pattern detection, command sanitization, and threat monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced security validation for Clawdbot - pattern detection, command sanitization, and threat monitoring.
 
-## Publisher: <br>
-[gtrusler](https://clawhub.ai/user/gtrusler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gtrusler](https://clawhub.ai/user/gtrusler)
 
-## Use Case: <br>
-Developers and agent operators use this skill to validate commands, URLs, file paths, and external content before execution or processing in Clawdbot workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional automatic hook has review-worthy behavior: it shells out with user-controlled arguments and fails open. <br>
-Mitigation: Prefer manual validation first, and enable the hook only after reviewing its shell invocation and fail-open behavior. <br>
-Risk: Local logs may retain sensitive commands, URLs, paths, and tool arguments. <br>
-Mitigation: Treat security logs as sensitive, restrict access to them, and avoid passing secrets through logged inputs. <br>
-Risk: An ALLOWED result can be over-trusted for destructive or privileged operations. <br>
-Mitigation: Continue to require normal user approval and review before running destructive or privileged commands. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to validate commands, URLs, paths, and external content before execution and to monitor local security events for Clawdbot workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/gtrusler/clawdbot-security-suite) <br>
-- [README](README.md) <br>
-- [Security Skill Reference](skills/security/SKILL.md) <br>
-- [Installation Guide](skills/security/INSTALL.md) <br>
-- [Agent Integration Guide](skills/security/CLAWDBOT-INSTRUCTIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and command-line validation output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and jq; optional hooks can produce local security event logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The automatic hook may observe broad tool activity and store sensitive arguments in local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook before enabling it, disable or minimize local logging where sensitive arguments may appear, and define retention and redaction expectations before deployment.
+
+Risk: The security evidence warns that fail-open behavior and shell invocation patterns prevent this package from acting as a dependable security boundary.
+
+Mitigation: Treat validation output as advisory until fail-open paths, shell invocation, and command execution examples are reviewed and fixed.
+
+Risk: Installation guidance relies on unpinned package or repository retrieval.
+
+Mitigation: Install only a reviewed release artifact and verify the release hash or source fingerprint supplied by the server evidence before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtrusler/skills/clawdbot-security-suite)
+- [Project overview](README.md)
+- [Security skill reference](skills/security/SKILL.md)
+- [Installation guide](skills/security/INSTALL.md)
+- [Agent integration guide](skills/security/CLAWDBOT-INSTRUCTIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with shell commands, status strings, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local validation results and security event summaries; requires jq according to server-resolved metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

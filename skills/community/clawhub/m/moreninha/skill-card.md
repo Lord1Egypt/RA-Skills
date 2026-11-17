@@ -1,42 +1,55 @@
-## Description: <br>
-Especialista em A Moreninha (Joaquim Manuel de Macedo). Use quando o usuário pedir resumo, análise literária, personagens, capítulos, citações, contexto histórico, temas românticos, adaptação, perguntas de prova, ou discussão detalhada sobre a obra completa em domínio público. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Especialista em A Moreninha (Joaquim Manuel de Macedo) para resumos, analise literaria, personagens, capitulos, citacoes, contexto historico, temas romanticos, adaptacao, perguntas de prova e discussao detalhada da obra completa em dominio publico.
 
-## Publisher: <br>
-[daviemmanuel](https://clawhub.ai/user/daviemmanuel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviemmanuel](https://clawhub.ai/user/daviemmanuel)
 
-## Use Case: <br>
-Students, educators, and readers use this skill to get Portuguese-language summaries, literary analysis, character notes, study questions, and short contextual citations for Joaquim Manuel de Macedo's A Moreninha. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The archived HTML reference may execute embedded scripts or load external resources if opened as an active web page. <br>
-Mitigation: Use the bundled plain-text reference for normal work; open the HTML only with scripts and external network requests blocked or after sanitization. <br>
-Risk: Literary summaries, character details, or citations may be misleading if generated from memory instead of the bundled text. <br>
-Mitigation: Check factual claims and quoted passages against the local full-text reference, and state uncertainty when a detail cannot be confirmed. <br>
+## Use Case:
 
+Students, educators, and general readers use this skill for Portuguese-language study support on A Moreninha, including plot summaries, character profiles, literary analysis, short contextualized quotations, historical context, and exam-style questions.
 
-## Reference(s): <br>
-- [A Moreninha full text](references/a-moreninha-fulltext.txt) <br>
-- [A Moreninha archived HTML source](references/a-moreninha-source.html) <br>
-- [Biblioteca Virtual Miguel de Cervantes: A moreninha](https://www.cervantesvirtual.com/obra-visor/a-moreninha--0/html/ffc9dd7a-82b1-11df-acc7-002185ce6064_3.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose in pt-BR with bullets and short contextual citations when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the bundled public-domain reference text as the normal source of truth for factual literary answers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled HTML could be mistaken for executable web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the HTML file as captured source material only and do not execute it in a browser during normal skill use.
+
+Risk: Answers may overstate certainty when relying on a bundled text edition for quotations or interpretation.
+
+Mitigation: Verify factual details and requested quotations against the bundled full text, keep quotations short, and state uncertainty when a detail cannot be confirmed locally.
+
+## Reference(s):
+
+- [Texto integral local de A Moreninha](references/a-moreninha-fulltext.txt)
+- [Fonte HTML capturada de A Moreninha](references/a-moreninha-source.html)
+- [A moreninha - Biblioteca Virtual Miguel de Cervantes](https://www.cervantesvirtual.com/obra-visor/a-moreninha--0/html/ffc9dd7a-82b1-11df-acc7-002185ce6064_3.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text in pt-BR]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should distinguish plot facts, critical interpretation, and assistant opinion; quotations should be short and contextualized.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

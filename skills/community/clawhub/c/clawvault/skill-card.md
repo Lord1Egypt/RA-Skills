@@ -1,45 +1,60 @@
-## Description: <br>
-ClawVault gives OpenClaw agents local structured memory with graph-aware retrieval, checkpoint and recovery workflows, semantic search, observational memory, and optional hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent memory system with memory graph, context profiles, checkpoint and recovery workflows, structured storage, semantic search, and observational memory for OpenClaw agents.
 
-## Publisher: <br>
-[G9Pedro](https://clawhub.ai/user/G9Pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[g9pedro](https://clawhub.ai/user/g9pedro)
 
-## Use Case: <br>
-Developers and agent operators use ClawVault to persist, retrieve, and inject local agent memory across OpenClaw sessions, checkpoint work, recover context, and repair broken session transcripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and enabled hooks can automatically reuse past session and vault context in future agent prompts. <br>
-Mitigation: Review the hook before enabling it, choose the vault path deliberately, and avoid storing secrets or unrelated private history in the vault. <br>
-Risk: Transcript-derived content can be sent to Gemini when observe compression is used with GEMINI_API_KEY configured. <br>
-Mitigation: Leave GEMINI_API_KEY unset unless sending transcript-derived content to Gemini is acceptable for the work. <br>
-Risk: Session repair workflows can modify OpenClaw session transcripts. <br>
-Mitigation: Use dry-run review before repair when possible and rely on the documented automatic backups before accepting transcript changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawVault on ClawHub](https://clawhub.ai/G9Pedro/clawvault) <br>
-- [ClawVault homepage](https://clawvault.dev) <br>
-- [ClawVault npm package](https://www.npmjs.com/package/clawvault) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [qmd dependency](https://github.com/tobi/qmd) <br>
+## Use Case:
 
+Developers and agent operators use ClawVault to preserve and retrieve working context across OpenClaw sessions, store structured memories, checkpoint work, recover after context loss, and inject relevant vault context at session start.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI command examples, environment variable names, hook behavior descriptions, and local context bullets when enabled.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local vault files, register opt-in OpenClaw hooks, and reuse vault context in future agent prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.5.13 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional hook can automatically read prior OpenClaw session data and vault memories, then inject recovered context into agent messages.
+
+Mitigation: Review the hook behavior before enabling it, enable it only for vaults and sessions where this access is acceptable, and avoid storing sensitive secrets in transcripts or vault memories.
+
+Risk: Observation compression can use an external LLM when configured, which may expose transcript-derived content outside the local machine.
+
+Mitigation: Disable or constrain observe compression unless remote processing is acceptable, and only configure the external LLM API key for approved workloads.
+
+Risk: The install flow depends on CLI packages that execute locally and interact with memory and session files.
+
+Mitigation: Review and pin the CLI dependencies before installation, then verify the hook and CLI setup before use.
+
+## Reference(s):
+
+- [ClawVault ClawHub listing](https://clawhub.ai/g9pedro/skills/clawvault)
+- [ClawVault homepage](https://clawvault.dev)
+- [ClawVault npm package](https://www.npmjs.com/package/clawvault)
+- [OpenClaw](https://openclaw.ai)
+- [qmd dependency](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and hook-provided text injections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional OpenClaw hook can inject concise recovered session context and relevant memory bullets into agent messages.]
+
+## Skill Version(s):
+
+2.5.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

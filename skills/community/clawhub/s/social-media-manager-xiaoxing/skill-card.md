@@ -1,43 +1,60 @@
-## Description: <br>
-AI-powered social media management assistant for content creation, scheduling, analytics, platform-specific optimization, and hashtag research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered assistant for creating, scheduling, and analyzing social media content with platform-specific optimization and hashtag research.
 
-## Publisher: <br>
-[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev)
 
-## Use Case: <br>
-External users, marketers, creators, and brand teams use this skill to draft platform-specific social posts, plan calendars, generate hashtag ideas, and review engagement patterns before publishing content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social posts, hashtag ideas, schedules, or engagement recommendations may be inaccurate, outdated, off-brand, or unsuitable for a specific platform policy. <br>
-Mitigation: Review and edit generated content before publishing; verify claims, campaign details, platform rules, brand voice, and any rights-sensitive media or copy. <br>
-Risk: Helper scripts with output-file options may overwrite local files if a reused path is supplied. <br>
-Mitigation: Choose intentional, unique output filenames and inspect the destination path before running commands that write files. <br>
+## Use Case:
 
+External users and content teams use this skill to draft platform-specific social posts, research hashtag strategies, plan posting calendars, and review engagement-oriented optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hughtan93-dev/social-media-manager-xiaoxing) <br>
-- [Platform Guide](references/platform_guide.md) <br>
-- [Platform Guidelines](references/platform_guidelines.md) <br>
-- [Social Media Best Practices](references/best_practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, optional shell commands, and helper-script JSON or text output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts can print generated posts, hashtags, and calendars or write JSON to a user-specified output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata states 2.0.0) <br>
+Risk: Users may provide analytics, competitor, audience, or campaign data that they are not authorized to process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only social media metrics, competitor information, and audience data that the user is authorized to process.
+
+Risk: Generated files can overwrite existing files when users supply output paths to helper scripts.
+
+Mitigation: Review output paths before running scripts with file-writing options.
+
+Risk: Generated social content could be mistaken for automatic account posting or account automation.
+
+Mitigation: Treat the skill as a local content-assistance tool and review content manually before publishing through any social platform.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hughtan93-dev/skills/social-media-manager-xiaoxing)
+- [Social Media Best Practices](artifact/references/best_practices.md)
+- [Platform Guide](artifact/references/platform_guide.md)
+- [Platform Guidelines](artifact/references/platform_guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional plain text or JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts can print generated posts, hashtag bundles, content calendars, and content ideas to stdout or write JSON files when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

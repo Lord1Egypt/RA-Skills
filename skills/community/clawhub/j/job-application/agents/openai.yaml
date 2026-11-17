@@ -1,0 +1,4 @@
+interface:
+  display_name: "Job Application"
+  short_description: "Create tailored application documents from structured profile data"
+  default_prompt: "Use $job-application to create a truthful, tailored application from my profile and the supplied job posting."

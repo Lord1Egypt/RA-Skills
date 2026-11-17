@@ -1,41 +1,54 @@
-## Description: <br>
-Generate the storyboard images for a short-form video job by walking the image_prompts[] array from a job's input.json, calling Google's Gemini image model to render each prompt as a PNG, and saving files into the job's images/ folder using the filenames specified by the timeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate the storyboard images for a short-form video job. Walks the image_prompts[] array from a job's input.json, calls Google's Gemini image model to render each prompt as a PNG, and saves files into the job's images/ folder using the filenames specified by the timeline. Up to 4 images in parallel. Use whenever the orchestrator hands off image generation.
 
-## Publisher: <br>
-[pushpendrachauhan](https://clawhub.ai/user/pushpendrachauhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pushpendrachauhan](https://clawhub.ai/user/pushpendrachauhan)
 
-## Use Case: <br>
-Developers and video-pipeline agents use Flow Image Gen to turn a short-form video job's storyboard prompts into PNG files saved in the job images folder. It supports repeatable job-folder execution with concurrency, retry, and output-size checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and style details from input.json are sent to Google Gemini using GEMINI_API_KEY. <br>
-Mitigation: Use only prompts approved for the relevant Google account and project, and avoid sensitive, proprietary, or regulated content unless that use is approved. <br>
-Risk: Image generation can consume paid Gemini API quota and may fail when billing or free-tier limits are exhausted. <br>
-Mitigation: Review the number of requested images and project quota before execution, and inspect failed job output before re-running. <br>
+## Use Case:
 
+Developers and video-generation agents use this skill to generate storyboard PNGs from a job folder's input.json, mapping image prompts to timeline filenames and keeping output in the job's images directory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pushpendrachauhan/skills/flow-image-gen) <br>
-- [Google Gemini Image Generation API Endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Text] <br>
-**Output Format:** [PNG image files plus stdout and stderr status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes PNG files to <job>/images/ and supports IMAGE_GEN_PARALLEL concurrency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The runner has file-write containment and output validation weaknesses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the job directory contents, run in a clean private per-job directory, and avoid preexisting or shared images folders until symlink rejection and expected-PNG validation are added.
+
+Risk: Image prompts are sent to Google's Gemini API using GEMINI_API_KEY.
+
+Mitigation: Do not process sensitive prompts unless sharing them with the Gemini API is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pushpendrachauhan/skills/flow-image-gen)
+- [Google Gemini image generation endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, configuration]
+
+**Output Format:** [PNG image files plus shell status lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one PNG per image prompt to the job images directory and reports per-image success, skip, or failure status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

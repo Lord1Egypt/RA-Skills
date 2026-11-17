@@ -1,43 +1,58 @@
-## Description: <br>
-Fetches skills.sh trending rankings for questions about skill rankings or popular tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches skills.sh trending rankings. Use when asking about skill rankings or popular tools.
 
-## Publisher: <br>
-[hjw21century](https://clawhub.ai/user/hjw21century) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hjw21century](https://clawhub.ai/user/hjw21century)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve skills.sh leaderboard entries and optional skill detail summaries when comparing popular agent skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public web pages and may return untrusted skill detail text. <br>
-Mitigation: Treat fetched detail content as untrusted and review it before using it to guide agent behavior. <br>
-Risk: Changing SKILLS_BASE_URL can direct fetching to an unintended endpoint. <br>
-Mitigation: Leave SKILLS_BASE_URL unset for normal use, or set it only when intentionally testing another endpoint. <br>
-Risk: Playwright and Chromium dependencies add runtime setup and browser automation surface area. <br>
-Mitigation: Install and run the skill in a virtual environment or container with only the required dependencies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hjw21century/trending-skills) <br>
-- [skills.sh](https://skills.sh) <br>
-- [skills.sh trending leaderboard](https://skills.sh/trending) <br>
+## Use Case:
 
+Developers and external users use this skill to fetch current skills.sh trending rankings and, when optional dependencies are installed, summarize individual skill details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and summaries with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranking output includes skill name, owner, install count, and source URL when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill performs live network and browser-based fetches whose scope may be too broad for sensitive environments.
+
+Mitigation: Run it in an isolated environment with limited filesystem and network access, and keep SKILLS_BASE_URL restricted to trusted values.
+
+Risk: The rankings fetcher launches Playwright Chromium with no-sandbox flags.
+
+Mitigation: Review the browser sandbox configuration before running it on sensitive hosts or in privileged contexts.
+
+Risk: Installation steps are not pinned and may produce non-reproducible dependency or browser versions.
+
+Mitigation: Pin Playwright, Chromium, and optional parsing dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjw21century/skills/trending-skills)
+- [skills.sh](https://skills.sh)
+- [skills.sh trending rankings](https://skills.sh/trending)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and summaries with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live public skills.sh data; detail lookups may require optional packages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

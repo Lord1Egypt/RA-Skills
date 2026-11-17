@@ -1,45 +1,59 @@
-## Description: <br>
-Create and manage AI agents, send USDC/USDT payments, check balances across Ethereum, BSC, and Tron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage AI agents, send USDC/USDT payments, check balances across Ethereum, BSC, and Tron.
 
-## Publisher: <br>
-[HexCupe](https://clawhub.ai/user/HexCupe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hexcupe](https://clawhub.ai/user/hexcupe)
 
-## Use Case: <br>
-External users and developers use this skill to configure AgentWallex credentials, manage AI-agent wallets, check balances, and send or track USDC/USDT payments across supported Ethereum, BSC, and Tron networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move real USDC or USDT funds to arbitrary recipient addresses when production credentials and a production API endpoint are used. <br>
-Mitigation: Use sandbox or testnet first, require manual review of recipient address, chain, token, amount, and environment before every transfer, and keep human confirmation enabled for transfer and pay actions. <br>
-Risk: Payment-capable AgentWallex API credentials are stored in a local configuration file. <br>
-Mitigation: Protect ~/.openclaw/agentwallex/config.json, use limited and revocable API keys, avoid sharing the host account, and remove the local config when access is no longer needed. <br>
-Risk: Choosing the wrong chain, token, recipient address format, or environment can cause failed transactions or unintended live payments. <br>
-Mitigation: Validate address format for the selected chain, confirm token support, check available balance before sending, and explicitly distinguish sandbox from production before executing payment workflows. <br>
+## Use Case:
 
+External developers and operators use this skill to configure AgentWallex credentials, manage agent wallets, inspect USDC/USDT balances, and prepare payment or transaction-status workflows across supported chains.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HexCupe/agentwallex-openclaw) <br>
-- [AgentWallex Homepage](https://agentwallex.com) <br>
-- [AgentWallex Docs](https://docs.agentwallex.com) <br>
-- [AgentWallex Dashboard](https://app.agentwallex.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, API request examples, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq, stores credentials at ~/.openclaw/agentwallex/config.json, and requires human confirmation for transfer and pay actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles payment credentials and stores AgentWallex configuration locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox keys first, avoid sharing production payment credentials in chat unless that exposure is acceptable, and protect the local configuration path with owner-only permissions.
+
+Risk: The skill can initiate crypto transfers with under-scoped safety controls.
+
+Mitigation: Require explicit review of recipient address, chain, token, and amount before transfer or pay actions, and verify the API base URL is an official AgentWallex HTTPS endpoint.
+
+## Reference(s):
+
+- [AgentWallex Skill Page](https://clawhub.ai/hexcupe/skills/agentwallex-openclaw)
+- [AgentWallex](https://agentwallex.com)
+- [AgentWallex Docs](https://docs.agentwallex.com)
+- [AgentWallex Dashboard](https://app.agentwallex.com)
+- [AgentWallex Sandbox Dashboard](https://app-sandbox.agentwallex.com)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces payment and wallet-management guidance that depends on local AgentWallex credentials and requires explicit confirmation for transfer or pay actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

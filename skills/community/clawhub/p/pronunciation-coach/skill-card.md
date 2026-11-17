@@ -1,43 +1,54 @@
-## Description: <br>
-Pronunciation coaching with real voice analysis using Azure Speech Services. Analyzes audio files for phoneme-level accuracy, fluency, prosody, and intonation scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pronunciation coaching with real voice analysis using Azure Speech Services.
 
-## Publisher: <br>
-[Crazybuffon](https://clawhub.ai/user/Crazybuffon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[crazybuffon](https://clawhub.ai/user/crazybuffon)
 
-## Use Case: <br>
-External users and agent operators use this skill to assess spoken English recordings against reference text, generate pronunciation scores, and produce coaching feedback for problem words, phonemes, fluency, prosody, and practice steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local voice recordings and reference text are sent to Microsoft Azure Speech Services for pronunciation assessment. <br>
-Mitigation: Install only when that data flow is acceptable, verify the selected audio file before running the assessment, and disclose the Azure processing path to users. <br>
-Risk: Azure Speech credentials are required to run the assessment. <br>
-Mitigation: Use a restricted Azure Speech key and provide credentials through AZURE_SPEECH_KEY and AZURE_SPEECH_REGION environment variables. <br>
-Risk: The skill depends on local audio conversion and report-generation tooling. <br>
-Mitigation: Ensure ffmpeg and Node.js are installed before use and review command output for conversion or recognition failures. <br>
+## Use Case:
 
+External language learners and coaches use this skill to assess spoken English from audio files, review pronunciation, fluency, prosody, and phoneme-level issues, and receive focused practice guidance.
 
-## Reference(s): <br>
-- [Common Phoneme Issues & Coaching Tips](references/phoneme-guide.md) <br>
-- [Pronunciation Coach on ClawHub](https://clawhub.ai/Crazybuffon/pronunciation-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown coaching report, with raw Azure Speech JSON available from the assessment script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local audio file, reference text, Azure Speech credentials in environment variables, ffmpeg, and Node.js.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and skill.json) <br>
+Risk: The skill uploads selected voice recordings and reference text to Microsoft Azure Speech Services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with audio the user is comfortable sending to Azure, avoid sensitive recordings, and communicate the external processing behavior before assessment.
+
+Risk: Azure Speech credentials and speech assessment output may be exposed on shared systems or in readable logs.
+
+Mitigation: Use a restricted Azure Speech key, provide credentials through environment variables, rotate keys after shared-system use, and avoid running reports in terminals or CI logs visible to others.
+
+## Reference(s):
+
+- [Phoneme Guide](references/phoneme-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/crazybuffon/skills/pronunciation-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON assessment data and human-readable text or Markdown coaching guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an audio file, reference text, Azure Speech credentials, ffmpeg, and Node.js.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

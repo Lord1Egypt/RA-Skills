@@ -1,42 +1,57 @@
-## Description: <br>
-Automates pull request review, service health validation, and optional Discord notification for GitHub pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated PR submission pipeline for code review, service health validation, and Discord notification.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to run a structured pre-merge pull request check that gathers a diff, captures CI metadata, records health status, and optionally posts a Discord summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script may operate on the wrong repository because it extracts only the pull request number before calling the authenticated GitHub CLI. <br>
-Mitigation: Use the skill only from the intended repository and GitHub account until the full owner, repo, and pull request URL are validated and passed explicitly to `gh`. <br>
-Risk: Discord webhook notifications can disclose pull request links and health summaries to the configured channel. <br>
-Mitigation: Provide Discord webhooks only for channels approved to receive pull request and service health information. <br>
-Risk: Cron or webhook automation can repeatedly run the script with repository context mistakes. <br>
-Mitigation: Avoid unattended cron or webhook use until repository validation is added and reviewed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run automated pre-merge checks for GitHub pull requests. It fetches PR diff and status data, runs service health validation when available, and can post a concise status notification to Discord.
 
-## Reference(s): <br>
-- [PR Automate Check on ClawHub](https://clawhub.ai/terrycarter1985/pr-automate-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command usage and JSON report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an authenticated GitHub CLI session and may optionally send a Discord webhook notification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs authenticated GitHub CLI commands against pull request data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted repositories with scoped GitHub credentials and review results before acting on them.
+
+Risk: The skill can send PR and health information to an arbitrary Discord webhook.
+
+Mitigation: Pass only approved webhook URLs and avoid sourcing webhook values from untrusted automation.
+
+Risk: The skill can execute a local healthcheck helper when present.
+
+Mitigation: Verify the installed healthcheck skill before enabling automatic cron or PR-event execution.
+
+## Reference(s):
+
+- [PR Automate Check on ClawHub](https://clawhub.ai/terrycarter1985/skills/pr-automate-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pull request metadata, health status, diff path, and optional Discord notification status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

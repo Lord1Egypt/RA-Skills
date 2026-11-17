@@ -1,43 +1,59 @@
-## Description: <br>
-MemClaw is a high-performance OpenClaw memory plugin that improves memory management, retrieval, search precision, and context richness while replacing built-in memory operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemClaw is a high-performance memory plugin skill for OpenClaw that guides agents to use Cortex Memory tools for memory search, retrieval, storage, migration, and session management.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-Developers and external OpenClaw users use MemClaw to configure and operate long-term memory search, recall, storage, migration, and maintenance through the memclaw plugin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist, migrate, index, and prune long-term conversation memories that may include sensitive information. <br>
-Mitigation: Require explicit approval for migration, commits that extract durable memories, and non-dry-run maintenance; avoid storing secrets, regulated data, credentials, or sensitive personal details without a retention and deletion plan. <br>
-Risk: Memory retrieval may surface outdated, irrelevant, or overly broad context that influences later agent behavior. <br>
-Mitigation: Start with abstract search results, inspect richer memory layers only when relevant, and correct or prune memories that no longer apply. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure OpenClaw agents to rely on MemClaw for persistent memory, layered recall, session isolation, and migration from built-in memory. It is intended for agents that need structured access to conversation history, user preferences, entities, cases, and other memory resources.
 
-## Reference(s): <br>
-- [MemClaw Tools Reference](references/tools.md) <br>
-- [MemClaw Best Practices](references/best-practices.md) <br>
-- [Memory Structure](references/memory-structure.md) <br>
-- [Security & Trust](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may result in durable memory writes, migration, indexing, or pruning through approved memclaw tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.31 (source: server release metadata) <br>
+Risk: The skill can make MemClaw the main memory layer and persist or migrate conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what the skill may store before use, avoid secrets or regulated personal data, and require explicit confirmation before migration or committing sensitive sessions.
+
+Risk: Broad or default session IDs can mix unrelated memories across tasks or users.
+
+Mitigation: Use narrow session IDs for projects, users, or topics, and confirm the target session before maintenance, pruning, reindexing, or migration.
+
+## Reference(s):
+
+- [MemClaw Tools Reference](references/tools.md)
+- [MemClaw Best Practices](references/best-practices.md)
+- [Memory Structure](references/memory-structure.md)
+- [Security & Trust](references/security.md)
+- [Project link from skill documentation](https://github.com/sopaco/cortex-mem)
+- [ClawHub skill page](https://clawhub.ai/sopaco/skills/memclaw)
+- [ClawHub publisher profile](https://clawhub.ai/user/sopaco)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline shell commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers OpenClaw plugin configuration, Cortex memory URIs, layered retrieval, session management, migration, and troubleshooting.]
+
+## Skill Version(s):
+
+0.9.31 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

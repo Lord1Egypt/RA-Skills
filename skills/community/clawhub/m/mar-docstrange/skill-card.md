@@ -1,42 +1,59 @@
-## Description: <br>
-Document extraction via SkillBoss API Hub converts PDFs and images to markdown, JSON, or CSV with confidence scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DocStrange helps agents use SkillBoss API Hub to convert PDFs and images into markdown, JSON, or CSV with confidence scoring for OCR, document field extraction, receipt parsing, and table conversion.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and operations teams use this skill to call SkillBoss API Hub for OCR, document conversion, invoice and receipt field extraction, and table extraction from PDFs and images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or document URLs are sent to an external SkillBoss API Hub service for processing, which can create privacy and retention concerns for sensitive data. <br>
-Mitigation: Review the provider's privacy and retention terms before use, test with non-sensitive samples first, and prefer redacted files or short-lived scoped URLs when possible. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Store SKILLBOSS_API_KEY in an environment variable or secret store, avoid committing credentials, rotate keys regularly, and monitor usage. <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure and call a third-party document extraction API for invoices, receipts, contracts, bank statements, forms, scanned images, and table extraction.
 
-## Reference(s): <br>
-- [SkillBoss API Hub](https://api.heybossai.com) <br>
-- [SkillBoss API Docs](https://api.heybossai.com/v1/pilot) <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-docstrange) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with curl examples and structured API response formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends selected documents or document URLs to SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Selected documents are transmitted to SkillBoss API Hub for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider's privacy, retention, and compliance terms before uploading sensitive or regulated documents; test first with non-sensitive samples.
+
+Risk: API keys may be exposed if stored in plaintext configuration, logs, or committed files.
+
+Mitigation: Use environment variables or a secret store for SKILLBOSS_API_KEY, avoid logging secrets, and rotate keys regularly.
+
+Risk: Extracted fields can be incorrect or low confidence.
+
+Mitigation: Request confidence scores when using JSON extraction and manually review fields with low confidence before relying on the output.
+
+## Reference(s):
+
+- [SkillBoss API Hub](https://api.heybossai.com)
+- [SkillBoss API Docs](https://api.heybossai.com/v1/pilot)
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/mar-docstrange)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON, CSV]
+
+**Output Format:** [Markdown guidance with bash and JSON examples; API results may contain markdown, JSON, or CSV document extraction output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and transmits selected documents to https://api.heybossai.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

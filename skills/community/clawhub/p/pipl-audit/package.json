@@ -1,0 +1,54 @@
+{
+  "name": "pipl-audit",
+  "version": "2.0.2",
+  "description": "PIPL 个人信息保护法合规深度审计。仅在用户显式要求运行 pipl-audit 时激活。免费审计（云端真实评分），32 项深度审计；无 Key 自动匿名试用（5 次），额度用尽后一键注册引导。API Key 在网页 compliancehub.cn/account.html 注册获取，通过 COMPLIANCEHUB_API_KEY 环境变量或 ~/.config/compliancehub 密钥文件提供。",
+  "author": "CQDev",
+  "license": "MIT",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "category": "compliance",
+    "region": "global",
+    "emoji": "🔒",
+    "displayName": "PIPL 合规深度审计",
+    "keywords": [
+      "PIPL",
+      "个保法",
+      "audit",
+      "China",
+      "compliance",
+      "data-protection",
+      "CN-audit"
+    ],
+    "files": [
+      "SKILL.md",
+      "scripts/pipl-audit.py",
+      "package.json"
+    ],
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    },
+    "points": 10
+  }
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Operates across Google Drive, Docs, Sheets, and Slides to find, summarize, edit, migrate, or clean shared documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate across Google Drive, Docs, Sheets, and Slides as a unified workflow to find, summarize, edit, migrate, or clean shared documents.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Employees and operators use this skill to work across Google Workspace assets: locate the right Drive file, inspect its structure, make or recommend precise updates, and summarize follow-up cleanup such as archive or merge candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Google Workspace credentials could let an agent inspect or modify files beyond the intended task. <br>
-Mitigation: Use a least-privilege Google credential limited to the necessary folders and APIs. <br>
-Risk: Live edits, archiving, merging, or restructuring could change shared documents incorrectly. <br>
-Mitigation: Test on low-risk files first and require the agent to identify the target file and planned changes before making updates. <br>
+## Use Case:
 
+Employees and workspace operators use this skill to find canonical Google Drive assets, inspect Docs, Sheets, and Slides, and make or recommend precise cleanup, restructuring, summarization, and migration changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djc00p/google-workspace-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured as ASSET, CURRENT STATE, ACTION, and FOLLOW-UPS sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_APPLICATION_CREDENTIALS and a least-privilege Google credential for live Workspace operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can make live changes to shared Google Workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected file, ranges, and planned edits before applying changes; use copies or version history for important documents.
+
+Risk: Google credentials may grant broader Drive, Docs, Sheets, or Slides access than the task requires.
+
+Mitigation: Install and run the skill only with credentials scoped to the minimum needed access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djc00p/skills/google-workspace-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured plain text or Markdown with ASSET, CURRENT STATE, ACTION, and FOLLOW-UPS sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file identity, document structure, edits made or recommended, and cleanup follow-ups]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+# C盘清道夫 技能清单（manifest）
+# 说明：ClawHub(clawhub.ai) 以 SKILL.md 的 frontmatter 为权威元数据；
+# 本文件为补充清单，便于 SkillHub(cnb.cool) 与人工核对，字段与 frontmatter 保持一致。
+name: c-disk-cleanup-pro
+display_name: "C盘清道夫 · 开荒+日常双模式"
+version: "1.1.0"
+description: >-
+  面向电脑小白的 Windows C 盘清理助手（经真机实战验证）。双模式：开荒保洁
+  （只读体检 + 大白话讲人话 + 逐条确认 + 只搬不删可恢复）与日常保洁
+  （记住清理习惯，定期/手动体检只清安全项）。任何清理动作前必须取得用户明确同意，
+  绝不自行删除任何文件。
+tags:
+  - windows
+  - c盘清理
+  - 系统优化
+  - 磁盘空间
+  - 电脑小白
+  - 日常维护
+risk_level: medium
+requires_consent: true
+os:
+  - windows
+triggers:
+  - "C盘满了"
+  - "C盘爆红"
+  - "清理C盘"
+  - "C盘瘦身"
+  - "腾空间"
+  - "定期清理C盘"
+  - "电脑卡"
+dependencies:
+  bins:
+    - powershell   # PowerShell 5.1+（Windows 自带，无需另装）
+  note: "无额外依赖；脚本为 PowerShell，仅 Windows 可用。"
+permissions:
+  filesystem:
+    read: "C:\\ 与备份盘（只读体检、统计大小与类型）"
+    write: "仅向用户指定的备份盘写入（移动/复制），绝不删除源文件"
+  privacy: "不读取、不上传任何私人文档内容，只统计文件大小与类型"
+license: "MIT-0（ClawHub 默认许可，允许免费使用/修改/再分发）"

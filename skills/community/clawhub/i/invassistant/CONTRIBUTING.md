@@ -1,4 +1,3 @@
-# Contributing to InvAssistant
 
 Thank you for your interest in contributing to InvAssistant!
 

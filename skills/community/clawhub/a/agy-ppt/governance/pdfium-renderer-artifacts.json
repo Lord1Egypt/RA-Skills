@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "install_policy": {
+    "index": "https://pypi.org/simple",
+    "only_binary": ":all:",
+    "source_build_fallback": false
+  },
+  "package": {
+    "name": "pypdfium2",
+    "version": "5.13.0"
+  },
+  "engine": {
+    "name": "PDFium",
+    "version": "153.0.7999.0",
+    "build": 7999,
+    "origin": "pdfium-binaries",
+    "flags": [],
+    "v8": false,
+    "xfa": false
+  },
+  "artifacts": [
+    {
+      "platform": "linux_x86_64",
+      "filename": "pypdfium2-5.13.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "81df25c1ab4c13ff773102d3cbea1967511d079123b067fc077bd0c4d57d91d8"
+    },
+    {
+      "platform": "linux_arm64",
+      "filename": "pypdfium2-5.13.0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+      "sha256": "9ee8c2bb2e68b396ab4a763215ac100dacb6b96d0da5bebeb239a021aecc3a7e"
+    },
+    {
+      "platform": "macos_x86_64",
+      "filename": "pypdfium2-5.13.0-py3-none-macosx_13_0_x86_64.whl",
+      "sha256": "2abedfb5c70992b19c780ed58d7f7b929e8ce8ee52c9140158f44317c90ec6c7"
+    },
+    {
+      "platform": "macos_arm64",
+      "filename": "pypdfium2-5.13.0-py3-none-macosx_13_0_arm64.whl",
+      "sha256": "da5c7b74eebf40b5c1fbe1de01aa1edc8827a79fb1efd999616bc20dcaf77ba4"
+    },
+    {
+      "platform": "windows_x86_64",
+      "filename": "pypdfium2-5.13.0-py3-none-win_amd64.whl",
+      "sha256": "47dcca2a8d507b5fd24f94c3c9d48fb379430f097bc20f01beff6c963ffbcedb"
+    },
+    {
+      "platform": "windows_arm64",
+      "filename": "pypdfium2-5.13.0-py3-none-win_arm64.whl",
+      "sha256": "554a0b23376460af1410e3c915906895e2dac67a086b9e6ccde0643a795d3b0d"
+    }
+  ]
+}

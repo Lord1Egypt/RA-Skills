@@ -1,40 +1,48 @@
-## Description: <br>
-Dream Rem consolidates daily memory logs into topic files, removes outdated or contradicted entries, and keeps MEMORY.md as a compact memory index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deeply consolidates memory by extracting daily journal entries into topic files and cleaning outdated content.
 
-## Publisher: <br>
-[jofiction918](https://clawhub.ai/user/jofiction918) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jofiction918](https://clawhub.ai/user/jofiction918)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to periodically consolidate agent memory, keep MEMORY.md as a compact index, and move durable information into topic files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring unattended memory consolidation can rewrite or delete stored memory without a confirmation or backup step.
+
+Mitigation: Install only when automatic memory consolidation is desired; keep backups of MEMORY.md, topics/, and memory/heartbeat-state.json, and prefer manual runs when deletions should be reviewed first.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to maintain local agent memory by periodically scanning recent daily logs, merging durable facts into topic files, pruning obsolete or conflicting entries, and rewriting the memory index. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite or delete local memory files while consolidating daily logs and topic files. <br>
-Mitigation: Keep MEMORY.md, topics/, and memory/ under version control or backups, and review proposed file changes before enabling automated execution. <br>
-Risk: Automated cron execution may repeatedly apply incorrect consolidation decisions if stale or contradictory memory entries are misclassified. <br>
-Mitigation: Review execution reports and periodically audit the memory index, topic files, and heartbeat state after scheduled runs. <br>
+**Output Format:** [Markdown status reports with file edits and optional shell command configuration]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Dream Rem on ClawHub](https://clawhub.ai/jofiction918/dream-rem) <br>
+**Other Properties Related to Output:** [May read and rewrite MEMORY.md, topics/, and memory/heartbeat-state.json; scheduled execution can run unattended.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown execution report with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update MEMORY.md, topic files, and memory/heartbeat-state.json when executed with file-write permissions.] <br>
+3.0.13 (source: server release metadata; artifact frontmatter lists 3.1.0)
 
-## Skill Version(s): <br>
-3.0.13 (source: server release metadata; artifact frontmatter says 3.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

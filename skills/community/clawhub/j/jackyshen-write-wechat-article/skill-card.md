@@ -1,42 +1,48 @@
-## Description: <br>
-Helps agents draft engaging WeChat Official Account articles using Pyramid Principle structure, strong hooks, reader-focused writing, and Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user asks to "write WeChat article", "create 公众号文章", "write media content", or needs engaging articles for WeChat Official Accounts.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mebusw](https://clawhub.ai/user/mebusw)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, marketers, and communication teams use this skill to draft WeChat Official Account articles with clear hooks, Pyramid Principle structure, reader-focused body sections, calls to action, and editor-compatible Markdown.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated articles may contain inaccurate claims, insufficient attribution, originality issues, or content that is unsuitable for public publishing.
+
+Mitigation: Review each article for accuracy, originality, attribution, and audience suitability before publishing it to a WeChat Official Account.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to draft WeChat Official Account articles with clear openings, structured body sections, actionable tips, and engagement-focused closings. It is suited for article ideation and drafting rather than automated publishing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broader media-writing prompts because its description includes general media content. <br>
-Mitigation: Confirm that the requested task is a WeChat article or similar long-form article before applying the template. <br>
-Risk: The artifact references a separate list-methods skill that is not included in this release. <br>
-Mitigation: Review any separately installed referenced skills before using them together. <br>
-Risk: Generated article drafts may include persuasive claims, examples, or engagement prompts that need editorial review. <br>
-Mitigation: Review drafts for accuracy, tone, brand fit, and compliance before publication. <br>
+**Output Format:** [Markdown article drafts and writing guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mebusw/jackyshen-write-wechat-article) <br>
+**Other Properties Related to Output:** [Uses plain-character tables instead of Markdown tables for WeChat editor compatibility.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown article draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses plain-text table guidance for WeChat editor compatibility and structures drafts with a title, opening, body, closing, call to action, discussion prompt, and author/source placeholders.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Auto-Heal monitors OpenClaw gateway status, agent sessions, and memory usage and can automatically restart or clean up unhealthy components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-Heal monitors OpenClaw health and attempts automatic recovery for unresponsive gateways, stale agent sessions, and high memory usage.
 
-## Publisher: <br>
-[zacharyzax](https://clawhub.ai/user/zacharyzax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zacharyzax](https://clawhub.ai/user/zacharyzax)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to run scheduled or continuous health checks, automatically restart the gateway, clean up stuck sessions, and record status when OpenClaw becomes unresponsive or resource constrained. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The watchdog can automatically restart OpenClaw services, kill sessions, delete logs, and modify OpenClaw configuration. <br>
-Mitigation: Review the scripts and configuration before enabling unattended cron or continuous monitoring, and test with manual checks first. <br>
-Risk: The security summary marks the release suspicious because automatic repair behavior has limited user controls. <br>
-Mitigation: Install only when unattended OpenClaw recovery is intended, and consider disabling lifecycle scripts or auto-fix behavior until the operator accepts the actions. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw deployments and receive setup guidance, shell commands, and configuration for automatic health checks and recovery actions.
 
-## Reference(s): <br>
-- [Auto-Heal on ClawHub](https://clawhub.ai/zacharyzax/auto-heal) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and JavaScript code behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill behavior centers on OpenClaw CLI commands, local configuration updates, log output, and state JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Automatic repair behavior can restart OpenClaw services, kill sessions, and delete logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in any active OpenClaw environment and run under an account whose sessions and logs may be modified.
+
+Risk: Documented safety controls may not be enforced by the implementation.
+
+Mitigation: Do not rely on enabled=false or autoFix=false until those settings are fixed and verified.
+
+Risk: Background cron or nohup deployment can repeatedly execute unsafe recovery actions.
+
+Mitigation: Avoid cron/nohup deployment until command execution is shell-safe and destructive repairs are gated or dry-run capable.
+
+## Reference(s):
+
+- [ClawHub Auto-Heal release](https://clawhub.ai/zacharyzax/skills/auto-heal)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operational guidance should account for automatic repair behavior and documented safety controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

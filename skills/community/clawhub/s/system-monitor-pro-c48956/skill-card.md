@@ -1,41 +1,56 @@
-## Description: <br>
-Provides guidance learned from Douyin and Bilibili videos about system-monitoring tools, including System Monitor and X-MONITOR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: system-monitor-pro — 系统监控工具System Monitor
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users can use this markdown-only learning skill to get concise guidance and reference prompts related to system-monitoring tools and examples from source videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate when the user did not intend to invoke this specific system-monitoring guidance. <br>
-Mitigation: Rename or narrow the trigger phrase so activation requires an explicit request for this specific system-monitoring skill. <br>
+## Use Case:
 
+Developers and external users can use this skill as a lightweight Chinese-language learning note for system-monitor-pro and related X-MONITOR video references. It provides trigger phrases and study steps rather than an executable system monitoring workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/system-monitor-pro-c48956) <br>
-- [Bilibili reference: System Z chart confirmation](https://www.bilibili.com/video/BV1u341157AU) <br>
-- [Bilibili reference: Monitor+ video](https://www.bilibili.com/video/BV1J84y1M7CL) <br>
-- [Bilibili reference: X-MONITOR software video](https://www.bilibili.com/video/BV1AC4y1K7kb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no code, credentials, persistence, or high-impact actions are present in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may be mistaken for a working system monitor even though the security summary identifies it as a Markdown-only note template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before relying on it and treat its content as learning guidance, not operational monitoring functionality.
+
+Risk: Broad trigger terms such as System and Monitor may cause accidental activation.
+
+Mitigation: Narrow activation to the exact skill name or another specific phrase before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/system-monitor-pro-c48956)
+- [Bilibili: System Z reference video](https://www.bilibili.com/video/BV1u341157AU)
+- [Bilibili: Monitor+ reference video](https://www.bilibili.com/video/BV1J84y1M7CL)
+- [Bilibili: X-MONITOR reference video](https://www.bilibili.com/video/BV1AC4y1K7kb)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or automatic actions are described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

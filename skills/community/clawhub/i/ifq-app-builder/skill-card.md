@@ -1,48 +1,65 @@
-## Description: <br>
-Use this OpenClaw / ClawHub skill when the user wants to turn three ordinary sentences into a verified build-ready prompt bundle for a real app: PC desktop, macOS, Windows, iOS, Android, HarmonyOS, WeChat MiniProgram, self-hosted local web, PWA, or CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IFQ App Builder turns short app ideas into verified, build-ready prompt bundles across desktop, mobile, local web, PWA, and CLI modes.
 
-## Publisher: <br>
-[peixl](https://clawhub.ai/user/peixl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[peixl](https://clawhub.ai/user/peixl)
 
-## Use Case: <br>
-Developers and app-building agents use this skill to turn short app ideas into verified Markdown prompt bundles with platform route, template, acceptance, packaging, security, i18n, assumptions, and caveats. It is intended for prompt-bundle generation and verification, not for silently installing SDKs, building apps, or submitting to app stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated prompt bundle may instruct a downstream coding agent to install dependencies, run build tools, modify files, use network access, or request deployment credentials. <br>
-Mitigation: Review the generated bundle before handing it to another agent, and treat platform SDK use, signing, deployment, and store submission as explicit opt-in implementation work. <br>
-Risk: The skill can write prompt-bundle files in the active workspace. <br>
-Mitigation: Keep execution workspace-scoped and review the reported output path, assumptions, verification result, and caveats before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert a brief app request into a platform-routed prompt bundle with acceptance, packaging, security, i18n, and verification details. It is intended for Tier 0 prompt-bundle generation and handoff, not silent SDK installation, signing, or store submission.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/peixl/ifq-app-builder) <br>
-- [Homepage](https://github.com/peixl/ifq-app-builder) <br>
-- [Quickstart](README.en.md#first-run) <br>
-- [Mode Routing](references/modes.md) <br>
-- [Platform Matrix](references/platform-matrix.md) <br>
-- [Three-Sentence Contract](references/three-sentence-contract.md) <br>
-- [Verification](references/verification.md) <br>
-- [Security Baseline](references/security-baseline.md) <br>
-- [Agent Compatibility](references/agent-compatibility.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prompt bundle with verification command and evidence summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a workspace-scoped *.prompt.md bundle; verification is typically performed with npm run verify:lite -- <bundle.prompt.md> when shell access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter, package.json, CHANGELOG, server release metadata) <br>
+Risk: Generated prompt bundles can contain scaffold commands that a downstream coding agent may execute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scaffold commands, pin package versions where practical, and run installs in an isolated workspace or container without unrelated secrets.
+
+Risk: The skill's generated app surfaces may include the IFQ colophon and attribution.
+
+Mitigation: Use the skill only when the project can accept the disclosed IFQ attribution, or rebrand downstream forks according to the artifact license notice.
+
+Risk: Tier 0 output is a prompt bundle, not a built or signed application.
+
+Mitigation: Do not provide signing certificates, store tokens, or production credentials until a separate implementation, build, signing, and deployment step is explicitly requested and verified.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/peixl/skills/ifq-app-builder)
+- [Project homepage](https://github.com/peixl/ifq-app-builder)
+- [Quickstart](README.en.md#first-run)
+- [Agent Compatibility](references/agent-compatibility.md)
+- [Mode Routing](references/modes.md)
+- [Platform Matrix](references/platform-matrix.md)
+- [Quality Bar](references/quality-bar.md)
+- [Security Baseline](references/security-baseline.md)
+- [Verification](references/verification.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prompt bundle with verification commands and structured handoff details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local *.prompt.md build bundle with mode route, template id, assumptions, verification result, and caveats.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter, package.json, clawhub.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

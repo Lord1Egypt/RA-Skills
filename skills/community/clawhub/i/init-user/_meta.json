@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "init-user",
+  "name": "init_user",
   "version": "2.1.1",
-  "publishedAt": 1781363643111
+  "description": "paper-kb 用户初始化：检查注册状态、引导注册（Gitea 地址写死、研究方向用户自填）、创建 Gitea 仓库与飞书多维表格（资料库，类型字段用文本避开单选API坑），回复带仓库与表格链接",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "current_user_open_id"
+    ],
+    "feishu_tools": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field"
+    ]
+  },
+  "part_of": "paper-kb",
+  "related_skills": [
+    "ingest_paper",
+    "query_papers"
+  ]
 }

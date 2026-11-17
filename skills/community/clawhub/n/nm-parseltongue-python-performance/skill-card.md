@@ -1,42 +1,50 @@
-## Description: <br>
-Profiles Python code for performance bottlenecks and memory issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Profiles Python code for performance bottlenecks and memory issues
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to profile Python applications, identify CPU and memory bottlenecks, choose optimization patterns, and verify improvements with benchmarks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may make the skill appear in generic Python or performance conversations. <br>
-Mitigation: Use it when profiling, benchmarking, or optimizing Python code is the intended task. <br>
-Risk: Profiling commands can inspect running processes or execute benchmark code. <br>
-Mitigation: Run optional profiling and pip install commands only against code, environments, and processes you intend to inspect. <br>
+## Use Case:
 
+Developers and engineers use this skill to profile Python code, identify CPU or memory bottlenecks, and choose optimizations they can verify with benchmarks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-parseltongue-python-performance) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest profiling commands, benchmark snippets, and optimization patterns for user-provided Python code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: release metadata; artifact frontmatter reports 1.9.8) <br>
+Risk: Optimization advice may not fit a particular workload or environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance for the use case and benchmark proposed changes on representative workloads before adopting them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-parseltongue-python-performance)
+- [Homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with embedded Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: skill frontmatter; server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

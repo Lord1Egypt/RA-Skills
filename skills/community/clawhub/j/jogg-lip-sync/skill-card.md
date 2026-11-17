@@ -1,42 +1,54 @@
-## Description: <br>
-Runs Jogg lip sync using video and audio inputs, reuses tasks when available, and monitors status until completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Jogg lip sync using video and audio inputs, reuses tasks when available, and monitors status until completion.
 
-## Publisher: <br>
-[joggai-tech](https://clawhub.ai/user/joggai-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joggai-tech](https://clawhub.ai/user/joggai-tech)
 
-## Use Case: <br>
-Developers and agents use this skill to run or check Jogg lip-sync tasks for supplied video and audio inputs, returning the task status and final generated video URL when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected video and audio files or URLs to Jogg for processing. <br>
-Mitigation: Use the skill only with media that is appropriate to send to Jogg and avoid sensitive media unless approved for that service. <br>
-Risk: The runner requires a Jogg API key and can use a non-default base URL. <br>
-Mitigation: Use a revocable API key and leave JOGG_BASE_URL at the default unless the alternate endpoint is intentionally trusted. <br>
+## Use Case:
 
+External users and developers use this skill to submit video and audio inputs to Jogg for lip-sync generation, reuse matching tasks when available, and check task status until a result URL is available.
 
-## Reference(s): <br>
-- [Jogg API pricing](https://www.jogg.ai/api-pricing/) <br>
-- [Jogg API key setup](https://docs.jogg.ai/api-reference/v2/QuickStart/GettingStarted) <br>
-- [ClawHub skill page](https://clawhub.ai/joggai-tech/jogg-lip-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Machine-readable JSON result on stdout with progress logs on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task action, reuse state, task_id, status, result_url when successful, and error_message when failed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The selected video and audio are uploaded to Jogg for processing using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with media approved for upload to Jogg, and use an API key with limited exposure where possible.
+
+Risk: A skill-local .env file can provide default API settings if present.
+
+Mitigation: Do not use a skill-local .env file from an untrusted source, and keep JOGG_BASE_URL unset or pointed at the legitimate Jogg API.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joggai-tech/skills/jogg-lip-sync)
+- [Jogg API QuickStart](https://docs.jogg.ai/api-reference/v2/QuickStart/GettingStarted)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, guidance]
+
+**Output Format:** [Machine-readable JSON result with progress logs on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns task action, reuse status, task_id, status, result_url when successful, and error_message when failed.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

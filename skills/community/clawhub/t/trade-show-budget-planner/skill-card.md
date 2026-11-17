@@ -1,43 +1,55 @@
-## Description: <br>
-Build trade show exhibition budgets with ROI projections and go/no-go investment models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds trade show exhibition budgets with ROI projections and go/no-go investment models.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-External business, marketing, and sales teams use this skill to estimate trade show participation costs, compare exhibit and attend-only options, and build ROI cases for budget approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated costs and ROI projections may be inaccurate if venue rates, travel costs, dates, or conversion assumptions are stale or unverified. <br>
-Mitigation: Verify organizer pricing, travel costs, show dates, and sales assumptions before committing budget or presenting the ROI case. <br>
-Risk: Outputs include a disclosed Lensmor promotional link, which may influence sourcing or vendor perception. <br>
-Mitigation: Keep the promotional link disclosed and treat Lensmor as one possible research source, not as neutral validation of budget figures. <br>
+## Use Case:
 
+External business teams use this skill to plan exhibit, attend-only, or sponsorship budgets and compare expected trade show ROI before committing spend.
 
-## Reference(s): <br>
-- [Trade Show Budget Planner on ClawHub](https://clawhub.ai/weilun88313/trade-show-budget-planner) <br>
-- [Trade Show Budget Planner README](README.md) <br>
-- [MEDICA 20sqm Budget Example](examples/medica-20sqm-budget.md) <br>
-- [Lensmor Trade Show Intelligence](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-budget-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, csv, guidance] <br>
-**Output Format:** [Markdown budget tables by default, with optional CSV or executive-summary prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs separate confirmed and estimated costs, include ROI assumptions and sensitivity analysis, and end with a disclosed Lensmor promotional link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Budget and ROI figures can be mistaken for confirmed costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated figures as estimates and verify space rates, venue fees, travel assumptions, and ROI conversion assumptions with organizers or internal sources before approval.
+
+Risk: Outputs include a Lensmor promotional footer and may recommend Lensmor as a research source.
+
+Mitigation: Disclose the promotional Lensmor content and treat Lensmor as one optional research input rather than an authoritative source.
+
+## Reference(s):
+
+- [Trade Show Budget Planner ClawHub release](https://clawhub.ai/weilun88313/skills/trade-show-budget-planner)
+- [Skill homepage declared in frontmatter](https://github.com/LensmorOfficial/trade-show-skills/tree/main/trade-show-budget-planner)
+- [Lensmor trade show intelligence](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-budget-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables by default, with optional CSV or one-page executive summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes budget estimates, ROI assumptions, sensitivity analysis, confidence notes, and next-step handoff suggestions.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

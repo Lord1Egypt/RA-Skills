@@ -1,45 +1,64 @@
-## Description: <br>
-Auto-generated skill for baidu-maps-sse tools via OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generated skill for baidu-maps-sse tools via OneKey Gateway.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to call Baidu Maps and related geolocation tools through OneKey Gateway for geocoding, reverse geocoding, place search, place details, distance matrices, elevation lookups, and directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map queries, addresses, coordinates, and travel locations are sent through OneKey Gateway and any downstream maps provider. <br>
-Mitigation: Avoid submitting sensitive home, work, or private travel locations unless the provider data handling is acceptable. <br>
-Risk: The artifact includes a shared demo access key fallback for testing. <br>
-Mitigation: Set a dedicated DEEPNLP_ONEKEY_ROUTER_ACCESS key for normal use instead of relying on the shared demo fallback. <br>
+## Use Case:
 
+Developers and agents use this skill to access Baidu Maps geocoding, reverse geocoding, place search, place details, distance matrix, elevation, and directions tools through OneKey Gateway.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AI-Hub-Admin/baidu-maps-sse) <br>
-- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent) <br>
-- [Skills Marketplace](https://www.deepnlp.org/store/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses from CLI or Python script invocations, with markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS for normal use; scripts accept JSON input through --data or --data-file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill recommends unpinned npm and Python package installs, including npx execution paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, pin package versions, and avoid latest-resolution npx workflows before operational use.
+
+Risk: Scripts fall back to a shared demo OneKey Gateway access key when DEEPNLP_ONEKEY_ROUTER_ACCESS is unset.
+
+Mitigation: Set an organization-controlled DEEPNLP_ONEKEY_ROUTER_ACCESS key and verify it is present before running gateway calls.
+
+Risk: Map requests may include sensitive home, work, travel, or location history data sent through OneKey Gateway and the downstream map provider.
+
+Mitigation: Avoid submitting sensitive locations unless the user and organization are comfortable with that data path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ai-hub-admin/skills/baidu-maps-sse)
+- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys)
+- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router)
+- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent)
+- [Skills Marketplace](https://www.deepnlp.org/store/skills)
+- [AI Agent A2Z Deployment](https://www.deepnlp.org/workspace/deploy)
+- [GitHub AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [JSON responses from gateway calls, plus Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a OneKey Gateway access key; scripts accept JSON via --data or --data-file and print formatted JSON.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

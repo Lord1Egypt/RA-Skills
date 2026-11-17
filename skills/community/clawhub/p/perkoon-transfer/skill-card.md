@@ -1,46 +1,68 @@
-## Description: <br>
-Perkoon Transfer helps agents move files over Perkoon using MCP, CLI, A2A, or browser automation workflows for agent-to-human, agent-to-agent, and pipeline transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perkoon Transfer helps agents send and receive explicitly selected files between agents, humans, and pipelines using Perkoon CLI, MCP, A2A, or browser automation workflows.
 
-## Publisher: <br>
-[alex-vy](https://clawhub.ai/user/alex-vy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-vy](https://clawhub.ai/user/alex-vy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to send, receive, and monitor Perkoon file transfers from coding agents, shell-capable agents, HTTP-only agents, or browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional browser automation commands download and immediately run remote .mjs scripts without pinning or integrity checks. <br>
-Mitigation: Prefer the pinned MCP or CLI workflows, and do not run downloaded .mjs scripts unless the current contents from perkoon.com have been reviewed or separately verified. <br>
-Risk: File-transfer workflows can expose unintended or sensitive local files if paths are not checked before sending. <br>
-Mitigation: Confirm every file path before sending and avoid sensitive directories unless the user explicitly intends to transfer those files. <br>
+## Use Case:
 
+Developers and coding agents use this skill to transfer selected files from an agent to a human, another agent, or a processing pipeline. It provides guidance for Perkoon MCP tools, pinned CLI commands, A2A JSON-RPC calls, and browser automation paths.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alex-vy/perkoon-transfer) <br>
-- [Perkoon homepage](https://perkoon.com) <br>
-- [Perkoon A2A agent card](https://perkoon.com/.well-known/agent.json) <br>
-- [Perkoon integration guide](https://perkoon.com/llms.txt) <br>
-- [Perkoon automation docs](https://perkoon.com/automate) <br>
-- [Perkoon CLI package](https://www.npmjs.com/package/perkoon) <br>
-- [Perkoon MCP package](https://www.npmjs.com/package/@perkoon/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with JSON snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce JSON event streams, session codes, transfer links, and downloaded files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The browser automation path can execute remote code fetched from Perkoon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the MCP or pinned CLI path; review browser automation scripts before running them.
+
+Risk: Command-line passwords can expose sensitive transfer secrets.
+
+Mitigation: Avoid command-line passwords for sensitive transfers and use safer secret handling where the host supports it.
+
+Risk: Receiving files into an existing directory or from unknown session codes can mix or overwrite local files.
+
+Mitigation: Receive into a fresh empty directory when possible and require confirmation for sensitive files or unfamiliar session codes.
+
+Risk: The skill transfers user-selected files outside the local agent environment.
+
+Mitigation: Confirm the exact file path before sending and avoid sensitive directories unless the user explicitly approves.
+
+## Reference(s):
+
+- [Perkoon homepage](https://perkoon.com)
+- [Perkoon A2A agent card](https://perkoon.com/.well-known/agent.json)
+- [Perkoon agent integration guide](https://perkoon.com/llms.txt)
+- [Perkoon automation docs](https://perkoon.com/automate)
+- [Perkoon CLI package](https://www.npmjs.com/package/perkoon)
+- [Perkoon MCP package](https://www.npmjs.com/package/@perkoon/mcp)
+- [ClawHub skill page](https://clawhub.ai/alex-vy/skills/perkoon-transfer)
+- [ClawHub publisher profile](https://clawhub.ai/user/alex-vy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls, code]
+
+**Output Format:** [Markdown with bash, JSON, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pinned package versions, JSON event handling, transfer status checks, and confirmation guidance for file paths and session codes.]
+
+## Skill Version(s):
+
+2.1.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

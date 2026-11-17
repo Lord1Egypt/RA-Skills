@@ -1,45 +1,65 @@
-## Description: <br>
-Enforces fine-grained spending policies before an agent executes payments, transfers, swaps, bridges, or x402 API payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforce fine-grained spending policies before executing any payment, transfer, swap, or bridge. Checks Conto policy engine for approval before money leaves your wallet. Use /conto to manage policies or check payments.
 
-## Publisher: <br>
-[kwattana](https://clawhub.ai/user/kwattana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwattana](https://clawhub.ai/user/kwattana)
 
-## Use Case: <br>
-External users, developers, and agent operators use Conto to check payment intent against policy controls before value leaves an agent wallet. The skill also supports viewing, creating, updating, and deleting Conto policies when an admin SDK key is provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent high-impact authority over payment approvals, policy changes, and fund movement. <br>
-Mitigation: Use a Standard SDK key for routine payment checks, keep Admin keys out of auto-running chat agents, and require explicit human confirmation before transfers or policy mutations. <br>
-Risk: A payment could proceed without the intended policy protection if the approval, execution, or confirmation flow is skipped or misapplied. <br>
-Mitigation: Require a Conto approval before transfer, stop on denials or expired approvals, and confirm successful transactions so spend tracking remains accurate. <br>
-Risk: Credential exposure or overly broad SDK permissions could let an agent or operator bypass intended controls. <br>
-Mitigation: Store CONTO_SDK_KEY only in the agent environment, prefer least-privilege SDK keys, and monitor Conto dashboard activity after use. <br>
+## Use Case:
 
+Developers and operators use this skill to make an OpenClaw agent check Conto spending policies before payments, transfers, swaps, bridges, and x402 API payments. It also supports reviewing pending approvals and managing policies when the configured SDK key permits administration.
 
-## Reference(s): <br>
-- [ClawHub Conto Skill](https://clawhub.ai/kwattana/conto) <br>
-- [Conto Homepage](https://conto.finance) <br>
-- [Conto SDK Docs](https://docs.conto.finance) <br>
-- [Conto Policy Documentation](https://conto.finance/docs/policies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API payloads, and payment status details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CONTO_SDK_KEY and may report approvals, denials, policy violations, transaction hashes, and explorer URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata; artifact files report 1.6.1) <br>
+Risk: The skill can participate in payment enforcement and, depending on wallet mode, payment execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for agents that should handle payments, restrict wallet spend limits, and require explicit confirmation before sending funds.
+
+Risk: Admin SDK keys allow policy creation, updates, deletion, and broader wallet or agent management actions.
+
+Mitigation: Prefer a Standard SDK key for routine payment checks and approvals; use an Admin key only when policy administration is required.
+
+Risk: Weak control boundaries can allow bypass if wallet signing is not gated on policy approval.
+
+Mitigation: Gate wallet signing or credentials on Conto approval, verify approved amount, recipient, and chain before execution, and fail closed when the Conto API is unavailable.
+
+Risk: The SDK key is stored in the local OpenClaw configuration.
+
+Mitigation: Review file permissions on ~/.openclaw/openclaw.json and limit access to the configured agent account.
+
+## Reference(s):
+
+- [ClawHub: Conto Skill](https://clawhub.ai/kwattana/skills/conto)
+- [Conto Homepage](https://conto.finance)
+- [Conto SDK Documentation](https://conto.finance/docs)
+- [Policy Documentation](https://conto.finance/docs/policies)
+- [Buyer-Side Control](https://conto.finance/docs/guides/buyer-side-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, python3, network access to the Conto API, and a CONTO_SDK_KEY for runtime commands.]
+
+## Skill Version(s):
+
+1.10.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

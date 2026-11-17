@@ -1,43 +1,58 @@
-## Description: <br>
-Generates personalized SMS or push notification medication reminder copy using behavioral psychology principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized medication adherence reminder messages using behavioral psychology principles, with command-line and Python API controls for medication, patient name, tone, principle, language, and output format.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External healthcare teams, researchers, and agent developers use this skill to draft medication reminder messages with selected behavioral principles. Generated copy should be reviewed in an approved healthcare, privacy, and compliance workflow before being sent to patients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is partly mislabeled as an academic-writing tool and lacks clear healthcare and privacy boundaries. <br>
-Mitigation: Relabel it as healthcare-adjacent medication messaging, document privacy and consent expectations, and use it only within an approved healthcare or research workflow. <br>
-Risk: Generated reminder copy may include unsupported adherence statistics or urgent and loss-framed claims. <br>
-Mitigation: Source or remove unsupported claims and require human clinical and compliance review before sending messages. <br>
-Risk: Real patient identifiers could be included in generated drafts. <br>
-Mitigation: Avoid real patient identifiers unless appropriate privacy controls are in place. <br>
+## Use Case:
 
+External users, care teams, and developers can use this skill to draft SMS or push-notification medication reminder copy with configurable reminder details, tone, behavioral principle, language, and output format. Patient-facing use should require human review because the security evidence flags unsupported medical claims and persuasive medication-reminder content.
 
-## Reference(s): <br>
-- [Audit Reference](artifact/references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/medication-adherence-message-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Plain text reminder message or JSON object with medication, patient, principle, tone, message, psychology insight, and alternative messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese or English output; medication is required, while patient name, dosage, time, principle, tone, and output format are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/SKILL.md body) <br>
+Risk: The package labels itself as academic writing while generating persuasive patient-facing medication reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after the publisher narrows the description and activation guidance to medication reminder drafting.
+
+Risk: Generated reminders may contain unsupported statistics, categorical dosing claims, or medication guidance.
+
+Mitigation: Require clinician or qualified human review before any patient-facing use and remove unsupported claims from templates.
+
+Risk: The package declares unnecessary unpinned dependencies.
+
+Mitigation: Install in an isolated environment and avoid unnecessary unpinned dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/medication-adherence-message-gen)
+- [Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Plain text or JSON medication-reminder content, with optional alternative messages and psychology insight.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires medication; optional patient name, dosage, time, psychology principle, tone, language, day, and progress.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

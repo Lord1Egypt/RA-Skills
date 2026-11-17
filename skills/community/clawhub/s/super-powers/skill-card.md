@@ -1,43 +1,57 @@
-## Description: <br>
-Install and run the published SuperPowers desktop streamer npm package for login, account verification, streamer startup, control-link opening, and common npm or runtime recovery without requiring source-code access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and runs the published `superpowers-ai` npm package so an agent can help a user log in, start or stop the SuperPowers desktop streamer, and troubleshoot common setup issues.
 
-## Publisher: <br>
-[rohanarun](https://clawhub.ai/user/rohanarun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rohanarun](https://clawhub.ai/user/rohanarun)
 
-## Use Case: <br>
-Developers and external users use this skill to install the third-party SuperPowers desktop streamer npm package locally, run its CLI, complete email or phone verification, start or stop the streamer, and troubleshoot common install, login, and streaming issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an unpinned third-party desktop streaming package that may expose screen or control access. <br>
-Mitigation: Verify the npm package and publisher before installation, install only when the desktop streamer is intended, and use the documented stop and logout commands when finished. <br>
-Risk: Screen Recording or Accessibility permissions can expose sensitive desktop activity if granted to an untrusted streamer. <br>
-Mitigation: Approve those permissions only when the service and session are trusted, and revoke them after use if access is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to install and operate the SuperPowers desktop streamer from the published npm package without source-code access. The skill also provides common install, login, streaming, and macOS permission troubleshooting guidance.
 
-## Reference(s): <br>
-- [Super Powers AI ClawHub Release](https://clawhub.ai/rohanarun/super-powers) <br>
-- [superpowers-ai npm Package](https://www.npmjs.com/package/superpowers-ai) <br>
-- [Install And Run](references/install.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs through a local .superpowers state directory and does not perform a global npm install.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill downloads and runs an unpinned npm package with the user's normal local permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the `superpowers-ai` package and publisher are trusted, prefer a least-privileged environment without sensitive environment variables, and check the resolved package version before granting permissions.
+
+Risk: The desktop streamer may require Screen Recording or Accessibility permissions on macOS.
+
+Mitigation: Grant permissions only after validating the package and use the documented stop or logout commands when finished.
+
+## Reference(s):
+
+- [Super Powers AI ClawHub page](https://clawhub.ai/rohanarun/skills/super-powers)
+- [rohanarun publisher profile](https://clawhub.ai/user/rohanarun)
+- [superpowers-ai npm package](https://www.npmjs.com/package/superpowers-ai)
+- [Install And Run](references/install.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands for local installation, streamer start and stop, account status, logout, and troubleshooting.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence, released 2026-04-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

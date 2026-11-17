@@ -1,0 +1,23 @@
+{
+  "name": "@receiptprotocol/spendcap",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Set hard per-purchase and daily spending limits for AI agents. Approve exceptions, pause access instantly, and get signed proof of every purchase made through Receipt.",
+  "license": "MIT-0",
+  "homepage": "https://receiptprotocol.com/spendcap",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "references",
+    "scripts"
+  ],
+  "clawhub": {
+    "publisher": "@receiptprotocol",
+    "category": "Finance",
+    "categories": [
+      "finance"
+    ],
+    "slug": "spendcap",
+    "displayName": "SpendCap"
+  }
+}

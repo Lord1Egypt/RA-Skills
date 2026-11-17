@@ -1,44 +1,60 @@
-## Description: <br>
-Orchestrates multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows for sustained collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multi-agent teams with defined roles, task lifecycles, handoff protocols, and review workflows.
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Developers, operators, and agent-team maintainers use this skill to define multi-agent roles, route tasks through reviewable lifecycles, coordinate handoffs, and maintain shared artifacts for recurring team workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared directories or spawned-agent permissions could expose secrets or unrelated private workspaces if scoped too broadly. <br>
-Mitigation: Confirm shared directories and spawned-agent permissions are limited to the project before installation or operation. <br>
-Risk: Cron-style automation could perform access-sensitive or credential-related work without clear human oversight. <br>
-Mitigation: Define exact schedules, triggers, and human approval points before automating recurring agent operations. <br>
+## Use Case:
 
+Developers and operators use this skill to set up sustained multi-agent workflows, route tasks through review, manage handoffs, and keep shared artifacts discoverable.
 
-## Reference(s): <br>
-- [Team Setup](references/team-setup.md) <br>
-- [Task Lifecycle](references/task-lifecycle.md) <br>
-- [Communication](references/communication.md) <br>
-- [Patterns](references/patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/admirobot/moa-team-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration instructions, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with templates, tables, ordered workflows, and inline shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no install-time code execution is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Multi-agent work can lose artifacts or context when output paths and handoff instructions are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require exact shared output paths, handoff summaries, verification steps, and known-issue notes for every spawned task.
+
+Risk: Agent teams can produce quality drift if builders approve their own work or review steps are skipped.
+
+Mitigation: Route completed work through a separate reviewer or orchestrator review before marking tasks done.
+
+Risk: Scheduled operations or dispatch loops may make changes without sufficient oversight.
+
+Mitigation: Define agent read/write boundaries, shared artifact locations, and human approval requirements for scheduled ops before use.
+
+## Reference(s):
+
+- [Team Setup](references/team-setup.md)
+- [Task Lifecycle](references/task-lifecycle.md)
+- [Communication](references/communication.md)
+- [Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

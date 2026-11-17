@@ -1,40 +1,61 @@
-## Description: <br>
-Dr Backup Gui is a disaster-recovery backup and migration GUI for configuring and running Velero, rclone, rsync, and Coriolis workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dr Backup Gui is a PyQt6 disaster-recovery GUI that integrates Velero Kubernetes backup and restore, rclone cloud storage sync, rsync file sync, and Coriolis VM migration workflows.
 
-## Publisher: <br>
-[chenzhouzhao](https://clawhub.ai/user/chenzhouzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenzhouzhao](https://clawhub.ai/user/chenzhouzhao)
 
-## Use Case: <br>
-Developers, platform operators, and system administrators use this skill to launch a local GUI for Kubernetes backup and restore, cloud storage synchronization, file synchronization, and cross-cloud VM migration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup, sync, restore, and migration commands can delete, overwrite, move, or modify real data and infrastructure resources. <br>
-Mitigation: Install and run on a controlled admin workstation or virtual environment, review source, destination, SSH target, endpoint, and delete settings, and use dry-run or non-production testing before production use. <br>
-Risk: Saved profiles and logs may contain sensitive connection details or operational context. <br>
-Mitigation: Restrict permissions on ~/.dr_backup_gui and avoid committing profiles, logs, or saved connection data to shared repositories. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to launch a GUI for backup, restore, storage synchronization, file synchronization, and VM migration tasks across Kubernetes, cloud storage, file systems, and Coriolis-managed clouds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenzhouzhao/dr-backup-gui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and GUI-generated command and log output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local profiles, job records, and activity logs under ~/.dr_backup_gui.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release and skill frontmatter) <br>
+Risk: The GUI can run backup, restore, sync, mirror, delete, and migration operations that affect live infrastructure or data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the active Kubernetes context and all rclone, rsync, and Coriolis targets before execution; test in non-production first and use dry-run or check modes where available.
+
+Risk: Local profile storage may contain sensitive operational metadata in plaintext.
+
+Mitigation: Restrict permissions on ~/.dr_backup_gui and avoid committing profiles.json, config.json, jobs.json, or activity.log to shared repositories.
+
+Risk: Dependency installation guidance includes package installation and a curl-to-kubectl style Velero install command.
+
+Mitigation: Install in a pinned virtual environment where possible and review any downloaded Kubernetes manifests before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenzhouzhao/skills/dr-backup-gui)
+- [Publisher profile](https://clawhub.ai/user/chenzhouzhao)
+- [rclone installation documentation](https://rclone.org/install/)
+- [Coriolis documentation](https://Coriolis.readthedocs.io/)
+- [Velero install manifest](https://raw.githubusercontent.com/vmware-tanzu/velero/main/install)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and GUI workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch a local PyQt6 GUI that writes profiles, jobs, and logs under ~/.dr_backup_gui.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

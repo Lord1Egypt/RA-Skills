@@ -1,40 +1,58 @@
-## Description: <br>
-Text-to-speech conversion using GLM-TTS service via the `uvx zai-tts` command for generating audio from text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech conversion using the GLM-TTS service via the `uvx zai-tts` command for generating audio from text.
 
-## Publisher: <br>
-[al-one](https://clawhub.ai/user/al-one) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[al-one](https://clawhub.ai/user/al-one)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate spoken audio from text or text files, including accessibility, multitasking, podcast-style, driving, cooking, and pre-cloned voice workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires copying an audio.z.ai browser auth token into an external command-line tool. <br>
-Mitigation: Use an official API key or scoped token if available, use a dedicated account where possible, and remove or rotate the token after use. <br>
-Risk: Text or files submitted for speech generation may contain private or sensitive content. <br>
-Mitigation: Avoid sending private text or files through this workflow unless the external service and account controls are acceptable for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/al-one/zai-tts) <br>
-- [audio.z.ai service](https://audio.z.ai) <br>
+## Use Case:
 
+External users and developers use this skill to convert supplied text or text files into WAV speech output with selectable GLM-TTS voices, speed, and volume.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated WAV audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uvx plus ZAI_AUDIO_USERID and ZAI_AUDIO_TOKEN environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to provide a browser-derived Z.ai session token to a command-line package.
+
+Mitigation: Use only when comfortable sharing that token with the client, protect the token as a secret, and prefer a proper scoped API credential if one is available.
+
+Risk: The command uses an unpinned runtime package.
+
+Mitigation: Prefer a version-pinned client or review the package version before installing and executing it.
+
+Risk: Selected text or files are sent to an external TTS service.
+
+Mitigation: Avoid processing sensitive documents, private prompts, or regulated data unless the service and account terms are approved for that use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/al-one/skills/zai-tts)
+- [Zai-TTS homepage](https://github.com/aahl/zai-tts)
+- [Z.ai audio service](https://audio.z.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Audio]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated command outputs WAV audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires `uvx`, `ZAI_AUDIO_USERID`, and `ZAI_AUDIO_TOKEN`; supports text input, file input, voice selection, speed, and volume options.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

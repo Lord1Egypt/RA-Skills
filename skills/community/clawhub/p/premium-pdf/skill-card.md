@@ -1,41 +1,58 @@
-## Description: <br>
-Generate premium enterprise-style PDFs from markdown content, with automatic de-AI text humanization and a professional Navy + Gold design system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate premium enterprise-style PDFs from markdown content, with automatic de-AI text humanization and a professional Navy + Gold design system.
 
-## Publisher: <br>
-[andreasozzo](https://clawhub.ai/user/andreasozzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreasozzo](https://clawhub.ai/user/andreasozzo)
 
-## Use Case: <br>
-Developers and agents use this skill to convert markdown or text into polished PDF reports, proposals, and enterprise documents. It can also rewrite common AI-sounding phrases before rendering, so generated documents should be reviewed when exact wording matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency hygiene issues may arise from unpinned reportlab and Pillow versions. <br>
-Mitigation: Install the skill in an isolated Python environment and pin vetted dependency versions before use. <br>
-Risk: The de-AI pass intentionally rewrites some wording, which can change exact phrasing in generated PDFs. <br>
-Mitigation: Review generated PDFs before sharing them when exact wording or compliance language matters. <br>
+## Use Case:
 
+External users, developers, and document authors use this skill to turn markdown text or markdown files into polished PDF reports, proposals, and business documents. The skill is useful when an agent needs to generate a styled PDF and return the generated file path to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreasozzo/premium-pdf) <br>
-- [Project homepage](https://github.com/andreasozzo/SkillsAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [PDF file generated from markdown, with command output reporting the generated file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 on macOS or Linux and Python packages reportlab and Pillow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill intentionally rewrites markdown text before rendering, which can change wording or meaning in the generated PDF.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated PDFs before sharing or relying on them, especially for legal, financial, medical, or customer-facing documents.
+
+Risk: The skill reads user-supplied markdown files and optional logo image files from paths passed on the command line.
+
+Mitigation: Pass only markdown and logo files the user intended the agent to read, and avoid pointing the skill at unrelated or sensitive files.
+
+Risk: The skill depends on Python packages installed from requirements.txt.
+
+Mitigation: Install dependencies in a virtual environment and avoid package installation with administrator privileges.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andreasozzo/skills/premium-pdf)
+- [Publisher Profile](https://clawhub.ai/user/andreasozzo)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, markdown, guidance]
+
+**Output Format:** [PDF file plus terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads markdown text or a markdown file, optionally reads a PNG or JPG logo, writes a PDF to the requested output path, and prints the absolute path of the generated PDF.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

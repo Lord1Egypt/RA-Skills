@@ -1,43 +1,60 @@
-## Description: <br>
-Set up and operate a disinto autonomous code factory for bootstrapping a factory instance, checking agents and CI, managing backlog work, and troubleshooting the stack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and operate a disinto autonomous code factory. Use when bootstrapping a new factory instance, checking on agents and CI, managing the backlog, or troubleshooting the stack.
 
-## Publisher: <br>
-[johba37](https://clawhub.ai/user/johba37) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[johba37](https://clawhub.ai/user/johba37)
 
-## Use Case: <br>
-Developers and engineering operators use this skill to initialize and run an autonomous code factory around repositories, local Forgejo, Woodpecker CI, containerized agents, backlog triage, pull requests, merges, mirrors, and operational troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad repository, CI, local token, Docker container, and external mirror operations. <br>
-Mitigation: Run it in an isolated environment, use trusted workloads, review mirror and merge settings, and limit access to required repositories and services. <br>
-Risk: Some workflows include destructive or privileged operations such as branch deletion, state cleanup, hard resets, password resets, and privileged host-network CI changes. <br>
-Mitigation: Require human confirmation before destructive or privileged commands and review the exact target repository, branch, container, and credentials before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to bootstrap, operate, monitor, and troubleshoot a disinto autonomous code factory for repositories, agents, CI, backlog management, pull requests, and mirrors.
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Project homepage](https://disinto.ai) <br>
-- [Repository](https://github.com/disinto/disinto) <br>
-- [ClawHub release page](https://clawhub.ai/johba37/disinto-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational checklists and command sequences for local factory setup, status checks, CI inspection, mirroring, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: High-impact factory administration can affect credentials, containers, CI workers, repositories, and destructive recovery state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the factory on an isolated host or container, review commands before execution, and avoid privileged or host-network CI workers unless that risk is explicitly accepted.
+
+Risk: Tokens, passwords, or Git credentials may be exposed through command lines, logs, or remotes.
+
+Mitigation: Avoid pasting real passwords into command lines, limit log exposure, and rotate any tokens exposed in logs or Git remotes.
+
+Risk: Running the skill against untrusted factory directories may lead to unsafe administrative operations.
+
+Mitigation: Use trusted factory directories only and keep execution in an isolated environment.
+
+## Reference(s):
+
+- [Disinto homepage](https://disinto.ai)
+- [Disinto repository](https://github.com/disinto/disinto)
+- [Disinto Factory on ClawHub](https://clawhub.ai/johba37/skills/disinto-factory)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended to be reviewed before execution, especially when they affect credentials, containers, CI, repositories, or recovery state.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence, metadata, and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

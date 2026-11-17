@@ -1,17 +1,17 @@
-# 传统前端规范
+# Traditional front-end specifications
 
-Frontend Craft skill for 传统前端规范.
+Maintain and improve existing vanilla JavaScript, jQuery, or multipage frontend code safely.
 
 ## Skill
 
 - ID: `fec-legacy-web-standard`
 - Category: `legacy-migration`
-- Version: `2.4.0`
+- Version: `2.9.0`
 - Source: `skills/fec-legacy-web-standard/SKILL.md`
 
 ## Description
 
-Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include 传统前端, 原生 JS, jQuery.
+Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include traditional frontend, native JS, jQuery.
 
 ## Usage
 
@@ -23,9 +23,9 @@ Install or import this package with any skill runtime that understands the stand
 
 ## Optional Related Packages
 
-- `@frontend-craft/fec-legacy-to-modern-migration`
-- `@frontend-craft/fec-security-review`
-- `@frontend-craft/fec-validation-fix`
+- `@bovinphang/fec-legacy-to-modern-migration`
+- `@bovinphang/fec-security-review`
+- `@bovinphang/fec-validation-fix`
 
 ## License
 

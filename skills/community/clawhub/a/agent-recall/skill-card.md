@@ -1,51 +1,68 @@
-## Description: <br>
-AgentRecall provides local, persistent memory for AI agents through MCP tools, hooks, commands, and markdown/JSON stores for sessions, recalls, corrections, and cross-project insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentRecall provides persistent, local memory for AI agents through MCP tools for session context, recall, saving, checks, and digest workflows.
 
-## Publisher: <br>
-[goldentrii](https://clawhub.ai/user/goldentrii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldentrii](https://clawhub.ai/user/goldentrii)
 
-## Use Case: <br>
-Developers and agent users use AgentRecall to preserve project memory, corrections, decisions, and recall context across recurring AI-agent sessions. It is intended for local-first workflows where agents need durable notes, cross-project insights, and session continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable local memory can retain agent-readable long-term notes, including sensitive information if users store it. <br>
-Mitigation: Do not store secrets or credentials, and periodically inspect or purge ~/.agent-recall. <br>
-Risk: Hooks, /arsaveall, and sync-memory expand access beyond the narrow default MCP workflow by reading prompts, transcripts, or memory files. <br>
-Mitigation: Start with the default MCP server and avoid enabling hooks, /arsaveall, or sync-memory until their access patterns are understood. <br>
-Risk: Some workflows include shell-driven commands and deletion behavior. <br>
-Mitigation: Review generated commands before execution and require explicit human confirmation before destructive operations. <br>
-Risk: Installing through floating package commands can change the code that runs in future sessions. <br>
-Mitigation: Pin package versions where possible and review updates before deployment. <br>
+## Use Case:
 
+Developers and teams using MCP-compatible coding agents use AgentRecall to preserve session context, decisions, corrections, and cross-project lessons across local projects.
 
-## Reference(s): <br>
-- [AgentRecall ClawHub page](https://clawhub.ai/goldentrii/agent-recall) <br>
-- [agent-recall-mcp npm package](https://www.npmjs.com/package/agent-recall-mcp) <br>
-- [agent-recall-sdk npm package](https://www.npmjs.com/package/agent-recall-sdk) <br>
-- [agent-recall-cli npm package](https://www.npmjs.com/package/agent-recall-cli) <br>
-- [Command Reference](docs/commands.md) <br>
-- [Recall Scoring Design Rationale](docs/SCORING.md) <br>
-- [MCP Adapter Interface Specification](docs/mcp-adapter-spec.md) <br>
-- [Intelligent Distance Protocol](docs/intelligent-distance-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool calls, shell commands, JSON/YAML configuration examples, and local markdown/JSON memory artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs and stored memory are local-first; persistent notes may remain agent-readable until inspected, archived, or purged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.27 (source: server release, SKILL.md frontmatter, package metadata) <br>
+Risk: Persistent local memory can store prompts, corrections, project summaries, and cross-project insights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored files under ~/.agent-recall and avoid saving sensitive content unless the user has approved that storage.
+
+Risk: Automatic hooks and /arsaveall may read broader agent transcript or configuration files than basic MCP usage.
+
+Mitigation: Start with basic MCP mode and review the exact files read before enabling hooks or /arsaveall.
+
+Risk: Installing command files from a mutable branch can change behavior after review.
+
+Mitigation: Pin or verify downloaded command files before installing them.
+
+Risk: Deletion or cleanup flows can remove local memory.
+
+Mitigation: Back up ~/.agent-recall before using deletion or cleanup commands.
+
+## Reference(s):
+
+- [AgentRecall ClawHub listing](https://clawhub.ai/goldentrii/skills/agent-recall)
+- [agent-recall-mcp npm package](https://www.npmjs.com/package/agent-recall-mcp)
+- [agent-recall-sdk npm package](https://www.npmjs.com/package/agent-recall-sdk)
+- [agent-recall-cli npm package](https://www.npmjs.com/package/agent-recall-cli)
+- [MCP adapter specification](docs/mcp-adapter-spec.md)
+- [Command reference](docs/commands.md)
+- [Recall scoring design rationale](docs/SCORING.md)
+- [Intelligent Distance Protocol](docs/intelligent-distance-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON tool responses with shell and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist local markdown and JSON memory under ~/.agent-recall when configured.]
+
+## Skill Version(s):
+
+3.3.27 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

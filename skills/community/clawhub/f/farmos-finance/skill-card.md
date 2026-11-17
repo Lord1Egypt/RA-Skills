@@ -1,41 +1,57 @@
-## Description: <br>
-Query farm financial data including cash flow projections, cost tracking, and breakeven analysis with admin-only access controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries farm financial data for cash flow projections, cost tracking, and breakeven analysis, with admin-only access for highly sensitive data.
 
-## Publisher: <br>
-[brianppetty](https://clawhub.ai/user/brianppetty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianppetty](https://clawhub.ai/user/brianppetty)
 
-## Use Case: <br>
-Farm owners and authorized administrators use this skill to retrieve cost summaries, cash flow projections, breakeven analysis, and detailed cost line items while keeping financial data restricted to admin users. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill documents access to sensitive farm financial data. <br>
-Mitigation: Use only with admin authorization and do not return financial details to non-admin users. <br>
-Risk: The security summary notes plain HTTP and unauthenticated integration endpoints. <br>
-Mitigation: Install only on a trusted private network, prefer HTTPS and authenticated endpoints, and enable AI access only intentionally. <br>
-Risk: Partial endpoint failures can lead to misleading financial reporting. <br>
-Mitigation: State endpoint failures clearly and do not present costs without revenue as a complete cash flow picture. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brianppetty/farmos-finance) <br>
+## Use Case:
 
+Authorized farm owners and admins use this skill to review operating costs, monthly cash flow, cost categories, and crop breakeven metrics. It helps an agent answer finance questions while requiring totals, error disclosure, and admin-only access.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with API request guidance and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial reports should state totals, disclose endpoint failures, and avoid presenting partial cash flow data as complete.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive farm financial data could be exposed if integration endpoints bypass admin authorization.
+
+Mitigation: Require server-side admin authorization on every finance endpoint before use, and restrict responses to verified farm owners or admins.
+
+Risk: Bearer tokens and financial data could be exposed over plaintext HTTP.
+
+Mitigation: Use HTTPS or another authenticated encrypted transport for all finance API requests.
+
+Risk: Partial finance results could mislead users when revenue data or an endpoint fails.
+
+Mitigation: State totals, disclose revenue-side failures, and report endpoint errors instead of presenting incomplete data as complete analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianppetty/skills/farmos-finance)
+- [Publisher profile](https://clawhub.ai/user/brianppetty)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with endpoint references and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires crop_year and admin authorization when accessing sensitive financial data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

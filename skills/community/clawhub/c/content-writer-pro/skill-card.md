@@ -1,42 +1,49 @@
-## Description: <br>
-Content Writer Pro helps generate marketing copy, social media posts, ads, brand stories, product descriptions, and emails with customizable tones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates marketing copy, social media posts, advertising copy, brand stories, product descriptions, Twitter threads, and email content with configurable tones.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Marketing teams, content creators, and developers can use this skill to draft reusable copy for campaigns, social channels, ads, brand narratives, product pages, and email templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional copy can include claims, calls to action, or positioning that are inaccurate for a product, audience, or regulated use case. <br>
-Mitigation: Review generated copy for factual accuracy, brand fit, legal requirements, and compliance before publishing. <br>
-Risk: The skill installs standard Python dependencies for local use. <br>
-Mitigation: Review requirements.txt, install in an isolated environment, and run the included tests when functionality matters. <br>
+## Use Case:
 
+Marketers, content creators, and developers use this skill to draft reusable copy for campaigns, social channels, ads, brand narratives, product descriptions, and customer emails. It supports tone selection and template-based variations for common content workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaiyuelv/content-writer-pro) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Plain text and Markdown-style copy, with Python helper results represented as strings, lists, or dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Template-based local generation with randomized variation selection and configurable tone, platform, length, and language settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned or unnecessary Python dependencies can increase ordinary package-install supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies before installation and prefer a lockfile or pinned versions for deployed use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/content-writer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text and Markdown-ready copy snippets, with optional structured dictionaries from helper APIs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template-based generation can return variations, metadata, headlines, body copy, calls to action, and email subject/body content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_query_instance_info",
+		"description": "Query workbench workflow process instance details, including current tasks, approval history and comments. No moduleId required.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"instanceId": {
+					"type": "string",
+					"description": "The process instance ID."
+				}
+			},
+			"required": ["instanceId"]
+		}
+	}
+}

@@ -1,44 +1,58 @@
-## Description: <br>
-A command-line skill built on the LongPort OpenAPI Python SDK for quotes, account positions, order management, and market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing LongPort OpenAPI CLI workflows for stock quotes, account balances and positions, order management, and market data.
 
-## Publisher: <br>
-[frankxiong](https://clawhub.ai/user/frankxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankxiong](https://clawhub.ai/user/frankxiong)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent query LongBridge brokerage market data, account balances, positions, orders, and, when explicitly enabled, submit or cancel limit orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent access to sensitive LongBridge brokerage account data. <br>
-Mitigation: Install only for intended brokerage workflows, use paper-trading or least-privilege credentials where possible, and avoid shared or synced directories for credential files. <br>
-Risk: If trading is enabled, buy, sell, and cancel commands can affect a live brokerage account. <br>
-Mitigation: Keep LONGBRIDGE_TRADE_ENABLED unset or false by default and enable it only for deliberate trading sessions. <br>
-Risk: The documented --yes/-y option bypasses trade confirmation prompts for programmatic use. <br>
-Mitigation: Avoid --yes/-y for live trades and require human review before submitting or cancelling orders. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent query Longbridge account and market data, produce CLI calls, and format results as text or JSON. Users may also route order-management requests through the CLI when trading is deliberately enabled.
 
-## Reference(s): <br>
-- [LongPort OpenAPI](https://open.longportapp.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/frankxiong/longbridge-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/frankxiong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON-capable CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LongBridge API credentials and supports optional named profiles for account selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: An AI-accessible CLI can read Longbridge brokerage account data when credentials are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended account access, keep credentials least-privileged, and prefer paper or read-only profiles for agent workflows.
+
+Risk: Live buy, sell, or cancel commands can execute when trading is enabled, and --yes/-y bypasses confirmation prompts.
+
+Mitigation: Keep the default read-only mode unless deliberately trading, avoid --yes/-y for live orders, and require human review before order submission.
+
+Risk: Profile and .env files may hold brokerage secrets used by the CLI.
+
+Mitigation: Protect profile files, separate paper and live credentials, and review environment-file handling before using real brokerage accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankxiong/skills/longbridge-kit)
+- [LongPort OpenAPI](https://open.longportapp.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples; CLI commands can return table text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, uv, and Longbridge credential environment variables; trade actions remain read-only unless explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

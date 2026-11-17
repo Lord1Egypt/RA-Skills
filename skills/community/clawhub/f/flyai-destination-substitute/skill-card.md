@@ -1,55 +1,69 @@
-## Description: <br>
-平替旅行家 helps travelers break down the core experience of an aspirational destination and find closer or lower-cost substitute destinations that match the user's budget, time, distance, or visa constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+平替旅行家 helps users decompose the core experience of an expensive, distant, or difficult dream destination and find closer or lower-cost substitute destinations with transparent tradeoffs.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External travelers use this skill to turn a destination they consider too expensive, far away, time-consuming, or difficult to visit into feasible substitute trip options. The skill guides an agent through experience decomposition, FlyAI-backed destination search, flight and hotel checks, match scoring, budget comparison, and transparent difference notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can install or upgrade global CLI packages without pinning and may suggest sudo when permissions fail. <br>
-Mitigation: Review installation commands before execution, prefer a pinned CLI version in an isolated Node environment, and avoid sudo or global installs unless explicitly approved. <br>
-Risk: The workflow instructs agents to set NODE_TLS_REJECT_UNAUTHORIZED=0 for routine searches, disabling TLS certificate validation. <br>
-Mitigation: Keep TLS validation enabled by default and only disable it for a clearly understood temporary troubleshooting case after user approval. <br>
-Risk: The skill may persist travel profile details such as location, budget, family context, and special needs in memory or ~/.flyai/user-profile.md. <br>
-Mitigation: Ask for consent before saving profile data, avoid persisting sensitive details unless necessary, and periodically review or delete stored profile entries. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to turn a desired but impractical destination into substitute trip options based on budget, time, visa difficulty, distance, transport, lodging, attractions, and experiential similarity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-destination-substitute) <br>
-- [Workflow](reference/workflow.md) <br>
-- [Tools](reference/tools.md) <br>
-- [Examples](reference/examples.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
-- [Self-learning](reference/self-learning.md) <br>
-- [AI search](reference/ai-search.md) <br>
-- [Keyword search](reference/keyword-search.md) <br>
-- [Flight search](reference/search-flight.md) <br>
-- [Hotel search](reference/search-hotel.md) <br>
-- [POI search](reference/search-poi.md) <br>
-- [Train search](reference/search-train.md) <br>
-- [Marriott hotel search](reference/search-marriott-hotel.md) <br>
-- [Marriott package search](reference/search-marriott-package.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown travel recommendations with comparison tables, command snippets, budget estimates, match scores, and caveat notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-profile read/write prompts and travel search command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The security summary flags mutable global FlyAI CLI installation and a sudo fallback as suspicious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, pin a trusted version where possible, and use a user-scoped Node environment instead of sudo.
+
+Risk: The security guidance flags commands that disable TLS verification with NODE_TLS_REJECT_UNAUTHORIZED=0.
+
+Mitigation: Do not disable TLS verification; use normal TLS validation and fail closed until the package or endpoint certificate issue is fixed.
+
+Risk: The skill can read or save travel preferences in Qoder Memory or a local ~/.flyai/user-profile.md file.
+
+Mitigation: Ask before saving preferences, keep sensitive travel details out of the profile, and let users review or remove stored profile data.
+
+## Reference(s):
+
+- [Workflow](reference/workflow.md)
+- [Tools](reference/tools.md)
+- [User Profile Storage](reference/user-profile-storage.md)
+- [Examples](reference/examples.md)
+- [AI Search](reference/ai-search.md)
+- [Keyword Search](reference/keyword-search.md)
+- [Flight Search](reference/search-flight.md)
+- [Hotel Search](reference/search-hotel.md)
+- [POI / Attraction Search](reference/search-poi.md)
+- [Train Search](reference/search-train.md)
+- [Marriott Hotel Search](reference/search-marriott-hotel.md)
+- [Marriott Package Search](reference/search-marriott-package.md)
+- [Self-Learning](reference/self-learning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel recommendations with inline shell commands and JSON-shaped examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destination match scores, cost comparisons, transport and lodging options, attraction summaries, tradeoff notes, and optional user-profile updates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Manages a local knowledge base by converting uploaded docx, pdf, xlsx, and pptx files to Markdown and retrieving stored content for agent responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local knowledge-base skill for adding documents to a workspace knowledge base and retrieving relevant stored knowledge for agent responses.
 
-## Publisher: <br>
-[overdue-lin](https://clawhub.ai/user/overdue-lin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[overdue-lin](https://clawhub.ai/user/overdue-lin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to ingest uploaded office documents into a local Markdown knowledge base and retrieve relevant stored knowledge during later tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents are converted into a persistent local knowledge base and may be reused in later retrieval. <br>
-Mitigation: Avoid ingesting secrets or sensitive documents unless local retention is acceptable, and review stored Markdown files and index entries. <br>
-Risk: Proactive retrieval setup can change future agent behavior through SOUL.md instructions. <br>
-Mitigation: Review any SOUL.md change before enabling proactive retrieval. <br>
-Risk: Original uploaded files may be deleted after conversion, which can make recovery difficult if conversion quality is poor. <br>
-Mitigation: Keep separate copies of important originals until the converted Markdown and index entry have been reviewed. <br>
+## Use Case:
 
+Developers, engineers, and external users use this skill to ingest uploaded docx, pdf, xlsx, and pptx files into a local Markdown knowledge base, maintain a JSON index, and retrieve relevant stored documents to support task responses.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/overdue-lin/claw-local-knowledge) <br>
-- [Add knowledge workflow](references/add_knowledge.md) <br>
-- [Retrieval workflow](references/retrieval_knowledge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON index entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces converted Markdown knowledge files and updates a local JSON knowledge-base index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: A workspace-local knowledge base can influence future agent answers, including content from documents that may not be trustworthy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ingest only trusted documents, review retrieved content before relying on it, and treat stored knowledge as contextual evidence rather than authoritative instructions.
+
+Risk: The skill recommends modifying SOUL.md to enable persistent proactive retrieval behavior.
+
+Mitigation: Apply the SOUL.md configuration only when that persistent behavior is intended, and review the resulting instructions before use.
+
+Risk: The ingestion workflow deletes source uploads after successful conversion and index update.
+
+Mitigation: Confirm the converted Markdown and index entry are correct, and retain separate backups when original uploads must be preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/overdue-lin/skills/claw-local-knowledge)
+- [README](artifact/README.md)
+- [Add knowledge workflow](artifact/references/add_knowledge.md)
+- [Knowledge retrieval workflow](artifact/references/retrieval_knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown knowledge files and a JSON knowledge-base index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

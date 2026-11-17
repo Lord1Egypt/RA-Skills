@@ -1,0 +1,1233 @@
+{
+  "meta": {
+    "total": 84,
+    "defaultViewBox": "0 0 1280 720",
+    "formats": [
+      "ppt169"
+    ],
+    "filePattern": "{key}.svg",
+    "libraryPositioning": "Visualization template library covering charts, infographics, diagrams, and strategic frameworks. The `charts/` path is retained for backward compatibility.",
+    "updated": "2026-04-18"
+  },
+  "categories": {
+    "comparison": {
+      "label": "Comparison",
+      "charts": [
+        "bar_chart",
+        "horizontal_bar_chart",
+        "grouped_bar_chart",
+        "stacked_bar_chart",
+        "butterfly_chart",
+        "bullet_chart",
+        "dumbbell_chart",
+        "waterfall_chart"
+      ]
+    },
+    "trend": {
+      "label": "Trend",
+      "charts": [
+        "line_chart",
+        "area_chart",
+        "stacked_area_chart",
+        "dual_axis_line_chart"
+      ]
+    },
+    "composition": {
+      "label": "Composition",
+      "charts": [
+        "pie_chart",
+        "donut_chart",
+        "treemap_chart"
+      ]
+    },
+    "metrics": {
+      "label": "Metrics",
+      "charts": [
+        "kpi_cards",
+        "gauge_chart",
+        "progress_bar_chart"
+      ]
+    },
+    "analysis": {
+      "label": "Analysis",
+      "charts": [
+        "radar_chart",
+        "scatter_chart",
+        "funnel_chart",
+        "matrix_2x2",
+        "bubble_chart",
+        "heatmap_chart",
+        "pareto_chart",
+        "box_plot_chart"
+      ]
+    },
+    "process": {
+      "label": "Project Management / Relationships",
+      "charts": [
+        "gantt_chart",
+        "timeline",
+        "process_flow",
+        "org_chart",
+        "sankey_chart"
+      ]
+    },
+    "strategy": {
+      "label": "Strategic Frameworks",
+      "charts": [
+        "swot_analysis",
+        "porter_five_forces"
+      ]
+    },
+    "narrative": {
+      "label": "Narrative Pages",
+      "charts": [
+        "big_number_hero",
+        "quote_callout",
+        "split_content",
+        "three_columns",
+        "image_caption"
+      ]
+    },
+    "infographic": {
+      "label": "Infographics",
+      "charts": [
+        "pyramid_chart",
+        "venn_diagram",
+        "pros_cons_chart",
+        "cycle_diagram",
+        "numbered_steps",
+        "icon_grid",
+        "isometric_stairs",
+        "mind_map",
+        "comparison_table",
+        "snake_flow",
+        "roadmap_vertical",
+        "sector_diagram",
+        "word_cloud",
+        "concentric_circles",
+        "chevron_process",
+        "comparison_columns",
+        "fishbone_diagram",
+        "hub_spoke",
+        "vertical_list"
+      ]
+    },
+    "uml": {
+      "label": "UML Diagrams",
+      "charts": [
+        "tech_uml_class",
+        "tech_uml_object",
+        "tech_uml_package",
+        "tech_uml_component",
+        "tech_uml_composite",
+        "tech_uml_deployment",
+        "tech_uml_profile",
+        "tech_uml_usecase",
+        "tech_uml_activity",
+        "tech_uml_state",
+        "tech_uml_interaction",
+        "tech_uml_communication",
+        "tech_uml_timing",
+        "tech_sequence"
+      ]
+    },
+    "ai_agent": {
+      "label": "AI / Agent Architecture",
+      "charts": [
+        "tech_multi_agent",
+        "tech_rag_pipeline",
+        "tech_agentic_search",
+        "tech_tool_call_flow",
+        "tech_agent_memory_types",
+        "tech_mem0_memory"
+      ]
+    },
+    "tech_architecture": {
+      "label": "Technical Architecture",
+      "charts": [
+        "tech_architecture",
+        "tech_flowchart",
+        "tech_swimlane",
+        "tech_data_flow",
+        "tech_er_diagram",
+        "tech_mindmap",
+        "tech_comparison_matrix"
+      ]
+    }
+  },
+  "quickLookup": {
+    "ranking": [
+      "horizontal_bar_chart",
+      "bar_chart",
+      "pareto_chart"
+    ],
+    "comparison": [
+      "bar_chart",
+      "grouped_bar_chart",
+      "butterfly_chart",
+      "dumbbell_chart"
+    ],
+    "trend": [
+      "line_chart",
+      "area_chart",
+      "stacked_area_chart",
+      "dual_axis_line_chart"
+    ],
+    "composition": [
+      "donut_chart",
+      "pie_chart",
+      "treemap_chart"
+    ],
+    "kpi": [
+      "kpi_cards",
+      "bullet_chart",
+      "gauge_chart",
+      "progress_bar_chart"
+    ],
+    "conversion": [
+      "funnel_chart",
+      "sankey_chart",
+      "waterfall_chart"
+    ],
+    "distribution": [
+      "box_plot_chart",
+      "heatmap_chart",
+      "scatter_chart",
+      "bubble_chart"
+    ],
+    "correlation": [
+      "scatter_chart",
+      "bubble_chart",
+      "radar_chart"
+    ],
+    "roadmap": [
+      "gantt_chart",
+      "timeline",
+      "process_flow"
+    ],
+    "relationship": [
+      "org_chart",
+      "sankey_chart",
+      "matrix_2x2"
+    ],
+    "flow": [
+      "process_flow",
+      "sankey_chart",
+      "waterfall_chart"
+    ],
+    "strategy": [
+      "swot_analysis",
+      "porter_five_forces",
+      "matrix_2x2"
+    ],
+    "hierarchy": [
+      "pyramid_chart",
+      "isometric_stairs",
+      "org_chart",
+      "concentric_circles"
+    ],
+    "infographic": [
+      "icon_grid",
+      "numbered_steps",
+      "cycle_diagram",
+      "venn_diagram",
+      "pros_cons_chart",
+      "mind_map",
+      "hub_spoke",
+      "sector_diagram",
+      "word_cloud",
+      "vertical_list"
+    ],
+    "pros_cons": [
+      "pros_cons_chart",
+      "butterfly_chart",
+      "swot_analysis",
+      "comparison_table",
+      "comparison_columns"
+    ],
+    "cause_effect": [
+      "fishbone_diagram",
+      "process_flow"
+    ],
+    "journey": [
+      "snake_flow",
+      "timeline",
+      "roadmap_vertical",
+      "chevron_process"
+    ],
+    "pricing": [
+      "comparison_columns",
+      "comparison_table"
+    ],
+    "brainstorm": [
+      "mind_map",
+      "word_cloud",
+      "hub_spoke"
+    ],
+    "uml": [
+      "tech_uml_class",
+      "tech_uml_usecase",
+      "tech_uml_activity",
+      "tech_uml_state",
+      "tech_sequence",
+      "tech_uml_component",
+      "tech_uml_deployment"
+    ],
+    "ai_agent": [
+      "tech_multi_agent",
+      "tech_rag_pipeline",
+      "tech_agentic_search",
+      "tech_tool_call_flow",
+      "tech_agent_memory_types",
+      "tech_mem0_memory"
+    ],
+    "architecture": [
+      "tech_architecture",
+      "tech_flowchart",
+      "tech_swimlane",
+      "tech_data_flow",
+      "tech_er_diagram"
+    ],
+    "database": [
+      "tech_er_diagram",
+      "tech_data_flow"
+    ],
+    "software_design": [
+      "tech_uml_class",
+      "tech_uml_component",
+      "tech_uml_package",
+      "tech_uml_composite",
+      "tech_uml_object"
+    ],
+    "behavior_modeling": [
+      "tech_uml_activity",
+      "tech_uml_state",
+      "tech_sequence",
+      "tech_uml_interaction",
+      "tech_uml_communication",
+      "tech_uml_timing"
+    ],
+    "deployment": [
+      "tech_uml_deployment",
+      "tech_architecture"
+    ],
+    "llm": [
+      "tech_rag_pipeline",
+      "tech_tool_call_flow",
+      "tech_agentic_search",
+      "tech_multi_agent"
+    ]
+  },
+  "charts": {
+    "area_chart": {
+      "label": "Area Chart",
+      "summary": "Trend changes and cumulative volume (1-2 series, continuous time axis)",
+      "keywords": [
+        "trend",
+        "cumulative",
+        "area chart",
+        "time series"
+      ]
+    },
+    "bar_chart": {
+      "label": "Bar Chart",
+      "summary": "Category value comparison (3-8 categories, single series)",
+      "keywords": [
+        "comparison",
+        "ranking",
+        "category",
+        "bar chart"
+      ]
+    },
+    "box_plot_chart": {
+      "label": "Box Plot",
+      "summary": "Data distribution, median, dispersion and outlier analysis",
+      "keywords": [
+        "distribution",
+        "statistics",
+        "outlier",
+        "box plot"
+      ]
+    },
+    "bubble_chart": {
+      "label": "Bubble Chart",
+      "summary": "Three-dimensional data visualization (x, y, size)",
+      "keywords": [
+        "correlation",
+        "three-dimensional",
+        "bubble chart",
+        "competitive"
+      ]
+    },
+    "bullet_chart": {
+      "label": "Bullet Chart",
+      "summary": "Target vs actual value comparison; compact multi-metric dashboard",
+      "keywords": [
+        "target",
+        "actual",
+        "performance",
+        "bullet chart"
+      ]
+    },
+    "butterfly_chart": {
+      "label": "Butterfly Chart",
+      "summary": "Bidirectional mirror comparison of two datasets",
+      "keywords": [
+        "bidirectional comparison",
+        "butterfly chart",
+        "mirror",
+        "demographics"
+      ]
+    },
+    "donut_chart": {
+      "label": "Donut Chart",
+      "summary": "Proportion and composition (3-6 parts, center KPI emphasis)",
+      "keywords": [
+        "proportion",
+        "composition",
+        "donut chart",
+        "share"
+      ]
+    },
+    "dual_axis_line_chart": {
+      "label": "Dual-Axis Line Chart",
+      "summary": "Dual Y-axis trend comparison with different units (2 metrics)",
+      "keywords": [
+        "dual axis",
+        "line chart",
+        "trend",
+        "unit of measure"
+      ]
+    },
+    "dumbbell_chart": {
+      "label": "Dumbbell Chart",
+      "summary": "Before-after or two-group value difference comparison",
+      "keywords": [
+        "difference",
+        "before-after comparison",
+        "dumbbell chart",
+        "evaluation"
+      ]
+    },
+    "funnel_chart": {
+      "label": "Funnel Chart",
+      "summary": "Stage conversion and drop-off analysis (3-5 stages)",
+      "keywords": [
+        "conversion",
+        "funnel",
+        "drop-off",
+        "stage"
+      ]
+    },
+    "gantt_chart": {
+      "label": "Gantt Chart",
+      "summary": "Project scheduling with task spans and dependencies (6-12 tasks)",
+      "keywords": [
+        "scheduling",
+        "Gantt chart",
+        "project",
+        "roadmap"
+      ]
+    },
+    "gauge_chart": {
+      "label": "Gauge Chart",
+      "summary": "Single-metric goal achievement visualization",
+      "keywords": [
+        "achievement",
+        "gauge",
+        "KPI",
+        "progress"
+      ]
+    },
+    "grouped_bar_chart": {
+      "label": "Grouped Bar Chart",
+      "summary": "Multi-series grouped comparison (2-4 series across categories)",
+      "keywords": [
+        "grouped",
+        "multi-series",
+        "bar chart",
+        "year-over-year"
+      ]
+    },
+    "heatmap_chart": {
+      "label": "Heatmap",
+      "summary": "Matrix intensity and pattern recognition (two-dimensional grid)",
+      "keywords": [
+        "heatmap",
+        "matrix",
+        "correlation",
+        "intensity"
+      ]
+    },
+    "horizontal_bar_chart": {
+      "label": "Horizontal Bar Chart",
+      "summary": "Long-label ranking and category comparison (5-12 items)",
+      "keywords": [
+        "ranking",
+        "horizontal bar chart",
+        "long label",
+        "comparison"
+      ]
+    },
+    "kpi_cards": {
+      "label": "KPI Cards",
+      "summary": "Key numeric metrics overview (2×2 or 1×4 card layout)",
+      "keywords": [
+        "KPI",
+        "metric card",
+        "overview",
+        "dashboard"
+      ]
+    },
+    "line_chart": {
+      "label": "Line Chart",
+      "summary": "Time trend visualization (1-3 series, continuous axis)",
+      "keywords": [
+        "trend",
+        "line chart",
+        "growth",
+        "time series"
+      ]
+    },
+    "matrix_2x2": {
+      "label": "2x2 Matrix",
+      "summary": "Dual-dimension positioning and priority quadrant analysis",
+      "keywords": [
+        "matrix",
+        "quadrant",
+        "priority",
+        "positioning"
+      ]
+    },
+    "org_chart": {
+      "label": "Organization Chart",
+      "summary": "Organizational hierarchy and reporting relationships (2-4 levels)",
+      "keywords": [
+        "organization",
+        "org chart",
+        "hierarchy",
+        "reporting relationship"
+      ]
+    },
+    "pareto_chart": {
+      "label": "Pareto Chart",
+      "summary": "80/20 contribution analysis with cumulative bar-line combination",
+      "keywords": [
+        "Pareto",
+        "80/20",
+        "cumulative contribution",
+        "priority"
+      ]
+    },
+    "pie_chart": {
+      "label": "Pie Chart",
+      "summary": "Basic proportion and composition (3-6 parts)",
+      "keywords": [
+        "proportion",
+        "pie chart",
+        "composition",
+        "share"
+      ]
+    },
+    "porter_five_forces": {
+      "label": "Porter's Five Forces",
+      "summary": "Industry competitive structure strategic framework",
+      "keywords": [
+        "strategy",
+        "five forces",
+        "industry analysis",
+        "competition"
+      ]
+    },
+    "process_flow": {
+      "label": "Process Flow",
+      "summary": "Sequential process steps, connector arrows, and stage relationships (3-8 steps)",
+      "keywords": [
+        "process",
+        "steps",
+        "flowchart",
+        "methodology",
+        "connector arrow",
+        "line arrow",
+        "marker arrow"
+      ]
+    },
+    "progress_bar_chart": {
+      "label": "Progress Bar Chart",
+      "summary": "Multi-item completion rate and progress comparison",
+      "keywords": [
+        "progress",
+        "completion rate",
+        "progress bar",
+        "OKR"
+      ]
+    },
+    "radar_chart": {
+      "label": "Radar Chart",
+      "summary": "Multi-dimensional capability assessment (4-8 dimensions)",
+      "keywords": [
+        "radar chart",
+        "multi-dimensional assessment",
+        "capability",
+        "competitive"
+      ]
+    },
+    "sankey_chart": {
+      "label": "Sankey Diagram",
+      "summary": "Flow direction and resource allocation visualization (3-level)",
+      "keywords": [
+        "flow direction",
+        "Sankey diagram",
+        "conversion path",
+        "resource allocation"
+      ]
+    },
+    "scatter_chart": {
+      "label": "Scatter Plot",
+      "summary": "X/Y correlation, cluster and outlier analysis",
+      "keywords": [
+        "scatter plot",
+        "correlation",
+        "distribution",
+        "outlier"
+      ]
+    },
+    "stacked_area_chart": {
+      "label": "Stacked Area Chart",
+      "summary": "Multi-series stacked trend showing total and composition (2-4 series)",
+      "keywords": [
+        "stacked",
+        "area chart",
+        "trend",
+        "composition change"
+      ]
+    },
+    "stacked_bar_chart": {
+      "label": "Stacked Bar Chart",
+      "summary": "Composition and total side-by-side (2-4 composition parts per bar)",
+      "keywords": [
+        "stacked bar chart",
+        "composition",
+        "contribution",
+        "total"
+      ]
+    },
+    "swot_analysis": {
+      "label": "SWOT Analysis",
+      "summary": "Strengths, weaknesses, opportunities and threats four-quadrant framework",
+      "keywords": [
+        "SWOT",
+        "strategy",
+        "strengths and weaknesses",
+        "opportunities and threats"
+      ]
+    },
+    "timeline": {
+      "label": "Timeline",
+      "summary": "Milestones and historical evolution (3-8 key nodes)",
+      "keywords": [
+        "timeline",
+        "milestone",
+        "history",
+        "evolution"
+      ]
+    },
+    "treemap_chart": {
+      "label": "Treemap",
+      "summary": "Hierarchical area proportion display with grouping",
+      "keywords": [
+        "treemap",
+        "area proportion",
+        "hierarchy",
+        "composition"
+      ]
+    },
+    "waterfall_chart": {
+      "label": "Waterfall Chart",
+      "summary": "Incremental change decomposition showing positive/negative contributions",
+      "keywords": [
+        "waterfall chart",
+        "change breakdown",
+        "contribution",
+        "bridge analysis"
+      ]
+    },
+    "pyramid_chart": {
+      "label": "Pyramid Chart",
+      "summary": "Hierarchical structure and value layer progression (3-6 layers)",
+      "keywords": [
+        "pyramid",
+        "hierarchy",
+        "layers",
+        "maturity model",
+        "Maslow"
+      ]
+    },
+    "venn_diagram": {
+      "label": "Venn Diagram",
+      "summary": "Set relationships and intersection analysis (2-3 overlapping domains)",
+      "keywords": [
+        "Venn",
+        "intersection",
+        "overlap",
+        "relationship",
+        "synergy"
+      ]
+    },
+    "pros_cons_chart": {
+      "label": "Pros & Cons Chart",
+      "summary": "Bilateral advantage vs disadvantage comparison (2-5 items per side)",
+      "keywords": [
+        "pros cons",
+        "advantages",
+        "disadvantages",
+        "comparison",
+        "evaluation"
+      ]
+    },
+    "cycle_diagram": {
+      "label": "Cycle Diagram",
+      "summary": "Circular repeating process and closed-loop flow (4-6 stages)",
+      "keywords": [
+        "cycle",
+        "loop",
+        "PDCA",
+        "iteration",
+        "circular process"
+      ]
+    },
+    "numbered_steps": {
+      "label": "Numbered Steps",
+      "summary": "Horizontal sequential step-by-step process flow (3-6 steps)",
+      "keywords": [
+        "steps",
+        "numbered",
+        "sequential",
+        "methodology",
+        "implementation path"
+      ]
+    },
+    "icon_grid": {
+      "label": "Icon Grid",
+      "summary": "Feature cards in grid layout with icons (4-9 items)",
+      "keywords": [
+        "grid",
+        "cards",
+        "features",
+        "capabilities",
+        "icon list"
+      ]
+    },
+    "isometric_stairs": {
+      "label": "Isometric Stairs",
+      "summary": "3D staircase progression and maturity visualization (4-7 stages)",
+      "keywords": [
+        "isometric",
+        "3D stairs",
+        "progression",
+        "maturity",
+        "growth stages"
+      ]
+    },
+    "mind_map": {
+      "label": "Mind Map",
+      "summary": "Center-radiating topic decomposition (1 core + 3-6 branches)",
+      "keywords": [
+        "mind map",
+        "brainstorm",
+        "knowledge structure",
+        "topic decomposition",
+        "radial"
+      ]
+    },
+    "comparison_table": {
+      "label": "Comparison Table",
+      "summary": "Multi-dimensional feature comparison matrix (2-4 plans/products)",
+      "keywords": [
+        "comparison matrix",
+        "feature comparison",
+        "evaluation",
+        "product selection",
+        "scoring"
+      ]
+    },
+    "snake_flow": {
+      "label": "Snake Flow",
+      "summary": "S-shaped winding multi-step process (6-10 steps, journey/lifecycle)",
+      "keywords": [
+        "snake",
+        "S-flow",
+        "journey",
+        "lifecycle",
+        "winding process"
+      ]
+    },
+    "roadmap_vertical": {
+      "label": "Vertical Roadmap",
+      "summary": "Vertical timeline with milestones and status tracking (4-8 nodes)",
+      "keywords": [
+        "roadmap",
+        "vertical timeline",
+        "milestones",
+        "annual plan",
+        "progress tracking"
+      ]
+    },
+    "sector_diagram": {
+      "label": "Sector Diagram",
+      "summary": "Semi-circular radial layout around central topic (4-8 areas)",
+      "keywords": [
+        "sector",
+        "radial",
+        "semi-circle",
+        "ecosystem",
+        "service architecture"
+      ]
+    },
+    "word_cloud": {
+      "label": "Word Cloud",
+      "summary": "Keyword weight and frequency visualization (20-30 keywords)",
+      "keywords": [
+        "word cloud",
+        "keywords",
+        "tag cloud",
+        "hot topics",
+        "frequency"
+      ]
+    },
+    "concentric_circles": {
+      "label": "Concentric Circles",
+      "summary": "Layered priority rings from core to periphery (3-5 layers)",
+      "keywords": [
+        "concentric",
+        "bullseye",
+        "target",
+        "priority layers",
+        "onion diagram"
+      ]
+    },
+    "chevron_process": {
+      "label": "Chevron Process",
+      "summary": "Arrow-chain linear phase progression with chunky stage arrows and deliverables (3-6 phases)",
+      "keywords": [
+        "chevron",
+        "arrow chain",
+        "block arrow",
+        "chunky arrow",
+        "solid arrow",
+        "phase",
+        "methodology",
+        "implementation"
+      ]
+    },
+    "comparison_columns": {
+      "label": "Comparison Columns",
+      "summary": "Multi-column pricing or service tier comparison (2-4 tiers)",
+      "keywords": [
+        "pricing",
+        "columns",
+        "service tiers",
+        "membership",
+        "subscription"
+      ]
+    },
+    "fishbone_diagram": {
+      "label": "Fishbone Diagram",
+      "summary": "Cause-and-effect root cause analysis / Ishikawa (4-6 branches)",
+      "keywords": [
+        "fishbone",
+        "Ishikawa",
+        "cause effect",
+        "root cause",
+        "6M analysis"
+      ]
+    },
+    "hub_spoke": {
+      "label": "Hub & Spoke",
+      "summary": "Central hub connected to surrounding capability nodes (1 core + 4-8 spokes)",
+      "keywords": [
+        "hub spoke",
+        "central",
+        "radial",
+        "platform",
+        "ecosystem",
+        "satellite"
+      ]
+    },
+    "vertical_list": {
+      "label": "Vertical List",
+      "summary": "Numbered vertical list with detail cards (3-6 key points/advantages)",
+      "keywords": [
+        "vertical list",
+        "numbered list",
+        "advantages",
+        "features",
+        "key points",
+        "strengths"
+      ]
+    },
+    "tech_uml_class": {
+      "label": "UML Class Diagram",
+      "summary": "Object-oriented class structure with attributes, methods, inheritance, and associations",
+      "keywords": [
+        "UML",
+        "class diagram",
+        "OOP",
+        "inheritance",
+        "association",
+        "object-oriented"
+      ]
+    },
+    "tech_uml_object": {
+      "label": "UML Object Diagram",
+      "summary": "Runtime instance snapshot showing objects, attribute values, and links",
+      "keywords": [
+        "UML",
+        "object diagram",
+        "instance",
+        "snapshot",
+        "runtime state"
+      ]
+    },
+    "tech_uml_package": {
+      "label": "UML Package Diagram",
+      "summary": "Namespace and module dependency organization",
+      "keywords": [
+        "UML",
+        "package diagram",
+        "namespace",
+        "module",
+        "dependency"
+      ]
+    },
+    "tech_uml_component": {
+      "label": "UML Component Diagram",
+      "summary": "Software component interfaces, dependencies, and port connections",
+      "keywords": [
+        "UML",
+        "component diagram",
+        "interface",
+        "dependency",
+        "service"
+      ]
+    },
+    "tech_uml_composite": {
+      "label": "UML Composite Structure Diagram",
+      "summary": "Internal structure of a classifier showing parts, ports, and connectors",
+      "keywords": [
+        "UML",
+        "composite structure",
+        "internal",
+        "port",
+        "connector"
+      ]
+    },
+    "tech_uml_deployment": {
+      "label": "UML Deployment Diagram",
+      "summary": "Physical deployment topology with nodes, artifacts, and communication paths",
+      "keywords": [
+        "UML",
+        "deployment",
+        "infrastructure",
+        "node",
+        "artifact",
+        "topology"
+      ]
+    },
+    "tech_uml_profile": {
+      "label": "UML Profile Diagram",
+      "summary": "Stereotype and tagged-value extensions to the UML metamodel",
+      "keywords": [
+        "UML",
+        "profile diagram",
+        "stereotype",
+        "extension",
+        "metamodel"
+      ]
+    },
+    "tech_uml_usecase": {
+      "label": "UML Use Case Diagram",
+      "summary": "Actor-system interactions showing functional requirements and use cases",
+      "keywords": [
+        "UML",
+        "use case",
+        "actor",
+        "requirement",
+        "interaction"
+      ]
+    },
+    "tech_uml_activity": {
+      "label": "UML Activity Diagram",
+      "summary": "Workflow and business process modeling with actions, decisions, and parallel forks",
+      "keywords": [
+        "UML",
+        "activity diagram",
+        "workflow",
+        "process",
+        "fork",
+        "decision"
+      ]
+    },
+    "tech_uml_state": {
+      "label": "UML State Machine Diagram",
+      "summary": "State transitions, events, guards, and lifecycle behavior modeling",
+      "keywords": [
+        "UML",
+        "state machine",
+        "state diagram",
+        "transition",
+        "lifecycle",
+        "event"
+      ]
+    },
+    "tech_uml_interaction": {
+      "label": "UML Interaction Overview Diagram",
+      "summary": "High-level control flow combining activity and sequence diagram fragments",
+      "keywords": [
+        "UML",
+        "interaction overview",
+        "control flow",
+        "fragment",
+        "combined"
+      ]
+    },
+    "tech_uml_communication": {
+      "label": "UML Communication Diagram",
+      "summary": "Object message passing with numbered sequence and structural links",
+      "keywords": [
+        "UML",
+        "communication diagram",
+        "collaboration",
+        "message passing",
+        "numbered"
+      ]
+    },
+    "tech_uml_timing": {
+      "label": "UML Timing Diagram",
+      "summary": "State changes along a time axis with duration constraints",
+      "keywords": [
+        "UML",
+        "timing diagram",
+        "time axis",
+        "state change",
+        "duration",
+        "constraint"
+      ]
+    },
+    "tech_sequence": {
+      "label": "Sequence Diagram",
+      "summary": "Object interaction sequence with lifelines, messages, and activation bars",
+      "keywords": [
+        "sequence diagram",
+        "lifeline",
+        "message",
+        "API call",
+        "interaction",
+        "UML"
+      ]
+    },
+    "tech_multi_agent": {
+      "label": "Multi-Agent System",
+      "summary": "Multi-agent collaboration topology with orchestrator, workers, and communication channels",
+      "keywords": [
+        "multi-agent",
+        "AI agent",
+        "orchestrator",
+        "collaboration",
+        "MAS"
+      ]
+    },
+    "tech_rag_pipeline": {
+      "label": "RAG Pipeline",
+      "summary": "Retrieval-Augmented Generation pipeline: indexing, retrieval, augmentation, and generation stages",
+      "keywords": [
+        "RAG",
+        "retrieval",
+        "augmented generation",
+        "embedding",
+        "vector search",
+        "LLM"
+      ]
+    },
+    "tech_agentic_search": {
+      "label": "Agentic Search",
+      "summary": "Agent-driven search architecture with planning, retrieval, reasoning, and answer synthesis",
+      "keywords": [
+        "agentic search",
+        "AI search",
+        "reasoning",
+        "planning",
+        "retrieval"
+      ]
+    },
+    "tech_tool_call_flow": {
+      "label": "Tool Call Flow",
+      "summary": "LLM tool-calling lifecycle: prompt → function selection → execution → response integration",
+      "keywords": [
+        "tool calling",
+        "function calling",
+        "LLM",
+        "API",
+        "agent tool"
+      ]
+    },
+    "tech_agent_memory_types": {
+      "label": "Agent Memory Types",
+      "summary": "Agent memory architecture: short-term, long-term, episodic, semantic, and procedural memory",
+      "keywords": [
+        "agent memory",
+        "memory types",
+        "episodic",
+        "semantic",
+        "long-term",
+        "short-term"
+      ]
+    },
+    "tech_mem0_memory": {
+      "label": "Mem0 Memory Architecture",
+      "summary": "Mem0-style persistent memory system with store, retrieve, update, and forget operations",
+      "keywords": [
+        "Mem0",
+        "memory architecture",
+        "persistent memory",
+        "memory management",
+        "AI memory"
+      ]
+    },
+    "tech_architecture": {
+      "label": "System Architecture",
+      "summary": "Layered system architecture with frontend, backend, services, and infrastructure tiers",
+      "keywords": [
+        "system architecture",
+        "layered",
+        "microservice",
+        "infrastructure",
+        "tech stack"
+      ]
+    },
+    "tech_flowchart": {
+      "label": "Technical Flowchart",
+      "summary": "Decision logic and algorithm flow with conditions, loops, and branch paths",
+      "keywords": [
+        "flowchart",
+        "algorithm",
+        "decision tree",
+        "logic flow",
+        "branch"
+      ]
+    },
+    "tech_swimlane": {
+      "label": "Swimlane Diagram",
+      "summary": "Cross-functional process flow with role/department lane partitions",
+      "keywords": [
+        "swimlane",
+        "cross-functional",
+        "responsibility",
+        "lane",
+        "process"
+      ]
+    },
+    "tech_data_flow": {
+      "label": "Data Flow Diagram",
+      "summary": "Data movement between processes, stores, and external entities (DFD)",
+      "keywords": [
+        "data flow",
+        "DFD",
+        "data store",
+        "process",
+        "external entity"
+      ]
+    },
+    "tech_er_diagram": {
+      "label": "ER Diagram",
+      "summary": "Entity-Relationship model with entities, attributes, and relationship cardinalities",
+      "keywords": [
+        "ER diagram",
+        "entity-relationship",
+        "database",
+        "schema",
+        "cardinality"
+      ]
+    },
+    "tech_mindmap": {
+      "label": "Technical Mind Map",
+      "summary": "Technology topic decomposition with hierarchical branches (tech-focused layout)",
+      "keywords": [
+        "mind map",
+        "tech",
+        "brainstorm",
+        "topic tree",
+        "knowledge structure"
+      ]
+    },
+    "tech_comparison_matrix": {
+      "label": "Technical Comparison Matrix",
+      "summary": "Multi-criteria technology/framework comparison with scoring and evaluation",
+      "keywords": [
+        "comparison matrix",
+        "evaluation",
+        "scoring",
+        "technology selection",
+        "framework"
+      ]
+    },
+    "big_number_hero": {
+      "label": "Big Number Hero",
+      "summary": "Single large KPI number with context — ideal for opening slides or key metric callouts",
+      "keywords": [
+        "big number",
+        "KPI",
+        "hero",
+        "callout",
+        "metric",
+        "highlight"
+      ]
+    },
+    "quote_callout": {
+      "label": "Quote Callout",
+      "summary": "Full-page quote or key insight with typographic emphasis",
+      "keywords": [
+        "quote",
+        "callout",
+        "insight",
+        "statement",
+        "emphasis"
+      ]
+    },
+    "split_content": {
+      "label": "Split Content",
+      "summary": "Left visual + right text layout for paired explanation",
+      "keywords": [
+        "split",
+        "two column",
+        "visual",
+        "text",
+        "layout",
+        "side by side"
+      ]
+    },
+    "three_columns": {
+      "label": "Three Columns",
+      "summary": "Three equal columns for parallel points, options or dimensions",
+      "keywords": [
+        "three columns",
+        "parallel",
+        "comparison",
+        "options",
+        "pillars"
+      ]
+    },
+    "image_caption": {
+      "label": "Image Caption",
+      "summary": "Large image placeholder with caption and description below",
+      "keywords": [
+        "image",
+        "caption",
+        "screenshot",
+        "photo",
+        "visual",
+        "description"
+      ]
+    }
+  }
+}

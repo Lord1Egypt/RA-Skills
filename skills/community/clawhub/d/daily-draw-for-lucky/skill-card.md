@@ -1,40 +1,52 @@
-## Description: <br>
-Daily fortune draw based on Guanyin Oracle with 100 oracle sticks covering career, love, health, and wealth guidance, limited to one draw per day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily fortune draw based on Guanyin Oracle (观音灵签). 100 oracle sticks with career, love, health, wealth guidance. One draw per day. Triggers: 'draw', '帮我抽个签', '/draw'.
 
-## Publisher: <br>
-[lllyandy](https://clawhub.ai/user/lllyandy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lllyandy](https://clawhub.ai/user/lllyandy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can ask an agent for a once-daily Guanyin Oracle fortune draw with general career, love, health, and wealth guidance for reflection.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A broad draw trigger may activate during normal conversation.
+
+Mitigation: Prefer invoking the skill with /draw or a specific Chinese fortune-draw phrase.
+
+Risk: Fortune guidance could be mistaken for authoritative advice.
+
+Mitigation: Treat outputs as reflective guidance only, consistent with the artifact note that results are for reference only.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users invoke the skill for a once-per-day Guanyin Oracle-style fortune reading. The result gives reflective guidance across career, love, health, and wealth, and should be treated as reference-only guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generic trigger "draw" may activate the skill unintentionally. <br>
-Mitigation: Invoke it with a specific phrase such as "oracle draw", "draw fortune", or "/draw" when a fortune reading is intended. <br>
-Risk: Fortune guidance could be over-relied on for career, relationship, health, or wealth decisions. <br>
-Mitigation: Treat outputs as reference-only reflection and keep decisions grounded in appropriate real-world advice. <br>
+**Output Format:** [Markdown text with bilingual fortune guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lllyandy/daily-draw-for-lucky) <br>
+**Other Properties Related to Output:** [Daily-use posture; the artifact states one draw per day and that results are for reference only.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text fortune reading] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One draw per day; includes oracle number, fortune level, poem, meaning, four guidance aspects, and story when generated.] <br>
+0.1.1 (source: server release metadata; artifact frontmatter says 1.0.0)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+{
+  "ownerId": "583963",
+  "slug": "competitor-weekly",
+  "version": "1.5.3",
+  "workflow": "weekly",
+  "focus": "competitor",
+  "outputTemplate": "ops_weekly",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "product-snapshots",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ],
+  "releaseWave": 5
+}

@@ -1,38 +1,49 @@
-## Description: <br>
-机械设计规范查询助手用于查询机械设计常用标准、公差配合、表面粗糙度、材料选用规范，并提供电机应用场景、速查表和公式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+机械设计规范查询助手提供机械设计常用标准、公差配合、表面粗糙度、材料选用、轴承选用、键连接、紧固件扭矩和电机结构尺寸的中文速查参考。
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Mechanical designers, engineers, and agent users can use this skill to quickly look up common design reference values for tolerances, surface roughness, bearings, keys, threaded fastener torque, motor structure dimensions, and material selection. Critical design values should be checked against official standards and project-specific requirements before production use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering reference tables and formulas may be incomplete or unsuitable for a specific design condition. <br>
-Mitigation: Verify critical dimensions, tolerances, torque values, and material choices against official standards and project-specific engineering requirements before production use. <br>
+## Use Case:
 
+Mechanical and electrical engineers, designers, and technical users can use this Chinese-language skill to look up common mechanical-design reference values and formulas for tolerances, roughness, materials, bearings, keys, fasteners, and motor structures. Treat it as a quick-reference aid and verify values against current official standards and project requirements for production or safety-critical work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yongjie666888/mech-design-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown and plain text reference answers with tables, formulas, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable Chinese mechanical-design reference content; verify critical engineering values against official standards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Reference tables, formulas, tolerances, and torque values may be incomplete, outdated, or unsuitable for a specific load case, standard revision, or safety-critical design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify dimensions, tolerances, torque values, and calculations against current official standards, project requirements, and qualified engineering review before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/mech-design-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with tables, calculations, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language quick-reference answers; no executable behavior]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release evidence, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

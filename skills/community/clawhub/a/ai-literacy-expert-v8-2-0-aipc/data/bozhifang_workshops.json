@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "name": "bozhifang_workshops",
+    "version": "8.2.0-aipc",
+    "module": "module-h-bozhifang",
+    "section": "X1 博智坊 10 期",
+    "last_updated": "2026-08-24"
+  },
+  "description": "博智坊 10 期工作坊元数据（6 期第一学期 + 4 期第二学期）",
+  "semester_1": [
+    {
+      "id": "ws-1",
+      "date": "2025-09-28",
+      "title": "大模型基础及应用",
+      "title_en": "Large Language Model Foundation and Application",
+      "speaker": "博雅智能学院讲师团队",
+      "speaker_unit": "SAI",
+      "tools": ["Kimi", "Qwen3", "智谱清言", "DeepSeek-R1 本地部署"],
+      "topics": ["大模型基本概念", "NLP 与提示学习", "大模型产品应用", "本地化部署"],
+      "student_value": "AI 认知 + 工具入门",
+      "teacher_value": "通识课基础案例",
+      "applicable_majors": ["ALL"]
+    },
+    {
+      "id": "ws-2",
+      "date": "2025-10-15",
+      "title": "AI 速建原型：Vibe Coding 实战",
+      "title_en": "AI Rapid Prototyping: Vibe Coding Practice",
+      "speaker": "博雅智能学院讲师团队",
+      "speaker_unit": "SAI",
+      "tools": ["DeepSeek", "Cline", "VS Code", "EXE 打包"],
+      "topics": ["Vibe Coding 概念", "提示词设计", "多平台开发", "项目打包与部署"],
+      "student_value": "开发能力 + 作品",
+      "teacher_value": "教学演示",
+      "applicable_majors": ["CS", "AI", "DATA"]
+    },
+    {
+      "id": "ws-3",
+      "date": "2025-10-22",
+      "title": "人工智能塑造游戏：数字角色与网格优化",
+      "title_en": "Shaping Games with AI: Digital Avatars and Mesh Optimization",
+      "speaker": "Dr. XXX",
+      "speaker_unit": "SUTD (新加坡科技设计大学)",
+      "tools": ["3DGS", "MeshLab", "Blender"],
+      "topics": ["AI 驱动的数字化身", "AI 驱动的网格压缩"],
+      "student_value": "3D 创作 + 嘉宾资源",
+      "teacher_value": "跨学科案例",
+      "applicable_majors": ["CM+GD", "CM+AIM", "CM+MAD", "Math+AI"]
+    },
+    {
+      "id": "ws-4",
+      "date": "2025-11-12",
+      "title": "AIGC 基础及应用：从 AI 旁观者到创意实践者",
+      "title_en": "AIGC Foundation and Application: From Bystander to Practitioner",
+      "speaker": "邵俊博士 (AI 创业者)",
+      "speaker_unit": "AI 创业公司",
+      "tools": ["AIGC 工作流", "提示词工程"],
+      "topics": ["AIGC 产业认知", "提示词工程", "AIGC 创意实战"],
+      "student_value": "创意作品",
+      "teacher_value": "文科案例",
+      "applicable_majors": ["CM+N", "DGC+N", "IBL+N"]
+    },
+    {
+      "id": "ws-5",
+      "date": "2025-11-28",
+      "title": "3D 重建：从现实到数字",
+      "title_en": "3D Reconstruction: From Reality to Digital",
+      "speaker": "汤浩宇博士",
+      "speaker_unit": "SUTD (新加坡科技设计大学)",
+      "tools": ["NeRF", "3DGS", "Luma AI"],
+      "topics": ["三维表达（显式 / 隐式）", "NeRF", "3D 高斯泼溅", "数据采集 / 动态场景"],
+      "student_value": "前沿 + FYP 选题",
+      "teacher_value": "视觉艺术案例",
+      "applicable_majors": ["CM+N", "Math+AI", "IST+ENVS"]
+    },
+    {
+      "id": "ws-6",
+      "date": "2025-12-03",
+      "title": "深度学习与计算机视觉基础应用",
+      "title_en": "Deep Learning and Computer Vision Foundation",
+      "speaker": "SAI 老师",
+      "speaker_unit": "SAI",
+      "tools": ["OpenCV", "MobileNetV2", "YOLOS", "YOLOv11"],
+      "topics": ["数字图像基础", "图像分类", "目标检测", "人脸检测与计数"],
+      "student_value": "视觉 AI 入门",
+      "teacher_value": "工科案例",
+      "applicable_majors": ["Math+N", "IST+N"]
+    }
+  ],
+  "semester_2": [
+    {
+      "id": "ws-7",
+      "date": "2026 春季（待定）",
+      "title": "数字人实现与综合应用",
+      "speaker": "SAI 讲师团队",
+      "tools": ["数字人技术栈", "3DGS", "NeRF"],
+      "student_value": "数字人 FYP 选题",
+      "teacher_value": "CM+N 跨学科案例",
+      "applicable_majors": ["CM+N", "Math+AI"]
+    },
+    {
+      "id": "ws-8",
+      "date": "2026 春季（待定）",
+      "title": "数据标注：从基础到 AI 应用实战",
+      "speaker": "SAI 讲师团队",
+      "tools": ["LabelImg", "CVAT"],
+      "student_value": "数据思维 + 伦理",
+      "teacher_value": "通用案例",
+      "applicable_majors": ["ALL"]
+    },
+    {
+      "id": "ws-9",
+      "date": "2026 春季（待定）",
+      "title": "自动驾驶中的视觉感知应用",
+      "speaker": "SAI 讲师团队 / 行业嘉宾",
+      "tools": ["OpenCV", "YOLO", "端到端自动驾驶"],
+      "student_value": "CV + 行业应用",
+      "teacher_value": "IST+N 案例",
+      "applicable_majors": ["IST+N", "Math+DS", "CM+GD"]
+    },
+    {
+      "id": "ws-10",
+      "date": "2026 春季（待定）",
+      "title": "AI 应用开发实践课程",
+      "speaker": "SAI 讲师团队",
+      "tools": ["DeepSeek", "Cline", "AIGC"],
+      "student_value": "Vibe Coding 进阶",
+      "teacher_value": "跨专业案例",
+      "applicable_majors": ["ALL"]
+    }
+  ],
+  "certification_rules": {
+    "bozhifang_certificate": "每学年完成 4+ 工作坊 → 学院颁发学习证书",
+    "per_workshop_badge": "每完成 1 期 → 1 枚博智坊徽章",
+    "cross_disciplinary_badge": "完成跨学科项目 → 加盖'跨学科创新'章"
+  },
+  "metrics_targets": {
+    "semester_workshops": 6,
+    "students_per_workshop_target": "100-150",
+    "four_plus_certificate_ratio_target": "60%+",
+    "cross_disciplinary_projects_target": "30%+",
+    "reuse_teachers_target": "20+"
+  }
+}

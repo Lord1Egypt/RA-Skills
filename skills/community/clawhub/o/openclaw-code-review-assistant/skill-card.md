@@ -1,40 +1,54 @@
-## Description: <br>
-自动化代码审查助手，支持 PR 审查、代码质量分析、潜在 bug 检测、安全漏洞扫描。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+自动化代码审查助手，支持 PR 审查、代码质量分析、潜在 bug 检测、安全漏洞扫描。
 
-## Publisher: <br>
-[keven0706](https://clawhub.ai/user/keven0706) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keven0706](https://clawhub.ai/user/keven0706)
 
-## Use Case: <br>
-Developers can invoke this skill as a demonstration code review assistant for file, diff, and pull request review workflows. Its reports should be treated as illustrative guidance rather than assurance because the security evidence says outputs may be canned and unrelated to the user's code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present canned code review and security findings that are unrelated to the user's actual code. <br>
-Mitigation: Use it only as a demo or placeholder, and do not rely on its output for merge decisions, CI gates, or security assurance. <br>
-Risk: The PR workflow references GITHUB_TOKEN even though the evidence says real PR analysis is not implemented. <br>
-Mitigation: Do not provide a GitHub token unless the implementation is replaced with transparent PR analysis and least-privilege credential handling. <br>
+## Use Case:
 
+Developers and engineers use this skill to request code review-style reports for files, git diffs, and pull requests. Server security evidence warns that reported findings are canned and should not be trusted for code quality, security review, PR approval, or CI gating without real analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keven0706/openclaw-code-review-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated as single-stream text; PR review mode references GITHUB_TOKEN but the evidence says not to provide a token unless the implementation is replaced with real, transparent PR analysis and least-privilege handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may present canned code review and security findings as if they were based on the user's code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use its output for code quality decisions, security review, PR approval, or CI gating unless the author replaces the canned reports with real analysis or clearly labels the behavior as a demo.
+
+Risk: Users may over-trust security or bug findings that are not derived from the inspected files.
+
+Mitigation: Treat reports as illustrative guidance only and verify any findings with an independent review or trusted scanner before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keven0706/skills/openclaw-code-review-assistant)
+- [Publisher profile](https://clawhub.ai/user/keven0706)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal text with sample findings, summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The review and diff commands emit fixed sample findings; pull request review reports that GitHub integration is not configured unless a token is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

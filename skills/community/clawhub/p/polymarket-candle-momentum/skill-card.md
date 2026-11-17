@@ -1,43 +1,58 @@
-## Description: <br>
-Trade Polymarket 5-minute crypto fast markets using 1-minute Binance candle body analysis and volume surge detection across BTC, ETH, SOL, XRP, and BNB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket 5-minute crypto fast markets using 1-minute candle body analysis and volume surge detection from Binance.
 
-## Publisher: <br>
-[Mibayy](https://clawhub.ai/user/Mibayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mibayy](https://clawhub.ai/user/mibayy)
 
-## Use Case: <br>
-External users and developers can use this skill to inspect, configure, dry-run, or run a Python trading workflow for Polymarket fast markets using Binance candle and volume signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live cron mode can repeatedly place real-money trades without strong cumulative spending or loss controls. <br>
-Mitigation: Start with dry-run, use a limited-purpose API key and small balance, and add or accept cumulative spend and loss limits before enabling live cron execution. <br>
-Risk: The advertised win rate is not verified by the server evidence. <br>
-Mitigation: Treat performance claims as unverified and independently backtest thresholds, assets, and fees before relying on the strategy. <br>
-Risk: Position reporting may not be sufficient to confirm real exposure. <br>
-Mitigation: Verify open positions directly in Simmer or Polymarket rather than relying only on the script's positions output. <br>
+## Use Case:
 
+Developers and trading automation users use this skill to run or adapt a Polymarket fast-market trading script that scans crypto candle and volume signals, selects the strongest asset signal, and dry-runs or places trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mibayy/polymarket-candle-momentum) <br>
-- [Binance Klines API](https://api.binance.com/api/v3/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code, shell commands, configuration notes, and text result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY for Simmer/Polymarket access; defaults to dry-run unless live trading is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and clawhub.json; SKILL.md frontmatter says 1.6.4) <br>
+Risk: Live mode can place real-money Polymarket trades automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run enabled until the strategy and configuration are reviewed, then use small position limits and a tightly limited Simmer API key for any live run.
+
+Risk: A pre-trade safety check can fail open when context is unavailable.
+
+Mitigation: Avoid unattended live cron operation until this behavior is fixed or independently guarded by an external stop condition.
+
+Risk: The skill depends on external market data, trading APIs, and Python packages.
+
+Mitigation: Pin and review dependencies before live use, monitor API failures, and verify signal behavior against current market conditions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mibayy/skills/polymarket-candle-momentum)
+- [Binance public klines API](https://api.binance.com/api/v3/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with inline shell commands and JSON configuration output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run is the default; live mode requires an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

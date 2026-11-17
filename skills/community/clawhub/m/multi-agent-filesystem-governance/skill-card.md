@@ -1,40 +1,56 @@
-## Description: <br>
-Govern filesystem organization and file-operation decisions in multi-agent environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Govern filesystem organization and file-operation decisions in multi-agent environments.
 
-## Publisher: <br>
-[DarinRowe](https://clawhub.ai/user/DarinRowe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darinrowe](https://clawhub.ai/user/darinrowe)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to decide file ownership, placement, lifecycle, and write boundaries across private workspaces, shared resources, archives, downloads, scripts, notes, knowledge vaults, and code project folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence file moves, overwrites, and deletion decisions in shared or archived locations. <br>
-Mitigation: Review proposed actions before changing important shared or archived files, and prefer private, non-destructive locations when scope is unclear. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to decide where files should live, how they should be scoped, and when file operations could affect shared or multi-agent workspaces.
 
-## Reference(s): <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [Examples](references/examples.md) <br>
-- [Project Directory Best Practices](references/project-directory-best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with structured decision fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scope, lifecycle, recommended location type, reason, and shared-impact notes for file-operation decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can influence where agents create, move, or archive files, which may affect shared workspaces if applied too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's narrow-scope guidance: prefer agent-private locations, use non-destructive actions, and avoid shared writes unless reuse or collaboration is intentional.
+
+Risk: Temporary or scratch locations can be mistaken for durable storage for important work.
+
+Mitigation: Move or copy important artifacts into an active private, shared, project, or archive location once they need to persist.
+
+## Reference(s):
+
+- [Anti-Patterns](references/anti-patterns.md)
+- [Examples](references/examples.md)
+- [Project Directory Best Practices](references/project-directory-best-practices.md)
+- [ClawHub Skill Page](https://clawhub.ai/darinrowe/skills/multi-agent-filesystem-governance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with scope, lifecycle, recommended location type, reason, and shared-impact note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, credential handling, or hidden execution behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

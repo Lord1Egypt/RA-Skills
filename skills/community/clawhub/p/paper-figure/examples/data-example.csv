@@ -1,0 +1,4 @@
+group,method_a,method_b,method_a_sd,method_b_sd
+Baseline,71.2,73.5,1.4,1.2
+Ours w/o align,76.8,78.1,1.1,1.3
+Ours,82.4,84.9,0.9,1.0

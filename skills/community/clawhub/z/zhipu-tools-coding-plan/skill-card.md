@@ -1,41 +1,59 @@
-## Description: <br>
-Zhipu Tools Coding Plan lets agents call Zhipu/Z.AI services for web search, web reading, GitHub repository documentation lookup, file parsing, and GLM-4.6V vision analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with Z.AI/Zhipu tools for web search, web page reading, GitHub repository documentation lookup, file parsing, vision understanding, and quota checks.
 
-## Publisher: <br>
-[wnzzer](https://clawhub.ai/user/wnzzer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wnzzer](https://clawhub.ai/user/wnzzer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route search, webpage reading, repository documentation lookup, document parsing, and image or video analysis requests through Zhipu/Z.AI APIs after configuring a ZHIPU API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, repository paths, and selected local files or media may be sent to Zhipu/Z.AI APIs. <br>
-Mitigation: Use the skill only with approved inputs, avoid confidential documents or screenshots unless authorized, and keep credentials limited to the Zhipu API key. <br>
-Risk: Legacy or direct API paths and fallback behavior may consume account balance unexpectedly. <br>
-Mitigation: Keep the default MCP mode for normal use, explicitly confirm before enabling Legacy mode or file parsing, and review billing behavior before automated or high-volume use. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve web results, read pages, search repository documentation, parse local documents, analyze images or videos, and check Zhipu quota while coding or researching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wnzzer/zhipu-tools-coding-plan) <br>
-- [Z.AI Open Platform](https://open.bigmodel.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text, including search results, page extracts, repository file content, file parser output, and vision analysis responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; some operations send user-selected URLs, queries, local files, images, or videos to Zhipu/Z.AI services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.2 (source: server release metadata) <br>
+Risk: Search terms, URLs, repository identifiers, and selected local files or media may be sent to Z.AI/Zhipu services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive inputs and confirm user intent before processing private documents, screenshots, videos, or repository data.
+
+Risk: Some paths can involve billing or quota behavior that differs between MCP and Legacy modes.
+
+Mitigation: Prefer the Python zhipu_tool.py path, keep Legacy mode explicit, and check quota or balance before higher-volume use.
+
+Risk: The optional Vision MCP command runs an unpinned npm package.
+
+Mitigation: Pin and review the package version before running that optional command, or avoid it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wnzzer/skills/zhipu-tools-coding-plan)
+- [Z.AI Open Platform](https://open.bigmodel.cn/)
+- [Z.AI MCP web reader endpoint](https://api.z.ai/api/mcp/web_reader/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with command, code, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API-derived search results, web page content, repository file excerpts, parsed document text, vision analysis, or quota summaries.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

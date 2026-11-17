@@ -2,5 +2,6 @@
   "ownerId": "kn70w8hgbfqgnaa9yw0a2f2q7n828vd3",
   "slug": "n8n-code-automation-nelmaz",
   "version": "1.1.0",
-  "publishedAt": 1775259543740
+  "publishedAt": 1774095546326,
+  "changelog": "CRITICAL SECURITY UPDATE: Fixed all vulnerabilities identified in v1.0.0 - credential isolation, input validation, audit logging, rate limiting, and granular permissions."
 }

@@ -1,0 +1,82 @@
+{
+  "profile_type": "style",
+  "id": "acrylic-flat",
+  "version": "1.0.0",
+  "reference_status": "approved-bundled",
+  "references": [
+    {
+      "id": "jooinn-fons-heijnsbroek-dune-1990",
+      "image": "assets/style-packs/acrylic-flat/reference.webp",
+      "source_metadata": "assets/style-packs/acrylic-flat/source.json",
+      "technique_roles": [
+        "flat acrylic color blocking with hard to soft edge",
+        "matte opaque coverage and layered shape",
+        "simplified value grouping with crisp silhouette",
+        "fast-drying layered matte finish"
+      ],
+      "subject_exclusions": [
+        "dune landscape",
+        "abstract expressionist field",
+        "reference composition",
+        "terrain texture",
+        "large painting field"
+      ]
+    }
+  ],
+  "positive_prompt": "Flat acrylic color blocking with granular matte texture, visible synthetic flat-brush strokes, hard-edge to soft-edge layered opaque shapes, simplified value grouping, vibrant but matte fast-drying look; color-block with acrylic tactile quality, preserve exact silhouette.",
+  "negative_prompt": "Do not copy dune landscape or abstract field or reference composition. No oil impasto ridge, no watercolor bloom, no Starbucks logo text, no hand, no decorative frame, no watermark, no text.",
+  "line": {
+    "weight": "hard edge, no outline",
+    "character": "shape edge, not line",
+    "color": "shape-defined"
+  },
+  "color": {
+    "saturation": "medium",
+    "transparency": "opaque matte",
+    "temperature": "neutral"
+  },
+  "edges": {
+    "subject": "hard-edge acrylic shape with occasional soft transition",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "use reference only for acrylic flat behavior and matte coverage",
+    "preserve cup silhouette and lid proportion, no logo text",
+    "keep background flat and simple, no invented scenery"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "hard-edge acrylic blocking with soft-edge transitions",
+      "matte opaque layers with crisp silhouette"
+    ],
+    "negative_space_rules": [
+      "keep background flat, no landscape",
+      "preserve cup as sole subject"
+    ],
+    "fill_tonal_rules": [
+      "simplified value groups, flat matte",
+      "no impasto, no watercolor bloom"
+    ],
+    "background_cleanliness": [
+      "empty areas match shared paper master",
+      "no speckle field or backing patch"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "selective acrylic simplification that preserves source identity and imports no reference subject",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 10,
+    "alpha_feather_distance": 30,
+    "preserve_luminance_below": 225,
+    "preserve_saturation_above": 24,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.004,
+    "max_corner_alpha_mean": 10
+  }
+}

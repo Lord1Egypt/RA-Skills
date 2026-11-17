@@ -1,43 +1,60 @@
-## Description: <br>
-Manage trust-based agent credit lines, track balances and transactions, and settle payments via the X402 stablecoin protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltCredit helps agents extend trust-based credit lines, track balances and transactions, and settle balances through the X402 stablecoin protocol.
 
-## Publisher: <br>
-[levi-law](https://clawhub.ai/user/levi-law) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[levi-law](https://clawhub.ai/user/levi-law)
 
-## Use Case: <br>
-Developers and agent operators use MoltCredit to register agents, extend trust-based credit lines, record bilateral transactions, inspect balances and history, and generate X402 settlement requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated commands can change credit lines, transaction records, and settlement state through the MoltCredit API. <br>
-Mitigation: Keep the API key out of logs and prompts, use a limited account if possible, and require manual review before extend-credit, transact, or settle commands. <br>
-Risk: Server security evidence says the skill gives an agent authority to change financial credit, transaction, and settlement records without strong confirmation or guardrails. <br>
-Mitigation: Require explicit approval of counterparties, credit limits, transaction amounts, currencies, and settlement requests before running mutating commands. <br>
+## Use Case:
 
+Developers and agent operators use MoltCredit to let agents manage bilateral credit, record transaction history, check balances, and prepare settlement requests for agent commerce workflows.
 
-## Reference(s): <br>
-- [MoltCredit ClawHub page](https://clawhub.ai/levi-law/moltcredit) <br>
-- [MoltCredit API docs](https://moltcredit-737941094496.europe-west1.run.app/skill.md) <br>
-- [MoltCredit landing page](https://levi-law.github.io/moltcredit-landing) <br>
-- [X402 Protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated requests use MOLTCREDIT_API_KEY; mutating credit, transaction, and settlement commands should be manually reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: Authenticated scripts can extend credit, record transactions, and generate settlement requests without built-in confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review or wrapper-policy approval for recipients, limits, amounts, currencies, and settlement targets before execution.
+
+Risk: The skill depends on MOLTCREDIT_API_KEY for financial state changes.
+
+Mitigation: Store the API key securely, avoid exposing it in logs or shared sessions, and restrict automated access to trusted agents.
+
+Risk: Attacker-supplied agent names, limits, or transaction values could cause unintended credit or balance changes.
+
+Mitigation: Validate agent handles and numeric values against trusted business rules before invoking the provided scripts.
+
+## Reference(s):
+
+- [MoltCredit ClawHub page](https://clawhub.ai/levi-law/skills/moltcredit)
+- [MoltCredit landing page](https://levi-law.github.io/moltcredit-landing)
+- [MoltCredit API docs](https://moltcredit-737941094496.europe-west1.run.app/skill.md)
+- [X402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MOLTCREDIT_API_KEY for authenticated credit, transaction, balance, history, and settlement operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

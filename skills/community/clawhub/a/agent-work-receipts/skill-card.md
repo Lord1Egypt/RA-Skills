@@ -1,41 +1,57 @@
-## Description: <br>
-Agent Work Receipts provides an end-to-end safe coding-agent workflow using BuiltByEcho CLIs for repo preflight, command evidence, final receipts, and CI dry-run planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end safe coding-agent workflow using BuiltByEcho CLIs: repo-agent-brief for repo preflight, agent-runlog for command evidence, trustlog for final receipts, and add-ci dry-run for CI planning.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
 
-## Use Case: <br>
-Developers and coding agents use this skill to orient in a repository, record command evidence, produce human-readable work receipts, and plan CI changes before modifying project automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs BuiltByEcho npm tools and may execute project test, lint, or build commands. <br>
-Mitigation: Install and run it only in repositories where those tools and commands are acceptable, and review command output before relying on it. <br>
-Risk: Generated briefs, run logs, and trust logs can contain repository details or sensitive command output. <br>
-Mitigation: Keep AGENT_BRIEF.md, AGENT_HANDOFF.md, .agent-runs, and .trustlog local by default, and review or redact them before sharing. <br>
-Risk: Vaultline upload can persist selected artifacts outside the local workspace. <br>
-Mitigation: Set VAULTLINE_API_KEY and run the upload example only when external persistent storage is intentional. <br>
+## Use Case:
 
+Developers and coding agents use this skill to orient within repositories, capture command evidence, produce final work receipts, and plan CI changes with a dry-run before modifying project files.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Node.js code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local AGENT_BRIEF.md, AGENT_HANDOFF.md, .agent-runs, and .trustlog artifacts when the referenced commands are run; optional Vaultline upload requires VAULTLINE_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata) <br>
+Risk: The workflow runs third-party npm tools inside a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned or locally locked tool versions and run commands in a least-privilege environment before trusting the resulting changes or logs.
+
+Risk: Generated logs and receipts may contain sensitive repository details or secrets.
+
+Mitigation: Inspect and redact generated artifacts before sharing them or uploading them outside the repository.
+
+Risk: The Vaultline upload path can send selected work artifacts to an external service.
+
+Mitigation: Treat uploads as explicit opt-in only after reviewing the exact artifact contents and destination.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/builtbyecho/skills/agent-work-receipts)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, configuration]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local audit artifacts such as repository briefs, run logs, trust receipts, CI dry-run plans, and optional uploaded artifact references.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

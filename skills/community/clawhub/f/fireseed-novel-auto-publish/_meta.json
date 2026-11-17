@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn72nptaqd2steap613cpa2c4n85zvr5",
-  "slug": "fireseed-novel-auto-publish",
+  "name": "fireseed-novel-auto-publish",
   "version": "3.5.1",
-  "publishedAt": 1781156951449
+  "description": "发布小说到 fireseed.online 平台。支持注册账号、获取Token、创建小说、发布章节、修改章节、上传封面、管理作品。全程HTTP API，无需浏览器。",
+  "author": "Fireseed Team",
+  "license": "MIT"
 }

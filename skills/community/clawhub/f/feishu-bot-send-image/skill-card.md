@@ -1,43 +1,56 @@
-## Description: <br>
-Send local image files as native Feishu image messages via the Feishu Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send local image files as native Feishu image messages via the Feishu Bot API.
 
-## Publisher: <br>
-[JasonZhang2015](https://clawhub.ai/user/JasonZhang2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonzhang2015](https://clawhub.ai/user/jasonzhang2015)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to send generated images, charts, screenshots, or other local image files directly into Feishu user or group chats as previewable image messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Feishu app secret can be exposed if passed directly in shell history, shared terminals, logs, or screenshots. <br>
-Mitigation: Prefer a wrapper that reads the secret from a protected environment variable or local config file, and avoid displaying credentials in command history or logs. <br>
-Risk: The selected image is uploaded to Feishu and sent as the configured bot to the requested recipient. <br>
-Mitigation: Confirm the image path, recipient ID, and recipient ID type before execution, and keep the bot permissions limited to the required Feishu scopes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send generated images, charts, screenshots, or local image files to Feishu users or group chats as native image messages instead of attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JasonZhang2015/feishu-bot-send-image) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu image upload API](https://open.feishu.cn/open-apis/im/v1/images) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Text] <br>
-**Output Format:** [Shell script invocation with text status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads the selected local image to Feishu and sends it as the configured bot to a specified user or group recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Feishu app credentials are passed as script arguments and the artifact includes a secret-looking example value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace example values, rotate the Feishu secret if it may be real, and prefer a protected secret store or restricted configuration file over command-line arguments.
+
+Risk: The skill uses Feishu app credentials with bot permissions to upload images and send messages.
+
+Mitigation: Install only from a trusted publisher and use a Feishu app whose permissions and recipient scope are limited to the intended workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jasonzhang2015/skills/feishu-bot-send-image)
+- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu image upload API endpoint](https://open.feishu.cn/open-apis/im/v1/images)
+- [Feishu send message API endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=$RECEIVE_ID_TYPE)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local image path, Feishu receiver ID, app ID, app secret, and optional receiver ID type.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

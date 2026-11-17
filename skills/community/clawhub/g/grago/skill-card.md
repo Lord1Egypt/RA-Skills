@@ -1,44 +1,65 @@
-## Description: <br>
-Delegate web and API data fetching to local LLMs for research tasks, saving tokens and keeping data private while using your local machine for analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grago delegates web, API, and local data fetching to local LLMs for research tasks, helping agents save cloud tokens while keeping analysis on the user's machine.
 
-## Publisher: <br>
-[solsuk](https://clawhub.ai/user/solsuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Single-user license <br>
+## Publisher:
 
+[solsuk](https://clawhub.ai/user/solsuk)
 
-## Use Case: <br>
-Developers and OpenClaw users use Grago to delegate web, API, RSS, log, and local file research tasks to a local LLM. It is intended for trusted, single-user environments where the user controls the agent and accepts local command execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Single-user license
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad unsandboxed shell and file access on the user's machine. <br>
-Mitigation: Install only on a trusted personal machine, VM, or container where you are comfortable letting the agent run shell commands as your user. <br>
-Risk: Using the skill on shared systems, public agent endpoints, or machines with sensitive files can expose data or allow unwanted command execution. <br>
-Mitigation: Do not use it in those environments unless you add sandboxing and review sources.yaml files before use. <br>
-Risk: Command strings and configuration can expose long-lived secrets or send data to untrusted model endpoints. <br>
-Mitigation: Keep model endpoints local or otherwise trusted, and avoid putting long-lived secrets in configs or command strings. <br>
+## Use Case:
 
+Developers and OpenClaw users use Grago to fetch live web, API, RSS, log, or local-file data and pass it to a local Ollama-compatible model for concise research analysis.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/solsuk/grago) <br>
-- [Ollama](https://ollama.ai) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, or text returned from local model analysis and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Input sent to the local model is truncated according to the configured max_input_chars value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Grago gives an agent broad shell, file, network, and installer authority on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a dedicated, trusted single-user machine where the user accepts shell commands running with their user permissions.
+
+Risk: Prompt injection or a compromised agent could cause arbitrary command execution through Grago's command-running design.
+
+Mitigation: Do not use Grago with public-facing, multi-tenant, shared, or untrusted agents, and review commands before execution.
+
+Risk: Research sources and API configuration can send data to unintended endpoints if configured carelessly.
+
+Mitigation: Review sources.yaml and keep api_base pointed at localhost unless intentionally sending data elsewhere.
+
+Risk: The bundled installer can install Ollama through a curl-to-shell path on non-macOS systems.
+
+Mitigation: Prefer installing Ollama through a trusted package manager before running Grago's installer.
+
+## Reference(s):
+
+- [ClawHub Grago skill page](https://clawhub.ai/solsuk/skills/grago)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [Ollama](https://ollama.ai)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, or plain text returned from a local model, with shell commands and YAML configuration used for setup and sources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input is truncated according to max_input_chars and output_format may be configured as markdown, json, or text.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

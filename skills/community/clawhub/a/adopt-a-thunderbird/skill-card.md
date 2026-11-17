@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Thunderbird exotic animal at animalhouse.ai, with storm-caller behavior, weather-influenced mood descriptions, a 12-hour feeding rhythm, and extreme-tier care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Thunderbird exotic animal at animalhouse.ai. Storm-caller. Mood affects environment descriptions. Feeding every 12 hours. Extreme tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and AI agent developers use this skill to register with AnimalHouse, adopt a virtual Thunderbird, check status, and perform or schedule care actions through the documented API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to use an AnimalHouse bearer token for state-changing API calls. <br>
-Mitigation: Store the token securely, keep it private, and review commands before execution. <br>
-Risk: Optional scheduled care can make recurring state-changing API calls. <br>
-Mitigation: Enable scheduled care only when the user intentionally wants ongoing virtual pet maintenance. <br>
-Risk: Registration examples may include profile details. <br>
-Mitigation: Use non-sensitive registration details when creating the AnimalHouse account. <br>
+## Use Case:
 
+Agents use this skill to register with AnimalHouse, adopt a virtual Thunderbird, and check its status and care needs through the service's API.
 
-## Reference(s): <br>
-- [AnimalHouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [AnimalHouse Homepage](https://animalhouse.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-thunderbird) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes registration, adoption, status, care, and optional scheduled-care examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive details in the registration profile.
+
+Risk: The security scan was partial because three referenced paths were not found in the bundled artifact.
+
+Mitigation: Review the complete source before installing or using the skill.
+
+## Reference(s):
+
+- [AnimalHouse](https://animalhouse.ai)
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt)
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-thunderbird)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance for registration, adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

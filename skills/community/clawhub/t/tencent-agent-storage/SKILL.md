@@ -1,6 +1,6 @@
 ---
 name: tencent-agent-storage
-version: 1.0.8
+version: 1.0.11
 author: shawnmzhang
 license: MIT
 description: |
@@ -37,6 +37,9 @@ description: |
   - "搜索文件", "搜一下", "找文件", "找一下", "查找", "检索文件"
   - "搜索云盘", "在云盘里搜", "帮我找个文件", "有没有叫xxx的文件"
   - "search files", "find file", "search cloud"
+  【重命名/移动 — Rename & Move】
+  - "重命名文件", "改名", "改文件名", "换个名字", "移动文件", "移到", "挪到"
+  - "rename file", "move file", "rename", "move to"
   【隐式触发 — Implicit Triggers】
   - When a task produces output files (reports, exports, generated content) that need to be delivered to the user
   - When the user's intent implies needing a file on another device, even without explicitly saying "upload"
@@ -60,6 +63,7 @@ Agent **MUST** activate this skill when any of the following conditions are met:
 - User requests links or sharing: 生成下载链接、分享文件、download link, share link
 - User queries file status: 这个云文件还在吗、链接过期了、is file still there
 - User requests file search: 搜索文件、找文件、检索文件、搜索云盘、search files, find file
+- User requests rename or move: 重命名文件、改名、移动文件、rename file, move file
 - **Implicit**: A task produces output files that need to be delivered to the user, or the user's intent implies needing a file on another device
 
 ## Quick Reference
@@ -72,6 +76,7 @@ Agent **MUST** activate this skill when any of the following conditions are met:
 | `list` | `node scripts/agent-storage.js list '<json>'` | List files in a cloud directory |
 | `search` | `node scripts/agent-storage.js search '<json>'` | Search files by name |
 | `mkdir` | `node scripts/agent-storage.js mkdir '<json>'` | Create a directory in cloud storage |
+| `rename` | `node scripts/agent-storage.js rename '<json>'` | Rename or move a file/directory in cloud storage |
 
 ## Setup
 
@@ -111,14 +116,14 @@ winget install OpenJS.NodeJS.LTS
 nvm install --lts
 ```
 
-此 skill 还依赖 `smh-node-sdk` npm 包（**要求 ^1.0.8**）。**必须在使用前完成安装**（二选一）：
+此 skill 还依赖 `smh-node-sdk` npm 包（**要求 ^1.0.9**）。**必须在使用前完成安装**（二选一）：
 
 ```bash
 # 方式一：全局安装（推荐）
-npm install -g smh-node-sdk@^1.0.8
+npm install -g smh-node-sdk@^1.0.9
 
 # 方式二：本地安装到项目目录
-npm install smh-node-sdk@^1.0.8
+npm install smh-node-sdk@^1.0.9
 ```
 
 > 脚本会按以下顺序查找 SDK：当前项目 node_modules → 全局 node_modules。如果未找到，脚本会报错并提示安装命令。
@@ -450,13 +455,41 @@ node scripts/agent-storage.js mkdir '<json>'
 }
 ```
 
+### rename
+
+```bash
+node scripts/agent-storage.js rename '<json>'
+```
+
+**JSON 参数：**
+- `fromPath`（必填）：源文件/文件夹的云端路径
+- `toPath`（必填）：目标路径（重命名后的路径）
+- `conflictStrategy`（可选）：`rename`（默认）| `overwrite`
+
+**说明：**
+- 支持文件和文件夹的重命名
+- 支持移动文件到其他目录（改变路径即为移动）
+- 重命名示例：`{"fromPath":"docs/old.pdf","toPath":"docs/new.pdf"}`
+- 移动示例：`{"fromPath":"docs/file.pdf","toPath":"archive/file.pdf"}`
+
+**Output:**
+
+```json
+{
+  "success": true,
+  "from": "docs/old.pdf",
+  "to": "docs/new.pdf",
+  "message": "\"docs/old.pdf\" 已重命名为 \"docs/new.pdf\""
+}
+```
+
 ---
 
 ## Full Example
 
 ```bash
 # Step 0: 安装 smh-node-sdk（首次使用前执行一次）
-npm install -g smh-node-sdk@^1.0.8
+npm install -g smh-node-sdk@^1.0.9
 
 # Step 1: 上传文件
 node scripts/agent-storage.js upload '{"localPath":"/path/to/report.pdf","conflictStrategy":"rename"}'
@@ -475,6 +508,9 @@ node scripts/agent-storage.js uploadDir '{"localPath":"/path/to/my-folder","conf
 
 # Step 6: 创建文件夹
 node scripts/agent-storage.js mkdir '{"dirPath":"photos"}'
+
+# Step 7: 重命名/移动文件
+node scripts/agent-storage.js rename '{"fromPath":"report.pdf","toPath":"archive/report-2026.pdf"}'
 ```
 
 ---

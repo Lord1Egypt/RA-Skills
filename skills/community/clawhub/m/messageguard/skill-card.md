@@ -1,46 +1,59 @@
-## Description: <br>
-Filters outgoing text for sensitive data using regex patterns and configurable actions like masking, blocking, or warning to prevent secret leaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MessageGuard filters outgoing text for sensitive data using regex patterns and configurable actions such as masking, blocking, or warning before a message is sent.
 
-## Publisher: <br>
-[AndrewAndrewsen](https://clawhub.ai/user/AndrewAndrewsen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andrewandrewsen](https://clawhub.ai/user/andrewandrewsen)
 
-## Use Case: <br>
-Developers and agent operators use MessageGuard as a pre-send gate for outgoing messages, especially when replies may include code, configuration, shell output, or other content that could contain secrets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A caller could ignore a blocked result and still send sensitive content. <br>
-Mitigation: Treat blocked=true or exit code 1 as a hard stop and never send result.message in that case. <br>
-Risk: Detection logs can contain sensitive snippets if logging is enabled. <br>
-Mitigation: Keep logging disabled unless audit records are required, and protect the configured log file when logging is enabled. <br>
-Risk: Broad allow_channels or allow_patterns settings can bypass filtering. <br>
-Mitigation: Limit bypass rules to reviewed internal contexts and keep overrides narrow. <br>
-Risk: Regex-based filtering can miss unusual secret formats or flag benign values. <br>
-Mitigation: Review detections, add custom patterns for local token formats, and test configuration changes before relying on them in sensitive workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MessageGuard on ClawHub](https://clawhub.ai/AndrewAndrewsen/messageguard) <br>
-- [Configuration reference](references/config-schema.md) <br>
-- [Integration guide](references/integration.md) <br>
-- [Built-in pattern library](references/patterns.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill as a pre-send guard for outgoing messages that may contain secrets, credentials, or sensitive data. It helps mask lower-risk matches, block high-risk matches, and surface warnings before content is transmitted.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON filter results with Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filter results include blocked, message, detections, and warnings; callers must not send result.message when blocked is true.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Blocked outputs and detection details may expose the sensitive content the skill detected.
+
+Mitigation: Do not transmit blocked result messages; redact or omit blocked output and detection snippets before sharing them.
+
+Risk: Detection logs may contain sensitive snippets or blocked-event metadata.
+
+Mitigation: Keep detection logging disabled unless needed, restrict log file permissions, minimize retained fields, and apply an explicit retention policy.
+
+Risk: Configuration failures fall back to defaults, which may be inappropriate for high-sensitivity workflows.
+
+Mitigation: Review or patch the script to fail closed for required configurations before using it with highly sensitive messages.
+
+## Reference(s):
+
+- [MessageGuard Skill Page](https://clawhub.ai/andrewandrewsen/skills/messageguard)
+- [Config Schema Reference](artifact/references/config-schema.md)
+- [Integration Guide](artifact/references/integration.md)
+- [Built-in Pattern Library](artifact/references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON results and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The filter script returns JSON containing blocked status, filtered or original message text, detections, and warnings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

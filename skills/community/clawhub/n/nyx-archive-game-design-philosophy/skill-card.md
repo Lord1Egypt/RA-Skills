@@ -1,39 +1,48 @@
-## Description: <br>
-Provides adaptive game design coaching that learns a user's design instincts and helps analyze mechanics, player experience, scope, playtesting, and design philosophy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent learn and apply a user's game-design preferences when analyzing, critiquing, scoping, brainstorming, and discussing game concepts.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nyxur42](https://clawhub.ai/user/nyxur42)
 
-## Use Case: <br>
-External designers, game developers, and creative teams use this skill for adaptive game design critique, concept analysis, scope checks, playtest planning, brainstorming, postmortems, and philosophical design guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill adapts to personal design preferences and project details, which can include sensitive creative plans or proprietary game ideas. <br>
-Mitigation: Avoid sharing proprietary game ideas or personal reflections that should not be used for future personalization. <br>
-Risk: Design critique and scope guidance may be subjective or unsuitable for a particular production constraint. <br>
-Mitigation: Treat recommendations as design guidance and review them against the project's audience, budget, schedule, and team constraints before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyxur42/nyx-archive-game-design-philosophy) <br>
+## Use Case:
 
+Game designers, developers, and creative collaborators use this skill to reason about game mechanics, player experience, design philosophy, production scope, playtesting, and critique. The skill adapts its guidance to observed design preferences and creative priorities.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include game design analyses, critiques, brainstormed concepts, scope recommendations, playtest protocols, and postmortem guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to passively infer game-design preferences from casual conversation, which can create unwanted profiling or retention of creative preferences.
+
+Mitigation: Review before installing; use session-only operation or disable memory if preference tracking is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nyxur42/skills/nyx-archive-game-design-philosophy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with conversational analysis, critique, prompts, and planning suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt recommendations based on observed user game-design preferences and prior conversation context when host memory is enabled.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

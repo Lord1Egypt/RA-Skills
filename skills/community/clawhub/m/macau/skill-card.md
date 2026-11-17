@@ -1,40 +1,54 @@
-## Description: <br>
-Navigate Macau as visitor, resident, worker, student, or founder with districts, transport, costs, borders, culture, and practical local context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Macau as visitor, resident, worker, student, or founder with districts, transport, costs, borders, culture, and practical local context.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill for Macau trip planning, relocation scouting, work or study questions, and cross-border planning involving Hong Kong, Zhuhai, or mainland China. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local memory may contain personal trip, relocation, border, or preference details. <br>
-Mitigation: Store only durable, non-sensitive context in ~/macau/memory.md; avoid passport numbers, credentials, detailed medical information, and other highly sensitive personal data. <br>
-Risk: Entry, visa, residency, weather, transport, and pricing guidance can become stale. <br>
-Mitigation: Treat the skill as planning guidance and re-check current official sources before travel, filing, or time-sensitive decisions. <br>
+## Use Case:
 
+External users and agents use this skill to answer Macau travel, relocation, work, study, and Greater Bay Area planning questions with district, transport, food, cost, border, culture, safety, and local logistics context.
 
-## Reference(s): <br>
-- [Macau skill homepage](https://clawic.com/skills/macau) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and occasional bash commands for optional local memory setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional local memory under ~/macau/ for trip, relocation, district, border, and preference notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: Local memory may retain Macau trip, budget, district, border, work, study, or relocation context between sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete ~/macau/memory.md if this context should not be retained.
+
+Risk: Entry, visa, residency, transport, weather, and cost guidance can become stale or vary by user circumstances.
+
+Mitigation: Confirm current official notices and user-specific details before relying on border, immigration, residency, or time-sensitive planning guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/macau)
+- [Macau skill homepage](https://clawic.com/skills/macau)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with occasional inline bash code blocks for local memory setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and reuse a local memory file under ~/macau/ when the user approves context retention.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

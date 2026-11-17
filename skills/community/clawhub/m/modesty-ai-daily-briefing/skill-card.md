@@ -1,45 +1,58 @@
-## Description: <br>
-Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start every day focused with a morning briefing of overdue tasks, today's priorities, calendar overview, and context from recent meetings.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Employees and external users use this skill to generate a daily productivity briefing from available to-do lists, recent meeting notes, memory files, and calendar context. It helps summarize overdue items, today's priorities, schedule, relevant context, and one focus recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The briefing can surface private tasks, meeting notes, memory, user preferences, and calendar details. <br>
-Mitigation: Install and use it only in private workspaces where those sources may be summarized back to the user. <br>
-Risk: Generated priorities or focus recommendations may omit or misread deadline context from local productivity sources. <br>
-Mitigation: Review the briefing against source tasks and calendar entries before acting on high-stakes commitments. <br>
-Risk: Server evidence includes crypto and purchase capability tags even though the artifact behavior is a productivity briefing. <br>
-Mitigation: Do not grant purchase or crypto-related tools based on this skill unless the publisher corrects or explains those tags. <br>
+## Use Case:
 
+External users and productivity-focused operators use this skill to ask an agent for a concise daily or weekly briefing based on local task lists, recent meeting notes, optional calendar context, and optional memory/profile files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-ai-daily-briefing) <br>
-- [Publisher profile](https://clawhub.ai/user/modestyrichards) <br>
-- [Creator homepage](https://jeffjhunter.com) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily briefing with sections for overdue tasks, today's priorities, calendar, recent context, and focus] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-message response; overdue, priority, and context sections are capped for scannability while calendar entries are shown chronologically when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Briefings may reveal sensitive tasks, meetings, calendar items, or memory/profile context in chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit briefing commands only when the output audience is appropriate, and disable or remove access to memory, profile, or calendar sources that should not be summarized.
+
+Risk: Broad trigger phrases may produce a briefing when the user did not intend to expose connected work context.
+
+Mitigation: Prefer deliberate commands such as "briefing" or "daily briefing" and avoid invoking the skill while screen sharing unless the audience should see the briefing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/modesty-ai-daily-briefing)
+- [Creator Homepage](https://jeffjhunter.com)
+- [Complete Setup Guide](https://skillboss.co/skill.md)
+- [Quick Start](artifact/examples/quick-start.md)
+- [Example Output](artifact/examples/output-example.md)
+- [Briefing Preferences Template](artifact/assets/PREFERENCES-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily briefing with structured sections and optional checklist-style items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single chat response; sections may be skipped when no relevant data exists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

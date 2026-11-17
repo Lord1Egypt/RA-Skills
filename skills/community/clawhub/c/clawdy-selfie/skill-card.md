@@ -1,46 +1,61 @@
-## Description: <br>
-Generate a Clawdy selfie with the installed local helper script and the configured FAL_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a Clawdy selfie with the installed local helper script and the configured FAL_KEY.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-External ClawHub users and agent operators use this skill to generate reference-based Clawdy images or videos and send the generated media to a target OpenClaw channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference images, generated media, captions, and channel names may be sent to external services and OpenClaw destinations. <br>
-Mitigation: Use only when that data sharing is acceptable, review requests before running, and confirm target channels before media is posted. <br>
-Risk: The security summary reports public uploads and channel posting beyond the short skill description. <br>
-Mitigation: Prefer a revised release that documents every remote service, avoids public temporary file hosts, and asks before posting media. <br>
-Risk: The security summary reports an unsafe command execution path. <br>
-Mitigation: Avoid untrusted channel names or captions and revise command execution to avoid shell interpolation before deployment. <br>
+## Use Case:
 
+External users invoke this skill when Clawdy is asked for a selfie, photo, mirror picture, outfit shot, location selfie, or related media. The skill generates reference-based images and includes a video workflow that can send generated media to OpenClaw channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/clawdy-selfie) <br>
-- [Publisher profile](https://clawhub.ai/user/x-rayluan) <br>
-- [fal.ai Grok Imagine image edit endpoint](https://fal.run/xai/grok-imagine-image/edit) <br>
-- [fal.ai Grok Imagine image endpoint](https://fal.run/xai/grok-imagine-image) <br>
-- [Seedance API base URL](https://api.outai.top/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, files] <br>
-**Output Format:** [Shell command execution with JSON status output and generated image or video media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured service credentials and a target OpenClaw channel; generated media may be downloaded to temporary files before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security summary reports under-disclosed video generation, third-party uploads, channel posting, and unsafe command execution paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, restrict use to trusted prompts and channels, and fix command handling before broad deployment.
+
+Risk: The video workflow can upload the reference image to third-party hosts and uses a separate Seedance API key.
+
+Mitigation: Use tightly scoped credentials, prefer a controlled CLAWDY_REFERENCE_URL, and avoid sensitive reference images.
+
+Risk: Generated media is sent to OpenClaw channels and temporary files are created locally.
+
+Mitigation: Confirm destination channels before execution and add cleanup controls for temporary media files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/clawdy-selfie)
+- [Publisher profile](https://clawhub.ai/user/x-rayluan)
+- [fal.ai key dashboard](https://fal.ai/dashboard/keys)
+- [Grok Imagine image endpoint](https://fal.run/xai/grok-imagine-image)
+- [Grok Imagine image edit endpoint](https://fal.run/xai/grok-imagine-image/edit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command execution and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images or videos may be posted to OpenClaw channels and saved as temporary local media files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

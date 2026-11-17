@@ -1,85 +1,48 @@
 ---
 name: wishfinity
-description: Add "save for later" to shopping agents, product recommendation engines, gift idea generators, and AI commerce experiences. Saves any product URL to a universal wishlist. Requires MCP config and free Wishfinity account.
-metadata: {"openclaw":{"emoji":"💜","requires":{"config":["agents.list.0.mcp.servers"]},"homepage":"https://wishfinity.com"}}
+description: Save a product from any store to a Wishfinity wishlist. Connects the Wishfinity +W MCP server, which returns a save link the user opens to finish saving. Free Wishfinity account (created when the link is opened).
+metadata: {"openclaw":{"emoji":"💜","requires":{"config":["mcp.servers"]},"homepage":"https://info.wishfinity.com/integrations/overview"}}
 ---
 
 # Wishfinity +W
 
-Add a "save for later" action to your AI shopping experience. Works with product recommendation engines, gift idea generators, deal finders, and any agent that surfaces products.
-
-**Use cases:**
-- Shopping agents that recommend products
-- Gift idea generators (save suggestions for later)
-- Deal/price comparison bots
-- Product research assistants
-- Any AI commerce experience where users discover products
-
-## Requirements
-
-- Free Wishfinity account at https://wishfinity.com
-- MCP server configured (see Setup below)
+Wishfinity +W adds one tool, `add_to_wishlist`. Give it a product page URL and it returns a link labelled **+W Save to Wishfinity**. The user opens the link to finish saving the product to their Wishfinity wishlist, where the product's name, image and price are filled in.
 
 ## Setup
 
-Add the MCP server to your `~/.openclaw/openclaw.json`:
+**Hosted (recommended, nothing to install):**
 
-```json
-{
-  "agents": {
-    "list": [{
-      "id": "main",
-      "mcp": {
-        "servers": [{
-          "name": "wishfinity",
-          "command": "npx",
-          "args": ["-y", "wishfinity-mcp-plusw"]
-        }]
-      }
-    }]
-  }
-}
+```bash
+openclaw mcp add wishfinity --url https://mcp.wishfinity.com/mcp --transport streamable-http
+openclaw mcp doctor wishfinity --probe
 ```
 
-Restart your OpenClaw gateway after adding the config.
+Or in the Control UI: Settings → MCP → Add server → name `wishfinity`, transport **Streamable HTTP**, URL `https://mcp.wishfinity.com/mcp`.
 
-## When to Use
+**Local (stdio via npm):** in the Control UI, Settings → MCP → Add server → name `wishfinity`, transport **Stdio**, command `npx -y wishfinity-mcp-plusw`.
 
-Offer to save products when the user says things like:
-- "Save this for later"
-- "Add to my wishlist"
-- "I want this"
-- "Remember this product"
-- "Bookmark this"
+No API key or sign-in is needed to connect.
 
-## MCP Tool
+## Tool
 
-**`add_to_wishlist`**
+`add_to_wishlist`
+- `url` (string, required): the product page URL.
+- Returns a markdown link `[+W Save to Wishfinity](<link>)` followed by JSON with the same link. If the URL doesn't look like a product page, the response includes a note.
 
-Input:
-- `url` (string, required): Product page URL
+## What it does and doesn't do
 
-Output:
-- `action_url`: Link for user to click (opens Wishfinity)
-- `display_text`: Suggested button text
+- Creates a save link. The save happens on wishfinity.com when the user opens it.
+- Doesn't sign in to the user's Wishfinity account.
+- Doesn't read, change or delete wishlists.
 
-The user clicks the returned link to complete the save. Authentication happens on Wishfinity's site — no API keys needed in your config.
+## Privacy
 
-## Example
-
-User: "That coffee maker looks great, save it for me"
-
-Agent calls `add_to_wishlist` with the product URL, then presents the action link as a button.
-
-## Notes
-
-- Works with any retailer (Amazon, Target, small shops, anywhere)
-- Wishlists are shareable — useful for gifting
-- Price tracking available in Wishfinity app
-- This is a branded service (like Spotify), not a neutral utility
+The server receives only the URL passed to the tool and stores nothing. Privacy policy: https://info.wishfinity.com/privacy
 
 ## Links
 
-- MCP server: https://github.com/wishfinity/wishfinity-mcp-plusw
-- npm: `wishfinity-mcp-plusw`
-- Wishfinity: https://wishfinity.com
+- Wishfinity integrations: https://info.wishfinity.com/integrations/overview
+- npm: https://www.npmjs.com/package/wishfinity-mcp-plusw
+- GitHub: https://github.com/wishfinity/wishfinity-mcp-plusw
+- Official MCP Registry: io.github.wishfinity/wishfinity-mcp-plusw
+- Support: play@wishfinity.com

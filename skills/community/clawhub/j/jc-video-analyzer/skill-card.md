@@ -1,43 +1,57 @@
-## Description: <br>
-Parse local video files into transcript and AI analysis. Extract audio, transcribe with faster-whisper, analyze with AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse local video files into transcript and AI analysis. Extract audio, transcribe with faster-whisper, analyze with AI.
 
-## Publisher: <br>
-[jeremycooper2077](https://clawhub.ai/user/jeremycooper2077) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeremycooper2077](https://clawhub.ai/user/jeremycooper2077)
 
-## Use Case: <br>
-Developers and agents use this skill to process local video files into extracted audio, timestamped transcripts, corrected transcripts, and structured AI analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript text is sent to a configured remote API during analysis. <br>
-Mitigation: Review or redact private, business, regulated, or confidential transcripts before running scripts/analyze.js. <br>
-Risk: ffmpeg examples use overwrite flags that can replace existing output files. <br>
-Mitigation: Run commands in a dedicated output directory or choose unique output filenames. <br>
-Risk: The analysis script requires SU2_API_KEY from the local OpenClaw configuration. <br>
-Mitigation: Confirm the configured provider and keep the credential out of transcripts, logs, and shared artifacts. <br>
+## Use Case:
 
+Developers and video analysts use this skill to process local video files into timestamped transcripts and AI-generated analysis reports. It supports workflows that extract audio, run faster-whisper transcription, and summarize or correct the transcript through a configured AI endpoint.
 
-## Reference(s): <br>
-- [Video Analyzer ClawHub release](https://clawhub.ai/jeremycooper2077/jc-video-analyzer) <br>
-- [Hugging Face mirror endpoint referenced by the skill](https://hf-mirror.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell command examples plus generated text, Markdown, WAV, and optional image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include audio_16k.wav, transcript.txt, transcript_corrected.md, analysis.md, and optional frame images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The AI analysis step can send the complete transcript to a configurable remote endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the provider URL before use and avoid processing sensitive recordings unless that data flow is acceptable.
+
+Risk: The analysis step reads an API credential for the configured AI endpoint.
+
+Mitigation: Use a constrained API key with limited scope and rotate it if transcript processing occurs in an untrusted environment.
+
+Risk: Runtime dependencies and models are installed or downloaded outside the skill package.
+
+Mitigation: Pin dependencies and review the configured model download endpoint before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeremycooper2077/skills/jc-video-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands plus generated transcript and analysis files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow can produce WAV audio, timestamped transcript text, corrected transcript Markdown, analysis Markdown, and optional extracted frame images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

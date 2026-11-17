@@ -1,0 +1,7 @@
+- generic [ref=e2]:
+  - generic [ref=e3]: 测灵之印
+  - heading "本命灵根" [level=1] [ref=e4]
+  - generic [ref=e5]: 测灵摊 · 今日之卷 P02
+  - generic [ref=e16]:
+    - generic [ref=e17]: 坊市角落有张旧木桌，桌后坐着个不肯说师承的测灵人。 「坐。伸手，答几道题。测什么根，测完自己看。」
+    - button "开始测灵" [ref=e18] [cursor=pointer]

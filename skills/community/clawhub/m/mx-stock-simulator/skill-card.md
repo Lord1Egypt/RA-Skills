@@ -1,44 +1,64 @@
-## Description: <br>
-妙想提供的股票模拟组合管理系统，支持持仓查询、买卖操作、撤单、委托查询、历史成交查询和资金查询等功能。通过安全认证的API接口实现真实交易体验。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mx Stock Simulator helps agents query and manage an A-share simulated stock portfolio, including positions, funds, orders, historical trades, buy/sell requests, and cancellations through an authenticated API.
 
-## Publisher: <br>
-[jessecq1995](https://clawhub.ai/user/jessecq1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessecq1995](https://clawhub.ai/user/jessecq1995)
 
-## Use Case: <br>
-External users use this skill to query and manage a simulated A-share stock portfolio, including holdings, funds, orders, cancellations, and historical trades. It is for simulated trading practice and strategy validation, not real-money trading or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change a simulated financial account through buy, sell, sell-all, cancel, and cancel-all actions. <br>
-Mitigation: Require manual confirmation before allowing an agent to execute any order placement or cancellation. <br>
-Risk: The MX_APIKEY credential is sent to a configurable API endpoint. <br>
-Mitigation: Keep MX_APIKEY secret and leave MX_API_URL on the official provider endpoint unless the replacement endpoint is fully trusted. <br>
-Risk: Saved output files may contain account, portfolio, order, or balance details. <br>
-Mitigation: Periodically clear saved output files and handle them as sensitive account data. <br>
+## Use Case:
 
+External users and agents use this skill to practice A-share portfolio operations, check simulated holdings and balances, review orders and trades, and submit simulated buy, sell, or cancellation requests. It is not a source of investment advice and does not perform live-money trading.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jessecq1995/mx-stock-simulator) <br>
-- [Miaoxiang simulated account setup](https://dl.dfcfs.com/m/itc4) <br>
-- [Default simulated trading API endpoint](https://mkapi2.dfcfs.com/finskillshub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text status messages and saved JSON response files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes API responses under /root/.openclaw/workspace/mx_data/output/ with mx_stock_simulator-prefixed filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill uses an API key for account-like simulated trading APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege, revocable MX_APIKEY and keep it in environment configuration rather than exposing it in prompts, logs, or shared files.
+
+Risk: The skill can submit buy, sell, and cancellation requests in a simulated portfolio.
+
+Mitigation: Require explicit user confirmation before allowing an agent to execute buy, sell, or cancel requests.
+
+Risk: The skill writes raw financial API responses to the local OpenClaw workspace output directory.
+
+Mitigation: Periodically delete or protect files under /root/.openclaw/workspace/mx_data/output and avoid sharing those outputs unless reviewed.
+
+Risk: Changing MX_API_URL could direct credentials and portfolio requests to an untrusted endpoint.
+
+Mitigation: Keep MX_API_URL set to the documented trusted HTTPS host unless the endpoint has been independently approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jessecq1995/skills/mx-stock-simulator)
+- [Publisher profile](https://clawhub.ai/user/jessecq1995)
+- [Configured API base URL](https://mkapi2.dfcfs.com/finskillshub)
+- [Miaoxiang account setup page](https://dl.dfcfs.com/m/itc4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write raw JSON response files and extracted text files under the configured OpenClaw workspace output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

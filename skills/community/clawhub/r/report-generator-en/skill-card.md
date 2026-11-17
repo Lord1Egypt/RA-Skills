@@ -1,40 +1,60 @@
-## Description: <br>
-Generates clear, structured weekly work reports from natural language input, tailored by role with insight-driven analysis and customizable tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates clear, structured weekly work reports from natural language input, tailored by role with insight-driven analysis and customizable tone.
 
-## Publisher: <br>
-[rashed-mamoon](https://clawhub.ai/user/rashed-mamoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rashed-mamoon](https://clawhub.ai/user/rashed-mamoon)
 
-## Use Case: <br>
-Professionals and team leads use this skill to turn weekly work notes into concise Markdown reports for leadership, team, or cross-functional audiences. It supports role-specific templates, compact reports, follow-up refinement, and placeholders when important details are missing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incomplete or ambiguous weekly updates can produce placeholders or wording that overstates progress. <br>
-Mitigation: Review the generated Markdown, fill TBD or Not provided fields, and confirm metrics, owners, dates, blockers, and outcomes before sharing. <br>
-Risk: Users may paste internal work details into an AI chat when preparing reports. <br>
-Mitigation: Use an approved AI environment and avoid including sensitive or regulated information unless organizational policy permits it. <br>
+## Use Case:
 
+Professionals and team members use this prompt-based skill to turn weekly work updates into structured Markdown reports for leadership, team, or cross-functional audiences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rashed-mamoon/report-generator-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with headings, bullet lists, and optional tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions, TBD or Not provided placeholders, role-specific report templates, compact mode, and language selection via /lang.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Users may paste confidential workplace, HR, finance, customer, incident, credential, or unreleased business information into an AI chat while drafting reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive details unless the organization has approved the AI provider and data handling path for that material.
+
+Risk: Generated reports may be incomplete or misleading when the source update lacks metrics, dates, owners, blockers, or outcomes.
+
+Mitigation: Review the draft before sharing it and keep missing facts marked as TBD or Not provided rather than accepting invented details.
+
+Risk: A remaining zero-width joiner and inaccurate changelog language may make security review less transparent.
+
+Mitigation: Remove the remaining hidden formatting character and update the changelog so it accurately reflects the released artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rashed-mamoon/skills/report-generator-en)
+- [Skill definition](artifact/SKILL.md)
+- [Usage guide](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown weekly report with headings, bullets, and optional tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask up to three clarifying questions and uses placeholders for missing data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and CHANGELOG, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

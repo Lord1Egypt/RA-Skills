@@ -1,46 +1,59 @@
-## Description: <br>
-AI-powered perpetual futures trading on Hyperliquid DEX that handles account creation, USDC onboarding, vault management, and autonomous trade execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered perpetual futures trading on Hyperliquid DEX that handles account creation, USDC onboarding, and autonomous trade execution.
 
-## Publisher: <br>
-[shekel-xyz](https://clawhub.ai/user/shekel-xyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shekel-xyz](https://clawhub.ai/user/shekel-xyz)
 
-## Use Case: <br>
-External users and agents use this skill to create and manage Hyperliquid perpetual futures trading accounts, configure strategy and risk limits, execute trades, manage USDC deposits and withdrawals, and operate Hyperliquid vaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over a crypto trading account through a powerful API key. <br>
-Mitigation: Use a proper secret manager or enter the key only when needed; do not store the API key in agent memory. <br>
-Risk: Autonomous trading, scheduled runs, and vault operations can move real funds and create financial loss. <br>
-Mitigation: Fund minimally, set strict risk limits such as maximum open positions, daily loss, and drawdown thresholds, and review trading settings before enabling schedules. <br>
-Risk: Withdrawal, vault, wallet-key export, and account deletion actions are high-impact account operations. <br>
-Mitigation: Require explicit user confirmation before withdrawals, vault actions, wallet-key export, account deletion, and scheduled trading changes. <br>
-Risk: Remote skill instructions may change over time. <br>
-Mitigation: Review remote instruction changes before allowing the agent to act on updated instructions. <br>
+## Use Case:
 
+External users and agents use this skill to configure and operate a Shekel trading agent for Hyperliquid perpetual futures, including onboarding, deposits, strategy updates, runs, schedules, account management, and vault operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shekel-xyz/shekel-hyperliquid) <br>
-- [Shekel Skill Service](https://shekel-skill-backend.onrender.com/skill) <br>
-- [Shekel Dashboard](https://www.shekel.xyz/hl-skill-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHEKEL_API_KEY for authenticated account, trading, withdrawal, vault, and key-management actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.14.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can trade futures, manage funds, withdraw assets, export wallet key material, and alter account state using a single API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated secret manager for the API key, rotate keys exposed in memory or logs, and require fresh user confirmation for withdrawals, wallet export, account deletion, vault operations, schedule changes, and whitelist bypasses.
+
+Risk: Remote instruction updates can change what the agent is told to do after installation.
+
+Mitigation: Review fetched instructions and version changes before use, and require re-review before executing financial actions after material instruction changes.
+
+Risk: Autonomous trading and vault operations can create financial losses or unintended account changes.
+
+Mitigation: Set risk limits, confirm schedules and single-ticker runs, use isolated margin when appropriate, and monitor balances, positions, LLM logs, and performance metrics.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/shekel-xyz/skills/shekel-hyperliquid)
+- [Shekel skill endpoint](https://shekel-skill-backend.onrender.com/skill)
+- [Shekel dashboard](https://www.shekel.xyz/hl-skill-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHEKEL_API_KEY for authenticated operations.]
+
+## Skill Version(s):
+
+1.14.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

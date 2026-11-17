@@ -1,42 +1,53 @@
-## Description: <br>
-Markdown Sync Pro publishes Markdown content to Notion, GitHub Wiki, Medium, or local HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Markdown content to Notion, GitHub Wiki, Medium, or local HTML.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers, technical writers, and content maintainers use this skill to preview, configure, and publish Markdown documents across supported documentation and publishing platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown documents or embedded images may contain secrets, private data, or content that should not be published. <br>
-Mitigation: Use dry-run first and review documents and images before publishing. <br>
-Risk: Platform tokens can grant access beyond what the publishing workflow needs. <br>
-Mitigation: Use least-privilege GitHub, Notion, and Medium tokens and keep credentials in environment variables. <br>
-Risk: The README includes a direct-use path involving an external repository or executable. <br>
-Mitigation: Review the external repository and executable before running that path. <br>
+## Use Case:
 
+Developers and content authors use this skill to publish or preview Markdown content across GitHub Wiki, Notion, Medium, and local HTML outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antonia-sz/markdown-sync-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and platform configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish content to external platforms or export local HTML; supports dry-run preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.yaml, release metadata) <br>
+Risk: The reviewed package is incomplete and directs users toward an external publishing script for a credentialed workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the actual publish implementation from a trusted source, avoid the external clone path unless trusted, and run dry-run mode before publishing.
+
+Risk: Publishing workflows can expose tokens, private Markdown content, or embedded image data to GitHub, Notion, Medium, or image hosting.
+
+Mitigation: Use least-privilege platform tokens and review Markdown files and embedded images for secrets or private data before publishing.
+
+## Reference(s):
+
+- [Markdown Sync Pro on ClawHub](https://clawhub.ai/antonia-sz/skills/markdown-sync-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and platform configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish content to external platforms or export local HTML, depending on selected command options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

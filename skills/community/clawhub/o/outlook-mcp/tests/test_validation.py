@@ -1,14 +1,29 @@
 """Tests for input validation — ported from olkcli patterns."""
 
+import itertools
+import time
+from unittest.mock import MagicMock
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError, available_timezones
+
 import pytest
 
 from outlook_mcp.validation import (
+    _FIXED_OFFSET_ZONES,
+    _TIME_ZONE_ABBREVIATIONS,
+    _ZONES_GRAPH_REFUSES,
+    CONFIG_REMEDY_TEXT,
+    has_time_zone_database,
+    resolve_timezone,
     sanitize_kql,
     sanitize_output,
+    validate_birthday,
     validate_datetime,
     validate_email,
-    validate_folder_name,
+    validate_event_key,
+    validate_event_timezone,
     validate_graph_id,
+    validate_header_zone,
+    validate_internet_message_id,
     validate_phone,
 )
 
@@ -19,6 +34,49 @@ class TestGraphIdValidation:
 
     def test_valid_id_with_slashes(self):
         assert validate_graph_id("AAMkAG/test+id=") == "AAMkAG/test+id="
+
+    def test_rejects_a_trailing_newline(self):
+        """`$` with `.match` also matches before one final newline."""
+        with pytest.raises(ValueError):
+            validate_graph_id("AAMkAG123=\n")
+
+
+class TestInternetMessageIdValidation:
+    def test_a_bracketed_message_id_is_kept_exactly(self):
+        value = "<CAF1a+b/c=d.e_f-g$h@mail.example.com>"
+        assert validate_internet_message_id(value) == value
+
+    def test_brackets_are_not_required(self):
+        """Graph stores the header as the sender wrote it, and some senders omit them."""
+        assert validate_internet_message_id("1234.5678@example.com") == "1234.5678@example.com"
+
+    @pytest.mark.parametrize(
+        "value",
+        [
+            "",
+            "<no-at-sign.example.com>",
+            "<two words@example.com>",
+            "<tab\t@example.com>",
+            "<a@example.com>\n",
+            "<caf\u00e9@example.com>",
+            "<" + "a" * 990 + "@example.com>",
+        ],
+    )
+    def test_a_value_that_cannot_be_a_message_id_is_refused(self, value):
+        with pytest.raises(ValueError, match="Message-ID"):
+            validate_internet_message_id(value)
+
+
+class TestTrailingNewlines:
+    """Every pattern validator must match the whole string, newline included."""
+
+    def test_email(self):
+        with pytest.raises(ValueError):
+            validate_email("someone@example.com\n")
+
+    def test_phone(self):
+        with pytest.raises(ValueError):
+            validate_phone("555 0100\n")
 
     def test_rejects_empty(self):
         with pytest.raises(ValueError, match="empty"):
@@ -78,15 +136,102 @@ class TestDatetimeValidation:
             validate_datetime("2026-04-12T00:00:00Z eq true")
 
 
+class TestZonelessDatetimeInterpretation:
+    """Zone-less input must mean the same instant regardless of what host we run on.
+
+    ``validate_datetime`` used to hand a naive datetime to ``.astimezone()``,
+    which resolves against the *process's* local clock. The same query string
+    therefore meant a different instant on a UTC container than on a laptop in
+    California — a silent 7-hour skew in every ``$filter`` bound and, worse, in
+    the deferred-send time of a scheduled message.
+    """
+
+    def test_naive_datetime_defaults_to_utc(self):
+        assert validate_datetime("2026-10-22T12:30:00") == "2026-10-22T12:30:00Z"
+
+    def test_naive_datetime_honors_an_explicit_zone(self):
+        assert (
+            validate_datetime("2026-10-22T12:30:00", tz="America/Los_Angeles")
+            == "2026-10-22T19:30:00Z"
+        )
+
+    def test_bare_date_honors_an_explicit_zone(self):
+        """ "after=2026-10-22" means the caller's midnight, not UTC's."""
+        assert validate_datetime("2026-10-22", tz="America/Los_Angeles") == "2026-10-22T07:00:00Z"
+
+    def test_bare_date_defaults_to_utc(self):
+        assert validate_datetime("2026-10-22") == "2026-10-22T00:00:00Z"
+
+    # The same zoneless string read twice: once with no zone (UTC), once with an
+    # explicit one. Both readings are host-independent, which is the property
+    # under test — kept in one place so the portable check and the POSIX-only
+    # invariance check cannot drift apart.
+    ZONELESS = "2026-10-22T12:30:00"
+    EXPECTED = {"2026-10-22T12:30:00Z", "2026-10-22T10:30:00Z"}
+
+    @classmethod
+    def _both_readings(cls) -> set[str]:
+        return {
+            validate_datetime(cls.ZONELESS),
+            validate_datetime(cls.ZONELESS, tz="Europe/Berlin"),
+        }
+
+    def test_naive_input_is_interpreted_in_the_given_zone(self):
+        """The answer itself, asserted everywhere — no process timezone needed."""
+        assert self._both_readings() == self.EXPECTED
+
+    @pytest.mark.skipif(
+        not hasattr(time, "tzset"),
+        reason="time.tzset() is POSIX-only — a process cannot rebind its own zone "
+        "on Windows, so there is no host clock to flip. The reading itself is "
+        "still asserted by test_naive_input_is_interpreted_in_the_given_zone.",
+    )
+    def test_naive_input_ignores_the_host_clock(self, monkeypatch):
+        """The regression guard: flip the process timezone, get the same answer."""
+        results = set()
+        try:
+            for zone in ("UTC", "America/Los_Angeles", "Europe/Berlin", "Asia/Tokyo"):
+                monkeypatch.setenv("TZ", zone)
+                time.tzset()
+                results |= self._both_readings()
+        finally:
+            monkeypatch.delenv("TZ", raising=False)
+            time.tzset()
+
+        assert results == self.EXPECTED
+
+    def test_offset_input_is_unaffected_by_the_zone_argument(self):
+        """An explicit offset already pins the instant — tz must not second-guess it."""
+        assert (
+            validate_datetime("2026-10-22T12:30:00+02:00", tz="America/Los_Angeles")
+            == "2026-10-22T10:30:00Z"
+        )
+
+    def test_utc_suffix_is_unaffected_by_the_zone_argument(self):
+        assert (
+            validate_datetime("2026-10-22T12:30:00Z", tz="America/Los_Angeles")
+            == "2026-10-22T12:30:00Z"
+        )
+
+    def test_dst_is_resolved_by_the_zone_not_a_fixed_offset(self):
+        """Los Angeles is UTC-7 in July and UTC-8 in January."""
+        assert (
+            validate_datetime("2026-07-15T12:00:00", tz="America/Los_Angeles")
+            == "2026-07-15T19:00:00Z"
+        )
+        assert (
+            validate_datetime("2026-01-15T12:00:00", tz="America/Los_Angeles")
+            == "2026-01-15T20:00:00Z"
+        )
+
+    def test_unknown_zone_is_rejected(self):
+        with pytest.raises(ValueError, match="timezone"):
+            validate_datetime("2026-10-22T12:30:00", tz="Mars/Olympus_Mons")
+
+
 class TestKqlSanitization:
     def test_simple_query(self):
         assert sanitize_kql("budget report") == '"budget report"'
-
-    def test_strips_dangerous_chars(self):
-        result = sanitize_kql('from:boss" OR (hack)')
-        assert '"' not in result.strip('"')
-        assert "(" not in result.strip('"')
-        assert ")" not in result.strip('"')
 
     def test_preserves_alphanumeric(self):
         result = sanitize_kql("meeting notes 2026")
@@ -95,31 +240,116 @@ class TestKqlSanitization:
         assert "2026" in result
 
     def test_strips_kql_operators(self):
+        # `&`, `|`, `!` are not Graph operators — the uppercase words are.
+        # The symbol forms silently zero out an otherwise-matching query.
         result = sanitize_kql("test & hack | evil")
         assert "&" not in result
         assert "|" not in result
 
+    # ── Property restrictions must survive (the #30 regression) ──
 
-class TestFolderNameValidation:
-    def test_wellknown_folders(self):
-        assert validate_folder_name("inbox") == "inbox"
-        assert validate_folder_name("drafts") == "drafts"
-        assert validate_folder_name("sentitems") == "sentitems"
-        assert validate_folder_name("deleteditems") == "deleteditems"
-        assert validate_folder_name("junkemail") == "junkemail"
-        assert validate_folder_name("archive") == "archive"
+    def test_preserves_property_restriction_colon(self):
+        """Stripping `:` turned every documented query into a 0-result phrase."""
+        assert sanitize_kql("subject:Unlock") == '"subject:Unlock"'
 
-    def test_case_insensitive_wellknown(self):
-        assert validate_folder_name("Inbox") == "inbox"
-        assert validate_folder_name("DRAFTS") == "drafts"
+    def test_preserves_all_documented_query_forms(self):
+        for query in (
+            "from:sarah@acme.com",
+            "hasattachment:true",
+            "received>=2026-01-01",
+            "subject:a AND subject:b",
+            "subject:a OR subject:b",
+            "NOT subject:a",
+        ):
+            assert sanitize_kql(query) == f'"{query}"', query
 
-    def test_custom_folder_id(self):
-        """Custom folder IDs pass through graph ID validation."""
-        assert validate_folder_name("AAMkAGFolderId=") == "AAMkAGFolderId="
+    def test_preserves_grouping_parens(self):
+        assert sanitize_kql("subject:(a OR b)") == '"subject:(a OR b)"'
 
-    def test_rejects_invalid(self):
-        with pytest.raises(ValueError):
-            validate_folder_name("../../evil")
+    # ── Security: the two chars that must never survive ──
+
+    def test_strips_quote_that_would_neutralize_search(self):
+        """An embedded quote makes Graph silently discard $search and return
+        the whole mailbox — 200, no error. This is the real injection vector."""
+        result = sanitize_kql('Haverhill" OR "Wayfair')
+        assert result == '"Haverhill OR Wayfair"'
+        assert result.count('"') == 2
+
+    def test_strips_backslash_escape_metachar(self):
+        """`\\` is a real string-literal escape: `\\s` is a 400 and a trailing
+        `\\` escapes our own closing quote (400, unterminated literal)."""
+        assert sanitize_kql("back\\slash") == '"backslash"'
+        assert "\\" not in sanitize_kql("Acrisure\\")
+
+    def test_strips_bare_wildcard(self):
+        """Graph already prefix-matches (`subject:Amaz` == `subject:Amaz*`), so
+        `*` buys nothing. Allowing it would turn a bare `*` into a silent
+        whole-mailbox read; stripping it leaves an empty query we reject."""
+        with pytest.raises(ValueError, match="empty after sanitization"):
+            sanitize_kql("*")
+
+    def test_rejects_query_that_sanitizes_to_empty(self):
+        """$search="" is an opaque Graph BadRequest — fail clearly instead."""
+        for query in ('"""', "&|!", "   "):
+            with pytest.raises(ValueError, match="empty after sanitization"):
+                sanitize_kql(query)
+
+    def test_wrapper_invariant_holds_for_any_input(self):
+        """The invariant that actually prevents the vulnerability: whatever goes
+        in, exactly two quotes come out and no backslash survives."""
+        for combo in itertools.product('ab":\\()&|!*<>= ', repeat=3):
+            try:
+                result = sanitize_kql("".join(combo))
+            except ValueError:
+                continue  # rejected outright — also safe
+            assert result.count('"') == 2, result
+            assert "\\" not in result, result
+            assert result.startswith('"') and result.endswith('"'), result
+
+
+class TestHeaderZone:
+    """A zone name written into `Prefer: outlook.timezone="…"` as is.
+
+    The name is Graph's own spelling of an event's zone, usually a Windows
+    name the IANA check refuses, so the check is on what the header can carry.
+    """
+
+    @pytest.mark.parametrize(
+        "zone",
+        [
+            "Pacific Standard Time",
+            "W. Europe Standard Time",
+            "UTC-11",
+            "UTC+12",
+            "(UTC-05:00) Eastern Time (US & Canada)",
+            "America/Los_Angeles",
+        ],
+    )
+    def test_names_graph_uses_are_accepted(self, zone):
+        assert validate_header_zone(zone) == zone
+
+    @pytest.mark.parametrize(
+        "zone",
+        [
+            pytest.param('Pacific"', id="quote"),
+            pytest.param("Pacific\\", id="backslash"),
+            pytest.param("Pacific\r", id="cr"),
+            pytest.param("Pacific\n", id="lf"),
+            pytest.param("Pacific\t", id="tab"),
+            pytest.param("Pacific\x00", id="nul"),
+            pytest.param("Pacific\x85", id="c1-next-line"),
+            pytest.param("Pacific\x7f", id="del"),
+            pytest.param("Hora est\u00e1ndar", id="non-ascii"),
+            pytest.param("", id="empty"),
+            pytest.param(None, id="none"),
+        ],
+    )
+    def test_anything_a_quoted_header_value_cannot_carry_is_refused(self, zone):
+        with pytest.raises(ValueError) as exc:
+            validate_header_zone(zone, remedy="Do the other thing.")
+        message = str(exc.value)
+        assert message.endswith("Do the other thing.")
+        assert "\r" not in message and "\n" not in message
 
 
 class TestPhoneValidation:
@@ -135,6 +365,48 @@ class TestPhoneValidation:
             validate_phone("1" * 31)
 
 
+class TestBirthdayValidation:
+    """A birthday is a date. Graph stores it as an instant, so the tool picks the time."""
+
+    def test_a_date_becomes_that_day_at_11_59_utc(self):
+        """11:59 UTC is where Outlook stores a birthday: the same calendar date from
+        UTC-11:59 to UTC+12:00, where midnight UTC is the day before everywhere west
+        of Greenwich."""
+        from datetime import datetime
+        from datetime import timezone as dt_timezone
+
+        assert validate_birthday("1990-05-01") == datetime(
+            1990, 5, 1, 11, 59, tzinfo=dt_timezone.utc
+        )
+
+    def test_a_leap_day_is_a_date(self):
+        assert validate_birthday("2000-02-29").day == 29
+
+    @pytest.mark.parametrize(
+        "value",
+        [
+            "",
+            "1990-5-1",
+            "1990-02-30",
+            "01/05/1990",
+            "May 1, 1990",
+            "1990-05-01T00:00:00Z",
+            "1990-05-01 11:59:00+00:00",
+            "1990-05-01\n",
+            "--05-01",
+            "19900501",
+            "1990-W18-2",
+        ],
+    )
+    def test_anything_but_a_plain_date_is_refused(self, value):
+        """A time is refused rather than dropped: the caller would otherwise be told
+        "updated" with a value other than the one sent. The ISO forms Python 3.11+
+        also parses as dates (`19900501`, week dates) are refused too, so the rule is
+        the same on every supported Python, 3.10 included."""
+        with pytest.raises(ValueError, match="YYYY-MM-DD"):
+            validate_birthday(value)
+
+
 class TestOutputSanitization:
     def test_strips_control_chars(self):
         assert sanitize_output("normal text") == "normal text"
@@ -147,3 +419,259 @@ class TestOutputSanitization:
 
     def test_strips_null_bytes(self):
         assert sanitize_output("null\x00byte") == "nullbyte"
+
+    def test_a_carriage_return_does_not_survive_a_single_line_field(self):
+        """CR is a control character too: it moves a terminal's cursor to the line start.
+
+        Single-line fields (names, subjects, content types) come from senders,
+        and a newline there already becomes a space; a CR kept slipping through.
+        """
+        assert (
+            sanitize_output("application/pdf\r\nX-Injected: 1") == "application/pdf  X-Injected: 1"
+        )
+        assert "\r" not in sanitize_output("name\roverwritten")
+
+
+class TestTimezoneResolution:
+    """A zone name needs a time zone database; say so when there isn't one.
+
+    The regression these guard: on a host with no IANA database (Windows, or a
+    slim Linux image) every calendar tool failed with a bare `Error executing
+    tool outlook_list_events` and no text, because `_wrap_tool_errors` holds an
+    unexpected exception's message server-side.
+
+    These moved here from `test_calendar_read.py` when the resolver moved out
+    of `calendar_read`: the write path needs the same zone vocabulary, and a
+    resolver two modules import does not belong in one of their test files.
+    """
+
+    def test_a_real_zone_resolves(self):
+        assert resolve_timezone("America/Los_Angeles").key == "America/Los_Angeles"
+
+    def test_a_typo_names_the_zone_and_the_callers_own_remedy(self):
+        """The remedy is the caller's to supply, because only it knows the source.
+
+        Naming `config.json` unconditionally meant a *model* passing a bad
+        `timezone` argument was told to go and edit the operator's config file
+        to fix its own input — a hint pointing at the wrong actor, which #53
+        established is worse than none.
+        """
+        with pytest.raises(ValueError) as excinfo:
+            resolve_timezone("America/Los_Angelez")
+        message = str(excinfo.value)
+        assert "America/Los_Angelez" in message
+        assert "config.json" not in message
+
+        with pytest.raises(ValueError) as excinfo:
+            resolve_timezone("America/Los_Angelez", remedy=CONFIG_REMEDY_TEXT)
+        assert "config.json" in str(excinfo.value)
+
+    def test_a_name_too_long_to_be_a_path_is_still_a_value_error(self):
+        """`ZoneInfo` resolves against the filesystem, so an over-long name can
+        fail as `OSError` rather than a missing key.
+
+        Platform-split, and that is why it shipped: `'x' * 256` raises
+        `OSError [Errno 63] File name too long` on macOS and
+        `ZoneInfoNotFoundError` on a Windows tzdata-only install. Caught only
+        on the machine it was written on, it reached the model as a
+        message-free crash everywhere else — the exact failure `resolve_timezone`
+        exists to prevent, through the one exception it did not catch.
+        """
+        for length in (255, 256, 4096):
+            with pytest.raises(ValueError) as excinfo:
+                resolve_timezone("x" * length)
+            assert "Invalid timezone" in str(excinfo.value), length
+
+    def test_a_case_variant_is_refused_on_every_platform(self):
+        """macOS would accept this and send it to Graph; Linux would not.
+
+        `ZoneInfo("america/los_angeles")` succeeds against a case-insensitive
+        `/usr/share/zoneinfo`, so a validator built on "does it raise" passes
+        on a contributor's Mac and rejects in production. Membership in
+        `available_timezones()` is the same answer everywhere.
+        """
+        with pytest.raises(ValueError):
+            resolve_timezone("america/los_angeles")
+
+    def test_a_missing_database_blames_the_install_not_the_config(self, monkeypatch):
+        """No database at all: the fix is the install, not the config value."""
+        monkeypatch.setattr(
+            "outlook_mcp.validation.ZoneInfo",
+            MagicMock(side_effect=ZoneInfoNotFoundError("no such key")),
+        )
+        with pytest.raises(ValueError) as excinfo:
+            resolve_timezone("America/Los_Angeles")
+        message = str(excinfo.value)
+        assert "tzdata" in message
+        # The installable is outlook-graph-mcp; outlook-mcp is only the command.
+        assert "outlook-graph-mcp" in message
+        assert "config.json" not in message
+
+    def test_a_path_shaped_key_is_refused_like_any_other_bad_zone(self):
+        """zoneinfo raises plain ValueError, not the subclass, for these."""
+        for key in ("/etc/localtime", "../../etc/passwd"):
+            with pytest.raises(ValueError) as excinfo:
+                resolve_timezone(key)
+            assert "Invalid timezone" in str(excinfo.value)
+
+    def test_the_database_probe_sees_a_real_database(self):
+        assert has_time_zone_database() is True
+
+    def test_a_long_zone_name_is_truncated_like_every_other_echo(self):
+        with pytest.raises(ValueError) as excinfo:
+            resolve_timezone("X" * 200)
+        assert "X" * 51 not in str(excinfo.value)
+
+    def test_an_abbreviation_is_told_it_is_an_abbreviation(self):
+        """A user says "3pm Pacific", so PDT is what an agent sends.
+
+        The generic "not a zone name the database contains" message sends the
+        reader hunting for a typo. Naming the category, and an example of the
+        thing that works, is the difference between one retry and several.
+        """
+        with pytest.raises(ValueError) as excinfo:
+            resolve_timezone("PDT")
+        message = str(excinfo.value)
+        assert "abbreviation" in message
+        assert "America/Los_Angeles" in message
+
+
+class TestEventTimezoneValidation:
+    """The write path's stricter check, and why it is a separate function."""
+
+    def test_an_iana_name_passes_through_unchanged(self):
+        assert validate_event_timezone("America/Los_Angeles") == "America/Los_Angeles"
+
+    def test_surrounding_whitespace_is_trimmed(self):
+        assert validate_event_timezone("  Europe/London  ") == "Europe/London"
+
+    def test_a_zone_graph_refuses_is_refused_here_instead(self):
+        """EST resolves in Python; Graph answers 400 TimeZoneNotSupportedException.
+
+        Verified live 2026-09-21: EST, MST and HST are rejected by Graph, while
+        America/Los_Angeles, Pacific Standard Time, GMT, US/Pacific, Etc/UTC and
+        UTC are all accepted. Without this branch the local check passes and the
+        caller pays a network round trip to be told, in Graph's words, what we
+        already knew.
+        """
+        with pytest.raises(ValueError) as excinfo:
+            validate_event_timezone("EST")
+        message = str(excinfo.value)
+        assert "America/New_York" in message
+        assert "daylight saving" in message
+
+    def test_the_abbreviation_table_holds_only_unresolvable_names(self):
+        """The invariant, checked in the direction that was false.
+
+        `_TIME_ZONE_ABBREVIATIONS` is documented as "only abbreviations
+        zoneinfo cannot resolve". `CET`, `EET` and `WET` all resolve, so their
+        refusal branch was dead and `validate_event_timezone` handed them
+        straight to Graph — which rejects all three
+        (`400 TimeZoneNotSupportedException`, verified live 2026-09-23). A
+        membership check alone cannot see an entry that does not belong; this
+        is the check that can.
+        """
+        resolvable = sorted(a for a in _TIME_ZONE_ABBREVIATIONS if a in available_timezones())
+        assert resolvable == [], (
+            f"{resolvable} resolve as IANA keys, so the abbreviation branch never fires "
+            f"for them. Either they are real zones Graph accepts and belong nowhere, or "
+            f"Graph refuses them and they belong in _ZONES_GRAPH_REFUSES with a replacement."
+        )
+
+    def test_the_two_zone_tables_do_not_overlap(self):
+        """A name in both would take whichever branch runs first, silently."""
+        assert not (_TIME_ZONE_ABBREVIATIONS & set(_ZONES_GRAPH_REFUSES))
+
+    def test_only_genuinely_fixed_offset_zones_claim_to_be_one(self):
+        """The refusal text says "fixed-offset … never observes daylight saving".
+
+        True of EST/MST/HST, false of CET/EET/WET, which tzdata gives CEST /
+        EEST / WEST. Stating it of the whole table would have put a false
+        sentence in front of the model, so it is per entry — and this is what
+        keeps it true as entries are added.
+        """
+        from datetime import datetime
+
+        for name in _ZONES_GRAPH_REFUSES:
+            tz = ZoneInfo(name)
+            jan = datetime(2026, 1, 15, 12, tzinfo=tz).utcoffset()
+            jul = datetime(2026, 7, 15, 12, tzinfo=tz).utcoffset()
+            observes_dst = jan != jul
+            claimed_fixed = name in _FIXED_OFFSET_ZONES
+            assert claimed_fixed != observes_dst, (
+                f"{name}: table says fixed-offset={claimed_fixed}, tzdata says it "
+                f"observes DST={observes_dst}"
+            )
+
+    def test_every_refused_zone_really_does_resolve_in_python(self):
+        """Guard the premise of the table itself.
+
+        Each entry earns its place by being a name zoneinfo accepts and Graph
+        does not. If one ever stops resolving it belongs in
+        `_TIME_ZONE_ABBREVIATIONS` instead, and this row becomes a message
+        pointing the wrong way — which is worse than no message.
+        """
+        for name in _ZONES_GRAPH_REFUSES:
+            assert ZoneInfo(name), name
+
+    def test_config_timezone_is_not_held_to_this_standard(self):
+        """An upgrade must not kill a server whose config.json already says EST.
+
+        `resolve_timezone` loads `config.timezone` at startup, so it stays
+        permissive; only a freshly written tool argument goes through
+        `validate_event_timezone`. If the two ever collapse into one function,
+        this test is what notices.
+        """
+        assert resolve_timezone("EST").key == "EST"
+
+
+class TestEventKeyValidation:
+    """An event key is matched inside a `$filter` string literal, so it is held to
+    characters no literal needs escaping for, and checked whole."""
+
+    @pytest.mark.parametrize(
+        "key",
+        ["a", "booking:ABC123", "flight:ab12cd:LHR-JFK", "user@example.com", "x_y.z", "A" * 128],
+    )
+    def test_accepts(self, key):
+        assert validate_event_key(key) == key
+
+    @pytest.mark.parametrize(
+        "key",
+        [
+            "",
+            "A" * 129,
+            "has space",
+            " leading",
+            "trailing ",
+            "it's",  # would end the literal
+            'quote"d',
+            "a/b",
+            "a+b",  # a query string can read + as a space
+            "a#b",
+            "a%27b",
+            "a(b)",
+            "Genève",
+            "tab\there",
+            "booking:ABC123\n",
+        ],
+    )
+    def test_refuses(self, key):
+        with pytest.raises(ValueError, match="Invalid event key"):
+            validate_event_key(key)
+
+    def test_the_refusal_states_the_rule(self):
+        with pytest.raises(ValueError) as exc:
+            validate_event_key("it's")
+        assert "1-128" in str(exc.value)
+        assert ". _ : @ -" in str(exc.value)
+
+    def test_the_refusal_does_not_echo_control_characters(self):
+        with pytest.raises(ValueError) as exc:
+            validate_event_key("bad\x1b[2Jkey")
+        assert "\x1b" not in str(exc.value)
+
+    @pytest.mark.parametrize("value", [None, 123, ["booking:1"]])
+    def test_refuses_a_value_that_is_not_a_string(self, value):
+        with pytest.raises(ValueError, match="Invalid event key"):
+            validate_event_key(value)

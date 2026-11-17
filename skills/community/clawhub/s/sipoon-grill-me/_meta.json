@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-grill-me",
+  "name": "grill-me",
+  "ownerId": "local-workspace-agent",
+  "slug": "grill-me",
   "version": "0.1.0",
-  "publishedAt": 1779984880632
+  "publishedAt": 1779879293895
 }

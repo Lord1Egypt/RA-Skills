@@ -1,44 +1,57 @@
-## Description: <br>
-Access 670+ datasets from the City of Ottawa open data portal. Search, fetch, and analyze city data on transit, environment, health, elections, and more via ArcGIS Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access 670+ datasets from the City of Ottawa open data portal. Search, fetch, and analyze city data on transit, environment, health, elections, and more via ArcGIS Hub.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to search, inspect, fetch, and export City of Ottawa open datasets from ArcGIS Hub for civic-data analysis and automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests Bash permission and runs a Python script that performs network requests. <br>
-Mitigation: Review the script and commands before installation, and approve shell execution only for expected Ottawa open-data tasks. <br>
-Risk: Activation phrases are broad enough to trigger during general Ottawa data discussions. <br>
-Mitigation: Narrow activation to explicit requests involving open.ottawa.ca or City of Ottawa open datasets. <br>
+## Use Case:
 
+Developers, analysts, and civic data users use this skill to search, inspect, fetch, and export public City of Ottawa datasets from ArcGIS Hub for analysis and reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/raychanpmp/ottawa-opendata) <br>
-- [Ottawa Open Data Portal](https://open.ottawa.ca) <br>
-- [Ottawa DCAT Feed](https://open.ottawa.ca/api/feed/dcat-us/1.1.json) <br>
-- [ArcGIS Content Items API](https://www.arcgis.com/sharing/rest/content/items) <br>
-- [Ottawa Open Data - Popular Datasets](references/datasets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, CSV, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI output as text, JSON, CSV, or URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Ottawa and ArcGIS endpoints and caches the dataset catalog locally for up to one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The fetch command can follow dataset-controlled service URLs outside the stated Ottawa/ArcGIS scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an environment where outbound requests to unintended internal services are not sensitive, and review dataset metadata before fetching.
+
+Risk: CSV exports may contain public data values that spreadsheet software interprets unexpectedly.
+
+Mitigation: Treat exported CSV files as untrusted public data and inspect or sanitize them before opening in spreadsheet software.
+
+## Reference(s):
+
+- [Ottawa Open Data Portal](https://open.ottawa.ca)
+- [Ottawa DCAT Feed](https://open.ottawa.ca/api/feed/dcat-us/1.1.json)
+- [ArcGIS Content Items REST Endpoint](https://www.arcgis.com/sharing/rest/content/items)
+- [Popular Datasets Reference](references/datasets.md)
+- [ClawHub Skill Page](https://clawhub.ai/raychanpmp/skills/ottawa-opendata)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, CSV, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command output may be plain text, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI may create a local catalog cache when run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Build and manage Apple-native container dev environments with ciderbox and orchard swarm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage Apple-native container dev environments with ciderbox and orchard swarm.
 
-## Publisher: <br>
-[mentholmike](https://clawhub.ai/user/mentholmike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mentholmike](https://clawhub.ai/user/mentholmike)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use Ciderbox to scaffold, run, test, and clean up Apple-native Linux container development environments from Apple Silicon Macs. The skill also guides local Orchard agent swarm setup, task execution, result collection, diagnostics, and teardown.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agents may manage local Apple container VMs and alter or remove running Ciderbox environments.
+
+Mitigation: Run Ciderbox commands only on intended Apple Silicon development machines, review VM lifecycle commands before execution, and treat chop commands as destructive.
+
+Risk: Secret-push workflows can expose credentials to running Orchard trees or untrusted workloads.
+
+Mitigation: Use short-lived, least-privilege credentials, avoid secrets push --all unless every running tree and workload is trusted, and rotate credentials after use.
+
+Risk: Generated shell commands or configuration may not match the user's local container setup.
+
+Mitigation: Run diagnostic checks such as ciderbox doctor or ciderbox orchard doctor and verify Apple container CLI prerequisites before executing build, test, or swarm commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill on Apple Silicon Macs to create local container VMs, test projects across Linux distro images, scaffold ciderbox and orchard configuration, and run local OpenClaw agent swarms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to create local container VMs, run commands, sync workspaces, and launch local OpenClaw agent swarms. <br>
-Mitigation: Use it only for projects where local container execution and agent-swarm access are intended, and review generated commands before running them. <br>
-Risk: Orchard workflows can push .orchid.env secrets into running VMs. <br>
-Mitigation: Validate required secrets before pushing them, limit use to trusted local VMs, and run the documented teardown commands when finished. <br>
+**Output Format:** [Markdown guidance with bash and YAML examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Ciderbox ClawHub listing](https://clawhub.ai/mentholmike/ciderbox) <br>
-- [Publisher profile](https://clawhub.ai/user/mentholmike) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Review commands before execution, especially commands that destroy local Ciderbox environments or push secrets into running Orchard trees.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for local Apple container workflows and may include commands that create VMs, sync workspaces, launch agents, or push .orchid.env secrets.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Explain bit-cli skill purpose, installation, required setup, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain bit-cli skill purpose, installation, required setup, and troubleshooting.
 
-## Publisher: <br>
-[ParinLL](https://clawhub.ai/user/ParinLL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parinll](https://clawhub.ai/user/parinll)
 
-## Use Case: <br>
-Developers and operators use this skill to install and operate the Bit URL Shortener CLI for creating, listing, inspecting, updating, deleting, and checking click data for short links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Building and installing the upstream CLI from source can introduce supply-chain or local privilege risk. <br>
-Mitigation: Review the upstream bit-cli repository before building it and only use sudo for the final install step when the target path requires administrator privileges. <br>
-Risk: Bit API keys can be exposed through shared scripts, logs, or command history. <br>
-Mitigation: Use the least-privileged BIT_API_KEY available and keep it in environment configuration rather than shared scripts or logs. <br>
-Risk: Update or delete commands can change or remove the wrong short link if the ID is incorrect. <br>
-Mitigation: Verify link IDs with list or get commands before running update or delete operations. <br>
+## Use Case:
 
+Developers and operators use this skill to install and use the Bit URL Shortener CLI for creating, listing, inspecting, updating, deleting, and reviewing click data for short links.
 
-## Reference(s): <br>
-- [Bit CLI source repository](https://github.com/ParinLL/bit-cli) <br>
-- [Bit URL Shortener on ClawHub](https://clawhub.ai/ParinLL/bit) <br>
-- [ParinLL publisher profile](https://clawhub.ai/user/ParinLL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the bit, git, go, and sudo binaries for the documented install path, and BIT_API_KEY for authenticated Bit API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill directs users to build an unpinned third-party CLI and move it into /usr/local/bin with sudo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the bit-cli source before installation, and prefer a user-local PATH location over a system-wide sudo install.
+
+Risk: The CLI uses BIT_API_KEY to create, update, delete, and inspect short-link data.
+
+Mitigation: Use a narrowly scoped Bit API key, keep it out of command history and shared scripts, and confirm link IDs with list or get before update or delete operations.
+
+## Reference(s):
+
+- [Bit URL Shortener on ClawHub](https://clawhub.ai/parinll/skills/bit)
+- [bit-cli source module](https://github.com/ParinLL/bit-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include environment variables, CLI commands, and troubleshooting steps for Bit API operations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

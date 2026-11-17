@@ -1,43 +1,49 @@
-## Description: <br>
-Complete brand-building and go-to-market system that guides users through brand foundations, positioning, messaging, visual identity, launch execution, and brand measurement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete brand building system guiding solopreneurs, startups, and established businesses through purpose, values, positioning, messaging, visual identity, go-to-market planning, and brand management.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External users, founders, marketers, and business teams use this skill to create or refine a brand strategy, including purpose, values, positioning, messaging, voice, visual identity direction, launch planning, and brand audits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential business plans, customer data, or launch details while using the brand strategy workflow. <br>
-Mitigation: Share only information appropriate for the agent environment and redact sensitive customer, financial, or launch details when possible. <br>
-Risk: Broad brand and marketing activation examples may trigger unintentionally when many marketing-related skills are installed. <br>
-Mitigation: Invoke this skill explicitly when requesting brand strategy, positioning, messaging, or launch planning work. <br>
-Risk: Generated positioning, claims, or go-to-market recommendations may be inaccurate or unsuitable for a specific market. <br>
-Mitigation: Review outputs against business facts, customer evidence, legal requirements, and current market conditions before publishing or executing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-brand-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business builders, marketers, founders, and brand operators use this skill to create or audit a structured brand strategy, including positioning, messaging, brand voice, visual identity briefs, launch planning, channel strategy, and brand health checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Text] <br>
-**Output Format:** [Markdown with structured templates, checklists, tables, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce brand strategy artifacts such as positioning statements, messaging architecture, ICP definitions, voice guidelines, launch plans, battlecards, and audit checklists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad brand or go-to-market prompts may produce public launch, social, email, legal, or crisis-response content that is incomplete, inaccurate, or unsuitable for the user's market.
+
+Mitigation: Invoke the skill with explicit goals and constraints, then review generated public, legal, and crisis-response content before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-brand-strategy)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with YAML snippets, tables, checklists, and structured templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; generated public launch, social, email, legal, and crisis-response content should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

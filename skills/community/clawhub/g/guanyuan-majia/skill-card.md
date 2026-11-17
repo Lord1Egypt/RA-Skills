@@ -1,46 +1,55 @@
-## Description: <br>
-This Agent Skill helps agents route standard Guandata BI work to the official Guandata CLI family and handle advanced ETL governance, custom chart debugging, v7 publishing, SuperApp workflows, AI-native ADS design, and restaurant BI formulas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents using Guandata BI through official CLI workflows and specialist playbooks for governed ETL, restricted data extraction, dashboard verification, custom charts, and publishing.
 
-## Publisher: <br>
-[maojiebc](https://clawhub.ai/user/maojiebc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maojiebc](https://clawhub.ai/user/maojiebc)
 
-## Use Case: <br>
-Developers, BI engineers, and analysts use this skill to help an agent work with Guandata BI environments, especially for ETL governance, BI engine troubleshooting, custom dashboards, SuperApp workflows, and business formula design. It is intended for users administering their own BI instance with appropriate account permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to ETLs, datasets, dashboards, forms, and pages in a Guandata BI instance. <br>
-Mitigation: Review BI permissions before use and prefer a non-production or least-privilege BI account for testing. <br>
-Risk: Deletion or overwrite tasks can affect BI assets. <br>
-Mitigation: Keep deletion and overwrite workflows behind explicit human confirmation, and confirm backups or rebuild sources before proceeding. <br>
+## Use Case:
 
+BI developers, analysts, and operators use this skill to work with Guandata BI through its official command-line tools and to troubleshoot ETL, dashboards, data extraction, and publishing workflows. It also guides agents in producing SQL, code, dashboard assets, and evidence reports while checking data scope and business definitions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maojiebc/skills/guanyuan-majia) <br>
-- [README.en.md](README.en.md) <br>
-- [SmartETL Full-Chain Rewrite](references/part-b17-fullchain-rewrite.md) <br>
-- [HTML Dashboard Playbook](references/part-c-html-dashboard.md) <br>
-- [SuperApp Pipeline](references/part-e-superapp-pipeline.md) <br>
-- [AI-Native ADS Design](references/ai-native-ads-design.md) <br>
-- [Restaurant BI Formula Library](references/restaurant-bi-formulas/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command snippets, JSON and SQL examples, and implementation playbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing instructions for Guandata BI governance, ETL, custom charts, dashboards, SuperApp workflows, and formula design.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.4 (source: SKILL.md frontmatter metadata, package.json, server release) <br>
+Risk: The release security scan flags an unpinned installer and a confirmed uninstall backup risk; its analysis is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and verify the package source and version before installation. Use the installer's dry-run and target-specific options, and preserve any existing configuration and backup files before uninstalling.
+
+## Reference(s):
+
+- [Restricted query playbook](references/restricted-query-playbook.md)
+- [Bounded extraction guide](references/bounded-extraction.md)
+- [Dashboard evidence guide](references/dashboard-evidence.md)
+- [ETL governance and write guide](references/part-b-governance.md)
+- [HTML dashboard playbook](references/part-c-html-dashboard.md)
+- [V7 page and card publishing pipeline](references/v7-page-card-publish-pipeline.md)
+- [Official CLI compatibility notes](references/official-cli-compatibility.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, SQL, Code, Configuration, Analysis]
+
+**Output Format:** [Markdown guidance with shell commands, SQL, code, configuration examples, and structured JSON evidence when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or revise dashboard assets, extraction reports, and validation evidence according to the selected workflow.]
+
+## Skill Version(s):
+
+3.5.2 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

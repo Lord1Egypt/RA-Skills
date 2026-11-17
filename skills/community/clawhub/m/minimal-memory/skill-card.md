@@ -1,40 +1,51 @@
-## Description: <br>
-Maintain clean, efficient memory files with GOOD/BAD/NEUTRAL categorization and semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain clean, efficient memory files with GOOD/BAD/NEUTRAL categorization and semantic search for agent memory management.
 
-## Publisher: <br>
-[zencrust-ai](https://clawhub.ai/user/zencrust-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zencrust-ai](https://clawhub.ai/user/zencrust-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep local agent memory concise, tagged, searchable, and organized across long-term essentials and daily memory logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local memory notes may retain secrets, sensitive personal data, or broad user prompts longer than intended. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, periodically review MEMORY.md and daily logs, and archive or remove entries that should not persist. <br>
-Risk: The skill modifies local workspace memory files through shell scripts. <br>
-Mitigation: Review proposed changes before relying on them and keep the MEMORY_DIR and WORKSPACE environment variables pointed at the intended workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zencrust-ai/minimal-memory) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/zencrust-ai) <br>
+## Use Case:
+
+Developers and agent operators use this skill to maintain persistent local memory, categorize entries as GOOD, BAD, or NEUTRAL, search prior memory files, and review or archive stale daily notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill stores persistent local memory files that may contain sensitive or private details if users add them.
+
+Mitigation: Avoid storing secrets, credentials, private personal details, or untrusted copied text without review.
+
+Risk: Daily memory entries can be promoted into long-term MEMORY.md and influence future agent behavior.
+
+Mitigation: Review and condense entries before promoting them into long-term memory.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, searches, reviews, and archives local MEMORY.md and memory/YYYY-MM-DD.md files when invoked through its shell scripts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples and local memory file conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and searches local Markdown memory files under configurable workspace paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

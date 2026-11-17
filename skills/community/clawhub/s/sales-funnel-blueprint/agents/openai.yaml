@@ -1,0 +1,5 @@
+interface:
+  display_name: Sales Funnel Blueprint
+  short_description: Turn an offer into a concrete multi-step sales funnel spec - page-by-page structure, price ladder, copy outline and the metrics each step must hit.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg

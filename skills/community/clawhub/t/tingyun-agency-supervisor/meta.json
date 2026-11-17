@@ -1,0 +1,40 @@
+{
+  "pkg": "tingyun-agency-supervisor",
+  "kind": "agent",
+  "name_zh": "代运营监理与验收顾问",
+  "profession_zh": "代运营监理顾问",
+  "desc_zh": "为品牌方审查代运营合同条款、设计KPI与对赌、制定第三方验收与数据资产归属方案，输出监理清单。不替代法律意见需人工复核。适用委托代运营的品牌方。技术触发词「代运营合同审查、KPI对赌设计、验收审计」。口语触发词「签约代运营前必须审查哪些合同条款、如果我和代运营方解约，账号、客户数据和素材归谁」。输出可直接使用的清单、对照表与行动项。仅作规划与清单辅助，不构成法律/税务/医疗专业意见，需人工复核。",
+  "desc_en": "Agency-operation supervision and third-party acceptance advisor for brand owners. Reviews agency contracts, designs KPI and earn-out structures, sets acceptance criteria and third-party audit methods, clarifies data-asset ownership, and builds exit and handover checklists. Supervision and checklist aid only, not legal advice, human review required. Covers: 代运营合同审查, KPI对赌设计, 验收审计.",
+  "tags": [
+    "代运营合同审查",
+    "KPI对赌设计",
+    "验收审计"
+  ],
+  "price_cny_tiers": [
+    19,
+    39,
+    99
+  ],
+  "suggested_price_cny": 39,
+  "suggested_price_usd": [
+    19,
+    39,
+    99
+  ],
+  "platforms": {
+    "workbuddy": {
+      "published": false,
+      "note": "观察期只能挂 1 个付费资产，发布后不可改付费"
+    },
+    "coze": {
+      "format": "SKILL.md 同源",
+      "note": "扣子编程侧用 SKILL.md；需个人版商户入驻 + 精选案例"
+    },
+    "claude_skills": {
+      "format": "SKILL.md 同源",
+      "note": "Agensi / KissMySkills / Gumroad 均收此格式"
+    }
+  },
+  "copyright": "原创方法论整理，不含受版权保护出版物内容",
+  "license": "单次购买单人授权使用，不可转售再分发"
+}

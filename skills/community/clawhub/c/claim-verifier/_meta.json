@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7bj0db1ydm0bam8j7c2fcbrx83ttp5",
-  "slug": "claim-verifier",
-  "version": "1.0.2",
-  "publishedAt": 1778511899696
+  "name": "claim-verifier",
+  "version": "1.0.0",
+  "description": "Verify external factual claims in drafts and produce a structured report.",
+  "entry": "SKILL.md",
+  "tags": ["verification", "research", "fact-check", "prismfy"],
+  "runtime": {
+    "requiresEnv": ["PRISMFY_API_KEY"],
+    "requiresBins": ["curl", "jq"]
+  }
 }
+

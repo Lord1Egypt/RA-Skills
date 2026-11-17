@@ -1,41 +1,58 @@
-## Description: <br>
-Multi-agent orchestration patterns for production deployments, including sub-agent quality-control workflows, model staggering, cross-validation, fallback chains, task routing, ACPX configuration, and cost optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent orchestration patterns for production deployments, including sub-agent quality-control workflows, model staggering, cross-validation, fallback chains, task routing, ACPX configuration, and cost optimization.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multiple agents or models for complex workflows, including quality-control loops, model routing, fallback chains, and agent configuration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive prompts, regulated data, or proprietary project context may be shared across external model providers during multi-agent workflows. <br>
-Mitigation: Use provider allowlists, scoped API keys, redaction, and explicit approval before sending sensitive context to model providers. <br>
-Risk: Agents with file-write or command-execution permissions can make unintended changes when spawned or delegated work. <br>
-Mitigation: Require explicit approval for write-capable or command-running agents and constrain their tool permissions to the task scope. <br>
-Risk: Fallback chains and retries can increase cost or latency if limits are not enforced. <br>
-Mitigation: Set retry caps, timeouts, quality gates, and cost monitoring before deploying fallback workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, configure, and operate multi-agent workflows that route tasks across models, add review loops, set fallback behavior, and control orchestration cost.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces orchestration patterns, routing rules, fallback examples, and operational guidance for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Orchestration examples could be mistaken for a security boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as guidance and perform deployment review before relying on agent routing or review loops for control decisions.
+
+Risk: Sub-agents with broad permissions could make unintended project changes.
+
+Mitigation: Scope sub-agent permissions to the project and require confirmation before destructive actions.
+
+Risk: Provider API keys could be exposed beyond the intended orchestration runtime.
+
+Mitigation: Limit API-key availability to the intended server or agent runtime and avoid passing credentials to unnecessary sub-agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/pl-agent-orchestration)
+- [ClawHub publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, YAML, JSON, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; no bundled executable payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

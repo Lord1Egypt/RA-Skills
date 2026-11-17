@@ -1,0 +1,68 @@
+{
+  "pipeline_name": "父流水线示例 - 报销审批流程",
+  "version": "1.0",
+  "description": "展示如何引用子流水线（发票处理）作为节点，体现模块化复用",
+  "agents": [
+    {
+      "id": "submit",
+      "name": "提交报销申请",
+      "role": "员工提交报销申请，上传发票图片",
+      "type": "task",
+      "outputs": ["invoice_file", "employee_id", "expense_type"],
+      "depends_on": []
+    },
+    {
+      "id": "invoice_step",
+      "name": "发票处理（子流水线）",
+      "type": "pipeline",
+      "pipeline_ref": "invoice-pipeline-v1",
+      "params": {
+        "file_path": "nodes.submit.output_data.invoice_file"
+      },
+      "outputs": {
+        "invoice_no": "nodes._terminal_.output_data.invoice_no",
+        "amount": "nodes._terminal_.output_data.amount",
+        "valid": "nodes._terminal_.output_data.valid",
+        "score": "nodes._terminal_.output_data.score"
+      },
+      "depends_on": ["submit"],
+      "comment": "引用已注册的发票处理子流水线，隔离执行后映射输出"
+    },
+    {
+      "id": "check_amount",
+      "name": "金额审核",
+      "type": "condition",
+      "condition": "nodes.invoice_step.output_data.amount <= 5000",
+      "on_true": ["auto_approve"],
+      "on_false": ["manager_review"],
+      "depends_on": ["invoice_step"]
+    },
+    {
+      "id": "auto_approve",
+      "name": "自动审批",
+      "role": "金额在限额内，自动审批通过",
+      "type": "task",
+      "outputs": ["approved"],
+      "depends_on": ["check_amount"]
+    },
+    {
+      "id": "manager_review",
+      "name": "经理审批",
+      "role": "金额超限，需经理人工审批",
+      "type": "approval",
+      "outputs": ["approved"],
+      "depends_on": ["check_amount"]
+    },
+    {
+      "id": "archive",
+      "name": "归档",
+      "role": "审批通过后归档",
+      "type": "task",
+      "depends_on": ["auto_approve", "manager_review"]
+    }
+  ],
+  "state_store": {
+    "type": "json",
+    "path": "./parent_pipeline_state.json"
+  }
+}

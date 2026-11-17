@@ -1,42 +1,57 @@
-## Description: <br>
-Build, maintain, query, archive, and audit a Markdown / Obsidian knowledge Wiki continuously maintained by an LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, maintain, query, archive, and audit a Markdown/Obsidian knowledge wiki that an LLM continuously updates from source materials and prior answers.
 
-## Publisher: <br>
-[fengsusky](https://clawhub.ai/user/fengsusky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengsusky](https://clawhub.ai/user/fengsusky)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to initialize and maintain a local Markdown or Obsidian knowledge wiki, import source materials, connect concepts, answer questions from the wiki, and audit structure and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad wiki reorganization, including renames, moves, and updates across many Markdown files. <br>
-Mitigation: Limit the agent to the intended vault and review bulk rename or reorganization plans before applying them. <br>
-Risk: Generated or reorganized wiki content can introduce incorrect conclusions, duplicate concepts, broken links, or outdated synthesis pages. <br>
-Mitigation: Run the included audit script after imports or refactors and review important knowledge changes before relying on them. <br>
-Risk: The audit script prints local file paths and wiki diagnostics. <br>
-Mitigation: Treat audit output as local diagnostics and avoid sharing it outside the intended review context. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a long-lived personal or team Markdown/Obsidian knowledge base. It helps import source material, compile reusable source/entity/concept/synthesis/comparison/query pages, update indexes and logs, answer questions from the wiki, and run structural audits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengsusky/llm-obsidian-wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with wiki file changes, Obsidian links, audit findings, and Python or shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local wiki pages and reports local audit diagnostics; no external reporting is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can read and edit files in a target Knowledge vault, which may expose or alter private notes if the workspace scope is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the intended vault and keep private or unrelated directories outside the agent's editable scope.
+
+Risk: Bulk renames, directory migrations, and attachment localization can disrupt links or file organization.
+
+Mitigation: Confirm before bulk operations and rerun the packaged wiki verification script after imports, refactors, renames, or topic-map updates.
+
+Risk: External web sources can introduce unverified or time-sensitive claims into durable wiki pages.
+
+Mitigation: Prefer internal source material, attribute external sources clearly, and separate source viewpoints from externally verified facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengsusky/skills/llm-obsidian-wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown, wiki files, inline shell commands, and Python audit script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates local Knowledge vault files and may report audit findings for broken links, index coverage, source coverage, and UTF-8 issues.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

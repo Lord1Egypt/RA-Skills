@@ -1,41 +1,54 @@
-## Description: <br>
-飞马｜48个人机协作思想实验｜牧羊人与牧羊犬｜人与AI如何共同完成一件事｜信任/委托/边界/责任/记忆/进化 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language skill for exploring 48 human-AI collaboration thought experiments about trust, delegation, boundaries, responsibility, memory, and evolution.
 
-## Publisher: <br>
-[wanyview1](https://clawhub.ai/user/wanyview1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyview1](https://clawhub.ai/user/wanyview1)
 
-## Use Case: <br>
-External users and developers use this skill to explore 48 Chinese thought experiments about human-AI collaboration, including trust, delegation, boundaries, responsibility, memory, and adaptation. The skill provides `/fm` commands for random selection, listing, lookup, comparison, search, story-style presentation, and full-system overview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal or business details while exploring hypothetical collaboration scenarios. <br>
-Mitigation: Use fictionalized or minimized details and avoid entering confidential, personal, regulated, or proprietary information. <br>
-Risk: Thought experiments may be mistaken for operational advice in high-impact decisions. <br>
-Mitigation: Treat outputs as discussion prompts and require qualified human review before applying ideas to legal, medical, financial, employment, or safety-critical contexts. <br>
+## Use Case:
 
+External users and developers can use this Chinese-language skill to prompt reflective discussion about human-AI collaboration, including delegation, trust calibration, responsibility, shared memory, and decision boundaries.
 
-## Reference(s): <br>
-- [Famous on ClawHub](https://clawhub.ai/wanyview1/famous) <br>
-- [Famous v1.0 full thought-experiment artifact](artifact/Famous_v1.0_飞马_48个人机协作思想实验.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only skill; no executable code, external tools, or hidden access requests were identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill is Chinese-language content, which may be unsuitable for users who cannot review the prompts and responses accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when reviewers and users can understand the Chinese-language material.
+
+Risk: Reflective thought experiments may be mistaken for operational, legal, medical, financial, or safety guidance in high-impact situations.
+
+Mitigation: Use the outputs as discussion prompts and require independent human review before applying ideas to real-world decisions.
+
+## Reference(s):
+
+- [Famous v1.0 ClawHub Skill Page](https://clawhub.ai/wanyview1/skills/famous)
+- [Famous v1.0 Thought Experiment Collection](artifact/Famous_v1.0_飞马_48个人机协作思想实验.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text responses selected by /fm-prefixed commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return random experiments, lists, details, comparisons, keyword search results, story-form narratives, or the full framework.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

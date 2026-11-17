@@ -1,44 +1,61 @@
-## Description: <br>
-Refines ambiguous or high-risk user requests before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refines ambiguous or high-risk user requests before execution, while skipping clear single-step instructions and already well-scoped tasks.
 
-## Publisher: <br>
-[lq434239](https://clawhub.ai/user/lq434239) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lq434239](https://clawhub.ai/user/lq434239)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to decide when ambiguous or high-risk requests should be refined, compared with the original, clarified, or executed directly. It helps reduce rework by adding clearer scope, output expectations, and acceptance criteria only when refinement materially improves execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may add clarification or compare-first prompts when a request is vague or high risk. <br>
-Mitigation: Apply the documented trigger threshold and substantial-value test so clear single-step or already well-scoped tasks execute directly. <br>
-Risk: When paired with a session-learning skill, workflow preference signals could be over-collected or too specific. <br>
-Mitigation: Record only abstract event labels such as choice outcomes, never full prompt text or task-specific details. <br>
+## Use Case:
 
+Developers and agent operators use this skill to decide when a user request should be executed directly, silently refined, presented as a compare-first prompt, or returned as a refinement only. It helps clarify underspecified or high-risk work without adding friction to clear requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lq434239/self-improving-prompt) <br>
-- [Decision Matrix](references/decision-matrix.md) <br>
-- [Reference Details](references/details.md) <br>
-- [Non-Examples](references/non-examples.md) <br>
-- [Prompt Refinement Patterns](references/prompt-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise chat text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a refined prompt, direct execution guidance, a compare-first choice, or a minimal abstract preference event label.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: A refined prompt could unintentionally steer execution away from the user's original intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use compare-first only when refinement adds substantial value or when the user asks to compare, and let the user choose between the refined and original prompt.
+
+Risk: Prompt refinement can add unnecessary interruption for already clear requests.
+
+Mitigation: Skip refinement for clear atomic instructions and prefer silent refinement when the user does not need to inspect the rewritten prompt.
+
+Risk: Workflow preference learning could expose task details if full prompt text were stored.
+
+Mitigation: Record only abstract preference labels and never store full refined prompt text or task-specific details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lq434239/skills/self-improving-prompt)
+- [Decision Matrix](references/decision-matrix.md)
+- [Reference Details](references/details.md)
+- [Non-Examples](references/non-examples.md)
+- [Prompt Refinement Patterns](references/prompt-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with optional refined prompt blocks and concise user choice prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only behavior; no bundled scripts, external services, credentials, network access, or persistent configuration changes are required for normal use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

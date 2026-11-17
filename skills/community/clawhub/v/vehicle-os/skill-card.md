@@ -1,40 +1,53 @@
-## Description: <br>
-Track service history, maintenance schedules, mechanics, registration, insurance, and admin for all your vehicles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vehicle OS helps an agent track service history, maintenance schedules, mechanics, registration, insurance, administrative deadlines, and costs across cars, trucks, motorcycles, boats, RVs, and trailers.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External users use this skill to maintain records for cars, trucks, motorcycles, boats, RVs, and trailers, including service history, maintenance schedules, mechanic contacts, costs, and administrative deadlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores vehicle and ownership records locally, which may include sensitive details such as VINs, plate numbers, policy information, or loan details. <br>
-Mitigation: Only store sensitive identifiers when needed, keep vehicle-data.json in a trusted local environment, and periodically remove records that are no longer needed. <br>
-Risk: Maintenance schedules and proactive reminders may be incomplete or unsuitable for a specific vehicle, usage pattern, or manufacturer requirement. <br>
-Mitigation: Treat suggested intervals as adjustable defaults and confirm critical maintenance decisions against the owner's manual or a qualified mechanic. <br>
+## Use Case:
 
+External users and their agents use this skill to maintain local records for owned vehicles, log services and costs, track mechanics, and surface maintenance or administrative due dates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris-openclaw/vehicle-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Conversational Markdown with structured vehicle records and maintenance summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists vehicle ownership and service data in local vehicle-data.json when used by a compatible agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Detailed vehicle, registration, insurance, or loan information may be retained in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only necessary details, avoid full VINs, plate numbers, policy details, addresses, and loan information unless needed, and periodically review or delete saved records.
+
+Risk: Built-in maintenance intervals may not match a specific vehicle, operating conditions, or manufacturer guidance.
+
+Mitigation: Use the suggested schedules as adjustable defaults and confirm important maintenance decisions against the owner's manual or a qualified mechanic.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris/skills/vehicle-os)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Conversational Markdown responses with local JSON record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists vehicle records in vehicle-data.json when the host agent supports the skill data directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, changelog, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

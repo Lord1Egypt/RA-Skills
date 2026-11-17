@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 62 super_brain.py (2026-06-16) - AI 智能层
+"""v20.62 super_brain.py (2026-06-16) - AI 智能层
 - query 进来先过 LLM: 实体识别 + 意图分类 + 关键词补全
 - 缓存常见 query (省 LLM 调用)
 - 后期给 query_rewrite.py / search / answer.py 用
@@ -18,7 +18,7 @@ import urllib.error
 from pathlib import Path
 from typing import List, Dict, Optional
 
-LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.token-star.cn/v1')
+LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.<service-domain>/v1')
 LLM_API_KEY = os.environ.get('LLM_API_KEY', '')
 LLM_MODEL = os.environ.get('LLM_MODEL', 'DeepSeek-V4-Flash')
 LLM_TIMEOUT = int(os.environ.get('LLM_TIMEOUT', '8'))
@@ -50,39 +50,36 @@ CACHE_TTL = 86400 * 7  # 7 天
 
 def _load_cache() -> Dict:
     if not CACHE_FILE.exists():
-        return {'items': {}}
+        return {}
     try:
+        if time.time() - CACHE_FILE.stat().st_mtime > CACHE_TTL:
+            return {}
         with open(CACHE_FILE) as f:
             return json.load(f)
     except Exception:
-        return {'items': {}}
+        return {}
 
 
 def _save_cache(data: Dict):
-    with open(CACHE_FILE, 'w') as f:
-        json.dump(data, f, ensure_ascii=False)
+    try:
+        with open(CACHE_FILE, 'w') as f:
+            json.dump(data, f, ensure_ascii=False)
+    except Exception:
+        pass
 
 
 def _cache_get(key: str) -> Optional[Dict]:
-    data = _load_cache()
-    item = data['items'].get(key)
-    if item and time.time() - item.get('t', 0) < CACHE_TTL:
-        return item.get('v')
-    return None
+    return _load_cache().get(key)
 
 
 def _cache_set(key: str, value: Dict):
     data = _load_cache()
-    data['items'][key] = {'t': time.time(), 'v': value}
-    # 限 1000 条
-    if len(data['items']) > 1000:
-        sorted_items = sorted(data['items'].items(), key=lambda x: x[1].get('t', 0))
-        data['items'] = dict(sorted_items[-1000:])
+    data[key] = value
     _save_cache(data)
 
 
 def _call_llm(prompt: str, max_tokens: int = 300) -> Optional[str]:
-    """实战 62: 调 LLM (OpenAI 兼容)"""
+    """v20.62: 调 LLM (OpenAI 兼容)"""
     if not LLM_API_KEY:
         return None
     body = json.dumps({
@@ -107,8 +104,8 @@ def _call_llm(prompt: str, max_tokens: int = 300) -> Optional[str]:
         return None
 
 
-def analyze_query(query: str, use_cache: bool = True) -> Dict:
-    """实战 62: AI 智能分析 query
+def analyze_query(query: str, use_cache: bool = True, context: str = '', **kwargs) -> Dict:
+    """v20.62: AI 智能分析 query
     返回: {
         'entity': 主体词 (如 '韭研公社', '比亚迪', 'Python'),
         'intent': 意图 (navigation/info/transaction/comparison/news),
@@ -129,6 +126,29 @@ def analyze_query(query: str, use_cache: bool = True) -> Dict:
 
     # 2) 调 LLM 分析
     prompt = f"""你是一个搜索意图分析助手。分析用户 query 并输出 JSON。
+
+【intent 严格定义】
+- navigation: 用户明确找官网/网址/官方入口 (含"官网/网址/官方"或"百度一下X/给我搜X")
+- info: 用户查一般信息/介绍/百科/教程/原理/学术
+- transaction: 用户想购买/比价 (含"价格/多少钱/优惠/折扣/购买/入手/购入")
+- comparison: 用户对比多个对象 (含"vs/X和Y哪个好/X和Y区别/对比")
+- news: 用户要最新资讯 (含"新闻/头条/进展/动态/最新消息")
+
+【关键边界】
+- "X 是什么/介绍/教程/原理" → info
+- "X 官网/网址/百度一下X/给我搜X" → navigation
+- "X 价格/多少钱/优惠" → transaction
+- "X vs Y/对比/区别/哪个好" → comparison
+- "X 新闻/进展/动态" → news
+- 单纯"X" (公司/品牌/产品名) → info (查百科)
+
+【示例】
+Q: "华为官网" → {{"entity":"华为","intent":"navigation"}}
+Q: "Python vs Rust" → {{"entity":"Python, Rust","intent":"comparison"}}
+Q: "茅台 股价 多少" → {{"entity":"茅台","intent":"transaction"}}
+Q: "今天 AI 新闻" → {{"entity":"AI","intent":"news"}}
+Q: "Python 教程" → {{"entity":"Python","intent":"info"}}
+Q: "比亚迪" → {{"entity":"比亚迪","intent":"info"}}
 
 用户 query: {query}
 

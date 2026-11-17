@@ -1,43 +1,60 @@
-## Description: <br>
-Amazon profit margin calculator for sellers that calculates cost breakdowns, profit margins, break-even points, and pricing recommendations for single products or batches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Amazon FBA product profitability from seller-provided costs, including cost breakdowns, net margins, break-even prices, pricing recommendations, and batch SKU summaries.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-Amazon sellers and e-commerce operators use this skill to evaluate product profitability, diagnose margins, compare SKUs, and adjust pricing based on user-provided cost inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Profitability results depend on user-provided costs, fees, rates, and SKU data, so incomplete or stale inputs can produce misleading margin guidance. <br>
-Mitigation: Provide current selling price, product cost, FBA fulfillment fee, shipping, storage, advertising, category, return, and other fee inputs before relying on recommendations. <br>
-Risk: The skill documentation includes a global install command for a third-party package source. <br>
-Mitigation: Verify the source and package contents before running global installation commands. <br>
-Risk: Product cost, pricing, and SKU data may be commercially sensitive. <br>
-Mitigation: Share only the product, pricing, and SKU details needed for the calculation. <br>
+## Use Case:
 
+External Amazon sellers and e-commerce operators use this skill to estimate FBA profitability, compare single products or batches of SKUs, and reason about pricing changes before sourcing or listing decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/profit-margin-calculator-amazon) <br>
-- [Nexscope](https://nexscope.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with tables, cost breakdowns, break-even analysis, pricing recommendations, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided product, pricing, fee, and SKU data; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The global npx installation command is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or reviewed source before installation.
+
+Risk: Profitability outputs are estimates and depend on accurate seller-provided inputs and static fee assumptions.
+
+Mitigation: Validate inputs and compare results against current Amazon fees or other business records before making financial decisions.
+
+Risk: Limited input validation may allow malformed values to produce errors or misleading calculations.
+
+Mitigation: Check required numeric fields before running analyses and review outputs for reasonableness.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/profit-margin-calculator-amazon)
+- [Amazon Skills collection](https://github.com/nexscope-ai/Amazon-Skills)
+- [eCommerce Skills collection](https://github.com/nexscope-ai/eCommerce-Skills)
+- [Nexscope](https://nexscope.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with tables, cost breakdowns, break-even analysis, pricing recommendations, and optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are estimates based on user-provided costs and static referral or fee assumptions; no API key is required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

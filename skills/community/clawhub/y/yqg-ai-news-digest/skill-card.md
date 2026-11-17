@@ -1,40 +1,53 @@
-## Description: <br>
-AI News Digest by YQG helps agents collect, deduplicate, rank, categorize, and summarize current AI industry developments into daily, weekly, topic-focused, or competitor-focused reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI industry news aggregator and structured report generator that collects, deduplicates, ranks, and categorizes recent AI developments into daily or weekly digests, topic deep-dives, competitor tracking, trend analysis, bilingual reports, and chat, file, or Feishu document output.
 
-## Publisher: <br>
-[yqghlx](https://clawhub.ai/user/yqghlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yqghlx](https://clawhub.ai/user/yqghlx)
 
-## Use Case: <br>
-Employees, external users, and analysts use this skill to produce sourced AI news digests, topic deep-dives, competitor radars, and weekly roundups. It is intended for AI industry tracking and structured reporting in chat, file, or Feishu document form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saving a report or publishing it to Feishu could send content to an unintended destination. <br>
-Mitigation: Use chat output by default and confirm the exact file path, document target, and permissions before saving or publishing. <br>
-Risk: News digests can become misleading if stale, duplicate, or weakly sourced items are included. <br>
-Mitigation: Require dated source links, deduplicate coverage of the same event, and show empty sections rather than filling them with older news. <br>
+## Use Case:
 
+Employees, external users, analysts, and developers use this skill to request concise AI news digests, weekly roundups, topic deep-dives, competitor radars, and trend analysis from current web sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yqghlx/yqg-ai-news-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports brief, standard, deep, and executive depth levels; Chinese is the default output language with English available on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: server release evidence) <br>
+Risk: The skill relies on live web search and fetched article content, so reports can include stale, incomplete, paywalled, or incorrect source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source links and dates before acting on the digest, especially for time-sensitive or high-impact business decisions.
+
+Risk: Optional file output or Feishu document creation could place reports in unintended locations or overwrite existing content if requested carelessly.
+
+Mitigation: Prefer chat output or a dedicated export folder, and confirm the destination before creating documents or writing files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yqghlx/skills/yqg-ai-news-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with source links, summaries, tables, ranked sections, and optional file or Feishu document delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports brief, standard, deep, and executive depth levels; Chinese output by default with English available on request.]
+
+## Skill Version(s):
+
+3.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

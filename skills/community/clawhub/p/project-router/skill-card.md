@@ -1,41 +1,57 @@
-## Description: <br>
-Terminal-first project bootstrapper and workspace context manager for detecting current projects, reading project context, running standardized targets, initializing .project bundles, managing artifacts, and exposing those actions through a CLI or MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Router helps agents detect project context, manage local .project bundles, run standardized targets, manage artifacts, and expose the workflow through CLI or MCP tools.
 
-## Publisher: <br>
-[SafaTinaztepe](https://clawhub.ai/user/SafaTinaztepe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[safatinaztepe](https://clawhub.ai/user/safatinaztepe)
 
-## Use Case: <br>
-Developers and engineering teams use Project Router to bootstrap and manage local project context, standardized targets, artifacts, and task-focused workspace state. It is suited for agent-assisted project switching where the agent needs project briefs, target commands, and task context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run repository-defined shell commands from .project/targets.json. <br>
-Mitigation: Install only for trusted workspaces and inspect .project/targets.json before running any target. <br>
-Risk: The skill can apply file-writing plans. <br>
-Mitigation: Inspect generated plan JSON before applying it. <br>
-Risk: The MCP server may expose project actions for unfamiliar repositories. <br>
-Mitigation: Avoid enabling the MCP server for unfamiliar repositories and verify that it invokes the reviewed project CLI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SafaTinaztepe/project-router) <br>
+## Use Case:
 
+Developers and agents use Project Router to bootstrap project-local context bundles, read workspace context, run declared targets, manage artifact indexes, and switch between project or task context through CLI or MCP tools.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with JSON configuration and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local .project bundle files when the plan/apply workflow is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Repository-defined targets can execute commands on the user's machine.
+
+Mitigation: Use only in trusted repositories and inspect .project/targets.json before invoking target run or MCP target execution.
+
+Risk: Apply workflows can write files into the local project bundle.
+
+Mitigation: Inspect .project/history/plans/*.json before applying plans and keep generated apply receipts for audit.
+
+Risk: The MCP server exposes tools that can run targets and apply project plans.
+
+Mitigation: Avoid running the MCP server with sensitive environment variables until command confirmation, path containment, and bundled-CLI verification are in place.
+
+## Reference(s):
+
+- [Project Router ClawHub listing](https://clawhub.ai/safatinaztepe/skills/project-router)
+- [safatinaztepe publisher profile](https://clawhub.ai/user/safatinaztepe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown and JSON text with CLI commands, MCP tool responses, project briefs, target lists, plans, and apply receipts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read project context and may write .project bundle files when apply workflows are invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

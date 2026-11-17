@@ -1,45 +1,62 @@
-## Description: <br>
-AI-native DeFi investment intelligence that helps agents discover, analyze, and compare yield opportunities with risk scoring, security signals, smart-money context, and conversational refinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native DeFi investment intelligence for discovering, analyzing, and comparing yield opportunities across protocols using intent-aware search, risk scoring, security scanning, smart money signals, and server-side analysis.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-External agents and DeFi researchers use this skill to turn natural-language investment intent into ranked yield opportunities, deeper product analysis, and side-by-side comparisons. It is suited for research workflows where users still independently verify recommendations before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DeFi research prompts, risk preferences, and session-linked investment intent are sent to Antalpha's remote MCP server. <br>
-Mitigation: Avoid seed phrases, private keys, exchange credentials, wallet secrets, and unnecessary personal financial details in prompts. <br>
-Risk: Investment recommendations can be incomplete, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Independently verify all recommendations, protocol risks, and market data before taking action. <br>
+## Use Case:
 
+External users and agent developers use this skill to research DeFi yield opportunities, compare products, and generate risk-aware analysis from natural language or structured preferences. The skill is for investment research support, not custody or trade execution.
 
-## Reference(s): <br>
-- [Web3 Investor ClawHub Page](https://clawhub.ai/bevanding/web3-investor) <br>
-- [Antalpha](https://www.antalpha.com/) <br>
-- [Antalpha MCP Server Endpoint](https://mcp-skills.ai.antalpha.com/mcp) <br>
-- [Protocol Registry](references/protocols.md) <br>
-- [Risk Assessment Framework](references/risk-framework.md) <br>
-- [MCP Servers for Web3 Data](references/mcp-servers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable Markdown or plain text summaries with structured JSON responses from MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include ranked recommendations, product analyses, comparison narratives, clarification prompts, risk scores, and suggested next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.2 (source: server release evidence) <br>
+Risk: Submitted DeFi queries, risk preferences, product IDs, session IDs, and optional feedback are sent to Antalpha's remote MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit wallet seed phrases, private keys, personally identifying details, or full private portfolio records; provide only the minimum investment context needed for research.
+
+Risk: Investment research outputs may be affected by delayed APY data, incomplete market context, or limits in server-side analysis.
+
+Mitigation: Review returned data quality and freshness fields, treat recommendations as research support, and perform independent due diligence before making investment decisions.
+
+Risk: Reference material includes optional unpinned npx MCP examples that could execute third-party packages.
+
+Mitigation: Pin and verify package sources before running those examples, or use the bundled Python client path instead.
+
+## Reference(s):
+
+- [ClawHub Web3 Investor skill page](https://clawhub.ai/bevanding/skills/web3-investor)
+- [Antalpha MCP server endpoint](https://mcp-skills.ai.antalpha.com/mcp)
+- [Antalpha homepage](https://www.antalpha.com/)
+- [MCP servers reference](artifact/references/mcp-servers.md)
+- [Protocol registry reference](artifact/references/protocols.md)
+- [Risk assessment framework](artifact/references/risk-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted text with structured JSON-derived result summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ranked recommendations, product analysis, comparison summaries, clarification prompts, suggested next actions, and raw JSON fallback responses.]
+
+## Skill Version(s):
+
+3.8.2 (source: ClawHub release metadata; artifact frontmatter is 3.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -103,6 +103,22 @@ YYYY-MM-DD-描述.扩展名
 git add -f sources/important-notes.md
 ```
 
+## Zotero 私有接入层
+
+`sources/zotero/` 专用于 Zotero 管理文件的本机接入：
+
+- `sources/zotero/metadata.yaml`：私有 Zotero 绑定账本，可记录 item key、attachment key、当前机器本地路径和 source alias。
+- `sources/zotero/**`：由 `scripts/zotero_sources.py` 生成的本机 symlink cache。
+
+这整个目录默认不进 Git。metadata 可以包含当前机器的绝对路径，因为它不是公共项目状态。不要把 Agent 生成的摘要、wiki 草稿或综合知识写入这里。
+
+推荐流程：
+
+```bash
+python scripts/zotero_sources.py --dry-run
+python scripts/zotero_sources.py
+```
+
 ## 使用注意
 
 - 此目录只由**用户管理**（添加、删除、重命名）

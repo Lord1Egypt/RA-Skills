@@ -1,41 +1,53 @@
-## Description: <br>
-Invokes a Dify API-backed 8D report analysis workflow when an OpenClaw user message starts with the configured Chinese trigger phrase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls a Dify API for 8D problem analysis when the user's message starts with "调用 8D 报告分析助手".
 
-## Publisher: <br>
-[langwang1pm](https://clawhub.ai/user/langwang1pm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[langwang1pm](https://clawhub.ai/user/langwang1pm)
 
-## Use Case: <br>
-OpenClaw users use this skill to submit 8D report analysis questions to a Dify-backed workflow and receive the workflow result as the agent reply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts, reports, and open_id values may leave the local environment through the Dify workflow. <br>
-Mitigation: Use the skill only with trusted Dify endpoints and avoid confidential reports until the publisher documents the data flow. <br>
-Risk: The skill hands execution to a local shell script, which makes the behavior dependent on a script outside the packaged artifact. <br>
-Mitigation: Review and harden the local dify_router.sh script before deployment, and restrict execution to trusted environments. <br>
+## Use Case:
 
+External users and quality teams use this skill to send 8D report analysis requests to a Dify-backed assistant and receive the script output as the agent response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/langwang1pm/dify-8d-analyzer) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown response based on Dify script stdout, with shell-command guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow may take 30-120 seconds and is configured with a 180 second timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: User messages and open_id values are passed to an external Dify routing script and backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted operator, and avoid confidential reports or personal data unless data handling, destination, and retention are documented.
+
+Risk: Command arguments may allow shell-command injection if the external script or executor handles user text unsafely.
+
+Mitigation: Review the dify_router.sh deployment and argument handling before installation, and require safe argument passing without shell interpretation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/langwang1pm/skills/dify-8d-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text response from the Dify routing script, with shell command guidance for invocation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires timeout, curl, and jq; Dify processing may take 30 to 120 seconds and the command timeout is configured for 180 seconds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

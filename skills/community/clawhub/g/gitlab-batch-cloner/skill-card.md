@@ -1,41 +1,62 @@
-## Description: <br>
-Batch clone GitLab group projects, check out key branches, and generate an Excel index of project metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch clones or updates GitLab group projects, checks out key branches, preserves group structure, and generates an Excel index of project and branch metadata.
 
-## Publisher: <br>
-[pangfan](https://clawhub.ai/user/pangfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pangfan](https://clawhub.ai/user/pangfan)
 
-## Use Case: <br>
-Developers and engineers use this skill to clone or update repositories from GitLab groups or project paths, preserve group hierarchy, check out key branches, and create a project index spreadsheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitLab token handling can expose or over-privilege repository access during cloning and API calls. <br>
-Mitigation: Review the script before use, run it in a controlled environment, use a least-privilege read-only GitLab token, and avoid passing secrets in command-line URLs. <br>
-Risk: TLS verification is disabled while the skill uses a GitLab token. <br>
-Mitigation: Re-enable TLS verification or configure a trusted internal certificate authority before using the skill with protected repositories. <br>
-Risk: Runtime dependency installation can fetch unpinned packages. <br>
-Mitigation: Preinstall pinned dependencies in a managed environment instead of allowing runtime package installation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to clone or update many GitLab repositories from groups, subgroups, or direct project paths while keeping local folders aligned with GitLab structure. It also creates an Excel index that summarizes project metadata, checked-out branches, commit times, and repository links.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Git repositories and an Excel index when the script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: GitLab personal access tokens are used for API access and HTTPS cloning, and mishandling could expose repository credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived token with only read_api and read_repository scopes, run on a trusted machine, and confirm remotes do not retain embedded credentials after cloning.
+
+Risk: TLS certificate verification is disabled for GitLab API calls, which can expose requests to interception on untrusted networks.
+
+Mitigation: Fix GitLab certificate trust or restore TLS verification before production use, especially outside controlled internal networks.
+
+Risk: Bulk clone and sync operations can make many local filesystem changes and may run without a global timeout by default.
+
+Mitigation: Set an explicit local base directory, choose an appropriate worker count, and configure GITLAB_TOTAL_TIMEOUT for bounded runs.
+
+Risk: The generated Excel workbook contains GitLab metadata supplied by remote projects and groups.
+
+Mitigation: Treat the workbook as untrusted output, review it before sharing, and avoid opening it in high-trust contexts without normal spreadsheet precautions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pangfan/skills/gitlab-batch-cloner)
+- [ClawHub publisher profile](https://clawhub.ai/user/pangfan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cloned Git repositories under the configured local path and an Excel workbook named 01.Index.xlsx.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

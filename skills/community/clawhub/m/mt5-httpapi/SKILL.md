@@ -1,31 +1,50 @@
 ---
 name: mt5-httpapi
-description: HTTP client for a user-deployed mt5-httpapi MetaTrader 5 bridge. Use ONLY when the user has explicitly installed and configured mt5-httpapi AND provided MT5_API_URL. Read endpoints (account, symbols, rates, ticks, server-side technical-analysis enrichment via the wickworks sidecar, history, backtest report fetching) are safe to invoke. Trade-mutating endpoints (POST/PUT/DELETE on /orders and /positions, /terminal/restart, /terminal/shutdown) MUST require explicit per-action user confirmation showing symbol, side, volume, and SL/TP — never invoke them on inferred intent. Do not use this skill for generic market-data, charting, or trading questions where the user hasn't named mt5-httpapi.
+description: HTTP client for a user-deployed mt5-httpapi MetaTrader 5 bridge. Use ONLY when the user has explicitly installed and configured mt5-httpapi AND provided MT5_API_URL. Read endpoints (account, symbols, rates, ticks, server-side technical-analysis enrichment via the wickworks sidecar, history, backtest report fetching) are safe to invoke. Trade-mutating endpoints on /orders and /positions require explicit per-action confirmation showing symbol, side, volume, and SL/TP; terminal shutdown/restart also require explicit confirmation naming the target terminal and operation. Creating, changing or deleting a chart deployment (/deployments) or closing a chart starts or stops a live EA and needs the same confirmation. Never invoke mutations on inferred intent. Do not use this skill for generic market-data, charting, or trading questions where the user hasn't named mt5-httpapi.
 compatibility: Requires curl and a user-deployed mt5-httpapi instance. MT5_API_URL env var must be set by the user. MT5_API_TOKEN is required whenever the server has auth configured; the agent must obtain it from MT5_API_TOKEN env var OR by asking the user — never by reading repository config files autonomously.
 metadata:
   author: psyb0t
   homepage: https://github.com/psyb0t/mt5-httpapi
+  openclaw:
+    emoji: "📈"
+    primaryEnv: MT5_API_URL
+    requires:
+      bins: [curl]
+permissions:
+  network: "outbound HTTP to the user-provided MT5_API_URL; requests can include brokerage account data and trade instructions, so use trusted self-hosted endpoints only."
+  shell: "curl commands against MT5_API_URL; no other host commands are required for ordinary API use."
+  filesystem: "no filesystem access for ordinary API use; the optional backtest runbook writes only user-requested local artifacts."
+user-invocable: true
 ---
 
 # mt5-httpapi
 
-REST client for an MT5 HTTP bridge that the user has already deployed. This skill talks to a running mt5-httpapi server — it does not stand one up, does not provision broker credentials, and does not place trades on its own initiative.
+This skill drives an mt5-httpapi server the user already runs. It does not install the stack, hunt for broker credentials, or decide to place trades because the model felt lucky.
 
-## Live Trading Safety — read first
+## Security and safety — real money, no cowboy shit
 
-This API can move real money on a user-owned brokerage account. Treat trade-mutating endpoints as irreversible side effects.
+This API moves real money on a real brokerage account. Mutating endpoints are irreversible, so precision beats enthusiasm every fucking time.
+
+**Real-money mutations.** `POST /orders`, `PUT /orders/<id>`, `DELETE /orders/<id>`, `PUT /positions/<id>`, and `DELETE /positions/<id>` open, modify, cancel, or close a real order/position on a live MetaTrader 5 account with no undo — a filled market order or a closed position can only be offset by a separate trade at a new price. Call one only for the exact action the user requested, after confirming ticket, symbol, side, volume, price, SL, TP, and account. Never enumerate and then bulk-close/cancel on inferred intent. `order_send` is a single call with no client-side auto-retry; after an error or timeout, report it and get fresh confirmation before resubmitting. Send a `client_order_id` with every `POST /orders` (`create_order` takes it too); resubmitting with the same id then cannot place the order twice, and a `"duplicate": true` answer shows the order that already exists.
+
+**Live EA deployments.** `POST /deployments`, `PATCH /deployments/<id>`, `DELETE /deployments/<id>` and `POST /charts/<id>/close` start, re-point, pause or stop an Expert Advisor running on a chart of a real account, and that EA trades on its own. Confirm the expert, set file, symbol, timeframe and account before each one, exactly like a trade. `PUT /webrequest` and `POST /webrequest/apply` restart the terminal when it runs on bare metal rather than in the Windows VM.
+
+**Terminal control.** `POST /terminal/shutdown` disconnects this API process from the MT5 SDK but leaves `terminal64.exe` running. `POST /terminal/restart` kills and relaunches only the selected terminal process and can make that terminal unavailable for several minutes. Confirm the selected broker/account/instance and exact operation before either call.
+
+**No auth when `MT5_API_TOKEN`/`api_token` is unset.** Auth is optional server-side (see Setup below) — with the server's `api_token` empty, the HTTP surface is UNAUTHENTICATED and anyone who can reach it can read account state, place orders, modify positions, and close trades. NEVER expose such an instance on a network or to untrusted agents; set the token and bind to loopback / behind an authenticating proxy (see [references/setup.md](references/setup.md) for the Cloudflare Tunnel prerequisites).
 
 **Hard rules — never violate, even on user prompts that sound permissive:**
 
-1. **Per-action confirmation for every mutating call.** Before any `POST /orders`, `PUT /orders/<id>`, `DELETE /orders/<id>`, `PUT /positions/<id>`, `DELETE /positions/<id>`, `POST /terminal/restart`, or `POST /terminal/shutdown`: print the resolved request — symbol, side, volume, SL, TP, price, account login, broker URL — and wait for an explicit confirmation from the user for that specific action. A prior "yes" does not authorize subsequent actions.
-2. **Demo accounts first.** If `GET /account` shows `trade_mode` indicating a live account, surface that to the user before any order call and ask them to confirm they intend to trade live.
+1. **Per-action confirmation for every mutation.** For trades, print the resolved symbol, side, volume, SL, TP, price, account login, and broker URL. For terminal control, print the operation and selected broker/account/instance. Wait for confirmation of that specific action; a prior approval does not authorize a later action or retry.
+2. **Demo accounts first.** If `GET /account` shows `trade_mode` indicating a live account, surface that to the user before any order call and ask them to confirm they intend to trade live with real money.
 3. **No credential harvesting.** Read `MT5_API_TOKEN` only from the environment variable the user set, or ask the user. Never read tokens, passwords, server names, or login numbers from `config/config.yaml`, `.env`, or any other repository file on your own initiative. If the env var is missing, ask the user — do not search the workspace.
-4. **No mass action.** If the user asks to "close everything" or "cancel all", enumerate the affected positions/orders first, show the list, and confirm the whole batch explicitly.
+4. **No mass action.** If the user asks to "close everything" or "cancel all", enumerate the affected positions/orders first, show the list, and confirm the whole batch explicitly — never enumerate-then-bulk-delete/close on inferred intent.
 5. **Surface broker URL on every mutating action.** The path prefix `/<broker>/<account>/` in `MT5_API_URL` determines which real account is touched. Show it in confirmation prompts so the user can catch a wrong-account misroute.
+6. **No auto-retry on trade calls.** Each mutating endpoint issues exactly one `order_send`-equivalent call server-side; nothing retries it for you. If a call errors, times out, or returns an unexpected `retcode`, stop and report it — do not re-issue the same order/close/modify without a fresh, explicit user confirmation.
 
-Read-only endpoints (`GET /account`, `GET /symbols/*`, `GET /symbols/*/rates`, `GET /symbols/*/ticks`, `POST /symbols/*/rates/ta`, `GET /positions`, `GET /orders`, `GET /history/*`, `GET /backtest/*`, `GET /terminal`, `GET /ping`) do not require per-action confirmation.
+Read-only endpoints (`GET /account`, `GET /symbols/*`, `GET /symbols/*/rates`, `GET /symbols/*/ticks`, `POST /symbols/*/rates/ta`, `GET /positions`, `GET /orders`, `GET /history/*`, `GET /backtest/*`, `GET /terminal`, `GET /ping`, and the Chart Deployments reads `GET /experts`, `GET /sets*`, `GET /deployments*`, `GET /charts`, `GET /loader`, `GET /webrequest`) do not require per-action confirmation. Staging a new file with `POST /experts` or `POST /sets` changes nothing that runs until a deployment uses it. Overwriting an expert a deployment already uses (`?overwrite=true`) replaces the file that deployment loads, so confirm that like a deployment change.
 
-**One-stop technical analysis.** Skip the client-side TA stack entirely. `POST /symbols/<symbol>/rates/ta` with an indicator spec → get OHLC bars + analyzed indicator series back in a single call. RSI, MACD, Bollinger, ADX, ATR, VWAP, Ichimoku, Order Blocks, Fair Value Gaps, BOS/CHoCH, swing structure, S/R levels, liquidity, session anchors, dozens more — all computed server-side by the [wickworks](https://github.com/psyb0t/docker-wickworks) sidecar that ships with this stack. Primitives only — wickworks returns raw indicator series and structural facts (e.g. "order block formed at this bar", "price closed past this swing"), never interpretive signals like divergences or crossover events. Build those in the consumer. See the [Technical Analysis](#technical-analysis) section.
+**One-stop technical analysis.** Skip the local pandas circus. `POST /symbols/<symbol>/rates/ta` returns OHLC bars and the indicators you asked for in one call. [wickworks](https://github.com/psyb0t/docker-wickworks) does the math server-side and returns primitives, not magical buy/sell bullshit. Build interpretations in the consumer. See [Technical Analysis](#technical-analysis).
 
 For installation and setup, see [references/setup.md](references/setup.md).
 
@@ -40,23 +59,34 @@ export MT5_API_TOKEN=<the-token-the-user-gives-you>
 
 If `MT5_API_URL` is not set in the environment, ask the user — do not try to discover it from project files. Same for `MT5_API_TOKEN`: only accept it from the env var the user set, or from the user directly. Never read it from `config/config.yaml`, `.env`, or any other file in the workspace.
 
-A single nginx sidecar (default `127.0.0.1:8888`) fronts every terminal. The path prefix `/<broker>/<account>/` (matching an entry in `terminals.json`) selects which terminal you talk to — set `MT5_API_URL` to the full base including that prefix. Override the host port with `API_HOST_PORT=...` at compose time.
+A single nginx sidecar (default `127.0.0.1:8888`) fronts every terminal. The path prefix `/<broker>/<account>/` (matching an entry in `config/config.yaml`'s `terminals` list) selects which terminal you talk to; set `MT5_API_URL` to the full base including that prefix. Override the host port with `API_HOST_PORT=... make up`; `run.sh` keeps it in `.env` for later compose calls.
 
-**Verify:** `curl -H "Authorization: Bearer $MT5_API_TOKEN" $MT5_API_URL/ping` — should return `{"status": "ok"}`. If not, the API isn't up yet (may still be initializing — it retries in the background).
+**Verify:** `curl -H "Authorization: Bearer $MT5_API_TOKEN" $MT5_API_URL/ping` — should return `{"status": "ok", "mode": "live"}` for the normal API process. If not, the API isn't up yet (may still be initializing — it retries in the background).
 
 Auth is optional server-side — if no token is configured on the server, all requests go through without a token. If a token is configured, all endpoints require `Authorization: Bearer <token>` and return `401` without it. From the agent's side, never assume the server is auth-disabled; always pass the token the user provided if there is one.
 
-## How It Works
+## MCP interface
+
+Each terminal also speaks [Model Context Protocol](https://modelcontextprotocol.io) (streamable-HTTP) at `/mcp`, exposing the REST surface as **dedicated typed tools** whose names + params + descriptions are the agent's documentation. Families: market data (`list_symbols`, `get_symbol`, `get_tick`, `get_rates`, `get_ticks`, `get_rates_ta`), account/positions (`get_account`, `list_positions`, `get_position`, `modify_position`, `close_position`), orders (`list_orders`, `get_order`, `create_order`, `modify_order`, `cancel_order`), history/terminal (`get_history_orders`, `get_history_deals`, `get_terminal`, `terminal_control`), backtest (`get_backtest`), and `ping`. A generic `request` + `endpoints` catalog remain as a fallback for JSON-compatible routes without a dedicated tool; multipart submission at `POST /backtest` still uses REST directly. Every tool runs the exact same handler, auth, and MT5 locking as a real HTTP call.
+
+On terminals with [Chart Deployments](#chart-deployments) enabled, MCP also has the chartctl tools: `upload_expert`, `list_experts`, `delete_expert`, `upload_set`, `list_sets`, `get_set`, `delete_set`, `create_deployment`, `list_deployments`, `get_deployment`, `update_deployment`, `delete_deployment`, `reconcile_deployments`, `list_charts`, `get_loader`, `screenshot_chart`, `close_chart`, `get_webrequest`, `set_webrequest`, `apply_webrequest`, `verify_webrequest`. The upload tools take the file as base64 (`upload_set` also takes plain text) and send the multipart form for you. `screenshot_chart` returns the PNG as image content you can look at. On terminals with the [file API](#files) enabled, `list_files`, `get_file`, `put_file` and `delete_file` read and write files in the terminal's install directory or the compile tree.
+
+Same bearer token as the REST API (`MT5_API_TOKEN`, empty = auth disabled). Connect either directly at `$MT5_API_URL/mcp/`, or via the [`@psyb0t/mt5-httpapi`](https://github.com/psyb0t/mt5-httpapi/tree/master/.agents/plugins/mt5-httpapi) OpenClaw plugin for stdio-only MCP clients. The Claude Code plugin registers the unified server (`<api_url>/mcp/`) itself; its `api_url` setting is the server root (`http://localhost:8888`) and feeds only that MCP server, while `MT5_API_URL` stays the terminal path the `curl` calls use. The order/position tools (`create_order`, `cancel_order`, `close_position`, …) are irreversible on a live account; see Security & safety above.
+
+A per-terminal `/mcp` is bound to that one terminal, because an MCP session's tool catalog is fixed and has no per-call slot for naming an account. Pointing a client at the server ROOT instead (`http://<host>:8888/mcp/`, no broker/account prefix) gives the same tools with `broker` and `account` parameters, so one session reaches every terminal. Call `list_terminals` first to get the configured brokers/accounts, each process mode (`live` or `backtest`), and whether Chart Deployments are enabled for each (`chartctl`); the mode does not identify whether the brokerage account itself is live or demo, so check `GET /account` before trading. An unconfigured pair is refused with the valid list rather than routed to a plausible-looking wrong account. Both forms are available at once, and the URL alone decides which one a client gets. **When acting through the unified endpoint, confirm the `broker`/`account` alongside the trade parameters: one wrong argument places a real order on a different real account.**
+
+## How the fucker works
 
 GET for reading, POST for creating, PUT for modifying, DELETE for closing/canceling. All bodies are JSON.
 
-Every error response:
+Application handler errors normally use this JSON shape; always inspect the
+HTTP status and content type because framework-level failures can differ:
 
 ```json
 {"error": "description of what went wrong"}
 ```
 
-## Pre-Trade Checks (DO NOT SKIP)
+## Pre-trade checks — do not skip this shit
 
 Before placing any trade:
 
@@ -71,7 +101,7 @@ Before placing any trade:
 
 ```bash
 curl -H "Authorization: Bearer $MT5_API_TOKEN" $MT5_API_URL/ping
-# {"status": "ok"}
+# {"status": "ok", "mode": "live"}
 
 curl -H "Authorization: Bearer $MT5_API_TOKEN" $MT5_API_URL/error
 # {"code": 1, "message": "Success"}
@@ -146,7 +176,7 @@ curl -H "Authorization: Bearer $MT5_API_TOKEN" "$MT5_API_URL/symbols/EURUSD/tick
 Timeframes: `M1` `M2` `M3` `M4` `M5` `M6` `M10` `M12` `M15` `M20` `M30` `H1` `H2` `H3` `H4` `H6` `H8` `H12` `D1` `W1` `MN1`
 
 Rates/ticks query model — two modes, mutually exclusive:
-- **Anchor + signed `count`:** `count=N` = N forward from `from`, `count=-N` = `\|N\|` ending at `from`, `count=0` = empty. Omit `from` to anchor at now.
+- **Anchor + signed `count`:** `count=N` = N forward from `from`, `count=-N` = `\|N\|` ending at `from`, `count=0` = empty. Omit `from` to anchor at now: the latest `\|N\|` bars or ticks up to now, whatever the sign of `count`. A `count` that is not an integer is a 400.
 - **Range (`from` + `to`):** all bars/ticks in the window, no count cap beyond `terminal_info().maxbars`. `to` requires `from` and rejects `count` (returns 400).
 
 `from` and `to` accept three formats (all real UTC): unix seconds (`1700000000`), full datetime `YYYY_MM_DD_HH_MM_SS` (`2024_01_15_14_30_00`), or date-only `YYYY_MM_DD` (midnight UTC).
@@ -247,6 +277,8 @@ Expiration: `GTC` (default), `DAY`, `SPECIFIED`, `SPECIFIED_DAY`
 
 Required fields: `symbol`, `type`, `volume`. `price` auto-fills for market orders.
 
+Stop-limit and expiry: `stoplimit` is the limit price of a `BUY_STOP_LIMIT` / `SELL_STOP_LIMIT` order (`price` is then the stop trigger) and is required for those two types. `expiration` is integer unix seconds in real UTC; it is required with `SPECIFIED` / `SPECIFIED_DAY`, and sent without a `type_time` it selects `SPECIFIED`. `PUT /orders/<id>` takes both too, and a field left out keeps the order's current value. A missing or bad value is a 400.
+
 Trade result:
 
 ```json
@@ -298,6 +330,93 @@ curl -H "Authorization: Bearer $MT5_API_TOKEN" "$MT5_API_URL/history/deals?from=
 
 Deal fields: `type` (0=buy, 1=sell), `entry` (0=opening, 1=closing), `profit` (0 for entries, realized P&L for exits).
 
+### Chart Deployments
+
+Deploy Expert Advisors to charts over HTTP. No RDP, no terminal restart. Stage `.ex5` + `.set` files, declare deployments, and a resident loader EA inside the terminal reconciles charts to match. The API holds desired state; the loader reports observed truth. A deployment only flips to `running` once the loader confirms the expert is live on a chart.
+
+**Off by default.** The operator turns it on with `chartctl.enabled: true` in `config.yaml`, live-mode terminals only, and any terminal can opt out with `chartctl: false`. On a terminal without it these routes answer `404` and the per-terminal MCP endpoint has no chartctl tools; on the unified MCP endpoint `list_terminals` shows `chartctl` per terminal. Once enabled, the loader attaches itself on boot through `[StartUp] Expert=`, so there is nothing to attach by hand. If `GET /loader` says `alive: false`, nothing will deploy; tell the user instead of retrying.
+
+Endpoint reference:
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| `POST` / `GET` / `DELETE` | `/experts` `/experts/<name>` | Stage, list, remove EA `.ex5` |
+| `POST` / `GET` | `/sets` `/sets/<name>` | Stage, list, inspect `.set` (returns parsed inputs) |
+| `POST` / `GET` | `/deployments` | Create or list deployments |
+| `GET` / `PATCH` / `DELETE` | `/deployments/<id>` | Inspect, pause/resume, change set, delete |
+| `POST` | `/deployments/reconcile` | Force immediate reconcile |
+| `GET` | `/charts` | Live chart/EA inventory |
+| `GET` | `/loader` | Loader EA status and version |
+| `POST` | `/charts/<id>/screenshot` | Capture chart as PNG |
+| `POST` | `/charts/<id>/close` | Close a chart by id |
+
+```bash
+# Stage artifacts. Re-uploading identical bytes is skipped; different bytes
+# under the same .ex5 name need ?overwrite=true. The response's
+# "navigator_refresh" must be "ok" before a deployment of a NEW expert can
+# attach: on "failed" upload the same file again, on "unavailable" (bare metal)
+# the terminal needs a restart first.
+curl -H "Authorization: Bearer $MT5_API_TOKEN" \
+  -F "expert=@HappyGoldScalp.ex5" "$MT5_API_URL/experts"
+curl -H "Authorization: Bearer $MT5_API_TOKEN" \
+  -F "set=@gold-m5.set" "$MT5_API_URL/sets"   # returns the parsed inputs
+
+# Deploy (live EA: confirm first). 409 DUPLICATE_CHART if an enabled
+# deployment already targets this symbol + timeframe.
+curl -X POST "$MT5_API_URL/deployments" \
+  -H "Authorization: Bearer $MT5_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"expert":"HappyGoldScalp.ex5","set":"gold-m5.set","symbol":"XAUUSD","timeframe":"M5"}'
+# -> 202 {"id":"dep_a1b2c3","status":"pending",...}
+
+# Poll until status is "running" (or "failed"; the error is in the payload)
+curl -H "Authorization: Bearer $MT5_API_TOKEN" "$MT5_API_URL/deployments/dep_a1b2c3"
+
+# Pause, switch the set file ("set": "" runs on the EA defaults), delete.
+# Pausing or deleting closes the deployment's chart. A new set file does NOT
+# reach an expert that is already running: it applies the next time the loader
+# opens the chart. To apply it now: pause, wait until GET /charts no longer
+# lists the deployment's chart (the deployment says "paused" right away, before
+# the loader acts), then resume. Resuming is refused with 409 DUPLICATE_CHART
+# while another enabled deployment runs on the same symbol and timeframe.
+curl -X PATCH "$MT5_API_URL/deployments/dep_a1b2c3" \
+  -H "Authorization: Bearer $MT5_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"enabled":false}'
+curl -X DELETE "$MT5_API_URL/deployments/dep_a1b2c3" \
+  -H "Authorization: Bearer $MT5_API_TOKEN"
+
+# Look at the chart (PNG; width/height optional, default 1280x720)
+curl -X POST -H "Authorization: Bearer $MT5_API_TOKEN" \
+  "$MT5_API_URL/charts/133039100/screenshot?width=1280&height=720" -o chart.png
+```
+
+**WebRequest allowlist.** An EA that calls `WebRequest()` only reaches URLs on the terminal's allowlist. `GET /webrequest` returns the list. `PUT /webrequest` replaces it with `{"urls": [...]}` or edits it with `{"add": [...], "remove": [...]}` (a patch keeps every other entry the terminal holds) and applies it right away; a URL that is not `http(s)` with a host and no spaces is refused with 400 `INVALID_URL`. Inside the Windows VM the API sets the list in the terminal's Options dialog with window messages; on bare metal it rewrites `common.ini` and restarts the terminal. The VM terminal forgets the list when it restarts. The API re-applies it when its own process starts and after every terminal restart it performs itself (`POST /terminal/restart`, the health monitor), so call `POST /webrequest/apply` only after a restart from outside the API, or when an expert's `WebRequest()` is still refused. `GET /webrequest` shows the last apply result as `last_apply`; `POST /webrequest/verify` reads the list the terminal really holds (at most once per 10 s). While a backtest runs on the terminal these calls answer 409.
+
+```bash
+curl -X PUT "$MT5_API_URL/webrequest" \
+  -H "Authorization: Bearer $MT5_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"add":["https://api.example.com"]}'
+```
+
+Full protocol: [`docs/chart-control-protocol.md`](https://github.com/psyb0t/mt5-httpapi/blob/master/docs/chart-control-protocol.md). Operator guide: [`docs/chart-deployments.md`](https://github.com/psyb0t/mt5-httpapi/blob/master/docs/chart-deployments.md).
+
+### Files
+
+**Off by default.** The operator turns it on with `files.enabled: true` in `config.yaml`; a terminal can opt out with `files: false`. Without it these routes answer `404`. `GET /files/<path>` lists a directory or downloads a file in the terminal's install directory (the folder with `terminal64.exe`), `PUT /files/<path>` uploads one (raw body or a multipart `file` field), `PUT /files/<dir>?extract` unpacks a zip into that directory, and `DELETE /files/<path>` (`?recursive` for a non-empty directory) removes it. `/compile/files/...` does the same on the MQL5 tree `POST /compile` builds against, which is where a shared `.mqh` library goes. The MCP tools are `list_files`, `get_file`, `put_file` and `delete_file`, with `tree` set to `terminal` or `compile`.
+
+The broker credentials (`mt5start.ini`, `Config/accounts.dat`) are never served, and the terminal's executables and Chart Deployments' own files are read-only here. **Writing into `MQL5/Experts`, `MQL5/Libraries` or `MQL5/Include` changes what experts on that account run, and a DLL in `MQL5/Libraries` runs inside the terminal: do it only when the user asked for that exact change, and confirm the terminal first.** Reading files and logs needs no confirmation.
+
+```bash
+# Unpack a library into the compile tree, then compile against it
+curl -X PUT -H "Authorization: Bearer $MT5_API_TOKEN" --data-binary @MyLib.zip \
+  "$MT5_API_URL/compile/files/Include/MyLib?extract"
+# source: #include <MyLib/Signals.mqh>
+```
+
+Operator guide: [`docs/files.md`](https://github.com/psyb0t/mt5-httpapi/blob/master/docs/files.md).
+
 ### Backtest
 
 Run MT5 Strategy Tester via the API. Two-stage workflow: build the INI from a
@@ -308,7 +427,9 @@ portable data dir, so a tester subprocess collides with a `mode: live`
 terminal that already owns the directory and exits silently. The broker/account
 in the URL determines which credentials are injected into the run's `[Common]`
 section. Only one tester runs at a time per API process; extra submissions
-queue.
+queue. Responses below use snake_case field names. The old camelCase names
+still show up alongside them in responses, and request bodies still accept
+either one, but the camelCase names are deprecated and go away in v5.0.0.
 
 The expert and set file can be uploaded inline OR referenced by name from a
 host-managed pool mounted at `assets/experts/*.ex5` and `assets/sets/*.set`.
@@ -322,10 +443,10 @@ curl -sS -X POST -H "Authorization: Bearer $MT5_API_TOKEN" \
     "symbol": "NZDJPY",
     "timeframe": "M15",
     "expert": "EA Studio NZDJPY M15 1615044595.ex5",
-    "lastYears": 5,
+    "last_years": 5,
     "modelling": "open-prices",
-    "latencyMs": 5,
-    "expertParameters": "ea studio nzdjpy m15 1615044595.set"
+    "latency_ms": 5,
+    "expert_parameters": "ea studio nzdjpy m15 1615044595.set"
   }' > tester.ini
 
 # 2. Submit. Use uploads OR host-managed asset names — here, both are host-managed.
@@ -334,9 +455,9 @@ JOB=$(curl -sS -X POST -H "Authorization: Bearer $MT5_API_TOKEN" \
   -F "ini=@tester.ini" \
   -F "expert_name=EA Studio NZDJPY M15 1615044595.ex5" \
   -F "set_name=ea studio nzdjpy m15 1615044595.set" \
-  | jq -r .jobId)
+  | jq -r .job_id)
 
-# 3. Poll. Status is queued → running → completed (or failed).
+# 3. Poll. Status is queued → running → completed (or failed, or cancelled).
 curl -H "Authorization: Bearer $MT5_API_TOKEN" $MT5_API_URL/backtest/$JOB
 
 # 4. Fetch the report HTML and the terminal log.
@@ -345,28 +466,68 @@ curl -H "Authorization: Bearer $MT5_API_TOKEN" $MT5_API_URL/backtest/$JOB/log   
 ```
 
 `POST /backtest/build-ini` JSON fields: `symbol`, `timeframe` (`M1`…`MN1`),
-`expert` (must end `.ex5`), and exactly one of `fromDate`+`toDate`,
-`lastYears`, or `lastDays`. Optional: `modelling` (`every-tick` `1m-ohlc`
-`open-prices` `real-ticks`), `latencyMs`, `deposit` (10000), `currency`
-(`USD`), `leverage` (100, written as `1:N`), `expertParameters` (`.set`),
-`reportName` (`backtest-report.htm`).
+`expert` (must end `.ex5`), and exactly one of `from_date`+`to_date`,
+`last_years`, or `last_days`. Optional: `modelling` (`every-tick` `1m-ohlc`
+`open-prices` `real-ticks`), `latency_ms`, `deposit` (10000), `currency`
+(`USD`), `leverage` (100, written as `1:N`), `expert_parameters` (`.set`),
+`optimization` (`0..3`), `optimization_criterion` (`0..7`), `forward_mode`
+(`0..4`), `visual`, and `report_name` (`backtest-report.htm`, or
+`optimization-report.xml` when optimization is enabled).
+
+`POST /backtest/build-set` generates MT5-native `.set` parameter text from
+structured JSON. Body: `comments` (array of strings) and `parameters` (array
+of `{name, value, start?, step?, stop?, optimize?}`). `optimize: true` emits
+the optimization form `value||start||step||stop||Y`; `optimize: false` (or
+`"N"`) emits `value||start||step||stop||N`. Omitting all four range fields
+emits plain `name=value`; providing only some range fields is rejected.
+Response is `text/plain` `.set` content ready to save or upload as the `set`
+file.
+
+```bash
+curl -sS -X POST -H "Authorization: Bearer $MT5_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  $MT5_API_URL/backtest/build-set \
+  -d '{
+    "comments": ["saved on 2026.05.15 08:30:02"],
+    "parameters": [
+      {"name": "_Properties_", "value": "------"},
+      {"name": "Take_Profit", "value": 92, "start": 80, "step": 4, "stop": 92, "optimize": true},
+      {"name": "Stop_Loss", "value": 0, "start": 0, "step": 1, "stop": 10, "optimize": false}
+    ]
+  }' > myea.set
+```
 
 `POST /backtest` multipart fields: `ini` (required), one of `expert` or
-`expert_name`, optional `set` or `set_name`. Returns `202` with `jobId`,
-`statusUrl`, `reportUrl`, `logUrl`, `pollAfterSeconds`, `queuePosition`. The
-INI's `[Common]` `Login`/`Password`/`Server` are always overwritten with the
-URL-selected account's credentials. Path traversal in `*_name` is rejected.
+`expert_name`, optional `set` or `set_name`. Optional `top_passes`, for
+optimization jobs, keeps the top `1..500` parsed XML passes in the status
+payload (default `50`). Optional `timeout` overrides the configured Strategy
+Tester deadline using duration strings such as `"30m"` or `"6h"`. Returns
+`202` with `job_id`, `status_url`, `report_url`, `log_url`, `poll_after_seconds`,
+`queue_position`. The INI's `[Common]`
+`Login`/`Password`/`Server` are always overwritten with the URL-selected
+account's credentials. Path traversal in `*_name` is rejected.
 
-`GET /backtest/<jobId>` returns the job state. When `status: completed`, the
-payload includes a `summary` parsed from the HTML (`netProfit`, `profitFactor`,
-`recoveryFactor`, `expectedPayoff`, `sharpeRatio`, `maxDrawdown`,
-`totalTrades`, `profitTrades`, `lossTrades`, …). Jobs left running when the
+`GET /backtest/<job_id>` returns the job state. When `status: completed`, the
+payload includes a `summary` parsed from the HTML (`net_profit`, `profit_factor`,
+`recovery_factor`, `expected_payoff`, `sharpe_ratio`, `max_drawdown`,
+`total_trades`, `profit_trades`, `loss_trades`, …). Jobs left running when the
 API restarts are marked `failed` on the next startup.
 
-### Real Backtest Runbook For Agents
+`GET /backtest/<job_id>/tail?lines=N` returns live diagnostic JSON while a job
+is queued, running, or finished. It includes captured process output plus the
+latest terminal and Strategy Tester journal lines; `lines` defaults to `200`
+and is clamped to `10..1000`. The MCP `get_backtest` tool exposes the same data
+with `part: "tail"`.
 
-When the user asks for a real backtest run, do not stop at a built INI or a
-`202 Accepted` submit response. The task is only complete after one of these is
+`POST /backtest/<job_id>/cancel` stops a queued or running job and marks it
+`cancelled` (a final status). It kills only that terminal's tester processes,
+and only when that job is the one running there; it is safe to repeat.
+
+### Real backtest runbook — finish the fucking job
+
+When the user asks for a real backtest, do not declare victory after building an
+INI or getting `202 Accepted`. That only means the job entered the building. The
+task is complete after one of these is
 true:
 
 - the job reaches `completed`, the report/log are downloaded, and the requested
@@ -382,7 +543,7 @@ Before submitting a backtest that references host-managed files:
 2. Verify `GET $MT5_API_URL/ping` returns backtest mode on the target terminal.
    For a real tester run, expect `{"status":"ok","mode":"backtest"}`.
 3. If the user specifies a concrete date window, prefer explicit UTC
-   `fromDate`/`toDate` and do not also send `lastYears` or `lastDays`.
+   `from_date`/`to_date` and do not also send `last_years` or `last_days`.
 4. Auth handling: use `MT5_API_TOKEN` from the user-set environment variable.
    If it is missing and the server requires auth, ask the user to provide
    it — do not search the repository or read `config/config.yaml` to harvest
@@ -400,9 +561,9 @@ Execution guidance:
   `tester.ini`, `status.json`, `report.html` (or `.htm`), and `run.log`.
 - Treat `queued` and `running` as normal intermediate states. Report the job ID
   and latest status while polling.
-- If no `jobId` has been captured yet, there is no confirmed backtest in
+- If no `job_id` has been captured yet, there is no confirmed backtest in
   progress. Do not claim the server is still working without that evidence.
-- Poll `GET /backtest/<jobId>` using `pollAfterSeconds` from the submit/status
+- Poll `GET /backtest/<job_id>` using `poll_after_seconds` from the submit/status
   payload when available. If the user explicitly requests a cadence, follow it.
 - On any non-2xx HTTP response, stop immediately and show:
   endpoint, HTTP status, and raw response body.
@@ -410,7 +571,7 @@ Execution guidance:
 
 Completion guidance:
 
-- Download both `reportUrl` and `logUrl` before declaring success.
+- Download both `report_url` and `log_url` before declaring success.
 - Return the requested summary fields directly from the final status payload's
   `summary` object.
 - Include the local artifact paths so the user can inspect the exact report and
@@ -435,10 +596,10 @@ curl -sS -X POST -H "Authorization: Bearer $MT5_API_TOKEN" \
     "symbol": "GBPCAD",
     "timeframe": "M15",
     "expert": "EA.ex5",
-    "fromDate": "2021-05-11",
-    "toDate": "2026-05-11",
+    "from_date": "2021-05-11",
+    "to_date": "2026-05-11",
     "modelling": "open-prices",
-    "latencyMs": 5,
+    "latency_ms": 5,
     "deposit": 1000,
     "currency": "USD"
   }' > tester.ini
@@ -448,9 +609,9 @@ JOB=$(curl -sS -X POST -H "Authorization: Bearer $MT5_API_TOKEN" \
   "$MT5_API_URL/backtest" \
   -F "ini=@tester.ini" \
   -F "expert_name=EA.ex5" \
-  -F "set_name=EA.set" | jq -r .jobId)
+  -F "set_name=EA.set" | jq -r .job_id)
 
-# 4. Poll until completed or failed, then download artifacts.
+# 4. Poll until completed, failed or cancelled, then download artifacts.
 curl -sS -H "Authorization: Bearer $MT5_API_TOKEN" \
   "$MT5_API_URL/backtest/$JOB"
 curl -sS -H "Authorization: Bearer $MT5_API_TOKEN" \

@@ -1,39 +1,53 @@
-## Description: <br>
-Convert PDF lecture slides into comprehensive bilingual Italian and English Markdown notes for Polito university courses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF lecture slides into comprehensive bilingual Italian and English markdown notes for Polito university courses.
 
-## Publisher: <br>
-[lookupmark](https://clawhub.ai/user/lookupmark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lookupmark](https://clawhub.ai/user/lookupmark)
 
-## Use Case: <br>
-Students and agents working with Polito course materials use this skill to convert lecture PDFs into persistent bilingual notes, preserving technical details, formulas, diagrams, and course structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs may contain confidential, personal, or regulated information that is preserved in generated notes and later indexed locally. <br>
-Mitigation: Confirm the source PDF is appropriate for local persistence, store generated notes securely, and avoid processing sensitive material unless local storage and indexing are acceptable. <br>
-Risk: Generated notes may update existing course files. <br>
-Mitigation: Verify the resolved course folder before writing and keep the required .bak backup before overwriting existing notes. <br>
+## Use Case:
 
+Students or course-note maintainers use this skill to turn a PDF lecture deck into paired Italian and English markdown notes, organized under the matching Polito course folder. It is intended for lecture material where preserving detailed source content is acceptable.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown notes with status guidance and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces paired Italian and English notes with matching structure, including tables, LaTeX formulas, Mermaid diagrams where appropriate, and backups before overwriting existing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: PDF contents may include personal, confidential, unpublished, or regulated information that would be preserved in generated plaintext notes and backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with lecture material suitable for plaintext storage, and add a review, redaction, or confirmation step before writing notes for sensitive PDFs.
+
+Risk: Generated notes may be picked up by local RAG indexing, making extracted PDF content searchable beyond the immediate note-generation workflow.
+
+Mitigation: Disable or scope local indexing for sensitive course folders, or keep sensitive generated notes outside indexed paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lookupmark/skills/polito-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Bilingual markdown note files with matching section structure, plus a concise completion summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Italian notes.md and English notes-en.md, creates backups before overwriting existing notes, and may leave generated plaintext notes available for local indexing.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

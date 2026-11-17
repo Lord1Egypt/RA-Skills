@@ -1,0 +1,5 @@
+# Input contract
+
+files: 1..200 workspace-relative paths; each input <=20 MiB and <=25 megapixels. width,height: 1..8000 with target <=25 megapixels. mode: contain|pad|crop. format: jpeg|png|webp. quality:15..95 (default90); maxBytes optional1024..20971520. background: Pillow color string, default #ffffff. allowUpscale boolean, defaultfalse. watermark: either text (1..120 single-line characters) or image path, optional font path/fontSize1..300/color, opacity(0,1], position bottom-right|bottom-left|center. Non-ASCII text requires a font. maxBytes can reduce final dimensions. Metadata is stripped. Output numbered images, preview.jpg(first40), manifest.json, images.zip.
+
+JSON input is a workspace file up to 1 MiB. Successful exports return files [{path,bytes,sha256}]. All processing stays under the active workspace; writes use new export directories and retain source files. For image/PDF operations, requestId is 1..80 ASCII letters, numbers, _ or -. An identical retry verifies saved source/output hashes.

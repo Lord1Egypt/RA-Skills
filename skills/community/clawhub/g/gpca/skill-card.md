@@ -1,50 +1,68 @@
-## Description: <br>
-Manage GPCA bank cards, USDT wallet, KYC verification, and automate shopping on Amazon/Taobao with browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage GPCA bank cards, USDT wallet, KYC verification, and automate shopping on Amazon/Taobao with browser.
 
-## Publisher: <br>
-[lobclaw](https://clawhub.ai/user/lobclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lobclaw](https://clawhub.ai/user/lobclaw)
 
-## Use Case: <br>
-External users and developers use this skill to manage GPCA cards, USDT wallet funds, KYC workflows, and assisted purchases through browser automation. It is intended for agent-driven financial and shopping workflows that require explicit user confirmation for transfers, card changes, payment data use, and purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run remote MCP server code. <br>
-Mitigation: Install only after trusting the publisher and reviewing or isolating the remote MCP server repository and setup commands. <br>
-Risk: The skill can access email inbox pages to retrieve verification codes. <br>
-Mitigation: Prefer manual verification code entry; if browser access is used, restrict processing to GPCA verification emails and avoid granting broad inbox access. <br>
-Risk: The skill handles financial operations, card details, KYC documents, and purchases. <br>
-Mitigation: Require explicit confirmation for every transfer, card change, KYC upload, CVV/PIN action, and purchase, and never allow automatic retries for ambiguous transfers. <br>
+## Use Case:
 
+External users and agents use this skill to manage GPCA card, wallet, KYC, and shopping workflows. It can check balances, guide funding and card operations, and assist checkout flows with explicit confirmation gates.
 
-## Reference(s): <br>
-- [GPCA skill page](https://clawhub.ai/lobclaw/gpca) <br>
-- [GPCA skill repository](https://github.com/gpcaclaw/gpca-skill) <br>
-- [GPCA MCP server repository](https://github.com/gpcaclaw/gpca-mcp-server.git) <br>
-- [GPCA MCP Tools Reference](references/api-reference.md) <br>
-- [Card Manager - Detailed Workflows](references/card-manager.md) <br>
-- [Security & Privacy Guidelines](references/security-notes.md) <br>
-- [Shopping Assistant - Detailed Workflows](references/shopping-assistant.md) <br>
-- [Shopping Flows & Site-Specific Tips](references/shopping-flows.md) <br>
-- [Common User Flows](references/user-flows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API Calls, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser actions, MCP setup, GPCA account workflows, card and wallet operations, KYC steps, and shopping confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata) <br>
+Risk: Automatic setup can install and run unpinned remote MCP server code and npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced MCP server and dependency tree before setup; use a pinned, reviewed revision before enabling automatic installation.
+
+Risk: Email verification automation can expose inbox contents and one-time authentication codes.
+
+Mitigation: Prefer manual code entry, limit browser access to GPCA verification messages only, and require first-use disclosure before opening an inbox.
+
+Risk: Payment automation can expose card details or submit transactions on untrusted merchant domains.
+
+Mitigation: Retrieve card details only at the payment step, mask card data in conversation, verify the domain immediately before filling payment fields, and require explicit confirmation before purchase submission.
+
+Risk: Financial transfers and checkout submissions can cause irreversible or duplicate charges if retried automatically.
+
+Mitigation: Require explicit user confirmation for transfers and purchases, and do not auto-retry ambiguous transfer or payment submissions.
+
+## Reference(s):
+
+- [GPCA Skill Homepage](https://github.com/gpcaclaw/gpca-skill)
+- [GPCA MCP Server](https://github.com/gpcaclaw/gpca-mcp-server.git)
+- [Card Manager - Detailed Workflows](references/card-manager.md)
+- [Shopping Assistant - Detailed Workflows](references/shopping-assistant.md)
+- [Shopping Flows & Site-Specific Tips](references/shopping-flows.md)
+- [GPCA MCP Tools Reference](references/api-reference.md)
+- [Security & Privacy Guidelines](references/security-notes.md)
+- [Common User Flows](references/user-flows.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May handle sensitive financial, identity, payment, and email verification workflows; user confirmations are part of the expected output flow.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

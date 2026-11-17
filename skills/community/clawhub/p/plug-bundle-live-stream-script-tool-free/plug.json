@@ -1,0 +1,73 @@
+{
+  "plug_slug": "plug-bundle-live-stream-script-tool-free",
+  "bundle_slug": "bundle-live-stream-script-tool-free",
+  "bundle_name": "Development Bundle: live-stream-script-tool-free",
+  "members": [
+    {
+      "slug": "live-stream-script-tool-free",
+      "name": "live-stream-script-tool-free",
+      "category": "Development",
+      "role": "primary"
+    },
+    {
+      "slug": "admapix",
+      "name": "admapix",
+      "category": "Development",
+      "role": "primary"
+    },
+    {
+      "slug": "code-analysis-skills",
+      "name": "code-analysis",
+      "category": "Development",
+      "role": "primary"
+    },
+    {
+      "slug": "html-coder",
+      "name": "html-coder",
+      "category": "Development",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "开发效率低下重复劳动多",
+    "code-analysis-skills: 存在易出错问题 (风险)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "live-stream-script-tool-free",
+        "name": "live-stream-script-tool-free",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "admapix",
+        "name": "admapix",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "code-analysis-skills",
+        "name": "code-analysis",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "html-coder",
+        "name": "html-coder",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 0.0,
+    "bundle_price": 0.0,
+    "savings": 0.0,
+    "savings_percent": 0.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill组合为Plug，一站式解决多场景需求，享受20%捆绑折扣"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- live-stream-script-tool-free (Development): 提供 read、exec、write\n- admapix (Development): 提供 read\n- code-analysis (Development): 提供 read、exec、write、glob、grep\n- html-coder (Development): 提供 read、exec、write、glob、grep\n\n组合工具集: read, exec, write, glob, grep\n\n典型工作流:\n  1. 使用 live-stream-script-tool-free 的 read、exec、write 完成相关任务\n  2. 使用 admapix 的 read 完成相关任务\n  3. 使用 code-analysis 的 read、exec、write 完成相关任务\n  4. 使用 html-coder 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T20:07:54.187791"
+}

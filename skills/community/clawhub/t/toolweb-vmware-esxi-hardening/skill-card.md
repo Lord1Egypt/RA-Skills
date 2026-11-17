@@ -1,41 +1,56 @@
-## Description: <br>
-Professional VMware ESXi 8.0 security configuration generator that produces hardened configuration files based on industry best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional VMware ESXi 8.0 security configuration generator that produces hardened configuration files based on industry best practices.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Infrastructure security teams, VMware administrators, compliance teams, and managed service providers use this skill to generate VMware ESXi 8.0 hardening configurations from selected firewall, authentication, logging, and service controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests are sent to an external API provider with selected hardening options, a timestamp, and a session identifier. <br>
-Mitigation: Use a pseudonymous sessionId, omit userId unless needed, and avoid sending unnecessary identifying data. <br>
-Risk: Generated ESXi hardening files may need validation before use in a specific production environment. <br>
-Mitigation: Review and test generated files in a non-production environment before applying them to production hosts. <br>
+## Use Case:
 
+Infrastructure security teams, VMware administrators, compliance teams, and managed service providers use this skill to generate ESXi 8.0 hardening configurations for selected firewall, authentication, logging, and service controls.
 
-## Reference(s): <br>
-- [API documentation](https://api.mkkpro.com:8146/docs) <br>
-- [VMware ESXi hardening API route](https://api.mkkpro.com/hardening/vmware-esxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, JSON, guidance] <br>
-**Output Format:** [JSON response with hardening profile details, summary text, and encoded configuration files such as YAML, firewall rules, and audit policy files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires selected hardening options, sessionId, and timestamp; userId is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Remote API requests may share sensitive identifiers through sessionId, userId, hostnames, credentials, or related request data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send internal conversation IDs, credentials, hostnames, or sensitive identifiers to the API.
+
+Risk: Generated ESXi hardening configurations can affect host access, services, logging, firewall behavior, and authentication posture if applied directly.
+
+Mitigation: Review and test generated configurations in a non-production environment with rollback access before applying them to real hosts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-vmware-esxi-hardening)
+- [API Documentation](https://api.mkkpro.com:8146/docs)
+- [Service Route](https://api.mkkpro.com/hardening/vmware-esxi)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, json, guidance]
+
+**Output Format:** [JSON response containing generated hardening profiles, base64-encoded configuration files, and a summary of applied policies.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests require hardeningOptions, sessionId, and timestamp, with optional userId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and openapi.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

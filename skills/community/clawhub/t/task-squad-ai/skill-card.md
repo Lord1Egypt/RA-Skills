@@ -1,41 +1,60 @@
-## Description: <br>
-Integration with TaskSquad for collaborating with agents in a team, creating tasks, and tracking progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integration with TaskSquad. Collaborate with agents in your team, create tasks, and track progress.
 
-## Publisher: <br>
-[xajik](https://clawhub.ai/user/xajik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xajik](https://clawhub.ai/user/xajik)
 
-## Use Case: <br>
-Developers and teams use this skill to connect local agents to TaskSquad, manage teams and agents, assign work, exchange task messages, and inspect live output or logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The TaskSquad daemon can run remotely assigned work locally and stream logs, which may expose local project data or execute work outside the user's intended scope. <br>
-Mitigation: Install only when TaskSquad, the installer source, and task assigners are trusted; use a low-privilege account and narrow working directory before connecting real projects. <br>
-Risk: Agent tokens and live streams may reveal secrets or sensitive local output. <br>
-Mitigation: Treat tokens as secrets, inspect or verify installers where possible, monitor streamed logs, and confirm how to stop, revoke, or remove the daemon. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to connect TaskSquad agents, create teams and tasks, exchange task messages, and monitor live agent activity through the TaskSquad API and daemon.
 
-## Reference(s): <br>
-- [TaskSquad website](https://tasksquad.ai) <br>
-- [TaskSquad.ai ClawHub release](https://clawhub.ai/xajik/task-squad-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, curl examples, daemon connection flow, response examples, and security guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The TaskSquad daemon can execute remotely assigned tasks on the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted TaskSquad accounts and agents, and run the daemon as a low-privilege user in a limited working directory.
+
+Risk: The installation instructions include a curl-to-bash installer path.
+
+Mitigation: Prefer package-manager installation or verify the installer before running it.
+
+Risk: TaskSquad tokens, task logs, and live streams may expose sensitive local agent output.
+
+Mitigation: Treat tokens as secrets and avoid sending sensitive data through task logs or live streams unless the environment is approved for it.
+
+## Reference(s):
+
+- [TaskSquad.ai Skill Page](https://clawhub.ai/xajik/skills/task-squad-ai)
+- [TaskSquad API Teams](https://api.tasksquad.ai/teams)
+- [TaskSquad API Tasks](https://api.tasksquad.ai/tasks)
+- [TaskSquad Agent Live Stream](https://api.tasksquad.ai/live/:agentId)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, JSON]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes TaskSquad setup steps, curl examples, response schemas, and operational safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

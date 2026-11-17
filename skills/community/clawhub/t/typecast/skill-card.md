@@ -1,43 +1,54 @@
-## Description: <br>
-Multilingual TTS via Typecast CLI with emotion control. Plays audio aloud or saves to file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cast helps agents use the Typecast CLI for multilingual text-to-speech with emotion control, either playing audio aloud or saving it to a file.
 
-## Publisher: <br>
-[jaebong-human](https://clawhub.ai/user/jaebong-human) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaebong-human](https://clawhub.ai/user/jaebong-human)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to generate or save multilingual Typecast text-to-speech audio with voice, model, language, and emotion controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external Typecast CLI and a Typecast API key. <br>
-Mitigation: Install only if the Typecast CLI is trusted, keep TYPECAST_API_KEY protected, and remove stored credentials when no longer needed. <br>
-Risk: Text passed to the CLI may be sent to a cloud service. <br>
-Mitigation: Avoid submitting secrets, private documents, or regulated data unless Typecast's handling terms are acceptable. <br>
-Risk: Credentials or defaults may be stored in ~/.typecast/config.yaml. <br>
-Mitigation: Protect or remove ~/.typecast/config.yaml when the configuration is no longer required. <br>
+## Use Case:
 
+Developers and external users can ask an agent to prepare Typecast CLI commands for synthesizing speech, selecting voices, setting emotion controls, and managing Typecast authentication and configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaebong-human/typecast) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of the external Typecast CLI and TYPECAST_API_KEY; generated audio may be played aloud or saved as wav or mp3 by the CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Input text may be sent to Typecast's cloud text-to-speech service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not synthesize secrets, credentials, regulated data, or private text unless Typecast's data handling is acceptable to you.
+
+Risk: Typecast credentials may be stored locally when a user logs in.
+
+Mitigation: Use cast logout or remove ~/.typecast/config.yaml when credentials should no longer be retained.
+
+## Reference(s):
+
+- [ClawHub Cast skill page](https://clawhub.ai/jaebong-human/skills/typecast)
+- [ClawHub publisher profile](https://clawhub.ai/user/jaebong-human)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the cast CLI and TYPECAST_API_KEY; may play audio or save wav/mp3 files through the Typecast CLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

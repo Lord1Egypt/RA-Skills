@@ -1,41 +1,58 @@
-## Description: <br>
-Email API for AI agents to send email, check inboxes, read messages, extract OTP codes, search messages, and reply via ShellMail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ShellMail is a full email client for AI agents that can read inboxes, extract OTP codes, search mail, send and reply, change mailbox state, and manage a ShellMail address through the ShellMail API.
 
-## Publisher: <br>
-[aaronbatchelder](https://clawhub.ai/user/aaronbatchelder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronbatchelder](https://clawhub.ai/user/aaronbatchelder)
 
-## Use Case: <br>
-External users, developers, and AI-agent operators use this skill to provision and operate a dedicated ShellMail inbox for automated email workflows such as unread inbox checks, OTP retrieval, message search, sending, replies, and mailbox cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent persistent access to a dedicated ShellMail inbox and OTPs through SHELLMAIL_TOKEN. <br>
-Mitigation: Use a dedicated ShellMail inbox rather than personal or important email, require explicit approval before saving the token, and revoke or remove the token when access is no longer needed. <br>
-Risk: The skill can send email, reply to messages, modify mail state, delete messages, and delete the address. <br>
-Mitigation: Require explicit user approval before outbound, recovery, or destructive actions, and review command arguments before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to let an AI agent work with a dedicated ShellMail inbox for OTP retrieval, message review, sending replies, mailbox cleanup, and address lifecycle tasks. It is intended for ShellMail-specific requests, not generic email accounts or other providers.
 
-## Reference(s): <br>
-- [ShellMail homepage](https://shellmail.ai) <br>
-- [ClawHub ShellMail skill page](https://clawhub.ai/aaronbatchelder/shellmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, configuration snippets, and ShellMail API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHELLMAIL_TOKEN and the curl and python3 binaries; ShellMail commands may read, send, modify, archive, delete, and search mailbox data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release metadata; artifact frontmatter and skill.json report 1.2.2) <br>
+Risk: A persistent SHELLMAIL_TOKEN grants full access to inbox contents, OTPs, sending, deletion, and address management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate ShellMail address for agent workflows, store the token only after explicit user approval, and revoke or remove the token when access is no longer needed.
+
+Risk: The security review reports an avoidable local command-execution risk related to numeric validation of otp --wait while the skill handles a full-access mailbox token.
+
+Mitigation: Avoid passing untrusted wait values, review commands before execution, and consider delaying sensitive-environment use until numeric validation and token-handling fixes are available.
+
+Risk: Delete operations can permanently remove an email or the entire ShellMail address and its mail.
+
+Mitigation: Require explicit confirmation for the specific destructive action and verify the target email or address impact with the user before using --confirm.
+
+## Reference(s):
+
+- [ShellMail API](https://shellmail.ai)
+- [ShellMail ClawHub Listing](https://clawhub.ai/aaronbatchelder/skills/shellmail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and API response text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, python3, outbound access to https://shellmail.ai, and a sensitive SHELLMAIL_TOKEN for authenticated mailbox operations.]
+
+## Skill Version(s):
+
+1.3.3 (source: SKILL.md frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

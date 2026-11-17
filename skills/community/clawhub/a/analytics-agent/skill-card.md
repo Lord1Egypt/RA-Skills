@@ -1,40 +1,58 @@
-## Description: <br>
-Analyzes trading, app, freelance, and marketing metrics, creates recurring reports, identifies trends, and recommends data-driven optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes trading, app, freelance, and marketing metrics, prepares recurring reports, identifies trends, and recommends data-driven optimizations.
 
-## Publisher: <br>
-[bwtomekk-bit](https://clawhub.ai/user/bwtomekk-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bwtomekk-bit](https://clawhub.ai/user/bwtomekk-bit)
 
-## Use Case: <br>
-Project operators use this skill to monitor trading, app, freelance, and marketing performance, produce daily, weekly, and monthly reports, and turn aggregated metrics into optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may include sensitive trading results, revenue, payments, user data, leads, or raw logs. <br>
-Mitigation: Require review or approval before sending reports, and prefer aggregated or redacted data. <br>
-Risk: Unclear data-source or recipient scope could expose project metrics beyond the intended audience. <br>
-Mitigation: Define the allowed dashboards, logs, spreadsheets, metrics, and report channels before use. <br>
+## Use Case:
 
+Business operators and analysts use this skill to have an agent aggregate trading performance, app metrics, freelance leads, and marketing ROI into scheduled reports, trend analysis, and optimization recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bwtomekk-bit/analytics-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured report text with metric summaries, trend findings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize dashboard data, logs, spreadsheet exports, and scheduled report triggers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reports may include sensitive business, payment, lead, revenue, log, or trading data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the approved data scope and redact sensitive fields before reports are shared.
+
+Risk: The report recipient and delivery channel are not fully scoped.
+
+Mitigation: Confirm who Thomas is and which channel is approved before sending any report.
+
+Risk: The major-event trigger is undefined.
+
+Mitigation: Define the events that should trigger reports so the agent only reports on intended events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bwtomekk-bit/skills/analytics-agent)
+- [Publisher profile](https://clawhub.ai/user/bwtomekk-bit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports and recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be generated on daily, weekly, monthly, or major-event triggers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Configures an SMTP sender and sends plain-text or HTML email with attachments, CC/BCC, templates, Markdown conversion, and inline images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends plain-text or HTML email through configured SMTP accounts, with support for attachments, CC/BCC, templates, Markdown-to-HTML conversion, and inline local images.
 
-## Publisher: <br>
-[flyingtimes](https://clawhub.ai/user/flyingtimes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flyingtimes](https://clawhub.ai/user/flyingtimes)
 
-## Use Case: <br>
-Developers and operators use this skill to send notification, report, and automation emails from an agent workflow after configuring SMTP credentials and sender settings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill has SMTP sending authority and can send messages to external recipients. <br>
-Mitigation: Install only when that authority is intended, and review recipients, CC, BCC, subject, and body before sending. <br>
-Risk: If keyring is unavailable, credentials may be persisted in local base64-encoded fallback files. <br>
-Mitigation: Use a dedicated app password, verify keyring works before saving credentials, and avoid or delete ~/.send_email_password and ~/.send_email_username. <br>
-Risk: Attachments and inline images can email local files or images externally, including from automated or scheduled workflows. <br>
-Mitigation: Review attachment paths, Markdown image paths, and inline-image paths before sending, especially when using automation or cron. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to configure SMTP sending and deliver notifications, reports, and automated messages with optional HTML formatting, templates, attachments, CC/BCC recipients, and embedded local images.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, Markdown, HTML] <br>
-**Output Format:** [Markdown guidance with bash commands; email content may be plain text, Markdown-derived HTML, or templated HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can send attachments, inline local images, CC, and BCC through SMTP.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: SMTP credentials may be exposed or weakly protected if a password is passed as an argument or if keyring is unavailable and fallback files are created.
+
+Mitigation: Install keyring before use, use a dedicated SMTP app password, avoid the --password option, do not use the skill on shared machines, and remove ~/.send_email_password and ~/.send_email_username if fallback storage was ever used.
+
+Risk: Outbound emails, attachments, and embedded local images can disclose sensitive content to unintended recipients.
+
+Mitigation: Review recipients, CC/BCC fields, subject, body, attachments, and image paths before sending; test important templates by sending to yourself first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyingtimes/skills/send-email-tool)
+- [Usage documentation](artifact/SKILL.md)
+- [Examples](artifact/examples/README.md)
+- [Template documentation](artifact/templates/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with inline shell commands; generated emails may be plain text or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update local SMTP configuration and credential-store entries, and can send outbound email with attachments and inline images.]
+
+## Skill Version(s):
+
+2.5.0 (source: server release metadata; artifact _meta.json lists 2.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

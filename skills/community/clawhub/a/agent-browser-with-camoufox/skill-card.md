@@ -1,44 +1,58 @@
-## Description: <br>
-Installs Camoufox and patches agent-browser so browser automation can run through a Firefox or Camoufox executable path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click deployment of camoufox anti-detection browser with modified agent-browser. Patches agent-browser to auto-detect camoufox/firefox from executable path instead of defaulting to chromium. Includes SkillsI integration for seamless browser automation workflows.
 
-## Publisher: <br>
-[AdAstraAbyssoque](https://clawhub.ai/user/AdAstraAbyssoque) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adastraabyssoque](https://clawhub.ai/user/adastraabyssoque)
 
-## Use Case: <br>
-Developers and engineers use this skill to install Camoufox, install or locate agent-browser, patch browser-type detection, rebuild the package, and run browser automation with a Camoufox executable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer makes broad persistent changes to global browser automation tooling, including replacing or patching agent-browser files. <br>
-Mitigation: Run it only in an isolated or disposable environment, review the script first, and keep backups of the existing global agent-browser installation. <br>
-Risk: The installer uses unverified remote installers and downloads for tooling such as uv, Rust, npm packages, and Camoufox. <br>
-Mitigation: Prefer pinned and verified downloads where possible, inspect remote install scripts before execution, and avoid running the installer with elevated privileges. <br>
-Risk: Camoufox browser automation can be used in ways that bypass service protections or terms. <br>
-Mitigation: Use the skill only for automation you are authorized to run and do not use it to bypass protections on services where you do not have permission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdAstraAbyssoque/agent-browser-with-camoufox) <br>
-- [Publisher profile](https://clawhub.ai/user/AdAstraAbyssoque) <br>
-- [Camoufox GitHub](https://github.com/daijro/camoufox) <br>
-- [agent-browser GitHub](https://github.com/browser-use/agent-browser) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to install Camoufox and configure agent-browser so browser automation can launch a Firefox/Camoufox executable instead of defaulting to Chromium.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installer modifies global agent-browser files and may download external tooling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer can permanently alter a development environment by installing global packages and replacing agent-browser.
+
+Mitigation: Run it only in a disposable VM or container, or rewrite it to use project-local installs and require confirmation before replacing existing tools.
+
+Risk: The installer uses remote installers and mutable dependencies.
+
+Mitigation: Pin versions and checksums, avoid curl-to-shell installation paths, and review downloaded scripts before execution.
+
+Risk: The installer backs up and replaces existing agent-browser files without a validated rollback workflow.
+
+Mitigation: Show diffs before modification and provide a tested rollback path that restores the exact prior package state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adastraabyssoque/skills/agent-browser-with-camoufox)
+- [Camoufox GitHub repository](https://github.com/daijro/camoufox)
+- [agent-browser GitHub repository](https://github.com/browser-use/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Code, Guidance]
+
+**Output Format:** [Markdown with shell and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install, verification, troubleshooting, and executable-path configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

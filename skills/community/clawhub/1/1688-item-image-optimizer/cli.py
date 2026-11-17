@@ -6,13 +6,9 @@ Usage:
     python3 cli.py <command> [options]
 
 Commands（更多参数见项目根目录 SKILL.md）:
-    configure                      配置 AK（查看状态/设置/重置）
-    get_product_title            获取商品标题信息
-    get_product_category         获取商品类目信息
-    get_product_profile          获取商品档案信息
-    judge_image                  分析图像质量并提供诊断建议
-    edit_image                   生成编辑指令（支持用户偏好）
-    generate_images_with_model   根据编辑指令生成优化图片
+    configure                      配置/查看 AK
+    verify_permission              校验图片制作高级版权限（返回 isAi/digitalModel/faceFix）
+    build_tool_url                 构建图片工具页面 URL（返回 open_tab 透传对象）
 
 输出 JSON：{"success": bool, "markdown": str, "data": {...}}
 """

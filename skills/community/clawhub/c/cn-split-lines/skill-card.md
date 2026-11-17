@@ -1,40 +1,48 @@
-## Description: <br>
-Splits supplied text into multiple lines using a specified separator for local command-line text processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits provided text into multiple lines using a configurable separator.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to turn delimiter-separated command-line text into one item per line for simple text processing workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documentation may describe --file and --delimiter options that are not implemented by the current script.
+
+Mitigation: Use --text and --separator with the current script, or update the documentation and script before relying on file-input workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to split delimited text into line-oriented output during local text cleanup or command-line workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documented examples do not match the included script options. <br>
-Mitigation: Review the script interface before use and call the included script with its actual supported arguments. <br>
-Risk: The artifact README includes external AISoBrand marketing links that are not required for the local text-splitting behavior. <br>
-Mitigation: Treat those links as optional external references and do not rely on them to execute the skill. <br>
+**Output Format:** [Plain text output with optional shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-split-lines) <br>
+**Other Properties Related to Output:** [Uses the Python standard library; current script accepts --text and --separator.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with the Python standard library and no external runtime dependencies.] <br>
+1.0.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

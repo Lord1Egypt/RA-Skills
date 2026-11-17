@@ -1,45 +1,56 @@
-## Description: <br>
-AI Content Publisher helps agents prepare and publish Markdown articles to Medium, Dev.to, and Hashnode with SEO checks, scheduling guidance, and canonical URLs for cross-posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Markdown content to Medium, Dev.to, and Hashnode with formatting, SEO optimization, scheduling, and canonical URL support.
 
-## Publisher: <br>
-[qoohsuan](https://clawhub.ai/user/qoohsuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qoohsuan](https://clawhub.ai/user/qoohsuan)
 
-## Use Case: <br>
-Developers, writers, and content teams use this skill to turn Markdown articles into platform-ready posts and coordinate publishing across Medium, Dev.to, and Hashnode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may publish unreviewed content, incorrect tags, a wrong canonical URL, or use the wrong destination account. <br>
-Mitigation: Review the final article, tags, canonical URL, destination platforms, and selected account before any publish or batch step; prefer draft mode or an explicit confirmation gate. <br>
-Risk: API publishing requires credentials such as DEVTO_API_KEY and HASHNODE_TOKEN. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid pasting tokens into shared content, and do not log request headers containing secrets. <br>
-Risk: Batch publishing can exceed platform expectations or create spam-like posting behavior. <br>
-Mitigation: Respect documented platform limits and use spacing between posts, especially for Medium where the artifact recommends no more than two articles per 24 hours. <br>
+## Use Case:
 
+External users and developers use this skill to prepare, optimize, and publish Markdown articles across Medium, Dev.to, and Hashnode while preserving canonical URLs for cross-posting.
 
-## Reference(s): <br>
-- [AI Content Publisher on ClawHub](https://clawhub.ai/qoohsuan/ai-content-publisher) <br>
-- [Dev.to Articles API](https://dev.to/api/articles) <br>
-- [Hashnode GraphQL API](https://gql.hashnode.com) <br>
-- [Medium New Story](https://medium.com/new-story) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires platform credentials for API publishing and should be reviewed before live public posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: The skill can send content to external services and may publish publicly without a built-in confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact title, body, tags, canonical URL, target account, platform, and draft-versus-live setting before any API call or browser publish action.
+
+Risk: Cross-posting can create duplicate, incorrectly attributed, or poorly timed public content if canonical URLs, tags, or posting order are wrong.
+
+Mitigation: Review the proposed cross-posting order, canonical URL, tags, and schedule before approving each platform submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qoohsuan/skills/ai-content-publisher)
+- [Medium New Story](https://medium.com/new-story)
+- [Dev.to Articles API](https://dev.to/api/articles)
+- [Hashnode GraphQL API](https://gql.hashnode.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific publishing steps, credential environment variable names, SEO checks, and API request bodies.]
+
+## Skill Version(s):
+
+1.0.0 (source: clawhub.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

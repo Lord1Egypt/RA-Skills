@@ -1,42 +1,55 @@
-## Description: <br>
-Competitor social media content strategy analyzer that reads a JSON file of competitor posts and reports topic distribution, content styles, posting schedule, top-performing patterns, and uncovered gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitor social media content strategy analyzer that reads a JSON file of competitor posts and produces a strategy breakdown covering topics, content styles, posting schedule, top-performing patterns, and uncovered gaps.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Marketing, growth, and competitive-intelligence users analyze exported or scraped social posts to understand a competitor's content strategy and identify gaps for planning their own content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports can include excerpts from scraped or exported competitor posts. <br>
-Mitigation: Analyze only JSON files the user intends to process and review generated reports before sharing or publishing them. <br>
-Risk: Strategic recommendations are based on heuristic topic and style classification over the provided dataset. <br>
-Mitigation: Treat gaps and top-performing patterns as planning inputs, and validate conclusions against source posts and broader market context. <br>
+## Use Case:
 
+Marketing, content strategy, and competitive intelligence teams use this skill to analyze locally collected competitor social post exports and identify topic patterns, content formats, posting cadence, high-engagement posts, and differentiation opportunities.
 
-## Reference(s): <br>
-- [Phy Competitor Watch on ClawHub](https://clawhub.ai/PHY041/phy-competitor-watch) <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain-text or JSON competitor content analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include excerpts from analyzed social posts and heuristic classifications of topics, styles, schedules, top performers, and content gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Imported competitor post text may contain hostile or misleading content that appears in analysis reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted JSON inputs where possible, avoid viewing reports from hostile scraped content in sensitive terminals, and review outputs before using them for business decisions.
+
+Risk: Competitive intelligence outputs could be misused for deceptive or abusive targeting.
+
+Mitigation: Use the analysis for lawful benchmarking and differentiation, consistent with the security guidance.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-competitor-watch)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Plain-text or JSON analysis report generated from local JSON input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys or external dependencies are required; imported post text should be treated as untrusted input.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

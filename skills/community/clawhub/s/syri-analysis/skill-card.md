@@ -1,40 +1,58 @@
-## Description: <br>
-执行基因组间 SYRI 共线性分析，包含染色体处理、minimap2 比对、结构变异检测及 plotsr 可视化流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a SYRI-based genome collinearity and structural variation workflow, including chromosome preparation, minimap2 alignment, SYRI analysis, and plotsr visualization.
 
-## Publisher: <br>
-[wangjw065](https://clawhub.ai/user/wangjw065) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjw065](https://clawhub.ai/user/wangjw065)
 
-## Use Case: <br>
-Genomics researchers and bioinformatics practitioners use this skill to run a SYRI-based collinearity and structural-variation workflow between genome assemblies, from chromosome preparation through visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Large genome alignments can consume substantial disk space and compute resources. <br>
-Mitigation: Confirm available storage before alignment, choose a thread count appropriate for the machine, and run the workflow in an isolated conda or virtual environment. <br>
-Risk: Bioinformatics package installation can introduce supply-chain or version drift risk. <br>
-Mitigation: Verify minimap2, SYRI, plotsr, and Biopython packages before use and prefer trusted package channels or pinned versions. <br>
+## Use Case:
 
+Bioinformatics researchers and genome analysis engineers use this skill to prepare chromosome inputs, align genomes, detect structural variation with SYRI, and visualize collinearity with plotsr.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjw065/syri-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow steps, installation commands, troubleshooting notes, and expected SYRI output file descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned bioinformatics software installation can change behavior across environments or introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated Conda or virtual environment and pin package versions or reviewed commits before operational use.
+
+Risk: High-thread alignment jobs and large SAM outputs can exhaust shared CPU, memory, or disk resources.
+
+Mitigation: Review thread counts, storage availability, and job scheduling limits before launching minimap2 or SYRI runs.
+
+Risk: Running installation and analysis commands with elevated privileges can increase the impact of dependency or command mistakes.
+
+Mitigation: Avoid running the workflow as root and use a least-privilege project environment.
+
+## Reference(s):
+
+- [SYRI 共线性分析 ClawHub release](https://clawhub.ai/wangjw065/skills/syri-analysis)
+- [minimap2 source repository](https://github.com/lh3/minimap2.git)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides workflow steps, command examples, configuration notes, troubleshooting guidance, and expected SYRI output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

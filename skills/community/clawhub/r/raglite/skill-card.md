@@ -1,43 +1,58 @@
-## Description: <br>
-Local-first RAG cache: distill docs into structured Markdown, then index/query with Chroma (vector) + ripgrep (keyword). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first RAG cache: distill docs into structured Markdown, then index/query with Chroma (vector) + ripgrep (keyword).
 
-## Publisher: <br>
-[VirajSanghvi1](https://clawhub.ai/user/VirajSanghvi1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[virajsanghvi1](https://clawhub.ai/user/virajsanghvi1)
 
-## Use Case: <br>
-Developers and agents use RAGLite to build a local, auditable retrieval cache for repeated lookup over private or local documents. It supports distilling source material to structured Markdown, indexing it with Chroma and ripgrep, and querying it later with hybrid retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill pulls the raglite-chromadb package from PyPI or a configured package index. <br>
-Mitigation: Install only when the package source is trusted and review the package index setting before installation. <br>
-Risk: Indexed documents may include private, secret, or regulated information that persists in local output and Chroma storage. <br>
-Mitigation: Index only intentional folders, avoid secrets unless storage and deletion paths are understood, and control access to the output directory and Chroma collection. <br>
-Risk: Third-party source documents can contain prompt injection text that attempts to influence downstream agent behavior. <br>
-Mitigation: Treat retrieved document text as untrusted data and review generated answers or actions before relying on them. <br>
+## Use Case:
 
+Developers and agents use RAGLite to distill local or private documents into auditable Markdown, index them with Chroma and ripgrep, and query that local cache for repeated retrieval tasks.
 
-## Reference(s): <br>
-- [RAGLite ClawHub page](https://clawhub.ai/VirajSanghvi1/raglite) <br>
-- [RAGLite repository listed in skill documentation](https://github.com/VirajSanghvi1/raglite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI output includes structured Markdown artifacts and query text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, pip, and rg; installs and runs the raglite-chromadb package in a skill-local virtual environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata, SKILL.md frontmatter, manifest.json) <br>
+Risk: Sensitive or confidential documents may be processed by an engine whose locality and retention behavior are not clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicitly understood --engine value and avoid medical, internal, or confidential documents until engine handling is confirmed.
+
+Risk: Setup installs mutable Python packages and can use a custom package index.
+
+Mitigation: Install in an isolated environment and set RAGLITE_PIP_INDEX_URL only for a fully trusted package index.
+
+Risk: Third-party source documents may contain prompt injection attempts.
+
+Mitigation: Treat source text as untrusted data and review distilled Markdown and retrieval outputs before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/virajsanghvi1/skills/raglite)
+- [Project repository listed in artifact](https://github.com/VirajSanghvi1/raglite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces distilled Markdown artifacts, local index/query workflows, and retrieval responses through the raglite CLI.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter, manifest.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

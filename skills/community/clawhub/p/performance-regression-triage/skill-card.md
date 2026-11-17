@@ -1,42 +1,54 @@
-## Description: <br>
-Triage a performance regression from concrete evidence - latency percentiles, error rate, resource and DB metrics, recent deploys - separate symptoms from hypotheses, and recommend one measurement before one fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage a performance regression from concrete evidence - latency percentiles, error rate, resource and DB metrics, recent deploys - separate symptoms from hypotheses, and recommend one measurement before one fix.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to investigate performance regressions from concrete operational evidence, rank likely causes, choose the first measurement to run, and identify the smallest likely fix with verification criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Performance diagnoses may misattribute a regression when evidence is incomplete. <br>
-Mitigation: Review the proposed cause against measurements, logs, and benchmark results before applying remediation steps. <br>
-Risk: Optional Ritual Cloud use can add external workspace discovery or team workflows. <br>
-Mitigation: Review the npm package and connect Ritual Cloud only when that external context is desired. <br>
-Risk: Optional knowledge capture can write a reusable note into the repository. <br>
-Mitigation: Approve knowledge-note file writes only when the proposed note is useful and accurately cites the supporting evidence. <br>
+## Use Case:
 
+Developers and engineers use this skill to triage performance regressions from concrete operational evidence, rank likely causes, choose the next measurement, and identify the smallest likely fix with a verification plan.
 
-## Reference(s): <br>
-- [Ritual](https://ritual.work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with ranked hypotheses, measurement guidance, fix recommendations, optional commands, and verification criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may prompt an agent to save optional knowledge notes into the repository after a triage task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval and review the note for appropriateness before persisting it.
+
+Risk: The optional Ritual Cloud upgrade involves a global CLI install and potential workspace data exposure outside the reviewed artifact.
+
+Mitigation: Review the CLI package, requested permissions, and workspace data exposure before installing or connecting it.
+
+## Reference(s):
+
+- [Performance Regression Triage on ClawHub](https://clawhub.ai/ritual/skills/performance-regression-triage)
+- [Ritual](https://ritual.work)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on a ranked triage summary, one next measurement, one smallest likely fix, and concrete verification criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

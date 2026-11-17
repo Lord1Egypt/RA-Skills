@@ -31,8 +31,7 @@ from _spapi_uploads_common import (
     developer_proxy_post,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     load_cli_params,
     merge_success_json,
     path_for_upload_destination,
@@ -78,12 +77,7 @@ def main() -> None:
     path = path_for_upload_destination(params["resource"])
     qs = _build_query(params)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_post(region, path, tokens["accessToken"], query_string=qs)
+    proxy = developer_proxy_post(region, path, seller_id, query_string=qs)
     out: dict = {
         "developerProxy": proxy,
         "resolvedPath": path,

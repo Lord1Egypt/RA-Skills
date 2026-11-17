@@ -1,41 +1,57 @@
-## Description: <br>
-Lookup Pathé Netherlands movies, posters, descriptions, cinemas, and showtimes via the Pathé JSON APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up Pathé Netherlands movies, posters, descriptions, cinemas, and showtimes through Pathé JSON APIs.
 
-## Publisher: <br>
-[humboldtjs](https://clawhub.ai/user/humboldtjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[humboldtjs](https://clawhub.ai/user/humboldtjs)
 
-## Use Case: <br>
-External users use this skill to look up Pathé Netherlands movie information, posters, cinema availability, and showtimes through an agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Pathé public APIs, so results depend on live third-party service availability and returned data. <br>
-Mitigation: Use the skill for Pathé movie and showtime lookup requests, and present unavailable or incomplete API data clearly to the user. <br>
-Risk: Poster delivery may temporarily save image files under /tmp when sending posters through WhatsApp. <br>
-Mitigation: Limit temporary image downloads to user-requested posters and clean up temporary files when practical. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pathé API](https://www.pathe.nl/api) <br>
-- [Pathé API Reference](references/api.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/humboldtjs/pathe-movie) <br>
+## Use Case:
 
+External users and agent operators use this skill to answer Pathé Netherlands movie questions, including title lookup, ratings, descriptions, posters, cinema availability, and showtimes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional URLs, local media paths, and structured API-derived details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include downloaded temporary poster image paths for WhatsApp media delivery when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and target metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Movie and cinema queries are sent to Pathé's website.
+
+Mitigation: Avoid sending sensitive or unrelated personal data in movie queries and disclose external network use when appropriate.
+
+Risk: Default cinema behavior is centered on selected Netherlands venues.
+
+Mitigation: Honor explicit user cinema requests when a different location is needed.
+
+Risk: WhatsApp poster delivery may temporarily save public poster images locally.
+
+Mitigation: Use temporary paths only for explicit media requests and clean up downloaded media after use.
+
+## Reference(s):
+
+- [Pathé API Reference](artifact/references/api.md)
+- [Pathé JSON API](https://www.pathe.nl/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Plain text or Markdown responses with optional local image file paths for poster delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May temporarily save public poster or still images locally when WhatsApp media delivery is explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

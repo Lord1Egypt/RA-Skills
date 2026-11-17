@@ -1,41 +1,54 @@
-## Description: <br>
-Professional Markdown document generator for technical docs, READMEs, wikis, reports, and other structured documents with support for images, tables, code blocks, math, diagrams, and Markdown syntax. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Markdown Studio helps agents create publication-ready Markdown documents, including technical docs, READMEs, reports, wikis, tables, code blocks, math, diagrams, and image references or embeddings.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, writers, and teams use Markdown Studio to draft publication-ready Markdown documents such as READMEs, API documentation, technical reports, wikis, proposals, and tutorials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Markdown files or embedded images may unintentionally include private or incorrect content. <br>
-Mitigation: Specify the output filename and content requirements, review generated documents before sharing, and avoid embedding private images unless intended. <br>
-Risk: Rendered Markdown can contact third-party services through remote badge or image links. <br>
-Mitigation: Remove remote shields.io badges and other external media links when the document must not make third-party requests. <br>
+## Use Case:
 
+Developers, writers, and knowledge workers use this skill to generate structured Markdown documents such as technical documentation, READMEs, reports, wiki pages, tutorials, and reference material.
 
-## Reference(s): <br>
-- [Markdown Templates](references/templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobewin/markdown-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents and Markdown-generating code or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate files and embed or reference images; review output before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Embedding local images as base64 copies the image data directly into the generated Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only embed images intended for inclusion in the final document; use file references for sensitive or large images.
+
+Risk: Generated Markdown may require editorial review before publication.
+
+Mitigation: Review generated documents for accuracy, formatting, links, and image handling before sharing or publishing.
+
+## Reference(s):
+
+- [Markdown Templates](artifact/references/templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/markdown-studio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents with optional fenced code blocks, tables, Mermaid diagrams, math notation, and image references or base64-embedded images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Markdown files to the workspace; base64 image embedding copies image data into the generated document.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

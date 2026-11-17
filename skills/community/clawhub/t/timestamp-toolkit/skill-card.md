@@ -1,38 +1,53 @@
-## Description: <br>
-Timestamp conversion tool. Convert between Unix timestamp, datetime, and various date formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Timestamp conversion tool. Convert between Unix timestamp, datetime, and various date formats.
 
-## Publisher: <br>
-[freeter226](https://clawhub.ai/user/freeter226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeter226](https://clawhub.ai/user/freeter226)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert Unix timestamps, datetime strings, custom date formats, and time differences during log analysis, API development, data processing, and debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Timestamp Toolkit on ClawHub](https://clawhub.ai/freeter226/timestamp-toolkit) <br>
-- [freeter226 publisher profile](https://clawhub.ai/user/freeter226) <br>
+Developers and engineers use this skill to convert Unix timestamps and datetime strings, format dates, get current time values, and calculate differences for log analysis, API development, data processing, and debugging.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON objects printed by a Python CLI, with Markdown usage examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3. Security evidence reports clean local timestamp conversion behavior with no hidden access, persistence, or destructive behavior.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: README content and the human-readable diff field are Chinese-localized, which may surprise users expecting English-only output.
+
+Mitigation: Rely on the structured JSON keys and numeric fields for automation, and document the localized human-readable field for users who need English-only workflows.
+
+Risk: Local-time conversions can vary by runtime environment, and non-utc timezone values are treated as local time by the artifact script.
+
+Mitigation: Use the utc option for reproducible conversions and validate timezone assumptions before using converted times in logs, APIs, or data pipelines.
+
+## Reference(s):
+
+- [Timestamp Toolkit ClawHub skill page](https://clawhub.ai/freeter226/skills/timestamp-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON objects printed by a Python command, with Markdown command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3. Results include success/error status, converted timestamp or datetime fields, and a localized human-readable diff field.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

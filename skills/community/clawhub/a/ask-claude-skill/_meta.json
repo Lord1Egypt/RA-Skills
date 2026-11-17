@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn78dfx3h8gdp07gy8484gdv0982tfz6",
-  "slug": "ask-claude-skill",
-  "version": "1.1.1",
-  "publishedAt": 1773423733343
+  "name": "ask-claude",
+  "version": "1.1.0",
+  "description": "Run Claude Code CLI from inside OpenClaw and report the result back in chat automatically"
 }

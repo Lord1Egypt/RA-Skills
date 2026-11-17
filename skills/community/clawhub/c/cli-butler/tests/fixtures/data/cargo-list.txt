@@ -1,0 +1,2 @@
+fd-find v9.0.0:
+ripgrep v14.1.0:

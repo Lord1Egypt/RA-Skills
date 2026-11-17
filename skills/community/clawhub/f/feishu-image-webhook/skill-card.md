@@ -1,43 +1,59 @@
-## Description: <br>
-Uploads a local image to Feishu/Lark and sends it to a configured group webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads a local image to Feishu and sends it to a group through a configured webhook.
 
-## Publisher: <br>
-[imBing](https://clawhub.ai/user/imBing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imbing](https://clawhub.ai/user/imbing)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Feishu/Lark app credentials and a group bot webhook, then upload selected local images and post them into a chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local images are uploaded to Feishu/Lark and may be posted to the configured group chat. <br>
-Mitigation: Verify the destination webhook and avoid confidential screenshots, documents, photos, or customer data unless the organization has approved that sharing flow. <br>
-Risk: The skill requires app credentials and a webhook URL in a local config.py file. <br>
-Mitigation: Keep config.py out of public repositories and rotate credentials if the file is exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to configure credentials and send a selected local image to a Feishu group from an agent-assisted workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imBing/feishu-image-webhook) <br>
-- [Publisher profile](https://clawhub.ai/user/imBing) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu image upload endpoint](https://open.feishu.cn/open-apis/im/v1/images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local image path, Feishu/Lark app credentials, and a configured group webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Feishu credentials and webhook URLs can be exposed if config.py is shared or committed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep config.py private, do not commit it, and rotate APP_SECRET or webhook values if exposure is suspected.
+
+Risk: Selected local images are uploaded to Feishu and posted to the configured group.
+
+Mitigation: Use the skill only for images intended for that Feishu group and avoid sensitive images unless group sharing is deliberate.
+
+Risk: Overbroad Feishu app permissions can increase impact if credentials are misused.
+
+Mitigation: Grant only the minimum image permission needed for the Feishu app.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imbing/skills/feishu-image-webhook)
+- [Feishu Tenant Access Token Endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Image Upload Endpoint](https://open.feishu.cn/open-apis/im/v1/images)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Feishu app credentials, webhook URL, and local image path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

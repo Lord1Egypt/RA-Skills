@@ -1,41 +1,55 @@
-## Description: <br>
-Generate or edit images through Palebluedot Ai(PBD)-TokenRouter's multimodal image generation endpoint (`/v1/chat/completions`) using TokenRouter-compatible image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images through Palebluedot Ai(PBD)-TokenRouter's multimodal image generation endpoint (`/v1/chat/completions`) using TokenRouter-compatible image models.
 
-## Publisher: <br>
-[yb98k999](https://clawhub.ai/user/yb98k999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yb98k999](https://clawhub.ai/user/yb98k999)
 
-## Use Case: <br>
-Developers and agents use this skill to generate new images or edit existing images with TokenRouter-compatible image models, including model overrides and provider-specific image configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TokenRouter API keys may be exposed if pasted into chat or stored insecurely. <br>
-Mitigation: Prefer a local environment variable or secret manager for PBD_TOKENROUTER_API_KEY and avoid sharing keys in conversation. <br>
-Risk: Prompts and input images are sent to TokenRouter for generation or editing. <br>
-Mitigation: Avoid sensitive prompts or private images unless the user is comfortable sending them to TokenRouter. <br>
+## Use Case:
 
+Developers and agents use this skill to generate new images or edit existing images through TokenRouter-supported image models, including model overrides and provider image configuration options.
 
-## Reference(s): <br>
-- [TokenRouter documentation](https://www.tokenrouter.com/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/yb98k999/tokenrouter-images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; the script writes image files and prints the saved path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TokenRouter API key and may send prompts or input images to TokenRouter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Prompts and selected input images are sent to TokenRouter for image generation or editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when this third-party processing is acceptable for the data being submitted.
+
+Risk: API-key handling is security-sensitive, and the evidence security summary flags the documented key handling as risky.
+
+Mitigation: Use a session-scoped environment variable or protected secret store, avoid placing keys in chat or shell history, and prefer revocable limited keys when available.
+
+## Reference(s):
+
+- [TokenRouter docs](https://www.tokenrouter.com/docs)
+- [TokenRouter](https://www.tokenrouter.com)
+- [ClawHub skill page](https://clawhub.ai/yb98k999/skills/tokenrouter-images)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash command examples; script output is a saved image file path and status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TokenRouter API key and writes generated or edited images to the requested output path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

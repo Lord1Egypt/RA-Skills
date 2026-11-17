@@ -61,8 +61,8 @@ python jmcai_skill.py history --workflow <workflow_id> --limit 5
 - `doctor` 失败：提示用户启动或升级 JMCAI 桌面应用
 - `run` 返回错误：把错误原文反馈给用户，不要伪造成功
 - `status` 返回 `queued` 或 `running`：告诉用户仍在生成，并在下一次独立调用中继续查询
-- `status` 返回 `success`：优先返回 `outputs` 中已经自动下载到当前机器的本地文件路径
-- `status` 或 `history` 返回 `warnings`：告诉用户任务已成功，但自动下载输出到当前机器时出现了网络或本地写入问题
+- `status` 返回 `success`：优先返回 `outputs` 中已经自动下载到当前机器的本地文件路径；按 `media_kind` 识别 `image | video | audio | file`，不要过滤音频输出
+- `status` 或 `history` 返回 `warnings`：任务仍可能成功；字符串告警直接展示，结构化告警结合 `field`、`stage`、`summary`、`message` 说明下载、写入或解析问题
 
 需要 bridge 契约细节时，读取 `references/bridge.md`。  
 需要图片 / 视频 / 资产输入工作流示例时，读取 `references/usage.md`。

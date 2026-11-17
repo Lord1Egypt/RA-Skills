@@ -1,45 +1,61 @@
-## Description: <br>
-Manage Obsidian vaults through LiveSync CouchDB by capturing notes, optionally enriching and filing them with AI, managing tasks, and auditing or tidying vault structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Obsidian vaults via LiveSync CouchDB: capture notes, AI-enrich and file them, manage tasks, audit, and tidy vault structure.
 
-## Publisher: <br>
-[philmossman](https://clawhub.ai/user/philmossman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[philmossman](https://clawhub.ai/user/philmossman)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to operate an Obsidian vault through CouchDB/LiveSync, including capture, task management, vault audits, tidying, and AI-assisted note processing or filing when an AI provider is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The tool needs direct read/write access to an Obsidian LiveSync CouchDB vault with E2EE disabled. <br>
-Mitigation: Use it only with vaults where this access is acceptable, prefer least-privileged CouchDB credentials, and test mutating workflows with dry-run commands first. <br>
-Risk: Optional cloud AI providers may process sensitive note content outside the local environment. <br>
-Mitigation: Use local Ollama or no-AI mode for sensitive notes, and configure cloud providers only for content that may be sent to that provider. <br>
-Risk: Vault credentials are stored in a local configuration file. <br>
-Mitigation: Protect the local config file and avoid sharing or checking in `~/.obsidian-curator/config.json`. <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to manage an Obsidian vault through the CouchDB database used by Obsidian LiveSync, including note capture, inbox processing, filing, auditing, tidying, and task management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/philmossman/obsidian-curator) <br>
-- [Obsidian LiveSync](https://github.com/vrtmrz/obsidian-livesync) <br>
-- [obsidian-curator project repository listed by skill documentation](https://github.com/philmossman/obsidian-curator) <br>
-- [obsidian-curator npm package](https://www.npmjs.com/package/obsidian-curator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include vault-management commands, configuration guidance, markdown task summaries, and API usage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The npm CLI receives plaintext read/write access to a LiveSync CouchDB vault that may contain sensitive notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the package and configure it for vaults where this level of access is acceptable.
+
+Risk: Cloud AI provider behavior is under-disclosed for note content processed by AI features.
+
+Mitigation: Use the local or none AI provider for sensitive vaults unless documentation clearly states what content is sent to cloud providers.
+
+Risk: The install metadata does not pin the npm package version.
+
+Mitigation: Prefer a pinned, reviewed package version for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philmossman/skills/obsidian-curator)
+- [Publisher profile](https://clawhub.ai/user/philmossman)
+- [obsidian-curator npm package](https://www.npmjs.com/package/obsidian-curator)
+- [obsidian-curator GitHub repository](https://github.com/philmossman/obsidian-curator)
+- [Obsidian LiveSync](https://github.com/vrtmrz/obsidian-livesync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands, JavaScript examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dry-run commands before vault-changing operations.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,35 +1,53 @@
-## Description: <br>
-Helps an agent consolidate memory-like notes or session context into concise, reusable summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Dream Consolidation guides OpenClaw agents through structured memory classification, periodic Dream consolidation, and pruning of persistent memory files.
 
-## Publisher: <br>
-[xwz119](https://clawhub.ai/user/xwz119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xwz119](https://clawhub.ai/user/xwz119)
 
-## Use Case: <br>
-Developers and agents use this skill to turn accumulated working context into compact memory summaries for future sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and agent operators use this skill to configure and run memory maintenance for OpenClaw agents, including classifying memory entries, consolidating daily notes into durable memory, pruning stale facts, and updating Dream cycle state.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may consolidate, prune, or replace persistent remembered facts.
+
+Mitigation: Review memory changes periodically and confirm that retained facts are still useful and accurate.
+
+Risk: Stale memory entries can mislead future agent behavior.
+
+Mitigation: Verify recalled file paths, functions, configuration, and state snapshots against current project sources before acting on them.
+
+## Reference(s):
+
+- [Claude Code Memory System - Source Analysis](references/claude-code-memory-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide edits to persistent memory files and Dream cycle state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

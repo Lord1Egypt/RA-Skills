@@ -1,43 +1,56 @@
-## Description: <br>
-Search and discover OpenClaw skills from various sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and discover OpenClaw skills from various sources. Use when: user wants to find available skills, search for specific functionality, or discover new skills to install.
 
-## Publisher: <br>
-[lq-productor](https://clawhub.ai/user/lq-productor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lq-productor](https://clawhub.ai/user/lq-productor)
 
-## Use Case: <br>
-Developers and agent users use this skill to find OpenClaw skills by task, category, provider, or popularity before deciding what to inspect or install. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search results or marketplace listings may point to skills from untrusted or unfamiliar publishers. <br>
-Mitigation: Verify the publisher, source, permissions, and instructions for each target skill before installing or running it. <br>
-Risk: Suggested `npx clawhub` commands may reach external services and return changing marketplace content. <br>
-Mitigation: Treat search output as advisory, review target skills independently, and test selected skills in isolation before production use. <br>
+## Use Case:
 
+Developers and agent users use this skill to find OpenClaw skills by task, category, provider, or popularity before choosing whether to install or use them.
 
-## Reference(s): <br>
-- [Find Skills Skill release page](https://clawhub.ai/lq-productor/find-skills-skill-1-0-0) <br>
-- [ClawHub](https://clawhub.com) <br>
-- [OpenClaw Directory skills](https://www.openclawdirectory.dev/skills) <br>
-- [LobeHub Skills Marketplace](https://lobehub.com/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no required binaries or credential environment variables are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Unpinned remote CLI execution through npx may run code that has not been reviewed for the target environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed clawhub version or a trusted local install, and avoid unpinned npx commands in sensitive environments.
+
+Risk: Skill search results may point users to third-party skills with unknown quality or security posture.
+
+Mitigation: Review each candidate skill's documentation, requirements, publisher, and scan results before installation or production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lq-productor/skills/find-skills-skill-1-0-0)
+- [ClawHub](https://clawhub.com)
+- [OpenClaw Directory Skills](https://www.openclawdirectory.dev/skills)
+- [LobeHub Skills Marketplace](https://lobehub.com/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include links to skill marketplaces, community sources, and suggested search commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

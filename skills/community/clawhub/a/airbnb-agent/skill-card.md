@@ -1,43 +1,63 @@
-## Description: <br>
-Search Airbnb listings, filter short-term rentals, and analyze detail pages for parking, basement, and renovation signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Airbnb listings, filter short-term rentals, and analyze detail pages for parking, basement, and renovation signals.
 
-## Publisher: <br>
-[suidge](https://clawhub.ai/user/suidge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suidge](https://clawhub.ai/user/suidge)
 
-## Use Case: <br>
-External users and agents use this skill to search Airbnb listings by date, guest count, coordinate area, price, bedrooms, rating, and distance, then compare shortlists. It supports listing detail review for parking, basement, and renovation signals when login-only data is not required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface rentals and prices that may influence booking or purchase decisions. <br>
-Mitigation: Require user review and explicit confirmation before any booking, payment, or purchase action. <br>
-Risk: Detail keyword matches for parking, basement, and renovation are signals, not verified listing facts. <br>
-Mitigation: Verify important amenities and property characteristics against the live listing or host before relying on them. <br>
-Risk: The setup script installs third-party Python dependencies and the search/detail scripts make network requests to Airbnb-related services. <br>
-Mitigation: Review commands before running them, use an isolated virtual environment, and avoid providing credentials or cookies unless intentionally required. <br>
+## Use Case:
 
+External users and agents use this skill to search Airbnb rentals by dates, guests, coordinate radius, price, rating, and bedroom count, then compare shortlisted listings. It can also inspect listing detail pages for parking, basement, and renovation signals that should be verified before booking.
 
-## Reference(s): <br>
-- [Airbnb Agent Skill Page](https://clawhub.ai/suidge/airbnb-agent) <br>
-- [Airbnb API Fields Reference](references/api-fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes filtered candidates to /tmp/airbnb_candidates.json and detail analysis to /tmp/airbnb_results.json by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Setup creates a local Python virtual environment and installs current pip versions of pyairbnb and curl-cffi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup script and dependency policy before running setup in a production or managed environment.
+
+Risk: Search and detail commands send dates, guest count, location bounds, currency, language, and listing requests to Airbnb.
+
+Mitigation: Use only search parameters appropriate to share with Airbnb and avoid including unnecessary sensitive information.
+
+Risk: Detail keyword matches for parking, basement, and renovation can be false positives or stale signals.
+
+Mitigation: Verify important amenities and property attributes on the listing page or with the host before booking.
+
+Risk: Default result files are written under /tmp and may be overwritten by later runs.
+
+Mitigation: Use explicit output paths when preserving results or controlling storage location matters.
+
+## Reference(s):
+
+- [Airbnb API Fields Reference](references/api-fields.md)
+- [Schema.org](https://schema.org)
+- [ClawHub Skill Page](https://clawhub.ai/suidge/skills/airbnb-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search writes /tmp/airbnb_candidates.json and detail analysis writes /tmp/airbnb_results.json by default unless an output path is provided.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

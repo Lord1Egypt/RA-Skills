@@ -1,41 +1,55 @@
-## Description: <br>
-Call GET /api/beike/get-ershoufang-list/v1 for Beike Resale Housing List through JustOneAPI with cityId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/beike/get-ershoufang-list/v1 for Beike Resale Housing List through JustOneAPI with cityId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Beike resale housing list endpoint for city-scoped property listings, optional condition filters, and pagination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service token is sent in the request URL and may be captured by logs, proxies, monitoring, or error reports. <br>
-Mitigation: Use a scoped or revocable JustOneAPI token, avoid logging request URLs or command lines, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve Beike resale housing listings from JustOneAPI by city ID, with optional condition and offset filters for property search pages or regional housing market analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-beike-get-ershoufang-list) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_beike_get_ershoufang_list&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_beike_get_ershoufang_list&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with an inline shell command and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Raw backend JSON is returned after a short endpoint-specific summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may appear in command-line process data, request URLs, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege or disposable token when available, avoid logging commands and URLs that contain the token, monitor usage, and rotate the token after suspected exposure.
+
+Risk: The skill sends housing lookup requests to api.justoneapi.com and depends on that external service.
+
+Mitigation: Use it only when external JustOneAPI calls are acceptable for the workflow and review backend error payloads before sharing them.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_beike_get_ershoufang_list&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-beike-get-ershoufang-list)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON API response.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and cityId; optional filters include condition and offset.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

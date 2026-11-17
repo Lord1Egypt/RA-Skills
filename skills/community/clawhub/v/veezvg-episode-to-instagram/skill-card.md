@@ -1,43 +1,62 @@
-## Description: <br>
-Full pipeline to turn a video podcast episode into Instagram content, including carousel posts, quote cards, and Reels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full pipeline to turn a video podcast episode into Instagram content (carousel posts, quote cards, and Reels). Transcribes the episode, extracts key quotes with timestamps, pulls video frames, generates aesthetic carousel slides, and posts to Instagram via browser automation.
 
-## Publisher: <br>
-[veezvg](https://clawhub.ai/user/veezvg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veezvg](https://clawhub.ai/user/veezvg)
 
-## Use Case: <br>
-Creators, marketers, and agent operators use this skill to convert long-form podcast or video episodes into Instagram-ready transcripts, content plans, carousel slides, Reel clips, captions, previews, and posting drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Episode audio may be sent to OpenAI for transcription. <br>
-Mitigation: Use only media you are allowed to process, avoid confidential episodes, and provide OPENAI_API_KEY through a shell, secret manager, or trusted runtime. <br>
-Risk: The skill can operate an already logged-in Instagram browser session and may publish content if posting is allowed. <br>
-Mitigation: Run preview or dry-run first, verify the target account, media, caption, and crop, and require explicit user approval before enabling any posting step. <br>
-Risk: Preview screenshots and staged uploads may remain in temporary locations. <br>
-Mitigation: Delete retained /tmp screenshots and staged upload files after the workflow completes. <br>
+## Use Case:
 
+Creators, social media operators, and developers use this skill to convert long-form podcast or video episodes into Instagram-ready transcripts, content plans, carousel slides, Reel clips, captions, previews, and posting drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veezvg/veezvg-episode-to-instagram) <br>
-- [Publisher profile](https://clawhub.ai/user/veezvg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, JSON content plans, shell commands, local media files, and browser automation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local working files such as transcripts, frame manifests, rendered carousel images, Reel clips, preview screenshots, and Instagram drafts that require explicit user approval before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill handles sensitive media and can upload audio for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local media and confirm that audio may be sent to OpenAI before running transcription.
+
+Risk: The skill automates a logged-in Instagram browser session and can publish content.
+
+Mitigation: Inspect generated previews and captions, keep the browser CDP port inaccessible to untrusted users, and do not run posting commands with --post without explicit final approval.
+
+Risk: Untrusted content-plan JSON or an unsafe working directory could affect generated outputs or local files.
+
+Mitigation: Review content-plan JSON before use and run the skill in a non-sensitive working directory.
+
+Risk: Preview screenshots are written under /tmp.
+
+Mitigation: Avoid including sensitive content in previews or clear temporary screenshots after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veezvg/skills/veezvg-episode-to-instagram)
+- [Instagram](https://www.instagram.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON content plans, shell commands, generated media files, captions, and preview screenshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are staged in an episode working directory and may include transcript JSON/text, content-plan JSON, extracted PNG frames, carousel slide images, Reel clips, captions, and Instagram draft previews.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

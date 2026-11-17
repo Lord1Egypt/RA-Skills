@@ -1,42 +1,59 @@
-## Description: <br>
-Browser Automation helps agents scrape, crawl, screenshot, and interact with JavaScript-rendered websites using Puppeteer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping and browser automation using Puppeteer for extracting data from websites, crawling pages, scraping JavaScript-rendered content, taking screenshots, filling forms, and automating browser workflows.
 
-## Publisher: <br>
-[fasjdas](https://clawhub.ai/user/fasjdas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fasjdas](https://clawhub.ai/user/fasjdas)
 
-## Use Case: <br>
-Developers and automation agents use this skill to extract structured content, crawl paginated pages, capture screenshots, and build browser workflows for websites that require JavaScript rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can access sites, submit forms, and interact with pages in ways that may violate site terms, robots.txt, or rate limits. <br>
-Mitigation: Review site terms, robots.txt, and rate limits before running the skill, and add delays or page limits for crawls. <br>
-Risk: Running the skill on logged-in, payment, crypto, or sensitive account pages could expose private data or trigger unintended actions. <br>
-Mitigation: Use it on authenticated, payment, crypto, or sensitive pages only when the user explicitly intends that automation and has confirmed the target account and action. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide browser-based scraping, crawling, screenshot capture, form interaction, and automation for pages that require JavaScript rendering.
 
-## Reference(s): <br>
-- [Browser Automation README](README.md) <br>
-- [Puppeteer API Reference](references/puppeteer-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fasjdas/browser-automation-puppeteer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell snippets; helper scripts emit JSON data or PNG screenshot files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, npm, Puppeteer, and network access to user-selected websites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser automation against arbitrary URLs can expose the agent environment to untrusted web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated, unprivileged environment with limited network access and restrict allowed URL targets where possible.
+
+Risk: The browser process could access secrets, credentials, cookies, or internal services if they are available in the execution environment.
+
+Mitigation: Do not expose secrets or internal services to the browser process, and require explicit user confirmation before submitting forms or using credentials or cookies.
+
+Risk: Installing Puppeteer without a reviewed lockfile can introduce unpinned dependency changes.
+
+Mitigation: Pin Puppeteer and related packages with a reviewed lockfile before production use.
+
+## Reference(s):
+
+- [Puppeteer API Reference](references/puppeteer-api.md)
+- [ClawHub skill page](https://clawhub.ai/fasjdas/skills/browser-automation-puppeteer)
+- [Publisher profile](https://clawhub.ai/user/fasjdas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples; included scripts emit JSON or PNG files when run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser screenshots, extracted page data, crawler results, and Puppeteer automation snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

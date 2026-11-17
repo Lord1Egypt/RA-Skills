@@ -1,39 +1,53 @@
-## Description: <br>
-Prepare and publish an OpenClaw AgentSkill to ClawHub, including pre-publish checks, publish execution, and post-publish verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare and publish an OpenClaw AgentSkill to ClawHub. Use when a skill directory is ready and needs to be published, or when upgrading an already-published skill to a new version.
 
-## Publisher: <br>
-[ham-5on](https://clawhub.ai/user/ham-5on) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ham-5on](https://clawhub.ai/user/ham-5on)
 
-## Use Case: <br>
-Developers and skill authors use this skill to prepare an AgentSkill directory for ClawHub release, run publication checks, execute the publish command, and verify the published skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to publish or update a public ClawHub skill under the active account. <br>
-Mitigation: Review the target directory, authenticated account, slug, version, tags, and changelog before allowing the publish command. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to prepare, publish, upgrade, and verify OpenClaw AgentSkill releases on ClawHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ham-5on/publish-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/ham-5on) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and checklist tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the clawhub CLI for publish, inspect, search, login, and account verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and _meta.json) <br>
+Risk: The workflow asks users to install the clawhub CLI globally without pinning a reviewed package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package name and publisher, consider pinning to a reviewed version, and avoid elevated privileges unless the installation impact is understood.
+
+Risk: Publishing parameters can update an existing skill owned by the user.
+
+Mitigation: Review the slug, name, version, tags, and changelog before running publish commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ham-5on/skills/publish-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clawhub CLI; publishing commands can update an existing owned skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: _meta.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

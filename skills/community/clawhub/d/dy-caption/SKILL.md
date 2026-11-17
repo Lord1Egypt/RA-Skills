@@ -1,53 +1,67 @@
 ---
-name: dy-caption
-version: 1.0.0
-description: 提取抖音视频语音并转成文字。使用场景：(1) 用户要求提取抖音/短视频文案字幕 (2) 用户提供抖音分享链接想转文字 (3) 用户想查询转写余额或历史。requires:
+name: douyin-to-text
+version: 1.1.3
+description: 抖音/短视频转文字。使用场景：(1) 用户要求提取抖音、TikTok、YouTube、小红书等视频文案/字幕 (2) 用户发送视频分享链接需要转文字 (3) 用户查询 Videosays 积分余额或转写历史。首次使用会自动引导注册。
+requires:
   binaries:
-    - curl
+    - npx
 sendsDataTo:
-  - https://api.dycaption.cn
+  - https://api.videosays.com
 ---
 
-# 抖音字幕提取
+# 抖音文案提取
 
-通过 `dy-caption` 服务把抖音视频里的语音转成文字。
+使用 `npx videosays` 提取抖音、TikTok、YouTube、小红书等视频文案/字幕。
 
-> **注意**：本技能会将抖音分享链接 / 分享文案 与 API Key 发送到 dy-caption 服务，请确认你信任该服务后再使用。
+> **注意**：本技能需要将您的 API Key 和视频分享链接发送到 Videosays 服务。请只处理你拥有、创建或有权处理的视频。Videosays 不是视频下载、去水印或转载工具。
 
-## 认证
+## 环境要求
 
-调用接口前需要先准备 API Key：
+- Node.js >= 18（用于 npx）
+
+## 首次使用
+
+如果未配置 API Key，运行以下命令注册并自动配置：
 
 ```bash
-export DY_CAPTION_API_KEY="你的 API Key"
+npx videosays setup
 ```
+
+API Key 会保存到 `~/.videosays`。
 
 ## 快速使用
 
 ```bash
-# 提交转写任务
-curl -X POST https://api.dycaption.cn/api/v1/transcribe \
-  -H "X-API-Key: $DY_CAPTION_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"input":"7.53 复制打开抖音，看看【示例】 https://v.douyin.com/xxxx/"}'
+# 提取文案（支持抖音分享链接或包含链接的整段文案）
+npx videosays transcribe "https://v.douyin.com/xxxxx/"
+
+# 指定语言
+npx videosays transcribe "6.44 复制打开抖音，看看【xxx】 https://v.douyin.com/xxxxx/" zh-CN
 
 # 查询余额
-curl -X GET https://api.dycaption.cn/api/v1/credits \
-  -H "X-API-Key: $DY_CAPTION_API_KEY"
+npx videosays balance
 
-# 查询历史
-curl -X GET https://api.dycaption.cn/api/v1/history \
-  -H "X-API-Key: $DY_CAPTION_API_KEY"
+# 查看历史
+npx videosays history
 ```
 
-## 任务流程
+## 支持的语言
 
-1. 提交 `/api/v1/transcribe`
-2. 记录返回的 `taskId`
-3. 轮询 `/api/v1/transcribe/:taskId`
-4. 任务完成后读取 `text`
+| 语言代码 | 说明 |
+|----------|------|
+| `zh-CN` | 简体中文（默认） |
+| `zh-TW` | 繁体中文 |
+| `en` | 英语 |
+| `ja` | 日语 |
+| `ko` | 韩语 |
+
+## 数据流向
+
+本技能通过 `npx videosays` 调用 `https://api.videosays.com` REST API，将视频分享链接和 API Key 发送到服务端进行语音转文字处理。
 
 ## 相关链接
 
-- CLI 工具：https://github.com/xwchris/douyin-caption-cli
-- API 服务：https://api.dycaption.cn
+- 官网：https://videosays.com/zh?utm_source=dy_caption_skill&utm_medium=agent_skill&utm_campaign=douyin_to_text_skill
+- API 文档：https://videosays.com/zh/docs?utm_source=dy_caption_skill&utm_medium=agent_skill&utm_campaign=douyin_to_text_skill&utm_content=api_docs
+- Videosays Skill：https://github.com/xwchris/videosays-agent-tools
+- npm 包：https://www.npmjs.com/package/videosays

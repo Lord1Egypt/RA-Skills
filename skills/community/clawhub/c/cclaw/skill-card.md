@@ -1,44 +1,64 @@
-## Description: <br>
-Cclaw helps agents create comedy writing drafts, generate FFmpeg-based video editing commands, and prepare comedy poster briefs for common show and platform formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cclaw helps agents create comedy writing, generate FFmpeg-based video edits, and prepare comedy poster briefs for canvas-design workflows.
 
-## Publisher: <br>
-[kreator666](https://clawhub.ai/user/kreator666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kreator666](https://clawhub.ai/user/kreator666)
 
-## Use Case: <br>
-External creators, developers, and content teams use Cclaw to draft standup, sketch, manzai, parody, satire, and script material, then turn related requests into video-editing commands or poster-generation briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The video-editing workflow can ask an agent to execute FFmpeg on user-supplied files without clear confirmation or safety boundaries. <br>
-Mitigation: Require review of the exact input path, output path, and FFmpeg command before execution, and write outputs to new files in a controlled workspace. <br>
-Risk: Local-path development artifacts and weak path or argument validation can make generated video and poster workflows brittle or unsafe. <br>
-Mitigation: Remove local development artifacts and add explicit confirmation, non-overwrite defaults, and path or argument validation before deployment. <br>
+## Use Case:
 
+External creators, performers, and developers use Cclaw to draft standup, sketch, manzai, scripts, satire, parody, and absurdist pieces, then turn selected material into FFmpeg video edits or poster design briefs for event and social assets.
 
-## Reference(s): <br>
-- [Cclaw ClawHub page](https://clawhub.ai/kreator666/cclaw) <br>
-- [Comedy theory index](references/comedy-theory.md) <br>
-- [Comedy templates index](references/comedy-templates.md) <br>
-- [Video tool workflow](modules/tools/video/README.md) <br>
-- [Poster tool workflow](modules/tools/poster/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with generated drafts, design briefs, and inline command or code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose FFmpeg commands and media-generation steps that should be reviewed before execution] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: server release evidence and skill frontmatter) <br>
+Risk: FFmpeg actions can modify or overwrite local media when commands or output paths are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect each generated command and output path before running it, and keep original media files unchanged.
+
+Risk: Bundled poster output scripts contain hard-coded personal file paths.
+
+Mitigation: Do not run those scripts until paths have been replaced with explicit local inputs and destinations chosen by the user.
+
+Risk: The server security verdict is suspicious because local command execution is under-scoped.
+
+Mitigation: Review the skill before installation and limit execution to commands needed for the intended creative or media-production task.
+
+## Reference(s):
+
+- [Cclaw on ClawHub](https://clawhub.ai/kreator666/skills/cclaw)
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [Command Routing](commands.md)
+- [Video Tool Workflow](modules/tools/video/README.md)
+- [Poster Tool Workflow](modules/tools/poster/README.md)
+- [Comedy Theory Reference](references/comedy-theory.md)
+- [Comedy Template Reference](references/comedy-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional shell commands, generated creative text, design briefs, and code-oriented instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute FFmpeg workflows and may prepare poster briefs for another design skill; users should inspect commands and file paths before execution.]
+
+## Skill Version(s):
+
+1.10.0 (source: frontmatter, release evidence, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

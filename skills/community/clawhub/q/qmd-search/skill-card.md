@@ -1,37 +1,52 @@
-## Description: <br>
-qmd Search helps agents search local markdown files, notes, documentation, code, and indexed collections through the local qmd CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+qmd Search helps agents use the qmd CLI for fast local keyword, semantic, and reranked search across markdown files, notes, docs, and indexed collections.
 
-## Publisher: <br>
-[bheemreddy181](https://clawhub.ai/user/bheemreddy181) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bheemreddy181](https://clawhub.ai/user/bheemreddy181)
 
-## Use Case: <br>
-Developers and agents use this skill to find files, search notes and documentation, retrieve snippets, and gather local context from qmd collections without relying on external APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can index and retrieve local files through qmd, which may expose sensitive personal files, secrets, or private repositories if collections are too broad. <br>
-Mitigation: Install qmd only from a trusted source, understand where local models and indexes are stored, and keep collections narrowly scoped before allowing agents to search or quote results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bheemreddy181/qmd-search) <br>
+## Use Case:
 
+Developers and agents use qmd Search to discover files, search local markdown and code collections, retrieve snippets or full files, and gather context before answering questions or making changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline qmd shell commands and local search result guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys are required; qmd runs locally and may use local indexes and models.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private notes or source code can become part of a local qmd index when broad folders are added as collections.
+
+Mitigation: Add only intended folders as collections and review collection scope before running qmd update.
+
+Risk: Embedding or reranking workflows may download local models and use local storage or compute.
+
+Mitigation: Enable vector search only when needed and plan for local model downloads before running qmd embed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bheemreddy181/skills/qmd-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qmd search commands, collection-management commands, file paths, snippets, or instructions for retrieving full files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

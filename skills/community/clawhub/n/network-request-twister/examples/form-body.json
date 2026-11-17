@@ -1,0 +1,71 @@
+{
+  "id": "twist-demo-006",
+  "name": "Demo: form, body and header actions",
+  "version": "1.0",
+  "description": "Modify form fields, append to request body, and remove request headers",
+  "rules": [
+    {
+      "id": "remove-referer",
+      "name": "Strip Referer header",
+      "enabled": true,
+      "priority": 10,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "headerExists", "name": "Referer"}
+        ]
+      },
+      "actions": [
+        {"type": "removeHeader", "name": "Referer"}
+      ]
+    },
+    {
+      "id": "override-login-form",
+      "name": "Override form login credentials",
+      "enabled": true,
+      "priority": 8,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "/login"}
+        ]
+      },
+      "actions": [
+        {"type": "setFormField", "name": "username", "value": "test-user"},
+        {"type": "setFormField", "name": "password", "value": "test-pass"}
+      ]
+    },
+    {
+      "id": "strip-csrf",
+      "name": "Remove CSRF token from form submission",
+      "enabled": true,
+      "priority": 7,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "/api/submit"}
+        ]
+      },
+      "actions": [
+        {"type": "removeFormField", "name": "csrf_token"},
+        {"type": "removeFormField", "name": "_token"}
+      ]
+    },
+    {
+      "id": "append-debug-body",
+      "name": "Append debug info to request body",
+      "enabled": true,
+      "priority": 5,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "/api/"},
+          {"type": "method", "values": ["POST", "PUT", "PATCH"]}
+        ]
+      },
+      "actions": [
+        {"type": "appendBody", "value": "&debug=true&source=twist"}
+      ]
+    }
+  ]
+}

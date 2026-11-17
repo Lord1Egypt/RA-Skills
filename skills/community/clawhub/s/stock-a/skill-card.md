@@ -1,41 +1,53 @@
-## Description: <br>
-Provides real-time and historical A-share stock data from multiple free sources including mootdx, Sina, Tencent, Eastmoney, and Tushare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time and historical A-share stock data from multiple free sources including mootdx, Sina, Tencent, Eastmoney, and Tushare.
 
-## Publisher: <br>
-[same1317](https://clawhub.ai/user/same1317) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[same1317](https://clawhub.ai/user/same1317)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve and compare A-share real-time quotes, historical K-line data, and selected financial data from multiple public data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data can be incomplete, delayed, unavailable, or inconsistent across public data sources. <br>
-Mitigation: Compare results across supported sources and verify important values against an authoritative market data provider before making financial or operational decisions. <br>
-Risk: Some data sources are documented as unstable, backup-only, or dependent on local package installation. <br>
-Mitigation: Use mootdx or Sina as the primary path when available, keep dependencies installed, and handle endpoint failures with retries or fallback sources. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve A-share real-time quotes, historical K-line data, and related market fields from supported free finance-data providers.
 
-## Reference(s): <br>
-- [Stock-A ClawHub release](https://clawhub.ai/same1317/stock-a) <br>
-- [same1317 publisher profile](https://clawhub.ai/user/same1317) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-like stock data examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on live third-party market data endpoints and local Python package availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper scripts contact external finance-data providers and send the requested stock codes when run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts only for stock codes that are appropriate to share with those providers and review provider availability before relying on returned market data.
+
+Risk: Optional Python packages such as mootdx and tushare may be installed to enable additional data sources.
+
+Mitigation: Install optional packages in a virtual environment and pin reviewed versions for repeatable releases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/same1317/skills/stock-a)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces quote and K-line examples; helper scripts print human-readable text and JSON snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

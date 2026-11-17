@@ -47,7 +47,7 @@
 
 ## Tracking Training Progress
 
-Store in ~/pets/{pet}/training.md:
+Store in ~/Clawic/data/pets/{pet}/training.md:
 
 ```markdown
 ## Mastered

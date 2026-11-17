@@ -1,41 +1,53 @@
-## Description: <br>
-Manages local Skill directories by listing installed skills, checking versions, scaffolding new skills, and safely deleting unneeded skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Skill Manager helps an agent list installed skills, inspect skill versions, scaffold new local skills, and remove local skill directories with deletion guardrails.
 
-## Publisher: <br>
-[ChenChen913](https://clawhub.ai/user/ChenChen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect and maintain local skill installations, create new skill scaffolds, and remove old skills with confirmation and dry-run safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Create and delete operations can modify local Skill directories, including permanent deletion when force options are used. <br>
-Mitigation: Confirm the exact target skill before execution, prefer dry-run mode before deletion, and keep backups or version control. <br>
-Risk: The skill depends on parsing SKILL.md frontmatter and may produce incomplete listings if metadata is malformed or dependencies are not installed. <br>
-Mitigation: Install the declared pyyaml dependency and review script output before acting on version or inventory results. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage local skill folders: enumerate installed skills, check version metadata, create a standard skill scaffold, and remove skills when they are no longer needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChenChen913/local-skill-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/ChenChen913) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Python scripts that read, create, or delete Skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can delete local skill directories when asked to remove a skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented --dry-run mode before deletion, review the target path, and avoid --force unless the deletion is intentional.
+
+Risk: The skill depends on PyYAML without a pinned version.
+
+Mitigation: Pin PyYAML in controlled environments when reproducible installs or dependency review are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchen913/skills/local-skill-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local SKILL.md metadata, create scaffold directories and files, or delete a selected skill directory through the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

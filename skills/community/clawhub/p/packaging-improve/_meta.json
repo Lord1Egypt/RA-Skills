@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "packaging-improve",
+  "version": "1.5.3",
+  "workflow": "product",
+  "focus": "packaging",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 3
+}

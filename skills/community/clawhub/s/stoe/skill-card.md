@@ -1,38 +1,53 @@
-## Description: <br>
-Create shootable storyboard scripts for ZMGClaw internal demos. Use when the user asks to turn a news topic, campaign concept, documentary idea, short-video idea, public-service message, brand story, or creative outline into a scene-by-scene script with shots, narration, visuals, interview beats, rhythm, and production notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create shootable storyboard scripts for ZMGClaw internal demos. Use when the user asks to turn a news topic, campaign concept, documentary idea, short-video idea, public-service message, brand story, or creative outline into a scene-by-scene script with shots, narration, visuals, interview beats, rhythm, and production notes.
 
-## Publisher: <br>
-[jkbwfi](https://clawhub.ai/user/jkbwfi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkbwfi](https://clawhub.ai/user/jkbwfi)
 
-## Use Case: <br>
-Employees and creative video-production teams use this skill to turn a premise, news topic, campaign concept, documentary idea, short-video idea, public-service message, or brand story into a production-facing storyboard script. It helps directors, editors, reporters, camera operators, and AI media-generation workflows align on scenes, shots, narration, sound, subtitles, interviews, materials, and continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Storyboard scripts for news, policy, documentary, or compliance-sensitive content may become misleading if source facts, quotes, approvals, or archive material are missing. <br>
-Mitigation: Provide verified source material and require the skill to flag missing facts, quotes, archive footage, approvals, or compliance constraints instead of inventing them. <br>
+## Use Case:
 
+Creative and media teams use this skill to turn story premises, campaign concepts, news topics, documentaries, and short-video ideas into production-facing storyboard scripts. It structures scenes with shots, narration, sound, subtitles, interview beats, asset needs, and continuity checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jkbwfi/stoe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown storyboard script with tables, production notes, interview questions, material lists, continuity checks, and optional AI-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes a 60-90 second social-video duration when duration is missing and states that assumption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill defaults to a Chinese storyboard template and may activate for a broad range of creative video-script requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated language, format, and invocation fit before using the storyboard in a production workflow.
+
+Risk: News or public-policy storyboard drafts can become misleading when required facts, quotes, archive footage, or approvals are missing.
+
+Mitigation: Require source material for factual claims and keep missing-source flags visible during editorial review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkbwfi/skills/stoe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown storyboard with tables and production notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include interview questions, material lists, continuity checks, and AI-generation prompts when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

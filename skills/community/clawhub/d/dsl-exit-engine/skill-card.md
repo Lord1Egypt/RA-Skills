@@ -1,39 +1,53 @@
-## Description: <br>
-Helps agents design or tune Freqtrade exit logic for Superior Trade using a three-phase DSL with an ROI ladder, hard stoploss, and ratcheting trailing stop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents designing or tuning Freqtrade exit logic on Superior Trade by specifying a reusable three-phase exit primitive with an ROI ladder, hard stoploss, and ratcheting trailing stop guidance.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Developers and trading-strategy builders use this skill to specify and tune Freqtrade exit behavior for Superior Trade strategies. It is intended to guide configuration and strategy composition, not to guarantee trading performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-strategy guidance can be mistaken for financial advice or a safety guarantee. <br>
-Mitigation: Treat generated strategy changes as guidance only; confirm scope, budget limits, risk controls, and exit rules before using them with real funds. <br>
-Risk: Exit parameters can produce losses or blocked positions if applied without validation or without timeout safeguards. <br>
-Mitigation: Run backtests and parameter sweeps before deployment, and pair maker-first exits with explicit unfilled-timeout settings. <br>
+## Use Case:
 
+Developers and trading-strategy engineers use this skill to design and tune Freqtrade exit logic for Superior Trade strategies. It helps them compose ROI ladders, hard stoplosses, ratcheting trailing stops, maker-first exits, and parameter-sweep recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code] <br>
-**Output Format:** [Markdown with YAML, Python, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trading guidance should be reviewed and backtested before live use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Backtest claims and default exit parameters may not transfer to a user's market data or live trading environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the claims and defaults as starting points, then validate them with local backtests or paper trading before using real funds.
+
+Risk: Maker-first exits can remain unfilled if an implementation lacks a timeout or fallback path.
+
+Mitigation: Configure an exit unfilled timeout or taker fallback when implementing maker-first exit behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superior-ai/skills/dsl-exit-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, Python, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides trading-exit design guidance and configuration examples; users should validate defaults on their own market data before live use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

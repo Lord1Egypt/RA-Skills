@@ -1,45 +1,60 @@
-## Description: <br>
-Trades CPI/inflation markets on Kalshi using documented seasonal patterns in CPI data, with dry-run mode by default and live trading only when explicitly enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades CPI/inflation markets on Kalshi using documented seasonal patterns in CPI data. Energy costs spike summer, housing adjustments January. Requires SIMMER_API_KEY and simmer-sdk.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to scan Kalshi CPI and inflation markets, compare prices against a static seasonal adjustment model, review candidate trades, and optionally execute live USDC trades through Simmer when they enable live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires high-value trading credentials and wallet access. <br>
-Mitigation: Use a dedicated low-balance wallet, keep SIMMER_API_KEY and SOLANA_PRIVATE_KEY scoped to this workflow, and avoid using primary wallets or accounts. <br>
-Risk: Live mode can place or exit real USDC trades automatically. <br>
-Mitigation: Start in dry-run mode, keep position limits low, and enable --live only after reviewing the strategy, dependency, and current configuration. <br>
-Risk: Trading decisions depend on a static seasonal CPI model that may not reflect current market conditions. <br>
-Mitigation: Review proposed trades before live execution and calibrate or supplement the signal with current CPI, energy, housing, and market data. <br>
+## Use Case:
 
+Developers and trading agents use this skill to discover Kalshi CPI/inflation markets, compare market prices against a static seasonal CPI model, and optionally execute bounded trades through Simmer. It defaults to dry-run mode and requires explicit live execution for real USDC exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-econ-seasonal-trader) <br>
-- [Simmer skills homepage](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [CLI text output with optional JSON automaton status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run output reports detected signals and proposed trades; live mode can place and exit real-money trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can access high-value trading and wallet credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, provide a restricted Simmer API key and low-balance wallet, and avoid setting SOLANA_PRIVATE_KEY except in an isolated environment for explicit live runs.
+
+Risk: Live execution can place real USDC trades through the Simmer SDK.
+
+Mitigation: Run without --live for dry-run behavior until strategy parameters, market selection, and account limits have been reviewed.
+
+Risk: The Simmer SDK dependency is not pinned in the artifact metadata.
+
+Mitigation: Pin or verify the installed simmer-sdk version before using real trading credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/kalshi-econ-seasonal-trader)
+- [Simmer Skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk Repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with optional JSON automaton status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute paper or live trading actions depending on runtime flags and credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

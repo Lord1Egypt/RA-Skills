@@ -1,40 +1,57 @@
-## Description: <br>
-Post-completion self-review for coding agents that runs simplify, harden, and micro-documentation passes on non-trivial code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post-completion self-review for coding agents that runs bounded simplify, harden, and micro-documentation passes on non-trivial code changes before signaling done.
 
-## Publisher: <br>
-[pskoett](https://clawhub.ai/user/pskoett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pskoett](https://clawhub.ai/user/pskoett)
 
-## Use Case: <br>
-Developers and engineering teams use this skill after non-trivial coding tasks to perform a bounded self-review for cleanup, hardening, and concise comments before signaling completion. It is intended to complement, not replace, independent code review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can instruct agents to create durable learning records and promote rules into future agent instruction files. <br>
-Mitigation: Require explicit human approval before writes to `.learnings/LEARNINGS.md`, `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, or similar persistent agent-instruction files. <br>
-Risk: Automatic post-task cleanup and simple hardening edits can change recently completed code. <br>
-Mitigation: Review the resulting diff and run the normal test or review gate before merging; require explicit approval for refactors and structural security changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pskoett/simplify-and-harden) <br>
-- [Agent context snippets](artifact/references/agent-context-snippets.md) <br>
+## Use Case:
 
+Developers and coding-agent users use this skill after non-trivial code changes to run a bounded self-review that simplifies recent edits, checks for security and resilience gaps, and records small notes for non-obvious implementation decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown summary with structured YAML-style review output and optional code edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May add bounded code cleanup, hardening patches, and up to five explanatory comments within the modified-task scope.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can ask an agent to automatically make cleanup and simple security edits to files changed in the current task.
+
+Mitigation: Use it only where bounded agent edits are acceptable, keep the documented scope and budget limits enabled, and require normal review before merging.
+
+Risk: The learning loop can persist generated rules into future agent instructions without clear approval controls.
+
+Mitigation: Disable the learning loop or require explicit approval before it writes or promotes persistent agent instructions, especially in shared or production repositories.
+
+Risk: Refactor stop hooks depend on the agent reliably pausing for human approval.
+
+Mitigation: Test the target agent's approval behavior before production use and use the CI/headless variant when interactive approval cannot be trusted.
+
+## Reference(s):
+
+- [Agent Context Snippets](references/agent-context-snippets.md)
+- [ClawHub Skill Page](https://clawhub.ai/pskoett/skills/simplify-and-harden)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks and structured YAML summary examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May apply bounded edits to files changed in the current task and may append a structured review summary.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

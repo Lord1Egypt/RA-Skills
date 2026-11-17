@@ -1,43 +1,57 @@
-## Description: <br>
-Business API Recorder helps developers record browser API traffic from authorized web workflows and generate API logs and reconstruction-oriented implementation documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business API Recorder helps an agent record browser API traffic for an authorized web workflow and turn captured requests and responses into API documentation and reconstruction guidance.
 
-## Publisher: <br>
-[sihan2017](https://clawhub.ai/user/sihan2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sihan2017](https://clawhub.ai/user/sihan2017)
 
-## Use Case: <br>
-Developers, business analysts, and authorized system reviewers use this skill to capture fetch and XMLHttpRequest activity for a web business process, then turn the observed traffic into API inventories, data dictionaries, workflow notes, and implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture complete authenticated browser traffic, including cookies, authorization headers, tokens, personal data, and business secrets. <br>
-Mitigation: Use it only on systems you are explicitly authorized to inspect, prefer isolated browser profiles or test accounts, and redact sensitive values before saving or sharing logs or generated documents. <br>
-Risk: Captured production or regulated data could be retained in generated JSON logs or Markdown implementation documents. <br>
-Mitigation: Avoid production and regulated data where possible, clear logs after use, and review generated artifacts for sensitive data before distribution. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze authorized browser-based business workflows, capture their API call chains, and generate implementation documentation for understanding or rebuilding the workflow.
 
-## Reference(s): <br>
-- [Business API Recorder ClawHub Release](https://clawhub.ai/sihan2017/business-api-recorder) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Chrome Extension Documentation](https://docs.openclaw.ai/tools/chrome-extension) <br>
-- [DOCUMENT_TEMPLATE.md](DOCUMENT_TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, injected JavaScript, JSON API logs, and generated implementation documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include complete authenticated request and response data, including sensitive headers, tokens, personal data, or business secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Complete browser API traffic logs can expose secrets, personal data, and confidential business payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on systems you are authorized to monitor, prefer non-production or low-sensitivity accounts, and redact Authorization headers, cookies, tokens, personal data, and confidential payloads before sharing logs with an AI system or committing them to source control.
+
+Risk: The documented installer pattern includes a curl-to-shell command.
+
+Mitigation: Prefer verified installation steps and inspect installer content before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sihan2017/skills/business-api-recorder)
+- [Skill Documentation](artifact/SKILL.md)
+- [Implementation Document Template](artifact/DOCUMENT_TEMPLATE.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Chrome Extension Documentation](https://docs.openclaw.ai/tools/chrome-extension)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API logs and Markdown implementation documentation, with supporting shell commands and browser-injected JavaScript.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Captured logs may include request headers, cookies, tokens, personal data, and confidential payloads; review and redact logs before sharing or storing them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Fenêtre principale : événements/IPC de base. Les commandes du lanceur (check_node, daemon_health, start_daemon, open_memoria) sont définies par l'app elle-même — pas de plugin, surface minimale.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

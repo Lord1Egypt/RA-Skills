@@ -1,40 +1,53 @@
-## Description: <br>
-Book smog check appointments through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book smog check appointments through Lokuli MCP for users who need a smog check, emissions test, or vehicle inspection.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to find smog check providers, compare nearby options, check appointment availability, and create a booking after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may send customer name, email, phone number, ZIP code, and appointment details to Lokuli and the selected smog provider. <br>
-Mitigation: Before approving a booking, review the provider, service, price, time, and contact details with the user. <br>
-Risk: The user relies on Lokuli as the booking intermediary for smog check appointments. <br>
-Mitigation: Install and use the skill only when the user is comfortable with Lokuli handling booking search, availability, and checkout flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-smog) <br>
+## Use Case:
 
+External users and agents use this skill to find nearby smog stations, review pricing and availability, and create a booking or checkout link after explicit user approval.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown summaries with JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before creating a booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts an external MCP service when searching or booking smog appointments.
+
+Mitigation: Use it only for appointment-finding or booking tasks, and make the external service use clear before proceeding.
+
+Risk: Booking requires customer name, email, or phone details.
+
+Mitigation: Do not send personal contact details until the user has selected a provider and explicitly approved the booking step.
+
+## Reference(s):
+
+- [Book Smog ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-smog)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Markdown with MCP tool call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include smog station options, pricing, availability slots, and a checkout link after confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

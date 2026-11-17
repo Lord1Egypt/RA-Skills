@@ -1,6 +1,6 @@
-# API 集成实现模式
+# API integration implementation mode
 
-## 类型化 Fetch 客户端
+## Typed Fetch client
 
 ```ts
 export class ApiError extends Error {
@@ -8,7 +8,7 @@ export class ApiError extends Error {
     public readonly status: number,
     public readonly body: unknown,
   ) {
-    super(`API 请求失败，状态码 ${status}`);
+    super(`API request failed, status code ${status}`);
   }
 }
 
@@ -36,45 +36,45 @@ export async function requestJson<T>(
 }
 ```
 
-## 用户端错误映射
+## User side error mapping
 
 ```ts
 export function getApiMessage(error: unknown): string {
-  if (!(error instanceof ApiError)) return "操作失败，请稍后重试。";
+  if (!(error instanceof ApiError)) return "The operation failed, please try again later.";
 
-  if (error.status === 401) return "请重新登录。";
-  if (error.status === 403) return "您没有权限执行此操作。";
-  if (error.status === 404) return "请求的资源已不存在。";
-  if (error.status === 409) return "此变更与最新数据冲突。";
-  if (error.status === 422) return "请检查标红字段。";
-  if (error.status === 429) return "请求过于频繁，请稍后再试。";
+  if (error.status === 401) return "Please log in again.";
+  if (error.status === 403) return "You do not have permission to perform this operation.";
+  if (error.status === 404) return "The requested resource no longer exists.";
+  if (error.status === 409) return "This change conflicts with the latest data.";
+  if (error.status === 422) return "Please check the red fields.";
+  if (error.status === 429) return "The request is too frequent, please try again later.";
 
-  return "服务暂不可用，请稍后重试。";
+  return "The service is temporarily unavailable, please try again later.";
 }
 ```
 
-## 上传选型
+## Upload selection
 
-| 需求             | 推荐方案                      |
+| Requirements | Recommended solutions |
 | ---------------- | ----------------------------- |
-| 小头像或 CSV     | Multipart 请求                |
-| 大视频或归档文件 | 预签名直传                    |
-| 弱网环境大文件   | 分片断点续传                  |
-| 入库前合规扫描   | 经 API 中介上传（含大小限制） |
+| Avatar or CSV | Multipart request |
+| Large video or archive file | Pre-signed direct transfer |
+| Large files in weak network environment | Fragmented breakpoint resume download |
+| Compliance scanning before warehousing | Uploading through API intermediary (including size limit) |
 
-## 实时通信选型
+## Real-time communication selection
 
-| 需求                 | 推荐方案                  |
+| Requirements | Recommended solutions |
 | -------------------- | ------------------------- |
-| 任务进度或通知       | SSE（Server-Sent Events） |
-| 聊天、在线状态、协作 | WebSocket                 |
-| 数秒一次的状态轮询   | 定时轮询（Polling）       |
-| 服务端 AI Token 流   | SSE 或 fetch 流式响应     |
+| Task progress or notification | SSE (Server-Sent Events) |
+| Chat, Presence, Collaboration | WebSocket |
+| Status polling every few seconds | Scheduled polling (Polling) |
+| Server-side AI Token stream | SSE or fetch streaming response |
 
-## 审查清单
+## Review Checklist
 
-- API 地址和凭证集中管理。
-- 客户端需处理 204、非 JSON 错误、取消和离线状态。
-- Token 刷新机制不能引发请求风暴。
-- 组件应消费 hooks/领域函数，而非直接调用原始 fetch。
-- 上传和实时流需暴露进度、取消、失败和重试状态。
+- Centralized management of API addresses and credentials.
+- The client needs to handle 204, non-JSON errors, cancellation and offline status.
+- The Token refresh mechanism cannot trigger request storms.
+- Components should consume hooks/domain functions rather than calling raw fetch directly.
+- Uploads and live streams need to expose progress, cancellation, failure and retry status.

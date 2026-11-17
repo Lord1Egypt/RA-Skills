@@ -1,0 +1,224 @@
+{
+  "tiktok_realtime_user_info": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/realtime/user/info",
+    "summary": "实时采集-用户信息",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [],
+    "required_any_query": [
+      "unique_id",
+      "user_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_realtime_user_videos": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/realtime/user/videos",
+    "summary": "实时采集-用户视频",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "uid"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_realtime_video_detail": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/realtime/video/detail",
+    "summary": "实时采集-视频详情",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "video_id",
+      "region"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_realtime_user_info": {
+    "method": "GET",
+    "path": "/api/v1/instagram/realtime/user/info",
+    "summary": "实时采集-用户信息",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [],
+    "required_any_query": [
+      "username",
+      "user_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_realtime_user_medias": {
+    "method": "GET",
+    "path": "/api/v1/instagram/realtime/user/medias",
+    "summary": "实时采集-用户贴文",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "user_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_realtime_media_detail": {
+    "method": "GET",
+    "path": "/api/v1/instagram/realtime/media/detail",
+    "summary": "实时采集-贴文详情",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "media_code"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_realtime_user_stories": {
+    "method": "GET",
+    "path": "/api/v1/instagram/realtime/user/stories",
+    "summary": "实时采集-用户故事",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "user_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_realtime_user_info": {
+    "method": "GET",
+    "path": "/api/v1/youtube/realtime/user/info",
+    "summary": "实时采集-用户信息",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [],
+    "required_any_query": [
+      "channel_id",
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_realtime_user_videos": {
+    "method": "GET",
+    "path": "/api/v1/youtube/realtime/user/videos",
+    "summary": "实时采集-用户视频",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_realtime_video_detail": {
+    "method": "GET",
+    "path": "/api/v1/youtube/realtime/video/detail",
+    "summary": "实时采集-视频详情",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "video_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "facebook_page_info": {
+    "method": "GET",
+    "path": "/api/v1/facebook/realtime/page/info",
+    "summary": "实时挖掘-页面信息",
+    "tags": [
+      "facebook"
+    ],
+    "required_query": [
+      "page_url"
+    ],
+    "required_any_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "facebook_post_detail": {
+    "method": "GET",
+    "path": "/api/v1/facebook/realtime/post/detail",
+    "summary": "实时挖掘-帖子详情",
+    "tags": [
+      "facebook"
+    ],
+    "required_query": [
+      "post_url"
+    ],
+    "required_any_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "facebook_task_post_search": {
+    "method": "GET",
+    "path": "/api/v1/facebook/task/post/search",
+    "summary": "任务-关键词搜索帖子",
+    "tags": [
+      "facebook"
+    ],
+    "required_query": [
+      "query"
+    ],
+    "required_any_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "facebook_task_page_posts": {
+    "method": "GET",
+    "path": "/api/v1/facebook/task/page/posts",
+    "summary": "任务-页面帖子",
+    "tags": [
+      "facebook"
+    ],
+    "required_query": [
+      "page_url"
+    ],
+    "required_any_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "facebook_task_result": {
+    "method": "GET",
+    "path": "/api/v1/facebook/task/result",
+    "summary": "任务-查询结果",
+    "tags": [
+      "facebook"
+    ],
+    "required_query": [
+      "task_id"
+    ],
+    "required_any_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  }
+}

@@ -1,40 +1,57 @@
-## Description: <br>
-Monitors OpenClaw context-window usage, warns when usage approaches configured thresholds, and describes automatic compression of older conversation context while preserving recent rounds and key memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw context-window usage and compresses older conversations when configured thresholds are exceeded.
 
-## Publisher: <br>
-[yuhui435](https://clawhub.ai/user/yuhui435) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuhui435](https://clawhub.ai/user/yuhui435)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor context-window usage, configure warning and critical thresholds, and keep long-running work responsive through context compression. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic context compression may summarize or omit older conversation details. <br>
-Mitigation: Confirm the compression behavior before installation, keep separate notes for important work, or disable automatic compression until the preserved context is understood. <br>
-Risk: Scheduled monitoring can run repeatedly if cron scheduling is enabled. <br>
-Mitigation: Review the cron command and configured check interval before enabling automated execution. <br>
+## Use Case:
 
+Developers and operators using OpenClaw can use this skill to monitor context-window usage, trigger compression of older conversation history above configured thresholds, and preserve recent conversation rounds and key memories.
 
-## Reference(s): <br>
-- [Context Monitor on ClawHub](https://clawhub.ai/yuhui435/context-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with PowerShell, bash, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes threshold settings, scheduling commands, log examples, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent hourly agent execution may run without active review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the scheduled task only after verifying the referenced scripts and documenting how to disable the cron entry.
+
+Risk: The documented PowerShell command uses execution-policy bypass for an unaudited script path.
+
+Mitigation: Run only scripts whose contents and hashes have been verified, and avoid execution-policy bypass unless it is explicitly required in a trusted environment.
+
+Risk: Conversation compression may remove or alter context that users still need.
+
+Mitigation: Confirm what data will be compressed or retained, keep backups or exports where appropriate, and tune retention thresholds before enabling automation.
+
+## Reference(s):
+
+- [Context Monitor ClawHub Skill Page](https://clawhub.ai/yuhui435/skills/context-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with PowerShell, Bash, configuration table, and log examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes warning and critical thresholds, recent-round retention, check interval, scheduled execution, and log output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

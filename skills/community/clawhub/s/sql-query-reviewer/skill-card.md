@@ -1,39 +1,57 @@
-## Description: <br>
-Reviews SQL queries for correctness, security risks, and performance issues, then returns severity-rated findings and optimized rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews SQL queries for correctness, security risks, and performance issues, then provides a structured report with severity ratings and optimized rewrites.
 
-## Publisher: <br>
-[Lnguyen1996](https://clawhub.ai/user/Lnguyen1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnguyen1996](https://clawhub.ai/user/lnguyen1996)
 
-## Use Case: <br>
-Developers, database engineers, and data teams use this skill to review raw SQL, ORM-generated SQL, and migration queries for correctness, security, performance, and maintainability before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SQL examples may contain secrets, production customer data, proprietary schemas, or sensitive business logic. <br>
-Mitigation: Review and redact SQL, schema details, literals, and business logic before sharing them with an agent environment. <br>
-Risk: The skill asks the agent to remember aggregate SQL issue patterns across reviews. <br>
-Mitigation: Disable or avoid persistent memory when aggregate issue patterns should not be retained. <br>
+## Use Case:
 
+Developers and engineers use this skill to review raw SQL, ORM-generated SQL, and migration files for correctness, injection risks, performance issues, and maintainability concerns before release.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report with severity sections, SQL snippets, explanations, and summary recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include corrected or optimized SQL rewrites and notes on correct query patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SQL text may contain secrets, production credentials, sensitive schema names, or private business logic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove secrets and highly sensitive schema details before review.
+
+Risk: The skill asks the agent to remember aggregate SQL review patterns between reviews.
+
+Mitigation: Remove or ignore the self-improvement tracking instruction when aggregate pattern memory is not desired.
+
+Risk: Optimized rewrites and review findings may be incorrect or change query behavior.
+
+Mitigation: Review and test suggested SQL changes before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lnguyen1996/skills/sql-query-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown report with findings, severity ratings, corrected SQL, optimized rewrites, and summary recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include aggregate common-issue notes after repeated reviews if the agent follows the self-improvement instruction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

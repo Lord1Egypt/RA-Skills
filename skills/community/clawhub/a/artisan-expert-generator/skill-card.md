@@ -1,50 +1,64 @@
-## Description: <br>
-基于职业身份知识结构自动生成专家Skill；支持6维度采集、用户私有知识融合、框架提炼、质量验证与双Agent精炼。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于职业身份知识结构自动生成专家Skill；支持6维度采集、用户私有知识融合、框架提炼、质量验证与双Agent精炼。当用户需要创建职业专家助手、构建领域专业视角或生成标准化专业知识输出时使用此工具即可
 
-## Publisher: <br>
-[ludiansheng](https://clawhub.ai/user/ludiansheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ludiansheng](https://clawhub.ai/user/ludiansheng)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create structured professional expert skills from a target occupation, optional private documents, and preferred application scenarios. It guides collection, framework extraction, generated SKILL.md creation, validation, and optional refinement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Python helper scripts parse selected documents and write generated files. <br>
-Mitigation: Run the helpers only on files and output directories you intentionally choose, and inspect generated files before installation or sharing. <br>
-Risk: Private documents used for expert generation may contain sensitive content. <br>
-Mitigation: Prefer redacted or non-sensitive source documents, and avoid sending private document text to web search. <br>
-Risk: Generated expert skills can contain incomplete, stale, or misleading professional guidance. <br>
-Mitigation: Review the generated SKILL.md for domain accuracy, professional boundaries, and ethical limits before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create standardized professional expert skills from a target occupation, optional private knowledge files, domain frameworks, ethics boundaries, and expression preferences.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ludiansheng/artisan-expert-generator) <br>
-- [Collection Dimensions Guide](references/collection-dimensions.md) <br>
-- [Cross-Disciplinary Guide](references/cross-disciplinary-guide.md) <br>
-- [Expression Capabilities Guide](references/expression-capabilities.md) <br>
-- [Extraction Methodology](references/extraction-methodology.md) <br>
-- [Internet Industry Guide](references/internet-industry-guide.md) <br>
-- [Knowledge Fusion Methods](references/knowledge-fusion-methods.md) <br>
-- [Profession Taxonomy](references/profession-taxonomy.md) <br>
-- [Skill Template Reference](references/skill-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON arguments and shell command examples; helper scripts can produce SKILL.md files and validation results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May parse user-selected PDF, Word, and Markdown files and write generated skill files to a user-specified output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can process private documents and include sensitive or regulated information in generated skill material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only documents intended for skill generation, avoid secrets or regulated data unless necessary, and review generated SKILL.md content before installing or sharing it.
+
+Risk: The skill can write persistent files to user-selected paths, creating overwrite or misplaced-output risk.
+
+Mitigation: Run it in a limited workspace, choose output paths carefully, and inspect generated files before use.
+
+Risk: Generated professional guidance may be incorrect, stale, or affected by untrusted source material.
+
+Mitigation: Review and scan every generated skill before deployment, and validate domain-specific claims against trusted professional sources.
+
+## Reference(s):
+
+- [6维度采集详细指南](references/collection-dimensions.md)
+- [跨学科专家专项指南](references/cross-disciplinary-guide.md)
+- [表达能力模块指南](references/expression-capabilities.md)
+- [专业视角内核提取方法论](references/extraction-methodology.md)
+- [互联网行业专项指南](references/internet-industry-guide.md)
+- [知识融合方法指南](references/knowledge-fusion-methods.md)
+- [职业身份分类参考](references/profession-taxonomy.md)
+- [专家SKILL.md模板参考](references/skill-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown skill files, JSON script responses, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can parse PDF, Word, Markdown, and text inputs; can write persistent SKILL.md files to user-selected output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

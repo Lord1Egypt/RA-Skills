@@ -1,47 +1,61 @@
-## Description: <br>
-Generates product mockups by compositing a user-provided decoration onto a blank product image, then reviewing and tuning placement before returning the rendered mockup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates reviewed garment mockups, cleans up flat artwork, and prepares DTF decoration files for production.
 
-## Publisher: <br>
-[zmtucker](https://clawhub.ai/user/zmtucker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmtucker](https://clawhub.ai/user/zmtucker)
 
-## Use Case: <br>
-External users and developers use this skill to preview how logos or graphics look on apparel and product blanks, including placement edits, background removal, and saved placement-rule tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local mockup outputs and can persist edited placement defaults. <br>
-Mitigation: Use the default MOCKUP_DATA_DIR where possible and confirm before saving tuned placement changes as future defaults. <br>
-Risk: Untrusted --rules or --output paths could direct reads or writes to unintended locations. <br>
-Mitigation: Avoid passing untrusted paths to --rules or --output and verify input and output paths before running the scripts. <br>
-Risk: First-run background removal and garment detection depend on a cached rembg model; blocked downloads can degrade detection or stop background removal. <br>
-Mitigation: Install dependencies in advance and verify the first-run model cache before relying on automated background removal. <br>
+## Use Case:
 
+Design and merchandising teams use this skill to place artwork on product photos, review mockups, restore degraded flat art, and prepare DTF files and decoration records for printing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmtucker/skills/drivethru-graphic-artist) <br>
-- [Decoration spec](references/decoration_spec.md) <br>
-- [Self-review loop](references/self_review.md) <br>
-- [Iterative feedback](references/iterative_feedback.md) <br>
-- [Placement rules schema](references/placement_rules_schema.json) <br>
-- [rembg](https://github.com/danielgatis/rembg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [PNG mockup files with JSON receipts and concise Markdown or text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes mockup outputs locally and may persist edited placement defaults in the configured MOCKUP_DATA_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Scheduled jobs and production workflows can change storefront images and decoration records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only where catalog edits are authorized, with tightly scoped Odoo credentials; review proposed changes and job outcomes.
+
+Risk: The web-image routine fetches external image URLs without URL validation.
+
+Mitigation: Restrict outbound network access and avoid unattended web-image runs until URL validation or an egress allowlist is in place.
+
+Risk: Independent mockup review sends images to a configured vision provider.
+
+Mitigation: Choose the provider deliberately and confirm that image sharing is permitted before enabling review.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/zmtucker/skills/drivethru-graphic-artist)
+- [Decoration specifications](references/decoration_spec.md)
+- [Production-ready workflow](references/production_ready.md)
+- [Web-image routine](references/web_image_routine.md)
+- [rembg background-removal project](https://github.com/danielgatis/rembg)
+
+## Skill Output:
+
+**Output Type(s):** [PNG image files, JSON receipts, Guidance]
+
+**Output Format:** [PNG mockups and production artwork, JSON job results, and brief text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Production artwork is sized for its print location at 300 DPI; mockups require review before delivery.]
+
+## Skill Version(s):
+
+0.18.1 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

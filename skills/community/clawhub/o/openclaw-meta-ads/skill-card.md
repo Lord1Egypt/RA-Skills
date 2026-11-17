@@ -1,48 +1,62 @@
-## Description: <br>
-Shared Meta Ads skill for OpenClaw agents to analyze Meta ad accounts, campaigns, ad sets, ads, insights, and lead-form data with a production-safe read-first workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared Meta Ads skill for OpenClaw agents. Analyze Meta (Facebook and Instagram) ad accounts, campaigns, ad sets, ads, insights, and lead-form data with a production-safe read-first workflow. Use when an agent needs Meta Ads reporting, account audits, creative or audience diagnostics, lead-form review, or recommendations before live ad changes. Require explicit approval before any write action.
 
-## Publisher: <br>
-[sebclawops](https://clawhub.ai/user/sebclawops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebclawops](https://clawhub.ai/user/sebclawops)
 
-## Use Case: <br>
-OpenClaw agents and their operators use this skill for Meta Ads reporting, account audits, creative and audience diagnostics, lead-form review, and structured recommendations before any live ad changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meta Ads tokens and account identifiers could be exposed if copied into files or chat. <br>
-Mitigation: Use secure environment injection for credentials, keep tokens out of tracked files and conversation logs, and prefer read-only scopes where possible. <br>
-Risk: Lead-form data may contain personal information. <br>
-Mitigation: Retrieve only the minimum lead fields needed for the task and scrub PII before broader analysis or sharing. <br>
-Risk: Agent-assisted recommendations could affect live ad delivery or budgets if applied without review. <br>
-Mitigation: Keep the workflow read-first and require explicit approval before pausing, enabling, editing, changing budgets, or changing creative. <br>
+## Use Case:
 
+Developers and agent operators use this skill to analyze Meta Ads accounts, inspect campaign and lead performance, run audits, and prepare practical recommendations before any approved live changes.
 
-## Reference(s): <br>
-- [Openclaw Meta Ads on ClawHub](https://clawhub.ai/sebclawops/openclaw-meta-ads) <br>
-- [Account Structure](references/account-structure.md) <br>
-- [API Setup](references/api-setup.md) <br>
-- [Audit Workflows](references/audit-workflows.md) <br>
-- [Browser Fallback](references/browser-fallback.md) <br>
-- [Insights and Query Patterns](references/insights-queries.md) <br>
-- [Optimization Heuristics](references/optimization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, recommendations, query examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-first workflow; live account changes require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Improperly scoped or mishandled Meta credentials could expose account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved credential injection, verify token scope before work, and never store tokens in tracked files or chat.
+
+Risk: Lead-form data can contain sensitive personal information.
+
+Mitigation: Retrieve only necessary lead fields, scrub PII before broader reasoning, and limit sharing to approved contexts.
+
+Risk: Unapproved live ad changes could affect spend, delivery, or creative performance.
+
+Mitigation: Keep the default workflow read-only and require clear user approval before pausing, enabling, editing, changing budgets, or changing creative.
+
+## Reference(s):
+
+- [API Setup](references/api-setup.md)
+- [Account Structure](references/account-structure.md)
+- [Insights and Query Patterns](references/insights-queries.md)
+- [Audit Workflows](references/audit-workflows.md)
+- [Optimization Heuristics](references/optimization.md)
+- [Browser Fallback](references/browser-fallback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with practical findings, recommended actions, query guidance, and approval-gated operational steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-first workflow; live ad account, budget, creative, pause, or enable actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

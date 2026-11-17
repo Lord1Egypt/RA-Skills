@@ -1,6 +1,37 @@
 {
-  "ownerId": "kn740mmtf9wkms63mbgym4zh898233ze",
-  "slug": "relationship-os",
+  "name": "relationship-os",
   "version": "0.1.0",
-  "publishedAt": 1772625112300
+  "description": "Relationship Operating System — Build human-like relationships between AI agents and users through event memory, delayed follow-ups, exclusive memories, agent stance, and relationship growth stages.",
+  "author": "chenhab03",
+  "license": "MIT",
+  "homepage": "https://github.com/chenhab03/relationship-os",
+  "keywords": [
+    "relationship",
+    "memory",
+    "personality",
+    "emotion",
+    "agent",
+    "resonance"
+  ],
+  "openclaw": {
+    "minVersion": "2025.1.0",
+    "emoji": "💜",
+    "category": "personality",
+    "hooks": ["agent:bootstrap"],
+    "files": {
+      "skill": "SKILL.md",
+      "references": [
+        "references/event-schema.md",
+        "references/stage-matrix.md",
+        "references/motivation-rules.md",
+        "references/selfie-rules.md"
+      ],
+      "scripts": [
+        "scripts/init.sh",
+        "scripts/heartbeat-check.sh"
+      ]
+    },
+    "stateDir": ".relationship",
+    "postInstall": "bash scripts/init.sh"
+  }
 }

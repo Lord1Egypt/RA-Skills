@@ -1,41 +1,53 @@
-## Description: <br>
-84 production-ready agentic plugins, 192 agents, 156 skills and 102 commands for Claude Code, Codex CLI, Cursor, OpenCode and Gemini CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+84 production-ready agentic plugins, 192 agents, 156 skills and 102 commands for Claude Code, Codex CLI, Cursor, OpenCode and Gemini CLI.
 
-## Publisher: <br>
-[harryhihi](https://clawhub.ai/user/harryhihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harryhihi](https://clawhub.ai/user/harryhihi)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover and apply agentic workflow building blocks across supported agent harnesses. It helps agents reference plugin definitions, skill references and commands from the marketplace when assembling workflow guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact admin or migration workflows may change repository or release state if used without review. <br>
-Mitigation: Review moderation and migration commands before use, scope admin tokens narrowly, and use dry runs and explicit confirmations for writes. <br>
-Risk: Full-access nested review may be inappropriate in restricted maintainer environments. <br>
-Mitigation: Use the autoreview helper's no-yolo mode when full-access nested review is not acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill as a marketplace guide for finding agentic workflow building blocks across Claude Code, Codex CLI, Cursor, OpenCode, Gemini CLI and GitHub Copilot. The supplied artifact is a documentation-only pointer rather than the full plugin collection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harryhihi/agents-plugin-marketplace) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/harryhihi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown or text guidance with references to plugin definitions, commands and configuration steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before deployment because referenced workflows may include high-impact admin or migration actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package does not include the referenced plugin directory, so users may assume the full collection is present when it is only described.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the actual plugin, agent, skill and command files separately before relying on or installing them.
+
+Risk: Referenced plugins or commands outside this artifact may install tools, run shell commands or access sensitive data.
+
+Mitigation: Review and scan any retrieved plugins, agents, skills or commands before use, with extra care for installation steps and command execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harryhihi/skills/agents-plugin-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only marketplace pointer; no executable code is included in the supplied artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

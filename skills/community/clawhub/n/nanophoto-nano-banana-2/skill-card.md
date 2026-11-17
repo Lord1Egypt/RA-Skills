@@ -1,42 +1,59 @@
-## Description: <br>
-Generate or edit images with the NanoPhoto.AI Nano Banana 2 API, including text-to-image, public-URL image editing, status checks, optional Google Search prompt enhancement, and polling through the bundled script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images with the NanoPhoto.AI Nano Banana 2 API, including text-to-image, image-to-image with public URLs, status checks, and optional Google Search prompt enhancement.
 
-## Publisher: <br>
-[nanophotohq](https://clawhub.ai/user/nanophotohq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanophotohq](https://clawhub.ai/user/nanophotohq)
 
-## Use Case: <br>
-Developers and external users use this skill to generate images from prompts, edit public image URLs, and check NanoPhoto generation status from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and public image URLs are sent to the NanoPhoto service. <br>
-Mitigation: Submit only prompts and public image URLs you are authorized to share with NanoPhoto; avoid private or sensitive images. <br>
-Risk: The NanoPhoto API key can spend account credits. <br>
-Mitigation: Store NANOPHOTO_API_KEY in the platform secure environment setting and use accounts or keys with appropriate credit controls. <br>
+## Use Case:
 
+Developers and external users use this skill to submit NanoPhoto.AI Nano Banana 2 image generation or editing jobs, poll generation status, and return resulting image URLs and generation details.
 
-## Reference(s): <br>
-- [Nano Banana 2 API Reference](references/api.md) <br>
-- [NanoPhoto homepage](https://nanophoto.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/nanophotohq/nanophoto-nano-banana-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns generation IDs, image URLs, and progress details when available; requires NANOPHOTO_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and public image URLs are sent to the NanoPhoto.AI service and may spend NanoPhoto credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized, non-sensitive content and confirm the user intends to use NanoPhoto credits.
+
+Risk: API keys can be exposed if pasted into chat or passed directly on a command line.
+
+Mitigation: Configure NANOPHOTO_API_KEY through the platform's secure environment setting or documented config path, and avoid the --api-key flag unless necessary.
+
+Risk: Edit mode requires public image URLs and does not support local or base64 image uploads.
+
+Mitigation: Ask for public image URLs only, limit edit requests to no more than 14 images, and avoid private or sensitive images.
+
+## Reference(s):
+
+- [Nano Banana 2 API Reference](references/api.md)
+- [NanoPhoto.AI Homepage](https://nanophoto.ai)
+- [NanoPhoto.AI API Key Settings](https://nanophoto.ai/settings/apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns imageUrl, generationId, progress details, and status/error information when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

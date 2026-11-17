@@ -1,45 +1,64 @@
-## Description: <br>
-OpenAI Auth Switcher Public helps OpenClaw administrators install a localhost web workflow for OpenAI OAuth account takeover, runtime inspection, slot management, dry-run switching, rollback, and release-safe packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web-first, publishable OpenClaw skill for OpenAI OAuth account switching, including first-run takeover, environment discovery, doctor checks, runtime inspection, slot management, dry-run validation, controlled switch experiments, rollback planning, and release-safe packaging without bundling live auth snapshots, logs, callbacks, or other machine-specific runtime data.
 
-## Publisher: <br>
-[amior1024](https://clawhub.ai/user/amior1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amior1024](https://clawhub.ai/user/amior1024)
 
-## Use Case: <br>
-External developers and OpenClaw administrators use this skill to manage OpenAI OAuth switching on private trusted machines, including first-run takeover, environment checks, profile slots, dry-run validation, controlled switching, and rollback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth account-switching workflows can expose or persist sensitive auth-management material. <br>
-Mitigation: Install only on a private trusted machine, use only accounts you are authorized to manage, and treat generated passwords, install-info.json, callback files, exported auth profiles, backups, and logs as secrets. <br>
-Risk: The local web UI could become reachable beyond the intended operator if exposed on a shared host or network. <br>
-Mitigation: Keep the web UI bound to localhost, use SSH tunneling for remote access, avoid CI or shared terminals, and stop or uninstall the service when the workflow is complete. <br>
+## Use Case:
 
+OpenClaw administrators use this skill to install and operate a local web-first workflow for OpenAI OAuth account takeover, inspection, switching, rollback, and release-safe packaging. It supports first-run onboarding, runtime diagnostics, slot management, local usage rollups, and explicit dry-run checks before account-switching writes.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/amior1024/openai-auth-switcher-public) <br>
-- [Compatibility](artifact/references/compatibility.md) <br>
-- [Install and runbook](artifact/references/install-and-runbook.md) <br>
-- [Security model](artifact/references/security-model.md) <br>
-- [Web API preview](artifact/references/web-api-preview.md) <br>
-- [Runtime discovery](artifact/references/runtime-discovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON status output, and local web UI workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local service state, generated web credentials, auth profile copies, backups, logs, and status files on the user's machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1-preview (source: ClawHub release evidence) <br>
+Risk: A persistent local web service has high-impact OAuth and account-switching authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted single-user administrator machine, keep it bound to 127.0.0.1, and access it through an SSH tunnel.
+
+Risk: Generated web credentials and OAuth profile files are sensitive and may expose account access if mishandled.
+
+Mitigation: Do not reuse the generated password, rotate it after setup, keep OAuth profile files private, and avoid packaging callbacks, backups, token ledgers, logs, or runtime state.
+
+Risk: The security evidence calls out insecure credential handling and an unreviewed external OAuth helper.
+
+Mitigation: Review the skill carefully before installation and defer production use until credential storage, password rendering, path validation, HTML escaping, minimal environment passing, and OAuth helper packaging are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amior1024/skills/openai-auth-switcher-public)
+- [Publisher Profile](https://clawhub.ai/user/amior1024)
+- [Compatibility](references/compatibility.md)
+- [Install and Runbook](references/install-and-runbook.md)
+- [Security Model](references/security-model.md)
+- [Runtime Discovery](references/runtime-discovery.md)
+- [Packaging Policy](references/packaging-policy.md)
+- [Web API Preview](references/web-api-preview.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown]
+
+**Output Format:** [Markdown guidance with shell commands, JSON diagnostics, configuration paths, and local web workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reference local OpenClaw runtime paths and should treat OAuth profile files, generated credentials, callbacks, backups, and logs as secrets.]
+
+## Skill Version(s):
+
+0.3.1-preview (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

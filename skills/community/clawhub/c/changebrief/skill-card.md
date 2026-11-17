@@ -1,43 +1,58 @@
-## Description: <br>
-ChangeBrief compares previous and current knowledge snapshots to surface important additions, changed claims, stale conclusions, decision-driving conflicts, and the top changes worth immediate action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ChangeBrief compares previous and current knowledge snapshots to surface newly added information, changed claims, stale conclusions, conflicts needing a decision, and the three changes that deserve immediate action.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, managers, and operators use ChangeBrief to compare before-and-after document snapshots and quickly understand what materially changed, which prior conclusions are stale, and what needs attention now. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Change summaries can be wrong or incomplete if the supplied snapshots are stale, partial, or ambiguous. <br>
-Mitigation: Review the generated brief against the original before and after documents before using it for decisions. <br>
-Risk: Inputs may contain sensitive workplace, customer, roadmap, or policy information. <br>
-Mitigation: Run the skill only on authorized materials and avoid including secrets or unnecessary personal data in snapshots. <br>
-Risk: Workplace restructuring and employment-rights outputs are general guidance, not legal or HR advice. <br>
-Mitigation: Verify facts and consult qualified HR, legal, or employee-support resources before acting on employment-related conclusions. <br>
+## Use Case:
 
+Managers, operators, and knowledge workers use ChangeBrief to compare previous and current notes, documents, meeting summaries, research snapshots, policies, roadmaps, or release notes. It produces a concise delta brief that highlights important additions, changed claims, stale conclusions, conflicts needing a decision, and the top three action-worthy changes.
 
-## Reference(s): <br>
-- [Change Signals](references/change-signals.md) <br>
-- [ChangeBrief ClawHub Page](https://clawhub.ai/harrylabsj/skills/changebrief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown or JSON change analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local document-delta summaries from supplied before and after text or files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: SKILL.md frontmatter, package.json, clawhub.json, CHANGELOG, server release evidence) <br>
+Risk: The skill defaults to Chinese-facing output, which may not match every deployment or reviewer audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired output language during deployment and adjust routing or prompts when an English or bilingual brief is required.
+
+Risk: Broad change-briefing trigger wording can route requests that need a full summary, retrieval workflow, or separate decision brief.
+
+Mitigation: Use this skill when the user provides or asks for before/after comparison, and route import, retrieval, or one-page decision brief tasks to the adjacent skills named in the artifact.
+
+Risk: The generated priorities and stale-conclusion flags are decision-support guidance, not authoritative review.
+
+Mitigation: Have a knowledgeable reviewer check high-impact changes before updating policies, roadmaps, legal assumptions, or customer commitments.
+
+## Reference(s):
+
+- [Change Signals](references/change-signals.md)
+- [ChangeBrief ClawHub Page](https://clawhub.ai/harrylabsj/skills/changebrief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown-style change brief or structured JSON analysis from local before/after text or files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese-facing brief text and can return raw JSON with counts, additions, changed claims, invalidations, decisions, priorities, and unmatched statements.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

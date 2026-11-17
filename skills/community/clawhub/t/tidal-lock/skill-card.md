@@ -1,40 +1,53 @@
-## Description: <br>
-Detects unhealthy coupling between components, services, or layers that have become unable to change independently, and maps coupling health across the system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tidal Lock helps agents analyze software architecture coupling, map unhealthy component dependencies, and recommend decoupling strategies.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and architecture reviewers use this skill to identify unhealthy coupling, change-lock patterns, deploy dependencies, and decoupling priorities across software components. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Architecture reports for private repositories may include sensitive component names, internal design details, or operational relationships. <br>
-Mitigation: Limit analysis to the intended repository and remove secrets, private logs, and unrelated files from any shared report. <br>
-Risk: Coupling assessments may be incomplete if the agent cannot access full dependency, deployment, change-history, or failure-correlation evidence. <br>
-Mitigation: Review findings with maintainers and validate recommendations against source control, deployment, and incident data before making architecture changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tidal Lock skill page](https://clawhub.ai/jcools1977/tidal-lock) <br>
-- [Publisher profile](https://clawhub.ai/user/jcools1977) <br>
+## Use Case:
 
+Developers, architects, and engineering teams use this skill during architecture reviews to identify tightly coupled components, understand coupling forces, and prioritize practical decoupling or consolidation decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis report with coupling severity, lock clusters, change-correlation findings, and decoupling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only architecture review output; no API calls or executable code are included in the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to inspect project structure and git history, which may expose repository-sensitive design or history details.
+
+Mitigation: Run it only in repositories the agent is authorized to inspect and limit analysis to relevant project files and history.
+
+Risk: Coupling scores and decoupling recommendations may be incomplete if deploy relationships, failure data, or repository history are unavailable.
+
+Mitigation: Review the generated analysis with project maintainers before using it to plan architecture changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/tidal-lock)
+- [ClawHub publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown architecture analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include coupling scores, lock severity levels, affected component pairs, coupling trends, and decoupling recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

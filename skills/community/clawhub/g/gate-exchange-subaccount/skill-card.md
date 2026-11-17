@@ -1,46 +1,60 @@
-## Description: <br>
-Gate Exchange sub-account management skill for querying, listing, creating, locking, and unlocking Gate sub-accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate Exchange sub-account management skill for managing, creating, locking, unlocking, and listing Gate sub-accounts.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External Gate users and operators use this skill to manage normal Gate sub-accounts through the Gate MCP server, including status checks, listing, creation, locking, and unlocking with main-account authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Gate main-account authority for sub-account management. <br>
-Mitigation: Use a least-privileged Gate API key limited to sub-account management and confirm every create, lock, or unlock action before execution. <br>
-Risk: Top-priority runtime rules are delegated to a remote Gate rules file outside the reviewed artifact. <br>
-Mitigation: Review the remote Gate runtime rules and the Gate MCP installation before use; stop write actions if the rules, authentication, or MCP availability cannot be verified. <br>
-Risk: Create, lock, and unlock operations can change account access and trading state. <br>
-Mitigation: Validate the target UID or login name, check current state before writes, and re-query status after execution. <br>
+## Use Case:
 
+Gate users and account operators use this skill to list Gate sub-accounts, inspect sub-account status, and create, lock, or unlock normal sub-accounts through the Gate MCP server.
 
-## Reference(s): <br>
-- [Gate Sub-Account MCP Specification](references/mcp.md) <br>
-- [Gate Exchange Sub-Account Scenarios](references/scenarios.md) <br>
-- [Gate MCP](https://github.com/gate/gate-mcp) <br>
-- [Gate Skills Repository](https://github.com/gate/gate-skills) <br>
-- [Gate Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown responses with MCP tool calls, confirmation prompts, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gate MCP, Gate API-key authentication, main-account privileges, and explicit confirmation before create, lock, or unlock operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter version 2026.3.23-1) <br>
+Risk: Financial sub-account write actions can change account access and trading availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before create, lock, or unlock actions and verify final status after the action.
+
+Risk: The release relies on external Gate MCP setup and changeable runtime rules.
+
+Mitigation: Review the Gate MCP setup before installation and verify or vendor the referenced runtime rules for the deployed environment.
+
+Risk: API keys or raw API errors could expose sensitive account information.
+
+Mitigation: Avoid exposing API keys and sanitize raw API errors before showing responses to end users.
+
+## Reference(s):
+
+- [Gate Sub-Account MCP Specification](references/mcp.md)
+- [Gate Exchange Sub-Account Scenarios](references/scenarios.md)
+- [Gate MCP](https://github.com/gate/gate-mcp)
+- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown action drafts, status tables, and result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Gate MCP authentication; write actions require explicit confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter reports 2026.3.23-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

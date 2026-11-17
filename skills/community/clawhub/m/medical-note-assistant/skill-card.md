@@ -1,38 +1,56 @@
-## Description: <br>
-自動將門診或住院病歷內容轉換為結構化摘要，包括主訴、病史、檢查發現、診斷建議及治療方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically converts outpatient or inpatient medical records into structured summaries covering chief complaint, history, exam findings, assessment, treatment plan, and medication suggestions.
 
-## Publisher: <br>
-[isaacloi1995-dot](https://clawhub.ai/user/isaacloi1995-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isaacloi1995-dot](https://clawhub.ai/user/isaacloi1995-dot)
 
-## Use Case: <br>
-醫療人員可使用此 skill 將門診或住院病歷草稿整理為結構化摘要，涵蓋主訴、病史、檢查發現、診斷建議、治療方案及用藥建議。任何診斷、治療或用藥內容都應由合資格臨床人員審閱及批准後使用。 <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Clinical summaries, diagnoses, treatment plans, or medication suggestions may be incorrect or incomplete. <br>
-Mitigation: Treat outputs as drafts and require review and approval by a qualified clinician before clinical use. <br>
-Risk: Medical records may contain patient data. <br>
-Mitigation: Install and use only in an environment appropriate for handling patient data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Healthcare professionals can use this skill to draft structured summaries from authorized outpatient or inpatient records for qualified clinical review and editing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured medical-note summary in Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clinical output is draft material and requires clinician review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may process sensitive health records.
+
+Mitigation: Use only records the user is authorized to process, remove direct identifiers where possible, and confirm that the workflow satisfies applicable privacy and compliance requirements.
+
+Risk: The skill may produce diagnostic, treatment, or medication suggestions.
+
+Mitigation: Treat outputs as draft support only and require review by a qualified clinician before clinical use.
+
+Risk: The artifact does not state privacy, compliance, or clinical scope limits.
+
+Mitigation: Add explicit privacy, compliance, and scope limits before using the skill in regulated healthcare workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isaacloi1995-dot/skills/medical-note-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured medical-note summary in text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft diagnostic, treatment, and medication suggestions that require qualified clinician review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

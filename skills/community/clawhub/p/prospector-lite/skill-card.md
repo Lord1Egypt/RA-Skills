@@ -1,43 +1,55 @@
-## Description: <br>
-Prospector Lite is a B2B outreach framework for OpenClaw agents that structures prospect research, email verification, bounce handling, pipeline tracking, duplicate prevention, domain reputation protection, and lessons learned. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prospector Lite gives OpenClaw agents a structured B2B outreach workflow for prospect research, email verification, bounce handling, pipeline tracking, duplicate prevention, domain reputation protection, and iterative lessons logging.
 
-## Publisher: <br>
-[nicuahmadi](https://clawhub.ai/user/nicuahmadi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicuahmadi](https://clawhub.ai/user/nicuahmadi)
 
-## Use Case: <br>
-External users, revenue teams, and agent operators use this skill to run reputation-aware B2B prospecting workflows, including prospect qualification, verified work-email outreach, follow-up handling, and pipeline tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support recurring B2B cold outreach and mailbox review without clear approval boundaries. <br>
-Mitigation: Use a dedicated sending account or labeled mailbox, review recipients and drafts before live sends, and disable or tightly control any prospecting cron. <br>
-Risk: Cold outreach can create anti-spam, privacy, opt-out, and sender-reputation exposure. <br>
-Mitigation: Confirm legal and policy compliance before use, enforce verified work-email rules, respect opt-outs, process bounces, and keep daily send limits low. <br>
+## Use Case:
 
+External users, sales operators, and founders use this skill to guide an agent through cold B2B prospecting, lead qualification, compliant work-email verification, outreach drafting, follow-up handling, and pipeline updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicuahmadi/prospector-lite) <br>
-- [Publisher profile](https://clawhub.ai/user/nicuahmadi) <br>
-- [Sora Labs](https://sora-labs.net) <br>
-- [Sora Labs tools](https://sora-labs.net/tools/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with email templates, tracking-file templates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to create and update prospects/pipeline.md, prospects/lessons-learned.md, and PRODUCTS.md; live email sending depends on separately configured mail tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and OpenClaw frontmatter) <br>
+Risk: The skill can guide recurring inbox access and outbound cold email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated email account or narrowly scoped email tool, verify the email integration and permissions, and require manual approval before inbox reads, cron enablement, or external sends.
+
+Risk: Cold outreach may damage sender reputation or contact people without adequate consent controls.
+
+Mitigation: Apply the skill's send limits, work-email verification, bounce logging, duplicate checks, opt-out handling, and one-follow-up rule before any send.
+
+## Reference(s):
+
+- [Prospector Lite on ClawHub](https://clawhub.ai/nicuahmadi/skills/prospector-lite)
+- [Sora Labs](https://sora-labs.net)
+- [Sora Labs Tools](https://sora-labs.net/tools/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and email-template text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to maintain prospect pipeline and lessons-learned files; outbound email execution depends on a separately configured email tool.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

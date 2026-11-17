@@ -1,0 +1,16 @@
+{
+  "project_management_governance": {
+    "initialized": true,
+    "profile": "lightweight",
+    "created_on": "{{DATE}}",
+    "schema_version": 1,
+    "memory_layer": {
+      "outline": "tmp.md",
+      "daily_dir": "tmp"
+    },
+    "history_import": {
+      "status": "not_configured",
+      "custom_paths": []
+    }
+  }
+}

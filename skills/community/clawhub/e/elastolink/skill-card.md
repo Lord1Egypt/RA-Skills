@@ -1,43 +1,59 @@
-## Description: <br>
-Elastolink Meeting Skills helps agents use Elastolink/Ideasprite MCP meeting tools to list meetings, inspect meeting details, check device status, and export meeting documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elastolink Meeting Skills helps an agent use Elastolink MCP tools to list meetings, check device status, view meeting details, and export meeting content as Markdown or Office documents.
 
-## Publisher: <br>
-[netkiller](https://clawhub.ai/user/netkiller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netkiller](https://clawhub.ai/user/netkiller)
 
-## Use Case: <br>
-Developers and agents working with Elastolink meetings use this skill to authenticate to the Ideasprite MCP endpoint, retrieve meeting lists, status, and details, and export meeting records as Markdown or Office documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens may be exposed or persisted in unsafe places. <br>
-Mitigation: Use the skill only for explicit Elastolink requests, avoid pasting long-lived tokens into chat or command arguments, keep .env out of source control and backups, and prefer a safer secret store or per-session environment variable. <br>
-Risk: The skill can access meeting lists, meeting content, and exported documents. <br>
-Mitigation: Install only where that level of meeting data access is appropriate and only if the Elastolink/Ideasprite endpoint is trusted. <br>
-Risk: Broad activation language may cause unintended meeting-service calls. <br>
-Mitigation: Restrict activation to clear Elastolink or meeting-management requests before running commands. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Elastolink meeting information, inspect meeting details, and export meeting artifacts. It is intended for workflows where an authorized user needs an agent to operate Elastolink meeting tools and present JSON results in a readable form.
 
-## Reference(s): <br>
-- [MCP Tools Reference](references/mcp-tools.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/netkiller/elastolink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown or JSON-backed text with shell command invocations and exported document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Meeting exports may include Markdown or Office document content returned by the Elastolink/Ideasprite MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Bearer tokens and session identifiers are used to access Elastolink meeting data and may be exposed through command output, local files, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped, short-lived token; avoid production credentials; restrict access to the local environment file; and rotate the token after use.
+
+Risk: Meeting detail and export tools may retrieve confidential or personal meeting content.
+
+Mitigation: Run exports only for meetings the user is authorized to access, review storage locations before sharing files, and treat exported Markdown or Office documents as sensitive.
+
+Risk: Token setup writes local configuration and may overwrite an existing Elastolink token file.
+
+Mitigation: Confirm the target environment before saving a token and back up or inspect any existing configuration when preserving prior credentials matters.
+
+## Reference(s):
+
+- [MCP Tools Reference](references/mcp-tools.md)
+- [Elastolink MCP endpoint](https://dev.ideasprite.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/netkiller/skills/elastolink)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown or plain text summaries of JSON-RPC responses, with shell commands and configuration steps when token setup is required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exported meeting content or document references returned by the Elastolink service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

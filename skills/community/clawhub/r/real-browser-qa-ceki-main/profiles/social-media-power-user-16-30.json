@@ -1,0 +1,41 @@
+{
+  "id": "social-media-power-user-16-30",
+  "label": "Social Media Power User 16-30",
+  "emoji": "📱",
+  "demographics": {
+    "gender": "any",
+    "age_range": [16, 30],
+    "tier": "gen-z-millennial"
+  },
+  "active_hours": {
+    "description": "All day — constant scrolling, notifications-driven",
+    "peak": [7, 12, 15, 18, 21, 1],
+    "off_peak_min": 2
+  },
+  "typing": {
+    "description": "Fast, short-form, emoji-friendly",
+    "wpm": { "min": 90, "max": 130 },
+    "profile": "fast",
+    "think_prob": 0.005,
+    "think_ms": [200, 600],
+    "backspace_freq": 0.03
+  },
+  "scroll": {
+    "passes": 5,
+    "description": "Infinite scroll — many quick passes, constant feed consumption",
+    "speed_px_per_ms": { "min": 40, "max": 100 },
+    "pause_between_passes_ms": { "min": 100, "max": 400 },
+    "depth_per_pass": { "min": 0.5, "max": 1.0 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 300, "max": 1200 },
+    "pre_click_pause_ms": { "min": 80, "max": 300 },
+    "inter_action_pause_ms": { "min": 100, "max": 500 }
+  },
+  "mouse": {
+    "speed": 1.2,
+    "curvature": 0.3,
+    "jitter": 0.45,
+    "description": "Fast, reactive — habitual 'like' clicking"
+  }
+}

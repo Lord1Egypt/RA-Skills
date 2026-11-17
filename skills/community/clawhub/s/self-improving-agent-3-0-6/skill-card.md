@@ -1,41 +1,54 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement for coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, feature requests, and corrections in markdown logs so agents can review and promote durable project knowledge.
 
-## Publisher: <br>
-[raidan-ai](https://clawhub.ai/user/raidan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raidan-ai](https://clawhub.ai/user/raidan-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to log errors, corrections, knowledge gaps, and feature requests into local markdown learning files, then promote broadly useful findings into project memory or agent instruction files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning files can accidentally capture secrets, credentials, personal data, raw transcripts, or sensitive command output. <br>
-Mitigation: Review entries before promotion and avoid storing sensitive information in learning files. <br>
-Risk: Unreviewed learnings can introduce incorrect or misleading guidance into future agent sessions. <br>
-Mitigation: Review and validate logged learnings before promoting them into AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or similar persistent context files. <br>
+## Use Case:
 
+Developers and agent users use this skill to record command failures, user corrections, missing capabilities, integration failures, knowledge gaps, and reusable best practices for later review or promotion into project memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raidan-ai/self-improving-agent-3-0-6) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local learning-entry formats and promotion guidance; users should review entries before adding them to persistent agent context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Conversation-derived notes can be promoted into future agent instructions or memory files without enough safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep learning files local by default, avoid recording secrets or private transcript content, and require explicit human approval before promotion into agent instruction or memory files.
+
+Risk: Optional hook setup can automatically inject reminders or run detector scripts during agent workflows.
+
+Mitigation: Do not enable hooks unless the exact scripts are bundled or pinned and independently reviewed.
+
+## Reference(s):
+
+- [Agent Skills specification](https://agentskills.io/specification)
+- [ClawHub skill page](https://clawhub.ai/raidan-ai/skills/self-improving-agent-3-0-6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces logging templates and promotion guidance for local project memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

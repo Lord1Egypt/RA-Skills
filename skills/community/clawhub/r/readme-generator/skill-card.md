@@ -1,38 +1,52 @@
-## Description: <br>
-Generate a production-quality README.md by analyzing project structure, framework, and code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a production-quality README.md by analyzing project structure, framework, and code
 
-## Publisher: <br>
-[Fratua](https://clawhub.ai/user/Fratua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fratua](https://clawhub.ai/user/fratua)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a project and draft a framework-aware README with installation, usage, testing, deployment, and license sections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated README content can be incomplete or misleading if project structure, dependencies, commands, routes, or license data are inferred incorrectly. <br>
-Mitigation: Review the generated README before committing it, especially install commands, usage examples, API details, and license text. <br>
-Risk: Ordinary requests to create or write a README may activate the skill and lead to changes in the project root. <br>
-Mitigation: Confirm before overwriting an existing README and use README.generated.md when review is needed first. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent inspect project files, infer the framework and tooling, and draft a framework-aware README.md. It supports common project types and asks before overwriting an existing README.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown README content with inline shell commands and optional README.md file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask before overwriting an existing README and may suggest README.generated.md instead.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger phrases can cause the agent to start README generation for an unintended project.
+
+Mitigation: Confirm the intended project root before allowing the skill to inspect files or draft documentation.
+
+Risk: Generated README content can include incorrect framework, command, license, or configuration details.
+
+Mitigation: Review generated README changes before accepting them, especially when README.md already exists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fratua/skills/readme-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown file with optional inline shell commands and generated badges]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes README.md in the project root, or offers README.generated.md when README.md already exists.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

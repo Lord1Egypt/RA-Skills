@@ -1,43 +1,54 @@
-## Description: <br>
-系统性解析财务报表结构、会计估计、财务比率及现金流，帮助用户理解企业经营状况与战略关联。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for reading financial statements, analyzing accounting estimates, comparing financial ratios, reviewing cash flow, and connecting reported results to business strategy.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Employees, analysts, and external users can use this skill to structure educational financial statement review, compare financial ratios, analyze cash flow, and flag common financial-reporting warning signs. It is intended to support understanding and reporting, not to replace professional accounting, legal, or investment judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis outputs may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as educational financial analysis and review decisions with qualified accounting, legal, or investment professionals. <br>
-Risk: Users may enter confidential financial data into an untrusted runtime environment. <br>
-Mitigation: Avoid entering confidential financial data unless the runtime environment is trusted and approved for that data. <br>
+## Use Case:
 
+Analysts, finance teams, auditors, and learners use this skill to structure financial-statement reviews, assess ratio trends, compare companies by industry, and identify warning signs in filings. Outputs should be treated as educational analysis and checked against current company disclosures before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/financial-statement-reading) <br>
-- [Publisher profile](https://clawhub.ai/user/yjkj999999) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, ratio tables, checklists, and explanatory financial-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only educational analysis; no executable code or automatic actions were found in the reviewed artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Financial-statement summaries or ratio interpretations could be mistaken for investment advice or used without current source filings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational analysis, verify company filings and current financial data independently, and avoid relying on the skill as the sole basis for investment decisions.
+
+Risk: Industry benchmarks and historical case examples in the artifact may not match a user's company, accounting framework, or reporting period.
+
+Mitigation: Check the company's industry, accounting standards, reporting period, and management disclosures before applying any benchmark or warning-sign checklist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/financial-statement-reading)
+- [Publisher profile](https://clawhub.ai/user/yjkj999999)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance, financial-analysis summaries, comparison tables, warning checklists, and optional model or code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce educational financial analysis, ratio tables, cash-flow review steps, financial-model guidance, and diligence checklists; does not provide investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

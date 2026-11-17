@@ -1,44 +1,58 @@
-## Description: <br>
-Closeli Open Device Live Query obtains a short-lived web live playback link for a specified Closeli device after verifying device ownership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Closeli Device Live Query API obtains a web live playback link for a specified device so a user can view the device feed or integrate live streaming into a web or third-party system.
 
-## Publisher: <br>
-[closeli-open](https://clawhub.ai/user/closeli-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[closeli-open](https://clawhub.ai/user/closeli-open)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve a browser-ready live player link for an owned Closeli device, such as when viewing a device feed remotely or integrating live viewing into another interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive API key stored in ~/.openclaw/.env. <br>
-Mitigation: Use a least-privilege API key and restrict ~/.openclaw/.env to the OpenClaw service user. <br>
-Risk: A misconfigured gateway host could send requests and device metadata to an unexpected endpoint. <br>
-Mitigation: Verify AI_GATEWAY_HOST is the expected Closeli endpoint before use. <br>
-Risk: Disabling TLS verification can expose credentials and device data to interception. <br>
-Mitigation: Keep TLS verification enabled except in controlled development environments. <br>
+## Use Case:
 
+External users and developers use this skill to request an H5 live player link for a Closeli device they are authorized to access. It is intended for remote live viewing and web or third-party live streaming integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/closeli-open/api-device-live) <br>
-- [Publisher profile](https://clawhub.ai/user/closeli-open) <br>
-- [Closeli AI Gateway host](https://ai-open.icloseli.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown link to the live player, with error messages summarized from JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a device_id and a configured AI_GATEWAY_API_KEY; successful live player links are short-lived.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill reads a sensitive API key from a shared persistent configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege API key and restrict ~/.openclaw/.env so it is readable only by the intended OpenClaw service user.
+
+Risk: A configurable gateway or disabled TLS verification could expose the API key and device data.
+
+Mitigation: Keep AI_GATEWAY_VERIFY_SSL enabled and confirm AI_GATEWAY_HOST points to the intended trusted Closeli gateway before use.
+
+Risk: Unrelated skills running as the same user may be able to modify the shared configuration file.
+
+Mitigation: Avoid deployment environments where unrelated skills can write to ~/.openclaw/.env or otherwise change the gateway configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/closeli-open/skills/api-device-live)
+- [ClawHub publisher profile](https://clawhub.ai/user/closeli-open)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON from the helper script, normally transformed by the agent into a concise Markdown link or error message.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The live URL contains a short-lived token and should be shown as a Markdown link with the resolved device name when available.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Misskey API integration for posting notes and uploading media to Misskey/Fediverse instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Misskey API integration for posting notes and uploading media to Misskey/Fediverse instances.
 
-## Publisher: <br>
-[kasuganosora](https://clawhub.ai/user/kasuganosora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasuganosora](https://clawhub.ai/user/kasuganosora)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure Misskey API access, post notes, upload media, check the authenticated account, and delete notes on Misskey/Fediverse instances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on a user's Misskey account, including posting, uploading, reading account information, and deleting notes. <br>
-Mitigation: Use a least-privilege Misskey token for the intended actions, keep it in environment variables, and avoid broad account tokens. <br>
-Risk: The authoritative security evidence flags unsafe command execution and note deletion without enough scoping or safeguards. <br>
-Mitigation: Review the scripts before enabling them, test with a non-critical account first, require explicit confirmation for delete actions, and prefer a patched version that removes eval. <br>
+## Use Case:
 
+External users and developers use this skill to configure Misskey credentials, post notes, upload media, delete notes, and inspect the authenticated Misskey account from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Misskey skill page](https://clawhub.ai/kasuganosora/misskey) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell command examples and text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MISSKEY_HOST and MISSKEY_TOKEN; actions may create notes, upload files, read account metadata, or delete notes through the configured Misskey instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json; SKILL.md metadata says 1.0.1) <br>
+Risk: Misskey API tokens and uploaded files can be sent to an unintended instance because the scripts include a default host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set MISSKEY_HOST explicitly for every run and use a least-privilege Misskey token.
+
+Risk: The upload helper has unsafe shell command construction.
+
+Mitigation: Review the script before use and avoid upload.sh until eval-based command construction is removed.
+
+Risk: The delete helper immediately deletes the supplied note ID without confirmation.
+
+Mitigation: Treat delete.sh as destructive and manually verify the target note ID before running it.
+
+## Reference(s):
+
+- [ClawHub Misskey skill page](https://clawhub.ai/kasuganosora/skills/misskey)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command execution may return Misskey note links, file IDs, account details, or API error text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

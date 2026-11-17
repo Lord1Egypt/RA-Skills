@@ -1,38 +1,58 @@
-## Description: <br>
-Monitor all OpenClaw cron jobs for failures and auto-fix common errors such as model-not-allowed errors and timeouts, posting to Slack only when issues are found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor all OpenClaw cron jobs for failures and auto-fix common errors (model-not-allowed, timeouts). Posts to Slack only when issues are found. Runs every 6 hours. Use when you need automated cron health monitoring and self-healing.
 
-## Publisher: <br>
-[mpbshhx](https://clawhub.ai/user/mpbshhx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mpbshhx](https://clawhub.ai/user/mpbshhx)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw cron job health, apply common automated remediations, and send Slack alerts only when cron issues need attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically modify and force-run cron jobs without an explicit approval step. <br>
-Mitigation: Use an explicit job allowlist, require approval before updates or force-runs, log every change, and send alerts to an appropriate operational Slack channel. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw cron jobs, identify failed or degraded scheduled runs, apply common fixes for model and timeout errors, and send Slack alerts only when action is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mpbshhx/cron-watchdog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Agent tool calls and concise Slack status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on a recurring schedule and remains silent when no cron issues are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can automatically change and force-run visible cron jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the skill to approved jobs and safe fields, require explicit approval for force-runs, and review proposed updates before execution in sensitive environments.
+
+Risk: Timeout changes may grow operational limits without a stated cap.
+
+Mitigation: Set an administrator-approved maximum timeout increase and require review when a job would exceed that cap.
+
+Risk: Operational failure details may be sent to a fixed Slack destination.
+
+Mitigation: Use an administrator-configured Slack destination and redact sensitive job names, payloads, and error details before sending alerts.
+
+## Reference(s):
+
+- [Cron Watchdog on ClawHub](https://clawhub.ai/mpbshhx/skills/cron-watchdog)
+- [mpbshhx ClawHub profile](https://clawhub.ai/user/mpbshhx)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with tool-call examples and operational alert text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cron update guidance and conditional Slack alert content; no output is expected when all monitored jobs are healthy.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

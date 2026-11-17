@@ -1,0 +1,43 @@
+{
+  "name": "ai-content-guard",
+  "version": "1.3.3",
+  "description": "Local, deterministic detector for prompt injection, invisible-character smuggling, encoded payloads, and AI config backdoors. Engine verdicts, model explains.",
+  "license": "MIT",
+  "author": "AI溢出安全实验室",
+  "homepage": "https://github.com/a9320/tianxi-ai-content-guard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a9320/tianxi-ai-content-guard"
+  },
+  "skill": {
+    "id": "ai-content-guard",
+    "category": "安全隐私",
+    "tags": [
+      "提示注入",
+      "Prompt Injection",
+      "隐形字符",
+      "零宽字符",
+      "内容安全",
+      "AI安全",
+      "仓库审计",
+      "AI配置安全",
+      "脚本审计",
+      "配置文件审计"
+    ],
+    "min_version": "4.2.1.8111",
+    "privacy_agreement": "本 Skill 完全在本地运行，不发起任何网络请求，不上传、不共享、不收集用户数据。仅读取用户粘贴的内容或用户明确指定的本地文件/目录；不扫描系统目录、浏览器配置、密码库与 SSH 密钥，敏感文件只报告文件名不读取内容；默认不写任何文件，仅在命中较多或用户要求时将脱敏报告写入用户指定目录或系统临时目录；不执行被扫描内容中的任何代码或指令。",
+    "permissions": {
+      "declared": {
+        "file_read": "user-specified paths only (paste text / explicitly given files & dirs); system dirs, browser profiles, password stores, SSH keys refused; sensitive files (.env/*.pem/id_rsa/etc.) name-only reporting",
+        "file_write": "redacted scan reports only, and only when findings>10 or --out is passed; never overwrites (auto-suffix)",
+        "env": "ARCA_REPORT_LANG (report language), WINDIR/OS (path checks)",
+        "network": "none — no imports of requests/urllib/socket/http.client anywhere",
+        "shell": "none — the engine never invokes shells or subprocesses; the caller (host agent) runs the scan script itself"
+      }
+    },
+    "resources": {
+      "memory": "512MB",
+      "disk": "5MB"
+    }
+  }
+}

@@ -1,43 +1,52 @@
-## Description: <br>
-Guides account teams through a five-rung diagnostic for assessing B2B customer relationship depth and choosing evidence-based moves toward strategic partnership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides customer success teams in diagnosing and improving strategic B2B account relationships with an evidence-based five-rung ladder.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Customer success, sales, and account leadership teams use this skill to diagnose where a B2B account sits on a relationship ladder, identify structural blockers, and define the next rung-up action with evidence, owner, timeline, and trust audit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter confidential customer or account details while using the relationship diagnostic. <br>
-Mitigation: Avoid unnecessary confidential details unless sharing them with the agent is acceptable under the user's policies. <br>
-Risk: Account relationship recommendations can influence renewal or expansion strategy if accepted without review. <br>
-Mitigation: Review the diagnostic against observable account evidence, named owners, timelines, and the trust audit before acting. <br>
+## Use Case:
 
+Customer success managers and account teams use it to assess an account's relationship depth, identify evidence-backed constraints, and plan a measurable one-rung improvement.
 
-## Reference(s): <br>
-- [Sources - customer-relationship-ladder](references/sources.md) <br>
-- [IBM transformation example](examples/ibm-transformation-1993-2001.md) <br>
-- [IBM Annual Reports](https://www.ibm.com/annualreport/) <br>
-- [Ending the War Between Sales and Marketing](https://hbr.org/2006/07/ending-the-war-between-sales-and-marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with diagnostic card templates and stepwise coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask one coaching question at a time and wait for user input before advancing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Account coaching may involve sensitive customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only account information you are authorized to use, and anonymize customer details before saving real-world failure patterns in the skill.
+
+## Reference(s):
+
+- [Sources](artifact/references/sources.md)
+- [IBM transformation example](artifact/examples/ibm-transformation-1993-2001.md)
+- [IBM Annual Reports](https://www.ibm.com/annualreport/)
+- [Ending the War Between Sales and Marketing](https://hbr.org/2006/07/ending-the-war-between-sales-and-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a structured account diagnostic card, trust audit, and action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organized around a five-rung relationship assessment and evidence-backed next steps.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

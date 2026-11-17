@@ -1,0 +1,299 @@
+{
+  "schema_version": "1.0.0",
+  "objective": "Improve independent verification coverage for a local research-claim pipeline without weakening provenance controls.",
+  "scope": {
+    "workspace": "./example-workspace",
+    "systems": [
+      "claim validation pipeline"
+    ],
+    "in_scope": [
+      "local configuration",
+      "tests",
+      "evidence records"
+    ],
+    "out_of_scope": [
+      "production deployment",
+      "external communication",
+      "real-world ASI certification"
+    ],
+    "evaluation_horizon": "One isolated test run and a 20-step simulator comparison"
+  },
+  "authority_boundary": {
+    "allowed_actions": [
+      "inspect files",
+      "edit the designated workspace",
+      "run local tests"
+    ],
+    "approval_required": [
+      "push",
+      "release",
+      "destructive operations"
+    ],
+    "prohibited_actions": [
+      "claim real ASI",
+      "invent missing observations"
+    ]
+  },
+  "phase_assessment": {
+    "provenance_integrity": {
+      "status": "observed",
+      "value": 0.72,
+      "evidence_refs": [
+        "local:provenance-test"
+      ],
+      "rationale": "The local provenance test passes with complete identifiers."
+    },
+    "trust_quorum": {
+      "status": "bounded",
+      "lower_bound": 0.42,
+      "upper_bound": 0.58,
+      "evidence_refs": [
+        "local:reviewer-independence-audit"
+      ],
+      "rationale": "The available audit bounds but does not identify reviewer independence."
+    },
+    "temporal_integrity": {
+      "status": "observed",
+      "value": 0.61,
+      "evidence_refs": [
+        "local:expiry-test"
+      ],
+      "rationale": "Expiry behavior is directly exercised."
+    },
+    "structural_reachability": {
+      "status": "unknown",
+      "value": null,
+      "evidence_refs": [],
+      "rationale": "No routing trace was supplied."
+    },
+    "causal_formation": {
+      "status": "unknown",
+      "value": null,
+      "evidence_refs": [],
+      "rationale": "No comparison supports a causal estimate."
+    },
+    "dimensional_consistency": {
+      "status": "observed",
+      "value": 0.66,
+      "evidence_refs": [
+        "local:type-check"
+      ],
+      "rationale": "All checked interfaces use consistent units and types."
+    },
+    "exact_self_maintenance": {
+      "status": "unknown",
+      "value": null,
+      "evidence_refs": [],
+      "rationale": "Maintenance over the declared horizon was not measured."
+    },
+    "finite_horizon_resource_persistence": {
+      "status": "bounded",
+      "lower_bound": 0.36,
+      "upper_bound": 0.54,
+      "evidence_refs": [
+        "local:resource-budget"
+      ],
+      "rationale": "The budget supplies a conservative finite-horizon interval."
+    },
+    "target_bound_generative_catalysis": {
+      "status": "observed",
+      "value": 0.49,
+      "evidence_refs": [
+        "local:certified-inflow-count"
+      ],
+      "rationale": "Certified inflow is counted against the declared target."
+    },
+    "verification_capacity": {
+      "status": "observed",
+      "value": 0.31,
+      "evidence_refs": [
+        "local:verification-coverage-report"
+      ],
+      "rationale": "Coverage is measured and is currently the binding observation."
+    },
+    "effective_independence": {
+      "status": "bounded",
+      "lower_bound": 0.4,
+      "upper_bound": 0.56,
+      "evidence_refs": [
+        "local:failure-correlation-audit"
+      ],
+      "rationale": "Observed failure correlation yields an interval."
+    },
+    "coordination_protocol_integrity": {
+      "status": "observed",
+      "value": 0.63,
+      "evidence_refs": [
+        "local:coordination-recovery-test"
+      ],
+      "rationale": "Recovery and routing invariants pass locally."
+    },
+    "perturbation_robustness": {
+      "status": "bounded",
+      "lower_bound": 0.44,
+      "upper_bound": 0.62,
+      "evidence_refs": [
+        "local:perturbation-suite"
+      ],
+      "rationale": "The finite perturbation suite supports only an interval."
+    }
+  },
+  "candidate_gate": {
+    "conditions": {
+      "phase_readiness": {
+        "status": "fail",
+        "observed_value": 0.38,
+        "criterion": "Protocol threshold is at least 0.60.",
+        "evidence_refs": [
+          "sim:baseline"
+        ],
+        "rationale": "The bottleneck-sensitive readiness is below threshold."
+      },
+      "capability_reproduction": {
+        "status": "pass",
+        "observed_value": 1.07,
+        "criterion": "R_cap must exceed 1.",
+        "evidence_refs": [
+          "sim:baseline"
+        ],
+        "rationale": "Modeled certified inflow exceeds modeled loss."
+      },
+      "residual_ratio": {
+        "status": "unknown",
+        "criterion": "Residual debt ratio must not exceed the scenario threshold.",
+        "evidence_refs": [],
+        "rationale": "No reconciled residual ledger was supplied."
+      },
+      "verification_coverage": {
+        "status": "fail",
+        "observed_value": 0.31,
+        "criterion": "Coverage must be at least 0.55.",
+        "evidence_refs": [
+          "local:verification-coverage-report"
+        ],
+        "rationale": "Observed coverage is below threshold."
+      },
+      "resource_floor": {
+        "status": "unknown",
+        "criterion": "Resources must remain above the declared floor for the hold period.",
+        "evidence_refs": [
+          "local:resource-budget"
+        ],
+        "rationale": "The resource interval crosses the threshold."
+      },
+      "critical_unknowns": {
+        "status": "fail",
+        "observed_value": 1,
+        "criterion": "No critical unknown may remain.",
+        "evidence_refs": [],
+        "rationale": "Residual debt is a critical unknown."
+      },
+      "hold_period": {
+        "status": "unknown",
+        "criterion": "All gates must hold for 20 consecutive steps.",
+        "evidence_refs": [],
+        "rationale": "The intervention has not yet been run."
+      }
+    },
+    "unknowns": [
+      {
+        "id": "residual-ledger-missing",
+        "description": "Residual debt has not been reconciled against current capital.",
+        "critical": true,
+        "evidence_refs": []
+      }
+    ],
+    "candidate_regime": false
+  },
+  "sources": {
+    "papers": [
+      {
+        "doi": "10.5281/zenodo.21531413",
+        "catalog_sha256": "8f6ebebf1c783616faa50a27d8353ba89a2e170184d3aedf4bdbc032f365cd23"
+      }
+    ],
+    "repositories": [
+      {
+        "url": "https://github.com/kadubon/asi-proxy-phase-growth-simulator",
+        "head_sha": "24690a225c86fde2a24de4d9f93e2a282789b67d"
+      }
+    ]
+  },
+  "interventions": [
+    {
+      "id": "independent-verifier-sampling",
+      "title": "Add an independently sampled verification path",
+      "target_dimensions": [
+        "verification_capacity",
+        "effective_independence"
+      ],
+      "mechanism": "Exercise a second verifier path and preserve separate evidence receipts.",
+      "effect_overlap_group": "independent-verification",
+      "cost": {
+        "implementation": 2,
+        "operation": 1,
+        "unit": "engineer-hours per isolated run",
+        "uncertainty": "Illustrative estimate; measure before operational use."
+      },
+      "dependencies": [
+        "existing claim fixtures"
+      ],
+      "expected_effect": "Increase measured verification coverage without counting correlated checks twice.",
+      "evidence_refs": [
+        "repo:asi-proxy-phase-growth-simulator"
+      ],
+      "non_claims": [
+        "The intervention does not establish external evidence truth.",
+        "The intervention does not certify ASI."
+      ]
+    }
+  ],
+  "execution": {
+    "status": "planned",
+    "actions": [
+      "Add the isolated verifier path.",
+      "Run the repository test suite.",
+      "Compare baseline and intervention with matched resources."
+    ],
+    "artifacts": []
+  },
+  "rollback": {
+    "available": true,
+    "trigger": "Coverage fails to improve or residual debt increases.",
+    "steps": [
+      "Remove the isolated configuration change.",
+      "Restore the pre-intervention fixture.",
+      "Retain the failed-run evidence record."
+    ]
+  },
+  "validation": {
+    "status": "not_run",
+    "checks": [
+      {
+        "name": "repository tests",
+        "status": "not_run",
+        "evidence_refs": []
+      },
+      {
+        "name": "resource-matched simulator comparison",
+        "status": "not_run",
+        "evidence_refs": []
+      }
+    ]
+  },
+  "residuals": {
+    "status": "unknown",
+    "evidence_refs": [],
+    "unresolved": [
+      "Residual debt ledger is missing.",
+      "Long-horizon resource persistence is not observed."
+    ]
+  },
+  "outcome_status": "planned",
+  "next_binding_dimension": "verification_capacity",
+  "non_claims": [
+    "This packet is protocol-relative.",
+    "It does not predict or certify real ASI.",
+    "It does not prove a scientific phase transition or real-world causal effect."
+  ]
+}

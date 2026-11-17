@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn73r1pgs3nvvbhbn461rddhq182pc2g",
   "slug": "feifei-learning-commander",
   "version": "3.5.1",
-  "publishedAt": 1776309453632
+  "name": "菲菲老师学习主控",
+  "description": "【学来学去学习社出品】菲菲老师学习主控 v3.5 - 中国家庭AI超级助手 · 全科总指挥+知识网络总控+亲子翻译官+成长陪伴师 | Feifei Teacher Learning Commander v3.5 - China's AI Super Assistant for Families",
+  "author": "学来学去学习社",
+  "tags": ["菲菲老师", "Feifei Teacher", "学习主控", "Learning Commander", "知识网络", "Knowledge Network", "亲子沟通", "Parent-Child Communication", "全科辅导", "Full-Subject Tutoring"],
+  "repository": "https://github.com/SimonsTang/feifei-learning-commander",
+  "topics": ["feifei-teacher", "learning-commander", "full-subject-tutor", "knowledge-network", "textbook-indexing", "heartbeat-service", "learning-analytics", "parent-communication", "exam-prep", "k12", "education-ai", "openclaw", "xuelaixuequ", "ai-tutor", "learning-planning", "student-profile", "cross-subject", "china-education", "tutorial", "psychology"]
 }

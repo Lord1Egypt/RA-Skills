@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn77ac0v1w7kd2dnez1431cyrh80dx71",
-  "slug": "anthropic-frontend-design",
+  "name": "anthropic-frontend-design",
   "version": "1.1.0",
-  "publishedAt": 1770341440625
+  "description": "Create distinctive, production-grade frontend interfaces that avoid generic 'AI slop' aesthetics. Combines design intelligence with a bold aesthetic philosophy."
 }

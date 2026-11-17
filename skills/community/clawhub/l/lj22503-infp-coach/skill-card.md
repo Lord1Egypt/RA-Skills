@@ -1,44 +1,59 @@
-## Description: <br>
-Infp Coach provides Chinese-language INFP coaching prompts that switch between reflective coaching and concrete action-plan advice for growth, career, and study questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infp Coach guides users who identify as INFP through growth, career, and learning questions using reflective coaching dialogue or direct action plans.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agents use this skill when a user identifies as INFP and wants coaching for growth, career, study direction, analysis paralysis, or focus challenges. It guides the agent to choose between a question-led coaching mode and a direct advice mode with concrete next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to retain coaching history that may include sensitive personal, career, emotional, or mental-health details. <br>
-Mitigation: Confirm whether memory or profile storage is enabled, avoid storing sensitive details unless the user consents, and provide a way to disable or delete saved records. <br>
-Risk: The package mixes INFP and INTP guidance, which can produce mismatched personality-type advice. <br>
-Mitigation: Verify the user's stated type before applying type-specific guidance and treat MBTI-based suggestions as reflective coaching prompts, not as definitive assessments. <br>
-Risk: Coaching content can be mistaken for professional mental-health or career advice. <br>
-Mitigation: Keep guidance non-clinical, avoid making decisions for the user, and direct severe mental-health concerns to qualified professionals. <br>
+## Use Case:
 
+External ClawHub users who identify as INFP use this skill for structured self-reflection, career or learning direction, analysis paralysis, and focus challenges. The skill alternates between a question-led coaching mode and a direct adviser mode with concrete next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/lj22503-infp-coach) <br>
-- [INFP traits reference](artifact/references/infp-traits.md) <br>
-- [INTP insights reference](artifact/references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown conversation replies with questions, action plans, follow-up prompts, and short summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable code. The artifact requests coaching replies under 200 Chinese characters and advice replies under 400 Chinese characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The release is flagged suspicious because the package identity mixes INFP and INTP material and includes inconsistent install and repository metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher aligns the INFP/INTP identity, install command, and repository metadata; verify the skill is intended for INFP coaching before use.
+
+Risk: The skill describes saving personal coaching records without clear consent or storage controls.
+
+Mitigation: Do not allow it to save personal coaching notes unless storage location, consent, retention, and deletion behavior are explicit and acceptable.
+
+Risk: The skill provides personal growth and emotional-state coaching but is not professional mental health care.
+
+Mitigation: Use it for general reflection and planning only; seek qualified professional support for severe mental health concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-infp-coach)
+- [INFP traits reference](references/infp-traits.md)
+- [INTP insights reference](references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching dialogue with questions, options, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Source guidance caps coaching-mode replies at 200 Chinese characters and adviser-mode replies at 400 Chinese characters.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

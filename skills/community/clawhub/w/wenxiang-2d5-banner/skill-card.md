@@ -1,42 +1,59 @@
-## Description: <br>
-Generates 2.5D isometric banner illustrations for an agent workflow and saves the resulting image output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits 2.5D banner images with Nano Banana Pro / ai-model 3 Pro Image, saving PNG output paths for the user.
 
-## Publisher: <br>
-[icesumer-lgtm](https://clawhub.ai/user/icesumer-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thcjp](https://clawhub.ai/user/thcjp)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent prepare and run image-generation commands for 2.5D banner artwork, including prompt iteration and saved image outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The published package appears to include unrelated personal workspace files, nested skills, hooks, logs, memory, project data, and possible secrets. <br>
-Mitigation: Republish only the skill definition, required image-generation script, and non-secret metadata; rotate any exposed API keys, Feishu secrets, or tenant tokens before use. <br>
-Risk: The server release identity describes a Tongyi Wanxiang 2.5D banner skill, while the packaged root skill and script describe a Gemini/Nano Banana image generator. <br>
-Mitigation: Verify the intended image provider and align the skill name, documentation, dependencies, and script behavior before deployment. <br>
+## Use Case:
 
+External creators and developers use this skill to ask an agent to generate or modify banner-style images from prompts, style parameters, and optional input images.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/icesumer-lgtm/wenxiang-2d5-banner) <br>
-- [Packaged skill definition](artifact/SKILL.md) <br>
-- [Packaged image generation script](artifact/scripts/generate_image.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated PNG image files when the script is executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an image-generation API key and local command execution; the published artifact should be minimized before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad read, write, and command execution authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the actual command or script path before execution and run the skill only in a controlled workspace.
+
+Risk: Image generation or editing may expose sensitive source images or prompts.
+
+Mitigation: Use non-sensitive input images and prompts, and configure only scoped API keys through environment variables.
+
+Risk: Generated images may require rights or copyright review before commercial use.
+
+Mitigation: Review generated assets for licensing, brand, and copyright concerns before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thcjp/skills/wenxiang-2d5-banner)
+- [Publisher profile](https://clawhub.ai/user/thcjp)
+- [Artifact homepage](https://skillhub.cn/skill/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and generated PNG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves PNG output to the current or specified directory and reports the generated file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

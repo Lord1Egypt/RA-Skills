@@ -1,42 +1,56 @@
-## Description: <br>
-Kaito helps agents query Kaito mindshare data for crypto entities or narratives and summarize trends, rank context, historical range, and movement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks mindshare trends for crypto tokens, projects, and Kaito narratives using Kaito MCP tools.
 
-## Publisher: <br>
-[YH9277](https://clawhub.ai/user/YH9277) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yh9277](https://clawhub.ai/user/yh9277)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and workflow agents use this skill to retrieve and summarize Kaito mindshare data for tokens, projects, and narratives. It supports standalone social trend checks and composition into broader strategy, investigation, or social-listening workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill depends on external Kaito MCP data, so results may reflect source availability, coverage, or freshness limits.
+
+Mitigation: Confirm access to the required Kaito MCP tools before installation and treat mindshare outputs as data-source-dependent analysis.
+
+Risk: Incorrect or mismatched narrative IDs can silently return empty results.
+
+Mitigation: Use the documented case-sensitive narrative IDs and verify ambiguous narratives before relying on the output.
+
+Risk: Ticker-only lookups can produce all-zero data when Kaito indexes an entity by full project name.
+
+Mitigation: Retry with the full project name when ticker results are all zero, then present historical context alongside current values.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts use Kaito to check mindshare trends for tokens, projects, and Kaito narrative IDs, either standalone with user confirmation or as part of social-listening, strategy, and investigation workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Entity and narrative query details may be handled by the configured Kaito MCP provider. <br>
-Mitigation: Avoid including private, secret, or sensitive information in entity or narrative prompts. <br>
-Risk: Case mismatches or unsupported narrative IDs may return empty or misleading results. <br>
-Mitigation: Use the documented case-sensitive narrative IDs and fall back to keyword search when an ID is not supported. <br>
-Risk: Ticker-only lookups can produce all-zero data when Kaito indexes an entity by full project name. <br>
-Mitigation: Retry all-zero ticker results with the full project name before presenting the trend. <br>
+**Output Format:** [Markdown or structured data summaries with trend values, historical context, rank interpretation, and movement classification.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YH9277/kaito) <br>
+**Other Properties Related to Output:** [Standalone use returns a readable mindshare summary; workflow use may return structured data for integration.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text summary with optional structured data for workflow skills] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Standalone use confirms parameters first; workflow use accepts passed parameters directly.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

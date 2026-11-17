@@ -1,40 +1,54 @@
-## Description: <br>
-Fetches up to five currently live Kalshi sports markets with game names and probabilities using a browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch up to five currently live Kalshi sports markets with game names and their probabilities using the browser.
 
-## Publisher: <br>
-[kanakamedalasumanth](https://clawhub.ai/user/kanakamedalasumanth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kanakamedalasumanth](https://clawhub.ai/user/kanakamedalasumanth)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent browse Kalshi live sports markets and summarize up to five games with their probabilities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live market probabilities can change quickly or be extracted incorrectly from the browser session. <br>
-Mitigation: Independently verify market information on Kalshi before relying on it, especially before making financial decisions. <br>
-Risk: A user request could push the workflow beyond its intended read-only scope into login, credential handling, or trading. <br>
-Mitigation: Use the skill only for browsing and summarizing public market information, and stop if account access, credentials, or order placement are requested. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kanakamedalasumanth/get-kalshi-live-games) <br>
-- [Kalshi](https://kalshi.com) <br>
+## Use Case:
 
+Agents use this skill to open Kalshi in a browser, find live sports markets, and return a concise list of game names and probabilities. It is intended for users who need current market information without trade execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text or Markdown list with game names and probabilities] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limited to up to five currently live games; does not trade, log in, or handle credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live market information may change quickly or be unavailable while the agent is browsing.
+
+Mitigation: Treat returned probabilities as a point-in-time readout and verify important decisions directly in Kalshi.
+
+Risk: The skill directs the agent to open Kalshi in a browser to read market information.
+
+Mitigation: Install only if browser access to Kalshi is acceptable in the deployment environment.
+
+## Reference(s):
+
+- [Kalshi](https://kalshi.com)
+- [ClawHub skill page](https://clawhub.ai/kanakamedalasumanth/skills/get-kalshi-live-games)
+- [Publisher profile](https://clawhub.ai/user/kanakamedalasumanth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise text or Markdown list containing game names and probabilities]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to five live games and does not instruct the agent to place trades or use credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

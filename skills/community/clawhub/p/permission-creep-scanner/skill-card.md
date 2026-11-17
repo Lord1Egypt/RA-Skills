@@ -1,40 +1,53 @@
-## Description: <br>
-Helps detect permission creep in AI agent skills by flagging when a skill's actual code accesses resources far beyond what its declared purpose requires. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps detect permission creep in AI agent skills by flagging when a skill's actual code accesses resources beyond what its declared purpose requires.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to inspect AI agent skills for over-broad file, environment, network, subprocess, and system access relative to the skill's stated purpose. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Inputs being analyzed may contain untrusted code or URLs. <br>
-Mitigation: Review them as data only and avoid executing analyzed snippets or following analyzed URLs during the audit. <br>
-Risk: The skill documentation includes an illustrative malicious example. <br>
-Mitigation: Use the example only to understand expected findings; do not run the sample code or command shown there. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/permission-creep-scanner) <br>
-- [Skill Source Artifact](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to review AI agent skills for permission creep, including mismatches between declared purpose and actual access to files, environment variables, network calls, subprocesses, and sensitive paths.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured permission audit in Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes declared scope, access inventory, mismatch flags, risk rating, and recommendation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides heuristic review guidance rather than sandbox enforcement.
+
+Mitigation: Manually review its findings before relying on them, especially for skills that handle credentials, broad filesystem access, network calls, or shell execution.
+
+Risk: Static and heuristic permission analysis can miss dynamically loaded code, obfuscated paths, or indirect access through libraries.
+
+Mitigation: Use the audit as an initial signal and perform deeper manual code review for high-stakes or sensitive deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/permission-creep-scanner)
+- [Publisher profile](https://clawhub.ai/user/andyxinweiminicloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured permission audit with declared scope, actual access list, mismatch flags, risk rating, and recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

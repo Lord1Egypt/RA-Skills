@@ -1,39 +1,54 @@
-## Description: <br>
-Provides industrial engineering guidance for smart asset transformation, mechatronics, sensor and AI integration, CAD-oriented design work, and compliance-aware reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a German-language industrial mechatronics consulting persona focused on smart asset transformation, sensor and AI integration, CAD design, compliance reporting, and economically practical engineering guidance.
 
-## Publisher: <br>
-[Mampe-Industrial](https://clawhub.ai/user/Mampe-Industrial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mampe-industrial](https://clawhub.ai/user/mampe-industrial)
 
-## Use Case: <br>
-Industrial engineers, consultants, and agents supporting machinery projects use this skill to structure smart asset transformation discussions, sensor integration plans, technical reports, and compliance-aware engineering guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Professional qualifications, publisher relationship, or liability claims may be unverified. <br>
-Mitigation: Verify the publisher's relationship to the named professional before relying on the skill's claimed engineering authority. <br>
-Risk: Engineering, compliance, machinery safety, contract, or liability-sensitive guidance may be inappropriate without qualified review. <br>
-Mitigation: Use qualified human review before applying outputs to regulated machinery, compliance reports, contracts, or safety-critical decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mampe-Industrial/mampe-industrial-core) <br>
+## Use Case:
 
+External users and industrial engineering teams use this skill to shape agent responses as a senior German-language mechatronics consultant for smart asset transformation, compliance-aware specification work, and practical industrial design tradeoffs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or permission requests are part of the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may produce professional, legal, compliance, or liability-related engineering guidance.
+
+Mitigation: Independently verify outputs with qualified professionals and authoritative requirements before using them for engineering, business, or compliance decisions.
+
+Risk: The skill is a consulting persona and reference profile, not an executable validation or certification tool.
+
+Mitigation: Treat responses as advisory drafting and analysis support, not as proof of safety, legal conformity, or regulatory compliance.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/mampe-industrial/skills/mampe-industrial-core)
+- [MAMPE expertise database](artifact/MAMPE-Expertise.txt)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise German-language consulting guidance and structured Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; professional, legal, compliance, or liability-related claims should be independently verified before real-world use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Code calls functions, classes, or methods that don't exist — either on project types or on third-party library APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code calls functions, classes, or methods that don't exist - either on project types or on third-party library APIs.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill to help agents verify project and third-party API symbols before writing or modifying code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect repository code, library documentation, or type definitions while checking whether symbols exist. <br>
-Mitigation: Review any repository reads, proposed commands, and resulting edits under the normal project review process. <br>
-Risk: The skill may propose small code changes when a referenced helper or API does not exist. <br>
-Mitigation: Confirm suggested replacements against project source, official documentation, and type-checking results before relying on them. <br>
+## Use Case:
 
+Developers and coding agents use this skill to avoid fabricated API calls by verifying third-party and project symbols before writing or refactoring code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/fabricated-symbols) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional inline code or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend repository search, documentation checks, type checking, or small explicit code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An agent may still propose a fabricated third-party or project symbol if it skips verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check official documentation, source code, type definitions, or project search results before invoking a symbol.
+
+Risk: A fabricated symbol can pass through weak typing and fail at runtime.
+
+Mitigation: Run the relevant type checker or tests after meaningful code changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/fabricated-symbols)
+- [Publisher profile](https://clawhub.ai/user/mvogt99)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to inspect documentation, source code, type definitions, and type-checker output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

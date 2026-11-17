@@ -1,0 +1,4 @@
+interface:
+  display_name: Hyperliquid Review
+  short_description: Review fills, costs, controls, and outcomes
+  default_prompt: Use $hyperliquid-review to reconstruct this activity from exchange records and grade process separately from outcome.

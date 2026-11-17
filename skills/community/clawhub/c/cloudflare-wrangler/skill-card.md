@@ -1,41 +1,65 @@
-## Description: <br>
-Manage Cloudflare Workers, Pages, KV, D1, R2, and secrets using Wrangler CLI commands and direct Cloudflare API examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cloudflare Workers, Pages, KV, D1, R2, and secrets using the Wrangler CLI and direct Cloudflare API examples.
 
-## Publisher: <br>
-[ItamarCoh3n](https://clawhub.ai/user/ItamarCoh3n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itamarcoh3n](https://clawhub.ai/user/itamarcoh3n)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy Cloudflare Workers and Pages, manage Cloudflare storage, databases, secrets, and queues, and troubleshoot Wrangler or Cloudflare API configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cloudflare administration commands can delete infrastructure or data, change secrets, deploy code, run SQL, alter lifecycle rules, or perform bulk operations if used carelessly. <br>
-Mitigation: Use least-privilege Cloudflare tokens, verify the Wrangler package, and require explicit confirmation before deletes, deployments, migrations, SQL execution, secret changes, bulk operations, direct API calls, or lifecycle-rule changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wrangler Docs](https://developers.cloudflare.com/workers/wrangler/) <br>
-- [Workers Docs](https://developers.cloudflare.com/workers/) <br>
-- [D1 Docs](https://developers.cloudflare.com/d1/) <br>
-- [R2 Docs](https://developers.cloudflare.com/r2/) <br>
-- [KV Docs](https://developers.cloudflare.com/kv/) <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and operate Cloudflare Workers, Pages, KV, D1, R2, queues, secrets, and related configuration. It provides command and API examples for setup, deployment, storage, database, domain, and troubleshooting workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, JSON, TOML, JavaScript, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance and command examples for Cloudflare administration; users should review commands before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cloudflare API tokens and R2 credentials could be exposed, printed, logged, or granted broader permissions than needed.
+
+Mitigation: Use least-privilege Cloudflare tokens, keep secrets out of logs and chat output, and verify token scope before running commands.
+
+Risk: Commands in the skill can delete, roll back, or materially change Cloudflare Workers, Pages projects, KV namespaces, D1 databases, R2 buckets, queues, lifecycle rules, domains, and production deployments.
+
+Mitigation: Require explicit user confirmation before deletes, rollbacks, lifecycle changes, domain changes, or production deployments.
+
+Risk: Example account IDs, bucket names, and deployment targets may not match the user's Cloudflare environment.
+
+Mitigation: Replace hard-coded examples with verified user-specific account IDs, bucket names, project names, and resource identifiers before execution.
+
+Risk: Wrangler behavior and authentication requirements can vary by version and token scope.
+
+Mitigation: Pin the Wrangler version where reproducibility matters and verify authentication with `wrangler whoami` before making changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itamarcoh3n/skills/cloudflare-wrangler)
+- [Wrangler Docs](https://developers.cloudflare.com/workers/wrangler/)
+- [Workers Docs](https://developers.cloudflare.com/workers/)
+- [D1 Docs](https://developers.cloudflare.com/d1/)
+- [R2 Docs](https://developers.cloudflare.com/r2/)
+- [KV Docs](https://developers.cloudflare.com/kv/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, TOML, JavaScript, Python, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-specific Cloudflare account IDs, tokens, project names, bucket names, and confirmation before production-impacting actions.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

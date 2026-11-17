@@ -1,38 +1,49 @@
-## Description: <br>
-Provides access to Exa MCP tools for web search, advanced search, code context, deep research, crawling, company research, and LinkedIn search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access to MCP tools for web search, advanced search, code context, deep research, crawling, company research, and LinkedIn search.
 
-## Publisher: <br>
-[simlocker](https://clawhub.ai/user/simlocker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simlocker](https://clawhub.ai/user/simlocker)
 
-## Use Case: <br>
-Developers and agents use this skill to route research-oriented tasks to the Exa MCP service, including web search, deep research, crawling, code context lookup, company research, and LinkedIn search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and lookup inputs may be sent to the external Exa MCP service. <br>
-Mitigation: Avoid submitting secrets, credentials, private code, regulated data, or confidential business material unless the provider's data handling is approved for that use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simlocker/mcp-skill) <br>
-- [Exa MCP endpoint](https://mcp.exa.ai/mcp) <br>
+## Use Case:
 
+Developers and agents use this skill to route search, research, crawling, company lookup, LinkedIn lookup, and code-context requests through Exa's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance, with tool-mediated results from the Exa MCP service when invoked.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected Exa MCP tool and the external service response.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search, research, crawling, and code-context prompts may be routed through Exa's MCP service.
+
+Mitigation: Avoid sending secrets or private code unless Exa's terms and the workspace policy allow that data flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simlocker/skills/mcp-skill)
+- [Exa MCP service](https://mcp.exa.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Text and Markdown, with code context when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP-backed results may include external web, company, LinkedIn, crawling, research, and code-context data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

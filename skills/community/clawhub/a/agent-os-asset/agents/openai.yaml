@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent OS Asset / Agent OS 资产"
+  short_description: "Turn forgotten files into AI-ready assets / 将吃灰文件变成 AI 资产"
+  default_prompt: "Use $agent-os-asset to turn this folder's forgotten files into privacy-aware, reviewable AI Agent assets. / 使用 $agent-os-asset 将此目录中长期吃灰的文件转化为经过隐私检查与复核的 AI Agent 资产。"

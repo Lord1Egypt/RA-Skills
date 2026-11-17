@@ -1,40 +1,56 @@
-## Description: <br>
-Analyze laboratory alumni career trajectories and outcomes to provide data-driven career guidance for current students and postdocs, including sector distribution, career pathways, and personalized recommendations based on degree level and research interests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze laboratory alumni career trajectories and outcomes to provide data-driven career guidance for current students and postdocs.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to track laboratory alumni career outcomes, analyze sector and degree-level trends, and generate career guidance for current students and postdocs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can store and export identifiable alumni career records and possible compensation details.
+
+Mitigation: Use only consented alumni data, avoid salary details and private notes unless necessary, and share aggregated reports instead of raw records.
+
+Risk: Local data files and exports may be placed in locations with weak access controls.
+
+Mitigation: Keep the data file and generated exports in restricted locations and avoid exporting raw records to shared folders.
+
+Risk: Unpinned dependencies can change behavior across deployments.
+
+Mitigation: Pin dependency versions before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Lab mentors, program administrators, and trainees use this skill to organize alumni outcome data, analyze career paths across sectors, and generate career guidance for students and postdocs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles alumni personal data, including career outcomes and optional salary or profile details. <br>
-Mitigation: Obtain consent, keep exports private, share only aggregate reports publicly, and avoid collecting sensitive details unless needed. <br>
-Risk: Unpinned Python dependencies can change behavior over time. <br>
-Mitigation: Use an isolated Python environment and pin dependency versions before operational use. <br>
+**Output Format:** [Markdown guidance with Python and shell command examples; the bundled CLI can produce terminal text, JSON files, and CSV exports.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/alumni-career-tracker-1) <br>
+**Other Properties Related to Output:** [Handles local alumni records and analysis reports; raw exports may contain identifiable career or compensation data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus local JSON or CSV report outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local alumni data and report files when the user runs the included commands.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,67 @@
-## Description: <br>
-Performance and load testing for APIs and web services, including scenario design, k6, Locust, and JMeter script generation, metric analysis, bottleneck identification, capacity planning, baseline comparison, and SLA validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performance and load testing for APIs and web services: designs test scenarios, generates k6, Locust, and JMeter scripts, analyzes response times, throughput, and error rates, and identifies bottlenecks using industry-standard methodology.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, generate, run, and interpret performance tests for APIs and web services. It supports load, stress, spike, soak, scalability, SLA validation, and capacity-planning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Performance-test scripts can disrupt services or mutate data when run against live systems. <br>
-Mitigation: Run tests only on systems the user owns or is explicitly authorized to test, prefer staging environments, use scoped credentials, and avoid production write endpoints unless formally approved. <br>
+## Use Case:
 
+Developers and performance engineers use this skill to plan load, stress, spike, soak, scalability, and baseline tests for APIs and web services, then generate executable test scripts and interpret latency, throughput, error-rate, and Apdex results.
 
-## Reference(s): <br>
-- [k6 Advanced Patterns](references/k6-patterns.md) <br>
-- [Locust Distributed Mode](references/locust-distributed.md) <br>
-- [Grafana k6 Documentation](https://grafana.com/docs/k6/latest/) <br>
-- [Install k6](https://grafana.com/docs/k6/latest/set-up/install-k6/) <br>
-- [Locust Documentation](https://docs.locust.io/en/stable/) <br>
-- [Locust Distributed Load Generation](https://docs.locust.io/en/stable/running-distributed.html) <br>
-- [Apdex Alliance Specification](http://apdex.org/specs.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript, Python, YAML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include performance test reports, k6 or Locust scripts, threshold settings, distributed-run configuration, and execution commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated performance tests can create real traffic against a target system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run generated tests only against systems you own or are explicitly authorized to test, preferably in staging or isolated environments.
+
+Risk: High load levels can disrupt services or exceed approved capacity.
+
+Mitigation: Keep initial load conservative and increase only after capacity, monitoring, and approvals are clear.
+
+Risk: Test scripts may require credentials for protected endpoints.
+
+Mitigation: Use short-lived test credentials and avoid embedding secrets directly in generated scripts or shared reports.
+
+Risk: Generated scripts may rely on external tooling or libraries.
+
+Mitigation: Pin or vendor dependencies where possible and review generated commands before execution.
+
+## Reference(s):
+
+- [k6 Advanced Patterns](references/k6-patterns.md)
+- [Locust Distributed Mode](references/locust-distributed.md)
+- [Grafana k6 documentation](https://grafana.com/docs/k6/latest/)
+- [Install k6](https://grafana.com/docs/k6/latest/set-up/install-k6/)
+- [Locust documentation](https://docs.locust.io/en/stable/)
+- [Locust distributed mode](https://docs.locust.io/en/stable/running-distributed.html)
+- [Apdex Alliance Specification](http://apdex.org/specs.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JavaScript, Python, YAML, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated performance-test scripts, run commands, thresholds, metrics tables, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

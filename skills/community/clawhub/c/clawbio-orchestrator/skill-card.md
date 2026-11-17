@@ -1,39 +1,58 @@
-## Description: <br>
-Meta-agent that routes bioinformatics requests to specialised sub-skills and handles file type detection, analysis planning, report generation, and reproducibility export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-agent that routes bioinformatics requests to specialised sub-skills, including file type detection, analysis planning, report generation, and reproducibility export.
 
-## Publisher: <br>
-[manuelcorpas](https://clawhub.ai/user/manuelcorpas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manuelcorpas](https://clawhub.ai/user/manuelcorpas)
 
-## Use Case: <br>
-Developers, researchers, and bioinformatics analysts use this skill to route biological analysis requests to specialised skills, plan multi-step workflows, and generate reproducible analysis reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reports and audit logs may contain sensitive genomic, biomedical, file path, command, or project details. <br>
-Mitigation: Use a dedicated working directory, keep generated reports and logs private, and avoid sharing outputs from sensitive projects without review. <br>
-Risk: Routed multi-step analyses may depend on other skills or networked tools that change privacy and execution risk. <br>
-Mitigation: Review the proposed analysis plan before approval, confirm any networked analysis explicitly, and do not upload genomic data to external services without user confirmation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawBio project homepage](https://github.com/manuelcorpas/ClawBio) <br>
+## Use Case:
 
+External researchers, bioinformatics analysts, and developers use this agent to route bioinformatics requests to specialised skills, plan multi-step analyses, and produce markdown reports with reproducibility details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, reproducibility commands, checksums, audit log entries, and optional JSON routing output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include file paths, command logs, checksums, and project details from local bioinformatics work.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bioinformatics prompts and file paths may include sensitive sample names or private project details that could be written to the audit log.
+
+Mitigation: Avoid entering sensitive identifiers unless logging is acceptable, and review or remove audit logs before sharing the workspace.
+
+Risk: The skill routes requests to specialised bioinformatics workflows and may propose commands or reports that need domain review before use.
+
+Mitigation: Review planned commands, referenced files, and generated reports before execution or downstream scientific interpretation.
+
+Risk: External upload or destructive actions could expose genomic data or overwrite analysis artifacts if approved without review.
+
+Mitigation: Require explicit confirmation before uploads, overwrites, deletion, or other destructive actions.
+
+## Reference(s):
+
+- [ClawBio project homepage](https://github.com/manuelcorpas/ClawBio)
+- [ClawHub skill page](https://clawhub.ai/manuelcorpas/skills/clawbio-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/manuelcorpas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON routing decisions, command logs, and reproducibility guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append an analysis_log.md audit log in the working directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

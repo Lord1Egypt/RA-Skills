@@ -1,0 +1,49 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:chevron 流程带(4 步;首步 homePlate 平头 + 3×chevron + 叠字 + 说明列 + 口径条)—— 原型 24
+  结构形状:旧"每 deck ≤1 页"装饰限额已解除(2026-08-05),仅守"同原型不连续 >2 页"。
+  参数(每步三个):
+    {{S1_BG}}..{{S4_BG}}     各步底色(同色系递进;关键步换主色,仅 1 步)
+    {{S1_TITLE}}..           步骤名(≤6 字,可带序号"1 诊断")
+    {{S1_DESC}}..            这一步做什么、产出什么(2-3 行)
+    {{S1_EX}}..              例子一行(≤20 字;不需要则整行删除)
+    {{NOTE}}                 口径条单行(口径/周期/负责等贯穿信息)
+  坐标:4 步定死 w424 gap8(x=100/532/964/1396),带高 120,顶 380;说明列顶 540;口径条 780×90
+  变体:3 步 → w568 x=100/676/1252;5 步 → w336 gap10 x=100/446/792/1138/1484(带高降 96)
+  纪律: 叠字 textbox 左右各让 48px(避开箭头缺口);说明列与 chevron 严格同 x 同宽
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" data-shape="homePlate" style="position:absolute;left:100px;top:380px;width:424px;height:120px;background:{{S1_BG}};"></div>
+<div data-object="true" data-object-type="shape" data-shape="chevron" style="position:absolute;left:532px;top:380px;width:424px;height:120px;background:{{S2_BG}};"></div>
+<div data-object="true" data-object-type="shape" data-shape="chevron" style="position:absolute;left:964px;top:380px;width:424px;height:120px;background:{{S3_BG}};"></div>
+<div data-object="true" data-object-type="shape" data-shape="chevron" style="position:absolute;left:1396px;top:380px;width:424px;height:120px;background:{{S4_BG}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:148px;top:380px;width:328px;height:120px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:120px;">{{S1_TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:580px;top:380px;width:328px;height:120px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:120px;">{{S2_TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1012px;top:380px;width:328px;height:120px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:120px;">{{S3_TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1444px;top:380px;width:328px;height:120px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:120px;">{{S4_TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:540px;width:424px;">
+  <div style="font-size:26px;line-height:1.6;color:var(--text-primary);">{{S1_DESC}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:12px;">{{S1_EX}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:532px;top:540px;width:424px;">
+  <div style="font-size:26px;line-height:1.6;color:var(--text-primary);">{{S2_DESC}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:12px;">{{S2_EX}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:964px;top:540px;width:424px;">
+  <div style="font-size:26px;line-height:1.6;color:var(--text-primary);">{{S3_DESC}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:12px;">{{S3_EX}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1396px;top:540px;width:424px;">
+  <div style="font-size:26px;line-height:1.6;color:var(--text-primary);">{{S4_DESC}}</div>
+  <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:12px;">{{S4_EX}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:780px;width:1720px;height:90px;background:var(--card-bg);border:1px solid var(--border-light);border-radius:10px;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:780px;width:1640px;height:90px;">
+  <div style="font-size:26px;line-height:90px;color:var(--text-secondary);">{{NOTE}}</div>
+</div>

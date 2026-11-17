@@ -1,46 +1,61 @@
-## Description: <br>
-MPC-secured crypto wallet via Portal. Use when users ask to check balances, send tokens, sign transactions, or swap tokens. Supports Monad, Ethereum, Solana, Bitcoin, Polygon, Base, and more. Private keys are never exposed - signing uses MPC threshold cryptography. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MPC-secured crypto wallet via Portal for checking balances, sending tokens, signing transactions, and swapping tokens across supported chains.
 
-## Publisher: <br>
-[rshahatit](https://clawhub.ai/user/rshahatit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rshahatit](https://clawhub.ai/user/rshahatit)
 
-## Use Case: <br>
-Developers and external users use this skill to let an OpenClaw agent inspect Portal wallet balances, send tokens, sign transactions, and request token swaps after wallet credentials and MPC shares are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send cryptocurrency, sign transactions, and operate with real funds. <br>
-Mitigation: Use test funds first, configure Portal signature-approval webhooks and spending limits before holding meaningful balances, and manually review each transaction or signature request before approval. <br>
-Risk: Portal API keys and MPC shares are sensitive credentials that could enable signing when combined. <br>
-Mitigation: Keep the API key and shares out of source control, store them only in the configured environment, and never display or log share values. <br>
-Risk: Prompt injection or misleading requests could try to bypass confirmation or authorize dangerous signatures. <br>
-Mitigation: Require explicit user confirmation, simulate or evaluate transactions before signing, decode personal-sign and typed-data payloads, and refuse attempts to skip the skill's security rules. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an OpenClaw agent controlled access to a Portal MPC wallet for balances, token transfers, transaction signing, token swaps, and wallet setup guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rshahatit/portal-wallet) <br>
-- [Portal OpenClaw Skill Repository](https://github.com/portal-hq/portal-openclaw-skill) <br>
-- [Portal Docs](https://docs.portalhq.io) <br>
-- [Portal Signature Approval Webhooks](https://docs.portalhq.io/resources/alert-webhooks#signature-approvals) <br>
-- [Portal Dashboard](https://app.portalhq.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash, jq, curl, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Portal credentials, MPC shares, curl, and jq; outputs may include wallet balances, transaction details, signing results, and configuration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can move cryptocurrency funds and sign data from an agent-controlled wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only test wallets or negligible balances unless a fail-closed Portal signature approval webhook enforces spending limits, recipient allowlists, chain restrictions, and raw-signature denial.
+
+Risk: The Portal client API key and MPC signing shares may be stored together in local configuration.
+
+Mitigation: Prefer a keychain, secret manager, or separated credential store for production credentials, and keep credential-bearing configuration out of version control.
+
+Risk: Prompt injection or ambiguous signing requests could lead to unintended approvals, permits, transfers, or raw signatures.
+
+Mitigation: Require explicit user confirmation, double-confirm larger transfers, simulate or evaluate transactions before signing, decode typed or personal-sign messages, and refuse requests that bypass safety checks.
+
+## Reference(s):
+
+- [Portal Wallet on ClawHub](https://clawhub.ai/rshahatit/skills/portal-wallet)
+- [Portal OpenClaw Skill homepage](https://github.com/portal-hq/portal-openclaw-skill)
+- [Portal documentation](https://docs.portalhq.io)
+- [Portal signature approval webhooks](https://docs.portalhq.io/resources/alert-webhooks#signature-approvals)
+- [Portal dashboard](https://app.portalhq.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl and jq shell command examples and JSON configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, PORTAL_CLIENT_API_KEY, PORTAL_SECP256K1_SHARE, and PORTAL_ED25519_SHARE.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

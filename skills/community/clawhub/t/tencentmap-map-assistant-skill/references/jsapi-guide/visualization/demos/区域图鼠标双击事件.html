@@ -8,7 +8,7 @@
     <title>区域图鼠标双击事件</title>
 </head>
 <script charset="utf-8"
-    src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&libraries=visualization,geometry"></script>
+    src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}&libraries=visualization,geometry"></script>
 <style type="text/css">
     html,
     body {
@@ -50,7 +50,8 @@
                 zoom: 15,
           mapStyleId: "style8",
                 center: center, //设置地图中心点坐标
-                doubleClickZoom: false, // 禁用双击地图放大baseMap: { //设置底图样式
+                doubleClickZoom: false, // 禁用双击地图放大
+                baseMap: { //设置底图样式
                     type: 'vector', //设置底图为矢量底图
                     features: [ //设置矢量底图要素类型
                         'base',

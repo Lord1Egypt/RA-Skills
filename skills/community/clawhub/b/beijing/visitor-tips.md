@@ -9,7 +9,7 @@
 | 🔴 CRITICAL | Download VPN | Cannot download inside China |
 | 🔴 CRITICAL | Download WeChat + verify phone | Everything runs on WeChat |
 | 🔴 CRITICAL | Get Alipay (Tour Pass for foreigners) | Mobile payment is essential |
-| 🟡 Important | Download Baidu Maps or Amap | Google Maps doesn't work |
+| 🟡 Important | Download Amap (高德) | Google Maps doesn't work; Amap has English mode |
 | 🟡 Important | Book Forbidden City | Sells out 10 days ahead |
 | 🟡 Important | Download offline translator | Google Translate works offline |
 | 🟢 Helpful | Get Didi app | Chinese Uber |
@@ -23,7 +23,7 @@
 | **WeChat (微信)** | Everything — chat, pay, book tickets | Yes |
 | **Alipay (支付宝)** | Backup payment | Yes |
 | **Didi (滴滴)** | Ride-hailing | Yes |
-| **Baidu Maps / Amap** | Navigation | Amap has English |
+| **Amap (高德)** | Navigation | Yes (English mode) |
 | **Pleco** | Chinese dictionary | Yes |
 | **Google Translate** | Camera translation, offline | Yes |
 | **Meituan (美团)** | Food delivery, tickets | Limited |
@@ -39,10 +39,10 @@
 
 | Method | Acceptance | Notes |
 |--------|------------|-------|
-| **WeChat Pay** | 99% | Most common |
-| **Alipay** | 99% | Equally common |
-| **Cash** | 60% | Declining, some places refuse |
-| **Credit Card** | 30% | Only big hotels/malls |
+| **WeChat Pay** | Near-universal | Street stalls to hospitals |
+| **Alipay** | Near-universal | Some vendors take only one of the two — set up both |
+| **Cash** | Legal tender, practical friction | Small vendors often can't make change; taxis grumble |
+| **Credit Card** | International hotels and malls only | Don't plan around it |
 
 ### Setting Up Mobile Payment (Foreigners)
 
@@ -84,20 +84,7 @@
 
 **Reality check:** English is NOT widely spoken in Beijing. Even in tourist areas, expect communication challenges.
 
-**Essential Phrases (with pinyin):**
-
-| English | Chinese | Pinyin |
-|---------|---------|--------|
-| Hello | 你好 | nǐ hǎo |
-| Thank you | 谢谢 | xiè xie |
-| How much? | 多少钱？ | duō shao qián? |
-| Too expensive | 太贵了 | tài guì le |
-| I don't understand | 我不懂 | wǒ bù dǒng |
-| Where is...? | ...在哪里？ | ...zài nǎ lǐ? |
-| Toilet | 厕所/洗手间 | cè suǒ / xǐ shǒu jiān |
-| I want this | 我要这个 | wǒ yào zhè ge |
-| Check please | 买单/结账 | mǎi dān / jié zhàng |
-| No spicy | 不要辣 | bú yào là |
+**Essential phrases:** full table with Beijing-accent notes in `culture.md` (canonical). Minimum viable set: 你好 (hello), 谢谢 (thanks), 多少钱 (how much), 买单 (check please), 不要辣 (no spicy).
 
 **Communication Strategies:**
 1. **Screenshots:** Save address in Chinese characters
@@ -144,7 +131,7 @@
 **Apps to check:** WeChat AQI mini-programs, aqicn.org, Air Matters app
 
 **Best AQI:** Autumn (Sep-Nov), after rain
-**Worst AQI:** Winter heating season (Nov-Feb)
+**Worst AQI:** Winter heating season (mid-Nov to mid-Mar)
 
 ### Emergency Numbers
 
@@ -157,36 +144,17 @@
 
 ---
 
-## Cultural Etiquette
+## Cultural Etiquette (visitor essentials)
 
-### Do's ✅
+Full etiquette, dining script, and sensitive-topics guidance: `culture.md` (canonical). Visitor-critical subset:
 
-- **Accept things with both hands** — Business cards, gifts, money
-- **Toast lower** — When clinking glasses, keep yours lower than elders/seniors
-- **Try everything offered** — Refusing food is impolite
-- **Carry tissues** — Public toilets often don't have paper
-- **Learn basic Chinese** — Even "hello" and "thank you" appreciated
-- **Be patient with crowds** — Personal space concept is different
-- **Respect photography rules** — Many temples ban photos inside
-
-### Don'ts ❌
-
-- **Don't tip** — Not expected, can be awkward
-- **Don't discuss politics** — Taiwan, Tibet, Tiananmen — avoid completely
-- **Don't stick chopsticks upright** — Resembles funeral incense
-- **Don't give clocks as gifts** — "Giving clock" sounds like "attending funeral"
-- **Don't write names in red** — Associated with death
-- **Don't expect queuing** — Pushing is normal (improving but still...)
-- **Don't be surprised by staring** — Foreigners attract attention outside tourist areas
-
-### Restaurant Culture
-
-- **Sharing:** Dishes are communal, placed in center
-- **Lazy Susan:** Spin to share dishes
-- **Rice:** Often comes at the END (it's a filler)
-- **Bones/shells:** Spit onto plate or table — normal
-- **Fighting for the bill:** Host pays, guests fight to pay = respect
-- **Tipping:** Not expected, not necessary
+- **Don't tip** — not expected anywhere; can cause confusion
+- **Don't discuss politics** — Taiwan, Tibet, Tiananmen, Xinjiang: deflect, even on WeChat
+- **Carry tissues + hand sanitizer** — public toilets often have neither paper nor soap
+- **Photography** — many temple interiors ban photos; never photograph police/military/government buildings
+- **Staring at foreigners** — curiosity, not hostility; smile or ignore
+- **Queues** — guard your place calmly; cutting happens
+- **Restaurant basics** — dishes are shared from the center, rice arrives last, bones on the table are normal, the host pays
 
 ---
 
@@ -378,16 +346,12 @@
 
 ## Final Tips from Expats
 
-1. **VPN is non-negotiable** — Install before arrival
-2. **Learn to love WeChat** — Resistance is futile
-3. **Carry your passport** — Random police checks happen
-4. **Don't drink tap water** — Bottled only
-5. **Squat toilets are common** — Tissues and hand sanitizer essential
-6. **Prepare for crowds** — Personal space doesn't exist
-7. **Be flexible** — Things work differently here, adapt
-8. **Smile and point** — When language fails
-9. **Take photos of addresses** — Show to taxi/DiDi drivers
-10. **Enjoy the chaos** — Beijing is intense but incredible
+1. **Carry your passport** — required at every major attraction and for random police checks; a photo of it is NOT accepted at attraction gates
+2. **Don't drink tap water** — bottled or boiled only, including for teeth if sensitive stomach
+3. **Phone battery = wallet** — a dead phone means no payment, no DiDi, no tickets; carry a power bank
+4. **Addresses as screenshots in characters** — show, don't say; pinyin fails with drivers
+5. **Add 30 min buffer per famous site** — security checks and ID verification queues are structural, not bad luck
+6. **If a stranger approaches YOU in English, assume scam** — every common scam starts this way (→ Common Scams above)
 
 ---
 

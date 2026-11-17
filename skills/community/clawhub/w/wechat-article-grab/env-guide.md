@@ -8,11 +8,11 @@
 
 ### 获取地址
 ```
-https://down.mptext.top/dashboard/api
+https://wechat.faiz-world.com/dashboard/api
 ```
 注册后可在 API 页面生成密钥，有效期 4 天（会话级）。
 
-> ⚠️ 注意：本副本使用 down.mptext.top 作为 API 域名。原始版使用 wechat.faiz-world.com。
+> ⚠️ 注意：部分第三方镜像站（如 down.mptext.top）可能使用不同的 key 体系，请从 API 所属域名获取。
 
 ### 配置方式
 ```

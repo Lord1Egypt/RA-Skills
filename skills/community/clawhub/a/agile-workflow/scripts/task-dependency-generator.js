@@ -228,11 +228,11 @@ if (require.main === module) {
   const args = process.argv.slice(2);
   
   if (args.length < 2) {
-    console.log('用法: node task-dependency-generator.js <项目目录> <总章节数> [选项JSON]');
+    console.log('用法: node taREDACTED-SECRET.js <项目目录> <总章节数> [选项JSON]');
     console.log('');
     console.log('示例:');
-    console.log('  node task-dependency-generator.js /path/to/project 11');
-    console.log('  node task-dependency-generator.js /path/to/project 11 \'{"enableReview":true}\'');
+    console.log('  node taREDACTED-SECRET.js /path/to/project 11');
+    console.log('  node taREDACTED-SECRET.js /path/to/project 11 \'{"enableReview":true}\'');
     console.log('');
     console.log('选项:');
     console.log('  enableReview: true/false - 是否启用审查任务');

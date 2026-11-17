@@ -1,40 +1,54 @@
-## Description: <br>
-Generates policy-aligned Simplified Chinese customer service replies for e-commerce aftersales cases covering returns or exchanges, logistics exceptions, and compensation negotiations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate reusable, policy-aligned customer service replies for e-commerce aftersales scenarios, including return or exchange requests, logistics exception inquiries, and aftersales compensation negotiation.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Customer support agents and e-commerce operators use this skill to draft fast, sendable Chinese aftersales responses that acknowledge the customer issue, state the next step or approved outcome, and avoid unsupported commitments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may assume missing case facts, platform policy, language preference, or compensation authority when the prompt is vague. <br>
-Mitigation: Provide the desired language, platform policy, compensation limits, and concrete case facts before using the reply. <br>
-Risk: Customer-facing text could overcommit on refunds, timing, liability, or follow-up if the agent has not verified the operational facts. <br>
-Mitigation: Review the draft against the current order status and approved service policy before sending it to a customer. <br>
+## Use Case:
 
+Customer support staff use this skill to draft concise simplified-Chinese replies for e-commerce aftersales conversations. It helps prepare sendable responses for returns or exchanges, logistics exceptions, and compensation discussions while keeping commitments within the facts supplied by the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ecommerce-aftersales-reply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text in Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to a scenario judgment plus a suggested reply unless the caller requests only the customer-facing reply text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated replies may include inaccurate policy wording, refund timing, compensation authority, or platform-required language if the case details are incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each reply against the merchant policy, platform requirements, and authorized compensation scope before sending it to a customer.
+
+Risk: The skill can draft customer-facing messages from operational details, so sensitive order, contact, or account information may appear in prompts or outputs.
+
+Mitigation: Limit inputs to the information needed for the aftersales case and remove unnecessary personal or account data before using the draft.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/ecommerce-aftersales-reply)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Simplified Chinese reply text or Markdown with scenario judgment and suggested reply]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide direct sendable replies, three alternative tones, or fill-in templates with placeholders when details are incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

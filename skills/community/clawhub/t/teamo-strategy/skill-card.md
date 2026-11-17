@@ -1,39 +1,53 @@
-## Description: <br>
-Teamo Strategy helps agents decompose complex tasks into independent strategic modules and request missing context before planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decomposes complex tasks into independent information modules, requests missing background context when needed, and coordinates structured strategy outputs.
 
-## Publisher: <br>
-[urrrich](https://clawhub.ai/user/urrrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich](https://clawhub.ai/user/urrrich)
 
-## Use Case: <br>
-Employees, external users, and planning agents use this skill to break complex writing, research, analysis, or implementation requests into clear subtasks, gather missing background material, and organize outputs into chapters or summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may request detailed background files, which can expose confidential or sensitive information if users upload more than the task requires. <br>
-Mitigation: Upload only necessary documents, remove credentials or confidential details where possible, and set clear boundaries for what context should be used. <br>
-Risk: Complex decomposition can produce very long outputs that increase review burden and cost. <br>
-Mitigation: State the desired level of detail up front and review generated subtasks before relying on downstream work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Teamo Strategy on ClawHub](https://clawhub.ai/urrrich/teamo-strategy) <br>
+## Use Case:
 
+External users and employees use this skill to plan complex work such as event plans, competitor analysis, writing projects, and code tasks by identifying missing context, decomposing the work into independent modules, and organizing summary plus chapter-style deliverables.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request additional context or attachments before decomposing complex tasks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for detailed background materials and pass relevant attachments into delegated sub-tasks.
+
+Mitigation: Review attachments and remove sensitive business, financial, client, or personal data before use.
+
+Risk: Delegated sub-task descriptions may be written in Chinese, which can reduce transparency for reviewers who do not read Chinese.
+
+Mitigation: Have a Chinese-capable reviewer inspect delegated task descriptions when the subject matter is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urrrich/skills/teamo-strategy)
+- [Publisher profile](https://clawhub.ai/user/urrrich)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown documents and concise user-facing status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request background materials and attachments before decomposition; for larger tasks, organizes outputs into an executive summary and chapter-style sections.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

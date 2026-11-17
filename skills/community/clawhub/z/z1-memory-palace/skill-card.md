@@ -1,46 +1,61 @@
-## Description: <br>
-Long-term memory system for AI agents using a file-based palace architecture with BGE-M3 vector search, metadata filtering, compound scoring, GraphRAG Lite neighbor expansion, and memory metabolism protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory system for AI agents using a file-based palace architecture with BGE-M3 vector search, metadata filtering, compound scoring, GraphRAG Lite neighbor expansion, and memory metabolism protocols.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create or upgrade file-based long-term memory for AI agents with vector search, metadata filtering, temporal weighting, graph-neighbor expansion, and structured memory consolidation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and queries a persistent local memory index, which can expose unintended local content if the manifest scope is too broad. <br>
-Mitigation: Keep the manifest limited to the intended memory directory and exclude secrets, credentials, and unrelated workspace files. <br>
-Risk: Background maintenance can run local indexing scripts automatically. <br>
-Mitigation: Review any scheduled maintenance setup before enabling it, and confirm the commands and paths match the intended environment. <br>
-Risk: The artifact scripts include local absolute paths that may not match a new user's filesystem. <br>
-Mitigation: Adapt and review paths before execution so indexing and query operations target only the intended local memory palace. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create or upgrade file-based long-term memory for AI agents with vector search, recency and importance scoring, limited graph-neighbor expansion, cold archive handling, and reflection protocols.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/z1one0415/z1-memory-palace) <br>
-- [GraphRAG Lite Protocol V1](references/graphrag_lite.md) <br>
-- [Z1 Memory Metabolism Protocol V1](references/memory_metabolism.md) <br>
-- [Query Memory Palace Protocol V1](references/query_protocol.md) <br>
-- [read_drawer_file Tool Spec V1](references/read_drawer_file.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-line query/index records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files and local vector index artifacts; query output is limited to top matches plus up to two graph neighbors per core result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill can index broad local memory files if the manifest or root path is too permissive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a dedicated, low-privilege workspace and validate manifest paths against the intended memory directory before building an index.
+
+Risk: Python dependency and embedding model revisions are not pinned in the artifact.
+
+Mitigation: Pin the FlagEmbedding package and BAAI/bge-m3 model revision before deployment, then rebuild the index in a controlled environment.
+
+Risk: Recurring maintenance can repeatedly read and update local memory indexes without operator review.
+
+Mitigation: Do not enable scheduled maintenance until file scope, generated index locations, and cold-zone exclusion behavior are reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/z1one0415/skills/z1-memory-palace)
+- [Memory Metabolism Protocol](references/memory_metabolism.md)
+- [GraphRAG Lite Protocol](references/graphrag_lite.md)
+- [Query Memory Palace Protocol](references/query_protocol.md)
+- [Read Drawer File Tool Spec](references/read_drawer_file.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python scripts, JSONL manifest examples, and operational protocols]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query output is designed to return top-ranked JSON records and optional score details from a local memory index.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

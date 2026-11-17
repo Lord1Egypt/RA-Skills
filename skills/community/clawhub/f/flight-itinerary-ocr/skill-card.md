@@ -1,45 +1,62 @@
-## Description: <br>
-Extracts structured data from aviation electronic ticket itineraries, including passenger name, identification number, flight number, route, departure and arrival times, fare, fuel surcharge, civil aviation fund, and electronic ticket number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts passenger, identity, flight, route, time, fare, surcharge, civil aviation fund, and e-ticket number fields from Chinese air transport e-ticket itineraries using the Scnet OCR API.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and agent operators use this skill to submit a local flight itinerary, ticket, or invoice file to Scnet OCR and receive structured recognition results for travel-document processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected itinerary, ticket, or invoice files are uploaded to Scnet's hosted OCR API. <br>
-Mitigation: Use the skill only for documents approved for Scnet processing and confirm the exact local file path before running it. <br>
-Risk: The skill requires a sensitive Scnet API key. <br>
-Mitigation: Store the key in SCNET_API_KEY or the local config file with restricted permissions, and do not paste the key into chat. <br>
-Risk: OCR output may contain personal or travel-document data extracted from the submitted file. <br>
-Mitigation: Handle the returned JSON as sensitive workflow data and share it only with intended recipients or systems. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to OCR flight itinerary images, PDFs, or supported archives and receive structured itinerary fields for downstream review or automation.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API Documentation](references/api-docs.md) <br>
-- [OCR Field Summary](assets/templates/fields-summary.md) <br>
-- [Scnet](https://www.scnet.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/flight-itinerary-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [JSON recognition results on standard output, with human-readable error messages when configuration, file access, network, or API failures occur.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY; supports SCNET_API_BASE override; removes confidence fields from returned API results before printing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter, skill.yaml, release metadata) <br>
+Risk: The skill can upload sensitive local itinerary documents to an external OCR endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with files approved for Scnet or the configured OCR endpoint, and run it with access limited to the specific documents intended for OCR.
+
+Risk: The configurable SCNET_API_BASE value can redirect documents and the bearer token to another endpoint.
+
+Mitigation: Keep SCNET_API_BASE set to the documented HTTPS Scnet API unless the replacement endpoint is fully trusted.
+
+Risk: The API key is read from the local environment or .env configuration.
+
+Mitigation: Store SCNET_API_KEY carefully, avoid sharing it in chats or logs, and prefer an isolated runtime with restricted file permissions.
+
+## Reference(s):
+
+- [Sugon-Scnet OCR API documentation summary](references/api-docs.md)
+- [OCR field summary](assets/templates/fields-summary.md)
+- [Scnet website](https://www.scnet.cn)
+- [Scnet OCR API endpoint](https://api.scnet.cn/api/llm/v1)
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/flight-itinerary-ocr)
+- [Publisher profile](https://clawhub.ai/user/scnet-sugon)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Pretty-printed JSON on standard output, with localized plain-text error messages on failure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the Scnet OCR data array after removing confidence fields from result items.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, skill.yaml, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,64 @@
-## Description: <br>
-AWS EMR interaction skill for managing EMR Serverless, EMR on EC2, and EMR on EKS; it helps agents submit and manage Spark, Hive, and PySpark jobs across EMR deployment modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AWS EMR interaction skill for managing EMR Serverless, EMR on EC2, and EMR on EKS.
 
-## Publisher: <br>
-[yhyyz](https://clawhub.ai/user/yhyyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhyyz](https://clawhub.ai/user/yhyyz)
 
-## Use Case: <br>
-Developers and data engineers use this skill through an AI agent to operate AWS EMR workloads, including listing resources, submitting jobs, monitoring lifecycle state, cancelling jobs, and retrieving logs or results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform EMR and S3 operations using the active AWS identity. <br>
-Mitigation: Run it with a least-privilege AWS role scoped to the intended EMR, EKS, and S3 resources. <br>
-Risk: A result retrieval path may return the newest object from a shared S3 result prefix rather than the requested job's result. <br>
-Mitigation: Use job-specific S3 prefixes and avoid get_job_result in multi-user or concurrent-job environments until results are bound to the job run ID. <br>
-Risk: Logs and job outputs may contain sensitive workload data. <br>
-Mitigation: Keep secret masking enabled, avoid shared result prefixes for sensitive workloads, and review returned logs before redistributing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage AWS EMR Serverless, EMR on EC2, and EMR on EKS resources through an agent, including submitting Spark, Hive, and PySpark jobs, checking status, retrieving logs, and managing resource lifecycles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhyyz/aws-emr-skills) <br>
-- [Project homepage](https://github.com/yhyyz/aws-emr-skills) <br>
-- [AWS EMR on EKS setup guide](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/setting-up.html) <br>
-- [EMR Serverless application management guide](references/emr_serverless/application_guide.md) <br>
-- [EMR Serverless job management guide](references/emr_serverless/job_guide.md) <br>
-- [EMR on EC2 cluster management guide](references/emr_on_ec2/cluster_guide.md) <br>
-- [EMR on EC2 step guide](references/emr_on_ec2/step_guide.md) <br>
-- [EMR on EKS virtual cluster guide](references/emr_on_eks/virtual_cluster_guide.md) <br>
-- [EMR on EKS job run guide](references/emr_on_eks/job_run_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text, often including Python tool-call arguments, shell commands, AWS resource identifiers, job status summaries, logs, and S3 result snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include AWS API responses, EMR job or cluster state, masked log excerpts, and user-provided AWS resource paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can make impactful AWS changes, including job submission, cancellation, cluster termination, and virtual-cluster deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege AWS credentials, test in a non-production account first, and require explicit confirmation before mutating AWS resources.
+
+Risk: One result-retrieval path may return data from the wrong job when shared S3 result prefixes are used.
+
+Mitigation: Avoid shared S3 result prefixes for result retrieval until results are bound to exact job IDs.
+
+Risk: Unpinned installer or dependency versions can introduce unexpected behavior.
+
+Mitigation: Pin installer and dependency versions before deployment.
+
+## Reference(s):
+
+- [AWS EMR Skills Homepage](https://github.com/yhyyz/aws-emr-skills)
+- [EMR on EKS setup documentation](https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/setting-up.html)
+- [EMR Serverless application management guide](references/emr_serverless/application_guide.md)
+- [EMR Serverless job guide](references/emr_serverless/job_guide.md)
+- [EMR on EC2 cluster guide](references/emr_on_ec2/cluster_guide.md)
+- [EMR on EC2 step guide](references/emr_on_ec2/step_guide.md)
+- [EMR on EKS virtual cluster guide](references/emr_on_eks/virtual_cluster_guide.md)
+- [EMR on EKS job run guide](references/emr_on_eks/job_run_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, and structured AWS operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate AWS EMR, EMR Serverless, EMR Containers, and S3 API operations when used with configured AWS credentials.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

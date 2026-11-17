@@ -1,41 +1,53 @@
-## Description: <br>
-Helps an agent break complex tasks into sequential reasoning steps with support for revision, branch exploration, and hypothesis validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through sequential thinking for complex tasks, including task decomposition, dynamic revisions, branching exploration, and hypothesis validation.
 
-## Publisher: <br>
-[paibwhgs](https://clawhub.ai/user/paibwhgs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paibwhgs](https://clawhub.ai/user/paibwhgs)
 
-## Use Case: <br>
-Agent developers and operators use this skill to structure complex tasks into sequential thoughts, revisions, branches, and hypotheses. It is useful when planning multi-step work, comparing solution paths, or maintaining context across a complex task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reasoning notes may contain secrets, private data, confidential business details, or regulated legal, medical, or financial information if saved locally. <br>
-Mitigation: Use explicit invocation for sensitive work and avoid saving local thinking logs unless storage and deletion practices are understood. <br>
-Risk: Always-on use can shift agent behavior toward unnecessary planning overhead or expose more intermediate reasoning than intended. <br>
-Mitigation: Install and invoke it as a reasoning helper for complex tasks rather than as a blanket behavior change. <br>
+## Use Case:
 
+Developers and agents use this skill to structure complex requests into ordered steps, revise earlier reasoning, explore branches, and validate candidate solutions during planning and execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paibwhgs/agent-sequential-thinking) <br>
-- [Publisher profile](https://clawhub.ai/user/paibwhgs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured reasoning notes, with optional JSON-style thought records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to record thinking notes in local Markdown files when configured to do so.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persisted thinking records may contain private data, credentials, business plans, or other sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before saving thinking records, avoid persisting raw reasoning or secrets, and redact sensitive content before storage.
+
+Risk: Automatic activation on complex tasks may create thinking records when the user did not expect long-lived notes.
+
+Mitigation: Define clear activation rules and retention limits before installing the skill in workflows that handle sensitive work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paibwhgs/skills/agent-sequential-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sequential thinking records and optional branch or revision metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

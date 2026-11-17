@@ -1,45 +1,55 @@
-## Description: <br>
-GraphHopper helps agents use an OOMOL-connected GraphHopper account for routing, geocoding, isochrones, travel matrices, and custom profile listing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected GraphHopper service to calculate routes, isochrones, travel matrices, geocode locations, and list routing profiles.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill when an agent needs to search or read GraphHopper routing, geocoding, isochrone, matrix, or profile data through the OOMOL connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an external connector. <br>
-Mitigation: Install only if you trust OOMOL and intend to use GraphHopper through its connector. <br>
-Risk: Route, location, and geocoding queries may be visible to connected services. <br>
-Mitigation: Avoid submitting sensitive location data unless the connected account and service usage are appropriate for that data. <br>
-Risk: The one-time oo CLI installer runs local installation commands. <br>
-Mitigation: Review the installer before running it and use setup steps only when the CLI, authentication, or connection is missing. <br>
+## Use Case:
 
+Developers and operators use this skill to query GraphHopper routing and location services through an existing OOMOL connection. It returns route, isochrone, matrix, geocoding, or profile data.
 
-## Reference(s): <br>
-- [ClawHub GraphHopper Skill](https://clawhub.ai/oomol/oo-graphhopper) <br>
-- [GraphHopper Homepage](https://www.graphhopper.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return GraphHopper data as JSON through the oo connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Automatic CLI setup may download and execute code that was not verified in the supplied package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before first-time setup, review and explicitly approve a verified CLI installation, and check its first-run skill installation behavior.
+
+Risk: Addresses and coordinates pass through OOMOL to GraphHopper, and requests may consume credit.
+
+Mitigation: Send only location data approved for this service, and check expected credit use before making requests.
+
+## Reference(s):
+
+- [GraphHopper API documentation](https://docs.graphhopper.com/)
+- [GraphHopper homepage](https://www.graphhopper.com)
+- [GraphHopper skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-graphhopper)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON service results with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected action and supplied locations or routing parameters.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

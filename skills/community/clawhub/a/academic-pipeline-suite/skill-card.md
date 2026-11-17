@@ -1,51 +1,64 @@
-## Description: <br>
-Academic Pipeline Suite is a bundled meta-skill package for installing and using an academic research and writing workflow with literature search, deep research, paper writing, peer review, humanization, IMA knowledge-base, and integrity verification skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Academic Research & Writing Suite for one-click installation of the Academic Pipeline ecosystem, including literature search, deep research, paper writing, peer review, humanization, IMA knowledge-base support, and integrity verification.
 
-## Publisher: <br>
-[eric-promax](https://clawhub.ai/user/eric-promax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric-promax](https://clawhub.ai/user/eric-promax)
 
-## Use Case: <br>
-External users, students, researchers, and academic writers use this skill to install a bundled academic workflow and guide literature search, research synthesis, drafting, review, revision, integrity checks, and final document preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installation workflow can overwrite existing local academic skills. <br>
-Mitigation: Review the install script before use and back up existing local skills before installing or reinstalling the suite. <br>
-Risk: Some academic search workflows can control a logged-in Chrome session through remote debugging. <br>
-Mitigation: Use a dedicated browser profile, avoid enabling remote debugging on an everyday profile, and stop the CDP proxy when the task is complete. <br>
-Risk: Humanizer components may be used to conceal AI assistance where disclosure is required. <br>
-Mitigation: Use rewriting features only within applicable academic, institutional, and venue disclosure policies. <br>
-Risk: Some workflows require user-provided credentials for academic or knowledge-base services. <br>
-Mitigation: Use least-privilege credentials where possible and avoid placing secrets in shared prompts, drafts, or generated reports. <br>
+## Use Case:
 
+External users, students, researchers, and academic writers use this skill to install and run a full academic research and writing workflow. It coordinates literature search, research synthesis, drafting, integrity checks, peer review, revision, humanization, final formatting, and process summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/eric-promax/academic-pipeline-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/eric-promax) <br>
-- [Complete usage guide](https://feishu.cn/docx/GRb7dGij9olddExTBsCcpoaCnWg) <br>
-- [Quickstart guide](QUICKSTART.md) <br>
-- [Release notes](RELEASE_NOTES.md) <br>
-- [Academic pipeline state machine](skills/academic-pipeline/references/pipeline_state_machine.md) <br>
-- [Integrity review protocol](skills/academic-pipeline/references/integrity_review_protocol.md) <br>
-- [Academic search API cookbook](skills/academic-search/references/api-cookbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with commands, checklists, review reports, drafting and revision artifacts, and document preparation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local installed skills, external academic APIs, user-provided credentials, and browser automation depending on the workflow stage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata references 3.5.0) <br>
+Risk: The suite can replace multiple local skills during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed skill list and installation script behavior before deployment, and keep backups of any local skills that may be overwritten.
+
+Risk: Some bundled workflows may use browser automation or Chrome remote debugging.
+
+Mitigation: Avoid enabling Chrome remote debugging for a daily browser profile; use a separate controlled profile when browser automation is needed.
+
+Risk: IMA notes and knowledge-base workflows may rely on user API credentials or custom endpoints.
+
+Mitigation: Use trusted IMA credentials only, avoid setting IMA_BASE_URL or custom baseUrl values unless reviewed, and keep credentials out of shared transcripts and outputs.
+
+Risk: Humanization stages may affect academic disclosure and integrity obligations.
+
+Mitigation: Follow institutional AI-use disclosure, citation, and authorship rules before using outputs in academic submissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eric-promax/skills/academic-pipeline-suite)
+- [Complete Usage Guide](https://feishu.cn/docx/GRb7dGij9olddExTBsCcpoaCnWg)
+- [ClawHub Suite Page](https://clawhub.ai/eric-promax/academic-suite)
+- [Support and Issues](https://github.com/eric-promax/academic-agents/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, shell commands, configuration prompts, and generated academic documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce research plans, literature matrices, paper drafts, review reports, revision responses, integrity reports, final document instructions, and process summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

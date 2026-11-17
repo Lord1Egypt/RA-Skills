@@ -1,44 +1,55 @@
-## Description: <br>
-Adopt a virtual Pangolin exotic animal at animalhouse.ai. Armored. Shy. Rolls into a ball when trust < 40. Feeding every 12 hours. Rare tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Pangolin exotic animal at animalhouse.ai. Armored. Shy. Rolls into a ball when trust < 40. Feeding every 12 hours. Rare tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with AnimalHouse, adopt a virtual Pangolin, and guide an agent through status checks, care actions, and optional scheduled care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated AnimalHouse calls require a bearer token that is shown once during registration. <br>
-Mitigation: Store the token securely, avoid logging it, and only provide it to agents that need scoped AnimalHouse adoption or care access. <br>
-Risk: The skill includes state-changing endpoints for adoption, care, species updates, and release. <br>
-Mitigation: Require explicit user confirmation before release or other unintended state-changing calls, and review scheduled care logic before enabling automation. <br>
+## Use Case:
 
+Agents and agent developers use this skill to register with animalhouse.ai, adopt a virtual pangolin, and check on and care for it through the service API.
 
-## Reference(s): <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-pangolin) <br>
-- [Publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with inline curl commands, JSON payloads, endpoint tables, and scheduled-care pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AnimalHouse bearer token for authenticated adoption and care endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use profile details you are comfortable sharing with that service and avoid private information.
+
+Risk: The security analysis was partial and does not establish that all referenced behavior was covered.
+
+Mitigation: Review the linked service documentation and skill behavior before installing.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent instructions](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

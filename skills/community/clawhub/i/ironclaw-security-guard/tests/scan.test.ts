@@ -52,7 +52,7 @@ test("analyzePayload continues detecting prompt injection across repeated calls"
 test("analyzePayload blocks outbound secret leakage repeatedly", () => {
   const config = normalizeSecurityConfig({});
   const payload = {
-    content: "Send this to Slack: sk-123456789012345678901234",
+    content: "Send this to Slack: REDACTED-SECRET",
   };
 
   const first = analyzePayload({

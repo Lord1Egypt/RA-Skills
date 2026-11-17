@@ -1,47 +1,66 @@
-## Description: <br>
-A股/港股/美股量化分析工具，提供技术分析、策略生成、回测验证和风险管理功能。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+A stock-market quantitative analysis agent skill for A-share, Hong Kong, and U.S. equity analysis, including technical analysis, strategy generation, backtesting, and risk management.
 
-## Publisher: <br>
-[ganjiakoun16](https://clawhub.ai/user/ganjiakoun16) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ganjiakoun16](https://clawhub.ai/user/ganjiakoun16)
 
-## Use Case: <br>
-Developers and financial-analysis teams use this skill to equip agents with stock-market data access, technical analysis, strategy generation, backtesting, and risk-management guidance for A-share, Hong Kong, and U.S. equities. Its outputs should be treated as research support rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags the release for review because it creates an optional brokerage trading context while describing itself as data-only and non-trading. <br>
-Mitigation: Use read-only market-data credentials, avoid brokerage tokens with trading permissions, and review Longport-related behavior before use. <br>
-Risk: Trading signals and backtest results may be incorrect, misleading, or unsuitable for a particular investment decision. <br>
-Mitigation: Treat outputs as research support rather than investment advice and require independent review before any financial action. <br>
-Risk: The skill may persist local SQLite data or model artifacts during analysis. <br>
-Mitigation: Run in a virtual environment and review, restrict, or disable local database and model persistence as needed. <br>
+## Use Case:
 
+Developers and external agent users can use this skill to fetch market data, run quantitative stock analysis, generate strategy signals, perform backtests, and review risk controls. It is framed by the artifact as research and development support rather than ready-to-use financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ganjiakoun16/beergaao) <br>
-- [README](artifact/README.md) <br>
-- [Factor reference](artifact/factor-reference.md) <br>
-- [Risk and backtest reference](artifact/risk-reference.md) <br>
-- [Strategy reference](artifact/strategy-reference.md) <br>
-- [Tushare token registration](https://tushare.pro/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python snippets, shell commands, and JSON tool responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires market-data credentials such as TUSHARE_TOKEN; outputs may include stock signals, backtest metrics, risk checks, and local state updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.5 (source: server release evidence) <br>
+Risk: Broker or market-data credentials may be exposed or over-scoped if used directly in a shared or production environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, use read-only and narrowly scoped API tokens, avoid Longport tokens with trading authority, and protect config.env permissions.
+
+Risk: Local model loading can be unsafe when model files are untrusted because joblib relies on pickle-like deserialization behavior.
+
+Mitigation: Do not load or keep model files unless their origin is trusted, and prefer safer model formats when adapting the skill.
+
+Risk: Pinned or aging dependencies may carry security or operational risk in sensitive account workflows.
+
+Mitigation: Review and update dependency pins before using the skill with sensitive accounts or production workflows.
+
+Risk: Financial analysis outputs may be mistaken for investment advice.
+
+Mitigation: Treat outputs as research support and require independent human review before any trading or portfolio decision.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ganjiakoun16/skills/beergaao)
+- [Strategy Engine Reference](artifact/strategy-reference.md)
+- [Factor System Reference](artifact/factor-reference.md)
+- [Risk and Backtest Reference](artifact/risk-reference.md)
+- [Tushare API](https://api.tushare.pro)
+- [EastMoney API](https://push2.eastmoney.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-style tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock signals, market summaries, backtest metrics, risk checks, and configuration guidance.]
+
+## Skill Version(s):
+
+3.3.5 (source: ClawHub release metadata; artifact frontmatter 3.2.6 and pyproject/skill.json 3.3.1 differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Report Formatter formats user-provided raw content into polished Chinese reports, emails, meeting notes, proposals, articles, and presentation outlines using selectable document styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Report Formatter turns raw content into professional Chinese-language reports, meeting minutes, weekly or monthly reports, emails, proposals, WeChat articles, and presentation outlines.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers, operators, and business users can use this skill to turn rough Chinese-language notes or draft content into structured documents such as internal reports, meeting minutes, weekly reports, formal emails, proposals, WeChat articles, or PPT outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formatting or beautifying vague source text may change emphasis, omit nuance, or make unsupported content look final. <br>
-Mitigation: Review the formatted output against the original source and specify the required format, facts, and constraints when precision matters. <br>
-Risk: Generated documents may contain placeholders for missing dates, participants, owners, deadlines, or other metadata. <br>
-Mitigation: Replace all placeholders and confirm action items before sharing or relying on the final document. <br>
+## Use Case:
 
+Employees, external users, and agent operators use this skill to convert unstructured notes, drafts, meeting records, and planning content into polished Chinese-language business documents. It is suited for report formatting, meeting minutes, work summaries, formal email drafts, proposals, public-account articles, and PPT outlines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/report-formatter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured headings, lists, tables, document metadata, and template labels.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Chinese-language formatted documents; may mark missing required information with placeholders for user completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Broad trigger wording may cause the skill to choose a document format automatically when the user request is vague.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for or provide the target format and style when the source content is sensitive or when format choice affects interpretation.
+
+Risk: Formatted outputs can make incomplete source material appear final or authoritative.
+
+Mitigation: Review generated reports for missing fields, factual preservation, dates, owners, and action items before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/report-formatter)
+- [Publisher profile](https://clawhub.ai/user/paudyyin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections, tables, checklists, and format metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May mark missing required details with [待补充], preserve source facts and data, and adapt structure to the requested document type and style.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

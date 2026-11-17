@@ -1,40 +1,49 @@
-## Description: <br>
-Multi-factor weighted decision matrix with sensitivity analysis for hard choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-factor weighted decision matrix with sensitivity analysis for hard choices.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to compare several options with weighted criteria, sensitivity analysis, and a concise recommendation report for complex decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recommendation can be misleading if the user provides biased weights, incomplete criteria, or subjective scores. <br>
-Mitigation: Review the weights and scores, include explicit caveats, and use the sensitivity analysis to show whether the top-ranked option is stable. <br>
-Risk: Users may include sensitive personal or business decision data while comparing options. <br>
-Mitigation: Ask only for the information needed to score the options and remind users to share sensitive details only when they are comfortable doing so. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to compare 3-5 options across weighted criteria, quantify trade-offs, and produce a defensible recommendation with sensitivity analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/decision-matrix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision report with weighted-score tables, sensitivity analysis, recommendations, and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided options, criteria, weights, and scores; does not request sensitive access or make system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Decision reports can be misleading when user-provided weights, scores, or assumptions are subjective or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the caveats, verify important inputs against actual data and personal constraints, and rerun sensitivity analysis before relying on the recommendation.
+
+## Reference(s):
+
+- [Decision Matrix ClawHub listing](https://clawhub.ai/harrylabsj/skills/decision-matrix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision report with tables, ranked recommendations, sensitivity analysis, and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-provided options, criteria, weights, scores, and any objective data supplied during the decision workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

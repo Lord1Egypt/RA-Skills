@@ -1,41 +1,57 @@
-## Description: <br>
-Proof Dm writes short LinkedIn DMs grounded in one customer proof point and one influence principle, tailored to a named recipient and offer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proof DM writes a short LinkedIn direct message, up to 80 words, grounded in one customer proof point and one influence principle tailored to a specific recipient's role.
 
-## Publisher: <br>
-[growthnation](https://clawhub.ai/user/growthnation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[growthnation](https://clawhub.ai/user/growthnation)
 
-## Use Case: <br>
-Sales representatives, founders, and growth teams use this skill to draft one ready-to-send LinkedIn DM for a specific prospect, using public research or optional GrowthNation proof data when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may include incorrect customer claims, proof points, or personal details if source evidence is weak or unavailable. <br>
-Mitigation: Review generated messages and cited proof before sending, especially customer claims and personal details. <br>
-Risk: When GrowthNation MCP is connected, the skill may use saved customer proof data to draft outreach. <br>
-Mitigation: Confirm that the selected proof is appropriate to use with the intended recipient and offer before sending. <br>
+## Use Case:
 
+Sales representatives, founders, and growth teams use this skill to draft ready-to-send LinkedIn outreach for a named recipient, using either verified customer proof or clearly flagged role-level claims.
 
-## Reference(s): <br>
-- [Proof Dm ClawHub release](https://clawhub.ai/growthnation/proof-dm) <br>
-- [growthnation publisher profile](https://clawhub.ai/user/growthnation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a ready-to-send DM, influence rationale, proof trace, and research mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [DM body is constrained to 80 words or fewer; proof should be traced to a real source or honestly flagged as role-level reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated DM may include inaccurate, outdated, or unwanted proof claims if the cited source or role-level claim is not checked before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proof trace and final message before sending, and verify any customer name, quote, statistic, or personal detail against the cited source.
+
+Risk: The skill includes a soft promotional closing line that may not match the user's intended outreach.
+
+Mitigation: Remove or rewrite any vendor or service pitch in the final line unless it was specifically requested.
+
+Risk: When connected to GrowthNation MCP, the skill can use saved proof and testimonial context to ground the message.
+
+Mitigation: Use the connected account only when that proof context is appropriate for the recipient and campaign.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/growthnation/skills/proof-dm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown in chat containing one LinkedIn DM, influence rationale, proof trace, and research mode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The DM body is constrained to 80 words or fewer and includes a single influence principle and proof point.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

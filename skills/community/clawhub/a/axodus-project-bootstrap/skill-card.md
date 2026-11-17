@@ -1,41 +1,57 @@
-## Description: <br>
-Bootstrap new projects with predictable structure and validation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap new projects with predictable structure and validation commands.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to initialize services, applications, libraries, contracts, or CLI projects with a predictable file structure, local quality gates, and safe configuration defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Placeholder trigger metadata could make the skill activate outside explicit project-bootstrap requests. <br>
-Mitigation: Prefer a fixed release with explicit trigger phrases and confirm invocation intent before using the skill. <br>
-Risk: Project bootstrapping can create or change local files in the selected target directory. <br>
-Mitigation: Use a version-controlled or disposable target directory first, then review generated files before committing. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize services, applications, libraries, contracts, or CLI projects with a predictable file structure, local validation commands, and safe configuration defaults.
 
-## Reference(s): <br>
-- [Project Bootstrap documentation](artifact/project-bootstrap.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-project-bootstrap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with file tree summaries, command examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or describe local project files, validation commands, and configuration contracts for the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.yml, release evidence) <br>
+Risk: Project scaffolding may create or modify files in an unintended target directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target path before execution and review the generated file tree before keeping changes.
+
+Risk: Generated dependencies, linting, formatting, or test settings may not match repository policy.
+
+Mitigation: Review dependency and configuration choices, then run the generated install, lint, test, and build commands.
+
+Risk: The artifact trigger metadata is malformed, which may make activation unreliable.
+
+Mitigation: Correct trigger metadata from the placeholder value to explicit activation triggers before publication or installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mzfshark/skills/axodus-project-bootstrap)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Markdown, Code]
+
+**Output Format:** [File tree, generated project files, README guidance, configuration defaults, and validation commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local scaffolding only; does not auto-deploy or modify global tooling unless explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

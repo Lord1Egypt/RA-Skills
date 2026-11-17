@@ -1,0 +1,16 @@
+{
+  "monthly_total": 212,
+  "tax_rate": 0.18,
+  "lines": [
+    {"name": "adult-1", "gb_month": 11, "premium": 62,
+     "insurance": {"age_mo": 30, "value": 320, "premium_mo": 17, "deductible": 200}},
+    {"name": "adult-2", "gb_month": 8, "premium": 62,
+     "insurance": {"age_mo": 10, "value": 900, "premium_mo": 17, "deductible": 200}},
+    {"name": "teen", "gb_month": 26, "premium": 62},
+    {"name": "grandma", "gb_month": 1.5, "premium": 42}
+  ],
+  "addons": [
+    {"name": "cloud storage 200GB", "amount": 10},
+    {"name": "premium visual voicemail", "amount": 5}
+  ]
+}

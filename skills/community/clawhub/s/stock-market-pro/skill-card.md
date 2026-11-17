@@ -1,45 +1,60 @@
-## Description: <br>
-Yahoo Finance (yfinance) powered stock analysis skill: quotes, fundamentals, ASCII trends, high-resolution charts (RSI/MACD/BB/VWAP/ATR), plus optional web add-ons (news + browser-first options/flow). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yahoo Finance (yfinance) powered stock analysis skill: quotes, fundamentals, ASCII trends, high-resolution charts (RSI/MACD/BB/VWAP/ATR), plus optional web add-ons for news and browser-first options or flow review.
 
-## Publisher: <br>
-[kys42](https://clawhub.ai/user/kys42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kys42](https://clawhub.ai/user/kys42)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to fetch market quotes and fundamentals, inspect terminal-friendly trends, create chart files with common technical indicators, and gather optional news or options-flow links for market research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ticker, market, and news queries may be sent to external market-data or search providers. <br>
-Mitigation: Use the skill only for market research where external lookups are acceptable, and avoid private or sensitive tickers and prompts. <br>
-Risk: The optional options-flow helper uses browser automation and third-party page scraping. <br>
-Mitigation: Skip the Playwright options-flow helper when browser automation or third-party scraping is not appropriate. <br>
-Risk: Python dependencies are installed at execution time and are not fully pinned by the artifact. <br>
-Mitigation: Install and run the skill in a virtual environment and review dependencies before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stock Market Pro on ClawHub](https://clawhub.ai/kys42/stock-market-pro) <br>
-- [uv package manager](https://github.com/astral-sh/uv) <br>
-- [Unusual Whales stock overview](https://unusualwhales.com/stock/{TICKER}/overview) <br>
-- [Unusual Whales live options flow](https://unusualwhales.com/live-options-flow?ticker_symbol={TICKER}) <br>
-- [Unusual Whales options flow history](https://unusualwhales.com/stock/{TICKER}/options-flow-history) <br>
+## Use Case:
 
+External users, developers, and market researchers use this skill to retrieve ticker quotes, summarize fundamentals, inspect terminal trends, create technical-analysis PNG charts, and collect optional market news or options-flow links for review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Terminal text and Markdown, with optional PNG chart files and CHART_PATH output lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market-data and news lookups may contact Yahoo Finance, DuckDuckGo, and optionally Unusual Whales.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.12 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill downloads Python dependencies at runtime and contacts external market-data, search, and options-flow services.
+
+Mitigation: Run it in an isolated environment, review commands before execution, and keep TLS verification enabled for network requests.
+
+Risk: The optional options-flow path may launch headless Chromium with the browser sandbox disabled.
+
+Mitigation: Prefer the browser-first options link helper and use the option scraper only when the added data is necessary.
+
+Risk: Generated chart files in /tmp can be overwritten by later runs using the same ticker.
+
+Mitigation: Move or rename chart outputs after generation when they need to be retained.
+
+## Reference(s):
+
+- [Stock Market Pro on ClawHub](https://clawhub.ai/kys42/skills/stock-market-pro)
+- [uv](https://github.com/astral-sh/uv)
+- [Unusual Whales stock overview](https://unusualwhales.com/stock/{TICKER}/overview)
+- [Unusual Whales live options flow](https://unusualwhales.com/live-options-flow?ticker_symbol={TICKER})
+- [Unusual Whales options flow history](https://unusualwhales.com/stock/{TICKER}/options-flow-history)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, files, guidance]
+
+**Output Format:** [Terminal text, Markdown link lists, shell command examples, and PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chart commands write PNG files under /tmp and report commands print CHART_PATH entries.]
+
+## Skill Version(s):
+
+1.2.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

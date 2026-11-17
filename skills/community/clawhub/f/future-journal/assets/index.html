@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html data-page-node-id="AzAX7BU5M7y1VPb2FCeTr0" lang="zh-CN">
+<!--pnid:uu9Qt6JyEuUN7lLBB1nMAL--><!--
+  语言范围 / Language Scope
+  默认简体中文（zh-CN）。英文双语说明随包提供，见 skill-card.md。
+  书写内容不限语言：用中文或英文写都可以，页面不对用户输入做语言限制。
+  引导句库为中文原创；用户如需其他语言的界面文案或句库，可向作者提出。
+  Default locale: Simplified Chinese (zh-CN). English documentation ships with the
+  skill (see skill-card.md). Journal entries may be written in any language —
+  Chinese or English — as the page does not restrict user input by locale.
+  Other interface languages or prompt libraries are available on request.
+-->
+<head data-page-node-id="FNLqiakwX0GQ7EsX3V4ZuS">
+<script data-page-node-id="qNqHRUdjbslMK37COEoxuO" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="ip3BugZ1RgCY1jxVEB1llg" charset="UTF-8">
+<meta data-page-node-id="fk0dHPbvMRFL2OVwEb1ba4" content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport">
+<meta data-page-node-id="eg803hiUjIpYr3Z3esyIrM" content="#FBF7EF" name="theme-color">
+<meta data-page-node-id="8MW5WgKpAuxD37Rn7KsKkp" content="yes" name="apple-mobile-web-app-capable">
+<title data-page-node-id="IvMRx8PtzC55JEcHf9QGbT" data-pnid-children="3bVm9P1Y3vtbcDV8YQYUw0">未来日记 · 49 天</title>
+<style data-page-node-id="KtNibzqmMUcUwWzrhsmldK" data-pnid-children="DBpfPeknhChYWIASnLAYqN">
+:root{
+  --paper:#FBF7EF;
+  --paper-2:#F6F1E5;
+  --card:#FFFDF8;
+  --line:#E7E0CF;
+  --line-soft:#F0EBDD;
+  --ink:#2B2925;
+  --ink-2:#5C574E;
+  /* WCAG 2.2 AA 校准过：三个色阶都在各自底色上 ≥4.5:1。
+     原来的 #918A7B 只有 3.0–3.4:1，12px 提示语和轨道格数字全都不达标。 */
+  --ink-3:#746D60;
+  /* 描摹引导字：有意留淡（它是「描」的底稿，不是给人读的正文），
+     所以只到 2.2:1。真正要读的地方（回顾页引句、打字目标字）一律不用这个色。
+     详见后面「对比度」一节。 */
+  --trace:#ABA492;
+  --accent:#AD5534;
+  --accent-2:#8F4425;
+  --accent-soft:#FAEFE8;
+  --ok:#48704D;
+  --ok-soft:#E8F0E6;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --sh-1:0 1px 2px rgba(64,52,34,.05),0 1px 1px rgba(64,52,34,.04);
+  --sh-2:0 4px 14px rgba(64,52,34,.08),0 1px 3px rgba(64,52,34,.05);
+  --r:10px;
+  --r-lg:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(180deg,rgba(255,255,255,.5) 0,rgba(255,255,255,0) 220px);
+}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px 112px}
+
+.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0 14px;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--serif);font-size:21px;letter-spacing:.06em}
+.top-sub{font-size:12px;color:var(--ink-3);margin-top:1px;letter-spacing:.04em}
+.pill{font-family:var(--serif);font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:4px 13px;white-space:nowrap}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;margin-top:16px;box-shadow:var(--sh-1)}
+.card.tight{padding:16px 18px}
+.tl{font-size:12px;color:var(--ink-3);letter-spacing:.06em;margin-bottom:12px}
+.tl b{font-weight:500;color:var(--accent)}
+
+h1{font-family:var(--serif);font-size:22px;font-weight:400;line-height:1.5;margin:0 0 10px;letter-spacing:.02em}
+h2{font-family:var(--serif);font-size:17px;font-weight:400;margin:0 0 8px}
+p{margin:0 0 10px}
+p:last-child{margin-bottom:0}
+.hint{font-size:12px;color:var(--ink-3);line-height:1.65;margin:10px 0 0}
+.hint.center{text-align:center}
+
+.btn{font-family:var(--sans);font-size:14px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);
+  border-radius:var(--r);padding:11px 16px;cursor:pointer;transition:background .15s,border-color .15s,opacity .15s}
+.btn:hover{border-color:var(--ink-3)}
+.btn:active{background:var(--paper-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn.ghost{background:transparent}
+.btn.wide{width:100%;display:block;margin-top:18px;padding:14px}
+.btn.small{font-size:12.5px;padding:7px 12px;border-radius:8px}
+.btn[disabled]{opacity:.4;cursor:default}
+.btn.danger{color:var(--accent-2);border-color:#E9CFC2}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+
+.flabel{display:block;font-size:12px;color:var(--ink-3);letter-spacing:.04em;margin-bottom:8px}
+input[type=text],input[type=date],textarea{
+  width:100%;font-family:var(--sans);font-size:16px;color:var(--ink);
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:11px 13px;outline:none;transition:border-color .15s,background .15s}
+input:focus,textarea:focus{border-color:var(--accent);background:var(--card)}
+textarea{resize:vertical;line-height:32px;min-height:128px;
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--line) 31px,var(--line) 32px);
+  background-position:0 11px;padding-top:11px}
+
+.wish-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.wish-row input{flex:1}
+.wish-del{border:none;background:transparent;color:var(--ink-3);font-size:19px;cursor:pointer;padding:0 4px;line-height:1}
+.wish-del:hover{color:var(--accent)}
+
+.day-head{background:var(--card)}
+.dh-date{font-family:var(--serif);font-size:22px;letter-spacing:.02em}
+.dh-theme{font-size:13px;color:var(--ink-2);margin-top:4px}
+.dh-focus{font-size:12px;color:var(--ink-3);margin-top:2px;line-height:1.6}
+.dh-bar{height:3px;background:var(--line);border-radius:2px;margin-top:14px;overflow:hidden}
+.dh-bar i{display:block;height:3px;background:var(--accent);border-radius:2px;transition:width .4s ease}
+
+.trace-static{font-family:var(--serif);font-size:20px;line-height:1.95;letter-spacing:.05em;color:var(--trace);padding:6px 0 2px}
+.trace-canvas{position:relative;background:var(--paper-2);border-radius:var(--r);overflow:hidden}
+.trace-canvas canvas{display:block}
+.trace-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.type-target{font-family:var(--serif);font-size:20px;line-height:1.95;letter-spacing:.05em;color:var(--ink-3);padding:6px 0 12px}
+.type-target span.hit{color:var(--ink);font-weight:600}
+.type-target span.miss{color:var(--accent);border-bottom:1px solid var(--accent)}
+.type-target span.cur{border-bottom:2px solid var(--accent)}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:13.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);
+  background:var(--paper-2);color:var(--ink-2);cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--ink-3)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.grid49{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px}
+.cell{aspect-ratio:1;padding:0;border-radius:8px;border:1px solid var(--line);background:var(--paper-2);
+  display:flex;align-items:center;justify-content:center;font-size:11.5px;color:var(--ink-3);
+  font-family:var(--serif);cursor:pointer;position:relative;transition:all .15s;appearance:none}
+.cell:hover{border-color:var(--ink-3)}
+.cell.done{background:var(--ok-soft);border-color:#CBDCC6;color:var(--ok)}
+.cell.today{border-color:var(--accent);border-width:2px;color:var(--accent);font-weight:500}
+/* future = 还没到的日子，用 disabled 而不是「长得像按钮的 div」。opacity .42→.58，
+   原来数字淡到看不清（禁用态虽不受对比度约束，但没必要虚成那样）。 */
+.cell.future{opacity:.58;cursor:default}
+.cell.future:hover{border-color:var(--line)}
+.wkrow{display:flex;align-items:center;gap:10px;margin-top:22px}
+.wkrow .wkno{font-family:var(--serif);font-size:13px;color:var(--accent);white-space:nowrap}
+.wkrow .wkname{font-size:13px;color:var(--ink-2)}
+.wkrow .wkline{flex:1;height:1px;background:var(--line)}
+
+.entry{border-left:2px solid var(--line);padding:2px 0 2px 14px;margin-bottom:16px}
+.entry .ed{font-family:var(--serif);font-size:12px;color:var(--ink-3)}
+.entry .ep{font-family:var(--serif);font-size:14px;color:var(--ink-3);margin:3px 0 5px}
+.entry .et{font-size:14.5px;color:var(--ink);line-height:1.75}
+.entry .ee{font-size:12px;color:var(--accent);margin-top:5px}
+.entry.realized{border-left-color:var(--ok)}
+
+.locked{text-align:center;padding:26px 16px}
+.locked .lk-t{font-family:var(--serif);font-size:16px;margin-bottom:8px}
+.locked .lk-d{font-size:13px;color:var(--ink-3);line-height:1.7}
+
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(251,247,239,.94);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabs{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.tab{border:none;background:transparent;font-family:var(--sans);font-size:12px;color:var(--ink-3);
+  padding:11px 2px 12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab .dot{width:5px;height:5px;border-radius:50%;background:transparent}
+.tab.on{color:var(--accent)}
+.tab.on .dot{background:var(--accent)}
+
+.view{display:none}
+.view.on{display:block}
+
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.stat div{background:var(--paper-2);border-radius:var(--r);padding:12px 13px}
+.stat .k{font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+.stat .v{font-family:var(--serif);font-size:22px;margin-top:2px}
+
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);font-size:13px;padding:9px 18px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:opacity .25s;z-index:60;max-width:88vw;text-align:center}
+.toast.on{opacity:.94}
+
+/* ---------- 无障碍：键盘焦点 / 触控目标 / 减少动效 ----------
+   原来全站没有任何 :focus-visible 样式，只有 input 改了边框色 —— 键盘用户
+   在按钮、心情词、轨道格、底部 tab 上完全看不到自己停在哪（WCAG 2.4.7）。 */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+/* 焦点环必须是「额外一层」，不能只靠换边框色 —— 换色本身在触碰屏上完全不可见 */
+.btn.primary:focus-visible,.chip.on:focus-visible{outline-color:var(--ink)}
+
+/* 触控目标：WCAG 2.2 SC 2.5.8 要求 ≥24×24 CSS px。
+   .wish-del 原来只有 19px 高（font-size:19px + 0 纵向 padding），是唯一明确不达标的一个。 */
+.wish-del{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+/* 这两个原来 31px 高，过得了 24px 的线但离 44px 的舒适区太远，各加 4px */
+.btn.small{padding:9px 13px}
+.chip{padding:9px 15px;min-height:36px}
+.tab{min-height:48px;padding:10px 2px 12px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+@media print{
+  .tabbar,.btn,.top,.trace-actions,.hint,.toast{display:none!important}
+  body{background:#fff}
+  .card{box-shadow:none;border-color:#ddd;break-inside:avoid;margin-top:12px}
+  .wrap{padding-bottom:0;max-width:100%}
+  .view{display:none!important}
+  .view.on{display:block!important}
+  /* 印在纸上是要给人「读」的，不是给人「描」的 —— 屏幕上那条「描摹灰可以淡」的豁免
+     只在「盖着描」时成立，落到纸上就失效了，所以这里加深到 6.71:1。 */
+  .trace-static,.type-target{color:var(--ink-2)}
+  .trace-canvas{display:none!important}
+}
+</style>
+</head>
+<body data-page-node-id="TORSXJLLrwS2rzSZBicoAN">
+
+<div data-page-node-id="55E0DaCus6XCOpRsG2E9OL" class="wrap">
+  <header data-page-node-id="2MzDo49Cq3zOfXzMXaIqPO" class="top">
+    <div data-page-node-id="lJ1fVvYDKVxB7xeVlmZSAR">
+      <div data-page-node-id="a3oc8EsfW4GZ9zI6I75Bba" class="brand"><!--pnid:NXv9OmaChGIfOxlA9HNVR9-->未来日记</div>
+      <div data-page-node-id="9w30mw7zzQY4pe6zWyL8FU" class="top-sub" id="topSub"><!--pnid:ph7LNYnBN4DMUSB7Wy3d56-->49 天 · 每周一个主题</div>
+    </div>
+    <div data-page-node-id="SXegMXoFhZnHSCZpIMMdJe" class="pill" hidden id="topPill"></div>
+  </header>
+
+  <main data-page-node-id="SuAQ0yVQGR3w15fXwaRHzi">
+  <section data-page-node-id="p4nu57X3jDGsvWy7w4Hcx9" class="view" id="view-setup">
+    <div data-page-node-id="EBT4NrxnZf9rV5OfXp93SK" class="card">
+      <h1 data-page-node-id="QwBmahcqTD4GhmDdbo5kk4"><!--pnid:vrcdiVMxzwO3sW3LcASWkJ-->先写下你想要的</h1>
+      <p data-page-node-id="ZqjzyjdiOKMhDFCg3nY918" style="color:var(--ink-2); font-size:14px"><!--pnid:g19s3RnWGZu9r7bLlJzvXf-->不用想得很完整。写 1–3 件你现在最想要的事，它会成为这 49 天的底色。</p>
+    </div>
+    <div data-page-node-id="vnxASuGGTEAg0xZLthrKaG" class="card">
+      <span data-page-node-id="AEE0notXGegkFXtd2I72rv" class="flabel" id="wishLabel"><!--pnid:MtKExne7PAEvTWZ8jWpfZx-->我想要（1–3 件）</span>
+      <div data-page-node-id="sy1tRXSA2K1JAttap4lham" aria-labelledby="wishLabel" id="wishList" role="group"></div>
+      <button data-page-node-id="dqtdruK7oJE3DhCXhQINYK" class="btn ghost small" id="btnAddWish" style="margin-top:4px"><!--pnid:DldCjGSAUMIFBsUZTTS54a-->+ 再加一件</button>
+    </div>
+    <div data-page-node-id="eSmoUFTSpA5jih1M9zMkj8" class="card">
+      <label data-page-node-id="AUQQtZ2on5VUdnt2naIzzo" class="flabel" for="inpStart"><!--pnid:eOvFNT9xPVzxsnFvGszsws-->从哪天开始</label>
+      <input data-page-node-id="oJBNC1bC3wKnhM8EAx6sBY" id="inpStart" type="date">
+      <p data-page-node-id="MG0Onxf274XM8C6Wv3SQ3V" class="hint"><!--pnid:T3oyR740nXOe9WgUVS7MZu-->默认今天。每天写一页，每周换一个主题，49 天为一轮。</p>
+    </div>
+    <button data-page-node-id="VFtWHC4ZDVrJlRGGgrMwtc" class="btn primary wide" id="btnStart"><!--pnid:bhNBpiG6VRvxxMSjjGs0j5-->开始这一轮</button>
+    <p data-page-node-id="5mT6nCPRygCdA1svuZyyAG" class="hint center"><!--pnid:pTl7diCJH0Cd6MtMBb5BOm-->默认所有内容只存在你这台设备的浏览器里。只有在「设置」里自己开通同步之后，内容才会加密上传到你自己的空间。</p>
+    <div data-page-node-id="PRLgRlgIq5sD9cw9Y9UIWQ" class="card">
+      <h2 data-page-node-id="4jLOX01FTvMQLmxoZELQpX"><!--pnid:6q9JpRjxBbzBpC435uHDDz-->已经在别的设备上开始了？</h2>
+      <p data-page-node-id="oy2xA0BB610R8gihofsHRJ" style="font-size:13.5px; color:var(--ink-2)"><!--pnid:iD0Zkzk9PThQk9Rq3Jgnwn-->开启同步，就能把那本日记接到这台设备上接着写，不用在这儿重新开始一轮。</p>
+      <button data-page-node-id="ib9W4BYyVfdhKufLbyhrWf" class="btn small" id="btnGoSync" style="margin-top:12px"><!--pnid:jQpy7VOvaENkfAVj09zN5Z-->去开启同步</button>
+    </div>
+  </section>
+
+  <section data-page-node-id="B2buLaveuKWohJLlJBcyjQ" class="view" id="view-today">
+    <div data-page-node-id="fxBTrdsRPJ0xfNYS7nJEvK" class="card">
+      <div data-page-node-id="Q4lpIhNVm0yUVFjobLpUHb" class="dh-date" id="dhDate"></div>
+      <div data-page-node-id="CXdgedtb5Az72AE4BW6WEn" class="dh-theme" id="dhTheme"></div>
+      <div data-page-node-id="iRlUftyAzyDFJpgxmuu27r" class="dh-focus" id="dhFocus"></div>
+      <div data-page-node-id="4EvUYnBUgMtY5SDBa3oukj" aria-label="本轮 49 天的进度" aria-valuemax="49" aria-valuemin="0" aria-valuenow="0" class="dh-bar" id="dhBarWrap" role="progressbar"><i data-page-node-id="aumAoHIgO53vTKEcaipuJJ" id="dhBar" style="width:0%"></i></div>
+    </div>
+
+    <div data-page-node-id="xyxa537YNw79hTYhpu974h" class="card">
+      <div data-page-node-id="JtqS97ZlDKrG1eRXzglszz" class="tl"><b data-page-node-id="c4iIjMH1YAU6cZE4Dxrp9H"><!--pnid:4VOdemL3zw69Jsur77nwYP-->①</b><!--pnid:lbbrsvLXldG6J4U7QBrp6M--> 先过一遍这一句</div>
+      <div data-page-node-id="JC2vAnkTeMVJhRQPzYCd01" class="trace-static" id="traceStatic"></div>
+      <div data-page-node-id="RhawqUm5V4oTO8xQ7AQLVV" class="trace-canvas" hidden id="traceWrap"></div>
+      <div data-page-node-id="1bhtvQh6Ql3R2q1p8hsYLV" hidden id="typeWrap">
+        <div data-page-node-id="MvcTZUy0ONvXTR4xbl0cIg" class="type-target" id="typeTarget"></div>
+        <input data-page-node-id="odswjo3LZ0ywYyJ051U4j9" aria-label="照着上面那句打一遍" autocapitalize="off" autocomplete="off" autocorrect="off" id="typeInput" placeholder="照着上面这句打一遍" spellcheck="false" type="text">
+      </div>
+      <div data-page-node-id="G9eHLX0hRLmN1KXyvfc3zO" class="trace-actions">
+        <button data-page-node-id="TzsjRgufKqDazod5eP80dQ" class="btn small" id="btnTraceOn"><!--pnid:yUSiVsrSIX2KkITG9EqPKM-->用笔描</button>
+        <button data-page-node-id="mEJYka5hU25b2sJAy0QO51" class="btn small" id="btnTypeOn"><!--pnid:myXvs50XKh9PjcR4QFOwwF-->照着打一遍</button>
+        <button data-page-node-id="pNsH81TR5RYrOKLbNmIvyW" class="btn small ghost" hidden id="btnUndo"><!--pnid:8m1seG8c9TbnybfKo2HDbf-->撤销一笔</button>
+        <button data-page-node-id="dhhBHkyVXjaP8K8bUtZtNs" class="btn small ghost" hidden id="btnFade"><!--pnid:Sp069foTSTCcHw41U1OYZO-->让灰字淡出</button>
+        <button data-page-node-id="ynHe1S4KoyuDDDcmulw4XC" class="btn small primary" hidden id="btnTraceDone"><!--pnid:fOJCJxoOczphm7GOdWuztU-->描完了</button>
+      </div>
+      <p data-page-node-id="rJRDQHA810z9SfRae4QrnT" class="hint"><!--pnid:8VQOFSc5vAfXNxMSD0fMMa-->有触控笔就用笔描；鼠标或触控板的话，照着打一遍更顺手。</p>
+    </div>
+
+    <div data-page-node-id="1BMewF6iHY652jlbnmxV8P" class="card">
+      <div data-page-node-id="h1ecqw31ps13ODxW6GpDqY" class="tl" id="writeLabel"><b data-page-node-id="ae9CrYhtNAVSfXz2CShr3G"><!--pnid:qgg7bIRJoPh70190XeM7Qe-->②</b><!--pnid:2fGjGz5o82WkfXjd3DR3FG--> 用过去时，写下今天希望发生的事</div>
+      <textarea data-page-node-id="ENQckEUAY8UT91u76ugaGg" aria-labelledby="writeLabel" id="inpWrite" placeholder="例：今天的活一件件推进了，我很安心。" rows="4"></textarea>
+      <p data-page-node-id="79RCLfXbFcGt9xcTFbjkkP" class="hint" hidden id="tenseHint"><!--pnid:fZpsX5b5hQ5NPYGd7pLlR5-->换个说法试试 —— 把「希望…」改成已经发生的样子，句末带个心情。</p>
+    </div>
+
+    <div data-page-node-id="fAaEoM1LKyiHlOhdOXqMBP" class="card">
+      <div data-page-node-id="mhTRSDVaZgVnlKL2vi3qB6" class="tl"><b data-page-node-id="AXDVqkguavRHbqm7jSn7uk"><!--pnid:xdDut2ez6OYGQCrYORLof0-->③</b><!--pnid:41wtyZz2YvYNTS2AW7d3sQ--> 挑一个句末的心情</div>
+      <div data-page-node-id="20WjTaaGLgnDptvZdn4Awa" class="chips" id="emoChips"></div>
+    </div>
+
+    <button data-page-node-id="EbCaCzrjJWHY1FkhDovd3f" class="btn primary wide" id="btnSave"><!--pnid:UeEiPOUVFUb6tLRVjW1Rn9-->收好今天这一页</button>
+    <p data-page-node-id="XdEmei5pvN3wpFBxzsWLxn" class="hint center" hidden id="todayDone"></p>
+  </section>
+
+  <section data-page-node-id="wyIO8FXtFVqo0ekm4jzp9u" class="view" id="view-track">
+    <div data-page-node-id="oKuTBIXb0gNheiJ8nnUXUE" class="card">
+      <div data-page-node-id="JDQfUZpwK7X1zf71AtREfQ" class="stat">
+        <div data-page-node-id="OZLVHW72nJpHTy97HGV3rc"><div data-page-node-id="vYbWlVCSF76nkSkNm6WogW" class="k"><!--pnid:Yy212rjavsnMxDE0MIDM0U-->已写</div><div data-page-node-id="88n0oKoX3Le4f6n4DtaOSi" class="v" id="stDone"><!--pnid:zjXeKNyRZfCWllG6noLFCe-->0</div></div>
+        <div data-page-node-id="dEPAsqjUUCwuTgIGRovkQa"><div data-page-node-id="QXQNLk64IHJlsR8FbvNtJj" class="k"><!--pnid:NpOlPBCyyc6Uhxwt1Fe2uI-->连续</div><div data-page-node-id="IrcC4QlJZbWDEX1J7RRd1L" class="v" id="stStreak"><!--pnid:8goTpfyRyNopn2s1uwzRGt-->0</div></div>
+        <div data-page-node-id="VbXIAm2e44t3L2dY22m9tn"><div data-page-node-id="9YaJnFbp05A3mQ2olNIUvH" class="k"><!--pnid:Yfgf7PbniklArwxUgRAHik-->第几天</div><div data-page-node-id="x0JlGtaEw0XyRsKPYSnFEN" class="v" id="stDay"><!--pnid:RH6kVKzpNmgXDeznw8XaMM-->0</div></div>
+      </div>
+    </div>
+    <div data-page-node-id="p0PSsuU93xKP46ngN4Dfmu" class="card">
+      <h2 data-page-node-id="Mc7e8h2bCg7cCkqOypC9HE"><!--pnid:mSfvWgeFTwHJRwsIMwgqlG-->49 天轨道</h2>
+      <div data-page-node-id="KH333xHAmJrfnyho2INNep" id="trackBody"></div>
+    </div>
+    <div data-page-node-id="8BHEYmdW6adfeQtpeK8Cla" class="card">
+      <h2 data-page-node-id="JJk0LxAR7VhH6Z2wkzf1OW"><!--pnid:IoqD9zN8KOonTmjBJ4QcD2-->我想要的</h2>
+      <div data-page-node-id="9uSBdfgjIe9vxYpnVRw84W" id="wishView"></div>
+    </div>
+  </section>
+
+  <section data-page-node-id="PI085rECVdf64tmCAlKUM4" class="view" id="view-review">
+    <div data-page-node-id="uT8SprhoBPRYjGj0XXh6h4" id="reviewBody"></div>
+  </section>
+
+  <section data-page-node-id="Z3gPeQZNzLb1zPvX7ZtlfB" class="view" id="view-settings">
+    <button data-page-node-id="orcoiprxCnugbrLrPUrR4Z" class="btn small ghost" hidden id="btnBackSetup" style="margin-bottom:12px"><!--pnid:cYBNu173shZrpg8Yq5DkhS-->← 回到开始这一页</button>
+    <div data-page-node-id="ACt5nDXenQX1NoXLj2rGH1" class="card" id="syncCard">
+      <h2 data-page-node-id="XY3tjD2wMoFP4kACNcb1n1"><!--pnid:8xk9WbESmQdYlFmJxsUSm6-->跨设备同步</h2>
+      <div data-page-node-id="G5HDyZxJUAmycJFrIR0IHt" id="syncBody"></div>
+    </div>
+    <div data-page-node-id="i3cXvGRHmFN3NFmPvohVok" class="card" id="cardBackup">
+      <h2 data-page-node-id="K8mHeHHRwEVeqI7NESDciU"><!--pnid:gyaK28GTqoAdjEbE6IIA85-->备份</h2>
+      <p data-page-node-id="qrHO3EY8hsRSMbFQjHJONj" style="font-size:13.5px; color:var(--ink-2)"><!--pnid:9JzdMDeOJVVyOCjUujzPlo-->内容只存在这台设备的浏览器里。换设备或清理浏览器数据前，先导出一份。</p>
+      <div data-page-node-id="EZj8tPAX4FBjsrZmnGBqRo" class="row" style="margin-top:12px">
+        <button data-page-node-id="hWDF5DoY6UIvuIj0zojNPm" class="btn small" id="btnExport"><!--pnid:pZ1gC6vHOvmprdNdWxGfRk-->导出备份</button>
+        <button data-page-node-id="wmvDI1tn8TeNBxsoNJitk4" class="btn small ghost" id="btnImport"><!--pnid:nCMU4frWNpjBTO1acksOUv-->导入备份</button>
+      </div>
+      <input data-page-node-id="RVjDCnzCgC7586qUw0LMiE" accept=".json" hidden id="fileImport" type="file">
+    </div>
+    <div data-page-node-id="wUBNPqg94chLUSA6ExUEEx" class="card" id="cardPrint">
+      <h2 data-page-node-id="bOf30sAV6hYXQdOfB7mNxX"><!--pnid:nKKNe70Fe4bnbscCVajLFW-->打印成手账</h2>
+      <p data-page-node-id="j0f6Fa32oBt4Y0U5dLaSLC" style="font-size:13.5px; color:var(--ink-2)"><!--pnid:N140BG1KmrZhH8kCm35ZLl-->在打印对话框里选择「存储为 PDF」，可以印成实体手账。</p>
+      <button data-page-node-id="Yp3dSkdczvI9VHB8qkbvOW" class="btn small" id="btnPrint" style="margin-top:12px"><!--pnid:HHzdtBRHvERIr1r7VAOyGX-->打印 / 存 PDF</button>
+    </div>
+    <div data-page-node-id="YLxGdFyvgyBoJXooDWeiTA" class="card" id="cardRound">
+      <h2 data-page-node-id="Tou80BjzCBLtthIuo8Oon6"><!--pnid:eTT10XxtnnLrjv08PxhK0h-->这一轮</h2>
+      <p data-page-node-id="JwJvmtEh6fMtgPWUZK99R0" id="setupInfo" style="font-size:13.5px; color:var(--ink-2)"></p>
+      <button data-page-node-id="GgDK5JkIG9WtqkSG0jFk8J" class="btn small danger" id="btnReset" style="margin-top:12px"><!--pnid:gHcO0KFen44UOOW5mRHhPn-->重新开始一轮</button>
+      <p data-page-node-id="JGzHnhSbzrboBXs1IBtKZ1" class="hint"><!--pnid:cIYoqiv9IBxkMiyORqdSmS-->会清掉已有的全部记录，请先导出备份。</p>
+    </div>
+    <div data-page-node-id="XR99BrQn2ho1tUCwSBBGPA" class="card">
+      <h2 data-page-node-id="Du47WdGprvXGV12jgaWIyQ"><!--pnid:V1JPbHZCsERUTT9cVRyitX-->关于</h2>
+      <p data-page-node-id="TKRddwvJohvZjEHEkSXV1a" style="font-size:13px; color:var(--ink-3); line-height:1.75"><!--pnid:cBtix68DTUo2yt5166mlRv-->
+        方法灵感来自山田弘美、滨田真由美所著的《3分钟未来日记》：每天三分钟，先过一遍一句引导语，
+        再用过去时写下希望发生的事。
+      </p>
+      <p data-page-node-id="RVKMTfRmZdcXkEDsEvPn8I" style="font-size:13px; color:var(--ink-3); line-height:1.75; margin-top:8px"><!--pnid:eVwHMQn5sjvJ4goPPA0Xc1-->
+        本工具与该书及两位作者没有隶属关系，不是官方产品；书中内容未被使用，49 句引导语均为原创。
+      </p>
+    </div>
+  </section>
+  </main>
+</div>
+
+<nav data-page-node-id="YuKBvcao2dHd3WpVN3Z1gV" class="tabbar" hidden id="tabbar">
+  <div data-page-node-id="AnX1CuyAUMrX7YZvKvgZNV" class="tabs">
+    <button data-page-node-id="WCJpb1nB6YlGLRWRC1iEii" class="tab" data-v="today"><span data-page-node-id="peOztkpZucyruWPr9OjYPg" aria-hidden="true" class="dot"></span><!--pnid:pQMAxtKOkJTNlaAf05jFRD-->今日</button>
+    <button data-page-node-id="4niZJ33q3z09N92Bv24T9d" class="tab" data-v="track"><span data-page-node-id="r8llvpeI3YR0byTxmnaAGi" aria-hidden="true" class="dot"></span><!--pnid:kec0bkHvD9mdYZdRCfEvVE-->轨道</button>
+    <button data-page-node-id="pk623kAghzjHzGIekhuR2C" class="tab" data-v="review"><span data-page-node-id="RwyHLtwvZSUX8a1lz5MINn" aria-hidden="true" class="dot"></span><!--pnid:BmW9BQinXfnUI9Dvb1wbb3-->回顾</button>
+    <button data-page-node-id="Km4XE9PCQ0Ui6ae06JDq1l" class="tab" data-v="settings"><span data-page-node-id="utoQY2Ap0ZAEqmxHZ8NIIC" aria-hidden="true" class="dot"></span><!--pnid:irlMirWwnLuvGP1MUV4QDq-->设置</button>
+  </div>
+</nav>
+
+<div data-page-node-id="yDvEpotjXodNbyJM0NJ1iW" aria-live="polite" class="toast" id="toast" role="status"></div>
+
+<script data-page-node-id="2Ky3bHJFRT7ouPkiwijSWo" data-pnid-children="RIwWKwbdYHVyuQuWX2GGW5" id="prompt-data" type="application/json">
+{
+"version":1,
+"weeks":[
+ {"week":1,"theme":"捕捉小确幸","focus":"把注意力从「缺什么」挪到「已经有了什么」","prompts":[
+  "今天有一件小事让我笑出声了，真好。",
+  "阳光落在桌角的时候，我停下来看了一会儿，心里很静。",
+  "今天喝到的东西味道刚刚好，我喝得很满足。",
+  "路上遇到一件顺心的小事，我记了一整天，暖暖的。",
+  "今天做的事比预想的还顺，我有点小得意。",
+  "有人对我说了句谢谢，我心里亮了一下。",
+  "今天过得平平常常，可我很喜欢这样的平常。"]},
+ {"week":2,"theme":"身体与节奏","focus":"睡眠、精力，还有每天留给自己的那一点时间","prompts":[
+  "昨晚睡得很沉，今天醒来人是轻的，真舒服。",
+  "今天身体很配合，做什么都有劲，我很感谢它。",
+  "我给自己留出了十五分钟，心里踏实下来了。",
+  "今天没有硬撑，该停就停了，我觉得自己很清醒。",
+  "出门走了一段路，风很好，我整个人松下来了。",
+  "今天好好吃了饭，没有糊弄自己，我很安心。",
+  "我听懂了身体给的信号，并且照着做了，真好。"]},
+ {"week":3,"theme":"关系与在场","focus":"家人、朋友，还有被人认真听见的瞬间","prompts":[
+  "今天和家人聊得很松，那种感觉很久没有过了。",
+  "有人认真听我说话，我觉得自己被接住了，心里很暖。",
+  "我主动联系了一个想念的人，聊完心里暖暖的。",
+  "今天我放下手机好好陪了一会儿人，心里很满。",
+  "一句小小的关心被对方收到了，我很高兴。",
+  "我们之间那点别扭自然地化开了，我松了一口气。",
+  "今天我允许自己被照顾了一下，很舒服。"]},
+ {"week":4,"theme":"工作与作品","focus":"手上的活，和正在长出来的东西","prompts":[
+  "今天手上的活一件件推进了，我很安心。",
+  "卡了很久的地方突然通了，我忍不住笑出来。",
+  "有人说我的东西对他有用，我高兴了一整天。",
+  "今天把计划里的事都做完了，我对自己挺满意。",
+  "我把想做的事往前挪了一小步，心里有底了。",
+  "今天的努力被看见了，被认可的感觉真好。",
+  "我没有被忙碌牵着走，我选了自己要做的，很清醒。"]},
+ {"week":5,"theme":"金钱与丰足","focus":"不是求财，是把对钱的那点紧绷松开","prompts":[
+  "这个月的账目清清楚楚，我看着很安心。",
+  "有一笔意料之外的钱进来了，我笑着收下了。",
+  "今天花的钱都用在了让我更好的地方，我不后悔。",
+  "我对钱的担心松了一点，呼吸都顺了。",
+  "今天有一份收入进账，我值得，我很开心。",
+  "我在钱上给自己留出了一点余裕，心里很稳。",
+  "我在钱上做了一个对自己好的决定，觉得很踏实。"]},
+ {"week":6,"theme":"我的空间","focus":"身边的房间、桌面，和一小块只属于你的角落","prompts":[
+  "今天把桌面收拾干净了，坐下来的时候心里很静。",
+  "房间里的光线正好，我在里面待着很舒服。",
+  "扔掉了一件早该扔的东西，我轻松了一大截。",
+  "我给自己的角落添了一点喜欢的东西，看着就高兴。",
+  "今天在清爽的空间里做事，顺利得让我惊喜。",
+  "我让住的地方更像我了，这种感觉真好。",
+  "回到家关上门的那一刻，我整个人都松了。"]},
+ {"week":7,"theme":"未来已来的我","focus":"那个已经在过想要生活的自己，提前和她打个招呼","prompts":[
+  "我已经在过想要的生活了，今天过得很好。",
+  "今天的我，是三个月前那个我羡慕的样子，我很感恩。",
+  "我做的事正在被人看见，路越走越宽，我很有底气。",
+  "我不再需要向谁证明什么了，松了一口气。",
+  "今天我按自己的节奏活了一天，这感觉真好。",
+  "想要的东西一件件来到了我身边，我很笃定。",
+  "第四十九天了。回头看，我真的走了很远，我很感动。"]}
+],
+"emotions":["感恩","安心","开心","满足","轻松","踏实","笃定","感动"]
+}
+</script>
+
+<script data-page-node-id="JVGJeTAhJNckNEC4OFc55f" data-pnid-children="GiOC8fPV6BKZYiUAFQv10o">
+var RAW = JSON.parse(document.getElementById('prompt-data').textContent);
+var WEEKS = RAW.weeks, EMO = RAW.emotions, TOTAL = 49;
+var KEY = 'future-journal-v1';
+var SERIF = '"Songti SC","STSong","Source Han Serif SC",Georgia,serif';
+var S = null, view = 'today';
+
+function blank(){ return {version:1,startDate:null,createdAt:null,intention:[],entries:{}}; }
+function load(){ try{ var r = localStorage.getItem(KEY); return r ? JSON.parse(r) : null; }catch(e){ return null; } }
+function persist(){
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ toast('保存失败：浏览器存储不可用'); }
+  schedulePush();
+}
+
+function pad(n){ return String(n).length < 2 ? '0'+n : String(n); }
+function iso(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function todayIso(){ return iso(new Date()); }
+function diffDays(a,b){ var A=a.split('-').map(Number), B=b.split('-').map(Number);
+  return Math.round((Date.UTC(B[0],B[1]-1,B[2]) - Date.UTC(A[0],A[1]-1,A[2]))/86400000); }
+
+function curDay(){ if(!S || !S.startDate) return 0; return diffDays(S.startDate, todayIso()) + 1; }
+function weekOf(day){ return Math.min(7, Math.max(1, Math.ceil(day/7))); }
+function promptFor(day){
+  var w = WEEKS[weekOf(day)-1];
+  return { theme:w.theme, focus:w.focus, text:w.prompts[(day-1) % 7] };
+}
+function doneCount(){ var n=0; for(var k in S.entries){ if(S.entries[k] && S.entries[k].text) n++; } return n; }
+function streak(){
+  var d = Math.min(curDay(), TOTAL), n = 0;
+  for(var i=d; i>=1; i--){ var e=S.entries[i]; if(e && e.text) n++; else break; }
+  return n;
+}
+
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('on'); }, 2200);
+}
+
+function show(v){
+  view = v;
+  var ids = ['setup','today','track','review','settings'];
+  for(var i=0;i<ids.length;i++){
+    document.getElementById('view-'+ids[i]).classList.toggle('on', ids[i]===v);
+  }
+  document.getElementById('tabbar').hidden = !S;
+  var tabs = document.querySelectorAll('.tab');
+  for(var j=0;j<tabs.length;j++){
+    var on = tabs[j].getAttribute('data-v')===v;
+    tabs[j].classList.toggle('on', on);
+    // 当前在哪个视图原来只有颜色差异，读屏用户不知道自己在哪
+    if(on) tabs[j].setAttribute('aria-current','true');
+    else tabs[j].removeAttribute('aria-current');
+  }
+  window.scrollTo(0,0);
+}
+
+/* ---------- setup ---------- */
+function wishRow(val){
+  var row = document.createElement('div');
+  row.className = 'wish-row';
+  var inp = document.createElement('input');
+  inp.type = 'text'; inp.placeholder = '比如：把手上这件事真正做起来'; inp.value = val || '';
+  inp.setAttribute('aria-label','我想要的事');
+  var del = document.createElement('button');
+  del.className = 'wish-del'; del.type = 'button'; del.textContent = '×';
+  del.setAttribute('aria-label','删掉这一件');
+  del.onclick = function(){ row.remove(); };
+  row.appendChild(inp); row.appendChild(del);
+  return row;
+}
+function initSetup(){
+  var list = document.getElementById('wishList');
+  list.innerHTML = '';
+  var seed = (S && S.intention && S.intention.length) ? S.intention : ['','',''];
+  for(var i=0;i<seed.length;i++){ list.appendChild(wishRow(seed[i].text || seed[i])); }
+  document.getElementById('inpStart').value = (S && S.startDate) ? S.startDate : todayIso();
+}
+document.getElementById('btnAddWish').onclick = function(){
+  var list = document.getElementById('wishList');
+  if(list.children.length >= 3){ toast('先留三件，多了会散'); return; }
+  list.appendChild(wishRow(''));
+};
+document.getElementById('btnStart').onclick = function(){
+  var rows = document.querySelectorAll('#wishList .wish-row input');
+  var wishes = [];
+  for(var i=0;i<rows.length;i++){ var v = rows[i].value.trim(); if(v) wishes.push({text:v, realized:false}); }
+  if(!wishes.length){ toast('至少写一件你想要的'); return; }
+  var st = document.getElementById('inpStart').value || todayIso();
+  S = S || blank();
+  S.intention = wishes;
+  S.startDate = st;
+  S.createdAt = S.createdAt || new Date().toISOString();
+  persist();
+  renderToday(); renderTrack(); renderReview(); renderSettings();
+  show('today');
+  toast('这一轮开始了');
+};
+
+/* ---------- today ---------- */
+var trace = { on:false, strokes:[], drawing:false, lines:[], W:0, H:0, fs:20, lh:38, padX:14, padY:26, ghost:1, canvas:null, ctx:null };
+var typing = { active:false, done:false, composing:false, text:'' };
+
+/* canvas 拿不到 CSS 变量，只能给具体值 —— 但必须和 :root 里的保持一致。
+   GUIDE 是描摹底稿的颜色：有意留淡（它是「描」的对象，不是给人读的正文），
+   所以只有 ~2.2:1。需要阅读的地方一律不用它（见 --trace 的注释）。 */
+var INK = '#2B2925', GUIDE = '#ABA492';
+
+function wrapText(measure, text, maxW){
+  var out = [], line = '';
+  for(var i=0;i<text.length;i++){
+    var ch = text[i], t = line + ch;
+    if(measure.measureText(t).width > maxW && line){ out.push(line); line = ch; }
+    else { line = t; }
+  }
+  if(line) out.push(line);
+  return out;
+}
+
+function renderToday(){
+  var day = curDay();
+  if(day > TOTAL) day = TOTAL;
+  var p = promptFor(day);
+  var d = new Date(S.startDate+'T00:00:00');
+  document.getElementById('dhDate').textContent = (d.getMonth()+1)+' 月 '+d.getDate()+' 日 · 第 '+day+' 天';
+  document.getElementById('dhTheme').textContent = '本周主题 · '+p.theme;
+  document.getElementById('dhFocus').textContent = p.focus;
+  document.getElementById('dhBar').style.width = Math.round(day/TOTAL*100)+'%';
+  document.getElementById('dhBarWrap').setAttribute('aria-valuenow', day);
+  document.getElementById('topPill').hidden = false;
+  document.getElementById('topPill').textContent = '第 '+day+' 天 / 49';
+  document.getElementById('topSub').textContent = '第 '+weekOf(day)+' 周 · '+p.theme;
+
+  document.getElementById('traceStatic').textContent = p.text;
+  document.getElementById('traceStatic').hidden = false;
+  document.getElementById('traceWrap').hidden = true;
+  document.getElementById('typeWrap').hidden = true;
+  document.getElementById('typeInput').value = '';
+  document.getElementById('btnTraceOn').hidden = false;
+  document.getElementById('btnTypeOn').hidden = false;
+  document.getElementById('btnUndo').hidden = true;
+  document.getElementById('btnFade').hidden = true;
+  document.getElementById('btnTraceDone').hidden = true;
+  trace.on = false; trace.strokes = []; trace.ghost = 1;
+  typing.active = false; typing.done = false;
+
+  var e = S.entries[day] || {};
+  document.getElementById('inpWrite').value = e.text || '';
+  document.getElementById('tenseHint').hidden = true;
+  var again = e.traced ? '再' : '';
+  document.getElementById('btnTraceOn').textContent = again + '用笔描';
+  document.getElementById('btnTypeOn').textContent = again + '照着打一遍';
+
+  var done = document.getElementById('todayDone');
+  if(e.text){ done.hidden = false; done.textContent = '今天这页已经收好了，想改可以直接改。'; }
+  else { done.hidden = true; }
+  if(curDay() > TOTAL){ done.hidden = false; done.textContent = '49 天已经走完了。想再来一轮，去设置里重新开始。'; }
+
+  var box = document.getElementById('emoChips');
+  box.innerHTML = '';
+  for(var i=0;i<EMO.length;i++){
+    (function(w){
+      var b = document.createElement('button');
+      b.className = 'chip' + ((e.emotion===w) ? ' on' : '');
+      b.type = 'button'; b.textContent = w;
+      // 选中状态原来只靠颜色和底色变化传达 —— 读屏读不出来，勾选状态要显式给
+      b.setAttribute('aria-pressed', (e.emotion===w) ? 'true' : 'false');
+      b.onclick = function(){
+        var cur = document.querySelectorAll('#emoChips .chip');
+        for(var k=0;k<cur.length;k++){
+          cur[k].classList.remove('on');
+          cur[k].setAttribute('aria-pressed','false');
+        }
+        b.classList.add('on');
+        b.setAttribute('aria-pressed','true');
+        queueWrite();
+      };
+      box.appendChild(b);
+    })(EMO[i]);
+  }
+}
+
+/* ---------- 写作框自动保存 ----------
+   写作框一度是唯一「必须点按钮才会存」的地方，而切 tab 时 renderToday() 又会用
+   已存的值把正在写的内容覆盖掉 —— 两件事合起来就是实测到的「刷新后写的东西没了」。
+   现在改成：输入即存（防抖 500ms），并且在切 tab / 页面隐藏 / 离开时强制落盘。 */
+var WRITE_MS = 500, writeTimer = null;
+
+function flushWrite(){
+  if(writeTimer){ clearTimeout(writeTimer); writeTimer = null; }
+  if(!S || !S.startDate) return;
+  var el = document.getElementById('inpWrite');
+  if(!el) return;
+  var day = Math.min(curDay(), TOTAL);
+  var text = el.value.trim();
+  var on = document.querySelector('#emoChips .chip.on');
+  var emo = on ? on.textContent : '';
+  if(!text && !emo) return;                         // 空的就别建空条目
+  var e = S.entries[day] = S.entries[day] || {};
+  if(e.text === text && e.emotion === emo) return;   // 没变就不写
+  e.text = text; e.emotion = emo;
+  e.at = new Date().toISOString();
+  persist();
+  renderTrack();
+  var done = document.getElementById('todayDone');
+  if(done && text){ done.hidden = false; done.textContent = '已自动存好，想改随时改。'; }
+}
+function queueWrite(){ if(writeTimer) clearTimeout(writeTimer); writeTimer = setTimeout(flushWrite, WRITE_MS); }
+
+window.addEventListener('pagehide', flushWrite);
+window.addEventListener('beforeunload', flushWrite);
+document.addEventListener('visibilitychange', function(){ if(document.hidden) flushWrite(); });
+
+document.getElementById('inpWrite').addEventListener('input', function(){
+  var v = this.value;
+  var future = /(希望|想要|但愿|期待|如果能|争取|我一定要)/.test(v);
+  document.getElementById('tenseHint').hidden = !(future && v.length > 3);
+  queueWrite();
+});
+
+document.getElementById('btnTraceOn').onclick = function(){ closeTyping(); openTrace(); };
+
+/* ---------- 照着打一遍（鼠标 / 触控板环境） ---------- */
+function openTyping(){
+  var day = Math.min(curDay(), TOTAL);
+  document.getElementById('traceStatic').hidden = true;
+  document.getElementById('traceWrap').hidden = true;
+  document.getElementById('typeWrap').hidden = false;
+  var inp = document.getElementById('typeInput');
+  inp.value = '';
+  typing.text = promptFor(day).text;
+  typing.active = true;
+  typing.done = false;
+  renderTyping();
+  inp.focus();
+}
+function closeTyping(){
+  typing.active = false;
+  document.getElementById('typeWrap').hidden = true;
+  if(!trace.on) document.getElementById('traceStatic').hidden = false;
+}
+function renderTyping(){
+  var inp = document.getElementById('typeInput');
+  var typed = inp.value, text = typing.text;
+  var out = '';
+  for(var i=0;i<text.length;i++){
+    var cls = '';
+    if(i < typed.length){ cls = (typed.charAt(i) === text.charAt(i)) ? 'hit' : 'miss'; }
+    else if(i === typed.length){ cls = 'cur'; }
+    var ch = text.charAt(i).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    out += '<span class="' + cls + '">' + ch + '</span>';
+  }
+  document.getElementById('typeTarget').innerHTML = out;
+  if(!typing.done && typed.length >= text.length){
+    typing.done = true;
+    var day = Math.min(curDay(), TOTAL);
+    S.entries[day] = S.entries[day] || {};
+    S.entries[day].traced = true;
+    S.entries[day].traceMode = 'type';
+    persist();
+    toast('过了一遍，很好');
+    document.getElementById('btnTraceOn').textContent = '再用笔描';
+    document.getElementById('btnTypeOn').textContent = '再照着打一遍';
+    renderTrack(); renderSettings();
+  }
+}
+document.getElementById('btnTypeOn').onclick = function(){
+  if(typing.active){ closeTyping(); } else { openTyping(); }
+};
+(function(){
+  var inp = document.getElementById('typeInput');
+  inp.addEventListener('compositionstart', function(){ typing.composing = true; });
+  inp.addEventListener('compositionend', function(){ typing.composing = false; renderTyping(); });
+  inp.addEventListener('input', function(){ if(!typing.composing) renderTyping(); });
+  inp.addEventListener('paste', function(e){ e.preventDefault(); toast('这一遍还是自己打吧'); });
+})();
+
+function openTrace(){
+  var wrap = document.getElementById('traceWrap');
+  var day = Math.min(curDay(), TOTAL);
+  var text = promptFor(day).text;
+
+  // 先探一下能不能拿到 2D 上下文，拿不到就原地退回打字模式（先别动 DOM，免得留下半截界面）。
+  // 浏览器禁用画布、或同时存在的画布上下文超出上限（iOS Safari 内存吃紧时会）都返回 null；
+  // 原来这里直接 .font 赋值会抛 TypeError，表现为「点描摹毫无反应」，用户不知道发生了什么。
+  var probe = document.createElement('canvas').getContext('2d');
+  if(!probe){
+    toast('这台设备开不了描摹区，用下面的「照着打一遍」一样算写完了。');
+    openTyping();
+    return;
+  }
+
+  document.getElementById('traceStatic').hidden = true;
+  wrap.hidden = false;
+  wrap.innerHTML = '';
+
+  var W = wrap.clientWidth || 320;
+  var fs = 20, lh = 38, padX = 14, padY = 26;
+  var meas = probe;                        // 复用探测到的上下文，省一张画布
+  meas.font = fs+'px '+SERIF;
+  var lines = wrapText(meas, text, W - padX*2);
+  var H = padY*2 + lines.length*lh - 8;
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var cv = document.createElement('canvas');
+  cv.width = Math.floor(W*dpr); cv.height = Math.floor(H*dpr);
+  cv.style.width = W+'px'; cv.style.height = H+'px';
+  cv.style.touchAction = 'none';
+  // 描绘区只有指针能操作，键盘到不了 —— 所以要显式说明「等价的替代方式是打字」，
+  // 不能让它默默成为一个键盘用户的死胡同（WCAG 2.1.1 的替代路径要求）。
+  cv.setAttribute('role','img');
+  cv.setAttribute('aria-label','描摹区：用触控笔沿着浅灰字描一遍。没有触控笔请用下面的「照着打一遍」。');
+  wrap.appendChild(cv);
+  var ctx = cv.getContext('2d');
+  if(!ctx){                                // 极小概率：第一张拿到了、这张没拿到 —— 收拾干净再退回打字
+    wrap.innerHTML = ''; wrap.hidden = true;
+    document.getElementById('traceStatic').hidden = false;
+    toast('这台设备开不了描摹区，用下面的「照着打一遍」一样算写完了。');
+    openTyping();
+    return;
+  }
+  ctx.scale(dpr, dpr);
+
+  trace.on = true; trace.W = W; trace.H = H; trace.lines = lines;
+  trace.fs = fs; trace.lh = lh; trace.padX = padX; trace.padY = padY;
+  trace.canvas = cv; trace.ctx = ctx;
+
+  var prev = (S.entries[day] && S.entries[day].strokes) ? S.entries[day].strokes : [];
+  trace.strokes = prev.slice();
+  trace.ghost = 1;
+  redraw();
+
+  document.getElementById('btnTraceOn').hidden = true;
+  document.getElementById('btnUndo').hidden = false;
+  document.getElementById('btnFade').hidden = false;
+  document.getElementById('btnTraceDone').hidden = false;
+
+  bindDraw(cv);
+}
+
+function strokePath(ctx, pts, W, H){
+  var n = pts.length;
+  if(n === 1){
+    ctx.beginPath();
+    ctx.arc(pts[0][0]*W, pts[0][1]*H, 1.2, 0, Math.PI*2);
+    ctx.fillStyle = '#2B2925'; ctx.fill();
+    return;
+  }
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0]*W, pts[0][1]*H);
+  if(n === 2){
+    ctx.lineTo(pts[1][0]*W, pts[1][1]*H);
+    ctx.stroke();
+    return;
+  }
+  for(var i=1;i<n-1;i++){
+    var xc = (pts[i][0]+pts[i+1][0])/2*W;
+    var yc = (pts[i][1]+pts[i+1][1])/2*H;
+    ctx.quadraticCurveTo(pts[i][0]*W, pts[i][1]*H, xc, yc);
+  }
+  ctx.lineTo(pts[n-1][0]*W, pts[n-1][1]*H);
+  ctx.stroke();
+}
+
+function redraw(){
+  var t = trace;
+  if(!t.ctx) return;
+  t.ctx.clearRect(0,0,t.W,t.H);
+  t.ctx.font = t.fs+'px '+SERIF;
+  t.ctx.textBaseline = 'alphabetic';
+  t.ctx.globalAlpha = t.ghost;
+  t.ctx.fillStyle = GUIDE;
+  for(var i=0;i<t.lines.length;i++){ t.ctx.fillText(t.lines[i], t.padX, t.padY + i*t.lh); }
+  t.ctx.globalAlpha = 1;
+  t.ctx.strokeStyle = '#2B2925';
+  t.ctx.lineWidth = 2.6; t.ctx.lineCap = 'round'; t.ctx.lineJoin = 'round';
+  for(var s=0;s<t.strokes.length;s++){ strokePath(t.ctx, t.strokes[s], t.W, t.H); }
+}
+
+function bindDraw(cv){
+  var cur = null, curId = null;
+  function rel(e){
+    var r = cv.getBoundingClientRect();
+    return [ (e.clientX - r.left)/r.width, (e.clientY - r.top)/r.height ];
+  }
+  function allow(e){
+    if(e.pointerType === 'pen') trace.sawPen = true;
+    if(trace.sawPen && e.pointerType !== 'pen') return false;
+    return true;
+  }
+  cv.addEventListener('pointerdown', function(e){
+    if(curId !== null || !allow(e)) return;
+    e.preventDefault();
+    curId = e.pointerId;
+    cur = [rel(e)];
+    trace.strokes.push(cur);
+    redraw();
+  });
+  cv.addEventListener('pointermove', function(e){
+    if(!cur || e.pointerId !== curId) return;
+    e.preventDefault();
+    var evts = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    if(!evts.length) evts = [e];
+    for(var i=0;i<evts.length;i++){
+      var p = rel(evts[i]), last = cur[cur.length-1];
+      var dx = p[0]-last[0], dy = p[1]-last[1];
+      if(dx*dx + dy*dy < 0.00006) continue;
+      cur.push(p);
+    }
+    redraw();
+  });
+  function end(e){
+    if(e.pointerId !== curId) return;
+    curId = null;
+    cur = null;
+    redraw();
+  }
+  cv.addEventListener('pointerup', end);
+  cv.addEventListener('pointercancel', end);
+  cv.addEventListener('pointerleave', end);
+}
+
+document.getElementById('btnUndo').onclick = function(){
+  if(!trace.strokes.length){ toast('还没描呢'); return; }
+  trace.strokes.pop(); redraw();
+};
+document.getElementById('btnFade').onclick = function(){
+  trace.ghost = trace.ghost > .5 ? .12 : 1;
+  redraw();
+  this.textContent = trace.ghost > .5 ? '让灰字淡出' : '把灰字调回来';
+};
+document.getElementById('btnTraceDone').onclick = function(){
+  var day = Math.min(curDay(), TOTAL);
+  if(!trace.strokes.length){ toast('先描上几笔吧'); return; }
+  S.entries[day] = S.entries[day] || {};
+  S.entries[day].strokes = trace.strokes;
+  S.entries[day].traced = true;
+  persist();
+  toast('描好了');
+  document.getElementById('btnTraceOn').textContent = '再用笔描';
+  document.getElementById('btnTypeOn').textContent = '再照着打一遍';
+  document.getElementById('btnTraceOn').hidden = false;
+  document.getElementById('btnUndo').hidden = true;
+  document.getElementById('btnFade').hidden = true;
+  this.hidden = true;
+  renderTrack(); renderSettings();
+};
+
+document.getElementById('btnSave').onclick = function(){
+  var text = document.getElementById('inpWrite').value.trim();
+  if(!text){ toast('先写下今天希望发生的一件事'); return; }
+  flushWrite();                                  // 复用同一条落盘路径，别让两套写法各存各的
+  renderToday(); renderTrack(); renderReview(); renderSettings();
+  toast('收好了，明天见');
+};
+
+/* ---------- track ---------- */
+function renderTrack(){
+  if(!S) return;
+  var day = curDay();
+  document.getElementById('stDone').textContent = doneCount();
+  document.getElementById('stStreak').textContent = streak();
+  document.getElementById('stDay').textContent = Math.min(day, TOTAL);
+
+  var body = document.getElementById('trackBody');
+  body.innerHTML = '';
+  for(var w=0; w<7; w++){
+    var head = document.createElement('div');
+    head.className = 'wkrow';
+    head.innerHTML = '<span class="wkno">第 '+(w+1)+' 周</span><span class="wkname">'+WEEKS[w].theme+'</span><span class="wkline"></span>';
+    body.appendChild(head);
+
+    var g = document.createElement('div');
+    g.className = 'grid49';
+    for(var i=0;i<7;i++){
+      (function(d){
+        var e = S.entries[d];
+        // 用 <button> 而不是 <div>：原来键盘用户完全够不到这一格（WCAG 2.1.1 键盘可达）。
+        // 但 49 个都当 tab 停靠点又太多，所以只有「有内容的过去」和「今天」可聚焦，
+        // 其余用 disabled —— 它们仍然被读屏读到，只是不进 tab 顺序。
+        var cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'cell';
+        var isDone = !!(e && e.text);
+        var isFuture = d > day;
+        if(isDone) cell.classList.add('done');
+        if(d === day) cell.classList.add('today');
+        if(isFuture) cell.classList.add('future');
+        cell.textContent = d;
+        cell.setAttribute('aria-label',
+          '第 ' + d + ' 天' + (d === day ? '（今天）' : '') +
+          (isFuture ? '，还没到' : (isDone ? '，已写：' + e.text : '，还没写')));
+        if(isDone || d === day){
+          cell.onclick = function(){
+            if(d === day){ show('today'); return; }
+            toast('第 ' + d + ' 天：' + e.text);
+          };
+        }else{
+          cell.disabled = true;
+        }
+        g.appendChild(cell);
+      })(w*7 + i + 1);
+    }
+    body.appendChild(g);
+  }
+
+  var wv = document.getElementById('wishView');
+  wv.innerHTML = '';
+  for(var k=0;k<S.intention.length;k++){
+    var it = S.intention[k];
+    var line = document.createElement('div');
+    line.className = 'entry' + (it.realized ? ' realized' : '');
+    var t = document.createElement('div');
+    t.className = 'et'; t.textContent = it.text;
+    var b = document.createElement('button');
+    b.className = 'btn small ghost'; b.style.marginTop = '8px';
+    b.textContent = it.realized ? '已经实现了' : '标记为已实现';
+    b.onclick = (function(idx){
+      return function(){
+        S.intention[idx].realized = !S.intention[idx].realized;
+        persist(); renderTrack();
+      };
+    })(k);
+    line.appendChild(t); line.appendChild(b);
+    wv.appendChild(line);
+  }
+}
+
+/* ---------- review ---------- */
+function renderReview(){
+  if(!S) return;
+  var day = curDay();
+  var unlocked = Math.max(0, Math.floor((day - 1)/7));
+  var box = document.getElementById('reviewBody');
+  box.innerHTML = '';
+
+  if(unlocked === 0){
+    var lk = document.createElement('div');
+    lk.className = 'card';
+    lk.innerHTML = '<div class="locked"><div class="lk-t">还没到回看的时候</div>'
+      + '<div class="lk-d">先专心写前面这几页。<br>满 7 天，第 1 周就会在这里打开。</div></div>';
+    box.appendChild(lk);
+    return;
+  }
+
+  for(var w=0; w<unlocked; w++){
+    var card = document.createElement('div');
+    card.className = 'card';
+    var h = document.createElement('h2');
+    h.textContent = '第 '+(w+1)+' 周 · '+WEEKS[w].theme;
+    card.appendChild(h);
+    var any = false;
+    for(var i=0;i<7;i++){
+      var d = w*7 + i + 1, e = S.entries[d];
+      if(!e || !e.text) continue;
+      any = true;
+      var item = document.createElement('div');
+      item.className = 'entry' + (e.realized ? ' realized' : '');
+      var dstr = '第 '+d+' 天';
+      item.innerHTML = '<div class="ed">'+dstr+'</div>'
+        + '<div class="ep">'+promptFor(d).text+'</div>'
+        + '<div class="et"></div>'
+        + (e.emotion ? '<div class="ee">'+e.emotion+'</div>' : '');
+      item.querySelector('.et').textContent = e.text;
+      card.appendChild(item);
+    }
+    if(!any){
+      var n = document.createElement('p');
+      n.className = 'hint'; n.textContent = '这一周没有留下记录。';
+      card.appendChild(n);
+    }
+    box.appendChild(card);
+  }
+  var last = document.createElement('p');
+  last.className = 'hint center';
+  last.textContent = '满 '+(unlocked+1)*7+' 天，第 '+(unlocked+1)+' 周会打开。';
+  box.appendChild(last);
+}
+
+/* ---------- settings ---------- */
+function renderSettings(){
+  /* 还没开始这一轮时也要能进设置（欢迎页的「去开启同步」会走到这儿），
+     所以这里不能 return。跟记录有关的卡片整张藏起来，只留同步。 */
+  document.getElementById('cardBackup').hidden = !S;
+  document.getElementById('cardPrint').hidden = !S;
+  document.getElementById('cardRound').hidden = !S;
+  document.getElementById('btnBackSetup').hidden = !!S;
+  if(S){
+    var el = document.getElementById('setupInfo');
+    var day = Math.min(curDay(), TOTAL);
+    el.textContent = '从 '+S.startDate+' 开始，今天是第 '+day+' 天，已写 '+doneCount()+' 页。';
+  }
+  renderSyncCard();
+}
+
+document.getElementById('btnExport').onclick = function(){
+  var blob = new Blob([JSON.stringify(S, null, 2)], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'future-journal-' + todayIso() + '.json';
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  toast('已导出');
+};
+document.getElementById('btnImport').onclick = function(){ document.getElementById('fileImport').click(); };
+document.getElementById('fileImport').onchange = function(e){
+  var f = e.target.files[0];
+  if(!f) return;
+  var r = new FileReader();
+  r.onload = function(){
+    try{
+      var data = JSON.parse(r.result);
+      if(!data || !data.startDate) throw 0;
+      S = data; persist();
+      renderToday(); renderTrack(); renderReview(); renderSettings();
+      show('today'); toast('导入成功');
+    }catch(err){ toast('这个文件读不出来'); }
+  };
+  r.readAsText(f);
+};
+document.getElementById('btnPrint').onclick = function(){ window.print(); };
+document.getElementById('btnReset').onclick = function(){
+  if(!confirm('确定重新开始一轮？已有的记录会被清掉。')) return;
+  localStorage.removeItem(KEY);
+  S = null;
+  initSetup(); show('setup');
+};
+
+var tabs = document.querySelectorAll('.tab');
+for(var i=0;i<tabs.length;i++){
+  tabs[i].onclick = (function(v){
+    return function(){
+      flushWrite();                              // 先落盘再渲染，否则 renderToday 会用旧值盖掉正在写的内容
+      if(v === 'today') renderToday();
+      if(v === 'track') renderTrack();
+      if(v === 'review') renderReview();
+      if(v === 'settings') renderSettings();
+      show(v);
+    };
+  })(tabs[i].getAttribute('data-v'));
+}
+
+/* 从欢迎页进设置（新设备开同步）。这时候还没有 S，底部 tab 栏不出现，
+   所以给一个「回到开始这一页」，等同步真拿到记录后再自动进「今日」。 */
+var fromSetup = false;
+function maybeLeaveSetup(){
+  if(!fromSetup) return;
+  if(!S || !S.startDate) return;
+  fromSetup = false;
+  initSetup();                                  // 让欢迎页反映合并进来的这一轮
+  show('today');
+}
+document.getElementById('btnGoSync').onclick = function(){
+  fromSetup = true; renderSettings(); show('settings');
+};
+document.getElementById('btnBackSetup').onclick = function(){
+  fromSetup = false; show('setup');
+};
+
+window.addEventListener('resize', function(){
+  if(trace.on && trace.W && trace.canvas){
+    var wrap = document.getElementById('traceWrap');
+    if(Math.abs(wrap.clientWidth - trace.W) > 24){ openTrace(true); }
+  }
+});
+
+/* ---------- 跨设备同步（端到端加密） ----------
+   服务器只存密文。密钥由「同步密码 + 登录身份」在本机派生，从不外传。
+   代价要讲清楚：同步密码丢了，云端那份就再也解不开（本机数据不受影响）。 */
+
+var SYNC = { cfg:null, cloud:null, user:null, key:null, timer:null, busy:false, last:null, tab:'pw', msg:'', otp:null, reset:null };
+
+function b64enc(u8){
+  var s = '', C = 0x8000;
+  for(var i=0;i<u8.length;i+=C){ s += String.fromCharCode.apply(null, u8.subarray(i, i+C)); }
+  return btoa(s);
+}
+function b64dec(str){
+  var bin = atob(str), u8 = new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++){ u8[i] = bin.charCodeAt(i); }
+  return u8;
+}
+function loadCfg(){
+  try { SYNC.cfg = JSON.parse(localStorage.getItem('fj-cfg') || 'null'); } catch(e){ SYNC.cfg = null; }
+  return SYNC.cfg;
+}
+async function deriveKey(pw, uid){
+  var enc = new TextEncoder();
+  var base = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name:'PBKDF2', salt: enc.encode('future-journal-v1|' + uid), iterations:200000, hash:'SHA-256' },
+    base, { name:'AES-GCM', length:256 }, true, ['encrypt','decrypt']);
+}
+async function seal(key, obj){
+  var iv = crypto.getRandomValues(new Uint8Array(12));
+  var ct = await crypto.subtle.encrypt({ name:'AES-GCM', iv:iv }, key,
+    new TextEncoder().encode(JSON.stringify(obj)));
+  var out = new Uint8Array(iv.length + ct.byteLength);
+  out.set(iv, 0); out.set(new Uint8Array(ct), iv.length);
+  return b64enc(out);
+}
+async function unseal(key, b64){
+  var all = b64dec(b64);
+  var pt = await crypto.subtle.decrypt({ name:'AES-GCM', iv:all.subarray(0,12) }, key, all.subarray(12));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+async function storeKey(key){
+  var raw = await crypto.subtle.exportKey('raw', key);
+  localStorage.setItem('fj-dk', b64enc(new Uint8Array(raw)));
+}
+async function restoreKey(){
+  var raw = localStorage.getItem('fj-dk');
+  if(!raw) return null;
+  try { return await crypto.subtle.importKey('raw', b64dec(raw), 'AES-GCM', true, ['encrypt','decrypt']); }
+  catch(e){ return null; }
+}
+
+/* 云同步 SDK 的来源必须钉死。
+   这段远端代码和本页同源执行，能读到 localStorage 里的日记正文和导出的加密密钥 ——
+   所以「加载哪一份」不能由 CDN 当下决定：
+     1) URL 锁到具体版本号，不用会漂移的 @dev 标签（上游随时重发，页面就换了一套代码）；
+     2) 带上 Subresource Integrity，字节对不上浏览器直接拒绝执行，连编译都不编译。
+   改动版本时必须同步重算下面的哈希，否则同步会静默失效（下方 onerror 会提示）。 */
+var SDK_URL = 'https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@0.1.1-dev.111acaf.202609102031/lib/index.global.js';
+var SDK_SRI = 'sha384-ueY+J3NvzLeU1kgRrmAiYltqJV0b09zjUgaoYacOB+yv/RXaHOq/iDrlnSwF2Ha9';
+
+function loadSDK(cb){
+  if(window.WorkBuddyCloud) return cb();
+  var s = document.createElement('script');
+  s.src = SDK_URL;
+  /* 用 setAttribute 而不是 s.integrity = …：integrity 的 IDL 反射不是所有引擎都有
+     （jsdom 就没有），写属性名则是各家都认的通用形态。 */
+  s.setAttribute('integrity', SDK_SRI);
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('referrerpolicy', 'no-referrer');
+  s.onload = cb;
+  s.onerror = function(){ SYNC.msg = '同步组件没加载上。检查网络，或稍后重试。'; renderSyncCard(); };
+  document.head.appendChild(s);
+}
+function withCloud(cb){
+  if(SYNC.cloud) return cb();
+  loadSDK(function(){
+    if(!window.WorkBuddyCloud) return;
+    SYNC.cloud = WorkBuddyCloud.createWorkBuddyCloud({
+      endpoint: SYNC.cfg.endpoint,
+      publishableKey: SYNC.cfg.publishableKey
+    });
+    cb();
+  });
+}
+
+function mergeStates(local, remote){
+  if(!remote) return local;
+  if(!local) return remote;
+  var out = JSON.parse(JSON.stringify(remote));
+  if(local.startDate && (!out.startDate || local.startDate < out.startDate)) out.startDate = local.startDate;
+  var map = {};
+  function put(it){ if(!it || !it.text) return; if(!(it.text in map)) map[it.text] = false; if(it.realized) map[it.text] = true; }
+  (out.intention || []).forEach(put);
+  (local.intention || []).forEach(put);
+  out.intention = Object.keys(map).map(function(t){ return { text:t, realized:map[t] }; });
+  out.entries = out.entries || {};
+  Object.keys(local.entries || {}).forEach(function(k){
+    var a = out.entries[k], b = local.entries[k];
+    if(!a){ out.entries[k] = b; return; }
+    if((b.at ? Date.parse(b.at) : 0) > (a.at ? Date.parse(a.at) : 0)) out.entries[k] = b;
+  });
+  return out;
+}
+
+async function pushNow(silent){
+  if(!SYNC.cloud || !SYNC.user || !SYNC.key || SYNC.busy) return;
+  if(!S || !S.startDate){ if(!silent) toast('这台设备上还没有记录'); return; }
+  SYNC.busy = true;
+  try{
+    var cipher = await seal(SYNC.key, S);
+    var cur = await SYNC.cloud.database.from('journal_sync').select('id').maybeSingle();
+    if(cur.error) throw cur.error;
+    var res = cur.data
+      ? await SYNC.cloud.database.from('journal_sync').update({ cipher:cipher, updated_at:new Date().toISOString() }).eq('id', cur.data.id).select()
+      : await SYNC.cloud.database.from('journal_sync').insert({ cipher:cipher }).select();
+    if(res.error) throw res.error;
+    if(Array.isArray(res.data) && res.data.length === 0) throw new Error('没有写入权限');
+    SYNC.last = new Date().toISOString();
+    localStorage.setItem('fj-last', SYNC.last);
+    if(!silent) toast('已同步到云端');
+  }catch(e){
+    toast('同步失败：' + ((e && e.message) || '未知错误'));
+  }finally{
+    SYNC.busy = false;
+  }
+}
+
+function schedulePush(){
+  if(typeof SYNC === 'undefined' || !SYNC || !SYNC.cloud || !SYNC.user || !SYNC.key) return;
+  clearTimeout(SYNC.timer);
+  SYNC.timer = setTimeout(function(){ pushNow(true); }, 2500);
+}
+
+async function syncNow(silent){
+  if(!SYNC.cloud || !SYNC.user || !SYNC.key) return;
+  try{
+    var cur = await SYNC.cloud.database.from('journal_sync').select('cipher').maybeSingle();
+    if(cur.error) throw cur.error;
+    if(cur.data){
+      var remote = await unseal(SYNC.key, cur.data.cipher);
+      S = mergeStates(S, remote);
+      persist();
+      if(S && S.startDate){ renderToday(); renderTrack(); renderReview(); }
+      maybeLeaveSetup();
+    }
+    if(S && S.startDate) await pushNow(true);
+    if(!silent) toast(S && S.startDate ? '同步完成' : '云端还没有记录');
+  }catch(e){
+    if(!silent) toast('同步失败：' + ((e && e.message) || '未知错误'));
+  }
+}
+
+async function unlockWithPassword(pw){
+  var uid = SYNC.user ? (SYNC.user.id || SYNC.user.uid || '') : '';
+  if(!uid){ toast('先登录'); return; }
+  if(!pw || pw.length < 6){ toast('同步密码至少 6 位'); return; }
+  var key = await deriveKey(pw, uid);
+  var cur = await SYNC.cloud.database.from('journal_sync').select('cipher').maybeSingle();
+  if(cur.error){ toast('读云端失败：' + cur.error.message); return; }
+  if(cur.data){
+    try{
+      var remote = await unseal(key, cur.data.cipher);
+      SYNC.key = key; await storeKey(key);
+      S = mergeStates(S, remote); persist();
+      if(S && S.startDate){ renderToday(); renderTrack(); renderReview(); }
+      toast('已解锁，云端记录合并进来了');
+      maybeLeaveSetup();
+    }catch(e){
+      toast('这个密码解不开云端的记录。换设备请填同一个密码，新设备要设新密码请先清空云端');
+      return;
+    }
+  }else{
+    SYNC.key = key; await storeKey(key);
+    if(S && S.startDate){
+      await pushNow(true);
+      toast('同步密码已设置，记录已加密上传');
+    }else{
+      toast('同步密码已设置。云端还没有记录，回到开始那一页写一轮就会自动上传');
+    }
+  }
+  renderSyncCard();
+}
+
+async function afterLogin(){
+  try{
+    var r = await SYNC.cloud.auth.getUser();
+    var u = r && r.data ? (r.data.user || r.data) : null;
+    SYNC.user = u;
+  }catch(e){ SYNC.user = null; }
+  if(!SYNC.user){ renderSyncCard(); return; }
+  SYNC.last = localStorage.getItem('fj-last');
+  var k = await restoreKey();
+  if(k){ SYNC.key = k; await syncNow(true); }
+  renderSyncCard();
+}
+
+function tabBtn(k, label){
+  var on = SYNC.tab === k;
+  return '<button class="btn small' + (on ? ' primary' : ' ghost') + '" data-tab="' + k + '">' + label + '</button>';
+}
+function authHTML(){
+  var t = SYNC.tab, f = '';
+  if(t === 'pw'){
+    f = '<input type="email" id="aEmail" placeholder="邮箱" autocomplete="email">'
+      + '<input type="password" id="aPass" placeholder="密码" autocomplete="current-password" style="margin-top:8px">'
+      + '<button class="btn small primary" id="aGo" style="margin-top:12px">登录</button>';
+  }else if(t === 'otp'){
+    f = '<input type="email" id="aEmail" placeholder="邮箱" autocomplete="email">'
+      + '<button class="btn small" id="aSend" style="margin-top:12px">发验证码</button>'
+      + '<input type="text" id="aCode" placeholder="邮件里的 6 位验证码" inputmode="numeric" style="margin-top:8px" hidden>'
+      + '<button class="btn small primary" id="aVerify" style="margin-top:8px" hidden>验证并登录</button>';
+  }else if(t === 'up'){
+    f = '<input type="email" id="aEmail" placeholder="邮箱" autocomplete="email">'
+      + '<button class="btn small" id="aSend" style="margin-top:12px">发验证码</button>'
+      + '<input type="text" id="aCode" placeholder="邮件里的 6 位验证码" inputmode="numeric" style="margin-top:8px" hidden>'
+      + '<input type="password" id="aPass" placeholder="设一个密码（至少 8 位）" autocomplete="new-password" style="margin-top:8px" hidden>'
+      + '<button class="btn small primary" id="aVerify" style="margin-top:8px" hidden>完成注册</button>';
+  }else{
+    f = '<input type="email" id="aEmail" placeholder="邮箱" autocomplete="email">'
+      + '<button class="btn small" id="aSend" style="margin-top:12px">发重设码</button>'
+      + '<input type="text" id="aCode" placeholder="邮件里的 6 位验证码" inputmode="numeric" style="margin-top:8px" hidden>'
+      + '<input type="password" id="aPass" placeholder="新密码（至少 8 位）" autocomplete="new-password" style="margin-top:8px" hidden>'
+      + '<button class="btn small primary" id="aGoPw" style="margin-top:8px" hidden>重设密码</button>';
+  }
+  return '<div class="row" style="margin-bottom:14px">'
+    + tabBtn('pw','密码登录') + tabBtn('otp','验证码登录') + tabBtn('up','注册') + tabBtn('rs','忘记密码')
+    + '</div>' + f + '<div class="hint">' + (SYNC.msg || '') + '</div>';
+}
+
+function renderSyncCard(){
+  var box = document.getElementById('syncBody');
+  if(!box) return;
+  if(!SYNC.cfg){
+    box.innerHTML = '<p style="font-size:13.5px;color:var(--ink-2)">可选功能：登录后可以把这本日记在多台设备之间同步。'
+      + '内容在本机加密完才上传，服务器只存密文。</p>'
+      + '<p style="font-size:13.5px;color:var(--ink-2);margin-top:8px">'
+      + '<b>开启后会产生网络请求</b>：页面会从 cdn.jsdelivr.net 下载一次同步组件'
+      + '（版本已锁定并做完整性校验），登录与同步请求发往<b>你自己填的后端</b>。'
+      + '登录会把邮箱和会话令牌发出设备；日记正文则是加密之后才发。'
+      + '不填这段配置，页面不联网。</p>'
+      + '<textarea id="cfgIn" rows="2" placeholder="粘贴同步配置串" style="margin-top:12px;font-size:16px"></textarea>'
+      + '<button class="btn small" id="cfgSave" style="margin-top:8px">保存配置</button>';
+    document.getElementById('cfgSave').onclick = function(){
+      try{
+        var o = JSON.parse(document.getElementById('cfgIn').value);
+        if(!o.endpoint || !o.publishableKey) throw new Error('缺字段');
+        localStorage.setItem('fj-cfg', JSON.stringify(o));
+        SYNC.cfg = o; renderSyncCard(); toast('配置已保存');
+        /* 立刻把同步组件装上：不然刚粘贴完配置就点登录，按钮是死的
+           （SYNC.cloud 还是 null），得手动刷新页面才行。 */
+        initSync();
+      }catch(e){ toast('这段配置读不出来'); }
+    };
+    return;
+  }
+  if(!SYNC.cloud || !SYNC.user){
+    box.innerHTML = '<p style="font-size:13.5px;color:var(--ink-2)">用邮箱登录后，这本日记就能在多台设备间同步。</p>'
+      + authHTML();
+    bindAuth();
+    return;
+  }
+  if(!SYNC.key){
+    box.innerHTML = '<p style="font-size:13.5px;color:var(--ink-2)">已登录。现在设一个<b>同步密码</b>——'
+      + '它只用来加密这本日记，不会上传。换设备时填同一个密码就能看到记录。</p>'
+      + '<input type="password" id="syncPw" placeholder="同步密码（至少 6 位）" autocomplete="new-password" style="margin-top:12px">'
+      + '<div class="row" style="margin-top:10px"><button class="btn small primary" id="syncGo">解锁 / 设置</button>'
+      + '<button class="btn small ghost" id="syncOut">退出登录</button></div>'
+      + '<p class="hint">密码丢了，云端那份就解不开了，本机的记录不受影响。</p>';
+    document.getElementById('syncGo').onclick = function(){
+      var v = document.getElementById('syncPw').value;
+      this.disabled = true; this.textContent = '处理中…';
+      unlockWithPassword(v).catch(function(e){ toast('出错了：' + ((e && e.message) || '')); renderSyncCard(); });
+    };
+    document.getElementById('syncOut').onclick = doSignOut;
+    return;
+  }
+  var when = SYNC.last ? new Date(SYNC.last).toLocaleString('zh-CN', { hour12:false }) : '还没同步过';
+  box.innerHTML = '<p style="font-size:13.5px;color:var(--ink-2)">已连接，本机加密。上次同步：' + when + '</p>'
+    + '<div class="row" style="margin-top:12px">'
+    + '<button class="btn small primary" id="bSync">立即同步</button>'
+    + '<button class="btn small ghost" id="bReKey">换同步密码</button>'
+    + '<button class="btn small ghost" id="bOut">退出登录</button></div>'
+    + '<p class="hint">写完之后会自动加密上传。这个密码不在服务器上，我们也看不到你的内容。</p>';
+  document.getElementById('bSync').onclick = function(){ this.disabled = true; syncNow(false); setTimeout(renderSyncCard, 1200); };
+  document.getElementById('bReKey').onclick = function(){
+    if(!confirm('换同步密码会用新密码重新加密并覆盖云端那份。确定？')) return;
+    localStorage.removeItem('fj-dk'); SYNC.key = null; renderSyncCard();
+  };
+  document.getElementById('bOut').onclick = doSignOut;
+}
+
+async function doSignOut(){
+  try{ if(SYNC.cloud) await SYNC.cloud.auth.signOut(); }catch(e){}
+  localStorage.removeItem('fj-dk');
+  SYNC.user = null; SYNC.key = null; SYNC.last = null;
+  renderSyncCard(); toast('已退出登录');
+}
+
+function bindAuth(){
+  var tabs = document.querySelectorAll('#syncBody [data-tab]');
+  for(var i=0;i<tabs.length;i++){
+    tabs[i].onclick = function(){ SYNC.tab = this.getAttribute('data-tab'); SYNC.msg = ''; SYNC.otp = null; SYNC.reset = null; renderSyncCard(); };
+  }
+  function reveal(){ ['aCode','aPass','aVerify','aGoPw'].forEach(function(id){ var e = document.getElementById(id); if(e) e.hidden = false; }); }
+  var send = document.getElementById('aSend');
+  if(send) send.onclick = function(){
+    var email = document.getElementById('aEmail').value.trim();
+    if(!email){ toast('填一下邮箱'); return; }
+    send.disabled = true; send.textContent = '发送中…';
+    var call = (SYNC.tab === 'rs')
+      ? SYNC.cloud.auth.resetPasswordForEmail(email)
+      : SYNC.cloud.auth.sendOtp({ email:email });
+    call.then(function(r){
+      if(r.error){ toast(r.error.message || '发送失败'); send.disabled = false; send.textContent = '重发'; return; }
+      if(SYNC.tab === 'rs'){ SYNC.reset = r.data; } else { SYNC.otp = r.data; }
+      reveal(); send.textContent = '重发'; send.disabled = false;
+      toast(SYNC.tab === 'rs' ? '重设码发出去了' : '验证码发出去了，去邮箱看一眼');
+    }).catch(function(e){ toast('发送失败：' + ((e && e.message) || '')); send.disabled = false; });
+  };
+  var verify = document.getElementById('aVerify');
+  if(verify) verify.onclick = function(){
+    var email = document.getElementById('aEmail').value.trim();
+    var code = document.getElementById('aCode').value.trim();
+    var pwEl = document.getElementById('aPass');
+    var pw = pwEl ? pwEl.value : '';
+    if(!SYNC.otp){ toast('先点一下发验证码'); return; }
+    if(!code){ toast('填一下验证码'); return; }
+    if(SYNC.tab === 'up' && (!pw || pw.length < 8)){ toast('密码至少 8 位'); return; }
+    verify.disabled = true; verify.textContent = '验证中…';
+    var args = {
+      verificationId: SYNC.otp.verificationId, token: code, email: email,
+      isExistingUser: SYNC.otp.isExistingUser,
+      password: (SYNC.tab === 'up' && !SYNC.otp.isExistingUser) ? pw : undefined
+    };
+    if(SYNC.tab === 'up' && SYNC.otp.isExistingUser){
+      SYNC.tab = 'pw'; SYNC.msg = '请用密码登录。'; SYNC.otp = null; renderSyncCard(); return;
+    }
+    SYNC.cloud.auth.verifyOtp(args).then(function(r){
+      if(r.error){ toast(r.error.message || '验证失败'); verify.disabled = false; verify.textContent = SYNC.tab === 'up' ? '完成注册' : '验证并登录'; return; }
+      afterLogin();
+    }).catch(function(e){ toast('验证失败：' + ((e && e.message) || '')); verify.disabled = false; });
+  };
+  var go = document.getElementById('aGo');
+  if(go) go.onclick = function(){
+    var email = document.getElementById('aEmail').value.trim();
+    var pw = document.getElementById('aPass').value;
+    if(!email || !pw){ toast('邮箱和密码都要填'); return; }
+    go.disabled = true; go.textContent = '登录中…';
+    SYNC.cloud.auth.signInWithPassword({ email:email, password:pw }).then(function(r){
+      if(r.error){ toast('账号或密码不对'); go.disabled = false; go.textContent = '登录'; return; }
+      afterLogin();
+    }).catch(function(e){ toast('登录失败：' + ((e && e.message) || '')); go.disabled = false; go.textContent = '登录'; });
+  };
+  var goPw = document.getElementById('aGoPw');
+  if(goPw) goPw.onclick = function(){
+    var code = document.getElementById('aCode').value.trim();
+    var npw = document.getElementById('aPass').value;
+    if(!SYNC.reset){ toast('先点一下发重设码'); return; }
+    if(!code || !npw || npw.length < 8){ toast('验证码和新密码都要填，密码至少 8 位'); return; }
+    goPw.disabled = true; goPw.textContent = '处理中…';
+    // 重设密码走「发码时拿到的句柄」：started.data.updateUser({nonce, password})。
+    // 不要再调 resetPasswordForEmail —— 重发会让用户手上的验证码作废；
+    // 也不要调 resetPasswordForOld —— 那是「已登录改密码」用的，这里没有旧密码。
+    Promise.resolve(SYNC.reset.updateUser({ nonce: code, password: npw })).then(function(r){
+      if(r && r.error) throw new Error(r.error.message || '重设失败');
+      SYNC.reset = null; SYNC.msg = '';
+      afterLogin(); // 重设成功后 SDK 会自动登录
+    }).catch(function(e){ toast('重设失败：' + ((e && e.message) || '')); goPw.disabled = false; goPw.textContent = '重设密码'; });
+  };
+}
+
+function initSync(){
+  if(!loadCfg()) { renderSyncCard(); return; }
+  if(location.protocol === 'file:'){ SYNC.msg = '当前是从本地文件打开的，联网同步要在发布后的网址上用。'; renderSyncCard(); return; }
+  withCloud(function(){
+    if(!SYNC.cloud) return;
+    SYNC.cloud.auth.getSession().then(function(r){
+      if(r && r.data && r.data.session){ afterLogin(); } else { renderSyncCard(); }
+    }).catch(function(){ renderSyncCard(); });
+  });
+}
+
+S = load();
+if(S && S.startDate){
+  renderToday(); renderTrack(); renderReview(); renderSettings();
+  show('today');
+}else{
+  initSetup(); show('setup');
+}
+initSync();
+</script>
+</body>
+</html>

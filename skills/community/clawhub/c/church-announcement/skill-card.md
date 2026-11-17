@@ -1,41 +1,53 @@
-## Description: <br>
-Generates church announcements in three lengths for a given occasion, time, and place: one-liner, SMS, and full announcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates church announcements in three lengths (one-liner, SMS, full) for a given occasion, time, and place.
 
-## Publisher: <br>
-[cheniOS](https://clawhub.ai/user/cheniOS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenios](https://clawhub.ai/user/chenios)
 
-## Use Case: <br>
-Church staff, pastors, ministry coordinators, and communicators use this skill to draft concise event announcements for bulletins, SMS, email, and verbal notices. It is suited for church occasions such as prayer meetings, baptisms, potlucks, services, and other ministry events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated public announcements may contain placeholders or missing event details if the user does not provide contact, location, or practical information. <br>
-Mitigation: Review each one-liner, SMS, and full announcement before publication and replace placeholders such as [contact] or [location] with verified details. <br>
-Risk: Announcement drafts may be unsuitable for distribution if the occasion, time, place, or optional scripture/theme details are inaccurate. <br>
-Mitigation: Confirm all event facts and any provided scripture or tradition preference before sending the announcement to a congregation or public channel. <br>
+## Use Case:
 
+Church staff, ministry coordinators, and communicators use this skill to draft formal English announcements for church events such as prayer meetings, baptisms, potlucks, and services.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cheniOS/church-announcement) <br>
-- [Project Homepage](https://github.com/cheniOS/bible-church-ministry-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text by default, with Markdown or DOCX-oriented wording only when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a one-liner, SMS version, and full announcement; outputs English only and may include placeholders when details are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact/clawhub.json) <br>
+Risk: Draft announcements may retain placeholders such as contact or location details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace placeholders with real venue and contact information before publishing or sending.
+
+Risk: Announcement copy is limited to English and may need localization before distribution to non-English audiences.
+
+Mitigation: Translate and review the final announcement through the church's normal communications process when another language is required.
+
+## Reference(s):
+
+- [Church Announcement ClawHub Skill Page](https://clawhub.ai/chenios/skills/church-announcement)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text by default; Markdown or DOCX guidance when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one-liner, SMS, and full announcement variants in English only.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

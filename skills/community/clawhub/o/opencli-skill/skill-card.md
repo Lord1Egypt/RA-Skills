@@ -1,45 +1,60 @@
-## Description: <br>
-opencli helps agents browse, search, summarize, and optionally act on supported social and content sites through the user's existing Chrome login session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use opencli CLI to interact with social and content websites such as Bilibili, Zhihu, Twitter/X, YouTube, Weibo, Xiaohongshu, V2EX, Reddit, HackerNews, Xueqiu, and BOSS Zhipin through the user's existing Chrome login session.
 
-## Publisher: <br>
-[aaronwang1980](https://clawhub.ai/user/aaronwang1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronwang1980](https://clawhub.ai/user/aaronwang1980)
 
-## Use Case: <br>
-Developers and agent users can use this skill to fetch trends, search supported platforms, inspect social feeds, check market information, and prepare content actions through opencli or a browser fallback. It is most appropriate when the user already has Chrome logged in to the target services and wants agent-assisted browsing or account workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Chrome login sessions to read private account content. <br>
-Mitigation: Install only for accounts and browser profiles the user is comfortable exposing to the agent, and keep sensitive services logged out. <br>
-Risk: The skill can perform account actions such as posting, replying, liking, deleting, checking in, or using a Playwright fallback. <br>
-Mitigation: Require explicit user confirmation before any write action or browser fallback that could affect an account. <br>
-Risk: The skill can persist generated site automations under ~/.opencli/clis. <br>
-Mitigation: Periodically inspect generated automation files and remove entries that are no longer trusted or needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to browse, search, summarize, and perform selected account actions on supported social, news, job, and finance websites through opencli or browser automation backed by an already logged-in Chrome session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronwang1980/opencli-skill) <br>
-- [opencli upstream project](https://github.com/jackwener/opencli) <br>
-- [opencli command reference](references/commands.md) <br>
-- [Playwright MCP Bridge](https://chromewebstore.google.com/detail/playwright-mcp-bridge/kldoghpdblpjbjeechcaoibpfbgfomkn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers JSON-formatted CLI output for parsing and should request confirmation before account write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can operate websites using an already logged-in Chrome profile, exposing personal account state and private data to agent actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Chrome profile or low-risk accounts, and review each requested site action before allowing the agent to proceed.
+
+Risk: Write operations such as posts, replies, likes, deletes, direct messages, and check-ins can affect public or account-visible state.
+
+Mitigation: Require explicit user confirmation with the exact target and content before any write operation is executed.
+
+Risk: Mutable install commands such as npx or @latest can change behavior over time.
+
+Mitigation: Prefer pinned package versions or a reviewed local installation before using the skill in higher-trust workflows.
+
+## Reference(s):
+
+- [opencli command reference](references/commands.md)
+- [opencli upstream project](https://github.com/jackwener/opencli)
+- [Playwright MCP Bridge extension](https://chromewebstore.google.com/detail/playwright-mcp-bridge/kldoghpdblpjbjeechcaoibpfbgfomkn)
+- [ClawHub skill page](https://clawhub.ai/aaronwang1980/skills/opencli-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, command snippets, configuration guidance, and structured command-output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON, YAML, CSV, Markdown, or table-formatted data emitted by opencli commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

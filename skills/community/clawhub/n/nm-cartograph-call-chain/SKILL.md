@@ -2,7 +2,7 @@
 name: call-chain
 description: |
   Traces execution paths through the code graph with criticality scoring and Mermaid charts
-version: 1.9.8
+version: 1.10.3
 triggers:
   - understanding how a function propagates through the system
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/cartograph", "emoji": "\ud83e\udd9e"}}
@@ -10,13 +10,18 @@ source: claude-night-market
 source_plugin: cartograph
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Call Chain Tracing
 
 Trace execution flows through the codebase using the
 code knowledge graph.
+
+## When NOT To Use
+
+- Static import relationships (use `cartograph:dependency-graph`)
+- Scoring the risk of a change (use `pensive:blast-radius`)
 
 ## Prerequisites
 
@@ -97,3 +102,16 @@ Skip graph-specific steps.
 | External calls | 0.20 | Unresolved dependencies |
 | Test gap | 0.15 | Untested nodes in flow |
 | Depth | 0.10 | Deep call chains |
+
+## Exit Criteria
+
+- [ ] Indented call tree displayed for the target function with
+      criticality scores in the form `[criticality: N.NN]`
+- [ ] Mermaid `flowchart LR` generated with edges representing
+      each caller-to-callee relationship in the traced path
+- [ ] Criticality breakdown table shown covering: file spread,
+      security sensitivity, external calls, test gap, and depth
+- [ ] If gauntlet is not installed, fallback to static `rg`/`grep`
+      analysis is used and the absence of graph data is noted
+- [ ] If gauntlet is installed but `graph.db` is absent, user is
+      told to run `/gauntlet-graph build` before the skill halts

@@ -1,48 +1,58 @@
-## Description: <br>
-PatPat is a co-regulation skill for parents of children ages 3-8 that provides parent-first guidance, child-facing emotional scaffolding, repair scripts, and daily practice rituals for common emotional moments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PatPat（摸摸头）— 3-8岁儿童情绪共调节助手。帮助家长在孩子情绪爆发时快速获得可用的应对指导，包括当下爆发、事后修复和日常练习三种场景。
 
-## Publisher: <br>
-[gglinux](https://clawhub.ai/user/gglinux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gglinux](https://clawhub.ai/user/gglinux)
 
-## Use Case: <br>
-External parents and caregivers use PatPat for immediate, low-friction support during child emotional storms, after-conflict repair, and everyday emotional practice. The skill routes each request into meltdown-now, repair-after, or daily-practice mode and returns concise parent guidance plus child-facing co-regulation content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parents may over-rely on the skill during safety-critical child behavior, severe aggression, self-harm concerns, or persistent impairment. <br>
-Mitigation: Use the skill's Red risk routing to stop narrative output, secure immediate safety, reduce stimulation, seek another adult's help when available, and contact local professional or emergency support. <br>
-Risk: Family prompts may include unnecessary identifying details about children. <br>
-Mitigation: Share only the minimum needed context, such as age band, visible state, and parent regulation level, and avoid names, locations, school details, or other unnecessary identifiers. <br>
-Risk: Guidance may not fit every family's language, culture, clinical context, or parenting constraints. <br>
-Mitigation: Confirm language and cultural fit before use, treat outputs as support rather than diagnosis or treatment, and consult qualified pediatric, psychological, or crisis professionals when concerns continue or escalate. <br>
+## Use Case:
 
+External parents and caregivers use PatPat to get concise, Chinese-centered or bilingual co-regulation guidance for children ages 3-8 during active meltdowns, post-conflict repair, and everyday emotional practice. The skill prioritizes parent stabilization, child-facing story or ritual support when appropriate, and escalation to professional or emergency support for higher-risk situations.
 
-## Reference(s): <br>
-- [PatPat on ClawHub](https://clawhub.ai/gglinux/patpat) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [VISION.md](artifact/VISION.md) <br>
-- [Parent-Coach & Co-Regulation](artifact/logic/parent-coach.md) <br>
-- [Narrative & Interaction Framework](artifact/logic/story-engine.md) <br>
-- [Emotion-Interoception Mapping](artifact/logic/emotion-creatures.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON] <br>
-**Output Format:** [Structured Markdown by default; optional JSON sections for frontend rendering] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default child-facing output is Simplified Chinese; parent guidance can be bilingual when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Users may over-rely on the skill during immediate safety concerns, severe aggression, self-harm risk, or persistent serious distress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use professional or emergency support for high-risk situations, and keep the skill's Red-risk behavior limited to immediate safety guidance rather than story or coaching output.
+
+Risk: Parenting support could be mistaken for diagnosis, therapy, or a replacement for caregiver judgment.
+
+Mitigation: Present PatPat as co-regulation support only, avoid diagnosis or treatment claims, and recommend professional consultation when Yellow or Red safety signals are present.
+
+Risk: Long explanations or too many options during active dysregulation can increase parent or child overload.
+
+Mitigation: Keep crisis responses short, ask only essential routing questions, and provide one immediate action plus one or two short phrases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gglinux/skills/patpat)
+- [ClawHub publisher profile](https://clawhub.ai/user/gglinux)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown or structured JSON-style sections for parent guidance, child-facing content, shared action, and next step]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default child-facing output is Simplified Chinese; parent guidance may be bilingual when helpful.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, created 2026-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

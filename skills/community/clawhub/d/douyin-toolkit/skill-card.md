@@ -1,43 +1,59 @@
-## Description: <br>
-Automatically publishes videos to Douyin by uploading a video file, filling title and description fields, and handling SMS verification when required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing videos to Douyin by uploading a video, filling title and description fields, and handling SMS verification when required.
 
-## Publisher: <br>
-[mr-j-j](https://clawhub.ai/user/mr-j-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-j-j](https://clawhub.ai/user/mr-j-j)
 
-## Use Case: <br>
-Creators and operators use this skill to automate video publishing workflows on Douyin Creator Center from a local environment with an existing logged-in browser profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a logged-in Douyin creator account and can publish content through that account. <br>
-Mitigation: Use an isolated workspace or account, confirm the intended video and title before running, and install only if that level of account control is acceptable. <br>
-Risk: An existing draft may be discarded during the upload flow. <br>
-Mitigation: Check Douyin Creator Center for important drafts before running the publish command. <br>
-Risk: Local browser profile and screenshot files may contain account or content details. <br>
-Mitigation: Protect the working directory, avoid shared machines, and delete chrome_profile and screenshots when they are no longer needed. <br>
+## Use Case:
 
+Creators, operators, and agents use this skill to automate Douyin Creator Center video publishing from a local authenticated browser session. It is useful for repeat posting workflows that need video upload, metadata entry, session reuse, and optional SMS-code handoff.
 
-## Reference(s): <br>
-- [Douyin Creator Center](https://creator.douyin.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mr-j-j/douyin-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Playwright-driven browser automation script and writes local browser profile, SMS state, and screenshot files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill operates an authenticated Douyin creator session and can publish content from the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts and content workflows where automated publishing is authorized, and review each posting workflow before running it on a real account.
+
+Risk: Authenticated browser state and troubleshooting screenshots may remain in the local skill directory.
+
+Mitigation: Keep the skill directory private, avoid shared machines, and protect or delete chrome_profile/ and screenshots/ after use.
+
+Risk: Browser automation depends on local Playwright and Chromium behavior.
+
+Mitigation: Prefer a sandboxed or containerized environment with pinned Playwright versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mr-j-j/skills/douyin-toolkit)
+- [Publisher profile](https://clawhub.ai/user/mr-j-j)
+- [Douyin Creator Center](https://creator.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reuse local browser profile, SMS-code state, and screenshot files during operation.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

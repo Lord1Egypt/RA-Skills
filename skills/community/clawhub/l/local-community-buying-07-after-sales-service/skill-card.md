@@ -1,43 +1,57 @@
-## Description: <br>
-社区团购售后与客服全链路技能包，涵盖退款退货处理、客诉应对、客服体系设计、平台售后政策对比及配套工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language community group-buying after-sales service guide covering refunds, complaints, customer support operations, platform policy comparisons, and example support tools.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External community group-buying operators, platform customer-service leads, and group leaders use this skill to design after-sales SOPs, handle refunds and complaints, compare platform policies, and standardize service scripts and KPI checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational actions such as refunds, coupons, commission deductions, supplier penalties, and customer blacklisting could affect money or account status. <br>
-Mitigation: Require human approval and use approved business systems before carrying out any real customer, supplier, or group-leader action. <br>
-Risk: Complaint handling may involve order records, photos, and customer notes. <br>
-Mitigation: Store and process customer information only in approved systems with appropriate access controls. <br>
-Risk: Food-safety incidents require timely escalation and may carry regulatory obligations. <br>
-Mitigation: Escalate suspected food-safety cases to accountable human operators before applying the skill's suggested response workflow. <br>
+## Use Case:
 
+External community group-buying operators, customer support leads, group leaders, and operations managers use this skill to standardize after-sales handling, complaint escalation, refund workflows, support KPIs, and customer response scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/local-community-buying-07-after-sales-service) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with embedded Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational workflows, response scripts, KPI analysis guidance, and example calculators; does not access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Example refund thresholds, penalties, supplier blacklisting, or account-change guidance could be applied without adequate business approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before issuing refunds, penalties, blacklisting suppliers, or making account changes.
+
+Risk: Platform policies, legal requirements, and financial action thresholds may be outdated or jurisdiction-specific.
+
+Mitigation: Verify current platform policies and applicable legal requirements before using the guidance in operations.
+
+Risk: Example Python snippets and calculators may receive invalid or incomplete operational inputs.
+
+Mitigation: Validate inputs and review calculated outputs before relying on them for customer or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/local-community-buying-07-after-sales-service)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown responses with structured checklists, customer-service scripts, and optional Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational guidance; example calculations, policies, and thresholds require local validation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

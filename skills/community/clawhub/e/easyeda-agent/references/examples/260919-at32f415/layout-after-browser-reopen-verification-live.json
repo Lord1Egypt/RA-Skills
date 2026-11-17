@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "example": "260919-at32f415-layout-after-browser-reopen",
+  "project": "ceshi",
+  "pcbDocumentUuid": "2e719e9419653c72",
+  "status": "live-verified",
+  "capturedAt": "2026-09-20T15:56:12Z",
+  "checks": {
+    "componentCount": 69,
+    "primitiveIdSetUnchanged": true,
+    "componentGeometryUnchanged": true,
+    "outlineUnchanged": true,
+    "ldoTrackCount": 15,
+    "ldoTracksUnchanged": true,
+    "overlapCount": 0,
+    "offBoardCount": 0,
+    "tightAt6MilCount": 0,
+    "ratsnestCrossingObservation": 55
+  },
+  "rechecks": [
+    {
+      "capturedAt": "2026-09-20T16:20:17Z",
+      "trigger": "user-reopened-in-app-browser-again",
+      "connectorObservation": "The connector briefly disappeared after the first read attempt, then reconnected to ceshi/PCB1_1; no write or recovery action was attempted during the gap.",
+      "componentCount": 69,
+      "componentsEqualToSavedBaseline": true,
+      "outlineEqualToSavedBaseline": true,
+      "routedLineCount": 15,
+      "tracksEqualToSavedBaseline": true,
+      "componentsSha256": "77bc32d5c88def465d9043c26579795370403a9d14e16b4a6058d83f8ff8b769",
+      "outlineSha256": "ccebacbc28c22c500668a4014a202eee267d33d4f428a5d34675a57e6cd6e8b2",
+      "tracksResultSha256": "1f435687997bd04849f7322e3e5de40e474b0c6d44b7d5134184106fcb9c822f"
+    }
+  ],
+  "notes": [
+    "Browser was reopened by the user, then the PCB was opened and read only through typed CLI.",
+    "Ratsnest crossings are a channel observation for later routing, not a Layout permission gate.",
+    "No schematic-to-PCB import-changes was run after U3 schematic identity changed."
+  ]
+}

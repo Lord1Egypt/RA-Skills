@@ -1,0 +1,38 @@
+[
+  {
+    "type": "textbox",
+    "label": "headline",
+    "value": "Flash Sale Alert!",
+    "fontSize": "56",
+    "fontColor": "#FF6B6B",
+    "textboxMaxHeight": "auto"
+  },
+  {
+    "type": "textbox",
+    "label": "subheadline",
+    "value": "50% OFF Everything",
+    "fontSize": "32",
+    "fontColor": "#4ECDC4",
+    "textboxMaxHeight": 150
+  },
+  {
+    "type": "textbox",
+    "label": "cta",
+    "value": "SHOP NOW",
+    "fontSize": "36",
+    "fontColor": "#FFFFFF",
+    "textboxMaxHeight": 100
+  },
+  {
+    "type": "image",
+    "label": "background",
+    "value": "https://example.com/image.jpg",
+    "opacity": 0.8
+  },
+  {
+    "type": "shape",
+    "label": "accent",
+    "fill": "#f00000",
+    "opacity": 0.8
+  }
+]

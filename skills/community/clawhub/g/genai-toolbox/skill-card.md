@@ -1,39 +1,50 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Genai Toolbox concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as an offline reference for Genai Toolbox concepts, quickstart steps, implementation patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill prints generic setup, credential, and security guidance that may not match a user's environment or policy. <br>
-Mitigation: Treat the output as reference material and review any suggested operational practice against local requirements before applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill as an offline quick-reference helper for Genai Toolbox concepts, setup, patterns, debugging, performance, security, migration, and command cheat sheets.
 
-## Reference(s): <br>
-- [Genai Toolbox on ClawHub](https://clawhub.ai/ckchzh/genai-toolbox) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Plain-text and Markdown reference documentation printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline reference output; no external API calls, credentials, network access, file access, or persistent state are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Generated guidance is generic reference material and may be incomplete for real migrations, security changes, or production operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate operational and security decisions against authoritative project documentation before applying changes.
+
+## Reference(s):
+
+- [Genai Toolbox ClawHub page](https://clawhub.ai/ckchzh/skills/genai-toolbox)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline heredoc output; no credentials, network access, or external API calls required.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and SKILL.md frontmatter; script VERSION reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

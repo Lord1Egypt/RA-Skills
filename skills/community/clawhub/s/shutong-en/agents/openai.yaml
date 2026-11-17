@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Knowledge Companion"
+  short_description: "English knowledge management companion for Obsidian"
+  default_prompt: "Use $shutong-en for this English reading, study, or explicitly requested Obsidian knowledge-management task. Keep the result in the conversation unless I ask for a file change."

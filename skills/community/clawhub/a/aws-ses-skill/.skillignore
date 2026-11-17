@@ -1,0 +1,14 @@
+# Dev artifacts excluded from the security scan (documented in skills_guard.py).
+# Tests are development files, not part of the installed skill's runtime.
+tests/
+__pycache__/
+*.pyc
+
+# Credentials — never commit or package
+.env
+.env.*
+*.env
+.aws/
+credentials
+*.pem
+*.key

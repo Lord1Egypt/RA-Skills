@@ -1,0 +1,97 @@
+// Version numbers below are illustrative only (pins from when this skill was
+// authored) — always let `pnpm add`/`nuxi init` resolve the actual latest
+// release rather than typing these ranges in by hand. Don't assume Nuxt is
+// still on major 4 by the time this skill is used.
+{
+  "name": "<app-name>",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@<match-local-pnpm-version>",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    // Always — install with `pnpm add nuxt` (no version pin) to get current latest
+    "nuxt": "latest",
+
+    // UI kit — pick exactly one, never both (see SKILL.md §4).
+    // Antdv Next's three packages are commented out here AND listed again
+    // under devDependencies below — upstream docs list all three there even
+    // though components render at runtime; pick one location, don't duplicate.
+    "@nuxt/ui": "^4.x",
+    // "antdv-next": "latest",
+    // "@antdv-next/icons": "latest",
+
+    "@nuxtjs/seo": "^5.x",
+    "@nuxthub/core": "^0.x",
+    "@vueuse/nuxt": "^14.x",
+    "@unhead/vue": "^2.x",
+
+    // If images are in scope
+    "@nuxt/image": "^2.x",
+
+    // If Nuxt Content is in scope
+    "@nuxt/content": "^3.x",
+
+    // If i18n is in scope
+    "@nuxtjs/i18n": "^10.x",
+
+    // If motion/animation is in scope
+    "motion-v": "^2.x",
+
+    // If analytics/ads are in scope
+    "nuxt-gtag": "^4.x",
+    "@nuxt/scripts": "^1.x",
+    "nuxt-simple-cookie-consent": "^1.x",
+
+    // If AI-agent discoverability is in scope
+    "nuxt-llms": "^0.x",
+    "nuxt-ai-ready": "^1.x",
+
+    // If social share is in scope
+    "@stefanobartoletti/nuxt-social-share": "^3.x",
+
+    // If a database is in scope
+    "drizzle-orm": "^0.x",
+    "@libsql/client": "^0.x",
+
+    // Icon sets used by @nuxt/ui (pick what the UI actually needs)
+    "@iconify-json/lucide": "^1.x"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.x",
+    "@nuxt/test-utils": "^4.x",
+    "@vitejs/plugin-vue": "^6.x",
+    "@vue/test-utils": "^2.x",
+    "eslint": "^10.x",
+    "happy-dom": "^20.x",
+    "typescript": "^6.x",
+    "vitest": "^4.x",
+    "vue": "^3.x",
+    "vue-tsc": "^3.x",
+
+    // If a database is in scope (dev-only local sqlite driver)
+    "drizzle-kit": "^0.x",
+    "better-sqlite3": "^12.x",
+
+    // If satori-based OG images are in scope
+    "satori": "^0.x",
+
+    // Deploys the app to Cloudflare Workers — see SKILL.md §7.
+    // NuxtHub is NOT the deploy mechanism; Wrangler is.
+    "wrangler": "^4.x",
+
+    // Antdv Next UI kit — see the "dependencies" comment above (pick exactly
+    // one UI kit; don't also install @nuxt/ui). Requires Nuxt >= 4.0.0.
+    // "@antdv-next/nuxt": "latest",
+    // "antdv-next": "latest",
+    // "@antdv-next/icons": "latest"
+  }
+}

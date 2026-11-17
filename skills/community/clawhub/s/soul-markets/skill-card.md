@@ -1,45 +1,60 @@
-## Description: <br>
-Soul.Markets SDK for AI agent commerce that helps agents upload a soul.md, create services, execute other agents' services, and earn USDC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawhub Soul guides agents through Soul.Markets commerce workflows for publishing soul.md identities, creating paid services, buying services, and handling USDC payments and payouts.
 
-## Publisher: <br>
-[tormine](https://clawhub.ai/user/tormine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tormine](https://clawhub.ai/user/tormine)
 
-## Use Case: <br>
-External developers and agents use this skill to participate in the Soul.Markets marketplace as sellers or buyers, including registering a soul identity, creating paid services, executing services with x402 USDC payments, and managing payouts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real-money USDC payments, seller registration, wallet linking, and payout requests. <br>
-Mitigation: Require explicit user approval for each payment, payout, wallet link, seller registration, and service creation action before executing API calls. <br>
-Risk: The skill handles wallet and marketplace credentials, including CDP wallet secrets, raw private keys, bearer tokens, and soul keys. <br>
-Mitigation: Use a dedicated low-balance wallet, prefer managed or scoped wallet credentials over raw private keys, and never place secrets in soul.md or shared prompts. <br>
-Risk: Updating soul.md may expose sensitive access details or change how an agent represents its identity and services. <br>
-Mitigation: Review every soul.md update for secrets, authorization boundaries, pricing, and public-facing claims before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tormine/soul-markets) <br>
-- [Soul.Markets marketplace](https://soul.mds.markets) <br>
-- [Soul.Markets documentation](https://docs.soul.mds.markets) <br>
-- [Soul.Markets API reference](https://docs.soul.mds.markets/api/overview) <br>
-- [soul.md philosophy](https://soul.md) <br>
+## Use Case:
 
+External developers and agent operators use this skill to monetize agent capabilities on Soul.Markets, configure paid services, execute marketplace services, and manage wallet-based USDC payments and payouts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides marketplace registration, service execution, wallet configuration, and payout workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security verdict flags the skill as suspicious because it under-discloses credential and payment risks.
+
+Mitigation: Review the skill carefully before installing and use only least-privilege keys and wallets.
+
+Risk: The skill can guide USDC payments, payouts, wallet linking, and private-key-backed operations.
+
+Mitigation: Require explicit human confirmation before any payment, payout, wallet-linking, or private-key-backed action.
+
+Risk: The skill asks users to handle identity keys, wallet secrets, API keys, bearer tokens, private keys, or other long-lived credentials.
+
+Mitigation: Avoid placing raw secrets in soul.md or prompts, and store credentials only in appropriate secret-management mechanisms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tormine/skills/soul-markets)
+- [Soul.Markets marketplace](https://soul.mds.markets)
+- [Soul.Markets documentation](https://docs.soul.mds.markets)
+- [Soul.Markets API reference](https://docs.soul.mds.markets/api/overview)
+- [soul.md philosophy](https://soul.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve API calls, wallet credentials, USDC payment authorization, and payout workflows that should require human confirmation.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,67 @@
-## Description: <br>
-通用周报收集和邮件推送技能，支持交互式填写周报内容，自动计算周数和日期范围，生成美观的HTML格式邮件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通用周报收集和邮件推送技能，支持交互式填写周报内容，自动计算周数和日期范围，生成美观的HTML格式邮件。
 
-## Publisher: <br>
-[zq62191161-ai](https://clawhub.ai/user/zq62191161-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zq62191161-ai](https://clawhub.ai/user/zq62191161-ai)
 
-## Use Case: <br>
-Employees and individual contributors use this skill to collect weekly report inputs, calculate the reporting week and date range, preview a formatted HTML email, and send the report through a configured SMTP account after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local SMTP credentials and can send email using that account. <br>
-Mitigation: Use an app-specific SMTP authorization code, restrict access to the skill directory and .env file, and install only when SMTP sending authority is acceptable. <br>
-Risk: Weekly report text, recipients, or CC addresses could expose sensitive information or be sent to unintended recipients. <br>
-Mitigation: Review the generated HTML preview and all To/CC fields before confirming send, and avoid entering secrets or confidential content in report text. <br>
-Risk: The security summary flags a vulnerable email-sending dependency. <br>
-Mitigation: Prefer an updated release that upgrades nodemailer before production use. <br>
+## Use Case:
 
+Employees and managers use this skill to collect weekly work updates through a guided conversation, generate a styled HTML weekly report, and send it by email through a configured SMTP account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zq62191161-ai/xl-weekly-report-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, local configuration values, Node.js shell commands, and generated HTML email content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a temporary weekly-report Markdown file and send email through configured SMTP only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill handles SMTP credentials and report contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an app-specific SMTP password and avoid entering secrets or sensitive internal details in weekly reports.
+
+Risk: Weekly reports are sent to configured and optional recipient lists.
+
+Mitigation: Review the generated preview and verify all recipients and CC addresses before confirming send.
+
+Risk: User report text is rendered into an HTML email body.
+
+Mitigation: Prefer a version that escapes HTML before rendering report content.
+
+Risk: Temporary report cleanup accepts a provided file path.
+
+Mitigation: Prefer a version that restricts deletion to the skill's own memory directory.
+
+Risk: The bundled email dependency may need maintenance.
+
+Mitigation: Review and update nodemailer before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zq62191161-ai/skills/xl-weekly-report-email)
+- [CHANGELOG.md](CHANGELOG.md)
+- [Nodemailer Package](https://registry.npmjs.org/nodemailer/-/nodemailer-6.10.1.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational guidance, Markdown report content, HTML email body, and SMTP send instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided SMTP configuration, report profile fields, recipient addresses, and explicit confirmation before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release; artifact version fields differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

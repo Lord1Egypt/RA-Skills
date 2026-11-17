@@ -1,41 +1,58 @@
-## Description: <br>
-Run any Apify Actor to scrape web data, including Actor discovery, quality filtering, probe testing, batched execution, and result collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run any Apify Actor to scrape web data, including Instagram, TikTok, Reddit, and Twitter, with actor discovery, quality filtering, probe testing, batched execution, and result collection.
 
-## Publisher: <br>
-[duxj4520](https://clawhub.ai/user/duxj4520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duxj4520](https://clawhub.ai/user/duxj4520)
 
-## Use Case: <br>
-Developers and operators use this skill to select and run Apify Actors for web or social media scraping tasks, including probe runs, batching, and result collection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run third-party Apify scraping Actors with a user token and send target data to Apify. <br>
-Mitigation: Use APIFY_TOKEN or a protected config file, confirm the selected Actor and target list, and start with probe-only or small-batch runs before full execution. <br>
-Risk: Runs may consume paid Apify capacity or scrape sensitive targets. <br>
-Mitigation: Confirm the Actor pricing model, batch size, output path, and target sensitivity before full runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duxj4520/apify-runner) <br>
-- [Apify Store API](https://api.apify.com/v2/store) <br>
-- [Apify API base](https://api.apify.com/v2) <br>
+## Use Case:
 
+Developers and external users use this skill to choose and run Apify Actors for web and social media data extraction from natural-language scraping requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON; result data may be saved as JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report selected Actors, probe status, item counts, batch counts, failures, and output paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Apify credentials may be exposed when tokens are passed on the command line or stored in configuration files.
+
+Mitigation: Use a limited-scope Apify token through the APIFY_TOKEN environment variable, avoid command-line token arguments, and keep configuration files out of version control with restrictive file permissions.
+
+Risk: Targets and scraping inputs may be sent to third-party Apify Actors.
+
+Mitigation: Confirm the selected Actor and its destination before full execution, especially when target lists are sensitive.
+
+Risk: Scraping jobs can run at scale through batching and may collect unintended data if inputs are too broad.
+
+Mitigation: Run probe tests first, use narrow target lists and limits, and review output before using it downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duxj4520/skills/apify-runner)
+- [Apify Actor documentation](https://apify.com/{actor_id}.md)
+- [Apify Actor page](https://apify.com/{actor_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save scraped results as JSON when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

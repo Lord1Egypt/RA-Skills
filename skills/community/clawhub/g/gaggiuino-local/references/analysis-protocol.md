@@ -552,12 +552,12 @@ When using `weightFlow` to reason about channeling:
 - mentally smooth over about 1 to 1.5 seconds
 - do not overreact to one anomalous 0.5 s blip
 
-### 13. Thermal stability / Brew Delta (Predictive Heating)
-Gaggiuino does **not** use a traditional reactive PID for temperature control during an active shot. Instead, it uses a predictive/feedforward algorithm (Brew Delta) that aggressively adds heat based on real-time flow to counteract incoming cold water.
+### 13. Thermal stability / Brew Delta (Feed-Forward Predictive Heating)
+Gaggiuino does **not** use a traditional reactive PID loop for temperature control during an active shot. Instead, it uses a feed-forward predictive heating strategy, commonly referred to here as **Brew Delta**, that aggressively adds heat based on real-time flow to counteract incoming cold water.
 
 - **Intentional Overshoot:** A rapid rise in the recorded temperature (often spiking significantly above the target) during flow is normal and expected. This reflects the boiler wall heating up predictively, not the actual water temperature hitting the puck.
 - **Diagnosis Constraint:** Do **NOT** diagnose intra-shot temperature spikes as a "PID overshoot", "poor PID tuning", or a hardware failure. Never advise the user to "fix" a high temperature peak during the shot.
-- **Thermal Sag:** For long, high-yield, or high-flow shots (e.g., Turbo/Soup), check if the temperature shows persistent intra-shot thermal sag *below* the target during the main extraction. Persistent sag indicates true thermal stress and boiler limitation, whereas temporary spikes above the target are simply the feedforward algorithm working correctly.
+- **Thermal Sag:** For long, high-yield, or high-flow shots (e.g., Turbo/Soup), check if the temperature shows persistent intra-shot thermal sag *below* the target during the main extraction. Persistent sag indicates true thermal stress and boiler limitation, whereas temporary spikes above the target are simply the feed-forward algorithm working correctly.
 
 ## Readiness Checks
 

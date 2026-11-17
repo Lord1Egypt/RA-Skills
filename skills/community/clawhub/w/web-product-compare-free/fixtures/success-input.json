@@ -1,0 +1,8 @@
+{
+  "browserId": "<browserId>",
+  "readDate": "2026-10-04",
+  "products": [
+    {"name":"便携补光灯 A","url":"https://shop.example.test/products/light-a","visiblePrice":"¥79（券后）","specifications":"3000–6500K；2000mAh","afterSales":"7 天无理由；48 小时发货","scenarios":"桌面口播、近景补光"},
+    {"name":"便携补光灯 B","url":"https://shop.example.test/products/light-b","visiblePrice":"¥109","specifications":"2500–8500K；4000mAh","afterSales":"7 天无理由；赠运费险","scenarios":"户外拍摄、长时补光"}
+  ]
+}

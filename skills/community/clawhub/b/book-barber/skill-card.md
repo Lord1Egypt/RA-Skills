@@ -1,38 +1,53 @@
-## Description: <br>
-Book Barber helps users find barber services, check availability, and create bookings through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Barber helps agents search barber services, check availability, and create bookings through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for barber services, check appointment availability, and create bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking creation may send customer contact details to Lokuli or the selected provider. <br>
-Mitigation: Before creating a booking, confirm the provider, service, time, and contact details that will be sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/book-barber) <br>
+## Use Case:
 
+External users use this skill to find barber services, check available time slots, and create bookings through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON] <br>
-**Output Format:** [Text with JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require provider, service, time slot, customer name, customer email, and customer phone for booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses an external Lokuli booking service and may send customer contact details.
+
+Mitigation: Install only when Lokuli is an acceptable external service, and confirm the name, email, and phone number before sending them.
+
+Risk: The skill can create a real appointment with a barber service.
+
+Mitigation: Verify the barber, service, date, and time slot before creating a booking.
+
+## Reference(s):
+
+- [Book Barber ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-barber)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown with JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

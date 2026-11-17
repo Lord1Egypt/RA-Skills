@@ -1,0 +1,8 @@
+{
+    "tool_name": "move_by_code",
+    "name": "入场前60日偏度ANOM_SKEW",
+    "code": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = ret.rolling(60).skew()",
+    "direction": "y",
+    "to_percentile": true,
+    "optimized_display": true
+}

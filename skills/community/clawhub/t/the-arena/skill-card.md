@@ -1,46 +1,66 @@
-## Description: <br>
-Turn a Discord server into a moderated debate arena with an AI judge, multiple debate formats, configurable personas, scored verdicts, and a persistent scoreboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a Discord server into a moderated debate arena with an AI judge, multiple debate formats, configurable personas, scored verdicts, and a persistent scoreboard.
 
-## Publisher: <br>
-[tdavis009](https://clawhub.ai/user/tdavis009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tdavis009](https://clawhub.ai/user/tdavis009)
 
-## Use Case: <br>
-External Discord server operators and community moderators use this skill to set up structured debate channels, guide participants through debate formats, generate configuration templates, and maintain a scored debate record. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Discord bindings or bot permissions may be broader than needed for debate moderation. <br>
-Mitigation: Restrict the bot to explicit debate channels and avoid granting Manage Channels or Manage Roles unless the deployment specifically requires them. <br>
-Risk: Active moderation can increase message visibility and data exposure in Discord channels. <br>
-Mitigation: Use requireMention true outside the arena and tell members what messages and debate records the bot can read and retain. <br>
-Risk: The scoreboard relies on shell execution and a local SQLite database. <br>
-Mitigation: Disable scoreboard shell execution when it is not needed, or run it in a tightly sandboxed workspace with an explicit DEBATE_SCOREBOARD_DB path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tdavis009/the-arena) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [Debate formats](references/formats.md) <br>
-- [Judging criteria](references/judging.md) <br>
-- [Moderator personas](references/personas.md) <br>
-- [Debate agent template](references/agents-template.md) <br>
+## Use Case:
 
+Discord server operators and OpenClaw agent developers use this skill to configure a structured debate moderator that manages topics, debate formats, channel behavior, verdicts, and scoreboard records.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with configuration snippets, generated files, and optional shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Discord setup templates and SQLite scoreboard data when the included scripts are run by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default setup can expose a broad Discord guild context to the moderator agent.
+
+Mitigation: Review generated OpenClaw and Discord permissions before installation, use explicit channel ID allowlists, keep bot permissions minimal, and prefer requireMention=true.
+
+Risk: Semi-public Discord participants can attempt prompt injection against the debate moderator.
+
+Mitigation: Run the skill as a dedicated isolated agent with workspace-only file access, denied shell execution, and a restricted tool profile.
+
+Risk: The setup and scoreboard scripts require review before use in a shared server.
+
+Mitigation: Patch scripts to validate numeric inputs and generate JSON with a serializer before relying on them operationally.
+
+Risk: Scoreboard access can affect debate records.
+
+Mitigation: Limit scoreboard operation to trusted operators and store the SQLite database inside the skill workspace or an explicitly configured path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tdavis009/skills/the-arena)
+- [Setup Guide](references/setup-guide.md)
+- [Debate Formats](references/formats.md)
+- [Judging Criteria & Scoring](references/judging.md)
+- [Moderator Personas](references/personas.md)
+- [Debate Moderator Operating Instructions](references/agents-template.md)
+- [Welcome Messages](assets/welcome-messages.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Discord/OpenClaw setup guidance, generated agent instructions, config snippets, welcome messages, and SQLite scoreboard commands.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

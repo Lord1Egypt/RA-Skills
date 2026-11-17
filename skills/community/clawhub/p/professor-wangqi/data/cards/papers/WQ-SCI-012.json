@@ -1,0 +1,218 @@
+{
+  "card_id": "WQ-SCI-012",
+  "source_type": "paper",
+  "source_file": "8 Sound as a bell a deep learning approach for health status classification through speech acoustic biomarkers.pdf",
+  "title": "Sound as a bell a deep learning approach for health status classification through speech acoustic biomarkers",
+  "authors": [
+    "Yanbing Wang"
+  ],
+  "year": 2024,
+  "journal": "Chinese Medicine",
+  "language": "en",
+  "abstract": "Background Human health is a complex, dynamic concept encompassing a spectrum of states influenced by genetic, environmental, physiological, and psychological factors. Traditional Chinese Medicine categorizes health into nine body constitutional types, each reflecting unique balances or imbalances in vital energies, influencing physical, mental, and emotional states. Advances in machine learning models offer promising avenues for diagnosing conditions like Alzheimer’s, dementia, and respiratory diseases by analyzing speech patterns, enabling complemen- tary non-invasive disease diagnosis. The study aims to use speech audio to identify subhealth populations character- ized by unbalanced constitution types. Methods Participants, aged 18–45, were selected from the Acoustic Study of Health. Audio recordings were col- lected using ATR2500X-USB microphones and Praat software. Exclusion criteria included recent illness, dental issues, and specific medical histories. The audio data were preprocessed to Mel-frequency cepstral coefficients (MFCCs) for model training. Three deep learning models—1-Dimensional Convolution Network (Conv1D), 2-Dimensional Convolution Network (Conv2D), and Long Short-Term Memory (LSTM)—were implemented using Python to classify health status. Saliency maps were generated to provide model explainability. Results The study used 1,378 recordings from balanced (healthy) and 1,413 from unbalanced (subhealth) types. The Conv1D model achieved a training accuracy of 91.91% and validation accuracy of 84.19%. The Conv2D model had 96.19% training accuracy and 84.93% validation accuracy. The LSTM model showed 92.79% training accu- racy and 87.13% validation accuracy, with early signs of overfitting. AUC scores were 0.92 and 0.94 (Conv1D), 0.99 (Conv2D), and 0.97 (LSTM). All models demonstrated robust performance, with Conv2D excelling in discrimination accuracy. Conclusions The deep learning classification of human speech audio for health status using body constitution types showed promising results with Conv1D, Conv2D, and LSTM models. Analysis of ROC curves, training accuracy, and validation accuracy showed all models robustly distinguished between balanced and unbalanced constitution types. Conv2D excelled with good accuracy, while Conv1D and LSTM also performed well, affirming their reliability. Open Access © The Author(s) 2024. Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/. The Creative Commons Public Domain Dedication waiver (http://creativeco mmons.org/publicdomain/zero/1.0/) applies to the data made available in this article, unless otherwise stated in a credit line to the data. Chinese Medicine *Correspondence: Shujuan Hou housj2009@163.com Qi Wang wangqi710@126.com Full list of author information is available at the end of the article Page 2 of 13 Wang et al. Chinese Medicine (2024) 19:101 Background Human health is a nuanced concept that extends beyond a simple dichotomy of being either healthy or diseased. Instead, it encompasses a diverse range of states and variations along a continuum. This landscape of health is characterized by its complexity, dynamic nature, and multifaceted interplay of genetic and environmental fac- tors [1], as well as factors related to physiology and psy- chology [2]. Individuals experience a variety of physical, mental, and emotional states, each with its own nuances and charac- teristics. These states can range from optimal health to mild discomfort, occasional illness, chronic conditions, and varying degrees of wellness or unwellness. Health is not static but rather dynamic, influenced by factors such as lifestyle choices, environmental exposures, genetic predispositions, and social determinants. Socioeconomic status, access to healthcare, and support networks also significantly impact health outcomes and experiences [3–5]. Taking a holistic perspective on wellness acknowl- edges that health is more than just the absence of disease; it encompasses overall well-being and resilience. In Traditional Chinese Medicine (TCM), the nine body constitutional types are viewed as dynamic states of health, each representing a unique balance or imbalance within the body’s vital energies: Balanced constitution (BC), Qi Deficiency Constitution (QDC), Yang Defi- ciency Constitution (YDC), Yin Deficiency Constitution (YnDC), Phelgm-dampness constitution (PDC), Damp- ness-heat constitution (DHC), Blood stasis constitution (BSC), Qi Stagnation Constitution (QSC), and Special Diathesis Constitution (SDC) [6]. These constitutional types reflect not only physical traits but also psychologi- cal, emotional and mental characteristics, offering insight into an individual’s overall well-being. Correlative rela- tionships between constitution and diseases indicates an association between an individual’s physiological makeup or health condition and the likelihood or manifestation of various illnesses or health issues [7]. For example, indi- viduals with YnDC may experience fluctuations in body temperature and heightened anxiety, reflecting a shortage of Yin energies. Similarly, those with YDC may exhibit signs of weakness and fatigue, indicating a deficiency in Yang energies. Individuals with a PDC constitution face significantly elevated risks of obesity, metabolic syn- drome, hypertension, and diabetes compared to those with a balanced body constitution type [8]. Moreover, recent research has shown that significant differences in taxonomic features exist between DHC and balanced cohorts, with distinct compositions at the phylum, fam- ily, and genus levels, including notable variations in Ente- rococcaceae, Pasteurellaceae, Subdoligranulum, E. hallii, Haemophilus, and Enterococcus [9]. These constitutional types are not fixed categories but rather dynamic states that can evolve over time in response to various inter- nal and external factors. Irregular, unhealthy lifestyles causing dysrhythmic circadian can contribute to the development of a phlegm-dampness constitution [10]. By understanding and addressing these constitutional imbalances through TCM therapies such as acupuncture, herbal medicine, and lifestyle adjustments, individu- als can work towards restoring harmony and promoting optimal health. Questionnaire instruments, both long and short form, have been developed and validated to measure the constitution types [11]. The balanced type is considered a state of harmonious balance in which the body’s vital energies, or Qi, are in equilibrium, leading to overall good health. The remain- ing eight types denote different types and levels of imbal- ance or disharmony in the body’s Qi, leading to physical, mental, and emotional symptoms linked to suboptimal health. Individuals classified as balanced are seen as healthy and resilient, with few symptoms of discomfort or imbal- ances compared to those classified into the other con- stitutional types. Meanwhile, individuals with the other eight unbalanced types may experience a range of symp- toms and health challenges due to imbalances in their Qi, indicating a state of suboptimal health. Recognizing these constitutional types and their associated imbalances, TCM practitioners can tailor treatment approaches to address the specific needs of each individual, aiming to restore harmony and promote overall well-being. Human speech voice production is a complex process that involves the coordinated efforts of multiple organs within the respiratory, vocal, and neurological systems. These organs include the brain, the lungs, vocal cords, larynx, pharynx, mouth, tongue, and lips. The lungs pro- vide the necessary airflow and pressure for speech, while the vocal cords, located in the larynx, vibrate to produce sound. The larynx manipulates the vocal cords to gener- ate different pitches and volumes. As the sound travels The study integrates constitution theory and deep learning technologies to classify subhealth populations using noninvasive approach, thereby promoting personalized medicine and early intervention strategies.",
+  "keywords": [
+    "Speech analysis",
+    "Acoustic parameters",
+    "Deep learning",
+    "Body constitution",
+    "Subhealth",
+    "Traditional Chinese Medicine"
+  ],
+  "doi": "10.1186/s13020-024-00973-3",
+  "research_focus": {
+    "constitution_type": [
+      "痰湿质",
+      "湿热质"
+    ],
+    "disease": [
+      "肥胖",
+      "高血压",
+      "糖尿病",
+      "抑郁症"
+    ],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 19
+  },
+  "results": {
+    "has_significance": true
+  },
+  "conclusions": "The above models demand careful hyperparameter tun- ing to achieve optimal model performance. Manually selecting the best set of hyperparameters is a difficult and time- and resource-consuming task. The process of eval- uating and adjusting the impact of architectural choices on model performance is iterative and requires careful consideration of both the classification task and dataset characteristics. Yet, the deep learning classification of human speech audio for health status classification using body constitution types yielded promising results across Conv1D, Conv2D, and LSTM models. Through the anal- ysis of micro-average and macro-average ROC curves, as well as training and validation accuracy metrics, all mod- els demonstrated robust performance in distinguishing between balanced and unbalanced constitution types. While the Conv2D model exhibited the highest dis- criminatory power, achieving near-perfect classification accuracy, the Conv1D and LSTM models also showcased impressive capabilities. Importantly, the consistency in model performance across different architectures under- scores their reliability and generalizability in real-world applications. These findings highlight the potential of deep learn- ing approaches in using MFCCs for constitution type classification, paving the way for further research and advancements in personalized medicine and health- care decision-making. This cost-effective, and non- invasive approach holds promise for developing personalized healthcare strategies that target individu- als at risk of developing more serious health conditions, ultimately promoting early intervention and improved health outcomes. The personalized prevention strat- egy spearheaded by the current research has profound implications for global healthcare. Moving forward, lev- eraging ensemble methods or hybrid architectures could further enhance classification performance and address potential limitations of individual models. Additionally, continued research into feature engineering may opti- mize model performance and contribute to advance- ments in constitution type classification. The current study employed speech audio and deep learning techniques to discern between two types of con- stitution: balanced and unbalanced, serving as proxies for health and subhealth respectively. Further research should aim to assess the applicability of these models in populations where Chinese is not the primary language. Additionally, future efforts should focus on refining the classification of the eight unbalanced types and mixed unbalanced types. This task is particularly challenging due to the complex and diverse nature of mixed types, making multi-label classification more demanding. Addi- tionally, future work shall aim to gain a deeper under- standing of the varied cepstral characteristics, identify the most influential features for classification, and eluci- date their connection to clinical voice quality.",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "The personalized prevention strat- egy spearheaded by the current research has profound implications for global healthcare",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The study aims to use speech audio to identify subhealth populations character- ized by unbalanced constitution types",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Methods Participants, aged 18–45, were selected from the Acoustic Study of Health",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The above models demand careful hyperparameter tun- ing to achieve optimal model performance",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Manually selecting the best set of hyperparameters is a difficult and time- and resource-consuming task",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The process of eval- uating and adjusting the impact of architectural choices on model performance is iterative and requires careful consideration of both the classification task and dataset characteristics",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Yet, the deep learning classification of human speech audio for health status classification using body constitution types yielded promising results across Conv1D, Conv2D, and LSTM models",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Through the anal- ysis of micro-average and macro-average ROC curves, as well as training and validation accuracy metrics, all mod- els demonstrated robust performance in distinguishing between balanced and unbalanced constitution types",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "痰湿质",
+    "湿热质"
+  ],
+  "related_diseases": [
+    "肥胖",
+    "高血压",
+    "糖尿病",
+    "抑郁症"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "The personalized prevention strat- egy spearheaded by the current research has profound implications for global healthcare",
+      "section": "conclusions",
+      "claim_type": "finding",
+      "page_num": 12
+    },
+    {
+      "sentence": "The study aims to use speech audio to identify subhealth populations character- ized by unbalanced constitution types",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "Methods Participants, aged 18–45, were selected from the Acoustic Study of Health",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "page_info": {
+    "total_pages": 13,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 13
+      },
+      "results": {
+        "start": 1,
+        "end": 6
+      },
+      "discussion": {
+        "start": 9,
+        "end": 13
+      },
+      "conclusion": {
+        "start": 1,
+        "end": 12
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:12.595031",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.457996",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.458004"
+  }
+}

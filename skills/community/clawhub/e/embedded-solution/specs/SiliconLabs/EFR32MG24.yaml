@@ -1,0 +1,52 @@
+part: EFR32MG24
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: EFR32 Series 2 Multiprotocol Wireless SoC (Cortex-M33 + AI/ML MVP)
+main_page: https://www.silabs.com/wireless/zigbee/efr32mg24-series-2-socs
+datasheet_path_expected: ../../embedded_dev/silabs/datasheet/EFR32MG24_datasheet.pdf
+datasheet_source_url: https://alcom.be/uploads/Silicon-Labs-efr32mg24-datasheet.pdf
+datasheet_source_note: 'Alcom mirror of silabs.com EFR32MG24 datasheet (132 pages, 2.4 MB).
+
+  silabs.com is Cloudflare-gated as of 2026-06; alcom.be serves the
+
+  same PDF without gating.
+
+  '
+created_at: '2026-06-26T21:25:00+08:00'
+specs:
+  ram: 256 kB
+  ble_version: '5.3'
+  flash: 1536 kB
+  cores:
+  - Arm Cortex-M33 @ 78 MHz (TrustZone, FPU, DSP)
+  wireless: Zigbee / Thread / Matter / Bluetooth Mesh / BLE / IEEE 802.15.4
+  tx_power_dbm_max: 0.0
+  ai_ml_accelerator: MVP (Matrix Vector Processor)
+  security:
+  - Secure Boot with RTSL
+  - Secure Vault
+  - TRNG
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 8 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- 'EFR32MG24: 78 MHz Cortex-M33, multiprotocol (Zigbee / Thread / Matter / BLE 5.x), up to 1536 kB flash / 256 kB RAM, AI/ML
+  MVP.'
+- 'Family differentiator vs MG21: larger flash/RAM, AI/ML MVP, Secure Vault High tier, +20 dBm max TX.'
+- '- Auto-update: SiliconLabs/EFR32MG24 datasheet download failed on 2026-06-26; YAML remains placeholder.'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 9/10 spec fields matched
+  (90%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:25:42+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_aiassistant_doc",
+    "description": "查询织信AI助手文档",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

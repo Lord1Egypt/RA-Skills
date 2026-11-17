@@ -1,45 +1,59 @@
-## Description: <br>
-Life Scheduler helps an AI agent maintain fictional daily state by generating outfits, schedules, mood, and current-period context for persona, companion, roleplay, or virtual-idol use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Life Scheduler gives an AI agent a persistent fictional daily life state by generating outfits, schedules, moods, and current activity context for persona and roleplay use cases.
 
-## Publisher: <br>
-[t-chen-cn](https://clawhub.ai/user/t-chen-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t-chen-cn](https://clawhub.ai/user/t-chen-cn)
 
-## Use Case: <br>
-External users and developers use this skill to give a persona or companion agent continuity across conversations by generating a daily fictional life state, writing it to HEARTBEAT.md, and optionally updating creative pools and schedule settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inject fictional daily state into future conversations, which may make roleplay continuity feel factual or persistent. <br>
-Mitigation: Use it only for intended persona or companion agents, and review whether HEARTBEAT.md should be included in every conversation. <br>
-Risk: Schedule generation may reference recent chats and retain life-history archives longer than desired. <br>
-Mitigation: Review reference_recent_chats, archive settings, and memory/life-history retention before deployment. <br>
-Risk: Automatic cron jobs can refresh agent state on a daily schedule and at period updates. <br>
-Mitigation: Review the configured cron times and disable or adjust automatic generation where continuous state updates are not appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to make persona, companion, roleplay, virtual idol, or game NPC agents maintain a believable daily state across conversations.
 
-## Reference(s): <br>
-- [Life Scheduler ClawHub listing](https://clawhub.ai/t-chen-cn/life-scheduler) <br>
-- [Configuration reference](references/CONFIGURATION.md) <br>
-- [Persona configuration examples](references/EXAMPLES.md) <br>
-- [AstrBot life scheduler inspiration](https://github.com/muyouzhi6/astrbot_plugin_life_scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown daily-state content with JSON configuration updates and natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update HEARTBEAT.md, config/life-scheduler.json, and memory/life-history archives; daily generation is documented at about 1500 tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill creates ongoing background state that may read persona files and recent-chat context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set reference_recent_chats to 0 when recent-chat use is unnecessary, and periodically review or clean HEARTBEAT.md and memory/life-history/.
+
+Risk: Scheduled generation, archive writes, context injection, and configuration edits can persist generated roleplay content into later conversations.
+
+Mitigation: Require confirmation before enabling or changing cron jobs, bootstrapFiles, HEARTBEAT.md writes, archive behavior, context injection, or config changes.
+
+Risk: Generated fictional daily state may be mistaken for factual memory or user-provided information.
+
+Mitigation: Keep generated content clearly scoped to the agent persona and review injected HEARTBEAT.md content before relying on it in sensitive contexts.
+
+## Reference(s):
+
+- [Life Scheduler ClawHub Page](https://clawhub.ai/t-chen-cn/skills/life-scheduler)
+- [Configuration Guide](references/CONFIGURATION.md)
+- [Configuration Examples](references/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown daily-state content with JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates HEARTBEAT.md, may archive historical daily states under memory/life-history/, and may inject the generated state into future agent context.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

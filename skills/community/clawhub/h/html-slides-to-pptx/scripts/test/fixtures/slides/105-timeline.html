@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 时间线</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<!-- 原型 14:时间线(实线轴+圆点+正立字;当前节点主色)
+     2026-08-06 第四轮 P5 重排:原版内容只占 y540-740(墨迹行 29%、上方空 220px),
+     底部靠一根 1px 细线"凑"满填判据。现改为四张阶段卡贴轴排布 + 轴上季度色带,
+     内容真正铺满 320-940;每卡含深色/浅色底(结构色面),文字 22→26px。 -->
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">09 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      推广路线:两个季度覆盖全公司
+    </div>
+  </div>
+
+  <!-- 阶段卡:当前季度深色实底(结构色面 + 焦点),后续季度浅底描边 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:330px;width:400px;height:250px;background:var(--deep-navy);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:136px;top:362px;width:328px;z-index:10;">
+    <div class="num" style="font-size:30px;font-weight:800;color:var(--accent-orange);letter-spacing:1px;">Q3 · 现在</div>
+    <div style="font-size:26px;line-height:1.55;color:var(--on-navy-text);margin-top:18px;">试点收尾,沉淀模板 v1.2 与培训包</div>
+    <div style="font-size:22px;line-height:1.45;color:var(--on-navy-dim);margin-top:16px;">3 个试点部门 · 覆盖 120 人</div>
+  </div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:540px;top:330px;width:400px;height:250px;background:#FFFFFF;border:2px solid var(--border-light);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:576px;top:362px;width:328px;z-index:10;">
+    <div class="num" style="font-size:30px;font-weight:800;color:var(--charcoal);letter-spacing:1px;">Q4</div>
+    <div style="font-size:26px;line-height:1.55;color:var(--text-primary);margin-top:18px;">8 个部门接入,每部门指定 1 名知识 owner</div>
+    <div style="font-size:22px;line-height:1.45;color:var(--text-tertiary);margin-top:16px;">目标覆盖 600 人</div>
+  </div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:980px;top:330px;width:400px;height:250px;background:#FFFFFF;border:2px solid var(--border-light);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1016px;top:362px;width:328px;z-index:10;">
+    <div class="num" style="font-size:30px;font-weight:800;color:var(--charcoal);letter-spacing:1px;">明年 Q1</div>
+    <div style="font-size:26px;line-height:1.55;color:var(--text-primary);margin-top:18px;">全公司覆盖,检索降权规则全量开启</div>
+    <div style="font-size:22px;line-height:1.45;color:var(--text-tertiary);margin-top:16px;">全员 · 约 2400 人</div>
+  </div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1420px;top:330px;width:400px;height:250px;background:#FFFFFF;border:2px dashed var(--border-medium);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1456px;top:362px;width:328px;z-index:10;">
+    <div class="num" style="font-size:30px;font-weight:800;color:var(--text-tertiary);letter-spacing:1px;">明年 Q2</div>
+    <div style="font-size:26px;line-height:1.55;color:var(--text-secondary);margin-top:18px;">机制并入日常运营,项目组解散</div>
+    <div style="font-size:22px;line-height:1.45;color:var(--text-tertiary);margin-top:16px;">虚线 = 待启动</div>
+  </div>
+
+  <!-- 时间轴:轴线 + 节点圆点(与卡片中线对齐) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:659px;width:1720px;height:2px;background:var(--border-medium);z-index:1;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:288px;top:648px;width:24px;height:24px;border-radius:50%;background:var(--lenovo-red);z-index:2;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:728px;top:648px;width:24px;height:24px;border-radius:50%;background:var(--charcoal);z-index:2;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1168px;top:648px;width:24px;height:24px;border-radius:50%;background:var(--charcoal);z-index:2;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1608px;top:648px;width:24px;height:24px;border-radius:50%;background:#FFFFFF;border:2px solid var(--border-medium);z-index:2;"></div>
+
+  <!-- 关键承诺带(结构色面:承载信息的色带,不是装饰条) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:740px;width:1720px;height:130px;background:#EEF2F7;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:772px;width:820px;z-index:10;">
+    <div style="font-size:22px;font-weight:600;letter-spacing:2px;color:var(--lenovo-red);">关键承诺</div>
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);margin-top:12px;">每季度末公布覆盖率与三项质量指标</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1000px;top:772px;width:780px;z-index:10;">
+    <div style="font-size:22px;font-weight:600;letter-spacing:2px;color:var(--text-tertiary);">退出条件</div>
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);margin-top:12px;">连续两季度达标即并入日常运营</div>
+  </div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:900px;width:1720px;z-index:10;">
+    <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">里程碑承诺已与各部门负责人确认(2026-07 例会);虚线节点 = 待启动</div>
+  </div>
+</div>
+
+<template data-slide-notes>【核心逻辑】路线图的终点是"项目组解散"——机制要变成日常,不是长期项目。</template>
+</body>
+</html>

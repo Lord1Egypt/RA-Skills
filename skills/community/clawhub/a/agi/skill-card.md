@@ -1,40 +1,61 @@
-## Description: <br>
-Think like a human. Reason, plan, adapt, create, and know your limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Think like a human. Reason, plan, adapt, create, and know your limits.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Agents and their users use this skill to add structured reasoning, planning, confidence calibration, and self-reflection to ordinary conversations and complex tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain reasoning notes under ~/agi/, which can include user preferences or observations over time. <br>
-Mitigation: Review or delete ~/agi/ periodically, and avoid saving sensitive information in those local notes. <br>
-Risk: Optional activation through MEMORY.md changes future session behavior. <br>
-Mitigation: Approve the activation line only when persistent activation is desired, and remove it from MEMORY.md to disable it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/agi) <br>
-- [Skill homepage](https://clawic.com/skills/agi) <br>
+## Use Case:
 
+External users and developers use this skill as a broad reasoning layer for agent interactions, adding structured planning, calibrated uncertainty, communication adaptation, and reflection habits across tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional markdown memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local markdown memory files; MEMORY.md activation requires user consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to influence future interactions broadly, especially if MEMORY.md integration is enabled.
+
+Mitigation: Enable the MEMORY.md activation line only with explicit user consent, and remove that line if the reasoning layer should not activate automatically.
+
+Risk: The skill stores interaction-derived notes, reflections, and knowledge-gap records under ~/agi/.
+
+Mitigation: Review the files under ~/agi/ periodically and delete them if the stored style notes or reflections are no longer wanted.
+
+Risk: A broad reasoning layer can affect tone, confidence calibration, and task planning across unrelated work.
+
+Mitigation: Inspect memory.md, reflections.md, and limits.md for unwanted patterns, and pause or remove the skill if its behavior does not match the user's preferences.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/agi)
+- [Skill Homepage](https://clawic.com/skills/agi)
+- [Setup](artifact/setup.md)
+- [Reasoning Protocols](artifact/reasoning.md)
+- [Memory Template](artifact/memory-template.md)
+- [Common Blind Spots](artifact/blindspots.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text agent responses, with optional Markdown memory files and a MEMORY.md activation line when the user consents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can store interaction-derived notes under ~/agi/ and can add one activation line to the user's MEMORY.md only with explicit consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-云计算客户经理日程管理与提醒系统。帮助管理客户拜访、合同到期、续费提醒等日程安排。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A scheduling assistant for cloud-computing account managers that helps manage customer visits, contract expirations, renewal reminders, meetings, and recurring tasks.
 
-## Publisher: <br>
-[guyuanyuan1](https://clawhub.ai/user/guyuanyuan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyuanyuan1](https://clawhub.ai/user/guyuanyuan1)
 
-## Use Case: <br>
-Cloud computing account managers use this skill to plan customer visits, meetings, renewals, contract-expiration follow-up, and recurring work reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Schedule records and reminder messages may include customer, contract, renewal, or meeting details. <br>
-Mitigation: Avoid storing unnecessary confidential information in shared files or messages, and confirm writes and outbound notifications before they happen. <br>
-Risk: Incorrect reminder timing or stale schedule status could cause missed or duplicate follow-up. <br>
-Mitigation: Review proposed dates, reminder offsets, and schedule updates before relying on them for customer work. <br>
+## Use Case:
 
+Cloud-computing account managers use this skill to organize customer visits, contract-renewal deadlines, service-renewal reminders, meetings, and recurring work plans.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text scheduling instructions, reminder lists, and lightweight configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose schedule records, reminder timing, document notes, and notification content for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact body) <br>
+Risk: Notifications or schedule changes could be sent to the wrong recipient or at an unsuitable time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients, reminder timing, and message content before sending notifications.
+
+Risk: Feishu documents or schedule files may contain inaccurate or sensitive customer or contract details.
+
+Mitigation: Review document contents and file updates before creation or modification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guyuanyuan1/skills/schedule-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with reminder examples, schedule templates, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose notification, document, and schedule-file actions that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

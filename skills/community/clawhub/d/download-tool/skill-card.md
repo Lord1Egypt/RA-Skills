@@ -1,43 +1,55 @@
-## Description: <br>
-Downloads videos from supported platforms such as YouTube, TikTok, Xiaohongshu, and Douyin by using a configured external download service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos from YouTube, TikTok, Xiaohongshu, Douyin, and similar platforms through a configured external download service.
 
-## Publisher: <br>
-[SeanFeng1234](https://clawhub.ai/user/SeanFeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanfeng1234](https://clawhub.ai/user/seanfeng1234)
 
-## Use Case: <br>
-External users and developers use this skill to submit a video URL, create a download task through a configured backend, poll status, and receive a temporary download link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted video URLs and the API key are sent to an external or configured backend. <br>
-Mitigation: Use only datamass.cn or a trusted self-hosted backend, and avoid private or access-controlled videos. <br>
-Risk: Downloads consume account credits and may create storage or billing impact. <br>
-Mitigation: Check account balance and monitor credit usage before and after download tasks. <br>
-Risk: Temporary download links point to backend-managed storage and are documented as expiring after 24 hours. <br>
-Mitigation: Treat returned links as time-limited outputs and avoid using the skill for sensitive content. <br>
+## Use Case:
 
+External users and developers use this skill to submit supported video URLs, create download tasks through a configured API service, poll status, and receive temporary OSS download links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SeanFeng1234/download-tool) <br>
-- [Datamass Service](https://www.datamass.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Links] <br>
-**Output Format:** [Markdown or console text with status messages, task IDs, quota details, and temporary download URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires download_tool_api_key in ~/.openclaw/config.json and may use download_tool_base_url for a trusted self-hosted backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can send video URLs, the configured API key, quota checks, task IDs, and resulting videos to a configurable external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS download_tool_base_url and avoid private or tokenized video URLs unless sharing them with that service is acceptable.
+
+Risk: The download service can use a paid account balance.
+
+Mitigation: Review balance and pricing before use, and confirm the configured API key belongs to the intended account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanfeng1234/skills/download-tool)
+- [DataMass service](https://www.datamass.cn)
+- [Default download API base](https://www.datamass.cn/ai-back)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text status output with a temporary download URL and optional JSON result.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires download_tool_api_key; the default external service returns OSS download links described as valid for 24 hours.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release, SKILL.md frontmatter, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

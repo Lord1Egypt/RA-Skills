@@ -1,41 +1,57 @@
-## Description: <br>
-Real-time multi-chain gas monitoring and spike detection for gas prices, spike alerts, contract lookup, block details, and recent gas history across supported EVM networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gas War Sniper monitors multi-chain gas prices block by block, detects sudden spikes and likely gas-war activity, identifies contracts by address, and returns alerts and status through the Teneo SDK.
 
-## Publisher: <br>
-[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev)
 
-## Use Case: <br>
-External developers and AI agents use this skill to access the Teneo gas-sniper agent through the Teneo SDK for current gas prices, block information, contract identification, spike monitoring, status, history, and supported-network details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the skill can automatically spend USDC using a wallet private key without clear confirmation or spending limits. <br>
-Mitigation: Use a dedicated wallet with minimal funds, avoid using a primary wallet private key, and require manual price review and confirmation before any paid call or direct payment command. <br>
+## Use Case:
 
+Developers and external agents use this skill to query a Teneo-hosted gas monitoring agent for current gas prices, block details, supported networks, gas spike monitoring, historical gas trends, and contract identification across supported EVM networks.
 
-## Reference(s): <br>
-- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk) <br>
-- [Teneo Protocol SDK NPM Package](https://www.npmjs.com/package/@teneo-protocol/sdk) <br>
-- [Teneo Protocol SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk) <br>
-- [Teneo Protocol](https://teneo-protocol.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include human-readable gas metrics, block data, contract identification, monitoring status, recent history charts, and supported-network configuration values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill requires wallet signing and uses automatic USDC payment rails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and require explicit confirmation before any transaction or signature.
+
+Risk: Dependency or SDK substitution could affect wallet and payment behavior.
+
+Mitigation: Verify the SDK package and version, pin dependencies, and use a lockfile before connecting a wallet.
+
+## Reference(s):
+
+- [Teneo Protocol](https://teneo-protocol.ai)
+- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk)
+- [Teneo Agent SDK NPM Package](https://www.npmjs.com/package/@teneo-protocol/sdk)
+- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk)
+- [Agent Console](https://agent-console.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command examples and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include human-readable gas data, block metadata, monitoring status, ASCII charts, network lists, and raw or structured response content from the Teneo SDK.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,7 +9,7 @@ model_list:
       api_key: "none"
 
 general_settings:
-  master_key: sk-master-REPLACE-WITH-RANDOM-HEX   # generate: python3 -c "import secrets; print('sk-master-' + secrets.token_hex(16))"
+  master_key: REDACTED-SECRET   # generate: python3 -c "import secrets; print('sk-master-' + secrets.token_hex(16))"
   disable_spend_logs: false
 
 litellm_settings:

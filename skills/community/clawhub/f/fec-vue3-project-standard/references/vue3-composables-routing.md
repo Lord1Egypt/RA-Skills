@@ -1,14 +1,14 @@
 # Vue 3 composables and routing patterns
 
-## Composables 规范
+## Composables specification
 
-### 设计原则
+### Design principles
 
-- 以 `use` 前缀命名
-- 返回值使用对象，明确标注类型
-- 内部处理 loading / error / data 三态
-- 支持参数响应式（接受 `Ref` 或 getter）
-- 库级 composable 要明确参数是否支持普通值、`Ref`、`computed` 或 getter，并在副作用内部解析最新值
+- Named with `use` prefix
+- Use objects as return values and clearly mark the type
+- Internal processing loading / error / data tri-state
+-Support parameter responsiveness (accepts `Ref` or getter)
+- Library level composable to clarify whether the parameter supports normal values, `Ref`, `computed` or getter, and parse the latest value inside the side effect
 
 ```typescript
 export function useUserList(params: MaybeRef<QueryParams>) {
@@ -42,31 +42,31 @@ export function useUserList(params: MaybeRef<QueryParams>) {
 }
 ```
 
-### Composable 使用原则
+### Composable usage principles
 
-- 返回 `readonly` 引用防止外部意外修改
-- 数据请求场景优先使用 VueQuery / VueUse 等库（如项目已引入）
-- `onUnmounted` 中清理定时器、事件监听等副作用
-- 避免在 composable 中直接操作 DOM
-- 只读输入可接受普通值、ref、computed 或 getter；需要双向写入的输入只接受可写 ref 或明确的 setter。
-- 如果参数本身是回调、比较器或 predicate，不要把它设计成 getter 型输入，否则解析时可能误调用业务函数。
+- Return a `readonly` reference to prevent accidental modification by outsiders
+- In data request scenarios, libraries such as VueQuery / VueUse are preferred (if the project has been introduced)
+- Clean up timers, event listeners and other side effects in `onUnmounted`
+- Avoid directly manipulating DOM in composable
+- Read-only inputs accept normal values, refs, computed or getters; inputs that require bidirectional writing only accept writable refs or explicit setters.
+- If the parameter itself is a callback, comparator or predicate, do not design it as a getter type input, otherwise the business function may be mistakenly called during parsing.
 
-### Vue Router / Pinia / 测试常见边界
+### Vue Router / Pinia / Test common boundaries
 
-- 路由参数变化不会重新创建同一个路由组件；依赖 `route.params` 的数据要 watch 明确字段，并处理取消和竞态。
-- 导航守卫中避免旧式 `next()` 多分支重复调用；优先返回 `false`、重定向对象或抛出可处理错误。
-- Pinia store 解构会丢失响应性时使用 `storeToRefs`；setup store 必须返回需要被外部追踪的 state、getter 和 action。
-- UI 临时状态、表单输入、弹窗开关不进入全局 store；URL 查询、服务端缓存和本地组件状态先各归其位。
-- Vue Test Utils 测试优先断言用户可见行为，不把快照作为唯一证明；异步更新使用 `await`、`flushPromises` 或框架推荐的等待方式。
-- 测试使用 Pinia、Router、Teleport、Suspense、async setup 或 `defineAsyncComponent` 时，在测试夹具中显式安装插件、挂载目标容器并等待异步稳定。
+- Changes in routing parameters will not recreate the same routing component; data that relies on `route.params` must watch clear fields and handle cancellation and race conditions.
+- Avoid old-style `next()` multi-branch repeated calls in navigation guards; give priority to returning `false`, redirecting objects or throwing handleable errors.
+- Use `storeToRefs` when destructuring the Pinia store will lose responsiveness; the setup store must return state, getters and actions that need to be tracked externally.
+- UI temporary status, form input, and pop-up window switches do not enter the global store; URL query, server-side cache, and local component status are returned to their respective places first.
+- Vue Test Utils tests prioritize user-visible behavior and do not use snapshots as the only proof; asynchronous updates use `await`, `flushPromises` or the waiting method recommended by the framework.
+- When testing using Pinia, Router, Teleport, Suspense, async setup or `defineAsyncComponent`, explicitly install the plugin in the test fixture, mount the target container and wait for async to stabilize.
 
-## Slots 与 Provide/Inject
+## Slots and Provide/Inject
 
 ### Slots
 
-- 用 `<slot>` 实现组件组合，而非过多 props
-- 具名 slot 用于明确的布局区域
-- 作用域 slot 传递数据给父组件自定义渲染
+- Use `<slot>` to achieve component composition instead of too many props
+- Named slots are used for explicit layout areas
+- Scope slot passes data to parent component for custom rendering
 
 ```vue
 <template>
@@ -83,9 +83,9 @@ export function useUserList(params: MaybeRef<QueryParams>) {
 
 ### Provide/Inject
 
-- 用于跨多层级的上下文共享（主题、配置、权限）
-- 提供 InjectionKey 保证类型安全
-- 不要用 provide/inject 替代 props 传递直接父子数据
+- For context sharing across multiple levels (topics, configurations, permissions)
+- Provide InjectionKey to ensure type safety
+- Do not use provide/inject instead of props to pass direct parent-child data
 
 ```typescript
 // keys.ts
@@ -98,9 +98,9 @@ provide(ThemeKey, theme);
 const theme = inject(ThemeKey);
 ```
 
-## 路由规范
+## Routing specifications
 
-### 路由组织
+### Routing organization
 
 ```typescript
 // app/router.ts
@@ -144,15 +144,15 @@ const routes: RouteRecordRaw[] = [
 ];
 ```
 
-### 路由原则
+### Routing principles
 
-- 路由配置集中管理，每个路由必须有 `name`
-- 页面组件使用动态 `import()` 按需加载
-- 权限控制使用路由守卫（`beforeEach`），而非在每个页面内判断
-- URL 参数（分页、筛选、排序）与路由状态同步
+- Centralized management of routing configuration, each route must have a `name`
+- Page components are loaded on demand using dynamic `import()`
+- Permission control uses route guard (`beforeEach`) instead of judging within each page
+- URL parameters (pagination, filtering, sorting) and routing status are synchronized
 
 ```typescript
-// 导航守卫
+// Navigation guard
 router.beforeEach((to) => {
   const authStore = useAuthStore();
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {

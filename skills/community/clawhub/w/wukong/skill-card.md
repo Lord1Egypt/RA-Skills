@@ -1,41 +1,55 @@
-## Description: <br>
-Wukong helps an agent distill and reuse celebrity-style thinking models for decision analysis through a six-layer persona framework and local markdown notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wukong 是中文名人思维蒸馏与召唤技能，用六层框架保存并调用人物心智模型，辅助问题分析和决策参考。
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-For users who want an agent to create, store, and apply structured thinking models for public figures when analyzing products, investments, strategy, or other decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-style analysis may sound authoritative even when based on incomplete or inaccurate public information. <br>
-Mitigation: Review generated persona notes and ask the agent to surface sources, assumptions, and uncertainty before relying on the analysis. <br>
-Risk: The skill can create or update local persona notes and registry entries. <br>
-Mitigation: Avoid placing private or sensitive details in personas, review generated files, and ask the agent to confirm before updating wukong/personas or wukong/registry.md. <br>
+## Use Case:
 
+Chinese-language users can distill public figures, leaders, scientists, artists, or other personas into reusable six-layer thinking models, then invoke those models for analysis, decision support, and perspective-taking. The skill is also useful for maintaining a local registry of saved persona-style Markdown templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/wukong) <br>
-- [Publisher profile](https://clawhub.ai/user/zmy1006-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Structured analysis plus markdown persona and registry notes.] <br>
-**Output Parameters:** [Target person, domain or thinking style to distill, and the user question or decision context.] <br>
-**Other Properties Related to Output:** [Outputs may include six-layer persona models, decision guidance, caveats, and local updates under wukong/personas and wukong/registry.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: New persona distillations may persist prompt content into local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive private details in persona prompts unless local persistence is acceptable, and review generated persona files before sharing or publishing.
+
+Risk: Persona-style analysis can sound authoritative even when it is speculative or loosely sourced.
+
+Mitigation: Treat generated viewpoints as decision-support drafts and verify important claims against reliable sources before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/skills/wukong)
+- [six-layer-template.md](artifact/references/six-layer-template.md)
+- [registry.md](artifact/wukong/registry.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown analysis responses and Markdown persona files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save new distilled persona templates under wukong/personas/ and update the persona registry.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

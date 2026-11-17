@@ -1,0 +1,23 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/live-canary-report.schema.json",
+  "schemaVersion": "majia.koubo.live-canary.v1",
+  "releaseVersion": "1.6.0",
+  "capabilityStatus": "unverified",
+  "capabilityObservedAt": null,
+  "capabilityExpiresAt": null,
+  "capabilityBuildFingerprint": null,
+  "toolSchemaFingerprint": null,
+  "canaries": [
+    {"caseId": "canary-01", "shape": "single-speaker", "durationClass": "short", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-02", "shape": "multi-take", "durationClass": "medium", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-03", "shape": "screen-and-speaker", "durationClass": "medium", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-04", "shape": "longform", "durationClass": "long", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-05", "shape": "manual-edit", "durationClass": "variable", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-06", "shape": "terminology-heavy", "durationClass": "medium", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-07", "shape": "low-resolution-screen", "durationClass": "medium", "status": "not_run", "evidenceLevel": "none", "checks": []},
+    {"caseId": "canary-08", "shape": "interrupted-session", "durationClass": "variable", "status": "not_run", "evidenceLevel": "none", "checks": []}
+  ],
+  "metrics": {"passedCanaries": 0, "unapprovedHighRiskEdits": null, "duplicateWrites": null, "manualEditsOverwritten": null, "evidenceStateConfusions": null, "recoveryObservedRate": null},
+  "stableClaimEligible": false,
+  "notes": ["当前只验证离线合同与假会话；真实 ChatCut 端到端仍为 UNVERIFIED。"]
+}

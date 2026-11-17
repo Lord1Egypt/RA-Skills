@@ -1,48 +1,60 @@
-## Description: <br>
-Integration package for the Herdsman model engine that helps agent platforms call local OpenAI, Anthropic Messages, and AG-UI compatible services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integration package for the Herdsman model engine. Used by other agent platforms to call scripts in this directory and protocol specifications when connecting to OpenAI, Anthropic, or AGUI-compatible services.
 
-## Publisher: <br>
-[jiejingke](https://clawhub.ai/user/jiejingke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiejingke](https://clawhub.ai/user/jiejingke)
 
-## Use Case: <br>
-Developers and agent platform maintainers use this skill to integrate Herdsman as a local model backend for chat, image generation and editing, OCR, embeddings, reranking, speech transcription, text-to-speech, and voice cloning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning can be misused for impersonation or unauthorized synthesis. <br>
-Mitigation: Use only authorized reference audio and require review of voice cloning requests before running TTS voice clone scripts. <br>
-Risk: Media conversion, OCR, transcription, and generation scripts can read local files and write outputs. <br>
-Mitigation: Restrict script access to expected input and output directories, and check output paths before running conversion or save commands. <br>
-Risk: Calling untrusted Herdsman base URLs can expose prompts, media, credentials, or generated outputs. <br>
-Mitigation: Prefer local 127.0.0.1 endpoints and avoid untrusted base URLs unless the deployment owner has reviewed the service. <br>
-Risk: The security scan verdict is suspicious because sensitive media workflows need user review before installation. <br>
-Mitigation: Install only when the publisher is trusted and the deployment needs Herdsman media integration. <br>
+## Use Case:
 
+Developers and agent-platform integrators use this skill to connect agents to a Herdsman local model engine through OpenAI-compatible, Anthropic Messages-compatible, and AG-UI endpoints. It supports text, image, OCR, embedding, rerank, transcription, speech synthesis, and voice-cloning workflows through reusable Python scripts and protocol notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiejingke/flowyaipc-herdsman-skill-1-0-2-en) <br>
-- [Herdsman API Call Examples](artifact/references/api-examples.md) <br>
-- [Herdsman Platform Integration Guide](artifact/references/platform-integration.md) <br>
-- [Herdsman Model Capabilities](artifact/references/model-capabilities.md) <br>
-- [Herdsman Error Code Reference](artifact/references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts, command examples, JSON responses, and generated media or transcription files when scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may call local Herdsman endpoints, read local media inputs, and write generated image, audio, OCR, or transcription outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API credentials may be sent when media is downloaded from untrusted URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Herdsman or cache endpoints for downloads, avoid auto-downloading media from untrusted services, and prefer empty or scoped API keys.
+
+Risk: Generated or downloaded files may be written with little containment.
+
+Mitigation: Keep outputs in a dedicated directory and review any explicit output paths before allowing an agent to write files.
+
+Risk: Images, audio, voices, and business documents submitted through the skill are processed by the configured service.
+
+Mitigation: Do not submit sensitive media, voices, or documents unless that processing is intended and approved.
+
+## Reference(s):
+
+- [Herdsman API Call Examples](artifact/references/api-examples.md)
+- [Herdsman Platform Integration Guide](artifact/references/platform-integration.md)
+- [Herdsman Model Capabilities](artifact/references/model-capabilities.md)
+- [Herdsman Error Code Reference](artifact/references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; scripts may emit text, JSON, URLs, or saved media file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call configured Herdsman endpoints and write generated image, audio, OCR, or transcription outputs to local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

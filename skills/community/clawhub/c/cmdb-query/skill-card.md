@@ -1,43 +1,57 @@
-## Description: <br>
-Queries internal CMDB asset data by resource type, including hosts, applications, databases, and name-filtered records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries CMDB asset data by resource type, including hosts, applications, databases, and name-based filters.
 
-## Publisher: <br>
-[jbhasbc](https://clawhub.ai/user/jbhasbc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jbhasbc](https://clawhub.ai/user/jbhasbc)
 
-## Use Case: <br>
-Authorized internal operators, developers, and infrastructure teams use this skill to query CMDB assets and inspect resource records across host, application, database, network, storage, account, and billing models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release exposes shared internal credentials for an internal CMDB. <br>
-Mitigation: Install only with authorization, rotate or replace the exposed account, and require user- or vault-supplied scoped credentials before use. <br>
-Risk: The skill can query highly sensitive records, including private keys, bastion access data, account forms, and billing records. <br>
-Mitigation: Restrict accessible models by role and redact or block sensitive record classes before general use. <br>
-Risk: The helper code disables TLS certificate verification when calling the CMDB API. <br>
-Mitigation: Enable proper TLS verification and configure trusted internal CA certificates before deployment. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to look up internal CMDB assets, inspect resource models, and produce filtered query examples for operational inventory work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jbhasbc/cmdb-query) <br>
-- [CMDB homepage](https://10.255.227.233/cmdb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with curl and jq examples plus Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for documented command examples; Python helper uses HTTP requests to the CMDB API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports exposed reusable CMDB credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the credential, remove it from the skill, and require users to provide approved secrets through a managed secret store or environment-specific credential process.
+
+Risk: The release evidence reports disabled TLS verification.
+
+Mitigation: Require TLS verification with a trusted internal CA before using the skill against CMDB endpoints.
+
+Risk: The release evidence reports that the skill can query sensitive internal asset models.
+
+Mitigation: Restrict use to approved resource labels and safe output fields, and review query scope before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jbhasbc/skills/cmdb-query)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples are intended for authenticated CMDB queries and may require curl, jq, Python, and approved network access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

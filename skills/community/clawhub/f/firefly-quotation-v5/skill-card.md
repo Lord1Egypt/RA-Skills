@@ -1,45 +1,55 @@
-## Description: <br>
-萤火虫报价助手V5 helps users select Firefly compressor products, calculate discounts, freight, tax, installation, and warranty costs, and generate Markdown or HTML quotation documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+萤火虫空压机报价单生成助手，可根据产品型号和配置生成客户报价单，并输出品牌 HTML 或 Markdown 报价单。
 
-## Publisher: <br>
-[yhc2026](https://clawhub.ai/user/yhc2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhc2026](https://clawhub.ai/user/yhc2026)
 
-## Use Case: <br>
-External sales and quoting users use this skill to prepare customer quotations for Firefly air compressor products from model, capacity, configuration, and distance inputs. It supports product matching, accessory recommendations, price calculations, and quote document generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The publisher may not be authorized to issue official quotes for the named company. <br>
-Mitigation: Verify the publisher's authority before installing or relying on generated customer-facing quotes. <br>
-Risk: Generated pricing can be incorrect, outdated, or unsuitable for a specific deal. <br>
-Mitigation: Have final prices, discounts, taxes, freight, warranty, and commercial terms reviewed before sending a quote to a customer. <br>
-Risk: The skill claims validation, printing, and PDF export workflows that may depend on the runtime environment. <br>
-Mitigation: Confirm generated Markdown or HTML output in the target environment before treating it as a finalized quotation document. <br>
+## Use Case:
 
+Sales users and agents use this skill to produce Firefly compressor quotations from requested models, air-demand requirements, accessories, discounts, freight, installation, and tax rules. It is intended for customer-facing quote preparation, with final business terms reviewed before sending.
 
-## Reference(s): <br>
-- [Pricing Rules Reference](references/pricing-rules.md) <br>
-- [Firefly Compressor Homepage](http://www.fireflies.net.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yhc2026/firefly-quotation-v5) <br>
-- [Publisher Profile](https://clawhub.ai/user/yhc2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown quotation text, self-contained HTML quotation code, and optional Python command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Currency amounts are in ten-thousand RMB units and quote outputs include business terms, contact details, and price validity notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated quotations may contain incorrect VAT, tax, freight, discount, or total-price calculations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify seller contact details and independently check VAT, tax totals, and final business terms before sending quotes to customers.
+
+Risk: HTML quote output may be unsafe or misleading if populated with untrusted customer-supplied text.
+
+Mitigation: Escape or sanitize customer-supplied text before using it in HTML output.
+
+## Reference(s):
+
+- [Pricing Rules Reference](references/pricing-rules.md)
+- [Firefly Compressor Website](http://www.fireflies.net.cn)
+- [ClawHub Skill Page](https://clawhub.ai/yhc2026/skills/firefly-quotation-v5)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown quotation text, optional self-contained HTML, and optional Python calculation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses YAML product and pricing data; HTML quotes should be reviewed before distribution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

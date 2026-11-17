@@ -1,42 +1,57 @@
-## Description: <br>
-Send and receive files peer-to-peer using the sendme protocol from iroh.computer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive files peer-to-peer using the sendme protocol from iroh.computer, for sharing files or folders between machines with resumable downloads, integrity verification, and direct peer-to-peer connections.
 
-## Publisher: <br>
-[muninn-huginn](https://clawhub.ai/user/muninn-huginn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[muninn-huginn](https://clawhub.ai/user/muninn-huginn)
 
-## Use Case: <br>
-Developers and agent users use this skill to send files or folders to another machine, or to receive files from a trusted sendme ticket. It is intended for peer-to-peer transfer workflows where the sender can remain online until download completion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A sendme ticket grants access to the transfer while the sender is online. <br>
-Mitigation: Keep tickets private and share them only with the intended recipient. <br>
-Risk: Receiving a ticket from an untrusted sender can place unexpected files in the current directory. <br>
-Mitigation: Receive only from trusted senders and run receive commands from a directory where new files are expected. <br>
-Risk: The sender process must remain online and exposes the selected file or folder until the transfer is complete. <br>
-Mitigation: Confirm the exact file or folder before sending and stop the sender process after the transfer completes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/muninn-huginn/sendme-skill) <br>
-- [Iroh Sendme](https://www.iroh.computer/sendme) <br>
+## Use Case:
 
+Developers, operators, and external users use this skill when they need an agent to help send or receive explicit files and folders with the sendme command-line tool.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides commands and operational guidance for sending and receiving files; the send command returns a ticket that must be shared with the recipient.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the sendme tool from an untrusted source could expose users to supply-chain risk.
+
+Mitigation: Install only from a trusted source, preferably a reviewed or package-manager version.
+
+Risk: Sendme tickets grant access to the shared transfer and can expose files if sent to the wrong recipient.
+
+Mitigation: Treat tickets as access tokens, verify the recipient, and share only files or folders the user explicitly chose.
+
+Risk: Receiving large folders can consume substantial local disk space.
+
+Mitigation: Check available disk space before receiving large folders.
+
+## Reference(s):
+
+- [Sendme on ClawHub](https://clawhub.ai/muninn-huginn/skills/sendme-skill)
+- [sendme protocol documentation](https://www.iroh.computer/sendme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sendme tickets and command guidance; tickets should be treated as access tokens.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

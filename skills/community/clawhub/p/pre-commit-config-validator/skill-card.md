@@ -1,41 +1,53 @@
-## Description: <br>
-Validate .pre-commit-config.yaml files for structure, repository entries, hook definitions, local hooks, and best practices. 23 rules across 5 categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate .pre-commit-config.yaml files for structure, repository entries, hook definitions, local hooks, and best practices. 23 rules across 5 categories.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to check pre-commit configuration files before committing or publishing them. It helps identify malformed YAML, missing repository or hook fields, unsafe floating revisions, duplicate entries, local hook issues, and best-practice warnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The validator reads user-specified local YAML files and can print paths and configuration-derived diagnostics to the terminal. <br>
-Mitigation: Run it only on files intended for inspection, and avoid pasting or logging outputs from sensitive workflows without review. <br>
-Risk: The bundled parser may fall back to a basic YAML parser when PyYAML is unavailable, which can be less complete for complex YAML constructs. <br>
-Mitigation: Use PyYAML where possible and manually review unusual YAML features or parser-related diagnostics before relying on results. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate pre-commit configuration files for structural errors, repository and hook issues, local hook definitions, and best-practice warnings before committing or releasing code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/pre-commit-config-validator) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [CLI validation reports in text, JSON, or summary format.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish pass, validation errors, and parse or input errors; --strict treats warnings as errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill includes an executable Python validator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the validator before installation and run it in the intended local workspace with only the configuration files selected for validation.
+
+Risk: The skill does not explicitly declare allowed tools in frontmatter.
+
+Mitigation: Apply normal agent tool restrictions when using the skill and limit execution to local validation commands for pre-commit configuration files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/pre-commit-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; validator output can be text, JSON, or summary diagnostics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-specified YAML files and reports diagnostics; --strict treats warnings as errors.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

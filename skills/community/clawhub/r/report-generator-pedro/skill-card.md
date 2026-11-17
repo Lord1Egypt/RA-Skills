@@ -1,42 +1,58 @@
-## Description: <br>
-Generates professional HTML/PDF-ready data reports with KPI summaries, charts, tables, executive insights, and recommendations from CSV, Excel, or JSON data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional data reports (HTML/PDF-ready) with KPI summaries, charts, tables, executive insights, and recommendations from CSV, Excel, or JSON data.
 
-## Publisher: <br>
-[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8)
 
-## Use Case: <br>
-Business users, analysts, and developers use this skill to generate KPI dashboards, executive briefs, and structured analytical reports from CSV, Excel, JSON, or described datasets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Source data may be incomplete, dirty, or mapped to the wrong KPI fields. <br>
-Mitigation: Validate inputs, flag missing or dirty data explicitly, and sanity-check metrics before relying on the report. <br>
-Risk: Generated narratives or recommendations may overstate what the data supports. <br>
-Mitigation: Review findings before sharing and avoid causal claims unless the provided data supports them. <br>
-Risk: The helper script writes report and chart files to user-selected output paths. <br>
-Mitigation: Run it from a trusted project folder, provide only intended data files, and choose output paths deliberately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Report Templates](references/report-templates.md) <br>
-- [Chart Guidelines](references/chart-guidelines.md) <br>
+## Use Case:
 
+Business analysts, operators, and executives use this skill to turn structured CSV, Excel, or JSON data into concise KPI reports, dashboards, charts, and recommendations for recurring business reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML files, Charts, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and generated HTML reports with chart images] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports CSV, Excel, and JSON inputs; generated files are intended to stay within the current working directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports and chart images may contain sensitive data from the supplied input file.
+
+Mitigation: Provide only data files intended for analysis and review generated HTML and chart files before sharing them.
+
+Risk: Dirty, missing, or mismapped fields can produce misleading KPI summaries or charts.
+
+Mitigation: Validate input columns, request mappings when required numeric fields are missing, and sanity-check numbers and narrative consistency before using the report.
+
+Risk: The bundled script supports only CSV, Excel, or JSON input and writes local HTML output rather than a complete PDF workflow.
+
+Mitigation: Use supported structured inputs, keep file operations within the intended workspace, and apply a separate reviewed conversion step if PDF output is required.
+
+## Reference(s):
+
+- [Report Templates](references/report-templates.md)
+- [Chart Guidelines](references/chart-guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/plgonzalezrx8/skills/report-generator-pedro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and optional local HTML report files with chart images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script writes a local HTML report and companion chart image when supplied with a supported CSV, Excel, or JSON input file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

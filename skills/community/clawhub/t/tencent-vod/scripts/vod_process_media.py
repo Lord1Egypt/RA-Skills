@@ -49,7 +49,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -65,13 +65,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -257,7 +260,9 @@ def process_by_procedure(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -338,7 +343,9 @@ def teshd_transcode(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -402,7 +409,9 @@ def remux(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -480,7 +489,9 @@ def video_enhance(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -560,7 +571,9 @@ def scene_transcode(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -636,7 +649,9 @@ def make_snapshot(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -705,7 +720,9 @@ def make_animated_graphics(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -777,7 +794,9 @@ def sample_snapshot(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -849,7 +868,9 @@ def image_sprite(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -925,7 +946,9 @@ def cover_by_snapshot(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -990,7 +1013,9 @@ def adaptive_streaming(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1048,7 +1073,9 @@ def ai_content_review(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1106,7 +1133,9 @@ def ai_analysis(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1164,7 +1193,9 @@ def ai_recognition(args):
             wait_result = wait_for_task(client, result['TaskId'], args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {result['TaskId']}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {result['TaskId']}")
+            else:
+                print_task_outputs(wait_result)
         if args.json or args.verbose:
             print(json.dumps(result, indent=2, ensure_ascii=False))
 
@@ -1172,6 +1203,85 @@ def ai_recognition(args):
     except Exception as e:
         print(f"AI内容识别失败: {e}")
         sys.exit(1)
+
+
+def print_task_outputs(result):
+    """从任务返回结果中提取并打印产物（FileUrl / FileId / SubjectId 等）。
+
+    兼容多种任务返回结构，按优先级展示：
+    - 顶层 FileId / FileUrl（上传/拉取上传任务）
+    - SubjectId / ElementId（自定义主体任务）
+    - Output.FileInfos[].{FileUrl, FileId}（AIGC / 处理类任务）
+    - Output.FileUrl（部分任务）
+    - 错误信息（FAIL 状态）
+    """
+    if not result:
+        return
+
+    # AIGC 任务可能嵌套在 AigcImageTask/AigcVideoTask 等子对象内
+    task = result
+    for key in ('AigcImageTask', 'AigcVideoTask', 'TaskDetail', 'Data'):
+        if isinstance(result.get(key), dict):
+            task = result[key]
+            break
+
+    # 失败：打印错误信息
+    if task.get('Status') == 'FAIL' or task.get('ErrCode'):
+        err = task.get('Message') or task.get('ErrCodeExt') or '任务失败'
+        print(f"⚠️  错误信息: {err}")
+        return
+
+    printed = False
+
+    # 顶层 SubjectId / ElementId（自定义主体）
+    for sid_key in ('SubjectId', 'ElementId', 'CustomElementId'):
+        if task.get(sid_key) or result.get(sid_key):
+            sid = task.get(sid_key) or result.get(sid_key)
+            print(f"\n🆔 {sid_key}: {sid}")
+            printed = True
+
+    # 顶层 FileId / FileUrl（上传 / 拉取上传）
+    if task.get('FileId') or result.get('FileId'):
+        fid = task.get('FileId') or result.get('FileId')
+        print(f"\n📂 FileId: {fid}")
+        printed = True
+    if task.get('FileUrl') or result.get('FileUrl'):
+        url = task.get('FileUrl') or result.get('FileUrl')
+        print(f"   URL    : {url}")
+        printed = True
+
+    # Output 内的 FileInfos / FileUrl
+    output = task.get('Output') or result.get('Output') or {}
+    file_infos = output.get('FileInfos') or output.get('FileInfoSet') or []
+
+    if file_infos:
+        print(f"\n📦 产物（{len(file_infos)} 个文件）:")
+        for i, fi in enumerate(file_infos, 1):
+            url = fi.get('FileUrl') or fi.get('Url') or ''
+            fid = fi.get('FileId') or ''
+            ftype = fi.get('FileType') or fi.get('Type') or ''
+            prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+            label_parts = []
+            if ftype:
+                label_parts.append(ftype)
+            if fid:
+                label_parts.append(f"FileId={fid}")
+            if label_parts:
+                print(f"{prefix} {' '.join(label_parts)}")
+                if url:
+                    print(f"     URL: {url}")
+            elif url:
+                print(f"{prefix} URL: {url}")
+        printed = True
+    elif output.get('FileUrl'):
+        print(f"\n📦 产物 URL: {output['FileUrl']}")
+        if output.get('FileId'):
+            print(f"   FileId  : {output['FileId']}")
+        printed = True
+
+    if not printed:
+        # 兜底：完成但没找到标准产物字段
+        print(f"\n💡 任务已完成（状态: {task.get('Status', 'N/A')}），如需详细信息使用 --json 查看完整响应")
 
 
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
@@ -1211,19 +1321,28 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
 
 
 def main():
+    # 早加载 .env，确保 argparse `default=os.environ.get(...)` 能取到 TENCENTCLOUD_VOD_SUB_APP_ID
+    # 修复 BUG：此前 argparse 在 add_argument 时立即从环境变量取值，但 .env 加载发生在
+    # get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD 媒体处理工具 - 支持极速高清转码/转封装/场景转码/截图/转动图等',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 示例:
-  python vod_process_media.py procedure --file-id <id> --procedure "SimpleAes"
-  python vod_process_media.py transcode --file-id <id>                        # 极速高清(同源)
-  python vod_process_media.py transcode --file-id <id> --quality hd           # 极速高清(720P)
-  python vod_process_media.py remux --file-id <id> --target-format mp4        # 转封装MP4
-  python vod_process_media.py enhance --file-id <id>                          # 视频增强(通用1080P)
-  python vod_process_media.py enhance --file-id <id> --scene anime --resolution 4k  # 漫剧4K增强
-  python vod_process_media.py scene-transcode --file-id <id> --scene short_drama
-  python vod_process_media.py snapshot --file-id <id> --definition 10001 --ext-time-offset-set "5s,10s"
+  python3 vod_process_media.py procedure --file-id <id> --procedure "SimpleAes"
+  python3 vod_process_media.py transcode --file-id <id>                        # 极速高清(同源)
+  python3 vod_process_media.py transcode --file-id <id> --quality hd           # 极速高清(720P)
+  python3 vod_process_media.py remux --file-id <id> --target-format mp4        # 转封装MP4
+  python3 vod_process_media.py enhance --file-id <id>                          # 视频增强(通用1080P)
+  python3 vod_process_media.py enhance --file-id <id> --scene anime --resolution 4k  # 漫剧4K增强
+  python3 vod_process_media.py scene-transcode --file-id <id> --scene short_drama
+  python3 vod_process_media.py snapshot --file-id <id> --definition 10001 --ext-time-offset-set "5s,10s"
 
 TESHD: same(100800)/flu(100810,360P)/sd(100820,540P)/hd(100830,720P)
 Remux: mp4(875)/hls(876)
@@ -1250,7 +1369,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     proc_parser.add_argument('--session-id', help='用于去重的识别码（三天内重复会返回错误）')
     proc_parser.add_argument('--ext-info', help='扩展信息')
     proc_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
-    proc_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    proc_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     proc_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     proc_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     proc_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1268,7 +1387,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                help='子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）')
     teshd_parser.add_argument('--session-context', help='来源上下文，用于透传用户请求信息')
     teshd_parser.add_argument('--tasks-priority', type=int, help='任务优先级 (-10到10)')
-    teshd_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    teshd_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     teshd_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     teshd_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     teshd_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1285,7 +1404,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                help='子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）')
     remux_parser.add_argument('--session-context', help='来源上下文，用于透传用户请求信息')
     remux_parser.add_argument('--tasks-priority', type=int, help='任务优先级 (-10到10)')
-    remux_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    remux_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     remux_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     remux_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     remux_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1305,7 +1424,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                  help='子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）')
     enhance_parser.add_argument('--session-context', help='来源上下文，用于透传用户请求信息')
     enhance_parser.add_argument('--tasks-priority', type=int, help='任务优先级 (-10到10)')
-    enhance_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    enhance_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     enhance_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     enhance_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     enhance_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1328,7 +1447,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
                                help='子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）')
     scene_parser.add_argument('--session-context', help='来源上下文，用于透传用户请求信息')
     scene_parser.add_argument('--tasks-priority', type=int, help='任务优先级 (-10到10)')
-    scene_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    scene_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     scene_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     scene_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     scene_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1348,7 +1467,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     snap_parser.add_argument('--ext-info', help='扩展信息')
     snap_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     snap_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    snap_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    snap_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     snap_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     snap_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     snap_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1368,7 +1487,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     gif_parser.add_argument('--ext-info', help='扩展信息')
     gif_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     gif_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    gif_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    gif_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     gif_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     gif_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     gif_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1387,7 +1506,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     sample_parser.add_argument('--ext-info', help='扩展信息')
     sample_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     sample_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    sample_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    sample_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     sample_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     sample_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     sample_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1406,7 +1525,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     sprite_parser.add_argument('--ext-info', help='扩展信息')
     sprite_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     sprite_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    sprite_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    sprite_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     sprite_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     sprite_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     sprite_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1427,7 +1546,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     cover_parser.add_argument('--ext-info', help='扩展信息')
     cover_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     cover_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    cover_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    cover_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     cover_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     cover_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     cover_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1446,7 +1565,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     adaptive_parser.add_argument('--ext-info', help='扩展信息')
     adaptive_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     adaptive_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    adaptive_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    adaptive_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     adaptive_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     adaptive_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     adaptive_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1464,7 +1583,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     review_parser.add_argument('--ext-info', help='扩展信息')
     review_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     review_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    review_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    review_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     review_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     review_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     review_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1482,7 +1601,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     analysis_parser.add_argument('--ext-info', help='扩展信息')
     analysis_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     analysis_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    analysis_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    analysis_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     analysis_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     analysis_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     analysis_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
@@ -1500,7 +1619,7 @@ Scene: short_drama/ecommerce/feed x 1080/720/480 x best/quality/bitrate
     recognition_parser.add_argument('--ext-info', help='扩展信息')
     recognition_parser.add_argument('--tasks-priority', type=int, help='任务优先级')
     recognition_parser.add_argument('--tasks-notify-mode', choices=['Finish', 'Change', 'None'], help='任务状态变更通知模式')
-    recognition_parser.add_argument('--region', default='ap-guangzhou', help='地域')
+    recognition_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域')
     recognition_parser.add_argument('--no-wait', action='store_true', help='仅提交任务，不等待结果')
     recognition_parser.add_argument('--max-wait', type=int, default=600, help='最大等待时间(秒)')
     recognition_parser.add_argument('--json', action='store_true', help='JSON 格式输出')

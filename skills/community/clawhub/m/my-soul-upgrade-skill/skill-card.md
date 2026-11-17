@@ -1,42 +1,53 @@
-## Description: <br>
-Manage and synchronize global and agent-specific SOUL definitions using a two-layer template system with automated rebuild scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and synchronize global and agent-specific Soul definitions using a two-layer template system with automated rebuild scripts.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-Developers and administrators who manage OpenClaw agents use this skill to update shared and per-agent SOUL templates and keep generated agent instruction files synchronized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can change persistent SOUL instruction files, including global changes across agents. <br>
-Mitigation: Install only when this administrative behavior is intended, back up SOUL and template files first, and review diffs after rebuilding. <br>
-Risk: Running the rebuild script may regenerate all affected agent SOUL files. <br>
-Mitigation: Inspect the local rebuild script before use and avoid global rebuilds unless broad agent changes are acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to update and synchronize global and per-agent Soul instruction definitions across agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-soul-upgrade-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may lead users to regenerate persistent SOUL instruction files across one or more agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can guide persistent changes to global or agent-specific Soul instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diffs before syncing, keep backups of SOUL.md and template.md, and avoid the global update path unless every agent should receive the change.
+
+Risk: Manual edits can leave generated Soul files out of sync with their templates.
+
+Mitigation: Run the documented build_all_souls.py sync step after intentional template changes and verify the regenerated agent files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-soul-upgrade-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with ordered procedures and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide updates to persistent OpenClaw instruction files; review resulting diffs before applying changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; package.json lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

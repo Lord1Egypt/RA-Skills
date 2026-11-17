@@ -1,39 +1,54 @@
-## Description: <br>
-长图转小红书图片切割工具 - 将任意长图按小红书 3:4 比例自动切割，支持移动端协作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crops long images into Xiaohongshu-friendly 3:4 image slices with command-line, GUI, and mobile collaboration workflows.
 
-## Publisher: <br>
-[Selena001](https://clawhub.ai/user/Selena001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[selena001](https://clawhub.ai/user/selena001)
 
-## Use Case: <br>
-External creators, social media operators, and agents use this skill to crop long screenshots, documents, or design images into Xiaohongshu-friendly image segments. It supports command-line, GUI, and mobile collaboration workflows for producing publish-ready 3:4 images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may contain personal, confidential, or regulated information. <br>
-Mitigation: Use a dedicated local output folder, redact sensitive regions before AI-assisted handling, and avoid sending sensitive image content to an AI unless authorized. <br>
+## Use Case:
 
+External creators and agents use this skill to crop long screenshots, document captures, or design images into Xiaohongshu-ready 1080x1440 image slices. It supports configurable start position, bottom cropping, output format, and output directory through CLI or GUI workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Selena001/changtu-xiaohongshu-cropper) <br>
-- [README](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [PNG or JPG image files plus Markdown guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output images are 1080x1440px with optional start position, logo-height, output directory, and image format settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: Invalid or extreme width and height settings, or very large source images, can hang processing or exhaust local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use positive, reasonable width and height values, avoid very large source images, and review before installing in automated or shared environments.
+
+Risk: The mobile AI-sharing workflow may expose personal, regulated, corporate, or confidential screenshot content.
+
+Mitigation: Do not send sensitive screenshots unless the user is comfortable sharing them with the AI system handling the image.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/selena001/skills/changtu-xiaohongshu-cropper)
+- [Skill README](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated PNG or JPG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local PNG, JPG, JPEG, and WEBP inputs; output dimensions, start Y position, bottom crop height, format, and directory are configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-03-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Picoclaw runtime traffic monitoring baseline for lightweight AI gateway proxy inspection, egress detection, and posture integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picoclaw runtime traffic monitoring baseline for lightweight AI gateway proxy inspection, egress detection, and posture integration.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Builders and security operators use this skill as a Picoclaw landing zone for opt-in runtime traffic monitoring, including proxy inspection planning, exfiltration and injection detection design, redacted local findings, and posture export for Picoclaw security profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: Future proxy inspection, HTTPS MITM, local threat logs, and profile export are sensitive capabilities. <br>
-Mitigation: Keep monitoring opt-in, process-scoped, redacted, and operator-controlled before enabling any future implementation. <br>
-Risk: The published artifact is a scaffold and does not provide active runtime monitoring or blocking. <br>
-Mitigation: Treat it as an implementation baseline and review added runtime code, tests, and configuration before relying on detection outcomes. <br>
-Risk: Standalone installs can be exposed to release artifact tampering if checksums and signatures are skipped. <br>
-Mitigation: Verify the signed release manifest, archive checksum, SKILL.md, and skill.json before installing or extracting standalone artifacts. <br>
+## Use Case:
 
+Developers and security engineers use this skill as a Picoclaw traffic-monitoring specification scaffold for building opt-in HTTP/HTTPS proxy inspection, egress exfiltration detection, inbound injection detection, redacted JSONL findings, and posture export.
 
-## Reference(s): <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-picoclaw-traffic-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON schemas and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spec baseline only; this release does not include active proxy or runtime implementation code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta5 (source: artifact/SKILL.md, artifact/skill.json, artifact/CHANGELOG.md, released 2026-06-23) <br>
+Risk: The recommended install command uses unpinned npx execution, which can run changing third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the signed standalone verification flow or a pinned, trusted Skills CLI version before installing.
+
+Risk: Future HTTPS inspection could expose sensitive traffic if expanded beyond the documented opt-in, process-scoped model.
+
+Mitigation: Confirm HTTPS inspection remains opt-in, process-scoped, redacts secrets before writing logs, and never installs system CA trust automatically.
+
+## Reference(s):
+
+- [ClawSec homepage](https://clawsec.prompt.security)
+- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-picoclaw-traffic-guardian)
+- [README](artifact/README.md)
+- [Specification](artifact/SPEC.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Specification scaffold; v0.0.1 does not ship an active proxy runtime.]
+
+## Skill Version(s):
+
+0.0.1-beta5 (source: frontmatter, skill.json, changelog, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

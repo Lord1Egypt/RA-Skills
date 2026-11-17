@@ -1,41 +1,50 @@
-## Description: <br>
-快手可灵 AI 视频生成助手，精通文生视频、图生视频、口型同步、运动笔刷 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kling AI helps agents guide users through Kuaishou Kling video generation, including text-to-video, image-to-video, lip sync, motion brush, camera controls, prompt structure, and API examples.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and developers use this skill for guidance on creating Kling AI video prompts and API requests for text-to-video, image-to-video, motion brush, lip sync, and camera-control workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API examples require a Kling API key and may trigger paid video generation. <br>
-Mitigation: Protect the API key and confirm requests, generated outputs, and costs before submitting jobs. <br>
-Risk: Image, video, voice, or likeness uploads can expose private or permission-sensitive media. <br>
-Mitigation: Use only media you are authorized to upload and avoid private voices, likenesses, or personal media without consent. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to plan Kling AI video-generation prompts, choose features such as text-to-video, image-to-video, lip sync, motion brush, and camera controls, and draft OpenAI-compatible API calls for generation workflows.
 
-## Reference(s): <br>
-- [Kling API endpoint](https://api.klingai.com/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/kling-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with prompt examples and Python API snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Kling AI prompt structures, feature comparisons, best practices, and API request examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Using the API example sends prompts and generation inputs to Kling AI and requires a Kling API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Kling AI privacy and billing terms before submitting sensitive text, images, audio, video, or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/kling-ai)
+- [Kling AI API base URL](https://api.klingai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with Python API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts, feature-selection guidance, and API-call examples; generated media is produced by Kling AI, not by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,58 +1,58 @@
 ---
 name: fec-monorepo-project-standard
-description: Use when creating, reviewing, or restructuring frontend monorepos with pnpm workspace, Turborepo, Nx, multi-package dependency boundaries, task orchestration, package naming, or package publishing; Chinese triggers include monorepo, workspace, 多包.
+description: Use when creating, reviewing, or restructuring frontend monorepos with pnpm workspace, Turborepo, Nx, multi-package dependency boundaries, task orchestration, package naming, or package publishing; Chinese triggers include monorepo, workspace, multi-package.
 ---
 
-# Monorepo 项目规范
+# Monorepo Project Specifications
 
-适用于使用 pnpm workspace、Turborepo 或 Nx 的多包前端仓库。
+For multi-package front-end repositories using pnpm workspace, Turborepo or Nx.
 
 ## Purpose
 
-规范 Monorepo 项目的目录结构、依赖管理、任务编排和包发布流程，确保多包协作的构建效率和版本一致性。
+Standardize the directory structure, dependency management, task orchestration and package release process of the Monorepo project to ensure the build efficiency and version consistency of multi-package collaboration.
 
 ## Procedure
 
-1. 先确认仓库是否已使用 pnpm workspace、Turborepo 或 Nx，并沿用现有包命名与任务约定。
-2. 将应用放在 `apps/`，共享库、配置和工具放在 `packages/` 或既有等价目录。
-3. 内部依赖使用 `workspace:*`，通过依赖图驱动构建顺序。
-4. 为 build、lint、test 配置可缓存、可并行、可增量的根任务，并明确输入、输出和环境变量。
-5. 在 Turborepo/Nx 中配置 affected/changed 范围命令，CI 优先跑受影响包，同时保留主干全量验证入口。
-6. 发布包前检查包边界、循环依赖、exports、peer dependencies 和版本策略。
+1. First confirm whether the repository has used pnpm workspace, Turborepo or Nx, and continue to use the existing package naming and task conventions.
+2. Place applications in `apps/` and shared libraries, configuration and tools in `packages/` or existing equivalent directories.
+3. Internal dependencies use `workspace:*` to drive the build sequence through the dependency graph.
+4. Configure cacheable, parallelizable, and incremental root tasks for build, lint, and test, and specify input, output, and environment variables.
+5. Configure the affected/changed range command in Turborepo/Nx. CI will run the affected packages first while retaining the backbone full verification entry.
+6. Check package boundaries, circular dependencies, exports, peer dependencies and version policies before publishing the package.
 
-## 工具选择
+## Tool selection
 
-| 工具               | 适用 | 特点                       |
+| Tools | Applicability | Features |
 | ------------------ | ---- | -------------------------- |
-| **pnpm workspace** | 基础 | 依赖提升、链接、脚本聚合   |
-| **Turborepo**      | 推荐 | 缓存、并行、依赖图         |
-| **Nx**             | 大型 | 增量构建、云缓存、插件生态 |
+| **pnpm workspace** | Basics | Dependency promotion, linking, script aggregation |
+| **Turborepo** | Recommended | Caching, parallelism, dependency graph |
+| **Nx** | Large | Incremental build, cloud cache, plug-in ecology |
 
-## 目录结构
+## Directory structure
 
 ### pnpm + Turborepo
 
 ```
-├── package.json                # 根 package，workspace 配置
-├── pnpm-workspace.yaml         # workspace 包列表
-├── turbo.json                  # Turborepo 配置
+├── package.json # Root package, workspace configuration
+├── pnpm-workspace.yaml # workspace package list
+├── turbo.json # Turborepo configuration
 │
 ├── apps/
-│   ├── web/                    # 主应用
+│ ├── web/ # Main application
 │   │   ├── package.json
 │   │   └── ...
-│   ├── admin/                  # 管理后台
-│   └── docs/                   # 文档站
+│ ├── admin/ # Management background
+│ └── docs/ # Documentation site
 │
 ├── packages/
-│   ├── ui/                     # 共享 UI 组件
+│ ├── ui/ # Shared UI components
 │   │   ├── package.json
 │   │   └── src/
-│   ├── utils/                  # 工具函数
-│   ├── config-eslint/         # 共享 ESLint 配置
-│   └── config-typescript/     # 共享 TS 配置
+│ ├── utils/ # Utility function
+│ ├── config-eslint/ # Shared ESLint configuration
+│ └── config-typescript/ # Shared TS configuration
 │
-└── tooling/                    # 构建/测试工具（可选）
+└── tooling/ # Build/test tools (optional)
     └── scripts/
 ```
 
@@ -64,11 +64,11 @@ packages:
   - "packages/*"
 ```
 
-## 依赖管理
+## Dependency management
 
-- 内部包使用 `workspace:*` 协议
-- 根 `package.json` 统一部分依赖版本，子包可覆盖
-- 禁止循环依赖，通过 `pnpm why` 检查
+- Internal packages use the `workspace:*` protocol
+- The root `package.json` unifies some dependency versions and can be overridden by sub-packages
+- Disable circular dependencies, check via `pnpm why`
 
 ```json
 {
@@ -79,7 +79,7 @@ packages:
 }
 ```
 
-## Turborepo 任务编排
+## Turborepo task orchestration
 
 ```json
 {
@@ -99,12 +99,12 @@ packages:
 }
 ```
 
-- `^build` 表示先执行依赖包的 build
-- `outputs` 用于缓存命中判断
-- `inputs` 应包含源码、配置、锁文件和环境相关文件；不要把 `.env` secret 值写入缓存 key
-- 远程缓存要区分可信 CI 与本地开发，避免把含敏感信息的产物上传
+- `^build` means executing the build of dependent packages first
+- `outputs` is used for cache hit judgment
+- `inputs` should include source code, configuration, lock files and environment-related files; do not write the `.env` secret value into the cache key
+- Remote caching should distinguish between trusted CI and local development to avoid uploading products containing sensitive information.
 
-## Nx 任务编排
+## Nx task orchestration
 
 ```json
 {
@@ -118,25 +118,25 @@ packages:
 }
 ```
 
-## 包命名
+## Package naming
 
-- 内部包：`@org/package-name` 或 `@repo/package-name`
-- 发布到 npm：遵循 `@scope/name` 规范
+- Internal package: `@org/package-name` or `@repo/package-name`
+- Publish to npm: follow the `@scope/name` specification
 
 ## Constraints
 
-- 子包之间通过 `workspace:*` 引用，不发布到 npm 再安装
-- 共享配置（ESLint、TS）放在 `packages/config-*`，子包 extends
-- 构建顺序由依赖图决定，不手动指定无关依赖
-- 根目录执行 `pnpm -r build` 或 `turbo run build` 时，所有包按序构建
-- 禁止循环依赖，新增包时通过 `pnpm why` 检查依赖链
-- CI cache 只缓存依赖安装目录和任务产物，不缓存未验证的构建状态
-- affected 构建不能替代发布前全量验证；主干或 release 分支仍需完整质量门禁
+- Sub-packages are referenced through `workspace:*` and are not published to npm and then installed.
+- Shared configurations (ESLint, TS) are placed in `packages/config-*`, and sub-packages extend
+- The build order is determined by the dependency graph, without manually specifying irrelevant dependencies
+- When executing `pnpm -r build` or `turbo run build` in the root directory, all packages will be built in order
+- Disable circular dependencies, use `pnpm why` to check the dependency chain when adding a new package
+- CI cache only caches dependent installation directories and task products, and does not cache unverified build status
+- Affected builds cannot replace full verification before release; the trunk or release branch still requires complete quality control
 
 ## Expected Output
 
-- Monorepo 目录结构清晰（`apps/` 应用、`packages/` 共享包、`tooling/` 工具）
-- `pnpm-workspace.yaml` 和 `turbo.json` / `nx.json` 配置正确
-- 内部包使用 `workspace:*` 协议，无循环依赖
-- 构建、lint、test 任务可通过根命令一键执行，缓存命中率高
-- CI 能区分 affected 快速反馈和 release 全量验证，缓存配置不会泄露密钥或隐藏依赖边界问题
+- Monorepo directory structure is clear (`apps/` applications, `packages/` shared packages, `tooling/` tools)
+- `pnpm-workspace.yaml` and `turbo.json` / `nx.json` are configured correctly
+- Internal packages use `workspace:*` protocol, no circular dependencies
+- Build, lint, and test tasks can be executed with one click through the root command, and the cache hit rate is high
+- CI can distinguish between affected quick feedback and release full verification, and the cache configuration will not leak keys or hide dependency boundary issues

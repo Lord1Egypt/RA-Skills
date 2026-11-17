@@ -1,41 +1,60 @@
-## Description: <br>
-Telegram Bot API operations for forum management. Use for creating/editing/archiving forum topics, setting topic icons, managing Telegram groups via Bot API. Use when archiving channels/topics. Requires bot token from OpenClaw config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram Bot API operations for forum management, including creating, editing, and archiving forum topics, setting topic icons, and managing Telegram groups via the Bot API.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and operators use this skill to create, configure, archive, and clean up Telegram forum topics that are integrated with OpenClaw sessions and configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to manage Telegram forum topics and modify persistent OpenClaw Telegram configuration. <br>
-Mitigation: Use a minimally privileged bot token and review every config.patch payload before applying it. <br>
-Risk: New topic configuration can leave all skills available by default. <br>
-Mitigation: Add an explicit skills allowlist for each topic when broad tool access is not required. <br>
-Risk: Bot tokens can be exposed through logs, shell history, or chat transcripts. <br>
-Mitigation: Keep tokens out of transcripts and logs, and pass credentials through a controlled configuration source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Forum Topic Emoji IDs](references/emoji-ids.md) <br>
+## Use Case:
 
+Developers and operators managing OpenClaw Telegram integrations use this skill to create, configure, icon, archive, and clean up Telegram forum topics and their per-topic sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Telegram Bot API and OpenClaw configuration instructions; commands may call external Telegram endpoints when executed by a user or agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Telegram bot tokens can be exposed when passed directly in shell commands.
+
+Mitigation: Use a narrow bot scope, avoid passing real tokens as command-line arguments, and retrieve or inject tokens through safer local configuration or secret handling where available.
+
+Risk: New Telegram topic sessions may inherit all installed skills by default.
+
+Mitigation: Use a narrow skills allowlist for each topic and include only ready skills that match the topic purpose.
+
+Risk: Incorrect topic names, chat IDs, or topic IDs can modify or archive the wrong Telegram forum topic.
+
+Mitigation: Validate topic names and IDs before running create, edit, archive, or cleanup scripts.
+
+Risk: Archived session history can be lost during cleanup.
+
+Mitigation: Export and verify archived session history before deleting session records or transcripts.
+
+## Reference(s):
+
+- [Forum Topic Emoji IDs](references/emoji-ids.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Telegram Bot API command guidance and OpenClaw configuration steps; scripts require a bot token, chat ID, and topic inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

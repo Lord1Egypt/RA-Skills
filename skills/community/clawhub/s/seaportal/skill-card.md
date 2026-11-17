@@ -1,43 +1,62 @@
-## Description: <br>
-Use this skill when an agent needs to read or navigate websites without a browser: fetch a page as clean Markdown, get a JSON accessibility snapshot of interactive elements, follow links across pages, or quickly decide whether a site is static/SSR (seaportal can handle it) vs SPA/blocked (needs a real browser like pinchtab). HTTP-only, fast (<2s), token-efficient. Prefer this over a browser whenever the page is static or server-rendered. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SeaPortal helps agents fetch static or server-rendered web pages as clean Markdown, JSON accessibility snapshots, TEI XML, sitemaps, feeds, and site digests without running a browser.
 
-## Publisher: <br>
-[pinchtab](https://clawhub.ai/user/pinchtab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinchtab](https://clawhub.ai/user/pinchtab)
 
-## Use Case: <br>
-Developers and agents use SeaPortal to fetch static or server-rendered web pages as Markdown, JSON snapshots, XML, or structured link/feed/sitemap data without opening a browser. It is intended for read-only web navigation and should hand off JavaScript-heavy, blocked, authenticated, or interactive flows to a browser-based tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes a third-party web-fetching CLI that retrieves remote content. <br>
-Mitigation: Use it only on sites you are authorized to access and prefer --respect-robots with rate limits for crawling. <br>
-Risk: Default Markdown mode writes fetched page content under ./renders/seaportal. <br>
-Mitigation: Use --json or --snapshot when fetched content should stay on stdout instead of being written locally. <br>
-Risk: TLS fingerprinting may bypass some bot detection controls. <br>
-Mitigation: Follow site terms and authorization boundaries; escalate blocked, authenticated, or interactive pages to an appropriate browser workflow only when permitted. <br>
+## Use Case:
 
+Developers and agents use SeaPortal to read, navigate, and summarize static or server-rendered websites quickly without launching a full browser. It is useful for page extraction, accessibility snapshot inspection, sitemap and feed parsing, and deciding when a browser-based tool is required.
 
-## Reference(s): <br>
-- [SeaPortal ClawHub page](https://clawhub.ai/pinchtab/seaportal) <br>
-- [SeaPortal homepage](https://github.com/pinchtab/seaportal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, XML, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets; the underlying CLI can emit Markdown, JSON, compact text snapshots, TEI-Lite XML, and split output files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default CLI mode writes fetched Markdown and JSON under ./renders/seaportal; use --json or --snapshot for stdout-only output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill installs and runs a mutable third-party executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency source before installing and prefer pinned or otherwise verified releases.
+
+Risk: Proxy examples may encourage placing credentials directly in command-line URLs.
+
+Mitigation: Avoid real proxy passwords in command-line arguments when possible and use credential handling appropriate for the host environment.
+
+Risk: Cached, saved, or split fetch outputs may contain sensitive or copyrighted page content.
+
+Mitigation: Clean up cache and output directories after use and limit filesystem access to locations needed for the task.
+
+Risk: HTTP-only extraction does not execute JavaScript or support stateful browser interactions.
+
+Mitigation: Use SeaPortal for static or server-rendered pages and escalate to a real browser when pages are SPA-only, blocked, authenticated, or require forms or clicks.
+
+## Reference(s):
+
+- [ClawHub SeaPortal skill page](https://clawhub.ai/pinchtab/skills/seaportal)
+- [SeaPortal homepage](https://github.com/pinchtab/seaportal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; SeaPortal commands can emit Markdown, JSON, XML, compact text, TSV manifests, or files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports token caps, chunking, link and media extraction, optional cache directories, and optional saved or split output files.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

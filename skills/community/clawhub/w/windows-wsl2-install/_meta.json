@@ -1,6 +1,8 @@
+
 {
-  "ownerId": "kn763rbhn5na5swbngma9fnp7s82yvkr",
-  "slug": "windows-wsl2-install",
-  "version": "1.1.0",
-  "publishedAt": 1773649408621
+  "name": "OpenClaw Install Guide (WSL2 Windows)",
+  "description": "Windows WSL2 环境安装 OpenClaw 完整分步指南，包含来自实际安装经验的常见坑点和解决方案",
+  "author": "Deepwhite 深白色",
+  "license": "MIT",
+  "tags": ["install", "windows", "wsl2", "guide"]
 }

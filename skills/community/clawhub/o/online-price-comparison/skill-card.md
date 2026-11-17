@@ -1,41 +1,59 @@
-## Description: <br>
-AI-powered shopping assistant. Search for products by text or image, and find the best prices across Amazon, Google Shopping, and brand stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered shopping assistant that searches for products by text or image and finds prices across Amazon, Google Shopping, and brand stores.
 
-## Publisher: <br>
-[archroad](https://clawhub.ai/user/archroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archroad](https://clawhub.ai/user/archroad)
 
-## Use Case: <br>
-External users and shopping agents use ShopGeni to search for products from natural-language or image inputs, compare prices across retailers, and continue shopping conversations with thread IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries, product image URLs, and selected local images are sent to the ShopGeni/BeyondStyle remote service. <br>
-Mitigation: Use only with data you are comfortable sharing with that service, and avoid private photos, screenshots, or proprietary images. <br>
-Risk: The helper stores and sends a persistent per-installation identifier that may link activity across sessions. <br>
-Mitigation: Review this behavior before deployment and reset or remove ~/.config/nestor/skill_id if persistent linkage is not acceptable. <br>
+## Use Case:
 
+External shoppers and shopping agents use ShopGeni to search for products by text or image, compare prices across supported retailers, and present recommendations or ranked purchase options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archroad/online-price-comparison) <br>
-- [ShopGeni API Service](https://nestor-api.beyondstyle.us) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the helper script, typically presented by the agent as markdown tables or bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses can include assistant text, a thread ID, product recommendations, and ranked price-comparison candidates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Shopping queries and selected product images may be sent to the ShopGeni/BeyondStyle backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries and images intended for that service, and avoid private files or sensitive photos with --image.
+
+Risk: The API endpoint can be changed with SHOPGENI_API_URL or --api-url.
+
+Mitigation: Check the effective API URL before running the helper and use only the default endpoint or another trusted endpoint.
+
+Risk: The helper creates a persistent per-installation identifier.
+
+Mitigation: Review this behavior before installing or running the skill in shared, privacy-sensitive, or managed environments.
+
+## Reference(s):
+
+- [ShopGeni ClawHub Skill Page](https://clawhub.ai/archroad/skills/online-price-comparison)
+- [archroad ClawHub Publisher Profile](https://clawhub.ai/user/archroad)
+- [Default ShopGeni API Endpoint](https://nestor-api.beyondstyle.us)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON from the helper script, typically summarized as Markdown tables or bullet lists by the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assistant response text, thread_id, recommendations, and price-comparison candidates when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

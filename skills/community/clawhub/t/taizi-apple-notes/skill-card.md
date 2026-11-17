@@ -1,39 +1,58 @@
-## Description: <br>
-Manage Apple Notes via the `memo` CLI on macOS, including creating, viewing, editing, deleting, searching, moving, and exporting notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Notes via the `memo` CLI on macOS (create, view, edit, delete, search, move, and export notes). Use when a user asks Clawdbot to add a note, list notes, search notes, or manage note folders.
 
-## Publisher: <br>
-[fresh3](https://clawhub.ai/user/fresh3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fresh3](https://clawhub.ai/user/fresh3)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to manage local Apple Notes on macOS through the `memo` command-line tool. It supports common note workflows such as listing, searching, creating, editing, deleting, moving, and exporting notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Apple Notes skill page](https://clawhub.ai/fresh3/taizi-apple-notes) <br>
-- [memo GitHub repository](https://github.com/antoniorodr/memo) <br>
-- [Install memo via Homebrew](https://github.com/antoniorodr/memo) <br>
+External users and developers use this skill to operate Apple Notes from an agent through the `memo` CLI, including creating, listing, searching, editing, moving, deleting, and exporting notes on macOS.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Apple Notes.app access, terminal interaction for some commands, and the `memo` binary. Security guidance recommends confirming the exact note before deletion and avoiding highly sensitive notes unless local note access is intended.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill relies on an unpinned third-party CLI that can access and modify private Apple Notes.
+
+Mitigation: Install only after reviewing and trusting the memo project, and prefer a pinned, verified release.
+
+Risk: Delete and export actions can expose or remove private notes.
+
+Mitigation: Confirm the exact note before delete or export actions and treat those operations as sensitive.
+
+Risk: Apple Notes Automation access grants the CLI ongoing access to Notes.app.
+
+Mitigation: Grant Automation permission only when needed and revoke it when the integration is no longer in use.
+
+## Reference(s):
+
+- [Apple Notes Skill on ClawHub](https://clawhub.ai/fresh3/skills/taizi-apple-notes)
+- [memo CLI homepage](https://github.com/antoniorodr/memo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require interactive terminal access and Apple Notes Automation permission on macOS.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

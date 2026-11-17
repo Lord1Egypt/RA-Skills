@@ -1,46 +1,62 @@
-## Description: <br>
-AI机票预订助手 helps agents search domestic flights, compare cabin prices and rules, create flight bookings, and manage order details, changes, cancellations, and refunds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI机票助手 - 实现国内航班搜索、舱位查询、预订下单、机票改期、机票退票。适用于用户询问航班、查询机票价格、提交机票订单、改期航班、退票时使用。
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-Travelers or travel-assisting agents use this skill to search Chinese domestic flights, review fares and change/refund rules, create bookings, and manage cancellations, changes, and refunds after mobile verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit bookings, cancellations, changes, and refunds for real flight orders. <br>
-Mitigation: Require explicit confirmation immediately before every order-affecting command and restate the relevant flight, order, and fee details. <br>
-Risk: The skill handles passenger names, phone numbers, ID numbers, order IDs, ticket IDs, and an API key. <br>
-Mitigation: Mask PII in agent responses and logs, avoid storing auth keys in temporary storage, and rotate or re-authenticate if secrets may have been exposed. <br>
-Risk: The security guidance reports unsafe transport behavior. <br>
-Mitigation: Restore normal HTTPS certificate verification before production deployment. <br>
-Risk: Raw debug or order-detail output can expose sensitive passenger or order data. <br>
-Mitigation: Remove raw debug prints and review displayed fields so only necessary, masked information is shown. <br>
+## Use Case:
 
+External users can use this skill to search domestic flights, compare seat prices and rules, create flight bookings, query orders, and submit cancellation, rescheduling, or refund requests. The skill requires mobile authentication and sends passenger information to an external flight service when booking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/ctrip-flight) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ryan-zry) <br>
-- [Fenbeitong flight API endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and plaintext tables from Python script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and authenticated flight API access; order-affecting actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, artifact metadata, and SKILL.md frontmatter) <br>
+Risk: The skill handles login tokens and passenger identity data with unsafe transport and storage controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use with real passenger data or live bookings until TLS verification is restored and credentials are stored in a protected per-user secret store.
+
+Risk: The skill calls an external flight service and depends on the configured API endpoint.
+
+Mitigation: Fix or allowlist the API endpoint before deployment and review all outbound requests before installation.
+
+Risk: Temporary booking and seat-selection state may expose sensitive travel data or affect subsequent order actions.
+
+Mitigation: Protect or eliminate temporary state files and redact sensitive output before logs or responses are shared.
+
+Risk: Cancellation, refund, and rescheduling actions can change real orders and fees.
+
+Mitigation: Require explicit final confirmation tied to the exact order, passenger, action, and fees before executing those operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/ctrip-flight)
+- [Fenbeitong flight skill API endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with plaintext tables, links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and stores temporary authentication and flight selection state on the local filesystem.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

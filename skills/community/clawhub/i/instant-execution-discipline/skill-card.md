@@ -1,40 +1,55 @@
-## Description: <br>
-Revenue-focused execution operating system for agents that converts "do it now" requests into immediate tool actions, enforces strict start/progress/finish SLAs, and prevents kickoff-only false completions for shipping tasks where delay kills conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revenue-focused execution operating system for agents: converts "do it now" requests into immediate tool actions, enforces strict start/progress/finish SLAs, and prevents kickoff-only false completions.
 
-## Publisher: <br>
-[rui131](https://clawhub.ai/user/rui131) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rui131](https://clawhub.ai/user/rui131)
 
-## Use Case: <br>
-Developers and operators use this skill to make agents start execution-heavy publishing, release, distribution, and post-release tasks immediately, keep progress visible, and close with evidence-backed completion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can push agents to start tools, subagents, or cron work before approval boundaries are clear. <br>
-Mitigation: Require confirmation before irreversible, externally visible, financial, account-changing, publishing, release, or destructive operations. <br>
-Risk: The skill recommends KPI logging to memory and Obsidian daily notes. <br>
-Mitigation: Use it only where persistent KPI records are acceptable, and disable or scope logging for sensitive environments. <br>
-Risk: The skill directs agents to make permanent MISSION or skill updates after delays. <br>
-Mitigation: Require review before persistent rule changes so execution pressure does not introduce unsuitable operating instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use this skill to make agents begin execution-heavy work immediately, maintain progress visibility, and report completion with evidence. It is best suited for conversion-sensitive publishing, release, distribution, cron, and post-release workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill pushes agents to start tool, subagent, or cron execution immediately, which can reduce review time before changes are made.
+
+Mitigation: Add explicit confirmation gates for publishing, release, cron, Discord reporting, and other business workflows before deployment.
+
+Risk: The postmortem rule can encourage permanent memory, mission, or skill-rule changes after delays.
+
+Mitigation: Disable automatic self-modification and require human review before changing persistent agent rules or memory.
+
+Risk: KPI logging may write workflow details to memory or Obsidian daily notes.
+
+Mitigation: Decide in advance what KPI data may be persisted and redact sensitive business, customer, or channel details.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with status-message templates and optional command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include KPI logging blocks and evidence pointers when the task is execution-heavy.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with status-message templates, completion-report fields, and KPI logging instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes timing SLAs for start, progress, and completion messages, plus optional KPI logging for revenue and operations workflows.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

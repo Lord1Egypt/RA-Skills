@@ -1,42 +1,53 @@
-## Description: <br>
-Generates complete AI video scripts from a theme or keyword, including shot breakdowns, visual prompts, voiceover copy, and subtitles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language video scripts from a topic or keyword, including shot breakdowns, visual prompts, voiceover copy, subtitles, and platform-oriented structure.
 
-## Publisher: <br>
-[georgeh4qq](https://clawhub.ai/user/georgeh4qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgeh4qq](https://clawhub.ai/user/georgeh4qq)
 
-## Use Case: <br>
-Content creators, AI video makers, and marketing teams use this skill to turn a topic, product, or story idea into a structured video script with scene descriptions, image or video generation prompts, and narration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate this skill for general video-writing requests. <br>
-Mitigation: Confirm that the user wants a structured video script before relying on the generated output. <br>
-Risk: Generated scripts and prompts may include copyrighted, sensitive, or platform-inappropriate elements. <br>
-Mitigation: Review outputs for originality, rights clearance, and platform policy fit before publication. <br>
-Risk: Publisher and artifact metadata use different slugs, which can complicate provenance checks. <br>
-Mitigation: Use the server-resolved publisher and ClawHub skill page as the release identity, and do not infer GitHub provenance when evidence.provenance is unavailable. <br>
+## Use Case:
 
+External content creators, AI video makers, and marketers use this skill to draft short- and long-form video scripts with scene plans, image or video prompts, narration, and subtitles from a topic or keyword.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/georgeh4qq/ai-video-script-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured scene tables, prompt lists, narration, and subtitle text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include short-form and long-form script variants, AI image/video prompts, voiceover copy, and platform-oriented duration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Activation phrases may invoke a Chinese-oriented script generator when the user expected broader video-planning help or non-Chinese output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation phrases or state the desired language before use; confirm language and platform requirements in the prompt.
+
+Risk: Generated scripts and visual prompts may include copyright-sensitive elements or platform-inappropriate content if the user's brief requests them.
+
+Mitigation: Review outputs against copyright, brand, and platform rules before publishing or producing media.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/georgeh4qq/skills/ai-video-script-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown video script with scene breakdowns, visual prompts, voiceover copy, and subtitle text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content by default; examples include prompt formats for CogVideoX, Midjourney, and SD.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

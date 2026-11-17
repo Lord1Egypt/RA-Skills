@@ -1,43 +1,59 @@
-## Description: <br>
-Submit job applications on Greenhouse by filling text fields, setting dropdowns, selecting phone country, uploading a resume, entering an email verification code, and submitting the form. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit job applications on Greenhouse (job-boards.greenhouse.io), including text fields, React Select dropdowns, phone country selection, resume upload, email verification code entry, and submit.
 
-## Publisher: <br>
-[buildingbrien](https://clawhub.ai/user/buildingbrien) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buildingbrien](https://clawhub.ai/user/buildingbrien)
 
-## Use Case: <br>
-External job applicants use this skill to automate Greenhouse application forms while reviewing every field before submission. It is intended for jobs the user intentionally wants to apply to and requires user-provided contact details, resume path, and custom answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive applicant data, including resumes, contact details, and custom application answers. <br>
-Mitigation: Review every field before submission and provide only the resume path and answers intended for the current application. <br>
-Risk: Email verification code handling can expose one-time codes or use stale codes. <br>
-Mitigation: Manually supply the current code when possible, or limit email access to the relevant message for the current application. <br>
-Risk: Using the skill on unintended jobs could submit applications the user did not mean to send. <br>
-Mitigation: Use it only for a specific Greenhouse job the user intentionally wants to apply to and confirm the target job page before submission. <br>
+## Use Case:
 
+Job applicants use this skill to automate Greenhouse application forms with their resume, contact details, and answers to custom questions. It is intended for agents operating a browser with user-provided application data and narrowly scoped email access for verification codes.
 
-## Reference(s): <br>
-- [Greenhouse Field Mapping Reference](references/field-mapping.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/buildingbrien/greenhouse-apply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown guidance with browser automation steps and JavaScript evaluation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a browser automation tool, a local resume file path, user-supplied application answers, and access to the current email verification code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can submit job applications containing personal data without an explicit approval checkpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review every completed field and require user confirmation before the final submit action.
+
+Risk: The skill requires access to a resume path, application answers, browser session, and email verification code.
+
+Mitigation: Scope browser and email access to the target Greenhouse application and retrieve only the relevant verification code.
+
+Risk: Repeated Greenhouse submissions or expired verification codes can disrupt the application flow.
+
+Mitigation: Avoid repeated submissions, space retries, and request a fresh verification code when one expires.
+
+## Reference(s):
+
+- [Greenhouse Field Mapping Reference](references/field-mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/buildingbrien/skills/greenhouse-apply)
+- [Publisher Profile](https://clawhub.ai/user/buildingbrien)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands]
+
+**Output Format:** [Markdown instructions with browser automation steps and JavaScript evaluation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser interaction, resume upload, and email verification-code retrieval; no files are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

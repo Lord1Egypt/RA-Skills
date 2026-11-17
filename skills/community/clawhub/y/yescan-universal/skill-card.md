@@ -1,45 +1,59 @@
-## Description: <br>
-This skill helps agents use the yescan CLI and Quark Scan service to process user-provided images for OCR, image translation, image enhancement, document conversion to Word, Excel, or PDF, and ID photo generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-supplied images, screenshots, and scans into editable Word, Excel, or PDF files using Quark Scan.
 
-## Publisher: <br>
-[yescan-ai](https://clawhub.ai/user/yescan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yescan-ai](https://clawhub.ai/user/yescan-ai)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to process a user-selected image or image URL through Quark Scan for OCR, translation, cleanup, document conversion, or ID photo generation. It is not intended for video processing, pure text editing, or inputs that are not images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected images or image URLs and the SCAN_WEBSERVICE_KEY are sent to Quark Scan for processing. <br>
-Mitigation: Use the skill only with authorization for the submitted documents, avoid regulated or confidential material unless permitted, and protect and rotate the API key as needed. <br>
-Risk: Processed images or converted documents may remain in temporary output directories after execution. <br>
-Mitigation: Use an explicit output directory when appropriate and clean up temporary files after processing sensitive material. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to convert a single image, screenshot, or scan into an editable Office document or PDF while preserving layout where possible.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yescan-ai/skills/yescan-universal) <br>
-- [Quark Scan Open Platform](https://scan.quark.cn/business) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Privacy, data flow, and key security](references/privacy.md) <br>
-- [Implementation details](references/implementation.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance, CLI commands, JSON responses, OCR text, and local output file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write processed images or documents to a temporary directory or caller-specified output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Selected images, scans, or screenshots are uploaded to Quark's third-party service for conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents you are comfortable sending to that service, and avoid sensitive documents unless the service terms and data handling meet your requirements.
+
+Risk: The SCAN_WEBSERVICE_KEY credential is required and could be exposed through misconfiguration or shared environments.
+
+Mitigation: Store the key in the configured environment variable only, avoid pasting it into prompts or logs, and rotate it promptly if exposure is suspected.
+
+Risk: Generated Word, Excel, or PDF files are saved under the system temporary directory and can persist after the session.
+
+Mitigation: Inspect and remove generated files from the temp directory after use, especially on shared machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yescan-ai/skills/alibaba-quark-transoffice)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yescan-ai)
+- [Quark Scan Open Platform](https://scan.quark.cn/business)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files, guidance]
+
+**Output Format:** [JSON response with a local file path when conversion succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCAN_WEBSERVICE_KEY; accepts one image URL, local path, or base64 input; generated files are saved under the system temporary directory.]
+
+## Skill Version(s):
+
+1.1.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

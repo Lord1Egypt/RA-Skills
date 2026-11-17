@@ -1,43 +1,50 @@
-## Description: <br>
-玩转吉他指板 - 快速跳转到吉他指板学习资源网站 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+玩转吉他指板 helps guitar learners quickly open Changesway guitar fretboard learning resources for visualizations, scales, chords, and fingering.
 
-## Publisher: <br>
-[applesun8799](https://clawhub.ai/user/applesun8799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[applesun8799](https://clawhub.ai/user/applesun8799)
 
-## Use Case: <br>
-External guitar learners use this skill to quickly open a focused guitar fretboard learning site with resources for fretboard visualization, scales, chords, and fingering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad guitar-resource requests may be routed to this specific third-party site instead of producing a general answer. <br>
-Mitigation: Use the skill when the user wants the Changesway fretboard learning resource, and ask for clarification when the request is for general guitar advice or multiple resources. <br>
-Risk: The skill opens or displays an external website whose content is outside the skill package. <br>
-Mitigation: Install and use it only if opening changesway.com is acceptable for the environment and user. <br>
+## Use Case:
 
+External guitar learners use this skill to get quick access to a third-party guitar fretboard learning site with visualizations, scale, chord, and fingering materials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/applesun8799/play-guitar-fretboard) <br>
-- [applesun8799 publisher profile](https://clawhub.ai/user/applesun8799) <br>
-- [Changesway guitar fretboard learning site](https://www.changesway.com) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown text with a direct website link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No dependencies, API keys, scripts, or code execution are described; the skill directs the agent to open or display changesway.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill directs users to an external third-party learning website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review https://www.changesway.com in a browser before relying on it, as recommended by the server security guidance.
+
+## Reference(s):
+
+- [Changesway guitar fretboard resources](https://www.changesway.com)
+- [ClawHub skill page](https://clawhub.ai/applesun8799/skills/play-guitar-fretboard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown or text containing a third-party website link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No scripts, dependencies, API keys, shell commands, or API calls; may surface or open https://www.changesway.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

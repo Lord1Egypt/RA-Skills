@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-social-media-search",
+  "version": "1.0.0",
+  "description": "实时搜索海外社媒之TikTok的公开内容，快速返回笔记的内容信息、互动数量、趋势和评论等数据。当用户要查品牌、话题、事件或内容在TikTok社媒上的公开表现时使用。",
+  "keywords": [
+    "tiktok",
+    "search",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node scripts/tiktok/search-cli.js",
+    "post": "node scripts/tiktok/post-cli.js",
+    "comment": "node scripts/tiktok/comment-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/tiktok-skill.git"
+  }
+}

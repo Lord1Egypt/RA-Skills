@@ -1,40 +1,54 @@
-## Description: <br>
-A general TODO management skill that records active tasks and completed work separately from daily journal notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw TODO List helps an agent maintain concise local TODO and DONE markdown files for explicit tasks, in-progress work, and completed work.
 
-## Publisher: <br>
-[AxelHu](https://clawhub.ai/user/AxelHu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-External users and developers use this skill to keep concise local TODO and DONE task records, update task status as work starts or finishes, and review current progress without mixing task state into daily logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task text is stored locally in TODO.md and DONE.md and may include sensitive work details if users add them. <br>
-Mitigation: Avoid recording sensitive tasks unless local storage is acceptable, and review the memory/todo files before sharing or publishing workspace contents. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent a lightweight local task-tracking workflow. The skill records clear tasks in TODO.md, moves active work into an in-progress section, and archives completed tasks in DONE.md.
 
-## Reference(s): <br>
-- [TODO List Detailed Specification](references/spec.md) <br>
-- [TODO.md Example](references/example-todo.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AxelHu/openclaw-todo-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown task entries and concise guidance with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local memory/todo/TODO.md and memory/todo/DONE.md files when used for task tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may prompt an agent to update local TODO and DONE files proactively as work starts, progresses, or completes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task-file edits before relying on them, especially when multiple agents or users share the same workspace.
+
+Risk: The artifact instructions and examples are Chinese-language oriented.
+
+Mitigation: Confirm that task labels, owner names, and status notes are understandable to the intended workspace users.
+
+## Reference(s):
+
+- [TODO List Detailed Specification](artifact/references/spec.md)
+- [TODO and DONE Examples](artifact/references/example-todo.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown task entries and concise guidance, sometimes with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local TODO.md and DONE.md task records under memory/todo when applied by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

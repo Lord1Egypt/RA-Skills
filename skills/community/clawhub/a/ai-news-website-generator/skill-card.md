@@ -1,43 +1,61 @@
-## Description: <br>
-Generates a full-stack RSS news aggregation website with a Next.js frontend, FastAPI backend, Docker Compose setup, and scheduled feed refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI资讯网站生成器 - 一键构建智能内容聚合平台
 
-## Publisher: <br>
-[ninetyhe-90](https://clawhub.ai/user/ninetyhe-90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninetyhe-90](https://clawhub.ai/user/ninetyhe-90)
 
-## Use Case: <br>
-Developers and teams use this skill to scaffold an RSS-based AI or industry news website with generated frontend, backend, deployment configuration, and setup documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated projects can run Docker, pip, and npm commands and expose local web services. <br>
-Mitigation: Review generated files before execution, use a new empty target directory, and only run dependency installation or Docker commands in an environment approved for that project. <br>
-Risk: RSS feed inputs and public deployment settings can introduce untrusted content or unintended network exposure. <br>
-Mitigation: Validate RSS feed URLs and add authentication, restricted CORS, localhost binding or firewall controls, and other hardening before exposing the generated site publicly. <br>
+## Use Case:
 
+Developers and teams use this skill to scaffold a full-stack AI or RSS news aggregation website with a Next.js frontend, FastAPI backend, Docker Compose deployment, configurable feeds, filtering, and scheduled refresh.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/ninetyhe-90/ai-news-website-generator) <br>
-- [Next.js documentation](https://nextjs.org/docs) <br>
-- [FastAPI documentation](https://fastapi.tiangolo.com/) <br>
-- [Docker documentation](https://docs.docker.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Generated project files plus Markdown setup guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local Next.js, FastAPI, and Docker Compose project scaffold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The generator can delete a user-selected output directory when overwriting an existing project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or clearly chosen workspace, and do not target an existing project, repository root, home directory, or sensitive path.
+
+Risk: The generated web service uses exposed unsafe defaults and dependencies that require review before deployment.
+
+Mitigation: Before deploying, update dependencies, add lockfiles or hashes, restrict CORS, bind the backend appropriately, and protect or rate-limit the refresh endpoint.
+
+Risk: The generated local and Docker startup flows can leave services running in the background.
+
+Mitigation: Review the generated start and Docker commands, track background process IDs, and confirm how to stop containers or local services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ninetyhe-90/skills/ai-news-website-generator)
+- [Next.js documentation](https://nextjs.org/docs)
+- [FastAPI documentation](https://fastapi.tiangolo.com/)
+- [Docker documentation](https://docs.docker.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated project files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated project includes frontend, backend, Docker Compose, README, and startup scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Node (scan_project.js is dependency-free, but keep safe)
+node_modules/
+
+# SkillHub local metadata — not part of the open-source repo
+_meta.json
+_skillhub_meta.json

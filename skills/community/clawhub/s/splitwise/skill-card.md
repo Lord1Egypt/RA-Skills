@@ -1,42 +1,59 @@
-## Description: <br>
-Create and manage expenses on Splitwise. Use this skill when the user wants to log a new expense, split a bill, or check their Splitwise balance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage expenses on Splitwise when a user wants to log a new expense, split a bill, or check their Splitwise balance.
 
-## Publisher: <br>
-[richieforeman](https://clawhub.ai/user/richieforeman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[richieforeman](https://clawhub.ai/user/richieforeman)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent create 50/50 Splitwise expenses, split bills, and record shared costs through the Splitwise API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real Splitwise expense records using a long-lived account token. <br>
-Mitigation: Keep SPLITWISE_API_KEY in a secure environment variable or secret manager, rotate it if exposed, and require confirmation of amount, payer, participant, group, and shares before submitting an expense. <br>
-Risk: Expense amounts, descriptions, user IDs, shares, group IDs, and the Splitwise token are sent to Splitwise when creating expenses. <br>
-Mitigation: Install only if sharing this data with Splitwise is acceptable, and review expense details before the agent sends the API request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richieforeman/splitwise) <br>
-- [Splitwise API Reference](references/api.md) <br>
-- [Splitwise Developer Console](https://secure.splitwise.com/apps) <br>
-- [Splitwise Create Expense Endpoint](https://secure.splitwise.com/api/v3.0/create_expense) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent create Splitwise expense records, automate two-person 50/50 splits, and optionally attach expenses to groups.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SPLITWISE_API_KEY and user-supplied Splitwise user or group identifiers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create real Splitwise expense records using a long-lived user token.
+
+Mitigation: Require explicit confirmation of payer, participant, amount, group, and description before submitting an expense.
+
+Risk: The long-lived Splitwise token could be exposed through prompts, logs, screenshots, or source files.
+
+Mitigation: Store SPLITWISE_API_KEY only as an environment variable and keep it out of prompts, logs, screenshots, and source files.
+
+Risk: Expense details, user IDs, shares, and group IDs are sent to Splitwise.
+
+Mitigation: Use the skill only when the user accepts sending those expense details to Splitwise.
+
+## Reference(s):
+
+- [Splitwise API Reference](references/api.md)
+- [Splitwise Developer Console](https://secure.splitwise.com/apps)
+- [Splitwise API v3.0](https://secure.splitwise.com/api/v3.0/)
+- [ClawHub Skill Page](https://clawhub.ai/richieforeman/skills/splitwise)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SPLITWISE_API_KEY plus Splitwise payer, participant, and optional group IDs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

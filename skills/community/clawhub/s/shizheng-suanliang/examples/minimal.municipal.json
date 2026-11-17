@@ -1,0 +1,192 @@
+{
+  "schema": "cad-municipal-geometry/v1",
+  "source_file": "sample.dwg",
+  "coordinate_unit": "mm",
+  "summary": {},
+  "drawing_types": [],
+  "systems": [
+    {
+      "system": "rainwater",
+      "raw": "DIM_雨水",
+      "status": "candidate"
+    }
+  ],
+  "components": [
+    {
+      "type": "component",
+      "category": "manhole",
+      "system": "rainwater",
+      "raw": "雨水检查井 φ1000",
+      "pattern": "检查井",
+      "system_basis": "text",
+      "layer": "GS-SS",
+      "file": "sample.dwg",
+      "sheet": "PS-01",
+      "x": 0,
+      "y": 0,
+      "confidence": 0.78,
+      "status": "candidate",
+      "review_reason": "",
+      "evidence": []
+    },
+    {
+      "type": "component",
+      "category": "manhole",
+      "system": "",
+      "raw": "雨水检查井 φ1000",
+      "pattern": "检查井",
+      "system_basis": "component_rule",
+      "layer": "GS-SS",
+      "file": "sample.dwg",
+      "sheet": "PS-01",
+      "x": 30000,
+      "y": 0,
+      "confidence": 0.78,
+      "status": "candidate",
+      "review_reason": "",
+      "evidence": []
+    },
+    {
+      "type": "component",
+      "category": "manhole",
+      "system": "rainwater",
+      "raw": "偏沟式雨水口",
+      "pattern": "雨水口",
+      "system_basis": "text",
+      "layer": "GS-YSK",
+      "file": "sample.dwg",
+      "sheet": "PS-01",
+      "x": 15000,
+      "y": 5000,
+      "confidence": 0.78,
+      "status": "candidate",
+      "review_reason": "",
+      "evidence": []
+    }
+  ],
+  "pipe_network": [
+    {
+      "type": "pipe",
+      "system": "rainwater",
+      "raw": "d800雨水管 W1-W2",
+      "pipe_size": "d800",
+      "pattern": "雨水管",
+      "layer": "DIM_雨水",
+      "file": "sample.dwg",
+      "sheet": "PS-01",
+      "x": 0,
+      "y": 0,
+      "confidence": 0.78,
+      "status": "candidate",
+      "review_reason": "",
+      "evidence": []
+    },
+    {
+      "type": "pipe",
+      "system": "rainwater",
+      "raw": "雨水管（无管径）",
+      "pipe_size": "",
+      "pattern": "雨水管",
+      "layer": "DIM_雨水",
+      "file": "sample.dwg",
+      "sheet": "PS-01",
+      "x": 5000,
+      "y": 0,
+      "confidence": 0.78,
+      "status": "review",
+      "review_reason": "识别到市政管道但未提取到管径或断面尺寸",
+      "evidence": []
+    }
+  ],
+  "materials": [
+    {
+      "type": "material",
+      "category": "asphalt",
+      "value": "SBS 改性沥青上面层 4cm",
+      "raw": "SBS 改性沥青混凝土上面层厚4cm",
+      "layer": "TEXT",
+      "file": "sample.dwg",
+      "sheet": "PJ-01",
+      "x": 0,
+      "y": 0,
+      "confidence": 0.95,
+      "status": "candidate",
+      "evidence": []
+    }
+  ],
+  "references": [],
+  "labels": [
+    {
+      "type": "label",
+      "label_type": "dimension",
+      "value": "40",
+      "raw": "红线宽 40m",
+      "layer": "TEXT",
+      "file": "sample.dwg",
+      "sheet": "DL-01",
+      "x": 0,
+      "y": 0,
+      "confidence": 0.95,
+      "status": "candidate",
+      "evidence": []
+    }
+  ],
+  "municipal_geometry": [
+    {
+      "type": "municipal_geometry",
+      "category": "unclassified_municipal",
+      "system": "rainwater",
+      "pattern": "雨水",
+      "layer": "DIM_雨水",
+      "file": "sample.dwg",
+      "file_index": 0,
+      "sheet": "PS-01",
+      "geometry": [
+        0,
+        0,
+        120000,
+        0
+      ],
+      "length_drawing_units": 120000.0,
+      "confidence": 0.86,
+      "status": "review",
+      "review_reason": "市政图层未映射到构件类别",
+      "evidence": []
+    },
+    {
+      "type": "municipal_geometry",
+      "category": "road_centerline",
+      "system": "road",
+      "pattern": "道路中线",
+      "layer": "道路中线",
+      "file": "sample.dwg",
+      "file_index": 0,
+      "sheet": "DL-01",
+      "geometry": [
+        0,
+        0,
+        0,
+        80000
+      ],
+      "length_drawing_units": 80000.0,
+      "confidence": 0.86,
+      "status": "candidate",
+      "review_reason": "",
+      "evidence": []
+    }
+  ],
+  "entities": [],
+  "connectivity": {
+    "summary": {
+      "open_endpoints": 2,
+      "junction_candidates": 3
+    }
+  },
+  "review": [
+    {
+      "type": "pipe_size",
+      "reason": "识别到市政管道但未提取到管径或断面尺寸"
+    }
+  ],
+  "boundary": "只输出识图候选"
+}

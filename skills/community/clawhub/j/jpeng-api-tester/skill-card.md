@@ -1,38 +1,54 @@
-## Description: <br>
-API testing and monitoring skill. Test REST and GraphQL APIs, validate responses, and monitor uptime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API testing and monitoring skill. Test REST and GraphQL APIs, validate responses, and monitor uptime.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan API tests for REST and GraphQL endpoints, validate responses with status checks, schemas, and assertions, and set up uptime monitoring for authorized endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tests and monitoring requests can send URLs, headers, bodies, or GraphQL queries to remote services and may affect those services. <br>
-Mitigation: Use authorized test environments where possible, avoid real secrets unless necessary, and only poll endpoints you are permitted to monitor. <br>
+## Use Case:
 
+Developers and engineers use this skill to test REST and GraphQL endpoints, validate API responses, run API test suites, and monitor endpoint uptime.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-api-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST methods, URLs, headers, request bodies, GraphQL queries, JSON Schema validation examples, suite paths, and monitoring intervals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: API tests may send headers, request bodies, GraphQL queries, validation data, tokens, internal URLs, or sensitive payloads to user-selected endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test credentials and non-sensitive payloads, confirm endpoint destinations before running tests, and avoid including secrets or internal URLs unless they are intentionally part of the test.
+
+Risk: The referenced helper script is not packaged in the artifact, so commands shown by the skill may require additional local tooling before they can run.
+
+Mitigation: Verify the required helper script or equivalent API testing tool exists in the execution environment before relying on generated commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-api-tester)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include endpoint URLs, request headers, bodies, GraphQL queries, validation schemas, monitoring intervals, and expected response assertions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

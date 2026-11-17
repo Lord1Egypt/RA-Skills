@@ -1,41 +1,54 @@
-## Description: <br>
-Plan events with budgets, guest lists, and timelines. Use when organizing weddings, coordinating birthdays, managing vendors, drafting invitations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan events with budgets, guest lists, and timelines. Use when organizing weddings, coordinating birthdays, managing vendors, drafting invitations.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and agents use Partycraft to plan weddings, birthdays, corporate events, and parties from the command line by tracking budgets, tasks, guests, timelines, and checklist suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied event names, guest names, task text, IDs, and budget values can be embedded into local Python source by the shell script and may execute unintended local code. <br>
-Mitigation: Review before use, avoid untrusted pasted inputs, and run only in a trusted local environment until arguments are passed as data. <br>
-Risk: Event planning data is persisted locally in ~/.partycraft/events.json. <br>
-Mitigation: Delete ~/.partycraft/events.json when saved planning data is no longer needed and avoid storing sensitive guest or budget details unless local storage is acceptable. <br>
+## Use Case:
 
+External users and event organizers use Partycraft to create and track event plans, budgets, task lists, guest lists, timelines, and suggested checklists from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/partycraft) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [CLI text output with local JSON data persistence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists event records under ~/.partycraft/events.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter says 2.0.0 and script info says 1.0.0) <br>
+Risk: Crafted event, task, guest, budget, or ID input can be interpreted as Python code by the bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with untrusted or agent-supplied event text until the script passes values through arguments or JSON encoding instead of interpolating values into Python heredocs.
+
+Risk: The skill writes local event data under ~/.partycraft/events.json.
+
+Mitigation: Review the local storage behavior before installation and avoid storing sensitive event details unless that local persistence is acceptable.
+
+## Reference(s):
+
+- [Partycraft on ClawHub](https://clawhub.ai/bytesagain-lab/skills/partycraft)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output and local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists event data locally under ~/.partycraft/events.json.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

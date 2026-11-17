@@ -16,6 +16,9 @@ LANG_ZH() { [[ "$SCRIPT_LANG" == "zh" ]] && echo "$1" || echo "$2"; }
 
 set -euo pipefail
 
+statsoft_reveal() { [ "${STATSOFT_REVEAL:-0}" = "1" ]; }
+statsoft_verify() { [ "${STATSOFT_VERIFY:-0}" = "1" ]; }
+
 CONFIG_PATH="$(dirname "$0")/../../config.json"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
@@ -32,9 +35,13 @@ INSTALL_DIR=""
 detect_mathematica() {
     # Check PATH first
     if command -v wolframscript &>/dev/null; then
-        WOLFRAMSCRIPT="$(which wolframscript)"
+        WOLFRAMSCRIPT="$(command -v wolframscript)"
         INSTALL_DIR="$(dirname "$(dirname "$WOLFRAMSCRIPT")")"
-        LANG_ZH "[OK] Found wolframscript: $WOLFRAMSCRIPT" "[OK] Found wolframscript: $WOLFRAMSCRIPT"
+        if statsoft_reveal; then
+            LANG_ZH "[OK] Found wolframscript: $WOLFRAMSCRIPT" "[OK] Found wolframscript: $WOLFRAMSCRIPT"
+        else
+            echo "$(LANG_ZH "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal).")"
+        fi
         return 0
     fi
 
@@ -74,14 +81,22 @@ detect_mathematica() {
             if [[ -x "$base_path/wolframscript" ]]; then
                 WOLFRAMSCRIPT="$base_path/wolframscript"
                 INSTALL_DIR="$(dirname "$(dirname "$WOLFRAMSCRIPT")")"
-                LANG_ZH "[OK] Found wolframscript: $WOLFRAMSCRIPT" "[OK] Found wolframscript: $WOLFRAMSCRIPT"
+                if statsoft_reveal; then
+                    LANG_ZH "[OK] Found wolframscript: $WOLFRAMSCRIPT" "[OK] Found wolframscript: $WOLFRAMSCRIPT"
+                else
+                    echo "$(LANG_ZH "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal).")"
+                fi
                 return 0
             fi
-            # Search for MathKernel
+            # Search for MathKernel — path only disclosed when REVEAL=1 (Issue 8 fix)
             if [[ -x "$base_path/MathKernel" ]]; then
                 MATHKERNEL="$base_path/MathKernel"
                 INSTALL_DIR="$(dirname "$MATHKERNEL")"
-                LANG_ZH "[OK] Found MathKernel: $MATHKERNEL" "[OK] Found MathKernel: $MATHKERNEL"
+                if statsoft_reveal; then
+                    LANG_ZH "[OK] Found MathKernel: $MATHKERNEL" "[OK] Found MathKernel: $MATHKERNEL"
+                else
+                    echo "$(LANG_ZH "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal).")"
+                fi
                 return 0
             fi
         fi
@@ -91,7 +106,7 @@ detect_mathematica() {
 }
 
 verify_mathematica() {
-    if [[ -n "$WOLFRAMSCRIPT" ]] && "$WOLFRAMSCRIPT" -code "Print[\"WolframScript OK\"]" &>/dev/null; then
+    if statsoft_verify && [[ -n "$WOLFRAMSCRIPT" ]] && "$WOLFRAMSCRIPT" -code "Print[\"WolframScript OK\"]" &>/dev/null; then
         LANG_ZH "[OK] WolframScript verification passed" "[OK] WolframScript verification passed"
         return 0
     fi
@@ -105,7 +120,11 @@ verify_mathematica() {
 
 get_version() {
     if [[ -n "$WOLFRAMSCRIPT" ]]; then
-        "$WOLFRAMSCRIPT" -code "\$VersionNumber" 2>/dev/null | tr -d '\n\r '
+        if statsoft_verify; then
+            "$WOLFRAMSCRIPT" -code "\$VersionNumber" 2>/dev/null | tr -d '\n\r '
+        else
+            echo "unknown (set STATSOFT_VERIFY=1)"
+        fi
     elif [[ -n "$MATHKERNEL" ]]; then
         basename "$INSTALL_DIR"
     else
@@ -118,7 +137,7 @@ save_config() {
     version=$(get_version)
 
     if command -v python3 &>/dev/null; then
-        python3 - "$CONFIG_PATH" "$MATHKERNEL" "$WOLFRAMSCRIPT" "$version" <<'PYEOF'
+        _NEW_CFG=$(python3 - "$CONFIG_PATH" "$MATHKERNEL" "$WOLFRAMSCRIPT" "$version" <<'PYEOF'
 import json, sys, os
 
 config_path = sys.argv[1]
@@ -140,11 +159,20 @@ config["Mathematica"] = {
     "mode": "simple"
 }
 
-with open(config_path, 'w') as f:
-    json.dump(config, f, indent=2)
-
-print(f"Config updated: {config_path}")
+# Build desired config (read-only) then delegate to centralized fail-closed gate.
+print(json.dumps(config, ensure_ascii=False))
 PYEOF
+)
+        # Fail-closed by default — persist ONLY when explicitly opted in.
+        if [ "${STATSOFT_AUTO_WRITE:-0}" = "1" ]; then
+            STATSOFT_AUTO_WRITE=1 python3 "$(dirname "$0")/../../common/write_config.py" "$CONFIG_PATH" <<< "$_NEW_CFG"
+        elif [ "${STATSOFT_CONFIRM:-0}" = "1" ] && [ -t 0 ]; then
+            printf 'Persist detected config to config.json? (y/N) '
+            read -r _ans
+            case "$_ans" in y|Y|yes) STATSOFT_AUTO_WRITE=1 python3 "$(dirname "$0")/../../common/write_config.py" "$CONFIG_PATH" <<< "$_NEW_CFG" ;; *) echo "Detection-only: config.json NOT modified." ;; esac
+        else
+            echo "Detection-only: config.json NOT modified. Set STATSOFT_AUTO_WRITE=1 to persist, or STATSOFT_CONFIRM=1 for an interactive prompt."
+        fi
     fi
 }
 

@@ -1,45 +1,60 @@
-## Description: <br>
-Use when the user explicitly asks to generate or update a git worktree auto-setup script for a repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents audit a repository and generate or update a tailored git worktree bootstrap script with matching hook configuration.
 
-## Publisher: <br>
-[imsai-sh](https://clawhub.ai/user/imsai-sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imsai-sh](https://clawhub.ai/user/imsai-sh)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent audit a repository, propose a worktree bootstrap plan, and generate a tailored setup script plus hook configuration for fresh git worktrees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated setup scripts and hooks can copy or link local environment files and other sensitive resources. <br>
-Mitigation: Review the generated resource declarations, confirm which files contain secrets, and keep copied environment files gitignored before enabling hooks. <br>
-Risk: Automatic hook execution may run repository-specific shell setup at agent session or worktree creation time. <br>
-Mitigation: Run scripts/setup-worktree.sh manually once, inspect the resulting changes, and enable SessionStart or WorktreeCreate hooks only after the manual run behaves as expected. <br>
-Risk: Shared stateful resources can behave incorrectly when multiple worktrees run concurrently. <br>
-Mitigation: Choose copy or generated per-worktree state for databases, local service data, and ports when parallel development is expected. <br>
+## Use Case:
 
+Developers and engineers use this skill to make fresh git worktrees runnable by having an agent classify shared, copied, and generated resources, then create the setup script and hook configuration for the current repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imsai-sh/git-worktree-setup) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [Stack-specific recipes](references/recipes.md) <br>
-- [Hook configuration candidates](assets/hook-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash script and JSON configuration edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces repository-specific setup instructions and files; generated scripts should be reviewed and tested before hook automation is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated hook configuration can make setup scripts run automatically in agent sessions or worktree flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated hook config before installation and keep the manual setup command available as a fallback.
+
+Risk: Generated shell scripts can copy sensitive environment files or replace existing files when configured to do so.
+
+Mitigation: Review the generated script, avoid copying real secrets unless duplication is intended, and run it in a noncritical worktree before broader use.
+
+Risk: Sharing single-writer state such as local database directories across concurrent worktrees can corrupt state.
+
+Mitigation: Confirm the concurrency model and prefer isolated copies for stateful services that may run in parallel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imsai-sh/skills/git-worktree-setup)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Worktree setup recipes](references/recipes.md)
+- [Hook configuration candidates](assets/hook-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated shell script and JSON hook configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update repository-local setup scripts and agent hook configuration after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

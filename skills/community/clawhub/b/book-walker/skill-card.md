@@ -1,44 +1,60 @@
-## Description: <br>
-Book Walker helps an agent read PDF documents interactively, navigate by page or block, search content, manage bookmarks, and optionally use OCR for scanned or hard-to-extract PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive PDF reader for opening documents, moving through pages or blocks, searching text, managing bookmarks, and listing PDFs with natural-language commands.
 
-## Publisher: <br>
-[YoungAndSure](https://clawhub.ai/user/YoungAndSure) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youngandsure](https://clawhub.ai/user/youngandsure)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to walk through long PDFs, resume reading progress, locate specific sections, search for keywords, and keep bookmarks while working in a local workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can list PDF filenames in the local workspace. <br>
-Mitigation: Use it only in workspaces where exposing PDF filenames to the agent is acceptable. <br>
-Risk: Extracted PDF text, reading state, and bookmarks may be cached locally. <br>
-Mitigation: Avoid opening confidential PDFs unless local caching is acceptable, and clear the local cache when retained excerpts are no longer needed. <br>
-Risk: Non-default templates can cause PDF blocks to be processed by the agent or model. <br>
-Mitigation: Use the default direct-output template for sensitive PDFs, or review custom templates before applying them to confidential content. <br>
+## Use Case:
 
+External users and developers use this skill to read long PDF documents incrementally, locate sections by page or search term, and preserve reading progress with bookmarks. It is suited for text-based PDFs and optional OCR workflows when the host environment has the required tools installed.
 
-## Reference(s): <br>
-- [Book Walker ClawHub Listing](https://clawhub.ai/YoungAndSure/book-walker) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with optional structured payloads for agent-side template processing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include PDF excerpts, progress indicators, search results, bookmark lists, dependency installation commands, and template-processing payloads when a non-default template is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: Opening sensitive PDFs may leave extracted text, reading state, and bookmarks in local cache files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted local environments and avoid shared machines when handling sensitive documents.
+
+Risk: Persistent free-form templates can ask the host agent to transform PDF text with LLM instructions.
+
+Mitigation: Use only trusted templates and review template contents before applying them to document text.
+
+Risk: Runtime dependencies and OCR tooling are installed or invoked by the host environment.
+
+Mitigation: Review dependency installation, prefer pinned dependency versions, and install OCR tooling from trusted package sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youngandsure/skills/book-walker)
+- [Publisher profile](https://clawhub.ai/user/youngandsure)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text responses with optional structured PDF template payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page, block, progress, search result, bookmark, and template payload metadata.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

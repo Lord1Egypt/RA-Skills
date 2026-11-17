@@ -1,44 +1,58 @@
-## Description: <br>
-HPM Solver calculates Harry Potter: Magic Awakened purchase combinations using food and plant price coefficients, equivalent item grouping, filtering, and replacement restoration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HPM Solver helps calculate Harry Potter: Magic Awakened purchase combinations using exhaustive solving with p/q multipliers, equivalent item grouping, filtering, and replacement restoration.
 
-## Publisher: <br>
-[xilowei920](https://clawhub.ai/user/xilowei920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xilowei920](https://clawhub.ai/user/xilowei920)
 
-## Use Case: <br>
-External users and tool builders use this skill to compute gold or diamond purchase combinations and residual values for Harry Potter: Magic Awakened from local price and quantity data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact links to an optional external tar.gz archive whose contents are not established by the reviewed local files. <br>
-Mitigation: Use the reviewed files as the basis for deployment; download or run the archive only after separately verifying its contents and trusting the publisher. <br>
-Risk: Local price and history fields may store user-entered data. <br>
-Mitigation: Do not enter sensitive personal information into local price, quantity, or history fields. <br>
-Risk: Solver recommendations depend on local price tables, multipliers, and quantity limits. <br>
-Mitigation: Review and update the local HPM price data before relying on purchase-combination results. <br>
+## Use Case:
 
+Players and tool builders use this skill to calculate gold and diamond purchase combinations for Harry Potter: Magic Awakened, including near-perfect or perfect results after applying food and plant multipliers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xilowei920/hpm-solver) <br>
-- [Publisher profile](https://clawhub.ai/user/xilowei920) <br>
-- [WeChat mini-program archive linked by the artifact](https://astron-claw-media-prod.oss-cn-beijing.aliyuncs.com/astron-claw-media-prod/c76c9c06e5a6429885e66501e8730ef8/hpm-miniprogram-v13.tar.gz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, code snippets, JSON examples, and local solver outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local price and history data; solver results depend on the provided price coefficients, target currency amounts, and quantity limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores local price settings, recent solve parameters, and solve history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that local game-calculator storage is acceptable before installing or sharing the environment.
+
+Risk: The external WeChat mini program archive link is unreviewed by the available security evidence.
+
+Mitigation: Review and scan the archive separately before using it.
+
+Risk: The standalone solver may be exposed to unreliable results or excessive search behavior when used with untrusted numeric inputs.
+
+Mitigation: Validate numeric inputs and apply practical search limits before exposing the solver to untrusted users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xilowei920/skills/hpm-solver)
+- [WeChat Mini Program Archive](https://astron-claw-media-prod.oss-cn-beijing.aliyuncs.com/astron-claw-media-prod/c76c9c06e5a6429885e66501e8730ef8/hpm-miniprogram-v13.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and code-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces solver usage guidance and configuration-oriented examples for local price data and purchase targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

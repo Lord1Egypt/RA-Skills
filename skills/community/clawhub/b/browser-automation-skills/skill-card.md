@@ -1,44 +1,59 @@
-## Description: <br>
-Browser automation skills for AI models to navigate, screenshot, interact with, scrape, debug, test, and record local Google Chrome sessions through CDP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Automation Skills lets agents navigate, screenshot, interact with, scrape, debug, test, and record local Google Chrome sessions.
 
-## Publisher: <br>
-[huaerye23](https://clawhub.ai/user/huaerye23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaerye23](https://clawhub.ai/user/huaerye23)
 
-## Use Case: <br>
-Developers and AI coding assistant users use this skill pack to control a local Chrome browser for navigation, screenshots, interaction, scraping, debugging, automated QA, and session recording. It is suited to browser-based inspection and workflow execution where actions can be observed and verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over an existing Chrome session, including pages that may contain sensitive accounts or private content. <br>
-Mitigation: Use a separate Chrome profile with no sensitive accounts, close private tabs before use, and keep the remote debugging endpoint local. <br>
-Risk: Browser automation can perform consequential actions such as login, form submission, purchases, posts, deletions, or account changes. <br>
-Mitigation: Require explicit user confirmation before any consequential browser action and verify state with screenshots before proceeding. <br>
-Risk: Screenshots, recordings, DOM output, network logs, or console logs may include sensitive page data. <br>
-Mitigation: Review screenshots, recordings, and extracted page data before sharing or storing them. <br>
+## Use Case:
 
+Developers and agent users use this skill pack to let coding assistants inspect and operate web pages in local Chrome for navigation, visual capture, form interaction, scraping, debugging, QA reports, and session recording.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huaerye23/browser-automation-skills) <br>
-- [README](artifact/README.md) <br>
-- [Browser Automation API Reference](artifact/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON data, file paths, screenshots, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, recordings, DOM summaries, network and console summaries, and PASS/FAIL QA reports depending on the invoked browser workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and frontmatter) <br>
+Risk: The skill gives an agent broad control over a user's existing logged-in Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Chrome profile or disposable browser instance, avoid sensitive logged-in tabs, and require explicit confirmation before login, form submission, scraping, recording, or input locking.
+
+Risk: Chrome remote debugging could expose browser control beyond the intended local workflow if misconfigured.
+
+Mitigation: Keep remote debugging bound to localhost and connect only to the intended local Chrome session.
+
+Risk: Input locking can temporarily block normal browser interaction during automation.
+
+Mitigation: Require explicit confirmation before input locking and unlock the browser promptly after interactive sequences.
+
+## Reference(s):
+
+- [Browser Automation Skills README](README.md)
+- [Browser Automation API Reference](docs/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/huaerye23/skills/browser-automation-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown reports, structured text or JSON data, shell command snippets, and screenshot or recording file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots, responsive captures, debug summaries, scraped data, QA PASS/FAIL reports, and session recording paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

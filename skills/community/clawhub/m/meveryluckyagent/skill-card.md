@@ -1,46 +1,65 @@
-## Description: <br>
-Billions decentralized identity for agents that links agents to human identities using Billions ERC-8004 and Attestation Registries, verifies and generates authentication proofs, and uses the iden3 self-sovereign identity protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meverylucky AI Agent helps agents create and manage Billions Network decentralized identities, link them to human owners, and generate or verify authentication proofs.
 
-## Publisher: <br>
-[Meverylucky](https://clawhub.ai/user/Meverylucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meverylucky](https://clawhub.ai/user/meverylucky)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage Billions Network decentralized identities, sign and verify authentication challenges, and link an agent identity to a human owner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill manages long-lived private keys for decentralized identities. <br>
-Mitigation: Install it only for agents that should manage a real identity, set BILLIONS_NETWORK_MASTER_KMS_KEY before creating identities, and protect $HOME/.openclaw/billions. <br>
-Risk: Passing an existing wallet private key on the command line may expose sensitive material through shell history or process inspection. <br>
-Mitigation: Avoid command-line private key input and prefer creating a new identity with protected local key storage. <br>
-Risk: A third-party identity skill can affect trust in agent ownership claims. <br>
-Mitigation: Verify the publisher profile, package version, and release context before trusting the skill with identity keys. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create local decentralized identities, link an agent identity to a human owner, and prove or verify identity ownership through signed challenges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Meverylucky/meveryluckyagent) <br>
-- [Billions Network](https://billions.network/) <br>
-- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local identity files under $HOME/.openclaw/billions when its scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Long-lived private keys may be stored in plaintext when BILLIONS_NETWORK_MASTER_KMS_KEY is not configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set BILLIONS_NETWORK_MASTER_KMS_KEY before creating identities and rotate any keys previously stored without encryption.
+
+Risk: Private keys passed on the command line can be exposed through shell history or process inspection.
+
+Mitigation: Prefer generated identities or secure environment/configuration handling instead of passing existing private keys as CLI arguments.
+
+Risk: Identity files under $HOME/.openclaw/billions contain sensitive key and authentication material.
+
+Mitigation: Restrict filesystem access to $HOME/.openclaw/billions and treat signed tokens and challenge records as sensitive.
+
+Risk: Challenge replay protection is weak for signed tokens and challenges.
+
+Mitigation: Use fresh challenges, avoid reusing signed tokens, and review the flow before using the identity outside a test environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/meverylucky/skills/meveryluckyagent)
+- [Billions Network](https://billions.network/)
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [OpenClaw Environment Documentation](https://docs.openclaw.ai/help/environment)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Script outputs include DID strings, identity lists, JSON success objects, signed proof tokens, and verification URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Drafts USCIS petition and application cover-letter packets for attorney-supervised immigration workflows, including eligibility-criteria mapping, missing-evidence flags, fee calculation, and filing-channel preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a licensed immigration attorney, BIA-accredited representative, or supervising paralegal needs to draft a USCIS petition or application cover letter for I-129, I-140 (EB-1A/EB-1B/EB-1C/EB-2 NIW), I-485, I-589, I-918/I-914, or N-400 filings; it maps exhibits to eligibility criteria, flags missing evidence, computes filing fees, and produces a draft cover-letter packet for attorney-of-record review and signature before filing.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Immigration attorneys, BIA-accredited representatives, in-house immigration counsel, and supervising paralegals use this skill to turn a single USCIS filing and evidence set into a draft cover-letter packet for attorney-of-record review and signature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat a generated cover letter as legal advice or a ready-to-file immigration submission. <br>
-Mitigation: Keep every output as a draft and require review, signature, and filing decisions by a licensed attorney or accredited representative. <br>
-Risk: USCIS fees, form editions, and filing addresses may be outdated or incorrectly supplied. <br>
-Mitigation: Verify current USCIS fees, form editions, and filing addresses from official sources before filing. <br>
-Risk: Immigration matters can include sensitive personal identifiers, criminal history, medical facts, asylum narratives, or victim-related facts. <br>
-Mitigation: Minimize unnecessary identifiers, keep full identifiers out of narrative prose, and summarize sensitive facts where a summary is sufficient. <br>
+## Use Case:
 
+Immigration attorneys, BIA-accredited representatives, in-house immigration counsel, and supervised paralegals use this skill to prepare draft USCIS petition or application cover-letter packets. It helps structure eligibility criteria, exhibit mapping, filing logistics, fee worksheets, unresolved-information lists, and attorney-review self-checks before filing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/immigration-petition-cover-letter) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft packet with tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only; attorney-of-record review and signature required before filing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28) <br>
+Risk: The skill may process sensitive immigration, identity, criminal-history, medical, asylum, trafficking, or victim-related facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an appropriate legal-support workflow, minimize sensitive narrative detail, keep full identifiers in structured fields rather than narrative text, and apply the user's confidentiality controls.
+
+Risk: Draft outputs could be mistaken for legal advice or a final filing-ready work product.
+
+Mitigation: Keep every output labeled as a draft, require attorney-of-record review and signature, and do not let the agent file, sign forms, speak to agencies, or substitute for counsel.
+
+Risk: USCIS fees, form editions, and filing addresses can change.
+
+Mitigation: Require independent verification against current USCIS sources before filing, and mark unknown current fees or filing channels for verification instead of inventing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/immigration-petition-cover-letter)
+- [Open-Skill-Hub issues](https://github.com/archlab-space/Open-Skill-Hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft packet with structured sections, checklists, tables, and self-check output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs must remain draft-only, avoid unauthorized legal advice, protect sensitive identifiers, and require attorney-of-record review and signature before filing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

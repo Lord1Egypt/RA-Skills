@@ -1,45 +1,53 @@
-## Description: <br>
-Manage Google Cloud Platform resources using the official gcloud CLI, discovering command syntax dynamically with `gcloud <group> --help` before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Cloud Platform resources using the official gcloud CLI, discovering command syntax dynamically with `gcloud <group> --help` before execution.
 
-## Publisher: <br>
-[felipe0liveira](https://clawhub.ai/user/felipe0liveira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[felipe0liveira](https://clawhub.ai/user/felipe0liveira)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to prepare, review, and run approved Google Cloud CLI commands for resource management and developer workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help prepare commands that affect Google Cloud resources. <br>
-Mitigation: Require explicit user approval before any command execution, including read-only operations. <br>
-Risk: Commands may run under the wrong Google Cloud account, project, or environment. <br>
-Mitigation: Show the active account and project, confirm the target environment, and prefer a dedicated least-privilege service account. <br>
-Risk: Memorized or stale command syntax can produce incorrect Google Cloud CLI commands. <br>
-Mitigation: Inspect current `gcloud <group> --help` output before building commands. <br>
-Risk: High-impact operations such as IAM, networking, deletion, or service enablement can change access or availability. <br>
-Mitigation: Warn clearly for high-impact operations and require explicit approval of the full command before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Cloud CLI reference](https://cloud.google.com/sdk/gcloud) <br>
-- [Install Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk) <br>
-- [Google Cloud CLI skill page](https://clawhub.ai/felipe0liveira/gcloud-cli) <br>
+## Use Case:
 
+Developers and cloud operators use this skill to plan and run Google Cloud CLI workflows with explicit account, project, command, and approval checks before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and command-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request explicit user approval before command execution and may ask the user to confirm account, project, and environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The active Google Cloud identity or project may target the wrong environment.
+
+Mitigation: Show the active account and project before each task, prefer a dedicated least-privilege service account, and confirm the intended target before proposing commands.
+
+Risk: Approved gcloud commands can change cloud resources, IAM policies, networking, or billing-related configuration.
+
+Mitigation: Present the exact command and its expected impact, then execute only after explicit user approval.
+
+## Reference(s):
+
+- [Google Cloud CLI reference](https://cloud.google.com/sdk/gcloud)
+- [Install Google Cloud CLI](https://docs.cloud.google.com/sdk/docs/install-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are proposed for user review and require explicit approval before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

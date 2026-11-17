@@ -1,39 +1,50 @@
-## Description: <br>
-Tianshu Mistake Sheet generates an empty Markdown mistake-notebook table or converts pipe-delimited mistake notes into a review table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tianshu Mistake Sheet generates Markdown mistake-review tables, either as an empty template or from pipe-delimited text lines containing the problem or source, mistake reason, and knowledge point.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Students and exam-prep users use this skill to create a structured Markdown mistake sheet for review planning. It is useful for converting typed notes in the form `question fragment|mistake reason|knowledge point` into a table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Node script can read a path supplied through `--file`. <br>
-Mitigation: Use `--file` only with mistake-note text files the user intends to convert, and prefer the installed script path shown by the skill. <br>
-Risk: The generated Markdown table reflects user-provided notes and may contain incomplete or incorrect study classifications. <br>
-Mitigation: Review the table entries before relying on them for exam preparation or study planning. <br>
+## Use Case:
 
+Students and educators use this skill to create a lightweight Chinese-language mistake notebook for exam review from manual text entries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table or concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit a blank template or parse user-provided text/file rows into a four-column review table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: The --file option reads the local file path supplied by the user and prints parsed content to the terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --file only with intended non-sensitive mistake-sheet input files, and review terminal output before sharing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangshengli0421/skills/tianshu-mistake-sheet)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/wangshengli0421)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown table with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The command-line helper prints parsed local file or text input to standard output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

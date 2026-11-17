@@ -1,0 +1,32 @@
+# ============================================================
+# ai-career-position · .gitignore
+# 硬性要求（见 docs/PRIVACY.md）：workspace/ 绝不提交到 GitHub！
+# 上传前请确认：git status 中不出现任何 workspace/ 文件。
+# ============================================================
+
+# —— 用户数据（隐私核心，绝不入库）——
+workspace/
+
+# —— Python ——
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# —— Node ——
+node_modules/
+npm-debug.log*
+
+# —— 系统/编辑器 ——
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# —— 日志与临时 ——
+*.log
+*.tmp
+.env

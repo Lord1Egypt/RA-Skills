@@ -1,41 +1,54 @@
-## Description: <br>
-Optimizes the OpenClaw 4.2 /compact prompt to produce structured summaries when users report poor compression quality, incomplete summaries, lost context, weak /compact formatting, or ask to improve the compact prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improves OpenClaw 4.2 /compact prompts by producing structured conversation summaries when users report poor compression, incomplete summaries, lost context, weak /compact formatting, or ask to improve compact prompts.
 
-## Publisher: <br>
-[nicshliu](https://clawhub.ai/user/nicshliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicshliu](https://clawhub.ai/user/nicshliu)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to improve /compact behavior with a structured nine-section summary format that preserves intent, files, errors, pending tasks, and current work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The compact prompt asks for broad conversation summaries that may preserve full user messages, file paths, code, private URLs, personal data, credentials, or proprietary details. <br>
-Mitigation: Add explicit redaction rules before use and omit or mask secrets, tokens, credentials, personal data, private URLs, and proprietary code unless they are necessary. <br>
-Risk: Installing the prompt as a global systemPrompt or hook can affect all future OpenClaw compact behavior. <br>
-Mitigation: Prefer the manual per-/compact prompt first, then review and test any global configuration change before keeping it enabled. <br>
+## Use Case:
 
+Developers and agent users use this skill to improve OpenClaw conversation compaction by applying a structured summary template that preserves requests, files, errors, pending tasks, current work, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicshliu/openclaw-compact-improver) <br>
-- [/Compact optimization prompt template](references/compact-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with compact-summary templates, inline shell commands, and configuration instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; may suggest manual /compact instructions or updates to OpenClaw system prompt or hook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent compact-prompt changes can alter OpenClaw behavior more broadly than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the prompt before installation, apply it only where compact behavior should change, and keep a rollback path for the original OpenClaw configuration.
+
+Risk: The summary template asks for user messages, file paths, and code snippets to be retained verbatim, which can expose secrets, private information, or proprietary code.
+
+Mitigation: Use redaction controls or avoid the verbatim-message template for sensitive conversations.
+
+## Reference(s):
+
+- [Compact Prompt Template](references/compact-prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/nicshliu/skills/openclaw-compact-improver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command and prompt-template blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compact-summary prompt guidance and configuration-oriented instructions for OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

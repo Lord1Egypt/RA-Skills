@@ -1,7 +1,7 @@
 {
   "review_type": "credibility-action-gate",
-  "review_version": "0.1.0",
-  "reviewed_at": "2026-05-27T21:09:49.938Z",
+  "review_version": "0.3.0",
+  "reviewed_at": "2026-10-12T21:31:27.651Z",
   "status": "completed",
   "analysis_only": true,
   "policy": {
@@ -18,7 +18,8 @@
       "max_autonomous_action_size": 10,
       "small_test_action_size": 1,
       "serious_action_threshold": 5
-    }
+    },
+    "uncertainty_action": "monitor"
   },
   "disposition": "monitor_until_new_evidence",
   "confidence": "low_to_medium",
@@ -33,6 +34,22 @@
         "evidence:IDENTITY_OR_LINKAGE_UNVERIFIED",
         "external_context:SOURCE_INDEPENDENCE_WEAK",
         "graph_history:REPEATED_RECIPIENT_PATTERN"
+      ]
+    },
+    {
+      "code": "MATERIAL_SUPPORT_UNCERTAIN",
+      "severity": "medium",
+      "summary": "evidence.supports_core_claim is partial on the reviewed record.",
+      "refs": [
+        "evidence:supports_core_claim"
+      ]
+    },
+    {
+      "code": "MATERIAL_SUPPORT_UNCERTAIN",
+      "severity": "medium",
+      "summary": "evidence.claimant_linkage is partial on the reviewed record.",
+      "refs": [
+        "evidence:claimant_linkage"
       ]
     },
     {

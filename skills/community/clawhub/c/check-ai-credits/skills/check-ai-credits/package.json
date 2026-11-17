@@ -1,0 +1,19 @@
+{
+  "name": "check-ai-credits",
+  "version": "0.1.0",
+  "description": "Check AI provider credits and balance across 10 providers from one CLI.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "check-ai-credits": "src/cli.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "build": "bun build --compile --outfile dist/check-ai-credits src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.5.0"
+  }
+}

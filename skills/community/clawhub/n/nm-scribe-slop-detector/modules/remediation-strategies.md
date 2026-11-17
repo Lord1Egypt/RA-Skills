@@ -224,7 +224,25 @@ stack labels in diagrams, math.
 | "X — Y." | "X: Y." | Definition / list-lead |
 | "X — Y." | "X. Y." | Two complete thoughts |
 
-### Negative Parallelism
+### Semicolon Splice (Prevention Mode)
+
+A prose semicolon joining two independent clauses almost always
+reads more naturally as two sentences or one coordinating
+conjunction. Rephrase in this order. Keep the semicolon only
+when removing it creates ambiguity.
+
+| Original | Replacement | When |
+|----------|-------------|------|
+| "X; it does Y." | "X. It does Y." | Default: two complete thoughts |
+| "X; it does Y." | "X, and it does Y." | Clauses are tightly linked |
+| "X; therefore Y." | "X, so Y." | Causal link |
+| "X; however Y." | "X, but Y." or "X. However, Y." | Contrast |
+| "a, b; c, d; e, f" | (keep the semicolons) | List items carry internal commas |
+
+Confidence is low: surface every prose semicolon for a human to
+judge against "absolutely necessary" rather than auto-rewriting.
+
+### Negative Parallelism (Contrastive Negation)
 
 | Slop | Replacement |
 |------|-------------|
@@ -240,6 +258,24 @@ stack labels in diagrams, math.
 
 The replacements remove the rhetorical scaffold and state the
 claim directly.
+
+### Contrastive Parallelism (Affirmative Antithesis)
+
+The affirmative sibling: parallel clauses in opposition with no
+"not" anchor. Keep it only when the contrast is load-bearing
+and used once; otherwise state the point plainly.
+
+| Slop | Replacement |
+|------|-------------|
+| "Less config, more code" | "Setup is one file; the rest is code" |
+| "Where others X, we Y" | "We do Y" (drop the unnamed comparison) |
+| "Humans propose; machines dispose" | "A human picks; the agent applies" (when both sides are concrete) |
+| "Old way: X. New way: Y." | "Y replaces X" |
+
+Subject-swap clauses and chiasmus are judgment-level
+(`confidence: low`); surface for human decision rather than
+auto-rewriting. Leave `Before:`/`After:` labels on code
+examples alone.
 
 ### Throat-Clearing Openers
 

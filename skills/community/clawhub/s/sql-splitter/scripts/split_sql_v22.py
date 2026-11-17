@@ -280,37 +280,20 @@ def main():
 
     args = parser.parse_args()
 
-    # ---- 社区版功能守卫 ----
-    try:
-        from license_checker import require_feature
-    except ImportError:
-        from .license_checker import require_feature
+    # 社区版付费功能提示
+    PRO_MSG = "⚠️ 此功能需要专业版 (¥299/月)，访问 https://sqlsplitter.com"
 
     # 根据模式执行
     if args.gui:
-        if not require_feature('gui', 'GUI界面'):
-            sys.exit(1)
-        run_gui()
+        print(PRO_MSG); sys.exit(1)
     elif args.batch:
-        if not require_feature('batch', '批量处理'):
-            sys.exit(1)
-        if not args.input or not args.output:
-            parser.error("--batch 需要 input 和 output 参数")
-        run_batch(args)
+        print(PRO_MSG); sys.exit(1)
     elif args.preview:
-        if not require_feature('preview', '结果预览'):
-            sys.exit(1)
-        if not args.input or not args.output:
-            parser.error("--preview 需要 input 和 output 参数")
-        run_preview(args)
+        print(PRO_MSG); sys.exit(1)
     elif args.checkpoint:
-        if not require_feature('checkpoint', '断点续传'):
-            sys.exit(1)
-        run_checkpoint(args)
+        print(PRO_MSG); sys.exit(1)
     elif args.config:
-        if not require_feature('config', '配置管理'):
-            sys.exit(1)
-        run_config(args)
+        print(PRO_MSG); sys.exit(1)
     else:
         # 默认模式：基本拆分
         if not args.input or not args.output:

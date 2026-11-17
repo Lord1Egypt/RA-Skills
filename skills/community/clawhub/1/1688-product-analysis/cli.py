@@ -3,10 +3,10 @@
 1688-product-analysis —— 1688 商品诊断 CLI 统一入口
 
 Usage:
-    python3 cli.py <command> [options]
+    python3 cli.py <command> [options]   # Windows 上用 python 或 py -3
 
 Commands（更多参数见项目根目录 SKILL.md）:
-    get_offer_data    获取商品综合数据（基础/表现/货盘/搜推/广告/热搜词/热品 等）
+    alibaba.1688.get.offer.data    获取商品综合数据（基础/表现/货盘/搜推/广告/热搜词/热品 等）
 
 输出 JSON：{"success": bool, "markdown": str, "data": {...}}
 """
@@ -18,6 +18,18 @@ import importlib
 
 SCRIPTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts")
 sys.path.insert(0, SCRIPTS_DIR)
+
+
+def _force_utf8_stdio():
+    """Windows 默认按 GBK 等本地编码输出，非 ASCII 文案会乱码甚至抛 UnicodeEncodeError"""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue
+        try:
+            reconfigure(encoding="utf-8")
+        except (ValueError, OSError):
+            pass
 
 
 def _discover_capabilities() -> dict:
@@ -62,6 +74,7 @@ def _usage(commands: dict):
 
 
 def main():
+    _force_utf8_stdio()
     commands = _discover_capabilities()
 
     if len(sys.argv) < 2 or sys.argv[1] not in commands:
@@ -74,14 +87,15 @@ def main():
     sys.argv = [f"cli.py {cmd}"] + sys.argv[2:]
 
     module = importlib.import_module(module_path)
-    module.main()
-
-    # 每次命令执行后上报埋点，失败不影响主流程
     try:
-        from _tracker import report_skill_usage
-        report_skill_usage()
-    except Exception:
-        pass
+        module.main()
+    finally:
+        # 命令一经分派即尝试上报；埋点失败不覆盖业务命令的返回或异常。
+        try:
+            from _tracker import report_skill_usage
+            report_skill_usage(api_name=cmd)
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":

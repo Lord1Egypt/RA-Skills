@@ -1,45 +1,61 @@
-## Description: <br>
-Jira Cloud admin playbook for administration tasks covering projects, permissions, workflows, fields and screens, automation, Jira Service Management setup, reporting, dashboards, and Confluence integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jira Cloud Admin is a Jira Cloud administration playbook for projects, permissions, workflows, fields and screens, automation, JSM setup, reporting, dashboards, and Confluence integrations with ES/EN references and checklists.
 
-## Publisher: <br>
-[nerdcuba](https://clawhub.ai/user/nerdcuba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nerdcuba](https://clawhub.ai/user/nerdcuba)
 
-## Use Case: <br>
-Jira Cloud administrators and operators use this skill for concise ES/EN guidance on project configuration, permissions, workflows, fields, automation, Jira Service Management, reporting, dashboards, and Confluence integration decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Jira administration guidance may affect permissions, workflows, SLAs, and service settings if applied directly. <br>
-Mitigation: Review suggested changes against Atlassian Cloud configuration and organizational policy before applying them. <br>
-Risk: The skill is a documentation-only reference and does not enforce Jira Cloud changes itself. <br>
-Mitigation: Use the generated guidance as an administrative checklist and validate changes in Atlassian Cloud, preferably in a sandbox or limited-scope project first. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerdcuba/jira-cloud-admin) <br>
-- [Atlassian Jira Cloud links](references/atlassian-cloud-links.md) <br>
-- [Jira Cloud admin checklists](references/checklists.md) <br>
-- [Jira Service Management Cloud links](references/jsm-links.md) <br>
-- [Confluence Cloud links](references/confluence-links.md) <br>
-- [Jira Cloud automation advanced notes](references/automation-advanced.md) <br>
-- [Jira Cloud expert and best-practice links](references/experts-links.md) <br>
+## Use Case:
 
+Jira administrators and team leads use this skill to plan and review Jira Cloud project, permission, workflow, automation, JSM, reporting, and Confluence integration changes with concise ES/EN guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with concise checklists and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in Spanish or English as requested by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Atlassian Cloud administration guidance can become outdated as product behavior and documentation change.
+
+Mitigation: Verify current Atlassian documentation before making production Jira Cloud changes.
+
+Risk: Workflow, automation, and permission changes can affect many Jira users or projects.
+
+Mitigation: Test workflow and automation updates in a sandbox when possible, and apply permission changes deliberately.
+
+## Reference(s):
+
+- [Atlassian Jira Cloud links](references/atlassian-cloud-links.md)
+- [Jira Cloud admin checklists](references/checklists.md)
+- [Jira Service Management Cloud links](references/jsm-links.md)
+- [Confluence Cloud links](references/confluence-links.md)
+- [Advanced Jira Cloud automation](references/automation-advanced.md)
+- [Jira Cloud expert and best-practice links](references/experts-links.md)
+- [Jira Cloud administration documentation](https://support.atlassian.com/jira-cloud-administration/)
+- [Jira Service Management Cloud documentation](https://support.atlassian.com/jira-service-management-cloud/)
+- [Confluence Cloud documentation](https://support.atlassian.com/confluence-cloud/)
+- [Jira automation documentation](https://support.atlassian.com/cloud-automation/docs/jira-automation/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration guidance]
+
+**Output Format:** [Markdown or plain text guidance with concise checklists and official reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual ES/EN responses as requested; advisory guidance only.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

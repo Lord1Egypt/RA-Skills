@@ -1,42 +1,57 @@
-## Description: <br>
-Chexian Baodan Tong helps insurance agents and insurance-company staff organize car-insurance policy PDFs by extracting policy identifiers, renaming files, and optionally packaging the folder as a ZIP archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chexian Baodan Tong helps insurance agents and carrier staff organize vehicle-insurance policy PDFs by extracting plate, policyholder, and policy-number fields, renaming files, and packaging the folder as a ZIP archive.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-External insurance agents and insurance-company staff use this skill to process local car-insurance policy PDFs, extract license plate, policyholder, and policy-number fields, rename files for filing, and create an archive package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill renames PDF files in the selected folder, which can change filenames that users still need in their original form. <br>
-Mitigation: Run first with --no-rename --no-pack, or run on a copied folder before processing original policy files. <br>
-Risk: ZIP packaging can include unrelated or sensitive files if the selected folder contains more than the intended policy PDFs. <br>
-Mitigation: Use a dedicated folder containing only the intended insurance PDFs, or keep --no-pack enabled. <br>
-Risk: API mode can send policy document content to the configured external provider. <br>
-Mitigation: Avoid --api unless the provider and endpoint are trusted and appropriate for the sensitivity of the policy data. <br>
+## Use Case:
 
+External insurance agents and insurance company staff use this skill to process folders of vehicle-insurance policy PDFs, extract key identifiers, rename recognized files, and package the organized folder for archiving or sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/chexian-baodan-tong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Command-line guidance and local file outputs, including renamed PDF files and an optional ZIP archive.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script can run locally with pdfminer.six or in API mode using INSURANCE_API_KEY, INSURANCE_API_ENDPOINT, and INSURANCE_API_MODEL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Default ZIP packaging can include unrelated files from the selected folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on a dedicated folder containing the intended insurance PDFs, or use --no-pack and inspect any archive before sharing it.
+
+Risk: API mode can send a bearer key and file metadata to the configured endpoint.
+
+Mitigation: Prefer local mode; use --api only with a trusted endpoint and appropriate API key handling.
+
+Risk: The script can directly rename original PDF files.
+
+Mitigation: Use --no-rename for preview runs or work from a backup or dedicated copy of the source folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/chexian-baodan-tong)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and environment variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of a local Python script that renames PDFs and writes a ZIP archive in the selected folder.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

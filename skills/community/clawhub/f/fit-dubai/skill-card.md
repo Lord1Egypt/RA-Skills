@@ -1,44 +1,52 @@
-## Description: <br>
-A personalized fitness coach and nutrition guide tailored for life in Dubai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personalized fitness coach and nutrition guide tailored for life in Dubai.
 
-## Publisher: <br>
-[shadmanshaikh](https://clawhub.ai/user/shadmanshaikh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shadmanshaikh](https://clawhub.ai/user/shadmanshaikh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to create localized Dubai fitness plans, nutrition guidance, progress tracking, and event-aware training suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Fitness, body-measurement, diet, and Dubai-area details may be stored in local Markdown files as plaintext.
+
+Mitigation: Tell users what will be stored before saving sensitive details, and support requests to show, update, or delete the stored profile and progress data.
+
+Risk: Fitness and nutrition recommendations can be inappropriate if user details are incomplete or local event information is outdated.
+
+Mitigation: Ask for missing profile context, keep advice personalized to stated goals and constraints, and prompt users to verify event dates and registrations with official sources.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to build a Dubai-localized fitness profile, receive personalized training plans, get nutrition guidance, and track progress toward fitness events. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists sensitive personal fitness and body-profile data in local Markdown memory files. <br>
-Mitigation: Confirm consent before saving body metrics, diet details, location, or progress history; clearly identify the local files used; and honor review, update, and deletion requests. <br>
-Risk: Retained local profile data may remain after the user no longer wants the skill to remember it. <br>
-Mitigation: Review or delete user_memory.md and coach.md when retention is no longer desired. <br>
+**Output Format:** [Markdown and conversational text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shadmanshaikh/fit-dubai) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Profile instructions](artifact/profile.md) <br>
-- [Dubai fitness coach plan](artifact/coach.md) <br>
-- [Nutrition guide](artifact/nutrition.md) <br>
+**Other Properties Related to Output:** [May update local Markdown files for user profile and coaching progress when the user consents.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Conversational guidance and Markdown profile, training, nutrition, and progress notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local Markdown memory files with fitness profile, body metrics, location, dietary preferences, goals, and progress history.] <br>
+1.0.5 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

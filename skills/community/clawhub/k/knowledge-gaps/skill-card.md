@@ -1,40 +1,53 @@
-## Description: <br>
-Track questions Hans failed to answer and flag missing knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track questions Hans failed to answer and flag missing knowledge.
 
-## Publisher: <br>
-[atiati82](https://clawhub.ai/user/atiati82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atiati82](https://clawhub.ai/user/atiati82)
 
-## Use Case: <br>
-External users and agent maintainers use this skill to capture questions Hans cannot answer, record the missing knowledge, and review recurring gaps for later improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to run a local Python logger script that is not included in the artifact. <br>
-Mitigation: Package, review, and scope the referenced log-knowledge-gap.py script before enabling the skill. <br>
-Risk: Unanswered user questions may be persisted in a knowledge-gaps.md log. <br>
-Mitigation: Enable the skill only when persistent logging is intended, and apply appropriate access, retention, and review controls to the log. <br>
+## Use Case:
 
+External users and agent maintainers use this skill to log questions Hans cannot answer, summarize recurring knowledge gaps, and support later knowledge-base improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atiati82/knowledge-gaps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Natural-language response text, Markdown summaries, and shell command instructions for logging gaps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or updates a knowledge-gaps.md log when the required logger script is available and successfully run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to run a shell command using user question text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the logger is present and audited, and invoke it without shell interpolation.
+
+Risk: Unanswered user questions may be stored in a persistent knowledge-gap log.
+
+Mitigation: Add consent, redaction, retention limits, and access controls before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atiati82/skills/knowledge-gaps)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to log unanswered questions and later summarize recurring gaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

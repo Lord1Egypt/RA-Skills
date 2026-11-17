@@ -1,44 +1,58 @@
-## Description: <br>
-Provides deployment automation guidance and scripts for Docker Compose stacks, with documented LXC, approval, rollback, and history features that should be verified before production use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates versioned Docker Compose and Proxmox LXC deployments with health checks, blue-green updates, chat approvals, and rollback workflows.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to configure, run, and review container deployment workflows for Docker Compose stacks and related health checks. Teams should verify or add the advertised approval, rollback, blue-green, LXC, cron, and history controls before relying on them for production change management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises approval, rollback, blue-green, LXC, cron, and history controls that are incomplete or missing in the artifact. <br>
-Mitigation: Verify the implemented behavior and add the required controls before relying on those features for production deployments. <br>
-Risk: The artifact can run high-impact Docker, SSH, Proxmox, and shell-hook commands. <br>
-Mitigation: Run it with the least Docker, SSH, and Proxmox privileges needed, and review commands and hooks before execution. <br>
-Risk: Stack definitions, health checks, and hooks are effectively trusted code. <br>
-Mitigation: Limit who can modify deployment configuration and review stack files, health checks, and hook scripts before use. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to plan and run container deployment workflows for Docker Compose stacks and Proxmox LXC containers, including health checks, version tracking, rollback, hooks, and approval steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/clawhub-skill-deploy-pilot) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact package metadata](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe or invoke Docker, SSH, Proxmox, and shell-hook workflows; outputs should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package metadata) <br>
+Risk: The skill can make production-impacting deployment changes through Docker, SSH, and related deployment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and deployment configuration before installing or running it, test changes outside production first, and run with the least privileges possible.
+
+Risk: Untrusted stack configuration, health-check scripts, or deployment hooks can execute commands or affect services and host data.
+
+Mitigation: Use only trusted stack configuration and avoid script health checks or hooks from untrusted sources.
+
+Risk: Advertised approval and rollback behavior may not be sufficient as the only production safeguard.
+
+Mitigation: Keep independent change review, monitoring, backups, and rollback procedures in place instead of relying solely on the skill's approval or rollback flow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mariusfit/skills/clawhub-skill-deploy-pilot)
+- [Publisher Profile](https://clawhub.ai/user/mariusfit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate deployment commands, health-check configuration, hook configuration, and operational guidance for Docker Compose and LXC workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

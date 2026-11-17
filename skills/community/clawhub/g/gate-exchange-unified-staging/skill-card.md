@@ -1,49 +1,64 @@
-## Description: <br>
-Gate unified account operations skill for account equity, margin borrowing, repayment, leverage mode, collateral, and related limit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate unified account operations skill for unified account equity, margin borrowing, repayments, leverage modes, collateral settings, and related account limits.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and operators use this skill to query and manage Gate unified-account state, including equity, borrowable and transferable limits, loans, interest records, leverage settings, mode changes, and collateral configuration. It is intended for agent-assisted workflows backed by a configured local Gate MCP session and scoped Gate API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through Gate unified-account mutations such as borrowing, repayment, mode changes, leverage changes, and collateral changes. <br>
-Mitigation: Use API keys scoped to the documented Unified permissions, require an Action Draft, and execute only after immediate explicit user confirmation for the exact amount, target, and setting. <br>
-Risk: A stale or changed confirmation could authorize an action different from the user's current intent. <br>
-Mitigation: Treat confirmation as single-use, invalidate it when parameters or scope change, and require a fresh draft plus confirmation before each mutation. <br>
-Risk: Rounding or normalizing returned balances, rates, leverage, or timestamps could mislead financial decisions. <br>
-Mitigation: Preserve API numeric strings exactly as returned and include raw timestamps together with readable local times. <br>
-Risk: Missing MCP configuration, authentication failures, or platform risk constraints can make write operations unsafe or impossible. <br>
-Mitigation: Stop mutation attempts on setup, permission, or constraint failures and return read-only setup or remediation guidance instead. <br>
+## Use Case:
 
+External Gate users and developers use this skill to inspect unified account equity, borrowable and transferable limits, loan and interest records, leverage settings, and collateral status. The skill can also draft and, after explicit confirmation, execute Gate unified-account changes through the configured MCP session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-exchange-unified-staging) <br>
-- [Gate skills repository homepage](https://github.com/gate/gate-skills) <br>
-- [Gate API key management](https://www.gate.com/myaccount/profile/api-key/manage) <br>
-- [Gate Unified MCP Specification](references/mcp.md) <br>
-- [Gate Unified Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Gate Unified Scenarios](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown responses with structured action drafts, result summaries, exact API numeric strings, and MCP tool calls when configured] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GATE_API_KEY and GATE_API_SECRET through the local Gate MCP session; mutating actions require explicit single-use confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can perform financial write actions for borrowing, repayment, leverage, account mode, and collateral settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an Action Draft and immediate explicit user confirmation before every mutation, and treat confirmation as single-use.
+
+Risk: Over-borrowing, invalid leverage settings, or collateral changes can affect margin and liquidation risk.
+
+Mitigation: Run pre-checks for limits, current mode, platform constraints, and account state before drafting or executing changes.
+
+Risk: API keys with broad access could increase account exposure.
+
+Mitigation: Use API keys limited to Unified:Read and Unified:Write, rely on the configured local MCP session, and never paste secrets into chat.
+
+Risk: Rounded or normalized financial values can mislead users.
+
+Mitigation: Preserve API numeric strings exactly and include raw timestamps with readable local times when available.
+
+## Reference(s):
+
+- [Gate skill repository homepage from ClawHub metadata](https://github.com/gate/gate-skills)
+- [Gate Unified MCP Specification](references/mcp.md)
+- [Gate Unified Account Runtime Rules](references/gate-runtime-rules.md)
+- [Unified account scenarios](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown reports, action drafts, and MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves API numeric strings and includes raw timestamps with readable local times when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

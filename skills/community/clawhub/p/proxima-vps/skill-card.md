@@ -1,45 +1,61 @@
-## Description: <br>
-Set up, repair, or document Proxima on a remote Ubuntu VPS with a non-root Electron runtime, loopback-only GUI and REST exposure, SSH-tunneled access, and SSH-stdio MCP configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up, repair, or document a Proxima deployment on a remote Ubuntu VPS with a non-root Electron runtime, virtual desktop GUI, loopback-only VNC/noVNC/REST exposure, and SSH-stdio MCP access for local IDEs.
 
-## Publisher: <br>
-[alkindivv](https://clawhub.ai/user/alkindivv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alkindivv](https://clawhub.ai/user/alkindivv)
 
-## Use Case: <br>
-Developers and operators use this skill to install or repair Proxima on an isolated Ubuntu VPS, expose GUI and REST access through SSH tunnels, and configure local IDEs to reach Proxima MCP over SSH stdio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can normalize passwordless root SSH for routine tunnels and IDE MCP access on a high-authority VPS. <br>
-Mitigation: Use root only for initial host setup where possible, prefer a dedicated non-root SSH account or narrowly scoped wrapper for ongoing access, and review SSH configuration before connecting IDEs. <br>
-Risk: REST, VNC, noVNC, and MCP control surfaces can expose sensitive Proxima capabilities if bound publicly. <br>
-Mitigation: Keep these services bound to localhost or authenticated SSH tunnels unless the user explicitly accepts a different exposure model. <br>
-Risk: Running Proxima can carry operational risk from browser automation, provider sessions, file access, and dependencies. <br>
-Mitigation: Run it on an isolated VPS or VM, review the Proxima repository and npm dependencies before installation, and avoid recommending it for a primary personal machine. <br>
+## Use Case:
 
+Developers and operators use this skill to install, repair, validate, or document Proxima on an Ubuntu VPS with remote GUI, REST, and MCP access kept behind loopback bindings and SSH transport.
 
-## Reference(s): <br>
-- [Security and architecture](references/security-and-architecture.md) <br>
-- [Server setup runbook](references/server-setup-runbook.md) <br>
-- [Local access and MCP](references/local-access-and-mcp.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell, JSON, sshconfig, and systemd snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes validation checks for service status, loopback listeners, REST health, SSH tunnels, and MCP stdio connectivity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence flags over-privileged and mutable deployment choices before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the Proxima source to a reviewed commit or release, use locked dependency installation, and review the setup before running it.
+
+Risk: REST, VNC, noVNC, and MCP control surfaces can create exposure risk if made public.
+
+Mitigation: Keep REST, VNC, noVNC, and MCP loopback-only, access them through SSH tunnels or SSH stdio, and use a dedicated non-root SSH identity.
+
+Risk: Running browser automation with provider sessions and file access on a primary machine carries operational risk.
+
+Mitigation: Install on an isolated VPS or VM and run the application under a restricted non-root account.
+
+## Reference(s):
+
+- [Proxima VPS Setup Skill](https://clawhub.ai/alkindivv/skills/proxima-vps)
+- [Security and architecture](references/security-and-architecture.md)
+- [Server setup runbook](references/server-setup-runbook.md)
+- [Local access and MCP](references/local-access-and-mcp.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, sshconfig, JSON, and systemd configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Status reports include service health, loopback listener checks, REST validation, SSH-stdio MCP validation, and remaining blockers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

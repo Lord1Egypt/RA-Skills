@@ -1,44 +1,60 @@
-## Description: <br>
-Searches, briefs, and monitors Naver News in Korean using the Naver Search API, with saved watch rules, keyword groups, and cron-friendly automation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, briefs, and monitors Korean Naver News through the Naver Search API, including natural-language Korean query cleanup, saved watch rules, keyword groups, multi-query briefings, and cron-friendly automation plans.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-Korean-speaking operators, analysts, and developers use this skill to turn natural-language Naver News requests into one-shot briefings, saved watch rules, grouped recurring briefings, and scheduler-ready command guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Naver Search API credentials and local monitoring state in its data directory. <br>
-Mitigation: Install only where local credential and query storage is acceptable, and use the documented credential setup and check commands before operational use. <br>
-Risk: Generated cron and OpenClaw command text can create recurring news checks or forward results to external channels. <br>
-Mitigation: Review generated schedule, command, and delivery text before enabling automated runs or message forwarding. <br>
-Risk: Briefings are based on Naver Search API headline and summary metadata rather than full article bodies. <br>
-Mitigation: Treat briefing output as a search-based digest and open linked sources before using it for consequential decisions. <br>
+## Use Case:
 
+External users and developers use this skill to turn Korean news requests into Naver News searches, briefings, persistent watch rules, keyword groups, and operator-ready scheduling guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twbeatles/naver-news-briefing) <br>
-- [Naver Search News API endpoint](https://openapi.naver.com/v1/search/news.json) <br>
-- [Upstream notes](references/upstream-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Korean text or JSON, with markdown-style command examples for setup and scheduling guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Naver News links, publisher names, publication dates, saved watch or group metadata, cron examples, and OpenClaw systemEvent text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.16 (source: server release evidence) <br>
+Risk: Automation, cron, shell, or OpenClaw task text can include unsafe user-provided request content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated integration plans and commands before use, especially when the original request came from someone else.
+
+Risk: API secrets may be stored locally in plaintext outside Windows.
+
+Mitigation: Prefer interactive credential setup over command-line secrets, keep data/config.json out of repositories and shared folders, and verify local file permissions.
+
+Risk: Watch state and dedupe history are stored locally.
+
+Mitigation: Keep data/watch_state.db out of repositories and shared folders when using persistent monitoring.
+
+## Reference(s):
+
+- [Skill README](README.md)
+- [Upstream notes: navernews-tabsearch](references/upstream-notes.md)
+- [ClawHub skill page](https://clawhub.ai/twbeatles/skills/naver-news-briefing)
+- [Naver News Search API endpoint](https://openapi.naver.com/v1/search/news.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or JSON, with shell and cron command snippets in operator guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Naver Search API credentials and uses Naver headline, summary, link, publisher, and timestamp metadata rather than full article bodies.]
+
+## Skill Version(s):
+
+2026.4.16 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Multi-agent task orchestration skill that coordinates review, execution, and audit loops with manual subtasks for simple work and reviewer-generated subtasks for complex work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent auto-evolution system with hybrid mode that orchestrates review-execute-audit loops across Coordinator, Reviewer, Executor, and Auditor roles, with manual subtasks for simple tasks and Reviewer-generated subtasks for complex tasks.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run recurring multi-agent task workflows that break goals into subtasks, coordinate execution, apply review and audit gates, and package completed results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring unattended multi-agent execution may continue acting on task files without close operator attention. <br>
-Mitigation: Install only when that behavior is intended, run it in an isolated workspace with a low-privilege coordinator agent, and remove heartbeat or cron jobs when the work is done. <br>
-Risk: Generated task JSON and role prompts may cause agents to act on incorrect or unintended instructions. <br>
-Mitigation: Manually review task JSON and generated prompts before letting reviewer, executor, or auditor agents proceed. <br>
-Risk: Workspace credentials or production resources could be exposed to spawned agents during automated execution. <br>
-Mitigation: Do not provide production credentials, and limit the workspace and agent permissions used for this skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate autonomous multi-agent task execution, splitting goals into subtasks and cycling through review, execution, audit, and packaging steps. It is intended for workspaces that can isolate spawned agents and supervise task-state changes.
 
-## Reference(s): <br>
-- [Auto Evolution Skill Page](https://clawhub.ai/cjboy007/auto-evolution) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [task-example.json](references/task-example.json) <br>
-- [Task JSON Schema](config/task-schema.json) <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with shell command snippets, JSON task files, and generated role prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one task or role handoff at a time for coordinator, reviewer, executor, auditor, monitor, and packaging workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and clawhub.yaml) <br>
+Risk: Repeated sub-agent execution can continue with weak operational boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated workspace with limited tools, no unnecessary credentials, and explicit human approval for sensitive file, command, network, or skill-modifying actions.
+
+Risk: Untrusted task files or unsafe task-state handling can affect the review-execute-audit loop.
+
+Mitigation: Trust and validate task files before enabling automation, fix filename and path handling, enforce iteration limits, and make review and audit parsing fail closed.
+
+Risk: Unattended cron or heartbeat execution can magnify workflow errors.
+
+Mitigation: Do not enable unattended cron or heartbeat operation until the security guidance has been addressed and the workflow has been reviewed in the target workspace.
+
+## Reference(s):
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+- [Task Example](references/task-example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-oriented task prompts with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompts and task-state updates for review, execution, audit, monitoring, and packaging workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

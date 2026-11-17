@@ -1,42 +1,57 @@
-## Description: <br>
-This skill helps agents generate candidate SQL indexes from table DDL and slow SQL for MySQL, Oracle, and PostgreSQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze table DDL and slow SQL for MySQL, Oracle, and PostgreSQL, then generate candidate index recommendations and database-specific CREATE INDEX statements.
 
-## Publisher: <br>
-[houyalei](https://clawhub.ai/user/houyalei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houyalei](https://clawhub.ai/user/houyalei)
 
-## Use Case: <br>
-Developers, database engineers, and agents use this skill to analyze schema DDL with slow SQL and produce candidate CREATE INDEX statements with reasons for review before database changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CREATE INDEX statements are static suggestions and may not improve a real production workload. <br>
-Mitigation: Review every statement with database execution plans and workload context before applying it. <br>
-Risk: The skill reads local DDL and slow-query files and writes an output report to the chosen path. <br>
-Mitigation: Run it in a project workspace, provide only intended SQL files, and choose an output path that will not overwrite important files. <br>
-Risk: Additional indexes can increase write amplification and maintenance cost on high-write tables. <br>
-Mitigation: Evaluate write impact, storage cost, and rollback plans before deploying suggested indexes. <br>
+## Use Case:
 
+Developers, database engineers, and agent operators use this skill to turn schema files and slow SQL examples into index optimization suggestions for review. It is intended to speed up candidate-index discovery, not to replace execution-plan validation or DBA approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/houyalei/sql-index-optimizer-multi-db) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON report with SQL CREATE INDEX statements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided DDL and slow SQL files, then writes the selected report file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper reads local schema and slow-query files, which may contain sensitive database structure or query details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive copies where possible and provide only the specific local files needed for analysis.
+
+Risk: Generated index DDL may be incomplete or unsuitable because recommendations are static heuristics.
+
+Mitigation: Review recommendations with a DBA and validate them using execution-plan tooling before production use.
+
+Risk: The selected output path may create or overwrite a local recommendation file.
+
+Mitigation: Choose an output path that is safe to create or replace before running the helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/houyalei/skills/sql-index-optimizer-multi-db)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON files containing candidate indexes, reasons, counts, and CREATE INDEX SQL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports mysql, oracle, and postgresql dialects; reads local DDL and slow SQL files and writes recommendations to a selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

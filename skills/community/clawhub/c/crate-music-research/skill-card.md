@@ -1,39 +1,58 @@
-## Description: <br>
-AI-powered music research with 92+ tools across 17 sources, including MusicBrainz, Bandcamp, Discogs, Genius, Last.fm, Wikipedia, influence tracing, track verification, playlist building, and publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered music research with 92+ tools across 17 sources — MusicBrainz, Bandcamp, Discogs, Genius, Last.fm, Wikipedia, and more. Influence tracing, track verification, playlist building, and publishing.
 
-## Publisher: <br>
-[tmoody1973](https://clawhub.ai/user/tmoody1973) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tmoody1973](https://clawhub.ai/user/tmoody1973)
 
-## Use Case: <br>
-Developers, researchers, DJs, collectors, and music writers use this skill to research artists, verify tracks, trace musical influence, manage playlists or collections, and publish cited music research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an unpinned external npm MCP server while using API keys. <br>
-Mitigation: Install only if you trust the crate-cli npm package and publisher; pin or verify the package version and provide only the API keys needed for the task. <br>
-Risk: The skill includes public publishing and persistent memory features. <br>
-Mitigation: Require explicit confirmation before publishing to Telegraph or Tumblr or writing persistent memory, and review generated research and citations before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crate CLI homepage](https://github.com/tmoody1973/crate-cli) <br>
+## Use Case:
 
+Developers, researchers, collectors, and music writers use this skill to research artists, releases, influences, tracks, market details, playlists, and publishable music notes with cited source links.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include citations, source URLs, playlist exports, collection updates, public publishing instructions, and MCP configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.3 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an unpinned external npm MCP package with an API key.
+
+Mitigation: Review and pin a specific crate-cli package version before use, and prefer restricted or disposable API keys with usage limits.
+
+Risk: Publishing tools can post research publicly through Telegraph or Tumblr.
+
+Mitigation: Require human review and confirmation before publishing content or updating public pages.
+
+Risk: Collection, playlist, influence cache, and memory features may persist local data.
+
+Mitigation: Confirm where SQLite or memory data is stored and how to delete records before using persistent features.
+
+## Reference(s):
+
+- [Crate CLI homepage](https://github.com/tmoody1973/crate-cli)
+- [ClawHub skill page](https://clawhub.ai/tmoody1973/skills/crate-music-research)
+- [Publisher profile](https://clawhub.ai/user/tmoody1973)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with cited source links and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include playlist exports, public publishing outputs, and local collection or cache updates when the corresponding MCP tools are configured.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

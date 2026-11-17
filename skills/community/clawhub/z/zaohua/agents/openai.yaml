@@ -1,0 +1,6 @@
+interface:
+  display_name: "Forge AI Soul"
+  short_description: "Create, try, and evaluate an original AI Soul"
+  default_prompt: "Use $forge-ai-soul to create an AI Soul from my description, let me try chatting with it, and explain its SOUL-6 quality in plain language."
+policy:
+  allow_implicit_invocation: true

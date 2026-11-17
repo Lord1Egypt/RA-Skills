@@ -1,41 +1,53 @@
-## Description: <br>
-Ship public OpenClaw docs and skill files with fewer leaks, fewer empty claims, and clearer operator instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ship public OpenClaw docs and skill files with fewer leaks, fewer empty claims, and clearer operator instructions.
 
-## Publisher: <br>
-[jiepu110](https://clawhub.ai/user/jiepu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiepu110](https://clawhub.ai/user/jiepu110)
 
-## Use Case: <br>
-Developers, maintainers, and operators use this skill before publishing public documentation, skill files, release notes, examples, prompts, or package metadata to find leaks, vague claims, placeholders, and unclear instructions and to produce publish-ready copy with a release checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect draft public material that contains secrets, identifiers, or sensitive environment details. <br>
-Mitigation: Use it on content intended for review, remove sensitive values from public copy, and verify rewritten sections before publishing. <br>
-Risk: Rewritten public copy can overstate behavior or alter legal, medical, or financial meaning if accepted without review. <br>
-Mitigation: Apply the skill's stated non-goals: do not fabricate benchmarks, user stories, or definitive regulated advice, and keep attribution and license notes factual. <br>
+## Use Case:
 
+Developers, maintainers, and documentation reviewers use this skill before publishing OpenClaw README files, skill documents, release notes, examples, prompts, or package metadata. It helps identify secrets, local-only details, unsupported claims, unclear action verbs, and missing limits before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiepu110/oc-copy-guard) <br>
-- [OpenClaw Gateway Guardian GitHub repository](https://github.com/Star-Ring-Protocol/openclaw-gateway-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with findings, rewritten public copy, remaining exceptions, and a suggested release checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human verification before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Rewritten public copy could remove necessary context or introduce unsupported wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rewritten text before release and keep a short release note of what changed.
+
+Risk: The skill could be misapplied to obscure provenance, authorship, or required attribution.
+
+Mitigation: Keep attribution and license notes factual, and do not use the skill to evade provenance or authorship requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiepu110/skills/oc-copy-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with findings, rewritten public copy, exceptions, and a release checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

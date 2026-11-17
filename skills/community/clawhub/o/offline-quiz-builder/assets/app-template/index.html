@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>智能复习题库</title>
+<meta name="description" content="离线可用的智能复习题库，依据艾宾浩斯遗忘曲线自适应排程，支持每日复习、自由练习、错题本与收藏夹。">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- 顶栏：淡色主题 + 图标导航 -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand" id="brandHome" title="返回首页">
+      <span class="brand-mark" id="brandMark"></span>
+      <span class="brand-name" id="brandName">题库</span>
+    </div>
+    <div class="crumb" id="crumb"></div>
+    <div class="nav-icons">
+      <button class="nav-icon" id="navCalendar" type="button" title="打卡日历">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+      </button>
+      <button class="nav-icon" id="navWrong" type="button" title="错题本">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      </button>
+      <button class="nav-icon" id="navFav" type="button" title="收藏夹">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </button>
+      <button class="nav-icon" id="navStats" type="button" title="学习统计">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+      </button>
+      <button class="nav-icon" id="navSettings" type="button" title="设置">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 加载失败 -->
+  <section class="view" id="view-fatal">
+    <div class="empty">
+      <div class="t">题库未能加载</div>
+      <div class="d">未找到有效的题目数据。请确认 assets/js/data.js 与 questions.json 均在项目文件夹内，然后重新打开本页面。</div>
+    </div>
+  </section>
+
+  <!-- 首页 -->
+  <section class="view" id="view-home">
+    <!-- 问候卡片（Hero 区） -->
+    <div class="greeting-card" id="greetingCard">
+      <div class="greeting-badge" id="greetingBadge">上午好</div>
+      <div class="greeting-body">
+        <h1 class="greeting-text" id="greetingText">准备好开始今天的学习了吗？</h1>
+        <p class="greeting-sub" id="greetingSub"><em class="em">保持节奏，每一步都算数。</em></p>
+      </div>
+      <div class="greeting-visual" id="greetingVisual"></div>
+      <div class="greeting-stats" id="greetingStats"></div>
+    </div>
+    <!-- 科目网格 -->
+    <div class="grid" id="subjectGrid"></div>
+    <!-- 学习数据区（简要统计，可折叠，点击详情跳转统计页） -->
+    <div class="home-data-section" id="homeDataSection">
+      <div class="home-data-header" id="homeDataHeader">
+        <span class="home-data-title">学习数据</span>
+        <a class="home-data-link" id="homeDataLink" href="javascript:void(0)">详情 <em class="em">›</em></a>
+      </div>
+      <div class="home-data-body" id="homeDataBody"></div>
+    </div>
+    <div class="notice" id="storageNotice" hidden>
+      当前浏览器不允许写入本地存储，本次学习记录将无法保留。请检查浏览器隐私设置或退出无痕模式。
+    </div>
+  </section>
+
+  <!-- 科目主页（今日复习改为模态浮层 + 顶部持久入口） -->
+  <section class="view" id="view-subject">
+    <h1 id="subjectTitle">科目</h1>
+    <!-- 今日复习持久入口（迷你卡片），关闭模态后保留 -->
+    <div class="daily-hint" id="dailyHint" hidden>
+      <span class="daily-hint-icon" id="dailyHintIcon"></span>
+      <span class="daily-hint-text" id="dailyHintText"></span>
+      <button class="btn small primary" id="dailyHintStart" type="button">开始</button>
+      <button class="daily-hint-close" id="dailyHintClose" type="button" aria-label="关闭">×</button>
+    </div>
+    <h2>学习入口</h2>
+    <div class="entry-list" id="subjectEntries"></div>
+    <div class="btn-row">
+      <button class="btn" data-go="home" type="button">返回首页</button>
+    </div>
+  </section>
+
+  <!-- 今日复习准备 -->
+  <section class="view" id="view-daily">
+    <h1>今日复习</h1>
+    <p class="lead" id="dailyLead"></p>
+    <p class="srs-note">
+      <svg class="srs-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 3v18h17"/>
+        <path d="M4 6c4 12 8 12.6 16 12.9"/>
+      </svg>
+      <span>依据<b>艾宾浩斯遗忘曲线</b>智能排程：每道题都有专属的记忆强度，答得越轻松间隔拉得越长，答错或卡壳就自动缩回来。<i class="em">在你将忘未忘时复习，记得最牢。</i></span>
+    </p>
+    <div id="dailyBody"></div>
+  </section>
+
+  <!-- 自由练习设置（重新设计） -->
+  <section class="view" id="view-setup">
+    <h1>自由练习</h1>
+    <div class="mode-buttons" id="modeButtons"></div>
+    <div class="setup-count-row">
+      <label class="field-label" for="setupCount">题目数量</label>
+      <div class="count-input-wrap">
+        <button class="count-btn" id="countMinus" type="button">-</button>
+        <input type="number" id="setupCount" min="1" max="200" step="1" value="20">
+        <button class="count-btn" id="countPlus" type="button">+</button>
+      </div>
+      <div class="avail-text" id="setupAvail"></div>
+    </div>
+    <!-- 更多筛选（折叠） -->
+    <details class="more-filters" id="moreFilters">
+      <summary>更多筛选</summary>
+      <div class="card filter-card">
+        <div class="form-row">
+          <label class="field-label" for="setupChapter">章节</label>
+          <select id="setupChapter"></select>
+        </div>
+        <div class="form-row">
+          <label class="field-label">题型</label>
+          <div class="chips" id="setupTypes"></div>
+        </div>
+        <div class="form-row">
+          <label class="field-label">难度</label>
+          <div class="chips" id="setupDiff"></div>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="field-label">题目来源</label>
+          <div class="chips" id="setupPool"></div>
+        </div>
+      </div>
+    </details>
+    <div class="btn-row">
+      <button class="btn primary" id="setupStart" type="button">开始练习</button>
+      <button class="btn" data-go="subject" type="button">返回科目</button>
+    </div>
+  </section>
+
+  <!-- 答题 - 单题模式 -->
+  <section class="view" id="view-quiz">
+    <div class="quiz-head">
+      <div class="progress-text" id="quizProgress"></div>
+      <div>
+        <button class="btn small" id="quizFav" type="button">收藏</button>
+        <button class="btn small" id="quizExit" type="button">结束练习</button>
+      </div>
+    </div>
+    <div class="progress-bar"><i id="quizBar" style="width:0%"></i></div>
+    <div id="quizBody"></div>
+    <div class="sticky-actions" id="quizActions"></div>
+  </section>
+
+  <!-- 答题 - 连续答题模式（整页展示所有题目） -->
+  <section class="view" id="view-batch">
+    <div class="batch-head">
+      <div class="progress-text" id="batchProgress"></div>
+      <div>
+        <button class="btn small" id="batchExit" type="button">结束练习</button>
+      </div>
+    </div>
+    <div id="batchBody"></div>
+    <div class="sticky-actions batch-submit-bar" id="batchActions">
+      <button class="btn primary btn-lg" id="batchSubmitAll" type="button">提交全部，查看结果</button>
+    </div>
+  </section>
+
+  <!-- 结果 / 复盘 -->
+  <section class="view" id="view-result">
+    <h1>练习复盘</h1>
+    <!-- 打卡标记 -->
+    <div class="checkin-banner" id="checkinBanner"></div>
+    <div class="result-summary" id="resultSummary"></div>
+    <div id="resultList"></div>
+    <div class="btn-row">
+      <button class="btn primary" data-go="subject" type="button">返回科目</button>
+      <button class="btn" data-go="home" type="button">返回首页</button>
+    </div>
+  </section>
+
+  <!-- 错题本 / 收藏夹（全科目，可折叠筛选） -->
+  <section class="view" id="view-list">
+    <h1 id="listTitle">题目列表</h1>
+    <p class="lead" id="listLead"></p>
+    <details class="more-filters" id="listFilters">
+      <summary>更多筛选</summary>
+      <div class="card filter-card">
+        <div class="form-row">
+          <label class="field-label" for="listSubject">科目</label>
+          <select id="listSubject"></select>
+        </div>
+        <div class="form-row">
+          <label class="field-label" for="listChapter">章节</label>
+          <select id="listChapter"></select>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="field-label">题型</label>
+          <div class="chips" id="listTypes"></div>
+        </div>
+      </div>
+    </details>
+    <div class="btn-row" style="margin-top:14px;margin-bottom:16px">
+      <button class="btn primary" id="listPractice" type="button">练习筛选结果</button>
+      <button class="btn" data-go="home" type="button">返回首页</button>
+    </div>
+    <div id="listBody"></div>
+  </section>
+
+  <!-- 打卡日历 -->
+  <section class="view" id="view-calendar">
+    <h1>打卡日历</h1>
+    <p class="lead" id="calendarLead"></p>
+    <div class="calendar-wrap" id="calendarWrap"></div>
+    <div class="calendar-detail" id="calendarDetail" hidden></div>
+    <div class="calendar-legend">
+      <span class="legend-item"><i class="dot checked"></i> 已打卡</span>
+      <span class="legend-item"><i class="dot today-dot"></i> 今天</span>
+      <span class="legend-item"><i class="dot empty"></i> 未打卡</span>
+    </div>
+    <div class="calendar-stats" id="calendarStats"></div>
+    <div class="btn-row">
+      <button class="btn" data-go="home" type="button">返回首页</button>
+    </div>
+  </section>
+
+  <!-- 设置面板 -->
+  <section class="view" id="view-settings">
+    <h1>设置</h1>
+    <div class="settings-card card">
+      <div class="form-row">
+        <label class="field-label">外观主题</label>
+        <div class="chips" id="settingTheme"></div>
+        <div class="field-hint">浅色 / 深色模式，立即生效（仅当前浏览器）</div>
+      </div>
+      <div class="form-row">
+        <label class="field-label">界面动效</label>
+        <div class="chips" id="settingMotion"></div>
+        <div class="field-hint">页面切换、数字滚动与进度条等过渡动画。系统开启「减弱动态效果」时自动关闭。</div>
+      </div>
+      <div class="form-row">
+        <label class="field-label">复习节奏</label>
+        <div class="chips" id="settingPace"></div>
+        <div class="field-hint">调节遗忘曲线的整体松紧。系统仍会按每道题的记忆强度自适应，这里只是整体加速或放慢。</div>
+      </div>
+      <div class="form-row">
+        <label class="field-label">默认练习模式</label>
+        <div class="chips" id="settingMode"></div>
+      </div>
+      <div class="form-row">
+        <label class="field-label">今日复习弹出</label>
+        <div class="chips" id="settingDailyModal"></div>
+        <div class="field-hint">进入科目页时是否自动弹出今日复习推荐</div>
+      </div>
+      <div class="form-row">
+        <label class="field-label" for="settingCount">默认每次题目数量</label>
+        <input type="number" id="settingCount" min="1" max="200" step="1" value="20">
+      </div>
+      <div class="form-row">
+        <label class="field-label" for="settingTarget">每日打卡目标题量</label>
+        <input type="number" id="settingTarget" min="1" max="100" step="1" value="10">
+        <div class="field-hint">系统会根据你前一天的答题情况自动调整建议目标</div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <label class="field-label">危险操作</label>
+        <button class="btn danger-btn" id="clearDataBtn" type="button">清除所有学习数据</button>
+        <div class="field-hint">将清空所有答题记录、打卡记录、收藏和错题标记，此操作不可撤销。</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" id="saveSettingsBtn" type="button">保存设置</button>
+      <button class="btn" data-go="home" type="button">返回首页</button>
+    </div>
+  </section>
+
+  <!-- 统计详情页 -->
+  <section class="view" id="view-stats">
+    <h1 id="statsTitle">学习统计</h1>
+    <p class="lead stats-lead"><em class="em">数据来自本浏览器保存的作答记录。</em></p>
+
+    <!-- 总览大卡片 -->
+    <div class="stats-hero-card" id="statsHeroCard">
+      <div class="stats-hero-main">
+        <div class="stats-hero-num" id="statsHeroNum" data-num="0">0</div>
+        <div class="stats-hero-unit">题</div>
+      </div>
+      <div class="stats-hero-meta" id="statsHeroMeta">
+        <span id="statsSubjectCount">0</span> 个科目 · <span id="statsUnitCount">0</span> 个单元
+      </div>
+      <button class="stats-hero-action" id="statsHeroAction" type="button" title="刷新统计">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+      </button>
+    </div>
+
+    <!-- 2×2 详细卡片（淡色块区分） -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stats-tile stats-tile-ok" id="statsTileDone">
+        <div class="stats-tile-icon">✓</div>
+        <div class="stats-tile-label">已做题数</div>
+        <div class="stats-tile-num" id="statsTileDoneNum" data-num="0">0</div>
+        <div class="stats-tile-sub" id="statsTileDoneSub">完成度 0%</div>
+      </div>
+      <div class="stats-tile stats-tile-accent" id="statsTileAccuracy">
+        <div class="stats-tile-icon">◉</div>
+        <div class="stats-tile-label">正确率</div>
+        <div class="stats-tile-num" id="statsTileAccNum" data-num="0">0%</div>
+        <div class="stats-tile-sub" id="statsTileAccSub">正 0 题 · 错 0 题</div>
+      </div>
+      <div class="stats-tile stats-tile-warn" id="statsTileTime">
+        <div class="stats-tile-icon">⟳</div>
+        <div class="stats-tile-label">累计学习时长</div>
+        <div class="stats-tile-num" id="statsTileTimeNum">0 分 0 秒</div>
+        <div class="stats-tile-sub">答题页面计时</div>
+      </div>
+      <div class="stats-tile stats-tile-err" id="statsTileWrong">
+        <div class="stats-tile-icon">✗</div>
+        <div class="stats-tile-label">错题数量</div>
+        <div class="stats-tile-num" id="statsTileWrongNum" data-num="0">0</div>
+        <div class="stats-tile-sub" id="statsTileWrongSub">收藏 0 题 · 未做 0 题</div>
+      </div>
+    </div>
+
+    <!-- 趋势图表区 -->
+    <div class="stats-chart-section" id="statsChartSection">
+      <div class="stats-chart-header">
+        <h2>近 7 天答题趋势</h2>
+        <span class="stats-chart-legend"><em class="em">答题数 / 正确率</em></span>
+      </div>
+      <p class="stats-chart-desc"><em class="em">看最近是否持续练习，以及正确率有没有提升。</em></p>
+      <div class="stats-chart-wrap" id="statsChartWrap"></div>
+    </div>
+
+    <!-- 各科目明细 -->
+    <div class="stats-table-section">
+      <h2>各科目明细</h2>
+      <div class="table-scroll">
+        <table class="stat" id="statsTable"></table>
+      </div>
+    </div>
+
+    <!-- 最近学习记录 -->
+    <h2>最近学习记录</h2>
+    <div id="statsHistory"></div>
+
+    <div class="btn-row">
+      <button class="btn" data-go="home" type="button">返回首页</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- 今日复习模态浮层 -->
+<div class="modal-overlay" id="dailyModal" hidden>
+  <div class="modal-box daily-box">
+    <h3 id="dailyModalTitle">今日复习推荐</h3>
+    <p class="daily-modal-desc" id="dailyModalDesc"></p>
+    <div class="daily-sample" id="dailySample" hidden></div>
+    <p class="srs-note compact">
+      <svg class="srs-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 3v18h17"/>
+        <path d="M4 6c4 12 8 12.6 16 12.9"/>
+      </svg>
+      <span>这批题依据<b>艾宾浩斯遗忘曲线</b>智能排程。<i class="em">在你将忘未忘时复习，记得最牢。</i></span>
+    </p>
+    <div class="dc-actions">
+      <button class="btn primary" id="dailyModalStart" type="button">开始今日复习</button>
+      <button class="btn" id="dailyModalSkip" type="button">跳过</button>
+    </div>
+  </div>
+</div>
+
+<!-- 设置确认弹窗 -->
+<div class="modal-overlay" id="confirmModal" hidden>
+  <div class="modal-box">
+    <h3 id="confirmTitle">确认操作</h3>
+    <p id="confirmMsg"></p>
+    <div class="btn-row">
+      <button class="btn danger-btn" id="confirmOk" type="button">确认</button>
+      <button class="btn" id="confirmCancel" type="button">取消</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/storage.js"></script>
+<script src="assets/js/srs.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,41 +1,60 @@
-## Description: <br>
-HTML to Text helps agents convert local HTML files or web page URLs into readable Markdown or JSON text fields using MinerU. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert HTML files and web pages into readable text using MinerU, with Markdown output as the closest plain-text format and JSON output available for text fields.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers and agents use this skill to strip markup from HTML files or web pages and feed readable text into search indexing, NLP pipelines, text analysis, or summarization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML files, URLs, or generated text may be processed by the third-party MinerU service. <br>
-Mitigation: Use only content that may be sent to MinerU/OpenDataLab under your policies; avoid secrets, confidential HTML, authenticated pages, internal URLs, regulated data, and private documents. <br>
+## Use Case:
 
+Developers and agents use this skill to strip markup from local HTML files or web page URLs and extract readable content for indexing, NLP pipelines, text analysis, or other workflows that need clean HTML-derived text.
 
-## Reference(s): <br>
-- [HTML to Text on ClawHub](https://clawhub.ai/mzlzyca/html-to-text) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU API Token Management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; extracted content is Markdown by default or JSON text fields when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN; supports local HTML files and web page URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Selected local HTML files or URLs may be processed through MinerU using an access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive HTML and public URLs unless MinerU handling is acceptable for the data.
+
+Risk: Install instructions reference mutable third-party packages.
+
+Mitigation: Install in an isolated environment, pin and verify package versions, and avoid elevated shells.
+
+Risk: The workflow depends on MINERU_TOKEN authentication.
+
+Mitigation: Use a narrowly scoped, revocable token and rotate it if exposed.
+
+## Reference(s):
+
+- [HTML to Text on ClawHub](https://clawhub.ai/mzlzyca/skills/html-to-text)
+- [MinerU homepage](https://mineru.net)
+- [MinerU repository](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and optional JSON text fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses mineru-open-api with MINERU_TOKEN; HTML extraction returns Markdown or JSON text fields rather than a native text format.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

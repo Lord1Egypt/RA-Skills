@@ -1,37 +1,54 @@
-## Description: <br>
-Reviews and rewrites product UI copy such as error messages, buttons, forms, dialogs, empty states, loading text, success feedback, permission prompts, and destructive-action confirmations so the copy is clear, actionable, and concise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews and rewrites product UI copy (error messages, buttons, forms, dialogs) to be user-friendly, actionable, and concise.
 
-## Publisher: <br>
-[qmisky](https://clawhub.ai/user/qmisky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qmisky](https://clawhub.ai/user/qmisky)
 
-## Use Case: <br>
-Product managers, designers, writers, and developers use this skill to draft or review user-facing product copy. It helps turn technical or vague UI text into plain-language messages that explain what happened and what the user can do next. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated UI copy may contain inaccurate product details, brand tone mismatches, or example-specific details such as URLs, prices, product names, or quota values. <br>
-Mitigation: Review generated copy before use and replace example-specific details with verified product information. <br>
+## Use Case:
 
+Product managers, designers, and developers use this skill to review or rewrite Chinese product UI text so users can understand what happened and what to do next.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text copy suggestions and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy should be reviewed for product accuracy, brand tone, and example-specific details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated UI copy may be too specific to Chinese-language product surfaces or mismatched to another product voice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against the target locale, audience, and product tone before release.
+
+Risk: Incorrect wording in payment, permission, account, or destructive-action flows could mislead users.
+
+Mitigation: Have product or design owners review high-impact user-facing copy before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qmisky/skills/product-copywriting)
+- [ClawHub publisher profile](https://clawhub.ai/user/qmisky)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text UI copy suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language product UI copy guidance; outputs should be reviewed for product tone and target locale.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

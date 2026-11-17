@@ -14,7 +14,7 @@
     {"id": "client-satisfaction-survey", "stage": "feedback", "type": "survey"},
     {"id": "testimonial-referral-request-plan", "stage": "advocacy", "type": "plan"},
     {"id": "executive-check-in-brief", "stage": "executive", "type": "brief"},
-    {"id": "at-risk-customer-recovery-plan", "stage": "risk", "type": "plan"},
+    {"id": "at-riREDACTED-SECRET", "stage": "risk", "type": "plan"},
     {"id": "offboarding-transition-checklist", "stage": "offboarding", "type": "checklist"},
     {"id": "stakeholder-change-note", "stage": "routing", "type": "note"},
     {"id": "communication-cadence-plan", "stage": "relationship", "type": "plan"},

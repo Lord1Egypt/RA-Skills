@@ -10,7 +10,7 @@ from runtime_bootstrap import ensure_runtime
 
 ensure_runtime(["requests", "ddddocr", "PIL"])
 
-from oa_utils import build_session, get_time_entry_details, load_credentials, login, resolve_base_url, state_to_text
+from oa_utils import OAAuth, get_time_entry_details, load_credentials, resolve_base_url, state_to_text
 
 DEFAULT_CREDS = os.path.expanduser("~/.openclaw/workspace/memory/sn-work-record-credentials.md")
 
@@ -20,6 +20,7 @@ def main():
     parser.add_argument("entry_id", help="工时 ID")
     parser.add_argument("--credentials", default=DEFAULT_CREDS)
     parser.add_argument("--base-url", dest="base_url", default=None)
+    parser.add_argument("--token", default=None, help="复用已有 OA token，跳过登录（配合 sn_oa_login.py 的 agent 识别流程）")
     parser.add_argument("--json", action="store_true", help="输出原始 JSON")
     args = parser.parse_args()
 
@@ -27,12 +28,10 @@ def main():
         username, password, base_url = load_credentials(args.credentials)
         base_url = resolve_base_url(base_url, args.base_url)
 
-        print("正在登录 OA 系统...", file=sys.stderr)
-        token = login(username, password, base_url)
+        auth = OAAuth(base_url, username, password, args.token)
 
         print(f"正在获取工时详情 {args.entry_id} ...", file=sys.stderr)
-        session = build_session(token)
-        detail, result = get_time_entry_details(session, base_url, args.entry_id)
+        detail, result = auth.call(lambda s: get_time_entry_details(s, base_url, args.entry_id))
 
         if args.json:
             print(json.dumps(result, ensure_ascii=False, indent=2))

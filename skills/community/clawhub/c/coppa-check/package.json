@@ -1,0 +1,41 @@
+{
+  "name": "coppa-check",
+  "version": "1.1.2",
+  "type": "skill",
+  "description": "COPPA 儿童隐私合规检查。仅在用户明确要求 COPPA 合规检查 / 儿童隐私合规时激活；适用于面向美国儿童的产品。免费 检查（云端真实评分），12 项核心检查；无 Key 自动匿名试用（5 次），额度用尽后一键注册引导。",
+  "author": "CQDev",
+  "license": "MIT",
+  "homepage": "https://compliancehub.cn/account.html?skill=coppa-check",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "displayName": "COPPA 儿童隐私合规检查",
+    "category": "compliance",
+    "pricing": "free",
+    "points": 1,
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    }
+  }
+}

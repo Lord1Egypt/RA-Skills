@@ -1,38 +1,49 @@
-## Description: <br>
-Searches the web through a configured self-hosted SearXNG metasearch instance and returns structured results without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using a self-hosted SearXNG metasearch engine. Aggregates Google, Brave, DuckDuckGo, and more without API keys.
 
-## Publisher: <br>
-[stperic](https://clawhub.ai/user/stperic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stperic](https://clawhub.ai/user/stperic)
 
-## Use Case: <br>
-Developers and agent users use this skill when current web information is needed through a SearXNG instance they control or trust. It is suited for web lookup and research requests where JSON search results are useful to the agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the configured SearXNG server, which may expose private or sensitive terms if the server is not trusted. <br>
-Mitigation: Configure SEARXNG_URL to a trusted instance, prefer HTTPS for remote instances, and avoid placing secrets or highly sensitive private data in search queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stperic/local-websearch) <br>
-- [SearXNG documentation](https://docs.searxng.org) <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve current web search results through a trusted SearXNG instance without configuring commercial search API keys.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON search result object printed to stdout, with setup and invocation commands documented in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEARXNG_URL; accepts query text, result count from 1 to 20, and an optional language code.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to the configured SearXNG server and may expose sensitive or personal information, especially when HTTP is used.
+
+Mitigation: Use only a trusted SearXNG instance, prefer HTTPS for non-local endpoints, and avoid submitting secrets or sensitive personal data in queries.
+
+## Reference(s):
+
+- [SearXNG Documentation](https://docs.searxng.org)
+- [ClawHub Skill Release](https://clawhub.ai/stperic/skills/local-websearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing the query, result count, and search result entries with titles, URLs, descriptions, source engines, and relevance scores.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and SEARXNG_URL; result count is clamped from 1 to 20.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

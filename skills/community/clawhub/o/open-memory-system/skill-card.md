@@ -1,42 +1,61 @@
-## Description: <br>
-Three-layer Working, Short-Term, and Long-Term memory management for AI agents, with hooks, cron-based cleanup and distillation, and CLI commands for preferences, entities, events, and episodic notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Memory System provides a three-layer persistent memory framework for AI agents, covering working memory, short-term session memory, and long-term preferences, entities, events, persona, and episodic records.
 
-## Publisher: <br>
-[JochenYang](https://clawhub.ai/user/JochenYang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jochenyang](https://clawhub.ai/user/jochenyang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local cross-session memory to OpenClaw agents, including user preferences, entities, events, working memory, short-term notes, and agent episodic memory. It is suited to workflows where automatic local persistence and periodic memory distillation are intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic hooks and cron jobs persist session-derived data in local memory files, which can retain sensitive preferences, events, or learnings. <br>
-Mitigation: Enable the skill only when local cross-session memory is intended, avoid storing secrets, and periodically inspect or delete the configured memory directory. <br>
-Risk: Cleanup has an avoidable code-execution path because it can run MEMORY_DIR/index.py. <br>
-Mitigation: Review or patch cleanup before enabling cron, and keep the memory directory restricted to trusted local files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent memory to an OpenClaw agent, including preference capture, entity and event records, short-term summaries, and scheduled memory maintenance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JochenYang/open-memory-system) <br>
-- [README.md](README.md) <br>
-- [Cron configuration guide](crons/memory-crons.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with inline shell commands and local memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and reads local filesystem memory under the configured MEMORY_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic hooks and scheduled tasks can persist and process agent memory without direct user action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only the hooks and cron jobs that are required, review their schedules and triggers, and disable them in shared or sensitive workspaces until approved.
+
+Risk: Persistent memory files may contain sensitive preferences, events, entities, or session summaries.
+
+Mitigation: Store MEMORY_DIR in a private least-privilege location, inspect retained memory regularly, and apply cleanup policies before using the skill with confidential data.
+
+Risk: The security scan reports unsafe file-writing and code-execution paths, including filename validation and cleanup index.py execution concerns.
+
+Mitigation: Fix and review those paths before relying on the skill in a shared, production, or sensitive workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jochenyang/skills/open-memory-system)
+- [Publisher Profile](https://clawhub.ai/user/jochenyang)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Cron Configuration Guide](artifact/crons/memory-crons.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may create and update local memory files through Python CLI commands, OpenClaw hooks, and scheduled cron tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Authorization gatekeeper for OpenClaw agents with scoped grants, time-bound permissions, skill scanning, prompt injection detection, and a full audit trail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorization gatekeeper for OpenClaw agents with scoped grants, time-bound permissions, skill scanning, prompt injection detection, and audit trails.
 
-## Publisher: <br>
-[juanfiguera](https://clawhub.ai/user/juanfiguera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanfiguera](https://clawhub.ai/user/juanfiguera)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to gate agent actions with scoped, expiring grants, scan skills before installation, detect prompt-injection patterns, and keep an audit trail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit and grant records may reveal sensitive agent activity. <br>
-Mitigation: Keep the Jean-Claw data directory out of shared repositories and backups when needed, and rotate or delete audit files periodically. <br>
-Risk: The skill influences authorization decisions for guarded or restricted agent actions. <br>
-Mitigation: Review the policy and requested grants before relying on enforcement, and require explicit real-time approval for restricted actions. <br>
-Risk: Bundled helper scripts read local skill and audit data and can write scan or export files. <br>
-Mitigation: Review the shell scripts before running them and execute them only against intended skill or audit directories. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to gate agent actions through scoped approvals, scan skills before installation, detect prompt injection, and review audit trails.
 
-## Reference(s): <br>
-- [APOA Framework](https://agenticpoa.com) <br>
-- [APOA SDK](https://github.com/agenticpoa/apoa) <br>
-- [ClawHavoc Incident Background](https://snyk.io/blog/clawhub-malicious-google-skill-openclaw-malware/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/juanfiguera/jean-claw-van-damme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown command responses, JSON audit/grant records, and shell script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local data records for grants, audit logs, policy state, threat logs, and scan results when activated by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill relies on prompt-level enforcement and may not provide a hard security boundary on its own.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation for high-assurance use and pair it with OpenClaw or platform-level enforcement where available.
+
+Risk: Audit logging can retain sensitive user, file, or action context.
+
+Mitigation: Configure audit storage with redaction, restricted file permissions, retention limits, and protected export handling.
+
+Risk: The README uses an unpinned npx @latest installation command.
+
+Mitigation: Pin installer versions and verify release hashes before installing in managed environments.
+
+## Reference(s):
+
+- [Jean-Claw Van Damme ClawHub Release](https://clawhub.ai/juanfiguera/skills/jean-claw-van-damme)
+- [APOA Framework](https://agenticpoa.com)
+- [APOA SDK](https://github.com/agenticpoa/apoa)
+- [ClawHavoc Incident Background](https://snyk.io/blog/clawhub-malicious-google-skill-openclaw-malware/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce security scan reports, authorization decisions, audit summaries, and policy guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

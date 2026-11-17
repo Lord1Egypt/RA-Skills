@@ -1,0 +1,23 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_api_create_directory",
+		"description": "Create an API group directory (symmetric to _create_informat_script_directory, operating on the API list). Deduplicated by name: if a directory with the same name exists, its id is returned directly (no duplicate). return: directory id. Pass parentId=<this id> on subsequent _api_create_define calls so all APIs of the same module are grouped together, avoiding a flat exploded API list. Use the module name as the directory name so users can recognize ownership.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"description": "Directory name, preferably the module name. A directory with the same name is reused.",
+					"type": "string"
+				},
+				"parentId": {
+					"description": "Parent directory id, optional (omit to place at root level).",
+					"type": "string"
+				}
+			},
+			"required": [
+				"name"
+			]
+		}
+	}
+}

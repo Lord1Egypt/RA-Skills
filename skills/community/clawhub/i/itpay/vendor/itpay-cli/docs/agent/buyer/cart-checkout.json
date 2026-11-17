@@ -1,0 +1,63 @@
+{
+  "schema_version": "itp.agent_doc.v1",
+  "role": "buyer",
+  "product_scope": "itpay is the single public CLI entry point, and $itpay is its user-facing Skill invocation. Under that one product entry point, the two top-level commerce actions are buy and sell: Buyer workflows are available now; Seller workflows will use the same entry point and are not implemented yet.",
+  "topic": "cart-checkout",
+  "title": "Canonical Cart And Checkout Routing",
+  "purpose": "Use the canonical server Cart and route service-backed lines through Service Execution without hardcoded service logic.",
+  "when_to_use": [
+    "A catalog item or variant is ready to add.",
+    "An interrupted Cart or Checkout needs recovery."
+  ],
+  "commands": [
+    {
+      "intent": "add one published line",
+      "command": "itpay --agent-type <agent_type> cart add --item <catalog_item_id> --variant <catalog_variant_id> --offer <offer_id> --quantity 1 --json",
+      "success_signal": "result identifies the canonical cart line and next contains one executable recovery or service command"
+    },
+    {
+      "intent": "read the canonical Cart route",
+      "command": "itpay --agent-type <agent_type> cart next --json",
+      "success_signal": "service-backed lines route to services next; ordinary lines route to buy"
+    },
+    {
+      "intent": "create an ordinary Checkout",
+      "command": "itpay --agent-type <agent_type> buy --cart <cart_id> --json",
+      "success_signal": "status is human_checkout_required and handoff contains only fields usable by the current Host"
+    },
+    {
+      "intent": "create or resume a service Checkout",
+      "command": "itpay --agent-type <agent_type> services checkout <service_execution_id> --capability <capability_id> [--input key=value] [--email <email>] --json",
+      "success_signal": "one Checkout handoff is returned; rerun with --resume after output or token loss"
+    }
+  ],
+  "agent_rules": [
+    "The Backend Cart is business truth; ~/.itpay-v3/cart.json only stores local recovery handles and explicit drafts.",
+    "Run the exact next.command returned by the CLI. Do not extract or invent a capability from a raw list.",
+    "One service intent uses one Service Execution. Start another execution for another independent intent.",
+    "Ask for email only when the selected capability requires protected delivery; never invent contact data.",
+    "A lost Checkout response is retried with the same Cart and persisted idempotency operation."
+  ],
+  "forbidden": [
+    "Do not call ordinary buy for a service-backed Cart line.",
+    "Do not create a second Checkout when the existing one can be resumed.",
+    "Do not treat QR display as payment verification."
+  ],
+  "next_docs": [
+    {
+      "condition": "Checkout handoff is ready",
+      "topic": "payment-flow"
+    },
+    {
+      "condition": "Host rendering needs clarification",
+      "topic": "render-hosts"
+    }
+  ],
+  "search_terms": [
+    "cart",
+    "checkout",
+    "service execution",
+    "resume",
+    "contact"
+  ]
+}

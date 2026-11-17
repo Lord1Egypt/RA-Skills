@@ -1,43 +1,59 @@
-## Description: <br>
-基于 MediaCrawler 的多平台公开信息采集工具，支持安装、命令行运行、WebUI、结果定位与常用任务模板。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+Media Crawler helps agents set up and operate MediaCrawler for multi-platform public information collection, including command-line runs, WebUI launch, result discovery, and common task templates.
 
-## Publisher: <br>
-[Excalibur9527](https://clawhub.ai/user/Excalibur9527) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[excalibur9527](https://clawhub.ai/user/excalibur9527)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run MediaCrawler-based collection workflows for public social platform content, including keyword search, detail collection, creator collection, WebUI operation, and result discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation downloads and executes external setup code, installs dependencies and a browser, and modifies $HOME/MediaCrawler. <br>
-Mitigation: Review the setup script and upstream repository before installation, and run setup in a container or isolated user account when possible. <br>
-Risk: Crawler runs can retain collected data and possibly login or session state on disk. <br>
-Mitigation: Use a dedicated workspace, inspect configured output paths, and manually remove result files and cached session data after use. <br>
-Risk: Collection workflows may interact with third-party social platforms and can create legal, policy, or privacy risk if misused. <br>
-Mitigation: Confirm each planned collection task is lawful, authorized, and compliant with applicable platform terms before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to install MediaCrawler, run common public-information collection workflows, launch its WebUI, and locate generated result files. It is best suited for learning, research, and compliance-reviewed collection tasks.
 
-## Reference(s): <br>
-- [Media Crawler ClawHub listing](https://clawhub.ai/Excalibur9527/mediacrawler-skill) <br>
-- [MediaCrawler upstream repository](https://github.com/NanmiCoder/MediaCrawler.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides setup, crawler execution, WebUI launch, and result file lookup; crawler data is written by the installed MediaCrawler project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence and artifact manifest) <br>
+Risk: Setup runs mutable internet-fetched code, repository code, and dependencies as the current user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup before installing, install uv manually where possible, and run the skill in a dedicated low-privilege environment.
+
+Risk: The upstream MediaCrawler repository is cloned or updated without a pinned, reviewed commit.
+
+Mitigation: Pin or review the MediaCrawler commit before running collection workflows.
+
+Risk: Crawler outputs and login or session caches may contain sensitive data.
+
+Mitigation: Protect generated outputs and login/session caches during use, and delete them when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/excalibur9527/skills/mediacrawler-skill)
+- [Publisher profile](https://clawhub.ai/user/excalibur9527)
+- [MediaCrawler upstream project](https://github.com/NanmiCoder/MediaCrawler.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run setup commands, clone or update MediaCrawler, install dependencies, launch a local WebUI, and inspect crawler result files.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

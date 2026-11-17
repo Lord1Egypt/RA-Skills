@@ -1,0 +1,156 @@
+[
+  {
+    "name": "pending rows are listed separately and never counted",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_task", "dedup_key": "task:s1:aaaaaaaaaaaa", "status": "confirmed", "start_at": "2026-10-20T00:00:00", "source_ref": "s1", "payload": { "item": "Call the bank", "quote": "I need to call the bank", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s2:bbbbbbbbbbbb", "status": "pending", "start_at": "2026-10-25T00:00:00", "source_ref": "s2", "payload": { "item": "Renew passport", "quote": "I have to renew my passport", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s1:cccccccccccc", "status": "confirmed", "start_at": "2026-10-05T00:00:00", "source_ref": "s1", "payload": { "item": "lunch", "amount": 12, "currency": "USD", "category": "Food & drink", "quote": "just paid twelve dollars for lunch", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s2:dddddddddddd", "status": "pending", "start_at": "2026-10-25T00:00:00", "source_ref": "s2", "payload": { "item": "taxi", "amount": 20, "currency": "USD", "category": "Transport", "quote": "the taxi was twenty bucks", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s1:aaaaaaaaaaaa:s3", "status": "pending", "start_at": "2026-10-26T00:00:00", "source_ref": "s3", "payload": { "task_key": "task:s1:aaaaaaaaaaaa", "quote": "I finally called the bank", "source": "recording" } }
+    ],
+    "expect": {
+      "open": ["task:s1:aaaaaaaaaaaa"],
+      "doneRecently": [],
+      "pending": { "tasks": 1, "expenses": 1, "dones": 1 },
+      "spending": { "2026-10": { "USD": { "total": 12, "byCategory": { "Food & drink": 12 } } } }
+    }
+  },
+  {
+    "name": "discarded rows are deleted on the server, so they are absent and count nothing",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_task", "dedup_key": "task:s1:aaaaaaaaaaaa", "status": "confirmed", "start_at": "2026-10-20T00:00:00", "source_ref": "s1", "payload": { "item": "Call the bank", "quote": "I need to call the bank", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s1:cccccccccccc", "status": "confirmed", "start_at": "2026-10-05T00:00:00", "source_ref": "s1", "payload": { "item": "lunch", "amount": 12, "currency": "USD", "category": "Food & drink", "quote": "just paid twelve dollars for lunch", "source": "recording" } }
+    ],
+    "expect": {
+      "open": ["task:s1:aaaaaaaaaaaa"],
+      "doneRecently": [],
+      "pending": { "tasks": 0, "expenses": 0, "dones": 0 },
+      "spending": { "2026-10": { "USD": { "total": 12, "byCategory": { "Food & drink": 12 } } } }
+    }
+  },
+  {
+    "name": "a confirmed done closes its to-do and lists it under done recently",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_task", "dedup_key": "task:s1:aaaaaaaaaaaa", "status": "confirmed", "start_at": "2026-10-20T00:00:00", "source_ref": "s1", "payload": { "item": "Call the bank", "quote": "I need to call the bank", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s4:eeeeeeeeeeee", "status": "confirmed", "start_at": "2026-10-22T00:00:00", "source_ref": "s4", "payload": { "item": "Buy printer ink", "quote": "I need to buy printer ink", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s1:aaaaaaaaaaaa:app:1793000000", "status": "confirmed", "start_at": "2026-10-25T00:00:00", "source_ref": null, "payload": { "task_key": "task:s1:aaaaaaaaaaaa", "quote": "", "source": "app" } }
+    ],
+    "expect": {
+      "open": ["task:s4:eeeeeeeeeeee"],
+      "doneRecently": ["task:s1:aaaaaaaaaaaa"],
+      "pending": { "tasks": 0, "expenses": 0, "dones": 0 },
+      "spending": {}
+    }
+  },
+  {
+    "name": "undo (the app done row discarded) reopens the to-do",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_task", "dedup_key": "task:s1:aaaaaaaaaaaa", "status": "confirmed", "start_at": "2026-10-20T00:00:00", "source_ref": "s1", "payload": { "item": "Call the bank", "quote": "I need to call the bank", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s4:eeeeeeeeeeee", "status": "confirmed", "start_at": "2026-10-22T00:00:00", "source_ref": "s4", "payload": { "item": "Buy printer ink", "quote": "I need to buy printer ink", "source": "recording" } }
+    ],
+    "expect": {
+      "open": ["task:s4:eeeeeeeeeeee", "task:s1:aaaaaaaaaaaa"],
+      "doneRecently": [],
+      "pending": { "tasks": 0, "expenses": 0, "dones": 0 },
+      "spending": {}
+    }
+  },
+  {
+    "name": "a confirmed done naming an unknown, another user's or an unconfirmed to-do changes nothing",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_task", "dedup_key": "task:s1:aaaaaaaaaaaa", "status": "confirmed", "start_at": "2026-10-20T00:00:00", "source_ref": "s1", "payload": { "item": "Call the bank", "quote": "I need to call the bank", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s2:bbbbbbbbbbbb", "status": "pending", "start_at": "2026-10-25T00:00:00", "source_ref": "s2", "payload": { "item": "Renew passport", "quote": "I have to renew my passport", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:nowhere:ffffffffffff:s5", "status": "confirmed", "start_at": "2026-10-26T00:00:00", "source_ref": "s5", "payload": { "task_key": "task:nowhere:ffffffffffff", "quote": "I finished the quarterly report", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:other-user-session:999999999999:s6", "status": "confirmed", "start_at": "2026-10-26T00:00:00", "source_ref": "s6", "payload": { "task_key": "task:other-user-session:999999999999", "quote": "done with that", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s2:bbbbbbbbbbbb:s7", "status": "confirmed", "start_at": "2026-10-26T00:00:00", "source_ref": "s7", "payload": { "task_key": "task:s2:bbbbbbbbbbbb", "quote": "passport is renewed", "source": "recording" } }
+    ],
+    "expect": {
+      "open": ["task:s1:aaaaaaaaaaaa"],
+      "doneRecently": [],
+      "pending": { "tasks": 1, "expenses": 0, "dones": 0 },
+      "spending": {}
+    }
+  },
+  {
+    "name": "USD and CNY in the same month give two totals, never added",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_expense", "dedup_key": "exp:s1:111111111111", "status": "confirmed", "start_at": "2026-10-03T00:00:00", "source_ref": "s1", "payload": { "item": "lunch", "amount": 12, "currency": "USD", "category": "Food & drink", "quote": "twelve dollars for lunch", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s2:222222222222", "status": "confirmed", "start_at": "2026-10-04T00:00:00", "source_ref": "s2", "payload": { "item": "咖啡", "amount": 35, "currency": "CNY", "category": "Food & drink", "quote": "我刚花了三十五块钱买咖啡", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s3:333333333333", "status": "confirmed", "start_at": "2026-10-06T00:00:00", "source_ref": "s3", "payload": { "item": "bus pass", "amount": 8.5, "currency": "USD", "category": "Transport", "quote": "bus pass was eight fifty", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s4:444444444444", "status": "confirmed", "start_at": "2026-10-07T00:00:00", "source_ref": "s4", "payload": { "item": "stickers", "amount": 0.1, "currency": "USD", "category": "Shopping", "quote": "ten cents for a sticker", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s5:555555555555", "status": "confirmed", "start_at": "2026-10-08T00:00:00", "source_ref": "s5", "payload": { "item": "more stickers", "amount": 0.2, "currency": "USD", "category": "Shopping", "quote": "twenty cents for stickers", "source": "recording" } }
+    ],
+    "expect": {
+      "open": [],
+      "doneRecently": [],
+      "pending": { "tasks": 0, "expenses": 0, "dones": 0 },
+      "spending": {
+        "2026-10": {
+          "CNY": { "total": 35, "byCategory": { "Food & drink": 35 } },
+          "USD": { "total": 20.8, "byCategory": { "Food & drink": 12, "Transport": 8.5, "Shopping": 0.3 } }
+        }
+      }
+    }
+  },
+  {
+    "name": "an expense on Oct 31 counts in October and one on Nov 1 in November",
+    "now": "2026-11-01T08:00:00",
+    "rows": [
+      { "type": "ledger_expense", "dedup_key": "exp:s1:666666666666", "status": "confirmed", "start_at": "2026-10-31T00:00:00", "source_ref": "s1", "payload": { "item": "groceries", "amount": 40, "currency": "USD", "category": "Groceries", "quote": "forty bucks at the store", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s2:777777777777", "status": "confirmed", "start_at": "2026-11-01T00:00:00", "source_ref": "s2", "payload": { "item": "milk and bread", "amount": 15, "currency": "USD", "category": "Groceries", "quote": "fifteen dollars for milk and bread", "source": "recording" } }
+    ],
+    "expect": {
+      "open": [],
+      "doneRecently": [],
+      "pending": { "tasks": 0, "expenses": 0, "dones": 0 },
+      "spending": {
+        "2026-10": { "USD": { "total": 40, "byCategory": { "Groceries": 40 } } },
+        "2026-11": { "USD": { "total": 15, "byCategory": { "Groceries": 15 } } }
+      }
+    }
+  },
+  {
+    "name": "done recently keeps 14 days: 14 days ago is in, 15 days ago is out",
+    "now": "2026-10-26T12:00:00",
+    "rows": [
+      { "type": "ledger_task", "dedup_key": "task:s1:a1a1a1a1a1a1", "status": "confirmed", "start_at": "2026-10-01T00:00:00", "source_ref": "s1", "payload": { "item": "Fix the bike", "quote": "I need to fix the bike", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s1:b2b2b2b2b2b2", "status": "confirmed", "start_at": "2026-10-01T00:00:00", "source_ref": "s1", "payload": { "item": "Return the library books", "quote": "I have to return the library books", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s1:c3c3c3c3c3c3", "status": "confirmed", "start_at": "2026-10-01T00:00:00", "source_ref": "s1", "payload": { "item": "Call the dentist", "quote": "I should call the dentist", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s1:a1a1a1a1a1a1:s2", "status": "confirmed", "start_at": "2026-10-12T00:00:00", "source_ref": "s2", "payload": { "task_key": "task:s1:a1a1a1a1a1a1", "quote": "the bike is fixed", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s1:b2b2b2b2b2b2:s3", "status": "confirmed", "start_at": "2026-10-11T00:00:00", "source_ref": "s3", "payload": { "task_key": "task:s1:b2b2b2b2b2b2", "quote": "returned the books", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s1:c3c3c3c3c3c3:app:1793050000", "status": "confirmed", "start_at": "2026-10-26T00:00:00", "source_ref": null, "payload": { "task_key": "task:s1:c3c3c3c3c3c3", "quote": "", "source": "app" } }
+    ],
+    "expect": {
+      "open": [],
+      "doneRecently": ["task:s1:c3c3c3c3c3c3", "task:s1:a1a1a1a1a1a1"],
+      "pending": { "tasks": 0, "expenses": 0, "dones": 0 },
+      "spending": {}
+    }
+  },
+  {
+    "name": "shuffled row order gives the same result (ties broken by dedup_key, one done entry per to-do)",
+    "now": "2026-10-26T09:00:00",
+    "rows": [
+      { "type": "ledger_expense", "dedup_key": "exp:s9:888888888888", "status": "confirmed", "start_at": "2026-10-10T00:00:00", "source_ref": "s9", "payload": { "item": "movie tickets", "amount": 30, "currency": "USD", "category": "Entertainment", "quote": "thirty for the movie tickets", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s8:zzzzzzzzzzzz:app:1793060000", "status": "confirmed", "start_at": "2026-10-24T00:00:00", "source_ref": null, "payload": { "task_key": "task:s8:zzzzzzzzzzzz", "quote": "", "source": "app" } },
+      { "type": "ledger_task", "dedup_key": "task:s8:yyyyyyyyyyyy", "status": "confirmed", "start_at": "2026-10-23T00:00:00", "source_ref": "s8", "payload": { "item": "Book flights", "quote": "I need to book flights", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s9:999999999999", "status": "confirmed", "start_at": "2026-10-10T00:00:00", "source_ref": "s9", "payload": { "item": "pharmacy", "amount": 30, "currency": "USD", "category": "Health", "quote": "thirty at the pharmacy", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s8:xxxxxxxxxxxx", "status": "confirmed", "start_at": "2026-10-23T00:00:00", "source_ref": "s8", "payload": { "item": "Pay rent", "quote": "I have to pay rent", "source": "recording" } },
+      { "type": "ledger_task", "dedup_key": "task:s8:zzzzzzzzzzzz", "status": "confirmed", "start_at": "2026-10-23T00:00:00", "source_ref": "s8", "payload": { "item": "Water the plants", "quote": "I need to water the plants", "source": "recording" } },
+      { "type": "ledger_done", "dedup_key": "done:task:s8:zzzzzzzzzzzz:s10", "status": "confirmed", "start_at": "2026-10-25T00:00:00", "source_ref": "s10", "payload": { "task_key": "task:s8:zzzzzzzzzzzz", "quote": "watered the plants", "source": "recording" } },
+      { "type": "ledger_expense", "dedup_key": "exp:s9:777777777777", "status": "pending", "start_at": "2026-10-11T00:00:00", "source_ref": "s9", "payload": { "item": "phone bill", "amount": 45, "currency": "USD", "category": "Bills & subscriptions", "quote": "phone bill was forty five", "source": "recording" } }
+    ],
+    "expect": {
+      "open": ["task:s8:xxxxxxxxxxxx", "task:s8:yyyyyyyyyyyy"],
+      "doneRecently": ["task:s8:zzzzzzzzzzzz"],
+      "pending": { "tasks": 0, "expenses": 1, "dones": 0 },
+      "spending": { "2026-10": { "USD": { "total": 60, "byCategory": { "Entertainment": 30, "Health": 30 } } } }
+    }
+  }
+]

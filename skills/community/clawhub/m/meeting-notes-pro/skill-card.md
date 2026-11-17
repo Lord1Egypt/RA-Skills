@@ -1,41 +1,51 @@
-## Description: <br>
-Meeting Notes Pro helps agents create meeting summaries, agendas, action item trackers, 1:1 templates, decision logs, and meeting effectiveness reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Notes Pro helps users create purposeful, outcome-driven meeting artifacts, including agendas, summaries, action trackers, decision logs, 1:1 templates, and effectiveness scores.
 
-## Publisher: <br>
-[OliverMonneke](https://clawhub.ai/user/OliverMonneke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[olivermonneke](https://clawhub.ai/user/olivermonneke)
 
-## Use Case: <br>
-Teams, managers, facilitators, and individual contributors use this skill to turn meeting notes or transcripts into structured summaries, decisions, action items, follow-up reminders, agendas, 1:1 templates, and practical meeting improvement guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential transcripts, personnel discussions, strategy, customer data, or legal details into the skill. <br>
-Mitigation: Avoid sharing sensitive meeting content unless the agent environment is approved for that data, and redact confidential details when possible. <br>
-Risk: Generated owners, deadlines, decisions, and follow-up messages may be incomplete or incorrect. <br>
-Mitigation: Review action items, dates, owners, decisions, and outbound follow-ups before relying on or sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OliverMonneke/meeting-notes-pro) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+## Use Case:
+
+Employees and teams use this skill to turn raw meeting notes, transcripts, or meeting goals into structured summaries, agendas, action trackers, follow-up reminders, decision logs, and 1:1 or performance check-in templates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Meeting notes can contain private business or personnel information.
+
+Mitigation: Review generated summaries, action items, and follow-ups before sharing them outside the intended audience.
+
+Risk: Generated action items, deadlines, decisions, or meeting scores may be incomplete or misleading if the source notes are ambiguous.
+
+Mitigation: Confirm owners, deadlines, decisions, and recommendations against the meeting record before using them for accountability or distribution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates, tables, and concise prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no external dependencies or executable code are required.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown templates, tables, and concise prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

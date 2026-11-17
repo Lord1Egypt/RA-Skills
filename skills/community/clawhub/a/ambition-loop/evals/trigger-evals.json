@@ -1,0 +1,22 @@
+[
+  {"query": "Be more ambitious with this: I was going to ask you to fix the flaky login test in tests/auth_test.py, but honestly it keeps coming back every sprint.", "should_trigger": true},
+  {"query": "Think bigger here. I need the Q3 board deck refreshed from the metrics export in data/q3.csv, but I suspect the deck isn't really what leadership needs.", "should_trigger": true},
+  {"query": "what would a top data scientist actually do with our churn data instead of the pivot table I usually make? here's the raw events dump", "should_trigger": true},
+  {"query": "Our homepage loads in 6 seconds. Aim higher than 'a bit faster' — I want you to go after it properly and prove the result.", "should_trigger": true},
+  {"query": "don't settle for the minimal version. we need a pricing page experiment and I want the ambitious take, with real verification", "should_trigger": true},
+  {"query": "Raise the bar on this research brief: compare vector databases for our 50M-doc search. Start from primary benchmarks, not blog posts.", "should_trigger": true},
+  {"query": "What's the goal behind the goal here? I'm about to ask you to write weekly status emails for the platform team by hand every Friday.", "should_trigger": true},
+  {"query": "Go deeper on this analysis — we believe signups dropped because of the redesign, but I want that assumption challenged against the raw logs.", "should_trigger": true},
+  {"query": "Here's my prompt for an agent: 'summarize customer feedback from Zendesk'. Make it way more ambitious before I run it.", "should_trigger": true},
+  {"query": "I read Felix Rieseberg's altitude/depth/range essay. Apply that to my task: building the onboarding email sequence for our app.", "should_trigger": true},
+  {"query": "Fix the typo 'recieve' in docs/api.md line 40.", "should_trigger": false},
+  {"query": "Just give me a minimal patch for this null pointer in UserService.java, nothing else — we're in code freeze.", "should_trigger": false},
+  {"query": "Production is down after the last deploy, roll back to v2.3.1 right now.", "should_trigger": false},
+  {"query": "Make this email sound less angry: 'Why is the invoice STILL wrong??'", "should_trigger": false},
+  {"query": "What is the capital of Australia?", "should_trigger": false},
+  {"query": "Shorten this paragraph to under 50 words for a tweet.", "should_trigger": false},
+  {"query": "Help me write my personal career goals for next year — I want to be more ambitious in my life.", "should_trigger": false},
+  {"query": "Write a motivational speech about ambition for our team offsite.", "should_trigger": false},
+  {"query": "Rename the variable `tmp` to `buffer` across src/utils.py.", "should_trigger": false},
+  {"query": "Make my app more proactive: add push notifications that remind users to log in daily.", "should_trigger": false}
+]

@@ -1,41 +1,49 @@
-## Description: <br>
-调用自定义摘要 API，对用户提供的文本进行处理并返回结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用自定义摘要 API，对用户提供的文本进行处理并返回结果。
 
-## Publisher: <br>
-[heqq-github](https://clawhub.ai/user/heqq-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heqq-github](https://clawhub.ai/user/heqq-github)
 
-## Use Case: <br>
-External users and developers use this skill when they explicitly ask an agent to summarize, extract key points from, or otherwise process supplied text through a custom summary API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for summarization is sent to an external API. <br>
-Mitigation: Do not submit passwords, API keys, private documents, customer data, regulated information, or proprietary material unless the endpoint operator and its data handling are trusted and approved. <br>
-Risk: The external API can be unavailable or return an error. <br>
-Mitigation: Surface API failures clearly and avoid inventing a summary when the endpoint does not return a usable result. <br>
+## Use Case:
 
+External users and developers can use this skill to send provided text to a configured summary API for summarization, key point extraction, or normalized text processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heqq-github/custom-api-summary-xzk) <br>
-- [Custom summary API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, JSON] <br>
-**Output Format:** [JSON or plain text returned from the custom summary API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires non-empty user-provided text; external API failures should be surfaced instead of fabricated results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: Text submitted for summarization is sent to a disclosed external API, which may expose sensitive or regulated content to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for passwords, API keys, private business documents, regulated data, or other sensitive material unless the external API and its retention practices are trusted.
+
+## Reference(s):
+
+- [Configured summary API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON response with concise user-facing status or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends the user-provided text as the content field to an external HTTP API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

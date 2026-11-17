@@ -1,42 +1,50 @@
-## Description: <br>
-Defines Memory, Search, and Vector interfaces for LLM memory integrations, with implementation code supplied separately. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LLM Memory Integration is an interface-only package that defines Memory, Search, and Vector interfaces while leaving implementations to a separate package.
 
-## Publisher: <br>
-[xkzs2007](https://clawhub.ai/user/xkzs2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xkzs2007](https://clawhub.ai/user/xkzs2007)
 
-## Use Case: <br>
-Developers and engineers use this skill as an interface-only contract for memory storage, search, and vector embedding integrations while supplying their own implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A fuller implementation may add credential handling, network calls, storage, or memory deletion behavior that is not present in this interface-only package. <br>
-Mitigation: Review and scan any linked private repository or fuller implementation before cloning, installing, or running it. <br>
-Risk: Implementations of these interfaces may process sensitive memory content or embedding provider credentials. <br>
-Mitigation: Verify credential handling, storage controls, and deletion behavior in the selected implementation before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to give agents stable memory, search, and vector interface contracts without bundling storage, network, or embedding implementations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xkzs2007/llm-memory-interface-only) <br>
-- [ClawHub metadata homepage](https://clawhub.ai/skill/llm-memory-integration) <br>
-- [Publisher profile](https://clawhub.ai/user/xkzs2007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Guidance, Configuration] <br>
-**Output Format:** [Python interface definitions with concise implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interface-only package; implementations are supplied separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The public artifact only defines interfaces; a separate private implementation package may add network, storage, credential, or memory behavior that is outside this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan any separate implementation package before installing or using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xkzs2007/skills/llm-memory-interface-only)
+- [ClawHub package homepage metadata](https://clawhub.ai/skill/llm-memory-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python interface examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interface-only output; no runtime dependencies, required environment variables, network access, command execution, or persistence are included in this artifact.]
+
+## Skill Version(s):
+
+9.0.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

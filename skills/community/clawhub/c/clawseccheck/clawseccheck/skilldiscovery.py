@@ -1,0 +1,279 @@
+"""Bounded discovery of configured and grouped OpenClaw skill directories."""
+from __future__ import annotations
+
+import os
+from pathlib import Path
+from . import pathprobe
+
+_MAX_DEPTH = 6
+_MAX_DIRS = 2_000
+
+
+def _exists_as_entry(path: Path) -> bool:
+    """True when *path* is a directory entry at all, whatever it points at.
+
+    `Path.exists()` follows symlinks and `is_file()` additionally demands a regular file, so
+    both answer False for a dangling link, a FIFO or a socket - conflating "there is nothing
+    here" with "there is something here I cannot read as a file". Only the second is a fact
+    about a skill.
+    """
+    try:
+        path.lstat()
+    except (OSError, ValueError):
+        return False
+    return True
+
+
+def _discovery_gap_label(display: Path, depth: int) -> str:
+    """The human-readable name for a directory a discovery-time enumeration failure hit.
+
+    At any ``depth > 0`` node, ``display.name`` is that node's own name, already
+    distinguishing (it is the entry the walk descended into, e.g. a skill directory).
+
+    At ``depth == 0`` (the failure is on the ROOT itself), ``display`` IS the configured
+    load root passed in by the caller, and that root's own basename is not always a name
+    anyone chose. ``collector.config_plugin_load_paths`` unconditionally appends a literal
+    ``/skills`` to every ``plugins.load.paths`` entry before it reaches here, and the same
+    fixed ``/skills`` leaf is appended by every other load-root source collector.py builds
+    (every entry in ``collector.SKILL_DIRS`` - ``skills``, ``workspace/skills``,
+    ``workspace-home/skills``, ... - and each ``agents.defaults.workspace`` /
+    per-agent ``workspace`` override collector._config_workspace_dirs resolves) - so two
+    different failing plugin roots (or a plugin root failing beside the standard ``skills``
+    root, or beside a custom agent workspace) would otherwise collapse to the identical bare
+    ``"skills"`` subject with nothing left to tell them apart. Falling back to the PARENT
+    directory's name (the plugin directory itself, or "workspace" / "workspace-home" / the
+    home directory / the custom workspace's own name) restores the part that actually
+    distinguishes one root from another. A root whose basename is genuinely distinguishing
+    on its own (e.g. a ``skills.load.extraDirs`` entry named "extra") is returned unchanged -
+    this only fires on the literal, convention-driven "skills" leaf.
+
+    Degenerate case, accepted rather than chased further: a plugin directory that is
+    ITSELF named "skills" (``plugins.load.paths: [".../skills"]``, resolving to
+    ``.../skills/skills``) falls back to a parent whose name is ALSO "skills" - no worse
+    than the un-fixed behaviour, and this one shape is left ambiguous on purpose rather
+    than climbing an unbounded number of parents to chase a name that might not exist.
+    """
+    name = display.name
+    if depth == 0 and name == "skills":
+        parent_name = display.parent.name
+        if parent_name:
+            return parent_name
+    return name
+
+
+def _declared_root_key(path: Path) -> Path:
+    """De-duplication key for a declared load root - and never a reason to drop it (C-658).
+
+    A declared root is dropped here only if the audit decided it is not a root at all; a root
+    that merely cannot be resolved (a symlink loop, an unsearchable parent) is exactly the
+    "declared but not readable" fact B158 exists to report, so it must reach the caller. The
+    old ``Path.resolve()`` hid it on some interpreters only: it raises ``RuntimeError`` for a
+    loop on 3.9 / 3.12 (the root was dropped, B158 PASSed) and returns the path on 3.14 (the
+    root was kept, B158 WARNed). ``os.path.realpath`` does not raise for a loop in non-strict
+    mode (measured on 3.12 and 3.14: same result), and whether the kept root is present is
+    decided by the caller through ``pathprobe``, which raises or classifies ELOOP the same way
+    on every interpreter. The key is only for collapsing two spellings of one directory.
+    """
+    try:
+        return Path(os.path.realpath(path))
+    except (OSError, ValueError):
+        return Path(os.path.abspath(path))
+
+
+def config_extra_skill_dirs(home: Path, cfg: dict) -> list[Path]:
+    """Resolve ``skills.load.extraDirs`` without guessing outside the audited config."""
+    skills = cfg.get("skills") if isinstance(cfg, dict) else None
+    load = skills.get("load") if isinstance(skills, dict) else None
+    raw = load.get("extraDirs") if isinstance(load, dict) else None
+    values = [raw] if isinstance(raw, str) else raw if isinstance(raw, list) else []
+    out: list[Path] = []
+    seen: set[Path] = set()
+    for value in values:
+        if not isinstance(value, str) or not value.strip() or "\x00" in value:
+            continue
+        path = pathprobe.expand_user(value)
+        if not path.is_absolute():
+            path = home / path
+        resolved = _declared_root_key(path)
+        if resolved not in seen:
+            seen.add(resolved)
+            out.append(path)
+    return out
+
+
+def config_plugin_load_paths(home: Path, cfg: dict) -> list[Path]:
+    """Resolve ``plugins.load.paths`` (a real dist key) - extra plugin roots whose bundled
+    skills live under ``<plugin>/skills/`` and enter the auto-load surface. Mirrors
+    ``config_extra_skill_dirs``: no guessing outside the audited config; ``\\x00`` /
+    dedup guards; relative paths resolve against *home*."""
+    plugins = cfg.get("plugins") if isinstance(cfg, dict) else None
+    load = plugins.get("load") if isinstance(plugins, dict) else None
+    raw = load.get("paths") if isinstance(load, dict) else None
+    values = [raw] if isinstance(raw, str) else raw if isinstance(raw, list) else []
+    out: list[Path] = []
+    seen: set[Path] = set()
+    for value in values:
+        if not isinstance(value, str) or not value.strip() or "\x00" in value:
+            continue
+        path = pathprobe.expand_user(value)
+        if not path.is_absolute():
+            path = home / path
+        resolved = _declared_root_key(path)
+        if resolved not in seen:
+            seen.add(resolved)
+            out.append(path)
+    return out
+
+
+def iter_discovered_skill_dirs(
+    base: Path,
+    *,
+    allow_symlink_entries: bool,
+    # Any object with ``.append(str)``. The collector passes a domain-scoped sink so this
+    # leaf's cap hit is tagged ``skill`` without this module importing the collector.
+    limit_hits,
+    # B-654: same duck-typed ``.append(str)`` shape as *limit_hits*, default ``None`` so
+    # every existing caller - including the direct calls in
+    # ``tests/test_b549_unreadable_dir_disclosed.py`` - is unaffected. Carries the bare
+    # directory NAME (never a path) of a directory whose own SKILL.md exists but is not a
+    # regular file (a dangling symlink, a FIFO): the fall-through below already explains,
+    # in the B-549 comment, why that directory is neither yielded nor truncated. This is
+    # additive only - a fact recorded on the existing fall-through, nothing more. The
+    # collector turns it into the same five writes ``collect_skill_files`` already
+    # performs for the identical fact once a directory has been yielded and walked, via
+    # ``_note_unreadable_manifest`` - so the two shapes cannot drift into two different
+    # sentences about one fact, which is exactly how attempt 3 went wrong one layer up.
+    unassessable=None,
+):
+    """Yield ``(display_path, resolved_dir)`` for grouped layouts up to six levels."""
+    try:
+        base_target = base.resolve()
+    except (OSError, ValueError, RuntimeError):
+        return
+    # B-654 (narrowed after the retraction pin caught the first version): *ancestors* is
+    # the list of open "candidate" ids on the path from *base* down to this node - a
+    # candidate is a directory whose own SKILL.md is present but not a regular file.
+    # `_pending` maps each candidate id to its name and whether its subtree - itself
+    # (structurally never, its own manifest is broken) or any descendant - has yielded a
+    # skill by the time the walk finishes. Only a candidate that contributed NOTHING is
+    # reported: a broken manifest sitting over real, fully-discovered skills hid nothing
+    # (`tests/test_b549_unreadable_dir_disclosed.py::
+    # test_a_dangling_container_manifest_does_not_cost_a_clean_home_its_verdict` pins
+    # exactly this as a false alarm - three skills scanned in full, nothing unreadable
+    # anywhere); a broken manifest over a directory with no descendant skill to vouch for
+    # it dropped that directory's own content from the population entirely, which is a
+    # real, reportable loss.
+    _pending: dict[int, dict] = {}
+    queue: list[tuple[Path, Path, int, list]] = [(base, base_target, 0, [])]
+    seen_dirs: set[Path] = set()
+    visited = 0
+
+    _walk_was_cut_short = False
+    while queue:
+        display, target, depth, ancestors = queue.pop(0)
+        if target in seen_dirs:
+            continue
+        seen_dirs.add(target)
+        visited += 1
+        if visited > _MAX_DIRS:
+            limit_hits.append(
+                f"skill discovery under '{base}' exceeded the {_MAX_DIRS}-directory cap"
+            )
+            _walk_was_cut_short = True
+            break
+
+        manifest = target / "SKILL.md"
+        try:
+            is_manifest = pathprobe.is_file(manifest)
+        except OSError as exc:
+            # `Path.is_file()` re-raises anything outside ENOENT/ENOTDIR/EBADF/ELOOP, so
+            # EACCES propagates - a `chmod 000` directory anywhere under a skills root
+            # crashed the whole audit, not just this branch of it. Verified pre-existing
+            # against `git show HEAD:` before this handler was added. Same root cause as the
+            # walk-layer crash filed separately; this is the discovery-layer instance, and it
+            # is the one that takes the entire run down.
+            limit_hits.append(
+                f"skill discovery could not read "
+                f"'{_discovery_gap_label(display, depth)}/SKILL.md': {exc.strerror or exc}"
+            )
+            continue
+        if is_manifest:
+            for _cid in ancestors:
+                _pending[_cid]["contributed"] = True
+            yield display, target
+            continue
+        # B-549 shape 2 - a directory whose SKILL.md is present but unreadable (a dangling
+        # symlink, a FIFO) - is deliberately NOT handled here, after three attempts that were
+        # each worse than the silence they replaced. Recorded so the next attempt starts from
+        # the wreckage rather than repeating it:
+        #
+        #   1. yield + `continue`: a group directory carrying one dangling SKILL.md hid every
+        #      skill beneath it - pre-change found `group/real`, that version found only
+        #      `group`, and a live `curl | sh` went dark for the cost of one symlink.
+        #   2. yield without `continue`: a dangling SKILL.md in the skills ROOT made the
+        #      container an installed skill whose text is the union of every real skill -
+        #      `inventory.skills: ['skills', 'alpha', 'beta']`, one payload attributed twice,
+        #      and on a home with NO payload the merged text blew the per-skill 1000KB cap
+        #      that no real skill came near, costing a HIGH check its verdict.
+        #   3. disclose into `limit_hits` without yielding: the population came out right,
+        #      but `LIMIT_DOMAIN_SKILL` means "my scan was truncated" to its consumers, so
+        #      `check_installed_skills`' coverage-gap branch fired on a clean home with three
+        #      fully-scanned skills - B13 PASS became UNKNOWN for one broken symlink.
+        #
+        # All three were Golden Rule #5 failures found by an independent adversarial pass,
+        # and all three shared one mistake: treating "a directory looks like a skill but could
+        # not be assessed" as either a member of the population or a truncated scan. It is
+        # neither. It needs a channel no verdict currently consumes - a per-subject inventory
+        # row - which is a different piece of work with its own task. The pre-existing silence
+        # is wrong, but it is not a false statement, and each of these was.
+        #
+        # B-654 built that channel: *unassessable* records the bare name at the end of the
+        # walk, and only when the subtree rooted here never yielded a skill - still without
+        # yielding or truncating anything itself here - the population and the walk are
+        # unchanged.
+        child_ancestors = ancestors
+        if unassessable is not None and _exists_as_entry(manifest):
+            _cid = len(_pending)
+            _pending[_cid] = {"name": display.name, "contributed": False}
+            child_ancestors = ancestors + [_cid]
+        if depth >= _MAX_DEPTH:
+            continue
+
+        try:
+            entries = sorted(target.iterdir(), key=lambda path: path.name)
+        except OSError as exc:
+            # Same silent-drop shape one layer up from the walk: an unreadable directory
+            # under a skill root disappeared from discovery with no bookkeeping at all.
+            # The domain-scoped sink is already in scope, so the disclosure costs nothing.
+            limit_hits.append(
+                f"skill discovery could not list "
+                f"'{_discovery_gap_label(display, depth)}/': {exc.strerror or exc}"
+            )
+            continue
+        for entry in entries:
+            if entry.name in {".git", "node_modules", "__pycache__"}:
+                continue
+            try:
+                is_link = pathprobe.is_symlink(entry)
+                if is_link and not allow_symlink_entries:
+                    continue
+                entry_target = entry.resolve() if is_link else entry
+                if not pathprobe.is_dir(entry_target):
+                    continue
+            except (OSError, ValueError, RuntimeError):
+                continue
+            queue.append((display / entry.name, entry_target, depth + 1, child_ancestors))
+
+    # B-654: only judge candidates on a walk that FINISHED. "contributed nothing" is a
+    # claim about a whole subtree, and a walk stopped by the directory cap has not seen
+    # one -- a candidate whose real skill sits past the cap would be recorded as having
+    # contributed nothing, and the message that record produces ("not a regular file --
+    # nothing to read at rest") would be false about a directory we simply never reached.
+    # Measured: with the cap lowered to 10 over a padded tree, the candidate was recorded
+    # while its real nested skill lay one entry beyond it. The truncation note appended
+    # above already discloses the cut-short walk, so silence here loses nothing -- and a
+    # wrong message on this channel is exactly what sank the third retracted attempt.
+    if unassessable is not None and not _walk_was_cut_short:
+        for _record in _pending.values():
+            if not _record["contributed"]:
+                unassessable.append(_record["name"])

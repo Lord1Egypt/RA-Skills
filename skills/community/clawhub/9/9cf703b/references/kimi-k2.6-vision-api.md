@@ -91,7 +91,7 @@ for fig_name, path, prompt in figs:
 **优先级**: 环境变量 > 配置文件 > 硬编码
 
 ```bash
-export MOONSHOT_API_KEY="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+export MOONSHOT_API_KEY="REDACTED-SECRET"
 ```
 
 获取 Key: https://platform.kimi.com → 登录 → 用户中心 → API Key

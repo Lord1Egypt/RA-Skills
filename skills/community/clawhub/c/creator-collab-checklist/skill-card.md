@@ -1,40 +1,58 @@
-## Description: <br>
-Check creator collaboration readiness before campaign launch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check creator collaboration readiness before campaign launch. Use when you need to reduce misunderstandings, delays, and delivery quality issues.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creator operations teams use this skill to check campaign collaboration readiness, surface ambiguous deliverables, timelines, payment terms, and revision rules, and prepare a launch checklist before a creator campaign begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce collaboration checklists that touch payment, revision, deliverable, or contract terms. <br>
-Mitigation: Review those terms before use and do not treat the checklist as a substitute for legal contracts. <br>
-Risk: The artifact states a non-commercial CC BY-NC-SA license with separate permission required for commercial use. <br>
-Mitigation: Confirm commercial licensing permission from the rights holder before using the skill commercially. <br>
+## Use Case:
 
+External creator operations teams use this skill to check whether collaboration goals, deliverables, timelines, revision rules, and payment rules are ready before launching creator campaigns.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist with readiness check, risk points, launch checklist, and alignment message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not replace legal contracts; review payment, revision, deliverable, and contract terms before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat the checklist or alignment message as a replacement for a legal contract.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review legal terms separately and use the skill output only as campaign readiness guidance.
+
+Risk: Commercial use may exceed the non-commercial license terms unless a separate license is obtained from Razestar.
+
+Mitigation: Confirm commercial licensing rights before using this skill in a paid or business campaign workflow.
+
+Risk: Campaign collaboration details can include sensitive payment, timeline, and revision-rule information.
+
+Mitigation: Share only the details needed for the readiness check and handle the output according to the team's confidentiality requirements.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/creator-collab-checklist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist with readiness check, risk points, launch checklist, and alignment message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not replace legal contracts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Use when creating journal cover images, generating scientific artwork prompts, or designing graphical abstracts. Creates detailed prompts for AI image generators to produce publication-quality scientific visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates detailed prompts for AI image generators to produce publication-quality scientific journal cover images, scientific artwork, and graphical abstracts.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users, researchers, and content teams use this skill to create structured prompts for scientific journal cover images and graphical abstracts from a research topic, style, mood, and color palette. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential unpublished research details in prompts that are later sent to external image-generation tools. <br>
-Mitigation: Review prompts before using external services and remove confidential or unpublished details unless the target tool and workflow are approved for that data. <br>
-Risk: Documentation examples mention cover_prompter paths that are stale relative to the packaged executable path. <br>
-Mitigation: Use scripts/main.py as the executable path and validate with python -m py_compile scripts/main.py and python scripts/main.py --help before relying on script execution. <br>
-Risk: Broad or incomplete requests can push the skill outside its documented journal cover and graphical abstract scope. <br>
-Mitigation: Require the research topic and relevant style constraints, and return missing inputs, assumptions, and next checks when the request is underspecified. <br>
+## Use Case:
 
+External researchers, science communicators, and developers use this skill to turn a research topic and visual preferences into structured AI-image prompts for journal covers or graphical abstracts. It helps keep prompt outputs scoped, reviewable, and clear about assumptions and limits.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/journal-cover-prompter) <br>
-- [Publisher Profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and formatted text with prompt sections, technical specifications, negative prompt guidance, suggested tools, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated prompts should preserve stated assumptions and stay within the journal cover and graphical abstract scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be used beyond visual prompt generation, including broader academic writing or scientific claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use scoped to journal-cover and graphical-abstract prompt generation, and require separate domain review for any scientific claims.
+
+Risk: Incomplete inputs or stress-case requests can weaken scope boundaries.
+
+Mitigation: Ask for the minimum missing research topic, style, mood, color, and text-inclusion inputs before generating a final prompt.
+
+## Reference(s):
+
+- [Audit reference](artifact/references/audit-reference.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/journal-cover-prompter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured prompt text and inline shell or Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output calls out objectives, inputs, assumptions, workflow, deliverables, risks, and next checks when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

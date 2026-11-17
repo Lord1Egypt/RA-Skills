@@ -1,38 +1,49 @@
-## Description: <br>
-Academic Narratologist provides story-structure, character-arc, and literary analysis grounded in established narratology frameworks from Propp and Campbell to modern narratology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides rigorous narratology analysis of story structure, character arcs, pacing, genre conventions, and literary technique using named theoretical frameworks.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
 
-## Use Case: <br>
-Writers, editors, game narrative designers, and literary analysts use this skill to evaluate story structure, character arcs, pacing, genre expectations, and narrative technique with named narratology frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, manuscripts, or client story material may contain private or sensitive content. <br>
-Mitigation: Avoid sharing confidential or sensitive story material in the agent session unless that disclosure is acceptable for the use case. <br>
+## Use Case:
 
+Writers, editors, narrative designers, and agents use this skill to diagnose story structure, character arcs, thematic consistency, and genre expectations. It is especially suited to analytical feedback that must cite specific narratology frameworks rather than generic writing advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lihangmissu/academic-narratologist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown narrative analysis with structured sections and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include framework-based structure analysis, character arc evaluations, comparative narratology, and revision recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact is a Chinese-language narratology assistant, which may be a fit issue when users expect another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the host agent and deployment context support the user's preferred language before relying on it for multilingual workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lihangmissu/skills/academic-narratologist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured prose with framework-based analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include story structure breakdowns, character arc evaluations, comparative narratology notes, and revision options with tradeoffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-抖音视频解析下载工具，从分享链接提取无水印下载地址，支持下载、转文字和内容分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音视频解析下载工具。从分享链接提取无水印下载地址，支持下载、转文字和内容分析。
 
-## Publisher: <br>
-[kk-kingkong](https://clawhub.ai/user/kk-kingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kk-kingkong](https://clawhub.ai/user/kk-kingkong)
 
-## Use Case: <br>
-External users and developers use this skill to parse Douyin share links, retrieve no-watermark video download links, download media, transcribe audio, and analyze video content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced local douyin-analyzer MCP server is not included in this package, so its behavior cannot be reviewed from the artifact alone. <br>
-Mitigation: Verify that the local MCP server installation is trusted before using the skill. <br>
-Risk: Douyin links, downloaded media, and transcription inputs may pass through the disclosed parsing and local media-processing workflow. <br>
-Mitigation: Only process links and media that are acceptable for that workflow and avoid sensitive content. <br>
-Risk: Temporary video, audio, or transcript files may remain under /tmp after use. <br>
-Mitigation: Delete temporary files from /tmp when processing is complete. <br>
+## Use Case:
 
+External users and developers use this skill to parse Douyin share links, retrieve watermark-free download URLs, download videos, transcribe audio with Whisper, and analyze video content through the configured douyin-analyzer MCP.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kk-kingkong/kk-douyin-download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a local douyin-analyzer MCP server, ffmpeg, Whisper, and temporary files under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill relies on separately installed douyin-analyzer MCP code that is not bundled or pinned in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify, scan, and pin the local douyin-analyzer MCP implementation before installing or running this skill.
+
+Risk: Douyin share links may be sent to Douyin and the third-party liuxingw.com parsing service.
+
+Mitigation: Do not process private or sensitive links unless sharing them with those services is acceptable.
+
+Risk: Downloaded videos and generated transcripts may remain in /tmp after use.
+
+Mitigation: Delete temporary video, audio, and transcript files when processing is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kk-kingkong/skills/kk-douyin-download)
+- [ClawHub publisher profile](https://clawhub.ai/user/kk-kingkong)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local /tmp video or transcript files and a separately installed douyin-analyzer MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

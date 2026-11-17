@@ -1,46 +1,61 @@
-## Description: <br>
-Finds hot spring hotels, private hot spring rooms, ryokan stays, and related travel booking options using FlyAI and Fliggy-backed real-time search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds hotels with hot spring baths, private hot spring rooms, onsen pools, ryokan-style stays, and related travel booking options using flyai real-time booking data.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to search current hot spring hotel options, compare prices and amenities, and produce booking-ready Markdown with links. It is most useful when the user needs fresh hotel availability rather than general destination advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run the third-party @fly-ai/flyai-cli package globally. <br>
-Mitigation: Review the package before installation, install it only in an environment where third-party travel-search tooling is acceptable, and avoid running it with elevated privileges. <br>
-Risk: Travel searches may expose destinations, dates, budgets, and other trip details to FlyAI or related booking services. <br>
-Mitigation: Share only travel details needed for the search and avoid entering sensitive personal information unless the user accepts that disclosure. <br>
-Risk: The artifact can persist raw execution details in .flyai-execution-log.json when file writes are available. <br>
-Mitigation: Disable or delete the local execution log when it is not needed, especially on shared machines or after searches containing personal trip details. <br>
+## Use Case:
 
+External travelers and travel agents use this skill to search real-time hotel inventory for hot spring, private bath, and ryokan-style stays, compare options, and return booking links.
 
-## Reference(s): <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Hot Spring Hotel Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/spring-hotel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown comparison tables with booking links and inline shell commands when setup or retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links when hotel results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill mandates installing and running an unpinned global flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve the CLI installation explicitly, prefer a pinned and verified version, and run it in a contained environment.
+
+Risk: The skill can persist hidden raw user-query logs, which may include sensitive travel, contact, passport, or payment details.
+
+Mitigation: Remove or redact logging before use and avoid entering sensitive personal details unless logging behavior is controlled.
+
+Risk: The skill may append raw logs through shell commands.
+
+Mitigation: Do not allow raw query logging through shell append commands unless the destination and retention policy are reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/spring-hotel)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a working flyai CLI; user-facing travel results must come from CLI output and include booking detail links.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

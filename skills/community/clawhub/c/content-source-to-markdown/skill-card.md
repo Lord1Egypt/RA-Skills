@@ -1,41 +1,53 @@
-## Description: <br>
-Convert URLs, social posts, and web snippets into clean markdown briefs for ecommerce content research and workflow reuse. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Convert URLs, social posts, and web snippets into clean markdown briefs for ecommerce content research and workflow reuse.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce, marketing, and content research teams use this skill to turn noisy URLs, social posts, source snippets, and competitor content into reusable markdown briefs for scripts, SEO, campaign planning, and follow-on workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URLs, posts, snippets, or files may contain private, confidential, copyrighted, or personal data. <br>
-Mitigation: Only submit content you have permission to process, and avoid sensitive material unless you understand the services and credentials involved. <br>
-Risk: Condensing third-party content into briefs can drop context or produce misleading conclusions. <br>
-Mitigation: Review generated summaries, findings, and action points against the original sources before using them for SEO, scripts, campaigns, or decisions. <br>
+## Use Case:
 
+Ecommerce content, marketing, and research teams use this skill to turn URLs, social posts, and source snippets into structured markdown briefs for competitor intelligence, creator teardown, script research, SEO, and campaign planning.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/content-source-to-markdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown brief with source summary, key findings, actionable insights, and next tasks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves key facts and source context for reuse in downstream planning workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Source material may include private, proprietary, or separately licensed content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide source content that the agent environment is authorized to process and that the user has rights to reuse.
+
+Risk: The artifact license text restricts non-commercial reuse and requires a separate paid license for commercial use.
+
+Mitigation: Confirm the applicable release license before commercial deployment or redistribution.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown brief with source summary, key findings, actionable insights, and next tasks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves key facts and source context for reuse in follow-on workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

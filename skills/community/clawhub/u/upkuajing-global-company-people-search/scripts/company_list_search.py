@@ -30,7 +30,7 @@ def search_company_list(params: dict, cursor: str = None) -> dict:
     # 不传 cursor 表示首次请求
 
     # 发起API请求
-    response = make_request('/search/company/list', request_params)
+    response = make_request('/agent/search/company/list', request_params)
     return response
 
 
@@ -98,6 +98,7 @@ def main():
     # 游标查询循环
     total_retrieved = 0
     error_message = None
+    last_request_id = None
     # 总费用 单位分钱
     total_cost = 0
     # 余额
@@ -114,10 +115,12 @@ def main():
             # 检查API响应
             if response.get('code') != 0:
                 error_message = response.get('msg', '未知错误')
+                last_request_id = response.get('requestId')
                 break
 
             # 提取数据
             data = response.get('data', {})
+            last_request_id = response.get('requestId')
             # 提取费用信息 金额单位 分钱
             fee = response.get('fee', {})
             company_list = data.get('list') or []
@@ -174,6 +177,7 @@ def main():
         'status': 'fail' if error_message else 'success',
         'total_hits': total_retrieved,
         'error_msg': error_message,
+        'requestId': last_request_id,
         'file_url': get_task_result_file(task_id),
         'fee': {
             "apiCost": f"{total_cost}分钱",

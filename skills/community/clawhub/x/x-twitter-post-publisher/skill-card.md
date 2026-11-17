@@ -1,43 +1,49 @@
-## Description: <br>
-Publish posts to X/Twitter from plain text or markdown post banks using OpenCLI with an already logged-in browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish posts to X/Twitter from plain text or markdown post banks using OpenCLI with an already logged-in browser session.
 
-## Publisher: <br>
-[jinhuadeng](https://clawhub.ai/user/jinhuadeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinhuadeng](https://clawhub.ai/user/jinhuadeng)
 
-## Use Case: <br>
-External users and developers use this skill to publish prepared X/Twitter posts from direct text or markdown post banks through an existing logged-in browser session. It supports workflows that need reliable X composer activation, character checks, and post verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post publicly from an already logged-in X/Twitter account. <br>
-Mitigation: Require the agent to show the exact post text, selected markdown label, and active account, then obtain explicit approval before clicking Post. <br>
-Risk: The artifact references scripts/publish-x-post.ps1, but that script is not included in the artifact. <br>
-Mitigation: Verify or replace the missing PowerShell script before running any publishing command. <br>
-Risk: X's Draft.js composer can show text visually while the Post button remains disabled or the internal editor state is stale. <br>
-Mitigation: Use native clipboard paste, verify the Post button is enabled, and verify publication through search or the author's timeline before claiming success. <br>
+## Use Case:
 
+Developers, operators, and content workflows use this skill to publish prepared X/Twitter posts from direct text or markdown post banks through an already logged-in browser session.
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/jinhuadeng/x-twitter-post-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown with inline PowerShell and OpenCLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational posting guidance and command examples; the skill itself does not include the referenced publish-x-post.ps1 script in this artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish publicly from the currently logged-in X/Twitter account without a final user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each post manually and prefer a dry run or explicit confirmation step that shows the final post text and target account before live posting.
+
+## Reference(s):
+
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with PowerShell command examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish publicly from the currently logged-in X/Twitter account after composing and validating post text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

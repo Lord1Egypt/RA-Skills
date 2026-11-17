@@ -1,42 +1,55 @@
-## Description: <br>
-Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to run AIsa-backed Perplexity Sonar searches and turn web or multi-source retrieval into summaries, comparisons, competitor scans, trend notes, or research briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends search queries, optional system instructions, and AISA_API_KEY to api.aisa.one. <br>
-Mitigation: Avoid using it for secrets, regulated data, or private workspace content unless the provider's data handling has been reviewed. <br>
-Risk: Returned research may be incomplete, time out, or omit sources that were not actually queried. <br>
-Mitigation: Report provider timeouts or partial retrieval honestly and verify important claims against cited sources before relying on the output. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to run AIsa-backed web research, compare tools or companies, discover recent trends, and turn retrieved results into concise research briefs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baofeng-tech/aisa-perplexity-search-sonar) <br>
-- [AIsa API endpoint](https://api.aisa.one/apis/v1) <br>
-- [Publisher profile](https://clawhub.ai/user/baofeng-tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON responses from the bundled CLI when invoked] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; sends search queries, optional system instructions, and the API key to api.aisa.one.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Search prompts, optional system instructions, and the AIsa API credential are sent to AIsa's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private secrets or sensitive personal data unless your AIsa account terms and data-handling expectations allow it.
+
+Risk: Research results can be incomplete when providers time out or fail.
+
+Mitigation: Report timeouts or unavailable providers clearly and verify important claims against returned sources before relying on the brief.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baofeng-tech/skills/aisa-perplexity-search-sonar)
+- [baofeng-tech publisher profile](https://clawhub.ai/user/baofeng-tech)
+- [AIsa API base endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON returned from AIsa-backed research commands, with concise summaries and structured retrieval results when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; supported commands target sonar, sonar-pro, sonar-reasoning-pro, and sonar-deep-research.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

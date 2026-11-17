@@ -1,46 +1,62 @@
-## Description: <br>
-Clones the iStoreOS repository, creates a PassWall GitHub Actions build workflow, and pushes it to a specified GitHub repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and pushes a GitHub Actions workflow that builds PassWall packages for a user's iStoreOS fork.
 
-## Publisher: <br>
-[veelove](https://clawhub.ai/user/veelove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veelove](https://clawhub.ai/user/veelove)
 
-## Use Case: <br>
-Developers and router maintainers use this skill to add a GitHub Actions workflow to an iStoreOS fork, build PassWall packages, and package a .run installer for supported architectures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive GitHub credentials with write access. <br>
-Mitigation: Use a fine-grained, short-lived token limited to the target fork or GitHub CLI authentication, and revoke the token after use. <br>
-Risk: The documented push flow can overwrite repository contents. <br>
-Mitigation: Use a disposable fork or new branch and back up the repository before running the workflow setup. <br>
-Risk: The generated workflow and .run installer affect router software installation. <br>
-Mitigation: Inspect the workflow and generated installer before running it on a router. <br>
+## Use Case:
 
+Developers and router maintainers use this skill to add a PassWall build workflow to an iStoreOS fork, publish build artifacts, and receive instructions for running the generated installer on a router.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veelove/istore-build-passwall) <br>
-- [Build PassWall workflow](artifact/references/build-passwall.yml) <br>
-- [iStoreOS repository](https://github.com/istoreos/istoreos.git) <br>
-- [OpenWrt PassWall releases](https://api.github.com/repos/Openwrt-Passwall/openwrt-passwall/releases/latest) <br>
-- [OpenWrt PassWall2 releases](https://api.github.com/repos/Openwrt-Passwall/openwrt-passwall2/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and workflow configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and push a GitHub Actions workflow that produces .run installer artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill asks for GitHub credentials that may grant broad repository access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained, short-lived token scoped to a disposable fork or fresh branch, avoid broad classic PATs, and remove any token from Git configuration after use.
+
+Risk: The workflow setup includes destructive repository changes, including force pushing to the target repository.
+
+Mitigation: Run it only against a disposable fork or branch and confirm the target remote and branch before allowing any push.
+
+Risk: The generated workflow downloads packages and publishes a router installer that may run with elevated privileges on the target device.
+
+Mitigation: Review the workflow, verify downloaded packages and GitHub Actions, and test the installer in a controlled router environment before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veelove/skills/istore-build-passwall)
+- [Build PassWall workflow](artifact/references/build-passwall.yml)
+- [iStoreOS repository](https://github.com/istoreos/istoreos)
+- [OpenWrt PassWall releases](https://github.com/Openwrt-Passwall/openwrt-passwall/releases)
+- [OpenWrt PassWall2 releases](https://github.com/Openwrt-Passwall/openwrt-passwall2/releases)
+- [OpenWrt PassWall SourceForge packages](https://sourceforge.net/projects/openwrt-passwall-build/files/releases/packages-22.03)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and a GitHub Actions workflow file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repository changes and GitHub workflow configuration that can publish router installer artifacts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

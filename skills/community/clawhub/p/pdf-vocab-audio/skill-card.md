@@ -1,42 +1,58 @@
-## Description: <br>
-Extracts English vocabulary from a PDF and generates an MP3 that reads each word or phrase twice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts English vocabulary from a PDF and generates MP3 pronunciation audio that reads each word or phrase twice.
 
-## Publisher: <br>
-[effeceee](https://clawhub.ai/user/effeceee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effeceee](https://clawhub.ai/user/effeceee)
 
-## Use Case: <br>
-Learners, teachers, and agents preparing English study materials can turn a PDF vocabulary list into a British English MP3 for listening practice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the selected PDF and uses edge-tts to synthesize extracted vocabulary text. <br>
-Mitigation: Use an explicit PDF path when possible and avoid sensitive PDFs unless the edge-tts data flow is acceptable. <br>
-Risk: Full lines beginning with English may be included in the spoken output. <br>
-Mitigation: Review the source PDF formatting and the generated word list before relying on the MP3. <br>
-Risk: The skill invokes local edge-tts and ffmpeg binaries and writes the resulting MP3 under /tmp. <br>
-Mitigation: Install trusted dependencies and inspect the generated file before sharing it. <br>
+## Use Case:
 
+External users and educators use this skill to turn PDF vocabulary lists into spoken English study audio. It is suited for vocabulary practice workflows where extracted words or phrases can be sent to the configured text-to-speech tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/effeceee/pdf-vocab-audio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio, Files, Text] <br>
-**Output Format:** [MP3 audio file plus console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each extracted English word or phrase is spoken twice with one-second pauses; output is saved under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: PDF-derived vocabulary text may be processed by an external text-to-speech service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only PDFs whose extracted text is acceptable to share with edge-tts; avoid confidential PDFs unless the publisher adds an explicit privacy notice.
+
+Risk: Generated MP3 files are written to a predictable location in /tmp.
+
+Mitigation: Review generated filenames and remove outputs after use, or require a private configurable output directory before using sensitive material.
+
+Risk: Runtime behavior depends on external binaries and Python packages.
+
+Mitigation: Install dependencies from trusted sources and prefer pinned versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/effeceee/skills/pdf-vocab-audio)
+- [ClawHub publisher profile](https://clawhub.ai/user/effeceee)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and an MP3 audio file written to /tmp]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates one MP3 vocabulary reading file named from the source PDF filename.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

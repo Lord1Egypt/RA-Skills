@@ -1,41 +1,49 @@
-## Description: <br>
-Use when integrating a new service with the IAM (Identity and Access Management) system - covers gRPC client setup, JWT token validation, permission checks, and REST API usage for the changyuanfeilun platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when integrating a new service with the IAM (Identity and Access Management) system - covers gRPC client setup, JWT token validation, permission checks, and REST API usage for the changyuanfeilun platform.
 
-## Publisher: <br>
-[effort02](https://clawhub.ai/user/effort02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effort02](https://clawhub.ai/user/effort02)
 
-## Use Case: <br>
-Developers and engineers use this skill when integrating services with an IAM system through gRPC clients or REST APIs. It helps them validate JWT tokens, check permissions, retrieve account information, configure required headers, and avoid common multi-tenancy mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JWT validation, token rotation, or gateway-provided headers could be implemented incorrectly for a specific IAM deployment. <br>
-Mitigation: Verify JWT validation and rotation against the deployed IAM configuration, and ensure gateway-set headers cannot be spoofed by clients. <br>
-Risk: Service-to-service IAM access could be broader than required. <br>
-Mitigation: Use least-privileged IAM client credentials and restrict service-to-service network access before implementing the examples. <br>
-Risk: IAM client dependencies may come from untrusted or unexpected repositories. <br>
-Mitigation: Confirm dependency sources and versions before adding the referenced IAM clients to a service. <br>
+## Use Case:
 
+Developers and engineers use this skill when connecting services to the changyuanfeilun IAM system. It helps them configure gRPC clients or REST calls, validate JWT tokens, check permissions, retrieve account context, and preserve app and tenant scoping.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with Java, XML, YAML, REST API, and data model examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior or hidden installation steps were identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authentication guidance could lead services to expose or trust sensitive identity data insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production IAM use, require TLS or mTLS for IAM gRPC traffic, and ensure user and tenant identity come from verified tokens or a trusted gateway that strips forged headers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/effort02/skills/iam-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Java, XML, YAML, table, and endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes IAM integration snippets, required headers, multi-tenancy rules, account status codes, and common implementation mistakes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

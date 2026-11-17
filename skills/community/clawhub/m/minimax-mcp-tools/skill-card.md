@@ -1,43 +1,58 @@
-## Description: <br>
-MiniMax MCP Tools helps an OpenClaw agent configure and use MiniMax MCP web search and image understanding tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides MiniMax-backed web search and image understanding tools through MCP for OpenClaw agents.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to MiniMax MCP tools for live web search and image-content analysis. It provides setup guidance, MCP configuration, validation commands, and example tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes searches, image URLs, local image paths, and prompts through a third-party MiniMax MCP service. <br>
-Mitigation: Use it only when third-party processing is acceptable, and avoid sending confidential searches, private images, or sensitive local file paths. <br>
-Risk: The MCP configuration requires a MINIMAX_API_KEY secret. <br>
-Mitigation: Keep the MCP configuration file private, store the API key as a secret, and avoid committing it to repositories or shared logs. <br>
-Risk: The setup depends on the external minimax-coding-plan-mcp package. <br>
-Mitigation: Install only if the publisher and package source are trusted, and review package behavior before using it in sensitive environments. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure MiniMax MCP tools so an agent can search the web and analyze images from URLs or local paths.
 
-## Reference(s): <br>
-- [MiniMax MCP Tools on ClawHub](https://clawhub.ai/hongjiahao371-pixel/minimax-mcp-tools) <br>
-- [MiniMax Token Plan](https://platform.minimaxi.com/subscribe/token-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP server configuration, environment variable names, setup checks, and example MiniMax tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The installation path executes mutable third-party MCP package code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the MCP package version before installation.
+
+Risk: The configuration stores a MiniMax API key in plain local MCP configuration.
+
+Mitigation: Restrict the OpenClaw configuration file permissions and use a limited, rotatable MiniMax API key.
+
+Risk: MiniMax may receive search queries and image inputs, including local image files selected for analysis.
+
+Mitigation: Use the skill only for data that is appropriate to send to MiniMax.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/skills/minimax-mcp-tools)
+- [MiniMax Token Plan](https://platform.minimaxi.com/subscribe/token-plan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance for installing, configuring, and calling MiniMax MCP search and image-understanding tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

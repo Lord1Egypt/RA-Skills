@@ -1,41 +1,54 @@
-## Description: <br>
-Usb provides reference documentation for USB-related devtools workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Usb is an offline reference tool that provides static USB guidance for devtools workflows.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use this skill to get quick USB reference material, command-oriented guidance, troubleshooting, performance, security, and migration notes for devtools contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shell-command workflows can be run in the wrong context or with unintended credentials. <br>
-Mitigation: Install and run only in an expected ClawHub or development context, confirm the exact command and target before use, and avoid full-access nested review modes when they are not appropriate. <br>
-Risk: Reference guidance can be generic and may not match a user's specific USB environment or compliance requirements. <br>
-Mitigation: Review the generated reference text before relying on it and validate any operational steps against local documentation and policies. <br>
+## Use Case:
 
+Developers and engineers use Usb to retrieve quick USB reference material, including overviews, quickstarts, troubleshooting, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [ClawHub Usb skill page](https://clawhub.ai/bytesagain-lab/usb) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation from shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill emits generic static reference text that may not match a user's specific USB environment, device, or policy requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as reference material and validate security, migration, and performance steps against local documentation before acting.
+
+Risk: Some reference sections discuss credentials and configuration even though the artifact does not handle credentials or change systems.
+
+Mitigation: Do not enter secrets into the skill, and review any credential or configuration guidance before applying it in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/usb)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static offline reference output; no external API calls, credentials, or network access are required.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

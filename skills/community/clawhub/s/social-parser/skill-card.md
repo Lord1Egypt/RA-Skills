@@ -1,43 +1,54 @@
-## Description: <br>
-Parses Douyin video and Xiaohongshu note links with the gnomic CLI to extract titles, media URLs, descriptions, tags, author details, and related metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses Douyin videos and Xiaohongshu notes to extract titles, covers, descriptions, tags, creator details, media URLs, and related content metadata.
 
-## Publisher: <br>
-[huyi9531](https://clawhub.ai/user/huyi9531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huyi9531](https://clawhub.ai/user/huyi9531)
 
-## Use Case: <br>
-External users and content analysts use this skill to parse Douyin and Xiaohongshu links for content review, topic research, competitor analysis, and creator metadata extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The parser uses an external CLI and remote API, so submitted social links and retrieved content may leave the local environment. <br>
-Mitigation: Use only Douyin or Xiaohongshu links that are intended for parser processing, and avoid private, restricted, or sensitive links unless remote processing is acceptable. <br>
-Risk: The skill instructs users to install the gnomic-cli npm package globally when the command is unavailable. <br>
-Mitigation: Verify the npm package and project source before installation, and install it only in environments where a global CLI dependency is acceptable. <br>
-Risk: Platform limitations can affect completeness, including private Xiaohongshu notes and missing Xiaohongshu engagement or author fields. <br>
-Mitigation: Present parsed results as best-effort data, call out missing fields, and avoid treating absent metrics as zero or definitive. <br>
+## Use Case:
 
+External users, creators, marketers, and developers use this skill to inspect Douyin or Xiaohongshu links, retrieve structured metadata, and prepare content-analysis summaries.
 
-## Reference(s): <br>
-- [ClawHub social-parser release page](https://clawhub.ai/huyi9531/social-parser) <br>
-- [gnomic-cli project](https://github.com/huyi9531/gnomic_cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and parsed JSON or text results from the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include media URLs, cover images, title, description, tags, author information, and engagement metadata depending on the platform and source link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill may send Douyin or Xiaohongshu links to a remote parser through the gnomic CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public or non-sensitive links and disclose remote parsing before execution.
+
+Risk: The install guidance uses an unpinned global npm installation for gnomic-cli.
+
+Mitigation: Prefer a pinned, reviewed CLI version and avoid elevated privileges for global installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huyi9531/skills/social-parser)
+- [gnomic-cli repository referenced by the skill](https://github.com/huyi9531/gnomic_cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON parser output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote media URLs and social-media metadata returned by the gnomic CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Create personalized study plans with time allocation, phased learning schedules, and review strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create personalized study plans with time allocation, phased learning schedules, and review strategies.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Learners and advisors use this skill to turn study goals, deadlines, available time, priorities, and difficulty into phased learning plans with review schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated schedules may be mistaken for authoritative deadline or workload advice. <br>
-Mitigation: Treat plans as planning guidance and adjust them against real deadlines, learner capacity, and instructor or employer requirements. <br>
-Risk: Broad learning-planning triggers may activate the skill when the user only wants general learning advice. <br>
-Mitigation: Confirm the learner's goal, timeline, and desired level of structure before producing a detailed schedule. <br>
+## Use Case:
 
+Learners, educators, and agents use this skill to turn a subject, current level, available time, and deadline into a phased study plan with review cadence and practical daily or weekly structure.
 
-## Reference(s): <br>
-- [Learning methods](references/learning-methods.md) <br>
-- [Study planning templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown study plans with schedules, review calendars, and adjustment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize locally generated JSON schedule data into human-readable plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The generated plan may include inappropriate workload assumptions or weak deadline pacing if the learner provides incomplete context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask brief clarifying questions about level, available time, deadline, priorities, and preferences before finalizing the plan.
+
+Risk: The skill may produce Chinese phase names or templates when the user expects another language.
+
+Mitigation: Adapt the final plan to the learner's requested language and translate phase labels when needed.
+
+## Reference(s):
+
+- [Study Planner skill page](https://clawhub.ai/smallkeyboy/skills/study-planner)
+- [learning-methods.md](references/learning-methods.md)
+- [templates.md](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown study plans with optional inline shell command usage and interpreted schedule data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual Chinese and English phase names, review intervals, time blocks, and adjustment guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

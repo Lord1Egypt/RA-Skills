@@ -1,44 +1,54 @@
-## Description: <br>
-Provides Chuck Norris jokes by random selection, category, or keyword search from chucknorris.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chuck Norris jokes - random, by category, or keyword search from chucknorris.io.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to fetch Chuck Norris jokes, search jokes by keyword, list categories, and configure an MCP endpoint for joke retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Joke results may include explicit or offensive content. <br>
-Mitigation: Review outputs before sharing or using them in environments where humor or explicit categories may be inappropriate. <br>
-Risk: Search keywords and joke requests are sent to a third-party gateway. <br>
-Mitigation: Do not submit secrets, private text, or sensitive identifiers as search terms or tool arguments. <br>
-Risk: The optional MCP setup runs mcp-remote through npx. <br>
-Mitigation: Use the MCP configuration only in trusted Node and npm environments, and pin or review dependencies when required by local policy. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Chuck Norris jokes through agent tools, including random jokes, category-based jokes, category listings, and keyword search.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brucegutman/pipeworx-chucknorris) <br>
-- [Pipeworx Chuck Norris pack](https://pipeworx.io/packs/chucknorris) <br>
-- [Pipeworx Chuck Norris MCP endpoint](https://gateway.pipeworx.io/chucknorris/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for direct examples; optional MCP setup uses npx mcp-remote and the Pipeworx gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The setup uses an unpinned remote MCP bridge package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bridge before installation, prefer a pinned and reviewed version, and run it in a sandbox with limited filesystem, environment-variable, and network access.
+
+Risk: The explicit joke category may return adult or offensive content.
+
+Mitigation: Avoid the explicit category unless that content is intentional for the deployment.
+
+## Reference(s):
+
+- [Pipeworx Chuck Norris Pack](https://pipeworx.io/packs/chucknorris)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-chucknorris)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [Text or JSON responses from MCP tool calls, with JSON MCP configuration for setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl according to metadata; example setup uses an MCP remote bridge.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Slack messaging for sending messages, managing channels, uploading files, adding reactions, and automating team notifications through Slack Web API commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slack messaging skill for sending messages, managing channels, uploading files, adding reactions, and automating team notifications through the Slack Web API.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to prepare Slack API calls for workspace messaging, channel administration, file sharing, reactions, user lookup, and notification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Slack token can let an agent post, read, upload files, react, and look up users within the scopes and channels granted to that token. <br>
-Mitigation: Use a low-privilege bot token limited to the specific scopes and channels needed for the task. <br>
-Risk: Messaging, channel, and file actions can disclose sensitive information or send content to the wrong Slack destination. <br>
-Mitigation: Confirm channel IDs, user IDs, recipients, and message content before write actions, and do not post secrets, customer data, private logs, or sensitive incident details unless workspace policy allows it. <br>
-Risk: High-volume automation can exceed Slack rate limits and cause failed or delayed notifications. <br>
-Mitigation: Respect Slack rate limits and Retry-After headers when generating or running repeated API calls. <br>
+## Use Case:
 
+Developers and operations teams use this skill to prepare Slack Web API commands for workspace messaging, channel administration, file sharing, reactions, and notification workflows.
 
-## Reference(s): <br>
-- [Slack API Apps](https://api.slack.com/apps) <br>
-- [Slack chat.postMessage API](https://slack.com/api/chat.postMessage) <br>
-- [Slack conversations.list API](https://slack.com/api/conversations.list?types=public_channel,private_channel&limit=200) <br>
-- [Slack Block Kit Builder](https://app.slack.com/block-kit-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Slack Web API examples require a SLACK_TOKEN and caller-supplied channel, user, timestamp, file, and message values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A broad Slack token can allow the agent to post messages or read workspace data beyond the intended workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a bot token with only the scopes needed for the workflow, and avoid user tokens unless a user-level action is required.
+
+Risk: Messages, file links, or uploaded content may disclose confidential information if sent to the wrong channel.
+
+Mitigation: Review channel IDs, message content, and file links before posting, and do not use the skill on confidential channels without approval.
+
+Risk: Automated Slack calls may be throttled or fail when rate limits are exceeded.
+
+Mitigation: Respect Slack rate limits and Retry-After headers when automating repeated messages or channel operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/slack-messaging)
+- [Slack App Configuration](https://api.slack.com/apps)
+- [Slack chat.postMessage API](https://slack.com/api/chat.postMessage)
+- [Slack conversations.list API](https://slack.com/api/conversations.list)
+- [Slack files.getUploadURLExternal API](https://slack.com/api/files.getUploadURLExternal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Slack token supplied through SLACK_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

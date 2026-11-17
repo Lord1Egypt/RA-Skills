@@ -1,0 +1,11 @@
+# yt2gdrive 频道列表
+# 每行一个 YouTube 频道 URL，# 开头为注释
+# 支持 @handle 或频道主页 URL
+
+# 示例：
+# https://www.youtube.com/@yourchannel
+
+https://www.youtube.com/@dlw2023
+https://www.youtube.com/@essenai
+https://www.youtube.com/@ltshijie
+https://www.youtube.com/@wangzhian

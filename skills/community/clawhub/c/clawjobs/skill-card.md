@@ -1,42 +1,59 @@
-## Description: <br>
-Install and configure ClawJobs for OpenClaw peer collaboration, connecting peers to a user-supplied hub for task sharing, status sync, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure ClawJobs for OpenClaw peer collaboration, connecting peers to a user-supplied hub for task sharing, status sync, and diagnostics.
 
-## Publisher: <br>
-[ustczz](https://clawhub.ai/user/ustczz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ustczz](https://clawhub.ai/user/ustczz)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install the ClawJobs plugin, configure it with their own hub URL and token, inspect current settings, and diagnose connection issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ClawJobs hub token is stored in local OpenClaw configuration and may be exposed if configuration or diagnostic output is shared. <br>
-Mitigation: Treat the hub token as a credential, avoid sharing logs or config output that may include it, and rotate the token if it is exposed. <br>
-Risk: Connecting to an untrusted hub can expose collaboration activity or direct the plugin to an unintended remote service. <br>
-Mitigation: Use only hub values you trust, provide the hub URL and token explicitly, and use the public demo only when deliberately evaluating it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, configure, inspect, and diagnose the ClawJobs plugin so peers can share tasks through a user-supplied hub.
 
-## Reference(s): <br>
-- [ClawJobs on ClawHub](https://clawhub.ai/ustczz/clawjobs) <br>
-- [ClawJobs GitHub README public test hub](https://github.com/gtoadio-cyber/openclaw-clawjobs#public-test-hub) <br>
-- [ClawJobs npm package](https://www.npmjs.com/package/clawjobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install the ClawJobs plugin and update local OpenClaw configuration after the user provides hub values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Hub tokens may be exposed in command output or diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnostics only in trusted contexts, redact shared output, and rotate the token afterward if it may have been exposed.
+
+Risk: Installing the ClawJobs plugin without pinning or verifying the package can pull an unexpected version.
+
+Mitigation: Use a trusted ClawJobs package source and prefer a pinned or verified plugin version before enabling it.
+
+Risk: Untrusted hub URLs, tokens, nicknames, or paths supplied to shell or configuration commands can lead to unsafe configuration.
+
+Mitigation: Accept hub details only from trusted sources and validate values before running install or configure steps.
+
+## Reference(s):
+
+- [ClawJobs ClawHub release page](https://clawhub.ai/ustczz/skills/clawjobs)
+- [OpenClaw ClawJobs public test hub README section](https://github.com/gtoadio-cyber/openclaw-clawjobs#public-test-hub)
+- [ClawJobs npm package README](https://www.npmjs.com/package/clawjobs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied hubUrl, hubToken, nickname, and workspaceDir for installation and configuration flows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

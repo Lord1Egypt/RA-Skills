@@ -1,44 +1,62 @@
-## Description: <br>
-Extract text content from image-based/scanned PDFs using multiple vision APIs with automatic fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text content from image-based/scanned PDFs using multiple vision APIs with automatic fallback.
 
-## Publisher: <br>
-[lpq6](https://clawhub.ai/user/lpq6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lpq6](https://clawhub.ai/user/lpq6)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to convert scanned or image-only PDF pages into extracted text, tables, summaries, or prompt-shaped structured output through configured vision model APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes an unrelated GitHub repository creation script that looks for GitHub tokens. <br>
-Mitigation: Remove or ignore that script unless repository creation is explicitly needed, and only run it with narrow-scope GitHub tokens. <br>
-Risk: PDF page images and prompts are sent to third-party model providers for extraction. <br>
-Mitigation: Avoid confidential or regulated documents unless the providers, data handling terms, and approval path are acceptable for the use case. <br>
-Risk: Temporary image, payload, and response files may be written during processing. <br>
-Mitigation: Use a private temporary directory and clean up generated payload, response, and image files after each run. <br>
+## Use Case:
 
+Developers and agents use this skill to extract text, tables, and structured content from scanned or image-only PDFs by converting pages to images and sending them to configured vision models.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lpq6/pdf-vision) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or prompt-shaped structured text, optionally written to a file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes one PDF page per run by default and can use a selected model or automatic fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: PDF page images and API payloads may contain sensitive document content and are sent to configured third-party vision APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only PDFs that are approved for those providers, review data handling requirements, and avoid submitting confidential documents without authorization.
+
+Risk: Temporary page images, request payloads, and API responses may remain in shared temporary directories.
+
+Mitigation: Use a private temporary directory or cleanup process after extraction, especially for sensitive documents.
+
+Risk: The release includes unrelated GitHub repository helper code that reads GitHub tokens.
+
+Mitigation: Remove or ignore the GitHub helper before deployment and do not run it as part of PDF extraction workflows.
+
+Risk: The legacy shell extractor is called out by security guidance as something to avoid.
+
+Mitigation: Prefer the Python wrapper and enhanced extractor, and review shell script behavior before any use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lpq6/skills/pdf-vision)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, files]
+
+**Output Format:** [Plain text or prompt-directed structured text, optionally written to an output file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one PDF page per invocation and uses configured third-party vision APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

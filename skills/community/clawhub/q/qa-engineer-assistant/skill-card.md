@@ -1,43 +1,59 @@
-## Description: <br>
-This skill helps QA and test engineers understand requirements, design test cases, generate API and UI automation scripts, create bug reports, and guide junior testers through testing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QA Engineer Assistant helps QA and test engineers analyze requirements, design test cases, generate API and UI automation scripts, create bug reports, and guide junior testers.
 
-## Publisher: <br>
-[guolongganga](https://clawhub.ai/user/guolongganga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guolongganga](https://clawhub.ai/user/guolongganga)
 
-## Use Case: <br>
-QA engineers, test engineers, and developers use this skill to turn requirements or bug descriptions into structured test cases, API/UI automation examples, bug reports, and next-step testing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated API tests can execute real network requests and may use authentication tokens or test credentials. <br>
-Mitigation: Use dedicated low-privilege test accounts or CI secrets, avoid unintended production targets, and review generated tests before running them. <br>
-Risk: API responses, logs, or generated assertions may expose tokens, cookies, passwords, or personal data. <br>
-Mitigation: Avoid logging full sensitive responses and redact secrets or personal data from bug reports and shared test artifacts. <br>
+## Use Case:
 
+QA engineers, test engineers, and developers use this skill to turn requirements, API specifications, UI flows, and bug descriptions into test cases, automation code, bug reports, and testing guidance.
 
-## Reference(s): <br>
-- [QA Engineer Assistant on ClawHub](https://clawhub.ai/guolongganga/qa-engineer-assistant) <br>
-- [API Test Guide](references/api-test-guide.md) <br>
-- [Bug Report Template](references/bug-report-template.md) <br>
-- [Test Case Template](references/test-case-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and fenced Python or shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should end with next-step recommendations and may include beginner-friendly Chinese comments for generated scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated Python tests may be unsafe when created from endpoint descriptions supplied by untrusted people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Read generated tests before running them, especially before using the API test generator with untrusted input.
+
+Risk: Generated examples encourage editing API base URLs and test credentials into conftest.py.
+
+Mitigation: Store API base URLs and credentials in environment variables or a secret manager instead of committing them to generated files.
+
+Risk: Dependency installation guidance does not pin package versions.
+
+Mitigation: Pin dependencies before using the generated test setup in CI or shared developer environments.
+
+## Reference(s):
+
+- [API Test Guide](references/api-test-guide.md)
+- [Bug Report Template](references/bug-report-template.md)
+- [Test Case Template](references/test-case-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, fenced Python code blocks, shell command snippets, and structured bug-report Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes beginner-oriented Chinese comments and next-step recommendations in generated outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

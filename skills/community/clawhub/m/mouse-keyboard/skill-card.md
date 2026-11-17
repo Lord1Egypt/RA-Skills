@@ -1,40 +1,53 @@
-## Description: <br>
-Control mouse and keyboard on Mac using cliclick. Use when you need to automate clicking, typing, or controlling the mouse cursor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control mouse and keyboard on Mac using cliclick. Use when you need to automate clicking, typing, or controlling the mouse cursor.
 
-## Publisher: <br>
-[calvin-dean](https://clawhub.ai/user/calvin-dean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[calvin-dean](https://clawhub.ai/user/calvin-dean)
 
-## Use Case: <br>
-Developers and agent operators use this skill to automate mouse movement, clicking, typing, and keyboard actions on macOS with cliclick during browser or application workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-driven UI automation can click or type into unintended applications or authenticated sessions. <br>
-Mitigation: Use isolated test accounts and temporary sessions, verify the target window and coordinates before execution, and avoid personal or production profiles unless explicitly intended. <br>
-Risk: Security evidence flags high-impact browser control, session storage access, and unsafe raw code execution paths. <br>
-Mitigation: Install only for intended browser testing or debugging, review scripts before execution, and do not save or commit auth-state files. <br>
+## Use Case:
 
+Developers and automation users use this skill to direct an agent to click, type, move the cursor, press keys, and combine cliclick actions on macOS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvin-dean/mouse-keyboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target macOS UI automation through cliclick.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad live-desktop mouse and keyboard control on macOS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when desktop control is intended, keep sensitive apps out of focus, verify coordinates and target windows, and supervise actions that could submit forms or change data.
+
+Risk: AppleScript automation may broaden what the agent can control on the Mac.
+
+Mitigation: Avoid AppleScript unless broader Mac automation is intentionally allowed and reviewed for the specific workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvin-dean/skills/mouse-keyboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

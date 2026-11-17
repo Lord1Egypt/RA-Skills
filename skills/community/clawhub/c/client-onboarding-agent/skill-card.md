@@ -1,40 +1,58 @@
-## Description: <br>
-Client onboarding and business diagnostic framework for AI agent deployments, covering structured discovery, constraint analysis, deployment planning, completion contracts, advisory tiers, and a six-week value narrative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Client Onboarding Agent guides consultants through structured AI agent deployment onboarding, including business diagnostics, constraint analysis, deployment planning, completion contracts, tiered advisory controls, and a six-week client narrative.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-External consultants, managed automation providers, and deployment teams use this skill to run structured discovery for new AI automation clients, identify constraints, prioritize automations, and set completion criteria before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client discovery can collect sensitive business, regulated, financial, or operational data. <br>
-Mitigation: Get client consent before screen sharing, avoid collecting passwords or unnecessary regulated data, and store onboarding notes and generated plans confidentially. <br>
-Risk: Automation plans for financial, legal, compliance, or other high-impact workflows can cause harm if executed without review. <br>
-Mitigation: Keep high-impact automations under human approval unless separately scoped, tested, and approved. <br>
+## Use Case:
 
+Consultants and automation service providers use this skill to onboard clients for AI agent deployments by mapping pain points, workflows, constraints, and phased deployment plans. It is not intended for self-service SaaS onboarding or consumer product onboarding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/client-onboarding-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown templates and structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces client onboarding questions, diagnostic maps, workflow diagrams, constraint matrices, deployment plans, advisory tiers, and completion contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+Risk: Client onboarding may involve confidential or regulated business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect and process sensitive client information only with permission, and follow the skill's constraint-identification step for regulatory, data, and audit requirements.
+
+Risk: High-impact automations such as payments, filings, contracts, or regulated work could cause harm if executed without oversight.
+
+Mitigation: Use the skill's tiered advisory mode so high-risk tasks require explicit human approval and restricted tasks remain draft-only.
+
+Risk: Incorrect scope or premature automation promises could create client expectations that the deployment cannot meet.
+
+Mitigation: Use the four-round diagnostic process, completion contracts, staged approval, and timeout bounds before treating a deployment phase as complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/client-onboarding-agent)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with diagnostic questions, matrices, timelines, and checklist templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory onboarding artifacts and human-reviewed deployment plans; no bundled code or hidden execution behavior is included.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

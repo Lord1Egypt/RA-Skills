@@ -1,41 +1,50 @@
-## Description: <br>
-Claw Design is an AI design engine that generates presentations, charts, architecture diagrams, posters, and related design artifacts from a short prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI design engine for generating presentations, charts, architecture diagrams, posters, and related design assets from a short prompt.
 
-## Publisher: <br>
-[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw)
 
-## Use Case: <br>
-Developers and external users use Claw Design to install and invoke an AI design engine that creates presentation and visual-design deliverables such as slides, charts, architecture diagrams, and posters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the referenced npm package can introduce supply-chain or reproducibility risk if the package source or version is not trusted. <br>
-Mitigation: Verify trust in the npm package and linked repository before installation, and pin a specific package version for reproducible installs. <br>
-Risk: Generated presentations, charts, architecture diagrams, posters, or other design artifacts may contain inaccurate or misleading content. <br>
-Mitigation: Review generated design artifacts before sharing, publishing, or using them for business decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to identify and install the Claw Design npm package for prompt-driven generation of presentation, diagram, chart, poster, and other design outputs.
 
-## Reference(s): <br>
-- [Claw Design ClawHub release page](https://clawhub.ai/yuchangxu1989-openclaw/claw-design) <br>
-- [Claw Design GitHub repository](https://github.com/yuchangxu1989-Openclaw/claw-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May point agents to install and use the npm package for generating design artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.8 (source: server release metadata) <br>
+Risk: The artifact directs users to install an unpinned third-party npm package, which carries normal supply-chain and package-version risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and linked repository, pin a reviewed version, and install in a low-privilege environment without sensitive credentials when assurance is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuchangxu1989-openclaw/skills/claw-design)
+- [Linked GitHub repository](https://github.com/yuchangxu1989-Openclaw/claw-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact points agents to an npm package; actual design assets are produced by that package after installation.]
+
+## Skill Version(s):
+
+0.2.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

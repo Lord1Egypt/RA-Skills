@@ -1,39 +1,55 @@
-## Description: <br>
-Reference tool for life - covers intro, quickstart, patterns and more, with quick lookup for Tesla Commander concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tesla Commander is a local reference skill that prints quick lookup guidance for Tesla Commander concepts, patterns, security, migration, debugging, and performance.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve Tesla Commander reference material, including introductions, quickstarts, patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security verdict is suspicious because the scan summary says a full coherence review could not be completed from available install metadata at scan time. <br>
-Mitigation: Install only after confirming the skill's SKILL.md, metadata, permissions, commands, and data access match its stated reference-documentation purpose. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve static reference guidance for Tesla Commander workflows, including setup, patterns, troubleshooting, performance, security, migration, and quick-reference commands.
 
-## Reference(s): <br>
-- [Tesla Commander on ClawHub](https://clawhub.ai/bytesagain1/tesla-commander) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by command-specific shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill prints generic operational and security guidance that may not match a user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the printed guidance before applying it to production workflows or security procedures.
+
+Risk: Credential-related wording appears in the reference text, although the artifact does not read or use credentials.
+
+Mitigation: Treat credential references as generic documentation and avoid supplying secrets to this skill.
+
+## Reference(s):
+
+- [Tesla Commander on ClawHub](https://clawhub.ai/bytesagain1/skills/tesla-commander)
+- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain1)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API calls, credentials, or network access per release security evidence.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and SKILL.md frontmatter; script declares 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

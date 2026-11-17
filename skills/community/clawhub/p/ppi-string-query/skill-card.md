@@ -1,41 +1,55 @@
-## Description: <br>
-Query STRING database for protein-protein interactions with confidence scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query STRING database for protein-protein interactions with confidence scores.
 
-## Publisher: <br>
-[hollyya](https://clawhub.ai/user/hollyya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollyya](https://clawhub.ai/user/hollyya)
 
-## Use Case: <br>
-Developers and bioinformatics researchers use this skill to query STRING for UniProt-based protein interaction partners, confidence scores, and small interaction-network inputs for pathway analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may contact the public STRING service. <br>
-Mitigation: Avoid submitting sensitive research identifiers when that matters to the workflow and respect STRING rate limits for batch use. <br>
-Risk: The skill depends on the provided open_biomed ppi_string_request implementation. <br>
-Mitigation: Install only in an environment where that implementation is trusted and review it before deployment. <br>
+## Use Case:
 
+Developers and bioinformatics analysts use this skill to query STRING for interaction partners by UniProt accession, inspect confidence scores, and build protein interaction networks for pathway analysis.
 
-## Reference(s): <br>
-- [STRING Score Methodology](references/score_details.md) <br>
-- [STRING API Docs](https://string-db.org/help/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, JSON] <br>
-**Output Format:** [Markdown guidance with Python snippets and JSON-shaped STRING interaction records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries STRING through open_biomed ppi_string_request with UniProt ID, species, score threshold, and result limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The example script modifies Python import search paths, which can load unintended local code if run from an untrusted directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the example only from a trusted directory or virtual environment, and prefer importing open_biomed from a trusted installed package.
+
+Risk: STRING results can include functional associations and literature-derived signals that may not prove direct physical binding.
+
+Mitigation: Review the individual evidence channels and cross-reference critical interactions with primary databases or literature before using results for decisions.
+
+## Reference(s):
+
+- [STRING Score Methodology](references/score_details.md)
+- [STRING API Docs](https://string-db.org/help/api/)
+- [STRING Documentation](https://string-db.org/help/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, JSON]
+
+**Output Format:** [Markdown guidance with Python code blocks and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include STRING combined and channel-specific confidence scores for interaction partners.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

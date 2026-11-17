@@ -1,42 +1,50 @@
-## Description: <br>
-Bible research platform for AI agents with access to original-language Hebrew and Greek morphology, lexicons, KJV Bible text, Dead Sea Scrolls, New Testament manuscript transcriptions, Septuagint data, and SQL-queryable research tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nuberea lets agents query Bible research datasets covering Hebrew and Greek morphology, lexicons, KJV text, Dead Sea Scrolls, New Testament manuscript transcriptions, Septuagint data, synoptic parallels, and SQL analytics.
 
-## Publisher: <br>
-[streamsapps](https://clawhub.ai/user/streamsapps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[streamsapps](https://clawhub.ai/user/streamsapps)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill for Bible study, biblical language research, exegesis, word studies, Scripture lookup, lexicon lookup, morphological parsing, manuscript comparison, and read-only SQL analysis across bundled ancient-text datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User queries may be sent to the MCP backend and could include private or sensitive text. <br>
-Mitigation: Avoid submitting sensitive text unless the user is comfortable sending it to the backend. <br>
-Risk: Research outputs may rely on source texts, lexicons, or manuscript datasets with their own licensing considerations. <br>
-Mitigation: Verify source licensing before redistributing research outputs. <br>
+## Use Case:
 
+Developers, researchers, and advanced Bible study users use Nuberea to retrieve scripture, morphology, lexicon, manuscript, and synoptic-parallel evidence through typed tools or read-only SQL over the provided research datasets.
 
-## Reference(s): <br>
-- [NuBerea MCP Tools Reference](references/tools.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/streamsapps/nuberea) <br>
-- [Publisher Profile](https://clawhub.ai/user/streamsapps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, SQL queries, tool calls, guidance] <br>
-**Output Format:** [Markdown, text, JSON-like tool-call arguments, and SQL query snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only MCP lookup and analytics tools; outputs may summarize or cite retrieved Bible, lexicon, morphology, manuscript, and scroll data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Freeform SQL queries can produce overly broad, expensive, or misleading cross-table analysis if used for routine lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer typed lookup and search tools for routine study, and use SQL only for intentional cross-table analysis over the provided read-only datasets.
+
+## Reference(s):
+
+- [NuBerea MCP Tools Reference](artifact/references/tools.md)
+- [ClawHub skill page](https://clawhub.ai/streamsapps/skills/nuberea)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Structured data, Analysis]
+
+**Output Format:** [Tool responses from typed lookups, searches, and read-only SQL queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns public or research Bible text, morphology, lexicon, manuscript, and cross-reference query results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

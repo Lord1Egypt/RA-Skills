@@ -47,7 +47,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -73,13 +73,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -335,7 +338,7 @@ def search_by_semantics(args):
         if search_results:
             sample_file_id = search_results[0].get("FileId", "xxx")
             print("💡 后续操作提示:")
-            print(f"  查看媒体详情: python scripts/vod_describe_media.py --file-id {sample_file_id}" +
+            print(f"  查看媒体详情: python3 scripts/vod_describe_media.py --file-id {sample_file_id}" +
                   (f" --sub-app-id {sub_app_id}" if sub_app_id else ""))
 
         return result
@@ -358,13 +361,22 @@ def search_by_semantics(args):
 
 
 def main():
+    # 早加载 .env，确保 argparse `default=os.environ.get(...)` 能取到 TENCENTCLOUD_VOD_SUB_APP_ID
+    # 修复 BUG：此前 argparse 在 add_argument 时立即从环境变量取值，但 .env 加载发生在
+    # get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD 语义搜索媒体工具 —— 使用自然语言搜索已导入知识库的视频内容',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 前置条件:
   媒体文件需先通过 ImportMediaKnowledge 导入知识库：
-    python scripts/vod_import_media_knowledge.py import \\
+    python3 scripts/vod_import_media_knowledge.py import \\
         --sub-app-id 1500046806 --file-id 5285485487985271487
 
   导入后，大模型会对视频进行内容理解（摘要、ASR 等），
@@ -376,53 +388,53 @@ def main():
 
 示例:
   # 基础语义搜索
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "包含夕阳的海边视频"
 
   # 通过应用名称 + 语义搜索
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --app-name "测试应用" \\
       --text "有人在跑步的画面"
 
   # 限制返回数量
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "会议讨论内容" \\
       --limit 5
 
   # 只搜索视频文件
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "猫咪玩耍" \\
       --categories Video
 
   # 按标签过滤
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "精彩进球" \\
       --tags "体育" "足球"
 
   # 按人物过滤（搜索包含指定人物的片段）
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "演讲内容" \\
       --persons "张三"
 
   # 指定搜索任务类型
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "产品介绍" \\
       --task-types AiAnalysis.DescriptionTask
 
   # JSON 格式输出
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "包含夕阳的海边视频" \\
       --json
 
   # 预览请求参数（不实际执行）
-  python vod_search_media_by_semantics.py \\
+  python3 vod_search_media_by_semantics.py \\
       --sub-app-id 1500046806 \\
       --text "包含夕阳的海边视频" \\
       --dry-run
@@ -463,7 +475,7 @@ def main():
                               help='显示详细信息')
     output_group.add_argument('--json', action='store_true',
                               help='JSON 格式输出完整响应')
-    output_group.add_argument('--region', default='ap-guangzhou',
+    output_group.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'),
                               help='地域，默认 ap-guangzhou')
     output_group.add_argument('--dry-run', action='store_true',
                               help='预览请求参数，不实际执行')

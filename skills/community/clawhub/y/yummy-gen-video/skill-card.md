@@ -1,43 +1,57 @@
-## Description: <br>
-Use when the user wants to generate a video with Gemini Veo through yummycli, including text-to-video, image-to-video, and reference-image-guided generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to generate a video with Gemini Veo through yummycli, including text-to-video, image-to-video (single starting frame), and reference-image-guided generation (up to 3 images).
 
-## Publisher: <br>
-[yummysource](https://clawhub.ai/user/yummysource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yummysource](https://clawhub.ai/user/yummysource)
 
-## Use Case: <br>
-Developers and creators use this skill to translate video-generation requests into validated yummycli commands for Google Gemini Veo, including text prompts, starting images, and up to three reference images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GEMINI_API_KEY and an external CLI. <br>
-Mitigation: Install and authenticate yummycli only in environments where using @yummysource/yummycli and a Gemini API key is approved. <br>
-Risk: Prompts and selected image files may be sent to Google Veo for cloud video generation. <br>
-Mitigation: Avoid confidential prompts or private images unless provider processing is intentional and permitted. <br>
-Risk: Incorrect model, duration, resolution, image count, or output extension can cause command validation failures. <br>
-Mitigation: Validate requested parameters against the skill's compatibility rules before running yummycli, and retry only with corrected arguments. <br>
+## Use Case:
 
+Developers and external users use this skill to translate text-to-video, image-to-video, and reference-guided video requests into validated Gemini Veo commands through yummycli.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yummysource/yummy-gen-video) <br>
-- [Publisher profile](https://clawhub.ai/user/yummysource) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yummycli, the yummy-shared skill, and GEMINI_API_KEY; generated video output is an MP4 file path returned by the CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill relies on an unpinned third-party executable CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted, pinned, and reviewed version of @yummysource/yummycli.
+
+Risk: Shell-style command templates can be unsafe if prompts or file paths are assembled into command strings.
+
+Mitigation: Pass prompts and file paths as literal CLI arguments and expose only the required GEMINI_API_KEY.
+
+Risk: Generated video commands can fail when model, duration, resolution, image count, or output path constraints are invalid.
+
+Mitigation: Validate model compatibility, duration, resolution, image count, and .mp4 output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yummysource/skills/yummy-gen-video)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require yummycli, GEMINI_API_KEY, and the related yummy-shared skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

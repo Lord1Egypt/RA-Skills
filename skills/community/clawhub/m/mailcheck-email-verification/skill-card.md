@@ -1,41 +1,58 @@
-## Description: <br>
-Email verification skill for the MailCheck API that verifies individual and bulk addresses and analyzes email authenticity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email verification skill for MailCheck API - verify emails, bulk processing, authenticity analysis.
 
-## Publisher: <br>
-[bnuyts](https://clawhub.ai/user/bnuyts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bnuyts](https://clawhub.ai/user/bnuyts)
 
-## Use Case: <br>
-Developers and operations teams use this skill to verify email addresses, process lists of up to 100 addresses, and analyze email headers for spoofing, phishing, and fraud signals through the MailCheck API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Email addresses, bulk lists, trusted domains, and raw email headers are sent to MailCheck for verification or authenticity analysis. <br>
-Mitigation: Submit only data approved for external processing, and avoid sensitive or regulated email headers unless the organization has approved that data sharing. <br>
-Risk: MailCheck API keys can be exposed if pasted into prompts, command examples, or shared transcripts. <br>
-Mitigation: Use a scoped API key through MAILCHECK_API_KEY where possible, avoid placing production keys in prompts, and rotate keys according to organizational policy. <br>
+## Use Case:
 
+Developers, security teams, and operations teams use this skill to verify individual or bulk email addresses and analyze message headers for spoofing, phishing, and fraud signals through the MailCheck API.
 
-## Reference(s): <br>
-- [MailCheck API documentation](https://api.mailcheck.dev/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/bnuyts/mailcheck-email-verification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Text] <br>
-**Output Format:** [Structured JSON-like command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MailCheck API key via MAILCHECK_API_KEY or a command parameter; bulk verification accepts up to 100 emails per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Email addresses, bulk lists, and full headers may contain personal or sensitive information that is sent to the external MailCheck API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data you are authorized to process through MailCheck, and avoid submitting sensitive full headers unless third-party processing is approved.
+
+Risk: API keys passed directly in commands may be exposed in logs, prompts, or command history.
+
+Mitigation: Set MAILCHECK_API_KEY in the environment instead of passing keys as command parameters.
+
+Risk: The security evidence recommends workplace or regulated deployments receive extra review before installation.
+
+Mitigation: Complete organizational review before installing or using the skill in workplace, regulated, or compliance-sensitive environments.
+
+## Reference(s):
+
+- [MailCheck API documentation](https://api.mailcheck.dev/docs)
+- [ClawHub skill page](https://clawhub.ai/bnuyts/skills/mailcheck-email-verification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured command responses from MailCheck API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MAILCHECK_API_KEY when available and supports single email, bulk email, and header authenticity analysis inputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

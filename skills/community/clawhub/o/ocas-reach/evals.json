@@ -1,0 +1,17 @@
+{
+  "skill": "ocas-reach",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-reach",
+  "evals": [
+    {
+      "input": "What's the current weather in San Francisco?",
+      "expected_output": "Returns current weather data from external API",
+      "description": "Real-time weather query"
+    },
+    {
+      "input": "Get the latest exchange rate for USD to EUR",
+      "expected_output": "Returns current exchange rate from external data source",
+      "description": "Exchange rate query"
+    }
+  ]
+}

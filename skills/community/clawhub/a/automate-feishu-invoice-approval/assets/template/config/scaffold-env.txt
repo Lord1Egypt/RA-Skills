@@ -1,0 +1,25 @@
+# 复制为 .env 后填写。App Secret 不放在这里；它由 lark-cli 安全保存。
+LARK_APPROVAL_CODE=
+APPROVAL_MAPPING_FILE=config/approval_mapping.json
+
+# 发票购方抬头硬校验；任一不符都不会进入审批。
+REQUIRED_BUYER_NAME=
+REQUIRED_BUYER_TAX_ID=
+
+# 安全默认值：auto_submit=true 且 dry_run=false 时，用户在卡片确认后才会真实提交。
+BOT_AUTO_SUBMIT=false
+BOT_DRY_RUN=true
+BOT_REPLY_ENABLED=true
+
+# 0~1；Codex 总体置信度低于此值时进入待复核，不提交。
+INVOICE_MIN_CONFIDENCE=0.90
+
+# 可选：只允许指定 open_id 发起，多个值用逗号分隔；留空表示接受所有可见用户。
+ALLOWED_SENDER_OPEN_IDS=
+
+# 可选运行参数
+CODEX_MODEL=
+CODEX_TIMEOUT_SECONDS=180
+LARK_READY_TIMEOUT_SECONDS=30
+DATA_DIR=data
+DATABASE_PATH=data/submissions.sqlite3

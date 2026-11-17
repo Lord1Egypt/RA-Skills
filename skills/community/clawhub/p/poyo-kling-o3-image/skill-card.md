@@ -1,45 +1,61 @@
-## Description: <br>
-Kling O3 image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-o3-image`, `kling-o3-image-edit`, prompt-only image generation, reference-image editing, element descriptors, 1K, 2K, 4K output, aspect ratio control, output format, image count, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kling O3 image generation and editing on PoYo / poyo.ai via https://api.poyo.ai/api/generate/submit for prompt-only generation, reference-image editing, resolution and aspect-ratio selection, polling, and webhooks.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo Kling O3 prompt-only image generation or reference-image editing requests, submit prepared JSON payloads when explicitly asked, and guide polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Store `POYO_API_KEY` only in server-side environment variables or a backend secret manager, and avoid echoing secrets in generated commands or responses. <br>
-Risk: Private prompts, source image URLs, or callback URLs may be sent to PoYo or a webhook receiver during task submission. <br>
-Mitigation: Submit only user-approved payloads from trusted environments, and avoid confidential prompts, private image URLs, or callback URLs unless the user trusts PoYo and the webhook receiver. <br>
-Risk: A live API call can start an external image-generation task and consume account resources. <br>
-Mitigation: Do not make live PoYo API calls unless the user explicitly requests submission and has provided a safe server-side environment. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare and submit PoYo Kling O3 image generation or image editing jobs, then guide polling or webhook follow-up for asynchronous results.
 
-## Reference(s): <br>
-- [PoYo Kling O3 API documentation](https://docs.poyo.ai/api-manual/image-series/kling-o3) <br>
-- [PoYo Kling O3 model page](https://poyo.ai/models/kling-o3-image) <br>
-- [Artifact API reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-kling-o3-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model choice, request type, payload summary, selected resolution, aspect ratio, output format, image count, task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: POYO_API_KEY may be exposed if pasted into chat, browser code, frontend bundles, logs, screenshots, or public repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and redact it from all shared output.
+
+Risk: Prompts, reference image URLs, and callback URLs are sent to PoYo when a task is submitted.
+
+Mitigation: Submit only data the user is willing to share with PoYo and the callback receiver; avoid confidential prompts, private image URLs, or private callback URLs unless those services are trusted.
+
+Risk: The helper can make live PoYo API submissions when invoked with a prepared payload.
+
+Mitigation: Make live API calls only after explicit user approval from a trusted server-side shell, then report and retain the returned task_id for polling.
+
+## Reference(s):
+
+- [PoYo Kling O3 Image Model Page](https://poyo.ai/models/kling-o3-image)
+- [PoYo Kling O3 API Docs](https://docs.poyo.ai/api-manual/image-series/kling-o3)
+- [PoYo API Key Page](https://poyo.ai/dashboard/api-key)
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-kling-o3-image)
+- [Local API Reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payload examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model id, request type, payload summary, resolution, aspect ratio, output format, image count, reference-image notes, task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

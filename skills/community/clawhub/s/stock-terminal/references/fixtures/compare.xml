@@ -1,0 +1,10 @@
+<canvas id="fixture.compare" title="Synthetic comparison" created="2026-01-15T16:00:00Z" schemaVersion="2.0" tags="synthetic,test-only" version="1">
+  <block id="compare.heading" type="section-header" width="full" title="Synthetic comparison fixture" subtitle="Layout test, not market research" />
+  <block id="compare.table" type="table" width="full" title="Synthetic comparison" columns='["Ticker","Price","Sentiment"]' rows='[["$ALFA","$50.00","0.10"],["$BETA","$75.00","-0.20"]]' asOf="2026-01-15T15:30:00Z" synthetic="true" />
+  <row>
+    <block id="compare.alfa" type="metric-card" width="half" label="$ALFA synthetic price" value="$50.00" asOf="2026-01-15T15:30:00Z" synthetic="true" />
+    <block id="compare.beta" type="metric-card" width="half" label="$BETA synthetic price" value="$75.00" asOf="2026-01-15T15:30:00Z" synthetic="true" />
+  </row>
+  <block id="compare.list" type="watchlist" width="full" title="Synthetic pair" items='[{"ticker":"$ALFA","change":"+1.00%"},{"ticker":"$BETA","change":"-1.00%"}]' asOf="2026-01-15T15:30:00Z" synthetic="true" />
+  <block id="compare.note" type="narrative" width="full">The symbols and values are invented to exercise comparison rendering.</block>
+</canvas>

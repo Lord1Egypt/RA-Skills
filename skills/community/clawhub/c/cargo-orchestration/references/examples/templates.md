@@ -40,7 +40,7 @@ Key fields:
 
 - **`slug`** — identifier used to fetch the template
 - **`name`** — human-readable name
-- **`kind`** — `"tool"` (on-demand) or `"play"` (segment-driven)
+- **`kind`** — `"tool"` (on-demand), `"play"` (segment-driven), or `"workflow"`
 
 ## Get a template by slug
 
@@ -79,7 +79,7 @@ Response:
         "slug": "enrich_company",
         "kind": "connector",
         "integrationSlug": "clearbit",
-        "actionSlug": "enrichCompanyFromDomain",
+        "actionSlug": "enrichCompany",
         "connectorUuid": "__REPLACE_WITH_CONNECTOR_UUID__",
         "config": {
           "domain": {
@@ -142,12 +142,12 @@ cargo-ai orchestration tool list
 # → Extract tool.workflowUuid
 
 # 5. Save the adapted nodes to the draft release
-cargo-ai orchestration draft-release update \
+cargo-ai orchestration release update-draft \
   --workflow-uuid <tool.workflowUuid> \
   --nodes '[...validated nodes...]'
 
 # 6. Deploy the draft release
-cargo-ai orchestration draft-release deploy \
+cargo-ai orchestration release deploy-draft \
   --workflow-uuid <tool.workflowUuid> \
   --nodes '[...validated nodes...]' \
   --form-fields 'null' \
@@ -206,20 +206,20 @@ cargo-ai orchestration template get lead-scoring
 # 2. Replace placeholders, validate
 cargo-ai orchestration node validate --nodes '[...]'
 
-# 3. Find the play's workflowUuid and segmentUuid
+# 3. Find the play's workflowUuid and modelUuid
 cargo-ai orchestration play list
 
-# 4. Batch run on the play's segment
+# 4. Batch run over the play's model (empty filter = all rows)
 cargo-ai orchestration batch create \
   --workflow-uuid <play.workflowUuid> \
-  --data '{"kind":"segment","segmentUuid":"<play.segmentUuid>"}' \
+  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[]}}' \
   --nodes '[...validated nodes...]'
 # → Poll with: cargo-ai orchestration batch get <batch-uuid>
 ```
 
 ## Placeholder convention
 
-Template node graphs use `__REPLACE_WITH_*__` strings to mark values that must be substituted before use:
+Built-in templates carry no placeholders (their connector nodes simply omit `connectorUuid`). When a graph does use `__REPLACE_WITH_*__` strings to mark values that must be substituted before use, they map as follows:
 
 | Placeholder                       | Replace with                                                    |
 | --------------------------------- | --------------------------------------------------------------- |

@@ -1,6 +1,29 @@
 {
-  "ownerId": "kn72102vwx7p4jvh7f9889nf0982m71p",
-  "slug": "iflytek-contract-intelligence-review",
-  "version": "1.0.1",
-  "publishedAt": 1781752481576
+  "version": "1.0.0",
+  "skill_type": "workflow",
+  "category": "document-processing",
+  "tags": [
+    "contract",
+    "review",
+    "risk-detection",
+    "ocr",
+    "compliance",
+    "bilingual",
+    "workflow"
+  ],
+  "runtime": "python",
+  "entry_point": "scripts/main.py",
+  "supported_platforms": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "requirements": {
+    "python": ">=3.9"
+  },
+  "author": {
+    "name": "iFlytek"
+  },
+  "license": "MIT",
+  "slug": "iflytek-contract-intelligence-review"
 }

@@ -1,0 +1,16 @@
+{
+  "name": "pptsmith-pptxgenjs-runtime",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Focused PptxGenJS rendering runtime for PPTSmith",
+  "dependencies": {
+    "jszip": "3.10.1",
+    "pptxgenjs": "4.0.1"
+  },
+  "overrides": {
+    "pptxgenjs": {
+      "image-size": "2.0.4"
+    }
+  }
+}

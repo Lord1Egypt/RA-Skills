@@ -1,45 +1,60 @@
-## Description: <br>
-Cross-pane messaging for tmux using `tmux-bridge` to send messages between panes labeled p1, p2, and p3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-pane messaging for tmux using the `tmux-bridge` command to send messages between panes labeled p1, p2, p3.
 
-## Publisher: <br>
-[mkuiwu](https://clawhub.ai/user/mkuiwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkuiwu](https://clawhub.ai/user/mkuiwu)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multiple AI agent panes inside tmux, including launching workspaces, listing panes, sending tasks, tracking pending replies, and configuring pane labels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a local `tmux-bridge` executable that is not included in the artifact. <br>
-Mitigation: Verify the executable source and resolved path before installing or using the skill. <br>
-Risk: Other tmux panes may send tasks or receive final results, which can expose sensitive information or misdirect output. <br>
-Mitigation: Avoid sharing secrets through pane messages and check `tmux-bridge pending` before replying. <br>
-Risk: The documented workflow can kill tmux sessions and append configuration to `~/.tmux.conf`. <br>
-Mitigation: Confirm session names before kill commands and review configuration changes before applying them. <br>
+## Use Case:
 
+Developers and engineers use Smux to coordinate work across multiple tmux panes, send tasks or status messages to labeled panes, and route expected replies between collaborating agents.
 
-## Reference(s): <br>
-- [Smux ClawHub release](https://clawhub.ai/mkuiwu/smux) <br>
-- [mkuiwu publisher profile](https://clawhub.ai/user/mkuiwu) <br>
-- [tmux-bridge reference](references/tmux-bridge.md) <br>
-- [tmux reference](references/tmux.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires tmux on macOS or Linux and a trusted local tmux-bridge executable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Cross-pane reply routing can disclose final results to another pane based on mutable tmux state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check `tmux-bridge pending` before replying and use `reply` only for intentional `--expect-reply` requests in trusted panes.
+
+Risk: Session management commands can close an entire tmux session when the wrong session name is supplied.
+
+Mitigation: Confirm session names before using `tmux-bridge kill-session` or `tmux-bridge -k`.
+
+Risk: Auto-label setup appends configuration to `~/.tmux.conf`.
+
+Mitigation: Review generated `auto-label` configuration before appending it and reloading tmux.
+
+## Reference(s):
+
+- [Smux ClawHub skill page](https://clawhub.ai/mkuiwu/skills/smux)
+- [mkuiwu ClawHub publisher profile](https://clawhub.ai/user/mkuiwu)
+- [tmux-bridge](references/tmux-bridge.md)
+- [tmux](references/tmux.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tmux on Darwin or Linux and uses labeled tmux panes for routing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

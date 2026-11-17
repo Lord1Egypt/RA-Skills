@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-content-production-orchestration",
+  "displayName": "ZM 图文内容生产编排",
   "version": "0.1.0",
-  "publishedAt": 1782235873700
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "图文内容多 Agent 生产编排流程：选题定位、正文生产、视觉生产、审核返工、排版发布、交付包归档。"
 }

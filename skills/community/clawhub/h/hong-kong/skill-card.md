@@ -1,41 +1,70 @@
-## Description: <br>
-Navigate Hong Kong as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, MTR transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Hong Kong as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, MTR transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users ask an agent for practical Hong Kong guidance when visiting, relocating, studying, working in technology, starting a business, or comparing neighborhoods and local services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Medical, immigration, legal, tax, and cost details may be time-sensitive or user-specific. <br>
-Mitigation: Verify consequential decisions against official sources or qualified professionals before relying on the guidance. <br>
-Risk: Local prices, visa rules, transport details, and service availability can become stale after release. <br>
-Mitigation: Treat the skill as general reference material and refresh facts from current authoritative sources when precision matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hong Kong skill page on ClawHub](https://clawhub.ai/ivangdavila/hong-kong) <br>
-- [ivangdavila publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill overview and topic index](artifact/SKILL.md) <br>
+## Use Case:
 
+External users and agents use this skill to answer practical Hong Kong questions for visitors, residents, students, tech workers, and entrepreneurs. It provides topical guidance across neighborhoods, transport, costs, visas, food, safety, healthcare, education, business, and lifestyle.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text responses with practical recommendations, comparisons, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or required binaries; outputs should be verified against official sources for time-sensitive decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The guide includes time-sensitive visa, tax, healthcare, weather, transport, housing, and legal information that may change.
+
+Mitigation: Verify consequential details with official Hong Kong sources or qualified professionals before acting.
+
+Risk: Users may mistake practical guidance for professional legal, medical, tax, immigration, or safety advice.
+
+Mitigation: Use the skill as a starting point and seek qualified advice for decisions involving status, health, money, severe weather, or legal exposure.
+
+Risk: Political and legal safety topics can carry personal consequences if advice is outdated or incomplete.
+
+Mitigation: Check current local rules and official advisories before travel, public activity, photography near sensitive sites, or political expression.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/hong-kong)
+- [Skill Overview](artifact/SKILL.md)
+- [Visitor Attractions](artifact/visitor-attractions.md)
+- [Moving to Hong Kong](artifact/resident.md)
+- [Transport](artifact/transport.md)
+- [Cost of Living](artifact/cost.md)
+- [Safety](artifact/safety.md)
+- [Climate](artifact/climate.md)
+- [Neighborhoods](artifact/neighborhoods-index.md)
+- [Dining Overview](artifact/food-overview.md)
+- [Tech Careers](artifact/tech.md)
+- [Business Formation](artifact/business.md)
+- [Visas and Immigration](artifact/visas.md)
+- [Healthcare](artifact/healthcare.md)
+- [Education](artifact/education.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with topical recommendations, comparisons, checklists, and practical caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only; no commands, binaries, API calls, persistence, or private data access.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

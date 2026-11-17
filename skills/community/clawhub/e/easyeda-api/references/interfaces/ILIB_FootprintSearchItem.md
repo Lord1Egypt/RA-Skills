@@ -1,11 +1,11 @@
 # ILIB\_FootprintSearchItem interface
 
-搜索到的封装属性
+Searched footprint properties
 
 ## Signature
 
 ```typescript
-interface ILIB_FootprintSearchItem 
+interface ILIB_FootprintSearchItem
 ```
 
 ## Properties
@@ -14,192 +14,152 @@ interface ILIB_FootprintSearchItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [ascription](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-归属
-
+Ownership
 
 </td></tr>
 <tr><td>
 
 [classification?](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_ClassificationIndex](./ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 [description?](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [lastModifiedBy](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-前次修改者
-
+Last modifier
 
 </td></tr>
 <tr><td>
 
 [libraryUuid](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属库 UUID
-
+UUID of the library it belongs to
 
 </td></tr>
 <tr><td>
 
 [name](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-封装名称
-
+Footprint name
 
 </td></tr>
 <tr><td>
 
 [ordinal](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-排序
-
+Sorting
 
 </td></tr>
 <tr><td>
 
 [updateTimestamp](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-更新时间戳
-
+Update timestamp
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_FootprintSearchItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-封装 UUID
-
+Footprint UUID
 
 </td></tr>
 </tbody></table>
@@ -212,7 +172,7 @@ string
 
 # ILIB\_FootprintSearchItem.ascription property
 
-归属
+Ownership
 
 ## Signature
 
@@ -224,7 +184,7 @@ ascription: string;
 
 # ILIB\_FootprintSearchItem.classification property
 
-分类
+Classification
 
 ## Signature
 
@@ -236,7 +196,7 @@ classification?: ILIB_ClassificationIndex | Array<string>;
 
 # ILIB\_FootprintSearchItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -248,7 +208,7 @@ description?: string;
 
 # ILIB\_FootprintSearchItem.lastModifiedBy property
 
-前次修改者
+Last modifier
 
 ## Signature
 
@@ -260,7 +220,7 @@ lastModifiedBy: string;
 
 # ILIB\_FootprintSearchItem.libraryUuid property
 
-所属库 UUID
+UUID of the library it belongs to
 
 ## Signature
 
@@ -272,7 +232,7 @@ libraryUuid: string;
 
 # ILIB\_FootprintSearchItem.name property
 
-封装名称
+Footprint name
 
 ## Signature
 
@@ -284,7 +244,7 @@ name: string;
 
 # ILIB\_FootprintSearchItem.ordinal property
 
-排序
+Sorting
 
 ## Signature
 
@@ -296,7 +256,7 @@ ordinal: number;
 
 # ILIB\_FootprintSearchItem.updateTimestamp property
 
-更新时间戳
+Update timestamp
 
 ## Signature
 
@@ -308,7 +268,7 @@ updateTimestamp: number;
 
 # ILIB\_FootprintSearchItem.uuid property
 
-封装 UUID
+Footprint UUID
 
 ## Signature
 

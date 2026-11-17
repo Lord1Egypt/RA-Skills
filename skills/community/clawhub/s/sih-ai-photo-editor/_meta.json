@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dk88y3xbwk4m404p571rawd82tjfc",
-  "slug": "sih-ai-photo-editor",
+  "name": "sih-ai-photo-editor",
   "version": "1.0.1",
-  "publishedAt": 1773392030772
+  "description": "AI图片编辑工具，支持自然语言驱动的换装、换背景、换脸、风格转换（动漫/粘土/油画等）、美颜修图。当用户需要AI图片处理、人像编辑、背景替换、风格迁移、服装更换、脸部融合时使用此skill。支持用户通过描述性prompt（如'把衣服换成bikini'、'背景换成海边'、'转换成动漫风格'）进行图片编辑。",
+  "author": "Sih.Ai Team",
+  "tags": ["ai", "image-editing", "photo-editor", "style-transfer"],
+  "homepage": "https://sih.ai",
+  "model": "sihai-image-27",
+  "features": [
+    "自动下载和预览",
+    "换装、换背景、换脸",
+    "风格转换（动漫、粘土、油画等）",
+    "本地配额管理",
+    "新用户5次免费体验"
+  ],
+  "updated_at": "2026-03-13T16:52:00Z"
 }

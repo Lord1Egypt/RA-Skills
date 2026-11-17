@@ -1,43 +1,58 @@
-## Description: <br>
-Connect safeTok Nostr DMs to your OpenClaw agent. Use OpenClaw with Claude OAuth — no Anthropic API key needed. Communicate via safeTok NIP-44 encrypted DMs from your phone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect safeTok Nostr DMs to your OpenClaw agent. Use OpenClaw with Claude OAuth — no Anthropic API key needed. Communicate via safeTok NIP-44 encrypted DMs from your phone.
 
-## Publisher: <br>
-[ductapecode](https://clawhub.ai/user/ductapecode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ductapecode](https://clawhub.ai/user/ductapecode)
 
-## Use Case: <br>
-Developers and operators use this skill to connect safeTok encrypted Nostr DMs to an OpenClaw agent session, allowing mobile DM conversations with an agent through a local bridge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private DM content may appear in bridge logs during normal operation. <br>
-Mitigation: Run the bridge in a private environment, avoid centralized logs for bridge output, and redact or disable logs before handling sensitive conversations. <br>
-Risk: The documented sender allowlist advice is not implemented in this version, so untrusted senders may be able to drive the connected agent. <br>
-Mitigation: Use a dedicated bot key, limit gateway token privileges where possible, expose the bot only to trusted contacts, and treat allowlist controls as unavailable until implemented. <br>
-Risk: The bridge needs OpenClaw gateway write access and a safeTok bot private key. <br>
-Mitigation: Store credentials in an environment-specific secret manager, rotate them if exposed, and avoid reusing the bot key or gateway token for other services. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to run a bridge that forwards safeTok NIP-44 encrypted Nostr DMs into a dedicated OpenClaw session and returns encrypted assistant replies through Nostr relays.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ductapecode/skills/safetok-bridge) <br>
-- [safeTok](https://safetok.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown setup guidance with bash snippets and text replies carried through encrypted Nostr DMs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running OpenClaw gateway, a gateway token, a safeTok bot private key, Node.js 22 or newer, and @noble/curves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The bridge exposes a dedicated OpenClaw session to messages arriving through public Nostr relays with weak access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate minimally privileged gateway token and bot key, and restrict allowed senders before use.
+
+Risk: Sensitive plaintext DM content may be logged by the bridge process.
+
+Mitigation: Remove plaintext logging and route runtime logs to protected storage before production use.
+
+Risk: The gateway or dependency setup may be unsafe for production if left with broad network exposure or unpinned dependencies.
+
+Mitigation: Keep the gateway loopback-only unless remote access is deliberately secured, and pin dependencies with a lockfile before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ductapecode/skills/safetok-bridge)
+- [safeTok](https://safetok.me)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown instructions with bash and JavaScript snippets plus Node.js bridge files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22 or newer, an OpenClaw gateway token, a safeTok/Nostr private key, and relay configuration.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

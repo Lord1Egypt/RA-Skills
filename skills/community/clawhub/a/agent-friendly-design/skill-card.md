@@ -1,43 +1,57 @@
-## Description: <br>
-Design websites and applications that AI agents can consume, navigate, and interact with as end users, covering semantic structure, accessibility, machine-readable data, API-first patterns, and agent-ready protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design websites and applications that AI agents can consume, navigate, and interact with by using semantic structure, accessibility patterns, machine-readable data, API-first interfaces, and emerging agent protocols.
 
-## Publisher: <br>
-[aa-on-ai](https://clawhub.ai/user/aa-on-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aa-on-ai](https://clawhub.ai/user/aa-on-ai)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to design or audit websites and applications that AI agents can navigate, understand, and operate through semantic HTML, accessibility metadata, structured data, predictable interactions, and API-first patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying crawler, llms.txt, API, MCP, or automation-access recommendations too broadly could make sensitive or private site areas easier for agents to reach. <br>
-Mitigation: Decide which parts of the site should be machine-readable before applying the guidance, and keep sensitive areas protected by real authentication and authorization. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill when building or auditing websites and applications that need to be understandable and operable by AI agents as end users.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aa-on-ai/agent-friendly-design) <br>
-- [llms.txt specification](https://llmstxt.org) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
-- [Microsoft NLWeb](https://github.com/microsoft/nlweb) <br>
-- [Google A2UI introduction](https://developers.googleblog.com/introducing-a2ui-an-open-project-for-agent-driven-interfaces/) <br>
-- [AGENTS.md documentation](https://docs.agentsmd.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, HTML and ARIA examples, protocol links, and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance; no executable code or runtime behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Crawlability guidance could expose private, user-specific, licensed, or regulated content if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review crawler access, robots.txt, sitemap, and llms.txt changes against site policy before publication.
+
+Risk: Design recommendations could be applied inconsistently and create misleading agent-facing state.
+
+Mitigation: Test critical flows with accessibility-tree inspection, Lighthouse accessibility checks, and browser-agent workflows before release.
+
+## Reference(s):
+
+- [llms.txt](https://llmstxt.org)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+- [NLWeb](https://github.com/microsoft/nlweb)
+- [A2UI](https://developers.googleblog.com/introducing-a2ui-an-open-project-for-agent-driven-interfaces/)
+- [AGENTS.md](https://docs.agentsmd.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklist items and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; produces recommendations, checklists, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

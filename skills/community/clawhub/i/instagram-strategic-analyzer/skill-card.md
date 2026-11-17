@@ -1,37 +1,51 @@
-## Description: <br>
-Analyzes artist Instagram profiles to generate content ideas, storytelling concepts, captions, and strategic creative direction for musical branding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes artist profiles to generate Instagram post ideas, storytelling concepts, captions, and content strategies for musical branding.
 
-## Publisher: <br>
-[ilprato](https://clawhub.ai/user/ilprato) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilprato](https://clawhub.ai/user/ilprato)
 
-## Use Case: <br>
-Artists, creative strategists, and agent users use this skill to interpret an Instagram artist profile, identify emotional and stylistic patterns, and produce concrete content directions. It is tailored to narrative-driven musical branding for Il Prato. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configuration may request an Instagram/Facebook Graph API access token for profile data. <br>
-Mitigation: Use a least-privileged, revocable token and avoid granting broad account permissions unless they are required for the intended use. <br>
+## Use Case:
 
+Artists, creative collaborators, and agent users use this skill to interpret an Instagram artist profile and turn profile or post context into concrete creative direction, captions, and content ideas for musical branding.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured analysis with creative recommendations and content ideas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact describes sections for current identity, hidden patterns, creative tensions, recommended direction, and content ideas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: The configuration requests an Instagram/Facebook access token that the documented purpose and inspected code do not justify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher's documentation before providing any token; require a clear purpose, minimum scopes, protection model, and reason the skill needs the credential.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilprato/skills/instagram-strategic-analyzer)
+- [Publisher profile](https://clawhub.ai/user/ilprato)
+- [Facebook Graph API v25.0](https://graph.facebook.com/v25.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown or plain text analysis with sections for identity, hidden patterns, creative tensions, recommended direction, and content ideas.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use supplied Instagram profile context, recent post captions, content type, and engagement metrics when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

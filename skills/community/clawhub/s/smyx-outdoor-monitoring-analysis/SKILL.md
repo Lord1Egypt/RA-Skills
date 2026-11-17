@@ -1,7 +1,7 @@
 ---
 name: "outdoor-monitoring-analysis"
 description: "Detects targets such as people, vehicles, non-motorized vehicles, and pets within target areas; supports batch image analysis, suitable for outdoor surveillance scenarios like courtyards, orchards, and farms. | 户外看护智能监测分析技能，检测目标区域内的人、车、非机动车、宠物等目标，支持批量图片分析，适用于庭院、果园、养殖场等户外区域看护场景"
-version: "1.0.5"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

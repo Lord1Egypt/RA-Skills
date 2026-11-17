@@ -32,13 +32,13 @@ Make AI-powered phone calls on behalf of the user — book restaurants, make app
 ### 3. Configure Clawdbot
 Add to your environment or `.env`:
 ```bash
-BLAND_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx
+BLAND_API_KEY=REDACTED-SECRET
 ```
 
 Or store in `~/.clawd/secrets.json`:
 ```json
 {
-  "bland_api_key": "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+  "bland_api_key": "REDACTED-SECRET"
 }
 ```
 

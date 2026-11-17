@@ -1,41 +1,51 @@
-## Description: <br>
-Guides agents in building and reviewing prompts for Pixar-style 3D animation cinematography, including material quality, lighting, camera movement, and frame-level checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating and reviewing Pixar-style 3D animation prompts, with emphasis on material standards, lighting, contact shadows, fabric physics, camera movement, and differences from live-action looks.
 
-## Publisher: <br>
-[beermanzz](https://clawhub.ai/user/beermanzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beermanzz](https://clawhub.ai/user/beermanzz)
 
-## Use Case: <br>
-External creators and developers use this skill to draft and evaluate prompts for Pixar-style 3D animated shorts and short-form scenes. It focuses on material standards, volumetric lighting, contact shadows, cloth physics, virtual camera movement, and quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers may activate the skill more often than intended. <br>
-Mitigation: Use it in workflows where Pixar-style 3D animation cinematography guidance is wanted, and narrow trigger wording if activation becomes too broad. <br>
-Risk: Explicit Pixar-style references may not fit every creative or commercial use case. <br>
-Mitigation: Confirm that this style reference is appropriate for the intended project, or replace it with broader 3D animation language when needed. <br>
+## Use Case:
 
+External creators, developers, and agents use this skill to construct and quality-check prompts for Pixar-style 3D animation shorts or scenes. It helps evaluate skin, fabric, lighting, shadows, camera movement, and style separation from live action.
 
-## Reference(s): <br>
-- [3D Material Standards](artifact/references/3d-material-standards.md) <br>
-- [Pixar-Style 3D vs Live-Action Cinematography](artifact/references/pixar-vs-liveaction.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, prompt terminology, and quality-check lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable creative guidance; no commands or data access indicated by evidence.security.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The guidance is written in Chinese, which may lead to misuse or misinterpretation by readers who cannot review that language fluently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill content for language fit before deployment or use it with agents and reviewers that can evaluate Chinese-language prompt guidance.
+
+## Reference(s):
+
+- [3D Animation Cinematography ClawHub Page](https://clawhub.ai/beermanzz/skills/3d-animation-cinematography)
+- [Pixar-Style 3D vs Live-Action Cinematography](references/pixar-vs-liveaction.md)
+- [3D Material Standards](references/3d-material-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with prompt keywords, comparison tables, and quality-check lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance focused on 3D animation prompt construction and visual quality review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

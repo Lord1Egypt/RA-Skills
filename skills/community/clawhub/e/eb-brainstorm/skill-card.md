@@ -1,39 +1,51 @@
-## Description: <br>
-Brainstorm helps agents run open-ended idea generation sessions, explore problem spaces, brainstorm product directions, and generate names using structured creativity frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open-ended brainstorming and idea generation sessions for exploring ideas, naming options, product directions, and solution approaches.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-External users and agents use this skill to generate many possible ideas before evaluation, including startup concepts, solution approaches, feature directions, and product or company names. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate this brainstorming skill when the user intended a narrower task or a different specialized skill. <br>
-Mitigation: Use explicit task framing when a constrained workflow is needed, and switch to validation or stress-testing only after idea generation is complete. <br>
+## Use Case:
 
+External users and developers use this skill to run divergent brainstorming sessions for idea generation, problem-space exploration, product or feature directions, and name storming.
 
-## Reference(s): <br>
-- [Creativity Frameworks](references/creativity-frameworks.md) <br>
-- [ClawHub skill page](https://clawhub.ai/emersonbraun/eb-brainstorm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown brainstorm summaries with idea lists, clusters, wild cards, and recommended next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured brainstorming modes and creativity-framework prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Name storming may prompt domain availability checks that send candidate names to external lookup services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before performing availability checks and skip external lookups unless the user explicitly agrees.
+
+## Reference(s):
+
+- [Creativity Frameworks](references/creativity-frameworks.md)
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-brainstorm)
+- [Publisher Profile](https://clawhub.ai/user/emersonbraun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown brainstorming summary with idea lists, clusters, wild cards, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or persistence; may suggest optional follow-up validation or stress testing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

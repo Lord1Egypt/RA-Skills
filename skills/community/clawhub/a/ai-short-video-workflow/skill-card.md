@@ -1,45 +1,62 @@
-## Description: <br>
-Use when creating complete AI-generated short videos, social videos, promotional videos, narration videos, or script-to-video outputs from a topic, brief, product, article, or approved script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating complete AI-generated short videos, social videos, promotional videos, narration videos, or script-to-video outputs from a topic, brief, product, article, or approved script.
 
-## Publisher: <br>
-[darknoah](https://clawhub.ai/user/darknoah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darknoah](https://clawhub.ai/user/darknoah)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to guide an agent through a confirmed short-video production workflow, including format selection, script confirmation, storyboard planning, asset sourcing, narration, editing, subtitles, music, rendering, and final output checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled media helper scripts can fetch arbitrary URLs and write files to user-chosen local paths. <br>
-Mitigation: Review generated download commands before running them, use a dedicated project output directory, and avoid broad or sensitive filesystem paths. <br>
-Risk: The workflow requires provider API credentials for media search and download helpers. <br>
-Mitigation: Keep API keys in local config files or environment variables and do not paste raw credentials into chat. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to turn a topic, brief, product, article, or approved script into a complete short-video production workflow. It guides format selection, script confirmation, storyboarding, media sourcing, narration, editing, subtitle generation, music, rendering, and final output checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/darknoah/ai-short-video-workflow) <br>
-- [Pexels API](https://api.pexels.com/v1) <br>
-- [Pixabay API](https://pixabay.com/api/) <br>
-- [Pixabay Video API](https://pixabay.com/api/videos/) <br>
-- [Jamendo API](https://api.jamendo.com/v3.0) <br>
-- [Freesound API](https://freesound.org/apiv2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media workflow artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce video scripts, storyboard tables, asset-search commands, configuration guidance, subtitle files, ffmpeg commands, and final-output verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Bundled media download tools use network access to stock-media providers and can write downloaded assets or raw JSON results to local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where provider network access and local file writes are acceptable; keep downloads in a dedicated media output directory.
+
+Risk: Security evidence flags under-scoped arbitrary URL and file-write behavior in the media download tools.
+
+Mitigation: Avoid passing untrusted URLs or output paths into download commands, and prefer versions that restrict downloads to validated provider asset URLs.
+
+Risk: Provider credentials are required for media searches and downloads.
+
+Mitigation: Use limited-scope API keys, store them locally in config.json or environment variables, and do not paste raw keys into chat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darknoah/skills/ai-short-video-workflow)
+- [Pexels API](https://api.pexels.com/v1)
+- [Pixabay API](https://pixabay.com/api/)
+- [Pixabay Videos API](https://pixabay.com/api/videos/)
+- [Jamendo API](https://api.jamendo.com/v3.0)
+- [Freesound API](https://freesound.org/apiv2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, script and storyboard tables, configuration notes, optional JSON media search results, subtitle files, and rendered video file guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to call stock-media APIs, use local API-key configuration, download media assets, generate ASS subtitles, and render H.264 MP4 outputs after user confirmation checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

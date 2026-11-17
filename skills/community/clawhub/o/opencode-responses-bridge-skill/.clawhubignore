@@ -1,0 +1,14 @@
+# Runtime artifacts - never publish these
+proxy-requests.log
+proxy-last-request.json
+proxy-last-upstream.json
+proxy-last-error.txt
+
+# Repo noise
+.git/
+.gitignore
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

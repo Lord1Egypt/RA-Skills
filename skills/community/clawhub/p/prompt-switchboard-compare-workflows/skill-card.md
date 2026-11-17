@@ -1,49 +1,62 @@
-## Description: <br>
-Teach an agent to install Prompt Switchboard's local MCP sidecar, connect it in a host, and run a compare-first browser workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach an agent to install Prompt Switchboard's local MCP sidecar, connect it in a host, and run a compare-first browser workflow.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and connect Prompt Switchboard's local MCP sidecar, then compare one prompt across already-open AI chat tabs before broader automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup uses an external GitHub repository and npm dependencies for the local MCP sidecar. <br>
-Mitigation: Review the referenced repository and dependency tree before installation, and run the sidecar from a trusted local clone. <br>
-Risk: Compare workflows operate on already signed-in AI chat tabs and may send prompts to those providers or leave local compare history. <br>
-Mitigation: Use only intended AI chat accounts and browser tabs, and avoid sensitive prompts unless the user accepts the provider and local-history exposure. <br>
-Risk: Running compare before bridge and tab readiness are confirmed can fail or produce incomplete compare artifacts. <br>
-Mitigation: Start with bridge_status and check_readiness, then stop and report missing login or tab preparation steps when fewer than two tabs are ready. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect a local Prompt Switchboard MCP sidecar to OpenHands/OpenClaw-style hosts, verify ready AI chat tabs, and run compare-first browser workflows that produce inspectable compare artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/xiaojiou176/prompt-switchboard-compare-workflows) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaojiou176) <br>
-- [Install and Connect Prompt Switchboard MCP](references/INSTALL.md) <br>
-- [Prompt Switchboard MCP Capabilities](references/CAPABILITIES.md) <br>
-- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md) <br>
-- [Prompt Switchboard Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [OpenHands MCP configuration](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP configuration](references/OPENCLAW_MCP_CONFIG.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, MCP tool names, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compare-first workflow guidance and host setup instructions; it expects local browser tabs, a local MCP sidecar, and user-controlled provider sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: The skill asks users to install and run an unpinned external MCP server whose behavior can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external Prompt Switchboard repository before installing, prefer a pinned reviewed commit, run npm ci from a lockfile when available, and point host configuration only at that verified checkout.
+
+Risk: The local MCP sidecar and browser extension workflow can interact with local files, environment, and active browser tabs depending on host permissions.
+
+Mitigation: Limit the MCP process's file, environment, and browser-tab access, and run bridge_status and check_readiness before compare so blocked tabs or setup issues are reported rather than bypassed.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/xiaojiou176/skills/prompt-switchboard-compare-workflows)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/xiaojiou176)
+- [Skill README](artifact/README.md)
+- [Install and Connect Prompt Switchboard MCP](artifact/references/INSTALL.md)
+- [Prompt Switchboard MCP Capabilities](artifact/references/CAPABILITIES.md)
+- [OpenHands / OpenClaw Demo Walkthrough](artifact/references/DEMO.md)
+- [Prompt Switchboard Troubleshooting](artifact/references/TROUBLESHOOTING.md)
+- [OpenHands MCP Config](artifact/references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP Config](artifact/references/OPENCLAW_MCP_CONFIG.json)
+- [Prompt Switchboard install target](https://github.com/xiaojiou176-open/multi-ai-sidepanel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON host configuration snippets, and MCP tool names.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to check bridge and tab readiness before compare, then inspect session and turn artifacts.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

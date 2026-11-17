@@ -1,0 +1,7 @@
+interface:
+  display_name: "免费抖音下载支持视频图片"
+  short_description: "免费、免额外登录、免第三方 Key，支持视频和图文图片"
+  icon_small: "./assets/icon-128.png"
+  icon_large: "./assets/icon-512.png"
+  brand_color: "#5B5FEF"
+  default_prompt: "使用 $douyin-download-webbridge 免费下载这个抖音视频或图文图片，保存到本地并告诉我文件路径。"

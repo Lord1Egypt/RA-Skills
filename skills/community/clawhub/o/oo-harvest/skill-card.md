@@ -1,43 +1,51 @@
-## Description: <br>
-Harvest helps agents read and manage Harvest users, clients, projects, tasks, assignments, and time entries through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use an OOMOL-connected Harvest account to read, create, update, or delete Harvest data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and teams with connected Harvest and OOMOL accounts use this skill to inspect Harvest records and perform time-entry workflows without handling raw credentials. It supports read actions as well as confirmed create, update, stop, restart, and delete operations for time entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, stop, restart, or delete Harvest time entries. <br>
-Mitigation: Review the exact payload and user-visible effect before approving write operations, and require explicit approval for destructive actions. <br>
-Risk: The skill operates through the local oo CLI and can depend on installer or account-connection state. <br>
-Mitigation: Verify the CLI installer before running it, use setup commands only after authentication or connection failures, and confirm the Harvest account connection before retrying. <br>
+## Use Case:
 
+Employees and developers use this skill to read Harvest clients, projects, tasks, time entries, and user details, and to manage time entries in a connected account.
 
-## Reference(s): <br>
-- [Harvest on ClawHub](https://clawhub.ai/oomol/oo-harvest) <br>
-- [Harvest homepage](https://www.getharvest.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before actions; state-changing and destructive operations require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact metadata) <br>
+Risk: Automatic setup executes downloaded code without a separate approval step, and the installers and hosted implementation are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently obtain and verify the oo CLI, review setup changes to installed skills, and limit the connected Harvest account's permissions.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Harvest](https://www.getharvest.com)
+- [Harvest API v2 authentication guide](https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [oo CLI commands and JSON Harvest responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions return Harvest account data; time-entry changes require user confirmation, and destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-FastAPI Backend provides Chinese-language best-practice guidance for building FastAPI backends with SQLAlchemy 2.0 async, Alembic migrations, and Pydantic v2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a FastAPI backend development guide covering async SQLAlchemy 2.0, Alembic migrations, Pydantic v2 schemas, CRUD, authentication, testing, and deployment patterns.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and backend engineers use this skill to create or review FastAPI API services, database configuration, SQLAlchemy models, CRUD operations, authentication, Alembic migrations, tests, and deployment commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication, database, migration, or deployment code may be incomplete or unsuitable for a production environment. <br>
-Mitigation: Review and test generated code before production use, including authentication flows, migration safety, database sessions, and deployment configuration. <br>
-Risk: Example configuration includes placeholder credentials and secret values. <br>
-Mitigation: Replace placeholders with environment-managed secrets and avoid committing real credentials to source control. <br>
-Risk: The skill may trigger on broad backend-related phrasing even when the requested stack is not FastAPI. <br>
-Mitigation: Confirm the intended backend stack before applying the skill's FastAPI-specific guidance. <br>
-Risk: The content is mainly Chinese-language guidance. <br>
-Mitigation: Use reviewers who can accurately evaluate the Chinese guidance or translate key recommendations before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold or review FastAPI backend services with database models, REST endpoints, authentication, migrations, tests, and deployment commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/fastapi-backend) <br>
-- [Publisher profile](https://clawhub.ai/user/paudyyin) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides backend architecture guidance, example project structure, configuration snippets, API route examples, authentication patterns, migration commands, test examples, and deployment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated authentication and user API examples may expose account data or omit required authorization checks if used directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden authentication, authorization, JWT claim validation, and user read endpoints before adapting the examples for production.
+
+Risk: Example database and secret settings could be copied into committed configuration files.
+
+Mitigation: Keep real DATABASE_URL and SECRET_KEY values in protected local secrets and avoid committing environment-specific credentials.
+
+Risk: Unbounded or weakly bounded pagination can increase service load or expose more data than intended.
+
+Mitigation: Apply explicit pagination bounds and access controls on list endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/fastapi-backend)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Python, bash, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes framework version guidance and example project structure; generated examples should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

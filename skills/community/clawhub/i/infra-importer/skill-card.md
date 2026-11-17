@@ -1,41 +1,54 @@
-## Description: <br>
-Infra Importer is a devtools reference helper that provides concise guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering Infra Importer intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly retrieve plain-text reference guidance for Infra Importer concepts, operational patterns, troubleshooting, performance, security, and migration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an executable shell script that runs locally when invoked. <br>
-Mitigation: Review the script before installation or execution and invoke only the expected reference commands; observed behavior is limited to printing static documentation. <br>
-Risk: Reference guidance can become outdated or too generic for a specific infrastructure environment. <br>
-Mitigation: Treat the output as a starting point and validate operational, security, and migration advice against the target environment before applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local command-line reference for Infra Importer concepts, setup, operational patterns, troubleshooting, performance, security, migration, and quick command lookup.
 
-## Reference(s): <br>
-- [Infra Importer on ClawHub](https://clawhub.ai/bytesagain3/infra-importer) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local shell-script output; no API keys, credentials, network access, or external service calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: The reference text is generic and may not reflect a user's actual infrastructure environment or operational controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as quick reference guidance and verify any infrastructure action against project-specific documentation and review processes.
+
+Risk: The cheatsheet includes the stale command name 'troubleshooting'.
+
+Mitigation: Use the implemented 'debugging' command for troubleshooting guidance.
+
+## Reference(s):
+
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Infra Importer on ClawHub](https://clawhub.ai/bytesagain3/skills/infra-importer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local command output only; no credentials, network access, or persistent state are expected.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

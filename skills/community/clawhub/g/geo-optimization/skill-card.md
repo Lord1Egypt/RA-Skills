@@ -1,47 +1,65 @@
-## Description: <br>
-GEO Optimization helps agents audit and improve content for AI search visibility, LLM discoverability, and citation in AI-powered search experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generative Engine Optimization (GEO) for AI search visibility. Optimize content to appear in ChatGPT, Perplexity, Claude, and Google AI Overviews. Use when optimizing websites, pages, or content for LLM discoverability and citation.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-Content marketers, SEO/GEO practitioners, and developers use this skill to audit pages, structure content for LLM extraction, and monitor Perplexity citation visibility over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Monitoring queries and stored geo-history results may expose confidential strategy, customer names, or unreleased plans to Perplexity or local files. <br>
-Mitigation: Use non-confidential test queries unless disclosure is acceptable, and review local geo-history outputs before sharing or committing them. <br>
-Risk: The monitoring scripts are preconfigured for Gameye-specific queries, domains, and a hardcoded daily-monitor workspace path. <br>
-Mitigation: Edit the queries, domains, and workspace path for the target site before running scheduled monitoring. <br>
-Risk: Perplexity monitoring requires an API key and sends prompts to an external API. <br>
-Mitigation: Use a scoped Perplexity API key and store it only in the intended local environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/capt-marbles/geo-optimization) <br>
-- [GEO audit template](references/audit-template.md) <br>
-- [Awesome Generative Engine Optimization](https://github.com/amplifying-ai/awesome-generative-engine-optimization) <br>
-- [Generative Engine Optimization research paper](https://arxiv.org/pdf/2311.09735) <br>
-- [Google guidance for succeeding in AI search](https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search) <br>
-- [Schema.org structured data vocabulary](https://schema.org) <br>
-- [Perplexity API chat completions endpoint](https://api.perplexity.ai/chat/completions) <br>
+## Use Case:
 
+External marketers, content teams, and developers use this skill to audit pages for AI-search visibility, structure pages for LLM citation, and monitor Perplexity citation behavior over time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, JSON examples, and optional local JSON monitoring reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional monitoring scripts can call Perplexity and write local geo-history JSON summaries when executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Perplexity-backed monitoring sends configured test queries to a third-party API and saves responses locally.
+
+Mitigation: Review queries for sensitive data, use approved API credentials only, and document local retention before running monitoring.
+
+Risk: The automation broadly loads .env values and can expose unrelated local secrets to the script environment.
+
+Mitigation: Restrict environment loading to PERPLEXITY_API_KEY or run in a clean environment with only the required secret.
+
+Risk: Cron-style monitoring and fixed local paths may run in the wrong workspace or persist beyond intended testing.
+
+Mitigation: Replace hardcoded paths, use explicit working directories, and review scheduled jobs before enabling automation.
+
+Risk: The shell wrapper writes to a fixed /tmp path and embeds filenames into inline Python source.
+
+Mitigation: Use unique temporary files and avoid interpolating filenames into inline Python.
+
+## Reference(s):
+
+- [GEO Audit Template](references/audit-template.md)
+- [ClawHub skill page](https://clawhub.ai/capt-marbles/skills/geo-optimization)
+- [Awesome Generative Engine Optimization](https://github.com/amplifying-ai/awesome-generative-engine-optimization)
+- [Princeton GEO Research Paper](https://arxiv.org/pdf/2311.09735)
+- [Google AI Search Guidance](https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search)
+- [Perplexity Ranking Factors](https://firstpagesage.com/seo-blog/perplexity-ai-optimization-ranking-factors-and-strategy/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, JSON query files, and shell or Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Monitoring scripts may save Perplexity query results and summary JSON under geo-history when run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,63 @@
-## Description: <br>
-公众号文案创作工具，基于红狐数据公众号爆款雷达按关键词检索热门文章，分析流量规律，并生成可发布的完整文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公众号文案创作工具，基于红狐数据公众号爆款雷达每日收录的热门文章，按关键词检索爆款、分析流量规律、生成可发布的完整文章。
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-公众号号主、内容运营和品牌策划人员使用该技能按关键词检索公众号爆款文章，分析标题、开头、结构、互动和高频词规律，并生成约 1500 字的可发布公众号文案。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A plaintext RedFox API key is present in the artifact evidence. <br>
-Mitigation: Do not use the bundled key; create a separate RedFox key with revocation controls, and rotate or remove any exposed key before use. <br>
-Risk: Personal writing samples, drafts, client material, or regulated data may be processed while adapting the output style. <br>
-Mitigation: Avoid providing private or confidential material and review generated copy before publication. <br>
+## Use Case:
 
+External WeChat Official Account owners, content operators, and brand planners use this skill to search recent viral article data, analyze content patterns, and generate publish-ready Chinese WeChat Official Account copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/gzh-copywriter) <br>
-- [公众号趋势数据格式说明](references/gzh_trend_data_format.md) <br>
-- [RedFox Official Account viral search API](https://redfox.hk/story/api/gzh/search/hotArticle) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown article draft with recommended titles, full body copy, core viewpoint, tags, differentiation notes when applicable, and viral formula sources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY for trend retrieval; default search covers the last 7 days and can expand to 30 days when samples are insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Search keywords are sent to redfox.hk when the bundled data query runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive unpublished plans, confidential topics, or private user data as search keywords unless this data sharing is acceptable.
+
+Risk: Personal style samples can contain private diary-style or unpublished content and may be used in the workflow.
+
+Mitigation: Use non-sensitive writing samples or redact private details before asking the skill to adapt style.
+
+Risk: Command output currently includes a RedFox sales contact message that can contaminate generated copy or break JSON consumers.
+
+Mitigation: Review and clean generated output before publication, and treat script output as untrusted input when integrating with downstream JSON or copywriting pipelines.
+
+Risk: The skill requires a RedFox API key.
+
+Mitigation: Store REDFOX_API_KEY in the environment or agent configuration, avoid hard-coding it, and confirm the key can be reset or revoked.
+
+## Reference(s):
+
+- [公众号趋势数据格式说明](references/gzh_trend_data_format.md)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=github)
+- [RedFoxHub](https://redfox.hk?source=github)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown article package with analysis sections, recommended titles, tags, and source article links; shell command snippets for data retrieval.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; default query window is the last 7 days and can expand to 30 days when sample volume is low.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

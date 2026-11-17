@@ -1,0 +1,258 @@
+{
+  "cliente": "",
+  "subtitle": "",
+  "tagline": "",
+  "s1_resumen": {
+    "que_es": "",
+    "por_que_ahora": [
+      ""
+    ],
+    "tesis": ""
+  },
+  "s2_brief": {
+    "identidad_fundadora": [
+      ""
+    ],
+    "avatar_descripcion": "",
+    "como_se_ve_hoy": [
+      ""
+    ],
+    "dolores_verbatim": [
+      ""
+    ],
+    "insight_estrategico": ""
+  },
+  "s3_benchmark": {
+    "mapa_competitivo": [
+      {
+        "comunidad": "",
+        "plataforma": "",
+        "promesa": "",
+        "diferenciador": "",
+        "debilidad": ""
+      }
+    ],
+    "lo_que_mercado_hace_mal": "",
+    "oportunidades": [
+      ""
+    ]
+  },
+  "s4_identidad": {
+    "nombre_explicacion": "",
+    "manifiesto": "",
+    "mito_de_origen": "",
+    "contraste": [
+      {
+        "ellos": "",
+        "nosotras": ""
+      }
+    ],
+    "identidad_miembros": "",
+    "valores": [
+      ""
+    ],
+    "frases_internas": [
+      ""
+    ]
+  },
+  "s5_vehiculo": {
+    "nombre_metodo": "",
+    "promesa_central": "",
+    "tesis_fundacional": "",
+    "leyes": [
+      {
+        "ley": "",
+        "pregunta": "",
+        "activa": "",
+        "si_no": ""
+      }
+    ],
+    "protocolo_decision": [
+      ""
+    ],
+    "reglas": [
+      {
+        "regla": "",
+        "explicacion": "",
+        "opone": ""
+      }
+    ],
+    "fases_identidad": [
+      {
+        "fase": "",
+        "identidad": "",
+        "como_se_siente": "",
+        "necesita": ""
+      }
+    ]
+  },
+  "s5b_oferta": {
+    "transformacion": [
+      {
+        "antes": "",
+        "despues": ""
+      }
+    ],
+    "incluye": [
+      {
+        "componente": "",
+        "entrega": ""
+      }
+    ],
+    "valor_vs_precio": [
+      {
+        "componente": "",
+        "valor": ""
+      }
+    ],
+    "valor_total": "",
+    "precio": "",
+    "objeciones": [
+      {
+        "objecion": "",
+        "respuesta": ""
+      }
+    ]
+  },
+  "s6_modulos": [
+    {
+      "codigo": "",
+      "titulo": "",
+      "objetivo": "",
+      "temas": [
+        ""
+      ],
+      "resultado": "",
+      "entregable": ""
+    }
+  ],
+  "s7_videos": [
+    {
+      "modulo": "",
+      "modulo_titulo": "",
+      "modulo_total": "",
+      "videos": [
+        {
+          "codigo": "",
+          "titulo": "",
+          "duracion": "",
+          "formato": "",
+          "hook": "",
+          "promesa": "",
+          "estructura": ""
+        }
+      ]
+    }
+  ],
+  "s8_dinamicas": [
+    {
+      "id": "",
+      "dinamica": "",
+      "que_es": "",
+      "opera": "",
+      "gap": ""
+    }
+  ],
+  "s9_recursos": [
+    {
+      "tipo": "",
+      "cantidad": "",
+      "detalle": "",
+      "prioridad": ""
+    }
+  ],
+  "s10_retos": {
+    "onboarding": [
+      {
+        "n": "",
+        "reto": "",
+        "accion": "",
+        "resultado": "",
+        "recompensa": ""
+      }
+    ],
+    "por_modulo": [
+      {
+        "modulo": "",
+        "tipo": "",
+        "reto": "",
+        "accion": "",
+        "recompensa": ""
+      }
+    ]
+  },
+  "s11_ritmo": [
+    {
+      "dia": "",
+      "actividad": "",
+      "tipo": ""
+    }
+  ],
+  "s12_foro": [
+    {
+      "categoria": "",
+      "proposito": "",
+      "publica": "",
+      "tipo_post": ""
+    }
+  ],
+  "s13_complementos": {
+    "onboarding": "",
+    "posts_fijados": [
+      ""
+    ],
+    "leaderboard": [
+      {
+        "nivel": 1,
+        "nombre": "",
+        "criterio": ""
+      }
+    ],
+    "vsl": "",
+    "cancelacion": ""
+  },
+  "s14_estetica": {
+    "direccion_estrategica": "",
+    "paleta": [
+      {
+        "rol": "",
+        "color": "",
+        "hex": "",
+        "significado": ""
+      }
+    ],
+    "tipografias": {
+      "titulos": "",
+      "texto": ""
+    },
+    "si_usar": [
+      ""
+    ],
+    "no_usar": [
+      ""
+    ],
+    "metafora_visual": ""
+  },
+  "s15_portadas": {
+    "prompt_base": "",
+    "specs": "",
+    "portadas": [
+      {
+        "codigo": "",
+        "modulo": "",
+        "texto": "",
+        "concepto": ""
+      }
+    ]
+  },
+  "s16_roadmap": [
+    {
+      "mes": "",
+      "tema": "",
+      "subtema": "",
+      "bullets": [
+        ""
+      ]
+    }
+  ]
+}

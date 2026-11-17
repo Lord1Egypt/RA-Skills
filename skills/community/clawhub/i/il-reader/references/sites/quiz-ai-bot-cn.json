@@ -1,0 +1,300 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-ai-bot-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:41.767Z",
+  "entry": {
+    "url": "https://ai-bot.cn",
+    "final_url": "https://ai-bot.cn/",
+    "title": "AI工具集官网 | 1000+ AI工具集合，国内外AI工具集导航大全",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:41.767Z",
+    "identity": {
+      "declared_name": "AI工具集",
+      "hostname": "ai-bot.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "AI搜索引擎",
+        "href": "https://ai-bot.cn/#term-61",
+        "target": ""
+      },
+      {
+        "text": "AI教程资源",
+        "href": "https://ai-bot.cn/ai-tutorials/",
+        "target": "_blank"
+      },
+      {
+        "text": "LibTV\n\n专业AI视频创作平台，最便宜的 Seedance 2.5 ！",
+        "href": "https://ai-bot.cn/sites/73776.html",
+        "target": "_blank"
+      },
+      {
+        "text": "秘塔AI搜索\n\n最好用的AI搜索工具，没有广告，直达结果",
+        "href": "https://metaso.cn/?s=aibot1&referrer_s=aibot1",
+        "target": "_blank"
+      },
+      {
+        "text": "updream\n\n专业级一站式 AI 视频创作平台",
+        "href": "https://ai-bot.cn/sites/80357.html",
+        "target": "_blank"
+      },
+      {
+        "text": "办公小浣熊\n\n专业 AI 办公智能体",
+        "href": "https://ai-bot.cn/sites/8516.html",
+        "target": "_blank"
+      },
+      {
+        "text": "笔目鱼\n\n专业英文论文写作器",
+        "href": "https://ai-bot.cn/sites/53972.html",
+        "target": "_blank"
+      },
+      {
+        "text": "LibTV\n\n专业AI视频创作平台，最便宜的 Seedance 2.5 ！",
+        "href": "https://ai-bot.cn/sites/73776.html",
+        "target": "_blank"
+      },
+      {
+        "text": "updream\n\n专业级一站式 AI 视频创作平台",
+        "href": "https://ai-bot.cn/sites/80357.html",
+        "target": "_blank"
+      },
+      {
+        "text": "Higgsfield\n\nAI视频生成工具，支持专业运镜效果",
+        "href": "https://ai-bot.cn/sites/59035.html",
+        "target": "_blank"
+      },
+      {
+        "text": "办公小浣熊\n\n专业 AI 办公智能体",
+        "href": "https://ai-bot.cn/sites/8516.html",
+        "target": "_blank"
+      },
+      {
+        "text": "稿定PPT\n\n稿定推出的PPT模板资源库",
+        "href": "https://ai-bot.cn/sites/35715.html",
+        "target": "_blank"
+      },
+      {
+        "text": "ChartGen\n\nAI图表生成工具，快速生成专业图表",
+        "href": "https://ai-bot.cn/sites/69545.html",
+        "target": "_blank"
+      },
+      {
+        "text": "一点PPT\n\n一句话生成专业PPT，AI自动排版配图",
+        "href": "https://ai-bot.cn/sites/73154.html",
+        "target": "_blank"
+      },
+      {
+        "text": "讯飞智作\n\nAI文本配音工具，数字人课程、营销视频制作",
+        "href": "https://ai-bot.cn/sites/246.html",
+        "target": "_blank"
+      },
+      {
+        "text": "TurboScribe\n\n专业 AI 音视频转文字工具",
+        "href": "https://ai-bot.cn/sites/69917.html",
+        "target": "_blank"
+      },
+      {
+        "text": "夸克AI\n\n集AI搜索、网盘、文档、创作等功能于一体的应用",
+        "href": "https://ai-bot.cn/sites/15309.html",
+        "target": "_blank"
+      },
+      {
+        "text": "秘塔AI搜索\n\n最好用的AI搜索工具，没有广告，直达结果",
+        "href": "https://metaso.cn/?s=aibot1&referrer_s=aibot1",
+        "target": "_blank"
+      },
+      {
+        "text": "Perplexity\n\nAI搜索引擎与深度研究工具",
+        "href": "https://ai-bot.cn/sites/65226.html",
+        "target": "_blank"
+      },
+      {
+        "text": "玻尔\n\n新一代科研知识库与AI学术搜索平台",
+        "href": "https://ai-bot.cn/sites/58169.html",
+        "target": "_blank"
+      },
+      {
+        "text": "心流\n\n阿里旗下推出的AI搜索助手",
+        "href": "https://ai-bot.cn/sites/14200.html",
+        "target": "_blank"
+      },
+      {
+        "text": "点点\n\n小红书推出的 AI 搜索应用，主打生活场景",
+        "href": "https://ai-bot.cn/diandian/",
+        "target": "_blank"
+      },
+      {
+        "text": "Devv\n\n面向程序员的新一代AI搜索引擎",
+        "href": "https://ai-bot.cn/sites/7108.html",
+        "target": "_blank"
+      },
+      {
+        "text": "知乎直答\n\n知乎推出的AI搜索引擎，直达问题答案",
+        "href": "https://ai-bot.cn/sites/13966.html",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "站内AI工具搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "站内AI工具搜索",
+      "name": null,
+      "id": "search-text",
+      "css": "#search-text",
+      "role": null,
+      "form_action": "https://ai-bot.cn/?post_type=&s=%s%",
+      "locator": {
+        "css": "#search-text"
+      },
+      "observed_url": "https://ai-bot.cn/",
+      "observed_at": "2026-10-09T09:06:40.574Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "btn_search",
+      "css": "#btn_search",
+      "role": null,
+      "form_action": "https://ai-bot.cn/?post_type=&s=%s%",
+      "locator": {
+        "css": "#btn_search"
+      },
+      "observed_url": "https://ai-bot.cn/",
+      "observed_at": "2026-10-09T09:06:40.574Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-ai-bot-cn:record-lookup",
+      "source_id": "quiz-ai-bot-cn",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://ai-bot.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "站内AI工具搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "站内AI工具搜索",
+          "name": null,
+          "id": "search-text",
+          "css": "#search-text",
+          "role": null,
+          "form_action": "https://ai-bot.cn/?post_type=&s=%s%",
+          "locator": {
+            "css": "#search-text"
+          },
+          "observed_url": "https://ai-bot.cn/",
+          "observed_at": "2026-10-09T09:06:40.574Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "btn_search",
+          "css": "#btn_search",
+          "role": null,
+          "form_action": "https://ai-bot.cn/?post_type=&s=%s%",
+          "locator": {
+            "css": "#btn_search"
+          },
+          "observed_url": "https://ai-bot.cn/",
+          "observed_at": "2026-10-09T09:06:40.574Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-118"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:41.767Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-ai-bot-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-ai-bot-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

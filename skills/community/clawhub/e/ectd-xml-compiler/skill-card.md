@@ -1,43 +1,60 @@
-## Description: <br>
-Automatically convert uploaded drug application documents (Word/PDF) into XML skeleton structure compliant with eCTD 4.0/3.2.2 specifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Word and PDF drug application documents into draft eCTD 4.0/3.2.2 XML skeletons for review.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Regulatory operations teams and developers can use this skill to turn Word or PDF drug-application draft documents into reviewable eCTD XML skeleton files, module XML, an index, and checksums before expert validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appears to overstate regulatory compliance and validation for a sensitive drug-submission workflow. <br>
-Mitigation: Use generated XML only as a drafting aid, then require expert regulatory review and independent eCTD validation before relying on it for any submission. <br>
-Risk: The workflow may process confidential drug-submission files and write outputs to the local workspace. <br>
-Mitigation: Run it only in an isolated local environment and avoid shared or uncontrolled workspaces for confidential materials. <br>
+## Use Case:
 
+Regulatory operations teams, submission publishers, and developers can use this skill to draft eCTD module XML, index files, and checksums from Word or PDF application documents before independent regulatory validation.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ICH eCTD Specification v4.0](https://www.ich.org/page/ectd) <br>
-- [FDA eCTD Technical Conformance Guide](https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/ectd-technical-conformance-guide) <br>
-- [EMA eSubmission Requirements](https://www.ema.europa.eu/en/human-regulatory/marketing-authorisation/application-procedures/electronic-application-forms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus generated XML and checksum files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates eCTD module XML skeletons, index.xml, and index-md5.txt in a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated XML may not be validated eCTD-compliant output and should be treated as a draft skeleton.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run independent regulatory and schema validation before relying on generated submission artifacts.
+
+Risk: The skill processes potentially sensitive drug application documents and writes outputs to the workspace.
+
+Mitigation: Use isolated, approved workspaces and non-production or redacted documents unless data handling has been reviewed.
+
+Risk: The security verdict is suspicious and notes dependency and scoping issues.
+
+Mitigation: Pin and review dependencies before installation, and perform security review before production use.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ICH eCTD Specification](https://www.ich.org/page/ectd)
+- [FDA eCTD Technical Conformance Guide](https://www.fda.gov/drugs/electronic-regulatory-submission-and-review/ectd-technical-conformance-guide)
+- [EMA Electronic Application Forms](https://www.ema.europa.eu/en/human-regulatory/marketing-authorisation/application-procedures/electronic-application-forms)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance plus generated XML and checksum files when the packaged script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Word/PDF inputs and independent regulatory/schema validation of generated XML.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

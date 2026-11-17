@@ -1,44 +1,60 @@
-## Description: <br>
-Implement Alipay for web and mobile with signed request safety, gateway alignment, and production-ready payment operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement Alipay for web and mobile with signed request safety, gateway alignment, and production-ready payment operations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and payment engineers use this skill to plan, implement, validate, and operate Alipay checkout, recurring payment, and PSP-mediated wallet flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security review flags broad operational powers and a default full-access nested review helper. <br>
-Mitigation: Install only when the workflow is needed, review the referenced commands before use, and prefer documented confirmation steps or reduced-access autoreview settings. <br>
-Risk: Payment integrations can expose private keys, signed payloads, or PSP secrets if prompts and logs are handled carelessly. <br>
-Mitigation: Do not paste secrets into chat, keep only metadata in notes and logs, and verify callback signatures before changing payment state. <br>
-Risk: Incorrect gateway, credential, signing, callback, or idempotency handling can cause failed checkouts, invalid state transitions, or duplicate charges. <br>
-Mitigation: Validate merchant prerequisites, separate test and production credentials, enforce server-trusted amounts, verify callbacks, and complete rollback and release checks before production rollout. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Alipay skill page](https://clawhub.ai/ivangdavila/alipay) <br>
-- [Alipay global documentation and console](https://global.alipay.com) <br>
-- [Alipay production gateway](https://openapi.alipay.com/gateway.do) <br>
-- [Alipay sandbox gateway](https://openapi-sandbox.dl.alipaydev.com/gateway.do) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement Alipay checkout, subscription, PSP-mediated, validation, launch, and incident-response workflows for web and mobile payment integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, implementation steps, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-specific payment integration guidance and local note templates; does not store raw signed payment payloads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment integration guidance can affect production charges, refunds, and rollout decisions.
+
+Mitigation: Review payment, refund, and rollout changes before applying them, and keep production rollout gated on validation evidence.
+
+Risk: Private keys, PSP secrets, or raw signed payloads could be exposed if shared in chat or stored in notes.
+
+Mitigation: Do not paste secrets into chat, and store only short local notes, metadata, validation outcomes, and failure signatures.
+
+Risk: Incorrect gateway, credential, callback, or idempotency handling can cause failed, fraudulent, or duplicate payment state transitions.
+
+Mitigation: Use test mode until validation is complete, verify callback signatures, separate test and production credentials, and validate retry behavior with stable idempotency keys.
+
+## Reference(s):
+
+- [ClawHub Alipay Skill](https://clawhub.ai/ivangdavila/skills/alipay)
+- [Skill Homepage](https://clawic.com/skills/alipay)
+- [Alipay Global](https://global.alipay.com)
+- [Alipay Production Gateway](https://openapi.alipay.com/gateway.do)
+- [Alipay Sandbox Gateway](https://openapi-sandbox.dl.alipaydev.com/gateway.do)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, implementation notes, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local project notes under ~/alipay/ when the user approves setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

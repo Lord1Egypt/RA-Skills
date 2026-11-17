@@ -1,0 +1,5 @@
+# Pinned version + hash verification (pip install --require-hashes)
+# 固定版本 + 哈希校验
+# Regenerate: python -m build --wheel && shasum -a 256 dist/*.whl
+inkwell-press==0.8.1 \
+    --hash=sha256:a4e7439a70b1804d84391749dd46a2e1af599f549d697f119c5a434bc2615165

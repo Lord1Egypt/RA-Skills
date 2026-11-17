@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for business that provides quick lookup documentation for Policy concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for business - covers intro, quickstart, patterns and more, with quick lookup for Policy concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, operators, and business users can use this skill to retrieve concise Policy reference material, including introductions, quickstarts, patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact contains a minor version mismatch between SKILL.md version 2.0.3 and the script's internal VERSION value 2.0.2. <br>
-Mitigation: Confirm the intended displayed version before relying on the script's version command for release identification. <br>
-Risk: The skill provides generic policy documentation that may not match a specific organization's controls, compliance obligations, or operational procedures. <br>
-Mitigation: Review the guidance against local policy requirements before using it in production workflows. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to look up Policy concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [Policy ClawHub listing](https://clawhub.ai/bytesagain3/policy) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, or system changes are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill provides generic policy reference content and is not an authoritative compliance engine or live security tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as general guidance and validate policy or compliance decisions against authoritative internal, legal, or regulatory sources.
+
+## Reference(s):
+
+- [Policy skill page](https://clawhub.ai/bytesagain3/skills/policy)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local documentation helper; no API keys, credentials, network access, or persistent system setting changes are described in the evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Help address review/issue comments on the open GitHub PR for the current branch using gh CLI; verify gh auth first and prompt the user to authenticate if not logged in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help address review/issue comments on the open GitHub PR for the current branch using gh CLI; verify gh auth first and prompt the user to authenticate if not logged in.
 
-## Publisher: <br>
-[tbeard602](https://clawhub.ai/user/tbeard602) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tbeard602](https://clawhub.ai/user/tbeard602)
 
-## Use Case: <br>
-Developers and maintainers use this skill to collect comments on the current branch's open GitHub pull request, decide which comments to address, and apply selected fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose private or sensitive pull request comments to the local agent context when used with GitHub credentials that can access those repositories. <br>
-Mitigation: Run it only on pull requests whose comments are acceptable to share with the local agent context, and prefer the minimum gh scopes needed for the target repository. <br>
-Risk: The skill asks for broad GitHub CLI scopes and elevated command access beyond what is clearly necessary. <br>
-Mitigation: Review the requested scopes before use, avoid granting workflow scope unless explicitly needed, and inspect the helper before running it in sensitive repositories. <br>
+## Use Case:
 
+Developers use this skill to inspect GitHub pull request review comments on the current branch, summarize actionable threads, and apply user-selected fixes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional code changes and JSON produced by the comment-fetch helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run authenticated gh commands to read pull request comments and review threads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses GitHub PR discussion data and the user's gh authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained, least-privilege GitHub token scoped to the target repository.
+
+Risk: The skill requests broader GitHub privileges and elevated command execution than its helper code needs.
+
+Mitigation: Avoid granting workflow scope unless a specific user-approved change requires it, and review commands before running them with elevated permissions.
+
+Risk: The skill can apply repository changes based on selected PR comments.
+
+Mitigation: Review proposed file or repository changes before they are applied.
+
+## Reference(s):
+
+- [GitHub Address Comments on ClawHub](https://clawhub.ai/tbeard602/skills/gh-address-comments)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and code changes when the user selects comments to address]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read GitHub PR comments through gh CLI and propose or apply repository changes after user selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

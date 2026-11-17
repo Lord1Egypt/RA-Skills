@@ -484,7 +484,7 @@ def resolve_token(args: argparse.Namespace) -> str:
     token = args.token or os.getenv("DATAIFY_API_TOKEN")
     if not token:
         raise ValueError(
-            "缺少 DATAIFY_API_TOKEN。请输入 Dataify API token，或访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+            "缺少 DATAIFY_API_TOKEN。请输入 Dataify API token，或访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
         )
     token = token.strip()
     if not token.lower().startswith("bearer "):
@@ -536,7 +536,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--timeout", type=float, default=60.0, help="Request timeout in seconds.")
     parser.add_argument("--dry-run", action="store_true", help="Print parsed payload and skip network/auth checks.")
     parser.add_argument("--preview-table", action="store_true", help="Print the full request parameter table and skip network/auth checks.")
-    parser.add_argument("--confirmed", action="store_true", help="Confirm the user has reviewed the parameter table before a live API call.")
+    parser.add_argument("--confirmed", action="store_true", help="Deprecated compatibility flag; read-only searches run directly.")
     return parser
 
 
@@ -561,12 +561,6 @@ def main(argv: list[str] | None = None) -> int:
         if args.preview_table:
             print(build_parameter_table(payload))
             return 0
-
-        if not args.confirmed:
-            raise ValueError(
-                "Live API call requires --confirmed. Show the parameter table to the user first, "
-                "ask whether they want to modify it, and call again with --confirmed only after confirmation."
-            )
 
         token = resolve_token(args)
         ok, response_text = call_api(token, payload, args.body_format, args.timeout)

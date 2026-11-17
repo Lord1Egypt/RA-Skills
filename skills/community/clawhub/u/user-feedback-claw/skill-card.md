@@ -1,43 +1,59 @@
-## Description: <br>
-用户反馈虾 helps an agent analyze user reviews, complaints, support tickets, and survey feedback to extract sentiment, themes, priorities, and product improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用户反馈虾 analyzes Chinese user reviews, complaints, NPS responses, and support feedback to identify sentiment, recurring issue themes, priorities, and product improvement recommendations.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Product, operations, and support teams use this skill to turn multi-channel feedback into a structured report of top issues, representative comments, trends, and recommended actions. It is most useful for Chinese-language ecommerce, customer service, NPS, and open-ended survey feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer reviews, support tickets, and survey responses may include personal data or sensitive business information. <br>
-Mitigation: Redact names, account identifiers, contact details, and confidential business context before analysis. <br>
-Risk: Small datasets, dialect-heavy text, slang, or noisy comments can reduce sentiment and theme accuracy. <br>
-Mitigation: Label low-sample analyses as directional, review representative examples manually, and validate the highest-priority findings before acting. <br>
+## Use Case:
 
+Product, operations, and customer support teams use this skill to turn Chinese-language customer feedback from reviews, support tickets, surveys, and pasted text into prioritized issue analysis and action recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tujinsama/user-feedback-claw) <br>
-- [Improvement templates](references/improvement-templates.md) <br>
-- [Issue taxonomy](references/issue-taxonomy.md) <br>
-- [Sentiment lexicon](references/sentiment-lexicon.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with prioritized issue lists, representative feedback excerpts, trends, and action recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Works from pasted text, CSV/Excel-style tabular feedback, or mixed feedback summaries; no code execution is required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Customer feedback may contain personal, customer, or confidential business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive information before supplying feedback datasets to the agent.
+
+Risk: Chinese NLP sentiment and theme classification can produce incorrect labels, especially for dialect, slang, or ambiguous comments.
+
+Mitigation: Review outputs manually and spot-check representative samples before using the analysis for product decisions.
+
+Risk: Small datasets can produce weak or misleading priority rankings.
+
+Mitigation: Treat analyses of fewer than 50 feedback items as directional only and disclose the sample-size limitation.
+
+## Reference(s):
+
+- [Improvement Templates](references/improvement-templates.md)
+- [Issue Taxonomy](references/issue-taxonomy.md)
+- [Sentiment Lexicon](references/sentiment-lexicon.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis report with tables, representative feedback excerpts, trend observations, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-provided feedback data; the skill instructs agents to state limited reliability for samples under 50 items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

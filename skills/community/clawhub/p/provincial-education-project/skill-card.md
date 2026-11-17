@@ -1,41 +1,53 @@
-## Description: <br>
-Assists teachers and education researchers with drafting, analyzing, and improving provincial education research project proposals, including policy alignment, research design, innovation points, budgets, and expected outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists teachers and education researchers in drafting Chinese provincial education project applications, including research framing, proposal sections, policy alignment, innovation points, and competitiveness improvements.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Teachers, educators, and education researchers use this skill to generate provincial education project proposal drafts, analyze provincial policy fit, and optimize proposal competitiveness before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and reports behavior that may bypass normal sandbox controls or share diffs with fallback review tools. <br>
-Mitigation: Install only from a trusted publisher, prefer non-yolo review settings, and review any external reviewer configuration before running commands. <br>
-Risk: Generated proposal and policy guidance may be incomplete, outdated, or misaligned with a specific province's current application requirements. <br>
-Mitigation: Review generated content against official provincial education project notices, current funding rules, and institutional submission requirements before use. <br>
+## Use Case:
 
+Teachers, education researchers, and school project teams use this skill to plan and draft provincial education research applications in Chinese. It helps shape proposal structure, research methods, policy alignment, budget framing, expected outcomes, and revision recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/provincial-education-project) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown prose, command examples, and structured JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include proposal sections, policy analysis, optimization recommendations, budget breakdowns, and implementation plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json, and artifact version history) <br>
+Risk: Generated policy alignment, funding trends, or proposal claims may be inaccurate, outdated, or unsuitable for a specific province or call for proposals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify generated content against the official provincial application notice, current policy documents, and institutional requirements before submission.
+
+Risk: The skill is tailored to Chinese provincial education project applications and may not fit other languages, grant jurisdictions, or research-funding workflows.
+
+Mitigation: Confirm the target language, province, application category, and review criteria match the user's actual workflow before relying on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daigxok/skills/provincial-education-project)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown and structured JSON-style proposal content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposal sections, policy analysis, competitiveness recommendations, implementation plans, and budget breakdowns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Check if your environment is ready to run a skill by verifying that required environment variables are set and required CLI binaries are on PATH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check if your environment is ready to run a skill by verifying that required environment variables are set and required CLI binaries are on PATH, returning a ready/not-ready verdict with lists of present and missing items.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use Envcheck as a local pre-flight readiness check before running a skill, confirming whether required environment variables and command-line tools are present without disclosing secret values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service can reveal whether specific environment variable names and binaries exist on the host. <br>
-Mitigation: Bind the uvicorn service to localhost or place it behind appropriate access controls. <br>
-Risk: The skill is useful only when a local readiness check is desired. <br>
-Mitigation: Install and run it only for local pre-flight environment verification workflows. <br>
+## Use Case:
 
+Developers and agents use Envcheck as a pre-flight readiness check before running a skill, confirming that named environment variables and CLI binaries are available. It can be paired with ScopeCheck output to verify an environment against detected skill requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/gh-envcheck) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mirni) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime endpoint returns JSON readiness results with ready, present_env, missing_env, present_bins, and missing_bins fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A local readiness-check API can reveal whether requested environment variables and binaries exist to anyone who can call it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to localhost and do not expose it on a network.
+
+Risk: The skill depends on a local FastAPI service and Python package dependencies before checks can run.
+
+Mitigation: Install the declared dependencies and verify the service is started locally before relying on readiness results.
+
+## Reference(s):
+
+- [Envcheck ClawHub skill page](https://clawhub.ai/mirni/skills/gh-envcheck)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON response with boolean readiness verdict and present/missing environment variable and binary lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checks only the environment variables and binaries named in the request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

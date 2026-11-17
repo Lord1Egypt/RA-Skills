@@ -1,41 +1,54 @@
-## Description: <br>
-Safely apply structured JSON patches (RFC 6902) to files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely apply structured JSON patches (RFC 6902) to files.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and agents use this skill to make precise JSON edits to configuration files, package manifests, and memory JSONs using RFC 6902 patch operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite JSON files selected by the user. <br>
-Mitigation: Confirm the target path and patch contents before execution, and use --out or a backup for important configuration, package, or memory files. <br>
-Risk: Untrusted patch content may make unintended structured changes. <br>
-Mitigation: Avoid applying patches from untrusted text and review the patch operations before running the tool. <br>
+## Use Case:
 
+Developers and engineers use this skill to apply precise JSON Patch operations to configuration files, package manifests, and other JSON documents without rewriting full files.
 
-## Reference(s): <br>
-- [JSON Patch reference](https://jsonpatch.com/) <br>
-- [ClawHub release page](https://clawhub.ai/wanng-ide/json-modifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration] <br>
-**Output Format:** [JSON patches and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update files in place or write patched JSON to a separate output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Patch input can overwrite any JSON file selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review patch operations and target paths before applying them, and prefer --out when testing changes.
+
+Risk: Dependency ranges and the test script may be unsuitable for sensitive CI automation without review.
+
+Mitigation: Pin dependencies exactly and harden CI test execution before using this skill in protected automation.
+
+## Reference(s):
+
+- [JSON Patch reference](https://jsonpatch.com/)
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/json-modifier)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration]
+
+**Output Format:** [JSON patches and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can modify a target JSON file in place or write the patched document to a separate output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

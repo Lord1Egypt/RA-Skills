@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "spacesuit.intel",
+  "version": "1.0.0",
+  "contractVersion": 1,
+  "inputs": ["intel/*.md"],
+  "locales": ["en", "zh-CN"],
+  "collection": "explicit-reviewed-cli"
+}

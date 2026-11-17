@@ -1,43 +1,57 @@
-## Description: <br>
-Data Cleaner Skill helps agents clean local CSV and Excel data by removing duplicates, filling missing values, standardizing phone and date formats, and reporting cleanup results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans CSV and Excel datasets by removing duplicates, filling missing values, standardizing phone and date fields, and writing cleaned output files.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Operations, finance, administrative, and sales users can use this skill through an agent to prepare local CSV or Excel files for reporting, customer-list maintenance, and routine data cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleaning operations may materially change records through de-duplication, missing-value filling, and phone or date standardization. <br>
-Mitigation: Run the skill on a copy or sample first, then inspect the cleaned file and reported row-count changes before using results for business decisions. <br>
-Risk: The documentation includes a batch_clean.py command that is not included in the package. <br>
-Mitigation: Use the included scripts/clean_data.py command for supported cleanup, or verify and add a batch script before relying on documented batch processing. <br>
+## Use Case:
 
+Operations, finance, administrative, and sales users can use this skill to clean CSV or Excel data for reports, customer lists, billing data, employee records, and order datasets. Developers and agents can invoke the included Python cleaner to generate cleaned files and a concise processing report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shenghoo123-png/data-cleaner-tool) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Description](artifact/SKILL.md) <br>
-- [Cleaning Script](artifact/scripts/clean_data.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell command examples, terminal status output, and local CSV or Excel cleaned files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on CSV or Excel inputs, writes a cleaned file, and prints row-count and cleanup statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Cleaning can remove duplicate rows or alter missing values, phone numbers, and dates in generated outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies of important datasets and inspect cleaned files before relying on them.
+
+Risk: Spreadsheet inputs from untrusted sources may contain formulas or other content that needs additional handling.
+
+Mitigation: Avoid processing untrusted spreadsheets unless formula-injection protections are added.
+
+Risk: The documentation references a batch-cleaning script that is not present in the inspected artifact.
+
+Mitigation: Verify available scripts before running documented batch commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/data-cleaner-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, Python code references, cleaned CSV or Excel files, and console reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may remove duplicate rows and alter missing values, phone numbers, or date formats in generated cleaned datasets.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

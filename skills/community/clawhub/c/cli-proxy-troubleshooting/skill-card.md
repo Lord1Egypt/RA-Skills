@@ -1,41 +1,55 @@
-## Description: <br>
-Troubleshoots CLI Proxy API configuration, authentication, model registration, request encoding, proxy connectivity, and common request failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents troubleshoot CLI Proxy API configuration, authentication, model registration, request encoding, and timeout failures with source-aware diagnostic steps.
 
-## Publisher: <br>
-[17329971](https://clawhub.ai/user/17329971) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17329971](https://clawhub.ai/user/17329971)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose CLI Proxy API issues such as missing model providers, failed auth loading, malformed request bodies, proxy timeouts, and account capability mismatches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting authentication paths can expose API keys, OAuth tokens, auth-dir contents, session files, or logs if copied into prompts or shared reports. <br>
-Mitigation: Redact secrets, session material, auth directory contents, and sensitive log lines before sharing diagnostics. <br>
-Risk: Sample curl or Python requests can send sensitive requests through an unintended or untrusted proxy endpoint. <br>
-Mitigation: Run sample requests only against proxy endpoints the user controls or explicitly trusts. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose CLI Proxy API failures involving unknown model providers, missing models, API key or auth-dir loading, malformed request bodies, network timeouts, and image-generation support.
 
-## Reference(s): <br>
-- [CLI Proxy API Homepage](https://github.com/stainless-codex/cli-proxy-api) <br>
-- [Source Architecture Reference](references/source-architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, YAML snippets, and source-path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only troubleshooting guidance; the skill itself does not generate files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Troubleshooting steps may involve proxy URLs, API keys, auth directories, and logs that can contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use your own proxy URL, keep API keys and auth file contents private, and redact logs before sharing diagnostic output.
+
+Risk: The skill provides documentation-only guidance, so incorrect local configuration or network assumptions can still lead to failed requests.
+
+Mitigation: Validate changes against the local CLI Proxy configuration and logs before relying on the resulting diagnosis.
+
+## Reference(s):
+
+- [CLI Proxy API homepage](https://github.com/stainless-codex/cli-proxy-api)
+- [CLI Proxy source architecture](references/source-architecture.md)
+- [ClawHub skill page](https://clawhub.ai/17329971/skills/cli-proxy-troubleshooting)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown troubleshooting guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only diagnostic workflow; no executable scripts are bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

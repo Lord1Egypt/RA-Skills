@@ -1,41 +1,53 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_daily_fans/v1 for Douyin Creator Marketplace (Xingtu) Follower Growth Trend through JustOneAPI with endDate, oAuthorId, and startDate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_daily_fans/v1 for Douyin Creator Marketplace (Xingtu) Follower Growth Trend through JustOneAPI with endDate, oAuthorId, and startDate.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to query JustOneAPI for Douyin Creator Marketplace (Xingtu) follower growth trend data for creator evaluation, campaign planning, and marketplace research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent in the request URL query string, so full URLs, logs, screenshots, or error output may expose it. <br>
-Mitigation: Use a scoped or easily revocable token when available, avoid sharing output that may contain full URLs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to call a JustOneAPI endpoint for Douyin Creator Marketplace follower growth trend data. The output supports creator evaluation, campaign planning, and marketplace research over a requested author and date range.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-data-sp-get-author-daily-fans) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_daily_fans&utm_content=project_link) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_daily_fans&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands] <br>
-**Output Format:** [Markdown summary with endpoint details and raw JSON response data when returned by the API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires operation gwApiDataSpGetAuthorDailyFansV1, JUST_ONE_API_TOKEN, and query parameters oAuthorId, startDate, and endDate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token may appear in process metadata and request URLs because this release passes the token through command-line arguments and query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived tokens, avoid logging full command lines or URLs, and rotate the token if logs may have captured it.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_daily_fans&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_daily_fans&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-gw-api-data-sp-get-author-daily-fans)
+- [Generated Operations Reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown summary with raw JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and endpoint parameters oAuthorId, startDate, and endDate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

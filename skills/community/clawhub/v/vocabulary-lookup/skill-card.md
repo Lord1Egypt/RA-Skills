@@ -1,41 +1,58 @@
-## Description: <br>
-Looks up English vocabulary details from a local GPT-4 dictionary, including meanings, examples, roots, memory aids, and related learning notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up vocabulary details from a GPT-4 dictionary, including meanings, example sentences, roots, and memory aids.
 
-## Publisher: <br>
-[effeceee](https://clawhub.ai/user/effeceee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effeceee](https://clawhub.ai/user/effeceee)
 
-## Use Case: <br>
-Developers, agents, and language-learning users can use this skill to query a configured local vocabulary dictionary for word definitions, examples, roots, history, memory tips, and short bilingual learning material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The lookup content depends on the local dictionary file selected by --dict-path, VOCABULARY_DICT_PATH, or default file locations. <br>
-Mitigation: Use a trusted dictionary file and point --dict-path only at the intended vocabulary data. <br>
-Risk: The optional edge-tts package is a third-party dependency if installed. <br>
-Mitigation: Install optional dependencies only from trusted package sources and review them under the same process used for other third-party packages. <br>
+## Use Case:
 
+External users and language-learning agents use this skill to query a local GPT-4 vocabulary dictionary for word definitions, examples, etymology, history, and memory aids.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/effeceee/vocabulary-lookup) <br>
-- [Publisher Profile](https://clawhub.ai/user/effeceee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-formatted vocabulary entries and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and a trusted local dictionary file; edge-tts is documented as an optional package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: The optional, unpinned edge-tts package install adds supply-chain exposure even though the lookup script does not require it for local dictionary reads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or decline the optional edge-tts install unless audio output is needed and the dependency is trusted.
+
+Risk: The lookup script reads the dictionary path supplied by the user or environment.
+
+Mitigation: Configure the dictionary path only to local files intended for vocabulary lookup.
+
+Risk: Users should expect Chinese-language vocabulary output.
+
+Mitigation: Confirm the output language is appropriate for the target workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/effeceee/skills/vocabulary-lookup)
+- [Publisher profile](https://clawhub.ai/user/effeceee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted CLI text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; requires a local dictionary file configured by command-line path, VOCABULARY_DICT_PATH, current directory, or skill directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

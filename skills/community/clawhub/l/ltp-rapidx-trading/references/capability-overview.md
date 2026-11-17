@@ -135,6 +135,8 @@ OKX_PERP_BTC_USDT
 
 `OKX_SWAP_<BASE>_<QUOTE>` is accepted as an input alias and normalizes to `OKX_PERP_<BASE>_<QUOTE>`.
 
+Market ticker, orderbook, klines, and open-interest queries support OKX symbols. OKX klines use the venue `GET /api/v5/market/candles` endpoint.
+
 ## Status Meanings
 
 | Status | Meaning |

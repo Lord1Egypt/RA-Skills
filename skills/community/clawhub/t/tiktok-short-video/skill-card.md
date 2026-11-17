@@ -1,42 +1,57 @@
-## Description: <br>
-Guides creators and commerce teams through TikTok short-video product-selling content, including planning, filming, editing, traffic growth, hashtag strategy, and performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language guide for creating TikTok product-selling short videos, covering content planning, filming, editing, traffic growth, hashtag strategy, and performance analysis.
 
-## Publisher: <br>
-[zhenyangze](https://clawhub.ai/user/zhenyangze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenyangze](https://clawhub.ai/user/zhenyangze)
 
-## Use Case: <br>
-External creators, marketers, and e-commerce operators use this skill to plan and produce TikTok product videos, choose hooks and tags, and analyze traffic and conversion signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts or marketing copy could overstate product benefits or use misleading hooks. <br>
-Mitigation: Review product claims before publication, keep evidence for factual statements, and follow TikTok advertising and platform rules. <br>
+## Use Case:
 
+External creators, e-commerce sellers, and marketing teams use this skill for Chinese-language guidance on planning, producing, publishing, and improving TikTok product videos.
 
-## Reference(s): <br>
-- [TikTok short-video content strategy guide](references/content-strategy.md) <br>
-- [TikTok short-video filming techniques](references/filming-techniques.md) <br>
-- [TikTok short-video production tips](references/production-tips.md) <br>
-- [TikTok short-video traffic growth guide](references/traffic-growth.md) <br>
-- [TikTok viral video formula](references/viral-video-formula.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and reusable short-video templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; does not run code, request credentials, or automate TikTok accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: TikTok platform policy, advertising costs, and posting practices may change after the guidance was written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current TikTok policies, ad pricing, and best practices before applying the recommendations to a campaign.
+
+Risk: The skill is written in Chinese and may need adaptation for users or campaigns in other languages.
+
+Mitigation: Confirm the agent can translate or localize the guidance accurately before using it outside a Chinese-language workflow.
+
+## Reference(s):
+
+- [Content Strategy Guide](references/content-strategy.md)
+- [Filming Techniques Guide](references/filming-techniques.md)
+- [Production Tips](references/production-tips.md)
+- [Traffic Growth Guide](references/traffic-growth.md)
+- [Viral Video Formula](references/viral-video-formula.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; produces human-readable marketing and production guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

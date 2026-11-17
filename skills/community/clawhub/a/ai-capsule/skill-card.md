@@ -1,41 +1,62 @@
-## Description: <br>
-Ai Capsule ranks daily AI news by personal relevance, scoring and ordering articles from configured sources while optionally using local X/Twitter session cookies for that source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Capsule scores and ranks AI news articles against a user's role, interests, and purpose, then produces personalized daily digests or single-article evaluations.
 
-## Publisher: <br>
-[webpudge](https://clawhub.ai/user/webpudge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[webpudge](https://clawhub.ai/user/webpudge)
 
-## Use Case: <br>
-External users and developers use Ai Capsule to produce personalized AI news digests or score pasted articles, URLs, and batches against their role, familiar areas, and reading purpose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The daily run can read local Chrome x.com session cookies for the X/Twitter source and pass them to twitter-cli without a clear per-run opt-in. <br>
-Mitigation: Install only if this cookie access is acceptable, review the X/Twitter source list first, and remove or disable that source if cookie-backed fetching is not desired. <br>
-Risk: X/Twitter fetching may use process environment values and auto-detected local proxy settings while accessing x.com. <br>
-Mitigation: Review local proxy behavior before enabling the X/Twitter source and run the skill in an environment where passing these values to the subprocess is acceptable. <br>
+## Use Case:
 
+Developers, researchers, product managers, founders, and other AI practitioners use this skill to prioritize AI news by personal relevance. It can score pasted article text, URLs, JSON batches, or a daily feed and return ranked recommendations with reasons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/webpudge/skills/ai-capsule) <br>
-- [Project homepage declared by the skill](https://github.com/WebPudge/ai-capsule) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and article cards with structured score_json blocks for scored items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local user profile, source configuration, deduplication state, and selected output language to rank articles; daily mode can write report, history, and deduplication files to the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence release, SKILL.md frontmatter, CHANGELOG released 2026-06-25) <br>
+Risk: The X/Twitter source can read local Chrome x.com cookies and pass session-derived values to a twitter-cli subprocess.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove X/Twitter sources unless browser-cookie access is acceptable, and run the skill from a browser profile and environment intended for this use.
+
+Risk: The security summary says inherited environment secrets are handled too broadly during X/Twitter fetching.
+
+Mitigation: Run setup and daily fetches with a minimal agent environment, avoid exposing unrelated API keys, and review source configuration before enabling X/Twitter collection.
+
+Risk: Daily operation writes reports, history, and deduplication state to a local data directory.
+
+Mitigation: Use a dedicated data directory, review retained reports for sensitive content, and clear history or dedup files when retention is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webpudge/skills/ai-capsule)
+- [AI Capsule homepage](https://github.com/WebPudge/ai-capsule)
+- [README](artifact/README.md)
+- [Daily mode workflow](artifact/sections/daily-mode.md)
+- [Scoring framework](artifact/sections/scoring.md)
+- [Output format](artifact/sections/output-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digest cards with a leading score_json block for scored articles and inline shell or YAML snippets for setup and configuration tasks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily mode writes reports, history, deduplication state, and temporary pending items to the configured local data directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata, skill frontmatter, and changelog released 2026-06-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

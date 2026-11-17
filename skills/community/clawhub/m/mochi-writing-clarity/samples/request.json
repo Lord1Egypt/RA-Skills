@@ -1,0 +1,4 @@
+{
+  "action": "lint",
+  "file": "samples/draft.txt"
+}

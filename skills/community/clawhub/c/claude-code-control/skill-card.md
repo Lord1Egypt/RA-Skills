@@ -1,45 +1,58 @@
-## Description: <br>
-Programmatically control Claude Code in visible macOS Terminal windows via AppleScript for command input, screenshots, session logging, and terminal management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Programmatically controls Claude Code in visible macOS Terminal windows for command input, screenshots, session logging, and terminal management.
 
-## Publisher: <br>
-[melichar-m](https://clawhub.ai/user/melichar-m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[melichar-m](https://clawhub.ai/user/melichar-m)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate Claude Code sessions in macOS Terminal.app, including launching a project, sending tasks, capturing screenshots, and saving session logs for review or testing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad terminal and screen-control power through macOS automation. <br>
-Mitigation: Install and run it only in trusted project directories with Terminal.app and Script Editor permissions intentionally granted. <br>
-Risk: Weak safeguards around command injection and trust approvals can make untrusted paths or long command text risky. <br>
-Mitigation: Avoid passing untrusted project paths or command text, and review task text and approval flows before execution. <br>
-Risk: Screenshots and saved session logs may capture secrets, customer data, or private repository content. <br>
-Mitigation: Keep sensitive terminals out of view, avoid sessions that display secrets, and review or disable saved recordings for private work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to launch Claude Code in a visible macOS Terminal session, send work requests, capture screenshots, and save session records for review or automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/melichar-m/claude-code-control) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Package Metadata](package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [JavaScript API results, JSON session recordings, screenshot file paths, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Node.js 18 or newer, Claude Code authentication, and Accessibility permissions for Terminal.app and Script Editor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Terminal screenshots and saved session recordings can contain sensitive project, credential, or conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store recordings and screenshots in protected locations, review them before sharing, and delete them when no longer needed.
+
+Risk: Accessibility-driven Terminal control can approve trust prompts and send commands in a user's visible environment.
+
+Mitigation: Use only on trusted project folders, verify the displayed prompt and path before approval, and grant the minimum macOS permissions required.
+
+Risk: The security evidence reports shell and AppleScript interpolation risks for untrusted paths, task text, or screenshot locations.
+
+Mitigation: Avoid untrusted inputs until the package escapes or isolates those values, and review generated commands before execution.
+
+## Reference(s):
+
+- [Claude Code Control on ClawHub](https://clawhub.ai/melichar-m/skills/claude-code-control)
+- [melichar-m publisher profile](https://clawhub.ai/user/melichar-m)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Node.js API results with screenshot paths, JSON session recordings, and terminal-driven command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Node.js 18 or newer, Claude Code authentication, and Accessibility permission for Terminal control.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

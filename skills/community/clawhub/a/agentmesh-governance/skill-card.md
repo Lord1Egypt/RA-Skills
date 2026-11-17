@@ -1,44 +1,57 @@
-## Description: <br>
-AI agent governance, trust scoring, and policy enforcement powered by AgentMesh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent governance, trust scoring, and policy enforcement powered by AgentMesh.
 
-## Publisher: <br>
-[imran-siddique](https://clawhub.ai/user/imran-siddique) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imran-siddique](https://clawhub.ai/user/imran-siddique)
 
-## Use Case: <br>
-Developers and agent operators use this skill to enforce governance policies, check trust scores, verify agent identities, update trust after interactions, and inspect audit logs before delegation or execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wrapper scripts can execute unintended local Python code when crafted command-line inputs are passed through. <br>
-Mitigation: Review the scripts before installation and do not pass untrusted prompt text, agent names, messages, signatures, actions, or file paths into them until argument handling is fixed. <br>
-Risk: Unpinned Python dependencies or source installs can change behavior over time. <br>
-Mitigation: Use an isolated Python environment and pin dependency versions or commits before operational use. <br>
-Risk: Trust-score changes can affect delegation or blocking decisions. <br>
-Mitigation: Manually review trust-score updates before allowing them to control delegation or blocking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentMesh Governance ClawHub Page](https://clawhub.ai/imran-siddique/agentmesh-governance) <br>
-- [AgentMesh Integrations OpenClaw Skill](https://github.com/imran-siddique/agentmesh-integrations/tree/master/openclaw-skill) <br>
-- [AgentMesh](https://github.com/imran-siddique/agent-mesh) <br>
-- [Agent Ecosystem](https://imran-siddique.github.io) <br>
+## Use Case:
 
+Developers and agent operators use this skill to enforce action policies, verify agent identities, check trust scores, and maintain audit trails for OpenClaw agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command results depend on local policy files, installed Python packages, and provided agent identity or trust inputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shell wrapper inputs for agent names, policy paths, messages, signatures, and action strings may be unsafe when values are untrusted.
+
+Mitigation: Review the skill before installation, run it in a constrained environment, and avoid passing untrusted values to the scripts.
+
+Risk: Some scripts return fallback baseline results when AgentMesh is unavailable, which can make governance checks less authoritative.
+
+Mitigation: Install and verify AgentMesh before relying on trust scoring, identity verification, or audit integrity outputs.
+
+Risk: Dependencies are described through install commands but are not pinned in the skill artifact.
+
+Mitigation: Use a reviewed environment with pinned dependency versions before commercial deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imran-siddique/skills/agentmesh-governance)
+- [OpenClaw Skill Homepage](https://github.com/imran-siddique/agentmesh-integrations/tree/master/openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts expect local command-line arguments and may read policy files from the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Batch-produce blog posts, social media threads, newsletters, and ad copy from a single brief, including brand voice training, content pyramids, and multi-platform repurposing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-produce blog posts, social media threads, newsletters, and ad copy from a single brief. Includes brand voice training, content pyramids, and multi-platform repurposing.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External creators, content agencies, marketing teams, and founders use this skill to turn a topic brief or existing content into platform-specific blogs, social posts, newsletters, and ad copy while preserving brand voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand voice training can involve personal details, client information, unpublished drafts, secrets, or proprietary writing samples. <br>
-Mitigation: Redact sensitive, confidential, and proprietary material before providing samples to the agent. <br>
-Risk: Generated marketing content may be inaccurate, off-brand, or create copyright concerns if published without review. <br>
-Mitigation: Review and edit generated content for accuracy, originality, copyright, and brand fit before publishing. <br>
+## Use Case:
 
+External creators, content agencies, founders, and marketing teams use this skill to turn a topic brief, brand voice, or existing post into blog articles, tweet threads, social posts, newsletter snippets, and posting schedules.
 
-## Reference(s): <br>
-- [Voice Training Guide](references/voice-training-guide.md) <br>
-- [Platform Specifications](references/platform-specs.md) <br>
-- [Content Calendar Template](references/content-calendar.md) <br>
-- [TK Content Engine on ClawHub](https://clawhub.ai/tktk-ai/tk-content-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown content drafts with platform-labeled sections and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed for factual accuracy, copyright risk, and brand fit before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill metadata) <br>
+Risk: Brand voice training may involve past writing samples or proprietary marketing material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only material appropriate for the assistant session and avoid including confidential content that should not be reused.
+
+Risk: Generated marketing copy may be inaccurate, off-brand, or unsuitable for publication without review.
+
+Mitigation: Review and edit generated copy, SEO claims, posting recommendations, and calls to action before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/tk-content-engine)
+- [Content Calendar Template](references/content-calendar.md)
+- [Platform Specifications](references/platform-specs.md)
+- [Voice Training Guide](references/voice-training-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown content drafts, structured post templates, schedules, and brand voice guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces publishable marketing drafts that should be reviewed and personalized before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,65 @@
+{
+  "project_overview": {
+    "project_name": "登录模块项目",
+    "time_range": "2026-07-06 至 2026-07-08",
+    "current_phase": "开发阶段",
+    "overall_status": "进行中，存在责任归属分歧",
+    "summary": "登录模块启动，张三负责后端，联系 [手机号] 对齐",
+    "evidence": "王经理确认登录模块开发由张三（后端）负责，下周三提测"
+  },
+  "progress": [
+    {
+      "item": "登录模块启动",
+      "status": "进行中",
+      "evidence": "王经理确认登录模块开发由张三（后端）负责，下周三提测"
+    }
+  ],
+  "confirmed_decisions": [],
+  "action_items": [
+    {
+      "task": "登录模块后端开发",
+      "owner": "张三",
+      "department": "后端",
+      "ddl": "下周三",
+      "deliverable": "登录接口",
+      "status": "进行中",
+      "evidence": "王经理确认登录模块开发由张三（后端）负责，下周三提测",
+      "conflict": "存在冲突，需人工确认"
+    },
+    {
+      "task": "登录模块后端开发",
+      "owner": "李四",
+      "department": "前端",
+      "ddl": "下周五",
+      "deliverable": "前端页面",
+      "status": "进行中",
+      "evidence": "王经理确认登录模块开发由张三（后端）负责，下周三提测",
+      "conflict": "存在冲突，需人工确认"
+    },
+    {
+      "task": "设计稿产出",
+      "owner": "李四",
+      "department": "设计",
+      "ddl": "未提供",
+      "deliverable": "设计稿",
+      "status": "进行中",
+      "evidence": "设计稿由李四（设计）出，时间待定"
+    }
+  ],
+  "risks_dependencies": [],
+  "cross_department_relationships": [],
+  "needs_human_confirmation": [
+    {
+      "item": "登录模块后端开发",
+      "reason": "同一任务出现多个不同负责人/截止时间/状态，需人工确认",
+      "suggested_confirm_with": "张三",
+      "evidence": "存在冲突，需人工确认"
+    },
+    {
+      "item": "登录模块后端开发",
+      "reason": "同一任务出现多个不同负责人/截止时间/状态，需人工确认",
+      "suggested_confirm_with": "李四",
+      "evidence": "存在冲突，需人工确认"
+    }
+  ]
+}

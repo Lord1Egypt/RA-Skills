@@ -1,44 +1,55 @@
-## Description: <br>
-OpenClaw Agent Mesh helps OpenClaw instances discover approved peers, establish trust, and exchange signed direct messages over a lightweight HTTP JSON workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peer discovery and agent-to-agent communication for OpenClaw instances, including identity initialization, LAN HTTP discovery, contact requests, explicit approval, signed direct messaging, and lightweight discovery and inbox endpoints.
 
-## Publisher: <br>
-[ClawdPI-AI](https://clawhub.ai/user/ClawdPI-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdpi-ai](https://clawhub.ai/user/clawdpi-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to initialize local OpenClaw mesh identities, discover nearby OpenClaw nodes, approve contact requests, and exchange verified direct messages between trusted peers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a local HTTP service for peer discovery, contact requests, and direct-message intake. <br>
-Mitigation: Run the server only on networks and peers you control or explicitly trust, keep it on localhost unless remote peer access is required, and prefer HTTPS endpoints. <br>
-Risk: The skill stores private keys, peer data, contact requests, and inbound messages in local state. <br>
-Mitigation: Protect the state directory and private key with restrictive permissions, and periodically audit or delete stored inbound network data. <br>
-Risk: Discovery results alone do not establish trust between agents. <br>
-Mitigation: Require explicit contact approval before accepting direct messages and verify signatures, timestamps, and message IDs before storing inbound messages. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to set up local peer identity, discover nearby OpenClaw nodes, approve trusted contacts, and exchange signed direct messages over HTTP.
 
-## Reference(s): <br>
-- [Agent Mesh V1 Protocol](references/protocol.md) <br>
-- [Verification Rules](references/verification.md) <br>
-- [OpenClaw Agent Mesh on ClawHub](https://clawhub.ai/ClawdPI-AI/openclaw-agent-mesh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON file descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or inspect local mesh state files under the configured OpenClaw agent mesh state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Network-facing inbox handling has validation gaps that may let reachable peers write JSON files outside the intended state directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running as a server; fix identifier validation and path containment before accepting network traffic.
+
+Risk: Running the HTTP server on a remotely reachable interface exposes discovery, contact-request, and message intake endpoints.
+
+Mitigation: Bind to 127.0.0.1 unless remote peers are required, use only on trusted networks, and run with a low-privilege state directory.
+
+## Reference(s):
+
+- [Agent Mesh V1 Protocol](artifact/references/protocol.md)
+- [Verification Rules](artifact/references/verification.md)
+- [ClawHub Skill Page](https://clawhub.ai/clawdpi-ai/skills/openclaw-agent-mesh)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local identity, key, peer, request, and message state files under the configured OpenClaw agent mesh state directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,64 @@
-## Description: <br>
-Patient-side chronic disease medication reminder skill that builds structured medication schedules and reminder lists from medication plan inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds medication reminder plans for chronic disease patient management, including structured schedules and patient-facing reminder text.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External users use this skill to turn medication names, doses, frequencies, reminder times, and date ranges into structured medication reminder schedules and daily reminder summaries. The skill is for reminder management only and does not determine medication suitability or adjust medical orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles medication-related information and can process imported medical documents before sending reminder prompts to a remote medical-model endpoint. <br>
-Mitigation: Use only with appropriate consent, privacy, and compliance controls; avoid real patient or regulated health data unless those controls are in place. <br>
-Risk: The skill provides reminder content but does not provide clinical review, medication suitability checks, or prescription changes. <br>
-Mitigation: Use the output for reminder management only and have medication plans verified by qualified healthcare professionals. <br>
+## Use Case:
 
+Patients and care-management agents use this skill to turn medication names, doses, frequencies, reminder times, and date ranges into a three-day medication reminder plan. The skill is limited to reminder management and does not judge medication suitability, adjust prescriptions, or provide dose guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-medication-reminder) <br>
-- [MedTimer reference app](https://f-droid.org/en/packages/com.futsch1.medtimer/) <br>
-- [Remote medical model endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured reminder data and Markdown reminder text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey Bearer token and sends prepared medication reminder prompts to a remote medical-model API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Medication details and the API bearer key are sent to a documented remote model service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the provider, retention terms, and compliance posture are acceptable; avoid real patient data unless those requirements are met.
+
+Risk: Broad document and OCR input processing can expose more sensitive content than a structured reminder record requires.
+
+Mitigation: Prefer JSON input containing only the fields needed for the reminder plan.
+
+Risk: Generated Markdown can be mistaken for medical advice or dose guidance.
+
+Mitigation: Treat the output as reminder-management text only and keep medication suitability, prescription changes, and dose decisions outside the skill.
+
+Risk: The skill includes an unverified shared-code fallback for document preprocessing.
+
+Mitigation: Review the installed runtime environment and shared preprocessing code before enabling non-JSON inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-medication-reminder)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [MedTimer medication reminder reference](https://f-droid.org/en/packages/com.futsch1.medtimer/)
+- [Remote model endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance, Configuration]
+
+**Output Format:** [UTF-8 JSON containing structured reminder data and Markdown patient-facing reminder text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided API bearer key and supports JSON, text, table, document, and image inputs when the needed parsers or OCR tools are available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

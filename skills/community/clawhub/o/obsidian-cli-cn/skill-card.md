@@ -1,40 +1,57 @@
-## Description: <br>
-A command-line skill for searching, analyzing, exporting, and batch-processing notes in a local Obsidian vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian笔记命令行工具，支持笔记搜索、批量处理、统计分析、导出转换、标签管理等功能，直接操作本地Obsidian知识库。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Obsidian users and agents use this skill to inspect local vaults, search note content, generate vault statistics, export notes, and manage links or tags from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk replace operations can rewrite many private notes without preview, confirmation, backup, or rollback safeguards. <br>
-Mitigation: Prefer read-only commands first, back up the vault, and require explicit user approval before replace or other broad write operations. <br>
-Risk: Local Obsidian vaults may contain private or sensitive notes that can be searched, summarized, exported, or copied to another directory. <br>
-Mitigation: Confirm the vault and output paths before running commands, and limit exports to the minimum needed note set. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to operate a local Obsidian vault from the command line for note search, vault statistics, bulk content changes, export, tag workflows, and link checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/obsidian-cli-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and command-line text or exported note files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on a local Obsidian vault path and may write modified notes or exported files when write-capable commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Bulk replace operations can rewrite many local notes without built-in safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a backed-up or version-controlled Obsidian vault, and review the target vault and replacement pattern before running bulk changes.
+
+Risk: Search and replace patterns are treated as regular expressions, which can match more text than intended.
+
+Mitigation: Escape regular expression characters when literal matching is intended and test patterns on a small vault or limited query before applying replacements broadly.
+
+Risk: The vault may contain important personal or work notes.
+
+Mitigation: Run commands only against the intended local vault path and avoid running bulk operations on untrusted or unfamiliar vaults.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/obsidian-cli-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local Markdown notes, rewrite note contents, and export files from an Obsidian vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

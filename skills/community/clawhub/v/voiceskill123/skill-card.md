@@ -1,40 +1,52 @@
-## Description: <br>
-Start voice calls via the OpenClaw voice-call plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start voice calls via the OpenClaw voice-call plugin.
 
-## Publisher: <br>
-[blockcloud](https://clawhub.ai/user/blockcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockcloud](https://clawhub.ai/user/blockcloud)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let OpenClaw agents initiate, continue, end, and inspect voice calls through a configured voice-call provider. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live use can place real phone calls through third-party providers. <br>
-Mitigation: Require clear confirmation of the destination phone number and message before any live call. <br>
-Risk: Provider credentials and telephony usage can expose accounts to unauthorized use or unexpected spend. <br>
-Mitigation: Protect provider credentials, use mock mode for testing, and set provider-side spend or destination limits where available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blockcloud/voiceskill123) <br>
-- [Publisher Profile](https://clawhub.ai/user/blockcloud) <br>
+## Use Case:
 
+Developers and agent builders use this skill to let agents initiate, continue, speak on, end, and inspect voice calls through the OpenClaw voice-call plugin.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the OpenClaw voice-call plugin to be enabled and configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live provider use can place real outbound phone calls and incur provider charges.
+
+Mitigation: Use the mock provider for testing and require confirmation before any real outbound call.
+
+Risk: Incorrect live provider credentials or from-number configuration can route calls unexpectedly or fail at runtime.
+
+Mitigation: Review provider credentials and from-number configuration before enabling Twilio, Telnyx, or Plivo.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockcloud/skills/voiceskill123)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe provider-specific setup for Twilio, Telnyx, Plivo, or mock voice-call providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Aggregates AI, technology, and finance news into source-aware summaries, ranking frameworks, translations, and risk-monitoring guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates AI and technology news from 100+ RSS feeds with interest scoring, cross-day deduplication, and prefetching.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Developers and analysts use this skill as a reference workflow for collecting AI, technology, and finance news, summarizing important items, translating selected English-language stories, and flagging items that need source verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-impact summaries, sentiment labels, and risk ratings may be incomplete, stale, or misleading if sources are not checked. <br>
-Mitigation: Verify original sources before acting and treat all market-impact and risk sections as informational rather than financial, legal, or insurance advice. <br>
-Risk: Separate user-deployed Python scripts may contact RSS feeds or third-party APIs and expose query terms, IP address, timestamps, or similar request metadata. <br>
-Mitigation: Review any separate script before deployment, confirm third-party terms and robots.txt expectations, and limit data sent to external feeds or APIs. <br>
-Risk: The release is documentation-only and describes aggregation frameworks and code examples without included executable code. <br>
-Mitigation: Treat commands and configuration as examples that require local review, testing, and security scanning before operational use. <br>
+## Use Case:
 
+Users can gather and summarize recent AI and technology news, find papers and trending projects, and organize finance stories into briefings or event timelines.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/gechengling/finance-news-aggregator) <br>
-- [OpenAI Blog RSS feed](https://openai.com/blog/rss.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with example shell commands, configuration snippets, scoring tables, and summary templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; any separate scripts or external feed access are user-deployed and should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.3 (source: server-resolved release metadata) <br>
+Risk: News summaries and sentiment assessments may be incomplete; the GitHub trend feature and automatic Chinese translation may not suit every user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check original reporting and official announcements, review the trend and translation behavior before use, and treat market commentary as informational.
+
+## Reference(s):
+
+- [Imported source repository](https://github.com/gechengling/finance-news-aggregator)
+- [Resolved source commit e917d56](https://github.com/gechengling/finance-news-aggregator/commit/e917d56d81640ffcf7878e463c2a112f1166dded)
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/finance-news-aggregator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Categorized news summaries, briefings, event timelines, and optional JSON results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [News date range, source category, and result limit can be selected.]
+
+## Skill Version(s):
+
+5.0.7 (source: server-resolved release metadata; artifact frontmatter reports 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

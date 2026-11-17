@@ -1,41 +1,54 @@
-## Description: <br>
-Local video comprehension skill. Use ffmpeg to extract audio and frames, FunASR for speech recognition, and qwen3-vl for image understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local video comprehension skill. Use ffmpeg to extract audio and frames, FunASR for speech recognition, and qwen3-vl for image understanding.
 
-## Publisher: <br>
-[tomuiv](https://clawhub.ai/user/tomuiv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomuiv](https://clawhub.ai/user/tomuiv)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect video content by extracting audio and frames, transcribing Chinese speech locally, and generating frame descriptions with a local vision model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private video content, transcripts, frame descriptions, or summaries could leave the local machine if the optional cloud summary step is used. <br>
-Mitigation: Use the local ffmpeg, FunASR, and Ollama workflow for private videos, and only use a cloud summary provider after choosing and trusting that provider. <br>
-Risk: The skill proposes local shell commands for extracting media and running models, so users could overwrite generated audio or frame files if they run commands without review. <br>
-Mitigation: Review commands and output paths before execution, and run them in a working directory prepared for extracted audio and frames. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect video content by extracting audio, sampling frames, transcribing Chinese speech locally, and combining transcript and frame observations into an analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomuiv/tom-video-understanding) <br>
-- [Ollama Download](https://ollama.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local transcripts, frame descriptions, and video summaries; optional cloud summary steps can expose derived video content to a chosen provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill advertises local processing while allowing optional cloud LLM analysis of transcript and frame information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cloud analysis as explicit opt-in and avoid sending private, regulated, or sensitive video-derived content to a remote provider unless approved.
+
+Risk: Model and package setup depends on external sources such as Ollama, FunASR, ModelScope, and conda or pip packages.
+
+Mitigation: Install dependencies only from trusted sources, avoid arbitrary mirrors, and review model/package provenance before processing sensitive videos.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomuiv/skills/tom-video-understanding)
+- [Ollama download](https://ollama.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local transcripts, frame descriptions, and optional combined analysis derived from extracted video content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -528,24 +528,31 @@ def build_page_from_mineru_blocks(
 def run_mineru_openvino_on_page_images(
     config: ParseConfig,
     page_images: list[Any],
+    mineru_client: Any | None = None,
+    model_dir: Path | None = None,
 ) -> dict[str, Any] | None:
     base_dir = Path(__file__).resolve().parent.parent
-    model_dir = find_mineru_model_dir(base_dir)
     if model_dir is None:
-        return None
-    try:
-        from mineru_openvino_backend import OVMinerUClient
-    except Exception:
+        model_dir = find_mineru_model_dir(base_dir)
+    if model_dir is None and mineru_client is not None:
+        model_dir = Path(getattr(mineru_client, "model_dir", ""))
+    if model_dir is None or not str(model_dir):
         return None
 
-    device = os.environ.get("MINERU_OPENVINO_DEVICE", "AUTO")
+    device = os.environ.get("MINERU_OPENVINO_DEVICE", "CPU")
     image_analysis = os.environ.get("MINERU_OPENVINO_IMAGE_ANALYSIS", "0") == "1"
-    client = OVMinerUClient(
-        model_dir=model_dir,
-        device=device,
-        image_analysis=image_analysis,
-        debug=config.debug,
-    )
+    client = mineru_client
+    if client is None:
+        try:
+            from mineru_openvino_backend import OVMinerUClient
+        except Exception:
+            return None
+        client = OVMinerUClient(
+            model_dir=model_dir,
+            device=device,
+            image_analysis=image_analysis,
+            debug=config.debug,
+        )
 
     pages: list[dict[str, Any]] = []
     tables: list[dict[str, Any]] = []
@@ -678,11 +685,38 @@ def parse_pdf_with_pypdf(config: ParseConfig) -> dict[str, Any] | None:
     }
 
 
-def parse_pdf_document(config: ParseConfig) -> dict[str, Any]:
+def parse_pdf_document(
+    config: ParseConfig,
+    mineru_client: Any | None = None,
+    model_dir: Path | None = None,
+) -> dict[str, Any]:
     try:
         from mineru_openvino_backend import pdf_to_images
     except Exception:
         pdf_to_images = None  # type: ignore[assignment]
+
+    if mineru_client is not None and pdf_to_images is not None:
+        try:
+            dpi = int(os.environ.get("MINERU_OPENVINO_DPI", "200"))
+            page_images = pdf_to_images(config.file, dpi=dpi)
+            if config.max_pages is not None:
+                page_images = page_images[: config.max_pages]
+            parsed = run_mineru_openvino_on_page_images(
+                config,
+                page_images,
+                mineru_client=mineru_client,
+                model_dir=model_dir,
+            )
+            if parsed is not None:
+                return parsed
+        except Exception as exc:
+            fallback = parse_pdf_with_pymupdf(config) or parse_pdf_with_pypdf(config)
+            if fallback is not None:
+                fallback.setdefault("warnings", []).append(
+                    f"Persistent MinerU OpenVINO parse failed; fallback backend used instead: {exc}"
+                )
+                return fallback
+            raise
 
     if pdf_to_images is not None and module_available("openvino_genai") and module_available("mineru_vl_utils"):
         try:
@@ -725,8 +759,39 @@ def parse_pdf_document(config: ParseConfig) -> dict[str, Any]:
     return parse_text_like_file(config, warning=warning)
 
 
-def parse_image_document(config: ParseConfig) -> dict[str, Any]:
-    if module_available("PIL") and module_available("openvino_genai") and module_available("mineru_vl_utils"):
+def parse_image_document(
+    config: ParseConfig,
+    mineru_client: Any | None = None,
+    model_dir: Path | None = None,
+) -> dict[str, Any]:
+    if mineru_client is not None and module_available("PIL"):
+        try:
+            from PIL import Image  # type: ignore
+
+            with Image.open(config.file) as image:
+                parsed = run_mineru_openvino_on_page_images(
+                    config,
+                    [image.convert("RGB")],
+                    mineru_client=mineru_client,
+                    model_dir=model_dir,
+                )
+            if parsed is not None:
+                return parsed
+        except Exception as exc:
+            warnings = [f"Persistent MinerU OpenVINO image parse failed; falling back to metadata parse: {exc}"]
+            skip_direct_mineru_retry = True
+        else:
+            skip_direct_mineru_retry = False
+    else:
+        warnings = []
+        skip_direct_mineru_retry = False
+
+    if (
+        not skip_direct_mineru_retry
+        and module_available("PIL")
+        and module_available("openvino_genai")
+        and module_available("mineru_vl_utils")
+    ):
         try:
             from PIL import Image  # type: ignore
 
@@ -735,11 +800,9 @@ def parse_image_document(config: ParseConfig) -> dict[str, Any]:
             if parsed is not None:
                 return parsed
         except Exception as exc:
-            warnings = [f"MinerU OpenVINO image parse failed; falling back to metadata parse: {exc}"]
+            warnings.append(f"MinerU OpenVINO image parse failed; falling back to metadata parse: {exc}")
         else:
-            warnings = []
-    else:
-        warnings = []
+            warnings = warnings
 
     width = 0
     height = 0
@@ -806,11 +869,16 @@ def parse_image_document(config: ParseConfig) -> dict[str, Any]:
     }
 
 
-def run_openvino_parse_pipeline(config: ParseConfig, input_type: str) -> dict[str, Any]:
+def run_openvino_parse_pipeline(
+    config: ParseConfig,
+    input_type: str,
+    mineru_client: Any | None = None,
+    model_dir: Path | None = None,
+) -> dict[str, Any]:
     if input_type == "pdf":
-        return parse_pdf_document(config)
+        return parse_pdf_document(config, mineru_client=mineru_client, model_dir=model_dir)
     if input_type == "image":
-        return parse_image_document(config)
+        return parse_image_document(config, mineru_client=mineru_client, model_dir=model_dir)
     raise ValueError(f"Unsupported input type: {input_type}")
 
 
@@ -858,45 +926,73 @@ def render_markdown(document: dict[str, Any]) -> str:
     return "\n".join(lines).strip() + "\n"
 
 
+def build_parsed_document(
+    config: ParseConfig,
+    mineru_client: Any | None = None,
+    model_dir: Path | None = None,
+) -> dict[str, Any]:
+    if not config.file.exists():
+        raise FileNotFoundError(f"Input file not found: {config.file}")
+
+    input_type = detect_input_type(config.file)
+    file_hash = sha256_file(config.file)
+
+    document = build_empty_document(config, input_type, file_hash)
+    parsed = run_openvino_parse_pipeline(
+        config,
+        input_type,
+        mineru_client=mineru_client,
+        model_dir=model_dir,
+    )
+
+    document["pages"] = parsed.get("pages", [])
+    document["tables"] = parsed.get("tables", [])
+    document["figures"] = parsed.get("figures", [])
+    document["entities"] = parsed.get("entities", [])
+    document["parse_info"]["warnings"] = parsed.get("warnings", [])
+    document["parse_info"]["backend"] = parsed.get("backend")
+    if parsed.get("model_dir"):
+        document["parse_info"]["model_dir"] = parsed.get("model_dir")
+    if parsed.get("backend") != "mineru-openvino":
+        document["parse_info"]["confidence_note"] = (
+            "This run did not use MinerU OpenVINO inference. Use it only as a contract or smoke result, "
+            "not as a document-understanding quality result."
+        )
+
+    problems = validate_document_schema(document)
+    if problems:
+        document["parse_info"]["warnings"].extend(problems)
+
+    return document
+
+
+def write_parse_outputs(config: ParseConfig, document: dict[str, Any]) -> dict[str, Any]:
+    parsed_json_path = config.out / "parsed.json"
+    parsed_md_path = config.out / "parsed.md"
+
+    write_json(parsed_json_path, document)
+    write_text(parsed_md_path, render_markdown(document))
+
+    return build_parse_status(document, config.out)
+
+
+def run_parse_pipeline(
+    config: ParseConfig,
+    mineru_client: Any | None = None,
+    model_dir: Path | None = None,
+) -> dict[str, Any]:
+    ensure_artifact_layout(config.out)
+
+    document = build_parsed_document(config, mineru_client=mineru_client, model_dir=model_dir)
+    return write_parse_outputs(config, document)
+
 def main() -> int:
     config = parse_args()
     ensure_artifact_layout(config.out)
 
     try:
-        if not config.file.exists():
-            raise FileNotFoundError(f"Input file not found: {config.file}")
-
-        input_type = detect_input_type(config.file)
-        file_hash = sha256_file(config.file)
-
-        document = build_empty_document(config, input_type, file_hash)
-        parsed = run_openvino_parse_pipeline(config, input_type)
-
-        document["pages"] = parsed.get("pages", [])
-        document["tables"] = parsed.get("tables", [])
-        document["figures"] = parsed.get("figures", [])
-        document["entities"] = parsed.get("entities", [])
-        document["parse_info"]["warnings"] = parsed.get("warnings", [])
-        document["parse_info"]["backend"] = parsed.get("backend")
-        if parsed.get("model_dir"):
-            document["parse_info"]["model_dir"] = parsed.get("model_dir")
-        if parsed.get("backend") != "mineru-openvino":
-            document["parse_info"]["confidence_note"] = (
-                "This run did not use MinerU OpenVINO inference. Use it only as a contract or smoke result, "
-                "not as a document-understanding quality result."
-            )
-
-        problems = validate_document_schema(document)
-        if problems:
-            document["parse_info"]["warnings"].extend(problems)
-
-        parsed_json_path = config.out / "parsed.json"
-        parsed_md_path = config.out / "parsed.md"
-
-        write_json(parsed_json_path, document)
-        write_text(parsed_md_path, render_markdown(document))
-
-        print(json.dumps(build_parse_status(document, config.out), ensure_ascii=False))
+        status = run_parse_pipeline(config)
+        print(json.dumps(status, ensure_ascii=False))
         return 0
 
     except Exception as exc:

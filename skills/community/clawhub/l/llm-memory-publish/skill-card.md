@@ -1,44 +1,62 @@
-## Description: <br>
-Provides memory CRUD and search interfaces with a SQLite FTS fallback, plus install and startup hooks that fetch a private enhancement package from CNB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides memory storage and search interfaces with lifecycle hooks that can download a CNB-hosted private enhancement package.
 
-## Publisher: <br>
-[xkzs2007](https://clawhub.ai/user/xkzs2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xkzs2007](https://clawhub.ai/user/xkzs2007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local memory storage, CRUD operations, and full-text search to an OpenClaw workspace. Optional enhanced search, embedding, and performance features are supplied by a private package fetched during installation when hooks are enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically downloads and checks extra private code during installation or startup. <br>
-Mitigation: Install only when that remote access is acceptable, review the fetched package before relying on it, and disable hooks when automatic installation is not desired. <br>
-Risk: The private package is not described as pinned by checksum or signature in the release evidence. <br>
-Mitigation: Prefer a release that vendors or pins the private package, verifies signatures or checksums, and makes remote installation explicit before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add memory storage, full-text search, and optional vector-search enhancements to OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xkzs2007/llm-memory-publish) <br>
-- [Publisher Profile](https://clawhub.ai/user/xkzs2007) <br>
-- [CNB Private Enhancement Package](https://cnb.cool/llm-memory-integrat/llm) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
-- [Hooks](hooks/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python API references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory database files and install a private package under the skill directory when lifecycle hooks are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.0.2 (source: ClawHub release evidence) <br>
+Risk: Installation hooks download an unverified private add-on from CNB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use --no-hooks unless the publisher and CNB repository are explicitly trusted.
+
+Risk: The downloaded private component may include native extensions and API access.
+
+Mitigation: Treat the private component as separate executable code and prefer a release that pins and verifies the downloaded package.
+
+Risk: Startup behavior checks the private package state over Git.
+
+Mitigation: Allow network access only to the expected CNB endpoint and review lifecycle hook behavior before enabling hooks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xkzs2007/skills/llm-memory-publish)
+- [Publisher profile](https://clawhub.ai/user/xkzs2007)
+- [CNB private package endpoint](https://cnb.cool)
+- [CNB private package repository](https://cnb.cool/llm-memory-integrat/llm)
+- [Architecture notes](artifact/docs/ARCHITECTURE.md)
+- [Hooks documentation](artifact/hooks/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-like Python API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local SQLite memory files and a private package directory when lifecycle hooks are enabled.]
+
+## Skill Version(s):
+
+8.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -55,7 +55,7 @@ GROQ_API_KEY = os.environ.get("GROQ_API_KEY") or \
                _get_api_key("GROQ_API_KEY", "GROQ_API_KEY")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY") or \
                     os.environ.get("CLAUDE_API_KEY") or \
-                    "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"
+                    "REDACTED-SECRET"
 
 # Home Assistant
 HA_URL = os.environ.get("HA_URL", "http://192.168.1.10:8123")

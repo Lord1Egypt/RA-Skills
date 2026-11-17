@@ -1,42 +1,53 @@
-## Description: <br>
-Search Google, Bing, DuckDuckGo, Brave, Startpage, Yahoo, Yandex, Baidu, Sogou, Qwant, Ecosia, Mojeek, and WolframAlpha from one skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google, Bing, DuckDuckGo, Brave, Startpage, Yahoo, Yandex, Baidu, Sogou, Qwant, Ecosia, Mojeek, and WolframAlpha from one skill.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, researchers, and other agents use this skill to broaden web lookup coverage, cross-check claims across multiple search engines, and prioritize primary sources for current or high-impact topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to multiple public search and knowledge providers. <br>
-Mitigation: Avoid including secrets, internal URLs, private identifiers, or sensitive personal information in search queries. <br>
-Risk: The skill can save activation mode, engine priority, blocked engines, and output-style preferences. <br>
-Mitigation: Use explicit-only activation when automatic web lookups are not desired, and review or delete ~/multi-engine-web-search/memory.md if preferences change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/multi-engine-web-search) <br>
-- [Skill Homepage](https://clawic.com/skills/multi-engine-web-search) <br>
-- [Setup Guide](setup.md) <br>
-- [Memory Template](memory-template.md) <br>
+## Use Case:
 
+Developers, researchers, and other external users use this skill to run broader web lookups across multiple search engines, compare results, and verify current or high-impact claims with contradiction queries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Concise Markdown with links, confidence notes, and preference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save minimal user preferences in ~/multi-engine-web-search/memory.md when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries can be sent to several third-party search, knowledge, and developer engines per lookup.
+
+Mitigation: Use explicit or on-request activation for sensitive topics and avoid including secrets, private personal data, or confidential material in search terms.
+
+Risk: The skill stores cross-session activation and engine preferences, which can cause future searches to run more often than intended.
+
+Mitigation: Review the saved memory profile periodically, keep blocked engines current, and remove or revise the memory if activation behavior is too broad.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/multi-engine-web-search)
+- [Skill homepage](https://clawic.com/skills/multi-engine-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown search summaries with links, confidence notes, and optional web_fetch call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist activation mode, preferred engine order, blocked engines, and output style in a local memory file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

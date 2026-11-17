@@ -1,44 +1,59 @@
-## Description: <br>
-Interact with a Vikunja task management instance via its REST API to manage tasks, projects, labels, assignees, reminders, and task relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a Vikunja task management instance via its REST API to manage tasks, projects, labels, assignees, reminders, and task relationships.
 
-## Publisher: <br>
-[seergs](https://clawhub.ai/user/seergs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seergs](https://clawhub.ai/user/seergs)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent manage Vikunja tasks and projects through a configured Vikunja instance. It supports common task-management workflows such as listing due work, creating and updating tasks, assigning users, managing labels and reminders, and linking related tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Vikunja API token can allow the agent to read or modify task-management data. <br>
-Mitigation: Use the least-privileged Vikunja API token available and rotate it according to the user's normal credential policy. <br>
-Risk: A misconfigured base URL could direct requests to the wrong Vikunja instance. <br>
-Mitigation: Verify VIKUNJA_BASE_URL before use, especially when working with multiple Vikunja environments. <br>
-Risk: Generic task requests can be routed to Vikunja unexpectedly when the user has multiple task systems. <br>
-Mitigation: Ask for clarification or explicitly name Vikunja when the intended task system is ambiguous. <br>
+## Use Case:
 
+Developers and Vikunja users use this skill to let an agent manage projects, tasks, labels, assignees, reminders, and task relationships through a configured Vikunja REST API token.
 
-## Reference(s): <br>
-- [Vikunja API endpoint reference](references/endpoints.md) <br>
-- [Project homepage](https://github.com/seergs/vikunja-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/seergs/vikunja-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Text, Markdown] <br>
-**Output Format:** [Markdown task summaries and REST API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VIKUNJA_BASE_URL and VIKUNJA_API_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The configured Vikunja API token can read and modify task-management data available to that token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token scoped as narrowly as Vikunja allows and install the skill only for agents that should operate on the target Vikunja instance.
+
+Risk: The skill can delete tasks, remove labels or assignees, and change task relationships.
+
+Mitigation: Confirm destructive or removal actions with the user before making the corresponding API request.
+
+Risk: Paginated API responses can omit additional results if only the first page is used.
+
+Mitigation: Follow pagination headers to fetch subsequent pages or clearly tell the user when results are truncated.
+
+## Reference(s):
+
+- [Vikunja API Endpoint Reference](references/endpoints.md)
+- [Project homepage](https://github.com/seergs/vikunja-skill)
+- [ClawHub skill page](https://clawhub.ai/seergs/skills/vikunja-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration Guidance]
+
+**Output Format:** [Markdown text with REST API request guidance and structured task summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VIKUNJA_BASE_URL and VIKUNJA_API_TOKEN.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

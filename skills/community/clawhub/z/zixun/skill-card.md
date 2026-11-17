@@ -1,43 +1,57 @@
-## Description: <br>
-Daily Market Analysis searches current public market information and produces a concise Chinese Markdown morning briefing for US, Hong Kong, and A-share markets with key events, sector highlights, and informational investment considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a concise daily market analysis report covering US, Hong Kong, and A-share market performance, key financial news, investment considerations, and risk reminders.
 
-## Publisher: <br>
-[jackbauer90](https://clawhub.ai/user/jackbauer90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackbauer90](https://clawhub.ai/user/jackbauer90)
 
-## Use Case: <br>
-External users invoke this skill for a daily or pre-market briefing that summarizes recent US, Hong Kong, and A-share market movement, major financial news, and balanced informational considerations for the trading day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data or news may be stale, incomplete, or unavailable. <br>
-Mitigation: Verify market data and source dates independently before relying on the report. <br>
-Risk: The report includes investment suggestions that could be mistaken for personalized financial advice. <br>
-Mitigation: Treat suggestions as informational only and retain the required disclaimer that the output is not investment advice. <br>
-Risk: The skill could be invoked unintentionally for general market-related questions. <br>
-Mitigation: Invoke it explicitly when a daily market recap or pre-market briefing workflow is desired. <br>
+## Use Case:
 
+External users use this skill to produce a short morning market briefing for US, Hong Kong, and A-share markets. The report helps readers scan index moves, sector highlights, major events, short-term considerations, and key uncertainties before making their own decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackbauer90/zixun) <br>
-- [Publisher profile](https://clawhub.ai/user/jackbauer90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Concise Chinese Markdown market analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 400 words or fewer; includes source note and investment disclaimer; uses latest available public market data or marks stale or missing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Market figures and news are time-sensitive and may be stale or incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify index levels, percentages, and market-moving events against reliable market data before relying on the report.
+
+Risk: Generic investment suggestions could be mistaken for personalized financial advice.
+
+Mitigation: Keep the report informational, preserve the non-advice disclaimer, and require users to apply their own judgment or consult a qualified adviser.
+
+Risk: The skill is designed for Chinese-language summaries and may not meet users expecting another language.
+
+Mitigation: Install and invoke it only for Chinese daily market briefings or explicitly translate and review output before reuse.
+
+## Reference(s):
+
+- [Daily Market Analysis on ClawHub](https://clawhub.ai/jackbauer90/skills/zixun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market briefing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language report under 400 characters when possible, with source attribution and a non-advice disclaimer.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

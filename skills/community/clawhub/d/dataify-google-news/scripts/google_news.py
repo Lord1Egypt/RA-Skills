@@ -15,7 +15,8 @@ from typing import Any
 
 
 API_URL = "https://scraperapi.dataify.com/request"
-TOKEN_MISSING_MESSAGE = "缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+GOOGLE_NEWS_ORIGIN = "https://news.google.com"
+TOKEN_MISSING_MESSAGE = "缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分，约可获得 6000 条试用结果，7 天有效，仅成功请求计费。"
 
 FIELDS = (
     "q",
@@ -307,6 +308,29 @@ def get_authorization(token_arg: str | None) -> str | None:
     return token
 
 
+def normalize_news_links(value: Any) -> Any:
+    """Turn Google News relative result links into directly usable URLs."""
+    if isinstance(value, list):
+        return [normalize_news_links(item) for item in value]
+    if not isinstance(value, dict):
+        return value
+    normalized = {}
+    for key, item in value.items():
+        if key.lower() in {"link", "url"} and isinstance(item, str) and item.startswith("/"):
+            normalized[key] = urllib.parse.urljoin(GOOGLE_NEWS_ORIGIN, item)
+        else:
+            normalized[key] = normalize_news_links(item)
+    return normalized
+
+
+def normalize_response_body(raw: bytes) -> bytes:
+    try:
+        payload = json_module.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json_module.JSONDecodeError):
+        return raw
+    return json_module.dumps(normalize_news_links(payload), ensure_ascii=False).encode("utf-8")
+
+
 def call_api(params: dict[str, str], authorization: str, timeout: float) -> int:
     body = urllib.parse.urlencode(params).encode("utf-8")
     request = urllib.request.Request(
@@ -322,7 +346,7 @@ def call_api(params: dict[str, str], authorization: str, timeout: float) -> int:
 
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
-            sys.stdout.buffer.write(response.read())
+            sys.stdout.buffer.write(normalize_response_body(response.read()))
             return 0
     except urllib.error.HTTPError as exc:
         error_body = exc.read()
@@ -357,5 +381,17 @@ def main() -> int:
     return call_api(params, authorization, args.timeout)
 
 
+
+
+def _configure_utf8_output():
+    import sys
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8", errors="replace")
+            except (AttributeError, ValueError):
+                pass
+
 if __name__ == "__main__":
+    _configure_utf8_output()
     raise SystemExit(main())

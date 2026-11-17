@@ -1,46 +1,60 @@
-## Description: <br>
-Pydantic Logfire observability for OpenClaw with OTEL GenAI traces, tool call spans, token metrics, and optional distributed tracing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pydantic Logfire observability for OpenClaw with OTEL GenAI traces, tool-call spans, token metrics, and distributed tracing.
 
-## Publisher: <br>
-[namabile](https://clawhub.ai/user/namabile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[namabile](https://clawhub.ai/user/namabile)
 
-## Use Case: <br>
-Developers and platform engineers use this plugin to observe OpenClaw agent runs in Pydantic Logfire, including tool spans, token metrics, errors, and optional cross-service trace propagation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Telemetry can include sensitive agent data such as tool arguments when captureToolInput is enabled. <br>
-Mitigation: Set captureToolInput to false for sensitive environments, keep captureToolOutput and captureMessageContent disabled unless required, leave redactSecrets enabled, and review truncation limits. <br>
-Risk: Distributed tracing can propagate trace context into outbound HTTP commands when enabled. <br>
-Mitigation: Leave distributedTracing disabled unless needed, or restrict urlPatterns to trusted service URLs. <br>
-Risk: The Logfire write token is required for export and could expose telemetry ingestion if mishandled. <br>
-Mitigation: Store LOGFIRE_TOKEN in a secret store or environment configuration and do not commit it to source-controlled files. <br>
+## Use Case:
 
+Developers and engineers use this plugin to send OpenClaw agent lifecycle traces, tool spans, token metrics, errors, and optional distributed trace context to Pydantic Logfire.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/namabile/openclaw-logfire) <br>
-- [npm package](https://www.npmjs.com/package/@ultrathink-solutions/openclaw-logfire) <br>
-- [Pydantic Logfire](https://pydantic.dev/logfire) <br>
-- [OpenTelemetry GenAI semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) <br>
-- [OpenClaw production deployment article](https://ultrathinksolutions.com/the-signal/openclaw-to-production/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [telemetry traces, metrics, trace links, configuration] <br>
-**Output Format:** [OTLP HTTP/protobuf telemetry exported to Logfire, plus OpenClaw configuration and shell commands in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOGFIRE_TOKEN. Tool input capture is enabled by default; tool output, message content, tool definitions, inference events, and distributed tracing are disabled by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter, package.json, CHANGELOG) <br>
+Risk: Tool arguments and raw error details may be sent to Logfire by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set captureToolInput and captureStackTraces to false unless they are explicitly required for the workspace.
+
+Risk: Sensitive message or tool-result content could be exposed if optional capture settings are enabled.
+
+Mitigation: Keep captureToolOutput and captureMessageContent disabled for normal use, especially in workspaces with credentials, customer data, private files, or production operations.
+
+Risk: Secret redaction is best-effort and may not cover every credential format.
+
+Mitigation: Treat redaction as an additional control rather than a guarantee, avoid sending secrets through tool inputs, and restrict Logfire project access.
+
+## Reference(s):
+
+- [Pydantic Logfire](https://pydantic.dev/logfire)
+- [OpenTelemetry GenAI Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/)
+- [npm Package](https://www.npmjs.com/package/@ultrathink-solutions/openclaw-logfire)
+- [OpenClaw Production Deployment Article](https://ultrathinksolutions.com/the-signal/openclaw-to-production/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Logfire write token through LOGFIRE_TOKEN or plugin configuration.]
+
+## Skill Version(s):
+
+0.1.2 (source: SKILL.md frontmatter, package.json, CHANGELOG, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

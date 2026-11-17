@@ -1,42 +1,53 @@
-## Description: <br>
-Interact with the Oasyce decentralized AI data marketplace. Register data assets, trade via bonding curves, invoke AI capabilities, and settle payments between agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Oasyce decentralized AI data marketplace. Register data assets, trade via bonding curves, invoke AI capabilities, and settle payments between agents.
 
-## Publisher: <br>
-[shangri-la-0428](https://clawhub.ai/user/shangri-la-0428) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shangri-la-0428](https://clawhub.ai/user/shangri-la-0428)
 
-## Use Case: <br>
-Developers and agent builders use Oasyce to register marketplace data assets, trade shares through bonding curves, invoke AI capabilities, and inspect settlement, reputation, and network state through the Oasyce CLI and Python SDK. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace commands may spend tokens, sell shares, register public assets or endpoints, resolve disputes, or onboard a node. <br>
-Mitigation: Use a testnet or low-value account first and require explicit approval before any value-moving or public registration command runs. <br>
-Risk: Capability invocation or endpoint registration may send private data to an external AI capability provider. <br>
-Mitigation: Verify the active provider, endpoint, wallet, and account before use, and avoid sending secrets or sensitive data unless the provider is approved. <br>
-Risk: The skill depends on Oasyce pip packages and an active wallet or account outside the skill artifact. <br>
-Mitigation: Verify the installed packages with `oas doctor --json` and confirm the intended wallet or account before executing marketplace operations. <br>
+## Use Case:
 
+Developers and external agents use this skill to discover, register, trade, and inspect data assets and AI capabilities in the Oasyce marketplace through the oas CLI and Python SDK examples.
 
-## Reference(s): <br>
-- [ClawHub Oasyce release page](https://clawhub.ai/shangri-la-0428/oasyce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands support JSON output via --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release evidence) <br>
+Risk: The skill describes marketplace actions that can spend funds, change asset state, or affect disputes and settlements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before buy, sell, dispute, resolve, onboarding, or other value-changing commands.
+
+Risk: The skill recommends installing and invoking external packages and endpoints.
+
+Mitigation: Install only in an isolated environment, verify the package source and version before use, and review any data sent to remote endpoints.
+
+## Reference(s):
+
+- [Oasyce Skill Page](https://clawhub.ai/shangri-la-0428/skills/oasyce)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands generally request JSON output from the oas CLI.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

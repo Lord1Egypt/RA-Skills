@@ -1,40 +1,52 @@
-## Description: <br>
-Randomly shuffle lines of text input for random sampling, data randomization, and selection tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Randomly shuffles lines of text input for random sampling, data randomization, and selection tasks.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and other ClawHub users use this skill to have an agent shuffle line-oriented text, select random samples, or work with randomized ranges.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Piped standard input may be handled as a pathname, which could print a file's contents instead of shuffling piped lines.
+
+Mitigation: Avoid piping untrusted text into the helper until stdin handling is fixed; use explicit, reviewed files or controlled input.
+
+Risk: The included helper is minimal and may not fully implement the options documented by the skill.
+
+Mitigation: Test required command options in a controlled environment before relying on the shuffled output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to randomize text lines for sampling, data randomization, and selection tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper can read files available to the agent. <br>
-Mitigation: Review file paths before execution and avoid using it with sensitive files or sensitive piped input. <br>
-Risk: The current artifact has a stdin-handling bug and the documented -n, -i, -r, and -e options are not reliable. <br>
-Mitigation: Use explicit non-sensitive input files for simple full-line shuffling, and do not rely on the documented sampling options until the implementation is fixed. <br>
+**Output Format:** [Plain text and Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/shuf-tool) <br>
+**Other Properties Related to Output:** [Produces shuffled line-oriented output; documented options should be tested before relying on them.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces shuffled line-oriented text; documented options include sampling modes, but evidence notes some options are not reliable in the current artifact.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

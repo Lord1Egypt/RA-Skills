@@ -1,42 +1,57 @@
-## Description: <br>
-Call GET /api/bilibili/share-url-transfer/v1 for Bilibili Share Link Resolution through JustOneAPI with shareUrl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/bilibili/share-url-transfer/v1 for Bilibili Share Link Resolution through JustOneAPI with shareUrl.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to resolve shortened Bilibili share links into video and page identifiers through JustOneAPI. It is intended for workflows that need Bilibili link normalization or metadata extraction from shared social media links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JUST_ONE_API_TOKEN is sent in the URL query string and may be exposed through shell history, logs, screenshots, or captured URLs. <br>
-Mitigation: Use a scoped, revocable token; pass it through the JUST_ONE_API_TOKEN environment variable; avoid displaying full request URLs; and rotate the token if exposure is suspected. <br>
-Risk: Submitted Bilibili share URLs are sent to JustOneAPI for resolution. <br>
-Mitigation: Install and use the skill only when the publisher is trusted with the submitted Bilibili share URLs. <br>
+## Use Case:
 
+Developers and agents use this skill to resolve shortened Bilibili share URLs into standard video and page identifiers through the JustOneAPI endpoint. It is useful when automating extraction or lookup workflows from Bilibili mobile share links.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_share_url_transfer&utm_content=project_link) <br>
-- [Bilibili Share Link Resolution API on ClawHub](https://clawhub.ai/justoneapi/justoneapi-bilibili-share-url-transfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JUST_ONE_API_TOKEN credential and a Bilibili shareUrl query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is passed on the command line and may be exposed through shell history, logs, or process monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or disposable token where available, avoid pasting token values into shared outputs, and rotate the token if exposure is suspected.
+
+Risk: The token and Bilibili share URL are sent to JustOneAPI as URL query parameters.
+
+Mitigation: Install only if the user trusts JustOneAPI with those values, and avoid using sensitive share URLs unless that data sharing is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-bilibili-share-url-transfer)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_share_url_transfer&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_share_url_transfer&utm_content=project_link)
+- [justoneapi Publisher Profile](https://clawhub.ai/user/justoneapi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a Bilibili shareUrl query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

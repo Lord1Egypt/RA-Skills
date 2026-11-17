@@ -1,41 +1,54 @@
-## Description: <br>
-Fund Advisor Cn provides Chinese-language fund education, screening support, DCA planning, asset allocation, risk assessment, return calculations, and rebalancing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund Advisor Cn helps agents provide fund screening, dollar-cost averaging strategy, asset allocation, risk assessment, return calculations, and portfolio rebalancing guidance.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can use this skill for educational fund-planning support, including fund selection, dollar-cost averaging, portfolio allocation, risk review, return estimates, and rebalancing. Users should treat outputs as planning guidance, not licensed financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides fund-planning guidance that could be mistaken for licensed financial advice. <br>
-Mitigation: Use it for education and planning support only; verify assumptions, risk tolerance, time horizon, fees, and applicable rules before acting. <br>
-Risk: Transaction-tracking behavior may store local history or financial details in plaintext. <br>
-Mitigation: Avoid entering sensitive transaction details unless local plaintext storage is acceptable, and review the configured data directory before use. <br>
+## Use Case:
 
+External users and agents use this skill to calculate fund investment scenarios, compare expected returns, plan asset allocation, evaluate risk metrics, and produce rebalancing suggestions. Its outputs are generic calculations and educational guidance rather than licensed financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/fund-advisor-cn) <br>
-- [Fund investment guide](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style guidance and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store local tracking history in plaintext when transaction-tracking commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill can produce actionable fund allocation, rebalancing, Kelly, and return guidance that may be unsuitable for a user's financial circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational calculations, review recommendations with a qualified financial adviser, and avoid relying on them as licensed financial advice.
+
+Risk: Some financial tracking commands may persist transaction descriptions or command history in local plaintext files.
+
+Mitigation: Avoid entering sensitive transaction details unless local plaintext storage is acceptable, and inspect or delete the fund-advisor-cn data directory when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/fund-advisor-cn)
+- [Fund investment guide](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with command examples and calculator-style summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces generic financial calculations and guidance; some companion commands may write local plaintext history under the fund-advisor-cn data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

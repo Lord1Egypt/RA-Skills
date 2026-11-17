@@ -1,8 +1,12 @@
 # resume-interview-generator
 
+[中文版本](README.zh-CN.md)
+
 基于候选人简历和岗位信息，自动生成结构化面试题、笔试题、追问路径和评分标准，适合技术面试官、招聘负责人和技术主管做候选人评估准备。
 
 ## Install
+
+These package commands are specific to `resume-interview-generator`. For repository-wide trial guidance, see [Install and Trial](../../../docs/install-and-trial.md).
 
 OpenClaw:
 
@@ -13,7 +17,7 @@ openclaw skills install resume-interview-generator
 Codex / Claude Code:
 
 ```bash
-npx @skills-hub-ai/cli install resume-interview-generator
+npx @skills-hub-ai/cli install resume-interview-generator-2
 ```
 
 ## Use When
@@ -54,10 +58,13 @@ $resume-interview-generator 请根据这份候选人简历，为高级 Java 后�
 ## Files
 
 ```text
-resume-interview-generator/
+skills/work/resume-interview-generator/
 ├── SKILL.md
 ├── README.md
 ├── resume_demo.md
+├── examples/
+│   ├── minimal-input.md
+│   └── expected-output-notes.md
 └── references/
     ├── level-guidelines.md
     └── tech-questions.md

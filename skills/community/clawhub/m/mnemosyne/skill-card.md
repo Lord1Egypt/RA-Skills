@@ -1,44 +1,61 @@
-## Description: <br>
-Provides an autonomous local memory system that captures, searches, and organizes conversation-derived preferences, decisions, emotions, task context, and conflict updates across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive memory engine for AI agents that gives OpenClaw and Hermes long-term local memory using compound-cue scoring, Markdown storage, and recall/search/profile/todo commands without LLM APIs, vector databases, or embedding models.
 
-## Publisher: <br>
-[ironzheng](https://clawhub.ai/user/ironzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elonaug7](https://clawhub.ai/user/elonaug7)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent local memory, configurable memory categories, search, and session-level memory analysis to an OpenClaw-style agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous persistent memory can store sensitive details, inferred personal traits, and broad conversation history. <br>
-Mitigation: Enable it only intentionally, clear bundled memory files before use, avoid storing secrets or confidential personal and business information, and regularly review saved memory records. <br>
-Risk: AGENTS.md or HEARTBEAT automation can persist conversation details without per-entry confirmation. <br>
-Mitigation: Do not enable automated session or heartbeat capture by default; prefer manual capture or reviewed analysis until the user has confirmed the memory policy. <br>
-Risk: The security guidance flags an inline Python interpolation issue in auto_session. <br>
-Mitigation: Avoid auto_session until that issue is fixed; use reviewed auto_analyze output or manual capture instead. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent, local, cross-session memory to OpenClaw or Hermes agents for recalling user facts, preferences, decisions, conversation history, profiles, and todos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ironzheng/mnemosyne) <br>
-- [User guide](docs/USER_GUIDE.md) <br>
-- [Auto Memory protocol](docs/AUTO_MEMORY_PROTOCOL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local Markdown and JSON memory records through bundled CLI scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can persist conversation-derived memory locally, which may include sensitive user facts or records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive records unless the local Markdown memory files can be inspected, edited, and erased under an approved retention process.
+
+Risk: Installation may alter agent instruction files and configure Hermes-related paths or hooks.
+
+Mitigation: Review the installer and upstream repository at a pinned commit, then install in a controlled workspace and inspect changed instruction and hook files before use.
+
+Risk: The skill runs a local Web UI as part of its workflow.
+
+Mitigation: Keep the UI bound to localhost, avoid exposing it on shared networks, and disable it when it is not needed.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Benchmark Methodology](references/benchmark.md)
+- [Hermes Adapter](references/hermes.md)
+- [ClawHub skill page](https://clawhub.ai/elonaug7/skills/mnemosyne)
+- [Publisher profile](https://clawhub.ai/user/elonaug7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or Markdown memory file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory recall guidance and configuration steps; no token cap is stated in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

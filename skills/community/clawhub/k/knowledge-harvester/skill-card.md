@@ -1,42 +1,56 @@
-## Description: <br>
-Daily automated briefings that fetch trending content via Google News RSS and summarize it into memory for RAG retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily automated briefings that fetch trending content via Google News RSS, summarize articles, and store summaries in memory for RAG retrieval.
 
-## Publisher: <br>
-[dainash](https://clawhub.ai/user/dainash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dainash](https://clawhub.ai/user/dainash)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a configurable, attributed stream of summarized news articles for later retrieval. It is intended for agents that need recurring domain-specific briefings stored as Markdown knowledge files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured topics are sent to Google News as search queries. <br>
-Mitigation: Avoid sensitive interests in domains.md and review configured domains before running the skill. <br>
-Risk: Generated summaries are stored in persistent memory and may influence future retrieval. <br>
-Mitigation: Periodically review or prune memory/knowledge to remove stale or unwanted summaries. <br>
+## Use Case:
 
+External users configure domains of interest so an agent can fetch Google News RSS items, summarize new articles into attributed Markdown, and store them in local memory for RAG retrieval.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dainash/knowledge-harvester) <br>
-- [Publisher profile](https://clawhub.ai/user/dainash) <br>
-- [Google News RSS search endpoint](https://news.google.com/rss/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown knowledge files with YAML frontmatter and brief run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes attributed 100-200 word article summaries to memory/knowledge and can create a default domain configuration in memory/clawforage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured interest topics are sent to Google News when fetching RSS results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or identifying topics in memory/clawforage/domains.md before running the skill.
+
+Risk: Internet-derived summaries are stored in persistent local memory for future retrieval.
+
+Mitigation: Review or delete files under memory/knowledge when fetched articles are suspicious, off-topic, or no longer appropriate for retrieval.
+
+## Reference(s):
+
+- [Knowledge Harvester on ClawHub](https://clawhub.ai/dainash/skills/knowledge-harvester)
+- [dainash publisher profile](https://clawhub.ai/user/dainash)
+- [Google News RSS search endpoint](https://news.google.com/rss/search)
+- [InspireHub Labs](https://inspireehub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter and concise run summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq, curl, and bash; stores article summaries under memory/knowledge.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

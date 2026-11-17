@@ -1,47 +1,62 @@
-## Description: <br>
-Generates new images and edits supplied images through ShiyunApi's GPT-image-2 image generation and image editing endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images with the GPT-image-2 model through ShiyunApi, supporting text-to-image, image editing, inpainting, background replacement, and multi-image composition.
 
-## Publisher: <br>
-[gl894761214](https://clawhub.ai/user/gl894761214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gl894761214](https://clawhub.ai/user/gl894761214)
 
-## Use Case: <br>
-External users and developers use this skill to create images from text or edit supplied images for posters, avatars, covers, product images, illustrations, background replacement, local repainting, and multi-image composition through ShiyunApi. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to ShiyunApi. <br>
-Mitigation: Use the skill only when sharing that content with ShiyunApi is acceptable, and avoid sensitive images or prompts unless approved. <br>
-Risk: The key-saving helper can persist SHIYUN_API_KEY in the user's shell profile or Windows user environment. <br>
-Mitigation: Use a revocable API key, prefer an existing environment variable or process-scoped storage when possible, and run the helper only when persistent storage is intentional. <br>
-Risk: Requests and retries may consume paid quota or create billing impact. <br>
-Mitigation: Confirm parameters before execution, monitor quota, and avoid retry variants that may submit another request unless the user accepts the possible charge. <br>
+## Use Case:
 
+External users and developers use this skill to create new images from prompts or edit existing images through ShiyunApi, including posters, avatars, product images, background changes, localized repainting, and multi-image composition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gl894761214/gpt-image-2-shiyunapi) <br>
-- [ShiyunApi text-to-image API documentation](https://shiyunapi.apifox.cn/api-448504710) <br>
-- [ShiyunApi image editing API documentation](https://shiyunapi.apifox.cn/api-448504709) <br>
-- [Bundled ShiyunApi GPT-Image-2 API reference](artifact/references/api_docs.md) <br>
-- [Bundled ShiyunApi usage examples](artifact/references/examples.md) <br>
-- [Bundled ShiyunApi troubleshooting guide](artifact/references/troubles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Image files, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG, JPEG, WebP, JSON, and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save raw API responses and metadata JSON for troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and edited images are sent to ShiyunApi for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the prompt and input images with ShiyunApi is acceptable.
+
+Risk: The helper can persist SHIYUN_API_KEY in the user's shell or user environment.
+
+Mitigation: Prefer setting SHIYUN_API_KEY manually for the current session, or use process-only storage when persistence is not required.
+
+Risk: Image URLs returned by the API are downloaded automatically.
+
+Mitigation: Review downloaded files before opening, sharing, or using them in downstream workflows.
+
+## Reference(s):
+
+- [ShiyunApi GPT-Image-2 API Reference](artifact/references/api_docs.md)
+- [ShiyunApi GPT-Image-2 Examples](artifact/references/examples.md)
+- [ShiyunApi GPT-Image-2 Troubleshooting](artifact/references/troubles.md)
+- [ShiyunApi text-to-image API](https://shiyunapi.apifox.cn/api-448504710)
+- [ShiyunApi image editing API](https://shiyunapi.apifox.cn/api-448504709)
+- [ClawHub skill page](https://clawhub.ai/gl894761214/skills/gpt-image-2-shiyunapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated image files, response JSON, and metadata JSON from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include PNG, JPEG, or WebP images, raw response JSON for troubleshooting, and metadata describing saved files and API status.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

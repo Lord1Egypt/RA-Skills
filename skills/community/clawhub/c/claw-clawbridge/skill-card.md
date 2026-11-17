@@ -1,45 +1,60 @@
-## Description: <br>
-Runs nightly searches to identify and rank relevant candidates matching your offer and ask, delivering evidence-backed connection briefs for human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs nightly public-web and community searches to identify, rank, and draft evidence-backed connection briefs for human review.
 
-## Publisher: <br>
-[moltlife](https://clawhub.ai/user/moltlife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moltlife](https://clawhub.ai/user/moltlife)
 
-## Use Case: <br>
-Agencies, business development teams, and founders use this skill to find public-web connection opportunities, rank candidates, and prepare evidence-backed outreach drafts for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs recurring public-web prospect research that may involve privacy-sensitive targeting decisions. <br>
-Mitigation: Keep secrets and sensitive internal targeting strategy out of profiles, restrict inputs to public business information, and review each candidate before outreach. <br>
-Risk: Outreach drafts could be mistaken for approved messages or used for unsolicited automatic contact. <br>
-Mitigation: Maintain the documented human-in-the-loop workflow and do not configure the skill to send messages automatically. <br>
-Risk: Public-web results may include stale, weak, or mismatched evidence. <br>
-Mitigation: Use the evidence URLs, candidate risk flags, avoid lists, and recency constraints to verify fit before taking action. <br>
+## Use Case:
 
+Sales, partnership, and agency operators use this skill to scout public sources for warm introduction opportunities, rank candidates by fit and evidence quality, and prepare connection briefs with draft outreach for human approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moltlife/claw-clawbridge) <br>
-- [Output schema](schema/connection_brief.json) <br>
-- [Sample Markdown brief](examples/sample_run.md) <br>
-- [Sample JSON brief](examples/sample_run.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, markdown, text, guidance] <br>
-**Output Format:** [Structured JSON run data and human-readable Markdown connection briefs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ranked candidates, evidence URLs, risk flags, suggested outreach drafts, and recommended next actions for human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill searches public web and community content for professional leads and can produce profile-based outreach drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every candidate and draft manually, keep auto-send disabled, honor platform rules and privacy laws, and use avoid lists before outreach.
+
+Risk: Scheduled or daemon-style runs may repeatedly fetch pages or deliver reports to configured external channels.
+
+Mitigation: Use run budgets and strict tool allowlists, prefer pinned or verified CLI versions, and only enable delivery targets after configuration review.
+
+Risk: Candidate matches may be based on incomplete, stale, or weak public evidence.
+
+Mitigation: Require multiple evidence URLs, inspect risk flags such as low_evidence or unclear_identity, and verify fit before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moltlife/skills/claw-clawbridge)
+- [OpenClaw Getting Started](https://docs.openclaw.ai/start/getting-started)
+- [Connection Brief schema](schema/connection_brief.json)
+- [Sample Connection Brief](examples/sample_run.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured JSON and human-readable Markdown connection briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ranked candidates, evidence URLs, risk flags, scoring details, suggested intro and follow-up drafts, and recommended next actions for human review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

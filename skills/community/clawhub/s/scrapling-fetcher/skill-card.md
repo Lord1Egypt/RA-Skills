@@ -1,44 +1,63 @@
-## Description: <br>
-Enables agents to fetch and extract structured data from websites using Scrapling HTTP, stealth browser, and dynamic browser modes for pages that may block simple fetches or require JavaScript rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Scrapling-based web scraping workflow for fetching pages, extracting structured data with CSS or XPath selectors, and using HTTP, stealth, or dynamic browser modes on sites the user is authorized to scrape.
 
-## Publisher: <br>
-[Damirikys](https://clawhub.ai/user/Damirikys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeminay](https://clawhub.ai/user/jeminay)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve page text, CSS or XPath-selected content, attributes, and JSON-formatted scrape results from websites they are authorized to access. It is suited to extraction workflows where standard fetch tools fail because of bot challenges, rate limits, or JavaScript-rendered pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary URLs and use anti-bot bypass behavior, which may conflict with site terms, paywalls, restricted content, or authorization boundaries. <br>
-Mitigation: Use it only on sites the operator owns or is explicitly allowed to scrape, require clear approval before stealth or Cloudflare-bypass use, and avoid paywalls or restricted content. <br>
-Risk: The Scrapling MCP server starts a local HTTP service that may be reachable by other local clients depending on the environment. <br>
-Mitigation: Start the MCP server only in trusted, isolated environments and only when the operator understands who can reach the local service. <br>
-Risk: Adaptive scraping can persist element fingerprints or other local state in the working directory. <br>
-Mitigation: Run in a trusted workspace and review or remove generated local state when scraping sensitive targets. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to retrieve web page text or structured fields when ordinary fetch tools fail because of JavaScript rendering, rate limits, or anti-bot challenges. It is intended for authorized scraping workflows and selector-based extraction, not for bypassing restricted access.
 
-## Reference(s): <br>
-- [Scrapling Patterns Reference](references/patterns.md) <br>
-- [Scrapling PyPI package](https://pypi.org/project/scrapling/) <br>
-- [ClawHub skill page](https://clawhub.ai/Damirikys/scrapling-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON scrape output, plus Markdown guidance with shell commands and Python examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the target URL, fetch mode, selector, and selected attribute; stealth and dynamic modes may use a local Chromium browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can send requests through HTTP, stealth, and browser-based modes to external sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for sites the user is authorized to scrape, respect applicable terms and robots.txt, and avoid passing credentials or sensitive URLs unless the destination is trusted.
+
+Risk: Installing full Scrapling dependencies and browser binaries expands the local runtime surface.
+
+Mitigation: Install and run the skill in a virtual environment or disposable container without administrator privileges.
+
+Risk: The optional MCP server starts a local HTTP service.
+
+Mitigation: Start the server only when explicitly needed and only in a trusted local environment.
+
+Risk: Adaptive scraping can persist element fingerprints or local state in the working directory.
+
+Mitigation: Run adaptive workflows in a controlled directory and remove stored state when it is no longer needed.
+
+## Reference(s):
+
+- [Scrapling Patterns Reference](references/patterns.md)
+- [Scrapling on PyPI](https://pypi.org/project/scrapling/)
+- [ClawHub Skill Page](https://clawhub.ai/jeminay/skills/scrapling-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python examples, plain text extraction, and optional JSON arrays]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit selector matches as text lines or JSON; stealth and dynamic modes may use headless Chromium.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

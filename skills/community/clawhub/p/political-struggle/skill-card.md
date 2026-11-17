@@ -1,41 +1,54 @@
-## Description: <br>
-Explains political struggles in Chinese and Western European history, including coups, factional conflict, religious conflict, revolutions, and cross-civilizational comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+解说中国和西欧历史上的政治斗争事件，涵盖中国从先秦到清末、西欧从古罗马到19世纪的宫廷政变、党争、权臣专权、宗教冲突、革命等重大政治斗争，并支持中西对比分析。
 
-## Publisher: <br>
-[WD1993](https://clawhub.ai/user/WD1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wd1993](https://clawhub.ai/user/wd1993)
 
-## Use Case: <br>
-External users use this skill to request concise Chinese-language explanations of historical political struggles, browse Chinese dynasties and Western European periods, or compare structurally similar events across civilizations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional web search sends the user's event or query to Tavily and depends on a Tavily API key. <br>
-Mitigation: Use the search mode only for non-sensitive queries and keep Bash execution limited to the packaged search_views.py command. <br>
-Risk: Historical summaries may be incomplete or reflect the limits of bundled reference material and retrieved search results. <br>
-Mitigation: Review cited search results and the bundled references before relying on outputs for public or high-stakes use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chinese History Political Struggle Reference](reference.md) <br>
-- [Western European Political Struggle Reference](western-europe-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/WD1993/political-struggle) <br>
+## Use Case:
 
+External users can ask for concise Chinese-language explanations of Chinese and Western European political struggles, palace coups, factional conflicts, usurpations, religious conflicts, revolutions, and cross-civilization comparisons. The skill uses bundled references by default and can optionally search for differing viewpoints when a Tavily API key is intentionally configured.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown with optional search-result summaries and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional Tavily search mode requires TAVILY_API_KEY and sends the requested event or query to Tavily.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional search mode can run a local Python script through Bash and send search terms to Tavily.
+
+Mitigation: Use the bundled reference mode by default; enable search only after intentionally configuring TAVILY_API_KEY and reviewing outbound-query handling.
+
+Risk: The skill text includes a hardcoded fallback path outside the package.
+
+Mitigation: Prefer the packaged script path and verify any fallback path before executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd1993/skills/political-struggle)
+- [中国历史政治斗争参考资料](artifact/reference.md)
+- [西欧历史政治斗争参考资料](artifact/western-europe-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown with structured event summaries and optional search-result synthesis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search mode requires TAVILY_API_KEY and may send user search terms to Tavily.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

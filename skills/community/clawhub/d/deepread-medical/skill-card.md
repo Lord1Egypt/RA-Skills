@@ -1,43 +1,58 @@
-## Description: <br>
-DeepRead Medical Records helps agents extract structured data from medical records, lab reports, prescriptions, and clinical documents using prebuilt schemas and optional PII redaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepRead Medical Records helps agents extract structured data from medical records, lab reports, prescriptions, and clinical documents, and redact patient PII for healthcare document workflows.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-Healthcare operations teams, clinicians, and developers use this skill to turn medical documents into structured fields such as patient details, diagnoses, medications, vitals, and lab results, then review or redact patient information before downstream use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected medical documents are uploaded to DeepRead's external API. <br>
-Mitigation: Use the skill only after confirming the vendor's legal and security posture for PHI, including a HIPAA BAA if needed. <br>
-Risk: API key exposure could allow unauthorized use of the DeepRead account. <br>
-Mitigation: Store the key only in the declared DEEPREAD_API_KEY environment variable and avoid hardcoding it in scripts or shared files. <br>
-Risk: Redaction or extraction may mark uncertain fields for human review. <br>
-Mitigation: Test redaction with synthetic data first and review any fields marked for human review before relying on the output. <br>
+## Use Case:
 
+External users, healthcare developers, and operations teams use this skill to configure agents for structured extraction from clinical documents and PII redaction before sharing, archiving, or downstream LLM processing.
 
-## Reference(s): <br>
-- [DeepRead homepage](https://www.deepread.tech) <br>
-- [ClawHub skill page](https://clawhub.ai/uday390/deepread-medical) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON schemas, Python examples, cURL commands, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes structured JSON extraction examples, polling workflow guidance, PII redaction guidance, and human-review flags for uncertain fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may upload protected health information or other sensitive medical records to DeepRead and any configured BYOK model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where those transfers are authorized and covered by required agreements, and test first with synthetic or already de-identified files.
+
+Risk: External processing can conflict with retention, logging, data residency, or healthcare compliance requirements.
+
+Mitigation: Review DeepRead and BYOK provider controls against organizational requirements before production use.
+
+Risk: The sample workflow handles API keys and downloads processed documents.
+
+Mitigation: Store credentials in environment variables and harden file handling, storage permissions, and error handling before production use.
+
+## Reference(s):
+
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead Medical Records on ClawHub](https://clawhub.ai/uday390/skills/deepread-medical)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON schemas, Python and cURL examples, and API response JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and submits documents to DeepRead API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

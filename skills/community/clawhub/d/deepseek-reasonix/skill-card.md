@@ -1,42 +1,56 @@
-## Description: <br>
-Deepseek Reasonix is an AI programming agent for DeepSeek terminal workflows that helps improve coding efficiency and long-session cost control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deepseek Reasonix helps agents provide DeepSeek terminal programming guidance, setup references, troubleshooting notes, and code-context suggestions for long-session coding workflows.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill for DeepSeek-focused coding guidance, setup pointers, troubleshooting notes, and simple code-context suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording could activate the skill during unrelated Claude or coding discussions. <br>
-Mitigation: Invoke it by the specific Deepseek Reasonix name when needed and review activations that mention Claude only incidentally. <br>
-Risk: The bundled helper writes a small temporary JSON cache while generating suggestions. <br>
-Mitigation: Review the helper before installation if temporary cache writes are not acceptable in the target environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to get DeepSeek-oriented terminal coding-agent guidance, setup and troubleshooting references, and simple code-context suggestions during coding workflows.
 
-## Reference(s): <br>
-- [DeepSeek-Reasonix tutorial by 程序员晓刘](https://www.bilibili.com/video/BV1RtGU6hEDd) <br>
-- [DeepSeek-Reasonix experience by 鲲鹏Talk](https://www.bilibili.com/video/BV1sCVN6xEan) <br>
-- [DeepSeek Reasonix cost-saving walkthrough by AI随风随风](https://www.bilibili.com/video/BV1QbGy65E53) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and plain text helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Python helper returns newline-separated matching context lines for a supplied snippet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence flags a vague claimed purpose, so users may expect a complete DeepSeek coding agent when the artifact mainly provides tutorial-style guidance and a helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill behavior before installation and treat it as a guidance/helper artifact unless additional maintained agent capabilities are verified.
+
+Risk: The helper script uses a shared temporary cache that could corrupt user-writable files in a local attack scenario on shared or privileged systems.
+
+Mitigation: Use a private per-user cache directory with safe file creation before running the script on shared machines or privileged accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/deepseek-reasonix)
+- [Programmer Xiao Liu DeepSeek-Reasonix tutorial](https://www.bilibili.com/video/BV1RtGU6hEDd)
+- [Kunpeng Talk DeepSeek-Reasonix experience](https://www.bilibili.com/video/BV1sCVN6xEan)
+- [AI Sui Feng DeepSeek and Reasonix overview](https://www.bilibili.com/video/BV1QbGy65E53)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with optional code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return code-context suggestions based on provided snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

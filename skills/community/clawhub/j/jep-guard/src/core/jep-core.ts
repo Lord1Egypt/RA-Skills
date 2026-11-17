@@ -1,22 +1,25 @@
-import { JPEvent, JEPVerb, JEPCoreService, CausalDAG } from './types';
+import { JPEvent, JEPVerb, JEPCoreService, CausalDAG, JEPMetadata } from './types';
 import { JEPCrypto } from './crypto';
 import { canonicalize } from './canonical';
 
 export class JEPCore implements JEPCoreService {
   public dag = new CausalDAG();
   private eventStore = new Map<string, JPEvent>();
-  private statusMap = new Map<string, JPEvent['status']>();
+  private statusMap = new Map<string, JEPMetadata['status']>();
   private crypto: JEPCrypto;
 
   constructor(private agentId: string, seed?: Uint8Array) {
     this.crypto = new JEPCrypto(seed);
   }
 
+  signPayload(payload: unknown): string { return this.crypto.sign(canonicalize(payload)); }
+
   get publicKey(): string {
     return this.crypto.publicKey;
   }
 
   private createEvent(verb: JEPVerb, payload: unknown, predecessors: string[] = []): JPEvent {
+    if (this.eventStore.size >= 10000) throw new Error("Event capacity exceeded; archive and restart");
     const canonical = canonicalize({ verb, who: this.agentId, payload });
     const what = JEPCrypto.sha256(canonical);
     const nonce = JEPCrypto.uuidv4();
@@ -31,13 +34,15 @@ export class JEPCore implements JEPCoreService {
       nonce,
       ref: predecessors[0] || null,
       task_based_on: predecessors[1] || null,
-      extensions: {}
+      extensions: payload && typeof payload === "object" && "requester" in payload ? {"https://jep.local/requester": (payload as any).requester} : {}
     };
 
     // Sign the canonical form (excluding sig itself)
-    const toSign = canonicalize({ ...event, sig: undefined });
+    const toSign = canonicalize(event);
     event.sig = this.crypto.sign(toSign);
 
+    Object.freeze(event.extensions);
+    Object.freeze(event);
     this.dag.add(event);
     this.eventStore.set(nonce, event);
     this.statusMap.set(nonce, verb === 'J' ? 'pending' : 'completed');
@@ -65,11 +70,11 @@ export class JEPCore implements JEPCoreService {
     return this.createEvent('T', payload, predecessors || []);
   }
 
-  updateStatus(eventId: string, status: JPEvent['status']): void {
+  updateStatus(eventId: string, status: JEPMetadata['status']): void {
     this.statusMap.set(eventId, status);
   }
 
-  getStatus(eventId: string): JPEvent['status'] | undefined {
+  getStatus(eventId: string): JEPMetadata['status'] | undefined {
     return this.statusMap.get(eventId);
   }
 
@@ -85,7 +90,7 @@ export class JEPCore implements JEPCoreService {
 
   verifySignature(event: JPEvent): boolean {
     if (!event.sig) return false;
-    const toVerify = canonicalize({ ...event, sig: undefined });
-    return JEPCrypto.verify(toVerify, event.sig, event.who);
+    const {sig,...body}=event;
+    return event.who === this.agentId && JEPCrypto.verify(canonicalize(body),sig!,this.publicKey);
   }
 }

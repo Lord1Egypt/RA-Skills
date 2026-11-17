@@ -1,42 +1,58 @@
-## Description: <br>
-YouTube video summarizer with speaker detection, formatted documents, and audio output. Works out of the box with macOS built-in TTS. Optional recommended tools (pandoc, ffmpeg, mlx-audio) enhance quality. Requires internet for YouTube access. No paid APIs or subscriptions. Use when user sends a YouTube URL or asks to summarize/transcribe a YouTube video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube video summarizer with speaker detection, formatted documents, and audio output.
 
-## Publisher: <br>
-[matusvojtek](https://clawhub.ai/user/matusvojtek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matusvojtek](https://clawhub.ai/user/matusvojtek)
 
-## Use Case: <br>
-External users and developers use TubeScribe to turn YouTube URLs into transcript-based summaries, formatted documents, speaker labels, timestamped quotes, comment highlights, and optional audio summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A YouTube URL can trigger background processing that fetches captions or comments, writes local files, and generates audio. <br>
-Mitigation: Review the URL before processing, avoid private or sensitive videos, and require user confirmation before starting automated background work when appropriate. <br>
-Risk: Transcript and comment text may be exposed to the active agent or model environment during summarization. <br>
-Mitigation: Do not use the skill with confidential video content, and review generated summaries and documents before sharing them. <br>
-Risk: Optional setup and TTS tooling may rely on local user-writable tool paths and downloads. <br>
-Mitigation: Review setup.py before accepting optional downloads, prefer trusted package sources, and skip optional installs when the built-in workflow is sufficient. <br>
+## Use Case:
 
+External users and developers use TubeScribe to turn YouTube videos into local transcript documents, summaries, key quotes, timestamped references, viewer-comment summaries, and optional audio summaries.
 
-## Reference(s): <br>
-- [TubeScribe on ClawHub](https://clawhub.ai/matusvojtek/tubescribe) <br>
-- [Kokoro TTS](https://github.com/hexgrad/kokoro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts may include DOCX, HTML, Markdown, MP3, or WAV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local outputs under ~/Documents/TubeScribe by default; requires internet for YouTube fetching and can use local TTS tooling when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release metadata and CHANGELOG, released 2026-02-10) <br>
+Risk: The setup path can install persistent executable dependencies from the internet without strong verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer installing required tools yourself through trusted package managers.
+
+Risk: YouTube captions, metadata, and comments are untrusted content processed by a tool-capable agent workflow.
+
+Mitigation: Review generated summaries, transcripts, quotes, and comments before relying on or redistributing them.
+
+Risk: Generated transcripts and audio summaries are saved locally under the user's account.
+
+Mitigation: Use an appropriate output folder and delete generated files when the video content or transcript is sensitive.
+
+## Reference(s):
+
+- [TubeScribe ClawHub Skill Page](https://clawhub.ai/matusvojtek/skills/tubescribe)
+- [Kokoro TTS](https://github.com/hexgrad/kokoro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local document or audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts may include DOCX, HTML, Markdown, MP3, or WAV files saved locally.]
+
+## Skill Version(s):
+
+1.1.8 (source: evidence.release and changelog, released 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

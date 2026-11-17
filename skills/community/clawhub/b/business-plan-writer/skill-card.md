@@ -1,39 +1,52 @@
-## Description: <br>
-A professional business plan writing assistant that generates complete business plans covering project introduction, market analysis, industry analysis, marketing strategy, operations plan, financial planning, team introduction, financing needs and exit mechanisms, and risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional business plan writing assistant that generates complete business plans covering project introduction, market analysis, industry analysis, marketing strategy, operations plan, financial planning, team introduction, financing needs and exit mechanisms, and risk assessment.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to produce investor- and partner-facing business plans, startup plans, financing plans, project plans, and business proposals. It structures the plan across market, industry, operations, financial, team, financing, exit, and risk sections.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Market data, financial projections, and regulatory claims may be estimates or may become outdated.
+
+Mitigation: Review projections, assumptions, cited sources, and regulatory statements before relying on the plan for fundraising or business decisions.
+
+Risk: The skill uses web/search tools for market and competitor research, so source quality can vary.
+
+Mitigation: Prefer reputable industry reports, official company materials, policy sources, and current citations when generating or reviewing the plan.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, founders, consultants, and business teams use this skill to draft detailed business plans, startup plans, financing plans, project plans, and business proposals intended for investors or partners. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad planning phrases that do not necessarily require a full business plan. <br>
-Mitigation: Confirm the user wants a structured business plan before producing the nine-module output. <br>
-Risk: Market, competitor, regulatory, and financial assumptions can be inaccurate, outdated, or unverifiable. <br>
-Mitigation: Use reputable public sources, cite data references, label unverifiable assumptions as Estimated, and route high-stakes business or legal decisions to human review. <br>
+**Output Format:** [Markdown business plan body with cited data references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses web/search evidence for market, competitor, policy, regulatory, and forecast data; marks unknown or unverifiable information as Estimated.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown business plan body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs the business plan body only; data references should be cited, and unknown or unverifiable information should be marked as Estimated.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

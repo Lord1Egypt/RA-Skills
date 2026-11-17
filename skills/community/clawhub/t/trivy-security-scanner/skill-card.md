@@ -1,44 +1,63 @@
-## Description: <br>
-Run Trivy vulnerability scans on containers, filesystems, and IaC, then triage findings by exploitability, reachability, and business impact with AI-powered prioritization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Trivy vulnerability scans on containers, filesystems, and IaC — then triage findings by exploitability, reachability, and business impact with AI-powered prioritization.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, DevSecOps teams, and security reviewers use this skill to run Trivy scans across images, filesystems, repositories, Kubernetes clusters, IaC, and SBOMs, then prioritize remediation using exploitability, reachability, fix availability, and compliance context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or updating Trivy may require privileged package-manager changes. <br>
-Mitigation: Verify the Trivy package source and approve any sudo, apt, or Homebrew changes before installation. <br>
-Risk: Scans can collect sensitive vulnerability, secret, dependency, infrastructure, or Kubernetes context details. <br>
-Mitigation: Scope the exact image, path, repository, SBOM, or cluster context before running scans and treat raw scan reports as sensitive. <br>
-Risk: Exploitability enrichment may send CVE identifiers to FIRST and CISA services. <br>
-Mitigation: Confirm that sharing CVE lists with those public enrichment services is acceptable for the environment before using enrichment steps. <br>
+## Use Case:
 
+Developers, security engineers, and DevSecOps teams use this skill to run Trivy scans across images, filesystems, repositories, Kubernetes clusters, IaC, and SBOMs, then turn vulnerability, secret, misconfiguration, and compliance findings into prioritized remediation guidance.
 
-## Reference(s): <br>
-- [Aqua Security Trivy Debian Repository](https://aquasecurity.github.io/trivy-repo/deb) <br>
-- [FIRST EPSS API](https://api.first.org/data/v1/epss?cve=$CVES) <br>
-- [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, inline shell commands, code blocks, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized findings, remediation plans, accepted-risk entries, compliance mappings, trend comparisons, and CI/CD configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scans can inspect sensitive targets and may surface secrets or private dependency information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope scan targets deliberately, keep generated reports in protected locations, and review findings before sharing results.
+
+Risk: External EPSS and KEV enrichment can send discovered CVE identifiers to third-party services.
+
+Mitigation: Approve external lookups for sensitive projects or run without enrichment when disclosure of CVE lists is not acceptable.
+
+Risk: Shared temporary report paths can expose or overwrite scan output on multi-user systems.
+
+Mitigation: Use per-run, access-controlled output paths instead of reusable shared /tmp filenames.
+
+Risk: Copied CI/CD examples that use mutable action references can change behavior unexpectedly.
+
+Mitigation: Pin CI actions and scanner versions to reviewed immutable versions before production use.
+
+## Reference(s):
+
+- [Trivy Debian Repository](https://aquasecurity.github.io/trivy-repo/deb)
+- [FIRST EPSS API](https://api.first.org/data/v1/epss?cve=$CVES)
+- [CISA Known Exploited Vulnerabilities Catalog](https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, tables, remediation steps, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include .trivyignore entries, CI/CD snippets, compliance mappings, trend comparisons, and prioritized vulnerability summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

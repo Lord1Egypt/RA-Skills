@@ -1,39 +1,50 @@
-## Description: <br>
-Maintains persistent per-task files so OpenClaw agents can preserve task context across session resets, compaction, and channel switches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task-based cross-session context management for OpenClaw agents that maintains persistent task files so context survives session resets, compaction, and channel switches.
 
-## Publisher: <br>
-[dylanzhang1128](https://clawhub.ai/user/dylanzhang1128) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dylanzhang1128](https://clawhub.ai/user/dylanzhang1128)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep task status, decisions, todos, and handoff context available across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent plaintext task notes may contain sensitive project details if users add them. <br>
-Mitigation: Review the tasks directory periodically and avoid storing passwords, tokens, private account details, sensitive links, or confidential configuration values. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to keep structured per-task memory across sessions, including task status, progress, decisions, todos, and related files.
 
-## Reference(s): <br>
-- [Task Tracker Reference](references/DESIGN.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dylanzhang1128/session-task-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown task files and concise text status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and maintains plaintext task notes under the workspace tasks directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can create durable workspace task records that may capture sensitive user context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, credentials, private account details, or sensitive personal information in tracked task files, and review or delete task records regularly.
+
+## Reference(s):
+
+- [Task Tracker Reference](references/DESIGN.md)
+- [ClawHub skill page](https://clawhub.ai/dylanzhang1128/skills/session-task-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown task files and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates workspace task records under tasks/ when the agent follows the skill workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

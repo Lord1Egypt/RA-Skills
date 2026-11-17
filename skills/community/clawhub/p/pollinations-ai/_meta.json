@@ -1,6 +1,38 @@
 {
-  "ownerId": "kn73yq3e8e2x4f13mevgrxp9b5812k2v",
   "slug": "pollinations-ai",
-  "version": "1.0.4",
-  "publishedAt": 1772791071660
+  "name": "Pollinations AI",
+  "description": "Generate images, music, and video using Pollinations AI API",
+  "emoji": "🎨",
+  "author": {
+    "name": "kanfred"
+  },
+  "openclaw": {
+    "version": "1.0.4",
+    "emoji": "🎨",
+    "requires": {
+      "env": [
+        "POLLINATIONS_API_KEY"
+      ],
+      "optionalEnv": [
+        "TELEGRAM_CHAT_ID",
+        "ALLOWED_OUTPUT_DIRS",
+        "OPENCLAW_WORKSPACE"
+      ],
+      "bins": [
+        "python3"
+      ],
+      "pip": [
+        "requests>=2.28.0",
+        "Pillow>=9.0.0"
+      ]
+    }
+  },
+  "tags": [
+    "ai",
+    "image-generation",
+    "music",
+    "video",
+    "pollinations"
+  ],
+  "license": "MIT"
 }

@@ -1,46 +1,64 @@
-## Description: <br>
-Billions decentralized identity for agents that links agents to human identities using Billions ERC-8004 and Attestation Registries, and verifies or generates authentication proofs based on the iden3 self-sovereign identity protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billions decentralized identity for agents. Link agents to human identities using Billions ERC-8004 and Attestation Registries. Verify and generate authentication proofs. Based on iden3 self-sovereign identity protocol.
 
-## Publisher: <br>
-[devkonten](https://clawhub.ai/user/devkonten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devkonten](https://clawhub.ai/user/devkonten)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to create and manage Billions Network decentralized identities, link an agent DID to a human owner, and verify DID ownership through signed challenges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent Billions/iden3 signing keys and stores identity data under $HOME/.openclaw/billions. <br>
-Mitigation: Install only when persistent agent identity is intended, use a dedicated key, and protect or back up the identity directory. <br>
-Risk: Private keys can be stored in plaintext by default. <br>
-Mitigation: Configure BILLIONS_NETWORK_MASTER_KMS_KEY before creating or importing keys so private key entries are encrypted at rest. <br>
-Risk: Signing or human-linking requests can share proofs tied to the agent identity. <br>
-Mitigation: Approve signing and linking requests only after reviewing the requested challenge and understanding what proof will be shared. <br>
+## Use Case:
 
+Developers and agents use this skill to create, manage, link, prove, and verify ownership of decentralized identities on the Billions Network.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/devkonten/verified-agent-identity-4) <br>
-- [Billions Network](https://billions.network/) <br>
-- [Billions Wallet](https://wallet.billions.network) <br>
-- [Billions Identity Dashboard](https://identity-dashboard.billions.network) <br>
-- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and writes persistent identity data under $HOME/.openclaw/billions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Durable agent identity private keys may be stored locally in plaintext by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BILLIONS_NETWORK_MASTER_KMS_KEY before creating identities and restrict local file access to $HOME/.openclaw/billions.
+
+Risk: Real private keys passed on command lines may be captured by shell history or process inspection.
+
+Mitigation: Avoid passing real private keys on command lines; use generated identities or a controlled environment when importing keys is necessary.
+
+Risk: Generated tokens and verification URLs can grant or prove identity-related access if exposed.
+
+Mitigation: Treat generated tokens and verification URLs as sensitive and share them only through trusted channels.
+
+Risk: Dependency or installer drift can change the runtime behavior of identity tooling.
+
+Mitigation: Pin installer and dependency versions in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devkonten/skills/verified-agent-identity-4)
+- [Billions Network](https://billions.network/)
+- [Billions Wallet](https://wallet.billions.network)
+- [Billions Identity Dashboard](https://identity-dashboard.billions.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local DID, key, challenge, credential, and profile files under $HOME/.openclaw/billions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

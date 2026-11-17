@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Trust and Security Map</title>
+  <style>
+    :root { --page:#f5f3ee;--paper:#fffdfa;--canvas:#f8fafc;--ink:#172033;--muted:#647084;--line:#d8dee8;--actor:#0f766e;--entry:#2563eb;--compute:#15803d;--state:#7c3aed;--message:#c2410c;--control:#be123c;--telemetry:#a16207;--external:#475569;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--mono:"SFMono-Regular","JetBrains Mono",Consolas,monospace; }
+    *{box-sizing:border-box;} html,body{margin:0;min-height:100%;background:var(--page);color:var(--ink);font-family:var(--font);} body{padding:20px;}
+    .shell{max-width:1500px;margin:0 auto;border:1px solid #e2ded4;border-radius:10px;background:var(--paper);box-shadow:0 24px 80px rgba(69,54,36,0.12);overflow:hidden;}
+    .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;padding:20px 22px;border-bottom:1px solid #ebe5d9;background:linear-gradient(180deg,#fffdfa,#f9f6ef);}
+    .kicker{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;color:var(--muted);font-family:var(--mono);font-size:12px;}
+    .status-mark{width:9px;height:9px;border-radius:50%;background:var(--control);}
+    h1{margin:0;font-size:clamp(26px,3vw,42px);line-height:1.05;letter-spacing:-0.02em;}
+    .subtitle{max-width:900px;margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.55;}
+    .toolbar{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;}
+    .toolbar button{appearance:none;border:1px solid #d7dce5;border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;font:650 12px var(--font);padding:9px 11px;}
+    .toolbar button:hover{border-color:#aab4c4;background:#f8fafc;}
+    .body-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:760px;}
+    .map-wrap{padding:20px;border-right:1px solid #ebe5d9;background:linear-gradient(90deg,rgba(148,163,184,0.10) 1px,transparent 1px),linear-gradient(180deg,rgba(148,163,184,0.10) 1px,transparent 1px),var(--canvas);background-size:32px 32px;overflow-x:auto;}
+    svg{display:block;width:100%;min-width:0;height:auto;}
+    .notes{padding:18px;background:#fffdfa;} .notes h2{margin:0 0 12px;font-size:15px;}
+    .note-section{border-top:1px solid #ebe5d9;padding:16px 0;} .note-section:first-of-type{border-top:0;padding-top:0;}
+    .note-section h3{margin:0 0 8px;color:#334155;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;}
+    .note-section ul{display:grid;gap:8px;margin:0;padding:0;list-style:none;} .note-section li{color:var(--muted);font-size:13px;line-height:1.45;}
+    .footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:12px 22px;border-top:1px solid #ebe5d9;color:#7b8495;font-family:var(--mono);font-size:11px;background:#faf7f0;}
+    @media(max-width:980px){body{padding:10px;}.topbar{grid-template-columns:1fr;}.toolbar{justify-content:flex-start;}.body-grid{grid-template-columns:1fr;}svg{min-width:1080px;}.map-wrap{border-right:0;border-bottom:1px solid #ebe5d9;}}
+    @media print{body{padding:0;background:#fff;}.shell{border:0;box-shadow:none;}.toolbar{display:none;}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="kicker"><span class="status-mark" aria-hidden="true"></span><span>Trust Lens</span><span>/</span><span>Identity &amp; Authorization</span></div>
+        <h1>Platform Trust and Security Map</h1>
+        <p class="subtitle">Public traffic crosses a trust boundary where authentication, token validation, policy checks, and secret access are enforced before private services handle the request.</p>
+      </div>
+      <nav class="toolbar" aria-label="Export toolbar">
+        <button type="button" onclick="downloadSVG()">SVG</button>
+        <button type="button" onclick="downloadPNG()">PNG</button>
+        <button type="button" onclick="copyPNG()">Copy PNG</button>
+        <button type="button" onclick="window.print()">Print</button>
+      </nav>
+    </header>
+    <section class="body-grid">
+      <div class="map-wrap">
+        <svg id="system-map" viewBox="0 0 1500 900" role="img" aria-labelledby="map-title map-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="map-title">Platform trust and security map</title>
+          <desc id="map-desc">Public clients cross a trust boundary where auth, token validation, policy, and secrets are enforced before private services run.</desc>
+          <defs>
+            <marker id="arrow-actor" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#0f766e"/></marker>
+            <marker id="arrow-entry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#2563eb"/></marker>
+            <marker id="arrow-compute" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#15803d"/></marker>
+            <marker id="arrow-state" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#7c3aed"/></marker>
+            <marker id="arrow-control" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#be123c"/></marker>
+            <marker id="arrow-external" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#475569"/></marker>
+          </defs>
+          <rect x="0" y="0" width="1500" height="900" rx="0" fill="#f8fafc"/>
+
+          <g id="regions" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <rect x="420" y="120" width="240" height="520" rx="8" fill="#fff1f2" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="8 6"/>
+            <text x="442" y="148" fill="#be123c" font-size="12" font-weight="700">Trust Boundary — private network</text>
+            <rect x="690" y="160" width="180" height="280" rx="8" fill="#eef6ff" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="712" y="188" fill="#1d4ed8" font-size="11" font-weight="700">Private Services</text>
+          </g>
+
+          <g id="connectors" font-family="SFMono-Regular, JetBrains Mono, monospace" font-size="10" fill="#334155">
+            <path data-edge-id="clients_to_gateway" d="M 170 310 H 240" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="205" y="298" text-anchor="middle">HTTPS</text>
+
+            <path data-edge-id="gateway_to_auth" d="M 370 310 H 440 V 200 H 470" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="405" y="298" text-anchor="middle">authn</text>
+
+            <path data-edge-id="auth_to_oidc" d="M 610 200 H 640 V 130 H 920 V 220 H 950" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="780" y="118" text-anchor="middle">OIDC</text>
+
+            <path data-edge-id="auth_to_token" d="M 540 240 V 280" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="554" y="264" text-anchor="start">issue</text>
+
+            <path data-edge-id="token_to_policy" d="M 540 360 V 400" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="554" y="384" text-anchor="start">evaluate</text>
+
+            <path data-edge-id="policy_to_secrets" d="M 540 480 V 520" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="554" y="504" text-anchor="start">scoped creds</text>
+
+            <path data-edge-id="token_to_order" d="M 610 320 H 650 V 250 H 700" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="655" y="308" text-anchor="middle">validate</text>
+
+            <path data-edge-id="secrets_to_order" d="M 610 560 H 680 V 250 H 700" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="650" y="400" text-anchor="start">after auth</text>
+
+            <path data-edge-id="order_to_db" d="M 780 300 V 340" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="794" y="324" text-anchor="start">query</text>
+
+            <path data-edge-id="admin_to_auth" d="M 950 360 H 880 V 110 H 540 V 160" stroke="#be123c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-control)"/>
+            <text x="710" y="98" text-anchor="middle">privileged ops</text>
+          </g>
+
+          <g id="components" font-family="Inter, Arial, sans-serif">
+            <g data-node-id="clients">
+              <rect x="40" y="270" width="130" height="80" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.6"/>
+              <text x="105" y="307" text-anchor="middle" fill="#134e4a" font-size="14" font-weight="750">Clients</text>
+              <text x="105" y="330" text-anchor="middle" fill="#475569" font-size="11">web mobile public</text>
+            </g>
+            <g data-node-id="api_gateway">
+              <rect x="240" y="270" width="130" height="80" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="305" y="307" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="750">API Gateway</text>
+              <text x="305" y="330" text-anchor="middle" fill="#475569" font-size="11">edge enforce</text>
+            </g>
+            <g data-node-id="auth_service">
+              <rect x="470" y="160" width="140" height="80" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+              <text x="540" y="195" text-anchor="middle" fill="#881337" font-size="14" font-weight="750">Auth Service</text>
+              <text x="540" y="218" text-anchor="middle" fill="#64748b" font-size="11">login session</text>
+            </g>
+            <g data-node-id="token_validator">
+              <rect x="470" y="280" width="140" height="80" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+              <text x="540" y="315" text-anchor="middle" fill="#881337" font-size="14" font-weight="750">Token Validator</text>
+              <text x="540" y="338" text-anchor="middle" fill="#64748b" font-size="11">JWT signature</text>
+            </g>
+            <g data-node-id="policy_engine">
+              <rect x="470" y="400" width="140" height="80" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+              <text x="540" y="435" text-anchor="middle" fill="#881337" font-size="14" font-weight="750">Policy Engine</text>
+              <text x="540" y="458" text-anchor="middle" fill="#64748b" font-size="11">RBAC ABAC</text>
+            </g>
+            <g data-node-id="secrets_manager">
+              <rect x="470" y="520" width="140" height="80" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+              <text x="540" y="555" text-anchor="middle" fill="#881337" font-size="14" font-weight="750">Secrets Manager</text>
+              <text x="540" y="578" text-anchor="middle" fill="#64748b" font-size="11">vault KMS</text>
+            </g>
+            <g data-node-id="order_service">
+              <rect x="700" y="200" width="160" height="100" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="780" y="240" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">Order Service</text>
+              <text x="780" y="264" text-anchor="middle" fill="#475569" font-size="11">private runtime</text>
+              <text x="780" y="284" text-anchor="middle" fill="#475569" font-size="11">scoped calls</text>
+            </g>
+            <g data-node-id="user_db">
+              <rect x="700" y="340" width="160" height="80" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="780" y="380" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="750">User DB</text>
+              <text x="780" y="402" text-anchor="middle" fill="#64748b" font-size="11">scoped data</text>
+            </g>
+            <g data-node-id="oidc_provider">
+              <rect x="950" y="180" width="150" height="80" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+              <text x="1025" y="217" text-anchor="middle" fill="#334155" font-size="14" font-weight="750">OIDC Provider</text>
+              <text x="1025" y="240" text-anchor="middle" fill="#64748b" font-size="11">external IdP</text>
+            </g>
+            <g data-node-id="admin_console">
+              <rect x="950" y="320" width="150" height="80" rx="8" fill="#ffe4e6" stroke="#be123c" stroke-width="1.6"/>
+              <text x="1025" y="357" text-anchor="middle" fill="#881337" font-size="14" font-weight="750">Admin Console</text>
+              <text x="1025" y="380" text-anchor="middle" fill="#64748b" font-size="11">privileged ops</text>
+            </g>
+          </g>
+
+          <g id="map-key" transform="translate(48 822)" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <text x="0" y="0" fill="#172033" font-size="11" font-weight="700">Map key</text>
+            <g transform="translate(0 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ccfbf1" stroke="#0f766e"/><text x="22" y="8" fill="#647084" font-size="9">Actor</text></g>
+            <g transform="translate(82 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dbeafe" stroke="#2563eb"/><text x="22" y="8" fill="#647084" font-size="9">Entry</text></g>
+            <g transform="translate(169 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dcfce7" stroke="#15803d"/><text x="22" y="8" fill="#647084" font-size="9">Compute</text></g>
+            <g transform="translate(267 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ede9fe" stroke="#7c3aed"/><text x="22" y="8" fill="#647084" font-size="9">State</text></g>
+            <g transform="translate(354 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ffe4e6" stroke="#be123c"/><text x="22" y="8" fill="#647084" font-size="9">Control</text></g>
+            <g transform="translate(452 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#f1f5f9" stroke="#475569"/><text x="22" y="8" fill="#647084" font-size="9">External</text></g>
+            <g transform="translate(550 18)"><path d="M 0 5 H 34" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/><text x="44" y="8" fill="#647084" font-size="9">Sync</text></g>
+            <g transform="translate(659 18)"><path d="M 0 5 H 34" stroke="#be123c" stroke-width="2" stroke-dasharray="6 4" fill="none" marker-end="url(#arrow-control)"/><text x="44" y="8" fill="#647084" font-size="9">Control / privileged</text></g>
+          </g>
+        </svg>
+      </div>
+      <aside class="notes" aria-label="Diagram notes">
+        <h2>Reading Notes</h2>
+        <section class="note-section"><h3>System Shape</h3><ul>
+          <li>Public clients enter through the API gateway, which sits at the edge of the trust boundary.</li>
+          <li>Inside the boundary, authentication, token validation, policy, and secrets are centralized before private services run.</li>
+          <li>The admin console is a privileged actor that crosses into the trust boundary for operations.</li>
+        </ul></section>
+        <section class="note-section"><h3>Critical Flows</h3><ul>
+          <li>Gateway forwards credentials to Auth Service; Auth validates tokens with the OIDC provider.</li>
+          <li>Policy Engine authorizes the request; Secrets Manager releases scoped credentials.</li>
+          <li>Only authenticated and authorized traffic reaches the Order Service and User DB.</li>
+        </ul></section>
+        <section class="note-section"><h3>Operational Notes</h3><ul>
+          <li>All control-plane calls are logged and auditable; privileged admin actions require break-glass approval.</li>
+          <li>Secrets are short-lived and scoped per request, never shared across tenants.</li>
+          <li>Token validation failure closes the request at the gateway before it touches private services.</li>
+        </ul></section>
+      </aside>
+    </section>
+    <footer class="footer">
+      <span>Diagram type: trust map</span>
+      <span>Scope: identity, authorization, and privileged access</span>
+    </footer>
+  </main>
+  <script type="application/json" id="diagram-ir">
+  {
+    "title": "Platform Trust and Security Map",
+    "lens": "trust",
+    "scope": "identity, authorization, and privileged access",
+    "language": "en",
+    "mode": "create",
+    "canvas": { "complexity": "standard", "viewBox": "0 0 1500 900" },
+    "regions": [
+      { "id": "trust_boundary", "label": "Trust Boundary", "role": "trust", "bounds": { "x": 420, "y": 120, "width": 240, "height": 520 }, "contains": ["auth_service", "token_validator", "policy_engine", "secrets_manager"] },
+      { "id": "private_services", "label": "Private Services", "role": "runtime", "bounds": { "x": 690, "y": 160, "width": 180, "height": 280 }, "contains": ["order_service", "user_db"] }
+    ],
+    "nodes": [
+      { "id": "clients", "label": "Clients", "role": "actor", "responsibility": "web, mobile, public", "bounds": { "x": 40, "y": 270, "width": 130, "height": 80 } },
+      { "id": "api_gateway", "label": "API Gateway", "role": "entry", "responsibility": "edge enforce", "bounds": { "x": 240, "y": 270, "width": 130, "height": 80 } },
+      { "id": "auth_service", "label": "Auth Service", "role": "control", "responsibility": "login session", "bounds": { "x": 470, "y": 160, "width": 140, "height": 80 } },
+      { "id": "token_validator", "label": "Token Validator", "role": "control", "responsibility": "JWT signature", "bounds": { "x": 470, "y": 280, "width": 140, "height": 80 } },
+      { "id": "policy_engine", "label": "Policy Engine", "role": "control", "responsibility": "RBAC ABAC", "bounds": { "x": 470, "y": 400, "width": 140, "height": 80 } },
+      { "id": "secrets_manager", "label": "Secrets Manager", "role": "control", "responsibility": "vault KMS", "bounds": { "x": 470, "y": 520, "width": 140, "height": 80 } },
+      { "id": "order_service", "label": "Order Service", "role": "compute", "responsibility": "private runtime, scoped calls", "bounds": { "x": 700, "y": 200, "width": 160, "height": 100 } },
+      { "id": "user_db", "label": "User DB", "role": "state", "responsibility": "scoped data", "bounds": { "x": 700, "y": 340, "width": 160, "height": 80 } },
+      { "id": "oidc_provider", "label": "OIDC Provider", "role": "external", "responsibility": "external IdP", "bounds": { "x": 950, "y": 180, "width": 150, "height": 80 } },
+      { "id": "admin_console", "label": "Admin Console", "role": "control", "responsibility": "privileged ops", "bounds": { "x": 950, "y": 320, "width": 150, "height": 80 } }
+    ],
+    "edges": [
+      { "id": "clients_to_gateway", "from": "clients", "to": "api_gateway", "kind": "sync", "label": "HTTPS", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 205, "y": 298, "width": 50 } },
+      { "id": "gateway_to_auth", "from": "api_gateway", "to": "auth_service", "kind": "control", "label": "authn", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 405, "y": 298, "width": 46 } },
+      { "id": "auth_to_oidc", "from": "auth_service", "to": "oidc_provider", "kind": "control", "label": "OIDC", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 780, "y": 118, "width": 40 } },
+      { "id": "auth_to_token", "from": "auth_service", "to": "token_validator", "kind": "control", "label": "issue", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 554, "y": 264, "width": 40 } },
+      { "id": "token_to_policy", "from": "token_validator", "to": "policy_engine", "kind": "control", "label": "evaluate", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 554, "y": 384, "width": 66 } },
+      { "id": "policy_to_secrets", "from": "policy_engine", "to": "secrets_manager", "kind": "control", "label": "scoped creds", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 554, "y": 504, "width": 82 } },
+      { "id": "token_to_order", "from": "token_validator", "to": "order_service", "kind": "sync", "label": "validate", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 655, "y": 308, "width": 58 } },
+      { "id": "secrets_to_order", "from": "secrets_manager", "to": "order_service", "kind": "control", "label": "after auth", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 650, "y": 400, "width": 70 } },
+      { "id": "order_to_db", "from": "order_service", "to": "user_db", "kind": "sync", "label": "query", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 794, "y": 324, "width": 46 } },
+      { "id": "admin_to_auth", "from": "admin_console", "to": "auth_service", "kind": "control", "label": "privileged ops", "role": "control", "route": "orthogonal", "labelAnchor": { "x": 710, "y": 98, "width": 94 } }
+    ],
+    "notes": [
+      { "title": "System Shape", "bullets": ["Public edge crosses into a trust boundary before private services run."] },
+      { "title": "Critical Flows", "bullets": ["Auth → token → policy → secrets → private service; admin crosses the boundary for privileged operations."] },
+      { "title": "Operational Notes", "bullets": ["Short-lived scoped secrets, audited control plane, gateway-level token rejection."] }
+    ],
+    "assumptions": []
+  }
+  </script>
+  <script>
+    function serializeSVG(){const s=document.getElementById('system-map');const c=s.cloneNode(true);c.setAttribute('xmlns','http://www.w3.org/2000/svg');return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(c);}
+    function downloadBlob(n,b){const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+    function downloadSVG(){downloadBlob('trust-map.svg',new Blob([serializeSVG()],{type:'image/svg+xml;charset=utf-8'}));}
+    function renderCanvas(scale=2){return new Promise((resolve,reject)=>{const svg=document.getElementById('system-map');const box=svg.viewBox.baseVal;const c=document.createElement('canvas');c.width=Math.round((box.width||1500)*scale);c.height=Math.round((box.height||900)*scale);const ctx=c.getContext('2d');ctx.fillStyle='#f8fafc';ctx.fillRect(0,0,c.width,c.height);const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,c.width,c.height);resolve(c);};img.onerror=reject;img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(serializeSVG());});}
+    async function downloadPNG(){const c=await renderCanvas(2);c.toBlob(b=>{if(b)downloadBlob('trust-map.png',b);},'image/png');}
+    async function copyPNG(){try{const c=await renderCanvas(2);const b=await new Promise(r=>c.toBlob(r,'image/png'));if(!b)throw new Error('PNG export failed');await navigator.clipboard.write([new ClipboardItem({'image/png':b})]);}catch(e){console.error(e);window.alert('Copy PNG is not available in this browser context. Use PNG download instead.');}}
+  </script>
+</body>
+</html>

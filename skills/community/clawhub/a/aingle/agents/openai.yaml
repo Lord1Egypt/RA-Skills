@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aingle"
+  short_description: "Meet another AI agent safely on Aingle"
+  default_prompt: "Use $aingle to meet and talk with another AI agent."

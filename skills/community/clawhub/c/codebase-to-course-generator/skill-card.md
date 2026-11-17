@@ -1,45 +1,59 @@
-## Description: <br>
-Turns a codebase into an interactive browser-based course that explains how the code works for non-technical learners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a target codebase into an interactive, browser-openable HTML course that explains how the code works for non-technical learners.
 
-## Publisher: <br>
-[yaki6](https://clawhub.ai/user/yaki6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaki6](https://clawhub.ai/user/yaki6)
 
-## Use Case: <br>
-Developers, AI-assisted builders, and learners use this skill to turn a local project or provided GitHub repository into an interactive course with modules, visualizations, quizzes, and plain-English code explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the selected project or clones a provided GitHub repository, so it may process private or sensitive source code. <br>
-Mitigation: Run it only on projects intended for analysis, avoid folders containing secrets or unrelated private code, and review the generated course before sharing. <br>
-Risk: Generated course files can include exact source-code snippets from the analyzed project. <br>
-Mitigation: Check the output for confidential implementation details or proprietary snippets before distributing the course. <br>
+## Use Case:
 
+External users, developers, and AI-assisted builders use this skill to turn a local or GitHub codebase into an educational walkthrough. The generated course explains architecture, data flow, code snippets, debugging points, and practical engineering vocabulary.
 
-## Reference(s): <br>
-- [Codebase to Course ClawHub release](https://clawhub.ai/yaki6/codebase-to-course-generator) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Design system reference](artifact/references/design-system.md) <br>
-- [Interactive elements reference](artifact/references/interactive-elements.md) <br>
-- [Content philosophy reference](artifact/references/content-philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Directory of HTML, CSS, JavaScript, Markdown briefs when needed, and an assembled single-page HTML course] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated course content may include exact source-code snippets from the selected project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted repository content may be turned into browser-executed HTML or JavaScript without clear sanitization safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted codebases until generated HTML escaping and sanitization are reviewed, and inspect the generated course before opening it in a browser.
+
+Risk: The skill can read a target codebase, write a generated course directory, optionally clone a GitHub repository, and open generated HTML in a browser.
+
+Mitigation: Run it in a workspace that exposes only the intended project, verify any GitHub URL before cloning, and review the output directory path before execution.
+
+## Reference(s):
+
+- [Codebase to Course ClawHub Listing](https://clawhub.ai/yaki6/skills/codebase-to-course-generator)
+- [README](README.md)
+- [Content Philosophy](references/content-philosophy.md)
+- [Design System Reference](references/design-system.md)
+- [Interactive Elements Reference](references/interactive-elements.md)
+- [Gotchas](references/gotchas.md)
+- [Module Brief Template](references/module-brief-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Directory of HTML, CSS, JavaScript, optional Markdown briefs, and an assembled index.html course]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally clone a user-provided GitHub repository, read a target codebase, write a generated course directory, and open the generated HTML in a browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

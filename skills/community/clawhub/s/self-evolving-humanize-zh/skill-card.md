@@ -1,44 +1,61 @@
-## Description: <br>
-Humanize generates or rewrites Chinese communication copy so it sounds more natural, less templated, and less like polished AI writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates or rewrites Chinese communication copy so it sounds more human, natural, less templated, and less like polished AI writing.
 
-## Publisher: <br>
-[tianyidatascience](https://clawhub.ai/user/tianyidatascience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyidatascience](https://clawhub.ai/user/tianyidatascience)
 
-## Use Case: <br>
-External users, content creators, support teams, and developers use this skill to generate or rewrite Chinese customer replies, emails, social posts, status updates, and other communication copy. The skill exposes a visible baseline-to-challenger process with local scoring, keep-or-discard decisions, and report artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may route generation through the user's configured CoPaw or local OpenAI-compatible model backend and stores drafts and outputs in local run folders. <br>
-Mitigation: Use the skill only when the selected model backend and filesystem retention are acceptable for the text being processed; avoid confidential customer, legal, or internal text unless approved. <br>
-Risk: First-run setup installs a local Python runtime and downloads dependency and model artifacts. <br>
-Mitigation: Install and run the skill in a trusted environment, and review the dependency and model download behavior before deployment. <br>
+## Use Case:
 
+Developers, writing assistants, and agent users use this skill to generate or rewrite Chinese customer replies, social posts, follow-ups, updates, and other communication copy. It runs an inspectable baseline-to-challenger loop with local scoring so users can compare candidates and retain necessary facts and constraints.
 
-## Reference(s): <br>
-- [Scoring reference](artifact/references/scoring.md) <br>
-- [Preset reference](artifact/references/presets.md) <br>
-- [Open-source model and dependency notes](artifact/OPEN_SOURCE.md) <br>
-- [BAAI/bge-reranker-v2-m3 model card](https://huggingface.co/BAAI/bge-reranker-v2-m3) <br>
-- [ClawHub skill page](https://clawhub.ai/tianyidatascience/self-evolving-humanize-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown process summary with generated Chinese copy, scores, JSON traces, and optional HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local run folders containing drafts, score files, session traces, selected outputs, and rendered reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata and SKILL.md metadata.version) <br>
+Risk: Full user drafts may be sent to the configured model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local or explicitly approved model endpoint, and avoid confidential customer or business drafts unless that endpoint is acceptable.
+
+Risk: Prior draft snippets and run outputs may remain in plaintext local state.
+
+Mitigation: Clear ./runs and the persistent humanize strategy-state file when retained text should be removed.
+
+Risk: Runtime dependencies may change if installed without pinning for production use.
+
+Mitigation: Review and pin dependencies before production deployment.
+
+## Reference(s):
+
+- [Humanize ClawHub release](https://clawhub.ai/tianyidatascience/skills/self-evolving-humanize-zh)
+- [Open source model and dependency notes](OPEN_SOURCE.md)
+- [Scoring reference](references/scoring.md)
+- [Preset reference](references/presets.md)
+- [BAAI/bge-reranker-v2-m3 model card](https://huggingface.co/BAAI/bge-reranker-v2-m3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown process summary with generated Chinese copy, scores, selected candidates, and local run artifacts such as JSON traces and reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local run folders, scoring JSON, reports, and a persistent strategy-state file.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

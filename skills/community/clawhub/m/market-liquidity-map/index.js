@@ -1,6 +1,6 @@
 
 export async function run({ ticker = "BTC" }) {
-  const url = `https://money-machine-api-ssyopros.zocomputer.io/api/liquidity/${ticker.toUpperCase()}`;
+  const url = `https://x402-money-machine-api-ssyopros.zocomputer.io/api/liquidity/${ticker.toUpperCase()}`;
   const response = await fetch(url);
   if (response.status === 402) {
     return {

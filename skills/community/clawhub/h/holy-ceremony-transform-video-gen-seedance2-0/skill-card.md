@@ -1,43 +1,59 @@
-## Description: <br>
-Transforms text or public image prompts into holy ceremony and celebration-style video generation requests for WeryAI Seedance 2.0, with prompt expansion, parameter confirmation, and playable video links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms a text brief or public HTTPS image into a holy ceremony and celebration styled Seedance 2.0 video request through WeryAI.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and agents use this skill to turn a short event brief or public image URL into a polished ceremonial video-generation prompt, confirm Seedance 2.0 parameters, submit the WeryAI job, and return video links or actionable errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a paid WeryAI API key and may consume credits when generation jobs are submitted or re-run. <br>
-Mitigation: Use a revocable or quota-limited WERYAI_API_KEY and confirm the request table before submission. <br>
-Risk: Prompts or public image URLs are sent to WeryAI for video generation. <br>
-Mitigation: Avoid sensitive personal data and private media URLs; use only public HTTPS image URLs that are appropriate to share with the service. <br>
-Risk: The bundled CLI does not enforce the package's required SEEDANCE_2_0 model in code. <br>
-Mitigation: Review the confirmation table before submission and verify that the model is SEEDANCE_2_0. <br>
+## Use Case:
 
+External creators and agents use this skill to turn short event briefs or public image URLs into confirmed WeryAI Seedance 2.0 video-generation requests with gold-white ceremonial lighting, confetti, dignified motion, and optional ambience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/holy-ceremony-transform-video-gen-seedance2-0) <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown confirmation tables, inline shell commands, JSON CLI responses, and Markdown video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access to WeryAI, and public HTTPS image URLs for image-to-video inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The bundled CLI can submit broader paid video-generation requests than the advertised Seedance-only workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the confirmation table before execution and keep requests scoped to model SEEDANCE_2_0 with the documented duration, aspect ratio, resolution, and audio options.
+
+Risk: The skill requires a WERYAI_API_KEY and paid API calls.
+
+Mitigation: Use an isolated or short-lived environment, avoid committing the key, and confirm each generation request before running wait commands that may consume credits.
+
+Risk: Prompts and image inputs are sent to WeryAI, and image inputs must be public HTTPS URLs.
+
+Mitigation: Avoid sensitive prompts and non-public image URLs; use only content appropriate for submission to the external video-generation service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/holy-ceremony-transform-video-gen-seedance2-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/zoucdr)
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, JSON]
+
+**Output Format:** [Markdown confirmation tables and inline video links, with JSON CLI responses from WeryAI generation commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces playable video URLs when generation completes; requires Node.js 18+, WERYAI_API_KEY, network access, and paid WeryAI requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

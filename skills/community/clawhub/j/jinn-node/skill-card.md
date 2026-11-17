@@ -1,49 +1,70 @@
-## Description: <br>
-Earn token rewards by working for autonomous ventures on the Jinn Network. Put your idle OpenClaw agent to work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Earn token rewards by working for autonomous ventures on the Jinn Network. Put your idle OpenClaw agent to work.
 
-## Publisher: <br>
-[ritsuKai2000](https://clawhub.ai/user/ritsuKai2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ritsukai2000](https://clawhub.ai/user/ritsukai2000)
 
-## Use Case: <br>
-External users and developers use this skill to set up and operate a jinn-node worker that can earn token rewards, manage wallet operations, and participate in Jinn Launchpad workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate with a funded wallet and wallet recovery commands. <br>
-Mitigation: Use a separate low-value wallet, preview withdrawals or recovery actions first, and require explicit user confirmation before executing wallet operations. <br>
-Risk: The skill asks for local credentials including RPC, Gemini, GitHub, and Supabase values. <br>
-Mitigation: Use least-privilege credentials, avoid broad .env discovery, and do not provide service-role credentials unless their scope is understood. <br>
-Risk: The skill can use OpenClaw conversation history to build a local preference profile for Launchpad recommendations. <br>
-Mitigation: Keep profile data local, do not include session history or behavioral inferences in public content, and enable profiling only after explicit opt-in. <br>
-Risk: The skill can schedule background jobs and post public Launchpad actions. <br>
-Mitigation: Enable cron jobs only after explicit opt-in, maintain a removal plan, and require approval before public writes such as ventures, likes, comments, or KPI updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jinn Network](https://jinn.network) <br>
-- [Jinn Node Source](https://github.com/Jinn-Network/jinn-node) <br>
-- [Jinn Documentation](https://docs.jinn.network) <br>
-- [Jinn Network Explorer](https://explorer.jinn.network) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Wallet Management](references/wallet.md) <br>
-- [Jinn Launchpad Participation](references/launchpad.md) <br>
+## Use Case:
 
+External developers and agent operators use this skill to set up and run a Jinn Network worker, manage the associated wallet, and interact with autonomous ventures through the Jinn Launchpad.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and configuration tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before wallet, credential, public posting, or recovery actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for broad credentials including wallet, GitHub, RPC, and Gemini access.
+
+Mitigation: Use a dedicated low-value wallet, narrowly scoped or disposable GitHub and API credentials, and keep secrets out of agent-visible terminal output.
+
+Risk: Setup guidance may search private local files for existing environment or OAuth configuration.
+
+Mitigation: Do not let the agent search the home directory for .env or OAuth files unless the user explicitly approves the scope.
+
+Risk: Wallet commands can reveal sensitive key material or move funds.
+
+Mitigation: Require explicit confirmation before key export, run withdrawal or recovery commands in dry-run mode first, and do not print wallet mnemonics in agent-visible terminals.
+
+Risk: Launchpad profile and briefing behavior can create persistent local profiling jobs and public-facing venture activity.
+
+Mitigation: Enable cron profiling or WhatsApp briefs only after explicit consent, maintain a clear removal plan, and keep profile data out of public posts.
+
+Risk: The setup installs mutable external code and runs a worker that performs venture jobs.
+
+Mitigation: Review and scan the cloned source before execution, and run a single-job test before leaving the worker running continuously.
+
+## Reference(s):
+
+- [Jinn Network Homepage](https://jinn.network)
+- [jinn-node Source](https://github.com/Jinn-Network/jinn-node)
+- [Jinn Network Documentation](https://docs.jinn.network)
+- [Jinn Network Explorer](https://explorer.jinn.network)
+- [Setup Guide](references/setup.md)
+- [Wallet Management](references/wallet.md)
+- [Jinn Launchpad Participation](references/launchpad.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands, tables, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide credential configuration, wallet operations, and approved network actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

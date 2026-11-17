@@ -1,42 +1,48 @@
-## Description: <br>
-Helps detect when AI agent skills silently mutate across inheritance chains so teams can identify when inherited skills have drifted beyond their original audit scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps detect when AI agent skills silently mutate across inheritance chains before audit scope becomes stale.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and marketplace operators use this skill to trace AI skill lineage, compare versions, score capability drift, and decide whether a re-audit is warranted. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Drift reports are advisory and may misclassify or overstate semantic changes. <br>
-Mitigation: Use the report to prioritize review, then confirm findings with human security review before changing audit or release status. <br>
-Risk: Marketplace identifiers or lineage URLs supplied to the skill may be queried with network tools. <br>
-Mitigation: Provide only approved public or non-sensitive identifiers and URLs, and review outbound queries in restricted environments. <br>
-Risk: Lineage reconstruction depends on the quality of marketplace fork and version metadata. <br>
-Mitigation: Validate source lineage metadata before relying on the drift score or re-audit recommendation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/evolution-drift-detector) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/andyxinweiminicloud) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to assess skill lineage, measure capability drift between versions, classify mutations, and decide whether a re-audit is needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown drift analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes lineage trees, per-generation diff summaries, capability drift scores, mutation classifications, and re-audit recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide agents to use curl or Python against user-specified skill versions or marketplace lineage data.
+
+Mitigation: Review proposed commands and target URLs before execution, and scan any retrieved skill artifacts before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/evolution-drift-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown drift analysis report with lineage, per-generation diff summary, capability score, mutation classification, and re-audit recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3 when an agent inspects user-specified skill versions or marketplace lineage data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

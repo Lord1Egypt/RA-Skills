@@ -1,43 +1,62 @@
-## Description: <br>
-DEPRECATED. Use jun-invest-option-master-agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEPRECATED. Use jun-invest-option-master-agent.
 
-## Publisher: <br>
-[gm4leejun-stack](https://clawhub.ai/user/gm4leejun-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gm4leejun-stack](https://clawhub.ai/user/gm4leejun-stack)
 
-## Use Case: <br>
-External users and developers use this deprecated installer alias when migrating to or installing the jun-invest-option-master-agent investment-research workspace. The bundled agent assets support approval-packet generation for cash-secured put and covered-call workflows, with human approval required before any trade. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The package is labeled as a deprecated installer alias but includes an active investment-research agent and automatic workspace update instructions. <br>
-Mitigation: Install only when intending to run the local investment-research agent; review the upgrade flow, workspace target, agent registration, and gateway restart notes before use. <br>
-Risk: Investment and options research outputs may be incorrect, stale, or unsuitable for a user's portfolio. <br>
-Mitigation: Keep human approval mandatory for every trade, enforce the documented no-leverage and CSP/covered-call boundaries, and review validation reports before acting. <br>
-Risk: Market-data dependencies such as Futu OpenD, yfinance, and Stooq may be unavailable, incomplete, or permission-limited. <br>
-Mitigation: Check source timestamps, data quality, OpenD availability, and fallback behavior; treat missing or low-confidence data as a reason to defer approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gm4leejun-stack/jun-invest-option-master-installer) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [Futu OpenAPI documentation](https://openapi.futunn.com/futu-api-doc/intro/intro.html) <br>
+## Use Case:
 
+Developers and OpenClaw users use this deprecated installer only to migrate or synchronize the jun-invest-option-master workspace assets. The packaged workspace supports investment research and option-strategy approval packets, with all trading actions requiring human approval.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown approval packets, JSON validation reports, YAML/JSON configuration, Python utilities, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory investment-research outputs require human trade approval; installer behavior may copy local workspace assets and register an OpenClaw agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.99.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deprecated installer includes update, install, and agent-registration workflows that can change local agent state.
+
+Mitigation: Require explicit human approval before package updates, script execution, destination path changes, or agent registration.
+
+Risk: The install script can move an existing destination aside and copy workspace assets into the selected path.
+
+Mitigation: Run it only against the intended workspace and review the backup and destination paths before execution.
+
+Risk: Broker-data access depends on a local Futu OpenD endpoint, and transport security is not established by the evidence.
+
+Mitigation: Use only a local trusted Futu OpenD endpoint unless transport security is fixed.
+
+Risk: Investment research and option-strategy outputs may be incorrect or unsuitable for a user's portfolio.
+
+Mitigation: Treat generated approval packets as proposals and require human review before any trade or account action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gm4leejun-stack/skills/jun-invest-option-master-installer)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [Futu OpenAPI documentation](https://openapi.futunn.com/futu-api-doc/intro/intro.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, shell commands, Python code, YAML/JSON configuration, and generated approval packet files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated installer; generated trading approval packets are proposals and require human approval before any action.]
+
+## Skill Version(s):
+
+0.99.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

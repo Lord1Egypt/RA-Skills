@@ -1,43 +1,63 @@
-## Description: <br>
-Diagnose and fix Kubernetes pods, CrashLoopBackOff, Pending, DNS, networking, storage, and rollout failures with kubectl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix Kubernetes pods, CrashLoopBackOff, Pending, DNS, networking, storage, and rollout failures with kubectl.
 
-## Publisher: <br>
-[qq280948982](https://clawhub.ai/user/qq280948982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq280948982](https://clawhub.ai/user/qq280948982)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to diagnose Kubernetes workload, networking, storage, rollout, and cluster-health failures with a read-only-first workflow and targeted kubectl commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs access to the user's current Kubernetes context, which can expose cluster diagnostics, credentials, and sensitive operational data. <br>
-Mitigation: Use a least-privilege kubeconfig, confirm the active cluster and namespace before running commands, and treat saved diagnostics as sensitive. <br>
-Risk: Some Kubernetes actions suggested during troubleshooting can disrupt workloads or change cluster state. <br>
-Mitigation: Review rollout, delete, drain, create-secret, and apply commands before approval, and capture current state before disruptive operations. <br>
-Risk: The security scan notes an avoidable shell-command injection risk related to K8S_REQUEST_TIMEOUT. <br>
-Mitigation: Do not set K8S_REQUEST_TIMEOUT from untrusted input; use trusted timeout values or the default. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to investigate Kubernetes pod, rollout, networking, DNS, storage, resource, and cluster-health failures with guided kubectl workflows and diagnostic scripts.
 
-## Reference(s): <br>
-- [Kubernetes Troubleshooting Workflows](references/troubleshooting_workflow.md) <br>
-- [Common Kubernetes Issues and Troubleshooting](references/common_issues.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and diagnostic report guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save diagnostics to text files when requested; cluster outputs should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Diagnostic output can expose sensitive Kubernetes cluster state, workload configuration, events, logs, YAML, and credential-adjacent data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted cluster contexts, store diagnostic reports securely, and review outputs before sharing them.
+
+Risk: Network diagnostics can bypass TLS certificate validation when the explicit --insecure mode is used.
+
+Mitigation: Avoid --insecure except for tightly scoped troubleshooting where the risk is understood and approved.
+
+Risk: Unsafe script behavior could run unintended local commands, especially around token handling and bash command construction.
+
+Mitigation: Send the skill through Review before installing, do not run it with untrusted environment variables, and fix token handling and bash -c command construction before production use.
+
+Risk: Some Kubernetes actions proposed by the skill can be disruptive, including force deletion, node drains, rollout restarts, rollbacks, and debug pod creation.
+
+Mitigation: Require explicit confirmation, capture current state first, confirm blast radius, and prepare a rollback path before running disruptive commands.
+
+## Reference(s):
+
+- [K8s Debug ClawHub Skill Page](https://clawhub.ai/qq280948982/skills/k8s-debug)
+- [Kubernetes Troubleshooting Workflows](references/troubleshooting_workflow.md)
+- [Common Kubernetes Issues and Troubleshooting](references/common_issues.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and sectioned diagnostic report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts can write diagnostic reports to files; generated diagnostics may contain sensitive cluster, workload, event, log, YAML, and credential-adjacent data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

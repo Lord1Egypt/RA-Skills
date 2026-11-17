@@ -1,40 +1,57 @@
-## Description: <br>
-Build and launch low-cost digital products for Gumroad, itch.io, and DriveThruRPG using Pillow for image assets and Groq for product listing copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digital Product Builder helps agents build and launch low-cost digital products for Gumroad, itch.io, and DriveThruRPG using Pillow for images and Groq for listing copy.
 
-## Publisher: <br>
-[sabroo3-commits](https://clawhub.ai/user/sabroo3-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sabroo3-commits](https://clawhub.ai/user/sabroo3-commits)
 
-## Use Case: <br>
-Creators, developers, and agents use this skill to prepare downloadable digital products, including cover images, asset bundles, platform listing copy, and storefront setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Groq API keys or confidential product details could be exposed through environment files, logs, commits, or prompts sent to Groq. <br>
-Mitigation: Store the Groq key outside version control, avoid printing it, and keep secrets, customer data, and confidential plans out of prompts. <br>
-Risk: The skill asks the agent to install and use Pillow before generating image assets. <br>
-Mitigation: Install dependencies only in an approved environment and review generated files before publishing or distributing them. <br>
+## Use Case:
 
+External creators and developers use this skill to produce digital product assets, listing copy, ZIP bundles, and storefront setup guidance for Gumroad, itch.io, and DriveThruRPG.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sabroo3-commits/digital-product-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Python, and JavaScript code blocks; generated work products may include PNG images, ZIP bundles, and product listing text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Pillow for local image creation and Groq for external copy generation when a Groq API key is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Installing Pillow without a pinned version can introduce dependency drift or unexpected package behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin Pillow to a reviewed version before running image-generation snippets.
+
+Risk: Storing a Groq API key in a persistent plaintext workspace file can expose credentials.
+
+Mitigation: Prefer a session-scoped environment variable or a secret manager, and avoid committing or sharing files that contain API keys.
+
+Risk: Prompts and listing copy sent to Groq may include sensitive, proprietary, customer, or licensed content.
+
+Mitigation: Send only content that the user is comfortable having processed by Groq, and exclude secrets or unpublished proprietary material.
+
+## Reference(s):
+
+- [Digital Product Builder on ClawHub](https://clawhub.ai/sabroo3-commits/skills/digital-product-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated listing copy, image-generation snippets, ZIP packaging instructions, and platform-specific publishing guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

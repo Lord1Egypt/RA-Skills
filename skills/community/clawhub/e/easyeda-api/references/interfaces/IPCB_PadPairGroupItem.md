@@ -1,11 +1,11 @@
 # IPCB\_PadPairGroupItem interface
 
-焊盘对组属性
+Pad pair group properties
 
 ## Signature
 
 ```typescript
-interface IPCB_PadPairGroupItem 
+interface IPCB_PadPairGroupItem
 ```
 
 ## Properties
@@ -14,59 +14,47 @@ interface IPCB_PadPairGroupItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [name](./IPCB_PadPairGroupItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-焊盘对组名称
-
+Pad pair group name
 
 </td></tr>
 <tr><td>
 
 [padPairs](./IPCB_PadPairGroupItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;\[string, string\]&gt;
 
-
 </td><td>
 
-焊盘对数组
-
+Pad for array
 
 </td></tr>
 </tbody></table>
@@ -79,7 +67,7 @@ Array&lt;\[string, string\]&gt;
 
 # IPCB\_PadPairGroupItem.name property
 
-焊盘对组名称
+Pad pair group name
 
 ## Signature
 
@@ -91,7 +79,7 @@ name: string;
 
 # IPCB\_PadPairGroupItem.padPairs property
 
-焊盘对数组
+Pad for array
 
 ## Signature
 

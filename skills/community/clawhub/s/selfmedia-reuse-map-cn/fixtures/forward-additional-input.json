@@ -1,0 +1,21 @@
+{
+  "content_items": [
+    {
+      "id": "bakery-a",
+      "title": "夏季面团发酵记录",
+      "published_at": "2026-08-09",
+      "platform": "公众号",
+      "summary": "记录两次室温条件不同的发酵过程，比较面团状态判断与时钟判断。",
+      "audience_signal": "留言有两位询问没有温度计如何判断状态"
+    },
+    {
+      "id": "bakery-b",
+      "title": "门店打烊清单",
+      "published_at": "2026-09-01",
+      "platform": "小红书",
+      "summary": "列出清洁操作台、盘点面粉与安排次日备料的顺序。"
+    }
+  ],
+  "goal": "下一周准备两条内容",
+  "constraints": "不新增温度或发酵分钟数，不把两篇硬合成同一主题"
+}

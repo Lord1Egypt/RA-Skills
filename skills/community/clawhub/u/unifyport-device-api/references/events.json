@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "publicDocs": {
+      "en": "https://www.unifyport.ai/docs/receiving-events/webhook-events/",
+      "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/webhook-events/"
+    },
+    "scope": "Deployed public standard webhook event catalogue",
+    "retrievedAt": "2026-11-03"
+  },
+  "counts": {
+    "events": 24
+  },
+  "events": [
+    {
+      "type": "message.received",
+      "description": {
+        "en": "A message was observed; direction may be inbound or outbound.",
+        "zhCN": "观察到消息；direction 可能为 inbound 或 outbound。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-message-received/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-message-received/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "conversation",
+        "sender",
+        "message",
+        "text",
+        "attachments",
+        "reply_token"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "message.updated",
+      "description": {
+        "en": "A previously delivered message was edited.",
+        "zhCN": "一条已投递的消息被编辑。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-message-updated/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-message-updated/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "message_id",
+        "sender_id",
+        "text",
+        "content"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "message.deleted",
+      "description": {
+        "en": "A message was deleted or recalled.",
+        "zhCN": "一条消息被删除或撤回。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-message-deleted/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-message-deleted/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "message_id",
+        "sender_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "message.read",
+      "description": {
+        "en": "A read receipt — the recipient read a message.",
+        "zhCN": "已读回执——对方已读某条消息。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-message-read/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-message-read/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "message_id",
+        "ids",
+        "recipient_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "message.reaction",
+      "description": {
+        "en": "A reaction was added to or removed from a message.",
+        "zhCN": "某条消息被添加或移除了表态（reaction）。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-message-reaction/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-message-reaction/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "message_id",
+        "sender_id",
+        "reactor_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "message.delivered",
+      "description": {
+        "en": "A message was delivered to the recipient's device.",
+        "zhCN": "一条消息已送达对方设备。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-message-delivered/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-message-delivered/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "message_id",
+        "ids",
+        "recipient_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "conversation.updated",
+      "description": {
+        "en": "A conversation-level setting changed — muted/unmuted, archived, pinned, or marked read.",
+        "zhCN": "会话级设置发生变化——静音 / 取消静音、归档、置顶或标记已读。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-conversation-updated/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-conversation-updated/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation",
+        "conversation_id",
+        "title",
+        "name"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "conversation.deleted",
+      "description": {
+        "en": "A conversation was deleted.",
+        "zhCN": "一个会话被删除。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-conversation-deleted/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-conversation-deleted/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "title",
+        "name"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "conversation.cleared",
+      "description": {
+        "en": "A conversation's history was cleared.",
+        "zhCN": "一个会话的聊天记录被清空。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-conversation-cleared/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-conversation-cleared/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation_id",
+        "message_ids"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "conversation.history",
+      "description": {
+        "en": "Recent WhatsApp history for one conversation was synced after bootstrap or reconnect.",
+        "zhCN": "WhatsApp 在启动或重连后同步了某个会话的近期历史消息。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-conversation-history/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-conversation-history/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "conversation",
+        "conversation_id",
+        "messages",
+        "sender",
+        "text",
+        "content",
+        "attachments"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "group.updated",
+      "description": {
+        "en": "Group metadata changed — name, members, or settings.",
+        "zhCN": "群组元信息变化——名称、成员或设置。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-group-updated/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-group-updated/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "group_id",
+        "name",
+        "description",
+        "members",
+        "member_id",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "group.join_request",
+      "description": {
+        "en": "Someone asked to join a group with join approval enabled. Push is best-effort — poll List group join requests as the reliable source.",
+        "zhCN": "有人申请加入开启了入群审批的群。推送为尽力而为——请以轮询「列出入群申请」为准。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-group-join_request/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-group-join_request/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "group_id",
+        "member_id",
+        "requester",
+        "name",
+        "phone",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.status.updated",
+      "description": {
+        "en": "The account runtime / connection status changed.",
+        "zhCN": "账号的运行时 / 连接状态发生变化。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-status-updated/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-status-updated/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "last_error",
+        "auth_payload",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.started",
+      "description": {
+        "en": "The account runtime connected and is ready to send and receive.",
+        "zhCN": "账号运行时已连接，可以收发消息。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-started/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-started/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.history.synced",
+      "description": {
+        "en": "A WhatsApp history-sync batch finished; data.summary gives the delivered conversation and message counts.",
+        "zhCN": "一次 WhatsApp 历史同步批次已结束；data.summary 给出已投递的会话与消息数量。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-history-synced/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-history-synced/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "conversation_ids",
+        "message_ids"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.auth.required",
+      "description": {
+        "en": "The account needs (re)authentication — a code, QR scan, or 2FA.",
+        "zhCN": "账号需要（重新）认证——验证码、扫码或两步验证。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-auth-required/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-auth-required/"
+      },
+      "risk": "credential",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "auth_payload",
+        "code",
+        "password",
+        "qr",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.auth.succeeded",
+      "description": {
+        "en": "Authorization succeeded; check runtime_status separately before sending.",
+        "zhCN": "授权成功；发送前仍须单独检查 runtime_status。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-auth-succeeded/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-auth-succeeded/"
+      },
+      "risk": "credential",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "auth_payload",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.auth.failed",
+      "description": {
+        "en": "An authentication attempt failed.",
+        "zhCN": "一次认证尝试失败。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-auth-failed/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-auth-failed/"
+      },
+      "risk": "credential",
+      "sensitiveFields": [
+        "id",
+        "account_id",
+        "data",
+        "provider_account_ref",
+        "last_error",
+        "auth_payload",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "contact.updated",
+      "description": {
+        "en": "Contact fields changed; merge supplied fields including explicit empty clears.",
+        "zhCN": "联系人字段更新；合并已提供字段，保留显式清空。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-contact-updated/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-contact-updated/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "data",
+        "join_url",
+        "reply_token",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "post.comment.created",
+      "description": {
+        "en": "A post comment was observed; no implied reply acknowledgement.",
+        "zhCN": "观察到帖子评论，不代表已回复。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-post-comment-created/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-post-comment-created/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "data",
+        "join_url",
+        "reply_token",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "account.profile.updated",
+      "description": {
+        "en": "Merge supplied profile fields only; missing fields are unknown.",
+        "zhCN": "仅合并已提供的资料字段，缺失不代表清空。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-account-profile-updated/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-account-profile-updated/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "data",
+        "join_url",
+        "reply_token",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "call.incoming",
+      "description": {
+        "en": "Private beta incoming call event; join URL is sensitive and availability is gated.",
+        "zhCN": "Private beta 来电事件；join URL 为敏感信息，能力受服务端限制。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-call-incoming/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-call-incoming/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "data",
+        "join_url",
+        "reply_token",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "call.answered",
+      "description": {
+        "en": "Call answered; synthetic message call records are a separate stream.",
+        "zhCN": "通话已接听；合成消息通话记录属于另一事件流。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-call-answered/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-call-answered/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "data",
+        "join_url",
+        "reply_token",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "type": "call.ended",
+      "description": {
+        "en": "Call ended; preserve terminal state when updates arrive out of order.",
+        "zhCN": "通话结束；乱序更新不能回退终态。"
+      },
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/receiving-events/event-call-ended/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/receiving-events/event-call-ended/"
+      },
+      "risk": "read",
+      "sensitiveFields": [
+        "data",
+        "join_url",
+        "reply_token",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    }
+  ]
+}

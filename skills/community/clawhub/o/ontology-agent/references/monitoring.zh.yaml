@@ -1,0 +1,205 @@
+# monitoring.yaml — 自主监测订阅模板（Phase 10 新增，纯附加，不改动核心）
+# 本体论智能体 · 自主监测与自发行为层
+# 设计原则：只描述「监测什么 / 谁负责 / 频率 / 薄厚适配 / 注入给 agent 的指令」；
+# 不修改 24 部门模板、141 动作库、decision/roles/semantic/logic、init.py。
+meta:
+  layer: monitoring
+  version: 0.5.0
+  description: 企业适用的自主监测信号域目录 + 可开关自动化模板（锦上添花层）
+
+# 薄/厚档案判定（决定哪些信号域激活）
+profile_mode:
+  # instance.yaml 中下列「业务丰富度」字段命中数 >= rich_threshold 视为厚档案
+  rich_fields: [products, customers, competitors, supply_chain, projects, channels]
+  rich_threshold: 2
+  # 薄档案：只跑 thin_applicable 的域（通用、不依赖专有数据）
+  # 厚档案：thin + thick 域全跑（精准订阅、低噪）
+  note: 薄档案也能立刻「有料」；厚档案命中率更高、噪音更低
+
+# 8 个信号域
+signal_domains:
+  - id: policy
+    name: 政策法规
+    owner_depts: [finance, legal, strategy]
+    actions: [合规监控, 财务预警]
+    frequency: "FREQ=WEEKLY;BYDAY=MO"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      作为经营主理人，调度 财税/法务/战略 成员，联网检索本企业所在地与行业近一周的
+      政策/法规/税收优惠/社保补贴/监管新规变化（天津和平区 + 一人公司/AI 行业优先）。
+      只记录与企业相关、有价值的信号，调用 monitor.py record 写入，再由 proactive.py 分级。
+
+  - id: industry
+    name: 行业热点/技术趋势
+    owner_depts: [strategy, rnd]
+    actions: [市场洞察, 行业趋势洞察]
+    frequency: "FREQ=WEEKLY;BYDAY=WE"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      调度 战略/研发 成员，检索行业报告、新技术、政策红利、赛道融资动态。
+      聚焦与企业赛道相关的信号，record 后分级。
+
+  - id: sentiment
+    name: 舆情/品牌
+    owner_depts: [pr, mkt_content]
+    actions: [舆情监控]
+    frequency: "FREQ=DAILY"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      调度 公关/内容营销 成员，监测品牌提及、负面舆情、危机预警。
+      发现负面或危机信号立即 L1/L2 提醒，record 后分级。
+
+  - id: ops_health
+    name: 自身经营健康（内部）
+    owner_depts: [finance, lead]
+    actions: [财务预警, 运营日报]
+    frequency: "FREQ=DAILY"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      汇总内部经营信号：现金流/应收、待办积压、报税节点、发票状态。
+      与每日运营日报同源，补记新增风险信号，record 后分级。
+
+  - id: competitor
+    name: 市场/竞品
+    owner_depts: [strategy, sales, mkt_seo]
+    actions: [市场调研, 销售趋势洞察]
+    frequency: "FREQ=WEEKLY;BYDAY=FR"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [competitors, products]
+    prompt: |
+      仅厚档案运行。调度 战略/销售/SEO 成员，监测竞品动态、价格波动、渠道变化、搜索热度。
+      record 后分级（精准、低噪）。
+
+  - id: customer
+    name: 客户/商机
+    owner_depts: [csm, sales]
+    actions: [客户流失预警, 销售预警]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [customers]
+    prompt: |
+      仅厚档案运行。调度 客户成功/销售 成员，监测客户流失预警、商机信号、RFM 异常。
+      record 后分级。
+
+  - id: risk
+    name: 风险/合规/安全
+    owner_depts: [legal, risk, it_security]
+    actions: [风险监控与预警, 合规监控, 漏洞扫描, 系统监控]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, supply_chain]
+    prompt: |
+      仅厚档案运行（或企业已有系统/数据资产时）。调度 法务/风控/IT安全 成员，
+      监测合同风险、数据安全风险、系统告警、漏洞。record 后分级。
+
+  - id: talent
+    name: 人才/招聘
+    owner_depts: [hr]
+    actions: [招聘分析, 薪酬基准]
+    frequency: "FREQ=MONTHLY;BYMONTHDAY=1"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [employees]
+    prompt: |
+      仅厚档案运行（有雇员时）。调度 人力 成员，监测岗位供需、薪酬基准。record 后分级。
+
+  - id: manufacturing
+    name: 制造特有（设备/良率/断料/安环）
+    owner_depts: [operations, quality, procurement, risk]
+    actions: [风险监控与预警, 质量监控]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, supply_chain]
+    prompt: |
+      仅厚档案运行（制造业通常有产线/设备/库存数据）。作为经营主理人，调度 运营/质量/采购/风控 成员，
+      监测制造特有信号：设备停机或 OEE 下滑、良率波动、断料缺料、安环事故、能耗异常、质量召回风险
+      （具体信号与 subtype 侧重见 packs/manufacturing.yaml 的 manufacturing_signals）。
+      发现安环事故 / 重大断料等重大风险，立即 L1/L2 提醒 owner；其余 record 后由 proactive.py 分级。
+
+  - id: public_institution
+    name: 事业特有（国资/采购/编制/预算）
+    owner_depts: [finance, legal, procurement, hr]
+    actions: [合规监控, 风险监控与预警]
+    frequency: "FREQ=MONTHLY;BYMONTHDAY=1"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products]
+    prompt: |
+      仅厚档案运行（事业单位通常有预算/资产/采购数据）。作为经营主理人，调度 财务/法务/采购/人力 成员，
+      监测事业特有信号：预算执行超支、国资未批处置、化整为零规避招标、超编进人
+      （具体信号见 packs/public_institution.yaml 的 public_institution_signals；国资管理/内审可私有定制添加）。
+      发现重大国资/采购合规风险立即 L1/L2 提醒 owner；其余 record 后由 proactive.py 分级。
+
+  - id: finance
+    name: 金融特有（AML/适当性/资本/监管）
+    owner_depts: [legal, risk, it_security, strategy]
+    actions: [合规监控, 风险监控与预警]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, customers]
+    prompt: |
+      仅厚档案运行（金融机构有客户/交易/产品数据）。作为经营主理人，调度 法务/风控/IT安全/战略 成员，
+      监测金融特有信号：反洗钱可疑交易、适当性错配、资本指标下滑、监管新规、投诉舆情波动
+      （具体信号见 packs/finance.yaml 的 finance_signals；合规与反洗钱建议私有定制添加）。
+      ⚠️ 红线为参考框架非法律意见，重大合规风险立即 L1/L2 提醒 owner；其余 record 后分级。
+
+  - id: biomed
+    name: 医疗特有（遗传资源/不良反应/质量/数据）
+    owner_depts: [legal, quality, it_security, rnd]
+    actions: [合规监控, 质量监控]
+    frequency: "FREQ=WEEKLY;BYDAY=MO"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, customers]
+    prompt: |
+      仅厚档案运行（医疗机构/药企有患者/产品/临床数据）。作为经营主理人，调度 法务/质量/IT安全/研发 成员，
+      监测医疗特有信号：不良反应不良事件、人类遗传资源违规、质量召回风险、健康数据泄露
+      （具体信号见 packs/biomed.yaml 的 biomed_signals；医务部/注册法规/药物警戒可私有定制添加）。
+      重大健康数据/遗传资源违规立即 L1/L2 提醒 owner；其余 record 后分级。
+
+  - id: edu_research
+    name: 教育科研特有（经费/成果转化/数据/诚信）
+    owner_depts: [legal, finance, rnd, hr]
+    actions: [合规监控, 风险监控与预警]
+    frequency: "FREQ=MONTHLY;BYMONTHDAY=1"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [projects]
+    prompt: |
+      仅厚档案运行（教育/科研有项目/经费/成果数据）。作为经营主理人，调度 法务/财务/研发/人力 成员，
+      监测教育科研特有信号：科研经费挪用、成果转化程序缺口、学生信息泄露、科研诚信风险
+      （具体信号见 packs/edu_research.yaml 的 edu_research_signals；教务/科研管理/成果转化可私有定制添加）。
+      重大经费/数据违规立即 L1/L2 提醒 owner；其余 record 后分级。
+
+# 可开关自动化模板（装技能即带；默认开 policy/ops_health，其余按需）
+# 每个模板对应一个 WorkBuddy automation：rrule 来自上面 frequency，prompt 来自上面 prompt。
+automation_templates:
+  note: >
+    默认仅 policy(每周) 与 ops_health(每日) 处于 ACTIVE（已有实跑自动化）；
+    其余模板由用户/数字公司在专家中心一键开启（PAUSED→ACTIVE），不强制、不打扰。

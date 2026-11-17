@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes low-star Amazon reviews to extract product pain points and produce a product opportunity report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes low-star Amazon product reviews to extract product pain points and product opportunity insights with a Map-Reduce workflow.
 
-## Publisher: <br>
-[zzhimin](https://clawhub.ai/user/zzhimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzhimin](https://clawhub.ai/user/zzhimin)
 
-## Use Case: <br>
-External product managers, e-commerce operators, and developers use this skill to analyze 1-3 star Amazon reviews, identify recurring product defects, and convert customer pain points into product and listing recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon product URLs and review requests are sent to Bright Data. <br>
-Mitigation: Install only if that third-party data flow is acceptable for the intended products and review requests. <br>
-Risk: Bright Data API keys can be exposed through shared shell history or process listings when passed to the helper script. <br>
-Mitigation: Use scoped Bright Data API keys and avoid running the helper script in shared shells or environments where process arguments are visible. <br>
-Risk: The helper script writes extracted_reviews.json in the current working directory. <br>
-Mitigation: Run the script only from a directory where creating or overwriting extracted_reviews.json is intended. <br>
+## Use Case:
 
+External product managers, product researchers, and ecommerce operators use this skill to analyze 1-3 star Amazon reviews, identify product defects and unmet needs, and turn them into a prioritized opportunity report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zzhimin/product-opportunity-analyzer) <br>
-- [Bright Data Amazon Product Reviews API](https://api.brightdata.com/datasets/v3/amazon_product_reviews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with structured tables, with intermediate JSON arrays for extracted review pain points.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local helper script can write extracted_reviews.json and requires a Bright Data API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can fetch Amazon review data through Bright Data and may store review data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data handling before use, limit collection to needed reviews, and confirm retention or deletion of saved review files.
+
+Risk: The helper script documents passing a Bright Data API key as a command-line argument.
+
+Mitigation: Use a secret manager, environment variable, or interactive secret prompt instead of placing API keys in command history or process lists.
+
+Risk: Generated opportunity reports may reflect incomplete or low-star-biased review data.
+
+Mitigation: Review cited evidence and validate recommendations against broader product, market, and customer data before acting.
+
+## Reference(s):
+
+- [Product Opportunity Analyzer on ClawHub](https://clawhub.ai/zzhimin/skills/product-opportunity-analyzer)
+- [Bright Data Amazon Product Reviews API](https://api.brightdata.com/datasets/v3/amazon_product_reviews)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with structured JSON extraction steps and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch Amazon review data through Bright Data and may save extracted review data locally when the helper script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,93 @@
+# =============================================================================
+# 趣西藏 (QuXizang Skill) — 项目配置
+# =============================================================================
+# 零外部依赖：所有知识库为本地文件，无需 API Key
+# =============================================================================
+
+project:
+  name: "quxizang-skill"
+  version: "1.0"
+  description: "趣西藏 —— 老领队Allen扎西陪你进藏"
+
+# =============================================================================
+# 知识库文件清单
+# =============================================================================
+knowledge_base:
+  - path: "data/local_merchants.json"
+    description: "33家藏民小微商户(拉萨/林芝/甘孜/日喀则/山南/那曲/昌都/阿里)"
+  - path: "data/gaode_recommendations.json"
+    description: "高德高分推荐备选11家(有电话有评分,藏餐厅/甜茶馆/民宿/手工艺/特产)"
+  - path: "data/gaode_api_usage.json"
+    description: "高德API调用计数器(5000次/月额度自动追踪)"
+  - path: "data/tibetan_customs_and_taboos.md"
+    description: "藏地风俗与生态保护规约(神山圣湖/寺庙/礼仪)"
+  - path: "data/permits_and_visas.md"
+    description: "西藏全人群入藏通行与证件白皮书(大陆/港澳/台湾/外籍)"
+  - path: "data/tibetan_cuisine.md"
+    description: "藏地饮食文化(酥油茶/糌粑/石锅鸡/蘑菇/菜单指南)"
+  - path: "data/tibetan_gifts.md"
+    description: "伴手礼认证与防骗指南(藏香/藏毯/天珠/虫草)"
+  - path: "data/shopping_price_guide.md"
+    description: "购物避坑与价格白皮书(牦牛肉干/藏红花/虫草/藏香/藏毯/天珠蜜蜡松石)"
+  - path: "data/tibetan_festivals.md"
+    description: "西藏节庆大全(雪顿节/赛马节/望果节/2026年日程)"
+  - path: "data/transport_within_tibet.md"
+    description: "藏内交通价格表(巴士/火车/包车/票价参考)"
+  - path: "data/emergency.md"
+    description: "应急手册(高反分级/医院/下撤路线/直升机/装备清单)"
+  - path: "data/accommodation_realities.md"
+    description: "住宿真相(供氧/洗澡/供暖/停电/民宿vs连锁)"
+  - path: "data/agricultural_products.md"
+    description: "西藏农产品采购与防伪(黑青稞/牦牛肉/虫草/藏香猪)"
+  - path: "data/weather_climate.md"
+    description: "西藏气候白皮书(季节/温度/含氧量/最佳出行时间)"
+  - path: "data/eco_and_wildlife.md"
+    description: "生态与野生动物安全(旱獭鼠疫/野狗/野牦牛)"
+  - path: "data/tibetan_history_and_culture.md"
+    description: "西藏历史人文深度指南(通史/世界遗产/建筑/唐卡/藏戏/茶马古道)"
+  - path: "data/photography_spots.md"
+    description: "摄影机位与禁忌(布达拉宫/羊湖/纳木错/无人机规则)"
+  - path: "data/telecom_and_signals.md"
+    description: "通讯信号指南(运营商/无信号路段/卫星电话/离线地图)"
+  - path: "data/kailash_kora.md"
+    description: "冈仁波齐全流程转山向导(垭口/装备/背夫/直升机/熔断)"
+  - path: "data/tibetan_monasteries.md"
+    description: "深度寺庙参拜指南(色拉辩经/哲蚌雪顿/桑耶坛城/萨迦经书墙)"
+  - path: "data/tibetan_phrases.md"
+    description: "50条地道藏语常用语(问候/点餐/砍价/问路/求救)"
+  - path: "data/medical_screening.md"
+    description: "进藏医学自评与病史筛查白皮书(绝对禁忌表/9种慢性病专项须知/黄金48h监控/药物携带)"
+  - path: "data/women_travel_safety.md"
+    description: "女性独行西藏安全实战指南(交通/住宿/公共/文化/紧急应对)"
+  - path: "data/seasonal_road_closures.md"
+    description: "西藏封路实操日历(G318/G317/G109/阿里/丙察察月度通行矩阵)"
+  - path: "references/api-integration-guide.md"
+    description: "零 API 依赖说明 + Open-Meteo 可选海拔参考"
+  - path: "references/routes.md"
+    description: "五大进藏路线详解(飞机/火车/318/317/109)"
+  - path: "references/budget-tier.md"
+    description: "三档预算参考价(穷游/中等/高端)"
+
+# =============================================================================
+# 核心脚本
+# =============================================================================
+scripts:
+  safety_circuit_breaker:
+    path: "scripts/safety_circuit_breaker.py"
+    description: "全局安全熔断器, 评估高海拔过夜风险"
+    entrypoint: "python3 scripts/safety_circuit_breaker.py --json-stdin"
+    input_schema:
+      target_altitude: "float (米)"
+      days_in_plateau: "int (进藏天数)"
+      stay_overnight: "bool (是否过夜)"
+      weather_warning: "string? (天气预警文本)"
+      location_name: "string? (地点名)"
+  audit_merchants:
+    path: "scripts/audit_merchants.py"
+    description: "商户数据完整性审计, 检测缺 phone/wechat/verified_at 的商户"
+    entrypoint: "python3 scripts/audit_merchants.py"
+  gaode_api:
+    path: "scripts/gaode_api.py"
+    description: "高德API商户搜索(5000次/月免费额度自动追踪)"
+    usage: "python3 scripts/gaode_api.py --keyword <关键词> --city <城市名>"
+

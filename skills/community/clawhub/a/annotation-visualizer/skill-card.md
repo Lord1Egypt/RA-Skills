@@ -1,41 +1,52 @@
-## Description: <br>
-Visualize bounding boxes and class labels on images with support for COCO, YOLO, VOC, and LabelMe annotation formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize bounding boxes and class labels on images with support for COCO, YOLO, VOC, and LabelMe annotation formats.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers, data annotation teams, and machine learning engineers use this skill to inspect image datasets by rendering bounding boxes and labels for quality checks and debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Batch processing can write many visualization files to disk. <br>
-Mitigation: Use a separate output directory and review input and output paths before running a batch job. <br>
-Risk: The script depends on Pillow for image processing. <br>
-Mitigation: Install Pillow from a trusted package source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mingo-318/annotation-visualizer) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Visualization script](artifact/scripts/visualize.py) <br>
+## Use Case:
 
+Developers and dataset maintainers use this skill to visualize bounding boxes and labels for quality checking and debugging image annotation datasets in COCO, YOLO, VOC, and LabelMe formats.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands; generated outputs are image files with rendered annotations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local image and annotation files and writes visualization images to a user-selected output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: COCO annotations can reference file paths that cause reads or overwrites outside the intended dataset folders.
+
+Mitigation: Run COCO mode only on trusted datasets or harden filename handling before processing untrusted COCO JSON.
+
+Risk: Dependency installation may be inconsistent because Pillow is not pinned in a reviewed requirements file.
+
+Mitigation: Pin Pillow in a reviewed requirements file before deployment.
+
+## Reference(s):
+
+- [Annotation Visualizer ClawHub Skill Page](https://clawhub.ai/mingo-318/skills/annotation-visualizer)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated annotated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes visualized images to a chosen output directory and requires Pillow plus local image and annotation files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

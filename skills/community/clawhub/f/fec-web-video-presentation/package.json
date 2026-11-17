@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-web-video-presentation",
-  "version": "2.7.0",
-  "description": "Use when turning an article, talk script, lesson, product demo, or narrated explanation into a recordable 16:9 web presentation with step-driven scenes, optional narration alignment, theme tokens, and screen-recording guidance; Chinese triggers include 网页视频, 动态演示, 口播稿转视频, 可录屏演示, 16:9 演示.",
+  "version": "2.9.0",
+  "description": "Use when turning an article, talk script, lesson, product demo, or narrated explanation into a recordable 16:9 web presentation with step-driven scenes, optional narration alignment, theme tokens, and screen-recording guidance; Chinese triggers include web video, dynamic demonstration, spoken script to video, screen-recordable demonstration, 16:9 demonstration.",
   "type": "module",
   "license": "MIT",
   "author": {

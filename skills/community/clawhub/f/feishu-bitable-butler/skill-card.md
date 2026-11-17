@@ -1,44 +1,55 @@
-## Description: <br>
-飞书多维表格 AI 管家自动化飞书 Bitable 的数据清洗、批量录入、报表生成、字段管理和智能摘要。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书多维表格 AI 管家 helps agents inspect, clean, batch update, report on, and manage Feishu Bitable data.
 
-## Publisher: <br>
-[young-joey](https://clawhub.ai/user/young-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[young-joey](https://clawhub.ai/user/young-joey)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to inspect Feishu Bitable structure, batch read or write records, clean table data, generate reports, and manage fields. It is suited for business tables such as customer follow-up, weekly reports, sales funnels, and employee information workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad read/write access to Feishu Bitable can expose or alter business, customer, or employee data. <br>
-Mitigation: Limit the Feishu app to the required bases and tables, preview bulk reads/writes and field changes, and require explicit approval before modifying production data. <br>
-Risk: Generated summaries or reports may disclose sensitive table contents in chat channels. <br>
-Mitigation: Confirm the audience and destination before sharing summaries, and avoid sending customer or employee data unless explicitly approved. <br>
-Risk: Incorrect app_token, table_id, or field mapping can write to the wrong table or corrupt records. <br>
-Mitigation: Follow the skill's structure-first workflow: parse metadata, list fields, sample records, and verify writes with record lookups. <br>
+## Use Case:
 
+Employees and teams using Feishu Bitable use this skill to understand table structure, enter or update records in bulk, clean data, and generate summaries or reports from table contents.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/young-joey/feishu-bitable-butler) <br>
-- [Field types reference](references/field-types.md) <br>
-- [Common scenarios examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, API Calls] <br>
-**Output Format:** [Markdown guidance with Feishu Bitable tool-call sequences, structured summaries, and report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct agents to read, create, update, and summarize Feishu Bitable records after confirming table structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can read and modify Feishu Bitable tables, including customer or employee information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target base, table, fields, and records before bulk updates or inserts.
+
+Risk: Incorrect field mapping or pagination can lead to incomplete reads or unintended record updates.
+
+Mitigation: List fields before writes, process paginated records completely, and verify a sample of records after bulk operations.
+
+## Reference(s):
+
+- [Field Types Reference](references/field-types.md)
+- [Common Scenario Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/young-joey/skills/feishu-bitable-butler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or structured text with Feishu Bitable operation steps and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu Bitable table, field, and record identifiers supplied by the user or resolved from a Feishu URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

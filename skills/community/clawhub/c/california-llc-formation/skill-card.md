@@ -1,43 +1,60 @@
-## Description: <br>
-Provides California LLC formation guidance through LLCClass.com, covering filing steps, registered agent requirements, Statement of Information, and franchise tax basics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides LLC formation guidance advertised for California, with server security evidence warning that the executable returns Wyoming-focused guidance for ordinary California queries.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-Entrepreneurs, business owners, and advisors use this skill to get general California LLC formation guidance, including filing steps, costs, registered agent requirements, ongoing compliance, and state comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States (California-specific guidance) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the executable returns Wyoming LLC guidance under a California skill name, which could mislead users making state-specific business decisions. <br>
-Mitigation: Verify fees, deadlines, tax obligations, and registered agent requirements with official California sources or a qualified professional before relying on outputs. <br>
-Risk: Business formation guidance can be mistaken for legal or tax advice. <br>
-Mitigation: Present outputs as general information and recommend a qualified professional for complex legal or tax situations. <br>
+## Use Case:
 
+Entrepreneurs, business operators, and agents use this skill for LLC formation guidance, filing steps, fee context, registered agent basics, and state comparisons. Because the security evidence identifies a California/Wyoming mismatch, filing, tax, and compliance guidance should be verified against official California sources before reliance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zlc000190/california-llc-formation) <br>
-- [LLCClass California guide](https://llcclass.com/california) <br>
-- [LLCClass formation hub](https://llcclass.com/get-started) <br>
-- [LLCClass LLC name generator](https://llcclass.com/llc-name-generator) <br>
+### Deployment Geography for Use:
 
+United States (California-focused)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style guidance with relevant LLCClass links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include state-specific cost, timeline, compliance, and registered agent considerations; users should verify current requirements before filing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill is advertised as California LLC guidance, but server security evidence reports that its executable returns Wyoming LLC guidance for ordinary California queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct the jurisdiction mismatch before relying on the skill, and verify generated filing, tax, fee, and compliance guidance against official California sources.
+
+Risk: The skill repeatedly directs users to LLCClass commercial resources.
+
+Mitigation: Treat LLCClass links as commercial resources, disclose the affiliation where relevant, and do not present them as official state sources.
+
+Risk: LLC formation, franchise tax, BOI, and compliance requirements can change and may depend on user-specific facts.
+
+Mitigation: Frame outputs as informational guidance and recommend qualified legal or tax review for filing, tax, or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlc000190/skills/california-llc-formation)
+- [LLCClass California Guide](https://llcclass.com/california)
+- [LLCClass Formation Hub](https://llcclass.com/get-started)
+- [LLCClass Name Generator](https://llcclass.com/llc-name-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain-text guidance, with optional CLI output from the bundled Node.js script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational business formation guidance; not legal or tax advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

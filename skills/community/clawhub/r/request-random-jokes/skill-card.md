@@ -1,43 +1,52 @@
-## Description: <br>
-Gets random fun content, including jokes, funny stories, and dujitang quotes, from public APIs when a user asks for light entertainment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get random fun content (joke, funny story/duanzi, poisonous chicken soup/dujitang) from public APIs.
 
-## Publisher: <br>
-[aolinlu](https://clawhub.ai/user/aolinlu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolinlu](https://clawhub.ai/user/aolinlu)
 
-## Use Case: <br>
-External users and agents use this skill to fetch a random joke, funny story, or dujitang quote from public APIs and return it as plain text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts api.pearktrue.cn and returns untrusted third-party text that may be inaccurate or inappropriate. <br>
-Mitigation: Install only when outbound access to that domain is acceptable, and review or filter returned text before presenting it in sensitive contexts. <br>
-Risk: The script depends on the Python requests library and public API availability. <br>
-Mitigation: Ensure requests is installed and handle network or API failures in calling workflows. <br>
+## Use Case:
 
+Agents use this skill to fetch a random joke, funny story, or dujitang quote when a user asks for light humorous content. It is suited for conversational assistants that can run a small Python script and return plain text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aolinlu/request-random-jokes) <br>
-- [Pearktrue random joke API](https://api.pearktrue.cn/api/jdyl/xiaohua.php) <br>
-- [Pearktrue random duanzi API](https://api.pearktrue.cn/api/random/duanzi/) <br>
-- [Pearktrue dujitang API](https://api.pearktrue.cn/api/dujitang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional command-line argument selects xiaohua, duanzi, or dujitang; invalid or missing arguments choose a random API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using the skill contacts api.pearktrue.cn to retrieve content, which may be unsuitable in restricted or privacy-sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where that external API access is acceptable, or block network execution for this skill in restricted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aolinlu/skills/request-random-jokes)
+- [Random joke API endpoint](https://api.pearktrue.cn/api/jdyl/xiaohua.php)
+- [Random funny story API endpoint](https://api.pearktrue.cn/api/random/duanzi/)
+- [Dujitang API endpoint](https://api.pearktrue.cn/api/dujitang)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text returned by a Python script, with Markdown usage examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contacts fixed public API endpoints at api.pearktrue.cn and prints the response text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

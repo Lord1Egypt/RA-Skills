@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "terrycarter-session-log-analyzer",
-  "version": "1.2.1",
-  "publishedAt": 1778544939137
+  "owner": "gora050",
+  "slug": "session-log-analyzer",
+  "displayName": "Session Log Analyzer",
+  "latest": {
+    "version": "1.2.1",
+    "publishedAt": 0,
+    "changelog": "新增每日自动生成日志分析报告并同步至Notion的定时任务功能"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "changelog": "Initial release — view and analyze session logs"
+    },
+    {
+      "version": "1.1.0",
+      "changelog": "Added PDF report generation and Notion sync support"
+    },
+    {
+      "version": "1.2.1",
+      "changelog": "新增每日自动生成日志分析报告并同步至Notion的定时任务功能"
+    }
+  ]
 }

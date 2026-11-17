@@ -1,44 +1,56 @@
-## Description: <br>
-MiniMax video generation skill for text-to-video, image-to-video, frame-to-frame, and subject-reference video workflows using MiniMax-Hailuo-2.3, with local MP4 download support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates MiniMax videos from text prompts, image references, start and end frames, or subject images using the MiniMax-Hailuo-2.3 API and can download MP4 outputs locally.
 
-## Publisher: <br>
-[silingyuan0](https://clawhub.ai/user/silingyuan0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silingyuan0](https://clawhub.ai/user/silingyuan0)
 
-## Use Case: <br>
-Developers, creators, and agent operators use this skill to submit MiniMax video generation jobs, check asynchronous task status, and download generated MP4 files for approved workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced image URLs are sent to MiniMax's cloud API. <br>
-Mitigation: Use only content approved for MiniMax processing and set MINIMAX_REGION explicitly when data residency matters. <br>
-Risk: Generated videos are downloaded to local file paths and can be misplaced or overwrite prior outputs if paths are reused. <br>
-Mitigation: Save downloads to a dedicated output folder and choose explicit filenames for generated media. <br>
-Risk: The skill depends on a MiniMax API key and external service availability. <br>
-Mitigation: Store MINIMAX_API_KEY in the environment, avoid committing credentials, and handle failed or long-running tasks through status polling. <br>
+## Use Case:
 
+Developers and external users use this skill to submit MiniMax video generation jobs, check job status, wait for completion, and download generated MP4 files. It supports text-to-video, image-to-video, frame-to-frame, and subject-reference video workflows.
 
-## Reference(s): <br>
-- [MiniMax Video API Reference](artifact/references/api.md) <br>
-- [MiniMax China API endpoint](https://api.minimaxi.com/v1) <br>
-- [MiniMax International API endpoint](https://api.minimax.io/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; API responses as JSON; generated videos as MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and optional MINIMAX_REGION; video generation is asynchronous and downloads may be saved locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Prompts, image URLs, and generation metadata are sent to MiniMax using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs for sensitive data before submission and configure MINIMAX_REGION intentionally for the intended MiniMax endpoint.
+
+Risk: Generated videos can be written to local disk at the requested output path.
+
+Mitigation: Choose output paths deliberately and avoid overwriting important local files.
+
+## Reference(s):
+
+- [MiniMax Video API reference](artifact/references/api.md)
+- [ClawHub skill page](https://clawhub.ai/silingyuan0/skills/minimax-video-generate)
+- [MiniMax API endpoint for China region](https://api.minimaxi.com/v1)
+- [MiniMax API endpoint for international region](https://api.minimax.io/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python command examples; generated videos are saved as MP4 files when downloaded.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and optional MINIMAX_REGION; asynchronous generation returns task status and download information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

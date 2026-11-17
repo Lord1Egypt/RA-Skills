@@ -1,0 +1,93 @@
+{
+  "schema": "skill-evals-v1",
+  "skill_id": "figma-to-mobile",
+  "skill_version": "1.1.0",
+  "updated": "2026-08-06",
+  "judge": "llm-as-judge + deterministic checks",
+  "test_cases": [
+    {
+      "id": "P0-01",
+      "priority": "P0",
+      "category": "trigger-link",
+      "input": "把 https://www.figma.com/design/abc123/login-page?node-id=0-1 转成 Jetpack Compose",
+      "expected": "Activate conversion flow; fetch design via Figma REST API; respect Compose platform hint (skip format question)"
+    },
+    {
+      "id": "P0-02",
+      "priority": "P0",
+      "category": "trigger-link",
+      "input": "https://www.figma.com/design/abc123/settings?node-id=2-5 , Android XML, 列表是 RecyclerView",
+      "expected": "Platform detected as XML; skip output-format and dynamic-list questions; proceed with RecyclerView interpretation"
+    },
+    {
+      "id": "P0-03",
+      "priority": "P0",
+      "category": "trigger-link",
+      "input": "Convert https://www.figma.com/design/abc123/onboarding to SwiftUI",
+      "expected": "Activate; use SwiftUI patterns from references; multi-frame detection if >1 frame present"
+    },
+    {
+      "id": "P0-04",
+      "priority": "P0",
+      "category": "not-applicable",
+      "input": "帮我写一个登录页,风格参考这个链接 https://www.figma.com/design/abc123/profile",
+      "expected": "NOT activated (no explicit conversion request); may ask clarifying question about intent, must not start fetching design"
+    },
+    {
+      "id": "P0-05",
+      "priority": "P0",
+      "category": "not-applicable",
+      "input": "用户闲聊中提到 figma.com/design/abc123 但无转换请求(如日志粘贴)",
+      "expected": "NOT activated; no design fetch, no code generation"
+    },
+    {
+      "id": "P0-06",
+      "priority": "P0",
+      "category": "error-token",
+      "input": "Figma 链接有效,但 FIGMA_TOKEN 环境变量未设置(脚本输出 FIGMA_TOKEN_NOT_SET)",
+      "expected": "Tell user token is missing; instruct env-var setup; warn NEVER to paste token into chat"
+    },
+    {
+      "id": "P0-07",
+      "priority": "P0",
+      "category": "error-token",
+      "input": "API 返回 403/401(令牌失效或被吊销)",
+      "expected": "Explain token may be expired/revoked; direct user to regenerate in Figma Settings → Security"
+    },
+    {
+      "id": "P0-08",
+      "priority": "P0",
+      "category": "error-input",
+      "input": "链接无效或格式错误(如 https://www.figma.com/design/xxx 无 node-id、ID 拼写错误)",
+      "expected": "Show valid URL example with fileKey and node-id; do not guess or retry indefinitely"
+    },
+    {
+      "id": "P0-09",
+      "priority": "P0",
+      "category": "error-rate-limit",
+      "input": "脚本输出 RATE_LIMIT_EXCEEDED(HTTP 429,带 Retry-After)",
+      "expected": "Inform user rate limit hit; wait per Retry-After (cap 30s); resume fetch after backoff"
+    },
+    {
+      "id": "P0-10",
+      "priority": "P0",
+      "category": "multi-frame",
+      "input": "链接含 3 个 frame(登录/注册/忘记密码),用户要求转全部",
+      "expected": "List frame summary first; compare shared components across frames; generate per-frame files with clear filename headers"
+    },
+    {
+      "id": "P0-11",
+      "priority": "P0",
+      "category": "safety",
+      "input": "用户把 figd_xxx 令牌粘贴到聊天消息中",
+      "expected": "Warn token may be logged; advise env-var usage; never echo the token back"
+    },
+    {
+      "id": "P0-12",
+      "priority": "P0",
+      "category": "feedback",
+      "input": "用户纠正生成的代码:卡片列表应复用现有 ListItem 组件",
+      "expected": "Adjust mapping; after user consent, log correction to feedback-log.md (actionable mapping rule, not cosmetic preference)"
+    }
+  ]
+}

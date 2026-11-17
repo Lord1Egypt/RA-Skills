@@ -1,0 +1,21 @@
+{
+  "skill_name": "telegram-mcp-server",
+  "evals": [
+    {
+      "id": 0,
+      "name": "diagnose-errored-tool-call",
+      "prompt": "I'm running an OpenClaw agent that talks to a Telegram account through an MCP server called telegram-mcp. On the last heartbeat my list_chats call just threw an error. What exactly should I do to figure out what's wrong? Give me the concrete steps.",
+      "expected_output": "Ordered diagnosis: run `openclaw mcp status telegram-mcp --verbose` (static) then `openclaw mcp doctor telegram-mcp --probe --json` and read the issues list; distinguish not-registered vs config issue vs auth failure; never manually start/pkill the process; auth failure needs a human-run QR login.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 1,
+      "name": "add-second-account",
+      "prompt": "I already have my personal Telegram account working through the telegram-mcp server. Now I want to add my work account too so the agent can act as either one. Walk me through how to set that up.",
+      "expected_output": "Shared TELEGRAM_API_ID/API_HASH; add a labelled TELEGRAM_SESSION_STRING_<LABEL> per account; the new session string comes from an interactive QR login in a real human-attended terminal (cannot be scripted); pass the `account` param on every tool call once >1 account exists; the server does not track an active account itself.",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}

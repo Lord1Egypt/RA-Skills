@@ -1,7 +1,7 @@
 ---
 name: "cat-face-recognition-analysis"
 description: "Dentifies specific cats by comparing images or videos of their faces. It supports distinguishing between different individuals in multi-cat households, ensuring accurate recognition once the data is registered in the database. | 猫脸识别技能，通过猫脸图片/视频比对识别具体是哪只猫咪，支持多猫家庭区分不同个体，录入底库后可准确识别"
-version: "1.0.6"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

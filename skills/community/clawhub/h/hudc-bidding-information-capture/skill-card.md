@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes SGCC bidding documents in Word, PDF, and Excel formats to extract 23 key fields into a structured Excel report with qualification backfilling and deadline highlighting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HUDC Bidding Information Capture analyzes locally stored SGCC bidding documents in Word, PDF, and Excel formats and produces a structured 23-column Excel report with qualification backfilling, keyword matches, deadlines, bid bonds, evaluation methods, and contacts.
 
-## Publisher: <br>
-[jktllsqaq](https://clawhub.ai/user/jktllsqaq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jktllsqaq](https://clawhub.ai/user/jktllsqaq)
 
-## Use Case: <br>
-Developers and procurement teams use this skill to run a local analyzer over manually downloaded SGCC tender documents, identify bid-relevant records, and review extracted metadata and keyword matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads tender files from a fixed Desktop folder and writes a report to a fixed Desktop path. <br>
-Mitigation: Run it only on intended procurement documents and review the generated workbook before relying on or sharing the results. <br>
-Risk: The security scan notes that the script can modify the Python environment by auto-installing dependencies. <br>
-Mitigation: Run it in a virtual environment or container and preinstall python-docx, openpyxl, and pdfplumber before execution. <br>
-Risk: Tender documents may contain sensitive procurement information. <br>
-Mitigation: Review the script before use and avoid running it on sensitive documents outside an approved local environment. <br>
+## Use Case:
 
+External users and business analysts use this skill to process manually downloaded SGCC tender files from a local desktop folder, identify bid opportunities matching configured keywords, and review the generated Excel report for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jktllsqaq/hudc-bidding-information-capture) <br>
-- [README](artifact/README.md) <br>
-- [Sample scenarios](artifact/samples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance plus an Excel report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local tender files from ~/Desktop/sgcc_files and writes ~/Desktop/sgcc_result.xlsx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.0 (source: server release metadata) <br>
+Risk: The analyzer can automatically install unpinned Python packages into the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated virtual environment or container, and manually install reviewed or pinned dependencies before execution.
+
+Risk: Rows sourced from Word/PDF body fallback can be lower confidence than rows extracted from structured tables or Excel attachments.
+
+Mitigation: Manually review records marked as Word/PDF body fallback and any unresolved qualification placeholders before relying on them for bidding decisions.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Samples README](artifact/samples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance and terminal-style summaries, with a generated Excel workbook at ~/Desktop/sgcc_result.xlsx]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The Excel report contains 23 structured columns and color-coded bidding deadlines.]
+
+## Skill Version(s):
+
+6.0.0 (source: server release metadata; artifact frontmatter lists 6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

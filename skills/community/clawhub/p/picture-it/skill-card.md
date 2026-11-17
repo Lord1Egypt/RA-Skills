@@ -1,45 +1,62 @@
-## Description: <br>
-Guides agents to generate, edit, composite, crop, and post-process images with the picture-it CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picture it! helps agents plan and run picture-it CLI workflows to generate, edit, composite, crop, and post-process images.
 
-## Publisher: <br>
-[geongeorge](https://clawhub.ai/user/geongeorge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geongeorge](https://clawhub.ai/user/geongeorge)
 
-## Use Case: <br>
-Developers, designers, and agent users use this skill to plan cost-aware image creation workflows and run picture-it commands for generated images, edits, background removal, compositing, typography, and format-specific outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI image operations can upload prompts and images to fal.ai and may incur usage charges. <br>
-Mitigation: Use a limited FAL key, avoid pasting secrets into chat, confirm the intended workflow before paid calls, and prefer local-only commands when privacy or cost matters. <br>
-Risk: AI edits can alter product details, logos, text, or other image elements that need to remain exact. <br>
-Mitigation: Use local composition or background removal workflows for accuracy-sensitive product images, and review generated files before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create and revise visual assets such as blog headers, social cards, thumbnails, posters, product comparisons, and edited photos from terminal-driven workflows.
 
-## Reference(s): <br>
-- [Picture it! ClawHub listing](https://clawhub.ai/geongeorge/picture-it) <br>
-- [Project homepage](https://github.com/geongeorge/picture-it) <br>
-- [picture-it npm package](https://www.npmjs.com/package/picture-it) <br>
-- [fal.ai privacy](https://fal.ai/privacy) <br>
-- [Composition Guide](references/composition-guide.md) <br>
-- [Prompt Library](references/prompt-library.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to run picture-it commands that create or modify image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: AI image operations upload user images to fal.ai and may expose sensitive visual data to an external processor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only commands for sensitive images, and run generate/edit/remove-bg/upscale only when the user accepts fal.ai processing.
+
+Risk: A global npm install without a pinned version can change behavior across installs.
+
+Mitigation: Pin picture-it to a reviewed exact version and avoid sudo or administrator installs.
+
+Risk: FAL-backed workflows can incur avoidable usage costs when image direction or pipeline steps are unclear.
+
+Mitigation: Clarify the desired visual direction, present a few options, and plan the minimum required FAL calls before running commands.
+
+## Reference(s):
+
+- [Picture it! ClawHub skill page](https://clawhub.ai/geongeorge/skills/picture-it)
+- [picture-it GitHub homepage](https://github.com/geongeorge/picture-it)
+- [picture-it npm package](https://www.npmjs.com/package/picture-it)
+- [fal.ai privacy policy](https://fal.ai/privacy)
+- [Composition Guide](references/composition-guide.md)
+- [Prompt Library](references/prompt-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and occasional JSON overlay examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local image file paths from picture-it command stdout; AI operations require FAL_KEY and network access to fal.ai.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

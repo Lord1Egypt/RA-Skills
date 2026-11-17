@@ -1,43 +1,56 @@
-## Description: <br>
-Create, manage, and validate SOUL.md personality files for multi-agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and validate SOUL.md personality files for multi-agent systems.
 
-## Publisher: <br>
-[adamwgp](https://clawhub.ai/user/adamwgp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamwgp](https://clawhub.ai/user/adamwgp)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create, audit, and maintain SOUL.md files that define agent personalities, responsibilities, collaboration protocols, and output standards for multi-agent systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scripts can create or update SOUL.md files in the user's agent directory. <br>
-Mitigation: Run the scripts manually and back up ~/.openclaw/agents before broad edits. <br>
-Risk: Untrusted agent names could create confusing or unintended paths. <br>
-Mitigation: Avoid slashes, absolute paths, and traversal-style values when passing agent names. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create SOUL.md templates, audit existing agent personality files, and define collaboration protocols for multi-agent teams.
 
-## Reference(s): <br>
-- [Agent Soul System on ClawHub](https://clawhub.ai/adamwgp/agent-soul-system) <br>
-- [SOUL.md Template](artifact/references/soul-template.md) <br>
-- [Personality Library](artifact/references/personality-library.md) <br>
-- [Multi-Agent Collaboration Protocol](artifact/references/collaboration-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with Python command examples and generated SOUL.md files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local scripts create, list, and validate SOUL.md files under the user's agent directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated SOUL.md files can persist agent personality and collaboration settings that may not match the user's intended hierarchy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated SOUL.md before agents use it and replace the hardcoded reporting hierarchy with the user's own structure.
+
+Risk: Unsafe path handling in soul-create.py can create files in unintended locations if an untrusted or path-like agent name is supplied.
+
+Mitigation: Use trusted simple agent names until path validation is added.
+
+## Reference(s):
+
+- [Agent Soul System on ClawHub](https://clawhub.ai/adamwgp/skills/agent-soul-system)
+- [SOUL.md Template](references/soul-template.md)
+- [Personality Library](references/personality-library.md)
+- [Multi-Agent Collaboration Protocol](references/collaboration-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated SOUL.md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or inspects files under ~/.openclaw/agents when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

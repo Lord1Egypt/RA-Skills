@@ -1,39 +1,35 @@
-# Cross-source Knowledge Synthesis / 多来源知识综合分析
+# Cross-Source Synthesis / 多来源综合分析
 
-## Role / 角色
+Use this module to reconcile already available or already-researched sources. It does not replace source retrieval, file parsing, or specialist intake rules.
 
-This module combines information from multiple source types into reliable project knowledge.
+本模块用于协调已经取得或已经研究过的来源，不替代来源获取、文件解析或专门的入库规则。
 
-本模块把多个来源类型的信息整合成可靠的项目知识。
+## Workflow / 流程
 
-## Synthesis Rules / 综合规则
+1. Define the question and decision boundary.
+2. Inventory source records and remove exact duplicates.
+3. Open the actual source or extracted artifact for every material claim; snippets are discovery only.
+4. Prefer primary, current, traceable sources.
+5. Build a claim ledger with support, contradiction, freshness, and independence.
+6. Keep facts, source statements, interpretations, assumptions, and recommendations separate.
+7. Preserve credible conflicts instead of averaging them away.
+8. Use `cannot-confirm` when evidence is insufficient.
 
-1. Prefer primary sources over secondary summaries.
-2. Prefer newer sources when the topic changes over time.
-3. Preserve conflicting facts instead of hiding them.
-4. Mark confidence level for each conclusion.
-5. Link every conclusion to source records where possible.
-6. Separate facts, interpretation, assumptions, and recommendations.
-
-1. 一手来源优先于二手摘要。
-2. 对会随时间变化的主题，较新来源优先。
-3. 不隐藏冲突事实，而是明确标出。
-4. 为每个结论标记置信度。
-5. 尽可能把结论关联到来源记录。
-6. 区分事实、解释、假设和建议。
-
-## Output Format / 输出格式
-
-Use this structure for synthesis outputs:
-
-综合分析建议使用：
+## Claim Ledger / 主张台账
 
 ```text
-Question / 问题
-Sources Used / 使用来源
-Confirmed Facts / 已确认事实
-Conflicts or Gaps / 冲突或缺口
+Claim / 主张
+Evidence state / 证据状态
+Supporting records / 支持记录
+Conflicting records / 冲突记录
+Freshness / 新鲜度
+Directness / 直接性
+Independence / 独立性
 Interpretation / 解读
-Confidence / 置信度
-Recommended Next Action / 建议下一步
+Confidence and reason / 置信度与理由
+Next evidence needed / 下一项所需证据
 ```
+
+Do not let a source trust label substitute for claim support. Do not archive unsupported agent conclusions as source facts.
+
+不得用来源信任标签代替具体主张证据，也不得把缺少来源支持的 AI 结论当成来源事实归档。

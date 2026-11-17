@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>aesthete-agent — color systems that pass the review</title>
+<meta name="description" content="A mechanical color engine for front-end work: register-matched palette library, OKLCH role derivation, and four gates that catch contrast failures, color-blindness collisions and AI-slop signatures before anything ships.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233D405B'/%3E%3Crect x='6' y='6' width='9' height='20' rx='2' fill='%23FFA69E'/%3E%3Crect x='17' y='6' width='9' height='9' rx='2' fill='%23B8F2E6'/%3E%3Crect x='17' y='17' width='9' height='9' rx='2' fill='%23F6F2E8'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#F6F2E8; --panel:#FDF7EE; --ink:#3D405B; --muted:#5E6472;
+    --coral:#E07066; --coralsoft:#FFA69E; --mint:#B8F2E6; --mist:#AED9E0;
+    --bronze:#BC6C25; --line:#E2DACA;
+    --sans:system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;
+    --serif:Georgia,"Times New Roman","Songti SC","STSong","SimSun",serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.7}
+  .wrap{max-width:1060px; margin:0 auto; padding:0 28px}
+  body[data-lang="en"] .l-zh{display:none !important}
+  body[data-lang="zh"] .l-en{display:none !important}
+  /* 中文态:衬线标题——真字重思源宋体子集(OFL-1.1,67 字符 23KB/枚,font-display swap 宋体兜底) */
+  @font-face{
+    font-family:"CJK Serif Black";
+    src:url("fonts/cjk-title-black.woff2") format("woff2");
+    font-display:swap; font-weight:900;
+  }
+  @font-face{
+    font-family:"CJK Serif Bold";
+    src:url("fonts/cjk-title-bold.woff2") format("woff2");
+    font-display:swap; font-weight:700;
+  }
+  body[data-lang="zh"] .hero h1{font-family:"CJK Serif Black",var(--serif); font-weight:900; letter-spacing:0.05em; line-height:1.18}
+  body[data-lang="zh"] .sec-head h2{font-family:"CJK Serif Bold",var(--serif); font-weight:700; letter-spacing:0.04em}
+  body[data-lang="zh"] .install h2{font-family:"CJK Serif Bold",var(--serif); font-weight:700}
+  body[data-lang="zh"] .card h3{font-family:"CJK Serif Bold",var(--serif); font-weight:700; letter-spacing:0.02em}
+  body[data-lang="zh"] .step h4{letter-spacing:0.04em}
+  body[data-lang="zh"] .kicker{letter-spacing:0.18em; text-transform:none}
+  body[data-lang="zh"] .hero p{font-size:17.5px; letter-spacing:0.01em}
+  body[data-lang="zh"] .hero h1 em{margin-left:0.08em}
+
+  /* ── topbar ── */
+  .top{border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--paper); z-index:40}
+  .top .wrap{display:flex; align-items:center; height:60px; gap:18px}
+  .top nav.links{margin-left:auto}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; font-size:17px; letter-spacing:-0.01em; color:var(--ink); text-decoration:none; white-space:nowrap}
+  .brand .mark{width:26px; height:26px; border-radius:7px; background:var(--ink); display:inline-flex; padding:4px; gap:2px}
+  .brand .mark i{display:block; flex:1; border-radius:2px}
+  .chip{font-size:12px; font-weight:700; background:var(--coralsoft); color:var(--ink); border-radius:999px; padding:2px 10px}
+  .top nav{display:flex; gap:20px; align-items:center; flex-wrap:wrap}
+  .top nav a{color:var(--ink); text-decoration:none; font-size:14.5px; font-weight:600; border-bottom:2px solid transparent; padding-bottom:2px; white-space:nowrap}
+  .top nav a:hover{border-bottom-color:var(--coral)}
+  .langsw{display:flex; border:1.5px solid var(--ink); border-radius:8px; overflow:hidden; font-size:12.5px; font-weight:700}
+  .langsw button{border:none; background:transparent; color:var(--ink); padding:5px 12px; cursor:pointer; font:inherit; white-space:nowrap}
+  .langsw button.on{background:var(--ink); color:var(--paper)}
+  .h2sec,.scene-anchor{scroll-margin-top:76px}
+
+  @media (max-width:640px){
+    .hero{padding:52px 0 38px}
+    .top .wrap{height:auto; min-height:56px; flex-wrap:wrap; row-gap:8px; padding-top:10px; padding-bottom:10px}
+    .top nav.links{order:3; flex-basis:100%; margin-left:0; gap:16px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; justify-content:flex-start}
+    .top nav::-webkit-scrollbar{display:none}
+    .kicker{font-size:11px; letter-spacing:0.12em}
+    .hero h1{font-size:clamp(30px,9.5vw,38px); letter-spacing:0.03em}
+    .hero p{font-size:16px}
+    .stat{border-left:none; border-top:1px solid var(--line)}
+    .stats .wrap{flex-direction:column}
+    .stat:first-child{border-top:none}
+    .row .lbl{width:100%}
+  }
+
+
+  /* ── hero ── */
+  .hero{padding:80px 0 52px}
+  .kicker{font-size:12.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted)}
+  .hero h1{font-size:clamp(38px,6vw,62px); line-height:1.08; letter-spacing:-0.025em; font-weight:800; max-width:17ch; margin:18px 0 22px}
+  .hero h1 em{font-style:normal; color:var(--bronze)}
+  .hero p{font-size:19px; color:var(--muted); max-width:64ch; margin-bottom:34px}
+  .cta{display:flex; gap:14px; flex-wrap:wrap}
+  .btn{display:inline-block; font-weight:700; font-size:16px; text-decoration:none; border-radius:10px; padding:13px 26px}
+  .btn.primary{background:var(--ink); color:var(--paper)}
+  .btn.primary:hover{background:#2E3147}
+  .btn.ghost{color:var(--ink); border:2px solid var(--ink)}
+  .btn.ghost:hover{background:var(--panel)}
+
+  /* ── stat strip ── */
+  .stats{border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .stats .wrap{display:flex; flex-wrap:wrap}
+  .stat{flex:1 1 160px; padding:26px 20px; border-left:1px solid var(--line)}
+  .stat:first-child{border-left:none}
+  .stat b{display:block; font-size:30px; font-weight:800; letter-spacing:-0.02em}
+  .stat span{font-size:13.5px; color:var(--muted)}
+
+  /* ── demos ── */
+  .demos{padding:72px 0 8px}
+  .sec-head{margin-bottom:30px}
+  .sec-head h2{font-size:30px; letter-spacing:-0.02em; font-weight:800}
+  .sec-head p{color:var(--muted); margin-top:8px; max-width:62ch}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr)); gap:20px}
+  .card{border-radius:14px; padding:26px 26px 22px; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; gap:10px; border:1px solid rgba(61,64,91,0.08); transition:transform .15s ease, box-shadow .15s ease}
+  .card:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(61,64,91,0.10)}
+  .card .tag{font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted)}
+  .card h3{font-size:21px; letter-spacing:-0.015em; font-weight:800}
+  .card p{font-size:15px; color:#464A66; flex:1}
+  .card .go{font-weight:700; font-size:15px; color:var(--ink); text-decoration:underline; text-decoration-color:var(--coral); text-decoration-thickness:2px; text-underline-offset:4px}
+  .card.c-mint{background:var(--mint)}
+  .card.c-mist{background:var(--mist)}
+  .card.c-coral{background:var(--coralsoft)}
+  .card.c-dark{background:var(--ink)}
+  .card.c-dark,.card.c-dark p{color:var(--paper)}
+  .card.c-dark .tag{color:var(--mint)}
+  .card.c-dark .go{color:var(--paper); text-decoration-color:var(--coralsoft)}
+
+  /* ── how ── */
+  .how{padding:72px 0}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:26px}
+  .step{position:relative; padding-top:14px; border-top:2px solid var(--line)}
+  .step .num{font-size:54px; font-weight:800; letter-spacing:-0.03em; color:var(--coral); line-height:1}
+  .step h4{font-size:17.5px; font-weight:800; margin:12px 0 6px}
+  .step p{font-size:14.5px; color:var(--muted)}
+
+  /* ── install ── */
+  .install{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:56px 0}
+  .install h2{font-size:26px; letter-spacing:-0.02em; font-weight:800; margin-bottom:8px}
+  .install .sub{color:var(--muted); font-size:15px; margin-bottom:26px}
+  .rows{display:flex; flex-direction:column; gap:16px}
+  .row{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .row .lbl{width:150px; font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted)}
+  .row code{background:var(--ink); color:var(--paper); font-size:14px; border-radius:8px; padding:10px 16px; font-family:ui-monospace,"Cascadia Code",Consolas,monospace; overflow-x:auto; max-width:100%}
+  .row .note{font-size:13.5px; color:var(--muted)}
+  .row .note a{color:var(--ink); font-weight:600}
+
+  /* ── footer ── */
+  footer{padding:40px 0 56px}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap}
+  footer nav{display:flex; gap:20px; flex-wrap:wrap}
+  footer a{color:var(--ink); font-size:14px; font-weight:600; text-decoration:none; border-bottom:2px solid var(--coralsoft)}
+  footer a:hover{border-bottom-color:var(--coral)}
+  footer .fine{font-size:13px; color:var(--muted)}
+
+  @media (max-width:640px){
+    .stat{border-left:none; border-top:1px solid var(--line)}
+    .stats .wrap{flex-direction:column}
+    .stat:first-child{border-top:none}
+    .row .lbl{width:100%}
+  }
+
+</style>
+</head>
+<body data-lang="en">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./">
+      <span class="mark" aria-hidden="true"><i style="background:var(--coralsoft)"></i><i style="background:var(--mint)"></i></span>
+      aesthete-agent <span class="chip">v0.6.0</span>
+    </a>
+    <nav class="links">
+      <span class="l-en" style="display:contents">
+        <a href="demo/showcase.html">Showcase</a>
+        <a href="#how">How it works</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/docsor1212/aesthete-agent">GitHub</a>
+      </span>
+      <span class="l-zh" style="display:contents">
+        <a href="demo/showcase.html">效果演示</a>
+        <a href="#how">工作原理</a>
+        <a href="#install">安装</a>
+        <a href="https://github.com/docsor1212/aesthete-agent">GitHub</a>
+      </span>
+    </nav>
+    <span class="langsw" role="group" aria-label="Language">
+      <button type="button" id="btn-en" class="on" onclick="setLang('en')">EN</button>
+      <button type="button" id="btn-zh" onclick="setLang('zh')">中文</button>
+    </span>
+  </div>
+</header>
+
+<script>
+function setLang(l){
+  document.body.setAttribute('data-lang', l);
+  document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+  document.getElementById('btn-en').className = (l === 'en') ? 'on' : '';
+  document.getElementById('btn-zh').className = (l === 'zh') ? 'on' : '';
+  try { localStorage.setItem('aa-lang', l); } catch(e){}
+}
+try { var saved = localStorage.getItem('aa-lang'); if (saved === 'zh' || saved === 'en') setLang(saved); } catch(e){}
+</script>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker l-en">Mechanical color engine · Agent skill + MCP server</div>
+    <div class="kicker l-zh">机械配色引擎 · Agent Skill + MCP 服务器</div>
+    <h1 class="l-en">Color systems that <em>pass the review.</em></h1>
+    <h1 class="l-zh">让每一处配色，<br><em>都经得起评审。</em></h1>
+    <p class="l-en">aesthete-agent turns five colors into a complete front-end color system: an evidence library matched by register, OKLCH role derivation, and mechanical gates that catch contrast failures, color-blindness collisions and AI-slop signatures before anything ships.</p>
+    <p class="l-zh">aesthete-agent 把五个颜色变成一套完整的前端配色系统：按语域匹配的实证色板库、OKLCH 角色派生，以及一组机械闸门——在交付之前就抓住对比度不足、色盲碰撞和 AI 味签名。</p>
+    <div class="cta">
+      <a class="btn primary l-en" href="demo/showcase.html">Open the showcase →</a>
+      <a class="btn primary l-zh" href="demo/showcase.html">打开效果演示 →</a>
+      <a class="btn ghost l-en" href="demo/visualizer-light.html">Run the visualizer</a>
+      <a class="btn ghost l-zh" href="demo/visualizer-light.html">在线试配色</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><b>119</b><span class="l-en">curated evidence palettes</span><span class="l-zh">精选实证色板</span></div>
+    <div class="stat"><b>4</b><span class="l-en">mechanical gates, no eyeballing</span><span class="l-zh">道机械闸门，不靠目测</span></div>
+    <div class="stat"><b>10</b><span class="l-en">real front-end scene types</span><span class="l-zh">种真实前端场景</span></div>
+    <div class="stat"><b>OKLCH</b><span class="l-en">perceptual role derivation</span><span class="l-zh">感知均匀的角色派生</span></div>
+  </div>
+</section>
+
+<section class="demos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="l-en">See it render</h2>
+      <h2 class="l-zh">看它渲染</h2>
+      <p class="l-en">Every page below was produced end-to-end by the engine — layout, roles, text levels and contrast included. No hand-picked colors.</p>
+      <p class="l-zh">下面每个页面都由引擎端到端产出——版式、角色、文字阶梯、对比度全部内建。没有一张是手工挑色的。</p>
+    </div>
+    <div class="grid">
+      <a class="card c-mint" href="demo/showcase.html">
+        <span class="tag l-en">Flagship demo</span><span class="tag l-zh">主展示</span>
+        <h3 class="l-en">Visual showcase</h3><h3 class="l-zh">视觉 showcase</h3>
+        <p class="l-en">Thirty real front-end scenes — landing, dashboard, editor, commerce — rendered across curated palettes, light and dark.</p>
+        <p class="l-zh">三十个真实前端场景——落地页、仪表盘、编辑页、电商——横跨精选色板，明亮与暗色。</p>
+        <span class="go l-en">Open →</span><span class="go l-zh">进入 →</span>
+      </a>
+      <a class="card c-mist" href="demo/visualizer-light.html">
+        <span class="tag l-en">Live tool</span><span class="tag l-zh">在线工具</span>
+        <h3 class="l-en">Palette visualizer · light</h3><h3 class="l-zh">配色可视化 · 明亮</h3>
+        <p class="l-en">Paste any five colors and get a full scene back: derived surface, ink, accents, and a text ladder that stays readable.</p>
+        <p class="l-zh">输入任意五个颜色，得到完整场景：派生的底色、墨色、强调口，以及始终可读的文字阶梯。</p>
+        <span class="go l-en">Open →</span><span class="go l-zh">进入 →</span>
+      </a>
+      <a class="card c-dark" href="demo/visualizer-dark.html">
+        <span class="tag l-en">Live tool</span><span class="tag l-zh">在线工具</span>
+        <h3 class="l-en">Palette visualizer · dark</h3><h3 class="l-zh">配色可视化 · 暗色</h3>
+        <p class="l-en">The same engine on a dark surface: roles lifted, saturation trimmed, contrast held — no muddy, glowing mess.</p>
+        <p class="l-zh">同一引擎的暗色表现：角色抬亮、降饱和、对比度守住——不发闷、不刺眼。</p>
+        <span class="go l-en">Open →</span><span class="go l-zh">进入 →</span>
+      </a>
+      <a class="card c-coral" href="demo/card.html">
+        <span class="tag l-en">Artifact</span><span class="tag l-zh">交付件</span>
+        <h3 class="l-en">Palette card</h3><h3 class="l-zh">色板卡</h3>
+        <p class="l-en">One palette as a printable card: hex values, derived roles and the actual contrast numbers next to each pairing.</p>
+        <p class="l-zh">一块色板的可打印卡片：hex 值、派生角色，以及每对组合的实测对比度数字。</p>
+        <span class="go l-en">Open →</span><span class="go l-zh">进入 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="l-en">How it works</h2>
+      <h2 class="l-zh">工作原理</h2>
+      <p class="l-en">Four steps, all mechanical. The point is that taste is encoded as rules, so the output is defensible — every number can be checked.</p>
+      <p class="l-zh">四步，全部机械化。核心是把品味编码成规则，让产出可辩护——每个数字都能复核。</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h4 class="l-en">Match</h4><h4 class="l-zh">选库</h4>
+        <p class="l-en">Pick a register — calm, vivid, elegant, dark — and the engine selects from an evidence library of curated palettes.</p>
+        <p class="l-zh">给定语域——沉静、鲜艳、典雅、暗色——引擎从实证色板库中排序选板。</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h4 class="l-en">Derive</h4><h4 class="l-zh">派生</h4>
+        <p class="l-en">Five colors become a working system: surface, ink, accents and weak text levels, derived in OKLCH for perceptual evenness.</p>
+        <p class="l-zh">五个颜色长成一套可用系统：底色、墨色、强调口与弱文字层级，在 OKLCH 里派生，感知均匀。</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h4 class="l-en">Gate</h4><h4 class="l-zh">过闸</h4>
+        <p class="l-en">Contrast (WCAG + APCA), three color-blind simulations, an AI-slop signature check and a five-axis score. Failures are named, not guessed.</p>
+        <p class="l-zh">对比度（WCAG + APCA）、三重色盲模拟、AI 味签名检查、五维评分。失败有名有姓，不靠猜。</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h4 class="l-en">Emit</h4><h4 class="l-zh">交付</h4>
+        <p class="l-en">CSS custom properties, SVG slot lists, scene renderings or an image-generation prompt block — ready to paste into real work.</p>
+        <p class="l-zh">CSS 变量、SVG 槽位清单、场景渲染图或图像生成提示词块——直接粘进真实工程。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="install" id="install">
+  <div class="wrap">
+    <h2 class="l-en">Install</h2>
+    <h2 class="l-zh">安装</h2>
+    <p class="sub l-en">One engine, four doors — pick the channel you already use.</p>
+    <p class="sub l-zh">一个引擎，四条通道——用你顺手的那条。</p>
+    <div class="rows">
+      <div class="row">
+        <span class="lbl l-en">Agent skill</span><span class="lbl l-zh">Agent Skill</span>
+        <code>npx skills add docsor1212/aesthete-agent</code>
+        <span class="note l-en">Claude Code, ZCode, Codex, Cursor, Gemini CLI</span>
+        <span class="note l-zh">Claude Code、ZCode、Codex、Cursor、Gemini CLI</span>
+      </div>
+      <div class="row">
+        <span class="lbl l-en">SkillHub (CN)</span><span class="lbl l-zh">SkillHub（国内）</span>
+        <code>skillhub install aesthete-agent --dir ~/.claude/skills</code>
+        <span class="note l-en"><a href="https://skillhub.cn/skills/aesthete-agent">skillhub.cn</a></span>
+        <span class="note l-zh"><a href="https://skillhub.cn/skills/aesthete-agent">skillhub.cn</a></span>
+      </div>
+      <div class="row">
+        <span class="lbl l-en">ClawHub</span><span class="lbl l-zh">ClawHub</span>
+        <code>npx clawhub install aesthete-agent</code>
+        <span class="note l-en"><a href="https://clawhub.ai/skills/aesthete-agent">clawhub.ai</a></span>
+        <span class="note l-zh"><a href="https://clawhub.ai/skills/aesthete-agent">clawhub.ai</a></span>
+      </div>
+      <div class="row">
+        <span class="lbl l-en">DeepSeek Harness plugin</span><span class="lbl l-zh">DeepSeek Harness 原生插件</span>
+        <code>dsh plugin --profile web add github:docsor1212/dsh-aesthete-agent</code>
+        <span class="note l-en"><a href="https://github.com/docsor1212/dsh-aesthete-agent">8 native tools, local engine</a></span>
+        <span class="note l-zh"><a href="https://github.com/docsor1212/dsh-aesthete-agent">8 个原生工具，本地引擎</a></span>
+      </div>
+      <div class="row">
+        <span class="lbl l-en">MCP server</span><span class="lbl l-zh">MCP 服务器</span>
+        <code>uvx aesthete-agent-mcp</code>
+        <span class="note l-en">13 tools from PyPI, any MCP client · or via <a href="https://smithery.ai/server/docsor1212/aesthete-agent-mcp">Smithery</a></span>
+        <span class="note l-zh">来自 PyPI 的 13 个工具，任何 MCP 客户端 · 或经 <a href="https://smithery.ai/server/docsor1212/aesthete-agent-mcp">Smithery</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="https://github.com/docsor1212/aesthete-agent">GitHub</a>
+      <a href="https://pypi.org/project/aesthete-agent-mcp/">PyPI</a>
+      <a href="https://smithery.ai/server/docsor1212/aesthete-agent-mcp">Smithery</a>
+      <a href="https://skillhub.cn/skills/aesthete-agent">SkillHub</a>
+      <a href="docs.html">技术文档</a>
+      <a href="https://docsor.cn/">docsor.cn</a>
+    </nav>
+    <span class="fine l-en">This page is itself rendered by the engine — one of its samples.</span>
+    <span class="fine l-zh">本页本身就是引擎的产出之一——它自己的样张。</span>
+  </div>
+</footer>
+
+</body>
+</html>

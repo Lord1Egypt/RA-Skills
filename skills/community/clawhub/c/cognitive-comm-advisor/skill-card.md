@@ -1,47 +1,59 @@
-## Description: <br>
-Communication, collaboration, and negotiation strategy advisor using Jungian cognitive functions for workplace conversations, messages, feedback, disagreements, negotiation, stakeholder alignment, and collaboration dynamics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides workplace communication, collaboration, and negotiation advice using Jungian cognitive-function heuristics and accepts MBTI shorthand or function-stack inputs.
 
-## Publisher: <br>
-[novac42code](https://clawhub.ai/user/novac42code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[novac42code](https://clawhub.ai/user/novac42code)
 
-## Use Case: <br>
-Employees and workplace collaborators use this skill to prepare for difficult conversations, write targeted messages, estimate communication preferences, and adapt collaboration tactics using cognitive-function heuristics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personality-style heuristics may be mistaken for reliable facts about a coworker. <br>
-Mitigation: Treat type estimates as tentative communication hypotheses and review advice before using it. <br>
-Risk: Suggested wording could be used to label, pressure, or manipulate people. <br>
-Mitigation: Use the guidance for respectful communication only; do not infer mental states or manipulate coworkers. <br>
-Risk: The skill is not appropriate for employment, performance, or disciplinary decisions. <br>
-Mitigation: Do not use its outputs for hiring, promotion, performance review, or disciplinary actions. <br>
+## Use Case:
 
+Employees and workplace professionals use this skill to prepare messages, meetings, feedback, negotiations, stakeholder alignment, and difficult conversations with another person. It uses cognitive-function heuristics as a planning aid rather than a psychological assessment.
 
-## Reference(s): <br>
-- [Cognitive Functions Reference](references/cognitive-functions.md) <br>
-- [Localization Rules](references/localization.md) <br>
-- [Cognitive Function Self-Assessment](references/self-typing.md) <br>
-- [Diagnosing Cognitive Preferences](references/type-diagnosis.md) <br>
-- [User Mirror - Cognitive Function Portraits](references/user-mirror.md) <br>
-- [Workplace Scenarios Reference](references/workplace-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advice with numbered questions, concise analysis, and scenario-specific playbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 400-800 words unless the user asks for more; matches the user's input language when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Personality-type heuristics could be mistaken for a psychological assessment or used as a basis for judging coworkers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a planning aid for communication only, and keep the skill's heuristic disclaimer visible in user-facing advice.
+
+Risk: Low-confidence type estimates can lead to overconfident advice in sensitive workplace situations.
+
+Mitigation: Use the artifact's low-friction intake, confidence hedges, and scenario-first fallback when type signals are partial or uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/novac42code/skills/cognitive-comm-advisor)
+- [Cognitive functions reference](artifact/references/cognitive-functions.md)
+- [Localization rules](artifact/references/localization.md)
+- [Self-typing heuristic](artifact/references/self-typing.md)
+- [Type diagnosis heuristic](artifact/references/type-diagnosis.md)
+- [User mirror portraits](artifact/references/user-mirror.md)
+- [Workplace scenarios reference](artifact/references/workplace-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with numbered questions, tactical recommendations, examples, and optional conversation playbooks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically keeps advice to 400-800 words unless asked for more; may ask compact numbered intake questions first.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

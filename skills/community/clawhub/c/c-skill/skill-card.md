@@ -1,40 +1,54 @@
-## Description: <br>
-智能创建OpenClaw技能，提供技能发现、复用建议和自适应文件生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Skill helps OpenClaw users discover similar skills, consider reuse, and generate skill files through a guided creation flow.
 
-## Publisher: <br>
-[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to discover similar skills, decide whether to reuse or create a skill, and generate the files needed for a new OpenClaw skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill files or registry updates may not match the intended scope. <br>
-Mitigation: Review the generated SKILL.md and any registry update before confirming changes. <br>
-Risk: Optional generated JS or shell scripts could introduce unsafe behavior if run without inspection. <br>
-Mitigation: Inspect generated scripts before execution and keep generated files scoped to the intended skill directory. <br>
+## Use Case:
 
+OpenClaw users and skill developers use this skill to create skill packages by searching for similar skills, collecting required metadata, and generating a SKILL.md-centered file structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/c-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional generated skill files and commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow scoped to OpenClaw skill creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated or updated skills can change future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed skill files and registry changes before approving them.
+
+Risk: Skill-discovery and reuse suggestions may miss relevant existing skills or recommend unnecessary new work.
+
+Mitigation: Confirm similar-skill search results and reuse decisions before generating files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/skills/c-skill)
+- [Publisher profile](https://clawhub.ai/user/yangjinghua0127)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML frontmatter examples and optional file-generation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose skill file and registry changes for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

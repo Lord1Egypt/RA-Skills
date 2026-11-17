@@ -1,43 +1,56 @@
-## Description: <br>
-Look up Apple device information from a serial number. Supports iPhones, iPads, Macs (MacBook, iMac, Mac mini, Mac Pro, Mac Studio), Apple Watch, Apple TV, and iPods. Use when a user provides an Apple serial number and wants to identify the device, check specs, manufacturing date/location, warranty status, or get detailed model information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up Apple device information from a serial number by combining local decoding for older serials with guided web lookup steps for fuller model, specification, and coverage details.
 
-## Publisher: <br>
-[siatrial](https://clawhub.ai/user/siatrial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[siatrial](https://clawhub.ai/user/siatrial)
 
-## Use Case: <br>
-External users, support staff, and device technicians use this skill to identify Apple hardware from a serial number, decode older serial formats, and find model, manufacturing, specification, or warranty lookup guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apple serial numbers can be sensitive device identifiers and may be shared with external lookup sources during web-based enrichment. <br>
-Mitigation: Only perform web lookups when the user is comfortable sharing the serial number with the selected source, and prefer official Apple Check Coverage for warranty checks. <br>
-Risk: Older model-code mappings and third-party specification databases may be incomplete or inaccurate for some regional variants or undocumented codes. <br>
-Mitigation: Present uncertain matches as approximate and cross-check important model or warranty conclusions against Apple Check Coverage or another authoritative source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple Serial Number Formats](references/serial-format.md) <br>
-- [Apple Model Code Mappings](references/model-codes.md) <br>
-- [EveryMac Ultimate Mac Lookup](https://everymac.com/ultimate-mac-lookup/?search_keywords=SERIAL) <br>
-- [Apple Check Coverage](https://checkcoverage.apple.com/) <br>
-- [Beetstech Apple Device Lookup](https://beetstech.com/apple-device-lookup) <br>
+## Use Case:
 
+External users, developers, and support workflows can use this skill when an Apple serial number needs to be identified, decoded, or checked against Apple and device-specification lookup sources. It is most useful for finding device family, model details, manufacturing data for older serials, warranty direction, and next-step lookup guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional JSON output from the bundled decoder script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local serial decode results, model/specification notes, and links or instructions for external warranty and specification lookup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Web lookup steps may disclose a full Apple serial number to search engines or third-party lookup sites.
+
+Mitigation: Prefer the bundled local decoder first, and obtain explicit user approval before submitting the full serial number to external services.
+
+Risk: Older serial decoding and model-code mappings are incomplete and may not identify every device or configuration.
+
+Mitigation: Treat local decode results as preliminary and verify unknown, randomized, or high-impact results with Apple Check Coverage or a trusted specification source.
+
+## Reference(s):
+
+- [Serial format and encoding](references/serial-format.md)
+- [Model code database](references/model-codes.md)
+- [EveryMac Ultimate Mac Lookup](https://everymac.com/ultimate-mac-lookup/?search_keywords=SERIAL)
+- [Apple Check Coverage](https://checkcoverage.apple.com/)
+- [Beetstech Apple Device Lookup](https://beetstech.com/apple-device-lookup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional JSON decoder output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally decoded manufacturing data, model-code matches, web lookup findings, and guidance for randomized or unknown serials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

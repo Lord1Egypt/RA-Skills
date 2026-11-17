@@ -1,42 +1,54 @@
-## Description: <br>
-AI Trend Monitor watches AI-related signals across GitHub, Reddit, Twitter/X, Xiaohongshu, and news sources, then sends major-news alerts and scheduled Feishu summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors AI trend signals across GitHub, Reddit, Twitter/X, Xiaohongshu, and news sources, then produces major-news alerts and scheduled Feishu summaries.
 
-## Publisher: <br>
-[wuyuyang001-oss](https://clawhub.ai/user/wuyuyang001-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wuyuyang001-oss](https://clawhub.ai/user/wuyuyang001-oss)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor AI market and technical trends, push important updates quickly, and send scheduled digest cards to Feishu channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configured Feishu webhooks can receive automated summaries and alerts. <br>
-Mitigation: Use dedicated webhook URLs, keep them private, and rotate them if exposed. <br>
-Risk: Realtime and cron modes can create recurring posts. <br>
-Mitigation: Enable realtime or scheduled execution only for channels that should receive repeated AI trend updates. <br>
-Risk: The skill depends on configured search behavior and source results for trend quality. <br>
-Mitigation: Review source links and verify important claims before acting on market or technical summaries. <br>
+## Use Case:
 
+Developers, operators, and market research teams can use this skill to monitor AI market and technical trends, detect major AI news by configurable criteria, and send real-time or scheduled Feishu notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuyuyang001-oss/ai-trend-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Feishu interactive card JSON, console text, and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports realtime, once, and scheduled run modes with Feishu webhook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/SKILL.md) <br>
+Risk: Feishu webhook URLs can notify unintended recipients if they are misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm every webhook URL before installation and keep webhook secrets scoped to the intended Feishu recipients.
+
+Risk: The current artifact behaves like a prototype: it uses mock search data, and only the scheduled summary path performs an actual webhook POST.
+
+Mitigation: Validate the intended run mode before relying on alerts, and replace mock search data with the intended search API before production monitoring.
+
+## Reference(s):
+
+- [Skill documentation](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/wuyuyang001-oss/skills/ai-trend-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Feishu interactive card JSON, Markdown-style notification text, and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled summaries can be sent through Feishu webhooks; real-time major-news mode logs notification text in the current artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Chinese Memory Optimizer helps OpenClaw and Ollama users diagnose FTS5 Chinese tokenization issues, tune memory search settings, and maintain memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw + Ollama 中文记忆系统优化。诊断 FTS5 unicode61 中文分词 bug，优化搜索参数，自动维护记忆文件。命中率从 55% 提升到 100%。
 
-## Publisher: <br>
-[abczsl520](https://clawhub.ai/user/abczsl520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abczsl520](https://clawhub.ai/user/abczsl520)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to diagnose Chinese memory-search failures, apply search and compaction configuration changes, add tags, compress logs, clean noisy memory files, and rebuild memory indexes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change OpenClaw memory behavior and rewrite, compress, archive, or delete memory files. <br>
-Mitigation: Run diagnosis first, back up ~/.openclaw, use dry-run modes for tagging and compression, and review exact paths and configuration changes before applying them. <br>
-Risk: Scheduled maintenance can repeatedly modify memory files without close review. <br>
-Mitigation: Avoid cron maintenance unless backups, logs, and a rollback plan are in place. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abczsl520/memory-cn) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose Chinese memory-search issues, tune memory search settings, add tags, compress old logs, clean noisy memory files, and rebuild memory indexes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and scripts may read or modify OpenClaw memory files; review targets and use dry-run or backup options before applying changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can rewrite, compress, delete, and reconfigure persistent OpenClaw memory files.
+
+Mitigation: Run dry-run modes first, create independent backups of memory directories, and inspect results before relying on modified or archived logs.
+
+Risk: Memory directories writable by other users could expose maintenance scripts to untrusted files.
+
+Mitigation: Run the skill only on memory directories with trusted ownership and permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abczsl520/skills/memory-cn)
+- [Publisher profile](https://clawhub.ai/user/abczsl520)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces diagnostic recommendations and may run scripts that inspect, rewrite, compress, delete, or reindex persistent OpenClaw memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

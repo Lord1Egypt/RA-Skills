@@ -1,0 +1,114 @@
+/* ================================================================
+   html-slides 品牌预设:Linear 风(brand-linear)
+   深色精密工程风 —— 适用技术发布/开发者向(深态原生)
+   色值来源:VoltAgent/awesome-design-md, MIT(品牌名仅描述风格灵感,与品牌方无关)
+   用法:复制本文件覆盖项目 assets/theme.css(变量名与默认完全一致)
+   ================================================================ */
+
+:root {
+  /* 主色:品牌靛蓝系 */
+  --brand-primary: #5E6AD2;         /* Brand Indigo */
+  --lenovo-red: var(--brand-primary);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-primary-dark: #4552A8;    /* 推导:同色相明度 -12% */
+  --lenovo-red-dark: var(--brand-primary-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark: #08090A;          /* Marketing Black(深态原生) */
+  --deep-navy: var(--brand-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark-soft: #191A1B;    /* Level 3 Surface */
+  --deep-navy-light: var(--brand-dark-soft);   /* 别名(向后兼容,169 处历史引用) */
+  --charcoal: #1A1A1A;
+  --charcoal-soft: #2C2C2C;
+
+  /* 白+灰系(官方 light mode 承载) */
+  --white: #FFFFFF;
+  --off-white: #F7F8F8;          /* Light Background */
+  --card-bg: #F3F4F5;            /* Light Surface */
+  --text-primary: #1D1F23;       /* 近黑(冷调) */
+  --text-secondary: #62666D;     /* Quaternary Text */
+  --text-tertiary: #8A8F98;      /* Tertiary Text */
+  --border-light: #E6E6E6;       /* Light Border Alt */
+  --border-medium: #D0D6E0;      /* Light Border */
+
+  /* 深色底上的浅色文字 */
+  --on-navy-text: #F7F8F8;       /* Primary Text(近白,防眼疲劳) */
+  --on-navy-sub: #D0D6E0;        /* Secondary Text */
+  --on-navy-dim: #8A8F98;        /* Tertiary Text */
+
+  /* 代码块 */
+  --code-bg: #0F1419;
+  --code-text: #E8E8E8;
+  --code-highlight: #FFD966;
+  --code-comment: #7A8B99;
+
+  /* 信号色(跨预设一致) */
+  --signal-green: #00A651;
+  --signal-yellow: #F9A825;
+  --signal-blue: #1976D2;
+  --signal-red: #E2232A;
+  --signal-gray: #757575;
+
+  /* 强调:Accent Violet(交互紫) */
+  --accent-orange: #7170FF;
+  /* ── 色板梯级(第九轮 P1 自动生成:tools/gen-ladder.js;勿手改值)────── */
+  --brand-primary-soft: #E4E6F7;      /* --brand-primary @17% · 主色浅底:徽章/高亮格/热力中档 */
+  --brand-primary-pale: #F2F3FB;      /* --brand-primary @8% · 主色最浅底:提示条/斑马纹 */
+  --brand-dark-pale: #EBEBEB;         /* --brand-dark @8% · 深底浅化:卡片浅底/浅色分区 */
+  --brand-dark-tint: #C9C9C9;         /* --brand-dark @22% · 深底中浅:表头底纹/分层底 */
+  --brand-dark-mid: #777878;          /* --brand-dark @55% · 深底中间层:金字塔/漏斗中段 */
+  --ink-soft: #616265;                /* --text-primary @70% · 中性深灰:次级文字/较重分隔线 */
+  --ink-faint: #8E8F91;               /* --text-primary @50% · 中性中灰:弱化文字/网格线 */
+  --surface-sunken: #F6F6F6;          /* --text-primary @4% · 下沉面:浅灰面板底(区别于画布底) */
+  --signal-green-soft: #D6F1E3;       /* --signal-green @16% · 语义浅底:达成/正向格 */
+  --signal-yellow-soft: #FEF1DC;      /* --signal-yellow @16% · 语义浅底:预警/中档格 */
+  --signal-red-soft: #FADCDD;         /* --signal-red @16% · 语义浅底:风险/未达格 */
+  --signal-blue-soft: #DAE9F8;        /* --signal-blue @16% · 语义浅底:信息/参照格 */
+  /* ── 色板梯级结束 ── */
+
+
+  /* 字体 */
+  --font-cn: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-en: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* ── 版面分区与间距(2026-08-02 设计总纲;与默认 theme.css 保持一致) ── */
+  --zone-header-top: 60px;
+  --zone-content-top: 320px;
+  --zone-content-bottom: 940px;
+  --zone-footer-top: 980px;
+  --page-margin: 100px;
+  --content-width: 1720px;
+  --space-block: 60px;
+  --space-item: 40px;
+  --space-item-tight: 24px;
+
+  /* ── 字号阶(演讲档基准;混合/阅读档按 design-principles.md 字号阶等比) ── */
+  --text-cover: 104px;
+  --text-title-page: 60px;
+  --text-title-block: 32px;
+  --text-body: 24px;
+  --text-note: 16px;
+  --text-floor: 14px;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { margin: 0; padding: 0; overflow: hidden; }
+
+body {
+  font-family: var(--font-cn);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 画布:转换器只认 1920x1080 + relative + hidden */
+.slide-container {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--off-white);
+  font-family: var(--font-cn);
+}
+
+/* 数字/西文用 Inter(表格数字、页码等,可加 class="num") */
+.num { font-family: var(--font-en); font-feature-settings: "tnum"; }

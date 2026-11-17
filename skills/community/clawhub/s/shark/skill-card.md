@@ -1,41 +1,59 @@
-## Description: <br>
-Enables non-blocking AI agent execution by spawning parallel remora subagents for slow tasks, keeping the main agent responsive and efficient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables non-blocking AI agent execution by spawning parallel subagents for slow tasks, keeping the main agent responsive and efficient.
 
-## Publisher: <br>
-[keugenek](https://clawhub.ai/user/keugenek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keugenek](https://clawhub.ai/user/keugenek)
 
-## Use Case: <br>
-Developers and agent operators use Shark to structure coding-agent work so slow operations run in parallel while the main agent continues reasoning, then aggregates results with timeouts and partial-failure reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage broad parallel or background execution authority for slow work. <br>
-Mitigation: Use it only when parallel background execution is intended, and approve shell, SSH, Docker, CI, or filesystem-changing commands before launch. <br>
-Risk: The loop command includes behavior that may bypass normal Claude permission checks. <br>
-Mitigation: Avoid /shark-loop in sensitive repositories unless the permission-bypass flag is removed or the task runs in a disposable sandbox. <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure long-running coding or research work around bounded turns, parallel subagents, progress reporting, and final result aggregation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/keugenek/shark) <br>
-- [Project Homepage](https://github.com/keugenek/shark-pattern) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce status summaries, timing recommendations, cleanup reports, and task-completion notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill enables broad background execution, long shell commands, and recurring pollers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, review spawned commands, and run the skill in a sandboxed environment.
+
+Risk: The bundled shark.sh can invoke Claude with permission bypass.
+
+Mitigation: Avoid shark.sh unless the bypass flag is removed or the script is isolated in a sandbox.
+
+Risk: State files and logs may contain task details, command output, or secrets.
+
+Mitigation: Keep state files private and do not use the skill with commands or logs that may contain secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keugenek/skills/shark)
+- [Project homepage](https://github.com/keugenek/shark-pattern)
+- [Publisher profile](https://clawhub.ai/user/keugenek)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce progress summaries, timeout recommendations, background job status, and cleanup reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

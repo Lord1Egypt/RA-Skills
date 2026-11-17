@@ -1,42 +1,49 @@
-## Description: <br>
-Install and configure the Owletto memory plugin for OpenClaw, including OAuth login and MCP health verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the Owletto memory plugin for OpenClaw, including OAuth login and MCP health verification.
 
-## Publisher: <br>
-[buremba](https://clawhub.ai/user/buremba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buremba](https://clawhub.ai/user/buremba)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install the Owletto memory plugin, authenticate with Owletto, configure the MCP endpoint, and verify connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth login grants account access to Owletto. <br>
-Mitigation: Confirm the user trusts the Owletto plugin package and understands how access can be revoked before logging in. <br>
-Risk: A wrong or untrusted MCP URL could connect OpenClaw to the wrong workspace or service. <br>
-Mitigation: Verify the MCP URL points to the intended workspace before running login, configuration, or health-check commands. <br>
-Risk: Long-term memory can retain sensitive information. <br>
-Mitigation: Review how Owletto stores, uses, deletes, and revokes access to memories before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up Owletto long-term memory, choose an MCP endpoint, complete OAuth login, and verify connectivity.
 
-## Reference(s): <br>
-- [Owletto OpenClaw Setup release page](https://clawhub.ai/buremba/owletto-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes OAuth login, MCP endpoint selection, plugin installation, and health-check commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release evidence) <br>
+Risk: Installing and configuring a third-party Owletto/OpenClaw plugin requires trusting the Owletto package source and selected MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Owletto package source and version before installation, and use a local or trusted MCP endpoint when memory data should not be sent to a cloud service.
+
+## Reference(s):
+
+- [Owletto OpenClaw Setup on ClawHub](https://clawhub.ai/buremba/skills/owletto-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

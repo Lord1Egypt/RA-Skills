@@ -1,0 +1,279 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-ncbi-bookshelf",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:32.793Z",
+  "entry": {
+    "url": "https://www.ncbi.nlm.nih.gov/books/",
+    "final_url": "https://www.ncbi.nlm.nih.gov/books/",
+    "title": "Home - Books - NCBI",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:32.793Z",
+    "identity": {
+      "declared_name": "NCBI Bookshelf",
+      "hostname": "www.ncbi.nlm.nih.gov",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Advanced",
+        "href": "https://www.ncbi.nlm.nih.gov/books/advanced",
+        "target": ""
+      },
+      {
+        "text": "Help",
+        "href": "https://www.ncbi.nlm.nih.gov/books/NBK3833",
+        "target": "ncbihelp"
+      },
+      {
+        "text": "World Cancer Report: Cancer research for cancer prevention.",
+        "href": "https://www.ncbi.nlm.nih.gov/books/NBK606505",
+        "target": ""
+      },
+      {
+        "text": "Help",
+        "href": "https://support.nlm.nih.gov/?pagename=entrez%3Abooks%3Ahome%3ANONE",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Here's how you know",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.ncbi.nlm.nih.gov/books",
+      "locator": {
+        "role": "button",
+        "name": "Here's how you know",
+        "exact": true
+      },
+      "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+      "observed_at": "2026-10-09T09:05:32.382Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "Search database",
+      "label": "Search database",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "database",
+      "css": "#database",
+      "role": null,
+      "form_action": "https://www.ncbi.nlm.nih.gov/books",
+      "locator": {
+        "css": "#database"
+      },
+      "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+      "observed_at": "2026-10-09T09:05:32.382Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Search term",
+      "label": "Search term",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "term",
+      "id": "term",
+      "css": "#term",
+      "role": "textbox",
+      "form_action": "https://www.ncbi.nlm.nih.gov/books",
+      "locator": {
+        "css": "#term"
+      },
+      "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+      "observed_at": "2026-10-09T09:05:32.382Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "Search",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "search",
+      "css": "#search",
+      "role": null,
+      "form_action": "https://www.ncbi.nlm.nih.gov/books",
+      "locator": {
+        "css": "#search"
+      },
+      "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+      "observed_at": "2026-10-09T09:05:32.382Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-ncbi-bookshelf:record-lookup",
+      "source_id": "quiz-ncbi-bookshelf",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.ncbi.nlm.nih.gov/books/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Here's how you know",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.ncbi.nlm.nih.gov/books",
+          "locator": {
+            "role": "button",
+            "name": "Here's how you know",
+            "exact": true
+          },
+          "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+          "observed_at": "2026-10-09T09:05:32.382Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "Search database",
+          "label": "Search database",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "database",
+          "css": "#database",
+          "role": null,
+          "form_action": "https://www.ncbi.nlm.nih.gov/books",
+          "locator": {
+            "css": "#database"
+          },
+          "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+          "observed_at": "2026-10-09T09:05:32.382Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Search term",
+          "label": "Search term",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "term",
+          "id": "term",
+          "css": "#term",
+          "role": "textbox",
+          "form_action": "https://www.ncbi.nlm.nih.gov/books",
+          "locator": {
+            "css": "#term"
+          },
+          "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+          "observed_at": "2026-10-09T09:05:32.382Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Search",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "search",
+          "css": "#search",
+          "role": null,
+          "form_action": "https://www.ncbi.nlm.nih.gov/books",
+          "locator": {
+            "css": "#search"
+          },
+          "observed_url": "https://www.ncbi.nlm.nih.gov/books/",
+          "observed_at": "2026-10-09T09:05:32.382Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-078"
+    ],
+    "example_ids": [
+      "PT1-Q18",
+      "KH-Q084"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:32.793Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-ncbi-bookshelf-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-ncbi-bookshelf-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,46 +1,64 @@
-## Description: <br>
-Finds hotels that welcome pets, including pet policies, nearby parks, pet-friendly room options, and related travel services powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pet Hotel helps agents find pet-friendly hotel options with pet policies, nearby walking areas, room choices, and booking links using FlyAI/Fliggy CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to search for pet-friendly lodging, collect required trip parameters, run flyai hotel-search commands, and return bookable hotel options with current details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs installation and use of a global npm CLI dependency. <br>
-Mitigation: Vet @fly-ai/flyai-cli before installation and prefer a managed or isolated environment for execution. <br>
-Risk: Booking-link travel results can influence purchases or reservations. <br>
-Mitigation: Require user review and confirmation before any purchase, booking, or external checkout step. <br>
-Risk: The runbook describes local logging of raw travel queries when file writes are available. <br>
-Mitigation: Disable, remove, or sanitize execution logging unless local retention of travel queries is intended. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to search for pet-friendly stays, compare hotel options, and return booking-link-backed Markdown results from current FlyAI CLI data.
 
-## Reference(s): <br>
-- [ClawHub Pet Hotel release page](https://clawhub.ai/xiejinsong/pet-hotel) <br>
-- [Parameter and output templates](artifact/references/templates.md) <br>
-- [Pet-hotel playbooks](artifact/references/playbooks.md) <br>
-- [Hotel fallback guidance](artifact/references/fallbacks.md) <br>
-- [Execution log schema](artifact/references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results and should include booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata; artifact frontmatter is 3.2.0) <br>
+Risk: The skill depends on a globally installed FlyAI CLI and its package supply chain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted, pinned CLI version after user approval and run it in a restricted environment.
+
+Risk: User travel details may be incorporated into shell commands.
+
+Mitigation: Use safe argument-based CLI execution and validate destination, date, price, and keyword values before execution.
+
+Risk: Raw query logging may retain sensitive travel details.
+
+Mitigation: Disable or remove persistent raw-query logging and avoid storing personal or sensitive itinerary data.
+
+Risk: Booking links may send users to unvalidated destinations.
+
+Mitigation: Validate booking-link domains before presenting links to users.
+
+## Reference(s):
+
+- [Parameter and output templates](references/templates.md)
+- [Pet hotel playbooks](references/playbooks.md)
+- [Hotel fallback guidance](references/fallbacks.md)
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/pet-hotel)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables with booking links and inline shell commands for setup or troubleshooting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to include FlyAI-sourced hotel details, prices, and booking links when available.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata; artifact frontmatter lists 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

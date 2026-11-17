@@ -1,44 +1,61 @@
-## Description: <br>
-Soccer Lottery helps agents fetch soccer match data, analyze historical head-to-head results, and generate Markdown match-analysis reports with betting-style recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soccer Lottery helps agents fetch football match data, analyze head-to-head history and basic statistics, and produce Markdown pre-match analysis with recommendations and risk notes.
 
-## Publisher: <br>
-[veezvg](https://clawhub.ai/user/veezvg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veezvg](https://clawhub.ai/user/veezvg)
 
-## Use Case: <br>
-External users and agents use this skill to collect Football-Data.org match data, run H2H-based analysis, and prepare Markdown reports for soccer match review. It is suited for informational pre-match analysis, not definitive betting advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive API keys could be exposed if users paste tokens into chat or prompts. <br>
-Mitigation: Configure API keys locally or through a platform secret manager, and avoid sharing tokens in conversations. <br>
-Risk: Betting recommendations may overstate confidence because current odds, injury, and broader recent-form integrations are incomplete. <br>
-Mitigation: Treat outputs as informational analysis, review the data sources and assumptions, and avoid relying on the recommendations as financial advice. <br>
-Risk: Unpinned Python dependencies can change behavior or introduce supply-chain risk over time. <br>
-Mitigation: Pin and review dependencies before running the skill in a managed environment. <br>
+## Use Case:
 
+External users and developers use this skill to configure a football-data API source, retrieve match and head-to-head data, and generate Markdown football match analysis. It should be treated as decision support rather than a complete odds or injury-aware betting model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veezvg/veezvg-soccer-lottery) <br>
-- [Football-Data.org](https://www.football-data.org/) <br>
-- [Football-Data.org matches API](https://api.football-data.org/v4/matches) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON match data, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a locally configured Football-Data.org API key; odds and injury integrations are incomplete unless additional data sources are added.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: API keys may be exposed if users paste credentials into chat while configuring the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure keys through a secure secret store, environment variable, or careful local edit instead of sharing them in chat.
+
+Risk: Betting recommendations may be misleading because included behavior is limited and does not fully implement odds or injury-aware prediction.
+
+Mitigation: Treat outputs as limited head-to-head heuristics and verify odds, injuries, and current match context before acting on recommendations.
+
+Risk: Runtime dependencies and live API calls add supply-chain and data-source risk.
+
+Mitigation: Pin and audit dependencies before use, and review live data-source behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veezvg/skills/veezvg-soccer-lottery)
+- [veezvg publisher profile](https://clawhub.ai/user/veezvg)
+- [Football-Data.org](https://www.football-data.org/)
+- [Football-Data matches API endpoint](https://api.football-data.org/v4/matches)
+- [Football-Data head-to-head API endpoint](https://api.football-data.org/v4/matches/{match_id}/head2head)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON command output with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured football-data API key for live match data; odds and injury data require additional integration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

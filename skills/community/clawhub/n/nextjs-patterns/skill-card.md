@@ -1,41 +1,56 @@
-## Description: <br>
-Apply Next.js 15 best practices and modern patterns, including App Router, Server Components, Server Actions, caching strategies, performance optimization, and production-readiness review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply Next.js 15 best practices and modern patterns for App Router, Server Components, Server Actions, caching, performance, routing, and migration work.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or review Next.js 15 applications for idiomatic App Router, Server Component, Server Action, caching, routing, migration, and performance patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example npm/npx commands, placeholder URLs, or environment variables could be unsuitable for a real project if copied without review. <br>
-Mitigation: Review commands and replace placeholder URLs or environment variables with project-specific values before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill when building, reviewing, or migrating Next.js 15 applications so agents can suggest idiomatic App Router structure, caching choices, Server Component boundaries, Server Actions, route handlers, metadata, and performance checks.
 
-## Reference(s): <br>
-- [Next.js 15 Caching Deep Dive](references/caching-guide.md) <br>
-- [Next.js 15 Migration & Configuration Guide](references/migration-config.md) <br>
-- [Next.js 15 Routing Patterns](references/routing-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/goldath/nextjs-patterns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and bash examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; examples may contain placeholder URLs and environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Migration guidance includes mutable canary/latest package commands that may execute external code or change behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review versions of Next.js, React, React DOM, and @next/codemod; run codemods in a clean branch or disposable environment; inspect generated changes before merging.
+
+Risk: Generated Next.js code or configuration may not match an application's runtime, caching, authentication, or deployment requirements.
+
+Mitigation: Treat outputs as implementation guidance, then run the project's tests, build, linting, and security review before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/nextjs-patterns)
+- [Next.js 15 Caching Deep Dive](artifact/references/caching-guide.md)
+- [Next.js 15 Migration & Configuration Guide](artifact/references/migration-config.md)
+- [Next.js 15 Routing Patterns](artifact/references/routing-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before applying generated code or commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

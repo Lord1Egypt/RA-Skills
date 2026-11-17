@@ -1,40 +1,54 @@
-## Description: <br>
-Create, edit, and deploy reveal.js presentations as single HTML files with optional custom CSS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, and deploy reveal.js presentations as single HTML files with optional custom CSS.
 
-## Publisher: <br>
-[danielgrobelny](https://clawhub.ai/user/danielgrobelny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielgrobelny](https://clawhub.ai/user/danielgrobelny)
 
-## Use Case: <br>
-Developers, designers, educators, and other presentation authors use this skill to create web-based slide decks, pitch decks, and talks as static reveal.js HTML files with themes, fragments, speaker notes, custom styling, PDF export, and static-site deployment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks may expose private or confidential material if published without review. <br>
-Mitigation: Review generated slides before publishing, especially when they include sensitive content. <br>
-Risk: Default major-version CDN links may change over time or depend on third-party CDN availability. <br>
-Mitigation: For sensitive or long-lived decks, pin an exact reveal.js version or vendor reveal.js locally. <br>
+## Use Case:
 
+Developers, designers, and other presentation authors use this skill to create web-based slide decks, pitch decks, talks, and deployable reveal.js presentations as static HTML.
 
-## Reference(s): <br>
-- [reveal.js API Reference](references/revealjs-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code for single-file reveal.js presentations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static web presentation files that use reveal.js v5 via CDN by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: CDN-hosted reveal.js dependencies may be unsuitable for sensitive, offline, or long-lived hosted presentations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CDN dependency choice before deployment; pin exact reveal.js versions, add subresource integrity, or vendor reveal.js locally when needed.
+
+Risk: Generated decks may retain the template's default English HTML language attribute even when the presentation is not in English.
+
+Mitigation: Set the HTML lang attribute to match the deck language before publishing.
+
+## Reference(s):
+
+- [reveal.js API Reference](references/revealjs-api.md)
+- [ClawHub skill page](https://clawhub.ai/danielgrobelny/skills/revealjs-presentations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript snippets; generated deck output is a single static HTML file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses reveal.js v5 via CDN by default and can include custom CSS, plugins, speaker notes, fragments, backgrounds, and static deployment instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

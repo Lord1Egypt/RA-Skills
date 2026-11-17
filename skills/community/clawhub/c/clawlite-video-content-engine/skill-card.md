@@ -1,49 +1,64 @@
-## Description: <br>
-Converts third-party educational YouTube videos into ClawLite-compatible educational marketing content, including source summaries, beginner translations, short-form scripts, X threads, social posts, blog summaries, and soft CTA bridge content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts third-party educational YouTube videos into ClawLite-oriented educational marketing content packs, including summaries, short-video scripts, social posts, blog summaries, source notes, and reusable marketing assets.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Marketing and content teams use this skill to turn educational video sources into attributed, channel-ready ClawLite content packs. It is intended for commentary, education, summarization, beginner translation, and practical reframing rather than reposting source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing assets may overuse or insufficiently attribute third-party video material. <br>
-Mitigation: Credit the source creator and video, summarize and interpret instead of copying long transcript passages, and keep outputs in commentary or educational positioning. <br>
-Risk: NotebookLM UI automation can target the wrong input or proceed before the source is actually added. <br>
-Mitigation: Use a screenshot-first workflow, verify the exact input field before typing, and confirm source creation before generating downstream content. <br>
-Risk: Users may provide unnecessary sensitive data while running a content workflow. <br>
-Mitigation: Review requested permissions and avoid providing secrets or sensitive data unless the task clearly requires them. <br>
+## Use Case:
 
+External creators, marketers, and agent users can use this skill to turn a source video into a compliant ClawLite content pack with attribution, beginner framing, channel-specific drafts, and reusable marketing notes.
 
-## Reference(s): <br>
-- [Angle Framework](references/angle-framework.md) <br>
-- [Asset Promotion Guide](references/asset-promotion-guide.md) <br>
-- [Compliance and Positioning](references/compliance-and-positioning.md) <br>
-- [Content Pack Template](references/content-pack-template.md) <br>
-- [JK Marketing Asset Template](references/jk-marketing-asset-template.md) <br>
-- [NotebookLM Automation Guide](references/notebooklm-automation-guide.md) <br>
-- [Short Video Template](references/short-video-template.md) <br>
-- [Source Note Template](references/source-note-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown content pack with optional JSON metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized into reusable source notes, marketing assets, short video scripts, social posts, blog summaries, and metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Third-party video, transcript, or notes may be uploaded to NotebookLM during ingestion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the source material is allowed to be uploaded to NotebookLM before using that optional ingestion path.
+
+Risk: Reusable CTA, positioning, hook, or proof text may persist in video-content/ or marketing-assets/ and shape future marketing outputs.
+
+Mitigation: Review generated folders and promoted marketing assets before reuse or publication.
+
+Risk: Draft marketing content could over-copy, overstate endorsement, or reuse source material beyond commentary and educational framing.
+
+Mitigation: Apply the compliance guidance: credit the source creator, add original explanation, avoid long transcript reuse, and keep ClawLite bridges soft.
+
+## Reference(s):
+
+- [Angle Framework](artifact/references/angle-framework.md)
+- [Asset Promotion Guide](artifact/references/asset-promotion-guide.md)
+- [Compliance and Positioning](artifact/references/compliance-and-positioning.md)
+- [Content Pack Template](artifact/references/content-pack-template.md)
+- [JK Marketing Asset Template](artifact/references/jk-marketing-asset-template.md)
+- [NotebookLM Automation Guide](artifact/references/notebooklm-automation-guide.md)
+- [Short Video Template](artifact/references/short-video-template.md)
+- [Source Note Template](artifact/references/source-note-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown files plus metadata JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reusable, auditable outputs under video-content/<videoId>/ and may promote reusable notes into marketing-assets categories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

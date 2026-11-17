@@ -1,26 +1,14 @@
 {
-  "name": "aivideo-api-executor",
-  "displayName": "AIVideoMaker API Executor",
-  "version": "1.0.14",
+  "name": "ai-video-maker",
+  "displayName": "AI Video Maker",
+  "version": "2.1.0",
   "entry": "SKILL.md",
-  "language": [
-    "en"
-  ],
-  "tags": [
-    "api",
-    "video-generation",
-    "workflow",
-    "automation"
-  ],
+  "language": ["en"],
+  "tags": ["api", "video-generation", "workflow", "automation"],
   "requirements": {
     "env_vars": {
-      "required": [
-        "AIVIDEO_API_KEY"
-      ],
-      "optional": [
-        "AIVIDEO_TIMEOUT_MS",
-        "AIVIDEO_MAX_RETRIES"
-      ]
+      "required": ["AIVIDEO_API_KEY"],
+      "optional": ["AIVIDEO_TIMEOUT_MS", "AIVIDEO_MAX_RETRIES", "AIVIDEO_AGENT_PLATFORM"]
     },
     "binaries": ["node"],
     "primaryCredential": "AIVIDEO_API_KEY",
@@ -40,17 +28,24 @@
         "name": "AIVIDEO_MAX_RETRIES",
         "required": false,
         "default": "3",
-        "description": "Max retries for idempotent read requests"
+        "description": "Max retries for requests protected by idempotency"
+      },
+      {
+        "name": "AIVIDEO_AGENT_PLATFORM",
+        "required": false,
+        "description": "Agent client name used for non-sensitive request attribution"
       }
     ]
   },
   "runtime": {
     "type": "node",
     "commands": [
-      "node scripts/run-workflow.mjs --model <model> --payload '<json_payload>'",
-      "node scripts/run-workflow.mjs --action getStatus --taskId <task_id>",
-      "node scripts/run-workflow.mjs --action getTask --taskId <task_id>",
-      "node scripts/run-workflow.mjs --action cancelTask --taskId <task_id>"
+      "node $SKILL_ROOT/scripts/run-workflow.mjs --action doctor",
+      "node $SKILL_ROOT/scripts/run-workflow.mjs --action quote --model <model> --payload '<json_payload>'",
+      "node $SKILL_ROOT/scripts/run-workflow.mjs --model <model> --maxCredits <approved_limit> --payload '<json_payload>'",
+      "node $SKILL_ROOT/scripts/run-workflow.mjs --action getStatus --taskId <task_id>",
+      "node $SKILL_ROOT/scripts/run-workflow.mjs --action getTask --taskId <task_id>",
+      "node $SKILL_ROOT/scripts/run-workflow.mjs --action cancelTask --taskId <task_id>"
     ]
   }
 }

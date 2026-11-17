@@ -1,46 +1,64 @@
-## Description: <br>
-Webhook Http Request helps agents make HTTP and HTTPS requests with standard methods, optional authentication, custom payloads, and structured response handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webhook Http Request lets agents make configurable HTTP requests to public web services and webhooks using standard methods, headers, query parameters, request bodies, authentication options, and response handling modes.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External developers and agent builders use this skill when an agent needs to call REST APIs, send webhooks, submit JSON or form data, fetch web resources, or poll external services through AgentPMT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables outbound HTTP requests that may send sensitive URLs, headers, request bodies, bearer tokens, API keys, or passwords. <br>
-Mitigation: Use the skill only for trusted HTTPS services, keep inputs scoped to the task, and avoid placing secrets in prompts or logs. <br>
-Risk: Private or loopback network access can increase exposure if enabled unnecessarily. <br>
-Mitigation: Keep allow_private disabled unless a specific trusted integration requires it. <br>
-Risk: A prompt that merely mentions a URL or request could trigger broader HTTP activity than intended. <br>
-Mitigation: Confirm the intended endpoint, method, authentication mode, and payload before making consequential requests. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent call REST APIs, submit webhook payloads, fetch web resources, and poll external services from AgentPMT workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/webhook-http-request) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/webhook-http-request) <br>
-- [Action Schema](schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, JSON, text] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines one request action with HTTP methods, authentication options, body formats, response modes, timeouts, and response size limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can send payloads and credentials to arbitrary endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every destination before use, keep request payloads minimal, and use least-privilege tokens or credentials.
+
+Risk: Private or loopback network requests can expose internal services when allow_private is enabled.
+
+Mitigation: Leave allow_private disabled unless private-network access is explicitly required and approved.
+
+Risk: PUT, PATCH, and DELETE requests can modify or remove external resources.
+
+Mitigation: Require user confirmation before state-changing requests and review the target URL, method, headers, and body.
+
+Risk: Live schema and instruction behavior can change how integrations are configured.
+
+Mitigation: Use pinned, reviewed setup instructions where possible and refresh live schema details before new production integrations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/webhook-http-request)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/webhook-http-request)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, base64, guidance]
+
+**Output Format:** [JSON object with HTTP status, headers, final URL, content type, and response body as JSON, text, or base64.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable HTTP methods, authentication modes, timeouts, response size limits, and private-network access only when explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

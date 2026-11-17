@@ -1,0 +1,52 @@
+{
+  "slides": 6,
+  "size": "1080x1350",
+  "ratio": "4:5",
+  "files": [
+    {
+      "path": "slide-01.jpg",
+      "bytes": 502333,
+      "type": "cover",
+      "alt": "Portada sobre una foto de la Tierra de la NASA: toda el agua de la Tierra en una botella de 1 litro. \u00bfCu\u00e1nta ser\u00eda de r\u00edo?",
+      "text": "\u00bfCu\u00e1nta ser\u00eda de r\u00edo? Toda el agua del planeta en 1 litro"
+    },
+    {
+      "path": "slide-02.jpg",
+      "bytes": 112155,
+      "type": "stat",
+      "alt": "Toda el agua de la Tierra en una botella de 1 litro: al vaciar los oc\u00e9anos quedan 35 ml. Fuente: USGS.",
+      "text": "35 ml es lo que queda de una botella de 1 litro con toda el agua de la Tierra al vaciar los oc\u00e9anos"
+    },
+    {
+      "path": "slide-03.jpg",
+      "bytes": 160360,
+      "type": "list",
+      "alt": "D\u00f3nde est\u00e1n esos 35 ml: casquetes y glaciares 17,4 ml, aguas subterr\u00e1neas 16,9 ml (m\u00e1s de la mitad salada), hielo del suelo y permafrost 0,22 ml, lagos 0,13 ml, suelo, aire, pantanos, r\u00edos y seres vivos 0,03 ml.",
+      "text": "D\u00f3nde est\u00e1n esos 35 ml Casquetes y glaciares: 17,4 ml Aguas subterr\u00e1neas: 16,9 ml, m\u00e1s de la mitad salada Hielo del suelo y permafrost: 0,22 ml Lagos: 0,13 ml Suelo, aire, pantanos, r\u00edos y seres vivos: 0,03 ml"
+    },
+    {
+      "path": "slide-04.jpg",
+      "bytes": 96471,
+      "type": "stat",
+      "alt": "25 ml de la botella son agua dulce: 17,4 ml son hielo y 7,6 ml est\u00e1n bajo tierra. Fuente: USGS.",
+      "text": "25 ml de la botella son agua dulce: 17,4 ml son hielo y 7,6 ml est\u00e1n bajo tierra"
+    },
+    {
+      "path": "slide-05.jpg",
+      "bytes": 104780,
+      "type": "stat",
+      "alt": "0,002 ml para todos los r\u00edos del planeta: menos de una d\u00e9cima de gota. Fuente: USGS.",
+      "text": "0,002 ml para todos los r\u00edos del planeta: menos de una d\u00e9cima de gota"
+    },
+    {
+      "path": "slide-06.jpg",
+      "bytes": 66795,
+      "type": "cta",
+      "alt": "Gu\u00e1rdalo para tu pr\u00f3ximo trivial.",
+      "text": "Gu\u00e1rdalo para tu pr\u00f3ximo trivial"
+    }
+  ],
+  "contactSheet": "contact-sheet.png",
+  "coverGrid": "cover-grid.png",
+  "warnings": []
+}

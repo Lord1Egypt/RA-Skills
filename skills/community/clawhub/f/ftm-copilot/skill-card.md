@@ -1,45 +1,55 @@
-## Description: <br>
-FTM Copilot provides IBM Financial Transaction Manager architecture, development, debugging, configuration, mapping, and code review guidance for payment integration work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert-level IBM Financial Transaction Manager (FTM) knowledge base and development assistant for architecture, development, debugging, configuration, and code review tasks.
 
-## Publisher: <br>
-[shoaibkhan](https://clawhub.ai/user/shoaibkhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shoaibkhan](https://clawhub.ai/user/shoaibkhan)
 
-## Use Case: <br>
-Developers and integration engineers use this skill to design, build, debug, configure, and review IBM FTM payment orchestration solutions across ACE, MQ, DB2, RSA, ITX/WTX, ISO 20022, SWIFT, FSMs, and BAR deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes database, broker, MQ, Docker, and deployment command examples that could affect production financial infrastructure if run against the wrong target. <br>
-Mitigation: Verify the target system, adapt commands to the local environment, and use normal production change controls before executing examples. <br>
+## Use Case:
 
+Developers, architects, and integration engineers use this skill for IBM FTM solution design, payment orchestration guidance, ACE/MQ/DB2 debugging, ISF mapping, FSM modeling, and implementation review.
 
-## Reference(s): <br>
-- [FTM Copilot on ClawHub](https://clawhub.ai/shoaibkhan/ftm-copilot) <br>
-- [Publisher profile](https://clawhub.ai/user/shoaibkhan) <br>
-- [Author GitHub profile](https://github.com/ShoaibKhan) <br>
-- [FTM Architecture Reference](references/architecture.md) <br>
-- [FTM Development Reference](references/development.md) <br>
-- [FSM Reference](references/fsm.md) <br>
-- [Mapping Reference](references/mapping.md) <br>
-- [FTM Patterns Reference](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include IBM FTM architecture notes, ESQL snippets, SQL queries, ACE/MQ/DB2 commands, FSM design guidance, and debugging checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The trigger wording may activate this skill for nearby enterprise integration topics such as ACE, DB2, MQ, SWIFT, or ISO 20022 when the task is not specifically about IBM FTM.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should keep prompts explicit when they want general enterprise integration help rather than IBM FTM-specific guidance.
+
+## Reference(s):
+
+- [FTM Architecture Reference](references/architecture.md)
+- [FTM Development Reference](references/development.md)
+- [FSM Reference](references/fsm.md)
+- [Mapping Reference](references/mapping.md)
+- [FTM Patterns Reference](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/shoaibkhan/skills/ftm-copilot)
+- [Publisher GitHub Profile](https://github.com/ShoaibKhan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks, SQL snippets, ESQL snippets, shell commands, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide IBM FTM-specific design, debugging, mapping, and configuration guidance; no hidden execution, persistence, or data access behavior is reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

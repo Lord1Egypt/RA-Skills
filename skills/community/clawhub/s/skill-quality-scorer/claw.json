@@ -1,0 +1,22 @@
+{
+  "name": "skill-quality-scorer",
+  "version": "1.1.9",
+  "tagline": "TRACE+ six-dimension deterministic scorer for Agent Skills / 技能质量评分器：T-R-F-S-I-E 六维 30 子项",
+  "description": "Deterministic TRACE+ quality scorer for Agent Skill packages (SKILL.md). Six dimensions T-R-F-S-I-E, 30 sub-items (0/1/2), merges TRACE, Extra08 good-skill reverse-rubric, skill-creator, and ClawHub meta-skills (skill-reviewer, skill-quality-audit). Runs static_audit.py v2 first; composite = round((T+R+F+S+I+E)×100/60, 1). 对现有 Skill 做 TRACE+ 全维确定性评分：先静态脚本、再 30 子项检查清单、公式算综合分，减少模型自由发挥。",
+  "category": "developer-tools",
+  "tags": [
+    "skill-audit",
+    "trace",
+    "quality-scoring",
+    "deterministic",
+    "agent-skills",
+    "meta-skill",
+    "chinese"
+  ],
+  "license": "MIT",
+  "author": "Chris1Wang3",
+  "pricing": "free",
+  "entry": "SKILL.md",
+  "support_url": "https://github.com/Chris1Wang3/HammerRoom-Skills/issues",
+  "homepage": "https://github.com/Chris1Wang3/HammerRoom-Skills/tree/master/skill-quality-scorer"
+}

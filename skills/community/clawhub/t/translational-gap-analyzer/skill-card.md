@@ -1,41 +1,57 @@
-## Description: <br>
-Assess translational gaps between preclinical models and human diseases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess translational gaps between preclinical models and human diseases.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, translational scientists, and developers use this skill to generate structured reports that compare preclinical model limitations against a target human disease and identify clinical translation risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated gap scores and recommendations could be mistaken for medical, regulatory, or clinical advice. <br>
-Mitigation: Treat outputs as research support and require qualified human review before using them for clinical, regulatory, or trial-design decisions. <br>
-Risk: The optional output path can write files in the local workspace. <br>
-Mitigation: Use explicit workspace output paths, avoid important existing files, and review generated files before relying on them. <br>
+## Use Case:
 
+External researchers and developers use this skill to generate structured translational-gap assessments for preclinical models, diseases, model comparisons, and focused biological domains.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/translational-gap-analyzer) <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown, JSON, or table-formatted translational-gap reports with CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include gap scores, risk levels, dimension-level concerns, clinical failure predictors, recommendations, and assumptions or unresolved inputs when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency installation instructions include unpinned requirements, which can introduce avoidable supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in an isolated environment, and avoid dependency installation unless the requirements are removed, pinned, or reviewed.
+
+Risk: The script can write reports to a user-supplied output path without enforcing a workspace boundary.
+
+Mitigation: Use --output only with a clearly workspace-local new file path and review the target path before execution.
+
+Risk: The skill produces scientific risk guidance that may affect research decisions if treated as authoritative.
+
+Mitigation: Treat generated assessments as decision-support summaries and require domain expert review before relying on results.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or plain-text table report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include model and disease inputs, gap scores, risk levels, dimension concerns, clinical failure predictors, and recommendations; output may be printed or written to a user-specified file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "name": "hithink-sector-selector",
+  "version": "1.0.1",
+  "description": "不知道该买哪个板块？用行业估值、资金流向、涨跌幅、板块类型几句话框住，它把符合条件的板块直接列出来。",
+  "license": "MIT",
+  "tags": [
+    "sector",
+    "stock",
+    "finance",
+    "板块",
+    "行业",
+    "同花顺",
+    "问财"
+  ]
+}

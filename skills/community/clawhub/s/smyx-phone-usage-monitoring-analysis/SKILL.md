@@ -1,7 +1,7 @@
 ---
 name: "phone_usage_monitoring_analysis"
 description: "Based on computer vision, automatically detects employees playing with phones during work hours, supports real-time video stream and image detection, counts the duration and frequency of phone usage, helps enterprises standardize office order, and improves work efficiency. | 职场玩手机智能监测技能，基于计算机视觉自动检测工作时间员工玩手机行为，支持视频流和图片实时检测，统计玩手机时长与频次，帮助企业规范办公秩序，提升工作效率"
-version: "1.0.6"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "mp-account-profile",
+      "name": "公众号资料",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-account-profile/accounts/profile",
+      "price": 0.03,
+      "params": [
+        "url",
+        "ghid"
+      ],
+      "purpose": "公众号名称/简介/原始ID",
+      "param_types": {
+        "url": "string",
+        "ghid": "string"
+      },
+      "product_slug": "wechat-native-account-profile"
+    },
+    {
+      "key": "mp-search-accounts",
+      "name": "搜一搜公众号",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-accounts/search/accounts",
+      "price": 0.08,
+      "params": [
+        "query",
+        "sort",
+        "cursor"
+      ],
+      "purpose": "按关键词找公众号",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string"
+      },
+      "product_slug": "wechat-native-search-accounts"
+    }
+  ]
+}

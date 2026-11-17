@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7ens3szygg6vr6h4q3pq9xbn82famd",
-  "slug": "multi-robot-skill",
+  "name": "multi-robot-skill",
   "version": "2.0.0",
-  "publishedAt": 1774429472081
+  "description": "多机器人协同控制 Skill，具备感知反馈、动态适配、并行调度多种机器人的能力。",
+  "author": "Alan1112223331",
+  "main": "skill.py",
+  "openclaw": {
+    "emoji": "🤖",
+    "requires": {
+      "python": ">=3.8",
+      "pip": ["requests>=2.28.0"]
+    }
+  }
 }

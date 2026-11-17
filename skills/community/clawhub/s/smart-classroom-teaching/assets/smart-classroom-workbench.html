@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 智慧课堂教学工作台</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel-2:#1c2129; --border:#2a3038;
+    --text:#e6edf3; --text-2:#9aa4b0; --text-3:#6b7480;
+    --teal:#5dcba5; --blue:#85b7eb; --amber:#fac775; --red:#f09595;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+  header{display:flex;align-items:center;gap:12px;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--panel)}
+  header .brand{font-size:15px;font-weight:500}
+  header .topic{font-size:13px;color:var(--text-2);background:var(--panel-2);padding:4px 12px;border-radius:20px;border:1px solid var(--border)}
+  .nav{display:flex;align-items:center;gap:6px;margin-left:auto}
+  .nav button{background:var(--panel-2);border:1px solid var(--border);color:var(--text-2);font-size:13px;width:28px;height:28px;border-radius:7px;cursor:pointer}
+  .nav button:hover{color:var(--text);border-color:var(--text-3)}
+  .nav button:disabled{opacity:.35;cursor:default}
+  .nav .step{font-size:12px;color:var(--text-3);min-width:44px;text-align:center}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal)}
+  main{flex:1;display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:0.6fr 1fr 1.4fr 1.4fr;gap:10px;padding:10px;min-height:0}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden}
+  .panel h3{font-size:12px;font-weight:500;color:var(--text-2);padding:9px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+  .panel h3::before{content:"";width:3px;height:12px;border-radius:2px;background:var(--teal)}
+  .panel .body{flex:1;padding:12px 14px;overflow:auto}
+  #board{grid-row:1/5}
+  #board .body{display:flex;align-items:center;justify-content:center;padding:0}
+  #board svg{width:100%;height:100%;max-height:100%}
+  .caption{font-size:12px;color:var(--text-3);text-align:center;padding:8px}
+  .formula{font-family:Georgia,"Times New Roman",serif;font-size:26px;text-align:center;color:var(--amber);padding:8px 0}
+  .formula small{display:block;font-size:12px;color:var(--text-3);font-family:inherit;margin-top:6px}
+  ul.mindmap{list-style:none}
+  ul.mindmap li{padding:5px 0 5px 16px;border-left:1px solid var(--border);margin-left:6px;font-size:13px}
+  ul.mindmap li.root{border-left:2px solid var(--blue);padding-left:14px;margin-left:0;font-weight:500;color:var(--blue)}
+  .log{font-size:12.5px;line-height:1.7;color:var(--text-2)}
+  .log b{color:var(--text)}
+  .tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:10px;margin-right:6px}
+  .tag.good{background:rgba(93,203,165,.15);color:var(--teal)}
+  .tag.warn{background:rgba(250,199,117,.15);color:var(--amber)}
+  .dialog{display:flex;flex-direction:column;gap:8px}
+  .msg{max-width:85%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5}
+  .msg.t{background:var(--panel-2);border:1px solid var(--border);align-self:flex-start;border-top-left-radius:3px}
+  .msg.t::before{content:"教师 ";color:var(--blue);font-size:11px}
+  .msg.s{background:rgba(93,203,165,.12);border:1px solid rgba(93,203,165,.3);align-self:flex-end;border-top-right-radius:3px}
+  .msg.s::before{content:"学生 ";color:var(--teal);font-size:11px}
+  .timeline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 20px;border-top:1px solid var(--border);background:var(--panel);overflow-x:auto}
+  .timeline .tl-label{font-size:11px;color:var(--text-3);white-space:nowrap}
+  .tl-node{min-width:30px;height:22px;border-radius:6px;border:1px solid var(--border);background:var(--panel-2);color:var(--text-2);font-size:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0 6px;white-space:nowrap}
+  .tl-node.active{background:rgba(93,203,165,.18);border-color:var(--teal);color:var(--teal)}
+  .bar{display:flex;gap:8px;padding:0 20px 10px}
+  .bar button{background:var(--panel-2);border:1px solid var(--border);color:var(--text-2);font-size:12px;padding:5px 13px;border-radius:8px;cursor:pointer}
+  .bar button:hover{color:var(--text);border-color:var(--text-3)}
+  .bar button.primary{color:var(--teal);border-color:var(--teal)}
+  .bar-label{font-size:11px;color:var(--text-3);white-space:nowrap;align-self:center;padding-right:2px}
+  .bar-sep{width:1px;height:16px;background:var(--border);align-self:center;margin:0 4px}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:100}
+  .modal-box{background:var(--panel);border:1px solid var(--border);border-radius:12px;width:380px;max-width:90%;padding:20px;display:flex;flex-direction:column;gap:14px}
+  .modal-title{font-size:15px;font-weight:500;color:var(--text)}
+  .modal-body{font-size:13px;color:var(--text-2);line-height:1.7;white-space:pre-line}
+  .modal-actions{display:flex;justify-content:flex-end;gap:8px}
+  .modal-actions button{background:var(--panel-2);border:1px solid var(--border);color:var(--text-2);font-size:13px;padding:7px 16px;border-radius:8px;cursor:pointer}
+  .modal-actions button.primary{color:var(--teal);border-color:var(--teal)}
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">AI 智慧课堂教学工作台</span>
+  <span class="topic" id="topic">使用指南 · 工作台快速上手</span>
+  <div class="nav">
+    <button onclick="back()" id="btnBack" title="上一步">‹</button>
+    <span class="step" id="step">1/1</span>
+    <button onclick="forward()" id="btnFwd" title="下一步">›</button>
+    <span class="dot"></span>
+  </div>
+</header>
+
+<main>
+  <section class="panel" id="board">
+    <h3>教学可视化</h3>
+    <div class="body" id="boardBody"></div>
+    <div class="caption" id="boardCaption"></div>
+  </section>
+  <section class="panel"><h3>公式区</h3><div class="body formula" id="formula"></div></section>
+  <section class="panel"><h3>思维导图</h3><div class="body" id="mindmap"></div></section>
+  <section class="panel"><h3>技能运行过程</h3><div class="body log" id="transcript"></div></section>
+  <section class="panel"><h3>思辨对话</h3><div class="body dialog" id="dialogue"></div></section>
+</main>
+
+<div class="timeline" id="timeline"><span class="tl-label">过程回溯：</span></div>
+<div class="bar" id="demos"></div>
+<div class="bar">
+  <button onclick="exportJSON()">导出回溯</button>
+  <button onclick="document.getElementById('fileInput').click()">导入回溯</button>
+  <button onclick="play()" id="btnPlay">播放复现</button>
+  <button onclick="pause()">暂停</button>
+  <button onclick="confirmReset()" style="color:#f09595;border-color:#f09595">一键重置</button>
+  <input type="file" id="fileInput" accept=".json" style="display:none" onchange="importJSON(this.files[0])">
+</div>
+
+<div id="modalOverlay" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">确认</div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-actions">
+      <button id="modalCancelBtn">取消</button>
+      <button id="modalOkBtn" class="primary">确定</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== 教学状态（对话输入驱动的唯一数据源） =====
+  const SCENES = {
+    guide: {
+      topic: "使用指南 · 工作台快速上手",
+      board: { type: "html", caption: "软硬解耦的 AI 教学工作台：5 面板 + 时间轴 + 按钮栏", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:10px">'+
+        '<div style="font-size:18px;color:#85b7eb">AI 教学工作台</div>'+
+        '<div style="font-size:12px;color:#9aa4b0;text-align:center;line-height:1.9">5 面板：可视化 · 公式 · 思维导图 · 运行过程 · 对话<br>时间轴：过程回溯　按钮：播放 / 导出 / 导入 / 重置</div>'+
+        '<div style="font-size:12px;color:#fac775">按下方「① 点场景卡片」开始体验</div></div>'
+      },
+      formula: { main: "怎么用？", note: "点场景 → 看面板 → 回溯 → 导出归档" },
+      mindmap: { root: "能力全景 · 快速上手", items: [
+        "软硬解耦：不依赖硬件/模型",
+        "身份自适应：学生/教师/演示",
+        "备课复用：导出→导入讲解",
+        "① 点场景卡片 → 加载演示",
+        "② 演示完整流程 → 9 步回溯",
+        "③ 时间轴卡片 → 回看任一步",
+        "④ 播放复现 → 自动回放",
+        "⑤ 导出/导入 → 存档复现",
+        "⑥ 一键重置 → 清空重来"
+      ] },
+      transcript: [
+        ["good","使用指南"],
+        "能力边界（软硬解耦）：",
+        "· 承载：七大域 AI 教学能力（软件 + 方法论）",
+        "· 不承载：硬件显示/声音/模型推理（电脑 + 宿主承担）",
+        "· 被取代：手写识别→自然语言输入，摄像头→文字记录",
+        "灵活用法：",
+        "· 实时教学 · 备课复用（导出 JSON→课上导入）· 纯对话",
+        "· 身份自适应：学生=老师 / 教师=助教 / 演示=通用工具",
+        "工作台使用教程：",
+        "1. 底部场景卡片——点 SC1~SC7 任一，加载对应教学能力演示",
+        "2. 演示完整流程——串联七大域，生成 9 步回溯卡片",
+        "3. 过程回溯——点时间轴卡片或上一步/下一步，回看任意步骤",
+        "4. 播放复现——自动逐帧回放全部步骤",
+        "5. 导出/导入——把教学过程存成 JSON，随时复现",
+        "6. 一键重置——清空演示和历史，从头开始（可先导出）",
+        "提示：每个场景的「技能运行过程」区展示该技能如何产生内容"
+      ],
+      dialogue: [
+        {r:"t",t:"先点下方任意场景卡片，看看工作台怎么展示教学能力。"},
+        {r:"s",t:"好，我点「SC1 教学可视化」。"},
+        {r:"t",t:"再看「技能运行过程」区——它会告诉你这个技能怎么一步步产生内容。"}
+      ]
+    },
+    "sc1-visual": {
+      topic: "SC1 教学可视化 · 自然语言→图形/公式/3D/曲线",
+      board: { type: "triangle", caption: "输入「画直角边 3 和 4 的直角三角形」→ 图形标准化输出" },
+      formula: { main: "a² + b² = c²", note: "自然语言要素解析：识别几何对象 + 边长参数 + 关系" },
+      mindmap: { root: "SC1 教学可视化（4 任务）", items: [
+        "自然语言要素解析：描述→结构化要素",
+        "图形标准化：草图意图→标准图形",
+        "平面转3D：平面图→可拆解3D模型",
+        "函数曲线生成：算式→动态曲线"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：「画直角边 3 和 4 的直角三角形」",
+        "① 要素解析 → {图形:三角形, 直角边:3,4}",
+        "② 图形标准化 → 标准图形 + 直角标记 → 画布区",
+        "③ 平面转3D → 可拆解 3D 模型（观察点线面）",
+        "④ 函数曲线 → 「y=x²」→ 抛物线 → 画布区",
+        "输出：标准图形/3D/曲线 → 画布区 + 公式区"
+      ],
+      dialogue: [
+        {r:"t",t:"说「画个直角边 3 和 4 的直角三角形」。"},
+        {r:"s",t:"（画布即时刷新出标准图形，含直角标记与边长）"},
+        {r:"t",t:"再说「转成 3D 看」——点、线、面的关系就立体呈现了。"}
+      ]
+    },
+    "sc2-socratic": {
+      topic: "SC2 虚拟人思辨 · 角色设定/诘问/数字分身",
+      board: { type: "html", caption: "虚拟人「孔子」：苏格拉底式诘问引导", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">'+
+        '<div style="width:64px;height:64px;border-radius:50%;background:#1c2129;border:1px solid #85b7eb;display:flex;align-items:center;justify-content:center;color:#85b7eb;font-size:26px">孔</div>'+
+        '<div style="font-size:13px;color:#9aa4b0">虚拟人 · 不直接给答案，层层追问</div></div>'
+      },
+      formula: { main: "引导目标", note: "学生自主说出「直角三角形两直角边平方和等于斜边平方」" },
+      mindmap: { root: "SC2 虚拟人思辨（4 任务）", items: [
+        "角色设定：虚拟人（孔子/爱因斯坦）",
+        "苏格拉底诘问：4 问递进，不直接给答案",
+        "数字分身：复刻教师语气做课后答疑",
+        "多语种对话：角色扮演/带读/口语练习"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：知识点「勾股定理」+ 引导目标「自主发现 a²+b²=c²」",
+        "① 角色设定 → 孔子角色卡（锚定原型 + 语言风格）",
+        "② 唤醒已知 → 「三条边有无固定关系？」",
+        "③ 制造冲突 → 「猜斜边，再量一量」",
+        "④ 指向关键 → 「换 6、8，找规律」",
+        "⑤ 收束归纳 → 「用直角边写关系式」",
+        "输出：4 问递进诘问链 → 思辨对话区（右侧）"
+      ],
+      dialogue: [
+        {r:"t",t:"（第1问·唤醒已知）直角三角形最特别的地方是什么？三条边之间有没有固定关系？"},
+        {r:"s",t:"它是直角三角形，但边之间……我没想过。"},
+        {r:"t",t:"（第2问·制造冲突）直角边 3 和 4，斜边是多少？先猜一个数，再量一量，和猜的一样吗？"},
+        {r:"s",t:"我猜 5，量出来也接近 5。"},
+        {r:"t",t:"（第3问·指向关键）换成 6 和 8，斜边又是多少？这几组数之间有什么规律？"},
+        {r:"s",t:"6²+8²=100，斜边是 10。哦，是平方的关系！"},
+        {r:"t",t:"（第4问·收束归纳）那能不能用两条直角边把斜边「算」出来？写出它们的关系。"}
+      ]
+    },
+    "sc3-diagnosis": {
+      topic: "SC3 课堂实录分析 · 结构/行为/策略/切片/报告",
+      board: { type: "html", caption: "课堂分析：三维诊断 + 微课切片 + 报告", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">'+
+        '<div style="font-size:15px;color:#fac775">教学诊断报告</div>'+
+        '<div style="font-size:12px;color:#9aa4b0;text-align:center;line-height:1.7">课题：一元二次方程求根公式<br>结构/行为/策略 三维分析 · 切片 · 报告</div></div>'
+      },
+      formula: { main: "循证分析", note: "从课堂记录提取可验证证据，非凭印象评课" },
+      mindmap: { root: "SC3 课堂实录分析（5 任务）", items: [
+        "结构分析：环节划分与逻辑",
+        "行为分析：师生行为分类与频次",
+        "策略分析：策略有效性评估",
+        "微课切片：按知识点生成切片脚本",
+        "诊断报告：纪要+思维导图+改进建议"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：课堂文字记录（40 分钟实录）",
+        "① 结构分析 → 环节划分：复习→探究→精讲→小结",
+        "② 行为分析 → 师生行为频次：讲解为主、追问偏少",
+        "③ 策略分析 → 配方→公式迁移策略有效",
+        "④ 微课切片 → 按「求根公式推导」生成 5 分钟切片脚本",
+        "⑤ 诊断报告 → 纪要 + 思维导图 + 改进建议",
+        "输出：诊断报告 → 本区 + 画布区"
+      ],
+      dialogue: [{r:"t",t:"把课堂文字记录发给我，我按结构/行为/策略三维分析，再产出切片脚本和诊断报告。"}]
+    },
+    "sc4-layered": {
+      topic: "SC4 因材施教 · 学情分析/答疑/分层设计",
+      board: { type: "html", caption: "学情分组 → A/B/C 三层目标、任务、评价", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;gap:12px">'+
+        '<div style="flex:1;text-align:center;padding:12px;border:1px solid #85b7eb;border-radius:8px;color:#85b7eb;font-size:13px">A层<br><span style="font-size:11px;color:#9aa4b0">迁移应用</span></div>'+
+        '<div style="flex:1;text-align:center;padding:12px;border:1px solid #5dcba5;border-radius:8px;color:#5dcba5;font-size:13px">B层<br><span style="font-size:11px;color:#9aa4b0">变式巩固</span></div>'+
+        '<div style="flex:1;text-align:center;padding:12px;border:1px solid #fac775;border-radius:8px;color:#fac775;font-size:13px">C层<br><span style="font-size:11px;color:#9aa4b0">基础达标</span></div></div>'
+      },
+      formula: { main: "因材施教", note: "识别差异 → 匹配差异的教学动作" },
+      mindmap: { root: "SC4 因材施教（3 任务）", items: [
+        "学情分析：答题/作业→掌握画像",
+        "个性化答疑：错误诊断→针对性讲解",
+        "分层设计：A/B/C 目标+任务+评价"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：前测「一次函数图像」学情数据",
+        "① 学情分析 → 掌握度分 A/B/C 三层",
+        "② 分层目标 → A:实际最值 / B:k、b 符号 / C:描点作图",
+        "③ 分层任务 → 各层匹配最近发展区的任务",
+        "④ 个性化答疑 → 诊断错误 → 针对性讲解（见对话区）",
+        "输出：A/B/C 分层设计 → 画布区 + 思维导图区"
+      ],
+      dialogue: [
+        {r:"s",t:"老师，为什么 k 变大图像会变陡？"},
+        {r:"t",t:"（个性化答疑）k 是斜率，表示 y 随 x 变化的速度。k 越大，同样 x 变化下 y 变得越多，所以越陡。"}
+      ]
+    },
+    "sc5-interaction": {
+      topic: "SC5 多模态交互 · 指令解析/多任务调度",
+      board: { type: "html", caption: "语音/文字指令 → 意图识别 → 任务分发", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:10px">'+
+        '<div style="font-size:16px;color:#85b7eb">多模态指令交互</div>'+
+        '<div style="font-size:12px;color:#9aa4b0;text-align:center;line-height:1.9">语音(转文字)/文字 → 意图识别 → 参数抽取<br>→ 多任务调度 → 分发到 SC1~SC6</div></div>'
+      },
+      formula: { main: "全自然交互", note: "语音指令唤醒 + 语义理解多任务执行" },
+      mindmap: { root: "SC5 多模态交互（2 任务）", items: [
+        "指令解析：意图识别 + 参数抽取 + 歧义澄清",
+        "多任务调度：按依赖拓扑分发到各域"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：语音/文字指令「画个直角三角形，再分析一下这堂课」",
+        "① 指令解析 → 意图1=画图(SC1)，意图2=课堂分析(SC3)",
+        "② 角色前缀识别 → 无前缀默认学生（见角色指派）",
+        "③ 多任务调度 → 按依赖拓扑：先 SC1 后 SC3",
+        "输出：意图 + 参数 + 分发任务清单"
+      ],
+      dialogue: [
+        {r:"t",t:"（语音）画个直角边 3、4 的直角三角形，再帮我分析刚才的课堂记录。"},
+        {r:"s",t:"（指令解析）识别到两个意图：①教学可视化 ②课堂分析。"},
+        {r:"t",t:"（调度）先执行 SC1 画图，再执行 SC3 分析，结果分别推到画布和诊断区。"}
+      ]
+    },
+    "sc6-resource": {
+      topic: "SC6 教学资源 · 课件/教案/关联资源",
+      board: { type: "html", caption: "从知识点生成结构化教学资源", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">'+
+        '<div style="font-size:15px;color:#85b7eb">教案 · 一元二次方程求根公式</div>'+
+        '<div style="font-size:12px;color:#9aa4b0;text-align:center;line-height:1.7">目标可测量 · 流程闭环 · 活动可操作 · 评价对应</div></div>'
+      },
+      formula: { main: "以学定教", note: "从知识点出发，落到可用的教学材料" },
+      mindmap: { root: "SC6 教学资源（3 任务）", items: [
+        "课件生成：导入/新知/例题/小结",
+        "教案生成：目标/流程/活动/评价",
+        "知识点关联：前置/拓展/关联图谱"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：知识点「一元二次方程求根公式」",
+        "① 课件生成 → 导入/新知/例题/小结四段结构",
+        "② 教案生成 → 目标/流程/活动/评价",
+        "③ 关联资源 → 前置:完全平方公式；拓展:判别式",
+        "输出：课件 + 教案 + 关联 → 画布区 + 思维导图区"
+      ],
+      dialogue: [{r:"t",t:"给我一份「求根公式」的教案、课件和知识点关联资源。"}]
+    },
+    "sc7-compliance": {
+      topic: "SC7 内容安全合规 · 审核/伦理/脱敏",
+      board: { type: "html", caption: "内容审核 · 教育伦理 · 隐私脱敏（守护贯穿）", content:
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:10px">'+
+        '<div style="font-size:16px;color:#fac775">内容安全与合规</div>'+
+        '<div style="font-size:12px;color:#9aa4b0;text-align:center;line-height:1.9">内容审核 → 教育伦理 → 隐私脱敏<br>守护贯穿 SC1~SC6 全部产出</div></div>'
+      },
+      formula: { main: "安全底线", note: "模型安全 · 内容安全 · 隐私安全" },
+      mindmap: { root: "SC7 内容安全合规（3 任务）", items: [
+        "内容审核：准确性/规范性/适龄性",
+        "教育伦理：价值观 + 适龄性守护",
+        "隐私脱敏：学生个人信息脱敏"
+      ] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：待交付的教学内容（含学生数据）",
+        "① 内容审核 → 检查准确性、规范性、适龄性",
+        "② 教育伦理 → 守护价值观与伦理边界",
+        "③ 隐私脱敏 → 姓名/学号/联系方式 → 脱敏",
+        "输出：合规内容 + 审核记录 + 脱敏后数据"
+      ],
+      dialogue: [
+        {r:"t",t:"诊断报告里出现了学生「张三」的学号，交付前要处理。"},
+        {r:"s",t:"（隐私脱敏）已将姓名、学号替换为「学生A」，可安全交付。"},
+        {r:"t",t:"（内容审核）报告内容准确、符合适龄性规范，通过。"}
+      ]
+    },
+    generic: {
+      topic: "通用渲染 · 任意 SVG/HTML 注入",
+      board: { type: "svg", caption: "任意 SVG 注入：季度营收数据可视化（非教学演示）", content:
+        '<svg viewBox="0 0 320 220"><rect x="20" y="20" width="280" height="180" fill="#161b22" stroke="#2a3038"/>'+
+        '<rect x="50" y="120" width="34" height="60" fill="#85b7eb"/><rect x="100" y="90" width="34" height="90" fill="#5dcba5"/>'+
+        '<rect x="150" y="60" width="34" height="120" fill="#fac775"/><rect x="200" y="110" width="34" height="70" fill="#f09595"/>'+
+        '<text x="67" y="112" fill="#0d1117" font-size="11" text-anchor="middle">Q1</text>'+
+        '<text x="117" y="82" fill="#0d1117" font-size="11" text-anchor="middle">Q2</text>'+
+        '<text x="167" y="52" fill="#0d1117" font-size="11" text-anchor="middle">Q3</text>'+
+        '<text x="217" y="102" fill="#0d1117" font-size="11" text-anchor="middle">Q4</text></svg>'
+      },
+      formula: { main: "任意内容", note: "board.type = 'svg' | 'html'，content 直接注入渲染" },
+      mindmap: { root: "通用渲染（不限教学）", items: ["任意 SVG", "任意 HTML", "图表 / 3D / 动画", "教学/产品/汇报通用"] },
+      transcript: [
+        ["good","技能运行过程"],
+        "输入：任意 SVG/HTML 字符串（由对话引擎生成）",
+        "① 内容注入 → 画布 innerHTML 即时渲染",
+        "② 状态提交 → commit 存入历史栈",
+        "输出：即时渲染 + 可回溯/导出/复现"
+      ],
+      dialogue: [{r:"t",t:"这是「任意内容」能力的演示——不限教学场景，产品演示、技术讲解、数据汇报等任何图形/图表/3D 都能实时显示并记录。"}]
+    }
+  };
+
+  // ===== 预置图形渲染 =====
+  function svgTriangle(){
+    return `<svg viewBox="0 0 320 220"><rect x="20" y="20" width="280" height="180" fill="#161b22" stroke="#2a3038"/>
+      <polygon points="70,170 70,50 250,170" fill="none" stroke="#85b7eb" stroke-width="2"/>
+      <rect x="70" y="150" width="20" height="20" fill="none" stroke="#5dcba5" stroke-width="1.5"/>
+      <text x="56" y="120" fill="#fac775" font-size="14">3</text><text x="150" y="188" fill="#fac775" font-size="14">4</text><text x="165" y="100" fill="#f09595" font-size="14">5</text>
+      <text x="70" y="188" fill="#9aa4b0" font-size="12">A</text><text x="245" y="188" fill="#9aa4b0" font-size="12">B</text><text x="60" y="42" fill="#9aa4b0" font-size="12">C</text></svg>`;
+  }
+  function svgCurve(){
+    let pts=""; for(let x=-6;x<=6;x+=0.2){ let px=160+x*22; let py=180-x*x*3.4; pts+=(x===-6?"":" ")+px.toFixed(1)+","+py.toFixed(1); }
+    return `<svg viewBox="0 0 320 220"><rect x="20" y="20" width="280" height="180" fill="#161b22" stroke="#2a3038"/>
+      <line x1="160" y1="30" x2="160" y2="190" stroke="#2a3038" stroke-width="1"/><line x1="30" y1="180" x2="290" y2="180" stroke="#2a3038" stroke-width="1"/>
+      <polyline points="${pts}" fill="none" stroke="#85b7eb" stroke-width="2"/><circle cx="160" cy="180" r="3" fill="#fac775"/></svg>`;
+  }
+  function svgCube(){
+    return `<svg viewBox="0 0 320 220"><rect x="20" y="20" width="280" height="180" fill="#161b22" stroke="#2a3038"/>
+      <polygon points="110,60 210,60 250,100 150,100" fill="rgba(133,183,235,.12)" stroke="#85b7eb" stroke-width="2"/>
+      <polygon points="150,100 250,100 250,170 150,170" fill="rgba(93,203,165,.10)" stroke="#5dcba5" stroke-width="2"/>
+      <polygon points="110,60 150,100 150,170 110,130" fill="rgba(250,199,117,.10)" stroke="#fac775" stroke-width="2"/>
+      <line x1="110" y1="130" x2="210" y2="130" stroke="#85b7eb" stroke-width="1.5"/>
+      <line x1="210" y1="60" x2="250" y2="100" stroke="#85b7eb" stroke-width="1.5" opacity=".6"/>
+      <line x1="210" y1="130" x2="250" y2="170" stroke="#5dcba5" stroke-width="1.5" opacity=".6"/>
+      <text x="120" y="52" fill="#9aa4b0" font-size="12">a</text><text x="254" y="140" fill="#9aa4b0" font-size="12">a</text></svg>`;
+  }
+
+  // ===== 通用渲染：任意 SVG/HTML 注入 + 预置类型 =====
+  function renderBoard(b){
+    if(!b) return "";
+    if(b.type === "svg")  return b.content || "";
+    if(b.type === "html") return b.content || "";
+    if(b.type === "triangle") return svgTriangle();
+    if(b.type === "curve")    return svgCurve();
+    if(b.type === "cube")     return svgCube();
+    return b.content || svgTriangle();
+  }
+
+  // ===== 历史回溯：状态快照栈 =====
+  let history = [];
+  let cursor = -1;
+
+  function commit(state){
+    const snap = JSON.parse(JSON.stringify(state));
+    snap._ts = new Date().toLocaleTimeString();
+    history = history.slice(0, cursor + 1);
+    history.push(snap);
+    cursor = history.length - 1;
+    paint();
+  }
+  function back(){ if(cursor > 0){ cursor--; paint(); } }
+  function forward(){ if(cursor < history.length - 1){ cursor++; paint(); } }
+  function goto(i){ if(i >= 0 && i < history.length){ cursor = i; paint(); } }
+
+  // ===== 渲染引擎：state → DOM =====
+  function paint(){
+    const s = history[cursor];
+    if(!s) return;
+    document.getElementById("topic").textContent = s.topic;
+    document.getElementById("boardBody").innerHTML = renderBoard(s.board);
+    document.getElementById("boardCaption").textContent = (s.board && s.board.caption) || "";
+    document.getElementById("formula").innerHTML = s.formula.main + "<small>" + s.formula.note + "</small>";
+    document.getElementById("mindmap").innerHTML = '<ul class="mindmap"><li class="root">' + s.mindmap.root + "</li>" + s.mindmap.items.map(i => "<li>" + i + "</li>").join("") + "</ul>";
+    document.getElementById("transcript").innerHTML = s.transcript.map(function(t){
+      if(Array.isArray(t)){ return '<span class="tag ' + t[0] + '">' + t[1] + "</span>"; }
+      return t + "<br>";
+    }).join("");
+    document.getElementById("dialogue").innerHTML = (s.dialogue || []).map(function(m){
+      return '<div class="msg ' + m.r + '">' + m.t + "</div>";
+    }).join("");
+    document.getElementById("step").textContent = (cursor + 1) + "/" + history.length;
+    document.getElementById("btnBack").disabled = cursor <= 0;
+    document.getElementById("btnFwd").disabled = cursor >= history.length - 1;
+    renderTimeline();
+  }
+
+  function renderTimeline(){
+    const tl = document.getElementById("timeline");
+    let html = '<span class="tl-label">过程回溯：</span>';
+    history.forEach(function(s, i){
+      const label = s.step || (s.topic.length > 8 ? s.topic.slice(0,8) : s.topic);
+      html += '<span class="tl-node' + (i === cursor ? " active" : "") + '" onclick="goto(' + i + ')" title="' + s.topic + ' @ ' + s._ts + '">' + (i+1) + "·" + label + "</span>";
+    });
+    tl.innerHTML = html;
+  }
+
+  // ===== 导入 / 导出 / 复现（播放） =====
+  let playing = false, playTimer = null, playSpeed = 1500;
+
+  function exportJSON(){
+    const payload = {
+      meta: {
+        title: "智慧课堂教学回溯",
+        topic: (history[cursor] && history[cursor].topic) || "",
+        steps: history.length,
+        exportedAt: new Date().toISOString()
+      },
+      history: history
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "教学回溯-" + (payload.meta.topic || "unnamed") + "-" + Date.now() + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function importJSON(file){
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try{
+        const data = JSON.parse(e.target.result);
+        const arr = Array.isArray(data) ? data : (data.history || []);
+        if(!arr.length) throw new Error("无历史数据");
+        history = arr; cursor = 0; paint();
+      }catch(err){
+        showToast("导入失败", err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function play(){
+    if(playing) return;
+    if(history.length === 0){ showToast("提示", "工作台为空，请先点场景或「演示完整流程」添加内容"); return; }
+    if(history.length === 1){ showToast("提示", "当前只有 1 步内容，无可播放。请先点多个场景或「演示完整流程」"); return; }
+    if(cursor >= history.length - 1) cursor = 0;
+    playing = true;
+    playTimer = setInterval(function(){
+      if(cursor < history.length - 1){ cursor++; paint(); }
+      else { pause(); }
+    }, playSpeed);
+  }
+
+  function pause(){
+    playing = false;
+    if(playTimer){ clearInterval(playTimer); playTimer = null; }
+  }
+
+  function setSpeed(ms){ playSpeed = ms; if(playing){ pause(); play(); } }
+
+  // ===== 一键重置：清空演示与历史，从头开始 =====
+  function reset(){
+    playing = false;
+    if(playTimer){ clearInterval(playTimer); playTimer = null; }
+    history = [];
+    cursor = -1;
+    document.getElementById("topic").textContent = "（空工作台）";
+    document.getElementById("boardBody").innerHTML = '';
+    document.getElementById("boardCaption").textContent = '';
+    document.getElementById("formula").innerHTML = '';
+    document.getElementById("mindmap").innerHTML = '';
+    document.getElementById("transcript").innerHTML = '';
+    document.getElementById("dialogue").innerHTML = '';
+    document.getElementById("demos").innerHTML = '<button onclick="buildButtons()">重新加载演示场景</button>';
+    document.getElementById("step").textContent = "0/0";
+    document.getElementById("btnBack").disabled = true;
+    document.getElementById("btnFwd").disabled = true;
+    renderTimeline();
+  }
+
+  // ===== 自定义模态框（替代被 iframe 禁用的 confirm/alert） =====
+  let _modalOk = null, _modalCancel = null;
+  function showConfirm(title, body, onOk, onCancel){
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalBody").textContent = body;
+    _modalOk = onOk || function(){};
+    _modalCancel = onCancel || function(){};
+    document.getElementById("modalOkBtn").textContent = "确定";
+    document.getElementById("modalCancelBtn").style.display = "";
+    document.getElementById("modalCancelBtn").textContent = "取消";
+    document.getElementById("modalOverlay").style.display = "flex";
+  }
+  function showToast(title, body){
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalBody").textContent = body;
+    _modalOk = function(){};
+    _modalCancel = function(){};
+    document.getElementById("modalOkBtn").textContent = "知道了";
+    document.getElementById("modalCancelBtn").style.display = "none";
+    document.getElementById("modalOverlay").style.display = "flex";
+  }
+  function hideModal(){ document.getElementById("modalOverlay").style.display = "none"; }
+  document.getElementById("modalOkBtn").addEventListener("click", function(){ hideModal(); if(_modalOk) _modalOk(); });
+  document.getElementById("modalCancelBtn").addEventListener("click", function(){ hideModal(); if(_modalCancel) _modalCancel(); });
+
+  // ===== 重置确认：是否先导出备份 =====
+  function confirmReset(){
+    if(history.length === 0){ reset(); return; }
+    const n = history.length;
+    showConfirm("重置确认", "重置将清空全部 " + n + " 步内容。\n\n是否先导出备份？", function(){
+      exportJSON();
+      showConfirm("已导出备份", "确认清空并从头开始？", function(){ reset(); }, function(){});
+    }, function(){
+      showConfirm("未导出", "确定直接清空并重置？（数据不可恢复）", function(){ reset(); }, function(){});
+    });
+  }
+  // ===== 实时更新：轮询本地状态文件（通过本地 HTTP 服务打开时生效） =====
+  // 仅当 state.json 内容真正变化时才提交，避免相同内容被反复推入历史栈
+  let _lastPollSig = null;
+  function poll(){
+    fetch("state.json?t=" + Date.now(), {cache:"no-store"})
+      .then(r => { if(!r.ok) throw 0; return r.json(); })
+      .then(function(d){
+        const sig = JSON.stringify(d);
+        if(sig === _lastPollSig) return;
+        _lastPollSig = sig;
+        commit(d);
+      })
+      .catch(() => {});
+  }
+  setInterval(poll, 1200);
+
+  // ===== 底部按钮生成 =====
+  function buildButtons(){
+    const bar = document.getElementById("demos");
+    const toolScenes = ["guide", "generic"];
+    const domainScenes = ["sc1-visual", "sc2-socratic", "sc3-diagnosis", "sc4-layered", "sc5-interaction", "sc6-resource", "sc7-compliance"];
+    let html = '<span class="bar-label">工作台</span>';
+    toolScenes.forEach(function(k){
+      html += '<button onclick=\'commit(SCENES["' + k + '"])\'>' + SCENES[k].topic + "</button>";
+    });
+    html += '<span class="bar-sep"></span><span class="bar-label">教学能力</span>';
+    domainScenes.forEach(function(k){
+      html += '<button onclick=\'commit(SCENES["' + k + '"])\'>' + SCENES[k].topic + "</button>";
+    });
+    html += '<span class="bar-sep"></span><button class="primary" onclick="demoFlow()">演示完整流程</button>';
+    bar.innerHTML = html;
+  }
+
+  // ===== 演示完整流程：按按钮栏顺序走一遍所有场景 =====
+  function demoFlow(){
+    history = []; cursor = -1;
+    const seq = [
+      ["guide", "使用指南"],
+      ["generic", "通用渲染"],
+      ["sc1-visual", "SC1 可视化"],
+      ["sc2-socratic", "SC2 思辨"],
+      ["sc3-diagnosis", "SC3 诊断"],
+      ["sc4-layered", "SC4 分层"],
+      ["sc5-interaction", "SC5 交互"],
+      ["sc6-resource", "SC6 资源"],
+      ["sc7-compliance", "SC7 合规"]
+    ];
+    seq.forEach(function(item){
+      const s = JSON.parse(JSON.stringify(SCENES[item[0]]));
+      s.step = item[1];
+      commit(s);
+    });
+  }
+
+  // ===== 初始化：教学模式（默认不显示演示场景卡片，过程回溯从零开始） =====
+  document.getElementById("topic").textContent = "（空工作台）";
+  document.getElementById("boardCaption").textContent = "等待外部推送教学状态";
+  document.getElementById("demos").innerHTML = '<button onclick="buildButtons()">演示场景</button>';
+  document.getElementById("step").textContent = "0/0";
+  renderTimeline();
+
+  // ===== 对外接口（供宿主对话引擎调用） =====
+  window.commit = commit;
+  window.back = back;
+  window.forward = forward;
+  window.goto = goto;
+  window.SCENES = SCENES;
+  window.renderState = function(state){ commit(state); };
+  window.exportJSON = exportJSON;
+  window.importJSON = importJSON;
+  window.play = play;
+  window.pause = pause;
+  window.setSpeed = setSpeed;
+  window.reset = reset;
+  window.confirmReset = confirmReset;
+  window.showConfirm = showConfirm;
+  window.showToast = showToast;
+</script>
+</body>
+</html>

@@ -1,42 +1,58 @@
-## Description: <br>
-提供深度个性化、全链条的智能旅游规划服务，涵盖行程设计、交通优化、餐饮住宿推荐、省钱小招、避坑指南、安全保障和购物体验。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供深度个性化、全链条的智能旅游规划服务，涵盖行程设计、交通优化、餐饮住宿推荐、省钱小招、避坑指南、安全保障和购物体验。
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External users use this skill to plan personalized trips with itinerary design, route and transportation suggestions, lodging and dining recommendations, budget guidance, safety considerations, accessibility needs, family travel support, and sustainable travel options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live web searches and image generation may share trip details with external services. <br>
-Mitigation: Avoid including unnecessary sensitive details such as exact home address, passport data, private medical information, or full booking confirmations unless they are required for the travel task. <br>
-Risk: Travel recommendations can depend on changing weather, transportation, venue, policy, and safety conditions. <br>
-Mitigation: Verify time-sensitive travel details with current sources before booking, departing, or relying on the plan. <br>
+## Use Case:
 
+Travelers and travel-planning assistants use this skill to create personalized itineraries, route plans, budgets, safety notes, accessibility guidance, and local recommendations. It is especially oriented toward Chinese-language trip planning that can adapt to current destination conditions.
 
-## Reference(s): <br>
-- [行程卡片模板](references/itinerary-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/e2e5g/travel-planner-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/e2e5g) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text, API Calls] <br>
-**Output Format:** [Markdown travel plans with structured lists, budget guidance, safety notes, and optional image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-response travel guidance is expected to stay concise unless detailed planning is necessary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Travel plans can become inaccurate when weather, transport, attraction policies, prices, or safety conditions change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current destination information before planning and update recommendations when conditions change.
+
+Risk: Travel planning can involve sensitive personal details such as budget, itinerary dates, accessibility needs, family composition, and dietary restrictions.
+
+Mitigation: Ask only for details needed to plan the trip and avoid sharing unnecessary personal information.
+
+Risk: The skill may use an external image-generation service for itinerary cards.
+
+Mitigation: Skip external image generation or use the user's preferred service when external visual generation is not appropriate.
+
+## Reference(s):
+
+- [Itinerary template](references/itinerary-template.md)
+- [ClawHub skill page](https://clawhub.ai/e2e5g/skills/travel-planner-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Image prompts]
+
+**Output Format:** [Markdown travel plans with structured lists and optional hand-drawn infographic prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single responses are intended to stay under 2000 Chinese characters unless more detail is needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

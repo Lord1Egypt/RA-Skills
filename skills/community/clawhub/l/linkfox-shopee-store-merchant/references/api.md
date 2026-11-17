@@ -1,14 +1,15 @@
 # linkfox-shopee-store-merchant — 参数与字段参考
 
+> 单接口入参/响应说明已拆到 **`apis/`**（按 API 一份）；本文件保留模块总览与 Feedback。
 Shopee **Merchant 模块**全部 6 个 API，经 **`POST /shopee/developerProxy`** 转发。
 
 授权见 **`linkfox-shopee-store-auth`**。官方索引：[v2.merchant.get_merchant_info](https://open.shopee.com/documents/v2/v2.merchant.get_merchant_info?module=93&type=1)
 
 ## 通用约定
 
-- **Base URL**：`${LINKFOX_TOOL_GATEWAY}`
+- **Base URL**：`https://tool-gateway.linkfox.com`
 - **Method**：POST（网关），上游 Method 见各接口
-- **Auth**：Header `Authorization: <api_key>`（从 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取）
+- **Auth**：Header `Authorization: <api_key>`（`LINKFOXAGENT_API_KEY`）
 - **流程**：`POST /shopee/storeTokens` → `POST /shopee/developerProxy`
 - **path**：须 `api/v2/merchant/...`
 - **标识**：Merchant 模块为**商户级** API，须传 **`merchantId`**
@@ -21,12 +22,12 @@ Shopee **Merchant 模块**全部 6 个 API，经 **`POST /shopee/developerProxy`
 
 | # | API | Method | path | 脚本 | 官方文档 |
 |---|-----|--------|------|------|----------|
-| 1 | get_merchant_info | GET | `api/v2/merchant/get_merchant_info` | `get_merchant_info.py` | [doc](https://open.shopee.com/documents/v2/v2.merchant.get_merchant_info?module=93&type=1) |
-| 2 | get_merchant_prepaid_account_list | GET | `api/v2/merchant/get_merchant_prepaid_account_list` | `get_merchant_prepaid_account_list.py` | [doc](https://open.shopee.com/documents/v2/v2.merchant.get_merchant_prepaid_account_list?module=93&type=1) |
-| 3 | get_merchant_warehouse_list | GET | `api/v2/merchant/get_merchant_warehouse_list` | `get_merchant_warehouse_list.py` | [doc](https://open.shopee.com/documents/v2/v2.merchant.get_merchant_warehouse_list?module=93&type=1) |
-| 4 | get_merchant_warehouse_location_list | GET | `api/v2/merchant/get_merchant_warehouse_location_list` | `get_merchant_warehouse_location_list.py` | [doc](https://open.shopee.com/documents/v2/v2.merchant.get_merchant_warehouse_location_list?module=93&type=1) |
-| 5 | get_shop_list_by_merchant | GET | `api/v2/merchant/get_shop_list_by_merchant` | `get_shop_list_by_merchant.py` | [doc](https://open.shopee.com/documents/v2/v2.merchant.get_shop_list_by_merchant?module=93&type=1) |
-| 6 | get_warehouse_eligible_shop_list | GET | `api/v2/merchant/get_warehouse_eligible_shop_list` | `get_warehouse_eligible_shop_list.py` | [doc](https://open.shopee.com/documents/v2/v2.merchant.get_warehouse_eligible_shop_list?module=93&type=1) |
+| 1 | get_merchant_info | GET | `api/v2/merchant/get_merchant_info` | `get_merchant_info.py` | [apis/get-merchant-info.md](./apis/get-merchant-info.md) |
+| 2 | get_merchant_prepaid_account_list | GET | `api/v2/merchant/get_merchant_prepaid_account_list` | `get_merchant_prepaid_account_list.py` | [apis/get-merchant-prepaid-account-list.md](./apis/get-merchant-prepaid-account-list.md) |
+| 3 | get_merchant_warehouse_list | GET | `api/v2/merchant/get_merchant_warehouse_list` | `get_merchant_warehouse_list.py` | [apis/get-merchant-warehouse-list.md](./apis/get-merchant-warehouse-list.md) |
+| 4 | get_merchant_warehouse_location_list | GET | `api/v2/merchant/get_merchant_warehouse_location_list` | `get_merchant_warehouse_location_list.py` | [apis/get-merchant-warehouse-location-list.md](./apis/get-merchant-warehouse-location-list.md) |
+| 5 | get_shop_list_by_merchant | GET | `api/v2/merchant/get_shop_list_by_merchant` | `get_shop_list_by_merchant.py` | [apis/get-shop-list-by-merchant.md](./apis/get-shop-list-by-merchant.md) |
+| 6 | get_warehouse_eligible_shop_list | GET | `api/v2/merchant/get_warehouse_eligible_shop_list` | `get_warehouse_eligible_shop_list.py` | [apis/get-warehouse-eligible-shop-list.md](./apis/get-warehouse-eligible-shop-list.md) |
 通用入口：`merchant_api.py`（JSON 含 `"api": "<上表 API 名>"`）。
 
 ---

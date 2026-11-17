@@ -1,44 +1,58 @@
-## Description: <br>
-Primary skill for applying confirmed Calibre metadata edits to an existing Content server while avoiding read-only lookup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit explicitly selected Calibre book metadata through a saved dry-run plan, stale-target checks, apply receipts, and readback verification.
 
-## Publisher: <br>
-[nextaltair](https://clawhub.ai/user/nextaltair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nextaltair](https://clawhub.ai/user/nextaltair)
 
-## Use Case: <br>
-Developers and library operators use this skill to update existing Calibre book metadata after confirming target IDs, dry-running changes, and approving writes. It supports single-book fixes and library-wide metadata maintenance where low-confidence candidates remain pending for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify metadata on a target Calibre Content server. <br>
-Mitigation: Use confirmed IDs, run dry-runs first, require explicit approval before writes, and re-read final values after applying changes. <br>
-Risk: Credentials or book metadata may be exposed if handled carelessly during execution. <br>
-Mitigation: Prefer CALIBRE_PASSWORD over plaintext passwords and skip subagent processing when book metadata should remain local. <br>
-Risk: Generated comments_html or analysis content may introduce incorrect metadata notes. <br>
-Mitigation: Review comments_html and analysis content before approving any write operation. <br>
+## Use Case:
 
+Calibre users and their agents use this skill to review and apply explicitly authorized book metadata changes, including titles, authors, series, tags, dates, languages, and comments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nextaltair/calibre-metadata-apply) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSONL] <br>
-**Output Format:** [Markdown guidance with shell commands and JSONL change payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default workflow requires confirmed book IDs, dry-run before apply, and explicit approval for writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and release changelog) <br>
+Risk: An incorrect target or unreviewed proposal could change the wrong book's metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the intended Calibre library and review each target, current value, and proposed change in the dry-run plan before applying it.
+
+Risk: A failed or concurrent update may leave some books changed and others unchanged.
+
+Mitigation: Keep apply receipts, reconcile them against current metadata after failures, and create a fresh plan rather than blindly retrying.
+
+Risk: Content-server access requires credentials and can modify remote metadata.
+
+Mitigation: Install only for trusted agents, scope the connection to the intended endpoint, and supply credentials through the documented environment variable.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/nextaltair/skills/calibre-metadata-apply)
+- [JSONL change examples](artifact/references/changes.example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Text guidance with JSON plans and JSONL apply receipts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saved dry-run plans and per-attempt receipts support review and reconciliation.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

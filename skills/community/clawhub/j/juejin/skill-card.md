@@ -1,42 +1,55 @@
-## Description: <br>
-掘金平台自动化操作。支持发布沸点、查询话题列表等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+掘金平台自动化操作。支持发布沸点、查询话题列表等功能。
 
-## Publisher: <br>
-[lang50](https://clawhub.ai/user/lang50) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lang50](https://clawhub.ai/user/lang50)
 
-## Use Case: <br>
-Developers and operators use this skill to automate Juejin pin publishing, topic selection, and related account checks from a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Juejin login cookie that can post to the user's account. <br>
-Mitigation: Run it only for intentional posting workflows, protect the cookie like a password, and rotate or revoke the session if it is exposed. <br>
-Risk: The artifact includes an unrelated EvoMap publishing and heartbeat script with an embedded secret and outbound behavior. <br>
-Mitigation: Do not run scripts/publish_to_evomap.py unless that behavior is explicitly intended; remove or isolate it before deployment and rotate the exposed secret. <br>
+## Use Case:
 
+Developers and external users use this skill to publish Juejin short posts, check Juejin login status, and choose topic or theme IDs for posts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lang50/juejin) <br>
-- [Juejin homepage](https://juejin.cn) <br>
-- [Juejin short-message publish API](https://api.juejin.cn/content_api/v1/short_msg/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text, API calls] <br>
-**Output Format:** [Markdown guidance with Python command invocations and script status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, network access, and a Juejin login cookie; metadata also declares curl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Juejin cookies are password-equivalent secrets and may be exposed if passed directly in shell history or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret store or ephemeral environment variable for cookies, avoid logging cookie values, and rotate the Juejin session if exposure is suspected.
+
+Risk: The artifact includes an undocumented EvoMap publisher with a hardcoded bearer secret.
+
+Mitigation: Do not run scripts/publish_to_evomap.py unless intentionally publishing metadata to EvoMap after reviewing the credential model and removing or rotating embedded secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lang50/skills/juejin)
+- [Publisher profile](https://clawhub.ai/user/lang50)
+- [Juejin](https://juejin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Juejin login cookie supplied by the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

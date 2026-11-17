@@ -1,41 +1,58 @@
-## Description: <br>
-Complete fundraising communication system for solo AI founder use cases, including investor updates, pitch deck narratives, fundraising strategy, and investor communications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete fundraising communication system for solo AI founders covering investor updates, pitch deck narratives, fundraising strategy, and investor communications.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Founders and startup operators use this skill to draft investor updates, prepare fundraising narratives, plan outreach, and handle investor meeting follow-up. It is intended for fundraising communication coaching and text generation rather than automated execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investor-facing drafts may contain inaccurate, outdated, or context-mismatched fundraising claims. <br>
-Mitigation: Review and edit all generated investor communications before sending, especially metrics, asks, legal or financial statements, and recipient-specific details. <br>
-Risk: Broad fundraising trigger language may activate the skill for adjacent prompts or produce output in an unintended language. <br>
-Mitigation: Use explicit fundraising-related prompts and specify the desired language, audience, and desired communication format. <br>
+## Use Case:
 
+External founders and startup operators use this skill to draft investor updates, prepare fundraising outreach and meetings, structure pitch deck narratives, and manage investor follow-up.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PHY041/phy-founder-fundraising) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with templates, checklists, scripts, and draft investor communications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior, credential access, persistence, or hidden data access was found in the supplied evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The broad trigger term 'raise' may cause the skill to appear for non-fundraising requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking about investor fundraising before applying the templates or strategy guidance.
+
+Risk: The artifact references a narrative file that is not included.
+
+Mitigation: Do not claim access to the missing file; use the inline narrative framework in SKILL.md or ask the user for source material.
+
+Risk: Investor communication drafts can become misleading when company metrics, traction, or financing terms are incomplete.
+
+Mitigation: Keep placeholders where facts are missing and ask for current founder-provided details before finalizing investor-facing text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-founder-fundraising)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with fundraising templates, checklists, email drafts, meeting prep, and investor communication guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses may include structured drafts, placeholders for founder-specific details, and follow-up recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

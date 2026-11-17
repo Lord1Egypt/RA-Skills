@@ -1,0 +1,15 @@
+{
+  "_说明": "所有网络地址走环境变量覆盖，不写死内网/公网 IP",
+  "registry": {
+    "host": { "env": "A2A_REGISTRY_HOST", "default": "localhost" },
+    "port": { "env": "A2A_REGISTRY_PORT", "default": 3099 }
+  },
+  "server": {
+    "host": { "env": "A2A_SERVER_HOST", "default": "0.0.0.0" },
+    "port": { "env": "A2A_SERVER_PORT", "default": 3100 }
+  },
+  "paths": {
+    "workspace": { "env": "A2A_WORKSPACE", "default": "" },
+    "memory_dir": { "env": "A2A_MEMORY_DIR", "default": "" }
+  }
+}

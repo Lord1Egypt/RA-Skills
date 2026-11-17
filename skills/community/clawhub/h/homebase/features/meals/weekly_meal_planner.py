@@ -2,6 +2,22 @@
 """
 weekly_meal_planner.py — Weekly Meal Plan Draft + Approval Flow
 
+DEPRECATED AS A SCHEDULED FEATURE (2026-08-31). Not deleted, and not broken.
+
+The weekly cadence this file was written for — Saturday 6 PM draft, family
+revises by reply, Sunday 9 PM auto-lock — ran as two OpenClaw cron jobs. Cron
+was emptied on 2026-08-17, and no launchd runner replaced these, so nothing
+calls `cmd_draft` or `cmd_auto_approve` on a schedule any more. The code is
+kept deliberately: every function still works when invoked, the tools are
+still dispatchable (`draft_meal_plan`, `handle_meal_plan_response`,
+`save_meal_plan`, `approve_meal_plan`), and `get_meals_for_date` is read on
+every single briefing — it is the source of the kids' locked menu.
+
+So: the *lifecycle* is live and on-demand; only the *timer* is gone. If the
+cadence is ever wanted back, it is a launchd runner under
+~/.openclaw/workspace/claude-runners/, not a cron job (see skill CLAUDE.md
+principle 2). Do not wire these back into `openclaw cron`.
+
 The OpenClaw agent composes the per-kid weekly plan by picking from the
 deterministic menu pool returned by ``MealTracker.get_weekly_pool``. This
 file owns the pending/locked file lifecycle (`save_pending`, `lock_plan`,
@@ -32,11 +48,11 @@ DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sun
 MAX_REVISIONS = 2   # After 2 rounds of changes, auto-lock
 
 
-def _pick_avoiding(options: List[str], used: List[str]) -> str:
-    """Pick from options, preferring items not already used this week."""
-    fresh = [o for o in options if o not in used]
-    pool = fresh if fresh else options
-    return random.choice(pool) if pool else "TBD"
+# One implementation, in MealTracker. This module used to carry a second
+# `_pick_avoiding` with the same name and purpose but a raw string compare,
+# where MealTracker's case-folds and collapses whitespace first — so the two
+# gave different answers for the same menu ("Idli Sambar" vs "idli  sambar").
+_pick_avoiding = MealTracker.pick_avoiding
 
 
 def generate_weekly_plan() -> Dict:
@@ -157,7 +173,11 @@ def format_plan_for_whatsapp(plan: Dict, revision: int = 0, is_final: bool = Fal
 
     if not is_final:
         lines.append(f"_Format: {meal_labels}_")
-        lines.append("_Auto-approves Sunday 9 PM if no reply. 🔒_")
+        # No "auto-approves Sunday 9 PM" line: the job that did that was
+        # removed on 2026-08-17, and promising the family a lock that never
+        # happens is worse than saying nothing. Restore this line in the same
+        # change that restores the timer.
+        lines.append("_Reply to approve or request changes. 🔒_")
 
     return "\n".join(lines)
 
@@ -218,19 +238,15 @@ def lock_plan(plan: Dict, reason: str = "family_approved"):
         write_json_atomic(PENDING_FILE, pending)
 
 
-def apply_revision(plan: Dict, change_request: str) -> Dict:
-    """
-    Stub — revisions are handled natively by the OpenClaw agent.
-    Returns the plan unchanged; the agent applies the change and calls save_meal_plan directly.
-    """
-    return plan
-
-
 def cmd_draft() -> str:
     """
     Generate a new draft meal plan and return the formatted message.
-    The OpenClaw agent reads stdout and delivers the message to the family
-    group itself — Python does not send WhatsApp messages directly.
+
+    No longer called on a schedule — the Saturday 6 PM cron job that drove it
+    was removed on 2026-08-17 (see module docstring). The agent's on-demand
+    path is `get_weekly_meal_pool` + `save_meal_plan`, which lets the model
+    compose; this is the deterministic Python fallback. The caller reads
+    stdout and delivers — Python does not send WhatsApp messages directly.
     """
     plan = generate_weekly_plan()
     save_pending(plan, revision=0)
@@ -253,8 +269,12 @@ def cmd_approve() -> str:
 
 def cmd_revise(change_request: str) -> str:
     """
-    Apply a family change request, save the revised plan, and return the
-    revised message. The agent layer delivers it.
+    A family member asked to change the pending meal plan. Applying a
+    free-text change request requires model reasoning, which does not
+    belong in this Python layer (CLAUDE.md principle #2) — this does NOT
+    modify or save anything. It returns the current plan plus the change
+    request so the agent can construct the revised plan itself and save it
+    via ``save_meal_plan(plan=..., revision=<current revision + 1>)``.
     """
     pending = load_pending()
     if not pending:
@@ -269,19 +289,23 @@ def cmd_revise(change_request: str) -> str:
         message += "\n\n_Max revision rounds reached — plan locked in as-is. 🔒_"
         return message
 
-    original_plan = pending["plan"]
-    revised_plan = apply_revision(original_plan, change_request)
-    new_revision = revision + 1
-
-    save_pending(revised_plan, revision=new_revision)
-    return format_plan_for_whatsapp(revised_plan, revision=new_revision)
+    return (
+        "NEEDS_REVISION: build the revised plan yourself from the change "
+        f"request and current plan below, then call save_meal_plan with "
+        f"revision={revision + 1}.\n"
+        f"Change requested: {change_request}\n"
+        f"Current plan: {json.dumps(pending['plan'])}"
+    )
 
 
 def cmd_auto_approve() -> str:
     """
-    Auto-approve the pending plan at 9 PM Sunday if no family response received.
-    Called by the Sunday 9 PM scheduled task. Returns the locked message; the
-    agent layer delivers it to the family group.
+    Auto-approve the pending plan if no family response was received.
+
+    No longer called on a schedule — the Sunday 9 PM cron job that drove it was
+    removed on 2026-08-17 (see module docstring). Kept working and reachable
+    from the CLI; invoke it by hand, or through a launchd runner if the cadence
+    is ever restored. Returns the locked message; the caller delivers it.
     """
     pending = load_pending()
     if not pending:
@@ -294,10 +318,10 @@ def cmd_auto_approve() -> str:
     return message
 
 
-def get_todays_meals_from_locked_plan() -> Optional[Dict]:
+def get_meals_for_date(date_str: str) -> Optional[Dict]:
     """
-    Returns the meal plan for the current day from the locked file,
-    if it exists and is for the current week.
+    Returns the meal plan for `date_str` (YYYY-MM-DD) from the locked file,
+    if it exists and `date_str` falls within that plan's locked week.
     """
     if not os.path.exists(LOCKED_FILE):
         return None
@@ -312,16 +336,24 @@ def get_todays_meals_from_locked_plan() -> Optional[Dict]:
 
         week_start = datetime.strptime(week_of, "%Y-%m-%d").date()
         week_end = week_start + timedelta(days=6)
-        today = datetime.now().date()
+        target = datetime.strptime(date_str, "%Y-%m-%d").date()
 
-        if not (week_start <= today <= week_end):
+        if not (week_start <= target <= week_end):
             return None
 
         plan = data.get("plan", {})
-        today_name = today.strftime("%A").lower()
-        return plan.get(today_name)
+        day_name = target.strftime("%A").lower()
+        return plan.get(day_name)
     except Exception:
         return None
+
+
+def get_todays_meals_from_locked_plan() -> Optional[Dict]:
+    """
+    Returns the meal plan for the current day from the locked file,
+    if it exists and is for the current week.
+    """
+    return get_meals_for_date(datetime.now().strftime("%Y-%m-%d"))
 
 
 if __name__ == "__main__":

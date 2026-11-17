@@ -1,43 +1,57 @@
-## Description: <br>
-Provides technical stock analysis using MACD, KDJ, SAR, moving averages, OBV, PVT, Bollinger Bands, CCI, and RSI, with automated breakout, volume, risk, and trading-signal summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-Technical-Analysis provides Chinese-language A-share technical analysis using MACD, KDJ, SAR, moving averages, OBV, PVT, Bollinger Bands, CCI, and RSI to identify breakouts, volume changes, risk levels, and trading signals.
 
-## Publisher: <br>
-[footballqq](https://clawhub.ai/user/footballqq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[footballqq](https://clawhub.ai/user/footballqq)
 
-## Use Case: <br>
-External users and investment-analysis agents use this skill to generate technical-analysis reports for supported stock symbols and market-index questions. It is intended for informational market analysis and decision support, not as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces market-analysis output that could be mistaken for investment advice. <br>
-Mitigation: Treat all output as informational only, retain the included disclaimer, and require users to make independent investment decisions. <br>
-Risk: The bundled analyzer runs local Python code and depends on third-party market-data libraries. <br>
-Mitigation: Install dependencies only from trusted sources and review the script before execution in managed environments. <br>
-Risk: Technical indicators can lag market conditions or reflect incomplete data. <br>
-Mitigation: Cross-check generated analysis against current market data, fundamentals, policy context, and other independent sources. <br>
+## Use Case:
 
+External retail investors and agents supporting them use this skill to generate Chinese-language technical-analysis reports for A-share stocks or market indexes. It supports indicator-based review of breakouts, volume shifts, risk bands, and signal changes as informational decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/footballqq/ai-quant-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/footballqq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Text or Markdown report with technical indicators, risk notes, and signal summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a local Python script and third-party market-data libraries; results are informational and include a financial-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce buy, sell, breakout, and risk-level language for securities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational technical analysis, not personalized investment advice, and confirm conclusions independently before acting.
+
+Risk: Broad market-opportunity scans may influence investment decisions if run without a clear scope.
+
+Mitigation: Confirm the user's requested scope before broad scans and review the resulting symbols and signals before presenting them as decision support.
+
+Risk: Reports depend on current external market data availability and ticker correctness.
+
+Mitigation: Confirm the ticker, date range, and source data freshness when interpreting a generated report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/footballqq/skills/ai-quant-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown-style technical-analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an investment-risk disclaimer; depends on current market data availability through akshare-compatible sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

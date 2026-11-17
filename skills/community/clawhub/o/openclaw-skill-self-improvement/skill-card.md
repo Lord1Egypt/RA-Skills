@@ -1,44 +1,55 @@
-## Description: <br>
-Health, eval, and regression system for continuously improving OpenClaw skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health, eval, and regression system for continuously improving OpenClaw skills.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and OpenClaw maintainers use this skill to audit skill registries, run routing evaluations, and maintain recurring health reports for duplicates, dark skills, stale skills, and routing regressions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local agent transcript logs outside the selected workspace and stores derived usage data. <br>
-Mitigation: Run it only in trusted local environments, review generated .learnings reports before sharing, and avoid committing reports that contain usage-derived information. <br>
-Risk: The daily heartbeat constructs shell commands from the workspace path. <br>
-Mitigation: Use trusted absolute workspace paths and review the scripts before scheduling unattended runs. <br>
-Risk: Health and routing reports can produce false positives or approximate recommendations. <br>
-Mitigation: Manually review duplicate, dark, stale, and routing findings before deleting, deprecating, or changing skills. <br>
+## Use Case:
 
+Developers and maintainers use this skill to audit OpenClaw skill registries, detect duplicate, dark, or stale skills, run routing evaluations, and track daily health changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/x-rayluan/openclaw-skill-self-improvement) <br>
-- [Routing evaluation cases](references/routing-evals.json) <br>
-- [ClawLite](https://clawlite.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON report file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When scripts run, they write local .learnings JSON reports, history snapshots, and daily text summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill broadly reads local OpenClaw skills and Agent transcript files while producing health signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against workspaces you are comfortable scanning locally, preferably with a test workspace or least-privileged account.
+
+Risk: The daily heartbeat script contains unsafe shell command construction according to the authoritative security evidence.
+
+Mitigation: Avoid the daily heartbeat in sensitive environments until command construction is fixed, or only use trusted and simple workspace paths after script review.
+
+## Reference(s):
+
+- [Routing evaluation cases](references/routing-evals.json)
+- [Artifact README](README.md)
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/openclaw-skill-self-improvement)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; scripts emit JSON and plain text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes skill health, routing evaluation, heartbeat summary, and history files under .learnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Edit, polish, and improve Markdown blog drafts by fixing grammar, improving clarity, strengthening thin sections, checking paragraph structure, and preserving the author's original language and voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit, polish, and improve a blog post draft written in Markdown, including grammar fixes, clarity improvements, thin-content enhancement, paragraph-structure review, and preservation of the original language.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External writers, editors, and developers use this skill to refine Markdown blog drafts while preserving the original tone and language. It supports grammar cleanup, light content enhancement, and structure review for English, Chinese, or mixed-language posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad writing-related requests, which could lead to unintended edits when the user only wanted general writing advice. <br>
-Mitigation: Confirm that the user wants a blog draft edited before producing a full revised draft or saving an edited file. <br>
-Risk: The skill may rely on a separate Markdown-writing skill to save an edited copy. <br>
-Mitigation: If the Markdown-writing skill is unavailable, return the edited Markdown in the response and state that no file was saved. <br>
+## Use Case:
 
+External users and writers use this skill to have an agent edit Markdown blog drafts while preserving the author's voice and original language. It supports grammar cleanup, concise content enhancement, and structure suggestions that require user confirmation before reordering.
 
-## Reference(s): <br>
-- [Blog Editor on ClawHub](https://clawhub.ai/j3ffyang/blog-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown edited draft with a short change summary and inline comments when language changes or content enhancements need disclosure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save an edited Markdown copy named [original-filename]-edited.md when a compatible Markdown-writing skill is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Broad trigger wording may activate the skill when the request is not clearly a blog post editing task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for Markdown blog, draft, post, or article editing requests and review whether the task matches that scope before accepting edits.
+
+Risk: The skill may save an edited copy named after the original file.
+
+Mitigation: Confirm the intended output file and review the edited Markdown before publishing or replacing any draft.
+
+## Reference(s):
+
+- [Blog Editor on ClawHub](https://clawhub.ai/j3ffyang/skills/blog-editor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown edited draft with a short change summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save an edited Markdown copy named after the original file.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

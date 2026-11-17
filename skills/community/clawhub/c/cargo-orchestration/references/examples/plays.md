@@ -10,8 +10,8 @@ Key properties of a play:
 - **`workflowUuid`** — the underlying workflow that executes
 - **`modelUuid`** — the data model the play operates on
 - **`segmentUuid`** — the segment that triggers runs
-- **`changeKinds`** — which segment changes trigger a run (`added`, `updated`, `removed`)
-- **`schedule`** — optional cron schedule for periodic re-evaluation
+- **`changeKinds`** — which segment changes trigger a run (`added`, `updated`, `removed`, `unchanged`)
+- **`schedule`** — how the play is triggered (`type`: `watch`, `realtime`, `cron`, `dbt`, or `dependency`), or `null`
 - **`isEnabled`** — whether the play is active
 
 ## List all plays
@@ -33,26 +33,32 @@ Response:
       "segmentUuid": "segment-uuid",
       "changeKinds": ["added", "updated"],
       "isEnabled": true,
-      "schedule": null,
-      "description": "Enriches companies when they enter the segment"
+      "schedule": null
     }
   ]
 }
 ```
 
+Filter the list instead of scanning it: `--is-enabled` / `--is-disabled` (bare = `true`), `--schedule-type dbt|cron|realtime|dependency|watch`, `--model-uuid`, `--segment-uuid`.
+
+```bash
+cargo-ai orchestration play list --is-enabled --schedule-type cron      # every live scheduled play
+cargo-ai orchestration play list --is-disabled --model-uuid <model-uuid>
+```
+
 ## Find a play's workflow UUID
 
-Plays have names — workflows don't. Use the play to find the right workflow and segment.
+Plays have names — workflows don't. Use the play to find the right workflow and model.
 
 ```bash
 # 1. Find the play
 cargo-ai orchestration play list
-# → Extract play.workflowUuid and play.segmentUuid
+# → Extract play.workflowUuid and play.modelUuid
 
-# 2. Create a batch using the play's own segment
+# 2. Create a batch over the play's model (empty filter = all rows)
 cargo-ai orchestration batch create \
   --workflow-uuid <play.workflowUuid> \
-  --data '{"kind":"segment","segmentUuid":"<play.segmentUuid>"}'
+  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[]}}'
 
 # 3. Poll until done
 cargo-ai orchestration batch get <batch-uuid>
@@ -60,9 +66,18 @@ cargo-ai orchestration batch get <batch-uuid>
 # Or block until finished — returns the final batch result without a separate poll step
 cargo-ai orchestration batch create \
   --workflow-uuid <play.workflowUuid> \
-  --data '{"kind":"segment","segmentUuid":"<play.segmentUuid>"}' \
+  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[]}}' \
   --wait-until-finished
 ```
+
+An empty filter (`{"conjonction":"and","groups":[]}`) enrols every row in the model;
+add conditions to narrow it — see `references/filter-syntax.md` for the full shape.
+
+> **Never pass `play.segmentUuid` to `{"kind":"segment"}`.** That UUID points at
+> the play's internally generated segment, whose record count is never
+> populated — the batch is rejected (`segmentLinkedToPlay`, or `noRecords` on
+> older backends) no matter how many rows the model holds. `{"kind":"segment"}`
+> is only for standalone segments from `segmentation segment list`.
 
 ## Update a play's workflow
 
@@ -76,11 +91,11 @@ cargo-ai orchestration play list
 # → Find "Enrich new companies", extract play.workflowUuid
 
 # Step 2 — Get the current draft release (contains the current node graph)
-cargo-ai orchestration draft-release get --workflow-uuid <play.workflowUuid>
+cargo-ai orchestration release get-draft --workflow-uuid <play.workflowUuid>
 # → Copy the "nodes" array and make your changes
 
 # Step 3 — Update the draft release with your new nodes
-cargo-ai orchestration draft-release update \
+cargo-ai orchestration release update-draft \
   --workflow-uuid <play.workflowUuid> \
   --nodes '[...your updated node graph...]'
 
@@ -89,16 +104,18 @@ cargo-ai orchestration node validate --nodes '[...your updated node graph...]'
 # → { "outcome": "valid" }
 
 # Step 5 — Deploy the draft release
-cargo-ai orchestration draft-release deploy \
+cargo-ai orchestration release deploy-draft \
   --workflow-uuid <play.workflowUuid> \
   --nodes '[...your updated node graph...]' \
   --form-fields 'null' \
   --description "Your release description"
 ```
 
-> **Do not skip validation.** Deploying an invalid node graph will cause runs to fail. Always run `node validate` before `draft-release deploy`.
+`release update-draft` also takes `--test-records`, the sample records saved with the draft for the editor's test panel — `[{"kind":"id","id":"<record-id>","data":{...optional overrides}}]` to reuse an existing record, or `[{"kind":"data","data":{...}}]` for inline data. Saving them runs nothing.
 
-> **Do not pass `--version` to `draft-release deploy`.** The deploy-specific `--version` flag is shadowed by the global `--version` flag — passing it causes the command to print the CLI version (e.g. `1.0.11`) and exit 0 **without deploying**. Omit it and let the server auto-assign (first deploy → `1.0.0`, then `1.0.1`, etc.). Always confirm the deploy worked with `release get-deployed --workflow-uuid <uuid>` — the response should show `status: "deployed"`, not `draft`.
+> **Do not skip validation.** Deploying an invalid node graph will cause runs to fail. Always run `node validate` before `release deploy-draft`.
+
+> **Do not pass `--version` to `release deploy-draft`.** The deploy-specific `--version` flag is shadowed by the global `--version` flag — passing it causes the command to print the CLI version (e.g. `1.0.11`) and exit 0 **without deploying**. Omit it and let the server auto-assign (first deploy → `1.0.0`, then `1.0.1`, etc.). Always confirm the deploy worked with `release get-deployed --workflow-uuid <uuid>` — the response should show `status: "deployed"`, not `draft`.
 
 ---
 
@@ -107,14 +124,14 @@ cargo-ai orchestration draft-release deploy \
 > **`run create` is not compatible with play workflows** — it will return
 > `playNotCompatible`. Always use `batch create` for plays.
 >
-> Allowed batch data kinds for plays: `segment`, `change`, `filter`, `recordIds`.
+> Every batch data kind except `file` is accepted for plays (`file` is tools only).
 
 ### By filter (query the model)
 
 ```bash
 cargo-ai orchestration batch create \
   --workflow-uuid <play.workflowUuid> \
-  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"field":"domain","operator":"is","value":"acme.com"},"limit":10}'
+  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[{"conjonction":"and","conditions":[{"kind":"string","columnSlug":"domain","operator":"is","values":["acme.com"]}]}]},"limit":10}'
 ```
 
 ### By record IDs
@@ -142,7 +159,39 @@ cargo-ai orchestration run count \
 cargo-ai orchestration batch list \
   --workflow-uuids <play.workflowUuid> \
   --statuses running
+
+# Batches that actually did something — schedule ticks the play skipped end
+# `skipped` with no runs, and drown the list on a frequently scheduled play
+cargo-ai orchestration batch list --workflow-uuids <play.workflowUuid> --has-runs --is-skipped false
+
+# Only the batches someone started over a filter, not the play's own
+# change-, watch- or schedule-driven ones
+cargo-ai orchestration batch list --workflow-uuids <play.workflowUuid> --included-data-kinds filter
+cargo-ai orchestration batch list --workflow-uuids <play.workflowUuid> --excluded-data-kinds change,watchedRecords,schedule
 ```
+
+Data kinds for `--included-data-kinds` / `--excluded-data-kinds`: `segment`, `change`, `filter`, `recordIds`, `watchedRecords`, `records`, `file`, `runs`, `group`, `schedule`, `form`. Several kinds in `--included-data-kinds` match a batch of **any** of them (`filter,recordIds`). Until cargo#6369 (CLI 1.0.128) the kinds were AND-ed, so two or more returned an empty list; on a workspace still answering that way, exclude the others instead.
+
+## Change a play's settings, set a health alert, or remove it
+
+`play update <play-uuid>` changes the play itself — trigger, audience, schedule, health — not its node graph (that is `release update-draft`, above). Only the flags you pass change.
+
+```bash
+# Pause / resume
+cargo-ai orchestration play update <play-uuid> --is-disabled
+cargo-ai orchestration play update <play-uuid> --is-enabled
+
+# Health: a finished batch is unhealthy when its success rate (non-failed runs / runs, in %)
+# falls below --health-threshold; each unhealthy batch fires every health alert action
+cargo-ai orchestration play update <play-uuid> \
+  --health-threshold 90 \
+  --health-alert-actions '[{"kind":"connector","integrationSlug":"slack","actionSlug":"postMessage","connectorUuid":"<slack-connector-uuid>","config":{ <postMessage inputs> }}]'
+
+# Remove the play (and stop it for good)
+cargo-ai orchestration play remove <play-uuid>
+```
+
+`--health-alert-actions` takes configured actions — the action object **with** `config` holding its inputs, unlike `action execute`. Read the action's input names from `connection integration get <slug>` rather than guessing them: a misnamed key is dropped silently. Group and `runs` batches are never health-checked. For alerting on anything beyond one play's batch success rate (error spikes, cost, a play that stops running), use an alert — the `cargo-observability` skill.
 
 ## Cancel runs and batches
 
@@ -195,6 +244,10 @@ cargo-ai orchestration node validate --nodes '[
         "connectorUuid": "<openai-connector-uuid>",
         "languageModelSlug": "gpt-4.1-mini",
         "temperature": 0.1
+      },
+      "output": {
+        "type": "jsonSchema",
+        "jsonSchema": {"type": "object", "properties": {"score": {"type": "number"}, "reasoning": {"type": "string"}}, "required": ["score", "reasoning"]}
       }
     },
     "childrenUuids": ["99999999-9999-4999-a999-999999999999"], "fallbackOnFailure": false,
@@ -204,8 +257,8 @@ cargo-ai orchestration node validate --nodes '[
     "uuid": "99999999-9999-4999-a999-999999999999", "slug": "end", "kind": "native", "actionSlug": "end",
     "config": {
       "variables": [
-        {"name": "score", "type": "number", "value": {"kind": "templateExpression", "expression": "{{nodes.score.score}}", "instructTo": "none", "fromRecipe": false}},
-        {"name": "reasoning", "type": "string", "value": {"kind": "templateExpression", "expression": "{{nodes.score.reasoning}}", "instructTo": "none", "fromRecipe": false}}
+        {"name": "score", "type": "number", "value": {"kind": "templateExpression", "expression": "{{nodes.score.answer.score}}", "instructTo": "none", "fromRecipe": false}},
+        {"name": "reasoning", "type": "string", "value": {"kind": "templateExpression", "expression": "{{nodes.score.answer.reasoning}}", "instructTo": "none", "fromRecipe": false}}
       ]
     },
     "childrenUuids": [], "fallbackOnFailure": false,
@@ -214,25 +267,25 @@ cargo-ai orchestration node validate --nodes '[
 ]'
 # → { "outcome": "valid" }
 
-# Step 5 — Find the play's workflowUuid and segmentUuid
+# Step 5 — Find the play's workflowUuid and modelUuid
 cargo-ai orchestration play list
-# → Find "Lead Scoring", extract workflowUuid and segmentUuid
+# → Find "Lead Scoring", extract workflowUuid and modelUuid
 
-# Step 6 — Run the template nodes against the play's segment
+# Step 6 — Run the template nodes against the play's model (empty filter = all rows)
 cargo-ai orchestration batch create \
   --workflow-uuid <play.workflowUuid> \
-  --data '{"kind":"segment","segmentUuid":"<play.segmentUuid>"}' \
+  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[]}}' \
   --nodes '[...validated nodes from step 4...]'
 # → Extract batch.uuid
 
 # Step 7 — Poll until finished (every 5s)
 cargo-ai orchestration batch get <batch-uuid>
-# → Done when .status is "success", "error", or "cancelled"
+# → Done when .status is "success", "error", "cancelled", or "skipped"
 
 # Alternative to steps 6+7 — block until finished in one command
 cargo-ai orchestration batch create \
   --workflow-uuid <play.workflowUuid> \
-  --data '{"kind":"segment","segmentUuid":"<play.segmentUuid>"}' \
+  --data '{"kind":"filter","modelUuid":"<play.modelUuid>","filter":{"conjonction":"and","groups":[]}}' \
   --nodes '[...validated nodes from step 4...]' \
   --wait-until-finished
 ```

@@ -1,39 +1,52 @@
-## Description: <br>
-规范 AI 公司任务流程，要求代理按计划书、用户确认、执行和汇报四个阶段完成工作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a structured project workflow with planning, user confirmation, execution logging, exception handling, and final reporting.
 
-## Publisher: <br>
-[xxxzhuo](https://clawhub.ai/user/xxxzhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xxxzhuo](https://clawhub.ai/user/xxxzhuo)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to make an agent slow down, produce a task plan, wait for explicit confirmation, execute the approved plan, and report results transparently. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The confirmation workflow can add extra planning prompts to ordinary tasks. <br>
-Mitigation: Use the skill when explicit approval is desired, and review each plan before replying with the confirmation phrase. <br>
-Risk: Approved plans may still include high-impact actions such as Git, deployment, API, or file-changing work. <br>
-Mitigation: Check those steps carefully before approval and ask the agent to revise the plan when scope or risk is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xxxzhuo/the-best-planner) <br>
+## Use Case:
 
+Agent users can use this skill to require a high-friction project-management workflow for tasks: create a plan, wait for explicit confirmation, execute with logs, handle exceptions, and report outcomes. It is most relevant when process transparency is more important than speed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plans, confirmation prompts, execution logs, and completion reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes structured tables, checklists, and role-based workflow guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: May delay simple requests by requiring a plan and confirmation step for nearly every task.
+
+Mitigation: Use only when a deliberate project-management workflow is desired; disable it for quick answers or low-risk routine requests.
+
+Risk: May conflict with requested response formats by imposing templates, confirmation phrases, and company branding.
+
+Mitigation: Review outputs for unwanted template language or branding, and keep higher-priority user, system, and format requirements authoritative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xxxzhuo/skills/the-best-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, confirmation prompts, command sections, and final status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before execution according to the artifact workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact changelog lists v1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

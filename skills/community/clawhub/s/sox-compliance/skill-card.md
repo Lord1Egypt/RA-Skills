@@ -1,40 +1,56 @@
-## Description: <br>
-Enterprise-grade Sarbanes-Oxley assessment platform that evaluates organizational compliance with SOX requirements across multiple control domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade Sarbanes-Oxley assessment platform that evaluates organizational compliance with SOX requirements across multiple control domains.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Chief compliance officers, internal audit teams, IT security teams, and managed service providers use this skill to submit structured SOX control assessments, review compliance percentages and findings, and identify remediation actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to send potentially sensitive SOX assessment and control information to an external API without clear data-handling limits. <br>
-Mitigation: Use only SOX assessment data approved for sharing with the external service, and avoid secrets, customer data, employee data, raw audit evidence, or detailed control weaknesses unless compliance and vendor review approve that sharing. <br>
+## Use Case:
 
+Compliance, audit, IT security, and managed service provider teams use this skill to submit SOX control status data and receive structured compliance scores, findings, and remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/sox-compliance) <br>
-- [SOX Compliance API Route](https://api.mkkpro.com/compliance/sox-compliance) <br>
-- [SOX Compliance API Docs](https://api.mkkpro.com:8039/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON assessment results with compliance percentages, findings, and remediation actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a tier, session identifier, and controls grouped by SOX control section.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: SOX assessment requests may include sensitive compliance details sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only organization-approved data sharing and avoid raw audit evidence, secrets, customer or employee data, financial details, and confidential control weaknesses in request notes.
+
+Risk: The evidence does not provide enough disclosure about provider data handling for real compliance environments.
+
+Mitigation: Confirm retention, access, deletion, residency, and contractual controls with the provider before sending SOX assessment content.
+
+## Reference(s):
+
+- [OpenAPI schema](artifact/openapi.json)
+- [SOX Compliance API documentation](https://api.mkkpro.com:8039/docs)
+- [SOX Compliance API route](https://api.mkkpro.com/compliance/sox-compliance)
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/sox-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON assessment results with text remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compliance percentages, section findings, and prioritized remediation actions from submitted control data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

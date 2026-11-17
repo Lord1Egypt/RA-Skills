@@ -1,43 +1,57 @@
-## Description: <br>
-Gerencia finanças pessoais do Evandro com registro por categorias via linguagem natural, processamento de extratos e faturas, e resumos mensais e anuais. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gerencia finanças pessoais do Evandro com registro por categorias em linguagem natural, processamento de extratos e faturas, e resumos mensais e anuais.
 
-## Publisher: <br>
-[evandrotho](https://clawhub.ai/user/evandrotho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evandrotho](https://clawhub.ai/user/evandrotho)
 
-## Use Case: <br>
-Individuals using Evandro's finance workspace use this skill to record income and expenses, process bank statements and card invoices, prevent duplicate entries, and generate monthly or annual finance summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update sensitive personal finance files. <br>
-Mitigation: Use it only in the intended finance workspace, keep backups, and require explicit confirmation before any finance file is read or changed. <br>
-Risk: Broad finance-related trigger words may activate the skill when the user did not intend to manage finance records. <br>
-Mitigation: Narrow activation triggers when possible and ask the user to confirm financial intent before processing files or recording transactions. <br>
-Risk: The artifact contains personal finance rules specific to Evandro and related people. <br>
-Mitigation: Install it only for Evandro's own workflow or replace the personal context with the user's own rules before use. <br>
+## Use Case:
 
+Private personal-finance users use this skill to guide an agent through recording income and expenses, processing bank statements and card bills, preventing duplicate entries, and producing monthly or annual summaries. It is tailored to Evandro's finance workspace and should be adapted before reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evandrotho/financas-donna) <br>
-- [Publisher profile](https://clawhub.ai/user/evandrotho) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown instructions, confirmation prompts, tabular finance summaries, and file update guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update finance Markdown files in a workspace after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contains real personal-finance context and named personal relationships.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it limited to the intended private workspace and remove real names, relationships, and amounts before sharing or reuse.
+
+Risk: Broad finance triggers could activate around sensitive records or unrelated files.
+
+Mitigation: Narrow activation to explicit finance commands and review any requested file reads or updates before execution.
+
+Risk: Incorrect statement parsing or duplicate detection could create misleading finance records.
+
+Mitigation: Require user confirmation before writes, check for duplicates by value and date, and preserve the source transaction description.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evandrotho/skills/financas-donna)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown financial tables and concise Portuguese confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update monthly and annual finance Markdown files after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

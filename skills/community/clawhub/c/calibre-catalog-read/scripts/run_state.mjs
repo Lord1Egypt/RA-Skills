@@ -1,95 +1,63 @@
 #!/usr/bin/env node
-import fs from 'node:fs';
-import path from 'node:path';
-
-const DEFAULT_STATE_PATH = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'state', 'runs.json');
-
-function nowIso() { return new Date().toISOString(); }
-
-function parseArgs(argv) {
-  const out = { _: [] };
-  for (let i = 2; i < argv.length; i++) {
-    const a = argv[i];
-    if (a.startsWith('--')) {
-      const k = a.slice(2);
-      const v = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
-      out[k] = v;
-    } else out._.push(a);
-  }
-  return out;
-}
-
-function loadState(p) {
-  if (!fs.existsSync(p)) return { runs: {} };
-  const txt = fs.readFileSync(p, 'utf-8').trim();
-  if (!txt) return { runs: {} };
-  try {
-    const d = JSON.parse(txt);
-    if (!d || typeof d !== 'object') return { runs: {} };
-    if (!d.runs || typeof d.runs !== 'object') d.runs = {};
-    return d;
-  } catch {
-    return { runs: {} };
-  }
-}
-
-function saveState(p, d) {
-  fs.mkdirSync(path.dirname(p), { recursive: true });
-  fs.writeFileSync(p, JSON.stringify(d, null, 2), 'utf-8');
-}
-
+import fs from "node:fs";
+import path from "node:path";
+import { parseArgs, shortError } from "./lib/calibre_common.mjs";
+import { hash, statePath, readState, writeState, withStateLock, runId } from "./lib/run_store.mjs";
 function main() {
-  const a = parseArgs(process.argv);
-  const cmd = a._[0];
-  const statePath = String(a.state || DEFAULT_STATE_PATH);
-  const state = loadState(statePath);
-  const runs = state.runs || (state.runs = {});
-
-  if (cmd === 'upsert') {
-    if (!a['run-id'] || !a['book-id'] || !a.title) throw new Error('upsert requires --run-id --book-id --title');
-    runs[a['run-id']] = {
-      runId: a['run-id'],
-      book_id: Number(a['book-id']),
-      title: String(a.title),
-      status: 'running',
-      started_at: nowIso(),
+  const raw = process.argv.slice(2);
+  if (raw.includes("--help") || !raw.length)
+    return {
+      usage:
+        "run_state.mjs <upsert|get|list|fail> --state FILE --run-id ID [--input-json PREPARED --session-key HANDLE]",
     };
-    saveState(statePath, state);
-    console.log(JSON.stringify({ ok: true, action: 'upsert', runId: a['run-id'], count: Object.keys(runs).length }));
-    return;
-  }
-
-  if (cmd === 'remove') {
-    if (!a['run-id']) throw new Error('remove requires --run-id');
-    const existed = Object.prototype.hasOwnProperty.call(runs, a['run-id']);
-    delete runs[a['run-id']];
-    saveState(statePath, state);
-    console.log(JSON.stringify({ ok: true, action: 'remove', runId: a['run-id'], existed, count: Object.keys(runs).length }));
-    return;
-  }
-
-  if (cmd === 'fail') {
-    if (!a['run-id'] || !a.error) throw new Error('fail requires --run-id --error');
-    const e = runs[a['run-id']];
-    if (!e) {
-      console.log(JSON.stringify({ ok: false, error: 'run_not_found', runId: a['run-id'] }));
-      process.exit(1);
+  const command = raw.shift();
+  if (!["upsert", "get", "list", "fail"].includes(command))
+    throw new Error("supported state commands: upsert/get/list/fail");
+  const a = parseArgs(raw, ["state", "run-id", "input-json", "session-key", "error"]);
+  if (a._.length) throw new Error("unexpected positional argument");
+  const file = statePath(a);
+  const id = command === "list" ? null : runId(a["run-id"]);
+  if (command === "list") return { ok: true, ...readState(file) };
+  if (command === "get") return { ok: true, run: readState(file).runs[id] || null };
+  return withStateLock(file, (s) => {
+    if (command === "fail") {
+      if (!Object.hasOwn(s.runs, id) || !a.error) throw new Error("run and --error required");
+      s.runs[id].status = "failed";
+      s.runs[id].error = a.error;
+      writeState(file, s);
+      return { ok: true, status: "failed", run_id: id };
     }
-    e.status = 'failed';
-    e.error = String(a.error);
-    e.updated_at = nowIso();
-    saveState(statePath, state);
-    console.log(JSON.stringify({ ok: true, action: 'fail', runId: a['run-id'] }));
-    return;
-  }
-
-  if (cmd === 'get') {
-    if (!a['run-id']) throw new Error('get requires --run-id');
-    console.log(JSON.stringify({ ok: true, run: runs[a['run-id']] || null }));
-    return;
-  }
-
-  throw new Error('usage: run_state.mjs <upsert|remove|fail|get> [--state path] ...');
+    if (Object.hasOwn(s.runs, id) || Object.hasOwn(s.completed, id))
+      throw new Error("run id already registered/completed; never overwrite");
+    if (!a["input-json"]) throw new Error("--input-json required");
+    const input = path.resolve(a["input-json"]);
+    const manifest = JSON.parse(fs.readFileSync(input, "utf8"));
+    if (
+      manifest.version !== 3 ||
+      manifest.run_id !== id ||
+      !Number.isSafeInteger(manifest.book_id) ||
+      !manifest.book_uuid
+    )
+      throw new Error("prepared target/run mismatch");
+    s.runs[id] = {
+      run_id: id,
+      status: "running",
+      input_json: input,
+      input_sha256: hash(input),
+      book_id: manifest.book_id,
+      library_id: manifest.library_id,
+      file_hash: manifest.file_hash,
+      lang: manifest.lang,
+      session_key: a["session-key"] || null,
+      created_at: new Date().toISOString(),
+    };
+    writeState(file, s);
+    return { ok: true, run: s.runs[id] };
+  });
 }
-
-try { main(); } catch (e) { console.error(String(e?.stack || e)); process.exit(1); }
+try {
+  console.log(JSON.stringify(main()));
+} catch (e) {
+  console.error(shortError(e));
+  process.exitCode = 1;
+}

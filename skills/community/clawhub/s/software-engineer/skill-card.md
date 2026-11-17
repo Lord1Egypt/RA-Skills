@@ -1,41 +1,56 @@
-## Description: <br>
-Write production-ready code with clean architecture, proper error handling, and pragmatic trade-offs between shipping fast and building right. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write production-ready code with clean architecture, proper error handling, and pragmatic trade-offs between shipping fast and building right.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to write, review, and refactor code while applying existing project conventions, architecture boundaries, error handling, and testing practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Coding guidance can lead an agent to propose or modify project files incorrectly when project context is incomplete. <br>
-Mitigation: Review generated changes, run tests and static checks, and apply normal repository review practices before merging or deploying. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/software-engineer) <br>
-- [Skill homepage](https://clawic.com/skills/software-engineer) <br>
-- [Architecture decisions](architecture.md) <br>
-- [Code patterns](patterns.md) <br>
-- [Testing practices](testing.md) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to guide coding, review, and refactoring work with pragmatic architecture, error handling, testing, and code-quality practices.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code snippets and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file edits, tests, shell commands, and review notes depending on the user's task.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill has broad software-engineering scope and may activate for many programming requests.
+
+Mitigation: Use a narrower specialized skill for high-risk domains such as authentication, payments, secrets management, infrastructure, or other security-critical work.
+
+Risk: Generated coding guidance can be incomplete or mismatched to the project context.
+
+Mitigation: Review proposed code and commands before applying them, and verify behavior with the project's normal tests and checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/software-engineer)
+- [Skill homepage](https://clawic.com/skills/software-engineer)
+- [Code Patterns](artifact/patterns.md)
+- [Architecture Decisions](artifact/architecture.md)
+- [Testing Practices](artifact/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, prose guidance, code blocks, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated in the active project context; no fixed token or file-output contract is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

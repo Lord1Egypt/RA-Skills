@@ -1,50 +1,69 @@
-## Description: <br>
-Huo15 Img Prompt helps agents create and refine text-to-image and text-to-video prompts, storyboard packages, brand kits, style presets, character cards, and review workflows for tools such as Midjourney, SDXL, Flux, and DALL-E 3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Img Prompt helps agents generate, refine, review, and package text-to-image, text-to-video, storyboard, brand-kit, and style-learning prompts for Midjourney, SD/SDXL, Flux, DALL-E 3, Sora, Kling, and related creative workflows.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers, creative teams, and agent users use this skill to turn briefs, scripts, brand requirements, or reference images into reusable image and video generation prompts, prompt variants, storyboard assets, and local creative workflow files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, or reference material may be sent to external providers when optional API-backed features are used. <br>
-Mitigation: Use provider-backed features only with approved content and accounts, and avoid submitting sensitive prompts or images unless the destination provider is trusted. <br>
-Risk: The skill reads API keys from the environment and can use a custom Anthropic base URL. <br>
-Mitigation: Provide only scoped credentials, keep them out of shared logs or prompts, and set ANTHROPIC_BASE_URL only to trusted endpoints. <br>
-Risk: Creative material can be persisted locally in ~/.huo15 or exported to Obsidian paths. <br>
-Mitigation: Review, secure, or delete local persisted assets and Obsidian exports when prompts, references, or generated assets are sensitive. <br>
-Risk: The Web UI creates a local interaction surface. <br>
-Mitigation: Run the Web UI on localhost only and avoid exposing it to untrusted networks. <br>
-Risk: Prompt safety linting or polishing could be misused to bypass provider rules. <br>
-Mitigation: Use safety and polish features to comply with provider policies, and review generated prompts before submission. <br>
+## Use Case:
 
+Developers, designers, and creative teams use this skill to turn briefs, subjects, scripts, reference styles, and brand constraints into reusable prompts, prompt variants, storyboards, character assets, and creative production guidance for image and video generation tools.
 
-## Reference(s): <br>
-- [Huo15 Img Prompt ClawHub page](https://clawhub.ai/zhaobod1/huo15-img-prompt) <br>
-- [Quickstart](QUICKSTART.md) <br>
-- [Recipes](RECIPES.md) <br>
-- [T2I prompt engineering reference](references/t2i-guide.md) <br>
-- [Examples](examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, plain text prompts, shell commands, and local workflow files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate provider-specific prompt text, storyboard JSON, scene and transition prompt files, brand kit or character configuration, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can call paid external model APIs and send prompts, images, local files, or API-key-backed requests to network services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only trusted API providers, keep credentials scoped to the intended services, and review generated commands before running workflows that upload files or call external APIs.
+
+Risk: The MCP server exposes creative tools to an agent and can broaden what the agent may execute in a session.
+
+Mitigation: Register the MCP server only in trusted local agent environments and avoid shared or untrusted workspaces.
+
+Risk: The image review workflow can operate on arbitrary local paths.
+
+Mitigation: Use review_image only with intended non-sensitive image files and avoid passing private directories or unrelated file paths.
+
+Risk: The Web UI and persisted character or project data may contain sensitive creative or brand material.
+
+Mitigation: Run the Web UI only on loopback and avoid storing sensitive character, brand, or prompt data unless local persistence is acceptable.
+
+Risk: A custom ANTHROPIC_BASE_URL can redirect model traffic through an unintended gateway.
+
+Mitigation: Leave ANTHROPIC_BASE_URL unset unless it points to a trusted HTTPS endpoint.
+
+## Reference(s):
+
+- [Huo15 Img Prompt ClawHub page](https://clawhub.ai/zhaobod1/skills/huo15-img-prompt)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Recipes](artifact/RECIPES.md)
+- [T2I prompt engineering guide](artifact/references/t2i-guide.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt text, JSON payloads, configuration snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist project assets under ~/.huo15 and may generate files such as storyboards, scene prompts, transition prompts, brand kits, character cards, and learned presets.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter, changelog, server release metadata, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

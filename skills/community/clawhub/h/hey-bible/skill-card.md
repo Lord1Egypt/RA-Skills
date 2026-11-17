@@ -1,45 +1,60 @@
-## Description: <br>
-Look up, search, and reference Bible verses and saved Hey Bible account data through the Hey Bible API, returning Scripture text and structured JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up, search, and cross-reference Bible verses and Scripture via the Hey Bible API, including authorized access to saved favorites, notes, verse images, and chats.
 
-## Publisher: <br>
-[hey-bible](https://clawhub.ai/user/hey-bible) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hey-bible](https://clawhub.ai/user/hey-bible)
 
-## Use Case: <br>
-Agents use this skill when a user asks to look up, quote, search, cross-reference, or compare Bible verses, passages, chapters, and translations. With the user's Hey Bible API key, it can also retrieve saved favorites, notes, verse images, chats, and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private Hey Bible account data, including favorites, notes, verse images, chats, tags, and signed image links. <br>
-Mitigation: Use only with a Hey Bible API key the user is comfortable giving to the agent, and review returned account data before sharing or storing it elsewhere. <br>
-Risk: Verse searches may save lookup activity to the user's Hey Bible account. <br>
-Mitigation: Tell the user before running searches when account activity matters, and keep lookups scoped to the user's request. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve Scripture passages, compare translations, and access authorized Hey Bible saved data through the Hey Bible API.
 
-## Reference(s): <br>
-- [Hey Bible homepage](https://heybible.app) <br>
-- [Hey Bible API docs](https://docs.heybible.app) <br>
-- [Hey Bible CLI package](https://www.npmjs.com/package/@hey-bible/cli) <br>
-- [Hey Bible MCP package](https://www.npmjs.com/package/@hey-bible/mcp) <br>
-- [Hey Bible TypeScript SDK](https://www.npmjs.com/package/@hey-bible/client) <br>
-- [Artifact API reference](artifact/references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON responses from the Hey Bible CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HEY_BIBLE_API_KEY, Node.js, npx, and network access to api.heybible.app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Unpinned npm CLI execution can run changed package code with access to HEY_BIBLE_API_KEY and private Hey Bible account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and review a pinned version of @hey-bible/cli before use, and avoid ad hoc npx execution for sensitive account access.
+
+Risk: The skill can read saved favorites, notes, image metadata or signed URLs, chats, and tags from the user's Hey Bible account.
+
+Mitigation: Expose only the required Hey Bible API key, confirm user intent before saved-data commands, and avoid sharing private outputs outside the authorized session.
+
+Risk: Verse searches may be saved to the user's Hey Bible account.
+
+Mitigation: Tell users when a lookup can affect account history and confirm before running searches where that side effect matters.
+
+## Reference(s):
+
+- [Hey Bible API reference](references/api-reference.md)
+- [Hey Bible API documentation](https://docs.heybible.app)
+- [Hey Bible homepage](https://heybible.app)
+- [@hey-bible/cli npm package](https://www.npmjs.com/package/@hey-bible/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and structured JSON returned by the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Verse content may include HTML verse markers that should be stripped before presenting text to users.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, frontmatter, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

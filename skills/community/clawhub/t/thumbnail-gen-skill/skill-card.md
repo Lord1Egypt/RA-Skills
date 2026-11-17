@@ -1,43 +1,58 @@
-## Description: <br>
-Generate ai youtube thumbnail generator images with AI via the Neta AI image generation API (free trial at neta.art/open). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI YouTube thumbnail images with the Neta AI image generation API.
 
-## Publisher: <br>
-[sherrihidalgolt](https://clawhub.ai/user/sherrihidalgolt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sherrihidalgolt](https://clawhub.ai/user/sherrihidalgolt)
 
-## Use Case: <br>
-External users and content creators use this skill to generate AI-powered YouTube thumbnail images from text prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The user's prompt and Neta token are sent to api.talesofai.com for image generation. <br>
-Mitigation: Use a limited, revocable Neta token and review whether prompts are appropriate to send to the external image API. <br>
-Risk: Passing the token inline can expose it through shared terminals, logs, screenshots, or chat transcripts. <br>
-Mitigation: Avoid sharing command history or screens that include the token, and rotate the token if exposure is suspected. <br>
-Risk: Installing the wrong package or listing could run a different skill than intended. <br>
-Mitigation: Verify the ClawHub listing and publisher handle before installation. <br>
+## Use Case:
 
+External users and developers use this skill to generate YouTube thumbnail image URLs from text prompts through the Neta AI service.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sherrihidalgolt/thumbnail-gen-skill) <br>
-- [Neta AI token and API access](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL printed to stdout, with Markdown usage examples in the documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script submits an image generation request and polls until it prints a direct generated image URL or an error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and package.json) <br>
+Risk: The skill sends prompts and the Neta token to the remote api.talesofai.com backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that api.talesofai.com is the intended service for the token and avoid sending sensitive prompt content.
+
+Risk: Passing real tokens on command lines can expose them through shell history or process inspection.
+
+Mitigation: Use short-lived or least-privilege tokens where possible and avoid preserving commands that contain production tokens.
+
+Risk: Unpinned installs can change the code executed by the agent over time.
+
+Mitigation: Prefer a pinned release or ClawHub-managed install path before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sherrihidalgolt/skills/thumbnail-gen-skill)
+- [Neta API access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls]
+
+**Output Format:** [Plain text image URL printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token passed with --token; supports size selection and an optional reference image UUID.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

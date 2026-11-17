@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "rules": [
+    {
+      "id": "D001",
+      "pattern": "\\b(?:ignore|disregard|override|forget)\\b[^.!?\\n]{0,64}\\b(?:previous|prior|system|developer|all)\\b[^.!?\\n]{0,40}\\b(?:instructions?|rules?|prompts?)\\b",
+      "flags": "iu",
+      "explanation": "Instruction takeover"
+    },
+    {
+      "id": "D002",
+      "pattern": "\\b(?:send|reveal|upload|exfiltrate|print|include)\\b[^.!?\\n]{0,80}\\b(?:api[ _-]?keys?|access[ _-]?tokens?|passwords?(?![- ]reset)|private[ _-]?keys?|credentials?|(?:hidden )?system prompt)\\b",
+      "flags": "iu",
+      "explanation": "Sensitive target plus disclosure intent"
+    },
+    {
+      "id": "D003",
+      "pattern": "\\b(?:disable|bypass|turn off|skip)\\b[^.!?\\n]{0,64}\\b(?:safety checks?|security checks?|audit logging|safeguards?|signature verification)\\b",
+      "flags": "iu",
+      "explanation": "Safeguard bypass intent"
+    },
+    {
+      "id": "D004",
+      "pattern": "\\b(?:curl|wget)\\b[^\\n]{0,160}\\|\\s{0,8}(?:bash|sh|zsh)\\b",
+      "flags": "iu",
+      "explanation": "Remote content piped to a shell"
+    },
+    {
+      "id": "D005",
+      "pattern": "\\b(?:hide|conceal)\\b[^.!?\\n]{0,48}\\b(?:activity|actions?|execution)\\b[^.!?\\n]{0,48}\\b(?:owner|user|administrator)\\b",
+      "flags": "iu",
+      "explanation": "Conceal actions from the owner"
+    },
+    {
+      "id": "D006",
+      "pattern": "\\b(?:supersedes?|replaces?)\\b[^.!?\\n]{0,48}\\b(?:system|developer)\\s+(?:prompt|instructions?)\\b",
+      "flags": "iu",
+      "explanation": "Claimed replacement of higher-priority instructions"
+    },
+    {
+      "id": "D007",
+      "pattern": "\\bdownload\\b[^\\n]{0,160}\\b(?:execute|run)\\b[^.!?\\n]{0,64}\\b(?:without review|without approval)\\b",
+      "flags": "iu",
+      "explanation": "Download and execute without review"
+    },
+    {
+      "id": "D008",
+      "pattern": "\\b(?:do not|don\\x27t)\\s+(?:tell|notify|inform)\\s+(?:the\\s+)?(?:owner|user|administrator)\\b",
+      "flags": "iu",
+      "explanation": "Concealment directive"
+    },
+    {
+      "id": "D009",
+      "pattern": "\\b(?:use|reveal|send|include)\\b[^.!?\\n]{0,64}\\breal production\\s+(?:access token|password|private key)\\b",
+      "flags": "iu",
+      "explanation": "Request for actual production credentials"
+    }
+  ]
+}

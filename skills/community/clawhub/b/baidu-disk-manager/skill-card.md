@@ -1,40 +1,57 @@
-## Description: <br>
-Baidu Disk Manager helps agents manage Baidu Netdisk files through a local CLI, including login guidance, file listing, uploads, downloads, copies, moves, deletion, renaming, folder creation, quota checks, and JSON command output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Baidu Netdisk files through go-bdisk, including login guidance, listing, uploads, downloads, copy, move, delete, rename, folder creation, and quota checks.
 
-## Publisher: <br>
-[power-hayden](https://clawhub.ai/user/power-hayden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[power-hayden](https://clawhub.ai/user/power-hayden)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to operate Baidu Netdisk content through go-bdisk commands. It is suited for listing files, checking quota, transferring files, and performing confirmed file changes in a personal Baidu Netdisk account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy, move, rename, and delete operations can alter or remove Baidu Netdisk content. <br>
-Mitigation: Show the operation type, source path, and target path before execution, then proceed only after the user explicitly replies with an accepted confirmation. <br>
-Risk: Login requires account authorization and API credentials. <br>
-Mitigation: Do not run login automatically; prompt the user to run the login command themselves and continue only after they confirm successful authentication. <br>
+## Use Case:
 
+External users and agents use this skill to manage Baidu Netdisk personal files by preparing go-bdisk commands for listing, quota checks, uploads, downloads, folder creation, and confirmed file changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/power-hayden/baidu-disk-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use go-bdisk with -j or --json for structured output when supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on an unbundled relative go-bdisk executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the ./scripts/go-bdisk executable is trusted.
+
+Risk: Login examples may place sensitive credentials in shell commands.
+
+Mitigation: Avoid putting real secrets directly in command arguments; use a safer login method if available and rotate credentials if they may have been saved in shell history or logs.
+
+Risk: File transfer and file-change commands can affect the wrong local or remote paths.
+
+Mitigation: Verify exact local and remote paths before upload, download, move, rename, copy, or delete operations, and require explicit user confirmation for changing operations.
+
+## Reference(s):
+
+- [Baidu Disk Manager on ClawHub](https://clawhub.ai/power-hayden/skills/baidu-disk-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target the relative ./scripts/go-bdisk executable and often use -j or --json for structured CLI output.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

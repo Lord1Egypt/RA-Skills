@@ -1,43 +1,61 @@
-## Description: <br>
-Browse categories, preview, apply, and restore OpenClaw SOUL.md personas from a curated remote catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse categories, preview, apply, and restore OpenClaw SOUL.md personas from a curated remote catalog.
 
-## Publisher: <br>
-[alexleach](https://clawhub.ai/user/alexleach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexleach](https://clawhub.ai/user/alexleach)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to browse, preview, apply, and restore workspace SOUL.md personas from a curated catalog while keeping backups and local provenance metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying or restoring a SOUL.md can change future agent behavior in the workspace. <br>
-Mitigation: Preview persona source content when possible, apply only catalog entries the user trusts, keep backups, and start a new session after apply or restore. <br>
-Risk: Remote catalog content can influence which persona file is fetched and applied. <br>
-Mitigation: Use the configured catalog and raw content sources only, validate SOUL.md-like content before writing, and avoid applying untrusted catalog entries. <br>
+## Use Case:
 
+Developers and agent users use this skill to browse OpenClaw persona categories, inspect available SOUL.md personas, apply one to the current workspace, and restore a previous persona from backup.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/alexleach/soul-search) <br>
-- [Default catalog](https://raw.githubusercontent.com/mergisi/awesome-openclaw-agents/refs/heads/main/agents.json) <br>
-- [Baseline OpenClaw SOUL.md template](https://docs.openclaw.ai/reference/templates/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown command output from the Node.js helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read remote catalog entries, write SOUL.md, create backups under soul-data/backups, and record state in soul-data/state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Applying a persona can replace the workspace SOUL.md with unverified remote content and affect future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review persona content and catalog source before applying it, use only trusted catalog entries, and start a new session only after confirming the change.
+
+Risk: Apply and restore commands modify local workspace files.
+
+Mitigation: Keep an independent backup and verify the generated soul-data/backups/ and soul-data/state.json records before relying on a restored or newly applied persona.
+
+Risk: The security scan verdict is suspicious because remote content sources are broader than the safety rules describe.
+
+Mitigation: Install only when the publisher and catalog sources are trusted, and avoid sensitive workspaces unless the persona content has been reviewed first.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexleach/skills/soul-search)
+- [Default Persona Catalog](https://raw.githubusercontent.com/mergisi/awesome-openclaw-agents/refs/heads/main/agents.json)
+- [awesome-openclaw-agents](https://github.com/mergisi/awesome-openclaw-agents)
+- [OpenClaw SOUL.md Template](https://github.com/openclaw/openclaw/blob/main/docs/reference/templates/SOUL.md)
+- [Artifact Sources](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text and Markdown command output, with local SOUL.md, backup, cache, and state files when apply or restore commands are used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; apply and restore operations can modify workspace persona configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

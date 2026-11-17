@@ -1,51 +1,65 @@
-## Description: <br>
-Tracks Xiaohongshu daily viral-note rankings by keyword or category, analyzes title and content patterns, and helps creators and operators identify emerging content opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书每日爆款笔记 helps creators and operators query Xiaohongshu daily TOP50 breakout notes by keyword or category and turn ranking data into reusable topic, title, and content-pattern insights.
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-Content creators, brand operators, MCN scouts, and growth analysts use this skill to query Xiaohongshu TOP50 breakout notes, review engagement-growth signals, extract reusable topic and title patterns, and optionally generate a shareable HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and queries RedFox/Xiaohongshu data. <br>
-Mitigation: Provide REDFOX_API_KEY through the current session or a secret store, and confirm the key source, scope, expiry, and reset options before use. <br>
-Risk: API-key setup may involve shell profile files. <br>
-Mitigation: Review setup steps before allowing persistent shell-startup changes; prefer temporary environment variables unless permanent configuration is intended. <br>
-Risk: Generated HTML loads export libraries from public CDNs. <br>
-Mitigation: Use generated HTML only where external CDN loading is acceptable, or replace those libraries with reviewed local copies before distribution. <br>
-Risk: Subscription use can create recurring daily output. <br>
-Mitigation: Enable subscription only when recurring 19:30 ranking output is desired and cancel it when no longer needed. <br>
+## Use Case:
 
+External creators, brand operators, MCN scouts, and growth analysts use this skill to monitor daily Xiaohongshu breakout content, identify fast-rising topics, and generate ranking tables, trend analysis, and optional HTML reports for planning or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/xhs-daily-ranking) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [README](README.md) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox service](https://redfox.hk) <br>
-- [RedFox Xiaohongshu data endpoint](https://redfox.hk/story/api/cozeSkill/getXhsCozeSkillDataOne) <br>
-- [html2canvas CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js) <br>
-- [jsPDF CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables and analysis text, with optional standalone HTML report output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY for live data retrieval; optional HTML reports can be exported to PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill sends a RedFox API key and query metadata to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or session-limited key where possible, store it in an environment variable or secret manager, and rotate or revoke it if exposed.
+
+Risk: Environment-variable setup instructions can lead an agent to write or echo a plaintext API key in shell profiles or terminal output.
+
+Mitigation: Prefer a secret manager or session-scoped environment variable, and avoid placing the key in logs, prompts, committed files, or shared shell history.
+
+Risk: Generated HTML reports and JSON cache inputs can contain untrusted content and reports may load JavaScript from a CDN.
+
+Mitigation: Open generated reports only in a trusted environment, review cache inputs before reuse, and apply normal browser and file-handling precautions.
+
+Risk: Daily subscription pushes can continue sending trend data after setup.
+
+Mitigation: Enable subscription only with clear user intent and keep a known cancellation path available.
+
+## Reference(s):
+
+- [Core workflow](artifact/references/core_workflow.md)
+- [English README](artifact/README.en.md)
+- [ClawHub skill page](https://clawhub.ai/if530770/skills/xhs-daily-ranking)
+- [RedFoxHub](https://redfox.hk/)
+- [RedFoxHub API keys](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown tables and prose, with optional standalone HTML report files and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; optional HTML reports may load CDN JavaScript and can be generated from JSON cache input.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

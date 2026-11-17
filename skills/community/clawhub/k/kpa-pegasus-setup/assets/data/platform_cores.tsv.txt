@@ -1,0 +1,37 @@
+﻿# 平台 → RetroArch 核心映射（来源：KPA 实测设备的 metadata launch 行）
+# 除 MSX 外全部包含在 retroarch.apk assets/cores 中，首启自动解包
+A2600	stella2023_libretro_android.so
+ATOMISWAVE	flycast_libretro_android.so
+CPS1	fbalpha2012_cps1_libretro_android.so
+CPS2	fbalpha2012_cps2_libretro_android.so
+CPS3	fbalpha2012_cps3_libretro_android.so
+DOS	dosbox_pure_libretro_android.so
+DREAMCAST	flycast_libretro_android.so
+EASYRPG	easyrpg_libretro_android.so
+FBNEO	fbneo_libretro_android.so
+FC	nestopia_libretro_android.so
+GB	mgba_libretro_android.so
+GBA	mgba_libretro_android.so
+GBC	mgba_libretro_android.so
+GG	gearsystem_libretro_android.so
+MAME	mame2003_plus_libretro_android.so
+MD	picodrive_libretro_android.so
+MDCD	genesis_plus_gx_libretro_android.so
+N64	mupen64plus_next_gles3_libretro_android.so
+NAOMI	flycast_libretro_android.so
+NDS	melonds_libretro_android.so
+NEOGEO	fbalpha2012_neogeo_libretro_android.so
+NGP	mednafen_ngp_libretro_android.so
+PCE	mednafen_pce_fast_libretro_android.so
+PCECD	mednafen_pce_libretro_android.so
+PICO	retro8_libretro_android.so
+PS	swanstation_libretro_android.so
+SATURN	yabasanshiro_libretro_android.so
+SEGA32X	picodrive_libretro_android.so
+SFC	snes9x2005_plus_libretro_android.so
+SMS	genesis_plus_gx_libretro_android.so
+VARCADE	mame2003_plus_libretro_android.so
+VB	mednafen_vb_libretro_android.so
+WS	mednafen_wswan_libretro_android.so
+# MSX 特例：核心不在 APK 内，需 RA 菜单手动下载 BlueMSX，核心文件名 bluemsx_libretro_android.so
+# PSP 不走 RA，走 PPSSPP 直启（见 step5）

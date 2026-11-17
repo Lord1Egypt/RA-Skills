@@ -1,40 +1,53 @@
-## Description: <br>
-Smart text comparison tool with format-aware diffing, AI explanation, and 3-way merge for structured JSON, YAML, CSV, code, and plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart text comparison tool with format-aware diffing, AI explanation, and 3-way merge for JSON, YAML, CSV, code, and plain text.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare files or directories, inspect structured changes, generate readable diff reports, and prepare three-way merge results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diffs and paste-mode input may contain secrets or proprietary content, and AI explanations may process selected diff hunks. <br>
-Mitigation: Compare only files or directories you intentionally choose; use --no-ai-explain and avoid paste mode for secrets or proprietary content when runtime handling is uncertain. <br>
-Risk: The release metadata includes crypto, wallet, and sensitive-credential capability labels that the security evidence describes as inconsistent with the artifact behavior. <br>
-Mitigation: Treat those labels as metadata noise unless future evidence shows wallet, credential, or crypto behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to compare files or directories, review structured diffs, generate human-readable explanations, and assist with three-way merge decisions.
 
-## Reference(s): <br>
-- [Diff Wizard on ClawHub](https://clawhub.ai/harrylabsj/diff-wizard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, unified diff, side-by-side text, Markdown, HTML, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AI explanations, merge conflict suggestions, directory summaries, and optional saved output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and script constant) <br>
+Risk: Directory reads, sensitive-file handling, and output-path protections may be weaker than the skill documentation claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it only on files and directories you intentionally choose, and avoid secret-bearing paths such as .env files, keys, and credentials.
+
+Risk: Generated diff reports or merge outputs can expose sensitive source content.
+
+Mitigation: Treat reports, explanations, and merge outputs as sensitive artifacts and review them before sharing or storing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/diff-wizard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, unified diffs, markdown, HTML, JSON, and merge output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI-generated explanations, redacted diff excerpts, directory summaries, and conflict suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

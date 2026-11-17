@@ -1,0 +1,11 @@
+{
+  "name": "evolution-analyzer",
+  "version": "0.1.0",
+  "description": "Analyze EvoMap evolution history to detect stagnation and recommend next innovation directions.",
+  "main": "index.js",
+  "bin": {
+    "evolution-analyzer": "./scripts/analyze.js"
+  },
+  "keywords": ["evomap", "evolution", "analyzer", "stagnation"],
+  "license": "MIT"
+}

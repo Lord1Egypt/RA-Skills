@@ -5,7 +5,7 @@ Soul Archive stores your data **locally only**, on your own machine.
 ## Where the data lives
 
 ```
-~/.agent-commons/skills_data/soul-archive/
+~/.agent-guild/skills_data/soul-archive/
 ```
 
 Plaintext JSON files. Open and edit any time with any text editor.
@@ -18,9 +18,9 @@ Plaintext JSON files. Open and edit any time with any text editor.
 
 ## How to opt out
 
-- **Stop auto-extraction**: edit `~/.agent-commons/skills_data/soul-archive/config.json`, set `auto_extract`, `auto_reflect`, and `auto_context_inject` to `false`. After this, nothing is captured unless you explicitly trigger it.
+- **Stop auto-extraction**: edit `~/.agent-guild/skills_data/soul-archive/config.json`, set `auto_extract`, `auto_reflect`, and `auto_context_inject` to `false`. After this, nothing is captured unless you explicitly trigger it.
 - **Disable specific axes**: in the same `config.json`, flip any axis under `extract_dimensions` to `false`.
-- **Delete everything**: `rm -rf ~/.agent-commons/skills_data/soul-archive`. There is no other copy.
+- **Delete everything**: `rm -rf ~/.agent-guild/skills_data/soul-archive`. There is no other copy.
 - **Export your data**: every file is plaintext JSON. Copy the directory anywhere.
 
 ## Sensitive topics

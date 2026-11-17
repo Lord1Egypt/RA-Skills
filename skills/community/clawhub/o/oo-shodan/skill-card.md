@@ -1,45 +1,59 @@
-## Description: <br>
-Shodan (shodan.io). Use this skill for Shodan requests that search and read internet-exposure data through the OOMOL Shodan connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected Shodan service to search host data and retrieve host, DNS, and account information.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, security analysts, and operators use this skill to query Shodan host data, DNS information, subdomains, facets, and account credit information from an OOMOL-connected Shodan account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Shodan account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Use only with the intended OOMOL account connection, avoid handling raw tokens, and perform setup only after an auth or connection failure. <br>
-Risk: Incorrect Shodan queries can return irrelevant or misleading exposure data. <br>
-Mitigation: Inspect the live connector action schema before building payloads and review query terms, facets, and target identifiers before execution. <br>
-Risk: Account credit or billing limits can stop Shodan actions. <br>
-Mitigation: Check account API information or billing status when the connector reports insufficient credit before retrying. <br>
+## Use Case:
 
+Developers and analysts use this skill to search Shodan host data and retrieve host, DNS, and account information through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Shodan homepage](https://www.shodan.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-shodan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses may include JSON data and execution metadata from the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup uses remote installer scripts that were unavailable for inspection, so their exact system changes are uncertain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and use a verified CLI release; explicitly approve installation before running it.
+
+Risk: Automatic skill synchronization could propagate changes across agent installations.
+
+Mitigation: Disable automatic synchronization unless you want changes to propagate across installations.
+
+Risk: Shodan requests made through OOMOL may consume credits.
+
+Mitigation: Check available credits and monitor usage before running searches.
+
+## Reference(s):
+
+- [Shodan](https://www.shodan.io)
+- [Shodan API documentation](https://developer.shodan.io/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON Shodan responses with concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Host searches, host and DNS lookups, and account information.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

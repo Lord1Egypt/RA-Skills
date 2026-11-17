@@ -1,38 +1,58 @@
-## Description: <br>
-Scans a skill directory for security issues and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans a skill directory for security issues and best practices.
 
-## Publisher: <br>
-[liverock](https://clawhub.ai/user/liverock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liverock](https://clawhub.ai/user/liverock)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan Python skill directories for security issues, misconfigurations, hidden files, hardcoded secrets, risky calls, network usage, and obfuscation patterns before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liverock/security-sentinel-ultimate) <br>
-- [Publisher profile](https://clawhub.ai/user/liverock) <br>
+Developers and skill reviewers use this skill to scan Python skill directories for security issues, misconfigurations, and best-practice concerns before review or deployment.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with findings grouped by file and category] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads files under a user-provided folder and reports findings without modifying files or sending data out; reports can surface masked secret-like values and list hidden files.] <br>
+Global
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The scanner is heuristic and may overstate scan completeness.
+
+Mitigation: Use its report as a review aid, not as a definitive security gate.
+
+Risk: Markdown reports can be influenced by scanned filenames or code strings.
+
+Mitigation: Treat generated reports as untrusted evidence and review them before sharing or acting on them.
+
+Risk: The scanner reads directories selected by the caller.
+
+Mitigation: Run it only on skill directories or paths that were intentionally chosen for review.
+
+## Reference(s):
+
+- [Security Sentinel Ultimate on ClawHub](https://clawhub.ai/liverock/skills/security-sentinel-ultimate)
+- [liverock publisher profile](https://clawhub.ai/user/liverock)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report with severity summaries and findings tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports findings grouped by file and category with critical, warning, and OK severity labels.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "交付物发前体检"
+  short_description: "给PPT、文档、表格和PDF做发送决策，读取上下文后再判能不能发"
+  default_prompt: "用 $presend-deliverable-inspector 检查这份交付物能不能发。先读取收件人、目标动作和附件上下文，再核对数字、证据、隐藏内容与版本，给出出街判定、必须改和30分钟修复路线。"

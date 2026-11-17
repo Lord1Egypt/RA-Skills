@@ -1,39 +1,50 @@
-## Description: <br>
-Guides native advertising on Taboola, Outbrain, and content recommendation networks, including campaign planning, creative testing, copywriting, funnel focus, and budget recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides native advertising on Taboola, Outbrain, and content recommendation networks for planning or optimizing native ad campaigns.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing operators and growth teams use this skill to plan and optimize native ad campaigns for traffic, leads, or brand goals on Taboola, Outbrain, and similar content recommendation platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use selected value proposition and audience details from local project context files when generating recommendations. <br>
-Mitigation: Review any .claude/project-context.md or .cursor/project-context.md files before use to ensure they contain appropriate business and audience details. <br>
+## Use Case:
 
+Marketing teams, founders, and advertising operators use this skill to plan and improve native ad campaigns across Taboola, Outbrain, and similar content recommendation networks. It helps choose campaign goals, content formats, creative tests, landing page alignment, and budget guidance.
 
-## Reference(s): <br>
-- [ClawHub native-ads release](https://clawhub.ai/kostja94/native-ads) <br>
-- [Kostja94 publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include headline options, image guidance, landing page alignment, and budget recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Project context files used for ad recommendations may contain secrets or unrelated private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep project context limited to marketing-relevant value proposition and audience details, and remove secrets or unrelated private information before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/native-ads)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include headline options, image guidance, landing page alignment, and budget recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

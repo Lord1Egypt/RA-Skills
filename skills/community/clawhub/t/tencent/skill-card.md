@@ -1,56 +1,70 @@
-## Description: <br>
-Navigate Tencent products, Tencent Cloud services, and WeChat ecosystem decisions with region-aware planning and official-source verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Tencent products, Tencent Cloud services, and WeChat ecosystem decisions with region-aware planning and official-source verification.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, operators, and business teams use this skill to classify Tencent-related requests, compare Tencent Cloud and WeChat ecosystem options, verify official sources, and plan region-sensitive rollouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save lightweight local Tencent planning notes under ~/tencent. <br>
-Mitigation: Review local memory files periodically and avoid saving secrets, billing exports, raw customer data, or copied console tokens. <br>
-Risk: Research queries and page requests may be sent to Tencent documentation and product sites. <br>
-Mitigation: Use official Tencent sources for product claims and avoid sending sensitive account or customer details in research queries. <br>
-Risk: Console, payment, or account-changing actions could affect real Tencent services if approved too broadly. <br>
-Mitigation: Require explicit user approval with the exact account, region, and action before any account-level execution. <br>
+## Use Case:
 
+Developers, operators, and business teams use this skill to route Tencent-related requests, compare Tencent Cloud, WeChat, WeCom, payments, ads, and regional rollout options, and turn ambiguous Tencent work into source-verified plans and decision records.
 
-## Reference(s): <br>
-- [Tencent skill page](https://clawhub.ai/ivangdavila/tencent) <br>
-- [Tencent corporate site](https://www.tencent.com) <br>
-- [Tencent Cloud mainland documentation](https://cloud.tencent.com) <br>
-- [Tencent Cloud international documentation](https://www.tencentcloud.com) <br>
-- [WeChat developer documentation](https://developers.weixin.qq.com) <br>
-- [WeCom documentation](https://work.weixin.qq.com) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/ecosystem-map.md](artifact/ecosystem-map.md) <br>
-- [artifact/decision-framework.md](artifact/decision-framework.md) <br>
-- [artifact/cloud-platform.md](artifact/cloud-platform.md) <br>
-- [artifact/mainland-vs-global.md](artifact/mainland-vs-global.md) <br>
-- [artifact/source-validation.md](artifact/source-validation.md) <br>
-- [artifact/rollout-checklist.md](artifact/rollout-checklist.md) <br>
-- [artifact/setup.md](artifact/setup.md) <br>
-- [artifact/memory-template.md](artifact/memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global, with explicit mainland China, Hong Kong, Singapore, and international rollout checks when geography affects product availability, documentation, compliance, payments, or operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with decision records, checklists, and occasional shell commands for local setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local memory file templates and concise decision records when the user approves saved context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local Tencent notes under ~/tencent may capture durable account labels, region defaults, source preferences, and decision records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Save only non-secret planning context that the user explicitly shares or approves; do not store passwords, QR-login secrets, SMS codes, cookies, access keys, billing exports, raw customer data, or console tokens.
+
+Risk: Research queries and page requests may be sent to Tencent documentation and product sites.
+
+Mitigation: Use the skill only when the user is comfortable sharing Tencent-related research queries with those sites, and request approval before adding non-Tencent comparison sources.
+
+Risk: Tencent product behavior, regional availability, pricing, quotas, SDK support, and launch requirements can vary by region and change over time.
+
+Mitigation: Verify time-sensitive or region-sensitive claims against official Tencent-owned sources, record source freshness, and mark legal, compliance, payment, identity, or public-launch dependencies for human review.
+
+Risk: Account-changing work across Tencent Cloud, WeChat, WeCom, ads, payments, or partner consoles could affect production resources or business operations.
+
+Mitigation: Treat planning and verification as the default posture; require explicit user approval and correct account context before login, resource changes, submissions, payment actions, or other execution steps.
+
+## Reference(s):
+
+- [ClawHub Tencent skill page](https://clawhub.ai/ivangdavila/skills/tencent)
+- [Tencent corporate and product overview](https://www.tencent.com)
+- [Tencent Cloud mainland documentation](https://cloud.tencent.com)
+- [Tencent Cloud international documentation](https://www.tencentcloud.com)
+- [WeChat developer documentation](https://developers.weixin.qq.com)
+- [WeCom documentation](https://work.weixin.qq.com)
+- [Tencent Ecosystem Map](ecosystem-map.md)
+- [Tencent Decision Framework](decision-framework.md)
+- [Mainland Vs Global](mainland-vs-global.md)
+- [Tencent Source Validation](source-validation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with decision records, checklists, source-validation notes, and occasional bash setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local markdown memory under ~/tencent after user approval; does not require credentials for planning or research.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

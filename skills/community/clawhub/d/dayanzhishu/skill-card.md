@@ -1,40 +1,53 @@
-## Description: <br>
-答案之书——心中默念一个问题，随机翻到一页，得到一个充满哲理的简短答案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+答案之书 is a Chinese answer-book skill that returns a short philosophical answer and page number for a yes/no or "should I" style question.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-External users and agents use this skill as a novelty answer-book experience for yes/no, should-I, or oracle-style prompts. It returns a short Chinese phrase and page number for reflective or entertainment use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Random oracle-style answers can be mistaken for reliable advice. <br>
-Mitigation: Use the skill for novelty or reflection only, and do not rely on its output for important personal, financial, medical, or legal decisions. <br>
-Risk: Broad trigger phrases may invoke the skill when a user did not intend to request a random answer. <br>
-Mitigation: Invoke the skill by name when possible and confirm intent before treating a question as an answer-book prompt. <br>
+## Use Case:
 
+External users invoke this skill when they want a light, reflective Chinese prompt that simulates opening an answer book for a short oracle-style response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/dayanzhishu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object containing page, total_pages, answer, and display text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Random page selection unless an integer page from 1 to 100 is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad Chinese trigger phrases may invoke the skill during general conversations about fate, guidance, or answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user clearly wants a playful answer-book response.
+
+Risk: Random aphorisms can be mistaken for advice on consequential decisions.
+
+Mitigation: Treat the output as reflective entertainment, not factual, legal, medical, financial, or safety guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enihsago/skills/dayanzhishu)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing page number, total pages, answer text, and display text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional page argument selects a deterministic answer from pages 1-100; otherwise page selection is random.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

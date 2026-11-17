@@ -28,7 +28,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from core.common import parse_heading_value, parse_metric_block, parse_section_metric, resolve_memory_root
+from core.common import parse_heading_value, parse_metric_block, parse_section_metric, resolve_memory_root, note_file_path
+from core.safe_fs import iter_files, read_text, safe_exists, UnsafePathError
 import json
 import re
 
@@ -73,7 +74,7 @@ def validate_note(path: Path) -> tuple[list[str], list[str]]:
     warnings: list[str] = []
 
     try:
-        text = path.read_text(encoding="utf-8")
+        text = read_text(path)
     except UnicodeDecodeError:
         errors.append("Cannot read file as UTF-8 — check encoding")
         return errors, warnings
@@ -194,12 +195,12 @@ def validate_tags_json(memory_root: Path, note_paths: set[Path]) -> tuple[list[s
     warnings: list[str] = []
     tags_path = memory_root / "tags.json"
 
-    if not tags_path.exists():
+    if not safe_exists(tags_path):
         warnings.append("tags.json not found — run rebuild.py")
         return errors, warnings
 
     try:
-        data = json.loads(tags_path.read_text(encoding="utf-8"))
+        data = json.loads(read_text(tags_path))
     except (json.JSONDecodeError, UnicodeDecodeError) as exc:
         errors.append(f"tags.json is malformed: {exc}")
         return errors, warnings
@@ -217,10 +218,11 @@ def validate_tags_json(memory_root: Path, note_paths: set[Path]) -> tuple[list[s
             warnings.append(f"tags.json contains a non-object entry: {entry!r}")
             continue
         raw_path = entry.get("path", "")
-        candidate = Path(raw_path)
-        if candidate.parts[:2] == ("memory", "cold"):
-            candidate = Path(*candidate.parts[2:])
-        full_path = memory_root / candidate
+        try:
+            full_path = note_file_path(memory_root, entry)
+        except UnsafePathError:
+            errors.append("tags.json contains an unsafe note path")
+            continue
         if full_path not in note_paths:
             errors.append(f"tags.json references missing file: {raw_path!r}")
 
@@ -238,12 +240,12 @@ def main() -> int:
     args = parser.parse_args()
 
     memory_root = resolve_memory_root(args.memory_root)
-    if not memory_root.exists():
+    if not safe_exists(memory_root, kind="directory"):
         print(f"Error: memory root not found: {memory_root}")
         return 1
 
     note_files = sorted(
-        p for p in memory_root.rglob("*.md") if p.name not in SKIP
+        p for p in iter_files(memory_root, "*.md") if p.name not in SKIP
     )
 
     if not note_files:

@@ -1,42 +1,52 @@
-## Description: <br>
-npm MCP wraps the npm Registry API for free, unauthenticated package lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+npm MCP wraps the npm Registry API without requiring authentication.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to search npm packages, retrieve package metadata, and check download counts through the Pipeworx npm MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package names and search queries are visible to the Pipeworx MCP provider. <br>
-Mitigation: Avoid sending sensitive private package names or internal search terms unless that disclosure is acceptable under the user's data policy. <br>
-Risk: The connection example installs mcp-remote using the @latest tag. <br>
-Mitigation: Pin a reviewed mcp-remote version in controlled or production environments. <br>
+## Use Case:
 
+Developers and external agent users use this skill to connect an MCP server that searches npm packages, retrieves package metadata, and checks package download counts.
 
-## Reference(s): <br>
-- [Pipeworx npm Pack](https://pipeworx.io/packs/npm) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [ClawHub release page](https://clawhub.ai/b-gutman/pipeworx-npm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with JSON configuration and package lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses remote MCP tools for npm package search, package metadata, and download counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup runs the Pipeworx remote MCP bridge locally through an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bridge before enabling it, prefer pinning mcp-remote to an exact reviewed version, and run the MCP process with least-privilege filesystem, environment, and network access.
+
+## Reference(s):
+
+- [Pipeworx npm pack](https://pipeworx.io/packs/npm)
+- [Pipeworx](https://pipeworx.io)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-npm)
+- [Server-resolved provenance](unavailable)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON configuration and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP setup guidance and tool-use guidance for npm package search, package metadata lookup, and download count retrieval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

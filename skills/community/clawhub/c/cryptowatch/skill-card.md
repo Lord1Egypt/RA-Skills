@@ -1,43 +1,59 @@
-## Description: <br>
-CryptoWatch monitors cryptocurrency prices, market rankings, and local price alerts using public CoinGecko market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CryptoWatch helps agents check cryptocurrency prices, market rankings, and manual price alerts using CoinGecko data.
 
-## Publisher: <br>
-[gztanht](https://clawhub.ai/user/gztanht) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gztanht](https://clawhub.ai/user/gztanht)
 
-## Use Case: <br>
-External users and developers use this skill to check cryptocurrency prices, compare 24-hour gainers and losers, and configure local threshold alerts. It is informational only and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The tool sends selected coin symbols and currency choices to CoinGecko when fetching market data. <br>
-Mitigation: Use it only when sharing those query choices with CoinGecko is acceptable. <br>
-Risk: Alert thresholds are stored locally, and sponsorship payment claims are not enforced by the reviewed code. <br>
-Mitigation: Review local alert files before sharing the workspace and independently verify any sponsorship unlock before sending payment. <br>
-Risk: Cryptocurrency market output can be mistaken for investment advice. <br>
-Mitigation: Treat generated price, ranking, and alert output as informational market data, not a recommendation to trade. <br>
+## Use Case:
 
+Developers and external users can use this skill to retrieve current cryptocurrency prices, compare market movement, and maintain local threshold alerts. The outputs are informational only and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gztanht/cryptowatch) <br>
-- [CoinGecko API](https://www.coingecko.com/en/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public market data from CoinGecko and stores alert thresholds locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: The documented npx install command may fetch an unpinned remote npm package that does not clearly match the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the npm package to a reviewed version and verify the package identity and checksum before running it.
+
+Risk: The skill makes outbound requests to CoinGecko and depends on availability, rate limits, and returned market data quality.
+
+Mitigation: Run it in an environment where CoinGecko access is expected, handle rate-limit failures, and treat returned prices as informational rather than financial advice.
+
+Risk: Price alerts are stored locally and require manual execution or external scheduling to check thresholds.
+
+Mitigation: Use a reviewed scheduler if continuous checks are required and protect the local alert configuration file from unwanted modification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gztanht/skills/cryptowatch)
+- [Publisher profile](https://clawhub.ai/user/gztanht)
+- [CoinGecko API](https://www.coingecko.com/en/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local JSON alert file when alert commands are used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

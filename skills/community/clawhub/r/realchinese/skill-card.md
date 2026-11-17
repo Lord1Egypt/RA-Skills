@@ -1,41 +1,57 @@
-## Description: <br>
-RealChinese detects AI-writing traces in Chinese text and rewrites text into styles for eight Chinese content platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RealChinese is a local Chinese writing helper that scores AI-like writing patterns and rewrites text into styles for Chinese content platforms.
 
-## Publisher: <br>
-[thebuddha5566](https://clawhub.ai/user/thebuddha5566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebuddha5566](https://clawhub.ai/user/thebuddha5566)
 
-## Use Case: <br>
-Developers, writing assistants, and content creators use this skill to analyze Chinese text for AI-like writing patterns and rewrite it for platforms such as WeChat, Xiaohongshu, Zhihu, Douyin, Weibo, Douban, Jike, and Bilibili. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes local Python scripts that process user-provided text. <br>
-Mitigation: Review the scripts before installation, run them in a low-privilege environment, and provide only text that is appropriate for local processing. <br>
-Risk: AI-writing detection scores and style rewrites may be imperfect or context-dependent. <br>
-Mitigation: Treat reports and rewritten text as drafting aids, and have a human review outputs before publication or consequential use. <br>
+## Use Case:
 
+Developers and content creators use this skill to run local Chinese text analysis and generate platform-specific rewrites for social and publishing workflows. It is suited for local drafting assistance where users review heuristic scores and edited text before publication.
 
-## Reference(s): <br>
-- [Realchinese ClawHub release page](https://clawhub.ai/thebuddha5566/realchinese) <br>
-- [thebuddha5566 ClawHub publisher profile](https://clawhub.ai/user/thebuddha5566) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with optional shell and Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local CLI and Python API usage for detection reports and rewritten Chinese text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release metadata) <br>
+Risk: Heuristic AI-trace scoring may be inaccurate or overstate detection certainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scores as drafting signals only and have a human reviewer evaluate the source text and rewritten output.
+
+Risk: The advertised 29-detection claim and pip-install claim are not fully supported by the security evidence.
+
+Mitigation: Confirm packaging and detection coverage before relying on those claims in production workflows.
+
+Risk: Style rewriting may introduce misleading phrasing, platform-inappropriate language, or changes in meaning.
+
+Mitigation: Review rewritten content against the original intent and platform policy before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thebuddha5566/skills/realchinese)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local heuristic detection reports and rewritten Chinese text; output should be reviewed before external use.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: cognitive-science-landscape
 description: "Activate when: user says 'I want to improve my thinking,' 'why does my decision-making keep failing,' 'how do I optimize my cognitive performance,' 'what's the full picture of how the mind works,' or is about to apply a single cognitive intervention without understanding which domain is the bottleneck.
-  Do NOT activate when: the specific cognitive domain is already clearly identified and scoped (use domain-specific tools instead); the problem is not cognitively rooted (resource constraints, politics, or external environment are the driver)."
+  Do NOT activate when: the specific cognitive domain is already clearly identified and scoped (use domain-specific tools instead); the problem is not cognitively rooted (resource constraints, politics, or external environment are the driver). More: deciqai.com/c/cognitive-science-landscape"
 ---
 
 # Cognitive Science Landscape
@@ -115,4 +115,6 @@ DOMAINS CLEARED: [list]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/cognitive-science-landscape** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/cognitive-science-landscape.json*

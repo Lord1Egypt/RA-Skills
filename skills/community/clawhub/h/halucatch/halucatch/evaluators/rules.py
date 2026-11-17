@@ -1,7 +1,6 @@
 """规则评估：检查口径定义、边界条件、模糊词汇、自洽性等。"""
 
 import re
-from ..config import MESSAGES
 
 
 def check_rules(info):
@@ -16,7 +15,7 @@ def check_rules(info):
     score = 0
 
     # 1) 分类歧义 — 查找模糊词汇
-    fuzzy_words = ['一般', '大概', '酌情', '适当', '差不多', '基本上', '通常', '大致', '左右']
+    fuzzy_words = ['一般', '大概', '酌情', '适当', '差不多', '基本上', '大致', '左右']
     found_fuzzy = [w for w in fuzzy_words if w in md]
     if found_fuzzy:
         issues.append((f'🟠 存在模糊表述: {found_fuzzy[:3]}', 'warn'))

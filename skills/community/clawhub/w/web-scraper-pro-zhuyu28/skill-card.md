@@ -1,40 +1,52 @@
-## Description: <br>
-Browser automation skill for web interaction and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation skill for web interaction and data extraction. Enhanced version by zhuyu28.
 
-## Publisher: <br>
-[zhuyu28](https://clawhub.ai/user/zhuyu28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhuyu28](https://clawhub.ai/user/zhuyu28)
 
-## Use Case: <br>
-Developers and external users use this skill to support web scraping, data extraction, automated form filling, UI testing, and browser-based workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is a minimal browser automation stub, so scraped or form-filling results may be incomplete or misleading. <br>
-Mitigation: Verify outputs against the target website before relying on them. <br>
-Risk: Automated form filling can expose sensitive data or make unintended website changes. <br>
-Mitigation: Avoid entering secrets unless necessary and require explicit approval before submitting forms, changing accounts, publishing content, or interacting with websites on a user's behalf. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Web Scraper Pro Usage Guide](references/scraper_guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhuyu28/web-scraper-pro-zhuyu28) <br>
+## Use Case:
 
+Developers and automation users can use this skill for web scraping, data extraction, automated form filling, UI testing, and browser-based workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script returns simple JSON status objects for scrape and fill-form actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Form-filling workflows can expose submitted data through command arguments or output.
+
+Mitigation: Avoid passwords, tokens, personal data, payment information, and authenticated workflows unless the skill is revised to redact form values and avoid command-line secret handling.
+
+Risk: The package lacks documented safety controls for state-changing browser actions.
+
+Mitigation: Review the skill before installing and require explicit confirmation before actions that submit forms or change remote state.
+
+## Reference(s):
+
+- [Web Scraper Pro Usage Guide](references/scraper_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scraping or form-filling guidance that should be reviewed before use with sensitive or authenticated workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

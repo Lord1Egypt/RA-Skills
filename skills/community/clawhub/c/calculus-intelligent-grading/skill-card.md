@@ -1,42 +1,52 @@
-## Description: <br>
-Grades higher-mathematics subjective responses from image, LaTeX, or text inputs, checks calculus reasoning, and generates step-level feedback for teacher review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports demonstration of intelligent grading for higher-mathematics calculation and proof problems, including multi-method assessment, step-by-step scoring, MathJax SVG rendering, and handwriting-style review.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[daigxok](https://clawhub.ai/user/daigxok)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Educators, training facilitators, and agent developers use this skill to demonstrate AI-assisted grading workflows for calculus exercises. It is aimed at training scenarios where agents evaluate mathematical correctness across alternative valid solution paths rather than strict answer matching.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Student answers, reference answers, and solution steps may be sent to DeepSeek during grading workflows.
+
+Mitigation: Confirm data-sharing approval before use with real coursework, avoid student identifiers where possible, and document consent and data-retention requirements.
+
+Risk: The referenced grading demo HTML is not included in this package.
+
+Mitigation: Verify required demo assets are available before using the skill in a training session.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Instructors, teaching assistants, and education developers use this skill to evaluate calculus homework, proof attempts, and worked solutions, then produce step scores, error explanations, and multimodal feedback. It is best used with human review when real student work or final grades are involved. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, JSON, Guidance, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process identifiable student submissions through external OCR or LLM providers. <br>
-Mitigation: Use only approved providers, avoid identifiable submissions where possible, and define consent, retention, deletion, access control, and cache handling before classroom or institutional deployment. <br>
-Risk: Automated grading and feedback can be incorrect or misleading for high-stakes assessment. <br>
-Mitigation: Require teacher or teaching-assistant review for final scores, rubric alignment, and feedback sent to students. <br>
-Risk: Cached grading data can retain sensitive student work longer than intended. <br>
-Mitigation: Configure cache retention limits, restrict access to stored submissions and results, and delete cached records according to the institution's policy. <br>
+**Output Format:** [Markdown guidance with structured JSON response examples and implementation notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/calculus-intelligent-grading) <br>
+**Other Properties Related to Output:** [Outputs may describe DeepSeek API grading prompts, MathJax SVG rendering behavior, step-level scores, method identification, error categories, and logic analysis.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results and Markdown-style guidance with example shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include step-level scores, error categories, text annotations, voice feedback references, recommended learning resources, and proof-structure analysis.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

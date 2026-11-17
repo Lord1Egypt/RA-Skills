@@ -1,680 +1,420 @@
 ---
 name: neway-commerce-os
-description: Generate, scaffold, build, and prepare deployment for a reusable react + vite + hono commerce operating system focused on digital products, storefronts, subscriptions, ai-assisted sales, admin dashboards, and international stripe-style payments. use when the user wants a complete website skeleton from a short prompt, especially for ecommerce launches, creator stores, productized services, multi-product studios, or newaystudio-style product matrices with edgeone pages deployment and full-stack edge functions.
+description: Generate, scaffold, build and verify a React + Vite + Hono commerce storefront from a short product brief — catalog, cart, wishlist, three-step checkout, admin dashboard, AI sales assistant and EdgeOne Pages deployment files. Use when the user wants a complete ecommerce/store website skeleton from one sentence, especially for digital products, creator stores, productized services, multi-product studios or NewayStudio-style product matrices.
+description_zh: 用一句话产品创意生成可运行的 React + Vite 全栈电商站点：商品目录、购物车、收藏夹、三步结算、管理后台、AI 导购与 EdgeOne Pages 部署配置。触发场景：生成电商网站、开店站、独立站、创作者商店、数字商品商店、产品矩阵官网。
+description_en: Generate a runnable React + Vite full-stack commerce storefront from a one-line product brief — catalog, cart, wishlist, three-step checkout, admin dashboard, AI sales concierge and EdgeOne Pages deployment files.
+version: 1.1.0
+author: neway
+display_name: Neway Commerce OS 电商建站
+display_name_en: Neway Commerce OS
 agent_created: true
 ---
 
 # Neway Commerce OS
 
-## Overview
+One prompt in, one runnable storefront out.
 
-Generate a production-quality React + Vite storefront from a single product brief.
-Default output includes: product catalog, cart, product detail, checkout, wishlist, admin dashboard, AI sales concierge, mock-to-live payment switching, and EdgeOne Pages deployment files.
-
-This Skill is the authoritative source for **all code conventions** used across all generated stores.
-Every agent invoking this Skill must follow the conventions below — no exceptions, no shortcuts.
-
----
-
-## Execution Workflow (follow this exactly)
-
-0. **Detect language**: run locale detection (see Convention 0). If zh-* → generate Chinese UI; else → English.
-1. **Normalize** the user's prompt into a product brief (brand name, product category, tone, hero product, color palette hint).
-2. **Scaffold** the project by copying `templates/base/` into a new directory named `<brand-slug>-store/`.
-3. **Wire content**: replace all `__PLACEHOLDERS__`, translate ALL UI strings to the detected language (see Convention 0 translation map), fill in product data (Chinese `name` + English `nameEn` in zh mode), set brand colors in `tailwind.config.js`.
-4. **Apply conventions**: enforce every rule in the CODE CONVENTIONS section below.
-5. **Verify images**: check every mock image URL returns HTTP 200. Replace any 404 image with a verified Unsplash URL.
-6. **Run build validation**: execute `npm run build` and ensure zero TypeScript errors.
-7. **Preview**: start the dev server (`npm run dev`) and verify all routes are accessible.
-8. **Deliver**: provide the project directory path and a summary of what is scaffolded vs. what still needs production wiring.
+This file is the **single source of truth** for generation. `templates/base`,
+`scripts/` and `references/` are all downstream of it. If a rule here conflicts
+with anything in the template or the scripts, **this file wins** — and the
+inconsistency should be reported to the user, not silently resolved.
 
 ---
 
-## Required File Structure
+# 0. IRON RULES (highest priority — never violate, never "improve")
+
+These three rules come from the user and apply to every artifact this skill
+produces. They are enforced by machine gates (G-01, G-02) — a violation is a
+hard failure, not a style preference.
+
+| # | Rule | Concrete meaning |
+|---|------|------------------|
+| **IR-1** | **Even px, never below 12** | Every `font-size` in `px` must be even **and** ≥ 12. `text-[10px]`, `text-[11px]`, `text-[13px]` are forbidden. Minimum is 12. |
+| **IR-2** | **No emoji in UI** | No emoji anywhere in UI source — not in JSX, not in product data, not in mock responses, not as icon substitutes, not in i18n strings, not decoratively. |
+| **IR-3** | **lucide line icons only** | All icons come from `lucide-react` (line style, no fill, single colour). Never a filled icon set, never an emoji glyph, and an inline SVG only when lucide genuinely lacks the glyph. |
+
+> IR-2 and IR-3 reinforce each other: an emoji used as an icon violates both.
+> Replace `🛒` with `<ShoppingCart />`, `❤️` with `<Heart />`, `✓` with `<Check />`.
+
+---
+
+# 1. HARD GATES (all must pass before delivery)
+
+`scripts/validate_generated_project.py` implements every gate below. Run it on
+the generated project. **Exit code 0 is a precondition for delivery; a failing
+gate means fixing the output, not the gate.**
+
+```bash
+python <skill>/scripts/validate_generated_project.py <project_dir> --lang en --currency CNY
+```
+
+| Gate | Rule |
+|------|------|
+| F-01 | All required files exist (see §3) |
+| F-02 | Style file exists (`src/styles.css`) |
+| F-03 | Deployment files exist (warn) |
+| F-04 | No template leftovers: `AccountPage.tsx`, `AiConcierge.tsx`, `products.json`, `src/lib/api.ts` |
+| P-01 | **Zero** `__PLACEHOLDER__` tokens left in any file |
+| P-02 | No placeholder copy: `Product One`, `Category A`, `category-a`, `Lorem ipsum`, `TODO:`, `example.com` |
+| G-01 | **IR-2**: no emoji in `src/`, `functions/`, `index.html` |
+| G-02 | **IR-1**: every `text-[Npx]` is even and ≥ 12 |
+| G-03 | Currency consistent: CNY output contains no `$<digit>`, USD output contains no `¥<digit>` |
+| D-01 | ≥ 8 products |
+| D-02 | Each product's `images[0] !== images[1]` (hover swap must be visible) |
+| D-03 | ≥ 5 real categories, no generic `category-a` style keys |
+| D-04 | `Product` interface has every required field (§5) |
+| D-05 | `PROMO_CODES` exported (warn) |
+| S-01 | Cart store contract: `persist`, `addItem`, `removeItem`, `updateQuantity`, `clearCart`, `itemCount`, `total`, `toggleCart` |
+| S-02 | `useWishlistStore` exists and is persisted |
+| U-01 | `AIChatWidget` is mounted **once** (in App.tsx, not also in a page) |
+| U-02 | No `window.location` navigation — SPA routing only |
+| U-03 | AI widget has ≥ 8 keyword scenarios |
+| U-04 | HomePage / ShopPage / ProductPage / CheckoutPage section coverage (warn) |
+| T-01 | Two complete colour palettes (`brand` + `fresh`/`leaf`) |
+| T-02 | Palette scale spans 50–900 (warn) |
+| T-03 | Component classes defined: `btn-primary`, `btn-outline`, `btn-ghost`, `tag`, `section-title`, `section-subtitle`, `input-field` |
+| T-04 | `lucide-react` in `package.json` dependencies |
+| L-01 | `index.html` `lang` matches the detected language |
+| I-01 | Every local `/images/*` reference resolves to a real file |
+| I-02 | Remote images reachable (only with `--check-images`) |
+
+**Build gate** (not covered by the script — run it yourself):
+
+```bash
+cd <project_dir> && npm install && npm run build   # tsc --noEmit && vite build
+```
+
+Must exit 0 with zero TypeScript errors. A project that does not build is not a
+deliverable.
+
+> **Repo hygiene (not an output gate):** `scripts/check_skill_language.py` fails
+> if any Chinese text appears in the skill itself. This skill ships to a global
+> audience, so everything except `README.cn.md` and the `description_zh` /
+> `display_name` frontmatter lines must be English — **commit messages included**.
+> A file that genuinely needs CJK data (e.g. a regex that must also match a zh-CN
+> build) carries it as a `\uXXXX` escape, never a literal character.
+
+---
+
+# 2. EXECUTION WORKFLOW (follow exactly)
+
+0. **Detect language.** `powershell -Command "Get-Culture | Select-Object -ExpandProperty Name"` on Windows, `locale | grep LANG` elsewhere. `zh*` → Chinese UI and `lang="zh-CN"`. Otherwise → English UI. **If detection fails or is unavailable, default to English — never block on this step.**
+1. **Normalize** the prompt into a brief: brand name, product category, tone, hero product, palette hint.
+2. **Scaffold** — never copy files by hand:
+   ```bash
+   python <skill>/scripts/scaffold_project.py "<prompt>" --output <cwd> --brand "<Brand>" [--site-name "<Name>"]
+   ```
+   This copies `templates/base`, resolves every placeholder, and never deletes an existing directory (a re-run renames the old one to `<slug>.bak-<timestamp>`).
+3. **Fill content.** Open every page and component in the scaffold and replace the demo catalog with content that fits the brief: products, categories, brand story, promo codes, AI responses. Keep the structure and conventions — the template is a compliant reference implementation, not a blank page.
+4. **Apply conventions** (§6–§11).
+5. **Localize money** (§7).
+6. **Run the gate:** `validate_generated_project.py`. Fix every FAIL and re-run until clean.
+7. **Run the build gate:** `npm install && npm run build`. Fix every error.
+8. **Preview:** `npm run dev`, confirm all 7 routes render.
+9. **Deliver** with Handoff Notes (§12) plus the gate and build evidence.
+
+> **Fail-stop rule:** if a gate or the build fails, fix the output and re-run.
+> Never deliver with a failing gate, never edit the validator to make a failure
+> disappear, and never describe a failing project as "ready except for…".
+
+---
+
+# 3. Output location & file structure
+
+Generate into the **current working directory** (or a directory the user names)
+as `<slug>/`. Never generate inside the skill directory, never overwrite an
+existing project, never modify `templates/base` while generating.
 
 ```
-<brand-slug>-store/
-├── index.html                  ← must contain Google Fonts + correct lang attr
-├── package.json                ← must include all required deps (see below)
-├── tailwind.config.js          ← must define font-body, font-heading, brand colors
-├── vite.config.ts
+<slug>/
+├── index.html                  ← lang attr + Google Fonts
+├── package.json
+├── tailwind.config.js          ← two palettes + font families
+├── postcss.config.js
+├── vite.config.ts              ← publicDir: 'static'
 ├── tsconfig.json
 ├── .env.example
 ├── .gitignore
 ├── edgeone.json
+├── README.md
+├── static/images/              ← bundled demo image pool
 ├── src/
 │   ├── main.tsx
-│   ├── App.tsx                 ← route definitions
+│   ├── App.tsx                 ← 7 routes + global CartDrawer + AIChatWidget
 │   ├── styles.css
-│   ├── vite-env.d.ts
+│   ├── utils/format.ts         ← formatPrice() — the only money formatter
 │   ├── components/
 │   │   ├── Navbar.tsx
 │   │   ├── Footer.tsx
 │   │   ├── ProductCard.tsx
-│   │   ├── CartDrawer.tsx       ← slide-out cart (REQUIRED, not optional)
+│   │   ├── CartDrawer.tsx
 │   │   └── AIChatWidget.tsx
 │   ├── pages/
 │   │   ├── HomePage.tsx
-│   │   ├── ShopPage.tsx         ← dedicated browse/filter/sort page (REQUIRED)
-│   │   ├── ProductPage.tsx      ← /product/:id — MUST exist and be routed
-│   │   ├── CartPage.tsx         ← fallback full-page cart
+│   │   ├── ShopPage.tsx
+│   │   ├── ProductPage.tsx
+│   │   ├── CartPage.tsx
 │   │   ├── CheckoutPage.tsx
 │   │   ├── WishlistPage.tsx
 │   │   └── AdminPage.tsx
-│   ├── data/
-│   │   └── products.ts         ← typed product records
-│   ├── store/
-│   │   └── cartStore.ts        ← Zustand with persist middleware
-│   └── types/
-│       └── index.ts
+│   ├── data/products.ts        ← single source of truth (TypeScript, not JSON)
+│   ├── store/cartStore.ts      ← cart + wishlist stores, both persisted
+│   └── types/index.ts
 └── functions/
-    ├── api/
-    │   ├── products.ts
-    │   ├── checkout.ts
-    │   └── assistant.ts
-    └── node/
-        └── stripe-webhook.ts
+    ├── api/products.ts
+    ├── api/checkout.ts
+    ├── api/assistant.ts
+    └── node/stripe-webhook.ts
 ```
 
-### Route table (all 7 routes MUST be present)
+**Route table — all 7 must exist and render.**
 
-| Path             | Page             | Notes                        |
-|------------------|------------------|------------------------------|
-| `/`              | HomePage         |                              |
-| `/shop`          | ShopPage         | browse + filter + sort       |
-| `/product/:id`   | ProductPage      | dynamic slug — MUST be wired |
-| `/cart`          | CartPage         |                              |
-| `/checkout`      | CheckoutPage     |                              |
-| `/wishlist`      | WishlistPage     |                              |
-| `/admin`         | AdminPage        |                              |
+| Path | Page | Notes |
+|------|------|-------|
+| `/` | HomePage | |
+| `/shop` | ShopPage | category tabs + filter + sort + grid/list |
+| `/product/:id` | ProductPage | dynamic slug, 404 state when not found |
+| `/cart` | CartPage | full-page fallback |
+| `/checkout` | CheckoutPage | three steps |
+| `/wishlist` | WishlistPage | reads wishlistStore |
+| `/admin` | AdminPage | mock metrics + orders |
 
 ---
 
-## Required npm Dependencies
+# 4. Language
 
-```jsonc
-// package.json dependencies (exact versions may float, list them all)
-{
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1",
-    "zustand": "^4.5.5",
-    "framer-motion": "^11.3.19",
-    "lucide-react": "^0.400.0",
-    "clsx": "^2.1.1"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.2",
-    "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38"
-  }
-}
-```
+**One rule, no exceptions:** every user-facing string is in the detected
+language — nav, hero, buttons, placeholders, error messages, checkout steps,
+footer, AI greeting / quick replies / mock responses, admin metric labels and
+table headers, category names, filter options, **and mock data** (order rows,
+customer names, AI replies).
+
+For `en` output, `name` = English and `nameEn` = an optional short subtitle. For
+`zh-CN` output, every product sets `name` = Chinese and `nameEn` = the Latin name.
+
+The bundled template ships **en**. When the detected language is `zh-CN`,
+translate every string — do not leave English copy in a zh-CN build. Gate L-01
+catches the `lang` attribute; the rest is on you.
 
 ---
 
-## CODE CONVENTIONS (MANDATORY)
+# 5. Product data contract
 
-These rules apply to every file generated by this Skill.
-Any agent invoking this Skill must treat these as hard constraints, not suggestions.
-
-### 0. Language Detection & i18n (HIGHEST PRIORITY)
-
-**Before scaffolding any project, detect the user's system locale and generate the UI in the matching language.**
-
-Detection protocol:
-1. Run `powershell -Command "Get-Culture | Select-Object -ExpandProperty Name"` on Windows, or `locale | grep LANG` on macOS/Linux
-2. If the locale starts with `zh` (zh-CN, zh-TW, zh-HK, etc.) → **generate ALL user-facing UI strings in Chinese (Simplified)**
-3. If the locale is anything else (`en`, `ja`, `ko`, etc.) → generate ALL user-facing UI strings in English
-
-**Translation scope** — every user-facing string MUST be translated:
-- Navbar links, search placeholder, mobile menu
-- Hero taglines, CTAs, section titles
-- Product names (name field = Chinese, nameEn field = original English name)
-- Product descriptions, details, tags
-- Buttons, forms, placeholders, error messages
-- Checkout steps, shipping methods, payment labels
-- Footer columns, copyright text
-- AI chatbot greetings, suggestions, mock responses
-- Admin dashboard metric labels, table headers
-- Category labels, filter options, sort dropdown
-
-**Common UI translation map (for reference):**
-
-| English (template base) | 中文 (zh-CN output) |
-|------------------------|---------------------|
-| Home | 首页 |
-| Shop | 商城 / 全部商品 |
-| New In | 新品上架 |
-| Sale | 特惠 / 折扣 |
-| Cart | 购物车 |
-| Wishlist | 收藏夹 |
-| Search products... | 搜索商品... |
-| Add to Cart | 加入购物车 |
-| Checkout | 结算 |
-| Continue Shopping | 继续购物 |
-| Proceed to Checkout | 去结算 |
-| Subtotal | 小计 |
-| Free Shipping over $X | 满 ¥X 免运费 |
-| Shipping Info | 收货信息 |
-| Payment & Promo | 支付与优惠 |
-| Order Review | 确认订单 |
-| Place Order | 提交订单 |
-| Related Products | 相关推荐 |
-| Category | 分类 |
-| Sort by | 排序 |
-| Price: Low to High | 价格从低到高 |
-| Price: High to Low | 价格从高到低 |
-| Rating | 评分 |
-| Newest | 最新上架 |
-| Filter | 筛选 |
-| All | 全部 |
-| Quantity | 数量 |
-| Size | 规格 |
-| Color | 颜色 |
-| Remove | 删除 |
-| Your cart is empty | 购物车是空的 |
-| No products found | 没有找到商品 |
-| AI Assistant | AI 购物助手 |
-| Ask me anything... | 问我任何问题... |
-| Bestsellers | 热销推荐 |
-| New Arrivals | 新品上市 |
-| Features | 特色服务 |
-| Free Shipping | 免费配送 |
-| Secure Payment | 安全支付 |
-| Easy Returns | 无忧退换 |
-| Contact Us | 联系我们 |
-| About Us | 关于我们 |
-| Privacy Policy | 隐私政策 |
-| Terms of Service | 服务条款 |
-| Newsletter | 订阅资讯 |
-| Subscribe | 订阅 |
-| Your email | 您的邮箱 |
-
-**Note:** The above map is a reference baseline. The agent should use its own full translation ability for product descriptions, product names, and longer content — not just the map above.
-
-### 1. Font System
-
-**Default font stack (apply to all generated projects):**
-
-- **Body / UI text** — Noto Sans SC, sourced from Google Fonts
-- **Display / heading** — Playfair Display, sourced from Google Fonts
-- **Fallback** — `"Helvetica Neue", Arial, sans-serif`
-
-**index.html — required `<link>` tag:**
-```html
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-```
-
-**tailwind.config.js — required font definitions:**
-```js
-theme: {
-  extend: {
-    fontFamily: {
-      'body': ['Noto Sans SC', 'Inter', 'sans-serif'],
-      'display': ['Playfair Display', 'serif'],
-    },
-  },
-},
-```
-
-**styles.css — apply body font globally:**
-```css
-body {
-  font-family: 'Noto Sans SC', 'Inter', sans-serif;
-}
-```
-
-### 2. Icon System
-
-**All icons MUST use `lucide-react` components. Emoji is prohibited in all UI code.**
-
-Rules:
-- Import from `lucide-react`: `import { ShoppingCart, Heart, Star } from 'lucide-react'`
-- Default icon size: `size={16}` or `size={20}` — match surrounding text size
-- Never use emoji characters (🛒 ❤️ ⭐ 🎉 etc.) anywhere in JSX
-- Never use emoji in product data strings that appear in the UI
-- Never use `<span>` with emoji content as icon substitutes
-- SVG inline icons are allowed only if lucide-react lacks the specific glyph
-
-**Common icon mappings:**
-
-| Old emoji | Lucide component  |
-|-----------|-------------------|
-| 🛒        | `<ShoppingCart>`  |
-| ❤️ / 💝   | `<Heart>`         |
-| ⭐ / ✨    | `<Star>`          |
-| 🎉        | `<Gift>`         |
-| 🚚        | `<Truck>`         |
-| 📦        | `<PackageCheck>`  |
-| 🌿        | `<Leaf>`          |
-| ❄️        | `<Snowflake>`     |
-| ✈️        | `<Plane>`         |
-| 🔄        | `<RefreshCw>`     |
-| ✓ / ✅    | `<Check>`         |
-
-### 3. Typography — px Values
-
-**Prohibited font sizes:**
-All odd `px` values in `text-[Xpx]` Tailwind classes are forbidden.
-
-Correction table:
-
-| Forbidden | Use instead |
-|-----------|-------------|
-| `text-[11px]` | `text-[12px]` |
-| `text-[13px]` | `text-[14px]` |
-| `text-[15px]` | `text-[16px]` |
-| `text-[9px]`  | `text-[10px]` |
-
-**Rule:** All pixel font sizes must be even numbers. Use Tailwind's standard scale (`text-xs`, `text-sm`, `text-base`, etc.) wherever possible; only use `text-[Xpx]` when a specific size is needed and it must be even.
-
-### 4. Image Handling
-
-**All mock product images must return HTTP 200.**
-
-Protocol:
-1. For every `image` URL in `src/data/products.ts`, verify the URL is reachable.
-2. If any image returns 404 or fails to load, replace it with a verified Unsplash photo URL in this format:
-   ```
-   https://images.unsplash.com/photo-<ID>?w=800&auto=format&fit=crop
-   ```
-3. Use category-appropriate search terms when selecting replacement images.
-4. Document replaced images in the handoff notes.
-
-### 5. Zustand Store
-
-The cart store must use Zustand with the `persist` middleware so the cart survives page refresh:
-
-```ts
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-
-export const useCartStore = create(
-  persist(
-    (set, get) => ({
-      items: [],
-      addItem: (product) => { /* ... */ },
-      removeItem: (id) => { /* ... */ },
-      updateQty: (id, qty) => { /* ... */ },
-      clearCart: () => set({ items: [] }),
-      total: () => get().items.reduce((sum, i) => sum + i.price * i.qty, 0),
-    }),
-    { name: '<brand>-cart' }
-  )
-)
-```
-
-### 6. Routing — ProductPage
-
-The `/product/:id` route is critical. It must:
-- be declared in `App.tsx` as `<Route path="/product/:id" element={<ProductPage />} />`
-- read the `id` param with `const { id } = useParams()`
-- find the product from `products.ts` data by matching slug or id
-- render a 404 state if not found (without crashing)
-
-**ProductCard must navigate on click:**
-```tsx
-import { useNavigate } from 'react-router-dom'
-const navigate = useNavigate()
-// on card click:
-navigate(`/product/${product.id}`)
-```
-
-### 7. Tailwind Configuration
-
-```js
-// tailwind.config.js
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        'body': ['Noto Sans SC', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        'display': ['"Playfair Display"', 'serif'],
-      },
-      colors: {
-        // Override with brand-specific palette per project
-        brand: {
-          50: '#fafafa',
-          500: '#18181b',
-          900: '#09090b',
-        },
-      },
-    },
-  },
-  plugins: [],
-}
-```
-
-### 8. Animation System
-
-Use `framer-motion` for all transitions. Standard presets:
-
-```tsx
-// Card hover lift
-whileHover={{ y: -4, scale: 1.02 }}
-transition={{ duration: 0.2 }}
-
-// Page enter
-initial={{ opacity: 0, y: 20 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.4 }}
-
-// Stagger children
-variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-transition={{ staggerChildren: 0.08 }}
-```
-
-### 9. TypeScript Strict Mode
-
-- `tsconfig.json` must have `"strict": true`
-- All product data must be typed — define a `Product` interface in `src/types/index.ts`
-- No `any` unless in placeholder API handlers
-- Run `tsc --noEmit` before delivery; fix all errors
-
-### 10. Build Validation Gate
-
-Before delivering the project, run:
-
-```bash
-npm install
-npm run build
-```
-
-The build MUST complete without errors. If there are TypeScript errors, fix them before delivery.
-A project that does not build is not a deliverable.
-
----
-
-## QUALITY FLOOR — MANDATORY UX STANDARDS
-
-**CRITICAL: These are NOT suggestions.** Every generated project MUST meet all of the following minimum complexity levels. If time/effort is short, do FEWER pages but make them HIGHER quality rather than spreading thin. The test output standard is the FRAISE store method — match or exceed that quality level.
-
-### Store (Zustand)
-
-The project MUST have TWO separate Zustand stores, both with `persist` middleware:
-
-**1. cartStore — key `'<brand>-cart'`**
-- `items`, `addItem` (merge same-product), `removeItem`, `updateQty`, `clearCart`, `total()`, `count()`
-
-**2. wishlistStore — key `'<brand>-wishlist'`**
-- `ids: string[]`, `toggle(id)`, `has(id)`
-- WishlistPage MUST use this store, NOT local useState
-
-### Color Palette
-
-Every project MUST define **two complete color palettes** (50–950), both semantic:
-
-| Palette | Purpose | Examples |
-|---------|---------|----------|
-| `brand` | Primary actions, highlights, CTAs | Warm orange `#d4751a`, amber, or deep red |
-| `fresh` / `leaf` | Organic/success badges, nature cues | Green `#74ae58`, teal `#4EcDc4` |
-
-The theme colors must feel appropriate for the product category. A fruit store uses warm orange + green; a tech store might use indigo + teal. Never use a single-palette or generic gray-only theme.
-
-### CSS Component Classes (in styles.css @layer components)
-
-Minimum required classes (all MUST be defined and used):
-
-| Class | Purpose |
-|-------|---------|
-| `btn-primary` | Main CTA button (brand fill, white text, rounded-full, hover lift) |
-| `btn-outline` | Secondary button (brand border, brand text, transparent bg) |
-| `btn-ghost` | Tertiary link-style button (gray text, hover dark) |
-| `tag` | Capsule badge (uppercase, tracking-wider, rounded-full) |
-| `section-title` | Page section heading (text-2xl, font-display, font-semibold) |
-| `section-subtitle` | Section subtitle (text-sm, text-neutral-500) |
-
-### HomePage — Minimum Complexity
-
-The HomePage MUST contain ALL of the following sections in order:
-
-1. **Hero section** — full-width with overlay text, CTA buttons, brand tagline
-2. **Category banner grid** — image + label for each non-"all" category, hover color change
-3. **New Arrivals** — grid of `isNew` products (4–8 items), with `framer-motion` fadeUp stagger
-4. **Bestsellers** — grid of top-rated products (rating ≥ 4.8), 4+ items
-5. **Brand story** — two-column text + image section
-6. **AI assistant entry** — call-to-action inviting user to click the AI chat widget
-
-### ShopPage — MUST Exist
-
-A dedicated browse page (`/shop`) with:
-
-1. **Category tab bar** — sticky, horizontal scroll, URL param driven (`?category=xxx`)
-2. **Toolbar** — filter toggle (expand/collapse), sort dropdown (default/price↑/price↓/rating/newest), grid/list toggle
-3. **Filter panel** — tag multi-select (New/Hot/Sale/Classic/Editor Pick), price range slider
-4. **Product grid** — responsive (2/3/4 cols), filtered + sorted results, empty state
-5. **Pagination** (optional) — if >20 products, show page controls
-
-### CartDrawer — MUST Exist
-
-A slide-out drawer component (NOT an inline section in Navbar):
-
-1. Right-side overlay + slide-in panel (max-w-sm)
-2. Product list: thumbnail + name + size + quantity ± buttons + subtotal + delete
-3. Footer: subtotal, shipping note ("Free shipping over $99"), "Checkout" button, "Continue Shopping" button
-4. Empty state with link to shop
-5. The drawer is mounted globally in App.tsx, toggled from Navbar cart icon
-
-### CheckoutPage — Minimum Complexity
-
-A three-step checkout flow with progress indicator, accessible via `/checkout` from CartDrawer or CartPage "Checkout" buttons:
-
-1. **Step 1 — Shipping Info**
-   - Recipient name, phone validation (11-digit `^1[3-9]\d{9}$`)
-   - Province / City / District cascade selectors (at least 10 provinces populated)
-   - Detail address input
-   - Shipping method radio group (3 options: express/standard/economy) with descriptions and pricing
-   - Free shipping threshold display (Free over $X)
-
-2. **Step 2 — Payment & Promo**
-   - Promo code input with apply button — validate against a local PROMO_CODES map, show discount applied/error message
-   - Payment method radio group (WeChat Pay / Alipay / Bank Card) with icons
-   - Invoice toggle (checkbox) → expandable invoice title input
-   - Order notes textarea
-
-3. **Step 3 — Order Review**
-   - Full address summary with "Edit" button to jump back to step 1
-   - Shipping & payment method confirmation
-   - Product list (thumbnail + name + spec + price × qty)
-   - Agreement checkbox or statement (Terms of Service + Privacy Policy)
-   - Submit button — only at this point call `clearCart()`
-
-**Critical bug fix required:** Do NOT call `clearCart()` on initial submit — only clear after user confirms in step 3.
-
-**Progress indicator:** 3-step horizontal stepper (numbered circles, step labels, connector lines), current step highlighted in brand color, completed steps show checkmark.
-
-**Sidebar:** Sticky order summary panel (right side on desktop, hidden on mobile) showing:
-- Product thumbnails + names + sizes × qty
-- Subtotal, shipping cost, promo discount (when applied), grand total
-- Security badge + return policy note
-
-**Order confirmation after submission:**
-- Success animation (spring scale + rotation)
-- Order number generation (`SL` + timestamp base36)
-- Item count + total paid
-- Estimated delivery (1-3 days)
-- "Continue Shopping" and "Back to Home" buttons
-
-### ProductPage — Minimum Complexity
-
-1. **Image gallery** — large main image (aspect-[4/5]) + clickable thumbnail strip below, hover swap
-2. **Product info** — tags (NEW/SALE/ORGANIC badges), brand, Chinese + English name, star rating with count, quality bar (5-level progress bar), price (large) + crossed originalPrice, size/color selector, quantity ±, "Add to Cart" primary button, heart favorite button, delivery info list
-3. **Description section** — full description text + origin/spec info card
-4. **Related products** — same-category items (up to 4), excluding current product
-
-### ProductCard — Minimum Complexity
-
-1. **Image swap on hover** — primary image → secondary image fade transition (opacity 1→0)
-2. **Badges** — NEW / SALE / ORGANIC (Leaf icon) / LOW_STOCK
-3. **Heart favorite button** — appears on hover, persists if favorited, connects to wishlistStore
-4. **Quick-add button** — slides up from bottom on hover, adds to cart
-5. **Info area** — brand, Chinese name, English name (smaller, gray), quality bar (5 levels), star rating + count, highlight tagline, price + crossed originalPrice, color dots
-
-### ProductCard Must Support Two Layouts
-
-The component must accept a `layout` prop: `'grid'` | `'list'`
-
-- **Grid**: standard card with vertical image + info below
-- **List**: horizontal row with image left + info right
-
-### AIChatWidget — Minimum Complexity
-
-1. Floating FAB button (bottom-right), expands to chat panel (w-96, max-h-[600px])
-2. Gradient header (brand → fresh/leaf) with title "AI Assistant" + close button
-3. **Minimum 8 keyword scenarios** in mockAIResponse(): gift/budget, new arrivals, sale, bestsellers, premium/luxury, and a default welcome
-4. **Product card embeds** — AI responses that mention products MUST include clickable mini product cards (thumbnail + name + price + link)
-5. **Typing animation** — 3 bouncing dots while "thinking"
-6. **Quick reply chips** — 4 preset questions below the input area
-
-### Footer — Minimum Complexity
-
-1. **Service banner row** — 4 feature icons in a row above the main footer: shipping (Truck), quality (ShieldCheck), sourcing (Globe), support
-2. **Four-column link grid** — brand intro + social icons, product series links, shopping guide links, about us links
-3. Copyright bar with year dynamically generated (`new Date().getFullYear()`)
-
-### Product Data — Required Fields
-
-Every Product record MUST include ALL of these fields. No field is optional.
+`src/data/products.ts` is the only product source. `products.json` must not exist.
+All money is CNY unless the market says otherwise (§7).
 
 ```ts
 export interface Product {
-  id: string;            // URL-safe slug
-  name: string;          // Chinese product name
-  nameEn: string;        // English product name
+  id: string;             // URL-safe slug, used by /product/:id
+  name: string;           // primary display name
+  nameEn?: string;        // optional secondary line — short subtitle or Latin name
   brand: string;
-  category: string;
-  price: number;         // current price in CNY
+  category: string;       // must match a Category.key
+  price: number;          // current price
   originalPrice?: number; // crossed-out price
-  images: string[];      // at least 2 images (primary + secondary for hover swap)
+  unit?: string;          // e.g. 'item'
+  images: string[];       // >= 2 — [0] primary, [1] hover swap (must differ)
   colors: { name: string; hex: string }[];
   sizes: string[];
-  description: string;   // full description paragraph
-  details: string[];     // feature list
-  tags: string[];        // e.g. ["new", "sale", "organic", "gift", "limited"]
-  material?: string;    // material description
-  fit?: string;         // fit description
-  rating: number;        // 0–5
+  description: string;    // full paragraph
+  details: string[];      // feature bullets
+  highlight: string;      // one-line selling point on the card
+  tags: string[];         // must match the shop filter tag list
+  material: string;
+  fit: string;
+  rating: number;         // 0–5
   reviewCount: number;
+  stock: number;          // <= 10 renders the low-stock badge
   isNew: boolean;
   isSale: boolean;
 }
 ```
 
-### Product Count & Categories
+Also export `categories` (each with `key`, `label`, `icon` = a lucide component,
+and `image`) and `PROMO_CODES`.
 
-- **Minimum 8 products**, each with verified Unsplash images
-- **Minimum 5 categories** (excluding "all"), each with at least 1 product
-- Categories must be natural for the product domain (e.g. berries/citrus/tropical/stone/melons/gift for fruit, not generic "category-1")
-- Each category needs a Lucide icon reference in the Category interface
-
-### Implementation Quality Rules
-
-1. **Never skip a section to save time.** Every section in the QUALITY FLOOR MUST be implemented.
-2. **Open the template's existing page files and REPLACE their content**, do not keep generic template placeholder text.
-3. **Clean up unused template files** — delete `AccountPage.tsx`, `AiConcierge.tsx`, `products.json`, `lib/api.ts` after generation.
-4. **Fill in `edgeone.json`** with real values, no `__SITE_SLUG__` placeholders.
-5. **All mock data** (AdminPage orders, AI responses, etc.) must be English-localized and category-appropriate.
-6. **All `__PLACEHOLDER__` tokens must be replaced** in every file.
+Requirements: **≥ 8 products**, **≥ 5 real categories** (natural names for the
+domain — never `category-a`), each category with at least one product.
 
 ---
 
-## Product Data (generated as TypeScript, not JSON)
+# 6. Images
 
-The product data file is `src/data/products.ts` (NOT `.json`). The `products.json` template file must be DELETED after generation.
+**Default: the bundled local pool.** `templates/base/static/images/` holds 16
+demo photos (apparel, bags, accessories, plus one interior shot for story blocks).
+`vite.config.ts` sets `publicDir: 'static'`, so they resolve as
+`/images/<file>.jpg` and are copied to `dist/images/` on build.
 
-Product data placement:
-- Export a `products: Product[]` array using the Product interface defined in the QUALITY FLOOR section
-- Export a `categories` array with `{ key, label }` — use appropriate labels per category
-- Export a `PROMO_CODES` map with `{ code, discount, type, description }`
-
----
-
-## Default Stack
-
-| Layer      | Technology                                          |
-|------------|-----------------------------------------------------|
-| Frontend   | React 18 + Vite 5 + TypeScript 5 + Tailwind CSS 3   |
-| Icons      | lucide-react (NO emoji)                              |
-| Animation  | framer-motion                                        |
-| State      | Zustand + persist middleware                         |
-| Routing    | react-router-dom v6                                  |
-| Fonts      | Noto Sans SC (body) + Playfair Display (heading)    |
-| API        | Hono (Edge Functions) + Node Functions              |
-| Payment    | Stripe (mock dev / live prod)                        |
-| Deployment | EdgeOne Pages                                        |
+- Prefer local images: deterministic, offline-safe, immune to proxy/network
+  failures. Gate I-01 verifies every local reference exists.
+- Use a remote URL only when the brief's domain has no match in the pool. Then
+  every URL must return HTTP 200 — verify with `--check-images` and record any
+  replacement in the handoff notes.
+- Never invent an image path. Never reference `static/images/...` in code —
+  always `/images/...`.
 
 ---
 
-## Visual Language Defaults
+# 7. Currency
 
-- Background: near-black or light-neutral — avoid pure `#000` or `#fff`
-- Card style: subtle border + shadow, no harsh outlines
-- Gradient: muted, not neon — avoid blue-purple AI-gradient clichés
-- Motion: smooth ease-out, not bounce
-- Image aspect ratio: `aspect-square` or `aspect-[4/5]` for product cards
-- Typography hierarchy: heading (`font-display`) for H1/H2, body (`font-body`) for everything else
+- The symbol lives in **exactly one place**: `src/utils/format.ts`
+  (`CURRENCY_SYMBOL`). Components must call `formatPrice()`; hardcoding `¥` or `$`
+  in JSX is a gate failure (G-03).
+- Default market is CN → CNY (`¥`). For a non-CN market, change `CURRENCY_SYMBOL`
+  and `.env`'s `VITE_DEFAULT_CURRENCY`, then run the gate with `--currency USD`.
+- The free-shipping threshold lives in `format.ts` as `FREE_SHIPPING_THRESHOLD`
+  and must be imported by CartDrawer / ProductPage / CheckoutPage, never re-typed.
 
 ---
 
-## Handoff Notes Format
+# 8. Code conventions
 
-After scaffolding, always deliver notes in this format:
+**Fonts** — `index.html` must load:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+```
+`tailwind.config.js` defines `font-body` (Noto Sans SC + Latin fallback) and
+`font-display` (Playfair Display + **Noto Serif SC**, so Chinese headings do not
+fall back to sans).
+
+**Icons** — lucide-react only; `size` 12–22 matched to surrounding text; no fill.
+See §0 IR-3.
+
+**Typography** — even px only, ≥ 12 (IR-1). Prefer Tailwind's scale (`text-xs`,
+`text-sm`, `text-base`) over arbitrary values.
+
+**State** — Zustand + `persist`. Cart key `<slug>-cart`, wishlist key
+`<slug>-wishlist`. Wishlist must use the store, never local `useState`.
+
+**Routing** — `react-router-dom` v6. Always `useNavigate()` / `<Link>`; never
+`window.location` (gate U-02).
+
+**Animation** — `framer-motion`. Hover lift `{ y: -4, scale: 1.02 }`, page enter
+`{ opacity: 0, y: 20 } → { opacity: 1, y: 0 }`, stagger `staggerChildren: 0.08`.
+Ease-out, never bounce.
+
+**TypeScript** — `strict: true`, no `any` outside placeholder API handlers, and
+`npm run build` must be clean.
+
+**Dependencies** — the stack is fixed. Do not add packages: no component
+libraries, no icon sets other than lucide, no axios, no date libraries.
+
+**Visual language** — off-white or near-black backgrounds (never pure `#000` or
+`#fff`), soft borders, rounded corners, muted gradients only, generous whitespace.
+
+---
+
+# 9. Quality floor (minimum complexity per screen)
+
+If time is short, build **fewer pages at higher quality** rather than spreading thin.
+
+**HomePage** — hero (overlay text + 2 CTAs), category banner grid (image + label,
+hover colour change), new arrivals (4–8 `isNew` products with stagger),
+bestsellers (rating ≥ 4.7, 4 products), brand story (two-column text + image),
+AI assistant entry section.
+
+**ShopPage** — sticky category tab bar driven by `?category=`, toolbar with
+filter toggle / sort dropdown / grid-list toggle, filter panel (tag multi-select +
+price slider), responsive grid (2/3/4 cols), empty state.
+
+**ProductPage** — image gallery (`aspect-[4/5]` + thumbnail strip), badges,
+name + optional subtitle, 5-level quality bar, rating, price + crossed original,
+colour and size selectors, add-to-cart + wishlist, spec rows (fit / material),
+description, detail bullets, delivery info, related products (same category, ≤ 4).
+
+**ProductCard** — hover image swap, badges (new / sale / low stock), heart toggle,
+quick-add on hover, brand + name + optional nameEn, 5-level quality bar, rating,
+highlight line, price + crossed original, colour dots, and a `layout` prop
+(`'grid' | 'list'`).
+
+**CartDrawer** — right-side slide-in (`max-w-sm`), backdrop, item rows with
+quantity steppers and delete, subtotal, free-shipping hint, checkout + continue
+shopping, empty state. Mounted once in `App.tsx`, toggled from the Navbar.
+
+**CheckoutPage** — three steps (shipping → payment & promo → review) with a
+numbered stepper: full name, email, country select, city, postal code, street
+address; 3 shipping methods with fees; promo code validated against `PROMO_CODES`
+with applied/error feedback; payment methods with **lucide icons**; invoice
+toggle; order notes; review step with edit links, item list and agreement
+checkbox; sticky order summary; success screen with a generated order number.
+**`clearCart()` runs only on the final review submit — never earlier.**
+
+**WishlistPage** — reads wishlistStore, empty state, add-all-to-cart.
+
+**AdminPage** — 4 metric cards, recent orders table with status pills, top
+products, stock overview driven by `product.stock`.
+
+**AIChatWidget** — FAB → chat panel (`w-96`, `max-h-[600px]`), brand-coloured
+header, ≥ 8 keyword scenarios, product card embeds, typing indicator, 4
+quick-reply chips. Keywords must be written in the **same language as the UI** —
+English keywords for an `en` build, Chinese for a `zh-CN` build.
+
+**Footer** — service banner row (4 lucide icons), four-column link grid,
+newsletter block, dynamic copyright year.
+
+---
+
+# 10. Animation & interaction standard
+
+Smooth, restrained, purposeful. Every interactive element has a hover and active
+state. No layout shift on hover, no transition longer than 0.8s, no infinite
+decorative loops.
+
+---
+
+# 11. Anti-patterns (things that have actually gone wrong here)
+
+- Mounting `AIChatWidget` in both `App.tsx` and a page → two floating buttons.
+- Using `window.location.href` for in-app navigation → full reload and lost SPA state.
+- Referencing an icon component that was never imported → build failure.
+- Reusing the same URL for `images[0]` and `images[1]` → hover swap does nothing.
+- Keyword language drifting from the UI language → the AI assistant goes silent.
+- Copying the template's demo catalog verbatim → the store sells the wrong
+  products, and gates P-02 / D-01 / D-03 fire.
+- Deleting or relaxing validator rules instead of fixing the output.
+
+---
+
+# 12. Handoff Notes (the only delivery document)
+
+Deliver in the reply — do not create a second `NEWAY_BRIEF.md` (that duplication
+was removed on purpose).
 
 ```
 ## Handoff Notes — <Brand> Store
 
-### Scaffold Status
-- [x] All 7 routes implemented
-- [x] Product data wired (N products)
-- [x] Cart with persist middleware
-- [x] Mock checkout flow (3-step: address → payment → review)
-- [x] AI concierge widget
+### Gates
+- validate_generated_project.py: PASS (0 errors, 0 warnings)
+- npm run build: exit 0 (tsc --noEmit + vite build clean)
+
+### Scaffold status
+- [x] 7 routes implemented and rendering
+- [x] Product data wired (N products, M categories)
+- [x] Cart + wishlist persisted
+- [x] Three-step checkout with promo codes
+- [x] AI concierge (K scenarios, zh + en keywords)
 - [x] Admin dashboard scaffold
-- [x] Build passes (tsc + vite build)
-- [x] All images verified 200
+- [x] Iron rules verified (no emoji / even px >= 12 / lucide icons)
+- [x] Images resolved (local pool or verified remote)
 
-### Production Wiring Required
-- [ ] Connect Stripe live keys (set STRIPE_SECRET_KEY)
-- [ ] Wire AI assistant endpoint (set AI_API_KEY, AI_MODEL)
-- [ ] Replace mock order IDs with database persistence
-- [ ] Set VITE_SITE_NAME, VITE_DEFAULT_CURRENCY in EdgeOne env vars
+### Production wiring still required
+- [ ] Stripe live keys (STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET)
+- [ ] AI endpoint (AI_API_BASE, AI_API_KEY, AI_MODEL)
+- [ ] Real order persistence
+- [ ] VITE_SITE_NAME / VITE_DEFAULT_CURRENCY in EdgeOne env
 
-### Dev Server
-npm run dev → http://localhost:5173
+### Run it
+npm install && npm run dev   →  http://localhost:5173
 ```
 
 ---
 
-## Quality Checklist (run before delivery)
+# 13. References
 
-- [ ] Zero TypeScript errors (`npm run build`)
-- [ ] All 7 routes render without crashing
-- [ ] `/product/:id` is accessible from ProductCard clicks
-- [ ] `/shop` has filter + sort + grid/list toggle
-- [ ] CartDrawer is mounted globally and toggled from Navbar
-- [ ] CheckoutPage has 3-step flow (address → payment&promo → review) with progress stepper
-- [ ] Checkout does NOT call clearCart() until final submission review step
-- [ ] Checkout has shipping methods, payment methods, promo code, invoice toggle
-- [ ] Cart persists across page refresh (zustand persist)
-- [ ] Wishlist persists across page refresh (wishlistStore with persist)
-- [ ] No emoji anywhere in JSX or product data display strings
-- [ ] No odd-px font size classes (`text-[11px]`, `text-[13px]`, etc.)
-- [ ] All images return HTTP 200
-- [ ] Noto Sans SC loaded in index.html + tailwind.config.js
-- [ ] lucide-react is in package.json dependencies
-- [ ] tailwindcss + postcss + autoprefixer are in devDependencies
-- [ ] Two complete color palettes defined (brand + fresh, 50-950)
-- [ ] No `__PLACEHOLDER__` tokens remain in any file
-- [ ] Unused template files deleted (AccountPage, AiConcierge, products.json, lib/api.ts)
-- [ ] HomePage has: hero, category banners, new arrivals, bestsellers, brand story, AI entry
-- [ ] ProductCard supports both grid and list layouts
-- [ ] Product data has all required fields (nameEn, images[], tags[], material, fit, etc.)
-- [ ] AIChatWidget has 8+ keyword scenarios with product card embeds
+Read on demand — do not load everything up front.
+
+| File | When to read |
+|------|--------------|
+| `references/architecture.md` | Explaining the layer model, or extending the scaffold |
+| `references/commerce-flows.md` | Wiring a real cart / checkout / payment backend |
+| `references/deployment.md` | Deploying to EdgeOne Pages, env vars, webhook setup |

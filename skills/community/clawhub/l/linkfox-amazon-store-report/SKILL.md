@@ -1,8 +1,6 @@
 ---
 name: linkfox-amazon-store-report
-version: 1.0.2
-category: product-sourcing
-description: 亚马逊店铺报告自动化获取技能，支持库存报告、订单报告、销售流量报告、FBA报告、财务结算报告等95+种报告类型的全流程自动获取（请求→轮询→下载→解压）；完成后默认启动本机短时HTTP服务，生成extractedFileHttpUrl供浏览器下载已解压文件。本技能依赖 linkfox-amazon-store-auth（授权与令牌管理）。当用户提到拉取亚马逊报告、下载Amazon报告、获取库存报告、获取订单报告、FBA报告、销售流量报告、财务结算报告、Brand Analytics报告、ABA搜索词报告、pull Amazon report, download Amazon report, fetch inventory report, fetch orders report, FBA report, sales and traffic report, settlement report, Amazon store report时触发此技能。只要其需求涉及从亚马逊卖家后台拉取任何形式的结构化数据（库存、订单、销量、财务、退货等），也应触发此技能。
+description: 亚马逊卖家店铺报告获取与下载。支持库存、订单、销量与流量、FBA、财务结算、退货、Brand Analytics 等 95+ 种报告的请求、状态轮询、下载和解压，并生成可下载的已解压文件地址。用户提到拉取或下载亚马逊报告、库存报告、订单报告、销售与流量报告、Business Report、FBA 报告、结算报告、退货报告、Brand Analytics、ABA 搜索词、Amazon store report、pull or download Amazon report 时触发。即使未明确说“报告”，只要希望从 Amazon Seller Central 批量导出某一时间段的结构化经营数据，也应触发此技能；查询少量实时订单、商品或价格优先使用对应专用技能。本技能依赖 linkfox-amazon-store-auth。
 ---
 
 # Amazon 店铺报告获取
@@ -44,7 +42,7 @@ description: 亚马逊店铺报告自动化获取技能，支持库存报告、�
 
 ### 依赖已满足后的协作方式
 
-- 本 skill 会在内部调用依赖 skill 提供的 `/spApi/storeTokens` 取 `accessToken`，然后走 `/spApi/developerProxy` 执行报告生命周期。
+- 本 skill 依赖 auth 选店（`sellerId`+`region`），直接经 `/spApi/developerProxy` 执行报告生命周期（服务端解析 token）。
 - 授权、授权的前置选店铺、令牌刷新等操作——**交由 `linkfox-amazon-store-auth`**；本 skill 不重复做这些事。
 
 ---
@@ -90,14 +88,32 @@ description: 亚马逊店铺报告自动化获取技能，支持库存报告、�
 | tempDirectory | string | 临时目录 |
 | fileSize | int | 文件大小（字节） |
 
-## API Usage
+## 调用方式
 
-本 skill 主要调用 `/spApi/developerProxy`（LinkFox 店铺网关代理），并复用 `linkfox-amazon-store-auth` 的 `/spApi/storeTokens` 获取 `accessToken`。详见 `references/api.md`。**按 `reportType` 拼请求体**（含 `reportOptions`、日期规则）：**全覆盖专页** [`references/report-requests/types/README.md`](references/report-requests/types/README.md)（与 `report-types.md` 中每个枚举一一对应）；其中带官方 JSON 结果 Schema 的另见 [`references/report-requests/README.md`](references/report-requests/README.md)（[GitHub schemas/reports](https://github.com/amzn/selling-partner-api-models/tree/main/schemas/reports)）。
+- **API 端点**：`POST /spApi/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见下文脚本一览）
+- **成本约束**：本工具会消耗算力；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
 
 ### Available Scripts
 
 - `scripts/get_report.py` ⭐ — 端到端自动化报告获取（**推荐**）
 - `scripts/check_auth_dependency.py` — 主动检测依赖 skill `linkfox-amazon-store-auth` 是否已安装
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## Usage Scenarios
 
@@ -119,9 +135,9 @@ description: 亚马逊店铺报告自动化获取技能，支持库存报告、�
 
 **Steps**：
 1. **依赖检查**（Scenario 0）
-2. **前置选店铺 + 取令牌**：委托 `linkfox-amazon-store-auth`
-   - 调 `/spApi/authorizedStores` 让用户选店铺
-   - 调 `/spApi/storeTokens` 获取令牌（本 skill 的脚本会自动完成此步，无需手动调）
+2. **前置选店铺**：委托 `linkfox-amazon-store-auth`
+   - 调 `/spApi/authorizedStores` 让用户选店铺，确定 `sellerId` + `region`
+   - **不要**先调 `/spApi/storeTokens` 取 raw token；脚本直接经 `developerProxy` 传选择器
 3. **识别报告类型**：按用户诉求匹配 `reportType`
    - 库存：`GET_MERCHANT_LISTINGS_ALL_DATA`、`GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA`
    - 订单：`GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL`
@@ -137,7 +153,7 @@ description: 亚马逊店铺报告自动化获取技能，支持库存报告、�
      "marketplaceIds": ["ATVPDKIKX0DER"]
    }'
    ```
-5. 脚本会自动：取令牌 → 请求报告 → 轮询 → 下载 → 解压 → 预览 → 输出 JSON；**完成后**在 stderr 与 JSON 中给出 **本地绝对路径**（`downloadPath`）、**本机 file URI**（`localFileUri`），并默认启动短时本机 HTTP 服务，生成 **`extractedFileHttpUrl`**（用于在**同一台机器**的浏览器里下载**已解压**文件）。向用户展示时至少给出 **`extractedFileHttpUrl`**、**`downloadPath`** 与 **`fileName`**；脚本在 `serveSeconds` 计时结束后会关闭服务，链接随即失效。若需 Amazon 源地址（多为压缩包），仅调试时设 `includeAmazonSourceUrl: true`。
+5. 脚本会自动：以 `sellerId`+`region` 调 `developerProxy`（服务端解析 token）→ 请求报告 → 轮询 → 下载 → 解压 → 预览 → 输出 JSON；**完成后**在 stderr 与 JSON 中给出 **本地绝对路径**（`downloadPath`）、**本机 file URI**（`localFileUri`），并默认启动短时本机 HTTP 服务，生成 **`extractedFileHttpUrl`**（用于在**同一台机器**的浏览器里下载**已解压**文件）。向用户展示时至少给出 **`extractedFileHttpUrl`**、**`downloadPath`** 与 **`fileName`**；脚本在 `serveSeconds` 计时结束后会关闭服务，链接随即失效。若需 Amazon 源地址（多为压缩包），仅调试时设 `includeAmazonSourceUrl: true`。
 
 ### Scenario 2: Manual Report Flow (Advanced)
 
@@ -200,7 +216,7 @@ python scripts/get_report.py '{
 2. **只呈现数据**：展示报告获取进度、下载路径、前几行预览；不做业务解读。
 3. **尊重用户选择的报告类型**：用户指定了报告类型就只拉那一种，不得擅自换其他类型。
 4. **错误清晰**：报告失败（`FATAL` / 403 等）时，解释原因并把决定权交还用户。
-5. **安全**：日志中 accessToken 掩码展示。
+5. **安全**：不输出/不传递 raw token；业务只依赖 `sellerId`+`region`。
 6. **完成后展示地址与本机下载链接**：脚本成功结束后，必须把 **`extractedFileHttpUrl`**（已解压文件的本机 HTTP 下载，限时）、**`downloadPath`**（本地绝对路径）、**`fileName`**（文件名）及 **`localFileUri`** 告知用户；并说明「仅在运行脚本的同一台电脑、在服务保持时间内可用」。不要默认把 Amazon 源 URL 当作用户下载入口；仅在用户明确要求或排障需要时使用 `includeAmazonSourceUrl`。
 
 ## CRITICAL: Report Failure Handling Rules
@@ -221,7 +237,7 @@ python scripts/get_report.py '{
 ## Important Limitations
 
 - **依赖 `linkfox-amazon-store-auth`**：未安装则必须先安装，见 Prerequisites。
-- **Token expiration**：`accessToken` 1 小时过期，脚本内部自动取最新令牌。
+- **Token expiration**：服务端令牌约 1 小时过期；`developerProxy` 可按 `sellerId`+`region` 自动解析/续签。过期时也可经 auth skill 的 `refreshToken` 后重试。
 - **Rate limits**：Reports API 0.0222 req/s，默认 30s 轮询是安全间隔。
 - **Report 时效**：部分财务报告可能需要 10–30 分钟，按需调大 `maxAttempts`。
 - **Path 白名单**：后端 `sp-api.developer-proxy.allowed-path-prefixes` 必须允许 `reports/2021-06-30/reports`。
@@ -249,6 +265,26 @@ python scripts/get_report.py '{
 - 任何进入本 skill 的调用都要先跑 Scenario 0。
 
 ---
+
+## Amazon SP-API 接口保护与重试指引
+
+同一店铺连续收到 Amazon SP-API 的 400、403、404 或 429 时，网关会返回 450、453、454 或 459 并短暂冷却。这些自定义状态码不是 Amazon 原生状态，也不表示封号；目的是避免持续异常或高频调用扩大店铺风险。
+
+| 状态与 message | 范围 | 触发与冷却 | 处理 |
+|---|---|---|---|
+| `450`：`400，请求异常，请优化您的参数` | 店铺+接口 | 60 秒内超过 3 次：5 分钟；10 分钟内超过 4 次：20 分钟 | 停止原参数重试，检查必填字段、marketplace、ID、日期和请求体 |
+| `453`：`403，店铺未授权，请先授权` | 店铺全部接口 | 60 秒内超过 2 次：5 分钟；10 分钟内超过 4 次：30 分钟 | 停止该店铺调用，检查授权、权限、店铺归属和区域 |
+| `454`：`404，资源不存在，请优化您的参数` | 店铺+接口 | 60 秒内超过 3 次：5 分钟；10 分钟内超过 4 次：30 分钟 | 确认资源 ID、所属店铺/站点、资源状态和接口路径 |
+| `459`：`429限流中，请降低频率` | 店铺+接口 | 首次：15 秒；2 分钟内超过 2 次：30 秒；3 分钟内超过 4 次：2 分钟 | 降低并发、分页和轮询频率并逐级退避 |
+
+- 立即停止自动或并发重试，不得通过换脚本或重复创建任务绕过保护；优先遵循 `retryAfter`、`blockedUntil`，没有时按表中时长说明。
+- 450/453/454 必须先修正参数、授权或资源标识，冷却后最多谨慎重试一次；再次触发则停止调用。453 期间停止该店铺全部 SP-API。
+- 保留已有 `reportId`、`feedId` 等任务 ID；写操作结果不确定时先查询状态，不直接重放。
+- 向用户先说明店铺保护，再给原因、处理和等待时间。可回复：“为保护您的亚马逊店铺安全，检测到 Amazon SP-API 连续返回{原因}，当前已进入短暂保护。请先{处理动作}，预计{等待时间}后再试；这不代表封号，也不是套餐或算力限制。”不要只说“LinkFox 限流”或“服务器繁忙”。
+
+## 算力消耗规则
+
+不消耗算力。
 
 **Feedback**：
 

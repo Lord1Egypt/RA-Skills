@@ -1,43 +1,61 @@
-## Description: <br>
-Translate text between Korean, English, Japanese, Chinese, and 10+ other languages using Naver Papago NMT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text between Korean, English, Japanese, Chinese, and 10+ other languages using Naver Papago NMT. Ideal for Korean-centric workflows, i18n tasks, and automation pipelines.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, localization teams, and agents use this skill to translate user-selected text or files through Naver Papago from command-line and Python workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text, including content read from files, is sent to Naver Papago for translation. <br>
-Mitigation: Avoid translating secrets, credentials, regulated data, or confidential material unless third-party processing by Naver is approved for the environment. <br>
+## Use Case:
 
+Developers and automation builders use this skill to translate text or detect language in Korean-centric i18n, content, and agent workflows through Naver Papago via CLI or Python API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chloepark85/naver-papago-translate) <br>
-- [ClawHub Metadata Homepage](https://github.com/ChloePark85/naver-papago-translate) <br>
-- [Naver Developers](https://developers.naver.com/) <br>
-- [Papago NMT API Reference](https://developers.naver.com/docs/papago/papago-nmt-api-reference.md) <br>
-- [Papago NMT API Endpoint](https://openapi.naver.com/v1/papago/n2mt) <br>
-- [Papago Language Detection Endpoint](https://openapi.naver.com/v1/papago/detectLangs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text translation or JSON object with source, target, input_length, and translated fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Naver client ID and client secret; sends selected input text to Naver Papago over HTTPS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, pyproject.toml, changelog, ClawHub release metadata) <br>
+Risk: Text submitted for translation or language detection is sent to Naver's external Papago API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid translating secrets or regulated data unless approved for that external service.
+
+Risk: Naver client credentials can be exposed through command-line flags, shell history, or verbose logs.
+
+Mitigation: Prefer NAVER_CLIENT_ID and NAVER_CLIENT_SECRET environment variables and avoid verbose output around sensitive values.
+
+Risk: Installing directly from the optional source repository can introduce supply-chain uncertainty.
+
+Mitigation: Prefer the packaged install path unless the source repository has been reviewed.
+
+## Reference(s):
+
+- [Naver Developers](https://developers.naver.com/)
+- [Papago NMT API Reference](https://developers.naver.com/docs/papago/papago-nmt-api-reference.md)
+- [Papago NMT API Endpoint](https://openapi.naver.com/v1/papago/n2mt)
+- [Papago Language Detection Endpoint](https://openapi.naver.com/v1/papago/detectLangs)
+- [Source Repository](https://github.com/ChloePark85/naver-papago-translate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration]
+
+**Output Format:** [Plain text translation output, optional JSON metadata, and Markdown usage guidance with shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NAVER_CLIENT_ID and NAVER_CLIENT_SECRET; sends translation and language-detection requests to Naver Papago over HTTPS.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, pyproject.toml, CHANGELOG, released 2026-04-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

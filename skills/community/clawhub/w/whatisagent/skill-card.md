@@ -1,42 +1,51 @@
-## Description: <br>
-Instantly teaches an Agent what it is, how memory works, and how to behave on complex projects -- no hand-holding required from the owner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches an agent what it is, how memory works, and how to behave on complex projects without owner hand-holding.
 
-## Publisher: <br>
-[huangrichao2020](https://clawhub.ai/user/huangrichao2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangrichao2020](https://clawhub.ai/user/huangrichao2020)
 
-## Use Case: <br>
-External developers and agent operators use this skill to orient an agent around memory, invocation, project documentation, planning, and self-checking practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause agents to create or modify documentation files across projects even when the current task did not request that behavior. <br>
-Mitigation: Install only when broad standing documentation rules are desired, and scope use to workspaces where automatic handoff logging is acceptable. <br>
-Risk: The skill adds standing workflow rules beyond its explanatory onboarding purpose. <br>
-Mitigation: Review the skill before deployment and prefer a version where handoff logging is opt-in and scoped to specific workspaces. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent a self-awareness guide covering invocation, memory, documentation habits, handoff files, and structured project behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangrichao2020/whatisagent) <br>
-- [Universal Agent Spec homepage](https://github.com/huangrichao2020/universal-agent-spec) <br>
-- [Universal Agent Spec interactive reference](https://huangrichao2020.github.io/universal-agent-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable tools, API calls, or credential variables were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill gives broad standing orders that may cause extra handoff and worklog file updates across projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when persistent documentation updates are desired, and override or limit those standing orders for read-only audits or tightly scoped edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangrichao2020/skills/whatisagent)
+- [Universal Agent Spec homepage](https://github.com/huangrichao2020/universal-agent-spec)
+- [Universal Agent Spec interactive reference](https://huangrichao2020.github.io/universal-agent-spec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance for an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No structured runtime output; the skill changes agent behavior through standing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

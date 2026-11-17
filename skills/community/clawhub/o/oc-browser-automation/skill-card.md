@@ -1,40 +1,52 @@
-## Description: <br>
-封装 OpenClaw browser 工具，用于网页导航、截图、快照、点击、输入、等待、标签页管理、上传和下载等浏览器自动化操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+浏览器控制工具 - 封装 OpenClaw browser 工具，支持网页自动化、截图、点击输入等操作
 
-## Publisher: <br>
-[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to control an OpenClaw browser session for web navigation, screenshots, DOM snapshots, clicking, typing, waiting, uploads, downloads, and browser debugging workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad browser automation can act through logged-in pages or existing browser sessions.
+
+Mitigation: Review target pages and session state before running actions, and avoid sharing browser state or screenshots that may contain sensitive data.
+
+Risk: Upload, download, form submission, and optional Chrome profile actions can move local data or submit information to websites.
+
+Mitigation: Confirm file paths, form contents, destination sites, and profile choice before executing actions that transfer data or use existing credentials.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to drive browser sessions for web testing, page inspection, form entry, screenshots, downloads, uploads, and other interactive web workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can act in logged-in sessions or on private pages. <br>
-Mitigation: Use an isolated browser profile and require explicit confirmation before logins, form submissions, purchases, account changes, or other sensitive actions. <br>
-Risk: The skill supports uploads and downloads, which can transfer local or remote files. <br>
-Mitigation: Confirm file paths, destination pages, and download intent before executing upload or download actions. <br>
+**Output Format:** [Markdown guidance with browser command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release: OpenClaw 浏览器自动化](https://clawhub.ai/gaoren36-arch/oc-browser-automation) <br>
+**Other Properties Related to Output:** [Produces browser automation instructions and command snippets for agent execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline browser command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser actions may operate on authenticated sessions and local file transfers.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+[
+  {"product": "Widget", "quantity": 10, "unit_price": 5.99, "discount": 10},
+  {"product": "Gadget", "quantity": 2, "unit_price": 29.99, "discount": 5},
+  {"product": "Gizmo", "quantity": 1, "unit_price": 99.99},
+  {"product": "Doohickey", "quantity": 5, "unit_price": 12.50, "discount": 0},
+  {"product": "Thingamajig", "quantity": 3, "unit_price": 7.25},
+  {"product": "Whatsit", "quantity": 8, "unit_price": 4.99, "discount": 15},
+  {"product": "Contraption", "quantity": 1, "unit_price": 199.99, "discount": 20}
+]

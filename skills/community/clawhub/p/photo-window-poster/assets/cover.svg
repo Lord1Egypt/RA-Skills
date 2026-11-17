@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FA7C9"/><stop offset="1" stop-color="#DCE6EE"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E6E8E"/><stop offset="1" stop-color="#6F9AB5"/></linearGradient>
+    <clipPath id="top"><rect x="0" y="0" width="900" height="600"/></clipPath>
+  </defs>
+  <rect width="900" height="1200" fill="#F7F5F1"/>
+  <!-- upper half: photographic scene -->
+  <g clip-path="url(#top)">
+    <rect width="900" height="600" fill="url(#sky)"/>
+    <rect y="380" width="900" height="220" fill="url(#sea)"/>
+    <ellipse cx="640" cy="170" rx="60" ry="60" fill="#F6E9C9" opacity="0.9"/>
+    <path d="M0 400 Q 200 360 400 400 T 900 390 V 600 H 0 Z" fill="#325D7A" opacity="0.5"/>
+    <path d="M 0 470 Q 150 455 300 470 T 600 468 T 900 472" stroke="#A9C4D6" stroke-width="3" fill="none" opacity="0.8"/>
+    <!-- crane silhouette -->
+    <g fill="#12222E">
+      <ellipse cx="450" cy="430" rx="70" ry="30"/>
+      <path d="M 380 425 L 300 380 L 292 386 L 372 436 Z"/>
+      <path d="M 500 412 C 520 380, 560 360, 560 320 C 560 300, 545 296, 540 310 C 536 330, 520 350, 505 410 Z"/>
+      <path d="M 548 296 L 600 288 L 550 310 Z"/>
+      <rect x="440" y="455" width="4" height="120"/><rect x="470" y="455" width="4" height="120"/>
+    </g>
+  </g>
+  <!-- lower half: geometric emotional window -->
+  <rect x="0" y="600" width="900" height="600" fill="#F7F5F1"/>
+  <path d="M 60 900 Q 250 880 450 900 T 840 895" stroke="#D9E1E6" stroke-width="2" fill="none"/>
+  <path d="M 60 940 Q 250 920 450 940 T 840 935" stroke="#E3E9ED" stroke-width="2" fill="none"/>
+  <rect x="520" y="660" width="150" height="470" fill="#C9D6DF"/>
+  <!-- crane crossing the window edge -->
+  <g fill="#12222E" transform="translate(120,190) scale(1.05)">
+    <ellipse cx="450" cy="740" rx="70" ry="30"/>
+    <path d="M 380 735 L 300 690 L 292 696 L 372 746 Z"/>
+    <path d="M 500 722 C 520 690, 560 670, 560 630 C 560 610, 545 606, 540 620 C 536 640, 520 660, 505 720 Z"/>
+    <path d="M 548 606 L 600 598 L 550 620 Z"/>
+    <rect x="440" y="765" width="4" height="120"/><rect x="470" y="765" width="4" height="120"/>
+  </g>
+  <g font-family="'Noto Serif CJK SC','Source Han Serif SC','Songti SC',serif" fill="#1F2A33">
+    <text x="120" y="760" font-size="76" font-weight="600" writing-mode="tb" letter-spacing="14">静立</text>
+  </g>
+  <g font-family="Inter, Helvetica, Arial, sans-serif" fill="#7A828A">
+    <text x="120" y="1060" font-size="16" letter-spacing="5">EGRET · MORNING MARSH</text>
+    <text x="120" y="1090" font-size="13" letter-spacing="3">N 30°15' · E 120°09'   2026.09</text>
+    <text x="700" y="1150" font-size="11" letter-spacing="3" text-anchor="end">PHOTO WINDOW POSTER · 概念示意</text>
+  </g>
+</svg>

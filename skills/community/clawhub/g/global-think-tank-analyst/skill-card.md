@@ -1,43 +1,58 @@
-## Description: <br>
-Decision-ready policy and geopolitical risk analysis for founders, operators, investors, NGOs, compliance teams, public-policy teams, and leadership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision-ready policy and geopolitical risk analysis for founders, operators, investors, NGOs, compliance teams, public-policy teams, and leadership.
 
-## Publisher: <br>
-[vassiliylakhonin](https://clawhub.ai/user/vassiliylakhonin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vassiliylakhonin](https://clawhub.ai/user/vassiliylakhonin)
 
-## Use Case: <br>
-External and internal decision-makers use this skill to produce policy, geopolitical, sanctions, trade, regulatory, market-entry, supply-chain, and strategic-risk memos with explicit assumptions, confidence, trade-offs, options, and indicators to watch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for legal, sanctions, investment, or compliance advice. <br>
-Mitigation: Use the skill for decision support only and have qualified reviewers verify high-impact legal, sanctions, investment, and compliance conclusions. <br>
-Risk: Current-event or live-source claims may be stale or unsupported when source access is limited. <br>
-Mitigation: Verify live-source claims before relying on the analysis for high-impact decisions and lower confidence when no live verification was performed. <br>
-Risk: Untrusted repository instructions such as AGENTS.md or llms.txt can shape the skill's behavior in some agent environments. <br>
-Mitigation: Review repository-level instructions before using the skill in untrusted workspaces. <br>
+## Use Case:
 
+External users, operators, investors, NGOs, compliance teams, policy teams, and leadership use this skill to produce structured policy, geopolitical-risk, sanctions, trade, regulatory, market-entry, scenario, and decision memos with explicit assumptions, evidence limits, options, trade-offs, confidence, and indicators to watch.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vassiliylakhonin/global-think-tank-analyst) <br>
-- [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown memos, briefs, option sets, scenario briefs, red-team reviews, and decision briefing packs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should separate facts, assessments, assumptions, scenarios, unknowns, confidence, and evidence limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill does not independently verify facts, retrieve sources, or guarantee correctness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a structured reasoning and memo-writing aid; require source access and checked citations for current geopolitical, sanctions, or regulatory questions.
+
+Risk: Users may treat sanctions, export-control, regulatory, or legal-adjacent analysis as legal advice.
+
+Mitigation: Use outputs only as preliminary analysis for legal exposure and escalate material legal questions to qualified counsel.
+
+Risk: Reasoning-only analysis can overstate confidence when live verification is unavailable.
+
+Mitigation: Require the agent to disclose evidence limits, lower confidence, distinguish facts from assessments, and name the missing information that would change the judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vassiliylakhonin/skills/global-think-tank-analyst)
+- [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown memos and briefing structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, confidence levels, evidence limits, scenarios, options, trade-offs, indicators to watch, and review triggers.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

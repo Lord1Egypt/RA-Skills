@@ -1,0 +1,7 @@
+name: hermes-time-awareness
+version: 1.0.0
+description: "Inject current time and elapsed awareness into every LLM turn via pre_llm_call hook."
+author: "Ming Fang (enhanced from gejifeng/hermes-time-perception-extension)"
+kind: standalone
+hooks:
+  - pre_llm_call

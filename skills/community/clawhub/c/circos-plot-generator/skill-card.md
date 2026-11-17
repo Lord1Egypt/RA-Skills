@@ -1,43 +1,60 @@
-## Description: <br>
-Generate Circos configuration files for circular genomics data visualization, including genomic variations, cell-cell communication networks, and custom track configurations for publication-ready circular plots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Circos configuration files for circular genomics data visualization, including genomic variations, cell-cell communication networks, and custom track configurations for publication-ready circular plots.
 
-## Publisher: <br>
-[renhaosu2024](https://clawhub.ai/user/renhaosu2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renhaosu2024](https://clawhub.ai/user/renhaosu2024)
 
-## Use Case: <br>
-Developers, researchers, and bioinformatics teams use this skill to generate Circos configuration and data files for circular genomics figures, including variation, chromosome ideogram, structural variant, and cell-cell communication visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Existing files such as circos.conf and data/*.txt may be overwritten in the selected output directory. <br>
-Mitigation: Use a dedicated empty output folder for each run, especially in shared project directories. <br>
-Risk: Optional rendering invokes a local Circos command and depends on locally installed packages. <br>
-Mitigation: Review the render command before running it and install dependencies only from trusted package sources. <br>
+## Use Case:
 
+Researchers, bioinformatics practitioners, and developers use this skill to prepare Circos configuration and supporting data files for circular genomics visualizations, including variant, structural rearrangement, and cell-cell communication plots.
 
-## Reference(s): <br>
-- [Circos Official Documentation](http://circos.ca/documentation) <br>
-- [Circos Tutorials](http://circos.ca/documentation/tutorials) <br>
-- [Bioconda Circos Recipe](https://bioconda.github.io/recipes/circos/README.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/renhaosu2024/circos-plot-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Configuration instructions, Shell commands, Code] <br>
-**Output Format:** [Text configuration files, TSV data files, Markdown guidance, and optional PNG/SVG render outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes circos.conf and data/*.txt files to the selected output directory; optional rendering requires a local Circos installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release evidence flags an ambiguous YAML dependency and dependency-review gap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the ambiguous yaml requirement with the intended reviewed, pinned YAML library before installation.
+
+Risk: The skill reads user-supplied CSV/YAML inputs and writes generated configuration files.
+
+Mitigation: Use trusted inputs, choose a fresh output directory, and avoid elevated privileges when generating files.
+
+Risk: Optional Circos rendering runs a local external command against generated configuration.
+
+Mitigation: Run rendering in a constrained working directory and review generated configuration before rendering.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/renhaosu2024/skills/circos-plot-generator)
+- [Circos Documentation](http://circos.ca/documentation)
+- [Circos Tutorials](http://circos.ca/documentation/tutorials)
+- [Bioconda Circos Recipe](https://bioconda.github.io/recipes/circos/README.html)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated Circos configuration and data files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally invoke local Circos rendering when the user requests it and Circos is installed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

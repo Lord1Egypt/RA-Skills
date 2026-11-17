@@ -1,42 +1,56 @@
-## Description: <br>
-Resolves a China A-share stock name or code, fetches daily historical OHLCV bars from Eastmoney HTTP APIs, and archives the result as local JSON files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve a China A-share stock name or code with a Node.js helper, fetch daily historical OHLCV bars from Eastmoney HTTP APIs, and archive the results as local JSON files.
 
-## Publisher: <br>
-[chenchunjiekk](https://clawhub.ai/user/chenchunjiekk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchunjiekk](https://clawhub.ai/user/chenchunjiekk)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to resolve China A-share stock inputs and export daily market-history JSON for downstream analysis or archival workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for workflows that need China A-share market data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Eastmoney and writes JSON archives into the workspace. <br>
-Mitigation: Use only in environments where those network requests are allowed, and review or constrain the output directory before execution. <br>
-Risk: Fetched market data may be incomplete, stale, or unsuitable for trading decisions. <br>
-Mitigation: Treat the output as informational data and validate it against authoritative sources before financial reporting or investment use. <br>
+## Use Case:
 
+Developers and analysts use this skill to resolve China A-share identifiers, fetch daily historical market bars from Eastmoney, and save raw JSON archives for downstream data workflows.
 
-## Reference(s): <br>
-- [LobsterClaw Workflow Notes](references/lobsterclaw-workflow.md) <br>
-- [Eastmoney Historical Kline API](https://push2his.eastmoney.com/api/qt/stock/kline/get) <br>
-- [Eastmoney Quote Site](https://quote.eastmoney.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown response with the script command context, a JSON summary, and a saved local JSON archive.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The summary reports the resolved symbol, row count, requested date window, trade-date bounds, and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill makes outbound HTTP requests to Eastmoney services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where Eastmoney network access is allowed, or constrain egress with destination allowlists.
+
+Risk: The skill writes cached symbol lists and raw market-data JSON files into the working repository.
+
+Mitigation: Run it from a workspace where data/cache and data/raw/eastmoney/daily_history writes are expected, and review generated files before committing or sharing them.
+
+## Reference(s):
+
+- [LobsterClaw Workflow Notes](references/lobsterclaw-workflow.md)
+- [Eastmoney historical kline API endpoint](https://push2his.eastmoney.com/api/qt/stock/kline/get)
+- [Eastmoney quote site](https://quote.eastmoney.com/)
+- [ClawHub skill page](https://clawhub.ai/chenchunjiekk/skills/fetch-stock-daily)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON summaries; generated archives are JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Archives rows under data/raw/eastmoney/daily_history and may cache symbol lists under data/cache/eastmoney.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

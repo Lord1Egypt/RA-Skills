@@ -1,41 +1,54 @@
-## Description: <br>
-Openclaw Chat provides a mobile and PWA interface for OpenClaw multi-agent chat, group management, service status controls, scheduled tasks, logs, and recovery-oriented admin actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw-chat is a mobile app for managing multi-agent chats, groups, service controls, scheduled tasks, and logs with Android, iOS, and PWA packaging.
 
-## Publisher: <br>
-[johnsun4414](https://clawhub.ai/user/johnsun4414) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsun4414](https://clawhub.ai/user/johnsun4414)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install and run a mobile-friendly chat and administration panel for monitoring agents, groups, services, cron jobs, logs, and recovery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact appears to be a frontend/mobile admin panel with service controls and recovery actions that could affect local OpenClaw services if connected to real backends. <br>
-Mitigation: Run it only on trusted local networks and add authentication, explicit confirmations, and clear data-retention rules before wiring controls to real services or memory sync. <br>
-Risk: The artifact advertises emergency recovery and self-healing behavior, but security evidence characterizes those controls as mostly simulated rather than proven recovery automation. <br>
-Mitigation: Treat recovery actions as operator-facing UI until integrated and tested against real OpenClaw service APIs. <br>
+## Use Case:
 
+Developers and operators use this skill to package and run a mobile-oriented OpenClaw administration interface for agent chat, group views, service status, cron views, logs, and emergency controls.
 
-## Reference(s): <br>
-- [Openclaw Chat on ClawHub](https://clawhub.ai/johnsun4414/openclaw-chat) <br>
-- [Artifact Skill README](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, TypeScript/React application code, shell commands, and mobile/PWA configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a Vite PWA and Capacitor mobile app scaffold for Android and iOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The package claims high-impact remote management, repair, restore, and service-control capabilities that are not safely scoped or fully implemented in the packaged artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a prototype or mock administration UI until the publisher supplies a real authenticated backend and clear controls for memory sync, destructive actions, and dependency updates.
+
+Risk: Users could mistake the emergency, cron, stop/start, restore, or self-healing screens for reliable operational controls.
+
+Mitigation: Do not rely on these screens for real operations without independent validation, access control review, and end-to-end testing against the intended backend.
+
+## Reference(s):
+
+- [Openclaw Chat on ClawHub](https://clawhub.ai/johnsun4414/skills/openclaw-chat)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [React/TypeScript app files with Markdown setup and build instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes PWA assets plus Android and iOS Capacitor project files.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Get started with AINative SDKs in under 5 minutes for setup, SDK selection, installation, API key configuration, and first API calls across React, Next.js, Svelte, Vue, and direct REST usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through setting up AINative SDKs, choosing a React, Next.js, Svelte, Vue, or raw API path, obtaining credentials, and making a first API call.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap AINative SDK integration, obtain or configure credentials, choose the right framework package, and make a first chat API call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The quickstart may encourage placing a normal AINative API key in frontend code or NEXT_PUBLIC_* variables. <br>
-Mitigation: Keep secret keys server-side unless AINative documents a restricted public key pattern; use scoped or short-lived tokens for browser clients. <br>
-Risk: Running npx zerodb init as an unpinned setup command can install or execute package code and write persistent Claude or Cursor MCP configuration. <br>
-Mitigation: Verify or pin the npm package before execution, and inspect any generated MCP configuration before using it. <br>
+## Use Case:
 
+Developers use this skill to bootstrap AINative SDK usage across common web frameworks, configure credentials, and make an initial chat API call. It is intended for setup guidance rather than runtime automation.
 
-## Reference(s): <br>
-- [AINative Studio](https://app.ainative.studio) <br>
-- [ClawHub release page](https://clawhub.ai/urbantech/ainative-sdk-quickstart) <br>
-- [Publisher profile](https://clawhub.ai/user/urbantech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and framework-specific code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example environment variables and SDK setup snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The quickstart recommends running an unpinned initializer that can create credentials and modify agent or IDE MCP configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned package version or manual setup, inspect generated MCP configuration before use, and run the initializer only from a trusted package source.
+
+Risk: The examples include browser-visible API key patterns, including a NEXT_PUBLIC_AINATIVE_API_KEY setting.
+
+Mitigation: Keep long-lived API keys server-side and use browser-exposed tokens only when AINative documents a restricted publishable client token for that purpose.
+
+## Reference(s):
+
+- [AINative Studio](https://app.ainative.studio)
+- [ClawHub Skill Page](https://clawhub.ai/urbantech/skills/ainative-sdk-quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes framework-specific examples and credential setup notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

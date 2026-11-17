@@ -1,41 +1,54 @@
-## Description: <br>
-Creates polished estate-planning law firm client education handouts with visuals, FAQs, and clear next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a polished client education handout for an estate planning law firm, including plain-language explanations, visuals, FAQs, and clear next steps.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Estate planning attorneys and law firm operators use this skill to draft client-facing education handouts that explain estate-planning topics, answer FAQs, and provide next steps. Outputs should be reviewed by a qualified attorney before client delivery or legal reliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated estate-planning education materials may be inaccurate or mistaken for legal advice. <br>
-Mitigation: Have a qualified attorney review outputs before client delivery or legal reliance. <br>
-Risk: Enabling Bash or Read may expose local files or shell execution beyond the drafting workflow. <br>
-Mitigation: Keep Bash and Read disabled unless the runtime specifically requires them. <br>
+## Use Case:
 
+Estate planning attorneys, firm operators, or their agents use this skill to draft client-facing education handouts with FAQs, visual guidance, and actionable next steps. Outputs should be reviewed by a qualified attorney before client use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/generate-estate-planning-law-firm-client-education-handout) <br>
-- [SkillBoss homepage](https://www.skillboss.co/skills/generate-estate-planning-law-firm-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual suggestions, and action-oriented next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest image-generation inputs; legal accuracy requires attorney review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce legal client-education content that may be inaccurate, incomplete, or not appropriate for a specific jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified attorney review and approve outputs before they are sent to clients or treated as legal guidance.
+
+Risk: The declared Bash and file-read permissions are broader than the drafting purpose appears to require.
+
+Mitigation: Review the skill before installation and remove or narrow those permissions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/generate-estate-planning-law-firm-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-estate-planning-law-firm-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown handout draft with FAQs, visual content guidance, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human legal review recommended before client distribution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

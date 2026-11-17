@@ -1,41 +1,61 @@
-## Description: <br>
-Generate official-style Aavegotchi game sprites and animated GIFs with the upstream gotchi-generator package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate official-style Aavegotchi game sprites and animated GIFs with the upstream gotchi-generator package.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-Developers and agents use this skill to render Aavegotchi sprite-sheet PNGs, animated GIFs, and manifest files from JSON payloads or plain-language trait and wearable requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The routing prompt may catch some generic sprite or retro-art requests that are not specifically asking for Aavegotchi-style output. <br>
-Mitigation: When an agent has multiple art tools, narrow trigger wording so this skill is selected only when the user wants Aavegotchi-style sprites or GIFs. <br>
+## Use Case:
 
+Developers, creators, and agent operators use this skill to generate Aavegotchi-style sprite PNGs, animated GIFs, and manifests from gotchi JSON payloads or CLI trait flags.
 
-## Reference(s): <br>
-- [Aavegotchi Game Sprites](https://github.com/aavegotchi/aavegotchi-game-sprites) <br>
-- [Wearables Alignment Report](references/wearables-alignment-report.md) <br>
-- [Sprite Name Aliases](references/sprite-name-aliases.json) <br>
-- [Trait Types](references/trait-types.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG, GIF, and manifest JSON file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sprite PNG files, animated GIF files, manifest JSON, success status, and missing-layer warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Malformed input can write outside the chosen output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained working directory and avoid untrusted JSON until the ID path traversal issue is fixed.
+
+Risk: Extreme GIF settings can exhaust resources.
+
+Mitigation: Keep GIF generation within bounded scale and canvas settings, and process only trusted inputs until GIF scale limits are fixed.
+
+Risk: Dependency behavior can drift if installs ignore the lockfile.
+
+Mitigation: Honor the bundled lockfile when installing dependencies.
+
+## Reference(s):
+
+- [Skill page on ClawHub](https://clawhub.ai/aaigotchi/skills/aavegotchi-sprites-generator)
+- [Upstream gotchi-generator source](https://github.com/aavegotchi/aavegotchi-game-sprites)
+- [Wearables Alignment Report](references/wearables-alignment-report.md)
+- [Sprite Name Aliases](references/sprite-name-aliases.json)
+- [Trait Types](references/trait-types.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON manifests, PNG sprite sheets, and animated GIF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default outputs include a sprite PNG path, GIF path when generated, manifest JSON path, success status, and missing layer warnings.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

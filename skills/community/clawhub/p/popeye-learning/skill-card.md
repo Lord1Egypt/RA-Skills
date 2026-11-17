@@ -1,44 +1,57 @@
-## Description: <br>
-Chinese study-helper prompts for organizing notes, creating memory strategies, and planning review schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language study assistant for organizing notes, suggesting memorization techniques, and creating review plans.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-Students and knowledge workers use this skill to turn source material into structured notes, choose memory techniques for difficult material, and generate practical review plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be triggered by common Chinese study phrases when the user intended a general request. <br>
-Mitigation: Confirm the intended study task before applying the note, memory, or review-plan prompt. <br>
-Risk: User-provided personal, school, or business notes may be processed in chat. <br>
-Mitigation: Avoid pasting sensitive material unless the user is comfortable having it processed in the active chat. <br>
+## Use Case:
 
+External learners use this skill to turn pasted learning material into structured notes, memory strategies, and study review plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/popeye-learning) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [notes.md](artifact/modules/notes.md) <br>
-- [memory.md](artifact/modules/memory.md) <br>
-- [review.md](artifact/modules/review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown study notes, memory strategies, and review plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt templates only; no code execution, persistence, privileged access, or external data transfer according to the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may paste sensitive private notes or study material into the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing private notes unless the user is comfortable disclosing them to the agent handling the request.
+
+Risk: Study plans, summaries, or memory techniques may be incomplete or poorly matched to the user's goals.
+
+Mitigation: Review generated guidance before relying on it for exams, work, or long-term learning plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/popeye-learning)
+- [Notes module](modules/notes.md)
+- [Memory module](modules/memory.md)
+- [Review module](modules/review.md)
+- [Publisher GitHub profile](https://github.com/popeye-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese study notes, memorization strategies, and review plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

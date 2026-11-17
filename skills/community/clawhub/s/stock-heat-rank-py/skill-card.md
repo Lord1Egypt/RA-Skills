@@ -1,44 +1,57 @@
-## Description: <br>
-Gets real-time A-share stock heat rankings by aggregating popularity lists from Wencai, Xueqiu, and Eastmoney and producing a composite TOP50 ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets real-time TOP50 A-share stock heat rankings by aggregating popularity lists from Wencai, Xueqiu, and Eastmoney.
 
-## Publisher: <br>
-[n1e](https://clawhub.ai/user/n1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n1e](https://clawhub.ai/user/n1e)
 
-## Use Case: <br>
-External users and market-analysis agents use this skill to retrieve and summarize currently popular A-share stocks across Wencai, Xueqiu, and Eastmoney. It is suited for questions about hot stocks, stock heat rankings, popularity rankings, and market attention lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a large opaque JavaScript browser-emulation helper for Wencai signature generation. <br>
-Mitigation: Review the helper before installation and run the skill in a restricted environment with no credentials or sensitive browser sessions. <br>
-Risk: The skill fetches live ranking data from external financial-data websites and may fail or return incomplete results if those services change behavior. <br>
-Mitigation: Treat outputs as informational ranking data, check source availability, and verify important market decisions against authoritative financial sources. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and compare currently popular A-share stocks, including composite heat scores and source-specific ranks. It supports market attention monitoring, trend checks, and quick command-line retrieval of ranked stock data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n1e/stock-heat-rank-py) <br>
-- [Publisher profile](https://clawhub.ai/user/n1e) <br>
-- [Wencai](https://www.iwencai.com/) <br>
-- [Xueqiu hot stocks](https://xueqiu.com/hot/stock) <br>
-- [Eastmoney stock rank API](https://emappdata.eastmoney.com/stockrank/getAllCurrentList) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Console table or JSON ranking data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ranked A-share stock records with code, name, per-source ranks, composite score, and source appearance count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill automatically runs a large obfuscated JavaScript signature generator locally through Node.js.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only after reviewing the artifact in a contained environment, and prefer a release with readable source, documented provenance, and pinned Node dependencies.
+
+Risk: The ranking output reflects third-party popularity signals and may be incomplete, unavailable, or unsuitable as financial advice.
+
+Mitigation: Treat results as market-attention data only, verify important values against trusted market data sources, and avoid using the output as the sole basis for trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n1e/skills/stock-heat-rank-py)
+- [Publisher profile](https://clawhub.ai/user/n1e)
+- [Wencai](https://www.iwencai.com/)
+- [Xueqiu hot stocks](https://xueqiu.com/hot/stock)
+- [Eastmoney stock rank endpoint](https://emappdata.eastmoney.com/stockrank/getAllCurrentList)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Console table or JSON emitted by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes rank, stock code, stock name, source-specific rankings, composite heat score, and platform appearance count.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-One-click removal of author names, affiliations, acknowledgments, and excessive self-citations from manuscripts to meet double-blind peer review requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes author names, affiliations, acknowledgments, contact details, and self-citation signals from manuscripts for double-blind peer review while preserving document structure.
 
-## Publisher: <br>
-[googolme](https://clawhub.ai/user/googolme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googolme](https://clawhub.ai/user/googolme)
 
-## Use Case: <br>
-Researchers, authors, and editorial support teams use this skill to create blinded manuscript versions for double-blind peer review while preserving document structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes manuscripts that may contain author identities, affiliations, emails, phone numbers, acknowledgments, and other sensitive submission details. <br>
-Mitigation: Run the skill only on manuscript copies, limit access to generated outputs and audit notes, and treat terminal summaries as sensitive. <br>
-Risk: Automated anonymization can miss identifiers in metadata, figures, supplementary files, or unusual phrasing. <br>
-Mitigation: Manually review the sanitized manuscript, clear document metadata separately, and check supplementary materials before submission. <br>
-Risk: Pattern-based redaction can over-redact legitimate content or alter citation context. <br>
-Mitigation: Use highlight or review workflows first when possible, then verify citation integrity and document formatting before using the blinded output. <br>
+## Use Case:
 
+External researchers and academic authors use this skill to prepare DOCX, Markdown, or plain text manuscripts for double-blind journal or conference review. It helps redact author identifiers, acknowledgments, contact details, institutional affiliations, and first-person self-citation cues before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googolme/blind-review-sanitizer) <br>
-- [COPE Guidelines for Peer Review](https://publicationethics.org/resources/guidelines) <br>
-- [IEEE Publications Rights and Responsibilities](https://www.ieee.org/publications/rights/index.html) <br>
-- [ACM Policy on Authorship](https://www.acm.org/publications/policies/authorship) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Sanitized DOCX, Markdown, or plain text files with terminal summaries and audit notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include redaction placeholders such as [AUTHOR NAME], [INSTITUTION], [EMAIL], [ACKNOWLEDGMENTS REMOVED], [SELF-CITE: ...], and [PREVIOUS WORK].] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Removed identifiers can appear in stdout, shared logs, or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a controlled environment and avoid capturing terminal output in shared logs or transcripts.
+
+Risk: The DOCX dependency is declared as an unpinned wrong package name.
+
+Mitigation: Replace the dependency with a reviewed, pinned python-docx requirement before installation.
+
+Risk: Automated redaction may miss identifiers in document metadata, figures, embedded objects, or hard-to-detect context.
+
+Mitigation: Manually inspect the sanitized manuscript, document properties, figures, and metadata before submission.
+
+Risk: A careless output path can place sanitized or intermediate files in the wrong location.
+
+Mitigation: Choose the output path deliberately and verify the resulting file location before sharing or submitting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googolme/skills/blind-review-sanitizer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/googolme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Sanitized DOCX, Markdown, or plain text files with terminal status output and usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an input manuscript path and output path; optional author list and acknowledgment/self-citation handling flags affect redaction behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

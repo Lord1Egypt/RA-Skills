@@ -1,44 +1,61 @@
-## Description: <br>
-Build, refine, and package sellable AI persona/prompt products such as companion personas, roleplay personas, prompt packs, and style bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, refine, and package sellable AI persona/prompt products such as companion personas, roleplay personas, prompt packs, and style bundles.
 
-## Publisher: <br>
-[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto)
 
-## Use Case: <br>
-Developers, prompt-product creators, and internal teams use this skill to turn rough persona notes into structured prompt packs with model-facing prompts, human-facing specs, examples, configuration, and buyer or operator documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona packs may create identity confusion if they are based on real people or marketed as clones. <br>
-Mitigation: Abstract real-person inspiration into public-facing traits, avoid identity claims, and review generated prompts before publishing or selling them. <br>
-Risk: The optional generator writes files to a user-provided output directory. <br>
-Mitigation: Run the generator in a new empty folder and inspect generated Markdown and JSON before reuse. <br>
+## Use Case:
 
+Developers, creators, and operators use this skill to turn rough persona ideas into structured prompt-pack products with system prompts, persona specs, examples, configuration, and buyer-facing documentation.
 
-## Reference(s): <br>
-- [Persona Product Blueprint](references/persona-product-blueprint.md) <br>
-- [Safety and Positioning](references/safety-positioning.md) <br>
-- [OpenClaw Skill Variant](references/openclaw-skill-variant.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaonizhou-crypto/persona-pack-builder) <br>
-- [Project homepage](https://github.com/xiaonizhou-crypto/persona-pack-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, JSON configuration, optional Python-generated file trees, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a local persona-product folder containing prompt, persona, example, configuration, sales, and README files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The packaged helper script expects template files that are not present in the artifact, so it may fail if run as-is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supply the referenced templates before using the script, or generate the persona-pack files manually from the documented structure.
+
+Risk: Persona products inspired by real people can create identity confusion or misleading clone claims.
+
+Mitigation: Use public-trait abstractions, avoid names or identity claims, and review the generated pack against the safety-positioning guidance before release.
+
+Risk: Generated prompt-pack files can contain incorrect or unsuitable positioning for a target platform or audience.
+
+Mitigation: Review generated Markdown and JSON outputs before publication, and run the helper script in a fresh output directory.
+
+## Reference(s):
+
+- [Persona Product Blueprint](references/persona-product-blueprint.md)
+- [Safety and Positioning](references/safety-positioning.md)
+- [OpenClaw Skill Variant](references/openclaw-skill-variant.md)
+- [Project homepage](https://github.com/xiaonizhou-crypto/persona-pack-builder)
+- [ClawHub skill page](https://clawhub.ai/xiaonizhou-crypto/skills/persona-pack-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown files, JSON configuration, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a reusable persona-product folder containing prompts, examples, configuration, and packaging documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

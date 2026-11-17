@@ -1,0 +1,10 @@
+{
+  "nombre": "Don Chuy, el pastelero",
+  "tipo": "humano",
+  "pelo": { "color": "#3a2a24", "largo": "corto", "estilo": "flequillo" },
+  "piel": "#c98d68",
+  "ojos": "#2a1a14",
+  "labios": "#a2584f",
+  "ropa": { "arriba": "#f6f3ec", "tipo_arriba": "filipina", "abajo": "#2f3448", "tipo_abajo": "pantalon", "zapatos": "#1f1f24" },
+  "accesorios": ["gorro-chef", "delantal", "lentes"]
+}

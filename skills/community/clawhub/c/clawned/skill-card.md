@@ -1,46 +1,63 @@
-## Description: <br>
-Security agent that inventories installed OpenClaw skills, analyzes them for threats, and syncs results to your Clawned dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security agent that inventories installed OpenClaw skills, analyzes them for threats, and syncs results to your Clawned dashboard.
 
-## Publisher: <br>
-[jenish-sojitra](https://clawhub.ai/user/jenish-sojitra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jenish-sojitra](https://clawhub.ai/user/jenish-sojitra)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inventory installed skills, scan selected skill directories for security issues, and sync results to a Clawned dashboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The sync flow sends installed-skill inventory and basic host registration details to Clawned. <br>
-Mitigation: Install only if you trust Clawned with that inventory and host metadata. <br>
-Risk: The scan command may send selected skill source files to the Clawned server for analysis. <br>
-Mitigation: Use scan --path only for skill directories you are comfortable analyzing through the configured Clawned endpoint. <br>
-Risk: Cron, watch, or daemon modes perform ongoing monitoring and syncing. <br>
-Mitigation: Enable those modes only when continuous monitoring is intended. <br>
-Risk: CLAWNED_SERVER controls the endpoint that receives requests. <br>
-Mitigation: Keep CLAWNED_SERVER pointed at a trusted endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawned homepage](https://clawned.io) <br>
-- [Clawned skill listing](https://clawhub.ai/jenish-sojitra/clawned) <br>
-- [Detection Patterns](references/detection-patterns.md) <br>
-- [Threat Model](references/threat-model.md) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inventory installed skills, scan selected skill directories for security threats, and sync security status to a Clawned dashboard.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and JSON responses, with Markdown setup and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and CLAWNED_API_KEY; CLAWNED_SERVER is optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.5 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can register the host and sync installed skill metadata to the Clawned service.
+
+Mitigation: Install only when you trust Clawned and are comfortable sharing host registration data and skill inventory metadata with the configured service.
+
+Risk: The optional CLAWNED_SERVER setting changes the destination for authenticated API calls.
+
+Mitigation: Use the default HTTPS endpoint or a trusted HTTPS server, and do not point CLAWNED_SERVER at untrusted or plaintext endpoints.
+
+Risk: Daemon and watch modes can continue inspecting installed skills and syncing metadata after the original command finishes.
+
+Mitigation: Use daemon or watch modes only when continuous monitoring is intended, and stop the daemon when ongoing sync is no longer needed.
+
+Risk: Explicit scan commands read scannable files from the selected skill directory and send file contents for analysis.
+
+Mitigation: Run path scans only on skill directories whose contents are acceptable to send to the configured Clawned server.
+
+## Reference(s):
+
+- [Clawned skill page](https://clawhub.ai/jenish-sojitra/skills/clawned)
+- [Clawned homepage](https://clawned.io)
+- [Threat Model - OpenClaw Skill Security](references/threat-model.md)
+- [Detection Patterns - Signature Rules](references/detection-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output, JSON for scan responses, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and CLAWNED_API_KEY; CLAWNED_SERVER is optional.]
+
+## Skill Version(s):
+
+1.3.5 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

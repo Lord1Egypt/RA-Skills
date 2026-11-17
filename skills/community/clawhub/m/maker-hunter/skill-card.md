@@ -1,44 +1,61 @@
-## Description: <br>
-Maker Hunter helps agents find likely vibe-coding founders across technical communities, review candidate profiles, score fit, and draft personalized outreach messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically discovers vibe-coding entrepreneurs across technical communities and helps generate personalized recruiting direct messages.
 
-## Publisher: <br>
-[robinc913](https://clawhub.ai/user/robinc913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinc913](https://clawhub.ai/user/robinc913)
 
-## Use Case: <br>
-Community builders, recruiters, and founder-facing teams use this skill to discover independent developers or early-stage makers, filter out weak matches, and prepare personalized Chinese or English outreach drafts. It is intended for reviewed outreach workflows rather than unattended messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt users to provide raw platform cookies or automate logged-in social accounts. <br>
-Mitigation: Use only accounts you are willing to automate, avoid sharing raw cookies or session tokens, prefer interactive login or scoped APIs, and periodically delete stored credentials. <br>
-Risk: Collected candidate details and daily history are stored locally without clear privacy safeguards in the artifact. <br>
-Mitigation: Review what is collected, keep only necessary candidate data, delete stale memory files, and handle profile data according to applicable privacy and outreach policies. <br>
-Risk: Automated outreach drafts can be inaccurate, overly intrusive, or noncompliant with platform expectations. <br>
-Mitigation: Manually review every candidate and message before contact, verify profile evidence, and adjust or discard drafts that are not appropriate. <br>
+## Use Case:
 
+Recruiters, community builders, and operator-led teams use this skill to find promising AI-assisted indie makers, review profile and posting history, and draft tailored outreach messages.
 
-## Reference(s): <br>
-- [DM template guide](references/dm-guide.md) <br>
-- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/) <br>
-- [ClawHub skill page](https://clawhub.ai/robinc913/maker-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with JSON-shaped candidate records and personalized message drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform, username, profile or post links, match score, profile review notes, and complete DM content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cookie or credential sharing could expose user accounts because cookies can act like passwords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer browser-based login, OAuth, or throwaway accounts; do not paste raw cookies into an agent chat.
+
+Risk: The skill suggests running a global script whose behavior should be reviewed before installation.
+
+Mitigation: Inspect and verify external scripts before running them, especially scripts installed from global paths.
+
+Risk: Plaintext credential storage can expose platform accounts.
+
+Mitigation: Avoid storing platform credentials in plaintext credentials.json and use safer credential storage where possible.
+
+## Reference(s):
+
+- [DM Guide](references/dm-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/robinc913/skills/maker-hunter)
+- [Hacker News API](https://hacker-news.firebaseio.com/v0/)
+- [Jike Login](https://m.okjike.com/login)
+- [X Login](https://x.com/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style candidate lists, JSON-like candidate records, personalized direct-message drafts, and setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual outreach copy, profile-review summaries, match scores, source post links, and local memory-file guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,6 +9,14 @@ estimated_tokens: 600
 
 AI-generated text exhibits distinctive structural patterns beyond vocabulary.
 
+The Tier 5 regexes below (spatial copula, negative parallelism,
+contrastive parallelism, three-fragment burst, smart quotes, plus-sign
+conjunction, arrow connector, throat-clearing) are mirrored in the
+runtime source at `data/languages/en.yaml` § `tier5` and exposed by
+`pattern_loader.get_tier5_patterns()`. The YAML is the single source of
+truth for the regex; this module is the prose reference. Keep the two in
+sync when editing a pattern.
+
 ## Em Dash Analysis
 
 AI uses em dashes (—) excessively as a rhetorical device. The
@@ -52,21 +60,36 @@ The audit threshold is empirical (tolerant of human writers
 who use em-dashes legitimately). The prevention threshold is
 agent-applied and strict.
 
-## Tricolon Detection
+## Tricolon Detection (Rule of Three)
 
-AI produces alliterative groups of three with suspicious frequency.
+AI produces groups of three with suspicious frequency:
+both alliterative tricolons and structurally parallel
+triads. Reddit citation data (2026) puts this at 1.2%
+of audited posts, likely under-ranked because auditors
+flag it in prose ("uses three-part structures
+constantly") rather than in keyword searches.
 
 Pattern examples:
-- "clear, concise, and compelling"
+- "clear, concise, and compelling" (alliterative)
 - "fast, flexible, and free"
 - "robust, reliable, and resilient"
+- "It's fast. It's cheap. It's reliable." (three-fragment burst)
+- "We tackle speed, cost, and quality" (reflexive tripling)
 
 Detection approach:
 ```python
 # Look for: adjective, adjective, and adjective
-tricolon_pattern = r'\b(\w+), (\w+),? and (\w+)\b'
+tricolon_pattern = r"\b(\w+), (\w+),? and (\w+)\b"
 # Flag if words share first letter or similar endings
+
+# Count three-item lists of any kind per 500 words
+# > 2 triads in 500 words: signal (humans use one or two,
+#   not reflexively every paragraph)
 ```
+
+**Audit-mode threshold:** 2+ triads per 500 words is a
+signal. 4+ is a strong AI signal. See also
+`## Three-Fragment Burst` for the short-sentence variant.
 
 ## Sentence Length Uniformity
 
@@ -77,8 +100,9 @@ def sentence_uniformity(sentences):
     lengths = [len(s.split()) for s in sentences]
     mean = sum(lengths) / len(lengths)
     variance = sum((l - mean) ** 2 for l in lengths) / len(lengths)
-    std_dev = variance ** 0.5
+    std_dev = variance**0.5
     return std_dev
+
 
 # std_dev < 5: Suspicious uniformity
 # std_dev 5-15: Normal variation
@@ -99,11 +123,20 @@ If most paragraphs cluster around the same length (e.g., 40-60 words), flag as A
 ## Bullet-to-Prose Ratio
 
 AI defaults to bullet points, especially with emojis.
+Reddit citation data (2026) puts excessive bullet use
+at 1.7% of audited posts (#6 most-cited tell),
+with both keyword and citation passes in agreement.
+"5 ways to…" / "7 signs…" scaffolding reads as AI
+even when the content is original.
 
 ```bash
 # Count bullet lines vs total lines
-bullet_lines=$(grep -c '^\s*[-*]' file.md)
-total_lines=$(wc -l < file.md)
+if command -v rg &>/dev/null; then
+  bullet_lines=$(rg -c '^\s*[-*]' "$file" || echo 0)
+else
+  bullet_lines=$(grep -c '^\s*[-*]' "$file" || echo 0)
+fi
+total_lines=$(wc -l < "$file")
 ratio=$((bullet_lines * 100 / total_lines))
 ```
 
@@ -114,16 +147,34 @@ ratio=$((bullet_lines * 100 / total_lines))
 | 50-70% | High (check context) |
 | 70%+ | Very high AI signal |
 
-**Emoji bullets** (e.g., lines starting with emoji) in technical documentation are a strong AI tell.
+**Emoji bullets** (lines starting with emoji) in
+technical documentation are a strong AI tell.
+
+**Numbered "N things" listicles** ("5 ways to…",
+"7 signs you might be…") are a format tell
+independent of bullet count. Flag when the heading
+encodes a count and the body is pure bullets.
 
 ## Five-Paragraph Essay Structure
 
-AI defaults to: intro, three body sections, and conclusion recap.
+AI defaults to intro, three body sections, and conclusion
+recap. Reddit citation data (2026) puts this at 2.5% of
+audited posts, the #5 most-cited tell. Auditors
+noted it is likely under-counted (keyword regex at 0.5%
+badly under-catches it because "formulaic-ness" requires
+reading the whole structure). The signal is structural,
+not lexical. A sentence-level scan will miss it.
 
 Check for:
-1. Opening paragraph that restates the question
-2. Three distinct middle sections
-3. Closing paragraph that summarizes without adding new information
+1. Opening paragraph that restates the prompt or question
+2. Exactly three distinct middle sections
+3. Closing paragraph that summarizes without adding new
+   information ("in conclusion, we have explored...")
+
+The "in conclusion" closer is the lexical handle
+(detected in `vocabulary-patterns.md` Tier 4). When
+combined with opener-restates-prompt and three-body,
+treat as a confirmed pattern regardless of vocabulary.
 
 ## Perfect Grammar Signals
 
@@ -157,15 +208,45 @@ Examples:
 
 ```python
 # Detect sentences ending with ", [word]-ing ..."
-participial_tail = r',\s+\w+ing\s+[\w\s]+\.$'
+participial_tail = r",\s+\w+ing\s+[\w\s]+\.$"
 # 3+ matches in a paragraph is a strong signal
 ```
+
+The generic detector catches any comma-led `-ing` tail. The
+runtime also pins the highest-signal specific words in
+`tier5.participial_tail` (`data/languages/en.yaml`):
+`, highlighting`, `, showcasing`, `, underscoring`,
+`, paving the way for`, `, demonstrating`, `, proving that`,
+`, reinforcing`, `, enabling`. These fake-analysis tack-ons are
+high-confidence. Flag any match.
 
 | Count per 500 words | Signal |
 |---------------------|--------|
 | 0-1 | Normal |
 | 2-3 | Elevated |
 | 4+ | Strong AI signal |
+
+## Emphasis Crutches
+
+Manufactured-importance terminators AI stamps onto a sentence to
+inject authority or drama. Mirrors `tier5.emphasis_crutch` in
+`data/languages/en.yaml`.
+
+| Phrase | Why it's slop |
+|--------|---------------|
+| "Full stop." | Pseudo-authoritative period-stamp |
+| "Make no mistake" | Dramatic-declarative throat-clearing |
+| "Read that again." | Emphasis crutch for a stat |
+| "Mark my words" | Prophetic-authority filler |
+
+```python
+TIER5_EMPHASIS_CRUTCH = [
+    r"\bfull stop\.",
+    r"\bmake no mistake\b",
+    r"\bread that again\.?",
+    r"\bmark my words\b",
+]
+```
 
 ## "From X to Y" Range Construction
 
@@ -177,7 +258,7 @@ Examples:
 - "From ancient traditions to modern innovations"
 
 ```python
-from_to_pattern = r'\bfrom\s+[\w\s]+\s+to\s+[\w\s]+'
+from_to_pattern = r"\bfrom\s+[\w\s]+\s+to\s+[\w\s]+"
 ```
 
 ## Correlative Conjunction Overuse
@@ -286,24 +367,40 @@ awk '/^```/{c=!c}!c' file.md | \
 - Botanical/biological/etymological context ("the variant
   is rooted in Latin").
 
-## Negative Parallelism Constructions
+## Negative Parallelism Constructions (Contrastive Negation)
 
 The strongest non-vocabulary 2026 prose tell. Independently
 flagged by Wikipedia, OliviaCal, ContentBeta, Stop-Slop, and
 George Kao. AI reaches for these rhetorical scaffolds when it
 has no real argument to make.
 
+In linguistics this family is **contrastive negation**: a
+clause that negates one element to assert another ("not X,
+but Y"). It is one half of a broader device, **contrastive
+parallelism** (antithesis); the affirmative half, which has no
+"not" anchor, is covered in the next section. Treat both the
+same way: avoid them in all but the most necessary cases. The
+test for "necessary" is whether deleting the contrast loses
+information. "We use Python instead of Java" keeps a fact;
+"It's not a tool, it's a transformation" keeps nothing.
+
 | Pattern | Example |
 |---------|---------|
-| `It's not X, it's Y` | "It's not a tool, it's a transformation" |
+| `It's not X, it's Y` (leading) | "It's not a tool, it's a transformation" |
+| `It's X, not Y` (copula-led trailing) | "It's a tool, not a toy" |
 | `Not just X, but Y` | "Not just fast, but elegant" |
 | `Not only X, but also Y` | "Not only saves time, but also improves quality" |
 | `No X. No Y. Just Z.` | "No friction. No setup. Just code." |
 | `No X, no Y, no Z` | "No friction, no setup, no config." |
-| `Y, not X` (trailing) | "The API is clear, not clever." |
+| `Y, not X` (bare trailing) | "The API is clear, not a gimmick." |
 | `Not because X. Because Y.` | "Not because it's hard. Because it matters." |
 | `X. That's it. That's the Y.` | "Documentation. That's it. That's the feature." |
 | `And that's okay.` | (closing reassurance with no information) |
+
+The copula-led trailing form ("It's X, not Y", "This is X, not Y")
+is the one that survives casual proofreading: the opener reads as
+a plain definition, so the corrective tail slips through. It is the
+same scaffold as the leading "It's not X, it's Y", just reordered.
 
 ```python
 NEGATIVE_PARALLELISM = [
@@ -314,15 +411,25 @@ NEGATIVE_PARALLELISM = [
     r"\bNo \w+\.\s+No \w+\.\s+Just \w+",
     # Comma-joined variant: "No X, no Y, no Z"
     r"\bNo \w+,\s+no \w+(?:,\s+no \w+)*",
-    # Trailing corrective negation: "Y, not X." Genuine either/or
-    # choices (e.g. "Python, not Java") are slop too; rewrite as
-    # "Y instead of X" to keep the contrast without the negation.
-    r"\b\w+,\s+not\s+(?:just\s+)?\w+[.!?]",
+    # Copula-led trailing corrective: "It's X, not Y" / "This is X,
+    # not Y". The opener marks a definitional statement, so the regex
+    # is high-precision even mid-sentence and with an article on Y.
+    r"\b(?:It's|It is|This is|That's|That is|These are|Those are)\s+[\w\s]+?,\s+not\b",
+    # Bare trailing corrective negation: "Y, not X." The optional
+    # article catches "clear, not a gimmick." as well as "clear, not
+    # clever." Genuine either/or choices (e.g. "Python, not Java") are
+    # slop too; rewrite as "Y instead of X" to keep the contrast
+    # without the negation.
+    r"\b\w+,\s+not\s+(?:just\s+|a\s+|an\s+|the\s+)?\w+[.!?]",
     r"\bNot because \w+\.\s+Because \w+",
     r"\.\s+That's it\.\s+That's the\b",
     r"\bAnd that's okay\.",
 ]
 ```
+
+These mirror `data/languages/en.yaml` § `tier5.negative_parallelism`
+(the runtime source). When you change one, change the other and run
+`pytest tests/test_slop_patterns.py tests/test_pattern_loader.py`.
 
 ### Prevention rule
 
@@ -334,10 +441,237 @@ isn't, then what it does.
 |------|---------|
 | "Not just fast, but elegant" | "Fast and elegant" or "Fast; the API is also clean" |
 | "It's not a tool, it's a transformation" | "It is a tool. It changes how you do X." |
+| "It's a tool, not a toy." | "It is a tool." (drop the corrective tail) |
 | "No friction. No setup. Just code." | "Zero-setup. Drop in and run." |
 | "No friction, no setup, no config." | "Zero-setup and zero-config." |
 | "The API is clear, not clever." | "The API is clear." (drop the corrective tail) |
 | "We use Python, not Java." | "We use Python instead of Java." (keep the contrast, drop the negation) |
+
+## Trailing Contrastive Negation (mid-sentence)
+
+The bare trailing regex above requires the sentence to end one word
+after "not", so a longer tail slips past it. "The third sends your
+code, not just a status check." was live in this repository's README
+until review caught it by eye.
+
+Four surface forms, all named independently by GC AI, Programmer.ie,
+the Wikipedia *Negative parallelism* article, and DEV Community:
+
+| Pattern | Example | Rewrite |
+|---------|---------|---------|
+| `X, not just Y` (any position) | "sends your code, not just a status check" | "sends the contents of your files" |
+| `isn't just X, but Y` | "isn't just a linter, but a review harness" | "is a review harness" |
+| `more than X, it's Y` | "more than a document, it's a co-editing surface" | "is a co-editing surface" |
+| `not about X, it's about Y` | "not about looking modern, it's about being usable" | "is about being usable" |
+
+The negated half has to be an elevation for this to fire. "The probe
+does not run, because gemini authenticates by key" states a fact and
+is deliberately unmatched: every regex needs "just", "about ... it's
+about", or a copula after the comma.
+
+Runtime source: `data/languages/en.yaml` §
+`tier5.contrastive_negation_trailing`, scored `high` confidence.
+
+## Contrastive Scaffold ("rather than" / "instead of", opt-in)
+
+A definitional frame built on a connective: "the gate reports the
+failure rather than swallowing it".
+
+**This is not a documented AI tell, and the category is off by
+default.** No source in the contrastive-negation literature names
+either connective, and both are ordinary English. Measured across this
+repository's markdown, "rather than" appears 504 times and "instead
+of" 299, almost all correctly, including in the rule files that define
+house style. A default-on version would bury a real finding under
+hundreds of correct sentences.
+
+Enable it for a documentation audit where defining things by contrast
+is the suspected habit. Surface every hit for a human; never
+auto-rewrite. It is scoped to the verb-phrase form, so the
+"Y instead of X" rewrite recommended in the table above stays valid:
+that is a noun comparison, and it keeps the alternative the reader
+needed.
+
+Runtime source: `data/languages/en.yaml` § `tier5.contrastive_scaffold`,
+`default_enabled: false`, `confidence: low`.
+
+The negated form is scored. `tier5.negated_alternative` (high
+confidence) matches a negation followed in the same clause by
+"instead of" or "rather than": "never guesses instead of measuring",
+"does not retry rather than report the failure". Rewrite by stating
+what the thing does. A recommendation with no negation ("use rg
+rather than grep") does not match, and a sentence boundary between
+the negation and the connective breaks the match.
+
+## Negative Framing (Litotes, Vacuous Negation, Negative Definition)
+
+Negative parallelism above is a scaffold: *not X, but Y*. This is a
+different failure, and it has three shapes plus a document-level
+measure. All four mirror `data/languages/en.yaml`; change one, change
+the other, and run `pytest tests/test_slop_patterns.py
+tests/test_negation_density.py`.
+
+### Litotes (double negation)
+
+`tier5.litotes`. Score 2, high confidence, on by default. Two
+negations to say one positive thing costs the reader a step and buys
+nothing, and the positive form always exists, so these are safe to
+rewrite rather than merely surface.
+
+| Slop | Rewrite |
+|------|---------|
+| "This failure is not uncommon" | "This failure is common" or give the rate |
+| "The syntax is not unlike Python" | "The syntax resembles Python" |
+| "The cost is not insignificant" | "The cost is 40ms per call" |
+| "It never fails to surface the bug" | "It surfaces the bug every time" |
+| "The argument is not without merit" | "The argument has merit" |
+
+The stems are enumerated in the YAML rather than matched with
+`not\s+(?:un|in)\w+`. The general form fires on "not until", "not
+inside", "not intended" and "not include", which are ordinary prose.
+
+### Vacuous negation
+
+`tier5.vacuous_negation`. Score 2, high confidence, on by default.
+Negation clichés that claim weight and supply none. The test is
+deletion: if the sentence says the same thing without the phrase, the
+phrase was filler.
+
+| Slop | Rewrite |
+|------|---------|
+| "The importance cannot be overstated" | State the consequence, or delete |
+| "The risk is not to be underestimated" | Name the risk and its size |
+| "It goes without saying that X" | "X" |
+| "Needless to say, Y" | "Y" |
+| "Shipping this was no small feat" | Say what made it hard |
+
+Negation carrying a fact is left alone: "the hook cannot reach the
+registry, so it warns" is a mechanism, not a cliché.
+
+### Negative definition (opt-in)
+
+`tier5.negative_definition`. Score 1, low confidence,
+`default_enabled: false`. Behavior described only by what it will not
+do leaves the reader to infer the rest.
+
+| Slop | Rewrite |
+|------|---------|
+| "The parser doesn't handle nested blocks" | "The parser accepts flat blocks" |
+| "The exporter does not support CSV" | "The exporter emits JSON and Parquet" |
+| "The daemon is unable to recover" | "The daemon requires a clean restart" |
+
+This one stays gated off for the same reason as
+`anthropomorphism_low`: precise negation is how contracts,
+invariants and trust boundaries are correctly written, and a rule file
+built out of "do not use for", "must not" and "never" is doing its
+job. A default-on version buries one real finding under hundreds of
+correct sentences. Enable it when auditing reference documentation,
+where negative definition is a genuine tell. Surface every hit for a
+human to judge; never auto-rewrite. Prohibitions, invariants, and a
+bare "cannot" carrying a fact are deliberately unmatched.
+
+### Temporal residue (opt-in)
+
+`tier5.temporal_residue`. Score 1, low confidence,
+`default_enabled: false`. Session state written into a file that
+documents current state: the change event, recorded where the reader
+came for the thing as it is.
+
+| Slop | Rewrite |
+|------|---------|
+| "This used to be an int field" | "This field takes a string" |
+| "The payload no longer accepts a bare string" | "The payload takes a list of records" |
+| "This handler replaces the old dispatch path" | "This handler dispatches on the record kind" |
+| "Reads the manifest instead of the previous inline config" | "Reads the manifest" |
+
+The third kind of negation in this catalog, and the other two do not
+reach it. `negative_definition` negates a capability and
+`negative_parallelism` negates by contrast. This negates a prior
+state, which no existing regex matched.
+
+The scope is what makes it opt-in, and the distinction is worth
+holding. Residue is temporal narration in **interface**
+documentation, where a reader wants the thing as it is. The same
+words in **rationale** documentation are correct, and two rules in
+this repository require them: `bounded-autonomy.md` asks a constraint
+to cite its incident, and `prefer-invariants-over-fallbacks.md` asks
+a guard to name the failure it defends. No regex separates the two.
+Measured over git-tracked files, 28.8% of bare-word hits sit in a
+CHANGELOG, an ADR, or a test docstring, where narrating history is
+the job. Enable it when auditing a README, a public docstring, or a
+field comment. Surface every hit; never auto-rewrite.
+
+One register is deliberately out of scope. Naming what was skipped is
+required of an operator reply and a completion report, by the harness
+and by `Skill(imbue:proof-of-work)`, which asks for BLOCKED work to be
+stated. A file has no session to report on. The deterministic half,
+`plugins/imbue/hooks/vow_no_edit_narration.py`, sees a file write and
+never a reply, so the split holds structurally rather than by asking
+a model to remember which register it is in.
+
+### Density (the "overly relies" measure)
+
+`scribe.negation.check_negation_density`. A regex counts instances and
+cannot measure over-reliance, which is a property of the page: a
+document where most sentences say what something will not do reads as
+evasive even when every sentence is correct.
+
+The check splits prose into sentences, drops fenced and inline code,
+and reports the share carrying a negation marker against an advisory
+bar of 35%, with a floor of 8 sentences because a ratio over a handful
+of sentences describes the sample rather than the writing. The finding
+carries its own arithmetic so a reader can check it without rerunning.
+
+Advisory only. Never gate a merge on it.
+
+## Contrastive Parallelism (Affirmative Antithesis)
+
+The affirmative sibling of contrastive negation: two parallel
+clauses set in opposition with no "not" anchor. AI reaches for
+antithesis to manufacture punch, the same impulse behind the
+negation form, but without the "not" it slips past a scan that
+only looks for "not X, but Y".
+
+| Pattern | Example |
+|---------|---------|
+| `Less X, more Y` / `More X, less Y` | "Less config, more code" |
+| `Where others X, we Y` | "Where others add complexity, we remove it" |
+| Subject-swap clauses | "Humans propose; machines dispose" |
+| `Old way: X. New way: Y.` framing | "Old way: tickets. New way: chat" |
+| Chiasmus (reversed repetition) | "Code you can read, read code you can trust" |
+
+```python
+# Only the comparative form is reliable enough to flag
+# automatically; the rest are judgment-level (confidence: low).
+CONTRASTIVE_PARALLELISM = [
+    # "Less X, more Y" / "More X, less Y" — comparative antithesis
+    r"\b(?:Less|More)\s+\w+,\s+(?:less|more)\s+\w+",
+    # "Where others X, we Y" — pronoun guard limits locative false
+    # positives ("where the file is, the system...") but not all
+    r"\bWhere\s+[\w\s]+?,\s+(?:we|you|they|it)\b",
+]
+```
+
+Subject-swap clauses, `Old way:/New way:` framing, and chiasmus
+resist a tight regex (the opposition is semantic, not lexical).
+Flag them by reading, mark `confidence: low`, and surface for
+human decision rather than auto-rewriting. `Before:`/`After:`
+labels are common in legitimate code examples; do not flag them
+as antithesis.
+
+### Prevention rule
+
+In newly generated docs, treat affirmative antithesis the same
+as contrastive negation: avoid in all but the most necessary
+cases. Keep it only when both sides are concrete, the contrast
+is load-bearing, and you use it once rather than as a rhythm.
+Rewrite decorative antithesis as a plain statement.
+
+| Slop | Rewrite |
+|------|---------|
+| "Less config, more code" | "Setup is one file; the rest is code" |
+| "Where others add complexity, we remove it" | "This removes a configuration step competitors require" |
+| "Humans propose; machines dispose" | "A human picks the option; the agent applies it" |
 
 ## Three-Fragment Burst
 
@@ -353,7 +687,7 @@ Examples:
 
 ```python
 # Detect three single-word sentences in sequence
-three_fragment = r'\b([A-Z][a-z]+)\.\s+([A-Z][a-z]+)\.\s+([A-Z][a-z]+)\.'
+three_fragment = r"\b([A-Z][a-z]+)\.\s+([A-Z][a-z]+)\.\s+([A-Z][a-z]+)\."
 ```
 
 | Count per 1000 words | Signal |
@@ -414,9 +748,129 @@ semicolons=$(grep -o ';' file.md | wc -l)
 # Human ratio: roughly equal. AI ratio: 10:1 or worse.
 ```
 
+The avoidance heuristic is about a *missing* semicolon where a
+human would use one. It is not a license to add them. The
+opposite failure, below, is now the more common one.
+
+## Semicolon Splice
+
+Newer models reach for the semicolon as a sophistication
+marker, splicing two independent clauses where a period or a
+coordinating conjunction reads more naturally. The clause after
+the semicolon could stand alone as its own sentence, and almost
+always reads better that way. Use a semicolon in prose only
+when it is absolutely necessary: a list whose items already
+carry internal commas is the one durable case. The runtime
+pattern (`tier5.semicolon_splice`, high confidence since
+2026-09-18) matches only the splice: no comma on either side of
+the semicolon and a lowercase continuation to a sentence end, so
+the list case is not reported at all, and a reference such as
+"; See Table 2" is left alone.
+
+Examples:
+
+- "The system is fast; it handles a million requests." (slop;
+  split into two sentences, or join with "and")
+- "Run the tests; they validate the change." (slop; "Run the
+  tests. They validate the change.")
+- "The cache holds three tiers: hot, in memory; warm, on
+  local disk; and cold, in object storage." (fine; the items
+  carry internal commas, so the semicolons disambiguate)
+
+Rephrase, in order of preference:
+
+1. Split into two sentences (period). Default choice.
+2. Join with "and" or "but" when the clauses are tightly
+   linked. Do not trade the semicolon for a ", so" tail (next
+   section).
+3. Keep the semicolon only when removing it creates ambiguity
+   (a list with internal commas).
+
+```bash
+# Detect prose semicolons (word ; word). The awk pass strips
+# fenced code; the sed pass strips inline code (`x;`) and URLs,
+# so a backticked `arr.push();` never counts. This mirrors the
+# spelling normalizer's protected spans (fenced + inline + URL).
+# Confidence is low: every remaining hit is surfaced for human
+# judgment, not auto-rewritten. A list with internal commas is
+# a keep.
+awk '/^```/{c=!c}!c' file.md \
+  | sed -E 's/`[^`]*`//g; s#https?://[^ ]*##g' \
+  | grep -oP '\w;\s+\w' | wc -l
+```
+
+## Consequence Tail (", so")
+
+"The index was stale, so the lookup missed." A clause states a
+fact, then a comma and "so" append what followed from it. One of
+these is ordinary English. The tell is the habit: every fact
+arrives with its consequence attached, and the reader is walked
+through inferences they would have made unaided.
+
+Measured over this repository's commit bodies, the rate went from
+none per 1000 words in January 2026 to 0.55 in May, 6.2 in August
+and 8.9 in September. `book/src` holds 0.18. Four guidance files
+offered "so" as the fix for a semicolon splice from 2026-06-11
+onward. The dates line up with the rise and prove nothing more.
+
+The common shapes, by frequency in this repository:
+
+- ", so the ...", ", so a ...", ", so it ..." (about 70% of hits)
+- ", so every ...", ", so no ...", ", so nothing ..."
+- ", so that ..." used as a result clause
+
+Rewrite in this order, and stop at the first that works:
+
+1. **Delete the consequence.** Ask whether the reader needs it
+   stated. "The flag is off by default, so CI never sees it"
+   usually becomes "The flag is off by default." when the
+   paragraph is about CI. This is the step no regex can take,
+   and the one most tails fail.
+2. **Give it its own sentence.** "The index was stale. The
+   lookup missed." Two short facts read as evidence. The comma
+   splice reads as narration.
+3. **Lead with the cause.** "Because the index was stale, the
+   lookup missed." The subordinate clause states the dependency
+   once, at the front, where a reader weighs it.
+4. **Name the mechanism.** "The lookup reads the index, and the
+   index was stale." The link is stated as a fact about the
+   system rather than as the writer's inference.
+
+Keep a ", so" when the consequence is the point of the sentence
+and none of the four reads better. Density is what matters. Two in
+a 1000-word page is normal. One per paragraph is the habit.
+
+"So that" stating a purpose ("move the check so that the hook
+fails closed") takes no comma and is not matched. "So far", "so
+much", "so many", "so long as", "so to speak" and "so-called" are
+excluded.
+
+Detection:
+
+- `tier5.so_connective` marks each tail at medium confidence. It
+  is surfaced and never scored.
+- `scribe.connectives.check_so_density` reports a page above 2.0
+  per 1000 words, with a 500-word floor. `slop_score.py --audit`
+  prints it as `so density` beside negation density. Advisory,
+  never a merge gate.
+
+Related: `tier5.over_explanation` in `en.yaml` (opt-in) catches
+"this ensures that" and "which allows us to", the same narration
+with a different connective. Document economy's sentence-weight check
+(`document-economy.md`) is the judgment half of step 1.
+
 ## Sentence Length Clustering (Refined)
 
-Beyond uniformity (tracked above), the specific AI cluster is **15-25 words per sentence**. Human writing ranges from 3-word fragments to 40+ word complex sentences. AI avoids both extremes.
+**Reddit citation data (2026) puts flat sentence rhythm
+at 4.0% — the #2 most-cited human tell**, behind only
+the em dash. It is also the most important regex-blind
+tell: no keyword scanner can catch it. Readers describe
+it as "the same cadence", "syntactic mad-lib",
+"recognizable rhythm even without looking at the words."
+
+The specific AI cluster is **15-25 words per sentence**.
+Human writing ranges from 3-word fragments to 40+
+word complex sentences. AI avoids both extremes.
 
 ```python
 def length_clustering(sentences):
@@ -424,8 +878,23 @@ def length_clustering(sentences):
     in_range = sum(1 for l in lengths if 15 <= l <= 25)
     return in_range / len(lengths)
 
+
 # > 0.7 (70% of sentences in 15-25 range): strong AI signal
+# > 0.85: very strong; only a deliberate style choice
+#         would produce this in human writing
 ```
+
+**Detection note:** rhythm uniformity and the 15-25
+word cluster are complementary. A low `sentence_std_dev`
+(see `## Sentence Length Uniformity` above) catches
+uniform-but-short or uniform-but-long writing. The
+cluster ratio catches the specific medium-sentence band
+AI prefers. Run both.
+
+**Prevention rule:** vary sentence length deliberately.
+Let some sentences be 4-6 words. Let some run past 35
+words when the logic requires it. The test: read it
+aloud. If it sounds like a metronome, rewrite.
 
 ## Topic-Evidence-Summary Paragraph Template
 
@@ -444,47 +913,187 @@ AI introductions and conclusions are near-paraphrases of each other. Check cosin
 
 Human writing ends with specifics, callbacks to earlier points, questions, or simply stops.
 
+## Sycophancy / Position-Avoidance
+
+**Reddit citation data (2026): 2.5% — the #4 tell.**
+Auditors believe this is significantly under-ranked
+because it is hard to isolate in a keyword pass.
+One auditor found it rivals the em dash for citation
+density within long posts about AI writing quality.
+
+**Radar pattern (two behaviors, same root cause):**
+
+1. **Sycophancy** — agrees, flatters, or hedges instead
+   of taking a position. Opener-level: "Great question!",
+   "You're absolutely right!", "Absolutely!". Body-level:
+   qualifies every claim ("it depends", "it could be
+   argued", "there are several approaches").
+
+2. **Position-avoidance** — gives a menu instead of an
+   answer. "On one hand X, on the other hand Y" without
+   concluding. Listing every option when the user asked
+   for a recommendation. Ending with "it's up to you"
+   after presenting options.
+
+Both behaviors trace to the same RLHF pressure: the
+model is tuned toward agreement and safety, which
+produces a voice that never commits. One Reddit commenter
+quoted: *"Default Claude hedges everything. 'It depends
+on your needs.' 'There are several approaches.'"*
+
+**Detection (reader-level only; no regex can catch this):**
+
+Ask these questions after reading a document:
+
+- Does the author ever disagree with anything?
+- Does the author give a direct answer, or a menu?
+- When asked for a recommendation, does it arrive?
+- Is the tone uniformly positive? No friction anywhere?
+- Does every section end with a caveat or qualifier?
+
+4+ "yes" answers = strong sycophancy signal.
+
+**Boilerplate sycophancy phrases** (these ARE catchable):
+
+```python
+SYCOPHANCY_BOILERPLATE = [
+    r"\bgreat question\b",
+    r"\bexcellent question\b",
+    r"\bthank you for (?:asking|raising|bringing)\b",
+    r"\byou(?:'re| are) absolutely right\b",
+    r"\bwould you like me to\b",
+    r"\bI hope this helps\b",
+    r"\bfeel free to ask\b",
+    r"\blet me know if you (?:have|need)\b",
+    r"\bplease (?:let me know|feel free)\b",
+]
+```
+
+These are the lexical surface of a deeper pattern.
+Their presence confirms sycophancy; their absence does
+not rule it out. See also `identity-and-voice-leaks.md`
+for the full boilerplate artifact list.
+
+**Scoring:** in the structural score, 1+ boilerplate
+phrases = +2. Reader-detected position-avoidance = +3
+(flag in findings as `confidence: reader`).
+
+## Fluent-but-Empty Prose
+
+**Reddit citation data (2026): 0.7% — the #9 tell.**
+Multiple auditors flag it as under-counted because it
+is the hardest tell to isolate and the hardest to
+articulate: *"AI writes word salad — beautiful looking
+but has no nutritional value."* Another: *"No grammar
+mistakes on essays that use elevated language but
+ultimately say very little."*
+
+**Root cause:** the model is optimized for fluency and
+positive assessment, not for making claims. It produces
+sentences that are grammatically correct, confident in
+register, and contain no verifiable assertion.
+
+**Detection test per paragraph:**
+
+1. Identify the claim the paragraph makes.
+2. Could you replace it with a single concrete fact,
+   a number, or a named example?
+3. If yes, the original paragraph is likely empty —
+   the concrete version carries all the information.
+
+**Pattern indicators (no regex; requires reading):**
+
+- Every sentence is grammatically complete but none
+  makes a falsifiable claim.
+- Abstract nouns stack: "approach", "framework",
+  "methodology", "strategy", "solution", "value."
+- Sentences can be swapped between paragraphs without
+  changing meaning.
+- Removing a sentence does not change what the reader
+  learns.
+- The "word count" increases without the "information
+  count" increasing.
+
+**Prevention rule:** every paragraph must carry at
+least one concrete item — a named example, a number,
+a verifiable fact, or a specific decision. If it
+cannot, delete it or compress it to one sentence.
+
+**Scoring:** reader-detected; flag as `confidence:
+reader`, add +2 to structural score per confirmed
+empty paragraph (max 3 instances to cap at +6).
+
 ## Structural Score Calculation
 
 ```python
 def structural_score(metrics):
     score = 0
-    if metrics['em_dash_density'] > 5:
+    if metrics["em_dash_density"] > 5:
         score += 2
-    if metrics['sentence_std_dev'] < 5:
+    if metrics["sentence_std_dev"] < 5:
         score += 2
-    if metrics['bullet_ratio'] > 0.5:
+    if metrics["bullet_ratio"] > 0.5:
         score += 2
-    if metrics['paragraph_uniformity'] > 0.8:
+    if metrics["paragraph_uniformity"] > 0.8:
         score += 2
-    if metrics['zero_contractions']:
+    if metrics["zero_contractions"]:
         score += 1
-    if metrics['emoji_bullets']:
+    if metrics["emoji_bullets"]:
         score += 3
-    # New patterns (2025-2026 research)
-    if metrics.get('participial_tail_count', 0) > 3:
+    # 2025-2026 research patterns
+    if metrics.get("participial_tail_count", 0) > 3:
         score += 2
-    if metrics.get('sentence_length_cluster_ratio', 0) > 0.7:
-        score += 2
-    if metrics.get('semicolon_count', 1) == 0 and metrics.get('em_dash_density', 0) > 3:
-        score += 1  # em dashes without semicolons
-    if metrics.get('correlative_pairs', 0) > 2:
+    # Sentence rhythm (#2 Reddit tell, 4.0% citation rate):
+    # weighted higher than in earlier versions.
+    if metrics.get("sentence_length_cluster_ratio", 0) > 0.7:
+        score += 3  # was 2; elevated to match empirical ranking
+    if metrics.get("sentence_length_cluster_ratio", 0) > 0.85:
+        score += 1  # extra point for extreme clustering
+    if metrics.get("semicolon_count", 1) == 0 and metrics.get("em_dash_density", 0) > 3:
         score += 1
-    if metrics.get('arrow_connectors', 0) > 0:
+    if metrics.get("correlative_pairs", 0) > 2:
         score += 1
-    if metrics.get('plus_conjunctions', 0) > 1:
+    if metrics.get("arrow_connectors", 0) > 0:
         score += 1
+    if metrics.get("plus_conjunctions", 0) > 1:
+        score += 1
+    if metrics.get("triad_count", 0) > 2:
+        score += 1  # rule of three (#8 tell, 1.2% citation)
     # Tier 5 / 2026 structural patterns
-    if metrics.get('spatial_copula_count', 0) >= 1:
+    if metrics.get("spatial_copula_count", 0) >= 1:
         score += 2
-    if metrics.get('negative_parallelism_count', 0) >= 1:
+    if metrics.get("negative_parallelism_count", 0) >= 1:
         score += 3
-    if metrics.get('three_fragment_burst_count', 0) >= 2:
+    if metrics.get("litotes_count", 0) >= 1:
         score += 2
-    if metrics.get('smart_quote_count', 0) >= 3:
+    if metrics.get("vacuous_negation_count", 0) >= 1:
+        score += 2
+    # negative_definition and negation density are surfaced, not scored:
+    # one is opt-in and low confidence, the other is a document-level
+    # reading rather than a per-instance finding.
+    # Affirmative antithesis: comparative form scores; judgment-level
+    # matches (subject-swap, chiasmus) are surfaced, not scored.
+    if metrics.get("contrastive_parallelism_count", 0) >= 1:
+        score += 2
+    if metrics.get("three_fragment_burst_count", 0) >= 2:
+        score += 2
+    if metrics.get("smart_quote_count", 0) >= 3:
         score += 1
+    if metrics.get("emphasis_crutch_count", 0) >= 1:
+        score += 2
+    # Sycophancy / position-avoidance (#4 Reddit tell, 2.5% citation):
+    # boilerplate phrases are lexically detectable.
+    if metrics.get("sycophancy_boilerplate_count", 0) >= 1:
+        score += 2
+    # Reader-detected sycophancy / fluent-empty prose: surfaced with
+    # confidence:reader, not auto-scored. Callers may inject via:
+    #   metrics['reader_sycophancy'] = True  (from manual review)
+    #   metrics['reader_empty_prose_count'] = N (paragraphs)
+    if metrics.get("reader_sycophancy", False):
+        score += 3
+    score += min(6, metrics.get("reader_empty_prose_count", 0) * 2)
     # Prevention mode: any em-dash in fresh prose is a finding
-    if metrics.get('mode') == 'prevention' and metrics.get('em_dash_count', 0) > 0:
-        score += min(5, metrics['em_dash_count'])
+    if metrics.get("mode") == "prevention" and metrics.get("em_dash_count", 0) > 0:
+        score += min(5, metrics["em_dash_count"])
     return min(10, score)
 ```

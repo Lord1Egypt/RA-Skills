@@ -1,46 +1,60 @@
-## Description: <br>
-Complete setup guide for running Freqtrade, a cryptocurrency trading bot, legally in the United States with Kraken, Docker configuration, secure API key handling, and dry-run testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A setup guide for configuring Freqtrade with Docker, choosing a US-compatible exchange, protecting API credentials, and starting with dry-run testing.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers, engineers, and crypto traders use this skill to set up Freqtrade for US-compliant exchange access, secure Kraken API key configuration, and cautious dry-run validation before live trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated crypto trading can lose money if the bot, strategy, exchange, or account settings are configured incorrectly. <br>
-Mitigation: Start in dry-run mode, backtest strategies, use small stake amounts before scaling, and monitor live trading closely. <br>
-Risk: Leaked exchange API keys can expose a financial account to unauthorized trading or fund loss. <br>
-Mitigation: Disable withdrawal permission, store keys in a local .env file, add .env to .gitignore, never commit API keys, and rotate keys immediately if exposure is suspected. <br>
-Risk: Running setup commands from an unexpected repository could install or execute unintended code. <br>
-Mitigation: Verify the Freqtrade repository before running Docker commands or cloning source code. <br>
-Risk: Using exchanges that block US users or bypassing geo-restrictions can violate terms of service and may freeze funds. <br>
-Mitigation: Use a US-compatible exchange such as Kraken and do not use VPNs to bypass exchange restrictions. <br>
+## Use Case:
 
+US-based developers and traders use this guide to set up Freqtrade with Docker, configure exchange credentials, and begin with simulated trading. It also provides exchange comparison and security checklists.
 
-## Reference(s): <br>
-- [Exchange Comparison for US Traders](references/exchange-comparison.md) <br>
-- [Security Checklist for Freqtrade + Kraken](references/security-checklist.md) <br>
-- [Freqtrade Documentation](https://www.freqtrade.io) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JSON, YAML, and text code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Docker setup steps, exchange selection guidance, API key storage guidance, and operational safety checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Live trading can cause losses even when API withdrawal permission is disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run enabled until deliberately choosing live trading; start with conservative exposure and monitor activity.
+
+Risk: Exposed exchange credentials could allow unauthorized trading.
+
+Mitigation: Keep secrets in a protected, untracked file or secrets manager, disable withdrawal permission, and rotate credentials if exposed.
+
+Risk: External Freqtrade code and the final deployment configuration are outside this guide's review.
+
+Mitigation: Pin and review the release and image digest, protect credentials, and review the final Compose restart settings.
+
+## Reference(s):
+
+- [Exchange comparison](references/exchange-comparison.md)
+- [Security checklist](references/security-checklist.md)
+- [Freqtrade documentation](https://www.freqtrade.io)
+- [Kraken API key security guidance](https://support.kraken.com/articles/api-key-security)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and YAML/JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, credential protection, exchange comparison, and dry-run guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

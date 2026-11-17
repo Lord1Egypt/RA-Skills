@@ -1,39 +1,55 @@
-## Description: <br>
-Holistic life satisfaction and balance optimization across health, relationships, work, finances, learning, leisure, and personal growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users assess life satisfaction across health, relationships, work, finances, growth, leisure, and routines, then identify imbalances and practical next steps.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Individuals and agents use this skill to run life-balance checks, monthly life wheel reviews, transition plans, routine resets, and reflection workflows across health, relationships, work, finances, growth, and leisure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can save sensitive health, relationship, work, and finance assessment details to a local report file without a separate confirmation step. <br>
-Mitigation: Run the script only in a private directory, review where reports are written, and delete or edit generated assessment files when they are not needed. <br>
+## Use Case:
 
+Individuals and coaching-oriented agents use this skill for life wheel reviews, burnout prevention, routine resets, transition planning, and turning vague dissatisfaction into small measurable actions.
 
-## Reference(s): <br>
-- [Self-Improving Life README](README.md) <br>
-- [Life Wheel Assessment Template](assets/LIFE_WHEEL_TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell-script output and local assessment files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce life-balance diagnoses, domain scores, action plans, assessment logs, and transition plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The included quick assessment script saves personal life-assessment answers to a local Markdown report by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only in a private directory, avoid entering details that should not be retained, and review or delete generated reports after use.
+
+Risk: The skill can involve sensitive health, relationship, work, and finance reflections.
+
+Mitigation: Keep recorded details minimal unless the user explicitly wants a durable log.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/self-improving-life)
+- [README](artifact/README.md)
+- [Life wheel assessment template](artifact/assets/LIFE_WHEEL_TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell-script interaction and local Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for sensitive self-assessment scores and may generate local life-assessment Markdown files when the included script is run.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,38 @@
+{
+  "skill_name": "huawei-cloud-nat-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "NAT ListNatGateways — gateway list (read-only GET)",
+      "command": "hcloud NAT ListNatGateways --cli-region={region} --limit=10",
+      "expected": "JSON with nat_gateways[] (GET /v2/{project_id}/nat_gateways)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "NAT ListNatGateways with server-side filters",
+      "command": "hcloud NAT ListNatGateways --cli-region={region} --name=nat-demo --spec.1=1 --status.1=ACTIVE --limit=10",
+      "expected": "filtered gateway list or empty nat_gateways[]",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "NAT ListNatGateways filtered by associated VPC router_id",
+      "command": "hcloud NAT ListNatGateways --cli-region={region} --router_id=d0a1b2c3-4d5e-6f70-8192-a3b4c5d6e7f8 --limit=10",
+      "expected": "gateways bound to the VPC (router_id) or empty nat_gateways[]",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "own-script table output (offline)",
+      "command": "python3 -m unittest discover -s tests -v",
+      "expected": "all offline unit tests pass (mocked hcloud subprocess)",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

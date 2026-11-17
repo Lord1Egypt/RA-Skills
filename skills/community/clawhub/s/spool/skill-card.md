@@ -1,41 +1,58 @@
-## Description: <br>
-Threads CLI - Read, post, reply, and search on Meta's Threads using OpenClaw browser tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+spool helps agents use the OpenClaw browser tool to read, post, reply, view profiles, and search on Meta Threads.
 
-## Publisher: <br>
-[zizi-cat](https://clawhub.ai/user/zizi-cat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zizi-cat](https://clawhub.ai/user/zizi-cat)
 
-## Use Case: <br>
-Developers and external users use this skill to operate Threads through OpenClaw browser automation, including reading timelines, viewing profiles, searching, posting, and replying. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Threads browser profile, including actions that may post or reply from the user's account. <br>
-Mitigation: Install only when that account access is intended, and confirm exact post or reply text before submission. <br>
-Risk: The optional Xvfb and systemd setup can create persistent headless browser support on a machine. <br>
-Mitigation: Run the setup only on systems where persistent headless browser automation is intentionally desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zizi-cat/spool) <br>
-- [Project homepage](https://github.com/zizi-cat/spool) <br>
-- [Threads](https://www.threads.net) <br>
+## Use Case:
 
+Developers and agents use spool to operate a logged-in Threads account through OpenClaw browser automation for timeline reading, publishing posts, replying, viewing profiles, and search. Publishing workflows should include user confirmation before content is posted.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with browser tool command examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Threads browser profile and user confirmation before posting or replying.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented optional headless setup installs a persistent system-wide Xvfb service with administrator privileges and no cleanup path.
+
+Mitigation: Review before installing on shared or production machines, prefer a temporary or user-scoped Xvfb setup, and document how to disable or remove the service.
+
+Risk: The skill can post or reply from a logged-in Threads account.
+
+Mitigation: Require explicit confirmation of the exact Threads post or reply target and content before publishing.
+
+Risk: Browser element references can change between snapshots, which can cause actions to target the wrong element.
+
+Mitigation: Take a fresh snapshot immediately before each browser action and verify the referenced element before clicking or typing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zizi-cat/skills/spool)
+- [spool homepage](https://github.com/zizi-cat/spool)
+- [Threads](https://www.threads.net)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, browser tool commands]
+
+**Output Format:** [Markdown with browser tool commands and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenClaw browser profile logged in to Threads; browser element refs must be refreshed from snapshots before actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

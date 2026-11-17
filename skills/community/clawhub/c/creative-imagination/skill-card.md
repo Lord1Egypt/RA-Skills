@@ -1,42 +1,58 @@
-## Description: <br>
-Transforms vague creative goals into small, accessible, consent-driven exercises that generate shareable, practical imaginative outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative Imagination guides a person through a short, accessible creative loop for choosing one constraint, exploring five angles, shipping a tiny shareable, and reflecting on what comes next.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-External users and creative practitioners use this skill to turn an intention, medium, constraint, accessibility reality, and avoid list into a small shareable creative output. It is useful for guided creative practice across writing, image, sound, product or UX, strategy, protocols, and research synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask users for creative preferences, accessibility constraints, and content or style boundaries. <br>
-Mitigation: Users should share only information they are comfortable using in the exercise and can mark uncertain fields as unknown. <br>
-Risk: Creative coaching output may not fit a user's access needs or boundaries on the first pass. <br>
-Mitigation: Use the built-in low-lift paths, avoid list, and escape hatch to narrow scope, change modes, or stop. <br>
+## Use Case:
 
+External users, creators, and agent operators use this skill to turn a broad creative intention into a small text-first artifact, with prompts for constraints, angles, accessibility, consent, attribution, and reflection.
 
-## Reference(s): <br>
-- [Creative Imagination release](https://clawhub.ai/OtherPowers/creative-imagination) <br>
-- [OtherPowers publisher profile](https://clawhub.ai/user/OtherPowers) <br>
-- [Accessibility guidance](artifact/ACCESSIBILITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a tiny shareable, next constraint, three prompts for the next round, and one care line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may over-rely on the skill for publishing, consent, attribution, or rights decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the creative and attribution framing before installation, and require users to make their own publication, consent, rights-clearance, and practice-log choices.
+
+Risk: Creative outputs could be mistaken for legal, wellness, or age-verification guidance.
+
+Mitigation: Keep the skill framed as creative practice only; it cannot verify age, clear rights, determine platform terms, or decide legal status for a specific work.
+
+Risk: Generated prompts or shareables could reproduce protected work, extract community-held material, or target people without consent.
+
+Mitigation: Use the skill's built-in consent, remix-only, attribution, and no-extraction rules before sharing or publishing any output.
+
+## Reference(s):
+
+- [ClawHub skill page: creative-imagination](https://clawhub.ai/otherpowers/skills/creative-imagination)
+- [ClawHub publisher profile: otherpowers](https://clawhub.ai/user/otherpowers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a tiny shareable, next constraint, prompts, care line, and optional making line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-first creative practice output; no executable code or hidden data access.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and SKILL.md frontmatter status)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

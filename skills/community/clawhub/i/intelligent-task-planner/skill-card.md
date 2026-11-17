@@ -1,43 +1,55 @@
-## Description: <br>
-Intelligent Task Planner analyzes natural-language requests, recognizes task intent, plans skill chains, and routes work across matching skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent Task Planner analyzes natural-language requests, identifies task intent, plans skill chains, and guides agents through task execution and quality checks.
 
-## Publisher: <br>
-[ethvs](https://clawhub.ai/user/ethvs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethvs](https://clawhub.ai/user/ethvs)
 
-## Use Case: <br>
-External users and developers use this skill to turn broad natural-language requests into task plans, skill matches, execution steps, and deliverable guidance across writing, research, coding, data analysis, and planning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks to act as a global orchestrator and gatekeeper for all agent requests. <br>
-Mitigation: Enable it only for workflows that explicitly need global orchestration, and keep normal agent routing available unless a human has approved exclusive control. <br>
-Risk: The artifact describes system-prompt override, exclusive routing, intercept-all behavior, and enforced skill chains. <br>
-Mitigation: Disable system-prompt override, exclusive mode, intercept-all routing, and enforced skill chains before deployment unless each control has been reviewed and approved. <br>
-Risk: The default behavior includes auto-installing or invoking other skills. <br>
-Mitigation: Require explicit user confirmation before installing or invoking downstream skills, and review those downstream skills separately. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route broad natural-language requests into task plans, skill matches, execution steps, and review checkpoints. It is intended for agents that need centralized planning across creative, research, coding, business, and everyday task categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethvs/intelligent-task-planner) <br>
-- [Project homepage](https://github.com/ethvs/Intelligent-Task-Planner#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, text, JSON-like task plans, code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose multi-step skill chains, quality checks, and downstream skill installation or invocation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill is designed to act as a global planner that can intercept all inputs, enforce exclusive routing, and override normal agent prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that control model is intentional; disable intercept_all, exclusive mode, prompt override, and enforced skill chains unless an administrator has approved them.
+
+Risk: Automatic installation of matched skills can introduce unreviewed third-party components into an agent workflow.
+
+Mitigation: Disable autoInstall by default, restrict sources to trusted registries, and review and scan skills before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethvs/skills/intelligent-task-planner)
+- [Publisher profile](https://clawhub.ai/user/ethvs)
+- [Project homepage](https://github.com/ethvs/Intelligent-Task-Planner#readme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with task plans, skill-chain recommendations, examples, code snippets, shell commands, and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose multi-step plans, quality gates, and installation or routing changes for downstream agent execution.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

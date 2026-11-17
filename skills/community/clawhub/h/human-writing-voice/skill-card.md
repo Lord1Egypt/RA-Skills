@@ -1,43 +1,50 @@
-## Description: <br>
-Draft or review writing to avoid structural AI tells and preserve a rough human voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft or review writing to avoid structural AI tells and preserve a rough human voice.
 
-## Publisher: <br>
-[leostehlik](https://clawhub.ai/user/leostehlik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leostehlik](https://clawhub.ai/user/leostehlik)
 
-## Use Case: <br>
-Writers, editors, and agent users use this skill to draft, rewrite, or review public posts, scripts, threads, newsletters, essays, and comments where preserving a specific human voice matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or rewritten copy may contain factual inaccuracies, unintended tone changes, or voice drift. <br>
-Mitigation: Review generated copy for factual accuracy, tone, and whether it preserves the intended voice before publishing. <br>
-Risk: The skill can overfit to anti-AI-writing heuristics and remove useful clarity or polish from text. <br>
-Mitigation: Use its review notes as editorial guidance and keep changes that improve the specific piece rather than applying every heuristic mechanically. <br>
+## Use Case:
 
+External writers and teams can draft, rewrite, or review public posts, newsletters, scripts, and essays while preserving a specific person's cadence and reducing formulaic structural patterns. It is intended for voice-sensitive writing, not technical documentation, legal text, or polished corporate copy.
 
-## Reference(s): <br>
-- [StoryScope AI Writing Tells](references/storyscope-tells.md) <br>
-- [Project homepage](https://github.com/LeoStehlik/human-writing) <br>
-- [ClawHub skill listing](https://clawhub.ai/leostehlik/human-writing-voice) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/leostehlik) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text review notes and rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve the user's source voice, flag structural AI-writing tells, and suggest the smallest useful edit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server metadata and SKILL.md metadata) <br>
+Risk: The partial security scan could not verify installed behavior, and one reference in SKILL.md could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill files and confirm the reported CLI installation operation and file-reading capability fit your needs before installing.
+
+## Reference(s):
+
+- [StoryScope AI Writing Tells](references/storyscope-tells.md)
+- [StoryScope study (Russell et al., arXiv:2604.03136)](https://arxiv.org/abs/2604.03136)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text or Markdown drafts, rewrites, and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A single response that aims to preserve the supplied writer's cadence and useful roughness.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, CHANGELOG.md, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

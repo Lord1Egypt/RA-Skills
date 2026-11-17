@@ -1,40 +1,57 @@
-## Description: <br>
-Generates Pinduoduo listing copy, including optimized titles, detail-page copy, SKU descriptions, pricing strategy language, review replies, and seckill promotion copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Pinduoduo product listing copy, including titles, detail-page copy, SKU descriptions, pricing strategy, review replies, and seckill promotional copy.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External sellers and ecommerce operators use this skill to draft and refine Pinduoduo product listing copy, promotion copy, pricing strategy text, and customer-review replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated listing copy may include unsubstantiated buyer counts, review rates, same-factory or same-quality claims, scarcity language, comparison claims, or review incentives. <br>
-Mitigation: Manually substantiate or remove these claims and check marketplace rules before publishing. <br>
-Risk: Command inputs may be recorded in local history by the generic pinduoduo-listing script. <br>
-Mitigation: Do not enter confidential campaign details unless local logging is acceptable; use a temporary or controlled data directory when needed. <br>
+## Use Case:
 
+External ecommerce sellers and operators use this skill to draft Pinduoduo listing titles, product descriptions, promotional copy, pricing guidance, and review-reply templates. Generated marketplace copy should be treated as draft material and reviewed before publication.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bytesagain3/pinduoduo-listing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style copy snippets printed by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes randomized listing variants; the pinduoduo-listing script can record command inputs in local history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated marketplace copy may include misleading sales numbers, review rates, scarcity statements, guarantees, or testimonials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all generated copy as draft material and publish only claims that can be verified for the specific product, store, and campaign.
+
+Risk: Review-incentive templates may conflict with current marketplace rules or law.
+
+Mitigation: Use review-incentive language only after confirming it is allowed by applicable platform policies and legal requirements.
+
+Risk: The helper can store command inputs in a local history file.
+
+Mitigation: Avoid entering sensitive product or business data, and manage or clear the local history location when using the helper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/pinduoduo-listing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes draft listing copy, promotional templates, pricing guidance, review-reply templates, and local shell helper output.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

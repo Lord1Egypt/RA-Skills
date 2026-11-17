@@ -1,46 +1,65 @@
-## Description: <br>
-Manage chrome-devtools-mcp service and OpenClaw's built-in Chrome browser for MCP-based browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage chrome-devtools-mcp service and OpenClaw's built-in Chrome browser for MCP-based browser automation.
 
-## Publisher: <br>
-[andeymei](https://clawhub.ai/user/andeymei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andeymei](https://clawhub.ai/user/andeymei)
 
-## Use Case: <br>
-Developers and automation users use this skill to prepare, configure, and troubleshoot OpenClaw's built-in Chrome browser with chrome-devtools-mcp for MCP-based browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MCP-based browser automation can control browser pages and inspect browser state. <br>
-Mitigation: Use this skill only when browser automation is intended, and avoid sensitive logged-in pages unless required. <br>
-Risk: Using chrome-devtools-mcp@latest can install an unpinned package version. <br>
-Mitigation: Pin chrome-devtools-mcp to a trusted version before routine or sensitive use. <br>
-Risk: The force-kill troubleshooting command can terminate the wrong process if port 18800 is owned by something unexpected. <br>
-Mitigation: Verify the process name and path owning port 18800 before running any force-kill command. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to prepare, configure, operate, and troubleshoot OpenClaw's Chrome browser with chrome-devtools-mcp for MCP-based browser automation.
 
-## Reference(s): <br>
-- [Chrome DevTools MCP Manager on ClawHub](https://clawhub.ai/andeymei/chrome-devtools-mcp-manager) <br>
-- [chrome-devtools-mcp GitHub](https://github.com/ChromeDevTools/chrome-devtools-mcp) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) <br>
-- [OpenClaw Browser Tool](https://docs.openclaw.ai/tools/browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with command examples, JSON configuration snippets, and JavaScript browser-tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes status checks, setup workflows, MCP client configuration, and troubleshooting commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill recommends running chrome-devtools-mcp with the mutable @latest package tag while granting Chrome DevTools access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin chrome-devtools-mcp to a specific reviewed version before deployment and review changes before upgrading.
+
+Risk: Browser automation may expose active session data through the connected Chrome profile.
+
+Mitigation: Use a dedicated browser profile without unrelated sensitive sessions for MCP automation.
+
+Risk: Running MCP clients with elevated privileges can increase the impact of browser automation misuse or command execution mistakes.
+
+Mitigation: Run the MCP client without elevated privileges unless a reviewed operational requirement demands it.
+
+Risk: The troubleshooting guidance includes a force-kill command that can terminate the wrong process if used without verification.
+
+Mitigation: Verify the process is the intended Chrome instance and confirm termination is acceptable before using Stop-Process -Force.
+
+## Reference(s):
+
+- [chrome-devtools-mcp GitHub](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/)
+- [OpenClaw Browser Tool](https://docs.openclaw.ai/tools/browser)
+- [ClawHub Skill Page](https://clawhub.ai/andeymei/skills/chrome-devtools-mcp-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript, JSON, PowerShell, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational checklists, MCP client configuration snippets, browser lifecycle commands, tool summaries, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

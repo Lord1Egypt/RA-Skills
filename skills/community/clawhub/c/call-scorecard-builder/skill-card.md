@@ -1,44 +1,61 @@
-## Description: <br>
-Generates call scorecard dimensions, observation points, examples, training suggestions, and review cadence templates for sales, support, or interview calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds structured scorecard dimensions, observable behaviors, examples, coaching recommendations, and review cadence for sales, support, or interview calls.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees and external teams use this skill to turn call goals, roles, and good or poor examples into reviewable scorecard Markdown for training quality checks, interview quality evaluation, and sales coaching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run python3 locally and write output files during scripted generation. <br>
-Mitigation: Review the input and output paths before execution, prefer dry-run or direct text generation when file writes are not needed, and keep generated scorecards as reviewable drafts. <br>
-Risk: Call materials may contain personal, customer, or sensitive business information. <br>
-Mitigation: De-identify sensitive content before use and avoid treating a single recording or transcript as a final personnel or performance determination. <br>
+## Use Case:
 
+Sales, support, and interview teams use this skill to turn call goals, roles, and good or bad examples into reviewable coaching scorecards. It is intended for training and quality review, not as a replacement for formal human evaluation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/call-scorecard-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Output specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown or JSON, with optional local file output when the Python helper script is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for scripted generation; otherwise the agent can produce reviewable text directly from the bundled template and specification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Generated scorecards may be mistaken for final evaluation decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as reviewable coaching drafts and keep human review before performance, quality, or personnel decisions.
+
+Risk: Call transcripts or business context may include sensitive personal, customer, or business information.
+
+Mitigation: Provide only content intended for local processing and de-identify sensitive material before use.
+
+Risk: Dormant audit modes can inspect local files or repositories if the resource configuration is changed.
+
+Mitigation: Leave resources/spec.json in structured_brief mode unless local repository or file inspection is deliberately reviewed and authorized.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/call-scorecard-builder)
+- [Skill Definition](artifact/SKILL.md)
+- [Output Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+- [Example Output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown by default; JSON wrapper available from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local input only; the script can write the generated report to a requested output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-A partnerships and ecosystem strategy playbook for advising on alliances, joint ventures, channel programs, co-marketing, co-selling, partner governance, supplier relationships, commercial models, and partnership operating rhythms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Partnerships Ecosystem provides a partnerships and ecosystem strategy playbook covering alliances, channel programs, co-marketing, co-selling, supplier relationships, governance, commercial models, and partner metrics.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Business, partnerships, and go-to-market teams use this skill to structure partner strategy, evaluate alliance fit, define governance, plan partner programs, and prepare practical templates such as JBPs, QBR agendas, scorecards, RACI matrices, and co-selling plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad trigger wording and may be invoked for a wide range of partnership or business development topics. <br>
-Mitigation: Use it when broad ecosystem strategy guidance is desired, and narrow or disable activation if your agent should only apply specialized partnership advice on explicit request. <br>
-Risk: The skill can provide business, legal, commercial, or compliance-oriented planning guidance that may not fit a specific organization or jurisdiction. <br>
-Mitigation: Review outputs with qualified business, legal, finance, or compliance stakeholders before relying on them for contracts, partner terms, regulatory decisions, or commercial commitments. <br>
+## Use Case:
 
+Business development, partnerships, channel, and GTM teams use this skill to structure, evaluate, launch, and manage partnerships, alliances, joint ventures, supplier relationships, and ecosystem-led growth programs.
 
-## Reference(s): <br>
-- [Partnerships and Ecosystem Extended Reference](references/extended-frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, templates, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory business strategy content and reusable partnership planning artifacts; it does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The README recommends unpinned remote commands and global installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned skills CLI version, install from a specific commit or signed release, avoid --yes, and prefer project-local installation unless global availability is intentional.
+
+Risk: The README scanner command uses a latest-version tool invocation.
+
+Mitigation: Run scanner commands with pinned versions in a minimal or disposable environment.
+
+Risk: The skill provides business, legal, commercial, and multi-jurisdictional partnership frameworks that may not fit every organization or jurisdiction.
+
+Mitigation: Review proposed agreements, joint ventures, compliance steps, and cross-border recommendations with qualified internal business, legal, and compliance reviewers before execution.
+
+## Reference(s):
+
+- [Partnerships & Ecosystem Extended Reference](references/extended-frameworks.md)
+- [ClawHub Skill Page](https://clawhub.ai/chilu18/skills/partnerships-ecosystem)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown prose, tables, checklists, and framework templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces strategic and operational business guidance; no credentials or executable outputs are required by the skill content.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

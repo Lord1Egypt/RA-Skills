@@ -31,7 +31,7 @@
 
 - 包名：`dg-sdk`
 - import 名：`dg_sdk`
-- 当前 Skill 包基线：`2.0.22`
+- 当前 Skill 包基线：`2.0.28`
 - 源码级差异以项目实际安装包复核为准
 
 核心支付主链路优先走：
@@ -55,11 +55,11 @@
 输出 Python 可运行代码时，必须先给出 SDK 安装和环境变量准备。
 
 ```bash
-python3 -m pip install "dg-sdk==2.0.22"
+python3 -m pip install "dg-sdk==2.0.28"
 python3 -c "import dg_sdk; print(dg_sdk.DGClient.__version__)"
 ```
 
-安装或版本核对失败时，必须显式报错并停止；不得静默改用 `pip install dg-sdk` 无版本约束安装，也不得降级到更低版本。版本核对必须以 `dg_sdk.DGClient.__version__ == '2.0.22'` 输出为准。
+安装或版本核对失败时，必须显式报错并停止；不得静默改用 `pip install dg-sdk` 无版本约束安装，也不得降级到更低版本。版本核对必须以 `dg_sdk.DGClient.__version__ == '2.0.28'` 输出为准。
 
 运行前至少准备：
 
@@ -68,7 +68,7 @@ export HUIFU_SYS_ID="渠道商或商户系统号"
 export HUIFU_PRODUCT_ID="汇付产品号"
 export HUIFU_RSA_PRIVATE_KEY="商户 RSA 私钥"
 export HUIFU_RSA_PUBLIC_KEY="汇付 RSA 公钥"
-export HUIFU_SKILL_SOURCE="hfps/1.3.0"
+export HUIFU_SKILL_SOURCE="hfps/1.6.0"
 export HUIFU_MERCHANT_ID="本次请求的 huifu_id"
 export HUIFU_NOTIFY_URL="https://your-domain.example/huifu/notify"
 export HUIFU_DG_ENV="prod"
@@ -96,15 +96,16 @@ def require_env(name: str) -> str:
 def init_huifu_sdk() -> None:
     dg_sdk.DGClient.env = "prod"
     dg_sdk.DGClient.mer_config = dg_sdk.MerConfig(
-        require_env("HUIFU_RSA_PRIVATE_KEY"),
-        require_env("HUIFU_RSA_PUBLIC_KEY"),
-        require_env("HUIFU_SYS_ID"),
-        require_env("HUIFU_PRODUCT_ID"),
-        require_env("HUIFU_SKILL_SOURCE"),
+        private_key=require_env("HUIFU_RSA_PRIVATE_KEY"),
+        public_key=require_env("HUIFU_RSA_PUBLIC_KEY"),
+        sys_id=require_env("HUIFU_SYS_ID"),
+        product_id=require_env("HUIFU_PRODUCT_ID"),
+        sign_type="RSA",
+        jpt_x_skill_source=require_env("HUIFU_SKILL_SOURCE"),
     )
 ```
 
-`MerConfig` 的第五个参数对应 `jpt_x_skill_source`，最终成为 HTTP 请求头 `jpt-x-skill-source`，不是 `data` 业务字段。`dg-sdk 2.0.22` 不再接收 `jpt_x_skill_huifu_id` 初始化参数。
+`MerConfig` 的第五个参数是 `sign_type`，第六个参数是 `jpt_x_skill_source`，最终成为 HTTP 请求头 `jpt-x-skill-source`，不是 `data` 业务字段。`dg-sdk 2.0.28` 不再接收 `jpt_x_skill_huifu_id` 初始化参数。
 
 Python 示例统一固定为生产 `prod` 环境，不再生成联调环境切换函数；不要失败后自动降级。
 
@@ -114,7 +115,7 @@ Python 官方 SDK 会生成以下请求头：
 
 | Header | 值 |
 | --- | --- |
-| `jpt-sdk_version` | `python_2.0.22` |
+| `jpt-sdk_version` | `python_2.0.28` |
 | `jpt-x-skill-source` | `MerConfig.jpt_x_skill_source` |
 | `jpt-x-skill-huifu_id` | SDK 从最终请求参数 `data.huifu_id` 自动取值；没有 `huifu_id` 时为空 |
 | `Content-Type` | 非文件请求为 `application/json;charset=utf-8` |
@@ -142,13 +143,13 @@ Python 官方 SDK 会生成以下请求头：
 
 ## 与 README / 源码冲突的处理
 
-`README.rst` 中示例仍把第五个 `MerConfig` 参数写成 `huifu_id`。本 Skill 的 `2.0.22` 口径要求第五个参数是 `jpt_x_skill_source`，不是商户号；源码 docstring 如仍残留 `jpt_x_skill_huifu_id` 说明，也要以实际安装包 / 本地源码的函数签名和 `api_request.py` 请求头构造逻辑为准。
+`README.rst` 中示例仍把第五个 `MerConfig` 参数写成 `huifu_id`。本 Skill 的 `2.0.28` 口径要求第五个参数是 `sign_type`，第六个参数是 `jpt_x_skill_source`，不是商户号；源码 docstring 如仍残留 `jpt_x_skill_huifu_id` 说明，也要以实际安装包 / 本地源码的函数签名和 `api_request.py` 请求头构造逻辑为准。
 
 ## 设计约束
 
 1. 聚合支付 Python 已覆盖核心支付主链路与对账；不要再把 Python 的下单、查单、退款误判为 unsupported。
 2. 核心支付接口优先 `dg_sdk.Payment`；对账使用 request 类 `.post({})`。
-3. 如果用户项目安装的 `dg-sdk` 版本不是 `2.0.22`，先验证实际版本和源码签名，再继续生成代码。
+3. 如果用户项目安装的 `dg-sdk` 版本不是 `2.0.28`，先验证实际版本和源码签名，再继续生成代码。
 4. `T_JSAPI`、`T_MINIAPP`、`T_APP`、`T_MICROPAY`、`A_JSAPI`、`A_NATIVE`、`A_MICROPAY`、`U_JSAPI`、`U_NATIVE`、`U_MICROPAY` 这些值不是 `method_expand` 的 key；`method_expand` 的 JSON 内容直接是当前场景对象本身。
 5. `tx_metadata` 本身不作为请求字段上送；交易能力扩展按能力名直接传 `acct_split_bunch`、`terminal_device_data`、`combinedpay_data`、`combinedpay_data_fee_info`、`trans_fee_allowance_info`。
 6. `method_expand`、`acct_split_bunch`、`terminal_device_data`、`combinedpay_data`、`combinedpay_data_fee_info`、`trans_fee_allowance_info` 等 JSON 字段应先在业务层建模，再在 SDK 边界转成 JSON 字符串。

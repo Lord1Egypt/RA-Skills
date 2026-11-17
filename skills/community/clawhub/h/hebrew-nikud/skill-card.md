@@ -1,38 +1,49 @@
-## Description: <br>
-Hebrew Nikud is a reference for agents adding selective Hebrew vowel points and pronunciation hints for TTS, including verb conjugations, dagesh, gender suffixes, homographs, loanwords, and common mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hebrew Nikud is a static reference that helps AI agents add selective Hebrew vowel points for pronunciation-sensitive text, especially TTS workflows involving verb patterns, dagesh, gender suffixes, homographs, and common mistakes.
 
-## Publisher: <br>
-[Shaharsha](https://clawhub.ai/user/Shaharsha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shaharsha](https://clawhub.ai/user/shaharsha)
 
-## Use Case: <br>
-Agents use this reference before adding selective nikud to Hebrew text, especially when preparing pronunciation hints for TTS. It helps distinguish vowel marks, dagesh usage, verb patterns, gender suffixes, homographs, loanwords, and cases where no nikud should be added. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A future version could request shell, file, network, credential, or persistence access beyond the current reference-only scope. <br>
-Mitigation: Review any newly requested access before upgrading or deploying the skill. <br>
-Risk: Incorrect or over-applied nikud can produce misleading Hebrew pronunciation guidance, especially for TTS. <br>
-Mitigation: Apply nikud only when the agent is certain, and leave ambiguous words unmarked for contextual pronunciation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Agents and developers use this skill as a Hebrew pronunciation reference before adding selective nikud to Hebrew text, especially for TTS workflows. It helps disambiguate vowel points, dagesh, gender suffixes, verb patterns, homographs, and foreign names when the pronunciation is known.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown reference guidance and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool access, scripts, install steps, or background behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect nikud can change Hebrew pronunciation or meaning, especially in TTS output.
+
+Mitigation: Use the skill for selective nikud only when pronunciation is known, and review Hebrew output before using it in pronunciation-sensitive contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaharsha/skills/hebrew-nikud)
+- [Publisher profile](https://clawhub.ai/user/shaharsha)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no tool access, code execution, network behavior, persistence, or data access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, released 2026-02-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

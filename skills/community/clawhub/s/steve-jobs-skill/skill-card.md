@@ -1,48 +1,65 @@
-## Description: <br>
-Steve Jobs Skill helps agents answer from a Steve Jobs-inspired perspective for product analysis, decision review, and direct feedback using public-source-derived mental models and expression patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Steve Jobs-style perspective for product thinking, decision review, and direct feedback based on public writings, speeches, interviews, and curated research notes.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users, employees, and product builders use this skill to switch an agent into a Steve Jobs-inspired advisory role for product critique, decision framing, and strategic feedback. For formal, educational, or customer-facing use, the simulated nature of the persona should remain clear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake persona responses for actual Steve Jobs statements or authoritative historical claims. <br>
-Mitigation: Keep the simulated nature of the persona clear in formal, educational, or customer-facing contexts, and use explicit opt-in before switching into the roleplay mode. <br>
-Risk: The strong roleplay style may produce blunt or overly forceful advice that is unsuitable for some audiences. <br>
-Mitigation: Use the skill where direct product critique is desired, preserve the documented exit path from the persona, and review responses before customer-facing use. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for product, strategy, and decision feedback in a Chinese-language Steve Jobs persona grounded in public sources and artifact research notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/steve-jobs-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
-- [Research: writings](references/research/01-writings.md) <br>
-- [Research: conversations](references/research/02-conversations.md) <br>
-- [Research: expression DNA](references/research/03-expression-dna.md) <br>
-- [Research: external views](references/research/04-external-views.md) <br>
-- [Research: decisions](references/research/05-decisions.md) <br>
-- [Research: timeline](references/research/06-timeline.md) <br>
-- [Validation report](references/validation-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Conversational Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only responses; no code execution, credential use, data access, or persistence indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.json release.version) <br>
+Risk: Users may mistake first-person persona responses for the real views of Steve Jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the roleplay as a public-source-based perspective and keep exit instructions available when the user wants to leave the persona.
+
+Risk: The persona may use blunt or abrasive feedback that is unsuitable for some audiences.
+
+Mitigation: Use it in contexts where direct critique is expected, and ask the agent to soften or exit the persona when tone becomes inappropriate.
+
+Risk: Advice about events or technologies after Steve Jobs's death relies on extrapolation rather than direct statements.
+
+Mitigation: Treat post-2011 views as inferred analysis and verify important product or business decisions with current domain evidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/skills/steve-jobs-skill)
+- [Skill README](artifact/README.md)
+- [Research: Writings and Speeches](artifact/references/research/01-writings.md)
+- [Research: Conversations and Interviews](artifact/references/research/02-conversations.md)
+- [Research: Expression DNA](artifact/references/research/03-expression-dna.md)
+- [Research: External Views](artifact/references/research/04-external-views.md)
+- [Research: Major Decisions](artifact/references/research/05-decisions.md)
+- [Research: Timeline](artifact/references/research/06-timeline.md)
+- [Validation Report](artifact/references/validation-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language conversational prose, often in first-person persona style with markdown structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or system access; the persona can continue across turns until the user explicitly exits it.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

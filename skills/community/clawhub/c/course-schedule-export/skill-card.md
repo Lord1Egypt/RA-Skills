@@ -1,45 +1,56 @@
-## Description: <br>
-Turn school or university timetables into checked .ics calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn school or university timetables into checked .ics calendars for Apple Calendar, Google Calendar, and similar apps.
 
-## Publisher: <br>
-[Davidai-1999](https://clawhub.ai/user/Davidai-1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidai-1999](https://clawhub.ai/user/davidai-1999)
 
-## Use Case: <br>
-Students, school staff, and agents assisting them use this skill to normalize timetable sources, resolve schedule ambiguity, verify coverage against source entries, and generate a local .ics calendar export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated calendars can be wrong if timezone, week-1 anchor dates, period times, or odd/even week rules are missing or ambiguous. <br>
-Mitigation: Require those inputs before export, mark unresolved schedule items for confirmation, and verify the manifest against source entries before generating the .ics file. <br>
-Risk: Class schedules may contain private location, attendance, or routine details. <br>
-Mitigation: Process only timetable files and output paths the user intends to use, and avoid sharing generated manifests or .ics files beyond the intended calendar workflow. <br>
-Risk: The skill can run included local Python scripts and write a calendar file. <br>
-Mitigation: Review the manifest and selected output path before running the scripts, and use the included coverage checker to catch dropped or unsupported schedule entries. <br>
+## Use Case:
 
+External users and developers use this skill to normalize school or university timetable inputs, verify coverage against source material, resolve calendar-specific ambiguities, and generate deterministic .ics exports.
 
-## Reference(s): <br>
-- [Manifest Schema](references/manifest-schema.md) <br>
-- [Coverage Schema](references/coverage-schema.md) <br>
-- [Pitfalls](references/pitfalls.md) <br>
-- [Course Schedule Export Release](https://clawhub.ai/Davidai-1999/course-schedule-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON schedule manifests, shell commands, and local .ics files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The export path writes a local .ics file from a normalized manifest and reports the output path and event count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated calendar files may be incorrect when manifests come from untrusted sources or omit school-specific timezone, week-1, or period-time details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manifests from trusted sources, provide the actual timezone and schedule anchors, verify coverage against the source timetable, and inspect generated .ics files before importing.
+
+Risk: The server security summary notes a narrow input-validation weakness in the calendar generator.
+
+Mitigation: Avoid relying on generated .ics files from untrusted manifests until ICS validation is tightened, and review outputs before calendar import.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidai-1999/skills/course-schedule-export)
+- [Manifest Schema](artifact/references/manifest-schema.md)
+- [Coverage Schema](artifact/references/coverage-schema.md)
+- [Pitfalls](artifact/references/pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON manifests and generated .ics calendar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided authoritative timetable inputs, period times, timezone, and week-1 anchor when recurring classes are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

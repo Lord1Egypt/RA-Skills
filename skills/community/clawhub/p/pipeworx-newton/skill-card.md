@@ -1,42 +1,55 @@
-## Description: <br>
-Symbolic math solver for simplifying, differentiating, integrating, and factoring expressions through the Newton API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Symbolic math solver for simplifying, differentiating, integrating, and factoring expressions via the Newton API.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users, developers, and students can use this skill to ask an agent for exact symbolic math operations such as simplification, derivatives, integrals, and polynomial factoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Math expressions are sent to Pipeworx's remote Newton service. <br>
-Mitigation: Avoid submitting private formulas, proprietary research, regulated data, or secrets. <br>
-Risk: The optional setup uses npx to run mcp-remote at install or runtime. <br>
-Mitigation: Review and trust that dependency path separately before enabling the MCP server. <br>
+## Use Case:
 
+Developers, students, and technical users use this skill to call the Newton API for symbolic algebra and calculus tasks, including simplification, differentiation, integration, and polynomial factoring.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brucegutman/pipeworx-newton) <br>
-- [Pipeworx Newton homepage](https://pipeworx.io/packs/newton) <br>
-- [Pipeworx Newton MCP endpoint](https://gateway.pipeworx.io/newton/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON symbolic math results, with Markdown setup guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote Newton MCP/API service and requires curl for direct API examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Entered math expressions are sent to PipeWorx's external Newton gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending those expressions to the external service is acceptable.
+
+Risk: The documented setup uses mcp-remote@latest, which can install an automatically updated npm package.
+
+Mitigation: Pin mcp-remote to an exact reviewed version and run the MCP process with limited local permissions.
+
+## Reference(s):
+
+- [PipeWorx Newton pack homepage](https://pipeworx.io/packs/newton)
+- [ClawHub skill listing](https://clawhub.ai/brucegutman/skills/pipeworx-newton)
+- [Newton MCP gateway endpoint](https://gateway.pipeworx.io/newton/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON API responses and Markdown guidance with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls an external PipeWorx gateway; setup uses a local npm-based MCP adapter.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

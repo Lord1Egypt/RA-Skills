@@ -1,45 +1,61 @@
-## Description: <br>
-Trade Ostium RWA perps on Arbitrum via CAI using defi_markets, defi_preflight, defi_trade, defi_order_status, and hosted enrollment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Ostium RWA perpetuals on Arbitrum through CAI using market lookup, preflight checks, trade placement, order status polling, and hosted enrollment.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-External users and developers use this skill to guide agents through CAI-managed Ostium RWA perpetual trading on Arbitrum, including enrollment, market lookup, preflight validation, trade placement, order status checks, and position close flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides live real-money perpetual trading and the security evidence says it does not clearly warn users or require confirmation before risky trade actions. <br>
-Mitigation: Require explicit confirmation of each trade's asset, size, leverage, network, wallet authority, fees, liquidation exposure, and loss risk before allowing trade placement. <br>
-Risk: Automated trade placement can use broad CAI API authority and affect a custodial wallet. <br>
-Mitigation: Store CAI_API_KEY only in the agent secret store, prefer the narrowest usable scope, rotate keys when no longer needed, and do not allow unattended trading. <br>
-Risk: Incorrect order flow can place or close the wrong Ostium position. <br>
-Mitigation: Use defi_preflight before placement, resolve pair_id from defi_markets instead of hardcoding it, use action=close for closes, and poll defi_order_status until is_terminal is true. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through CAI-managed Ostium perpetual trading on Arbitrum, including setup, enrollment, preflight validation, order placement, status checks, and position closure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bernardtai/skills/ostium-with-cai) <br>
-- [CAI canonical skill reference](https://cai.com/skill.md) <br>
-- [CAI tools manifest](https://cai.com/specs/cai-tools.manifest.json) <br>
-- [CAI developers](https://cai.com/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API call parameters] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-like API parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CAI_API_KEY with platform or full scope; live trade actions should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill guides an agent through high-risk leveraged Ostium perpetual trading through CAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for intended CAI/Ostium trading workflows and require explicit confirmation before opening, closing, or increasing leveraged positions.
+
+Risk: Broad CAI API scope and funded custodial balances can increase financial exposure.
+
+Mitigation: Use the narrowest available CAI API scope and keep funded balances limited to amounts the user is willing to risk.
+
+Risk: Incorrect market, preflight, or order-status handling could lead to unintended trading actions.
+
+Mitigation: Resolve pair IDs from live markets, run preflight checks until valid, and poll order status until terminal before taking follow-up action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bernardtai/skills/ostium-with-cai)
+- [CAI skill reference](https://cai.com/skill.md)
+- [CAI tools manifest](https://cai.com/specs/cai-tools.manifest.json)
+- [CAI developer documentation](https://cai.com/developers.html)
+- [Publisher profile](https://clawhub.ai/user/bernardtai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with API tool names and shell command setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CAI_API_KEY with platform or full API scope; intended flows include hosted enrollment, preflight checks, explicit trade actions, and order status polling.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-RealPhoneValidation helps agents validate individual 10-digit phone numbers through OOMOL's connected RealPhoneValidation connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use RealPhoneValidation to validate phone numbers and retrieve caller-enrichment data when available.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to validate phone numbers and retrieve available caller enrichment fields through a connected RealPhoneValidation account. It is suited for workflows that need schema-guided connector calls and JSON responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected RealPhoneValidation account and may depend on account credentials, scopes, and billing state. <br>
-Mitigation: Use the OOMOL-connected account flow described by the skill, avoid handling raw API tokens, and resolve authentication, scope, credential, or billing errors before retrying. <br>
-Risk: Incorrect action payloads can lead to failed validation calls or misleading results. <br>
-Mitigation: Inspect the live connector schema before constructing each action payload and pass only fields supported by that schema. <br>
+## Use Case:
 
+Developers and support teams use the skill to validate 10-digit phone numbers and retrieve caller-enrichment fields when available.
 
-## Reference(s): <br>
-- [RealPhoneValidation homepage](https://realphonevalidation.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-realphonevalidation) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action payloads and returns RealPhoneValidation data with execution metadata when actions run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup can execute downloaded code that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, using a verified release.
+
+Risk: Automatic startup synchronization can make unexplained changes to other agents’ skills.
+
+Mitigation: Review the synchronization behavior before first use; set OO_SKILLS_SYNC_DISABLED=1 to disable startup synchronization.
+
+Risk: Phone numbers are sent to OOMOL and RealPhoneValidation, and usage may incur charges.
+
+Mitigation: Submit only phone numbers you intend to share and check applicable usage costs.
+
+## Reference(s):
+
+- [RealPhoneValidation API documentation](https://realphonevalidation.com/api-documentation/active-api/)
+- [RealPhoneValidation](https://realphonevalidation.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON validation results with concise action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caller-enrichment fields are included when available.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

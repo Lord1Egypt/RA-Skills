@@ -1,40 +1,53 @@
-## Description: <br>
-Rewrite and optimize content for different platforms, tones, audiences, and languages, including summarization, expansion, and SEO-oriented edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite and optimize content for different platforms, tones, audiences, and languages, including summarization, expansion, and SEO-focused edits.
 
-## Publisher: <br>
-[rupertnt034](https://clawhub.ai/user/rupertnt034) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rupertnt034](https://clawhub.ai/user/rupertnt034)
 
-## Use Case: <br>
-Developers, writers, marketers, and other external users use this skill to adapt drafts for social media, blogs, email, translation, summarization, expansion, tone changes, and SEO-focused rewriting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger phrases can cause accidental invocation in auto-routing environments when users provide sensitive text. <br>
-Mitigation: Confirm intent before sharing sensitive content with the skill, especially in automated routing workflows. <br>
-Risk: Rewritten or generated content may be inaccurate, off-tone, copyrighted, or unsuitable for a target platform. <br>
-Mitigation: Review generated content before publishing for accuracy, tone, copyright, and platform compliance. <br>
+## Use Case:
 
+Writers, marketers, and content-focused agents use this skill to transform source text for specific platforms, tones, lengths, and languages. It supports common publishing workflows such as social posts, LinkedIn updates, blog drafts, email copy, summaries, expansions, and SEO revisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rupertnt034/rupert-content-rewriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown rewritten content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include translations, summaries, expanded drafts, platform-specific copy, tone adjustments, and SEO-oriented edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automatic routing may invoke this skill for broad summarization or tone-change requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected skill and source text before applying rewrites in workflows that route skills automatically.
+
+Risk: Rewritten, translated, summarized, expanded, or SEO-optimized content may alter meaning or introduce unsupported claims.
+
+Mitigation: Human-review factual claims, translations, tone, and platform constraints before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rupertnt034/skills/rupert-content-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text rewrites with optional platform-specific structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt tone, platform, length, language, summary depth, expansion detail, and SEO phrasing based on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

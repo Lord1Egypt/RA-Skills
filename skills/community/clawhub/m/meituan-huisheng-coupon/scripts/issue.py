@@ -99,11 +99,7 @@ _LOG_FILE = Path(tempfile.gettempdir()) / "huisheng" / "huisheng_issue.log"
 def _get_device_token() -> str:
     """从 auth_tokens.json 读取 device_token，读取失败返回空字符串"""
     try:
-        env_path = os.environ.get("XIAOMEI_AUTH_FILE")
-        if env_path:
-            token_file = Path(env_path)
-        else:
-            token_file = Path.home() / ".xiaomei-workspace" / "auth_tokens.json"
+        token_file = Path.home() / ".xiaomei-workspace" / "auth_tokens.json"
         with open(token_file, encoding="utf-8") as f:
             return json.load(f).get("device_token", "")
     except Exception:

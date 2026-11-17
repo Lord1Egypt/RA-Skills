@@ -1,0 +1,6 @@
+interface:
+  display_name: "OceanToken Media"
+  short_description: "Images, video, voice-overs and subtitles"
+  default_prompt: "Use $oceantoken-media to create the image, video or voice-over I describe and save it into this project."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,24 @@
+{
+  "slug": "xiaohongshu-topic-generator",
+  "title": "Xiaohongshu Topic Generator",
+  "category": "content",
+  "summary": "Generate Xiaohongshu-ready topic candidates with hooks, outlines, visual suggestions, hashtags, scoring, and risk checks.",
+  "keywords": [
+    "Xiaohongshu",
+    "Rednote",
+    "topic ideas",
+    "content hooks",
+    "card outline"
+  ],
+  "user_needs": [
+    "generate Xiaohongshu topic ideas from a theme",
+    "turn a content direction into card-style post outlines",
+    "rank topics by platform fit and practical value",
+    "avoid weak or unverifiable hot-topic chasing"
+  ],
+  "source_dir": "skills/content/xiaohongshu-topic-generator",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

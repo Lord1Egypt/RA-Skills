@@ -1,48 +1,62 @@
-## Description: <br>
-Execute SQL queries, inspect Snowflake databases, schemas, tables, views, warehouses, and data pipeline resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute SQL queries, inspect Snowflake databases, schemas, tables, views, warehouses, and data pipeline resources.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, data analysts, and data engineers use this skill to explore Snowflake resources, run SQL queries, inspect database objects, and manage warehouses from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth and sensitive Snowflake credentials through ClawLink, so an incorrect connection or excessive Snowflake grants could expose data beyond the user's intent. <br>
-Mitigation: Connect only the intended Snowflake account, verify the active integration before use, and rely on Snowflake role scoping for least-privilege access. <br>
-Risk: Raw SQL and DDL/DML operations can change or delete Snowflake objects when executed with sufficient privileges. <br>
-Mitigation: Preview write operations, confirm the exact SQL with the user, prefer read-only inspection first, and require explicit approval before ALTER, DROP, DELETE, TRUNCATE, CREATE, or warehouse state changes. <br>
-Risk: Large SELECT queries can return excessive data or increase warehouse cost. <br>
-Mitigation: Use explicit LIMIT clauses for exploratory SELECT queries and confirm target database, schema, table, and warehouse before running queries. <br>
-Risk: Scanner telemetry was clean, but the security evidence notes that actual skill files were not available for full verification. <br>
-Mitigation: Review the published SKILL.md and installation commands before deployment, then scan the installed skill in the target environment. <br>
+## Use Case:
 
+Developers, data engineers, and analysts use this skill to inspect Snowflake resources, run SQL queries, and manage warehouses or related data workflows through ClawLink.
 
-## Reference(s): <br>
-- [Snowflake skill page](https://clawhub.ai/hith3sh/snowflake-data) <br>
-- [Snowflake Documentation](https://docs.snowflake.com/en/) <br>
-- [Snowflake SQL Reference](https://docs.snowflake.com/en/sql-reference) <br>
-- [Snowflake REST API](https://docs.snowflake.com/en/developer-guide/sql-api/index) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQL examples, connection guidance, and preview/confirmation steps for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: A third-party ClawLink plugin handles Snowflake credentials and database actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted ClawHub and ClawLink sources, verify the connection path, and revoke the ClawLink connection when it is no longer needed.
+
+Risk: The connected Snowflake role may permit broad reads or writes.
+
+Mitigation: Use a dedicated least-privilege Snowflake role, and avoid ACCOUNTADMIN or broad write privileges.
+
+Risk: Raw SQL, DDL, and DML can expose, modify, or delete data.
+
+Mitigation: Review SQL before approval, require explicit confirmation for write or DDL/DML actions, and use LIMIT clauses for SELECT queries.
+
+## Reference(s):
+
+- [ClawHub Snowflake Skill](https://clawhub.ai/hith3sh/skills/snowflake-data)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=snowflake-data)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [Snowflake Documentation](https://docs.snowflake.com/en/)
+- [Snowflake SQL Reference](https://docs.snowflake.com/en/sql-reference)
+- [Snowflake REST API](https://docs.snowflake.com/en/developer-guide/sql-api/index)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and SQL snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ClawLink Snowflake connection; write operations and DDL/DML queries require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

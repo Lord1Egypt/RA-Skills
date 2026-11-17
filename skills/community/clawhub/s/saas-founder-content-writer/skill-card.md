@@ -1,44 +1,64 @@
-## Description: <br>
-Saas Founder Content Writer helps creators, SaaS founders, indie hackers, and product builders turn real product updates, user pain points, technical lessons, launches, or explainers into high-signal posts for X, Reddit, LinkedIn, Xiaohongshu, and YouTube, including optional HTML/CSS-rendered covers, thumbnails, and data cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a creator, SaaS founder, indie hacker, or product builder wants to turn raw material such as product updates, user pain points, technical lessons, launches, or knowledge topics into high-signal posts for X, Reddit, LinkedIn, Xiaohongshu, or YouTube.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Founders, creators, indie hackers, and product builders use this skill to convert supplied raw material into platform-fit social content without generic marketing copy. It supports Product and Knowledge modes, platform-specific drafting, image briefs or deterministic text/data graphic rendering, and optional vault archiving after explicit consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts can include unsupported marketing, performance, security, financial, or compliance claims if the user's source material is weak or incomplete. <br>
-Mitigation: Require raw material before drafting, avoid inventing facts or metrics, flag claims that lack evidence, and have the founder review every draft before publishing. <br>
-Risk: Platform-specific self-promotion rules, especially on Reddit and Xiaohongshu, can affect whether content is acceptable or distributed. <br>
-Mitigation: Keep promotion secondary to reader value and remind the founder to check the target subreddit or Xiaohongshu promotion rules before posting. <br>
-Risk: Optional image rendering runs local HTML/CSS through headless Chrome and can fail or require environment-specific browser configuration. <br>
-Mitigation: Use self-contained HTML with no credentials or external network assets, keep the browser sandbox enabled by default, and fall back to the image brief or manual rendering if Chrome cannot launch. <br>
+## Use Case:
 
+External creators, SaaS founders, indie hackers, and product builders use this skill to convert provided product or knowledge material into platform-specific social drafts, image briefs, and optional text/data graphics. It helps produce useful founder content while avoiding generic marketing copy, invented metrics, and unsupported claims.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/saas-founder-content-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/archlab-space) <br>
-- [Render Image Setup](artifact/render-image-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts with platform-specific sections, optional image briefs, optional HTML/CSS templates, and render commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce PNG-rendering commands for text/data graphics; saving drafts or rendered assets is opt-in and requires an explicit vault target or user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.12.0 (source: server release evidence and artifact CHANGELOG, released 2026-06-15) <br>
+Risk: The image renderer can open HTML in a browser with network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the renderer before use, render only trusted self-contained HTML, and consider request blocking or disabling JavaScript during rendering.
+
+Risk: The renderer depends on the Puppeteer dependency chain.
+
+Mitigation: Audit and update the Puppeteer dependencies before running npm install or using the renderer in a trusted environment.
+
+Risk: Optional vault saving writes generated drafts and rendered images to a resolved local path.
+
+Mitigation: Verify the resolved vault path before enabling save-to-vault auto-saving, and keep saving opt-in.
+
+Risk: Generated founder content can include misleading claims if unsupported source material is treated as fact.
+
+Mitigation: Use only founder-provided facts, metrics, quotes, and results; flag unsupported performance, security, financial, or compliance claims before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/saas-founder-content-writer)
+- [README](artifact/README.md)
+- [Render Image Setup](artifact/render-image-setup.md)
+- [Feedback and contributions](https://github.com/archlab-space/open-skill-hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown draft blocks with platform-specific fields, optional image briefs, HTML/CSS snippets, render commands, and optional PNG files from the renderer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally save finalized drafts and rendered images to a user-approved vault folder; image rendering uses self-contained HTML/CSS and headless Chrome.]
+
+## Skill Version(s):
+
+0.12.0 (source: server release evidence and CHANGELOG, released 2026-06-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

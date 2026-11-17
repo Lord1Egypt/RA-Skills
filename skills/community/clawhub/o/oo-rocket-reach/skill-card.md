@@ -1,43 +1,56 @@
-## Description: <br>
-RocketReach helps agents search and read RocketReach account, person, and company data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RocketReach (rocketreach.co). Use this skill for ANY RocketReach request — searching and reading data. Whenever a task involves RocketReach, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to inspect RocketReach action schemas and run account-connected people, company, and account lookups through the oo CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RocketReach queries can expose person, company, and account-profile data available to the connected OOMOL account. <br>
-Mitigation: Review the live action schema and payload before sending lookup or search data, and only query data the user is authorized to access. <br>
-Risk: Setup and login steps connect a RocketReach account and may use sensitive credentials managed through OOMOL. <br>
-Mitigation: Run setup or login only when the user intends to connect RocketReach or when an action fails with an authentication or connection error. <br>
+## Use Case:
 
+Agents use this skill to search RocketReach people and companies and retrieve account information through an OOMOL-connected RocketReach account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-rocket-reach) <br>
-- [RocketReach Homepage](https://rocketreach.co) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Missing-tool setup directs the agent to run downloaded CLI code without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval before setup changes and review the CLI release before installation.
+
+Risk: OOMOL mediates RocketReach queries and manages the connected account access.
+
+Mitigation: Consider whether OOMOL is trusted to handle those queries and account access; review or disable automatic agent-skill synchronization.
+
+## Reference(s):
+
+- [RocketReach API documentation](https://docs.rocketreach.co/reference/rocketreach-api)
+- [RocketReach](https://rocketreach.co)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release](https://clawhub.ai/oomol/skills/oo-rocket-reach)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON inputs and structured JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available data depends on the selected RocketReach action and connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

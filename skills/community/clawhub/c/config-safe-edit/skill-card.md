@@ -1,42 +1,56 @@
-## Description: <br>
-Safe configuration file editing workflow that helps agents back up, edit, diff, validate, and recover configuration files before changes can disrupt a system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe configuration file editing workflow. Before modifying openclaw.json, models.json, or any system config file, activate this skill.
 
-## Publisher: <br>
-[lucy6692](https://clawhub.ai/user/lucy6692) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lucy6692](https://clawhub.ai/user/lucy6692)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill when changing configuration files that affect application startup, credentials, ports, channels, or security settings. It guides the agent to scope the requested change, back up the file, edit precisely, inspect the diff, and recover from mistakes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Backups of credential-bearing configuration files can expose secrets or remain available longer than intended.
+
+Mitigation: Store backups with restrictive permissions outside synced or indexed locations, and delete or rotate sensitive backups after the recovery window.
+
+Risk: A startup-critical configuration edit can leave a system unable to restart or behaving unexpectedly.
+
+Mitigation: Scope exact key paths before editing, keep a dated snapshot for high-risk changes, validate JSON, and verify the diff before restart.
+
+Risk: Using inconsistent backup filenames or diff targets can make recovery unreliable.
+
+Mitigation: Use one exact backup path throughout each edit and confirm the diff compares that backup with the edited file.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill when changing system configuration files, credentials, startup settings, ports, or security-sensitive fields. It guides agents to scope the exact change, make a backup, edit precisely, review diffs, validate JSON, and recover from failed changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration edits can expose or mishandle credentials, API keys, or other sensitive values. <br>
-Mitigation: Confirm the exact file and values, review diffs carefully, and protect or remove backup files that may contain secrets. <br>
-Risk: Startup-critical configuration changes can lock users out or prevent OpenClaw from starting. <br>
-Mitigation: Create a dated snapshot for high-risk edits, validate JSON before restart, and restore from the latest backup if startup fails. <br>
-Risk: Syntactically valid but semantically wrong configuration can make the system behave unexpectedly. <br>
-Mitigation: Scope the intended file, key path, and before/after value before editing, then proceed only when the diff matches the intended change. <br>
+**Output Format:** [Markdown guidance with inline shell and PowerShell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucy6692/config-safe-edit) <br>
+**Other Properties Related to Output:** [Focuses on reversible configuration edits, backup checks, diffs, JSON validation, and recovery steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; users review diffs and validate configuration files before restart.] <br>
+2.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence.release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

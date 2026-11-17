@@ -1,43 +1,59 @@
-## Description: <br>
-Batch-ingests Feishu folder or attachment inputs into report-first knowledge artifacts by classifying files, extracting supported DOCX/PDF text, and writing reviewable reports without directly updating memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-ingests Feishu folders and single attachments into report-first knowledge artifacts by classifying files, extracting supported DOCX/PDF text, and producing reviewable outputs without writing MEMORY.md directly.
 
-## Publisher: <br>
-[kaiasdobi](https://clawhub.ai/user/kaiasdobi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiasdobi](https://clawhub.ai/user/kaiasdobi)
 
-## Use Case: <br>
-Developers and knowledge-base maintainers use this skill to process Feishu folders or shared attachments into structured, reviewable knowledge-ingestion outputs. It is suited for controlled document ingestion workflows where extracted content, failures, confidence, and memory candidates must be reviewed before adoption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This release is mainly a local parsing skeleton, not a complete Feishu connector. <br>
-Mitigation: Confirm any Feishu listing, download, or native-document reader path before relying on full Feishu workspace coverage. <br>
-Risk: Generated reports and memory candidates may contain sensitive extracted document content. <br>
-Mitigation: Scope input directories narrowly and review ingest-report.md and MEMORY.candidate.md before importing, storing, or sharing outputs. <br>
-Risk: Processing untrusted DOCX or PDF files depends on python-docx and pypdf behavior. <br>
-Mitigation: Use vetted pinned dependency versions and apply file-size and runtime limits for untrusted documents. <br>
+## Use Case:
 
+Developers and operators use this skill to convert Feishu folders or shared attachments into reviewable knowledge artifacts for training, policy/manual ingestion, and controlled document parsing workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaiasdobi/feishu-knowledge-ingest) <br>
-- [Output examples](artifact/references/output_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSONL files, Guidance] <br>
-**Output Format:** [Markdown reports and JSON Lines records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-first outputs include ingest-report.md, kb-items.jsonl, failed-items.jsonl, and MEMORY.candidate.md; the skill does not directly write MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release may overstate Feishu ingestion because the bundled runner handles local directories and does not include live Feishu API credentials or connector code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for local parsing or add and review a Feishu connector before relying on folder listing or downloading from Feishu.
+
+Risk: Document summaries may include sensitive information in reusable knowledge artifacts.
+
+Mitigation: Use a dedicated output directory, avoid ingesting secrets unless a redaction or manual review step is added, and treat MEMORY.candidate.md as untrusted draft content.
+
+Risk: Unsupported, image-based, or empty documents can produce failures or incomplete extracted knowledge.
+
+Mitigation: Review ingest-report.md and failed-items.jsonl, retry with OCR or manual inspection where needed, and do not treat filenames as proof of document contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiasdobi/skills/feishu-knowledge-ingest)
+- [README](README.md)
+- [Output examples](references/output_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports and JSONL knowledge/failure records with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ingest-report.md, kb-items.jsonl, failed-items.jsonl, and MEMORY.candidate.md; MEMORY.md is not written directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

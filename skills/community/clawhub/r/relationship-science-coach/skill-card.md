@@ -1,53 +1,70 @@
-## Description: <br>
-Use this skill for direct, practical adult relationship coaching: couples conflict, repair, trust, marriage, dating, flirting, attachment patterns, emotional connection, sex, desire differences, eroticism, kink negotiation, affection, love languages, breakups, and long-term passion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides direct, practical coaching for adult romantic and sexual relationships, including conflict, attachment, trust, intimacy, desire, flirting, consent, and repair, with safety redirects for danger, coercion, minors, non-consent, self-harm, stalking, and professional-scope issues.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-External users use this skill for practical, consent-aware coaching on adult romantic, sexual, dating, and committed relationship issues. It provides scripts, exercises, session plans, worksheets, and safety redirects for conflict, repair, trust, intimacy, desire, flirting, kink negotiation, and long-term connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install metadata includes unrelated crypto and purchase capability tags. <br>
-Mitigation: Review or remove those capability tags before installation or publication because they do not fit the relationship-coaching behavior evidenced in the artifact. <br>
-Risk: Users may treat relationship coaching as therapy, legal, medical, safeguarding, or crisis support. <br>
-Mitigation: Use it as coaching support only, and route danger, coercion, abuse, minors, self-harm, non-consent, or professional decisions to appropriate emergency, crisis, legal, medical, or safeguarding resources. <br>
-Risk: Relationship prompts may contain unnecessary intimate identifiers. <br>
-Mitigation: Avoid sharing names, locations, contact details, or other identifying intimate information unless it is necessary for the coaching task. <br>
-Risk: Optional validation or smoke-test scripts may be unsafe on modified or untrusted copies. <br>
-Mitigation: Run optional script-checking commands only after reviewing the local copy and confirming it matches the expected artifact. <br>
+## Use Case:
 
+External adult users use this skill for concrete relationship-coaching responses, scripts, worksheets, and structured next steps around romantic conflict, attachment patterns, dating, intimacy, desire, kink-aware consent, repair, and stay-or-leave reflection. It is not a substitute for therapy, legal advice, medical care, safeguarding, or crisis support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tristanmanchester/relationship-science-coach) <br>
-- [Operating model](references/OPERATING_MODEL.md) <br>
-- [Source map and evidence basis](references/SOURCE_MAP.md) <br>
-- [Safety, scope, and semantic triage](references/SAFETY_SEMANTIC_TRIAGE.md) <br>
-- [Intervention library](references/INTERVENTION_LIBRARY.md) <br>
-- [Conflict, attachment, repair, and trust](references/CONFLICT_ATTACHMENT_AND_REPAIR.md) <br>
-- [Sex, intimacy, desire, eroticism, and kink](references/SEX_INTIMACY_AND_DESIRE.md) <br>
-- [Dating, flirting, and attraction](references/DATING_FLIRTING_AND_ATTRACTION.md) <br>
-- [Session templates and programmes](references/SESSION_TEMPLATES.md) <br>
-- [Worksheet templates](assets/worksheet-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON, markdown worksheets, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional local Python scripts emit structured JSON or Markdown to stdout and do not require network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may discuss adult sexual topics, desire, kink, and intimate conflict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it only where adult relationship-coaching content is appropriate, and keep the documented safety triage for coercion, minors, non-consent, crisis, stalking, and abuse cases.
+
+Risk: The bundled validation and smoke-test scripts can execute Python from a user-selected target folder.
+
+Mitigation: Run optional scripts only against trusted or isolated folders, preferably in a disposable environment without sensitive writable paths.
+
+Risk: Relationship guidance can be misused to pressure, surveil, manipulate, or diagnose a partner.
+
+Mitigation: Use the safety and edge-case references to redirect manipulation, surveillance, coercion, violence, non-consent, and diagnosis requests toward boundaries, safety support, or professional help.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/relationship-science-coach)
+- [Source map and evidence basis](artifact/references/SOURCE_MAP.md)
+- [Operating model](artifact/references/OPERATING_MODEL.md)
+- [Intervention library](artifact/references/INTERVENTION_LIBRARY.md)
+- [Safety semantic triage](artifact/references/SAFETY_SEMANTIC_TRIAGE.md)
+- [Conflict, attachment, repair, and trust](artifact/references/CONFLICT_ATTACHMENT_AND_REPAIR.md)
+- [Sex, intimacy, and desire](artifact/references/SEX_INTIMACY_AND_DESIRE.md)
+- [Dating, flirting, and attraction](artifact/references/DATING_FLIRTING_AND_ATTRACTION.md)
+- [Worksheet templates](artifact/assets/worksheet-templates.md)
+- [Gottman Method overview](https://www.gottman.com/about/the-gottman-method/)
+- [EFCT systematic review and meta-analysis](https://pubmed.ncbi.nlm.nih.gov/30605013/)
+- [Dual Control Model](https://kinseyinstitute.org/research/dual-control-model.html)
+- [Sexual strangulation risks](https://bwell.brown.edu/tool/sexual-strangulation)
+- [988 Lifeline](https://988lifeline.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON coaching plans, scripts, worksheets, and concise guidance, with optional shell commands for local helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional scripts write structured data to stdout and diagnostics to stderr; the skill is designed to avoid network access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

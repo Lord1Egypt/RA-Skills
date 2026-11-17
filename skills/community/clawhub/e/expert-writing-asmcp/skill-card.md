@@ -1,46 +1,65 @@
-## Description: <br>
-Expert Writing ASMCP helps agents use AnyShare ASMCP to upload user-provided project files, generate a template-based outline, and produce a full professional document after confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 AnyShare 的专家写作助手 - 上传项目文件到文档库，调用全文写作技能生成大纲文档，确认后基于大纲生成正文
 
-## Publisher: <br>
-[anyshare-aishu](https://clawhub.ai/user/anyshare-aishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyshare-aishu](https://clawhub.ai/user/anyshare-aishu)
 
-## Use Case: <br>
-Employees and business users use this skill to turn project materials into structured professional documents such as feasibility studies, project proposals, business plans, technical plans, summaries, market research reports, product documents, annual reports, and solutions. Agents use it to manage the AnyShare document workflow, create outlines, wait for approval, and generate final Markdown content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can continue processing and sharing documents without a clear fresh user confirmation. <br>
-Mitigation: Require explicit user confirmation before body generation and before creating share links; remove or ignore the 5-minute auto-proceed rule. <br>
-Risk: The skill requires AnyShare account access and may upload selected project files to AnyShare. <br>
-Mitigation: Install only when AnyShare access is appropriate, store tokens only in mcporter configuration, verify target directories and link permissions, and avoid uploading sensitive files unless the user explicitly approves. <br>
-Risk: The artifact includes an unsafe Python template-interpolation snippet in its operational guidance. <br>
-Mitigation: Do not run the unsafe snippet as written; use safer structured argument construction and review commands before execution. <br>
+## Use Case:
 
+Employees and external users use this skill to turn uploaded project materials into professional Chinese business, project, report, and solution documents through a two-stage outline then body workflow. It is suited for AnyShare-based writing workflows where the user can review the outline before final generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anyshare-aishu/expert-writing-asmcp) <br>
-- [AnyShare ASMCP service](https://anyshare.aishu.cn/asmcp/) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Security checklist](SECURITY.md) <br>
-- [Template catalog](templates/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples and generated document content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces outlines and full document drafts from user-provided source files and selected writing templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow can upload user documents to AnyShare and use them as source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for AnyShare processing, confirm the target document library before upload, and avoid confidential materials unless the deployment has been reviewed.
+
+Risk: Generated body content or sharing can proceed after inactivity or without a fresh explicit confirmation.
+
+Mitigation: Require an explicit current user confirmation before final body generation or share-link creation, and disable timeout auto-proceed for sensitive workflows.
+
+Risk: Access tokens and temporary files are part of the workflow and could expose sensitive access or content if mishandled.
+
+Mitigation: Use a least-privilege token stored in the configured mcporter location, avoid logging credentials, and clean temporary outline and selection files after use.
+
+Risk: Generated share links may expose output documents beyond the intended audience.
+
+Mitigation: Verify share-link recipients, permissions, and expiry before distributing any generated link.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anyshare-aishu/skills/expert-writing-asmcp)
+- [Publisher Profile](https://clawhub.ai/user/anyshare-aishu)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [Template Index](templates/README.md)
+- [AnyShare ASMCP Service](https://anyshare.aishu.cn/asmcp/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents with supporting shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces outline and body drafts from uploaded reference documents, and may save generated documents and share links in AnyShare.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

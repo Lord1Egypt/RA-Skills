@@ -1,44 +1,53 @@
-## Description: <br>
-Provides structured frameworks, checklists, and templates to support legal contract review, risk identification, and stakeholder summaries without providing legal advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured frameworks, checklists, templates, and issue-spotting prompts for legal contract review, risk identification, negotiation notes, and stakeholder summaries.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Contract attorneys, in-house counsel, procurement legal teams, and business reviewers use this skill to structure contract review workflows, issue lists, negotiation notes, and stakeholder summaries. It is intended for informational workflow support and requires qualified legal review for jurisdiction-specific advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated contract analysis as legal advice or a final legal conclusion. <br>
-Mitigation: State that outputs are informational workflow aids and require review by qualified counsel before use. <br>
-Risk: Jurisdiction-specific laws, deadlines, professional duties, or facts may be missing or wrong. <br>
-Mitigation: Ask for jurisdiction and matter context, flag uncertainty, and require verification of authorities, deadlines, facts, and strategy. <br>
-Risk: Contract documents may contain confidential or privileged information. <br>
-Mitigation: Remind users to follow confidentiality, privilege, and data-handling obligations before sharing or processing contract content. <br>
+## Use Case:
 
+Contract attorneys, in-house counsel, procurement legal teams, business reviewers, legal operations teams, and paralegals use this skill to structure contract review workflows, prepare checklists and issue lists, and summarize contractual risks for stakeholders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/legal-contract-review-playbook) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, templates, matrices, issue lists, and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive-only; no code execution, API calls, legal database access, filings, or legal services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Contract review outputs may be incomplete, jurisdictionally incorrect, or mistaken for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as planning aids only and have qualified counsel verify jurisdiction-specific law, deadlines, citations, facts, confidentiality duties, and legal strategy.
+
+Risk: Sensitive contract material may include confidential, privileged, or regulated information.
+
+Mitigation: Avoid pasting sensitive contract content unless the agent environment is approved for that data and confidentiality obligations are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/legal-contract-review-playbook)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklists, templates, issue lists, negotiation notes, risk ratings, and stakeholder summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document-only workflow output; no code execution, network access, credentials, or persistence. Outputs require review by qualified counsel.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

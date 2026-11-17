@@ -1,46 +1,53 @@
-## Description: <br>
-Optimize Amazon product listings with keyword-rich titles, bullet points, A+ content strategies, and backend search term placement for better ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Amazon product listings with keyword-rich titles, bullet points, A+ content strategies, and backend search term placement for better ranking.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External sellers, marketplace operators, and listing writers use this skill to audit and draft Amazon listing titles, bullet points, backend search terms, A+ Content plans, and indexing checks for product listing optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated listing copy or SEO guidance may be inaccurate, noncompliant with Amazon policy, or unsuitable for a specific category. <br>
-Mitigation: Review all generated copy against Amazon policy, category style guides, marketplace character limits, and product-specific claims before publishing. <br>
-Risk: Backend terms, multilingual keywords, or misspellings may be irrelevant to the product or target shoppers. <br>
-Mitigation: Confirm keyword relevance with seller research tools, Brand Analytics, native-language review where applicable, and post-launch indexing checks. <br>
-Risk: Seller credentials or account access could be exposed if a user combines this markdown-only skill with a separate integration. <br>
-Mitigation: Do not share seller credentials with the skill; use only separately trusted integrations for account access. <br>
+## Use Case:
 
+External sellers, marketplace operators, and listing specialists use this skill to audit and improve Amazon product listing titles, bullet points, backend search terms, A+ Content plans, and keyword indexing coverage.
 
-## Reference(s): <br>
-- [Amazon SEO Skill Page](https://clawhub.ai/leooooooow/amazon-seo) <br>
-- [Backend Search Term Strategy](references/backend-keyword-strategy.md) <br>
-- [Amazon SEO Listing Optimization Output Template](references/output-template.md) <br>
-- [Amazon Title Formula Guide by Category](references/title-formula-guide.md) <br>
-- [Amazon SEO Quality Checklist](assets/seo-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown listing audit and optimization plan with drafted titles, bullet points, backend search terms, A+ Content direction, and checklist tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden account actions; users supply product and marketplace details and review copy before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated listing copy or keywords may be inaccurate for the product, irrelevant to the target marketplace, or inconsistent with Amazon listing policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all titles, bullets, backend keywords, and A+ Content directions for product accuracy, marketplace relevance, and Amazon policy compliance before use.
+
+## Reference(s):
+
+- [Amazon SEO Skill Page](https://clawhub.ai/leooooooow/skills/amazon-seo)
+- [SEO Quality Checklist](assets/seo-quality-checklist.md)
+- [Backend Search Term Strategy](references/backend-keyword-strategy.md)
+- [Output Template](references/output-template.md)
+- [Title Formula Guide](references/title-formula-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown listing audits, optimized listing copy, backend keyword strings, A+ Content plans, and checklist tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not run code or access private data; generated copy should be reviewed for product accuracy, marketplace relevance, and Amazon policy compliance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

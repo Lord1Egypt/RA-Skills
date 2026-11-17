@@ -1,43 +1,58 @@
-## Description: <br>
-Removes visible Gemini AI star or sparkle watermarks from images using reverse alpha blending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes visible Gemini AI star/sparkle watermarks from images using reverse alpha blending, with single-image and batch workflows.
 
-## Publisher: <br>
-[h1bomb](https://clawhub.ai/user/h1bomb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h1bomb](https://clawhub.ai/user/h1bomb)
 
-## Use Case: <br>
-Developers and content operators use this skill to run local image-cleanup commands against Gemini-generated images, including single-image and batch directory workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's main purpose is removing visible AI watermarks, which can affect attribution, disclosure, or platform-rule expectations. <br>
-Mitigation: Use it only on images the operator is authorized to edit, preserve originals, and check applicable disclosure or platform requirements before publishing edited outputs. <br>
-Risk: Forced watermark removal can modify images that do not contain the expected visible Gemini watermark. <br>
-Mitigation: Prefer detection mode, review outputs before use, and reserve force mode for images where the operator has confirmed the watermark location and size. <br>
-Risk: The tool depends on locally installed Python packages. <br>
-Mitigation: Install Pillow and numpy in an isolated virtual environment from trusted package sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gemini Watermark Removal Algorithm](references/algorithm.md) <br>
-- [Removing Gemini AI Watermarks: A Deep Dive into Reverse Alpha Blending](https://allenkuo.medium.com/removing-gemini-ai-watermarks-a-deep-dive-into-reverse-alpha-blending-bbbd83af2a3f) <br>
-- [GeminiWatermarkTool C++ Reference Implementation](https://github.com/allenk/GeminiWatermarkTool) <br>
+## Use Case:
 
+Developers and automation users can use this skill to run local Python workflows that remove visible Gemini watermarks from individual images or batches of images when they have rights to do so.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks and local image file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes JPEG, PNG, WebP, and BMP inputs; single-image runs write one cleaned image and directory runs write cleaned files to an output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata, skill frontmatter, and script __version__) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can remove visible AI provenance marks from images that may be shared or published.
+
+Mitigation: Use it only when you have clear rights and when removal does not violate platform terms, licensing terms, or disclosure expectations.
+
+Risk: Cleaned images may be redistributed without adequate provenance or AI-generation disclosure.
+
+Mitigation: Preserve appropriate disclosure and provenance information when publishing or sharing outputs.
+
+Risk: Dependency installation can introduce supply-chain exposure.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned, reviewed versions.
+
+## Reference(s):
+
+- [Gemini Watermark Removal Algorithm](references/algorithm.md)
+- [Removing Gemini AI Watermarks: A Deep Dive into Reverse Alpha Blending](https://allenkuo.medium.com/removing-gemini-ai-watermarks-a-deep-dive-into-reverse-alpha-blending-bbbd83af2a3f)
+- [GeminiWatermarkTool reference implementation](https://github.com/allenk/GeminiWatermarkTool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command-line parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent guidance may lead to local image file outputs when the bundled script is run.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

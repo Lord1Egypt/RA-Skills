@@ -1,45 +1,59 @@
-## Description: <br>
-Pulls startup project data and AI-generated build specifications from CoFounder.im, then helps an agent review, plan, and orchestrate the build. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pulls startup project data and AI-generated build specifications from CoFounder.im so an agent can review and build validated project plans with user approval.
 
-## Publisher: <br>
-[alexfilatov](https://clawhub.ai/user/alexfilatov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexfilatov](https://clawhub.ai/user/alexfilatov)
 
-## Use Case: <br>
-Developers and agent users use this skill to fetch completed CoFounder.im startup plans, review the generated build specification, and coordinate approved implementation phases in OpenClaw or compatible coding agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a CoFounder.im API token to fetch user project plans. <br>
-Mitigation: Install only when comfortable granting that token, keep the token scoped to CoFounder.im, and avoid exposing it in generated files or command output. <br>
-Risk: Fetched build plans can propose extra credentials, cloud access, destructive commands, package installs, or other network activity. <br>
-Mitigation: Review each phase and command before approval, run builds in a clean workspace, and reject requests for unnecessary credentials or broad access. <br>
-Risk: Generated implementation plans may be incomplete, incorrect, or unsuitable for an existing repository. <br>
-Mitigation: Require user confirmation before spawning sub-agents or running verification commands, and verify the resulting project against the intended build plan. <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch CoFounder.im projects, inspect generated build specifications, and coordinate approved implementation phases. It is intended for CoFounder.im project builds rather than general coding tasks or scaffolding unrelated projects.
 
-## Reference(s): <br>
-- [CoFounder.im OpenClaw homepage](https://cofounder.im/openclaw) <br>
-- [CoFounder.im](https://cofounder.im) <br>
-- [ClawHub skill page](https://clawhub.ai/alexfilatov/cofounder-im) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COFOUNDER_API_TOKEN plus curl and jq; fetched build plans may identify additional project-specific tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Fetched CoFounder.im build phases can include dependency installs, network access, verification commands, or other project actions that should not be accepted blindly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every fetched phase before approving sub-agents, dependency installs, network access, or verification commands, and run builds in a clean project directory or container.
+
+Risk: Unpinned install commands can create supply-chain uncertainty.
+
+Mitigation: Use a trusted or pinned installer version where possible before installation.
+
+Risk: The skill uses COFOUNDER_API_TOKEN to access project data from CoFounder.im.
+
+Mitigation: Keep the token scoped to CoFounder.im API access and avoid sharing it with sub-agents or commands unless required for the reviewed API call.
+
+## Reference(s):
+
+- [CoFounder.im OpenClaw homepage](https://cofounder.im/openclaw)
+- [ClawHub skill page](https://clawhub.ai/alexfilatov/skills/cofounder-im)
+- [CoFounder.im settings](https://cofounder.im/users/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires COFOUNDER_API_TOKEN, curl, and jq; project-specific build dependencies vary by generated plan.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

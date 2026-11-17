@@ -1,39 +1,54 @@
-## Description: <br>
-小红书爆款助手，热点追踪、文案生成、标签推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书爆款助手，热点追踪、文案生成、标签推荐。
 
-## Publisher: <br>
-[786793119](https://clawhub.ai/user/786793119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[786793119](https://clawhub.ai/user/786793119)
 
-## Use Case: <br>
-External creators and social media operators use this skill to search RedNote/Xiaohongshu topics, draft post copy, recommend hashtags, and analyze successful post templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The usage examples reference a Python script that is not included in the packaged artifact. <br>
-Mitigation: Only run that script if it is obtained from a trusted source and reviewed before execution. <br>
+## Use Case:
 
+External creators and social media operators use this skill to search RedNote/Xiaohongshu trends, generate captions for common post themes, recommend hashtags, and analyze successful post templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/786793119/miya-rednote-writer) <br>
-- [Package homepage](https://github.com/786793119/miya-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces writing guidance, captions, hashtags, trend-search prompts, and template analysis guidance for an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The visible documentation references rednote-viral-writer.py, but the inspected artifact only includes SKILL.md, so command examples may not run as packaged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required Python script is supplied before installing or relying on command-line behavior.
+
+Risk: The skill produces trend, caption, hashtag, and template guidance for social posts, which can be inaccurate or misleading if accepted without review.
+
+Mitigation: Review generated captions, hashtags, and trend claims against current platform context before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/786793119/skills/miya-rednote-writer)
+- [Artifact homepage](https://github.com/786793119/miya-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language social content suggestions, hashtag recommendations, trend summaries, and template analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

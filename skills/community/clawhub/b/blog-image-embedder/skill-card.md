@@ -1,42 +1,54 @@
-## Description: <br>
-Analyze polished zh-CN blog markdown, generate hero + per-section image prompts, embed image placeholders into the markdown, and save updated version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze polished zh-CN blog markdown, generate hero + per-section image prompts, embed image placeholders into the markdown, and save updated version.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-Developers and blog authors use this skill after polishing zh-CN markdown to add image prompts and image placeholders for a hero image and section images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The input markdown may contain confidential draft content that is processed by LLM or image services. <br>
-Mitigation: Confirm the exact markdown file before running and avoid confidential drafts unless that processing is approved. <br>
-Risk: Generated prompts or inserted image placeholders may not match the author's intended section structure. <br>
-Mitigation: Review the illustrated markdown and generated prompt list before publishing. <br>
-Risk: The workflow writes an illustrated markdown file to the configured output directory. <br>
-Mitigation: Confirm the output directory before execution. <br>
+## Use Case:
 
+Blog authors and developers use this skill after polishing zh-CN markdown to generate consistent hero and section image prompts, insert image placeholders, and save an illustrated markdown draft.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/blog-image-embedder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Guidance] <br>
-**Output Format:** [JSON object with an illustrated markdown path, generated image prompts, and image paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an illustrated markdown file path, prompt list, and image path list for downstream blog publishing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The selected blog markdown is read and sent through the configured LLM/image-generation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended drafts as input, verify the selected markdown file before running, and avoid directories containing unrelated private markdown.
+
+Risk: Generated image prompts and placeholders may not match the author's intended emphasis for each section.
+
+Mitigation: Review the illustrated markdown draft and generated prompts before publishing or handing the draft to a downstream renderer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/blog-image-embedder)
+- [Publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [JSON result describing the illustrated markdown path, generated image prompts, and image paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an illustrated markdown draft with embedded image placeholders and associated prompt/path metadata.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

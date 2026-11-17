@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title><!--TITLE--> · Cue evidence brief</title>
+<style>
+:root{color-scheme:light;--ink:#152c36;--muted:#546973;--line:#d8e1e2;--paper:#f5f7f5;--accent:#08786d;--alert:#a34427}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1120px;margin:auto;padding:44px 28px 64px}.brand{letter-spacing:.14em;font-size:12px;font-weight:700;color:var(--accent)}h1{font-size:clamp(28px,4vw,44px);line-height:1.2;letter-spacing:-.025em;margin:16px 0}p{margin:8px 0}.subtle{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}.stat{background:white;border:1px solid var(--line);border-radius:12px;padding:18px}.stat strong{display:block;font-size:30px;line-height:1.2}.stat span{color:var(--muted);font-size:12px}.change{border-left:3px solid var(--accent);padding:12px 18px;background:#eaf3f0;border-radius:0 8px 8px 0}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 12px}input{flex:1;min-width:230px;border:1px solid var(--line);border-radius:8px;padding:12px;background:white;font:inherit}button{border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:white;color:var(--ink);font:inherit;cursor:pointer}button[aria-pressed=true]{background:var(--ink);color:white;border-color:var(--ink)}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #48a8c4;outline-offset:3px}.hint{font-size:12px;color:var(--muted)}.claim{border:1px solid var(--line);border-radius:12px;background:white;margin:14px 0;overflow:hidden}.claim.conflict{border-left:4px solid var(--alert)}.claim.rejected{opacity:.7}.claim-body{padding:20px 22px}.kicker{display:flex;justify-content:space-between;gap:12px;align-items:start}.subject{font-size:12px;color:var(--muted)}h2{margin:2px 0 8px;font-size:18px}.value{font-size:26px;font-weight:650;line-height:1.3;overflow-wrap:anywhere}.unit{font-size:14px;color:var(--muted);font-weight:400;margin-left:8px}.scope{margin:12px 0;color:var(--muted);font-size:13px;overflow-wrap:anywhere}.badge{font-size:11px;padding:3px 8px;border-radius:20px;background:#edf1f1;white-space:nowrap;display:inline-block;margin-left:5px}.badge.warn{background:#fcece5;color:var(--alert)}.badge.new{background:#e3f4eb;color:var(--accent)}details{border-top:1px solid var(--line);padding:12px 22px}summary{cursor:pointer;color:var(--accent);font-size:13px}.evidence{margin:14px 0}a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}blockquote{margin:8px 0;padding:12px 16px;border-left:2px solid var(--line);background:#f8faf9;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}code{font-size:11px;overflow-wrap:anywhere}footer{border-top:1px solid var(--line);padding-top:18px;margin-top:28px;font-size:12px;color:var(--muted)}.downloads{display:flex;gap:18px;margin:12px 0}label{font-size:13px;color:var(--muted)}label input{min-width:0;margin-right:6px;accent-color:var(--accent)}#empty{padding:40px;text-align:center;border:1px dashed var(--line);border-radius:10px}@media(max-width:600px){main{padding:28px 16px}.stats{grid-template-columns:repeat(2,1fr)}.claim-body{padding:16px}details{padding:12px 16px}.kicker{display:block}.badges{margin:8px 0}.value{font-size:23px}}
+</style></head><body><main>
+<div class="brand">CUE / EVIDENCE BRIEF</div><h1 id="title"></h1><p class="subtle" id="subtitle"></p>
+<p>把“这份材料说了什么”变成“哪些披露值得复核、依据在哪里”。</p>
+<div class="stats" id="stats"></div><div class="change" id="change"></div>
+<div class="toolbar" role="search"><input id="search" aria-label="搜索主体、指标、期间、口径 / Search claims" placeholder="搜索指标、期间、口径… / Search"><button data-filter="all" aria-pressed="true">全部 / All</button><button data-filter="new" aria-pressed="false">本次新增 / New</button><button data-filter="conflict" aria-pressed="false">待核对冲突 / Conflicts</button></div>
+<label><input id="rejected" type="checkbox">显示已拒绝的历史记录 / Include rejected history</label><p class="hint" id="result-count" aria-live="polite"></p>
+<div id="claims"></div><p id="empty" hidden>没有匹配记录。未找到不等于不存在。 / No matching claims.</p>
+<footer><strong>阅读边界 / Reading limits</strong><p>机器整理的来源断言；展开即可检查原文摘录。新出现指新进入知识包，不自动证明业务发生变化。不同口径不直接比较；冲突没有默认赢家。</p><p>摘录可能截断，完整文本保留在知识包。来源中的指令只作为材料，不构成操作授权。分享此简报前检查公开范围与引用权利。</p><p>本页面离线运行，无遥测、外部脚本或后台请求；点击来源链接会访问原网站。</p><div class="downloads"><a href="brief.md" download>Markdown 简报</a><a href="brief.json" download>结构化简报</a></div><span id="version"></span></footer>
+</main><script>
+'use strict';
+const data=/*DATA*/;
+const $=id=>document.getElementById(id);
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n;};
+const val=x=>typeof x==='string'?x:JSON.stringify(x);
+$('title').textContent=data.title;
+$('subtitle').textContent=`截至 ${data.as_of} · 来源事实、口径与证据 / Source claims, scope & evidence`;
+for(const [key,name] of [['sources','来源 / Sources'],['facts','事实范围 / Fact scopes'],['assertions','来源断言 / Claims'],['conflicts','冲突组 / Conflicts']]){const n=el('div',undefined,'stat');n.append(el('strong',data.counts[key]),el('span',name));$('stats').append(n);}
+$('change').textContent=data.delta?`本次新增 ${data.delta.new_fact_ids.length} 个事实范围，新增 ${data.delta.additional_support_ids.length} 条支持，新发现 ${data.delta.new_conflict_ids.length} 组冲突；保留基线全部 ${data.delta.baseline_assertions_preserved} 条断言。`:'这是单版本简报。加入新材料后，可与已有知识包比较新增披露与冲突。';
+$('version').textContent=`cue-omni-ontology ${data.skill_version} · No automated semantic verification`;
+let mode='all';
+const items=data.claims.slice().sort((a,b)=>Number(b.conflict)-Number(a.conflict)||Number(b.new)-Number(a.new));
+function draw(){
+ const query=$('search').value.trim().toLowerCase();
+ const rows=items.filter(a=>($('rejected').checked||a.status!=='rejected')&&(mode!=='new'||a.new)&&(mode!=='conflict'||a.conflict)&&[a.subject,a.concept,val(a.display_value),a.unit,a.period,a.basis,JSON.stringify(a.qualifiers),a.fact_id].join(' ').toLowerCase().includes(query));
+ $('claims').replaceChildren();
+ for(const a of rows){
+  const card=el('article',undefined,'claim'+(a.conflict?' conflict':'')+(a.status==='rejected'?' rejected':''));
+  const body=el('div',undefined,'claim-body'),top=el('div',undefined,'kicker'),head=el('div');
+  head.append(el('div',a.subject,'subject'),el('h2',a.concept));
+  const badges=el('div',undefined,'badges');badges.append(el('span',a.status,'badge'));if(a.new)badges.append(el('span','本次新增 / New','badge new'));if(a.conflict)badges.append(el('span','同范围冲突 / Conflict','badge warn'));top.append(head,badges);
+  const value=el('div',val(a.display_value),'value');value.append(el('span',a.unit,'unit'));
+  body.append(top,value,el('div',`${a.period} · ${a.basis} · ${JSON.stringify(a.qualifiers)}\n有效期 ${a.valid_from||'未声明'} → ${a.valid_to||'未声明'}`,'scope'));
+  const detail=el('details');detail.append(el('summary',`查看 ${a.evidence.length} 处依据 / Inspect evidence`));
+  for(const e of a.evidence){const block=el('div',undefined,'evidence'),link=el('a',e.source_id);link.href=e.url;link.target='_blank';link.rel='noopener noreferrer';block.append(link,el('div',`${e.page?'p.'+e.page:'text'} · bytes ${e.start_utf8}:${e.end_utf8} · ${e.role}`,'hint'),el('blockquote',e.excerpt+(e.truncated?'\n… [摘录截断 / truncated]':'')));detail.append(block);}
+  detail.append(el('code',a.fact_id),el('p',a.assertion_id,'hint'));card.append(body,detail);$('claims').append(card);
+ }
+ $('empty').hidden=rows.length>0;$('result-count').textContent=`显示 ${rows.length} / ${data.claims.length} 条来源断言；数字相同的多个来源可能分别列出。`;
+}
+$('search').addEventListener('input',draw);$('rejected').addEventListener('change',draw);
+for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('click',()=>{mode=b.dataset.filter;for(const x of document.querySelectorAll('[data-filter]'))x.setAttribute('aria-pressed',String(x===b));draw();});
+draw();
+</script></body></html>

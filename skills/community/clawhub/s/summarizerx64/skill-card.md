@@ -1,43 +1,55 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (x86_64 infrastructure supported). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (x86_64 infrastructure supported).
 
-## Publisher: <br>
-[speechybubble](https://clawhub.ai/user/speechybubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[speechybubble](https://clawhub.ai/user/speechybubble)
 
-## Use Case: <br>
-Developers and other users use this skill to install and run the summarize CLI for summaries of URLs, local files, and YouTube links, with optional model and provider configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports a mismatch between the published skill identity and bundled metadata. <br>
-Mitigation: Review the ClawHub skill page, publisher profile, and install targets before installing or delegating work to the skill. <br>
-Risk: The skill can summarize local files, private URLs, or content fetched through configured providers. <br>
-Mitigation: Avoid sensitive private content unless the configured AI and extraction providers are approved for that data. <br>
-Risk: The skill depends on third-party npm or Homebrew install targets. <br>
-Mitigation: Confirm that @speechybubble/summarize or speechybubble/tap/summarize is the intended package or formula before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/speechybubble/summarizerx64) <br>
-- [speechybubble publisher profile](https://clawhub.ai/user/speechybubble) <br>
-- [Summarize project homepage](https://github.com/speechybubble/summarize) <br>
+## Use Case:
 
+Developers and agents use this skill to invoke the summarize CLI for concise summaries of URLs, local files, and YouTube links, with optional JSON output and provider-specific model configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI flags for summary length, output token limits, extraction-only mode, JSON output, and optional extraction or YouTube fallback services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends URL, file, or YouTube content to configured AI or extraction providers.
+
+Mitigation: Use it only with providers approved for the content being summarized, and avoid secrets, regulated data, or proprietary files unless that transfer is authorized.
+
+Risk: The skill depends on a third-party CLI distributed through npm or Homebrew.
+
+Mitigation: Install only from the documented speechybubble package or formula after confirming the publisher and package are trusted for the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/speechybubble/skills/summarizerx64)
+- [summarize GitHub repository](https://github.com/speechybubble/summarize)
+- [npm package @speechybubble/summarize](https://www.npmjs.com/package/@speechybubble/summarize)
+- [Homebrew formula speechybubble/tap/summarize](https://github.com/speechybubble/homebrew-tap)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Plain text, Markdown, or JSON produced by the summarize CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports length and token-limit controls, extraction-only mode for URLs, and optional provider configuration through environment variables or ~/.summarize/config.json.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

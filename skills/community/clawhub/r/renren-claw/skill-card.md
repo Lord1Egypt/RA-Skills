@@ -1,48 +1,67 @@
-## Description: <br>
-人人商城龙虾助手 helps agents query Renren Shop operations, products, members, orders, coupons, and shipping settings using the user's configured API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+人人商城龙虾助手 helps operators query Renren Mall operations, goods, members, orders, coupons, and shipping-promotion settings using user-provided store API credentials.
 
-## Publisher: <br>
-[imdake](https://clawhub.ai/user/imdake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imdake](https://clawhub.ai/user/imdake)
 
-## Use Case: <br>
-External store operators and ecommerce support agents use this skill to inspect Renren Shop operational data, products, members, orders, coupons, and shipping settings. The skill can also guide confirmed order, product, coupon, and shipping changes against a live store API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access live ecommerce store data, including customer, member, phone-number, and order details. <br>
-Mitigation: Install only for trusted users, use the least-privileged API key available, and limit customer or phone-number lookups to real business needs. <br>
-Risk: Configured order, product, coupon, and shipping actions can change live store state and cause business impact. <br>
-Mitigation: Manually review every mutating action and require explicit user confirmation before sending POST requests. <br>
-Risk: A wrong RR_CLAW_BASE_URL could send credentials or requests to an unintended endpoint. <br>
-Mitigation: Verify RR_CLAW_BASE_URL before use and avoid pasting API credentials into chat. <br>
+## Use Case:
 
+External Renren Mall merchants and authorized store operators use this skill to inspect store performance, search products, members, and orders, and prepare confirmed changes such as taking products offline, closing unpaid orders, stopping coupons, or disabling full-amount free-shipping rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imdake/renren-claw) <br>
-- [人人商城 homepage](https://www.rrsc.cn) <br>
-- [Data statistics API reference](references/statistics.md) <br>
-- [Goods API reference](references/goods.md) <br>
-- [Member API reference](references/member.md) <br>
-- [Order API reference](references/order.md) <br>
-- [Sales and marketing API reference](references/sales.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with API endpoint mappings and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RR_CLAW_API_KEY and RR_CLAW_BASE_URL; mutating POST actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill handles live Renren Mall API credentials and can send them to the configured base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for stores you control, configure an HTTPS merchant API URL that you trust, and use a least-privileged, revocable API key.
+
+Risk: Responses may include customer phone numbers, addresses, balances, birthdays, order details, and other sensitive store data.
+
+Mitigation: Display or log personal and order data only when the operator is authorized and the data is necessary for the requested task.
+
+Risk: Some supported POST actions change live commerce state, including taking products offline, closing orders, stopping coupons, and disabling free-shipping rules.
+
+Mitigation: Require explicit operator confirmation before executing business-changing actions and summarize the target object and expected effect before submission.
+
+Risk: The security verdict is suspicious because URL and privacy safeguards are insufficient.
+
+Mitigation: Review the configured endpoint and privacy handling before deployment, and rotate credentials if they may have been sent to an untrusted or plaintext endpoint.
+
+## Reference(s):
+
+- [Renren Mall homepage](https://www.rrsc.cn)
+- [ClawHub skill page](https://clawhub.ai/imdake/skills/renren-claw)
+- [数据统计模块](references/statistics.md)
+- [商品查询管理模块](references/goods.md)
+- [订单查询管理模块](references/order.md)
+- [会员查询管理模块](references/member.md)
+- [营销活动查询管理模块](references/sales.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live store data summaries and proposed business actions; destructive actions require explicit operator confirmation.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

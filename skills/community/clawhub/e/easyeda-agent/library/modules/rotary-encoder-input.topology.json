@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.rotary_encoder_input_live",
+    "title": "旋转编码器三路上拉输入",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "ENCODER",
+        "lcsc": "C41430892",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "1e40a31b19844467964f34ffd33fda19",
+          "name": "SIQ-02FVS3"
+        },
+        "footprint": "SW-SMD_SIQ-02FVS3",
+        "pins": [
+          {
+            "number": "A",
+            "name": "A",
+            "net": "port.A"
+          },
+          {
+            "number": "S",
+            "name": "S",
+            "net": "port.SWITCH"
+          },
+          {
+            "number": "C",
+            "name": "C",
+            "net": "port.GND"
+          },
+          {
+            "number": "B",
+            "name": "B",
+            "net": "port.B"
+          },
+          {
+            "number": "1",
+            "name": "EH",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "EH",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "A_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.A"
+          }
+        ]
+      },
+      {
+        "role": "S_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.SWITCH"
+          }
+        ]
+      },
+      {
+        "role": "B_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.B"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "port.POWER",
+        "members": [
+          "A_PULLUP.2",
+          "B_PULLUP.2",
+          "S_PULLUP.2"
+        ],
+        "port": "POWER"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "ENCODER.1",
+          "ENCODER.2",
+          "ENCODER.C"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.B",
+        "members": [
+          "B_PULLUP.1",
+          "ENCODER.B"
+        ],
+        "port": "B"
+      },
+      {
+        "id": "port.SWITCH",
+        "members": [
+          "ENCODER.S",
+          "S_PULLUP.1"
+        ],
+        "port": "SWITCH"
+      },
+      {
+        "id": "port.A",
+        "members": [
+          "A_PULLUP.1",
+          "ENCODER.A"
+        ],
+        "port": "A"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

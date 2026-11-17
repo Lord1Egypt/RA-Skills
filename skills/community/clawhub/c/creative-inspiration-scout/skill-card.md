@@ -1,39 +1,57 @@
-## Description: <br>
-Collect and structure ad creative inspiration for Meta (Facebook/Instagram), TikTok Ads, YouTube Ads, Google Ads, and Amazon Ads placements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect and structure ad creative inspiration for Meta (Facebook/Instagram), TikTok Ads, YouTube Ads, Google Ads, and Amazon Ads placements.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing and growth teams use this skill to plan ad creative ideas, hooks, asset specifications, test variants, and launch QA for major paid advertising platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ad creative recommendations may be applied to real spend or policy-sensitive campaigns without review. <br>
-Mitigation: Review outputs before launch, validate platform policy assumptions, and confirm tracking, billing, and stop-loss conditions. <br>
-Risk: The skill may activate on broader marketing or business-performance requests outside ad creative planning. <br>
-Mitigation: Confirm the request needs ad creative planning and collect product_or_offer, target_audience, and placement_scope before producing recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/creative-inspiration-scout) <br>
+## Use Case:
 
+External marketers, growth teams, and agency operators use this skill to turn product, audience, and placement inputs into channel-aware ad creative angles, hooks, asset specs, test variants, and QA notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections for creative objectives, hooks, asset specifications, test plans, and QA notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should separate facts from assumptions and include rollback or stop-loss conditions when spend risk exists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ad creative guidance may touch budget, billing, tracking, or platform policy-sensitive decisions.
+
+Mitigation: Verify policy, tracking, billing, and budget-sensitive recommendations before acting on them.
+
+Risk: Generated ad plans can imply unverified metrics or policy outcomes if inputs are incomplete.
+
+Mitigation: Keep observed facts separate from assumptions, avoid fabricated metrics, and use the skill's validation checklist when confidence is low.
+
+Risk: Creative testing recommendations can create spend risk if weak variants continue running.
+
+Mitigation: Define a rollback or stop-loss condition before launching spend-bearing tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/creative-inspiration-scout)
+- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown sections for creative objectives, hook sets, asset specifications, test plans, and QA notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential handling, or automatic account actions are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,52 @@
+part: PTX130W
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: "Renesas PTX130W \u2014 NFC wireless charging transmitter SoC (WLC Poller)"
+main_page: https://www.renesas.com/ptx130w
+datasheet_path_expected: ../../embedded_dev/renesas/datasheet/PTX130W_datasheet.pdf
+datasheet_source_url: "https://www.renesas.com/ptx130w (product page only \u2014 datasheet CDN similar path)"
+datasheet_source_note: PTX130W was originally a Panthronics product (acquired by Renesas 2024); datasheet distribution now
+  lives under renesas.com. Product family page is the primary source; deep datasheet (register map, electrical characteristics)
+  still requires manual download from renesas.com myPortal.
+product_status: Active (originally Panthronics, now Renesas)
+specs:
+  function: NFC WLC Poller (transmitter) SoC for NFC wireless charging
+  wireless_standard: NFC Forum Reader/Writer + Wireless Charging Technical Specification v2.1
+  protocol: NFC Forum Reader/Writer + WLC v2.0
+  host_interface: SPI
+  output_power_max_W: 1.0
+  rx_sensitivity_dbc: -80
+  features:
+  - NFC WLC Poller transmitter (up to 1W)
+  - No EMC filter requirement (sine wave output + Direct Antenna Connection DiRAC)
+  - Automated power control loop
+  - Output power regulation with 1% step
+  - NFC Forum WLC Poller functionality
+  - NFC data exchange
+  - Foreign object detection (FOD) via impedance change detection
+  - On-chip processing of time critical commands
+unverified:
+- input_voltage_range_v
+- package_type
+- package_size_mm
+- operating_temperature_c
+- power_consumption_modes
+- spi_clock_speed_max_mhz
+notes:
+- "Promoted from placeholder to verified_2026-06-29 \u2014 extracted from renesas.com PTX130W product page via Firecrawl (5KB\
+  \ clean markdown). Replaces 2026-06-20 placeholder that contained only wifi/ble/nfc:true flags. Family-level features and\
+  \ key parameters captured from product page; deep datasheet register map and electrical characteristics still require manual\
+  \ download from renesas.com myPortal."
+- "Use case: NFC wireless charging poller (transmitter side) \u2014 pairs with a PTX30W or similar WLC Listener IC on the\
+  \ device side. Typical in wearables (smart watches, hearables) and small IoT devices that need wireless charging without\
+  \ Qi coil complexity."
+- 'Family differentiator vs PTX30W: PTX130W is the Poller (transmitter) side; PTX30W is the Listener (receiver) side. They
+  pair together for end-to-end NFC wireless charging.'
+- Originally a Panthronics product (acquired by Renesas 2024); now distributed under renesas.com brand. Look for Panthronics
+  legacy docs in archive.
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify against local datasheet PDF: 11/14 spec fields matched
+  (79%). Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-29T22:50:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of renesas.com product page markdown
+extraction_source: references/semiconductor-vendor/Renesas/firecrawl-snapshots/PTX130W_clean.md
+extraction_credits_used: 1

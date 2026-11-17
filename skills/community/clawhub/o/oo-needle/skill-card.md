@@ -1,43 +1,50 @@
-## Description: <br>
-Needle helps an agent operate Needle collections through the OOMOL oo CLI, including listing, inspecting, creating, adding URL-backed files, checking stats, and searching retrieved content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Needle (needle.app). Use this skill for ANY Needle request — reading, creating, and updating data. Whenever a task involves Needle, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to work with Needle collections from an OOMOL-connected account. It supports read workflows such as listing, inspecting, statistics lookup, and search, plus write workflows for creating collections and adding URL-backed files for indexing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Needle collections or add URL-backed files for indexing, which changes content available in the connected Needle account. <br>
-Mitigation: Confirm the exact write payload and expected account effect before approving create or add-file actions. <br>
-Risk: The skill requires access to a connected OOMOL/Needle account. <br>
-Mitigation: Install and use it only when the agent is expected to operate that connected account. <br>
+## Use Case:
 
+People working with a Needle account use this skill to search collections, inspect collection data, and manage files and collections through the oo CLI. It guides the agent to inspect each action's schema and follow confirmation requirements for changes.
 
-## Reference(s): <br>
-- [Needle homepage](https://needle.app) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-needle) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that inspect live connector schemas and run Needle actions through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence metadata and artifact frontmatter) <br>
+Risk: Automatic setup may execute downloaded code whose contents have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup instructions, use a reviewed version-pinned CLI installation, and require explicit approval before running any downloaded installer.
+
+## Reference(s):
+
+- [Needle](https://needle.app)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Needle action results as text or JSON, with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action-specific results and guidance]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

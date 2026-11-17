@@ -1,40 +1,54 @@
-## Description: <br>
-Memory-powered AI chat with context-aware, emotionally matched responses citing personal memories and supporting peer messaging and exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EchoChat supports memory-powered AI conversations with context-aware, emotionally matched responses, personal-memory citations, peer messaging, and conversation exports.
 
-## Publisher: <br>
-[kkw-21](https://clawhub.ai/user/kkw-21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkw-21](https://clawhub.ai/user/kkw-21)
 
-## Use Case: <br>
-Developers and agent users use EchoChat to run memory-grounded conversations that cite personal context, match emotional tone, support peer messaging, and export conversation threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to access and cite personal memory data, which may include sensitive information. <br>
-Mitigation: Use only when personal-memory access is intentional, scoped, and consented to by the user. <br>
-Risk: Peer messaging and exports can disclose memory-derived context beyond the originating conversation. <br>
-Mitigation: Confirm peer-sharing consent, preview exported content, and require deletion or revocation paths for memory-derived data before use. <br>
+## Use Case:
 
+Users and developers use EchoChat to run memory-grounded text or voice conversations, facilitate peer memory chats, and export conversation threads with memory references.
 
-## Reference(s): <br>
-- [EchoChat ClawHub listing](https://clawhub.ai/kkw-21/chats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with command examples and conversation-oriented text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include memory citations, peer conversation context, and exported thread references when supported by the installed implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may involve sensitive personal memory data in conversations, peer sharing, and exported threads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, confirm which memories it can read, how peer sharing is consented to, and where exported conversations are stored.
+
+Risk: The submitted artifact does not include executable code, so runtime connections and data handling are not demonstrated by the artifact itself.
+
+Mitigation: Review the deployed Echo Chat environment and connected services before installing or using the skill.
+
+## Reference(s):
+
+- [EchoChat ClawHub skill page](https://clawhub.ai/kkw-21/skills/chats)
+- [kkw-21 ClawHub publisher profile](https://clawhub.ai/user/kkw-21)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with conversational text, memory citations, export references, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive personal-memory references and exported conversation content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

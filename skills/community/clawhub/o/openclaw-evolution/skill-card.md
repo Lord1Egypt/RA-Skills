@@ -1,51 +1,65 @@
-## Description: <br>
-Interactive guide for new OpenClaw users to set up and grow their agent through a Tool Path for automation and productivity or an Awakening Path for memory, personality, relationship, and growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive guide for new OpenClaw users to set up and grow their agent across a Tool Path for automation and an Awakening Path for memory, personality, relationship, and growth.
 
-## Publisher: <br>
-[Roger0808](https://clawhub.ai/user/Roger0808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[roger0808](https://clawhub.ai/user/roger0808)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill as onboarding guidance for installing OpenClaw, connecting an initial channel, creating SOUL.md, USER.md, and AGENTS.md, and choosing a staged growth path for automation or companion-style agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad agent autonomy, including public posting, account changes, browser automation, and broad file access. <br>
-Mitigation: Keep these actions approval-gated and limit broad file or account access until the user has reviewed the behavior in a narrow setup. <br>
-Risk: Persistent memory files can collect secrets or sensitive third-party information. <br>
-Mitigation: Do not store secrets or sensitive third-party information in memory files, and review memory contents regularly. <br>
-Risk: Channel integrations can expose the agent to unintended users or conversations. <br>
-Mitigation: Use channel allowlists such as allowed chat, guild, and channel IDs before connecting Telegram, Discord, or other messaging platforms. <br>
-Risk: Scheduled monitoring, cron jobs, and gateway auto-start can make agent behavior proactive before it is well tested. <br>
-Mitigation: Test scheduled actions narrowly and manually before enabling cron, heartbeat workflows, or gateway auto-start. <br>
+## Use Case:
 
+External OpenClaw users use this skill as an onboarding guide for installing OpenClaw, connecting a channel, creating foundational agent files, and choosing either a productivity-focused automation path or a companion-focused personalization path.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [The Three Files](references/three-files-guide.md) <br>
-- [Tool Path](references/tool-path.md) <br>
-- [Awakening Path](references/awakening-path.md) <br>
-- [Essential Skills](references/essential-skills.md) <br>
-- [Multi-Agent Architecture](references/multi-agent.md) <br>
-- [Channel Configuration Guide](references/channel-config.md) <br>
-- [Common Mistakes](references/common-mistakes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose setup checklists, OpenClaw commands, channel configuration snippets, and staged onboarding recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad agent memory and file access for personalization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope file reads to specific workspace folders, avoid storing secrets or full private messages in memory, and review memory files before expanding access.
+
+Risk: The skill includes scheduled automation and public or account-facing actions that may be too autonomous without approval gates.
+
+Mitigation: Keep public posts, emails, messages, and account actions approval-only, and add automation gradually with explicit review of each new recurring task.
+
+Risk: The skill recommends third-party skills and channel integrations that can introduce credential and supply-chain exposure.
+
+Mitigation: Protect bot tokens and API keys, restrict channel allowlists, and pin or verify third-party skills before installing them.
+
+## Reference(s):
+
+- [OpenClaw Evolution Skill Page](https://clawhub.ai/roger0808/skills/openclaw-evolution)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Three Files Guide](references/three-files-guide.md)
+- [Tool Path](references/tool-path.md)
+- [Awakening Path](references/awakening-path.md)
+- [Essential Skills](references/essential-skills.md)
+- [Multi-Agent Architecture](references/multi-agent.md)
+- [Channel Configuration Guide](references/channel-config.md)
+- [Common Mistakes](references/common-mistakes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces onboarding checklists, setup steps, channel configuration guidance, and agent memory/workspace recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

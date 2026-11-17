@@ -1,44 +1,50 @@
-## Description: <br>
-Structured deep research framework with explicit feedback loops and mental model evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured deep research framework with explicit feedback loops and mental model evolution inspired by VeriTrace and Agentic System Scaling papers.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to structure deep research into clear questions, source scanning, mental model checkpoints, RAPID scoring, and validated action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can produce concrete follow-up actions such as installing tools, changing workflows, or updating memory files. <br>
-Mitigation: Review proposed actions before execution and scan or approve any external tools before installing them. <br>
-Risk: Research conclusions and RAPID scores may be incomplete, outdated, or biased by the sources gathered during a run. <br>
-Mitigation: Validate high-impact findings against primary sources and record deviations when later evidence changes the conclusion. <br>
+## Use Case:
 
+External users, developers, and research agents use this skill to plan deep research, collect and score findings, revise mental models, and produce structured Markdown research reports with action items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdt328606/stitch-deep-research) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sdt328606) <br>
-- [VeriTrace: Evolving Mental Models for Deep Research Agents](https://arxiv.org/abs/2605.26081) <br>
-- [From Model Scaling to System Scaling](https://arxiv.org/abs/2605.26112) <br>
-- [Claw-Anything: Benchmarking Always-On Personal Assistants](https://arxiv.org/abs/2605.26086) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Structured Markdown research report with scoring tables and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a research question, scan overview, mental model evolution checkpoint, RAPID-ranked findings, action items, and deviation record.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release evidence) <br>
+Risk: Generated action items may propose follow-up changes such as creating skills, trying tools, or updating memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed action items before allowing an agent to make changes or use external tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdt328606/skills/stitch-deep-research)
+- [Publisher Profile](https://clawhub.ai/user/sdt328606)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report and structured analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes research questions, scan summaries, mental model updates, RAPID scores, action items, and deviation records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

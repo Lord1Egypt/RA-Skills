@@ -1,43 +1,57 @@
-## Description: <br>
-ModelSense recommends the best LLM model and effort level for a task based on benchmark data, task analysis, and the user's configured providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ModelSense recommends the best LLM model and effort level for a user task based on task analysis, benchmark data, and the user's configured providers.
 
-## Publisher: <br>
-[xinbenlv](https://clawhub.ai/user/xinbenlv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xinbenlv](https://clawhub.ai/user/xinbenlv)
 
-## Use Case: <br>
-Developers and other agent users use this skill when they need help choosing a capable model, effort level, and provider setup for coding, reasoning, writing, research, math, or long-context tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence the active session model or delegate work without consistently requiring user confirmation. <br>
-Mitigation: Require explicit user confirmation before any model switch or sub-agent delegation, then state what changed and why. <br>
-Risk: Recommendations may rely on benchmark, pricing, or provider-availability data that has changed since the bundled catalog was updated. <br>
-Mitigation: Check the user's configured providers and current model availability before applying a recommendation. <br>
+## Use Case:
 
+Developers and agent users use Modelsense when they need help choosing an LLM model, effort level, or provider-backed setup for tasks such as coding, research, writing, math, summarization, and long-context analysis.
 
-## Reference(s): <br>
-- [ModelSense README](README.md) <br>
-- [Benchmark data](data/benchmarks.yaml) <br>
-- [Model catalog](data/models.yaml) <br>
-- [OpenRouter model API](https://openrouter.ai/api/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown recommendation with model, effort level, rationale, cost estimate, and alternatives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model-switch or delegation guidance when the user explicitly asks to apply the recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The included agent instruction can invoke Modelsense early in a session and may switch models after notice rather than explicit consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before any model switch or delegation, or remove or override AGENTS.md when installing.
+
+Risk: The update workflow fetches model data from an external API and can commit changed model catalog data.
+
+Mitigation: Audit the GitHub Actions workflow and review model catalog changes before maintaining or publishing updates.
+
+## Reference(s):
+
+- [Modelsense README](artifact/README.md)
+- [Benchmark Knowledge Base](artifact/data/benchmarks.yaml)
+- [Model Catalog](artifact/data/models.yaml)
+- [OpenRouter Models API](https://openrouter.ai/api/v1/models)
+- [ClawHub Skill Page](https://clawhub.ai/xinbenlv/skills/modelsense)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown recommendation with model, effort level, rationale, cost estimate, alternatives, and optional shell or session commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend a session model switch or sub-agent delegation when requested by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Travel Biz helps business travelers plan trips, record expenses, scan receipts or invoices, and generate reimbursement documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Biz helps business travelers plan trips, record expenses, scan receipts and invoices, and generate reimbursement materials.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-Employees and external business travelers use this skill to coordinate business trips, track reimbursable expenses, manage receipts and invoices, and prepare reimbursement exports for finance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store business travel, receipt, invoice, and reimbursement records locally under ~/travel-biz/. <br>
-Mitigation: Use approved local storage, review generated records before sharing, and avoid placing unnecessary sensitive data in trip folders. <br>
-Risk: Upload, OCR, calendar sync, booking, or export workflows may pass data to companion skills or external services. <br>
-Mitigation: Confirm which service receives the data before use and grant only the credentials needed for the specific task. <br>
+## Use Case:
 
+Business travelers, sales staff, freelancers, and expense administrators use this skill to plan business travel, track trip expenses, manage receipts and invoices, and prepare reimbursement records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/travel-biz) <br>
-- [Publisher profile](https://clawhub.ai/user/freeman88-tch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown trip plans, expense records, reimbursement forms, reports, and export instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May organize local trip records under ~/travel-biz/ and handle uploaded receipt or invoice data when companion skills are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The skill may help create local files containing receipts, reimbursement forms, travel plans, and business expense details under ~/travel-biz.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, access-controlled device or directory, avoid shared devices for sensitive expenses, and delete outdated exports and reports when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeman88-tch/skills/travel-biz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Chinese-language Markdown instructions, structured expense records, reimbursement documents, reports, and export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected local workspace under ~/travel-biz with trip plans, expense details, receipt images, reimbursement records, templates, and monthly reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,57 @@
-## Description: <br>
-Set, track, and review personal health goals including weight loss, fitness targets, dietary changes, and wellness habits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set, track, and review personal health goals including weight loss, fitness targets, dietary changes, and wellness habits. Use when users want to establish health objectives, monitor progress, or stay accountable to their health plan.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-Individuals use this skill to define SMART wellness goals, break them into weekly milestones, log progress updates, and review accountability check-ins for fitness, nutrition, weight, sleep, and general wellness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general wellness coaching as medical advice. <br>
-Mitigation: Use this skill for goal setting and progress tracking only; consult a qualified professional for symptoms, diagnosis, treatment, medication changes, pregnancy, chronic illness, injuries, eating-disorder concerns, or condition-specific diet and exercise advice. <br>
+## Use Case:
 
+External users use this skill to define SMART health goals, break them into milestones, log progress updates, and review accountability toward fitness, nutrition, weight, sleep, or general wellness objectives.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces general wellness coaching content, goal plans, milestone breakdowns, progress calculations, and accountability check-ins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Users may mistake health-goal coaching for medical diagnosis or treatment guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs focused on goal setting and progress tracking, and avoid using the skill for diagnosis or treatment decisions.
+
+Risk: Progress logs may include sensitive health information.
+
+Mitigation: Ask users to share only information they are comfortable including and avoid collecting unnecessary sensitive details.
+
+Risk: Progress calculations and strategy suggestions can be incomplete when user-reported data is inaccurate or sparse.
+
+Mitigation: State assumptions, base progress reviews on user-provided metrics, and adjust goals when updates show the plan is not working.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiwenbing/skills/health-goal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or persistent storage; outputs depend on user-provided health goals and progress updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Manage ClickUp tasks by listing, creating, updating statuses, searching, and retrieving task details through the ClickUp API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ClickUp tasks by listing, creating, updating statuses, and retrieving details through the ClickUp API with a configured workspace and API token.
 
-## Publisher: <br>
-[savelieve](https://clawhub.ai/user/savelieve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[savelieve](https://clawhub.ai/user/savelieve)
 
-## Use Case: <br>
-Developers and workflow operators use this skill to let an agent interact with a ClickUp workspace for task lookup, creation, status updates, and assignment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create tasks or change task statuses in a ClickUp workspace. <br>
-Mitigation: Require explicit confirmation before creating tasks or changing statuses in important workspaces. <br>
-Risk: The ClickUp API token may grant access to workspace task data. <br>
-Mitigation: Use a least-privilege ClickUp API token and avoid storing the token in shared markdown when possible. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent read ClickUp tasks, create tasks, update task status, retrieve task details, and search a ClickUp workspace with a configured token.
 
-## Reference(s): <br>
-- [ClickUp API v2](https://api.clickup.com/api/v2) <br>
-- [ClawHub skill page](https://clawhub.ai/savelieve/test-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Guidance] <br>
-**Output Format:** [Text summaries with JSON task payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ClickUp workspace, list, task, query, and status values supplied through credentials or agent/user input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can use a configured ClickUp token to read and change task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent access to ClickUp is intended and scope the token to the minimum workspace access needed.
+
+Risk: Incorrect list IDs, task IDs, or status values could create or update the wrong ClickUp records.
+
+Mitigation: Verify identifiers and requested status changes before allowing create or update actions.
+
+Risk: CLICKUP_API_TOKEN is a secret that could expose workspace data if mishandled.
+
+Mitigation: Store the token in environment variables or managed secret storage rather than in shared files or prompts.
+
+## Reference(s):
+
+- [ClickUp API v2](https://api.clickup.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Text summaries with JSON task data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform ClickUp read and write actions when supplied valid credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,47 @@
-## Description: <br>
-Write Urdu that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Urdu that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writers use this skill to make Urdu drafting sound natural, casual, and human rather than overly formal or robotic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence user-facing Urdu wording and tone, so it may produce text that is culturally awkward, too casual, or mismatched to the audience. <br>
-Mitigation: Review generated Urdu before publication, especially for formal, professional, religious, or high-context communications. <br>
-Risk: The skill does not require secrets, accounts, files, or system access for its writing-helper purpose. <br>
-Mitigation: Use it only for language and style guidance unless a separate task clearly requires additional access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/urdu) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+External users and agent builders use this skill to make Urdu responses sound warmer, more natural, and less formal by default while preserving Urdu script and cultural expression.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can bias responses toward casual, native-sounding Urdu when formal Urdu, Romanized Urdu, Hindi, or bilingual output is needed.
+
+Mitigation: Give explicit register, script, language, or bilingual-output requirements in the prompt when those constraints matter.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language writing guidance and revised Urdu text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files, shell commands, credentials, accounts, or system access are required.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance that shapes generated Urdu prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, persistence, credential access, or hidden high-impact behavior; output is biased toward casual, native-sounding Urdu unless the user asks otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

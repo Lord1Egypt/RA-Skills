@@ -1,45 +1,55 @@
-## Description: <br>
-This skill helps agents search and read Timelink data through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+timelink (timelink.io). Use this skill for ANY timelink request — searching and reading data. Whenever a task involves timelink, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs read-only access to Timelink clients, projects, services, users, time entries, company details, or token metadata through an existing OOMOL connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Timelink business data available through the connected OOMOL account. <br>
-Mitigation: Install and use it only when the user trusts OOMOL's oo CLI and is comfortable granting the agent read access through that connected account. <br>
-Risk: Action schemas may change or differ from assumptions in a prompt. <br>
-Mitigation: Inspect the live action schema with the oo CLI before constructing command payloads. <br>
-Risk: Setup commands can alter local CLI authentication or connection state. <br>
-Mitigation: Run authentication, connection, installer, or billing-recovery steps only after an actual setup-related failure. <br>
+## Use Case:
 
+Developers and other Timelink users can use this skill to search and read Timelink data through their connected account, including clients, projects, services, users, and time entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-timelink) <br>
-- [Timelink homepage](https://timelink.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include oo CLI commands, action names, JSON payloads, and setup guidance for authentication, connection, or billing errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup may run a downloaded CLI installer without verifying it first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI separately from a verified release, or require explicit approval and review the installer before execution.
+
+Risk: Connecting Timelink entrusts OOMOL with credential handling, and external installers and hosted services were not audited.
+
+Mitigation: Review the connection and credential handling expectations and assess trust in the external services before connecting.
+
+## Reference(s):
+
+- [Timelink API documentation](https://docs.timelink.io/api)
+- [Timelink homepage](https://timelink.io)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields vary by selected read action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

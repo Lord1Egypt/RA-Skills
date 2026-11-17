@@ -1,45 +1,57 @@
-## Description: <br>
-One-click installer and configurator for Gate MCP (mcporter) in OpenClaw. Use when the user wants to install the mcporter CLI tool, configure a Gate MCP server connection, verify Gate MCP setup, or troubleshoot Gate MCP connectivity issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click installer and configurator for Gate MCP (mcporter) in OpenClaw that installs the CLI, configures the server connection, verifies setup, and supports troubleshooting.
 
-## Publisher: <br>
-[aspiremongoai](https://clawhub.ai/user/aspiremongoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aspiremongoai](https://clawhub.ai/user/aspiremongoai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, verify, update, or troubleshoot Gate MCP access through mcporter. It supports setup flows for natural-language access to Gate.io market data through the Gate MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup changes the user's local toolchain by installing or updating the mcporter npm package globally. <br>
-Mitigation: Install only when the user trusts the mcporter package, has Node.js and npm available, and accepts a global CLI install or update. <br>
-Risk: The setup writes a home-scoped Gate MCP configuration entry. <br>
-Mitigation: Review the intended Gate MCP endpoint before configuration and inspect the resulting mcporter config after installation. <br>
-Risk: Verification and later use connect to an external Gate MCP service. <br>
-Mitigation: Use only in environments where outbound network access to the Gate MCP endpoint is approved and expected. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to install, configure, verify, update, or troubleshoot Gate MCP access for natural-language Gate.io market data workflows.
 
-## Reference(s): <br>
-- [Gate MCP Installer on ClawHub](https://clawhub.ai/aspiremongoai/gate-mc-installer) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Gate MCP endpoint](https://api.gatemcp.ai/mcp) <br>
-- [Scenario examples](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run commands that install mcporter globally, write a home-scoped Gate MCP configuration, and verify connectivity to the Gate MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.4-1 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The installer can add or update a global mcporter npm package and write Gate MCP configuration in the user's home environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before execution, avoid sudo or administrator privileges, and prefer a pinned, reviewed mcporter version when possible.
+
+Risk: Gate MCP use depends on network access to https://api.gatemcp.ai/mcp.
+
+Mitigation: Confirm endpoint connectivity during setup and treat connection failures as network or service availability issues before retrying.
+
+## Reference(s):
+
+- [Gate MCP Installer Scenarios and Prompt Examples](references/scenarios.md)
+- [ClawHub Skill Page](https://clawhub.ai/aspiremongoai/skills/gate-mc-installer)
+- [OpenClaw](https://openclaw.ai)
+- [Node.js](https://nodejs.org/)
+- [Gate MCP Endpoint](https://api.gatemcp.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prompt before reinstalling mcporter or reconfiguring an existing Gate MCP setup.]
+
+## Skill Version(s):
+
+2026.3.4-1 (source: SKILL.md frontmatter and CHANGELOG.md, released 2026-03-04)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

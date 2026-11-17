@@ -1,41 +1,54 @@
-## Description: <br>
-MCP CLI Manager - Manage MCP servers and call tools <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP CLI Manager - Manage MCP servers and call tools.
 
-## Publisher: <br>
-[maplezzk](https://clawhub.ai/user/maplezzk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maplezzk](https://clawhub.ai/user/maplezzk)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage MCP server configurations, run the mcps daemon, list available tools, and call tools from configured MCP servers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configured MCP server commands can run on the user's machine through the mcps daemon. <br>
-Mitigation: Install only trusted packages and add only trusted MCP server commands before starting the daemon. <br>
-Risk: Secrets in configuration files or environment variables may be exposed to configured MCP servers. <br>
-Mitigation: Keep ~/.mcps/mcp.json and environment variables sensitive, scope credentials narrowly, and pass secrets only to servers that require them. <br>
-Risk: Tool calls can send user-provided arguments and data to configured MCP servers or external services. <br>
-Mitigation: Review server configuration and tool parameters before invoking tools, especially for database, web, and remote HTTP servers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mcps ClawHub page](https://clawhub.ai/maplezzk/mcps-skill) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure MCP servers, manage the mcps daemon, list available MCP tools, and invoke MCP tools from the command line.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that start or stop a daemon, edit MCP server configuration, and call tools on configured MCP servers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can run unpinned third-party MCP server packages that may receive database or GitLab credentials.
+
+Mitigation: Audit and pin mcps and each MCP server package before use, isolate servers, and use narrowly scoped, revocable credentials.
+
+Risk: The examples include destructive SQL commands that could affect data if run against production systems.
+
+Mitigation: Use destructive SQL examples only in test environments and review tool calls before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maplezzk/skills/mcps-skill)
+- [mcps npm package](https://www.npmjs.com/package/@maplezzk/mcps)
+- [Project homepage from skill frontmatter](https://github.com/maplezzk/mcps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for installing mcps, configuring MCP servers, managing the daemon, and invoking tools.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

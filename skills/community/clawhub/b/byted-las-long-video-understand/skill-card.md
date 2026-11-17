@@ -1,44 +1,61 @@
-## Description: <br>
-Extracts audio tracks from supported video files and splits long audio into fixed-duration segments using Volcengine LAS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts audio tracks from video files and splits long audio into timed segments using Volcengine LAS.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare local or TOS-hosted video and audio for Volcengine LAS processing, estimate cost, upload inputs when needed, run audio extraction or splitting, and present output segment paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script can automatically fetch and install remote SDK code without a clear consent or integrity check. <br>
-Mitigation: Review artifact/scripts/env_init.sh before installation, run it only in an isolated environment, and approve the remote Volcengine-hosted SDK source before proceeding. <br>
-Risk: The skill requires sensitive LAS and optional TOS credentials and may send selected media to Volcengine services. <br>
-Mitigation: Use least-privilege, short-lived credentials, avoid pasting long-lived secrets into chat, and confirm that the selected input media can be uploaded to Volcengine. <br>
-Risk: Audio upload and processing can incur cloud charges. <br>
-Mitigation: Estimate pricing before upload or processing and require explicit user confirmation before executing LAS jobs. <br>
+## Use Case:
 
+Developers and media workflow operators use this skill to extract audio from supported video files and split long audio into fixed-duration segments with indexed output paths.
 
-## Reference(s): <br>
-- [las_audio_extract_and_split API Reference](artifact/references/api.md) <br>
-- [Volcengine LAS Pricing Reference](artifact/references/prices.md) <br>
-- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include pricing estimates, environment checks, LAS command guidance, generated result summaries, and TOS output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The initialization script can install or upgrade a remote SDK wheel without hash verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use, run it only in a trusted workspace, and pin or verify SDK artifacts when operating in controlled environments.
+
+Risk: The skill handles Volcengine API keys and may ask users to store credentials locally.
+
+Mitigation: Use narrowly scoped temporary credentials and avoid storing long-lived secrets in env.sh, .env, chat transcripts, or version-controlled directories.
+
+Risk: Processing local media can upload inputs to TOS and generate billable cloud work.
+
+Mitigation: Confirm region, bucket access, input paths, duration, unit price, and estimated cost with the user before uploading or submitting processing jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-las-long-video-understand)
+- [Publisher profile](https://clawhub.ai/user/volcengine-skills)
+- [LAS audio extraction and split API reference](artifact/references/api.md)
+- [Volcengine LAS pricing](https://www.volcengine.com/docs/6492/1544808)
+- [Local pricing reference](artifact/references/prices.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, API calls, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON request examples, and result tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces TOS output paths for extracted audio segments and includes estimated billing information when presenting results.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

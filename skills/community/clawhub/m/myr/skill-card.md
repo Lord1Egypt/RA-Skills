@@ -1,43 +1,62 @@
-## Description: <br>
-Capture, search, verify, export, import, and synthesize Methodological Yield Reports (MYRs) for OODA-based intelligence compounding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MYR helps agents capture, search, verify, export, import, and synthesize Methodological Yield Reports for OODA-based intelligence compounding across nodes.
 
-## Publisher: <br>
-[jordangreenhall](https://clawhub.ai/user/jordangreenhall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jordangreenhall](https://clawhub.ai/user/jordangreenhall)
 
-## Use Case: <br>
-Developers, operators, and agent maintainers use MYR to install and operate a node, store and search OODA-cycle yield, verify and sign reports, sync with peers, and produce weekly or cross-node syntheses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends a one-line curl-to-bash install path. <br>
-Mitigation: Review the repository and installer before use, or use the manual install path with a pinned revision. <br>
-Risk: The skill can start a persistent HTTP server for peer synchronization. <br>
-Mitigation: Run the server only on a trusted network and verify reachability, authentication, and peer trust before syncing. <br>
-Risk: Peer approval and auto-approval can expose data to unintended peers if trust is misconfigured. <br>
-Mitigation: Keep auto-approval disabled unless the environment is controlled, verify peer fingerprints out of band, and confirm which reports are marked shareable. <br>
+## Use Case:
 
+Developers, operators, and agent users use MYR to install and operate a signed methodological-yield reporting system, search past yield, verify report quality, and sync reviewed reports between trusted nodes.
 
-## Reference(s): <br>
-- [MYR ClawHub skill page](https://clawhub.ai/jordangreenhall/myr) <br>
-- [jordangreenhall ClawHub publisher profile](https://clawhub.ai/user/jordangreenhall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, JSON, SQL, and XML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Required output includes the action performed, affected artifact IDs, verification result, and next recommended step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence) <br>
+Risk: The skill recommends running mutable external installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned download or clone, inspect the installer, and verify checksums or signatures before running commands.
+
+Risk: The skill can configure a persistent peer-sync server.
+
+Mitigation: Restrict network reachability, know how to disable the service, and expose the server only in a trusted network environment.
+
+Risk: Peer auto-approval can trust remote nodes without manual operator review.
+
+Mitigation: Leave peer auto-approval disabled unless the network is trusted, and verify peer fingerprints out of band before approval.
+
+Risk: Shared reports and node metadata may become reachable to approved peers.
+
+Mitigation: Mark only reviewed reports as shareable and use explicit peer approval before syncing data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jordangreenhall/skills/myr)
+- [MYR system repository declared by the artifact](https://github.com/JordanGreenhall/myr-system)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For each MYR operation, the skill asks the agent to report the action performed, affected artifact IDs, verification result, and next recommended step.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

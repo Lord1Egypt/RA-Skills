@@ -1,48 +1,59 @@
-## Description: <br>
-DingTalk CLI Auto helps agents automate DingTalk messaging, calendar, todo, contact lookup, and group robot workflows through the dws CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DingTalk CLI Auto helps agents automate DingTalk messaging, calendar, todo, contact, and robot webhook workflows through the DingTalk Workspace CLI and Node.js scripts.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate DingTalk workplace workflows, including sending messages, managing meetings, assigning todos, searching contacts, and posting group robot notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill wraps dws command execution in a shell command string, which can be unsafe when arguments contain untrusted content. <br>
-Mitigation: Review or patch the wrapper to use argument-array process spawning before using real DingTalk credentials. <br>
-Risk: The skill can access DingTalk credentials, calendar data, todos, and contact information. <br>
-Mitigation: Use least-privilege DingTalk application permissions, avoid pasting secrets into commands, and start with a test tenant or non-production account. <br>
-Risk: Calendar and todo delete operations can change or remove workplace records. <br>
-Mitigation: Require explicit confirmation before deletion or completion commands and verify record IDs before execution. <br>
-Risk: Bulk contact lookup can expose personal or organizational directory data. <br>
-Mitigation: Limit contact queries to the minimum needed and avoid printing or retaining unnecessary contact details. <br>
-Risk: The dws binary is an external dependency used to perform DingTalk actions. <br>
-Mitigation: Verify the dws binary source and version before installing or executing the skill. <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate DingTalk business workflows, including sending messages, creating meetings, managing todos, querying contacts, and posting robot notifications. It is intended for organizations that have configured a DingTalk internal app with appropriate permissions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/onlyloveher/dingtalk-cli-auto) <br>
-- [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and DingTalk operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, the dws CLI, DingTalk application credentials, and OAuth authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and skill changelog) <br>
+Risk: Setup guidance uses remote shell-piped installer commands that can execute unverified code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from pinned, verifiable DingTalk Workspace CLI releases or vetted package channels before using the skill.
+
+Risk: Runtime command execution can expose users to unsafe local command execution when arguments are handled through a shell command string.
+
+Mitigation: Use only trusted inputs until the command wrapper is changed to argument arrays without a shell.
+
+Risk: DingTalk AppKey/AppSecret, OAuth state, robot webhooks, contact data, calendars, and todos are sensitive business access.
+
+Mitigation: Use least-privilege DingTalk apps, keep secrets out of logs and prompts, and avoid production credentials until the security guidance is addressed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/dingtalk-cli-auto)
+- [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli)
+- [DingTalk Open Platform](https://open.dingtalk.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Node.js 18 or later, the dws CLI, DingTalk app credentials, and scoped DingTalk permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

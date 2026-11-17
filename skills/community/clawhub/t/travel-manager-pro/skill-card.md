@@ -1,42 +1,55 @@
-## Description: <br>
-Comprehensive travel planning, booking, and management skill. Use when needing to plan international trips, manage multi-destination itineraries, handle family travel logistics, optimize travel costs, and coordinate complex travel arrangements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Manager Pro supports travel planning, booking coordination, multi-destination itineraries, family travel logistics, cost optimization, and travel document preparation.
 
-## Publisher: <br>
-[shoumiksaha](https://clawhub.ai/user/shoumiksaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shoumiksaha](https://clawhub.ai/user/shoumiksaha)
 
-## Use Case: <br>
-External users and agents use this skill to plan international, multi-destination, and family travel, including route choices, cost considerations, document preparation, and booking coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel document, visa, health, airline, and entry requirements can change after guidance is generated. <br>
-Mitigation: Verify current requirements with official government, airline, and destination sources before booking or travel. <br>
-Risk: Travel planning can involve sensitive identity, payment, and family information. <br>
-Mitigation: Avoid sharing payment credentials or highly sensitive identity documents unless using a separately trusted booking workflow. <br>
+## Use Case:
 
+External users and travel coordinators use this skill to plan international and multi-destination trips, compare route and cost options, prepare travel documents, and manage family travel logistics.
 
-## Reference(s): <br>
-- [Family Travel Checklist](references/family-travel-checklist.md) <br>
-- [International Travel Document Requirements](references/travel-documents.md) <br>
-- [Travel Manager Pro on ClawHub](https://clawhub.ai/shoumiksaha/travel-manager-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown travel planning guidance, checklists, and itinerary coordination notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; travel requirements should be checked against current official sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Visa, passport, vaccination, transit, and entry requirements can vary by traveler, nationality, route, and date.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify requirements with official government, embassy, airline, and transit-authority sources before bookings, departure, or document decisions.
+
+Risk: The artifact references an airline comparison matrix that is not present, so airline comparison guidance may be incomplete.
+
+Mitigation: Treat airline comparison output as incomplete unless the missing reference is supplied, and verify route, fare, baggage, and airline tradeoffs with current airline sources.
+
+## Reference(s):
+
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Document Requirements](references/travel-documents.md)
+- [ClawHub Skill Page](https://clawhub.ai/shoumiksaha/skills/travel-manager-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown travel planning guidance, itineraries, checklists, and document-preparation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

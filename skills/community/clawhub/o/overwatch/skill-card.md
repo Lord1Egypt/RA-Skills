@@ -1,40 +1,53 @@
-## Description: <br>
-Prevent agents from going dark by requiring communication during long-running tasks, background work, and multi-step execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevent agents from going dark by keeping humans informed during long-running tasks, background work, and multi-step execution.
 
-## Publisher: <br>
-[tooled-app](https://clawhub.ai/user/tooled-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tooled-app](https://clawhub.ai/user/tooled-app)
 
-## Use Case: <br>
-External users, developers, and agent operators use Overwatch to keep agents visibly accountable during multi-step work, delays, retries, background tasks, and sub-agent activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Frequent status updates may reveal sensitive task state during confidential work. <br>
-Mitigation: Keep Overwatch subordinate to privacy, confidentiality, and safety instructions, and omit sensitive details from progress updates. <br>
-Risk: The skill may make agents overly verbose during routine work. <br>
-Mitigation: Prefer concise milestone, blocker, retry, and completion updates rather than repeating low-value status messages. <br>
+## Use Case:
 
+Developers and agent operators use this skill to require clear task-start, progress, error, retry, sub-agent, and completion updates during agent work.
 
-## Reference(s): <br>
-- [Overwatch on ClawHub](https://clawhub.ai/tooled-app/overwatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text and Markdown status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces progress updates, blocker notices, retry explanations, sub-agent status summaries, and completion reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill is always active and mandatory, which can conflict with workflows that require exact JSON, quiet tool execution, confidential operations, or minimal status output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope use to user-visible long-running work and require it to yield to higher-priority safety, privacy, and formatting requirements.
+
+Risk: Frequent progress messages can expose unnecessary operational details in sensitive workflows.
+
+Mitigation: Keep updates concise and avoid secrets, credentials, customer data, hidden reasoning, and backend details that do not help the user understand risk or progress.
+
+## Reference(s):
+
+- [Overwatch ClawHub skill page](https://clawhub.ai/tooled-app/skills/overwatch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and concise status-update templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing progress, error, retry, and completion updates; no tool calls or generated files are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

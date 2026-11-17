@@ -1,46 +1,58 @@
-## Description: <br>
-Dell Technologies skill for browsing PCs, servers, monitors, enterprise infrastructure, support options, and Dell purchase channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Dell product, purchasing-channel, warranty, and support reference guidance for PCs, servers, monitors, services, and enterprise infrastructure.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External ClawHub users use this skill to research Dell product lines, compare configuration considerations, find Dell support paths, and prepare purchases through Dell.com, Dell sales, or authorized resellers. Users should personally confirm final product, price, financing, shipping, and payment details before buying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide high-value hardware purchases or financing decisions where prices, terms, shipping details, and availability can change. <br>
-Mitigation: Confirm the exact product configuration, current price, financing terms, shipping details, and payment method directly with Dell or an authorized reseller before purchase. <br>
-Risk: Support workflows may require a Dell Service Tag, which identifies a specific device. <br>
-Mitigation: Share a Service Tag only when it is needed for support and only through Dell support channels. <br>
-Risk: The skill does not include executable code or payment authority, but users could still over-rely on its shopping guidance. <br>
-Mitigation: Treat its output as research and support guidance; do not grant standing credit-card authority or complete purchases without user confirmation. <br>
+## Use Case:
 
+External users and agents use this skill to understand Dell product categories, compare shopping considerations, and find official Dell sales, support, warranty, driver, and community channels. It is an informational guide and does not provide in-skill payment, ordering, or transaction authority.
 
-## Reference(s): <br>
-- [Dell](https://www.dell.com) <br>
-- [Dell Business Laptops](https://www.dell.com/en-us/shop/scc/sc/business-laptops) <br>
-- [Dell Product Support](https://www.dell.com/support/home/en-us) <br>
-- [Dell Drivers and Downloads](https://www.dell.com/support/home/en-us?app=drivers) <br>
-- [Dell Contact Support](https://www.dell.com/support/incidents-online/en-us/contactus/dynamic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown text with product guidance, tables, and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; may provide product, support, warranty, and purchase-channel guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill title and source description can imply purchase or payment capability, while security evidence says the skill is informational only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official Dell channels for current pricing, orders, financing, and support; do not treat this skill as a payment or ordering tool.
+
+Risk: Device Service Tags can identify a specific Dell system when used for support.
+
+Mitigation: Share Service Tags only when device-specific support is needed and only through official Dell support channels.
+
+## Reference(s):
+
+- [Dell](https://www.dell.com)
+- [Dell Business](https://www.dell.com/en-us/shop/scc/sc/business-laptops)
+- [Dell Product Support](https://www.dell.com/support/home/en-us)
+- [Dell Drivers and Downloads](https://www.dell.com/support/home/en-us?app=drivers)
+- [Dell Technical Support](https://www.dell.com/support/incidents-online/en-us/contactus/dynamic)
+- [Dell Community](https://www.dell.com/community)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference guidance with tables and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, persistence, or transaction authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 3.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

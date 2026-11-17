@@ -1,42 +1,59 @@
-## Description: <br>
-Use Playwright via Bash exec to fetch GasBuddy fuel prices for a target city or area, especially Toronto and North York, and return top station prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Playwright via Bash `exec` tool (not the built-in browser tool) to fetch GasBuddy fuel prices for a target city/area (especially Toronto/North York), and return top station prices.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-External users and developers use this skill to run local Playwright browser automation for GasBuddy station-price lookups and to return sorted fuel-price results for a requested city or area. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Playwright browser automation against GasBuddy pages. <br>
-Mitigation: Invoke it only for explicit GasBuddy or station-price lookup requests, review proposed scripts before execution, and avoid account credentials or browser profile data. <br>
-Risk: Fuel-price results can be incomplete or stale if the page challenge, lazy loading, or unavailable price placeholders prevent full station extraction. <br>
-Mitigation: Wait for the GasBuddy page title to indicate that loading has completed, scroll incrementally, and verify the sorted results before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to automate GasBuddy city price checks and return the cheapest regular fuel stations with brand, price, and address details.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mebusw/gasbuddy-browser) <br>
-- [GasBuddy North York gas prices](https://www.gasbuddy.com/gasprices/ontario/north-york) <br>
-- [GasBuddy Toronto gas prices](https://www.gasbuddy.com/gasprices/ontario/toronto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command guidance plus sorted station-price text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns brand, regular fuel price, and address for the cheapest available stations when page data loads successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow asks the agent to run local shell-driven Playwright automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated script before execution and run it only in a disposable or well-isolated environment.
+
+Risk: The Playwright launch template disables Chromium sandboxing.
+
+Mitigation: Prefer removing `--no-sandbox` and `--disable-setuid-sandbox` when the execution environment supports Chromium sandboxing.
+
+Risk: Fuel prices and station data are live website content and may be incomplete if lazy loading or page challenges do not resolve.
+
+Mitigation: Verify that enough station cards loaded and review the returned results before relying on the ranking.
+
+## Reference(s):
+
+- [GasBuddy North York gas prices](https://www.gasbuddy.com/gasprices/ontario/north-york)
+- [GasBuddy Toronto gas prices](https://www.gasbuddy.com/gasprices/ontario/toronto)
+- [ClawHub skill page](https://clawhub.ai/mebusw/skills/gasbuddy-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell-oriented execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a ranked list of fuel stations with brand, price, and address when the browsing workflow succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

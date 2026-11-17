@@ -7,7 +7,7 @@ import os
 
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
-# ========== 插头类型说明 ==========
+
 PLUG_TYPES = {
     "A": {"name": "A型(美标)", "pins": "两脚扁平", "voltage": "100-127V", "countries": "美国/日本/加拿大/台湾", "img_desc": "|| 两脚平行扁平"},
     "B": {"name": "B型(美标接地)", "pins": "两脚扁平+圆脚接地", "voltage": "100-127V", "countries": "美国/加拿大", "img_desc": "|o| 两脚扁平+中间圆脚"},

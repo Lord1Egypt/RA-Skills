@@ -1,42 +1,59 @@
-## Description: <br>
-Trades session-transition mean-reversion in 5-minute crypto "Up or Down" markets on Polymarket, fading directional bursts that occur during US, Asia, and Europe session opens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades session-transition mean-reversion in 5-minute crypto "Up or Down" markets on Polymarket, fading directional bursts that occur during US, Asia, and Europe session opens.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External agents and advanced trading users use this skill to discover short-duration crypto Up or Down markets on Polymarket, identify session-transition burst patterns, and generate paper-first or explicitly live trade execution decisions with configurable position limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket trades with USDC when run with the explicit live flag. <br>
-Mitigation: Use paper mode first, review thresholds and position limits, and run --live only when prepared for real trade execution and possible financial loss. <br>
-Risk: The skill requires SIMMER_API_KEY, which grants trading access through Simmer and its SDK. <br>
-Mitigation: Use a restricted or low-balance key where possible, store it securely, and avoid exposing it in logs, prompts, or shared configuration. <br>
+## Use Case:
 
+External users and developers use this skill to run or adapt a Polymarket trading agent that detects session-transition burst patterns in short-interval crypto markets and proposes or places mean-reversion fade trades. It defaults to paper trading and requires an explicit live flag before routing trades to Polymarket.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-micro-session-edge-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console text with configurable Python execution and Simmer trading API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket execution requires SIMMER_API_KEY and an explicit --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Live trading can place real USDC orders when --live is supplied, and the security summary says live-trading safety controls do not fully match the documented promises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, start in simulation mode, use a low-limit or simulation-only API key, and do not rely on the documented volume, threshold, or open-position limits to cap real exposure.
+
+Risk: The skill depends on the external simmer-sdk package for market discovery and trade execution.
+
+Mitigation: Pin or lock the SDK dependency before deployment and review dependency updates before enabling live trading.
+
+Risk: SIMMER_API_KEY grants trading authority and is treated as a high-value credential by the artifact documentation.
+
+Mitigation: Store the key in a managed secret store, scope it to the minimum required trading authority, and rotate it if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-micro-session-edge-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Trading actions]
+
+**Output Format:** [Console text with Simmer SDK trade requests and configurable environment variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; default execution uses simulation mode unless --live is supplied.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,63 @@
-## Description: <br>
-Downloads YouTube videos and clips key segments based on chapters or custom time ranges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads YouTube videos and automatically extracts key clips.
 
-## Publisher: <br>
-[bg1avd](https://clawhub.ai/user/bg1avd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bg1avd](https://clawhub.ai/user/bg1avd)
 
-## Use Case: <br>
-Developers and content operators use this skill to download public YouTube media, split it into chapter-based or manually defined clips, and save MP4 or MP3 outputs for downstream handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and processes media from YouTube URLs and writes the resulting files locally. <br>
-Mitigation: Use a dedicated output directory and review downloaded or clipped files before relying on or sharing them. <br>
-Risk: Raw downloaded videos may be deleted after clipping when cleanup is enabled. <br>
-Mitigation: Disable raw-file deletion or preserve a separate copy when the original download must be retained. <br>
-Risk: The release advertises QQ or Telegram delivery, but the reviewed behavior only prepares and lists clip paths for downstream handling. <br>
-Mitigation: Treat messaging-platform delivery as a manual or separately integrated step and verify files before sending them. <br>
+## Use Case:
 
+Developers and content operators use this skill to download public YouTube videos, split them into chapter-based or custom clips, and generate MP4 or MP3 outputs for delivery through QQ or Telegram.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bg1avd/youtube-downloader-skimmer) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Local media files with console status text and command-line options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces clipped MP4 or MP3 files in a local output directory; raw downloads may be deleted when cleanup is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: Generated media may be sent to QQ or Telegram by default without a clearly scoped opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable external delivery by default, use the none destination during review, and require explicit user confirmation before sending files to any platform.
+
+Risk: The raw downloaded video may be deleted by default after clipping.
+
+Mitigation: Make raw-file deletion explicit opt-in and retain source files until the user verifies the generated clips.
+
+Risk: Media tooling dependencies may change behavior across versions.
+
+Mitigation: Pin and review yt-dlp and ffmpeg versions before deployment.
+
+Risk: Video titles or chapter names may produce unsafe or confusing output filenames.
+
+Mitigation: Sanitize generated filenames before writing media files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bg1avd/skills/youtube-downloader-skimmer)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [MP4 or MP3 media files with console text listing generated clip paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written under the configured output directory, defaulting to /tmp/openclaw/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

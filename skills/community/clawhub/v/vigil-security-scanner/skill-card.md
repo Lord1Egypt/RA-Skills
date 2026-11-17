@@ -1,46 +1,61 @@
-## Description: <br>
-Onchain security scanner on Base that scans token approvals, detects honeypots, analyzes contracts for rugpull indicators, and scores contract safety through keyless read-only VIGIL API calls; revoke actions require separate Bankr authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onchain security scanner on Base - scan token approvals, detect honeypots, analyze contracts for rugpull indicators, and score contract safety.
 
-## Publisher: <br>
-[vigilcodes](https://clawhub.ai/user/vigilcodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vigilcodes](https://clawhub.ai/user/vigilcodes)
 
-## Use Case: <br>
-External DeFi users, developers, and wallet operators use this skill to inspect Base wallet approvals and token contracts before trading or interacting with contracts. It surfaces VIGIL risk signals such as honeypot behavior, rugpull indicators, deployer reputation, liquidity context, scam reports, and safety scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet and token addresses are sent to the hosted VIGIL service. <br>
-Mitigation: Use the skill only when sharing those addresses with the VIGIL service is acceptable. <br>
-Risk: The artifact bundles revoke and batch-revoke scripts that can initiate wallet-changing onchain actions even though normal scanning is framed as read-only. <br>
-Mitigation: Run revoke scripts only after explicit user intent is confirmed and Bankr read-write authentication is deliberately enabled. <br>
-Risk: The artifact includes reputation-reporting scripts that can submit external scam reports. <br>
-Mitigation: Run reporting scripts only when the user intends to submit a report and has verified the address and supporting evidence. <br>
+## Use Case:
 
+External DeFi users and developers use this skill to scan Base wallets and token contracts for risky approvals, honeypot behavior, rugpull indicators, market context, deployer reputation, scam reports, and safety scores before trading or auditing a wallet.
 
-## Reference(s): <br>
-- [VIGIL API Reference](artifact/references/api-reference.md) <br>
-- [VIGIL Bankr Integration Guide](artifact/references/bankr-integration.md) <br>
-- [VIGIL Contract Addresses](artifact/references/contracts.md) <br>
-- [VIGIL MCP Service](https://mcp.vigil.codes) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vigilcodes/vigil-security-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a single wallet or token contract address as input; read-only scans call the hosted VIGIL service, while bundled revoke and reporting scripts require intentional separate actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence.release.version) <br>
+Risk: The package includes revocation and scam-report scripts that can initiate state-changing workflows, even though the main skill is positioned as read-only scanning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the read-only scan scripts for normal audits. Separately review write scripts and require explicit user approval plus Bankr authentication before revocation or report submission.
+
+Risk: Remote VIGIL lookups send wallet or token addresses to the VIGIL service.
+
+Mitigation: Install and run the skill only when the user intends to trust VIGIL remote lookups for the target addresses being scanned.
+
+Risk: The bundled run script sources a local .env file before startup.
+
+Mitigation: Do not run scripts/run.sh with an untrusted .env file present; review environment variables and secrets before execution.
+
+## Reference(s):
+
+- [VIGIL API Reference](references/api-reference.md)
+- [VIGIL Bankr Integration Guide](references/bankr-integration.md)
+- [VIGIL Contract Addresses](references/contracts.md)
+- [ClawHub Skill Page](https://clawhub.ai/vigilcodes/skills/vigil-security-scanner)
+- [VIGIL MCP API Endpoint](https://mcp.vigil.codes/tools/call)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash snippets; script output is terminal text and JSON from the VIGIL API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a valid 0x address target. Read-only scans call the remote VIGIL endpoint; revoke and scam-report scripts are state-changing workflows that require separate approval.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

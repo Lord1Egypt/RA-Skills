@@ -1,47 +1,60 @@
-## Description: <br>
-Feishu File Manager helps agents read, download, and process files from Feishu Drive, including PDF, Word, PowerPoint, and Excel documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu File Manager helps agents read, download, and manage Feishu Drive files, including PDF, Word, PPT, and Excel content, by using Feishu tenant access tokens and Drive APIs.
 
-## Publisher: <br>
-[caspian9](https://clawhub.ai/user/caspian9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[caspian9](https://clawhub.ai/user/caspian9)
 
-## Use Case: <br>
-Developers and agents use this skill to access Feishu Drive links, retrieve tenant tokens, download shared cloud files, validate file or folder access, and parse downloaded office documents for user-facing analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill lists broader Feishu permissions than are needed for read and download workflows, including write-capable document scopes. <br>
-Mitigation: Use a dedicated Feishu app and grant only the minimum read, metadata, and download scopes required for the intended files. <br>
-Risk: Feishu app secrets and tenant access tokens are used to authenticate Drive API requests. <br>
-Mitigation: Keep app secrets and tenant tokens out of shared prompts, logs, and artifacts, rotate tokens when exposed, and rely on short token lifetimes. <br>
-Risk: Downloaded files may contain sensitive business data and are written to temporary local paths before parsing. <br>
-Mitigation: Delete temporary downloads after processing and avoid persisting extracted document contents unless the user explicitly requires it. <br>
-Risk: File access can fail when a file or folder has not been shared with the Feishu bot. <br>
-Mitigation: Validate file and folder access before processing and report authorization or missing-file errors without retrying with broader permissions by default. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caspian9/feishu-file-manager) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu Drive file download API](https://open.feishu.cn/open-apis/drive/v1/files/{file_token}/download) <br>
-- [Feishu Drive file metadata API](https://open.feishu.cn/open-apis/drive/v1/files/{file_token}) <br>
-- [Feishu Drive folder listing API](https://open.feishu.cn/open-apis/drive/v1/files?parent_node={folder_token}) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Feishu Drive files shared with an authorized Feishu app, download file content, parse common document formats, and return extracted content for analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with JSON, bash, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Feishu app credentials, tenant access tokens, file tokens, Drive API calls, local temporary downloads, and document parsing steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses local Feishu app secrets and tenant access tokens.
+
+Mitigation: Use a dedicated least-privilege Feishu app, redact app secrets and tenant tokens from logs, and refresh or revoke tokens according to Feishu policy.
+
+Risk: The documented scopes include broad and write-capable permissions for a mostly read and download workflow.
+
+Mitigation: Remove write and broad scopes unless they are explicitly needed; prefer read-only and download-specific Feishu permissions.
+
+Risk: Downloaded files may contain sensitive or unauthorized content.
+
+Mitigation: Only access files the user specifically identifies and is authorized to retrieve, and clean up downloaded files after processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caspian9/skills/feishu-file-manager)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Drive file download API](https://open.feishu.cn/open-apis/drive/v1/files/{file_token}/download)
+- [Feishu Drive file metadata API](https://open.feishu.cn/open-apis/drive/v1/files/{file_token})
+- [Feishu Drive folder listing API](https://open.feishu.cn/open-apis/drive/v1/files?parent_node={folder_token})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, Python, and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include downloaded-file handling guidance and parsed document text from Feishu Drive files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

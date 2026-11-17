@@ -1,39 +1,56 @@
-## Description: <br>
-A Yahoo Finance (yfinance) powered financial analysis tool that gets quotes, summarizes fundamentals, generates charts with technical indicators, and produces one-shot text and chart reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Info Explorer uses Yahoo Finance data through yfinance to fetch quotes, generate charts with technical indicators, summarize fundamentals, and create one-shot stock reports.
 
-## Publisher: <br>
-[kys42](https://clawhub.ai/user/kys42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kys42](https://clawhub.ai/user/kys42)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch Yahoo Finance market data, inspect prices and fundamentals, and generate local text summaries or chart files for ticker analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script that resolves third-party packages and sends ticker queries to Yahoo Finance through yfinance. <br>
-Mitigation: Review the script and package dependencies before use, and avoid submitting sensitive or proprietary ticker lists when that would be inappropriate. <br>
-Risk: Generated charts are saved under /tmp using ticker-based filenames and may overwrite existing files with the same name. <br>
-Mitigation: Move or rename important chart outputs after generation, or adjust the output path before repeated runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stock Info Explorer on ClawHub](https://clawhub.ai/kys42/stock-info-explorer) <br>
+## Use Case:
 
+External users and developers can use this skill to inspect ticker-level market information, compare recent price trends, generate technical-analysis charts, and produce concise stock reports from Yahoo Finance data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output is terminal text and PNG chart files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated chart paths are printed as CHART_PATH values and chart files are written under /tmp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.10 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs Python dependencies through uv.
+
+Mitigation: Run it in a normal user account or isolated environment and install only when the configured package index is trusted.
+
+Risk: Chart output uses predictable /tmp filenames and may overwrite an existing chart for the same ticker on shared machines.
+
+Mitigation: Review or move generated chart files after creation, and avoid relying on /tmp chart names for durable storage.
+
+Risk: Market data quality and coverage can vary by ticker, market, and Yahoo Finance availability.
+
+Mitigation: Treat outputs as analysis aids and verify important financial decisions against authoritative market data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kys42/skills/stock-info-explorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Terminal text and rich tables, ASCII trend charts, PNG chart files, and CHART_PATH lines for generated charts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated chart files are written under /tmp using ticker-derived filenames.]
+
+## Skill Version(s):
+
+1.2.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

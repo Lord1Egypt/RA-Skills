@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ptbrowser": {
+      "command": "node",
+      "args": [
+        "REPLACE_WITH_OFFICIAL_RUNTIME_DIRECTORY/scripts/ptbrowser-mcp.js"
+      ]
+    }
+  }
+}

@@ -1,47 +1,64 @@
-## Description: <br>
-Generate professional AI logos using ailogogenerator.online for logo, brand icon, app icon, favicon, and visual identity asset requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional logos, brand icons, app icons, favicons, and other visual identity assets through ailogogenerator.online.
 
-## Publisher: <br>
-[qq919006380](https://clawhub.ai/user/qq919006380) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq919006380](https://clawhub.ai/user/qq919006380)
 
-## Use Case: <br>
-External users and developers use this skill to gather logo requirements, authenticate with ailogogenerator.online, generate a logo through the service API, poll for completion, and save the resulting image locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logo prompts and branding details are sent to ailogogenerator.online. <br>
-Mitigation: Use the skill only with branding information that is appropriate to share with that third-party service. <br>
-Risk: The skill stores a long-lived service token at ~/.config/ailogogenerator.online/auth.json. <br>
-Mitigation: Delete the auth.json file to log out or rotate accounts, and avoid exposing the token in messages or logs. <br>
-Risk: Each logo generation spends 4 service credits and repeated variants can consume account credits. <br>
-Mitigation: Confirm generation intent and variant counts before running multiple generate-and-poll cycles. <br>
-Risk: Generated image files are saved to the current working directory. <br>
-Mitigation: Confirm the output location before saving files in sensitive or shared directories. <br>
+## Use Case:
 
+External users and developers use this skill in Claude Code to turn brand requirements into generated logo image files, including icons and visual identity assets. The skill handles login, generation requests, polling, and local download of the finished logo.
 
-## Reference(s): <br>
-- [AI Logo Generator ClawHub release](https://clawhub.ai/qq919006380/best-ai-logo-generator) <br>
-- [qq919006380 publisher profile](https://clawhub.ai/user/qq919006380) <br>
-- [ailogogenerator.online](https://ailogogenerator.online) <br>
-- [Claude Code CLI](https://claude.ai/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies, shell commands, and local PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are downloaded as local PNG files; each generation uses 4 service credits and requires an ailogogenerator.online authentication token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill sends logo prompts and brand details to ailogogenerator.online.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for information you are comfortable sharing with that third-party service, and avoid confidential brand plans or sensitive customer data.
+
+Risk: The skill stores and reuses a local bearer token.
+
+Mitigation: Keep ~/.config/ailogogenerator.online/auth.json protected, do not display or share the token, and delete the file to log out or rotate accounts.
+
+Risk: Each logo generation can spend service credits.
+
+Mitigation: Use explicit invocation and confirm generation parameters before making requests, especially for multiple variations.
+
+Risk: The skill downloads generated files into the working directory.
+
+Mitigation: Review the generated download URL and destination path before saving, and use descriptive filenames to avoid overwriting important files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qq919006380/skills/best-ai-logo-generator)
+- [Publisher profile](https://clawhub.ai/user/qq919006380)
+- [AI Logo Generator service](https://ailogogenerator.online)
+- [Claude Code CLI](https://claude.ai/code)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated PNG logo files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or reuses a local auth token at ~/.config/ailogogenerator.online/auth.json and saves generated logo images to the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,440 @@
+{
+  "schema_version": 2,
+  "name": "project-manager",
+  "version": "1.4.1",
+  "distribution": "history-free-snapshot",
+  "profile": "runtime",
+  "license": "MIT-0",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 927,
+      "sha256": "bc73695a9c27ca18c3683b077022f5f64fdf57bebe3a63a2d5fd6187a8ae6bb5"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1845,
+      "sha256": "c663ae76865526a000c5c373a64b8ab4223183b3eae6463ce485b009cedd08ab"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 1402,
+      "sha256": "7050eb6dce3ea43019cd25ce122fa7d5ccc708aab809de13c88ce54d0d0de183"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 9543,
+      "sha256": "50e7094047f9014d155d3132f237819cc61b1cff5dfe3c83d5c70dbd92863677"
+    },
+    {
+      "path": "VERSION",
+      "bytes": 6,
+      "sha256": "7d072b48526b023950e4c48db01e8c273554a6401119f5691e7589ba9bc65d9d"
+    },
+    {
+      "path": "docs/CHANGE-BASELINE-MANAGEMENT.md",
+      "bytes": 6185,
+      "sha256": "b427878a057c70d01c61e041e5e0f25f01fec3dea5a366c6bde55662e9f61d5c"
+    },
+    {
+      "path": "docs/INDUSTRIALIZATION-ROADMAP.md",
+      "bytes": 6864,
+      "sha256": "8665a93a00d4390194274369af368322b71ac5eb4e506c09dd95efe869342b08"
+    },
+    {
+      "path": "docs/INTAKE-COMPLIANCE.md",
+      "bytes": 9796,
+      "sha256": "d88e687ea4e1b365dce8200703944f01f71d51a5620988ec7d69aabd269c812f"
+    },
+    {
+      "path": "docs/MANAGEMENT-EXTENSIONS.md",
+      "bytes": 5488,
+      "sha256": "0e7a83d27b484c294576fbc82d35e3b7e36f1f7a7a8a84573341c447d9dc70cd"
+    },
+    {
+      "path": "docs/MILESTONE-MANAGEMENT.md",
+      "bytes": 8379,
+      "sha256": "ada21fbd2fe733c4da69a8320e84054fd9e98aac174d472d335840fcfb0f347f"
+    },
+    {
+      "path": "docs/REQUIREMENT-DATA-MODEL.md",
+      "bytes": 4538,
+      "sha256": "686966473a913b0a134e63f01e815a08dc2984c230a56bb98cb8aac2ed05e431"
+    },
+    {
+      "path": "docs/RISK-PROBLEM-MANAGEMENT.md",
+      "bytes": 10544,
+      "sha256": "126e92152f6f3a073ec7a571bbdeb26d9217a1b705806b378a07cf7a583b4dcf"
+    },
+    {
+      "path": "docs/SPICE-SCOPE.md",
+      "bytes": 3759,
+      "sha256": "a7ea326537a27eec487680f5b065b786f64e11971def476b911d44ade42ac1c7"
+    },
+    {
+      "path": "docs/VERIFICATION-EVIDENCE.md",
+      "bytes": 6565,
+      "sha256": "588e772df85e4876ddd0960612f1420535d090af8d3b2f97460c2379a4cf5b14"
+    },
+    {
+      "path": "references/agent-delegation.md",
+      "bytes": 3810,
+      "sha256": "bba11a6950f60248fad3130b246123515f309653f09e5979da123de937b2e63f"
+    },
+    {
+      "path": "references/cybersecurity-engineering.md",
+      "bytes": 1291,
+      "sha256": "3ff2afa188b61e8e5e2bcab1b58cc6b32bb861f9525a430b1171fd8c42ef49f9"
+    },
+    {
+      "path": "references/document-configuration-management.md",
+      "bytes": 9433,
+      "sha256": "1689ff49bc5ff031f14c2722f3cb29277e2a1f9da287a17836132389955700be"
+    },
+    {
+      "path": "references/execution-engine.md",
+      "bytes": 3337,
+      "sha256": "2683de809268e227e9a3a2251825c5eb4235efe21d1a442f5a38704d4d239db4"
+    },
+    {
+      "path": "references/hardware-engineering.md",
+      "bytes": 1554,
+      "sha256": "4a91e2836d6be9ae4482fddaa1decee414cd47b8147a6b2c1f417ffce5c4be01"
+    },
+    {
+      "path": "references/machine-learning-engineering.md",
+      "bytes": 1873,
+      "sha256": "605fb1cbe3ba5b5c751faed84a52c3b132e181a54f9fe1919916fecaec16ca8b"
+    },
+    {
+      "path": "references/mechanical-engineering.md",
+      "bytes": 1032,
+      "sha256": "6dec2abc1f6a24fc320d0a3a1b4547bb2ba1f59deee9a62874a07dcd463b0362"
+    },
+    {
+      "path": "references/project-initialization.md",
+      "bytes": 9592,
+      "sha256": "9a5935ad1981d22de53b34158c4fb6d40366562c151074f4228f18e5d0c3a51a"
+    },
+    {
+      "path": "references/project-manager-handbook.md",
+      "bytes": 38379,
+      "sha256": "d7491ede63fd053699cdfe95ceeb804816774d16e81e9abee4e146ccc16bb839"
+    },
+    {
+      "path": "references/software-engineering.md",
+      "bytes": 4224,
+      "sha256": "4b5b62847c199330c78622f0f8e41fafff7201010f2362916596dbcd317caf28"
+    },
+    {
+      "path": "references/system-engineering.md",
+      "bytes": 1281,
+      "sha256": "8e98c6dfb2c2019cc225e591909d222c45134d6d06554c2d36aa7d5b80243078"
+    },
+    {
+      "path": "scripts/baseline_manager.py",
+      "bytes": 20546,
+      "sha256": "46f98ba1b81a3103f00005380a604aad2dafd60441cbbb2cf9410a1a892d19ce"
+    },
+    {
+      "path": "scripts/bootstrap_project.py",
+      "bytes": 60176,
+      "sha256": "cb69533e5008a2ec877a0092417ac8cb50a6be99f6bf59cbf0d0982dced7adb6"
+    },
+    {
+      "path": "scripts/change_manager.py",
+      "bytes": 24418,
+      "sha256": "cb9e8b8cc99f9ff77a7bae6222a46132ce35ee391d1a2dc25fa09139bc3b69de"
+    },
+    {
+      "path": "scripts/compliance_manager.py",
+      "bytes": 15005,
+      "sha256": "1da8e47edf0c9115724140047892cde17cd5a8b53b425ef1311282d6f104c95e"
+    },
+    {
+      "path": "scripts/configuration_audit.py",
+      "bytes": 11678,
+      "sha256": "c3dd1eb0a2f3d60ed5b3bf95faea59f781a0bd56f0e78b24d2e388cde0193ee7"
+    },
+    {
+      "path": "scripts/delegation_plan.py",
+      "bytes": 8309,
+      "sha256": "04bf16433878da356a1cfb0784b32c111b7323af8d65ac6715e0084c4d7c9f50"
+    },
+    {
+      "path": "scripts/domain_audit.py",
+      "bytes": 50670,
+      "sha256": "4b5f04231cc4b78ad92278caaab7d838e7e567462fc6f5d3bb3a489f4f25e582"
+    },
+    {
+      "path": "scripts/intake_manager.py",
+      "bytes": 15358,
+      "sha256": "abf22a264fb825db169fbb6b01b16b00d36a4ca03cc87acaadca12d419924bcd"
+    },
+    {
+      "path": "scripts/management_audit.py",
+      "bytes": 4972,
+      "sha256": "483d95a25087d8aeb0da08c306606e950a42cc8128c3873c45adc231b6a476e2"
+    },
+    {
+      "path": "scripts/management_common.py",
+      "bytes": 18842,
+      "sha256": "6400ccec68bdc2c7eb27bfa174275c857447530726aca6ea34429fe671e9a037"
+    },
+    {
+      "path": "scripts/management_init.py",
+      "bytes": 2142,
+      "sha256": "5cdf56b8d15569ea887328dbd585a43d7d7bf589bb0fb70fa238f832ea47d78d"
+    },
+    {
+      "path": "scripts/migration_assess.py",
+      "bytes": 16748,
+      "sha256": "e87d8bc2e1ebc7ef8673fbb8ff9f45df64b80d1ee09bd4fdc6853ffae9cb6926"
+    },
+    {
+      "path": "scripts/milestone_manager.py",
+      "bytes": 26708,
+      "sha256": "ed6d4d66557b87ce598de261d4c531c51e9552a8b9e7120c9aec5de5e176a0d6"
+    },
+    {
+      "path": "scripts/pm_common.py",
+      "bytes": 13029,
+      "sha256": "71fe6cfa4aa8985678923c3c3933d8bb47453cc0003d0ce9d878da9ee1b2e5cd"
+    },
+    {
+      "path": "scripts/problem_manager.py",
+      "bytes": 15962,
+      "sha256": "927b6e96bb02d7130c01545f808c21b8772606000af90b226f8cde523462a60f"
+    },
+    {
+      "path": "scripts/project_audit.py",
+      "bytes": 6235,
+      "sha256": "afea222b7f780a33e7ddbc1cfa5d6b2ad3ed1ba771ce5795b0b82c5a1112537b"
+    },
+    {
+      "path": "scripts/project_report.py",
+      "bytes": 6847,
+      "sha256": "c875c7c6254eb3f8b885ab830b02ecf3856500403715e7bc0c3da7f7e899579e"
+    },
+    {
+      "path": "scripts/project_setup.py",
+      "bytes": 20119,
+      "sha256": "ddcd981227e1cddddadf34020a20387963cbe5667609957fdf071a1a7a2c6bfe"
+    },
+    {
+      "path": "scripts/project_state.py",
+      "bytes": 16605,
+      "sha256": "72ae0bd757ad801d21e4d0095b6946b5f56a361d97cbcb3affe94154510ca84e"
+    },
+    {
+      "path": "scripts/release_check.py",
+      "bytes": 3888,
+      "sha256": "3886c7c75beed9902bab3326ceeb157f79e7ab806e9e0efb36722c7202837824"
+    },
+    {
+      "path": "scripts/requirements_lint.py",
+      "bytes": 10069,
+      "sha256": "4c55be4167e6cb3bd333c17aebb344009f375542ebeb520c3ef7a5b2b49cd49e"
+    },
+    {
+      "path": "scripts/risk_manager.py",
+      "bytes": 17799,
+      "sha256": "66103f3a853ddc99a5558bf323fed8a515ac24f95e03150b175ba30f1a4e6d13"
+    },
+    {
+      "path": "scripts/traceability_check.py",
+      "bytes": 9670,
+      "sha256": "7e78a8ca4fb1d237ec6249dbb96c28cee7c2e24f09a673edad2d72f08eed7c93"
+    },
+    {
+      "path": "scripts/verification_evidence.py",
+      "bytes": 32346,
+      "sha256": "2b5987cb656e4e0db25617b479582802f15b3c02e8e1cfc90eceb8beeec8fb64"
+    },
+    {
+      "path": "scripts/verification_evidence_audit.py",
+      "bytes": 2978,
+      "sha256": "4545cf6eeea5ba87d4500922abe418eee4465046c95016ee71ea22b8de45ca57"
+    },
+    {
+      "path": "templates/ARCHITECTURE.md",
+      "bytes": 879,
+      "sha256": "71af5c44a0efc4e34675269124306909448f4c773f956577500bd3cdd6b3c938"
+    },
+    {
+      "path": "templates/BASELINE-RECORD.md",
+      "bytes": 602,
+      "sha256": "7966efb9289121244fafcb0a4d488e047ed7ca8da004b961526576e968236f98"
+    },
+    {
+      "path": "templates/CHANGE-REQUEST.md",
+      "bytes": 608,
+      "sha256": "1345ddd216bfae289924785879a7b3fd80a69a328f629404e2ac5b8443ee1429"
+    },
+    {
+      "path": "templates/CONFIGURATION-PLAN.md",
+      "bytes": 1747,
+      "sha256": "e3a44b5c080c22336af5454f53bc5d4028f11e4b5bd34dc0876000099317d4c2"
+    },
+    {
+      "path": "templates/CYBER-ARCHITECTURE.md",
+      "bytes": 2303,
+      "sha256": "488d50da3afdca7533ac165cf69f771bd39d8de8a34251d848478264c6e6f632"
+    },
+    {
+      "path": "templates/CYBER-SECURITY-PLAN.md",
+      "bytes": 2194,
+      "sha256": "f21c9a1c5a11989831654b1ff3e0caf132e46ac0adb69ad3ba1f6727b4e40eb3"
+    },
+    {
+      "path": "templates/CYBER-TEST-SPECIFICATION.md",
+      "bytes": 1419,
+      "sha256": "ff32adacaa5f962cc93abc4b45bf84ca8920b718624df1ba6ac08c3e33d463cf"
+    },
+    {
+      "path": "templates/CYBER-THREAT-MODEL.md",
+      "bytes": 1593,
+      "sha256": "48f5ab7e559742a79268e8bd81282fb844cf1a0932dc30a46328496ff6bf405e"
+    },
+    {
+      "path": "templates/CYBER-VERIFICATION-REPORT.md",
+      "bytes": 1525,
+      "sha256": "714581d3d1c36ee12a25e1311a7a36db1d55b87eb6548c44645ce441bafcdb23"
+    },
+    {
+      "path": "templates/DATA-CARD.md",
+      "bytes": 374,
+      "sha256": "80c7f92b015dd76ee837e97dceeb3b4027953a7d77f7abf1176a0d34f391cc89"
+    },
+    {
+      "path": "templates/DECISIONS.md",
+      "bytes": 1270,
+      "sha256": "1128a67d59edf671476ed53cbd65481af676c03aef2786cfd45f65fd60a3e2b4"
+    },
+    {
+      "path": "templates/DETAILED-DESIGN.md",
+      "bytes": 1010,
+      "sha256": "f1fdfab73e632b5273cf4d0a68a7e4f0b4da1752a9f7bca05eb0a47a8cc06a0a"
+    },
+    {
+      "path": "templates/EXECUTION-PLAN.md",
+      "bytes": 888,
+      "sha256": "c9531e51afa972fd8d3a3ef4273ce6e1fe3e2e796d2ea4ea92d478e472d792fa"
+    },
+    {
+      "path": "templates/INTERFACE-SPECIFICATION.md",
+      "bytes": 657,
+      "sha256": "09ebf9b5134fef2f63959cd1eea55f5a713c60cc75d7856689439c052b01cdb1"
+    },
+    {
+      "path": "templates/MECH-ARCHITECTURE.md",
+      "bytes": 1720,
+      "sha256": "e68c79667d3f535386d3a241eb7d183b34fbf62df33fdf40b8c962fcd0f9f0d3"
+    },
+    {
+      "path": "templates/MECH-ASSEMBLY-SPECIFICATION.md",
+      "bytes": 1400,
+      "sha256": "2146ef7d19def72ff8b1b1e494915bbdbe5b1cc0d974325f29cc8fffd310a94f"
+    },
+    {
+      "path": "templates/MECH-DETAILED-DESIGN.md",
+      "bytes": 1466,
+      "sha256": "d8bea7ec066b42022a1cdc11d8598964a205bb233640ba3d5b6dda8b7b974168"
+    },
+    {
+      "path": "templates/MECH-INTERFACE-SPECIFICATION.md",
+      "bytes": 1276,
+      "sha256": "18a50eb2e737128a0389c2bcaa1d5885765278d8f24fd0798f5ddddc5c678005"
+    },
+    {
+      "path": "templates/MECH-TEST-SPECIFICATION.md",
+      "bytes": 1349,
+      "sha256": "db3942cb0615bb582f8a30253742dab8fa2fa16451c7a3b5f583f3a163970ae2"
+    },
+    {
+      "path": "templates/MECH-VERIFICATION-REPORT.md",
+      "bytes": 1424,
+      "sha256": "1233a874166da0f2eb5567b22a3ae2d6d492856e63ad53d99a1a259c48aa8d05"
+    },
+    {
+      "path": "templates/MODEL-CARD.md",
+      "bytes": 568,
+      "sha256": "e4f98cbb05639b516acfc108965665542922a018bb3da6cca4343d61e171db64"
+    },
+    {
+      "path": "templates/PROBLEM-REPORT.md",
+      "bytes": 433,
+      "sha256": "9a3992484b5d7a44cd145351604650016d98448171daa1942bb05a8b3d128d5a"
+    },
+    {
+      "path": "templates/PROCESS-SCOPE.md",
+      "bytes": 937,
+      "sha256": "60afa6d87d9ffe678cbc8afde47e87a103f89eae28f37f36873958d21042b5ea"
+    },
+    {
+      "path": "templates/PROJECT.md",
+      "bytes": 832,
+      "sha256": "ebad9454829ecd3fbda6e0e363d3ded704e1d2ec47c3801b0e1f0c00434f48be"
+    },
+    {
+      "path": "templates/QA-PLAN.md",
+      "bytes": 529,
+      "sha256": "c0dd0af4aa01d81b844768485d50469990a6548094a6ac06745b6ccf6eaa53b2"
+    },
+    {
+      "path": "templates/README.md",
+      "bytes": 1416,
+      "sha256": "01e188a62f2a1d5d7a66de52c930b9cb9f5435f13e02d38deed84b6dc1a57b8e"
+    },
+    {
+      "path": "templates/RELEASE-NOTE.md",
+      "bytes": 325,
+      "sha256": "d04da49b37cbcfc818b10045a07acf78e8167dbf71877001b374f0fa68113f18"
+    },
+    {
+      "path": "templates/REQUIREMENTS-SPECIFICATION.md",
+      "bytes": 1340,
+      "sha256": "e2b013eb1672640c42b90d953fd833fa0034483befde75fae91cc2e7e510d52a"
+    },
+    {
+      "path": "templates/REVIEW-RECORD.md",
+      "bytes": 476,
+      "sha256": "a70ac02fa2b445e9ab0710ec7f6bda2a05cc04216c3dd1b2efcae534d737a452"
+    },
+    {
+      "path": "templates/RISK-REGISTER.md",
+      "bytes": 515,
+      "sha256": "ebe2ae7c9085f5051031658a83afe19de3ebe26e7202bd3b426a0f940f72d51d"
+    },
+    {
+      "path": "templates/STANDARDS.md",
+      "bytes": 1410,
+      "sha256": "436acd1fbabc1e8417cf5910fe7cf7ca333a0644244f7f22d06bab5f7ca21636"
+    },
+    {
+      "path": "templates/STATUS.md",
+      "bytes": 1795,
+      "sha256": "061c1a5540c86317c4dd59bc051b702dba53641270523ea80839306c364e6732"
+    },
+    {
+      "path": "templates/TEST-SPECIFICATION.md",
+      "bytes": 1246,
+      "sha256": "2c023fb0fc3c0bf048e45539a809aad5cc0016a3903d18961d1a6e129b6c17ee"
+    },
+    {
+      "path": "templates/TRACEABILITY.md",
+      "bytes": 611,
+      "sha256": "d73d20aa63f2ff530a6a00f9583f3875fbfd75997fed91f2d4190c81898faf91"
+    },
+    {
+      "path": "templates/VERIFICATION-REPORT.md",
+      "bytes": 404,
+      "sha256": "fd517a497b6b8acd6ad30051b0137fc7ebfe3680a63adfaf1e1404b943e3f63f"
+    },
+    {
+      "path": "templates/project-setup.example.json",
+      "bytes": 1540,
+      "sha256": "1ec55794b5021d181b67e1a68f404d46e2a803bfe40a9363a623eb47910ab50f"
+    }
+  ]
+}

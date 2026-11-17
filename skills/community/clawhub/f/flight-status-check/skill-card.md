@@ -1,42 +1,64 @@
-## Description: <br>
-This release is published as a flight-status checker, but the submitted artifact describes and implements a hotel aggregation assistant for searching, comparing, and formatting hotel results across multiple travel platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+酒店聚合助手，整合分贝通、携程、美团、同程、华住会、锦江等多个酒店数据源，提供统一的酒店搜索、房型查询、预订服务。
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users or agents would use the artifact for hotel search aggregation, price comparison, and formatted hotel-result summaries. It should not be treated as a flight-status checker unless the publisher replaces or clarifies the submitted implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public identity advertises a flight-status checker while the submitted artifact implements hotel aggregation behavior. <br>
-Mitigation: Review the package before installing and use it only if the intended task is hotel search or aggregation. <br>
-Risk: The skill claims real-time hotel data and booking capabilities, while the visible provider search methods are placeholders. <br>
-Mitigation: Verify working provider integrations and data-source authorization before relying on search results, prices, availability, or booking flows. <br>
-Risk: Hotel searches and booking flows may involve location, travel dates, and other user-provided travel details sent to external services. <br>
-Mitigation: Confirm privacy terms, user consent, and data handling requirements before enabling external searches or bookings. <br>
+## Use Case:
 
+Travel agents, business travelers, and travel-support workflows can use this skill to request hotel searches, compare room and price data across named Chinese travel platforms, and format aggregated hotel results. Release metadata names the skill as flight-status related, but the artifact evidence describes hotel aggregation behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/flight-status-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API calls] <br>
-**Output Format:** [JSON responses and Markdown-style tabular summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; visible provider integrations are placeholders and should be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The release metadata names a flight-status skill while the artifact implements hotel aggregation, which can mislead users about the skill's purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release title, slug, and public description before publication so they match the packaged artifact.
+
+Risk: Security evidence says the skill overstates real provider search, room lookup, price comparison, and booking capabilities.
+
+Mitigation: Present the skill as unfinished until live provider integrations are implemented and verified.
+
+Risk: Future real provider calls may disclose travel-search details to third-party platforms.
+
+Mitigation: Document which hotel platforms receive user search details and require review of platform-specific data handling before enabling live calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/flight-status-check)
+- [Publisher profile](https://clawhub.ai/user/ryan-zry)
+- [Fenbeitong OpenAPI endpoint](https://openapiv2.fenbeitong.com)
+- [Ctrip API endpoint](https://api.ctrip.com)
+- [Meituan API endpoint](https://api.meituan.com)
+- [Tongcheng API endpoint](https://api.tongcheng.com)
+- [Huazhu API endpoint](https://api.huazhu.com)
+- [Jinjiang API endpoint](https://api.jinjiang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API Calls, guidance]
+
+**Output Format:** [Markdown tables, JSON-like result objects, and function-call responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; current provider-search implementations return empty results until real platform API integrations are completed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

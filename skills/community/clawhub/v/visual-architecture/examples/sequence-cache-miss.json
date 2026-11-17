@@ -1,0 +1,19 @@
+{
+  "mode": "sequence",
+  "title": "Cache Miss Request Sequence",
+  "summary": "A single request path shows cache lookup, database fallback, and response return.",
+  "nodes": [
+    { "id": "browser", "label": "Browser", "subtitle": "caller", "kind": "service", "x": 120, "y": 160 },
+    { "id": "api", "label": "API", "subtitle": "request handler", "kind": "service", "x": 360, "y": 160 },
+    { "id": "cache", "label": "Redis", "subtitle": "miss", "kind": "memory", "x": 600, "y": 160 },
+    { "id": "db", "label": "Postgres", "subtitle": "fallback read", "kind": "memory", "x": 840, "y": 160 },
+    { "id": "response", "label": "Response", "subtitle": "200 + body", "kind": "service", "x": 360, "y": 320 }
+  ],
+  "edges": [
+    { "from": "browser", "to": "api", "kind": "primary-data", "label": "GET /item", "label_offset": [0, -28] },
+    { "from": "api", "to": "cache", "kind": "primary-data", "label": "lookup", "label_offset": [0, -28] },
+    { "from": "cache", "to": "db", "kind": "control", "label": "miss", "label_offset": [0, -28] },
+    { "from": "db", "to": "response", "kind": "primary-data", "label": "row", "source_side": "bottom", "target_side": "right", "via": [{ "x": 840, "y": 320 }, { "x": 480, "y": 320 }], "label_segment": 1 },
+    { "from": "response", "to": "browser", "kind": "primary-data", "label": "return", "source_side": "left", "target_side": "bottom" }
+  ]
+}

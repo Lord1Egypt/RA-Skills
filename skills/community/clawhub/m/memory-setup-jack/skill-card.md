@@ -1,40 +1,52 @@
-## Description: <br>
-Enable and configure Moltbot/Clawdbot memory search for persistent context, including MEMORY.md, daily logs, and vector search setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable and configure Moltbot/Clawdbot memory search for persistent context.
 
-## Publisher: <br>
-[Jackwang2999](https://clawhub.ai/user/Jackwang2999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jackwang2999](https://clawhub.ai/user/jackwang2999)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to configure persistent memory search, create memory files, tune memorySearch settings, and troubleshoot provider or recall issues in Moltbot/Clawdbot.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The recommended memorySearch defaults may index private memory files and past chat transcripts through cloud embedding providers.
+
+Mitigation: Review memory files and old session transcripts for secrets, credentials, personal data, and confidential project details before enabling indexing.
+
+Risk: Cloud embedding providers may receive private or regulated data from indexed memory sources.
+
+Mitigation: Prefer the local provider or limit sources to curated memory files when private or regulated data should not leave the machine.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure persistent memory search for Moltbot/Clawdbot workspaces, create memory file structure, and troubleshoot recall behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory search can index past conversation transcripts and personal workspace context. <br>
-Mitigation: Review which sources are enabled, avoid storing secrets or regulated data in memory files, and only index transcripts that are appropriate for the workspace. <br>
-Risk: External embedding providers may process memory content when configured. <br>
-Mitigation: Prefer the local provider for sensitive workspaces, or review provider data handling before enabling Voyage or OpenAI embeddings. <br>
+**Output Format:** [Markdown with JSON, Markdown, and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jackwang2999/memory-setup-jack) <br>
+**Other Properties Related to Output:** [Guidance may include configuration that indexes memory files and past session transcripts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration instructions, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON, markdown, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance for configuring memory search and memory files.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

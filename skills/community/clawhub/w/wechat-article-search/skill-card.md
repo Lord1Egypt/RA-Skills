@@ -1,37 +1,57 @@
-## Description: <br>
-Searches WeChat official-account articles through Sogou/Weixin and returns matching titles, summaries, publish times, source accounts, and links. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Searches WeChat public-account articles by keyword and returns article titles, summaries, publication times, source account names, and links.
 
-## Publisher: <br>
-[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018)
 
-## Use Case: <br>
-Researchers, analysts, and Chinese-language content reviewers use this skill to find WeChat official-account articles by keyword and collect article metadata for reference gathering. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wuchubuzai2018/wechat-article-search) <br>
-- [Sogou Weixin search](https://weixin.sogou.com/) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script output is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save results to a JSON file and optionally resolve WeChat article URLs with additional requests.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+External users and researchers use this skill to search WeChat public-account articles by keyword and collect titles, summaries, dates, source account names, and links for reference gathering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scraping-style requests and optional real-URL resolution may violate site rules, trigger anti-scraping controls, or expose the running environment to unnecessary outbound requests.
+
+Mitigation: Use the skill only for explicit, limited WeChat article searches; review applicable site terms; avoid large-scale crawling; and enable real-URL resolution only when needed.
+
+Risk: The artifact recommends a global npm installation for the cheerio dependency, which can make dependency versions harder to review and reproduce.
+
+Mitigation: Prefer a project-local, pinned dependency installation and review the dependency source and lockfile before running the script.
+
+Risk: Weak URL validation can make resolved links and outbound requests more influenced by remote page content.
+
+Mitigation: Run the skill in a constrained environment, inspect returned links before opening them, and avoid resolving real URLs unless the workflow requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/skills/wechat-article-search)
+- [Sogou Weixin Search](https://weixin.sogou.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON search results and concise Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally write search results to a JSON file when the output option is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

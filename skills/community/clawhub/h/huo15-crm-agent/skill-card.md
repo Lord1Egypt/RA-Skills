@@ -1,46 +1,60 @@
-## Description: <br>
-Huo15 Crm Agent supports CRM sales work for finance and tax services by scoring leads, building customer briefs, generating sales pitches and follow-up plans, scanning industry timing hooks, searching Qichacha company data, retrieving company details, and identifying intent signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A CRM sales assistant for finance and tax prospecting that scores leads, researches companies through Qichacha, identifies intent signals, drafts sales pitches, and proposes follow-up actions.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Sales and CRM users use this skill to prioritize finance and tax service prospects, draft customer-facing outreach, plan follow-up activity, and prepare CRM action drafts for review. It can enrich prospect work with Qichacha company search and detail data when the user configures Qichacha credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Qichacha-backed tools send company search terms and detail identifiers to an external enrichment provider when credentials are configured. <br>
-Mitigation: Configure Qichacha credentials only in approved environments and avoid sending confidential prospect data beyond the identifiers needed for enrichment. <br>
-Risk: The skill can generate CRM and messaging nextActions that may create leads, schedule activities, post notes, or send outreach if another plugin executes them. <br>
-Mitigation: Review every generated nextActions draft before allowing Odoo or messaging plugins to execute it. <br>
-Risk: Documentation contains an outdated no-network claim while the security evidence confirms Qichacha features make external API calls. <br>
-Mitigation: Treat the security evidence as authoritative and document external Qichacha calls during deployment review. <br>
+## Use Case:
 
+Sales teams and developers use this skill to support finance and tax CRM workflows: finding prospects, scoring leads, preparing customer briefs, drafting outreach, and planning follow-up tasks before CRM write or messaging actions are executed by other installed tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-crm-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/zhaobod1) <br>
-- [Qichacha OpenAPI](https://openapi.qcc.com/) <br>
-- [Huo15 Huihuoyun Odoo package](https://www.npmjs.com/package/@huo15/huo15-huihuoyun-odoo) <br>
-- [Prospect research notes](docs/v02-prospect-research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured text or JSON-like tool results containing lead scores, briefs, pitch variants, follow-up plans, intent signals, and proposed nextActions for user review.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Qichacha-backed company search and detail tools require user-supplied Qichacha credentials; CRM and messaging actions are emitted as drafts for confirmation rather than executed directly by this skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server evidence, frontmatter, package.json, CHANGELOG) <br>
+Risk: Qichacha API credentials could be sent to a configured endpoint that is not the official service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the official HTTPS Qichacha endpoint unless a private endpoint is fully trusted and controlled.
+
+Risk: Stored Qichacha key and secret values could be exposed or reused outside the intended environment.
+
+Mitigation: Protect the key and secret as credentials, restrict access to plugin configuration, and rotate them if exposure is suspected.
+
+Risk: Draft next actions could lead to bulk CRM creation, email, or group-message workflows if executed without review.
+
+Mitigation: Preview proposed arguments and require explicit user confirmation before companion tools perform CRM writes or messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-crm-agent)
+- [Qichacha OpenAPI](https://openapi.qcc.com/)
+- [@huo15/huo15-huihuoyun-odoo](https://www.npmjs.com/package/@huo15/huo15-huihuoyun-odoo)
+- [Prospect research notes](artifact/docs/v02-prospect-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured tool responses with lead scores, company details, intent signal summaries, sales briefs, pitch variants, follow-up plans, next-action drafts, and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Company search and detail lookup require user-provided Qichacha credentials. CRM write, email, and group-message actions are proposed as drafts and require explicit user confirmation before execution by companion tools.]
+
+## Skill Version(s):
+
+0.2.1 (source: SKILL.md frontmatter, package.json, openclaw.plugin.json, changelog, evidence release; released 2026-05-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

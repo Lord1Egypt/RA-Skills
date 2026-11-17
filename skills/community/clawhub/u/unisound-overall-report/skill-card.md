@@ -1,43 +1,59 @@
-## Description: <br>
-Interprets complete physical-exam reports and returns an overall health grade, key findings with severity, prioritized actions, lifestyle recommendations, JSON output, and a plain-language explanation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+体检报告整体解读。输入完整体检报告文本，输出整体健康评级、主要发现（含严重程度）、优先行动清单和个性化生活方式建议（JSON + 通俗易懂的整体解读）。
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External health-management teams and physical-exam centers use this skill to turn complete exam-report text into a structured overall interpretation, priority follow-up actions, and recipient-facing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical report contents are sent to a remote model endpoint. <br>
-Mitigation: Use only with an approved endpoint and key, and remove names, IDs, phone numbers, and other identifiers before running the skill. <br>
-Risk: The security evidence says the code does not perform the de-identification claimed by the skill text. <br>
-Mitigation: De-identify reports before invoking the skill; do not rely on the skill code to anonymize patient data. <br>
-Risk: The output could be mistaken for a medical diagnosis. <br>
-Mitigation: Treat the result as health-management guidance and route abnormal or urgent findings to licensed medical professionals. <br>
+## Use Case:
 
+External health management teams and exam centers use this skill to turn complete health examination report text into an overall health rating, prioritized findings, follow-up actions, lifestyle guidance, and a plain-language explanation for the examined person.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-overall-report) <br>
-- [Configured model API base](https://maas-api.hivoice.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON followed by a plain-language interpretation; optionally written to a file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a physical-exam report input file and an appkey for the configured remote medical model endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Medical report text may be sent to a remote model despite the skill documentation claiming de-identification before model calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only redacted or minimized reports until the implementation is fixed and reviewed for effective de-identification.
+
+Risk: The API base URL can be overridden, which could route sensitive report content to an untrusted endpoint.
+
+Mitigation: Do not override --base unless the endpoint is explicitly trusted and approved for the data being processed.
+
+Risk: Health report interpretations can be incomplete or incorrect and are not a medical diagnosis.
+
+Mitigation: Present the output as health-management support and require review by a qualified clinician for abnormal findings or medical decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-overall-report)
+- [ClawHub publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Hivoice MAAS API base URL](https://maas-api.hivoice.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON followed by a plain-language Markdown-style narrative section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs an overall grade, summary, key findings, normal systems, priority actions, lifestyle advice, next-exam suggestion, and an explanatory narrative.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

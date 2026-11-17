@@ -1,42 +1,55 @@
-## Description: <br>
-Notion API for creating and managing pages, databases, and blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion API for creating and managing pages, databases, and blocks.
 
-## Publisher: <br>
-[qfish](https://clawhub.ai/user/qfish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qfish](https://clawhub.ai/user/qfish)
 
-## Use Case: <br>
-Developers and agents use this skill to issue Notion API requests for creating, reading, updating, and querying pages, data sources, and blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Notion integration token that can access shared workspace content. <br>
-Mitigation: Use a dedicated Notion integration, share only the pages or data sources the agent should access, and keep the local API key file private. <br>
-Risk: Create, update, and add-block examples can modify Notion workspace content. <br>
-Mitigation: Review write requests before running them, especially page creation, property updates, and block append operations. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to create, read, update, and query Notion pages, data sources, and blocks through the Notion API.
 
-## Reference(s): <br>
-- [Notion API documentation](https://developers.notion.com) <br>
-- [Notion integrations](https://notion.so/my-integrations) <br>
-- [ClawHub skill page](https://clawhub.ai/qfish/notion-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Notion API key file and emits curl request patterns for Notion API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A long-lived Notion token may be stored in local plaintext without permission safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create a narrowly scoped Notion integration, share only required pages or data sources, store the token with owner-only permissions or a secret manager, avoid exposing it in shell history, and rotate it if exposure is suspected.
+
+Risk: API commands can read or change connected Notion pages, data sources, and blocks.
+
+Mitigation: Review target IDs and request payloads before execution, and test commands against non-sensitive workspace content first.
+
+## Reference(s):
+
+- [Notion API documentation](https://developers.notion.com)
+- [Notion integration setup](https://notion.so/my-integrations)
+- [ClawHub skill release](https://clawhub.ai/qfish/skills/notion-test)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes curl examples for Notion API requests; does not generate files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

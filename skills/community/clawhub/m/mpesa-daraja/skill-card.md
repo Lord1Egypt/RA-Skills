@@ -1,47 +1,69 @@
-## Description: <br>
-Advisory reference for Safaricom M-Pesa Daraja integration planning, reviews, sandbox testing, callbacks, reconciliation, and production-readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advisory reference for Safaricom M-Pesa Daraja integration planning, reviews, sandbox testing, callbacks, reconciliation, and production-readiness.
 
-## Publisher: <br>
-[nevilpaulo](https://clawhub.ai/user/nevilpaulo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nevilpaulo](https://clawhub.ai/user/nevilpaulo)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, implement, review, test, and prepare Safaricom M-Pesa Daraja integrations without giving the agent authority to move money. It focuses on sandbox-first payment flows, callback idempotency, masked logging, reconciliation, and production-readiness checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment-sensitive generated code could expose credentials, personal data, transaction identifiers, or real payment behavior if used without review. <br>
-Mitigation: Keep real Daraja credentials out of repositories, use sandbox endpoints by default, require explicit approval before live payment actions, and review callback storage and logs for personal or transaction data exposure. <br>
-Risk: Callbacks and reconciliation can create duplicate fulfillment or ambiguous payment states if they are not idempotent. <br>
-Mitigation: Validate callback shape, persist events safely, deduplicate by Daraja identifiers such as CheckoutRequestID, ConversationID, or TransactionID, and maintain a manual reconciliation path. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, review, test, and prepare Safaricom M-Pesa Daraja payment integrations. It focuses on sandbox-first workflows, callback handling, reconciliation, and production-readiness guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nevilpaulo/mpesa-daraja) <br>
-- [Publisher profile](https://clawhub.ai/user/nevilpaulo) <br>
-- [Daraja Endpoint Reference](references/api-endpoints.md) <br>
-- [STK Push / Lipa na M-Pesa Online](references/stk-push.md) <br>
-- [Production Readiness](references/production-readiness.md) <br>
-- [M-Pesa Daraja Test Cases](references/test-cases.md) <br>
-- [M-Pesa Daraja Examples](references/examples.md) <br>
-- [Safaricom Daraja developer portal](https://developer.safaricom.co.ke/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with code snippets, configuration examples, review findings, test plans, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only outputs; generated implementation should be reviewed before use with live payment systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: frontmatter and server release evidence) <br>
+Risk: Payment-integration guidance could be applied to live payment, payout, reversal, or customer-facing flows without sufficient approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any live Daraja request and default to sandbox endpoints and placeholder configuration.
+
+Risk: Real Daraja credentials, phone numbers, transaction IDs, receipt numbers, or callback payloads could leak through generated examples, logs, or committed files.
+
+Mitigation: Keep sensitive values in protected deployment settings, use placeholders in examples, and mask payment and personal data in logs.
+
+Risk: Callback retries or duplicate Daraja events could double-credit or incorrectly transition payment state.
+
+Mitigation: Persist callbacks durably, deduplicate by Daraja request and transaction identifiers, and couple fulfillment to confirmed idempotent state transitions.
+
+Risk: Endpoint names, versions, fields, or sandbox behavior may drift from the bundled reference snapshot.
+
+Mitigation: Verify current Safaricom Daraja documentation before production work or skill updates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nevilpaulo/skills/mpesa-daraja)
+- [Daraja Endpoint Reference](references/api-endpoints.md)
+- [M-Pesa Daraja Examples](references/examples.md)
+- [STK Push / Lipa na M-Pesa Online](references/stk-push.md)
+- [Production Readiness](references/production-readiness.md)
+- [M-Pesa Daraja Test Cases](references/test-cases.md)
+- [Skill Maintenance](references/maintenance.md)
+- [Safaricom Daraja Developer Portal](https://developer.safaricom.co.ke/)
+- [Safaricom Developer API Catalogue](https://developer.safaricom.co.ke/api/graphql)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; live payment, payout, reversal, or customer-facing requests require explicit approval.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

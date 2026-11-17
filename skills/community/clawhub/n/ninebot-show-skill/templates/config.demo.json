@@ -1,0 +1,12 @@
+{
+  "ninebot": {
+    "sn": "2ZZZH2333E2333",
+    "full_range": 80,
+    "vehicle_name": "ZzzHe2333",
+    "vehicle_model": "Mz MIX 2025"
+  },
+  "location": "上海",
+  "timezone": "Asia/Shanghai",
+  "privacy_mode": "district",
+  "weather_enabled": true
+}

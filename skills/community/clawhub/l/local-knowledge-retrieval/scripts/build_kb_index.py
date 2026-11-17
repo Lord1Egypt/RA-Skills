@@ -19,6 +19,7 @@ import sys
 import json
 import re
 import argparse
+import hashlib
 from pathlib import Path
 from collections import defaultdict
 
@@ -69,6 +70,16 @@ def _extract_pptx_text(pptx_path: Path) -> str:
         texts = []
         prs = Presentation(str(pptx_path))
         for slide in prs.slides:
+            # Notes belong to the slide.  Checking hasattr(s, "notes_slide")
+            # inside the shape walk can match shape-level proxy properties and
+            # duplicate or misattribute notes.
+            try:
+                if slide.has_notes_slide:
+                    notes = slide.notes_slide.notes_text_frame.text.strip()
+                    if notes:
+                        texts.append("[NOTES] " + notes)
+            except Exception:
+                pass
             for shape in slide.shapes:
                 # Recursively handle GroupShape
                 def _collect_text(s):
@@ -77,13 +88,6 @@ def _extract_pptx_text(pptx_path: Path) -> str:
                             t = para.text.strip()
                             if t:
                                 texts.append(t)
-                    if hasattr(s, "notes_slide"):
-                        try:
-                            notes = s.notes_slide.notes_text_frame.text.strip()
-                            if notes:
-                                texts.append("[NOTES] " + notes)
-                        except Exception:
-                            pass
                     if hasattr(s, "shapes"):  # GroupShape
                         for child in s.shapes:
                             _collect_text(child)
@@ -116,11 +120,102 @@ def parse_data_structure(md_path: Path) -> dict | None:
     return {"actual_location": None}
 
 
+def resolve_project_dir(project_name: str, kb_root: Path = KB_ROOT) -> Path:
+    """Return one non-symlink direct child of KB root, never a traversal path."""
+    candidate_name = Path(project_name)
+    if (
+        not project_name
+        or candidate_name.is_absolute()
+        or candidate_name.name != project_name
+        or project_name in {".", ".."}
+    ):
+        raise ValueError("project must be a direct knowledge-base folder name")
+
+    root = kb_root.resolve()
+    candidate = (root / project_name).resolve()
+    try:
+        candidate.relative_to(root)
+    except ValueError as exc:
+        raise ValueError("project resolves outside knowledge-base") from exc
+    if candidate.parent != root or not candidate.is_dir() or (root / project_name).is_symlink():
+        raise ValueError("project must be an existing non-symlink direct knowledge-base folder")
+    return candidate
+
+
+def resolve_authorized_source(location: str) -> Path:
+    """Resolve an existing source directory without accepting a symlink root."""
+    source = Path(location).expanduser()
+    if not location or source.is_symlink() or not source.is_dir():
+        raise ValueError("source must be an existing non-symlink directory")
+    return source.resolve()
+
+
+def load_authorized_source(kb_dir: Path, location: str | None) -> Path:
+    """Require the approval manifest written during project authorization."""
+    manifest_path = kb_dir / "source_manifest.json"
+    if not manifest_path.exists():
+        raise ValueError("source authorization manifest is missing; request project authorization first")
+    try:
+        approved = json.loads(manifest_path.read_text(encoding="utf-8")).get("source_path")
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError("source authorization manifest is unreadable") from exc
+    source = resolve_authorized_source(location or "")
+    if not approved or source != Path(approved).expanduser().resolve():
+        raise ValueError("data_structure source does not match the authorized source manifest")
+    return source
+
+
+def cache_paths(cache_dir: Path, rel_path: Path) -> tuple[Path, Path]:
+    """Create collision-free cache names from the project-relative path."""
+    digest = hashlib.sha256(rel_path.as_posix().encode("utf-8")).hexdigest()[:20]
+    stem = f"document-{digest}"
+    return cache_dir / f"{stem}.txt", cache_dir / f"{stem}.json"
+
+
+def read_valid_cache(source_file: Path, project_root: Path, cache_dir: Path) -> str | None:
+    rel_path = source_file.relative_to(project_root)
+    cache_file, metadata_file = cache_paths(cache_dir, rel_path)
+    if not cache_file.exists() or not metadata_file.exists():
+        return None
+    try:
+        metadata = json.loads(metadata_file.read_text(encoding="utf-8"))
+        stat = source_file.stat()
+        if metadata != {
+            "rel_path": rel_path.as_posix(),
+            "size": stat.st_size,
+            "mtime": stat.st_mtime,
+        }:
+            return None
+        return cache_file.read_text(encoding="utf-8", errors="replace")
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def write_cache(source_file: Path, project_root: Path, cache_dir: Path, content: str) -> None:
+    rel_path = source_file.relative_to(project_root)
+    cache_file, metadata_file = cache_paths(cache_dir, rel_path)
+    stat = source_file.stat()
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cache_file.write_text(content, encoding="utf-8")
+    metadata_file.write_text(
+        json.dumps(
+            {"rel_path": rel_path.as_posix(), "size": stat.st_size, "mtime": stat.st_mtime},
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+
 def scan_project_files(project_root: Path, cache_dir: Path) -> list[dict]:
     """Scan directory for indexable files, extracting content for BM25 indexing."""
     files = []
     for entry in sorted(project_root.rglob("*")):
-        if not entry.is_file():
+        if entry.is_symlink() or not entry.is_file():
+            continue
+        resolved_entry = entry.resolve()
+        try:
+            resolved_entry.relative_to(project_root)
+        except ValueError:
             continue
         rel = entry.relative_to(project_root)
         parts = rel.parts
@@ -138,7 +233,7 @@ def scan_project_files(project_root: Path, cache_dir: Path) -> list[dict]:
             continue
 
         info = {
-            "path": str(entry.resolve()),
+            "path": str(resolved_entry),
             "rel_path": str(rel),
             "name": entry.name,
             "suffix": entry.suffix.lower(),
@@ -154,12 +249,9 @@ def scan_project_files(project_root: Path, cache_dir: Path) -> list[dict]:
             except Exception:
                 pass
         elif suf in NON_TEXT_EXTENSIONS:
-            cache_file = cache_dir / f"{entry.stem}.txt"
-            if cache_file.exists():
-                try:
-                    info["content"] = cache_file.read_text(encoding="utf-8", errors="replace")
-                except Exception:
-                    pass
+            cached = read_valid_cache(entry, project_root, cache_dir)
+            if cached is not None:
+                info["content"] = cached
             else:
                 # Extract directly if no cache exists yet
                 extracted = ""
@@ -178,8 +270,7 @@ def scan_project_files(project_root: Path, cache_dir: Path) -> list[dict]:
                     info["content"] = extracted
                     # Write to cache for Phase B reuse
                     try:
-                        cache_dir.mkdir(parents=True, exist_ok=True)
-                        cache_file.write_text(extracted, encoding="utf-8")
+                        write_cache(entry, project_root, cache_dir, extracted)
                     except Exception:
                         pass
 
@@ -210,13 +301,15 @@ def build_index_for_project(project_name: str, kb_dir: Path) -> dict:
 
     # Determine source directory
     loc = info.get("actual_location")
-    project_root = Path(loc) if loc and os.path.exists(loc) else None
+    try:
+        project_root = load_authorized_source(kb_dir, loc)
+    except ValueError as exc:
+        return {"project": project_name, "status": "no_files", "reason": str(exc)}
 
     # Scan files
     all_files = []
-    if project_root and project_root.exists():
-        cache_dir = kb_dir / "cache"
-        all_files = scan_project_files(project_root, cache_dir)
+    cache_dir = kb_dir / "cache"
+    all_files = scan_project_files(project_root, cache_dir)
 
     if not all_files:
         return {"project": project_name, "status": "no_files", "reason": "source directory not accessible"}
@@ -270,7 +363,13 @@ def main():
         echo(f"[!!] KB root not found: {KB_ROOT}")
         sys.exit(1)
 
-    targets = [KB_ROOT / args.project] if args.project else sorted(KB_ROOT.iterdir())
+    if args.project:
+        try:
+            targets = [resolve_project_dir(args.project)]
+        except ValueError as exc:
+            parser.error(str(exc))
+    else:
+        targets = [d for d in sorted(KB_ROOT.iterdir()) if not d.is_symlink()]
     results = []
 
     for d in targets:
@@ -287,4 +386,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

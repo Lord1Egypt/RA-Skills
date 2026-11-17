@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+# insync — read an InSync Healthcare (Qualifacts) patient portal through the
+# user's signed-in browser tab with fpx. Read-only. stdout = JSON, stderr = status.
+#
+#   insync <command> [args]
+#
+# Env: INSYNC_PORTAL  portal base URL (default https://pfbhintouch.insynchcs.com)
+#      INSYNC_PROFILE fpx profile name (default insync)
+set -uo pipefail
+
+PORTAL="${INSYNC_PORTAL:-https://pfbhintouch.insynchcs.com}"
+PORTAL="${PORTAL%/}"
+PROFILE="${INSYNC_PROFILE:-insync}"
+HDRS=(-H 'X-Requested-With: XMLHttpRequest' -H 'Accept: application/json')
+# DataTables server-side paging params the portal's grids send.
+DT='draw=1&start=0&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc'
+
+die() { echo "insync: $1" >&2; exit "${2:-1}"; }
+
+# Run an fpx verb; fail loudly on the portal's two "signed out" shapes:
+# the login page served with HTTP 200, or {"isTimeout":true,"redirectUrl":…}.
+call() {
+  local body rc
+  body="$(fpx "$@" -p "$PROFILE" "${HDRS[@]}")"; rc=$?
+  [ "$rc" -eq 0 ] || exit "$rc"
+  case "$body" in
+    *'<title>Portal :: Login'*) die "got the login page — the portal session has expired; sign back in at $PORTAL and retry" 5 ;;
+  esac
+  if printf '%s' "$body" | jq -e 'type=="object" and .isTimeout==true' >/dev/null 2>&1; then
+    die "portal session timed out; sign back in at $PORTAL and retry" 5
+  fi
+  printf '%s\n' "$body"
+}
+get()  { call get "$PORTAL$1"; }
+post() { call post-json "$PORTAL$1" "${2:-{\}}"; }
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  counts)        # badge counts: unread messages, meds, pending forms, surveys…
+    post /Dashboard/GetDashBoradCount | jq '.Dashboard[0]' ;;
+  balance)       # NetDue / CreditBalance
+    post /Dashboard/GetPateintBalance | jq '.Dashboard.PaymentSummaryModel[0]' ;;
+  appointments)  # [upcoming|past] [pageSize]
+    which="${1:-upcoming}"; size="${2:-20}"
+    case "$which" in
+      upcoming|future) ep=FutureAppiontmentDetails; dir=ASC ;;
+      past)            ep=PastAppiontmentDetails;   dir=DESC ;;
+      *) die "appointments: upcoming|past" ;;
+    esac
+    post "/PatientScheduler/$ep" \
+      "{\"pageOptions\":{\"PageSize\":$size,\"CurrentPage\":1},\"sortOptions\":{\"Field\":\"VISITDATETIME\",\"Direction\":\"$dir\"}}" |
+      jq '{total: .currentAppointment.TotalRows,
+           appointments: [.currentAppointment.Appointment[] |
+             {VisitID, VisitDate, StartTime, EndTime, Provider, FacilityName,
+              VisitType, VisitStatus, ExpectedCopay}]}' ;;
+  medications|meds)  # [current|discontinued|cancelled]
+    case "${1:-current}" in
+      current) t=82 ;; discontinued) t=68 ;; cancelled) t=78 ;;
+      *) die "medications: current|discontinued|cancelled" ;;
+    esac
+    get "/AllergyMedicationClinical/GetMedicationGridData?$DT&length=200&objMedicationsSummary=%7B%22Type%22%3A%22$t%22%7D" |
+      jq '{total: .recordsTotal,
+           medications: [.data[] | {DrugName, Dispense, DrugQuantity, Refills,
+             DaysSupply, PrescriptionDate: .PrescriptionDatetxt, PhysicianName, Rxcui}]}' ;;
+  allergies)
+    get "/AllergyMedicationClinical/GetAllergiesGridData?$DT&length=200&objAllergie=%7B%7D" |
+      jq '{total: .recordsTotal, allergies: .data}' ;;
+  messages)      # [unread|read|sent] [count]  — listing does NOT mark anything read
+    case "${1:-unread}" in
+      unread) t=1 ;; read) t=2 ;; sent) t=4 ;;
+      *) die "messages: unread|read|sent" ;;
+    esac
+    n="${2:-25}"
+    get "/Messages/GetMessages?messageType=$t&searchStr=&hasAttachment=false&IsArchived=false&$DT&length=$n" |
+      jq '{total: .recordsTotal, unreadCount: .UnreadMessagesCount,
+           messages: [.data[] | {childId: .TODOChildId, masterId: .TODOMasterId,
+             from: .GroupName, to: .ToGroupName, subject: .TaskSubject,
+             date: .ReminderDateText, attachments: .TotalAttachments}]}' ;;
+  message)       # <childId> <masterId>  — opening an UNREAD message marks it read
+    [ $# -ge 2 ] || die "message <childId> <masterId>"
+    # Both ids go into the query string verbatim, so accept digits only (the
+    # MCP's NumericIdString) rather than let an id smuggle in extra params.
+    for id in "$1" "$2"; do
+      case "$id" in ''|*[!0-9]*) die "message <childId> <masterId> — ids must be digits only" ;; esac
+    done
+    get "/Messages/GetMessageDetail?toDoChildId=$1&todoMasaterId=$2&type=inbox" |
+      jq '{practice: .PracticeName,
+           subject: .MessageDetail.TaskSubject,
+           sent: .MessageDetail.CreatedOnText, bodyHtml: .MessageDetail.TaskMessage,
+           attachments: .MessageAttachments}' ;;
+  forms)         # [pending|all] — pending = Status "Sent" (the badge count);
+                 # "Received" = already submitted. Never print the raw record:
+                 # it carries a PatientUserPassword hash and full template HTML.
+    case "${1:-pending}" in
+      pending) f='select(.Status == "Sent")' ;; all) f='.' ;;
+      *) die "forms: pending|all" ;;
+    esac
+    post /PatientDocument/GetPatientFromList |
+      jq "[.PatientFormcollection[] | $f | {FormName, Status, SentOn, ReceivedOn,
+            LastSubmittedOn, SubPatientFormID, TemplateID}]" ;;
+  surveys)       # pending surveys — the endpoint returns <tr> rows, not JSON.
+                 # Each row's onclick carries a sign-in deep-link token: never print it.
+    get /SurveyForms/GetReceivedSurveyForms | python3 -I -c '
+import html, json, re, sys
+rows = re.findall(r"<tr\b.*?</tr>", sys.stdin.read(), re.S)
+txt = lambda c: re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", c))).strip()
+out = []
+for r in rows:
+    cells = re.findall(r"<td\b.*?</td>", r, re.S)
+    if len(cells) >= 2:
+        out.append({"name": txt(cells[0]), "received": txt(cells[-1])})
+try:
+    json.dump(out, sys.stdout, indent=2); print()
+except BrokenPipeError:
+    pass
+' ;;
+  documents)
+    post /PatientDocument/GetAllPatientDocs | jq '.Files' ;;
+  profile)       # demographics, scalars only (drops ~500 KB of picklists + photo)
+    post /PatientProfile/GetPatientDetails |
+      jq '.PatientDetail | with_entries(select((.value|type) != "array"
+            and (.value|type) != "object" and .key != "Image"
+            and .value != null and .value != ""))' ;;
+  raw)           # GET|POST <path> [json-body] — anything else, unprojected
+    m="${1:-}"; p="${2:-}"; [ -n "$p" ] || die "raw GET|POST <path> [body]"
+    case "$m" in GET|get) get "$p" ;; POST|post) post "$p" "${3:-{\}}" ;; *) die "raw GET|POST" ;; esac ;;
+  ''|-h|--help|help)
+    sed -n '2,9p' "$0"; echo
+    echo "commands: counts balance appointments [upcoming|past] medications [current|discontinued|cancelled]"
+    echo "          allergies messages [unread|read|sent] [n] message <childId> <masterId> forms [pending|all] surveys"
+    echo "          documents profile raw GET|POST <path> [body]" ;;
+  *) die "unknown command '$cmd' (try: insync help)" ;;
+esac

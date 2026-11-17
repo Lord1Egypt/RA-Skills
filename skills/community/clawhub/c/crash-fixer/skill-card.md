@@ -1,39 +1,57 @@
-## Description: <br>
-Crash Fixer monitors crash reports, deduplicates known issues, analyzes crashes with AI, generates fixes, and creates pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous crash analysis and bug fixing. Monitors crash reports from Cloudflare D1, deduplicates, analyzes with Codex 5.3 High, generates fixes, and creates PRs.
 
-## Publisher: <br>
-[Ryce](https://clawhub.ai/user/Ryce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryce](https://clawhub.ai/user/ryce)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to process recent crash reports, analyze likely root causes, generate code fixes, and open pull requests for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crash data and source snippets may be sent to an external AI service. <br>
-Mitigation: Run only where this data sharing is acceptable, verify the configured crash reporter URL, and avoid sending sensitive repositories or crash records without approval. <br>
-Risk: The skill can create GitHub branches, commits, and pull requests that change code. <br>
-Mitigation: Use --dry-run first, provide a least-privilege GitHub token limited to the target repository, and require human review before merging generated pull requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crash Fixer ClawHub Page](https://clawhub.ai/Ryce/crash-fixer) <br>
+## Use Case:
 
+Developers and engineers use Crash Fixer to process crash reports, analyze likely root causes with AI, generate code fixes, and open pull requests against a target GitHub repository.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console output, JSON-formatted AI analysis, GitHub branches, commits, and pull requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports --hours, --limit, and --dry-run command flags; requires GH_TOKEN, CRASH_REPORTER_API_KEY, CRASH_REPORTER_URL, and TARGET_REPO environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crash reports and source snippets may be sent to an external AI provider during analysis.
+
+Mitigation: Use only on repositories and crash data where external AI processing is approved, and avoid including secrets or unnecessary personal data in crash reports.
+
+Risk: The skill can create branches, commits, and pull requests from unvalidated model output.
+
+Mitigation: Use a least-privilege GitHub token and require human code review before merging generated changes.
+
+Risk: Dry-run mode avoids pull request creation but can still update crash-reporter state.
+
+Mitigation: Run against a test crash-reporter instance or review expected status changes before using dry-run on production data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryce/skills/crash-fixer)
+- [Publisher profile](https://clawhub.ai/user/ryce)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status text, JSON-shaped AI analysis, generated source code, and GitHub pull request metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports --hours, --limit, and --dry-run command flags; requires GitHub and crash-reporter environment configuration.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

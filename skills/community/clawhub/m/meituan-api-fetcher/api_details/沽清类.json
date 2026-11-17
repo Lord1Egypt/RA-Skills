@@ -1,0 +1,31 @@
+[
+  {
+    "method": "POST",
+    "path": "/rms/solution/api/v1/poi/item/stockquery",
+    "request_params": [
+      {
+        "name": "skuIds",
+        "type": "array<long>",
+        "required": false,
+        "description": "skuId列表"
+      },
+      {
+        "name": "isChannel",
+        "type": "boolean",
+        "required": false,
+        "description": "是否按渠道查询"
+      },
+      {
+        "name": "attrIds",
+        "type": "array<long>",
+        "required": false,
+        "description": "attrId做法列表（skuId和attrId二选一，都传或都不传默认查skuId）"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"skuStocks\": [\n      {\n        \"skuId\": 1000,\n        \"stock\": 100.01,\n        \"channel\": 1,\n        \"attrId\": 1000\n      }\n    ]\n  }\n}",
+    "title": "查询菜品沽清-美团技术服务合作中心",
+    "api_path": "/rms/solution/api/v1/poi/item/stockquery",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-solution-api-v1-poi-item-stockquery"
+  }
+]

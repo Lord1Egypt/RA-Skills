@@ -1,43 +1,54 @@
-## Description: <br>
-Real-time AI agent safety monitoring, anomaly detection, and constraint enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time AI agent safety monitoring, anomaly detection, and constraint enforcement.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect agent event logs, configure safety rules, and surface alerts for rate limits, tool allowlists, budget caps, scope checks, and behavioral anomalies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact describes real-time enforcement, dashboard, webhook, and pause or kill behavior that is not fully present in the reviewed files. <br>
-Mitigation: Use it only as an offline log analyzer unless those enforcement and dashboard components are added and reviewed. <br>
-Risk: The release is tagged as requiring wallet and sensitive credential capabilities. <br>
-Mitigation: Do not provide wallets, secrets, or production credentials unless a separate review confirms the artifact needs and protects them. <br>
-Risk: Security evidence marks the release as suspicious because capability claims exceed the implemented behavior. <br>
-Mitigation: Run it in a constrained environment with test logs and manually review alerts before relying on operational decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure log-based safety monitoring for autonomous agents, including rate limits, tool allowlists, budget caps, scope checks, and anomaly alerts. Treat it as alerting and log analysis unless runtime pause/kill enforcement is separately implemented and tested.
 
-## Reference(s): <br>
-- [Safety Rules Reference](references/rules-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/evezart/agent-safety-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples and Python command examples; monitor execution emits JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires reviewed local event logs and YAML rule configuration; security evidence says this release should be treated as a prototype offline log analyzer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The artifact describes pause, kill, dashboard, and webhook behavior that is not fully implemented by the provided code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the current artifact for log analysis and alert summaries only, or add and test runtime enforcement, dashboard, and webhook integrations before relying on those claims.
+
+Risk: Safety decisions based only on parsed logs may miss actions that are not captured in the event stream.
+
+Mitigation: Feed the monitor from trusted, complete agent event logs and validate coverage before using alerts for operational decisions.
+
+## Reference(s):
+
+- [Safety Rules Reference](references/rules-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/evezart/skills/agent-safety-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with bash snippets and YAML configuration examples; the monitor script emits JSON summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses YAML rule configuration and JSON event logs as inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

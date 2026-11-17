@@ -1,42 +1,54 @@
-## Description: <br>
-Organizes Chrome bookmarks through OpenClaw with preview, explicit confirmation, apply, undo, and a local Chrome executor bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize Chrome bookmarks through OpenClaw with preview, explicit confirmation, apply, undo, and a local Chrome executor bridge.
 
-## Publisher: <br>
-[xiaoshidefeng](https://clawhub.ai/user/xiaoshidefeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoshidefeng](https://clawhub.ai/user/xiaoshidefeng)
 
-## Use Case: <br>
-External users and developers use this skill to inspect live Chrome bookmarks, preview conservative cleanup actions, and apply or undo supported bookmark organization changes through a local bridge after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local bridge and Chrome extension can read and change Chrome bookmarks without authentication outside the promised confirmation flow. <br>
-Mitigation: Install only if the publisher is trusted with bookmark access, keep the bridge running only while needed, avoid changing the bridge URL, export bookmarks first, and disable or remove the extension and bridge after use unless a future version adds authentication, sender checks, and enforced confirmation for mutations. <br>
-Risk: Incorrect or unwanted organization plans could move or rename bookmarks. <br>
-Mitigation: Review the preview before applying changes, require explicit confirmation, rely on bridge-verified apply results, and use the latest undo record after a successful apply when needed. <br>
+## Use Case:
 
+External users and developers use this skill to plan conservative Chrome bookmark cleanup, preview proposed folder and bookmark changes, and execute approved changes through a local Chrome bridge with undo support.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoshidefeng/bookmark-organize) <br>
-- [Chrome Executor Extension README](apps/chrome-executor-extension/README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured action plans and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans include summary, warnings, and supported bookmark actions; mutations require explicit confirmation and bridge verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and Chrome extension manifest; skill frontmatter/package.json list 0.1.0) <br>
+Risk: The skill grants an unpacked Chrome extension access to browser bookmarks and uses a localhost bridge to read, validate, apply, and undo bookmark changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-risk Chrome profile or export a bookmark backup before use, review every preview carefully, and apply changes only after explicit confirmation.
+
+Risk: The local bridge and extension messaging paths are under-protected, so another local process or extension may be able to interact with exposed control paths.
+
+Mitigation: Run the bridge only while actively using the skill, stop it afterward, and prefer future versions that add authentication and sender validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoshidefeng/skills/bookmark-organize)
+- [Chrome Executor Extension README](artifact/apps/chrome-executor-extension/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured bookmark action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans require preview and explicit confirmation before bookmark mutation; apply and undo results should be reported only after local bridge verification.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter and package.json report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

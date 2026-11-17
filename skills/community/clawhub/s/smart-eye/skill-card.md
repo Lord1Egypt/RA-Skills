@@ -1,42 +1,58 @@
-## Description: <br>
-Controls and analyzes configured ONVIF PTZ IP cameras so an agent can capture frames, open live streams, search across camera snapshots, and perform pan-tilt-zoom movements through camera aliases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SmartEye lets an agent control and inspect configured ONVIF PTZ IP cameras, including frame capture, VLC live stream viewing, multi-camera object search, and pan-tilt-zoom movement.
 
-## Publisher: <br>
-[lubingshun](https://clawhub.ai/user/lubingshun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lubingshun](https://clawhub.ai/user/lubingshun)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent interact with trusted internal IP cameras: capture still images for visual analysis, open local VLC live streams, locate objects across configured cameras, and issue PTZ movement commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera access can expose private scenes through snapshots or live streams. <br>
-Mitigation: Install only where camera access is intended, restrict configured cameras to trusted internal IPs, and treat saved snapshots as private data. <br>
-Risk: Broad natural-language triggers can cause real PTZ movement or live-stream access without enough confirmation. <br>
-Mitigation: Avoid broad automatic invocation and require human review or scoped routing before commands that move cameras or open live streams. <br>
-Risk: Camera credentials in camera-devices.json and VLC RTSP process arguments can be exposed locally. <br>
-Mitigation: Protect camera-devices.json with appropriate file permissions, replace template credentials, and avoid using shared systems for VLC live-stream sessions. <br>
+## Use Case:
 
+Developers and operators use this skill to give an agent access to private camera feeds, save still frames for visual analysis, open configured RTSP streams in VLC, locate objects across multiple cameras, and issue PTZ control commands by camera alias or brand.
 
-## Reference(s): <br>
-- [ClawHub SmartEye skill page](https://clawhub.ai/lubingshun/smart-eye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, File paths, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text or Markdown responses with snapshot paths and camera action status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save JPG snapshots locally and may launch VLC for live RTSP viewing when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill can access private camera feeds and PTZ controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended cameras, use dedicated low-privilege camera accounts, and keep camera endpoints limited to trusted networks.
+
+Risk: Camera credentials are stored in camera-devices.json and RTSP URLs can include those credentials.
+
+Mitigation: Restrict permissions on the camera configuration file, avoid shared machines for VLC viewing, and replace bundled example credentials before use.
+
+Risk: Snapshot capture and broad multi-camera search triggers can save sensitive images locally.
+
+Mitigation: Review or narrow activation phrases, limit configured cameras, and periodically delete saved snapshots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lubingshun/skills/smart-eye)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-compatible text with camera status messages, snapshot file paths, VLC launch results, and follow-up image-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JPG snapshots and may launch VLC with configured RTSP camera streams.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

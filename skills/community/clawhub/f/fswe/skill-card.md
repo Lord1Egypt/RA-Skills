@@ -1,56 +1,80 @@
-## Description: <br>
-Provides practical full-stack engineering guidance for TypeScript-first APIs, microservices, Vue 3 modernization, testing, operations, and delivery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-stack engineering skill with 24 modules covering architecture, API, performance, testing, DevOps, security, and modern TypeScript stack.
 
-## Publisher: <br>
-[khamalismadie](https://clawhub.ai/user/khamalismadie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[khamalismadie](https://clawhub.ai/user/khamalismadie)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, implement, review, debug, and modernize full-stack web systems using practical checklists, templates, code examples, and architecture guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An API development example may be copied into a real application in a way that permits self-service creation of privileged accounts. <br>
-Mitigation: Assign safe default roles server-side and require authenticated administrator authorization for privileged role assignment. <br>
+## Use Case:
 
+Developers and engineers use this skill to route full-stack engineering questions to focused modules for architecture, APIs, testing, DevOps, security, performance, TypeScript, and delivery guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/khamalismadie/fswe) <br>
-- [Full-Stack Web Engineer Skill](artifact/SKILL.md) <br>
-- [API Development](artifact/references/api-development/SKILL.md) <br>
-- [System Design Fundamentals](artifact/references/system-design/SKILL.md) <br>
-- [Bun + TypeScript Backend Architecture](artifact/references/bun-typescript/SKILL.md) <br>
-- [Code Quality & Reviews](artifact/references/code-quality/SKILL.md) <br>
-- [Concurrency & Async Programming](artifact/references/concurrency-async/SKILL.md) <br>
-- [Cross-Functional Collaboration](artifact/references/cross-functional/SKILL.md) <br>
-- [Debugging Across Platforms](artifact/references/debugging/SKILL.md) <br>
-- [Fault Tolerance & Resilience](artifact/references/fault-tolerance/SKILL.md) <br>
-- [Feature Flags & Progressive Delivery](artifact/references/feature-flags/SKILL.md) <br>
-- [End-to-End Feature Ownership](artifact/references/feature-ownership/SKILL.md) <br>
-- [HTTP & gRPC Deep Understanding](artifact/references/http-grpc/SKILL.md) <br>
-- [Legacy Code Migration](artifact/references/legacy-migration/SKILL.md) <br>
-- [Monitoring & Observability](artifact/references/monitoring-observability/SKILL.md) <br>
-- [Performance Engineering](artifact/references/performance/SKILL.md) <br>
-- [Scrum & Agile Participation](artifact/references/scrum-agile/SKILL.md) <br>
-- [SQL Database Mastery](artifact/references/sql-database/SKILL.md) <br>
-- [Testing Fundamentals](artifact/references/testing-fundamentals/SKILL.md) <br>
-- [Vue 3 Modernization](artifact/references/vue3-modernization/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, templates, code examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated implementation examples before production use, especially authentication and authorization flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Production-facing templates may include unsafe authentication, deletion, feature-flag, WebSocket token, or CI patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before production use, require explicit authorization and audit logging for destructive routes and feature-flag changes, avoid auth tokens in URLs, and pin CI actions to reviewed commit SHAs with least-privilege permissions.
+
+Risk: The security verdict is suspicious even though the skill is Markdown-only guidance.
+
+Mitigation: Treat snippets as starting points, scan adapted code, and have a qualified engineer validate security-sensitive changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khamalismadie/skills/fswe)
+- [Publisher profile](https://clawhub.ai/user/khamalismadie)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [API Development](references/api-development/SKILL.md)
+- [Bun + TypeScript Backend Architecture](references/bun-typescript/SKILL.md)
+- [CI/CD Pipelines](references/ci-cd-pipelines/SKILL.md)
+- [Code Quality & Reviews](references/code-quality/SKILL.md)
+- [Concurrency & Async Programming](references/concurrency-async/SKILL.md)
+- [Cross-Functional Collaboration](references/cross-functional/SKILL.md)
+- [Debugging & RCA](references/debugging/SKILL.md)
+- [Docker Containers](references/docker-containers/SKILL.md)
+- [Fault Tolerance](references/fault-tolerance/SKILL.md)
+- [Feature Flags](references/feature-flags/SKILL.md)
+- [Feature Ownership](references/feature-ownership/SKILL.md)
+- [GraphQL API](references/graphql-api/SKILL.md)
+- [HTTP & gRPC Deep Understanding](references/http-grpc/SKILL.md)
+- [Legacy Migration](references/legacy-migration/SKILL.md)
+- [Monitoring & Observability](references/monitoring-observability/SKILL.md)
+- [Performance](references/performance/SKILL.md)
+- [Scrum & Agile Delivery](references/scrum-agile/SKILL.md)
+- [Security & Auth](references/security-auth/SKILL.md)
+- [SQL Database](references/sql-database/SKILL.md)
+- [State Management](references/state-management/SKILL.md)
+- [System Design](references/system-design/SKILL.md)
+- [Testing Fundamentals](references/testing-fundamentals/SKILL.md)
+- [Vue 3 Modernization](references/vue3-modernization/SKILL.md)
+- [WebSocket Realtime](references/websocket-realtime/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks, checklists, tables, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can tailor output by module, language, depth, stack, database, framework, and requested output format.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, SKILL.md frontmatter, and changelog released 2025-07-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

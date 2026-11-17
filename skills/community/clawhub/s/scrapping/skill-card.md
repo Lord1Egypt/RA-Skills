@@ -1,51 +1,62 @@
-## Description: <br>
-Helps an agent retrieve public social media profiles, posts, videos, comments, follower data, engagement statistics, transcripts, ad library records, trending content, hashtags, creator information, and related public platform data through ScrapeCreators API requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through retrieving public social-media data with the ScrapeCreators REST API, including profiles, posts, comments, transcripts, ad library data, and creator metrics across major platforms.
 
-## Publisher: <br>
-[berthelol](https://clawhub.ai/user/berthelol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[berthelol](https://clawhub.ai/user/berthelol)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to choose ScrapeCreators endpoints and issue safe curl and jq requests for public social media research, creator lookup, content retrieval, ad library checks, and lightweight data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends public handles, URLs, search terms, and similar queries to ScrapeCreators using the user's API key. <br>
-Mitigation: Use a dedicated API key where possible, keep the key in SCRAPECREATORS_API_KEY, and avoid placing credentials in scripts, saved command history, or chat transcripts. <br>
-Risk: Large public social media exports may contain personal or sensitive public data. <br>
-Mitigation: Set clear result and pagination limits, avoid saving raw bulk datasets unless needed, and delete or protect JSON and CSV exports. <br>
-Risk: Paginated and high-cost endpoints can consume credits quickly. <br>
-Mitigation: Use trim=true, fetch only the pages needed, and reserve high-cost endpoints such as TikTok audience demographics for explicit user requests. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to choose ScrapeCreators endpoints and compose authenticated curl and jq workflows for public social-media research. It supports lookups across profiles, posts, comments, transcripts, ads, search, trends, and creator metrics while keeping API keys in environment variables.
 
-## Reference(s): <br>
-- [ScrapeCreators](https://scrapecreators.com) <br>
-- [ScrapeCreators API Docs](https://docs.scrapecreators.com) <br>
-- [TikTok API Endpoints](references/tiktok.md) <br>
-- [Instagram API Endpoints](references/instagram.md) <br>
-- [YouTube API Endpoints](references/youtube.md) <br>
-- [Twitter/X API Endpoints](references/twitter.md) <br>
-- [LinkedIn API Endpoints](references/linkedin.md) <br>
-- [Facebook API Endpoints](references/facebook.md) <br>
-- [Reddit API Endpoints](references/reddit.md) <br>
-- [Other Platform Endpoints](references/other-platforms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown with inline bash, curl, and jq examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API request guidance and optional JSON or CSV extraction patterns; requires SCRAPECREATORS_API_KEY, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Searches, profile handles, post URLs, content IDs, filters, and similar lookup terms are sent to ScrapeCreators with the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public, non-sensitive research and keep the API key in SCRAPECREATORS_API_KEY rather than embedding it in scripts, files, or chat history.
+
+Risk: Saved JSON or CSV outputs may retain scraped personal or business data locally.
+
+Mitigation: Collect only the pages and fields needed, prefer trim=true or jq extraction where appropriate, and handle saved outputs according to the user's retention and access requirements.
+
+## Reference(s):
+
+- [ScrapeCreators API Docs](https://docs.scrapecreators.com)
+- [ScrapeCreators](https://scrapecreators.com)
+- [Facebook API Endpoints](references/facebook.md)
+- [Instagram API Endpoints](references/instagram.md)
+- [LinkedIn API Endpoints](references/linkedin.md)
+- [Other Platform Endpoints](references/other-platforms.md)
+- [Reddit API Endpoints](references/reddit.md)
+- [TikTok API Endpoints](references/tiktok.md)
+- [Twitter/X API Endpoints](references/twitter.md)
+- [YouTube API Endpoints](references/youtube.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, curl, and jq examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, pagination guidance, jq filters, and JSON or CSV output handling.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -39,7 +39,7 @@
 | geekpark | geekpark.net/rss | ❌ Server disconnected（feed 关闭） |
 | infoq | feedx.info/rss/infoq.xml | ❌ DNS 失败 |
 
-**结论**：这 5 域需部署 RSSHub 自建实例（国外机器可达 feedx.info / rsshub.app），本机网络受限于 GFW。**token-star.cn 腾讯云服务器可考虑部署**。
+**结论**：这 5 域需部署 RSSHub 自建实例（国外机器可达 feedx.info / rsshub.app），本机网络受限于 GFW。**<service-domain> 腾讯云服务器可考虑部署**。
 
 ## 6 域：强反爬 / 商业数据 — RSS/聚合均不可行
 
@@ -53,7 +53,7 @@
 | **天眼查 tianyancha / 企查查 qichacha** | 企业征信 | 官方 API 付费 |
 | **yicai / caixin** | 财经新闻 | 需付费订阅 |
 
-**结论**：这 7 域短期不接，留待 token-star.cn 上部署 RSSHub + 反向代理后再说。
+**结论**：这 7 域短期不接，留待 <service-domain> 上部署 RSSHub + 反向代理后再说。
 
 ## v16.1 RSS 引擎技术要点
 
@@ -75,7 +75,7 @@ RSS description 里 `&lt;` / `&gt;` / `&amp;` / `&quot;` / `&#34;` / `&nbsp;` / 
 
 ## 后续建议（v16.2 候选）
 
-1. **部署 RSSHub 自建**（token-star.cn 腾讯云）：解锁 juejin/huxiu/lieyunwang/infoq + 央媒聚合
+1. **部署 RSSHub 自建**（<service-domain> 腾讯云）：解锁 juejin/huxiu/lieyunwang/infoq + 央媒聚合
 2. **bilibili/抖音/小红书走移动端 API**（UA 模拟 + graphql query）：v15 探针未做
 3. **付费源兜底**：雪球/华尔街/天眼查等强反爬，可对接百度千帆/天眼 API（用户决定）
 4. **RSS 引擎 health-check**：定期探测 RSS endpoint 死活，死了自动禁用

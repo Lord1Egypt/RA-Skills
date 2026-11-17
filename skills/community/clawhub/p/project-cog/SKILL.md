@@ -1,5 +1,5 @@
 ---
-name: project-cog
+name: project-management-cellcog
 description: "AI project management powered by CellCog. Knowledge workspaces, document upload, AI-processed context trees, signed URL retrieval. Works standalone or as CellCog chat context."
 author: CellCog
 homepage: https://cellcog.ai
@@ -12,7 +12,7 @@ metadata:
       env: [CELLCOG_API_KEY]
 dependencies: [cellcog]
 ---
-# Project Cog — Knowledge Workspaces for Agents
+# Project Management — Knowledge Workspaces for Agents
 
 CellCog Projects are knowledge workspaces where documents are organized into AI-processed **Context Trees** — structured, hierarchical summaries that agents can read, search, and reason about.
 
@@ -48,6 +48,12 @@ result = client.create_chat(
 print(result["message"])
 ```
 
+
+---
+
+## Choosing Mode & Tier
+
+**Use `chat_mode="agent"` (defaults to the `"core"` tier)**: project/document management operations are light tasks; the default core tier handles them well. Pass `chat_tier="max"` only when a chat will ALSO do heavy work (deep analysis over the project's documents, complex production). Agent Team (`chat_mode="team"`) is reserved for deep research.
 
 ---
 
@@ -437,7 +443,8 @@ All errors include descriptive messages. Check `error.message` for details.
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.
 **Other agents:** `pip install cellcog` and set `CELLCOG_API_KEY`. See https://cellcog.ai for details.

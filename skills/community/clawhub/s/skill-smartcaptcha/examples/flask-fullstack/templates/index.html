@@ -1,0 +1,32 @@
+<!-- Шаблон Jinja2: форма с автоматическим виджетом SmartCaptcha. Подробности: ../../../docs/widget-auto.md -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartCaptcha: пример Flask</title>
+  <!-- captcha.js сам найдет все div с классом smart-captcha и отрисует в них виджет -->
+  <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+</head>
+<body>
+  <h1>Форма с Yandex SmartCaptcha</h1>
+
+  <form action="/submit" method="POST">
+    <label for="message">Сообщение</label><br>
+    <input id="message" name="message" type="text"><br><br>
+
+    <!-- После прохождения проверки виджет добавит в этот контейнер скрытое поле
+         <input type="hidden" name="smart-token" value="..."> — форма отправит его на сервер.
+         height: 100px задана заранее: при загрузке виджет меняет высоту контейнера на 100px,
+         и без этого страница «прыгнет». sitekey подставляет Flask из переменной окружения. -->
+    <div
+      id="captcha-container"
+      class="smart-captcha"
+      data-sitekey="{{ sitekey }}"
+      style="height: 100px"
+    ></div><br>
+
+    <button type="submit">Отправить</button>
+  </form>
+</body>
+</html>

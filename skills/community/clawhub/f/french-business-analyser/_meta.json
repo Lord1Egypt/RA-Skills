@@ -2,5 +2,26 @@
   "ownerId": "kn76sr6rknd7syssezr3rs38dn83w855",
   "slug": "french-business-analyser",
   "version": "2.2.0",
-  "publishedAt": 1775407456327
+  "contact": "novlease.contact@gmail.com",
+  "hostedAt": "https://mcp-business-checker-production.up.railway.app",
+  "sourceCode": "https://github.com/Vannelier/MCP-business-checker",
+  "agentEnvVars": [],
+  "serverEnvVars": [
+    "INSEE_API_KEY",
+    "ANTHROPIC_API_KEY",
+    "REDIS_URL",
+    "X402_WALLET_ADDRESS",
+    "X402_NETWORK",
+    "BASE_RPC_URL",
+    "STRIPE_MPP_SECRET_KEY",
+    "STRIPE_MPP_PUBLIC_KEY",
+    "METRICS_SECRET_TOKEN"
+  ],
+  "serverEnvVarsOptional": [
+    "INPI_USERNAME",
+    "INPI_PASSWORD",
+    "DAILY_BUDGET_EUR",
+    "CB_FAILURE_THRESHOLD",
+    "CB_RECOVERY_TIMEOUT"
+  ]
 }

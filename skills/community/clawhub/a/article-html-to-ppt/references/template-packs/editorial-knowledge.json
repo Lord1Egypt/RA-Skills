@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "editorial-knowledge",
+  "display_name": "Editorial Knowledge Production Pack",
+  "description": "Warm-paper longform knowledge system for memorable arguments, evidence, relationships, comparisons, and conclusions.",
+  "style_contract": {
+    "style_id": "editorial-knowledge",
+    "schema_version": "2.0",
+    "ref": "../../styles/editorial-knowledge.json"
+  },
+  "compatible_expression_modes": [
+    "textual_argument",
+    "structured_cards",
+    "table_matrix",
+    "data_visual",
+    "relationship_visual",
+    "conceptual_scene"
+  ],
+  "archetypes": [
+    {
+      "role": "cover",
+      "page_archetype": "executive-cover",
+      "intent": "Frame one memorable thesis with a bounded editorial hook and native title overlay.",
+      "allowed_expression_modes": [
+        "conceptual_scene"
+      ],
+      "component_routes": [
+        {
+          "component_type": "editorial_illustration",
+          "expression_mode": "conceptual_scene",
+          "preferred_route": "generated_image",
+          "allowed_routes": [
+            "generated_image",
+            "hybrid_overlay"
+          ],
+          "editability": "raster_allowed"
+        }
+      ],
+      "editable_core": [
+        "title",
+        "subtitle",
+        "context",
+        "source_note"
+      ]
+    },
+    {
+      "role": "judgment",
+      "page_archetype": "claim-evidence",
+      "intent": "State an answer-first judgment and attach concise proof rather than a topic heading.",
+      "allowed_expression_modes": [
+        "textual_argument",
+        "structured_cards"
+      ],
+      "component_routes": [
+        {
+          "component_type": "body_argument",
+          "expression_mode": "textual_argument",
+          "preferred_route": "native_ppt",
+          "allowed_routes": [
+            "native_ppt"
+          ],
+          "editability": "native_required"
+        },
+        {
+          "component_type": "evidence_block",
+          "expression_mode": "structured_cards",
+          "preferred_route": "native_ppt",
+          "allowed_routes": [
+            "native_ppt"
+          ],
+          "editability": "native_required"
+        }
+      ],
+      "editable_core": [
+        "judgment_title",
+        "argument",
+        "evidence",
+        "source_note"
+      ]
+    },
+    {
+      "role": "evidence_data",
+      "page_archetype": "metric-proof",
+      "intent": "Make evidence legible through a native metric or chart with an editable interpretation.",
+      "allowed_expression_modes": [
+        "structured_cards",
+        "data_visual"
+      ],
+      "component_routes": [
+        {
+          "component_type": "metric_card",
+          "expression_mode": "structured_cards",
+          "preferred_route": "native_ppt",
+          "allowed_routes": [
+            "native_ppt"
+          ],
+          "editability": "native_required"
+        },
+        {
+          "component_type": "bar_chart",
+          "expression_mode": "data_visual",
+          "preferred_route": "native_chart",
+          "allowed_routes": [
+            "native_chart"
+          ],
+          "editability": "native_required"
+        }
+      ],
+      "editable_core": [
+        "judgment_title",
+        "data",
+        "labels",
+        "interpretation",
+        "source_note"
+      ]
+    },
+    {
+      "role": "process_relationship",
+      "page_archetype": "process-lane",
+      "intent": "Turn sequence or causality into one dominant relationship path with minimal connectors.",
+      "allowed_expression_modes": [
+        "relationship_visual"
+      ],
+      "component_routes": [
+        {
+          "component_type": "causal_chain",
+          "expression_mode": "relationship_visual",
+          "preferred_route": "native_diagram",
+          "allowed_routes": [
+            "native_diagram",
+            "hybrid_overlay",
+            "svg_component"
+          ],
+          "editability": "native_preferred"
+        }
+      ],
+      "editable_core": [
+        "judgment_title",
+        "nodes",
+        "labels",
+        "key_annotations",
+        "source_note"
+      ]
+    },
+    {
+      "role": "comparison_implementation",
+      "page_archetype": "comparison-contrast",
+      "intent": "Expose a useful contrast or implementation choice without decorative card repetition.",
+      "allowed_expression_modes": [
+        "structured_cards",
+        "table_matrix"
+      ],
+      "component_routes": [
+        {
+          "component_type": "comparison_card",
+          "expression_mode": "structured_cards",
+          "preferred_route": "native_ppt",
+          "allowed_routes": [
+            "native_ppt"
+          ],
+          "editability": "native_required"
+        },
+        {
+          "component_type": "comparison_matrix",
+          "expression_mode": "table_matrix",
+          "preferred_route": "native_table",
+          "allowed_routes": [
+            "native_table"
+          ],
+          "editability": "native_required"
+        }
+      ],
+      "editable_core": [
+        "judgment_title",
+        "option_labels",
+        "claims",
+        "evidence",
+        "recommendation",
+        "source_note"
+      ]
+    },
+    {
+      "role": "closing",
+      "page_archetype": "closing-standard",
+      "intent": "Close with a distilled conclusion and a concrete next action or decision checkpoint.",
+      "allowed_expression_modes": [
+        "structured_cards"
+      ],
+      "component_routes": [
+        {
+          "component_type": "summary_action_card",
+          "expression_mode": "structured_cards",
+          "preferred_route": "native_ppt",
+          "allowed_routes": [
+            "native_ppt"
+          ],
+          "editability": "native_required"
+        }
+      ],
+      "editable_core": [
+        "conclusion",
+        "action",
+        "owner",
+        "timing"
+      ]
+    }
+  ],
+  "editable_core_policy": {
+    "required_native_objects": [
+      "judgment_title",
+      "body_argument",
+      "evidence_block",
+      "metric_card",
+      "bar_chart",
+      "comparison_card",
+      "comparison_matrix",
+      "summary_action_card"
+    ],
+    "required_editable_elements": [
+      "titles",
+      "body_text",
+      "data",
+      "labels",
+      "interpretation",
+      "source_notes",
+      "actions"
+    ],
+    "bounded_visual_requires_native_overlay": true,
+    "whole_slide_raster_forbidden": true
+  },
+  "forbidden_patterns": [
+    "screenshot-only or dead master decks",
+    "whole-slide rasterization",
+    "topic titles in place of judgments",
+    "generic card grids for relationship content",
+    "unsourced decorative data",
+    "generated text embedded in imagery",
+    "undeclared delivery-route changes"
+  ],
+  "truthful_constraints": {
+    "renderer_evidence_required_for_final": true,
+    "disclose_route_deviations": true,
+    "disclose_raster_or_generated_components": true,
+    "notes": [
+      "The pack defines reusable contract and routing policy; it is not evidence that a deck was rendered or verified.",
+      "Premium final status still requires real renderer evidence, readback, zero QA errors, and the required rubric pass."
+    ]
+  }
+}

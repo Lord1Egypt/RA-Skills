@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "security-maintainer"
+version = "1.2.5"
+description = "OpenClaw skill for auditing and managing Windows and WSL software patches and vulnerabilities"
+readme = "README.md"
+authors = [{ name = "OpenClaw Community", email = "community@openclaw.dev" }]
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Security",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.4",
+]
+
+[project.scripts]
+security-maintainer = "security_maintainer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

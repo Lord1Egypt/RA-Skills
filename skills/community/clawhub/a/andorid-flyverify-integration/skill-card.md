@@ -1,45 +1,66 @@
-## Description: <br>
-Guides Android developers through a confirmed, step-by-step MobTech FlyVerify (SecVerify) integration workflow covering configuration, Gradle setup, privacy authorization, pre-verification, one-click login, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive guide for integrating MobTech FlyVerify (SecVerify) into Android projects through a five-step workflow with user confirmation at each step.
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate MobTech FlyVerify one-click phone verification into Android projects. It helps gather project configuration, propose Android and Gradle changes, add privacy authorization and login code, and produce project-level integration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes Android project-file edits that can change build behavior. <br>
-Mitigation: Use it only in a version-controlled project or backup branch, and review each proposed file change before approval. <br>
-Risk: The workflow handles MobTech appKey and appSecret values during configuration. <br>
-Mitigation: Keep appKey and appSecret private, avoid committing generated configuration files with secrets, and verify where credentials are inserted. <br>
-Risk: The integration adds a Maven repository, FlyVerify dependency configuration, and may run Gradle dependency refresh commands. <br>
-Mitigation: Verify the Maven repository and FlyVerify dependency source before approving changes, and run Gradle only after reviewing the dependency resolution impact. <br>
+## Use Case:
 
+Developers and engineers use this skill to add MobTech FlyVerify one-click mobile authentication to Android apps, including Gradle setup, appKey/appSecret configuration, privacy consent code, verification calls, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [Mob documentation center](https://www.mob.com/wiki/list) <br>
-- [FlyVerify integration guide](https://www.mob.com/wiki/detailed?wiki=551&id=78) <br>
-- [FlyVerify SDK API documentation](https://www.mob.com/wiki/detailed?wiki=297&id=78) <br>
-- [Mob SDK compliance guide](https://www.mob.com/wiki/detailed?wiki=421&id=717) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to Android project files and generate an Excel configuration template and integration README after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill modifies Android project files, including Gradle configuration and application code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed diff and confirm each file change before applying it to the project.
+
+Risk: The workflow asks for MobTech appKey and appSecret values.
+
+Mitigation: Keep appSecret values out of tracked files and prefer an ignored local secret file, environment variable, or CI secret store.
+
+Risk: The Gradle setup uses an external Maven repository and a dynamic FlySDK dependency.
+
+Mitigation: Verify the Maven source and pin a specific FlySDK version before running Gradle or releasing the app.
+
+Risk: FlyVerify behavior depends on privacy consent, MobTech review status, package/signature configuration, and supported mobile network conditions.
+
+Mitigation: Confirm the app privacy flow, MobTech review approval, package name, signature MD5, and carrier network requirements before production release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mobsupport/skills/andorid-flyverify-integration)
+- [Mob documentation center](https://www.mob.com/wiki/list)
+- [FlyVerify integration guide](https://www.mob.com/wiki/detailed?wiki=551&id=78)
+- [FlyVerify SDK API documentation](https://www.mob.com/wiki/detailed?wiki=297&id=78)
+- [Mob SDK compliance guide](https://www.mob.com/wiki/detailed?wiki=421&id=717)
+- [FlySDK Maven repository](https://mvn.zztfly.com/android)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Gradle, Java, properties, and shell command snippets; may generate configuration files in the target Android project.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Android project path and MobTech configuration values during the workflow.]
+
+## Skill Version(s):
+
+2.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

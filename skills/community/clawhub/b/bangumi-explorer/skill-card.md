@@ -1,43 +1,56 @@
-## Description: <br>
-Query Bangumi (bgm.tv) for anime, manga, light novels, games, and music. Search subjects, view details and episode lists, browse seasonal anime charts, rating rankings, and look up voice actors / staff. No authentication required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Bangumi (bgm.tv) for anime, manga, light novels, games, and music. Search subjects, view details and episode lists, browse seasonal anime charts, rating rankings, and look up voice actors / staff. No authentication required.
 
-## Publisher: <br>
-[mountlynx](https://clawhub.ai/user/mountlynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mountlynx](https://clawhub.ai/user/mountlynx)
 
-## Use Case: <br>
-External users and developers use this skill to look up Bangumi subjects, episode lists, seasonal anime charts, ratings, staff, voice actors, and characters through bgm.tv without authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bangumi searches are sent to bgm.tv, which can expose user query terms to an external service. <br>
-Mitigation: Avoid sensitive search terms when using the skill, especially on shared or monitored systems. <br>
-Risk: API responses may be cached locally in ~/.bangumi/cache/, leaving lookup history or returned content on disk. <br>
-Mitigation: Clear the local Bangumi cache if local privacy matters or when using a shared machine. <br>
+## Use Case:
 
+External users and developers use this skill to search Bangumi subjects, inspect anime and media details, browse seasonal charts and rankings, and look up people or characters without authentication.
 
-## Reference(s): <br>
-- [Bangumi API base](https://api.bgm.tv/v0) <br>
-- [Bangumi API documentation](https://github.com/bangumi/api) <br>
-- [Bangumi OpenAPI v0 spec](https://github.com/bangumi/api/blob/master/open-api/v0.yaml) <br>
-- [ClawHub skill page](https://clawhub.ai/mountlynx/bangumi-explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text Bangumi lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script output is intended to be presented as-is; API responses may be cached locally in ~/.bangumi/cache/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill makes unauthenticated requests to the Bangumi API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound requests to Bangumi are acceptable, and review returned information before relying on it.
+
+Risk: Fetched query and result data may be cached locally in ~/.bangumi/cache/.
+
+Mitigation: Avoid shared machines for sensitive lookups, or clear the cache directory after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mountlynx/skills/bangumi-explorer)
+- [Bangumi API base](https://api.bgm.tv/v0)
+- [Bangumi API documentation](https://github.com/bangumi/api)
+- [Bangumi OpenAPI specification](https://github.com/bangumi/api/blob/master/open-api/v0.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill returns Bangumi search results, details, episode lists, seasonal charts, rankings, person records, calendar entries, or character records as concise text.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

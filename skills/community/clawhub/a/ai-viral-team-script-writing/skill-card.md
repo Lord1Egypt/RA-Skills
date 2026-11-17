@@ -1,39 +1,49 @@
-## Description: <br>
-Ai Viral Team Script Writing helps agents create short-video script frameworks, storyboard tables, detailed English video prompts, emotional hooks, ending calls to action, and Vidu configuration recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language workflow for short-video scriptwriting and storyboard design, including viral-opening options, shot-by-shot prompts, emotional hooks, ending guidance, and Vidu video generation configuration recommendations.
 
-## Publisher: <br>
-[junhongzhang77-ui](https://clawhub.ai/user/junhongzhang77-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junhongzhang77-ui](https://clawhub.ai/user/junhongzhang77-ui)
 
-## Use Case: <br>
-Content creators, video planners, and agents in an AI video workflow use this skill to turn trends or content ideas into short-video scripts, storyboard plans, character-consistent prompts, and Vidu generation settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatically selected reference images or character likenesses may be inappropriate, unlicensed, or based on private people without consent. <br>
-Mitigation: Review and approve any reference images before use, and avoid private people's likenesses unless consent and rights are clear. <br>
-Risk: Video-generation handoff prompts may contain incorrect character details, unsuitable scenes, or details the user did not intend to send onward. <br>
-Mitigation: Check the full storyboard, prompts, character details, and Vidu configuration before approving handoff to the video-generation agent. <br>
+## Use Case:
 
+External creators and content teams use this skill to draft short-video concepts, full scripts, storyboard tables, English Vidu prompts, character-consistency notes, and video generation settings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with storyboard tables and structured prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes golden-hook options, shot prompts, character details, transition notes, and Vidu configuration recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated script details, English prompts, or web-searched character references may be inaccurate or unsuitable for likeness-sensitive or brand-sensitive videos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts, character references, and Vidu settings before approving video generation handoff.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/junhongzhang77-ui/skills/ai-viral-team-script-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured script sections, storyboard tables, English prompts, and Vidu configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for user confirmation before producing a full script or handing storyboard details to video generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

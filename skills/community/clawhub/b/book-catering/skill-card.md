@@ -1,40 +1,53 @@
-## Description: <br>
-Book catering services through Lokuli MCP for users who need to find and book catering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book catering services through Lokuli MCP for users who need to find and book catering.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for catering services, check availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send personal contact details to Lokuli. <br>
-Mitigation: Confirm the user explicitly approves sharing their name, email, and phone number before any booking request is sent. <br>
-Risk: The skill can create a real catering booking without clear final-confirmation safeguards. <br>
-Mitigation: Require final user confirmation of provider, date, time, price, cancellation terms, and contact details before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/edwardrodriguez703-design/book-catering) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to search for catering options, check availability, and create catering bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Text] <br>
-**Output Format:** [Text and JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include catering search queries, availability checks, and booking details for Lokuli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The booking workflow can send customer contact details to Lokuli's external MCP booking service.
+
+Mitigation: Confirm user consent before transmitting names, email addresses, phone numbers, or other contact details.
+
+Risk: A booking could be created without a clear final approval step.
+
+Mitigation: Before calling create_booking, present the provider, service, time slot, and customer details and require explicit user approval.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-catering)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include catering search criteria, availability checks, and booking creation requests containing customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,67 @@
-## Description: <br>
-AI-powered wireless network manager that helps agents diagnose Wi-Fi and hotspot connectivity, compare network quality, explain RF interference, and propose or run consent-based optimization actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered wireless network manager that diagnoses Wi-Fi and hotspot connectivity, scores RF conditions, explains congestion and interference, and proposes or runs approved optimization actions.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent inspect local wireless conditions, explain slow or unstable connectivity, compare Wi-Fi and hotspot options, and guide network optimization with explicit user approval for privileged or disruptive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose or execute network-changing actions such as DNS changes, DHCP renewal, Wi-Fi switching, and adapter restarts. <br>
-Mitigation: Use read-only scan mode first and require explicit confirmation before any privileged or disruptive network operation. <br>
-Risk: Monitor and sentinel modes can run background wireless checks and presence sensing. <br>
-Mitigation: Enable these modes only when intentionally requested, disclose what is being monitored, and stop them when continuous sensing is no longer needed. <br>
-Risk: Local RF history, action logs, model weights, and spatial calibration data may be stored under ~/.net-intel. <br>
-Mitigation: Review or delete ~/.net-intel when local wireless history should not be retained. <br>
+## Use Case:
 
+Developers and laptop users use this skill to let a local agent diagnose wireless problems, compare Wi-Fi and mobile hotspot options, explain RF interference, and guide connectivity improvements. It can also support monitoring and presence-sensing workflows when the user explicitly enables them.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/danielfoojunwei/agentic-wireless-manager) <br>
-- [Permissions and Controls](docs/PERMISSIONS_AND_CONTROLS.md) <br>
-- [RF Environment Intelligence](docs/RF_ENVIRONMENT_INTELLIGENCE.md) <br>
-- [SAC-LTC Architecture](docs/SAC_LTC_ARCHITECTURE.md) <br>
-- [Cross-Platform Command Reference](docs/CROSS_PLATFORM_COMMANDS.md) <br>
-- [Training Pipeline](docs/TRAINING_PIPELINE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command snippets, JSON examples, and concise plain-language recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed OS network commands, local scan summaries, SAC-LTC explanations, and consent-gated monitoring or optimization steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package.json and CHANGELOG list 1.0.0) <br>
+Risk: The skill can propose or execute network changes such as DNS updates, DHCP renewal, Wi-Fi switching, or adapter restart.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use quick scan or read-only mode by default, require explicit approval for remediation commands, and review each command before allowing privileged execution.
+
+Risk: Sentinel and presence-sensing modes can infer nearby movement from RF signal changes.
+
+Mitigation: Enable these modes only with informed consent from affected people and avoid using them for surveillance or security decisions.
+
+Risk: Monitoring modes may store RF history, calibration data, model weights, and action logs locally.
+
+Mitigation: Keep the data directory user-controlled, prune retained history, and avoid enabling background monitoring when persistent local records are not acceptable.
+
+Risk: The runtime depends on local shell execution and optional Python dependencies.
+
+Mitigation: Run in a pinned virtual environment, install only reviewed dependencies, and limit shell permissions to the operating modes the user actually needs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danielfoojunwei/skills/agentic-wireless-manager)
+- [README](README.md)
+- [Permissions and Controls](docs/PERMISSIONS_AND_CONTROLS.md)
+- [RF Environment Intelligence](docs/RF_ENVIRONMENT_INTELLIGENCE.md)
+- [SAC-LTC Architecture](docs/SAC_LTC_ARCHITECTURE.md)
+- [Training Pipeline](docs/TRAINING_PIPELINE.md)
+- [Cross-Platform Commands](docs/CROSS_PLATFORM_COMMANDS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON outputs from the Python CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local RF history, model weights, calibration data, and action logs under ~/.net-intel/ when those modes are enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

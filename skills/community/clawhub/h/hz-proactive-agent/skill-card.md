@@ -1,45 +1,64 @@
-## Description: <br>
-Transforms AI agents from task-followers into proactive partners that anticipate needs, maintain durable memory, verify work, and improve over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve.
 
-## Publisher: <br>
-[lidekahdjdhdhsjjs-lang](https://clawhub.ai/user/lidekahdjdhdhsjjs-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lidekahdjdhdhsjjs-lang](https://clawhub.ai/user/lidekahdjdhdhsjjs-lang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure proactive behavior, durable memory, onboarding, heartbeat checks, and security review patterns for AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants a proactive agent broad memory, monitoring, cleanup, and autonomous-work authority without enough user control. <br>
-Mitigation: Require explicit approval before email or calendar access, desktop or browser cleanup, trash operations, background agent turns, sub-agent spawning, or edits to operating files. <br>
-Risk: The memory files can accumulate private user, project, or workflow data. <br>
-Mitigation: Treat memory files as private data and review, prune, or delete them regularly. <br>
-Risk: External content handled by the agent can contain prompt-injection attempts. <br>
-Mitigation: Treat external content as data, isolate instructions from untrusted sources, and review or run the included security audit before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add proactive assistance patterns, persistent memory files, onboarding flows, security checks, heartbeat routines, and self-improvement workflows to an agent workspace.
 
-## Reference(s): <br>
-- [Huizai Proactive Agent on ClawHub](https://clawhub.ai/lidekahdjdhdhsjjs-lang/hz-proactive-agent) <br>
-- [Project Homepage](https://github.com/lidekahdjdhdhsjjs-lang/Huizai-openclaw) <br>
-- [Onboarding Flow Reference](references/onboarding-flow.md) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workspace asset templates and an optional security audit script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter and changelog describe upstream 3.1.0) <br>
+Risk: The skill encourages persistent storage of broad conversation and user data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user opt-in for memory writes, minimize retained personal data, and keep writes scoped to skill-owned memory files.
+
+Risk: Background proactive behavior can create actions the user did not explicitly request.
+
+Mitigation: Require confirmation before cron setup, isolated agent turns, deletion, external communication, or public actions.
+
+Risk: Full-exchange logging can retain more sensitive context than necessary.
+
+Mitigation: Disable full-exchange logging by default and prefer concise summaries that omit secrets, credentials, and unrelated personal details.
+
+Risk: Workspace automation may affect files, browser state, calendar, email, or desktop applications.
+
+Mitigation: Restrict reads and writes to skill-owned files unless the user explicitly expands scope, and remove or gate automatic email, calendar, browser, app, and desktop cleanup behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lidekahdjdhdhsjjs-lang/skills/hz-proactive-agent)
+- [Publisher profile](https://clawhub.ai/user/lidekahdjdhdhsjjs-lang)
+- [Onboarding Flow Reference](references/onboarding-flow.md)
+- [Security Patterns Reference](references/security-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace files and operating procedures for agent memory, onboarding, security checks, heartbeat routines, and proactive workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; source skill frontmatter version 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-Supports Chinese-language guided study of Rowland S. Miller's Intimate Relationships, 6th edition, Chapter 12 on power and violence, using progressive disclosure and chapter reference files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Chinese-speaking learners study Chapter 12, "Power and Violence," from Rowland S. Miller's Intimate Relationships, 6th edition, using chapter-grounded terms, models, examples, and safety boundaries.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students and other external learners use this skill to study Chapter 12 concepts about relationship power, control, intimate partner violence categories, risk factors, research findings, and textbook examples. The skill guides discussion in Chinese, narrows answers to the user's question, and directs crisis-related situations toward local emergency or professional support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on educational content about intimate partner violence for immediate crisis decisions or personalized safety planning. <br>
-Mitigation: Use the skill for chapter study only; if there is danger, contact local emergency services, a domestic violence hotline, trusted support, or a qualified professional. <br>
-Risk: Chapter-scoped explanations may omit context from other textbook chapters or current professional guidance. <br>
-Mitigation: Keep answers limited to Chapter 12 unless clearly marked as a brief connection, and avoid presenting textbook analysis as legal, clinical, or safety advice. <br>
+## Use Case:
 
+External learners and educators use this skill to discuss and apply concepts from a textbook chapter on relationship power, control, and intimate partner violence. It supports concise Chinese-language tutoring, chapter-specific examples, and safety-oriented responses when users describe real danger.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/junwugit/intimate-ch12-power-violence) <br>
-- [Applications and common misunderstandings](references/applications.md) <br>
-- [Textbook example anchors](references/examples.md) <br>
-- [IPV risk factors and victim constraints](references/ipv-risk-factors.md) <br>
-- [Key terms](references/key-terms.md) <br>
-- [Theories and models](references/models.md) <br>
-- [Power processes and outcomes](references/power-processes.md) <br>
-- [Power sources, resources, and equality](references/power-resources.md) <br>
-- [Research, years, and textbook data](references/research.md) <br>
-- [Intimate partner violence and types](references/violence-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Text, Markdown] <br>
-**Output Format:** [Markdown conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language study guidance with progressive disclosure and chapter-scoped references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may describe active intimate partner violence, stalking, threats, coercive control, or escalating physical danger while seeking chapter help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill should prioritize emergency services, domestic violence hotlines, trusted people, or qualified professionals before returning to textbook explanation.
+
+Risk: Educational discussion of abuse dynamics may be mistaken for a safety plan, legal advice, or psychological treatment.
+
+Mitigation: Frame chapter concepts as learning support and keep real-world safety, legal, and clinical decisions with appropriate local services and professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/intimate-ch12-power-violence)
+- [Applications and common misunderstandings](artifact/references/applications.md)
+- [Textbook example anchors](artifact/references/examples.md)
+- [Violence risk factors and victim constraints](artifact/references/ipv-risk-factors.md)
+- [Key terms](artifact/references/key-terms.md)
+- [Theories and models](artifact/references/models.md)
+- [Power processes and outcomes](artifact/references/power-processes.md)
+- [Power resources and equality](artifact/references/power-resources.md)
+- [Research, years, and textbook data](artifact/references/research.md)
+- [Intimate partner violence and types](artifact/references/violence-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational responses with progressive disclosure and safety-first boundaries for real-world violence scenarios]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Order query and cache refill"
+  },
+  "participants": [
+    {
+      "id": "client",
+      "label": "Browser client",
+      "type": "frontend"
+    },
+    {
+      "id": "api",
+      "label": "Order service API",
+      "type": "backend"
+    },
+    {
+      "id": "db",
+      "label": "Persistent database",
+      "type": "database"
+    }
+  ],
+  "messages": [
+    {
+      "from": "client",
+      "to": "api",
+      "label": "Query order details and current payment status"
+    },
+    {
+      "from": "api",
+      "to": "api",
+      "label": "Validate identity and order access"
+    },
+    {
+      "from": "api",
+      "to": "db",
+      "label": "Cache miss: read order records"
+    },
+    {
+      "from": "db",
+      "to": "api",
+      "label": "Return order records and payment status",
+      "variant": "return"
+    },
+    {
+      "from": "api",
+      "to": "client",
+      "label": "Return results and update the page",
+      "variant": "return"
+    }
+  ]
+}

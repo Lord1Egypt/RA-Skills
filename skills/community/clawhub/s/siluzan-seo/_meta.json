@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7fvww6xcwp6e93b3qgnjy7s183jy5k",
   "slug": "siluzan-seo",
   "version": "1.1.30",
-  "publishedAt": 1782712939287
+  "publishedAt": 1782712919519,
+  "homepage": "https://www.siluzan.com",
+  "source": "https://dev.azure.com/jack4it/Sammamish/_git/siluzan-skill",
+  "requiredBinaries": [
+    "node",
+    "npm"
+  ],
+  "optionalBinaries": [],
+  "requiredEnv": [],
+  "optionalEnv": [],
+  "configPaths": [],
+  "companionSkills": [
+    "siluzan-cso"
+  ]
 }

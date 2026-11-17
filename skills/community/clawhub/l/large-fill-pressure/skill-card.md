@@ -1,41 +1,54 @@
-## Description: <br>
-Use when repeated large fills suggest directional participation or informed flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when repeated large fills suggest directional participation or informed flow.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Developers and trading-analysis agents use this skill to evaluate repeated large Polymarket fills and shape a custom Nautilus strategy archetype. It supports backtest framing and strategy configuration, not proof of profit or source-side intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading strategy ideas may be speculative and may not represent a proven edge. <br>
-Mitigation: Treat outputs as analysis templates, validate assumptions with market data, and avoid implying profit or directional certainty. <br>
-Risk: Large fills can reflect hedging, risk transfer, noisy data, or low-liquidity artifacts rather than informed directional pressure. <br>
-Mitigation: Check fill-data quality, cluster behavior, and reversal cases before relying on a signal. <br>
-Risk: Adding live-trading behavior or exchange credentials would introduce financial, legal, and operational exposure. <br>
-Mitigation: Review any generated code before running it, avoid granting credentials unless live trading is intentionally added, and validate regulatory and financial risks independently. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate prediction-market trade flow where repeated large fills may indicate directional pressure. It helps shape custom Nautilus strategy code from exact market slugs and TradeTick backtests without presenting the archetype as a proven edge.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with JSON configuration examples and strategy-code guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces speculative analysis guidance that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Large-fill clusters can be mistaken for reliable directional conviction or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as research and backtesting guidance only, and require user review before any trading implementation.
+
+Risk: Filled TradeTick replay cannot reveal maker intent, hidden liquidity, queue position, or live execution quality.
+
+Mitigation: State these data limits in generated analyses and validate strategy ideas against market-specific fill quality before use.
+
+## Reference(s):
+
+- [Large Fill Pressure on ClawHub](https://clawhub.ai/superior-ai/skills/large-fill-pressure)
+- [superior-ai publisher profile](https://clawhub.ai/user/superior-ai)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, code, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports strategy archetype generation for filled TradeTick backtests; outputs should not be treated as investment advice or automated trading authority.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

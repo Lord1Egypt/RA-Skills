@@ -1,42 +1,58 @@
-## Description: <br>
-LMS data aggregation and reporting tool for course information management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LMS data aggregation and reporting tool for course information management.
 
-## Publisher: <br>
-[Acogkr](https://clawhub.ai/user/Acogkr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[acogkr](https://clawhub.ai/user/acogkr)
 
-## Use Case: <br>
-External users and their agents use this skill to collect Hoseo LMS course data, summarize deadlines and attendance status, and run limited lecture playback only when explicitly requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated LMS login and lecture playback may violate institutional rules or exceed the user's intended LMS activity. <br>
-Mitigation: Use the skill only when LMS automation is allowed, require an explicit user request, and run auto_attend with concrete course and lecture limits. <br>
-Risk: Credentials may be exposed if passed on the command line or stored without appropriate file protections. <br>
-Mitigation: Prefer a protected local credentials file, avoid command-line passwords, and remove or secure the file when it is not needed. <br>
-Risk: The implementation can perform lecture playback, which is broader than a reporting-only workflow. <br>
-Mitigation: Treat playback as a separate high-impact action that requires user confirmation before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hoseo LMS](https://learn.hoseo.ac.kr) <br>
-- [ClawHub skill page](https://clawhub.ai/Acogkr/hoseo-lms) <br>
+## Use Case:
 
+Students or authorized agents use this skill to collect Hoseo University LMS course data, generate local deadline and attendance summaries, and run explicitly requested lecture playback.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown guidance with shell commands, terminal reports, and local JSON data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Playwright-supported browser automation for lecture playback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automated lecture playback may update LMS attendance or progress records.
+
+Mitigation: Use only with explicit institutional authorization and require a user-confirmed playback count before running auto_attend.py.
+
+Risk: The skill handles LMS credentials and examples include plaintext credentials and a --pw command-line option.
+
+Mitigation: Avoid passing passwords on the command line, store credentials only in a local file with restrictive permissions, use a low-risk environment, and rotate credentials after unsafe use.
+
+Risk: A default lecture limit of 0 means unlimited playback scope.
+
+Mitigation: Set a concrete --limit-lectures value for each run and confirm the intended course or week bounds before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acogkr/skills/hoseo-lms)
+- [Hoseo University LMS](https://learn.hoseo.ac.kr)
+- [OpenClaw](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus local JSON reports and terminal text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files under ~/.config/hoseo_lms and may launch browser-based LMS lecture playback when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

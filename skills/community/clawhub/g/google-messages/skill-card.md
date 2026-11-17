@@ -1,43 +1,61 @@
-## Description: <br>
-Send and receive SMS/RCS via Google Messages web interface (messages.google.com). Use when asked to "send a text", "check texts", "SMS", "text message", "Google Messages", or forward incoming texts to other channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive SMS/RCS via Google Messages web interface (messages.google.com). Use when asked to "send a text", "check texts", "SMS", "text message", "Google Messages", or forward incoming texts to other channels.
 
-## Publisher: <br>
-[kesslerio](https://clawhub.ai/user/kesslerio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[kesslerio](https://clawhub.ai/user/kesslerio)
 
-## Use Case: <br>
-External users and developers use this skill to automate Google Messages for Web through an agent, including pairing, sending SMS/RCS messages, checking conversations, and optionally forwarding incoming message previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The SMS notification webhook can execute shell commands built from message content. <br>
-Mitigation: Review before installing and do not enable the webhook or persistent service unless shell-based forwarding is replaced with argument-based command invocation. <br>
-Risk: Forwarded SMS previews may include private conversations, account recovery links, or one-time codes. <br>
-Mitigation: Use a dedicated browser profile, pair only on a trusted machine, and forward previews only to channels approved for sensitive message content. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to automate Google Messages for Web, including sending texts, checking conversations, and optionally forwarding incoming SMS/RCS notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kesslerio/google-messages) <br>
-- [Observer Injection](references/observer-injection.md) <br>
-- [JavaScript Snippets](references/snippets.md) <br>
-- [Google Messages Web](https://messages.google.com/web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser automation, Node.js, a paired Google Messages web session, and optional notification environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill handles private SMS/RCS content and can forward message previews outside Google Messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with conversations approved for forwarding, set notification targets deliberately, and keep paired browser sessions private.
+
+Risk: The supplied security evidence reports a serious command-injection risk in webhook forwarding.
+
+Mitigation: Do not run the current webhook server with real forwarding targets until the webhook command construction is fixed and reviewed.
+
+Risk: Persistent notification forwarding can expose incoming messages continuously.
+
+Mitigation: Avoid enabling persistent notification services unless the security issues are resolved and the forwarding destination is trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kesslerio/skills/google-messages)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Google Messages for Web](https://messages.google.com/web)
+- [Observer Injection](references/observer-injection.md)
+- [JavaScript Snippets](references/snippets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with browser automation commands, shell commands, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser automation, Node.js, Google Messages pairing, and optional notification environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Test network connectivity to remote hosts by sending ICMP echo requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test network connectivity to remote hosts by sending ICMP echo requests. Use for network diagnostics and latency measurement.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to check basic network reachability and latency to a specified hostname or IP address with ICMP ping diagnostics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send ICMP network probes to hostnames or IP addresses supplied by the user.
+
+Mitigation: Use it only against systems you are authorized to test and review target hosts before execution.
+
+Risk: The current implementation is narrower than the documented options and executes a fixed four-packet ping.
+
+Mitigation: Confirm runtime behavior in the target environment and update the documentation or script before relying on unsupported options.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and network operators use this skill to check basic reachability and latency for hosts they own, manage, or have permission to test. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Ping requests can be inappropriate or disruptive when directed at systems the user does not own or have permission to test. <br>
-Mitigation: Use the skill only for hosts the user owns, manages, or is authorized to test. <br>
-Risk: The documented command options are broader than the bundled script behavior, which always sends four pings and only accepts a host argument. <br>
-Mitigation: Treat option examples as usage guidance for a ping tool, and verify actual script behavior before relying on custom packet count, interval, size, or timeout settings. <br>
+**Output Format:** [Markdown with inline bash command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces ping diagnostic commands or guidance for a single target host; the bundled script executes four ICMP echo requests.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script runs four ping requests against a provided host.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

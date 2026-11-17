@@ -1,41 +1,59 @@
-## Description: <br>
-Connect Tool Library helps agents manage CogenticLink tool library tokens, browse remote tool categories and schemas, and execute remote CLI, API, and MCP tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with remote CLI, API, and MCP tools via the CogenticLink CLI, using progressive disclosure from tool library to category to tool.
 
-## Publisher: <br>
-[cogenticlab](https://clawhub.ai/user/cogenticlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cogenticlab](https://clawhub.ai/user/cogenticlab)
 
-## Use Case: <br>
-Developers and agents use this skill to configure access to CogenticLink tool libraries, inspect available tool categories and schemas, and call remote tools through the CogenticLink CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens may be exposed if pasted directly into shell commands or retained in shell history. <br>
-Mitigation: Prefer environment variables, secure prompts, or a credential store; rotate any token that may have been exposed. <br>
-Risk: Stored tool library credentials may remain available after the intended work is complete. <br>
-Mitigation: Remove unused libraries from the local CogenticLink configuration when access is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure CogenticLink tool-library tokens, browse available remote tool categories and tools, inspect tool schemas, and execute tool calls through CLI commands.
 
-## Reference(s): <br>
-- [Connect Tool Library on ClawHub](https://clawhub.ai/cogenticlab/connect-tool-library) <br>
-- [CogenticLink npm package](https://www.npmjs.com/package/cogenticlink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide tool calls that return JSON content arrays or error details from CogenticLink.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill instructs users to install and run the CogenticLink CLI without pinning a trusted package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted, pinned CogenticLink version and review the package source or provenance before deployment.
+
+Risk: API tokens may be exposed through shared terminals, shell history, logs, or weak local configuration protection.
+
+Mitigation: Use narrowly scoped revocable tokens, avoid entering real tokens in shared command contexts, and verify permissions on ~/.cogenticlab/link/config.json.
+
+Risk: Remote tool calls can execute against external tool libraries using user-provided credentials.
+
+Mitigation: Review tool descriptions and input schemas before each call, and prefer least-privilege libraries for sensitive workflows.
+
+## Reference(s):
+
+- [Connect Tool Library on ClawHub](https://clawhub.ai/cogenticlab/skills/connect-tool-library)
+- [CogenticLink npm package](https://www.npmjs.com/package/cogenticlink)
+- [cogenticlab publisher profile](https://clawhub.ai/user/cogenticlab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and JSON parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update local CogenticLink configuration and to call remote tools with user-provided tokens.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

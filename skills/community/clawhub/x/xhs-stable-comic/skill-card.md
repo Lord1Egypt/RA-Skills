@@ -1,51 +1,61 @@
-## Description: <br>
-Generates Xiaohongshu-focused AI and fitness account positioning, content plans, scripts, review checklists, four-panel comic prompts, and compliance guidance for OpenClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese Xiaohongshu AI-and-fitness account positioning, content strategy, post drafts, review frameworks, comic prompts, and compliance guidance for OpenClaw workflows.
 
-## Publisher: <br>
-[tankeito](https://clawhub.ai/user/tankeito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankeito](https://clawhub.ai/user/tankeito)
 
-## Use Case: <br>
-External creators and operators use this skill to build Chinese-language Xiaohongshu AI-plus-fitness accounts, including persona setup, content strategy, post drafts, comic visual systems, and publish-review routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fitness, nutrition, or health-adjacent content could be mistaken for professional advice. <br>
-Mitigation: Treat outputs as public-content drafts, not medical or coaching guidance, and manually review all health-adjacent claims before posting. <br>
-Risk: Public posts may include unsupported transformation claims or fabricated personal evidence. <br>
-Mitigation: Use only confirmed real details, avoid medical diagnoses and guaranteed outcomes, and keep before-after data, screenshots, and testimonials truthful. <br>
-Risk: AIGC-heavy posts may conflict with platform rules or audience expectations. <br>
-Mitigation: Review Xiaohongshu AIGC disclosure requirements and prefer AI-assisted drafts with human final review, real evidence, and user-owned visual materials. <br>
-Risk: Persona and visual workflows may invite unnecessary use of personal photos or body details. <br>
-Mitigation: Share only the minimum needed reference material and avoid unnecessary body, health, or identity details. <br>
+## Use Case:
 
+External creators and operators use this skill to build and run Chinese Xiaohongshu accounts about AI-assisted fitness habits, including persona setup, content calendars, post drafts, review routines, and four-panel comic asset prompts. The skill is intended for content operations guidance, not medical, nutrition, or certified coaching advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tankeito/xhs-stable-comic) <br>
-- [Publisher profile](https://clawhub.ai/user/tankeito) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Persona and visual bootstrap](artifact/references/persona-visual-bootstrap.md) <br>
-- [Content playbook](artifact/references/content-playbook.md) <br>
-- [Operations playbook](artifact/references/operations-playbook.md) <br>
-- [Four-panel comic guide](artifact/references/four-panel-comic.md) <br>
-- [Comic asset pack](artifact/references/comic-asset-pack.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured Chinese-language content plans, scripts, checklists, and image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese Xiaohongshu-ready deliverables and may include assumptions when user inputs are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated fitness or nutrition content may be mistaken for medical, nutritionist, or certified coaching advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before publishing and keep outputs framed as personal content operations guidance rather than diagnosis, treatment, or professional coaching.
+
+Risk: Users may share sensitive health data or personal photos while preparing account personas or visual references.
+
+Mitigation: Ask only for information needed for the task, avoid unnecessary sensitive data collection, and prefer abstracted persona or visual anchors when personal photos are not required.
+
+Risk: Generated posts or images may create misleading claims, fabricated results, or platform-sensitive AIGC presentation.
+
+Mitigation: Keep claims grounded in user-provided facts, avoid promises about body or health outcomes, and use AI-assisted drafts with human evidence and final review for platform-facing content.
+
+## Reference(s):
+
+- [persona-visual-bootstrap.md](references/persona-visual-bootstrap.md)
+- [content-playbook.md](references/content-playbook.md)
+- [operations-playbook.md](references/operations-playbook.md)
+- [four-panel-comic.md](references/four-panel-comic.md)
+- [comic-asset-pack.md](references/comic-asset-pack.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown or structured Chinese text with content briefs, post drafts, checklists, comic prompts, and account setup cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese Xiaohongshu context and includes conservative assumptions when user inputs are incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

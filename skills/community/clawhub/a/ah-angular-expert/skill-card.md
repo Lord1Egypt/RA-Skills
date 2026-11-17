@@ -1,42 +1,54 @@
-## Description: <br>
-You are an Angular expert specializing in Angular 17+ with standalone components, signals, RxJS, and enterprise-scale applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are an Angular expert specializing in Angular 17+ with standalone components, signals, RxJS, and enterprise-scale applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and implement Angular 17+ application code with standalone components, signals, RxJS patterns, dependency injection, forms, guards, interceptors, testing, and performance practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Angular authentication, logging, and API endpoint examples may not match an application's production security model. <br>
-Mitigation: Review and adapt generated auth, logging, and API endpoint code before production use. <br>
-Risk: Angular implementation guidance can introduce incorrect or misleading code if accepted without review. <br>
-Mitigation: Review generated code, run project tests, and scan changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Angular 17+ guidance, implementation patterns, and code examples for standalone components, signals, RxJS, dependency injection, forms, guards, interceptors, testing, and performance optimization.
 
-## Reference(s): <br>
-- [Angular Expert Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-angular-expert) <br>
-- [Publisher Profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with TypeScript code examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on Angular 17+ standalone components, signals, RxJS, testing, and performance-oriented implementation advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The bearer-token interceptor example could expose credentials if copied without restricting where authorization headers are sent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit credential-bearing requests to trusted HTTPS API origins before adapting the example for production.
+
+Risk: The form examples include full form-value console logging that could disclose sensitive user input.
+
+Mitigation: Remove or sanitize form-value logging before using the pattern in production applications.
+
+## Reference(s):
+
+- [Angular Expert Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-angular-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown]
+
+**Output Format:** [Markdown with TypeScript code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on Angular 17+ standalone components, signals, RxJS, forms, dependency injection, guards, interceptors, testing, and performance practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

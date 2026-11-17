@@ -1,46 +1,68 @@
-## Description: <br>
-Diagnoses OpenClaw issues through staged triage, documentation and issue search, validation, repair guidance, and diagnostic report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive, self-evolving skill designed to diagnose and solve OpenClaw issues by following a structured, multi-stage resolution cycle with proactive prediction, robustness checks, knowledge creation, and diagnosis report visualization.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-Developers and engineers use this skill to troubleshoot OpenClaw bugs, configuration drift, tool failures, and feature implementation questions. It helps collect context, compare evidence, propose fixes, validate outcomes, and produce diagnostic reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local profile or session context and persist troubleshooting history or diagnostic reports. <br>
-Mitigation: Review what local context and logs will be read or saved, redact secrets from command output, and avoid persistent reports when their contents are not safe to store. <br>
-Risk: Repair guidance may include exec, write, fix, or doctor commands that modify the user's environment. <br>
-Mitigation: Require explicit approval before running modifying commands, confirm the target environment, and provide a rollback command before execution. <br>
-Risk: Diagnostic reports and error summaries can include raw command output that may contain credentials or private project details. <br>
-Mitigation: Mask API keys, tokens, user identifiers, internal project names, and other sensitive values before displaying or saving reports. <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot OpenClaw bugs, configuration failures, and implementation questions through structured triage, documentation and issue search, validation, and diagnostic reporting. It may propose shell commands, repair steps, rollback guidance, and knowledge updates after a problem is resolved.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/autofix-theclaw) <br>
-- [Skill control document](artifact/SKILL.md) <br>
-- [Quick Start v5.0](artifact/docs/tutorials/QUICK_START_v5.0.md) <br>
-- [Diagnosis report enhancements](artifact/docs/enhancement/MODULE_03_Enhancement_Reports.md) <br>
-- [v5.0 changes](artifact/docs/reports/CHANGES_v5.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command suggestions, diagnostic summaries, JSON-like analysis, and generated HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save troubleshooting history or diagnostic reports; command-based repair flows should require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata) <br>
+Risk: External search and diagnostic reporting can expose raw logs, tokens, hostnames, private paths, or project names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in non-sensitive workspaces and redact logs, tokens, hostnames, private paths, and project names before search, persistence, or report generation.
+
+Risk: The skill may suggest modifying repair commands such as `openclaw doctor --fix` or commands requiring `sudo`.
+
+Mitigation: Require explicit review and approval of each repair command, confirm the target environment, and provide a rollback command before execution.
+
+Risk: Memory/profile access and knowledge updates may retain sensitive troubleshooting context.
+
+Mitigation: Avoid broad memory writes for sensitive sessions and review any saved facts for credentials, private identifiers, or internal project details.
+
+Risk: Generated diagnostic reports may persist sensitive execution output.
+
+Mitigation: Disable or limit Canvas report persistence for sensitive workspaces, or store only redacted summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikewongonline/skills/autofix-theclaw)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Pre-check and context gathering module](docs/MODULE_01_PreCheck.md)
+- [Search chain module](docs/MODULE_02_SearchChain.md)
+- [Validation and action module](docs/MODULE_03_ValidationAction.md)
+- [Diagnosis report and error intelligence module](docs/enhancement/MODULE_03_Enhancement_Reports.md)
+- [Quick start v5.0](docs/tutorials/QUICK_START_v5.0.md)
+- [Verification final report](docs/reports/VERIFICATION_FINAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON-like diagnostic summaries, and optional HTML diagnostic reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk levels, confidence scores, evidence-chain summaries, recommended fixes, rollback commands, and generated diagnostic report content.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

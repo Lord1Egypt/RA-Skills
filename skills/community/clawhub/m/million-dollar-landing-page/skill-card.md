@@ -1,41 +1,59 @@
-## Description: <br>
-Transforms a generic SaaS landing page into a higher-converting, visually premium page by rewriting copy, applying a dark glass design system with motion, and hardening mobile responsiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms generic SaaS landing pages into concise, high-converting pages with PAS copy, dark glass visual styling, motion, and mobile hardening.
 
-## Publisher: <br>
-[flacko2048](https://clawhub.ai/user/flacko2048) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flacko2048](https://clawhub.ai/user/flacko2048)
 
-## Use Case: <br>
-Developers, designers, and growth teams use this skill to improve landing-page copy, visual presentation, motion, and responsive behavior for SaaS or product marketing pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to edit landing-page frontend files and install frontend dependencies. <br>
-Mitigation: Use it only in projects where landing-page edits are intended; review diffs and approve dependency installation before committing. <br>
-Risk: The release declares capabilities related to purchases and crypto, but the security guidance says the skill does not need payment credentials, wallet access, secrets, or production authority. <br>
-Mitigation: Do not provide secrets, payment credentials, wallet access, or production authority while using this skill. <br>
+## Use Case:
 
+Developers, founders, and marketing teams use this skill to rewrite and restyle SaaS landing pages for clearer positioning, stronger conversion copy, polished motion, and responsive behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flacko2048/million-dollar-landing-page) <br>
-- [Publisher profile](https://clawhub.ai/user/flacko2048) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and frontend file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify landing-page copy, CSS design tokens, Tailwind configuration, and React components.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The README shows an unpinned installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned installer version or reviewed commit before installing the skill.
+
+Risk: The skill is intended to make broad landing-page copy, styling, Tailwind configuration, and frontend component changes.
+
+Mitigation: Review diffs before applying changes, test the page at mobile and desktop breakpoints, and confirm the visual direction matches the product brand.
+
+Risk: The included motion and cursor/scroll components add client-side behavior and a framer-motion dependency.
+
+Mitigation: Confirm dependency approval, respect reduced-motion behavior, and test performance on target devices before release.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/flacko2048/skills/million-dollar-landing-page)
+- [ClawHub publisher profile](https://clawhub.ai/user/flacko2048)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code snippets, frontend component files, CSS tokens, and Tailwind configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose broad page copy, styling, Tailwind configuration, dependency, and frontend component changes]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

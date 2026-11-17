@@ -170,7 +170,7 @@ async function scrapeTokenPlanUsage(phone, password) {
 }
 
 async function main() {
-  const phone = 'your_account_here';
+  const phone = '15605428773';
   const password = 'sym,1998';
   const userId = '9BB108CD680D558F5BB78A066DF4FB37';
   

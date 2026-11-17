@@ -1,43 +1,55 @@
-## Description: <br>
-Converts Markdown, text, Word, PDF, HTML, and RTF inputs into .docx documents formatted for Chinese government document standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 Markdown、文本、DOCX、PDF、HTML 和 RTF 输入转换为符合国家标准的 .docx 政府公文格式文档。
 
-## Publisher: <br>
-[Wisink](https://clawhub.ai/user/Wisink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wisink](https://clawhub.ai/user/wisink)
 
-## Use Case: <br>
-Employees, external users, and document-preparation agents use this skill to convert reports, policy analyses, work summaries, and training materials into strictly formatted government-style .docx files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter reads local source documents and writes a local .docx file. <br>
-Mitigation: Run it only on documents intended for conversion and keep sensitive inputs within the user's approved local workspace. <br>
-Risk: Supplying an existing output path can overwrite important work. <br>
-Mitigation: Choose a new or disposable output filename before running the conversion command. <br>
-Risk: Optional parsers for PDF, HTML, RTF, and Word formats depend on local Python packages. <br>
-Mitigation: Install dependencies only from trusted package sources and keep the environment scoped to this conversion task. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to convert Markdown, text, DOCX, PDF, HTML, or RTF inputs into Chinese government-style DOCX reports for policy analysis, industry research, work reports, and training materials.
 
-## Reference(s): <br>
-- [Government Document Format Rules](references/format-rules.md) <br>
-- [Conversion Lessons Learned](references/lessons-learned.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; generated .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local .docx output path supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence and _meta.json) <br>
+Risk: The converter prints short previews of parsed document content to the console.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running it on sensitive documents in shared terminals or logs, and clear console output when previews may expose private content.
+
+Risk: The converter overwrites the chosen output path if it already exists.
+
+Mitigation: Use a new output filename or back up existing DOCX files before running conversion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wisink/skills/gongwen-writer)
+- [政府公文格式规范](references/format-rules.md)
+- [公文格式转换踩坑教训与解决方案](references/lessons-learned.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [DOCX file with concise Markdown or shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The converter writes the selected DOCX output path and may print short previews of parsed document content to the console.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

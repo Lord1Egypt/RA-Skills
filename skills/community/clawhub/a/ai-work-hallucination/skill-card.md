@@ -1,41 +1,57 @@
-## Description: <br>
-AI工作幻觉 routes Chinese phrases about AI work hallucination or fake completion to the canonical VeriClaw skill and related public pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI工作幻觉 maps Chinese work-hallucination and fake-completion terms to the canonical VeriClaw skill and related evidence-first verification resources.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this alias to map Chinese descriptions of AI work hallucination, fake completion, or missing evidence back to the canonical VeriClaw installation and documentation routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this alias for a standalone verification tool. <br>
-Mitigation: Review and install the linked canonical VeriClaw skill when actual verification functionality is needed. <br>
+## Use Case:
 
+External users and developers use this alias to route Chinese descriptions of AI work hallucination or fake completion toward the official VeriClaw install path and supporting diagnosis pages.
 
-## Reference(s): <br>
-- [Canonical VeriClaw skill page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw hallucination correction page](https://sheygoodbai.github.io/vericlaw/hallucination-correction-cn/) <br>
-- [VeriClaw fake completion diagnosis page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis-cn/) <br>
-- [VeriClaw plugin page](https://clawhub.ai/plugins/vericlaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with links and short review template text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only alias; does not request code execution, credentials, or local access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server evidence) <br>
+Risk: Users may install the main VeriClaw package without checking whether its current listing, publisher, permissions, and package contents still match expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running the suggested install command, review the ClawHub listing, publisher profile, requested permissions, and current package contents.
+
+Risk: As an alias, this skill can direct attention away from the canonical VeriClaw page where installs, stars, and comments are intended to accumulate.
+
+Mitigation: Use this alias for term routing, then send installs, stars, and substantive comments back to the official VeriClaw ClawHub page.
+
+## Reference(s):
+
+- [AI工作幻觉 ClawHub skill page](https://clawhub.ai/sheygoodbai/skills/ai-work-hallucination)
+- [VeriClaw ClawHub skill page](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw hallucination correction page](https://sheygoodbai.github.io/vericlaw/hallucination-correction-cn/)
+- [VeriClaw fake completion diagnosis page](https://sheygoodbai.github.io/vericlaw/fake-completion-diagnosis-cn/)
+- [VeriClaw ClawHub plugin page](https://clawhub.ai/plugins/vericlaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes users to the canonical VeriClaw install and documentation surfaces; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

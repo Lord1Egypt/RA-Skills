@@ -1,38 +1,49 @@
-## Description: <br>
-提供家庭开支账单优化、薅羊毛攻略及高效省钱生活指南。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides household expense optimization, deal-finding tips, and practical money-saving lifestyle guidance.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External users use this skill to get practical money-saving guidance for household expenses, discounts, local deals, queues, reservations, parking, and community review signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live offers, wait times, reservations, navigation details, and parking information may be stale or inaccurate. <br>
-Mitigation: Verify current details with the relevant merchant, venue, map, or deal source before spending money or traveling. <br>
+## Use Case:
 
+External users can ask for money-saving guidance and local venue-discovery details, including distance, popularity, price tier, wait times, booking access, parking, and community notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawkk/money-saving-tips) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, permissions, or private data handling are identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The published finance-savings description does not fully match the artifact instructions, which focus on location-based venue discovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and clarify or rename the skill before normal use so invocation expectations match the actual behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/money-saving-tips)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable responses; may include consumer tips, venue filters, and practical visit details.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

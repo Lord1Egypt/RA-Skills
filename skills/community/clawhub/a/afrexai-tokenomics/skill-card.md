@@ -1,40 +1,55 @@
-## Description: <br>
-Analyze token types and score tokenomics health to guide acceptance, holding, launching, or rejecting tokens with risk and cost insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze token types and score tokenomics health to guide acceptance, holding, launching, or rejecting tokens with risk and cost insights.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, founders, analysts, and product teams use this skill to evaluate token-based products, vendor pricing, treasury exposure, and token launch decisions. It structures token classification, health scoring, decision criteria, risk factors, cost estimates, and a 90-day action plan. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tokenomics guidance may influence business, financial, legal, or regulatory decisions. <br>
-Mitigation: Verify market data, legal assumptions, ROI estimates, and compliance conclusions with current sources and qualified professionals before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-tokenomics) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Business, finance, and product teams use this skill to evaluate token-based vendors, partnerships, treasury exposure, and launch plans using a structured tokenomics scoring and decision framework.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with scores, decision recommendations, risk mitigations, cost estimates, and an action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute code, access private data, or take autonomous financial actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Token, treasury, legal, and ROI guidance may be incomplete or unsuitable for a specific jurisdiction or business context.
+
+Mitigation: Treat outputs as a starting framework and obtain professional financial, legal, and tax review before making binding decisions.
+
+Risk: External AfrexAI resource links may involve paid materials or information sharing outside the skill.
+
+Mitigation: Review linked resources, pricing, and data-sharing terms before purchasing resources or submitting information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-tokenomics)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured token classification, health scoring, business decision guidance, risk mitigations, cost estimates, and a 90-day action plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Detects and mitigates hallucinations in agent outputs by self-checking facts, verifying claims, and correcting unsupported or contradictory information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and mitigates hallucinations in agent outputs by self-checking facts, verifying claims, and correcting unsupported or contradictory information.
 
-## Publisher: <br>
-[tooled-app](https://clawhub.ai/user/tooled-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tooled-app](https://clawhub.ai/user/tooled-app)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add structured fact-checking, confidence calibration, and correction workflows to LLM-based agents. It is intended for runtime self-monitoring before an agent makes factual claims, reports tool results, or gives recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hallucination correction logs may retain sensitive user data, private file contents, or confidential project details. <br>
-Mitigation: Configure or review the memory logging location before use, and redact or avoid retaining sensitive information in correction logs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add self-checks, confidence calibration, verification prompts, and correction logging to LLM-based agents. It is intended to reduce unsupported factual claims, fabricated tool results, and misleading reasoning before responses or agent actions are finalized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tooled-app/anti-hallucination-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, protocols, tables, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution or credential handling is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Correction logs may persist sensitive conversation-derived content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep logs in a skill-specific location, redact sensitive content, and set retention limits.
+
+Risk: Suggested edits to AGENTS.md, SKILL.md, or TOOLS.md may affect broad agent behavior.
+
+Mitigation: Require administrator opt-in and manually review instruction-file changes before enabling them.
+
+Risk: Reliability guidance may be adopted without sufficient release review.
+
+Mitigation: Review and scan the skill before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tooled-app/skills/anti-hallucination-skill)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose correction logs and edits to agent instruction files when enabled.]
+
+## Skill Version(s):
+
+1.1.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

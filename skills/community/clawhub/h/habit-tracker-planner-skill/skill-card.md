@@ -1,41 +1,58 @@
-## Description: <br>
-Guides structured help for Habit Tracker Planner using clear templates, checks, and safe defaults (category: Health & Habits). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Habit Tracker Planner using clear templates, checks, and safe defaults (category: Health & Habits).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users use this skill to turn a habit-tracking goal and optional constraints into a concise plan, reusable checklist, next actions, and editable draft copy. It is intended for structured planning support while minimizing sensitive personal data in prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive personal or health-related details in habit-planning prompts. <br>
-Mitigation: Request goals and constraints without passwords, authentication codes, private medical details, or unnecessary personal information. <br>
-Risk: Habit-planning output may be mistaken for medical advice. <br>
-Mitigation: Treat outputs as planning support only and seek appropriate professional advice for medical or clinical decisions. <br>
-Risk: Generated plans or checklists may be too generic or incorrect for a user's context. <br>
-Mitigation: Review and adapt outputs before relying on them, and prefer factual, reversible next actions. <br>
+## Use Case:
 
+External users use this skill to turn habit-tracking goals and owned notes into concise plans, reusable checklists, next actions, and editable draft copy while keeping sensitive details minimal.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a concise plan, numbered checklist, short next-actions list, and optional editable draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; avoids secrets, remote installer instructions, and irreversible actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata changelog, released 2026-05-16) <br>
+Risk: Habit or health notes may contain personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive details minimal, avoid secrets, and provide only notes the user owns the rights to use.
+
+Risk: The disclosed PayPal donation link may be used without independent verification.
+
+Mitigation: Verify the donation destination directly before sending payment.
+
+Risk: Generated plans or checklists may be incomplete or unsuitable for a user's situation.
+
+Mitigation: Treat outputs as editable planning guidance and review them before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/habit-tracker-planner-skill)
+- [Publisher profile](https://clawhub.ai/user/abdullah944)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is Markdown-only and asks users to avoid secrets and minimize personal information.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

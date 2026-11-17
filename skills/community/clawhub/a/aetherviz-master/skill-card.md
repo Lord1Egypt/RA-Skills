@@ -1,42 +1,61 @@
-## Description: <br>
-Aetherviz Master helps agents generate interactive educational HTML pages with Three.js, SVG visualizations, KaTeX formulas, controls, and quizzes from a teaching topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AetherViz Master helps an agent turn a teaching topic into an interactive, browser-viewable educational visualization page with 3D, SVG, formulas, and responsive controls.
 
-## Publisher: <br>
-[liwu800729](https://clawhub.ai/user/liwu800729) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liwu800729](https://clawhub.ai/user/liwu800729)
 
-## Use Case: <br>
-Educators, students, and education content creators use this skill to turn a teaching topic into a responsive interactive lesson page with 3D or SVG visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may load JavaScript or styles from third-party CDNs, which can be unsuitable for offline, classroom, or sensitive environments. <br>
-Mitigation: Review the generated HTML before deployment and vendor, pin, or remove external libraries when a fully self-contained page is required. <br>
+## Use Case:
 
+Teachers, students, education content creators, and developers use this skill to generate interactive HTML teaching pages for topics in physics, chemistry, biology, mathematics, astronomy, and programming.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liwu800729/aetherviz-master) <br>
-- [Three.js r134 CDN](https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js) <br>
-- [Tailwind CSS CDN](https://cdn.tailwindcss.com) <br>
-- [KaTeX 0.16.11 CSS](https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css) <br>
-- [D3.js v7](https://d3js.org/d3.v7.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, guidance] <br>
-**Output Format:** [Single HTML document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated HTML is intended for browser use and may reference CDN-hosted web libraries unless the agent adapts it for fully local use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated pages may load third-party CDN code despite the zero-dependency claim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before use and remove remote dependencies or pin them with integrity checks.
+
+Risk: The README suggests using npx serve . without pinning a package version.
+
+Mitigation: Use a pinned local server package version or a built-in server such as python -m http.server for local preview.
+
+Risk: The skill imposes strict output and attribution requirements that may not fit every deployment context.
+
+Mitigation: Review generated output requirements before deployment and adjust them when attribution or format constraints conflict with local policy.
+
+## Reference(s):
+
+- [AetherViz Master ClawHub Release](https://clawhub.ai/liwu800729/skills/aetherviz-master)
+- [Three.js Documentation](https://threejs.org/docs/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [KaTeX](https://katex.org/)
+- [D3.js](https://d3js.org/)
+
+## Skill Output:
+
+**Output Type(s):** [code, text]
+
+**Output Format:** [Complete single-file HTML document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated page is intended to be saved as HTML and viewed in a modern WebGL-capable browser; evidence notes that generated pages may load third-party CDN code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

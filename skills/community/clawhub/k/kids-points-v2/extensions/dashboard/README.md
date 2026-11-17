@@ -33,30 +33,34 @@ KID POINTS
 
 数据每 5 秒从本地 server 拉一次，不联网，不上传，纯本地。
 
-### 实物图（96×128 HUB75 LED 矩阵屏）
+### 实物图（HUB75E 全彩 RGB LED 屏，128×96）
 
 ![dashboard 实物图](docs/dashboard-real-hardware.jpg)
 
-> 这是 2026-07-02 22:55 在 11 寸 HUB75 LED 屏上的实拍图。
-> 红+绿双色渲染：红色数字 + 绿色 ✓ 标识，底部 sparkline 显示最近 7 日积分趋势。
+> 这是 ESP32-WROOM-32 控制 HUB75E 全彩 RGB 屏在 128×96 点阵上的实拍图（2026-07-02 22:55）。
+> **完整 ESP32 固件 + server 代码在 GitHub 仓库 `extensions/dashboard/`。**
+> **100% 由 Hermes Agent 编写**——从 server 到 ESP32 固件全栈。如果你也想做一块桌面积分板，完全可以
+> 让 AI agent 参考这组代码和硬件 demo，直接完成属于自己的左侧积分板。
 > **文中"买冰棍"等是真实生活交易，仅供 demo 示意。**
 
 ---
 
-## 🔧 硬件清单（~160 元）
+## 🔧 硬件清单（~140 元）
 
 | 物料 | 型号/规格 | 数量 | 来源 |
 |------|-----------|------|------|
-| ESP32 主控板 | **ESP32 DevKit v1（CH340 USB-Serial）** | 1 | 淘宝 |
-| LED 矩阵屏 | **HUB75 P2 96×64（1/32 扫，单色琥珀）** | 2 | 淘宝 |
-| 信号线 | **HUB75 16P 杜邦线（母对母 30cm）** | 2 | 淘宝 |
+| ESP32 主控板 | **ESP32-WROOM-32** | 1 | 淘宝 |
+| LED 矩阵屏 | **HUB75E P2 128×96 全彩 RGB（1/16 扫）** | 1 | 淘宝 |
+| 信号线 | **HUB75 16P 杜邦线（母对母 30cm）** | 1 | 淘宝 |
 | 电源 | **5V 4A DC 适配器（DC 5.5×2.1 母头）** | 1 | 淘宝 |
 
 **为什么是这个组合？**
 
-- ESP32 DevKit v1 是因为便宜（~30 元）且 GPIO 足够多（需要 ~12 根输出驱动 LED 屏）
-- HUB75 P2 96×64 是因为淘宝现货、价格合适（~50 元/块），两块垂直拼成 96×128 刚好显示 5 行流水
-- 单色琥珀是因为价格敏感 + 护眼（零蓝光），不需要 RGB 全彩
+- **ESP32-WROOM-32**：内置 Wi-Fi，GPIO 数量足够驱动 HUB75E（~12 根输出），成本约 35 元
+- **HUB75E P2 128×96 全彩**：128×96 横屏，刚好放下 KID POINTS 标题 + 流水 + 底栏，全彩渲染
+- **单屏直驱**：不需要拼接，一根 16P 排线搞定，比双屏方案简单太多
+
+> 💡 **全栈 100% 由 Hermes Agent 编写**——从 server 到 ESP32 固件。如果你想做一块属于自己的桌面积分板，完全可以让 AI agent 参考这组代码和硬件 demo，直接完成。
 
 ---
 
@@ -112,20 +116,20 @@ esptool --chip esp32 --port /dev/ttyUSB0 --baud 921600 \
 # 烧完按 ESP32 板上的 EN 按钮复位
 ```
 
-### 3. 接线
-
-HUB75 16P ↔ ESP32 GPIO：
+### 3. 接线（HUB75E 全彩 RGB ↔ ESP32）
 
 | HUB75 | ESP32 | HUB75 | ESP32 |
 |-------|-------|-------|-------|
 | R1 | 14 | A | 13 |
-| G1 | (空) | B | 15 |
-| B1 | (空) | C | 2 |
+| G1 | 27 | B | 15 |
+| B1 | 26 | C | 2 |
 | GND | GND | D | 4 |
-| R2 | 25 | E | 16 |
-| G2 | (空) | CLK | 17 |
-| B2 | (空) | LAT | 5 |
+| R2 | 25 | E | (悬空, 1/16 扫不用) |
+| G2 | 33 | CLK | 17 |
+| B2 | 32 | LAT | 5 |
 | GND | GND | OE | 18 |
+
+共 15 根信号线（E pin 悬空）。
 
 **⚠️ 电源**：ESP32 USB 单独供电，HUB75 必须接 5V 4A 独立电源（USB 500mA 不够，峰值 2A）。共地。
 
@@ -134,7 +138,7 @@ HUB75 16P ↔ ESP32 GPIO：
 ## ❓ FAQ
 
 ### Q: ESP32 和 LED 屏之间要接多少根线？
-A: 至少 12 根（单色屏：R1 + R2 + A/B/C/D/E + CLK/LAT/OE + GND）。RGB 全彩需要 16 根。
+A: 15 根（全彩 RGB：R1/G1/B1 + R2/G2/B2 + A/B/C/D + CLK/LAT/OE + 共地）。1/16 扫不需要 E pin，悬空即可。
 
 ### Q: 烧录后用 `arduino-cli upload` 还是 `esptool`？
 A: **用 `esptool`**。`arduino-cli upload` 会擦除 NVS（WiFi 密码存储区），导致 ESP32 忘密码。`esptool` 只写 0x10000 位置，不动 NVS。
@@ -143,16 +147,10 @@ A: **用 `esptool`**。`arduino-cli upload` 会擦除 NVS（WiFi 密码存储区
 A: 90% 是电源问题。检查：5V 4A 接 HUB75 了吗？USB 单独给 ESP32 了吗？共地了吗？如果电源没问题，按 EN 按钮复位试试。
 
 ### Q: 花屏/乱码怎么办？
-A: 先跑 `fill_test.ino` 看色块位置是否和物理屏一致。如果不对，改 `mxconfig.gpio.e = 16`（1/32 扫必须有 E pin）。
+A: 先跑 `fill_test.ino` 看色块位置是否和物理屏一致。如果不对，检查 `mxconfig.gpio` 配置（1/16 扫不需要 E pin，悬空即可）。
 
 ### Q: 中文字符显示成方块？
 A: 字库要选 `gb2312b`（v4.7+），不要 `chinese3`。GB2312 一级字库覆盖 ~90% 日常中文。
-
-### Q: 两块屏怎么拼？
-A: 物理上垂直拼接（上下），用 HUB75 16P 排线对接。软件上设 `#define PANEL_CHAIN 2` 和 `#define NUM_ROWS 2`。如果上下颠倒，改 `#define TOPDOWN true`。
-
-### Q: 护眼红线？
-A: LED 蓝光（~470nm）直接伤眼。这个 demo 用单色琥珀屏（RGB565 B 通道 = 0），硬件层零蓝光。如果改成全彩屏，所有颜色必须满足 `B=0`，否则编译报错（`#error`）。
 
 ### Q: 没有 LED 屏怎么预览？
 A: `code/sim/desktop_sim.py` 是 pygame 仿真，可以调字号、排版、看效果，不通硬件。
@@ -180,10 +178,9 @@ extensions/dashboard/
 
 ## ⚠️ 注意事项
 
-1. **这不是开源硬件项目**——固件没有独立仓库，电路图没有，原理图也没有。这只是老王的实验产出。
-2. **CH340 USB-Serial 有死锁问题**——烧录失败时完全拔 USB 30 秒+再插。
-3. **烧完必须按 EN 按钮复位**——esptool 不会自动重启 ESP32。
-4. **亮度可调**：改 `const uint8_t BRIGHTNESS = 50;`（0=全暗，255=拍照级，50=夜间柔和）。
+1. **烧录用 esptool 不要用 arduino-cli upload**——后者会擦除 NVS（WiFi 密码存储区）。
+2. **烧完必须按 EN 按钮复位**——esptool 不会自动重启 ESP32。
+3. **亮度可调**：改 `const uint8_t BRIGHTNESS = 50;`（0=全暗，255=拍照级，50=夜间柔和）。
 
 ---
 

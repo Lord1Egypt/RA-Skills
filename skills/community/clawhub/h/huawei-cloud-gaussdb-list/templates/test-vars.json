@@ -1,0 +1,32 @@
+{
+  "skill_name": "huawei-cloud-gaussdb-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "GaussDB ListGaussMySqlInstances — instance list (read-only GET /v3/{project_id}/instances)",
+      "command": "hcloud GaussDB ListGaussMySqlInstances --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with instances[] + total_count (an empty instances[] is a valid result)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "GaussDB ListGaussMySqlInstances — server-side fuzzy name filter",
+      "command": "hcloud GaussDB ListGaussMySqlInstances --cli-region={region} --name=*gauss* --limit=1 --offset=0",
+      "expected": "matching instance or an empty instances[] array",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "GaussDB ListGaussMySqlInstances — paging parameters",
+      "command": "hcloud GaussDB ListGaussMySqlInstances --cli-region={region} --limit=100 --offset=0",
+      "expected": "first page with up to 100 instances plus total_count",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": ["HUAWEICLOUD_SDK_AK", "HUAWEICLOUD_SDK_SK"],
+  "notes": "只读操作（ListGaussMySqlInstances，GET），无创建/修改/删除风险。上述 CLI 用例验证本 skill 包裹的同一端点；脚本级输出模式（默认表格 / --json）与错误分支按 references/verification-method.md 的真实只读环境流程验证。"
+}

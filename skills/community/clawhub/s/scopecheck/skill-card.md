@@ -1,40 +1,54 @@
-## Description: <br>
-Analyze an OpenClaw SKILL.md and extract its permission scope, including environment variables, CLI tools, filesystem paths, and network URLs, while comparing declared requirements against detected access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze an OpenClaw SKILL.md and extract its permission scope, including environment variables, CLI tools, filesystem paths, and network URLs, then compare declared requirements against detected usage.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and skill reviewers use Scopecheck to analyze a SKILL.md file's declared requirements and compare them with detected environment variables, CLI tools, filesystem paths, and network URLs before release or installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scope detection is heuristic and may flag examples or documentation text as access, or miss behavior that is not visible in SKILL.md text. <br>
-Mitigation: Treat results as a review aid and inspect the source skill before relying on findings for release or installation decisions. <br>
-Risk: Submitted SKILL.md content can contain sensitive private instructions or secrets. <br>
-Mitigation: Run the analyzer locally and avoid submitting highly sensitive skill text unless it is needed for review. <br>
+## Use Case:
 
+Developers and engineers use Scopecheck to inspect SKILL.md files for declared and detected permission scope. It helps identify undeclared environment variables, command-line tools, filesystem paths, and network URLs before a skill is deployed or reviewed.
 
-## Reference(s): <br>
-- [Scopecheck on ClawHub](https://clawhub.ai/mirni/scopecheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, shell commands] <br>
-**Output Format:** [JSON scope analysis with setup and curl usage commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports declared requirements, detected access, and undeclared access prefixes for environment variables, binaries, filesystem paths, and network URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned Python dependencies can change behavior across installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned dependency versions or a lockfile for production use.
+
+Risk: The analyzer receives raw SKILL.md content through the local API.
+
+Mitigation: Submit only SKILL.md content intended for local analysis.
+
+## Reference(s):
+
+- [Scopecheck ClawHub skill page](https://clawhub.ai/mirni/skills/scopecheck)
+- [mirni publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local API response includes declared scope, detected scope, and undeclared access findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

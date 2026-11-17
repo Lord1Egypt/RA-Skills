@@ -1,48 +1,63 @@
-## Description: <br>
-AI Agent security scanner for multi-language detection, AST analysis, intent recognition, and optional LLM verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans AI agent skills and code for risky patterns using multi-language static analysis, intent detection, and optional LLM verification.
 
-## Publisher: <br>
-[caidongyun](https://clawhub.ai/user/caidongyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caidongyun](https://clawhub.ai/user/caidongyun)
 
-## Use Case: <br>
-Developers, security reviewers, and marketplace operators use this skill to scan AI agent skills or code for potentially malicious behavior, risky patterns, credential exposure, and supply-chain concerns before release or deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Detection metrics and reporting may be unreliable for security decisions. <br>
-Mitigation: Validate scanner results on representative benign and malicious samples before using the output for allow, reject, or escalation decisions. <br>
-Risk: Optional LLM, webhook, or email features may send code, paths, findings, or other sensitive context outside the local environment. <br>
-Mitigation: Keep external analysis and alerting disabled until data flows are reviewed, secrets are protected, and sensitive content can be redacted. <br>
-Risk: The release is flagged suspicious by the authoritative security evidence. <br>
-Mitigation: Review source behavior and run the scanner in a controlled environment before installing it where proprietary code, secrets, or regulated data are present. <br>
+## Use Case:
 
+Developers, marketplace reviewers, and security teams use this skill to scan AI agent skills or code for malicious patterns, credential exposure, data exfiltration, prompt injection, and supply-chain indicators before deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caidongyun/agent-security-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/caidongyun) <br>
-- [Homepage from ClawHub metadata](https://github.com/caidongyun/agent-security-skill-scanner#readme) <br>
-- [Repository from artifact metadata](https://github.com/caidongyun/agent-security-skill-scanner) <br>
-- [Architecture documentation](docs/ARCHITECTURE.md) <br>
-- [Capabilities documentation](docs/CAPABILITIES.md) <br>
-- [User guide](docs/USER_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Command-line scan results, Python result objects, and Markdown or JSON security reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk scores, risk levels, detected behaviors, and remediation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.6 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The scanner can produce misleading safe results according to the security summary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as an advisory signal only and require manual or independent review before accepting a skill as safe.
+
+Risk: Security guidance identifies whitelist bypass, fixed-benign LLM paths, suppressed intent failures, fabricated batch results, and unsafe dependency declarations as unresolved concerns.
+
+Mitigation: Install only after review, verify dependencies in an isolated environment, and do not use the tool as a final security gate until those concerns are remediated.
+
+Risk: Daemon or scheduled modes may scan or write reports outside the intended scope if deployment is under-specified.
+
+Mitigation: Run with explicit scan roots, least-privilege filesystem access, and restricted report destinations; avoid unattended modes until scope is documented.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/caidongyun/skills/agent-security-scanner)
+- [Publisher Profile](https://clawhub.ai/user/caidongyun)
+- [Project Homepage](https://github.com/caidongyun/agent-security-skill-scanner#readme)
+- [User Guide](docs/USER_GUIDE.md)
+- [Capabilities](docs/CAPABILITIES.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Delivery Report](docs/DELIVERY_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and structured scan findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional LLM verification requires API configuration; findings should be reviewed before use as a security decision.]
+
+## Skill Version(s):
+
+4.1.6 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

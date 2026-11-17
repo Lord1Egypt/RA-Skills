@@ -1,16 +1,22 @@
 #!/bin/bash
 # Create a one-time reminder
 # Usage: create-reminder.sh "message" "when" [--channel CHANNEL] [--to RECIPIENT]
-
-# Load skill config (external env vars override config.env)
-SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
-[[ -f "$SKILL_DIR/config.env" ]] && source "$SKILL_DIR/config.env"
+#
+# Environment variables (override defaults):
+#   CLAWDBOT_DIR     Path to clawdbot directory (default: directory of this script)
+#   REMINDERS_FILE   Path to reminders log file (default: ~/reminders.md)
+#   TIMEZONE         Timezone for date parsing (default: system timezone)
+#   CHANNEL          Delivery channel, e.g. telegram, slack (default: telegram)
+#   TO               Recipient ID/address
 
 MESSAGE="$1"
 WHEN="$2"
 shift 2
 
 # Parse optional flags
+CHANNEL="${CHANNEL:-telegram}"
+TO="${TO:-}"
+
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --channel) CHANNEL="$2"; shift 2 ;;
@@ -19,18 +25,19 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Fallbacks if not set in config.env or flags
-CHANNEL="${CHANNEL:-telegram}"
+# Defaults from environment or fallback
+CLAWDBOT_DIR="${CLAWDBOT_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 REMINDERS_FILE="${REMINDERS_FILE:-$HOME/reminders.md}"
 TIMEZONE="${TIMEZONE:-$(timedatectl show -p Timezone --value 2>/dev/null || date +%Z)}"
 
 [[ -z "$MESSAGE" ]] && echo "Error: No message provided" && exit 1
 [[ -z "$WHEN" ]]    && echo "Error: No time provided" && exit 1
-[[ -z "$TO" ]]      && echo "Error: No recipient provided. Set TO in config.env or pass --to" && exit 1
+[[ -z "$TO" ]]      && echo "Error: No recipient provided. Set --to or TO env var" && exit 1
 
-# Parse natural language to ISO timestamp
+# Parse natural language to timestamp
 parse_time() {
     local input="$1"
+    local now=$(date +%s)
 
     # Relative times with "in X minutes/hours/days"
     if [[ "$input" =~ in[[:space:]]+([0-9]+)[[:space:]]+(minute|hour|day)s? ]]; then
@@ -54,7 +61,7 @@ parse_time() {
             date -d "tomorrow 09:00" --iso-8601=seconds; return ;;
     esac
 
-    # Try GNU date parsing (always output ISO timestamp)
+    # Try GNU date parsing
     date -d "$input" --iso-8601=seconds 2>/dev/null
 }
 
@@ -67,7 +74,9 @@ fi
 DISPLAY_TIME=$(date -d "$TIMESTAMP" '+%Y-%m-%d %H:%M')
 
 # Create cron job
-JOB_OUTPUT=$(openclaw cron add \
+cd "$CLAWDBOT_DIR" || { echo "Error: CLAWDBOT_DIR not found: $CLAWDBOT_DIR"; exit 1; }
+
+JOB_OUTPUT=$(npx tsx src/index.ts cron add \
     --name "Reminder: $MESSAGE" \
     --at "$TIMESTAMP" \
     --session isolated \
@@ -83,9 +92,11 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
+# Extract JSON from output (skip npm warnings)
 JSON_OUTPUT=$(echo "$JOB_OUTPUT" | grep -A100 "^{" | grep -B100 "^}")
 JOB_ID=$(echo "$JSON_OUTPUT" | jq -r '.id' 2>/dev/null)
 
+# Log to markdown
 mkdir -p "$(dirname "$REMINDERS_FILE")"
 echo "- [scheduled] $DISPLAY_TIME | $MESSAGE (id: $JOB_ID)" >> "$REMINDERS_FILE"
 

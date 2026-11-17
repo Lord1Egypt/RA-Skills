@@ -1,43 +1,55 @@
-## Description: <br>
-Skill Health Monitor helps agents audit skill collections for structure, content quality, maintenance activity, compatibility, and discoverability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated audits that score and report on skill health by checking structure, content, activity, compatibility, and discoverability to prevent failures.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review individual skills or collections, assign health scores, and identify maintenance work before skills degrade or fail silently. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audit reports may expose local skill inventory details or git history. <br>
-Mitigation: Review reports before sharing and remove sensitive repository, path, or history details. <br>
-Risk: Checklist-based health scores can miss context-specific quality issues or overstate readiness. <br>
-Mitigation: Treat scores as review guidance and confirm findings against the actual skill files before making release or retirement decisions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit skill collections, identify missing or stale documentation, score skill health, and produce action-oriented maintenance reports.
 
-## Reference(s): <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aptratcn/aptratcn-skill-health-monitor) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown reports with checklist items and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local skill inventory details or git history when the agent follows the audit guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad skill audits may cause an agent to inspect unrelated project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point the agent at the specific skill directory or collection intended for review before running an audit.
+
+Risk: Health scores can be misleading if repository state, dependencies, or framework compatibility are stale or incomplete.
+
+Mitigation: Review reported findings against the current files and repository history before making maintenance decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aptratcn/skills/aptratcn-skill-health-monitor)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with checklist scores and suggested audit commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces skill health scores across structure, content, activity, compatibility, and discoverability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

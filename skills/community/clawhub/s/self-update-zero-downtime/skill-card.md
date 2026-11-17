@@ -1,44 +1,60 @@
-## Description: <br>
-Updates a global npm installation of OpenClaw with release-note review, backup, npm install, service restart, health check, and rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent perform a zero-downtime OpenClaw self-upgrade using release-note review, backup, npm installation, restart health checks, and rollback handling.
 
-## Publisher: <br>
-[luffertlu](https://clawhub.ai/user/luffertlu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luffertlu](https://clawhub.ai/user/luffertlu)
 
-## Use Case: <br>
-Developers and operators use this skill when they deliberately want an agent to update OpenClaw itself while preserving a fallback path. It is intended for npm global installations on Linux systems, with checks for install type, path consistency, prefix writability, service restart, and rollback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change installed OpenClaw code and restart services. <br>
-Mitigation: Use it only after an explicit request naming OpenClaw, review the target version and release notes, and require user confirmation before execution. <br>
-Risk: Loose activation could apply an OpenClaw self-update to a generic update request. <br>
-Mitigation: Do not run the skill for generic update prompts; scope activation to OpenClaw self-update requests only. <br>
-Risk: Incorrect npm or systemd path detection could affect the wrong installation or leave the service inconsistent. <br>
-Mitigation: Confirm the detected npm global directory, systemd service, running directory, install type, and npm prefix writability before proceeding. <br>
-Risk: A failed upgrade can interrupt the OpenClaw service. <br>
-Mitigation: Keep the side-by-side backup, use the built-in health check, and be prepared to rollback and restart the previous service version. <br>
+## Use Case:
 
+Developers and operators use this skill when they want an agent to check and apply an OpenClaw runtime upgrade while preserving service availability. It is intended for npm-global OpenClaw installations with systemd user services, backup, health-check, and rollback workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luffertlu/self-update-zero-downtime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local upgrade logs and rollback guidance for the OpenClaw service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and package.json) <br>
+Risk: The skill can modify the local OpenClaw runtime and installed service during a real self-upgrade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit manual approval before execution, confirm release notes, and pin the exact OpenClaw version and npm registry before installing.
+
+Risk: The security evidence reports that the script can modify the installed service without the user-confirmation gate promised in the instructions.
+
+Mitigation: Treat approval as a required external control and review the generated command sequence before allowing the upgrade script to run.
+
+Risk: Rollback restores service availability but does not protect against a compromised npm package.
+
+Mitigation: Use trusted registry settings, verify the package/version before install, and treat rollback only as availability recovery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luffertlu/skills/self-update-zero-downtime)
+- [Publisher Profile](https://clawhub.ai/user/luffertlu)
+- [npm registry](https://registry.npmjs.org)
+- [OpenClaw GitHub releases API](https://api.github.com/repos/openclaw/openclaw/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and operational status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write upgrade logs to disk and propose or run service-management commands during the upgrade workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

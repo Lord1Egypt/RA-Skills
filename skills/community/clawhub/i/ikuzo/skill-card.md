@@ -1,39 +1,54 @@
-## Description: <br>
-Manage maps, spots, and travel plans on Ikuzo (ikuzo.app) — a location-based exploration app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage maps, spots, and travel plans on Ikuzo (ikuzo.app) - a location-based exploration app.
 
-## Publisher: <br>
-[jordymeow](https://clawhub.ai/user/jordymeow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jordymeow](https://clawhub.ai/user/jordymeow)
 
-## Use Case: <br>
-External users and travel planners use this skill to manage Ikuzo maps, track spots, find nearby places, and build day-by-day travel itineraries through the Ikuzo API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad travel questions may trigger actions that create, update, or delete personal maps, spots, and travel plans. <br>
-Mitigation: Review proposed Ikuzo API actions before changing personal travel data, especially create, update, and delete operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ikuzo Skill Page](https://clawhub.ai/jordymeow/ikuzo) <br>
-- [Ikuzo MCP API endpoint](https://ikuzo.app/api/mcp) <br>
-- [Ikuzo Schema Reference](references/schema.md) <br>
+## Use Case:
 
+External users use this skill to manage Ikuzo maps, saved places, and travel plans through an agent. It supports creating and editing maps, adding and searching spots, finding nearby places, and organizing day-by-day trip itineraries.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with JSON-RPC API call details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authentication for Ikuzo API access; requested fields can be limited to reduce response size.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.3 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access saved maps, places, trips, and location-related account data in the connected Ikuzo account.
+
+Mitigation: Install only when Ikuzo account access is intended, and avoid sharing sensitive current-location or private-place details unless needed.
+
+Risk: Requests that update or delete maps, spots, or trips can change user travel-planning data.
+
+Mitigation: Ask for scope before broad changes, specify mapIds when scope matters, and confirm destructive or trip-changing actions before execution.
+
+## Reference(s):
+
+- [Ikuzo Skill Page](https://clawhub.ai/jordymeow/skills/ikuzo)
+- [Ikuzo MCP API](https://ikuzo.app/api/mcp)
+- [Ikuzo Schema Reference](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute Ikuzo account changes when connected with an authorized bearer token.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Query AdGuard Home instances for real-time DNS stats, blocked domains, client activity, service status, and configuration details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query AdGuard Home instances for DNS statistics, blocked domains, client activity, service status, filter rules, query logs, and configuration details.
 
-## Publisher: <br>
-[foxleoly](https://clawhub.ai/user/foxleoly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[foxleoly](https://clawhub.ai/user/foxleoly)
 
-## Use Case: <br>
-Developers, operators, and self-hosted infrastructure users use this skill to inspect AdGuard Home DNS activity, blocking behavior, client usage, service health, and configuration from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: AdGuard credentials can be exposed if stored in a shared or world-readable local configuration file. <br>
-Mitigation: Prefer environment variables or a secrets manager, and set any local adguard-instances.json file to owner-only permissions. <br>
-Risk: DNS query logs and client activity can reveal browsing behavior and internal network details. <br>
-Mitigation: Avoid sharing query-log output and restrict skill use to users who are authorized to view AdGuard monitoring data. <br>
-Risk: Using overly broad AdGuard credentials can expose more account capability than the monitoring workflow needs. <br>
-Mitigation: Use the least-privileged AdGuard account available for the monitored instances. <br>
+## Use Case:
 
+Developers, operators, and self-hosted infrastructure administrators use this skill to inspect AdGuard Home health, DNS activity, blocking trends, client usage, filters, query logs, and TLS status from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/foxleoly/adguard-test) <br>
-- [README](artifact/README.md) <br>
-- [Security Audit](artifact/SECURITY_AUDIT.md) <br>
-- [Test Report](artifact/TEST_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with setup guidance and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include DNS query logs, client activity, blocked domains, service status, and configuration details from configured AdGuard Home instances.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and artifact metadata) <br>
+Risk: Administrator credentials and session cookies may be sent to AdGuard Home over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only HTTPS AdGuard Home URLs and verify TLS is enabled before use.
+
+Risk: Plaintext AdGuard credentials in adguard-instances.json can expose administrator access in local or shared workspaces.
+
+Mitigation: Prefer environment variables or a secrets manager, avoid real admin passwords in configuration files, and restrict any local config file permissions.
+
+Risk: Query log and client commands can reveal browsing history, internal hostnames, IP addresses, and network topology.
+
+Mitigation: Limit use to trusted workspaces and redact DNS query, client, and configuration output before sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foxleoly/skills/adguard-test)
+- [Publisher profile](https://clawhub.ai/user/foxleoly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-style text with command examples, configuration snippets, DNS statistics, status summaries, query logs, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive DNS query history, client identifiers, internal network details, and AdGuard Home configuration values returned by the configured instance.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

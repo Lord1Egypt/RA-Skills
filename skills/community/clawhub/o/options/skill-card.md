@@ -1,43 +1,55 @@
-## Description: <br>
-Log and review options trades with trend analysis and exportable position reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log and review options trades with trend analysis and exportable position reports.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers can use this local command-line utility to record options-related notes, review recent activity, search logs, and export stored entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says this is a local text logger branded as an options-trading tool, with unclear scope and persistent storage of potentially sensitive inputs. <br>
-Mitigation: Review the artifact before installing, treat it as a local logger rather than a full options analysis tool, and avoid entering account credentials, secrets, or sensitive trading details. <br>
-Risk: The script stores command inputs in ~/.local/share/options and includes those logs in local searches and exports. <br>
-Mitigation: Use non-sensitive entries, review exported JSON, CSV, or text files before sharing them, and delete local logs when they are no longer needed. <br>
+## Use Case:
 
+Developers and external users can use this skill to maintain local command-line notes for options-related activity, review recent entries and basic counts, search logs, and export saved records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/options) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command-line examples and local export files in JSON, CSV, or text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs and exports under ~/.local/share/options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may overstate options-trading analysis and reporting capabilities relative to the artifact behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a local note logging and export utility, and review outputs manually before using them for trading decisions.
+
+Risk: Free-form entries are stored persistently in local plaintext logs.
+
+Mitigation: Avoid entering account identifiers, private strategies, or other sensitive financial data unless local file access and retention are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/options)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can write local plaintext logs and export JSON, CSV, or text files under ~/.local/share/options/.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

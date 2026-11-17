@@ -1,40 +1,55 @@
-## Description: <br>
-Fetch web pages via the TinyFish Fetch API and return clean markdown, HTML, or screenshots with support for JavaScript rendering and proxy targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch web pages via TinyFish Fetch API and get clean markdown, HTML, or screenshots back \u2014 handles JS rendering and proxying.
 
-## Publisher: <br>
-[bunsdev](https://clawhub.ai/user/bunsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bunsdev](https://clawhub.ai/user/bunsdev)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch one or more web pages through TinyFish when they need rendered page content as markdown, HTML, or screenshot output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs and fetched page content are sent to TinyFish. <br>
-Mitigation: Use only for URLs whose disclosure to TinyFish is approved; avoid private intranet, localhost, cloud metadata, authenticated links, and URLs containing tokens. <br>
-Risk: The skill requires a TinyFish API key. <br>
-Mitigation: Store TINYFISH_API_KEY securely and avoid logging, committing, or sharing it. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch one or more web pages through TinyFish and receive rendered markdown, HTML, or screenshot data when ordinary page retrieval is unreliable.
 
-## Reference(s): <br>
-- [TinyFish Fetch API documentation](https://docs.tinyfish.ai/fetch-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, HTML, or base64 PNG screenshot content returned by API calls; examples are shell commands and JSON request and response shapes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TINYFISH_API_KEY; requested URLs and fetched content are processed by TinyFish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Requested URLs and rendered page content are sent to TinyFish.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved public or non-sensitive URLs, and avoid internal, private, regulated, or token-bearing URLs unless the organization approves that data flow.
+
+Risk: The helper can expose the TinyFish API key in local curl process arguments.
+
+Mitigation: Prefer passing the API key through a protected curl config or file descriptor, and avoid logging commands or process arguments that include the key.
+
+## Reference(s):
+
+- [TinyFish Fetch API documentation](https://docs.tinyfish.ai/fetch-api)
+- [TinyFish API keys](https://agent.tinyfish.ai/api-keys)
+- [ClawHub skill page](https://clawhub.ai/bunsdev/skills/tinyfish-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; API responses are JSON containing rendered markdown, HTML, or base64 PNG screenshot data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TINYFISH_API_KEY and may accept multiple URLs plus optional format and country parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

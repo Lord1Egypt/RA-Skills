@@ -1,47 +1,64 @@
-## Description: <br>
-Captures learnings, errors, and corrections so agents can log failures, user corrections, feature requests, knowledge gaps, and reusable improvements for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections so coding agents can maintain concise self-improvement notes for future work.
 
-## Publisher: <br>
-[huihuilu](https://clawhub.ai/user/huihuilu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huihuilu](https://clawhub.ai/user/huihuilu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture task learnings, command errors, user corrections, and feature requests in structured markdown logs. It also provides optional hook setup guidance for reminders and error-pattern detection in trusted workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist agent behavior, corrections, and operational details in learning files. <br>
-Mitigation: Use project-scoped learning files, sanitize entries, and avoid logging secrets, tokens, raw transcripts, sensitive business data, or full source and configuration files. <br>
-Risk: Optional hooks can inject reminders broadly and inspect command output for error patterns. <br>
-Mitigation: Enable hooks only in trusted workspaces, prefer the minimal activator hook by default, and require review before broad or global hook configuration. <br>
-Risk: Promoting learnings into agent instruction files can introduce incorrect or misleading guidance. <br>
-Mitigation: Review proposed promotions before writing to CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions. <br>
-Risk: Package metadata is inconsistent with the skill identity and dependency expectations. <br>
-Mitigation: Review the publisher, skill identity, and declared gog dependency before installation or release approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, feature requests, and reusable lessons during coding sessions. It is intended for project or workspace learning logs that can later be reviewed and promoted into durable agent guidance.
 
-## Reference(s): <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and structured log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .learnings markdown files and may provide opt-in hook configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Persistent learning notes and promoted guidance can introduce incorrect or misleading agent behavior if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review learning entries and proposed promotions manually before adding them to persistent agent context files or sharing them across sessions.
+
+Risk: Learning logs may capture secrets, private configuration, raw command output, or transcript details.
+
+Mitigation: Record short sanitized summaries, redact sensitive values, and avoid storing full source files, environment variables, tokens, or private keys.
+
+Risk: Optional hooks can inspect command output and inject reminders into agent context.
+
+Mitigation: Keep hooks opt-in, project-scoped, and narrowly matched; enable error-detection hooks only in trusted environments.
+
+Risk: The evidence reports conflicting package identities and an unrelated gog dependency.
+
+Mitigation: Resolve the skill-a, skill-b, and skill-gitee identity mismatch and remove the unrelated gog requirement before enabling hooks or promoting the release.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .learnings markdown files and may provide optional hook configuration reminders.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

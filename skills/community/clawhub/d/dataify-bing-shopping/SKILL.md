@@ -1,13 +1,12 @@
 ---
 name: dataify-bing-shopping
-description: Use when a user search Bing Shopping, find product or shopping results
+description: "Search Bing Shopping for products and shopping results. Do not use for general Bing web search or structured marketplace scraping."
 ---
 
 # Bing Shopping
 
 ## Overview
 
-Use this skill to convert a natural-language Bing Shopping request into Dataify Bing Shopping API fields, call the fixed Dataify endpoint through `scripts/bing_shopping.py`, and return the API response directly to the user without summarizing, parsing, or post-processing it.
 
 The source API document is summarized in `references/api.md`. Read it when field behavior or response shape is unclear.
 
@@ -23,14 +22,10 @@ The source API document is summarized in `references/api.md`. Read it when field
    - `no_cache`: cache behavior. Default is `false` because the field description says `false` is the default.
 2. Use defaults only when the field description explicitly states a default. Do not treat example request body values as defaults. Values such as `pizza`, `en-US`, `us`, empty strings, or sample filters are examples only, not defaults.
 3. Prefer explicit user-provided field values over inferred values. If an optional field is ambiguous and has no documented default, omit it.
-4. Before every live API call, show the full request-parameter table to the user. Do not include `Authorization` in the table. Include exactly these columns: `参数名`, `当前值`, `默认值`, `说明`. Display the `说明` column in Chinese.
-5. Ask the user whether they want to modify any parameter. Do not call the API until the user confirms. If the user modifies parameters, show the updated table and ask again.
 6. Use the bundled Python script with `python3`. Pass the whole user request through `--prompt` and add explicit flags only when overriding automatic parsing.
 7. Ensure authentication before a live call:
    - Read `DATAIFY_API_TOKEN` from the current environment.
-   - If the user provides a token during the task, pass it with `--token` or set `DATAIFY_API_TOKEN` for the command before invoking the script.
    - The script adds a `Bearer ` prefix when the token does not already include one.
-   - If no token is available, the script exits with a Chinese prompt; ask the user to input a Dataify API token or register at [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill).
 8. Generate the parameter table before requesting confirmation:
 
 ```bash
@@ -40,10 +35,8 @@ python3 scripts/bing_shopping.py --prompt "Search Bing Shopping for wireless ear
 9. Run a live call only after the user confirms the displayed table:
 
 ```bash
-python3 scripts/bing_shopping.py --prompt "Search Bing Shopping for wireless earbuds" --confirmed
 ```
 
-10. Return the script output directly to the user. Do not summarize shopping results, extract fields, reformat JSON, parse embedded JSON strings, or process returned HTML unless the user separately asks for processing.
 
 ## Script Usage
 
@@ -60,11 +53,40 @@ Useful flags:
 
 - `--q`, `--json`, `--mkt`, `--cc`, `--efirst`, `--filters`, `--no-cache`
 - `--field key=value` for any supported API field
-- `--token` to provide a token for the current run
 - `--body-format form|json`, default `form`
 - `--dry-run` to print the parsed payload and skip network/auth checks
 - `--preview-table` to print the full parameter table and skip network/auth checks
-- `--confirmed` to allow the live API call after the user has confirmed the table
 
 When no optional fields are specified by the user, the payload should contain `engine`, `q`, `json=1`, and `no_cache=false`.
 
+## Result presentation
+
+- Return a compact, user-facing result by default: the most relevant titles, links, and vertical-specific fields, plus a count or truncation note when useful.
+- Do not expose transport details, fixed engine fields, task plumbing, or the full response envelope in the ordinary flow.
+- Return raw JSON or HTML only when the user explicitly requests raw output.
+- Preserve source links and distinguish missing fields from empty values; do not invent data.
+
+## Quick Start
+
+```bash
+python3 scripts/bing_shopping.py --help
+```
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts receive 50 free credits. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

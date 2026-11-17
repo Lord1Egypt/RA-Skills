@@ -2,7 +2,7 @@
 
 ## Intent
 
-`ia-document-review` is a `workflow`-class skill (a multi-step process producing concrete artifacts). Structural review of documents for gaps, clarity, completeness, and organization. Use when a brainstorm, plan, spec, ADR, or any doc needs polish before the next workflow step. For exploring new ideas from scratch, use brainstorming instead.
+`ia-document-review` is a `workflow`-class skill (a multi-step process producing concrete artifacts). Structural and accuracy review of documents: gaps, clarity, completeness, organization, and claims checked against the code. Use when a brainstorm, plan, spec, ADR, or any doc needs polish before the next workflow step. For exploring new ideas from scratch, use brainstorming instead.
 
 ## Scope
 
@@ -18,7 +18,7 @@ Out of scope:
 ## Trigger Context
 
 - Class: `workflow`
-- Hook regex: `plugins/compound-engineering/hooks/skill-patterns.sh` -> `SKILL_PATTERNS[ia-document-review]`
+- Hook regex: `plugins/whetstone/hooks/skill-patterns.sh` -> `SKILL_PATTERNS[ia-document-review]`
 - Common requests (from fixture should_trigger):
   - "review the brainstorm document for completeness"
   - "refine the plan before we start implementation"
@@ -32,11 +32,11 @@ Out of scope:
 
 Authoritative sources:
 
-- `SKILL.md` -- runtime instructions and reference routing.
-- `references/*.md` -- bundled supplementary content (0 file(s)).
-- `distillery/tests/fixtures/triggers/ia-document-review.jsonl` -- positive and negative trigger phrasings under regression test.
-- `plugins/compound-engineering/hooks/skill-patterns.sh` -- regex pattern that fires this skill.
-- `distillery/.eval-data/ia-document-review/` -- harvested session examples (when present).
+- `SKILL.md`: runtime instructions and reference routing.
+- `references/*.md`: bundled supplementary content (1 file(s)).
+- `distillery/tests/fixtures/triggers/ia-document-review.jsonl`: positive and negative trigger phrasings under regression test.
+- `plugins/whetstone/hooks/skill-patterns.sh`: regex pattern that fires this skill.
+- `distillery/.eval-data/ia-document-review/`: harvested session examples (when present).
 
 Data that must not be stored in this skill or its references:
 
@@ -49,7 +49,7 @@ Data that must not be stored in this skill or its references:
 | Dimension | Status | Evidence |
 |---|---|---|
 | Trigger fixtures | complete | distillery/tests/fixtures/triggers/ia-document-review.jsonl (>=5 should_trigger, >=5 should_not_trigger) |
-| Hook regex pattern | complete | plugins/compound-engineering/hooks/skill-patterns.sh (`SKILL_PATTERNS[ia-document-review]`) |
+| Hook regex pattern | complete | plugins/whetstone/hooks/skill-patterns.sh (`SKILL_PATTERNS[ia-document-review]`) |
 | Reference architecture | n/a | no references; SKILL.md is self-contained |
 | Real-usage signal | <!-- populated by harvest-sessions when sessions exist --> | distillery/.eval-data/ia-document-review/ (created by harvest-sessions) |
 
@@ -86,4 +86,4 @@ Acceptance gates:
 - Update this `SPEC.md` when intent, scope, evidence model, evaluation gates, or maintenance expectations change.
 - Update the trigger fixture when adding new positive phrasings, removing stale ones, or expanding scope (the 5/5 floor is a hard validator gate).
 - Update the hook regex in `skill-patterns.sh` whenever fixture positives expose a missed phrasing; verify F1 = 1.0 with `eval-triggers` before committing.
-- Run the full release pipeline via `/release` -- never bump versions or update CHANGELOG.md from a per-skill edit.
+- Run the full release pipeline via `/release`; never bump versions or update CHANGELOG.md from a per-skill edit.

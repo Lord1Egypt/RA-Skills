@@ -1,43 +1,59 @@
-## Description: <br>
-Knowledge base article generation + publish pack for WeChat, Xiaohongshu, Zhihu, Juejin, CSDN, Toutiao, and Weibo. 基于知识库、SEO 关键词、热点和大纲生成可审核内容，并附 Wechatsync 草稿同步说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reviewable knowledge-base-driven article drafts and platform-specific publish packs for WeChat, Xiaohongshu, Zhihu, Juejin, CSDN, Toutiao, and Weibo.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Content, marketing, and developer-relations teams use this skill to turn provided knowledge sources, keywords, trends, outlines, and audience context into a reviewable Chinese publish pack for WeChat, Xiaohongshu, Zhihu, Juejin, CSDN, Toutiao, and Weibo. It is intended for manual review, editing, and publishing preparation rather than direct account operation or automatic posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may contain factual errors, privacy issues, copyright concerns, or platform policy problems before publication. <br>
-Mitigation: Review all generated drafts and platform payloads for factual accuracy, permissions, privacy, copyright, and platform policy before posting. <br>
-Risk: Requests to use local scripts, external publishing tools, browser sessions, or platform credentials move beyond the skill's default low-trust drafting boundary. <br>
-Mitigation: Require explicit confirmation and a separate higher-trust workflow before using local files, external publishing tools, credentials, or account sessions. <br>
+## Use Case:
 
+External content teams and developers use this skill to turn supplied knowledge sources, keywords, trend context, and outlines into reviewable Chinese publish packs for multiple content platforms. It supports manual publishing preparation and Wechatsync draft-sync guidance without claiming to publish automatically.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/veeicwgy/ip-publisher) <br>
-- [Publisher Profile](https://clawhub.ai/user/veeicwgy) <br>
-- [Output Contract](artifact/references/output-contract.md) <br>
-- [Package Boundary](artifact/references/package-boundary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured Chinese content sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces in-chat KB summaries, main drafts, platform payloads, cover briefs, publish notes, review status, and manual checking items; no default local file writes or direct platform publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Generated publish packs may be mistaken for completed platform publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafts and publish notes only; require human review and separate confirmation before using any external publishing tool or platform account.
+
+Risk: Trend searches or external sources could introduce unsupported claims.
+
+Mitigation: Use supplied knowledge sources by default, label sources when live search is explicitly requested, and review factual claims before publication.
+
+Risk: Local export, repository scripts, and Wechatsync execution are outside the default installed skill package.
+
+Mitigation: Handle those workflows as companion or external-tool mode and confirm environment, login state, and manual handoff before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/veeicwgy/skills/ip-publisher)
+- [Output Contract](artifact/references/output-contract.md)
+- [Package Boundary](artifact/references/package-boundary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversation response with structured article drafts, platform payloads, cover brief, publish notes, and review items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output; does not read or write local files, manage credentials, enter platform backends, or publish automatically.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Call GET /api/taobao/search-item-list/v1 for Taobao and Tmall Product Search through JustOneAPI with keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/taobao/search-item-list/v1 for Taobao and Tmall Product Search through JustOneAPI with keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to search Taobao and Tmall products through JustOneAPI by keyword, with optional sorting, Tmall-only filtering, price bounds, and pagination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token and sends product search requests to api.justoneapi.com. <br>
-Mitigation: Install only if you trust JustOneAPI, use a dedicated rotatable token, and avoid sending sensitive search terms. <br>
-Risk: Tokens, full command lines, request URLs, or backend payloads may be exposed through chat, screenshots, shell history, shared terminals, or debug logs. <br>
-Mitigation: Pass the token from JUST_ONE_API_TOKEN, avoid pasting token values into shared contexts, and review logs before sharing them. <br>
+## Use Case:
 
+External developers and agents use this skill to search Taobao and Tmall product listings through JustOneAPI by keyword, with optional filters for sort order, Tmall-only results, price range, and page.
 
-## Reference(s): <br>
-- [Generated Operation Reference](generated/operations.md) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_search_item_list&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_search_item_list&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-taobao-search-item-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON] <br>
-**Output Format:** [Markdown summary followed by raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the searchItemListV1 operation and returns endpoint-specific results or backend error payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is sensitive and is passed to the helper for the API request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or replaceable token when possible, avoid exposing command logs or screenshots, and rotate the token if exposure is suspected.
+
+Risk: Search keywords and filters are sent to the JustOneAPI service as query parameters.
+
+Mitigation: Review parameters before execution and avoid using sensitive search terms unless the deployment policy allows sharing them with the API provider.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_search_item_list&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_taobao_search_item_list&utm_content=project_link)
+- [Generated operations reference](generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples; helper output is formatted JSON from the API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; keyword is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

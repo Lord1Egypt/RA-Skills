@@ -1,43 +1,60 @@
-## Description: <br>
-Provides Arabic-first OSINT and threat intelligence workflows for monitoring public Telegram channels, generating bilingual reports, searching Tor-accessible dark web indexes, and passively enumerating subdomains through Certificate Transparency logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Arabic-first OSINT and threat intelligence skill for monitoring Arabic-language threat actor channels on Telegram, generating bilingual threat reports, searching dark web indexes via Tor, and enumerating subdomains via Certificate Transparency logs.
 
-## Publisher: <br>
-[Abdullah944](https://clawhub.ai/user/Abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-SOC teams, OSINT investigators, journalists, security researchers, and enterprise security teams use this skill to gather passive threat intelligence from Arabic-language public sources, Tor-accessible indexes, and Certificate Transparency logs for reporting and triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OSINT queries, public channel names, and target domains may be sent to public or Tor-accessible services. <br>
-Mitigation: Use only authorized targets and queries, avoid unnecessary sensitive identifiers, and review results before sharing. <br>
-Risk: The skill declares broader local read/write permissions than its advertised passive lookup behavior appears to require. <br>
-Mitigation: Run it with the least local file access available and avoid granting write access unless a workflow specifically needs it. <br>
+## Use Case:
 
+External analysts, SOC teams, OSINT investigators, journalists, researchers, and enterprise security teams use this skill to monitor Arabic-language threat activity, produce bilingual threat briefs, search Tor-accessible dark web indexes, and discover subdomains from public CT logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdullah944/threat-intel) <br>
-- [Publisher profile](https://clawhub.ai/user/Abdullah944) <br>
-- [Certificate Transparency search](https://crt.sh/) <br>
-- [Telegram public channel preview format](https://t.me/s/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style threat intelligence summaries with command-line output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Arabic and English output is supported; dark web search depends on local Tor and torsocks availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends user queries and targets to Telegram, crt.sh, and Tor-accessible onion search services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound OSINT and Tor lookups are approved, avoid sensitive search terms, and document the external services contacted.
+
+Risk: Returned Telegram and onion content may be incomplete, misleading, or malicious.
+
+Mitigation: Treat all remote content as untrusted evidence and review findings before sharing or taking action.
+
+Risk: The skill requests broad execution and write authority relative to its described OSINT behavior.
+
+Mitigation: Narrow tool permissions before deployment and remove unused write authority where it is not required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah944/skills/threat-intel)
+- [Publisher Profile](https://clawhub.ai/user/abdullah944)
+- [Telegram Public Channel Web View](https://t.me/s/{channel})
+- [crt.sh Certificate Transparency Search](https://crt.sh/?q=%25.{domain}&output=json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown-style threat intelligence summaries, with structured snippets for Telegram posts, Tor search results, and CT log findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports channel, report, darkweb, and scan commands with language and region options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and changelog list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

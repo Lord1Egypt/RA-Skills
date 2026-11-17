@@ -1,41 +1,62 @@
-## Description: <br>
-Deploy a four-agent Pilot Protocol smart home coordinator that connects sensor, brain, actuator, and dashboard roles for home automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a four-agent smart home coordinator that collects sensor data, resolves home automation goals, issues device commands, and displays home status.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to set up coordinated Pilot Protocol agents that collect sensor readings, resolve home-control goals, execute device commands, and report status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Smart-home reporting can expose sensitive occupancy, lock-state, room-activity, or device-status data through Slack, email, or webhook destinations. <br>
-Mitigation: Review downstream bridge skills before enabling external reporting, trust the destination, and configure redaction or aggregation before sending home data outside the local network. <br>
-Risk: Device-command workflows can affect physical home systems such as HVAC, lighting, locks, and shutters. <br>
-Mitigation: Confirm handshakes and role manifests before use, and review actuator commands and audit logs before relying on automated device actions. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to configure Pilot Protocol agents for sensor collection, decision routing, device actuation, and dashboard reporting across a home automation deployment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-smart-home-coordinator-setup) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON manifest examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The setup can connect agents that control real smart-home devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the deployment before installation, verify peer identities before handshakes, and test commands in a non-critical environment before controlling physical devices.
+
+Risk: Trust is auto-approved after reciprocal handshakes.
+
+Mitigation: Use a simple unique hostname prefix, confirm each peer hostname out of band, and inspect trust state with pilotctl before publishing device commands.
+
+Risk: Dashboard summaries can send home-state data to external services such as Slack, webhooks, or email.
+
+Mitigation: Enable external summaries only after confirming what home-state data leaves the local network and limiting recipients to trusted destinations.
+
+Risk: The setup installs dependent skills and relies on local Pilot Protocol tooling.
+
+Mitigation: Use pinned and trusted dependency versions for Pilot Protocol skills, pilotctl, and clawhub, and confirm the daemon is running before use.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-smart-home-coordinator-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup instructions for four Pilot Protocol agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

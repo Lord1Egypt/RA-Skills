@@ -1,0 +1,21 @@
+services:
+  cookbook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: {{BOOK_SLUG}}-site:latest
+    container_name: {{BOOK_SLUG}}
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - NEXT_TELEMETRY_DISABLED=1
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:3000/zh > /dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s

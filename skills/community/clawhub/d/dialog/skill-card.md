@@ -1,41 +1,58 @@
-## Description: <br>
-Provides a local command-line entry database for storing, listing, searching, removing, exporting, and summarizing user-provided text entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dialog is advertised as a dialog UI and design skill, but the reviewed artifact implements shell commands for persistent local JSONL record management.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and external users can use this skill to run shell commands that manage simple local text entries, including adding, listing, searching, deleting, exporting, viewing status and statistics, and configuring the data directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release description presents the skill as a dialog UI/design generator, while the artifact behaves as a local entry-management CLI. <br>
-Mitigation: Review and deploy it only when a local JSONL entry-management tool is intended. <br>
-Risk: User-entered text is persisted locally and can be exported to JSON or CSV. <br>
-Mitigation: Avoid entering secrets or sensitive project data, set DIALOG_DIR deliberately, and review exported files before sharing. <br>
+## Use Case:
 
+Developers and agents may invoke Dialog for local entry storage tasks such as add, list, search, remove, export, stats, and configuration. Treat the advertised UI-generation purpose as unverified for this release.
 
-## Reference(s): <br>
-- [Dialog on ClawHub](https://clawhub.ai/ckchzh/dialog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text stdout with JSONL local storage and optional JSON or CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under ~/.dialog by default, or under DIALOG_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The release description does not match the artifact behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact as a local data-record tool and do not rely on it for dialog UI generation unless the package is corrected.
+
+Risk: The script writes persistent records, can delete records, and can export stored data.
+
+Mitigation: Use non-sensitive test data, set DIALOG_DIR to an isolated directory when evaluating, and review data before export or removal.
+
+Risk: Security guidance flags unsafe parsing and configuration behavior.
+
+Mitigation: Avoid untrusted arguments and sensitive input until the package is corrected and accurately described.
+
+## Reference(s):
+
+- [Dialog on ClawHub](https://clawhub.ai/ckchzh/skills/dialog)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; command output is plain text, with JSONL or CSV export files when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script stores records under ~/.dialog by default, or under DIALOG_DIR when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

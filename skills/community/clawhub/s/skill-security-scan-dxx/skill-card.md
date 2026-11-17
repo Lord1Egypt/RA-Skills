@@ -1,40 +1,53 @@
-## Description: <br>
-Scan installed OpenClaw skills for potential security risks, including dangerous commands, sensitive path access, and other security issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan installed OpenClaw skills for potential security risks. Use when you want to check if skills contain dangerous commands, access sensitive paths, or have other security issues.
 
-## Publisher: <br>
-[ntaffffff](https://clawhub.ai/user/ntaffffff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntaffffff](https://clawhub.ai/user/ntaffffff)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to run a local scan over installed OpenClaw skills and identify potentially risky patterns before trusting or deploying them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads installed OpenClaw skill files and may print local file paths or matched snippets in terminal output. <br>
-Mitigation: Run it intentionally in a trusted terminal and review output before sharing logs outside the local environment. <br>
-Risk: Pattern-based scanning can miss risky behavior or flag benign code as suspicious. <br>
-Mitigation: Use scan results as triage input and manually review flagged skills before deployment or trust decisions. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to run a lightweight local scan of installed OpenClaw skills and review advisory findings about risky commands, sensitive path access, dynamic execution, and network request handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntaffffff/skill-security-scan-dxx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text terminal report with issue counts and matching file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scans local OpenClaw skill files under ~/.openclaw/workspace/skills by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A clean scan result can be incomplete because the scanner skips documentation and instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scanner output as advisory and manually review important skills, including SKILL.md, README, text files, and expected behavior.
+
+Risk: The scanner uses lightweight local pattern matching and may miss unsafe behavior that simple regular expressions do not cover.
+
+Mitigation: Use it as one input in a broader review process and test newly installed skills in an isolated environment before normal use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ntaffffff/skills/skill-security-scan-dxx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and terminal-style scan report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner results are advisory and should be reviewed manually before trusting a skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

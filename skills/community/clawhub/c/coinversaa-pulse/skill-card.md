@@ -1,43 +1,64 @@
-## Description: <br>
-Coinversa Pulse provides read-only, API-key-authenticated crypto market intelligence for AI agents across Hyperliquid trader analytics, live market data, builder dex markets, and HIP-4 outcome contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coinversaa Pulse provides read-only, API-key-authenticated crypto market intelligence for Hyperliquid trader analytics, live market data, HIP-4 outcome contracts, builder dex markets, risk data, and wallet-level research.
 
-## Publisher: <br>
-[nazchedz](https://clawhub.ai/user/nazchedz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nazchedz](https://clawhub.ai/user/nazchedz)
 
-## Use Case: <br>
-Developers, analysts, and AI agent users use this skill to query Coinversa-hosted crypto market data and wallet-level analytics for research, risk review, and market monitoring without trading or wallet control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API-key-authenticated analytics queries, including wallet addresses and market research parameters, are sent to Coinversa. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, use a dedicated low-privilege API key where possible, and rotate the key if it may have been exposed. <br>
-Risk: The local stdio setup installs and runs an external npm package. <br>
-Mitigation: Use the pinned package version shown by the skill and separately verify the package source before local installation. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to query read-only Hyperliquid market data, trader behavior, cohort analytics, HIP-4 outcome contracts, liquidation data, open interest, builder dex markets, and wallet-level trading history through MCP-compatible clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nazchedz/coinversaa-pulse) <br>
-- [Coinversa website](https://coinversa.ai) <br>
-- [Coinversa API documentation](https://coinversa.ai/developers) <br>
-- [npm package](https://www.npmjs.com/package/@coinversaa/mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with MCP analytics responses and setup snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Coinversa API key; requests may include wallet addresses, market symbols, HIP-4 outcome IDs, time windows, usage metadata, and analytics parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server evidence) <br>
+Risk: Local setup runs an external npm MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the hosted endpoint when appropriate, or inspect the pinned npm package before local use.
+
+Risk: The skill sends API-key-authenticated market, wallet, cohort, HIP-4, time-window, and analytics request data to Coinversa's hosted API.
+
+Mitigation: Use a separate Coinversa API key with the minimum access needed and avoid submitting private, sensitive, or nonpublic information.
+
+Risk: Users may confuse this read-only analytics skill with trading or wallet-control functionality.
+
+Mitigation: Do not provide private keys, seed phrases, wallet signatures, exchange credentials, wallet approvals, or Hyperliquid agent approvals to this skill.
+
+Risk: Syncer-backed recent-intelligence tools may lag real-time market state.
+
+Mitigation: Treat syncer-backed analytics as research signals and cross-check venue-reported open interest with official open-interest tools where available.
+
+## Reference(s):
+
+- [Coinversa Website](https://coinversa.ai)
+- [Coinversa API Docs](https://coinversa.ai/developers)
+- [Coinversa MCP Endpoint](https://mcp.coinversa.ai/mcp)
+- [@coinversaa/mcp-server npm Package](https://www.npmjs.com/package/@coinversaa/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with optional shell commands and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are read-only analytics responses; all tools require a Coinversa API key and may be subject to access-tier limits.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

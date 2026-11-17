@@ -1,44 +1,59 @@
-## Description: <br>
-Leaptic is an OpenClaw skill for Leaptic device snapshot and status access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leaptic provides agent guidance for reading Leaptic device snapshot and status data through the documented HTTP API.
 
-## Publisher: <br>
-[liulei2140](https://clawhub.ai/user/liulei2140) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liulei2140](https://clawhub.ai/user/liulei2140)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve a read-only Leaptic device snapshot, including battery, charging state, storage, media counts, and related timestamps, after the user provides a Leaptic App-Key and regional API base URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Leaptic App-Key is a secret and may be exposed if pasted into untrusted tools, sent to an untrusted host, or stored carelessly. <br>
-Mitigation: Use only documented Leaptic regional hosts or an explicitly trusted base URL, treat the App-Key like a password, and prefer environment variables or an OS secret store over plaintext storage. <br>
-Risk: Using the wrong regional base URL can send a credential to an unintended endpoint. <br>
-Mitigation: Ask the user for the CN, EU, or US region when the base URL is unset and do not guess or retry blindly against another domain. <br>
+## Use Case:
 
+Developers and agents use this skill to configure Leaptic credentials and retrieve device snapshot information such as battery, charging state, storage, media counts, and timestamps.
 
-## Reference(s): <br>
-- [Leaptic homepage](https://www.leaptic.tech/) <br>
-- [ClawHub release page](https://clawhub.ai/liulei2140/lp-test) <br>
-- [CN device snapshot endpoint](https://photon-prod.leaptic.tech/photon-server/api/v1/skill/device/snapshot) <br>
-- [EU device snapshot endpoint](https://photon-eu.leaptic.tech/photon-server/api/v1/skill/device/snapshot) <br>
-- [US device snapshot endpoint](https://photon-us.leaptic.tech/photon-server/api/v1/skill/device/snapshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for a disclosed read-only HTTP snapshot request and expected JSON response handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The App-Key can access Leaptic device snapshot information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment injection or an OS secret store; keep any plaintext credentials file permission-restricted.
+
+Risk: Sending the App-Key to an untrusted endpoint could expose device access credentials.
+
+Mitigation: Use only official Leaptic regional endpoints or a deployment URL the user explicitly trusts.
+
+Risk: Blind retries across different domains after failures could leak credentials.
+
+Mitigation: Do not retry the same key on another domain; surface the error and ask the user to verify or rotate the key.
+
+## Reference(s):
+
+- [Leaptic homepage](https://www.leaptic.tech/)
+- [ClawHub skill page](https://clawhub.ai/liulei2140/skills/lp-test)
+- [Publisher profile](https://clawhub.ai/user/liulei2140)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides credential setup and API request handling; does not produce device data without user-provided credentials.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

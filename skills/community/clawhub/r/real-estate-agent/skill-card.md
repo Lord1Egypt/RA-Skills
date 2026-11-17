@@ -1,40 +1,62 @@
-## Description: <br>
-Your personal real estate agent. Find properties, get alerts on deals, sell or rent your home, and navigate any property decision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal real estate agent. Find properties, get alerts on deals, sell or rent your home, and navigate any property decision.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill as a personal real estate assistant for buying, selling, renting, investing, or managing properties. It helps capture client criteria, track property opportunities, compare market context, optimize listings, and maintain local notes and alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain sensitive housing and financial context such as budgets, financing status, locations, timelines, and property interests in local files. <br>
-Mitigation: Use it only when local file-based memory is acceptable; decide what should not be saved, inspect ~/real-estate-agent/ periodically, and delete or redact details that are no longer needed. <br>
-Risk: Real-estate analysis or listing guidance could be mistaken for legal, mortgage, tax, or investment advice. <br>
-Mitigation: Treat outputs as informational market context and have qualified professionals review contracts, financing, tax questions, and binding decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/real-estate-agent) <br>
-- [Skill homepage](https://clawic.com/skills/real-estate-agent) <br>
+## Use Case:
 
+External users use this skill for real-estate buying, selling, renting, investment, property tracking, market analysis, listing optimization, and opportunity alerts. It helps maintain a local client profile, saved searches, watched properties, and pending alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and conversational text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown files under ~/real-estate-agent/ for client profiles, saved searches, tracked properties, and alerts when used with consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent local storage may retain sensitive housing, financial, relocation, and negotiation context.
+
+Mitigation: Review ~/real-estate-agent/ regularly and avoid storing precise preapproval, lender, relocation, family, or negotiation details unless needed.
+
+Risk: The skill asks to save activation preferences in broader main memory outside its declared local folder.
+
+Mitigation: Confirm activation preferences before saving them and review broader assistant memory for real-estate activation notes.
+
+Risk: Real-estate guidance can be mistaken for legal, mortgage, tax, or investment advice.
+
+Mitigation: Use the skill for market context and listing support, and consult qualified professionals for contracts, financing, taxes, and binding decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/real-estate-agent)
+- [Skill Homepage](https://clawic.com/skills/real-estate-agent)
+- [Setup](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+- [Portal Integration](artifact/portals.md)
+- [Property Analysis](artifact/analysis.md)
+- [Listing Optimization](artifact/listing-optimization.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance, real-estate reports, saved profile/search/property notes, and alert queue entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores real-estate profile and tracking files under ~/real-estate-agent/ when used.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

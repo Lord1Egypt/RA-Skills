@@ -1,50 +1,65 @@
-## Description: <br>
-Korea Air Quality helps agents answer South Korea air-quality requests, resolve Korean region names or saved locations, compare regions, and prepare local alerts or morning briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+대한민국 대기질(미세먼지, 초미세먼지, 오존, 통합대기) 조회·브리핑·알림을 위한 OpenClaw 스킬.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-External users and agent developers use this skill to answer Korean air-quality questions, store default regions or coordinates, compare multiple locations, and draft alert or morning-briefing automation for South Korea. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-South Korea <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local state files can retain saved regions, exact coordinates, alert rules, alert history, station cache, and provider settings. <br>
-Mitigation: Avoid saving precise coordinates unless needed and review or delete local data files when location history should not be retained. <br>
-Risk: An AirKorea API key may be stored in data/config.json if configured that way. <br>
-Mitigation: Prefer supplying AIRKOREA_API_KEY from the environment instead of storing the key in a local config file. <br>
-Risk: Generated cron plans may include a hard-coded local path. <br>
-Mitigation: Review and adjust each generated cron plan before installing or running it. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to answer Korean air-quality questions, compare regions, save default locations, generate concise briefings, and create local alert or cron-plan workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twbeatles/korea-air-quality) <br>
-- [API and Product Plan](references/api-and-product-plan.md) <br>
-- [Alert and Morning Briefing](references/alert-and-briefing.md) <br>
-- [Domestic API Notes](references/domestic-api-notes.md) <br>
-- [Integration Roadmap Status](references/integration-roadmap.md) <br>
-- [Location Resolution Strategy](references/location-resolution.md) <br>
-- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [Open-Meteo Air Quality API](https://air-quality-api.open-meteo.com/v1/air-quality) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Korean text or Markdown summaries, optional JSON CLI output, and shell command examples for local configuration and automation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local state files under data/ for user preferences, saved coordinates, alert rules, alert history, station cache, and provider configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.16 (source: server release evidence) <br>
+Risk: The skill can store API keys and precise user locations in local plaintext data files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables for AirKorea credentials where possible, restrict access to the data directory, and avoid committing or syncing local data files.
+
+Risk: The skill can generate executable OpenClaw cron-agent instructions from user or region values.
+
+Mitigation: Inspect cron-plan JSON before registering scheduled jobs, especially when user or region values came from chat input.
+
+Risk: JSON output may expose configured secrets or sensitive local state during setup and inspection flows.
+
+Mitigation: Avoid JSON output while configuring secrets and review generated or displayed configuration before sharing logs.
+
+## Reference(s):
+
+- [Korea Air Quality Skill Plan](references/api-and-product-plan.md)
+- [Alert and Morning Briefing](references/alert-and-briefing.md)
+- [Domestic API Notes](references/domestic-api-notes.md)
+- [Integration Roadmap Status](references/integration-roadmap.md)
+- [Location Resolution Strategy](references/location-resolution.md)
+- [Open-Meteo Geocoding API endpoint](https://geocoding-api.open-meteo.com/v1/search)
+- [Open-Meteo Air Quality API endpoint](https://air-quality-api.open-meteo.com/v1/air-quality)
+- [Open-Meteo Weather Forecast API endpoint](https://api.open-meteo.com/v1/forecast)
+- [AirKorea realtime air-quality API endpoint](https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Korean Markdown or plain text summaries, optional JSON from CLI commands, and cron-plan configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local data files for user preferences, provider configuration, alert rules, alert state, and station cache.]
+
+## Skill Version(s):
+
+2026.4.16 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

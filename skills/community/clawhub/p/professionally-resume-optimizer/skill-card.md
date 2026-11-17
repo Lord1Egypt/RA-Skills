@@ -1,45 +1,55 @@
-## Description: <br>
-Optimize and rewrite resumes for overseas job applications by checking ATS compatibility, strengthening bullet points with the STAR framework, quantifying achievements, and adapting tone for target roles and markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize and rewrite resumes for overseas job applications by reviewing ATS compatibility, strengthening STAR-based bullet points, quantifying achievements, and adapting tone for US, UK, Singapore, and Australia job markets.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-External users and job applicants use this skill to review, rewrite, and tailor resumes or CVs for overseas job applications, including US, UK, Singapore, and Australia markets. It helps identify ATS issues, rewrite experience bullets, and provide role-specific improvement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume rewrites may introduce inaccurate claims, overstated achievements, or fabricated metrics if source information is incomplete. <br>
-Mitigation: Review the rewritten resume carefully, provide missing metrics where possible, and keep qualitative phrasing when exact numbers are unavailable. <br>
-Risk: Resume content can contain sensitive personal details. <br>
-Mitigation: Share only the information needed for the rewrite and remove unnecessary personal identifiers before using the skill. <br>
-Risk: Broad activation rules may trigger resume rewriting during casual career discussion. <br>
-Mitigation: Use the skill when resume or CV optimization is explicitly desired, and narrow activation rules before deployment if automatic invocation is a concern. <br>
+## Use Case:
 
+External users, job seekers, and career coaches use this skill to review, rewrite, and tailor resumes or CVs for overseas applications. It helps align resumes with applicant tracking systems, target roles, and market-specific expectations for the US, UK, Singapore, and Australia.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/xiaoxty/professionally-resume-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoxty) <br>
-- [Before/after rewrite examples](examples.md) <br>
-- [Industry-specific resume templates](templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured resume review, rewritten resume sections, and role-specific tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask 1-2 targeted follow-up questions when resume metrics or context are missing; should not fabricate numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill may activate broadly for resume or job-application-related prompts and prefer an English structured resume-review format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's target role, target market, and desired output format before applying the full rewrite workflow.
+
+Risk: Resume rewrites may overstate achievements if the original resume lacks numbers or context.
+
+Mitigation: Ask one or two targeted follow-up questions and do not fabricate metrics when the user cannot provide supporting details.
+
+## Reference(s):
+
+- [Resume Rewrite Examples](examples.md)
+- [Industry-Specific Resume Templates](templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiaoxty/skills/professionally-resume-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown resume review and rewritten resume]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes strengths, ranked issues, a rewritten resume, and role-specific tips; asks targeted questions rather than fabricating missing metrics.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

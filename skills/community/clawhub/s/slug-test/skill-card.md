@@ -1,45 +1,59 @@
-## Description: <br>
-Streams Apple Health data from an iPhone or Apple Watch to a self-hosted webhook server so an OpenClaw agent can analyze recovery, trends, and anomalies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stream and sync iPhone and Apple Watch HealthKit data through a local webhook server for AI analysis, recovery scoring, health trend analysis, and anomaly alerts.
 
-## Publisher: <br>
-[crxiaobailiu-gif](https://clawhub.ai/user/crxiaobailiu-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crxiaobailiu-gif](https://clawhub.ai/user/crxiaobailiu-gif)
 
-## Use Case: <br>
-Developers and health-data users can connect iPhone or Apple Watch HealthKit records to an OpenClaw agent for local analysis, recovery scoring, anomaly checks, and trend questions. The skill is best suited for users who are prepared to self-host and protect a webhook that receives sensitive health records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Apple Health records and can expose them through a public webhook. <br>
-Mitigation: Prefer private networking over public tunnels, avoid unnecessary public exposure, and restrict access before pairing or syncing health data. <br>
-Risk: Weak or missing admin protection could allow unauthorized pairing, user management, or access to server endpoints. <br>
-Mitigation: Set a strong ADMIN_TOKEN, protect pairing links and API tokens, and treat generated user tokens as secrets. <br>
-Risk: Synced health records persist locally and may be accessible to agents or local processes. <br>
-Mitigation: Store data in an appropriate protected directory, review local file permissions, and limit agent access to only the needed health-data files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect iPhone and Apple Watch health data to an agent via a self-hosted webhook, enabling health trend questions, recovery scoring, and anomaly alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crxiaobailiu-gif/slug-test) <br>
-- [HealthClaw TestFlight beta](https://testflight.apple.com/join/SXDjT6vC) <br>
-- [Tailscale Funnel](https://tailscale.com/download) <br>
-- [Cloudflare Tunnel downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands, HTTP API examples, and JSON data examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and integration guidance for a webhook-based Apple Health data bridge; resulting health records persist locally as JSON Lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence and skill.json) <br>
+Risk: Publicly exposed webhook and admin routes may expose sensitive health-sync services if they are weakly protected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a strong ADMIN_TOKEN before public exposure and restrict or protect /admin/* routes.
+
+Risk: The setup uses an unpinned executable server dependency.
+
+Mitigation: Use a pinned, auditable server version before installation or deployment.
+
+Risk: Local JSONL and SQLite files contain sensitive health records.
+
+Mitigation: Treat stored health data as sensitive records with encryption, retention limits, secure backups, and least-privileged service execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crxiaobailiu-gif/skills/slug-test)
+- [HealthClaw TestFlight beta](https://testflight.apple.com/join/SXDjT6vC)
+- [Webhook server API spec](../webhook-server/docs/API_SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, pairing, sync, multi-user, and API endpoint guidance.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,42 @@
+{
+  "source": {
+    "provider": "local-test-fixture",
+    "league": "Curse of the Allflame",
+    "patch": "3.29",
+    "retrieved_at": "2026-08-18T15:00:00+08:00",
+    "status": "provisional",
+    "note": "This fixture is not a live Ninja response; it exists to test pipeline normalization."
+  },
+  "builds": [
+    {
+      "league": "Curse of the Allflame",
+      "patch": "3.29",
+      "class": "Witch",
+      "ascendancy": "Occultist",
+      "main_skill": "Vortex",
+      "level": 82,
+      "character": "fixture-vortex-occultist",
+      "score": 82.0,
+      "skills": ["Vortex", "Cold Snap", "Frostblink", "Steelskin"],
+      "items": ["rare wand", "rare shield", "rare body armour"],
+      "passives": ["life", "cold damage over time", "energy shield"],
+      "keystones": [],
+      "tags": ["league-start", "mapping", "cold-dot"]
+    },
+    {
+      "league": "Curse of the Allflame",
+      "patch": "3.29",
+      "class": "Hierophant",
+      "ascendancy": "Hierophant",
+      "main_skill": "Kinetic Fusillade",
+      "level": 84,
+      "character": "fixture-totem-alt",
+      "score": 74.0,
+      "skills": ["Kinetic Fusillade", "Spell Totem", "Frostblink"],
+      "items": ["rare wand", "rare shield"],
+      "passives": ["totem damage", "life", "mana"],
+      "keystones": [],
+      "tags": ["alternative", "totem"]
+    }
+  ]
+}

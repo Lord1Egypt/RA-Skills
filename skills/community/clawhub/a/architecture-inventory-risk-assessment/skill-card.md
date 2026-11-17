@@ -1,51 +1,70 @@
-## Description: <br>
-Inventory your cloud architectures and assess risks. Query architecture blueprints, evaluate Well-Architected scores, and identify governance gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inventory your cloud architectures and assess risks. Query architecture blueprints, evaluate Well-Architected scores, and identify governance gaps.
 
-## Publisher: <br>
-[stinggit](https://clawhub.ai/user/stinggit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stinggit](https://clawhub.ai/user/stinggit)
 
-## Use Case: <br>
-Developers and cloud operations teams use this skill to inspect Tencent Cloud Smart Advisor architecture inventories, risk evaluation items, Well-Architected assessment results, and console links for the currently configured Tencent Cloud account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence security verdict is suspicious because the artifact combines real Tencent Cloud Advisor functionality with unrelated bulk-publishing guidance. <br>
-Mitigation: Review the artifact before installation, remove unrelated publishing files, and install only when the publisher and intended cloud access are trusted. <br>
-Risk: The skill can guide high-impact Tencent Cloud access flows, including console-login generation, CAM role setup, and Advisor authorization. <br>
-Mitigation: Require explicit approval for each cloud write action and confirm that the requested action matches the user's Tencent Cloud account and business intent. <br>
-Risk: Long-lived Tencent Cloud AK/SK credentials increase exposure if stored or reused broadly. <br>
-Mitigation: Prefer scoped or temporary credentials where possible and avoid persisting secrets beyond the user's approved environment configuration. <br>
-Risk: The security guidance warns not to use the login or API scripts unless TLS verification is fixed. <br>
-Mitigation: Block or review those scripts before use and verify secure TLS handling before allowing API or login-link operations. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to inspect Tencent Cloud Smart Advisor architecture inventories, retrieve Well-Architected evaluations, and surface governance or risk gaps for the current Tencent Cloud account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/stinggit/architecture-inventory-risk-assessment) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Tencent Cloud Advisor API Overview](advisor-2020-07-21/API 概览.md) <br>
-- [DescribeArch API Reference](references/api/DescribeArch.md) <br>
-- [DescribeArchList API Reference](references/api/DescribeArchList.md) <br>
-- [DescribeLastEvaluation API Reference](references/api/DescribeLastEvaluation.md) <br>
-- [DescribeStrategies API Reference](references/api/DescribeStrategies.md) <br>
-- [CreateAdvisorAuthorization API Reference](references/api/CreateAdvisorAuthorization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API results and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and Tencent Cloud credentials; cloud query results are scoped to the configured Tencent Cloud account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: ClawHub release evidence) <br>
+Risk: The skill uses Tencent Cloud account credentials and can request broad cloud permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Tencent Cloud sub-account, review requested IAM operations before use, and avoid storing long-lived SecretKeys in shell profiles.
+
+Risk: The security summary reports weakened network safety.
+
+Mitigation: Require standard TLS verification and remove insecure TLS fallback behavior before using the skill in a sensitive account.
+
+Risk: The security summary flags unrelated bulk-publishing material in the artifact.
+
+Mitigation: Remove or quarantine publishing files before deploying the skill for operational cloud account access.
+
+Risk: Generated login links can grant direct console access for their validity window.
+
+Mitigation: Generate login links only on explicit user request, do not log or share them, and prefer short-lived sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stinggit/skills/architecture-inventory-risk-assessment)
+- [Tencent Cloud Smart Advisor console](https://console.cloud.tencent.com/advisor)
+- [Tencent Cloud API key management](https://console.cloud.tencent.com/cam/capi)
+- [DescribeArch API reference](artifact/references/api/DescribeArch.md)
+- [DescribeArchList API reference](artifact/references/api/DescribeArchList.md)
+- [DescribeLastEvaluation API reference](artifact/references/api/DescribeLastEvaluation.md)
+- [DescribeStrategies API reference](artifact/references/api/DescribeStrategies.md)
+- [ListDirectoryV2 API reference](artifact/references/api/ListDirectoryV2.md)
+- [ListUnorganizedDirectory API reference](artifact/references/api/ListUnorganizedDirectory.md)
+- [CreateAdvisorAuthorization API reference](artifact/references/api/CreateAdvisorAuthorization.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON responses and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tencent Cloud API response summaries and generated console links when the user explicitly requests authorized actions.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

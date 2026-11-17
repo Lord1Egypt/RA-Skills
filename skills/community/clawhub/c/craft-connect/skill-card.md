@@ -1,45 +1,53 @@
-## Description: <br>
-Read and write Craft documents via the Craft Connect API, including documents, blocks, folders, tasks, collections, comments, and rich formatting through curl-based API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft Connect lets agents read, create, update, search, organize, and format Craft documents, tasks, folders, collections, comments, and uploads through the Craft Connect REST API.
 
-## Publisher: <br>
-[HWnex](https://clawhub.ai/user/HWnex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwnex](https://clawhub.ai/user/hwnex)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate on a Craft workspace: discovering content, searching documents, creating and editing notes, managing folders, tasks, collections, comments, uploads, and rich block formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify a user's Craft workspace, including documents, folders, tasks, collections, comments, and uploaded files. <br>
-Mitigation: Install only when workspace access is intended, review planned changes before execution, and require explicit confirmation before uploads, schema changes, moves, or deletes. <br>
-Risk: CRAFT_API_URL contains an embedded Craft Connect link token that grants access to the connected workspace. <br>
-Mitigation: Keep CRAFT_API_URL private, store it in protected secret storage when possible, and avoid committing it into shared notes or repositories. <br>
-Risk: Broad document searches and reads may expose more workspace content than needed for a user request. <br>
-Mitigation: Review broad searches before running them and narrow search terms, folders, locations, or document IDs whenever possible. <br>
-Risk: Some write operations have high impact, including permanent block deletion and collection schema replacement. <br>
-Mitigation: Prefer reversible document operations where available, fetch current schemas before collection writes, and confirm destructive block or schema actions explicitly. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate a connected Craft space: search documents, create or modify content, manage tasks, folders, collections, comments, uploads, and apply Craft-specific formatting.
 
-## Reference(s): <br>
-- [Craft Formatting Cheatsheet](references/formatting-cheatsheet.md) <br>
-- [Craft Connect release page](https://clawhub.ai/HWnex/craft-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline curl commands, JSON request bodies, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CRAFT_API_URL with an embedded Craft Connect link token and curl for HTTP requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: CRAFT_API_URL contains an embedded link token and acts like a credential with read/write access to the connected Craft space.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TOOLS.md private, do not commit the URL, and treat the value like a password.
+
+Risk: The skill can modify or delete documents, blocks, tasks, folders, collection items, schemas, comments, and uploaded files.
+
+Mitigation: Review destructive actions, uploads, and collection schema changes before execution, and prefer scoped searches or explicit target IDs when practical.
+
+## Reference(s):
+
+- [Craft Formatting Cheatsheet](references/formatting-cheatsheet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CRAFT_API_URL as the Craft Connect API base URL and returns Craft API responses as JSON or formatted document content.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

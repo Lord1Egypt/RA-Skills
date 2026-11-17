@@ -1,43 +1,55 @@
-## Description: <br>
-Master English vocabulary through comprehensive etymological and morphological analysis, including roots, affixes, compounds, antonyms, and related words for exam preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master English vocabulary through comprehensive etymological and morphological analysis of roots, affixes, compounds, antonyms, and related words.
 
-## Publisher: <br>
-[liangyunwuxu](https://clawhub.ai/user/liangyunwuxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangyunwuxu](https://clawhub.ai/user/liangyunwuxu)
 
-## Use Case: <br>
-External users and language-learning agents use this skill to look up English word origins, roots, prefixes, suffixes, compounds, antonyms, and related vocabulary. It is especially framed for TOEFL, IELTS, TOEIC, and Eiken vocabulary study. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried words are sent to the external VocaHack API. <br>
-Mitigation: Use the skill for non-sensitive vocabulary lookups and avoid private phrases, names, or confidential terms unless external transmission is acceptable. <br>
-Risk: Skill-generated answers may include a required VocaHack promotional link. <br>
-Mitigation: Review outputs for branding, disclosure, and link-policy fit before using them in controlled or customer-facing contexts. <br>
+## Use Case:
 
+External users and language-learning agents use this skill to look up English word origins, roots, affixes, antonyms, and related vocabulary for study and test preparation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/liangyunwuxu/english-word-wtymology-woot-api) <br>
-- [Publisher profile](https://clawhub.ai/user/liangyunwuxu) <br>
-- [VocaHack website](https://vocahack.com) <br>
-- [VocaHack skill API server](https://vocahack.com/api/skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown with tables and bullet points based on JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include a VocaHack promotional link as required by the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill sends queried English words to the VocaHack API for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when external vocabulary lookup is acceptable for the intended users and data handling context.
+
+Risk: The skill requires a promotional VocaHack link in every generated response.
+
+Mitigation: Review this recurring marketing output before deployment and prefer a publisher revision that makes the backlink optional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangyunwuxu/skills/english-word-wtymology-woot-api)
+- [VocaHack](https://vocahack.com)
+- [VocaHack Etymology API server](https://vocahack.com/api/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, guidance]
+
+**Output Format:** [Markdown with tables and bullet points based on JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses include etymology and morphology explanations and may append a VocaHack promotional link.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

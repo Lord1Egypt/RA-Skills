@@ -1,38 +1,53 @@
-## Description: <br>
-Web search grounding via Azure Foundry and Bing Grounding Search tool for agents that need up-to-date answers with URL citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Azure Bing Grounding lets agents search the web through Azure AI Foundry and the Bing Grounding Search Tool, returning synthesized answers with URL citations.
 
-## Publisher: <br>
-[bowang306](https://clawhub.ai/user/bowang306) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bowang306](https://clawhub.ai/user/bowang306)
 
-## Use Case: <br>
-Developers and agent users use this skill to run real-time web searches through Azure AI Agents and Bing Grounding, then return synthesized answers with source URL citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User queries and surrounding context may be processed by Azure and Bing services. <br>
-Mitigation: Do not use the skill with secrets, confidential internal data, personal data, or regulated information unless organizational policy permits that cloud processing. <br>
+## Use Case:
 
+Developers and agents use this skill to answer time-sensitive factual questions by sending configured queries to Azure AI Foundry with Bing grounding and returning cited results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bowang306/azure-bing-grounding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Raw JSON or Markdown with URL citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Azure AI Foundry project configuration, Bing Grounding connection ID, model deployment name, and Azure credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Search queries are sent to Azure and Bing services as part of normal grounded-search operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for workflows where Azure/Bing processing is permitted and handle query contents according to the user's data policy.
+
+Risk: Azure credentials can be exposed if long-lived secrets are stored loosely in local environment files.
+
+Mitigation: Prefer Azure CLI authentication, managed identity, or tightly scoped short-lived credentials; keep ~/.openclaw/.env private when it is used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bowang306/skills/azure-bing-grounding)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Raw JSON or Markdown with URL citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured Azure AI Foundry endpoint, Bing connection ID, model deployment, and Azure credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

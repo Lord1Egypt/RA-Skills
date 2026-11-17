@@ -1,43 +1,58 @@
-## Description: <br>
-Draft patient-facing communications (appointment reminders, billing notices, follow-ups, recall messages) that avoid HIPAA violations, flag risky language, strip PHI from drafts, and follow the minimum necessary standard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft patient-facing communications such as appointment reminders, billing notices, follow-ups, and recall messages while flagging risky language, removing PHI from drafts, and applying the minimum necessary standard.
 
-## Publisher: <br>
-[josh4hire](https://clawhub.ai/user/josh4hire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josh4hire](https://clawhub.ai/user/josh4hire)
 
-## Use Case: <br>
-External healthcare practice staff and practice managers use this skill to draft and review patient-facing emails, texts, and letters for appointment reminders, billing notices, follow-ups, and recall messages while avoiding unnecessary PHI. It is a drafting and review aid, not a substitute for compliance, legal, or medical review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may still include unnecessary patient details or rely on an unsuitable communication channel. <br>
-Mitigation: Provide only the minimum patient details, limit file access to selected drafts, and review all output before sending. <br>
-Risk: Users may treat drafted language as final HIPAA policy, legal advice, or approved-channel guidance. <br>
-Mitigation: Use the skill as a drafting and review aid, and rely on a compliance officer or healthcare attorney for HIPAA policy, consent, and approved-channel decisions. <br>
-Risk: Patient information could be exposed if broad files or unnecessary identifiers are supplied for review. <br>
-Mitigation: Restrict input files to the drafts being reviewed and remove unnecessary PHI or identifiers before use. <br>
+## Use Case:
 
+Front desk staff and practice managers at medical, dental, and therapy practices use this skill to draft or review patient emails, texts, and letters for routine reminders, billing notices, follow-ups, and recalls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josh4hire/hipaa-patient-comms) <br>
-- [OpenClaw homepage](https://gaffneyits.com/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown drafts, templates, and compliance review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review all output before sending; the skill may write draft or corrected-message files when asked to save output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may overstate what is safe for unsecured healthcare messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as drafting assistance only and review messages against organizational HIPAA policy before sending.
+
+Risk: The skill should not be treated as a HIPAA compliance guarantee.
+
+Mitigation: Use a compliance officer, healthcare attorney, or approved internal process for final compliance decisions.
+
+Risk: The requested file-writing authority is unnecessary for many drafting and review workflows.
+
+Mitigation: Avoid granting write_file unless there is a specific, scoped output need.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josh4hire/skills/hipaa-patient-comms)
+- [OpenClaw homepage](https://gaffneyits.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with drafted messages, review findings, risk explanations, and suggested replacements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include template variables for patient first name, appointment date, appointment time, practice name, phone number, portal link, and other message-specific inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

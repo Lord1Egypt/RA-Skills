@@ -1,40 +1,60 @@
-## Description: <br>
-Improve Etsy listings with buyer-intent keywords, margin-safe pricing checks, and structured experiments that raise qualified traffic and conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve Etsy listings with buyer-intent keywords, margin-safe pricing checks, and structured experiments that raise qualified traffic and conversion.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External Etsy sellers and shop operators use this skill to audit listing quality, improve buyer-intent keyword coverage, check margin-safe pricing, and plan controlled experiments for shop growth. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local shop context and experiment notes may persist commercially sensitive Etsy information in ~/etsy/. <br>
-Mitigation: Ask for consent before saving persistent shop context and continue in stateless mode if the user declines. <br>
-Risk: Listing, pricing, or policy guidance could affect shop performance if applied without review. <br>
-Mitigation: Confirm listing context, margins, and compliance constraints before recommending changes; review edits before applying them in Etsy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/etsy) <br>
-- [Skill homepage](https://clawic.com/skills/etsy) <br>
+## Use Case:
 
+External Etsy shop operators and their agents use this skill to audit listing quality, improve search relevance, protect unit economics, and plan measurable listing experiments.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, audit findings, keyword clusters, margin checks, and experiment plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local shop memory templates in ~/etsy/ only with user consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may store durable Etsy shop context, including product types, margin constraints, active experiments, and compliance sensitivities, under ~/etsy/.
+
+Mitigation: Create or update local shop memory only after user consent, and avoid storing raw chat transcripts or unnecessary sensitive details.
+
+Risk: Listing, pricing, or campaign advice can harm margins or mislead buyers if applied without review.
+
+Mitigation: Review recommendations before making Etsy changes, verify fees and shipping assumptions, and avoid trademarked terms, unverifiable claims, and misleading delivery promises.
+
+Risk: Marketplace credentials and payment details would be sensitive if shared during advisory workflows.
+
+Mitigation: Do not provide Etsy passwords, payment credentials, API secrets, or other secrets to the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/etsy)
+- [Skill Homepage](https://clawic.com/skills/etsy)
+- [Setup - Etsy](artifact/setup.md)
+- [Listing Audit Playbook - Etsy](artifact/listing-audit-playbook.md)
+- [Memory Template - Etsy](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured action lists, audit notes, experiment plans, and local context templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local shop memory files under ~/etsy/ only after user consent; does not publish marketplace changes automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Calls a Prana-hosted remote agent to analyze and calculate TradingView technical indicators, then returns the result to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过调用Prana平台上的远程 agent 执行 TradingView 技术指标相关的分析与计算，并将结果返回给调用方
 
-## Publisher: <br>
-[xiaochengzhen](https://clawhub.ai/user/xiaochengzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaochengzhen](https://clawhub.ai/user/xiaochengzhen)
 
-## Use Case: <br>
-External users and developers use this skill to request TradingView technical-indicator analysis, stock indicator calculations, and related market-analysis reports through Prana. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-analysis prompts are sent to Prana. <br>
-Mitigation: Do not include private account data, credentials, unpublished trading plans, or other sensitive financial context in prompts. <br>
-Risk: The skill stores PRANA_SKILL_API_FLAG persistently in OpenClaw. <br>
-Mitigation: Review before installing and remove the stored key when the skill is no longer needed. <br>
-Risk: The skill can expose a Prana history link. <br>
-Mitigation: Share the returned history link only with the intended user and avoid logging or storing the full link. <br>
+## Use Case:
 
+External users and agents use this skill to request TradingView technical-indicator analysis or related market calculations through Prana for securities such as Chinese equities. It is intended for analysis requests and should not be used with personal, brokerage, account, or credential data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaochengzhen/tv-indicators-analysis) <br>
-- [Prana service homepage](https://www.prana.chat/) <br>
-- [Prana API key endpoint](https://www.prana.chat/api/v2/api-keys) <br>
-- [Prana agent execution endpoint](https://www.prana.chat/api/claw/agent-run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRANA_SKILL_API_FLAG and sends prompts to a Prana-hosted remote agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Financial-analysis prompts are sent to the Prana remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive analysis prompts and avoid personal, account, brokerage, or credential data.
+
+Risk: The skill stores a persistent Prana API key in OpenClaw.
+
+Mitigation: Install only after reviewing the credential requirement and restrict or rotate the key according to the user's environment policy.
+
+Risk: The skill can expose a browser-openable skill history link.
+
+Mitigation: Treat returned history links as sensitive and share them only with intended recipients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaochengzhen/skills/tv-indicators-analysis)
+- [Prana service homepage](https://www.prana.chat/)
+- [Prana agent-run endpoint](https://www.prana.chat/api/claw/agent-run)
+- [Prana skill history endpoint](https://www.prana.chat/api/claw/skill-purchase-history-url)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text or Markdown responses, with shell commands and JSON API payloads when configuration or remote execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a persistent PRANA_SKILL_API_FLAG value for Prana requests and can return a browser-openable skill history link.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

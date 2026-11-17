@@ -51,7 +51,7 @@ Complete templates for generating standard skill repo structure files.
 | 13 | **核心方法论/风格体系** | 可选 | 适用于有模式体系的 Skill |
 | 14 | **主题色/配置预设** | 可选 | 表格 + 预览 |
 | 15 | **核心设计原则** | 推荐 | 每条附"为什么" |
-| 16 | **Limitations / 已知限制** | 必选 | 诚实列限制，建立信任 |
+| 16 | **Limitations / 已知限制 + 用户须知** | 必选 | 诚实列限制 + 副作用声明（自动推送目标/读取的本地数据/禁用参数如 `--skip-push`），建立信任。满足规则25 第9项 Missing User Warnings 检查（v5.10 新增） |
 | 17 | **起源 / 动机** | 可选 | 个人痛点 + 竞品对比 |
 | 18 | **Roadmap** | 可选 | 未来计划 |
 | 19 | **FAQ** | 推荐 | 3-5 个常见问题 |
@@ -447,6 +447,7 @@ node_modules/
 .env
 .env.local
 .env.*.local
+config.local.json
 
 # OS
 .DS_Store
@@ -466,6 +467,16 @@ Thumbs.db
 # Runtime data
 data/
 *.log
+
+# Python (v5.0 新增)
+__pycache__/
+*.pyc
+*.pyo
+
+# ClawHub auto-generated (v5.0 新增)
+.clawhub/
+skill-card.md
+_meta.json
 ```
 
-**Important**: `.env.local` and `config.local.json` MUST be in .gitignore to prevent credential leaks.
+**Important**: `.env.local` and `config.local.json` MUST be in .gitignore to prevent credential leaks. `__pycache__/` and `.clawhub/` MUST be excluded to prevent auto-generated files from being packaged (2026-07 故障事件).

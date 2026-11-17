@@ -1,39 +1,56 @@
-## Description: <br>
-A temporary media hosting guide with seven-day retention, MIME validation, remote image fetching, upload handling, nginx configuration, cleanup, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through setting up temporary media hosting with automatic retention cleanup, MIME validation, nginx configuration, upload handling, external image fetching, and basic monitoring.
 
-## Publisher: <br>
-[Byron-McKeeby](https://clawhub.ai/user/Byron-McKeeby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[byron-mckeeby](https://clawhub.ai/user/byron-mckeeby)
 
-## Use Case: <br>
-Developers and server administrators use this skill to set up and operate an ephemeral media-sharing endpoint for chat or collaboration workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The guidance can make real web-server changes to paths, nginx settings, permissions, logging, and cleanup schedules. <br>
-Mitigation: Apply it only on the intended media-hosting server after reviewing and testing paths, permissions, nginx configuration, log retention, and cleanup timing. <br>
-Risk: The remote fetch helper can retrieve user-supplied URLs and may be abused to access internal or private network destinations. <br>
-Mitigation: Do not expose remote fetching to untrusted users until internal and private network destinations are blocked and abuse controls are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Byron-McKeeby/ephemeral-media-hosting) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and configure a temporary media sharing service for chat workflows, including upload handling, retention cleanup, MIME checks, nginx routing, and operational monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with bash, nginx, PHP, cron, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes server setup, upload handling, cleanup, validation, monitoring, and operational guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Server-side fetching of arbitrary URLs can expose internal services or follow unsafe redirects.
+
+Mitigation: Restrict remote fetches to trusted domains, block private or internal IP ranges and redirects, and review fetch behavior before deployment.
+
+Risk: Metadata sidecar files may publicly expose uploader IPs, source URLs, original filenames, or other operational details.
+
+Mitigation: Move metadata files outside the public web root or deny direct web access, and minimize retained uploader and source metadata.
+
+Risk: Setup examples include sudo, permission changes, and cron installation that modify a host system.
+
+Mitigation: Require explicit operator approval and environment review before running privileged or scheduled commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/byron-mckeeby/skills/ephemeral-media-hosting)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, nginx, and PHP code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment-oriented examples for media directories, cleanup cron, MIME validation, upload handling, external image fetching, and monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

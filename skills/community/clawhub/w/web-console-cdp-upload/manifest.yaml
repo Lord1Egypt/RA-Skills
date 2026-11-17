@@ -1,0 +1,35 @@
+name: web-console-cdp-upload
+slug: web-console-cdp-upload
+display_name: 网页后台上传自动化（免安装浏览器）
+version: 1.0.3
+author: oracis
+category: 开发编程
+platforms:
+  - WorkBuddy
+  - Claude Code
+  - Codex
+license: MIT
+homepage: https://github.com/oracis/web-console-cdp-upload
+description: 平台只有网页后台、没有上传 API 时，用本机已装的 Chrome/Edge + CDP 走完上传/发布/填表——复用真实登录态、零安装（不下载 500MB Chromium）、能给文件选择框塞文件。覆盖跨平台浏览器探测、常驻后台启动、Origin 抑制、React 受控组件赋值、DOM.setFileInputFiles 文件上传，以及代理/重渲染/多 input 等全部踩坑点。
+triggers:
+  - 只能网页上传
+  - 网页后台发布
+  - 没有上传 API
+  - 复用已登录的浏览器
+  - 免安装浏览器自动化
+  - 网页填表自动提交
+  - 发布到技能市场
+  - 控制台上传文件
+  - CDP 驱动 Chrome
+  - 不想装 Playwright
+  - chrome devtools protocol automation
+  - web console upload automation
+tags:
+  - 浏览器自动化
+  - CDP
+  - Chrome
+  - 零安装
+  - 网页表单
+  - 文件上传
+  - 运维
+  - 自动化

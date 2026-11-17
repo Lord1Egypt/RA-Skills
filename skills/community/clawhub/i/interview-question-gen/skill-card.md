@@ -1,42 +1,53 @@
-## Description: <br>
-Generates structured Feishu interview question documents from candidate resumes and appends comprehensive evaluations from interview transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Feishu interview question documents from candidate resumes and appends post-interview evaluations from transcripts.
 
-## Publisher: <br>
-[funkeyyou](https://clawhub.ai/user/funkeyyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[funkeyyou](https://clawhub.ai/user/funkeyyou)
 
-## Use Case: <br>
-Recruiting and hiring teams use this skill to prepare candidate-specific interview questions for WePlay activity operations roles and to turn interview transcripts into structured evaluations. It supports resume review, product-context questions, Japanese oral assessment prompts, and post-interview scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can store and share sensitive candidate data in Feishu using hardcoded folder and collaborator targets. <br>
-Mitigation: Verify the Feishu account, folder, collaborator, document permissions, and retention expectations before using the skill with real candidate data. <br>
-Risk: The workflow depends on a Feishu helper script that is referenced by the artifact but not included for review. <br>
-Mitigation: Review or replace the Feishu helper before deployment, and confirm it handles authentication, permissions, and document writes as expected. <br>
+## Use Case:
 
+Recruiters, hiring managers, and interviewers use this skill to prepare WePlay activity operations interview questions from a candidate resume and later append a structured interview evaluation from a transcript.
 
-## Reference(s): <br>
-- [Question Template](references/question-template.md) <br>
-- [Evaluation Template](references/evaluation-template.md) <br>
-- [WePlay Product Framework](https://wepie.feishu.cn/wiki/Q62TwQ3Fsi5Q8kkc0iDcINsSnno) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown interview-question and evaluation content with Feishu document creation or append commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include candidate-specific questions, Japanese oral exam prompts, Feishu document URLs, and structured interview evaluation ratings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Candidate resumes, interview notes, evaluations, and transcript links may be stored in a fixed Feishu folder and shared with a fixed collaborator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the destination folder and recipients before upload, offer a private or local-only option when possible, and clean up temporary resume images.
+
+## Reference(s):
+
+- [Interview Question Template](references/question-template.md)
+- [Interview Evaluation Template](references/evaluation-template.md)
+- [WePlay Product Framework](https://wepie.feishu.cn/wiki/Q62TwQ3Fsi5Q8kkc0iDcINsSnno)
+- [ClawHub Skill Page](https://clawhub.ai/funkeyyou/skills/interview-question-gen)
+- [Publisher Profile](https://clawhub.ai/user/funkeyyou)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Feishu document links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate-specific question sets, Japanese oral questions, scoring rubrics, and post-interview evaluation text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

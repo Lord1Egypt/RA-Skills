@@ -1,41 +1,53 @@
-## Description: <br>
-Ubuntu Inspector runs local Ubuntu health checks across system information, CPU, memory, disk, network, service status, security signals, processes, logs, and package update status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ubuntu Inspector helps agents run an Ubuntu system health inspection covering CPU, memory, disk, network, service status, security audit, process, log, and update checks.
 
-## Publisher: <br>
-[chengchiangwork](https://clawhub.ai/user/chengchiangwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengchiangwork](https://clawhub.ai/user/chengchiangwork)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect Ubuntu servers, troubleshoot system issues, and generate local maintenance reports during routine operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local inspection report can contain sensitive system details such as hostnames, IP addresses, listening ports, usernames, login history, process listings, and recent errors. <br>
-Mitigation: Run the skill only on Ubuntu systems you intend to inspect, protect or delete the /tmp report after use, and share the report only with authorized recipients. <br>
-Risk: Running with root privileges can expose fuller host and log details than a normal user run. <br>
-Mitigation: Use root only when full visibility is required for the inspection task. <br>
+## Use Case:
 
+Developers, operators, and system administrators use this skill to inspect Ubuntu server health, troubleshoot system issues, generate host reports, and support routine operations checks.
 
-## Reference(s): <br>
-- [Ubuntu Inspector ClawHub page](https://clawhub.ai/chengchiangwork/ubuntu-inspector) <br>
-- [Publisher profile](https://clawhub.ai/user/chengchiangwork) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a generated plain-text inspection report path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated report is written under /tmp and may include sensitive host, network, user, process, login, and error-log details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The inspection collects host, network, login, process, service, and security details that may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on systems where this level of inspection is authorized, and review or redact the generated report before sharing it.
+
+Risk: Complete inspection is documented as requiring root access, and the generated report is written under /tmp.
+
+Mitigation: Prefer running without root first; on multi-user or production systems, use a private report directory, mktemp, and 0600 permissions before running it.
+
+## Reference(s):
+
+- [ClawHub Ubuntu Inspector skill page](https://clawhub.ai/chengchiangwork/skills/ubuntu-inspector)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Analysis, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and a plain-text inspection report path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script writes a timestamped report under /tmp and prints the report path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

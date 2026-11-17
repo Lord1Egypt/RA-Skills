@@ -1,43 +1,57 @@
-## Description: <br>
-Use when managing Alibaba Cloud AnalyticDB for MySQL (ADB) via OpenAPI/SDK, including the user needs AnalyticDB resource lifecycle and configuration operations, status checks, or troubleshooting ADB API and cluster workflow issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud AnalyticDB for MySQL resources via OpenAPI and SDK workflows, including lifecycle operations, configuration changes, status checks, and troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Alibaba Cloud AnalyticDB for MySQL resources through Alibaba Cloud OpenAPI or SDK workflows, including lifecycle, configuration, status checks, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud API operations may affect Alibaba Cloud AnalyticDB resources when credentials and resource identifiers are provided. <br>
-Mitigation: Use least-privilege Alibaba Cloud credentials and confirm the account, region, resource IDs, and intended action before running mutating operations. <br>
-Risk: Saved command outputs or API response artifacts may contain sensitive operational details. <br>
-Mitigation: Avoid saving secrets in logs or outputs, and review generated artifacts before sharing or publishing them. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to discover Alibaba Cloud AnalyticDB for MySQL APIs, run SDK or OpenAPI workflows, manage resources, verify operations, and troubleshoot cluster state.
 
-## Reference(s): <br>
-- [Alibaba Cloud OpenAPI product page for AnalyticDB for MySQL](https://api.aliyun.com/product/adb) <br>
-- [AnalyticDB for MySQL API metadata list](https://api.aliyun.com/meta/v1/products/adb/versions/2021-12-01/api-docs.json) <br>
-- [AnalyticDB for MySQL single API metadata pattern](https://api.aliyun.com/meta/v1/products/adb/versions/2021-12-01/apis/{ApiName}/api.json) <br>
-- [ClawHub release page](https://clawhub.ai/cinience/aliyun-adb-mysql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON or Markdown output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write API inventory, command outputs, and API response summaries under output/aliyun-adb-mysql/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Mutating Alibaba Cloud resources can create billable resources or disrupt existing AnalyticDB for MySQL environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and review create, update, modify, or set operations before execution.
+
+Risk: The skill may use cloud credentials and network calls to retrieve API metadata or manage resources.
+
+Mitigation: Prefer environment-provided credentials, confirm region and resource identifiers before mutating operations, and keep generated API metadata under output/aliyun-adb-mysql/.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/cinience/skills/aliyun-adb-mysql)
+- [Sources](references/sources.md)
+- [Alibaba Cloud OpenAPI product page for AnalyticDB for MySQL](https://api.aliyun.com/product/adb)
+- [AnalyticDB for MySQL OpenAPI metadata API list](https://api.aliyun.com/meta/v1/products/adb/versions/2021-12-01/api-docs.json)
+- [AnalyticDB for MySQL single-API metadata pattern](https://api.aliyun.com/meta/v1/products/adb/versions/2021-12-01/apis/{ApiName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python command examples, plus generated JSON and Markdown API inventory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts should be saved under output/aliyun-adb-mysql/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

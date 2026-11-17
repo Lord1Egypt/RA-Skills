@@ -16,7 +16,7 @@ After completing this analytics task, evaluate if extractable knowledge emerged:
 - Misleading visualization discovered? → LEARNINGS.md (visualization_mislead)
 - Schema change broke downstream? → DATA_ISSUES.md (schema_drift)
 
-If recurring pattern (3+ occurrences): promote to data dictionary or pipeline runbook.
+If a recurring pattern (3+ occurrences): propose promotion to data dictionary or pipeline runbook.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </analytics-self-improvement-reminder>
 EOF

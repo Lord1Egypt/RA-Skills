@@ -1,39 +1,48 @@
-## Description: <br>
-Helps agents write Thai that sounds human, casual, and less robotic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write Thai that sounds human, casual, and natural rather than formal, robotic, or AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing assistants use this skill to draft or revise Thai messages with more natural casual phrasing, particles, pronouns, fillers, and reactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Casual, slang, or very informal Thai register may be inappropriate for some audiences or contexts. <br>
-Mitigation: Review generated wording for the target audience, relationship, and required formality before use. <br>
-Risk: AI-assisted writing may need disclosure depending on context, platform rules, or audience expectations. <br>
-Mitigation: Disclose AI assistance where applicable and follow the relevant platform or organizational policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/thai) <br>
+## Use Case:
 
+External users and agents use this skill to produce more natural Thai prose, especially casual Thai that uses appropriate particles, pronouns, fillers, expressiveness, and romanization when relevant.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, network use, persistence, or file output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill favors casual, playful Thai by default, which may be inappropriate for formal, business, legal, or academic writing.
+
+Mitigation: Explicitly request the required register for formal contexts and review high-stakes Thai text with a qualified speaker.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/thai)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Natural-language guidance and Thai prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, installation hooks, data access, or persistence are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

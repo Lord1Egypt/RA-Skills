@@ -22,8 +22,7 @@ check("SKILL.md 存在", os.path.isfile(os.path.join(SKILL_DIR, "SKILL.md")))
 check("version.json 存在", os.path.isfile(os.path.join(SKILL_DIR, "version.json")))
 check("README.md 存在", os.path.isfile(os.path.join(SKILL_DIR, "README.md")))
 check("CHANGELOG.md 存在", os.path.isfile(os.path.join(SKILL_DIR, "CHANGELOG.md")))
-check("install.sh 存在", os.path.isfile(os.path.join(SKILL_DIR, "install.sh")))
-check("install.ps1 存在", os.path.isfile(os.path.join(SKILL_DIR, "install.ps1")))
+# install.sh / install.ps1 已移除，仅保留 ClawHub 安装方式
 
 # 2. References
 print("\n[References 文件]")

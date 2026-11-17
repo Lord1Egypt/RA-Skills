@@ -1,0 +1,47 @@
+1.0.11
+
+Release/version change metadata for this skill set lives here, not in individual skill files.
+
+Historical notes consolidated from skill docs:
+- Skill package v1.0.11
+  - Evaluated newrelic-cli v0.115.6...v0.115.9 (releases v0.115.7 through v0.115.9). The latest release fixes license-key discovery/validation for accounts with more than 1,000 ingest keys and advances newrelic-client-go to v2.97.5. The intervening releases were documentation-neutral maintenance, including the v0.115.7 golang.org/x/net security dependency update (#1917).
+  - Updated the affected diagnostics workflow: diagnose validate checks CLI profile/connectivity, validates the configured LICENSE ingest key, sends a tracer event, and polls NRQL; it is not local agent-file validation and has no --config flag. Require explicit authorization and target/hostname disclosure before sending telemetry. Kept installer execution outside this skill's workflows.
+  - Added a selectively installed reference with immutable upstream provenance, the actual compatibility minimum for paginated ingest-key validation, and the limits of automatic key-discovery validation skipping.
+  - Verified affected help with the official Darwin arm64 v0.115.9 binary against its published SHA-256 manifest. Complete captures and validation evidence remain outside the repository; authored examples are not claimed to be byte-exact captures. Runtime helpers are unchanged; diagnostics execution and telemetry approval gates are tightened.
+  - Review follow-up: made stored-profile validation remove environment overrides per invocation; documented false-invalid causes, retry duration and uncertain-write handling. Gated nrdiag download/execution (including suite listing), retained targeted suite guidance, and documented that the advertised attachment flag is not forwarded by the runner. Aligned security metadata, scope descriptions, integration-error queries and common-issues guidance with those constraints.
+- Skill package v1.0.10
+  - Evaluated newrelic-cli v0.115.3...v0.115.6: seven commits; v0.115.4/v0.115.5 are changelog/Scoop maintenance, and v0.115.6 adds NRQL Macro CRUD with newrelic-client-go v2.97.3.
+  - Added organization-scoped macro guidance for create/get/list/update/delete, immutable names, creation-only --org-id, required counts for parameterized expressions and explicit-zero removal, and literal shell quoting for $N expressions and query macro references. Documented single-search inventory limits, output/log differences, effective-organization and primary-region preflight, macro roles, explicit write approvals, downstream query/dashboard impact with partial coverage disclosed, and exact-target read-back with zero-value JSON handling. Product documentation excludes alerts and warns of cached propagation; expression restrictions and precedence guidance are included.
+  - Verified root, nrql, query, macros, and all five macro subcommand help surfaces with the official Darwin arm64 v0.115.6 binary after checking SHA-256 c01dae40068c9b001363c208b80a52b303591967ee691bb588d49295858a65db against the published checksum manifest. Nine complete raw captures and their manifest are external audit evidence; operational examples are authored, not claimed binary captures.
+  - Corrected adjacent NRQL output guidance to the verified JSON default. Helper, scheduler, and workflow code is unchanged.
+- Skill package v1.0.9
+  - Resolved the ClawHub audit findings after validating New Relic CLI v0.115.0: removed unsupported alert write guidance and limited the alert sub-skill to supported read-only NRQL and entity inspection.
+  - Replaced inline CI deployment-marker source with quoted calls to the maintained helper.
+  - Added strict numeric application-ID validation, normalized common multi-line whitespace, rejected remaining control characters, and added regression coverage proving unsafe inputs are rejected and shell metacharacters remain literal arguments.
+- newrelic-cli v0.114.4-v0.115.0
+  - Reviewed upstream compare `v0.114.3...v0.115.0` on 2026-10-07; `v0.114.4` and `v0.114.5` contained no published user-facing changes relevant to this skill set.
+  - Added current guidance for the new `aimonitoring application search` and `aimonitoring events` command trees introduced in v0.115.0, including event aliases, application-search limits, instrumentation-specific fields, NRQL-fragment handling, and sensitive prompt/response data safeguards.
+  - Evaluated the v0.114.6 Fleet Control changes: configuration creation now defaults to `AgentConfig`, supports the `--legacy-config` escape hatch, and configuration retrieval supports `--show-metadata`. This repository does not currently document Fleet Control workflows, so no skill surface was changed for those commands.
+  - Removed release-number qualifiers from IAM operational guidance after confirming that its command implementations were unchanged through v0.115.0; release history remains in this file only.
+  - Verified root, `aimonitoring`, `aimonitoring application`, `aimonitoring application search`, `aimonitoring events`, and affected Fleet Control help using the official Darwin arm64 v0.115.0 binary after matching SHA-256 `b5ece38f036a85bd672bfca2755b4dc4eded489d46147d5abacff28d4bdfd401` from the published checksum manifest.
+- newrelic-cli v0.114.1-v0.114.3
+  - Reviewed upstream compare `v0.114.0...v0.114.3` on 2026-10-01; `v0.114.1` and `v0.114.2` contained no published user-facing changes relevant to this skill set.
+  - Updated profile guidance for exact dotted/special-character identifiers and explicit structured `profile list` output. JSON and YAML profile listings now honor `--format`, avoid ANSI decoration, and expose the persisted default as `isDefault`.
+  - `profile default` and `profile delete` now reject a missing `--profile`; non-interactive profile creation leaves an unresolved account ID unset and warns when `--acceptDefaults` cannot select one automatically.
+  - Verified `profile`, `profile add`, `profile list`, `profile default`, and `profile delete` help plus dotted-name JSON listing using the official Darwin arm64 release binary after matching SHA-256 `4f9af03d32e21876745cb5094aa52c8893d6832d83016417b04d38d86396a9d3` from the published checksum manifest.
+- newrelic-cli v0.114.0
+  - Reviewed upstream compare `v0.113.19...v0.114.0` on 2026-09-26.
+  - Reviewed upstream releases `v0.113.2` through `v0.113.19`; these releases were documentation-neutral for this skill set. The range fixed Fleet Control fleet-search pagination and client trace-log redaction, and otherwise contained dependency/toolchain security, packaging, and release-pipeline maintenance. This repo does not document Fleet Control, and no documented command or flag contract changed.
+  - Added current guidance for the new `usermanagement` and `accessmanagement` command trees, including read-before-write safeguards and post-write verification.
+  - Verified all related parent and leaf help surfaces using the official Darwin arm64 release binary after matching SHA-256 `ac066465cce2c4abe8ab1e3d22dd097d0f09ce629cb3c53b56ba77000c9797d9` from the published checksum manifest.
+- newrelic-cli v0.113.0-v0.113.1
+  - Reviewed upstream compare `v0.112.18...v0.113.1` on 2026-07-17.
+  - Reviewed `v0.112.2` through `v0.112.17`; these releases were documentation-neutral for this skill set.
+  - `v0.112.2` added the user-facing `NEW_RELIC_SKIP_AUTODISCOVERY` environment variable for targeted installs; no skill change was needed because this skill set does not document `newrelic install` recipe workflows.
+  - Added `GOV` region support and the equivalent `FEDRAMP` alias to profile configuration guidance.
+  - Targeted `newrelic install --recipe ...` runs now exit non-zero when no requested recipe is installed; no existing install workflow in this skill set required changes.
+- newrelic-cli v0.112.1
+  - Reviewed upstream compare `v0.112.0...v0.112.1` on 2026-04-28.
+  - No user-facing CLI command, flag, auth/profile, or behavior changes were published in this release.
+  - The upstream delta only added an empty `CHANGELOG.md` header for `v0.112.1` and advanced the Windows Scoop manifest to `0.112.0`.
+  - Top-level install docs now include the Windows Scoop install path; no sub-skill or helper script changes were required.

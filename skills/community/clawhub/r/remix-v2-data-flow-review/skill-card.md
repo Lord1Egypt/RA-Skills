@@ -1,41 +1,57 @@
-## Description: <br>
-Reviews Remix v2 route data-flow code for loader and action mistakes, validation gaps, leaked server fields, incorrect return helpers, v1 transition holdovers, revalidation issues, and defer/Await traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Remix v2 loaders and actions for mutations-in-loader, missing validation, leaked server fields, wrong return helpers, v1 useTransition holdovers, and revalidation traps.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Remix v2 TypeScript route modules for data-flow mistakes in loaders, actions, revalidation, pending state, and defer/Await streaming before reporting code-review findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect route modules that contain sensitive fields such as passwords, tokens, or API keys. <br>
-Mitigation: Use it only in repositories where that level of code-review access is acceptable, and review findings before acting on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Remix v2 route data flows for loader/action mistakes, unsafe client data exposure, revalidation traps, and outdated v1 patterns before reporting findings.
 
-## Reference(s): <br>
-- [Action Review Reference](references/actions.md) <br>
-- [Defer & Await Review Reference](references/defer-await.md) <br>
-- [Loader Review Reference](references/loaders.md) <br>
-- [Revalidation & Pending State Review Reference](references/revalidation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown code-review findings and guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to include route locations, exemption checks, and verification context before user-facing reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Some linked canonical and protocol documents live outside this package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those external dependencies separately when they are present, and rely on the bundled reference notes for package-local review behavior.
+
+Risk: Code-review findings could be misleading if reported without direct source evidence.
+
+Mitigation: Require file location evidence, exemption checks, and pre-report verification before presenting findings.
+
+## Reference(s):
+
+- [Loader Review Reference](references/loaders.md)
+- [Action Review Reference](references/actions.md)
+- [Revalidation & Pending State Review Reference](references/revalidation.md)
+- [Defer & Await Review Reference](references/defer-await.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/remix-v2-data-flow-review)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review findings with code references and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings must include file location evidence and pass the skill's pre-report verification gates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

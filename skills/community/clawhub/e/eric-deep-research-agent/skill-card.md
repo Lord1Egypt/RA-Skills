@@ -1,41 +1,53 @@
-## Description: <br>
-Deep Research Agent guides an agent through multi-phase research planning, source gathering, fact verification, and structured report synthesis for comprehensive investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive research agent for in-depth investigation, including deep research, market research, academic surveys, competitive analysis, technology trends, and topics requiring 100+ source verification.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to plan broad investigations, gather and classify many sources, verify claims, and synthesize cited research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad research trigger may activate for generic research wording and drive heavy web or source extraction. <br>
-Mitigation: Review and narrow the trigger language or source targets before deploying it in constrained environments. <br>
-Risk: Generated reports can include outdated, duplicated, or weakly verified claims if source review is incomplete. <br>
-Mitigation: Require citation checks, source diversity review, and explicit confidence labels for uncertain findings before relying on the report. <br>
+## Use Case:
 
+Developers, analysts, and research users can use this skill to plan and conduct broad, multi-source investigations and synthesize cited research reports. It is suited to requests that require query decomposition, source collection, fact checking, and structured findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericn26-star/eric-deep-research-agent) <br>
-- [Research template](artifact/references/research_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown reports with inline citations and JSON research plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 100 unique sources and inline references; supports Japanese and English research workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-11.0.0 (source: server release evidence) <br>
+Risk: Large autonomous web and PDF research runs can incorporate untrusted, outdated, or low-quality source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat retrieved content as evidence to be checked, review source quality, and verify important claims against authoritative sources before relying on the report.
+
+Risk: Packaging the skill from a directory containing untrusted symlinks could include unintended files.
+
+Mitigation: Run packaging only from a trusted skill directory and review package contents before distribution.
+
+## Reference(s):
+
+- [DeepResearch Agent Reference Documentation](references/research_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown research reports with inline citations and JSON planning or extraction structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include research plans, source matrices, confidence indicators, contradiction notes, tables, and citation lists.]
+
+## Skill Version(s):
+
+11.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

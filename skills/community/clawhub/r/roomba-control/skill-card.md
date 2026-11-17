@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for life - covers intro, quickstart, patterns and more, with quick lookup for Roomba Control concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for life - covers intro, quickstart, patterns and more. Quick lookup for Roomba Control concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve concise Roomba Control reference guidance, including quickstart, patterns, debugging, performance, security, migration, and cheat-sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scan evidence reports a clean verdict but notes limited confidence for complete file-level review. <br>
-Mitigation: Rescan the release artifact before installation when a complete security review is required. <br>
-Risk: The skill outputs general reference guidance that may not match a user's exact Roomba Control environment or operational constraints. <br>
-Mitigation: Review the generated guidance before applying it to production workflows or security-sensitive configurations. <br>
+## Use Case:
 
+Developers and external users use this skill for quick plain-text reference material about Roomba Control concepts, commands, troubleshooting, security, migration, and related patterns.
 
-## Reference(s): <br>
-- [ClawHub Roomba Control release page](https://clawhub.ai/bytesagain-lab/roomba-control) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and skill frontmatter; script VERSION reports 3.0.0) <br>
+Risk: The server security guidance notes that the content appears generic despite being branded as Roomba Control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reference text for domain accuracy before relying on it or publishing it as product-specific guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/roomba-control)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-specific reference output; evidence.security reports no credentials, network access, file access, or persistent system changes.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

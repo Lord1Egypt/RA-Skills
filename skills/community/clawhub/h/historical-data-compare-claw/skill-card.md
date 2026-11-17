@@ -1,43 +1,58 @@
-## Description: <br>
-Historical Data Compare Claw helps agents compare Excel, CSV, or exported historical datasets to calculate period-over-period, year-over-year, trend, and variance analyses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Historical Data Compare Claw helps agents analyze period-over-period, year-over-year, trend, and attribution differences in historical CSV or Excel data.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Business analysts, operators, and agent users use this skill to compare historical metrics across periods, identify meaningful changes, and prepare concise variance and trend reports. It is useful for monthly, quarterly, daily, and year-over-year comparisons across dimensions such as region, category, or channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes local datasets that may contain sensitive or unintended data. <br>
-Mitigation: Use only data files intended for analysis and confirm selected date and metric columns before running comparisons. <br>
-Risk: The optional output path can create or overwrite a report file. <br>
-Mitigation: Choose the output path deliberately and review it before execution. <br>
-Risk: Excel or data-processing dependencies may need to be installed in the runtime environment. <br>
-Mitigation: Install pandas and any Excel-reading dependencies only from trusted package sources. <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to compare historical metrics across periods, identify material changes, and produce concise Chinese-language explanations or reports with supporting calculations.
 
-## Reference(s): <br>
-- [Historical Data Compare Claw on ClawHub](https://clawhub.ai/tujinsama/historical-data-compare-claw) <br>
-- [Data Analysis Methodology Reference](references/methodology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown reports, plain-text comparison tables, and optional report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read local CSV or Excel files and optionally write a comparison report to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-provided spreadsheets may contain sensitive or confidential business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review spreadsheet contents before sharing them with an agent and remove data that is not needed for the comparison.
+
+Risk: Writing reports with an unspecified or unintended output location can place generated files where users do not expect them.
+
+Mitigation: When using --output, provide a specific report path and review the destination before execution.
+
+Risk: Incorrect date columns, metric columns, missing values, duplicates, or inconsistent comparison periods can produce misleading trend conclusions.
+
+Mitigation: Validate data quality, column selection, and comparison periods before relying on the generated analysis.
+
+## Reference(s):
+
+- [Data Analysis Methodology Reference](references/methodology.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/historical-data-compare-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language Markdown reports, plain-text comparison tables, and optional report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports CSV and Excel inputs; reports may be printed to stdout or written to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

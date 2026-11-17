@@ -1,41 +1,54 @@
-## Description: <br>
-Generates short, Douyin-style Chinese pickup lines and romantic roleplay responses when the user explicitly wants flirtatious, cheesy phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short Chinese Douyin-style cheesy pickup-line responses and flirtatious chat lines for romantic roleplay.
 
-## Publisher: <br>
-[wanikua](https://clawhub.ai/user/wanikua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanikua](https://clawhub.ai/user/wanikua)
 
-## Use Case: <br>
-External users and agent builders use this skill to produce concise Chinese tuweiqinghua pickup-line responses for opt-in romantic chat or playful copywriting scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger during ordinary chat and may continue flirting after refusal-like messages. <br>
-Mitigation: Use it only in explicit opt-in romantic roleplay contexts, and add clear stop rules for refusal, discomfort, silence, or disengagement. <br>
-Risk: The persona may be inappropriate for public, workplace, support, shared, or minor-facing contexts. <br>
-Mitigation: Limit deployment to adult, private, entertainment-oriented settings and narrow triggers to explicit user requests. <br>
+## Use Case:
 
+External users and agent builders can use this skill to make an assistant produce concise Chinese pickup lines and playful romantic chat responses. It is intended for light conversational roleplay rather than factual, safety-critical, or professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanikua/tuweiqinghua) <br>
-- [Project homepage](https://github.com/wanikua/tuweiqinghua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Short Chinese chat response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-message output by default; short batches only when the user explicitly asks for multiple lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can continue flirtatious replies after a user asks it to stop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with activation narrowed to explicit pickup-line or romantic roleplay requests, and ensure stop or change-topic requests are honored.
+
+Risk: Broad activation triggers can make ordinary chat requests unexpectedly become flirtatious roleplay.
+
+Mitigation: Use explicit trigger phrasing and review activation behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wanikua/skills/tuweiqinghua)
+- [Project Homepage](https://github.com/wanikua/tuweiqinghua)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or short Markdown conversational responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces brief, one-at-a-time pickup-line responses unless the user explicitly asks for multiple lines.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

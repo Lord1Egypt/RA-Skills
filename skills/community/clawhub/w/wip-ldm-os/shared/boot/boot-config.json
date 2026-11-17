@@ -2,19 +2,23 @@
   "agentId": "cc-mini",
   "timezone": "America/Los_Angeles",
   "maxTotalLines": 2000,
+  "stalenessDays": 14,
+  "dailyLogStalenessDays": 2,
   "steps": {
     "sharedContext": {
       "path": "~/.openclaw/workspace/SHARED-CONTEXT.md",
       "label": "SHARED-CONTEXT.md",
       "stepNumber": 2,
-      "critical": true
+      "critical": true,
+      "maxLines": 80
     },
     "journals": {
       "dir": "~/wipcomputerinc/team/cc-mini/documents/journals",
       "label": "Most Recent Journal (Parker)",
       "stepNumber": 3,
       "maxLines": 80,
-      "strategy": "most-recent"
+      "strategy": "most-recent",
+      "stalenessDays": 14
     },
     "workspaceDailyLogs": {
       "dir": "~/.openclaw/workspace/memory",
@@ -22,7 +26,8 @@
       "stepNumber": 4,
       "maxLines": 40,
       "strategy": "daily-logs",
-      "days": ["today", "yesterday"]
+      "days": ["today", "yesterday"],
+      "dailyLogStalenessDays": 2
     },
     "fullHistory": {
       "label": "Full History",
@@ -33,19 +38,22 @@
       "path": "~/.ldm/agents/cc-mini/CONTEXT.md",
       "label": "CC CONTEXT.md",
       "stepNumber": 6,
-      "critical": true
+      "critical": true,
+      "maxLines": 60
     },
     "soul": {
       "path": "~/.ldm/agents/cc-mini/SOUL.md",
       "label": "CC SOUL.md",
-      "stepNumber": 7
+      "stepNumber": 7,
+      "maxLines": 80
     },
     "ccJournals": {
       "dir": "~/.ldm/agents/cc-mini/memory/journals",
       "label": "Most Recent CC Journal",
       "stepNumber": 8,
       "maxLines": 80,
-      "strategy": "most-recent"
+      "strategy": "most-recent",
+      "stalenessDays": 14
     },
     "ccDailyLog": {
       "dir": "~/.ldm/agents/cc-mini/memory/daily",
@@ -53,13 +61,15 @@
       "stepNumber": 9,
       "maxLines": 60,
       "strategy": "daily-logs",
-      "days": ["today", "yesterday"]
+      "days": ["today", "yesterday"],
+      "dailyLogStalenessDays": 2
     },
     "repoLocations": {
       "path": "~/.claude/projects/-Users-lesa--openclaw/memory/repo-locations.md",
       "label": "repo-locations.md",
       "stepNumber": 10,
-      "critical": true
+      "critical": true,
+      "maxLines": 80
     }
   }
 }

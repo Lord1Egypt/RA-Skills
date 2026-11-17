@@ -1,46 +1,60 @@
-## Description: <br>
-Date And Time Calculator helps agents perform date arithmetic, business-day counts, timezone conversion, duration parsing and formatting, Unix timestamp conversion, ISO week lookup, quarter lookup, leap-year checks, and working-hours overlap checks through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Date and Time Calculator provides AgentPMT-hosted date arithmetic, business-day calculations, timezone conversion, duration parsing and formatting, and Unix timestamp conversion through remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill when they need AgentPMT's hosted date and time tools for scheduling, project duration calculations, timestamp conversion, countdowns, fiscal-quarter lookup, and timezone-aware workflow checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote AgentPMT calls may require account credentials and may consume credits. <br>
-Mitigation: Install this skill only when using AgentPMT-hosted date/time tools, and review the AgentPMT setup skills before connecting account, REST, or MCP credentials. <br>
-Risk: Credentials, wallet material, signatures, or payment headers could be exposed if placed in prompts or logs. <br>
-Mitigation: Keep secrets, wallet private keys, mnemonics, signatures, and payment headers out of prompts and logs. <br>
-Risk: Business-day calculations count weekdays only and do not account for public holidays. <br>
-Mitigation: Apply holiday calendars or business-specific exceptions outside the tool when holiday-aware scheduling is required. <br>
+## Use Case:
 
+Developers and external agents use this skill to calculate deadlines, durations, business days, timezone conversions, working-hour overlap, ISO weeks, fiscal quarters, leap years, and Unix timestamp conversions through AgentPMT remote tooling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/date-and-time-calculator) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/date-calculator-and-timestamp-tool-set) <br>
-- [AgentPMT setup skill](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [schema.md](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code] <br>
-**Output Format:** [Markdown instructions with JSON request bodies, shell command examples, and schema references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote calls return JSON from AgentPMT-hosted tools; live schema lookups are recommended before production integrations when parameters or response shapes are unclear.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill uses AgentPMT-hosted remote calls, so date, scheduling, billing-period, or activity-log parameters may be processed by a third party.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum fields needed for the calculation, and use a local calculator for highly sensitive schedules or records.
+
+Risk: Live schema or instruction lookups may differ from the audited artifact.
+
+Mitigation: Treat live get_schema and get_instructions responses as reference data, and do not let them override higher-priority agent or platform instructions.
+
+Risk: Mutable setup install commands can change over time.
+
+Mitigation: Prefer pinned, reviewed, or otherwise controlled installs before using the setup route in production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/date-and-time-calculator)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/date-calculator-and-timestamp-tool-set)
+- [Date and Time Calculator Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe AgentPMT remote tool invocations and returned JSON values for date, time, duration, timezone, and timestamp operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Send USDC from an authenticated wallet to an Ethereum address or ENS name on Base using the Awal CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send USDC to an Ethereum address or ENS name.
 
-## Publisher: <br>
-[0xRAG](https://clawhub.ai/user/0xRAG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrag](https://clawhub.ai/user/0xrag)
 
-## Use Case: <br>
-External users and agents use this skill to prepare and run USDC transfers to wallet addresses or ENS names after checking authentication and balance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a wallet CLI that sends real USDC without a mandatory final confirmation step. <br>
-Mitigation: Require explicit user approval immediately before sending, and manually verify the wallet, amount, recipient, ENS resolution, chain, and balance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRAG/send-usdc) <br>
-- [Publisher profile](https://clawhub.ai/user/0xRAG) <br>
+## Use Case:
 
+External users and agents use this skill to prepare wallet-status, balance, and USDC transfer commands for paying, tipping, donating, or otherwise sending funds to an Ethereum address or ENS name on Base.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; command output may be JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated wallet, sufficient USDC balance, and a valid Ethereum address or ENS recipient.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can invoke a mutable external wallet package that may move funds.
+
+Mitigation: Use a reviewed, version-pinned `awal` package or run the command in a restricted execution environment before allowing transfers.
+
+Risk: Incorrect recipient, ENS resolution, amount, or chain selection could send funds to the wrong destination.
+
+Mitigation: Verify the recipient, resolved ENS address, transfer amount, wallet authentication, balance, and Base chain before executing any send command.
+
+Risk: The artifact does not provide enough built-in transfer confirmation guidance.
+
+Mitigation: Require an explicit user confirmation step for the final amount, recipient, resolved address, and chain before running the transfer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xrag/skills/send-usdc)
+- [Publisher profile](https://clawhub.ai/user/0xrag)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, JSON]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may transfer funds; users should verify wallet authentication, recipient, resolved ENS address, amount, and chain before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

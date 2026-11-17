@@ -1,38 +1,53 @@
-## Description: <br>
-This skill helps agents research and analyze the historical background, payment details, and long-term impacts of Haiti's post-revolution independence payments to France. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports Chinese-language research and analysis of the historical background, payment details, and long-term economic and international-relations impacts of Haiti's post-revolution independence payments to France.
 
-## Publisher: <br>
-[waterlikeage](https://clawhub.ai/user/waterlikeage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waterlikeage](https://clawhub.ai/user/waterlikeage)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to ask an agent for timelines, payment details, economic-impact analysis, and legal or political context about Haiti's independence indemnity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Historical claims, payment figures, or calculations may be incomplete or require source validation. <br>
-Mitigation: Verify important dates, payment amounts, citations, and economic comparisons against authoritative archives or scholarly sources before relying on them. <br>
+## Use Case:
 
+Developers, researchers, educators, and agents use this skill to answer questions, summarize timelines, analyze economic impact, and guide further research about the Haitian Revolution and Haiti's independence indemnity to France.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waterlikeage/haidi-revolution-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Important historical claims, payment figures, and calculations should be checked against authoritative sources before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Historical claims, calculations, or reparations analysis may be incomplete or contested if not checked against authoritative sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited dates, amounts, value calculations, and legal or political interpretations against authoritative archives and scholarship before relying on the result.
+
+Risk: The artifact is Chinese-language documentation, which may limit review or correct use by non-Chinese readers.
+
+Mitigation: Use translated documentation or bilingual review when deploying it for users who need another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waterlikeage/skills/haidi-revolution-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language historical research responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

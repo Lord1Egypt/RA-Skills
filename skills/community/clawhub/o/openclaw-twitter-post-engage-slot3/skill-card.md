@@ -1,45 +1,58 @@
-## Description: <br>
-Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AISA relay for research, posting, likes, follows, and related workflows without sharing passwords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter profiles, tweets, trends, and approved engagement actions through the AISA relay for research, posting, likes, follows, and related workflows without sharing passwords.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users and developers use this skill to research X/Twitter content and perform approved posting or engagement actions through Python clients. Write actions require OAuth authorization and a final confirmation artifact that names the exact action, target, payload, and approval state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, like, follow, or unfollow on an X/Twitter account after OAuth authorization. <br>
-Mitigation: Require OAuth authorization and a final user-approved confirmation artifact naming the exact action, target, text or media payload, and approval state before running any write command. <br>
-Risk: Command output from authorize or post workflows may expose sensitive AISA API key material. <br>
-Mitigation: Treat authorization and posting output as sensitive, avoid sharing logs publicly, and redact credentials before storing or transmitting command output. <br>
-Risk: The workflow depends on the AISA relay for Twitter/X read, posting, media upload, and engagement actions. <br>
-Mitigation: Install and use the skill only when the user trusts the AISA relay and is comfortable granting OAuth-backed Twitter/X authority. <br>
+## Use Case:
 
+External users and developers use this skill to research X/Twitter content and perform explicitly approved posting, media upload, like, unlike, follow, and unfollow workflows through the AISA relay.
 
-## Reference(s): <br>
-- [OpenClaw Twitter OAuth](references/post_twitter.md) <br>
-- [OpenClaw Twitter Engagement](references/engage_twitter.md) <br>
-- [AISA homepage](https://aisa.one) <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/openclaw-twitter-post-engage-slot3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and OAuth approval before write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and frontmatter) <br>
+Risk: The skill gives the AISA relay authority over a connected Twitter/X account for posting, media uploads, likes, follows, unlikes, and unfollows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use write commands only after reviewing the exact action, target, text or media payload, OAuth state, and explicit approval status.
+
+Risk: The security evidence reports that write clients do not enforce the promised final approval in code.
+
+Mitigation: Require a human-reviewed confirmation artifact before every write action, and prefer a version that enforces approval tokens for all write operations.
+
+Risk: The security evidence reports API-key output behavior that could expose AISA credentials in logs.
+
+Mitigation: Rotate any AISA key that may have appeared in logs and avoid sharing command output that contains credentials.
+
+## Reference(s):
+
+- [Post Twitter Workflow](references/post_twitter.md)
+- [Engage Twitter Workflow](references/engage_twitter.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and OAuth authorization for write actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

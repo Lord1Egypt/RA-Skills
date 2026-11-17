@@ -1,49 +1,65 @@
-## Description: <br>
-Audit and harden OpenClaw deployments and interpret `openclaw security audit` findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and harden OpenClaw deployments and interpret `openclaw security audit` findings for gateway exposure, access controls, tool permissions, sandboxing, plugins, secrets, transcripts, logs, and common macOS, laptop, Docker, and EC2 deployment patterns.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw deployments they own or have permission to assess, interpret security findings, and plan practical hardening steps for gateway exposure, access policy, tool permissions, plugins, secrets, logs, and deployment platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit folders and reports can reveal host, network, gateway, plugin, skill, and configuration posture. <br>
-Mitigation: Review and redact generated outputs before sharing them outside the trusted operating context. <br>
-Risk: Running audit or remediation steps against systems without authorization can create security and operational harm. <br>
-Mitigation: Use the skill only for OpenClaw deployments the user owns or has explicit permission to assess. <br>
-Risk: Configuration edits, fix operations, firewall changes, or restarts can disrupt an OpenClaw deployment. <br>
-Mitigation: Create a verified backup and obtain explicit user approval before making changes. <br>
+## Use Case:
 
+Developers and operators use this skill to run a defensive, permissioned audit of an OpenClaw deployment and convert OpenClaw diagnostic output into a practical remediation plan. It supports chat-assisted self-audits and local shell-access audits that produce Markdown security reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tristanmanchester/audit-openclaw-security) <br>
-- [Command cheat sheet](references/command-cheatsheet.md) <br>
-- [OpenClaw audit checks](references/openclaw-audit-checks.md) <br>
-- [OpenClaw baseline config](references/openclaw-baseline-config.md) <br>
-- [Platform playbook: AWS EC2](references/platform-aws-ec2.md) <br>
-- [Platform playbook: Docker](references/platform-docker.md) <br>
-- [Platform playbook: Mac mini](references/platform-mac-mini.md) <br>
-- [Platform playbook: personal laptop](references/platform-personal-laptop.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command blocks, findings tables, remediation plans, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local audit folders and reports when the user has shell access; generated diagnostics should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Generated audit folders, reports, and diagnostics may reveal network, firewall, plugin, and OpenClaw security posture details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store collector output in a private directory and review the audit folder and report before sharing them externally.
+
+Risk: The bundled redactor is best-effort and may miss credentials, short passwords, tokens, cookies, or API keys.
+
+Mitigation: Manually inspect redacted output and remove any remaining secret or credential values before sharing.
+
+Risk: Remediation guidance can involve configuration edits, restarts, firewall changes, or other operational changes.
+
+Mitigation: Create a verified OpenClaw backup and obtain explicit approval before applying fixes or changing runtime exposure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tristanmanchester/skills/audit-openclaw-security)
+- [Command cheat sheet](references/command-cheatsheet.md)
+- [OpenClaw security audit checks](references/openclaw-audit-checks.md)
+- [OpenClaw secure baseline config](references/openclaw-baseline-config.md)
+- [Platform playbook: Docker / Docker Compose](references/platform-docker.md)
+- [Platform playbook: Mac mini or other always-on macOS host](references/platform-mac-mini.md)
+- [Platform playbook: Personal laptop](references/platform-personal-laptop.md)
+- [Platform playbook: AWS EC2](references/platform-aws-ec2.md)
+- [OpenClaw security audit report template](assets/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and concise prose with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local audit artifact folder and a Markdown security report when shell access is available; users should review outputs before sharing.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact metadata reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

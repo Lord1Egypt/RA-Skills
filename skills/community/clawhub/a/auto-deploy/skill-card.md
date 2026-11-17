@@ -1,43 +1,64 @@
-## Description: <br>
-Automates Git project deployment by pulling code, building, and deploying via SSH to Linux servers with backup and health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Git project deployment by pulling code, building Node.js, Java, or Vue/Java projects, and deploying to Linux servers over SSH with backup, restart, rollback, and health-check steps.
 
-## Publisher: <br>
-[zjm1226](https://clawhub.ai/user/zjm1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjm1226](https://clawhub.ai/user/zjm1226)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy Git-backed Node.js, Java, or mixed projects to Linux servers over SSH. It supports pulling code, building artifacts, uploading releases, restarting services, running health checks, and rolling back from backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes real-looking Git and server credentials and root-oriented SSH deployment configuration. <br>
-Mitigation: Rotate exposed credentials, remove hardcoded secrets, use secret storage or environment variables, and replace root access with a least-privilege deploy user before use. <br>
-Risk: Deployment, restart, rollback, package installation, SSH key installation, and code push steps can change or damage a live server. <br>
-Mitigation: Use only on systems you own, validate deployment paths and target hosts, keep backups enabled, and require explicit approval before any mutating operation. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate deployment of Git-based Node.js, Java, or Vue/Java applications to Linux servers after code changes. It supports build, SSH transfer or server-side build, backup, service restart, health checks, and rollback guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zjm1226/auto-deploy) <br>
-- [README](artifact/README.md) <br>
-- [Deployment configuration guide](artifact/DEPLOY_CONFIG.md) <br>
-- [SSH setup guide](artifact/SSH_SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and deployment scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run deployment, rollback, SSH, Git, build, package installation, and service restart commands that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports embedded credentials and server connection details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate exposed Git and SSH or root passwords, remove real credentials from the package and history, and store secrets outside the skill configuration.
+
+Risk: The security evidence reports root-level deployment scripts and elevated server actions.
+
+Mitigation: Use a non-root deploy account with least-privilege permissions and require explicit approval before deploy, rollback, or environment installation.
+
+Risk: The security guidance calls for verified host keys and safer Git transport.
+
+Mitigation: Require verified SSH host keys and use HTTPS or SSH Git transport instead of embedding credentials in HTTP clone URLs.
+
+Risk: Deployment and rollback behavior can delete or overwrite configured paths.
+
+Mitigation: Validate deploy paths, backup paths, branch names, and rollback targets before execution, and confirm backups exist before destructive changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zjm1226/skills/auto-deploy)
+- [README.md](artifact/README.md)
+- [DEPLOY_CONFIG.md](artifact/DEPLOY_CONFIG.md)
+- [SSH_SETUP.md](artifact/SSH_SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment, rollback, SSH setup, connection testing, and server environment installation command sequences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, target metadata, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

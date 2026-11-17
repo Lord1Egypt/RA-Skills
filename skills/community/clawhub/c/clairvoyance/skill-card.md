@@ -1,38 +1,53 @@
-## Description: <br>
-Clairvoyance analyzes local memory files and dream notes to surface grounded reflective patterns, tensions, and questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A clairvoyance reading drawn from your own memories, daily notes and dreams. It doesn't guess the future out of nothing: it sees where the things in your life are heading, which of them are about to meet, how and when, and how it is likely to end. Read-only. Runs only when you explicitly ask for a clairvoyance or a personal reading, and agrees with you on which notes and dates it may read before opening anything. Works with any assistant that can read your notes: OpenClaw, Claude, Grok and others.
 
-## Publisher: <br>
-[srmhrrm-hub](https://clawhub.ai/user/srmhrrm-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[srmhrrm-hub](https://clawhub.ai/user/srmhrrm-hub)
 
-## Use Case: <br>
-External users and developers use this skill to ask an assistant for grounded reflective analysis of their own local memory files, daily notes, and dream logs. The skill is intended to produce evidence-based insights, subconscious anchors, and open questions without diagnosing or claiming certainty. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may analyze sensitive personal memory files and dream notes without a clearly disclosed consent gate or narrow activation scope. <br>
-Mitigation: Before use, confirm the exact local files to be analyzed, avoid journals, therapy notes, or other sensitive records unless the user explicitly approves the scope, and minimize quoted private details in outputs. <br>
+## Use Case:
 
+People who request a personal reading can use the skill to explore patterns across memories, daily notes, and dreams they have explicitly approved. It presents an interpretation of those notes rather than a reliable prediction.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/srmhrrm-hub/clairvoyance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents 3-5 evidence-grounded insights with references to source files or dates, reflective interpretations, and open-ended questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: A reading may reveal personal details from approved notes in a chat that could be shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the notes and dates in advance, exclude anything sensitive, and consider who may see the resulting chat.
+
+Risk: An interpretation of notes may be mistaken for a reliable prediction.
+
+Mitigation: Treat the reading as an interpretation of approved notes, not as a fact about the future.
+
+## Reference(s):
+
+- [Clairvoyance on ClawHub](https://clawhub.ai/srmhrrm-hub/skills/clairvoyance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Personal reading in prose with a brief note describing the notes and dates read.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only; uses only notes and dates the person approved; ends with one question and states that the reading is an interpretation, not a certainty.]
+
+## Skill Version(s):
+
+2.3.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

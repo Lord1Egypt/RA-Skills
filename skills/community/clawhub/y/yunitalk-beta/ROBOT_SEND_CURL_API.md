@@ -1,6 +1,6 @@
 # Talk Robots 机器人消息 curl 调用示例
 
-本文档说明不使用 `shell/robot_send.sh` 时，如何直接用 `curl` 调用 Talk Robots `/robot/send` 投递文本消息和文件消息。
+本文档说明不使用 `bin/bot-cli` 或 `shell/robot_send.sh` 时，如何直接用 `curl` 调用 Talk Robots `/robot/send` 投递文本消息和文件消息。
 
 示例依赖 `curl`、`openssl` 和 `python3`。
 

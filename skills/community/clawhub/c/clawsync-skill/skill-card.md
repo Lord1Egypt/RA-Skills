@@ -1,43 +1,59 @@
-## Description: <br>
-Backs up and restores an OpenClaw configuration, including skills, memory, settings, credentials, history, and optional workspace files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawSync backs up and restores OpenClaw configuration, including skills, memory, settings, credentials, history, and workspace files, for migration and disaster recovery.
 
-## Publisher: <br>
-[Zaosusu](https://clawhub.ai/user/Zaosusu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaosusu](https://clawhub.ai/user/zaosusu)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to create, list, verify, and restore configuration backups for migration, disaster recovery, daily backups, or controlled sharing of skills and settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can contain sensitive OpenClaw data such as credentials, memory, history, and workspace files. <br>
-Mitigation: Use quick or selective backups when possible, avoid including credentials/history/workspace data unless needed, and store backup ZIP files only in trusted protected locations. <br>
-Risk: The security review says encryption is claimed but should not be relied on for protecting backup archives. <br>
-Mitigation: Apply separate, reviewed encryption or storage controls before moving or sharing backup ZIP files. <br>
-Risk: Restore behavior may write outside the intended OpenClaw folder. <br>
-Mitigation: Restore only archives you created and inspected, use dry-run or manual inspection first, and run restore in a controlled environment. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to create backups, migrate setups between machines, restore prior configurations, and share selected configuration components.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Zaosusu/clawsync-skill) <br>
-- [OpenClaw website](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create ZIP backup files and restore configuration files when the bundled script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Backups may contain credentials or other sensitive OpenClaw data, and the security evidence says advertised encryption does not match the implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the --encrypt option; separately protect backup archives before storing, uploading, or sharing them.
+
+Risk: Restoring an untrusted archive can affect local files because the security evidence flags restore safety as mismatched with the implementation.
+
+Mitigation: Restore only archives from fully trusted sources and update the restore code to validate archive paths and extract only inside the OpenClaw directory.
+
+Risk: The security verdict is suspicious, with a coherent backup purpose but real risk to credentials and local files.
+
+Mitigation: Review and scan the skill before installation or deployment, and treat backup and restore operations as sensitive file-system actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaosusu/skills/clawsync-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/zaosusu)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples and backup archive outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create ZIP backup archives containing OpenClaw configuration data in the user's chosen backup location.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

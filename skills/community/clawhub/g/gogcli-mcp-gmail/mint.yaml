@@ -1,0 +1,115 @@
+version: 1
+name: Google Gmail (gogcli)
+slug: gogcli-mcp-gmail
+summary: >-
+  Extended Gmail MCP server via gogcli — auth + full Gmail support (threads,
+  labels, drafts, attachments, forward, autoreply, bulk operations)
+examples:
+  - prompt: "Summarize the unread emails in my inbox from today."
+  - prompt: "What Gmail filters do I have set up, and what does each one do?"
+  - prompt: "Is my vacation auto-reply turned on right now?"
+command:
+  # This package publishes a single bin; naming it keeps the install
+  # unambiguous alongside its nine sibling packages.
+  bin: gogcli-mcp-gmail
+env:
+  - name: GOG_CLIENT_ID
+    required: false
+    help: >-
+      Google OAuth client id. Read by the Node wrapper at startup
+      (bootstrap-auth.ts), which imports it into gog's keyring via a temp file
+      together with GOG_CLIENT_SECRET, GOG_REFRESH_TOKEN and GOG_ACCOUNT — set
+      all four or none. Not a secret, so unlike GOG_CLIENT_SECRET and
+      GOG_REFRESH_TOKEN it is not stripped from the spawned `gog`'s
+      environment; gog authenticates from its keyring under $HOME (see
+      state.dataDir).
+  - name: GOG_CLIENT_SECRET
+    secret: true
+    required: false
+    help: >-
+      Google OAuth client secret. Imported into gog's keyring at startup with
+      GOG_CLIENT_ID; stripped from the spawned CLI's environment by runner.ts's
+      *_SECRET rule.
+  - name: GOG_REFRESH_TOKEN
+    secret: true
+    required: false
+    help: >-
+      Google OAuth refresh token (`gog auth tokens export` prints one). Imported
+      into gog's keyring at startup with GOG_CLIENT_ID; stripped from the
+      spawned CLI's environment by runner.ts's *_TOKEN rule. Changing it
+      re-imports on the next start; an in-connector re-auth
+      (gog_auth_add_url/complete) stays in effect until it changes.
+  - name: GOG_ACCESS_TOKEN
+    secret: true
+    required: false
+    help: >-
+      Deliberately removed from the spawned CLI's environment by runner.ts, so
+      that a stale directly-passed token cannot shadow gog's stored refresh
+      credential. Leave unset.
+  - name: GOG_ACCOUNT
+    required: false
+    help: >-
+      The Google account to act as. Required for the startup auth bootstrap
+      (the refresh token is imported under this email); otherwise defaults to
+      gog's single/most recent account.
+  - name: GOG_KEYRING_BACKEND
+    required: false
+    help: >-
+      gog's credential store. Set to "file" on a headless host — there is no OS
+      keychain — so the keyring lives on the persistent data dir.
+  - name: GOG_KEYRING_PASSWORD
+    secret: true
+    required: false
+    help: >-
+      Encrypts gog's file keyring on the data dir. Required with
+      GOG_KEYRING_BACKEND=file. Deliberately not stripped from the spawned
+      CLI's environment — it is the one credential gog itself reads.
+  - name: GOG_READONLY
+    required: false
+    help: >-
+      Set to 1 to refuse every mutating operation. Recommended when the
+      connector is shared or you only need reads.
+  - name: GOG_PATH
+    required: false
+    help: >-
+      Path to the `gog` binary. Leave unset when the dependency below supplies
+      it; set it only to point at a binary you manage yourself.
+  - name: GOG_TIMEZONE
+    required: false
+    help: >-
+      The IANA zone gog formats its naive timestamps in. The wrapper passes
+      it to every spawned gog and reads it back (naiveSourceTimeZone) to
+      re-attach the offset, so the two always agree. Unset or invalid, both
+      use DISPLAY_TZ, then America/New_York — never the host's local zone.
+  - name: DISPLAY_TZ
+    required: false
+    help: >-
+      The IANA zone every rendered *Display field uses (displayTimeZone,
+      default America/New_York). It does not read GOG_TIMEZONE — the fallback
+      runs the other way, so this is also what GOG_TIMEZONE falls back to. An
+      invalid value degrades to the default rather than throwing.
+dependencies:
+  # Every tool shells out to the `gog` CLI; without it the server starts and
+  # then fails on the first call. This tag must track
+  # packages/gogcli-mcp/src/runner.ts's MIN_GOG_VERSION (the floor the tools
+  # assume). See CLAUDE.md "Required gog version" — bumping the floor means
+  # bumping these ten pins, and the pin stored on each mcp-host registration.
+  - kind: github-release
+    repo: openclaw/gogcli
+    tag: v0.48.0
+    asset: "gogcli_*_linux_amd64.tar.gz"
+    bin: [gog]
+state:
+  dataDir: true
+  reason: >-
+    `gog` keeps its authorised-account state and file keyring under $HOME, and
+    the wrapper keeps its auth-bootstrap marker (~/.gogcli-mcp) there, so a
+    restart neither re-imports an unchanged secret nor discards an
+    in-connector re-auth. Without a persistent data dir every cold start has
+    only what the env secrets can re-seed.
+egress:
+  allow:
+    # Google OAuth token exchange and the Google REST APIs the CLI calls.
+    - oauth2.googleapis.com
+    - www.googleapis.com
+    - googleapis.com

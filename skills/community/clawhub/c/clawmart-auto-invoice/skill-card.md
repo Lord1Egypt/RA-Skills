@@ -1,41 +1,53 @@
-## Description: <br>
-ClawMart Auto Invoice helps generate professional invoice drafts, manage customer and invoice details, track payment status, and summarize financial reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawMart Auto Invoice helps agents draft invoices, manage customer and payment details, and summarize invoice activity in basic financial reports.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Freelancers, small businesses, and finance operators can use this skill to draft invoices, track payment status, and prepare invoice activity summaries from company and customer details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoices and reports may contain sensitive customer, financial, bank, or tax information. <br>
-Mitigation: Confirm storage, access, deletion, and export practices before using real invoices, and avoid collecting unnecessary bank or tax details. <br>
-Risk: Generated invoices, payment statuses, and financial reports may be inaccurate or incomplete. <br>
-Mitigation: Manually review invoice details, totals, tax treatment, payment status, and reports before sending or relying on them. <br>
-Risk: Invoice data may be sent to GLM-5 or another configured provider. <br>
-Mitigation: Verify which provider receives the data and obtain appropriate approval before processing sensitive records. <br>
+## Use Case:
 
+Small-business operators, freelancers, and their agents use this skill to draft invoice content, track payment status, manage customer details, and generate monthly receivables summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown invoice drafts, financial report summaries, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive customer, payment, bank, and tax details that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill handles invoice, customer, bank-account, tax, and payment-status information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces and enter the minimum personal or financial data needed for each invoice.
+
+Risk: Generated invoice and receivables summaries may be inaccurate if the source details are incomplete or outdated.
+
+Mitigation: Review invoice numbers, totals, tax treatment, payee details, due dates, and payment status before sending or recording outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/clawmart-auto-invoice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include invoice details, payment status, customer tables, and monthly financial summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

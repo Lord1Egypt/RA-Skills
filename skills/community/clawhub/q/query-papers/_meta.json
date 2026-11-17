@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "query-papers",
+  "name": "query_papers",
   "version": "2.1.1",
-  "publishedAt": 1781363877989
+  "description": "paper-kb 查询知识库（全类型，v2.1）：两阶段检索，查询日志绑定读目录步骤，wikilink 纯文件名",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "current_user_open_id"
+    ],
+    "skills": [
+      "init_user"
+    ]
+  },
+  "part_of": "paper-kb",
+  "related_skills": [
+    "init_user",
+    "ingest_paper"
+  ]
 }

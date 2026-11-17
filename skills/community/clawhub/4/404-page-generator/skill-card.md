@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents in creating, optimizing, and auditing 404 error pages for UX, conversion recovery, and brand consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides the creation, optimization, and audit of 404 error pages for UX, conversion recovery, brand consistency, and site navigation.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to plan 404 pages that explain missing pages, preserve site navigation, offer search or key links, and maintain brand-consistent UX. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project-context files if they are present, which could expose private business context to the agent session. <br>
-Mitigation: Avoid storing sensitive private information in project-context files unless it is appropriate for agents to use when tailoring 404 page guidance. <br>
-Risk: Poorly reviewed 404 recommendations can lead to confusing navigation, incorrect status handling, or SEO mistakes. <br>
-Mitigation: Review generated recommendations before implementation and verify the deployed page returns the intended 404 status, accessibility behavior, and search indexing policy. <br>
+## Use Case:
 
+Developers, designers, and site owners use this skill to plan or review useful 404 pages that preserve brand trust, offer navigation and search paths, and recover visitors from broken links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/404-page-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown recommendations with copy options, link structure, design checklist, and SEO notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local project-context files, when present, to tailor recommendations to brand voice and site structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: The skill may read existing project context files when present to align a 404 page with brand voice and visual identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project context files for sensitive information before use and provide only the brand, navigation, and visual identity details needed for the 404-page task.
+
+Risk: A proposed 404 page could give users weak navigation paths or misleading recovery options if the site structure is stale.
+
+Mitigation: Confirm homepage, search, popular-page, and redirect targets against the current site before publishing.
+
+## Reference(s):
+
+- [404-page-generator ClawHub page](https://clawhub.ai/kostja94/skills/404-page-generator)
+- [Kostja94 ClawHub publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, copy options, link structure, design notes, and SEO recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference existing project context files when available to align with brand voice and visual identity.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

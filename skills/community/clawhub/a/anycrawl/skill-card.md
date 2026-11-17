@@ -1,44 +1,59 @@
-## Description: <br>
-AnyCrawl-API lets agents scrape pages, run Google search, and crawl websites through the AnyCrawl API with multiple extraction engines and structured output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform high-performance web scraping, crawling, and Google search with multi-engine support and structured data extraction via the AnyCrawl API.
 
-## Publisher: <br>
-[techlaai](https://clawhub.ai/user/techlaai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[techlaai](https://clawhub.ai/user/techlaai)
 
-## Use Case: <br>
-Developers and agents use this skill to collect web content, search results, and crawl output for research, data extraction, monitoring, and retrieval workflows through an AnyCrawl API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: API keys could be exposed or overprivileged if shared broadly or stored insecurely. <br>
-Mitigation: Use a revocable AnyCrawl API key, store it in environment or approved gateway configuration, and rotate it if exposure is suspected. <br>
-Risk: Scraping or crawling private, internal, or sensitive URLs can expose data to a third-party service. <br>
-Mitigation: Only submit URLs and content approved for processing by AnyCrawl, and avoid private or internal targets unless explicitly authorized. <br>
-Risk: Broad crawls can consume quota, expand collection scope, or hit rate limits. <br>
-Mitigation: Set conservative crawl depth, page limits, include/exclude paths, and safe search or language settings appropriate to the task. <br>
+## Use Case:
 
+Developers and agents use this skill to call AnyCrawl for web search, single-page scraping, asynchronous site crawling, crawl status checks, result retrieval, cancellation, and combined search-and-scrape workflows.
 
-## Reference(s): <br>
-- [ClawHub AnyCrawl-API Release Page](https://clawhub.ai/techlaai/anycrawl) <br>
-- [AnyCrawl API Documentation](https://docs.anycrawl.dev) <br>
-- [AnyCrawl API Key Setup](https://anycrawl.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Text, Configuration guidance, Shell commands] <br>
-**Output Format:** [Structured JSON API responses that may include scraped markdown, HTML, text, JSON extraction results, screenshots, crawl job metadata, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANYCRAWL_API_KEY and depends on AnyCrawl service limits, credits, rate limits, and crawl job expiration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill sends crawl targets, scraped URLs, search queries, and extraction options to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for URLs and query content approved for external transfer, and avoid private or internal targets unless that transfer is authorized.
+
+Risk: Credential handling is under-disclosed and setup examples place API keys in shell profile files.
+
+Mitigation: Use a limited-scope AnyCrawl key and avoid storing secrets in shared, synced, or broadly readable shell profile files.
+
+Risk: Evidence.security reports a request-building bug affecting crawl status, results, and cancellation when tool arguments are untrusted.
+
+Mitigation: Fix the request-building issue before relying on those crawl operations with untrusted arguments.
+
+## Reference(s):
+
+- [ClawHub AnyCrawl Skill Page](https://clawhub.ai/techlaai/skills/anycrawl)
+- [AnyCrawl API Documentation](https://docs.anycrawl.dev)
+- [AnyCrawl API Key Portal](https://anycrawl.dev)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [JSON API responses containing search results, scraped page content, crawl job metadata, crawl results, or error messages; documentation examples use Markdown with JavaScript snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an ANYCRAWL_API_KEY environment variable and sends requested URLs, search queries, and crawl options to the AnyCrawl API.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

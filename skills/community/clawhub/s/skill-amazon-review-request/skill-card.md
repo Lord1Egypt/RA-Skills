@@ -1,42 +1,54 @@
-## Description: <br>
-Sends Amazon review requests for eligible shipped orders using SP-API with retry, deduplication, eligibility checks, and optional dry-run mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends Amazon review requests for eligible shipped orders using SP-API with retry, deduplication, eligibility checks, and optional dry-run mode.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Amazon seller account operators and automation agents use this skill to send review requests for eligible shipped orders through Amazon SP-API. It supports dry runs, retry handling, deduplication, and local run tracking before enabling recurring live sends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Live execution can send real customer-facing Amazon review requests. <br>
-Mitigation: Run `node scripts/request-reviews.js --dry-run` first, enable live runs only for an Amazon seller account you control, and delay cron scheduling until live-send behavior is approved. <br>
-Risk: Order review-request metadata may be sent to Supabase if `~/supabase-api.json` or `SUPABASE_API_PATH` credentials are present. <br>
-Mitigation: Remove or restrict Supabase credentials unless external logging is intended, and verify the destination table and access key permissions before live use. <br>
-Risk: SP-API credentials grant access needed to fetch orders and send Messaging API requests. <br>
-Mitigation: Use least-privilege SP-API credentials with only the required Messaging permission and keep credentials outside shared workspaces. <br>
+## Use Case:
 
+Amazon marketplace operators use this skill to request reviews for eligible shipped orders, test runs with a dry-run mode, and keep local tracking logs for sent, skipped, and failed requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Zero2Ai-hub/skill-amazon-review-request) <br>
+### Deployment Geography for Use:
 
+Global, with default configuration targeting Amazon's EU SP-API endpoint for the UAE marketplace.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, Files] <br>
-**Output Format:** [Markdown instructions with CLI commands; runtime console summaries plus JSON and text logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live runs can send customer-facing Amazon review requests and may sync review-request metadata to Supabase when local Supabase credentials exist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Order-processing metadata can be sent to a Supabase project when Supabase credentials are present, and that behavior is not clearly disclosed in the user-facing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the Supabase endpoint, making the behavior explicit and opt-in, and using a trusted project with a least-privilege key.
+
+Risk: Live runs use Amazon SP-API Messaging permissions to send review requests for eligible orders.
+
+Mitigation: Run in dry-run mode first, verify the eligibility window and deduplication results, and schedule live execution only with scoped SP-API credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-amazon-review-request)
+- [Publisher profile](https://clawhub.ai/user/zero2ai-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration examples, and run-summary text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local JSON and text logs during execution; live mode sends SP-API Messaging requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Safe Exec Wrapper helps agents wrap untrusted shell-command output with UUID-based boundaries to reduce prompt-injection risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protects agent workflows from prompt injection in shell command output by wrapping untrusted command streams with UUID-delimited boundaries.
 
-## Publisher: <br>
-[jmceleney](https://clawhub.ai/user/jmceleney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jmceleney](https://clawhub.ai/user/jmceleney)
 
-## Use Case: <br>
-Developers and agent operators use this skill when running commands that may return external or user-controlled data, such as API responses, CLI service queries, or untrusted files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The wrapper labels command output as untrusted, but it does not sandbox the wrapped command or prevent command side effects. <br>
-Mitigation: Review commands before passing them to safe-exec, especially commands that modify files, contact services, or use credentials. <br>
-Risk: Predictable or reused boundary identifiers could weaken the prompt-injection boundary model. <br>
-Mitigation: Use the default random UUID mode for normal use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jmceleney/openclaw-safe-exec) <br>
+## Use Case:
+
+Developers and agent operators use this skill to wrap shell commands that may return untrusted external data, such as API responses, remote CLI output, or user-generated files. It helps agents treat command output as data rather than instructions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A caller-controlled UUID can weaken the boundary protection if an untrusted value is supplied through the --uuid option.
+
+Mitigation: Do not expose or use --uuid with untrusted values; prefer generated UUIDs or remove and strictly validate that option before relying on the wrapper as a security control.
+
+Risk: The wrapper reduces prompt-injection risk in command output but does not make prompt injection impossible.
+
+Mitigation: Review command output and agent behavior before deployment, and treat the wrapper as one control rather than a complete security boundary.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The installed wrapper emits UUID-labeled stdout, stderr, and exit-code boundaries around command output.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command usage guidance and integration instructions for wrapping untrusted shell output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

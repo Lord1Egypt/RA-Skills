@@ -1,45 +1,66 @@
-## Description: <br>
-Automates Xiaohongshu publishing for text-image and video posts, browser login checks, content search, comments, notification mentions, and creator content data exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Xiaohongshu (XHS/RED) content publishing, browser login checks, content search and detail retrieval, comments, notification mentions, and creator metrics through Chrome DevTools Protocol.
 
-## Publisher: <br>
-[white0dew](https://clawhub.ai/user/white0dew) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[white0dew](https://clawhub.ai/user/white0dew)
 
-## Use Case: <br>
-External creators, operators, and developers use the skill to operate a logged-in Xiaohongshu Chrome session for preparing or publishing posts, managing accounts, checking login status, searching notes, commenting, reading notifications, and exporting content metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a logged-in Xiaohongshu browser session and publish or comment publicly. <br>
-Mitigation: Use a dedicated account or browser profile and manually review each post or comment before allowing publish actions. <br>
-Risk: Remote Chrome DevTools Protocol access can expose an authenticated browser session if the endpoint is not private and trusted. <br>
-Mitigation: Prefer local CDP on 127.0.0.1 and connect to remote CDP only on private, trusted endpoints. <br>
-Risk: The skill can read notification data and export creator content metrics. <br>
-Mitigation: Review notification reads, analytics exports, account switches, and profile deletion requests before execution. <br>
-Risk: The --auto-publish option can skip the normal manual confirmation point. <br>
-Mitigation: Avoid --auto-publish unless the content, account, and publishing intent have already been explicitly approved. <br>
+## Use Case:
 
+Developers and content operators evaluating Xiaohongshu automation use this skill to run agent-assisted publishing, search, engagement, notification, and creator-metrics workflows. The skill expects review of post and comment content before live actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/white0dew/xiaohongshuskills) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
-- [Xiaohongshu creator publish page](https://creator.xiaohongshu.com/publish/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and structured command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce public post actions, comments, notification payload summaries, or CSV exports when the corresponding commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can control a logged-in Xiaohongshu browser profile and perform account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account and browser profile, and install only when this level of account access is acceptable.
+
+Risk: Public posts or comments may be published from generated or user-supplied text and media.
+
+Mitigation: Review final titles, body text, comments, images, and videos before allowing live posting or commenting.
+
+Risk: Remote CDP access can expose browser control to an untrusted host.
+
+Mitigation: Use local CDP by default and connect to a remote CDP endpoint only when the host and network path are fully trusted.
+
+Risk: Untrusted webpage content or media URLs may be downloaded or used in publishing workflows.
+
+Mitigation: Avoid feeding the skill untrusted pages or media URLs, and verify media sources before use.
+
+Risk: Notification, analytics, and CSV outputs can contain private account or performance data.
+
+Mitigation: Treat these outputs as private account data and store or share them only in trusted locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/white0dew/skills/xiaohongshuskills)
+- [ClawHub publisher profile](https://clawhub.ai/user/white0dew)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger browser-controlled posting, commenting, content retrieval, notification capture, or CSV export when the user runs the generated commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

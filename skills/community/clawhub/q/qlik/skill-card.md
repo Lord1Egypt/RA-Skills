@@ -1,45 +1,55 @@
-## Description: <br>
-Complete Qlik Cloud analytics platform integration with 37 tools for health checks, search, app management, reloads, natural language queries, automations, AutoML, Qlik Answers AI, data alerts, spaces, users, licenses, data files, and lineage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Qlik Cloud analytics platform integration with 37 tools for health checks, search, app management, reloads, natural language Insight Advisor queries, automations, AutoML, Qlik Answers AI, data alerts, spaces, users, licenses, data files, and lineage.
 
-## Publisher: <br>
-[fianabates1](https://clawhub.ai/user/fianabates1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fianabates1](https://clawhub.ai/user/fianabates1)
 
-## Use Case: <br>
-Employees, analysts, and developers use this skill to inspect Qlik Cloud tenants, manage apps and reloads, query business data with natural language, and operate Qlik Cloud features from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the configured Qlik Cloud API key for broad read and write actions in the tenant. <br>
-Mitigation: Use a least-privilege, revocable API key and limit installation to tenants where agent access is approved. <br>
-Risk: Incorrect tenant configuration could send authorized requests to the wrong Qlik Cloud domain. <br>
-Mitigation: Verify QLIK_TENANT is the exact HTTPS Qlik Cloud tenant domain before running scripts. <br>
-Risk: Production-impacting actions include app deletion, reload cancellation, automation runs, and alert triggers. <br>
-Mitigation: Require human confirmation before destructive or operational actions and review target IDs before execution. <br>
-Risk: API keys may be exposed if stored in committed files or shared transcripts. <br>
-Mitigation: Store credentials outside committed files, rotate keys if exposed, and avoid logging secret values. <br>
+## Use Case:
 
+Developers, data engineers, and BI operators use this skill to inspect and operate Qlik Cloud tenants, apps, reloads, analytics queries, automations, AutoML, Qlik Answers, alerts, users, spaces, data files, and lineage from an agent workflow.
 
-## Reference(s): <br>
-- [Qlik skill page on ClawHub](https://clawhub.ai/fianabates1/qlik) <br>
-- [Publisher profile on ClawHub](https://clawhub.ai/user/fianabates1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QLIK_TENANT and QLIK_API_KEY; scripts return success or error objects with timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API keys or tenant settings may be exposed or misused if stored insecurely or provided to unsafe scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped Qlik API key, set QLIK_TENANT only to the exact HTTPS tenant you control, and avoid storing long-lived keys in broadly readable files.
+
+Risk: Unsafe inputs or tenant settings may allow unintended local code execution or unsafe API requests.
+
+Mitigation: Review and harden the shell scripts before installation, and do not expose them to untrusted queries or IDs until Python interpolation and temporary-file handling are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fianabates1/skills/qlik)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON-producing shell tool invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts generally return JSON objects containing success status, data or error details, and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

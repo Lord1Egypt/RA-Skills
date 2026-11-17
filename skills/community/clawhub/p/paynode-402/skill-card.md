@@ -1,47 +1,59 @@
-## Description: <br>
-paynode-402 gives agents access to a dynamic premium API marketplace for real-time external tools through USDC micro-payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dynamic Premium API Marketplace for AI Agents. Grants access to an ever-expanding registry of real-time external tools (e.g., web search, crypto oracles, web scraping, and more) via USDC micro-payments.
 
-## Publisher: <br>
-[paynodelabs](https://clawhub.ai/user/paynodelabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paynodelabs](https://clawhub.ai/user/paynodelabs)
 
-## Use Case: <br>
-Developers and agents use this skill to discover paid marketplace APIs, inspect required parameters and pricing, and execute approved paid requests for current data or specialized external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign transactions and spend real USDC through paid API calls. <br>
-Mitigation: Use a minimally funded burner wallet, review the API, price, and network before approval, and require explicit user confirmation before paid mainnet execution. <br>
-Risk: Sensitive wallet credentials may be read from CLIENT_PRIVATE_KEY or the PayNode config fallback. <br>
-Mitigation: Provide only a burner wallet key, restrict access to the config file, and verify ~/.config/paynode/config.json before activation. <br>
-Risk: External CLI execution or unpinned updates can change behavior before real-value transactions. <br>
-Mitigation: Pin the PayNode CLI version or locally audit and build the CLI before using real funds. <br>
+## Use Case:
 
+External agents and developers use this skill to discover and invoke paid API marketplace services for live data, external API interactions, and HTTP 402-protected resources using USDC micro-payments.
 
-## Reference(s): <br>
-- [PayNode CLI homepage](https://github.com/PayNodeLabs/paynode-402-cli) <br>
-- [PayNode CLI package](https://www.npmjs.com/package/@paynodelabs/paynode-402-cli) <br>
-- [PayNode SDK](https://github.com/PayNodeLabs/paynode-sdk-js) <br>
-- [PayNode protocol documentation](https://docs.paynode.dev) <br>
-- [Base network faucets](https://docs.base.org/base-chain/network-information/network-faucets#network-faucets) <br>
-- [ClawHub skill page](https://clawhub.ai/paynodelabs/paynode-402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bun, CLIENT_PRIVATE_KEY or the PayNode config file, and explicit approval before spending real USDC.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.5 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses wallet-backed mainnet payment flows that can spend real USDC through third-party CLI operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated burner wallet with minimal funds and require explicit user approval for every outbound marketplace lookup and paid API call.
+
+Risk: Unpinned bunx execution can fetch a CLI version that has not been locally reviewed.
+
+Mitigation: Prefer a pinned or locally audited CLI build for production or high-value workflows.
+
+Risk: Private keys may be supplied through CLIENT_PRIVATE_KEY or the documented local config file.
+
+Mitigation: Avoid high-value keys, review local config contents before use, and keep secret material out of logs and shared environments.
+
+## Reference(s):
+
+- [PayNode 402 CLI](https://github.com/PayNodeLabs/paynode-402-cli)
+- [ClawHub skill page](https://clawhub.ai/paynodelabs/skills/paynode-402)
+- [Publisher profile](https://clawhub.ai/user/paynodelabs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents through wallet configuration, marketplace discovery, paid API execution, and task management workflows.]
+
+## Skill Version(s):
+
+2.7.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

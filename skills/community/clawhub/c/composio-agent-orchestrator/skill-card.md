@@ -1,41 +1,58 @@
-## Description: <br>
-Open-source, pluggable coding-agent orchestrator that helps agents spawn, monitor, and manage durable coding sessions for bugs, features, GitHub issues, pull request feedback, and CI follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Orchestrator manages durable coding agents such as Claude Code, Codex, and OpenCode so users can spawn agents, track progress, route PR review and CI feedback, and manage sessions.
 
-## Publisher: <br>
-[illegalcall](https://clawhub.ai/user/illegalcall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[illegalcall](https://clawhub.ai/user/illegalcall)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate coding work through AO, including spawning isolated agent sessions, checking progress, routing review or CI feedback, and cleaning up sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved AO sessions can work in repositories and use the GitHub credentials available through gh. <br>
-Mitigation: Use least-privilege GitHub credentials scoped to the repositories AO needs, and review each proposed spawn or batch spawn before approving it. <br>
-Risk: Agent worktrees and running sessions can expose local secrets if credentials or environment files are copied into those workspaces. <br>
-Mitigation: Keep secrets out of agent worktrees, avoid symlinking sensitive files, and use a dedicated Anthropic API key with spending limits. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate coding work, issue handling, PR follow-up, CI remediation, and session management to durable coding agents through AO.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/illegalcall/composio-agent-orchestrator) <br>
-- [Agent Orchestrator config reference](references/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include AO session status, PR URLs returned by AO tools, setup commands, and YAML configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can route coding, issue, status, and follow-up requests into persistent agent workflows that may affect repositories and pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before spawning or batch-spawning agents, present the intended work plainly, and verify results before relying on generated changes.
+
+Risk: AO workflows may use GitHub CLI credentials, Anthropic API credentials, worktrees, PR activity, and persistent sessions.
+
+Mitigation: Use dedicated least-privilege GitHub and LLM credentials, set spending limits where available, and avoid placing .env files or other secrets in agent worktrees.
+
+Risk: Broad plugin access can expose more tools than are needed for a given deployment.
+
+Mitigation: Review installed plugins and enable only the AO and OpenClaw tool access needed for the intended repositories and workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/illegalcall/skills/composio-agent-orchestrator)
+- [Agent Orchestrator Config Reference](artifact/references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command, configuration, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands, AO configuration examples, and operational guidance for agent orchestration workflows.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

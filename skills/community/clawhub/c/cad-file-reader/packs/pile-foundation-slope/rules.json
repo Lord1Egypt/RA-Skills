@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "confidence": {"direct_label": 0.95, "pattern_match": 0.78, "geometry_pattern": 0.86, "inferred": 0.5},
+  "view_rules": [
+    {"type": "pile_plan", "patterns": ["桩位平面", "桩基平面", "承台平面", "PILE PLAN"]},
+    {"type": "excavation_support", "patterns": ["基坑支护", "支护平面", "土钉", "锚索", "EXCAVATION"]},
+    {"type": "slope_protection", "patterns": ["边坡", "坡面防护", "挡墙", "抗滑桩", "SLOPE"]},
+    {"type": "ground_treatment", "patterns": ["地基处理", "强夯", "搅拌桩", "CFG", "GROUND"]},
+    {"type": "monitoring", "patterns": ["监测点", "沉降观测", "支护监测", "MONITORING"]}
+  ],
+  "system_rules": [
+    {"system": "pile", "patterns": ["桩", "钻孔", "PHC", "灌注桩", "PILE"]},
+    {"system": "excavation_support", "patterns": ["基坑", "支护", "内支撑", "锚索", "EXCAVATION"]},
+    {"system": "slope_protection", "patterns": ["边坡", "挡墙", "抗滑", "锚杆", "SLOPE"]},
+    {"system": "ground_treatment", "patterns": ["地基", "强夯", "搅拌桩", "CFG", "GROUND"]},
+    {"system": "monitoring", "patterns": ["监测", "观测", "沉降", "MONITOR"]}
+  ],
+  "component_rules": [
+    {"category": "pile", "system": "pile", "patterns": ["灌注桩", "PHC", "预制桩", "桩", "PILE"]},
+    {"category": "pile_cap", "system": "pile", "patterns": ["承台", "桩帽", "PILE CAP"]},
+    {"category": "support_wall", "system": "excavation_support", "patterns": ["支护桩", "地下连续墙", "咬合桩", "SHEET"]},
+    {"category": "strutting", "system": "excavation_support", "patterns": ["内支撑", "腰梁", "钢支撑", "STRUT"]},
+    {"category": "anchor", "system": "excavation_support", "patterns": ["锚索", "锚杆", "土钉", "ANCHOR"]},
+    {"category": "retaining_wall", "system": "slope_protection", "patterns": ["挡墙", "挡土墙", "抗滑桩", "RETAINING"]},
+    {"category": "slope_face", "system": "slope_protection", "patterns": ["坡面", "护坡", "格构", "SLOPE"]},
+    {"category": "improvement_pile", "system": "ground_treatment", "patterns": ["搅拌桩", "CFG", "强夯", "IMPROVE"]},
+    {"category": "monitoring_pt", "system": "monitoring", "patterns": ["监测点", "沉降点", "测斜", "MONITOR"]}
+  ],
+  "reference_patterns": {
+    "pile_no": "(?<![A-Za-z0-9])(?:P|Z|ZH|PHC)\\d{1,3}[A-Za-z]?(?![A-Za-z0-9])",
+    "slope_no": "(?<![A-Za-z0-9])(?:BJ|DK|BZ|DM)\\d{1,4}[A-Za-z]?(?![A-Za-z0-9])",
+    "elevation": "(?<![A-Za-z0-9])标高\\s*[-+]?\\d+(?:\\.\\d+)?"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,4}",
+  "unit_patterns": {"mm": ["单位\\s*[:：]?\\s*mm", "mm"], "m": ["单位\\s*[:：]?\\s*m"]},
+  "layer_rules": [
+    {"category": "pile", "system": "pile", "patterns": ["桩", "PILE", "承台"]},
+    {"category": "support", "system": "excavation_support", "patterns": ["支护", "EXCAVATION", "支撑"]},
+    {"category": "slope", "system": "slope_protection", "patterns": ["边坡", "挡墙", "SLOPE"]},
+    {"category": "ground", "system": "ground_treatment", "patterns": ["地基", "GROUND", "搅拌"]}
+  ]
+}

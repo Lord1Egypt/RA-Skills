@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sankey",
+  "meta": {
+    "title": "Energy Flow",
+    "output": "examples/sankey-energy-flow-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "renewable", "label": "Renewable", "focus": ["solar", "wind", "grid"], "note": "Renewable sources into the grid." },
+      { "id": "consumers", "label": "Consumers", "focus": ["grid", "homes", "industry"], "note": "Distribution to consumers." }
+    ]
+  },
+  "nodes": [
+    { "id": "solar", "label": "Solar", "column": 0 },
+    { "id": "wind", "label": "Wind", "column": 0 },
+    { "id": "gas", "label": "Gas", "column": 0 },
+    { "id": "grid", "label": "Grid", "column": 1 },
+    { "id": "homes", "label": "Homes", "column": 2 },
+    { "id": "industry", "label": "Industry", "column": 2 },
+    { "id": "loss", "label": "Loss", "column": 2 }
+  ],
+  "flows": [
+    { "id": "f1", "from": "solar", "to": "grid", "value": 40, "label": "40" },
+    { "id": "f2", "from": "wind", "to": "grid", "value": 30, "label": "30" },
+    { "id": "f3", "from": "gas", "to": "grid", "value": 30, "label": "30" },
+    { "id": "f4", "from": "grid", "to": "homes", "value": 50, "label": "50" },
+    { "id": "f5", "from": "grid", "to": "industry", "value": 40, "label": "40" },
+    { "id": "f6", "from": "grid", "to": "loss", "value": 10, "label": "10" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Energy balance",
+      "items": [
+        "Solar and wind supply 70 units, gas supplies 30",
+        "The grid distributes 50 to homes, 40 to industry",
+        "10 units are lost in transmission"
+      ]
+    }
+  ]
+}

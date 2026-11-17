@@ -1,47 +1,60 @@
-## Description: <br>
-Generates Feishu usage documentation from Sensors Analytics manuals for metadata management, user segment, and user tag workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Feishu usage documentation from Sensors Analytics manuals for metadata management, cohorts, and tags.
 
-## Publisher: <br>
-[bianca1227](https://clawhub.ai/user/bianca1227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bianca1227](https://clawhub.ai/user/bianca1227)
 
-## Use Case: <br>
-Content, product, and analytics operations teams use this skill to convert Sensors Analytics manual links into structured Feishu usage documents for metadata management, user segment, and user tag workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance classifies this release as privileged staff tooling intended for authorized users. <br>
-Mitigation: Install only if you trust the publisher and need the documented workflow; use reduced-access review settings when available. <br>
-Risk: Generated Feishu documentation can reflect incomplete, stale, or failed source manual fetches. <br>
-Mitigation: Review the generated document against the official Sensors Analytics manual links before sharing it or using it operationally. <br>
+## Use Case:
 
+Developers and operations teams use this skill to turn official Sensors Analytics manuals into structured Feishu usage documents. It supports metadata management, user cohort, and user tag documentation workflows.
 
-## Reference(s): <br>
-- [Sensors Analytics meta event manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_meta) <br>
-- [Sensors Analytics event attribute manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_event_attr) <br>
-- [Sensors Analytics virtual attribute manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_virtual_attr) <br>
-- [Sensors Analytics virtual event manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_virtual_event) <br>
-- [Sensors Analytics dimension table manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_dimension) <br>
-- [Sensors Analytics item attribute manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_item_attr) <br>
-- [Sensors Analytics user group manual](https://manual.sensorsdata.cn/sa/docs/User_Group_Create) <br>
-- [Sensors Analytics tag manual](https://manual.sensorsdata.cn/sa/docs/guide_tags) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Feishu document content with a returned document link, document ID, standards note, and structure overview.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated documentation should be reviewed against the source manuals before sharing or operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Risk: The skill retrieves external Sensors Analytics manual content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm provided manual URLs are official Sensors Analytics pages before generating documentation.
+
+Risk: The skill creates Feishu documents in the user's workspace.
+
+Mitigation: Confirm that creating a new Feishu document is appropriate and review generated content before sharing it.
+
+## Reference(s):
+
+- [Sensors Analytics Meta Event Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_meta)
+- [Sensors Analytics Event Property Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_event_attr)
+- [Sensors Analytics Virtual Property Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_virtual_attr)
+- [Sensors Analytics Virtual Event Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_virtual_event)
+- [Sensors Analytics Dimension Table Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_dimension)
+- [Sensors Analytics Item Property Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_item_attr)
+- [Sensors Analytics User Group Manual](https://manual.sensorsdata.cn/sa/docs/User_Group_Create)
+- [Sensors Analytics Tags Manual](https://manual.sensorsdata.cn/sa/docs/guide_tags)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Structured Feishu document content with tables, Mermaid diagrams, screenshot prompts, document links, and document identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Feishu documents after user confirmation of the document framework.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

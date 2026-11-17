@@ -1,37 +1,50 @@
-## Description: <br>
-zxc <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zxc
 
-## Publisher: <br>
-[boy-hack](https://clawhub.ai/user/boy-hack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boy-hack](https://clawhub.ai/user/boy-hack)
 
-## Use Case: <br>
-External users can inspect this minimal placeholder skill as a basic ClawHub skill entry. The artifact does not document a more specific task or workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is only a placeholder and may not provide useful operational guidance. <br>
-Mitigation: Review the skill's purpose before deployment and re-review future versions if they add scripts, tool instructions, credential handling, file access, or network behavior. <br>
+## Use Case:
 
+External users can install this minimal placeholder skill for basic agent behavior testing or metadata validation. It does not document substantive functionality beyond the short summary.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No scripts, commands, credential handling, file access, or network behavior are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Risk: The release is placeholder-like and may not provide useful task behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the limited purpose is understood, and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boy-hack/skills/test123asdzc)
+- [Publisher profile](https://clawhub.ai/user/boy-hack)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text agent response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Minimal placeholder behavior; no code, shell commands, install steps, or data access are documented.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

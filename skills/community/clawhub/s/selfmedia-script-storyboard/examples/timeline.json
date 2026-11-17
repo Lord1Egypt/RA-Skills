@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "composition_id": "SampleVertical",
+  "fps": 30,
+  "duration_frames": 90,
+  "scenes": [
+    {"id": "scene-01", "start_frame": 0, "end_frame": 45, "visual": "Show the fictional input"},
+    {"id": "scene-02", "start_frame": 45, "end_frame": 90, "visual": "Show the fictional result"}
+  ]
+}

@@ -1,38 +1,52 @@
-## Description: <br>
-Retrieve real-time hardware metrics from Apple Silicon Macs using mactop's TOON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mactop retrieves real-time Apple Silicon Mac hardware metrics in TOON format, including CPU, memory, GPU, power, thermal, network, disk I/O, and Thunderbolt information.
 
-## Publisher: <br>
-[metaspartan](https://clawhub.ai/user/metaspartan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[metaspartan](https://clawhub.ai/user/metaspartan)
 
-## Use Case: <br>
-Developers, engineers, and Mac operators use this skill to collect and summarize local Apple Silicon hardware metrics such as CPU, memory, GPU, power, thermal state, network, disk I/O, and Thunderbolt information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the Homebrew mactop package and local Apple Silicon hardware metric availability. <br>
-Mitigation: Install mactop with Homebrew only from a trusted package source and verify it is available before running metric commands. <br>
-Risk: The agent may run local hardware monitoring commands on the user's Mac. <br>
-Mitigation: Review commands before execution and limit use to read-only mactop invocations for hardware metrics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, operators, and Mac users use this skill to have an agent run mactop in headless TOON mode and summarize local Apple Silicon hardware metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and readable metric summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local read-only mactop hardware monitoring output in TOON format.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on external local tools, including mactop and Homebrew installation paths.
+
+Mitigation: Install and trust the upstream mactop and Homebrew packages before using the skill, and verify mactop is available on PATH.
+
+Risk: The skill reads local Mac hardware metrics, which may expose device performance, power, thermal, and I/O details.
+
+Mitigation: Use it only when local hardware monitoring is intended, and avoid sharing generated metric summaries outside trusted contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metaspartan/skills/mactop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and readable metric summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mactop and local Apple Silicon Mac hardware metric access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

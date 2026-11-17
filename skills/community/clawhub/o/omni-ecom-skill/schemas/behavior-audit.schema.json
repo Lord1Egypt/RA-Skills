@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/behavior-audit-2.0.json",
+  "title": "Scoped behavior snapshot or comparison",
+  "oneOf": [
+    {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "status", "run_id", "client_scope", "team_version", "last_event_hash", "samples"],
+      "properties": {
+        "schema_version": {"const": "2.0"}, "status": {"const": "behavior_snapshot"},
+        "run_id": {"type": "string"}, "client_scope": {"type": "string"}, "team_version": {"type": "string"},
+        "last_event_hash": {"type": "string", "pattern": "^(?:[0-9a-f]{64})?$"},
+        "samples": {"type": "array", "items": {"$ref": "#/$defs/sample"}}
+      }
+    },
+    {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "status", "client_scope", "split_at", "policy_id", "policy_revision", "policy_sha256", "evidence_kinds", "cohorts", "automatic_changes", "next_action", "limitation", "threshold_status", "baseline_start", "current_end", "samples_outside_windows"],
+      "properties": {
+        "schema_version": {"const": "2.0"}, "status": {"const": "behavior_comparison"},
+        "client_scope": {"type": "string"}, "split_at": {"type": "string", "format": "date-time"},
+        "baseline_start": {"type": "string", "format": "date-time"}, "current_end": {"type": "string", "format": "date-time"},
+        "policy_id": {"type": "string"}, "policy_revision": {"type": "string"},
+        "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "threshold_status": {"type": "string"}, "samples_outside_windows": {"type": "integer", "minimum": 0},
+        "evidence_kinds": {"type": "array", "items": {"type": "string"}},
+        "policy_registry_reference": {"type": "object"},
+        "cohorts": {"type": "array", "items": {"type": "object", "required": ["cohort", "status", "baseline", "current", "signals", "unavailable_metrics"]}},
+        "automatic_changes": {"const": false}, "next_action": {"enum": ["inspect_flagged_runs_before_next_report", "continue_observation"]},
+        "limitation": {"type": "string"}
+      }
+    }
+  ],
+  "$defs": {
+    "sample": {
+      "type": "object",
+      "required": ["run_id", "client_scope", "sample_id", "task_class", "host", "role", "model_alias", "observed_at", "terminal_kind", "human_corrected", "evidence_kind"],
+      "properties": {
+        "run_id": {"type": "string"}, "client_scope": {"type": "string"}, "sample_id": {"type": "string"},
+        "task_class": {"type": "string"}, "host": {"type": "string"}, "role": {"type": "string"},
+        "model_alias": {"type": "string"}, "observed_at": {"type": "string", "format": "date-time"},
+        "terminal_kind": {"enum": ["member_returned", "member_rejected", "member_failed", "quality_scan"]},
+        "human_corrected": {"type": ["boolean", "null"]}, "has_conflict": {"type": ["boolean", "null"]},
+        "evidence_kind": {"type": "string"}, "cost": {"type": ["number", "null"], "minimum": 0},
+        "latency_ms": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  }
+}

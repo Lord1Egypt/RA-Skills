@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 # 模型 API 地址
 API_URL = "https://api2.aigcbest.top/v1/chat/completions"
-API_KEY = "sk-uXiErnJimD8brHcWWzeL7tW5ILogfSFcNnTLGgel66j8y5c9"
+API_KEY = "REDACTED-SECRET"
 DEFAULT_OUTPUT_DIR = Path(r"C:\Users\EDY\.openclaw\skills\short-video-script-creator\out_put")
 
 

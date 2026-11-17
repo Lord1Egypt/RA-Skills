@@ -1,41 +1,50 @@
-## Description: <br>
-Use when completing tasks, implementing major features, or before merging to verify work meets requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when completing tasks, implementing major features, or before merging to verify work meets requirements.
 
-## Publisher: <br>
-[zhouzy-creator](https://clawhub.ai/user/zhouzy-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouzy-creator](https://clawhub.ai/user/zhouzy-creator)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to request focused SVN-based code reviews after tasks, before major merges, or when a fresh technical assessment is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SVN diffs may expose source code or sensitive implementation details to an agent review context. <br>
-Mitigation: Use the skill only on code that is appropriate to share with the configured review agent and review context. <br>
-Risk: An incorrect SVN revision range can produce an incomplete or overly broad review. <br>
-Mitigation: Confirm the base and head revisions before dispatching the review request. <br>
+## Use Case:
 
+Developers and engineers use this skill to request focused reviews of SVN revision ranges before continuing development or merging changes. It helps structure review prompts around requirements, implementation details, code quality, testing, and production readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouzy-creator/svn-code-review) <br>
-- [Code review agent template](code-reviewer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline SVN shell commands and review-template placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a focused code-review request and expected review structure; no API calls or credentials are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter; release metadata version 0.1.0) <br>
+Risk: The review workflow may send more implementation context or diff content to a code-review subagent than necessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only the diffs, requirements, and summary needed for the review, and review the returned findings before acting on them.
+
+## Reference(s):
+
+- [Source repository](https://github.com/zhouzy-creator/svn_code_review)
+- [ClawHub skill page](https://clawhub.ai/zhouzy-creator/skills/svn-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review guidance with SVN diff shell commands and structured review output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts a code-review subagent with a bounded SVN revision range and implementation context.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Doc Publisher converts local Markdown document series into WeChat Official Account draft articles and publishes them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Publisher helps an agent convert local Markdown document series into WeChat Official Account draft articles and publish records.
 
-## Publisher: <br>
-[403914291](https://clawhub.ai/user/403914291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[403914291](https://clawhub.ai/user/403914291)
 
-## Use Case: <br>
-Developers, editors, and content teams use this skill to convert local Markdown documentation into WeChat Official Account HTML drafts, publish ordered article series, and record publication results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WeChat Official Account API credentials and the examples show credential-shaped values. <br>
-Mitigation: Keep .env private and out of version control, rotate any copied example values, and prefer a test WeChat account before using production credentials. <br>
-Risk: Draft-clearing scripts can delete WeChat drafts and rewrite publication records. <br>
-Mitigation: Run draft-clearing scripts only after manual code review and only when intentionally deleting drafts from the configured account. <br>
-Risk: Publishing sends local document content and selected image material to WeChat APIs. <br>
-Mitigation: Review source documents and media for sensitive or unreleased information before publishing. <br>
+## Use Case:
 
+Developers and content operators use this skill to scan local Markdown files, format them for WeChat Official Account articles, create drafts through the WeChat API, and record publication results.
 
-## Reference(s): <br>
-- [Doc Publisher ClawHub Page](https://clawhub.ai/403914291/doc-publisher) <br>
-- [Project Homepage](https://docs.esupagent.com) <br>
-- [WeChat Official Account Platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with Node.js commands, configuration values, WeChat HTML draft content, and JSON publication records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat Official Account credentials in a local .env file and can create or delete WeChat drafts through API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release.version and skill.md frontmatter) <br>
+Risk: The security review reports hardcoded credential-like values and WeChat secret handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace credential-shaped examples with placeholders, store real credentials only in a local .env file, and rotate any real WeChat secret that may have been exposed.
+
+Risk: The security review reports unsafe account-level draft-clearing scripts.
+
+Mitigation: Avoid running draft-clearing utilities until confirmation prompts, backups, and targeted deletion safeguards are added.
+
+Risk: The security review reports cross-skill credential handling through sibling .env access.
+
+Mitigation: Remove sibling .env lookup behavior and restrict credential loading to the skill's own explicitly configured environment file.
+
+Risk: Markdown and HTML are transformed before preview or publication.
+
+Mitigation: Sanitize untrusted Markdown and HTML before previewing or publishing content to WeChat.
+
+## Reference(s):
+
+- [Doc Publisher ClawHub page](https://clawhub.ai/403914291/skills/doc-publisher)
+- [Project documentation homepage](https://docs.esupagent.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeChat-styled HTML content, WeChat draft API calls, and publish-record JSON files when the bundled scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

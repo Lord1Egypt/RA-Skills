@@ -125,14 +125,14 @@ operately tasks update_assignee \
 ### Finding Potential Assignees
 
 ```bash
-# For project tasks
+# For project tasks (--id is the project ID, not the task ID)
 operately tasks list_potential_assignees \
-  --id t1 \
+  --id p1 \
   --type project
 
-# For space tasks
+# For space tasks (--id is the space ID)
 operately tasks list_potential_assignees \
-  --id t2 \
+  --id s1 \
   --type space
 ```
 
@@ -307,9 +307,12 @@ operately tasks update_milestone \
 operately tasks update_milestone_and_ordering \
   --task-id t1 \
   --milestone-id m2 \
-  --milestones-ordering-state.0.milestone-id m2 \
-  --milestones-ordering-state.0.ordering-state.0 t1
+  --index 0
 ```
+
+## Template Tasks vs Live Tasks
+
+Edit tasks on **active projects or spaces** with `tasks/*`. Edit blueprint tasks inside a **project template** with `project_templates create_task`, `update_task`, `update_milestone_and_ordering`, etc. See [Project Template Workflows](project-template-workflows.md).
 
 ### General Task Movement
 
@@ -362,7 +365,8 @@ operately tasks create \
   --id p1 \
   --name "User story: Login with SSO" \
   --milestone-id m5 \
-  --assignee-id u1
+  --assignee-id u1 \
+  --due-date null
 
 operately tasks update_description \
   --task-id t1 \
@@ -374,14 +378,16 @@ operately tasks create \
   --id p1 \
   --name "User story: Dashboard widgets" \
   --milestone-id m5 \
-  --assignee-id u2
+  --assignee-id u2 \
+  --due-date null
 
 operately tasks create \
   --type project \
   --id p1 \
   --name "Bug: Fix pagination" \
   --milestone-id m5 \
-  --assignee-id u3
+  --assignee-id u3 \
+  --due-date null
 
 # 3. Daily updates
 operately tasks update_status --task-id t1 --type project --status.id in_progress --status.label "In Progress" --status.color blue --status.index 1 --status.value in_progress --status.closed false
@@ -404,9 +410,9 @@ operately projects update_task_statuses \
   --task-statuses.4.label "Done"
 
 # 2. Create tasks in backlog
-operately tasks create --type project --id p1 --name "Feature A" --milestone-id m1
-operately tasks create --type project --id p1 --name "Feature B" --milestone-id m1
-operately tasks create --type project --id p1 --name "Feature C" --milestone-id m1
+operately tasks create --type project --id p1 --name "Feature A" --milestone-id m1 --due-date null
+operately tasks create --type project --id p1 --name "Feature B" --milestone-id m1 --due-date null
+operately tasks create --type project --id p1 --name "Feature C" --milestone-id m1 --due-date null
 
 # 3. Move through workflow
 operately tasks update_status --task-id t1 --type project --status.id ready --status.label "Ready" --status.color blue --status.index 1 --status.value ready --status.closed false
@@ -513,7 +519,8 @@ operately tasks create \
   --type project \
   --id p1 \
   --name "Bug: Login fails on Safari" \
-  --milestone-id bugs_milestone
+  --milestone-id bugs_milestone \
+  --due-date null
 
 operately tasks update_description \
   --task-id t1 \
@@ -541,12 +548,12 @@ operately tasks update_description \
 ```bash
 operately comments create \
   --entity-id t1 \
-  --entity-type "task" \
+  --entity-type "project_task" \
   --content "Started working on this. Will have it done by EOD."
 
 operately comments create \
   --entity-id t1 \
-  --entity-type "task" \
+  --entity-type "project_task" \
   --content "Blocked on API access. Need credentials from DevOps."
 ```
 
@@ -555,7 +562,7 @@ operately comments create \
 ```bash
 operately comments list \
   --entity-id t1 \
-  --entity-type "task"
+  --entity-type "project_task"
 ```
 
 ## Task Metrics and Reporting
@@ -644,7 +651,8 @@ operately tasks create \
   --type project \
   --id p1 \
   --name "Complex feature" \
-  --milestone-id m1
+  --milestone-id m1 \
+  --due-date null
 
 operately tasks update_description \
   --task-id t1 \

@@ -1,46 +1,61 @@
-## Description: <br>
-Skill evaluation framework for testing trigger rate, quality comparison with and without a skill, model comparison, and latency profiling through agent-driven sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Eval is an OpenClaw skill evaluation framework for testing trigger rate, quality comparisons, model comparisons, and latency profiling.
 
-## Publisher: <br>
-[Xiaoxing9](https://clawhub.ai/user/Xiaoxing9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxing9](https://clawhub.ai/user/xiaoxing9)
 
-## Use Case: <br>
-Developers and skill authors use this skill to evaluate OpenClaw skills for trigger accuracy, quality improvement, model behavior, and latency. It helps compare agent outputs, collect session histories, and generate analysis reports for iterative skill improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation transcripts and full session histories may be saved in the workspace. <br>
-Mitigation: Avoid using the skill on sensitive or production conversations unless the output directory and retention policy are controlled. <br>
-Risk: The HTML viewer can stop an existing local process on its selected port. <br>
-Mitigation: Choose an unused local port before launching the viewer. <br>
-Risk: Untrusted spreadsheet or report artifacts could be opened in the local viewer. <br>
-Mitigation: Review the source and only open trusted generated artifacts in the viewer. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate OpenClaw skills by running trigger-rate tests, quality comparisons, model comparisons, and latency profiles. It helps assess whether skill descriptions trigger correctly and whether a skill improves agent output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xiaoxing9/openclaw-skill-eval) <br>
-- [README](README.md) <br>
-- [Usage Guide](USAGE.md) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes evaluation results, transcripts, histories, and optional HTML review artifacts to the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill stores raw conversation histories and tool outputs during evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run evaluations in an isolated workspace, avoid real secrets or proprietary prompts, and review or delete eval-workspace artifacts after use.
+
+Risk: The local review viewer has unsafe browser and server behavior according to the security evidence.
+
+Mitigation: Patch or avoid the viewer until the script embedding, benchmark rendering, feedback endpoint, and automatic port termination issues are fixed.
+
+Risk: Running the viewer with elevated privileges could increase impact from the reported unsafe behavior.
+
+Mitigation: Do not run the viewer as a privileged user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoxing9/skills/openclaw-skill-eval)
+- [README](artifact/README.md)
+- [Usage Guide](artifact/USAGE.md)
+- [Architecture](artifact/docs/ARCHITECTURE.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON result files, and generated review reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes evaluation artifacts such as histories, transcripts, timing files, JSON summaries, and review reports to an eval workspace.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

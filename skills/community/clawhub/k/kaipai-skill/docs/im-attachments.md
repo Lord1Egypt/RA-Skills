@@ -2,6 +2,13 @@
 
 How to turn chat media into a **local path** or URL for `kaipai_ai.py run-task --input …`.
 
+## Attachment reuse and authorization boundary
+
+- An image or video already attached to the conversation is the current input. Keep and reuse its attachment reference, URL, file ID, or resolved local path; do not ask the user to upload it again or repeat its media type when those details are available.
+- Resolving an existing attachment to a local path is preparation. The external Kaipai upload, quota consumption, and task submission begin with the authorized `run-task` flow.
+- Once the user authorizes uploading the current media and using the Kaipai account quota, continue automatically through `resolve-input` when needed and then `run-task` or `spawn-run-task`. Do not request a second authorization at the worker boundary.
+- If the host cannot access the attachment bytes or reference, explain that specific limitation and ask for a new direct upload. Do not describe a received chat attachment as missing merely because it has not yet been sent to Kaipai.
+
 ## Platform cheat sheet
 
 | Platform | Typical source | Easiest path |
@@ -11,6 +18,14 @@ How to turn chat media into a **local path** or URL for `kaipai_ai.py run-task -
 | **Local file** | Host downloaded attachment | `--input /path/to/file` or `resolve-input --file` (copies to a unique name under `--output-dir`) |
 | **Telegram** | `message.photo[-1].file_id` or video `file_id` | `resolve-input --telegram-file-id "…"` (**requires `TELEGRAM_BOT_TOKEN`**) |
 | **Feishu** | `image_key` + `message_id` in content | `resolve-input --feishu-image-key … --feishu-message-id …` (**requires `FEISHU_APP_TOKEN`**) |
+
+## Feishu: video file vs preview `image_key`
+
+Video cards often include **two** resources: a **preview/cover** (reachable via `image_key`) and the **real video** (separate URL or file id in your host’s message model). For **video** tasks (`videoscreenclear`, `hdvideoallinone`), resolve and pass **only the video** as `--input`.
+
+**Do not** also run an **image** task on the preview (`eraser_watermark` or `image_restoration`) unless the user explicitly wants that still frame processed—otherwise you pay for **two** Kaipai jobs (image + video) for a single “fix this video” request (watermark removal or quality restoration).
+
+After a video task completes, [feishu-send-video.md](feishu-send-video.md) may **upload a cover to Feishu** for native video messages; that uses Feishu’s image upload API, **not** Kaipai `image_restoration` or `eraser_watermark`.
 
 ## `resolve-input` CLI
 
@@ -58,7 +73,7 @@ Use the printed **`path`** as **`--input`**:
 ```bash
 python3 {baseDir}/scripts/kaipai_ai.py run-task \
   --task eraser_watermark \
-  --input "/tmp/kaipai_in_xxxxxxxxxx_user_upload.jpg"
+  --input "/tmp/vmake_in_xxxxxxxxxx_user_upload.jpg"
 ```
 
 Replace `{baseDir}` with the skill root (the parent of `scripts/`).

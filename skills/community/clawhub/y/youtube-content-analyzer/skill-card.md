@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes YouTube subtitles or transcript files to produce concise summaries, key points, topic tags, notable quotes, and basic content statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes YouTube video content from SRT, VTT, TXT files, or direct YouTube URLs, then prepares summaries, key points, topics, notable quotes, and basic content statistics.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-Developers, creators, analysts, and other agents use this skill to turn YouTube subtitles, SRT/VTT/TXT files, or folders of transcripts into structured analysis reports for quick content review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated local reports may contain private or sensitive video transcript content. <br>
-Mitigation: Avoid providing sensitive transcripts unless local persistence is acceptable, and delete generated reports when they are no longer needed. <br>
-Risk: Manual installation commands may fetch mutable files from a branch rather than an immutable release. <br>
-Mitigation: Review the downloaded SKILL.md and analyze_content.py before use, and prefer a pinned commit or verified release when installing. <br>
+## Use Case:
 
+External users, developers, and content analysts use this skill to turn YouTube subtitles or transcript files into concise analysis reports. It supports single-video and folder-based workflows where an agent reviews the generated report and fills in the analysis sections.
 
-## Reference(s): <br>
-- [Analysis Prompt Guide](references/analysis-prompt.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mcbaivn/youtube-content-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text report with Markdown-style sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local analysis files under Youtube_Analysis and may include transcript excerpts truncated to 12000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The recommended install path downloads executable code from a mutable GitHub branch without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the packaged script as reviewed, or install from a pinned commit or release with a checksum before running it.
+
+Risk: The tool can read subtitle files or folders, fetch subtitles for user-supplied YouTube URLs, and write analysis files locally.
+
+Mitigation: Run it only on intended inputs in a controlled workspace and review generated analysis files before relying on or sharing them.
+
+## Reference(s):
+
+- [Analysis Prompt Guide](references/analysis-prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/skills/youtube-content-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Text analysis report with Markdown-style sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local analysis files under Youtube_Analysis and may include truncated source transcript text for agent review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

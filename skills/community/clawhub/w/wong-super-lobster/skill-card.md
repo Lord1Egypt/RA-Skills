@@ -1,42 +1,54 @@
-## Description: <br>
-Super Lobster helps organize Feishu meeting notes, classify work tasks, create daily todo documents, manage sharing permissions, and support scheduled productivity updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Lobster is a Feishu productivity automation skill that helps create Feishu documents, organize meeting notes into categorized todos, set document permissions, and support scheduled daily todo pushes.
 
-## Publisher: <br>
-[ybridge](https://clawhub.ai/user/ybridge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ybridge](https://clawhub.ai/user/ybridge)
 
-## Use Case: <br>
-Employees and operators who coordinate work in Feishu can use this skill to turn meeting notes into categorized daily todo documents, set document permissions, and send scheduled task updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports an embedded Feishu app secret in the skill package. <br>
-Mitigation: Remove the embedded secret, rotate the credential, and configure credentials through a reviewed local secret store before installation. <br>
-Risk: The skill uses fixed recipient identifiers and can grant edit access to generated Feishu documents. <br>
-Mitigation: Replace fixed IDs with user-controlled configuration and require explicit confirmation before granting permissions or sending notifications. <br>
-Risk: The skill can read meeting notes and create or share work documents automatically. <br>
-Mitigation: Review the source documents, destination workspace, and generated todo content before running automated or scheduled tasks. <br>
+## Use Case:
 
+Developers and operators who use OpenClaw with Feishu can use this skill to generate daily todo documents, summarize meeting action items, classify tasks by work module, and share editable Feishu documents with a configured user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ybridge/wong-super-lobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Feishu documents, update permissions, and send notifications when configured and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Embedded Feishu credentials and fixed recipient identifiers could expose a private integration or route generated documents to the wrong account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed Feishu secret, remove hard-coded credentials and OpenIDs, and require installer-owned configuration before installation.
+
+Risk: Automatic document sharing and scheduled automation can change Feishu permissions or publish links without enough user awareness.
+
+Mitigation: Require explicit confirmation before document sharing or scheduled execution, and review requested Feishu permissions against the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ybridge/skills/wong-super-lobster)
+- [ClawHub publisher profile](https://clawhub.ai/user/ybridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and JavaScript/Feishu API snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included script can create Feishu documents, convert markdown content to document blocks, set permissions for a fixed OpenID, and print the generated document link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

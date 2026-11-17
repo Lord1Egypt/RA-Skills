@@ -1,41 +1,54 @@
-## Description: <br>
-Scans codebases to discover environment variables, generate a documented .env.example, compare against current .env files, and flag secret-handling risks across Node.js, Python, Go, Ruby, and shell scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans codebases to discover environment variable usage, generate a documented .env.example, detect missing variables, and flag common secret-handling risks across Node.js, Python, Go, Ruby, and shell scripts.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit a local codebase for environment variable usage, missing or undocumented settings, and secret-handling issues before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local project files and may surface sensitive environment-variable names, secret-like strings, or configuration details in its report. <br>
-Mitigation: Run it only in the intended repository and treat the resulting report and generated files as sensitive project material. <br>
-Risk: Generated .env.example content and suggested cleanup commands may not fully match project-specific deployment requirements. <br>
-Mitigation: Review generated files and proposed commands before applying them or committing changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit project environment-variable usage, compare discovered variables against .env and .env.example files, and produce a report with missing, undocumented, orphaned, or risky secret-handling findings.
 
-## Reference(s): <br>
-- [Phy Env Doctor on ClawHub](https://clawhub.ai/PHY041/phy-env-doctor) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and generated .env.example content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include issue tables, inferred environment-variable descriptions, generated .env.example content, and suggested cleanup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill scans project source and env-related files, which may expose sensitive variable names, secret values, or configuration details in the generated report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in repositories you trust and review the report before sharing it outside the project team.
+
+Risk: The artifact includes shell snippets that use fixed /tmp file paths for intermediate env-var lists.
+
+Mitigation: Use a private mktemp directory when executing or adapting those snippets directly.
+
+## Reference(s):
+
+- [Phy Env Doctor on ClawHub](https://clawhub.ai/phy041/skills/phy-env-doctor)
+- [Canlah AI](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, inline shell commands, and generated .env.example content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include discovered environment-variable names, file references, inferred descriptions, security findings, and remediation commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

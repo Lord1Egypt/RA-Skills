@@ -1,38 +1,57 @@
-## Description: <br>
-Provides job search coaching for resumes, role targeting, interview preparation, career transitions, offer evaluation, and salary negotiation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job helps users plan job searches, tailor resumes, prepare for interviews, evaluate offers, negotiate compensation, and navigate career transitions.
 
-## Publisher: <br>
-[EthAgent](https://clawhub.ai/user/EthAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ethagent](https://clawhub.ai/user/ethagent)
 
-## Use Case: <br>
-External users use this skill to structure a job search, improve resumes for target roles, prepare for interviews, evaluate offers, and plan career transitions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share personal employment history, salary expectations, resume details, or offer terms while using the skill. <br>
-Mitigation: Share only information needed for the task and avoid including sensitive personal data unless the agent environment is appropriate for that data. <br>
-Risk: Career, interview, resume, and negotiation guidance may be incomplete or unsuitable for a specific employer, jurisdiction, or personal situation. <br>
-Mitigation: Review important recommendations before acting and validate compensation, legal, and employment decisions with trusted current sources or qualified advisors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill for job-search assistance, including diagnosing search bottlenecks, improving resumes, preparing interview stories, evaluating offers, and planning career transitions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text career guidance with checklists, scripts, and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user-provided resume details, employment history, salary expectations, target roles, or offer terms.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share sensitive resumes, contact details, salary information, or offer terms while seeking help.
+
+Mitigation: Ask only for information needed for the current task, avoid unnecessary personal details, and remind users to redact sensitive data when possible.
+
+Risk: Career, compensation, immigration-adjacent, or offer guidance may be mistaken for legal, financial, immigration, or mental-health advice.
+
+Mitigation: Frame outputs as career guidance and recommend qualified professional advice for legal, financial, immigration, or mental-health decisions.
+
+Risk: The broad trigger description may activate the skill in adjacent high-stakes professional livelihood situations.
+
+Mitigation: Narrow activation language during release review and route specialized legal, immigration, financial, or health-related questions to appropriate expertise.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ethagent/skills/job)
+- [Publisher Profile](https://clawhub.ai/user/ethagent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text career guidance, checklists, scripts, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, MCP tools, or API calls are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

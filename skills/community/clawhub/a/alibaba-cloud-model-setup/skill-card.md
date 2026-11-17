@@ -1,41 +1,56 @@
-## Description: <br>
-Configure OpenClaw to use Alibaba Cloud Bailian provider (Pay-As-You-Go or Coding Plan) through a strict interactive flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw to use Alibaba Cloud Bailian as a model provider through an interactive flow covering plan type, site endpoint, API key handling, model selection, backups, and validation.
 
-## Publisher: <br>
-[extraterrest](https://clawhub.ai/user/extraterrest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[extraterrest](https://clawhub.ai/user/extraterrest)
 
-## Use Case: <br>
-Developers and engineers use this skill to add, switch, or repair Alibaba Cloud Bailian and Qwen provider configuration in OpenClaw. It guides plan and site selection, API key validation, model selection, config backup, and OpenClaw JSON updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify OpenClaw provider configuration and optionally set Bailian as the default model provider. <br>
-Mitigation: Review the target config path and default-provider choice before running; confirm the timestamped backup after any write. <br>
-Risk: API keys may be exposed if stored inline in configuration or passed on the command line. <br>
-Mitigation: Prefer environment-variable storage, avoid command-line API key arguments, and verify the selected environment variable is available before writing config. <br>
-Risk: Selecting the wrong plan type, site, or endpoint can cause failed authentication or unavailable model IDs. <br>
-Mitigation: Validate the API key against the selected site and compare the generated base URL and model list with the selected Pay-As-You-Go or Coding Plan option. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Alibaba Cloud Bailian Configuration](references/openclaw_alibaba_cloud.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to add, switch, or repair Alibaba Cloud/Qwen provider configuration in OpenClaw while preserving existing configuration where possible.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run an interactive Python helper that writes OpenClaw provider configuration after validating the API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata, artifact metadata, and skill documentation) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can edit local OpenClaw configuration and change default models.
+
+Mitigation: Review the target config path, keep the generated backup, and inspect the final JSON before restarting OpenClaw.
+
+Risk: API keys can be exposed if passed on the command line or stored inline.
+
+Mitigation: Use a scoped, rotatable Alibaba Cloud key and prefer environment-variable storage over command-line or inline storage.
+
+Risk: The security evidence reports mismatches between documented safe modes and script behavior.
+
+Mitigation: Review before installing, and avoid relying on list-models or environment-variable mode until the reported mismatches are fixed.
+
+## Reference(s):
+
+- [OpenClaw Alibaba Cloud Bailian Configuration](references/openclaw_alibaba_cloud.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or modify OpenClaw JSON configuration and backup files when the generated command or script is executed.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

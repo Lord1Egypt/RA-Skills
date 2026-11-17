@@ -1,44 +1,59 @@
-## Description: <br>
-OpenProject CRUD skill that manages work packages, projects, groups, news, users, watchers, relations, notifications, time entries, comments, attachments, wiki pages, statuses, and more via OpenProject API v3 with API token auth for cloud and self-hosted instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenProject CRUD skill for managing work packages, projects, groups, news, users, watchers, relations, notifications, time entries, comments, attachments, wiki pages, statuses, and related OpenProject API v3 resources with API token authentication.
 
-## Publisher: <br>
-[Abdelkrim](https://clawhub.ai/user/Abdelkrim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdelkrim](https://clawhub.ai/user/abdelkrim)
 
-## Use Case: <br>
-Developers, project managers, and operations teams use this skill to let an agent inspect and manage OpenProject resources through user-invoked API actions. It supports routine project administration, issue tracking, time tracking, notification handling, file attachment workflows, and selected Enterprise resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, and execute actions across OpenProject resources when supplied with a valid API token. <br>
-Mitigation: Use a dedicated least-privilege API token and review create, update, delete, custom-action, and OAuth commands before running them. <br>
-Risk: Bulk notification commands can affect many notifications at once. <br>
-Mitigation: Review commands that use --all or broad filters before execution. <br>
-Risk: Attachment upload commands send local files to the configured OpenProject instance. <br>
-Mitigation: Only upload files that are intended for that OpenProject workspace and verify the configured OP_HOST before use. <br>
+## Use Case:
 
+Developers, project managers, and automation agents use this skill to inspect and update OpenProject work tracking, collaboration, notification, attachment, and time-entry data across cloud or self-hosted OpenProject instances.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdelkrim/openproject-by-altf1be) <br>
-- [OpenProject API v3 coverage and limitations](docs/API-COVERAGE.md) <br>
-- [OpenProject](https://www.openproject.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line instructions with OpenProject API results returned as text or JSON-like output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OP_HOST and OP_API_TOKEN environment variables; optional settings include OP_DEFAULT_PROJECT, OP_MAX_RESULTS, and OP_MAX_FILE_SIZE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: A powerful OpenProject API token can expose or change project, user, group, notification, attachment, news, and workflow data according to the token holder's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege OpenProject account and token, avoid admin tokens unless required, and review high-impact commands before allowing an agent to run them.
+
+Risk: If OP_HOST is configured with an HTTP URL, the API token can be sent over an unencrypted connection.
+
+Mitigation: Use HTTPS-only OP_HOST values and reject plaintext OpenProject endpoints in deployment configuration.
+
+Risk: Bulk notification, custom action, group or user management, news, delete, and attachment-upload commands can create visible or destructive changes.
+
+Mitigation: Require human review for broad or destructive operations and keep the skill's explicit confirmation requirements enabled for delete commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdelkrim/skills/openproject-by-altf1be)
+- [OpenProject API v3 coverage and limitations](docs/API-COVERAGE.md)
+- [OpenProject](https://www.openproject.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and concise command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OP_HOST and OP_API_TOKEN environment variables; optional OP_DEFAULT_PROJECT, OP_MAX_RESULTS, and OP_MAX_FILE_SIZE tune default behavior.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

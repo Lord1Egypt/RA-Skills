@@ -1,41 +1,58 @@
-## Description: <br>
-OpenClaw 多飞书机器人 + 多 Agent 配置指南：一个 Gateway 实例运行多个飞书机器人，每个机器人绑定不同 Agent，实现独立工作空间、独立会话、独立人格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through configuring multiple Feishu bots on one OpenClaw Gateway, with each bot routed to a separate OpenClaw agent with isolated workspaces, sessions, auth profiles, and optional models.
 
-## Publisher: <br>
-[qushengswaych](https://clawhub.ai/user/qushengswaych) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qushengswaych](https://clawhub.ai/user/qushengswaych)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure one Gateway instance with multiple Feishu bot accounts routed to separate agents, workspaces, sessions, identities, and optional model settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Open direct-message access can allow unknown users to contact a BotLand or OpenClaw agent when open policies are enabled. <br>
-Mitigation: Restrict allowFrom or require pairing approval unless open access is intentional for the deployment. <br>
-Risk: Feishu app secrets and BotLand or OpenClaw credentials are stored in local configuration. <br>
-Mitigation: Replace example paths and secrets with environment-specific values, protect configuration file permissions, and review plugin or package source before force-installing. <br>
+## Use Case:
 
+Developers and operators use this skill to configure one OpenClaw Gateway instance for multiple Feishu bot accounts and route each account, user, or group to the intended OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qushengswaych/qs-feishu-multi-bot) <br>
-- [Feishu Open Platform apps](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON5 and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw Gateway configuration examples, routing guidance, verification commands, and pairing steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Open Feishu access settings could let unintended users reach configured agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep pairing or explicit allowlists enabled for direct messages and groups unless public access is intentionally required.
+
+Risk: Public-facing agents may expose tools, files, credentials, logs, or rate limits beyond the intended audience.
+
+Mitigation: Restrict tools, file access, credentials, logging, and rate limits for any agent reachable through Feishu.
+
+Risk: The OpenClaw configuration contains Feishu application secrets.
+
+Mitigation: Protect the configuration file and do not commit it to source control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qushengswaych/skills/qs-feishu-multi-bot)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON5 and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup steps, routing examples, verification commands, and security notes for OpenClaw and Feishu configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

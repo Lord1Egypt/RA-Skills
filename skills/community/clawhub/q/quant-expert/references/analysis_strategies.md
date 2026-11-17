@@ -16,7 +16,7 @@ More advanced combinations below can still be done with custom Tushare queries, 
 2. [Stock Diagnosis Workflow](#2-stock-diagnosis-workflow)
 3. [Market Overview Analysis](#3-market-overview-analysis)
 4. [Sector Rotation Analysis](#4-sector-rotation-analysis)
-5. [Risk Assessment Framework](#5-risk-assessment-framework)
+5. [Risk Assessment Framework](#5-riREDACTED-SECRET)
 6. [ETF Analysis Workflow](#6-etf-analysis-workflow)
 7. [Intraday & Real-time Analysis](#7-intraday--real-time-analysis)
 8. [Options Analysis Workflow](#8-options-analysis-workflow)

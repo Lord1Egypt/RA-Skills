@@ -1,42 +1,55 @@
-## Description: <br>
-Use Clawrma for web fetch, web search, screenshots, snapshots, and inference, or as a fallback when built-in tools are not configured, blocked, expensive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Clawrma for web fetch, web search, screenshots, snapshots, and inference, or as a fallback when built-in tools are not configured, blocked, or expensive.
 
-## Publisher: <br>
-[tnchr](https://clawhub.ai/user/tnchr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tnchr](https://clawhub.ai/user/tnchr)
 
-## Use Case: <br>
-Developers and agent operators use Clawrma to route web fetching, web search, screenshot capture, structured page snapshots, and inference through the Clawrma CLI when native tools are unavailable, blocked, rate-limited, unreliable, or too costly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using Clawrma for fetch, search, snapshots, screenshots, or inference may send prompts, URLs, page content, screenshots, or other data to a third-party service. <br>
-Mitigation: Avoid sending confidential prompts, private URLs, authenticated page screenshots, or sensitive page snapshots unless the operator trusts the Clawrma service and intends that data to leave the environment. <br>
-Risk: The skill installs and authenticates a third-party Node CLI. <br>
-Mitigation: Review the clawrma npm package and GitHub repository before installation, including install scripts, authentication storage, privacy terms, and billing behavior. <br>
+## Use Case:
 
+Developers and agent operators use Clawrma to perform web retrieval, search, screenshot capture, structured snapshots, and CLI-backed inference when native tools are unavailable, blocked, rate-limited, unreliable, or too costly.
 
-## Reference(s): <br>
-- [Clawrma GitHub repository](https://github.com/clawrma/clawrma) <br>
-- [Clawrma npm package](https://www.npmjs.com/package/clawrma) <br>
-- [Clawrma ClawHub skill page](https://clawhub.ai/tnchr/clawrma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced Clawrma CLI commands may return JSON, plain text, or screenshot image file paths depending on the command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Web content, prompts, URLs, and screenshots may be routed through an unpinned third-party CLI without clear privacy, scoping, or integrity controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Clawrma npm package and GitHub source before installing, prefer pinned versions, and require explicit approval before routing sensitive content to the CLI.
+
+Risk: Sensitive data could be exposed if the skill is used with private sites, authenticated pages, internal URLs, secrets in query strings, proprietary prompts, or sensitive screenshots.
+
+Mitigation: Avoid those inputs unless the user has approved the data path and is comfortable sending the data through Clawrma.
+
+## Reference(s):
+
+- [Clawrma GitHub repository](https://github.com/clawrma/clawrma)
+- [Clawrma npm package](https://www.npmjs.com/package/clawrma)
+- [Clawrma ClawHub skill page](https://clawhub.ai/tnchr/skills/clawrma)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; Clawrma CLI commands may return JSON, plain text, or screenshot file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill routes selected web, screenshot, snapshot, and inference tasks through the Clawrma CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

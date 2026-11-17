@@ -1,42 +1,59 @@
-## Description: <br>
-Agentcad is a CAD tool for AI agents that helps agents design, model, and build 3D objects by running build123d or CadQuery Python scripts to produce STEP files, PNG renders, mesh exports, and geometric metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentCAD helps agents design, inspect, validate, and export 3D models using build123d Python scripts.
 
-## Publisher: <br>
-[jdilla1277](https://clawhub.ai/user/jdilla1277) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdilla1277](https://clawhub.ai/user/jdilla1277)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to ask an agent to create or iterate on CAD models, validate geometry, render previews, export mesh formats, and share generated model files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to execute local CAD Python scripts through the agentcad CLI. <br>
-Mitigation: Install it only when local CAD script execution is intended, review generated scripts before execution, and use dry runs or inspection commands to validate geometry before sharing outputs. <br>
-Risk: The workflow may open generated previews or viewers in a browser. <br>
-Mitigation: Ask before running `agentcad view` in environments where opening browser windows is not desired. <br>
+## Use Case:
 
+Developers and engineers use AgentCAD to create or revise 3D geometry from a written specification, then inspect and validate the result. It can deliver STEP models, rendered previews, mesh exports, and geometry metrics.
 
-## Reference(s): <br>
-- [agentcad documentation](https://agentcad.dev) <br>
-- [agentcad PyPI package](https://pypi.org/project/agentcad/) <br>
-- [ClawHub skill page](https://clawhub.ai/jdilla1277/agentcad) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python CAD code, and generated CAD artifact paths from JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce STEP files, PNG previews, STL/GLB/OBJ mesh exports, interactive viewer HTML, and geometry metrics through the local agentcad CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The feedback workflow may send task details and session diagnostics to the vendor without user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review feedback contents before sending; use `agentcad feedback --local-only` to save feedback without uploading it.
+
+Risk: The installation instructions use an unpinned AgentCAD package version.
+
+Mitigation: Pin a reviewed AgentCAD version in the installation environment.
+
+Risk: The security analysis is incomplete because many local references could not be resolved.
+
+Mitigation: Review the complete skill materials and referenced documentation before installation or execution.
+
+## Reference(s):
+
+- [AgentCAD documentation and project site](https://agentcad.dev)
+- [AgentCAD ClawHub release](https://clawhub.ai/jdilla1277/skills/agentcad)
+- [Publisher profile](https://clawhub.ai/user/jdilla1277)
+
+## Skill Output:
+
+**Output Type(s):** [Code, 3D model files, Images, Metrics, Guidance]
+
+**Output Format:** [Python scripts; STEP, PNG, STL, GLB, and OBJ files; structured geometry metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Artifacts and formats depend on the requested model and selected exports.]
+
+## Skill Version(s):
+
+0.8.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

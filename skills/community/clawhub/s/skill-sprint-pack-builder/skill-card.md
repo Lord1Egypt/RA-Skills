@@ -1,40 +1,56 @@
-## Description: <br>
-Convert pasted lesson notes, workflow notes, upstream agent-skill ideas, or rough implementation notes into a public-safe ClawHub/Codex skill sprint pack with a 20-minute action, proof checklist, redaction checklist, Skool post, reusable skill card, next reps, and verification criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert pasted lesson notes, workflow notes, upstream agent-skill ideas, or rough implementation notes into a public-safe ClawHub/Codex skill sprint pack with a 20-minute action, proof checklist, redaction checklist, Skool post, reusable skill card, next reps, and verification criteria.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, community operators, and agent-skill builders use this skill to turn rough notes or upstream skill ideas into a public-safe sprint pack with a concrete action, proof checklist, redaction checklist, reusable skill card, post draft, next reps, and verification criteria.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Private names, links, account details, credentials, screenshots, or customer records may be carried from source notes into public-facing outputs.
+
+Mitigation: Use placeholders, synthetic examples, or creator-owned notes; run the redaction checklist and review outputs for sensitive data before sharing.
+
+Risk: Paid lessons, private community content, or upstream skills may be copied too closely.
+
+Mitigation: Extract only the reusable behavior pattern, rewrite the trigger and workflow, remove runtime-specific assumptions, and avoid verbatim copying.
+
+Risk: Public posts may imply guaranteed earnings, growth, ranking, conversion, or time-saved results.
+
+Mitigation: Remove unsupported claims or frame user-provided public evidence as a specific past example rather than a promise.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, developers, and community operators use this skill to turn their own notes or upstream skill ideas into a public-safe 20-minute sprint pack with proof, redaction, posting, and reusable skill-card artifacts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs may contain credentials, private community material, customer records, paid lesson text, or screenshots with account details. <br>
-Mitigation: Use placeholders, synthetic examples, or creator-owned notes, and redact sensitive names, links, identifiers, and token-like strings before drafting public artifacts. <br>
-Risk: Generated public posts or skill cards may include private data or unsupported outcome claims if the source notes contain them. <br>
-Mitigation: Review generated posts and skill cards against the redaction and proof checklists, and frame claims only as specific past examples supported by public evidence. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/skill-sprint-pack-builder) <br>
+**Other Properties Related to Output:** [Includes proof, redaction, runtime adaptation, and verification sections when relevant.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a runtime adaptation block when the source is an upstream skill idea.] <br>
+0.1.1 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

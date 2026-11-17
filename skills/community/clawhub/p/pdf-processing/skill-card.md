@@ -1,40 +1,52 @@
-## Description: <br>
-Extracts text and tables from PDF files, fills PDF forms, and merges documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text and tables from PDFs, fills PDF forms, and merges PDF documents.
 
-## Publisher: <br>
-[RainShow](https://clawhub.ai/user/RainShow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rainshow](https://clawhub.ai/user/rainshow)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill when they need to extract PDF content, fill PDF forms, or merge PDF documents as part of document-processing workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Dependency installation can affect the user's Python environment.
+
+Mitigation: Install pdfplumber and pypdf in a virtual environment and avoid running pip as an administrator.
+
+Risk: Form filling and document merging can modify or create user documents.
+
+Mitigation: Confirm the target files and keep backups before using the skill for PDF modification or merge operations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and other agent users use this skill when they need help extracting PDF text or table data, filling PDF forms, or merging multiple PDF files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: PDF processing can modify or combine user documents, including sensitive PDFs or form data. <br>
-Mitigation: Specify exact input files, operations, and output paths; keep original files unchanged until outputs are reviewed. <br>
-Risk: Dependency installation may add local packages required for PDF parsing. <br>
-Mitigation: Review proposed install commands and run them in the intended environment before processing documents. <br>
+**Output Format:** [Markdown with inline shell commands and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RainShow/pdf-processing) <br>
+**Other Properties Related to Output:** [May modify or create PDF files when filling forms or merging documents.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python-oriented implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose dependency installation and file operation steps for user-specified PDFs.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

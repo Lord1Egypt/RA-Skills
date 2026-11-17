@@ -1,42 +1,59 @@
-## Description: <br>
-Creates, reads, edits, and validates Word .docx documents, including formatting, content extraction, tracked changes, comments, and conversion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, read, edit, validate, convert, and manipulate Microsoft Word .docx documents, including formatted documents, tracked changes, comments, images, and content extraction.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-External users and developers use this skill to produce polished Word documents, edit existing DOCX files, manage comments or tracked changes, and convert Office documents through local tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can compile and load a native LibreOffice compatibility shim from a temporary directory. <br>
-Mitigation: Review the bundled LibreOffice helper before use and run the skill only in environments where native compilation and LD_PRELOAD behavior are acceptable. <br>
-Risk: The skill modifies DOCX contents and tracked-change metadata. <br>
-Mitigation: Run it on copies of important documents and review the resulting document, comments, and tracked-change author metadata before sharing. <br>
-Risk: Office files and conversion tools can expose users to malformed or untrusted document content. <br>
-Mitigation: Avoid untrusted Office files where possible and use the skill in a constrained environment with the required document tools installed intentionally. <br>
+## Use Case:
 
+Developers and document-focused agents use this skill to produce polished Word documents and to inspect or modify existing DOCX files, including tracked changes, comments, images, tables, and Office XML validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/wordpro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets; agents may also produce or modify DOCX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local document tools such as LibreOffice, pandoc, poppler, npm docx, and bundled Python scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan reports unsafe LibreOffice macro and LD_PRELOAD mechanisms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a contained workspace, and avoid sensitive documents until the LibreOffice macro/profile and LD_PRELOAD temp-file issues are fixed.
+
+Risk: The security scan reports broader Office-file handling than the advertised DOCX scope.
+
+Mitigation: Treat PPTX and XLSX support as outside the advertised DOCX scope unless separately reviewed and approved.
+
+Risk: The skill depends on local tools and packages such as LibreOffice, pandoc, poppler utilities, and docx-js.
+
+Mitigation: Pin and install dependencies locally in a controlled environment before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/wordpro)
+- [Publisher profile](https://clawhub.ai/user/fslong520)
+- [Artifact license terms](artifact/LICENSE.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create or modify DOCX files and to run local validation, conversion, unpacking, packing, commenting, and tracked-change helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

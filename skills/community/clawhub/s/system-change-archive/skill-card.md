@@ -1,42 +1,59 @@
-## Description: <br>
-Create a pre-restart audit and rollback archive for system-level changes where failed restarts would be painful to diagnose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a pre-restart audit and rollback archive for system-level changes that preserves backups, execution plans, diffs, verification notes, and rollback context before restart-sensitive edits.
 
-## Publisher: <br>
-[zczcm85](https://clawhub.ai/user/zczcm85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zczcm85](https://clawhub.ai/user/zczcm85)
 
-## Use Case: <br>
-Developers and operators use this skill before restart-sensitive system changes to preserve before-state backups, execution plans, diffs, verification notes, and rollback paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Archived system configuration backups may contain sensitive data. <br>
-Mitigation: Only pass files to --copy-before when they are intentionally being archived, and store the archive in a secure, persistent location. <br>
-Risk: A local workspace fallback archive may not survive the failure scenario it is meant to support. <br>
-Mitigation: Prefer an explicit archive root, SYSTEM_CHANGE_ARCHIVE_ROOT, or a writable persistent storage candidate before using fallback storage. <br>
+## Use Case:
 
+Developers and operators use this skill before high-risk system changes to scaffold audit records, before-state backups, planned after-state evidence, diffs, verification notes, and rollback paths. It is aimed at restart-sensitive changes to configuration, plugins, routing, approvals, startup behavior, services, and other fragile system paths.
 
-## Reference(s): <br>
-- [System Change Archive on ClawHub](https://clawhub.ai/zczcm85/system-change-archive) <br>
-- [Archive Schema](references/archive-schema.md) <br>
-- [Path Resolution Rules](references/path-resolution.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated archive files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured PRE-RESTART and POST-RESTART archive records for audit, verification, and rollback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Archive evidence may be overwritten or collide with prior records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Harden or review the helper before audit-critical use so it creates unique archive directories, refuses collisions, and uses exclusive creation for records and backups.
+
+Risk: User-provided text can be written into operational Markdown records.
+
+Mitigation: Sanitize or constrain Markdown fields before using archive records for operations, audit, or handoff.
+
+Risk: Workspace fallback storage is weaker than a persistent archive root if restart or service failure affects local state.
+
+Mitigation: Prefer an explicit archive root, SYSTEM_CHANGE_ARCHIVE_ROOT, or writable persistent storage, and clearly disclose when fallback storage is used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zczcm85/skills/system-change-archive)
+- [Archive Schema](artifact/references/archive-schema.md)
+- [Path Resolution Rules](artifact/references/path-resolution.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown records, JSON metadata, directory scaffolds, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates PRE-RESTART and POST-RESTART archive structures with optional before-state file copies and a daily index.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

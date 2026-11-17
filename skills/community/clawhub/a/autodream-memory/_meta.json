@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dgrk8xj2eestmpq4dp47tzh8390bv",
-  "slug": "autodream-memory",
+  "name": "autodream",
   "version": "1.0.1",
-  "publishedAt": 1775096418847
+  "description": "AutoDream - Automatic memory consolidation for OpenClaw",
+  "author": "research AGENT",
+  "license": "MIT"
 }

@@ -1,43 +1,56 @@
-## Description: <br>
-Amap Travel Planner helps agents create travel itineraries using AMap route planning, place search, budget estimates, checklist guidance, and map QR-code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amap Travel Planner helps agents build travel itineraries with Amap route data for destinations, schedules, budgets, checklists, food search, route optimization, and map QR code output.
 
-## Publisher: <br>
-[770600682-cyber](https://clawhub.ai/user/770600682-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[770600682-cyber](https://clawhub.ai/user/770600682-cyber)
 
-## Use Case: <br>
-External users and travel-planning assistants use this skill to turn natural-language trip goals into route-aware itineraries, budget summaries, transportation comparisons, and AMap map links. It is most relevant for trips where AMap coverage and Web Service API data are appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AMap API key and may consume quota or expose key misuse if credentials are broadly scoped. <br>
-Mitigation: Use a scoped or quota-limited AMap API key, store it only in the expected AMAP_API_KEY environment variable, and monitor API usage. <br>
-Risk: Trip planning sends addresses and locations to AMap for geocoding, routing, and map generation. <br>
-Mitigation: Avoid entering sensitive private addresses unless the user is comfortable sharing them with AMap for those services. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to plan China-focused trips with Amap-backed travel times, distances, transportation choices, budget estimates, route ordering, and scannable Amap maps.
 
-## Reference(s): <br>
-- [Amap Travel Planner on ClawHub](https://clawhub.ai/770600682-cyber/amap-travel-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/770600682-cyber) <br>
-- [AMap Open Platform](https://lbs.amap.com) <br>
-- [AMap Web Service API documentation](https://lbs.amap.com/api/webservice/summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown itinerary, budget, checklist, route comparison, and map-link guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AMap route data, distances, durations, estimated costs, and QR-code or schema links when the configured AMap API key permits them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Travel addresses, points of interest, route queries, and generated map data are sent to Amap services using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive private locations unless the user accepts sharing that data with Amap; configure and protect AMAP_API_KEY as a credential.
+
+Risk: Route, time, distance, fee, and POI recommendations may be incomplete or stale because they depend on Amap service responses.
+
+Mitigation: Review final itineraries before booking or travel, and verify critical routes, operating hours, and costs with authoritative local sources.
+
+## Reference(s):
+
+- [Amap Open Platform](https://lbs.amap.com)
+- [Amap Web Service API Documentation](https://lbs.amap.com/api/webservice/summary)
+- [Amap Web Service API Endpoint](https://restapi.amap.com)
+- [ClawHub skill page](https://clawhub.ai/770600682-cyber/skills/amap-travel-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown travel plan with route data, budget tables, checklist guidance, and Amap map QR code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_API_KEY and sends travel locations, POIs, routes, and generated map data to Amap services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

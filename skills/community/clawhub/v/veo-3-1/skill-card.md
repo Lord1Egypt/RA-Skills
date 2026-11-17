@@ -1,44 +1,58 @@
-## Description: <br>
-Use PoYo AI Veo 3.1 for frame-conditioned video generation through the PoYo submit endpoint, including fast and quality model modes, start-frame and end-frame guidance, reference images, and resolution choices up to 4K. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use PoYo AI Veo 3.1 for frame-conditioned video generation through the `https://api.poyo.ai/api/generate/submit` endpoint, including fast and quality modes, start-frame and end-frame guidance, up to 4K resolution, and reference-image video generation.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and submit PoYo Veo 3.1 video-generation requests, choose between fast and quality modes, include optional reference or frame images, and track returned task IDs for polling or callbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, and callback URLs are sent to PoYo's external video-generation API. <br>
-Mitigation: Review requests before submission and avoid sensitive, proprietary, internal-only, or secret-bearing content. <br>
-Risk: API keys may be exposed if passed through command-line arguments or shared payloads. <br>
-Mitigation: Set POYO_API_KEY in the environment and avoid embedding credentials in commands, files, or prompts. <br>
+## Use Case:
 
+Developers and creative automation users use this skill to prepare PoYo Veo 3.1 video-generation payloads, submit jobs with a PoYo API key, and track returned task IDs for polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Veo 3.1 API Documentation](https://docs.poyo.ai/api-manual/video-series/veo-3-1) <br>
-- [PoYo Veo 3.1 OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/veo-3-1.json) <br>
-- [PoYo Task Status Documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [Local API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/veo-3-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a chosen model id, final payload or parameter summary, reference-image status, returned task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, referenced image URLs, callback URLs, and related parameters are sent to PoYo for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only content appropriate for PoYo processing, and avoid private media, secrets, or sensitive information in prompts and URLs.
+
+Risk: The PoYo API key can be exposed through command-line arguments, shell history, or process logs.
+
+Mitigation: Set POYO_API_KEY in the environment where possible, avoid passing keys directly on the command line, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [PoYo VEO 3 1 API Reference](references/api.md)
+- [PoYo Veo 3.1 model page](https://poyo.ai/models/veo-3-1)
+- [PoYo Veo 3.1 API documentation](https://docs.poyo.ai/api-manual/video-series/veo-3-1)
+- [PoYo Veo 3.1 OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/veo-3-1.json)
+- [PoYo task status documentation](https://docs.poyo.ai/api-manual/task-management/status)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/veo-3-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model ID, request parameters, reference-image usage, returned task ID, and the next polling or webhook step.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

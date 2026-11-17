@@ -1,41 +1,54 @@
-## Description: <br>
-Fund Report helps an agent report real-time OTC fund net value estimates and estimated price changes for multiple fund codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund Report provides real-time OTC fund net asset value estimates and estimated price changes, with support for querying multiple fund codes.
 
-## Publisher: <br>
-[wndagg](https://clawhub.ai/user/wndagg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wndagg](https://clawhub.ai/user/wndagg)
 
-## Use Case: <br>
-External users or agents use this skill to run a fund holdings report workflow for multiple OTC fund codes and summarize estimated NAV movement, price changes, and gains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release package does not include the referenced scripts/fund_report.py implementation for review. <br>
-Mitigation: Inspect the external script and its dependencies before execution, especially network access and any locally configured fund lists. <br>
-Risk: Financial quote or fund data may be stale, unavailable, or unsuitable for investment decisions. <br>
-Mitigation: Treat generated fund reports as informational and verify values against authoritative financial data sources before acting on them. <br>
+## Use Case:
 
+External users and agents use this skill to produce concise fund holding reports for multiple OTC fund codes, including estimated net value movement and estimated gains.
 
-## Reference(s): <br>
-- [ClawHub Fund Report Release Page](https://clawhub.ai/wndagg/fund-report) <br>
-- [Project Homepage Listed by Skill Metadata](https://github.com/wNDAGG/mimi-scripts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The submitted package is documentation-only and references an external scripts/fund_report.py file that was not included for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill references scripts/fund_report.py, but that script is not bundled in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only run a local scripts/fund_report.py after confirming its source and reviewing its contents.
+
+Risk: The skill documentation is in Chinese, which may make review harder for non-Chinese-speaking operators.
+
+Mitigation: Have a reviewer who can read Chinese confirm the intended behavior before deployment.
+
+## Reference(s):
+
+- [Fund Report ClawHub page](https://clawhub.ai/wndagg/skills/fund-report)
+- [Project homepage](https://github.com/wNDAGG/mimi-scripts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on a local scripts/fund_report.py file that is referenced by the skill but not included in the package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

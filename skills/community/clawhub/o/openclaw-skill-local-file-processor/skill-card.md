@@ -1,39 +1,52 @@
-## Description: <br>
-Process local files with batch rename, format conversion, organization by date, type, or metadata, duplicate detection, and metadata read, write, or removal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process local files with batch rename, format conversion, organization by date, type, or metadata, duplicate detection, and metadata read, write, or removal workflows.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers, operators, and other users working with local files use this skill to perform common batch file operations such as renaming, conversion, organization, duplicate handling, and metadata updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Documented commands can rename, move, overwrite, or delete local files, including recursive operations and duplicate deletion. <br>
-Mitigation: Use --dry-run first, scope commands to specific folders, avoid --force and --overwrite unless intentional, and keep backups for important directories. <br>
-Risk: Metadata operations can write or remove file metadata. <br>
-Mitigation: Preview metadata changes, verify target globs and keys before execution, and require confirmation for write or delete operations unless --force is intentionally used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/openclaw-skill-local-file-processor) <br>
+## Use Case:
 
+Developers and power users use this skill to have an agent prepare local file-processing workflows for renaming, converting, organizing, finding duplicates, and managing metadata on user-selected files and folders.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include dry-run, overwrite, force, recursive, path, format, quality, metadata key, duplicate action, and destination options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: File rename, conversion, duplicate deletion, and metadata edits can modify or remove local files.
+
+Mitigation: Use dry-run first on important folders, avoid force or overwrite unless backups exist, and rely on confirmation prompts for destructive actions.
+
+Risk: The workflow depends on local Homebrew-installed tools for media and metadata operations.
+
+Mitigation: Confirm the required dependencies are trusted and installed from expected sources before running generated commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ppopen/skills/openclaw-skill-local-file-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command flags such as dry-run, overwrite, force, recursive traversal, output format, quality, metadata keys, and destination directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

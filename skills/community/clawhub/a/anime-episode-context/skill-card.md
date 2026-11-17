@@ -1,42 +1,53 @@
-## Description: <br>
-Maintains cross-episode story, character, and visual consistency for AI manga or anime-drama production pipelines generated one episode at a time from uploaded TXT files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains cross-episode story, character, and visual consistency for AI manga or anime-drama production pipelines generated one episode at a time from uploaded TXT files.
 
-## Publisher: <br>
-[JSinBUPT](https://clawhub.ai/user/JSinBUPT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsinbupt](https://clawhub.ai/user/jsinbupt)
 
-## Use Case: <br>
-Developers and creators producing episodic anime or manga content use this skill to turn the previous episode summary and current episode TXT into reusable continuity notes, visual anchors, and model-specific prompt context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private drafts, spoilers, or sensitive story details may be carried forward into reusable continuity notes. <br>
-Mitigation: Review and redact continuity summaries before reusing them in later prompts or sharing them with other systems. <br>
-Risk: Incorrect assumptions or hallucinated details can propagate across later episodes and affect generated text, images, or video. <br>
-Mitigation: Keep assumptions explicitly labeled and verify each rolling summary against the source episode before using it as the next episode's context. <br>
+## Use Case:
 
+Developers and content-production teams use this skill to convert prior episode summaries and current episode TXT files into compact continuity packs, visual anchors, and prompt notes for text, image, and video generation.
 
-## Reference(s): <br>
-- [episode-context-schema.md](references/episode-context-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/JSinBUPT/anime-episode-context) <br>
-- [Publisher profile](https://clawhub.ai/user/JSinBUPT) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates and concise Chinese continuity notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rolling episode summaries, current-episode context packs, and text/image/video model-specific prompt anchors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Episode text and prior summaries may contain sensitive story or production details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only episode material you are comfortable sharing with the agent and review continuity summaries before reuse.
+
+Risk: Missing prior episode summaries can reduce continuity quality for episode 2 and later.
+
+Mitigation: Supply the previous episode inheritance summary when available; otherwise clearly mark the continuity risk in the generated context.
+
+## Reference(s):
+
+- [Episode Context Schema](references/episode-context-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Chinese Markdown templates and concise prompt-anchor notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese output; no executable code, credential use, persistence, or hidden data handling was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

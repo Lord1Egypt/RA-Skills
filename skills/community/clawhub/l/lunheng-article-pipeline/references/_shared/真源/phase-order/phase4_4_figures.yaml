@@ -1,0 +1,25 @@
+# 论衡流程真源 · 第二部分：节点 phase4_4_figures（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: phase4_4_figures   # 别名：文档层「Phase 4.4」
+  phase: "Phase 4.4"
+  phase_seq: 20
+  verdict_scale: four_tier   # v2.12.40：图位数拍板与图件核验结论落四档
+  input: drafts/current_draft.md + data/数据卡.md（图上数据源）
+  kind: owner_agent
+  agent: T0
+  write_authority: owner
+  output: final/图件/*.svg   # v2.12.49 M-10：路径归一「final/图件/*.svg」为唯一真源（全库 5 处引用一致：T6/T7/T8 dispatch / deliverables.md / 06-批判 / 05-写作 / 08-终检 / 任务简报）
+  condition_undecidable: report_to_owner   # v2.12.54 R-6：图位拍板记录缺失 ⇒ 呈主人（不得静默按无图位跳过）
+  condition: figures_approved_by_owner   # 命中定义：Phase 2.5 大纲拍板记录的图位数 > 0（拍板 0 张 = 不命中）
+  on_not_triggered: record_not_triggered_in_status   # v2.12.37 审计 P1-3：图位=0 时必须留痕，防「未触发」与「漏跑」不可分
+  note: |
+    主控亲为（不 spawn）：按 Phase 2.5 拍板数手写 SVG（templates/图表-SVG-template.md），零外发。
+    **v2.12.49 M-11**（4 条语义锁）：
+    1. **拍板 N > 0 ⇒ 必产出 N 张 SVG**（零外发、零 exec）；拍板有图却未产出 = 不合格。
+    2. **output 仅 N 张**；图位超取（拍板 3 张写了 5 张）或图位不足（拍板 5 张写了 3 张）均不合格。
+    3. **T4 不取定 0**：「0」必须由主人在 Phase 2.5 显式拍板；T4 仅出「建议」不出一决定。
+    4. **status.md 必含 owner_figure_decision 记录**（采用 T4 建议 / 调整图位数 / 取消图表三选一）；缺失 = 不合格。
+    5. **图件生成/转换/去留**与 **SVG 写图** 是**两类不同职责**：生成与转换（PNG）主人手动（v2.12.49 零 exec 边界）；**写 SVG**仍是论衡职责（主控 write 纯文本），不得移出。
+    6. **v2.12.60 图件嵌入锁**（主人 2026-09-19 裁定「图件如果存在要机械嵌入」）：本节点产出的 N 张 SVG，**必须由 `final_assembly` 以 `![图N：标题](图件/图N_标题.svg)` 形态嵌入** `final/定稿.md`（嵌入计数 = 拍板 N）；只写纯文本 `[图N：标题]` 占位 = 不合格。嵌入属论衡职责（主控 `write`，零 exec）；PNG 转换仍归主人。
+  next: final_assembly

@@ -1,48 +1,61 @@
-## Description: <br>
-Manage multiple Alibaba Cloud accounts and batch-export Security Center (SAS) baseline and vulnerability reports via the aliyun CLI and Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple Alibaba Cloud accounts and batch-export Security Center (SAS) baseline and vulnerability reports via the aliyun CLI and Python scripts. Supports account list refresh, enable/disable, concurrent batch export of cloud platform configuration check (baselineCspm), system baseline risk (exportHcWarning), attack path event (exportAttackPathEvent), Linux/Windows/application/emergency vulnerability results across all managed accounts. Use this skill when users need to manage SAS multi-account settings, export baseline or vulnerability compliance data, or merge multi-account security reports into a single file.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers, cloud security engineers, and operations teams use this skill to manage Alibaba Cloud SAS multi-account participation and export baseline or vulnerability compliance reports across enabled accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud credentials to run SAS export workflows across multiple accounts. <br>
-Mitigation: Use least-privilege RAM credentials and review the included RAM policy guidance before running batch exports. <br>
-Risk: Batch exports depend on the local account selection stored in accounts.json. <br>
-Mitigation: Run account refresh intentionally and review accounts.json before enabling broad exports. <br>
-Risk: The aliyun CLI AI-mode and User-Agent configuration can persist after setup. <br>
-Mitigation: Check the CLI configuration after use and disable AI mode if it is no longer needed. <br>
-Risk: Exported Security Center reports may contain sensitive security and account information. <br>
-Mitigation: Run scripts in a dedicated working directory and handle generated JSON and Excel files according to internal data handling rules. <br>
+## Use Case:
 
+Alibaba Cloud account administrators and security engineers use this skill to manage resource-directory accounts and consolidate Security Center baseline, attack-path, and vulnerability findings across selected accounts.
 
-## Reference(s): <br>
-- [RAM Permission Policy Notes](references/ram-policies.md) <br>
-- [Alibaba Cloud Security Center RAM Authorization](https://www.alibabacloud.com/help/en/security-center/developer-reference/api-sas-2018-12-03-ram) <br>
-- [STS GetCallerIdentity](https://www.alibabacloud.com/help/en/resource-access-management/latest/getcalleridentity) <br>
-- [Alibaba Cloud RAM Custom Policies](https://help.aliyun.com/zh/ram/user-guide/create-a-custom-policy) <br>
-- [Alibaba Cloud CLI Releases](https://github.com/aliyun/aliyun-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown with inline bash commands; scripts can produce JSON account lists and merged Excel reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires aliyun CLI credentials and a Python environment; generated files are written to the agent's current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release evidence) <br>
+Risk: Exported reports may contain sensitive account and security findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly authorized Alibaba Cloud credentials and store reports in a dedicated private directory.
+
+Risk: Batch exports include every account currently enabled in the local account list.
+
+Mitigation: Review enabled accounts and the requested export scope before running an export.
+
+Risk: Setup changes CLI plugins and persists AI-mode settings, and reruns can replace same-day output files.
+
+Mitigation: Review setup commands before applying them and preserve any same-day reports that must be retained.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/sdk-team/skills/alibabacloud-sas-multiaccount-manage)
+- [RAM Policy Reference](references/ram-policies.md)
+- [Alibaba Cloud CLI releases](https://github.com/aliyun/aliyun-cli/releases)
+- [Security Center RAM authorization](https://www.alibabacloud.com/help/en/security-center/developer-reference/api-sas-2018-12-03-ram)
+- [STS GetCallerIdentity](https://www.alibabacloud.com/help/en/resource-access-management/latest/getcalleridentity)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Configuration]
+
+**Output Format:** [Excel (.xlsx) security reports and JSON account configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Merged reports include account identifiers and display names and use date-stamped filenames.]
+
+## Skill Version(s):
+
+0.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

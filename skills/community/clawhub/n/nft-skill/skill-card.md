@@ -1,44 +1,64 @@
-## Description: <br>
-Autonomous AI Artist Agent for generating, evolving, minting, listing, and promoting NFT art on the Base blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous AI Artist Agent for generating, evolving, minting, listing, and promoting NFT art on the Base blockchain.
 
-## Publisher: <br>
-[Numba1ne](https://clawhub.ai/user/Numba1ne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[numba1ne](https://clawhub.ai/user/numba1ne)
 
-## Use Case: <br>
-External developers and agent users use this skill to generate AI or procedural art, upload metadata to IPFS, mint ERC-721 NFTs on Base, list NFTs for sale, monitor sales, evolve art behavior from sales milestones, and post X/Twitter announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent wallet-signing and marketplace authority for minting, listing, and related blockchain actions. <br>
-Mitigation: Install with a dedicated low-value wallet, test on Base Sepolia first, and require review of every mint, listing, approval, and transaction before execution. <br>
-Risk: The skill can use IPFS, LLM/image providers, and X/Twitter credentials to upload or post externally. <br>
-Mitigation: Scope Pinata, LLM/image, and X/Twitter API keys to this project and review generated content before uploads or posts. <br>
-Risk: The security scan found no clear human approval gates for mainnet funds, valuable NFTs, or external posting. <br>
-Mitigation: Avoid mainnet funds or valuable NFTs unless external spending limits, posting controls, and human approval checks are in place. <br>
+## Use Case:
 
+Developers and external users use this skill to automate an NFT art workflow: generate or evolve art, upload metadata, mint ERC-721 tokens, list them on a marketplace, monitor sales, and post X/Twitter updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Numba1ne/nft-skill) <br>
-- [Project homepage](https://github.com/Numba1ne/nft-skill) <br>
-- [Base Network](https://base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may sign blockchain transactions, upload NFT metadata to IPFS, stream sales events, and post externally to X/Twitter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata, package.json) <br>
+Risk: Deploy, mint, and list operations can spend wallet funds or create irreversible blockchain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, start on Base Sepolia testnet, and require manual approval before deploy, mint, or list commands.
+
+Risk: Marketplace listing may grant broad NFT transfer permissions or use an unintended contract address.
+
+Mitigation: Verify NFT and marketplace contract addresses before use and limit approvals to the intended marketplace whenever possible.
+
+Risk: The skill can post public X/Twitter updates.
+
+Mitigation: Use separate social credentials and require human review before tweet operations.
+
+Risk: Minted NFT metadata may be incomplete or unavailable if IPFS upload does not succeed.
+
+Mitigation: Confirm successful IPFS upload and inspect the returned metadata URI before minting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/numba1ne/skills/nft-skill)
+- [Project homepage](https://github.com/Numba1ne/nft-skill)
+- [Base network](https://base.org)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [JSON command output with shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create image files, IPFS metadata URIs, blockchain transaction hashes, token IDs, sale events, and X/Twitter post IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

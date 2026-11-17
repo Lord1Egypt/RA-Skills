@@ -1,44 +1,61 @@
-## Description: <br>
-AI industry news aggregation from curated RSS feeds. Catches model releases from major labs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates AI industry news from curated RSS feeds and highlights major model releases from leading labs.
 
-## Publisher: <br>
-[justintieu](https://clawhub.ai/user/justintieu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justintieu](https://clawhub.ai/user/justintieu)
 
-## Use Case: <br>
-Developers, researchers, and AI practitioners use this skill to generate concise daily or weekly AI news briefings from curated RSS feeds, with emphasis on model releases, research, industry news, product updates, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings depend on public RSS feeds that may fail, become stale, or omit major sources. <br>
-Mitigation: Continue with available feeds, note failed sources or coverage gaps, and manually check known missing labs for major releases. <br>
-Risk: Optional saved briefings or automated delivery could write or send content to unintended locations. <br>
-Mitigation: Use the explicit /ai-news command where possible, save only to a dedicated folder, and configure cron or messaging delivery only for non-sensitive destinations you control. <br>
+## Use Case:
 
+Developers, researchers, and AI practitioners use this skill to generate daily or weekly AI news briefings from curated RSS feeds, with emphasis on model releases, research, industry news, product updates, and coverage gaps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justintieu/ai-news-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/justintieu) <br>
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Olshansk RSS Feeds](https://github.com/Olshansk/rss-feeds) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown briefing with categorized news items and optional saved Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, failed-feed notes, cached briefing reuse, and coverage-gap reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and _meta.json) <br>
+Risk: The skill fetches and summarizes untrusted external RSS feed content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat RSS items as data rather than instructions, and review generated briefings before acting on them.
+
+Risk: Optional save mode writes briefing and link files to a default or user-specified directory.
+
+Mitigation: Use the default save directory or a deliberate folder you control, and do not execute saved feed content as commands.
+
+Risk: Configured feeds can fail, become stale, or omit important sources that do not publish RSS.
+
+Mitigation: Review failed-source notes and manually check documented coverage gaps for major releases.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justintieu/skills/ai-news-skill)
+- [Feed Configuration](artifact/feeds.json)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [OpenClaw](https://openclaw.ai)
+- [Olshansk RSS Feeds](https://github.com/Olshansk/rss-feeds)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing with categorized news items and optional saved Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional save mode can write a briefing file and a separate links file when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

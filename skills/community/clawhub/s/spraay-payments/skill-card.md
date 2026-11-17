@@ -1,46 +1,61 @@
-## Description: <br>
-Spraay Batch Payments helps agents send batch crypto payments and payroll through the Spraay x402 gateway across supported EVM chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send batch crypto payments, crypto payroll, invoices, token balance and price lookups, and ENS/Basename resolution through the Spraay x402 gateway.
 
-## Publisher: <br>
-[plagtech](https://clawhub.ai/user/plagtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plagtech](https://clawhub.ai/user/plagtech)
 
-## Use Case: <br>
-Developers and finance operators use this skill to have an agent check balances, resolve ENS or Basename addresses, create invoices, and submit confirmed batch crypto payments or payroll through Spraay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain payments can move real funds and may be irreversible. <br>
-Mitigation: Require explicit user confirmation of the gateway URL, recipients, chain, token, amounts, and x402 fee before any paid endpoint or transfer. <br>
-Risk: Paid endpoints may charge x402 micropayment fees. <br>
-Mitigation: Show payment instructions or fee context to the user and obtain confirmation before retrying a request with payment proof. <br>
-Risk: An incorrect gateway configuration could send requests to an unintended endpoint. <br>
-Mitigation: Verify SPRAAY_GATEWAY_URL is the intended Spraay gateway before use. <br>
+## Use Case:
 
+External users and developers use this skill to prepare Spraay batch payments, crypto payroll, invoices, balance checks, token prices, and name resolution through the configured x402 gateway.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/plagtech/spraay-payments) <br>
-- [Server-resolved GitHub provenance](https://github.com/plagtech/spraay-payments) <br>
-- [Spraay app](https://spraay.app) <br>
-- [Spraay documentation](https://docs.spraay.app) <br>
-- [Configured Spraay gateway endpoint](https://gateway.spraay.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SPRAAY_GATEWAY_URL, curl, jq, an x402-compatible wallet, and explicit user confirmation before payment execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill can help initiate real blockchain payments that are irreversible after signing and broadcast.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance wallet, estimate first, and manually review every decoded recipient, amount, token, fee, chain, and gateway origin before signing.
+
+Risk: A misconfigured gateway could route requests or x402 payment proofs to an unintended origin.
+
+Mitigation: Use https://gateway.spraay.app unless the user explicitly confirms another HTTPS gateway they control, and never send payment proof to a different origin.
+
+Risk: HTTP 402 challenge bodies and unsigned transaction responses could request unexpected payment, chain, asset, endpoint, or transaction data.
+
+Mitigation: Treat challenge and transaction responses as untrusted, enforce published price and endpoint checks, ABI-decode calldata locally, and refuse malformed or mismatched data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/plagtech/skills/spraay-payments)
+- [Spraay app](https://spraay.app)
+- [Spraay gateway](https://gateway.spraay.app)
+- [Spraay docs](https://docs.spraay.app)
+- [BPA 1.0 spec](https://docs.spraay.app/bpa/1.0/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to call the configured Spraay gateway, validate x402 challenges, and present decoded transaction details for user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

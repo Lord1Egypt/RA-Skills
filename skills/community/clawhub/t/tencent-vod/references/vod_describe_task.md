@@ -88,10 +88,10 @@
 
 ```bash
 # 查询任务状态和摘要信息
-python scripts/vod_describe_task.py --task-id 1490013579-procedurev2-acd135
+python3 scripts/vod_describe_task.py --task-id 1490013579-procedurev2-acd135
 
 # 指定子应用 ID
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
     --sub-app-id 1500046806
 ```
@@ -114,12 +114,12 @@ TaskId: 1490013579-procedurev2-acd135
 
 ```bash
 # 等待任务完成（默认最多等 600 秒，每 5 秒轮询一次）
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
 
 
 # 自定义超时和轮询间隔
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
  \
     --max-wait 300 \
@@ -130,17 +130,17 @@ python scripts/vod_describe_task.py \
 
 ```bash
 # 详细模式：显示输出 URL、审核建议等结果信息
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
     --verbose
 
 # JSON 格式输出完整 API 响应（便于脚本解析）
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
     --json
 
 # 等待完成并以 JSON 输出
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-procedurev2-acd135 \
  --json
 ```
@@ -149,22 +149,22 @@ python scripts/vod_describe_task.py \
 
 ```bash
 # 场景1：提交转码后分离查询（适合长时间任务）
-TASK_ID=$(python scripts/vod_process_media.py transcode \
+TASK_ID=$(python3 scripts/vod_process_media.py transcode \
     --file-id 5145403721233902989 \
     --quality hd \
     --json | python3 -c "import sys,json; print(json.load(sys.stdin)['TaskId'])")
 
 echo "任务已提交: $TASK_ID"
 # 稍后查询
-python scripts/vod_describe_task.py --task-id "$TASK_ID" --verbose
+python3 scripts/vod_describe_task.py --task-id "$TASK_ID" --verbose
 
 # 场景2：查询拉取上传任务结果
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-pullupload-acd135 \
     --verbose
 
 # 场景3：查询 AIGC 生图任务结果
-python scripts/vod_describe_task.py \
+python3 scripts/vod_describe_task.py \
     --task-id 1490013579-aigcimagetask-acd135 \
     --verbose --json
 ```

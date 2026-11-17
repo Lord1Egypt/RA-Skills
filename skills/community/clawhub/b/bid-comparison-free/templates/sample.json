@@ -1,0 +1,21 @@
+{
+  "bidders": [
+    { "name": "河南甲建设有限公司", "items": [
+      { "name": "土方开挖", "qty": 100, "price": 25, "amount": 2500 },
+      { "name": "路基填筑", "qty": 200, "price": 38, "amount": 7600 },
+      { "name": "沥青面层", "qty": 500, "price": 120, "amount": 60000 },
+      { "name": "排水管道", "qty": 300, "price": 85, "amount": 25500 }
+    ] },
+    { "name": "河南乙工程有限公司", "items": [
+      { "name": "土方开挖", "qty": 100, "price": 26, "amount": 2600 },
+      { "name": "路基填筑", "qty": 200, "price": 39, "amount": 7800 },
+      { "name": "沥青面层", "qty": 500, "price": 122, "amount": 61000 }
+    ] },
+    { "name": "河南丙建筑有限公司", "items": [
+      { "name": "土方开挖", "qty": 100, "price": 12, "amount": 1200 },
+      { "name": "路基填筑", "qty": 200, "price": 19, "amount": 3800 },
+      { "name": "沥青面层", "qty": 500, "price": 165, "amount": 82500 },
+      { "name": "排水管道", "qty": 300, "price": 118, "amount": 35400 }
+    ] }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "slzq-trading-mcp",
+  "version": "1.1.0",
+  "description": "MCP server for Sanli Zhiqi (三立智期) OpenClaw Open API (/open/v1)",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "slzq-trading-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "verify:http": "node scripts/verify-http.mjs",
+    "doctor": "node scripts/verify-http.mjs",
+    "test:connection": "node scripts/verify-http.mjs",
+    "test:mcp-tools": "node scripts/test-mcp-tools.mjs",
+    "test:auth-flow": "node scripts/test-auth-flow.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "openclaw",
+    "futures"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  }
+}

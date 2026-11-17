@@ -1,42 +1,60 @@
-## Description: <br>
-Automates MiroMind deep research through OpenClaw by using Playwright MCP to submit a topic to dr.miromind.ai, monitor the run, and save a Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miromind helps OpenClaw users run MiroMind deep research sessions through browser automation and save the resulting research as Markdown reports.
 
-## Publisher: <br>
-[karminski](https://clawhub.ai/user/karminski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karminski](https://clawhub.ai/user/karminski)
 
-## Use Case: <br>
-External users, developers, and research analysts use this skill to run MiroMind research sessions from OpenClaw for financial analysis, technology research, fact-checking, trend forecasting, or company analysis. The skill returns research status, a chat URL, and a locally saved Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires MiroMind account credentials and sends research questions to dr.miromind.ai. <br>
-Mitigation: Use a dedicated MiroMind account where possible, avoid submitting secrets or regulated data, and protect the OpenClaw configuration that stores the password. <br>
-Risk: Generated reports are saved under the local OpenClaw workspace. <br>
-Mitigation: Review saved reports for sensitive content and manage local access and retention according to your policy. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill to submit research questions to MiroMind, monitor the live chat session, and collect a local Markdown report with the completed findings.
 
-## Reference(s): <br>
-- [MiroMind](https://dr.miromind.ai) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub Miromind Skill Page](https://clawhub.ai/karminski/miromind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Text response with a chat URL and local Markdown report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MIROMIND_EMAIL and MIROMIND_PASSWORD; reports are saved under the local OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill uses browser automation with reusable MiroMind account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated MiroMind account with a unique password and restrict access to OpenClaw configuration and output directories.
+
+Risk: Research prompts and submitted data are sent to MiroMind.
+
+Mitigation: Avoid submitting confidential or regulated data unless approved, and review MiroMind's data practices before use.
+
+Risk: Completed reports may contain sensitive research content saved on the local machine.
+
+Mitigation: Restrict access to output directories and periodically delete reports or session files that are no longer needed.
+
+## Reference(s):
+
+- [MiroMind](https://dr.miromind.ai)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub Miromind skill page](https://clawhub.ai/karminski/skills/miromind)
+- [ClawHub publisher profile](https://clawhub.ai/user/karminski)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown report, research summary text, local report path, and MiroMind chat URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MIROMIND_EMAIL and MIROMIND_PASSWORD; reports are saved locally after the MiroMind session completes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

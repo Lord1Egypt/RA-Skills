@@ -1,46 +1,68 @@
-## Description: <br>
-Plan trips on a tight budget with flight, hotel, attraction, itinerary, and related travel options powered by flyai and Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans budget trips using flyai CLI data for low-cost flights, hotels, attractions, itinerary options, and travel-saving suggestions with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to collect budget travel parameters, run flyai CLI searches, and present low-cost itinerary, flight, hotel, and attraction options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a global third-party npm CLI. <br>
-Mitigation: Review the CLI package and install it only in an environment where global npm packages are allowed. <br>
-Risk: Travel-search details may be sent through flyai and Fliggy. <br>
-Mitigation: Avoid entering passport, payment, or other sensitive personal details unless sharing them with the travel provider is intended. <br>
-Risk: Raw travel requests may be saved in a local .flyai-execution-log.json file. <br>
-Mitigation: Disable, delete, or periodically clear the local execution log when requests may contain sensitive details. <br>
+## Use Case:
 
+External travelers and travel-focused agents use this skill to compare low-cost flights, budget lodging, points of interest, and itinerary options from flyai CLI results before choosing booking links.
 
-## Reference(s): <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Budget Trip Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Parent flyai Skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include booking links for listed options, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill installs an unpinned global npm CLI dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the flyai CLI source and package version first, pin the dependency, and avoid global installation where local or sandboxed execution is required.
+
+Risk: The skill relies on externally supplied booking links.
+
+Mitigation: Require explicit user confirmation before opening links, booking, purchasing, reserving, or submitting personal data, and validate destination URLs before use.
+
+Risk: The skill can retain raw travel queries in a local execution log.
+
+Mitigation: Avoid entering sensitive personal data, disclose local retention to users, and delete or disable local logs where policy requires.
+
+Risk: Real-time travel data is unavailable when the flyai CLI or network access fails.
+
+Mitigation: Report unavailable sections clearly, retry only through documented commands, and avoid filling gaps with unsourced travel data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/budget-trip-planner)
+- [Publisher profile](https://clawhub.ai/user/dingtom336-gif)
+- [README](artifact/README.md)
+- [Templates](artifact/references/templates.md)
+- [Playbooks](artifact/references/playbooks.md)
+- [Fallbacks](artifact/references/fallbacks.md)
+- [Runbook](artifact/references/runbook.md)
+- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, concise recommendations, and inline shell commands for setup or recovery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and should not include raw JSON.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Scrapling Safe helps agents scrape and extract data from public web pages using HTTP, stealth, or browser-based fetching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapling Safe helps agents scrape and extract publicly accessible web content using HTTP requests, browser-backed fetching, and selector-based extraction.
 
-## Publisher: <br>
-[linshuikeji](https://clawhub.ai/user/linshuikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linshuikeji](https://clawhub.ai/user/linshuikeji)
 
-## Use Case: <br>
-Developers and agents use this skill for authorized scraping and extraction of publicly accessible web content, including selector-based extraction and saving results for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary URLs with stealth and browser modes, while public-only and robots.txt claims are usage guidance rather than enforced safeguards. <br>
-Mitigation: Use only for authorized public web scraping, review target URLs before execution, and run in a network-restricted environment when internal services or credentials are reachable. <br>
-Risk: Cloudflare-solving and stealth modes can violate site terms or authorization boundaries if used without permission. <br>
-Mitigation: Disable these modes unless explicit permission exists and confirm scraping complies with site terms and robots.txt. <br>
+## Use Case:
 
+Developers and agent users can use this skill to collect data from public web pages, extract content with CSS or XPath selectors, and export results for downstream review or processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linshuikeji/scrapling-safe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and shell commands; saved scrape results may be JSON, text, or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write output files under the user's home directory when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may contact any URL the agent is given.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in an isolated environment and avoid private, internal, or sensitive URLs.
+
+Risk: The skill can write scrape results under the user's home directory.
+
+Mitigation: Choose a dedicated output folder and review generated files before reuse.
+
+Risk: The security scan found that the safety claims are not enforced strongly enough for the network and file-writing authority used by the skill.
+
+Mitigation: Review the skill before deployment and prefer pinned dependencies or a reviewed lockfile.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linshuikeji/skills/scrapling-safe)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/linshuikeji)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI examples and optional JSON, TXT, or Markdown scrape outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be written under the user's home directory when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

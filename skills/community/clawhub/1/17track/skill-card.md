@@ -1,45 +1,60 @@
-## Description: <br>
-Track parcels and shipments via the 17TRACK API with a local SQLite database, automatic status polling, webhook ingestion, and daily reports with auto-cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track parcels and shipments via the 17TRACK API with local SQLite storage, status polling, webhook ingestion, and daily reports with delivered-package cleanup.
 
-## Publisher: <br>
-[f-liva](https://clawhub.ai/user/f-liva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[f-liva](https://clawhub.ai/user/f-liva)
 
-## Use Case: <br>
-Developers and agent users use this skill to track parcels through 17TRACK, maintain a local shipment database, poll for delivery updates, ingest optional webhooks, and generate daily shipment reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 17TRACK API token and maintains a local shipment database. <br>
-Mitigation: Install only in environments where the token can be protected, avoid echoing TRACK17_TOKEN, and review local data retention needs before use. <br>
-Risk: Webhook mode may accept or store payloads without rejecting invalid or missing signatures. <br>
-Mitigation: Prefer polling with sync unless real-time webhook updates are required; if webhooks are enabled, bind locally or place the endpoint behind trusted network controls and configure TRACK17_WEBHOOK_SECRET. <br>
-Risk: Daily reports automatically remove delivered packages from the local tracking database. <br>
-Mitigation: Review or disable daily-report cleanup when delivery history must be retained. <br>
+## Use Case:
 
+External users and agents use this skill to register tracking numbers, poll shipment status, summarize delivery events, and maintain a local package-tracking database through 17TRACK.
 
-## Reference(s): <br>
-- [17TRACK](https://www.17track.net/) <br>
-- [17TRACK API](https://api.17track.net/) <br>
-- [17TRACK Tracking API v2.2](https://api.17track.net/track/v2.2) <br>
-- [17TRACK carrier metadata endpoint](https://res.17track.net/asset/carrier/info/apicarrier.all.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown and command-line text with optional JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a 17TRACK API token for API-backed tracking operations; stores package records in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Tracking numbers, carrier data, optional parameters, language settings, token-authenticated requests, and label-derived tags may be sent to 17TRACK.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when sharing shipment data with 17TRACK is acceptable, and avoid labels or tags that contain sensitive personal or business information.
+
+Risk: The optional webhook path can accept and store untrusted data too broadly, and signature rejection and request-size limits are not fixed.
+
+Mitigation: Prefer manual polling over webhooks, keep the webhook server bound to localhost, and do not expose it externally until signature enforcement and request-size limits are addressed.
+
+Risk: The daily report removes delivered packages from the local database.
+
+Mitigation: Run the daily report only when delivered-package cleanup is desired, or use manual sync and list commands when retaining delivered records matters.
+
+## Reference(s):
+
+- [17TRACK](https://www.17track.net/)
+- [17TRACK API](https://api.17track.net/)
+- [17TRACK Tracking API v2.2 Endpoint](https://api.17track.net/track/v2.2)
+- [17TRACK Carrier Metadata](https://res.17track.net/asset/carrier/info/apicarrier.all.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRACK17_TOKEN for API calls and stores tracking data in a local SQLite database.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

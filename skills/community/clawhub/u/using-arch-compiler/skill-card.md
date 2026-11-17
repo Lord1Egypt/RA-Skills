@@ -1,41 +1,50 @@
-## Description: <br>
-Use when starting architecture work and you need to decide whether to compile/finalise architecture or implement an already-approved architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when starting architecture work and you need to decide whether to compile/finalise architecture or implement an already-approved architecture.
 
-## Publisher: <br>
-[inetgas](https://clawhub.ai/user/inetgas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inetgas](https://clawhub.ai/user/inetgas)
 
-## Use Case: <br>
-Developers and agent operators use this skill at the start of architecture work to route an agent toward compiling or finalising architecture, or toward implementing an already approved architecture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the full Architecture Compiler repository; using copied skill files alone can leave required tools, schemas, configuration, or patterns unavailable. <br>
-Mitigation: Install or verify the full repository in a stable local path before routing architecture work, and require explicit approval before installing or writing additional files. <br>
-Risk: Misrouting implementation work before architecture is approved can cause an agent to replace provider, boundary, or pattern decisions without review. <br>
-Mitigation: Check the architecture approval state before implementation and route back to compiling architecture when required decisions are unresolved or materially changed. <br>
+## Use Case:
 
+Developers and engineers use this skill to route architecture work between compiling or finalising architecture decisions and implementing an already-approved architecture.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/inetgas/arch-compiler) <br>
-- [ClawHub skill page](https://clawhub.ai/inetgas/using-arch-compiler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown response naming the selected architecture skill and the reason for that selection] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May stop routing until the full Architecture Compiler repository is available or architecture approval is clarified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill expects the full Architecture Compiler repository and companion local files to be present and trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Architecture Compiler repository source before installation and use the skill only where its required companion files are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inetgas/skills/using-arch-compiler)
+- [Project homepage](https://github.com/inetgas/arch-compiler)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text routing recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The response identifies which Architecture Compiler skill to use and explains why.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

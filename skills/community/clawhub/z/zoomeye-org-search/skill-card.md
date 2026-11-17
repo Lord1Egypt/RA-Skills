@@ -1,42 +1,58 @@
-## Description: <br>
-ZoomEye cyberspace search CLI guidance for finding internet assets, querying ZoomEye data, building ZoomEye dork queries, and supporting security research workflows such as asset mapping, exposure discovery, and vulnerability impact assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using the ZoomEye CLI to build ZoomEye dork queries, search internet-exposed assets, and review asset discovery results for security research and exposure analysis.
 
-## Publisher: <br>
-[jjbondone](https://clawhub.ai/user/jjbondone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjbondone](https://clawhub.ai/user/jjbondone)
 
-## Use Case: <br>
-Developers, security engineers, and authorized researchers use this skill to translate asset-search goals into ZoomEye dork syntax and run ZoomEye CLI searches for internet-exposed hosts, services, web applications, certificates, and related metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ZoomEye API key and may store ZoomEye credentials locally through the ZoomEye CLI. <br>
-Mitigation: Initialize ZoomEye credentials outside chat when possible, use a platform secret mechanism for automation, and rotate the key if it has been shared. <br>
-Risk: ZoomEye searches can consume account quota and may reveal internet-exposed assets that require authorized handling. <br>
-Mitigation: Use small page sizes and facets to validate searches before exporting larger result sets, and run searches only for authorized security or asset-management purposes. <br>
+## Use Case:
 
+Developers, security engineers, and external researchers use this skill to translate natural-language asset discovery goals into ZoomEye dork syntax, check ZoomEye CLI setup, run scoped searches, and interpret returned asset data.
 
-## Reference(s): <br>
-- [ZoomEye Documentation](https://www.zoomeye.org/doc/) <br>
-- [ZoomEye Profile and API Key Page](https://www.zoomeye.org/profile) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jjbondone/zoomeye-org-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and ZoomEye dork query strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI setup steps, API-key initialization guidance, quota-aware search strategy, and search-result interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to provide a ZoomEye API key to the agent for initialization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure ZoomEye credentials outside the chat when possible, avoid pasting API keys into the agent, and rotate any key already shared.
+
+Risk: The skill recommends installing the ZoomEye CLI without pinning a trusted package version.
+
+Mitigation: Install the CLI in a dedicated environment and pin a trusted version where possible before use.
+
+Risk: The skill can save ZoomEye search results locally with the -save option.
+
+Mitigation: Use -save only when local storage of search results is acceptable for the data and environment.
+
+## Reference(s):
+
+- [ZoomEye Documentation](https://www.zoomeye.org/doc/)
+- [ClawHub Skill Page](https://clawhub.ai/jjbondone/skills/zoomeye-org-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, dork query strings, command output interpretation, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose ZoomEye CLI commands, local result saving with -save, and API-key setup steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

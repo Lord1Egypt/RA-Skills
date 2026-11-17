@@ -1,48 +1,62 @@
-## Description: <br>
-AI-Поддержка PRO is a Russian-language customer-support automation skill for ticket categorization, SLA tracking, L1/L2/L3 escalation, sentiment analysis, response drafting, NPS/CSAT reporting, operator onboarding, and CRM-assisted support workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Russian-language customer support workflows for ticket categorization, SLA tracking, escalation routing, sentiment-aware responses, CRM context, reports, and operator onboarding.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-Support leads, operators, and business owners use this skill to standardize high-volume customer-support operations: categorize incoming tickets, monitor SLA risk, route escalations, draft customer responses, prepare support reports, and guide operator onboarding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release name and package metadata are inconsistent with the AI-Поддержка PRO customer-support behavior. <br>
-Mitigation: Confirm this is the intended customer-support automation skill before installation or deployment. <br>
-Risk: The skill can affect customer data, CRM records, customer replies, and refunds without enough control guidance. <br>
-Mitigation: Disable CRM writes, auto-refunds, and customer-facing sends until explicit approval gates are configured and tested. <br>
-Risk: The skill requires sensitive API, CRM, and Telegram credentials. <br>
-Mitigation: Use least-privilege credentials and configure redaction, retention, and escalation-channel rules before operational use. <br>
+## Use Case:
 
+Support leaders, operators, and implementation teams use this skill to standardize customer support intake, prioritize tickets, monitor SLA risk, draft responses, route escalations, and produce operational reports for SaaS, e-commerce, marketplace, and service businesses.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/raaipro/raai-price-probe-zero-20260421) <br>
-- [Publisher profile](https://clawhub.ai/user/raaipro) <br>
-- [README](artifact/README.md) <br>
-- [Quick start examples](artifact/examples/quick-start.md) <br>
-- [Onboarding guide](artifact/docs/onboarding.md) <br>
-- [Anti-fail guide](artifact/docs/anti-fail.md) <br>
-- [ROI guide](artifact/docs/roi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, structured support reports, response templates, checklists, and shell-command setup snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configuration for company support policy, SLA matrix, escalation owners, CRM/API credentials, and approval gates before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Broad customer-support automation may affect refunds, CRM updates, ticket closure, and outbound customer messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval for refunds, CRM writes, ticket closure, and outbound messages until the workflow is reviewed and narrowed.
+
+Risk: The skill handles customer data and optional CRM, Telegram, Sheets, and API credentials.
+
+Mitigation: Define privacy and retention rules before deployment, and do not add live credentials until access controls and data handling are approved.
+
+Risk: Server security evidence reports broad triggers and broken installation/build scripts.
+
+Mitigation: Narrow triggers, fix or replace install/build scripts, and rerun smoke testing before installing in a real support environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raaipro/skills/raai-price-probe-zero-20260421)
+- [README](artifact/README.md)
+- [Quick start examples](artifact/examples/quick-start.md)
+- [Onboarding guide](artifact/docs/onboarding.md)
+- [Anti-fail guide](artifact/docs/anti-fail.md)
+- [ROI guide](artifact/docs/roi.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with tables, checklists, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language operational outputs; quality depends on configured SLA, escalation owners, ticket categories, and CRM/customer data.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

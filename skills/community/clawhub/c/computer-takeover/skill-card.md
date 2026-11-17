@@ -1,43 +1,58 @@
-## Description: <br>
-Provides unattended remote control guidance for paired OpenClaw devices, including screen and camera capture, shell commands, file management, app control, notifications, input automation, location lookup, and process management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through unattended remote administration of paired OpenClaw nodes, including screen capture, camera access, shell execution, file, app, notification, location, process, and pairing operations.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External users or developers with explicit authorization use this skill to administer paired devices: inspect device state, capture screen or camera output, run shell commands, manage files, control apps and processes, and automate input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad unattended access to paired devices, including screen, camera, files, commands, notifications, location, apps, and processes. <br>
-Mitigation: Install only for devices you own or are explicitly authorized to manage, restrict reachable nodes, and keep pairings revocable. <br>
-Risk: Shell commands, file changes, app installs, and process kills can modify or damage remote systems. <br>
-Mitigation: Require confirmation for shell execution, file writes or deletion, installs, process termination, and other destructive or privileged actions. <br>
-Risk: Screen capture, camera capture, notifications, and location access can expose sensitive personal or organizational information. <br>
-Mitigation: Require explicit approval for capture or monitoring actions and log remote actions for later review. <br>
+## Use Case:
 
+Developers and authorized device administrators use this skill to manage paired devices they own or are formally authorized to administer. It supports node discovery, device status checks, approved screen or camera capture, shell execution, and file, app, notification, location, and process management.
 
-## Reference(s): <br>
-- [Computer Takeover on ClawHub](https://clawhub.ai/fuzzyb33s/computer-takeover) <br>
-- [Shell Command Reference by OS](references/shell-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool calls and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands or actions that operate on paired remote devices; review the target node and command intent before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill enables unattended control of screen, camera, notifications, location, shell, files, apps, and processes on paired devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on devices the operator owns or is formally authorized to administer, with explicit consent and visible approval for each sensitive capability.
+
+Risk: Remote shell, file transfer, app install or uninstall, process termination, and service or registry changes can alter or damage a device.
+
+Mitigation: Confirm the target node before action, scope commands to the approved task, avoid broad file browsing or destructive operations, and keep gateway access strongly authenticated and auditable.
+
+Risk: Screen, camera, notification, and location access could be misused for covert monitoring or credential exposure.
+
+Mitigation: Do not use the skill for covert monitoring, credential access, or collection beyond the approved administrative purpose.
+
+## Reference(s):
+
+- [Shell Command Reference by OS](references/shell-commands.md)
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/computer-takeover)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OS-specific command examples and node-management guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

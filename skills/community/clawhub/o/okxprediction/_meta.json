@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn77keazbpgfgrvzy1xde66h85836g9s",
-  "slug": "okxprediction",
+  "id": "okx-prediction-skill",
+  "name": "OKX预测技能",
+  "description": "基于多周期结构与市场行为的BTC预测交易系统（适用于OKX合约）",
   "version": "1.0.0",
-  "publishedAt": 1773939037187
+  "author": "user",
+  "tags": ["btc", "okx", "trading", "prediction", "quant"],
+  "entry": "SKILL.md"
 }

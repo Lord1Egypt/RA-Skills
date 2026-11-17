@@ -1,40 +1,56 @@
-## Description: <br>
-Parses parcel vertex coordinates from images or text, generates Ovitalmap-compatible vertex and boundary CSVs, categorizes parcels by country code and provider, and archives records in a per-country database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts parcel boundaries into OvitalMap-compatible CSV files, assigns stable parcel codes, and maintains deduplicated country and master archives.
 
-## Publisher: <br>
-[jeromeex](https://clawhub.ai/user/jeromeex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeromeex](https://clawhub.ai/user/jeromeex)
 
-## Use Case: <br>
-External users, developers, and field teams use this skill to convert parcel coordinate inputs into Ovitalmap import CSVs and maintain a local per-country parcel archive with provider metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local archive can persist parcel coordinates, provider names, and official cadastre identifiers, and coordinate matches can reveal archived metadata to later users. <br>
-Mitigation: Decide workspace archive access and retention before use, restrict archive files to authorized users, and review archive-hit metadata before sharing outputs. <br>
-Risk: Ambiguous coordinates, provider names, or official IDs can lead to incorrect country assignment, provider matching, or parcel coding. <br>
-Mitigation: Ask targeted clarification questions, inspect script results before writing files, and confirm ambiguous provider or registration matches with the user. <br>
+## Use Case:
 
+Developers, survey operations teams, and land-record workflows use this skill to convert confirmed WGS84, DMS, or UTM parcel coordinates into OvitalMap boundary or vertex CSV exports while preserving parcel codes and local archives. It is not cadastral or legal validation.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/jeromeex/skills/ovitalmap-parcel-csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Guidance] <br>
-**Output Format:** [CSV files plus concise Markdown or text delivery notes and JSON script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates paired Ovitalmap vertex and boundary CSV files and may update local archive CSVs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: ClawHub release evidence) <br>
+Risk: Untrusted provider names or notes can be persisted into generated CSV archives in a form spreadsheet software may interpret as formulas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize provider-supplied text before opening generated CSVs in spreadsheet software; keep generated exports in a dedicated workspace.
+
+Risk: The skill creates and updates local CSV exports, country archives, master archives, and backups.
+
+Mitigation: Set OVITALMAP_WORKSPACE to a dedicated folder and review coordinates, country codes, provider names, and parcel codes before approving writes.
+
+## Reference(s):
+
+- [OvitalMap Parcel CSV on ClawHub](https://clawhub.ai/jeromeex/skills/ovitalmap-parcel-csv)
+- [CSV Compatibility Contract](references/csv-contract.md)
+- [Workflow Contract](references/workflow-contract.md)
+- [Interaction and Edge Cases](references/interaction-and-edge-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, CSV files]
+
+**Output Format:** [Markdown guidance with JSON stdin examples and generated UTF-8 CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; OVITALMAP_WORKSPACE can be set to a dedicated folder for generated exports and archives.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

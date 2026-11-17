@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn7afdk9ag1ftxjn0btmw2tj3h82y30x",
+  "ownerId": "system",
   "slug": "tavily-web-search-full",
   "version": "2.0.6",
-  "publishedAt": 1774191396782
+  "publishedAt": 1774166400000,
+  "updateUrl": "https://docs.tavily.com/changelog.md",
+  "updateFrequency": "monthly",
+  "clawhubId": "k9762c607mgx5yxwjtn33kawxn83cb81",
+  "apis": ["search", "extract", "usage", "crawl", "map", "research"],
+  "safetyControls": {
+    "search": {"enabled": true, "default": true},
+    "extract": {"enabled": true, "default": true},
+    "usage": {"enabled": true, "default": true},
+    "crawl": {"enabled": false, "default": false, "requireFlag": "--enable"},
+    "map": {"enabled": false, "default": false, "requireFlag": "--enable"},
+    "research": {"enabled": false, "default": false, "requireFlag": "--enable --confirm"}
+  },
+  "features": {
+    "rateLimitHandling": true,
+    "caching": true,
+    "autoRetry": true,
+    "logging": true,
+    "scoreFiltering": true,
+    "queryValidation": true
+  },
+  "metadata": {
+    "clawdbot": {
+      "emoji": "🔍",
+      "requires": {
+        "bins": ["python3", "curl"],
+        "env": ["TAVILY_API_KEY"],
+        "network": true
+      },
+      "primaryEnv": "TAVILY_API_KEY",
+      "permissions": {
+        "network": "Check for updates from Tavily official docs",
+        "filesystem": "Read/write cache and logs in ~/.openclaw/"
+      }
+    }
+  },
+  "changelog": "v2.0.6: Fixed metadata declarations (network access) + Security scan improvements"
 }

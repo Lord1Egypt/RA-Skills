@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Gráfica que sube</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const TITULO = 'cómo se ve la vida ocho semanas después';   // arriba de la gráfica (máx. ~45 letras)
+const RESALTAR = 'ocho semanas';                   // se pinta con resaltador detrás ('' = nada)
+const ETIQUETA_ANTES = 'hoy';                      // debajo de la primera barra
+const ETIQUETA_DESPUES = 'semana 8';               // debajo de la última barra
+const VALORES = [2, 2.6, 3.4, 4.8, 6.4, 9];        // solo la FORMA de la subida (3 a 7 barras; no se imprimen)
+const NUMERO_FINAL = null;                         // el número que cuenta arriba de la última barra (null = sin número)
+const UNIDAD = '';                                 // lo que va junto al número: 'clientas', '%', 'rubros'…
+const COLORES = {
+  mesa: '#2d4a6b',       // detrás de la hoja
+  hoja: '#fbf6ea',       // el papel cuadriculado
+  cuadricula: 'rgba(70,130,200,.22)',
+  tinta: '#1d2440',      // ejes, título y etiquetas
+  barra: '#f4b63a',      // las barras de antes
+  barraFinal: '#e8473a', // la última barra, la flecha y el círculo
+  resaltador: 'rgba(255,221,0,.62)',
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const N = VALORES.length;
+const T_TITULO = .25, T_EJES = .9, T_BARRAS = 1.35, PASO = .24, CRECE = .42;
+const T_FLECHA = T_BARRAS + (N - 1) * PASO + CRECE + .05;
+const T_CIRCULO = T_FLECHA + .5, T_CUENTA = T_CIRCULO + .1;
+const DUR = +(T_CUENTA + (NUMERO_FINAL != null ? .9 : .35) + 1.6).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+const PAPEL = hacerPapel(COLORES.mesa, { fibras: false, viñeta: .3, semilla: 3 });
+const HOJA = { x: 80, y: 285, w: 920, h: 1165 };             // dentro de la zona segura
+// cuadrícula: se pinta una vez
+const CUAD = (() => {
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const p = c.getContext('2d');
+  p.strokeStyle = COLORES.cuadricula; p.lineWidth = 2;
+  for (let x = HOJA.x + 20; x < HOJA.x + HOJA.w; x += 46) { p.beginPath(); p.moveTo(x, HOJA.y); p.lineTo(x, HOJA.y + HOJA.h); p.stroke(); }
+  for (let y = HOJA.y + 20; y < HOJA.y + HOJA.h; y += 46) { p.beginPath(); p.moveTo(HOJA.x, y); p.lineTo(HOJA.x + HOJA.w, y); p.stroke(); }
+  return c;
+})();
+
+// título: hasta 2 renglones, centrado
+const AJ = autoajuste(TITULO, LETRA_MANO, 700, HOJA.w - 150, 2, 100, 54);
+const INTER = AJ.size * 1.18;
+const TIT = AJ.rs.map((r, i) => ({ txt: r, w: medir(r, AJ.font), y: HOJA.y + 95 + AJ.size * .85 + i * INTER }));
+TIT.forEach(l => l.x = W / 2 - l.w / 2);
+const TW = TIT.reduce((a, l) => a + l.w, 0); let ac = 0; for (const l of TIT) { l.t0 = ac / TW; ac += l.w; l.t1 = ac / TW; }
+const TIT_FIN = TIT[TIT.length - 1].y + AJ.size * .4;
+
+// la gráfica
+const G = { x0: 185, x1: 905, base: 1285, arriba: TIT_FIN + (NUMERO_FINAL != null ? 330 : 200) };
+const MAX = Math.max(...VALORES), SLOT = (G.x1 - G.x0 - 20) / N, BW = SLOT * .62;
+const BARRAS = VALORES.map((v, i) => {
+  const h = (v / MAX) * (G.base - G.arriba);
+  return { x: G.x0 + 20 + i * SLOT + (SLOT - BW) / 2, w: BW, h, t0: T_BARRAS + i * PASO };
+});
+const ULT = BARRAS[N - 1];
+const TOPE = [ULT.x + ULT.w / 2, G.base - ULT.h];              // punta de la última barra
+
+function titulo(t) {
+  const p = prog(t, T_TITULO, T_TITULO + .75);
+  // resaltador detrás de la palabra
+  if (RESALTAR) {   // cada palabra resaltada, aunque la frase caiga en dos renglones
+    const quiero = RESALTAR.toLowerCase().split(/\s+/);
+    const k = easeOut(prog(t, T_TITULO + .7, T_TITULO + 1.05));
+    if (k > 0) TIT.forEach((l, i) => {
+      const pal = l.txt.split(' '); let x = l.x, a = null, b = null;
+      pal.forEach(w => { const ww = medir(w, AJ.font); if (quiero.includes(w.toLowerCase().replace(/[.,:;¿?¡!«»]/g, ''))) { if (a == null) a = x; b = x + ww; } x += ww + medir(' ', AJ.font); });
+      if (a == null) return; const y = l.y - AJ.size * .32;
+      ink(resample([[a - 12, y + 4], [lerp(a - 12, b + 14, k), y - 3]], 10), { w: AJ.size * .62, col: COLORES.resaltador, passes: 1, amp: 2, seed: 31 + i });
+    });
+  }
+  ctx.save(); ctx.font = AJ.font; ctx.fillStyle = COLORES.tinta;
+  for (const l of TIT) { const k = prog(p, l.t0, l.t1); if (k <= 0) continue;
+    ctx.save(); ctx.beginPath(); ctx.rect(l.x - 10, l.y - AJ.size, l.w * k + 20, AJ.size * 1.5); ctx.clip();
+    ctx.fillText(l.txt, l.x + (vnoise(BOIL * .7, l.y) - .5) * 2.2, l.y + (vnoise(l.y, BOIL * .7) - .5) * 2.2); ctx.restore(); }
+  ctx.restore();
+}
+
+function ejes(t) {
+  const k = ease(prog(t, T_EJES, T_EJES + .45));
+  drawOn(line(G.x0, G.base, G.x0, G.arriba - 60), k, { w: 7, col: COLORES.tinta, amp: 1.6, seed: 2 });
+  drawOn(line(G.x0, G.base, G.x1 + 20, G.base), k, { w: 7, col: COLORES.tinta, amp: 1.6, seed: 3 });
+  if (k >= 1) {   // puntas de flecha de los ejes
+    ink([[G.x0 - 18, G.arriba - 34], [G.x0, G.arriba - 62], [G.x0 + 18, G.arriba - 34]], { w: 6, col: COLORES.tinta, amp: 1, seed: 4 });
+    ink([[G.x1 - 6, G.base - 18], [G.x1 + 22, G.base], [G.x1 - 6, G.base + 18]], { w: 6, col: COLORES.tinta, amp: 1, seed: 5 });
+  }
+  // etiquetas
+  const et = (txt, b, t0, seed) => { const a = easeOut(prog(t, t0, t0 + .3)); if (a <= 0 || !txt) return;
+    const f = autoajuste(txt, LETRA_MANO, 700, SLOT * 1.9, 1, 58, 34);
+    ctx.save(); ctx.globalAlpha = a; ctx.font = f.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center';
+    ctx.fillText(txt, Math.min(b.x + b.w / 2, HOJA.x + HOJA.w - 50 - medir(txt, f.font) / 2), G.base + 72 + (1 - a) * 18 + (vnoise(BOIL, seed) - .5) * 2); ctx.restore(); };
+  et(ETIQUETA_ANTES, BARRAS[0], BARRAS[0].t0 + .1, 1);
+  et(ETIQUETA_DESPUES, ULT, ULT.t0 + .25, 2);
+}
+
+function barras(t) {
+  BARRAS.forEach((b, i) => {
+    const g = back(prog(t, b.t0, b.t0 + CRECE)); if (g <= 0) return;
+    const h = b.h * g, y = G.base - h, fin = i === N - 1;
+    const pts = rect(b.x, y, b.w, h);
+    fill(rect(b.x + 12, y + 12, b.w, h - 12), 'rgba(30,30,60,.13)', { amp: 1.2, seed: 60 + i });
+    fill(pts, fin ? COLORES.barraFinal : COLORES.barra, { amp: 1.8, seed: 40 + i });
+    hatch(pts, { col: COLORES.tinta, alpha: .22, gap: 16, w: 2.4, seed: 70 + i, angle: -.8 });
+    ink(pts, { closed: true, w: 5, col: COLORES.tinta, amp: 1.6, seed: 50 + i });
+  });
+  // línea de tendencia punteada por encima de las barras
+  const k = prog(t, T_BARRAS + .2, T_FLECHA);
+  if (k > 0) { ctx.save(); ctx.setLineDash([4, 20]);
+    const pts = BARRAS.map(b => [b.x + b.w / 2, G.base - b.h - 34]);
+    drawOn(resample(pts, 12), k, { w: 5, col: 'rgba(29,36,64,.45)', passes: 1, amp: 1.5, seed: 81 }); ctx.restore(); }
+}
+
+function remate(t) {
+  // flecha curva desde la primera barra hasta la última
+  const a = [BARRAS[0].x + BARRAS[0].w * .5, G.base - BARRAS[0].h - 120];
+  const b = [TOPE[0] - 60, TOPE[1] - 70];
+  const c = [lerp(a[0], b[0], .35), Math.min(a[1], b[1]) - 10 + (a[1] - b[1]) * .15];
+  const curva = []; for (let i = 0; i <= 30; i++) { const u = i / 30;
+    curva.push([(1 - u) ** 2 * a[0] + 2 * u * (1 - u) * c[0] + u * u * b[0], (1 - u) ** 2 * a[1] + 2 * u * (1 - u) * c[1] + u * u * b[1]]); }
+  const kf = easeOut(prog(t, T_FLECHA, T_FLECHA + .45));
+  drawOn(resample(curva, 9), kf, { w: 10, col: COLORES.barraFinal, amp: 2.2, seed: 90 });
+  if (kf >= 1) { const [px, py] = curva[30], [qx, qy] = curva[27], ang = Math.atan2(py - qy, px - qx);
+    const pun = (d, s) => [px + Math.cos(ang + s) * d, py + Math.sin(ang + s) * d];
+    ink([pun(46, Math.PI - .5), [px, py], pun(46, Math.PI + .5)], { w: 10, col: COLORES.barraFinal, passes: 1, amp: 1.5, seed: 91 }); }
+  // círculo doble alrededor de la punta de la última barra + rayitos
+  const kc = easeOut(prog(t, T_CIRCULO, T_CIRCULO + .4));
+  const ro = circle(TOPE[0], TOPE[1] - 8, ULT.w * .78, 72, -.1);
+  drawOn([...ro, ...ro.slice(0, 8).map(([x, y]) => [x + 6, y - 6])], kc, { w: 7, col: COLORES.barraFinal, amp: 2.5, seed: 95 });
+  const kr = back(prog(t, T_CIRCULO + .25, T_CIRCULO + .55));
+  if (kr > 0) for (let i = 0; i < 7; i++) { const an = -Math.PI * .95 + i * Math.PI * .9 / 6, r0 = ULT.w * .95 + 10, r1 = r0 + 46 * kr;
+    ink(line(TOPE[0] + Math.cos(an) * r0, TOPE[1] - 8 + Math.sin(an) * r0 * .9, TOPE[0] + Math.cos(an) * r1, TOPE[1] - 8 + Math.sin(an) * r1 * .9), { w: 6, col: COLORES.tinta, passes: 1, amp: 1, seed: 100 + i }); }
+  // el número que cuenta
+  if (NUMERO_FINAL == null) return;
+  const kn = prog(t, T_CUENTA, T_CUENTA + .85); if (kn <= 0) return;
+  const n = Math.round(NUMERO_FINAL * easeOut(kn));
+  const txt = n.toLocaleString('es') + (UNIDAD ? (UNIDAD === '%' ? '%' : ' ' + UNIDAD) : '');
+  const f = autoajuste(txt, LETRA_MANO, 800, 420, 1, 120, 60);
+  const cx = Math.min(TOPE[0], G.x1 - 200), cy = TOPE[1] - 175;
+  const s = back(prog(t, T_CUENTA, T_CUENTA + .3));
+  ctx.save(); ctx.translate(cx, cy); ctx.scale(s, s); ctx.rotate(-.06);
+  const bw = medir(txt, f.font) + 70;
+  fill(roundRect(-bw / 2 + 10, -f.size * .78 + 12, bw, f.size * 1.3, 30), 'rgba(30,30,60,.2)', { amp: 1 });
+  fill(roundRect(-bw / 2, -f.size * .78, bw, f.size * 1.3, 30), COLORES.hoja, { amp: 1.4, seed: 120 });
+  ink(roundRect(-bw / 2, -f.size * .78, bw, f.size * 1.3, 30), { closed: true, w: 5, col: COLORES.barraFinal, amp: 1.5, seed: 121 });
+  ctx.font = f.font; ctx.fillStyle = COLORES.barraFinal; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(txt, 0, -f.size * .12);
+  ctx.restore();
+}
+
+function hoja(t) {
+  const { x, y, w, h } = HOJA;
+  fill(rect(x + 20, y + 26, w, h), 'rgba(0,0,0,.3)', { amp: 2 });
+  fill(rect(x, y, w, h), COLORES.hoja, { amp: 1.3, seed: 2 });
+  ctx.save(); tracePath(J(rect(x, y, w, h), 2.2, 1.3), true); ctx.clip(); ctx.drawImage(CUAD, 0, 0); ctx.restore();
+  // cinta en las esquinas de arriba
+  for (const [cx, rot, s] of [[x + 40, -.6, 1], [x + w - 40, .6, 2]]) {
+    ctx.save(); ctx.translate(cx, y + 6); ctx.rotate(rot);
+    fill(rect(-80, -28, 160, 56), 'rgba(255,245,200,.72)', { amp: 1.2, seed: 130 + s });
+    ctx.restore();
+  }
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(PAPEL, 0, 0);
+  const cae = back(prog(t, 0, .45));
+  ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate((1 - cae) * .06 - .01); ctx.translate(-W / 2, -H / 2 + (1 - cae) * 80);
+  hoja(t); titulo(t); ejes(t); barras(t); remate(t);
+  ctx.restore();
+});
+</script>
+</body>
+</html>

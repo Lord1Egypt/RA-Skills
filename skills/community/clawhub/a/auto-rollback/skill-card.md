@@ -1,40 +1,54 @@
-## Description: <br>
-Timed rollback safety net for edits to ~/.openclaw/openclaw.json on macOS. Use when changing Gateway config, restarting Gateway after config edits, or needing backup + auto-restore protection via launchd and BOOT.md health-check cancellation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Timed rollback safety net for edits to ~/.openclaw/openclaw.json on macOS.
 
-## Publisher: <br>
-[extraterrest](https://clawhub.ai/user/extraterrest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[extraterrest](https://clawhub.ai/user/extraterrest)
 
-## Use Case: <br>
-Developers and operators use this skill before changing OpenClaw Gateway configuration on macOS so an agent can create a backup, schedule a timed rollback, and cancel the rollback after a healthy restart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The rollback helper creates a temporary macOS launchd job that can restore ~/.openclaw/openclaw.json and restart Gateway. <br>
-Mitigation: Use it only when that behavior is intended, inspect status after configuration work, and cancel or remove the rollback plist and helper script if automatic cancellation does not run. <br>
-Risk: Cleanup can trust a mutable state file when deleting a launchd plist. <br>
-Mitigation: Before broad use, constrain cleanup to the fixed rollback plist label or validate the state file label strictly. <br>
+## Use Case:
 
+Developers and engineers use this skill before changing OpenClaw Gateway configuration to create a backup, schedule a timed rollback, inspect rollback state, and cancel protection after a healthy restart.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/extraterrest/auto-rollback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline bash commands and generated local shell, plist, state, backup, and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS only; requires bash, launchctl, jq, curl, and plutil; creates a 10-minute rollback window for ~/.openclaw/openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0-alpha.2 (source: evidence release metadata and clawhub.json) <br>
+Risk: The security review reports that rollback scheduling can falsely report protection when scheduling fails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduling results before relying on the rollback as a safety mechanism, and treat failed or uncertain scheduling as unprotected until corrected.
+
+Risk: The security review reports unsafe generation of executable shell source from environment-controlled values.
+
+Mitigation: Validate rollback state and environment-controlled paths before execution, and fail closed when generated rollback scripts cannot be trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/extraterrest/skills/auto-rollback)
+- [Publisher profile](https://clawhub.ai/user/extraterrest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for backup, launchd scheduling, rollback status inspection, and cancellation.]
+
+## Skill Version(s):
+
+1.2.0-alpha.2 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

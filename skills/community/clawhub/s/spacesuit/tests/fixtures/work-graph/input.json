@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "profile": "",
+  "agentId": "main",
+  "observedAt": "2026-01-01T12:00:00.000Z",
+  "sources": [
+    {
+      "id": "demo-linear",
+      "provider": "linear",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "complete": true,
+      "projects": [
+        {
+          "id": "checkout",
+          "name": "Checkout upgrade",
+          "status": {
+            "type": "started",
+            "name": "In progress"
+          }
+        }
+      ],
+      "issues": [
+        {
+          "id": "1",
+          "identifier": "DEMO-1",
+          "title": "Frontend checkout component",
+          "state": {
+            "id": "completed",
+            "name": "completed",
+            "type": "completed"
+          },
+          "project": {
+            "id": "checkout"
+          },
+          "labels": {
+            "nodes": [
+              {
+                "name": "role:frontend"
+              },
+              {
+                "name": "topic:checkout"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "identifier": "DEMO-2",
+          "title": "Backend payment endpoint",
+          "state": {
+            "id": "started",
+            "name": "started",
+            "type": "started"
+          },
+          "project": {
+            "id": "checkout"
+          },
+          "labels": {
+            "nodes": [
+              {
+                "name": "topic:checkout"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "identifier": "DEMO-3",
+          "title": "Regression testing",
+          "state": {
+            "id": "review",
+            "name": "review",
+            "type": "review"
+          },
+          "project": {
+            "id": "checkout"
+          },
+          "labels": {
+            "nodes": [
+              {
+                "name": "role:qa"
+              },
+              {
+                "name": "topic:checkout"
+              }
+            ]
+          }
+        }
+      ],
+      "statusMap": {
+        "review": "review"
+      }
+    },
+    {
+      "id": "demo-jira",
+      "provider": "jira",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "complete": false,
+      "epicTypeIds": ["epic"],
+      "blocksTypeIds": ["blocks"],
+      "issues": [
+        {
+          "id": "10",
+          "key": "OPS-10",
+          "fields": {
+            "summary": "Service rollout",
+            "issuetype": {
+              "id": "epic"
+            },
+            "status": {
+              "name": "In progress",
+              "statusCategory": {
+                "key": "indeterminate"
+              }
+            }
+          }
+        },
+        {
+          "id": "1",
+          "key": "OPS-1",
+          "fields": {
+            "summary": "Deploy service infrastructure",
+            "issuetype": {
+              "id": "task"
+            },
+            "parent": {
+              "id": "10"
+            },
+            "status": {
+              "name": "In progress",
+              "statusCategory": {
+                "key": "indeterminate"
+              }
+            },
+            "labels": ["role:infra", "topic:reliability"],
+            "issuelinks": [
+              {
+                "type": {
+                  "id": "blocks"
+                },
+                "outwardIssue": {
+                  "id": "2"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "key": "OPS-2",
+          "fields": {
+            "summary": "Service verification",
+            "issuetype": {
+              "id": "task"
+            },
+            "parent": {
+              "id": "10"
+            },
+            "status": {
+              "name": "Custom review"
+            },
+            "labels": ["role:qa", "topic:reliability"]
+          }
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "run-0",
+      "sourceId": "demo-linear",
+      "agentId": "Builder",
+      "sessionKey": "agent:demo:run:0",
+      "title": "Build checkout UI",
+      "state": "active",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "taskId": "1",
+      "role": "frontend"
+    },
+    {
+      "id": "run-1",
+      "sourceId": "demo-linear",
+      "agentId": "Engineer",
+      "sessionKey": "agent:demo:run:1",
+      "title": "Implement payment endpoint",
+      "state": "active",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "taskId": "2",
+      "role": "backend"
+    },
+    {
+      "id": "run-2",
+      "sourceId": "demo-linear",
+      "agentId": "Verifier",
+      "sessionKey": "agent:demo:run:2",
+      "title": "Check purchase flow",
+      "state": "active",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "taskId": "3",
+      "role": "qa"
+    },
+    {
+      "id": "run-3",
+      "sourceId": "demo-jira",
+      "agentId": "Operator",
+      "sessionKey": "agent:demo:run:3",
+      "title": "Prepare rollout",
+      "state": "active",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "taskId": "1",
+      "role": "infra"
+    },
+    {
+      "id": "run-4",
+      "sourceId": "demo-jira",
+      "agentId": "Verifier",
+      "sessionKey": "agent:demo:run:4",
+      "title": "Waiting for rollout",
+      "state": "waiting",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "taskId": "2",
+      "role": "qa"
+    },
+    {
+      "id": "unlinked",
+      "sourceId": "demo-linear",
+      "agentId": "Architect",
+      "sessionKey": "agent:demo:run:unlinked",
+      "title": "Design review",
+      "state": "active",
+      "observedAt": "2026-01-01T12:00:00.000Z",
+      "brief": "Review DEMO-2 before implementation."
+    }
+  ]
+}

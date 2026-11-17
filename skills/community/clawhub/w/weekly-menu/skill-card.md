@@ -1,44 +1,59 @@
-## Description: <br>
-Generates a weekly meal plan with images, recipe links, shopping support, and a formatted Feishu document based on Xiaohongshu recipe inspiration and user meal preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a weekly meal plan with images, recipes, shopping lists, and a Feishu document with Xiaohongshu source links.
 
-## Publisher: <br>
-[BeginnerRudy](https://clawhub.ai/user/BeginnerRudy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beginnerrudy](https://clawhub.ai/user/beginnerrudy)
 
-## Use Case: <br>
-External users use this skill through an agent to plan a week of home cooking, collect recipe inspiration from Xiaohongshu, generate a Feishu menu document, and maintain menu history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Feishu credentials and document permissions while creating and editing documents. <br>
-Mitigation: Use a least-privilege Feishu app and folder, confirm the target user before granting access, and avoid storing reusable tokens in MEMORY.md. <br>
-Risk: The referenced Feishu guide includes delete and move document operations that are broader than weekly menu creation. <br>
-Mitigation: Do not permit delete or move calls unless the user explicitly requests that exact operation. <br>
-Risk: The skill searches Xiaohongshu, downloads images, and stores meal preference and history data. <br>
-Mitigation: Review selected sources and downloaded image files before inserting them, and keep meal profiles and history limited to data needed for planning. <br>
+## Use Case:
 
+External users use this skill to plan a week of home-cooked meals, collect recipe inspiration, and generate a shareable Feishu document with images, checkboxes, source links, and shopping-list support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/BeginnerRudy/weekly-menu) <br>
-- [Feishu Document Creation Recipe Guide](references/feishu-doc-recipe.md) <br>
-- [User Profile Template](references/profile-template.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and chat text with Feishu document links, shell command examples, and YAML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates Feishu documents, downloads representative images, and appends meal history when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Feishu credentials and folder tokens may be exposed or overused if read from broad local configuration or memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store Feishu credentials and folder tokens in a scoped connector or secret store, and grant only the permissions needed for weekly menu document creation.
+
+Risk: Document delete and move examples could be used without enough user control if treated as available actions.
+
+Mitigation: Remove those examples unless they become explicit features, and require clear user confirmation before any destructive or relocation action.
+
+Risk: External recipe searches and image downloads can introduce untrusted or invalid content into the generated menu document.
+
+Mitigation: Keep source links visible, verify downloaded images before upload, and review generated recipes before sharing or relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beginnerrudy/skills/weekly-menu)
+- [Feishu Document Creation Recipe Guide](references/feishu-doc-recipe.md)
+- [Meal Profile Template](references/profile-template.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chat response with a Feishu document link, generated Feishu document content, YAML profile/history updates, and shell/API command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates external Feishu documents and local meal profile/history files when run with configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

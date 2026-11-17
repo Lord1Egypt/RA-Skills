@@ -1,45 +1,62 @@
-## Description: <br>
-Manage OpenClaw skills end-to-end. 一站式管理 OpenClaw 技能的创建、修改、发布、更新、升版与审计。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages OpenClaw skills end to end across creation, modification, publishing, updating, versioning, promotion, and audit workflows.
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to create, modify, publish, update, promote, and audit OpenClaw skills across ClawHub and GitHub workflows. It is intended for administrative skill-management tasks that require explicit review before publishing or writing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports administrative actions for skill creation, modification, publishing, updating, hiding, deletion, promotion, and audit. <br>
-Mitigation: Before signing confirmation, verify the exact target slug, repository, active account, command, version, changelog, and public post text. <br>
-Risk: The skill may rely on authenticated ClawHub, Git, or GitHub CLI sessions and may propose memory-file or workspace edits. <br>
-Mitigation: Confirm the active account and inspect proposed workspace or memory-file changes before allowing writes or external publishing. <br>
+## Use Case:
 
+OpenClaw skill authors and maintainers use this skill to create, modify, publish, update, promote, and audit skills while keeping versioning, review checklists, and confirmation gates explicit.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/moroiser/skill-manager-all-in-one) <br>
-- [ClawHub Publish Reference](references/clawhub-publish.md) <br>
-- [GitHub Publishing Guide](references/github-publish.md) <br>
-- [ClawFlows Workflow Format Guide](references/clawflows-workflow.md) <br>
-- [Promotion Guide](references/promotion.md) <br>
-- [Search and Audit Guide](references/search-and-audit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file edits, publishing commands, changelog text, audit findings, and promotion text for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.5.14 (source: server release metadata) <br>
+Risk: The skill can guide broad edits to persistent OpenClaw memory and workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require exact diffs and separate approval before editing MEMORY.md, memory/*.md, TOOLS.md, or other persistent workspace records.
+
+Risk: Promotion templates may contain hard-coded attribution that is not appropriate for every publisher.
+
+Mitigation: Replace any fixed attribution with the approved author or omit attribution before public promotion.
+
+Risk: Publishing, renaming, release, deletion, and promotion workflows can make persistent local or external changes.
+
+Mitigation: Show the exact command and wait for the required confirmation signature before executing external or destructive operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/moroiser/skills/skill-manager-all-in-one)
+- [ClawHub Publish Reference | ClawHub 发布参考](references/clawhub-publish.md)
+- [GitHub Publishing Guide | GitHub 上传专项](references/github-publish.md)
+- [Search and Audit Guide | 搜索与审计指南](references/search-and-audit.md)
+- [Promotion Guide | 宣传指南](references/promotion.md)
+- [ClawFlows Workflow Format Guide | ClawFlows Workflow 格式指南](references/clawflows-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, checklists, and release text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exact commands, diffs, changelogs, checklist statuses, and confirmation prompts.]
+
+## Skill Version(s):
+
+4.5.14 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Automatically organizes files into folders by their extension within a specified directory to keep files systematically sorted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically organizes files into extension-named folders within a selected local directory.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-External users and developers use this skill to organize local directories by moving files into extension-named folders from the current directory or a specified path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool moves files in-place and can reorganize a directory unexpectedly if run in the wrong location. <br>
-Mitigation: Run it only in a directory intended for sorting, and back up important files or test on a copy first. <br>
-Risk: The usage text names file_sorter_by_ext.py, while the artifact provides tool.py. <br>
-Mitigation: Run the included tool.py file unless the package maintainer supplies a matching wrapper script. <br>
+## Use Case:
 
+Developers and users use this skill to organize local directories by moving files into subfolders named for each file extension.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/file-sorter-by-ext) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Moves files in-place into extension-named folders; no generated content is intended for downstream model training or automated decision-making.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The tool moves files immediately in the selected directory and does not provide a dry-run or undo feature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a specific directory you are comfortable reorganizing, and make a backup first when the contents matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/file-sorter-by-ext)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated guidance should note that files are moved immediately and there is no dry-run or undo behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

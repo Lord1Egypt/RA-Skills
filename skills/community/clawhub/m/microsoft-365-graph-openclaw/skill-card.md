@@ -1,55 +1,68 @@
-## Description: <br>
-Microsoft 365 Graph for OpenClaw manages Outlook mail, calendar, OneDrive, contacts, and push-based webhook wake signals via Microsoft Graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft 365 Graph for OpenClaw with webhook-based wake signals. Reduce recurring LLM cost from inbox polling while managing Outlook mail, calendar, OneDrive, and contacts via Microsoft Graph.
 
-## Publisher: <br>
-[draeden79](https://clawhub.ai/user/draeden79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[draeden79](https://clawhub.ai/user/draeden79)
 
-## Use Case: <br>
-Developers and operators use this skill to connect self-hosted OpenClaw workflows to Microsoft 365 Graph for Outlook mail, calendar, OneDrive, contacts, and push-based mail wake signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Microsoft Graph permissions can grant read/write access to mail, files, calendar, and contacts. <br>
-Mitigation: Use the smallest documented permission profile that fits the workflow and prefer a Microsoft app registration controlled by the deploying organization. <br>
-Risk: OAuth tokens, webhook tokens, clientState values, logs, and service environment files can expose account or hook access if mishandled. <br>
-Mitigation: Store secrets in protected host-managed locations, keep token-bearing state files out of version control, and rotate credentials if logs, shell history, or screenshots may have exposed them. <br>
-Risk: Privileged setup scripts can write system configuration and enable services when run without dry-run mode. <br>
-Mitigation: Review dry-run output before using sudo, validate changes on a non-production host first, and apply to production only after approval. <br>
-Risk: File-sharing operations can create exposure if anonymous sharing is used unintentionally. <br>
-Mitigation: Avoid anonymous sharing unless it is explicitly required and approved for the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to connect self-hosted OpenClaw deployments to Microsoft 365 workflows. It supports OAuth-based mail, calendar, OneDrive, contacts, and push-based mail wake signals through Microsoft Graph.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/draeden79/microsoft-365-graph-openclaw) <br>
-- [Project Homepage](https://github.com/draeden79/microsoft-365-graph-openclaw) <br>
-- [Auth Reference](references/auth.md) <br>
-- [Mail Reference](references/mail.md) <br>
-- [Calendar Reference](references/calendar.md) <br>
-- [OneDrive Reference](references/drive.md) <br>
-- [Contacts Reference](references/contacts.md) <br>
-- [Mail Webhook Adapter Reference](references/mail_webhook_adapter.md) <br>
-- [Architecture](docs/architecture.md) <br>
-- [Permission Profiles](docs/permission-profiles.md) <br>
-- [Minimal Setup](docs/minimal-setup.md) <br>
-- [App Registration](docs/app-registration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and script-based workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Microsoft Graph and OpenClaw setup guidance; included scripts may perform API calls, write local state files, and configure services when executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence and frontmatter) <br>
+Risk: Persistent Microsoft 365 permissions can allow broad read/write access to mail, calendar, contacts, and OneDrive for the authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the permission profile required for the intended workflow, prefer a tenant-owned app registration for production, and revoke or rotate OAuth grants if credentials may be exposed.
+
+Risk: Privileged setup scripts can write service configuration and manage host services.
+
+Mitigation: Review sudo scripts before use, run dry-run modes first, and deploy initially on a non-production host.
+
+Risk: Webhook tokens, Graph clientState values, OAuth tokens, logs, or shell history may expose credentials.
+
+Mitigation: Store secrets in protected host-managed files, restrict token file permissions, keep token-bearing state out of source control, and rotate exposed tokens immediately.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/draeden79/skills/microsoft-365-graph-openclaw)
+- [Project Homepage](https://github.com/draeden79/microsoft-365-graph-openclaw)
+- [Auth Reference](references/auth.md)
+- [Mail Reference](references/mail.md)
+- [Calendar Reference](references/calendar.md)
+- [OneDrive Reference](references/drive.md)
+- [Contacts Reference](references/contacts.md)
+- [Mail Webhook Adapter Reference](references/mail_webhook_adapter.md)
+- [Architecture](docs/architecture.md)
+- [Minimal Setup](docs/minimal-setup.md)
+- [Permission Profiles](docs/permission-profiles.md)
+- [Microsoft Device Code OAuth Documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-device-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Microsoft Graph API workflow guidance and local setup commands for self-hosted OpenClaw deployments.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

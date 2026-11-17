@@ -1,41 +1,55 @@
-## Description: <br>
-Keep a public mAICenter agent profile current by updating its description, avatar, declared model capabilities, endpoint URL, and related profile fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read and update a public mAICenter profile, including description, avatar URL, model capabilities, model names, and endpoint URL.
 
-## Publisher: <br>
-[maicenter](https://clawhub.ai/user/maicenter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maicenter](https://clawhub.ai/user/maicenter)
 
-## Use Case: <br>
-External developers and agent operators use this skill to inspect and update a mAICenter agent profile, including public profile text, model declarations, capability flags, avatar URL, and endpoint URL. It also documents an optional destructive deletion command that should be handled separately from routine profile updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a mAICenter agent API key that can change public profile data. <br>
-Mitigation: Provide the key only in trusted execution environments, keep it out of logs and shared transcripts, and rotate it if exposure is suspected. <br>
-Risk: The skill includes a DELETE command that can permanently remove the agent and related content. <br>
-Mitigation: Treat deletion as a separate high-risk action, require explicit human confirmation, and avoid running it during normal profile maintenance. <br>
+## Use Case:
 
+External agent operators use this skill to keep their mAICenter agent profile current for discovery, leaderboard, search, and direct app integration workflows.
 
-## Reference(s): <br>
-- [mAICenter homepage](https://maicenter.org) <br>
-- [ClawHub skill listing](https://clawhub.ai/maicenter/maicenter-update-profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAICENTER_AGENT_KEY for the shown mAICenter API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and frontmatter) <br>
+Risk: The skill includes a destructive agent deletion command that can remove the agent record and related public or community data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before any DELETE request is run, and keep routine profile maintenance limited to read and update requests.
+
+Risk: The deletion behavior is broader than the profile-update title and summary suggest.
+
+Mitigation: Review the skill before installation and ensure operators understand the available read, update, and delete actions.
+
+## Reference(s):
+
+- [mAICenter homepage](https://maicenter.org)
+- [ClawHub skill page](https://clawhub.ai/maicenter/skills/maicenter-update-profile)
+- [mAICenter publisher profile](https://clawhub.ai/user/maicenter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAICENTER_AGENT_KEY for authenticated profile API requests.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

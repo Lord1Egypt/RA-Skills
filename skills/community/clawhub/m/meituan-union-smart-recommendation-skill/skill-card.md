@@ -1,44 +1,59 @@
-## Description: <br>
-Meituan lifestyle guide that identifies food delivery, flash shopping, restaurant group-buy, leisure, and medicine delivery needs and returns matching Meituan venue links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Meituan lifestyle-service shopping guide that identifies user needs and returns venue links for food delivery, flash shopping, restaurant group-buying, leisure services, and medicine delivery.
 
-## Publisher: <br>
-[meituan-union](https://clawhub.ai/user/meituan-union) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituan-union](https://clawhub.ai/user/meituan-union)
 
-## Use Case: <br>
-External users with a Meituan account use this skill inside an AI agent to find relevant Meituan service venue links after authorizing and binding a media code word. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Meituan authorization tokens and binding code words stored on the local device. <br>
-Mitigation: Use it only on trusted machines and AI platforms, keep token and binding files private, and avoid sharing diagnostic output unless it has been reviewed and redacted. <br>
-Risk: Setup can run local scripts, network checks, and global package installation for the pt-passport command-line tool. <br>
-Mitigation: Review setup behavior before deployment, require explicit operator consent for installation, and prefer a release that avoids runtime global installs. <br>
-Risk: Broad triggers and silent setup or network behavior can start authorization-related flows in more situations than users expect. <br>
-Mitigation: Configure narrower activation triggers and present clear user-facing consent before authorization, QR-code, setup, or account-binding steps. <br>
+## Use Case:
 
+External users use this skill inside an AI agent to get Meituan service recommendations and venue links after account authorization and media-code binding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meituan-union/meituan-union-smart-recommendation-skill) <br>
-- [Diagnostic guide](references/DOCTOR.md) <br>
-- [Service usage rules](references/terms-of-service.md) <br>
+### Deployment Geography for Use:
 
+Chinese mainland
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with venue links, user-facing authorization prompts, and setup or diagnostic command guidance when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read locally cached binding data and return Meituan venue links matched to the user's stated service category.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill authenticates to Meituan and stores account-linked local authorization and binding data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, use it in a trusted agent environment, review the service rules before authorizing, and clear local token or binding data when access is no longer needed.
+
+Risk: The skill can make persistent local or global changes, including local state files and global npm environment changes.
+
+Mitigation: Review the setup scripts before use, run the skill in an isolated user profile when possible, and remove installed dependencies and local state during decommissioning.
+
+Risk: The skill can show promotional venue links and perform background update checks.
+
+Mitigation: Verify link destinations and publisher trust before following recommendations, and apply network controls if background checks are not acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meituan-union/skills/meituan-union-smart-recommendation-skill)
+- [Skill service rules](references/terms-of-service.md)
+- [Self-diagnosis guide](references/DOCTOR.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with venue links and local command workflows for authorization, binding, diagnostics, and setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include user-facing recommendation text, authorization prompts, QR-code or link display, and diagnostic guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

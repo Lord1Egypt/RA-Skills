@@ -1,44 +1,56 @@
-## Description: <br>
-Persistent memory system for AI agents - daily logs, long-term memory, identity files, and heartbeat-driven recall. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Persistent memory system for AI agents: daily logs, long-term memory, identity files, and heartbeat-driven recall.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-Developers and AI-agent operators use Memory OS to install local workspace files that preserve agent identity, user context, long-term memory, daily notes, and optional proactive check templates across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory files can retain sensitive personal or work context that may be reused in later sessions. <br>
-Mitigation: Install only in a private workspace and avoid storing secrets, credentials, regulated data, or anything the operator would not want reused later. <br>
-Risk: Generated memory and identity files can influence future agent behavior. <br>
-Mitigation: Review AGENTS.md, USER.md, MEMORY.md, HEARTBEAT.md, daily notes, and .blueprint-state.json after installation, and keep heartbeat, web research, email, and calendar checks disabled or narrowed unless explicitly needed. <br>
+## Use Case:
 
+Developers and operators use this skill to install and maintain a local persistent memory system for an AI agent, including identity, operator profile, long-term memory, daily notes, heartbeat state, and session startup files.
 
-## Reference(s): <br>
-- [Memory OS on ClawHub](https://clawhub.ai/Clawdssen/memory-os) <br>
-- [Blueprint YAML](references/blueprint.yaml) <br>
-- [Memory OS Guide](references/guide.md) <br>
-- [The Agent Ledger](https://theagentledger.com) <br>
-- [Skill-declared project URL](https://github.com/theagentledger/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions plus local Markdown and JSON workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or merges local workspace memory files after explicit operator confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Persistent memory files may capture personal or sensitive context and later be loaded into future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a private workspace where persistent personal memory is appropriate, and avoid storing secrets, regulated data, or anything unsuitable for future sessions.
+
+Risk: The installed instructions may cause future agents to read and update personal memory files automatically with incomplete privacy and control boundaries.
+
+Mitigation: Before use, review AGENTS.md and HEARTBEAT.md, narrow automatic read or update rules, and require confirmation before writing long-term memory or changing USER.md or SOUL.md.
+
+## Reference(s):
+
+- [Memory OS Blueprint](references/blueprint.yaml)
+- [Memory OS Guide](references/guide.md)
+- [Memory OS on ClawHub](https://clawhub.ai/clawdssen/skills/memory-os)
+- [The Agent Ledger](https://theagentledger.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown files, JSON state, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local workspace memory files after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

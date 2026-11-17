@@ -1,3 +1,8 @@
+> **Language**: This document is in Chinese only. For English overview, see [README.md](../README.md).
+>
+> **语言说明**: 本文档仅提供中文版本。英文概述请查看 [README.md](../README.md)。
+
+---
 # 续接交接协议 (Continuation Handoff)
 
 > 续接提示词必须基于接受的素材，不只是旧计划。

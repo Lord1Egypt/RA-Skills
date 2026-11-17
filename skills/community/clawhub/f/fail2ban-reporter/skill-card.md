@@ -1,44 +1,57 @@
-## Description: <br>
-Reports fail2ban-banned IPs to AbuseIPDB and provides shell commands for checking IP reputation, viewing stats, and installing auto-reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-reports fail2ban banned IPs to AbuseIPDB, supports IP reputation checks, and summarizes fail2ban and reporting activity.
 
-## Publisher: <br>
-[jestersimpps](https://clawhub.ai/user/jestersimpps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jestersimpps](https://clawhub.ai/user/jestersimpps)
 
-## Use Case: <br>
-Developers and server operators use this skill to report fail2ban SSH bans to AbuseIPDB, check the reputation of specific IPs, and review ban and reporting statistics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing auto-reporting gives the skill persistent privileged access to fail2ban configuration. <br>
-Mitigation: Install only on servers where automatic reporting is intended, and review the scripts before running sudo install. <br>
-Risk: The reporting scripts share banned IP addresses and comments with AbuseIPDB under the user's API key. <br>
-Mitigation: Confirm that third-party sharing of banned IPs and report comments is acceptable for the environment before enabling reporting. <br>
-Risk: Telegram alerts are described by the skill summary, but the security guidance says not to depend on them unless an implementation is added. <br>
-Mitigation: Treat Telegram notifications as unavailable until the implementation exists and has been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AbuseIPDB API Reference](references/abuseipdb-api.md) <br>
-- [AbuseIPDB API](https://api.abuseipdb.com/api/v2) <br>
-- [Clawdbot](https://github.com/clawdbot/clawdbot) <br>
+## Use Case:
 
+Developers and server operators use this skill to report fail2ban-blocked SSH attackers to AbuseIPDB, check IP reputation, and review ban/report statistics. It is intended for systems where operators are comfortable granting scripts access to fail2ban, system configuration, logs, and AbuseIPDB API credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install fail2ban action configuration and write AbuseIPDB report status to /var/log/abuseipdb-reports.log when the user runs the bundled scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The privileged installer changes fail2ban configuration, restarts fail2ban, and requires root-level access.
+
+Mitigation: Review the scripts before installing, back up fail2ban configuration, and install only on systems where root-level configuration changes are acceptable.
+
+Risk: The security evidence reports a command-injection risk in the persistent installer when run from an untrusted or strangely named directory.
+
+Mitigation: Do not run install.sh from an untrusted or strangely named directory until the action path is safely fixed.
+
+Risk: The skill automatically sends banned IP addresses and report comments to AbuseIPDB.
+
+Mitigation: Confirm that sharing banned IP data and comments with AbuseIPDB is acceptable for the deployment environment before enabling auto-reporting.
+
+## Reference(s):
+
+- [AbuseIPDB API Reference](references/abuseipdb-api.md)
+- [fail2ban Reporter ClawHub Release](https://clawhub.ai/jestersimpps/skills/fail2ban-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON excerpts from AbuseIPDB responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install or remove fail2ban action configuration and may write reporting status to /var/log/abuseipdb-reports.log when scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

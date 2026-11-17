@@ -1,50 +1,65 @@
-## Description: <br>
-Navigate Europe for travel, relocation, study, remote work, and cross-border life with bloc logic, country fit, rights, timing, and practical execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Europe for travel, relocation, study, remote work, and cross-border life with bloc logic, country fit, rights, timing, and practical execution.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Travelers, relocating households, students, remote workers, and Europe-facing operators use this skill to reason through country fit, mobility rights, border rules, healthcare, transport, housing, and practical settling steps across European countries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Europe travel, visa, tax, healthcare, registration, and passenger-rights details can change by country, date, nationality, and stay length. <br>
-Mitigation: Use the skill's framework for orientation, then verify precise compliance steps against current official Europe-level or national-government sources before acting. <br>
-Risk: Optional local memory in ~/europe/ could retain sensitive travel, residency, family, healthcare, or financial context if the user chooses continuity. <br>
-Mitigation: Create or update local memory only with user confirmation, keep notes coarse, review or delete stale plans, and avoid saving identifiers, full addresses, banking details, insurance IDs, or tax IDs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Europe Skill](https://clawhub.ai/ivangdavila/europe) <br>
-- [Europe Skill Source Homepage](https://clawic.com/skills/europe) <br>
-- [Sources Map](artifact/sources.md) <br>
-- [Your Europe](https://europa.eu/youreurope/) <br>
-- [EU Immigration Portal](https://immigration-portal.ec.europa.eu/) <br>
-- [EURES](https://eures.europa.eu/) <br>
-- [Europass](https://europass.europa.eu/) <br>
-- [EUR-Lex](https://eur-lex.europa.eu/) <br>
-- [Eurostat](https://ec.europa.eu/eurostat) <br>
-- [Europe Emergency Number 112](https://europa.eu/112) <br>
-- [European Consumer Centres Network](https://www.eccnet.eu/) <br>
-- [SOLVIT](https://europa.eu/solvit/) <br>
+## Use Case:
 
+External users use this skill to plan Europe travel, relocation, study, remote work, and cross-border living. It helps an agent separate continent, EU, Schengen, eurozone, and country-level rules before giving practical routes, checklists, and risk-aware guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, comparison frameworks, source links, and optional local memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for nationality, target country, stay length, route, or continuity preference before giving rights-sensitive guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional persistent memory may save coarse nationality, route, family, tax, healthcare, and planning context under ~/europe/.
+
+Mitigation: Allow persistent memory only with user confirmation and avoid storing passport numbers, tax IDs, banking credentials, payment details, or full street addresses unless explicitly requested.
+
+Risk: Country-specific legal, visa, tax, healthcare, and passenger-rights details can change or depend on nationality, status, route, and destination.
+
+Mitigation: Use the skill for planning structure and verify precise compliance steps with official EU or national sources before acting.
+
+Risk: Official-site lookups may send country, nationality, residency, profession, or route context to public European or national portals.
+
+Mitigation: Share only the context needed for the requested lookup and keep sensitive identifiers out of routine guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/europe)
+- [Your Europe](https://europa.eu/youreurope/)
+- [EU Immigration Portal](https://immigration-portal.ec.europa.eu/)
+- [EURES](https://eures.europa.eu/)
+- [Europass](https://europass.europa.eu/)
+- [EUR-Lex](https://eur-lex.europa.eu/)
+- [Eurostat](https://ec.europa.eu/eurostat)
+- [Europe Emergency Number 112](https://europa.eu/112)
+- [European Consumer Centres Network](https://www.eccnet.eu/)
+- [SOLVIT](https://europa.eu/solvit/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown prose with checklists, comparison tables, and step-by-step planning sequences]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use optional local memory under ~/europe/ only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

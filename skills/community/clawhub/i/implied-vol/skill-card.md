@@ -1,39 +1,51 @@
-## Description: <br>
-Implied Vol reference tool. Use when working with implied vol in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implied Vol reference tool for finance contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can run this skill for quick implied-volatility reference material, including introductory notes, generic formulas, risks, instruments, strategies, glossary terms, and checklist output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents generic finance boilerplate as implied-volatility reference material, which could mislead users in trading, compliance, or professional analysis contexts. <br>
-Mitigation: Use it only as a static text helper; independently review and rewrite the content before relying on it for financial decisions, regulatory work, or professional implied-volatility guidance. <br>
+## Use Case:
 
+Developers, analysts, and finance practitioners can use this skill as a lightweight local command reference for implied-volatility-adjacent finance topics, including formulas, risks, terminology, and checklist-style prompts.
 
-## Reference(s): <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/implied-vol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific static reference output; no API keys or external tools detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The implied-volatility label can make generic finance boilerplate appear more specific or authoritative than it is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as a lightweight static reference stub and independently verify any implied-volatility, trading, compliance, or financial-advice content before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/implied-vol)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted text returned by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output only; no API calls or credential inputs are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Yorkshire Puppy Care helps Yorkshire Terrier owners create personalized care schedules, track feeding, bathing, deworming and vaccination reminders, analyze behavior, and answer pet-care questions with web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yorkshire Puppy Care is a Chinese-language care assistant for Yorkshire Terrier owners that creates personalized feeding, bathing, deworming, and vaccination reminders, analyzes common behavior or mood concerns, and answers pet-care questions with web search when current information is needed.
 
-## Publisher: <br>
-[heidi1998](https://clawhub.ai/user/heidi1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heidi1998](https://clawhub.ai/user/heidi1998)
 
-## Use Case: <br>
-External dog owners use this skill to manage routine Yorkshire Terrier care, interpret common behavior signals, and get structured next-step guidance for non-emergency pet-care questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat pet-health guidance as a substitute for veterinary diagnosis. <br>
-Mitigation: Treat the skill's advice as informational and consult a veterinarian for urgent, serious, or persistent symptoms. <br>
-Risk: Care schedules and health-history details shared in chat may reveal sensitive owner routines or unnecessary personal context. <br>
-Mitigation: Share only the dog-care details needed for the question and avoid owner-identifying or household-routine information. <br>
+## Use Case:
 
+External Chinese-language Yorkshire Terrier owners use this skill to organize routine puppy care, interpret common behavior signals, and get practical next-step guidance while preserving veterinary care as the authority for urgent or serious health issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heidi1998/yorkshire-puppy-care) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Chinese guidance with Markdown care schedules and reminder tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search for current pet-care information; does not produce executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Pet owners may treat care suggestions or symptom triage as a substitute for veterinary diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for routine organization and preliminary guidance only; consult a veterinarian for urgent, serious, worsening, or unclear health symptoms.
+
+Risk: The skill asks for pet-care and household context such as age, weight, feeding, bathing, deworming, and vaccination history.
+
+Mitigation: Share only details you are comfortable providing and avoid unnecessary personal, location, or household-sensitive information.
+
+Risk: Questions that require current information may be sent to the configured web-search provider.
+
+Mitigation: Avoid putting sensitive information in search-driven questions and review web-search-informed answers before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heidi1998/skills/yorkshire-puppy-care)
+- [ClawHub publisher profile](https://clawhub.ai/user/heidi1998)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational responses, care schedules, reminder tables, and practical pet-care guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized care reminders, behavior analysis, and web-search-informed answers for current pet-care questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

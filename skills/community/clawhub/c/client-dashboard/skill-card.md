@@ -1,41 +1,53 @@
-## Description: <br>
-Generates a client-facing executive KPI dashboard from QuickBooks Online data and produces an Excel workbook with traffic-light scoring, 6-month trend sparklines, client-specific watch items, and month-over-month KPI change tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a client-facing executive KPI dashboard from QuickBooks Online data as an Excel workbook with traffic-light scoring, 6-month trend sparklines, watch items, and a month-over-month CDC log.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Accounting and advisory teams use this skill after monthly close to generate a client-facing executive KPI dashboard from QuickBooks Online data for clients with an active QBO integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on authenticated QuickBooks access and a referenced local pipeline script that is not included in the reviewed package. <br>
-Mitigation: Install only after inspecting and trusting the local pipeline script, and confirm the qbo-client connection targets the intended client company before running commands. <br>
-Risk: Generated workbooks and CDC cache files can contain confidential client financial data. <br>
-Mitigation: Store generated files and .cache/client-dashboard snapshots in approved locations, restrict access, and delete stale cache files when they are no longer needed. <br>
-Risk: Using the dashboard before monthly close or for clients without QBO integration can produce incomplete or misleading executive summaries. <br>
-Mitigation: Run it only after the monthly close is complete for clients with a configured QBO integration, and review the workbook against source accounting reports before sharing. <br>
+## Use Case:
 
+External accounting and advisory teams use this skill after monthly close to generate executive KPI dashboard workbooks for clients with QuickBooks Online integration.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated deliverable is an XLSX workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces KPI_Dashboard_{slug}_{YYYY_MM}.xlsx and stores KPI change snapshots under .cache/client-dashboard/{slug}.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Client financial data may be written to local workbooks or the CDC cache in unintended locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an environment approved for client financial data, choose a restricted output directory, and review or clear the CDC cache according to retention policy.
+
+Risk: Unpinned local dependencies can change reporting behavior across runs.
+
+Mitigation: Use a dedicated virtual environment with pinned dependencies before running the pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/client-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifact is an Excel workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates KPI_Dashboard_{slug}_{YYYY_MM}.xlsx and a local CDC cache at .cache/client-dashboard/{slug}.json.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,9 +5,10 @@ description: Manage Kleinanzeigen listings through the KleinClaw OpenClaw plugin
 
 # Kleinanzeigen Helper
 
-Use this skill when the user wants help preparing, verifying, publishing,
-updating, deleting, downloading, or extending Kleinanzeigen listings through
-the configured KleinClaw plugin and embedded `miniclaw` runtime.
+Use this skill to prepare or manage Kleinanzeigen listings through the
+configured KleinClaw plugin and embedded `miniclaw` runtime. Review and scope
+deletion and other mutating operations to the intended listings, then require
+explicit user confirmation before running them.
 
 ## Load Details
 

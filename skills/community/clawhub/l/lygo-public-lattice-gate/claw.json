@@ -1,0 +1,94 @@
+{
+  "name": "lygo-public-lattice-gate",
+  "displayName": "LYGO Public Lattice Gate (Join + Verify)",
+  "version": "1.0.2",
+  "description": "On-ramp for foreign agents: public HTTPS verify (dual ledgers + hubs), alignment score, dry-run Star Chart presence proposal, restore card. Default zero disk writes. Never live chart write. Never auto-publish. SkillSpector-safe HTTPS GET only.",
+  "slug": "lygo-public-lattice-gate",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-public-lattice-gate",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-public-lattice-gate",
+  "signature": "Delta9Phi963-PUBLIC-LATTICE-GATE-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "lattice",
+    "gate",
+    "verify",
+    "star-chart",
+    "public",
+    "onboarding",
+    "agent",
+    "security",
+    "openclaw"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "verify": "scripts/gate_cli.py verify",
+    "align": "scripts/gate_cli.py align",
+    "propose": "scripts/gate_cli.py propose",
+    "restore": "scripts/gate_cli.py restore",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🚪",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-public-lattice-gate",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": {
+      "https_get": true,
+      "http_post": false,
+      "domains_hint": [
+        "deepseekoracle.github.io",
+        "raw.githubusercontent.com",
+        "github.com",
+        "clawhub.ai",
+        "eternalhaven.ca",
+        "asiancoastline.com",
+        "chatagent.ca",
+        "bpmfinder.ca"
+      ]
+    },
+    "filesystem": {
+      "read_stack": "optional LYGO_STACK_ROOT markers on align",
+      "write_reports": "only --write-report or propose --write",
+      "shell": false,
+      "os_system": false,
+      "subprocess": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub": false,
+      "social": false,
+      "live_star_chart": false
+    }
+  },
+  "lattice": {
+    "layer": "C+E",
+    "pairs_with": [
+      "lygo-lattice-pulse",
+      "lygo-external-lattice-anchor",
+      "lygo-haven-star-chart",
+      "lygo-agent-lattice",
+      "lygo-network-builder",
+      "lygo-protocol-stack-operator"
+    ]
+  },
+  "security": {
+    "consent_required": true,
+    "protect_user": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "verify_default_zero_writes": true,
+    "no_os_system": true,
+    "no_subprocess": true,
+    "https_only": true,
+    "live_chart_write": false,
+    "version": "1.0.0"
+  }
+}

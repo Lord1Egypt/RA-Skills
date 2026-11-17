@@ -1,0 +1,410 @@
+{
+  "schema": 1,
+  "groups": [
+    "通知与提示",
+    "数据读写",
+    "设备状态",
+    "App 与跳转",
+    "媒体",
+    "通信"
+  ],
+  "actions": [
+    {
+      "alias": "notify",
+      "ident": "is.workflow.actions.notification",
+      "zh": "弹通知",
+      "doc": "弹一条横幅通知，不动任何数据",
+      "group": "通知与提示",
+      "params": {
+        "WFNotificationActionTitle": {
+          "desc": "标题",
+          "type": "text"
+        },
+        "WFNotificationActionBody": {
+          "desc": "正文",
+          "type": "text"
+        },
+        "WFNotificationActionSound": {
+          "desc": "是否响提示音",
+          "type": "bool"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "alert",
+      "ident": "is.workflow.actions.alert",
+      "zh": "弹对话框",
+      "doc": "弹出必须点确定的框，会中断后续动作",
+      "group": "通知与提示",
+      "params": {
+        "WFAlertActionTitle": {
+          "desc": "标题",
+          "type": "text"
+        },
+        "WFAlertActionMessage": {
+          "desc": "正文",
+          "type": "text"
+        }
+      },
+      "notes": "要人点，不适合无人值守"
+    },
+    {
+      "alias": "speak",
+      "ident": "is.workflow.actions.speaktext",
+      "zh": "朗读文字",
+      "doc": "用系统语音念一段文字",
+      "group": "通知与提示",
+      "params": {
+        "WFText": {
+          "desc": "要念的文字",
+          "type": "text"
+        },
+        "WFSpeakTextRate": {
+          "desc": "语速 0.1–2.0",
+          "type": "number"
+        },
+        "WFSpeakTextLanguage": {
+          "desc": "语言，如 zh-CN",
+          "type": "text"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "vibrate",
+      "ident": "is.workflow.actions.vibrate",
+      "zh": "振动",
+      "doc": "振动一下",
+      "group": "通知与提示",
+      "params": {},
+      "notes": ""
+    },
+    {
+      "alias": "ask",
+      "ident": "is.workflow.actions.ask",
+      "zh": "弹框问输入",
+      "doc": "弹输入框让人填，返回填的内容",
+      "group": "通知与提示",
+      "params": {
+        "WFAskActionPrompt": {
+          "desc": "提问",
+          "type": "text"
+        },
+        "WFInputType": {
+          "desc": "Text/Number/URL/Date",
+          "type": "enum"
+        }
+      },
+      "notes": "等人输入"
+    },
+    {
+      "alias": "clipboard.get",
+      "ident": "is.workflow.actions.getclipboard",
+      "zh": "读剪贴板",
+      "doc": "把剪贴板内容读出来",
+      "group": "数据读写",
+      "params": {},
+      "notes": ""
+    },
+    {
+      "alias": "clipboard.set",
+      "ident": "is.workflow.actions.setclipboard",
+      "zh": "写剪贴板",
+      "doc": "把文字写进剪贴板",
+      "group": "数据读写",
+      "params": {
+        "WFInput": {
+          "desc": "要写入剪贴板的文本或变量",
+          "type": "text"
+        }
+      },
+      "notes": "",
+      "impl": "set_clipboard"
+    },
+    {
+      "alias": "note.append",
+      "ident": "is.workflow.actions.appendnote",
+      "zh": "追加备忘录",
+      "doc": "把文字追加到指定备忘录末尾",
+      "group": "数据读写",
+      "params": {
+        "entity": {
+          "desc": "备忘录名",
+          "type": "text"
+        },
+        "text": {
+          "desc": "追加内容",
+          "type": "text"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "reminder.add",
+      "ident": "is.workflow.actions.addnewreminder",
+      "zh": "建提醒",
+      "doc": "在「任务」列表加一条提醒",
+      "group": "数据读写",
+      "params": {
+        "WFCalendarItemTitle": {
+          "desc": "标题",
+          "type": "text"
+        },
+        "WFCalendarItemNotes": {
+          "desc": "备注",
+          "type": "text"
+        }
+      },
+      "notes": "列表固定「任务」，不支持截止时间",
+      "impl": "add_reminder"
+    },
+    {
+      "alias": "calendar.add",
+      "ident": "is.workflow.actions.addnewevent",
+      "zh": "建日程",
+      "doc": "在系统日历新建日程",
+      "group": "数据读写",
+      "params": {
+        "WFCalendarItemTitle": {
+          "desc": "标题",
+          "type": "text"
+        },
+        "WFCalendarItemStartDate": {
+          "desc": "开始 2026-11-15 09:00",
+          "type": "text"
+        },
+        "WFCalendarItemEndDate": {
+          "desc": "结束",
+          "type": "text"
+        },
+        "WFCalendarItemLocation": {
+          "desc": "地点",
+          "type": "text"
+        },
+        "WFCalendarItemNotes": {
+          "desc": "备注",
+          "type": "text"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "shortcuts.list",
+      "ident": "is.workflow.actions.getmyworkflows",
+      "zh": "列出快捷指令",
+      "doc": "拿到手机上所有快捷指令名",
+      "group": "数据读写",
+      "params": {},
+      "notes": ""
+    },
+    {
+      "alias": "battery.get",
+      "ident": "is.workflow.actions.getbatterylevel",
+      "zh": "读电量",
+      "doc": "读电池百分比，返回数字",
+      "group": "设备状态",
+      "params": {},
+      "notes": ""
+    },
+    {
+      "alias": "currentapp.get",
+      "ident": "is.workflow.actions.getcurrentapp",
+      "zh": "读当前App",
+      "doc": "拿到当前前台 App 名",
+      "group": "设备状态",
+      "params": {},
+      "notes": ""
+    },
+    {
+      "alias": "location.get",
+      "ident": "is.workflow.actions.getcurrentlocation",
+      "zh": "读位置",
+      "doc": "拿当前位置",
+      "group": "设备状态",
+      "params": {},
+      "notes": "首次会弹定位授权"
+    },
+    {
+      "alias": "brightness.set",
+      "ident": "is.workflow.actions.setbrightness",
+      "zh": "设亮度",
+      "doc": "调屏幕亮度，0–1",
+      "group": "设备状态",
+      "params": {
+        "WFBrightness": {
+          "desc": "亮度 0–1",
+          "type": "number"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "volume.set",
+      "ident": "is.workflow.actions.setvolume",
+      "zh": "设音量",
+      "doc": "调媒体音量，0–1",
+      "group": "设备状态",
+      "params": {
+        "WFVolume": {
+          "desc": "音量 0–1",
+          "type": "number"
+        },
+        "WFVolumeSetting": {
+          "desc": "Media/Ringtone",
+          "type": "enum"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "lowpower",
+      "ident": "is.workflow.actions.lowpowermode.set",
+      "zh": "低电量模式",
+      "doc": "开/关/切换低电量模式",
+      "group": "设备状态",
+      "params": {
+        "operation": {
+          "desc": "on/off/toggle",
+          "type": "enum"
+        }
+      },
+      "notes": "",
+      "impl": "lowpower"
+    },
+    {
+      "alias": "openapp",
+      "ident": "is.workflow.actions.openapp",
+      "zh": "打开App",
+      "doc": "打开指定 App",
+      "group": "App 与跳转",
+      "params": {
+        "WFAppName": {
+          "desc": "App 名，如 微信",
+          "type": "text"
+        }
+      },
+      "notes": "会切走前台"
+    },
+    {
+      "alias": "openurl",
+      "ident": "is.workflow.actions.openurl",
+      "zh": "打开链接",
+      "doc": "用浏览器打开 URL",
+      "group": "App 与跳转",
+      "params": {
+        "WFInput": {
+          "desc": "链接",
+          "type": "text"
+        }
+      },
+      "notes": "会切走前台"
+    },
+    {
+      "alias": "shortcut.run",
+      "ident": "is.workflow.actions.openurl",
+      "zh": "运行别的快捷指令",
+      "doc": "按名字触发另一个快捷指令（走 URL scheme，支持中文名）",
+      "group": "App 与跳转",
+      "params": {
+        "name": {
+          "desc": "目标快捷指令名",
+          "type": "text"
+        },
+        "input": {
+          "desc": "传入文本",
+          "type": "text"
+        }
+      },
+      "notes": "",
+      "impl": "run_shortcut"
+    },
+    {
+      "alias": "script.run",
+      "ident": "is.workflow.actions.openurl",
+      "zh": "跑Scriptable",
+      "doc": "调 Scriptable 跑 JS 脚本（走 URL scheme）",
+      "group": "App 与跳转",
+      "params": {
+        "name": {
+          "desc": "脚本名",
+          "type": "text"
+        }
+      },
+      "notes": "",
+      "impl": "run_scriptable"
+    },
+    {
+      "alias": "photo.latest",
+      "ident": "is.workflow.actions.getlastphoto",
+      "zh": "取最新照片",
+      "doc": "拿相册最新一张",
+      "group": "媒体",
+      "params": {
+        "WFGetLatestPhotoCount": {
+          "desc": "取几张",
+          "type": "number"
+        },
+        "WFGetLatestPhotosActionIncludeScreenshots": {
+          "desc": "含截图",
+          "type": "bool"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "alias": "photo.take",
+      "ident": "is.workflow.actions.takephoto",
+      "zh": "拍照",
+      "doc": "调相机拍一张",
+      "group": "媒体",
+      "params": {
+        "WFCameraCaptureDevice": {
+          "desc": "Back/Front",
+          "type": "enum"
+        },
+        "WFCameraCaptureShowPreview": {
+          "desc": "是否预览",
+          "type": "bool"
+        }
+      },
+      "notes": "关预览少一步人工"
+    },
+    {
+      "alias": "screenshot",
+      "ident": "is.workflow.actions.takescreenshot",
+      "zh": "截屏",
+      "doc": "截当前屏幕",
+      "group": "媒体",
+      "params": {},
+      "notes": ""
+    },
+    {
+      "alias": "dictate",
+      "ident": "is.workflow.actions.dictatetext",
+      "zh": "语音转文字",
+      "doc": "听写，把说的话变文字",
+      "group": "媒体",
+      "params": {},
+      "notes": "要人说话"
+    },
+    {
+      "alias": "sms.send",
+      "ident": "is.workflow.actions.sendmessage",
+      "zh": "发短信",
+      "doc": "给号码发短信/iMessage",
+      "group": "通信",
+      "params": {
+        "WFSendMessageActionRecipients": {
+          "desc": "号码或邮箱",
+          "type": "text"
+        },
+        "WFSendMessageContent": {
+          "desc": "内容",
+          "type": "text"
+        }
+      },
+      "notes": "首次有发送确认弹窗"
+    }
+  ]
+}

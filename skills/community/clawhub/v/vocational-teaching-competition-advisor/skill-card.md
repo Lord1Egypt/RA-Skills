@@ -1,42 +1,51 @@
-## Description: <br>
-职业教育教学能力大赛备赛指导专家（增强版）。提供从团队组建、选题设计、课程重构、教案编写、实施报告撰写到决赛答辩的全流程专业指导，含大量获奖范例与模板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+职业教育教学能力大赛备赛指导专家（增强版）。提供从团队组建、选题设计、课程重构、教案编写、实施报告撰写到决赛答辩的全流程专业指导，含大量获奖范例与模板。
 
-## Publisher: <br>
-[erich1566](https://clawhub.ai/user/erich1566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erich1566](https://clawhub.ai/user/erich1566)
 
-## Use Case: <br>
-Vocational education teachers and competition teams use this skill to plan entries, structure teaching designs, draft lesson plans and implementation reports, and prepare for final presentations and Q&A in vocational teaching ability competitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competition rules or claimed latest requirements may become outdated because the skill is static guidance content. <br>
-Mitigation: Verify current competition rules, deadlines, and submission requirements against official sources before relying on generated guidance. <br>
-Risk: Generated lesson plans, implementation reports, and defense materials may include unsuitable or unsupported claims for a specific course or institution. <br>
-Mitigation: Have the teaching team review outputs against the actual talent training plan, course standard, student data, and evidence available for the entry. <br>
+## Use Case:
 
+Vocational college teaching teams use this skill to prepare for vocational education teaching ability competitions, including team formation, topic selection, course redesign, lesson plans, teaching implementation reports, and final defense preparation. It provides structured Chinese-language guidance, templates, examples, and common pitfall checks for competition materials.
 
-## Reference(s): <br>
-- [教学实施报告撰写指南](artifact/references/教学实施报告撰写指南.md) <br>
-- [教案模板](artifact/templates/教案模板.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/erich1566/vocational-teaching-competition-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Structured Markdown with tables, examples, templates, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language educational guidance based on bundled markdown reference material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Competition guidance may become outdated as official rules and submission requirements change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current official competition rules and requirements before relying on the embedded guidance for submissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erich1566/skills/vocational-teaching-competition-advisor)
+- [教案模板](templates/教案模板.md)
+- [教学实施报告撰写指南](references/教学实施报告撰写指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with tables, examples, templates, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational competition guidance; no code execution or privileged behavior found in the release evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

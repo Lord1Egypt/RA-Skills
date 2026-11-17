@@ -1,42 +1,54 @@
-## Description: <br>
-Find Skills Combo helps agents decompose complex user requests, search for relevant skills, evaluate candidate coverage, and recommend either a maximum-quality or minimum-dependency skill combination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Skills Combo helps agents decompose complex user requests and recommend skill combinations using maximum-quality and minimum-dependency strategies.
 
-## Publisher: <br>
-[helloml0326](https://clawhub.ai/user/helloml0326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helloml0326](https://clawhub.ai/user/helloml0326)
 
-## Use Case: <br>
-Developers and agent users use this skill to identify skill portfolios for multi-step tasks, compare quality versus dependency trade-offs, and decide which skills to install or inspect. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may route users toward external skill searches and third-party skill installs. <br>
-Mitigation: Review candidate skills, publishers, and source links before installing or relying on them. <br>
-Risk: Global no-confirm install commands can make persistent changes to the agent environment. <br>
-Mitigation: Prefer explicit approval for each install or update, and avoid `-g -y` unless the user has authorized a global install. <br>
+## Use Case:
 
+Developers and agent users use this skill to break multi-capability tasks into subtasks, search for relevant skills, and compare recommended skill portfolios. It is intended for planning skill combinations and producing install guidance for the selected strategy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/helloml0326/find-skills-combo) <br>
-- [Publisher profile](https://clawhub.ai/user/helloml0326) <br>
-- [Skills CLI directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate skill lists, coverage ratings, install commands, coverage gaps, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can recommend unpinned, unattended global installation of third-party skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each recommended skill's publisher, source, and contents before installation; prefer pinned versions and avoid global unattended installs unless deliberately required.
+
+Risk: Recommendation output may be incomplete or misleading if candidate skill metadata is stale or weakly matched to the user's task.
+
+Mitigation: Treat recommendations as planning guidance, verify the selected skills against the actual task requirements, and scan skills before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/helloml0326/skills/find-skills-combo)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation commands for recommended skills; review each command and selected skill before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

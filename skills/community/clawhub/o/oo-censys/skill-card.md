@@ -1,43 +1,55 @@
-## Description: <br>
-Censys (censys.com). Use this skill for Censys requests involving searching and reading certificate, host, and web property data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read Censys certificate, host, and web property data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, security analysts, and external agents use this skill to query Censys Global Data through an authenticated OOMOL-connected Censys account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an authenticated OOMOL-connected Censys account and can run CLI commands against that account. <br>
-Mitigation: Confirm the target Censys asset and command before execution, and use the connected account flow so raw credentials are not handled in the skill. <br>
-Risk: Setup and recovery commands can affect authenticated service state or billing recovery. <br>
-Mitigation: Run first-time setup, reconnection, or billing recovery steps only after a command fails with the matching authentication, connection, or credit error. <br>
+## Use Case:
 
+Users with a connected Censys account can retrieve certificate, host, and web property records through OOMOL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-censys) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Censys homepage](https://censys.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Censys asset data returned as JSON through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup fallback may run downloaded installer code without a clear user checkpoint; the external installer and CLI were not validated by this artifact review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation separately, and require approval before setup makes changes to the machine.
+
+Risk: OOMOL intermediates Censys requests and manages the connected API key.
+
+Mitigation: Use the connected account with awareness that requests and credentials are managed through OOMOL.
+
+## Reference(s):
+
+- [Censys API documentation](https://docs.censys.com/reference/get-started)
+- [Censys](https://censys.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON results with shell command examples and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Censys asset retrieval; action inputs follow the connected service schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

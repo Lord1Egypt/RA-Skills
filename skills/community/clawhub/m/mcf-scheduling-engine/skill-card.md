@@ -1,41 +1,59 @@
-## Description: <br>
-AI-powered appointment scheduling with staff management, availability windows, and booking automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered appointment scheduling with staff management, availability windows, and booking automation.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-External agents and developers use this skill to create and list appointments, manage staff profiles, and check or set availability for sales, service, and operations scheduling workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Appointment details, attendee emails, staff information, and notes are sent to the external Scheduling Engine service. <br>
-Mitigation: Confirm trust in gateway.mcfagentic.com, obtain appropriate consent, and avoid sending sensitive notes unless needed for scheduling. <br>
-Risk: API calls use an x402 per-call payment model with USDC on Base. <br>
-Mitigation: Review pricing before use and configure agent workflows to avoid unintended paid calls. <br>
+## Use Case:
 
+External and internal agents use this skill to book appointments, check staff availability, manage staff profiles, and coordinate scheduling workflows for sales, service, and operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cameron48/mcf-scheduling-engine) <br>
-- [Scheduling Engine API gateway](https://gateway.mcfagentic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON responses] <br>
-**Output Format:** [Markdown instructions with HTTP endpoint descriptions and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses x402 payment with USDC on Base for per-call API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Scheduling requests can include attendee details, appointment notes, and calendar timing information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize sensitive notes and share only the attendee and scheduling details needed for the booking.
+
+Risk: Agents may book, reschedule, or otherwise change important appointments.
+
+Mitigation: Require user approval before booking or rescheduling important appointments and notify affected attendees when changes are made.
+
+Risk: Endpoint calls use a third-party paid gateway.
+
+Mitigation: Install only when the user is comfortable sending scheduling details to the listed gateway and paying via the documented x402 flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cameron48/skills/mcf-scheduling-engine)
+- [MCF Agentic scheduling gateway](https://gateway.mcfagentic.com)
+- [Publisher profile](https://clawhub.ai/user/cameron48)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, guidance]
+
+**Output Format:** [Markdown instructions with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Endpoint calls require x402 payment using USDC on Base.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

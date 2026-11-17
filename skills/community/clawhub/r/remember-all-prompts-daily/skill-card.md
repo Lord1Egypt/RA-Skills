@@ -1,39 +1,53 @@
-## Description: <br>
-Preserve conversation continuity across token compaction cycles by extracting and archiving all prompts with date-wise entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives session prompts and responses before token compaction and restores the latest archived context at the start of a new session.
 
-## Publisher: <br>
-[syedateebulislam](https://clawhub.ai/user/syedateebulislam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[syedateebulislam](https://clawhub.ai/user/syedateebulislam)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve local conversation continuity across compaction cycles by exporting recent session history and reloading archived context in a later session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill deliberately saves and reuses full conversation history, which can preserve sensitive chats across sessions. <br>
-Mitigation: Avoid using it for sensitive chats unless local transcript retention is acceptable, and regularly inspect or delete the archive under ~/.clawd/memory. <br>
-Risk: Automatic setup, heartbeat, or cron usage can enable ongoing archiving without frequent review. <br>
-Mitigation: Run setup, heartbeat, or cron steps only when continuous local archiving is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/syedateebulislam/remember-all-prompts-daily) <br>
+## Use Case:
 
+ClawHub users and developers use this skill to preserve conversation continuity across compaction by exporting recent session history and making the latest archive available for later ingestion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text, local files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may write and read local memory files under ~/.clawd/memory when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may persist sensitive chats, credentials, and prior instructions in plaintext archives.
+
+Mitigation: Install only when durable local transcript memory is desired, apply strict file permissions, and add redaction plus retention or deletion controls before storing sensitive sessions.
+
+Risk: Archived prior instructions may be replayed into later sessions and influence future agent behavior.
+
+Mitigation: Review archived content before ingestion and remove stale, sensitive, or untrusted instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/syedateebulislam/skills/remember-all-prompts-daily)
+- [ClawHub publisher profile](https://clawhub.ai/user/syedateebulislam)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown archive entries, terminal status text, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local memory files under ~/.clawd/memory; export formatting truncates long message text in archived entries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-01-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

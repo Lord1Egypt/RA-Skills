@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚌 Taipei Bus Fixed-Point Vehicle OD Skill — OpenClaw</title>
+  <meta name="description" content="Taipei City bus real-time dynamic query AI Skill. Integrates TCG Bus TstBusEvent API + PTX. Features ETA estimation, anomaly detection, route search, and stop sequence lookup.">
+  <meta property="og:title" content="Taipei Bus Fixed-Point Vehicle OD Skill">
+  <meta property="og:description" content="Real-time vehicle data × Stop-sequence ETA × Route info × Map visualization × Anomaly detection">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="index.en.html" class="header-brand">
+      <span class="header-logo">🚌</span>
+      <span class="header-title">Taipei Bus Skill</span>
+    </a>
+    <div class="header-actions">
+      <nav class="lang-switcher" aria-label="Select language">
+        <button class="lang-btn" data-lang="zh-TW">正體</button>
+        <button class="lang-btn" data-lang="zh-CN">简体</button>
+        <button class="lang-btn active" data-lang="en">EN</button>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Documentation navigation">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Documentation</div>
+        <ul class="sidebar-nav">
+          <li><a href="#intro" class="sidebar-link active"><span class="nav-icon">🚀</span> Introduction</a></li>
+          <li><a href="#installation" class="sidebar-link"><span class="nav-icon">📦</span> Installation</a></li>
+          <li><a href="#quickstart" class="sidebar-link"><span class="nav-icon">⚡</span> Quick Start</a></li>
+          <li><a href="#trigger" class="sidebar-link"><span class="nav-icon">🔔</span> Triggers</a></li>
+          <li><a href="#data-sources" class="sidebar-link"><span class="nav-icon">📡</span> Data Sources</a></li>
+          <li><a href="#api-reference" class="sidebar-link"><span class="nav-icon">⚙️</span> API Reference</a></li>
+          <li><a href="#examples" class="sidebar-link"><span class="nav-icon">💡</span> Examples</a></li>
+          <li><a href="#use-cases" class="sidebar-link"><span class="nav-icon">💬</span> Use Cases</a></li>
+          <li><a href="#limitations" class="sidebar-link"><span class="nav-icon">⚠️</span> Limitations</a></li>
+          <li><a href="#deployment" class="sidebar-link"><span class="nav-icon">🌐</span> Deployment</a></li>
+          <li><a href="#license" class="sidebar-link"><span class="nav-icon">📄</span> License</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-wrapper">
+
+        <!-- Hero -->
+        <section class="hero" id="hero">
+          <div class="hero-badge-row">
+            <span class="badge badge-blue">v1.2.0</span>
+            <span class="badge badge-purple">Node.js 18+</span>
+            <span class="badge badge-green">MIT / OGDL</span>
+            <span class="badge badge-orange">OpenClaw Skill</span>
+          </div>
+          <h1 class="hero-title">🚌 Taipei Bus<br>Fixed-Point Vehicle OD Skill</h1>
+          <p class="hero-description">
+            Integrates Taipei City fixed-point vehicle OD real-time API with PTX open data.
+            Provides real-time bus position tracking,
+            <strong>stop-sequence-based ETA estimation</strong>, route search, stop sequence lookup,
+            anomaly detection, hotspot analysis, and map visualization.
+          </p>
+          <div class="hero-actions">
+            <a href="#installation" class="btn btn-primary">📦 Install Now</a>
+            <a href="#quickstart" class="btn btn-secondary">⚡ Quick Start</a>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             1. Introduction
+        ══════════════════════════════════════ -->
+        <section class="section" id="intro">
+          <div class="section-header">
+            <div class="section-eyebrow">Introduction</div>
+            <h2 class="section-title">📖 What Can This Skill Do?</h2>
+          </div>
+          <p class="section-intro">
+            <code>taipei-bus</code> is a bus dynamic query skill built for OpenClaw Agents.
+            It integrates three core data sources, focused on solving the most common question:
+            <em>"When will the bus arrive?"</em>
+          </p>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <div class="info-card-icon">📡</div>
+              <div class="info-card-title">Real-time Vehicle Data</div>
+              <div class="info-card-value">Taipei City TCG Bus TstBusEvent API<br>Each record: plate, route, stop, direction</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">🗺️</div>
+              <div class="info-card-title">Stop Coordinates</div>
+              <div class="info-card-value">PTX Bus Stop API<br>28,741 stops, locally cached</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">🚌</div>
+              <div class="info-card-title">Route & Stop Sequences</div>
+              <div class="info-card-value">PTX StopOfRoute API<br>415 routes, outbound & return sequences</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">⏱️</div>
+              <div class="info-card-title">3-Tier ETA Accuracy</div>
+              <div class="info-card-value">Sequence ★★★★★ / Haversine ★★★ / Fallback ★</div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <div class="alert-title"><span class="alert-icon">⚠️</span>Important: Two Independent ID Systems</div>
+            <p>
+              <code>TstBusEvent</code> RouteID (e.g., <code>158701</code>) and
+              <code>PTX</code> RouteID (e.g., <code>10132</code>, corresponding to Route 234) are
+              <strong>completely independent systems</strong>. They do <strong>not</strong> share IDs.
+              Use <em>stop name</em> or <em>route name</em> search to establish cross-references.
+            </p>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             2. Installation
+        ══════════════════════════════════════ -->
+        <section class="section" id="installation">
+          <div class="section-header">
+            <div class="section-eyebrow">Installation</div>
+            <h2 class="section-title">📦 How to Install</h2>
+          </div>
+          <p class="section-intro">
+            Two installation methods are supported. Method 1 (SkillHub) is recommended and handles all dependencies automatically.
+          </p>
+
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--text-primary);">Method 1: SkillHub Install (Recommended)</h3>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>Terminal</span>
+              <button class="copy-btn">📋 Copy</button>
+            </div>
+            <pre><code>skillhub_install install_skill taipei-bus</code></pre>
+          </div>
+
+          <h3 style="font-size:15px;font-weight:700;margin:24px 0 12px;color:var(--text-primary);">Method 2: Manual Copy</h3>
+          <p class="section-intro">Manually copy the <code>lib/</code> and <code>data/</code> directories to your project:</p>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>Terminal</span>
+              <button class="copy-btn">📋 Copy</button>
+            </div>
+            <pre><code># Copy lib/ (bus-api.js + route-api.js + stop-coords.js)
+cp -r ~/.qclaw/skills/taipei-bus/lib ./taipei-bus-lib
+
+# Copy cached data (28,741 stop coords + 415 route sequences)
+cp -r ~/.qclaw/skills/taipei-bus/data ./taipei-bus-data
+
+# Or copy the entire skill
+cp -r ~/.qclaw/skills/taipei-bus /your/project/</code></pre>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <strong>Node.js 18+ required:</strong> This skill uses the native Web Standard <code>fetch</code> API,
+            which requires Node.js 18 or higher. For older versions, install <code>node-fetch</code> as a polyfill.
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             3. Quick Start
+        ══════════════════════════════════════ -->
+        <section class="section" id="quickstart">
+          <div class="section-header">
+            <div class="section-eyebrow">Quick Start</div>
+            <h2 class="section-title">⚡ Your First Bus Query</h2>
+          </div>
+
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Prerequisites</h3>
+          <ul style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;padding-left:20px;line-height:2;">
+            <li>Node.js 18.0+ (with native <code>fetch</code>)</li>
+            <li>Skill installed with <code>lib/</code> and <code>data/</code> directories copied</li>
+            <li>Network access (to PTX API + TCG Bus API)</li>
+          </ul>
+
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Basic Query: When will Route 234 arrive?</h3>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>quickstart.js</span>
+              <button class="copy-btn">📋 Copy</button>
+            </div>
+            <pre><code>const { searchRouteByName, etaBySequence, getRouteStopSequence } = require('./lib/bus-api.js');
+
+async function main() {
+  // Step 1: Search by route name (numbers, trunk names, colors all work)
+  const route = searchRouteByName('234');
+  if (!route) {
+    console.log('Route not found');
+    return;
+  }
+  console.log(`Found: ${route.routeName} (RouteID: ${route.routeId})`);
+
+  // Step 2: Get outbound stop sequence
+  const stops = getRouteStopSequence(route.routeId, 0); // 0=outbound, 1=return
+  console.log(`Total stops: ${stops.length}`);
+
+  // Step 3: Find target stop (by partial name match)
+  const target = stops.find(s => s.stopName.includes('Huwanzayuan'));
+  if (!target) {
+    console.log('Target stop not found in sequence');
+    return;
+  }
+
+  // Step 4: Estimate arrival by stop sequence (most accurate)
+  const eta = etaBySequence(route.routeId, target.stopId, 0);
+  console.log(`\n🚌 ${route.routeName} → ${target.stopName}`);
+  console.log(`⏱️  ETA: ~${eta.minutes} minutes`);
+  console.log(`📌 ${eta.note}`);
+}
+
+main().catch(console.error);</code></pre>
+          </div>
+
+          <h3 style="font-size:15px;font-weight:700;margin:24px 0 12px;">Run It</h3>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>Terminal</span>
+              <button class="copy-btn">📋 Copy</button>
+            </div>
+            <pre><code>node quickstart.js
+# Output:
+# Found: 234 (RouteID: 10132)
+# Total stops: 40
+# 🚌 234 → Huwanzayuan
+# ⏱️  ETA: ~8 minutes
+# 📌 By sequence (stop 12/40), 5 stops to target (outbound)</code></pre>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             4. Trigger
+        ══════════════════════════════════════ -->
+        <section class="section" id="trigger">
+          <div class="section-header">
+            <div class="section-eyebrow">Triggers</div>
+            <h2 class="section-title">🔔 AI Agent Trigger Keywords</h2>
+            <p class="section-subtitle">Mentioning these keywords in an OpenClaw Agent chat activates this skill</p>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Keywords</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="tag tag-string">Dynamic</span></td>
+                  <td><code>公車動態</code>/<code>bus dynamic</code>, <code>公車多久</code>/<code>bus ETA</code>, <code>等公車</code>, <code>公車到站</code></td>
+                  <td>Query bus arrival time</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">Tracking</span></td>
+                  <td><code>公車追蹤</code>, <code>公車來了</code>, <code>公車追蹤</code></td>
+                  <td>Track a specific bus</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">Map</span></td>
+                  <td><code>公車地圖</code>, <code>公車站牌</code>, <code>公車熱點</code>, <code>bus map</code></td>
+                  <td>Map visualization or stop lookup</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">Route</span></td>
+                  <td><code>公車路線</code>, <code>公車首班</code>, <code>公車末班</code>, <code>bus route</code></td>
+                  <td>Route info or search</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">Anomaly</span></td>
+                  <td><code>公車脫班</code>, <code>公車異常</code>, <code>bus anomaly</code></td>
+                  <td>Anomaly or skip detection</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">Mixed</span></td>
+                  <td><code>Taipei bus</code>, <code>台北公車</code>, <code>臺北市公車</code></td>
+                  <td>Mixed-language triggers</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             5. Data Sources
+        ══════════════════════════════════════ -->
+        <section class="section" id="data-sources">
+          <div class="section-header">
+            <div class="section-eyebrow">Data Sources</div>
+            <h2 class="section-title">📡 Four API Data Sources</h2>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>URL / Endpoint</th>
+                  <th>Contents</th>
+                  <th>Cache Strategy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge badge-blue">Live</span><br>TstBusEvent</td>
+                  <td><code>tcgbusfs.blob.core.windows.net/blobbus/TstBusEvent.json</code></td>
+                  <td>Plate, RouteID, StopID, direction, DataTime, DutyStatus, BusStatus</td>
+                  <td>None (live fetch each time)</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-purple">PTX Stop</span><br>Stop coords</td>
+                  <td><code>ptx.transportdata.tw/MOTC/v2/Bus/Stop/City/Taipei</code></td>
+                  <td>28,741 stops — name, lat/lon, StationID</td>
+                  <td><code>data/stop-coords.json</code> (~2 MB, quarterly rebuild)</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-green">PTX Route</span><br>Route list</td>
+                  <td><code>ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taipei</code></td>
+                  <td>415 routes — name, departure/terminal, first/last bus, operator</td>
+                  <td><code>data/route-full-cache.json</code> (~11 MB, quarterly rebuild)</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-orange">PTX StopOfRoute</span><br>Stop sequences</td>
+                  <td><code>ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/City/Taipei</code></td>
+                  <td>Outbound/return stop sequences per route with StopIDs and coordinates</td>
+                  <td><code>data/route-full-cache.json</code> (~11 MB, quarterly rebuild)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">🔧</span>
+            <strong>Cache rebuild:</strong> Caches are generated by <code>scripts/build-cache.py</code>.
+            To update PTX data, run:
+            <code>python3 ~/.qclaw/skills/taipei-bus/scripts/build-cache.py</code>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             6. API Reference
+        ══════════════════════════════════════ -->
+        <section class="section" id="api-reference">
+          <div class="section-header">
+            <div class="section-eyebrow">API Reference</div>
+            <h2 class="section-title">⚙️ Complete Function Reference</h2>
+            <p class="section-subtitle">All functions are imported via <code>require('./lib/bus-api.js')</code></p>
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            📡 Real-time Vehicle Functions (bus-api.js)
+          </h3>
+
+          <div class="function-list">
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">fetchAll()</div>
+                  <div class="function-desc">Fetch all real-time bus data (TstBusEvent OD)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;BusRecord[]&gt;</code> — sorted by DataTime descending
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { fetchAll } = require('./lib/bus-api.js');
+
+const buses = await fetchAll();
+console.log(`Total buses online: ${buses.length}`);
+buses.slice(0, 3).forEach(b => console.log(b.BusID, b.RouteID, b.StopID));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">findByRoute(routeId)</div>
+                  <div class="function-desc">Query all online buses by TstBusEvent RouteID</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;BusRecord[]&gt;</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>Param</th><th>Type</th><th>Description</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>routeId</code></td><td><span class="tag tag-string">string</span></td><td>TstBusEvent RouteID (e.g., <code>'158701'</code>) ⚠️ Not a PTX RouteID</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="alert alert-warning" style="margin-bottom:12px;">
+                  <span class="alert-icon">⚠️</span>This <code>routeId</code> uses the TstBusEvent system (e.g., <code>158701</code>),
+                  NOT the PTX RouteID (e.g., <code>10132</code>). Use <code>searchRouteByName</code> to confirm first.
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { findByRoute } = require('./lib/bus-api.js');
+
+const buses = await findByRoute('158701');
+console.log(`Route: ${buses.length} buses online`);
+buses.forEach(b => console.log(`${b.BusID} at ${b.StopID}`));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">findByBus(busId)</div>
+                  <div class="function-desc">Query a single bus by plate number</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;BusRecord | null&gt;</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { findByBus, formatBus } = require('./lib/bus-api.js');
+
+const bus = await findByBus('KKC-1100');
+if (bus) {
+  console.log(formatBus(bus, true));
+} else {
+  console.log('Bus not found or offline');
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">findAtStation(stopId)</div>
+                  <div class="function-desc">Find buses currently at a specific stop (CarOnStop === '1')</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;BusRecord[]&gt;</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { findAtStation } = require('./lib/bus-api.js');
+
+const buses = await findAtStation('179647');
+console.log(`${buses.length} buses at stop`);
+buses.forEach(b => console.log(b.BusID, b.RouteID));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">detectAnomalies()</div>
+                  <div class="function-desc">Detect buses with DutyStatus !== '1' or BusStatus !== '0'</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;BusRecord[]&gt;</code> — empty = all normal
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { detectAnomalies, formatBus } = require('./lib/bus-api.js');
+
+const anomalies = await detectAnomalies();
+if (anomalies.length === 0) {
+  console.log('✅ All systems normal');
+} else {
+  console.log(`⚠️ ${anomalies.length} anomalies`);
+  anomalies.forEach(b => console.log(formatBus(b)));
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">routeSummary()</div>
+                  <div class="function-desc">System-wide route overview (bus count per route)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;{[routeId]: {count, buses[]}}&gt;</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { routeSummary } = require('./lib/bus-api.js');
+
+const summary = await routeSummary();
+const top5 = Object.entries(summary)
+  .sort(([,a],[,b]) => b.count - a.count)
+  .slice(0, 5);
+
+top5.forEach(([routeId, {count}]) => {
+  console.log(`Route ${routeId}: ${count} buses`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            🗺️ PTX Coordinate Functions (bus-api.js + stop-coords.js)
+          </h3>
+
+          <div class="function-list">
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">fetchAllWithCoords()</div>
+                  <div class="function-desc">Fetch all buses with stop coordinates attached (lat/lon/name)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;EnrichedBusRecord[]&gt;</code> — each record has <code>_stopCoords</code> field
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { fetchAllWithCoords } = require('./lib/bus-api.js');
+
+const buses = await fetchAllWithCoords();
+const first = buses[0];
+console.log(first.BusID, first.RouteID);
+console.log('📍', first._stopCoords?.name,
+  `(${first._stopCoords?.lat?.toFixed(5)}, ${first._stopCoords?.lon?.toFixed(5)})`);</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getHotspots(topN)</div>
+                  <div class="function-desc">Get top-N busiest stops (highest bus density)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Promise&lt;Array&lt;{stopId, stopName, lat, lon, count}&gt;&gt;</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { getHotspots } = require('./lib/bus-api.js');
+
+const hotspots = await getHotspots(5);
+hotspots.forEach((h, i) => {
+  console.log(`${i+1}. ${h.stopName} — ${h.count} buses`);
+  console.log(`   📍 (${h.lat.toFixed(5)}, ${h.lon.toFixed(5)})`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getStopCoords(stopId)</div>
+                  <div class="function-desc">Get stop coordinates by PTX StopID (sync, locally cached)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">stop-coords</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>{name, lat, lon, stationId} | null</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { getStopCoords } = require('./lib/bus-api.js');
+
+const coords = getStopCoords('33210');
+if (coords) {
+  console.log(coords.name); // "Gongguan"
+  console.log(coords.lat, coords.lon);
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">searchStops(keyword, limit)</div>
+                  <div class="function-desc">Fuzzy search stops by name (sync, locally cached)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">stop-coords</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>Array&lt;{stopId, name, lat, lon...}&gt;</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { searchStops } = require('./lib/bus-api.js');
+
+const hits = searchStops('MRT', 5);
+hits.forEach(s => {
+  console.log(`${s.stopId}: ${s.name}`);
+  console.log(`  📍 (${s.lat?.toFixed(5)}, ${s.lon?.toFixed(5)})`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            🚌 PTX Route Functions (bus-api.js + route-api.js)
+          </h3>
+
+          <div class="function-list">
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">searchRouteByName(name)</div>
+                  <div class="function-desc">Search bus routes by name (exact + fuzzy match)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>RouteInfo | null</code> — includes <code>routeId</code>, <code>routeName</code>, <code>departure</code>, <code>terminal</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { searchRouteByName } = require('./lib/bus-api.js');
+
+const route = searchRouteByName('Blue10');
+// also works: '藍10', '10', etc.
+if (route) {
+  console.log(`${route.routeName} (${route.routeId})`);
+  console.log(`${route.departure} → ${route.terminal}`);
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getRouteInfo(routeId)</div>
+                  <div class="function-desc">Get full route info by PTX RouteID (first/last bus, operator)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>RouteInfo | null</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { getRouteInfo, routeApi } = require('./lib/bus-api.js');
+
+const route = getRouteInfo('10132'); // Route 234
+console.log(routeApi.formatRoute(route));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">searchRoutes(keyword, limit)</div>
+                  <div class="function-desc">Fuzzy search all matching routes (returns array)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>RouteInfo[]</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { searchRoutes } = require('./lib/bus-api.js');
+
+const routes = searchRoutes('Blue', 5);
+routes.forEach(r => console.log(`${r.routeName}: ${r.departure} → ${r.terminal}`));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getRouteStopSequence(routeId, direction)</div>
+                  <div class="function-desc">Get all stops for a route (outbound or return)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>StopEntry[]</code> — includes <code>stopId</code>, <code>stopName</code>, <code>lat</code>, <code>lon</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>Param</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>routeId</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>PTX RouteID</td></tr>
+                      <tr><td><code>direction</code></td><td><span class="tag tag-number">number</span></td><td><code>0</code></td><td><code>0</code>=outbound, <code>1</code>=return</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { getRouteStopSequence } = require('./lib/bus-api.js');
+
+const stops = getRouteStopSequence('10132', 0); // Route 234 outbound
+stops.forEach((s, i) => {
+  console.log(`${i+1}. ${s.stopName} (${s.stopId})`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">etaBySequence(routeId, targetStopId, direction, avgSecPerStop)</div>
+                  <div class="function-desc">Estimate arrival by stop sequence (most accurate method)</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>{minutes, remaining, total, stop, note}</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>Param</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>routeId</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>PTX RouteID</td></tr>
+                      <tr><td><code>targetStopId</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>Target PTX StopID</td></tr>
+                      <tr><td><code>direction</code></td><td><span class="tag tag-number">number</span></td><td><code>0</code></td><td><code>0</code>=outbound, <code>1</code>=return</td></tr>
+                      <tr><td><code>avgSecPerStop</code></td><td><span class="tag tag-number">number</span></td><td><code>90</code></td><td>Avg seconds per stop (default: 1.5min urban)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { etaBySequence } = require('./lib/bus-api.js');
+
+const eta = etaBySequence('10132', '33210', 0);
+console.log(`ETA: ${eta.minutes} minutes (${eta.note})`);
+console.log(`${eta.remaining}/${eta.total} stops remaining`);</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getRoutesByStop(stopId)</div>
+                  <div class="function-desc">Find all routes that pass through a specific stop</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>Returns：</strong><code>{routeId, routeName, direction, index}[]</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { getRoutesByStop } = require('./lib/bus-api.js');
+
+const routes = getRoutesByStop('33210');
+routes.forEach(r => {
+  const dir = r.direction === 0 ? 'Outbound' : 'Return';
+  console.log(`${r.routeName} (${dir}) stop #${r.index}`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            ⏱️ Three-Tier ETA Accuracy System
+          </h3>
+
+          <div class="table-wrapper" style="margin-bottom:20px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>Method</th>
+                  <th>Accuracy</th>
+                  <th>When to Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge badge-green">★★★★★</span><br>Sequence</td>
+                  <td>remaining stops × 90s</td>
+                  <td>±1-2 stops</td>
+                  <td>Known bus position + complete sequence (<code>etaBySequence</code>)</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-blue">★★★</span><br>Haversine</td>
+                  <td>straight-line distance ÷ 25 km/h</td>
+                  <td>±2-5 min</td>
+                  <td>Has bus coords + stop coords (<code>etaEstimate</code>)</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-orange">★</span><br>Fallback</td>
+                  <td>500m ÷ 25 km/h = 1.2 min</td>
+                  <td>Coarse estimate</td>
+                  <td>No coordinates available (fixed stop distance)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </section>
+
+        <!-- ══════════════════════════════════════
+             7. Examples
+        ══════════════════════════════════════ -->
+        <section class="section" id="examples">
+          <div class="section-header">
+            <div class="section-eyebrow">Examples</div>
+            <h2 class="section-title">💡 Five Real-World Scenarios</h2>
+          </div>
+
+          <div class="example-list">
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">1</div>
+                <div>
+                  <div class="example-title">Bus Arrival Time (ETA)</div>
+                  <div class="example-desc">Estimate arrival time for a specific route to a specific stop</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>eta-example.js</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { searchRouteByName, etaBySequence, getRouteStopSequence } = require('./lib/bus-api.js');
+
+async function getBusEta(routeName, targetStopName) {
+  const route = searchRouteByName(routeName);
+  if (!route) return `Route "${routeName}" not found`;
+
+  const stops = getRouteStopSequence(route.routeId, 0);
+  const target = stops.find(s => s.stopName.includes(targetStopName));
+  if (!target) return `Stop "${targetStopName}" not in sequence`;
+
+  const eta = etaBySequence(route.routeId, target.stopId, 0);
+  return `🚌 ${route.routeName} → ${target.stopName}: ~${eta.minutes} min\n${eta.note}`;
+}
+
+await getBusEta('234', 'Huwanzayuan');</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">2</div>
+                <div>
+                  <div class="example-title">Skip / Anomaly Detection</div>
+                  <div class="example-desc">Scan the entire system for duty or status anomalies</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>anomaly-example.js</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { detectAnomalies, formatBus } = require('./lib/bus-api.js');
+
+async function checkSystemHealth() {
+  const anomalies = await detectAnomalies();
+  if (anomalies.length === 0) return '✅ All buses operating normally';
+
+  const lines = [`⚠️  ${anomalies.length} anomalies found:\n`];
+  anomalies.forEach(b => {
+    const reasons = [];
+    if (b.DutyStatus !== '1') reasons.push(`Duty(${b.DutyStatus})`);
+    if (b.BusStatus !== '0') reasons.push(`Status(${b.BusStatus})`);
+    lines.push(`🚨 ${b.BusID} Route:${b.RouteID} → ${reasons.join(', ')}`);
+  });
+  return lines.join('\n');
+}
+
+await checkSystemHealth();</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">3</div>
+                <div>
+                  <div class="example-title">Stop Sequence Lookup</div>
+                  <div class="example-desc">Get the full outbound/return stop list for a route</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>route-sequence.js</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { searchRouteByName, getRouteStopSequence } = require('./lib/bus-api.js');
+
+function showRouteStops(routeName, direction = 0) {
+  const route = searchRouteByName(routeName);
+  if (!route) return;
+  const dirLabel = direction === 0 ? 'Outbound' : 'Return';
+  const stops = getRouteStopSequence(route.routeId, direction);
+  console.log(`🚌 ${route.routeName} ${dirLabel} (${stops.length} stops)\n`);
+  stops.forEach((s, i) => console.log(`  ${String(i+1).padStart(2,'0')}. ${s.stopName}`));
+}
+
+showRouteStops('Blue10', 0);</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">4</div>
+                <div>
+                  <div class="example-title">Stop Search + Routes at Stop</div>
+                  <div class="example-desc">Search by stop name, then find all routes passing through</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>stop-search.js</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>const { searchStops, getRoutesByStop } = require('./lib/bus-api.js');
+
+async function findBusRoutesAtStop(stopKeyword) {
+  const hits = searchStops(stopKeyword, 3);
+  if (!hits.length) return `No stops matching "${stopKeyword}"`;
+
+  const results = [];
+  for (const stop of hits) {
+    const routes = getRoutesByStop(stop.stopId);
+    results.push({
+      stop: stop.name,
+      routes: routes.map(r => `${r.routeName}(${r.direction===0?'Out':'Ret'}#${r.index})`)
+    });
+  }
+  return results;
+}
+
+await findBusRoutesAtStop('MRT Gongguan');</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">5</div>
+                <div>
+                  <div class="example-title">Cron Job Scheduled Monitoring</div>
+                  <div class="example-desc">Set up automatic anomaly checks every N minutes with notifications</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>Using cron tool</span><button class="copy-btn">📋 Copy</button></div>
+                  <pre><code>// Use qclaw-cron-skill to check every 5 minutes
+cron(action='add', job={
+  name: 'Taipei Bus Anomaly Detection',
+  schedule: { kind: 'every', everyMs: 5 * 60 * 1000 },
+  sessionTarget: 'isolated',
+  payload: {
+    kind: 'agentTurn',
+    message: `Run detectAnomalies() and report. If anomalies found,
+              output "⚠️ N anomalies: plate/route/reason"; otherwise "✅ All normal".`,
+    timeoutSeconds: 60
+  },
+  delivery: { mode: 'announce' }
+})</code></pre>
+                </div>
+                <p class="section-intro" style="margin-top:12px;">
+                  See <code>examples/example-cron.js</code> for more templates:
+                  every-5-min anomaly detection, daily morning route summary,
+                  and one-shot ETA reminder.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             8. Use Cases
+        ══════════════════════════════════════ -->
+        <section class="section" id="use-cases">
+          <div class="section-header">
+            <div class="section-eyebrow">Use Cases</div>
+            <h2 class="section-title">💬 Conversational Use Case Reference</h2>
+            <p class="section-subtitle">User query → Agent function → Response format</p>
+          </div>
+
+          <div class="scenario-grid">
+            <div class="scenario-row">
+              <div class="scenario-question">"When will Route 234 arrive?"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchRouteByName</code> + <code>etaBySequence</code><br>→ ~N minutes (with sequence details)</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">"How many buses at XX stop?"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchStops</code> + <code>findAtStation</code><br>→ N buses at stop (plate list)</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">"Where is KKC-1100?"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>findByBus</code> + <code>formatBus</code><br>→ plate/route/stop/direction/DataTime</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">"Where are the most buses?"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>getHotspots</code><br>→ TOP N stops (name + count + coords)</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">"Show Route Blue10 sequence"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchRouteByName</code> + <code>getRouteStopSequence</code><br>→ Full stop list (outbound/return)</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">"Are all buses normal?"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>detectAnomalies</code><br>→ ✅ All normal or ⚠️ N anomalies (with details)</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">"First/last bus for Route 234?"</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchRouteByName</code> + <code>getRouteInfo</code><br>→ First/last bus times outbound & return</div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning" style="margin-top:24px;">
+            <div class="alert-title"><span class="alert-icon">⚠️</span>Address-to-address routing (partial limitation)</div>
+            <p>
+              "I'm at XX stop, going to OO <strong>address</strong>" requires:
+              ① Address geocoding → ② Find nearest stop → ③ Transfer planning.
+              Geocoding and transfer algorithms are <strong>not yet implemented</strong>.
+              Consider pairing with <code>tencentmap-jsapi-gl-skill</code> (Tencent Maps geocoding API)
+              or Google Maps / TPTP public transit API for full routing.
+            </p>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             9. Limitations
+        ══════════════════════════════════════ -->
+        <section class="section" id="limitations">
+          <div class="section-header">
+            <div class="section-eyebrow">Limitations</div>
+            <h2 class="section-title">⚠️ Known Limitations — Read Before Using</h2>
+          </div>
+
+          <div class="limitations-list">
+            <div class="limitation-item">
+              <div class="limitation-num">1</div>
+              <div class="limitation-content">
+                <div class="limitation-title">⚠️ Two Independent ID Systems</div>
+                <div class="limitation-desc">
+                  <code>TstBusEvent</code> RouteID/StopID (e.g., <code>158701</code>, <code>179647</code>)
+                  and <code>PTX</code> RouteID/StopID (e.g., <code>10132</code>, <code>33210</code>)
+                  are <strong>completely independent</strong>. Cross-references must be built via
+                  stop/route name search. Use <code>searchRouteByName</code> to get PTX RouteID first.
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">2</div>
+              <div class="limitation-content">
+                <div class="limitation-title">ETA Accuracy Has an Upper Bound</div>
+                <div class="limitation-desc">
+                  Even the most accurate sequence-based method (<code>etaBySequence</code>) is limited by:
+                  ① The TstBusEvent only reports the last reported stop, not real-time GPS tracks;
+                  ② The cache is a static snapshot; actual sequences may vary slightly with road conditions.
+                  Always label results as "estimated" rather than "exact".
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">3</div>
+              <div class="limitation-content">
+                <div class="limitation-title">Live Data Covers Only Equipped Vehicles</div>
+                <div class="limitation-desc">
+                  TstBusEvent only includes buses with installed fixed-point vehicle equipment,
+                  <strong>not all operating vehicles</strong>. Buses without TstBusEvent hardware
+                  will not appear in results — that doesn't mean they don't exist or haven't departed.
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">4</div>
+              <div class="limitation-content">
+                <div class="limitation-title">No Transfer Recommendation</div>
+                <div class="limitation-desc">
+                  A-to-B address routing requires geocoding + transfer API, which is not implemented.
+                  You can use <code>tencentmap-jsapi-gl-skill</code> to geocode addresses and find
+                  nearby stops, but complex transfers should be delegated to Google Maps / TPTP.
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">5</div>
+              <div class="limitation-content">
+                <div class="limitation-title">No Occupancy / Crowding Data</div>
+                <div class="limitation-desc">
+                  TstBusEvent API does not include passenger count or crowding information.
+                  For ride comfort assessment, additional data sources would be needed.
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">6</div>
+              <div class="limitation-content">
+                <div class="limitation-title">Cache Requires Periodic Rebuild</div>
+                <div class="limitation-desc">
+                  PTX stop coordinates and route sequences (<code>data/</code>) are generated by
+                  <code>scripts/build-cache.py</code>, default quarterly.
+                  If PTX data is updated (route changes, stop relocations), run the rebuild script manually.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             10. Deployment
+        ══════════════════════════════════════ -->
+        <section class="section" id="deployment">
+          <div class="section-header">
+            <div class="section-eyebrow">Deployment</div>
+            <h2 class="section-title">🌐 Deploy to GitHub Pages</h2>
+          </div>
+          <p class="section-intro">
+            This documentation site is pure static HTML — deployable to GitHub Pages,
+            Netlify, Vercel, or any static host. GitHub Pages example below.
+          </p>
+
+          <div class="deploy-steps">
+            <div class="deploy-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <div class="step-title">Push docs/ to GitHub</div>
+                <div class="step-desc">
+                  Ensure <code>docs/</code> contains all HTML, CSS, and JS files,
+                  then push to your GitHub repository (use a <code>gh-pages</code> branch or main).
+                </div>
+              </div>
+            </div>
+            <div class="deploy-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <div class="step-title">Settings → Pages → Source</div>
+                <div class="step-desc">
+                  Go to <strong>Repository Settings → Pages</strong>, set
+                  <em>Source</em> to <code>main</code> branch, <em>folder</em> to <code>/docs</code>.
+                </div>
+              </div>
+            </div>
+            <div class="deploy-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <div class="step-title">Wait 2-3 minutes for deployment</div>
+                <div class="step-desc">
+                  GitHub will build and publish automatically.
+                  Access at <code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code>.
+                </div>
+              </div>
+            </div>
+            <div class="deploy-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <div class="step-title">(Optional) Custom domain via CNAME</div>
+                <div class="step-desc">
+                  Write your domain (e.g., <code>taipei-bus.openclaw.ai</code>) in <code>docs/CNAME</code>,
+                  then add a CNAME DNS record pointing to <code>&lt;username&gt;.github.io</code>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             11. License
+        ══════════════════════════════════════ -->
+        <section class="section" id="license">
+          <div class="section-header">
+            <div class="section-eyebrow">License</div>
+            <h2 class="section-title">📄 Licensing & Attribution</h2>
+          </div>
+
+          <div class="two-col">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+              <div style="font-size:20px;margin-bottom:12px;">📜</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Skill Core</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">
+                <strong>OGDL (Open Government Data License)</strong><br>
+                Bus dynamic data collected and integrated by this skill is provided under OGDL.
+                Free for commercial and non-commercial use with attribution to government open data sources.
+              </div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+              <div style="font-size:20px;margin-bottom:12px;">🗺️</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">PTX Data</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">
+                <strong>MIT License</strong><br>
+                PTX Open Data Platform data is provided under its own terms.
+                This skill's PTX integration modules are licensed under MIT.
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top:16px;">
+            <span class="alert-icon">📌</span>
+            <strong>Disclaimer:</strong> This skill is maintained by the OpenClaw Agent community,
+            not by the Taipei City Government or PTX official channels.
+            For authoritative bus dynamic data, always refer to official sources.
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <span>🚌 taipei-bus Skill — v1.2.0 — OpenClaw Agent</span>
+    <span>Data: Taipei TCG Bus · PTX (MOTC)</span>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

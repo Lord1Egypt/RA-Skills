@@ -1,47 +1,61 @@
-## Description: <br>
-Learn from experience: self-reflection + self-criticism + self-learning + self-organizing memory + cross-session sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn from experience helps an agent record corrections, self-reflections, reusable preferences, and confirmed patterns in local memory files and sync selected learnings into agent global configuration for cross-session persistence.
 
-## Publisher: <br>
-[shibing624](https://clawhub.ai/user/shibing624) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shibing624](https://clawhub.ai/user/shibing624)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve explicit corrections, confirmed preferences, and self-reflection lessons across sessions. It helps agents organize local memory, cite learned rules, and sync confirmed patterns into supported agent startup configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist learned user preferences in local memory. <br>
-Mitigation: Install only when persistent agent memory is desired, review what will be stored, and audit ~/learn-from-experience regularly. <br>
-Risk: The skill can automatically write confirmed preferences into multiple agents' global startup configuration files. <br>
-Mitigation: Restrict sync to intended agent configs, back up global config files before enabling sync, and review generated Patterns entries. <br>
-Risk: The setup flow may propose installing an optional Proactivity companion skill. <br>
-Mitigation: Review the optional companion skill separately and install it only after explicit approval. <br>
+## Use Case:
 
+Developers and agent users use this skill to make an assistant retain explicit corrections, confirmed preferences, and reusable work patterns across sessions while keeping memory organized by global, domain, project, and archive tiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shibing624/learn-from-experience) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Security boundaries](artifact/boundaries.md) <br>
-- [Memory operations](artifact/operations.md) <br>
-- [Learning mechanics](artifact/learning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with setup snippets and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory files and startup configuration updates when the agent follows the documented setup and sync flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Persistent memory can change future agent behavior across sessions and supported agent products.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent learning is intended, keep memory local, and periodically review the stored memory files.
+
+Risk: Global config sync may write learned preferences into automatically loaded agent configuration.
+
+Mitigation: Require a visible diff and explicit approval before sync modifies any global config file, and limit changes to the documented Patterns block.
+
+Risk: Optional companion skill installation could expand behavior beyond this skill.
+
+Mitigation: Decline the companion skill unless its publisher, version, and files have been separately reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shibing624/skills/learn-from-experience)
+- [SKILL.md](artifact/SKILL.md)
+- [Setup guide](artifact/setup.md)
+- [Memory operations](artifact/operations.md)
+- [Security boundaries](artifact/boundaries.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory files and proposed or applied updates to agent configuration sections when sync is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

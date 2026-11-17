@@ -1,43 +1,58 @@
-## Description: <br>
-Automates browser tasks with OpenClaw's Playwright browser control, including navigation, form filling, screenshots, PDFs, data extraction, multi-step flows, monitoring, and attended logins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate browser tasks with OpenClaw's Playwright browser control for navigation, interaction, screenshots, PDFs, data extraction, form workflows, monitoring, downloads, and attended login automation.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and operators use this skill to direct an agent through Chromium browser workflows such as scraping dynamic pages, filling forms, capturing screenshots or PDFs, and monitoring changing web content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over browser pages, including real logged-in sessions. <br>
-Mitigation: Prefer the sandbox target and use profile="user" only for attended tasks where the user is present. <br>
-Risk: Browser automation may submit forms, perform purchases, delete content, change accounts, or act on private sites. <br>
-Mitigation: Require explicit confirmation before login, form submission, purchase, deletion, account changes, or actions on private sites. <br>
-Risk: Credentials or one-time codes could be exposed during browser automation. <br>
-Mitigation: Do not give the agent passwords or one-time codes. <br>
+## Use Case:
 
+Developers and agents use this skill to control a Chromium browser for dynamic scraping, form filling, screenshots, PDF generation, multi-step web flows, content monitoring, downloads, and attended login workflows.
 
-## Reference(s): <br>
-- [Browser Automation ClawHub listing](https://clawhub.ai/fuzzyb33s/fuzzy-browser-automation) <br>
-- [Fuzzyb33s publisher profile](https://clawhub.ai/user/fuzzyb33s) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Code, Files] <br>
-**Output Format:** [Markdown with JSON-style browser action examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser screenshots, PDFs, structured DOM snapshots, console logs, or extracted page data through browser actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automate actions in a real logged-in browser session, including account-changing clicks and credential entry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the sandbox browser for routine automation and allow host or user-profile browser access only for attended, explicitly approved tasks.
+
+Risk: Arbitrary page JavaScript evaluation can expose page data or perform unintended actions in the browser context.
+
+Mitigation: Review each evaluate function before execution and restrict it to narrow read-only extraction unless a trusted operator approves otherwise.
+
+Risk: Form submission and login flows can affect external accounts or services.
+
+Mitigation: Require human presence and explicit confirmation before login automation, credential entry, purchases, submissions, or other state-changing actions.
+
+## Reference(s):
+
+- [Source artifact: skill.md](artifact/skill.md)
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/fuzzy-browser-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON-style browser tool examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser action sequences, locator guidance, screenshots, PDFs, extracted page data, and troubleshooting recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

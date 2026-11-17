@@ -1,43 +1,56 @@
-## Description: <br>
-Convert agent execution plans into MADR-format Architecture Decision Records for audit trails and architecture progression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert agent execution plans into MADR-format Architecture Decision Records for audit trails and architecture progression.
 
-## Publisher: <br>
-[rawc0der](https://clawhub.ai/user/rawc0der) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rawc0der](https://clawhub.ai/user/rawc0der)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert implementation plans, GSD phase plans, Cursor CreatePlan files, or generic markdown plans into numbered MADR Architecture Decision Records and maintain an ADR index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads project plan files and writes ADR documentation in the repository, which can introduce incorrect or misleading architectural records if the source plan is incomplete or misread. <br>
-Mitigation: Use a branch and review the generated ADR and README changes before committing. <br>
-Risk: Superseding an older ADR can alter the documented decision history if the target ADR number or relationship is wrong. <br>
-Mitigation: Review superseded ADR status changes and confirm the new ADR number before merging. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert GSD phase plans, Cursor CreatePlan files, or generic markdown plans into numbered MADR Architecture Decision Records and keep the ADR index current.
 
-## Reference(s): <br>
-- [MADR Template](references/madr-template.md) <br>
-- [ADR Index Template](assets/adr-index-template.md) <br>
-- [MADR Format](https://adr.github.io/madr/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rawc0der/spec-to-adr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown ADR files and a markdown ADR index, with a short text summary to the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates repository documentation under the detected ADR directory convention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes ADR documentation files and may update an ADR index in the repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated ADR and index changes before committing them.
+
+Risk: Sparse or ambiguous source plans can produce incomplete ADR sections or TODO markers.
+
+Mitigation: Provide a clear source plan or decision description and review any TODO-marked sections before using the ADR as an architecture record.
+
+## Reference(s):
+
+- [MADR Template](references/madr-template.md)
+- [ADR Index Template](assets/adr-index-template.md)
+- [MADR Format](https://adr.github.io/madr/)
+- [ClawHub Skill Page](https://clawhub.ai/rawc0der/skills/spec-to-adr)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [MADR markdown ADR files, an ADR index entry, and a concise text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes ADR documentation files and may update an ADR index in the target repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

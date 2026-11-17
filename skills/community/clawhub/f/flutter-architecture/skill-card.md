@@ -1,38 +1,49 @@
-## Description: <br>
-Guides Flutter developers in using a four-layer component architecture with MVVM conventions, dependency rules, naming standards, and optional project directory scaffolding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flutter four-layer componentized MVVM architecture guidance for project development, new module creation, directory design, code review, architecture alignment, and optional MVVM directory scaffolding.
 
-## Publisher: <br>
-[PipeDog](https://clawhub.ai/user/PipeDog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pipedog](https://clawhub.ai/user/pipedog)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to align Flutter project structure, create new modules, scaffold MVVM folders, and review architecture consistency. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Folder scaffolding can add project structure that conflicts with an existing Flutter repository layout. <br>
-Mitigation: Confirm the target project and review the planned directory tree before applying scaffold changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Architecture reference](references/architecture.md) <br>
-- [ClawHub skill page](https://clawhub.ai/PipeDog/flutter-architecture) <br>
+## Use Case:
 
+Developers and engineers use this skill to standardize Flutter project architecture around app, business, component, and foundation layers with MVVM module structure. When asked, it can help scaffold matching project directories under lib/.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with directory trees and optional scaffold commands or file operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Flutter project directories under lib/ only when the user explicitly requests scaffolding.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scaffolding can create or modify project folders under lib/ in an existing Flutter project.
+
+Mitigation: Review proposed module names and target paths before allowing the skill to modify an existing project.
+
+## Reference(s):
+
+- [Flutter Componentized MVVM Architecture Specification](references/architecture.md)
+- [ClawHub Skill Page](https://clawhub.ai/pipedog/skills/flutter-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with file paths, directory trees, code examples, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Flutter project directories under lib/ when explicitly asked to scaffold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

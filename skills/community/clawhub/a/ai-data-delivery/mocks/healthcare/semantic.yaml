@@ -1,0 +1,191 @@
+version: mock-healthcare-1.0
+domain: 医疗·门诊运营
+datasets:
+- name: visits
+  source: visits
+  cn: 门诊就诊事实表
+  grain: 一行一次门诊就诊
+  primary_key: visit_id
+  ai:
+    instructions: 能答门诊量/复诊率/费用统计；必带时间围栏（visit_date）；不答患者隐私（本表无患者身份字段）
+  fields:
+  - name: visit_id
+    role: pk
+    cn: 就诊编号
+  - name: visit_date
+    role: time
+    cn: 就诊日期
+  - name: dept
+    role: dim
+    cn: 科室
+    enum: &id001
+    - 内科
+    - 外科
+    - 儿科
+    - 妇科
+  - name: visit_type
+    role: dim
+    cn: 就诊类型
+    enum: &id002
+    - 初诊
+    - 复诊
+  - name: fee
+    role: measure
+    cn: 门诊费用
+  - name: doctor_id
+    role: fk
+    cn: 医生编号
+  ontology_ref: 门诊就诊
+- name: doctors
+  source: doctors
+  cn: 医生维度表
+  grain: 一行一个医生
+  primary_key: doctor_id
+  ai:
+    instructions: 能答医生职称/科室分布统计
+  fields:
+  - name: doctor_id
+    role: pk
+    cn: 医生编号
+  - name: name
+    role: attr
+    cn: 姓名
+  - name: title
+    role: dim
+    cn: 职称
+    enum: &id003
+    - 住院医师
+    - 主治医师
+    - 副主任医师
+    - 主任医师
+  - name: dept
+    role: dim
+    cn: 科室
+    enum:
+    - 内科
+    - 外科
+    - 儿科
+    - 妇科
+  - name: hire_date
+    role: time
+    cn: 入职日期
+  ontology_ref: 医生
+relationships:
+- from: visits
+  to: doctors
+  join_key: doctor_id
+  cardinality: N:1
+  traversable: true
+  ontology_ref: 医生->门诊就诊:接诊
+concepts:
+- term: 专家医师
+  synonyms:
+  - 专家
+  expand:
+    dataset: doctors
+    field: title
+    values:
+    - 副主任医师
+    - 主任医师
+metrics:
+- id: visit_count
+  name: 门诊人次
+  synonyms:
+  - 就诊人次
+  - 门诊量
+  - 门诊人数
+  type: count
+  dataset: visits
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  time_field: visit_date
+  unit: 人次
+  caliber:
+    note: 全部门诊就诊记录数
+    basis: mock 内部约定
+- id: revisit_rate
+  name: 复诊率
+  synonyms:
+  - 门诊复诊率
+  - 复诊比例
+  - 病人复诊率
+  type: ratio
+  dataset: visits
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN visit_type = '复诊' THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: visit_date
+  unit: '%'
+  caliber:
+    note: 复诊人次占总门诊人次（SUM/SUM 加权）
+    basis: mock 内部约定
+  on_zero_denominator: 'null'
+- id: fee_sum
+  name: 门诊总费用
+  synonyms:
+  - 门诊收入
+  - 门诊费用总额
+  - 门诊营收
+  type: sum
+  dataset: visits
+  structured: true
+  status: 已发布
+  expr: SUM(fee)
+  time_field: visit_date
+  unit: 元
+  caliber:
+    note: 门诊费用合计
+    basis: mock 内部约定
+- id: expert_doctor_count
+  name: 专家医师数
+  synonyms:
+  - 专家数
+  - 专家医生有多少
+  - 专家人数
+  type: count
+  dataset: doctors
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: title
+    values:
+    - 副主任医师
+    - 主任医师
+  time_field: hire_date
+  unit: 人
+  caliber:
+    note: 职称为副主任医师或主任医师的医生数
+    basis: mock 内部约定
+ontology:
+  entities:
+  - name: 门诊就诊
+    attributes:
+    - name: 科室
+      value_type: enum
+      values: *id001
+    - name: 就诊类型
+      value_type: enum
+      values: *id002
+    note: 一行一次门诊就诊
+    uid: ent_outpatient_visit
+    evidence:
+      source: data_observed
+  - name: 医生
+    attributes:
+    - name: 职称
+      value_type: enum
+      values: *id003
+    note: 一行一个医生
+    uid: ent_doctor
+    evidence:
+      source: user_provided
+  relations:
+  - from: 医生
+    to: 门诊就诊
+    predicate: 接诊
+    mapping: equi_key

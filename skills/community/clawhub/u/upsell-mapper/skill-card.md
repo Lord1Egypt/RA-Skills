@@ -1,41 +1,56 @@
-## Description: <br>
-Map product relationships and purchase sequence patterns to identify the best cross-sell triggers at checkout, post-purchase, and in creator content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map product relationships and purchase sequence patterns to identify the best cross-sell triggers at checkout, post-purchase, and in creator content.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Commerce operators, marketers, and creator-commerce teams use this skill to turn product catalogs and purchase patterns into upsell, cross-sell, bundle, email, and creator-content recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing emails or upsell flows may be incomplete for legal, consent, unsubscribe, suppression-list, or regional marketing-compliance requirements. <br>
-Mitigation: Review campaigns before sending, confirm permission or another lawful basis, include unsubscribe or preference controls, respect suppression lists, and check CAN-SPAM, GDPR, CCPA, and local rules. <br>
+## Use Case:
 
+External ecommerce operators, marketers, and creator-commerce teams use this skill to turn product catalogs and order history into upsell, cross-sell, bundle, post-purchase, and creator content recommendations.
 
-## Reference(s): <br>
-- [Product Relationship Matrix Template](references/product-matrix-template.md) <br>
-- [Post-Purchase Email Sequence Guide](references/post-purchase-emails.md) <br>
-- [Output Template](references/output-template.md) <br>
-- [Upsell Quality Checklist](assets/upsell-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables, checklists, and copy templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses product catalog, pricing, platform, order-history, and funnel inputs when available; recommendations should be reviewed before customer-facing use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Catalog data, revenue metrics, and order history may include sensitive business or customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove unnecessary customer-identifying fields and provide only the business data needed for the upsell analysis.
+
+Risk: Upsell, cross-sell, and email recommendations may be inaccurate when catalog or purchase history inputs are incomplete.
+
+Mitigation: Review recommendations against current products, pricing, inventory, margins, and customer messaging standards before deployment.
+
+## Reference(s):
+
+- [Product Relationship Matrix Template](references/product-matrix-template.md)
+- [Post-Purchase Email Sequence Guide](references/post-purchase-emails.md)
+- [Output Template](references/output-template.md)
+- [Upsell Quality Checklist](assets/upsell-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown tables, recommendation matrices, checklist items, and copy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided product catalog, order history, platform, current AOV, repeat purchase rate, and existing bundle or cross-sell setup when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

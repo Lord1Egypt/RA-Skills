@@ -1,0 +1,28 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_member_create",
+    "description": "Add existing team members to the current application. Requires a list of member account IDs and application role IDs.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of member account IDs to add to the application."
+        },
+        "roleIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of application role IDs to assign to these members."
+        }
+      },
+      "required": ["accountIdList", "roleIdList"],
+      "additionalProperties": false
+    }
+  }
+}

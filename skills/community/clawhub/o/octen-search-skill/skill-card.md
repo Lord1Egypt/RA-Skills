@@ -1,40 +1,51 @@
-## Description: <br>
-Real-time web search for AI agents powered by Octen, with date filtering and LLM-ready results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time web search for AI agents powered by Octen, with result count controls and optional publish-date filtering.
 
-## Publisher: <br>
-[octenai](https://clawhub.ai/user/octenai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[octenai](https://clawhub.ai/user/octenai)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current web results, monitor news, and gather time-filtered information through Octen search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the OCTEN_API_KEY are sent to Octen's HTTPS search API. <br>
-Mitigation: Confirm Octen is trusted for the intended queries, keep OCTEN_API_KEY stored securely and scoped appropriately, rotate it if exposed, and avoid sensitive private queries unless Octen's privacy and retention practices meet the use case. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current web search results for research, news monitoring, and information retrieval workflows.
 
-## Reference(s): <br>
-- [Octen homepage](https://octen.ai) <br>
-- [Octen Search API endpoint](https://api.octen.ai/search) <br>
-- [ClawHub skill listing](https://clawhub.ai/octenai/octen-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown-style terminal output listing search result titles, URLs, publish times, and highlights] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and OCTEN_API_KEY; result count is clamped from 1 to 20 and optional ISO 8601 start/end time filters are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Octen API key could be forwarded on an HTTP redirect even though the skill intends to use a fixed API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a scoped Octen API key that can be revoked or rotated, and prefer a version that disables redirects or revalidates redirect targets before forwarding authentication headers.
+
+## Reference(s):
+
+- [Octen homepage](https://octen.ai)
+- [ClawHub skill page](https://clawhub.ai/octenai/skills/octen-search-skill)
+- [Octen publisher profile](https://clawhub.ai/user/octenai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown text printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OCTEN_API_KEY; supports result count from 1 to 20 and optional ISO 8601 publish-date filters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

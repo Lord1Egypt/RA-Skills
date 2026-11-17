@@ -1,0 +1,42 @@
+name: hot-video-breakdown
+version: "1.0.2"
+license: MIT
+author: zhouq2039-lang
+description: >
+  Hot video breakdown tool.
+  Downloads videos from user-supplied links, transcribes locally (faster-whisper),
+  and generates interactive capsule-card HTML reports with AI analysis.
+  Requires network for video download and Whisper model (first run ~500MB).
+  Transcription and analysis are fully local. HTML has no external dependencies.
+  Output language follows the user's language preference.
+
+  热门视频拆解工具。
+  从用户提供的链接下载视频、本地转写（faster-whisper）、AI分析，输出交互式胶囊卡片 HTML。
+  需网络：下载视频 + 首次下载 Whisper 模型（约 500MB）。
+  转写和分析完全本地。HTML 报告无外部资源依赖（无 Google Fonts 等第三方请求）。
+  输出语言跟随用户偏好。
+
+triggers:
+  - 热门视频拆解
+  - hot-video-breakdown
+  - 视频拆解
+
+instructions: SKILL.md
+
+dependencies:
+  pip:
+    - yt-dlp
+    - faster-whisper
+
+tags:
+  - video
+  - analysis
+  - transcript
+  - breakdown
+
+files:
+  - skill.yaml
+  - SKILL.md
+  - README.md
+  - LICENSE
+  - scripts/parse.py

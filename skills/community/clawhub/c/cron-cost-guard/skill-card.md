@@ -1,41 +1,53 @@
-## Description: <br>
-Audit AI agent cron jobs for token cost risks, model-switch loops, and session isolation failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit AI agent cron jobs for token cost risks, model-switch loops, and session isolation failures.
 
-## Publisher: <br>
-[pouria3](https://clawhub.ai/user/pouria3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pouria3](https://clawhub.ai/user/pouria3)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw cron jobs, diagnose unexpected token cost spikes, and identify model-switch or session-isolation failures before they become runaway retry loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a user-controlled destructive step to remove an offending cron job. <br>
-Mitigation: Confirm the exact cron job ID and save the job definition or relevant logs before running cron removal. <br>
-Risk: Cron, session, and log checks may expose local operational details to the active agent context. <br>
-Mitigation: Review outputs for sensitive operational information before sharing or persisting them outside the troubleshooting session. <br>
+## Use Case:
 
+Developers and operators use this skill to audit scheduled AI agent jobs for token cost spikes, session binding conflicts, model-switch retry loops, and oversized injected prompts before or after incidents.
 
-## Reference(s): <br>
-- [Token Spike Diagnosis & Post-Incident Checklist](references/diagnosis.md) <br>
-- [Cron Cost Guard on ClawHub](https://clawhub.ai/pouria3/cron-cost-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and checklist steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces troubleshooting guidance and command suggestions; users should verify job IDs and relevant logs before removing cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Removing the wrong cron job could interrupt healthy automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact job ID and preserve relevant job configuration and log context before removing only the confirmed offending job.
+
+Risk: Runaway retry loops can continue spending tokens if model-switch or session-binding errors are left active.
+
+Mitigation: Audit consecutive errors, model-switch log patterns, and stale sessionKey bindings, then recreate affected jobs with isolated sessions and explicit agent/model settings.
+
+## Reference(s):
+
+- [Token Spike Diagnosis & Post-Incident Checklist](references/diagnosis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown runbook with command examples and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cron health thresholds, session isolation checks, and post-incident steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

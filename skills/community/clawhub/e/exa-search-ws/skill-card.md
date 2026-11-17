@@ -1,43 +1,50 @@
-## Description: <br>
-Semantic search, web scraping, and content extraction optimized for AI agents and LLMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic search, web scraping, and content extraction optimized for AI agents and LLMs.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to perform semantic web search, retrieve clean Markdown from web pages, collect highlights, and find similar links for research or RAG workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, private URLs, or regulated data submitted to Exa may expose sensitive information to an external web-search service. <br>
-Mitigation: Use non-sensitive prompts and public URLs only, and avoid confidential, internal, or regulated data unless you have approval to send it to Exa. <br>
-Risk: Broad crawling, live crawling, or large result sets can retrieve untrusted external content or access sites outside the intended research scope. <br>
-Mitigation: Set narrow result counts, domain filters, freshness limits, and subpage limits; crawl only sites you have permission to access. <br>
+## Use Case:
 
+Developers and research agents use this skill to run Exa semantic web searches, extract clean Markdown from pages, collect highlights, and discover pages similar to a source URL for retrieval and research workflows.
 
-## Reference(s): <br>
-- [Exa API & SDK Reference Cheat Sheet](references/api_reference.md) <br>
-- [Exa Documentation](https://docs.exa.ai) <br>
-- [Exa API Base URL](https://api.exa.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/simonpierreboucher02/exa-search-ws) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples; the included command-line utility prints JSON search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EXA_API_KEY. Results may include URLs, titles, scores, publication metadata, highlights, extracted Markdown text, and summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Search queries, URLs, and extracted content may be sent to Exa as an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure EXA_API_KEY only when Exa use is intended, and avoid sending secrets, private internal URLs, proprietary topics, or regulated data unless organizational policy allows Exa processing.
+
+## Reference(s):
+
+- [API Reference](references/api_reference.md)
+- [Exa API Documentation](https://docs.exa.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the external Exa API using EXA_API_KEY and can request live crawling or cached content depending on max_age_hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

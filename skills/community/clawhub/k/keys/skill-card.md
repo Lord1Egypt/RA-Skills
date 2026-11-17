@@ -1,43 +1,54 @@
-## Description: <br>
-Secure API key management with broker. Keys never exposed to agent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure API key management with broker. Keys never exposed to agent context.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill to make authenticated API requests through an OS keychain-backed broker without exposing API keys in agent context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The broker gives agents authenticated access to sensitive provider APIs. <br>
-Mitigation: Use restricted or read-only API keys where possible and require manual confirmation before mutating API calls. <br>
-Risk: Verification or management commands can print stored secrets into an agent-visible terminal. <br>
-Mitigation: Avoid running commands that display key values; guide users to OS keychain prompts and secret storage commands instead. <br>
-Risk: The skill is flagged for review because its documentation and broker behavior can expose or use high-privilege credentials. <br>
-Mitigation: Review carefully before installation and avoid high-privilege Stripe or GitHub tokens unless they are necessary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/keys) <br>
-- [Setup Guide](artifact/setup.md) <br>
-- [Key Management Guide](artifact/manage.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and operate a local broker that makes authenticated API calls to preconfigured services without exposing decrypted API keys to the agent context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Broker calls return JSON responses from configured API services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Key-management instructions can expose plaintext API keys.
+
+Mitigation: Use tightly scoped API keys, avoid verification commands that print secrets, and do not place real keys in command-line arguments.
+
+Risk: The broker grants broad authenticated API access to allowed services.
+
+Mitigation: Review broker requests before execution and require explicit user approval before destructive or financial API actions.
+
+## Reference(s):
+
+- [Keys ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/keys)
+- [Keys Setup](artifact/setup.md)
+- [Key Management](artifact/manage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON request examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for local keychain-backed API calls and broker management; broker command output is JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

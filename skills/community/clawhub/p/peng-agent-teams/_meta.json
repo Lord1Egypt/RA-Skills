@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7ewh0yqaxgf549zsgw62tjbh82ratw",
-  "slug": "peng-agent-teams",
+  "ownerId": "kn78a154cchgy7xts6ngbcyzc181mpxm",
+  "slug": "agent-teams",
   "version": "1.10.6",
-  "publishedAt": 1773713312744
+  "description": "Agent teams collaboration skill",
+  "author": "penglovemeng",
+  "tags": ["agent", "teams", "collaboration"],
+  "category": "productivity",
+  "license": "MIT",
+  "acceptLicenseTerms": true
 }

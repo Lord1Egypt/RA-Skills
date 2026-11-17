@@ -1,46 +1,66 @@
-## Description: <br>
-Generate Excalidraw diagrams from text content, with Obsidian Markdown, standard .excalidraw, and animated .excalidraw output modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Excalidraw diagrams from text content in Obsidian Markdown, standard Excalidraw JSON, or animated Excalidraw JSON formats.
 
-## Publisher: <br>
-[axtonliu](https://clawhub.ai/user/axtonliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axtonliu](https://clawhub.ai/user/axtonliu)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn structured or unstructured text into editable Excalidraw diagrams for Obsidian, excalidraw.com, or animation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger words such as diagram, flowchart, or mind map may activate the skill when a diagram file was not intended. <br>
-Mitigation: Use explicit prompts for diagram generation and review whether the skill should be active in broad writing sessions. <br>
-Risk: The skill creates local output files in the current working directory. <br>
-Mitigation: Run it from a folder where generated diagram files are expected and review generated files before sharing or committing them. <br>
-Risk: Generated diagrams may simplify or misrepresent the source text. <br>
-Mitigation: Review the diagram content and layout against the original material before using it for decisions or publication. <br>
+## Use Case:
 
+Developers and writers use this skill to turn text descriptions into hand-drawn style Excalidraw diagrams for Obsidian notes, Excalidraw sharing, or animation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axtonliu/excalidraw-diagram) <br>
-- [Excalidraw schema reference](references/excalidraw-schema.md) <br>
-- [Excalidraw](https://excalidraw.com) <br>
-- [Obsidian Excalidraw plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) <br>
-- [excalidraw-animate](https://dai-shi.github.io/excalidraw-animate/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [Obsidian Markdown files or Excalidraw JSON .excalidraw files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports default Obsidian output, standard Excalidraw JSON, and animated Excalidraw JSON with animation order metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server-resolved release metadata) <br>
+Risk: Generated files may be saved automatically in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill from the intended workspace and review generated filenames before relying on the output.
+
+Risk: Broad trigger words such as diagram or flowchart may activate the skill unexpectedly in environments that auto-load skills.
+
+Mitigation: Narrow activation triggers or confirm before allowing file writes in shared or sensitive workspaces.
+
+Risk: A generated diagram file could overwrite or collide with an existing filename.
+
+Mitigation: Check for existing files and choose a distinct output name when preserving prior diagrams matters.
+
+Risk: Diagram quality may vary with model version and input structure.
+
+Mitigation: Review generated diagrams for accuracy, readability, spacing, and valid Excalidraw structure before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axtonliu/skills/excalidraw-diagram)
+- [Excalidraw schema reference](artifact/references/excalidraw-schema.md)
+- [Excalidraw](https://excalidraw.com)
+- [Obsidian Excalidraw plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin)
+- [excalidraw-animate](https://dai-shi.github.io/excalidraw-animate/)
+- [Obsidian](https://obsidian.md/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown files containing Excalidraw data or .excalidraw JSON files, plus brief usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may automatically save generated diagram files in the current working directory.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact metadata reports 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

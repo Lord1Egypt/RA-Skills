@@ -1,40 +1,54 @@
-## Description: <br>
-Provides plain-text reference notes for Crypto Whale Tracker concepts, quickstart steps, patterns, troubleshooting, performance, security, migration, and quick-reference guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic reference skill for blockchain and crypto topics that returns plain-text guidance labeled for Crypto Whale Tracker concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, analysts, and crypto/security practitioners can use this skill as a local quick-reference helper for common Crypto Whale Tracker topics and generic security operations guidance. It should not be treated as live blockchain analytics or incident-response tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release provides generic reference material and may not perform real crypto whale tracking or blockchain analytics. <br>
-Mitigation: Use it only as a basic reference helper; verify crypto analytics, incident response, and security decisions against independent domain-specific sources. <br>
+## Use Case:
 
+Developers and external users can use this skill to retrieve concise reference notes about blockchain and crypto whale-tracking concepts and operational topics such as setup, troubleshooting, performance, and security. The security evidence indicates the content is generic, so users should not rely on it as authoritative whale-tracking guidance without independent documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/crypto-whale-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference sections emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally without API keys, credentials, or network access according to artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: server release metadata) <br>
+Risk: The skill appears to be a generic reference-template skill rather than a substantive crypto whale tracking tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as orientation only and verify whale-tracking workflows against independent blockchain documentation and trusted data sources before use.
+
+Risk: Generic static guidance may be incomplete or misleading for security, compliance, or financial decisions.
+
+Mitigation: Review recommendations before acting and do not use the skill as the sole basis for trading, compliance, or incident-response decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/crypto-whale-tracker)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Plain text with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference documentation; no credentials, network access, persistence, or local mutation indicated by the security evidence.]
+
+## Skill Version(s):
+
+4.0.2 (source: server release evidence; artifact frontmatter 4.0.1 and script 4.0.0 differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

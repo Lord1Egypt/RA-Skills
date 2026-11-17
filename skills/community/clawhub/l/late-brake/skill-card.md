@@ -1,43 +1,57 @@
-## Description: <br>
-Late Brake is a CLI racing lap analysis skill that imports NMEA/VBO data, splits laps, compares two laps, and emits structured results for AI coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Late Brake is a CLI racing lap analysis skill that imports NMEA and RaceChrono VBO telemetry, splits laps automatically, compares laps, and returns structured results for AI coaching.
 
-## Publisher: <br>
-[isaachan](https://clawhub.ai/user/isaachan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isaachan](https://clawhub.ai/user/isaachan)
 
-## Use Case: <br>
-Drivers, racing coaches, and agent developers use Late Brake to load motorsport telemetry, identify laps from track metadata, and compare lap time, sector, corner, and speed differences for coaching workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent hidden cache files containing parsed lap and GPS-derived data beside analyzed input files. <br>
-Mitigation: Run it only on data locations where these cache files are acceptable, use the no-cache or force-reload behavior when appropriate, and remove generated .*.lb.json files after analysis if persistence is not desired. <br>
-Risk: The artifact includes precise private-track geodata. <br>
-Mitigation: Review bundled track data before distribution and remove or anonymize private-track coordinates for broader releases. <br>
+## Use Case:
 
+Drivers, racing coaches, and developers use Late Brake to parse racing telemetry, split sessions into laps, and compare complete laps by lap time, sector, corner, and speed metrics for coaching or batch analysis.
 
-## Reference(s): <br>
-- [Compare JSON schema](artifact/references/compare-json-schema.md) <br>
-- [Internal data format](artifact/references/data-format.md) <br>
-- [Track data format](artifact/references/track-format.md) <br>
-- [VBO format specification](artifact/references/vbo-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text tables and JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against user-provided lap files and may write hidden .*.lb.json cache files beside input data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Local cache files are written next to telemetry inputs, and unsafe shared or attacker-writable directories could expose users to accidental overwrites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill on telemetry stored in trusted private directories, avoid shared or attacker-writable paths, and review or remove generated cache files when handling sensitive data.
+
+Risk: Custom track data is stored under ~/.late-brake/tracks and can update an existing custom track with the same ID.
+
+Mitigation: Review custom track JSON and track IDs before adding them, and keep the user track directory access-controlled and backed up.
+
+## Reference(s):
+
+- [Compare JSON Schema](references/compare-json-schema.md)
+- [Internal Data Format](references/data-format.md)
+- [Track Data Format](references/track-format.md)
+- [VBO Format Specification](references/vbo-format.md)
+- [Distance from a point to a line on a sphere](https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#On_a_sphere)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [CLI text tables or structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Comparison JSON includes lap, sector, corner, speed, distance, and time-difference fields; parsed laps may be cached locally.]
+
+## Skill Version(s):
+
+0.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

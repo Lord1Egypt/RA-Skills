@@ -1,42 +1,55 @@
-## Description: <br>
-Use when users or OpenClaw/ClawHub agents need to install, configure, self-bootstrap, troubleshoot, or operate Mnemos for persistent scoped agent memory, or when they mention Mnemos, agent memory, scoped memory, memory MCP tools, or memory automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users or OpenClaw/ClawHub agents need to install, configure, self-bootstrap, troubleshoot, or operate Mnemos for persistent scoped agent memory, or when they mention Mnemos, agent memory, scoped memory, memory MCP tools, or memory automation.
 
-## Publisher: <br>
-[anthony-maio](https://clawhub.ai/user/anthony-maio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anthony-maio](https://clawhub.ai/user/anthony-maio)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install, configure, and troubleshoot Mnemos persistent scoped memory for Claude Code, Codex, Cursor, OpenClaw, ClawHub, and generic MCP hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain prompts, project facts, and other sensitive context across sessions. <br>
-Mitigation: Use separate Mnemos config paths or scopes for projects that should not share memory, and avoid storing secrets or sensitive prompts unless later retrieval and embedding-provider processing are acceptable. <br>
-Risk: Automatic capture behavior differs by host, so users may overestimate what is stored or recalled outside Claude Code. <br>
-Mitigation: Confirm host-specific automation before relying on capture, and use mnemos_retrieve, mnemos_store, and mnemos_consolidate explicitly where hooks are not available. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to install, configure, operate, and troubleshoot Mnemos as a local-first persistent memory layer for coding agents and MCP-capable hosts.
 
-## Reference(s): <br>
-- [Host Setup](artifact/references/hosts.md) <br>
-- [Operations](artifact/references/operations.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anthony-maio/mnemos-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: server evidence release version) <br>
+Risk: The skill can guide agents to install mutable third-party software and configure persistent memory integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the resolved Mnemos package or plugin source and dependency versions, prefer a pinned version in an isolated environment, and approve installation and host configuration changes yourself.
+
+Risk: Persistent memory workflows may store prompts, tool failures, and project facts, and configured embedding providers may receive data needed for retrieval.
+
+Mitigation: Review what will be stored or sent to the configured embedding provider, use appropriate scopes, and inspect or correct stored facts when they look wrong.
+
+## Reference(s):
+
+- [Host Setup](references/hosts.md)
+- [Operations](references/operations.md)
+- [Mnemos Memory on ClawHub](https://clawhub.ai/anthony-maio/skills/mnemos-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Host-specific setup, operating-loop, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.6.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

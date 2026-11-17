@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for life that provides intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Gift Finder concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for life - covers intro, quickstart, patterns and more. Quick lookup for Gift Finder concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and technical users use Gift Finder as a command-driven reference for common Gift Finder topics, including setup, operational patterns, troubleshooting, performance, security, migration, and quick lookup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an executable shell script, even though scan evidence describes it as static reference output. <br>
-Mitigation: Review the script before installation or execution and run only the documented commands needed for reference lookup. <br>
-Risk: The skill provides generic documentation snippets that may be incomplete or outdated for a specific environment. <br>
-Mitigation: Validate guidance against current project requirements and authoritative product documentation before using it for operational decisions. <br>
+## Use Case:
 
+External users and developers can use this skill as a command-oriented reference helper for Gift Finder concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet material.
 
-## Reference(s): <br>
-- [Gift Finder on ClawHub](https://clawhub.ai/bytesagain1/gift-finder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with Markdown-style reference sections from shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no credentials, external API calls, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence and SKILL.md frontmatter; script version string is 3.0.0) <br>
+Risk: The skill may provide generic reference content rather than feature-rich or domain-specific gift-finding guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference output for usefulness and fit before relying on it in user-facing workflows.
+
+## Reference(s):
+
+- [Gift Finder on ClawHub](https://clawhub.ai/bytesagain1/skills/gift-finder)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, network access, or persistent system settings are required.]
+
+## Skill Version(s):
+
+3.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

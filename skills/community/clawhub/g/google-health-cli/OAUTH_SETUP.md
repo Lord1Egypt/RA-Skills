@@ -45,7 +45,16 @@ Put the client id/secret in `config.json`:
 }
 ```
 
-(Or set `GOOGLE_HEALTH_CLIENT_ID` / `GOOGLE_HEALTH_CLIENT_SECRET` in the environment instead.) Then:
+(Or set `GOOGLE_HEALTH_CLIENT_ID` / `GOOGLE_HEALTH_CLIENT_SECRET` in the environment instead.)
+
+> 🔑 **Protect your credentials.** The client id/secret and the token `auth login` caches are
+> sensitive secrets stored on disk in plaintext. The CLI writes its token cache owner-only (`0600`),
+> but it never creates `config.json`: you do, so restrict it yourself (`chmod 600 config.json`).
+> Both `config.json` and `token.json` are gitignored. Never commit them, copy them into a shared folder, back them up to an untrusted
+> location, or paste them into logs or chat. If one may have leaked, delete and recreate the OAuth
+> client in Google Cloud and run `google-health-cli auth logout`.
+
+Then:
 
 ```sh
 google-health-cli auth login     # read-only scopes only — there is no write mode
@@ -55,6 +64,10 @@ google-health-cli auth login     # read-only scopes only — there is no write m
 1. Sign in as that same Google account.
 2. You'll see **"Google hasn't verified this app."** This is expected — it's your
    own project. Click **Advanced → Go to ghealth-personal (unsafe)**.
+   > ⚠️ **Only click through this warning for an OAuth client you created yourself.**
+   > It is safe here only because the app named on the screen is the project from
+   > steps 1–4, in your own Google Cloud account. If the app name or the developer
+   > email isn't yours, stop: never bypass this warning for an app someone else made.
 3. Grant the **read-only** Google Health permissions. The tool requests all six read
    scopes (profile, settings, activity & fitness, health metrics & measurements,
    sleep, nutrition) so it can read every data type — none of them grant write access.

@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze and optimize SQL queries by providing performance analysis, index recommendations, execution plan interpretation, and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize SQL queries with performance analysis, index recommendations, execution plan interpretation, and practical optimization suggestions.
 
-## Publisher: <br>
-[HonestQiao](https://clawhub.ai/user/HonestQiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honestqiao](https://clawhub.ai/user/honestqiao)
 
-## Use Case: <br>
-Developers and database practitioners use this skill to review SQL query text, identify common performance issues, and receive practical optimization suggestions before applying changes to a database. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested SQL rewrites or tuning advice could be incorrect or unsuitable for a production workload. <br>
-Mitigation: Review suggested rewrites and validate them with database-specific testing before running them against a real database. <br>
-Risk: SQL examples may contain secrets, credentials, or sensitive production data. <br>
-Mitigation: Avoid pasting secrets, credentials, or sensitive production data into SQL examples submitted for review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HonestQiao/sql-query-optimizer) <br>
+## Use Case:
 
+Developers and database practitioners use this skill to review SQL queries for common performance issues and receive concise optimization suggestions before applying changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance, configuration] <br>
-**Output Format:** [Markdown or JSON-style structured optimization guidance with SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Suggestions should be reviewed before execution against real databases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: SQL optimization suggestions may be incomplete or unsuitable for a specific database engine, schema, workload, or execution plan.
+
+Mitigation: Review suggestions against the target database, schema, indexes, and EXPLAIN output before applying changes.
+
+Risk: Trigger wording and output language may need adjustment for English-only or stricter deployment contexts.
+
+Mitigation: Review the skill text and triggers before release when English output or tighter activation behavior is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honestqiao/skills/sql-query-optimizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/honestqiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or JSON-style structured guidance with SQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static SQL review suggestions and does not require system access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

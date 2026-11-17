@@ -1,44 +1,61 @@
-## Description: <br>
-Llama 3 by Meta helps agents run Llama 3.3, Llama 3.2, and Llama 3.1 across a local device fleet with an OpenAI-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Llama 3 by Meta routes Llama 3.3, Llama 3.2, and Llama 3.1 requests across a local device fleet through an OpenAI-compatible API.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate a local Ollama fleet router for Llama-family models, route requests to available devices, and inspect fleet health and model availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an unpinned third-party local AI router and node agent. <br>
-Mitigation: Review the ollama-herd package and source before installation, pin an approved version, and run it only on trusted devices. <br>
-Risk: The router may expose local model services and telemetry-like features across a machine or network. <br>
-Mitigation: Restrict service binding to localhost or a trusted LAN, limit firewall access, and decide whether per-app analytics, capacity learning, and meeting detection are acceptable before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and operate ollama-herd as a local fleet router for Llama models, choose model sizes that fit available hardware, and call the fleet through curl or OpenAI-compatible examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/llama-llama3) <br>
-- [ollama-herd project](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [ollama-herd PyPI package](https://pypi.org/project/ollama-herd/) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell, Python, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service endpoints, model names, hardware guidance, and guardrails for model downloads and file changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Installing an unpinned PyPI package can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, avoid root or administrator shells, and pin or review the ollama-herd package version before installation.
+
+Risk: Prompts, audio files, traces, and logs may be visible to devices participating in the local fleet.
+
+Mitigation: Do not send sensitive prompts or audio files unless every fleet device and its local logs are trusted.
+
+Risk: Large Llama models can consume substantial storage and memory.
+
+Mitigation: Confirm downloads before pulling models, choose smaller variants when hardware is insufficient, and keep model deletion user-confirmed.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/twinsgeeks/skills/llama-llama3)
+- [ollama-herd project](https://github.com/geeks-accelerator/ollama-herd)
+- [ollama-herd PyPI package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell, Python, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local service endpoints, model sizing guidance, fleet monitoring commands, and guardrails for model downloads and local files.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

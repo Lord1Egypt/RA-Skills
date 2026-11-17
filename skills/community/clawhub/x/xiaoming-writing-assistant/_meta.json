@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-writing-assistant",
+  "name": "ai-writing-assistant",
   "version": "1.0.0",
-  "publishedAt": 1776400150753
+  "author": "小鸣 🦞",
+  "created": "2026-04-17",
+  "description": "AI 写作助手 - 大纲生成、段落扩写、润色修改、标题优化",
+  "tags": ["writing", "ai", "content", "assistant", "写作"],
+  "requires": {
+    "bins": ["curl"]
+  }
 }

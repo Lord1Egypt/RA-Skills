@@ -1,0 +1,63 @@
+# humanizer-lint
+
+> Version 1.3.0 — deterministic, zero-dependency multilingual AI text humanizer, anti-slop prose linter, and closed-loop stylometric validator.
+
+## Executive summary
+
+- Eliminates robotic LLM writing patterns when users ask to "humanize text", "remove AI slop", "fix uniform sentence rhythm", or "write natural blog, SEO, and documentation prose"
+- Provides mandatory `node <skill_dir>/scripts/analyze.mjs --stdin --json` verification and `npx humanizer-lint` CLI to enforce Burstiness (`CV >= 0.45`), Adjacent Rhythm Delta, and Adaptive `MATTR` vocabulary diversity
+- Ships with **8 deep anti-slop lexical & morphological rule packs** (`en`, `id`, `es`, `ms`, `fr`, `de`, `pt`, `zh`) plus **Universal Stylometric Mode** (`Intl.Segmenter`) for 100+ languages with zero external dependencies
+- Supports personal author voice cloning via `node <skill_dir>/scripts/fingerprint.mjs` and passes all 3 `skills.sh` security audits (Gen Agent Trust Hub, Socket, Snyk) with zero network calls
+
+`humanizer-lint` measures the finished draft locally instead of trusting a prompt alone. It sends zero text to a network service.
+
+## Quick install & usage
+
+- Agent skill: `npx skills add yanstd888/humanizer-lint`
+- CLI: `npx humanizer-lint --file draft.md --lang auto --json`
+- Stdin: `cat draft.md | npx humanizer-lint --stdin --lang universal --json`
+- Playground: [https://humanizer.aiclub.ai.id/](https://humanizer.aiclub.ai.id/)
+
+## Language tiers
+
+- **Tier 1 packs:** `en`, `id`, `es`, `ms`, `fr`, `de`, `pt`, `zh`. Each combines universal stylometry with bundled lexical anti-slop rules; Indonesian also includes morphology checks.
+- **Tier 2 universal:** `--lang universal` or another ISO 639-1 code applies native `Intl.Segmenter` sentence-length burstiness, adjacent rhythm delta, adaptive MATTR, paragraph symmetry, repeated starters, and compression-ratio checks across 100+ languages.
+
+Use `--lang auto` for script and stopword-aware detection, `--lang universal` to force Tier 2, or `--lang <code>` to request an ISO 639-1 language.
+
+## Playground samples
+
+- [AI ID](https://humanizer.aiclub.ai.id/?sample=ai-id)
+- [AI EN](https://humanizer.aiclub.ai.id/?sample=ai-en)
+- [AI ES](https://humanizer.aiclub.ai.id/?sample=ai-es)
+- [AI MS](https://humanizer.aiclub.ai.id/?sample=ai-ms)
+- [AI FR](https://humanizer.aiclub.ai.id/?sample=ai-fr)
+- [AI DE](https://humanizer.aiclub.ai.id/?sample=ai-de)
+- [AI PT](https://humanizer.aiclub.ai.id/?sample=ai-pt)
+- [AI ZH](https://humanizer.aiclub.ai.id/?sample=ai-zh)
+
+## Links
+
+- [Full technical specification](https://humanizer.aiclub.ai.id/llms-full.txt)
+- [skills.sh registry](https://www.skills.sh/yanstd888/humanizer-lint/humanizer-lint)
+- [GitHub](https://github.com/yanstd888/humanizer-lint)
+- [npm](https://www.npmjs.com/package/humanizer-lint)
+
+## Verified 16-sample playground
+
+- [AI EN FAIL](https://humanizer.aiclub.ai.id/?lang=en&sample=ai-en) · [Human EN PASS](https://humanizer.aiclub.ai.id/?lang=en&sample=human-en)
+- [AI ID FAIL](https://humanizer.aiclub.ai.id/?lang=id&sample=ai-id) · [Human ID PASS](https://humanizer.aiclub.ai.id/?lang=id&sample=human-id)
+- [AI ES FAIL](https://humanizer.aiclub.ai.id/?lang=es&sample=ai-es) · [Human ES PASS](https://humanizer.aiclub.ai.id/?lang=es&sample=human-es)
+- [AI MS FAIL](https://humanizer.aiclub.ai.id/?lang=ms&sample=ai-ms) · [Human MS PASS](https://humanizer.aiclub.ai.id/?lang=ms&sample=human-ms)
+- [AI FR FAIL](https://humanizer.aiclub.ai.id/?lang=fr&sample=ai-fr) · [Human FR PASS](https://humanizer.aiclub.ai.id/?lang=fr&sample=human-fr)
+- [AI DE FAIL](https://humanizer.aiclub.ai.id/?lang=de&sample=ai-de) · [Human DE PASS](https://humanizer.aiclub.ai.id/?lang=de&sample=human-de)
+- [AI PT FAIL](https://humanizer.aiclub.ai.id/?lang=pt&sample=ai-pt) · [Human PT PASS](https://humanizer.aiclub.ai.id/?lang=pt&sample=human-pt)
+- [AI ZH FAIL](https://humanizer.aiclub.ai.id/?lang=zh&sample=ai-zh) · [Human ZH PASS](https://humanizer.aiclub.ai.id/?lang=zh&sample=human-zh)
+
+## Multilingual discovery keywords
+
+`ai humanizer`, `ai text humanizer`, `prose linter`, `anti-slop skill`, `stylometric analyzer`, `burstiness checker`, `perplexity and burstiness optimizer`, `markdown prose linter`, `sentence length variation`, `coefficient of variation (CV >= 0.45)`, `adjacent sentence rhythm delta`, `moving-average type-token ratio (MATTR)`, `zlib compression entropy`, `remove LLM clichés and stock phrases`, `fix robotic AI writing tone`, `bypass statistical AI writing patterns`, `author voice fingerprinting`, `deterministic local CLI text validator`.
+
+`writing assistant skill`, `copywriting linter`, `blog post humanizer`, `seo article editor`, `technical documentation linter`, `academic prose polisher`, `translationese remover`, `proofreading and editing workflow`, `claude code writing skill`, `cursor anti-slop rules`, `windsurf prose skill`, `codex writing skill`, `gemini cli humanizer`.
+
+`humanizer bahasa indonesia`, `cek tulisan ai gratis`, `cara agar tulisan ai tidak terdeteksi`, `ubah tulisan chatgpt jadi natural manusia`, `perbaiki tulisan ai yang kaku`, `hilangkan kata klise ai`, `alat parafrase anti-ai`, `cek skor burstiness tulisan`, `humanizer artikel seo dan skripsi`, `semak ayat ai bahasa melayu`, `humanizer teks bahasa melayu`, `cara elak dikesan ai`; `humanizador de texto ia gratis`, `quitar clichés de chatgpt`, `detector y corrector de ritmo de escritura ia`, `mejorar burstiness de textos`; `humaniseur de texte ia`, `corriger le style robotique chatgpt`, `analyseur stylométrique de prose`, `supprimer le jargon ia`; `ki-text humanisieren kostenlos`, `chatgpt texte menschlicher machen`, `stilometrische textanalyse`, `ki-floskeln entfernen`; `humanizador de texto ia gratuito`, `deixar texto do chatgpt mais humano`, `corretor de estilo e burstiness`, `remover clichês de ia`; `AI文章人性化`, `消除AI写作痕迹`, `去除AI味工具`, `ChatGPT文本润色与句式节奏分析`, `降低AI率`.

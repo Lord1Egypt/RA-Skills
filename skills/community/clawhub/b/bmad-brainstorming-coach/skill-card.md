@@ -1,45 +1,60 @@
-## Description: <br>
-Activates the BMad Brainstorming Coach persona, Carson, to guide creative workshops, structured brainstorming sessions, free-form chat, and party-mode multi-agent discussions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activates the BMad Brainstorming Coach agent, Carson, to facilitate innovation workshops, brainstorming sessions, creative prompting, and structured idea exploration.
 
-## Publisher: <br>
-[airclear](https://clawhub.ai/user/airclear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[airclear](https://clawhub.ai/user/airclear)
 
-## Use Case: <br>
-External users and teams use this skill to run guided ideation sessions, generate a large set of creative options, organize ideas, or convene BMAD-style party-mode discussions around a topic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update local session files during workflow execution. <br>
-Mitigation: Use a narrow, dedicated output folder and review generated documents before relying on them. <br>
-Risk: Party Mode and BMAD-style setup may interact with existing BMAD configuration or local command hooks. <br>
-Mitigation: Review existing _bmad configuration and .claude/hooks/bmad-speak.sh before enabling Party Mode. <br>
-Risk: YOLO mode can automate document updates without step-by-step confirmation. <br>
-Mitigation: Avoid YOLO mode unless automated updates are acceptable for the workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/airclear/bmad-brainstorming-coach) <br>
-- [Agent definition](references/agent_definition.md) <br>
-- [Workflow engine](references/workflow_engine.xml) <br>
-- [Brainstorming workflow](assets/workflows/brainstorming/workflow.md) <br>
-- [Party Mode workflow](assets/workflows/party-mode/workflow.md) <br>
+## Use Case:
 
+Employees and external users can use this skill to run guided brainstorming sessions, choose creative techniques, organize ideas, and document next steps. It is suited to ideation workshops, innovation planning, and creative problem exploration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Interactive text and Markdown session artifacts, with occasional shell commands for local file setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update brainstorming documents in the configured output folder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads unbundled local project files such as BMad configuration and agent manifest files.
+
+Mitigation: Use it only in trusted workspaces and review referenced local files before installation or activation.
+
+Risk: The skill writes brainstorming session documents under the configured output folder.
+
+Mitigation: Confirm the configured output folder before use and review generated session documents before sharing them.
+
+Risk: Party Mode and YOLO-style flows may rely on local hooks or broader workspace behavior.
+
+Mitigation: Avoid these modes in sensitive projects unless the referenced local files and hooks have been verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airclear/skills/bmad-brainstorming-coach)
+- [Agent definition](references/agent_definition.md)
+- [Workflow engine](references/workflow_engine.xml)
+- [Brainstorming workflow](assets/workflows/brainstorming/workflow.md)
+- [Party Mode workflow](assets/workflows/party-mode/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Conversational text and Markdown session documents, with occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save brainstorming session notes under the configured output folder.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

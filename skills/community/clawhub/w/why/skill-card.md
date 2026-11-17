@@ -1,39 +1,54 @@
-## Description: <br>
-A comprehensive skill about "Why" - the most powerful question in human language, exploring its etymology, philosophical depth, scientific significance, psychological impact, and the role of curiosity in shaping civilization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill about why as a question in human language, covering etymology, philosophy, science, psychology, curiosity, and practical questioning frameworks.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users, educators, writers, and general knowledge workers use this skill as an informational reference for explanations about the word "why," curiosity, questioning, philosophy, science, psychology, and practical inquiry frameworks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad educational activation may make the skill appear relevant to many general questions about causes, curiosity, and questioning. <br>
-Mitigation: Use it as informational context and keep the user's task-specific instructions as the controlling source for what the agent should do. <br>
-Risk: The artifact contains broad historical, scientific, linguistic, and psychological claims that may be incomplete, disputed, or stale. <br>
-Mitigation: Verify important factual, scientific, medical, or historical claims against authoritative sources before relying on them. <br>
+## Use Case:
 
+External users, educators, writers, leaders, and curious learners use this skill as a reference for explaining the word why, its historical and cultural context, and methods such as 5 Whys and Socratic questioning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, tables, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only educational output; no tools, credentials, shell commands, or file access are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad trigger language could cause the skill to activate for general why questions where a narrower educational reference is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation criteria before deployment in environments with many overlapping language or reference skills.
+
+Risk: The artifact is a long static educational reference, so factual claims may become stale or need source review for high-stakes use.
+
+Mitigation: Use it as general guidance and verify specific historical, scientific, psychological, or cultural claims against authoritative sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/why)
+- [Publisher profile](https://clawhub.ai/user/wscats)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference prose with tables, examples, and explanatory sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static educational content; no tools, credentials, data access, or code execution requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

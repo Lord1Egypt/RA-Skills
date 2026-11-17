@@ -1,0 +1,238 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-navi-cnki-net",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:07:31.046Z",
+  "entry": {
+    "url": "https://navi.cnki.net",
+    "final_url": "https://navi.cnki.net/knavi/",
+    "title": "出版来源导航",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:07:31.046Z",
+    "identity": {
+      "declared_name": "CNKI 期刊导航/RSS",
+      "hostname": "navi.cnki.net",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "检索",
+        "href": "https://kns.cnki.net/kns8s/search",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助中心",
+        "href": "http://service.cnki.net/helpcenter/",
+        "target": "_blank"
+      },
+      {
+        "text": "help@cnki.net",
+        "href": "mailto:help@cnki.net",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "",
+        "id": "Ecp_top_login_realNameFrame",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "select",
+      "type": null,
+      "text": "来源名称\n主办单位\n出版者\nISSN\nCN\nISBN",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "txt_1_sel",
+      "id": "txt_1_sel",
+      "css": "#txt_1_sel",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#txt_1_sel"
+      },
+      "observed_url": "https://navi.cnki.net/knavi/",
+      "observed_at": "2026-10-09T09:07:29.719Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入检索词",
+      "label": "",
+      "aria_label": "请输入检索词",
+      "placeholder": "请输入检索词",
+      "name": "txt_1_value1",
+      "id": "txt_1_value1",
+      "css": "#txt_1_value1",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#txt_1_value1"
+      },
+      "observed_url": "https://navi.cnki.net/knavi/",
+      "observed_at": "2026-10-09T09:07:29.719Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "出版来源检索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "btnSearch",
+      "css": "#btnSearch",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#btnSearch"
+      },
+      "observed_url": "https://navi.cnki.net/knavi/",
+      "observed_at": "2026-10-09T09:07:29.719Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-navi-cnki-net:record-lookup",
+      "source_id": "quiz-navi-cnki-net",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://navi.cnki.net/knavi/",
+      "controls": [
+        {
+          "tag": "select",
+          "type": null,
+          "text": "来源名称\n主办单位\n出版者\nISSN\nCN\nISBN",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "txt_1_sel",
+          "id": "txt_1_sel",
+          "css": "#txt_1_sel",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#txt_1_sel"
+          },
+          "observed_url": "https://navi.cnki.net/knavi/",
+          "observed_at": "2026-10-09T09:07:29.719Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入检索词",
+          "label": "",
+          "aria_label": "请输入检索词",
+          "placeholder": "请输入检索词",
+          "name": "txt_1_value1",
+          "id": "txt_1_value1",
+          "css": "#txt_1_value1",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#txt_1_value1"
+          },
+          "observed_url": "https://navi.cnki.net/knavi/",
+          "observed_at": "2026-10-09T09:07:29.719Z"
+        },
+        {
+          "tag": "input",
+          "type": "button",
+          "text": "出版来源检索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "btnSearch",
+          "css": "#btnSearch",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#btnSearch"
+          },
+          "observed_url": "https://navi.cnki.net/knavi/",
+          "observed_at": "2026-10-09T09:07:29.719Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-150"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:07:31.046Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-navi-cnki-net-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-navi-cnki-net-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

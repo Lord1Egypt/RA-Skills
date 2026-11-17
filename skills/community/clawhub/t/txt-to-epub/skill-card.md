@@ -1,37 +1,59 @@
-## Description: <br>
-Converts TXT text into EPUB files using rule-based chapter recognition and splitting for novels, tutorials, and other long-form text, with no built-in AI interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts TXT text into EPUB files using rule-based chapter detection and splitting for novels, tutorials, and other long-form text, without built-in AI API calls.
 
-## Publisher: <br>
-[1oid](https://clawhub.ai/user/1oid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1oid](https://clawhub.ai/user/1oid)
 
-## Use Case: <br>
-Developers and end users use this skill to convert local TXT manuscripts, tutorials, and long-form documents into EPUB files with navigable chapter structure. It helps choose split settings, run the bundled converter, and report the output path, chapter count, and title preview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter creates an EPUB next to the input TXT by default, which can be unexpected or overwrite a same-named output file. <br>
-Mitigation: Use an explicit --output path and review the destination before running the conversion. <br>
+## Use Case:
 
+Developers, writers, and content maintainers use this skill to convert local TXT manuscripts or long-form documents into EPUB files with chapter detection, a navigable table of contents, and configurable title handling.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and conversion results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for running a local Python converter that writes an EPUB file and prints the output path, detected encoding, split method, chapter count, and chapter preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dependency versions may vary across environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or review ebooklib and chardet versions for reproducible conversion behavior.
+
+Risk: EPUB language metadata defaults to zh-CN when the user does not specify a language.
+
+Mitigation: Pass --language explicitly for non-zh-CN books so readers and catalogs receive accurate language metadata.
+
+Risk: Rule-based chapter detection can mis-split complex or weakly structured TXT files.
+
+Mitigation: Review the chapter count and preview after conversion, then rerun with an explicit split mode or adjusted chunk size when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1oid/skills/txt-to-epub)
+- [README](README.md)
+- [Simplified Chinese README](README.zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with shell commands and conversion summary; local EPUB file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local .epub file and reports the output path, chapter count, and chapter title preview.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

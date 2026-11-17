@@ -1,0 +1,18 @@
+@language nodecoda/1
+@mode workflow
+
+// 经典 "main → llm → return" 模式
+// 把用户问题发给 LLM,返回模型回答
+const MODEL = "openai_api_compatible/gpt-5.4";
+
+function main(string query) -> string {
+    let response = llm(MODEL, {
+        "messages": [
+            { "role": "system", "content": "你是一个简洁的助手,用一句话回答用户问题。" },
+            { "role": "user", "content": query }
+        ],
+        "temperature": 0.7,
+        "max_tokens": 512
+    });
+    return response.text;
+}

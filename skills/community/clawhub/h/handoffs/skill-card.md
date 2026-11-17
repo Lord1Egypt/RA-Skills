@@ -1,41 +1,54 @@
-## Description: <br>
-Record and track structured task handoff logs across sessions with status, summary, artifacts, and confidence in JSONL format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record and track structured task handoff logs across sessions with status, summary, artifacts, next-step notes, and confidence in JSONL format.
 
-## Publisher: <br>
-[sumo0221](https://clawhub.ai/user/sumo0221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumo0221](https://clawhub.ai/user/sumo0221)
 
-## Use Case: <br>
-Developers and agent operators use this skill to write and read local task handoff logs so work can continue across sessions or between agents with structured status, artifacts, next steps, and confidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Handoff summaries and artifact names are saved locally under ~/.sumo/handoffs and may be displayed in terminal output. <br>
-Mitigation: Avoid placing secrets, tokens, personal data, or confidential customer details in handoff text. <br>
-Risk: Local handoff logs can accumulate over time and retain operational context longer than intended. <br>
-Mitigation: Periodically review or delete old files in ~/.sumo/handoffs when retention matters. <br>
+## Use Case:
 
+Developers and agent operators use this skill to write and inspect persistent handoff logs so work can be transferred between agents or sessions with task status, summaries, artifacts, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sumo0221/handoffs) <br>
-- [Publisher profile](https://clawhub.ai/user/sumo0221) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local JSONL handoff records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local handoff files under ~/.sumo/handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent plaintext handoff logs may expose task summaries, file paths, artifact names, and next-step notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets in handoff fields and restrict permissions on ~/.sumo/handoffs.
+
+Risk: The reader's date argument can escape the intended handoff log directory when influenced by untrusted input.
+
+Mitigation: Validate --date strictly as YYYY-MM-DD before use and avoid passing untrusted arguments until that validation is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumo0221/skills/handoffs)
+- [Publisher profile](https://clawhub.ai/user/sumo0221)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration]
+
+**Output Format:** [JSONL records with console text and Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores records under ~/.sumo/handoffs/YYYY-MM-DD.jsonl and maintains a chain registry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

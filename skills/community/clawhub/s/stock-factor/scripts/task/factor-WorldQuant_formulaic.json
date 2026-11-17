@@ -1,0 +1,17 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "WQ_INTRADAY": "ao = d['open'] * d['adj_factor']; ac = d['close'] * d['adj_factor']; ah = d['high'] * d['adj_factor']; al = d['low'] * d['adj_factor']\nout = (ao - ac) / (ah - al + 0.001)",
+    "WQ_VWAP_DEV": "avwap = (d['amount'] / (d['vol'] + 1e-12)) * d['adj_factor']; ah = d['high'] * d['adj_factor']; al = d['low'] * d['adj_factor']\nout = np.sqrt(ah * al) - avwap",
+    "WQ_CLOSE_VWAP": "avwap = (d['amount'] / (d['vol'] + 1e-12)) * d['adj_factor']; ac = d['close'] * d['adj_factor']\nout = (avwap - ac) / (avwap + ac)",
+    "WQ_OPEN_CLOSE": "ao = d['open'] * d['adj_factor']; ac = d['close'] * d['adj_factor']\nout = -(1 - ao / ac)",
+    "WQ_VOLPRICE_DIV": "vol = d['vol']; ac = d['close'] * d['adj_factor']\nout = np.sign(vol.diff(1)) * (-(ac - ac.shift(1)))",
+    "WQ_LOWPRICE_REV": "ac = d['close'] * d['adj_factor']; ao = d['open'] * d['adj_factor']; ah = d['high'] * d['adj_factor']; al = d['low'] * d['adj_factor']\nout = (ac - al) * (ao ** 5) / ((al - ah) * (ac ** 5))",
+    "WQ_RANK_CORR_OV": "ao = d['open'] * d['adj_factor']; vol = d['vol']\nout = -row_rank(ao).rolling(10).corr(row_rank(vol))",
+    "WQ_RANK_CORR_RV": "vol = d['vol']; ac = d['close'] * d['adj_factor']; ao = d['open'] * d['adj_factor']\nout = -1 * (row_rank(np.log(vol + 1e-12).diff(2))).rolling(6).corr(row_rank((ac - ao) / ao))",
+    "WQ_SMA_DEV": "ac = d['close'] * d['adj_factor']\nout = ac.rolling(7).mean() / ac - 1",
+    "WQ_AMP_REV": "ac = d['close'] * d['adj_factor']; ah = d['high'] * d['adj_factor']; al = d['low'] * d['adj_factor']\nout = -((ah - al) / ac)"
+  },
+  "save_path": "output\\factor-WorldQuant_formulaic.xlsx"
+}

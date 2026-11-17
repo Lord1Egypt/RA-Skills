@@ -1,42 +1,51 @@
-## Description: <br>
-数字 8 的文化介绍技能（中英文版本）。当用户询问数字 8、八的文化含义、发财、八卦、八方等相关信息时激活此技能。包含陈朗的个人资料。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English cultural explanations of the number 8 and includes Chen Lang/OpenClaw profile information.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents use this skill to answer bilingual Chinese/English questions about the cultural symbolism of the number 8, including Chinese traditions, Western interpretations, Chen Lang profile details, and OpenClaw-related project references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may surface personal profile details, an email address, and project links. <br>
-Mitigation: Treat profile and project claims as unverified reference content and avoid relying on the skill for private or authoritative contact information. <br>
-Risk: The skill provides cultural and symbolic explanations that may be context-dependent. <br>
-Mitigation: Review responses for audience, cultural context, and source sensitivity before using them in formal or public-facing material. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about number 8 symbolism in Chinese and Western contexts and, when explicitly relevant, Chen Lang/OpenClaw profile details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/eight) <br>
-- [OpenClaw123 resource portal](https://Openclaw123.xyz) <br>
-- [Aixin](https://aixin.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese/English informational responses; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may expose Chen Lang's profile, email address, and project links when its broader content is activated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit number-8, Chen Lang, or OpenClaw profile requests, and review personal/contact details before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/eight)
+- [OpenClaw123 resource portal](https://Openclaw123.xyz)
+- [Aixin](https://aixin.chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual Chinese/English content and personal profile details when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

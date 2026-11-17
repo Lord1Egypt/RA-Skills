@@ -1,42 +1,57 @@
-## Description: <br>
-Helps an agent identify and report cleanup candidates for destructive removal of unneeded files, logs, memory data, trash, or damaged context state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents evaluate cleanup candidates and plan destructive cleanup or context reset actions to free space and recover from damaged context.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an OpenClaw workspace or conversation context needs cleanup assessment, reset planning, or explicit destructive cleanup reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for destructive cleanup and may lead an agent toward deleting files, memory, logs, or context state. <br>
-Mitigation: Require a visible dry run, an explicit approval step for each deletion target, and double confirmation for any irreversible context reset. <br>
-Risk: Automatic cleanup triggers and broad deletion categories can be ambiguous in real workspaces. <br>
-Mitigation: Disable automatic cleanup from token thresholds and require the agent to list exact paths, records, and retained items before proposing deletion. <br>
-Risk: Snapshots and cleanup logs may preserve sensitive context or data that the user expected to remove. <br>
-Mitigation: Treat snapshots and logs as sensitive, disclose their location and retention period, and remove them according to the stated seven-day policy. <br>
+## Use Case:
 
+Developers and operators using OpenClaw-style agents use this skill to identify when temporary files, stale logs, trash, oversized memory, or damaged context should be cleaned. It supports explicit cleanup and reset workflows where confirmation, snapshots, and preservation of active work matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/apollo-autophagy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown cleanup report with shell command guidance and generated JSON state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports cleanup status, risk level, cleanup targets, retained content, snapshot location, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter, server release metadata) <br>
+Risk: The skill is intended for destructive cleanup and context reset, including partially or fully irreversible actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for cleanup actions, double-confirm large context resets, and review the cleanup target list before deletion.
+
+Risk: Ambiguous cleanup, delete, reset, or high-token triggers may lead to overbroad cleanup recommendations.
+
+Mitigation: Treat triggers as prompts for review, not authorization, and preserve core memory, active task state, user preferences, skill documentation, and unrebuildable work.
+
+Risk: The packaged script performs status checks and writes retained cleanup state in the OpenClaw workspace.
+
+Mitigation: Inspect the script and generated state or log locations before installation or execution in shared or sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/apollo-autophagy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style cleanup reports with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cleanup status details and retained state or log file paths for review.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

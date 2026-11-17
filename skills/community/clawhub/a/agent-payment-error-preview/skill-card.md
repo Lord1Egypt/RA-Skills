@@ -1,43 +1,58 @@
-## Description: <br>
-Free triage preview for x402/AP2/ACP/MPP/MCP agent-payment failures; routes hard cases to the paid Agent Payment Error Diagnoser ClawMart skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free triage preview for x402/AP2/ACP/MPP/MCP agent-payment failures; routes hard cases to the paid Agent Payment Error Diagnoser ClawMart skill.
 
-## Publisher: <br>
-[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs)
 
-## Use Case: <br>
-Developers and operators troubleshooting agent-payment integrations use this skill to classify x402, AP2, ACP, MPP, MCP, and related payment failures from visible symptoms, apply an initial check, and decide whether deeper paid diagnosis is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment troubleshooting logs may contain private keys, wallet seeds, bearer tokens, payment headers, or authorization material. <br>
-Mitigation: Redact secrets, payment headers, and authentication material before pasting logs or examples into an agent workflow. <br>
-Risk: Repeated payment retries can reuse nonces, replay authorizations, or continue after permanent signature and scope failures. <br>
-Mitigation: Use a bounded retry counter, refresh nonces and idempotency keys, and stop immediately when the error indicates a permanent signature or scope issue. <br>
-Risk: Ambiguous cases are routed to a separate paid ClawMart diagnoser that is outside this preview skill. <br>
-Mitigation: Review the paid diagnoser separately before installing, purchasing, or sending it diagnostic data. <br>
+## Use Case:
 
+Developers and engineers use this skill for first-pass triage of agent-payment integration failures before deciding whether a paid structured diagnoser is needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sebastiancoombs/agent-payment-error-preview) <br>
-- [Paid Agent Payment Error Diagnoser Listing](https://www.shopclawmart.com/listings/agent-payment-error-diagnoser-adda0b18) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown troubleshooting checklist and triage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only preview; it makes no network calls by itself and asks users to redact secrets before sharing logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Payment logs may contain private keys, wallet seeds, bearer tokens, or unredacted authorization headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact payment logs before using the skill and avoid pasting secrets into the agent context.
+
+Risk: Repeated payment retries can create duplicate attempts or mask permanent signature and scope errors.
+
+Mitigation: Use a maximum retry counter and stop retries on permanent signature, scope, nonce, or idempotency failures.
+
+Risk: The free preview promotes a separate paid ClawMart package for deeper diagnosis.
+
+Mitigation: Install the paid package only when the separate listing is trusted and live corpus-backed diagnosis is needed.
+
+## Reference(s):
+
+- [Agent Payment Error Preview on ClawHub](https://clawhub.ai/sebastiancoombs/skills/agent-payment-error-preview)
+- [Agent Payment Error Diagnoser on ClawMart](https://www.shopclawmart.com/listings/agent-payment-error-diagnoser-adda0b18)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with checklist-style triage steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No network calls, persistence, or secret access by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

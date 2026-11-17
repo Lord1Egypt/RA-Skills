@@ -1,41 +1,53 @@
-## Description: <br>
-Text-To-Speech with MLX (Apple Silicon) and opensource models (default QWen3-TTS) locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-To-Speech with MLX (Apple Silicon) and opensource models (default QWen3-TTS) locally.
 
-## Publisher: <br>
-[guoqiao](https://clawhub.ai/user/guoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqiao](https://clawhub.ai/user/guoqiao)
 
-## Use Case: <br>
-Developers and end users on Apple Silicon Macs use this skill to convert text prompts into local voice audio for replies or voice messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup may install or update external tools such as ffmpeg, uv, and mlx-audio. <br>
-Mitigation: Install only in environments where those package-source changes are acceptable. <br>
-Risk: Broad natural-language triggers may invoke text-to-speech more easily than expected. <br>
-Mitigation: Prefer explicit invocations such as /mlx-tts when using the skill. <br>
-Risk: Text provided to the skill is rendered into an audio file and sent back through the message tool. <br>
-Mitigation: Avoid sending sensitive text unless voice-message output is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqiao/mlx-tts) <br>
+## Use Case:
 
+External users and developers use this skill to generate local text-to-speech audio on Apple Silicon Macs with MLX and open-source models, then return the generated OGG audio file as voice-message output.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, files] <br>
-**Output Format:** [Shell command output containing a generated audio file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local OGG audio file from the supplied text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer can modify the host environment and install an unpinned prerelease-capable mlx-audio package.
+
+Mitigation: Review the installer before use and prefer pinned or manual dependency installation in controlled environments.
+
+Risk: Broad trigger phrases can invoke the skill and create or send an audio file.
+
+Mitigation: Confirm user intent before generating or sending voice-message output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqiao/skills/mlx-tts)
+- [ClawHub metadata homepage](https://clawhub.ai/guoqiao/mlx-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Plain-text file path to a generated OGG audio file, with guidance for sending it as a voice message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a temporary output directory and requires macOS on Apple Silicon with Homebrew, ffmpeg, uv, and mlx-audio available or installed.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

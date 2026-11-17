@@ -1,45 +1,58 @@
-## Description: <br>
-Researches a company from public web sources and optional Tavily search, then generates a structured responsive HTML business information report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accepts a company name, researches public business information across 11 dimensions with optional Tavily enhancement for registration, financial, and digital-system data, and generates a responsive Kingdee Lingjing-style HTML report.
 
-## Publisher: <br>
-[kindeex](https://clawhub.ai/user/kindeex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kindeex](https://clawhub.ai/user/kindeex)
 
-## Use Case: <br>
-Sales, presales, partner review, and competitive research teams use this skill to gather public company facts, business context, financial signals, digital-system clues, and industry context into an HTML report. It is intended for public-information research and should be reviewed before business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When Tavily is configured, company names and research queries may be sent to an external search provider. <br>
-Mitigation: Use a dedicated limited Tavily key, configure it only where needed, and avoid placing credentials in broad home-directory .env files. <br>
-Risk: Generated reports may include external content that has not been fully escaped. <br>
-Mitigation: Treat generated HTML reports as unsafe for untrusted inputs until report fields and error messages are confirmed to be HTML-escaped. <br>
-Risk: Company research based on public web results can be incomplete or misleading. <br>
-Mitigation: Review key facts against authoritative sources before using the report for sales, partner review, or business decisions. <br>
+## Use Case:
 
+Sales, presales, partner-review, competitive-analysis, and industry-research users use this skill to investigate a company from public sources and produce a structured business background report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kindeex/kd-enterprise-info) <br>
-- [Tavily search provider](https://tavily.com/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, HTML, configuration, guidance] <br>
-**Output Format:** [Responsive HTML report with structured company research sections and missing-data placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a company name as input; Tavily API configuration is optional for enhanced search coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad local credential discovery and unsafe API-key handling may expose Tavily API keys in shared or sensitive workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide TAVILY_API_KEY only through an explicit environment variable and avoid placing unrelated secrets in .env files the skill can read.
+
+Risk: Generated HTML reports may contain unescaped field content.
+
+Mitigation: Do not host or redistribute generated reports unless the unescaped-field issue is fixed or the report is sanitized.
+
+Risk: Public business-search results may be incomplete, stale, or inconsistent across sources.
+
+Mitigation: Review source links and verify critical registration, financial, and business facts before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kindeex/skills/kd-enterprise-info)
+- [Tavily Search API](https://tavily.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, HTML, Configuration, Guidance]
+
+**Output Format:** [Responsive HTML report with structured business sections and text guidance for optional search enhancement]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Missing fields are displayed as unavailable; financial data is shown only for listed companies when evidence is available.]
+
+## Skill Version(s):
+
+5.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

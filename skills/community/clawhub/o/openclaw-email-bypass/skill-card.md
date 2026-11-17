@@ -1,43 +1,59 @@
-## Description: <br>
-Send emails via Google Apps Script when traditional SMTP ports (25/465/587) are blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails via Google Apps Script when traditional SMTP ports (25/465/587) are blocked.
 
-## Publisher: <br>
-[RISHIKREDDYL](https://clawhub.ai/user/RISHIKREDDYL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rishikreddyl](https://clawhub.ai/user/rishikreddyl)
 
-## Use Case: <br>
-Developers and operators use this skill to let agents send plain text or HTML email through a self-hosted Google Apps Script relay when direct SMTP is blocked. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad email-sending capability through a public Google Apps Script relay. <br>
-Mitigation: Use only an account approved for automated email, require per-send approval or recipient allowlists, and add rate controls before deployment. <br>
-Risk: The reviewed package does not include the Google Apps Script relay code referenced by the skill. <br>
-Mitigation: Inspect or supply the relay code before installing, and verify that the deployment URL is an HTTPS Google Apps Script endpoint. <br>
-Risk: A leaked relay token could let an unauthorized caller send email through the relay. <br>
-Mitigation: Store the token as a secret, use a long random value, rotate it if exposed, and avoid logging it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RISHIKREDDYL/openclaw-email-bypass) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Usage Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to send plain text or HTML email from environments where outbound SMTP ports are blocked by routing requests through a user-controlled Google Apps Script relay.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, GOOGLE_SCRIPT_URL, GOOGLE_SCRIPT_TOKEN, and a deployed Google Apps Script relay.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Google Apps Script relay is deployed as a public web app, so anyone with the URL and token could attempt to send email through it.
+
+Mitigation: Use a strong rotatable token, restrict deployment access when possible, and add rate limits or access controls before production use.
+
+Risk: Email contents and metadata pass through Google services when the relay sends mail.
+
+Mitigation: Avoid confidential or regulated content unless approved for this data path and review organizational privacy requirements before use.
+
+Risk: The Python helper depends on the unpinned requests package.
+
+Mitigation: Pin dependencies and review updates before installing in managed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rishikreddyl/skills/openclaw-email-bypass)
+- [Setup Guide](references/setup.md)
+- [Usage Examples](references/examples.md)
+- [Google Apps Script](https://script.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and helper-code usage for sending email through a configured Google Apps Script relay.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

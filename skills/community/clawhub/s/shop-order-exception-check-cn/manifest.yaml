@@ -1,0 +1,23 @@
+name: shop-order-exception-check-cn
+slug: shop-order-exception-check-cn
+display_name: 订单异常处理待办
+description: 输入脱敏订单状态表、商家正常流程和时效规则，输出超时、缺项、状态矛盾订单的待办清单与人工处理顺序。适合中文小店、内容创作者核对履约或交付；资料不足时明确列出待补字段，不编造状态，不调用订单接口，也不执行发货、退款或通知。
+version: 1.0.0
+repository: https://github.com/xxjrq/shop-order-exception-check-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - order-management
+  - exception-handling
+  - ecommerce
+  - chinese
+trigger_words:
+  - 订单异常
+  - 订单超时
+  - 状态矛盾
+  - 待发货核对
+triggers:
+  - 帮我整理订单异常待办
+  - 检查订单状态是否超时
+  - 根据流程核对订单状态
+self_test: bash scripts/self-test.sh

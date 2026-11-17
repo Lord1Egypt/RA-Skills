@@ -1,41 +1,58 @@
-## Description: <br>
-Edit PDFs with natural-language instructions using the nano-pdf CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit PDFs with natural-language instructions using the nano-pdf CLI.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers, document editors, and other external users use this skill to edit a target PDF page by giving the nano-pdf CLI a natural-language instruction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and invokes the third-party nano-pdf CLI and its AI service dependencies. <br>
-Mitigation: Install only if you trust the nano-pdf package and use it on PDFs you are comfortable processing through that tool. <br>
-Risk: PDF edits may be incorrect, including edits to the wrong page if page numbering differs by tool version or configuration. <br>
-Mitigation: Keep backups, check whether the page index is 0-based or 1-based, and review the edited PDF before sharing it. <br>
+## Use Case:
 
+Developers and document editors use this skill to invoke the nano-pdf CLI for page-specific PDF edits described in natural language.
 
-## Reference(s): <br>
-- [Nano Pdf on ClawHub](https://clawhub.ai/utromaya-code/nano-pdf-editor) <br>
-- [nano-pdf PyPI project](https://pypi.org/project/nano-pdf/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, files] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The nano-pdf CLI edits PDF files; users should review output PDFs before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill depends on the current nano-pdf package resolved by uv rather than a reviewed fixed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a constrained environment and prefer a pinned or locked installation when stronger supply-chain control is required.
+
+Risk: PDF edits may affect the wrong page if the installed nano-pdf version or configuration interprets page numbers differently.
+
+Mitigation: Review the output PDF and retry with the alternate page-numbering convention if the edit appears off by one.
+
+Risk: Sensitive PDFs may be modified or shared with incorrect edits.
+
+Mitigation: Sanity-check edited PDFs before sharing them outside the editing workflow.
+
+## Reference(s):
+
+- [nano-pdf PyPI project](https://pypi.org/project/nano-pdf/)
+- [Nano Pdf ClawHub skill page](https://clawhub.ai/utromaya-code/skills/nano-pdf-editor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce modified PDF files when the nano-pdf CLI is executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

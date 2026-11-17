@@ -1,52 +1,68 @@
-## Description: <br>
-Guides an agent through planning and writing a complete Chinese novel with user-selected genre, protagonist, conflict, chapter count, outlines, character files, chapter drafts, revision checks, and word-count validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through planning, drafting, revising, and checking a Chinese multi-chapter novel with outlines, character profiles, chapter files, hooks, and word-count checks.
 
-## Publisher: <br>
-[ckrissun](https://clawhub.ai/user/ckrissun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ckrissun](https://clawhub.ai/user/ckrissun)
 
-## Use Case: <br>
-External users and writers use this skill to create long-form Chinese fiction by answering setup questions, reviewing an outline and character plan, then letting the agent draft and revise chapters in sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and updates local novel project files. <br>
-Mitigation: Use a dedicated workspace, choose a simple novel name, and check for existing files before starting. <br>
-Risk: The workflow runs a bundled Python word-count checker. <br>
-Mitigation: Review the helper script before use and run it only in the intended novel workspace. <br>
+## Use Case:
 
+External users, writers, and content creators use this skill to create Chinese novels across common genres by answering setup questions and then having an agent generate the story plan, character files, and chapter drafts. It is intended for local manuscript generation and iteration in a workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckrissun/chinese-novelist-skill) <br>
-- [README](README.md) <br>
-- [Chapter guide](references/chapter-guide.md) <br>
-- [Chapter template](references/chapter-template.md) <br>
-- [Character building](references/character-building.md) <br>
-- [Character template](references/character-template.md) <br>
-- [Consistency guide](references/consistency.md) <br>
-- [Content expansion](references/content-expansion.md) <br>
-- [Dialogue writing](references/dialogue-writing.md) <br>
-- [Hook techniques](references/hook-techniques.md) <br>
-- [Outline template](references/outline-template.md) <br>
-- [Plot structures](references/plot-structures.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown story files, outline and character profile files, planning summaries, and Python word-count check commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local novels folder after user confirmation and checks chapter length with the bundled Python helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill creates and repeatedly updates local manuscript files under a novels/[novel name]/ folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated project workspace when the generated novel should remain separate from other files.
+
+Risk: After the planning confirmation, the workflow directs the agent to continue chapter-by-chapter without further confirmation.
+
+Mitigation: Review the outline and character files carefully before confirming the drafting phase, and pause the agent if intermediate chapter review is required.
+
+Risk: Generated fiction may contain continuity, quality, or style issues despite the built-in checklist and word-count checks.
+
+Mitigation: Review generated chapters manually and use the provided consistency, dialogue, expansion, and quality-check references during revision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckrissun/skills/chinese-novelist-skill)
+- [Chapter guide](references/chapter-guide.md)
+- [Chapter template](references/chapter-template.md)
+- [Character building](references/character-building.md)
+- [Character template](references/character-template.md)
+- [Consistency guide](references/consistency.md)
+- [Content expansion](references/content-expansion.md)
+- [Dialogue writing](references/dialogue-writing.md)
+- [Hook techniques](references/hook-techniques.md)
+- [Outline template](references/outline-template.md)
+- [Plot structures](references/plot-structures.md)
+- [Quality checklist](references/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Conversational text plus Markdown manuscript, outline, and character files, with local word-count command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates files under novels/[novel name]/ and uses a local Python script to check Chinese chapter word counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

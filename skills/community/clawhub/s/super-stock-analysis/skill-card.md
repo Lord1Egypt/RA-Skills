@@ -1,50 +1,68 @@
-## Description: <br>
-Super Stock Analysis helps agents analyze stocks and cryptocurrencies with Yahoo Finance data, portfolio and watchlist tracking, dividend analysis, multi-factor scoring, trend scanning, and early signal detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes stocks and cryptocurrencies using Yahoo Finance data with portfolio tracking, watchlists, dividend analysis, multi-factor scoring, trend detection, and early-signal scanning.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-External users and agents use this skill to produce structured market analysis, portfolio summaries, watchlist alerts, dividend views, and trend or rumor scans for equities and digital assets. Its outputs are informational and should be reviewed before any financial decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external finance, news, and optional social-media data providers. <br>
-Mitigation: Run it only in environments where outbound market-data requests are acceptable, and treat returned data as informational rather than authoritative investment advice. <br>
-Risk: Portfolio and watchlist workflows store financial tracking data locally. <br>
-Mitigation: Use a dedicated workspace or account, review local data paths before use, and avoid entering sensitive account or brokerage credentials. <br>
-Risk: Optional Twitter/X setup can use live session credentials such as auth_token and ct0. <br>
-Mitigation: Skip the Twitter/X integration unless needed; if used, restrict file access, keep credentials out of shared workspaces, and remove them after scanning. <br>
-Risk: The bundled batch_refactor.py script rewrites Python files and is unrelated to normal market analysis. <br>
-Mitigation: Do not run batch_refactor.py during normal use; inspect and isolate it before any maintenance use. <br>
+## Use Case:
 
+External users and developers use this skill to request stock, crypto, income, portfolio, watchlist, trend, and rumor/signal analysis from command-line market data workflows. The outputs are informational analysis and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/subaru0573/super-stock-analysis) <br>
-- [MarketPulse Homepage](https://marketpulse.io) <br>
-- [README](README.md) <br>
-- [Usage Guide](docs/USAGE.md) <br>
-- [Technical Architecture](docs/ARCHITECTURE.md) <br>
-- [Hot Scanner Guide](docs/HOT_SCANNER.md) <br>
-- [bird CLI for optional Twitter/X search](https://github.com/steipete/bird) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or terminal text with optional JSON from analysis and scanner scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local portfolio, watchlist, cache, and scan-output files under user-local or skill-local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Optional social scanning can require X session cookies and broad local access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill without the social scanner unless you have reviewed the flow; avoid granting Terminal Full Disk Access and avoid storing X cookies in the skill directory.
+
+Risk: The artifact includes local file-modifying code and portfolio or watchlist storage.
+
+Mitigation: Do not run batch_refactor.py during normal use, and keep portfolio or watchlist data in a private directory with restrictive permissions.
+
+Risk: Market analysis, trend, and rumor outputs can be delayed, incomplete, or misleading.
+
+Mitigation: Treat outputs as informational signals only and verify investment decisions with qualified financial advice and authoritative market sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-stock-analysis)
+- [Publisher profile](https://clawhub.ai/user/subaru0573)
+- [MarketPulse homepage](https://marketpulse.io)
+- [Usage guide](docs/USAGE.md)
+- [Concept and philosophy](docs/CONCEPT.md)
+- [Technical architecture](docs/ARCHITECTURE.md)
+- [Hot scanner documentation](docs/HOT_SCANNER.md)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [CoinGecko](https://coingecko.com)
+- [SEC EDGAR](https://www.sec.gov/edgar)
+- [Google News](https://news.google.com)
+- [bird CLI](https://github.com/steipete/bird)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, terminal text, and optional JSON from supporting scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market and social outputs may depend on third-party data availability, local credentials, and cache timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

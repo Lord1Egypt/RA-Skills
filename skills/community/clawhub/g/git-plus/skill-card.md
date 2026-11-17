@@ -1,41 +1,53 @@
-## Description: <br>
-Enhanced Git with advanced workflows, Git hooks, CI/CD integration, monorepo support, Git LFS, and Git internals deep dive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Git with advanced workflows, Git hooks, CI/CD integration, monorepo support, Git LFS, and Git internals deep dive.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Git workflow guidance, hook examples, CI/CD snippets, monorepo commands, and Git internals references while working in source repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hook and CI/CD snippets can affect commits, pushes, and deployments when manually copied into a repository. <br>
-Mitigation: Review and adapt hook and CI/CD snippets before enabling them in a real repository, especially around branch protection, deployment steps, and secret scanning. <br>
-Risk: Git command guidance can change repository history or working tree state when applied directly. <br>
-Mitigation: Run commands in a clean working tree or disposable branch, and verify repository state before using rebases, cherry-picks, bisects, submodules, or worktrees. <br>
+## Use Case:
 
+Developers and engineers use this skill as a Git workflow reference for branch strategies, hooks, CI/CD snippets, monorepo operations, Git LFS, and Git internals commands.
 
-## Reference(s): <br>
-- [Git Plus on ClawHub](https://clawhub.ai/534422530/git-plus) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell, YAML, and hook-script code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory Git workflow content and example snippets; it does not install hooks or run commands automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Hook examples and generated hook commands can change local repository behavior before commits or pushes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review hook scripts before installing them, and pin or use locally installed hook tooling such as Husky.
+
+Risk: CI/CD deploy snippets can change remote environments if copied into a live pipeline without review.
+
+Mitigation: Treat deployment snippets as templates and adapt them to the repository's reviewed release process before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/git-plus)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Git workflow examples, hook scripts, and CI/CD configuration snippets.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

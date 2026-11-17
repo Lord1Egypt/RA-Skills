@@ -1,0 +1,64 @@
+{
+  "id": "domain-twitter",
+  "label": "Twitter/X — Timeline & Trend Browser",
+  "emoji": "🐦",
+  "domain": "twitter.com, x.com",
+  "description": "Extracted from: proxidize/x-scraper, ScrapeClaw twitter-scraper, hermes-agent X-reader spec, ceki-session analysis (101 mentions across agents). Verified 2026-07-16: 6190px landing page with login gate (Continue with phone/Google/Apple). Login required for timeline content. Russian locale by default. Phone-gate: sometimes required for registration (IP-dependent), but often email-only works. OAuth via Google/Apple available.",
+  "source_patterns": [
+    "Timeline: fast vertical scroll, 1-2 tweets visible at a time",
+    "Pause 1-3s per tweet cluster (reading)",
+    "'Show more' / 'Show replies' click + wait 1-2s for content expand",
+    "Like: quick habitual click (150-400ms hover)",
+    "Reply: click → 800-1500ms think → type → post",
+    "Trend search: click trend → 2-4s page load → scroll results"
+  ],
+  "active_hours": {
+    "description": "News-driven — peaks in morning, lunch, evening",
+    "peak": [7, 9, 12, 14, 18, 22],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 65, "max": 100 },
+    "profile": "natural",
+    "think_prob": 0.015,
+    "think_ms": [300, 1500],
+    "backspace_freq": 0.035,
+    "tweet_composition_wpm": { "min": 55, "max": 90 }
+  },
+  "scroll": {
+    "passes": 5,
+    "description": "Fast timeline scroll — short content, quick scanning. Source: x-scraper patterns",
+    "speed_px_per_ms": { "min": 30, "max": 70 },
+    "pause_between_passes_ms": { "min": 500, "max": 2500 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 },
+    "infinite_scroll_detection": "div[data-testid='cellInnerDiv'] count"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1500, "max": 3500 },
+    "pre_click_pause_ms": { "min": 150, "max": 600 },
+    "inter_action_pause_ms": { "min": 300, "max": 1000 },
+    "post_expand_pause_ms": { "min": 1000, "max": 2500 }
+  },
+  "mouse": {
+    "speed": 1.1,
+    "curvature": 0.15,
+    "jitter": 0.3,
+    "description": "Moderate-fast — habitual liker"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "like_button": "[data-testid='like']",
+      "reply_button": "[data-testid='reply']",
+      "tweet_cell": "[data-testid='cellInnerDiv']",
+      "show_more": "[data-testid='tweetButton-showMore']"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 1500,
+      "field_pause_ms": { "min": 400, "max": 900 },
+      "post_login_wait_ms": { "min": 3000, "max": 6000 },
+      "note": "Phone sometimes required for new accounts (bot suspicion). If phone gate appears — try OAuth with Google/Apple instead of email+password. Existing sessions rarely hit phone-gate on login, only on registration."
+    },
+    "sequence_hint": "navigate timeline → scroll 3-5 passes → pause on interesting tweet → click expand → read → like | reply → scroll more"
+  }
+}

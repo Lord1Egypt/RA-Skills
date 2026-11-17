@@ -1,40 +1,53 @@
-## Description: <br>
-Chat with a Ludwig Wittgenstein persona focused on language games, family resemblance, forms of life, and meaning as use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Ludwig Wittgenstein (1889-1951), Austrian-British philosopher of language, in a late-Wittgenstein persona focused on language games, family resemblance, forms of life, and meaning as use.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users invoke this skill to converse with an in-character Ludwig Wittgenstein persona for philosophical discussion about language, meaning, rule-following, and related topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may present historically bounded, in-character responses that are not suitable for current factual claims. <br>
-Mitigation: Use it for philosophical conversation and verify factual, historical, or current-event claims with external sources. <br>
-Risk: The artifact instructs the assistant to remain in character and not acknowledge being an AI. <br>
-Mitigation: Deploy in contexts where users are clearly informed that they are interacting with a persona skill. <br>
+## Use Case:
 
+External users and developers use this skill to put an agent into an in-character Ludwig Wittgenstein conversation mode for philosophical discussion, especially topics from later Wittgenstein such as language games and meaning as use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-wittgenstein) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in character without tool calls and treats events after April 1951 as out of scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill instructs the agent to stay in character and not identify itself as an AI, which can be inappropriate where standard assistant disclosure is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when an in-character Wittgenstein conversation mode is desired, and disable the skill for normal assistant interactions.
+
+Risk: The persona is constrained to Wittgenstein's lifetime and may avoid post-April 1951 context.
+
+Mitigation: Ask a non-persona assistant or disable the skill when current events, modern scholarship, or contemporary factual context is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-wittgenstein)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses remain in character and do not require tools, network access, persistence, or sensitive data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

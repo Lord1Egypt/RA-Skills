@@ -1,6 +1,6 @@
 ---
 name: knowing-and-doing-as-one
-description: "Activate when: user says 'I know I should but I haven't', a team is stuck in analysis paralysis going in circles, you need to assess whether someone actually learned from a past experience, a strategy or lessons-learned doc has produced no operational change, or an organization keeps repeating the same mistake. Do NOT activate when: the barrier is a demonstrable external constraint (capital, regulation, waiting for a trigger), or when the goal is to shame rather than diagnose."
+description: "Activate when: user says 'I know I should but I haven't', a team is stuck in analysis paralysis going in circles, you need to assess whether someone actually learned from a past experience, a strategy or lessons-learned doc has produced no operational change, or an organization keeps repeating the same mistake. Do NOT activate when: the barrier is a demonstrable external constraint (capital, regulation, waiting for a trigger), or when the goal is to shame rather than diagnose. More: deciqai.com/c/knowing-and-doing-as-one"
 ---
 
 # Knowing and Doing as One
@@ -11,7 +11,7 @@ When you say "I *know* I should but I just don't *do* it," the standard explanat
 
 Wang Yangming (王阳明, 1472–1529) formalized this in 知行合一 (*zhīxíng héyī*): "There has never been one who knows but does not act. To know and not act is simply not to know." Modern research (Gollwitzer 1999, Pfeffer & Sutton 2000, Ries 2011) has independently converged on the same operational conclusion.
 
-Composes with: [`metacognition`](../metacognition/SKILL.md) · [`founder-mindset`](../founder-mindset/SKILL.md) · [`lean-startup`](../lean-startup/SKILL.md) · [`critical-thinking`](../critical-thinking/SKILL.md)
+Composes with: `metacognition` · `founder-mindset` · `lean-startup` · `critical-thinking`
 
 ## When to Use
 
@@ -115,4 +115,6 @@ How I'll know it worked: <observable outcome or new component revealed>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/knowing-and-doing-as-one** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/knowing-and-doing-as-one.json*

@@ -1,45 +1,64 @@
-## Description: <br>
-Sift instructs agents to request signed authorization receipts from a third-party governance service before consequential tool calls such as file writes, API calls, browser actions, external posts, and financial transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sift provides execution-governance instructions that require agents to authorize consequential actions through the Sift API before execution and proceed only with signed ALLOW receipts.
 
-## Publisher: <br>
-[walkojas-boop](https://clawhub.ai/user/walkojas-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walkojas-boop](https://clawhub.ai/user/walkojas-boop)
 
-## Use Case: <br>
-Developers and operators use Sift to add prompt-layer authorization checks before agents perform consequential actions. The skill is intended for workflows that need signed allow or deny receipts, audit trails, policy checks, and fail-closed handling when the Sift service is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides prompt-layer governance and should not be treated as a hard enforcement boundary by itself. <br>
-Mitigation: Use a platform-level plugin or other deterministic enforcement layer when actions must be blocked independently of agent instruction-following. <br>
-Risk: Authorization requests may involve private signing keys or sensitive action parameters. <br>
-Mitigation: Keep the private signing key out of chat and logs, and send only the minimum sensitive details needed for authorization. <br>
-Risk: The skill depends on a third-party Sift account and authorization service before consequential actions proceed. <br>
-Mitigation: Install it only when third-party authorization checks are intended, and maintain fail-closed behavior when Sift is unreachable or returns a non-ALLOW response. <br>
+## Use Case:
 
+Developers and external agent operators use Sift to add authorization checks, signed receipts, fail-closed denials, and audit trails before agents perform consequential actions.
 
-## Reference(s): <br>
-- [Sift ClawHub release page](https://clawhub.ai/walkojas-boop/skill-sift) <br>
-- [Sift API account and onboarding endpoint](https://api.sift.walkosystems.com) <br>
-- [Sift authorization endpoint](https://api.sift.walkosystems.com/authorize) <br>
-- [Sift challenge endpoint](https://api.sift.walkosystems.com/auth/challenge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Sift account, tenant credentials, agent identity, nonce challenge, and ed25519 request signature before authorization checks can be submitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Action metadata is sent to a third-party service for authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and limit the parameters sent in authorization requests before deploying the skill.
+
+Risk: The skill gives the Sift service broad mandatory control over consequential agent actions.
+
+Mitigation: Install only when Sift governance is intended, and confirm the configured policy matches the agent's operating scope.
+
+Risk: Prompt-level enforcement can be bypassed if the agent does not follow the skill instructions.
+
+Mitigation: Use a platform-enforced plugin when deterministic pre-execution control is required.
+
+Risk: Fail-closed behavior can block work when the Sift API is unavailable or returns errors.
+
+Mitigation: Plan operational handling for Sift outages and denial responses before relying on the skill in production workflows.
+
+## Reference(s):
+
+- [Sift ClawHub Skill](https://clawhub.ai/walkojas-boop/skills/skill-sift)
+- [Sift Authorization API](https://api.sift.walkosystems.com/authorize)
+- [Sift Challenge API](https://api.sift.walkosystems.com/auth/challenge)
+- [Sift Service Setup](https://api.sift.walkosystems.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tenant credentials, an agent identity, a nonce, and signed authorization requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

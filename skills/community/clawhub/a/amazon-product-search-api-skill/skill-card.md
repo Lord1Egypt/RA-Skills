@@ -1,43 +1,55 @@
-## Description: <br>
-This skill helps agents search Amazon product listings through BrowserAct using keywords, brand filters, result limits, and language settings, then return product details such as titles, URLs, ratings, prices, availability, delivery information, and best-seller status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents extract structured product listing data from Amazon search results through BrowserAct's Amazon Product Search API template.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to collect Amazon product search data for market research, competitive monitoring, catalog discovery, pricing intelligence, and localized product availability checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a BrowserAct API key. <br>
-Mitigation: Keep BROWSERACT_API_KEY in the environment and do not paste the key into chat or command arguments. <br>
-Risk: Search keywords, brand filters, limits, and language settings are sent to BrowserAct for Amazon product searches. <br>
-Mitigation: Use only product research terms that are approved to share with BrowserAct. <br>
-Risk: The script polls BrowserAct until completion and may run longer than expected. <br>
-Mitigation: Monitor status logs and stop the process manually if polling continues beyond the expected task duration. <br>
+## Use Case:
 
+External users, developers, and market research teams use this skill to search Amazon by keyword, brand, count, and language, then collect product titles, URLs, prices, ratings, review counts, sales estimates, availability, and shipping details for catalog, pricing, or competitive analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/amazon-product-search-api-skill) <br>
-- [BrowserAct Console](https://www.browseract.com/reception/integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with status logs and product result data; successful responses may include structured JSON-like product fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python and BROWSERACT_API_KEY. The script sends keywords, brand, limit, and language to BrowserAct, polls for completion, and prints the returned product data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill requires a BrowserAct API key and the security evidence warns against sharing that key in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BROWSERACT_API_KEY through the environment or an approved secret manager, and rotate any key that was previously shared in a conversation.
+
+Risk: Amazon search terms, brand filters, and market-research parameters are sent to BrowserAct.
+
+Mitigation: Install and run the skill only when users are comfortable sending those inputs to BrowserAct; avoid sensitive internal research terms unless approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/amazon-product-search-api-skill)
+- [BrowserAct integration console](https://www.browseract.com/reception/integrations)
+- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text stream with status logs and structured product-result data, typically JSON-like or API-returned string output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BROWSERACT_API_KEY; polls BrowserAct until task completion and prints results.]
+
+## Skill Version(s):
+
+0.1.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

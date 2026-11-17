@@ -1,42 +1,62 @@
-## Description: <br>
-Generate customer-ready Telegram polling bots and an Express-style web server that integrate Pump.fun Tokenized Agent payments using @pump-fun/agent-payments-sdk to build invoices, accept payments, and verify invoices on Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Telegram polling bot and web server scaffolds that integrate Pump.fun Tokenized Agent payments, invoice creation, payment acceptance, and Solana invoice verification.
 
-## Publisher: <br>
-[belimad](https://clawhub.ai/user/belimad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[belimad](https://clawhub.ai/user/belimad)
 
-## Use Case: <br>
-External developers and engineers use this skill to scaffold Telegram polling bots and web services for Pump.fun Tokenized Agent payment flows on Solana. It helps configure invoices, server-side payment verification, run instructions, and smoke-test checklists for customer projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled template may take custody of user crypto funds despite the skill text warning against signing transactions on behalf of users. <br>
-Mitigation: Redesign the payment flow to use user-signed wallet transactions before any production use, or add explicit custody disclosures, encrypted key management, audit controls, and withdrawal or recovery handling. <br>
-Risk: Running the scaffold with real user funds as-is could expose users to payment custody and recovery failures. <br>
-Mitigation: Use only test funds until the custody model, operational controls, and dependency updates have been reviewed and implemented. <br>
+## Use Case:
 
+Developers and agent builders use this skill to scaffold pay-to-use Telegram agents and web billing services for Pump.fun Tokenized Agent payment flows. It helps configure Solana RPC, token mint, currency mint, Telegram commands, payment acceptance, and invoice verification before delivering gated service.
 
-## Reference(s): <br>
-- [Pumpfun Agent Integration on ClawHub](https://clawhub.ai/belimad/pumpclaw-agent) <br>
-- [Pump Tokenized Agents Integration Notes](artifact/references/PUMP_TOKENIZED_AGENTS.md) <br>
-- [Pump.fun Tokenized Agents Reference Skill](https://raw.githubusercontent.com/pump-fun/pump-fun-skills/refs/heads/main/tokenized-agents/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with project files, code snippets, shell commands, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a customer project scaffold, run instructions, and a smoke-test checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The payment bot scaffold stores wallet private keys locally and signs blockchain transactions from the server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it with real funds or production Telegram users unless it is redesigned to avoid server-side private key custody and server-side signing.
+
+Risk: The template includes an unused treasury private key setting.
+
+Mitigation: Remove unused private key configuration before deployment and avoid collecting secrets that are not required by the payment flow.
+
+Risk: The security evidence flags vulnerable dependencies and unclear payment trust assumptions.
+
+Mitigation: Update vulnerable dependencies, document the payment trust model, and review the scaffold before installation or deployment.
+
+Risk: Service-to-service billing traffic may be configured without secure transport.
+
+Mitigation: Require secure transport and strong service authentication for non-local deployments.
+
+## Reference(s):
+
+- [Pump Tokenized Agents integration notes](artifact/references/PUMP_TOKENIZED_AGENTS.md)
+- [Pump.fun tokenized agents reference skill](https://raw.githubusercontent.com/pump-fun/pump-fun-skills/refs/heads/main/tokenized-agents/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated Node.js project files, command snippets, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a stamped Telegram polling bot and Fastify-style billing service scaffold that must be configured with deployment-specific payment and Telegram settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

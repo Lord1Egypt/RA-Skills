@@ -1,42 +1,51 @@
-## Description: <br>
-Find upcoming races - running, trail, triathlon, cycling, swimming, and obstacle courses - by location, distance, sport, and date, with race details and registration links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find upcoming races — running, trail, triathlon, cycling, swimming, and obstacle courses. Search by location, distance, sport, and date. Returns race details with registration links.
 
-## Publisher: <br>
-[nftechie](https://clawhub.ai/user/nftechie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nftechie](https://clawhub.ai/user/nftechie)
 
-## Use Case: <br>
-External users and agents use this skill to find endurance events across the US and internationally, narrow searches by race attributes, and return race details with links for more information or registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Race search terms and location filters are sent to RaceFinder. <br>
-Mitigation: Use the skill only when sharing those search terms and location filters with RaceFinder is acceptable. <br>
-Risk: Registration URLs may include referral or tracking parameters. <br>
-Mitigation: Review race detail and registration links before using them or sharing them with users. <br>
+## Use Case:
 
+External users and agents use this skill to search for upcoming endurance events by location, sport, distance, and date, then return race details and registration links.
 
-## Reference(s): <br>
-- [Race Finder ClawHub listing](https://clawhub.ai/nftechie/race-finder) <br>
-- [RaceFinder website](https://racefinder.net) <br>
-- [RaceFinder API base URL](https://api.racefinder.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Race searches can include optional query, location, sport, distance, date range, pagination, zipcode, and radius filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Race searches are sent to RaceFinder and may include locations, dates, and race preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive personal information in search terms unless the user is comfortable sending it to RaceFinder.
+
+## Reference(s):
+
+- [RaceFinder](https://racefinder.net)
+- [RaceFinder API](https://api.racefinder.net)
+- [ClawHub Race Finder Skill](https://clawhub.ai/nftechie/skills/race-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with race details, registration links, and optional curl examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include race names, dates, locations, distances, prices, detail URLs, registration URLs, pagination details, and API query examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,68 @@
-## Description: <br>
-Memorist Agent helps capture parents' and family members' life stories through adaptive interviews via WhatsApp, WeChat relay, or direct conversation, then organizes stories into memoir chapters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memorist Agent helps families capture parents' and relatives' life stories through adaptive English or Chinese interviews over relay, WhatsApp, WeChat, Telegram, iMessage, or direct conversation, then organizes story fragments into memoir chapters.
 
-## Publisher: <br>
-[YinghaoJia](https://clawhub.ai/user/YinghaoJia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yinghaojia](https://clawhub.ai/user/yinghaojia)
 
-## Use Case: <br>
-External users and families use this skill to interview relatives, preserve oral histories, track people and places mentioned in stories, and compile collected fragments into private memoir exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores detailed family histories and relationship data locally. <br>
-Mitigation: Use it only with informed consent from each narrator, keep the OpenClaw data directory protected, and delete unused narrator data when it is no longer needed. <br>
-Risk: Auto-reply and reminder features can send messages to real contacts through messaging channels. <br>
-Mitigation: Use allowlists, verify each phone number or account before enabling auto-reply, and confirm that the narrator agrees to being contacted and recorded. <br>
-Risk: The skill may modify messaging configuration and install transcription tooling. <br>
-Mitigation: Review proposed configuration and install steps before approval, and enable only the channels and speech tools required for the intended workflow. <br>
-Risk: Sensitive stories may be sent through WhatsApp or shared with family reviewers. <br>
-Mitigation: Prefer relay mode and local exports for sensitive material, and share exports only after narrator review. <br>
-Risk: Broad fetch or web search capabilities are listed even though memoir capture is primarily local. <br>
-Mitigation: Remove or avoid unused network capabilities unless they are explicitly required for the deployment. <br>
+## Use Case:
 
+Families and caregivers use Memorist Agent to interview parents, grandparents, and other relatives, preserve memories in English or Chinese, and compile collected story fragments into shareable memoir chapters.
 
-## Reference(s): <br>
-- [Memorist Agent ClawHub Page](https://clawhub.ai/YinghaoJia/memorist-agent) <br>
-- [README](README.md) <br>
-- [Interview Workflow](references/interview-workflow.md) <br>
-- [AI Interview Principles](references/interview-principles.md) <br>
-- [Compile, Export & Share](references/compile-export-share.md) <br>
-- [Spawn & Despawn](references/spawn-despawn.md) <br>
-- [Media Requirements & Voice Note Handling](references/media-and-voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational text, Markdown memoir chapters, JSON/TXT/Markdown exports, and inline shell or configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores narrator profiles, entities, sessions, fragments, chapters, and exports locally under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, package.json, ClawHub release metadata) <br>
+Risk: The skill handles sensitive family stories and contact data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer relay mode for sensitive stories and confirm every narrator and recipient understands where messages and exports go.
+
+Risk: Persistent auto-reply agents and messaging bindings can send replies through WhatsApp, iMessage, Telegram, or WeCom.
+
+Mitigation: Review OpenClaw bindings after spawn or despawn and keep channel allowlists narrow before enabling auto-reply.
+
+Risk: Voice features may install local speech tools from unpinned package sources.
+
+Mitigation: Install speech tools only from trusted, pinned sources and review the install commands before running setup-stt.
+
+Risk: Network-capable tools could expose private story context if enabled unnecessarily.
+
+Mitigation: Keep web_search disabled unless it is explicitly needed for a user-approved workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yinghaojia/skills/memorist-agent)
+- [Project Homepage](https://github.com/jimmyclaw/memorist_agent-skill)
+- [Support Issues](https://github.com/jimmyclaw/memorist_agent-skill/issues)
+- [Interview Workflow](references/interview-workflow.md)
+- [AI Interview Principles](references/interview-principles.md)
+- [Compile, Export & Share](references/compile-export-share.md)
+- [Media Requirements & Voice Note Handling](references/media-and-voice.md)
+- [Spawn & Despawn Dedicated Narrator Agents](references/spawn-despawn.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and generated memoir export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local narrator records, story fragments, compiled chapters, exports, and messaging prompts or replies.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, package.json, clawhub.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

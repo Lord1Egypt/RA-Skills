@@ -1,37 +1,49 @@
-## Description: <br>
-Private equity deal sourcing and workflow tools: company discovery, CRM integration, and founder outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Private equity deal sourcing and workflow tools: company discovery, CRM integration, and founder outreach
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Private equity investors, operating partners, and deal teams use this skill to source and screen targets, prepare diligence materials, draft IC memos, review portfolio performance, model returns, and create value-creation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access private email and Slack context for deal work without clear opt-in or privacy scoping. <br>
-Mitigation: Install only when that access is acceptable, explicitly limit accounts, channels, threads, time windows, and contacts before use, and require human review before any outreach is drafted or sent. <br>
+## Use Case:
 
+External private equity professionals and investment teams use this skill to source deals, screen opportunities, prepare diligence materials, build returns analyses, monitor portfolio companies, and draft investment committee or founder outreach materials.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative, checklists, tables, memos, and outreach drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for deal materials, financial packages, company names, or sourcing criteria before producing outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: Deal sourcing may inspect connected Gmail and Slack without an explicit consent or scope limit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before searching those sources, limit searches to named companies or founders, prefer metadata or existence checks, and avoid quoting or summarizing message contents unless the user asks for it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/financial-private-equity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, checklists, memos, sensitivity matrices, and outreach drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for target company, deal parameters, file paths, or connected workspace sources before producing outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

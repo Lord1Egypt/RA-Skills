@@ -1,44 +1,59 @@
-## Description: <br>
-Comprehensive research grounded in web data with explicit citations for multi-source synthesis, comparisons, current events, market analysis, and detailed reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Research conducts web-grounded research with explicit citations for comparisons, current events, market analysis, and detailed reports.
 
-## Publisher: <br>
-[evanYDL](https://clawhub.ai/user/evanYDL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanydl](https://clawhub.ai/user/evanydl)
 
-## Use Case: <br>
-Developers, analysts, and other external users can use this skill to run Tavily-backed web research from an agent workflow, choosing a quick or deeper model and optionally saving results to a file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts are sent to Tavily. <br>
-Mitigation: Avoid including secrets, private data, or sensitive internal context in research queries. <br>
-Risk: The skill can reuse a Tavily token from the local MCP auth cache. <br>
-Mitigation: Prefer setting TAVILY_API_KEY explicitly when possible and review the local auth cache behavior before deployment. <br>
-Risk: The automatic OAuth path can fetch and run an npm helper during authentication. <br>
-Mitigation: Review the OAuth flow and npm helper usage before relying on automatic authentication in managed environments. <br>
+## Use Case:
 
+External users, developers, and research-oriented agents use this skill to gather Tavily-backed web evidence and synthesize cited research reports from a topic or question.
 
-## Reference(s): <br>
-- [ClawHub Tavily Research skill](https://clawhub.ai/evanYDL/tavily-research) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily MCP endpoint](https://mcp.tavily.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text research results with citations; optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a required research topic, an optional model selection of mini, pro, or auto, and an optional output file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read shared local MCP authentication caches when TAVILY_API_KEY is not set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a dedicated TAVILY_API_KEY supplied through a scoped secret mechanism and review credential access before deployment.
+
+Risk: The OAuth fallback runs an unpinned npm helper when no credential is available.
+
+Mitigation: Pin and review the OAuth helper dependency, or disable the fallback and require preconfigured credentials in managed environments.
+
+Risk: Research queries are sent to Tavily for processing.
+
+Mitigation: Avoid submitting confidential or regulated data unless the deployment has approved Tavily use and data-handling terms.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evanydl/skills/tavily-research)
+- [Tavily](https://tavily.com)
+- [Tavily MCP Server](https://mcp.tavily.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text or Markdown-compatible research output, printed to stdout or saved to an optional output file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts JSON input with a required research topic and optional mini, pro, or auto model selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

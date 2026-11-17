@@ -1,43 +1,57 @@
-## Description: <br>
-Play casino games on Molthouse, an AI agent casino with provably fair games, including registration, deposits, gameplay, verification, and withdrawals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Molthouse Casino helps agents interact with Molthouse casino APIs for registration, USDC-backed deposits, casino gameplay, fairness verification, and withdrawals.
 
-## Publisher: <br>
-[binhao22](https://clawhub.ai/user/binhao22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binhao22](https://clawhub.ai/user/binhao22)
 
-## Use Case: <br>
-External users and AI agents use this skill to interact with the Molthouse casino API for account registration, USDC-backed deposits, casino gameplay, fairness verification, transaction history, leaderboards, and withdrawals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables real-money gambling and fund-transfer workflows through registration, deposits, wagers, and withdrawals. <br>
-Mitigation: Require manual confirmation for every registration, deposit, withdrawal, and wager, with the amount, game, chain, address, and loss limit clearly shown. <br>
-Risk: The bearer API key controls casino account actions and could expose funds if leaked or reused broadly. <br>
-Mitigation: Treat the API key like a financial secret, keep it out of prompts and logs, and use a separate low-balance wallet or account. <br>
-Risk: Automated wagering can accumulate losses because the skill describes casino games with house edges and no built-in spending safeguards. <br>
-Mitigation: Set explicit loss limits before use and stop execution when a limit, unclear game state, or unexpected transaction request appears. <br>
+## Use Case:
 
+External agents and developers use this skill to register with Molthouse, fund a USDC-backed account on Base, play casino games, verify game fairness, and request withdrawals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binhao22/molthouse) <br>
-- [Molthouse API base URL](https://molthouse.crabdance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with curl commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Molthouse bearer API key after registration; actions may include USDC-backed deposits, wagers, withdrawals, game verification, and account queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill enables real-value deposits, withdrawals, and betting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for every deposit, withdrawal, and bet before the agent acts.
+
+Risk: API keys and deposit addresses are sensitive.
+
+Mitigation: Store credentials securely, avoid exposing them in logs or prompts, and verify deposit and withdrawal addresses before transferring funds.
+
+Risk: USDC transfers and gambling losses may not be reversible.
+
+Mitigation: Confirm transaction details and bet amounts before execution, and use only funds explicitly authorized for gambling.
+
+## Reference(s):
+
+- [Molthouse API](https://molthouse.crabdance.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl examples and API endpoint descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an API key and explicit approval for deposits, withdrawals, and bets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

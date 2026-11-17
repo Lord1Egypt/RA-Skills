@@ -1,44 +1,52 @@
-## Description: <br>
-Smart Web Fetch helps agents retrieve web pages as cleaned Markdown by routing URLs through Jina Reader, markdown.new, or defuddle.md, with fallback to raw content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Web Fetch helps agents retrieve cleaner Markdown from webpages by trying Jina Reader, markdown.new, and defuddle.md before falling back to raw page content.
 
-## Publisher: <br>
-[Leochens](https://clawhub.ai/user/Leochens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leochens](https://clawhub.ai/user/leochens)
 
-## Use Case: <br>
-Developers and external agent users use this skill when an agent needs to retrieve public web page content and work with cleaned Markdown instead of raw HTML. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs and fetched content can be sent through third-party services, which may expose private dashboards, intranet pages, signed links, or URLs containing tokens. <br>
-Mitigation: Use the skill only for public web pages unless URL restrictions, explicit consent controls, and handling rules for sensitive URLs are added. <br>
-Risk: The artifact disables normal HTTPS certificate and hostname verification while fetching content. <br>
-Mitigation: Re-enable standard HTTPS verification before using the skill in trusted or production workflows. <br>
-Risk: Arbitrary URL fetching can reach localhost, intranet, or cloud metadata endpoints if the agent is given those URLs. <br>
-Mitigation: Block localhost, private network ranges, cloud metadata addresses, and other internal targets before invoking the fetch scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Smart Web Fetch ClawHub Page](https://clawhub.ai/Leochens/smart-web-fetch) <br>
-- [Jina Reader endpoint pattern](https://r.jina.ai/http://{target}) <br>
-- [markdown.new endpoint pattern](https://markdown.new/{target}) <br>
-- [defuddle.md endpoint pattern](https://defuddle.md/{target}) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch public webpage content as cleaned Markdown or JSON when they need lower-noise page text for reading, summarization, or follow-up analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Text] <br>
-**Output Format:** [Markdown text by default, or JSON containing success, url, content, source, and error fields when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetched URL content may be cleaned through third-party services before being returned to the agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports that the skill forwards target URLs to third-party cleaning services.
+
+Mitigation: Use it only for public webpages and avoid private intranet URLs, signed links, tokenized URLs, and sensitive documents unless explicit consent and destination validation are added.
+
+Risk: The security evidence reports weakened HTTPS verification when fetching arbitrary URLs.
+
+Mitigation: Review the code before installation and require normal HTTPS certificate verification before using it in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leochens/skills/smart-web-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown text or JSON emitted by command-line scripts, with optional configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source service, resolved URL, fetched content, success status, and error details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

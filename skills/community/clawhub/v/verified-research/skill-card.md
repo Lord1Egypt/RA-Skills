@@ -1,42 +1,57 @@
-## Description: <br>
-Verified Research guides agents through multi-source research, source-tiered verification, evidence capture, and structured Markdown report generation with a three-day local cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a multi-source research workflow that breaks down complex questions, prioritizes high-trust sources, cross-checks claims, and produces structured research reports with a three-day cache.
 
-## Publisher: <br>
-[ashanzzz](https://clawhub.ai/user/ashanzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashanzzz](https://clawhub.ai/user/ashanzzz)
 
-## Use Case: <br>
-External users and agent developers use this skill to perform deeper research tasks that require source planning, multi-source verification, evidence tracking, and a final structured report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, evidence snippets, and conclusions may be cached locally and later written into MEMORY.md. <br>
-Mitigation: Require explicit confirmation before researching sensitive topics, preserving summaries, or allowing MEMORY.md updates. <br>
-Risk: Cached reports may be deleted by the three-day cleanup flow. <br>
-Mitigation: Save reports that must be retained to the workspace before cleanup runs, and review cleanup actions for active research. <br>
-Risk: The artifact describes updating its own skill instructions when methodology issues are found. <br>
-Mitigation: Require explicit user review before any change to skill files or instructions. <br>
+## Use Case:
 
+Developers, analysts, and agent users can use this skill to run deeper web research, preserve intermediate evidence cards, and produce a structured report for fact-heavy, comparative, exploratory, or verification tasks.
 
-## Reference(s): <br>
-- [Verified Research on ClawHub](https://clawhub.ai/ashanzzz/verified-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research reports with evidence-card Markdown files and JSON manifests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local three-day research cache and can archive summaries to MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Research summaries and learning logs may persist sensitive topics or conclusions outside the immediate report workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive research unless MEMORY.md archival and learning-log writes are removed or made explicit opt-in.
+
+Risk: Cleanup behavior deletes cached research directories and relies on path handling around /tmp/deep-research-cache.
+
+Mitigation: Run cleanup only in a sandbox or least-privileged account, and validate cache paths before enabling scheduled cleanup.
+
+Risk: The artifact describes possible self-modification of SKILL.md when methodology issues are found.
+
+Mitigation: Require human review before accepting any skill-file changes, or disable self-modification for managed deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ashanzzz/skills/verified-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research reports with evidence-card files, manifest JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates temporary research caches under /tmp/deep-research-cache and may archive summaries to MEMORY.md after three days.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

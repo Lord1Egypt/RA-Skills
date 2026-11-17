@@ -1,41 +1,57 @@
-## Description: <br>
-Design points-based, tiered, or referral loyalty programs with reward structures calibrated to your margin and customer purchase frequency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design points-based, tiered, or referral loyalty programs with reward structures calibrated to your margin and customer purchase frequency.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Commerce, retention, and growth teams use this skill to design loyalty program architecture, including points structures, tiers, referral mechanics, reward catalogs, communication plans, and financial checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business formulas, benchmark ranges, and program recommendations may be inaccurate for a specific brand, margin profile, customer base, or jurisdiction. <br>
-Mitigation: Validate assumptions such as gross margin, breakage, CAC, customer communications, and legal requirements before launching a loyalty program. <br>
+## Use Case:
 
+External business, ecommerce, and retention teams use this skill to design loyalty program structures, reward catalogs, referral mechanics, and financial assumptions for points-based, tiered, referral, or hybrid programs.
 
-## Reference(s): <br>
-- [Loyalty Program Design Output Template](references/output-template.md) <br>
-- [Program Economics Guide](references/program-economics-guide.md) <br>
-- [Tier Design Benchmarks](references/tier-design-benchmarks.md) <br>
-- [Loyalty Program Design Quality Checklist](assets/loyalty-design-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with tables, formulas, checklists, and program design recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance for loyalty program structure, economics, engagement, and operational review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Program recommendations can be financially misleading if margin, CAC, breakage, purchase frequency, or tier distribution assumptions do not match the business.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all assumptions against the merchant's own financial and customer data before using the output to launch or revise a loyalty program.
+
+Risk: The skill provides business-planning guidance rather than automated implementation or compliance review.
+
+Mitigation: Have qualified business, finance, legal, and operations reviewers approve program economics, customer terms, referral controls, and communication plans before launch.
+
+## Reference(s):
+
+- [Loyalty Program Design - Output Template](artifact/references/output-template.md)
+- [Loyalty Program Economics Guide](artifact/references/program-economics-guide.md)
+- [Loyalty Tier Design Benchmarks](artifact/references/tier-design-benchmarks.md)
+- [Loyalty Program Design Quality Checklist](artifact/assets/loyalty-design-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/loyalty-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, formulas, checklists, and program design sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable behavior, persistence, credential handling, or automated integrations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, released 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

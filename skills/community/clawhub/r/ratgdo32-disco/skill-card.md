@@ -1,42 +1,53 @@
-## Description: <br>
-Control a ratgdo32 disco garage door opener via its local web API for door control, garage status, garage light, vehicle presence, parking assist, motion, and remote lockout on a LAN-only trust model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a ratgdo32 disco garage door opener over its local web API, including door, light, obstruction, vehicle presence, parking assist, motion, and remote lockout actions on a LAN-only trust model.
 
-## Publisher: <br>
-[bolander72](https://clawhub.ai/user/bolander72) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bolander72](https://clawhub.ai/user/bolander72)
 
-## Use Case: <br>
-Developers and garage automation users use this skill to let an agent check and control a local ratgdo32 disco garage door opener. It supports status checks and physical actions such as opening or closing the door, toggling the light, and enabling or disabling remote lockout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause physical garage door actions if triggered too broadly or used without confirmation. <br>
-Mitigation: Restrict use to explicit garage-control requests and require user confirmation before open, close, and remote-lockout actions. <br>
-Risk: Closing the door without reliable status and obstruction checks could create a safety hazard. <br>
-Mitigation: Verify status and obstruction data before close requests and refuse to close if those checks fail or report an obstruction. <br>
-Risk: The local web API relies on LAN trust, so exposure beyond a trusted network increases control risk. <br>
-Mitigation: Keep the device on a trusted WPA2/WPA3 network, avoid port forwarding, and use router isolation or VLAN segmentation where appropriate. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to check garage status and issue local garage door, light, vehicle sensor, and remote lockout commands through a ratgdo32 disco device.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bolander72/ratgdo32-disco) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RATGDO_HOST to identify the local ratgdo32 device; actions use LAN HTTP requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can control a physical garage door, including high-impact actions such as door movement and remote lockout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where agent control of the garage door is acceptable, require explicit user confirmation for door movement and remote lockout, and keep the device off the public internet.
+
+Risk: A close command can be unsafe if status data is invalid or incomplete.
+
+Mitigation: Harden execution so closing fails closed unless valid status explicitly confirms there is no obstruction.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/bolander72/skills/ratgdo32-disco)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local HTTP commands against the configured RATGDO_HOST device.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,66 @@
-## Description: <br>
-Guides agents through Orynela.ai Agent Lab sandbox registration, signals, simulated orders, market data, copy-trading, and leaderboard workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Orynela.ai Agent Lab sandbox: register agents, send signals, request simulated orders, read market data, use copy-trading features, and view leaderboards.
 
-## Publisher: <br>
-[dissidentai](https://clawhub.ai/user/dissidentai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dissidentai](https://clawhub.ai/user/dissidentai)
 
-## Use Case: <br>
-External developers and agent builders use this skill to connect AI trading agents to Orynela's sandbox APIs for registration, heartbeats, simulated signal publishing, market data access, portfolio reads, copy-trading flows, and simulated order requests. The skill is sandbox-only, requires Orynela credentials, and should be used with secret handling and no-real-execution controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/dissidentai/orynela-trading) <br>
-- [Orynela Agent Lab](https://orynela.ai/agent-lab/readme) <br>
-- [Orynela Sandbox API](https://orynela.ai/docs/sandbox-api) <br>
-- [Orynela Social API](https://orynela.ai/docs/social-api) <br>
-- [Orynela Agent Bridge](https://orynela.ai/docs/agent-bridge) <br>
-- [Sandbox API Reference](references/sandbox-api.md) <br>
-- [Social API Reference](references/social-api.md) <br>
-- [Agent Bridge Reference](references/agent-bridge.md) <br>
-- [Compliance Reference](references/compliance.md) <br>
+Developers and agent builders use this skill to connect AI agents to Orynela Agent Lab sandbox workflows for registration, heartbeats, market data, signal publishing, simulated orders, portfolio review, and social copy-trading experiments. The skill is sandbox-only and does not provide trading strategy, investment advice, broker execution, custody, deposits, or withdrawals.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, API endpoint descriptions, and a Python adapter template.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sandbox-only trading API guidance; use sandbox-scoped Orynela credentials, keep secrets out of prompts and repositories, and verify ORYNELA_API_BASE before running adapter code.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The adapter can send a sandbox API key to a configured API base URL.
+
+Mitigation: Keep ORYNELA_API_BASE on the official HTTPS Orynela endpoint unless the alternate endpoint is fully trusted, and use narrowly scoped, revocable sandbox keys.
+
+Risk: Trading, copy-trading, and webhook workflows may involve sensitive API, bridge, or webhook secrets.
+
+Mitigation: Store secrets server-side, avoid logging or committing them, and never embed them in client-side agents.
+
+Risk: Users could confuse sandbox trading signals or simulated orders with real execution or investment advice.
+
+Mitigation: Keep workflows sandbox-only, do not provide broker, wallet, seed, password, or real-money credentials, and present signals as observations rather than recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dissidentai/skills/orynela-trading)
+- [Orynela Agent Lab](https://orynela.ai/agent-lab/readme)
+- [Orynela Sandbox API documentation](https://orynela.ai/docs/sandbox-api)
+- [Orynela Social API documentation](https://orynela.ai/docs/social-api)
+- [Orynela Agent Bridge documentation](https://orynela.ai/docs/agent-bridge)
+- [Full Orynela documentation](https://docs.orynela.ai)
+- [Sandbox API Reference](references/sandbox-api.md)
+- [Social API Reference](references/social-api.md)
+- [Agent Bridge Reference](references/agent-bridge.md)
+- [Compliance and Legal Reference](references/compliance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, bash curl examples, and a Python adapter template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sandbox API usage guidance and sample adapter code; does not include a trading strategy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,61 @@
-## Description: <br>
-Analyzes listed companies' fundamentals, including financial health, valuation, growth, industry comparison, financial report interpretation, and structured investment research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public companies' fundamentals and produces structured investment research reports covering financial health, valuation, growth, industry comparison, financial report interpretation, and shareholder tracking.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-External users and agents use this skill to generate structured stock fundamental analysis reports for listed companies, including valuation, financial health, growth, industry comparison, and shareholder signals. Outputs are research support and must be reviewed before any investment decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python code and requires a stock-data API key. <br>
-Mitigation: Install only in environments where local code execution and API-key use are acceptable; review dependencies and data-source configuration before running. <br>
-Risk: The skill can overstate the completeness of its analysis workflow. <br>
-Mitigation: Treat results as partial research support, verify source data and missing tool coverage, and do not rely on outputs as investment advice. <br>
+## Use Case:
 
+External users, developers, and analyst workflows use this skill to draft informational stock fundamental analysis reports with valuation metrics, scoring, data tables, source/date labels, and confidence notes. Outputs should be reviewed before use and are not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuritu/stock-fundamental-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown report with tables, data sources, timestamps, confidence labels, and an investment disclaimer; helper scripts may emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and STOCK_DATA_API_KEY; outputs should be treated as research support, not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and openclaw metadata) <br>
+Risk: The skill loads unreviewed local code from a toc-trading/src dependency outside its package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted workspace, review or package the local dependency, and prefer pinned dependencies before deployment.
+
+Risk: The artifact describes more stock-analysis tools and dimensions than it ships.
+
+Mitigation: Verify required tools and data paths before relying on each analysis dimension, and mark unavailable dimensions clearly in generated reports.
+
+Risk: Stock-analysis output can be incorrect, stale, or mistaken for investment advice.
+
+Mitigation: Keep the informational-only disclaimer, include data sources and cutoff dates, and require human review before acting on results.
+
+Risk: The skill requires a stock-data API key.
+
+Mitigation: Provide only a least-privileged key through the environment and avoid exposing secrets in generated reports or logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuritu/skills/stock-fundamental-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, scores, source and date labels, confidence notes, and an investment disclaimer; supporting tools may emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and STOCK_DATA_API_KEY; output is primarily Chinese-language and informational only.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Guides agents using NautilusTrader for data conversion, strategy development, backtesting, paper trading, live trading, and performance reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide NautilusTrader setup and workflows for market data conversion, strategy development, backtesting, paper trading, live trading, and reporting.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers and quantitative trading practitioners use this skill to set up NautilusTrader workflows, convert market data, write trading strategies, run backtests, evaluate paper-trading sessions, and prepare live-trading configurations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger broadly for trading-related requests and may propose setup commands that change the local machine. <br>
-Mitigation: Use it only for explicit NautilusTrader work, review setup commands before running them, and prefer verified package-manager or checksum-based installers over curl-to-shell steps. <br>
-Risk: The skill includes live-trading workflows that can connect to production exchanges or brokers. <br>
-Mitigation: Keep real exchange credentials out of the environment until the user intentionally chooses sandbox or live trading, and require explicit confirmation before any production exchange connection or live-trading command. <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to set up NautilusTrader, convert market data, develop strategies, run backtests, test sandbox or paper trading workflows, and prepare live trading configurations.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/tujinsama/nautilus-trader-pro) <br>
-- [Data Conversion Guide](references/data_conversion.md) <br>
-- [Strategy Development Guide](references/strategy_development.md) <br>
-- [Backtesting Guide](references/backtesting.md) <br>
-- [Paper Trading Guide](references/paper_trading.md) <br>
-- [Live Trading Guide](references/live_trading.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup steps, trading configuration examples, and task-specific NautilusTrader code snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Setup guidance may propose remote installers, package installation, or sudo package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every command before execution, prefer documented package-manager installation paths where possible, and run setup in a disposable virtual environment or container without automatic sudo approval.
+
+Risk: Live trading workflows can use real exchange or broker credentials and place real orders.
+
+Mitigation: Use testnet, sandbox, or paper credentials first, require explicit approval before live execution, use limited-permission API keys, and start with small position sizes.
+
+Risk: Generated strategy, backtest, and configuration guidance may be incomplete or unsuitable for market conditions.
+
+Mitigation: Review generated code and parameters, backtest with realistic assumptions, paper trade before live deployment, and enable reconciliation where live trading is used.
+
+## Reference(s):
+
+- [Backtesting Guide](references/backtesting.md)
+- [Data Conversion Guide](references/data_conversion.md)
+- [Live Trading Guide](references/live_trading.md)
+- [Paper Trading Guide](references/paper_trading.md)
+- [Strategy Development Guide](references/strategy_development.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, environment variables, and exchange credential placeholders depending on the trading workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

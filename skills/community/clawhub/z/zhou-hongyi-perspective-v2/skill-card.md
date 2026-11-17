@@ -1,38 +1,53 @@
-## Description: <br>
-A persona skill that frames business strategy, product strategy, free-model design, disruptive competition, and security-business planning through a Zhou Hongyi-inspired perspective. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhou Hongyi Perspective V2 guides an agent to respond with a simulated Zhou Hongyi-style business strategy perspective focused on free models, user thinking, disruptive innovation, security, traffic growth, and rapid iteration.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and developers use this skill to request Zhou Hongyi-style perspective on entrepreneurship, competition, product strategy, free models, and security business planning. Outputs should be treated as simulated strategic guidance rather than authoritative financial, legal, security, or personal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-weight simulated persona advice in business, security, legal, financial, or personal contexts. <br>
-Mitigation: Use explicit activation, keep the persona framing clear, and review outputs as non-authoritative guidance before acting. <br>
+## Use Case:
 
+External users, product strategists, entrepreneurs, and business planners use this skill to generate Zhou Hongyi-inspired strategic guidance for product strategy, competitive positioning, free model design, and security business planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/zhou-hongyi-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses; no files, shell commands, network access, or code execution requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can adopt a real-person persona too broadly, making simulated outputs sound like actual statements from Zhou Hongyi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as a simulated business perspective, not real statements from Zhou Hongyi; exit persona mode with "退出" or "切回正常" when done.
+
+Risk: Opinionated strategic guidance can be misleading if used as factual business advice without review.
+
+Mitigation: Review outputs against current business facts, legal constraints, and organizational policy before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/zhou-hongyi-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Simulated persona output; no code execution or system access is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

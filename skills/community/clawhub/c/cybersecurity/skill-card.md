@@ -1,48 +1,61 @@
-## Description: <br>
-Handle cybersecurity triage, threat modeling, secure reviews, and incident reporting with strict authorization and evidence discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs defensive security: alert triage, compromise investigation, attack paths, vulnerability prioritization, detection, and risk reporting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, security practitioners, and leaders use this skill for authorized incident triage, threat modeling, secure design review, vulnerability prioritization, tabletop preparation, and risk reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive security context could be stored in local notes. <br>
-Mitigation: Keep ~/cybersecurity/ private, avoid storing secrets, tokens, private keys, or raw sensitive logs, and periodically clear stale incident notes. <br>
-Risk: Cybersecurity requests can drift into unauthorized or harmful activity. <br>
-Mitigation: Require clear authorization and scope before offensive or high-risk work, and use safe alternatives such as local labs, tabletop analysis, detection logic, or remediation planning when scope is unclear. <br>
-Risk: Incident response recommendations can disrupt systems or destroy useful evidence. <br>
-Mitigation: Preserve logs, timestamps, affected hosts, and symptoms before disruptive containment, and flag actions that are irreversible, noisy, or likely to hinder investigation. <br>
+## Use Case:
 
+Security practitioners, developers, and operations teams use this skill for authorized defensive work: triaging alerts, investigating possible compromise, prioritizing vulnerabilities, hardening identity and infrastructure, producing detections, and communicating security risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cybersecurity) <br>
-- [Skill homepage](https://clawic.com/skills/cybersecurity) <br>
-- [Setup guide](setup.md) <br>
-- [Threat modeling workflow](threat-modeling.md) <br>
-- [Incident triage flow](triage.md) <br>
-- [Reporting structure](reporting.md) <br>
-- [Safety boundaries](safety-boundaries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured analysis, recommendations, and occasional shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initialize or update local context files under ~/cybersecurity/ when setup or memory support is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can maintain sensitive local cybersecurity records, including findings, incidents, inventories, vendors, and generated artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this local knowledge base is intended; restrict file permissions, consider encryption or approved secure storage, review sync and backup behavior, and periodically remove stale records.
+
+Risk: The skill may propose actions for live security systems where disruptive or attacker-visible changes could affect evidence, availability, or response outcomes.
+
+Mitigation: Keep live-system work inside written authorization and require explicit confirmation for destructive, noisy, irreversible, or attacker-visible operations.
+
+Risk: Security records can accidentally capture secrets or unnecessary personal data if outputs are saved without review.
+
+Mitigation: Store secret pointers instead of values, keep evidence files and personal records in the user's case store, and limit local notes to identifiers, hashes, counts, categories, and locations.
+
+## Reference(s):
+
+- [ClawHub Cybersecurity skill page](https://clawhub.ai/ivangdavila/skills/cybersecurity)
+- [Clawic Cybersecurity skill page](https://clawic.com/skills/cybersecurity)
+- [Skill definition](artifact/SKILL.md)
+- [Authorization guidance](artifact/authorization.md)
+- [Working file templates](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with tables, checklists, code snippets, shell commands, configuration guidance, and risk reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local cybersecurity notes, inventories, findings, incidents, detections, vendors, and generated artifacts under configured local Clawic data paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

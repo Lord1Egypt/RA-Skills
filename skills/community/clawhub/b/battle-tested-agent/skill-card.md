@@ -1,45 +1,57 @@
-## Description: <br>
-Battle-Tested Agent provides production-hardened patterns, templates, and a local audit script for improving AI agent reliability across memory, verification, ambiguity handling, compaction survival, delegation, handoffs, stale-worker recovery, and self-improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 19 production-hardened patterns and an audit script for hardening SKILL.md-based agents against memory loss, hallucination, weak handoffs, stale delegated work, and unreliable verification.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit and harden SKILL.md-based agents for production reliability. It helps teams add concrete mechanisms for verification, context survival, delegation, acceptance gates, and recurring self-improvement without adopting every pattern by default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory and self-improvement templates could cause an agent to persist sensitive or incidental personal data if copied into a real workspace unchanged. <br>
-Mitigation: Add data-minimization rules before adoption and avoid retaining secrets, credentials, account identifiers, private URLs, health or financial details, or incidental personal data unless explicitly requested. <br>
-Risk: Applying every reliability pattern indiscriminately can add unnecessary process overhead. <br>
-Mitigation: Run the audit first and adopt only the smallest tier and concrete mechanisms that address the observed failure mode. <br>
+## Use Case:
 
+Developers and operators use this skill to audit and harden SKILL.md-based agent workspaces by adding reliability, verification, memory, delegation, and recovery patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zurbrick/battle-tested-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/zurbrick) <br>
-- [Audit Usage](references/audit-usage.md) <br>
-- [Starter Patterns](references/starter-patterns.md) <br>
-- [Intermediate Patterns](references/intermediate-patterns.md) <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with reusable templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a local bash audit script that checks agent workspaces for reliability patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Memory, WAL, and learning templates can retain sensitive user content, secrets, or private links if copied into a real workspace without controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before retaining personal or sensitive information, redact secrets and private links, and define retention and deletion rules before enabling persistent memory patterns.
+
+Risk: Self-improvement and auto-promotion guidance can turn transient mistakes into persistent agent rules without enough review.
+
+Mitigation: Make all SOUL.md, AGENTS.md, and recurring-rule changes human-reviewed, and treat templates as proposals rather than automatic updates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zurbrick/skills/battle-tested-agent)
+- [Starter Patterns](references/starter-patterns.md)
+- [Intermediate Patterns](references/intermediate-patterns.md)
+- [Advanced Patterns](references/advanced-patterns.md)
+- [Audit Usage](references/audit-usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and reusable workspace templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an audit shell script and optional workspace templates; requires bash, grep, find, and wc.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

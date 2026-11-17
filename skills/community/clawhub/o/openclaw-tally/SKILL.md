@@ -1,9 +1,13 @@
 ---
 name: openclaw-tally
-description: "Tokens tell you how much you paid. Tasks tell you what you got. Tally tracks every OpenClaw task from start to finish — cost, complexity, and efficiency score."
-version: "0.3.1"
+description: Develop, test, or integrate the OpenClaw Tally Node.js library for task-level cost, complexity, and efficiency analytics. Use when working on Tally's detector, SQLite ledger, analytics engine, or an explicit plugin/hook integration; installing this skill alone does not register hooks or slash commands.
 metadata:
-  {"openclaw": {"emoji": "📊", "runtime": "node", "requires": {"anyBins": ["node", "npm"]}}}
+  openclaw:
+    version: "0.3.2"
+    emoji: "📊"
+    homepage: https://github.com/JonathanJing/openclaw-tally
+    requires:
+      bins: [node, npm]
 ---
 
 # OpenClaw Tally
@@ -18,32 +22,34 @@ Tell OpenClaw: *"Install the openclaw-tally skill."* The agent will handle the i
 ### 2. Manual Installation (CLI)
 If you prefer the terminal, run:
 ```bash
-clawhub install openclaw-tally
+openclaw skills install @jonathanjing/openclaw-tally
 ```
 
 ## Security & Privacy Declaration
 
-- **Hook**: This skill registers a `message-post` hook and processes **every message**.
+- **No automatic hook registration**: OpenClaw Skills are instruction bundles. This package must be integrated through an explicit plugin or operator-owned hook before it can process events.
+- **Hook scope after integration**: A `message-post` integration would observe every message, so disclose that scope before enabling it.
 - **Local only**: All processing is purely local. No data is sent to any external server.
 - **Message content**: The task detector reads message text to identify task boundaries (start/complete/fail signals) using regex pattern matching. **No message text is stored** — only metadata (token count, model, session_id, complexity score) is persisted to the database.
 - **Sandboxed storage**: SQLite database defaults to `~/.openclaw/tally/tally.db`. A custom path can be provided for testing.
-- **Native dependency**: Requires `better-sqlite3` (native Node.js addon). Installation runs `npm install` which triggers a native build step.
+- **Runtime**: Requires Node.js 22 or newer and `better-sqlite3` 13.x (native Node.js addon). Installation may download a signed prebuild or run a local native build.
 - **Permissions**: No network access. No exec permissions. Filesystem limited to `~/.openclaw/tally/`.
 
 ## What It Does
 
-- **Detects tasks** automatically from message streams (Layer 1: Task Detector)
+- **Detects tasks** from message streams supplied by an explicit integration (Layer 1: Task Detector)
 - **Attributes costs** across sessions, sub-agents, and cron triggers (Layer 2: Task Ledger)
 - **Computes TES** (Task Efficiency Score) per task, model, and cron (Layer 3: Analytics Engine)
 
-## Commands
+## Setup and verification
 
-- `/tasks list` — Show recent tasks with status, cost, and TES
-- `/tasks stats` — Summary statistics for a time period
-- `/tasks this-week` — This week's task summary
-- `/tasks show <task_id>` — Show task detail
-- `/tasks report --dimension model` — Model efficiency report
-- `/tasks cron-health` — Cron efficiency and health check
+```bash
+cd "{baseDir}"
+npm install
+npm test
+```
+
+The package currently exports library modules from `src/index.js`. Add slash commands and event hooks only through an OpenClaw plugin or another explicit runtime integration.
 
 ## Complexity Levels
 
@@ -66,6 +72,6 @@ TES = quality_score / (normalized_cost × complexity_weight)
 
 ## Usage
 
-When the skill is installed, it automatically hooks into `message-post`. Use the `/tasks` commands above to query analytics. All data is stored locally in `~/.openclaw/tally/tally.db`.
+When explicitly integrated, store analytics locally in `~/.openclaw/tally/tally.db` or a test-specific path.
 
-See [PRD.md](./PRD.md) for the full product specification.
+See `{baseDir}/PRD.md` for the product specification.

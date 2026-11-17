@@ -1,0 +1,27 @@
+{
+ "_chart_type": "paired",
+ "_command": "python3 scripts/gen_figure.py -t paired -d templates/paired.json -o paired.png --stats auto",
+ "series": {
+  "术前": [
+   8.2,
+   7.5,
+   9.1,
+   6.8,
+   7.9,
+   8.5,
+   7.2,
+   8.8
+  ],
+  "术后": [
+   6.1,
+   5.8,
+   7.2,
+   5.0,
+   6.3,
+   6.9,
+   5.5,
+   7.0
+  ]
+ },
+ "_note": "场景：同一对象干预前后两次测量（模拟数据）。逐对连线展示个体走向而非只看均值；配套 --stats auto（配对 t/Wilcoxon 自动选择）标注显著性。前后两时点以上请用 slope/line。"
+}

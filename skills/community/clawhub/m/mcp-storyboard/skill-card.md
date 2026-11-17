@@ -1,45 +1,59 @@
-## Description: <br>
-mcp-storyboard helps agents generate multi-scene storyboard, story scene, and picture-book images through the BizyAir API, with prompt enhancement, aspect-ratio controls, batch generation, and asynchronous polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mcp-storyboard helps agents generate storyboard, story-scene, and picture-book images with BizyAir API support for prompt enhancement, aspect ratios, and batch generation.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-Developers and agent users use this skill to create storyboard frames, story scene images, and picture-book illustrations from natural-language prompts. It is suited for workflows that need generated image URLs, Markdown-ready results, configurable aspect ratios, and limited batch creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and the BizyAir API key are sent to BizyAir during image generation. <br>
-Mitigation: Avoid sensitive story details in prompts and use safer secret storage for the API key instead of long-lived shell startup configuration. <br>
-Risk: The skill can automatically append sexualized person-specific prompt text to broad character, children, or picture-book requests. <br>
-Mitigation: Review or disable the automatic model prompt suffix before ordinary character, children, or picture-book use. <br>
-Risk: Batch image generation can create long-running external API tasks and spend more quota than intended. <br>
-Mitigation: Set batch size explicitly, keep generation limits small, and monitor the asynchronous polling output. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate storyboard panels, illustrated story scenes, and picture-book images from text prompts. It supports batch image generation, common aspect ratios, and long-running BizyAir task polling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bozoyan/mcp-storyboard) <br>
-- [Publisher profile](https://clawhub.ai/user/bozoyan) <br>
-- [BizyAir MCP endpoint](https://api.bizyair.cn/w/v1/mcp/242) <br>
-- [BizyAir asynchronous task API](https://api.bizyair.cn/w/v1/webapp/task/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with image URLs, progress messages, and error guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return generated image URLs and preview-ready Markdown; image generation can take 3-10 minutes and polls for up to 15 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json and MCP server report 2.1.0) <br>
+Risk: Prompts and generation parameters are sent to BizyAir using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with prompts that are appropriate to share with BizyAir, and avoid proprietary, private, or sensitive story material unless that data sharing is approved.
+
+Risk: Automatic prompt rewriting can add sexualized adult-woman and demographic-specific descriptors to ordinary person or character prompts.
+
+Mitigation: Review or remove the automatic model prompt suffix before deployment, use the opt-out control when available, and avoid use for minors, children, sensitive stories, or ordinary character prompts without explicit review.
+
+Risk: Generated images may be unsuitable or inconsistent with the intended story context.
+
+Mitigation: Review generated images and URLs before publication or reuse, especially for external-facing, brand, educational, or audience-sensitive material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bozoyan/skills/mcp-storyboard)
+- [BizyAir MCP Endpoint](https://api.bizyair.cn/w/v1/mcp/242)
+- [BizyAir Webapp Task API Endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with generated image URLs and status or error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include image preview links, generated image URLs, dimensions, batch size, and progress updates for long-running tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

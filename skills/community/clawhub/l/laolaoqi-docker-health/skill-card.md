@@ -1,39 +1,53 @@
-## Description: <br>
-Monitor Docker container health, including running status, CPU and memory usage, restart counts, and available image updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Docker container health: running status, CPU/memory usage, restart counts, and available image updates.
 
-## Publisher: <br>
-[laolaoqi](https://clawhub.ai/user/laolaoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laolaoqi](https://clawhub.ai/user/laolaoqi)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to run Docker container health checks and review status, resource usage, restart counts, and image freshness from a shell report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default full health report can run image checks that contact registries and may change local Docker image cache state. <br>
-Mitigation: Use targeted read-only checks such as --status, --resources, or --restarts when registry access or image cache changes are not acceptable. <br>
-Risk: The skill requires Docker daemon access and may operate against local or remote Docker contexts. <br>
-Mitigation: Run it only in an intended Docker context with appropriate permissions, especially before using it on production or remote Docker hosts. <br>
+## Use Case:
 
+Developers and operators use this skill to check Docker container status, resource usage, restart counts, and image freshness through a single health-report script.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and terminal report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs formatted Docker health reports to stdout; image checks may access registries and update local image cache state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires access to the Docker daemon, which can expose privileged control over containers and host-adjacent resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted Docker contexts and grant Docker socket access only to users or automation that are allowed to inspect and manage local containers.
+
+Risk: The default full report includes image update checks that can contact registries, use registry credentials, consume bandwidth/storage, and change local image cache state through docker pull.
+
+Mitigation: Use --status, --resources, or --restarts for passive checks on sensitive hosts, and run --images only when outbound registry access and local image cache changes are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laolaoqi/skills/laolaoqi-docker-health)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose passive Docker checks or a full report; image update checks can contact registries and modify local Docker image state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

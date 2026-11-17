@@ -1,40 +1,52 @@
-## Description: <br>
-Orchestrate the Life Control CLI skill for OpenClaw agent fleets: initialize the Life Control database, register agent personas, wire Telegram bots, and run daily routines (Morning Alignment, Body Protocol, Financial Pulse, Social Radar, Work Priming, Shutdown). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate the Life Control CLI skill for OpenClaw agent fleets: initialize the Life Control database, register agent personas, wire Telegram bots, and run daily routines (Morning Alignment, Body Protocol, Financial Pulse, Social Radar, Work Priming, Shutdown).
 
-## Publisher: <br>
-[RachitSharma123](https://clawhub.ai/user/RachitSharma123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rachitsharma123](https://clawhub.ai/user/rachitsharma123)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up and operate Life Control agent personas for personal tracking across wellness, finance, career, relationships, and related daily routines. It helps initialize the Life Control database, connect Telegram notifications, and coordinate routine scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External scripts and scheduled cron jobs may perform actions outside the visible skill artifact. <br>
-Mitigation: Inspect the referenced repository scripts and cron template before installing or enabling scheduled automation. <br>
-Risk: Telegram bot tokens and chat identifiers are required for notifications and could expose personal workflow data if mishandled. <br>
-Mitigation: Store dedicated Telegram bot tokens outside shell history when possible and confirm how notification data is handled. <br>
-Risk: The skill coordinates personal life-tracking data across multiple domains. <br>
-Mitigation: Confirm where the Life Control database stores personal data and how scheduled jobs can be stopped. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to set up and run a personal Life Control system that coordinates persona agents, daily routines, structured life-domain tracking, and Telegram notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external repository scripts, cron entries, Telegram bot tokens, and local personal tracking data stores that users should review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to run setup, routine, notification, and cron scripts from a separate Life Control repository that were not bundled in the inspected artifact.
+
+Mitigation: Review the referenced repository scripts before execution, especially bootstrap.sh, setup-agents.sh, telegram-sender.sh, routines, and cron templates.
+
+Risk: The workflows can involve Telegram bot tokens, chat IDs, personal tracking data, local database writes, scheduled routines, and notifications.
+
+Mitigation: Provide credentials and personal data only in a trusted environment after confirming where the database is stored and where notifications are sent.
+
+## Reference(s):
+
+- [Life Control ClawHub Skill Page](https://clawhub.ai/rachitsharma123/skills/life-control)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides database initialization, persona registration, routine execution, cron scheduling, and Telegram notification setup.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

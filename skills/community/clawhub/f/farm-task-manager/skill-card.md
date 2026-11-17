@@ -1,40 +1,48 @@
-## Description: <br>
-Manage daily, weekly, and seasonal farm chores with task scheduling, priorities, status updates, recurring tasks, filtering, and export options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Farm Task Manager helps farmers organize daily, weekly, and seasonal chores with task scheduling, priorities, status tracking, recurring tasks, filtering, and export options.
 
-## Publisher: <br>
-[johstracke](https://clawhub.ai/user/johstracke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johstracke](https://clawhub.ai/user/johstracke)
 
-## Use Case: <br>
-Farmers, homesteaders, and farm-to-table operators use this skill to manage local farm chores, recurring work, priorities, assignees, and task exports from a command-line task list. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task notes and exports may contain sensitive farm, worker, or operational details. <br>
-Mitigation: Avoid storing secrets in task notes and review Markdown or JSON exports before sharing. <br>
-Risk: Exports write files under the user's home directory and may overwrite an existing file. <br>
-Mitigation: Choose export paths deliberately and check the destination before running export commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Farm Task Manager ClawHub listing](https://clawhub.ai/johstracke/farm-task-manager) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Farmers, homesteaders, and farm operators use this skill to track chores, assign responsibilities, manage recurring work, and export task plans for sharing or backup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Command-line guidance with local task data and optional Markdown or JSON exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores tasks locally under ~/.openclaw/workspace/farm-task-manager/tasks.json and can export filtered task lists to user-selected files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill documentation) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The export command can overwrite arbitrary writable files in the user's home directory.
+
+Mitigation: Export only to a dedicated task export folder and avoid pointing exports at existing files until path validation and overwrite behavior are fixed.
+
+## Reference(s):
+
+- [Farm Task Manager on ClawHub](https://clawhub.ai/johstracke/skills/farm-task-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON or Markdown task exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores task data as JSON and can export filtered task lists as Markdown or JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

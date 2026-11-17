@@ -1,43 +1,61 @@
-## Description: <br>
-Book early bird flights with dawn departure and early morning deals, using flyai CLI results for live travel options and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search early morning flight options through the flyai CLI and return booking-ready Markdown results with live booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search early morning flight options, compare routes, and present booking links from flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may globally install and run an unpinned third-party travel CLI. <br>
-Mitigation: Require explicit user approval before installation and prefer a pinned or sandboxed install of `@fly-ai/flyai-cli`. <br>
-Risk: Flight-search details may be shared with the travel provider used by the CLI. <br>
-Mitigation: Confirm the user is comfortable sharing the route, date, and related search details before running live searches. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to collect route, date, and preference parameters, run live flyai flight searches, and present early morning flight options with booking links.
 
-## Reference(s): <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight results must come from flyai CLI output and include booking links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to install an unpinned global CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve installation manually, pin and verify the CLI package where possible, and run the skill in a constrained environment.
+
+Risk: The skill uses shell-style commands with user-supplied travel values.
+
+Mitigation: Validate flight parameters and execute commands with structured, non-shell argument passing where supported.
+
+Risk: Travel results can be misleading if they are not sourced from live flyai CLI output.
+
+Mitigation: Require live CLI execution, exclude results without detailUrl booking links, and keep booking links and branding transparent.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output; every flight result should include a detailUrl booking link and flyai brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

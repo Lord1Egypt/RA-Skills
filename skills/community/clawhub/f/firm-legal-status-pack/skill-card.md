@@ -1,40 +1,53 @@
-## Description: <br>
-Legal status analysis and corporate structuring pack for comparing legal forms, simulating tax choices, analyzing social protection, structuring governance, and building compliance checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal status analysis and corporate structuring pack for comparing legal forms, simulating tax options, analyzing social protection, structuring governance, and building compliance checklists.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Founders, executives, finance, legal, HR, and operations teams use this skill to compare company legal forms, model tax and compensation options, review governance structure, and prepare creation or compliance checklists. Its outputs support structured decision-making and should be reviewed by qualified legal and tax professionals before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-France <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Legal or tax analysis may be incomplete, jurisdiction-specific, or unsuitable for a particular business decision. <br>
-Mitigation: Have qualified legal and tax professionals review the generated comparisons, simulations, governance suggestions, and compliance checklists before relying on them. <br>
-Risk: The skill depends on an external OpenClaw extension package before its tools can be used. <br>
-Mitigation: Verify mcp-openclaw-extensions >= 3.2.0 and its trustworthiness before using the skill with sensitive business details. <br>
+## Use Case:
 
+Business, finance, legal, HR, and operations teams use this skill to draft structured legal status analyses for French company formation and corporate structuring decisions. Outputs should support review workflows, not replace qualified legal or tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-legal-status-pack) <br>
+### Deployment Geography for Use:
 
+France
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured tables, checklists, scoring matrices, and analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.2.0; generated legal and tax analysis requires qualified professional review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Legal or tax outputs may be incomplete, outdated, or unsuitable for a specific business situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting and analysis aids only, and require review by qualified legal or tax professionals before making business decisions.
+
+Risk: The skill depends on mcp-openclaw-extensions >= 3.2.0.
+
+Mitigation: Verify the dependency source and installed version before enabling the skill in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-legal-status-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces legal and tax analysis drafts that require qualified professional review before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

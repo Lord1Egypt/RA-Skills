@@ -1,42 +1,56 @@
-## Description: <br>
-Generates adaptive 12-week training plans from Garmin Connect data, creates structured workouts, and schedules them on a user's Garmin calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive 12-week training plan generator using Garmin Connect data that creates structured workouts and schedules them on a Garmin calendar.
 
-## Publisher: <br>
-[bpauli](https://clawhub.ai/user/bpauli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bpauli](https://clawhub.ai/user/bpauli)
 
-## Use Case: <br>
-External Garmin users use this skill to generate or refresh a 12-week training calendar based on Garmin Connect events, recent activities, fitness metrics, and recovery signals. It helps create structured running, cycling, strength, and mobility workouts and schedule them to the user's Garmin calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read detailed Garmin fitness, health, recovery, activity, event, and schedule data. <br>
-Mitigation: Run it only after user consent, request only the Garmin data needed for the plan, and avoid exposing raw health or training exports in shared outputs. <br>
-Risk: The skill can create, reschedule, and force-delete future Garmin workouts, and W-prefixed workout names may not reliably prove the skill created them. <br>
-Mitigation: Require a preview and explicit user approval before workout creation, rescheduling, or deletion, and verify each W-prefixed scheduled workout before removal. <br>
+## Use Case:
 
+External Garmin users and their agents use this skill to analyze Garmin Connect data, choose a training philosophy, generate an adaptive 12-week training plan, and schedule workouts for races or general fitness.
 
-## Reference(s): <br>
-- [gccli Command Reference](references/gccli-commands.md) <br>
-- [gccli source repository](https://github.com/bpauli/gccli) <br>
-- [Garmin Trainer on ClawHub](https://clawhub.ai/bpauli/garmin-trainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown training plan summaries with gccli shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, schedule, or remove Garmin workouts through gccli when the user approves those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill needs access to Garmin fitness and calendar data and can create scheduled workouts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated training plan and the planned Garmin actions before authorizing scheduling.
+
+Risk: The skill can remove future Garmin workouts based on a simple W-prefix naming convention.
+
+Mitigation: On re-runs, require the agent to show the exact workouts it plans to remove and approve deletion before any removal, especially for W-prefixed workouts the user may have created.
+
+## Reference(s):
+
+- [gccli command reference](references/gccli-commands.md)
+- [gccli project](https://github.com/bpauli/gccli)
+- [Garmin Trainer ClawHub listing](https://clawhub.ai/bpauli/skills/garmin-trainer)
+- [bpauli ClawHub profile](https://clawhub.ai/user/bpauli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown plan summaries with inline gccli command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read Garmin fitness and calendar data and create, schedule, or remove Garmin workouts when authorized.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

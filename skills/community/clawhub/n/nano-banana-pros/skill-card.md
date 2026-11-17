@@ -1,53 +1,66 @@
-## Description: <br>
-Pub Banana helps agents generate and edit images with Nano Banana Pro and access SkillBoss-hosted models for chat, audio, video, search, document processing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images with Nano Banana Pro (Gemini 3 Pro Image) and access SkillBoss models for image, video, audio, chat, search, document processing, email, and SMS tasks.
 
-## Publisher: <br>
-[TobeyRebecca](https://clawhub.ai/user/TobeyRebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agent users use this skill to call SkillBoss models through a shared API key for image generation and editing, multimodal generation, search, document parsing, messaging, and model-routing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A single SkillBoss API key grants broad access to model, scraping, email, and SMS actions. <br>
-Mitigation: Use a separate or least-privilege API key when possible and require explicit approval before high-impact actions. <br>
-Risk: Prompts, files, URLs, or message content may be routed to external SkillBoss and downstream model providers. <br>
-Mitigation: Avoid secrets or regulated data unless the user has approved the provider path and data handling requirements. <br>
-Risk: Email, SMS, OTP, and batch messaging actions can contact real recipients. <br>
-Mitigation: Confirm recipients, content, purpose, and authorization before sending any message or verification request. <br>
-Risk: Web scraping and document-processing actions can retrieve or transform third-party or sensitive content. <br>
-Mitigation: Confirm the source URL or document is appropriate to process and review generated outputs before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to call SkillBoss/HeyBoss model APIs for media generation, chat, search, document parsing, and messaging workflows through agent-proposed API calls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TobeyRebecca/nano-banana-pros) <br>
-- [Publisher Profile](https://clawhub.ai/user/TobeyRebecca) <br>
-- [SkillBoss Website](https://www.skillboss.co) <br>
-- [SkillBoss API Base](https://api.heybossai.com/v1) <br>
-- [Chat Models](chat-models.md) <br>
-- [Image Models](image-models.md) <br>
-- [Audio Models](audio-models.md) <br>
-- [Video Models](video-models.md) <br>
-- [Search and Scraping Models](search-models.md) <br>
-- [Tool Models](tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, files] <br>
-**Output Format:** [Markdown guidance with shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce generated media URLs, downloaded media files, parsed documents, messages, or model responses depending on the selected SkillBoss model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, files, URLs, audio, recipient addresses, and phone numbers may be sent to SkillBoss/HeyBossAI and downstream model or tool providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts those services with the data being processed, and avoid private or regulated data unless the deployment has appropriate approvals.
+
+Risk: Email, SMS, document parsing, scraping, and media-processing actions can have high impact or expose sensitive information.
+
+Mitigation: Require explicit user approval before running these actions, especially when they involve external recipients, phone numbers, private documents, or third-party websites.
+
+Risk: Broad model routing and live model discovery can change which provider processes a task.
+
+Mitigation: Prefer explicit model IDs for sensitive workflows and review the selected model or route before sending data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/nano-banana-pros)
+- [SkillBoss website](https://www.skillboss.co)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [Skill instructions](artifact/SKILL.md)
+- [Audio model catalog](artifact/audio-models.md)
+- [Chat model catalog](artifact/chat-models.md)
+- [Image model catalog](artifact/image-models.md)
+- [Search and scraping model catalog](artifact/search-models.md)
+- [Tool model catalog](artifact/tools-models.md)
+- [Video model catalog](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash curl examples and API request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; API results may include generated media URLs, text responses, parsed document markdown, email or SMS actions, and downloaded files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

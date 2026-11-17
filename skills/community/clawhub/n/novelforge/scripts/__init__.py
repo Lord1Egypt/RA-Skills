@@ -1,0 +1,1 @@
+"""Executable Novel Skill commands."""

@@ -1,41 +1,49 @@
-## Description: <br>
-Laiwang is an archived historical reference for Alibaba's discontinued social app 来往. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Laiwang provides a historical archive, strategic recap, and alternative recommendations for Alibaba's discontinued Laiwang messaging app and its later connection to DingTalk.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and developers use this skill to understand Laiwang's archived status and get brief historical context before considering currently supported alternatives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A future version that requests file, credential, account, shell, or network access would change the security posture. <br>
-Mitigation: Review permissions and security findings before deploying any future version with new access requirements. <br>
-Risk: The skill is an archived historical reference and may not reflect live service availability or replacement options. <br>
-Mitigation: Use it for historical context and verify operational product decisions against current sources. <br>
+## Use Case:
 
+External users, researchers, and writers use this skill to answer questions about whether Laiwang or Diandianchong still operate, summarize Laiwang's place in Chinese internet competition history, and identify practical replacement apps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/laiwang) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides archived product context and replacement guidance; no tool, command, file, account, or network access is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Product-history details and alternative-app recommendations may become outdated or incomplete over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current service availability and replacement-app suitability before relying on the guidance for publication or user migration decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/laiwang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational output only; no code execution or tool access is indicated by the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

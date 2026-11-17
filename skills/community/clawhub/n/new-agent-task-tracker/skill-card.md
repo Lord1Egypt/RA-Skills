@@ -1,37 +1,51 @@
-## Description: <br>
-Proactive task state management that records task status, background process details, progress, results, and next steps in a local task state file so work can resume after session resets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains a compact Markdown task state file for task starts, progress updates, completions, failures, and session resumes.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep a compact, persistent task snapshot across long-running work, background processes, failures, and session resets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill persists task and operational context locally, including commands, process identifiers, server names, and progress notes. <br>
-Mitigation: Review and prune memory/tasks.md regularly, and do not store secrets, credentials, private customer data, sensitive commands, hostnames, or infrastructure details unless the file is protected by the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sunshine-del-ux/new-agent-task-tracker) <br>
+## Use Case:
+
+Developers and agent operators use this skill to keep a concise Markdown snapshot of active, completed, paused, and failed tasks so work can resume after session resets or compaction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill persistently records task details and operational metadata in memory/tasks.md.
+
+Mitigation: Use it only in workspaces where a cross-session task log is acceptable and keep memory/tasks.md private to the intended user and workspace.
+
+Risk: Raw commands, hostnames, session IDs, tokens, secrets, or user-provided prompt text could be captured in the task state file.
+
+Mitigation: Add or enforce redaction rules for sensitive values before writing task entries, especially for background process and SSH session details.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown task-state entries written to memory/tasks.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains a concise state snapshot under 50 lines or 2KB and prunes older completed tasks.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown task-state entries and concise status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains memory/tasks.md under 50 lines or 2 KB and keeps only recent completed tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

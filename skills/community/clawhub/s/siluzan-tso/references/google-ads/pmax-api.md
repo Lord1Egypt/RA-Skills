@@ -16,20 +16,20 @@
 | 命令                                                          | 说明                                                                                          |
 | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `ad pmax-validate`                                            | 本地校验                                                                                      |
-| `ad pmax-create`                                              | 创建系列（同步返回 `campaignId` 等）                                                          |
+| `ad pmax-create`                                              | 创建系列（同步返回 `campaignId` 等；失败时把已建成编号写回 JSON 再跑）           |
 | `ad pmax-channel-types`                                       | 渠道类型列表                                                                                  |
-| `ad pmax-get`                                                 | 系列详情（含 `brandAssets[]`；`--json-out` 附加 `_brandGuidelinesActive`、`_agentBrandHint`） |
-| `ad pmax-edit`                                                | 编辑系列（预算/出价/状态；**不可**改 `brandGuidelinesEnabled`）                               |
+| `ad pmax-get`                                                 | 系列详情（含 `brandAssets[]`；`negativeGenderExclusions` / `negativeKeywordExclusions` / `negativeAgeExclusions`；PATCH 可整表替换，未传不改；`--json-out` 附加 `_brandGuidelinesActive`、`_agentBrandHint`） |
+| `ad pmax-edit`                                                | 编辑系列（预算/出价/状态/`assetAutomationSettings`/`textGuidelines`；**不可**改 `brandGuidelinesEnabled`）。图片增强/提取只改提交的类型；`textGuidelines` 未传不写，传了整段替换，传 `{}` 清空 |
 | `ad pmax-brand-assets-edit`                                   | BG 已开启时改 Campaign 级品牌（商家名/Logo/样式）                                             |
 | `ad pmax-brand-guidelines-enable`                             | 存量活动启用 BG（不可关闭）                                                                   |
 | `ad pmax-asset-group-create`                                  | 新建资产组                                                                                    |
 | `ad pmax-asset-group-edit`                                    | 编辑资产组                                                                                    |
 | `ad pmax-assets-update`                                       | 更新资产                                                                                      |
 | `ad pmax-youtube-link`                                        | **追加**单条 YouTube 视频（不替换已有视频）                                                   |
-| `ad pmax-signals-get` / `ad pmax-signals-set`                 | 读/写信号（**全量** PUT）                                                                     |
+| `ad pmax-signals-get` / `ad pmax-signals-set`                 | 读/写信号（**全量** PUT。两类都空且组里还有信号会 400）                                        |
 | `ad pmax-audiences`                                           | 受众列表                                                                                      |
 | `ad pmax-image-upload`                                        | 单张图片上传                                                                                  |
-| `ad pmax-report-asset-groups` / `ad pmax-report-geo`          | 报表                                                                                          |
+| `ad pmax-report-asset-groups` / `ad pmax-report-assets` / `ad pmax-report-geo` / `ad pmax-report-channels` | 报表（素材组 / 单素材 / 地理 / 渠道）。单素材与素材组花费/点击不必相等；素材点击可大于系列点击。渠道表的 `total` 只等于各 `channels` 之和；`video` / `product` 是对照，不要再加进合计 |
 | `ad campaigns`                                                | 列表（筛 `PERFORMANCE_MAX`）                                                                  |
 | `ad extension pmax-types`                                     | PMax 支持的附加资产类型与层级                                                                 |
 | `ad extension callout` / `snippet` / `lead-form` / `whatsapp` | 宣传信息 / 结构化摘要 / 潜在客户表单 / WhatsApp                                               |
@@ -201,8 +201,8 @@ Google v21+ 新建 PMax **默认开启** BG：`businessName` / Logo 挂在 **Cam
 
 ## 删除
 
-- **系列**：`ad campaign-delete -a <id> --id <campaignId>`
-- **资产组**：`ad pmax-asset-group-edit --status REMOVED`
+- **系列**：用户同意后 `ad campaign-delete -a <id> --id <campaignId> --i-confirm --commit "…"`（`ad pmax-edit --status Removed` 同样须 `--i-confirm`）
+- **资产组**：`ad pmax-asset-group-edit --status REMOVED`（最后一组会 400，应暂停该组或系列）
 - **资产**：`ad pmax-assets-update` 的 `unlink`（见模板）
 
 ---
@@ -211,3 +211,5 @@ Google v21+ 新建 PMax **默认开启** BG：`businessName` / Logo 挂在 **Cam
 
 - 勿对 PMax 使用 `ad campaign-edit`（会 **400**）
 - 新建勿用 `ad campaign-create`；用 `ad pmax-create`
+- 创建接口 400 的正文是 JSON：`message` 加 `budgetId` / `campaignId` / `assetGroupId`，没建成的是 `null`。CLI 会转发 JSON 里的这三个字段；首次创建不填。只有编号比这次请求多时，才写回同一份 JSON、内容不改、再执行一次。编号按预算、系列、素材组带。默认品牌手册开启时不能只写 `campaignId`。同一步再失败时 stdout 是 `retryCreate=false`，停。不带编号再提交会新建一套
+- 创建接口已经 200，只是附加资产或视频失败：不要再 `pmax-create`。扩展用 `ad extension`，视频用 `ad pmax-youtube-link`。stdout 是 `created=true`、`retryCreate=false`

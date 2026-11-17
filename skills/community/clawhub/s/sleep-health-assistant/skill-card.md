@@ -1,43 +1,60 @@
-## Description: <br>
-Provides local, science-based analysis of sleep and stress with personalized guidance in relaxation, breathing, mindfulness, and wellness habits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local, science-based analysis of sleep and stress with personalized guidance in relaxation, breathing, mindfulness, and wellness habits.
 
-## Publisher: <br>
-[znsyhandao](https://clawhub.ai/user/znsyhandao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[znsyhandao](https://clawhub.ai/user/znsyhandao)
 
-## Use Case: <br>
-Individuals and OpenClaw users use this skill to assess user-provided sleep and stress information and receive local wellness guidance for relaxation, breathing, mindfulness, and sleep hygiene. It is educational and self-improvement oriented, not a substitute for professional medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles user-provided sleep and stress details in process memory during a session. <br>
-Mitigation: Use the cleanup command or restart the host process after sensitive sessions, especially on shared systems. <br>
-Risk: Wellness recommendations could be mistaken for clinical guidance. <br>
-Mitigation: Treat outputs as educational self-improvement guidance and consult a qualified healthcare professional for medical concerns. <br>
-Risk: The skill intentionally excludes religious, traditional, or culture-specific practices. <br>
-Mitigation: Confirm this content scope matches user expectations before relying on the guidance. <br>
+## Use Case:
 
+OpenClaw users use this skill for local sleep and stress self-assessment, wellness habit suggestions, guided breathing, mindfulness, relaxation, and session cleanup. It is intended for general wellness education and self-improvement, not medical advice, diagnosis, or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/znsyhandao/sleep-health-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/znsyhandao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational guidance with structured command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sleep and stress scores, recommendations, guided practice steps, status details, and cleanup confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and config.yaml) <br>
+Risk: Wellness analysis may be mistaken for medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general wellness education and consult a healthcare professional for medical concerns.
+
+Risk: Sensitive health details are temporarily held in memory during a session.
+
+Mitigation: Use the cleanup command after entering sensitive health details, especially in shared or long-running OpenClaw sessions.
+
+Risk: Install examples are not pinned to an immutable version.
+
+Mitigation: Install only from a trusted ClawHub source and prefer a pinned version or verified package when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/znsyhandao/skills/sleep-health-assistant)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, JSON]
+
+**Output Format:** [Structured JSON-like command responses with human-readable wellness guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only responses based on user-provided health and wellness inputs; cleanup command clears in-memory session data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, config.yaml, skill.py, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

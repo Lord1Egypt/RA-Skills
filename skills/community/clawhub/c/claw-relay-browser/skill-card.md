@@ -1,42 +1,57 @@
-## Description: <br>
-Controls a remote browser through Claw Relay using a CLI client for navigation, snapshots, screenshots, clicks, form input, keyboard actions, and page JavaScript evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a remote browser through Claw Relay using a CLI client for navigation, authenticated browsing, clicking, form filling, screenshots, page content capture, and JavaScript evaluation.
 
-## Publisher: <br>
-[andreagriffiths11](https://clawhub.ai/user/andreagriffiths11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreagriffiths11](https://clawhub.ai/user/andreagriffiths11)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs controlled access to a user's real browser session through shell commands, especially for authenticated sites where local headless browsing is not suitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act inside logged-in browser sessions and expose private page content. <br>
-Mitigation: Use strict site allowlists, minimal scopes, and a dedicated browser profile; require explicit approval before submitting forms, purchasing, deleting, publishing, changing account data, or sharing private page content. <br>
-Risk: The evaluate action can run arbitrary page JavaScript. <br>
-Mitigation: Avoid or disable evaluate unless necessary, grant execute scope only to trusted agents, and review JavaScript before execution. <br>
-Risk: Relay credentials authorize browser actions for a specific agent. <br>
-Mitigation: Protect relay tokens, use per-agent identities, and rotate or revoke credentials when access changes. <br>
+## Use Case:
 
+Developers and agents use this skill when they need controlled access to a user's real browser session from environments that can run shell commands but do not support MCP. It supports browser navigation, interaction, page inspection, screenshots, and optional JavaScript execution through a relay-authenticated CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreagriffiths11/claw-relay-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash examples; runtime actions return JSON and screenshots can be written as files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Claw Relay URL, token, and agent ID; actions are single-invocation browser operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill can control a real logged-in browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when authenticated browser control is required, and use narrow relay scopes, explicit site allowlists, rate limits, and audit logs.
+
+Risk: Relay tokens and browser traffic can be exposed if configured unsafely.
+
+Mitigation: Prefer wss:// relay URLs, store tokens in environment variables or secret storage, and avoid passing tokens on the command line.
+
+Risk: JavaScript evaluation and screenshots can expose or change sensitive page state.
+
+Mitigation: Avoid evaluate unless explicitly needed, review actions before use on sensitive sites, and save screenshots only to low-risk paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreagriffiths11/skills/claw-relay-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples; relay actions return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each CLI invocation connects, authenticates, performs one browser action, prints JSON, and exits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

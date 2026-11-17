@@ -1,44 +1,60 @@
-## Description: <br>
-Create, manage, and validate SOUL.md personality files for multi-agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and validate SOUL.md personality files for multi-agent systems, including persona definition, collaboration protocols, and soul validation.
 
-## Publisher: <br>
-[xuderu-hub](https://clawhub.ai/user/xuderu-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuderu-hub](https://clawhub.ai/user/xuderu-hub)
 
-## Use Case: <br>
-Developers and multi-agent operators use this skill to create, audit, and maintain SOUL.md personality files, reusable persona templates, and collaboration protocols for OpenClaw-style agent teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional web editor can expose and overwrite local agent personality files through an unauthenticated local server. <br>
-Mitigation: Prefer the Python CLI scripts for routine work; if the server is used, run it only when needed, bind it to localhost, restrict CORS, and add authentication before broader use. <br>
-Risk: The web editor documentation describes persistent Windows auto-start behavior for the local server. <br>
-Mitigation: Remove the SOULServer Windows Run entry when the editor is not needed and verify that no hidden launcher remains enabled. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, audit, and maintain standardized SOUL.md personality files for multi-agent systems. It supports agent persona selection, collaboration protocol design, local validation, and optional local editing workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/xuderu-hub/jarvis-soul-system) <br>
-- [SOUL.md Template](references/soul-template.md) <br>
-- [Personality Library](references/personality-library.md) <br>
-- [Multi-Agent Collaboration Protocol](references/collaboration-protocol.md) <br>
-- [SOUL Editor README](scripts/SOUL-EDITOR-README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated SOUL.md files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, list, validate, or edit persistent SOUL.md files in local agent directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The web editor exposes unauthenticated read and write access to persistent agent instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the editor only in a trusted local environment; bind the server to localhost, add authentication, remove wildcard CORS, validate agent names and paths, and limit request sizes before broader use.
+
+Risk: The documented auto-start behavior can keep the local editor server running in the background.
+
+Mitigation: Avoid enabling auto-start unless operationally required, and disable the startup entry when the editor is not actively needed.
+
+Risk: Editing workflows can overwrite SOUL.md files that define persistent agent behavior.
+
+Mitigation: Back up SOUL.md files before editing and review changes before deploying them to active agents.
+
+## Reference(s):
+
+- [SOUL.md Template](references/soul-template.md)
+- [Personality Library](references/personality-library.md)
+- [Multi-Agent Collaboration Protocol](references/collaboration-protocol.md)
+- [SOUL Editor README](scripts/SOUL-EDITOR-README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated SOUL.md files, and local validation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local agent SOUL.md files when the bundled scripts or editor are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

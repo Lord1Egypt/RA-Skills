@@ -1,40 +1,53 @@
-## Description: <br>
-Butler Mode transforms an agent into a manager that plans, delegates work to teammate agents, monitors progress, and reviews results instead of directly executing substantive tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Butler Mode turns an agent into a manager that plans, delegates work to teammate agents, monitors progress, and reviews results instead of doing substantive work directly.
 
-## Publisher: <br>
-[csuwl](https://clawhub.ai/user/csuwl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[csuwl](https://clawhub.ai/user/csuwl)
 
-## Use Case: <br>
-Developers and agent users use Butler Mode to coordinate multi-agent work by decomposing requests, spawning teammate agents, tracking progress, and reviewing completed work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may spawn teammate agents with broad local authority. <br>
-Mitigation: Install only when multi-agent manager mode is intentional, keep normal permission prompts enabled, and confirm before spawning, killing, or continuing agent sessions. <br>
-Risk: The artifact encourages maximum autonomy and broad permissions for delegated agents. <br>
-Mitigation: Avoid bypass-permission modes and review teammate outputs before accepting or applying changes. <br>
+## Use Case:
 
+Developers and agent users use Butler Mode to coordinate multi-agent work by having one agent decompose tasks, assign work to teammate agents, monitor status, and review outputs.
 
-## Reference(s): <br>
-- [Butler Mode on ClawHub](https://clawhub.ai/csuwl/butler-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with tool-specific command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task plans, delegation prompts, progress updates, and review feedback for teammate agent sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: The skill delegates work to other agents and asks for broad worker authority, including permission-bypass patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when supervised delegation is intended, and enforce least-privilege permissions outside the skill before using it on sensitive repositories or accounts.
+
+Risk: Delegated agents may produce incorrect guidance, code, commands, or configuration changes.
+
+Mitigation: Review teammate outputs and scan proposed changes before execution or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/csuwl/skills/butler-mode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include agent task plans, delegation prompts, status summaries, shell command examples, and configuration guidance.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence, created 2026-04-16T13:13:59Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

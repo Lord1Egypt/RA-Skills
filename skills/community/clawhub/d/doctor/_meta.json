@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "doctor",
-  "version": "1.0.0",
-  "publishedAt": 1770672995952
+  "displayName": "Doctor",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1785140325481
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1785112998111
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770672995952
+    }
+  ]
 }

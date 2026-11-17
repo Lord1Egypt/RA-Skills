@@ -1,45 +1,64 @@
-## Description: <br>
-Generate TikTok-style talking videos from a script and image using the LovelyBots API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate TikTok-style talking videos from a script and image using the LovelyBots API, including job submission, polling for completion, and retrieval of a download URL.
 
-## Publisher: <br>
-[georgegally](https://clawhub.ai/user/georgegally) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgegally](https://clawhub.ai/user/georgegally)
 
-## Use Case: <br>
-External users, marketing teams, ecommerce brands, and developers use this skill to queue, monitor, and retrieve talking-video generation jobs from scripts and images through LovelyBots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided scripts and images to LovelyBots for video generation. <br>
-Mitigation: Install only if you trust LovelyBots with that content and avoid sending sensitive scripts or images unless approved for that service. <br>
-Risk: The LovelyBots API key can authorize credit-consuming video generation. <br>
-Mitigation: Keep LOVELYBOTS_API_KEY secret, do not commit or log it, and confirm generation before using the skill at scale. <br>
-Risk: Returned video_url and share_url values may allow others to access generated videos. <br>
-Mitigation: Share or log returned URLs only when the generated video is intended to be accessible to those recipients. <br>
+## Use Case:
 
+External users, marketing teams, ecommerce brands, and developers use this skill to generate short talking videos from scripts and source images through the LovelyBots API. It is suited for agent workflows that need to queue video generation, monitor status, and return a finished video URL.
 
-## Reference(s): <br>
-- [TikTok Video Maker on ClawHub](https://clawhub.ai/georgegally/tiktok-video-maker) <br>
-- [LovelyBots OpenClaw documentation](https://lovelybots.com/openclaw) <br>
-- [LovelyBots developer API keys](https://lovelybots.com/developer) <br>
-- [LovelyBots API base URL](https://api.lovelybots.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples; completed jobs return a video URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOVELYBOTS_API_KEY, curl, python3, a LovelyBots account, and an active subscription plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: User-submitted scripts and images are sent to LovelyBots for video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content the user is comfortable uploading to LovelyBots, and avoid sending sensitive personal or proprietary media unless the deployment has approved handling controls.
+
+Risk: The documented API can make generated videos public unless private generation is requested.
+
+Mitigation: Set public generation to false by default and get explicit user intent before creating public videos.
+
+Risk: Share URLs may allow unintended access to generated videos if logged or shared broadly.
+
+Mitigation: Treat share URLs as sensitive links, return them only when useful to the user, and avoid storing them in broad logs or public channels.
+
+Risk: The skill relies on a bearer API token for LovelyBots requests.
+
+Mitigation: Store LOVELYBOTS_API_KEY as a secret, avoid committing it to files, and rotate or revoke the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/georgegally/skills/tiktok-video-maker)
+- [LovelyBots OpenClaw documentation](https://lovelybots.com/openclaw)
+- [LovelyBots developer API keys](https://lovelybots.com/developer)
+- [LovelyBots API base URL](https://api.lovelybots.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell command examples, and final video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LovelyBots API key, curl, python3 for the polling example, and public http/https URLs when image input is provided by URL.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

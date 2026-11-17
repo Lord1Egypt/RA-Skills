@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users gently review today, yesterday, or this week by turning minimal or messy input into a concise, low-pressure reflection card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users gently review today, yesterday, or this week by organizing minimal input into a clear, low-pressure reflection summary.
 
-## Publisher: <br>
-[JoeyShee](https://clawhub.ai/user/JoeyShee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyshee](https://clawhub.ai/user/joeyshee)
 
-## Use Case: <br>
-External users use this skill as a calm reflection aid for making sense of a recent day or week without scoring, diagnosis, or productivity pressure. It is suited to short, fragmented, or emotionally flat input and produces a structured reflection that names effort, drain, one possible pattern, and a gentle next note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal details while reflecting. <br>
-Mitigation: Avoid requesting private details beyond what is needed for a light reflection, and remind users not to share information they would not want in a chat. <br>
-Risk: The agent could overinterpret sparse or emotional input. <br>
-Mitigation: Stay close to the user's words, make only conservative inferences, use soft language, and ask at most one follow-up when there is too little usable input. <br>
+## Use Case:
 
+External users use this skill to turn short, messy, or low-energy notes about a recent day or week into a concise reflection that names effort, drain, patterns, and one gentle next note without scoring the user.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JoeyShee/soft-landing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reflection card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise six-part reflection for today, yesterday, or this week; asks at most one light follow-up when input is too thin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Vague reflection requests may be steered into a structured review before the user has provided enough context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask one light clarifying question when the timeframe is unclear, and keep the reflection grounded in the user's own words.
+
+Risk: Sparse or emotional input could lead to overconfident interpretation.
+
+Mitigation: Use conservative language, mention at most one possible pattern, and avoid diagnoses, labels, scoring, or prescriptive advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyshee/skills/soft-landing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown reflection card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask at most one light follow-up question when the timeframe or input is too thin.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

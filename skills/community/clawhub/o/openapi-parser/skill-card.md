@@ -1,43 +1,59 @@
-## Description: <br>
-Parses complex OpenAPI specs and generates Drift test cases from them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses complex OpenAPI 3.x specs and generates Drift test cases that cover schema variants, constraints, and documented error responses.
 
-## Publisher: <br>
-[kevinrvaz](https://clawhub.ai/user/kevinrvaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinrvaz](https://clawhub.ai/user/kevinrvaz)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to analyze OpenAPI 3.x endpoint schemas and produce Drift operations and datasets that cover polymorphic schemas, composed schemas, regex-constrained fields, and negative cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted OpenAPI files or remote $ref URLs could lead the agent to produce misleading or unsafe test guidance. <br>
-Mitigation: Use trusted OpenAPI files and review any remote $ref URL before allowing the agent to rely on it. <br>
-Risk: Generated Drift YAML may exercise real service behavior, including lifecycle hooks, write operations, delete operations, or authentication paths. <br>
-Mitigation: Inspect generated Drift YAML before running it against real services, especially operations involving POST, DELETE, lifecycle hooks, or auth behavior. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to analyze OpenAPI endpoints and generate Drift operations, datasets, and gap notes for schema variant and negative response coverage.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kevinrvaz/openapi-parser) <br>
-- [Schema Patterns Reference](references/schema-patterns.md) <br>
-- [Drift Mapping Reference](references/drift-mapping.md) <br>
-- [Example Repos Reference](references/example-repos.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis, Drift operations YAML, dataset YAML when needed, and gaps for intentionally excluded schema combinations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Untrusted OpenAPI specs may include remote $ref URLs that fetch unreviewed schema content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep specs local when possible and require explicit review before allowing remote reference fetches.
+
+Risk: Generated Drift hooks or operations could affect production or privileged APIs if run without review.
+
+Mitigation: Inspect generated Drift hooks and operations, then test first in a non-production environment with least-privileged credentials.
+
+Risk: Broad activation could apply the skill when the user does not intend OpenAPI-to-Drift test generation.
+
+Mitigation: Confirm the task is OpenAPI-to-Drift test generation before relying on generated outputs.
+
+## Reference(s):
+
+- [Schema Patterns Reference](references/schema-patterns.md)
+- [Drift Mapping Reference](references/drift-mapping.md)
+- [Working with Real-World Spec Collections](references/example-repos.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Drift YAML code blocks, concise analysis, dataset YAML when needed, and gap notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Drift hooks and operations should be reviewed before running against production or privileged APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

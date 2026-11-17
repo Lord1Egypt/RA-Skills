@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "description": "The fixed battery bench.py measures a model against. Every passage was written for this file: it carries the tell it is named for, plus at least one fact (a number, a date, a path, a version or a quotation) so that a model which rewrites fluently and drops a detail fails rather than scores. Editing a case changes what every published pass rate means, which is what `version` is for.",
+  "cases": [
+    {
+      "id": "tier1-single-word",
+      "register": "blog",
+      "text": "We need to delve into the retry logic before the 14 March cutover."
+    },
+    {
+      "id": "tier1-several-words",
+      "register": "blog",
+      "text": "The new scheduler is robust and the failover path is seamless, so the 4 remaining alerts should stop firing."
+    },
+    {
+      "id": "negation-runway",
+      "register": "blog",
+      "text": "It's not just about the 200ms we saved, it's about what the profile told us: the parser was doing the work twice."
+    },
+    {
+      "id": "transition-stack",
+      "register": "blog",
+      "text": "Moreover, the queue drained in 40 minutes rather than the 6 hours we budgeted for."
+    },
+    {
+      "id": "clarity-hedge",
+      "register": "technical-blog",
+      "text": "It is important to note that the migration in `db/0007_backfill.sql` has to run before the deploy, not after it."
+    },
+    {
+      "id": "clarity-hedge-with-quote",
+      "register": "blog",
+      "text": "It is important to note that the on-call engineer wrote \"the clock on worker-3 is eleven minutes fast\" in the incident channel at 02:14."
+    },
+    {
+      "id": "corporate-vocabulary",
+      "register": "blog",
+      "text": "This release empowers teams to leverage the new pipeline and unlock a comprehensive view of the 12 services we run."
+    },
+    {
+      "id": "tier2-cluster-paragraph",
+      "register": "blog",
+      "text": "The seamless integration empowers every team to leverage cutting-edge tooling. This holistic approach ensures comprehensive coverage of the transformation. The result is a robust platform that scales to 3,000 requests per second."
+    },
+    {
+      "id": "uniform-paragraphs",
+      "register": "blog",
+      "text": "The build runs on every push to main. The tests run right after the build. The report lands in the shared log. The team reads the report each morning. The whole loop takes 9 minutes. The cache keeps the last 20 runs.\n\nThe queue drains at a steady rate. The workers pull from the same shard. The retry count sits at 3 attempts. The dead letter box holds 41 items. The alert fires at 100 items. The rota covers every weekday shift. The handover happens at 09:00 sharp.\n\nWe changed the shard key on 2026-02-11. The change landed in `internal/queue/shard.go` that day. The backlog cleared within the hour. Nobody has paged about it since then. The old key stayed in place for a week. We deleted it on the following Monday.\n\nThe dashboard shows the same four panels. The graph on the left tracks the depth. The graph beside it tracks the age. The panel below counts the retries. The last panel lists the failed jobs."
+    },
+    {
+      "id": "hedge-plus-vocabulary",
+      "register": "technical-blog",
+      "text": "It's worth noting that we should delve into whether the cache in `internal/cache/lru.go` is actually the bottleneck, given the 8% hit rate."
+    },
+    {
+      "id": "facts-under-pressure",
+      "register": "technical-blog",
+      "text": "In today's fast-paced deployment landscape, the rollback took 1,240 seconds on 2025-11-03 and the runbook at `docs/rollback.md` says it should take 90."
+    },
+    {
+      "id": "version-and-path",
+      "register": "docs",
+      "text": "It is important to note that Python 3.9 is the floor, and utilizing a newer syntax in `scripts/validate.py` will break the ubuntu-22.04 runner."
+    }
+  ]
+}

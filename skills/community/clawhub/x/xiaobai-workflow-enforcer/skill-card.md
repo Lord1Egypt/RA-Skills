@@ -1,40 +1,56 @@
-## Description: <br>
-Xiaobai Workflow Enforcer applies mandatory design, planning, test-first, execution, and verification gates for AI agents working on engineering tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaobai Workflow Enforcer guides AI agents through mandatory design, planning, test-first, execution, and verification gates for coding work.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aptratcn](https://clawhub.ai/user/aptratcn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to make an AI coding agent pause for design, planning, test-first implementation, checkpoint updates, and final verification before claiming completion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can slow normal coding work by enforcing design, planning, test-first, and verification gates.
+
+Mitigation: Install it only when those workflow gates are desired, and apply proportional exceptions for small or urgent tasks.
+
+Risk: The skill can cause extra approvals or refusals when plans, tests, or verification evidence are missing.
+
+Mitigation: Make user-instruction precedence explicit and review any refusal or delay against the current task requirements.
+
+Risk: The skill can lead an agent to create design or checkpoint files in the workspace.
+
+Mitigation: Review generated workspace files before committing or relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to enforce upfront design, task planning, test-first implementation, checkpoints, and evidence-backed completion reports. It is most useful when reliability and auditability matter more than lightweight task flow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The mandatory workflow can add friction for lightweight or urgent tasks. <br>
-Mitigation: Use it for tasks that benefit from planning, tests, checkpoints, and verification; avoid it when evidence indicates a simple answer or small one-step change is sufficient. <br>
-Risk: Rigid gates may delay progress if the user has already provided enough context or approval. <br>
-Mitigation: Treat existing user-provided requirements and approvals as evidence, then apply only the remaining gates needed to preserve traceability. <br>
+**Output Format:** [Markdown guidance with workflow checklists and inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aptratcn/xiaobai-workflow-enforcer) <br>
+**Other Properties Related to Output:** [May lead the agent to create design and checkpoint files as part of enforced workflow tracking.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown instructions, checklists, approval prompts, and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow guidance; no code installation or sensitive access is requested.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

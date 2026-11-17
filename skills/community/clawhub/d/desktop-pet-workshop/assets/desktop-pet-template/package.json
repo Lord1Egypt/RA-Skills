@@ -1,0 +1,41 @@
+{
+  "name": "desktop-pet",
+  "version": "1.0.0",
+  "description": "Desktop Pet Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --mac",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.workbuddy.desktoppet",
+    "productName": "DesktopPet",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "src/**/*",
+      "pet-assets/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "pet-assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "pet-assets/icon.icns"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}

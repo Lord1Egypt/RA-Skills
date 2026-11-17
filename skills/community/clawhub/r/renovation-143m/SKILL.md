@@ -1,6 +1,6 @@
 ---
 name: renovation-143m
-version: "0.2.0"
+version: "0.2.2"
 description: >
   143㎡专属装修助手 — 基于固定户型（三室两厅两卫一厨一阳台改善型住宅）的长期装修决策助手。
   覆盖验房、风格研究、空间设计、收纳规划、水电灯光、家电材料、预算规划、避坑、AI生图模拟全流程。
@@ -43,7 +43,7 @@ description: >
 
 - **建筑面积：** 约 143㎡
 - **户型结构：** 三室两厅两卫一厨一阳台
-- **房屋类型：** 改善型住宅
+- **房屋类型：** 改善型住宅（毛坯交付）
 - **使用场景：** 长期自住
 - **默认家庭结构：** 夫妻 / 三口之家 / 四口之家均可兼容
 - **装修目标：** 实用、耐看、好维护、收纳充足、动线顺畅、预算可控、长期居住舒适
@@ -207,7 +207,7 @@ description: >
 ### 3. 风格搜索来源
 
 按优先级排序：
-1. 🌐 **autoglm-websearch**（首选）— 调用 `python3 ~/.openclaw-autoclaw/skills/autoglm-websearch/websearch.py "关键词"` 搜索最新趋势和案例
+1. 🌐 **联网搜索（首选）** — 使用 Agent 运行时提供的 web 搜索工具搜索最新趋势和案例
 2. 🔍 **autoglm-search-image**（搜图）— 调用 `python3 ~/.openclaw-autoclaw/skills/autoglm-search-image/search-image.py "关键词"` 搜索真实装修案例图片
 3. 小红书真实装修案例（通过 websearch 搜索 "小红书 143㎡ 装修案例"）
 4. 知乎经验和避坑（通过 websearch 搜索 "知乎 装修避坑"）
@@ -217,7 +217,7 @@ description: >
 
 不得只基于模型已有知识直接给出最终结论。
 
-**降级策略：** 当 autoglm-websearch 不可用时，基于模型已有知识给出建议，并在回答中明确标注「以下内容未联网验证，建议用户自行核实最新信息」。
+**降级策略：** 当联网搜索不可用时，基于模型已有知识给出建议，并在回答中明确标注「以下内容未联网验证，建议用户自行核实最新信息」。
 
 ### 4. 风格分析维度
 
@@ -256,16 +256,15 @@ description: >
 
 | 工具 | 用途 | 调用方式 |
 |------|------|----------|
-| **autoglm-generate-image-seedream** ✅ | 文生图（首选） | `python3 ~/.openclaw-autoclaw/skills/autoglm-generate-image-seedream/generate-image-seedream.py "描述文字"` |
+| **autoglm-generate-image-seedream** ✅ | 文生图 | `python3 ~/.openclaw-autoclaw/skills/autoglm-generate-image-seedream/generate-image-seedream.py "描述文字"` |
 | **autoglm-search-image** ✅ | 搜索真实装修案例图片 | `python3 ~/.openclaw-autoclaw/skills/autoglm-search-image/search-image.py "关键词"` |
-| **autoglm-generate-image** ✅ | 文生图（备选） | `python3 ~/.openclaw-autoclaw/skills/autoglm-generate-image/generate-image.py "描述文字"` |
 
 **工具选择规则：**
 - 用户要求「生成效果图」→ 用 seedream 文生图
 - 用户要求「看真实案例」→ 用 search-image 搜图
 - 用户要求「看效果对比」→ 用 seedream 生成多个风格版本
 
-**降级策略：** 当以上生图工具均不可用时，改为输出文字版设计方案 + 完整生图提示词，供用户自行在 Midjourney / Stable Diffusion 等平台生成。
+**降级策略：** 当以上生图/搜图工具均不可用时，改为输出文字版设计方案 + 完整生图提示词，供用户自行在 Midjourney / Stable Diffusion 等平台生成。
 
 ### 1. 适用场景
 

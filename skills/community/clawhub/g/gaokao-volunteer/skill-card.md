@@ -1,47 +1,61 @@
-## Description: <br>
-Gaokao Volunteer helps users plan Chinese Gaokao college applications with rank-based matching, score-delta analysis, university recommendations, reach/match/safety planning, and volunteer-plan checks across provincial exam models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaokao Volunteer helps agents guide Chinese Gaokao applicants through score and rank matching, university recommendations, reach/match/safety planning, and province-specific application checks.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External students, families, and admissions advisors use this skill to collect Gaokao profile details, compare score and rank signals, classify reach/match/safety choices, and generate college application guidance or reports for Chinese provincial admissions workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports, temporary profile files, and web searches may expose Gaokao score, rank, province, subject, and preference details. <br>
-Mitigation: Avoid names, ID numbers, account credentials, and other direct identifiers; delete exported reports and temporary profile files when they are no longer needed. <br>
-Risk: Admission guidance can become inaccurate when batch lines, one-score-one-rank tables, provincial rules, or historical admissions data are stale or incomplete. <br>
-Mitigation: Verify current-year batch lines, rank tables, province rules, and admissions data against official exam-authority sources before acting on any recommendation. <br>
-Risk: Reach/match/safety classifications and admission probabilities are estimates and may mislead users if treated as guarantees. <br>
-Mitigation: Present recommendations as AI-assisted reference material, include plain-language uncertainty and disclaimers, and keep final decisions with the user or their advisor. <br>
+## Use Case:
 
+External users and education-planning agents use this skill to collect Gaokao applicant details, search current admissions data, classify options into reach/match/safety tiers, and produce advisory application plans. The skill is intended for Chinese college application planning and should be used with official admissions sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/gaokao-volunteer) <br>
-- [Server-resolved GitHub repository](https://github.com/bettermen/gaokao-volunteer) <br>
-- [Server-resolved source commit](https://github.com/bettermen/gaokao-volunteer/commit/a5ef7e08dc08c5b687142fc8e6bc62a9e3104a64) <br>
-- [Province rules reference](artifact/references/province_rules.json) <br>
-- [University basics reference](artifact/references/university_basics.json) <br>
-- [Major catalog reference](artifact/references/major_catalog.json) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON intermediate results, and optional HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports and local intermediate files may contain score, rank, province, subject, and preference details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated HTML reports can include unescaped imported data, so reports built from untrusted sources could display or run unwanted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, use official admissions data where possible, avoid untrusted JSON or scraped content, and treat generated reports as advisory before opening or sharing them.
+
+Risk: Admissions scores, ranks, and provincial rules change yearly, which can make recommendations stale or misleading.
+
+Mitigation: Verify batch lines, one-score-one-rank tables, and admissions data against official provincial education examination sources before making application decisions.
+
+Risk: The skill processes visible score, rank, preference, and application-plan details in reports.
+
+Mitigation: Avoid storing sensitive applicant details longer than needed and review generated HTML before sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/gaokao-volunteer)
+- [Source repository](https://github.com/bettermen/gaokao-volunteer)
+- [Province rules](references/province_rules.json)
+- [University basics](references/university_basics.json)
+- [Major catalog](references/major_catalog.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational guidance, JSON intermediate data, shell commands, and generated HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current admissions data supplied through search or user input; generated plans are advisory and require official-source verification.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-个人日程秘书 helps an agent record, update, archive, and review personal tasks across local task files, an index, a log, and a browser-friendly dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+个人日程秘书 helps an agent record, update, categorize, archive, and present personal task records without performing the tasks themselves.
 
-## Publisher: <br>
-[reckonlee](https://clawhub.ai/user/reckonlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reckonlee](https://clawhub.ai/user/reckonlee)
 
-## Use Case: <br>
-Individuals use this skill when they want an agent to maintain a local personal agenda: ingesting inbox items, creating structured task files, marking tasks done or cancelled, adding notes, refreshing dashboard data, and archiving older completed work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to write and reorganize local task-management files. <br>
-Mitigation: Use explicit task-focused prompts and review proposed file changes before allowing large dashboard, archive, or task-directory updates. <br>
-Risk: The skill has a broad trigger for processing inbox and agenda updates. <br>
-Mitigation: Keep the intended inbox and workspace scope clear when invoking it so unrelated files are not treated as task inputs. <br>
+## Use Case:
 
+Employees or individual users use this skill to turn inbox notes and chat snippets into structured task records, update task status or notes, and maintain an index, log, archive, and local dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reckonlee/personal-agenda) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/reckonlee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown task files, YAML frontmatter, JSON dashboard data, JavaScript archive data, HTML dashboard updates, and concise status summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates local task-management files including tasks/, index.md, log.md, and views/dashboard.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Malicious pasted text or inbox content could be embedded into dashboard data in a browser script context and run as script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid untrusted pasted or inbox content, and require dashboard data to escape HTML script-breaking sequences or move data into a safer non-executable JSON container.
+
+Risk: Broad inbox-processing triggers can cause unintended local file changes.
+
+Mitigation: Use agenda-specific commands and require confirmation before bulk inbox processing or status updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reckonlee/skills/personal-agenda)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown task files, JSON/JavaScript dashboard data, HTML dashboard updates, and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local task records, indexes, logs, archive data, and a browser-viewable dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

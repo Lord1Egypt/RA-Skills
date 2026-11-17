@@ -1,45 +1,60 @@
-## Description: <br>
-This skill lets agents read, create, update, move, archive, and delete Notion workspace content through the OOMOL-connected Notion connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to Notion for reading, creating, updating, and deleting workspace content.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Notion from an agent after connecting a Notion account through OOMOL. It supports schema-first read workflows and confirmed write or destructive changes to pages, blocks, databases, data sources, users, and Markdown content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a connected Notion account for broad read and write operations. <br>
-Mitigation: Install only when agent access to that Notion account is intended, and give explicit instructions for create or update tasks. <br>
-Risk: Write and destructive actions can change, archive, trash, or delete Notion content. <br>
-Mitigation: Review the proposed target, payload, and expected effect before allowing write or destructive actions to run. <br>
-Risk: The skill requires OAuth or other sensitive connected-account credentials through OOMOL. <br>
-Mitigation: Keep credentials managed through the OOMOL connection flow and avoid exposing raw tokens in prompts, files, or shell output. <br>
+## Use Case:
 
+People using an OOMOL-connected Notion account can search and read workspace content, manage pages and databases, and work with comments and views through the oo CLI.
 
-## Reference(s): <br>
-- [ClawHub Notion skill page](https://clawhub.ai/oomol/oo-notion) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Notion homepage](https://www.notion.so) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and execution metadata when actions run successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup can execute changing remote software without asking for installation approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI setup before running it, prefer a verified fixed release, and check whether automatic installation of other agent skills is enabled.
+
+Risk: The Notion connection may have access beyond the content needed for a task.
+
+Mitigation: Limit the connection to the Notion content needed for the task.
+
+Risk: Write and destructive actions can change or remove Notion content.
+
+Mitigation: Retain the skill's required confirmations for changes, and confirm the exact target and effect before destructive actions.
+
+## Reference(s):
+
+- [Notion API documentation](https://developers.notion.com/)
+- [Notion](https://www.notion.so)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Notion skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-notion)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Guidance]
+
+**Output Format:** [Notion workspace actions and concise text or Markdown results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions require inputs that match the live connector schema; results depend on the connected account's access and capabilities.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release and metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

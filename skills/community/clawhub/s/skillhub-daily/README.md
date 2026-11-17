@@ -1,298 +1,121 @@
-# SkillHub Daily · 每日 Skill 智能推荐
+# 🐙 SkillHub Daily — 国内技能洞察
 
-> 每日扫描 SkillHub (skillhub.cn) 全站 Top100 + 7 大分类，基于你的痛点精准推荐高价值 Skill。
-> Daily scan of SkillHub, personalized recommendations based on your pain points.
+> 每日扫描 SkillHub.cn 7.5 万+ 技能生态，7 维度推荐 8 个技能，聚焦**国内适配**与**活跃开发者**
 
-[🇨🇳 中文](#中文) · [🇺🇸 English](#english)
+[English](./README.en.md) | 中文
+
+![Version](https://img.shields.io/badge/版本-7.0.1-blue)
+![Platform](https://img.shields.io/badge/平台-SkillHub.cn-green)
+![License](https://img.shields.io/badge/许可证-MIT--0-orange)
 
 ---
 
-## 中文
+## 什么是 SkillHub Daily？
 
-### ✨ 这是什么
+SkillHub Daily 是一个每日推荐引擎，扫描 SkillHub.cn 的 7 大排行榜 + 11 分类搜索 + 关键词搜索（1000+ 候选），通过 7 维度算法精选 8 个技能推荐给你。
 
-**SkillHub Daily** 是一个 Agent Skill，让你的 AI 助手每天自动从 77000+ Skill 中挖出最值得安装的 3-5 个——不靠热度榜单，靠**匹配你的实际痛点**。
+与 [ClawHub Daily](https://clawhub.ai) 互补：ClawHub Daily 聚焦口碑精品与趋势洞察（500 技能），SkillHub Daily 聚焦**国内适配**、**活跃开发者发现**、**双实验室安全审计**（7.5 万+ 技能）。
 
-### 🎯 核心特点
+## 核心特色
 
-- **痛点驱动**：先理解你需要什么，再推荐什么
-- **信息差优先**：收藏率比下载量更真实——"试了就留下"比"试试就扔"更有价值
-- **多通道存储**：IMA 知识库 / 飞书云文档 / Obsidian / 本地
-- **双模式支持**：对话触发 / Cron 定时任务
-- **跨平台**：WorkBuddy / qclaw / OpenClaw / Hermes / 纯脚本
-
-### 📦 安装
-
-#### 方式一：ClawHub 一键安装（推荐）
-
-```bash
-# 在 Agent 对话中
-"帮我安装 skillhub-daily"
-```
-
-#### 方式二：手动安装
-
-```bash
-# qclaw
-cp -r skillhub-daily/ ~/.qclaw/skills/
-
-# WorkBuddy
-cp -r skillhub-daily/ ~/.workbuddy/skills/
-
-# OpenClaw
-cp -r skillhub-daily/ ~/.openclaw/skills/
-
-# Hermes
-cp -r skillhub-daily/ ~/.hermes/skills/
-```
-
-### 🚀 快速开始
-
-#### 1. 选择使用模式
-
-Skill 安装后，Agent 会主动询问：
-
-> 选 **A（常规模式）** 还是 **B（Cron 模式）**？
-
-#### 2. 配置凭证（可选，仅 IMA 推送需要）
-
-编辑 `references/config.json`：
-
-```json
-{
-  "ima_client_id": "<your_client_id>",
-  "ima_api_key": "<your_api_key>",
-  "ima_kb_id": "<your_kb_id>"
-}
-```
-
-#### 3. 触发使用
-
-对话中输入：
-
-- "每日推荐"
-- "SkillHub 日报"
-- "看看有什么好 Skill"
-- "帮我推荐技能"
-
-### ⏰ Cron 定时任务
-
-**qclaw 飞书推送**（每日 07:00）：
-
-```json
-{
-  "schedule": { "kind": "cron", "expr": "0 7 * * *", "tz": "Asia/Shanghai" },
-  "sessionTarget": "isolated",
-  "payload": {
-    "kind": "agentTurn",
-    "message": "请执行 skillhub-daily Skill，按 SKILL.md 步骤 1-7 完成每日推荐。\n\n# 痛点（请直接使用）\n- YouTube 字幕提取\n- 股票分析\n- n8n 工作流\n- Markdown 转换\n- 桌面自动化\n- 文档管理\n\n# 存储\n飞书云文档\n\n请完成后输出 200 字以内的对话摘要。"
-  },
-  "delivery": { "mode": "announce", "channel": "feishu" }
-}
-```
-
-更多模板见 [references/prompt-templates.md](references/prompt-templates.md)
-
-### 📚 文档
-
-| 文档 | 说明 |
+| 特色 | 说明 |
 |------|------|
-| [references/setup-wizard.md](references/setup-wizard.md) | 首次安装模式选择 |
-| [references/platform-adapters.md](references/platform-adapters.md) | 跨平台适配 |
-| [references/prompt-templates.md](references/prompt-templates.md) | Cron 提示词模板 |
-| [references/briefing-template.md](references/briefing-template.md) | 简报格式 |
-| [references/config.md](references/config.md) | 用户配置 |
-| [references/source-contract.md](references/source-contract.md) | API 契约 |
+| 🇨🇳 国内优先 | 重点推荐适配国内生态的技能（飞书/微信/钉钉/小红书/抖音等） |
+| 👤 活跃开发者 | 发现高产开发者及其代表作，追踪值得关注的技能作者 |
+| 🔬 安全审计 | 调用 skillhub skill reports 获取双实验室安全评估 |
+| 📊 AI 质量评估 | 调用 skillhub skill evaluation 获取 6 维度评分 |
+| 🧠 3级权重记忆碰撞 | project_memory×3 / topics×2 / user_profile×1 |
+| 🚫 7天去重 | 跨维度去重，避免重复推荐 |
 
-### 📊 简报示例
+## 7 维度推荐算法
 
-```markdown
-# SkillHub 每日简报 | 2026-06-03
+| 维度 | 数量 | 说明 |
+|------|------|------|
+| 🔥 趋势飙升 | 2 | 同时登上 hot + trending 双榜 |
+| 🚀 新星上线 | 1 | 30 天内上线 + installs > 100 |
+| 🎯 痛点匹配 | 2 | 7 大痛点场景库匹配 |
+| 🧠 记忆碰撞 | 1 | 3 级权重关键词碰撞 |
+| 🇨🇳 国内优先 | 1 | 国内适配信号检测（25 个关键词） |
+| 👤 活跃开发者 | 1 | 高产开发者的代表作 |
+| 🏢 官方认证 | 1(可选) | verified=true |
 
-基于您的记忆痛点（[痛点1]、[痛点2]、[痛点3]）个性化推荐
-
-## 今日推荐（为您精选）
-
-### 1. [技能名称] — [价值描述]
-
-**匹配痛点**：[痛点]
-
-[推荐理由]
-
-**核心能力**：[能力1] → [能力2] → [能力3]
-
-**安装**：`skillhub install [slug]`
-
-## 被埋没的金子 Top 5
-| 排名 | 技能名称 | 收藏率 | 埋没原因 | 爆发潜力 |
-|------|---------|--------|----------|----------|
-| #N | 名称 | X.XX% | 原因 | 高 |
-
-## 全站潜力 Top 10
-| 排名 | 技能名称 | 分类 | 收藏率 | 潜力分 | 推荐理由 |
-|------|---------|------|--------|--------|----------|
-| 1-10 | 名称 | 分类 | X.XX% | XX.XX | 20 字理由 |
-```
-
-### 🤝 贡献
-
-欢迎 PR！参见 [CONTRIBUTING.md](docs/CONTRIBUTING.md)
-
-### 📄 License
-
-MIT © [SkillHub-Community](https://github.com/skillhub-community)
-
----
-
-## English
-
-### ✨ What is this
-
-**SkillHub Daily** is an Agent Skill that makes your AI assistant automatically mine the 3-5 most valuable skills from 77,000+ every day—**not by popularity rankings, but by matching your real pain points**.
-
-### 🎯 Core Features
-
-- **Pain-point driven**: Understand what you need first, then recommend
-- **Information edge first**: Star rate is more honest than download count—"tried and kept" beats "tried and dropped"
-- **Multi-channel storage**: IMA knowledge base / Lark docs / Obsidian / local
-- **Dual mode**: Interactive trigger / Cron scheduled task
-- **Cross-platform**: WorkBuddy / qclaw / OpenClaw / Hermes / pure script
-
-### 📦 Installation
-
-#### Option 1: ClawHub one-click install (recommended)
+## 安装
 
 ```bash
-# In your Agent conversation
-"Help me install skillhub-daily"
+# 1. 安装 skillhub CLI
+npm i -g skillhub
+
+# 2. 登录
+skillhub auth login
+
+# 3. 克隆技能
+git clone https://github.com/EdwardWason/skillhub-daily.git
 ```
 
-#### Option 2: Manual install
+## 使用
+
+### 手动执行
 
 ```bash
-# qclaw
-cp -r skillhub-daily/ ~/.qclaw/skills/
+# 一键执行（抓取 → 推荐 → 三处存放）
+python skillhub_cn_daily_executor.py
 
-# WorkBuddy
-cp -r skillhub-daily/ ~/.workbuddy/skills/
+# 只生成简报，不推送
+python skillhub_cn_daily_executor.py --skip-push
 
-# OpenClaw
-cp -r skillhub-daily/ ~/.openclaw/skills/
-
-# Hermes
-cp -r skillhub-daily/ ~/.hermes/skills/
+# 跳过深度评估（节省时间）
+python skillhub_cn_daily_executor.py --skip-eval
 ```
 
-### 🚀 Quick Start
+### 定时任务
 
-#### 1. Choose your mode
+已配置 TRAE Schedule 定时任务（ID: be17fc27），每天北京时间 06:50 自动执行。
 
-After Skill is installed, the Agent will ask:
+> **用户须知**：运行本技能会自动将推荐简报写入 Obsidian、IMA 知识库、飞书云文档。简报中包含基于本地项目记忆关键词的推荐结果（不含原始记忆内容）。如不需推送，使用 `--skip-push` 参数。
 
-> Choose **A (Interactive mode)** or **B (Cron mode)**?
+## 三处存放
 
-#### 2. Configure credentials (optional, only for IMA push)
+| 目的地 | 方式 | 配置 |
+|--------|------|------|
+| Obsidian inbox | Markdown + frontmatter | OBSIDIAN_VAULT_PATH |
+| IMA FIM 知识库 | 两步流程（create_note + add_knowledge） | IMA_OPENAPI_CLIENTID / IMA_OPENAPI_APIKEY / IMA_KB_ID |
+| 飞书云文档 | lark-cli / lark-doc skill | 飞书授权 |
 
-Edit `references/config.json`:
+> **凭证安全**：所有凭证通过环境变量传递，不硬编码在代码中。请确保环境变量仅在本地配置，不要写入 .env 文件并提交到版本控制。
 
-```json
-{
-  "ima_client_id": "<your_client_id>",
-  "ima_api_key": "<your_api_key>",
-  "ima_kb_id": "<your_kb_id>"
-}
+## 与 ClawHub Daily 互补
+
+| | SkillHub Daily | ClawHub Daily |
+|---|---|---|
+| 平台 | SkillHub.cn（7.5 万+） | ClawHub.ai（500） |
+| 特色 | 🇨🇳 国内优先 / 👤 开发者 / 🔬 安全审计 | 🦞 口碑精品 / 趋势洞察 |
+| 评估 | AI 6维评分 + 双实验室审计 | 口碑率 + 活跃度 |
+| 碰撞 | 3 级权重记忆碰撞 | 痛点关键词匹配 |
+
+## 项目结构
+
+```
+skillhub-cn-daily/
+├── SKILL.md                          # 技能定义
+├── skillhub_cn_daily_executor.py     # 一键执行器
+├── scripts/
+│   ├── fetch_skillhub_cn.py          # 数据抓取
+│   └── daily_recommend.py            # 推荐算法
+├── data/                             # 运行时数据（gitignore）
+│   ├── snapshots/                    # 扫描快照
+│   └── recommended/                  # 推荐结果
+├── .claude-plugin/plugin.json        # 插件配置
+├── CHANGELOG.md
+├── LICENSE
+└── README.md
 ```
 
-#### 3. Trigger usage
+## 依赖
 
-In conversation, say:
+- Python 3.8+
+- skillhub CLI（`npm i -g skillhub`）
+- 已登录 skillhub auth
 
-- "Daily recommendations"
-- "SkillHub brief"
-- "Show me good Skills"
-- "Recommend skills for me"
+## 许可证
 
-### ⏰ Cron Scheduled Task
-
-**qclaw Lark push** (daily 07:00):
-
-```json
-{
-  "schedule": { "kind": "cron", "expr": "0 7 * * *", "tz": "Asia/Shanghai" },
-  "sessionTarget": "isolated",
-  "payload": {
-    "kind": "agentTurn",
-    "message": "Execute skillhub-daily Skill, follow SKILL.md steps 1-7.\n\n# Pain points (use directly)\n- YouTube subtitle extraction\n- Stock analysis\n- n8n workflow\n- Markdown conversion\n- Desktop automation\n- Document management\n\n# Storage\nLark cloud document\n\nOutput a 200-word summary when done."
-  },
-  "delivery": { "mode": "announce", "channel": "feishu" }
-}
-```
-
-More templates: [references/prompt-templates.md](references/prompt-templates.md)
-
-### 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [references/setup-wizard.md](references/setup-wizard.md) | First-time mode selection |
-| [references/platform-adapters.md](references/platform-adapters.md) | Cross-platform adapters |
-| [references/prompt-templates.md](references/prompt-templates.md) | Cron prompt templates |
-| [references/briefing-template.md](references/briefing-template.md) | Briefing format |
-| [references/config.md](references/config.md) | User configuration |
-| [references/source-contract.md](references/source-contract.md) | API contract |
-
-### 📊 Briefing Example
-
-```markdown
-# SkillHub Daily Brief | 2026-06-03
-
-Based on your memory pain points ([pain1], [pain2], [pain3])
-
-## Today's Picks (Curated for You)
-
-### 1. [Skill Name] — [Value description]
-
-**Matches pain point**: [pain]
-
-[Reasoning]
-
-**Core capabilities**: [cap1] → [cap2] → [cap3]
-
-**Install**: `skillhub install [slug]`
-
-## Hidden Gems Top 5
-| Rank | Skill | Star Rate | Why hidden | Potential |
-|------|-------|-----------|------------|-----------|
-| #N | Name | X.XX% | Reason | High |
-
-## Site-wide Potential Top 10
-| Rank | Skill | Category | Star Rate | Score | Why |
-|------|-------|----------|-----------|-------|-----|
-| 1-10 | Name | Cat | X.XX% | XX.XX | 20 chars |
-```
-
-### 🤝 Contributing
-
-PRs welcome! See [CONTRIBUTING.md](docs/CONTRIBUTING.md)
-
-### 📄 License
-
-MIT © [SkillHub-Community](https://github.com/skillhub-community)
-
----
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=skillhub-community/skillhub-daily&type=Date)](https://star-history.com/#skillhub-community/skillhub-daily&Date)
-
-## ClawHub Download History
-
-[![ClawHub Downloads](https://img.shields.io/badge/ClawHub-skillhub--daily-blue)](https://clawhub.com/skills/skillhub-daily)
-
-## 📊 Repository Stats
-
-- **Version**: 6.2.0
-- **License**: MIT
-- **Platforms**: qclaw / WorkBuddy / OpenClaw / Hermes / pure script
-- **Modes**: Interactive / Cron
-- **Daily scan**: 240 skills (Top 100 + 7 categories × Top 20)
+MIT-0

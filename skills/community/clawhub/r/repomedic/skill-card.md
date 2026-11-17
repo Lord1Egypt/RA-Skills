@@ -1,40 +1,56 @@
-## Description: <br>
-Safely triage and remediate GitHub dependency hygiene issues with explicit guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely triage and remediate GitHub dependency hygiene issues with explicit guardrails.
 
-## Publisher: <br>
-[mrummler17](https://clawhub.ai/user/mrummler17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrummler17](https://clawhub.ai/user/mrummler17)
 
-## Use Case: <br>
-Developers and repository maintainers use RepoMedic to triage failing Dependabot updates, dependency vulnerabilities, lockfile drift, and CI or Vercel failures caused by dependency resolution. It emphasizes conservative remediation, explicit approval gates, branch-based changes, and plain-English risk communication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect and modify dependency-related files in a target repository. <br>
-Mitigation: Keep work on a non-default branch, review planned file and version changes before execution, and validate with install, build, test, lint, and audit checks where available. <br>
-Risk: Major upgrades or medium/high-risk dependency changes can introduce runtime or tooling regressions. <br>
-Mitigation: Require explicit approval for major upgrades or non-trivial changes, prefer targeted patch or minor remediation, and stop for confirmation when risk is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [RepoMedic on ClawHub](https://clawhub.ai/mrummler17/repomedic) <br>
-- [mrummler17 publisher profile](https://clawhub.ai/user/mrummler17) <br>
+## Use Case:
 
+Developers and engineering teams use RepoMedic to triage failing Dependabot updates, lockfile drift, transitive vulnerabilities, and dependency-related CI or Vercel failures while keeping remediation tightly scoped.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with structured sections and inline commands or file/version details when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes issue summary, recommended action, risk level, changes made, validation results, plain-English summary, and next step.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency remediation may change lockfiles or package versions and affect build or runtime behavior.
+
+Mitigation: Review planned file and version changes, prefer targeted patch or minor updates, and run install, build, test, lint, and audit checks where available before merging.
+
+Risk: Medium- or high-risk remediation may expand into major upgrades, framework migrations, or uncertain dependency-tree changes.
+
+Mitigation: Require explicit approval before non-trivial edits, present options with risk labels, and stop when the blast radius is unclear.
+
+Risk: Repository write permissions can exceed the least privilege needed for dependency remediation.
+
+Mitigation: Use a branch and PR workflow, avoid direct pushes to main or master, limit workspace changes to the target repository, and do not use unverified credentials.
+
+## Reference(s):
+
+- [RepoMedic on ClawHub](https://clawhub.ai/mrummler17/skills/repomedic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown sections with concise prose, file and version change summaries, validation results, and command snippets when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a Low, Medium, or High risk level and requests approval for non-trivial or higher-risk dependency changes.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

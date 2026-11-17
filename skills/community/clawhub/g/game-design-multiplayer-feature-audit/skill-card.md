@@ -1,42 +1,54 @@
-## Description: <br>
-Audit a game, feature, live-ops layer, social system, or multiplayer concept for the quality and fit of its social design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game, feature, live-ops layer, social system, or multiplayer concept for the quality and fit of its social design.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product leads, and developers use this skill to review multiplayer or social-game concepts for social promise, motivation fit, synchronization demands, community formation, status systems, likely failure modes, and practical recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces advisory design judgments that may be incomplete or wrong for a specific game, audience, platform, or live-ops context. <br>
-Mitigation: Treat the audit as design-review input and validate recommendations with playtesting, player research, telemetry, and domain review before making product changes. <br>
-Risk: Users may include confidential or unreleased game plans when asking for an audit. <br>
-Mitigation: Avoid sharing sensitive material unless permitted by the agent platform and project policy; redact confidential details where possible. <br>
-Risk: Server evidence includes unrelated crypto and purchase capability tags that could mislead users about the skill's behavior. <br>
-Mitigation: Rely on the security summary that identifies the artifact as markdown-only with no code execution, credential access, network behavior, or persistence, and correct the tags before publication when possible. <br>
+## Use Case:
 
+Game designers, product teams, live-ops teams, and developers use this skill to audit multiplayer and social features for motivational fit, coordination cost, social depth, community formation, status design, likely failure modes, and actionable recommendations.
 
-## Reference(s): <br>
-- [Social design dimensions](references/social-design-dimensions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit with structured sections and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code or shell commands; output is advisory design analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can shape design recommendations for multiplayer and social systems, so poor fit or incomplete product context could lead to misleading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs with the game team against the target audience, platform constraints, community goals, and live-ops data before adopting recommendations.
+
+Risk: The skill is documentation-only but may be invoked outside its intended multiplayer and social-design audit scope.
+
+Mitigation: Use it only for multiplayer, social feature, community, status, and related game-design audits; route unrelated implementation, legal, security, or moderation-policy decisions to appropriate experts.
+
+## Reference(s):
+
+- [Social design dimensions](references/social-design-dimensions.md)
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/game-design-multiplayer-feature-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown audit with structured findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing design critique; no code execution, tools, credentials, or automated actions are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Generates detailed offboarding checklists, knowledge transfer plans, compliance steps, manager transitions, and day-by-day timelines for departing employees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates detailed offboarding checklists, knowledge transfer plans, compliance steps, manager transitions, and day-by-day timelines for departing employees.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-HR, IT, operations, and managers use this skill to plan employee departures, revoke access, transfer knowledge, complete HR and compliance actions, and coordinate team transitions before the last day. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated offboarding plans may contain incomplete or incorrect HR, legal, IT, or management steps for a specific organization. <br>
-Mitigation: Have HR, legal, IT, and management review generated plans before acting on them. <br>
-Risk: Employee offboarding prompts can include sensitive personal, employment, access, or systems information. <br>
-Mitigation: Provide only the minimum employee and access-inventory details needed, and never include passwords, tokens, or secrets. <br>
-Risk: The skill creates checklists but does not revoke accounts, remove devices, or enforce policy by itself. <br>
-Mitigation: Treat the output as planning guidance and complete operational actions through approved internal systems and owners. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-offboarding) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AfrexAI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+HR, IT, operations teams, and managers use this skill to generate structured employee offboarding packages covering access revocation, knowledge transfer, HR compliance, manager transitions, and departure timelines.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist and transition plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance only; it does not execute access changes or connect to HR, IT, or identity systems.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated offboarding plans may be treated as authoritative HR, payroll, legal, or IT access controls.
+
+Mitigation: Have HR, legal, IT, and the employee's manager review the plan before acting on payroll, benefits, compliance, legal obligations, or access revocation steps.
+
+Risk: Incomplete employee, role, ownership, or access details can produce an incomplete offboarding checklist.
+
+Mitigation: Provide the employee's role, department, last day, owned systems, key projects, access level, devices, and handover stakeholders before using the output.
+
+## Reference(s):
+
+- [Employee Offboarding Manager on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-offboarding)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AfrexAI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklist and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific offboarding package generated from employee, role, department, access, ownership, and last-day details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

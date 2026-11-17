@@ -1,46 +1,62 @@
-## Description: <br>
-Claw Taming guides an OpenClaw agent through user profiling, persona setup, memory structure, skill and channel planning, and heartbeat checks intended to reduce behavior drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw digital-avatar onboarding system that guides an agent from a blank setup into a persona-driven assistant with memory scaffolding and anti-drift checks.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External OpenClaw users and agent builders use this skill to onboard and tune an agent into a persistent persona with local profile, memory, and self-check files. It is most relevant when an agent needs consistent voice, structured memory, and routine drift or memory-pollution checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to create persistent persona, user profile, memory, and heartbeat files that may contain sensitive personal context. <br>
-Mitigation: Review USER.md, SECRET.md, SOUL.md, HEARTBEAT.md, and .memory after creation; leave sensitive fields blank unless needed and do not store passwords or tokens. <br>
-Risk: Skill expansion and channel integration guidance could lead an agent to add capabilities or connect channels beyond the user's intended scope. <br>
-Mitigation: Manually approve any extra skills or channel integrations before installation or activation. <br>
-Risk: Persona and memory templates can preserve incorrect, stale, or overly personal information if they are not maintained. <br>
-Mitigation: Use the included heartbeat and memory-pollution checks to identify duplicate, contradictory, outdated, or persona-conflicting memory and request user confirmation before correction. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to onboard an agent through user-profile capture, persona setup, memory organization, skill recommendations, channel planning, and heartbeat-style drift checks. It is intended for configuring a personalized long-running assistant rather than a single task workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/claw-taming) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [HEARTBEAT_TEMPLATE.md](artifact/templates/HEARTBEAT_TEMPLATE.md) <br>
-- [MEMORY_TEMPLATE.md](artifact/templates/MEMORY_TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and Markdown file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill prompts the agent to create or maintain local persona, user profile, memory, and heartbeat review files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can create or maintain sensitive profile, secret, persona, and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide where USER.md, SECRET.md, SOUL.md, and .memory files will live before use, avoid storing passwords or tokens, and define retention and deletion rules.
+
+Risk: The skill may recommend or install dependent skills without enough user control or privacy safeguards.
+
+Mitigation: Review dependent skills before installation and approve only the skills needed for the intended workflow.
+
+Risk: The skill is designed for a Chinese-language persona and long-term memory setup, which may not match every deployment.
+
+Mitigation: Install only when that language and memory posture is intentional, and review generated persona and memory files before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/claw-taming)
+- [README](artifact/README.md)
+- [SOUL template](artifact/templates/SOUL_TEMPLATE.md)
+- [Memory system template](artifact/templates/MEMORY_TEMPLATE.md)
+- [Heartbeat inspection template](artifact/templates/HEARTBEAT_TEMPLATE.md)
+- [Kaka growth-log example](artifact/examples/kaka-growth-log.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and generated configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce USER.md, SECRET.md, SOUL.md, memory files, heartbeat reports, and skill or channel setup recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

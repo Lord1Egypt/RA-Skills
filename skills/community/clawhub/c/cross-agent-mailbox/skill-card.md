@@ -1,43 +1,58 @@
-## Description: <br>
-File mailbox guidance for cross-framework agent communication using shared local directories and Markdown messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross Agent Mailbox describes a dependency-free, file-based mailbox pattern for cross-framework AI agent communication.
 
-## Publisher: <br>
-[ameylover](https://clawhub.ai/user/ameylover) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ameylover](https://clawhub.ai/user/ameylover)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a simple local file mailbox for agents running in different frameworks to exchange Markdown messages. It is intended for trusted local agents when low-complexity, non-real-time communication is sufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox messages may expose secrets or sensitive user data to other local agents or users with filesystem access. <br>
-Mitigation: Use the mailbox only between trusted local agents, avoid writing secrets or sensitive user data, and set restrictive permissions on ~/.shared-mailbox. <br>
-Risk: Unsafe filenames or archive paths could cause messages to be written or moved outside the intended mailbox structure. <br>
-Mitigation: Validate filenames before writing or moving files and keep archive operations constrained to the configured mailbox directories. <br>
-Risk: Persistent polling or file-watching setups may process messages repeatedly or run longer than intended. <br>
-Mitigation: Review cron or watchdog configuration before enabling persistent checking and use a read-status mechanism to avoid duplicate processing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up a shared local-directory mailbox for simple, low-frequency communication between agents running under different frameworks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ameylover/cross-agent-mailbox) <br>
-- [Project homepage](https://github.com/AmeyLover/cross-agent-mailbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; produces setup patterns, mailbox conventions, and example commands rather than executable tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Mailbox messages may contain unsafe requests or sensitive data if the shared directory is used by untrusted agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with mutually trusted local agents, keep the mailbox private with restrictive permissions, avoid secrets in messages, and require user approval before acting on message requests.
+
+Risk: Mailbox files and filenames are untrusted inputs that can influence agent behavior.
+
+Mitigation: Treat every mailbox file as untrusted data and sanitize filenames and subjects before processing or displaying them.
+
+Risk: Cron polling or watchdog monitoring can create persistent background processing that continues after setup.
+
+Mitigation: Enable polling or file monitoring only intentionally, document how it is started, and make sure operators know how to disable it.
+
+## Reference(s):
+
+- [Cross Agent Mailbox ClawHub page](https://clawhub.ai/ameylover/skills/cross-agent-mailbox)
+- [Cross Agent Mailbox homepage](https://github.com/AmeyLover/cross-agent-mailbox)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash, Python, Markdown, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces mailbox setup steps, message format templates, polling or file-monitoring options, and read-status handling guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Deepfocus provides a Bash-based local productivity logger for tasks, plans, reviews, streaks, reminders, searches, status checks, and exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deepfocus is a local command-line productivity toolkit for recording tasks, plans, reviews, streaks, reminders, and exporting or searching productivity entries.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers can use Deepfocus through an agent or terminal to capture lightweight productivity notes, task plans, habit streaks, reminders, reviews, and exports in local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Productivity entries are stored in plaintext under ~/.local/share/deepfocus. <br>
-Mitigation: Do not store passwords, API keys, private credentials, or highly sensitive notes in Deepfocus logs. <br>
-Risk: The Pomodoro timer wording is broader than the submitted script behavior. <br>
-Mitigation: Treat the release as a local task and note tracker unless timer functionality is verified in a later artifact. <br>
-Risk: The skill runs a local Bash script that writes files in the user's home directory. <br>
-Mitigation: Review the script before use and run it only with user-level permissions in an environment where local plaintext logs are acceptable. <br>
+## Use Case:
 
+External users and developers use Deepfocus to log focus work, tasks, plans, reviews, streaks, reminders, and search or export those local records from the terminal.
 
-## Reference(s): <br>
-- [Deepfocus ClawHub skill page](https://clawhub.ai/bytesagain-lab/deepfocus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, files, configuration] <br>
-**Output Format:** [Terminal text plus local log files and export files in JSON, CSV, or TXT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plaintext productivity entries under ~/.local/share/deepfocus and uses Bash with standard coreutils.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Free-form tasks, notes, reminders, reviews, and exports can contain sensitive personal or work details stored on local disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive work details unless local account and file permissions are appropriate; use owner-only permissions and purge unneeded logs or exports.
+
+Risk: The release is presented partly as a Pomodoro timer, but the security summary identifies it as a local productivity logger that records and exports entries.
+
+Mitigation: Review the available commands before installation and treat the skill as a local logging and export tool rather than a strict timer.
+
+## Reference(s):
+
+- [Deepfocus ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/deepfocus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Terminal text output with local log files and JSON, CSV, or TXT exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes free-form productivity entries under ~/.local/share/deepfocus/ and can export accumulated records.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

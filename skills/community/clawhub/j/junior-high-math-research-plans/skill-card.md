@@ -1,47 +1,62 @@
-## Description: <br>
-Provides junior-high mathematics teaching resources, lesson plan generation, exercise planning, and teaching progress support based on the 2024 People's Education Press curriculum materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese junior-high math teaching resources, resource lookup, teaching-plan generation, worksheet templates, and progress-planning support based on the 2024 People's Education Press curriculum materials.
 
-## Publisher: <br>
-[ymf508](https://clawhub.ai/user/ymf508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-教育用途免费 <br>
+## Publisher:
 
+[ymf508](https://clawhub.ai/user/ymf508)
 
-## Use Case: <br>
-Mathematics teachers and education staff use this skill to locate grade-specific resource indexes, draft lesson or semester plans, create practice material outlines, and organize review plans for grades 7 through 9. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+教育用途免费
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests local command-execution permission that is broader than the visible teaching-resource and plan-generation behavior requires. <br>
-Mitigation: Review the skill before installing, grant only permissions needed in the target environment, and restrict command execution where possible. <br>
-Risk: Resource indexes reference local Windows teaching-material paths that may not exist or may expose local file organization assumptions. <br>
-Mitigation: Confirm referenced resource locations before classroom use and replace local paths with approved institutional locations if needed. <br>
+## Use Case:
 
+Math teachers and education-support agents use this skill to locate grade-specific teaching resources and draft lesson, chapter, semester, worksheet, review, and exam-preparation materials for grades seven through nine.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ymf508/junior-high-math-research-plans) <br>
-- [README](artifact/README.md) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Seventh Grade Resource Index](artifact/resources/七年级资源索引.md) <br>
-- [Eighth Grade Resource Index](artifact/resources/八年级资源索引.md) <br>
-- [Ninth Grade Resource Index](artifact/resources/九年级资源索引.md) <br>
-- [Lesson Plan Template](artifact/templates/教学计划模板.md) <br>
-- [Study Guide Template](artifact/templates/学案模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON-like JavaScript objects, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include grade, chapter, keyword, schedule, and template-filled teaching-plan details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The server security review marked the package suspicious because it requests unnecessary command-execution permission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with read/write access only where possible, deny command-execution access by default, and enable execution only after a trusted reviewer confirms a specific need.
+
+Risk: The server security review notes that the README recommends an unpinned global CLI install.
+
+Mitigation: Use a trusted, version-pinned installation path and verify the package source before installing or updating.
+
+Risk: Generated teaching plans, worksheets, and resource recommendations may not match a specific class, school policy, or local curriculum requirement.
+
+Mitigation: Have a qualified educator review and adapt generated materials before classroom use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ymf508/skills/junior-high-math-research-plans)
+- [Publisher profile](https://clawhub.ai/user/ymf508)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Teaching plan template](artifact/templates/教学计划模板.md)
+- [Worksheet template](artifact/templates/学案模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown teaching plans and worksheets, text guidance, resource lists, and JavaScript usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated teaching content should be reviewed by an educator before classroom use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Standardizes building local AI and Playwright social media auto-reply tools, including dry-run checks, Windows EXE delivery, and selector templates for Xiaohongshu, Douyin, and Kuaishou. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes building local AI social-media automation tools from requirements through Windows EXE delivery, with selector mapping templates for Xiaohongshu, Douyin, and Kuaishou.
 
-## Publisher: <br>
-[cruciata](https://clawhub.ai/user/cruciata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cruciata](https://clawhub.ai/user/cruciata)
 
-## Use Case: <br>
-Developers and automation builders use this skill to turn a social platform auto-reply requirement into a local Python, Playwright, and Ollama workflow with selector mapping, safety checks, packaging steps, and user-facing run instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated tools may retain authority through a logged-in browser session. <br>
-Mitigation: Use only accounts and content you control, isolate the browser profile used for saved sessions, and inspect generated code and build scripts before running them. <br>
-Risk: Automated social-platform replies can send unintended public messages or trigger account restrictions. <br>
-Mitigation: Keep dry-run as the default, set very small reply limits, and require manual approval before any live send. <br>
-Risk: Platform selector drift or incomplete DOM mapping can target the wrong content or fail silently. <br>
-Mitigation: Calibrate selectors from current screenshots or DOM snippets, verify dry-run candidates against manual expectations, and require a success signal for live sends. <br>
+## Use Case:
 
+Developers and automation builders use this skill to create local Playwright and Ollama social-media auto-reply tools with platform-specific selector maps, dry-run validation, and Windows packaging steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cruciata/social-auto-tool-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers platform, interval, recency, reply limit, once, and interactive parameters for generated tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill.yaml) <br>
+Risk: The generated automation can post replies from logged-in social-media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run as the default, review generated replies, and require explicit confirmation before enabling real sends.
+
+Risk: Generated code may preserve browser profiles or expose tokens and secrets if committed or packaged without review.
+
+Mitigation: Inspect generated code and packaged artifacts for saved profiles, tokens, and secrets before committing, pushing, or distributing them.
+
+Risk: Platform rules may restrict or prohibit automated replies.
+
+Mitigation: Verify the target platform's rules before enabling automation for real accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cruciata/skills/social-auto-tool-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a dry-run-first workflow, platform selector mapping, validation gates, and Windows EXE packaging guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release and artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

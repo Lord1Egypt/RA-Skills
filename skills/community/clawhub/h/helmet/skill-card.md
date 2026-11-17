@@ -1,44 +1,54 @@
-## Description: <br>
-Manage Helmet library accounts in the Helsinki capital region from an AI agent, including renewals, holds, fines, and catalog search for one card or family profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Helmet library accounts in the Helsinki capital region from an AI agent, including renewals, holds, fines, catalog search, and family account summaries.
 
-## Publisher: <br>
-[vijaykodam](https://clawhub.ai/user/vijaykodam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vijaykodam](https://clawhub.ai/user/vijaykodam)
 
-## Use Case: <br>
-External users and their agents use this skill to inspect Helmet library account status, triage overdue loans and pickup-ready holds, renew eligible loans, place or cancel holds, view fines, and search the catalog. It supports single-card and family-profile workflows through the Helmet CLI with JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on locally stored library card numbers, PINs, and session cookies. <br>
-Mitigation: Install only if the user trusts the @helmet-ai/helmet package and keep Helmet configuration files private on the local machine. <br>
-Risk: The skill can perform account-changing actions such as renewing loans, placing holds, and canceling holds. <br>
-Mitigation: Ask before state-changing actions, especially when shared or family profiles are configured. <br>
-Risk: Expired or invalid sessions can cause partial failures across multiple profiles. <br>
-Mitigation: Run helmet status with --json before multi-step workflows and stop for user re-authentication if AUTH_REQUIRED is returned. <br>
+## Use Case:
 
+External users and their agents use this skill to inspect and manage Helmet library accounts, including loans, holds, fines, catalog searches, and multi-profile family summaries.
 
-## Reference(s): <br>
-- [Helmet ClawHub listing](https://clawhub.ai/vijaykodam/helmet) <br>
-- [vijaykodam publisher profile](https://clawhub.ai/user/vijaykodam) <br>
-- [@helmet-ai/helmet npm package](https://www.npmjs.com/package/@helmet-ai/helmet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Helmet CLI commands and JSON-output handling notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the helmet CLI with --json output; requires local Helmet login configuration at ~/.config/helmet/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill installs an unpinned npm CLI that handles library card numbers, PINs, and session cookies locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and npm package are trusted, prefer a reviewed pinned version when available, and protect the local Helmet configuration and session files.
+
+Risk: The skill can guide renewals and hold changes that affect a user's library account.
+
+Mitigation: Review commands before execution and require explicit profile selection for destructive or state-changing operations when multiple profiles are saved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vijaykodam/skills/helmet)
+- [@helmet-ai/helmet npm package](https://www.npmjs.com/package/@helmet-ai/helmet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the helmet CLI with --json for machine-readable account data; state-changing actions require explicit profile selection when multiple profiles exist.]
+
+## Skill Version(s):
+
+0.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

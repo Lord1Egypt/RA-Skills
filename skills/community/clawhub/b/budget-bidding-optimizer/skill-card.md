@@ -1,39 +1,52 @@
-## Description: <br>
-Optimize budget pacing and bid strategy for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic auctions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize budget pacing and bid strategy for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic auctions.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing, growth, and advertising operators use this skill to plan budget pacing, bid strategy, channel roles, tests, and scale or kill rules for paid media campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Budget, bidding, or stop-loss recommendations could be misapplied if they are not checked against current ad-platform data. <br>
-Mitigation: Review recommendations against real campaign metrics and platform constraints before applying changes in an advertising account. <br>
-Risk: Plans may rely on incomplete objective, budget, channel, audience, creative, or seasonality inputs. <br>
-Mitigation: Collect the required inputs, separate observed facts from assumptions, and include rollback or stop-loss conditions before scaling spend. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/budget-bidding-optimizer) <br>
+## Use Case:
 
+External advertisers, growth teams, and marketing operators use this skill to plan budget pacing, bid strategy, channel roles, test matrices, and scale or kill rules across major paid advertising platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured plans, decision rules, and configuration-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code execution, account access, persistence, or hidden data handling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad growth or revenue prompts may cause users to treat ad budget recommendations as spend authorization.
+
+Mitigation: Use the skill as decision support only, verify metrics and platform policy assumptions, and require human approval before changing budgets or bids.
+
+Risk: Paid advertising guidance can be wrong if tracking, billing, policy constraints, or platform data are incomplete.
+
+Mitigation: Separate observed facts from assumptions, validate key inputs, and include rollback or stop-loss conditions when spend risk exists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/budget-bidding-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown with structured strategy sections and example YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces decision-support recommendations, not automatic authorization to spend or change ad accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

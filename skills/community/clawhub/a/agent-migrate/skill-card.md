@@ -1,42 +1,61 @@
-## Description: <br>
-Cross-platform agent migration and deployment for moving OpenClaw agents, backing up and restoring agent state, deploying configurations across environments, and syncing workspaces between development and production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform OpenClaw agent migration and deployment support for backing up, restoring, transferring, and syncing agent state across environments.
 
-## Publisher: <br>
-[haha8d](https://clawhub.ai/user/haha8d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haha8d](https://clawhub.ai/user/haha8d)
 
-## Use Case: <br>
-Developers and engineers use this skill to migrate, back up, restore, and deploy OpenClaw agent state across local, server, WSL, and Docker environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Exporting or syncing agent state can expose sensitive identity, memory, session, configuration, or credential data. <br>
-Mitigation: Inspect the export contents, redact secrets and sensitive memory or session data, and use only trusted private repositories or transfer channels. <br>
-Risk: Restoring an export or pull-mode backup can overwrite local OpenClaw files on the target machine. <br>
-Mitigation: Create a separate backup of the target ~/.openclaw directory before restore and review repository contents before running restore scripts. <br>
-Risk: The GitHub sync workflow can force-push to the remote branch. <br>
-Mitigation: Remove or avoid the force-push path unless rewriting the remote branch is explicitly intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docker Deployment Guide](references/docker-deploy.md) <br>
-- [Agent Migrate ClawHub Page](https://clawhub.ai/haha8d/agent-migrate) <br>
+## Use Case:
 
+Developers and operators use this skill to move, back up, restore, and deploy OpenClaw agent identity, memory, configuration, skills, and workspace state across local machines, servers, WSL, and Docker environments. It is not intended for general file backup or non-agent data migration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes migration, backup, restore, GitHub sync, rollback, and Docker deployment guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can upload or transfer sensitive OpenClaw configuration, memory, identity, and workspace state.
+
+Mitigation: Use only repositories and archives you control, sanitize or encrypt OpenClaw configuration and memory before transfer, and rotate exposed credentials after migration.
+
+Risk: Restore workflows can run generated or retrieved restore.sh scripts.
+
+Mitigation: Inspect restore.sh before running pull or restore workflows, and only restore from trusted archives.
+
+Risk: The GitHub sync workflow includes a force-push fallback that can overwrite remote history.
+
+Mitigation: Remove or disable the force-push fallback before use in shared or production repositories.
+
+Risk: Docker deployment can expose the OpenClaw gateway publicly if ports and volumes are configured loosely.
+
+Mitigation: Avoid public gateway exposure unless strong authentication, pinned images, and restricted volumes are in place.
+
+## Reference(s):
+
+- [Docker Deploy Guide](references/docker-deploy.md)
+- [ClawHub Skill Page](https://clawhub.ai/haha8d/skills/agent-migrate)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash, Dockerfile, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce export archives, restore scripts, and GitHub sync workflows for OpenClaw agent state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

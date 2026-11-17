@@ -1,0 +1,254 @@
+<!-- exemplar
+kind: narrative
+register: dark
+recipe: DARK-FOUR-ACT
+techniques: R1,R2,R3,R4,明暗旅程,颗粒
+palette: 01161E,124559,598392,AEC3B0,EFF6E0
+validated: 四闸 PASS(0P0/0P1/0P2)+渲染评审 v1-v7
+regen: python3 scripts/make_exemplars.py(勿手改本文件)
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>夜松工作室 · 深松木作·三代手作</title>
+<!--
+  scaffold 0.9(aesthete-agent 表现力骨架) · 主题色板(声明): 01161E,124559,598392,6E8F91,99AE9E,9CB7B5,AEC3B0,EFF6E0,F8FBF1
+  四幕明暗旅程 + 颗粒 + 巨字对微字 + 滚动揭示;渐变禁令已遵守。
+  待替换处均标有"替换"注释;替换后跑 report/evidence 验收。
+-->
+<style>:root{
+  --night:#01161E;--pale:#EFF6E0;--mist:#6E8F91;--sage:#9CB7B5;
+  --surface:#AEC3B0;--ink:#01161E;--ink2:#124559;--accent:#598392;
+  --card:#F8FBF1;--line:#99AE9E;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC',Georgia,serif;
+  --sans:-apple-system,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.reveal{opacity:1!important;transform:none!important}}
+body{background:var(--pale);color:var(--ink);font:400 16px/1.8 var(--sans)}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:10px;background:var(--pale);color:var(--night);padding:10px 18px;border-radius:8px;font-weight:700;z-index:99}
+.skip:focus{left:10px}
+.micro{font:600 11px/1.6 var(--sans);letter-spacing:.34em;text-transform:uppercase}
+.night-hero{position:relative;min-height:100svh;background:var(--night);color:var(--pale);overflow:hidden;display:flex;flex-direction:column}
+.night-hero::after{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.07;pointer-events:none}
+.night-hero .wrap{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:110px;padding-bottom:80px;width:100%}
+.night-top{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,48px)}
+.night-top .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:18px;color:var(--pale)}
+.night-top .seal{width:30px;height:30px;border-radius:8px;background:var(--pale);color:var(--night);display:flex;align-items:center;justify-content:center;font-size:15px}
+.night-top nav{display:flex;gap:26px;font-size:13.5px;font-weight:600}
+.night-top nav a{color:var(--mist)}.night-top nav a:hover{color:var(--pale)}
+.hero-eyebrow{color:var(--sage);margin-bottom:26px}
+.night-hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(56px,11.5vw,142px);line-height:1.06;margin-bottom:8px}
+.night-hero h1 .dim{color:var(--mist)}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:34px;flex-wrap:wrap}
+.hero-lede{max-width:520px;font-size:16.5px;line-height:1.9;color:var(--mist)}
+.hero-lede b{color:var(--pale);font-weight:600}
+.hero-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.btn-pale{display:inline-block;background:var(--pale);color:var(--night);font-weight:800;font-size:15px;padding:15px 34px;border-radius:12px;transition:transform .18s ease}
+.btn-pale:hover{transform:translateY(-2px)}
+.btn-ghost-d{border:1.5px solid var(--sage);color:var(--sage);padding:14px 30px;border-radius:12px;font-weight:700;font-size:14.5px;display:inline-block;transition:background .18s ease}
+.btn-ghost-d:hover{background:rgba(174,195,176,.12)}
+.hero-scarcity{font-size:12.5px;color:var(--mist)}
+.hero-rings{position:absolute;right:-16vw;top:50%;transform:translateY(-50%);width:min(62vw,760px);height:min(62vw,760px);z-index:1;pointer-events:none}
+.hero-rings circle{fill:none;stroke-width:1.6}
+.r-grow{stroke-dasharray:2200;stroke-dashoffset:2200;animation:grow 2.6s cubic-bezier(.2,.6,.2,1) forwards}
+.r-grow.d1{animation-delay:.15s}.r-grow.d2{animation-delay:.4s}.r-grow.d3{animation-delay:.7s}.r-grow.d4{animation-delay:1s}.r-grow.d5{animation-delay:1.3s}
+@keyframes grow{to{stroke-dashoffset:0}}
+.side-label{position:absolute;right:26px;bottom:120px;writing-mode:vertical-rl;letter-spacing:.5em;font:600 11px var(--sans);color:var(--mist);z-index:2}
+@media (max-width:900px){.side-label,.hero-rings{display:none}.night-hero h1{font-size:clamp(52px,15vw,96px)}}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;color:var(--mist);font:600 11px var(--sans);letter-spacing:.3em;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue i{display:block;width:1px;height:34px;background:var(--mist);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.35);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+.dawn{background:var(--pale);color:var(--ink)}
+section{padding:96px 0 30px;scroll-margin-top:20px}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.sno{font:800 13px var(--sans);color:var(--accent);letter-spacing:.16em}
+.shead h2{font-family:var(--serif);font-weight:900;font-size:clamp(30px,4.4vw,46px)}
+.ssub{color:var(--ink2);font-size:15.5px;max-width:620px;margin:14px 0 44px}
+.works{display:grid;grid-template-columns:repeat(12,1fr);gap:26px}
+.work{grid-column:span 4;background:var(--card);border-radius:16px;padding:26px 26px 20px;position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
+.work:nth-child(1){grid-column:span 5}
+.work:nth-child(3){grid-column:span 3}
+.work:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.16)}
+.work .ghost{position:absolute;right:14px;top:2px;font:900 84px var(--serif);color:var(--surface);line-height:1;pointer-events:none}
+.work .rings{width:74px;height:74px;display:block;margin:6px 0 16px;position:relative}
+.work h3{font-family:var(--serif);font-size:20px;font-weight:900;margin-bottom:4px;position:relative}
+.work .meta{font-size:13.5px;color:var(--ink2);position:relative}
+.work .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;border-top:1px solid var(--line);padding-top:14px;position:relative}
+.work .price{font-family:var(--serif);font-weight:900;font-size:19px}
+.work .lead{font-size:12.5px;color:var(--ink2)}
+@media (max-width:900px){.works{grid-template-columns:1fr 1fr}.work,.work:nth-child(1),.work:nth-child(3){grid-column:auto}}
+@media (max-width:600px){.works{grid-template-columns:1fr}.work,.work:nth-child(1),.work:nth-child(3){grid-column:auto}}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;counter-reset:step}
+.step{border-top:3px solid var(--ink);padding-top:18px}
+.step::before{counter-increment:step;content:"0" counter(step);font:900 15px var(--sans);color:var(--accent);letter-spacing:.12em}
+.step h3{font-family:var(--serif);font-size:22px;margin:8px 0 10px}
+.step p{font-size:14.5px;color:var(--ink2)}
+.step .law{margin-top:14px;font-size:12.5px;background:var(--surface);border-radius:8px;padding:8px 13px;display:inline-block}
+table.gridtable{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;font-size:14.5px}
+.gridtable caption{text-align:left;font-size:13px;color:var(--ink2);padding:0 0 10px 4px}
+.gridtable th{background:var(--surface);text-align:left;font-weight:700;padding:13px 20px}
+.gridtable td{padding:13px 20px;border-top:1px solid var(--line)}
+.gridtable td.num{font-variant-numeric:tabular-nums;font-weight:700}
+.night-voice{position:relative;background:var(--night);color:var(--pale);padding:96px 0;overflow:hidden}
+.night-voice::after{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.07;pointer-events:none}
+.night-voice .wrap{position:relative;z-index:2}
+.night-voice blockquote{font-family:var(--serif);font-weight:700;font-size:clamp(26px,4.6vw,46px);line-height:1.5;max-width:900px}
+.night-voice blockquote em{font-style:normal;color:var(--sage)}
+.night-voice footer{margin-top:26px;font:400 14px var(--sans);color:var(--mist)}
+.night-book{position:relative;background:var(--night);color:var(--pale);padding:96px 0;overflow:hidden}
+.night-book::after{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.07;pointer-events:none}
+.night-book .wrap{position:relative;z-index:2;display:flex;gap:40px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.night-book h2{font-family:var(--serif);font-weight:900;font-size:clamp(30px,4.6vw,50px);line-height:1.25;margin-bottom:14px}
+.night-book h2 em{font-style:normal;color:var(--sage)}
+.night-book p{color:var(--mist);font-size:15.5px;max-width:540px;line-height:1.9}
+.night-book small{display:block;margin-top:14px;color:var(--mist);font-size:12.5px}
+.night-book .btn-pale{font-size:16px;padding:17px 40px}
+footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(159,179,188,.22);padding:26px 0 54px;font-size:13px;display:flex;gap:12px 30px;flex-wrap:wrap;justify-content:space-between}
+@media (max-width:640px){body{font-size:15px}section{padding:70px 0 16px}.night-top nav{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+<header class="night-hero">
+  <div class="night-top">
+    <a class="brand" href="#"><span class="seal" aria-hidden="true">夜</span>夜松工作室</a>
+    <nav aria-label="主导航"><a href="#works">作品</a><a href="#craft">方法</a><a href="#contact">预约</a></nav>
+    <span class="micro">EST. 2026</span>
+  </div>
+  <svg class="hero-rings" viewBox="0 0 760 760" aria-hidden="true">
+    <g stroke="#9CB7B5">
+      <circle class="r-grow" cx="380" cy="380" r="360"/>
+      <circle class="r-grow d1" cx="380" cy="380" r="290" stroke="#6E8F91"/>
+      <circle class="r-grow d2" cx="380" cy="380" r="222"/>
+      <circle class="r-grow d3" cx="380" cy="380" r="156" stroke="#EFF6E0" stroke-width="2.2"/>
+      <circle class="r-grow d4" cx="380" cy="380" r="96"/>
+      <circle class="r-grow d5" cx="380" cy="380" r="44" stroke="#EFF6E0" stroke-width="2.4"/>
+    </g>
+    <circle cx="380" cy="380" r="9" fill="#EFF6E0"/>
+  </svg>
+  <span class="side-label" aria-hidden="true">夜松工作室 —— 深松木作·三代手作</span>
+  <div class="wrap">
+    <p class="micro hero-eyebrow reveal in">NIGHTPINE · 一句话定位(替换)</p>
+    <h1>巨字主张上行，<br><span class="dim">下行接住它。</span></h1>
+    <div class="hero-row">
+      <p class="hero-lede">两行以内的价值陈述,给一个具体的、可验证的承诺。<b>加粗句只给重点</b>——它会被读得最仔细。</p>
+      <div class="hero-cta">
+        <a class="btn-pale" href="#contact">主行动(替换)</a>
+        <a class="btn-ghost-d" href="#works">次行动</a>
+      </div>
+    </div>
+    <p class="hero-scarcity" style="margin-top:20px">真实稀缺注(替换):如"本周仅余 N 个档期"</p>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">SCROLL<i></i></div>
+</header>
+<main id="main">
+<div class="dawn">
+  <div class="wrap">
+    <section id="works">
+      <div class="shead reveal"><span class="sno">01</span><h2>精选(替换节名)</h2></div>
+      <p class="ssub reveal">节导语:两行以内,说清这一节给用户什么。</p>
+      <div class="works">
+        <article class="work reveal">
+          <span class="ghost" aria-hidden="true">1</span>
+          <!-- 替换:以下为真实作品/条目 -->
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true"><g fill="none" stroke="#9CB7B5" stroke-width="3">cx="37" cy="37" r="32" cx="37" cy="37" r="22" cx="37" cy="37" r="12"</g><circle cx="37" cy="37" r="4.5" fill="#01161E"/></svg>
+          <h3>条目标题 1</h3>
+          <p class="meta">属性一 · 属性二 · 规格</p>
+          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+        </article>
+        <article class="work reveal">
+          <span class="ghost" aria-hidden="true">2</span>
+          <!-- 替换:以下为真实作品/条目 -->
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true"><g fill="none" stroke="#9CB7B5" stroke-width="3">cx="37" cy="37" r="32" cx="37" cy="37" r="25" cx="37" cy="37" r="18" cx="37" cy="37" r="11"</g><g fill="none" stroke="#598392" stroke-width="3">cx="37" cy="37" r="1" stroke="#598392"</g><circle cx="37" cy="37" r="4.5" fill="#01161E"/></svg>
+          <h3>条目标题 2</h3>
+          <p class="meta">属性一 · 属性二 · 规格</p>
+          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+        </article>
+        <article class="work reveal">
+          <span class="ghost" aria-hidden="true">3</span>
+          <!-- 替换:以下为真实作品/条目 -->
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true"><g fill="none" stroke="#9CB7B5" stroke-width="3">cx="37" cy="37" r="32" cx="37" cy="37" r="21" cx="37" cy="37" r="10"</g><g fill="none" stroke="#598392" stroke-width="3">cx="37" cy="37" r="0" stroke="#598392"</g><circle cx="37" cy="37" r="4.5" fill="#01161E"/></svg>
+          <h3>条目标题 3</h3>
+          <p class="meta">属性一 · 属性二 · 规格</p>
+          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+        </article>
+        <article class="work reveal">
+          <span class="ghost" aria-hidden="true">4</span>
+          <!-- 替换:以下为真实作品/条目 -->
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true"><g fill="none" stroke="#9CB7B5" stroke-width="3">cx="37" cy="37" r="32" cx="37" cy="37" r="26" cx="37" cy="37" r="20" cx="37" cy="37" r="14" cx="37" cy="37" r="8"</g><g fill="none" stroke="#598392" stroke-width="3">cx="37" cy="37" r="1" stroke="#598392" cx="37" cy="37" r="3" stroke="#598392"</g><circle cx="37" cy="37" r="4.5" fill="#01161E"/></svg>
+          <h3>条目标题 4</h3>
+          <p class="meta">属性一 · 属性二 · 规格</p>
+          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+        </article>
+        <article class="work reveal">
+          <span class="ghost" aria-hidden="true">5</span>
+          <!-- 替换:以下为真实作品/条目 -->
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true"><g fill="none" stroke="#9CB7B5" stroke-width="3">cx="37" cy="37" r="32" cx="37" cy="37" r="19"</g><circle cx="37" cy="37" r="4.5" fill="#01161E"/></svg>
+          <h3>条目标题 5</h3>
+          <p class="meta">属性一 · 属性二 · 规格</p>
+          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+        </article>
+        <article class="work reveal">
+          <span class="ghost" aria-hidden="true">6</span>
+          <!-- 替换:以下为真实作品/条目 -->
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true"><g fill="none" stroke="#9CB7B5" stroke-width="3">cx="37" cy="37" r="32" cx="37" cy="37" r="16"</g><g fill="none" stroke="#598392" stroke-width="3">cx="37" cy="37" r="0" stroke="#598392"</g><circle cx="37" cy="37" r="4.5" fill="#01161E"/></svg>
+          <h3>条目标题 6</h3>
+          <p class="meta">属性一 · 属性二 · 规格</p>
+          <div class="row"><span class="price">¥ —</span><span class="lead">周期 — 天</span></div>
+        </article>
+      </div>
+    </section>
+    <section id="craft">
+      <div class="shead reveal"><span class="sno">02</span><h2>方法三步(替换节名)</h2></div>
+      <p class="ssub reveal">为什么快不了/为什么必须这样做——写真实的约束,不写口号。</p>
+      <div class="steps reveal">
+        <div class="step"><h3>步骤一</h3><p>做什么,为什么不能省。</p><span class="law">规矩:一条可验证的标准</span></div>
+        <div class="step"><h3>步骤二</h3><p>做什么,为什么不能省。</p><span class="law">规矩:一条可验证的标准</span></div>
+        <div class="step"><h3>步骤三</h3><p>做什么,为什么不能省。</p><span class="law">规矩:一条可验证的标准</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+<section class="night-voice" aria-label="证言">
+  <div class="wrap">
+    <p class="micro" style="color:var(--mist);margin-bottom:30px">03 · 证言</p>
+    <blockquote class="reveal">「一句客户原话,带时间与细节。<em>强调句用次级色。</em>」</blockquote>
+    <footer>—— 客户署名,年份,回访时间</footer>
+  </div>
+</section>
+<section class="night-book" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>收尾行动,<br>先<em>具体</em>,再干脆。</h2>
+      <p>说明第一步做什么、成本与承诺;不合适也给出路。</p>
+      <small>联系方式(替换)　|　营业/响应说明</small>
+    </div>
+    <a class="btn-pale" href="#">主行动</a>
+  </div>
+</section>
+<footer class="site">
+  <div class="wrap" style="display:flex;gap:12px 30px;flex-wrap:wrap;justify-content:space-between;width:100%">
+    <span>© 2026 夜松工作室 NIGHTPINE</span>
+    <span>配色:scaffold 机械验证(PASS · 指纹绑定)——替换内容后重跑 report</span>
+  </div>
+</footer>
+</main>
+<script>
+document.documentElement.classList.add("js");
+const io = new IntersectionObserver((es) => {
+  es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>

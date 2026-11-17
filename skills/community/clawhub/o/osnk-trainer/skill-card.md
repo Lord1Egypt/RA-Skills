@@ -1,44 +1,55 @@
-## Description: <br>
-Pelatih OSNK - Bank soal OSK/OSNK/SNK/Bebras (2006-2025) dengan latihan cerdas, speed run, performance tracking, dan mentoring lengkap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pelatih OSNK - Bank soal OSK/OSNK/SNK/Bebras (2006-2025) dengan latihan cerdas, speed run, performance tracking, dan mentoring lengkap.
 
-## Publisher: <br>
-[jrrqd](https://clawhub.ai/user/jrrqd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrrqd](https://clawhub.ai/user/jrrqd)
 
-## Use Case: <br>
-External learners and coaches use this skill to practice Indonesian informatics olympiad questions, run timed drills, review topic explanations, and track local performance over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Bash helper may contact GitHub for missing question text when bundled or local question files are unavailable. <br>
-Mitigation: Keep the bundled question bank available for offline use, or block outbound network access in stricter environments. <br>
-Risk: The artifact warns that answer keys may not be fully accurate. <br>
-Mitigation: Verify important answers against official TLX TOKI keys, forum explanations, or other trusted references before relying on them. <br>
-Risk: Practice progress and statistics are written to local workspace JSON files. <br>
-Mitigation: Review workspace data retention expectations and clear the local memory files when shared environments require it. <br>
+## Use Case:
 
+Students and coaches preparing for Indonesian informatics olympiad competitions use this skill to practice OSK, OSNK, KSNK, and Bebras questions, run timed drills, review explanations, and track learning progress.
 
-## Reference(s): <br>
-- [OSNK Trainer skill page](https://clawhub.ai/jrrqd/osnk-trainer) <br>
-- [Security documentation](artifact/SECURITY.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text responses with question excerpts, answer prompts, stats, and topic explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local JSON progress and stats; may use an optional GitHub fallback for missing question text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Question retrieval may fall back to mutable content from raw.githubusercontent.com when local question files are unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For reviewed-only or offline deployments, use the bundled local question files and disable network access or remove the GitHub fallback.
+
+Risk: Question answer keys may be inaccurate or differ from official sources.
+
+Mitigation: Cross-check answer keys against official TLX TOKI materials, trusted discussion forums, or other authoritative references before relying on them for assessment.
+
+## Reference(s):
+
+- [OSNK Trainer ClawHub Skill Page](https://clawhub.ai/jrrqd/skills/osnk-trainer)
+- [Security Documentation](SECURITY.md)
+- [OSNK 2026 Syllabus](osnk-2026-silabus.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text training responses with question excerpts, answer guidance, explanations, and progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local progress and statistics JSON in workspace memory.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

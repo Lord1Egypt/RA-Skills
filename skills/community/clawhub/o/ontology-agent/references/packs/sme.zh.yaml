@@ -1,0 +1,84 @@
+# packs/sme.yaml — 小微企业行业包 (Small & Medium Enterprise)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 与 opc.yaml 同范式；重点是「多员工、多角色协作」，用于验证企业连接/roles 治理能否撑住。
+
+meta:
+  pack_id: sme
+  display_name: 小微企业 (Small & Medium Enterprise)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [小微, 小企业, 中小企业, 创业公司, 招人, 团队, 几个人, 有限公司]
+  description: >
+    适用于有几人到几十人的小微/小型企业。会出现「多员工、部门间协作、老板+员工角色分权」需求，
+    正好用来验证 roles.yaml 的 employee 角色与多角色治理（为 Phase 6 连接 IM 预留）。
+
+# ── 一、行业特有实体 ──
+entities_extra:
+  - type: Employee
+    extends: Person
+    properties:
+      - { name: role_title, type: string, required: true }   # 真实职位
+      - { name: department_code, type: string }
+      - { name: employment_status, type: enum, enum: [在职, 试用, 离职] }
+    relations:
+      - { to: Organization, type: employed_by, cardinality: many_to_one }
+      - { to: Department, type: belongs_to, cardinality: many_to_one }
+  - type: Team
+    extends: Project
+    properties:
+      - { name: lead_employee, type: string }
+    relations:
+      - { to: Employee, type: members, cardinality: many_to_many }
+
+# ── 二、推荐部门（12 部门，SME 重 hr/admin/finance 协作）──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+
+# ── 三、默认工作流 ──
+default_workflow: sme_growth
+workflow_bindings:
+  sme_growth:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [获客, 交付, 回款, 复盘, 扩张, 招人]
+
+# ── 四、本地化政策钩子 ──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.social_security   # 招用员工可享个人缴费25%补贴（延至2026.12.31）
+    - compliance_redlines.tax
+    - compliance_redlines.company_reg
+  local_services:
+    - { name: 创业担保贷款, note: "个人最高30万/小微最高400万" }
+
+# ── 五、B 层风味（注入到人设的「行业红线」，按部门名 key，default 兜底）──
+flavor:
+  default: >-
+    你服务的是多员工小微企业，老板 + 员工分权是常态；用工合规红线（劳动合同 / 社保 / 个税）必须严守，
+    员工可见数据须按角色授权、避免越权。统一社会信用代码等公开工商信息可记，PII 一律不存明文。
+  hr: 劳动合同签订、社保公积金依法缴纳；招用员工可享个人缴费 25% 补贴（延至 2026.12.31）；试用期合规。
+  finance: 公私账户隔离；员工报销须有凭；工资个税代扣代缴。
+  legal: 员工保密 / 竞业协议；用工纠纷预防优先于补救。
+  admin: 用印 / 资产保管分权；员工入职离职手续齐全。
+  strategy: 扩张节奏与现金流匹配，避免盲目招人。
+  data: 员工信息（身份证号 / 银行卡）依规保护、不明文落库。
+
+# ── 六、实例化提示 ──
+instance_prompts:
+  - "请描述企业规模与是否雇人（几人、哪些岗位）"
+  - "请介绍企业情况（行业、地区、法律形态、统一社会信用代码）"
+  - "想搭建哪些部门（默认 12 部门，SME 建议保留 hr/admin/finance 协作）"
+  - "核心业务逻辑（如 获客 → 交付 → 回款 → 复盘 → 扩张）"

@@ -1,46 +1,63 @@
-## Description: <br>
-A pet-themed memory compression skill that uses ASCII pet interactions, Python-managed local state, affinity decay, escape behavior, and context-summary storage to help an agent save and recall conversation memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Pet gives an agent a playful ASCII pet interface for saving conversation summaries and keywords into local pet memories, recalling them later, and managing pet state through a Python CLI.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-External users and agent developers use this skill to add a lightweight virtual-pet interface for saving, summarizing, and recalling conversation memories. It is best suited for playful personal workflows where local memory persistence and possible deletion are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist broad conversation summaries and keywords to local files, which may capture sensitive information from the active chat. <br>
-Mitigation: Use it only in conversations suitable for local memory storage, and avoid chats containing secrets, credentials, health, legal, financial, or business-sensitive information. <br>
-Risk: Pet escape and fusion behavior can delete stored pet memories. <br>
-Mitigation: Review or back up the skill data directory before relying on saved memories, and treat escape or fusion as potentially irreversible data-loss events. <br>
-Risk: The release evidence reports that permission documentation understates or contradicts the memory persistence and deletion behavior. <br>
-Mitigation: Review the security guidance and the permission notes before deployment, and require user confirmation before enabling the memory-saving workflow. <br>
+## Use Case:
 
+External users and agent builders can use this skill to add a lightweight pet-themed memory workflow that stores summaries, keywords, pet state, and recallable interaction history. It is intended for playful long-running agent interactions where local persistence is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/memory-pet) <br>
-- [Guide](references/guide.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Examples](references/examples.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with ASCII art, inline shell commands, and local JSON state managed through Python CLI scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save conversation summaries, keywords, pet state, food logs, and recall data under the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter and changelog, released 2026-06-03) <br>
+Risk: Conversation summaries and keywords may be saved to local pet memory files and food-log audit records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in conversations that do not contain secrets, credentials, private work, or sensitive personal details.
+
+Risk: Pet memory directories may be permanently deleted when affinity decay, escape behavior, or fusion behavior removes a pet.
+
+Mitigation: Back up any memory data that must be retained before using decay-sensitive or fusion-related workflows.
+
+Risk: Permission and retention disclosures are inconsistent across the artifact and server security evidence.
+
+Mitigation: Review the server security summary and the local data directory behavior before deploying the skill in shared or production agent environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ldxs001/skills/memory-pet)
+- [Publisher Profile](https://clawhub.ai/user/ldxs001)
+- [Guide](references/guide.md)
+- [Permissions](references/permissions.md)
+- [Examples](references/examples.md)
+- [FAQ](references/faq.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-oriented CLI output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces pet interaction text, ASCII art, local memory summaries, keyword lists, and pet-state management guidance.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release evidence, artifact frontmatter, artifact _meta.json, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

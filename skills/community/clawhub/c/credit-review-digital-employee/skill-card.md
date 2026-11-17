@@ -1,37 +1,53 @@
-## Description: <br>
-Covers credit admission rule scanning, risk planning, intake review, collateral risk management, related-party transaction detection, pre-credit analysis, and review memo workflows for credit reviewers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides credit reviewers with a reference framework for eligibility checks, case intake, pre-loan analysis, collateral and related-party risk review, memo drafting, and risk planning.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Credit reviewers, risk managers, and commercial banking staff use this skill to structure credit-review workflows, identify missing information, surface risk signals, and draft reports that require qualified human review before business use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/credit-review-digital-employee) <br>
+Credit reviewers and authorized lending staff can use this skill as a reference when structuring preliminary credit reviews and drafting review materials. Outputs are working drafts; qualified staff must verify the underlying information and make all credit decisions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured checklists, JSON audit-log examples, and inline shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security evidence marks the release suspicious and advises least-privilege operation, explicit user approval, and avoiding live customer or credit data unless the environment intentionally grants the required financial-system, credit-report, customer-note, and audit-log access.] <br>
+China
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The security review is incomplete: the skill was only partially inspected, one analyzer was degraded, and some local references could not be matched.
+
+Mitigation: Review the full artifact and its referenced materials; install only if the remaining uncertainty is acceptable.
+
+Risk: Credit review materials may include sensitive customer information, and draft analysis could be mistaken for an approval decision.
+
+Mitigation: De-identify sensitive inputs and have authorized, qualified staff verify the source information and review all drafts before use; make credit decisions through the institution's established process.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/credit-review-digital-employee)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text, Markdown]
+
+**Output Format:** [Structured text and Markdown drafts, including checklists, tables, and review memo outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts require qualified human review; the skill does not access institutional systems or make credit decisions.]
+
+## Skill Version(s):
+
+2.0.11 (source: artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

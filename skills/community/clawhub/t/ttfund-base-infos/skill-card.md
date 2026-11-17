@@ -1,40 +1,54 @@
-## Description: <br>
-通过天天基金 API 查询指定基金代码的基金基础信息，包括基金名称、类型、基金公司、当前净值和风险等级等核心数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过天天基金API查询指定基金代码的详细基金信息，包括基金名称、类型、基金公司、当前净值及风险等级等核心数据。
 
-## Publisher: <br>
-[yemeng831-cloud](https://clawhub.ai/user/yemeng831-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yemeng831-cloud](https://clawhub.ai/user/yemeng831-cloud)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch and summarize 天天基金 fund base information for a supplied fund code. It guides API-key setup, constructs the request, and explains returned fields for user-facing fund information lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The user's 天天基金 API key is sent to the skill gateway when fund information is requested. <br>
-Mitigation: Store the key in TTFUND_APIKEY, use a dedicated or limited-scope key if available, and avoid sharing the key in prompts or logs. <br>
-Risk: Returned fund information could be mistaken for investment advice. <br>
-Mitigation: Treat results as informational data for the current lookup and verify important details before making financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to query Tiantian Fund base information by fund code through FUND_BASE_INFOS and receive concise explanations of returned JSON fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yemeng831-cloud/ttfund-base-infos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with JSON business data and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TTFUND_APIKEY and a fund code; returned fund data should be treated as informational, not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/SKILL.md) <br>
+Risk: TTFUND_APIKEY may be exposed through logs, shared terminal output, or copied request examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat TTFUND_APIKEY as a secret and avoid sharing logs or command output that might reveal the key.
+
+Risk: Fund lookup output may be incomplete, unavailable, or misread if request parameters are missing or the remote service returns an error.
+
+Mitigation: Check required parameters, summarize only returned values, and do not fabricate successful results when the service reports an error.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yemeng831-cloud/skills/ttfund-base-infos)
+- [Publisher profile](https://clawhub.ai/user/yemeng831-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON data summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-configured TTFUND_APIKEY for requests to the disclosed Tiantian Fund service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

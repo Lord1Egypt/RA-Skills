@@ -1,0 +1,34 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-skills",
+  "name": "元阁",
+  "package": "@yottameta/yotta-skills",
+  "version": "0.30.14",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "user-skills-dir",
+    "network": "registry",
+    "process": "child-process",
+    "note": "安装器按用户指定 registry 获取技能包；落位前由元信门禁与 hook 评估把关。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "元阁自身作为安装 wrapper，声明落位前安装门禁。"
+  },
+  "hooks": [
+    {
+      "event": "before_install",
+      "require_tool": "scan_skill",
+      "condition": "安装或升级动作进入落位前",
+      "on_fail": "block",
+      "fallback": "wrapper",
+      "evidence": [
+        "audit_log",
+        "exit_code"
+      ]
+    }
+  ]
+}

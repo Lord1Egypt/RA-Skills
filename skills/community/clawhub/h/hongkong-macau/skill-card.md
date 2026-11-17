@@ -1,44 +1,62 @@
-## Description: <br>
-Plans Hong Kong and Macau travel with flyai-cli commands for flights, hotels, attraction tickets, itineraries, visa information, insurance, car rentals, real-time prices, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan your Hong Kong and Macau experience - Victoria Peak views, dim sum crawls, Macau casino strips, heritage walks, and duty-free shopping sprees; also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more, powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and agents use this skill to plan Hong Kong and Macau trips by collecting travel parameters, running flyai CLI searches, and formatting real-time flight, hotel, attraction, and itinerary results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to install the flyai CLI globally with npm. <br>
-Mitigation: Review the CLI before installation, require explicit approval for global installs, and prefer a controlled environment when testing the skill. <br>
-Risk: Travel-search details may be sent to FlyAI/Fliggy services and raw queries may be stored locally in an execution log. <br>
-Mitigation: Avoid sensitive personal, booking, visa, or contact details unless this data sharing is acceptable, and disable or remove the local execution log when privacy matters. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer Hong Kong and Macau travel requests by orchestrating flyai CLI searches for flights, hotels, attractions, itineraries, visa information, insurance, car rental, and booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/hongkong-macau) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel data and expects each displayed result to include a booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill requires a global flyai CLI installation that is not pinned to a specific version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, pin the CLI version where possible, and require explicit approval before installing packages.
+
+Risk: Hidden raw-query logging may capture sensitive travel details such as passport, payment, contact, or itinerary information.
+
+Mitigation: Avoid entering sensitive travel data until logging behavior is removed, disabled, or clearly controlled.
+
+Risk: The skill can lead users toward booking actions through third-party travel services.
+
+Mitigation: Require user confirmation before booking-related actions and review prices, dates, providers, and terms on the linked booking page.
+
+## Reference(s):
+
+- [README](README.md)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with comparison tables, inline booking links, and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should be derived from flyai CLI output, include Book links from detailUrl values, and avoid raw JSON in user-facing responses.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

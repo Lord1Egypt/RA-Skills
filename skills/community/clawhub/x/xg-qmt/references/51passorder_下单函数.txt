@@ -1,0 +1,32 @@
+'''
+51passorder 下单函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+本示例用于演示K线走完下单及立即下单的参数写法差异，旨在帮助您了解如何快速实现下单操作。
+
+python
+
+#coding:gbk
+c = 0
+s = '000001.SZ'
+def init(ContextInfo):
+	# 立即下单 用最新价买入股票s 100股，且指定投资备注
+	passorder(23,1101,account,s,5,0,100,'1',2,'tzbz',ContextInfo) 
+	pass
+
+
+def handlebar(ContextInfo):
+	if not ContextInfo.is_last_bar():
+		#历史k线不应该发出实盘信号 跳过
+		return
+
+	if ContextInfo.is_last_bar():
+		global c
+		c +=1 
+		if c ==1:
+			# 用14.00元限价买入股票s 100股
+			passorder(23,1101,account,s,11,14.00,100,1,ContextInfo)  # 当前k线为最新k线 则立即下单
+			# 用最新价限价买入股票s 100股
+			passorder(23,1101,account,s,5,-1,100,0,ContextInfo)  # K线走完下单
+			# 用最新价限价买入股票s 1000元
+			passorder(23, 1102, account, s, 5, 0,1000, 2, ContextInfo)  # 不管是不是最新K线，立即下

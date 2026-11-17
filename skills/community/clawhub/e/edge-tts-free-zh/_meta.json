@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7dk4dbthr5gprtqk18f7b0j18285t2",
-  "slug": "edge-tts-free-zh",
-  "version": "1.0.1",
-  "publishedAt": 1775616047741
+  "name": "edge-tts",
+  "version": "1.0.0",
+  "description": "免费语音合成技能 - 使用微软 Edge TTS，无需 API Key",
+  "descriptionEn": "Free Text-to-Speech skill using Microsoft Edge TTS - no API key required. Supports multiple Chinese voices including emotional and dialect options.",
+  "summary": "🆓 免费 TTS | 多音色 | 无需 API Key",
+  "summaryEn": "🆓 Free TTS | Multiple Voices | No API Key Required",
+  "author": "Roxy (洛琪希)",
+  "license": "MIT",
+  "keywords": ["tts", "voice", "speech", "edge", "free", "audio"],
+  "homepage": "https://github.com/openclaw/openclaw",
+  "category": "media",
+  "requirements": [],
+  "configExample": "config.example.json"
 }

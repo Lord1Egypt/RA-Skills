@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Skill Vetter Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Skill Vetter-st..."
+  default_prompt: "Use $work-productivity-skill-vetter-workflow-helper to help me Agent users show strong demand for Skill Vetter-style workflows on Clawhub. They need practical help fixing bugs, harden."
+
+policy:
+  allow_implicit_invocation: true

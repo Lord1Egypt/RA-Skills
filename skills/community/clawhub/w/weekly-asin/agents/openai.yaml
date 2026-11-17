@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon ASIN 周报简报"
+  short_description: "经确认后生成单个 ASIN 的运营周报"
+  default_prompt: "使用 $amazon-weekly-asin-brief 经报价确认后为一个已订阅 Amazon ASIN 生成运营周报简报。"

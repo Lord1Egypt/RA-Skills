@@ -1,42 +1,54 @@
-## Description: <br>
-Tire is a command-line assistant for tracking, searching, summarizing, and exporting local home-management activity logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal Tire assistant. Use when you need tire.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers can use Tire to keep simple local records for home-management tasks, review recent entries, inspect summary statistics, search saved text, and export logs as JSON, CSV, or text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tire saves user-entered text in local log files under ~/.local/share/tire. <br>
-Mitigation: Do not enter passwords, tokens, private account details, or sensitive personal information. <br>
-Risk: The artifact does not clearly define installation behavior. <br>
-Mitigation: Verify the CLI install path and review the shell script before installing or running it. <br>
+## Use Case:
 
+External users and developers use Tire as a command-line local activity logger for home-management notes, status checks, searches, statistics, and data export.
 
-## Reference(s): <br>
-- [ClawHub Tire release](https://clawhub.ai/bytesagain3/tire) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local command-line guidance; the bundled shell script writes entries under ~/.local/share/tire and can export JSON, CSV, or text files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill may save arbitrary text passed to Tire commands under ~/.local/share/tire.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive personal data; review or delete ~/.local/share/tire when no longer using the skill.
+
+Risk: Security evidence marks the release suspicious because Tire branding does not match its generic local activity logger behavior.
+
+Mitigation: Review the skill behavior before installation and limit use to non-sensitive local notes.
+
+## Reference(s):
+
+- [ClawHub Tire skill page](https://clawhub.ai/bytesagain3/skills/tire)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text CLI output and local JSON, CSV, or text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores logs and exported files under ~/.local/share/tire.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

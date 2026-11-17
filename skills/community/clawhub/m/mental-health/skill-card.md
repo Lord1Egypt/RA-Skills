@@ -1,45 +1,62 @@
-## Description: <br>
-Mental Health helps users with mood checks, breathing exercises, journaling prompts, mental-health resources, stress management, and gratitude practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+心理健康助手。情绪自查、呼吸练习、情绪日记、心理资源、压力管理、感恩练习。Mental health tool with mood check, breathing exercises, journaling, resources, stress management.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users can use this skill for self-guided wellness check-ins, breathing exercises, journaling, stress-management suggestions, and pointers to mental-health resources. It is not a substitute for professional mental-health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store wellness or mental-health entries in local plaintext files. <br>
-Mitigation: Review storage paths before use, avoid entering highly sensitive or crisis details, and remove local data manually when retention is not desired. <br>
-Risk: The reviewed reset behavior does not actually delete stored data. <br>
-Mitigation: Do not rely on the advertised reset command for deletion; inspect and remove the relevant local files directly. <br>
-Risk: Users may treat self-guided wellness output as professional mental-health care. <br>
-Mitigation: Keep the disclaimer visible and direct users with severe distress, self-harm thoughts, or ongoing impairment to emergency or professional resources. <br>
+## Use Case:
 
+External users can use this skill for self-care support such as mood check-ins, breathing exercises, journaling prompts, stress-management suggestions, gratitude practice, and mental-health resource pointers. It is not a replacement for professional mental-health care or emergency services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/mental-health) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Feedback and feature requests](https://bytesagain.com/feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown and terminal text with shell command examples and local text log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append wellness or journal entries to local plaintext files depending on the invoked script and command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Sensitive wellness or journal entries may be saved locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive details unless local file permissions, retention, and access controls are acceptable.
+
+Risk: The reset command may not clear previously recorded tracker data.
+
+Mitigation: Confirm and manually remove local data files before assuming records have been deleted.
+
+Risk: Emergency and crisis resources are focused on the listed Chinese hotline context.
+
+Mitigation: Users outside that context should use local emergency, crisis, or medical services instead of relying on the listed numbers.
+
+Risk: Command behavior is inconsistent for a high-trust health context.
+
+Mitigation: Review available commands and test expected behavior before offering the skill to end users.
+
+## Reference(s):
+
+- [Mental Health on ClawHub](https://clawhub.ai/bytesagain-lab/skills/mental-health)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like terminal text and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wellness prompts, crisis-resource pointers, and local tracker output.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

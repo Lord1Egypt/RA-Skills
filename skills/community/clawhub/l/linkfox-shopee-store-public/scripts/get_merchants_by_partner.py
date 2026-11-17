@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — get_merchants_by_partner (v2.public.get_merchants_by_partner)
+Shopee Store — get_merchants_by_partner
+
 官方: https://open.shopee.com/documents/v2/v2.public.get_merchants_by_partner?module=104&type=1
+
+入参说明见 references/apis/get-merchants-by-partner.md。
 """
 
 from __future__ import annotations
@@ -10,7 +13,6 @@ import json
 import sys
 
 from _public_api_runner import run_public_api
-from _shopee_public_common import emit_result, lf_inline_flag
 
 
 def main() -> None:
@@ -18,8 +20,7 @@ def main() -> None:
         print("Usage: get_merchants_by_partner.py '<JSON>'", file=sys.stderr)
         sys.exit(1)
     params = json.loads(sys.argv[1])
-    inline = lf_inline_flag()
-    emit_result(run_public_api("get_merchants_by_partner", params, "get_merchants_by_partner.py"), inline)
+    print(json.dumps(run_public_api("get_merchants_by_partner", params, "get_merchants_by_partner.py"), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":

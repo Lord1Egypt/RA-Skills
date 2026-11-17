@@ -1,40 +1,58 @@
-## Description: <br>
-Multica Manager helps an agent assign, monitor, control, and summarize work across named Multica agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multica Manager helps an agent coordinate Multica task assignment, progress monitoring, control actions, and result summaries across named worker agents.
 
-## Publisher: <br>
-[andy-gaoyue](https://clawhub.ai/user/andy-gaoyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy-gaoyue](https://clawhub.ai/user/andy-gaoyue)
 
-## Use Case: <br>
-External users or developers use this skill to delegate work to Multica agents, check progress, control running tasks, and summarize completed results for the requester. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or control Multica tasks and forward content to agent sessions with broad authority. <br>
-Mitigation: Require explicit confirmation before task creation, stop or restart commands, and session-message fallback. <br>
-Risk: Task titles, messages, and local task logs may contain sensitive information. <br>
-Mitigation: Avoid secrets or sensitive business details in delegated task content and periodically review or clear local Multica task logs. <br>
+## Use Case:
 
+Developers or operators using Multica can use this skill to coordinate work among named agents, issue tasks, check status, and summarize completed results for a user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy-gaoyue/multica-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Multica issues, query agent status, write local task logs, and use a session-message fallback when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Broad trigger phrases can create tasks, stop or restart work, or send cross-session messages without clear confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and a specific agent, task title, and action before issuing Multica control commands or fallback session messages.
+
+Risk: Task titles, messages, and logs may expose sensitive user or business data.
+
+Mitigation: Avoid sensitive data in task titles and logs, and review task messages before sending them to other agents.
+
+Risk: Result summaries may overstate completion if issue comments or agent status are stale or incomplete.
+
+Mitigation: Check current issue status and agent state before reporting completion, and label uncertain or missing outputs clearly.
+
+## Reference(s):
+
+- [Multica Manager ClawHub release](https://clawhub.ai/andy-gaoyue/skills/multica-manager)
+- [Skill source artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Multica CLI commands, task status summaries, issue records, control recommendations, and fallback session messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

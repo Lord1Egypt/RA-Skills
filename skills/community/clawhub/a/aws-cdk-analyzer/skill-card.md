@@ -1,40 +1,48 @@
-## Description: <br>
-Analyze AWS CDK applications for best practices, security, cost optimization, and deployment safety - covers construct patterns, IAM policies, and CloudFormation output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze AWS CDK applications for best practices, security, cost optimization, and deployment safety - covers construct patterns, IAM policies, and CloudFormation output.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and infrastructure engineers use this skill to review AWS CDK applications before deployment or during audits, focusing on security, cost, best practices, and deployment safety.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask an agent to run AWS CDK synth or diff commands, which can execute project code and use existing AWS access.
+
+Mitigation: Use the skill only on trusted CDK projects or inside an isolated environment, prefer a lockfile-verified local CDK install with npx --no-install, remove unrelated secrets and AWS credentials, and use a narrowly scoped read-only AWS role only when live diff access is explicitly needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to review AWS CDK applications, IAM policies, construct patterns, resource configuration, cost risks, and deployment safety before release or during infrastructure audits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: CDK and IAM review can expose sensitive infrastructure details while analyzing the target repository or stack. <br>
-Mitigation: Use the skill only on repositories and stacks intended for review, and avoid sharing generated analysis outside the authorized project team. <br>
-Risk: Suggested CDK, IAM, or deployment changes may affect security, cost, or data retention if applied without review. <br>
-Mitigation: Have an infrastructure owner review recommendations and run normal CDK diff, change-set, and deployment approval checks before applying changes. <br>
+**Output Format:** [Markdown report with severity-ranked findings, recommendations, tables, and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/aws-cdk-analyzer) <br>
+**Other Properties Related to Output:** [May include security issues, cost estimates, best-practice findings, deployment safety notes, and remediation guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with findings, recommendations, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings may be grouped by severity, cost optimization, and good practices.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

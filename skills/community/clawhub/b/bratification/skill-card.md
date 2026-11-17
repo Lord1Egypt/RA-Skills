@@ -1,41 +1,58 @@
-## Description: <br>
-Generate brat-style text cover images and sticker-like WhatsApp-safe outputs from custom text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate brat-style text cover images and sticker-like WhatsApp-safe outputs from custom text.
 
-## Publisher: <br>
-[sqizzo](https://clawhub.ai/user/sqizzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sqizzo](https://clawhub.ai/user/sqizzo)
 
-## Use Case: <br>
-Developers and external agents use this skill to turn short text or !brat-style commands into square brat-style cover images and sticker-like outputs for chat delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan found no concrete issue, but the review was described as limited. <br>
-Mitigation: Install only when the visible skill files and publisher context match the expected brat-style image generation purpose. <br>
-Risk: Native WhatsApp sticker upload is not verified by the artifact notes. <br>
-Mitigation: Use 512x512 PNG delivery without a caption for sticker-like behavior, and treat WEBP as optional until native sticker support is confirmed. <br>
+## Use Case:
 
+External users and developers use this skill to generate brat-style text cover images, parse !brat command input, and prepare PNG-first sticker-like image outputs for WhatsApp-style delivery.
 
-## Reference(s): <br>
-- [Delivery Notes](references/delivery-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sqizzo/bratification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-producing Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG as the primary image output and WEBP as an optional artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Untrusted workspace users could interfere with generated files in the managed scripts/out directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces and avoid letting untrusted users write inside the skill's scripts/out directory.
+
+Risk: Very large image sizes or text inputs could cause unnecessary local resource use.
+
+Mitigation: Use normal, user-approved output paths and reasonable image sizes and text lengths.
+
+Risk: WhatsApp delivery may send generated files as image media rather than verified native stickers.
+
+Mitigation: Use PNG sticker-like image delivery unless the outbound layer is verified to support native sticker payloads.
+
+## Reference(s):
+
+- [Delivery Notes](references/delivery-notes.md)
+- [ClawHub skill page](https://clawhub.ai/sqizzo/skills/bratification)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [PNG and WEBP image files, JSON path metadata, and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PNG is the primary delivery format; WEBP is optional until native sticker upload support is verified.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

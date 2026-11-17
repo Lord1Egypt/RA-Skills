@@ -1,0 +1,9 @@
+{
+  "id": "weekday-meal-plan",
+  "version": "0.1.0",
+  "algorithm": "sha256",
+  "files": {
+    "SKILL.md": "ab4ee14fe776ee9f4f83e11aaea0f79e717621b14c76cf375736aa855a2d2203",
+    "references/catalog.json": "ab12eca0ec52e5b82ddd668078f78e3471d1b7828003688a46ecfda33485c0cb"
+  }
+}

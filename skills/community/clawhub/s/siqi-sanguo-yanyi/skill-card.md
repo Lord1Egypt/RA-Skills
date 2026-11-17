@@ -1,41 +1,53 @@
-## Description: <br>
-A Chinese educational reading-notes skill that helps elementary students read Romance of the Three Kingdoms by producing chapter notes, response-writing outlines, thinking questions, character analysis, and historical-background summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+思齐的三国演义读书笔记 is a Chinese-language reading helper for elementary students that generates Romance of the Three Kingdoms chapter-note outlines, reflection-writing ideas, thinking questions, character summaries, and historical-background summaries.
 
-## Publisher: <br>
-[kelvinxfan](https://clawhub.ai/user/kelvinxfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelvinxfan](https://clawhub.ai/user/kelvinxfan)
 
-## Use Case: <br>
-External learners, parents, and teachers use this skill to generate Chinese study notes, reading-response outlines, and discussion questions for specific chapters of Romance of the Three Kingdoms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated study notes may contain inaccurate interpretation or content that is not age-appropriate for an elementary student. <br>
-Mitigation: Review generated notes for accuracy, age appropriateness, and alignment with the assigned chapter or edition before using them for study. <br>
-Risk: The skill may activate in unrelated conversations if invoked too broadly. <br>
-Mitigation: Invoke the skill by name when requesting a chapter summary or reading note. <br>
+## Use Case:
 
+External Chinese-language learners, especially elementary students, use this skill to draft chapter reading notes and reading-reflection outlines for Romance of the Three Kingdoms. It helps organize plot summaries, themes, character analysis, important passages, and discussion questions by chapter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelvinxfan/siqi-sanguo-yanyi) <br>
-- [Artifact skill definition](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown study notes, outlines, summaries, and questions in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chapter-specific educational responses; no code, network access, credentials, or persistence are reported in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Study-note outputs may be incomplete or misaligned with a student's assigned edition, chapter scope, or teacher expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated notes against the source chapter and assignment instructions before using them for schoolwork.
+
+Risk: The activation and language expectations are broad, which may lead to responses that do not match the intended Chinese elementary-school reading-note format.
+
+Mitigation: Ask for a specific chapter, desired note sections, and Chinese-language output when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelvinxfan/skills/siqi-sanguo-yanyi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language study notes and writing guidance tailored to the requested chapter.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

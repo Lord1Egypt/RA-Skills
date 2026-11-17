@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+.eggs/
+node_modules/
+.DS_Store
+.idea/
+.vscode/
+*.log
+.env
+.env.*
+!*.env.example
+
+# Local editor / agent config (do not publish)
+.cursor/

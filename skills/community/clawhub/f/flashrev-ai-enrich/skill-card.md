@@ -1,43 +1,63 @@
-## Description: <br>
-Enrich CSV lead lists through the flashrev-ai-enrich CLI with dry-run estimates, sample previews, token checks, and mapped outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an AI agent needs to enrich a CSV lead list through the flashrev-ai-enrich npm CLI.
 
-## Publisher: <br>
-[flashlabs-ai](https://clawhub.ai/user/flashlabs-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flashlabs-ai](https://clawhub.ai/user/flashlabs-ai)
 
-## Use Case: <br>
-External users, sales operations teams, and agents use this skill to enrich CSV lead lists with FlashRev data while confirming credentials, token balance, input mappings, cost estimates, and sample output before live runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI uses a sensitive FlashRev API key and processes CSV contact or business data. <br>
-Mitigation: Use the FLASHREV_API_KEY environment variable, avoid printing or storing the key in generated artifacts, and confirm which CSV columns will be sent before live enrichment. <br>
-Risk: Paid enrichment can consume FlashRev tokens, especially when prompt routing or unlock capabilities are used. <br>
-Mitigation: Check token balance, run dry-run estimates, review the sample preview, and avoid --yes unless the user has already approved the cost and output path. <br>
-Risk: The customer_api capability can send mapped CSV fields to user-selected third-party URLs. <br>
-Mitigation: Confirm the destination domain with the user, avoid mapping credentials or unrelated PII into headers or bodies, and prefer first-party FlashRev capabilities when they cover the requested data. <br>
+## Use Case:
 
+Developers and business operations teams use this skill to guide agents through schema-first FlashRev CSV enrichment for lead, company, person, contact, search, scrape, and row-level LLM workflows. It emphasizes live capability discovery, explicit mapping, dry-run validation, sample review, and token or credit spend reporting before full runs.
 
-## Reference(s): <br>
-- [FlashRev AI Enrich API Contract](references/api_contract.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/flashlabs-ai/flashrev-ai-enrich) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, CSV files] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON-capable status output, and enriched CSV output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FlashRev API key and available tokens; live runs should follow dry-run and sample-preview confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Contact enrichment can unlock paid lead data and consume tokens or credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run token checks, dry-runs, and sample previews before live enrichment, and continue only after the user approves the spend and reviewed sample.
+
+Risk: The FLASHREV_API_KEY could be exposed through files, logs, generated artifacts, or mapped request fields.
+
+Mitigation: Keep FLASHREV_API_KEY in the environment, never print it, and never map API keys, OAuth tokens, passwords, cookies, or unrelated PII into customer_api headers or body.
+
+Risk: The customer_api capability can send lead data to third-party URLs and can be used for internal-network requests.
+
+Mitigation: Use customer_api only after confirming the destination domain and mapped fields; require separate explicit approval before --allow-internal-targets.
+
+Risk: DNS rebinding or unrestricted outbound access may bypass documented host guardrails in sensitive corporate or cloud environments.
+
+Mitigation: Restrict outbound network access with operating-system firewall rules or network ACLs when running this skill in sensitive environments.
+
+## Reference(s):
+
+- [FlashRev AI Enrich API Contract](references/api_contract.md)
+- [FlashRev AI Enrich on ClawHub](https://clawhub.ai/flashlabs-ai/skills/flashrev-ai-enrich)
+- [FlashRev Private App Key Settings](https://info.flashlabs.ai/settings/privateApps)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON report handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to produce enriched CSV outputs through the FlashRev CLI, with dry-run, sample preview, status counts, row errors, and token or credit spend reporting.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

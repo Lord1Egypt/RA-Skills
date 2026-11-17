@@ -1,40 +1,48 @@
-## Description: <br>
-GoFundMe campaign creation and optimization assistant that helps users draft campaign pages, write fundraising stories, set goals, and plan promotion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users create, improve, and promote GoFundMe fundraising campaigns with campaign copy, realistic goals, and sharing strategies.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to draft GoFundMe campaign titles, stories, fundraising goals, and social sharing templates, and to receive campaign-improvement guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: GoFundMe fees, policies, and withdrawal rules may change after the skill's advice is generated.
+
+Mitigation: Verify current GoFundMe fees, policies, and withdrawal rules before relying on the guidance for a real fundraiser.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to create or improve GoFundMe campaigns, including campaign titles, fundraising stories, goal-setting guidance, and social sharing copy. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign drafts may include inaccurate claims, fees, dollar amounts, photos, or beneficiary details. <br>
-Mitigation: Verify factual claims, amounts, photos, and beneficiary information before publishing campaign content. <br>
-Risk: Fundraising stories may expose private hardship, medical, financial, or family information. <br>
-Mitigation: Get consent before sharing sensitive personal details and remove information that beneficiaries do not want public. <br>
+**Output Format:** [Markdown or plain text guidance with campaign copy, campaign recommendations, and social sharing templates.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/gofundme) <br>
+**Other Properties Related to Output:** [No code execution, installation behavior, credential handling, persistence, or hidden authority.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with campaign copy, checklists, and social sharing templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or system access.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

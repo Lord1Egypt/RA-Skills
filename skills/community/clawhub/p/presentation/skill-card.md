@@ -1,42 +1,49 @@
-## Description: <br>
-A comprehensive AI agent skill for creating and delivering presentations that actually work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for creating and delivering presentations that actually work.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External users and agents use this skill to plan, structure, write, rehearse, and follow up on presentations, including executive updates, investor pitches, team presentations, conference talks, and difficult-topic briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as deck or presentation may invoke the skill more often than a narrowly scoped skill would. <br>
-Mitigation: Confirm the user is asking for presentation planning, slide structure, speaker notes, question preparation, delivery coaching, or follow-up before applying the skill. <br>
-Risk: Presentation coaching may produce persuasive framing that is unsuitable for sensitive, misleading, or high-stakes communications if used without review. <br>
-Mitigation: Review generated narratives, slide recommendations, speaker notes, and follow-up drafts for accuracy, audience fit, and organizational policy before delivery. <br>
+## Use Case:
 
+Developers, business users, executives, founders, managers, speakers, and other presentation authors use this skill to plan narratives, structure slide decks, prepare speaker notes, anticipate audience questions, coach delivery, and draft follow-up materials.
 
-## Reference(s): <br>
-- [Presentation ClawHub listing](https://clawhub.ai/Duclawbot/presentation) <br>
-- [Presentation usage examples](examples.md) <br>
-- [Presentation heartbeat guide](heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, outlines, speaker notes, question preparation, follow-up drafts, and presentation structure recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only presentation coaching; no tools, credentials, code execution, or external data access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate on broad presentation-related words.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger behavior before installation and adjust workflow routing if broad presentation triggers are not desired.
+
+## Reference(s):
+
+- [Presentation skill page](https://clawhub.ai/duclawbot/skills/presentation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; no executable code, credential access, persistence, or privileged behavior according to ClawHub security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

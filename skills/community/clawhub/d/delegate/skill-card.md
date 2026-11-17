@@ -1,41 +1,58 @@
-## Description: <br>
-Route tasks to sub-agents with optimal model selection, error recovery, and result verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route tasks to sub-agents with optimal model selection, error recovery, and result verification.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and coding agents use Delegate to decide when to route research, implementation, analysis, review, and file-processing tasks to sub-agents, with model-tier selection, retry guidance, and result checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Delegated coding or research work may be incorrect, incomplete, or based on missing context. <br>
-Mitigation: Review sub-agent results, run tests or syntax checks for code, verify created files, and spot-check research sources before relying on the output. <br>
-Risk: Retrying delegated tasks can repeat or amplify actions that have external side effects. <br>
-Mitigation: Use the documented abort criteria, retry only when the task is safe to repeat, and review changes, tests, and commits before acceptance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Delegate on ClawHub](https://clawhub.ai/ivangdavila/delegate) <br>
-- [Error Recovery Patterns](errors.md) <br>
-- [Spawn Templates](templates.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to decide when to delegate work to sub-agents, choose an appropriate model tier, provide scoped task context, recover from failed delegations, and verify returned results.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown instructions, checklists, and task templates with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegated outputs should be reviewed, tested, and checked against requested completion criteria before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Delegated tasks may expose sensitive context to sub-agents when broad history or unnecessary files are included.
+
+Mitigation: Keep delegated context minimal and send only the files or details needed for the sub-agent's task.
+
+Risk: Timeout recovery can interrupt unfinished sub-agent work and logged state may contain private details.
+
+Mitigation: Ping for status before terminating a sub-agent, retry only when the task remains necessary, and avoid placing sensitive details in recovery notes.
+
+Risk: Sub-agent outputs can be incomplete, incorrectly formatted, or hallucinate files and sources.
+
+Mitigation: Verify returned work by running tests or syntax checks, confirming files exist, spot-checking data, and confirming cited sources.
+
+## Reference(s):
+
+- [Delegate Skill Page](https://clawhub.ai/ivangdavila/skills/delegate)
+- [Error Recovery Patterns](artifact/errors.md)
+- [Spawn Templates](artifact/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured checklists, tables, and task templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides delegation prompts, model-tier guidance, error recovery steps, and verification checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

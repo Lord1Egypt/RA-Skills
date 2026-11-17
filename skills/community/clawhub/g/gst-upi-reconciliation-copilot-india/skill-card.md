@@ -1,41 +1,59 @@
-## Description: <br>
-Reconciles Indian GST invoice CSVs with UPI transaction CSVs and produces matched, unmatched, and summary reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconcile Indian GST invoice data with UPI transaction statements and produce audit-ready matched and unmatched reports.
 
-## Publisher: <br>
-[rishabh7464-hue](https://clawhub.ai/user/rishabh7464-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabh7464-hue](https://clawhub.ai/user/rishabh7464-hue)
 
-## Use Case: <br>
-Finance, operations, and accounting users in India use this skill to compare GST invoice exports against UPI collection statements, identify missing payments, and prepare month-end reconciliation outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GST and UPI exports can contain sensitive tax, payment, and customer information. <br>
-Mitigation: Run the reconciliation locally on trusted CSVs and write reports to a private folder rather than a shared or synced location unless that is appropriate. <br>
-Risk: Accounting or audit decisions may be wrong if source CSVs are incomplete, malformed, or mapped to unexpected columns. <br>
-Mitigation: Review the generated unmatched reports and summary metrics against the source exports before relying on them for accounting or audit decisions. <br>
+## Use Case:
 
+Business users, accountants, and finance operations teams use this skill to reconcile Indian GST invoice CSVs against UPI collection statements, generate matched and unmatched reports, and identify follow-up actions for month-end books or audit review.
 
-## Reference(s): <br>
-- [CSV Schemas](references/csv-schemas.md) <br>
-- [ClawHub release page](https://clawhub.ai/rishabh7464-hue/gst-upi-reconciliation-copilot-india) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated CSV and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-provided CSVs and writes reconciled, GST-unmatched, UPI-unmatched, and summary report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may contain sensitive financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted GST and UPI exports only, write outputs to a private dedicated folder, and limit report sharing.
+
+Risk: CSV report safety issues may affect spreadsheet review.
+
+Mitigation: Sanitize CSV outputs for spreadsheet formulas before opening or sharing them.
+
+Risk: Reconciliation integrity may be affected by missing statuses or duplicate or blank invoice numbers.
+
+Mitigation: Validate missing statuses plus duplicate or blank invoice numbers before using reports for books, collections, or audit decisions.
+
+## Reference(s):
+
+- [CSV Schemas](references/csv-schemas.md)
+- [ClawHub Skill Page](https://clawhub.ai/rishabh7464-hue/skills/gst-upi-reconciliation-copilot-india)
+- [Publisher Profile](https://clawhub.ai/user/rishabh7464-hue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, CSV report files, and JSON summary output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates reconciled CSV rows, GST-unmatched CSV rows, UPI-unmatched CSV rows, a summary JSON report, and human-facing next actions for unmatched records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

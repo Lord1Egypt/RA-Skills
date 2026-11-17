@@ -1,41 +1,59 @@
-## Description: <br>
-Find a high-volume BTC-related Polymarket priced between 40% and 60%, buy 1 USD of YES, hold for 5 minutes, sell, wait 5 minutes, and repeat until 10 completed buy cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find a high-volume BTC-related Polymarket priced between 40% and 60%, buy 1 USD of YES, hold for 5 minutes, sell, wait 5 minutes, and repeat until 10 completed buy cycles.
 
-## Publisher: <br>
-[skybinjf](https://clawhub.ai/user/skybinjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skybinjf](https://clawhub.ai/user/skybinjf)
 
-## Use Case: <br>
-External developers and operators can use this skill to run a configurable Polymarket BTC-market trading loop, previewing it in dry-run mode before optionally enabling live orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket orders using wallet credentials. <br>
-Mitigation: Run dry-run first, use a dedicated low-balance wallet, and provide WALLET_PRIVATE_KEY only when live trading is intentional. <br>
-Risk: Automated trading parameters can create repeated exposure across multiple buy cycles. <br>
-Mitigation: Keep BUY_USD and MAX_BUYS small until behavior is verified for the intended market and account. <br>
+## Use Case:
 
+External developers and trading automation operators use this skill to run or dry-run a fixed Polymarket BTC market trading cycle. It discovers an eligible market, prepares market-style YES orders, and controls buy, hold, sell, and pause loops.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skybinjf/polymarket-5m-trading) <br>
-- [Polymarket CLOB Endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run; live trading requires --live and WALLET_PRIVATE_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Live mode can place real Polymarket orders and lose money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in dry-run unless intentionally passing --live, and use a dedicated low-balance wallet for live execution.
+
+Risk: Wallet-derived trading credentials may be sent to an untrusted custom backend if AIONMARKET_BASE_URL is changed.
+
+Mitigation: Do not set AIONMARKET_BASE_URL unless the endpoint is trusted and documented for the deployment.
+
+Risk: Unpinned or unreviewed dependency versions can change behavior before live trading.
+
+Mitigation: Pin and review dependency versions before using the skill with real funds.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/skybinjf/skills/polymarket-5m-trading)
+- [Publisher Profile](https://clawhub.ai/user/skybinjf)
+- [Polymarket CLOB API Host](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with command-line options and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; live execution requires --live and WALLET_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

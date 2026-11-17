@@ -1,37 +1,57 @@
-## Description: <br>
-Avoid common Svelte mistakes - reactivity triggers, store subscriptions, and SvelteKit SSR gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, debugs, and reviews Svelte and SvelteKit apps, including runes, stores, snippets, load functions, form actions, and adapters.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and coding agents use this skill as a compact Svelte reference for reactivity, stores, lifecycle, SvelteKit data loading, SSR behavior, and Svelte 5 runes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Svelte or SvelteKit code can mishandle SSR, browser-only APIs, shared server-side state, or data-loading behavior. <br>
-Mitigation: Review generated project code before use, especially SSR guards, store initialization, and load-function data access. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, migrate, test, and deploy Svelte and SvelteKit applications. It focuses on Svelte 5 runes, SvelteKit request handling, SSR and hydration issues, form actions, TypeScript, testing, performance, and deployment workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/svelte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown] <br>
-**Output Format:** [Markdown reference notes with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node when applying the guidance in Svelte projects; no API keys or external tools are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read and update Svelte-specific preference files under ~/Clawic/data/svelte/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the disclosed preference path before installation and keep only non-sensitive project preferences in those files.
+
+Risk: The skill includes npx examples that may resolve tools dynamically.
+
+Mitigation: Review commands before execution and prefer project-local, lockfile-pinned tools or explicit package versions in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/svelte)
+- [Clawic Svelte skill page](https://clawic.com/skills/svelte)
+- [Svelte skill definition](artifact/SKILL.md)
+- [Svelte setup and memory guidance](artifact/setup.md)
+- [Svelte security guidance](artifact/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or update user preference files under ~/Clawic/data/svelte/ when recording explicit user preferences.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

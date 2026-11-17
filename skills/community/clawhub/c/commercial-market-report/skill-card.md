@@ -1,48 +1,65 @@
-## Description: <br>
-Guides agents through commercial complex market research and generates Word, HTML, and PPTX report deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates commercial complex market research reports in Word, HTML presentation, and editable PPTX formats from project location, site parameters, and current market data.
 
-## Publisher: <br>
-[dxarch1980](https://clawhub.ai/user/dxarch1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxarch1980](https://clawhub.ai/user/dxarch1980)
 
-## Use Case: <br>
-Real estate, retail planning, and commercial development teams use this skill to collect city-specific market data, analyze competition and consumer demand, build financial assumptions, and produce market research deliverables for commercial complex projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may send project names, locations, and market research terms to external search services. <br>
-Mitigation: Use only approved project inputs, avoid confidential location details where possible, and confirm that external search use is acceptable before running the workflow. <br>
-Risk: The workflow can rely on local API keys and browser context. <br>
-Mitigation: Use scoped API keys, a dedicated browser profile, and a controlled output folder when collecting data and generating files. <br>
-Risk: Financial, market, and consumer trend figures may be incomplete, stale, or estimated. <br>
-Mitigation: Review all sources, assumptions, and generated figures before using the reports for investment, planning, or client-facing decisions. <br>
+## Use Case:
 
+External users and developers use this skill to prepare commercial real-estate market research for project approval, positioning analysis, competitor research, tenant mix planning, and financial modeling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dxarch1980/commercial-market-report) <br>
-- [Commercial market report skill](SKILL.md) <br>
-- [Chapters guide](references/chapters.md) <br>
-- [Data sources guide](references/data-sources.md) <br>
-- [Report format guide](references/report-format.md) <br>
-- [PPT format guide](references/ppt-format.md) <br>
-- [Tavily search API](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Agent workflow guidance plus generated DOCX, HTML, and PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports include market analysis, charts, financial modeling, and source notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses external search services and may share project locations or market-research prompts with third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential addresses and non-public deal data unless external lookups are approved.
+
+Risk: The skill can rely on browser access to Xiaohongshu through a Chrome remote debugging session.
+
+Mitigation: Use a dedicated browser profile and avoid exposing a normal logged-in Chrome profile through remote debugging.
+
+Risk: The security summary flags unsafe output file generation.
+
+Mitigation: Generate files only in a dedicated output folder with trusted project names until path and HTML escaping are fixed.
+
+Risk: Market, rent, cap rate, and valuation data may be stale, incomplete, or estimated.
+
+Mitigation: Keep the skill's source-date labels, mark missing values as pending, and review financial assumptions before using reports for decisions.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/dxarch1980/skills/commercial-market-report)
+- [Chapter writing guide](references/chapters.md)
+- [Data source guide](references/data-sources.md)
+- [Word report format guide](references/report-format.md)
+- [PPT format guide](references/ppt-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated DOCX, HTML, and PPTX report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports include charts, tables, financial estimates, source notes, and presentation slides.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

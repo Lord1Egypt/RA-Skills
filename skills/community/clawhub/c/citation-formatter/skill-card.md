@@ -1,40 +1,59 @@
-## Description: <br>
-Formats citation strings and batches of references into AMA-style output, with parsing for APA, MLA, Vancouver, BibTeX, and free-text inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats APA, MLA, Vancouver, BibTeX, or free-text citation inputs into AMA-style citation text using local parsing helpers.
 
-## Publisher: <br>
-[googolme](https://clawhub.ai/user/googolme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googolme](https://clawhub.ai/user/googolme)
 
-## Use Case: <br>
-Researchers, students, and manuscript authors use this skill to format individual citations or citation lists into AMA-style references before journal, manuscript, or grant submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Citation outputs may be incomplete or inaccurate, and the documentation overstates support for broad style coverage and validation. <br>
-Mitigation: Review formatted citations manually against the target journal or style guide before submission. <br>
+## Use Case:
 
+External users, developers, and researchers can use this skill to reformat citation strings or batches of citation lines into AMA-style output before manuscript or grant-reference review.
 
-## Reference(s): <br>
-- [AMA Citation Style Guide](references/ama-guidelines.md) <br>
-- [Example Citations for Testing](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/googolme/citation-formatter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, code, shell commands, guidance] <br>
-**Output Format:** [Plain text AMA citations, Markdown guidance, Python snippets, and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch mode writes formatted citations to an output file; citation results should be reviewed manually before journal submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and tile.json) <br>
+Risk: Documentation claims broad citation-style conversion, validation, and reference-manager integration beyond the included local AMA formatter behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a simple AMA formatter for supported input patterns, and confirm any broader capability in code before relying on it.
+
+Risk: Citation output may be incomplete or incorrect for publication-critical references.
+
+Mitigation: Manually check formatted citations against the target journal requirements and authoritative reference data before submission.
+
+Risk: Batch mode reads and writes local files supplied by command-line paths.
+
+Mitigation: Run batch formatting in a controlled workspace and review input and output paths before execution.
+
+## Reference(s):
+
+- [AMA Citation Style Guide](artifact/references/ama-guidelines.md)
+- [Example Citations for Testing](artifact/references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/googolme/skills/citation-formatter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text citation output with Markdown documentation, Python examples, and command-line examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single citation input, stdin, interactive prompts, and batch line-based file input; output should be manually checked before publication-critical use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and tile.json; SKILL.md metadata reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

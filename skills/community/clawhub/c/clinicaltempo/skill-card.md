@@ -1,49 +1,66 @@
-## Description: <br>
-Clinical Tempo helps agents find and use the Clinical Tempo repository context, troubleshooting notes, OpenClaw setup, MPP/x402 payment patterns, Tempo references, EVVM notes, and verification commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with Clinical Tempo repository context, troubleshooting guidance, and integration pointers for HealthTech Protocol work across Tempo, MPP/x402, EVVM, OpenAPI, ClawHub, OpenClaw, and related agent workflows.
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-Developers and agent operators use this skill while working on the Clinical Tempo HealthTech Protocol app to locate authoritative context, avoid known MPP, x402, Tempo, EVVM, OpenAPI, and port 8787 traps, and configure optional OpenClaw or editor reminders without exposing secrets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional hooks can add repeated context reminders outside the intended Clinical Tempo workflow if enabled too broadly. <br>
-Mitigation: Keep activation scoped to the Clinical Tempo workspace and enable hooks only where bootstrap reminders are useful. <br>
-Risk: Agent-proposed CLAWHUB.md entries could preserve inaccurate debugging notes or secret values. <br>
-Mitigation: Review proposed entries for accuracy and ensure only non-secret environment names or public facts are recorded. <br>
-Risk: The skill references a separate Anyway OpenClaw plugin that is not bundled with this release. <br>
-Mitigation: Assess and install the external plugin separately according to the user's organizational trust path. <br>
+## Use Case:
 
+Developers and agent operators use this skill to orient coding agents in the Clinical Tempo project, locate authoritative context files, and avoid known troubleshooting traps around MPP/x402, Tempo, EVVM, OpenAPI discovery, hooks, and ClawHub packaging.
 
-## Reference(s): <br>
-- [Clinical Tempo ClawHub listing](https://clawhub.ai/arunnadarasa/clinicaltempo) <br>
-- [OpenClaw + Clinical Tempo](references/openclaw-clinical-tempo.md) <br>
-- [OpenClaw integration guide](references/openclaw-integration.md) <br>
-- [Concrete examples](references/examples.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Hooks setup](references/hooks-setup.md) <br>
-- [EVVM protocol context](https://www.evvm.info/llms-full.txt) <br>
-- [MPPScan discovery](https://www.mppscan.com/discovery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline file paths and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose non-secret CLAWHUB.md entries, smoke-test commands, and OpenClaw or editor hook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional install paths can create persistent agent hook configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review hook files and enable them only in trusted Clinical Tempo workspaces; disable the hook when persistent reminders are no longer needed.
+
+Risk: External install commands may fetch or execute packages outside the bundled skill.
+
+Mitigation: Pin or verify external packages and commands before running them in production or shared agent environments.
+
+Risk: The scaffold script can create new skill files from user-provided slugs.
+
+Mitigation: Run scaffold scripts only with trusted input and review generated files before publishing or installing them.
+
+## Reference(s):
+
+- [Clinical Tempo ClawHub skill page](https://clawhub.ai/arunnadarasa/skills/clinicaltempo)
+- [OpenClaw + Clinical Tempo](references/openclaw-clinical-tempo.md)
+- [OpenClaw integration](references/openclaw-integration.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Examples](references/examples.md)
+- [Copilot and agents](references/copilot-and-agents.md)
+- [Hooks setup](references/hooks-setup.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [MPPScan discovery](https://www.mppscan.com/discovery)
+- [EVVM LLM context](https://www.evvm.info/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Context-only skill output; optional hooks and scripts may emit reminders or scaffold files when explicitly installed and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

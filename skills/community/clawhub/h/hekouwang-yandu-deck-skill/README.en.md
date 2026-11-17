@@ -26,10 +26,10 @@ Fastest way to feel it — double-click **[`examples/demo.html`](examples/demo.h
 
 | Dependency | Relationship | Notes |
 |---|---|---|
-| **`hekouwang-content-factory`** ⭐ | **Content source (hard dependency)** | This Skill is the *"turn content into a swipeable deck + publish"* half. The other half — generating the article HTML, the visual systems (V1/V2/V3), de-AI-ifying copy, compliance — lives in `hekouwang-content-factory`. Source HTML, color tokens and the font scheme all come from it. **⚠️ `hekouwang-content-factory` is a paid Skill** (contact the author @huiyonghkw for a license); its content is **not** included in this repo. |
+| **`hekouwang-content-master-skill`** ⭐ | **Content source (hard dependency)** | This Skill is the *"turn content into a swipeable deck + publish"* half. The other half — generating the article HTML, the visual systems (V1/V2/V3), de-AI-ifying copy, compliance — lives in `hekouwang-content-master-skill`. Source HTML, color tokens and the font scheme all come from it. **⚠️ `hekouwang-content-master-skill` is a paid Skill** (contact the author @huiyonghkw for a license); its content is **not** included in this repo. |
 | Python 3 + `fonttools` + `brotli` | Font subsetting | Only needed at publish time (the `tools/fenv` venv, see `SKILL.md`). Without it, it falls back to the pre-subsetted fonts in `fonts/cache/`. |
 | `wrangler` (Cloudflare) | Deploy | `publish.py` calls it to deploy to CF Pages; first run needs `wrangler login`. |
-| Anthropic Sans/Mono woff2 | Latin / mono fonts | From `hekouwang-content-factory` (self-use / demo license). If absent, Latin text falls back to system fonts. |
+| Anthropic Sans/Mono woff2 | Latin / mono fonts | From `hekouwang-content-master-skill` (self-use / demo license). If absent, Latin text falls back to system fonts. |
 
 > Want just the **engine** (not the content pipeline)? Copy `assets/templates/deck-engine-*.html` as a template and fill in your content — that part is zero-dependency and stands alone.
 
@@ -68,14 +68,14 @@ Then in Claude Code, say things like *"turn this into a deck / add a YanDu episo
 - **Deck engine** (zero-dependency CSS+JS): full-screen one-idea-per-slide; arrow keys / space / click / touch paging; auto-play; entrance animations (staggered cards / growing bars / SVG line-draw / number count-up / ghost section numbers); `fit()` auto-scaling; `#N` deep links; `prefers-reduced-motion` friendly.
 - **Two themes**: dark (data-console) / light (editorial) — the engine JS is theme-agnostic.
 - **Self-hosted fonts**: Noto Sans SC (4 weights) + Serif subsetted to the glyphs actually used (~180KB each), Anthropic Sans/Mono bundled, zero external requests; `preload` + long cache to remove the first-paint weight flash.
-- **One-command publish**: `python3 publish.py`; add one MANIFEST line per episode; clean URLs on CF Pages.
+- **Publish**: `python3 publish.py` builds a local preview; deploy explicitly with `YANDU_CF_PROJECT=<project> python3 publish.py --deploy`. Add one MANIFEST line per episode; clean URLs on CF Pages.
 
-> For the companion article/graphics/video pipeline, see `hekouwang-content-factory`.
+> For the companion article/graphics/video pipeline, see `hekouwang-content-master-skill`.
 
 ## License
 
 The code in this repo (deck engine templates, `publish.py`, `demo.html`, `home.html`, `SKILL.md`, etc.) is **MIT** licensed — see [LICENSE](LICENSE). Note:
 
-- **`hekouwang-content-factory` is a separate, paid Skill; its content is not in this repo** and is not covered by this license.
+- **`hekouwang-content-master-skill` is a separate, paid Skill; its content is not in this repo** and is not covered by this license.
 - Noto Sans SC / Noto Serif SC are SIL OFL fonts — **no font files are bundled here**; their OFL applies when you fetch them.
 - Anthropic Sans/Mono are proprietary fonts, not bundled here; confirm your own licensing before use.

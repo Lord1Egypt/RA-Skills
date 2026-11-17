@@ -1,43 +1,60 @@
-## Description: <br>
-Claude Code source-derived AI agent engineering patterns for designing agent scheduling, concurrent tool execution, context compression, state-machine loops, streaming processing, startup performance, and error recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides engineering guidance for designing agent scheduling, concurrent tool execution, context compaction, state-machine loops, streaming execution, startup performance, and recoverable-error handling.
 
-## Publisher: <br>
-[siyrs](https://clawhub.ai/user/siyrs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siyrs](https://clawhub.ai/user/siyrs)
 
-## Use Case: <br>
-Developers and engineers use this skill as reference guidance when designing complex AI agent systems, including multi-turn orchestration, safe tool concurrency, context management, streaming tool execution, and retry or recovery behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied implementation patterns could introduce risky tool execution, speculative execution, context deletion, summarization, or retry behavior in a production agent. <br>
-Mitigation: Review adapted code separately for explicit user control, data minimization, safe tool permissions, bounded retries, and preservation of required context before production use. <br>
-Risk: Examples mention keychain and MDM-style access patterns that could be inappropriate if copied without environment-specific controls. <br>
-Mitigation: Require a separate security review for any credential, device-management, or privileged-access behavior derived from the documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill as reference material when designing complex agent systems, including multi-turn conversation loops, tool scheduling, context management, performance optimization, and recovery behavior.
 
-## Reference(s): <br>
-- [Claude Code Patterns on ClawHub](https://clawhub.ai/siyrs/claude-code-patterns) <br>
-- [State-machine loop reference](references/state-machine-loop.md) <br>
-- [Streaming executor reference](references/streaming-executor.md) <br>
-- [Context management reference](references/context-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown reference guidance with TypeScript code examples and engineering checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it does not execute code or request credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Context compaction patterns may summarize sensitive conversation or tool data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive conversation and tool data before summarization, and provide user-visible controls for context compaction.
+
+Risk: Examples involving keychain, MDM, memory, Bash, or remote-agent behavior can create broad access if copied directly.
+
+Mitigation: Tightly scope credential, device-management, shell, memory, and remote-agent behavior before adapting snippets into production systems.
+
+Risk: Documentation examples may produce incorrect or misleading implementations when applied without review.
+
+Mitigation: Treat the skill output as design guidance, review adapted code, and test concurrency, context-management, and recovery paths before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/siyrs/skills/claude-code-patterns)
+- [Context management reference](artifact/references/context-management.md)
+- [State-machine loop reference](artifact/references/state-machine-loop.md)
+- [Streaming executor reference](artifact/references/streaming-executor.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with TypeScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; snippets require review and adaptation before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

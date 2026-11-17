@@ -1,5 +1,5 @@
 name: qa-quickcheck
-version: 1.0.0
+version: 1.0.3
 author: HouYang995
 license: MIT
 runtime: node
@@ -10,7 +10,6 @@ categories:
   - testing
   - code-quality
   - devops
-  - security
 
 input:
   type: object

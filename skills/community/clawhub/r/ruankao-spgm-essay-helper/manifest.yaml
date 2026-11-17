@@ -1,0 +1,16 @@
+name: ruankao-spgm-essay-helper
+version: 1.1.3
+display_name: 软考高级·系统规划与管理师论文辅助
+description: 挂接 IMA 备考资料库（历年真题/参考范文/考试大纲/教程术语）的软考高级「系统规划与管理师」论文辅助 Skill；根据论文题目与考生本人真实项目背景，生成符合官方评分标准的四段式论文框架与写作提示。论文项目背景必须且只能来自考生本人真实参与的项目，技能不检索、不引用任何第三方真实项目资料（含招标文件、真实项目库）。
+author: "一线评标专家&ChesaraM"
+tags:
+  - 软考
+  - 系统规划与管理师
+  - 论文辅导
+  - 备考
+  - IMA知识库
+category: 教育学习
+feedback:
+  channel: github
+  account: "https://github.com/ruankao-spgm/essay-helper/issues"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"

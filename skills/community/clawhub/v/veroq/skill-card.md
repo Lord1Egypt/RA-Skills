@@ -1,41 +1,62 @@
-## Description: <br>
-Veroq provides verified AI intelligence for questions, claims, markets, assets, sentiment, economic data, and reports through hosted Veroq services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Veroq provides verified AI intelligence for markets, assets, sentiment, economic data, web content, and claim fact-checking through OpenClaw commands.
 
-## Publisher: <br>
-[johnnytarrr](https://clawhub.ai/user/johnnytarrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnytarrr](https://clawhub.ai/user/johnnytarrr)
 
-## Use Case: <br>
-External users and developers use Veroq to ask questions, fact-check claims, retrieve market and news intelligence, analyze tickers or portfolios, and generate AI reports. The skill is oriented toward production intelligence workflows that can use Veroq's hosted API or a self-hosted Shield option. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command inputs, URLs, portfolio holdings, strategies, and similar user-provided data may be sent to Veroq's hosted API despite artifact documentation claiming no user data is sent or stored. <br>
-Mitigation: Avoid confidential business data, private or authenticated URLs, secrets, regulated personal data, and sensitive portfolio or trading details unless Veroq's privacy and retention controls meet the user's requirements; use the self-hosted deployment for stricter data-control needs. <br>
+## Use Case:
 
+Developers and agent users use this skill to request sourced market intelligence, fact-check claims, retrieve live prices and indicators, analyze portfolios, and generate briefs or reports from VEROQ data.
 
-## Reference(s): <br>
-- [ClawHub Veroq Skill Page](https://clawhub.ai/johnnytarrr/veroq) <br>
-- [Veroq](https://veroq.ai) <br>
-- [Veroq API Reference](https://veroq.ai/api-reference) <br>
-- [Veroq Developers](https://veroq.ai/developers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like command responses with summaries, source links, scores, tables, and status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market data, confidence scores, source links, trade signals, report text, and rate-limit messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: User prompts, private URLs, research questions, portfolio holdings, or trading strategies may be sent to api.veroq.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, avoid confidential inputs unless this data flow is acceptable, and disclose the external API dependency to users.
+
+Risk: Trading, market, forecast, and portfolio outputs may be incomplete, stale, or mistaken for financial advice.
+
+Mitigation: Treat outputs as decision support only, verify important claims and numbers against authoritative sources, and require human review before financial decisions.
+
+Risk: The optional self-hosted Docker path depends on an external container image.
+
+Mitigation: Use the self-hosted option only after pinning and verifying the image digest and reviewing the deployment configuration.
+
+## Reference(s):
+
+- [ClawHub Veroq skill page](https://clawhub.ai/johnnytarrr/skills/veroq)
+- [VeroQ](https://veroq.ai)
+- [VeroQ OpenClaw integration](https://veroq.ai/integrations/openclaw)
+- [VeroQ API Reference](https://veroq.ai/api-reference)
+- [VeroQ Developers](https://veroq.ai/developers)
+- [veroq-mcp npm package](https://www.npmjs.com/package/veroq-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text and Markdown command responses with summaries, evidence, verdicts, confidence scores, market metrics, alerts, and report links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include live or generated intelligence, third-party API results, source or evidence lists, confidence values, and trading-related signals; outputs should be reviewed before financial or other high-impact use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

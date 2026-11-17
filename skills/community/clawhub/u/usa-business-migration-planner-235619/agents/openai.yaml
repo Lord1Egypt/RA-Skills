@@ -1,0 +1,7 @@
+interface:
+  display_name: "USA Business Migration Planner"
+  short_description: "Helps with People repeatedly need a practical, repeatable way..."
+  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle Claude Code 的 Prompt Cache 到底怎么工作？ 5 个让缓存失效的坑."
+
+policy:
+  allow_implicit_invocation: true

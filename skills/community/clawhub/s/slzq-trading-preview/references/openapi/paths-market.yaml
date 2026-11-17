@@ -1,0 +1,142 @@
+# 分片：与 references/api-*.md 主题一致；路径项由 references/openapi.yaml 引用。
+OpenV1MarketSnapshot:
+    get:
+      operationId: get_market_snapshot
+      summary: 单合约行情快照
+      description: |
+        获取单个合约的实时行情快照（来自 Redis 缓存）。
+        包含最新价、买卖一档、涨跌停、结算价、持仓量、合约乘数（volumeMultiple）。
+        **volumeMultiple 是计算盈亏的必要参数。**
+        注意：仅读取 Redis 缓存，缓存缺失时字段可能为 null。
+      parameters:
+        - name: instrumentId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 合约代码，如 au2606、cu2506
+      responses:
+        '200':
+          description: 行情快照
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/MarketSnapshot'
+
+
+OpenV1MarketSnapshots:
+    get:
+      operationId: get_market_snapshots
+      summary: 批量行情快照
+      description: 批量获取多个合约的实时行情快照，返回数组，顺序与请求中 instrumentIds 一致。每条结构与单合约快照相同。建议最多 20 个合约。
+      parameters:
+        - name: instrumentIds
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 逗号分隔的合约代码，如 au2606,ag2612,cu2506，最多建议 20 个
+      responses:
+        '200':
+          description: 批量行情快照
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '../openapi.yaml#/components/schemas/MarketSnapshot'
+
+
+OpenV1MarketTick:
+    get:
+      operationId: get_tick_data
+      summary: 分时图数据
+      description: 获取合约今日分时图数据（每分钟一条 tick），含价格、成交量、持仓量、成交额。用于盘中价格走势分析。
+      parameters:
+        - name: exchangeId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 交易所代码，如 SHFE、DCE、CZCE、INE、CFFEX
+        - name: instrumentId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 合约代码，如 au2606
+      responses:
+        '200':
+          description: 分时数据
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/TickData'
+
+
+OpenV1MarketKline:
+    get:
+      operationId: get_kline_data
+      summary: K 线图数据
+      description: |
+        获取合约 K 线（蜡烛图）数据，用于技术分析。返回 OHLC + 成交量、持仓量、结算价（日K线）。
+        数组从旧到新排列。下单前可调用此接口分析趋势。
+
+        **K 线周期 type 枚举**：
+        - `10` = 1分钟
+        - `2` = 5分钟
+        - `3` = 15分钟
+        - `4` = 30分钟
+        - `5` = 1小时
+        - `9` = 4小时
+        - `6` = 日线
+        - `7` = 周线
+      parameters:
+        - name: exchangeId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 交易所代码
+        - name: instrumentId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 合约代码
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: ["10", "2", "3", "4", "5", "9", "6", "7"]
+          description: K 线周期（见描述中的枚举说明）
+      responses:
+        '200':
+          description: K 线数据
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/KlineData'
+
+

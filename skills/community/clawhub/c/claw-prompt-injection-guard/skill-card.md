@@ -1,42 +1,54 @@
-## Description: <br>
-Helps an agent identify and defend against indirect prompt injection hidden in external content such as webpages, search results, email, social media, user-generated content, and documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+防护间接提示词注入攻击（Indirect Prompt Injection）。当处理网页内容、搜索结果、邮件、社交媒体等外部来源信息时触发。用于识别和防范外部内容中隐藏的恶意指令。
 
-## Publisher: <br>
-[XvarX](https://clawhub.ai/user/XvarX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xvarx](https://clawhub.ai/user/xvarx)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep external content as information rather than instructions, detect suspicious injection patterns, and require confirmation before sensitive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause extra pauses before sending messages, running commands, writing files, accessing sensitive files, installing software, or sending data to external services. <br>
-Mitigation: Treat those pauses as intentional confirmation gates and review the proposed sensitive action before allowing it. <br>
-Risk: Keyword-based prompt-injection detection can flag benign external content that contains instruction-like terms. <br>
-Mitigation: Review flagged content in context and proceed only when the requested action still matches the user's explicit intent. <br>
+## Use Case:
 
+Developers and agent users use this skill as Chinese-language defensive guidance for recognizing indirect prompt injection in webpages, search results, email, social media, and other untrusted external content. It helps agents treat external content as information rather than instructions and require confirmation before sensitive actions.
 
-## Reference(s): <br>
-- [Attack Patterns Reference](references/attack-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/XvarX/claw-prompt-injection-guard) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/XvarX) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis] <br>
-**Output Format:** [Markdown guidance and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only defensive guidance; no files, commands, or API calls are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The reviewed artifact provides Chinese-language guidance, which may not meet the needs of English or multilingual users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where Chinese-language guidance is appropriate, or provide a reviewed localized version for other audiences.
+
+Risk: The skill is advisory and does not add executable enforcement for unsafe actions.
+
+Mitigation: Review agent behavior before deployment and keep user confirmation in place for sensitive actions involving external content.
+
+## Reference(s):
+
+- [Attack Patterns Reference](references/attack-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/xvarx/skills/claw-prompt-injection-guard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language defensive guidance; no executable code, install hooks, persistence, or hidden data access reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

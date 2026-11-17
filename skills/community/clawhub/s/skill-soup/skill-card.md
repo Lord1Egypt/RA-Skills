@@ -1,42 +1,54 @@
-## Description: <br>
-Autonomous skill generation agent that picks up community ideas, uses evolved builder tools to produce Agent Skills, and publishes them back to the Skill Soup ecosystem; it also supports submitting ideas, voting on ideas, and voting on skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous skill generation agent that picks up community ideas, uses evolved builder tools to produce Agent Skills, and publishes them back to the Skill Soup ecosystem.
 
-## Publisher: <br>
-[BennettPhil](https://clawhub.ai/user/BennettPhil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[bennettphil](https://clawhub.ai/user/bennettphil)
 
-## Use Case: <br>
-Developers and community maintainers use this skill to authenticate to a Skill Soup API, submit or vote on ideas and skills, generate Agent Skills from community ideas, and publish generated skills back to the ecosystem. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Skill Soup or GitHub-linked identity to generate, mutate, and publish public skill content with weak approval boundaries. <br>
-Mitigation: Use a dedicated test account, monitor autonomous runs, and review generated files before publication. <br>
-Risk: Externally synced builder instructions can influence generated skills and may weaken review expectations. <br>
-Mitigation: Treat synced builders as untrusted input, inspect builder changes, and scan generated skills before deployment. <br>
-Risk: A saved authentication token may remain in .soup/auth.json after use. <br>
-Mitigation: Protect the local workspace and delete .soup/auth.json when the token is no longer needed. <br>
+## Use Case:
 
+Developers and skill ecosystem maintainers use this agent to generate Agent Skills from community ideas, sync and evolve builder tools, and perform community actions such as submitting ideas and voting.
 
-## Reference(s): <br>
-- [Mutation Guide](references/mutation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, files, guidance] <br>
-**Output Format:** [Markdown instructions, shell commands, JSON API payloads, configuration files, and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local .soup workspace files and publish generated skills or builders through the configured Skill Soup API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter and release metadata) <br>
+Risk: Community-synced builders and local scripts can influence generated skills and public publication decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandboxed workspace, inspect synced builders before execution, and require manual review before publishing public artifacts or running evolution scripts.
+
+Risk: Continuous autonomous operation can amplify mistakes across multiple generated or evolved skills.
+
+Mitigation: Avoid continuous mode unless actively supervised, and stop the run when API, authentication, or validation behavior is unexpected.
+
+## Reference(s):
+
+- [Mutation Guide](artifact/references/mutation-guide.md)
+- [Skill Soup on ClawHub](https://clawhub.ai/bennettphil/skills/skill-soup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API payloads, configuration examples, and generated Agent Skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .soup workspace files and publish generated skills or evolved builders when authenticated.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

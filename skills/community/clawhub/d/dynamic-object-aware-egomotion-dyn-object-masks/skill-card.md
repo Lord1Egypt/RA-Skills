@@ -1,42 +1,53 @@
-## Description: <br>
-Generate dynamic-object binary masks after global motion compensation, output CSR sparse format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate dynamic-object binary masks after global motion compensation, output CSR sparse format.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and computer-vision engineers use this skill to detect moving objects in scenes with camera motion and produce sparse binary masks aligned to sampled frames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local environment may be missing the numpy or OpenCV dependencies needed to apply the guidance. <br>
-Mitigation: Confirm numpy and OpenCV are available before use. <br>
-Risk: Mask quality can be degraded if border fill, noise, or small components are treated as foreground. <br>
-Mitigation: Use the valid-region mask, adaptive median/MAD thresholding, morphology, connected-component area filtering, and CSR self-checks described by the artifact. <br>
-Risk: Video frames may contain data the user does not want processed. <br>
-Mitigation: Process only frames the user is comfortable handling locally. <br>
+## Use Case:
 
+Developers and engineers use this skill to design motion-compensated moving-object masks for video frames where camera motion would otherwise create false foreground detections. It guides thresholding, morphology, area filtering, and CSR encoding for sampled-frame mask outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/dynamic-object-aware-egomotion-dyn-object-masks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with Python code sketch] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for CSR sparse mask fields including data, indices, indptr, and shape.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Incorrect path, dependency, or array-shape handling in a downstream implementation could produce unusable masks or malformed CSR data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the eventual implementation's input and output paths, OpenCV dependency usage, and CSR invariants before deployment.
+
+Risk: Camera-motion compensation can mark border fill or alignment artifacts as foreground.
+
+Mitigation: Compute threshold statistics only on the warped valid region and verify that border fill is excluded from foreground masks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/dynamic-object-aware-egomotion-dyn-object-masks)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with Python code sketch and checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for binary masks encoded as CSR arrays with per-frame data, indices, indptr, and shape metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

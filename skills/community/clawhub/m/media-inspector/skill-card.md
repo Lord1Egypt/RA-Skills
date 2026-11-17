@@ -1,40 +1,52 @@
-## Description: <br>
-Local audio and video analysis tool that scans media files, extracts metadata, optionally transcribes speech with Whisper, generates summaries, and identifies timestamped key excerpts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Media Inspector analyzes local audio and video files, extracts technical metadata, optionally transcribes speech with Whisper, summarizes transcript content, identifies timestamped excerpts, and exports scan or analysis reports.
 
-## Publisher: <br>
-[chensu1234](https://clawhub.ai/user/chensu1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chensu1234](https://clawhub.ai/user/chensu1234)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and external users use this skill to scan local media collections, inspect individual audio or video files, and produce structured JSON, CSV, and Markdown reports. It is useful when metadata, transcript-aware summaries, and timestamped key excerpts are needed without inferring content from filenames alone.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optional Whisper installation may introduce dependency supply-chain risk.
+
+Mitigation: Install Whisper only from a trusted source and package name, preferably pinned to a known version.
+
+Risk: Generated reports and raw Whisper outputs can contain sensitive transcript text from local media.
+
+Mitigation: Write reports to a private directory and delete generated transcript artifacts when they are no longer needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and media operators use this skill to inventory local audio and video files, inspect metadata, and generate per-file reports with optional transcript-based summaries and timestamped excerpts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain private local paths, metadata, summaries, excerpts, and full transcript text. <br>
-Mitigation: Store reports in a private location, restrict access to output directories, and delete or protect reports after analyzing sensitive recordings. <br>
-Risk: The skill depends on local ffmpeg and optional Whisper tooling to inspect or transcribe media. <br>
-Mitigation: Install ffmpeg and Whisper only from trusted sources and run the skill on specific files or narrow folders. <br>
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON, CSV, and Markdown report files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Media Inspector on ClawHub](https://clawhub.ai/chensu1234/media-inspector) <br>
+**Other Properties Related to Output:** [Reports may include media metadata, transcript status, transcript text, summaries, key excerpts with timestamps, and per-file scan rows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, CSV, and Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include local file paths, media metadata, transcript text, summaries, and timestamped excerpts.] <br>
+1.0.0 (source: server release metadata and CLAWHUB.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: CLAWHUB.json and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

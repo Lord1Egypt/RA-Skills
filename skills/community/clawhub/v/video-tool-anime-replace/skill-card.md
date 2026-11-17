@@ -1,44 +1,55 @@
-## Description: <br>
-Replace or move an element in an existing HTTPS video with WeryAI anime-style processing (video-anime-replace). Use when the user wants anime-style object replace or move on a video URL, not text-to-video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Replace or move an element in an existing HTTPS video with WeryAI anime-style processing (video-anime-replace). Use when the user wants anime-style object replace or move on a video URL, not text-to-video generation.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Developers and external users use this skill to run WeryAI anime-replace or move processing on an existing public HTTPS video with a public HTTPS reference image. It is scoped to the video-anime-replace workflow and is not for text-to-video or image-to-video generation from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeryAI jobs may consume credits when submitted or waited on. <br>
-Mitigation: Use dry-run first and confirm the exact URLs, type, and resolution before submit or wait. <br>
-Risk: The workflow sends the specified public video and image URLs to WeryAI for processing. <br>
-Mitigation: Use only media URLs the user intends to share with WeryAI and confirm those URLs before submission. <br>
-Risk: Exposure of WERYAI_API_KEY could allow use of the associated WeryAI account. <br>
-Mitigation: Keep WERYAI_API_KEY out of files and prompts, and scope it only to the environment where the CLI is run. <br>
+## Use Case:
 
+External users and developers use this skill to run WeryAI anime-style replace or move jobs on an existing public HTTPS video with a public HTTPS reference image. It is scoped to the video-anime-replace workflow and excludes text-to-video, image-to-video, local file upload, and other WeryAI video-tool endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-anime-replace) <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
-- [Submit Video Anime Replace Task](https://docs.weryai.com/api-references/video-tools/submit-video-anime-replace-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown links and JSON command output from a Node.js CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, and public HTTPS video_url and image_url inputs; paid network API calls require explicit confirmation before submit or wait.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends public video and image URLs to WeryAI and uses WERYAI_API_KEY for potentially paid jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, confirm the URLs and non-default options with the user, and keep WERYAI_API_KEY only in the runtime environment.
+
+Risk: Running out-of-scope scripts or passing local file paths could expand the data-sharing behavior beyond this skill's contract.
+
+Mitigation: Run only scripts/video_anime_replace.js for this skill and use only public https:// video_url and image_url inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-anime-replace)
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [Submit Video Anime Replace Task](https://docs.weryai.com/api-references/video-tools/submit-video-anime-replace-task)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return dry-run request previews, task IDs, status JSON, and Markdown video links after a completed WeryAI job.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

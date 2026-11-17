@@ -1,39 +1,49 @@
-## Description: <br>
-Guides agents in applying a controller-service-query architecture for REST APIs and GraphQL resolvers with separated HTTP, business logic, and database concerns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controller-service-query layered API architecture with data enrichment and parallel fetching for REST APIs and GraphQL resolvers.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill when designing REST APIs or GraphQL resolvers that aggregate data from multiple sources while keeping controllers, services, and queries separate. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The README includes a user-run install command that points at a live GitHub branch, so the fetched content can change over time. <br>
-Mitigation: Review the referenced source before running the install command, and prefer a pinned commit or release when repeatability matters. <br>
-Risk: Architecture guidance can lead to unsuitable code changes if applied without considering the existing API design and data access patterns. <br>
-Mitigation: Review proposed changes against the project architecture and test controller, service, and query behavior before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/service-layer-architecture) <br>
+## Use Case:
 
+Developers and engineers use this skill when building REST APIs or GraphQL resolvers that aggregate data from multiple sources while preserving controller, service, and query responsibilities.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only architecture guidance; no executable behavior is included in the skill files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing from an unpinned main branch can fetch content that differs from the reviewed release.
+
+Mitigation: Prefer a pinned release or reviewed commit before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/service-layer-architecture)
+- [README installation source](https://github.com/wpank/ai/tree/main/skills/backend/service-layer-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown with TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Architecture guidance organized around controller, service, and query layers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,11 @@
 ---
 name: "wx-huitu"
-description: "公众号数据绘图专家。输入文章或数据描述，输出PNG图表包。18种版式(C01-C18)覆盖柱状/折线/饼图/面积/雷达/散点/漏斗/热力/仪表盘/混合图表等。先剖析数据形态与论证意图，再推荐版式，主动拦截不当选择（2点折线/7+类别饼图/单值做图等），最后生成HTML+截图交付。当用户说'文章绘图'/'绘图图表'/'画个图表'/'数据图'/'做个图'/'画图'时触发。Do NOT use for 封面/封底/金句图/杂志版式/全文配图/代码编辑."
+slug: "wx-huitu"
+displayName: "wx-huitu"
+version: "2.2.0"
+summary: "公众号数据绘图专家 — 18种版式+三轴决策+拦截规则+Puppeteer截图交付"
+license: "MIT-0"
+description: "公众号数据绘图专家。输入文章或数据描述，输出PNG图表包。当用户说'文章绘图'/'绘图图表'/'画个图表'/'数据图'/'公众号图表'时触发。18种版式(C01-C18)，三轴决策+8条拦截规则，生成HTML+Puppeteer截图。可选飞书云盘同步(需用户确认)。Do NOT use for 封面/封底/金句图/杂志版式/全文配图/代码编辑."
 ---
 
 # wx-huitu — 公众号数据绘图专家
@@ -51,7 +56,7 @@ description: "公众号数据绘图专家。输入文章或数据描述，输出
 
 ### Step 4: Screenshot & Deliver
 
-Puppeteer-core → PNG → 桌面文件夹 → 飞书云盘同步。
+Puppeteer-core → PNG → 桌面文件夹。**飞书云盘同步为可选步骤，需用户明确确认后才执行**（用户说"同步飞书"或"上传云盘"时触发，默认跳过）。
 
 ---
 
@@ -195,3 +200,13 @@ html,body{width:640px;overflow:hidden;font-family:var(--font-body);background:va
 | references/workflow.md | 完整4步工作流：剖析→推荐→生成→交付 |
 | references/chart-system.md | 完整图表系统：18种版式+三轴决策树+8条拦截规则+色板+7种HTML骨架 |
 | references/design-tokens.md | 完整设计令牌：3套财经配色详解+字号规范+间距规范+画幅弹性规则 |
+
+---
+
+## 权限声明
+
+本技能运行时需要以下权限：
+- **网络访问**（必需）：加载 Google Fonts（Inter / Noto Sans SC）
+- **subprocess 调用**（必需）：运行 Puppeteer-core 截图（需系统 Chrome）
+- **文件系统写入**（必需）：PNG 图片保存到桌面文件夹
+- **飞书云盘 API**（可选）：`lark-cli drive +upload` 上传图片到飞书云盘，需配置飞书凭证

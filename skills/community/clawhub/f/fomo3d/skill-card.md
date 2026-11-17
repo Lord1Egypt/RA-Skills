@@ -1,42 +1,57 @@
-## Description: <br>
-Openclaw Fomo3d provides an agent-oriented CLI for playing Fomo3D and its slot-machine game on BNB Chain, including wallet setup, game status checks, token trading, share purchases, dividend claims, and slot spins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Fomo3d provides a CLI for playing Fomo3D and Slot Machine on BNB Chain, including status checks, share purchases, dividend claims, token trading, slot spins, and wallet actions.
 
-## Publisher: <br>
-[ErenVance](https://clawhub.ai/user/ErenVance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erenvance](https://clawhub.ai/user/erenvance)
 
-## Use Case: <br>
-External users and developers use this skill to operate a BNB Chain wallet against the Fomo3D game and slot-machine contracts from an agent-driven CLI. It is intended for checking balances and game state, buying or selling FOMO tokens, purchasing shares, claiming rewards, and submitting slot-machine actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commands can spend wallet funds on BNB Chain transactions. <br>
-Mitigation: Use a dedicated low-balance BSC wallet, start on testnet when possible, verify contract addresses, and review every amount before execution. <br>
-Risk: Setup can save a raw private key to config.json. <br>
-Mitigation: Do not use a primary wallet key, and avoid setup unless the local config file can be protected. <br>
-Risk: Token operations may grant unlimited allowances. <br>
-Mitigation: Revoke token allowances after use and review approvals before continuing with buy, sell, purchase, spin, or deposit commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ErenVance/fomo3d) <br>
-- [Fomo3D Homepage](https://fomo3d.app) <br>
+## Use Case:
 
+External users and developers use this skill to interact with Fomo3D and slot-machine game contracts on BNB Chain through agent-run CLI commands. It supports wallet checks, game status queries, share purchases, exits, settlements, token trades, slot spins, deposits, and claims.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can submit BNB Chain transactions and return transaction hashes, balances, game state, token data, and configuration prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill signs real BNB Chain transactions and may handle a wallet private key, including setup flows that can write the key to local configuration.
+
+Mitigation: Use a fresh wallet funded only with amounts you are willing to lose, avoid valuable private keys, prefer environment-based secret handling, and review the network and transaction before execution.
+
+Risk: The CLI can grant broad ERC20 token approvals to game and trading contracts.
+
+Mitigation: Review spender addresses and approval transactions before signing, keep only limited funds in the wallet, and revoke token allowances after use.
+
+Risk: Game, slot, deposit, buy, and sell actions can lose funds or permanently lock deposited tokens.
+
+Mitigation: Start on testnet or with small amounts, verify command parameters carefully, and review every buy, sell, bet, deposit, and claim before execution.
+
+## Reference(s):
+
+- [Fomo3D Homepage](https://fomo3d.app)
+- [ClawHub Skill Page](https://clawhub.ai/erenvance/skills/fomo3d)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses wei-denominated token amounts and can emit machine-readable JSON when commands are run with --json.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

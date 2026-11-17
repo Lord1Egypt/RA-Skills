@@ -1,43 +1,55 @@
-## Description: <br>
-Generates high-quality frontend code from Figma designs while reusing project components and design tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates production-oriented frontend code from selected Figma designs while reusing the project's component library and design tokens.
 
-## Publisher: <br>
-[garvin131](https://clawhub.ai/user/garvin131) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garvin131](https://clawhub.ai/user/garvin131)
 
-## Use Case: <br>
-Developers use this skill to turn selected Figma frames or components into React-oriented frontend code that maps to an existing component library, design tokens, responsive layout patterns, and accessibility expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private code or design context may be exposed when review workflows send diffs or generated code to fallback reviewers. <br>
-Mitigation: Review the selected Figma context and code diffs before using review automation on private projects. <br>
-Risk: Generated frontend code may mis-map Figma layers, design tokens, or component props. <br>
-Mitigation: Validate generated code against the project's component library, design-token reference, accessibility requirements, and responsive behavior before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn a selected Figma frame or component into React-oriented frontend code that maps design elements to existing UI components and tokenized styles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/garvin131/figma-code-optimizer) <br>
-- [Component library reference](references/component-library.txt) <br>
-- [Design tokens reference](references/design-tokens.txt) <br>
-- [Sample prompts](examples/sample-prompts.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with frontend code snippets and component-mapping instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to be adapted to the user's connected Figma context, component library, and design-token definitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill may guide an agent to use Figma MCP context, which can expose unintended design files or frames if access is broader than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit Figma MCP access to the intended design file or frame and share only the context required for the requested code generation task.
+
+Risk: Generated frontend code may contain incorrect component mappings, token choices, accessibility gaps, or form logic.
+
+Mitigation: Review, test, and scan generated code before merging it into a project.
+
+## Reference(s):
+
+- [Component Library Reference](references/component-library.txt)
+- [Design Tokens Reference](references/design-tokens.txt)
+- [Sample Prompts](examples/sample-prompts.txt)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with frontend code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on selected Figma context and project-specific component library and design token references.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

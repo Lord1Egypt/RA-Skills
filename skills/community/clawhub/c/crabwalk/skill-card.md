@@ -1,43 +1,58 @@
-## Description: <br>
-Real-time companion monitor for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time companion monitor for OpenClaw agents.
 
-## Publisher: <br>
-[luccast](https://clawhub.ai/user/luccast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luccast](https://clawhub.ai/user/luccast)
 
-## Use Case: <br>
-Developers and agent operators use Crabwalk to install and run a real-time monitor for OpenClaw agent activity, workspace browsing, and human review over a local or LAN-accessible web interface. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installation flow downloads and runs an unpinned remote release binary. <br>
-Mitigation: Use a pinned and verified release before execution, and review commands before running package-manager or sudo steps. <br>
-Risk: The monitor may expose agent activity, workspace files, and OpenClaw gateway-backed access to anyone who can reach the server. <br>
-Mitigation: Bind to localhost unless LAN sharing is required, share access only with trusted users, and avoid exposing the server beyond the local network. <br>
-Risk: The tool can read OpenClaw credentials from local configuration. <br>
-Mitigation: Run it only when the Crabwalk publisher and release are trusted, and rotate credentials if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luccast/crabwalk) <br>
-- [Crabwalk homepage](https://crabwalk.app) <br>
-- [Crabwalk feedback skill](https://crabwalk.app/feedback-skill) <br>
+## Use Case:
 
+Developers and operators use Crabwalk to install and run a companion monitor for OpenClaw agents, including monitor and workspace views for real-time inspection.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides installation, verification, startup, update prompts, and feedback capture for the Crabwalk monitor.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The third-party binary can read OpenClaw configuration and related credentials.
+
+Mitigation: Install only when the publisher is trusted, review the downloaded release before use, and avoid running it with credentials beyond what the monitor needs.
+
+Risk: The monitor and workspace views may be exposed over the network.
+
+Mitigation: Prefer binding to localhost; share a LAN URL only on trusted networks and only with intended viewers.
+
+Risk: The install and update flow can persist software locally and may attempt optional dependency installation with sudo.
+
+Mitigation: Confirm updates before running them, and allow sudo or optional dependency installation only when that system change is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luccast/skills/crabwalk)
+- [Crabwalk Homepage](https://crabwalk.app)
+- [Crabwalk Repository](https://github.com/luccast/crabwalk)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with bash command blocks and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install, verification, start, update, and feedback-handling guidance for the Crabwalk CLI.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter reports 1.0.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

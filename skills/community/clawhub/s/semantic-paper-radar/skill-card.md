@@ -1,44 +1,60 @@
-## Description: <br>
-Semantic literature discovery and synthesis across arXiv/OpenAlex/PubMed (and optional Google Scholar adapters). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic literature discovery and synthesis across arXiv/OpenAlex/PubMed (and optional Google Scholar adapters). Use when users ask for domain must-read papers, research trend mapping, paper recommendations, reading lists, or academic lineage/context for a topic in natural science, AI, engineering, medicine, or interdisciplinary research.
 
-## Publisher: <br>
-[Rogerrrr18](https://clawhub.ai/user/Rogerrrr18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rogerrrr18](https://clawhub.ai/user/rogerrrr18)
 
-## Use Case: <br>
-Researchers, developers, and technical users use this skill to retrieve, rank, and synthesize reading lists for scientific, medical, AI, engineering, and interdisciplinary research topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research queries are sent to external literature services, including arXiv, OpenAlex, PubMed, and optional Scholar-capable adapters. <br>
-Mitigation: Use queries that are appropriate for external services and avoid confidential or sensitive research topics unless organizational policy allows it. <br>
-Risk: Optional HTML export writes report files to a local path chosen by the user or generated from the query. <br>
-Mitigation: Review the export path before using `--export-html` and inspect generated reports before sharing them. <br>
-Risk: Generated reading lists may combine preprints with peer-reviewed literature and may omit important papers. <br>
-Mitigation: Cross-check critical recommendations against source links, DOI or citation metadata, and domain expertise; include the documented preprint caution for biomedical or clinical queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Rogerrrr18/semantic-paper-radar) <br>
-- [arXiv API endpoint](http://export.arxiv.org/api/query) <br>
-- [OpenAlex Works API](https://api.openalex.org/works) <br>
-- [NCBI Entrez PubMed E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/) <br>
+## Use Case:
 
+Researchers, developers, and technical readers use this skill to retrieve papers across arXiv, OpenAlex, and PubMed, then synthesize prioritized reading lists, timelines, theme threads, and next-step recommendations for a research topic.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, HTML files] <br>
-**Output Format:** [JSON search results, Markdown synthesis reports, and optional local HTML export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include paper metadata, links, citation counts where available, ranked reading lists, timelines, thematic threads, and suggested reading order.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research queries are sent to arXiv, OpenAlex, and PubMed.
+
+Mitigation: Avoid confidential project names, private research plans, or sensitive biomedical details in queries.
+
+Risk: Optional HTML export may include unsafe unescaped content from user queries or retrieved search results.
+
+Mitigation: Avoid HTML export for untrusted topics or results until escaping is fixed; when exporting, write to a safe workspace path and inspect the file before opening it.
+
+Risk: arXiv results can include unreviewed preprints, especially for biomedical or clinical topics.
+
+Mitigation: Label arXiv entries as preprints and cross-check clinical or biomedical claims against peer-reviewed sources before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogerrrr18/skills/semantic-paper-radar)
+- [arXiv API query endpoint](http://export.arxiv.org/api/query)
+- [OpenAlex Works API](https://api.openalex.org/works)
+- [PubMed E-utilities ESearch](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi)
+- [PubMed E-utilities EFetch](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results and Markdown research reports, with optional exported HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are normally presented in Chinese unless the user asks for another language.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

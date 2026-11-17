@@ -1,43 +1,54 @@
-## Description: <br>
-Nex Timetrack helps freelancers and agencies track billable time with live timers, manual entries, client and project rates, billing summaries, search, and CSV/JSON export using local SQLite storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billable time logger for freelancers and agencies. Start/stop timers or log manually. Client and project management, rate cascading, 15-minute rounding, billing summaries, full-text search, CSV/JSON export. Python stdlib only, SQLite storage.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Freelancers, agencies, and agents supporting them use this skill to start and stop timers, log work manually, manage client and project rates, summarize billable hours, and export local records for invoicing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported files may include client names, emails, rates, hours, and notes. <br>
-Mitigation: Review exported CSV or JSON files before sharing them and protect the local database and export directory as billing records. <br>
-Risk: Custom export paths can write outside the skill's own folder and may overwrite user files. <br>
-Mitigation: Use the default export location unless the destination path is known and safe. <br>
-Risk: Deleting or editing entries can affect records used for billing. <br>
-Mitigation: Back up the local SQLite database before destructive changes or before relying on it for invoicing. <br>
+## Use Case:
 
+Freelancers, agencies, and the agents assisting them use this skill to record billable time, manage clients and projects, calculate billing summaries, and export timesheet data for invoicing.
 
-## Reference(s): <br>
-- [Nex Timetrack ClawHub release](https://clawhub.ai/nexaiguy/nex-timetrack) <br>
-- [Nex AI website](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local CSV or JSON exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores time tracking data locally in SQLite and can export billing records to CSV or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Setup and export behavior can affect files outside the skill's expected data area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before running, avoid elevated privileges, and keep export paths to simple filenames or trusted directories.
+
+Risk: Time entries, client contacts, rates, and CSV/JSON exports may contain sensitive business data.
+
+Mitigation: Store the local data directory securely, limit access to exports, and review files before sharing or opening them in spreadsheet software.
+
+## Reference(s):
+
+- [Nex Timetrack on ClawHub](https://clawhub.ai/nexaiguy/skills/nex-timetrack)
+- [Nex AI](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with inline shell commands and file paths; CSV or JSON files when exports are requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite storage under ~/.nex-timetrack by default; exports may contain client, rate, and billing data.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

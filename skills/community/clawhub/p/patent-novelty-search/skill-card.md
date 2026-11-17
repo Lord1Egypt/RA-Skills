@@ -1,49 +1,62 @@
-## Description: <br>
-Guides agents through patent novelty searches by structuring technical inputs, retrieving and ranking patent results, comparing features, and producing a Word-format novelty search report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes a patent novelty search workflow that structures a technical solution, retrieves and ranks related patents, compares technical features, and generates a novelty search report.
 
-## Publisher: <br>
-[chaochaoSZ](https://clawhub.ai/user/chaochaoSZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaochaosz](https://clawhub.ai/user/chaochaosz)
 
-## Use Case: <br>
-Developers, IP teams, and product or research staff use this skill to turn a technical solution description into a patent novelty search workflow with retrieval strategy, related patent ranking, feature comparison, and report-ready conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invention details may be used as search terms on Google Patents or other patent databases. <br>
-Mitigation: Use only information approved for disclosure in external patent-search systems, or run the workflow with an approved search environment for confidential inventions. <br>
-Risk: Generated novelty reports are informational and do not constitute legal advice. <br>
-Mitigation: Have a qualified patent attorney or responsible IP reviewer verify conclusions before filing or making business decisions. <br>
-Risk: Patent retrieval, legal status, and comparison judgments may contain omissions, errors, or AI hallucinations. <br>
-Mitigation: Verify cited patents, publication data, legal status, and feature mappings against authoritative patent databases before relying on the report. <br>
+## Use Case:
 
+Developers, inventors, and IP teams use this skill to turn a technical solution description into structured search terms, related patent retrieval, feature comparison, novelty and inventive-step commentary, and a draft novelty search report. Outputs should be reviewed by qualified IP professionals before reliance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaochaoSZ/patent-novelty-search) <br>
-- [Publisher profile](https://clawhub.ai/user/chaochaoSZ) <br>
-- [Patent Search Strategy Reference Manual](references/search-strategies.md) <br>
-- [Report disclaimer](references/disclaimer.md) <br>
-- [Google Patents](https://patents.google.com) <br>
-- [Espacenet](https://worldwide.espacenet.com/) <br>
-- [Lens Patent Search](https://www.lens.org/lens/search/patent/) <br>
-- [Patsnap Eureka](https://eureka.patsnap.com/ip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown tables and narrative report content, with instructions to generate a .docx report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes patent retrieval strategies, ranked patent lists, feature comparison tables, novelty or inventive-step comments, and a required disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may include mandated Patsnap promotional content and questionable attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the disclaimer and remove or revise unsupported branding, attribution, or promotional language before sharing reports.
+
+Risk: Confidential invention disclosures may be stored in a persistent Word document.
+
+Mitigation: Use only approved environments for confidential material and review generated files before storage or distribution.
+
+Risk: AI-assisted patent novelty and inventive-step analysis may contain omissions, errors, or hallucinations and does not constitute legal advice.
+
+Mitigation: Have patent results, feature comparisons, and conclusions reviewed by a qualified patent attorney or IP professional before filing or business reliance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaochaosz/skills/patent-novelty-search)
+- [Search strategies reference](artifact/references/search-strategies.md)
+- [Report disclaimer](artifact/references/disclaimer.md)
+- [Google Patents](https://patents.google.com)
+- [Espacenet](https://worldwide.espacenet.com/)
+- [Lens Patent Search](https://www.lens.org/lens/search/patent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Structured Markdown analysis and a generated Word document report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes technical element extraction, patent lists, feature comparison tables, novelty/inventive-step comments, and a persistent .docx report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

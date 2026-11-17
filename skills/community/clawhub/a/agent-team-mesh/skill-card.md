@@ -1,47 +1,64 @@
-## Description: <br>
-agent-team-mesh helps OpenClaw agents on routable team containers or pods discover peers, check connectivity, send messages, wait for replies, and broadcast over direct WebSocket gateway calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team-wide peer-to-peer mesh for OpenClaw agents that lets agents ping teammates, send messages and wait for replies, broadcast to the team, and discover agent status through direct WebSocket calls.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and internal teams use this skill to let distributed OpenClaw agents on trusted networks ping teammates, send messages and collect replies, broadcast updates, and maintain registry and token configuration for peer communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages may be shared with another agent and retained in that agent's session history. <br>
-Mitigation: Avoid placing secrets or sensitive content in messages and treat sends and broadcasts as shared team communication. <br>
-Risk: The skill uses shared gateway tokens and plaintext WebSocket calls intended for trusted internal networks. <br>
-Mitigation: Install only in trusted internal team environments, restrict tokens.json permissions, and keep gateway access on a trusted routable network. <br>
-Risk: The optional IM fallback can forward content through another messaging channel when an agent is unreachable. <br>
-Mitigation: Disable or remove the fallback unless explicitly needed and approved for the team's communication policy. <br>
-Risk: Broadcast and send operations can reach unintended teammates if registry or identity detection is wrong. <br>
-Mitigation: Use dry-run mode and explicit recipient checks before sending, and keep registry and local identity configuration current. <br>
+## Use Case:
 
+Developers and teams running OpenClaw agents on routable containers or pods use this skill to exchange direct agent-to-agent messages, check team agent availability, and broadcast updates without operating a central broker.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/songhonglei/agent-team-mesh) <br>
-- [registry.json](references/registry.json) <br>
-- [tokens.example.json](references/tokens.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON configuration examples, and command-line text output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run previews, connectivity status, send and broadcast results, and teammate agent replies when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reusable OpenClaw gateway tokens are shared among teammates and stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store tokens outside the skill directory in a user-only file, keep them out of git, restrict file permissions, and rotate tokens if they may have been exposed.
+
+Risk: Agent messages and tokens may cross plaintext WebSocket connections.
+
+Mitigation: Use the mesh only on trusted private networks, prefer pinned installation, and rotate tokens if traffic may have crossed an untrusted network.
+
+Risk: Dry-run output and operational logs may reveal sensitive message content.
+
+Mitigation: Avoid logging dry-run previews or command output that contains sensitive prompts, replies, or routing details.
+
+Risk: The optional IM fallback can hand messages to a user-provided external script.
+
+Mitigation: Disable the fallback unless needed, and review the configured fallback script before allowing it to send messages.
+
+## Reference(s):
+
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Team registry example](references/registry.json)
+- [Token file example](references/tokens.example.json)
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/agent-team-mesh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses direct OpenClaw gateway calls and local configuration files; message size limits and dry-run behavior are part of the documented workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

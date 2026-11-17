@@ -1,42 +1,57 @@
-## Description: <br>
-Content Creation Pro helps agents draft, plan, and batch-generate social media content for Xiaohongshu, Zhihu, Douyin, and WeChat Official Account workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Creation Pro helps agents draft Chinese-language social posts, video scripts, content calendars, hashtag plans, and topic ideas for Xiaohongshu, Zhihu, Douyin, and WeChat, with optional trending-topic search support.
 
-## Publisher: <br>
-[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg)
 
-## Use Case: <br>
-Content creators, marketers, and social media operators use this skill to generate platform-specific post drafts, topic ideas, content calendars, and batches of content variants for Chinese social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may contain inaccurate claims, unverifiable data, or wording that is unsuitable for publication. <br>
-Mitigation: Review claims, sources, platform policy fit, and brand requirements before posting. <br>
-Risk: Realtime trend search may send user-provided keywords to external sites. <br>
-Mitigation: Use non-sensitive search terms and avoid confidential client names, unreleased campaign terms, or internal strategy keywords. <br>
-Risk: Calendar and batch modes can write generated content files to a local output directory. <br>
-Mitigation: Review generated files and their destination before sharing, publishing, or committing them. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to produce platform-tailored Chinese social-media drafts, posting calendars, batch variants, hashtags, image prompts, and topic suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxie48892-jpg/content-creation-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown-style content drafts plus JSON objects or files for calendars and batch generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce platform-specific drafts, hashtags, image prompts, content calendars, and batch content variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Generated social-media claims, data references, or promotional language may be inaccurate, unsupported, or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated claims, cited data, originality, prohibited wording, and platform fit before publishing.
+
+Risk: The trending-topic search feature may send search terms to external Chinese web platforms.
+
+Mitigation: Use non-sensitive search terms, avoid confidential campaign details, or avoid the trending-search feature for private work.
+
+Risk: Calendar and batch modes can create local output files.
+
+Mitigation: Direct outputs to an expected workspace path and review generated files before sharing or committing them.
+
+## Reference(s):
+
+- [Content Creation Pro on ClawHub](https://clawhub.ai/dxie48892-jpg/skills/content-creation-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local JSON calendar or batch content files when the generator CLI is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

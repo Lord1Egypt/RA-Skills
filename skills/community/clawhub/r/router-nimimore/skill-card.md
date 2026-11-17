@@ -1,40 +1,50 @@
-## Description: <br>
-Router NIMIMORE analyzes a query and selects an appropriate AI model tier to balance expected cost and performance across supported providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically selects an AI model for a query by analyzing query characteristics and balancing cost against expected task complexity.
 
-## Publisher: <br>
-[aichiafranco](https://clawhub.ai/user/aichiafranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aichiafranco](https://clawhub.ai/user/aichiafranco)
 
-## Use Case: <br>
-Developers and agent builders use this skill to classify prompts and choose among economy, standard, and premium model options before dispatching work to a model provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: If its selected model is connected to real provider calls, prompts may be sent to third-party providers. <br>
-Mitigation: Avoid sending secrets or personal data unless the provider's data handling policy is acceptable for the intended use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to select a cost-appropriate model tier for simple, code, reasoning, Chinese-language, and long-context queries. It can return routing analysis and selected model metadata for use in CLI workflows or agent orchestration.
 
-## Reference(s): <br>
-- [Router NIMIMORE ClawHub Page](https://clawhub.ai/aichiafranco/router-nimimore) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local model-selection recommendations and routing analysis; no persistence or provider calls are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Downstream use of the selected model could send prompt content to Moonshot or Bailian providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected provider names before sending sensitive prompts, and treat the skill as a local routing helper rather than a complete model gateway.
+
+## Reference(s):
+
+- [Router NIMIMORE ClawHub listing](https://clawhub.ai/aichiafranco/skills/router-nimimore)
+- [Publisher profile](https://clawhub.ai/user/aichiafranco)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON objects and concise routing guidance, with optional CLI command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes query feature flags, selected model name, model tier, token-cost metadata, and estimated savings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

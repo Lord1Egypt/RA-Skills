@@ -1,47 +1,61 @@
-## Description: <br>
-Browse Bitbucket repositories, manage branches, review pull requests, and work with source code via the Bitbucket Cloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse Bitbucket repositories, manage branches, review pull requests, and work with source code via the Bitbucket Cloud API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect Bitbucket repositories, review pull requests, manage branches, and coordinate source-code workflows from an agent chat interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access to Bitbucket resources available to the connected account. <br>
-Mitigation: Review requested OAuth scopes during connection and revoke the ClawLink Bitbucket connection when it is no longer needed. <br>
-Risk: Repository, branch, pull request, and issue write actions can change or delete Bitbucket resources. <br>
-Mitigation: Preview and explicitly confirm create, update, merge, approve, comment, or delete actions before execution, especially destructive operations. <br>
-Risk: Tool output is limited to repositories and workspaces accessible to the connected Bitbucket account. <br>
-Mitigation: Verify the active Bitbucket connection and target workspace or repository before relying on results. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Bitbucket repository contents, manage branches, review pull requests, and coordinate code workflows from chat through ClawLink and the Bitbucket Cloud API.
 
-## Reference(s): <br>
-- [Bitbucket Skill on ClawHub](https://clawhub.ai/hith3sh/bitbucket-repos) <br>
-- [Bitbucket Cloud REST API](https://developer.atlassian.com/cloud/bitbucket/rest/) <br>
-- [Bitbucket Repository API](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-repositories/) <br>
-- [Bitbucket Pull Request API](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pullrequests/) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=bitbucket-repos) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated ClawLink Bitbucket connection; write and destructive actions require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: The skill installs and persistently allowlists an unpinned external plugin with OAuth-backed repository write capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the ClawLink plugin publisher, prefer a pinned and reviewed version when available, and remove the plugin allowlist if behavior does not match expectations.
+
+Risk: Repository, branch, pull request, and issue write operations can change or delete Bitbucket resources accessible to the connected account.
+
+Mitigation: Connect Bitbucket with the minimum scopes needed and review every preview before approving write operations.
+
+Risk: OAuth access may remain active after installation.
+
+Mitigation: Be prepared to revoke the OAuth integration if access is no longer needed or if any activity looks wrong.
+
+## Reference(s):
+
+- [Bitbucket Cloud REST API](https://developer.atlassian.com/cloud/bitbucket/rest/)
+- [Bitbucket Repository API](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-repositories/)
+- [Bitbucket Pull Request API](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-pullrequests/)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/bitbucket-repos)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review and explicit confirmation before write operations.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-Location Street View & Satellite Imagery gets Street View panoramas, satellite or aerial imagery, and geocoding results through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets geocodes, reverse geocodes, and Street View or satellite imagery for addresses or coordinates through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Agents and developers use this skill to geocode addresses or coordinates and retrieve Street View, satellite, roadmap, hybrid, or terrain imagery for location verification, property assessment, travel planning, and geographic validation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends addresses or coordinates to AgentPMT for paid remote processing, and generated image links may remain available for up to 7 days. <br>
-Mitigation: Use the skill only for location data appropriate for AgentPMT processing, avoid highly sensitive home, workplace, or travel locations unless necessary, and account for the 7-day signed URL availability window. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add location lookup, visual site inspection, property assessment, travel preview, and geographic validation workflows to agents.
 
-## Reference(s): <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/location-street-view-satellite-imagery) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/location-street-view-satellite-imagery) <br>
-- [Action Schema](schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT calls return geocoding data, signed image URLs, base64 image data, and imagery metadata depending on the selected action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles precise addresses or coordinates through AgentPMT-hosted remote calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum location data needed for the task and avoid submitting sensitive locations unless the user has approved that disclosure.
+
+Risk: Generated image links are hosted and retained for 7 days.
+
+Mitigation: Treat signed URLs as sensitive output, share them only with intended recipients, and avoid relying on them after expiration.
+
+Risk: The security evidence notes mutable remote instructions and unpinned setup commands.
+
+Mitigation: Prefer OpenClaw or pinned, reviewed skill versions for setup, and do not let live instructions override normal agent safety rules or broaden the requested task.
+
+## Reference(s):
+
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/location-street-view-satellite-imagery)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/location-street-view-satellite-imagery)
+- [Action schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, API Calls]
+
+**Output Format:** [Markdown instructions with JSON request and response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote tool responses can include signed image URLs, base64 image data, geocoding metadata, and Street View availability details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

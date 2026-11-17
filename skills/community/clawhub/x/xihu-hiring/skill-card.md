@@ -1,44 +1,60 @@
-## Description: <br>
-Xihu Hiring fetches Feishu approval data for the Xihu Digital HR hiring template and generates a three-sheet recruiting progress Excel report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Feishu approval data for Xihu Hiring and generates a recruitment progress Excel workbook.
 
-## Publisher: <br>
-[tyqqj0](https://clawhub.ai/user/tyqqj0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyqqj0](https://clawhub.ai/user/tyqqj0)
 
-## Use Case: <br>
-Authorized HR and recruiting operators use this skill to refresh a Xihu Digital hiring tracker from Feishu approvals, apply manual corrections, and produce an Excel report for applicant pipeline review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill bulk-accesses and locally stores sensitive candidate information in Excel and temporary payload files. <br>
-Mitigation: Install only for authorized HR or recruiting operators, run it in a private workspace, confirm the output directory, treat generated files as sensitive applicant data, and delete temporary payload files after report generation. <br>
-Risk: The skill depends on Feishu approval access and a lark-cli bot context, so overbroad permissions could expose unrelated approval data. <br>
-Mitigation: Use the correct Feishu bot permissions for the documented HR approval template and review access before running the skill. <br>
+## Use Case:
 
+Recruiting operators and authorized HR users use this skill to refresh Xihu Hiring candidate progress from Feishu approvals, apply manual corrections, and produce a three-sheet Excel report without exposing full candidate PII in chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tyqqj0/xihu-hiring) <br>
-- [Publisher profile](https://clawhub.ai/user/tyqqj0) <br>
-- [Fetch approvals reference](artifact/references/fetch-approvals.md) <br>
-- [Build Excel reference](artifact/references/build-excel.md) <br>
-- [Normalization rules](artifact/references/normalization-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python commands, JSON payloads, JSON summary output, and a generated Excel workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 西湖数智-招聘进度.xlsx in the current workspace and may use /tmp/hiring_payload.json as an intermediate payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Candidate personal data and Feishu approval contents may be exposed through temporary payload files or generated workbooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a controlled workspace, restrict access to Feishu credentials and generated files, and store temporary payloads in a private per-run directory with cleanup.
+
+Risk: Spreadsheet formula injection may occur if untrusted form fields are written directly into Excel cells.
+
+Mitigation: Sanitize workbook text values that begin with spreadsheet formula markers before report generation or distribution.
+
+Risk: Unpinned dependencies may change behavior across runs.
+
+Mitigation: Pin runtime dependencies such as openpyxl before routine operational use.
+
+## Reference(s):
+
+- [Fetch Feishu Approvals](references/fetch-approvals.md)
+- [Position Normalization Rules](references/normalization-rules.md)
+- [Excel Report Builder](references/build-excel.md)
+- [ClawHub Skill Page](https://clawhub.ai/tyqqj0/skills/xihu-hiring)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; generated runtime artifacts include JSON payloads and an Excel workbook.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses lark-cli and openpyxl; the final workbook is written as 西湖数智-招聘进度.xlsx in the active workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

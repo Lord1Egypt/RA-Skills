@@ -1,41 +1,53 @@
-## Description: <br>
-Expert in getting the first 10 B2B customers, based on Lenny Rachitsky's "First 1000 Users" research. Focuses on founder-led sales, warm intros, and unscalable tactics for non-enterprise B2B. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in getting the first 10 B2B customers, based on Lenny Rachitsky's "First 1000 Users" research. Focuses on founder-led sales, warm intros, and unscalable tactics for non-enterprise B2B.
 
-## Publisher: <br>
-[pors](https://clawhub.ai/user/pors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pors](https://clawhub.ai/user/pors)
 
-## Use Case: <br>
-External founders and startup operators use this skill to plan founder-led sales for the first 10 paying B2B customers. It helps choose among warm introductions, targeted cold outreach, and niche community engagement, then drafts practical outreach prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential customer lists, private company strategy, or sensitive financial details while seeking startup sales guidance. <br>
-Mitigation: Avoid entering confidential or sensitive business data unless the agent environment is trusted for that information. <br>
-Risk: Cold outreach guidance may be applied in ways that conflict with anti-spam or privacy requirements. <br>
-Mitigation: Review outreach plans against applicable anti-spam, privacy, and consent rules before sending messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [How to Get Your First 10 B2B Customers](references/lenny-b2b-start.md) <br>
-- [Lenny Rachitsky's First 1000 Users (B2B Edition)](references/first-1000-users.md) <br>
-- [ClawHub release page](https://clawhub.ai/pors/b2b-first-ten) <br>
+## Use Case:
 
+External founders and startup operators use this skill to plan early B2B customer acquisition through founder-led sales, warm introductions, targeted cold outreach, and niche community engagement.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text advice with example outreach drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or data exfiltration was identified in the release evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can suggest cold outreach and community engagement tactics that may violate anti-spam laws, platform rules, or community norms if applied carelessly.
+
+Mitigation: Review proposed outreach before use and follow applicable anti-spam laws, platform terms, and community expectations.
+
+Risk: Early sales advice may be treated as definitive even when it is based on generalized startup patterns.
+
+Mitigation: Adapt recommendations to the user's market, buyer segment, and evidence from real customer conversations.
+
+## Reference(s):
+
+- [How to Get Your First 10 B2B Customers](references/lenny-b2b-start.md)
+- [Lenny Rachitsky's "First 1000 Users" (B2B Edition)](references/first-1000-users.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown advisory text with outreach drafts and tactical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, shell commands, credentials, or system access are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

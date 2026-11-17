@@ -1,39 +1,56 @@
-## Description: <br>
-A powerful model routing skill that analyzes query intent and cost-efficiency to select the optimal LLM (Elite/Balanced/Basic) before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A powerful model routing skill that analyzes query intent and cost-efficiency to select the optimal LLM tier before execution.
 
-## Publisher: <br>
-[rayray1218](https://clawhub.ai/user/rayray1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rayray1218](https://clawhub.ai/user/rayray1218)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route prompts to Elite, Balanced, or Basic model tiers before an LLM call to balance capability and cost. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill saves raw routed prompts locally by default. <br>
-Mitigation: Avoid routing secrets or sensitive business or personal data through the skill, restrict or regularly delete query_history.json, and consider disabling or modifying prompt logging before use. <br>
-Risk: The skill relies on Python dependencies for routing and embeddings. <br>
-Mitigation: Pin and review dependencies in a controlled environment before installing or running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model-Selector on ClawHub](https://clawhub.ai/rayray1218/model-selector) <br>
+## Use Case:
 
+Developers and agents use this skill to classify prompts by semantic intent and route work to Elite, Balanced, or Basic LLM tiers for cost-aware execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JSON-like routing decisions with tier, model, confidence, and score fields; Markdown guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes one query at a time and may save prompt history locally in query_history.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Full user prompts may be saved locally in plaintext for routing history.
+
+Mitigation: Disable or remove full-query logging before production use, or require explicit opt-in with deletion controls.
+
+Risk: Sensitive prompts could be exposed through local history files.
+
+Mitigation: Avoid using the skill with secrets, credentials, proprietary text, or personal data unless local storage controls are acceptable.
+
+Risk: Runtime dependencies are declared with lower bounds only.
+
+Mitigation: Pin and review dependencies before deploying the skill in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rayray1218/skills/model-selector)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Guidance, Configuration]
+
+**Output Format:** [JSON routing decision with model-tier guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes selected tier, suggested model, confidence score, and per-tier similarity scores when semantic routing is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

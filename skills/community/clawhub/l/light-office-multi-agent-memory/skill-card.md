@@ -1,43 +1,63 @@
-## Description: <br>
-通用多Agent记忆系统 - 自动捕获、RRF检索、知识图谱、矛盾检测、Token追踪 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A general multi-agent memory system for automatic capture, RRF retrieval, knowledge graph construction, contradiction detection, and token tracking.
 
-## Publisher: <br>
-[liucunguang](https://clawhub.ai/user/liucunguang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liucunguang](https://clawhub.ai/user/liucunguang)
 
-## Use Case: <br>
-Developers and teams use this skill to add persistent memory across single-agent and multi-agent workflows, including automatic capture, retrieval, knowledge graph construction, conflict checks, token tracking, and agent registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently records prompts, tool activity, and errors in a local memory workspace. <br>
-Mitigation: Use it only when persistent local memory capture is intended, choose a private MEMORY_WORKSPACE outside /tmp, and review retention and redaction behavior before shared or production use. <br>
-Risk: The setup flow and configuration can handle optional API keys. <br>
-Mitigation: Keep API keys in environment variables or a secret manager rather than storing them in setup-generated configuration files. <br>
-Risk: Captured prompts or tool summaries may contain sensitive information. <br>
-Mitigation: Avoid placing secrets in prompts or tool summaries and review captured memory artifacts before broad access or reuse. <br>
+## Use Case:
 
+Developers and external users can use this skill to configure and run a prototype multi-agent memory workspace that captures agent events, retrieves memory with RRF, builds a knowledge graph, tracks token use, and manages agent registration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liucunguang/light-office-multi-agent-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/liucunguang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python scripts, YAML configuration, JSON records, and local HTML dashboard output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local memory artifacts in the configured MEMORY_WORKSPACE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can persist user prompts, tool summaries, errors, task results, token logs, and graph data in local workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated MEMORY_WORKSPACE, avoid capturing secrets or regulated data, and review stored files before sharing or deploying.
+
+Risk: The setup wizard can store an API key in config.yaml.
+
+Mitigation: Leave the API key blank in the wizard and provide credentials through environment variables or a secret manager.
+
+Risk: Dashboard and search behavior include demo-quality or simulated operational values.
+
+Mitigation: Treat dashboard and retrieval results as non-operational until they are replaced with measured production data and validation.
+
+Risk: The release evidence recommends review before installing and pinning dependencies before sensitive use.
+
+Mitigation: Review the skill before execution and pin dependency versions before use in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liucunguang/skills/light-office-multi-agent-memory)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated workspace JSON or Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists memory, graph, token, configuration, and agent registry files under MEMORY_WORKSPACE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

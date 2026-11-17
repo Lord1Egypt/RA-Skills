@@ -1,42 +1,59 @@
-## Description: <br>
-Append notes to local Markdown files via MCP append_note. Use when the user asks to save ideas, reminders, or journal entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Append notes to local Markdown files via MCP append_note when the user asks to save ideas, reminders, or journal entries.
 
-## Publisher: <br>
-[lgwventrue](https://clawhub.ai/user/lgwventrue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgwventrue](https://clawhub.ai/user/lgwventrue)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to let an agent save selected chat content, reminders, and journal-style notes into local Markdown files through an MCP append_note tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes selected chat content to local Markdown files on disk, which can retain sensitive data if the user asks to save it. <br>
-Mitigation: Avoid saving passwords, API keys, private messages, or sensitive personal data unless local disk retention is acceptable. <br>
-Risk: The skill launches an external MCP executable from NOTE_SYNC_REPO. <br>
-Mitigation: Review the external go-note-sync-mcp repository and built executable before configuring the MCP server. <br>
+## Use Case:
 
+External users and developers use this skill to save chat content as local Markdown notes through the append_note MCP tool. It is suited for reminders, journal entries, and named note files.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lgwventrue/note-sync) <br>
-- [Setup Guide](artifact/references/setup.md) <br>
-- [append_note tool reference](artifact/references/tool-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes and concise agent confirmation text, with setup guidance that includes shell commands and JSON configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The append_note tool writes user-provided note content to local Markdown files under the configured NOTE_SYNC_REPO path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: The skill requires users to run an external MCP executable that the security evidence describes as unaudited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the MCP repository before installing, and prefer a fixed, verified release or commit with a checksum.
+
+Risk: Saved content is written to local files under the configured notes directory.
+
+Mitigation: Avoid saving sensitive content unless the local notes directory and machine access controls are appropriate for that data.
+
+Risk: Setup depends on NOTE_SYNC_REPO and mcp.servers.note-sync being configured correctly.
+
+Mitigation: Confirm the environment variable, MCP command, and expected notes path before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lgwventrue/skills/note-sync)
+- [Setup Guide](references/setup.md)
+- [append_note Tool Reference](references/tool-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes and plain-text confirmations, with setup guidance in Markdown and shell or PowerShell snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes note content to local Markdown files under the configured notes directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

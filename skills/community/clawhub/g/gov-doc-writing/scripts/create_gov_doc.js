@@ -29,43 +29,6 @@ const CHINESE_FONTS = {
 };
 
 // ========== 辅助函数 ==========
-
-/**
- * 将文本中的 ASCII 双引号 " 替换为配对的中文双引号 ""（\u201c / \u201d）
- * 规则：
- *   1. 已有的正确中文引号对保持不变
- *   2. 孤立的中文左/右引号尝试与相邻的 ASCII 引号配对
- *   3. 剩余的 ASCII 引号按奇偶交替配对（奇数位→左引号，偶数位→右引号）
- *   4. 中文全角引号 " " 也统一为 \u201c \u201d
- */
-function normalizeQuotes(text) {
-  const LEFT = '\u201c';   // "
-  const RIGHT = '\u201d';  // "
-
-  let result = '';
-  let quoteCount = 0; // 用于 ASCII 引号的奇偶配对
-
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-
-    if (ch === '"' || ch === '\u201d' || ch === '\u201c') {
-      // ASCII 双引号或中文双引号统一处理
-      if (quoteCount % 2 === 0) {
-        result += LEFT;
-      } else {
-        result += RIGHT;
-      }
-      quoteCount++;
-    } else {
-      result += ch;
-    }
-  }
-
-  // 如果最终引号数量为奇数，说明有一个未配对的引号，强制闭合为右引号
-  // 这种情况属于输入错误，做容错处理
-  return result;
-}
-
 /**
  * 判断字符是否为西文字符（字母、数字、常见西文标点）
  */
@@ -132,24 +95,21 @@ function splitByScript(text) {
  * 根据文本片段创建TextRun数组
  * 中文用 chineseFont, 西文用 latinFont
  * 
- * 每个 TextRun 均明确写入对应的中西文字体，确保 Word 在混合文本中
- * 正确渲染字体，不依赖样式继承的不确定性。
- * 行距、缩进等段落属性仍由段落样式控制，不在 TextRun 中重复设置。
+ * 注意：当段落已经应用了样式时，TextRun不应该再包含与样式相同的格式化属性，
+ * 这样可以避免Word显示"多个样式组成"的问题
  * 
  * @param {string} text - 文本内容
- * @param {string} chineseFont - 中文字体（eastAsia）
- * @param {string} latinFont - 西文字体（ascii / hAnsi）
+ * @param {string} chineseFont - 中文字体
+ * @param {string} latinFont - 西文字体
  * @param {number} fontSize - 字体大小（半磅）
  * @param {object} options - 选项
  * @param {boolean} options.bold - 是否加粗
  * @param {boolean} options.italic - 是否斜体
- * @param {boolean} options.useDirectFormatting - 保留参数，已弃用（始终写入字体）
+ * @param {boolean} options.useDirectFormatting - 是否使用直接格式化（默认false，让样式控制格式）
  */
 function createTextRunsFromSegments(text, chineseFont, latinFont, fontSize, options = {}) {
-  const { bold = false, italic = false } = options;
-  // 先规范化双引号为中文配对引号
-  const normalizedText = normalizeQuotes(text);
-  const segments = splitByScript(normalizedText);
+  const { bold = false, italic = false, useDirectFormatting = false } = options;
+  const segments = splitByScript(text);
   const runs = [];
 
   for (const seg of segments) {
@@ -157,29 +117,19 @@ function createTextRunsFromSegments(text, chineseFont, latinFont, fontSize, opti
       // 换行符不创建空run
       continue;
     }
-
-    // 始终明确写入字体：西文用 latinFont，中文用 chineseFont
-    // 这样可以确保 Word 混合文本的字体不依赖样式继承，结果稳定可靠
-    if (seg.isLatin) {
+    
+    // 如果不使用直接格式化，则只设置文本内容，让段落样式控制格式
+    // 这样可以避免Word显示"多个样式组成"的问题
+    if (!useDirectFormatting) {
       runs.push(new TextRun({
         text: seg.text,
-        font: {
-          ascii: latinFont,
-          hAnsi: latinFont,
-          cs: latinFont,
-        },
-        bold: bold,
-        italic: italic,
       }));
     } else {
+      // 使用直接格式化（用于特殊情况）
       runs.push(new TextRun({
         text: seg.text,
-        font: {
-          eastAsia: chineseFont,
-          ascii: latinFont,
-          hAnsi: latinFont,
-          cs: latinFont,
-        },
+        font: seg.isLatin ? latinFont : chineseFont,
+        size: fontSize,
         bold: bold,
         italic: italic,
       }));
@@ -421,60 +371,6 @@ function createTableStyle() {
   };
 }
 
-/**
- * 创建落款-部门样式（右下对齐，无缩进）
- */
-function createSignatureDeptStyle() {
-  return {
-    id: "落款-部门",
-    name: "落款-部门",
-    basedOn: "Normal",
-    next: "Normal",
-    quickFormat: true,
-    run: {
-      font: {
-        eastAsia: CHINESE_FONTS.FZFangSong,
-        ascii: CHINESE_FONTS.TimesNewRoman,
-        hAnsi: CHINESE_FONTS.TimesNewRoman,
-        cs: CHINESE_FONTS.TimesNewRoman,
-      },
-      size: FONT_SIZES['小三号'],
-    },
-    paragraph: {
-      alignment: AlignmentType.RIGHT,
-      spacing: { before: 0, after: 0, line: 560, lineRule: "exact" },
-      indent: { firstLine: 0 },
-    }
-  };
-}
-
-/**
- * 创建落款-日期样式（右下对齐，与部门名称左对齐）
- */
-function createSignatureDateStyle() {
-  return {
-    id: "落款-日期",
-    name: "落款-日期",
-    basedOn: "Normal",
-    next: "Normal",
-    quickFormat: true,
-    run: {
-      font: {
-        eastAsia: CHINESE_FONTS.FZFangSong,
-        ascii: CHINESE_FONTS.TimesNewRoman,
-        hAnsi: CHINESE_FONTS.TimesNewRoman,
-        cs: CHINESE_FONTS.TimesNewRoman,
-      },
-      size: FONT_SIZES['小三号'],
-    },
-    paragraph: {
-      alignment: AlignmentType.RIGHT,
-      spacing: { before: 0, after: 0, line: 560, lineRule: "exact" },
-      indent: { firstLine: 0 },
-    }
-  };
-}
-
 // ========== 文档创建函数 ==========
 
 /**
@@ -494,24 +390,17 @@ function createDocument(options = {}) {
 
   const doc = new Document({
     creator: author,
+    // docx 库在未显式指定时会将 lastModifiedBy 写为 "Un-named"，
+    // 此处显式传入以保持文档作者为空，满足公文"不署名"要求
+    lastModifiedBy: author,
     title: title,
     description: '',
     styles: {
       default: {
         document: {
           run: {
-            // 分中西文设置字体，避免 docDefaults 中 ascii/hAnsi 被设置为中文字体
-            font: {
-              eastAsia: CHINESE_FONTS.FZFangSong,
-              ascii: CHINESE_FONTS.TimesNewRoman,
-              hAnsi: CHINESE_FONTS.TimesNewRoman,
-              cs: CHINESE_FONTS.TimesNewRoman,
-            },
+            font: CHINESE_FONTS.FZFangSong,
             size: FONT_SIZES['小三号'],
-          },
-          // 设置文档默认段落属性（pPrDefault），确保 Normal（正文）样式有固定28磅行距
-          paragraph: {
-            spacing: { before: 0, after: 0, line: 560, lineRule: "exact" },
           }
         }
       },
@@ -524,8 +413,6 @@ function createDocument(options = {}) {
         createLevel3HeadingStyle(),
         createImageStyle(),
         createTableStyle(),
-        createSignatureDeptStyle(),
-        createSignatureDateStyle(),
       ]
     },
     numbering: {
@@ -615,7 +502,7 @@ function createDocument(options = {}) {
 function createTitleParagraph(text) {
   return new Paragraph({
     style: "首页大标题",
-    children: [new TextRun({ text: normalizeQuotes(text) })]
+    children: [new TextRun({ text: text })]
   });
 }
 
@@ -706,21 +593,21 @@ function createLevel2Heading(text, number) {
     const num = number + 1;
     if (num <= 20) {
       expectedNumeral = chineseNumbers[num - 1];
-      prefix = '（' + expectedNumeral + '）';
+      prefix = '（' + expectedNumeral + '）、';
     } else {
       expectedNumeral = String(num);
-      prefix = '（' + expectedNumeral + '）';
+      prefix = '（' + expectedNumeral + '）、';
     }
   }
 
   // 检测text是否已包含序号前缀，避免重复
   let finalText = text;
   if (text && number !== undefined && expectedNumeral) {
-    // 匹配 "（一）" 开头的模式（不再带顿号）
+    // 匹配 "（一）、" 或 "（一）" 开头的模式
     const existingMatch = text.match(/^（([一二三四五六七八九十]+)）、?/);
     if (existingMatch && existingMatch[1] === expectedNumeral) {
-      // 已有对应序号的前缀（可能带或不带顿号），统一去掉顿号
-      finalText = prefix + text.replace(/^（[一二三四五六七八九十]+）、?/, '');
+      // 已有对应序号的前缀，不再添加
+      finalText = text;
     } else if (existingMatch) {
       // 有其他序号前缀，替换为正确的
       finalText = prefix + text.replace(/^（[一二三四五六七八九十]+）、?/, '');
@@ -746,7 +633,8 @@ function createLevel2Heading(text, number) {
 
 /**
  * 创建三级标题
- * 序号格式: 1.、2.、3.（序号后跟点号，不跟顿号）
+ * 序号格式: 1.、2.、3.
+ * 注意：规范格式使用 "、" 作为序号后的分隔符
  * 中文字符使用方正仿宋（加粗），西文字符使用Times New Roman
  */
 function createLevel3Heading(text, number) {
@@ -755,17 +643,17 @@ function createLevel3Heading(text, number) {
 
   if (number !== undefined) {
     expectedNumeral = String(number + 1);
-    prefix = expectedNumeral + '.';
+    prefix = expectedNumeral + '、';
   }
 
   // 检测text是否已包含序号前缀，避免重复
-  // 匹配 "1." 或 "1、" 或 "1 " 等模式（数字开头）
+  // 匹配 "1、" 或 "1." 或 "1 " 等模式（数字开头）
   let finalText = text;
   if (text && number !== undefined && expectedNumeral) {
     const existingMatch = text.match(/^(\d+)[、.\s]/);
     if (existingMatch && existingMatch[1] === expectedNumeral) {
-      // 已有对应序号前缀，统一替换为标准格式（点号）
-      finalText = prefix + text.replace(/^\d+[、.\s]/, '');
+      // 已有对应序号的前缀，不再添加
+      finalText = text;
     } else if (existingMatch) {
       // 有其他数字序号前缀，替换为正确的
       finalText = prefix + text.replace(/^\d+[、.\s]/, '');
@@ -843,24 +731,24 @@ function createLevel2HeadingSafe(text, number) {
     const num = number + 1;
     if (num <= 20) {
       expectedNumeral = chineseNumbers[num - 1];
-      prefix = '（' + expectedNumeral + '）';
+      prefix = '（' + expectedNumeral + '）、';
     } else {
       expectedNumeral = String(num);
-      prefix = '（' + expectedNumeral + '）';
+      prefix = '（' + expectedNumeral + '）、';
     }
   }
 
   // 提取text中已有的中文数字序号（用于检测是否重复）
-  // 匹配 "（一）" 或 "（一）、" 等模式
+  // 匹配 "（一）" 或 "（一二）" 等模式
   let finalText = text;
   if (text && number !== undefined && expectedNumeral) {
-    const existingMatch = text.match(/^（([一二三四五六七八九十]+)）、?/);
+    const existingMatch = text.match(/^（([一二三四五六七八九十]+)）/);
     if (existingMatch && existingMatch[1] === expectedNumeral) {
-      // 已有对应序号（可能带顿号），统一去掉顿号
-      finalText = prefix + text.replace(/^（[一二三四五六七八九十]+）、?/g, '');
+      // 已有对应序号的前缀，不再添加
+      finalText = text;
     } else if (existingMatch) {
       // 有其他序号前缀，替换为正确的
-      finalText = prefix + text.replace(/^（[一二三四五六七八九十]+）、?/g, '');
+      finalText = prefix + text.replace(/^（[一二三四五六七八九十]+）/g, '');
     } else {
       // 没有序号前缀，添加
       finalText = prefix + text;
@@ -912,97 +800,18 @@ function createImageParagraph(imageData, width, height, options = {}) {
 }
 
 /**
- * 计算字符串显示宽度（中文字符按1个宽度，ASCII按0.5个宽度）
- * @param {string} str
- * @returns {number}
- */
-function calcDisplayWidth(str) {
-  let width = 0;
-  for (const ch of str) {
-    const code = ch.charCodeAt(0);
-    if (code >= 0x4e00 && code <= 0x9fff || code >= 0x3000 && code <= 0x303f || code >= 0xff00 && code <= 0xffef) {
-      // 中日韩统一表意文字、标点
-      width += 1;
-    } else if (code <= 127) {
-      // ASCII（字母/数字/西文标点）
-      width += 0.5;
-    } else {
-      // 其他全角字符
-      width += 1;
-    }
-  }
-  return width;
-}
-
-/**
- * 创建落款段落（右下对齐，无首行缩进）
- * @param {string} text - 落款文本
- * @param {object} options - 选项 { bold, indentRight, styleName }
- */
-function createSignatureParagraph(text, options = {}) {
-  const { bold = false, indentRight = 0, styleName = "落款-部门" } = options;
-  const paraOptions = {
-    style: styleName,
-    children: createTextRunsFromSegments(
-      text,
-      CHINESE_FONTS.FZFangSong,
-      CHINESE_FONTS.TimesNewRoman,
-      FONT_SIZES['小三号'],
-      { bold }
-    )
-  };
-  // 右缩进（将段落整体向左推移）
-  if (indentRight > 0) {
-    paraOptions.indent = { right: indentRight * FONT_SIZES['小三号'] * 10 };
-  }
-  return new Paragraph(paraOptions);
-}
-
-/**
- * 创建落款块（部门名称 + 日期，与正文间隔一行）
- * 两行均右顶格对齐，不加任何缩进，日期自然向左延伸
- * @param {string} department - 部门名称
- * @param {string} date - 日期
- * @param {object} options - 选项 { boldDepartment }
- */
-function createSignatureBlock(department, date, options = {}) {
-  const { boldDepartment = false } = options;
-  const paragraphs = [];
-
-  // 与正文间隔一行（空行）
-  paragraphs.push(new Paragraph({
-    style: "落款-部门",
-    children: [new TextRun({ text: "" })]
-  }));
-
-  // 部门名称（右顶格）
-  paragraphs.push(createSignatureParagraph(department, {
-    bold: boldDepartment,
-    styleName: "落款-部门"
-  }));
-
-  // 日期（右顶格，自然比部门名称向左延伸）
-  paragraphs.push(createSignatureParagraph(date, {
-    styleName: "落款-日期"
-  }));
-
-  return paragraphs;
-}
-
-/**
  * 创建表格
  * rows: 数组，可以是:
  *   - { children: ['cell1', 'cell2', ...] } 格式的普通对象
  *   - 已经创建好的 TableRow 对象（如从 createTableHeaderRow 返回的）
- * 表格宽度自动适应窗口和内容（WidthType.AUTO）
  */
 function createTable(rows, options = {}) {
   const { columnWidths = [] } = options;
 
-  // 计算总宽度（仅用于均分列宽的参考，实际表格宽度由 AUTO 决定）
+  // 计算总宽度
   const totalWidth = columnWidths.reduce((sum, w) => sum + w, 0) || CONTENT_WIDTH;
 
-  // 确保列宽数组有值（用于单元格相对比例，实际由 AUTO 自动调整）
+  // 确保列宽数组有值
   const widths = columnWidths.length > 0
     ? columnWidths
     : Array(rows[0]?.children?.length || 0).fill(Math.floor(totalWidth / (rows[0]?.children?.length || 1)));
@@ -1010,8 +819,8 @@ function createTable(rows, options = {}) {
   const border = { style: BorderStyle.SINGLE, size: 1, color: "000000" };
   const borders = { top: border, bottom: border, left: border, right: border };
 
-  return new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },  // 自动适应窗口宽度（百分比100%）
+    return new Table({
+    width: { size: totalWidth, type: WidthType.DXA },
     columnWidths: widths,
     rows: rows.map(row => {
       // 如果已经是 TableRow 实例，直接返回
@@ -1030,7 +839,6 @@ function createTable(rows, options = {}) {
 
           // 普通对象或字符串，转为字符串处理
           const cellText = typeof cell === 'string' ? cell : (cell.text || String(cell));
-          const normalizedCellText = normalizeQuotes(cellText);
           return new TableCell({
             borders: borders,
             width: { size: widths[idx] || Math.floor(totalWidth / cells.length), type: WidthType.DXA },
@@ -1041,7 +849,7 @@ function createTable(rows, options = {}) {
               style: "表格样式",
               alignment: AlignmentType.CENTER,
               spacing: { before: 0, after: 0, line: 276, lineRule: "auto" },
-              children: [new TextRun({ text: normalizedCellText })]
+              children: [new TextRun({ text: cellText })]
             })]
           });
         })
@@ -1052,7 +860,6 @@ function createTable(rows, options = {}) {
 
 /**
  * 创建表头行 (灰色底)
- * 与 createTable 配合使用时，表格整体宽度由 createTable 的 PERCENTAGE 控制
  */
 function createTableHeaderRow(cells, columnWidths) {
   const totalWidth = columnWidths.reduce((sum, w) => sum + w, 0) || CONTENT_WIDTH;
@@ -1064,7 +871,7 @@ function createTableHeaderRow(cells, columnWidths) {
     children: cells.map((cell, idx) => {
       const cellText = String(cell);
       // 表头文本使用直接格式化加粗
-      const textRuns = [new TextRun({ text: normalizeQuotes(cellText), bold: true })];
+      const textRuns = [new TextRun({ text: cellText, bold: true })];
       return new TableCell({
         borders: borders,
         width: { size: columnWidths[idx] || Math.floor(totalWidth / cells.length), type: WidthType.DXA },
@@ -1131,32 +938,23 @@ async function createGovDocument(content, outputPath) {
         }
         break;
       case 'heading1':
-        paragraphs.push(createLevel1HeadingSafe(section.text, heading1Count));
         heading1Count++;
         heading2Count = 0;
         heading3Count = 0;
+        paragraphs.push(createLevel1HeadingSafe(section.text, heading1Count));
         break;
       case 'heading2':
-        paragraphs.push(createLevel2HeadingSafe(section.text, heading2Count));
         heading2Count++;
         heading3Count = 0;
+        paragraphs.push(createLevel2HeadingSafe(section.text, heading2Count));
         break;
       case 'heading3':
-        paragraphs.push(createLevel3Heading(section.text, heading3Count));
         heading3Count++;
+        paragraphs.push(createLevel3Heading(section.text, heading3Count));
         break;
       case 'table':
         if (section.headers && section.rows) {
           paragraphs.push(createTable(section.rows, { headers: section.headers }));
-        }
-        break;
-      case 'signature':
-        // 落款块：department + date
-        if (section.department && section.date) {
-          paragraphs.push(...createSignatureBlock(section.department, section.date, section.options || {}));
-        } else if (section.text) {
-          // 单个落款行
-          paragraphs.push(createSignatureParagraph(section.text, section.options || {}));
         }
         break;
     }
@@ -1193,9 +991,6 @@ module.exports = {
   createLevel1HeadingSafe,
   createLevel2HeadingSafe,
   createImageParagraph,
-  createSignatureParagraph,
-  createSignatureBlock,
-  calcDisplayWidth,
   createTable,
   createTableHeaderRow,
 

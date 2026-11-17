@@ -1,48 +1,62 @@
-## Description: <br>
-Google Search Console sitemap status skill for MyBrandMetrics that queries connected sitemap data, submitted URL counts, indexed URL counts, warnings, errors, pending processing status, content type, and last downloaded time through the google_search_console_sitemaps source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Search Console helps agents query connected MyBrandMetrics Search Console sitemap status, including submitted and indexed URL counts, warnings, errors, pending status, content type, and last downloaded time.
 
-## Publisher: <br>
-[clawbus](https://clawhub.ai/user/clawbus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbus](https://clawhub.ai/user/clawbus)
 
-## Use Case: <br>
-External users, developers, and SEO operators use this skill to query MyBrandMetrics for Google Search Console sitemap health, including submitted and indexed URLs, warnings, errors, pending rows, content type, and last downloaded time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive MyBrandMetrics credentials and a connected Google Search Console property. <br>
-Mitigation: Prefer the MYBRANDMETRICS_API_KEY environment variable, avoid logging secrets, and redact credentials before sharing output. <br>
-Risk: Queries can return incomplete or stale sitemap status because Google Search Console data may lag by several days. <br>
-Mitigation: Treat recent sitemap submissions or indexing changes as delayed and verify connection IDs, filters, and property setup when rows are missing. <br>
-Risk: The security review advises deliberate approval of powerful commands. <br>
-Mitigation: Review shell commands before running them and install the skill only in workspaces where the expected connected services are authorized. <br>
+## Use Case:
 
+External users and developers use this skill to review sitemap health for a connected Google Search Console property through MyBrandMetrics. It supports checks for indexing coverage, warnings, errors, pending sitemap processing, content type, and recent download status.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/clawbus/clawbus-google-search-console) <br>
-- [Publisher profile](https://clawhub.ai/user/clawbus) <br>
-- [Configuration](references/configuration.md) <br>
-- [Dimensions and Metrics](references/dimensions.md) <br>
-- [Query Patterns](references/query-patterns.md) <br>
-- [MyBrandMetrics](https://mybrandmetrics.com/) <br>
-- [Clawbus](https://www.clawbus.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MyBrandMetrics API key and Google Search Console connection ID; supports filters, metric selection, dimension selection, limits, and compact JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: API keys or connected Search Console data could be exposed through command history, terminal logs, screenshots, or shared output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use MYBRANDMETRICS_API_KEY instead of --api-key, redact secrets before sharing output, and rotate any key pasted into shell history.
+
+Risk: The skill sends sitemap queries and connection identifiers to MyBrandMetrics.
+
+Mitigation: Install and run it only when the user trusts MyBrandMetrics with the connected Search Console data.
+
+Risk: Local dependency installation can affect the user's Python environment.
+
+Mitigation: Install requests in an isolated environment when dependencies are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawbus/skills/clawbus-google-search-console)
+- [Clawbus](https://www.clawbus.com/)
+- [MyBrandMetrics](https://mybrandmetrics.com/)
+- [Configuration](references/configuration.md)
+- [Dimensions and Metrics](references/dimensions.md)
+- [Query Patterns](references/query-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MyBrandMetrics API key and a connected Google Search Console connection ID.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

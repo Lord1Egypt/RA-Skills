@@ -1,41 +1,58 @@
-## Description: <br>
-Sets Feishu cloud document permissions so external users can view shared documents through an anyone-with-the-link access setting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets Feishu cloud documents to "anyone with the link can view" so external users can access shared documents.
 
-## Publisher: <br>
-[harrot90-code](https://clawhub.ai/user/harrot90-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrot90-code](https://clawhub.ai/user/harrot90-code)
 
-## Use Case: <br>
-Developers and operators use this skill to verify or change Feishu document sharing settings when a document must be accessible to users outside the organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a live-looking Feishu app secret. <br>
-Mitigation: Rotate the exposed secret and require users to provide Feishu credentials from secure storage at runtime. <br>
-Risk: The skill can make documents public to anyone with the link. <br>
-Mitigation: Require explicit confirmation for each document before changing permissions, and restrict use to documents intended for external sharing. <br>
-Risk: Document tokens may be exposed through logs. <br>
-Mitigation: Avoid logging full document tokens and redact identifiers in audit records where possible. <br>
+## Use Case:
 
+Employees and developers who share Feishu documents outside their organization use this skill to verify or set link-readable document permissions through Feishu APIs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu API request examples, verification checks, and logging guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a plaintext Feishu app secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and replace the shipped secret, and require users to provide credentials through secure local configuration or environment variables.
+
+Risk: The skill can make Feishu documents readable to anyone with the link.
+
+Mitigation: Require explicit user approval before changing public-link permissions and verify that external sharing is intended for the document.
+
+Risk: The artifact records full document tokens in a persistent log.
+
+Mitigation: Avoid logging full document tokens; redact or hash tokens when audit records are necessary.
+
+## Reference(s):
+
+- [Feishu Tenant Access Token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Drive Public Permissions API endpoint](https://open.feishu.cn/open-apis/drive/v2/permissions/${DOC_TOKEN}/public?type=docx)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu document token and user-provided Feishu app credentials; should avoid logging full document tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact notes v1.0.0 dated 2026-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

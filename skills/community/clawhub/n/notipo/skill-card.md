@@ -1,43 +1,61 @@
-## Description: <br>
-Publish blog posts from AI agents to WordPress via Notion. One API call handles page creation, markdown conversion, image uploads, featured image generation, and SEO metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish blog posts from AI agents to WordPress via Notion. One API call handles page creation, markdown conversion, image uploads, featured image generation, and SEO metadata.
 
-## Publisher: <br>
-[kfuras](https://clawhub.ai/user/kfuras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kfuras](https://clawhub.ai/user/kfuras)
 
-## Use Case: <br>
-External developers and content automation teams use this skill to create, update, publish, and monitor WordPress posts through Notion-backed Notipo CLI and API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or delete live content in connected WordPress and Notion environments. <br>
-Mitigation: Use draft, list, and review commands first, and require explicit confirmation before publish or delete actions. <br>
-Risk: Credentials may allow broader publishing access than the current task requires. <br>
-Mitigation: Provide API credentials limited to the specific site or workspace the agent should manage. <br>
+## Use Case:
 
+Developers and content teams use this skill to let an agent create, update, publish, sync, and monitor blog posts through Notipo-connected Notion and WordPress accounts.
 
-## Reference(s): <br>
-- [Notipo API documentation](https://notipo.com/docs/api/introduction) <br>
-- [Notipo CLI documentation](https://notipo.com/docs/api/cli) <br>
-- [Notipo npm package](https://www.npmjs.com/package/notipo) <br>
-- [ClawHub skill page](https://clawhub.ai/kfuras/notipo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTIPO_URL and NOTIPO_API_KEY; publish and delete commands can affect live Notion and WordPress content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can publish, update, sync, and delete content in connected WordPress and Notion accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to draft creation, require explicit approval before publish, update, sync, or delete operations, and review generated content before making it public.
+
+Risk: The skill relies on a persistent API key and a Notipo endpoint supplied through environment variables.
+
+Mitigation: Use a narrow, revocable API key and verify NOTIPO_URL is a trusted HTTPS Notipo endpoint before execution.
+
+Risk: Global CLI installation may execute the currently resolved package version.
+
+Mitigation: Pin or isolate the CLI installation where possible instead of installing the latest package globally.
+
+## Reference(s):
+
+- [Notipo API Introduction](https://notipo.com/docs/api/introduction)
+- [Notipo CLI Documentation](https://notipo.com/docs/api/cli)
+- [notipo npm package](https://www.npmjs.com/package/notipo)
+- [ClawHub skill page](https://clawhub.ai/kfuras/skills/notipo)
+- [Publisher profile](https://clawhub.ai/user/kfuras)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOTIPO_URL and NOTIPO_API_KEY environment variables, plus access to connected Notion and WordPress accounts.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

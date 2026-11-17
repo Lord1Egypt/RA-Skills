@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WeekendPickOnePlan",
+  "type": "object",
+  "required": ["mode"],
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "title": "ColdStart",
+      "properties": {"mode": {"const": "cold_start"}},
+      "required": ["mode", "startup_question", "memory_status"]
+    },
+    {
+      "title": "SkillSelection",
+      "properties": {"mode": {"const": "skill_selection"}},
+      "required": ["mode", "skill_selection", "memory_status"]
+    },
+    {
+      "title": "OutingDecision",
+      "properties": {
+        "mode": {
+          "enum": ["search", "manual_candidates", "anti_filter", "no_browser", "low_decision", "regional"]
+        }
+      },
+      "required": [
+        "mode",
+        "recommendation_level",
+        "decision_context",
+        "verdict",
+        "main_plan",
+        "backup_plans",
+        "avoid",
+        "preflight_check",
+        "confidence",
+        "evidence",
+        "source_boundary",
+        "profile_snapshot",
+        "candidate_pool_summary",
+        "source_status",
+        "memory_status"
+      ]
+    }
+  ],
+  "properties": {
+    "mode": {
+      "type": "string",
+      "enum": ["search", "manual_candidates", "anti_filter", "no_browser", "cold_start", "low_decision", "regional", "skill_selection"]
+    },
+    "recommendation_level": {
+      "type": "string",
+      "enum": ["concrete", "directional"]
+    },
+    "decision_context": {
+      "type": "object",
+      "required": ["home_base", "date_start", "date_end", "timezone", "time_window", "assumptions"],
+      "additionalProperties": false,
+      "properties": {
+        "home_base": {"type": "string", "minLength": 2},
+        "date_start": {"type": "string", "format": "date"},
+        "date_end": {"type": ["string", "null"], "format": "date"},
+        "timezone": {"type": "string", "minLength": 3},
+        "time_window": {"type": "string", "minLength": 2},
+        "assumptions": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "minLength": 6
+    },
+    "main_plan": {
+      "type": "object",
+      "required": ["name", "location", "why", "duration", "budget", "energy_level", "risk", "verification_needed"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "not": {"pattern": "或|/|／|任选|某个"}
+        },
+        "location": {"type": "string", "minLength": 2},
+        "why": {"type": "string", "minLength": 8},
+        "duration": {"type": "string"},
+        "budget": {"type": "string"},
+        "energy_level": {"type": "string", "enum": ["low", "low_to_medium", "medium", "high", "unknown"]},
+        "risk": {"type": "string"},
+        "verification_needed": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "backup_plans": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {"type": "string"}
+    },
+    "avoid": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {"type": "string"}
+    },
+    "preflight_check": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 6,
+      "items": {"type": "string"}
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["claim", "source_type", "source_title", "checked_at", "supports", "freshness"],
+        "additionalProperties": false,
+        "properties": {
+          "claim": {"type": "string", "minLength": 6},
+          "source_type": {
+            "type": "string",
+            "enum": ["weather", "official", "transport", "public_inspiration", "user_provided", "other"]
+          },
+          "source_title": {"type": "string", "minLength": 2},
+          "url": {"type": ["string", "null"], "format": "uri"},
+          "checked_at": {"type": "string", "format": "date-time"},
+          "supports": {"type": "string", "minLength": 3},
+          "freshness": {
+            "type": "string",
+            "enum": ["current_weekend", "recent", "background", "user_provided"]
+          }
+        }
+      }
+    },
+    "source_boundary": {
+      "type": "string",
+      "enum": ["user_provided", "public_inspiration_only", "cross_checked", "no_browser"]
+    },
+    "profile_snapshot": {
+      "type": "object",
+      "required": ["home_base", "transport", "max_one_way_time", "budget_band", "energy_default", "travel_scope"],
+      "additionalProperties": false,
+      "properties": {
+        "home_base": {"type": "string"},
+        "transport": {"type": "string"},
+        "max_one_way_time": {"type": "string"},
+        "budget_band": {"type": "string"},
+        "energy_default": {"type": "string"},
+        "travel_scope": {"type": "string", "enum": ["near", "city", "regional", "open", "unknown"]}
+      }
+    },
+    "candidate_pool_summary": {
+      "type": "object",
+      "required": ["near_count", "city_count", "regional_count", "selected_band", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "near_count": {"type": "integer", "minimum": 0},
+        "city_count": {"type": "integer", "minimum": 0},
+        "regional_count": {"type": "integer", "minimum": 0},
+        "selected_band": {"type": "string", "enum": ["near", "city", "regional"]},
+        "summary": {"type": "string"}
+      }
+    },
+    "source_status": {
+      "type": "object",
+      "required": ["checked_at", "weather", "official_page", "transport", "public_inspiration"],
+      "additionalProperties": false,
+      "properties": {
+        "checked_at": {"type": ["string", "null"], "format": "date-time"},
+        "weather": {"type": "string", "enum": ["checked", "pending", "unavailable"]},
+        "official_page": {"type": "string", "enum": ["checked", "pending", "unavailable"]},
+        "transport": {"type": "string", "enum": ["checked", "pending", "unavailable", "not_required"]},
+        "public_inspiration": {"type": "string", "enum": ["checked", "skipped", "blocked", "unavailable"]}
+      }
+    },
+    "memory_status": {
+      "type": "object",
+      "required": ["capability", "consent", "persisted_fields", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "capability": {"type": "string", "enum": ["available", "unavailable", "unknown"]},
+        "consent": {"type": "string", "enum": ["granted", "denied", "not_asked", "session_only"]},
+        "persisted_fields": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "message": {"type": "string"}
+      }
+    },
+    "rejected_reasons": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "startup_question": {
+      "type": "object",
+      "required": ["question", "reply_format", "example"],
+      "additionalProperties": false,
+      "properties": {
+        "question": {"type": "string"},
+        "reply_format": {"type": "string"},
+        "example": {"type": "string"}
+      }
+    },
+    "skill_selection": {
+      "type": "object",
+      "required": ["recommendation", "recommended_category", "why", "division_of_labor"],
+      "additionalProperties": false,
+      "properties": {
+        "recommendation": {"type": "string", "minLength": 2},
+        "recommended_category": {
+          "type": "string",
+          "enum": ["weekend_decision", "travel_planning", "activity_discovery", "other"]
+        },
+        "why": {"type": "string", "minLength": 8},
+        "division_of_labor": {"type": "string", "minLength": 8}
+      }
+    },
+    "share_card": {
+      "type": "string",
+      "minLength": 8
+    }
+  }
+}

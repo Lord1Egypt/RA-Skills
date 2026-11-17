@@ -1,38 +1,57 @@
-## Description: <br>
-Free basic version that converts Notion-style task records into weekly report markdown. Reserves premium upgrade hooks for trend analysis and management summary automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Notion-style task records into weekly report Markdown and reserves premium upgrade hooks for trend analysis and management summary automation.
 
-## Publisher: <br>
-[wingogx](https://clawhub.ai/user/wingogx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wingogx](https://clawhub.ai/user/wingogx)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to convert Notion-style task records into weekly report Markdown with basic progress statistics, highlights, and risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated upgrade metadata can include a payment_url assembled from environment variables. <br>
-Mitigation: Treat payment_url as informational and verify that it points to the expected SkillPay domain before opening or sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillPay API Contract](references/skillpay-api-contract.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wingogx/notion-db-weekly-report-generator) <br>
+## Use Case:
 
+Developers and operations teams use this skill to turn Notion-style task records into a weekly status report with summary statistics, highlights, risks, and upgrade guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [JSON object containing report statistics, weekly report Markdown, and upgrade metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validates user_id, week_label, and a non-empty records array; premium tier currently returns upgrade-required metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Normal output includes monetization metadata and a payment link.
+
+Mitigation: Use the skill only where payment-link behavior is desired, and review payment URL configuration before sharing generated reports.
+
+Risk: Task record text is rendered into Markdown output.
+
+Mitigation: Avoid rendering reports from untrusted task records in permissive Markdown viewers without sanitizing or escaping the record content.
+
+Risk: The package includes billing-contract documentation that is broader than weekly report generation.
+
+Mitigation: Review the bundled billing-contract reference during installation to confirm the monetization scope is acceptable.
+
+## Reference(s):
+
+- [SkillPay API Contract](artifact/references/skillpay-api-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/wingogx/skills/notion-db-weekly-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [JSON object containing report Markdown, statistics, highlight and risk lists, and upgrade metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free-tier output includes premium availability, price, feature list, and a payment URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

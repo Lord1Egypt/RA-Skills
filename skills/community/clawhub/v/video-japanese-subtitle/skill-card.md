@@ -1,46 +1,58 @@
-## Description: <br>
-Automates Japanese video transcription, Simplified Chinese subtitle translation, ASS subtitle conversion, hard-subtitle rendering, and output validation for MP4 videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将日语视频转换为中文硬字幕，覆盖 ffmpeg 音频提取、Whisper 日语转录、LLM 日译中、SRT 转 ASS、ffmpeg 硬字幕烧录和验证流程。
 
-## Publisher: <br>
-[xunnv](https://clawhub.ai/user/xunnv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunnv](https://clawhub.ai/user/xunnv)
 
-## Use Case: <br>
-Developers and media workflow operators use this skill to batch-process Japanese MP4 videos into Chinese hard-subtitled outputs with resumable transcription, translation, subtitle conversion, rendering, and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an embedded QClaw gateway token. <br>
-Mitigation: Rotate and replace the token before use, store credentials outside the skill source, and scope access to the minimum required translation endpoint. <br>
-Risk: Video transcript text may be sent to QClaw and possibly MyMemory during translation fallback. <br>
-Mitigation: Use only videos whose audio and transcripts are approved for those services, and disable or replace external fallback translation when confidentiality is required. <br>
-Risk: The script contains fixed Windows input, output, and ffmpeg paths. <br>
-Mitigation: Change VIDEO_DIR, OUTPUT_DIR, and FFMPEG_DIR to dedicated local folders before running the workflow. <br>
-Risk: A rendered output file can pass duration checks while subtitles are missing. <br>
-Mitigation: Perform frame-level visual checks as described in the skill documentation before treating the hard-subtitled video as complete. <br>
+## Use Case:
 
+Developers and operators use this skill to batch-process Japanese MP4 videos into Chinese hard-subtitled MP4 outputs with resumable intermediate audio, SRT, and ASS files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xunnv/video-japanese-subtitle) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [QClaw local chat completions endpoint](http://127.0.0.1:28789/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python configuration details, and generated subtitle/video file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces intermediate audio, SRT, translated SRT, ASS, and hard-subtitled MP4 files when the bundled script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Video transcript text can be sent to the configured QClaw gateway and to MyMemory when fallback translation is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with videos whose transcript may be shared with those services, and disable external fallback unless it is explicitly needed.
+
+Risk: The artifact includes a hardcoded bearer token.
+
+Mitigation: Rotate or remove the embedded token and load credentials from a local secret or environment-specific configuration before use.
+
+Risk: Batch processing scans the configured input directory for MP4 files.
+
+Mitigation: Restrict the input directory to the intended videos before running the script.
+
+## Reference(s):
+
+- [Video subtitle workflow](artifact/references/workflow.md)
+- [ClawHub skill page](https://clawhub.ai/xunnv/skills/video-japanese-subtitle)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and Python configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the script is run, it creates local WAV, SRT, ASS, and hard-subtitled MP4 files under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

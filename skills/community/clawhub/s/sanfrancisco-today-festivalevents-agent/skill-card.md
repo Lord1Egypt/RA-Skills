@@ -1,41 +1,59 @@
-## Description: <br>
-Harvests, indexes, and searches today's festivals and events in San Francisco. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harvests, indexes, and searches today's festivals and events in San Francisco.
 
-## Publisher: <br>
-[assix](https://clawhub.ai/user/assix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assix](https://clawhub.ai/user/assix)
 
-## Use Case: <br>
-External users and developers use this skill to fetch today's San Francisco event listings, ingest them into a local ChromaDB index, and search that index for event recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Listing or ingesting events makes live requests to sf.funcheap.com. <br>
-Mitigation: Run the skill only in environments where outbound web requests are allowed, and confirm that scraping SF Funcheap is acceptable for the intended use case. <br>
-Risk: Ingestion and search use a persistent local ./rag_db event index. <br>
-Mitigation: Install in a virtual environment or controlled workspace, protect the local index as needed, and delete ./rag_db when the saved event index is no longer wanted. <br>
+## Use Case:
 
+External users and agents use this skill to fetch current San Francisco event listings, index them locally, and search for relevant activities such as free events or festivals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/assix/sanfrancisco-today-festivalevents-agent) <br>
-- [SF Funcheap Today listings](https://sf.funcheap.com/today/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON from CLI commands; Markdown guidance for agent usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [List, ingest, search, and JSON CLI actions; ingestion and search use a local ./rag_db ChromaDB store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill makes network requests to SF Funcheap during listing or ingest actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound requests to that public source are acceptable.
+
+Risk: Ingest actions persist harvested event data in a local ChromaDB database under ./rag_db.
+
+Mitigation: Review local storage expectations and clean or isolate ./rag_db when persistence is not desired.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Use a virtual environment with pinned versions for requests, beautifulsoup4, and chromadb.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/assix/skills/sanfrancisco-today-festivalevents-agent)
+- [Publisher profile](https://clawhub.ai/user/assix)
+- [SF Funcheap Today](https://sf.funcheap.com/today/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [CLI text, JSON, and markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local ChromaDB database under ./rag_db during ingest operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

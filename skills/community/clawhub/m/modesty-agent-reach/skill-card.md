@@ -1,44 +1,58 @@
-## Description: <br>
-Agent Reach gives agents guidance for searching, reading, scraping, posting, and configuring access across web pages and social platforms including Twitter/X, Reddit, YouTube, GitHub, LinkedIn, RSS, and SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Reach helps agents search, read, and interact with web pages and supported platforms including X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, Douyin, Weibo, WeChat Articles, LinkedIn, Instagram, RSS, and SkillBoss API Hub.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and external users can use this skill to help an agent retrieve online information, inspect supported platform URLs, run platform-specific search or read commands, and prepare channel setup steps. It is also used for guided posting or interaction workflows where the user has explicitly authorized the account action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward sensitive account, cookie, posting, and interaction workflows. <br>
-Mitigation: Use isolated accounts and browser profiles, avoid raw cookie handling unless necessary, and require explicit user confirmation before login, cookie import, posting, commenting, proxy setup, or anti-bot browser workflows. <br>
-Risk: External scraping and search requests may expose private or internal URLs to third-party services. <br>
-Mitigation: Do not send private, internal, confidential, or access-controlled URLs through external scraping or search APIs. <br>
-Risk: Persistent storage and platform credentials can extend access beyond a single session. <br>
-Mitigation: Limit stored credentials to the minimum needed, keep persistent data in the documented user-scoped location, and remove credentials when the workflow is complete. <br>
+## Use Case:
 
+Developers and external agent users use Agent Reach to search and read URLs or platform content, retrieve transcripts and feed data, configure channels, and, with explicit approval, post or interact through supported authenticated platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/modesty-agent-reach) <br>
-- [Project Homepage](https://github.com/Panniantong/Agent-Reach) <br>
-- [Install Guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for SkillBoss API Hub workflows; some platform workflows may require cookies, login, proxy setup, or local CLI tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Searches, URLs, and scraped content may be sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before submitting sensitive URLs, private content, credentials, or confidential queries to external services.
+
+Risk: Authenticated platform actions can use cookies or accounts to post, comment, or interact.
+
+Mitigation: Require explicit user confirmation before cookie import, browser-cookie extraction, posting, commenting, or other account-changing actions.
+
+Risk: Setup guidance may involve package installation, Docker, proxy configuration, or fetched remote install instructions.
+
+Mitigation: Review commands and remote setup instructions before execution, and run only approved installation or configuration steps.
+
+## Reference(s):
+
+- [Agent Reach homepage](https://github.com/Panniantong/Agent-Reach)
+- [Agent Reach install guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code and shell-command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests, command invocations, setup steps, and posting guidance that require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

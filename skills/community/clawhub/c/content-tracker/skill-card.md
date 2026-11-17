@@ -1,42 +1,52 @@
-## Description: <br>
-Tracks timely topics, monitors public webpage updates, aggregates third-party hot-news sources, and saves Markdown briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks time-sensitive topics, monitors public URL updates, aggregates third-party news hotspots, and produces Markdown briefs.
 
-## Publisher: <br>
-[changsheng0804](https://clawhub.ai/user/changsheng0804) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[changsheng0804](https://clawhub.ai/user/changsheng0804)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and content or research teams use this skill to track industry news, monitor public web pages for changes, and generate recurring Markdown briefings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill fetches public web/news content and creates local Markdown briefs.
+
+Mitigation: Confirm this behavior is acceptable before installing and review generated briefs against the original sources.
+
+Risk: The artifact declares a topic_tracking dependency but does not include that dependency's implementation.
+
+Mitigation: Review and scan the topic_tracking dependency separately before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to track industry or news topics, monitor public links for updates, aggregate hot-news sources, and generate recurring Markdown briefings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill on private or login-required URLs could expose sensitive content to the agent workflow or fail in unsupported ways. <br>
-Mitigation: Use it for public news and public webpage updates only, and avoid private, authenticated, or access-controlled sources. <br>
-Risk: Generated Markdown reports are saved locally and may contain summaries or links that should not be broadly shared. <br>
-Mitigation: Review the report destination and generated briefings before sharing or retaining them. <br>
-Risk: Recurring schedules can create ongoing monitoring beyond the user's immediate request. <br>
-Mitigation: Enable recurring runs only when ongoing monitoring is intended, and periodically review the cadence and tracked topics. <br>
+**Output Format:** [Markdown briefs with source links, summaries, and timeliness notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/changsheng0804/content-tracker) <br>
+**Other Properties Related to Output:** [Writes briefs under ./我的追踪/{yyyy_mm_dd}/{话题名称}.md when tracking produces results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefings with source links, summaries, and freshness notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are saved under ./我的追踪/{yyyy_mm_dd}/{topic}.md when tracking runs produce results.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

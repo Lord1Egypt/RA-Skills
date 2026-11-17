@@ -1,41 +1,57 @@
-## Description: <br>
-Convert EPUB e-books to PDF using ebooklib and WeasyPrint with proper CJK font support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert EPUB e-books to PDF using ebooklib + WeasyPrint with proper CJK font support.
 
-## Publisher: <br>
-[hellobigbean](https://clawhub.ai/user/hellobigbean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellobigbean](https://clawhub.ai/user/hellobigbean)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert trusted EPUB e-books into PDF files, including documents with Chinese, Japanese, or Korean text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires additional system and Python dependencies for EPUB parsing and PDF rendering. <br>
-Mitigation: Install the listed dependencies only in environments where adding WeasyPrint, ebooklib, BeautifulSoup, and lxml is acceptable. <br>
-Risk: EPUB conversion processes embedded document HTML and image references. <br>
-Mitigation: Convert only EPUB files from trusted sources and review generated PDFs before relying on them. <br>
-Risk: The conversion script writes to the output path supplied by the user. <br>
-Mitigation: Use non-sensitive, intended output paths and avoid overwriting important files. <br>
+## Use Case:
 
+Developers and agents use this skill to convert EPUB e-books, including Chinese, Japanese, and Korean text, into PDF files by running the bundled Python conversion script.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and a Python conversion script that writes PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeasyPrint, ebooklib, BeautifulSoup, lxml, and compatible CJK font files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A crafted EPUB could cause the converter to access local files or internal network resources during rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated, low-privilege environment without sensitive local files or internal network access, and prefer a version that restricts WeasyPrint resource fetching.
+
+Risk: The installation guidance uses broad system-level package installation.
+
+Mitigation: Avoid system-wide pip installation where possible and install dependencies in a constrained container or virtual environment.
+
+Risk: The converter writes combined intermediate HTML to a shared temporary path.
+
+Mitigation: Use per-run temporary files or isolate each conversion run to prevent collisions and unintended reuse of intermediate content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hellobigbean/skills/epub-to-pdf-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated PDF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a PDF at the caller-provided output path when dependencies, fonts, and input EPUB content are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

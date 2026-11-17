@@ -1,46 +1,53 @@
-## Description: <br>
-NVIDIA LocateAnything-3B vision-language grounding model that guides agents through inference APIs, data preparation, training, fine-tuning, evaluation, and output parsing for detection, visual grounding, OCR, and GUI recognition. <br>
+## Description:
 
-This skill is for research and development only. <br>
+NVIDIA LocateAnything-3B vision-language grounding model covering inference APIs, data preparation, training, fine-tuning, and evaluation for object detection, visual grounding, GUI recognition, and OCR.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0; upstream code Apache 2.0; model NVIDIA License (non-commercial research) <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply LocateAnything-3B for visual grounding workflows, including object detection, point and box grounding, OCR, GUI element recognition, dataset formatting, fine-tuning, and benchmark evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to clone and run upstream machine-learning repositories. <br>
-Mitigation: Review upstream code and licenses before execution, and run installation, inference, and training in an isolated virtual environment or container. <br>
-Risk: The referenced model is described as non-commercial research use. <br>
-Mitigation: Confirm model license terms and restrict usage to research and development unless separate commercial rights are verified. <br>
-Risk: Guidance includes high-resource training and evaluation commands that may fail or behave differently across GPU generations. <br>
-Mitigation: Match attention implementation, sequence length, and token budgets to available hardware, and validate commands on a small dataset before larger runs. <br>
+## Use Case:
 
+Developers and engineers use this skill to work with LocateAnything-3B for vision-language grounding tasks, including detection, point grounding, OCR, GUI element recognition, data preparation, training, and evaluation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/openlark/locateanything) <br>
-- [NVIDIA LocateAnything-3B model card](https://huggingface.co/nvidia/LocateAnything-3B) <br>
-- [LocateAnything Hugging Face demo](https://huggingface.co/spaces/nvidia/LocateAnything) <br>
-- [NVlabs Eagle repository](https://github.com/NVlabs/Eagle) <br>
-- [Eagle project page](https://nvlabs.github.io/Eagle/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, shell, JSON, and JSONL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include normalized box or point coordinate formats and benchmark or fine-tuning command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installation steps run unpinned external code and dependencies that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment or container, review upstream repositories first, and pin Eagle, MagiAttention, submodules, and Python dependencies to reviewed commits or locked versions before use with sensitive files or shared infrastructure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/locateanything)
+- [LocateAnything-3B model](https://huggingface.co/nvidia/LocateAnything-3B)
+- [LocateAnything demo](https://huggingface.co/spaces/nvidia/LocateAnything)
+- [NVlabs Eagle repository](https://github.com/NVlabs/Eagle)
+- [Eagle project page](https://nvlabs.github.io/Eagle/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python, JSON, JSONL, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes normalized box and point formats, data recipe examples, training parameters, and evaluation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

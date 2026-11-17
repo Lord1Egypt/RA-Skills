@@ -1,44 +1,59 @@
-## Description: <br>
-Fetches the latest Guangzhou Daily/Xinhuacheng news, extracts titles, summaries, source links, editor and reporter details, and formats the results as Markdown with optional scheduled or WeChat-style delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats Guangzhou Daily/Xinhuacheng news items into a Markdown news brief and WeChat-ready summary with titles, abstracts, links, editors, and reporters; separately verify the documented automation and push-delivery behavior before relying on it.
 
-## Publisher: <br>
-[FreeEye](https://clawhub.ai/user/FreeEye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeeye](https://clawhub.ai/user/freeeye)
 
-## Use Case: <br>
-Readers and agents use this skill to collect Guangzhou local news from Guangzhou Daily/Xinhuacheng on demand or on a daily schedule, then produce a concise digest for reading or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled delivery may send recurring news updates without a fresh manual action. <br>
-Mitigation: Review OpenClaw cron entries and any separate WeChat integration before authorizing recurring pushes or account access. <br>
-Risk: The skill writes generated Markdown files to the local ~/News directory. <br>
-Mitigation: Confirm the output location is acceptable and adjust or disable scheduled runs if automatic local file creation is not desired. <br>
-Risk: News summaries and attribution depend on content fetched from Guangzhou Daily/Xinhuacheng pages and may be incomplete when page structure changes. <br>
-Mitigation: Check the source links in the digest before relying on or sharing time-sensitive news details. <br>
+## Use Case:
 
+External users and operators can ask an agent to prepare local Guangzhou news briefs from Guangzhou Daily/Xinhuacheng content, save a Markdown digest, and produce concise text suitable for WeChat-style sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FreeEye/guangzhou-daily-news) <br>
-- [Guangzhou Daily Xinhuacheng main site](https://gz-cmc.com) <br>
-- [Xinhuacheng mobile site](https://huacheng.gz-cmc.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown digest and short text message summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Markdown files under ~/News and can produce a WeChat-style summary message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The documentation claims automatic fetching, scheduled pushes, and WeChat delivery, but security evidence says the included code does not implement those behaviors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify fetching, scheduler, and push integrations separately before relying on automated delivery.
+
+Risk: The skill may write Markdown output under ~/News.
+
+Mitigation: Review local file paths and permissions before running it in shared or managed environments.
+
+Risk: The script depends on third-party Python packages.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeeye/skills/guangzhou-daily-news)
+- [Guangzhou Daily Xinhuacheng Main Site](https://gz-cmc.com)
+- [Guangzhou Daily Xinhuacheng Mobile Site](https://huacheng.gz-cmc.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news brief, plain-text sharing summary, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Markdown files under ~/News when used with news data; WeChat push and scheduled delivery require separate verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

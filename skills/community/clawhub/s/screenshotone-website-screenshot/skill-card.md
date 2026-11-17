@@ -1,45 +1,52 @@
-## Description: <br>
-Use this skill when you need to take website screenshots with ScreenshotOne using direct curl commands, save the result to a local file, or choose ScreenshotOne API options such as full_page, viewport, wait, image, PDF, blocking, request, metadata, or storage settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when you need to take website screenshots with ScreenshotOne using direct curl commands, save the result to a local file, or choose ScreenshotOne API options such as full_page, viewport, wait, image, PDF, blocking, request, metadata, or storage settings.
 
-## Publisher: <br>
-[krasun](https://clawhub.ai/user/krasun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krasun](https://clawhub.ai/user/krasun)
 
-## Use Case: <br>
-Developers and operators use this skill to generate ScreenshotOne curl commands for capturing website screenshots, PDFs, or related outputs with configurable viewport, timing, cleanup, request, metadata, and storage options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshot targets and request context can be routed through the external ScreenshotOne service. <br>
-Mitigation: Use the skill only for approved public or non-sensitive pages unless there is explicit approval for the target content. <br>
-Risk: Cookies, headers, authorization values, or other sensitive request data may be included in screenshot requests. <br>
-Mitigation: Avoid sending production cookies, bearer tokens, API keys, sensitive headers, or regulated data in ScreenshotOne requests. <br>
-Risk: The ScreenshotOne access key is required to execute generated commands. <br>
-Mitigation: Pass the access key through the SCREENSHOTONE_ACCESS_KEY environment variable and avoid embedding it in shared command text or committed files. <br>
+## Use Case:
 
+Developers and engineers use this skill to create visible curl commands for capturing web pages with ScreenshotOne, saving the result locally, and selecting screenshot, PDF, cleanup, timing, viewport, request, metadata, or storage options.
 
-## Reference(s): <br>
-- [ScreenshotOne Options Reference](references/screenshotone-options.md) <br>
-- [ScreenshotOne Options Documentation](https://screenshotone.com/docs/options/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/krasun/screenshotone-website-screenshot) <br>
-- [Publisher Profile](https://clawhub.ai/user/krasun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces curl command templates and option-selection guidance; screenshot files are created only when the generated commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Target URLs, rendered page content, screenshots, API keys, and optional session credentials may be sent to ScreenshotOne.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intentional target URLs, avoid cookies, authorization headers, private authenticated pages, or storage uploads unless that exposure is intended, keep SCREENSHOTONE_ACCESS_KEY in the environment, and invoke each capture explicitly.
+
+## Reference(s):
+
+- [ScreenshotOne Options Reference](references/screenshotone-options.md)
+- [ScreenshotOne Screenshot Options](https://screenshotone.com/docs/options/)
+- [ScreenshotOne API Endpoint](https://api.screenshotone.com/take)
+- [ScreenshotOne Access Dashboard](https://dash.screenshotone.com/access)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use curl with URL-encoded ScreenshotOne API parameters and may write local image, PDF, HTML, or Markdown files depending on the selected format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

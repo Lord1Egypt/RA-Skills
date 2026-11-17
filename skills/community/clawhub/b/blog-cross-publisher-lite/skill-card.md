@@ -1,41 +1,63 @@
-## Description: <br>
-Publish markdown articles to Dev.to via its REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish markdown articles to Dev.to via their REST API.
 
-## Publisher: <br>
-[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai)
 
-## Use Case: <br>
-External developers and writers use this skill to have an agent prepare Dev.to publishing commands and article-formatting guidance for markdown posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to pass a Dev.to API key to a publish_devto.py script that is not included in the release. <br>
-Mitigation: Inspect and trust the actual publishing script before use, protect the API key, and prefer draft mode unless public posting is intended. <br>
-Risk: Using the publish flag can make an article public immediately. <br>
-Mitigation: Omit the publish flag for drafts and review the title, tags, and body before publishing. <br>
+## Use Case:
 
+Developers and content authors use this skill to prepare and publish Markdown articles to Dev.to, either as drafts or live posts, using a Dev.to API key.
 
-## Reference(s): <br>
-- [Dev.to API articles endpoint](https://dev.to/api/articles) <br>
-- [Dev.to API key settings](https://dev.to/settings/extensions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in Dev.to API calls through a user-supplied publishing script and API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The example command passes the Dev.to API key directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret prompt or protected environment/secret store instead of placing the API key directly in a shell command.
+
+Risk: The example command includes `--publish`, which can make a post public immediately.
+
+Mitigation: Omit `--publish` until the article has been reviewed and is ready for live publication.
+
+Risk: Articles may accidentally include secrets or sensitive information.
+
+Mitigation: Review the article for secrets and sensitive content before submitting it to Dev.to.
+
+Risk: The referenced publishing script was not included in the inspected artifact.
+
+Mitigation: Verify the actual publishing script before relying on the skill for production publishing.
+
+## Reference(s):
+
+- [Dev.to API articles endpoint](https://dev.to/api/articles)
+- [Dev.to API key settings](https://dev.to/settings/extensions)
+- [ClawHub skill page](https://clawhub.ai/apex-stack-ai/skills/blog-cross-publisher-lite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of a Dev.to API key and publish/draft flags; users should review content and credentials before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Safe OpenClaw upgrade workflow with pre-flight config checks, automatic backup, post-upgrade migration, and rollback guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upgrade Guard provides a safe OpenClaw upgrade workflow with pre-flight config checks, automatic backups, post-upgrade migration, and rollback across cautious, openclaw-update, and manual modes.
 
-## Publisher: <br>
-[w-sss](https://clawhub.ai/user/w-sss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[w-sss](https://clawhub.ai/user/w-sss)
 
-## Use Case: <br>
-Developers and operators use this skill when upgrading OpenClaw installations, especially before version jumps or when configuration changes may prevent the gateway from starting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual upgrade commands can modify OpenClaw configuration, install global packages, and restart the gateway. <br>
-Mitigation: Review each command before execution, create the documented backup first, and verify gateway health before and after upgrade steps. <br>
-Risk: OpenClaw configuration backups may contain sensitive settings. <br>
-Mitigation: Treat files under ~/.openclaw/openclaw.json and ~/.openclaw/upgrade-guard as sensitive and protect or remove backups according to local policy. <br>
-Risk: The old-backup pruning command removes backup directories. <br>
-Mitigation: Review or replace the pruning command before running it, especially on systems where backup retention requirements apply. <br>
+## Use Case:
 
+Developers and operators use this skill to plan OpenClaw upgrades, back up configuration, run pre-flight checks, verify health, and recover with rollback steps when an upgrade breaks Gateway startup.
 
-## Reference(s): <br>
-- [Upgrade Guard Chinese Usage Reference](references/zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides backup, verification, migration, and rollback steps for OpenClaw upgrades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: Upgrade and restart guidance can affect production OpenClaw configuration and Gateway availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing on machines with production OpenClaw config or credentials, back up configuration first, and verify health before and after restart.
+
+Risk: Using a latest global package install can pull an unexpected OpenClaw version.
+
+Mitigation: Pin an exact OpenClaw version and confirm package provenance before running upgrade commands.
+
+Risk: Backup pruning guidance includes an rm -rf cleanup pipeline.
+
+Mitigation: Use owner-only backup permissions and replace cleanup with path-validated pruning before production use.
+
+## Reference(s):
+
+- [Upgrade Guard on ClawHub](https://clawhub.ai/w-sss/skills/upgrade-guard)
+- [Upgrade Guard Chinese Reference](references/zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Extract invariant principles from text and identify ideas that survive rephrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract invariant principles from text and identify ideas that survive rephrasing.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers, writers, and knowledge workers use this skill to distill documents, notes, methodology, or code comments into candidate principles with confidence levels and source evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text may contain confidential content that is processed by the user's configured agent and model provider. <br>
-Mitigation: Use only approved agents and model providers for sensitive material, and avoid pasting confidential content unless that environment is authorized. <br>
-Risk: Extracted principles are candidate patterns, not verified truths, and may omit nuance at high compression levels. <br>
-Mitigation: Review extracted principles before relying on them and validate important findings against additional sources. <br>
-Risk: The artifact contains inconsistent wording about whether a review file may be created. <br>
-Mitigation: Allow any local review artifact only when the user explicitly requests or approves that file. <br>
+## Use Case:
 
+External users and developers use this skill to distill documents, methodology notes, code comments, or other text into structured principle observations with confidence levels and source evidence. It is useful when readers need concise, reviewable patterns rather than claims of verified truth.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/live-neon/skills/tree/main/pbd/pbe-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Structured JSON with extracted principles, confidence levels, source evidence, summary metadata, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs or third-party services are called by the skill itself; processing occurs within the user's configured agent and model provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Sensitive pasted content may be processed by the user's configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets or regulated data unless the configured agent and model provider are approved for that content.
+
+Risk: Extracted principles are pattern observations, not verified truths.
+
+Mitigation: Review the extracted principles and validate them against additional sources before relying on them.
+
+Risk: Documentation mentions review artifacts in a way that may confuse users about whether files are written to disk.
+
+Mitigation: Clarify this behavior during review; the current security evidence says the skill does not write files to disk.
+
+## Reference(s):
+
+- [PBE Extractor source homepage](https://github.com/live-neon/skills/tree/main/pbd/pbe-extractor)
+- [PBE Extractor on ClawHub](https://clawhub.ai/leegitw/skills/pbe-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured JSON or Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes principle statements, normalized forms, confidence levels, source evidence, compression metrics, and next steps when applicable.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

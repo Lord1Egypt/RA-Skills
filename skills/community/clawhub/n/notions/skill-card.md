@@ -1,51 +1,61 @@
-## Description: <br>
-Provides bash-oriented guidance for using SkillBoss as a broad API gateway for chat, image, video, audio, search, scraping, document processing, email, SMS, and Notion-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides SkillBoss API usage guidance for Notion-labeled workflows and a broad set of model, search, document, email, and SMS actions.
 
-## Publisher: <br>
-[ModestyRichards](https://clawhub.ai/user/ModestyRichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover SkillBoss models and draft shell commands for model inference, media generation, search, document processing, and outbound messaging. Reviewers should treat it as a broad SkillBoss API gateway rather than a narrow Notion integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill name and listing imply a Notion-focused tool, while the evidence describes a broad SkillBoss API gateway. <br>
-Mitigation: Install it only when the intended use includes broad model, search, document, and messaging access; do not approve it as a narrow Notion-only skill. <br>
-Risk: The skill can route prompts, documents, URLs, and generated media requests through third-party services. <br>
-Mitigation: Use restricted API keys and avoid sending sensitive documents, private URLs, or regulated data unless the downstream provider data flow is approved. <br>
-Risk: The skill includes email, SMS, scraping, and document-processing actions that may create external side effects. <br>
-Mitigation: Require explicit human review before executing email, SMS, scraping, or document-processing commands. <br>
+## Use Case:
 
+Developers and external users can use this skill to guide an agent in calling SkillBoss APIs for chat, media generation, search, document parsing, email, SMS, and related model routing tasks. Reviewers should treat it as a broad API gateway skill rather than a Notion-only integration.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ModestyRichards/notions) <br>
-- [Publisher profile](https://clawhub.ai/user/ModestyRichards) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Chat model list](artifact/chat-models.md) <br>
-- [Image model list](artifact/image-models.md) <br>
-- [Video model list](artifact/video-models.md) <br>
-- [Audio model list](artifact/audio-models.md) <br>
-- [Search and scraping model list](artifact/search-models.md) <br>
-- [Tool model list](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include API calls that invoke third-party models or outbound messaging services when executed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The server security summary says the skill is labeled as Notion but actually teaches broad SkillBoss API use, including email, SMS, scraping, and AI model calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve it as a broad SkillBoss/API gateway skill, not as a narrow Notion integration.
+
+Risk: The server security guidance says the skill can send selected data to api.heybossai.com and potentially use provider models, scraping, email, and SMS actions.
+
+Mitigation: Install only when that data flow is intended, and require explicit user approval before email, SMS, scraping, document upload, or cost-incurring model calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/notions)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [SkillBoss website](https://www.skillboss.co)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Video Models](artifact/video-models.md)
+- [Audio Models](artifact/audio-models.md)
+- [Search and Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends API requests to https://api.heybossai.com/v1.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

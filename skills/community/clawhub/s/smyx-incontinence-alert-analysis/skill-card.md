@@ -1,44 +1,58 @@
-## Description: <br>
-Detects wet clothing and abnormal excretion in care images or videos, then returns structured alert reports, caregiver guidance, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes caregiving images or videos for signs of wet clothing or abnormal excretion and provides caregivers with alerts, reports, and care suggestions.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External caregivers and care teams use this skill to analyze nursing home, home-care, bedside-care, or infant-care images and videos for advisory incontinence status alerts. It can also retrieve cloud-hosted historical reports for follow-up review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Care images, videos, URLs, identity values, and report metadata may be sent to lifeemergence.com/open.lifeemergence.com services. <br>
-Mitigation: Use with real patients or infants only after confirming consent, retention terms, access controls, and authorized report retrieval. <br>
-Risk: The skill may create or reuse a local identity and store service tokens in the workspace data directory. <br>
-Mitigation: Review local workspace data storage before deployment, restrict access to the workspace, and remove or rotate stored tokens when access changes. <br>
-Risk: Generated reports are advisory and may affect care timing if treated as a definitive diagnosis. <br>
-Mitigation: Require caregiver review and timely human confirmation before making clinical or hygiene-care decisions. <br>
+## Use Case:
 
+Caregivers and care organizations use the skill to assess images or videos of older adults, bedridden patients, or infants for possible incontinence-related care needs and to review prior reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-incontinence-alert-analysis) <br>
-- [Incontinence alert analysis API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown or JSON structured care analysis reports with alert status, care suggestions, and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save output to a user-specified file; historical report listings are returned as structured text from the cloud service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter says 1.0.5) <br>
+Risk: Private caregiving images or videos and identity-linked information are sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain consent from the people monitored and approve cloud processing and report access before installation or use.
+
+Risk: The skill may create or reuse a user identity and persist tokens locally.
+
+Mitigation: Review identity and token retention practices, restrict access to stored credentials, and remove them when no longer needed.
+
+Risk: A missed or incorrect alert could delay necessary care.
+
+Mitigation: Have caregivers confirm alerts and continue routine human checks; do not rely on the skill as a substitute for professional care.
+
+## Reference(s):
+
+- [Incontinence alert API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Caregiving analysis report or history table, with optional structured JSON and report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include alert levels, care suggestions, and a link to a cloud-hosted report.]
+
+## Skill Version(s):
+
+1.0.16 (source: ClawHub release metadata; bundled frontmatter says 1.0.20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

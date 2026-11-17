@@ -17,8 +17,8 @@ git clone https://github.com/jose-compu/self-improving-business.git ~/.openclaw/
 ## Optional Hook Install
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-business
-openclaw hooks enable self-improving-business
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-business
 ```
 
 ## Workspace Files
@@ -47,10 +47,9 @@ Is this finding one-off or repeatable?
     └── recurring rhythm issue -> operating cadence
 ```
 
-## Inter-Agent Use
+## Scope
 
-Use OpenClaw session coordination for high-level routing only.
-Share concise summaries and entry IDs, not sensitive raw outputs.
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Safety Boundary
 

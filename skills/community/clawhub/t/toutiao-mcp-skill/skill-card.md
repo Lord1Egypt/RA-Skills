@@ -1,47 +1,62 @@
-## Description: <br>
-Uses the MCP protocol to operate the Toutiao platform for account management and content publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Toutiao Mcp helps agents manage a Toutiao account and publish articles, micro posts, and batch Xiaohongshu-derived content through the toutiao-mcp MCP server.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-External content creators, knowledge sharers, and multi-platform operators use this skill to manage Toutiao login state and publish articles, micro posts, or Xiaohongshu-derived batches to Toutiao through a configured MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a saved Toutiao login to publish public content, including batch posts, through external code. <br>
-Mitigation: Use a dedicated Toutiao account where possible, review the external toutiao-mcp server before installation, and require explicit preview and confirmation before every article, micro post, or batch publish. <br>
-Risk: Saved cookies can grant continued access to the Toutiao account. <br>
-Mitigation: Protect the cookie file path, restrict file permissions, and clear or rotate the cookie file when access should end. <br>
-Risk: Remote image URLs and download directories used for publishing can introduce unwanted files or incorrect media into posts. <br>
-Mitigation: Validate image URLs, local paths, and download directories before publishing, and keep downloaded assets in a dedicated working directory. <br>
+## Use Case:
 
+Content creators, publishers, and operators use this skill to let an agent check Toutiao login status, guide login, publish articles or micro posts, and batch-post Xiaohongshu-formatted content to Toutiao.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sipingme/toutiao-mcp-skill) <br>
-- [Toutiao MCP Skill repository](https://github.com/sipingme/toutiao-mcp-skill) <br>
-- [toutiao-mcp MCP server](https://github.com/sipingme/toutiao-mcp) <br>
-- [Quick Start](references/quick-start.md) <br>
-- [FAQ](references/faq.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON tool payloads] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and JSON MCP tool examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce public-content publishing instructions and MCP tool payloads for login, article publishing, micro posts, batch publishing, and logout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: Unpinned or unreviewed MCP server installation could run code the user did not intend to trust.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install toutiao-mcp only from a trusted, pinned version or reviewed commit, and avoid sudo npm install.
+
+Risk: Saved Toutiao cookies can grant account access if exposed from the local cookie file.
+
+Mitigation: Store the cookie file in a user-controlled local path with restricted permissions and remove or rotate it when access should end.
+
+Risk: Publishing and batch publishing affect a real public Toutiao account.
+
+Mitigation: Confirm content, images, tags, and batch inputs carefully before calling publishing tools.
+
+## Reference(s):
+
+- [Toutiao Mcp on ClawHub](https://clawhub.ai/sipingme/skills/toutiao-mcp-skill)
+- [Quick Start](references/quick-start.md)
+- [FAQ](references/faq.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [toutiao-mcp-skill repository](https://github.com/sipingme/toutiao-mcp-skill)
+- [toutiao-mcp MCP server](https://github.com/sipingme/toutiao-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, MCP configuration snippets, and JSON tool inputs or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live publishing confirmations, article or post IDs, URLs, and batch publishing summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

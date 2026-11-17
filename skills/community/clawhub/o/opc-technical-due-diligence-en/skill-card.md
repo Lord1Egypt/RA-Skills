@@ -1,48 +1,60 @@
-## Description: <br>
-Screens technology projects before investment by assessing technical feasibility, team background, patent claims, business logic, and risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens technology projects before investment by assessing technical feasibility, team background, patent claims, business logic, and risk signals.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External analysts, investors, and operators use this skill to run an initial technical due diligence screen on technology ventures, including feasibility checks, team and patent verification, red-flag detection, and investment risk rating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential business plans, patent files, financial details, team identities, and other sensitive due-diligence materials. <br>
-Mitigation: Use scoped and revocable credentials, obtain approval before importing documents, redact sensitive details before external searches, and limit access to the target knowledge base. <br>
-Risk: Reports or imported materials may be persisted in IMA without enough clarity about consent, retention, or access scope. <br>
-Mitigation: Confirm who can access the knowledge base, how long records are retained, and whether report write-back is approved before using the collaborative workflow. <br>
-Risk: Initial screening findings can be incomplete or misleading if source materials are stale, one-sided, or unsupported. <br>
-Mitigation: Treat outputs as preliminary due-diligence guidance, require original test reports for critical claims, and verify important conclusions through at least two independent sources. <br>
+## Use Case:
 
+External analysts, investors, and due-diligence teams use this skill to perform rapid first-pass reviews of technology ventures, including feasibility checks, founder and patent verification, TRL assessment, red-flag screening, and structured investment-risk reporting.
 
-## Reference(s): <br>
-- [Coze+IMA collaborative due diligence workflow](references/Coze-IMA协同尽调流程.md) <br>
-- [Technology readiness level guide](references/TRL_levels.md) <br>
-- [Technical due diligence case studies](references/case_studies.md) <br>
-- [Technology scam signal checklist](references/scam_signals.md) <br>
-- [Technical parameter reference tables](references/tech_parameters.md) <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-technical-due-diligence-en) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/golngod) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown due diligence report with red-flag checklist, verification status, risk rating, and investment recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-backed verification labels and requests for original evidence when key claims remain unverified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Confidential deal materials may be imported into or persisted in an external IMA knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved IMA tenants and scoped API keys, require explicit customer consent before importing files or writing reports, and confirm the destination knowledge base or document before each write.
+
+Risk: Web searches or external lookups may expose sensitive project details.
+
+Mitigation: Disable or sanitize web searches for confidential engagements and remove sensitive identifiers from queries when external search is not approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-technical-due-diligence-en)
+- [Coze platform](https://coze.cn)
+- [OPC platform](https://opc.cn)
+- [Coze+IMA collaborative due diligence workflow](references/Coze-IMA协同尽调流程.md)
+- [Technology readiness levels reference](references/TRL_levels.md)
+- [Technical due diligence case studies](references/case_studies.md)
+- [Technology scam signal checklist](references/scam_signals.md)
+- [Technical parameter reference tables](references/tech_parameters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown due-diligence report with risk ratings, verification notes, checklists, and recommended next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external search results and IMA knowledge-base material when those tools are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact metadata and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

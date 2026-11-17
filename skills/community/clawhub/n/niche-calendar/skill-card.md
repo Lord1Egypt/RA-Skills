@@ -1,40 +1,53 @@
-## Description: <br>
-Provides niche schedule and planning help for WHL Saskatoon Blades games, npm and ClawHub release timelines, Saskatchewan events, and developer publish calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides specialized calendars for WHL Saskatoon Blades schedules, npm and ClawHub release timelines, Saskatchewan events, and developer planning or publish schedules.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-Developers, maintainers, and local planners use this skill to answer current schedule questions and assemble planning timelines for sports, releases, events, and ClawHub publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publish-related guidance may be mistaken for authorization to change remote ClawHub state. <br>
-Mitigation: Treat publish steps as planning guidance and run publish commands only after reviewing intent, target, and account context. <br>
-Risk: Calendar answers depend on current web or CLI data that can become stale. <br>
-Mitigation: Refresh source data before relying on schedules or release timelines, especially for near-term decisions. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to find niche event, sports, release, and publishing timelines, then receive date-focused summaries, tables, links, and planning milestones.
 
-## Reference(s): <br>
-- [Niche Calendar on ClawHub](https://clawhub.ai/skunnyo/niche-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables, concise bullet lists, and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, current-date context, and planning milestones.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may ask an agent to run ClawHub CLI commands with user-provided search terms, creating avoidable local command execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit CLI use to fixed read-only commands or argument-array invocation, and require explicit user confirmation before any publish-related action.
+
+Risk: Calendar, event, sports, and release data can become stale or misleading when copied from search results.
+
+Mitigation: Include source links where available and verify date-sensitive results against authoritative sources before acting on them.
+
+## Reference(s):
+
+- [Niche Calendar on ClawHub](https://clawhub.ai/skunnyo/skills/niche-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current or future dates, source links, release summaries, and planning milestones.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

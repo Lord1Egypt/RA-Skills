@@ -1,44 +1,60 @@
-## Description: <br>
-Use this skill when an agent needs to create on-chain escrow contracts, release escrowed funds through arbiter-signed transactions, and interact with the Pakt Escrow service using the @pakt/psilo SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an agent needs to create on-chain escrow contracts via EscrowFactory, release escrowed funds via arbiter-signed transactions, and interact with the Pakt Escrow service using the @pakt/psilo SDK.
 
-## Publisher: <br>
-[pakt](https://clawhub.ai/user/pakt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pakt](https://clawhub.ai/user/pakt)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add Pakt escrow workflows to an agent, including escrow creation, status checks, transaction preparation, deposits, release readiness, and final arbiter release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports crypto escrow operations that can create contracts, sign transactions, release funds, and require wallet credentials. <br>
-Mitigation: Require manual confirmation for every transaction, use a dedicated low-balance wallet, keep bearer tokens and wallet secrets away from general-purpose agents, and validate on testnets before using real funds. <br>
-Risk: The security evidence reports inconsistent transaction examples that require careful review before use with real funds. <br>
-Mitigation: Review the SDK and contract behavior against authoritative source code or API documentation, and verify ERC20 funding and updateStatus response handling before production use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, fund, monitor, and release EVM escrow contracts through the Pakt Psilo SDK and escrow API. It is intended for workflows that require explicit wallet authentication, signed transaction payloads, and buyer/seller release confirmations.
 
-## Reference(s): <br>
-- [psilo Skill Page](https://clawhub.ai/pakt/psilo) <br>
-- [@pakt/psilo SDK](https://www.npmjs.com/package/@pakt/psilo) <br>
-- [SIWA Skill Documentation](https://siwa.id/skill.md) <br>
-- [Evalanche](https://www.npmjs.com/package/evalanche) <br>
-- [SIWA Protocol Spec](https://siwa.id/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes escrow API usage, wallet/authentication setup, transaction-signing examples, and security checklist guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: artifact frontmatter and release evidence) <br>
+Risk: Unsafe ERC-20 deposit guidance could cause token loss if an agent signs the example transaction as written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the escrow contract deposit flow against authoritative contract documentation, prefer SDK-provided approve and deposit payloads, and decode every transaction before signing.
+
+Risk: Escrow create, deposit, update, and release workflows can move or release real funds.
+
+Mitigation: Require explicit user confirmation, enforce chain and token allowlists, apply spend limits, and test on testnets or with small limits before production use.
+
+Risk: Wallet, bearer token, and release-secret handling can expose sensitive credentials.
+
+Mitigation: Redact tokens and secrets from logs, never store private keys or release secrets in repository files, and pin and audit wallet and signing dependencies before use.
+
+## Reference(s):
+
+- [@pakt/psilo SDK](https://www.npmjs.com/package/@pakt/psilo)
+- [SIWA skill documentation](https://siwa.id/skill.md)
+- [SIWA protocol specification](https://siwa.id/docs)
+- [Evalanche package](https://www.npmjs.com/package/evalanche)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with TypeScript, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces escrow workflow instructions, SDK call patterns, authentication guidance, and transaction preparation examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

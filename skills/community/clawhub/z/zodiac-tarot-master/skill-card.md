@@ -1,45 +1,63 @@
-## Description: <br>
-Astrology Foreteller is a placeholder entertainment skill for zodiac compatibility and tarot-style readings, with fuller functionality announced for a later 2.0 release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astrology Foreteller is a Chinese-language entertainment skill for zodiac compatibility and tarot-style readings; this release is described as a placeholder for a fuller future version.
 
-## Publisher: <br>
-[koradji77](https://clawhub.ai/user/koradji77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koradji77](https://clawhub.ai/user/koradji77)
 
-## Use Case: <br>
-External users use this entertainment skill to request zodiac compatibility text and tarot-style reflective readings. This release should be treated as casual placeholder content, not professional relationship, health, finance, or decision advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat astrology, tarot, relationship, health, finance, or decision readings as professional advice. <br>
-Mitigation: Present outputs as reflective entertainment and direct users to qualified professionals for high-stakes decisions. <br>
-Risk: Broad trigger words may invoke the skill unexpectedly. <br>
-Mitigation: Review trigger terms before deployment and disable or narrow the skill when accidental invocation would be disruptive. <br>
-Risk: Tarot flows may fail or produce incomplete behavior because the card database is incomplete in this placeholder release. <br>
-Mitigation: Test tarot paths before release and keep fallback help text available until the full card database is implemented. <br>
+## Use Case:
 
+External users can use this skill for entertainment-oriented zodiac compatibility prompts and tarot-style readings in Chinese. Outputs should be treated as recreational guidance, not professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/koradji77/zodiac-tarot-master) <br>
-- [Publisher profile](https://clawhub.ai/user/koradji77) <br>
-- [Tarot cards reference](references/tarot_cards.md) <br>
-- [Zodiac compatibility reference](references/zodiac_compatibility.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Entertainment-only output; random tarot draws and compatibility scores may vary between runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Users may over-rely on zodiac or tarot outputs for medical, financial, relationship, investment, or other consequential decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as entertainment only and direct users to qualified professionals for consequential decisions.
+
+Risk: The release describes itself as a placeholder intended to be replaced by a later version, so future updates may materially change behavior.
+
+Mitigation: Install a pinned version and review future releases before deployment.
+
+Risk: Security evidence notes that the documentation overstates the implementation.
+
+Mitigation: Verify current behavior against the packaged artifact before relying on advertised capabilities.
+
+Risk: The skill runs local Python helper scripts.
+
+Mitigation: Review and scan the artifact before installation, and run it with least-privilege local permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/koradji77/skills/zodiac-tarot-master)
+- [Tarot Card Reference](references/tarot_cards.md)
+- [Zodiac Compatibility Reference](references/zodiac_compatibility.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text with decorative Unicode and ASCII-style card layouts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language entertainment output with randomized scores or card draws depending on the request.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

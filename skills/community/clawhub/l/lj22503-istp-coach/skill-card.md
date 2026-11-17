@@ -1,44 +1,59 @@
-## Description: <br>
-ISTP Coach helps ISTP users work through growth, career, learning, relationship, focus, and action-planning challenges through a coaching mode for reflective dialogue and a consultant mode for concrete next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides ISTP users through growth, career, learning, relationship, focus, and emotional-expression questions using a coaching mode and a direct-advice mode.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users use this skill for ISTP-oriented personal growth coaching, including relationship friction, commitment difficulty, social avoidance, career direction, learning direction, focus problems, and moving from overanalysis to action. The skill can either ask structured coaching questions or provide concise action plans when the user wants direct guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to keep ongoing personal coaching records, which can include sensitive relationship, workplace, identity, or mental-health-adjacent details. <br>
-Mitigation: Use only on platforms with clear memory inspection, opt-out, and deletion controls, and avoid sharing sensitive details unless those controls are available. <br>
-Risk: The package mixes ISTP and INTP guidance, which can lead to mismatched personality-type advice. <br>
-Mitigation: Confirm the user's intended type in conversation and treat type-specific advice as optional framing rather than a diagnosis or fixed prescription. <br>
-Risk: The skill provides coaching and action guidance but is not a substitute for professional mental-health care or other professional advice. <br>
-Mitigation: Escalate serious psychological distress, safety concerns, or professional decision points to qualified human support. <br>
+## Use Case:
 
+External users use this skill to get ISTP-oriented growth coaching, career and learning direction, and concrete action plans while keeping final decisions with the user.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lj22503/lj22503-istp-coach) <br>
-- [ISTP traits and cognitive functions](references/istp-traits.md) <br>
-- [INTP insights reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching responses with questions, short analyses, action plans, risk notes, and follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coach mode is intended to stay concise with one or two questions; consultant mode is intended to provide brief steps and action checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server-resolved release evidence) <br>
+Risk: The package has inconsistent ISTP and INTP identity signals across its name, README, manifest, references, install command, and repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the package consistently describes the intended ISTP skill before installation, release, or agent use.
+
+Risk: The artifact describes saving user profile, conversation, action, and insight details, while the security evidence says this behavior is under-disclosed.
+
+Mitigation: Do not enable profile or memory retention unless users understand what is retained and can inspect or delete it.
+
+Risk: Users may treat personality coaching as professional mental-health advice.
+
+Mitigation: Keep the skill positioned as coaching guidance and direct users with serious psychological concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/lj22503-istp-coach)
+- [ISTP Traits Reference](references/istp-traits.md)
+- [INTP Insights Reference](references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-language conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coaching replies are intended to be concise; direct-advice replies may include short action plans.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release evidence; artifact frontmatter reports 1.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

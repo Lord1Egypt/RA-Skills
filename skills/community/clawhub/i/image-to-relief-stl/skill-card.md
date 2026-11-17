@@ -1,40 +1,52 @@
-## Description: <br>
-Turns source images or multi-color mask images into 3D-printable bas-relief STL files by mapping colors or grayscale values to heights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a source image or multi-color mask image into a 3D-printable bas-relief STL by mapping colors or grayscale values to heights through a deterministic pipeline.
 
-## Publisher: <br>
-[ajmwagar](https://clawhub.ai/user/ajmwagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajmwagar](https://clawhub.ai/user/ajmwagar)
 
-## Use Case: <br>
-Developers, makers, and 3D-printing workflows use this skill to convert flat-color or grayscale source images into printable bas-relief STL models. It supports palette-based height mapping, grayscale height mapping, and an optional vector preview. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional preview path can run unintended local Python code when given a crafted or externally controlled filename. <br>
-Mitigation: Use only trusted image paths and avoid --preview-svg for unusual or externally controlled filenames until the preview filename handling is fixed. <br>
-Risk: First use downloads Pillow into a cached local virtual environment. <br>
-Mitigation: Install and run the skill in a controlled environment with approved package sources and network policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ajmwagar/image-to-relief-stl) <br>
-- [Publisher profile](https://clawhub.ai/user/ajmwagar) <br>
+## Use Case:
 
+Developers, makers, and external users can use this skill to convert flat-color, palette-based, or grayscale images into printable bas-relief STL models. It is suited for deterministic image-to-geometry workflows where the agent should provide conversion commands and produce model files.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [ASCII STL file with optional SVG preview and terminal path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; optional preview generation requires potrace and mkbitmap; first use installs Pillow into a cached local virtual environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional preview path has a code-execution issue when filenames or paths may be attacker-controlled.
+
+Mitigation: Use the skill in a constrained environment, avoid --preview-svg for untrusted paths, and prefer a fixed version with the preview issue patched.
+
+Risk: The wrapper may install unpinned Python packages into a cache virtual environment on first use.
+
+Mitigation: Pre-provision, pin, or vendor dependencies before deployment in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajmwagar/skills/image-to-relief-stl)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [ASCII STL file and optional SVG preview, with Markdown guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, potrace, and mkbitmap; first use may create a cached Python virtual environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

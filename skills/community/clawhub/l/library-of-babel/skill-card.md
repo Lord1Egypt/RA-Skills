@@ -1,43 +1,55 @@
-## Description: <br>
-Bidirectional mathematical engine for Borges' Library of Babel that locates text at permanent coordinates, reads pages from coordinates, and scores pages by Shannon entropy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional mathematical engine for Borges' Library of Babel that locates text, reads pages at coordinates, and scores pages by Shannon entropy.
 
-## Publisher: <br>
-[highnoonoffice](https://clawhub.ai/user/highnoonoffice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[highnoonoffice](https://clawhub.ai/user/highnoonoffice)
 
-## Use Case: <br>
-Developers and external users use this skill to explore Borges' Library of Babel concept, locate text at deterministic coordinates, read deterministic page text from coordinates, and inspect page entropy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-added codex entries can persist private or sensitive text and source labels in codex.json. <br>
-Mitigation: Use add_to_codex only with text intended to be saved, and review or remove codex.json entries before sharing the skill. <br>
-Risk: The skill is a local mathematical/demo tool and its generated pages or entropy labels can be mistaken for authoritative source material. <br>
-Mitigation: Treat page text and entropy classifications as deterministic exploratory outputs, and verify any substantive claims against external sources. <br>
+## Use Case:
 
+External users and developers use this skill to locate text in a deterministic Borges-style Library of Babel coordinate system, read pages from coordinates, and analyze page entropy.
 
-## Reference(s): <br>
-- [Library of Babel skill page](https://clawhub.ai/highnoonoffice/library-of-babel) <br>
-- [Technical specification](references/spec.md) <br>
-- [Core math engine](references/babel_core.py) <br>
-- [Demo helpers](references/demo.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with text results and inline Python or shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic local outputs; add_to_codex can persist user-supplied entries in codex.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release evidence) <br>
+Risk: The artifact references Python engine and demo files that are not present, so runtime examples may not work from this package alone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm required source files are available before relying on the skill for execution; treat this package as documentation plus static codex data.
+
+Risk: Optional user-added passages may be stored in local codex data if that documented behavior is implemented.
+
+Mitigation: Review local storage behavior before use and avoid adding sensitive text to persistent codex data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highnoonoffice/skills/library-of-babel)
+- [Skill documentation](artifact/SKILL.md)
+- [Static codex data](artifact/codex.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic text outputs; the artifact includes static codex data, while referenced Python engine and demo files are absent.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Connects an agent to Tencent Meeting MCP tools for creating, updating, canceling, and querying meetings, managing participant lists, and retrieving recordings, transcripts, and AI summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Meeting MCP helps an agent create, update, cancel, query, and analyze Tencent Meeting sessions, including participants, recordings, transcripts, and AI summaries.
 
-## Publisher: <br>
-[chris8265-cl](https://clawhub.ai/user/chris8265-cl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris8265-cl](https://clawhub.ai/user/chris8265-cl)
 
-## Use Case: <br>
-Employees, external users, and developers with a Tencent Meeting token can use this skill to let an agent manage Tencent Meeting meetings, participants, recordings, transcripts, and summaries. It is most appropriate when the user has authority to access the relevant meeting content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive meeting information, including participant lists, recordings, transcript exports, recording links, meeting passwords, or host keys. <br>
-Mitigation: Use a least-privilege Tencent Meeting token, confirm the user is authorized for the requested meeting content, and avoid sharing retrieved content outside approved contexts. <br>
-Risk: The setup path registers an MCP endpoint with the user's Tencent Meeting token and may install mcporter globally if it is missing. <br>
-Mitigation: Review the setup script before running it, install mcporter from a trusted source, and keep TENCENT_MEETING_TOKEN out of logs and shared shells. <br>
-Risk: Meeting changes such as updates or cancellations can affect other participants. <br>
-Mitigation: Require explicit user confirmation before modifying or canceling meetings, matching the behavior described in the artifact instructions. <br>
+## Use Case:
 
+External users and employees use this skill to manage Tencent Meeting workflows through an agent, including meeting scheduling, participant lookup, recording access, transcript search, and AI meeting summaries. It is intended for authorized Tencent Meeting data and requires a configured Tencent Meeting token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris8265-cl/tencent-meeting-mcp) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chris8265-cl) <br>
-- [Tencent Meeting MCP endpoint](https://mcp.meeting.tencent.com/mcp/wemeet-open/v1) <br>
-- [Tencent Meeting AI skill token page](https://meeting.tencent.com/ai-skill) <br>
-- [Tencent Meeting MCP tool reference](references/api_references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON argument examples; MCP tool results may contain meeting details, participant data, recording links, transcript content, or summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TENCENT_MEETING_TOKEN and mcporter registration for the Tencent Meeting MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: The skill can access and expose sensitive meeting content such as transcripts, recordings, passwords, join links, and participant details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with meetings the user is authorized to access and share, and avoid requesting or disclosing sensitive meeting data outside that authorization.
+
+Risk: The setup step may install or configure mcporter broadly for the current environment.
+
+Mitigation: Review setup.sh before running it, avoid administrator execution, and consider installing a reviewed or pinned mcporter version separately.
+
+Risk: A Tencent Meeting token can grant access beyond a single task if it is overprivileged.
+
+Mitigation: Use a least-privileged Tencent Meeting token and keep TENCENT_MEETING_TOKEN out of shared logs, prompts, and generated artifacts.
+
+## Reference(s):
+
+- [Tencent Meeting MCP Tool Reference](references/api_references.md)
+- [Tencent Meeting MCP Endpoint](https://mcp.meeting.tencent.com/mcp/wemeet-open/v1)
+- [Tencent Meeting AI Skill Token Page](https://meeting.tencent.com/ai-skill)
+- [ClawHub Skill Page](https://clawhub.ai/chris8265-cl/skills/tencent-meeting-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include meeting identifiers, participant details, passwords, recording links, transcript text, and AI-generated meeting summaries when authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-UI UX Pro Max is a professional UI/UX design resource library for creating polished interfaces with design patterns, color palettes, typography pairings, chart guidance, UX patterns, and component specifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional UI/UX design resource library with searchable design patterns, color palettes, font pairings, chart types, and UX guidelines.
 
-## Publisher: <br>
-[iReact2Code](https://clawhub.ai/user/iReact2Code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ireact2code](https://clawhub.ai/user/ireact2code)
 
-## Use Case: <br>
-Developers, designers, and AI-assisted builders use this skill to choose UI styles, palettes, typography, chart patterns, UX flows, and component treatments for professional interface design work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad design-routing language may influence many UI or styling tasks. <br>
-Mitigation: Review generated interface recommendations before applying them to production user experiences. <br>
-Risk: Optional third-party font resources may affect licensing, privacy, or performance requirements. <br>
-Mitigation: Confirm font licensing and loading behavior before using external font resources in a project. <br>
+## Use Case:
 
+Developers, designers, and AI-assisted builders use this skill to select UI styles, color palettes, typography, chart patterns, UX patterns, and component specifications when creating professional user interfaces.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iReact2Code/ui-ux-pro-max-plus) <br>
-- [README](README.md) <br>
-- [UI styles reference](references/ui-styles.md) <br>
-- [Color palettes reference](references/color-palettes.md) <br>
-- [Typography reference](references/typography.md) <br>
-- [Charts reference](references/charts.md) <br>
-- [UX patterns reference](references/ux-patterns.md) <br>
-- [Components reference](references/components.md) <br>
-- [Google Fonts stylesheet reference](https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with design recommendations and optional Tailwind CSS or HTML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only reference output; no executable code is included in the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README) <br>
+Risk: The skill can broadly influence visual design choices when UI work is in scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated designs for brand fit, accessibility, responsiveness, and consistency before deployment.
+
+Risk: Reference snippets may include external font URLs or Tailwind-oriented examples that are not automatically suitable for every runtime.
+
+Mitigation: Confirm dependency, privacy, licensing, and performance requirements before adopting external fonts or code snippets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ireact2code/skills/ui-ux-pro-max-plus)
+- [UI styles reference](references/ui-styles.md)
+- [Color palettes reference](references/color-palettes.md)
+- [Typography reference](references/typography.md)
+- [Chart selection reference](references/charts.md)
+- [UX patterns reference](references/ux-patterns.md)
+- [Component specifications reference](references/components.md)
+- [Google Fonts Inter CSS](https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with Tailwind CSS, HTML, CSS, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese reference content; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

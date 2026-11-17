@@ -49,6 +49,17 @@ def confirm_action(prompt_message: str, yes_flag: bool = False) -> bool:
         sys.exit(1)
 
 
+def _refresh_projection(db):
+    """Refresh period_projection + v_burn_down after data mutations.
+
+    Best-effort: projection staleness must never fail the mutation command.
+    """
+    try:
+        Stats(db).refresh_period_projection()
+    except Exception as exc:
+        logging.getLogger(__name__).warning("period projection refresh failed: %s", exc)
+
+
 def cmd_import(args):
     old_level = logging.getLogger().getEffectiveLevel()
     if args.quiet:
@@ -77,17 +88,43 @@ def cmd_import(args):
 
         cat_result = None
         if total["imported"] > 0:
-            cat_result = cat.categorize_new()
+            cat_result = cat.categorize_new(auto_close=getattr(args, "close", False))
             logger.info(f"Categorized {cat_result['matched']} new transactions "
                         f"({cat_result['unmatched']} uncategorized)")
+            
+            # Print recurring payment matching results
+            rr = cat_result.get("recurring_results", {})
+            for l in rr.get("linked", []):
+                logger.info(f"Linked transaction '{l['tx_desc']}' on {l['tx_date']} to recurring '{l['recurring_name']}'")
+            for r in rr.get("resumed", []):
+                print(f"[INFO] Transaction matching cancelled subscription '{r['name']}' detected. Automatically resumed subscription (new series ID: {r['new_id']}).")
+            for w in rr.get("warnings", []):
+                if w.get("type") == "amount_bounds":
+                    print(f"[WARNING] Transaction '{w['tx_desc']}' on {w['tx_date']} ({w['tx_amount']:.2f} SEK) "
+                          f"matched recurring '{w['name']}' (ID: {w['id']}) but was skipped because it fell outside "
+                          f"configured amount bounds [{w['amount_min']}, {w['amount_max']}].")
+                else:
+                    print(f"[WARNING] Active recurring payment '{w['name']}' (expected around {w['expected']}) was not found in transaction history.")
+            for c in rr.get("closed", []):
+                print(f"[INFO] Automatically closed missing/dead recurring payment '{c['name']}' (end date set to {c['end_date']}).")
 
         if total["settled_pending"] > 0:
+
             logger.info(f"Settled {total['settled_pending']} pending transactions")
 
         # Print parsing failures to stderr (always, regardless of quiet/compact/verbose)
         for name, result in all_file_results:
             for f in result["details"]["failures"]:
                 print(f"[ERROR] Row in {name}: {f['row']} (Reason: {f['reason']})", file=sys.stderr)
+
+        # Print pending lifecycle warnings (reservations that disappeared
+        # from the export without a settled counterpart)
+        for name, result in all_file_results:
+            for w in result.get("warnings", []):
+                print(
+                    f"[WARNING] {name}: pending [{w['id']}] {w['date']} "
+                    f"{w['amount']:.2f} {w['description']}: {w['reason']}"
+                )
 
         if not args.quiet:
             if not args.compact:
@@ -130,6 +167,7 @@ def cmd_import(args):
             # 4. Print total summary counts (compact, default, and verbose modes)
             print(f"Total: {total['imported']} imported, {total['skipped']} skipped, "
                   f"{total['errors']} errors")
+        _refresh_projection(db)
     finally:
         db.disconnect()
         logging.getLogger().setLevel(old_level)
@@ -429,12 +467,37 @@ def cmd_categorize(args):
             result = cat.categorize_all()
             print(f"Re-categorized all: {result['matched']} matched, "
                   f"{result['unmatched']} unmatched")
+            
+            # Also run recurring linking when re-categorizing all
+            from financial_categorizer.recurring import RecurringManager
+            rm = RecurringManager(db)
+            rr = rm.link_transactions(dry_run=False, auto_close=getattr(args, "close", False))
+            for l in rr.get("linked", []):
+                logger.info(f"Linked transaction '{l['tx_desc']}' on {l['tx_date']} to recurring '{l['recurring_name']}'")
         else:
-            result = cat.categorize_new()
+            result = cat.categorize_new(auto_close=getattr(args, "close", False))
             print(f"Categorized new: {result['matched']} matched, "
                   f"{result['unmatched']} unmatched")
+            
+            # Print recurring payment matching results
+            rr = result.get("recurring_results", {})
+            for l in rr.get("linked", []):
+                logger.info(f"Linked transaction '{l['tx_desc']}' on {l['tx_date']} to recurring '{l['recurring_name']}'")
+            for r in rr.get("resumed", []):
+                print(f"[INFO] Transaction matching cancelled subscription '{r['name']}' detected. Automatically resumed subscription (new series ID: {r['new_id']}).")
+            for w in rr.get("warnings", []):
+                if w.get("type") == "amount_bounds":
+                    print(f"[WARNING] Transaction '{w['tx_desc']}' on {w['tx_date']} ({w['tx_amount']:.2f} SEK) "
+                          f"matched recurring '{w['name']}' (ID: {w['id']}) but was skipped because it fell outside "
+                          f"configured amount bounds [{w['amount_min']}, {w['amount_max']}].")
+                else:
+                    print(f"[WARNING] Active recurring payment '{w['name']}' (expected around {w['expected']}) was not found in transaction history.")
+            for c in rr.get("closed", []):
+                print(f"[INFO] Automatically closed missing/dead recurring payment '{c['name']}' (end date set to {c['end_date']}).")
+        _refresh_projection(db)
     finally:
         db.disconnect()
+
 
 
 def cmd_transactions(args):
@@ -460,7 +523,7 @@ def cmd_transactions(args):
         txns = db.get_transactions(
             category_id=category_id,
             uncategorized_only=args.uncategorized,
-            non_zero=args.non_zero,
+            non_zero=not args.include_zero,
             account_id=account_id,
             limit=args.limit,
         )
@@ -472,8 +535,21 @@ def cmd_transactions(args):
         print(f"Transactions ({len(txns)}):")
         for t in txns:
             cat_str = f" [{t['category_name']}]" if t['category_name'] else " [Uncategorized]"
-            adj_str = f" (adj: {t['adjusted_amount']:.2f})" if abs(t['adjusted_amount'] - t['amount']) > 1e-4 else ""
-            print(f"  [{t['id']}] {t['date']}  {t['amount']:>10.2f} SEK{adj_str:<17}  {t['account_name']:<15} {cat_str:<18}  {t['description']}")
+            if args.unsplit:
+                main_val = t['unsplit_amount']
+                diff_val = t['amount']
+                helper_label = "raw"
+            elif args.net:
+                main_val = t['adjusted_amount']
+                diff_val = t['amount']
+                helper_label = "raw"
+            else:
+                main_val = t['amount']
+                diff_val = t['adjusted_amount']
+                helper_label = "adj"
+
+            helper_str = f" ({helper_label}: {diff_val:.2f})" if abs(main_val - diff_val) > 1e-4 else ""
+            print(f"  [{t['id']}] {t['date']}  {main_val:>10.2f} SEK{helper_str:<17}  {t['account_name']:<15} {cat_str:<18}  {t['description']}")
     finally:
         db.disconnect()
 
@@ -484,17 +560,28 @@ def cmd_uncategorized(args):
         cat = Categorizer(db)
 
         if args.group:
-            groups = cat.get_uncategorized_grouped(non_zero=args.non_zero)
+            groups = cat.get_uncategorized_grouped(
+                non_zero=not args.include_zero,
+                net=args.net,
+                unsplit=args.unsplit
+            )
             if not groups:
                 print("All transactions are categorized.")
                 return
-            print(f"Uncategorized by description ({len(groups)} groups):")
+            
+            mode_label = ""
+            if args.unsplit:
+                mode_label = " (unsplit)"
+            elif args.net:
+                mode_label = " (net)"
+
+            print(f"Uncategorized by description ({len(groups)} groups){mode_label}:")
             for g in groups:
                 print(f"  {g['count']:>3}x  {g['total']:>10.2f}  avg={g['avg_amount']:>8.2f}  {g['description']}")
         else:
             uncategorized = db.get_transactions(
                 uncategorized_only=True,
-                non_zero=args.non_zero,
+                non_zero=not args.include_zero,
                 limit=999999,
             )
             if not uncategorized:
@@ -502,8 +589,21 @@ def cmd_uncategorized(args):
                 return
             print(f"Uncategorized transactions ({len(uncategorized)}):")
             for t in uncategorized:
-                adj_str = f" (adj: {t['adjusted_amount']:.2f})" if abs(t['adjusted_amount'] - t['amount']) > 1e-4 else ""
-                print(f"  [{t['id']}] {t['date']}  {t['amount']:>10.2f} SEK{adj_str:<17}  {t['description']}")
+                if args.unsplit:
+                    main_val = t['unsplit_amount']
+                    diff_val = t['amount']
+                    helper_label = "raw"
+                elif args.net:
+                    main_val = t['adjusted_amount']
+                    diff_val = t['amount']
+                    helper_label = "raw"
+                else:
+                    main_val = t['amount']
+                    diff_val = t['adjusted_amount']
+                    helper_label = "adj"
+
+                helper_str = f" ({helper_label}: {diff_val:.2f})" if abs(main_val - diff_val) > 1e-4 else ""
+                print(f"  [{t['id']}] {t['date']}  {main_val:>10.2f} SEK{helper_str:<17}  {t['description']}")
     finally:
         db.disconnect()
 
@@ -626,6 +726,7 @@ def cmd_manual_match(args):
         cur.execute("SELECT name FROM categories WHERE id = ?", (cat_id,))
         cat_name = cur.fetchone()[0]
         print(f"Manually matched transaction [{txn_id}] '{txn_desc}' -> category [{cat_id}] '{cat_name}'")
+        _refresh_projection(db)
     finally:
         db.disconnect()
 
@@ -645,6 +746,7 @@ def cmd_manual_unmatch(args):
         else:
             print(f"Error: Transaction [{txn_id}] does not have a manual categorization override.", file=sys.stderr)
             sys.exit(1)
+        _refresh_projection(db)
     finally:
         db.disconnect()
 
@@ -759,12 +861,23 @@ def cmd_stats_summary(args):
     try:
         pt = resolve_period_type(db, args.period_type)
         stats = Stats(db)
-        rows = stats.monthly_summary(month=args.month, period_type=pt)
+        rows = stats.monthly_summary(month=args.month, period_type=pt,
+                                     unsplit=args.unsplit, gross=args.gross,
+                                     raw_split=args.raw_split)
         if not rows:
             print("No data found.")
             return
+
+        mode_label = ""
+        if args.gross:
+            mode_label = " (gross)"
+        elif args.unsplit:
+            mode_label = " (unsplit)"
+        elif args.raw_split:
+            mode_label = " (raw-split)"
+
         for r in rows:
-            print(f"{r['month']}  income={r['total_income']:>10.2f}  "
+            print(f"{r['month']}{mode_label}  income={r['total_income']:>10.2f}  "
                   f"expenses={r['total_expenses']:>10.2f}  net={r['net']:>10.2f}")
     finally:
         db.disconnect()
@@ -786,8 +899,17 @@ def cmd_stats_category(args):
             lookup["id"], month=args.month,
             date_from=args.from_date, date_to=args.to_date,
             period_type=pt,
+            unsplit=args.unsplit, gross=args.gross, raw_split=args.raw_split,
         )
-        print(f"{args.name}: total={result['total']:>10.2f}  count={result['count']}")
+        mode_label = "total"
+        if args.gross:
+            mode_label = "gross_total"
+        elif args.unsplit:
+            mode_label = "unsplit_total"
+        elif args.raw_split:
+            mode_label = "raw_split_total"
+
+        print(f"{args.name}: {mode_label}={result['total']:>10.2f}  count={result['count']}")
     finally:
         db.disconnect()
 
@@ -808,13 +930,23 @@ def cmd_stats_trend(args):
             lookup["id"],
             date_from=args.from_date, date_to=args.to_date,
             period_type=pt,
+            unsplit=args.unsplit, gross=args.gross, raw_split=args.raw_split,
         )
         if not rows:
             print("No data found.")
             return
+
+        mode_label = "total"
+        if args.gross:
+            mode_label = "gross_total"
+        elif args.unsplit:
+            mode_label = "unsplit_total"
+        elif args.raw_split:
+            mode_label = "raw_split_total"
+
         print(f"Trend for {args.name}:")
         for r in rows:
-            print(f"  {r['month']}  total={r['total']:>10.2f}  count={r['count']}")
+            print(f"  {r['month']}  {mode_label}={r['total']:>10.2f}  count={r['count']}")
     finally:
         db.disconnect()
 
@@ -824,11 +956,21 @@ def cmd_stats_top(args):
     try:
         pt = resolve_period_type(db, args.period_type)
         stats = Stats(db)
-        rows = stats.top_spending(month=args.month, limit=args.limit, period_type=pt)
+        rows = stats.top_spending(month=args.month, limit=args.limit, period_type=pt,
+                                  unsplit=args.unsplit, gross=args.gross, raw_split=args.raw_split)
         if not rows:
             print("No spending data found.")
             return
-        print(f"Top spending{(' for ' + args.month) if args.month else ''}:")
+
+        mode_label = ""
+        if args.gross:
+            mode_label = " (gross)"
+        elif args.unsplit:
+            mode_label = " (unsplit)"
+        elif args.raw_split:
+            mode_label = " (raw-split)"
+
+        print(f"Top spending{mode_label}{(' for ' + args.month) if args.month else ''}:")
         for r in rows:
             month_str = r['month'] if not args.month else ''
             month_col = f"{month_str}  " if month_str else ""
@@ -842,16 +984,25 @@ def cmd_stats_transfers(args):
     try:
         pt = resolve_period_type(db, args.period_type)
         stats = Stats(db)
-        rows = stats.external_transfers_summary(month=args.month, period_type=pt)
+        rows = stats.external_transfers_summary(month=args.month, period_type=pt,
+                                                unsplit=args.unsplit, gross=args.gross, raw_split=args.raw_split)
         if not rows:
             print("No transfers found.")
             return
+
+        mode_label = ""
+        if args.gross:
+            mode_label = " (gross)"
+        elif args.unsplit:
+            mode_label = " (unsplit)"
+        elif args.raw_split:
+            mode_label = " (raw-split)"
 
         current_period = None
         for r in rows:
             if r["period"] != current_period:
                 current_period = r["period"]
-                print(f"\nPeriod: {current_period}")
+                print(f"\nPeriod: {current_period}{mode_label}")
             sign = "+" if r["net_transferred"] >= 0 else ""
             print(f"  {r['account_name']}: {sign}{r['net_transferred']:.2f}")
     finally:
@@ -894,6 +1045,70 @@ def cmd_cleanup(args):
         print(f"{action} {report['orphaned_links']} orphaned transaction_links record(s).")
         if not args.dry_run and report['orphaned_links'] > 0:
             print("Recalculated adjusted_amount for all transactions.")
+    finally:
+        db.disconnect()
+
+
+def cmd_cleanup_pending(args):
+    db = get_db(args.db)
+    try:
+        force_ids = getattr(args, "force_id", None)
+        try:
+            report = db.cleanup_pending(dry_run=True, force_ids=force_ids)
+        except ValueError as e:
+            print(f"Error: {e}")
+            return
+        ghosts = report["ghosts"]
+        unresolved = report["unresolved"]
+
+        if ghosts:
+            label = (
+                "Ghost pending transaction(s) that would be deleted"
+                if args.dry_run
+                else "Ghost pending transaction(s) to delete"
+            )
+            print(f"{label}: {len(ghosts)}")
+            for g in ghosts:
+                m = g.get("matched_settled")
+                match_type = g.get("match_type", "exact")
+                if match_type == "forced":
+                    matched = "forced by --force-id (no confident counterpart)"
+                elif m:
+                    matched = f"settled [{m['id']}] {m['date']} {m['amount']:.2f}"
+                    if match_type == "inexact":
+                        matched += " (inexact amount match)"
+                    elif match_type == "split":
+                        matched += " (split-authorization group)"
+                else:
+                    matched = "split-authorization group"
+                print(
+                    f"  [{g['id']}] {g['date']}  {g['amount']:>10.2f}  "
+                    f"{g['description']}  <- {matched}"
+                )
+        else:
+            print("No ghost pending transactions found.")
+
+        if unresolved:
+            print(f"Unresolved pending transaction(s) kept for manual review: {len(unresolved)}")
+            for u in unresolved:
+                note = (
+                    "  [probable cancellation: no counterpart found]"
+                    if u.get("probable_cancelled") else ""
+                )
+                print(f"  [{u['id']}] {u['date']}  {u['amount']:>10.2f}  {u['description']}{note}")
+                for c in (u.get("candidates") or [])[:3]:
+                    print(f"      candidate: settled [{c['id']}] {c['date']} {c['amount']:.2f}")
+
+        if args.dry_run or not ghosts:
+            return
+
+        confirm_action(
+            f"Are you sure you want to delete {len(ghosts)} ghost pending transaction(s)?",
+            getattr(args, "yes", False),
+        )
+
+        report = db.cleanup_pending(dry_run=False, force_ids=force_ids)
+        print(f"Deleted {report['deleted']} ghost pending transaction(s).")
     finally:
         db.disconnect()
 
@@ -996,6 +1211,7 @@ def cmd_link(args):
                 to_account_id=to_account_id,
             )
             print(f"Created link {link_id} ({args.type})")
+            _refresh_projection(db)
     except ValueError as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
@@ -1048,6 +1264,7 @@ def cmd_unlink(args):
             print(f"Removed link {args.id}")
         else:
             print(f"Link {args.id} not found")
+        _refresh_projection(db)
     finally:
         db.disconnect()
 
@@ -1180,26 +1397,35 @@ def cmd_stats_compare(args):
     try:
         resolved_pt = resolve_period_type(db, args.period_type)
         stats = Stats(db)
-        result = stats.compare(period=args.month, period_type=resolved_pt)
+        result = stats.compare(period=args.month, period_type=resolved_pt,
+                               unsplit=args.unsplit, gross=args.gross, raw_split=args.raw_split)
         if not result:
             print("Not enough data for comparison.")
             return
 
+        mode_label = ""
+        if args.gross:
+            mode_label = " (gross)"
+        elif args.unsplit:
+            mode_label = " (unsplit)"
+        elif args.raw_split:
+            mode_label = " (raw-split)"
+
         if isinstance(result, list):
             # Not enough periods for comparison
             for r in result:
-                print(f"{r['period']}  income={r['total_income']:>10.2f}  "
+                print(f"{r['period']}{mode_label}  income={r['total_income']:>10.2f}  "
                       f"expenses={r['total_expenses']:>10.2f}  net={r['net']:>10.2f}")
             return
 
         pt = "salary period" if resolved_pt == "salary" else "month"
-        print(f"Period: {result['period']} ({pt})")
+        print(f"Period: {result['period']} ({pt}){mode_label}")
         print(f"  Income:   {result['total_income']:>10.2f}")
         print(f"  Expenses: {result['total_expenses']:>10.2f}")
         print(f"  Net:      {result['net']:>10.2f}")
 
         if "prev_period" in result:
-            print(f"\nvs {result['prev_period']}:")
+            print(f"\nvs {result['prev_period']}{mode_label}:")
             for field, label in [("income", "Income"), ("expense", "Expenses"), ("net", "Net")]:
                 delta = result[f"{field}_delta"]
                 pct = result[f"{field}_pct"]
@@ -1272,18 +1498,467 @@ def cmd_stats_cashflow(args):
     try:
         pt = resolve_period_type(db, args.period_type)
         stats = Stats(db)
-        rows = stats.cash_flow_summary(month=args.month, period_type=pt)
+        rows = stats.cash_flow_summary(month=args.month, period_type=pt,
+                                       unsplit=args.unsplit, gross=args.gross, raw_split=args.raw_split)
         if not rows:
             print("No data found.")
             return
         
+        mode_label = ""
+        if args.gross:
+            mode_label = " (Gross)"
+        elif args.unsplit:
+            mode_label = " (Unsplit)"
+        elif args.raw_split:
+            mode_label = " (Raw-Split)"
+
         header_period = "Period" if pt == "salary" else "Month"
-        print(f"{header_period:<10}  {'Operating':>12}  {'Transfers':>12}  {'Net':>12}")
-        print("-" * 54)
+        header_period_label = f"{header_period}{mode_label}"
+        print(f"{header_period_label:<20}  {'Operating':>12}  {'Transfers':>12}  {'Net':>12}")
+        print("-" * 64)
         for r in rows:
-            print(f"{r['period']:<10}  {r['operating']:>12.2f}  {r['transfers']:>12.2f}  {r['net']:>12.2f}")
+            print(f"{r['period']:<20}  {r['operating']:>12.2f}  {r['transfers']:>12.2f}  {r['net']:>12.2f}")
     finally:
         db.disconnect()
+
+
+def format_interval(i_type, i_val):
+    if i_type == "monthly":
+        if i_val == 1: return "monthly"
+        if i_val == 3: return "quarterly"
+        return f"every {i_val}m"
+    elif i_type == "weekly":
+        if i_val == 1: return "weekly"
+        return f"every {i_val}w"
+    elif i_type == "yearly":
+        if i_val == 1: return "yearly"
+        return f"every {i_val}y"
+    elif i_type == "days":
+        if i_val == 1: return "daily"
+        return f"every {i_val}d"
+    return f"{i_type} ({i_val})"
+
+
+def format_day(dom, dow, wom):
+    if dom is not None:
+        if dom == -1: return "last day"
+        return f"day {dom}"
+    if dow is not None:
+        days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        day_name = days[dow] if 0 <= dow < 7 else f"day {dow}"
+        if wom is not None:
+            if wom == -1: return f"last {day_name}"
+            prefix = {1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th"}.get(wom, f"{wom}th")
+            return f"{prefix} {day_name}"
+        return day_name
+    return "N/A"
+
+
+def cmd_recurring(args):
+    db = get_db(args.db)
+    try:
+        cur = db.get_cursor()
+        sql = """
+            SELECT r.id, r.name, r.pattern, r.interval_type, r.interval_value, r.start_date, r.end_date, c.name
+            FROM recurring_payments r
+            LEFT JOIN categories c ON r.category_id = c.id
+        """
+        clauses = []
+        if args.status == "active":
+            clauses.append("r.end_date IS NULL")
+        elif args.status == "cancelled":
+            clauses.append("r.end_date IS NOT NULL")
+        
+        if clauses:
+            sql += " WHERE " + " AND ".join(clauses)
+            
+        cur.execute(sql)
+        rows = cur.fetchall()
+        if not rows:
+            print("No recurring payments found.")
+            return
+            
+        print("Recurring Payments:")
+        for r in rows:
+            status_str = "Active" if r[6] is None else f"Cancelled ({r[6]})"
+            int_str = format_interval(r[3], r[4])
+            print(f"  [{r[0]}] {r[1]}  pattern='{r[2]}'  interval={int_str}  "
+                  f"start={r[5]}  category={r[7] or 'None'}  status={status_str}")
+    finally:
+        db.disconnect()
+
+
+def cmd_add_recurring(args):
+    db = get_db(args.db)
+    try:
+        # Resolve category if passed
+        category_id = None
+        if args.category:
+            cur = db.get_cursor()
+            cur.execute("SELECT id FROM categories WHERE name = ?", (args.category,))
+            row = cur.fetchone()
+            if not row:
+                print(f"[ERROR] Category '{args.category}' not found.", file=sys.stderr)
+                return
+            category_id = row[0]
+
+        # Resolve account if passed
+        account_id = None
+        if args.account:
+            cur = db.get_cursor()
+            cur.execute("SELECT id FROM accounts WHERE name = ?", (args.account,))
+            row = cur.fetchone()
+            if not row:
+                print(f"[ERROR] Account '{args.account}' not found.", file=sys.stderr)
+                return
+            account_id = row[0]
+
+        from financial_categorizer.recurring import RecurringManager
+        rm = RecurringManager(db)
+
+        if args.dry_run:
+            db.connect()
+            db.conn.execute("BEGIN TRANSACTION")
+            try:
+                new_id = rm.add_recurring(
+                    name=args.name, pattern=args.pattern, match_type=args.match_type,
+                    amount_min=args.amount_min, amount_max=args.amount_max,
+                    interval_type=args.interval, interval_value=args.interval_val,
+                    day_of_month=args.day_of_month, day_of_week=args.day_of_week,
+                    week_of_month=args.week_of_month, start_date=args.start_date,
+                    category_id=category_id, account_id=account_id,
+                    tolerance_days=args.tolerance
+                )
+                result = rm.link_transactions(dry_run=True)
+                print(f"[DRY-RUN] Would add recurring payment '{args.name}' (ID: {new_id})")
+                print(f"[DRY-RUN] Would link {len(result['linked'])} transactions:")
+                for l in result["linked"]:
+                    print(f"  - {l['tx_date']}  {l['tx_desc']:<40}  amount={l['tx_amount']:>10.2f}")
+            finally:
+                db.conn.rollback()
+        else:
+            new_id = rm.add_recurring(
+                name=args.name, pattern=args.pattern, match_type=args.match_type,
+                amount_min=args.amount_min, amount_max=args.amount_max,
+                interval_type=args.interval, interval_value=args.interval_val,
+                day_of_month=args.day_of_month, day_of_week=args.day_of_week,
+                week_of_month=args.week_of_month, start_date=args.start_date,
+                category_id=category_id, account_id=account_id,
+                tolerance_days=args.tolerance
+            )
+            print(f"Successfully added recurring payment '{args.name}' (ID: {new_id})")
+            result = rm.link_transactions(dry_run=False)
+            print(f"Linked {len(result['linked'])} transactions to this configuration.")
+            for l in result["linked"]:
+                logger.info(f"Linked transaction '{l['tx_desc']}' on {l['tx_date']} to recurring '{args.name}'")
+    finally:
+        db.disconnect()
+
+
+def cmd_update_recurring(args):
+    db = get_db(args.db)
+    try:
+        # Resolve category if passed
+        category_id = None
+        if args.category:
+            cur = db.get_cursor()
+            cur.execute("SELECT id FROM categories WHERE name = ?", (args.category,))
+            row = cur.fetchone()
+            if not row:
+                print(f"[ERROR] Category '{args.category}' not found.", file=sys.stderr)
+                return
+            category_id = row[0]
+
+        # Resolve account if passed
+        account_id = None
+        if args.account:
+            cur = db.get_cursor()
+            cur.execute("SELECT id FROM accounts WHERE name = ?", (args.account,))
+            row = cur.fetchone()
+            if not row:
+                print(f"[ERROR] Account '{args.account}' not found.", file=sys.stderr)
+                return
+            account_id = row[0]
+
+        from financial_categorizer.recurring import RecurringManager
+        rm = RecurringManager(db)
+
+        # Build update kwargs
+        kwargs = {}
+        if args.name is not None: kwargs["name"] = args.name
+        if args.pattern is not None: kwargs["pattern"] = args.pattern
+        if args.match_type is not None: kwargs["match_type"] = args.match_type
+        if args.amount_min is not None: kwargs["amount_min"] = args.amount_min
+        if args.amount_max is not None: kwargs["amount_max"] = args.amount_max
+        if args.interval is not None: kwargs["interval_type"] = args.interval
+        if args.interval_val is not None: kwargs["interval_value"] = args.interval_val
+        if args.day_of_month is not None: kwargs["day_of_month"] = args.day_of_month
+        if args.day_of_week is not None: kwargs["day_of_week"] = args.day_of_week
+        if args.week_of_month is not None: kwargs["week_of_month"] = args.week_of_month
+        if args.start_date is not None: kwargs["start_date"] = args.start_date
+        if args.tolerance is not None: kwargs["tolerance_days"] = args.tolerance
+        if args.category is not None: kwargs["category_id"] = category_id
+        if args.account is not None: kwargs["account_id"] = account_id
+
+        if args.dry_run:
+            db.connect()
+            db.conn.execute("BEGIN TRANSACTION")
+            try:
+                success = rm.update_recurring(args.id, **kwargs)
+                if not success:
+                    print(f"[ERROR] Recurring payment ID {args.id} not found.", file=sys.stderr)
+                    return
+                result = rm.link_transactions(dry_run=True)
+                print(f"[DRY-RUN] Would update recurring payment ID {args.id}")
+                print(f"[DRY-RUN] Would link {len(result['linked'])} transactions:")
+                for l in result["linked"]:
+                    print(f"  - {l['tx_date']}  {l['tx_desc']:<40}  amount={l['tx_amount']:>10.2f}")
+            finally:
+                db.conn.rollback()
+        else:
+            success = rm.update_recurring(args.id, **kwargs)
+            if not success:
+                print(f"[ERROR] Recurring payment ID {args.id} not found.", file=sys.stderr)
+                return
+            print(f"Successfully updated recurring payment ID {args.id}")
+            result = rm.link_transactions(dry_run=False)
+            print(f"Linked {len(result['linked'])} transactions to this configuration.")
+    finally:
+        db.disconnect()
+
+
+def cmd_remove_recurring(args):
+    db = get_db(args.db)
+    try:
+        from financial_categorizer.recurring import RecurringManager
+        rm = RecurringManager(db)
+        if args.hard:
+            action = "PERMANENTLY DELETE"
+        else:
+            action = "cancel (soft-close)"
+        if not confirm_action(f"This will {action} recurring payment ID {args.id}. Proceed?", yes_flag=args.yes):
+            return
+        success = rm.remove_recurring(args.id, hard=args.hard, cancel_date=args.date)
+        if not success:
+            print(f"[ERROR] Recurring payment ID {args.id} not found.", file=sys.stderr)
+            return
+        if args.hard:
+            print(f"Successfully deleted recurring payment ID {args.id} completely.")
+        else:
+            print(f"Successfully cancelled recurring payment ID {args.id}.")
+    finally:
+        db.disconnect()
+
+
+def cmd_discover_recurring(args):
+    db = get_db(args.db)
+    try:
+        from financial_categorizer.recurring import RecurringManager
+        rm = RecurringManager(db)
+        if not args.dry_run and not confirm_action(
+            "Auto-discovery will save the discovered configurations, re-run transaction "
+            "linking, and auto-close dead recurring configurations. Proceed? (Use --dry-run to preview first)",
+            yes_flag=args.yes,
+        ):
+            return
+        candidates = rm.discover_recurring_candidates(dry_run=args.dry_run)
+        if not candidates:
+            print("No recurring payment candidates found.")
+            return
+
+        if args.dry_run:
+            print("Discovered Recurring Candidates (Preview - not saved):")
+            for c in candidates:
+                int_str = format_interval(c['interval_type'], c['interval_value'])
+                day_str = format_day(c['day_of_month'], c['day_of_week'], c.get('week_of_month'))
+                print(f"  Name: {c['name']:<30} | Interval: {int_str:<12} | Day: {day_str:<15} | Count: {c['tx_count']:>2} | Range: {c['amount_min']:.2f} to {c['amount_max']:.2f}")
+        else:
+            print(f"Auto-discovery completed. Saved {len(candidates)} new recurring payment configurations to database:")
+            for c in candidates:
+                int_str = format_interval(c['interval_type'], c['interval_value'])
+                day_str = format_day(c['day_of_month'], c['day_of_week'], c.get('week_of_month'))
+                print(f"  [{c.get('id', 'NEW')}] {c['name']:<30} | {int_str:<12} | Day: {day_str:<15} | Count: {c['tx_count']}")
+    finally:
+        db.disconnect()
+
+
+
+def cmd_stats_recurring(args):
+    db = get_db(args.db)
+    try:
+        from financial_categorizer.recurring import RecurringManager
+        rm = RecurringManager(db)
+        pt = resolve_period_type(db, args.period_type) if hasattr(args, "period_type") else "salary"
+        stats = rm.get_recurring_stats(query=args.query, period_type=pt, period=args.month)
+
+        if args.query:
+            if not stats["details"]:
+                print(f"No subscription matching '{args.query}' found.")
+                return
+
+            print(f"Subscription Report: {args.query}")
+            print("=" * 64)
+            for item in stats["details"]:
+                c = item["config"]
+                status_str = "Active" if c["end_date"] is None else f"Cancelled/Completed ({c['end_date']})"
+                int_str = format_interval(c['interval_type'], c['interval_value'])
+                print(f"Series ID: {c['id']}")
+                print(f"  Name:          {c['name']}")
+                print(f"  Pattern:       '{c['pattern']}' ({c['match_type']})")
+                print(f"  Account:       {c['account_name'] or 'All'}")
+                print(f"  Category:      {c['category_name'] or 'None'}")
+                print(f"  Interval:      {int_str}")
+                print(f"  Start Date:    {c['start_date']}")
+                print(f"  End Date:      {c['end_date'] or 'Ongoing'}")
+                print(f"  Status:        {status_str}")
+                print(f"  Lifetime Paid: {item['lifetime_total']:>10.2f} SEK")
+                print(f"  YTD Paid:      {item['ytd_total']:>10.2f} SEK")
+                if item["next_expected"]:
+                    print(f"  Next Expected: {item['next_expected']} (±{c['tolerance_days']} days)")
+                
+                print("\n  Matched Transactions:")
+                if not item["transactions"]:
+                    print("    No transactions matched.")
+                else:
+                    for tx in item["transactions"]:
+                        print(f"    - {tx['date']} | {tx['description']:<40} | amount={tx['amount']:>10.2f} | period={tx['salary_period']}")
+                print("-" * 64)
+        else:
+            if not stats["details"]:
+                print("No recurring payment templates defined. Run 'discover-recurring' to create one.")
+                return
+                
+            active_list = [item for item in stats["details"] if item["active"]]
+            cancelled_list = [item for item in stats["details"] if not item["active"]]
+
+            print("=== Active Subscriptions & Bills ===")
+            print(f"{'ID':<4} {'Name':<25} {'Interval':<15} {'Next Expected':<13} {'Monthly Cost':>13}")
+            print("-" * 75)
+            for item in active_list:
+                c = item["config"]
+                next_str = str(item["next_expected"]) if item["next_expected"] else "N/A"
+                
+                outflow_amt = 0.0
+                if item["last_payment"]:
+                    outflow_amt = item["last_payment"]["amount"]
+                elif c["amount_min"] is not None and c["amount_max"] is not None:
+                    outflow_amt = (c["amount_min"] + c["amount_max"]) / 2
+                elif c["amount_min"] is not None:
+                    outflow_amt = c["amount_min"]
+                
+                monthly_equiv = 0.0
+                if outflow_amt < 0:
+                    if c["interval_type"] == "monthly":
+                        monthly_equiv = outflow_amt / c["interval_value"]
+                    elif c["interval_type"] == "weekly":
+                        monthly_equiv = outflow_amt * 4.33 / c["interval_value"]
+                    elif c["interval_type"] == "yearly":
+                        monthly_equiv = outflow_amt / 12.0 / c["interval_value"]
+                    elif c["interval_type"] == "days":
+                        monthly_equiv = outflow_amt * 30.4 / c["interval_value"]
+
+                int_str = format_interval(c['interval_type'], c['interval_value'])
+                print(f"[{c['id']:>2}] {c['name']:<25} {int_str:<15} {next_str:<13} {monthly_equiv:>10.2f} SEK")
+            
+            print("-" * 75)
+            print(f"Active Subscriptions Outflow: {stats['total_monthly_outflow']:>10.2f} SEK / month")
+            print(f"Total Active Series Count:     {stats['active_count']}")
+
+            if cancelled_list:
+                from datetime import date
+                from financial_categorizer.recurring import _to_date
+                recent_cancelled = []
+                for item in cancelled_list:
+                    c = item["config"]
+                    end_dt = _to_date(c["end_date"])
+                    if end_dt and (date.today() - end_dt).days <= 365:
+                        recent_cancelled.append(item)
+
+                if recent_cancelled:
+                    print("\n=== Recently Cancelled / Inactive Series (Last 12 Months) ===")
+                    for item in recent_cancelled:
+                        c = item["config"]
+                        print(f"  [{c['id']}] {c['name']} (Ended: {c['end_date']}) - Total historical spend: {item['lifetime_total']:.2f} SEK")
+    finally:
+        db.disconnect()
+
+
+def cmd_estimate_period(args):
+    db = get_db(args.db)
+    try:
+        from financial_categorizer.stats import Stats
+        cur = db.get_cursor()
+        cur.execute("SELECT MAX(date) FROM transactions")
+        row = cur.fetchone()
+        if not row or not row[0]:
+            print("No transactions found in database to estimate projection.")
+            return
+        
+        from datetime import date
+        as_of_date = date.today()
+        last_tx_date = row[0]
+        
+        # Load estimation level preference
+        level = args.level
+        if level is None:
+            level = int(db.get_metadata("estimate_level", "0"))
+            
+        stats_mgr = Stats(db)
+        proj = stats_mgr.get_projected_spend(as_of_date, window_days=args.days, level=level)
+        
+        # Split recurring expectations
+        upcoming_rec_expenses = sum(item['amount'] for item in proj['upcoming_recurring'] if item['amount'] < 0)
+        upcoming_rec_income = sum(item['amount'] for item in proj['upcoming_recurring'] if item['amount'] >= 0)
+        
+        var_expenses = sum(val for val in proj['projected_variable_categories'].values() if val < 0)
+        var_incomes = sum(val for val in proj['projected_variable_categories'].values() if val >= 0)
+        
+        projected_expenses = var_expenses + upcoming_rec_expenses
+        projected_income = var_incomes + upcoming_rec_income
+        
+        print(f"Period:                    {proj['period_name']} ({proj['period_start']} to {proj['period_end']})")
+        print(f"Last Imported Transaction: {last_tx_date}")
+        print(f"Days Remaining:            {proj['remaining_days']} days", end="")
+        if proj['remaining_days'] > 0:
+            print(f" ({proj['projection_start']} to {proj['projection_end']})")
+        else:
+            print()
+            
+        print("\n=== Current Period-to-Date Actuals ===")
+        print(f"  Total Actual Expenses: {proj['actual_total_expense']:>14.2f} SEK")
+        print(f"  Total Actual Income:   {proj['actual_total_income']:>14.2f} SEK")
+        print(f"  Net Period Flow So Far:{proj['actual_net_flow']:>14.2f} SEK")
+        
+        print(f"\n=== Projected for Remaining {proj['remaining_days']} Days ===")
+        print(f"  Average Expenses       {proj['projected_variable_total']:>14.2f} SEK ({proj['historical_daily_total']:>7.2f} SEK/day)")
+        if level > 0:
+            for name, val in sorted(proj['projected_variable_categories'].items()):
+                print(f"    {name:<20} {val:>14.2f} SEK")
+        print(f"  Recurring Expenses     {upcoming_rec_expenses:>14.2f} SEK")
+        print(f"  Projected Expenses     {projected_expenses:>14.2f} SEK")
+        print(f"  Projected Income       {projected_income:>14.2f} SEK")
+
+        
+        print("\n" + "=" * 50)
+        print(f"ESTIMATED NET FULL PERIOD:{proj['total_estimated']:>14.2f} SEK")
+
+        print("=" * 50)
+
+        
+    finally:
+        db.disconnect()
+
+
+
+def cmd_set_estimate_level(args):
+    db = get_db(args.db)
+    try:
+        db.set_metadata("estimate_level", str(args.level))
+        level_label = {0: "0 (No Categories)", 1: "1 (Top Categories)", 2: "2 (Subcategories)"}.get(args.level, str(args.level))
+        print(f"Successfully set default estimation rollup level to: {level_label}")
+    finally:
+        db.disconnect()
+
 
 
 def main():
@@ -1301,11 +1976,14 @@ def main():
     p_import.add_argument("--account", help="Account name (default: derived from filename)")
     p_import.add_argument("--no-auto-account", action="store_true",
                           help="Don't auto-create account if missing (raises error)")
+    p_import.add_argument("--close", action="store_true",
+                          help="Auto-close active recurring transactions that are missing expected payments")
     g_verbosity = p_import.add_mutually_exclusive_group()
     g_verbosity.add_argument("--quiet", "-q", action="store_true", help="Quiet mode: suppress all output except warnings/errors")
     g_verbosity.add_argument("--compact", "-c", action="store_true", help="Compact mode: show only summary counts")
     g_verbosity.add_argument("--verbose", "-v", action="store_true", help="Verbose mode: show detailed transaction and rule information")
     p_import.set_defaults(func=cmd_import)
+
 
     # accounts
     p_accounts = subparsers.add_parser("accounts", help="List all accounts")
@@ -1413,21 +2091,30 @@ def main():
     # categorize
     p_cat = subparsers.add_parser("categorize", help="Categorize transactions")
     p_cat.add_argument("--all", action="store_true", help="Re-categorize all transactions")
+    p_cat.add_argument("--close", action="store_true",
+                        help="Auto-close active recurring transactions that are missing expected payments")
     p_cat.set_defaults(func=cmd_categorize)
+
 
     # transactions
     p_txns = subparsers.add_parser("transactions", help="Search and list transactions")
     p_txns.add_argument("--category", help="Filter by category name")
     p_txns.add_argument("--uncategorized", action="store_true", help="Show only uncategorized transactions")
-    p_txns.add_argument("--non-zero", action="store_true", help="Exclude transactions with adjusted_amount = 0")
+    p_txns.add_argument("--include-zero", action="store_true", help="Include transactions with adjusted_amount = 0 in the output")
     p_txns.add_argument("--account", help="Filter by account name")
     p_txns.add_argument("--limit", type=int, default=50, help="Maximum number of transactions to return (default: 50)")
+    g_txns = p_txns.add_mutually_exclusive_group()
+    g_txns.add_argument("--net", action="store_true", help="Display personal net (adjusted_amount) as primary value")
+    g_txns.add_argument("--unsplit", action="store_true", help="Display household net (unsplit_amount) as primary value")
     p_txns.set_defaults(func=cmd_transactions)
 
     # uncategorized
     p_uncat = subparsers.add_parser("uncategorized", help="Show uncategorized transactions")
     p_uncat.add_argument("--group", action="store_true", help="Group by description with counts and totals")
-    p_uncat.add_argument("--non-zero", action="store_true", help="Exclude transactions with adjusted_amount = 0")
+    p_uncat.add_argument("--include-zero", action="store_true", help="Include transactions with adjusted_amount = 0")
+    g_uncat = p_uncat.add_mutually_exclusive_group()
+    g_uncat.add_argument("--net", action="store_true", help="Display personal net (adjusted_amount) as primary value")
+    g_uncat.add_argument("--unsplit", action="store_true", help="Display household net (unsplit_amount) as primary value")
     p_uncat.set_defaults(func=cmd_uncategorized)
 
     # manual-match
@@ -1446,6 +2133,10 @@ def main():
     p_stats_summary.add_argument("--month", help="Filter to YYYY-MM")
     p_stats_summary.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                                  help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_stats_summary = p_stats_summary.add_mutually_exclusive_group()
+    g_stats_summary.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_stats_summary.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_stats_summary.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_stats_summary.set_defaults(func=cmd_stats_summary)
 
     # stats category
@@ -1456,6 +2147,10 @@ def main():
     p_stats_cat.add_argument("--to", dest="to_date", type=lambda s: __import__('datetime').date.fromisoformat(s), help="End date (YYYY-MM-DD)")
     p_stats_cat.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                                  help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_stats_cat = p_stats_cat.add_mutually_exclusive_group()
+    g_stats_cat.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_stats_cat.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_stats_cat.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_stats_cat.set_defaults(func=cmd_stats_category)
 
     # stats trend
@@ -1465,6 +2160,10 @@ def main():
     p_stats_trend.add_argument("--to", dest="to_date", type=lambda s: __import__('datetime').date.fromisoformat(s), help="End date (YYYY-MM-DD)")
     p_stats_trend.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                                  help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_stats_trend = p_stats_trend.add_mutually_exclusive_group()
+    g_stats_trend.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_stats_trend.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_stats_trend.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_stats_trend.set_defaults(func=cmd_stats_trend)
 
     # stats top
@@ -1473,6 +2172,10 @@ def main():
     p_stats_top.add_argument("--limit", type=int, default=10, help="Max categories (default: 10)")
     p_stats_top.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                                  help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_stats_top = p_stats_top.add_mutually_exclusive_group()
+    g_stats_top.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_stats_top.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_stats_top.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_stats_top.set_defaults(func=cmd_stats_top)
 
     # stats-transfers
@@ -1480,6 +2183,10 @@ def main():
     p_stats_transfers.add_argument("--month", help="Filter to YYYY-MM")
     p_stats_transfers.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                                    help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_stats_transfers = p_stats_transfers.add_mutually_exclusive_group()
+    g_stats_transfers.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_stats_transfers.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_stats_transfers.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_stats_transfers.set_defaults(func=cmd_stats_transfers)
 
     # recalculate
@@ -1491,6 +2198,19 @@ def main():
     p_cleanup.add_argument("--dry-run", action="store_true", help="Show orphaned records without deleting them")
     p_cleanup.add_argument("--yes", "-y", action="store_true", help="Bypass confirmation prompt")
     p_cleanup.set_defaults(func=cmd_cleanup)
+
+    # cleanup-pending
+    p_cleanup_pending = subparsers.add_parser(
+        "cleanup-pending",
+        help="Delete ghost pending reservations whose settled counterpart already exists",
+    )
+    p_cleanup_pending.add_argument("--dry-run", action="store_true", help="Show ghost pending transactions without deleting them")
+    p_cleanup_pending.add_argument("--yes", "-y", action="store_true", help="Bypass confirmation prompt")
+    p_cleanup_pending.add_argument(
+        "--force-id", action="append", type=int, default=None, metavar="ID",
+        help="Delete a specific pending transaction by id (repeatable), overriding match confidence",
+    )
+    p_cleanup_pending.set_defaults(func=cmd_cleanup_pending)
 
     # link
     p_link = subparsers.add_parser("link", help="Link two transactions")
@@ -1554,6 +2274,10 @@ def main():
     p_compare.add_argument("--month", help="Period to compare (YYYY-MM, default: latest)")
     p_compare.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                            help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_compare = p_compare.add_mutually_exclusive_group()
+    g_compare.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_compare.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_compare.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_compare.set_defaults(func=cmd_stats_compare)
 
     # salary-config
@@ -1581,9 +2305,100 @@ def main():
     p_cf.add_argument("--month", help="Specific month (YYYY-MM)")
     p_cf.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
                       help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    g_cf = p_cf.add_mutually_exclusive_group()
+    g_cf.add_argument("--unsplit", action="store_true", help="Undo joint account split (household net)")
+    g_cf.add_argument("--gross", action="store_true", help="Undo split and ignore reimbursements (household raw)")
+    g_cf.add_argument("--raw-split", action="store_true", help="Ownership split without reimbursement adjustments (bank-view)")
     p_cf.set_defaults(func=cmd_stats_cashflow)
 
+    # recurring
+    p_rec = subparsers.add_parser("recurring", help="List recurring payments configurations")
+    p_rec.add_argument("--status", choices=["active", "cancelled", "all"], default="active",
+                       help="Filter by status (default: active)")
+    p_rec.set_defaults(func=cmd_recurring)
+
+    # add-recurring
+    p_add_rec = subparsers.add_parser("add-recurring", help="Manually create a new recurring config")
+    p_add_rec.add_argument("name", help="Name of subscription / recurring payment")
+    p_add_rec.add_argument("pattern", help="Description pattern to match")
+    p_add_rec.add_argument("--match-type", choices=["regex", "exact", "contains"], default="contains",
+                           help="Match type (default: contains)")
+    p_add_rec.add_argument("--amount-min", type=float, help="Minimum transaction amount")
+    p_add_rec.add_argument("--amount-max", type=float, help="Maximum transaction amount")
+    p_add_rec.add_argument("--interval", choices=["monthly", "weekly", "yearly", "days"], default="monthly",
+                           help="Interval type (default: monthly)")
+    p_add_rec.add_argument("--interval-val", type=int, default=1, help="Interval multiplier value (default: 1)")
+    p_add_rec.add_argument("--day-of-month", type=int, help="Expected day of month (1-31, -1 for last day)")
+    p_add_rec.add_argument("--day-of-week", type=int, help="Expected day of week (0=Mon, 6=Sun)")
+    p_add_rec.add_argument("--week-of-month", type=int, choices=[1, 2, 3, 4, 5, -1],
+                           help="Expected week of month (1-5, -1 for last)")
+    p_add_rec.add_argument("--start-date", help="Start date (YYYY-MM-DD, default: today)")
+    p_add_rec.add_argument("--tolerance", type=int, default=4, help="Tolerance window in days (default: 4)")
+    p_add_rec.add_argument("--category", help="Category name to auto-assign/track")
+    p_add_rec.add_argument("--account", help="Limit to specific account name")
+    p_add_rec.add_argument("--dry-run", action="store_true", help="Preview matches without writing to DB")
+    p_add_rec.set_defaults(func=cmd_add_recurring)
+
+    # update-recurring
+    p_upd_rec = subparsers.add_parser("update-recurring", help="Update an existing recurring config")
+    p_upd_rec.add_argument("id", type=int, help="Recurring Payment ID")
+    p_upd_rec.add_argument("--name", help="Name of subscription / recurring payment")
+    p_upd_rec.add_argument("--pattern", help="Description pattern to match")
+    p_upd_rec.add_argument("--match-type", choices=["regex", "exact", "contains"], help="Match type")
+    p_upd_rec.add_argument("--amount-min", type=float, help="Minimum transaction amount")
+    p_upd_rec.add_argument("--amount-max", type=float, help="Maximum transaction amount")
+    p_upd_rec.add_argument("--interval", choices=["monthly", "weekly", "yearly", "days"], help="Interval type")
+    p_upd_rec.add_argument("--interval-val", type=int, help="Interval multiplier value")
+    p_upd_rec.add_argument("--day-of-month", type=int, help="Expected day of month (1-31, -1 for last day)")
+    p_upd_rec.add_argument("--day-of-week", type=int, help="Expected day of week (0=Mon, 6=Sun)")
+    p_upd_rec.add_argument("--week-of-month", type=int, choices=[1, 2, 3, 4, 5, -1],
+                           help="Expected week of month (1-5, -1 for last)")
+    p_upd_rec.add_argument("--start-date", help="Start date (YYYY-MM-DD)")
+    p_upd_rec.add_argument("--tolerance", type=int, help="Tolerance window in days")
+    p_upd_rec.add_argument("--category", help="Category name to auto-assign/track")
+    p_upd_rec.add_argument("--account", help="Limit to specific account name")
+    p_upd_rec.add_argument("--dry-run", action="store_true", help="Preview matches without writing to DB")
+    p_upd_rec.set_defaults(func=cmd_update_recurring)
+
+    # remove-recurring
+    p_rem_rec = subparsers.add_parser("remove-recurring", help="Cancel or delete a recurring payment")
+    p_rem_rec.add_argument("id", type=int, help="Recurring Payment ID")
+    p_rem_rec.add_argument("--hard", action="store_true",
+                           help="Delete configuration completely from the DB (otherwise soft-closes/cancels)")
+    p_rem_rec.add_argument("--date", help="Cancellation date (YYYY-MM-DD, defaults to date of last matched transaction)")
+    p_rem_rec.add_argument("--yes", "-y", action="store_true", help="Bypass confirmation prompt")
+    p_rem_rec.set_defaults(func=cmd_remove_recurring)
+
+    # discover-recurring
+    p_disc_rec = subparsers.add_parser("discover-recurring",
+                                       help="Auto-discover candidates and auto-close dead configurations")
+    p_disc_rec.add_argument("--dry-run", action="store_true", help="Preview candidates without writing them to DB")
+    p_disc_rec.add_argument("--yes", "-y", action="store_true", help="Bypass confirmation prompt (required to save and auto-link in non-interactive mode)")
+    p_disc_rec.set_defaults(func=cmd_discover_recurring)
+
+    # stats-recurring
+    p_stats_rec = subparsers.add_parser("stats-recurring", help="Display recurring outflow and subscriptions stats")
+    p_stats_rec.add_argument("query", nargs="?", help="Optional subscription name or ID to filter details")
+    p_stats_rec.add_argument("--period-type", choices=["calendar", "salary", "default"], default="default",
+                            help="Period type: calendar, salary, or default (dynamically determined by active salary config)")
+    p_stats_rec.add_argument("--month", help="Filter details by month/period (YYYY-MM)")
+    p_stats_rec.set_defaults(func=cmd_stats_recurring)
+
+    # estimate-period
+    p_est = subparsers.add_parser("estimate-period", help="Estimate/project remaining spending for the current period")
+    p_est.add_argument("--days", type=int, default=30, help="Historical window in days to compute daily variable spend average")
+    p_est.add_argument("--level", type=int, choices=[0, 1, 2], help="Override default category rollup level (0: none, 1: top, 2: detailed)")
+    p_est.set_defaults(func=cmd_estimate_period)
+
+    # set-estimate-level
+    p_set_est = subparsers.add_parser("set-estimate-level", help="Set default category rollup level for spending estimation")
+    p_set_est.add_argument("level", type=int, choices=[0, 1, 2], help="Rollup level (0: no categories, 1: top categories, 2: detailed subcategories)")
+    p_set_est.set_defaults(func=cmd_set_estimate_level)
+
     args = parser.parse_args()
+
+
+
     if not args.command:
         parser.print_help()
         sys.exit(1)

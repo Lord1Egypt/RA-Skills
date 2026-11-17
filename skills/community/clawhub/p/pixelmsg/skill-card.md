@@ -1,42 +1,59 @@
-## Description: <br>
-pixelmsg renders HTML templates into pixel-perfect PNG image cards with Playwright so agents can send rich visual messages instead of plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pixelmsg renders HTML templates into pixel-perfect PNG image cards with Playwright so agents can deliver rich visual messages instead of plain text.
 
-## Publisher: <br>
-[clarence-g](https://clawhub.ai/user/clarence-g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarence-g](https://clawhub.ai/user/clarence-g)
 
-## Use Case: <br>
-Developers and agent builders use pixelmsg to turn weather, GitHub, todo, report, dashboard, and announcement content into PNG cards for chat or compatible agent runtimes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Template rendering may execute local template JavaScript and contact third-party CDNs or Open-Meteo. <br>
-Mitigation: Render only trusted templates, avoid secrets or private reports in templates that load remote assets, and vendor or block remote assets when network disclosure is not acceptable. <br>
-Risk: Generated images copied into a shared workspace can overwrite existing files or expose the wrong rendered card if filenames are reused. <br>
-Mitigation: Use unique output filenames and review the destination path before sending the image. <br>
+## Use Case:
 
+Developers and agent builders use pixelmsg to convert structured response content into styled HTML cards and render them as PNG images for chat, reports, dashboards, notifications, and data summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarence-g/pixelmsg) <br>
-- [README.md](README.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [PNG image files with text paths or MEDIA lines, plus HTML templates and shell or Node commands for rendering.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshots are cropped to the selected element by default and can target mobile, tablet, desktop, custom dimensions, output directories, URL parameters, full-page capture, and device scale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: Templates can load mutable third-party CDN code during rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review template dependencies before use, vendor required resources locally where practical, or render with network egress blocked or allowlisted.
+
+Risk: Active HTML rendering with unrestricted network access may expose sensitive, private, or attacker-supplied content.
+
+Mitigation: Avoid rendering sensitive or untrusted content until network access is constrained and templates have been reviewed.
+
+Risk: Generated image paths and workspace writes can collide or modify the installed skill directory if reused carelessly.
+
+Mitigation: Use unique workspace output filenames and keep generated templates and screenshots in the project workspace rather than editing the installed skill package.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/clarence-g/skills/pixelmsg)
+- [README](README.md)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image files with an absolute output path and optional standalone MEDIA delivery line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Playwright screenshots of the #app element; supports viewport, selector, output directory, filename, URL parameter, full-page, and device-scale options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

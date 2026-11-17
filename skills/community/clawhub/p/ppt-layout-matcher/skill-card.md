@@ -1,41 +1,62 @@
-## Description: <br>
-PPT Layout Matcher analyzes presentation content against a 45-page 16:9 layout library and recommends suitable PowerPoint slide layouts across 10 categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT Layout Matcher analyzes presentation content and recommends PowerPoint slide layouts from a 45-page 16:9 design library across 10 layout categories.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Developers, presentation authors, and agents use this skill to analyze slide content, select top PowerPoint layout matches, and create or guide slide generation after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad presentation-related wording and provide layout recommendations when the user only intended a general discussion. <br>
-Mitigation: Confirm the user's intent and present top layout recommendations for review before creating slides. <br>
-Risk: Optional slide-generation workflows depend on local Python packages such as python-pptx or markitdown. <br>
-Mitigation: Install optional dependencies only from trusted package sources and review generated PPTX output before use. <br>
+## Use Case:
 
+Developers, agents, and presentation creators use this skill to analyze slide-ready content such as bullet points, metrics, comparisons, timelines, or process descriptions and select an appropriate PowerPoint layout before generating or editing a deck.
 
-## Reference(s): <br>
-- [Layout Templates Reference](references/layout_templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zrxparley/ppt-layout-matcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or text recommendations with optional Python code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes layout names, slide references, match scores, structure descriptions, and recommendation explanations; PPTX generation depends on python-pptx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad PPT-related triggers may activate the skill when the user only wants discussion or planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent and the selected layout before creating or modifying any PowerPoint file.
+
+Risk: Generated decks may be written to an unintended path or overwrite an existing presentation.
+
+Mitigation: Ask the user to confirm the output path and file action before writing PPTX output.
+
+Risk: The artifact defaults to Chinese-language examples and documentation, which may not match every audience.
+
+Mitigation: Review generated slide text and localize terminology, examples, and labels for the target audience.
+
+Risk: The skill depends on python-pptx for PowerPoint generation.
+
+Mitigation: Install and review dependencies under the user's normal environment and package policy.
+
+## Reference(s):
+
+- [Layout Templates Reference](artifact/references/layout_templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/zrxparley/skills/ppt-layout-matcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python code examples and optional PPTX file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations usually include the top three layouts with scores, slide references, structure notes, and confirmation before PowerPoint generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

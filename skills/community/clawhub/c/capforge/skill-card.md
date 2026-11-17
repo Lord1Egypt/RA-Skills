@@ -1,44 +1,58 @@
-## Description: <br>
-CapForge helps agents scan GitHub repositories, extract reusable capability documentation, classify capability domains, validate generated files, and sync repositories safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CapForge helps agents scan GitHub repositories, extract reusable capability documentation, classify capability domains, validate documentation structure, and synchronize repositories with a read-only default posture.
 
-## Publisher: <br>
-[ldx-person](https://clawhub.ai/user/ldx-person) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldx-person](https://clawhub.ai/user/ldx-person)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect open-source GitHub repositories, produce reusable capability summaries, compare capability domains across projects, and validate the resulting Markdown assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external capforge npm package and may execute repository import, scan, describe, transform, classify, validate, or update commands. <br>
-Mitigation: Use the installed capforge binary or a pinned reviewed package version, and review each proposed command and repository URL before approval. <br>
-Risk: CapForge writes cloned repositories and generated summaries to a local workspace such as ~/.capforge. <br>
-Mitigation: Keep the workspace limited to repositories and generated summaries that are acceptable to store locally. <br>
-Risk: Repository synchronization can write to disk when importing, pulling, or updating repositories. <br>
-Mitigation: Require explicit user confirmation before running commands, especially git clone, git pull, capforge import, and capforge update. <br>
+## Use Case:
 
+Developers and agent builders use CapForge to inspect open-source repositories and turn code structure into reusable Markdown capability assets, domain summaries, validation reports, and transformation-plan drafts.
 
-## Reference(s): <br>
-- [CapForge ClawHub release](https://clawhub.ai/ldx-person/capforge) <br>
-- [CapForge project homepage](https://github.com/ldx-person/capforge) <br>
-- [Publisher profile](https://clawhub.ai/user/ldx-person) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or guides creation of capability.md, domains.md, validation-report.md, and optional transform-plan.md files in the configured CapForge workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill claims to avoid unreviewed remote execution, but the artifact still includes unpinned npm/npx command examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use a pinned, reviewed capforge CLI version and replace npx examples with the installed capforge binary before running the workflow.
+
+Risk: CapForge imports repositories and writes generated Markdown files under ~/.capforge by default, which can change local disk state.
+
+Mitigation: Show each command to the user first, confirm the target repository and workspace, and set CAPFORGE_WORKSPACE or --workspace when isolation is needed.
+
+Risk: Generated capability and transformation-plan documents may be incomplete or misleading if accepted without review.
+
+Mitigation: Review generated Markdown against the scanned repository before using it for implementation, selection, or publication decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ldx-person/skills/capforge)
+- [CapForge Homepage](https://github.com/ldx-person/capforge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repository capability notes, domain summaries, validation reports, and transformation-plan drafts under the configured CapForge workspace.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

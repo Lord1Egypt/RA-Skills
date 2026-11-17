@@ -1,51 +1,32 @@
 ---
 name: qa-exploratory-testing
-version: 1.5.0
 description: >-
-  当脚本化测试覆盖得差不多了、但直觉告诉你"可能还有东西没测到"时使用此技能。用系统化的探索方法（场景漫游、角色扮演、失败路径、标杆对比）来发现预设测试用例覆盖不到的问题。探索式测试不是随便点——它是有明确 charter（任务书）和时长的有目的探索。每次探索需要记录 session 笔记和发现的问题列表。
-
-when_to_use: 用户说"探索测试"、"自由测试"、"漫游测试"、"场景发现"、"到处点一点"、"随机测试"、"角色扮演"、"SBTM"、需要发现脚本化测试遗漏的问题、新产品快速验证时
+  当脚本化测试覆盖得差不多了、但直觉告诉你"可能还有东西没测到"时使用此技能。用系统化的探索方法（场景漫游、角色扮演、失败路径、标杆对比）来发现预设测试用例覆盖不到的问题。探索式测试不是随便点——它是有明确 charter（任务书）和时长的有目的探索。每次探索需要记录 session 笔记和发现的问题列表。 触发场景：探索测试、自由测试、漫游测试、场景发现、到处点一点、随机测试、角色扮演、SBTM、新产品快速验证时。 Use when the user asks about: exploratory testing with a charter — scenario roaming, role play, failure-path probing, benchmark comparison, and session notes.
+license: MIT
 allowed-tools: Read Grep Glob Bash
-related_skills:
-  upstream:
-    - qa-scenario-tree           # 输入：场景树识别测试区域
-    - qa-risk-intuition          # 输入：风险评估识别高风险区域
-  downstream:
-    - qa-bug-reporting           # 输出：发现的问题用于Bug报告
-    - qa-retrospective           # 输出：测试发现用于复盘
-input_format:
-  required:
-    - name: 测试目标
-      type: string
-      description: 探索式测试的目标和范围
-    - name: 探索领域
-      type: string
-      description: 待探索的功能领域和特性
-  optional:
-    - name: 启发式清单
-      type: array
-      description: 来自qa-heuristic-checklist的启发式检查项
-    - name: 时间盒
-      type: string
-      description: 探索时间限制
-output_format:
-  structure:
-    - exploration_charter: 探索章程
-    - session_notes: 探索笔记
-    - findings: 发现清单
-    - bug_reports: 发现缺陷报告
-    - coverage_notes: 覆盖记录
-error_recovery_guidance:
-  on_failure: "记录探索路径，切换测试策略或结束当前Session"
-  retry_behavior: "开启新Session，尝试不同的探索方向"
+metadata:
+  display-name: "Exploratory Testing"
+  version: "1.8.0"
+  when-to-use: "用户说\"探索测试\"、\"自由测试\"、\"漫游测试\"、\"场景发现\"、\"到处点一点\"、\"随机测试\"、\"角色扮演\"、\"SBTM\"、需要发现脚本化测试遗漏的问题、新产品快速验证时"
+  related-skills: "{\"upstream\":[\"qa-scenario-tree\",\"qa-risk-intuition\"],\"downstream\":[\"qa-bug-reporting\",\"qa-retrospective\"]}"
+  references: "[\"references/charter-methods.md\"]"
+  input-format: "{\"required\":[{\"name\":\"测试目标\",\"type\":\"string\",\"description\":\"探索式测试的目标和范围\"},{\"name\":\"探索领域\",\"type\":\"string\",\"description\":\"待探索的功能领域和特性\"}],\"optional\":[{\"name\":\"启发式清单\",\"type\":\"array\",\"description\":\"来自qa-heuristic-checklist的启发式检查项\"},{\"name\":\"时间盒\",\"type\":\"string\",\"description\":\"探索时间限制\"}]}"
+  output-format: "{\"traceability\":[\"每个探索session带唯一ID（EXP-XXXX）\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"exploration_charter\":\"探索章程\"},{\"session_notes\":\"探索笔记\"},{\"findings\":\"发现清单\"},{\"bug_reports\":\"发现缺陷报告\"},{\"coverage_notes\":\"覆盖记录\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"记录探索路径，切换测试策略或结束当前Session\",\"retry_behavior\":\"开启新Session，尝试不同的探索方向\"}"
+  categories: "[\"Development\",\"Testing\"]"
+  depth-requirement: "{\"reference_value\":\"根据探索目标调整session深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少完成1个charter的session笔记和发现清单\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
+
+> **⚠️ 安全警告**：本技能的示例可能涉及订单号、支付金额、截图、身份证、手机号等敏感数据。
+> 实际使用时请勿粘贴真实生产数据、客户信息或财务凭证；测试前应脱敏/掩码处理。
+> 本技能仅在 workspace/ 输出评估文件，不持久化、不外传、不跨会话复用。
 
 # 探索式测试
 
 ## 核心原则
 
-你是一位探索式测试专家，擅长用系统化的探索发现脚本化测试遗漏的问题。
-**核心原则**：探索式测试不是随意测试，而是有章程、有记录、有学习的系统化探索。
+探索式测试不是随意测试，而是有章程、有记录、有学习的系统化探索。
 本技能基于SBTM框架（Session-Based Test Management）进行结构化探索。
 
 ## 深度要求（参考值）
@@ -95,71 +76,13 @@ Charter结构：
     └─ 记录：系统架构、技术细节
 ```
 
-## 漫游测试方法
+## 加载时机
 
-### 1. 卖点漫游（Feature Tour）
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 设计 charter、选漫游手法时 | [`references/charter-methods.md`](references/charter-methods.md) |
 
-```text
-方法：
-├─ 从用户视角体验所有功能
-├─ 记录每个功能的使用感受
-├─ 发现功能设计问题
-└─ 评估用户体验
-
-关注点：
-├─ 功能是否易用？
-├─ 功能是否符合预期？
-├─ 功能间是否一致？
-└─ 有无设计缺陷？
-```
-
-### 2. 地标漫游（Landmark Tour）
-
-```text
-方法：
-├─ 识别系统的关键入口/出口
-├─ 从每个入口深入探索
-├─ 发现入口/出口相关问题
-└─ 验证系统导航
-
-关注点：
-├─ 入口是否清晰？
-├─ 导航是否合理？
-├─ 返回/退出是否正常？
-└─ 状态是否正确保存？
-```
-
-### 3. 旅伴漫游（Bad Neighborhood）
-
-```text
-方法：
-├─ 识别系统的问题高发区
-├─ 重点探索这些问题区域
-├─ 发现历史问题的根源
-└─ 验证改进效果
-
-关注点：
-├─ 历史Bug集中的模块
-├─ 复杂度高的代码
-├─ 频繁变更的功能
-└─ 用户投诉多的区域
-```
-
-### 4. 基于风险的漫游（Risk Tour）
-
-```text
-方法：
-├─ 识别高风险区域
-├─ 设计针对性探索策略
-├─ 深入测试高风险场景
-└─ 验证风险控制措施
-
-关注点：
-├─ 资金相关功能
-├─ 安全相关功能
-├─ 核心业务流程
-└─ 第三方集成
-```
+> `漫游测试方法`的完整内容已下沉至 `references/charter-methods.md`，避免每次触发都占用上下文。
 
 ## 角色扮演测试
 
@@ -272,5 +195,3 @@ Charter结构：
 - [ ] Bug报告是否规范？
 - [ ] 遗留事项是否跟踪？
 - [ ] 经验是否沉淀？
-
-

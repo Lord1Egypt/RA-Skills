@@ -1,48 +1,60 @@
-## Description: <br>
-Create and manage isolated ScaleBox cloud sandboxes for secure remote code execution, browser automation, and temporary development workflows through CLI, REST API, or Python SDK guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage isolated ScaleBox cloud sandboxes for secure code execution, browser automation, and temporary development workflows using CLI commands, REST API calls, or the Python SDK.
 
-## Publisher: <br>
-[gloriathepenguin](https://clawhub.ai/user/gloriathepenguin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloriathepenguin](https://clawhub.ai/user/gloriathepenguin)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, operate, and clean up isolated ScaleBox sandboxes for running commands, moving files, testing code, and browser automation away from the local machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ScaleBox API key grants account-level authority for sandbox actions. <br>
-Mitigation: Store SCALEBOX_API_KEY securely, avoid exposing it in logs or shared files, and install the skill only when the ScaleBox account and publisher are trusted. <br>
-Risk: Uploaded files and executed commands run in a third-party cloud sandbox environment. <br>
-Mitigation: Upload only files intended for ScaleBox, review commands before execution, and avoid sending sensitive data unless the environment is approved for that use. <br>
-Risk: Sandbox internet access and remote execution can increase exposure when running untrusted workloads. <br>
-Mitigation: Disable sandbox internet access when unnecessary and use short-lived sandboxes with explicit cleanup after results are collected. <br>
-Risk: Terminating or deleting a sandbox can remove needed outputs. <br>
-Mitigation: Download required results before terminating or deleting the sandbox. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create remote ScaleBox sandboxes, run commands, transfer files, expose sandbox ports, and clean up temporary environments. It is useful when work should run away from the local machine, including untrusted code tests and browser automation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gloriathepenguin/cloudsway-scalebox-sandbox) <br>
-- [ScaleBox official website](https://www.scalebox.dev) <br>
-- [ScaleBox documentation](https://www.scalebox.dev/docs) <br>
-- [ScaleBox CLI installation](https://www.scalebox.dev/docs/en/cli/installation) <br>
-- [ScaleBox API reference](https://www.scalebox.dev/docs/en/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on ScaleBox sandbox lifecycle, file transfer, command execution, port access, and cleanup workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence.json release.version and artifact/skill.json) <br>
+Risk: The skill requires an agent to use a ScaleBox API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, revocable API key and avoid sharing credentials outside the intended environment.
+
+Risk: Sandbox file uploads may send local files to a cloud execution environment.
+
+Mitigation: Upload only files intentionally selected for sandbox processing and avoid unnecessary sensitive data.
+
+Risk: The workflow depends on ScaleBox CLI and SDK tooling installed from external sources.
+
+Mitigation: Install the CLI from official ScaleBox documentation, verify checksums when available, and prefer a pinned SDK version.
+
+## Reference(s):
+
+- [ScaleBox Official Website](https://www.scalebox.dev)
+- [ScaleBox Documentation](https://www.scalebox.dev/docs)
+- [ScaleBox CLI Installation](https://www.scalebox.dev/docs/en/cli/installation)
+- [ScaleBox API Reference](https://www.scalebox.dev/docs/en/api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash, curl, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ScaleBox API key and network access to ScaleBox services.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

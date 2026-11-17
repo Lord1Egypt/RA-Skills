@@ -1,21 +1,31 @@
 ---
 name: credibility-action-gate
-description: Use when an agent needs to evaluate messy public claims before taking a bounded, costly, irreversible, or reputation-sensitive action. Produces an analysis-only action disposition from evidence, public context, history, and operator policy without deciding the agent's mission or executing the action.
+description: Review uncertain claims during read-only exploration, then gate a proposed costly or irreversible action under operator policy. Does not choose the mission or execute the action.
+license: MIT-0
+metadata:
+  version: "2.0.2"
+  source: "https://github.com/Ales375/credibility-action-gate"
 ---
 
 # Credibility Action Gate
 
 ## Purpose
 
-Use this skill before an agent takes a meaningful action based on an uncertain claim: funding, grants, purchasing, referrals, account approvals, vendor selection, aid routing, publishing a strong endorsement, or any other costly or hard-to-reverse step.
+Use this skill to review uncertain claims while exploring possibilities, and before a meaningful action such as funding, grants, purchasing, referrals, account approvals, aid routing or a strong endorsement.
 
 This skill does not decide what the agent values. It decides whether the current record supports the action size allowed by the agent's own operator policy.
 
-## Core Workflow
+## Start with the requested mode
 
-1. Define the contemplated action and operator policy.
+**Read-only exploration.** Ask about the operator's interests and relevant constraints if they are unknown, then investigate within the requested read-only scope. No wallet, registration, spending policy JSON, review-lane files or coordinator run is needed. Use the source-independence, inspected-document, claimant-linkage, reassessment and repeat-support lessons in [the zooidfund review adapter](references/zooidfund_adapter.md) when exploring zooidfund. Distinguish observations, support, contradictions and unanswered questions in ordinary prose. A shortlist is a proposal for further consideration, not an action disposition or permission to spend.
+
+**Proposed action or automation.** When the operator asks to consider a concrete action or scheduled execution, follow [operator setup](references/operator-setup.md). Ask for missing policy decisions in plain language, prepare the existing compatible JSON files yourself, and summarize their actual limits for approval. Do not invent answers or treat exploration priorities, a requested proposal, or example policy values as spending authority. If an established operator mandate already requires this gate, preserve that requirement.
+
+## Action-gate workflow
+
+1. Define the contemplated action and approved operator policy.
    - Use `references/policy-template.json` as the starting shape.
-   - The policy owns mission priorities, authority limits, repeat-action rules, and hard blockers.
+   - The policy owns mission priorities, authority limits, repeat-action rules, and hard blockers. Material uncertainty waits by default; only explicit `disposition_preferences.uncertainty_action: "small_test"` permits a bounded uncertain action within existing size limits. This never waives required checks or contradictions.
    - Do not place persona, voice, or domain-specific preferences in the core coordinator.
 
 2. Gather independent review lanes as JSON records.
@@ -50,10 +60,10 @@ node scripts/credibility-coordinator.mjs \
 - Search results are not corroboration by themselves. Look for source independence and claim relevance.
 - Context evidence does not prove linkage or use of funds. Keep "the event or need is plausible" separate from "this claimant is connected to it" and "this action will help."
 - For irreversible transfers, consider recipient custody and history when available. Prior receipt followed by unexplained loss of accountability can reduce eligibility, but dust balances or urgent cash-out behavior are not adverse by themselves without other pattern evidence.
-- Missing required lanes fail closed for any action size. `missing`, `error`, and `not_applicable` required lanes mean the current record is not strong enough for full eligibility.
+- Missing required lanes fail closed for any action size. `missing`, `error`, and `not_applicable` required lanes give a zero recommended amount. Omitted status is missing; malformed completed reviews cause a CLI error and confer no eligibility. Do not reuse stale output after a failed run.
 - The core skill is analysis-only. Execution belongs to the calling agent and its operator policy.
 
-## Hermes-Compatible Defaults
+## Portable execution
 
 For portable use, keep integrations boring:
 

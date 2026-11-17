@@ -1,42 +1,54 @@
-## Description: <br>
-Send formatted notifications via email (himalaya) and iMessage (BlueBubbles). Use when you need to broadcast markdown-formatted messages to email recipients and phone numbers in a single step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send formatted notifications via email (himalaya) and iMessage (BlueBubbles). Use when you need to broadcast markdown-formatted messages to email recipients and phone numbers in a single step.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and operators use this skill to draft a markdown notification and send it through configured email and iMessage channels in one workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages may be sent to unintended email recipients or phone numbers. <br>
-Mitigation: Before each send, inspect the markdown content and recipient lists. <br>
-Risk: The workflow depends on a local send-notification.sh script that was not included in the reviewed package. <br>
-Mitigation: Review the local script before using it to send messages. <br>
-Risk: The skill sends messages through configured email and BlueBubbles accounts. <br>
-Mitigation: Install and use it only when those configured accounts are intended for the notification workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to draft a markdown message, format it with workspace tooling, and send it to email recipients or iMessage phone numbers from one command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/communication-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to send user-provided markdown through locally configured email and BlueBubbles tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Notifications may be sent to unintended email recipients or phone numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recipient lists and message content before running the notification command.
+
+Risk: The skill relies on a local send-notification.sh script and configured email and iMessage accounts.
+
+Mitigation: Confirm the local script implementation and account configuration are trusted before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/communication-assistant)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and argument tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for sending user-provided markdown through configured email and iMessage accounts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

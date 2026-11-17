@@ -1,45 +1,54 @@
-## Description: <br>
-Manage VK.com (Vkontakte) community: post content (text, photos, videos) and handle messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage VK.com (Vkontakte) communities by posting text, photos, and videos and handling visitor messages through the VK API.
 
-## Publisher: <br>
-[RuslanLanket](https://clawhub.ai/user/RuslanLanket) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ruslanlanket](https://clawhub.ai/user/ruslanlanket)
 
-## Use Case: <br>
-External community managers and developers use this skill to publish VK wall content, upload photos and videos, read conversations, reply to visitors, and monitor new messages through VK Long Poll. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad VK account or community permissions, including long-lived offline access. <br>
-Mitigation: Use the narrowest VK token that works, avoid offline full-rights user tokens where possible, and keep tokens out of shared terminals and logs. <br>
-Risk: The skill can publish, delete, message, mark messages as read, and call VK API methods that affect a live community. <br>
-Mitigation: Manually approve posts, message actions, deletions, and raw VK API calls before execution; leave auto-mark-as-read off unless intentional. <br>
-Risk: Long Poll monitoring can continue processing incoming messages if no limit is set. <br>
-Mitigation: Set an explicit polling time limit and review incoming-message handling before running the poll command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VK API & CLI Guide](references/api.md) <br>
-- [Skill page](https://clawhub.ai/RuslanLanket/vk) <br>
-- [Publisher profile](https://clawhub.ai/user/RuslanLanket) <br>
-- [VK developer documentation](https://dev.vk.com) <br>
-- [VK Host token helper](https://vkhost.github.io/) <br>
+## Use Case:
 
+Developers and community managers use this skill to automate VK community publishing, media uploads, message replies, conversation review, and Long Poll monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands may print JSON API responses or attachment identifiers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a VK access token and Node.js runtime.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad, long-lived VK user tokens can expose account and community access if copied into shell history, logs, or shared terminals.
+
+Mitigation: Use narrowly scoped VK credentials, prefer official VK developer flows and community-scoped credentials, avoid permanent offline user tokens unless necessary, and rotate any token used in examples.
+
+Risk: Posting, messaging, mark-as-read, media upload, and Long Poll operations perform real actions on VK communities and conversations.
+
+Mitigation: Review commands, token scopes, group IDs, owner IDs, file paths, and message text before execution, and test with a non-production community when possible.
+
+## Reference(s):
+
+- [VK API & CLI Guide](references/api.md)
+- [VK Developers](https://dev.vk.com)
+- [VK Host](https://vkhost.github.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit VK API JSON responses, attachment identifiers, and Long Poll message text when commands are run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

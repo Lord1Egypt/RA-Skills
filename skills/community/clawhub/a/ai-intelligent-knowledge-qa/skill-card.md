@@ -1,41 +1,53 @@
-## Description: <br>
-Knowledge question answering with FAQ management, intelligent retrieval, and AI-powered answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides knowledge question answering with FAQ management, semantic search, and AI-generated answers.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External teams and developers use this skill to plan or operate a knowledge Q&A system for customer service, knowledge management, internal support, and product support workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to clone and run unpinned external Python code. <br>
-Mitigation: Review the external repository, pin a trusted commit or release, and run installation in an isolated environment before use. <br>
-Risk: GPT, channel, data, credential, and retention requirements are under-declared. <br>
-Mitigation: Document required environment variables, credential handling, data retention behavior, and access controls before connecting production systems or sensitive knowledge sources. <br>
+## Use Case:
 
+External or internal support teams can use this skill to set up a knowledge question-answering assistant for FAQ management, semantic search, and AI-assisted product or internal support.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-knowledge-qa) <br>
-- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external Python, FastAPI, vector database, GPT integration, and channel-access setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The artifact asks users to install and run unpinned external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository, pin it to a trusted commit, and inspect its requirements and application entry point before running it.
+
+Risk: The artifact does not clearly document sensitive data handling for knowledge content, customer data, or API keys.
+
+Mitigation: Run it in an isolated environment and avoid providing sensitive documents, customer data, or API keys until data flows, retention, and access controls are documented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-knowledge-qa)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact describes an external application setup and does not bundle the referenced application source code.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

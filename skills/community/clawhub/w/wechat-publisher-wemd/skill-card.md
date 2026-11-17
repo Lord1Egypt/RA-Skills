@@ -1,45 +1,56 @@
-## Description: <br>
-Automates WeChat Official Account article drafting and publishing, including Markdown rendering with WeMD themes, image and cover upload, draft creation or update, manual-confirmation publishing, status checks, asset lookup, and theme management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat Official Account article workflows, including Markdown or plain-text rendering with WeMD themes, image and cover upload, draft creation or update, preview, explicit human-confirmed publishing, status checks, asset lookup, and theme management.
 
-## Publisher: <br>
-[traceless929](https://clawhub.ai/user/traceless929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[traceless929](https://clawhub.ai/user/traceless929)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare WeChat Official Account articles from Markdown or text, render them with WeMD themes, upload referenced media, create or update drafts, and publish only after explicit human confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat publisher credentials and can upload local files referenced by article inputs. <br>
-Mitigation: Keep article inputs and assets in a dedicated directory, review resolved file paths before execution, and require explicit confirmation before uploading unexpected local files. <br>
-Risk: First use can run a Node/GitHub build process for WeMD dependencies. <br>
-Mitigation: Review or pin the WeMD setup path and dependency installation before first use. <br>
-Risk: The artifact includes client wrappers for deleting materials, drafts, and published articles. <br>
-Mitigation: Do not trigger delete operations by default; require an explicit user request and confirmation before deletion. <br>
+## Use Case:
 
+Developers, content operators, and publishing teams use this skill to prepare WeChat Official Account articles, render them with selectable themes, upload article assets, create or update drafts, review previews, and publish only after explicit human confirmation.
 
-## Reference(s): <br>
-- [WeChat Publisher API Mapping](artifact/references/api-mapping.md) <br>
-- [WeChat Publisher Safety Rules](artifact/references/safety-rules.md) <br>
-- [WeMD Renderer](https://github.com/tenngoxars/WeMD) <br>
-- [ClawHub Skill Page](https://clawhub.ai/traceless929/wechat-publisher-wemd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status/result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit human confirmation before publishing; script outputs include draft and publish identifiers, preview links, status data, and theme lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can access a WeChat account, local article files, and image paths, and can create or publish account content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained workspace containing only intended article assets, use dedicated WeChat credentials, keep unrelated secrets out of the configured environment, and require explicit preview review before publishing.
+
+Risk: First use may perform Node, Git, and npm setup for the bundled rendering workflow.
+
+Mitigation: Review the bundled setup path and npm dependencies before first use, and install only in an environment where mutable dependency setup is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/traceless929/skills/wechat-publisher-wemd)
+- [API Mapping](references/api-mapping.md)
+- [Safety Rules](references/safety-rules.md)
+- [WeMD Render Engine](https://github.com/tenngoxars/WeMD)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status summaries with JSON payload examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WeChat draft identifiers, preview URLs, publish status results, asset query summaries, and theme names.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

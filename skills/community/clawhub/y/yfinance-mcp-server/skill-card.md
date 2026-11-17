@@ -1,41 +1,53 @@
-## Description: <br>
-Access Yahoo Finance data, including stock prices, history, financials, options, dividends, news, and market screeners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Yahoo Finance data for stock prices, history, financials, options, dividends, news, and market screeners.
 
-## Publisher: <br>
-[rizkydwicmt](https://clawhub.ai/user/rizkydwicmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rizkydwicmt](https://clawhub.ai/user/rizkydwicmt)
 
-## Use Case: <br>
-Developers and external users can use this skill to connect an agent to a yfinance MCP server for market research, portfolio monitoring, ticker search, financial statement lookup, options analysis, and finance news retrieval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer makes persistent local setup changes, including Python environment creation, package installation, mcporter configuration, and optional OpenClaw skill registration. <br>
-Mitigation: Review install.sh before running it and use SKIP_MCPORTER=true or SKIP_SKILL=true when persistent registration is not desired. <br>
-Risk: The installer may install uv by piping a remote shell script from astral.sh into sh. <br>
-Mitigation: Install uv through a trusted package manager or otherwise verify the uv installer source before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/rizkydwicmt/yfinance-mcp-server) <br>
-- [Repository URL mentioned by artifact](https://github.com/rizkydwicmt/yfinance-mcp-server.git) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+## Use Case:
 
+Developers and external users can connect an agent to Yahoo Finance-backed market data for investment research, portfolio monitoring, and market discovery. The skill exposes tools for ticker lookup, prices, fundamentals, historical data, options, dividends, recommendations, movers, screeners, and news.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline MCP tool examples and shell commands; installed MCP tools return finance data as text or structured responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installer and configuration guidance for registering the yfinance MCP server with mcporter and OpenClaw.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer can run mutable remote code and make persistent local configuration changes.
+
+Mitigation: Review and pin the exact MCP server source, replace remote shell installation with a verified uv installation method, and confirm mcporter or OpenClaw writes before installation.
+
+Risk: Repository, path, and auto-accept overrides can redirect installation targets or update configuration without further prompts.
+
+Mitigation: Run as an unprivileged user, set target paths explicitly, and avoid YFINANCE_YES=true unless the paths are known and backed up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rizkydwicmt/skills/yfinance-mcp-server)
+- [Publisher profile](https://clawhub.ai/user/rizkydwicmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tool names, arguments, examples, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP tool usage guidance and installation/configuration steps for a Yahoo Finance data server.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

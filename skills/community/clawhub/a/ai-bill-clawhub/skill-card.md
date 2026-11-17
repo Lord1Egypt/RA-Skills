@@ -1,42 +1,53 @@
-## Description: <br>
-Real-time AI API usage tracking and cost monitoring for OpenClaw across multiple providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time AI API usage tracking and cost monitoring for OpenClaw across OpenAI, Claude, Gemini, Kimi, DeepSeek, Grok, and other providers.
 
-## Publisher: <br>
-[fumarole16-afk](https://clawhub.ai/user/fumarole16-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fumarole16-afk](https://clawhub.ai/user/fumarole16-afk)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor AI API spend, provider balances, and active session usage through a local dashboard and agent-readable usage files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session and configuration data for billing calculations. <br>
-Mitigation: Install only when local usage monitoring is intended and limit file access to the expected OpenClaw billing paths. <br>
-Risk: Billing APIs and dashboard data may be exposed without strong server-side authentication. <br>
-Mitigation: Keep port 8003 and any published billing files private; add server-side authentication before exposing the dashboard beyond a trusted host. <br>
-Risk: The installer can create persistent services and fetch remote code during setup. <br>
-Mitigation: Review the installer before execution and provide explicit controls for starting, stopping, and deleting collected billing data. <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to monitor AI API usage, estimate provider costs, update balances and payment modes, and check the billing collector and dashboard health.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/fumarole16-afk/ai-bill-clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to read local usage JSON, update balance configuration, or check background service health.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.5 (source: server release metadata and package.json) <br>
+Risk: The dashboard can expose or modify sensitive usage and balance data with weak controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to localhost or place it behind real authentication, avoid public exposure of port 8003, and remove or restrict /api/setup and vault access.
+
+Risk: Installer and background service behavior can introduce unreviewed downloads or persistent services.
+
+Mitigation: Avoid pipe-to-shell installation, pin and verify install artifacts, and make service installation explicit opt-in with clear uninstall steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fumarole16-afk/skills/ai-bill-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands and JSON configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and summarize local usage JSON and suggest configuration or service checks]
+
+## Skill Version(s):
+
+2.2.5 (source: server release metadata and root package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,14 @@
-{
-  "ownerId": "kn73k4c6ywv9bwmp8mqy29b7ks831145",
+﻿{
+  "ownerId": "kn79xswxbje4zn43vw5yn021a180bsan",
   "slug": "payment-skill-demo",
-  "version": "v1.0.3",
-  "publishedAt": 1773994870075
+  "version": "1.0.3",
+  "publishedAt": 1710768000000,
+  "requiredEnvVars": [
+    "PAYMENT_API_KEY",
+    "PAYMENT_API_SECRET"
+  ],
+  "optionalEnvVars": [
+    "PAYMENT_ENCRYPTION_KEY",
+    "PAYMENT_LOG_LEVEL"
+  ]
 }

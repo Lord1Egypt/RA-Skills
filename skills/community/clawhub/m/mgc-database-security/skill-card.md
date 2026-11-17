@@ -1,39 +1,53 @@
-## Description: <br>
-Secure database credential management using MGC Blackbox for MySQL, PostgreSQL, SQLite, MariaDB, and other databases, with credentials stored locally in encrypted form and retrieved at runtime without exposing them to AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through encrypted database credential handling and user-supplied analysis scripts and workflows with MGC Blackbox.
 
-## Publisher: <br>
-[zkeviny](https://clawhub.ai/user/zkeviny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zkeviny](https://clawhub.ai/user/zkeviny)
 
-## Use Case: <br>
-Developers and engineers use this documentation skill to manage database credentials through MGC Blackbox, retrieve them only at runtime, and build database scripts that avoid exposing passwords or connection strings to the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database credentials could be exposed if users paste secrets into prompts, code, logs, or command output while following the pattern. <br>
-Mitigation: Store secrets in MGC Blackbox, retrieve them only at runtime through MCP tools or local scripts, and avoid printing or logging credential values. <br>
-Risk: Database operations may affect production data if users apply generated scripts or queries without checking the target connection. <br>
-Mitigation: Verify the selected database identifier and environment before execution, use separate credentials per environment, and review query behavior before running against sensitive systems. <br>
+## Use Case:
 
+Developers and database operators use this skill to manage database credentials and run user-owned SQL analysis scripts or multi-step workflows while keeping credentials out of agent context.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON, shell command, and conceptual code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation only; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact frontmatter) <br>
+Risk: The zero-exposure promise conflicts with password-storage instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enter passwords yourself through the WebUI and keep them out of chat and agent-generated tool arguments.
+
+Risk: Encrypted packaging does not sandbox scripts after they are unsealed; scripts run with the user's permissions.
+
+Mitigation: Use trusted scripts or capsules and minimally privileged database accounts. Keep bulk deletion subject to explicit approval.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zkeviny/skills/mgc-database-security)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration instructions, Python code]
+
+**Output Format:** [Markdown guidance with JSON tool arguments and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Database result files are produced by user-owned scripts and depend on the selected workflow.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

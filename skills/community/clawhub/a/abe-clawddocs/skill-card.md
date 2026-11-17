@@ -1,42 +1,56 @@
-## Description: <br>
-Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and operators use this skill to navigate Clawdbot documentation, find setup and troubleshooting pages, and produce configuration guidance or snippets for Clawdbot providers, gateway operations, automation, platforms, tools, and installs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires the sensitive SKILLBOSS_API_KEY credential. <br>
-Mitigation: Install only after verifying what the key can access, and provide the least-privileged key suitable for the intended use. <br>
-Risk: The skill references ./scripts/*.sh helper commands that are not included in the package. <br>
-Mitigation: Before allowing those commands to run, confirm the publisher supplies the missing scripts or inspect the local execution path to avoid running unrelated project scripts. <br>
+## Use Case:
 
+Developers and operators use this skill to find, interpret, and apply Clawdbot documentation for setup, provider configuration, troubleshooting, automation, platform deployment, and common configuration snippets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abe-clawddocs) <br>
-- [Clawdbot Discord provider documentation](https://docs.clawd.bot/providers/discord) <br>
-- [SkillBoss API Hub pilot endpoint](https://api.skillboss.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite Clawdbot documentation URLs and may propose helper script commands when those scripts are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Questions and configuration details may be sent to the external SkillBoss service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when SkillBoss API use is acceptable, and avoid sharing API tokens, private logs, production secrets, or proprietary infrastructure details unless privacy and retention terms have been reviewed.
+
+Risk: The package references helper scripts and snippets that may be absent unless supplied elsewhere.
+
+Mitigation: Confirm required scripts and snippet files exist in the installed skill before relying on search, cache, indexing, or ready-made configuration workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abe-clawddocs)
+- [Clawdbot documentation](https://docs.clawd.bot/)
+- [Clawdbot Discord provider documentation](https://docs.clawd.bot/providers/discord)
+- [SkillBoss API Hub endpoint](https://api.skillboss.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require SKILLBOSS_API_KEY; full-text index workflows may require qmd.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

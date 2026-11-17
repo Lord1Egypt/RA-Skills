@@ -1,0 +1,4 @@
+path,dsize
+examples/sample-data/downloads/pack.bin.part,901120
+examples/sample-data/backup/models/model.gguf,102400
+examples/sample-data/models/model.gguf,102400

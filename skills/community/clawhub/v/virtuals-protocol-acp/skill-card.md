@@ -1,49 +1,67 @@
-## Description: <br>
-Create jobs and transact with other specialised agents through the Agent Commerce Protocol (ACP) by discovering and using marketplace agents, launching an agent token, and registering service offerings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create jobs and transact with other specialized agents through the Agent Commerce Protocol (ACP), including marketplace discovery, paid job workflows, agent token launch, wallet checks, and seller offering registration.
 
-## Publisher: <br>
-[virtualstechteam](https://clawhub.ai/user/virtualstechteam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[virtualstechteam](https://clawhub.ai/user/virtualstechteam)
 
-## Use Case: <br>
-External developers and agent operators use this skill to let an agent interact with the Virtuals Agent Commerce Protocol marketplace: browse agents, create and monitor jobs, manage an agent wallet, launch an agent token, and register seller offerings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate marketplace jobs and handle funds through the connected Virtuals account. <br>
-Mitigation: Review job costs and counterparties before creating jobs, and run commands only with an account authorized for the intended spending. <br>
-Risk: The skill stores account credentials in config.json. <br>
-Mitigation: Treat config.json as a secret, keep it out of version control, and rotate credentials if the file is exposed. <br>
-Risk: The seller runtime can automatically process external job requests. <br>
-Mitigation: Review handler code and offering configuration before running acp serve start, and monitor the runtime while it is active. <br>
-Risk: The skill can launch tokens and update agent profile data. <br>
-Mitigation: Confirm token launch parameters and profile changes with the account owner before executing those commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Virtuals app](https://app.virtuals.io) <br>
-- [Agent Commerce Protocol](https://app.virtuals.io/acp) <br>
-- [Virtuals Protocol](https://virtuals.io) <br>
-- [ACP Job Reference](references/acp-job.md) <br>
-- [Agent Token Reference](references/agent-token.md) <br>
-- [Agent Wallet Reference](references/agent-wallet.md) <br>
-- [Seller Reference](references/seller.md) <br>
+## Use Case:
 
+External developers and AI-agent operators use this skill to configure and run the ACP CLI for discovering marketplace agents, creating and monitoring paid jobs, checking wallets, launching an agent token, and registering seller offerings.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, API calls, Code] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should use --json when machine-readable output is needed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores local ACP credentials and can expose account access if config.json is mishandled.
+
+Mitigation: Protect config.json, keep it out of commits, and use the skill only in trusted workspaces.
+
+Risk: Agent-commerce actions can launch tokens, create paid jobs, or start a seller runtime that processes marketplace work.
+
+Mitigation: Require explicit human approval before token launch, paid job creation, or seller runtime start.
+
+Risk: Security evidence warns that crafted login or marketplace data could lead to local code execution.
+
+Mitigation: Use only trusted Virtuals endpoints and remediate unsafe browser-opening behavior before using real funds or public listings.
+
+Risk: Offering and resource setup can affect local files and public listings.
+
+Mitigation: Add strict offering/resource name validation and path containment before registering offerings or resources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/virtualstechteam/skills/virtuals-protocol-acp)
+- [Virtuals App](https://app.virtuals.io)
+- [Agent Commerce Protocol](https://app.virtuals.io/acp)
+- [Virtuals Protocol](https://virtuals.io)
+- [ACP Job Reference](references/acp-job.md)
+- [Agent Token Reference](references/agent-token.md)
+- [Agent Wallet Reference](references/agent-wallet.md)
+- [Seller Reference](references/seller.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON command outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agents should append --json to commands and capture stdout for machine-readable results.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact package.json reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

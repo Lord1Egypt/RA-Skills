@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.advisory_result.v1.schema.json",
+  "title": "OpenClaw Safe Update Advisory Worker Result",
+  "type": "object",
+  "required": [
+    "schema",
+    "authoritative",
+    "input_digest",
+    "worker",
+    "status",
+    "hypotheses",
+    "suggested_checks",
+    "residual_risks",
+    "review_requests",
+    "agreement_is_confidence",
+    "can_promote",
+    "can_waive_checks",
+    "can_emit_verdict"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.advisory_result.v1"
+    },
+    "authoritative": {
+      "const": false
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "worker": {
+      "$ref": "#/$defs/worker"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "incomplete",
+        "failed"
+      ]
+    },
+    "hypotheses": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/hypothesis"
+      }
+    },
+    "suggested_checks": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/suggestedCheck"
+      }
+    },
+    "residual_risks": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/risk"
+      }
+    },
+    "review_requests": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/reviewRequest"
+      }
+    },
+    "agreement_is_confidence": {
+      "const": false
+    },
+    "can_promote": {
+      "const": false
+    },
+    "can_waive_checks": {
+      "const": false
+    },
+    "can_emit_verdict": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "worker": {
+      "type": "object",
+      "required": [
+        "id",
+        "model_family",
+        "role"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "model_family": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidenceRef": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_digest",
+        "pointer"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "source_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "pointer": {
+          "type": "string",
+          "pattern": "^/",
+          "maxLength": 1024
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "$ref": "#/$defs/evidenceRef"
+      }
+    },
+    "hypothesis": {
+      "type": "object",
+      "required": [
+        "id",
+        "summary",
+        "evidence_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^advisory:hypothesis:",
+          "maxLength": 256
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceRefs"
+        }
+      },
+      "additionalProperties": false
+    },
+    "suggestedCheck": {
+      "type": "object",
+      "required": [
+        "id",
+        "description",
+        "definition_digest",
+        "evidence_digest",
+        "evidence_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "definition_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "evidence_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceRefs"
+        }
+      },
+      "additionalProperties": false
+    },
+    "risk": {
+      "type": "object",
+      "required": [
+        "id",
+        "summary",
+        "evidence_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^advisory:risk:",
+          "maxLength": 256
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceRefs"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reviewRequest": {
+      "type": "object",
+      "required": [
+        "id",
+        "question",
+        "evidence_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^advisory:review:",
+          "maxLength": 256
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceRefs"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

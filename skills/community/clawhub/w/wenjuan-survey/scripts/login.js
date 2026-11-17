@@ -8,6 +8,7 @@
  */
 
 const { WenjuanLogin } = require('./login_auto');
+const { resolveRegSource } = require("./source_params");
 
 /**
  * 主函数
@@ -16,19 +17,22 @@ async function main() {
   const args = process.argv.slice(2);
   
   let tokenDir = null;
+  let regSource = null;
   
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     
     if ((arg === "--token-dir" || arg === "-t") && i + 1 < args.length) {
       tokenDir = args[++i];
+    } else if (arg === "--reg-source" && i + 1 < args.length) {
+      regSource = resolveRegSource(args[++i]);
     } else if (arg === "-h" || arg === "--help") {
       showHelp();
       process.exit(0);
     }
   }
   
-  const loginManager = new WenjuanLogin(tokenDir);
+  const loginManager = new WenjuanLogin(tokenDir, { regSource });
   const success = await loginManager.login();
   
   if (!success) {
@@ -44,6 +48,7 @@ function showHelp() {
 
 选项:
   -t, --token-dir <dir>   凭证存储目录
+  --reg-source <source>   注册来源（优先按 SKILL.md 传入；未传则用 JS 默认值）
   -h, --help              显示帮助信息
 
 示例:

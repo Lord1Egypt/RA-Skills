@@ -1,42 +1,52 @@
-## Description: <br>
-Generate TikTok scripts about FIFA World Cup 2026 qualifiers, host preparations, team news, and tournament developments using free sports news sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily FIFA World Cup 2026 content and TikTok scripts using free news sources.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators and content teams use this skill to generate daily social posts and 60-90 second TikTok scripts about FIFA World Cup 2026 qualifiers, host preparations, team news, venues, and tournament developments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated sports content may include inaccurate or rights-sensitive claims.
+
+Mitigation: Review scripts against reliable source coverage before posting or publishing.
+
+Risk: The artifact advertises templates and reference guides that are not included in the package.
+
+Mitigation: Treat those customization paths as unavailable unless the missing files are supplied and reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators and social media teams use this skill to draft daily FIFA World Cup 2026 updates, short-form TikTok scripts, qualifier summaries, and host-city or venue news roundups. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Automated daily reports may contain outdated or misleading sports news if the source material is not reviewed. <br>
-Mitigation: Review generated scripts against current public World Cup 2026 sources before publishing. <br>
-Risk: Future scheduling or configuration files could change how reports are generated. <br>
-Mitigation: Review future configuration changes before relying on automated daily reporting. <br>
-Risk: The skill is sold as a subscription release. <br>
-Mitigation: Confirm the current subscription price in clawhub.json or on the ClawHub listing before purchase. <br>
+**Output Format:** [Markdown social-media scripts and content briefs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahmed181283/daily-worldcup2026) <br>
+**Other Properties Related to Output:** [Designed for daily World Cup 2026 reports and 60-90 second TikTok scripts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style social scripts with structured sections and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for 60-90 second TikTok scripts and daily World Cup 2026 content drafts.] <br>
+1.1.0 (source: ClawHub release evidence and artifact metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: clawhub.json and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

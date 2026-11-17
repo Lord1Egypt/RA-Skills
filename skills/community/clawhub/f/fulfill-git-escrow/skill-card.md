@@ -1,43 +1,58 @@
-## Description: <br>
-Fulfill a git escrow bounty by writing a solution or submitting an existing one. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fulfill a git escrow bounty by writing a solution or submitting an existing one. Use when the user wants to solve a test suite challenge, write code to pass tests, and claim a token reward. Requires the git-escrows CLI (npm i -g git-escrows).
 
-## Publisher: <br>
-[mlegls](https://clawhub.ai/user/mlegls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlegls](https://clawhub.ai/user/mlegls)
 
-## Use Case: <br>
-Developers and engineers use this skill to fulfill git escrow bounties by understanding test suites, writing or submitting solution commits, and preparing fulfillment and collection commands for token rewards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an Ethereum private key and submit wallet-backed fulfillment or collection actions. <br>
-Mitigation: Use a dedicated low-value wallet and require explicit confirmation before any command that signs, submits, collects, or uses the private key. <br>
-Risk: The workflow can stage and commit broad repository changes while preparing a solution. <br>
-Mitigation: Run in a clean branch or disposable repository and inspect diffs before staging or committing changes. <br>
-Risk: The workflow depends on the external git-escrows CLI for token-related actions. <br>
-Mitigation: Verify the git-escrows package source and version before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to fulfill git escrow bounties by either writing a solution that passes a test suite or submitting an existing solution repository and commit for reward collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mlegls/fulfill-git-escrow) <br>
-- [Project homepage](https://github.com/arkhai-io/git-commit-trading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository changes, git commit details, fulfillment identifiers, and follow-up status or collection commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may run git-escrows commands that use a wallet private key and submit blockchain escrow actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet and require explicit user confirmation before fulfillment or collection commands are run.
+
+Risk: Private-key setup guidance may lead users to paste secrets into command lines or chat.
+
+Mitigation: Avoid sharing private keys in chat or shell history; use a local .env or wallet setup process that keeps secrets out of prompts and logs.
+
+Risk: Using an unpinned git-escrows executable can change the behavior of escrow submission commands.
+
+Mitigation: Prefer a pinned, preinstalled git-escrows version and verify the CLI before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mlegls/skills/fulfill-git-escrow)
+- [Project homepage](https://github.com/arkhai-io/git-commit-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify solution files, prepare git commits, and propose git-escrows fulfillment and collection commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

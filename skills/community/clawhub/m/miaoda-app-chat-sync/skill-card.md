@@ -1,45 +1,60 @@
-## Description: <br>
-Convert Git repository code to structured JSON instructions for AI agents, including repository fetching, file filtering, and code synchronization outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Git repository code to structured JSON instructions for AI agents.
 
-## Publisher: <br>
-[xiaoanso](https://clawhub.ai/user/xiaoanso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoanso](https://clawhub.ai/user/xiaoanso)
 
-## Use Case: <br>
-Developers and automation users use this skill to convert trusted Git repositories into structured JSON instructions for downstream AI agents to inspect, synchronize, or recreate code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use sensitive GitHub credentials for private repository access. <br>
-Mitigation: Use a read-only, repository-scoped token, keep it in the environment, and verify the publisher, package identifier, and version before use. <br>
-Risk: Generated JSON may be interpreted by downstream agents as authoritative file overwrite instructions. <br>
-Mitigation: Review file lists, action fields, rules, and file contents before sending JSON to another agent, and require a diff or backup before bulk overwrites. <br>
-Risk: Repository content or crafted repository URLs can influence generated instructions. <br>
-Mitigation: Use trusted repository URLs, pin commits for reproducibility, and treat repository contents as data rather than instructions. <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch Git repository contents and generate structured JSON instructions that another agent or automation system can review and apply for code synchronization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoanso/miaoda-app-chat-sync) <br>
-- [README.md](README.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
-- [PROMPTS.md](PROMPTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON with CLI summaries and optional markdown-style instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and git; may use GITHUB_TOKEN for private repositories; generated JSON can include repository file contents and overwrite instructions for downstream agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release evidence; CHANGELOG.md released 2026-04-30; _meta.json reports 3.2.0) <br>
+Risk: Private repository contents may be exported into JSON and passed to another agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted repository URLs and explicit commit hashes, exclude credential files such as .env files, and review the generated JSON before sharing or applying it.
+
+Risk: Generated JSON can contain file overwrite instructions that a downstream agent may treat as authoritative.
+
+Mitigation: Review generated file paths, file contents, and synchronization rules before execution; keep version control or backups available for rollback.
+
+Risk: Private repository access may require a GitHub token.
+
+Mitigation: Use a fine-grained read-only token scoped to the required repository and provide it only through the GITHUB_TOKEN environment variable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoanso/skills/miaoda-app-chat-sync)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+- [Prompt configuration guide](artifact/PROMPTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON with optional Markdown-style terminal summaries and file output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository file contents, source metadata, file lists, change summaries, and agent-facing synchronization rules.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release evidence and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

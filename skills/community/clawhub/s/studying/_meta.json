@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "studying",
-  "version": "1.0.1",
-  "publishedAt": 1771184131439
+  "displayName": "Studying",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1785068764878
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784843114724
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784799689400
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771184131439
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770823445248
+    }
+  ]
 }

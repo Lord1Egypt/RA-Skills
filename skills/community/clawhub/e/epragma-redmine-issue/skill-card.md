@@ -1,40 +1,54 @@
-## Description: <br>
-Read Redmine issues from any Redmine server via REST API with configurable URL and credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Redmine issues from any Redmine server via REST API with configurable URL and credentials.
 
-## Publisher: <br>
-[agelospanagiotakis](https://clawhub.ai/user/agelospanagiotakis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agelospanagiotakis](https://clawhub.ai/user/agelospanagiotakis)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect, filter, create, update, and comment on Redmine issues and time entries through a configured Redmine REST API connection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live Redmine changes even though it is described mainly as a reader. <br>
-Mitigation: Grant only a least-privilege Redmine API key and require confirmation before create, update, comment, or time-entry commands. <br>
-Risk: Misconfigured REDMINE_URL or REDMINE_API_KEY can send requests to the wrong Redmine server or with the wrong credential. <br>
-Mitigation: Verify REDMINE_URL and REDMINE_API_KEY before use and store credentials through the skill configuration mechanism rather than in prompts or shared logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agelospanagiotakis/epragma-redmine-issue) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/agelospanagiotakis) <br>
+## Use Case:
 
+Developers and teams use this skill to inspect and manage Redmine issues, projects, statuses, and time entries from an agent workflow. It supports reading records and making live Redmine changes such as creating issues, updating issue fields, posting comments, and adding time entries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or JSON returned from Redmine command-line API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDMINE_URL and REDMINE_API_KEY to access the target Redmine server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make live changes to Redmine issues and time entries using the configured API key.
+
+Mitigation: Install it only when write access is intended, review write commands before execution, and use a dedicated least-privilege Redmine API key.
+
+Risk: Redmine credentials and server URLs control which instance the skill can access.
+
+Mitigation: Use HTTPS-only Redmine URLs and verify REDMINE_URL and REDMINE_API_KEY configuration before running commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agelospanagiotakis/skills/epragma-redmine-issue)
+- [Publisher profile](https://clawhub.ai/user/agelospanagiotakis)
+- [Publisher website](https://epragma.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown/text summaries with Redmine links and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDMINE_URL and REDMINE_API_KEY; write commands modify live Redmine data immediately.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

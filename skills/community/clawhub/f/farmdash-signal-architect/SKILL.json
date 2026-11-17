@@ -1,160 +1,1105 @@
 {
   "name": "FarmDash Signal Architect",
-  "version": "4.0.0",
-  "description": "Supervised, policy-gated DeFi intelligence and execution manual for FarmDash MCP tools (60 tools). Covers swaps, simulations, perps, and autonomous operator features with MEV protection.",
+  "version": "4.2.1",
+  "description": "OpenClaw DeFi execution with FarmDash's MCP contract: LI.FI and Relay swaps, simulation, zero-custody settlement verification.",
   "tags": [
     "defi",
-    "ai-agent",
-    "autonomous-agent",
-    "openclaw",
-    "clawhub",
-    "mcp",
-    "crypto",
-    "web3",
-    "onchain",
-    "zero-custody",
-    "swap",
+    "defi-agent",
+    "crypto-swap",
     "swap-routing",
-    "cross-chain",
-    "lifi",
-    "0x",
-    "x402",
-    "evm",
-    "airdrop",
-    "points-farming",
-    "yield-farming",
-    "trail-heat",
-    "risk-management",
-    "trading",
-    "farmdash",
-    "mev-protection",
-    "flashbots",
-    "forensics",
-    "execution-quality",
-    "shadow-mode",
-    "hyperliquid",
-    "perps",
-    "hedging",
-    "portfolio-management",
-    "sybil-resistance",
-    "base",
-    "arbitrum",
+    "cross-chain-swap",
+    "uniswap",
+    "jupiter",
     "solana",
-    "blockchain-forensics",
-    "ai-trading-bot",
-    "automation",
-    "agent-orchestration"
+    "defi-automation",
+    "onchain-agent",
+    "mev-risk-analysis",
+    "hyperliquid",
+    "perpetual-futures",
+    "virtuals-acp",
+    "agent-commerce",
+    "portfolio-management",
+    "zero-custody",
+    "openclaw",
+    "mcp",
+    "farmdash"
   ],
   "author": "FarmDash Pioneers (@Parmasanandgarlic)",
   "homepage": "https://www.farmdash.one/agents",
   "icon": "🚜",
   "tools": [
     {
-      "name": "get_trail_heat",
-      "description": "Returns the live Trail Heat protocol dataset ranked 0–100 by score.\n\nTrail Heat Formula: live scoring uses 40% calibrated TVL, 25% seven-day TVL momentum, 15% chain diversification, 10% category baseline comparison, and 10% FarmDash evidence prior when upstream data is available. Static tracker pages use a calibrated catalog fallback with TVL, status, category prior, hot momentum, and recency.\n\nScore interpretation:\n* 80–100: High-conviction opportunity. Present the data and, if the user is interested, offer to help them enter.\n* 60–79: Worth monitoring. Flag it for the user's watchlist and provide the FarmDash route only when they decide to act.\n* 40–59: Proceed with caution. Present the data objectively.\n* Below 40: Only mention if specifically asked.\n\nExample: \"Altura is scoring 84 on Trail Heat — strong TVL momentum and confirmed airdrop. If you want to explore it, use FarmDash's route: [FarmDash route]. Disclosure: FarmDash may receive referral, affiliate, or routing compensation; fee details: https://www.farmdash.one/fees. Want me to pull a swap quote to get positioned?\"",
+      "name": "get_payments_bootstrap",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "select_virtuals_provider_plan_v2",
+      "description": "Selects a deterministic three-role ACP committee from live Virtuals registry records. Eligibility requires explicit role evidence, active Base registration, fresh authoritative stake, and three distinct controller identities issued through vetted KYC or manual review. A registry ID or cluster is correlation metadata only. This action creates no tender and grants no spend authority.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "accountAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Policy version and deterministic provider-plan hash",
+        "Fixed role-to-provider address bindings and sanitized readiness evidence"
+      ],
+      "category": "read"
+    },
+    {
+      "name": "prepare_virtuals_tender_v2",
+      "description": "Creates an immutable, non-spendable V2 evidence draft from a fresh tenant-owned simulation. Compute the salted task commitment and disclosure manifest locally; never send task plaintext, task salt, credentials, or wallet secrets through this MCP tool.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 16,
+            "maxLength": 200
+          },
+          "taskCommitmentHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "Lowercase SHA-256 commitment computed locally over the canonical, salted task. Do not send task plaintext."
+          },
+          "simulationId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "maxPaymentUnits": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,77}$",
+            "description": "Maximum total raw Base USDC units; no spend is authorized by preparation."
+          },
+          "providers": {
+            "description": "Deprecated in V2; use selectionId instead.",
+            "type": "object",
+            "properties": {
+              "solidity_auditor": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{40}$"
+              },
+              "defi_economist": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{40}$"
+              },
+              "sentiment_analyst": {
+                "type": "string",
+                "pattern": "^0x[a-fA-F0-9]{40}$"
+              }
+            },
+            "required": [
+              "solidity_auditor",
+              "defi_economist",
+              "sentiment_analyst"
+            ],
+            "additionalProperties": false
+          },
+          "selectionId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "disclosureManifest": {
+            "type": "object",
+            "properties": {
+              "schemaVersion": {
+                "type": "string",
+                "const": "farmdash-acp-disclosure/v1"
+              },
+              "categories": {
+                "minItems": 1,
+                "maxItems": 16,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "transaction_intent",
+                    "token_addresses",
+                    "wallet_address",
+                    "amounts",
+                    "calldata",
+                    "strategy_context",
+                    "proprietary_context",
+                    "personal_data",
+                    "credentials_override"
+                  ]
+                }
+              },
+              "secretScan": {
+                "type": "string",
+                "enum": [
+                  "passed",
+                  "overridden"
+                ]
+              },
+              "overrideReasonHash": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "categories",
+              "secretScan"
+            ],
+            "additionalProperties": false
+          },
+          "approvalNonce": {
+            "type": "string",
+            "pattern": "^\\d{10,20}$"
+          },
+          "approvalExpiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "idempotencyKey",
+          "taskCommitmentHash",
+          "simulationId",
+          "maxPaymentUnits",
+          "selectionId",
+          "disclosureManifest",
+          "approvalNonce",
+          "approvalExpiresAt"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Immutable evidence summary and draft",
+        "Exact Base-8453 EIP-712 data for local wallet review; no funds move"
+      ],
+      "category": "write"
+    },
+    {
+      "name": "authorize_virtuals_tender_v2",
+      "description": "Verifies the exact local customer-wallet V2 signature plus deployment and provider readiness, then authorizes only that committed draft. Never fabricate or relay a private key. Authorization does not create or fund ACP jobs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          },
+          "providerSelectionId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "nonce": {
+            "type": "string",
+            "pattern": "^\\d{10,20}$"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          },
+          "signature": {
+            "type": "string",
+            "maxLength": 16386,
+            "pattern": "^0x[0-9a-fA-F]+$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId",
+          "providerSelectionId",
+          "nonce",
+          "expiresAt",
+          "signature"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Authorized tender and sanitized provider-readiness result"
+      ],
+      "category": "write"
+    },
+    {
+      "name": "get_virtuals_tender",
+      "description": "Reads only the authenticated session's tender, role bindings, funding reservations, settlement attempts, and immutable receipt observations. Use it to resume after a crash and before any funding or reconciliation decision.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Tenant-scoped tender and durable lifecycle state"
+      ],
+      "category": "read"
+    },
+    {
+      "name": "cancel_virtuals_tender",
+      "description": "Cancels only an owned non-spendable draft. It cannot erase, cancel, or reverse an on-chain ACP job.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Durable cancellation status"
+      ],
+      "category": "write"
+    },
+    {
+      "name": "bind_virtuals_tender_job",
+      "description": "Binds an ACP job already created by the local customer connector. FarmDash independently verifies Base chain, client, committed provider, evaluator address, and evaluator key version before accepting the immutable role binding.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "solidity_auditor",
+              "defi_economist",
+              "sentiment_analyst"
+            ]
+          },
+          "onchainJobId": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,77}$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId",
+          "role",
+          "onchainJobId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Verified binding and updated tender status"
+      ],
+      "category": "write"
+    },
+    {
+      "name": "reserve_virtuals_tender_funding_v2",
+      "description": "Atomically reserves one exact on-chain role budget against the customer-signed aggregate cap. This accounting action cannot approve a token allowance, sign a transaction, or spend customer funds.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "solidity_auditor",
+              "defi_economist",
+              "sentiment_analyst"
+            ]
+          },
+          "onchainJobId": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,77}$"
+          },
+          "amountUnits": {
+            "type": "string",
+            "pattern": "^[1-9]\\d{0,77}$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId",
+          "role",
+          "onchainJobId",
+          "amountUnits"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Durable reservation ID, amount, state, and lease metadata"
+      ],
+      "category": "write"
+    },
+    {
+      "name": "record_virtuals_tender_funding_v2",
+      "description": "Records one to four canonical Base transaction hashes only after the local customer wallet submitted an existing reservation. This tool never broadcasts a transaction. Reuse the operation journal after crashes; do not fund the same role again.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          },
+          "reservationId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "transactionHashes": {
+            "minItems": 1,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^0x[a-fA-F0-9]{64}$"
+            }
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId",
+          "reservationId",
+          "transactionHashes"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Durable funding-submission record"
+      ],
+      "category": "write"
+    },
+    {
+      "name": "evaluate_virtuals_tender",
+      "description": "This is an execution-sensitive evaluator action. Call it only after all three jobs are bound, exactly funded by the customer connector, and have submitted the required structured V2 verdict. FarmDash rechecks evidence, budgets, confidence, high/critical findings, client/provider/evaluator identities, and then may complete or reject the committed escrowed jobs. Ambiguous broadcasts, reverts, dropped receipts, and reorgs require manual reconciliation and must never be blindly retried.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "tenderId": {
+            "type": "string",
+            "pattern": "^fdat_[A-Za-z0-9_-]{8,59}$"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "tenderId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [
+        "Deterministic evaluation commitment and receipt-backed settlement progress"
+      ],
+      "category": "execution"
+    },
+    {
+      "name": "get_trail_heat",
+      "description": "Returns the live Trail Heat protocol dataset ranked 0–100 by score.\r\n\r\nTrail Heat Formula: live scoring combines 40/90 raw points calibrated TVL (44.4% effective), 25/90 raw points seven-day TVL momentum (27.8% effective), 15/90 raw points chain diversification (16.7% effective), and 10/90 raw points category baseline comparison (11.1% effective), normalized to a 0–100 scale. Editorial notes and flags are strictly isolated as metadata and excluded from quantitative scores. Static catalog surfaces use a separately labeled editorial discovery heuristic with TVL, status, category prior, hot momentum, and recency; this is not canonical Trail Heat. Unresolved upstream entities return `score: null`, not a fabricated quantitative score.\r\n\r\nScore interpretation:\r\n* 80–100: Highest research priority under the current quantitative heuristic. Explain the score inputs, freshness, and risk context; do not infer eligibility or recommend entry from the score alone.\r\n* 60–79: Material research signal. Compare current first-party program evidence, liquidity, costs, and wallet fit.\r\n* 40–59: Lower-priority or mixed-signal research candidate. Preserve uncertainty and explain what is missing.\r\n* Below 40: Low quantitative priority under the current inputs. Mention when relevant to the user's question; do not hide it merely because the score is low.\r\n\r\nExample: \"Altura is scoring 84 on Trail Heat under the current quantitative model. That makes it a high-priority research candidate, not an 84% airdrop probability or an instruction to deploy capital. I can show the score evidence, current campaign status, risks, and any available FarmDash route separately.\" Takes no parameters.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_chain_breakdown",
-      "description": "Protocol distribution across blockchain networks: count, percentage, confirmed airdrops, points programs, categories per chain.\n\nUseful for identifying which chains have the highest concentration of active opportunities. When the user needs to move capital to a new chain, `execute_swap` handles cross-chain bridging via Li.Fi.",
+      "description": "Protocol distribution across blockchain networks: protocol count, percentage, campaign/status metadata, and category context by chain.\r\n\r\nUse it to understand where the catalog is concentrated, not as proof that a chain has more valuable airdrops. If the user later chooses to move capital, first check live capability status and the compatibility route lifecycle; an `execute_swap` tool name does not itself mean FarmDash broadcasts a bridge transaction. Takes no parameters.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_swap_quote",
-      "description": "Preview quote: estimated output, price impact, fee breakdown, recommended route.\n\nRoute selection: x402 (Base↔Base) → Li.Fi (cross-chain) → 0x (single-chain EVM). Can force with `protocol` param.\n\nFor executable swaps, include `walletAddress` and `toAddress` so the response includes `intent_id`, `intent_expires_at`, and `simulate_url`.\n\nAlways get a quote before executing. Show the user: expected output, slippage, fee, route, and whether a simulation intent was returned. Then ask for confirmation.",
+      "description": "Get swap pricing in two explicit modes. Without idempotencyKey, return a provider-neutral market estimate with zero trading-provider calls. With idempotencyKey plus walletAddress, toAddress and slippage, create or reuse a firm wallet-bound quote intent from an active provider (LI.FI or Relay; 0x only if runtime status reports it reinstated) and return simulationRequirements.intent_id for simulate_swap_execution. x402 is machine-payment/access infrastructure, not a swap provider. Resolve any approval/signature prerequisites locally and re-quote when instructed before simulation.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "fromChainId": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "toChainId": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "fromToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "Resolver-supported symbol, native identifier, token address, or chain-qualified asset; discovery resolves canonical assets server-side."
+          },
+          "toToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "Resolver-supported symbol, native identifier, token address, or chain-qualified asset; discovery resolves canonical assets server-side."
+          },
+          "fromAmount": {
+            "type": "string",
+            "pattern": "^[0-9]+$"
+          },
+          "protocol": {
+            "type": "string",
+            "enum": [
+              "lifi",
+              "relay"
+            ]
+          },
+          "walletAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "toAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "slippage": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 5
+          },
+          "expectedUpsideUsd": {
+            "type": "number"
+          },
+          "riskBufferUsd": {
+            "type": "number"
+          },
+          "healthFactor": {
+            "type": "number"
+          },
+          "liquidationBufferPct": {
+            "type": "number"
+          },
+          "safetyMode": {
+            "type": "string",
+            "enum": [
+              "strict",
+              "balanced"
+            ]
+          },
+          "continuationId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "executionTrialProof": {
+            "description": "Locally signed commercial owner challenge; no transaction or delegation authority.",
+            "type": "object",
+            "properties": {
+              "issuedAt": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "signature": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "issuedAt",
+              "signature"
+            ]
+          },
+          "executionMode": {
+            "type": "string",
+            "enum": [
+              "USER_SIGNED",
+              "BOUNDED_AUTONOMOUS"
+            ]
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "sessionToken": {
+            "type": "string"
+          },
+          "grantId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fromChainId",
+          "toChainId",
+          "fromToken",
+          "toToken",
+          "fromAmount"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "simulate_swap_execution",
-      "description": "Mandatory pre-execution simulation for a wallet-bound quote intent. Input:\n```json\n{\n  \"intentId\": \"fd_intent_...\",\n  \"walletAddress\": \"0x...\"\n}\n```\nThe response includes `simulation_id`, `success`, `gas_used`, `gas_cost_usd`, `output_amount`, `mev_risk`, `revert_reason`, and `valid_until`.\n\nRules:\n* If `success` is false, halt execution and report the failure details, as signing a failed transaction is prohibited.\n* If `valid_until` has passed, re-quote and re-simulate.\n* If `mev_risk` is medium or high, disclose it before signing.\n* Pass the returned `simulation_id` as `simulationId` to `execute_swap`.\n\n**Pre-Execution Forensic Gating (v4.0 Power-User Upgrade):**\nBefore requesting an EIP-191 signature, `simulate_swap_execution` must generate a `decision_hash` and `price_data_proof`. If the simulation reveals a sudden negative shift in `price_data_proof` between quote time and simulation time (indicative of MEV, stale RPC, or a \"Ghost Price\" dispute scenario), the agent must trigger a Dust Storm halt and re-quote. The simulation output must include the `external_anchor` intent hash so the user signs a cryptographically anchored payload.",
+      "description": "Mandatory pre-execution simulation for a wallet-bound quote intent. Input:\r\n```json\r\n{\r\n  \"intentId\": \"fd_intent_...\",\r\n  \"walletAddress\": \"0x...\"\r\n}\r\n```\r\nThe response includes `simulation_id`, `success`, `gas_used`, `gas_cost_usd`, `output_amount`, `mev_risk`, `revert_reason`, and `valid_until`.\r\n\r\nRules:\r\n* If `success` is false, halt execution and report the failure details, as signing a failed transaction is prohibited.\r\n* If `valid_until` has passed, re-quote and re-simulate.\r\n* If `mev_risk` is medium or high, disclose it before signing.\r\n* Pass the returned `simulation_id` as `simulationId` to `execute_swap`.\r\n\r\n**Pre-Execution Binding:**\r\nThe simulation binds the wallet, route, amount, tokens, chains, slippage, protocol, and transaction calldata to short-lived request and transaction fingerprints. If the quote or request changes, halt, re-quote, and re-simulate. Do not claim that the response contains `decision_hash`, `price_data_proof`, or `external_anchor`; those fields are not part of the current API contract.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "intentId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "walletAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "intentId",
+          "walletAddress"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "execute_swap",
-      "description": "Execute a signed token swap (EIP-191 auth). Fee: 45bps default, with volume discounts.\n\nPayload format:\n```\nv1:FARMDASH_SWAP:{fromChainId}:{toChainId}:{fromToken}:{toToken}:{fromAmount}:{agentAddress}:{toAddress}:{nonce}\n```\nAll addresses lowercase for EVM (Solana addresses are case-preserved). Nonce is a millisecond timestamp.\n\n**🌐 Solana Mainnet Support Schema:**\nFarmDash now supports native Solana Mainnet swapping. The parameters are generalized as:\n* fromChainId / toChainId: Supported EVM chain ID number (e.g., 8453 for Base) or the string \"solana-mainnet\" for Solana.\n* agentAddress / toAddress: The agent's EVM wallet address (starts with 0x, 42 chars) or Solana public key (Base58 encoded, 32-44 characters).\n* signature: EIP-191 personal signature (0x + 130 hex characters) or Solana Base58 Ed25519 detached signature (87-88 characters).\n* nonce: Collision-resistant timestamp nonce string containing 13 millisecond digits followed by a hyphen and random suffix (e.g., 1772345678901-xyz).\n\nRequired POST fields: `fromChainId`, `toChainId`, `fromToken`, `toToken`, `fromAmount`, `agentAddress`, `toAddress`, `simulationId`, `nonce`, `signature`.\n\nOptional: `intentId`, `slippage` (0.01–5, default 0.5), `volumeHintUSD` (unlocks discounts), `protocol` (force route).\n\n**Enhanced Required POST fields for Power Users (v4.0 MEV & Routing Granularity):**\n* `mev_protection` (string, optional): `\"flashbots\"` | `\"merkle\"` | `\"public\"`. Defaults to `\"public\"` for EVM. If `\"flashbots\"`, routes via private relay to avoid mempool visibility and sandwich attacks.\n* `block_deadline` (integer, optional): Gwei block limit. The maximum block number the tx is valid for (e.g., current_block + 3). Prevents delayed inclusion at bad prices.\n* `priority_fee_bid` (string, optional): Gwei amount for `maxPriorityFeePerGas` during high-frequency runs.\n\nExecution workflow (mandatory):\n1. `get_swap_quote` with wallet context → show user the full terms including fee\n2. `simulate_swap_execution` → show simulation result and stop on failure\n3. Wait for explicit user confirmation\n4. Build payload with fresh nonce\n5. Sign locally via user's wallet\n6. Call `execute_swap` with `simulationId`\n7. Add 15–120s jitter before next swap\n8. Report result with tx hash\n9. If the swap was to enter a protocol position, provide the FarmDash route with disclosure and `/fees` pointer for next steps\n\nDust Storm Protocol: On failure, wait 30s, get fresh quote, show new terms. After 3 failures, halt.",
+      "description": "Prepare a compatibility swap only after the required policy, simulation, signature, and quote-freshness gates pass. Released quote providers are selected dynamically based on live capability status. FarmDash returns the prepared transaction for the customer or agent wallet to submit; FarmDash does not broadcast the compatibility transaction and preparation is not confirmation or settlement.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "fromChainId": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "toChainId": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "fromToken": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "description": "ERC-20 token contract address deployed on the corresponding chain. Do not pass a wallet/EOA; the token address and chain ID must match."
+          },
+          "toToken": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "description": "ERC-20 token contract address deployed on the corresponding chain. Do not pass a wallet/EOA; the token address and chain ID must match."
+          },
+          "fromAmount": {
+            "type": "string",
+            "pattern": "^[0-9]+$"
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "toAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "nonce": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          },
+          "simulationId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "intentId": {
+            "type": "string"
+          },
+          "slippage": {
+            "type": "number"
+          },
+          "protocol": {
+            "type": "string",
+            "enum": [
+              "lifi",
+              "relay"
+            ]
+          }
+        },
+        "required": [
+          "fromChainId",
+          "toChainId",
+          "fromToken",
+          "toToken",
+          "fromAmount",
+          "agentAddress",
+          "toAddress",
+          "nonce",
+          "signature",
+          "simulationId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "execution"
     },
     {
       "name": "confirm_swap",
-      "description": "Confirm swap execution after the agent broadcasts the on-chain transaction. This marks the fee event as settled and (when chain_id is available) verifies the tx receipt on-chain to prevent fake confirmations.\n\nUse when:\n* you need reliable post-trade settlement state\n* you want retry-safe confirmation in flaky network conditions (this endpoint is idempotent)",
+      "description": "Confirm settlement of a FarmDash fee event for a compatibility swap that the customer or agent wallet has already signed, submitted and broadcast. FarmDash prepares the compatibility transaction; the wallet broadcasts it, so a transaction hash exists only after that broadcast and both feeEventId and transactionHash are required. Authenticated owning-session credentials are required (sessionId, agentAddress, sessionToken); sessionToken is session/authentication authority, not wallet execution or signing authority. FarmDash verifies the canonical-chain receipt and required finality together with the exact expected fee transfer before durably marking the fee event settled. Re-submitting the same valid confirmation is idempotent. confirm_swap never broadcasts the compatibility swap.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string"
+          },
+          "feeEventId": {
+            "type": "string"
+          },
+          "txHash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sessionId",
+          "agentAddress",
+          "sessionToken",
+          "feeEventId",
+          "txHash"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "write"
+    },
+    {
+      "name": "get_agent_activity",
+      "description": "Lists durable FarmDash receipts, optionally filtered by intent and status. Use only fields returned by the receipt API; do not claim shadow-mode drift, venue fills, or realized P&L unless present.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          },
+          "intentId": {
+            "type": "string",
+            "format": "starts_with",
+            "pattern": "^fdi_.*"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "SUBMITTED",
+              "CONFIRMED",
+              "FAILED",
+              "REJECTED"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "audit_sybil_risk",
-      "description": "Audits 1–10 EVM addresses for sybil risk.\n\nRecommended follow-up based on results:\n* Low risk: The wallet is clean — the user can farm confidently. Share relevant opportunities from Trail Heat.\n* Medium risk: Suggest behavioral changes to reduce risk exposure.\n* High risk: Recommend pausing automated farming on this wallet. A fresh wallet may be safer for sensitive protocols.",
+      "description": "Audits 1–10 EVM addresses for sybil risk.\r\n\r\nThis is a heuristic defensive audit, not a protocol eligibility verdict. Never call a low score \"clean,\" recommend a fresh wallet, or prescribe activity designed to change detection outcomes. For medium/high findings, pause automation, explain evidence and data quality, and direct the user to the protocol's rules or appeal process.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "addresses": {
+            "minItems": 1,
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^0x[a-fA-F0-9]{40}$"
+            }
+          }
+        },
+        "required": [
+          "addresses"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "risk"
     },
     {
       "name": "simulate_points",
-      "description": "Projects FarmScore for a farming configuration.\n\nFormula: `(Volume/$1k × 50) + (Balance × 1) + (Txs × 10) + (LP × 2) + (Fees × 100)`\n\nRun simulations across multiple protocols to help the user compare projected points-per-dollar. Present the comparison so they can make an informed choice.",
+      "description": "Projects FarmScore for a farming configuration.\r\n\r\nFormula: `(Volume/$1k × 50) + (Balance × 1) + (Txs × 10) + (LP × 2) + (Fees × 100)`\r\n\r\nRun simulations across multiple protocols to help the user compare projected points-per-dollar. Present the comparison so they can make an informed choice.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "totalVolumeUsd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "txCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "daysActive": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "walletBalanceUsd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "uniqueContracts": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "isCexFundingOnly": {
+            "type": "boolean"
+          },
+          "protocolPoints": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "totalVolumeUsd",
+          "txCount",
+          "daysActive",
+          "walletBalanceUsd",
+          "uniqueContracts",
+          "isCexFundingOnly",
+          "protocolPoints"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "optimize_portfolio",
-      "description": "Personalized protocol recommendations based on current positions.\n\nThis tool often identifies rebalancing opportunities. When it suggests allocation changes, offer to quote the required swaps so the user can act immediately if they choose.",
+      "description": "Personalized protocol recommendations based on current positions.\r\n\r\nThis tool often identifies rebalancing opportunities. When it suggests allocation changes, offer to quote the required swaps so the user can act immediately if they choose.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "currentProtocols": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 128
+            }
+          },
+          "riskPreference": {
+            "type": "string",
+            "enum": [
+              "conservative",
+              "balanced",
+              "aggressive"
+            ]
+          },
+          "chains": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "budget": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        },
+        "required": [
+          "currentProtocols",
+          "riskPreference"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_historical_trailheat",
-      "description": "Historical Trail Heat snapshots, 1–365 days.\n\nTrend analysis helps the user make better timing decisions:\n* Rising trend → Early entry may capture more value.\n* Falling trend → Consider taking profits or reallocating.",
+      "description": "Historical Trail Heat snapshots, 1–365 days.\r\n\r\nTrend analysis helps the user make better timing decisions:\r\n* Rising trend → Early entry may capture more value.\r\n* Falling trend → Consider taking profits or reallocating.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "protocolId": {
+            "type": "string"
+          },
+          "days": {
+            "default": 30,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 365
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
     },
     {
       "name": "get_agent_events",
-      "description": "Real-time protocol events stream.\n\nEvents that may require user action include: new airdrop announcements, upcoming snapshots, and multiplier changes. Present these with context and let the user decide how to respond.",
+      "description": "Real-time protocol events stream.\r\n\r\nEvents that may require user action include: new airdrop announcements, upcoming snapshots, and multiplier changes. Present these with context and let the user decide how to respond. Takes no parameters.",
       "inputSchema": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "sessionId": {
+            "type": "string"
+          },
+          "agentAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sessionToken": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 256
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "select_execution_continuation",
+      "description": "Select a server-issued continuation as read-only context. This returns canonical next_operation parameters and prerequisites but performs no quote, preparation, admission, debit, signing, or submission and grants no execution authority. Call with only continuationId; unknown/expired IDs fail closed.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "continuationId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "required": [
+          "continuationId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
       },
       "outputHints": [],
       "category": "read"
@@ -163,8 +1108,69 @@
   "operatingRules": [],
   "requiredEnv": {
     "FARMDASH_API_KEY": {
-      "description": "Optional Bearer token for Pioneer or Syndicate tier. Pioneer is $39.99/mo for 500 req/day and full datasets; Syndicate is $199/mo for 50k req/day, webhooks, unrestricted CORS, and advanced session/control tooling for teams and serious agents. Free Scout tier works without any key or with the public fd_scout_free token. Never share private keys, seed phrases, or mnemonics with this skill. Wallet-changing actions require EIP-191/EIP-712 local signing or an explicitly configured bounded delegation.",
+      "description": "Optional Bearer token for Pioneer or Syndicate tier. Pioneer is $39.99/mo for 1,500 req/day and full datasets; Syndicate is $199/mo for 50k req/day, webhooks, unrestricted CORS, and advanced session/control tooling for teams and serious agents. Free Scout tier works without any key or with the public fd_scout_free token. Never share private keys, seed phrases, or mnemonics with this skill. Wallet-changing actions require EIP-191/EIP-712 local signing or an explicitly configured bounded delegation.",
       "required": false
     }
+  },
+  "links": {
+    "website": "https://www.farmdash.one/",
+    "agentHub": "https://www.farmdash.one/agents",
+    "canonicalSkill": "https://www.farmdash.one/openclaw-skills/farmdash-signal-architect/SKILL.md",
+    "documentation": "https://www.farmdash.one/docs",
+    "status": "https://www.farmdash.one/api/v1/agent/status",
+    "openApi": "https://www.farmdash.one/agents/openapi.yaml",
+    "mcpDiscovery": "https://www.farmdash.one/.well-known/mcp.json",
+    "fees": "https://www.farmdash.one/fees",
+    "security": "https://www.farmdash.one/security"
+  },
+  "capability_truth": {
+    "spot.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."
+    },
+    "spot.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."
+    },
+    "futures.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."
+    },
+    "futures.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."
+    },
+    "solana.USER_SIGNED": {
+      "status": "operational",
+      "prerequisite": "Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."
+    },
+    "solana.BOUNDED_AUTONOMOUS": {
+      "status": "operational",
+      "prerequisite": "Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."
+    },
+    "ERC4337_SERVER_SUBMISSION": {
+      "status": "preparation_only",
+      "prerequisite": "Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."
+    },
+    "GENERIC_SERVER_INTENT_EXECUTION": {
+      "status": "preparation_only",
+      "prerequisite": "Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."
+    },
+    "MEE": {
+      "status": "preparation_only",
+      "prerequisite": "Production coordinator and authoritative source/destination receipt verifier."
+    },
+    "ACP": {
+      "status": "deployment_prerequisite",
+      "prerequisite": "AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."
+    }
+  },
+  "installation_attribution": {
+    "header": "X-FarmDash-Installation-ID",
+    "optional": true,
+    "analytics_only": true,
+    "generation": "locally generated random UUIDv4, stable per installation, shared across skills",
+    "server_storage": "domain-separated salted hash only",
+    "authority": "none; cannot authenticate, grant quota/payment/trial capacity, own wallets, delegate or sign"
   }
 }

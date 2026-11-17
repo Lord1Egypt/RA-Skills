@@ -1,39 +1,53 @@
-## Description: <br>
-Teach, solve, and explore mathematics across all levels with adaptive depth and rigor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach, solve, and explore mathematics across all levels with adaptive depth and rigor.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Students, teachers, and general users use this skill for adaptive math tutoring, step-by-step problem solving, proof scaffolding, misconception diagnosis, and problem-set generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Math explanations, answer keys, or proof guidance can contain arithmetic, logical, or verification errors. <br>
-Mitigation: Verify important answers for graded, professional, or publication work and sanity-check multi-step results before relying on them. <br>
-Risk: Example problems may include unnecessary personal or sensitive information. <br>
-Mitigation: Use non-sensitive example data and avoid sharing personal information unless it is necessary for the math problem. <br>
+## Use Case:
 
+External users, students, teachers, and developers use this skill to get adaptive math tutoring, step-by-step problem solving, proof support, misconception diagnosis, and classroom material generation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with mathematical notation and optional LaTeX] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include step-by-step explanations, visual examples, scaffolded hints, problem sets, answer keys, and verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Math explanations or multi-step solutions may contain arithmetic, logical, or proof errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill instructs the agent to double-check arithmetic, sanity-check results, identify common user errors, and state when proof verification exceeds AI capability.
+
+Risk: Ambiguous or unsolvable problems can lead to misleading answers.
+
+Mitigation: The skill instructs the agent to question missing constraints or typos and say when a problem is unsolvable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/godferylindsay/skills/martin-math)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with mathematical notation and LaTeX when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, external access, persistence, or tool use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

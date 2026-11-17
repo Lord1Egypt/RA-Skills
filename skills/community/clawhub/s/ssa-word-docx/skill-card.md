@@ -1,42 +1,57 @@
-## Description: <br>
-Create, read, and edit Word documents (.docx) with support for templates, tables, and styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, read, and edit Word documents (.docx) with support for templates, tables, and styling.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and document automation users use this skill to generate, read, and edit local Word documents, including quotations, templates, styled tables, and DOCX layout details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business documents may include default quotation branding or placeholder values if reused without review. <br>
-Mitigation: Replace the default quotation branding and verify generated document content before using it for real business communication. <br>
-Risk: The quotation script can optionally import a neighboring quotation workflow validator when present. <br>
-Mitigation: Use a trusted Python environment and review the optional quotation_schema dependency before relying on validation behavior. <br>
+## Use Case:
 
+Developers and document-automation users use this skill to create or modify DOCX files, especially quotation documents with templates, tables, and styling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-word-docx) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [generate_quotation_docx.py](artifact/scripts/generate_quotation_docx.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is intended for local DOCX workflows and may produce or modify .docx files when the user runs generated code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes DOCX files to user-specified output paths, which can overwrite existing documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify output paths before running generated commands and write to a dedicated output directory when possible.
+
+Risk: The DOCX workflow depends on python-docx and may vary with local package versions.
+
+Mitigation: Install the dependency in a virtual environment and pin python-docx for repeatable releases.
+
+Risk: The artifact is primarily a local quotation DOCX generator rather than a complete Word read/edit suite.
+
+Mitigation: Review generated documents manually when using the skill for broader Word editing tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/ssa-word-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, and generated DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file processing; depends on python-docx for DOCX generation and editing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

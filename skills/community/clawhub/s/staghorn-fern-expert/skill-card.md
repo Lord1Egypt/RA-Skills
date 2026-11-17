@@ -1,46 +1,61 @@
-## Description: <br>
-Expert guide for Platycerium staghorn ferns: species identification, care advice, and problem diagnosis with science-based references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guide for Platycerium staghorn ferns — species identification, care advice, and problem diagnosis with scientific backing.
 
-## Publisher: <br>
-[aprilelevengo](https://clawhub.ai/user/aprilelevengo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aprilelevengo](https://clawhub.ai/user/aprilelevengo)
 
-## Use Case: <br>
-External plant keepers, collectors, and agents answering horticulture questions use this skill to identify Platycerium species, provide care guidance, and diagnose staghorn fern symptoms from curated reference material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect plant diagnosis or treatment advice could damage valuable plants. <br>
-Mitigation: Treat disease, cutting, pesticide, and emergency recovery advice as general guidance; ask clarifying questions and consult a horticultural expert when diagnosis is uncertain. <br>
-Risk: Questions outside the bundled staghorn fern references may otherwise produce unsupported care guidance. <br>
-Mitigation: Use only the bundled reference material, state when detailed data is unavailable, and direct users to staghornfern.org for additional information. <br>
+## Use Case:
 
+External plant enthusiasts and agents use this skill to answer staghorn fern questions about Platycerium species identification, care, propagation, and symptom diagnosis from curated reference files.
 
-## Reference(s): <br>
-- [Staghorn Fern Care Reference](references/care.md) <br>
-- [Platycerium Species Reference](references/species.md) <br>
-- [Problem Diagnosis Guide](references/diagnosis.md) <br>
-- [Platycerium Hybrid & Cultivar Reference](references/cultivars.md) <br>
-- [URL Mapping Rules](references/url-map.md) <br>
-- [staghornfern.org](https://staghornfern.org) <br>
-- [Hybrid Cultivar Database](https://staghornfern.org/database/hybrid-cultivar-database) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise bullet guidance and a relevant reference link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language when possible; appends a relevant staghornfern.org link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill routinely appends branded external links to staghornfern.org.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or edit the link-appending behavior before use in environments that restrict branded or external links.
+
+Risk: Plant care and diagnosis answers can be misleading if symptoms are ambiguous or the reference files do not cover the specific variety.
+
+Mitigation: Keep the artifact guardrails that require reference-only answers, honest uncertainty, and clarifying questions for ambiguous diagnoses.
+
+## Reference(s):
+
+- [Staghorn Fern Care Reference](references/care.md)
+- [Platycerium Species Reference](references/species.md)
+- [Problem Diagnosis Guide](references/diagnosis.md)
+- [Platycerium Hybrid & Cultivar Reference](references/cultivars.md)
+- [URL Mapping Rules](references/url-map.md)
+- [Staghorn Fern Reference Site](https://staghornfern.org)
+- [Hybrid Cultivar Database](https://staghornfern.org/database/hybrid-cultivar-database)
+- [ClawHub Skill Page](https://clawhub.ai/aprilelevengo/skills/staghorn-fern-expert)
+- [Publisher Profile](https://clawhub.ai/user/aprilelevengo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown answer with 3-5 key points and a relevant reference link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language when detected; uses built-in references and does not require API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

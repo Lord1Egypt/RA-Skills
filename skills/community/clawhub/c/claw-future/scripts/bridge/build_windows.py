@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 BRIDGE_DIR = Path(__file__).parent
-REPO_ROOT  = BRIDGE_DIR / ".." / ".." / ".."
+REPO_ROOT  = BRIDGE_DIR / ".." / ".."
 WIN_SDK    = (REPO_ROOT / "api" / "win").resolve()
 OUT_DIR    = (BRIDGE_DIR / "..").resolve()
 

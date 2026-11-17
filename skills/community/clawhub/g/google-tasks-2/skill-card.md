@@ -1,43 +1,58 @@
-## Description: <br>
-Google Tasks is currently marked unavailable and provides guidance for managing Google Tasks task lists and tasks through MorphixAI-mediated access to the Google Tasks API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Tasks is a currently unavailable task-management integration that helps agents manage task lists and tasks through MorphixAI-secured access to the Google Tasks API.
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure MorphixAI credentials, link a Google Tasks account, and issue mx_google_tasks actions for listing, creating, updating, completing, and deleting Google Tasks items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a MorphixAI API key and a linked Google account. <br>
-Mitigation: Use the intended Google account, store MORPHIXAI_API_KEY securely, and avoid exposing the key in shared logs or transcripts. <br>
-Risk: Update, complete, and delete actions can change or remove Google Tasks data. <br>
-Mitigation: Review task list IDs, task IDs, and requested actions before execution, especially for delete or update operations. <br>
-Risk: The artifact marks the Google Tasks integration as temporarily unavailable until the account is linked. <br>
-Mitigation: Complete account linking through MorphixAI connections or the mx_link tool before relying on task operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Google Tasks listing](https://clawhub.ai/paul-leo/google-tasks-2) <br>
-- [MorphixAI API keys](https://morphix.app/api-keys) <br>
-- [MorphixAI connections](https://morphix.app/connections) <br>
+## Use Case:
 
+External users and developers can use this skill to guide an agent through listing, creating, updating, completing, and deleting Google Tasks items after configuring MorphixAI and linking a Google Tasks account.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tool-call examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Google Tasks account before task operations can run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a MorphixAI API key and a linked Google Tasks account.
+
+Mitigation: Install and use it only when the MorphixAI plugin is trusted, the API key is configured intentionally, and the target Google Tasks account is linked.
+
+Risk: Create, update, complete, and delete operations can make live changes to Google Tasks data.
+
+Mitigation: Review target task list IDs and task IDs before running mutation actions, and use extra care with delete actions.
+
+Risk: The artifact states the skill is temporarily unavailable until Google Tasks is linked.
+
+Mitigation: Confirm account linking through MorphixAI connections or the mx_link workflow before relying on the skill for task-management workflows.
+
+## Reference(s):
+
+- [ClawHub Google Tasks skill page](https://clawhub.ai/paul-leo/skills/google-tasks-2)
+- [MorphixAI API keys](https://morphix.app/api-keys)
+- [MorphixAI connections](https://morphix.app/connections)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Google Tasks account before task operations can run.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Guide creating Claude Code skills with TDD and persuasion principles. Use for new skill development <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in creating Claude Code skills using test-driven development and persuasion principles.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design, validate, and refine Claude Code skills using test-driven development, progressive disclosure, and anti-rationalization patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persuasion framing may make generated skill guidance sound more mandatory than the user's actual policy requires. <br>
-Mitigation: Review the resulting skill text for appropriate scope, explicit exceptions, and alignment with the user's stated requirements. <br>
-Risk: Deployment and rollback examples can affect real repositories if copied without checking local context. <br>
-Mitigation: Confirm the repository, branch, paths, and target skill name before running any deployment or rollback command. <br>
-Risk: Broad activation triggers may cause the skill to load for unrelated skill-writing or validation tasks. <br>
-Mitigation: Review and test activation triggers in the target environment before enabling automatic skill loading. <br>
+## Use Case:
 
+Developers use this skill to design and validate Claude Code skills through test-driven development, description writing, modular documentation, and deployment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-skill-authoring) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with examples, checklists, and inline shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on skill-authoring process guidance; examples should be reviewed before use in a live repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence and target metadata; artifact frontmatter says 1.9.8) <br>
+Risk: Deployment guidance may overwrite an existing skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect deployment targets and preserve or back up existing skill files before applying changes.
+
+Risk: Testing advice may reuse real prompts or transcripts without a stated sanitization step.
+
+Mitigation: Use synthetic examples where practical; otherwise remove identifying or confidential details and confirm the material is authorized for reuse.
+
+Risk: The security analysis is incomplete because it reports missing referenced paths.
+
+Mitigation: Resolve and review referenced files in the installed release before relying on its deployment or testing guidance.
+
+## Reference(s):
+
+- [TDD methodology](modules/tdd-methodology.md)
+- [Description writing](modules/description-writing.md)
+- [Progressive disclosure](modules/progressive-disclosure.md)
+- [Validation](modules/validation.md)
+- [Deployment checklist](modules/deployment-checklist.md)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with example code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task-dependent; may include a skill definition and supporting modules.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

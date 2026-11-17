@@ -1,42 +1,57 @@
-## Description: <br>
-Scrape a public Letterboxd user's watchlist into a CSV/JSONL list of titles and film URLs without logging in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes a public Letterboxd user's watchlist into a CSV or JSONL list of titles and film URLs without logging in.
 
-## Publisher: <br>
-[0xnuminous](https://clawhub.ai/user/0xnuminous) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xnuminous](https://clawhub.ai/user/0xnuminous)
 
-## Use Case: <br>
-External users and agents use this skill to export or mirror a public Letterboxd watchlist, or to build watch-next queues from public profile data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script writes to a user-chosen output path. <br>
-Mitigation: Use a normal working-folder path such as watchlist.csv or watchlist.jsonl, and avoid important existing files. <br>
-Risk: The skill scrapes public Letterboxd pages and may break if page markup changes. <br>
-Mitigation: Review the output count and records after scraping, and update the scraper pattern if Letterboxd changes its HTML. <br>
-Risk: Providing credentials is unnecessary for this public-watchlist workflow. <br>
-Mitigation: Do not provide Letterboxd credentials; use only a public username. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Letterboxd](https://letterboxd.com) <br>
-- [ClawHub skill page](https://clawhub.ai/0xnuminous/letterboxd-watchlist) <br>
+## Use Case:
 
+External users and developers use this skill to export a public Letterboxd watchlist into a local CSV or JSONL file for watch-next queues, mirrors, or downstream analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated CSV or JSONL files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scraper writes title and film URL records to a user-chosen .csv or .jsonl output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes public requests to letterboxd.com.
+
+Mitigation: Use it only when public Letterboxd requests are acceptable for the intended environment.
+
+Risk: The user-provided output path could overwrite an existing local file.
+
+Mitigation: Choose a normal new output filename and review the path before execution.
+
+Risk: Best-effort HTML scraping can stop working if Letterboxd changes its page markup.
+
+Mitigation: Review the generated CSV or JSONL output and update the scraper pattern if expected watchlist entries are missing.
+
+## Reference(s):
+
+- [Letterboxd](https://letterboxd.com)
+- [ClawHub skill page](https://clawhub.ai/0xnuminous/skills/letterboxd-watchlist)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands; generated watchlist data is CSV or JSONL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a public Letterboxd username and a user-provided output path ending in .csv or .jsonl.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

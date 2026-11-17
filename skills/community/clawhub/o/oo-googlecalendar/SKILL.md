@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google Calendar"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["googlecalendar"]
   icon: "https://static.oomol.com/logo/third-party/Google%20Calendar.svg"
 ---
@@ -37,6 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `add_attendee` — Add one attendee without replacing existing Google Calendar guests. [write]
 - `add_calendar_to_list` — Add a calendar to the current user's Google Calendar list. [write]
 - `clear_calendar` — Clear all events from a Google Calendar. [destructive]
 - `create_acl_rule` — Create an ACL rule on a Google Calendar. [write]
@@ -61,7 +62,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_events` — List events from a Google Calendar.
 - `list_events_all_calendars` — List events across multiple Google Calendars and aggregate the result.
 - `list_settings` — List Google Calendar settings.
-- `move_event` — Move a Google Calendar event to another calendar. [write]
+- `move_event` — Move a Google Calendar event to another calendar. [destructive]
 - `patch_acl_rule` — Patch writable fields on a Google Calendar ACL rule. [write]
 - `patch_calendar` — Patch writable fields on a Google Calendar resource. [write]
 - `patch_calendar_list_entry` — Patch writable fields on a Google Calendar list entry. [write]
@@ -70,10 +71,10 @@ Each action is listed below with a one-line description; actions that change sta
 - `remove_attendee` — Remove one attendee email from a Google Calendar event. [destructive]
 - `remove_calendar_from_list` — Remove a calendar from the current user's Calendar list. [destructive]
 - `sync_events` — Incrementally sync events from a Google Calendar. [write]
-- `update_acl_rule` — Replace writable fields on a Google Calendar ACL rule. [write]
-- `update_calendar` — Replace writable fields on a Google Calendar resource. [write]
-- `update_calendar_list_entry` — Replace writable fields on a Google Calendar list entry. [write]
-- `update_event` — Replace writable fields on a Google Calendar event. [write]
+- `update_acl_rule` — Replace writable fields on a Google Calendar ACL rule. [destructive]
+- `update_calendar` — Replace writable fields on a Google Calendar resource. [destructive]
+- `update_calendar_list_entry` — Replace writable fields on a Google Calendar list entry. [destructive]
+- `update_event` — Replace writable fields on a Google Calendar event. [destructive]
 
 ## Safety
 
@@ -104,11 +105,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google Calendar is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=googlecalendar
+  https://console.oomol.com/connections/googlecalendar
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google Calendar homepage: https://workspace.google.com/products/calendar/
+- API documentation: https://developers.google.com/workspace/calendar/api/guides/overview

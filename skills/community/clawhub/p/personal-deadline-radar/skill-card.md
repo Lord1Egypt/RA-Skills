@@ -1,48 +1,58 @@
-## Description: <br>
-Scans personal to-dos, calendar summaries, and deadline notes to identify upcoming deadline risks and scheduling conflicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans personal to-do lists, meeting notes, and message summaries to identify upcoming deadlines, scheduling conflicts, risky omissions, and items that need confirmation.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Individuals and personal productivity agents use this skill to turn supplied task lists, meeting summaries, and deadline notes into a reviewable deadline-risk brief with conflicts, omissions, rescheduling suggestions, and a daily action list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs may contain personal scheduling details or other sensitive material. <br>
-Mitigation: Use the skill only on files intended for analysis, minimize unnecessary personal details, and redact sensitive content when possible. <br>
-Risk: Incomplete task or calendar data can produce misleading deadline or conflict summaries. <br>
-Mitigation: Keep the review-first workflow, verify detected deadlines and conflicts, and preserve explicit confirmation items when information is missing. <br>
-Risk: The helper can write to a user-provided output path. <br>
-Mitigation: Check the --output path before running the helper and use --dry-run when reviewing behavior. <br>
-Risk: The bundled script contains unused generic audit utilities. <br>
-Mitigation: Review artifact/scripts/run.py before installation when strict minimal code is required. <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to review local task lists, calendar summaries, message summaries, and deadline notes. It produces a draft-first deadline radar with conflicts, high-risk omissions, rescheduling suggestions, deferrable items, today's list, and explicit confirmation gaps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/personal-deadline-radar) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Structured Output Specification](artifact/resources/spec.json) <br>
-- [Output Template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review-first output; the local helper reads supplied files or directories and does not modify external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Inputs may contain personal scheduling details or sensitive message summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the specific task, calendar, or message-summary files needed for the review and redact sensitive exports where possible.
+
+Risk: Deadline and conflict summaries can be incomplete or misleading when the provided information is missing, ambiguous, or stale.
+
+Mitigation: Treat the output as a review draft, check the listed confirmation items, and verify dates before making calendar changes.
+
+Risk: The bundled script contains unused generic audit helpers.
+
+Mitigation: Clean up or document those helpers before broader deployment so the skill behavior remains easy to review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/personal-deadline-radar)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown or JSON summaries generated from local task, calendar, or message-summary inputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-first, reviewable outputs; the local Python script can write results to a user-specified output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

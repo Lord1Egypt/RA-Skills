@@ -1,43 +1,57 @@
-## Description: <br>
-Manages a three-layer OpenClaw memory system with LanceDB Pro autoCapture and autoRecall, scheduled micro-sync, daily summaries, weekly compaction, scope isolation, deduplication, and archive workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three Layer Memory + LanceDB Pro manages hot, warm, and cold OpenClaw memory with LanceDB auto-capture and auto-recall, scheduled synchronization, daily summaries, weekly compaction, scope isolation, deduplication, and archiving.
 
-## Publisher: <br>
-[kylin19860916](https://clawhub.ai/user/kylin19860916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylin19860916](https://clawhub.ai/user/kylin19860916)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to configure an agent memory workflow that captures, recalls, summarizes, compacts, and scopes long-term conversation memory across hot, warm, and cold layers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring memory jobs can scan, summarize, retain, and recall conversation history without clear retention or sensitive-data controls. <br>
-Mitigation: Enable the skill only when long-term memory is intentional, define what must never be stored, and maintain a process to inspect and delete saved memories. <br>
-Risk: Scheduled tasks may lead to changes in MEMORY.md, SYSTEM_GUIDE.md, or other persistent agent guidance. <br>
-Mitigation: Require approval before scheduled tasks modify persistent guidance, and review HEARTBEAT.md tasks before they are acted on. <br>
-Risk: Auto-captured memories can include low-value, duplicate, or cross-scope content. <br>
-Mitigation: Use the artifact's deduplication, scope isolation, autoCapture review, and weekly scope audit steps before relying on recalled memory. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to install a local memory-management routine that captures decisions, generates daily structured summaries, compacts long-term memory, and separates memory by agent scope.
 
-## Reference(s): <br>
-- [AGENTS.md memory rules template](artifact/references/agents-rules.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kylin19860916/three-layer-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates scheduled memory maintenance tasks that append to HEARTBEAT.md and guide updates to MEMORY.md, second-brain summaries, and archive files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Recurring local automation can review conversation history and persist or modify long-term agent memory without enough user review controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cron, autoCapture, and autoRecall only after adding review or approval before memory updates and guidance-file changes.
+
+Risk: Captured summaries may retain secrets, sensitive personal data, or stale information in local memory files or LanceDB storage.
+
+Mitigation: Define retention and deletion rules, avoid storing secrets or sensitive personal data, and restrict file permissions on the OpenClaw workspace.
+
+Risk: The workflow depends on a separate memory plugin and API-backed retrieval behavior that may affect what gets captured or recalled.
+
+Mitigation: Pin and verify the memory-lancedb-pro plugin before enabling the scheduled scripts.
+
+## Reference(s):
+
+- [AGENTS.md memory rules template](references/agents-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides cron-driven shell scripts that write memory-review tasks and structured summary prompts into the local OpenClaw workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

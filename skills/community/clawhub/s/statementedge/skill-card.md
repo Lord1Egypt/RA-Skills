@@ -1,43 +1,55 @@
-## Description: <br>
-Convert PDF bank statements to CSV, Excel, QuickBooks, Xero, Sage, or OFX through the StatementEdge API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF bank statements to CSV, Excel, QuickBooks, Xero, Sage, or OFX through StatementEdge with auto-reconciliation, EU hosting, support for 100+ banks across 22 countries, and no model training on uploads.
 
-## Publisher: <br>
-[saipradeep77](https://clawhub.ai/user/saipradeep77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saipradeep77](https://clawhub.ai/user/saipradeep77)
 
-## Use Case: <br>
-Developers and finance operators use this skill to upload bank statement PDFs to StatementEdge, check conversion status, retrieve structured transaction data, and export completed jobs in accounting-friendly formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank statement PDFs and optional PDF passwords are sent to StatementEdge for processing. <br>
-Mitigation: Use the skill only after verifying the StatementEdge account, privacy terms, retention policy, and compliance fit for the documents being processed. <br>
-Risk: The skill requires a StatementEdge API key and can access conversions associated with that account. <br>
-Mitigation: Store the API key in STATEMENTEDGE_API_KEY, keep it scoped to the intended account, and revoke or rotate it if access changes. <br>
+## Use Case:
 
+Developers and finance automation users use this skill to convert uploaded PDF bank statements into reconciled structured data and accounting export formats through the StatementEdge API.
 
-## Reference(s): <br>
-- [StatementEdge Homepage](https://www.statementedge.com) <br>
-- [StatementEdge API Documentation](https://www.statementedge.com/docs/api) <br>
-- [StatementEdge Privacy](https://www.statementedge.com/privacy) <br>
-- [StatementEdge Pricing](https://www.statementedge.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and STATEMENTEDGE_API_KEY; API responses may include JSON status data or downloaded export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: artifact frontmatter and server release evidence) <br>
+Risk: The skill uploads bank statements and any supplied PDF passwords to StatementEdge and its disclosed subprocessors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, upload only files intended for conversion, and review StatementEdge retention and privacy terms before using it with financial or regulated data.
+
+Risk: A StatementEdge API key is required to convert files and fetch job history for the user's account.
+
+Mitigation: Store the key as an environment variable or managed secret, avoid committing it to files, and revoke or rotate it from the StatementEdge dashboard if exposed.
+
+## Reference(s):
+
+- [StatementEdge ClawHub Skill](https://clawhub.ai/saipradeep77/skills/statementedge)
+- [StatementEdge Homepage](https://www.statementedge.com)
+- [StatementEdge API Documentation](https://www.statementedge.com/docs/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with curl commands, JSON API responses, and exported statement files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STATEMENTEDGE_API_KEY and sends user-selected bank statement PDFs to StatementEdge for conversion.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

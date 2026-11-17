@@ -1,41 +1,47 @@
-## Description: <br>
-Create and edit icons, favicons, images, and color palettes using macOS tools, ImageMagick, SVG, and AI image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit icons, favicons, images, and color palettes using macOS tools, ImageMagick, SVG, and AI image generation.
 
-## Publisher: <br>
-[cmanfre7](https://clawhub.ai/user/cmanfre7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cmanfre7](https://clawhub.ai/user/cmanfre7)
 
-## Use Case: <br>
-Developers and designers use this skill to create app icons, web favicons, image assets, and color palettes for software projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Batch image commands can modify many files when run in the wrong directory. <br>
-Mitigation: Run batch commands only in intended directories or on copies of source assets. <br>
-Risk: Image-generation prompts can disclose confidential brand or product details to an unapproved provider. <br>
-Mitigation: Use only approved image-generation providers for confidential or unreleased project details. <br>
-Risk: Local image tooling may introduce supply-chain or execution risk if installed from untrusted sources. <br>
-Mitigation: Install tools such as ImageMagick from trusted sources and keep them updated. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cmanfre7/design-assets) <br>
+## Use Case:
+
+Developers and designers use this skill to create app icons, favicons, image variants, and color palettes for application design work. It provides concise guidance and reusable snippets for local design-asset generation and editing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Batch image-processing commands can modify matching image files in place.
+
+Mitigation: Review commands before running them on important files, and use copies or an output directory for batch operations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Bash, HTML, JSON, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reusable snippets and procedural guidance; it does not execute commands directly.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with Bash, HTML, JSON, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local image-processing command examples and palette-generation code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

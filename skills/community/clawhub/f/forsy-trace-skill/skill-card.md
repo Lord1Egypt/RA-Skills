@@ -1,39 +1,54 @@
-## Description: <br>
-Forsy Trace Skill captures AI agent workflows as structured traces with steps, tools, observations, feedback, failures, artifacts, outcomes, and learning signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forsy Trace Skill helps agents capture authentic work as structured local traces with steps, tool use, observations, feedback, failures, artifacts, outcomes, and learning signals.
 
-## Publisher: <br>
-[ray-r-ren](https://clawhub.ai/user/ray-r-ren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ray-r-ren](https://clawhub.ai/user/ray-r-ren)
 
-## Use Case: <br>
-Developers, evaluators, and researchers use this skill to capture authentic agent workflow traces for inspection, tool-use trajectory analysis, failure analysis, evaluation, and process-supervision research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated local traces may contain secrets, private prompts, credentials, personal data, proprietary details, or sensitive logs and diffs. <br>
-Mitigation: Review and redact generated traces before sharing, publishing, or retaining them. <br>
+## Use Case:
 
+Developers, researchers, and evaluators use this skill to record real AI-agent workflows for inspection, process-supervision research, failure analysis, tool-use trajectory analysis, workflow auditing, dataset examples, and reusable agent work experience.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ray-r-ren/forsy-trace-skill) <br>
-- [Forsy Trace Schema v0.1](artifact/schema/forsy_trace_schema_v0_1.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Guidance] <br>
-**Output Format:** [Structured JSON trace artifacts with concise text or Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local trace artifacts; users should review generated traces before sharing or retaining them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Generated traces may capture private prompts, credentials, customer data, internal URLs, or proprietary content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trace.json and related artifacts before sharing; redact or exclude sensitive fields and files.
+
+Risk: A trace may overstate what happened if the agent records steps without reliable evidence.
+
+Mitigation: Record only live activity or reconstruction from reliable logs, files, conversation history, tool outputs, or artifacts, and lower confidence where evidence is incomplete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ray-r-ren/skills/forsy-trace-skill)
+- [Forsy Trace Schema v0.1](schema/forsy_trace_schema_v0_1.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Guidance]
+
+**Output Format:** [Local JSON trace files following the Forsy Trace Schema v0.1, with optional structured artifact metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Traces should be reviewed and redacted before sharing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

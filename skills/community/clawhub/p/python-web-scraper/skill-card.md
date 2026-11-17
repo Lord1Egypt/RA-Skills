@@ -1,43 +1,58 @@
-## Description: <br>
-Python web scraping toolkit for extracting website data, handling pagination and JavaScript-rendered pages, applying anti-blocking techniques, and producing structured JSON or CSV output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python web scraping toolkit for data extraction, pagination handling, anti-blocking techniques, Selenium-based JavaScript rendering, and structured JSON/CSV/text output.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and agents use this skill to create or adapt Python scrapers for authorized public websites, including basic pages, pagination, JavaScript-rendered content, and JSON, CSV, or text outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes guidance for bypassing site defenses and handling login or session cookies. <br>
-Mitigation: Use it only for public or clearly authorized sites, prefer official APIs, and avoid cookie/login, CAPTCHA-solving, proxy-rotation, and webdriver-bypass techniques unless explicit permission and a controlled use case exist. <br>
-Risk: Selenium tooling and web driver dependencies may execute code or fetch browser driver components in the local environment. <br>
-Mitigation: Review and pin Python dependencies before running Selenium workflows, and execute them in an isolated environment when possible. <br>
-Risk: Scraping can collect personal, copyrighted, or terms-restricted content if configured against inappropriate targets. <br>
-Mitigation: Limit targets to authorized public data, check robots.txt and site terms, apply rate limits, and avoid scraping personal data or protected content. <br>
+## Use Case:
 
+Developers and agents use this skill to extract data from authorized websites, including paginated and JavaScript-rendered pages, and convert scraped results into structured outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/python-web-scraper) <br>
-- [Anti-Blocking Strategies](references/anti-blocking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; scraper scripts can produce JSON, CSV, or plain text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command-line scraper templates for single pages, pagination, and Selenium-based JavaScript rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unauthorized or non-compliant scraping can violate site terms, robots.txt, privacy expectations, or copyright.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on authorized public sources or official APIs, check robots.txt and site terms, avoid login-protected or personal data, and apply rate limits.
+
+Risk: Cookie export, login-wall handling, CAPTCHA-solving, proxy rotation, and browser-detection bypass guidance can be misused to evade access controls.
+
+Mitigation: Avoid those techniques unless explicit permission exists and testing is contained; do not use sensitive credentials in shared or untrusted environments.
+
+Risk: The Selenium helper configures Chrome with no-sandbox behavior, which can increase risk on arbitrary sites.
+
+Mitigation: Remove Chrome's no-sandbox option before running Selenium against arbitrary sites, pin dependencies, and run browsers in an isolated environment.
+
+## Reference(s):
+
+- [Anti-Blocking Strategies](references/anti-blocking.md)
+- [Web Scraper ClawHub page](https://clawhub.ai/ericlooi504/skills/python-web-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python code; helper scripts output JSON, CSV, or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write JSON, CSV, or text files when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

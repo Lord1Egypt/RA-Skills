@@ -60,7 +60,7 @@
 | `trans_amt` | 交易金额 | String | 12 | N | 单位元 |
 | `settlement_amt` | 结算金额 | String | 16 | N | 单位元 |
 | `trans_stat` | 交易状态 | String | 1 | N | `S`=成功，`F`=失败 |
-| `trans_finish_time` | 汇付侧交易完成时间 | String | 6 | N | 官方长度列写 `6`，但格式说明为 `yyyyMMddHHmmss` |
+| `trans_finish_time` | 汇付侧交易完成时间 | String | 13 | N | 毫秒时间戳；String(13)，示例1791598928000 |
 | `end_time` | 支付完成时间 | String | 14 | N | 格式 `yyyyMMddHHmmss` |
 | `acct_date` | 入账时间 | String | 8 | N | 格式 `yyyyMMdd` |
 | `debit_flag` | 借贷记标识 | String | 1 | N | `D`=借记卡，`C`=信用卡，`Z`=借贷合一卡 |
@@ -89,5 +89,9 @@
 ## 实现备注
 
 - `jump_url` 是同步返回里最关键的前端拉起字段；拿到之后仍然不能视为支付成功。
-- `trans_finish_time` 的官方长度定义与格式定义冲突，应用侧最好统一按 14 位时间戳兼容解析。
+- 2026-10-10官网已明确通知 `trans_finish_time:String(13)` 为毫秒时间戳；`end_time:String(14)` 仍为 `yyyyMMddHHmmss`，分别解析。
 - 渠道扩展对象很多，回调落库时建议把顶层字段和渠道对象分表或按 JSON 列分开存储。
+
+## 2026-10-25 合单通知
+
+本轮在异步通知新增 `async.resp_data.sub_orders_response` 子单信息，及其分账、手续费、延时和金额结构；完整类型与逐层wire以 `payment-complete-field-catalog.md` 为准。官方子单交易金额字段名为 `sub_trams_amt`，不得擅自改拼写；它和请求的 `sub_trans_amt` 分别建模。新增路径清单见 `hostingpay-preorder-h5-pc.md`。

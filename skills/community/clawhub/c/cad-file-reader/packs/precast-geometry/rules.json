@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "precast_slab",
+      "patterns": [
+        "叠合板",
+        "预制板",
+        "SP板",
+        "PRECAST SLAB",
+        "HOLLOW CORE"
+      ]
+    },
+    {
+      "type": "precast_wall",
+      "patterns": [
+        "预制墙",
+        "预制外墙",
+        "夹心墙",
+        "PRECAST WALL",
+        "SANDWICH"
+      ]
+    },
+    {
+      "type": "precast_stair",
+      "patterns": [
+        "预制楼梯",
+        "梯段",
+        "预制梯",
+        "PRECAST STAIR"
+      ]
+    },
+    {
+      "type": "precast_beam",
+      "patterns": [
+        "预制梁",
+        "预制柱",
+        "PRECAST BEAM",
+        "PRECAST COLUMN"
+      ]
+    },
+    {
+      "type": "embed_plan",
+      "patterns": [
+        "预埋件",
+        "埋件",
+        "吊点",
+        "EMBED",
+        "LIFTING"
+      ]
+    },
+    {
+      "type": "pc_schedule",
+      "patterns": [
+        "预制构件",
+        "构件拆分",
+        "构件表",
+        "PC SCHEDULE",
+        "LEGEND"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "precast_wall",
+      "patterns": [
+        "预制墙",
+        "夹心墙",
+        "外墙板",
+        "PRECAST WALL"
+      ]
+    },
+    {
+      "system": "composite_slab",
+      "patterns": [
+        "叠合板",
+        "桁架",
+        "叠合",
+        "COMPOSITE SLAB",
+        "HOLLOW CORE"
+      ]
+    },
+    {
+      "system": "precast_stair",
+      "patterns": [
+        "预制楼梯",
+        "梯段",
+        "STAI",
+        "PRECAST STAIR"
+      ]
+    },
+    {
+      "system": "precast_frame",
+      "patterns": [
+        "预制梁",
+        "预制柱",
+        "PRECAST BEAM",
+        "PRECAST COLUMN"
+      ]
+    },
+    {
+      "system": "embedment",
+      "patterns": [
+        "预埋件",
+        "吊点",
+        "套筒",
+        "EMBED",
+        "LIFTING",
+        "SLEEVE"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "pc_wall",
+      "system": "precast_wall",
+      "patterns": [
+        "预制墙",
+        "夹心墙",
+        "外墙板",
+        "内墙板",
+        "PC WALL"
+      ]
+    },
+    {
+      "category": "slab_panel",
+      "system": "composite_slab",
+      "patterns": [
+        "叠合板",
+        "预制板",
+        "SP板",
+        "桁架筋",
+        "HOLLOW CORE",
+        "SLAB"
+      ]
+    },
+    {
+      "category": "pc_stair",
+      "system": "precast_stair",
+      "patterns": [
+        "预制楼梯",
+        "梯段",
+        "踏步板",
+        "PRECAST STAIR"
+      ]
+    },
+    {
+      "category": "pc_beam",
+      "system": "precast_frame",
+      "patterns": [
+        "预制梁",
+        "预制柱",
+        "PRECAST BEAM",
+        "PRECAST COLUMN"
+      ]
+    },
+    {
+      "category": "embedment",
+      "system": "embedment",
+      "patterns": [
+        "预埋件",
+        "埋件",
+        "吊点",
+        "套筒",
+        "灌浆套筒",
+        "EMBED",
+        "LIFTING",
+        "SLEEVE"
+      ]
+    },
+    {
+      "category": "pc_connector",
+      "system": "precast_frame",
+      "patterns": [
+        "连接节点",
+        "键槽",
+        "甩筋",
+        "预留筋",
+        "CONNECTOR",
+        "LOOP"
+      ]
+    }
+  ],
+  "reference_patterns": {
+    "pc_code": "(?<![0-9A-Z])((?:PC|DB|WB|NB|LB|TB|PB)[\\s_-]*\\d{1,4}[A-Za-z]?)",
+    "elevation": "标高\\s*[-+]?\\d+(?:\\.\\d{1,3})?",
+    "truss_bar": "(?<![0-9A-Z])((?:桁架筋|钢筋|钢筋桁架|A8|A10|C8|C10|B8|B10)[^0-9A-Z]{0,4}\\d{1,3}(?:@\\d{1,4})?)",
+    "embed_code": "(?<![0-9A-Z])((?:MJ|MB|光圆|预埋)[\\s_-]*\\d{1,3}[A-Za-z]?)"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "pc_wall",
+      "patterns": [
+        "预制墙",
+        "夹心墙",
+        "外墙板",
+        "PCW"
+      ]
+    },
+    {
+      "category": "slab_panel",
+      "patterns": [
+        "叠合板",
+        "预制板",
+        "桁架",
+        "SLAB"
+      ]
+    },
+    {
+      "category": "pc_stair",
+      "patterns": [
+        "预制楼梯",
+        "梯段",
+        "STAI"
+      ]
+    },
+    {
+      "category": "pc_beam",
+      "patterns": [
+        "预制梁",
+        "预制柱",
+        "BEAM",
+        "COLUMN"
+      ]
+    },
+    {
+      "category": "embedment",
+      "patterns": [
+        "预埋",
+        "埋件",
+        "吊点",
+        "EMBED"
+      ]
+    }
+  ]
+}

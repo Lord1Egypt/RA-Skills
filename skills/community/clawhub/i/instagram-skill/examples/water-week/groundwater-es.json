@@ -1,0 +1,19 @@
+{
+ "theme": {
+  "preset": "editorial",
+  "mode": "dark",
+  "headline_font": "sans",
+  "accent": "#4FD1E8",
+  "name": "La Tierra en Números",
+  "handle": "@latierraennumeros"
+ },
+ "slides": [
+  {
+   "type": "stat",
+   "number": "55%",
+   "body": "del agua bajo nuestros pies es *salada*, no dulce",
+   "source": "USGS: 12,87 de 23,4 millones de km³ de agua subterránea son salinos",
+   "alt": "El 55% del agua bajo nuestros pies es salada, no dulce. USGS: 12,87 de 23,4 millones de km³ de agua subterránea son salinos."
+  }
+ ]
+}

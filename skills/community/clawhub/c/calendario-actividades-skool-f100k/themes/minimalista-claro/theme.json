@@ -1,0 +1,16 @@
+{
+  "name": "Minimalista Claro",
+  "fondo": "",
+  "vars": {
+    "--overlay": "transparent",
+    "--fondo-css": "linear-gradient(160deg, #fbfbfd 0%, #eef1f6 100%)",
+    "--panel-bg": "rgba(255,255,255,.75)",
+    "--panel-border": "rgba(20,30,50,.14)",
+    "--accent": "#3b6ef5",
+    "--grid-line": "rgba(20,30,50,.12)",
+    "--daynum-bg": "#eef2fb",
+    "--daynum-fg": "#243b6b",
+    "--special-bg": "linear-gradient(135deg,#3b6ef5,#7aa0ff)"
+  },
+  "textColor": "#1b2336"
+}

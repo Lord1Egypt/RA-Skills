@@ -1,42 +1,59 @@
-## Description: <br>
-Generates images from text prompts or reference image URLs through the nano-banana2 imgEditNB2 API with optional aspect ratio and 1K, 2K, or 4K size settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images from text prompts or reference image URLs through the nano-banana2 imgEditNB2 API, with optional aspect ratio and image size settings.
 
-## Publisher: <br>
-[runninghcm](https://clawhub.ai/user/runninghcm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runninghcm](https://clawhub.ai/user/runninghcm)
 
-## Use Case: <br>
-External users and developers use this skill to create images from prompts, optionally using reference image URLs, aspect ratios, and image-size choices. It is suited for image generation requests such as posters, covers, and prompt-to-image or image-to-image workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, and the API key are sent to a third-party image-generation service. <br>
-Mitigation: Install only if you trust agent.mathmind.cn and kexiangai.com with those inputs, and avoid sending sensitive prompts or private image URLs. <br>
-Risk: The skill can optionally save X_API_KEY on disk for reuse. <br>
-Mitigation: Prefer a session-scoped X_API_KEY; if local-key mode is used, keep the file restricted and rotate or delete ~/.config/nano-banana2/.env when it is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to generate images or image variations from prompts and optional reference-image URLs while selecting supported aspect ratios and resolution tiers.
 
-## Reference(s): <br>
-- [nano-banana2 API Guide](references/api-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/runninghcm/nano-banana2) <br>
-- [imgEditNB2 API endpoint](https://agent.mathmind.cn/minimalist/api/imgEditNB2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with shell command examples and structured API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful API calls may return an image URL; use requires X_API_KEY and may optionally read a saved key only when the user enables local-key mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter remains 1.0.1 with no file changes in this release) <br>
+Risk: Prompts, reference-image URLs, and the API key are sent to agent.mathmind.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that third-party data transfer is acceptable for the user's content and credentials.
+
+Risk: A saved API key can be persisted locally and read when local-key mode is explicitly enabled.
+
+Mitigation: Prefer the session-scoped X_API_KEY environment variable and use local-key mode only after choosing to accept local credential storage.
+
+Risk: The documented stdin pipeline can expose real keys through command history or logs if copied directly.
+
+Mitigation: Use interactive key entry or a session environment variable for real credentials.
+
+## Reference(s):
+
+- [nano-banana2 API Guide](references/api-guide.md)
+- [ClawHub skill page](https://clawhub.ai/runninghcm/skills/nano-banana2)
+- [imgEditNB2 API endpoint](https://agent.mathmind.cn/minimalist/api/imgEditNB2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, parameter summaries, and generated image result status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return an image URL or an error summary from the third-party API.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

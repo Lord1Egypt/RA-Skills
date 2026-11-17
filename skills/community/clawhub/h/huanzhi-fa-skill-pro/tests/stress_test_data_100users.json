@@ -1,0 +1,1053 @@
+{
+  "stats": {
+    "totalTurns": 18680,
+    "totalRisks": 286,
+    "riskByType": {
+      "OPC_缺CTO": 33,
+      "团队过小": 32,
+      "缺少BP": 40,
+      "竞争激烈": 45,
+      "OPC情感共鸣缺失": 33,
+      "叙事不清晰": 45,
+      "创始人焦虑": 34,
+      "OPC融资阻力": 9,
+      "跑道不足": 15
+    },
+    "riskBySeverity": {
+      "critical": 15,
+      "high": 116,
+      "medium": 110,
+      "low": 45
+    },
+    "conversions": {
+      "total": 276,
+      "warm": 17,
+      "cold": 37,
+      "reject": 22,
+      "warmRate": "22%"
+    },
+    "opcVsNonOpc": {
+      "opc": {
+        "avgScore": 60.44,
+        "avgRisks": 3.98,
+        "avgConvs": 2.8
+      },
+      "nonOpc": {
+        "avgScore": 64.26,
+        "avgRisks": 1.74,
+        "avgConvs": 2.72
+      }
+    },
+    "moduleUsage": {
+      "1": 3946,
+      "2": 3541,
+      "3": 3354,
+      "4": 3615,
+      "5": 0,
+      "6": 3596
+    },
+    "errors": 0
+  },
+  "users": [
+    {
+      "id": 1,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 54,
+      "risks": 5,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 2,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 65,
+      "risks": 6,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 3,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 61,
+      "risks": 5,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 4,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 56,
+      "risks": 4,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 5,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 56,
+      "risks": 5,
+      "convs": 3,
+      "turns": 190
+    },
+    {
+      "id": 6,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 60,
+      "risks": 5,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 7,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 68,
+      "risks": 4,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 8,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 60,
+      "risks": 4,
+      "convs": 3,
+      "turns": 190
+    },
+    {
+      "id": 9,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 48,
+      "risks": 4,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 10,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 54,
+      "risks": 3,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 11,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 56,
+      "risks": 3,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 12,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 55,
+      "risks": 5,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 13,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 56,
+      "risks": 7,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 14,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 62,
+      "risks": 4,
+      "convs": 3,
+      "turns": 188
+    },
+    {
+      "id": 15,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 55,
+      "risks": 5,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 16,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 57,
+      "risks": 4,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 17,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 66,
+      "risks": 3,
+      "convs": 3,
+      "turns": 188
+    },
+    {
+      "id": 18,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 64,
+      "risks": 5,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 19,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 64,
+      "risks": 2,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 20,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 63,
+      "risks": 1,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 21,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 55,
+      "risks": 2,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 22,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 57,
+      "risks": 3,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 23,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 70,
+      "risks": 2,
+      "convs": 2,
+      "turns": 195
+    },
+    {
+      "id": 24,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 70,
+      "risks": 4,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 25,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 67,
+      "risks": 4,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 26,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 59,
+      "risks": 2,
+      "convs": 2,
+      "turns": 195
+    },
+    {
+      "id": 27,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 61,
+      "risks": 3,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 28,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 60,
+      "risks": 6,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 29,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 64,
+      "risks": 4,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 30,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 60,
+      "risks": 5,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 31,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 60,
+      "risks": 7,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 32,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 59,
+      "risks": 4,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 33,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 56,
+      "risks": 3,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 34,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 62,
+      "risks": 2,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 35,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 61,
+      "risks": 4,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 36,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 63,
+      "risks": 4,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 37,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 54,
+      "risks": 3,
+      "convs": 2,
+      "turns": 195
+    },
+    {
+      "id": 38,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 57,
+      "risks": 5,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 39,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 62,
+      "risks": 5,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 40,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 63,
+      "risks": 5,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 41,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 65,
+      "risks": 6,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 42,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 64,
+      "risks": 4,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 43,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 53,
+      "risks": 6,
+      "convs": 3,
+      "turns": 190
+    },
+    {
+      "id": 44,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 60,
+      "risks": 4,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 45,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 61,
+      "risks": 4,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 46,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 61,
+      "risks": 5,
+      "convs": 3,
+      "turns": 190
+    },
+    {
+      "id": 47,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 70,
+      "risks": 1,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 48,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 55,
+      "risks": 5,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 49,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 63,
+      "risks": 3,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 50,
+      "isOPC": true,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 70,
+      "risks": 0,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 51,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 65,
+      "risks": 3,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 52,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 66,
+      "risks": 1,
+      "convs": 3,
+      "turns": 188
+    },
+    {
+      "id": 53,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 70,
+      "risks": 2,
+      "convs": 3,
+      "turns": 180
+    },
+    {
+      "id": 54,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 60,
+      "risks": 2,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 55,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 56,
+      "risks": 1,
+      "convs": 3,
+      "turns": 188
+    },
+    {
+      "id": 56,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 59,
+      "risks": 4,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 57,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 72,
+      "risks": 3,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 58,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 60,
+      "risks": 3,
+      "convs": 3,
+      "turns": 183
+    },
+    {
+      "id": 59,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 59,
+      "risks": 1,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 60,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 62,
+      "risks": 0,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 61,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 60,
+      "risks": 1,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 62,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 64,
+      "risks": 2,
+      "convs": 3,
+      "turns": 182
+    },
+    {
+      "id": 63,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 68,
+      "risks": 1,
+      "convs": 3,
+      "turns": 180
+    },
+    {
+      "id": 64,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 62,
+      "risks": 3,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 65,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 60,
+      "risks": 4,
+      "convs": 3,
+      "turns": 180
+    },
+    {
+      "id": 66,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 68,
+      "risks": 1,
+      "convs": 3,
+      "turns": 190
+    },
+    {
+      "id": 67,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 61,
+      "risks": 1,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 68,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 64,
+      "risks": 2,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 69,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 72,
+      "risks": 0,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 70,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 52,
+      "risks": 3,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 71,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 62,
+      "risks": 1,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 72,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 69,
+      "risks": 0,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 73,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 61,
+      "risks": 2,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 74,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 64,
+      "risks": 3,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 75,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "已融资",
+      "score": 71,
+      "risks": 2,
+      "convs": 2,
+      "turns": 195
+    },
+    {
+      "id": 76,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "刚注册",
+      "score": 54,
+      "risks": 0,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 77,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有产品",
+      "score": 63,
+      "risks": 2,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 78,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "有收入",
+      "score": 59,
+      "risks": 1,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 79,
+      "isOPC": false,
+      "sector": "企业服务SaaS",
+      "stage": "准备融资",
+      "score": 63,
+      "risks": 0,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 80,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "已融资",
+      "score": 64,
+      "risks": 4,
+      "convs": 3,
+      "turns": 180
+    },
+    {
+      "id": 81,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "刚注册",
+      "score": 62,
+      "risks": 1,
+      "convs": 2,
+      "turns": 193
+    },
+    {
+      "id": 82,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有产品",
+      "score": 58,
+      "risks": 1,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 83,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有收入",
+      "score": 75,
+      "risks": 1,
+      "convs": 3,
+      "turns": 180
+    },
+    {
+      "id": 84,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "准备融资",
+      "score": 70,
+      "risks": 2,
+      "convs": 3,
+      "turns": 190
+    },
+    {
+      "id": 85,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "准备融资",
+      "score": 67,
+      "risks": 2,
+      "convs": 3,
+      "turns": 180
+    },
+    {
+      "id": 86,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "已融资",
+      "score": 74,
+      "risks": 1,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 87,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "刚注册",
+      "score": 66,
+      "risks": 1,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 88,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有产品",
+      "score": 65,
+      "risks": 3,
+      "convs": 3,
+      "turns": 185
+    },
+    {
+      "id": 89,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有收入",
+      "score": 70,
+      "risks": 1,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 90,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "准备融资",
+      "score": 65,
+      "risks": 2,
+      "convs": 2,
+      "turns": 191
+    },
+    {
+      "id": 91,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "已融资",
+      "score": 71,
+      "risks": 3,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 92,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "刚注册",
+      "score": 67,
+      "risks": 2,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 93,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有产品",
+      "score": 64,
+      "risks": 2,
+      "convs": 2,
+      "turns": 195
+    },
+    {
+      "id": 94,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有收入",
+      "score": 63,
+      "risks": 3,
+      "convs": 3,
+      "turns": 184
+    },
+    {
+      "id": 95,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "准备融资",
+      "score": 71,
+      "risks": 1,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 96,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "准备融资",
+      "score": 70,
+      "risks": 1,
+      "convs": 3,
+      "turns": 186
+    },
+    {
+      "id": 97,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "已融资",
+      "score": 67,
+      "risks": 1,
+      "convs": 2,
+      "turns": 192
+    },
+    {
+      "id": 98,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "刚注册",
+      "score": 57,
+      "risks": 1,
+      "convs": 3,
+      "turns": 183
+    },
+    {
+      "id": 99,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有产品",
+      "score": 65,
+      "risks": 2,
+      "convs": 3,
+      "turns": 187
+    },
+    {
+      "id": 100,
+      "isOPC": false,
+      "sector": "AI短剧",
+      "stage": "有收入",
+      "score": 56,
+      "risks": 3,
+      "convs": 3,
+      "turns": 184
+    }
+  ]
+}

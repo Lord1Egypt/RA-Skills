@@ -1,41 +1,57 @@
-## Description: <br>
-Audit and optimize MATLAB simulation programs against a corresponding academic paper or specification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and optimizes MATLAB simulation programs against a corresponding academic paper or specification while preserving paper-mandated algorithm logic, parameters, metrics, and experiment settings.
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare MATLAB simulation source with a reference paper or specification, fix fidelity issues, optimize runtime without changing required algorithm behavior, and produce a Chinese modification summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly edit MATLAB source files, remove code it judges unused, and write summary or scan-output files. <br>
-Mitigation: Use version control, review diffs before relying on results, and request an analysis-only or patch-preview pass when working in sensitive projects. <br>
-Risk: The release evidence flags self-maintenance diary and SKILL.md change instructions that go beyond the normal MATLAB optimization task. <br>
-Mitigation: Ignore or remove self-evolution diary and skill-maintenance instructions unless the user explicitly wants the skill to maintain its own notes. <br>
+## Use Case:
 
+Developers and engineers use this skill to compare MATLAB simulation source code with a paper or specification, fix paper-code mismatches, optimize runtime, and document changes in a Chinese optimization summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/matlab-simulation-optimizer-skill) <br>
-- [MATLAB audit checklist](references/matlab-audit-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, code, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, source-code edits, traceability tables, and optional JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write optimization_summary.md and matlab_static_scan.json in the target MATLAB project when requested or useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can directly edit MATLAB source files and write reports in the project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to show a change plan first, review diffs before accepting edits, and run the listed verification commands on representative cases.
+
+Risk: The bundled self-evolution workflow can write diary entries and propose changes to the skill itself.
+
+Mitigation: Remove or ignore the self-evolution section unless explicitly desired, and do not allow installed skill changes without human review.
+
+Risk: Performance optimizations could accidentally change paper-mandated algorithm logic, parameters, stopping criteria, or metrics.
+
+Mitigation: Require the traceability table and summary to identify preserved paper conditions, then compare pre/post results on deterministic reduced-size runs.
+
+## Reference(s):
+
+- [MATLAB 仿真论文对照检查清单](references/matlab-audit-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown summary, MATLAB source edits, traceability tables, verification notes, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes optimization_summary.md by default and may produce matlab_static_scan.json when the bundled static scanner is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

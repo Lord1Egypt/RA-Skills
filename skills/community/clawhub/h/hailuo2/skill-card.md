@@ -1,43 +1,57 @@
-## Description: <br>
-Helps agents build, submit, and track PoYo Hailuo 02 video-generation jobs, including prompt-optimized and image-to-video workflows for `hailuo-02` and `hailuo-02-pro`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use PoYo AI Hailuo 02 for prompt-optimized video generation and image-to-video workflows with the documented PoYo generation API.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare PoYo Hailuo 02 request payloads, submit authenticated video-generation jobs, and preserve the returned task ID for polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided prompts, callback URLs, and image URLs are sent to PoYo during job submission. <br>
-Mitigation: Review each payload before submission and avoid including secrets, private data, or private/internal URLs. <br>
-Risk: POYO_API_KEY can submit jobs on the configured PoYo account. <br>
-Mitigation: Store the API key securely, restrict access to trusted users and environments, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo Hailuo 02 video-generation requests, choose between standard and pro model variants, submit jobs, and retain task IDs for status polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Hailuo 02 API Reference](references/api.md) <br>
-- [PoYo Hailuo 02 Source Docs](https://docs.poyo.ai/api-manual/video-series/hailuo-02) <br>
-- [PoYo Unified Task Status Docs](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [PoYo Hailuo 02 OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/hailuo-02.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected model ID, request payload or parameter summary, reference-image notes, returned task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Prompts, image URLs, callback URLs, and job metadata are sent to PoYo during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data before submission and avoid private or internal image and callback URLs unless sharing them with PoYo is acceptable.
+
+Risk: The helper script can expose the API key and submitted payload through command-line arguments or process inspection.
+
+Mitigation: Prefer the POYO_API_KEY environment variable, avoid passing secrets as command-line arguments, and harden or replace the script before sensitive use.
+
+## Reference(s):
+
+- [PoYo Hailuo 02 model page](https://poyo.ai/models/hailuo-02)
+- [PoYo Hailuo 02 API docs](https://docs.poyo.ai/api-manual/video-series/hailuo-02)
+- [PoYo Hailuo 02 OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/hailuo-02.json)
+- [PoYo task status docs](https://docs.poyo.ai/api-manual/task-management/status)
+- [Local API reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the selected model id, payload summary or final payload, reference-image status, returned task_id, and next polling or webhook step.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

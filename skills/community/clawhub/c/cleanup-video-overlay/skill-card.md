@@ -1,48 +1,67 @@
-## Description: <br>
-Use this skill when the user wants to clean a video or screen recording by removing overlays such as status bars, notification banners, floating controls, subtitle bars, fixed watermarks, or other surface UI elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans videos and screen recordings by guiding fixed-overlay removal, mask generation, frame extraction, optional Gemini-based frame repair, and video rebuilding.
 
-## Publisher: <br>
-[hyuuuliu](https://clawhub.ai/user/hyuuuliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyuuuliu](https://clawhub.ai/user/hyuuuliu)
 
-## Use Case: <br>
-Developers, editors, and content operators use this skill to remove visible overlays from videos or screen recordings, choose an FFmpeg or Gemini-based cleanup path, generate masks, and rebuild cleaned video outputs with caveats about reconstruction quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gemini mode uploads selected video frames and masks to Google Gemini. <br>
-Mitigation: Use the local FFmpeg removelogo path for sensitive recordings, and only enable Gemini mode when the user accepts provider upload and API-key use. <br>
-Risk: Custom frame-editor commands can execute arbitrary local commands during per-frame restoration. <br>
-Mitigation: Use trusted editor commands only, inspect command templates before execution, and keep the edit scope limited to required input, mask, output, and frame-index placeholders. <br>
-Risk: Output and work directories may be overwritten or cleaned up during video processing. <br>
-Mitigation: Choose explicit output and work directories, avoid pointing them at valuable source folders, and preserve the work directory when intermediate frames or masks need review. <br>
-Risk: Covered video regions are plausible visual reconstructions, not guaranteed factual recovery of hidden content. <br>
-Mitigation: Keep masks tight, prefer deterministic FFmpeg cleanup for stable overlays, and label generative results as visual cleanup when reviewing or publishing outputs. <br>
+## Use Case:
 
+Developers, video editors, and agent operators use this skill to remove visible overlays from videos or screen recordings with deterministic FFmpeg paths first and targeted frame-repair workflows when needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hyuuuliu/cleanup-video-overlay) <br>
-- [Pipeline](references/pipeline.md) <br>
-- [Mask Strategies](references/mask-strategies.md) <br>
-- [Gemini Provider](references/gemini-provider.md) <br>
-- [Provider Integration](references/provider-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration notes, and references to generated video and work-directory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce masks, frame folders, run manifests, usage summaries, rebuilt videos, and caveats about visual reconstruction quality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Gemini mode sends video frames and masks to Google for model-based image editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Gemini mode only when external provider processing is intended, and confirm GEMINI_API_KEY configuration before running it.
+
+Risk: Custom frame-edit mode can execute an operator-provided editor command once per frame.
+
+Mitigation: Use only trusted editor commands and review command templates before processing video frames.
+
+Risk: The reported security guidance warns that work-directory cleanup can create data-loss risk when pointed at an existing or valuable directory.
+
+Mitigation: Use a new disposable work directory or keep cleanup behavior contained before passing --workdir.
+
+Risk: Generated repairs are plausible visual cleanups rather than guaranteed recovery of covered content.
+
+Mitigation: Review output for realism, temporal consistency, and residual artifacts before redistribution or downstream use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/hyuuuliu/skills/cleanup-video-overlay)
+- [Publisher profile](https://clawhub.ai/user/hyuuuliu)
+- [Skill homepage](https://github.com/hyuuuliu/video-overlay-cleanup-skill)
+- [Pipeline](references/pipeline.md)
+- [Mask Strategies](references/mask-strategies.md)
+- [Gemini Provider](references/gemini-provider.md)
+- [Provider Integration](references/provider-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON manifests, generated masks, restored frames, and rebuilt video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require GEMINI_API_KEY for Gemini mode and can report frame count, estimated spend, token usage, and cleanup caveats.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

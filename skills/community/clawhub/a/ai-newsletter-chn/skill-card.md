@@ -1,43 +1,57 @@
-## Description: <br>
-Generate a daily AI news newsletter for a Chinese audience from fresh web sources, summarizing current AI/ML articles into Markdown and JSON with Simplified Chinese output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily AI news newsletter for a Chinese audience from fresh web sources, summarizing current AI/ML articles into Markdown and JSON with Simplified Chinese output.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External users and content teams use this skill to assemble concise Chinese-language AI news digests from recent web sources. It is intended for current AI/ML news, releases, funding, product launches, benchmarks, regulation, and practitioner-relevant developments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Brave and Firecrawl API keys for search and page fetching, which can create quota or billing exposure. <br>
-Mitigation: Use scoped keys where available, monitor provider usage, and rotate or revoke keys if the skill is no longer needed. <br>
-Risk: Generated newsletters may contain stale, incorrect, or mismatched information from live web results. <br>
-Mitigation: Review generated items, source links, warnings, and fallback-search notes before publishing or sharing the newsletter. <br>
-Risk: Summarizing current articles can create copyright or attribution concerns if full article text is reproduced. <br>
-Mitigation: Keep summaries brief, factual, and linked to the source; do not include full copyrighted article text. <br>
+## Use Case:
 
+External users and developers use this skill to curate recent AI/ML news into a daily Simplified Chinese newsletter with source links and a matching JSON payload.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/ai-newsletter-chn) <br>
-- [Publisher profile](https://clawhub.ai/user/j3ffyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown newsletter plus structured JSON newsletter data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns newsletter_items, markdown_newsletter, and json_newsletter; final summaries are translated to Simplified Chinese while source titles and URLs are preserved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill uses configured Brave and Firecrawl credentials to search and fetch public web pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where those credentials are intended for agent use, and do not expose secrets in prompts or generated output.
+
+Risk: The skill is designed for Simplified Chinese AI-news digests and may not fit other languages or non-news tasks without edits.
+
+Mitigation: Use it for current AI/ML newsletter generation as documented, and modify the skill before applying it to other languages or task types.
+
+Risk: Generated summaries depend on current public web sources and may reflect missing dates, fetch failures, or source inconsistencies.
+
+Mitigation: Review source links, warnings, and article metadata before republishing the newsletter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/ai-newsletter-chn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Simplified Chinese Markdown newsletter plus structured JSON object.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes article titles, URLs, domains, publication dates, summaries, relevance scores, source queries, and warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

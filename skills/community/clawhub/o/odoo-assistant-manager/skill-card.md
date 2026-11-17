@@ -1,43 +1,59 @@
-## Description: <br>
-Odoo ERP via XML-RPC -- sales, web orders, stock, products (CLI). Optional Discuss listener. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Odoo ERP over XML-RPC for CLI sales, web-order, stock, product, order, and event workflows, with an optional Discuss listener.
 
-## Publisher: <br>
-[crbwi](https://clawhub.ai/user/crbwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crbwi](https://clawhub.ai/user/crbwi)
 
-## Use Case: <br>
-Store operators and agents use this skill to inspect Odoo sales, web orders, stock, products, order details, and event registrations from the terminal. It can also run an optional Odoo Discuss listener that polls messages and invokes the same management commands when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Odoo Discuss listener can make live ERP changes from chat messages without clear user or channel authorization controls. <br>
-Mitigation: Avoid running the listener in production until allowed users and channels, confirmations for write actions, URL restrictions, HTTPS validation, and PII redaction or authorization are added. <br>
-Risk: The skill performs privileged Odoo operations against sales, stock, products, orders, and events. <br>
-Mitigation: Install only if the publisher is trusted, use a dedicated least-privilege Odoo account, and test against a non-production database first. <br>
+## Use Case:
 
+Store operators and developers use this skill to run Odoo ERP management commands from an agent-controlled terminal, including sales summaries, web-order backlog checks, stock lookup and updates, product creation, order lookup, and event registration counts. The optional Discuss listener can poll Odoo messages and route recognized requests to the same CLI.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/crbwi/odoo-assistant-manager) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with terminal commands and summarized command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ODOO_URL, ODOO_DB, ODOO_USER, and ODOO_PASSWORD or ODOO_PASS; the optional listener also requires ODOO_BOT_PARTNER_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact SKILL.md and skill.json state 1.1.0) <br>
+Risk: The optional Discuss listener can make real ERP changes from broad Odoo Discuss messages without clear authorization or confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the listener as privileged automation; install it only for tightly controlled Odoo accounts and test databases unless allowlisted channels or users and explicit confirmations for writes are added.
+
+Risk: Stock updates and product creation can change production Odoo data using the configured account.
+
+Mitigation: Use a least-privilege Odoo account, verify the target Odoo URL and database before execution, and test commands against a non-production database first.
+
+Risk: Product import behavior can fetch external URLs and import HTML or images into Odoo.
+
+Mitigation: Restrict outbound URL fetching to trusted sources, sanitize imported HTML, and prefer draft-only product import until human review is complete.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/crbwi/skills/odoo-assistant-manager)
+- [README](README.md)
+- [Skill manifest](skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell command snippets and summarized terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute live Odoo XML-RPC operations when required environment variables and account permissions are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact files report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

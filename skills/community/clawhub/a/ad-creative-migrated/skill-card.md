@@ -1,37 +1,50 @@
-## Description: <br>
-Ad Creative Migrated documents a migrated ad creative skill with Qwen Code usage examples, integration notes, and quota-optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A migrated ad-creative skill scaffold with usage examples and optimization guidance for Qwen Code.
 
-## Publisher: <br>
-[jacr6](https://clawhub.ai/user/jacr6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacr6](https://clawhub.ai/user/jacr6)
 
-## Use Case: <br>
-Developers and agents use this skill as guidance for running and integrating a migrated ad creative workflow in Qwen Code or OpenCode-style local skill setups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example snippets reference local helper skills and integrations that are not part of this reviewed package. <br>
-Mitigation: Review the referenced optimized subagent, skill search, and Exa Search integrations separately before using those examples. <br>
+## Use Case:
 
+Developers and agent users use this skill as a migrated ad-creative scaffold, including examples for invoking the skill, integrating helper skills, and applying quota-oriented optimizations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with JavaScript code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no automatic execution or sensitive access identified by the security review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package is an incomplete migrated scaffold and references other local skills in examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review referenced skills such as subagente-optimizado, buscador_de_skills, and exa-search separately before relying on those integrations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacr6/skills/ad-creative-migrated)
+- [Publisher profile](https://clawhub.ai/user/jacr6)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only migrated scaffold; no executable payload is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

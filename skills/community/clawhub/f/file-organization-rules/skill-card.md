@@ -1,40 +1,54 @@
-## Description: <br>
-Helps an agent organize Jeff's local documents by proposing and, after confirmation, applying Chinese folder naming and categorization rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists Jeff in organizing Chinese-named local document folders by applying lowercase pinyin-initial folder prefixes and content-based categorization rules.
 
-## Publisher: <br>
-[iamdracula](https://clawhub.ai/user/iamdracula) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamdracula](https://clawhub.ai/user/iamdracula)
 
-## Use Case: <br>
-Personal-agent users use this skill when Jeff asks an agent to reorganize a local folder. The agent scans the folder, proposes a structure, and after confirmation moves files, preserves original filenames, applies pinyin-initial prefixes to top-level Chinese folder names, and removes empty directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Folder renames, file moves, and empty-directory removal can cause misplaced files or unwanted local changes. <br>
-Mitigation: Review the proposed moves, folder renames, and empty directories before execution, and keep backups for important document collections. <br>
-Risk: Similar organization names can be incorrectly merged during classification. <br>
-Mitigation: Keep distinct entities separate when the skill calls out a difference, and ask Jeff before acting on uncertain classifications. <br>
+## Use Case:
 
+People organizing Jeff's local document folders use this skill to scan directory contents, propose a folder structure, classify loose files, preserve Chinese names, and perform changes only after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamdracula/file-organization-rules) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with proposed file operations and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs the agent to show the plan before making uncertain changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incorrect folder moves or empty-directory deletion could disrupt business records or mixed-language materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed organization plan before approving file moves or deletion of empty directories.
+
+Risk: Similarly named tobacco-industry industrial enterprises and commercial units could be combined incorrectly.
+
+Mitigation: Keep industrial enterprises and commercial units separate when categorizing folders and verify ambiguous unit names with the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamdracula/skills/file-organization-rules)
+- [Publisher profile](https://clawhub.ai/user/iamdracula)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with proposed file operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include directory scan summaries, organization plans, and confirmation-gated file move or cleanup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

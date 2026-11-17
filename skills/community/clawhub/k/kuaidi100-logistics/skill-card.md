@@ -1,44 +1,60 @@
-## Description: <br>
-Calls Kuaidi100 APIs with curl to query package tracking, identify carriers, estimate shipping costs, and estimate delivery times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kuaidi100 Logistics helps an agent query shipment tracking, identify carriers, estimate shipping fees, and estimate delivery times through the Kuaidi100 API.
 
-## Publisher: <br>
-[peterlcm](https://clawhub.ai/user/peterlcm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterlcm](https://clawhub.ai/user/peterlcm)
 
-## Use Case: <br>
-External users and agents use this skill to answer logistics questions, including shipment tracking, carrier identification, shipping cost estimates, and delivery time estimates through Kuaidi100. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment details, relevant phone numbers, addresses, and route history may be sent to Kuaidi100 during lookups. <br>
-Mitigation: Use the skill only when sharing those logistics details with Kuaidi100 is acceptable, and provide only the fields needed for the requested lookup. <br>
-Risk: The KUAIDI100_API_KEY value can be exposed if request URLs, shell history, or command output are shared. <br>
-Mitigation: Store the API key in the environment, treat it as a secret, and avoid sharing logs or command output that include request URLs. <br>
-Risk: Free API quota may be exhausted during normal use. <br>
-Mitigation: Configure a dedicated Kuaidi100 API key for continued use and tell users when quota exhaustion prevents a lookup. <br>
+## Use Case:
 
+External users and support agents use this skill to answer logistics questions, including shipment status, carrier identification, shipping cost estimates, and expected delivery times.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peterlcm/kuaidi100-logistics) <br>
-- [Publisher profile](https://clawhub.ai/user/peterlcm) <br>
-- [Kuaidi100 API platform](https://api.kuaidi100.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses from Kuaidi100 API calls, with curl command guidance when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use KUAIDI100_API_KEY when configured; otherwise documented calls use the service's free quota path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Shipment tracking numbers, phone numbers, addresses, routes, timestamps, and logistics history may be sent to Kuaidi100.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those shipment details with Kuaidi100 is acceptable, and avoid sensitive personal or business shipments unless API key and logging risks have been reviewed.
+
+Risk: The skill is written to trigger proactively for casual logistics requests, which can reduce user control over when shipment data is shared.
+
+Mitigation: Prefer explicit invocation and confirm sensitive shipment details before making third-party API calls.
+
+Risk: Free quota exhaustion can interrupt logistics queries when no API key is configured.
+
+Mitigation: Configure KUAIDI100_API_KEY for expected production use and provide clear user guidance when quota is exhausted.
+
+## Reference(s):
+
+- [Kuaidi100 API base endpoint](https://api.kuaidi100.com/stdio)
+- [Kuaidi100 API open platform](https://api.kuaidi100.com)
+- [ClawHub skill page](https://clawhub.ai/peterlcm/skills/kuaidi100-logistics)
+- [ClawHub publisher profile](https://clawhub.ai/user/peterlcm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline bash curl examples and API-returned Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party logistics API responses and guidance for configuring KUAIDI100_API_KEY.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

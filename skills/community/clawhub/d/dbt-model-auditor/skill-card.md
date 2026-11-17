@@ -1,39 +1,48 @@
-## Description: <br>
-Audits dbt projects for model quality, test coverage, documentation completeness, performance, and adherence to best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit dbt (data build tool) projects for model quality, test coverage, documentation completeness, performance, and adherence to best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analytics engineers, and data teams use this skill to review dbt projects for model quality, naming, ref/source usage, test coverage, documentation, materialization strategy, SQL quality, governance, and performance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read dbt profile configuration that contains credentials, tokens, hosts, private key paths, or other sensitive connection details.
+
+Mitigation: Use redacted profile data or confirm before use that the agent will not print or summarize sensitive profile fields.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analytics engineers, and data teams use this skill to audit dbt projects for naming, lineage, tests, documentation, materialization choices, SQL quality, governance, and performance. It produces prioritized findings and remediation examples for improving dbt model health. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect dbt profile configuration that can contain warehouse credentials. <br>
-Mitigation: Keep the audit scoped to the intended project directory and provide redacted target or profile details instead of granting access to an unredacted profiles.yml. <br>
+**Output Format:** [Markdown audit report with inline shell commands and remediation examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/dbt-model-auditor) <br>
-- [Publisher Profile](https://clawhub.ai/user/charlie-morrison) <br>
+**Other Properties Related to Output:** [Produces a health score, category scores, prioritized findings, per-model details, and remediation examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown audit report with inline SQL, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes health scores, category breakdowns, prioritized issues, per-model findings, and remediation examples.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

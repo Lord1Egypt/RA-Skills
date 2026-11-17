@@ -1,41 +1,57 @@
-## Description: <br>
-Creates and verifies OpenTimestamps proofs that anchor local file hashes to the Bitcoin blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create cryptographic proofs anchoring files' exact content and timestamp to the Bitcoin blockchain for immutable, verifiable history.
 
-## Publisher: <br>
-[axhoff](https://clawhub.ai/user/axhoff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[axhoff](https://clawhub.ai/user/axhoff)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create timestamp proofs for important workspace files, verify existing .ots proof files, and archive older proofs when file contents change. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The OpenTimestamps client runs from the local Python environment and is invoked by the skill's shell scripts. <br>
-Mitigation: Install the OpenTimestamps client only from a trusted Python environment and review the resolved OTS_BIN before use. <br>
-Risk: Proof files can reveal file existence, timing, and grouping even though the scripts do not upload file contents. <br>
-Mitigation: Treat .ots files and archive directories as metadata-bearing artifacts, and timestamp files separately with delays when linkability matters. <br>
-Risk: A valid timestamp proves that exact bytes existed by a time, but does not prove the content is true or safe. <br>
-Mitigation: Use timestamp verification as integrity evidence only, and independently review the underlying file content before trusting it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Timestamp ClawHub listing](https://clawhub.ai/axhoff/timestamp) <br>
+## Use Case:
 
+Developers and agents use this skill to timestamp workspace files with OpenTimestamps, archive changed proofs, and verify .ots proof files for file-history integrity.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local .ots proof files and verification summaries through shell scripts that call the OpenTimestamps client.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hash and timing metadata for timestamped files may be sent to third-party OpenTimestamps infrastructure.
+
+Mitigation: Review the target file list before stamping and avoid highly sensitive or easily guessable files unless that metadata exposure is acceptable.
+
+Risk: Auto-memory mode can include USER.md, MEMORY.md, SOUL.md, AGENTS.md, and memory/*.md from the workspace.
+
+Mitigation: Inspect the auto-memory target set before running it manually, on commits, or on a schedule.
+
+Risk: The scripts depend on the external OpenTimestamps client and timestamp infrastructure.
+
+Mitigation: Install the OpenTimestamps client in an isolated, preferably pinned environment and verify proofs after Bitcoin confirmation.
+
+## Reference(s):
+
+- [Timestamp ClawHub release](https://clawhub.ai/axhoff/skills/timestamp)
+- [Publisher profile](https://clawhub.ai/user/axhoff)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and shell status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates .ots proof files beside target files and archives older proofs under .ots-archive when files change.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

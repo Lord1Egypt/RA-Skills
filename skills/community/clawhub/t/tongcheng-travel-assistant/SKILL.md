@@ -1,7 +1,7 @@
 ---
-name: tongcheng-travel-assistant
+name: 同程旅行助手
 display_name: "同程旅行助手"
-description: 同程旅行全品类搜索，酒店/机票/火车票/汽车票/景点门票/综合交通/度假线路7大品类全覆盖，含预订链接和实时价格，零配置即装即用。
+description: 同程旅行全品类搜索，酒店/机票/火车票/汽车票/景点门票/综合交通/度假线路7大品类全覆盖，含预订链接和实时价格，零配置即装即用。暑期同程旅行特惠，景点酒店一站预订
 tags: [同程旅行, 酒店查询, 机票查询, 火车票查询, 景点门票]
 tools:
   - name: tongcheng_hotel_search

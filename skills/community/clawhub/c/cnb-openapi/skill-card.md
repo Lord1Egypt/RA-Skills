@@ -1,53 +1,61 @@
-## Description: <br>
-Interacts with the CNB (Cloud Native Build) Open API for code management and development collaboration, including querying projects, repositories, issues, pull requests, and related development data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interacts with the CNB (Cloud Native Build) Open API for code management and development collaboration tasks, including repositories, issues, pull requests, builds, organizations, members, releases, registries, and related platform data.
 
-## Publisher: <br>
-[sixther-dc](https://clawhub.ai/user/sixther-dc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sixther-dc](https://clawhub.ai/user/sixther-dc)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to execute authenticated CNB API operations for repository, issue, pull request, build, workspace, release, organization, member, registry, and security workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authenticated CNB account and repository authority. <br>
-Mitigation: Use a least-privilege CNB_TOKEN, avoid storing it in shared shell profiles or logs, and limit access to the repositories and organizations required for the task. <br>
-Risk: State-changing CNB operations can affect repositories, permissions, builds, workspaces, pull requests, releases, registries, and AI auto-PR actions. <br>
-Mitigation: Require explicit workflow confirmation before POST, PUT, PATCH, DELETE, merge, permission, build, workspace, and AI auto-PR actions are executed. <br>
-Risk: An incorrect CNB_API_ENDPOINT could send authenticated requests to an unintended endpoint. <br>
-Mitigation: Verify CNB_API_ENDPOINT before use and prefer the documented default endpoint unless a trusted alternate endpoint is required. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to look up and operate on CNB platform resources through authenticated OpenAPI calls. It is suited for repository, issue, pull request, build, organization, member, release, registry, workspace, and security workflows where the agent should execute curl requests and summarize returned API data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sixther-dc/cnb-openapi) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Node usage](docs/node.md) <br>
-- [Go usage](docs/go.md) <br>
-- [Claude Code usage](docs/claudecode.md) <br>
-- [OpenClaw usage](docs/openclaw.md) <br>
-- [Build status API](references/build/getbuildstatus.md) <br>
-- [Repository details API](references/repositories/getbyid.md) <br>
-- [Issue details API](references/issues/getissue.md) <br>
-- [Pull request details API](references/pulls/getpull.md) <br>
-- [Security overview API](references/security/getreposecurityoverview.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown with curl commands, CNB API response summaries, and JSON data when returned by the API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and CNB_TOKEN; CNB_API_ENDPOINT is optional and defaults to https://api.cnb.cool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.18.9 (source: ClawHub release evidence) <br>
+Risk: The skill is a broad authenticated CNB API operator that can perform destructive repository and organization actions without clear confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a least-privilege CNB token, prefer read-only tokens for lookup tasks, and require manual review before create, update, delete, permission, merge, build, registry, workspace, organization, or AI PR actions.
+
+Risk: Token exposure or unintended API targeting can occur if credentials are stored broadly or the API endpoint is changed unexpectedly.
+
+Mitigation: Avoid storing CNB_TOKEN in global shell startup files when possible, scope tokens to the task, and keep CNB_API_ENDPOINT fixed to a trusted HTTPS CNB host.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sixther-dc/skills/cnb-openapi)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Claude Code installation](docs/claudecode.md)
+- [OpenClaw installation](docs/openclaw.md)
+- [Node usage](docs/node.md)
+- [Go usage](docs/go.md)
+- [CNB API endpoint](https://api.cnb.cool)
+- [CNB knowledge base documentation](https://docs.cnb.cool/zh/ai/knowledge-base.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with curl commands, configuration notes, and summarized CNB API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and CNB_TOKEN; CNB_API_ENDPOINT is optional and should remain fixed to a trusted HTTPS CNB host.]
+
+## Skill Version(s):
+
+1.18.9 (source: ClawHub release evidence, released 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

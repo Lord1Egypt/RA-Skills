@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendario de Actividades · Skool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: #0b1220; }
+    /* ===== Lienzo fijo 2000x1143 (mismo ratio que el calendario de F100K) ===== */
+    #cal {
+      position: relative;
+      width: 2000px;
+      height: 1143px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+    }
+    #cal .bg-overlay {
+      position: absolute; inset: 0;
+      background: var(--overlay, transparent);
+      pointer-events: none;
+    }
+    #cal .layout {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 470px 1fr;
+      height: 100%;
+      padding: 56px 60px 56px 48px;
+      gap: 40px;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      border: 2px solid var(--panel-border, rgba(255,255,255,.28));
+      border-radius: 10px;
+      padding: 30px 28px;
+      background: var(--panel-bg, rgba(8,16,34,.42));
+      backdrop-filter: blur(2px);
+      display: flex; flex-direction: column;
+    }
+    .brand { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; }
+    .brand .logo {
+      width: 104px; height: 104px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+      border: 3px solid var(--accent, #6aa0ff);
+      background: #0b1730;
+    }
+    .brand .logo-fallback {
+      width: 104px; height: 104px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Oswald'; font-weight: 700; font-size: 30px;
+      background: linear-gradient(135deg, var(--accent,#6aa0ff), #0b1730);
+      border: 3px solid rgba(255,255,255,.3);
+    }
+    .brand .mes { font-family: 'Oswald'; font-weight: 700; font-size: 58px; line-height: .9; letter-spacing: 1px; text-transform: uppercase; }
+    .brand .comu { font-size: 18px; font-weight: 600; opacity: .9; margin-top: 4px; }
+
+    .block-title { font-family:'Oswald'; font-weight:700; font-size: 23px; letter-spacing:.5px; margin: 22px 0 12px; }
+    .horarios { list-style: none; }
+    .horarios li { font-size: 16.5px; margin-bottom: 9px; line-height: 1.25; }
+    .horarios li b { font-weight: 700; }
+    .horarios li span { opacity: .82; }
+
+    .atento { list-style: none; margin-top: 6px; }
+    .atento li {
+      display: flex; align-items: flex-start; gap: 11px;
+      margin-bottom: 15px; font-size: 16px; line-height: 1.25;
+    }
+    .atento .ic { font-size: 22px; flex-shrink: 0; line-height: 1; }
+    .atento .ev-date { font-weight: 800; }
+
+    .sidebar-foot { margin-top: auto; padding-top: 18px; font-size: 12.5px; opacity:.5; }
+
+    /* ===== CALENDAR AREA ===== */
+    .cal-area { display: flex; flex-direction: column; min-width: 0; }
+    .month-title {
+      font-family:'Oswald'; font-weight:700; text-transform: uppercase;
+      font-size: 60px; letter-spacing: 2px; text-align: center; margin-bottom: 22px;
+      text-shadow: 0 3px 14px rgba(0,0,0,.5);
+    }
+    .grid { flex: 1; display: grid; grid-template-rows: auto 1fr; gap: 0; }
+    table.cal { width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed; }
+    table.cal th {
+      font-family:'Oswald'; font-weight:600; font-size: 20px; letter-spacing:.5px;
+      padding: 10px 6px; text-align: center;
+      border: 1px solid var(--grid-line, rgba(255,255,255,.16));
+      border-bottom: none;
+    }
+    table.cal td {
+      border: 1px solid var(--grid-line, rgba(255,255,255,.16));
+      vertical-align: top;
+      padding: 8px 7px 6px;
+      width: 14.28%;
+      position: relative;
+    }
+    td.empty { background: rgba(0,0,0,.10); }
+    .daynum {
+      display: inline-flex; align-items:center; justify-content:center;
+      min-width: 32px; height: 32px; border-radius: 7px;
+      font-family:'Oswald'; font-weight: 600; font-size: 18px;
+      background: var(--daynum-bg, rgba(40,80,150,.5));
+      color: var(--daynum-fg, #dcebff);
+      margin-bottom: 6px;
+    }
+    .chips { display: flex; flex-direction: column; gap: 4px; }
+    .chip {
+      font-weight: 800; font-size: 11.5px; line-height: 1.08;
+      text-transform: uppercase; letter-spacing: .2px;
+      padding: 4px 7px; border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.35);
+      word-break: break-word;
+    }
+    .chip.pill {
+      border-radius: 999px; text-align: center;
+      padding: 5px 10px;
+      background: var(--special-bg, linear-gradient(135deg,#1f6f8b,#2bb6c9));
+      color: #fff; border: 2px solid rgba(255,255,255,.55);
+      box-shadow: 0 3px 9px rgba(0,0,0,.45);
+    }
+    .chip .ic { margin-right: 3px; }
+  </style>
+</head>
+<body>
+  <div id="cal"></div>
+
+  <script>
+    // ============================================================
+    //  DATOS — render.js inyecta window.__DATA__ antes de este script.
+    //  Si no existe, se usa la muestra de abajo (para abrir el HTML solo).
+    // ============================================================
+    const SAMPLE = {
+      month: 5, year: 2026,
+      bg: "", // dataURI del fondo (inyectado por render.js)
+      theme: {
+        vars: {
+          "--overlay": "linear-gradient(180deg, rgba(6,14,32,.35), rgba(6,14,32,.55))",
+          "--panel-bg": "rgba(8,16,34,.42)",
+          "--panel-border": "rgba(255,255,255,.28)",
+          "--accent": "#6aa0ff",
+          "--grid-line": "rgba(255,255,255,.18)",
+          "--daynum-bg": "rgba(40,80,150,.5)",
+          "--daynum-fg": "#dcebff",
+          "--special-bg": "linear-gradient(135deg,#1f6f8b,#2bb6c9)"
+        }
+      },
+      config: {
+        comunidad: "Fórmula 100k", mesLabel: "MAY.", logo: "",
+        rutinaSemanal: {
+          1: [{s:"Onboarding", t:{bg:"#000",fg:"#fff"}}],
+          2: [{s:"Q&A en vivo", t:{bg:"#1e3a8a",fg:"#fff"}}],
+        },
+        horarios: { 1:"10AM · 6PM", 2:"10AM · 4:30PM" },
+        eventos: [{ fecha:"2026-05-11", titulo:"Inicio del reto", icono:"📖", fechaLabel:"11 de mayo" }],
+      }
+    };
+    const DATA = window.__DATA__ || SAMPLE;
+
+    const DOW = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    const MES_NOMBRE = ["","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+
+    function esc(s){ return String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+    function chipHTML(item) {
+      const t = item.t || {};
+      if (item.special) {
+        return `<div class="chip pill">${item.ic?`<span class="ic">${item.ic}</span>`:""}${esc(item.s)}</div>`;
+      }
+      const style = `background:${t.bg||"#333"};color:${t.fg||"#fff"};`
+                  + (t.border?`border:1.5px solid ${t.border};`:"")
+                  + (t.skew?"transform:skewX(-4deg);":"");
+      return `<div class="chip" style="${style}">${item.ic?`<span class="ic">${item.ic}</span>`:""}${esc(item.s)}</div>`;
+    }
+
+    function buildGrid(cfg, month, year) {
+      const first = new Date(year, month-1, 1);
+      const startDow = first.getDay();              // 0=Dom
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const eventsByDay = {};
+      (cfg.eventos||[]).forEach(ev => {
+        const d = new Date(ev.fecha + "T00:00:00");
+        if (d.getMonth() === month-1 && d.getFullYear() === year) {
+          (eventsByDay[d.getDate()] ||= []).push(ev);
+        }
+      });
+
+      let cells = [];
+      for (let i=0;i<startDow;i++) cells.push(null);
+      for (let day=1; day<=daysInMonth; day++) {
+        const dow = new Date(year, month-1, day).getDay();
+        const recurring = (cfg.rutinaSemanal && cfg.rutinaSemanal[dow]) ? cfg.rutinaSemanal[dow] : [];
+        const evs = (eventsByDay[day]||[]).map(e => ({ s:e.titulo, ic:e.icono, special:true }));
+        cells.push({ day, items: [...recurring, ...evs] });
+      }
+      while (cells.length % 7 !== 0) cells.push(null);
+
+      const rows = [];
+      for (let i=0;i<cells.length;i+=7) rows.push(cells.slice(i,i+7));
+      return rows;
+    }
+
+    function render() {
+      const { config: cfg, theme, month, year, bg } = DATA;
+      const root = document.getElementById("cal");
+
+      // tema (CSS vars + fondo)
+      const vars = (theme && theme.vars) || {};
+      Object.entries(vars).forEach(([k,v]) => root.style.setProperty(k, v));
+      if (theme && theme.textColor) root.style.color = theme.textColor;
+      if (bg) root.style.backgroundImage = `url("${bg}")`;
+      else if (vars["--fondo-css"]) root.style.background = vars["--fondo-css"];
+
+      const rows = buildGrid(cfg, month, year);
+
+      // sidebar
+      const horarios = Object.entries(cfg.horarios||{})
+        .map(([dow,h]) => `<li><b>${DOW[dow]}</b> <span>${esc(h)}</span></li>`).join("");
+      const atento = (cfg.eventos||[])
+        .filter(e => e.atento !== false && new Date(e.fecha+"T00:00:00").getMonth() === month-1)
+        .map(e => `<li><span class="ic">${e.icono||"📌"}</span><span>${esc(e.titulo)}${e.fechaLabel?` — <span class="ev-date">${esc(e.fechaLabel)}</span>`:""}</span></li>`).join("");
+
+      const logoHTML = cfg.logo
+        ? `<img class="logo" src="${cfg.logo}" alt="logo">`
+        : `<div class="logo-fallback">${esc((cfg.comunidad||"").slice(0,2).toUpperCase())}</div>`;
+
+      // calendario
+      const thead = `<tr>${DOW.map(d=>`<th>${d}</th>`).join("")}</tr>`;
+      const tbody = rows.map(week => `<tr>${week.map(cell => {
+        if (!cell) return `<td class="empty"></td>`;
+        const chips = cell.items.map(chipHTML).join("");
+        return `<td><span class="daynum">${cell.day}</span><div class="chips">${chips}</div></td>`;
+      }).join("")}</tr>`).join("");
+
+      root.innerHTML = `
+        <div class="bg-overlay"></div>
+        <div class="layout">
+          <aside class="sidebar">
+            <div class="brand">
+              ${logoHTML}
+              <div>
+                <div class="mes">${esc(cfg.mesLabel || MES_NOMBRE[month])}</div>
+                <div class="comu">${esc(cfg.comunidad||"")}</div>
+              </div>
+            </div>
+            ${horarios ? `<div class="block-title">¡Recuerda los horarios!</div><ul class="horarios">${horarios}</ul>` : ""}
+            ${atento ? `<div class="block-title">Estáte atento a</div><ul class="atento">${atento}</ul>` : ""}
+            <div class="sidebar-foot">${esc(cfg.comunidad||"")} · Calendario de Actividades</div>
+          </aside>
+          <section class="cal-area">
+            <h1 class="month-title">${esc(MES_NOMBRE[month])} ${year}</h1>
+            <div class="grid">
+              <table class="cal">
+                <thead>${thead}</thead>
+                <tbody>${tbody}</tbody>
+              </table>
+            </div>
+          </section>
+        </div>`;
+    }
+
+    render();
+  </script>
+</body>
+</html>

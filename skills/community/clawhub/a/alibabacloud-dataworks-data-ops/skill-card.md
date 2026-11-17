@@ -1,46 +1,69 @@
-## Description: <br>
-This skill guides agents through Alibaba Cloud DataWorks Operations Center task, workflow, task instance, and alert rule operations using the Aliyun CLI and dataworks-public OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataWorks Operations Center assistant for task and workflow operations, alert rule creation and management.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Data platform operators, developers, and support engineers use this skill to inspect DataWorks task and workflow state, retrieve task instance logs, review dependencies and operation logs, and read alert rule details during troubleshooting and failure recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance includes a curl-to-bash installation path for the Aliyun CLI. <br>
-Mitigation: Prefer a trusted package manager or manually verified installer; only use the setup script after independently trusting and verifying the source. <br>
-Risk: The skill operates with sensitive Alibaba Cloud credentials and DataWorks RAM permissions. <br>
-Mitigation: Use temporary or least-privilege RAM credentials scoped to required DataWorks actions, and do not pass or print access keys in commands or conversation. <br>
-Risk: Reference material includes examples for services outside the DataWorks operations scope. <br>
-Mitigation: Follow only the DataWorks task, workflow, task instance, and alert rule commands unless the user explicitly requests other Alibaba Cloud services. <br>
+## Use Case:
 
+DataWorks operators, developers, and support engineers use this skill to inspect scheduled task and workflow state, retrieve instance logs, review dependencies, and check alert rules through Aliyun CLI commands.
 
-## Reference(s): <br>
-- [RAM Permission List](references/ram-policies.md) <br>
-- [CLI Command Quick Reference](references/related-commands.md) <br>
-- [Success Verification Methods](references/verification-method.md) <br>
-- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires confirmed region, project, business date, resource identifiers, RAM permissions, and an existing Aliyun CLI credential profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Setup instructions may lead users to run curl-to-bash or unverified latest binary installers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a preinstalled or independently verified Aliyun CLI and confirm the installed version before using the skill.
+
+Risk: Automatic plugin installation and CLI AI-mode change persistent local CLI behavior.
+
+Mitigation: Review and intentionally enable these settings only when needed, then disable AI-mode after the workflow and document any persistent CLI configuration changes.
+
+Risk: Broad DataWorks permissions can expose more workspace data than required.
+
+Mitigation: Grant only the listed RAM actions for the specific DataWorks workspace instead of account-wide access.
+
+Risk: Credential handling can expose Alibaba Cloud access keys if credentials are entered or printed in the agent session.
+
+Mitigation: Configure credentials outside the agent session and use only credential status checks during skill execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-dataworks-data-ops)
+- [Skill Source](artifact/SKILL.md)
+- [RAM Permission List](artifact/references/ram-policies.md)
+- [CLI Command Quick Reference](artifact/references/related-commands.md)
+- [Success Verification Methods](artifact/references/verification-method.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+- [Aliyun CLI Installation and Configuration Guide](artifact/references/cli-installation-guide.md)
+- [Official Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/)
+- [Alibaba Cloud RAM Console](https://ram.console.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require user-confirmed region, project, date, and resource identifiers before execution.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

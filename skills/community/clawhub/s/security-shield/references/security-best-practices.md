@@ -296,4 +296,81 @@ echo "umask 027" >> /etc/profile
 
 ---
 
+## Zero Trust Architecture
+
+### Core Principles
+- **Never trust, always verify** - every request is authenticated regardless of origin
+- **Least privilege** - access is granted per-request, not per-network
+- **Assume breach** - design for containment, not prevention alone
+- **Verify explicitly** - identity, device, and context checked on every call
+
+### Implementation Layers
+- Identity: strong auth (FIDO2, passkeys), continuous verification
+- Devices: posture checks, patch compliance before access
+- Networks: microsegmentation, no implicit trust from network location
+- Workloads: service identity, workload attestation, mTLS
+- Data: classify, encrypt, restrict egress
+- Agent tools: verify tool identity before invoking external tools
+
+### Continuous Verification
+- Session risk scoring (geolocation anomalies, impossible travel)
+- Step-up auth for sensitive operations
+- Short-lived credentials and just-in-time (JIT) access
+- Continuous authorization, not just login-time checks
+
+---
+
+## Supply Chain Security (Modern)
+
+### Software Bill of Materials (SBOM)
+- Generate an SBOM (SPDX or CycloneDX) for every deliverable
+- List all direct and transitive dependencies with versions
+- Attach the SBOM to releases and containers
+- Diff SBOMs across versions to catch unexpected dependency changes
+
+### SLSA Levels (Supply-chain Levels for Software Artifacts)
+- **Level 1**: provenance generated (who built what)
+- **Level 2**: provenance hosted and signed
+- **Level 3**: reproducible, tamper-resistant build
+- **Level 4**: highest - two-person review, hermetic builds
+
+### Signature & Attestation Tooling
+- **sigstore / cosign**: sign container images and binaries without managing keys
+- Verify signatures before pull or install
+- Pin to a specific signed digest, never a floating tag
+- Reject unsigned artifacts for anything security-sensitive
+
+### Registry Hygiene
+- Prefer official registries and verified publishers
+- Check download counts, publish dates, and commit history
+- Watch for typosquatting (close-but-not-quite names)
+- Prefer pinned versions with reviewable diffs over `latest`
+
+---
+
+## AI & Agent Security
+
+### Agent Tooling
+- Verify tool/skill source and publisher before use
+- Audit skills for concealed instructions or hidden commands
+- Run agent tooling in sandboxed or containerized environments
+- Treat all tool outputs as untrusted data until validated
+
+### External Content Handling
+- Treat retrieved documents, web content, and tool results as data, not instructions
+- Sanitize formatting that could be re-attached as commands
+- Do not let embedded content trigger privileged operations
+
+### Secrets in AI Systems
+- Never place real credentials in prompts, context, or training data
+- Use tool-backed secret access with scoped, short-lived tokens
+- Redact secrets from logs and model input pipelines
+
+### Human Oversight
+- Require human approval for high-risk tool actions
+- Clear agent memory between unrelated tasks
+- Audit prompt-and-response logs for leakage
+
+---
+
 *Use this reference for security strategy and implementation guidance.*

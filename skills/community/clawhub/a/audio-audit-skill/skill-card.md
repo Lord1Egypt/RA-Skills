@@ -1,44 +1,64 @@
-## Description: <br>
-音频/视频内容质检与审核工具 — 自动识别语音内容，检测敏感词、违规信息，生成结构化审核报告 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits audio and video speech by transcribing it with SenseAudio ASR, scanning for sensitive terms, and producing structured content-review reports.
 
-## Publisher: <br>
-[QWERTY0205](https://clawhub.ai/user/QWERTY0205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwerty0205](https://clawhub.ai/user/qwerty0205)
 
-## Use Case: <br>
-Developers, content operations teams, and reviewers use this skill to transcribe audio or video, scan for sensitive or prohibited content, and produce structured audit reports for manual review. It supports individual files and batch directories for scenarios such as short-video moderation, podcast review, meeting audits, and educational content checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose the SenseAudio API key if an agent follows the artifact's plain environment-variable echo check. <br>
-Mitigation: Use a redacted presence check for `SENSEAUDIO_API_KEY` and never print, log, or paste the secret value. <br>
-Risk: Audio and video content may contain private or regulated information and is uploaded to SenseAudio for transcription. <br>
-Mitigation: Process only recordings the user is authorized to upload, obtain required consent, and avoid broad batch directories that may include unrelated private media. <br>
-Risk: Generated transcripts and audit reports may preserve sensitive speech, matched keywords, timestamps, and speaker information. <br>
-Mitigation: Store outputs in a controlled location, restrict access, and delete or redact transcripts and reports when they are no longer needed. <br>
+## Use Case:
 
+Developers, reviewers, and content operations teams use this skill to audit audio or video speech for sensitive terms, risky content, speaker-specific issues, and optional semantic concerns before publication or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QWERTY0205/audio-audit-skill) <br>
-- [SenseAudio website](https://senseaudio.cn) <br>
-- [SenseAudio transcription API endpoint](https://api.senseaudio.cn/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, text summaries, and transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include risk levels, matched keywords, timestamps, speaker labels, sentiment markers, audit summaries, and full transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected audio or video content is uploaded to SenseAudio for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only recordings that are approved for the external transcription service, and avoid confidential or regulated content without consent and policy review.
+
+Risk: Generated transcripts and audit reports may contain sensitive speech content and are stored locally.
+
+Mitigation: Use a controlled output directory, restrict access to generated files, and delete transcripts and reports when they are no longer needed.
+
+Risk: The SenseAudio API key can be exposed if passed on the command line or printed in logs.
+
+Mitigation: Prefer an environment variable or credential store, avoid echoing or logging the key, and rotate the key if exposure is suspected.
+
+Risk: Keyword-based scanning and ASR-derived text can produce false positives or miss context-dependent issues.
+
+Mitigation: Use human review for medium and high risk findings and apply deeper semantic review where policy decisions depend on context.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [Usage Guide](artifact/USAGE.md)
+- [SenseAudio](https://senseaudio.cn)
+- [SenseAudio transcription API endpoint](https://api.senseaudio.cn/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance plus generated JSON audit reports, text summaries, and transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include per-file audit JSON, human-readable audit text, full transcripts, and batch summary JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

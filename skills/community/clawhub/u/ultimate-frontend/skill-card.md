@@ -1,40 +1,53 @@
-## Description: <br>
-All-in-one frontend skill for building exceptional websites and interfaces with strong taste, clear discovery, sharp critique, and no generic AI slop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one frontend skill for building exceptional websites and interfaces with strong taste, clear discovery, sharp critique, and no generic AI slop.
 
-## Publisher: <br>
-[nemesis0017](https://clawhub.ai/user/nemesis0017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nemesis0017](https://clawhub.ai/user/nemesis0017)
 
-## Use Case: <br>
-Developers and designers use this skill to clarify frontend briefs, compare design directions, research visual references, and produce polished websites, dashboards, app shells, and React interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some associated workflows can run local commands or contact authenticated services. <br>
-Mitigation: Install and run the skill only in an appropriate ClawHub maintenance or development context, and review actions before execution. <br>
-Risk: Nested review workflows may bypass sandbox prompts if configured that way. <br>
-Mitigation: Use the safer autoreview opt-out flags when sandbox prompt review should remain in place. <br>
+## Use Case:
 
+Developers and designers use this skill to plan, critique, and implement serious frontend work such as websites, landing pages, dashboards, app shells, and React interfaces. It helps clarify the brief, compare design directions, research real references, and produce polished UI with accessible, maintainable code.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nemesis0017/ultimate-frontend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, critique tables, implementation code, and shell commands when needed for frontend work] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Before / After / Why tables when comparing or reviewing UI work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: changelog and release evidence) <br>
+Risk: The skill has broad activation language for substantial frontend tasks and may be invoked more often than desired in narrow workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for larger UI projects or edit the trigger wording if a narrower activation scope is needed.
+
+Risk: The skill encourages web research for design references, which may introduce external-source quality or relevance issues.
+
+Mitigation: Review cited references and final UI decisions before relying on them for production work.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/nemesis0017/skills/ultimate-frontend)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with prose, tables, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include design direction comparisons, Before / After / Why review tables, implementation code, setup commands, and frontend configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

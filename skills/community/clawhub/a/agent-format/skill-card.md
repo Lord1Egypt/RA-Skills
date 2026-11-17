@@ -1,38 +1,48 @@
-## Description: <br>
-Standard formatting for agent messages with visual hierarchy, status indicators, progress bars, and scannable patterns for chat apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard formatting for agent messages. Visual hierarchy, status indicators, progress bars - scannable on Telegram, Discord, Slack, WhatsApp. The baseline for readable agent output.
 
-## Publisher: <br>
-[rmarji](https://clawhub.ai/user/rmarji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rmarji](https://clawhub.ai/user/rmarji)
 
-## Use Case: <br>
-Developers and agent builders use this skill to make agent responses easier to scan in chat applications such as Telegram, Discord, Slack, and WhatsApp. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill changes response style, which may not fit every channel or audience. <br>
-Mitigation: Use it where structured visual chat formatting is desired and review generated messages for the target audience. <br>
-Risk: Emoji, progress bars, sparklines, and box-drawing characters may render inconsistently across chat clients. <br>
-Mitigation: Check important messages in the destination client and simplify symbols when readability is reduced. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Agents and agent builders use this skill to format chat status updates, progress summaries, and tabular information so messages are easy to scan across common chat apps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with examples for status indicators, progress bars, sparklines, and monospace tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses visual symbols and Unicode chart characters; no code execution, data access, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The formatting conventions may be applied in places where emoji, block characters, or dense visual status indicators are not desired.
+
+Mitigation: Review the conventions before enabling the skill and adapt them to the target communication channel.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rmarji/skills/agent-format)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style chat formatting guidance with symbols, progress bars, sparklines, and monospace table examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external tool access, persistence, or privileged behavior is requested by the artifact evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

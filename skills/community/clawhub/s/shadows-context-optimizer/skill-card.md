@@ -1,40 +1,58 @@
-## Description: <br>
-Token and context window optimization - compact prompts, reduce redundancy, prioritize critical context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token and context window optimization -- compact prompts, reduce redundancy, prioritize critical context.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and agent users use this skill to reduce context-window pressure, compact prompts, avoid redundant file reads, and keep large-codebase work focused. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Context-minimization and search-limit guidance may omit relevant information when completeness is more important than speed. <br>
-Mitigation: Override the skill for high-stakes, legal, security, or research-heavy tasks and perform broader review before acting. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long coding and research sessions within useful context limits by reading narrower evidence, compacting completed work, and producing concise responses.
 
-## Reference(s): <br>
-- [Shadows Context Optimizer on ClawHub](https://clawhub.ai/NakedoShadow/shadows-context-optimizer) <br>
-- [NakedoShadow ClawHub profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [ClawHub metadata homepage](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Concise natural-language or Markdown guidance applied inline during agent operation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No separate report is generated; expected effects are shorter responses, targeted file reads, and reduced context accumulation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md) <br>
+Risk: Over-compression or narrow file reads may omit details needed for accuracy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve active objectives, important decisions, errors, and directly relevant evidence when compacting context.
+
+Risk: Terser responses may leave users without enough rationale for consequential changes.
+
+Mitigation: Use concise prose while still stating assumptions, risks, and verification results for material decisions.
+
+Risk: Subagent delegation can separate exploration from implementation context.
+
+Mitigation: Require returned findings to include the specific files, lines, and conclusions needed for the main agent to act.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nakedoshadow/skills/shadows-context-optimizer)
+- [Publisher homepage](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Inline agent behavior guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files, commands, network calls, or separate reports are produced by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,98 @@
+schema_version: "2.0"
+policy_version: "2.0.0"
+default_effect: FAIL_CLOSED
+
+canonicalization:
+  profile: KYA-CJ-1
+  money_format: integer_minor_units
+  action_hash_algorithm: SHA-256
+
+receipt:
+  ttl_seconds: 300
+  one_time_use: true
+  require_exact_action_hash: true
+  require_policy_version_match: true
+  require_tenant_subject_agent_match: true
+
+# Threshold controls are cumulative. USD 8,000 matches all three rows.
+thresholds:
+  supplier_payment:
+    currency: USD
+    cumulative:
+      - amount_minor_gte: 10000
+        add_controls: [user_confirmation]
+      - amount_minor_gte: 100000
+        add_controls: [independent_human_approval]
+      - amount_minor_gte: 500000
+        add_controls: [identity_verification, authority_verification]
+
+rules:
+  - id: READ_ONLY_AUTHORIZED
+    priority: 10
+    when:
+      action_class: read_only
+      agent_scope_contains_requested_action: true
+    effect:
+      decision: ALLOW
+      risk_level: LOW
+      add_controls: [standard_audit_logging]
+      reason_codes: [READ_ONLY_AUTHORIZED]
+
+  - id: NEW_BENEFICIARY
+    priority: 100
+    when:
+      new_beneficiary: true
+    effect:
+      decision: HUMAN_APPROVAL
+      risk_level: HIGH
+      add_controls:
+        - beneficiary_verification
+        - independent_human_approval
+      reason_codes: [NEW_BENEFICIARY]
+
+  - id: AGENT_SCOPE_GAP
+    priority: 200
+    when:
+      agent_scope_contains_requested_action: false
+    effect:
+      decision: HUMAN_APPROVAL
+      risk_level: HIGH
+      add_controls:
+        - authority_verification
+        - independent_human_approval
+      reason_codes: [AGENT_EXECUTION_OUTSIDE_AUTHORIZED_SCOPE]
+
+  - id: PROVIDER_OR_AUDIT_UNCERTAIN
+    priority: 800
+    when_any:
+      - aml_status_in: [timeout, unknown, high_risk]
+      - identity_provider_status_in: [timeout, unknown]
+      - audit_write_available: false
+    effect:
+      decision: COMPLIANCE_REVIEW
+      risk_level: CRITICAL
+      add_controls: [compliance_review, safe_stop]
+      reason_codes: [FAIL_CLOSED_UNCERTAINTY]
+
+  - id: TERMINAL_DENIAL
+    priority: 1000
+    terminal: true
+    when_any:
+      - sanctions_match: true
+      - identity_status_in: [failed, inconsistent]
+      - prompt_injection_detected: true
+      - action_mutated_after_approval: true
+      - approval_replay_detected: true
+    effect:
+      decision: DENY
+      risk_level: CRITICAL
+      add_controls: [stop_execution, record_denial_reason]
+      reason_codes: [NON_NEGOTIABLE_SAFETY_RULE]
+
+resolution:
+  required_controls: union_all_matching_add_controls
+  reason_codes: union_all_matching_reason_codes
+  risk_level: maximum_matching_risk
+  terminal_rule_wins: true
+  allow_requires_all_controls_satisfied: true
+  compliance_review_requires_compliance_resolution: true

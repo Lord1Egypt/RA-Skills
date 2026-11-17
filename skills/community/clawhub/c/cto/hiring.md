@@ -1,11 +1,12 @@
 # Team Building and Hiring
 
-## Hiring Philosophy
+## Hiring Heuristics
 
-- **Slope over intercept** — Growth potential matters more than current skill (especially junior)
-- **Culture add, not just fit** — Diverse perspectives strengthen teams
-- **Multipliers over heroes** — Senior engineers who make others better
-- **Reference checks matter** — Skills are visible in interviews, collaboration isn't
+- **Slope over intercept — but only where mentors exist.** Growth rate beats current skill for juniors, and a junior with no senior nearby stalls. Under ~10 engineers hire senior-heavy; add juniors once each has a senior with real mentoring time.
+- **Weight work samples and structured interviews.** Meta-analytic evidence (Schmidt & Hunter) puts work samples and structured interviews at the top of predictors; unstructured "chat" interviews are barely better than chance. Same questions to every candidate, written scorecards, calibrated rubric.
+- **Scorecards before debrief.** Collect written scores before anyone speaks — the first voice in an open debrief anchors everyone else, and it's usually the most senior person, not the most accurate.
+- **References for collaboration, interviews for skill.** Skill is visible in a loop; how someone behaves across 18 months isn't. Ask references: "would you hire them again? for what role?" — the hesitation is the data.
+- **Start senior searches ~2 quarters early.** Search 6-12 weeks + notice period 4-12 weeks + ramp ~1 quarter. A staff-level "we need them now" is already 6 months late.
 
 ## Engineering Ladder
 
@@ -13,64 +14,39 @@
 |-------|-------|-------------|
 | Junior | Tasks | Ships with guidance |
 | Mid | Features | Ships independently |
-| Senior | Projects | Leads technical work |
-| Staff | Domain | Shapes technical direction |
+| Senior | Projects | Leads technical work, unblocks others |
+| Staff | Domain | Shapes technical direction across teams |
 | Principal | Organization | Influences company strategy |
 
-## Interview Process
+Promotion test: the person is **already operating** at the next level — promotion confirms, never anticipates. Anticipatory promotions create title inflation you can't walk back.
 
-### Structure
-1. **Recruiter screen** — Logistics, compensation, basics
-2. **Technical screen** — Coding or system design (1 hour)
-3. **Onsite/virtual panel** — Coding, design, behavioral (4-5 hours)
-4. **Reference calls** — Before or after offer
-5. **Hiring committee** — Calibrated decision
+## Interview Loop
 
-### What to Evaluate
+1. Recruiter screen — logistics, compensation range stated early (mismatches discovered at offer waste the whole loop)
+2. Technical screen — 1 hour, real problem from your domain, not puzzles
+3. Panel — coding + system design + behavioral, 4-5 hours total; each interviewer owns one signal
+4. References — before offer for senior roles
+5. Debrief — written scores first, then discussion
 
-| Signal | Method |
-|--------|--------|
-| Problem solving | Live coding, take-home |
-| System design | Whiteboard, case study |
-| Collaboration | Pair programming, behavioral |
-| Communication | Explain past work |
-| Culture alignment | Values questions |
+**Red flags:** can't explain a failure or what changed after it · blames others for every project problem · zero questions about the business · dismissive of approaches they didn't choose · "I" for every success, "we" for every failure.
 
-### Red Flags
-- Can't explain failures or what they learned
-- Blames others for project problems
-- Overvalues individual vs team contribution
-- Doesn't ask questions about the company
-- Dismissive of other approaches
+## Org Scaling
 
-## Team Structure
-
-### Squad Model
-- 5-8 engineers per squad
-- Clear ownership (service, feature area)
-- Embedded PM and designer when possible
-- Minimize cross-team dependencies
-
-### Conway's Law
-> Organizations design systems that mirror their communication structure.
-
-**Implication:** Design org structure intentionally — it will become your architecture.
-
-## Scaling Engineering Org
-
-| Team Size | Structure | Key Hire |
+| Team size | Structure | The move |
 |-----------|-----------|----------|
-| 1-5 | Flat, everyone reports to CTO | First senior engineer |
-| 5-15 | Tech lead model | Engineering manager |
-| 15-30 | Multiple squads | Second EM, staff engineer |
-| 30-50 | Engineering directors | Director of Engineering |
-| 50+ | VP Engineering | Consider separate CTO/VPE |
+| 1-5 | Flat, all report to CTO | Hire the senior who raises everyone's bar |
+| 5-15 | Tech-lead model | First EM at ~8-10 engineers — past that, 1:1s alone eat a workweek |
+| 15-30 | Squads of 5-8, clear ownership | Second EM + first staff engineer |
+| 30-50 | Directors | Director of Engineering |
+| 50+ | VP Engineering | Split the job: CTO (technology, outward) vs VPE (org, delivery, inward) — one person doing both past ~50 does both badly |
+
+- Manager span: 5-8 directs. Below 4, the layer isn't paying for itself; above 8, 1:1s and growth conversations decay first.
+- Squads: 5-8 engineers, ownership of a service or feature area, embedded PM/design when possible, cross-team dependencies minimized by design.
+- **Conway's law is a tool, not a warning**: teams ship their communication structure, so draw the org chart you want your architecture to become (the inverse Conway maneuver) — reorg first, extract services second (→ `architecture.md`).
 
 ## Retention
 
-- Career growth visible and real
-- Compensation competitive (re-level annually)
-- Work-life balance respected
-- Technical challenges exist
-- Voice in decisions
-- On-call sustainable
+- Re-level compensation against market annually, unprompted. The raise that retains costs less than the search that replaces: contingency recruiters alone run 20-25% of first-year salary, before the empty-seat months and ramp.
+- Track **regretted** attrition separately from total — total attrition including managed-out low performers is noise; one regretted staff-level loss is a fire alarm.
+- The exit-interview answer is rarely the real reason. Watch upstream signals: stopped volunteering in design reviews, calendar suddenly private, "how's the roadmap looking" questions.
+- Sustainable on-call (→ `operations.md`), visible career growth, and voice in decisions retain more than perks — perks are matched by any competitor in a week; the other three aren't.

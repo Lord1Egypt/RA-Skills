@@ -7,7 +7,7 @@
 
 ## ActionDraft
 ```json
-{"draft_id":"string","draft_type":"string — calendar_hold|calendar_event|ticket_purchase|health_macros|maps_to_try|product_pricing|product_order|civic_report_311|expense_entry|drive_file_document","risk":"string — low|medium|high","confidence":"string","summary":"string","fields":"object","evidence_refs":["string"],"next_step":"string"}
+{"draft_id":"string","draft_type":"string — calendar_hold|calendar_event|ticket_purchase|health_macros|maps_to_try|product_pricing|product_order|civic_report_311|expense_entry|drive_file_document","risk":"string — low|medium|high","confidence":"string — 0.0–1.0","requires_confirmation":"boolean — true for any high-risk (purchase, 311, health-write, external submit) or confidence < 0.8 drafts","summary":"string","fields":"object","evidence_refs":["string"],"next_step":"string"}
 ```
 
 ## ExecutionReceipt

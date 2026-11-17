@@ -1,41 +1,53 @@
-## Description: <br>
-Apply data transformations like case changes, encoding conversion, and format conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply data transformations like case changes, encoding conversion, and format conversion for text processing and data cleaning.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare or convert local text and structured data for cleaning, processing, and format migration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documented examples and shipped script options differ, which can cause failed or incorrect command usage. <br>
-Mitigation: Check the actual script options before use and prefer the script's --from, --to, --input, and --output arguments. <br>
-Risk: The output path can overwrite a file specified by the user. <br>
-Mitigation: Write to a new output path or back up important files before using the --output option. <br>
+## Use Case:
 
+Developers and data workers use this skill for local format conversion and lightweight text or data cleanup during data preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/transform-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and local conversion guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transformed text or structured data such as JSON, CSV, TSV, YAML, or XML when the bundled script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documentation describes broader text transformations than the implementation evidence supports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the released artifact as a local format-conversion utility and verify supported flags against the installed command before relying on documented transformations.
+
+Risk: The tool can read a selected input file and overwrite or create a selected output file.
+
+Mitigation: Review input and output paths before execution and use disposable copies for important data.
+
+## Reference(s):
+
+- [Transform Tool on ClawHub](https://clawhub.ai/dinghaibin/skills/transform-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text or structured text such as JSON, CSV, TSV, YAML, or XML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read from stdin or a selected local file and write to stdout or a selected output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

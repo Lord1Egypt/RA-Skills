@@ -1,7 +1,20 @@
 # CLI 脚本食谱：`--json-out` 落盘 + Node.js 精准查询
 
-> 通用纪律（加载纪律、数据处理协议「摘要 → outline → 脚本读 JSON」、币种、交付自检）**只在** `references/core/agent-conventions.md` 维护，本文件是配套**脚本示例集**。
-> 核心约定一句话：凡需结构化数据，一律 **`--json-out <路径>`** 落盘，**用 `node -e` / 脚本**读 JSON 筛选聚合；**禁止**用宿主 Read 工具打开落盘业务 `*.json`；唯一允许 Read 的数据结构文件是 `*.outline.txt`。
+> **本文件 = 代码示例**。读盘协议 / outline 门禁 / 币种 / 自检 **只在** `references/core/agent-conventions.md`；此处不重复协议正文。
+> 一句话：结构化数据一律 `--json-out` + 脚本读盘；**禁止**宿主 Read 业务 `*.json`；可 Read `*.outline.txt`。
+
+---
+
+## Contents
+
+- 文件命名规则
+- 已有 JSON 时（不必先重跑 CLI）
+- 基础模式：`--json-out` + 读文件 + `node -e`
+- 常用场景示例
+- 多命令串联（中间结果一律落盘）
+- 调试技巧
+- 通用分页与查询建议
+- 脚本编写小贴士
 
 ---
 
@@ -57,6 +70,14 @@ siluzan-tso list-accounts -m Google --json-out $SNAP
 node -e "const d=require('./snap-cli/list-accounts-google.json'); const rows=(d.items||[]).map(x=>x.ma||x); rows.forEach(ma=>console.log(ma.mediaCustomerId, ma.mediaCustomerName));"
 ```
 
+Windows PowerShell 中文乱码：CLI 输出为 UTF-8，PowerShell 默认按系统代码页（GBK）解码管道输出。在同一会话里先执行一次：
+
+```powershell
+[Console]::OutputEncoding = [Text.Encoding]::UTF8; $env:PYTHONIOENCODING = "utf-8"
+```
+
+`--json-out` 落盘文件始终是 UTF-8，不受此影响；乱码时以快照文件为准。
+
 ---
 
 ## 常用场景示例
@@ -93,16 +114,17 @@ low.forEach((a) => console.log(' ', a.mediaCustomerId, a.name, '余额:', a.rema
 
 ### 3. 汇总消耗数据
 
-`stats` 的 `AccountOverviewItem` 使用 **`spend`**（非 `cost`）：
+`stats` 的 `AccountOverviewItem` 使用 **`spend`**（非 `cost`）。**`spend` = `--start`～`--end` 区间合计**（默认近 7 天 ≈ 7 日之和，**不是**「一天的消耗」）：
 
 ```bash
-siluzan-tso stats -m Google --days 7 --json-out ./snap-cli
+siluzan-tso stats -m Google -a <id> --start 2026-07-06 --end 2026-07-12 --json-out ./snap-cli
 node -e "
 const d = require('./snap-cli/stats-google.json');
 const list = d.items || [];
+// 「总消耗」= 区间合计；日均请 total/天数，或 balance-scan.dailySpend；勿说成每天花了 total
 const total = list.reduce((s, a) => s + Number(a.spend ?? 0), 0);
 const clicks = list.reduce((s, a) => s + Number(a.clicks ?? 0), 0);
-console.log('总消耗:', total.toFixed(2), '  总点击:', clicks);
+console.log('区间总消耗:', total.toFixed(2), '  总点击:', clicks);
 list
   .slice()
   .sort((a, b) => Number(b.spend) - Number(a.spend))
@@ -113,7 +135,7 @@ list
 
 ### 3b. 多账户投放画像（`accounts-digest`）
 
-多账户汇总消耗/点击/转化时**优先** `accounts-digest`（见工作流 P3、`references/accounts/accounts.md` § accounts-digest），不要对每个账户循环 `stats`：
+多账户汇总消耗/点击/转化时**优先** `accounts-digest`（见工作流 P3、`references/accounts/accounts-balance-stats.md` § accounts-digest），不要对每个账户循环 `stats`：
 
 ```bash
 siluzan-tso accounts-digest -m Google -a id1,id2,id3 \
@@ -125,11 +147,15 @@ const snap = './snap-p3';
 const d = require(path.join(snap, 'accounts-digest-google.json'));
 const rows = d.data?.items || [];
 const meta = d.meta || {};
-console.log('区间:', meta.window?.startDate, '~', meta.window?.endDate);
-console.log('返回', rows.length, '户，扫描', meta.scanned);
-rows.slice(0, 10).forEach((r) =>
-  console.log(' ', r.mediaCustomerId, r.spend, r.currencyCode, 'CTR%', r.ctr),
-);
+if (d.agentBrief?.userDelivery) {
+  console.log(d.agentBrief.userDelivery);
+} else {
+  console.log('区间:', meta.window?.startDate, '~', meta.window?.endDate);
+  console.log('返回', rows.length, '户，扫描', meta.scanned, 'totalsScope', meta.totalsScope);
+  rows.slice(0, 10).forEach((r) =>
+    console.log(' ', r.mediaCustomerId, r.spend, r.currencyCode, 'CTR%', r.ctr),
+  );
+}
 "
 ```
 
@@ -287,7 +313,7 @@ console.log('可用字段：', first && Object.keys(first));
 ## 通用分页与查询建议
 
 - 绝大多数列表类命令默认每页 20 条记录，数据量较大时须显式指定 `--page-size`。
-- **`list-accounts` 列全部 / 数个数**：优先 **`--page-size 999` 一次拉取** + `--json-out` + 脚本读盘（见 `references/accounts/accounts.md` § Agent 意图速查）；**不要**先试默认 20 再翻页。
+- **`list-accounts` 列全部 / 数个数**：优先 **`--page-size 999` 一次拉取** + `--json-out` + 脚本读盘（见 `references/accounts/accounts-list.md` § Agent 意图速查）；**不要**先试默认 20 再翻页。
 - 其他列表命令（报告列表、发票列表等）在单页拉不满时，再用 `--page-size`（如 `100`）与 `--page` 组合翻页；读盘确认 `total > itemCount` 后再补下一页。
 
 ---
@@ -297,3 +323,12 @@ console.log('可用字段：', first && Object.keys(first));
 - **用 `process.stdout.write` 而不是 `console.log` 提取单个值**：前者不带换行符，方便直接赋给 shell 变量。
 - **节点代码复杂时拆分写法**：不要写超过 10 行的 `node -e` 单行，改用 `node -e "$(cat <<'EOF'\n...\nEOF\n)"` 或多行 `.mjs` 脚本文件。
 - 同一运行目录、同一"查询 id"的多次拉数会合并到 `cli-manifest-<id>.json` 的 `artifacts[]`；不同账户/实体写入各自的 manifest，互不覆盖。
+- **投影 Markdown 表**：公司名等字段可能含 `|`，必须消毒后再拼 `| col |`。JSON 原值保持不动。
+
+```javascript
+const mdCell = (v) => String(v ?? "-").replace(/\r\n|\r|\n/g, " ").replace(/\|/g, "｜");
+const line = (cells) => `| ${cells.map(mdCell).join(" | ")} |`;
+console.log(line(["账户ID", "公司", "余额"]));
+console.log(line(["---", "---", "---"]));
+for (const x of items) console.log(line([x.mediaCustomerId, x.advertiserName, x.balance]));
+```

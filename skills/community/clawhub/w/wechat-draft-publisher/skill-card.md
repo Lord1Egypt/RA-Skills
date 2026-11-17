@@ -1,46 +1,61 @@
-## Description: <br>
-Generates WeChat Official Account articles from a short topic, optionally creates images and cover art, formats the article, and saves it to the WeChat draft box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese WeChat Official Account articles from a short topic, optionally creates images, formats Markdown as WeChat-compatible HTML, and saves the result to the WeChat draft box.
 
-## Publisher: <br>
-[zhuzhudewenjian](https://clawhub.ai/user/zhuzhudewenjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuzhudewenjian](https://clawhub.ai/user/zhuzhudewenjian)
 
-## Use Case: <br>
-External creators and developers use this skill to draft WeChat Official Account posts from a topic, prepare optional generated images and cover art, and create a draft for review in the WeChat backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured WeChat credentials and image API keys can authorize account actions or expose paid services if mishandled. <br>
-Mitigation: Keep config.json and environment variables private, and install only when the skill should use the configured WeChat official account. <br>
-Risk: Article text, prompts, and generated images may be sent to a third-party image API provider. <br>
-Mitigation: Use a trusted image API provider and avoid confidential article text or prompts. <br>
-Risk: The optional publish path can submit content beyond draft creation. <br>
-Mitigation: Review drafts in the WeChat backend and use --publish only when publication is intentional. <br>
+## Use Case:
 
+Content creators and developers use this skill to draft Chinese WeChat Official Account articles from a short topic, add optional AI-generated images, format the article for WeChat, and create a draft in the account backend.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuzhudewenjian/wechat-draft-publisher) <br>
-- [README](artifact/README.md) <br>
-- [WeChat Official Account Platform](https://mp.weixin.qq.com/) <br>
-- [WeChat API base endpoint](https://api.weixin.qq.com/cgi-bin) <br>
-- [SiliconFlow image API provider](https://siliconflow.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown article content with shell commands and generated WeChat draft artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create WeChat drafts, upload images, and optionally submit publication when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can modify a WeChat Official Account by uploading media and creating drafts, and its --publish option can submit a draft for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use credentials for a dedicated low-privilege account, review the generated draft in the WeChat backend, and avoid --publish unless a human has approved the content.
+
+Risk: Article topics and image prompts may be sent to a configured external image-generation provider.
+
+Mitigation: Use only approved image providers, avoid sensitive content in prompts, and disable images with --no-images when external image processing is not acceptable.
+
+Risk: The skill relies on WeChat and image-provider API keys.
+
+Mitigation: Store keys in environment variables or a local config file that is not shared, rotate them regularly, and never paste secrets into the conversation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhuzhudewenjian/skills/wechat-draft-publisher)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+- [WeChat Official Account API Base](https://api.weixin.qq.com/cgi-bin)
+- [SiliconFlow](https://siliconflow.cn/)
+- [Default Image Generation Endpoint](https://api.siliconflow.cn/v1/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown articles, inline shell commands, configuration JSON, and WeChat draft/API result summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WeChat credentials and python3; optional image generation uses a configured OpenAI-compatible image API. The skill can upload media, create WeChat drafts, and optionally submit drafts for publication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

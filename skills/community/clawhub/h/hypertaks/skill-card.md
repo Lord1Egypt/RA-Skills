@@ -1,43 +1,74 @@
-## Description: <br>
-Hypertaks helps an agent handle founder-level business, engineering, marketing, finance, ERP, supply chain, Web3, and IoT work through a gated, tiered multi-role workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hypertaks helps an artificial intelligence agent frame work, coordinate specialist roles, preserve verified context, and prove completion.
 
-## Publisher: <br>
-[aabrur](https://clawhub.ai/user/aabrur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aabrur](https://clawhub.ai/user/aabrur)
 
-## Use Case: <br>
-Developers, operators, and business builders use this skill to structure broad founder-level tasks into clarified scope, specialist perspectives, and an integrated deliverable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad trigger language and may activate for many business or build tasks. <br>
-Mitigation: Install it only when a broad operator-style workflow is intended, and narrow the trigger language if tighter control is required. <br>
-Risk: Outputs may include strategic, financial, code, shell, configuration, or operational recommendations that could be incorrect or unsuitable without review. <br>
-Mitigation: Review generated outputs before execution, deployment, financial reliance, or operational adoption. <br>
-Risk: The skill may use available subagents, connectors, or work-log writes, including a hard-coded Obsidian path, when the environment exposes those capabilities. <br>
-Mitigation: Confirm tool and filesystem access before use, and adjust or remove the work-log path if it does not match the deployment environment. <br>
+## Use Case:
 
+External developers and agent users use Hypertaks to run founder-shaped work across strategy, engineering, marketing, finance, ERP, supply chain, smart contracts, data, and IoT. It structures intake, specialist coordination, capability selection, continuity, evidence handling, and completion checks while keeping the user as final authority.
 
-## Reference(s): <br>
-- [Server-resolved source import](https://github.com/aabrur/hypertaks-agent/tree/main/skills/hypertaks) <br>
-- [ClawHub skill page](https://clawhub.ai/aabrur/skills/hypertaks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured sections, role briefs, analysis, code blocks, and command snippets when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask clarifying questions before delivery and may use available subagents or connectors when the runtime supports them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can add a broad workflow layer with intake questions, contracts, specialist-role outputs, compliance footers, and optional memory or checkpoint behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that workflow layer is desired, and review each proposed contract before allowing work to proceed.
+
+Risk: Optional memory, Graphify, Obsidian, external connectors, and checkpoint features may involve persistent context, file writes, or external boundaries.
+
+Mitigation: Approve only explicit destinations, connectors, and boundaries that match the intended task.
+
+Risk: File writes, publishing, deployment, spending, on-chain actions, and other sensitive operations can have external effects.
+
+Mitigation: Require fresh user approval for each sensitive action and review the preview before committing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aabrur/skills/hypertaks)
+- [Hypertaks release notes](hypertaks/RELEASE-NOTES.md)
+- [Security kernel](hypertaks/references/00-security-kernel.md)
+- [State and transactions](hypertaks/references/01-state-and-transactions.md)
+- [Retrieval and evidence](hypertaks/references/02-retrieval-and-evidence.md)
+- [Professional execution](hypertaks/references/03-professional-execution.md)
+- [Visual delivery](hypertaks/references/04-visual-delivery.md)
+- [Intake protocol](hypertaks/references/intake-protocol.md)
+- [Agent roles](hypertaks/references/agent-roles.md)
+- [Plugins and MCP](hypertaks/references/plugins-and-mcp.md)
+- [Frameworks](hypertaks/references/frameworks.md)
+- [Knowledge base](hypertaks/references/knowledge-base.md)
+- [Engineering reference](hypertaks/references/engineering.md)
+- [Token discipline](hypertaks/references/token-discipline.md)
+- [Hypertaks Verify](hypertaks-verify/SKILL.md)
+- [Hypertaks Brain](hypertaks-brain/SKILL.md)
+- [Hypertaks Graph](hypertaks-graph/SKILL.md)
+- [Hypertaks Continuity](hypertaks-continuity/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured text with task-appropriate code blocks, commands, configuration snippets, tables, charts, diagrams, checkpoints, handoffs, and proof-of-done status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are contract-bound and may include compliance footers, work logs, evidence classes, and validation status when the task calls for them.]
+
+## Skill Version(s):
+
+4.5.0 (source: server release metadata and artifact release notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

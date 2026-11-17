@@ -1,43 +1,58 @@
-## Description: <br>
-CodeWiki triggers a confirmed workflow that clones or updates a Git repository, generates a structured wiki with the codewiki CLI, and optionally renders a local MkDocs or VitePress preview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger a one-shot workflow that clones or pulls a Git repository, generates a structured wiki from it using the CodeWiki CLI, and optionally renders the result into static MkDocs or VitePress sites with an HTTP preview.
 
-## Publisher: <br>
-[jiangsier-xyz](https://clawhub.ai/user/jiangsier-xyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangsier-xyz](https://clawhub.ai/user/jiangsier-xyz)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn a specified code repository into generated Markdown wiki documentation. When requested, it can also build MkDocs or VitePress static preview sites after the user confirms the repository, output path, render stack, and any preview ports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confirmed runs can clone public or SSH-accessible repositories and may use the user's normal git credentials for git@ URLs. <br>
-Mitigation: Confirm the expanded repository URL before execution and use only repositories and accounts the user intended to process. <br>
-Risk: Rendering can download MkDocs or VitePress packages and write generated files under the selected output directory. <br>
-Mitigation: Use a deliberate output path and allow renderer installs only for the requested MkDocs or VitePress build. <br>
-Risk: Optional preview serving opens localhost ports and keeps foreground server processes running until stopped. <br>
-Mitigation: Show the preview port numbers before execution and stop the preview servers when review is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent to document a target code repository by generating a Markdown wiki and, when requested, static documentation sites for local review.
 
-## Reference(s): <br>
-- [CodeWiki upstream project](https://github.com/FSoft-AI4Code/CodeWiki) <br>
-- [CodeWiki ClawHub skill page](https://clawhub.ai/jiangsier-xyz/skills/codewiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations; generated wiki files and optional static site files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before cloning repositories, installing renderer packages, writing outputs, or opening localhost preview ports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can clone or pull user-selected repositories and write generated output into local directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the repository URL and output directory before execution, and avoid running destructive overwrite options on important folders.
+
+Risk: Rendering can install dependencies from external package registries and depends on the external CodeWiki CLI.
+
+Mitigation: Install the skill only when the CodeWiki CLI and runtime package registries are trusted in the execution environment.
+
+Risk: The optional preview mode starts foreground localhost servers.
+
+Mitigation: Use preview serving only when a local HTTP process is expected and stop it when review is complete.
+
+## Reference(s):
+
+- [CodeWiki upstream project](https://github.com/FSoft-AI4Code/CodeWiki)
+- [Code Wiki on ClawHub](https://clawhub.ai/jiangsier-xyz/skills/codewiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command previews and generated repository documentation files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce a Markdown wiki under the selected output directory and optional MkDocs or VitePress static site files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

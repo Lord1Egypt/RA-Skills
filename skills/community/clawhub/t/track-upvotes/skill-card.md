@@ -1,41 +1,53 @@
-## Description: <br>
-Tracks Product Hunt launch upvotes, comments, rank, and simple trend data from public Product Hunt pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Product Hunt launch upvotes, comments, and daily ranking in real time from a public Product Hunt post URL.
 
-## Publisher: <br>
-[3rdbrain](https://clawhub.ai/user/3rdbrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3rdbrain](https://clawhub.ai/user/3rdbrain)
 
-## Use Case: <br>
-Launch teams, founders, and growth operators use this Node.js CLI to check public Product Hunt post upvotes, comment counts, rank signals, and trend changes during launch monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises Telegram alerts, but the reviewed files do not implement Telegram notifications. <br>
-Mitigation: Use it as a manual Node.js CLI for checking public Product Hunt pages; do not rely on alert delivery unless a future version adds and documents that feature. <br>
-Risk: Stats extraction depends on Product Hunt public page markup and may return missing fields if the page layout changes or the target URL is not a real Product Hunt post. <br>
-Mitigation: Pass only real Product Hunt post URLs and review the returned fields before using them for launch decisions. <br>
+## Use Case:
 
+External users and developers use this skill to check Product Hunt launch upvotes, comments, current ranking, and trend changes from a public post URL during launch monitoring.
 
-## Reference(s): <br>
-- [Product Hunt Launch Tracker on ClawHub](https://clawhub.ai/3rdbrain/track-upvotes) <br>
-- [3rdbrain Publisher Profile](https://clawhub.ai/user/3rdbrain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [CLI text and JavaScript objects containing status data, timestamps, and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trend history is held in memory for the current process; Telegram delivery is not implemented in the reviewed files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: URL handling can send outbound requests to unintended hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only known-good https://www.producthunt.com/posts/... URLs and add strict URL parsing, hostname allowlisting, and redirect handling before broad use.
+
+Risk: The advertised Telegram alert feature is not implemented in the artifact.
+
+Mitigation: Treat Telegram alert claims as inaccurate until the publisher updates and validates the implementation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/3rdbrain/skills/track-upvotes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns current stats or trend summaries; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

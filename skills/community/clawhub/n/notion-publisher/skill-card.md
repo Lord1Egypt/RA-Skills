@@ -1,45 +1,58 @@
-## Description: <br>
-Publish articles to Notion using cached local copies of the target database's default Notion template when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish articles to Notion using cached local copies of the target database's default Notion template when available.
 
-## Publisher: <br>
-[miraclemin](https://clawhub.ai/user/miraclemin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miraclemin](https://clawhub.ai/user/miraclemin)
 
-## Use Case: <br>
-External users and developers use this skill to draft, create, publish, search, and update article pages in Notion databases through available Notion MCP tools or the bundled CLI runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace existing Notion page content during updates. <br>
-Mitigation: Prefer append mode unless the user intentionally wants to replace the whole page body, and confirm replacement before updating existing pages. <br>
-Risk: Using the skill requires a Notion integration with read, update, and insert access to workspace content. <br>
-Mitigation: Install only for workspaces where that access is acceptable, share only the intended database or parent page with the integration, and keep the token local. <br>
-Risk: External cover or inline image searches may expose confidential article topics. <br>
-Mitigation: Avoid external image searches for confidential articles and use user-provided or approved image URLs instead. <br>
+## Use Case:
 
+Developers, creators, and content teams use this skill to draft, format, publish, search, and update article pages in Notion databases through available Notion MCP tools or the bundled CLI runtime.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/miraclemin/notion-publisher) <br>
-- [Notion Publisher Template Catalog](artifact/templates/catalog.md) <br>
-- [Cached Notion Default Templates](artifact/templates/notion-defaults/catalog.md) <br>
-- [Notion API Endpoint](https://api.notion.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Notion-flavored Markdown article content, JSON CLI responses, and local configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update Notion pages through MCP tools or the bundled CLI when a Notion integration token and target database access are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A Notion integration token can read and modify Notion content shared with the integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged Notion integration and share only the target database or page with it.
+
+Risk: Update operations can replace existing page content.
+
+Mitigation: Confirm the target page and update mode before running replace or update commands.
+
+Risk: Local token storage can expose credentials if the environment is shared or misconfigured.
+
+Mitigation: Avoid passing tokens on the command line, protect ~/.notion_publish/.env with restrictive permissions, or use a safer secret store.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miraclemin/skills/notion-publisher)
+- [Notion API Endpoint](https://api.notion.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON command output, shell commands, and Notion page content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update external Notion pages when configured with a Notion token and a shared target database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

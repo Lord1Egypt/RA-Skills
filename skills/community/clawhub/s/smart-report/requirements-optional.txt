@@ -1,0 +1,6 @@
+# 可选依赖：report_assembler.py --format docx/pptx 静态导出
+# 缺任一项时对应格式报 5007 降级（HTML 交付不受影响）
+# 另需 Node.js >= 16（图表 SSR 静态化，系统 PATH 中可用的 node 即可）
+python-docx==1.2.0
+python-pptx==1.0.2
+resvg-py>=0.4,<0.6

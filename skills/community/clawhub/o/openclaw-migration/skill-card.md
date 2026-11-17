@@ -1,42 +1,49 @@
-## Description: <br>
-Guides the renaming of the Clawd project to OpenClaw by detailing file moves, reference updates, testing, and documentation steps for a consistent migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides the renaming of the Clawd project to OpenClaw by detailing file moves, updates, testing, and documentation steps for consistent migration.
 
-## Publisher: <br>
-[chenyuan99](https://clawhub.ai/user/chenyuan99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chenyuan99](https://clawhub.ai/user/chenyuan99)
 
-## Use Case: <br>
-Developers, maintainers, and reviewers use this skill while migrating a repository from the Clawd name to OpenClaw. It provides a shared checklist for directory moves, metadata updates, reference replacement, tooling verification, and contributor communication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The migration checklist could be applied in the wrong repository or project state. <br>
-Mitigation: Confirm the target repository and migration scope before allowing an agent to apply the checklist. <br>
-Risk: Renaming directories, configuration, and agent metadata can break builds, automation, or onboarding files. <br>
-Mitigation: Use version control, inspect metadata and configuration changes, and run the repository's tests, linting, and documentation build checks after changes. <br>
-Risk: Deleting or archiving the old project directory can remove useful migration history or active files. <br>
-Mitigation: Require explicit approval before deletion or archival and keep a traceable reference until the new OpenClaw structure is stable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyuan99/openclaw-migration) <br>
-- [Publisher profile](https://clawhub.ai/user/chenyuan99) <br>
+## Use Case:
 
+Developers and maintainers use this skill as a migration playbook when renaming the Clawd project to OpenClaw, updating references, moving project metadata, and validating tooling after the rename.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklist steps and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Repository-wide renames and directory moves can break scripts, workspace references, CI workflows, or documentation links if applied without verification.
+
+Mitigation: Use this skill in a Clawd/OpenClaw repository branch, preview replacements before applying them, keep the old directory until the new layout is verified, and run the listed tests and lint checks before cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyuan99/skills/openclaw-migration)
+- [Publisher profile](https://clawhub.ai/user/chenyuan99)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with checklist steps and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces migration planning, validation, and communication guidance for repository maintainers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

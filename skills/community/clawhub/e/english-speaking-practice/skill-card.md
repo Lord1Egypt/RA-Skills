@@ -1,42 +1,60 @@
-## Description: <br>
-英语口语练习助手，包含对话训练和任务推送两大功能。需要用户发送语音或文字消息且内容与英语练习相关时触发对话训练；定时触发任务推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users practice spoken English through voice or text conversations with feedback, plus optional scheduled daily phrase pushes.
 
-## Publisher: <br>
-[zsy000](https://clawhub.ai/user/zsy000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsy000](https://clawhub.ai/user/zsy000)
 
-## Use Case: <br>
-External users use this skill to practice everyday English speaking through voice or text conversations, with translation, speaking feedback, vocabulary support, and optional daily phrase pushes. Operators can configure local practice records and scheduled outbound messages for a selected user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration can contain an API key and a custom API endpoint. <br>
-Mitigation: Keep config.json private, use a limited API key, and verify the endpoint before enabling API-backed push or summary generation. <br>
-Risk: Optional cron jobs can send automated outbound English-learning messages. <br>
-Mitigation: Enable scheduled pushes or monthly summaries only when automated messages are desired, and verify the target user ID and channel first. <br>
-Risk: The skill writes local practice history and push records. <br>
-Mitigation: Choose an appropriate data directory and review stored practice data according to the user's privacy expectations. <br>
+## Use Case:
 
+External English learners use this skill to practice everyday spoken English, receive pronunciation and expression feedback, and optionally get daily phrase reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zsy000/english-speaking-practice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown, with optional shell commands and JSON-backed local practice records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured speech, message, and model services; optional scheduled pushes can send outbound messages and write local monthly practice data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release security verdict is suspicious because scheduled messaging and external AI scripts handle secrets and configuration unsafely enough to require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installing, keep config.json private, and use a narrowly scoped API key.
+
+Risk: Push delivery can send generated content to a configured recipient through a configured channel.
+
+Mitigation: Verify the API endpoint, message channel, and target recipient before enabling push delivery.
+
+Risk: The security guidance warns against enabling cron until the monthly shell script is fixed or removed.
+
+Mitigation: Leave cron-based monthly summary execution disabled unless the shell script has been reviewed and corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsy000/skills/english-speaking-practice)
+- [Publisher profile](https://clawhub.ai/user/zsy000)
+- [README](artifact/README.md)
+- [Configuration guide](artifact/CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text or Markdown with optional shell commands and JSON practice records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use TTS, Whisper, message delivery, local JSON storage, and optional scheduled pushes when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

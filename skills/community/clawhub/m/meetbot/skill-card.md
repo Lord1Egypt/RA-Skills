@@ -1,41 +1,54 @@
-## Description: <br>
-Schedule and book meetings through the Meet.bot MCP server, including availability checks, booking links, and confirmed bookings that require a Meet.bot API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and book meetings using the Meet.bot MCP server by checking calendar availability, finding open slots, booking guest meetings, sharing booking links, and listing scheduling pages.
 
-## Publisher: <br>
-[poolside-ventures](https://clawhub.ai/user/poolside-ventures) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[poolside-ventures](https://clawhub.ai/user/poolside-ventures)
 
-## Use Case: <br>
-External users and agents use this skill to list scheduling pages, check open time slots, share booking links, and book meetings with confirmed guest details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Meet.bot API key for authenticated MCP server calls. <br>
-Mitigation: Verify the endpoint is the intended Meet.bot service and use an appropriate or revocable API key where possible. <br>
-Risk: The skill can book meetings, and cancellation is not available through this server. <br>
-Mitigation: Review meeting page, guest details, and start time with the user before approving a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Meet.bot MCP server](https://mcp.meet.bot) <br>
-- [ClawHub skill page](https://clawhub.ai/poolside-ventures/meetbot) <br>
-- [Publisher profile](https://clawhub.ai/user/poolside-ventures) <br>
+## Use Case:
 
+External users and agents use this skill to coordinate Meet.bot scheduling workflows, including checking availability, sharing booking links, and booking meetings after user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or concise text with meeting options, booking confirmations, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local-time availability summaries, confirmed meeting details, and Meet.bot booking links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a user-provided Meet.bot API key for scheduling actions.
+
+Mitigation: Install only when the agent is intended to use that API key, and provide the key only through the expected Bearer-token configuration.
+
+Risk: Meetings booked through this server cannot be cancelled through the same server.
+
+Mitigation: Review page URL, guest name, guest email, and start time before approving any booking.
+
+## Reference(s):
+
+- [Meet.bot MCP server](https://mcp.meet.bot)
+- [ClawHub Meet.bot skill page](https://clawhub.ai/poolside-ventures/skills/meetbot)
+- [Publisher profile](https://clawhub.ai/user/poolside-ventures)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API Calls]
+
+**Output Format:** [Markdown and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Meet.bot API key and user confirmation before booking meetings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

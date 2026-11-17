@@ -1,42 +1,57 @@
-## Description: <br>
-Archives completed feature specs into a global knowledge base by extracting key decisions, updating constraints and domain indexes, and moving feature directories into spec/archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives completed feature specs into a project's global knowledge base by extracting key decisions, updating constraints and domain indexes, and moving the feature directory into spec/archive/.
 
-## Publisher: <br>
-[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahingbun-dev](https://clawhub.ai/user/mahingbun-dev)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to archive completed specification-driven development features, synthesize design decisions into global project documentation, and keep domain indexes current. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update global project documentation or archive a feature before the work is actually complete. <br>
-Mitigation: Review the completion warnings, confirm the extracted summary before writes, and inspect version-control diffs before accepting archive changes. <br>
-Risk: Feature summaries and domain decisions may be incomplete or inaccurate if the source spec or related code is stale. <br>
-Mitigation: Use the built-in user confirmation step to correct extracted decisions before they are written to global documentation. <br>
-Risk: Diagram prompts may expose private architecture or implementation details to an external image-generation workflow. <br>
-Mitigation: Review or skip image generation for sensitive projects and avoid sending confidential details to external image tools. <br>
+## Use Case:
 
+Developers and engineers use this skill to archive completed specification-driven development feature directories into global project documentation while preserving domain summaries, constraints, indexes, and archive location.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mahingbun-dev/sdd-archive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with occasional shell commands and generated image file requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local spec/global Markdown files, move a completed feature directory into spec/archive, and request 1K diagram images when documentation changes need visuals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: A custom feature path can reach a Bash move operation without clear validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted feature directories and avoid the custom path option unless the path is clearly confined to spec/feature_*.
+
+Risk: The workflow can perform broad documentation and archive changes without one final consolidated confirmation.
+
+Mitigation: Ask the agent to show a complete change plan before it writes files, generates images, deletes or merges domain docs, or moves the feature directory.
+
+Risk: Running the archive workflow in repositories with sensitive code or important spec files may expose or alter material project context.
+
+Mitigation: Review the skill before installing and run it only on repositories and feature directories you trust.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mahingbun-dev/skills/sdd-archive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation updates, concise status messages, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese user-facing archive summaries and may request user confirmation before broad file updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

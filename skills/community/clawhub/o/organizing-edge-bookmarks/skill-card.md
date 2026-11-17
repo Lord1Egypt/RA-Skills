@@ -1,44 +1,54 @@
-## Description: <br>
-Use when organizing Microsoft Edge bookmarks or favorites when persistence matters, when folder priorities like AI/investing/social are important, or when previous bookmark edits were reverted after restart or sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when organizing Microsoft Edge bookmarks or favorites when persistence matters, when folder priorities like AI/investing/social are important, or when previous bookmark edits were reverted after restart or sync.
 
-## Publisher: <br>
-[xenoexia](https://clawhub.ai/user/xenoexia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xenoexia](https://clawhub.ai/user/xenoexia)
 
-## Use Case: <br>
-External users and agents use this skill to organize a local Microsoft Edge profile's bookmarks into explicit folders while preserving persistence across browser reloads, restarts, and sync reconciliation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bookmark reorganization changes may persist locally or sync to other Edge devices. <br>
-Mitigation: Confirm the exact Edge profile and scope, capture a backup or export, record a dry-run move plan, and verify results after reload, restart, and sync reconciliation. <br>
-Risk: Unapproved browser restart, profile takeover, or live bookmark mutation could disrupt the user's current session. <br>
-Mitigation: Require explicit user consent before intrusive browser actions and downgrade to manual instructions if a local, authorized control path has not been proven. <br>
-Risk: Raw bookmark-file edits can be reverted or produce a structure that does not match the visible Edge bookmark tree. <br>
-Mitigation: Prefer the live browser bookmark model and stop if the live tree, counts, or structural diff do not match the intended plan. <br>
+## Use Case:
 
+Developers and agent users use this skill to plan and carry out persistent Microsoft Edge bookmark organization on a local macOS profile, with explicit profile selection, rollback capture, consent for intrusive browser control, and post-restart verification.
 
-## Reference(s): <br>
-- [Edge Bookmarks Organization Workflow](references/edge-bookmarks-workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xenoexia/organizing-edge-bookmarks) <br>
-- [Publisher profile](https://clawhub.ai/user/xenoexia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and command suggestions when a local control path is proven.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plans, safeguards, rollback steps, and verification instructions; it does not require external API tokens or cloud credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and frontmatter) <br>
+Risk: Bookmark changes can affect a live browser profile and may be reverted or reshaped by Edge sync or restart behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact profile and scope, capture a rollback/export and dry-run move plan, prefer live bookmark APIs, and verify structure after reload, restart, and sync settlement.
+
+Risk: Browser restart, profile takeover, or live-profile automation can interrupt the user's active session.
+
+Mitigation: Require explicit approval before intrusive actions and downgrade to manual instructions when approved local control is not already proven.
+
+## Reference(s):
+
+- [Edge Bookmarks Organization Workflow](references/edge-bookmarks-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/xenoexia/skills/organizing-edge-bookmarks)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only workflow guidance for user-approved Microsoft Edge profile organization.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,12 +2,12 @@
 
 This file keeps lightweight Vue project-standard performance guidance. Use the frontend performance workflow when the task needs metrics, traces, profiles, bundle analysis, network evidence, or a formal performance report.
 
-## 性能
+## Performance
 
-- 使用 `shallowRef` / `shallowReactive` 优化大型对象
-- 大列表使用虚拟滚动
-- 避免在 `v-for` 中使用 `v-if`（提取为 computed 过滤）
-- 使用 `defineAsyncComponent` 懒加载重型组件
-- `v-for` 必须有稳定的 `:key`
-- 路由组件使用动态 `import()` 按需加载
+- Use `shallowRef` / `shallowReactive` to optimize large objects
+- Use virtual scrolling for large lists
+- Avoid using `v-if` in `v-for` (extract to computed filtering)
+- Use `defineAsyncComponent` to lazily load heavy components
+- `v-for` must have a stable `:key`
+- Routing components are loaded on demand using dynamic `import()`
 

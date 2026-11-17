@@ -29,6 +29,8 @@
            ↓                    ↓                    ↓
     collection_queue     classification_queue    advice_queue
 """
+__version__ = "1.0.0"
+
 
 import asyncio
 import logging
@@ -45,6 +47,7 @@ from intentionality_trigger import IntentionalityTrigger
 
 # 导入异步建议池
 from memory_store_async import AsyncMemoryStore
+from interfaces import TraceContext, create_trace_context
 
 
 class IntentionalityDaemon:

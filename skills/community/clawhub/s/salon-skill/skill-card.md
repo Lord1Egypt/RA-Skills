@@ -1,42 +1,59 @@
-## Description: <br>
-A comprehensive skill for beauty salon operations covering hair, nails, skin services, appointments, service menus, pricing, consultations, staff scheduling, and marketing content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill for beauty salon operations covering hair, nails, skin services, appointments, service menus, client consultations, recommendations, and marketing content.
 
-## Publisher: <br>
-[abhi152003](https://clawhub.ai/user/abhi152003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhi152003](https://clawhub.ai/user/abhi152003)
 
-## Use Case: <br>
-Salon owners, front desk staff, and client-facing agents use this skill to handle appointment workflows, answer service and pricing questions, run consultation intake, recommend salon services, and draft marketing copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to collect identifiable customer contact details and consultation details that can be health-adjacent. <br>
-Mitigation: Add explicit consent, privacy, retention, and data-minimization rules before using the skill in a real salon workflow. <br>
-Risk: The bundled service menu contains placeholder prices, services, policies, and local-currency examples. <br>
-Mitigation: Replace placeholders with the salon's actual menu, prices, operating hours, staff details, booking links, and cancellation policy before production use. <br>
+## Use Case:
 
+Salon owners, front desk staff, and client-facing agents use this skill to handle appointment workflows, service and pricing questions, consultation intake, personalized recommendations, staff-facing reminders, and salon marketing copy.
 
-## Reference(s): <br>
-- [Client Consultation & Intake Logic](references/consultation.md) <br>
-- [Service Menu & Pricing](references/services.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/abhi152003/salon-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise conversational text, depending on the salon workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer-facing messages, service lists, consultation recommendations, staff notes, and marketing copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill can collect client contact details, appointment notes, and hair, skin, or nail concerns without a privacy note.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add a privacy note that states what client data is collected, why, who can access it, and how long it is retained before production use.
+
+Risk: Placeholder services, prices, currency, policies, staff names, and booking details may be inaccurate for a specific salon.
+
+Mitigation: Replace placeholders with the salon's verified local service menu, policies, staff list, booking link, and contact details.
+
+Risk: Broad activation language could trigger the skill for loosely related salon conversations.
+
+Mitigation: Narrow the trigger text to explicit salon operation, booking, consultation, service-menu, staff scheduling, or marketing tasks.
+
+## Reference(s):
+
+- [Client Consultation & Intake Logic](artifact/references/consultation.md)
+- [Service Menu & Pricing](artifact/references/services.md)
+- [Salon Skill on ClawHub](https://clawhub.ai/abhi152003/skills/salon-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or conversational text with short messages, structured lists, tables, and platform-specific marketing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; includes placeholders that must be localized before production use.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

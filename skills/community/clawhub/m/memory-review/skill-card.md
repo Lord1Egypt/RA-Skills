@@ -1,43 +1,50 @@
-## Description: <br>
-Memory Review scans recent diary entries, identifies durable knowledge, writes it to a memory knowledge base, and can generate and deliver a review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review daily memory logs and consolidate durable knowledge into the existing memory hierarchy.
 
-## Publisher: <br>
-[AxelHu](https://clawhub.ai/user/AxelHu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to periodically review recent diary notes, extract reusable project knowledge, and maintain memory reports and knowledge files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated diary review and memory writes may persist incorrect, sensitive, or misleading knowledge. <br>
-Mitigation: Use a dry-run or manual confirmation flow before enabling automation, and restrict writes to dedicated memory output paths. <br>
-Risk: Automatic edits to agent-related files can alter future agent behavior. <br>
-Mitigation: Avoid automatic TOOLS.md or AGENTS.md edits unless explicitly reviewed and approved. <br>
-Risk: External report delivery can expose private report contents or send them to the wrong destination. <br>
-Mitigation: Verify the Feishu destination and review report contents before sending. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review daily memory logs, identify durable signals, resolve them against existing canonical memory, and update or report on the memory hierarchy without accumulating duplicate or transient notes.
 
-## Reference(s): <br>
-- [Memory Review detailed specification](references/spec.md) <br>
-- [Memory Review on ClawHub](https://clawhub.ai/AxelHu/memory-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Markdown reports and knowledge files with execution-log state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes memory reports, knowledge entries, and execution logs; may read delivery configuration from AGENTS.md or MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The helper can be tricked into writing state JSON outside the intended workspace if the scan file is tampered with.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only run the skill on trusted workspaces and trusted scan files until the helper restricts commit-state writes to the intended workspace state file and rejects absolute or traversal paths.
+
+## Reference(s):
+
+- [Memory Review Specification](references/spec.md)
+- [ClawHub memory-review release page](https://clawhub.ai/axelhu/skills/memory-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON decision plans, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write canonical memory files, daily review reports, execution logs, and scan state when the workflow is followed.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

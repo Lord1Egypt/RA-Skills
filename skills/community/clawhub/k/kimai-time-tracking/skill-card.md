@@ -1,43 +1,63 @@
-## Description: <br>
-Complete Kimai time-tracking API integration for managing timesheets, customers, projects, activities, teams, invoices, exports, and system status through the Kimai REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Kimai time-tracking CLI integration for managing timesheets, customers, projects, activities, teams, invoices, exports, and system queries through the Kimai REST API.
 
-## Publisher: <br>
-[0x7466](https://clawhub.ai/user/0x7466) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x7466](https://clawhub.ai/user/0x7466)
 
-## Use Case: <br>
-Developers, operations teams, and Kimai administrators use this skill to automate time tracking, reporting, exports, and related account management tasks against a configured Kimai 2.x server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A Kimai API token can read or change time-tracking and business records on the configured server. <br>
-Mitigation: Use a least-privilege Kimai token and verify KIMAI_BASE_URL points to the intended trusted Kimai instance before running commands. <br>
-Risk: Delete and --force operations can remove timesheets or cascade through customers, projects, activities, and teams. <br>
-Mitigation: Require explicit confirmation before destructive operations and review affected records before confirming. <br>
-Risk: Timesheet exports and API output can contain sensitive personal or business data. <br>
-Mitigation: Store exports only in the configured workspace, restrict file permissions, and redact personal data before sharing logs or exported records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x7466/kimai-time-tracking) <br>
-- [Kimai REST API Docs](https://www.kimai.org/documentation/rest-api.html) <br>
-- [Kimai API Pagination Guide](https://www.kimai.org/documentation/api-pagination.html) <br>
+## Use Case:
 
+Developers and operations teams use this skill to automate Kimai time-tracking workflows, inspect and export timesheet data, and manage Kimai entities through a CLI-backed REST API integration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and CLI output in JSON, table, or CSV formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Kimai API responses, exported time-tracking records, and validation or API error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Kimai API token that may grant access to sensitive time-tracking and administrative data.
+
+Mitigation: Use a dedicated least-privilege token, avoid administrator tokens, and set KIMAI_BASE_URL only to a trusted HTTPS Kimai host.
+
+Risk: Delete commands can remove Kimai records and may cascade to related projects, activities, or timesheets.
+
+Mitigation: Review the affected records before destructive actions and avoid --force unless the deletion has been explicitly confirmed.
+
+Risk: Server security evidence says the skill overstates some capabilities and that some documented commands or safety features may be missing.
+
+Mitigation: Verify required commands against a non-production Kimai instance before relying on the skill for operational workflows.
+
+Risk: Timesheet exports and CLI output can contain personal, customer, project, or billing information.
+
+Mitigation: Keep exports in controlled workspaces and redact sensitive data before sharing command output or generated files.
+
+## Reference(s):
+
+- [Kimai Time Tracking on ClawHub](https://clawhub.ai/0x7466/skills/kimai-time-tracking)
+- [Kimai](https://www.kimai.org/)
+- [Kimai REST API Docs](https://www.kimai.org/documentation/rest-api.html)
+- [Kimai API Pagination Guide](https://www.kimai.org/documentation/api-pagination.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI responses may be JSON, tables, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KIMAI_BASE_URL and KIMAI_API_TOKEN; operations depend on the token's Kimai API permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

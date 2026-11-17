@@ -1,40 +1,48 @@
-## Description: <br>
-Full-stack application builder that creates web apps, APIs, mobile apps, and more from natural language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-stack application builder that creates web apps, APIs, mobile apps, and more from natural language requests.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to plan, scaffold, build, test, and deploy new applications or features from natural language requests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can steer agents toward production deployment without a clear user approval gate.
+
+Mitigation: Require explicit user approval before dependency installs, external service setup, secrets or environment configuration, deployment, or live URL publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, scaffold, and extend full-stack applications from natural-language requests. It helps identify app type, choose an appropriate stack, break work into implementation phases, and coordinate testing and deployment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose dependency installs, external service setup, payment integrations, deployments, or other cost-bearing changes. <br>
-Mitigation: Review and approve plans before execution, especially for repository writes, service setup, secrets, payments, purchases, and deployment. <br>
-Risk: Broad app-building guidance can select technology or architecture choices that do not fit a specific production environment. <br>
-Mitigation: Validate architecture, security requirements, operational constraints, and user approvals before implementing generated guidance. <br>
+**Output Format:** [Markdown guidance with code blocks, shell commands, configuration snippets, and implementation plans]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericn26-star/eric-app-builder-v2) <br>
+**Other Properties Related to Output:** [May propose dependency installation, external service setup, secrets configuration, deployment steps, and live URL publication when relevant to the application build.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, shell commands, configuration snippets, and implementation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project plans, task breakdowns, scaffolded file structures, dependency recommendations, and deployment guidance.] <br>
+1.0.0 (source: release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact/_meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

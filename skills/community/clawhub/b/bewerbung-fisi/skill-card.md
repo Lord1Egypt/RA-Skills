@@ -1,46 +1,57 @@
-## Description: <br>
-Creates and revises German-language resumes and cover letters for Fachinformatiker Systemintegration applications, adapting existing materials to job postings and collecting missing details through structured interview questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and revises German resumes and cover letters for Fachinformatiker Systemintegration roles, using structured intake and job-posting analysis to tailor application materials.
 
-## Publisher: <br>
-[arn0ld87](https://clawhub.ai/user/arn0ld87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arn0ld87](https://clawhub.ai/user/arn0ld87)
 
-## Use Case: <br>
-Job applicants and career-support agents use this skill to draft, assess, and improve German FISI application materials, including ATS-friendly resumes and DIN-5008-oriented cover letters. It is especially useful when tailoring existing documents to a specific job advertisement or gathering missing career details in small interview blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive personal application documents and profile details. <br>
-Mitigation: Share only the documents and personal details needed for the application, remove unnecessary sensitive information, and review drafts before reuse. <br>
-Risk: Referenced helper skills may process PDFs or personal profile material. <br>
-Mitigation: Review the referenced helper skills before allowing them to handle PDFs or personal profile content. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to draft, review, and tailor German CVs and cover letters for FISI and IT infrastructure roles. The skill also gathers missing profile details through short structured interview blocks before drafting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arn0ld87/bewerbung-fisi) <br>
-- [Publisher Profile](https://clawhub.ai/user/arn0ld87) <br>
-- [Deutsche Bewerbungsstandards](references/bewerbungsstandards.md) <br>
-- [Interview-Leitfaden](references/interview-leitfaden.md) <br>
-- [Lebenslauf-Vorlage](references/lebenslauf-vorlage.md) <br>
-- [Anschreiben-Vorlage](references/anschreiben-vorlage.md) <br>
-- [Lebenslauf Template](assets/lebenslauf-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured assessments, prioritized recommendations, interview questions, and draft application text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are in clear standard German and should preserve truthful user-provided career facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may request personal resume, contact, career, and job-search details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only information you are comfortable sharing, omit unnecessary sensitive details, and review generated application documents before reuse.
+
+Risk: The skill is optimized for German application conventions, which may not fit every locale or employer process.
+
+Mitigation: Specify the desired language, country, and employer expectations when they differ from German-market norms.
+
+## Reference(s):
+
+- [Deutsche Bewerbungsstandards](references/bewerbungsstandards.md)
+- [Interview-Leitfaden](references/interview-leitfaden.md)
+- [Lebenslauf-Vorlage](references/lebenslauf-vorlage.md)
+- [Anschreiben-Vorlage](references/anschreiben-vorlage.md)
+- [Lebenslauf Template](assets/lebenslauf-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [German Markdown reviews, drafts, structured questions, and improvement recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should preserve truthful user-provided career facts, flag uncertain assumptions, and avoid inventing experience, degrees, or certifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

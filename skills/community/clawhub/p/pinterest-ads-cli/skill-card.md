@@ -1,45 +1,62 @@
-## Description: <br>
-Pinterest Ads data analysis and reporting via pinterest-ads-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinterest Ads data analysis and reporting via pinterest-ads-cli.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Marketing analysts, advertisers, and developers use this skill to run read-only Pinterest Ads CLI commands for campaign reporting, account inspection, billing review, catalog checks, trend discovery, and analytics with attribution windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Pinterest OAuth2 access token and can access advertising, billing, audience, catalog, lead-form, or customer-list data. <br>
-Mitigation: Use a least-privilege token with only the read scopes needed for the task and avoid exposing token values in prompts, logs, or command output. <br>
-Risk: The skill instructs agents to install and run an external npm CLI package. <br>
-Mitigation: Verify the npm package before global installation and install it only when the user intends to use pinterest-ads-cli for Pinterest Ads reporting. <br>
+## Use Case:
 
+External users, developers, and marketing analysts use this skill to query Pinterest Ads account structure, campaign performance, audiences, billing, catalogs, trends, and analytics through a read-only CLI.
 
-## Reference(s): <br>
-- [pinterest-ads-cli documentation](https://github.com/Bin-Huang/pinterest-ads-cli) <br>
-- [Pinterest API v5 overview](https://developers.pinterest.com/docs/api/v5/) <br>
-- [Pinterest OAuth authentication](https://developers.pinterest.com/docs/getting-started/authentication/) <br>
-- [Pinterest Analytics API](https://developers.pinterest.com/docs/api/v5/#tag/ad_accounts) <br>
-- [Pinterest Catalogs API](https://developers.pinterest.com/docs/api/v5/#tag/catalogs) <br>
-- [Pinterest Trends API](https://developers.pinterest.com/docs/api/v5/#tag/trends) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples; CLI commands return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Pinterest OAuth2 access token; commands are described as read-only and may access advertising, billing, audience, catalog, and lead-form data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to install an unpinned third-party CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned local install, and verify the npm package provenance before use.
+
+Risk: Pinterest OAuth access may expose broad account, catalog, trend, billing, and ads-read permissions.
+
+Mitigation: Use the narrowest OAuth scopes needed for the task and avoid sharing or logging access tokens.
+
+Risk: Audience, billing, customer-list, and lead-form outputs can contain sensitive business or personal data.
+
+Mitigation: Summarize or redact sensitive records unless the user clearly needs raw fields for the requested analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bin-huang/skills/pinterest-ads-cli)
+- [Pinterest API v5 overview](https://developers.pinterest.com/docs/api/v5/)
+- [Pinterest OAuth authentication](https://developers.pinterest.com/docs/getting-started/authentication/)
+- [Pinterest Analytics API](https://developers.pinterest.com/docs/api/v5/#tag/ad_accounts)
+- [Pinterest Catalogs API](https://developers.pinterest.com/docs/api/v5/#tag/catalogs)
+- [Pinterest Trends API](https://developers.pinterest.com/docs/api/v5/#tag/trends)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides read-only Pinterest Ads CLI usage and may summarize sensitive account, billing, audience, customer-list, and lead-form data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

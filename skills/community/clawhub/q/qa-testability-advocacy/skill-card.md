@@ -1,36 +1,53 @@
-## Description: <br>
-Helps QA practitioners evaluate software testability across controllability, observability, isolation, automation, and diagnosability, then propose concrete system improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses software testability and proposes practical architecture improvements across interfaces, data, logging, configuration, and dependencies.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers and software teams use this skill when a system is difficult to test, mock, observe, isolate, automate, or diagnose. It produces a structured testability assessment with improvement suggestions, refactoring guidance, and best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+QA practitioners, developers, and architects use this skill to review testability gaps and plan prioritized improvements to system design and testing workflows.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured assessment sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides Chinese-language QA guidance and may activate on broad testing-related phrases.] <br>
+Global
 
-## Skill Version(s): <br>
-1.5.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The optional install command fetches a broader, unpinned skill set.
+
+Mitigation: Verify the publisher and source before running the command.
+
+Risk: Acting on cleanup recommendations could affect important data.
+
+Mitigation: Treat cleanup suggestions as planning advice and confirm they affect only non-critical test data before acting.
+
+## Reference(s):
+
+- [Testability dimensions checklist](references/testability-dimensions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Testability assessment, prioritized improvements, refactoring guidance, and uniquely identified recommendations.]
+
+## Skill Version(s):
+
+1.8.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

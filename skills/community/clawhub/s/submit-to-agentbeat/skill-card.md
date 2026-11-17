@@ -1,50 +1,66 @@
-## Description: <br>
-Guides autonomous AI agents through EVM wallet setup, ERC-8004 identity registration, x402 payment integration, and AgentBeat submission for indexing and rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides autonomous AI agents through wallet setup, ERC-8004 identity registration, x402 payment integration, and AgentBeat submission for indexing and USDC rewards.
 
-## Publisher: <br>
-[togodn2](https://clawhub.ai/user/togodn2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[togodn2](https://clawhub.ai/user/togodn2)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare a real, functional autonomous agent for on-chain identity registration, x402 payment capability, and AgentBeat submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles wallet keys and USDC/payment flows, which can expose funds if credentials are stored insecurely or spending is not bounded. <br>
-Mitigation: Prefer an external signer or encrypted credential store, keep only small balances in the agent wallet, never commit credentials.json, and configure per-request and daily x402 spend limits. <br>
-Risk: Automatic x402 payments can create unintended spend if payment destinations or request volume are not controlled. <br>
-Mitigation: Require allowlists plus per-request and daily spend limits before enabling automatic x402 payments. <br>
-Risk: AgentBeat submission can misattribute rewards if the NFT owner differs from reward or payment addresses. <br>
-Mitigation: Use the ownership proof gate and require a valid EIP-712 signature from the NFT owner when addresses do not match. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prepare an operational autonomous agent for on-chain identity registration, x402 payment capability, and AgentBeat submission while collecting required owner approvals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/togodn2/submit-to-agentbeat) <br>
-- [Source Homepage](https://github.com/STPDevteam/submit-to-agentbeat) <br>
-- [AgentBeat Submission](reference/agentbeat-submission.md) <br>
-- [ERC-8004 Registration](reference/erc8004-registration.md) <br>
-- [Wallet Setup](reference/wallet-setup.md) <br>
-- [x402 Payment Integration](reference/x402-integration.md) <br>
-- [AgentBeat](https://www.agentbeat.fun/) <br>
-- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [x402 Documentation](https://docs.cdp.coinbase.com/x402/welcome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and JavaScript/Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit owner gates before wallet key handling, on-chain registration, reward address selection, legitimacy confirmation, and ownership proof.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Wallet private keys and payment signing can expose funds if secrets are stored or logged insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an external signer, hardware wallet, OS keychain, or encrypted vault; avoid plaintext credentials and transcript exposure.
+
+Risk: Automatic x402 payments can spend funds unexpectedly.
+
+Mitigation: Use a low-balance wallet and set explicit per-payment limits and allowlists before enabling automatic payment flows.
+
+Risk: Unpinned or unaudited wallet and payment dependencies can change sensitive signing behavior.
+
+Mitigation: Pin and audit dependencies before deployment.
+
+## Reference(s):
+
+- [Submit to AgentBeat ClawHub Page](https://clawhub.ai/togodn2/skills/submit-to-agentbeat)
+- [Source Homepage](https://github.com/STPDevteam/submit-to-agentbeat)
+- [Wallet Setup](reference/wallet-setup.md)
+- [ERC-8004 Registration](reference/erc8004-registration.md)
+- [AgentBeat Submission](reference/agentbeat-submission.md)
+- [x402 Payment Integration](reference/x402-integration.md)
+- [AgentBeat](https://www.agentbeat.fun/)
+- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
+- [x402 Protocol](https://www.x402.org)
+- [Coinbase x402 GitHub](https://github.com/coinbase/x402)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, shell, JavaScript, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes owner approval gates for wallet key handling, endpoint declaration, reward address selection, agent legitimacy, and ownership proof.]
+
+## Skill Version(s):
+
+1.9.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

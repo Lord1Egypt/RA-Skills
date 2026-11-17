@@ -1,44 +1,59 @@
-## Description: <br>
-Fetches current Monero (XMR) prices in USD, EUR, and GBP with 24h change, volume, market cap, rank, and chart links using CoinGecko data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches current Monero (XMR) prices in USD, EUR, and GBP with 24-hour change, volume, market cap, rank, and chart links using CoinGecko data.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-External users and developers use this skill to check informational Monero market data and retrieve quick links to XMR charts. It supports lightweight price lookups for learning, monitoring, mining profitability estimates, or donation decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto price data may be stale, incomplete, or unsuitable for financial decisions. <br>
-Mitigation: Treat output as informational only and verify important decisions against primary market sources. <br>
-Risk: Public market data requests can be rate-limited or unavailable. <br>
-Mitigation: Check the reported update time and retry later or consult linked market pages when data is unavailable. <br>
-Risk: The artifact includes a voluntary XMR tip address. <br>
-Mitigation: Do not treat the address as a required payment or access condition. <br>
+## Use Case:
 
+Developers and agents use this skill to answer Monero market-price queries with current XMR prices and market metrics from public crypto-market data sources. It is informational only and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liumaimiao/monero-price-tracker) <br>
-- [CoinGecko Monero chart](https://www.coingecko.com/en/coins/monero) <br>
-- [CoinMarketCap Monero chart](https://coinmarketcap.com/currencies/monero/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with market statistics, chart links, and optional shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public CoinGecko market data; no API key required; data is described as cached for 2 minutes to reduce rate-limit pressure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Crypto-market prices can be volatile or stale, and the skill presents market data that could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the output informational, include update timing when available, and preserve the no-financial-advice posture from the artifact.
+
+Risk: The skill depends on public internet price sources and may be affected by API downtime, rate limits, or returned-data errors.
+
+Mitigation: Check source availability before relying on results and treat failures or unusual values as data-quality issues rather than definitive market signals.
+
+Risk: The artifact includes a voluntary Monero donation address.
+
+Mitigation: Do not treat the address as required for use, and review donation text before deployment in managed or commercial environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumaimiao/skills/monero-price-tracker)
+- [CoinGecko Monero chart](https://www.coingecko.com/en/coins/monero)
+- [CoinMarketCap Monero chart](https://coinmarketcap.com/currencies/monero/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with shell command examples and market-stat output snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include currency-specific price lookups, chart links, and financial-advice disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

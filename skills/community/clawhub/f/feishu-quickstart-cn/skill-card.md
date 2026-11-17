@@ -1,43 +1,60 @@
-## Description: <br>
-飞书快速集成配置 helps users connect OpenClaw with Feishu for document management, knowledge base workflows, and office automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书快速集成配置 - 5分钟连接 OpenClaw 与飞书，解锁文档管理、知识库、自动化工作流。适合：企业用户、团队协作、飞书生态。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Enterprise users, team administrators, and OpenClaw operators use this skill to configure Feishu app credentials, permissions, document access, knowledge base workflows, bitable automation, and optional webhook subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu credentials and App Secret may be exposed through logs, screenshots, or version control. <br>
-Mitigation: Keep the App Secret out of logs, screenshots, and repositories; use a dedicated Feishu app and store credentials only in the intended OpenClaw configuration. <br>
-Risk: The skill guides write-capable access to Feishu documents, knowledge bases, bitables, and optional webhook subscriptions. <br>
-Mitigation: Grant minimum required scopes, restrict webhook subscriptions, confirm target links before updates, and test write workflows on non-production documents or tables first. <br>
+## Use Case:
 
+Developers, enterprise users, and collaboration teams use this skill to configure an OpenClaw and Feishu integration for document access, knowledge-base workflows, bitable automation, and optional webhook events.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/feishu-quickstart-cn) <br>
-- [Feishu Developer Console](https://open.feishu.cn/app) <br>
-- [Feishu Open Platform Documentation](https://open.feishu.cn/document) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Feishu permission scopes, credential configuration examples, validation prompts, troubleshooting guidance, and pricing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The setup asks users to grant broad Feishu document, drive, wiki, bitable, and webhook permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest Feishu scopes needed for the intended workflow and avoid write scopes unless they are required.
+
+Risk: The configuration stores Feishu App Secret values in an OpenClaw configuration file.
+
+Mitigation: Store secrets with restricted file permissions or a secrets manager, and keep configuration files out of source control and broad backups.
+
+Risk: Write-capable document, wiki, and bitable automation can affect enterprise content.
+
+Mitigation: Test write-capable workflows in a sandbox tenant or non-production workspace before enabling them in a real Feishu tenant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/feishu-quickstart-cn)
+- [Feishu open platform app console](https://open.feishu.cn/app)
+- [Feishu open platform documentation](https://open.feishu.cn/document)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with YAML and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl according to parsed ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

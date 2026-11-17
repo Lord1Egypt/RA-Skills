@@ -1,38 +1,53 @@
-## Description: <br>
-This skill provides a Steve Jobs-style thinking and expression system based on public-source synthesis to analyze products, decisions, and feedback from that perspective. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent adopt a disclosed Steve Jobs-inspired perspective to analyze products, review decisions, and provide feedback using summarized mental models, decision heuristics, and communication patterns from public sources.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users and developers use this skill as a roleplay-based product and decision advisor that responds in a Steve Jobs-inspired style for product analysis, critique, prioritization, and feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may confuse Steve Jobs-style roleplay with authentic Steve Jobs statements or authoritative factual guidance. <br>
-Mitigation: Treat responses as simulated perspective based on public-source synthesis, and ask the agent to exit the persona or answer in third person when clarity matters. <br>
+## Use Case:
 
+External users and builders use this skill as an opinionated roleplay and perspective mode for product analysis, decision review, and feedback framed through a Steve Jobs-inspired lens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/steve-jobs-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-framed responses based on public-source synthesis; no file, account, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill intentionally changes the assistant's speaking style into a first-person Steve Jobs-inspired roleplay mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as a disclosed perspective simulation rather than real quotes, verified views, or neutral factual analysis.
+
+Risk: Forceful persona responses may be inappropriate for neutral, factual, medical, legal, financial, or safety-critical requests.
+
+Mitigation: Exit the persona before requesting neutral analysis or any high-stakes advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/steve-jobs-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single conversational response; no generated files or commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

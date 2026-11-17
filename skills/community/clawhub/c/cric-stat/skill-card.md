@@ -1,41 +1,53 @@
-## Description: <br>
-Looks up cricket statistics, scores, records, player averages, match results, rankings, and related cricket data using public web sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cricket statistics lookup for stats, scores, records, player averages, match results, rankings, and other cricket data.
 
-## Publisher: <br>
-[hamzadaniyal7](https://clawhub.ai/user/hamzadaniyal7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hamzadaniyal7](https://clawhub.ai/user/hamzadaniyal7)
 
-## Use Case: <br>
-External users and cricket analysts use this skill to retrieve current and historical cricket stats, match results, rankings, records, and player or team context from public sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Cricket Reference Guide](reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hamzadaniyal7/cric-stat) <br>
-- [ESPN Cricinfo](https://www.espncricinfo.com/) <br>
-- [ICC Rankings](https://www.icc-cricket.com/rankings/) <br>
-- [Cricbuzz](https://www.cricbuzz.com/) <br>
+External users and developers use this skill to retrieve cricket statistics, match results, rankings, records, and concise player or team background from public cricket sources.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables, bullet points, citations, and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses web search and page fetches for public cricket information; users should specify format, competition, date range, and men's or women's cricket for better accuracy.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Ambiguous cricket queries may be answered for the wrong gender, format, competition, or season.
+
+Mitigation: Ask for or clearly state the gender, format, competition, and season before presenting the result.
+
+Risk: Live cricket statistics, rankings, and match results can change after retrieval.
+
+Mitigation: Cite the source and include the date or period covered, using an as-of date when the value may change.
+
+## Reference(s):
+
+- [Cricket Reference Guide](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, bullet points, citations, and as-of dates when statistics may change.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should identify the cricket format, competition or season, and source period where relevant.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

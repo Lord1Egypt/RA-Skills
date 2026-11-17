@@ -1,0 +1,3 @@
+# JSON actions
+
+Actions list(profile), mkdir(profile,remote), plan(profile,directory), upload(profile,file,remote,etag optional), download(profile,file,remote,etag optional,localSha256 needed for an existing local file), delete(profile,remote,etag). Profile private JSON {url:https collection URL,username,passwordEnv}. Paths file/directory are workspace-relative; remote is decoded collection-relative, with no .., %, query, fragment or absolute URL. HTTPS certificate verification stays enabled, redirects are rejected. Upload/download <=50MiB; listing<=10000 entries. Transfer receipts in .mochilab/cloud-files retain local SHA256 and returned ETag.

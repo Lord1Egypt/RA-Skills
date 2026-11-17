@@ -1,12 +1,12 @@
 ---
 name: self-improving-conversation
-description: "Captures dialogue learnings, tone mismatches, escalation failures, and conversation quality issues for continuous improvement. Use when: (1) A user expresses frustration or confusion, (2) Tone mismatch is detected between agent and user, (3) Context is lost mid-conversation, (4) Agent hallucinates information, (5) User requests escalation to a human, (6) Conversation is abandoned or user rephrases repeatedly, (7) A missing conversational capability is identified. Also review learnings before handling complex dialogue flows."
+description: "Captures dialogue learnings, tone mismatches, escalation failures, and conversation quality issues. Logs redacted summaries to .learnings/. Optional project-scoped hooks use a narrow matcher. Promote to prompt files or extract skills only after explicit human review of a diff. Use when: (1) A user expresses frustration or confusion, (2) Tone mismatch is detected, (3) Context is lost mid-conversation, (4) Agent hallucinates, (5) User requests escalation, (6) Conversation is abandoned or rephrased repeatedly, (7) A missing conversational capability is identified."
 metadata:
 ---
 
 # Self-Improving Conversation Skill
 
-Log dialogue learnings, tone issues, and conversation failures to markdown files for continuous improvement. Conversational agents can later process these into playbooks, and important patterns get promoted to project memory.
+Log dialogue learnings, tone issues, and conversation failures to markdown files for continuous improvement. Conversational agents can later process these into playbooks. Important patterns may be promoted to project memory after explicit human review of a diff. Optional hooks are reminder-only and project-scoped.
 
 ## First-Use Initialisation
 
@@ -39,7 +39,7 @@ If you want automatic reminders or setup assistance, use the opt-in hook workflo
 | User abandons conversation | Log to `.learnings/DIALOGUE_ISSUES.md` with `abandonment` |
 | Simplify/Harden recurring patterns | Log/update `.learnings/LEARNINGS.md` with `Source: simplify-and-harden` and a stable `Pattern-Key` |
 | Similar to existing entry | Link with `**See Also**`, consider priority bump |
-| Conversation pattern is proven | Promote to `SOUL.md` (tone/style), `AGENTS.md` (dialogue workflow), or `TOOLS.md` (integration) |
+| Conversation pattern is proven | Propose a reviewed diff for `SOUL.md`, `AGENTS.md`, or `TOOLS.md`; apply only after explicit approval |
 
 ## OpenClaw Setup (Recommended)
 
@@ -98,7 +98,7 @@ When learnings prove broadly applicable, promote them to workspace files:
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Opt-in and project-scoped. Enabling a hook persists across future sessions; skip this unless you need reminders:
 
 ```bash
 cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-conversation
@@ -292,8 +292,9 @@ When a conversational learning is broadly applicable (not a one-off exchange), p
 ### How to Promote
 
 1. **Distill** the learning into a concise conversational rule or guideline
-2. **Add** to appropriate section in target file (create file if needed)
-3. **Update** original entry:
+2. **Prepare** a minimal patch for the appropriate section in the target file (create file if needed)
+3. **Show a reviewed diff and apply only after explicit user approval**
+4. **Update** original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: SOUL.md`, `AGENTS.md`, or target file
 
@@ -453,7 +454,7 @@ Use to filter learnings by conversation phase:
 This repo uses that default to avoid committing sensitive conversation logs by accident.
 
 **Track learnings in repo** (team-wide):
-Don't add to .gitignore — learnings become shared knowledge.
+Only track `.learnings/` after a human has reviewed entries for secrets, PII, and privileged content.
 
 **Hybrid** (track templates, ignore entries):
 ```gitignore
@@ -465,6 +466,8 @@ Don't add to .gitignore — learnings become shared knowledge.
 
 Enable automatic reminders through agent hooks. This is **opt-in** — you must explicitly configure hooks.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` in your project:
@@ -473,7 +476,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "dialogue|conversation|chatbot|intent|escalat|tone|hallucin",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-conversation/scripts/activator.sh"
@@ -483,7 +486,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects a dialogue learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects a dialogue learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Error Detection)
 
@@ -499,6 +502,8 @@ Add `PostToolUse` hook alongside activator for automated dialogue failure detect
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When a conversational learning is valuable enough to become a reusable skill, extract it using the provided helper.
 
@@ -635,3 +640,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/conversation/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

@@ -1,42 +1,57 @@
-## Description: <br>
-Scaffolds new Aptos projects using npx create-aptos-dapp, supporting fullstack Vite or Next.js apps and contract-only templates with network selection and an optional API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffolds new Aptos projects with npx create-aptos-dapp, supporting fullstack Vite or Next.js templates and contract-only Move projects with network selection and optional API key setup.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers use this skill to start Aptos dApps or Move contract projects from the create-aptos-dapp scaffold, choosing project type, framework, network, and optional API key setup before continuing into build, test, audit, deploy, and frontend integration steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent beyond scaffolding into tests, audit, deployment, frontend integration, and git operations. <br>
-Mitigation: Confirm the exact project name, framework, network, and stopping point before execution; require explicit approval before deployment or mainnet use. <br>
-Risk: Scaffolding uses npx to fetch and execute create-aptos-dapp. <br>
-Mitigation: Review or pin the npx package before execution when supply-chain control is required. <br>
-Risk: Generated .env values and optional Geomi API keys may be sensitive. <br>
-Mitigation: Treat API keys and .env values as secrets, verify .env is ignored before git operations, and never display private keys. <br>
+## Use Case:
 
+Developers and engineers use this skill to start Aptos dApp or Move contract projects from the official scaffolding command, choose project type, framework, network, and optional API key settings, and follow post-scaffold checks.
 
-## Reference(s): <br>
-- [Geomi](https://geomi.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and ordered setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create project files by running create-aptos-dapp and related Aptos, npm, and git commands after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can encourage unpinned remote npx execution, including auto-confirmed package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin create-aptos-dapp to a reviewed version and avoid npx --yes unless the package and version have been approved.
+
+Risk: Generic app-building trigger phrases may activate the skill outside an Aptos project setup.
+
+Mitigation: Enable or invoke the skill only when the user explicitly wants an Aptos app, dApp, Move contract, or Aptos project scaffold.
+
+Risk: Scaffolding, aptos init, git commits, or deployments can affect accounts, files, and repository history.
+
+Mitigation: Run the workflow in a limited workspace without unrelated secrets and require separate explicit approval before account initialization, git commits, or deployment steps.
+
+## Reference(s):
+
+- [Geomi API keys](https://geomi.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute project scaffolding, Aptos account initialization, tests, and git commands after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; SKILL.md frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

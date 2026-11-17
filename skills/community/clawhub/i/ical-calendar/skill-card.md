@@ -1,43 +1,54 @@
-## Description: <br>
-Query `.ics` calendar files, raw iCal strings, or remote iCal feeds with the local `icali` CLI. Use when a user asks for natural-language calendar lookups such as what's on a day, week, or time window, whether a person appears in upcoming meetings, or when filtering iCal events by summary, description, location, date range, status, or component type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query `.ics` calendar files, raw iCal strings, or remote iCal feeds with the local `icali` CLI.
 
-## Publisher: <br>
-[docmarionum1](https://clawhub.ai/user/docmarionum1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[docmarionum1](https://clawhub.ai/user/docmarionum1)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language calendar questions into focused `icali` queries against provided iCal sources. It helps answer schedule, date-window, participant, status, and keyword-filter questions with concise calendar summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read calendar contents from local `.ics` files, raw iCal text, or remote feed URLs provided to the agent. <br>
-Mitigation: Use only calendar files and feed URLs that the user is authorized to share, and avoid private feed URLs unless their contents are intended to be queried and summarized. <br>
-Risk: The skill depends on the local `icali` CLI, so an untrusted or unexpected binary on the PATH could affect behavior. <br>
-Mitigation: Install `icali` from a trusted source and verify the binary location before enabling the skill in sensitive environments. <br>
-Risk: Ambiguous timezone or date-window interpretation can produce misleading calendar answers. <br>
-Mitigation: Provide an IANA timezone when local day boundaries matter and have the agent state the interpreted date or datetime window in its answer. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to answer natural-language questions over user-provided iCal calendar files, raw iCal text, or remote iCal feeds. It helps agents translate calendar questions into `icali` queries, then summarize matching events clearly.
 
-## Reference(s): <br>
-- [iCaLI project homepage](https://github.com/docmarionum1/iCaLI) <br>
-- [ClawHub skill page](https://clawhub.ai/docmarionum1/ical-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and natural-language calendar summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize JSON returned by `icali`; requires a user-provided or discoverable iCal file, raw iCal string, or remote feed URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Calendar files and feed URLs can contain sensitive personal or business scheduling data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where agents are allowed to inspect user-provided calendar data, and avoid exposing raw event details beyond what is needed to answer the request.
+
+Risk: Ambiguous calendar sources or timezones can produce incorrect date-window answers.
+
+Mitigation: Confirm the `.ics` path, feed URL, or raw iCal text and the relevant timezone before lookup when either is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/docmarionum1/skills/ical-calendar)
+- [iCaLI CLI homepage](https://github.com/docmarionum1/iCaLI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with inline bash command examples and JSON-derived calendar summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calendar answers should state the interpreted date or datetime window, identify whether cancelled items were excluded, and summarize matching events in chronological order.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

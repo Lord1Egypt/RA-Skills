@@ -1,43 +1,55 @@
-## Description: <br>
-Programmatic NotebookLM control with auto-recovery for authentication errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Programmatic NotebookLM control with auto-recovery for authentication errors.
 
-## Publisher: <br>
-[antaripnandi](https://clawhub.ai/user/antaripnandi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antaripnandi](https://clawhub.ai/user/antaripnandi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to control NotebookLM from an agent and recover from expired authentication after explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill extracts live Google/NotebookLM session cookies and stores them locally for reuse. <br>
-Mitigation: Install only when deliberately accepting this behavior, prefer official login flows where possible, and treat the stored files and environment variable as sensitive secrets. <br>
-Risk: Authentication recovery can refresh and inject cookies after a NotebookLM authentication failure. <br>
-Mitigation: Run the recovery script only after explicit user approval and review the proposed command before execution. <br>
-Risk: Stored auth files or NOTEBOOKLM_AUTH_JSON can expose account sessions if shared or retained longer than needed. <br>
-Mitigation: Restrict access to ~/.notebooklm/storage_state.json, ~/.notebooklm/auth_payload.json, and NOTEBOOKLM_AUTH_JSON, and remove them when finished. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run NotebookLM CLI commands and recover from authentication-expired failures with explicit user consent.
 
-## Reference(s): <br>
-- [OpenClaw Framework](https://github.com/openclaw/openclaw) <br>
-- [NotebookLM](https://notebooklm.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a user-consent gate before running cookie recovery automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The recovery flow extracts and persistently stores Google/NotebookLM session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if cookie handling is acceptable, prefer supported NotebookLM login when possible, and use a dedicated low-privilege browser profile.
+
+Risk: Stored auth payload files or persistent environment variables can expose active session credentials if the local environment is compromised.
+
+Mitigation: Avoid persistent environment-variable storage where possible, delete ~/.notebooklm/storage_state.json and ~/.notebooklm/auth_payload.json after use, and revoke or refresh the Google session if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antaripnandi/skills/notebooklm-bypass)
+- [OpenClaw Framework](https://github.com/openclaw/openclaw)
+- [NotebookLM](https://notebooklm.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and CLI instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user permission before running the authentication recovery script.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

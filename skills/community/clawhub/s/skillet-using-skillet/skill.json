@@ -1,0 +1,8 @@
+{
+  "id": "using-skillet",
+  "version": "0.1.6",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh using-skillet"
+  ],
+  "trust_level": "workspace"
+}

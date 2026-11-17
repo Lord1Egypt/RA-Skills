@@ -1,43 +1,59 @@
-## Description: <br>
-GizmoLab Tools guides agents through GizmoLab's browser-based blockchain developer tools and Web3 UI component library for smart contract interactions, token workflows, transaction decoding, ENS lookup, swaps, and dApp component integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GizmoLab Tools guides agents to use GizmoLab's web-based blockchain developer tools and Web3 UI component library for dApp development, smart contract interaction, and blockchain operations.
 
-## Publisher: <br>
-[gizmo-dev](https://clawhub.ai/user/gizmo-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gizmo-dev](https://clawhub.ai/user/gizmo-dev)
 
-## Use Case: <br>
-Developers and Web3 builders use this skill to operate GizmoLab's web tools for blockchain lookups, transaction decoding, contract interaction, token workflows, swaps, and Web3 UI component integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent into wallet-connected blockchain operations, including token creation, minting, swaps, and contract writes. <br>
-Mitigation: Use testnets or disposable wallets where possible; verify the GizmoLab URL, network, contract address, function, token amounts, fees, slippage, and destination before allowing any wallet approval or transaction confirmation. <br>
-Risk: Burner wallet or private-key workflows can expose real funds if used outside testing. <br>
-Mitigation: Use burner wallets only for testing, never use them for real funds, and require the user to decide whether any generated key material should be saved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gizmo-dev/gizmolab-tools) <br>
-- [GizmoLab blockchain tools](https://tools.gizmolab.io/) <br>
-- [GizmoLab UI library](https://ui.gizmolab.io/) <br>
-- [GizmoLab UI docs](https://ui.gizmolab.io/docs/) <br>
-- [GizmoLab UI components](https://ui.gizmolab.io/components) <br>
+## Use Case:
 
+Developers building dApps or performing blockchain operations use this skill to navigate GizmoLab's web tools for Ethereum and Solana tasks and to find Web3 UI component installation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with browser action steps and code or installation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct browser-based wallet workflows; transaction approvals require explicit user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet-connected blockchain tools can create, mint, swap, or write transactions that may move assets or change on-chain state.
+
+Mitigation: Use testnet or devnet first, verify contract addresses and transaction details, and require fresh human approval before any wallet signature or transaction confirmation.
+
+Risk: The skill points agents to external installation commands and component code that could be copied into a project without review.
+
+Mitigation: Inspect installation commands, dependencies, and component code before adding them to a project.
+
+Risk: Burner wallet workflows can expose private keys or be mistaken for production wallets.
+
+Mitigation: Use burner wallets only for testing and never fund them with real assets; save keys only according to the user's security practices if persistence is needed.
+
+## Reference(s):
+
+- [GizmoLab Tools](https://tools.gizmolab.io/)
+- [GizmoLab UI Library](https://ui.gizmolab.io/)
+- [GizmoLab UI Documentation](https://ui.gizmolab.io/docs/)
+- [GizmoLab Skill Page](https://clawhub.ai/gizmo-dev/skills/gizmolab-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with browser-action steps, URLs, and code or installation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct wallet-connected blockchain actions and external code installation; human approval and inspection are required before transactions or project changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

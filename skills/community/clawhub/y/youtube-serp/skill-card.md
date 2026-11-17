@@ -1,42 +1,54 @@
-## Description: <br>
-Search YouTube videos, channels, rankings, and trends through AIsa for YouTube research, competitor scouting, content discovery, video discovery, and SERP-style analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search YouTube videos, channels, rankings, and trends through AIsa for YouTube research, competitor scouting, and content discovery.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users, creators, marketers, and research agents use this skill to search public YouTube results, identify top-ranking videos, review competitor channels, and scan trends while staying grounded in returned API results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires AISA_API_KEY and sends YouTube research queries to AIsa. <br>
-Mitigation: Use a scoped or revocable key when available, avoid unrelated sensitive data in search terms, and rotate the key if exposure is suspected. <br>
-Risk: Returned YouTube titles, URLs, and metrics can be incomplete, stale, or absent. <br>
-Mitigation: Ground summaries in returned results, avoid inventing missing fields, and state clearly when the upstream service returns no results. <br>
+## Use Case:
 
+External users, developers, and content researchers use this skill to run AIsa-backed YouTube SERP queries, identify top-ranking videos, review competitor presence, and discover content opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/youtube-serp) <br>
-- [Publisher profile](https://clawhub.ai/user/bibaofeng) <br>
-- [AIsa API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and sends YouTube search queries to AIsa.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: YouTube queries and the AIsa API key are sent to AIsa's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive query text, keep the API key in environment variables or approved secret storage, and disclose the third-party API call before use.
+
+Risk: SERP-derived rankings and trends may be incomplete, stale, or mistaken for dedicated YouTube channel or trends API data.
+
+Mitigation: Label outputs as AIsa YouTube SERP results, ground summaries in returned records, and state clearly when the upstream returns no results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/youtube-serp)
+- [AIsa API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the bundled CLI plus Markdown summaries or guidance from the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; YouTube query terms and the API key are sent to AIsa's API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

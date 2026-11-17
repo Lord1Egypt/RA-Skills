@@ -1,38 +1,53 @@
-## Description: <br>
-Book dj services through Lokuli MCP. Use when user needs to find and book dj. Triggers on requests like "book a dj", "find dj near me", or any dj service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book DJ helps an agent find DJ providers, check availability, and create bookings through Lokuli's MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for DJ services, check availability, and create a booking through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking can send customer contact details to an external service. <br>
-Mitigation: Before creating a booking, confirm the DJ, date, time, price or cancellation terms, customer name, email, and phone number. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-dj) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search for DJ services, check provider availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [JSON-RPC MCP requests and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer contact details and booking selections for an external service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may send customer contact details or create a booking before the user has confirmed the transaction.
+
+Mitigation: Require explicit confirmation of the provider, service, time slot, customer name, email, and phone number before calling the booking tool.
+
+Risk: The skill depends on Lokuli's external MCP service for DJ search, availability, and booking actions.
+
+Mitigation: Install only when external Lokuli MCP access is intended, and review the MCP endpoint and requested booking details before use.
+
+## Reference(s):
+
+- [Book DJ on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-dj)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP search, availability-check, and booking guidance that may include customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

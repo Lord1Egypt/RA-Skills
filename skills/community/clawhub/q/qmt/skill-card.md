@@ -1,45 +1,60 @@
-## Description: <br>
-QMT迅投量化交易终端 - 内置Python策略开发、回测引擎和实盘交易，支持中国证券市场全品种。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QMT helps agents produce guidance, examples, and code for QMT and miniQMT quantitative trading workflows covering market data, backtesting, and live trading in Chinese securities markets.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and quantitative trading practitioners use this skill for QMT strategy development, backtesting guidance, market-data access patterns, and broker-connected trading workflow examples for Chinese securities markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches live brokerage trading workflows that could submit orders or affect real funds. <br>
-Mitigation: Require explicit user approval for each trade-related action, prefer paper or backtest modes first, and limit access to intended accounts. <br>
-Risk: Examples may involve account identifiers, broker sessions, bank-transfer actions, or credentials. <br>
-Mitigation: Never hardcode, log, or expose bank passwords, account identifiers, or session secrets; keep connected workflows in review. <br>
-Risk: Trading guidance or generated strategies may be incorrect or unsuitable for a user's market conditions. <br>
-Mitigation: Review strategy logic before execution and validate behavior with historical backtests or dry runs. <br>
+## Use Case:
 
+Developers, quant researchers, and trading operations teams use this skill to ask an agent for QMT API references, strategy examples, setup guidance, and troubleshooting support for local QMT or miniQMT environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coderwpf/qmt) <br>
-- [QMT beginner documentation](http://dict.thinktrader.net/freshman/rookie.html) <br>
-- [ThinkTrader QMT](http://www.thinktrader.net) <br>
-- [Boss Quant Bilibili profile](https://space.bilibili.com/48693330) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading, backtesting, market-data, account-query, and environment setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Examples and generated snippets can place live orders or trigger fund-transfer workflows in QMT or miniQMT environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test strategies in simulation first and require explicit human confirmation before any live trade, transfer, or algorithmic order is executed.
+
+Risk: Trading workflows may handle account data, bank credentials, fund passwords, or sensitive logs.
+
+Mitigation: Do not hardcode passwords or account secrets, redact logs before sharing them, and keep credential handling outside generated examples.
+
+Risk: The security verdict requires review because the skill supports real-money trading actions without clear built-in safeguards.
+
+Mitigation: Review generated trading logic, dependency versions, and broker permissions before using outputs in a production trading account.
+
+## Reference(s):
+
+- [QMT official documentation](http://dict.thinktrader.net/freshman/rookie.html)
+- [ThinkTrader](http://www.thinktrader.net)
+- [ClawHub skill page](https://clawhub.ai/coderwpf/skills/qmt)
+- [BossQuant Bilibili profile](https://space.bilibili.com/48693330)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include examples for live trading, market data access, account queries, and local QMT or miniQMT setup.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Identifies key plant growth stages from images or videos and returns structured analysis for precision agriculture decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accurately identifies key growth stages of plants from germination to fruiting based on computer vision and deep learning, provides structured data for precision agriculture decision support. | 植物生长阶段识别技能，基于计算机视觉与深度学习算法，精准识别植物从发芽到结果的全生命周期关键生长阶段，为精准农业提供科学决策支持
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-Agricultural producers, agronomists, and developers use this skill to submit plant images or videos for plant growth-stage classification, structured reporting, and cloud report retrieval. The results can support precision agriculture decisions such as irrigation, fertilization, pest and disease control, and yield planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images or videos are sent to a cloud analysis service. <br>
-Mitigation: Use only media appropriate for the provider's retention and deletion practices, and avoid sensitive media unless those practices meet the user's requirements. <br>
-Risk: The skill may silently create or reuse an internal identity, store session tokens locally, and retrieve account-linked report history. <br>
-Mitigation: Install only where account-linked local persistence is acceptable, and review or clear local credential storage according to the deployment environment's policy. <br>
+## Use Case:
 
+Agricultural producers and analysts can use the skill to classify a plant's growth stage from an image or video and receive structured observations to inform precision agriculture decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-growth-stage-recognition-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON analysis report with optional report links; command-line output for history lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local media file paths or public media URLs and can optionally save returned content to an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter says 1.0.3) <br>
+Risk: ClawScan marks the release suspicious because of credential and identity handling, account-related behavior, and capabilities that do not clearly fit the stated plant-growth analysis purpose. The assessment is partial because two referenced local paths were missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install until the credential and identity behavior is explained and constrained and the export-only behavior is corrected; assess the missing paths before relying on the scan.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/smyx-sunjinhui/skills/smyx-plant-growth-stage-recognition-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API interface documentation](artifact/skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown]
+
+**Output Format:** [Structured JSON analysis reports; Markdown tables for historical report listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include growth-stage classification, developmental observations, recommendations, risk notes, and report links.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

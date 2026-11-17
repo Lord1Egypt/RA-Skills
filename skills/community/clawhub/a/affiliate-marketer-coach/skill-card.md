@@ -1,42 +1,54 @@
-## Description: <br>
-End-to-end coaching skill for affiliate marketers working on niche selection, keyword research, content strategy, monetization, conversion optimization, paid traffic, recovery after search updates, and site exits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end affiliate marketer coach for content sites, niche review sites, comparison sites, deal sites, coupon sites, YouTube and TikTok affiliate, newsletter affiliate, and paid-traffic affiliate workflows.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External users and affiliate marketers use this skill to diagnose an affiliate business, choose durable niches, plan topical-authority content, diversify monetization, improve conversion rates, evaluate paid traffic, and prepare site-sale decisions. It is intended as planning and coaching guidance, not as legal, tax, financial, medical, or advertising-policy advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Affiliate marketing guidance can affect paid traffic, compliance, and monetization decisions. <br>
-Mitigation: Use the skill for planning support and verify FTC disclosure requirements, affiliate program terms, advertising policies, and any regulated-niche constraints before acting. <br>
-Risk: Affiliate tactics can drift into deceptive or prohibited practices such as PBNs, cookie-stuffing, fake testimonials, undisclosed paid links, or trademark bidding. <br>
-Mitigation: Follow the artifact's refusal posture for black-hat or non-compliant tactics and redirect toward compliant content, disclosure, and traffic strategies. <br>
-Risk: Commission rates, RPM ranges, search-update behavior, and marketplace multiples can change over time. <br>
-Mitigation: Validate estimates with current program dashboards, analytics, broker guidance, and search performance data before making investment or sale decisions. <br>
+## Use Case:
 
+External affiliate marketers use this skill to evaluate niches, plan content clusters, improve affiliate monetization, diagnose Google update impacts, optimize conversions, and decide when to scale or sell an affiliate site.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/affiliate-marketer-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic summaries, ranked recommendations, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include business estimates, compliance reminders, refusal redirects, and next-step checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill is advisory and may produce affiliate marketing recommendations that should not be treated as executable automation or guaranteed business results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations before acting and validate them against current affiliate program terms, search-engine rules, advertising policies, and disclosure requirements.
+
+Risk: Paid niche edits or paid link placements can violate search-engine or affiliate-program rules.
+
+Mitigation: Favor disclosed sponsorships, editorial outreach, digital PR, and compliant link acquisition instead of undisclosed paid editorial links.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/affiliate-marketer-coach)
+- [Publisher Profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown coaching plans, diagnostic summaries, prioritized recommendations, and refusal guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are advisory and should be reviewed against current affiliate program, search-engine, and advertising rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

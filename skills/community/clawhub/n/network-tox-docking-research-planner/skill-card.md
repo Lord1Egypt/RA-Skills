@@ -1,46 +1,66 @@
-## Description: <br>
-Generates four-tier network toxicology and molecular docking research plans from a toxicant and disease or phenotype input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates four-tier network toxicology and molecular docking research plans from a toxicant-disease input, including target and pathway analysis, docking strategy, validation planning, figures, and a publication upgrade path.
 
-## Publisher: <br>
-[shanruoyu](https://clawhub.ai/user/shanruoyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanruoyu](https://clawhub.ai/user/shanruoyu)
 
-## Use Case: <br>
-External researchers and developers use this skill to plan computational toxicant-disease mechanism studies, including target overlap, PPI hub genes, enrichment, docking support, validation strategy, figures, and publication upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Biomedical research plans may be mistaken for validated scientific or health guidance. <br>
-Mitigation: Treat outputs as research-planning aids and require expert scientific review before using them for publication, clinical, regulatory, or health-related decisions. <br>
-Risk: Network target overlap, enrichment, and docking results can be overinterpreted as causal or in vivo evidence. <br>
-Mitigation: Review outputs for overclaims, keep docking and enrichment language explicitly supportive, and add experimental validation before making causal claims. <br>
-Risk: Target prediction, disease database bias, and weak validation datasets can produce fragile study designs. <br>
-Mitigation: Use multiple target sources, document filters and overlap thresholds, apply robustness checks, and clearly label dataset validation as supportive when evidence is limited. <br>
+## Use Case:
 
+Researchers and technical writers use this skill to draft computational toxicant-disease mechanism study plans. It helps structure network toxicology, molecular docking, validation, figure, and publication planning without executing the analyses.
 
-## Reference(s): <br>
-- [Workload Configurations](artifact/references/configurations.md) <br>
-- [Decision Logic](artifact/references/decision-logic.md) <br>
-- [Analysis Modules & Method Library](artifact/references/modules.md) <br>
-- [Mandatory Output Structure](artifact/references/output-standard.md) <br>
-- [Study Patterns](artifact/references/study-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research-plan narrative with tables and structured workflow sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Always separates hypothesis generation, expression support, and docking support; includes Lite, Standard, Advanced, and Publication+ planning tiers unless the user explicitly requests a constrained single tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Outputs are study designs, not clinical advice or proof of biological causality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep conclusions framed as computational hypotheses and require domain review before using the plan for claims, submissions, or experimental decisions.
+
+Risk: The skill may activate on casual chemical-and-disease research requests.
+
+Mitigation: Confirm the request involves a toxicant-disease or toxicant-phenotype research-planning task before applying the workflow.
+
+Risk: Target prediction, disease database overlap, pathway enrichment, and docking can be overinterpreted.
+
+Mitigation: Use multiple target sources, separate network, expression, enrichment, and docking evidence layers, and state what each layer does and does not prove.
+
+Risk: No executable code or hidden system changes were found, but generated plans can still include external tools and databases.
+
+Mitigation: Review proposed tools, datasets, thresholds, and validation steps before execution in a research environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shanruoyu/skills/network-tox-docking-research-planner)
+- [Decision Logic](artifact/references/decision-logic.md)
+- [Study Patterns](artifact/references/study-patterns.md)
+- [Workload Configurations](artifact/references/configurations.md)
+- [Analysis Modules & Method Library](artifact/references/modules.md)
+- [Mandatory Output Structure](artifact/references/output-standard.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research plan with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs four workload configurations, a recommended primary plan, workflow steps, validation strategy, figure plan, minimal executable version, and publication upgrade path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

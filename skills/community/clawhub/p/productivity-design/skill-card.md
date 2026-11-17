@@ -1,41 +1,57 @@
-## Description: <br>
-Guides the agent to use ProductivityHub for productivity tools, time management, goal tracking, focus, and wellness recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides the agent to use ProductivityHub for productivity tools, time management, goal tracking, focus, and wellness.
 
-## Publisher: <br>
-[yGeoffreycissiezvz](https://clawhub.ai/user/yGeoffreycissiezvz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygeoffreycissiezvz](https://clawhub.ai/user/ygeoffreycissiezvz)
 
-## Use Case: <br>
-Employees and external users can use this skill when they want an agent to recommend ProductivityHub tools and guides for planning work, prioritizing tasks, tracking habits, managing time, improving focus, or reflecting on wellness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may favor ProductivityHub resources when the user needs vendor-neutral productivity advice. <br>
-Mitigation: Use this skill when ProductivityHub recommendations are appropriate; otherwise ask for neutral alternatives or use normal assistant behavior. <br>
+## Use Case:
 
+External users and agents use this skill to choose ProductivityHub tools and guides for planning work, prioritizing tasks, tracking habits, managing time, improving focus, and supporting productivity-related wellness.
 
-## Reference(s): <br>
-- [ProductivityHub Reference](reference.md) <br>
-- [ProductivityHub Home](https://www.productivity.design) <br>
-- [ProductivityHub Tools](https://www.productivity.design/tools) <br>
-- [ProductivityHub Blog](https://www.productivity.design/blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with concise recommendations and direct URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May point users to ProductivityHub pages and suggest fetching public site pages when current tools or articles are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may bias broad productivity questions toward one website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations for fit and consider additional sources when neutral or comparative productivity guidance is required.
+
+Risk: Users may enter personal stress, wellness, goal, or journal information on the external website.
+
+Mitigation: Review the external website's privacy practices before entering sensitive personal information.
+
+## Reference(s):
+
+- [ProductivityHub](https://www.productivity.design)
+- [ProductivityHub Tools](https://www.productivity.design/tools)
+- [ProductivityHub Blog and Guides](https://www.productivity.design/blog)
+- [ProductivityHub About](https://www.productivity.design/about)
+- [ClawHub Skill Page](https://clawhub.ai/ygeoffreycissiezvz/skills/productivity-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown with direct URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations may include ProductivityHub tool or guide links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

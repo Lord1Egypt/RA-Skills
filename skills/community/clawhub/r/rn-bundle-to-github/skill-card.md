@@ -1,41 +1,55 @@
-## Description: <br>
-Guides agents through bundling React Native JavaScript for Android and iOS and publishing release or debug bundles to GitHub Releases with versioning and changelog steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through bundling a React Native app for Android and iOS and publishing release or debug bundles to GitHub Releases with versioning and changelog steps.
 
-## Publisher: <br>
-[lvtong199881](https://clawhub.ai/user/lvtong199881) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvtong199881](https://clawhub.ai/user/lvtong199881)
 
-## Use Case: <br>
-Developers and release engineers use this skill to prepare React Native bundle artifacts, increment release or debug versions, and publish GitHub Releases for hot update delivery. It is intended for projects where commits, tags, pushes, and release asset uploads are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to run a mutable remote shell script with GitHub repository credentials and publish authority. <br>
-Mitigation: Inspect and pin the publish.sh script before execution, then run it only from a clean branch where commits, tags, pushes, and GitHub Releases are intended. <br>
-Risk: The workflow requires a GitHub token with repository release permissions. <br>
-Mitigation: Use a fine-grained GitHub token limited to the intended repository and store it with restrictive local file permissions. <br>
+## Use Case:
 
+Developers and release engineers use this skill to prepare React Native JavaScript bundles, publish production or debug GitHub Releases, and document version changes for hot-update workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvtong199881/rn-bundle-to-github) <br>
-- [publish.sh script referenced by the skill](https://raw.githubusercontent.com/lvtong199881/MyRNApp/refs/heads/main/publish.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets, release workflow steps, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that create or update project files, commits, tags, GitHub Releases, and uploaded bundle assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow relies on a remotely fetched publish.sh script that can run with repository credentials and publishing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect or vendor the script before use, prefer a pinned commit plus checksum, and avoid piping or executing unreviewed remote content.
+
+Risk: Executing the release workflow can change package.json, CHANGELOG.md, commits, tags, remote branches, and GitHub Releases.
+
+Mitigation: Use a clean working tree, a review branch, repository backups or rollback tags, and a fine-grained GitHub token limited to the target repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvtong199881/skills/rn-bundle-to-github)
+- [Remote publish.sh referenced by the skill](https://raw.githubusercontent.com/lvtong199881/MyRNApp/refs/heads/main/publish.sh)
+- [GitHub Releases API endpoint pattern](https://api.github.com/repos/{owner}/{repo}/releases)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, API endpoint examples, file layout examples, and a Kotlin integration snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide changes to package.json, CHANGELOG.md, git tags, remote branches, and GitHub Releases when the referenced workflow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-This skill helps format and check footnotes and bibliographies for Chinese humanities papers using the 《中國文哲研究集刊》 citation style, while flagging missing bibliographic fields instead of inventing them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A citation-formatting and compliance-checking skill for Chinese humanities papers using 《中國文哲研究集刊》 conventions, producing footnotes, end references, and correction notes without inventing missing bibliographic details.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Writers, editors, students, and researchers use this skill to generate, check, and correct citations for Chinese humanities manuscripts prepared for the 《中國文哲研究集刊》 style. It supports first footnotes, repeated citation abbreviations, end references, Chinese and Western source handling, and missing-field markers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Citation output may be inaccurate if the user provides incomplete or incorrect bibliographic data. <br>
-Mitigation: Review generated citations manually and resolve any missing-field markers before manuscript submission. <br>
-Risk: Documents or pasted text may contain sensitive research material. <br>
-Mitigation: Only provide text and documents that are appropriate for the agent to process. <br>
+## Use Case:
 
+External researchers, editors, and developers use this skill to format, check, and correct footnotes and reference lists for Chinese humanities papers that need to follow 《中國文哲研究集刊》 citation conventions.
 
-## Reference(s): <br>
-- [Complete citation formatting rules and examples](references/citation-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/cwphil-citation-style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown citation output, corrected citation text, and concise review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flags missing bibliographic fields with explicit placeholders instead of fabricating source details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Citation output can be incomplete or misleading when the user provides partial bibliography data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide complete source details and review any missing-field markers before using the formatted citations.
+
+## Reference(s):
+
+- [citation-guide.md](references/citation-guide.md)
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/cwphil-citation-style)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown citation blocks and correction notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flags missing bibliographic fields instead of guessing them.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

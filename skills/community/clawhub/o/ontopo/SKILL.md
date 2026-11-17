@@ -1,7 +1,7 @@
 ---
 name: ontopo
-version: 1.0.0
-description: Search Israeli restaurants, check table availability, view menus, and get booking links on Ontopo. Use for "restaurant reservation", "table booking", "ontopo", "where to eat in Israel", "מסעדה", "הזמנת שולחן", "תפריט", "ארוחת ערב", "אונטופו", "איפה לאכול".
+version: 1.3.0
+description: Find restaurants and check table availability in Israel. Search across multiple dates and venues at once, view menus, and get a booking link to finish on Ontopo. Covers dining and restaurant discovery in Tel Aviv, Jerusalem, Haifa, Eilat and 23 more cities. Use for "restaurant reservation", "table booking", "book a restaurant", "dinner reservation", "where to eat in Israel", "מסעדה", "הזמנה", "הזמנת שולחן", "תפריט", "ארוחת ערב", "איפה לאכול", "אונטופו".
 author: Alex Polonsky (https://github.com/alexpolonsky)
 homepage: https://github.com/alexpolonsky/agent-skill-ontopo
 metadata: {"openclaw": {"emoji": "🍽️", "os": ["darwin", "linux"], "requires": {"bins": ["python3"]}, "install": [{"kind": "uv", "package": "httpx", "label": "Install httpx via pip/uv"}]}}
@@ -52,6 +52,7 @@ Find venues with availability for date and time. Date and time are POSITIONAL ar
 python3 {baseDir}/scripts/ontopo-cli.py available tomorrow 19:00
 python3 {baseDir}/scripts/ontopo-cli.py available tomorrow 20:00 --city tel-aviv
 python3 {baseDir}/scripts/ontopo-cli.py available +3 19:00 --party-size 4
+python3 {baseDir}/scripts/ontopo-cli.py available tomorrow 19:00 --safe-zone
 ```
 
 ### check
@@ -100,6 +101,7 @@ python3 {baseDir}/scripts/ontopo-cli.py url 66915792 --locale he
 | `--locale` | search, info, url | Language: en or he |
 | `--city` | available, search | City filter (tel-aviv, jerusalem, etc.) |
 | `--party-size` | available, check, range | Number of guests (default: 2) |
+| `--safe-zone` | available | Filter to venues tagged as safe zone (מרחב מוגן) on Ontopo. Alias: `--mamad` |
 | `--times` | range | Comma-separated times (default: 19:00,20:00) |
 | `--section` | menu | Filter by menu section |
 | `--search` | menu | Search menu items by name |
@@ -108,12 +110,12 @@ python3 {baseDir}/scripts/ontopo-cli.py url 66915792 --locale he
 
 ## Date/Time Formats
 
-**Dates**: `YYYY-MM-DD`, `today`, `tomorrow`, `+N` (days from now)
+**Dates**: `YYYY-MM-DD`, `today`, `tomorrow`, `+N`, or a weekday name like `friday`
 **Times**: `HH:MM`, `HHMM`, `7pm`, `19:30`
 
 ## Supported Cities
 
-tel-aviv, jerusalem, haifa, herzliya, raanana, ramat-gan, netanya, ashdod, ashkelon, beer-sheva, eilat, modiin, rehovot, rishon-lezion, petah-tikva, holon, kfar-saba, hod-hasharon, caesarea
+Run `cities` for the full list. Common cities: tel-aviv, jerusalem, haifa, herzliya, raanana, ramat-gan, netanya, ashdod, beer-sheva, eilat, modiin, rehovot, rishon-lezion, petah-tikva, holon, kfar-saba, hod-hasharon, caesarea. Hyphenated aliases are accepted (e.g. `ramat-gan` → `ramatgan`).
 
 ## Workflow Example
 
@@ -123,7 +125,7 @@ python3 {baseDir}/scripts/ontopo-cli.py search "taizu"
 # Note the venue ID from results (e.g., 36960535)
 
 # 2. Check availability
-python3 {baseDir}/scripts/ontopo-cli.py check 36960535 tomorrow --time 19:00
+python3 {baseDir}/scripts/ontopo-cli.py check 36960535 tomorrow 19:00
 
 # 3. View menu
 python3 {baseDir}/scripts/ontopo-cli.py menu 36960535

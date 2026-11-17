@@ -1,10 +1,14 @@
 ---
 name: tob-poc-war-room
+slug: tob-poc-war-room
+displayName: POC战情室
+version: 1.0.0
 description: POC war-room skill for ToB AI delivery. Use when a user needs to diagnose POC status, track pass rate, classify blockers, build a 48-hour closure plan, detect customer silence risk, generate daily POC war-room reports, or decide when a POC is ready to enter contract closing.
 priority: critical
-source: lining-field-experience
+source: field-experience
 workers: [tech, pm, sales]
 created: 2026-06-03
+updated: 2026-07-06
 tags: [tob, poc, delivery, war-room, risk-control]
 ---
 
@@ -30,7 +34,6 @@ Ask for missing essentials only when they change the decision:
 - open issue list with severity, owner, age, and next action
 - customer feedback or silence duration
 - decision maker / champion status
-- procurement path status: unknown / tender / price comparison / single-source / framework agreement / renewal
 - competitor or parallel POC signal, if any
 
 If inputs are incomplete, still produce a triage note and list the missing evidence.
@@ -39,7 +42,7 @@ If inputs are incomplete, still produce a triage note and list the missing evide
 
 ### Pass Rate
 
-- `>=90%`: closeable if no P0 blocker remains and acceptance evidence is concrete.
+- `>=90%`: technically closeable if no P0 blocker remains.
 - `70-89%`: yellow; focus the next 48h on the smallest set of blockers that affect acceptance.
 - `<70%`: red; do not talk contract yet unless customer scope changed.
 - Unknown pass rate: red-yellow; first action is to force a measurable acceptance baseline.
@@ -65,20 +68,6 @@ Classify each issue:
 - 7 days: danger signal; trigger executive/champion path and closing diagnosis.
 - Silence after successful demo is not neutral. Treat it as an unowned buying-process risk.
 
-### Procurement Path
-
-ToB POC cannot move cleanly into closing if procurement path is unknown.
-
-Check:
-- tender or formal bidding
-- price comparison
-- single-source justification
-- framework agreement call-off
-- renewal / expansion
-- direct purchase under threshold
-
-If pass rate is high but procurement path is unknown, trigger `poc-to-contract-closer` with a buying-process gap instead of sending a quote.
-
 ### Ownership
 
 No output may contain an action without:
@@ -98,15 +87,6 @@ Trigger `poc-to-contract-closer` when:
 - customer silence appears after a successful POC and the buying process must be restarted.
 
 Do not trigger closing when the POC is still proving basic feasibility.
-
-### Return From Closing
-
-If `poc-to-contract-closer` finds unresolved P0, pass rate below closeable level, or missing acceptance evidence, return to `tob-poc-war-room` and run a 48-hour issue closure plan. Closing and war-room are a two-way loop, not a one-way handoff.
-
-Terminology:
-- `closeable`: enough accepted POC evidence to start closing diagnosis.
-- `contract-ready`: closer confirms buyer path, procurement path, closing window, and issue treatment.
-- Do not treat closeable as contract-ready.
 
 ## Output Format
 
@@ -142,9 +122,6 @@ Terminology:
 - Trigger `poc-to-contract-closer`? yes/no
 - Reason:
 - Inputs to pass forward:
-
-### 7. Return Path
-- If closer rejects readiness, next war-room action:
 ```
 
 ## Acceptance Example
@@ -159,7 +136,7 @@ Expected reasoning:
 - pass rate is green, but SSO age and customer silence create yellow risk.
 - next 48h must close SSO or document workaround.
 - Sales should restart champion/procurement path.
-- trigger `poc-to-contract-closer` with the risk flagged, because the POC is closeable but not contract-ready.
+- trigger `poc-to-contract-closer` with the risk flagged, because the POC is technically closeable.
 
 ## Boundaries
 

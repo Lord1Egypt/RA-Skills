@@ -1,44 +1,57 @@
-## Description: <br>
-File Organizer helps agents plan safe file organization and batch workspace operations, including moving files, batch renaming, directory scaffolding, grouping by type or date, and restructuring project layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File organization and batch operations for workspace management, including file moves, batch renaming, directory structures, type-based grouping, cleanup, scaffolding, and project layout restructuring.
 
-## Publisher: <br>
-[dougchambes](https://clawhub.ai/user/dougchambes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougchambes](https://clawhub.ai/user/dougchambes)
 
-## Use Case: <br>
-Developers and workspace users use this skill when they need an agent to propose predictable file moves, renames, directory structures, and cleanup steps while preserving review points before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch file moves or renames can affect many files at once if the matched set or destination is wrong. <br>
-Mitigation: Preview the matched files and planned commands first, confirm destination directories, and keep a backup or git checkpoint before major restructures. <br>
-Risk: Deletion examples for empty files or directories can remove disposable-looking items that the user still needs. <br>
-Mitigation: Require explicit approval for delete commands and confirm the matched files or empty directories are truly disposable before execution. <br>
-Risk: Workspace organization commands can operate outside the intended boundary if paths are not checked. <br>
-Mitigation: Confirm the target directory before approval and keep operations within the intended workspace. <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to organize files, plan batch moves or renames, create standard project structures, and clean up scattered workspace content.
 
-## Reference(s): <br>
-- [File Organization Patterns](references/patterns.md) <br>
-- [File Organizer release page](https://clawhub.ai/dougchambes/legend-file-organizer) <br>
-- [Publisher profile](https://clawhub.ai/user/dougchambes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and directory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; command execution remains subject to user review and approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Batch move or rename examples can reorganize many files if run from the wrong directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands, run a dry run first, and restrict operations to a specific target directory.
+
+Risk: Delete or broad cleanup operations can permanently remove files.
+
+Mitigation: Require explicit confirmation before delete or broad move operations, and prefer recoverable deletion tools when available.
+
+Risk: Project restructuring can be difficult to undo after files are moved.
+
+Mitigation: Create a backup or clean git checkpoint before restructuring.
+
+## Reference(s):
+
+- [File Organization Patterns](artifact/references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and directory-structure examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run, backup, workspace-boundary, and confirmation guidance for broad file operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

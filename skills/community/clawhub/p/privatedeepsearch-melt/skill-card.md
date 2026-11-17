@@ -1,47 +1,64 @@
-## Description: <br>
-Performs private, multi-round deep web searches excluding Google/Bing, synthesizes results with citations, and does not retain user data or logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs private, multi-round deep web searches excluding Google/Bing, synthesizes results with citations, and does not retain user data or logs.
 
-## Publisher: <br>
-[romancircus](https://clawhub.ai/user/romancircus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romancircus](https://clawhub.ai/user/romancircus)
 
-## Use Case: <br>
-Developers, researchers, and external users use this skill to run self-hosted SearXNG searches and generate multi-source Markdown research reports with citations from fetched web pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and fetched page requests can still leave the local machine through external search engines and visited websites. <br>
-Mitigation: Use the skill only for searches suitable for those services, and route traffic through an approved VPN when stronger network privacy is required. <br>
-Risk: The Docker service can persist after setup and may be reachable beyond localhost depending on host and Docker networking. <br>
-Mitigation: Bind the service to 127.0.0.1 where possible, review Docker exposure before use, and stop or remove the container when finished. <br>
-Risk: Using the floating searxng/searxng:latest image can change runtime behavior across installs. <br>
-Mitigation: Pin the SearXNG image to a reviewed version before deployment. <br>
-Risk: Remote autocomplete may disclose sensitive partial queries. <br>
-Mitigation: Disable remote autocomplete for sensitive use cases. <br>
+## Use Case:
 
+Developers and agent users use this skill to run local SearXNG-backed web searches and multi-iteration research workflows that return source-linked findings.
 
-## Reference(s): <br>
-- [Private Deep Search ClawHub listing](https://clawhub.ai/romancircus/privatedeepsearch-melt) <br>
-- [SearXNG project](https://github.com/searxng/searxng) <br>
-- [Privacy guide](docs/PRIVACY.md) <br>
-- [Troubleshooting guide](docs/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research reports with source citations, plus command-line search output and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deep research runs up to five search iterations, fetches page content concurrently, and limits each source to a configured word cap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: External search engines and visited websites can receive query-derived requests and metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for sensitive searches unless that exposure is acceptable; use a VPN where appropriate.
+
+Risk: The local SearXNG service may be reachable beyond localhost if exposed by container networking.
+
+Mitigation: Bind SearXNG to 127.0.0.1 and enable rate limiting or firewall access to the port.
+
+Risk: Unpinned Docker images or Python dependencies can change behavior across installs.
+
+Mitigation: Pin the SearXNG Docker image and Python dependency versions before production use.
+
+Risk: Documented curl templates can pass unsanitized query text to the local search endpoint.
+
+Mitigation: URL-encode and sanitize query text before running shell examples or wrapping them in automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/romancircus/skills/privatedeepsearch-melt)
+- [SearXNG](https://github.com/searxng/searxng)
+- [Privacy Guide](docs/PRIVACY.md)
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON search results, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research reports include query, date, source count, findings, and source links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

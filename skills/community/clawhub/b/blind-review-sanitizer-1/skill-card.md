@@ -1,43 +1,58 @@
-## Description: <br>
-Blind Review Sanitizer helps prepare manuscripts for double-blind peer review by removing or highlighting likely author-identifying content within supported local file formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use blind-review-sanitizer for academic writing workflows that need structured anonymization, explicit assumptions, and clear output boundaries for double-blind submission.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Academic authors, editors, and research support teams use this skill to prepare .docx, .md, and .txt manuscripts for double-blind review by removing or highlighting names, affiliations, acknowledgments, contact details, and self-citation cues. It also supports bounded fallback guidance when automated processing is not possible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated anonymization may miss document metadata, images, headers, footers, supplementary files, or indirect identity clues. <br>
-Mitigation: Manually review the generated manuscript and perform separate metadata and supplementary-file checks before submission. <br>
-Risk: The DOCX dependency may be missing, ambiguous, or unpinned for .docx processing. <br>
-Mitigation: Verify and pin the intended DOCX package before installation, or limit automated processing to .md and .txt files and report the dependency gap. <br>
-Risk: The tool reads manuscript files and writes a blinded output file, so unintended paths could expose or overwrite local work. <br>
-Mitigation: Run it only on approved local manuscript copies and review input and output paths before execution. <br>
+## Use Case:
 
+Academic authors, editors, and review-support agents use this skill to prepare manuscripts for double-blind peer review by removing or highlighting likely identity cues and separating automated changes from remaining manual checks.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/aipoch-ai/blind-review-sanitizer-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Sanitized manuscript files, command-line summaries, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a blinded output file for supported inputs and reports processed identifiers; final anonymity still requires manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Removed identifying information can be re-exposed in console summaries or captured logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a local, trusted workspace and avoid shared CI, transcript capture, or agent logs when processing sensitive manuscripts.
+
+Risk: Output paths may overwrite existing writable files if they are chosen carelessly.
+
+Mitigation: Inspect input and output paths before execution and write sanitized files to a reviewed location.
+
+Risk: The declared dependency is under-specified for normal .docx processing.
+
+Mitigation: Correct and pin the document-processing dependency before routine use, and fall back to .md or .txt processing if the dependency is unavailable.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/blind-review-sanitizer-1)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, markdown, shell commands, guidance]
+
+**Output Format:** [Sanitized manuscript files with Markdown or plain-text summaries and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supported manuscript inputs are .docx, .md, and .txt; final anonymity still requires human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

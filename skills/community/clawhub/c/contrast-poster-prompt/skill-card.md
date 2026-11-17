@@ -1,39 +1,54 @@
-## Description: <br>
-Match the most suitable type from 15 contrast gameplay styles based on user needs, then generate high-quality English AI drawing prompts and Chinese poster copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Match the most suitable type from 15 contrast gameplay styles based on user needs, then generate high-quality English AI drawing prompts and Chinese poster copy.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External creators and marketing teams use this skill to turn poster concepts into contrast-based AI image prompts, Chinese poster copy, and platform suggestions for social media covers and promotional visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release as suspicious and reports behavior that can run a nested review with sandbox and approval bypass enabled. <br>
-Mitigation: Review the skill before installing, use it only in trusted repositories, and avoid full local authority unless explicitly intended. <br>
+## Use Case:
 
+External creators and marketers use this skill to choose a contrast-poster concept and generate image prompts, Chinese copy, translations, and platform suggestions for social posters or video covers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/contrast-poster-prompt) <br>
-- [Poster Contrast Playbook](references/contrast-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with English image prompts, Chinese translations, recommended copy, and platform suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask up to two clarifying questions when user input is incomplete; can generate up to three poster options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated poster claims may be misleading for health or finance topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims carefully before publishing and revise unsupported or sensitive statements.
+
+Risk: Chinese copy or cultural references may not fit every target audience.
+
+Mitigation: Adapt language, platform framing, and cultural references for the intended audience.
+
+## Reference(s):
+
+- [Poster Contrast Playbook](references/contrast-playbook.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/contrast-poster-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with English prompts, Chinese translations, Chinese poster copy, and platform suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can ask up to two clarifying questions and can provide up to three poster options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

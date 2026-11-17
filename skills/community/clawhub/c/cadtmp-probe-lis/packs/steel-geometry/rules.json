@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "general_layout",
+      "patterns": [
+        "钢结构布置图", "结构布置图", "构件布置图", "钢柱布置图", "钢梁布置图",
+        "屋面布置图", "墙面布置图", "平台布置图", "预拼装图", "结构图",
+        "平面图", "立面图", "剖面图", "STEEL LAYOUT", "FRAMING PLAN"
+      ]
+    },
+    {
+      "type": "detail",
+      "patterns": ["节点详图", "节点图", "连接节点", "详图", "大样", "DETAIL", "NODE"]
+    },
+    {
+      "type": "schedule",
+      "patterns": ["材料表", "构件表", "钢材表", "螺栓表", "节点表", "构件清单", "BOM", "SCHEDULE"]
+    },
+    {
+      "type": "general_notes",
+      "patterns": ["设计总说明", "结构设计说明", "钢结构设计说明", "施工图说明", "技术要求", "GENERAL NOTES"]
+    },
+    {
+      "type": "grid_layout",
+      "patterns": ["轴线布置图", "柱网图", "GRID", "GRID PLAN"]
+    }
+  ],
+  "system_rules": [
+    {"system": "steel_structure", "patterns": ["钢结构", "钢框架", "钢构件", "STEEL STRUCTURE", "STEEL FRAME"]},
+    {"system": "roof_structure", "patterns": ["屋面", "屋盖", "檩条", "屋面梁", "ROOF", "PURLIN"]},
+    {"system": "wall_structure", "patterns": ["墙面", "墙梁", "墙架", "墙板", "WALL GIRT", "GIRT"]},
+    {"system": "platform", "patterns": ["钢平台", "平台", "检修平台", "PLATFORM"]},
+    {"system": "steel_stair", "patterns": ["钢楼梯", "钢梯", "踏步", "楼梯", "STAIR"]},
+    {"system": "truss", "patterns": ["桁架", "屋架", "管桁架", "TRUSS"]},
+    {"system": "space_frame", "patterns": ["网架", "网壳", "SPACE FRAME", "SPACE TRUSS"]},
+    {"system": "brace", "patterns": ["支撑", "柱间支撑", "水平支撑", "剪刀撑", "BRACE", "BRACING"]},
+    {"system": "embedded_parts", "patterns": ["预埋件", "埋件", "锚栓", "地脚螺栓", "EMBED", "ANCHOR"]},
+    {"system": "connection", "patterns": ["节点", "连接", "螺栓", "焊缝", "加劲肋", "节点板", "CONNECTION", "BOLT", "WELD"]}
+  ],
+  "member_rules": [
+    {"category": "steel_column", "system": "steel_structure", "patterns": ["钢柱", "钢立柱", "箱型柱", "H型柱", "COLUMN", "STEEL COLUMN"]},
+    {"category": "steel_beam", "system": "steel_structure", "patterns": ["钢梁", "屋面梁", "平台梁", "吊车梁", "箱型梁", "H型梁", "BEAM", "GIRDER"]},
+    {"category": "truss", "system": "truss", "patterns": ["桁架", "屋架", "管桁架", "TRUSS"]},
+    {"category": "brace", "system": "brace", "patterns": ["支撑", "柱间支撑", "水平支撑", "剪刀撑", "BRACE", "BRACING"]},
+    {"category": "purlin", "system": "roof_structure", "patterns": ["檩条", "屋面檩条", "PURLIN"]},
+    {"category": "tie", "system": "roof_structure", "patterns": ["拉条", "系杆", "隅撑", "拉杆", "TIE", "SAG ROD"]},
+    {"category": "wall_girt", "system": "wall_structure", "patterns": ["墙梁", "墙架", "墙檩", "GIRT", "WALL GIRT"]},
+    {"category": "platform", "system": "platform", "patterns": ["钢平台", "平台梁", "平台板", "格栅板", "PLATFORM"]},
+    {"category": "steel_stair", "system": "steel_stair", "patterns": ["钢楼梯", "钢梯", "踏步", "梯梁", "STAIR"]},
+    {"category": "railing", "system": "steel_stair", "patterns": ["栏杆", "扶手", "护栏", "RAILING", "HANDRAIL"]},
+    {"category": "embedded_part", "system": "embedded_parts", "patterns": ["预埋件", "埋件", "地脚螺栓", "锚栓", "EMBED", "ANCHOR"]},
+    {"category": "connection_plate", "system": "connection", "patterns": ["节点板", "连接板", "拼接板", "端板", "法兰", "GUSSET", "CONNECTION PLATE"]},
+    {"category": "stiffener", "system": "connection", "patterns": ["加劲肋", "加劲板", "腹板加劲", "STIFFENER"]}
+  ],
+  "member_code_pattern": "(?<![A-Z0-9])(GZ|KZ|GJ|GL|HG|WGL|CGL|KL|LL|XG|ZC|CG|LT|TL|ML|YMJ|JZM|GS|GC|GG|FHB|JDB|JGL|HL|QL|BM|LG|CJ|JZ)\\s*[-_]?\\s*\\d{1,4}[A-Za-z]?(?![A-Z0-9])",
+  "member_prefixes": {
+    "GZ": "steel_column", "KZ": "steel_column", "GJ": "truss",
+    "GL": "steel_beam", "HG": "steel_beam", "WGL": "steel_beam", "CGL": "steel_beam", "KL": "steel_beam", "LL": "steel_beam",
+    "XG": "brace", "ZC": "brace", "CG": "brace",
+    "LT": "purlin", "TL": "tie", "ML": "embedded_part", "YMJ": "embedded_part", "JZM": "embedded_part",
+    "GS": "steel_stair", "GC": "steel_stair", "GG": "railing",
+    "FHB": "connection_plate", "JDB": "connection_plate", "JGL": "steel_beam", "HL": "steel_beam",
+    "QL": "wall_girt", "BM": "platform", "LG": "tie", "CJ": "connection_plate", "JZ": "connection_plate"
+  },
+  "section_patterns": {
+    "h_section": ["(?<![A-Za-z0-9])(?:H|HW|HM|HN|WH|BH)\\s*\\d{2,4}\\s*[xX×]\\s*\\d{2,4}(?:\\s*[xX×]\\s*\\d{1,3}(?:\\s*[xX×]\\s*\\d{1,3})?)?"],
+    "channel": ["(?<![A-Za-z0-9])(?:槽钢|\\[)\\s*\\d{2,4}(?:\\s*[xX×]\\s*\\d{1,3})?", "(?<![A-Za-z0-9])C\\s*\\d{2,4}\\s*[xX×]\\s*\\d{1,3}(?:\\s*[xX×]\\s*\\d{1,3})?"],
+    "angle": ["(?<![A-Za-z0-9])(?:L|∠|角钢)\\s*\\d{2,4}\\s*[xX×]\\s*\\d{2,4}(?:\\s*[xX×]\\s*\\d{1,3})?"],
+    "tube": ["(?<![A-Za-z0-9])(?:Φ|φ|PIP|CHS|圆管)\\s*\\d{2,4}(?:\\s*[xX×]\\s*\\d{1,3})?"],
+    "rect_tube": ["(?<![A-Za-z0-9])(?:□|SHS|RHS|方管|矩管)\\s*\\d{2,4}\\s*[xX×]\\s*\\d{2,4}(?:\\s*[xX×]\\s*\\d{1,3})?"],
+    "purlin_section": ["(?<![A-Za-z0-9])(?:C|Z|C型钢|Z型钢)\\s*\\d{2,4}\\s*[xX×]\\s*\\d{2,4}\\s*[xX×]\\s*\\d{1,3}"],
+    "plate": ["(?<![A-Za-z0-9])(?:PL|钢板)\\s*\\d{1,3}(?:\\s*[xX×]\\s*\\d{1,4})?"]
+  },
+  "connection_rules": [
+    {"category": "welded", "system": "connection", "patterns": ["焊接", "焊缝", "坡口焊", "角焊缝", "对接焊缝", "WELD", "FW", "BW"]},
+    {"category": "high_strength_bolt", "system": "connection", "patterns": ["高强螺栓", "高强度螺栓", "摩擦型", "承压型", "10.9S", "8.8S", "HSFG"]},
+    {"category": "bolt", "system": "connection", "patterns": ["螺栓", "普通螺栓", "锚栓", "地脚螺栓", "化学锚栓", "ANCHOR BOLT"]},
+    {"category": "stud", "system": "connection", "patterns": ["栓钉", "剪力钉", "STUD"]},
+    {"category": "plate_connection", "system": "connection", "patterns": ["节点板", "连接板", "拼接板", "端板", "法兰", "盖板", "GUSSET", "CONNECTION PLATE"]},
+    {"category": "stiffener", "system": "connection", "patterns": ["加劲肋", "加劲板", "腹板加劲", "STIFFENER"]},
+    {"category": "support", "system": "connection", "patterns": ["支座", "铰接", "刚接", "滑动支座", "固定支座", "SUPPORT"]}
+  ],
+  "material_patterns": {
+    "Q235": ["(?<![A-Z0-9])Q\\s*235(?:[A-Z])?(?![A-Z0-9])"],
+    "Q345": ["(?<![A-Z0-9])Q\\s*345(?:[A-Z])?(?![A-Z0-9])"],
+    "Q355": ["(?<![A-Z0-9])Q\\s*355(?:[A-Z])?(?![A-Z0-9])"],
+    "Q390": ["(?<![A-Z0-9])Q\\s*390(?:[A-Z])?(?![A-Z0-9])"],
+    "Q420": ["(?<![A-Z0-9])Q\\s*420(?:[A-Z])?(?![A-Z0-9])"],
+    "Q460": ["(?<![A-Z0-9])Q\\s*460(?:[A-Z])?(?![A-Z0-9])"],
+    "S235": ["(?<![A-Z0-9])S\\s*235(?:[A-Z]{1,2})?(?![A-Z0-9])"],
+    "S355": ["(?<![A-Z0-9])S\\s*355(?:[A-Z]{1,2})?(?![A-Z0-9])"],
+    "A36": ["(?<![A-Z0-9])A\\s*36(?![A-Z0-9])"],
+    "16Mn": ["(?<![A-Z0-9])16\\s*Mn(?![A-Z0-9])"]
+  },
+  "finish_rules": [
+    {"category": "hot_dip_galvanized", "patterns": ["热浸镀锌", "热镀锌", "镀锌层", "HDG", "GALV"]},
+    {"category": "fireproof_coating", "patterns": ["防火涂料", "耐火极限", "防火涂层", "FIREPROOF"]},
+    {"category": "primer", "patterns": ["底漆", "防锈漆", "环氧富锌", "红丹", "PRIMER"]},
+    {"category": "topcoat", "patterns": ["面漆", "氟碳", "聚氨酯", "丙烯酸", "TOPCOAT"]}
+  ],
+  "node_pattern": "(?<![A-Z0-9])(?:JD|JN|NODE|DETAIL|节点|详图)\\s*[-_#]?\\s*\\d{1,4}[A-Za-z]?(?![A-Z0-9])",
+  "axis_pattern": "(?<![A-Z0-9])(?:[A-Z]{1,3}|[一二三四五六七八九十]+|\\d{1,3})\\s*(?:轴|轴线)(?![A-Z0-9])",
+  "elevation_pattern": "(?<![A-Z0-9])(?:标高|EL|ELEV|±)\\s*[-+]?\\d+(?:\\.\\d+)?(?![A-Z0-9])",
+  "scale_pattern": "(?:1\\s*[:：]\\s*\\d{1,4})",
+  "unit_patterns": {"mm": ["毫米", "MM", "mm"], "m": ["米", "M", "m"]},
+  "steel_layer_patterns": ["STEEL", "STL", "钢", "GZ", "GL", "GJ", "XG", "ZC", "LT", "构件", "节点", "螺栓", "焊", "EMBED", "ANCHOR", "PURLIN", "TRUSS", "BRACE", "COLUMN", "BEAM"]
+}

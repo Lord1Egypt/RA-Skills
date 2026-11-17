@@ -1,38 +1,48 @@
-## Description: <br>
-Use BatchJob HTTP APIs for strict upload validation, precheck, submit, polling, and cancellation with automatic file source resolution and fallback interaction only when a source is not readable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use BatchJob HTTP APIs for strict upload validation, precheck, submit, polling, and cancellation with automatic file source resolution from file IDs, local paths, public URLs, or channel attachment paths.
 
-## Publisher: <br>
-[cocovs](https://clawhub.ai/user/cocovs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cocovs](https://clawhub.ai/user/cocovs)
 
-## Use Case: <br>
-Developers and operators use this skill to run and manage BatchJob service workloads, including file upload validation, precheck, job submission, status polling, cancellation, and result summary reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload selected files or attachments to a configured BatchJob service. <br>
-Mitigation: Use it only with services authorized to process the selected data, and avoid confidential files unless that service is approved for them. <br>
-Risk: Misconfigured service URLs or broad bearer tokens could send data or job requests to the wrong endpoint or with excessive access. <br>
-Mitigation: Verify BATCHJOB_BASE_URL before use and provide a scoped BATCHJOB_BEARER_TOKEN. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to upload BatchJob input files, run prechecks, submit asynchronous jobs, poll job status, cancel jobs, and produce concise job summaries. It is intended for workflows where a BatchJob endpoint and bearer token are already configured.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, CSV, and JSONL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include BatchJob IDs, status, progress, output summary URLs, and copyable input templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically upload local files or URL-fetched content to a configured external BatchJob service with limited user confirmation or destination validation.
+
+Mitigation: Use explicit file IDs or clearly selected workspace files, avoid sensitive local paths and private datasets, verify the BatchJob endpoint and token configuration, and require operator review before use in broadly privileged agent runtimes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cocovs/skills/ssy-batchjob-async-job)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include job IDs, status, progress, output summary URLs, validation guidance, and local template file paths when relevant.]
+
+## Skill Version(s):
+
+0.0.1 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

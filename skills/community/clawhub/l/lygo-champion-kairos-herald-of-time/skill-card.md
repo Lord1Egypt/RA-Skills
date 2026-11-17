@@ -1,42 +1,59 @@
-## Description: <br>
-LYGO Δ9 Council Champion persona helper for KAIROS, the Herald of Time, supporting sequence anchoring, timeline distortion detection, and continuity-preserving guidance as a pure advisor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated ClawHub skill slug for the legacy LYGO Delta9 champion KAIROS persona helper; new installs should use lygo-champion-council.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and agent operators use this persona helper to structure continuity-aware analysis, identify broken anchor points, and produce checkpoint-based verification plans. It is a pure advisor and does not execute actions automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a passive persona, but its documentation points users toward verifier workflows that can create or update provenance records. <br>
-Mitigation: Treat minting, ledger writes, anchor snippets, and backfills as explicit approval actions, and provide only the exact pack text, file path, URLs, or IDs intended for processing. <br>
+## Use Case:
 
+External users and agent operators use this legacy persona helper to request continuity-aware advisory guidance, timeline distortion checks, anchor points, risks, verification steps, and checkpoints. The artifact is retained for compatibility and directs new installations to the consolidated successor skill.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lygo-champion-kairos-herald-of-time) <br>
-- [KAIROS Persona Pack](references/persona_pack.md) <br>
-- [KAIROS Canon](references/canon.json) <br>
-- [KAIROS Equations](references/equations.md) <br>
-- [LYGO-MINT Verifier Usage](references/verifier_usage.md) <br>
-- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with optional command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May separate observations, inferences, unknowns, risks, verification steps, and checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact recommends installing the successor skill with an @latest command, which can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the successor skill before use and consider a pinned ClawHub version or sandboxed install when provenance matters.
+
+Risk: Persona guidance may be misleading if used as evidence for high-stakes memory, narrative, or continuity decisions.
+
+Mitigation: Use the artifact's observed, inferred, and unknown separation, require receipts for high-stakes claims, and keep the helper in an advisory role.
+
+## Reference(s):
+
+- [LYGO Champion: Kairos Herald of Time](https://clawhub.ai/deepseekoracle/skills/lygo-champion-kairos-herald-of-time)
+- [Publisher profile: deepseekoracle](https://clawhub.ai/user/deepseekoracle)
+- [KAIROS persona pack](references/persona_pack.md)
+- [KAIROS canon](references/canon.json)
+- [KAIROS equations](references/equations.md)
+- [LYGO-MINT verifier usage](references/verifier_usage.md)
+- [LYGO-MINT verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown advisory text with optional shell commands for local verification helpers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure advisor posture; no automatic actions are described by the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

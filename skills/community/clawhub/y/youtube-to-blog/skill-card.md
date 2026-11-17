@@ -1,42 +1,58 @@
-## Description: <br>
-Converts YouTube videos or pasted transcripts into SEO-optimised, publish-ready blog posts with metadata, headings, and internal linking suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts any YouTube video into a fully formatted, SEO-optimized blog post using the video transcript, including SEO metadata, headings, and internal linking suggestions.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-Content creators, bloggers, affiliate marketers, and niche site operators use this skill to repurpose YouTube videos or transcripts into structured blog posts with SEO metadata and linking opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched or pasted transcripts can contain errors, missing context, or transcript artifacts that carry into generated posts. <br>
-Mitigation: Treat transcripts as untrusted source material and review generated posts for accuracy and cleanup before publishing. <br>
-Risk: Republishing content derived from a video may raise copyright, attribution, or usage-rights concerns. <br>
-Mitigation: Confirm rights, attribution needs, and publishing permissions for the source video before using the generated article. <br>
-Risk: Using a YouTube URL requires the agent to access caption data for the provided video. <br>
-Mitigation: Invoke the skill explicitly and provide only URLs or transcripts appropriate for the working environment. <br>
+## Use Case:
 
+External users, content creators, bloggers, and affiliate marketers use this skill to turn a YouTube URL or pasted transcript into a publish-ready SEO blog post with metadata and linking suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/youtube-to-blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown article with SEO metadata and linking suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output length scales with source video duration and may use either YouTube captions or a pasted transcript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Installing with an unpinned ClawHub installer version can change installer behavior over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the ClawHub installer version before installation.
+
+Risk: Using a YouTube URL requires transcript retrieval from YouTube's caption system.
+
+Mitigation: Paste the transcript manually when URL-based retrieval is not desired.
+
+Risk: Auto-generated or incomplete captions can lead to inaccurate or thin blog content.
+
+Mitigation: Review the generated post against the source video or supplement it with manual notes before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/youtube-to-blog)
+- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with an SEO metadata block, structured article sections, and linking suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typical article length ranges from 600 to 1,800 words depending on source video duration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

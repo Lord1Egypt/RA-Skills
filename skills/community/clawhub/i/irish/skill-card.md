@@ -1,37 +1,47 @@
-## Description: <br>
-Write Irish that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Irish that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to make Irish-language output sound more natural, casual, and human, including appropriate register, fillers, reactions, and Irish-English code-switching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill favors casual Irish and natural English mixing, which may be inappropriate for formal, academic, or fully Irish-language contexts. <br>
-Mitigation: Give explicit instructions when formal register, academic style, or pure Irish output is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/irish) <br>
+## Use Case:
+
+External users and writers use this skill to make Irish-language output sound casual, conversational, and less textbook, including natural register choices and bilingual flow when appropriate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Casual code-switching or informal register may be inappropriate for schoolwork, formal writing, translation fidelity, or pure Irish output.
+
+Mitigation: Ask the agent for formal register, strict translation fidelity, or pure Irish when those constraints matter.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance for Irish-language phrasing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include casual register choices and Irish-English code-switching when appropriate.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

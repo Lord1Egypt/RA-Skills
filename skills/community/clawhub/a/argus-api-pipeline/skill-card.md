@@ -1,43 +1,58 @@
-## Description: <br>
-Connects multiple REST APIs, fetches and transforms data, and pushes it to a live Google Sheets dashboard that auto-updates on a schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects multiple REST APIs, fetches and transforms data, and pushes it to a live Google Sheets dashboard that auto-updates on a schedule.
 
-## Publisher: <br>
-[neo1307](https://clawhub.ai/user/neo1307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neo1307](https://clawhub.ai/user/neo1307)
 
-## Use Case: <br>
-Developers and operations teams use this skill to configure an automated pipeline that pulls selected REST API data, transforms it, and syncs it into Google Sheets dashboards on a schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pipeline uses Google service-account credentials and connected API credentials. <br>
-Mitigation: Confirm service-account permissions, target Sheet sharing, and connected API scopes before installation; store credentials only in the configured secrets manager. <br>
-Risk: Selected API data is written to Google Sheets and may be buffered locally after failed writes. <br>
-Mitigation: Avoid regulated or highly sensitive data unless Google Sheets storage and temporary local buffering are acceptable under the user's data policy. <br>
-Risk: Frequent scheduled syncs can exceed source API limits or write malformed data if upstream schemas change. <br>
-Mitigation: Set a schedule that matches API rate limits and validate response schemas before writing rows to Sheets. <br>
+## Use Case:
 
+Developers, operators, and business teams use this skill to connect multiple REST APIs, transform and merge data, and maintain an automatically updated Google Sheets dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neo1307/argus-api-pipeline) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/neo1307) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, and configuration snippets for a scheduled API-to-Google-Sheets pipeline.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a live Google Sheets dashboard, pipeline run logs, and failure alerts when implemented by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Google service account credentials or connected API tokens could grant broader access than the pipeline needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API credentials and share the Google service account only with the intended Sheet.
+
+Risk: Failed-write buffers and run logs may contain business, financial, customer, or operational data.
+
+Mitigation: Clarify where buffers and logs are stored, restrict access to them, and define when they are deleted.
+
+Risk: Invalid API responses or failed Google Sheets writes could produce stale or incorrect dashboard data.
+
+Mitigation: Validate API response schemas before writing, retry failed Sheets writes as documented, and review failure alerts and run logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neo1307/skills/argus-api-pipeline)
+- [ClawHub publisher profile](https://clawhub.ai/user/neo1307)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with setup steps, configuration details, and generated pipeline instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Google Sheets dashboard updates, pipeline run logs, and failure alerts when implemented by an agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

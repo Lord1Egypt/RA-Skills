@@ -1,41 +1,54 @@
-## Description: <br>
-Draft comic storyboards with panels, dialogue, and scene pacing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft comic storyboards with panels, dialogue, and scene pacing. Use when designing panels, writing dialogue, structuring comic chapters.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Writers and creators use this skill to generate plain-text storyboard structures, dialogue guidance, character sheets, layout ideas, and related content-planning prompts from a local shell workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marked the release suspicious because the comic-writing branding conflicts with content-marketing behavior. <br>
-Mitigation: Review the command behavior before installation and confirm it matches the intended workflow. <br>
-Risk: Commands can write local command history that may include topics, keywords, or draft prompts. <br>
-Mitigation: Set COMIC_SCRIPT_DIR to a controlled location, avoid entering confidential material, and clear the history file when needed. <br>
+## Use Case:
 
+External creators and developers can use this skill to generate comic storyboard structures, dialogue guidance, character sheets, and page layout templates. Review the installed commands before use because the packaged materials also document content-marketing and SEO workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-comic-script) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local command history under COMIC_SCRIPT_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports that the comic-writing name and manifest do not match the content-marketing commands documented and implemented by the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed package before deployment and confirm whether the intended use is comic scripting or content-marketing CLI assistance.
+
+Risk: Documented commands may save submitted topics and command activity to a local history log.
+
+Mitigation: Avoid entering sensitive topics unless local logging is acceptable, or configure COMIC_SCRIPT_DIR to an approved storage location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-comic-script)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally without external API keys; documented commands may write command history to a local data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Configures new OpenClaw agent bindings for Feishu groups and installs required skills into each new agent workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures bindings for newly added OpenClaw agents, asks the user for the target Feishu group, prepares the binding change for review, restarts the gateway after confirmation, and installs the required skills into the new agent workspace.
 
-## Publisher: <br>
-[ywewanhuang](https://clawhub.ai/user/ywewanhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ywewanhuang](https://clawhub.ai/user/ywewanhuang)
 
-## Use Case: <br>
-OpenClaw administrators and developers use this skill to identify agents without Feishu group bindings, propose binding configuration for review, restart the gateway after confirmation, and install a standard set of skills into the new agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes OpenClaw routing, installs multiple skills, and enables a persistent self-improving agent. <br>
-Mitigation: Verify the agent ID and Feishu group ID, review the full openclaw.json diff, back up the configuration, approve each additional skill installation, and confirm how to stop the persistent agent and remove its stored state. <br>
+## Use Case:
 
+Developers and operators use this skill to add Feishu group bindings for OpenClaw agents and bootstrap the expected companion skills in each new agent workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ywewanhuang/config-new-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/ywewanhuang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before changing OpenClaw bindings or restarting the gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill installs and modifies other skills and keeps a self-improving component running continuously.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each install and for persistent runtime, pin installed dependency versions or digests, and document how to stop or remove the always-running skill.
+
+Risk: The skill changes OpenClaw bindings and restarts the gateway.
+
+Mitigation: Review the complete binding configuration before applying it and restart the gateway only after explicit user confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ywewanhuang/skills/config-new-agent)
+- [Publisher profile](https://clawhub.ai/user/ywewanhuang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing review prompts, binding configuration snippets, install commands, and a completion notification.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

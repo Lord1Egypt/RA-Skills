@@ -1,0 +1,4 @@
+interface:
+  display_name: "私人旅游管家"
+  short_description: "整理旅行灵感、地点、美食攻略、偏好、截图和行程知识库"
+  default_prompt: "Use $personal-travel-butler to ingest a travel tip, update the Markdown database, and recommend next steps."

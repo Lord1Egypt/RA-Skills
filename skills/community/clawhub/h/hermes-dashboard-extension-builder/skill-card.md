@@ -1,40 +1,49 @@
-## Description: <br>
-Generate and validate Hermes-style dashboard extension scaffolds: themes, plugins, custom tabs, slots, and backend API route manifests for OpenClaw/Hermes agent teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and validate Hermes-style dashboard extension scaffolds: themes, plugins, custom tabs, slots, and backend API route manifests for OpenClaw/Hermes agent teams.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
 
-## Use Case: <br>
-Developers and dashboard integrators use this skill to generate a packaged Hermes/OpenClaw dashboard extension scaffold from CLI arguments or a JSON spec, then review the manifest, frontend stub, backend route stub, and validation report before integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dashboard scaffold files could be integrated before their HTML, backend route, permissions, and API path are reviewed. <br>
-Mitigation: Generate into a staging directory and inspect the frontend stub, backend Python, permissions, and API route values before using the scaffold in a real dashboard. <br>
-Risk: A malformed or overbroad extension spec can produce a review-needed validation result. <br>
-Mitigation: Use validate-only mode when checking specs and address validation findings such as bad names, non-/api routes, or wildcard permissions before writing or integrating output. <br>
+## Use Case:
 
+Developers and Hermes/OpenClaw dashboard integrators use this skill to generate and validate packaged dashboard extension scaffolds, including manifests, frontend stubs, backend route stubs, and readiness reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevojarvisai-star/hermes-dashboard-extension-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Generated scaffold files with JSON manifests and validation report, plus command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes only to the selected output directory; validate-only mode checks a spec without writing scaffold files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated dashboard files can embed untrusted spec values as executable Python or browser-rendered HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted specs or review generated files before use; safely encode or strictly validate api_route and HTML-escape tab and slot values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevojarvisai-star/skills/hermes-dashboard-extension-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated scaffold files include JSON, HTML, and Python.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate extension.json, frontend HTML, backend Python route stubs, and VALIDATION.json in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

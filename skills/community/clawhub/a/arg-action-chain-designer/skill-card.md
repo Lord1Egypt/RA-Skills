@@ -1,47 +1,59 @@
-## Description: <br>
-Helps agents design, review, or convert multi-step tasks into bounded ARG Action Chains with step contracts, progressive disclosure, validation gates, and file-level deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to create, refine, review, or convert an agent task or existing skill into an ARG Action Chain / ARG 行动链路.
 
-## Publisher: <br>
-[mhgd3250905](https://clawhub.ai/user/mhgd3250905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mhgd3250905](https://clawhub.ai/user/mhgd3250905)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn recurring or high-drift workflows into structured ARG action chains. It is especially useful when tasks need step contracts, validation gates, constrained LLM judgment, or optional file-level skill packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ARG workflows may include target paths, scripts, or validation commands that affect local files or operational systems. <br>
-Mitigation: Review generated paths and scripts before running them, especially outside a disposable workspace. <br>
-Risk: A generated workflow may include external sending, publishing, deletion, production access, or other irreversible actions. <br>
-Mitigation: Require a human or external gate before irreversible or production-affecting steps are executed. <br>
-Risk: ARG step validation reduces drift but does not by itself prevent a capable agent from skipping steps or self-attesting completion. <br>
-Mitigation: Use the skill's Level 2 external-gate pattern when jump prevention, anti-forgery, or independent acceptance is required. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn vague agent tasks, recurring automations, existing skills, and multi-step workflows into bounded ARG action chains with Step Contracts, progressive disclosure, validation gates, and failure handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mhgd3250905/arg-action-chain-designer) <br>
-- [Output Modes](references/output-modes.md) <br>
-- [ARG Reliability Levels](references/reliability-levels.md) <br>
-- [Runtime Skill Template](references/runtime-template.md) <br>
-- [Step Contract Standard](references/step-contract-standard.md) <br>
-- [Validation Gates and LLM Judgment](references/validation-and-judgment.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with optional file contents, scripts, and validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce SKILL.md runtimes, plans/ step contracts, scripts/ drafts, and output/ structure when the user requests file-level deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: frontmatter and server release evidence) <br>
+Risk: Generated validation scripts, shell commands, or Bash-enabled runtime chains may be unsafe or incorrect if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts and commands before execution, especially file-writing, cleanup, external action, or Bash-enabled steps.
+
+Risk: ARG chains can give a false sense of security when the same execution agent can skip steps, forge outputs, or self-attest validation.
+
+Mitigation: Use external gates, human review, or independent-agent review for workflows that require stronger assurance than ordinary Level 1 ARG constraints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mhgd3250905/skills/arg-action-chain-designer)
+- [README](artifact/README.md)
+- [Output Modes](artifact/references/output-modes.md)
+- [Reliability Levels](artifact/references/reliability-levels.md)
+- [Runtime Template](artifact/references/runtime-template.md)
+- [Step Contract Standard](artifact/references/step-contract-standard.md)
+- [Validation and Judgment](artifact/references/validation-and-judgment.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with optional file-level skill drafts, Step Contract plans, validation scripts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Chinese-language ARG workflow designs and file-level deliverables when requested by the user.]
+
+## Skill Version(s):
+
+1.2.4 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

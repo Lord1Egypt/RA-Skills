@@ -1,41 +1,54 @@
-## Description: <br>
-Manage Apple Calendar events from the command line on macOS, including creating, updating, deleting, searching, exporting, and checking availability with JSON output for agent use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Calendar events from the command line on macOS — create, update, delete, search, export, and check availability with full JSON output for agent use.
 
-## Publisher: <br>
-[gopaljigaur](https://clawhub.ai/user/gopaljigaur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gopaljigaur](https://clawhub.ai/user/gopaljigaur)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to operate Apple Calendar from automation workflows with structured JSON output, stable calendar identifiers, dry-run previews, and command guidance for common calendar tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The underlying third-party npm tool requires Full Access to Apple Calendar. <br>
-Mitigation: Install only if the publisher and npm package are trusted, and grant Calendar access intentionally through macOS privacy settings. <br>
-Risk: Update, delete, recurring-series, and broad export operations can affect or expose calendar data. <br>
-Mitigation: Use narrow date ranges and calendar IDs, prefer --dry-run before updates or deletes, and require confirmation before destructive or broad-data operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill on macOS to inspect, create, update, delete, search, export, and check availability for Apple Calendar events through the accli command-line tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gopaljigaur/accli-plus) <br>
-- [npm package @gopaljigaur/accli](https://www.npmjs.com/package/@gopaljigaur/accli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends --json output, stable calendar IDs, --dry-run previews, and narrow date ranges for calendar operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release evidence) <br>
+Risk: The skill asks users to globally install an unpinned third-party npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package provenance before installing and prefer a pinned, reviewed version with integrity verification.
+
+Risk: The CLI requires Full Calendar access and can read, export, create, update, and delete events.
+
+Mitigation: Grant Calendar access only when that authority is acceptable, use --json for auditable responses, and use --dry-run before destructive update or delete operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gopaljigaur/skills/accli-plus)
+- [npm package @gopaljigaur/accli](https://www.npmjs.com/package/@gopaljigaur/accli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; accli commands should use --json for programmatic parsing and --dry-run before destructive update or delete operations.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

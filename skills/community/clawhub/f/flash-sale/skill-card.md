@@ -1,38 +1,56 @@
-## Description: <br>
-Creates a flash-sale promotion playbook that uses time-limited offers to build urgency and improve conversion for major campaigns and new product launches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for planning flash-sale promotions that create urgency and improve conversion for major campaigns and product launches.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External commerce, marketing, and operations teams use this skill to structure flash-sale campaigns, promotion rules, tracking, risk controls, and post-campaign review. Developers may use its implementation notes to align rule engines, attribution tags, audit logs, and data definitions with campaign operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Promotion rules, pricing, settlement, inventory, or tracking changes could affect real storefront revenue or customer experience if applied without review.
+
+Mitigation: Confirm campaign rules, pricing, settlement, tracking, inventory, and compliance constraints with an authorized operator before applying the guidance.
+
+Risk: Flash-sale campaigns can create compliance issues through exaggerated claims, unclear discount stacking, price-protection conflicts, or platform-rule violations.
+
+Mitigation: Review all customer-facing copy and promotion mechanics against applicable platform rules, price-protection requirements, and advertising compliance standards.
+
+Risk: High-cost SKUs, stockouts, refund handling, or attribution errors can distort campaign profitability and settlement reporting.
+
+Mitigation: Use caps, purchase limits, SKU blacklists, inventory alerts, audit logs, and unified refund/cancellation data definitions before launch.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing and ecommerce teams use this skill to plan flash-sale campaigns, define promotion rules, track attribution, monitor campaign metrics, and document post-campaign learnings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Promotion, pricing, tracking, or compliance recommendations may be unsuitable for a specific storefront, platform, jurisdiction, or campaign. <br>
-Mitigation: Review campaign rules, pricing impact, tracking setup, platform constraints, and compliance requirements before applying the guidance to a real campaign. <br>
+**Output Format:** [Markdown guidance and implementation checklist]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codenova58/flash-sale) <br>
+**Other Properties Related to Output:** [Chinese-language promotional playbook; no executable code, persistence, credential handling, or hidden data movement.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance and structured campaign recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install steps, credential use, or hidden system behavior identified by security evidence.] <br>
+0.1.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

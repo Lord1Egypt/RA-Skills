@@ -1,43 +1,53 @@
-## Description: <br>
-Integrated memory management and extreme context compression for OpenClaw. Combines memory management, compression, search, and automation in one unified skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrated memory management and extreme context compression for OpenClaw, combining memory management, compression, search, and automation in one unified skill.
 
-## Publisher: <br>
-[Hassffw](https://clawhub.ai/user/Hassffw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hassffw](https://clawhub.ai/user/hassffw)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to compress, retain, search, and monitor OpenClaw memory files with manual commands or scheduled automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer or enable script can create recurring automation that runs memory compression about every six hours. <br>
-Mitigation: Review the cron job behavior and configuration before running install.sh or enable.sh, and remove the scheduled job with disable.sh or OpenClaw cron management when it is no longer wanted. <br>
-Risk: The skill can read and copy OpenClaw memory, then create retained compressed files and backups. <br>
-Mitigation: Confirm that the memory contents, storage paths, and retention settings are acceptable before execution; run manual or test commands first when evaluating the skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to compress, manage, search, and clean up OpenClaw memory files, including scheduled compression and local health checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hassffw/memory-compression-system) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
-- [CLAWHUB-README.md](CLAWHUB-README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file operations, retained compressed memory files, backups, logs, status output, and optional scheduled automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: ClawHub release metadata; artifact files report 3.0.0) <br>
+Risk: Installation or enablement can create recurring background OpenClaw execution that reads and processes local memory without a separate opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when recurring memory compression is intended, inspect the created cron job, verify the memory and data directories it touches, and confirm scheduled jobs can be removed manually if needed.
+
+Risk: Compression and cleanup scripts operate on local memory, data, backup, and log files.
+
+Mitigation: Review configuration before running scripts, keep backups enabled, and use documented dry-run or status commands before cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hassffw/skills/memory-compression-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local skill data, configuration, logs, backups, and scheduled OpenClaw jobs when its scripts are run.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata; artifact frontmatter and package.json report 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

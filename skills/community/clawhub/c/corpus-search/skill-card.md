@@ -1,44 +1,56 @@
-## Description: <br>
-Corpus Search is a local corpus retrieval skill that works with corpus-builder to run semantic search and metadata filtering by scene, emotion, pace, and quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corpus Search helps agents search a corpus built with corpus-builder using semantic search and metadata filters for scene, emotion, pace, and quality.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Developers, agents, and writing teams use this skill to search local fiction corpora for relevant passages by semantic query and filters such as scene type, emotion, pace, and quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Python dependencies are specified with lower bounds rather than a lockfile. <br>
-Mitigation: Install in a controlled environment and pin dependencies in a lockfile before deployment. <br>
-Risk: The configured ChromaDB corpus path determines which local content can be searched. <br>
-Mitigation: Verify configs/default_config.yml points only to approved corpus data before use. <br>
-Risk: The embedding model may be downloaded when the search script initializes. <br>
-Mitigation: Run in an environment where downloading and caching the configured embedding model is acceptable. <br>
+## Use Case:
 
+Developers, writers, and agent workflows use this skill to retrieve relevant Chinese fiction corpus passages, filter results by metadata, and export matches for downstream writing or analysis tasks.
 
-## Reference(s): <br>
-- [Corpus Search ClawHub Release](https://clawhub.ai/yuzhihui886/corpus-search) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Default Configuration](artifact/configs/default_config.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Console text or JSON search results, with optional exported result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default result limit is 10, maximum configured limit is 100, and result content previews are truncated to 500 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact SKILL.md lists 1.0.0) <br>
+Risk: Unpinned Python dependencies may change behavior or introduce dependency hygiene concerns over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and review or pin dependency versions before use.
+
+Risk: The skill reads local corpus directories and can export search results to user-selected paths.
+
+Mitigation: Run it only against corpus directories and export paths you choose.
+
+## Reference(s):
+
+- [Corpus Search Skill Page](https://clawhub.ai/yuzhihui886/skills/corpus-search)
+- [SKILL.md](artifact/SKILL.md)
+- [Default Configuration](artifact/configs/default_config.yml)
+- [Search Script](artifact/scripts/search_corpus.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Console text or JSON search results, with optional exported files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns ranked corpus matches with similarity, metadata, and content previews.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL.md states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

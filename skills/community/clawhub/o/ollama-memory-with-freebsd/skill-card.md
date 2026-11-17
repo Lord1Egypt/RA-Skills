@@ -1,43 +1,57 @@
-## Description: <br>
-Set up local semantic memory search in OpenClaw using Ollama and nomic-embed-text so embeddings can run privately without a cloud API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up local semantic memory search in OpenClaw using Ollama and nomic-embed-text so memory embeddings can run locally without cloud API keys.
 
-## Publisher: <br>
-[spmzt](https://clawhub.ai/user/spmzt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spmzt](https://clawhub.ai/user/spmzt)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure local semantic memory search with Ollama, including setup commands, provider settings, and troubleshooting guidance for offline-capable embeddings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Additional Markdown directories configured through extraPaths may make private or shared notes searchable. <br>
-Mitigation: Include only directories that are intended for memory search, and review extraPaths before enabling recursive indexing. <br>
-Risk: Incorrect provider or baseUrl settings can prevent local Ollama search from working as intended. <br>
-Mitigation: Use provider "ollama" and baseUrl "http://127.0.0.1:11434", then restart the OpenClaw gateway after changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw memory search with a local Ollama embedding model for private, offline-capable semantic retrieval. It provides setup commands, configuration examples, and troubleshooting guidance for local memory search.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spmzt/ollama-memory-with-freebsd) <br>
-- [Ollama](https://ollama.ai/) <br>
-- [Configuration Reference](references/config-reference.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Ollama and curl; metadata lists linux, darwin, win32, and freebsd support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional extraPaths can recursively index additional directories into memory search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extraPaths before use and avoid secrets, private notes, unrelated team folders, or broad absolute paths unless that indexing is intentional.
+
+Risk: Incorrect provider or baseUrl settings can prevent local Ollama routing.
+
+Mitigation: Set provider to "ollama" and use the Ollama base URL without a /v1 suffix or trailing slash.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/spmzt/skills/ollama-memory-with-freebsd)
+- [Ollama](https://ollama.ai/)
+- [README](README.md)
+- [Configuration Reference](references/config-reference.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for configuring OpenClaw, Ollama, model selection, and troubleshooting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

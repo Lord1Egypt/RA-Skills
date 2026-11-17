@@ -2,70 +2,528 @@
   {
     "query": "什么是RAG？",
     "expected_answer": "RAG（Retrieval-Augmented Generation）是一种结合信息检索和生成模型的技术，通过检索相关文档来增强大语言模型的回答能力。",
-    "expected_doc_ids": ["doc_001", "doc_002"],
+    "expected_doc_ids": [
+      "doc_001",
+      "doc_002"
+    ],
     "category": "概念理解",
     "difficulty": "easy"
   },
   {
-    "query": "RAG系统如何优化检索效果？",
-    "expected_answer": "可以通过语义分块、由小到大检索、混合检索、重排序等策略优化，其中由小到大检索性价比最高，可将准确率从0.3提升至0.85。",
-    "expected_doc_ids": ["doc_003", "doc_004", "doc_005"],
+    "query": "什么是向量数据库？",
+    "expected_answer": "向量数据库是专门存储和检索高维向量数据的数据库，通过向量相似度搜索（如余弦相似度）实现语义检索，常见的有 Milvus、Qdrant、Weaviate 等。",
+    "expected_doc_ids": [
+      "doc_003"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是文本嵌入（Embedding）？",
+    "expected_answer": "文本嵌入是将文本转换为高维向量表示的技术，语义相近的文本在向量空间中距离更近，是向量检索的基础。",
+    "expected_doc_ids": [
+      "doc_004"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是大模型幻觉？",
+    "expected_answer": "大模型幻觉指模型生成与事实不符或凭空编造的内容，RAG通过检索真实文档作为依据来降低幻觉。",
+    "expected_doc_ids": [
+      "doc_005"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是重排序（Reranking）？",
+    "expected_answer": "重排序是对初步检索结果进行二次精排的技术，通常用 Cross-Encoder 模型对 top-K 候选重新打分，提高精确率。",
+    "expected_doc_ids": [
+      "doc_006",
+      "doc_007"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是BM25算法？",
+    "expected_answer": "BM25 是一种基于词频和逆文档频率的关键词检索算法，是 Okapi BM25 的简称，在稀疏检索中表现稳定。",
+    "expected_doc_ids": [
+      "doc_008"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是语义分块？",
+    "expected_answer": "语义分块是根据文本的语义边界（如主题变化、段落结构）进行动态切分，避免固定大小分块切断语义完整性的方法。",
+    "expected_doc_ids": [
+      "doc_009"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是上下文窗口？",
+    "expected_answer": "上下文窗口是模型单次能够处理的输入 token 数量上限，RAG 中需要控制检索内容的长度以适配窗口限制。",
+    "expected_doc_ids": [
+      "doc_010"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是知识图谱？",
+    "expected_answer": "知识图谱是用节点（实体）和边（关系）组织知识的图结构，Graph RAG 利用它支持实体关系推理和多跳查询。",
+    "expected_doc_ids": [
+      "doc_011"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "什么是提示词工程（Prompt Engineering）？",
+    "expected_answer": "提示词工程是设计、优化模型输入指令的技术，通过角色设定、示例引导和输出约束提升生成质量。",
+    "expected_doc_ids": [
+      "doc_012"
+    ],
+    "category": "概念理解",
+    "difficulty": "easy"
+  },
+  {
+    "query": "如何实现由小到大检索？",
+    "expected_answer": "1. 将文档切分为子块（100-200字）和父块（500-1000字）；2. 用子块建立向量索引；3. 查询时用子块检索；4. 返回对应父块给 LLM。",
+    "expected_doc_ids": [
+      "doc_013",
+      "doc_014"
+    ],
     "category": "技术实现",
     "difficulty": "medium"
   },
   {
-    "query": "什么是HyDE？它适用于什么场景？",
-    "expected_answer": "HyDE（Hypothetical Document Embeddings）是一种查询优化技术，通过生成假设性答案来检索。适用于短查询、模糊问题等场景。",
-    "expected_doc_ids": ["doc_006"],
+    "query": "如何做语义分块？",
+    "expected_answer": "计算相邻句子或段落间的语义相似度，相似度低于阈值时切分，可用嵌入模型计算句子向量后聚类或按相似度断点分块。",
+    "expected_doc_ids": [
+      "doc_015",
+      "doc_016"
+    ],
     "category": "技术实现",
     "difficulty": "medium"
   },
   {
-    "query": "重排序的作用是什么？有哪些常用模型？",
-    "expected_answer": "重排序用于对初步检索结果进行二次筛选，提高精确率。常用模型包括Cross-Encoder系列、BGE Reranker等。",
-    "expected_doc_ids": ["doc_007", "doc_008"],
+    "query": "如何配置混合检索？",
+    "expected_answer": "同时部署向量检索和 BM25 关键词检索，用加权公式融合分数：final_score = alpha * vector + (1-alpha) * bm25，alpha 通常取 0.5-0.8。",
+    "expected_doc_ids": [
+      "doc_017"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何接入重排序模型？",
+    "expected_answer": "先用轻量检索器召回 top-50，再用重排序模型（如 bge-reranker、Cross-Encoder）对候选精排，返回 top-5。",
+    "expected_doc_ids": [
+      "doc_018"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何做命题分块？",
+    "expected_answer": "将文档拆解为最小事实单元（命题），每个命题表达一个事实且独立可检索，适合精确问答场景，可结合 Small-to-Big 使用。",
+    "expected_doc_ids": [
+      "doc_019"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何给分块添加上下文头？",
+    "expected_answer": "为每个分块添加元数据头部，包括文档标题、章节路径、主题标签和关键实体，提升脱离上下文后的语义完整性。",
+    "expected_doc_ids": [
+      "doc_020"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何做上下文压缩？",
+    "expected_answer": "对检索结果进行压缩，可选提取式（保留关键句子）、摘要式（LLM 生成摘要）或混合式，减少 token 消耗并提高信噪比。",
+    "expected_doc_ids": [
+      "doc_021"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何实现引用溯源？",
+    "expected_answer": "在答案生成时标注引用来源，支持行内引用、脚注或结构化 JSON 格式，并给出可信度评分，提升答案可验证性。",
+    "expected_doc_ids": [
+      "doc_022"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何识别查询意图？",
+    "expected_answer": "通过关键词规则或 LLM 对查询分类（事实查询、对比分析、操作指导、概念解释等），根据意图动态选择检索策略。",
+    "expected_doc_ids": [
+      "doc_023"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何用BM25实现关键词检索？",
+    "expected_answer": "对文档建立倒排索引，统计词频（TF）和文档频率（DF），查询时按 BM25 公式计算相关性分数并排序返回 top-K。",
+    "expected_doc_ids": [
+      "doc_024"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何实现多跳检索？",
+    "expected_answer": "将复杂问题分解为多个子查询，迭代检索逐步收集信息，直到答案完整或达到最大跳数，需要检索器和子查询生成器配合。",
+    "expected_doc_ids": [
+      "doc_025"
+    ],
+    "category": "技术实现",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何用HyDE提升检索效果？",
+    "expected_answer": "先用 LLM 生成一个假设性答案（Hypothetical Document），再用该答案的向量进行检索，适合短查询和模糊查询场景。",
+    "expected_doc_ids": [
+      "doc_026"
+    ],
     "category": "技术实现",
     "difficulty": "medium"
   },
   {
     "query": "Graph RAG和传统RAG有什么区别？",
-    "expected_answer": "Graph RAG将文档构建为知识图谱，支持实体关系推理和多跳查询，适合关系密集的场景。传统RAG基于扁平文本块检索，实现简单但不支持推理。",
-    "expected_doc_ids": ["doc_009", "doc_010"],
+    "expected_answer": "Graph RAG 将文档构建为知识图谱，支持实体关系推理和多跳查询，适合关系密集的场景；传统 RAG 基于扁平文本块检索，实现简单但不支持推理。",
+    "expected_doc_ids": [
+      "doc_027",
+      "doc_028"
+    ],
+    "category": "架构对比",
+    "difficulty": "hard"
+  },
+  {
+    "query": "向量检索和BM25关键词检索有什么区别？",
+    "expected_answer": "向量检索基于语义相似度，能处理同义改写但需要嵌入模型；BM25 基于词项匹配，精确但无法理解语义，两者互补常结合为混合检索。",
+    "expected_doc_ids": [
+      "doc_029"
+    ],
+    "category": "架构对比",
+    "difficulty": "medium"
+  },
+  {
+    "query": "微调LLM和RAG有什么区别？",
+    "expected_answer": "微调将知识固化进模型权重，更新成本高、可解释性差；RAG 通过检索外部知识动态注入，更新低成本、可溯源，但增加检索延迟。",
+    "expected_doc_ids": [
+      "doc_030"
+    ],
+    "category": "架构对比",
+    "difficulty": "medium"
+  },
+  {
+    "query": "重排序和粗排有什么区别？",
+    "expected_answer": "粗排用轻量模型在全集上快速筛选出候选集，重排序用高精度模型（如 Cross-Encoder）对候选精排，两者构成两阶段检索。",
+    "expected_doc_ids": [
+      "doc_031"
+    ],
+    "category": "架构对比",
+    "difficulty": "medium"
+  },
+  {
+    "query": "大块和小块分块各有什么优劣？",
+    "expected_answer": "小块检索精准但上下文不足，大块上下文完整但检索不精准；由小到大检索结合两者优势：小块检索、大块返回。",
+    "expected_doc_ids": [
+      "doc_032"
+    ],
+    "category": "架构对比",
+    "difficulty": "medium"
+  },
+  {
+    "query": "RAG和长上下文模型哪个更好？",
+    "expected_answer": "长上下文模型可直接塞入大段文本但成本高、易受无关信息干扰；RAG 按需检索降低成本，两者可结合：RAG 检索 + 长上下文微调。",
+    "expected_doc_ids": [
+      "doc_033"
+    ],
+    "category": "架构对比",
+    "difficulty": "hard"
+  },
+  {
+    "query": "稠密检索和稀疏检索有什么区别？",
+    "expected_answer": "稠密检索用嵌入模型生成密集向量（如 BGE、E5），适合语义检索；稀疏检索用词项权重（如 BM25、SPLADE），适合精确匹配。",
+    "expected_doc_ids": [
+      "doc_034"
+    ],
+    "category": "架构对比",
+    "difficulty": "medium"
+  },
+  {
+    "query": "会话式RAG和一次性RAG有什么区别？",
+    "expected_answer": "会话式 RAG 维护多轮对话状态并据此改写查询、融合历史信息；一次性 RAG 每轮独立检索，无法利用上下文。",
+    "expected_doc_ids": [
+      "doc_036"
+    ],
+    "category": "架构对比",
+    "difficulty": "hard"
+  },
+  {
+    "query": "Agent式检索和传统RAG有什么区别？",
+    "expected_answer": "Agent 式 RAG 让模型自主规划检索路径、调用多工具并迭代验证；传统 RAG 是固定流水线（检索-生成），缺乏自适应能力。",
+    "expected_doc_ids": [
+      "doc_037"
+    ],
+    "category": "架构对比",
+    "difficulty": "hard"
+  },
+  {
+    "query": "精排阶段用 LLM 重排序和专用重排模型哪个好？",
+    "expected_answer": "专用重排模型（如 bge-reranker）速度快、效果稳定；LLM 重排序灵活可解释但成本高、延迟大，通常数据量小时更适用。",
+    "expected_doc_ids": [
+      "doc_035"
+    ],
     "category": "架构对比",
     "difficulty": "hard"
   },
   {
     "query": "苹果公司CEO的母校在哪里？",
-    "expected_answer": "苹果公司CEO Tim Cook毕业于奥本大学（Auburn University），位于美国阿拉巴马州。",
-    "expected_doc_ids": ["doc_011", "doc_012"],
+    "expected_answer": "苹果公司CEO Tim Cook 毕业于奥本大学（Auburn University），位于美国阿拉巴马州。",
+    "expected_doc_ids": [
+      "doc_038",
+      "doc_039"
+    ],
     "category": "多跳推理",
     "difficulty": "hard"
   },
   {
-    "query": "如何评估RAG系统的效果？",
-    "expected_answer": "可以使用Recall@K、Precision@K、MRR等指标评估检索质量，使用相关性、忠实度、完整性等指标评估生成质量。推荐工具包括Ragas、TruLens等。",
-    "expected_doc_ids": ["doc_013"],
+    "query": "某手机厂商的核心供应商位于哪个省份？",
+    "expected_answer": "该手机厂商的核心电池供应商位于广东省，其产能在全球占比约 30%。",
+    "expected_doc_ids": [
+      "doc_040"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "特斯拉CEO马斯克毕业于哪所大学？",
+    "expected_answer": "马斯克本科就读于加拿大皇后大学，后转学至美国宾夕法尼亚大学获得物理学和经济学双学位。",
+    "expected_doc_ids": [
+      "doc_041"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "英伟达CEO黄仁勋在哪所大学获得学位？",
+    "expected_answer": "黄仁勋在俄勒冈州立大学获得电气工程学士学位，后在斯坦福大学获得硕士学位。",
+    "expected_doc_ids": [
+      "doc_042"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "《三体》作者的另一部著名作品是什么？",
+    "expected_answer": "《三体》作者刘慈欣的另一部著名作品是《流浪地球》，讲述地球逃离太阳系的故事。",
+    "expected_doc_ids": [
+      "doc_043"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "某AI公司的创始人此前在哪家公司工作？",
+    "expected_answer": "该公司创始人此前在谷歌担任高级研究员，负责深度学习框架的开发。",
+    "expected_doc_ids": [
+      "doc_044"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "华为创始人任正非创办公司时的主要资金来源是什么？",
+    "expected_answer": "任正非 1987 年创办华为时，资金主要来自朋友借款和合作方预付，注册资金约 2.1 万元。",
+    "expected_doc_ids": [
+      "doc_045"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "某论文第一作者所在机构位于哪个国家？",
+    "expected_answer": "该论文第一作者所在机构是苏黎世联邦理工学院（ETH Zurich），位于瑞士。",
+    "expected_doc_ids": [
+      "doc_046"
+    ],
+    "category": "多跳推理",
+    "difficulty": "hard"
+  },
+  {
+    "query": "如何评估RAG系统的检索质量？",
+    "expected_answer": "可以使用 Recall@K、Precision@K、MRR 等指标评估检索质量，使用相关性、忠实度、完整性等指标评估生成质量。",
+    "expected_doc_ids": [
+      "doc_047"
+    ],
     "category": "评估方法",
     "difficulty": "medium"
   },
   {
-    "query": "由小到大检索的具体实现步骤是什么？",
-    "expected_answer": "1. 将文档切分为子块（100-200字）和父块（500-1000字）；2. 对子块建立向量索引；3. 查询时用子块检索；4. 返回对应的父块给LLM。",
-    "expected_doc_ids": ["doc_014", "doc_015"],
-    "category": "技术实现",
+    "query": "什么是Recall@K指标？",
+    "expected_answer": "Recall@K 衡量前 K 个检索结果中包含相关文档的比例，反映检索的召回能力，K 越大召回越宽松。",
+    "expected_doc_ids": [
+      "doc_048"
+    ],
+    "category": "评估方法",
     "difficulty": "medium"
   },
   {
-    "query": "混合检索中向量权重如何设置？",
-    "expected_answer": "向量权重通常设为0.5-0.8，根据查询特征动态调整：短查询或有精确术语时降低权重（偏关键词），长查询时提高权重（偏语义）。",
-    "expected_doc_ids": ["doc_016"],
+    "query": "什么是MRR指标？",
+    "expected_answer": "MRR（Mean Reciprocal Rank）衡量第一个相关结果在检索列表中的排名倒数平均值，越高说明相关结果越靠前。",
+    "expected_doc_ids": [
+      "doc_049"
+    ],
+    "category": "评估方法",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何评估答案的忠实度？",
+    "expected_answer": "忠实度衡量答案是否基于检索到的源文档生成，可通过 LLM 评判或人工核对答案中的每个事实点是否可溯源。",
+    "expected_doc_ids": [
+      "doc_050"
+    ],
+    "category": "评估方法",
+    "difficulty": "medium"
+  },
+  {
+    "query": "Ragas评估框架包含哪些指标？",
+    "expected_answer": "Ragas 包含忠实度（faithfulness）、答案相关性（answer relevance）、上下文精确率（context precision）和上下文召回率（context recall）等指标。",
+    "expected_doc_ids": [
+      "doc_051"
+    ],
+    "category": "评估方法",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何建立测试评估集？",
+    "expected_answer": "从真实查询日志中采样覆盖不同类别和难度的问题，人工标注标准答案和相关文档，保持类别/难度配额平衡，多人交叉标注降低偏差。",
+    "expected_doc_ids": [
+      "doc_052"
+    ],
+    "category": "评估方法",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何做Ablation实验验证策略效果？",
+    "expected_answer": "固定测试集不变，逐项开启/关闭优化策略（如重排序、混合检索），对比每次变更前后的指标变化，确定各策略的边际收益。",
+    "expected_doc_ids": [
+      "doc_053"
+    ],
+    "category": "评估方法",
+    "difficulty": "medium"
+  },
+  {
+    "query": "混合检索的向量权重如何设置？",
+    "expected_answer": "向量权重 alpha 通常取 0.5-0.8：短查询或含专有名词时降低权重（偏关键词），长查询或语义模糊时提高权重（偏语义），用 Ablation 实测调优。",
+    "expected_doc_ids": [
+      "doc_054"
+    ],
     "category": "参数调优",
     "difficulty": "medium"
   },
   {
-    "query": "如何解决RAG系统的幻觉问题？",
-    "expected_answer": "可以通过引用溯源、幻觉检测、上下文压缩等方式减少幻觉。核心是让答案有据可依，并验证答案与检索内容的一致性。",
-    "expected_doc_ids": ["doc_017", "doc_018"],
+    "query": "分块大小如何选择？",
+    "expected_answer": "技术文档建议子块 150 字、父块 600 字；学术论文子块 200 字、父块 800 字；法律条文子块 100 字、父块 500 字，以实验为准。",
+    "expected_doc_ids": [
+      "doc_055"
+    ],
+    "category": "参数调优",
+    "difficulty": "medium"
+  },
+  {
+    "query": "重排序的top_k如何设置？",
+    "expected_answer": "粗筛阶段取 top-50 到 top-100 保证召回，精排阶段输出 top-5 控制上下文长度，具体按延迟和精度权衡调整。",
+    "expected_doc_ids": [
+      "doc_056"
+    ],
+    "category": "参数调优",
+    "difficulty": "medium"
+  },
+  {
+    "query": "相关性阈值如何调整？",
+    "expected_answer": "Self-RAG 中 high_relevance_threshold 建议 0.7、low_relevance_threshold 0.3，阈值过高会拒答、过低会放行噪音，需按数据实测。",
+    "expected_doc_ids": [
+      "doc_057"
+    ],
+    "category": "参数调优",
+    "difficulty": "medium"
+  },
+  {
+    "query": "BM25的k1和b参数如何调优？",
+    "expected_answer": "k1 控制词频饱和（默认 1.5，越小越饱和），b 控制文档长度归一化（默认 0.75），短文档场景可增大 b，长文档场景减小 b。",
+    "expected_doc_ids": [
+      "doc_058"
+    ],
+    "category": "参数调优",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何确定向量检索的 top_k？",
+    "expected_answer": "top_k 过小召回不足、过大会引入噪音并增加重排成本，一般从 10 起步，结合 Recall@K 曲线和延迟预算选择拐点。",
+    "expected_doc_ids": [
+      "doc_059"
+    ],
+    "category": "参数调优",
+    "difficulty": "medium"
+  },
+  {
+    "query": "检索不到内容怎么办？",
+    "expected_answer": "依次排查：分块是否过小/断句、查询是否太模糊（用 HyDE 或查询扩展）、Embedding 模型是否适配领域、是否需要上下文头增强或混合检索。",
+    "expected_doc_ids": [
+      "doc_060"
+    ],
+    "category": "问题解决",
+    "difficulty": "medium"
+  },
+  {
+    "query": "答案有幻觉如何降低？",
+    "expected_answer": "引入 Self-RAG/CRAG 评估检索质量、上下文压缩提高信噪比、引用溯源增加可验证性，并用幻觉检测阈值拦截低忠实度答案。",
+    "expected_doc_ids": [
+      "doc_061"
+    ],
+    "category": "问题解决",
+    "difficulty": "medium"
+  },
+  {
+    "query": "上下文超长怎么办？",
+    "expected_answer": "压缩检索结果（提取/摘要）、减少 top_k、采用由小到大检索控制返回长度，或将长文档预切分并只取相关片段。",
+    "expected_doc_ids": [
+      "doc_062"
+    ],
+    "category": "问题解决",
+    "difficulty": "medium"
+  },
+  {
+    "query": "如何支持多语言文档？",
+    "expected_answer": "使用多语言嵌入模型（如 multilingual-e5）、按语言分开索引、查询时先识别语言再路由到对应索引，或统一翻译后检索。",
+    "expected_doc_ids": [
+      "doc_063"
+    ],
+    "category": "问题解决",
+    "difficulty": "hard"
+  },
+  {
+    "query": "知识库如何增量更新？",
+    "expected_answer": "采用文档级版本控制，新增/修改文档时增量重建其分块索引，定期全量重建清理孤儿向量，配合去重避免重复检索。",
+    "expected_doc_ids": [
+      "doc_064"
+    ],
     "category": "问题解决",
     "difficulty": "medium"
   }

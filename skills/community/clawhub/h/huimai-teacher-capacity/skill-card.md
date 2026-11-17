@@ -1,44 +1,57 @@
-## Description: <br>
-中国中小学教师教学能力动态评估系统，基于学生学业数据生成同年级班级学业对比、同科教师横向对比、教师能力趋势和分级权限视图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国中小学教师教学能力动态评估系统，基于学生学业数据生成同年级班级学业对比图、教师教学能力评估图、同科教师横向对比和趋势分析。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0; Huimai Intelligence commercial terms described in SKILL.md <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-School administrators, academic leaders, and teachers use this skill to turn class-level learning data into teacher capacity reports, subject comparisons, trend charts, and role-based views for Chinese K-12 education. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content and examples are China K-12 focused. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive student or teacher records may be exposed if role permissions, export controls, or retention settings are misconfigured. <br>
-Mitigation: Confirm authorized school roles before deployment, keep anonymous views as the default where appropriate, limit and log exports, and align retention with local education and employment requirements. <br>
-Risk: Teacher evaluations may be over-interpreted if generated scores are treated as definitive personnel judgments without reviewing the input data and weighting choices. <br>
-Mitigation: Review evaluation weights, source data snapshots, and generated recommendations with school leadership before using outputs for formal decisions. <br>
+## Use Case:
 
+External K-12 education teams and school administrators use this skill to design teacher-capacity evaluation reports, compare class and subject performance, define role-based data visibility, and prepare chart or data-model specifications from homework assessment outputs.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/yezhaowang888-stack/huimai-teacher-capacity) <br>
-- [Data model reference](references/data-model.md) <br>
-- [Permission model reference](references/permission-model.md) <br>
-- [Teacher evaluation chart specification](references/chart-spec.md) <br>
-- [Textbook version knowledge-point mapping](references/textbook-version-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured chart, data-model, permission, and report specifications; some sections include JSON, SQL, YAML, and table examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis guidance and report/chart specifications for downstream agent use; it depends on homework-grading-assessment outputs and school role configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Teacher names, student performance data, rankings, exports, and permission changes can expose sensitive education records or personnel-sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use school-approved access controls, privacy review, anonymized comparison settings where appropriate, and explicit authorization before deployment or export.
+
+Risk: Teacher evaluation scores and charts may be treated as decision-ready even when they are based on incomplete or low-confidence assessment inputs.
+
+Mitigation: Review source data quality, confidence thresholds, weighting choices, and human context before using outputs for staffing, ranking, or intervention decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-teacher-capacity)
+- [数据模型参考](references/data-model.md)
+- [权限模型参考](references/permission-model.md)
+- [教师评估图表规格](references/chart-spec.md)
+- [教材版本知识点映射方案](references/textbook-version-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-style chart, data model, and permission model examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on student knowledge-point mastery, class-level aggregates, and historical trend data from the homework-grading-assessment skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

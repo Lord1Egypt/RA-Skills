@@ -1,49 +1,62 @@
-## Description: <br>
-Helps users choose Docker quick deployment or source deployment for ClkLog and follow official documentation to set up the user behavior analytics system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户在本地环境中快速部署 ClkLog 开源用户行为分析系统，选择 Docker Compose 或源码部署路径，并完成环境检查、配置引导、故障排查和协议提醒。
 
-## Publisher: <br>
-[gaingush](https://clawhub.ai/user/gaingush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaingush](https://clawhub.ai/user/gaingush)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to evaluate a Linux deployment environment, choose between Docker Compose and source deployment paths, and follow official ClkLog setup and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployed ClkLog product handles user behavior analytics and may collect identifiers or behavioral data. <br>
-Mitigation: Confirm lawful basis or user consent, minimize collected identifiers, configure retention and deletion processes, and document the analytics collection scope before using it with real users. <br>
-Risk: Analytics dashboards and backing databases may expose sensitive behavior data if access is too broad. <br>
-Mitigation: Restrict dashboard and database access to authorized operators and review access controls before starting services. <br>
-Risk: Incorrect Docker or source configuration can start services with unsuitable defaults for the operator's environment. <br>
-Mitigation: Review the official ClkLog Docker or source deployment configuration and verify environment prerequisites before launching services. <br>
-Risk: ClkLog itself is described in the artifact as AGPL-3.0 software with commercial licensing considerations. <br>
-Mitigation: Review AGPL-3.0 obligations and any required commercial license terms before modifying, redistributing, or integrating ClkLog into closed-source commercial products. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to plan and execute a private ClkLog deployment on Linux, choosing between a quick Docker Compose setup and a source-based deployment for customization. The skill also guides users through environment checks, official documentation links, deployment validation, and common troubleshooting steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaingush/clklog-deployment) <br>
-- [ClkLog official site](https://clklog.com) <br>
-- [ClkLog documentation center](https://clklog.com/resource/docscenter.html) <br>
-- [ClkLog Docker installation guide](https://clklog.com/install/docker/intro.html) <br>
-- [ClkLog Docker FAQ](https://clklog.com/install/docker/fqa.html) <br>
-- [ClkLog source deployment guide](https://clklog.com/install/source/deployment.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and official documentation links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment checks, deployment path selection, troubleshooting guidance, and license reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata.json) <br>
+Risk: ClkLog deployments collect user behavior data and may involve privacy, retention, access-control, and legal requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ClkLog privacy, retention, access-control, and legal requirements before deployment, and configure the service according to the organization's data-governance policies.
+
+Risk: Deployment setup can expose .env values, database passwords, or service credentials if copied into logs, chat, or shared files.
+
+Mitigation: Treat .env and database credentials as sensitive, avoid pasting secrets into agent conversations, and rotate credentials if exposure is suspected.
+
+Risk: ClkLog product documentation and artifact metadata describe AGPL-3.0 and commercial-license obligations that may affect closed-source or commercial integrations.
+
+Mitigation: Confirm the applicable ClkLog license terms and purchase commercial authorization when closed-source commercial integration requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaingush/skills/clklog-deployment)
+- [ClkLog official site](https://clklog.com)
+- [ClkLog documentation center](https://clklog.com/resource/docscenter.html)
+- [ClkLog Docker install guide](https://clklog.com/install/docker/intro.html)
+- [ClkLog Docker FAQ](https://clklog.com/install/docker/fqa.html)
+- [ClkLog source deployment guide](https://clklog.com/install/source/deployment.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, checklists, and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes official documentation references and deployment-path selection prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

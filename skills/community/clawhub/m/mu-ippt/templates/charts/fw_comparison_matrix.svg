@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#ffffff"/>
+  <text x="640" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#1e293b" font-family="Microsoft YaHei, Arial, sans-serif">{{TITLE}}</text>
+  <!-- HEADERS: column header rects with bold text -->
+  <!-- ROWS: alternating fill for readability -->
+  <!-- CELLS: text values, checkmarks, or rating indicators -->
+</svg>

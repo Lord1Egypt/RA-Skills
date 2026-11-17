@@ -1,0 +1,13 @@
+collection: PCECD
+sort-by: 10
+shortname: pcecd
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mednafen_pce_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 恶魔城
+file: 恶魔城.cue
+assets.box_front: Imgs/恶魔城.png
+description: 《恶魔城》，PC Engine CD 平台。
+game: 超兄贵
+file: 超兄贵.cue
+assets.box_front: Imgs/超兄贵.png
+description: 《超兄贵》，PC Engine CD 平台。

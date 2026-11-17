@@ -1,39 +1,54 @@
-## Description: <br>
-fullask reports logistics index scores, industry rankings, trend analysis, abnormal indicators, and operational suggestions for a carrier and statistical date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当用户查询物流指数总分时，输出物流指数数据、行业排名、数据分析、定位异常指数、输出运营建议
 
-## Publisher: <br>
-[a-vb](https://clawhub.ai/user/a-vb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-vb](https://clawhub.ai/user/a-vb)
 
-## Use Case: <br>
-Authorized logistics operations users use this skill to query a carrier and statistical date, then summarize logistics index performance, ranking changes, pickup timeliness impact, and exception proportions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a logistics dashboard and named local spreadsheets that may contain sensitive operational data. <br>
-Mitigation: Install and use it only when the agent is authorized to access the Jingwe logistics dashboard and the intended spreadsheet files. <br>
-Risk: Recommendations depend on the fixed assumption that pickup timeliness is the main sub-indicator affecting ranking. <br>
-Mitigation: Confirm that assumption and the selected date and carrier before relying on the operational recommendations. <br>
+## Use Case:
 
+Operations employees use this skill to query a carrier and statistical date, retrieve logistics index data, compare rankings and seven-day trends, identify the fixed sub-indicator 揽收及时率, and produce operational recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with logistics metrics, trend analysis, exception summaries, and operational recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires carrier name and statistical date as inputs; output includes score, industry average, ranking, seven-day trend, fixed pickup-timeliness sub-indicator, and exception category proportions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads operational data from local Excel files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep 2.xlsx and 揽收及时率异常明细.xlsx in a controlled location and confirm they contain only data needed for this analysis before use.
+
+Risk: The skill opens a business portal over plain HTTP.
+
+Mitigation: Install only if access to the named logistics portal is expected, and prefer an HTTPS portal URL when available.
+
+## Reference(s):
+
+- [Fullask ClawHub skill page](https://clawhub.ai/a-vb/skills/fullask)
+- [Jingwe shipper overview portal](http://jingwe.jdl.com/#/indexCenter/shipperOverview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style logistics index summary with rankings, trend analysis, anomaly counts, category proportions, and operational recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires carrier name and statistical date as inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

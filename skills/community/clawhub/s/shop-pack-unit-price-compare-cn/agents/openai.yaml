@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品包装单位单价对照"
+  short_description: "将包装价格换算为可复核的同单位单价，并计算所需包数"
+  default_prompt: "使用 $shop-pack-unit-price-compare-cn 根据我提供的包装价格、净含量、单位、币种、日期和运费口径，输出可比性、单价算式及需求量对应包数；缺料请列出原因，不猜密度。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

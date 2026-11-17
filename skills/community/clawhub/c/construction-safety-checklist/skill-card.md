@@ -1,42 +1,53 @@
-## Description: <br>
-Guide a site supervisor through a structured safety inspection using conversational interaction, generating a completed inspection report with findings and corrective actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide a site supervisor through a structured safety inspection using conversational interaction, generating a completed inspection report with findings and corrective actions.
 
-## Publisher: <br>
-[nitevity](https://clawhub.ai/user/nitevity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nitevity](https://clawhub.ai/user/nitevity)
 
-## Use Case: <br>
-Site supervisors, HSE officers, and project managers use this skill to conduct structured construction safety inspections, record observations across 10 safety categories, classify findings, and generate a completed inspection report with corrective actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may classify construction hazards or recommend corrective actions incorrectly. <br>
-Mitigation: Have a qualified HSE professional review severity classifications, corrective actions, deadlines, and any Stop Work recommendation before relying on the report. <br>
-Risk: Inspection conversations may include sensitive site, project, personnel, or incident details. <br>
-Mitigation: Use the skill only in an appropriate chat environment and avoid entering sensitive site details unless they are needed for the inspection record. <br>
-Risk: A partial or skipped checklist can produce an incomplete inspection record. <br>
-Mitigation: Confirm the agent is running the full 10-category checklist and ensure skipped categories are recorded as not inspected with a reason. <br>
+## Use Case:
 
+Site supervisors, HSE officers, and project managers use this skill to conduct structured construction safety inspections and produce a completed inspection report with findings, severity classifications, corrective actions, responsible owners, and deadlines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nitevity/construction-safety-checklist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational prompts followed by a structured Markdown inspection report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes severity classifications, corrective actions, deadlines, and an action register for the 10 inspection categories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may activate for broad site-safety questions and then guide a full inspection workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user intends to conduct a full construction safety inspection before proceeding through the complete checklist.
+
+Risk: Safety classifications and stop-work language may be treated as official policy or filed as a formal report without review.
+
+Mitigation: Have a qualified supervisor or HSE professional review classifications, corrective actions, and the final report before using it as official policy or a formal record.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nitevity/skills/construction-safety-checklist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational prompts and a structured Markdown inspection report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes inspection header data, category observations, severity classifications, corrective actions, deadlines, and a corrective action register.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Manage FoxReach cold email outreach: leads, campaigns, sequences, templates, email accounts, inbox, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage FoxReach cold email outreach - leads, campaigns, sequences, templates, email accounts, inbox, and analytics.
 
-## Publisher: <br>
-[concaption](https://clawhub.ai/user/concaption) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[concaption](https://clawhub.ai/user/concaption)
 
-## Use Case: <br>
-External developers and operators use this skill to manage FoxReach cold email outreach workflows through the FoxReach SDK and CLI, including lead management, campaign setup, sequence editing, inbox triage, and analytics review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change FoxReach account data, including creating or deleting leads, templates, campaigns, sequences, and email accounts. <br>
-Mitigation: Use a least-privileged FoxReach API key and require explicit user confirmation plus a dry-run summary before destructive or bulk-changing operations. <br>
-Risk: The skill can add recipients or senders and start live cold-email campaigns. <br>
-Mitigation: Require explicit confirmation before adding recipients or senders or starting campaigns, and show the campaign, sequence, account, and recipient summary before execution. <br>
-Risk: The skill depends on a referenced SDK or CLI that may execute authenticated FoxReach API calls. <br>
-Mitigation: Inspect the SDK or CLI before giving it an API key, keep keys out of source files, and pass credentials through the environment or approved CLI configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FoxReach API Reference](api-reference.md) <br>
-- [FoxReach SDK Examples](examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/concaption/foxreach-io) <br>
+## Use Case:
 
+External users and developers use this skill to manage FoxReach outreach operations, including leads, campaigns, sequences, templates, email accounts, inbox triage, and analytics through the FoxReach Python SDK or CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce FoxReach API operation plans, SDK snippets, CLI commands, summaries, and confirmation prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can perform live data-changing outreach actions, including creating, updating, deleting, assigning, and starting campaigns.
+
+Mitigation: Require explicit user approval before any state-changing operation or action that could send real email.
+
+Risk: FoxReach API keys could be exposed through pasted source, command history, or shared examples.
+
+Mitigation: Use environment variables or a secret manager for credentials and avoid hardcoding or pasting API keys into scripts.
+
+Risk: Production campaign examples could send email before a campaign, lead list, sender account, or sequence is reviewed.
+
+Mitigation: Review campaign settings, recipients, sender accounts, and sequence content before assigning accounts or starting a campaign.
+
+## Reference(s):
+
+- [FoxReach API Reference](api-reference.md)
+- [FoxReach SDK Examples](examples.md)
+- [FoxReach Skill Page](https://clawhub.ai/concaption/skills/foxreach-io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a FoxReach API key for live API operations; should present concise summaries instead of raw JSON by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Recommend SEO-friendly, brandable domain names for an AI product idea, then verify current availability before returning candidates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend SEO-friendly, brandable domain names for an AI product idea, then verify current availability before returning candidates.
 
-## Publisher: <br>
-[daviddonecn](https://clawhub.ai/user/daviddonecn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddonecn](https://clawhub.ai/user/daviddonecn)
 
-## Use Case: <br>
-External users, founders, marketers, and developers use this skill to turn a product concept or keyword into a short list of brandable domain candidates with current availability status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain availability checks can expose product concepts and candidate names to registrars, marketplaces, web pages, or DNS resolvers. <br>
-Mitigation: Use the skill only when it is acceptable to share those concepts with external availability-checking services. <br>
-Risk: The artifact references a local candidate-generation helper script that is not included in the submitted files. <br>
-Mitigation: Generate candidates manually or verify any added helper script before running it. <br>
-Risk: DNS-clear results do not prove that a domain is unregistered or purchasable. <br>
-Mitigation: Prefer registrar-confirmed availability and clearly label fallback results when registrar confirmation is not obtained. <br>
+## Use Case:
 
+External users, founders, marketers, and developers use this skill to turn an AI product concept or keyword into a concise shortlist of brandable, SEO-aware domains with current availability status.
 
-## Reference(s): <br>
-- [SEO And Brand Patterns](references/seo-brand-patterns.md) <br>
-- [Project homepage](https://github.com/hilaraklesantosw-art/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown shortlist with inline domain availability notes and optional shell commands for DNS checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to five recommended domains unless the user asks for a different shortlist size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Domain availability can change between lookup and registration, and DNS-clear results do not prove a domain is unregistered.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm exact domains through a registrar or marketplace immediately before presenting final availability, and label weaker DNS-only checks as likely available rather than confirmed.
+
+Risk: The artifact references a local candidate generator script that is not present in the release artifact.
+
+Mitigation: Generate candidates manually or skip that helper step when the script is unavailable; do not block availability verification on the missing helper.
+
+Risk: Domain recommendations may resemble existing trademarks or famous product names.
+
+Mitigation: Avoid obvious conflicts using the skill's trademark-risk heuristics and state that recommendations are not legal clearance.
+
+## Reference(s):
+
+- [SEO And Brand Patterns](references/seo-brand-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/daviddonecn/skills/domain-recommender)
+- [Project homepage](https://github.com/hilaraklesantosw-art/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with compact domain shortlists, naming rationale, and availability labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to 5 results; domain availability is time-sensitive and may require registrar confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

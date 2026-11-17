@@ -1,0 +1,897 @@
+{
+  "_enums": {
+    "_comment": "The closed vocabularies. Free-text fields are written as null in this template on purpose -- a specimen string is a string somebody ships verbatim -- which left these values learnable only by being rejected. They are listed here and checked by scripts/check_plan_contract.py, which reads them from render_final_trip_html.py rather than from this block, so the two cannot drift: tests/test_plan_contract.py fails if this list stops matching.",
+    "arrival_essentials.connectivity.status": [
+      "not_applicable",
+      "researched",
+      "unverified"
+    ],
+    "arrival_essentials.emergency.status": [
+      "not_applicable",
+      "researched",
+      "unverified"
+    ],
+    "arrival_essentials.health_and_insurance.status": [
+      "not_applicable",
+      "researched",
+      "unverified"
+    ],
+    "arrival_essentials.payment.status": [
+      "not_applicable",
+      "researched",
+      "unverified"
+    ],
+    "booking_options.accommodations[].availability_status": [
+      "available",
+      "limited",
+      "unknown"
+    ],
+    "booking_options.accommodations[].price_basis": [
+      "per_room_per_night"
+    ],
+    "booking_options.accommodations[].price_status": [
+      "estimate",
+      "researched_current",
+      "user_confirmed"
+    ],
+    "booking_options.attraction_tickets[].availability_status": [
+      "available",
+      "limited",
+      "unknown"
+    ],
+    "booking_options.attraction_tickets[].price_basis": [
+      "per_person_ticket"
+    ],
+    "booking_options.attraction_tickets[].price_status": [
+      "estimate",
+      "researched_current",
+      "user_confirmed"
+    ],
+    "booking_options.attraction_tickets[].ticket_status": [
+      "booked",
+      "held",
+      "idea",
+      "researched"
+    ],
+    "booking_options.flights[].availability_status": [
+      "available",
+      "limited",
+      "unknown"
+    ],
+    "booking_options.flights[].outbound_itinerary.service_identifier_status": [
+      "researched",
+      "unresearched"
+    ],
+    "booking_options.flights[].price_basis": [
+      "per_person_round_trip"
+    ],
+    "booking_options.flights[].price_status": [
+      "estimate",
+      "researched_current",
+      "user_confirmed"
+    ],
+    "booking_options.flights[].return_itinerary.service_identifier_status": [
+      "researched",
+      "unresearched"
+    ],
+    "booking_options.ground_transport[].availability_status": [
+      "available",
+      "limited",
+      "unknown"
+    ],
+    "booking_options.ground_transport[].outbound_itinerary.service_identifier_status": [
+      "researched",
+      "unresearched"
+    ],
+    "booking_options.ground_transport[].price_basis": [
+      "per_person_round_trip"
+    ],
+    "booking_options.ground_transport[].price_status": [
+      "estimate",
+      "researched_current",
+      "user_confirmed"
+    ],
+    "booking_options.ground_transport[].return_itinerary.service_identifier_status": [
+      "researched",
+      "unresearched"
+    ],
+    "booking_options.rental_cars[].availability_status": [
+      "available",
+      "limited",
+      "unknown"
+    ],
+    "booking_options.rental_cars[].price_basis": [
+      "per_vehicle_per_day"
+    ],
+    "booking_options.rental_cars[].price_status": [
+      "estimate",
+      "researched_current",
+      "user_confirmed"
+    ],
+    "budget.breakdown[].category": [
+      "accommodation",
+      "attractions",
+      "contingency",
+      "ferry",
+      "flight",
+      "food",
+      "fuel_tolls_parking",
+      "insurance",
+      "intercity_bus",
+      "local_transport",
+      "rail",
+      "rental_car",
+      "shopping_and_misc",
+      "tours_and_activities",
+      "visa_and_entry"
+    ],
+    "budget.breakdown[].price_status": [
+      "estimate",
+      "researched_current",
+      "user_confirmed"
+    ],
+    "budget.calculation_basis": [
+      "per_person"
+    ],
+    "days[].day_type": [
+      "arrival",
+      "departure",
+      "full",
+      "transfer"
+    ],
+    "days[].dining[].meal": [
+      "breakfast",
+      "dinner",
+      "lunch",
+      "snack"
+    ],
+    "days[].dining[].reservation_need": [
+      "not_accepted",
+      "recommended",
+      "required",
+      "walk_in"
+    ],
+    "days[].route.route_map_scope": [
+      "multi_stop",
+      "primary_leg"
+    ],
+    "entry_context.status": [
+      "no_visa_required",
+      "not_required",
+      "required_held",
+      "required_to_apply",
+      "unverified",
+      "visa_required"
+    ],
+    "intake_context.method": [
+      "chat_fallback",
+      "html_form",
+      "user_supplied"
+    ],
+    "plan_status": [
+      "booked",
+      "held",
+      "idea",
+      "researched"
+    ],
+    "regional_service_context.booking_access_checks[].access_status": [
+      "available",
+      "limited",
+      "unknown"
+    ],
+    "regional_service_context.booking_access_checks[].category": [
+      "accommodation",
+      "attraction_ticket",
+      "flight",
+      "rail_or_ground",
+      "rental_car"
+    ],
+    "regional_service_context.google_services_access": [
+      "available",
+      "unavailable",
+      "unknown"
+    ],
+    "sources[].confidence": [
+      "high",
+      "low",
+      "medium",
+      "researched",
+      "unverified"
+    ],
+    "transport_preference.mode": [
+      "public-transit",
+      "self-drive"
+    ],
+    "trip.arrival_transport_mode": [
+      "flight",
+      "other",
+      "rail",
+      "road"
+    ],
+    "trip.traveler_constraints.allergy_severity": [
+      "intolerance",
+      "none",
+      "preference",
+      "severe"
+    ]
+  },
+  "_contract": [
+    "Notes on the three blocks a real run shipped without. All three are OPTIONAL -- a plan that",
+    "omits them passes every gate exactly as before -- so nothing warns you when they are absent.",
+    "That is the whole reason they are written out here.",
+    "trip.traveler_constraints -- what the traveller's body and diet require, carried from intake.",
+    "dietary_or_religious_needs and mobility_notes are free text lists. allergy_severity is one of",
+    "none | preference | intolerance | severe, and it is the difference between a dish the traveller",
+    "would rather skip and one that ends the trip. allergy_card_text is the literal sentence handed",
+    "to restaurant staff, in the local language. max_continuous_walking_minutes is a hard number the",
+    "walking check reads: with it set, any single segment or activity that exceeds it fails the gate,",
+    "and without it nothing measures the constraint the traveller actually stated.",
+    "entry_context -- the entry conclusion, on the page. SKILL.md's own quality gate requires that",
+    "the conclusion reach the page through this block, and this template, the skeleton and the HTML",
+    "template all omitted it, so a real cross-border plan shipped with no entry section at all during",
+    "reintroduced Schengen border checks. status is one of not_required | required_held |",
+    "required_to_apply | unverified. traveler_basis is a status CATEGORY -- 'EU long-term residence",
+    "permit holder' -- and never a document number or expiry date: it goes onto a page the traveller",
+    "may share, and a category is what makes the conclusion rereadable a month later anyway.",
+    "Delete the whole block when the trip never crosses a border; an unverified entry panel on a",
+    "domestic trip is noise, and SKILL.md says not to raise entry as a blocker for a traveller",
+    "staying home.",
+    "days[].activities[].on_foot_minutes -- minutes of THIS activity spent on foot or standing,",
+    "an integer >= 0. Segment walking_minutes covers only travel between stops, so a page can",
+    "truthfully print '42 minutes on foot' for a day that schedules three and a half hours of it",
+    "inside museums and markets. That happened, against a stated mobility limit, and the walking",
+    "gate certified the number. Authoring it turns the second half of the day's walking on.",
+    "",
+    "intake_context -- REQUIRED, unlike the three blocks above. method is one of html_form |",
+    "user_supplied | chat_fallback and each carries its own evidence: html_form names the intake",
+    "file only the intake server writes; user_supplied says what the traveller supplied instead;",
+    "chat_fallback carries declined_verbatim, the traveller's OWN WORDS declining the form, plus",
+    "declined_at. It is required because the failure it guards is an omission: an assistant that",
+    "skipped the form is the same assistant that would leave an optional key out, so an optional",
+    "version would report clean on exactly the run that motivated it.",
+    "",
+    "attraction_tickets[].sale_opens_at -- REQUIRED on any ticket an activity actually schedules,",
+    "and only those: a ticket listed as an option nobody put on a day cannot strand anyone. status is",
+    "always_available | scheduled_release | at_the_door | sold_out_or_unavailable. opens_at is an ISO",
+    "date-time and is required when status is scheduled_release. basis is one sentence saying where",
+    "the rule came from -- it is the whole anti-rubber-stamp of this field, because someone who",
+    "opened the official page can write it and someone who guessed 'always_available' cannot. A",
+    "guessed value is a fabricated fact, which is worse than the blank this field replaces.",
+    "sources[].confidence -- OPTIONAL, and a CLOSED ENUM when present: high | medium | low |\n    researched | unverified. It is printed as visible text beside the source, so it has to be\n    translatable; it was free text until a Chinese page shipped 「… · high」 in an otherwise\n    fully Chinese register with every gate green. Omitting it renders \"researched\" in the trip's\n    language. Any qualification -- \"fare requires recheck\", \"timetable is seasonal\" -- belongs in\n    claim_or_decision_supported beside it, which is the field for saying what a source proves.",
+    "trip.traveler_constraints.allergy_severity is a closed enum for the same reason and always was;\n    it is now localized too, so a Chinese page no longer tells a Chinese reader their allergy is\n    \"severe\" in English.",
+    "trip.traveler_constraints.untyped_constraints -- the marker that says which of these fields",
+    "NOBODY HAS TYPED YET, as opposed to answered. It is empty here on purpose, and that empty",
+    "object is what makes the allergy_severity \"none\" above honest: 'none' is a claim that there is",
+    "nothing to avoid, and the empty marker is how this file says a person made that claim. It is",
+    "written by new_plan_skeleton.py as one entry per untyped field, because the intake collects",
+    "both fields as prose and nothing turns a sentence into an enum or a number. Delete an entry",
+    "when you type its field, or delete the whole key; {}, [], \"\", false and 0 all read as",
+    "'nothing is untyped'. While an entry remains, check_untyped_constraints refuses the plan by",
+    "name, check_walking_budget stops calling a null cap the traveller's answer, and the light",
+    "verification tier is withheld -- an untyped constraint is an open question and never a clean",
+    "bill of health. This key was live in all four of those places while this contract said nothing",
+    "about it, so an author copying this file met a refusal for a key they had never seen.",
+    "trip.intake_changes -- OPTIONAL, empty unless the traveller changed something after the form.",
+    "One {field, intake_value, plan_value, reason} per change; field is dietary_or_religious_needs |",
+    "mobility_notes | traveler_count | cap_per_person, the four limits check_plan_consistency compares",
+    "with the intake file. A plan that differs from its intake on one of them without an entry here",
+    "is refused, because a dropped allergy and a legitimately raised cap look identical from the",
+    "plan alone. The reason is printed beside the traveller's constraints: it is their change.",
+    "booking_options.ground_transport[].origin_station_id / destination_station_id -- OPTIONAL. The",
+    "provider's own identifier for a station, for a search that keys stations by id rather than by",
+    "name (Trainline writes urn:trainline:generic:loc:6386). A declared-prefilled origin or",
+    "destination is carried when the URL holds the station's name as a whole value OR this id; with",
+    "neither, the button promises a filled search it does not open.",
+    "imagery_sidecar -- OPTIONAL and NOT written by hand: `python scripts/fetch_plan_imagery.py",
+    "<plan.json>` sets it to the sidecar's file name, relative to the plan, and moves the photo",
+    "bytes out of the plan (they cost ~576k tokens to carry inline). null or absent, as shipped",
+    "here, means every reader looks for <plan-stem>-imagery.json beside the plan and renders",
+    "without photographs if there is none. A name that points at no file is refused loudly rather",
+    "than rendered around, because no gate counts images and a silently photo-less page is one",
+    "nobody notices.",
+    "booking_options.flights[].outbound_itinerary.self_transfer / return_itinerary.self_transfer -- true only on a leg whose connection is on separate tickets (written by kiwi_flights.py when the traveller accepted self-transfer); the page prints a warning on that card.",
+    "booking_options.flights[].price_note -- how to read the per-person price when it is an average over a party with children or infants; printed beside the price.",
+    "trip.traveler_preferences.accepts_self_transfer -- the traveller's OWN WORDS accepting separate-ticket connections; required before any leg is marked self_transfer.",
+    "booking_options.flights[].origin_place_id / destination_place_id -- the search provider's own key for each place when its URL names places that way (Kiwi.com: amsterdam-netherlands); the prefilled-field check accepts the id in place of the airport code, as it accepts a rail card's station ids.",
+    "bookings -- one record per group the traveller decided: {option_id, state: chosen|booked, booked_on (YYYY-MM-DD, booked only), booked_via (booked only), paid_total and paid_currency (optional, booked only)}. Never a booking reference, document or payment detail. Groups: flights/ground by leg_group_id, hotels by stay_group_id, rental cars one group, each ticket alone. Written by scripts/record_booking.py; outside verification.",
+    "trip.timezone / trip.origin_timezone -- IANA time zones (Europe/London) of the destination and of where the traveller leaves from; days[].timezone overrides trip.timezone for a day on a multi-zone trip. The calendar writes UTC from them; without them it is floating, which only Apple Calendar shows as written.",
+    "booking_options.flights[] / ground_transport[] .outbound_itinerary / .return_itinerary .departure_timezone / .arrival_timezone -- required on every itinerary when the plan names more than one zone, optional on a single-zone trip; departure + duration_minutes must land on the arrival in the arrival zone (30-minute tolerance).",
+    "days[].dining[].reservation_need -- required | recommended | walk_in | not_accepted; the calendar reminds the day before for required and recommended. The queue note stays the sentence the traveller reads.",
+    "Delete this _contract key before saving the real plan."
+  ],
+  "plan_status": "researched",
+  "verification_status": null,
+  "verification_report": null,
+  "generated_at": null,
+  "imagery_sidecar": null,
+  "intake_context": {
+    "method": "html_form",
+    "intake_file": "<workspace>/plans/trip-intake-<timestamp>.json",
+    "source_note": null,
+    "declined_verbatim": null,
+    "declined_at": null
+  },
+  "ui_labels": null,
+  "trip": {
+    "title": null,
+    "language": null,
+    "currency": null,
+    "origin": null,
+    "origin_timezone": null,
+    "destination": null,
+    "timezone": null,
+    "destination_coords": {
+      "lat": null,
+      "lon": null,
+      "label": null
+    },
+    "destination_type": null,
+    "start_date": null,
+    "end_date": null,
+    "traveler_count": null,
+    "pace": null,
+    "budget_basis": null,
+    "arrival_transport_mode": null,
+    "traveler_constraints": {
+      "dietary_or_religious_needs": [],
+      "allergy_severity": "none",
+      "allergy_card_text": null,
+      "max_continuous_walking_minutes": null,
+      "mobility_notes": [],
+      "untyped_constraints": {}
+    },
+    "traveler_preferences": {
+      "_comment": "What the traveller asked FOR, as opposed to traveler_constraints, which is what they cannot have. Both come off the same intake form and only one of them used to survive into the plan: the skill remembered the allergy and forgot the reason for the trip. ranked_must_haves is the binding half -- every entry must be answered by an anchor that names it, or by an entry in unmet_preferences saying why the season or the place cannot deliver it.",
+      "ranked_must_haves": [],
+      "natural_subtypes": [],
+      "human_cultural_subtypes": [],
+      "pace": null,
+      "avoid_list": [],
+      "avoid_list_handling": [],
+      "unmet_preferences": [],
+      "accepts_self_transfer": null
+    },
+    "intake_changes": []
+  },
+  "profile_context": {
+    "profile_id": null,
+    "profile_last_reviewed_at": null,
+    "applied_saved_fields": [],
+    "excluded_places_checked": []
+  },
+  "entry_context": {
+    "status": "unverified",
+    "summary": null,
+    "traveler_basis": null,
+    "source_url": null,
+    "checked_at": null,
+    "per_jurisdiction": [
+      {
+        "_note": "One record per jurisdiction the trip ENTERS, for a trip that enters more than one. The flat fields above stay the single-jurisdiction form and are unchanged. A trip whose stops declare two jurisdictions and carries one entry answer is confidently wrong about the second, and an entry answer is what decides whether the traveller boards.",
+        "jurisdiction": null,
+        "status": null,
+        "summary": null,
+        "traveler_basis": null,
+        "source_url": null,
+        "checked_at": null
+      }
+    ]
+  },
+  "arrival_essentials": {
+    "_note": "What the traveller needs in the first hour on the ground, and the part of a trip this skill used to say nothing about. Every other block here is about the days; none of them answered 'can I pay', 'can I get online', 'who do I call'. Each entry is researched and dated like any other fact -- never written from memory -- or marked not_applicable with a reason. `status` is one of researched / unverified / not_applicable.",
+    "payment": {
+      "_note": "Will the traveller's cards work, and how much cash do they need? A card that is declined at the first ticket machine is a trip that starts badly, and the answer differs by country far more than travellers expect.",
+      "status": null,
+      "summary": null,
+      "cards_accepted": null,
+      "cash_customary": null,
+      "atm_or_fx_note": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    },
+    "connectivity": {
+      "_note": "Can they get online on arrival, and can they charge the phone that holds this page? A dead or offline phone is a navigation failure, not an inconvenience.",
+      "status": null,
+      "summary": null,
+      "sim_or_esim": null,
+      "roaming_note": null,
+      "plug_types": null,
+      "voltage": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    },
+    "emergency": {
+      "_note": "The local emergency number, and -- when the traveller is abroad -- the consulate or embassy of their own nationality with a contact that works. Both are facts about a specific country and a specific passport, so both are researched, never recalled.",
+      "status": null,
+      "summary": null,
+      "local_emergency_number": null,
+      "consulate_or_embassy": null,
+      "consulate_contact": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    },
+    "health_and_insurance": {
+      "_note": "Whether the traveller carries cover, what the destination expects, and what a visit costs without it. Schengen visa applicants are required to hold travel medical insurance, which makes this an entry question and not only a prudence one.",
+      "status": null,
+      "summary": null,
+      "cover_stated_by_traveller": null,
+      "destination_requirement": null,
+      "not_applicable_reason": null,
+      "source_url": null,
+      "checked_at": null
+    }
+  },
+  "regional_service_context": {
+    "destination_service_market": null,
+    "selection_basis": null,
+    "google_services_access": "unknown",
+    "primary_map_provider": null,
+    "primary_map_exception_reason": null,
+    "alternative_map_providers": [],
+    "local_transport_sources": [],
+    "booking_platform_selection_note": null,
+    "booking_access_checks": [
+      {
+        "category": "accommodation",
+        "access_status": "unknown",
+        "provider_or_channel": null,
+        "requirements_note": null,
+        "source_url": null,
+        "checked_at": null
+      }
+    ]
+  },
+  "budget": {
+    "calculation_basis": "per_person",
+    "cap_per_person": null,
+    "overrun_acknowledged": null,
+    "estimated_per_person_low": null,
+    "estimated_per_person_high": null,
+    "included_categories": [],
+    "unverified_categories": [],
+    "breakdown": [
+      {
+        "category": null,
+        "description": null,
+        "per_person_low": null,
+        "per_person_high": null,
+        "currency": null,
+        "price_status": null,
+        "checked_at": null,
+        "note": null
+      }
+    ],
+    "currency": null,
+    "note": null
+  },
+  "transport_preference": {
+    "mode": null,
+    "self_drive_selected": null,
+    "public_transit_selected": null
+  },
+  "booking_options": {
+    "flights": [
+      {
+        "id": null,
+        "leg_group_id": null,
+        "provider": null,
+        "comparison_platform": null,
+        "comparison_checked_at": null,
+        "direct_provider": null,
+        "direct_review_url": null,
+        "source_type": null,
+        "checked_at": null,
+        "review_url": null,
+        "round_trip_search_provider": null,
+        "round_trip_search_checked_at": null,
+        "round_trip_search_url": null,
+        "round_trip_prefilled_fields": [
+          "origin",
+          "destination",
+          "outbound_date",
+          "return_date",
+          "travellers"
+        ],
+        "origin_airport": null,
+        "destination_airport": null,
+        "origin_place_id": null,
+        "destination_place_id": null,
+        "outbound_date": null,
+        "return_date": null,
+        "outbound_itinerary": {
+          "service_identifier": null,
+          "departure_local": null,
+          "arrival_local": null,
+          "duration_minutes": null,
+          "departure_timezone": null,
+          "arrival_timezone": null,
+          "stops": null,
+          "connection_or_terminal_note": null,
+          "service_identifier_status": "researched",
+          "service_identifier_unresearched_reason": null,
+          "self_transfer": null
+        },
+        "return_itinerary": {
+          "service_identifier": null,
+          "departure_local": null,
+          "arrival_local": null,
+          "duration_minutes": null,
+          "departure_timezone": null,
+          "arrival_timezone": null,
+          "stops": null,
+          "connection_or_terminal_note": null,
+          "service_identifier_status": "researched",
+          "service_identifier_unresearched_reason": null,
+          "self_transfer": null
+        },
+        "cabin": null,
+        "baggage_assumption": null,
+        "connection_summary": null,
+        "fare_currency": null,
+        "fare_low": null,
+        "fare_high": null,
+        "price_basis": "per_person_round_trip",
+        "price_status": null,
+        "material_conditions": null,
+        "availability_status": null,
+        "price_checked_at": null,
+        "price_note": null,
+        "airport_transfer_note": null,
+        "single_option_reason": null
+      }
+    ],
+    "ground_transport": [
+      {
+        "_note": "Rail, coach and ferry. Same evidence as a flight, because the traveller asks the same questions -- which service, when, how long, how many changes, what the fare allows -- and on a rail trip this is the largest and most time-sensitive purchase on the page. Omit the array entirely when the trip has no ticketed intercity leg. Every value below is null on purpose: the block once shipped '0' durations, a '0-0' fare and 1970-01-01 stamps as placeholders, and each of those is a value the validator accepts, so an author who missed one shipped a card advertising a 0-minute journey at EUR 0 priced in 1970 with every gate green. Fields to fill: provider (must own review_url); origin_station / destination_station; outbound_date / return_date (ISO, inside the trip window); both itineraries (service identifier, local times, positive duration_minutes, changes, interchange note); material_conditions -- refundable? changeable? is a seat reservation compulsory or extra?; availability_status (available|limited|unknown); fare_low/fare_high/fare_currency; price_status; station_transfer_note -- how they get from the arrival station into town, the ground analogue of an airport transfer, so a cheap fare cannot hide an impractical arrival; and the dated round-trip search URL with its provider and check stamp. travel_class, seat_reservation and single_option_reason are optional display fields -- nothing validates them, but travel_class and seat_reservation are what the card prints beside the dates, and single_option_reason is required in practice whenever this is the only candidate.",
+        "id": "ground-1",
+        "leg_group_id": null,
+        "provider": null,
+        "comparison_platform": null,
+        "comparison_checked_at": null,
+        "source_type": null,
+        "checked_at": null,
+        "review_url": null,
+        "origin_station": null,
+        "destination_station": null,
+        "origin_station_id": null,
+        "destination_station_id": null,
+        "outbound_date": null,
+        "return_date": null,
+        "outbound_itinerary": {
+          "service_identifier": null,
+          "departure_local": null,
+          "arrival_local": null,
+          "duration_minutes": null,
+          "departure_timezone": null,
+          "arrival_timezone": null,
+          "stops": null,
+          "connection_or_terminal_note": null,
+          "service_identifier_status": "researched",
+          "service_identifier_unresearched_reason": null
+        },
+        "return_itinerary": {
+          "service_identifier": null,
+          "departure_local": null,
+          "arrival_local": null,
+          "duration_minutes": null,
+          "departure_timezone": null,
+          "arrival_timezone": null,
+          "stops": null,
+          "connection_or_terminal_note": null,
+          "service_identifier_status": "researched",
+          "service_identifier_unresearched_reason": null
+        },
+        "one_way_reason": null,
+        "material_conditions": null,
+        "travel_class": null,
+        "seat_reservation": null,
+        "availability_status": null,
+        "price_basis": "per_person_round_trip",
+        "fare_low": null,
+        "fare_high": null,
+        "fare_currency": null,
+        "price_status": null,
+        "price_checked_at": null,
+        "station_transfer_note": null,
+        "round_trip_search_provider": null,
+        "round_trip_search_url": null,
+        "round_trip_search_checked_at": null,
+        "round_trip_prefilled_fields": [
+          "origin",
+          "destination",
+          "outbound_date",
+          "return_date",
+          "travellers"
+        ],
+        "single_option_reason": null
+      }
+    ],
+    "accommodations": [
+      {
+        "id": null,
+        "stay_group_id": null,
+        "jurisdiction": null,
+        "stay_location": null,
+        "neighborhood": null,
+        "address_or_location_reference": null,
+        "property_name": null,
+        "provider": null,
+        "comparison_platform": null,
+        "comparison_checked_at": null,
+        "direct_provider": null,
+        "direct_review_url": null,
+        "source_type": null,
+        "checked_at": null,
+        "review_url": null,
+        "check_in": null,
+        "check_out": null,
+        "guest_count": null,
+        "room_count": null,
+        "comparison_searches": [
+          {
+            "platform": null,
+            "search_url": null,
+            "checked_at": null,
+            "prefilled_fields": [
+              "destination",
+              "check_in",
+              "check_out",
+              "guests",
+              "rooms"
+            ]
+          }
+        ],
+        "room_basis": null,
+        "nightly_cost_low": null,
+        "nightly_cost_high": null,
+        "price_basis": "per_room_per_night",
+        "price_status": null,
+        "trip_cost_low": null,
+        "trip_cost_high": null,
+        "currency": null,
+        "price_checked_at": null,
+        "availability_status": null,
+        "guest_rating_status": null,
+        "guest_rating_value": null,
+        "guest_rating_scale": null,
+        "guest_rating_count": null,
+        "guest_rating_source": null,
+        "guest_rating_url": null,
+        "guest_rating_checked_at": null,
+        "guest_rating_absence_reason": null,
+        "guest_rating_below_floor_reason": null,
+        "taxes_and_fees_status": null,
+        "cancellation_terms": null,
+        "accessibility_or_location_note": null,
+        "arrival_access_note": null,
+        "key_area_access_note": null,
+        "selection_rationale": null,
+        "single_option_reason": null,
+        "availability_unknown_reason": null
+      }
+    ],
+    "attraction_tickets": [
+      {
+        "id": null,
+        "day_number": null,
+        "attraction_name": null,
+        "official_or_authorised_provider": null,
+        "comparison_platform": null,
+        "comparison_checked_at": null,
+        "source_type": null,
+        "checked_at": null,
+        "review_url": null,
+        "timed_entry_or_reservation": null,
+        "sale_opens_at": {
+          "status": "always_available",
+          "opens_at": null,
+          "basis": null
+        },
+        "price_low": null,
+        "price_high": null,
+        "currency": null,
+        "ticket_status": null,
+        "price_basis": "per_person_ticket",
+        "price_status": null,
+        "price_checked_at": null,
+        "availability_status": null
+      }
+    ],
+    "rental_cars": [
+      {
+        "id": null,
+        "provider": null,
+        "comparison_platform": null,
+        "comparison_checked_at": null,
+        "direct_provider": null,
+        "direct_review_url": null,
+        "source_type": null,
+        "checked_at": null,
+        "review_url": null,
+        "pickup_location": null,
+        "dropoff_location": null,
+        "pickup_time": null,
+        "dropoff_time": null,
+        "vehicle_class": null,
+        "transmission": null,
+        "capacity_note": null,
+        "price_low": null,
+        "price_high": null,
+        "currency": null,
+        "price_basis": "per_vehicle_per_day",
+        "price_status": null,
+        "price_checked_at": null,
+        "availability_status": null,
+        "rental_search_prefilled_fields": [
+          "pickup_location",
+          "dropoff_location",
+          "pickup_time",
+          "dropoff_time"
+        ],
+        "insurance_excess": null,
+        "fuel_policy": null,
+        "mileage_policy": null,
+        "cross_border_or_restriction_note": null
+      }
+    ]
+  },
+  "bookings": [],
+  "transport_overview": {
+    "map_link_kind": "directions",
+    "overall_map_scope": "primary_leg",
+    "overall_route_map_url": null,
+    "overall_map_checked_at": null,
+    "overall_map_provider": null,
+    "overall_alternative_map_links": [],
+    "overall_duration_minutes": null,
+    "overall_distance_km": null,
+    "cost_low": null,
+    "cost_high": null,
+    "notes": [],
+    "headline": null
+  },
+  "days": [
+    {
+      "number": null,
+      "date": null,
+      "day_type": null,
+      "title": null,
+      "focus": null,
+      "base_location": null,
+      "timezone": null,
+      "accommodation_option_id": null,
+      "activities": [
+        {
+          "time": null,
+          "name": null,
+          "detail": null,
+          "ticket_option_id": null,
+          "meal_or_rest_buffer": null,
+          "on_foot_minutes": 0
+        }
+      ],
+      "dining": [
+        {
+          "meal": null,
+          "time_window": null,
+          "venue_hours": null,
+          "hours_status": null,
+          "rating_status": null,
+          "rating_value": null,
+          "rating_scale": null,
+          "rating_count": null,
+          "rating_source": null,
+          "rating_url": null,
+          "rating_checked_at": null,
+          "rating_absence_reason": null,
+          "rating_below_floor_reason": null,
+          "venue_name": null,
+          "cuisine_or_style": null,
+          "neighborhood": null,
+          "route_anchor": null,
+          "off_route_justification": null,
+          "why_this_stop": null,
+          "price_per_person_low": null,
+          "price_per_person_high": null,
+          "currency": null,
+          "reservation_or_queue_note": null,
+          "reservation_need": null,
+          "venue_url": null,
+          "map_provider": null,
+          "checked_at": null,
+          "reservation_provider": null,
+          "reservation_url": null,
+          "backup_venue_name": null,
+          "backup_note": null,
+          "venue_hours_by_weekday": {
+            "_comment": "Optional and sharper than venue_hours. One key per weekday, mon..sun. A time window like '11:00-22:00' (or two, '11:00-15:00, 17:00-21:00'); the word 'closed' (or 休息) for a day the venue is shut; null or omitted means not filled in, and the flattened venue_hours governs instead. When present, the gate checks the meal against the weekday it is actually scheduled on and the page prints that day's hours -- venue_hours has to be the narrowest window that holds every day, so on its own it shows the traveller less than was researched, and can refuse a meal that is fine.",
+            "mon": null,
+            "tue": null,
+            "wed": null,
+            "thu": null,
+            "fri": null,
+            "sat": null,
+            "sun": null
+          }
+        }
+      ],
+      "route": {
+        "start": null,
+        "stops_in_order": [],
+        "end": null,
+        "mode": null,
+        "route_logic": null,
+        "fallback_plan": null,
+        "duration_minutes": null,
+        "distance_km": null,
+        "transfer_count": null,
+        "walking_burden": null,
+        "cost_low": null,
+        "cost_high": null,
+        "currency": null,
+        "fare_basis_or_fuel_toll_parking_note": null,
+        "service_or_driving_caveat": null,
+        "verified_map_url": null,
+        "map_checked_at": null,
+        "map_provider": null,
+        "map_link_kind": "directions",
+        "route_map_scope": "primary_leg",
+        "alternative_map_links": [],
+        "segments": [
+          {
+            "from": null,
+            "to": null,
+            "mode": null,
+            "service_or_line": null,
+            "duration_minutes": null,
+            "distance_km": null,
+            "walking_minutes": null,
+            "transfer_count": null,
+            "cost_low": null,
+            "cost_high": null,
+            "currency": null,
+            "journey_instruction": null,
+            "arrival_instruction": null,
+            "fare_basis": null,
+            "fallback_note": null,
+            "detour_reason": null,
+            "verified_map_url": null,
+            "map_checked_at": null,
+            "map_provider": null,
+            "map_link_kind": "directions",
+            "alternative_map_links": []
+          }
+        ],
+        "schematic_svg": null
+      },
+      "contingency": null
+    }
+  ],
+  "destination_experience_anchors": [
+    {
+      "name": null,
+      "category": null,
+      "neighborhood_or_area": null,
+      "planned_day": null,
+      "why_it_matters": null,
+      "satisfies_preference": null,
+      "source_url": null,
+      "checked_at": null
+    }
+  ],
+  "sources": [
+    {
+      "name": null,
+      "url": null,
+      "source_type": null,
+      "accessed_at": null,
+      "claim_or_decision_supported": null,
+      "confidence": null
+    }
+  ],
+  "assumptions": [],
+  "recheck_before_purchase": []
+}

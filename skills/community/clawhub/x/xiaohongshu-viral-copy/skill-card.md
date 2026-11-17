@@ -1,39 +1,52 @@
-## Description: <br>
-Generates viral-ready Xiaohongshu (Little Red Book) post copy with structured hooks, body copy, CTAs, hashtags, and proven templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate viral Xiaohongshu (Little Red Book) copy with proven templates for Xiaohongshu posts, social media viral content, Chinese social media marketing copy, 爆款文案, 小红书文案, and 种草文案.
 
-## Publisher: <br>
-[hs365](https://clawhub.ai/user/hs365) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hs365](https://clawhub.ai/user/hs365)
 
-## Use Case: <br>
-External creators, marketers, and agents use this skill to draft Chinese Xiaohongshu posts for product recommendations, cautionary posts, tutorials, and emotional resonance content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing claims may be inaccurate or fail to follow Xiaohongshu platform rules. <br>
-Mitigation: Review claims, disclosures, and hashtags for accuracy and platform compliance before publishing. <br>
-Risk: Generic social-media requests may produce content that is not tailored to Xiaohongshu or Chinese-language audiences. <br>
-Mitigation: State the target platform, audience, product context, and desired language in the prompt. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hs365/xiaohongshu-viral-copy) <br>
+## Use Case:
 
+Marketing creators and social media operators use this skill to draft Chinese Xiaohongshu-style posts with hooks, body copy, calls to action, and hashtags. It supports recommendation, cautionary tale, tutorial, and emotional resonance copy patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese copy with a hook, body, CTA, and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft marketing content; generated claims and platform compliance need review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill examples and style guidance are centered on Chinese Xiaohongshu content, so output may not match expectations for other languages or platforms.
+
+Mitigation: Tell the agent the target language, platform, audience, and brand constraints before asking it to draft copy.
+
+Risk: Generated marketing copy may overstate product claims or sound inauthentic if the prompt lacks facts.
+
+Mitigation: Review the generated copy against product evidence, advertising rules, and brand voice before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hs365/skills/xiaohongshu-viral-copy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text structured as hook, body, CTA, and hashtags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Xiaohongshu-style copy, typically 300-500 Chinese characters with relevant hashtags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

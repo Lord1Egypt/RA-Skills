@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7frq9wstmyyhdm7j4g1yaf8h839d5r",
-  "slug": "lumi-social-post-ai-dubbling",
-  "version": "1.0.0",
-  "publishedAt": 1774023502076
+  "owner": "lumi",
+  "slug": "lumi-api",
+  "displayName": "Lumi API Agent Tools",
+  "latest": {
+    "version": "0.2.0",
+    "publishedAt": 1742342400000
+  },
+  "history": [
+    {
+      "version": "0.1.0",
+      "publishedAt": 1742256000000
+    }
+  ]
 }

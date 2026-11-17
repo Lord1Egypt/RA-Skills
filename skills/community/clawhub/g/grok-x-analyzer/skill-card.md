@@ -1,43 +1,58 @@
-## Description: <br>
-Dynamic, Grok 4.3-inspired analyzer for X (Twitter) posts, threads, trends, user activity, and related data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes X (Twitter) posts, threads, trends, user activity, and related data to produce concise structure, engagement, and insight summaries.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch, summarize, and inspect X/Twitter posts, threads, trends, replies, and engagement signals from user-provided X content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch X/web content, including through an authenticated xurl setup, and can expose external content to the agent. <br>
-Mitigation: Require explicit user confirmation before fetching external content and avoid accessing local xurl credentials directly. <br>
-Risk: The security review notes broad, hidden activation and subagent delegation that users may not notice. <br>
-Mitigation: Make activation and any subagent delegation visible to the user before deep analysis begins. <br>
-Risk: The included helper script can fall back to mock data, which may produce inaccurate analysis if treated as real results. <br>
-Mitigation: Clearly label fallback data as mock output or repair the helper before relying on it for accurate results. <br>
+## Use Case:
 
+Developers, analysts, and other external users can use this skill to inspect X/Twitter URLs, posts, threads, trends, and engagement signals and receive concise summaries or structured analysis.
 
-## Reference(s): <br>
-- [xurl CLI reference](references/xurl.md) <br>
-- [ClawHub skill page](https://clawhub.ai/igorganapolsky/grok-x-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis with optional JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch live X/web content through xurl or web tools and may delegate deeper analysis to subagents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may fetch X or web content without clear user-facing confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before external fetches when silent network access is not acceptable.
+
+Risk: The skill can spawn subagents for deeper analysis without clear user control.
+
+Mitigation: Require explicit user approval before delegating deep-dive analysis to subagents.
+
+Risk: X/Twitter retrieval may require user-authenticated xurl access.
+
+Mitigation: Use manual xurl authentication only and avoid exposing or reading local credential files.
+
+## Reference(s):
+
+- [xurl CLI Reference](references/xurl.md)
+- [ClawHub Skill Page](https://clawhub.ai/igorganapolsky/skills/grok-x-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output may depend on availability of X/Twitter content, web fallback results, and user-authenticated xurl access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

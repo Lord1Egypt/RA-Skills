@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn7bg3xchxrj46r8cnaafkbrv980jyyj",
-  "slug": "video-frames-skill",
+  "name": "video-frames",
   "version": "1.0.0",
-  "publishedAt": 1773366705267
+  "description": "Video frame extraction and processing tool based on PyAV. Supports single frame extraction, batch processing, sampling, directory processing, video compression, and image conversion.",
+  "author": "indulgeback",
+  "homepage": "https://github.com/indulgeback/video-frame-extractor",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "frame",
+    "extraction",
+    "ffmpeg",
+    "webp",
+    "compression",
+    "pyav"
+  ],
+  "category": "media",
+  "requires": {
+    "python": ">=3.8",
+    "platform": ["darwin", "linux", "windows"]
+  },
+  "install": {
+    "type": "script",
+    "url": "https://raw.githubusercontent.com/indulgeback/video-frame-extractor/main/install.sh",
+    "command": "curl -sSL https://raw.githubusercontent.com/indulgeback/video-frame-extractor/main/install.sh | bash"
+  }
 }

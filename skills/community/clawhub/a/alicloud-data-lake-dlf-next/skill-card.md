@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Alibaba Cloud Data Lake Formation (DlfNext) resources via OpenAPI and SDK workflows, including discovery, listing, updates, status checks, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Data Lake Formation (DlfNext) via OpenAPI/SDK. Use whenever the user needs DLF Next catalog/governance resource operations, including listing resources, create/update flows, status checks, and troubleshooting metadata workflow issues.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud DLF Next catalog and governance resources, discover API schemas, run inventory and status checks, and plan controlled resource changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud credentials and mutating DLF Next operations can change Alibaba Cloud resources. <br>
-Mitigation: Use a least-privilege RAM user or role and explicitly approve create, update, modify, or set operations before execution. <br>
-Risk: Incorrect region or resource identifiers can target the wrong DLF Next resources. <br>
-Mitigation: Confirm the region and resource IDs before API calls, then verify results with describe or list APIs. <br>
+## Use Case:
 
+Developers and operators use this skill to discover Alibaba Cloud DLF Next OpenAPI metadata, plan catalog and governance operations, and verify resource state after list, describe, create, update, or troubleshooting workflows.
 
-## Reference(s): <br>
-- [Alibaba Cloud DLF Next OpenAPI product page](https://api.aliyun.com/product/DlfNext) <br>
-- [DLF Next OpenAPI metadata API list](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/api-docs.json) <br>
-- [DLF Next OpenAPI single API definition template](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/apis/{ApiName}/api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON or Markdown API inventory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write API inventory artifacts under output/alicloud-data-lake-dlf-next/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can help perform Alibaba Cloud DLF Next operations that modify cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, preferably short-lived credentials, and confirm the region, resource identifiers, and intended action before any mutation.
+
+Risk: Generated output files may contain cloud metadata or API response details.
+
+Mitigation: Review files written under output/alicloud-data-lake-dlf-next/ before sharing, retaining, or using them as evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-data-lake-dlf-next)
+- [Sources](references/sources.md)
+- [OpenAPI product page](https://api.aliyun.com/product/DlfNext)
+- [DlfNext API list metadata](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/api-docs.json)
+- [DlfNext single API definition metadata](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/apis/{ApiName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API Calls, Files]
+
+**Output Format:** [Markdown guidance with bash commands and generated JSON or Markdown output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API inventory artifacts are written under output/alicloud-data-lake-dlf-next/ when the helper script is run.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

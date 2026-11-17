@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76km32bz2x4rjp91mb223h5982sd5q",
+  "ownerId": "ning-kun",
   "slug": "smiles-to-docking",
-  "version": "1.0.4",
-  "publishedAt": 1777644514949
+  "version": "1.0.0",
+  "description": "End-to-end virtual screening: SMILES to 3D SDF, ligand/receptor PDBQT preparation, batch AutoDock Vina docking, affinity ranking, Top-N complex export",
+  "publishedAt": 1746105600000
 }

@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: clean-control
+expected_outcome: |
+  The library is correct for its documented contract and its tests cover every rule.
+  The review reports no confirmed defect of High or Critical severity, does not treat
+  the documented choice to make non-ASCII letters separators as a bug, labels anything
+  it raises as a hypothesis, a low-severity item or an optional improvement, states its
+  scope and limits, and changes no files.
+context:
+  scaffold_script: place-files.sh

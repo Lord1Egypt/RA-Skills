@@ -1,0 +1,26 @@
+{
+  "skill_version": "0.2.0",
+  "date": "2026-09-28",
+  "source_mode": "synthetic_already_parsed",
+  "task": "public_supplier_changes",
+  "sources": 2,
+  "assertions": 9,
+  "fact_scopes": 8,
+  "conflict_groups": 1,
+  "baseline_assertions_preserved": 4,
+  "commands_completed": [
+    "prepare",
+    "build",
+    "update",
+    "validate",
+    "query",
+    "brief"
+  ],
+  "blockers": [],
+  "browser_interaction_verified": false,
+  "live_parse_calls": 0,
+  "limits": [
+    "One independent task, not a statistical benchmark",
+    "Host semantic judgment remains required"
+  ]
+}

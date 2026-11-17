@@ -1,7 +1,7 @@
 ---
 name: antifragile
 description: "Activate when: user asks whether their system/business/portfolio would survive a crisis; user says 'this has been fine for years but I'm nervous'; user wants to stress-test a plan against worst-case scenarios; user mentions Taleb, barbell strategy, via negativa, or skin in the game; user is deciding how to allocate across risky vs. safe options under high uncertainty.
-  Do NOT activate when: the decision is small and fully reversible with no meaningful downside; the system is simple, well-understood, and low-stakes."
+  Do NOT activate when: the decision is small and fully reversible with no meaningful downside; the system is simple, well-understood, and low-stakes. More: deciqai.com/c/antifragile"
 ---
 
 # Antifragile
@@ -14,7 +14,7 @@ Nassim Nicholas Taleb (2012) identified a third response to stress beyond fragil
 - **Robust:** linear — unchanged by stress. (Physical infrastructure, traditional skills.)
 - **Antifragile:** convex — improves under stress. (Evolution, the immune system, the restaurant industry as a whole.)
 
-Core warning: **most modern complex systems are hidden-fragile** — stable only because the tail event hasn't arrived yet. Composes with [`inversion`](../inversion/SKILL.md), [`black-swan`](../black-swan/SKILL.md), [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md), [`feedback-loops`](../feedback-loops/SKILL.md).
+Core warning: **most modern complex systems are hidden-fragile** — stable only because the tail event hasn't arrived yet. Composes with `inversion`, `black-swan`, `expected-value-and-kelly`, `feedback-loops`.
 
 ## When to Use
 
@@ -22,6 +22,7 @@ Core warning: **most modern complex systems are hidden-fragile** — stable only
 - Designing a portfolio (financial, career, organizational) under uncertainty
 - A "this can't happen" assumption is embedded in a strategic plan
 - Recurrent small problems are suppressed rather than learned from
+- A business depends on one AI/model vendor's API, pricing, or policy, or faces AI-native competition amid rapid AI capex and adoption shifts
 - User says: "Taleb," "barbell strategy," "convex," "skin in the game," "via negativa"
 
 **Not when:** decision is small and reversible; system is simple and low-stakes; you confuse high-variance with antifragile.
@@ -69,7 +70,8 @@ Core warning: **most modern complex systems are hidden-fragile** — stable only
 - Bounded downside: <yes/no> | Convexity verified: <how>
 ```
 
-*→ Method in Action: [Taleb's Framework, 2007-2012, and the 2008 Financial Crisis](examples/talebs-framework-2007-2012-and-the-2008-financial-crisis.md)*
+*→ Method in Action: [Taleb's Framework, 2007-2012, and the 2008 Financial Crisis](examples/talebs-framework-2007-2012-and-the-2008-financial-crisis.md) · [1956 Grand Canyon Collision & Aviation Safety](examples/1956-grand-canyon-collision-and-aviation-safety.md)*
+*→ 2026 lens: [Fragile vs. Antifragile AI Businesses (2024–2026)](examples/ai-business-fragility-2024-2026.md)*
 
 ## Pack: Antifragile Patterns
 
@@ -116,4 +118,6 @@ Core warning: **most modern complex systems are hidden-fragile** — stable only
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/antifragile** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/antifragile.json*

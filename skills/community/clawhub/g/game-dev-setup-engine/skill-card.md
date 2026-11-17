@@ -1,42 +1,56 @@
-## Description: <br>
-Engine configuration wizard for Godot 4.6, Unity 7, and UE 5.6 that handles project creation, version control, renderer settings, and platform-specific setup with version-aware references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Engine configuration wizard for Godot 4.6, Unity 7, and UE 5.6 that handles project creation, version control, renderer settings, and platform-specific setup with version-aware references.
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
 
-## Use Case: <br>
-Developers and game teams use this skill to configure new Godot, Unity, or Unreal Engine projects, choose engine-specific settings, create project structure, set up version control, and verify a basic build or scene. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad project-initialization phrasing and propose actions before the intended engine or workspace is clear. <br>
-Mitigation: Confirm the engine, project directory, and user intent before allowing file writes, git initialization, or build commands. <br>
-Risk: Generated configuration files, git setup, or engine CLI commands can modify an existing project if applied in the wrong directory. <br>
-Mitigation: Review proposed file paths and commands, use a clean project folder when possible, and inspect generated files before relying on them. <br>
+## Use Case:
 
+Developers and game teams use this skill to configure new Godot, Unity, or Unreal Engine projects, select renderer and platform settings, set up version control, and verify a starter build or scene.
 
-## Reference(s): <br>
-- [Godot gitignore template](https://github.com/github/gitignore/blob/main/Godot.gitignore) <br>
-- [Unity gitignore template](https://github.com/github/gitignore/blob/main/Unity.gitignore) <br>
-- [Unreal Engine gitignore template](https://github.com/github/gitignore/blob/main/UnrealEngine.gitignore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project files, configuration snippets, git setup, and engine build commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad triggers could activate the skill for a generic project setup request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when the user specifically wants game engine project setup.
+
+Risk: The skill can propose project-file edits, git initialization, and engine build commands.
+
+Mitigation: Review prompts and generated changes before allowing file creation, git initialization, or build commands.
+
+## Reference(s):
+
+- [Game Dev setup-engine on ClawHub](https://clawhub.ai/toilanguyen2910/skills/game-dev-setup-engine)
+- [Godot gitignore](https://github.com/github/gitignore/blob/main/Godot.gitignore)
+- [Unity gitignore](https://github.com/github/gitignore/blob/main/Unity.gitignore)
+- [Unreal Engine gitignore](https://github.com/github/gitignore/blob/main/UnrealEngine.gitignore)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose project files, folder structures, git setup, and engine CLI verification steps for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

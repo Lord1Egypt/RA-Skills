@@ -1,44 +1,55 @@
-## Description: <br>
-Run Tavily web search through AISA with filters for depth, topic, and time range. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Tavily web search through AISA with filters for depth, topic, and time range when the user needs flexible web search with stronger filtering than a plain keyword search.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and agents use this skill to run filtered Tavily web searches through AISA when recency, topic, depth, or time-range controls are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as Tavily search, but the bundled runtime also exposes broader AISA search, extraction, and AI synthesis commands. <br>
-Mitigation: Use the Tavily command path for Tavily searches, review available subcommands before use, and avoid invoking extraction or synthesis features unless they are intended. <br>
-Risk: Search, extraction, sonar, and verity requests may send prompts, URLs, or retrieved content to AISA services. <br>
-Mitigation: Do not send private URLs, internal documents, secrets, or sensitive prompts unless AISA's data handling is acceptable for the user's environment. <br>
-Risk: The skill requires an AISA_API_KEY credential. <br>
-Mitigation: Provide the key through the environment, keep it out of prompts and logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to run AISA-backed Tavily-style web searches with controls for search depth, topic, time range, answer inclusion, and result count. It is useful when an agent needs recent or filtered web results rather than a basic keyword search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/tavily-search-aisa) <br>
-- [AISA](https://aisa.one) <br>
-- [AISA API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Command-line text output with search results, answers, citations, and usage details when returned by the API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an AISA_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Security evidence reports that the release is presented as Tavily search while the bundled runtime exposes broader search, extraction, model-query, aggregation, and synthesis features.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled commands before installing, limit agent use to the intended Tavily search workflow, or remove undocumented commands before deployment.
+
+Risk: Queries, URLs, search results, and the AISA API key are sent to api.aisa.one during use.
+
+Mitigation: Use a dedicated API key, avoid submitting sensitive or private data, and rotate or revoke the key if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aisadocs/skills/tavily-search-aisa)
+- [AISA homepage](https://aisa.one)
+- [AISA API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown-style CLI output with titles, URLs, snippets, answers, citations, and usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY. Runtime output can include search results, extracted URL content, model answers, citations, usage or cost fields, and confidence summaries depending on the selected command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, target metadata, and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

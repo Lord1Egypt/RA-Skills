@@ -1,41 +1,58 @@
-## Description: <br>
-Fetch and track OpenRouter AI model rankings, including weekly trends, top models, top apps, and market share. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and track OpenRouter AI model rankings (weekly trends, top models, top apps, market share). Use when user asks about OpenRouter rankings, AI model popularity, token usage statistics, or wants weekly automated reports.
 
-## Publisher: <br>
-[yufeinever](https://clawhub.ai/user/yufeinever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yufeinever](https://clawhub.ai/user/yufeinever)
 
-## Use Case: <br>
-Developers, operators, and analysts use this skill to fetch OpenRouter ranking data, review weekly AI model usage trends, and generate recurring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved ranking data may remain on the local machine under ~/.openclaw/data/openrouter-rankings when --save is used. <br>
-Mitigation: Use --save only when local retention is intended, and delete saved files when they are no longer needed. <br>
-Risk: Using --push may send ranking data to Feishu. <br>
-Mitigation: Review Feishu credentials and destination settings before enabling --push. <br>
+## Use Case:
 
+Developers and operators use this skill to fetch current OpenRouter model, provider, and app rankings and create weekly usage reports for trend tracking.
 
-## Reference(s): <br>
-- [OpenRouter Rankings](https://openrouter.ai/rankings) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yufeinever/openrouter-rankings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown report with optional JSON and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional --save writes ranking data under ~/.openclaw/data/openrouter-rankings; optional --json prints structured JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script opens OpenRouter with Playwright and depends on the live rankings page structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before using them for decisions or automated publication.
+
+Risk: The --save option writes report files under the user's home directory.
+
+Mitigation: Run in an expected user context and confirm the output path before enabling scheduled saves.
+
+Risk: The documented Feishu push path is under-specified and appears unimplemented in the bundled script.
+
+Mitigation: Verify or implement the Feishu integration separately before relying on --push or configuring external report delivery.
+
+## Reference(s):
+
+- [OpenRouter Rankings](https://openrouter.ai/rankings)
+- [ClawHub Skill Page](https://clawhub.ai/yufeinever/skills/openrouter-rankings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration guidance]
+
+**Output Format:** [Markdown report and optional JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When run with --save, stores dated JSON and Markdown reports under ~/.openclaw/data/openrouter-rankings.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

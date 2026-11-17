@@ -1,42 +1,56 @@
-## Description: <br>
-AI 新闻聚合与热度排序技能，覆盖产品发布、研究论文、行业动态、融资并购、开源项目更新和社区传播，并输出中文摘要、热度分级与来源链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多源 AI 新闻聚合与热度排序技能，输出中文摘要、热度分级、来源链接和重要性解读。
 
-## Publisher: <br>
-[npm-ued](https://clawhub.ai/user/npm-ued) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[npm-ued](https://clawhub.ai/user/npm-ued)
 
-## Use Case: <br>
-External users, product teams, engineers, and business readers use this skill to request Chinese AI news roundups with source links, cross-checking, deduplication, heat ranking, and impact notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent performs multiple public web searches and may surface inaccurate, stale, or low-signal news if sources are weak. <br>
-Mitigation: Require source links, cross-check important items against authoritative or mainstream sources, and keep unverified community-only items in the observation list. <br>
-Risk: Ambiguous AI-related questions could trigger a news roundup when the user wanted another type of help. <br>
-Mitigation: Use this skill for news requests; for non-news AI tasks, invoke a more specific skill or ask the user to clarify. <br>
+## Use Case:
 
+External readers, product teams, engineers, and business users use this skill to generate Chinese AI news briefings across global and Chinese sources. It ranks current AI headlines, cites sources, and separates confirmed items from watch-list items.
 
-## Reference(s): <br>
-- [推荐新闻源](references/sources.md) <br>
-- [信源目录](references/source-catalog.md) <br>
-- [检索词矩阵](references/search-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown news briefing with ranked items, summaries, source links, observation list, and collection statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is Chinese; default depth is standard, with quick and deep modes available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Current-news output can become incomplete or stale if the search window is too narrow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's default 24-hour window, expand to 72 hours when signal is sparse, and state any required region or language focus when invoking it.
+
+Risk: Community-only signals can overstate unverified AI trends.
+
+Mitigation: Keep community-only items in the watch list until they are cross-verified by first-party sources or mainstream reporting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/npm-ued/skills/toutiao)
+- [推荐新闻源](references/sources.md)
+- [信源目录](references/source-catalog.md)
+- [检索词矩阵](references/search-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown news roundup with ranked sections, source links, watch-list items, and collection statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default standard mode returns 15-25 items; quick returns 8-12 items and deep returns 25+ items.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Google Calendar via gogcli: reliable cross-calendar agenda (today/week/range) and best-effort keyword search across calendars (iterate + aggregate). Token-efficient output (`--plain` default, `--json` only when needed). Post-filters unwanted calendars (e.g., holidays) and confirms before writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Calendar via gogcli: reliable cross-calendar agenda (today/week/range) and best-effort keyword search across calendars (iterate + aggregate). Token-efficient output (`--plain` default, `--json` only when needed). Post-filters unwanted calendars (e.g., holidays) and confirms before writes.
 
-## Publisher: <br>
-[lstpsche](https://clawhub.ai/user/lstpsche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lstpsche](https://clawhub.ai/user/lstpsche)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve Google Calendar agendas across all calendars, search events by keyword, filter unwanted calendars such as holidays, and prepare calendar write actions only after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on gogcli access to the user's Google Calendar account. <br>
-Mitigation: Install only after reviewing the gogcli Homebrew package source and confirming it is authenticated to the intended Google Calendar account. <br>
-Risk: Calendar create, update, delete, or RSVP actions can modify user data. <br>
-Mitigation: Require an explicit yes after summarizing the calendar, title, time, timezone, attendees, and location before any write command is run. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [gogcli Agent Guidance](https://github.com/steipete/gogcli/blob/main/AGENTS.md?utm_source=chatgpt.com) <br>
-- [gogcli README](https://github.com/steipete/gogcli/blob/main/README.md?utm_source=chatgpt.com) <br>
-- [Google Calendar API Events: list](https://developers.google.com/workspace/calendar/api/v3/reference/events/list?utm_source=chatgpt.com) <br>
+## Use Case:
 
+Agents use this skill to answer user questions about Google Calendar availability, agendas, and event search across calendars through gogcli. It also guides write workflows by requiring an explicit user confirmation before creating, updating, deleting, or responding to events.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Plain text or Markdown summaries with inline shell commands; JSON when structured calendar data is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to token-efficient --plain output for listings and uses --json for aggregation, deduplication, exact field extraction, and write workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on gogcli access to Google Calendar data.
+
+Mitigation: Install only if that data access is acceptable, and review the Google authorization scope before use.
+
+Risk: The skill relies on a third-party Homebrew formula for gogcli installation.
+
+Mitigation: Review the Homebrew formula and gogcli project before installing in a managed environment.
+
+Risk: Calendar write actions can create, update, delete, or respond to events.
+
+Mitigation: Require the skill's explicit user-confirmation step before any calendar write or RSVP command is run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lstpsche/skills/gog-calendar)
+- [gogcli AGENTS.md](https://github.com/steipete/gogcli/blob/main/AGENTS.md?utm_source=chatgpt.com)
+- [gogcli README](https://github.com/steipete/gogcli/blob/main/README.md?utm_source=chatgpt.com)
+- [Google Calendar API events.list](https://developers.google.com/workspace/calendar/api/v3/reference/events/list?utm_source=chatgpt.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text or JSON command-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to token-efficient plain output for summaries, uses JSON when structure is needed, filters excluded calendars after broad queries, and requires explicit confirmation before calendar writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

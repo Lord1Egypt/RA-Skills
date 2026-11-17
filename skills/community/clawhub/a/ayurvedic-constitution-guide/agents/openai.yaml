@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ayurvedic Constitution Guide"
+  short_description: "Dosha-informed wellness guidance"
+  default_prompt: "Use $ayurvedic-constitution-guide to help me reflect on my Ayurvedic constitution and get gentle nutrition, health, and lifestyle tips."

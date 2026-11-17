@@ -1,48 +1,69 @@
-## Description: <br>
-PinchBench runs benchmarks to evaluate OpenClaw agent performance across real-world tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run PinchBench benchmarks to evaluate OpenClaw agent performance across real-world tasks.
 
-## Publisher: <br>
-[olearycrew](https://clawhub.ai/user/olearycrew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[olearycrew](https://clawhub.ai/user/olearycrew)
 
-## Use Case: <br>
-Developers and engineers use PinchBench to run real-world OpenClaw agent benchmarks, compare model performance, save JSON results, and optionally submit benchmark results to the PinchBench leaderboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark tasks and automated checks can cause an OpenClaw agent to execute code, change local state, or interact with connected tools. <br>
-Mitigation: Run PinchBench only in an isolated OpenClaw profile with disposable workspaces and test accounts. <br>
-Risk: Leaderboard submission can publish detailed benchmark results. <br>
-Mitigation: Use --no-upload unless publishing results is intended. <br>
-Risk: Custom or modified task files may contain untrusted automated checks. <br>
-Mitigation: Review task markdown and avoid custom tasks unless their checks are trusted. <br>
-Risk: Running against real email, calendar, credential, or file access can expose or alter sensitive data. <br>
-Mitigation: Do not run PinchBench where OpenClaw has access to real accounts, credentials, calendars, email, or sensitive files. <br>
+## Use Case:
 
+Developers and engineers use PinchBench to run real-world benchmark tasks against OpenClaw agents, compare model performance, save local result files, and optionally submit scores to the public PinchBench leaderboard.
 
-## Reference(s): <br>
-- [PinchBench homepage](https://pinchbench.com) <br>
-- [PinchBench repository](https://github.com/pinchbench/skill) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [uv package manager](https://docs.astral.sh/uv/) <br>
-- [ClawHub skill page](https://clawhub.ai/olearycrew/pinchbench) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and benchmark result JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Benchmark runs can save local JSON results and optionally upload detailed results to a public leaderboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill metadata and server release evidence) <br>
+Risk: Benchmark execution runs embedded grading code from task files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task automated checks as code before running and execute benchmarks only in an isolated workspace.
+
+Risk: Benchmark results can be uploaded to the PinchBench leaderboard and may include telemetry about task outcomes and usage.
+
+Mitigation: Use --no-upload for private runs and only register or upload when public leaderboard submission is intended.
+
+Risk: PINCHBENCH_SERVER_URL can redirect registration or uploads to a custom endpoint.
+
+Mitigation: Leave PINCHBENCH_SERVER_URL unset unless the endpoint is trusted.
+
+Risk: Benchmark setup deletes stored session history for bench-* OpenClaw agents.
+
+Mitigation: Run with dedicated benchmark agents and preserve any needed session history before starting a benchmark.
+
+Risk: One benchmark task may install an external humanizer skill from the registry.
+
+Mitigation: Review that task before use, skip it when appropriate, or install only a trusted humanizer skill.
+
+## Reference(s):
+
+- [PinchBench Homepage](https://pinchbench.com)
+- [PinchBench Skill Repository](https://github.com/pinchbench/skill)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/olearycrew/skills/pinchbench)
+- [uv Package Manager](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, json]
+
+**Output Format:** [Markdown guidance, shell command examples, and JSON benchmark result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Benchmark runs may optionally upload summarized results to the PinchBench leaderboard unless run with --no-upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter; pyproject.toml lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

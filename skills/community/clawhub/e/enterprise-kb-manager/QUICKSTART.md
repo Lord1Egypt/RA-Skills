@@ -28,12 +28,12 @@ pip install -r requirements.txt --force-reinstall
 
 **推荐：DashScope (阿里云千问)**
 ```powershell
-$env:DASHSCOPE_API_KEY='sk-your-dashscope-key-here'
+$env:DASHSCOPE_API_KEY='REDACTED-SECRET'
 ```
 
 **或者：OpenAI**
 ```powershell
-$env:OPENAI_API_KEY='sk-your-openai-key-here'
+$env:OPENAI_API_KEY='REDACTED-SECRET'
 ```
 
 **持久化配置 (可选)**

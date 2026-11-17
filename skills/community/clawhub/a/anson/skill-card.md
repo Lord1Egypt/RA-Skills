@@ -1,45 +1,59 @@
-## Description: <br>
-Bootstrap and personalize an AI assistant with a rich, bespoke identity, user profile, and soul. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap and personalize an AI assistant with a rich, bespoke identity, user profile, and working style.
 
-## Publisher: <br>
-[edmundworks](https://clawhub.ai/user/edmundworks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edmundworks](https://clawhub.ai/user/edmundworks)
 
-## Use Case: <br>
-External users and developers use Anson to bootstrap a personalized assistant by guiding setup, interviewing for identity, user, and working-relationship context, and generating durable Markdown profile and instruction files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill builds persistent personal profile files and assistant instruction files that can shape future agent behavior. <br>
-Mitigation: Review ANSON_META.md, generated profile files, and AGENTS.md or CLAUDE.md changes before relying on them. <br>
-Risk: The bootstrap workflow may inspect broad workspace context, memory files, history files, and existing project files. <br>
-Mitigation: Run it in a reviewed workspace and require explicit approval before reading memory or history files or unrelated project context. <br>
-Risk: The skill can generate additional maker skills and alter future assistant instructions. <br>
-Mitigation: Inspect and scan generated skills, then require explicit user confirmation before installing or executing them. <br>
+## Use Case:
 
+External users and developers use Anson to bootstrap a personalized assistant by creating durable identity, user, relationship, and agent-instruction documents. It also scaffolds maker skills that can maintain those documents over time.
 
-## Reference(s): <br>
-- [Bootstrap Process](references/bootstrap-process.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [Anthropic Skills Repository](https://github.com/anthropics/skills) <br>
-- [Anson on ClawHub](https://clawhub.ai/edmundworks/anson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational guidance plus Markdown files, configuration instructions, and skill scaffolds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates workspace files such as ANSON_META.md, IDENTITY.md, USER.md, SOUL.md, AGENTS.md or CLAUDE.md, and maker skill scaffolds when run with user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create long-lived profile, identity, and relationship files that store inferred user preferences or personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated personalization files before allowing writes and remove any content the user does not want preserved.
+
+Risk: The skill can modify AGENTS.md or CLAUDE.md, which may affect how future agents behave in the workspace.
+
+Mitigation: Inspect instruction-file diffs before accepting them and keep only lifecycle rules that match the user's intended assistant behavior.
+
+Risk: The skill can create new maker skills that continue updating personalization state after bootstrap.
+
+Mitigation: Scan and review generated skills before deployment, and install only when persistent personalization is acceptable.
+
+## Reference(s):
+
+- [Bootstrap process](references/bootstrap-process.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Anthropic skills repository](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents, conversational guidance, scaffolded skill files, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write ANSON_META.md, IDENTITY.md, USER.md, SOUL.md, maker skills, and AGENTS.md or CLAUDE.md in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

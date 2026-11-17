@@ -1,17 +1,17 @@
-# React 项目规范
+# React project specifications
 
-Frontend Craft skill for React 项目规范.
+Organize React and TypeScript components, hooks, routes, state boundaries, and project structure.
 
 ## Skill
 
 - ID: `fec-react-project-standard`
 - Category: `project-standard`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-react-project-standard/SKILL.md`
 
 ## Description
 
-Use when designing or reviewing React + TypeScript project structure, feature/module boundaries, component architecture, hooks organization, routing composition, state/API/error/styling defaults, or repository-wide React conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include React 项目规范, React 组件架构.
+Use when designing or reviewing React + TypeScript project structure, feature/module boundaries, component architecture, hooks organization, routing composition, state/API/error/styling defaults, or repository-wide React conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include React project specification, React component architecture.
 
 ## Usage
 

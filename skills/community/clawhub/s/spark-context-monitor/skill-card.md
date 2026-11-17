@@ -1,42 +1,62 @@
-## Description: <br>
-Spark Context Monitor estimates current conversation token usage, shows used and remaining tokens with a progress bar, and suggests when to start or compact a session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports estimated current-session token usage, remaining context, usage percentage, and threshold-based suggestions.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to check how much of the active chat context has been consumed, estimate remaining capacity, and decide when to start a new session or compact context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill estimates token usage from conversation text, so results may differ from platform token accounting. <br>
-Mitigation: Treat the report as a planning aid and rely on platform-native usage statistics when exact billing or limit decisions are required. <br>
-Risk: The skill needs access to current conversation text to estimate usage. <br>
-Mitigation: Invoke it intentionally, such as with /token, and deploy it only where local session inspection is acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to monitor long conversations, estimate remaining context capacity, and decide when to start or compact a session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/spark-context-monitor) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status report with token counts, percentage, progress bar, and threshold-based recommendation text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token counts are estimates based on current session history and model-window assumptions; the skill does not report platform-authoritative token accounting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill reads current conversation history to estimate aggregate token usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it only where local session-history access is acceptable and aligned with the host platform's permission model.
+
+Risk: Broad command and natural-language triggers may activate when users ask about context or token usage.
+
+Mitigation: Review and narrow trigger phrases if the skill is used in workflows where accidental activation would be disruptive.
+
+Risk: Token counts are estimates and may differ from platform accounting.
+
+Mitigation: Use the output as operational guidance, and rely on platform-reported token usage for billing or hard limit decisions.
+
+Risk: Development dependency versions should be reviewed before using the package in build or CI pipelines.
+
+Mitigation: Refresh and audit the lockfile as part of the normal release or deployment process.
+
+## Reference(s):
+
+- [Spark Context Monitor on ClawHub](https://clawhub.ai/rfdiosuao/skills/spark-context-monitor)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status report with token counts, percentage, progress bar, and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token counts are estimated from the current session history and model context window.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

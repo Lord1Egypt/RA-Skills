@@ -1,39 +1,54 @@
-## Description: <br>
-Paraphraser helps rewrite text for lower repetition, academic tone, simplified expression, formal style, expansion, and before-and-after comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paraphraser helps agents rewrite text for reduced repetition, academic tone, simpler wording, formal style, expansion, and before-and-after comparison.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers can use this skill to generate paraphrasing prompts for rewriting, academic restyling, simplification, formalization, expansion, and comparison of text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an unrelated local data-management script that may retain user text and command history. <br>
-Mitigation: Review before installing, avoid passing sensitive drafts to that script, and remove or ignore it unless local record storage is intentionally required. <br>
+## Use Case:
 
+External users, employees, and agents can use this skill to prepare Markdown paraphrasing prompts for rewriting, academic restyling, simplification, formalization, expansion, and comparison of text drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/paraphraser) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts are selected by command for rewrite, academic, simplify, formal, expand, and compare modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The server security summary flags an unrelated local data-management script that silently stores user input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing, avoid sensitive drafts or personal data, and prefer use only after the publisher removes or clearly documents the storage behavior.
+
+Risk: Stored local text may persist under the user's data directory and can be listed, searched, or exported.
+
+Mitigation: Set an isolated PARAPHRASER_DIR when testing, inspect retained files, and delete local data outside the tool if retention controls are not documented.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/paraphraser)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prompts and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The paraphrasing commands emit prompt text; the package also includes a local data-management command that can store and export text.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

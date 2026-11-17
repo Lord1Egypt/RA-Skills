@@ -1,38 +1,49 @@
-## Description: <br>
-Extracts durable user decisions, preferences, project constraints, and references from a conversation into memory topic files and an index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts durable memory items from a conversation and records them as topic files with an updated memory index.
 
-## Publisher: <br>
-[jofiction918](https://clawhub.ai/user/jofiction918) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jofiction918](https://clawhub.ai/user/jofiction918)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture durable memory from completed conversations, including preferences, decisions, project constraints, and external references, while filtering temporary task state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist broad conversation details as long-term memories without a clear review or approval step. <br>
-Mitigation: Review extracted memories before saving and avoid storing secrets, account identifiers, private URLs, internal paths, or confidential project details. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve selected conversation details such as user preferences, decisions, project constraints, and external references for future sessions.
 
-## Reference(s): <br>
-- [Extract Memories ClawHub page](https://clawhub.ai/jofiction918/extract-memories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown status summary plus memory topic files with YAML frontmatter] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends to memory/topics/ and MEMORY.md; intended memories should be reviewed before saving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.10 (source: server release metadata; artifact frontmatter states 3.1.0) <br>
+Risk: The skill may automatically save selected conversation details to persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a preview or confirmation workflow before writing memories, and avoid running it on conversations containing secrets, private account details, sensitive URLs, or instructions that should not influence future sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jofiction918/skills/extract-memories)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown status summary plus memory topic files with YAML frontmatter]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends selected memory entries to topic files and updates a MEMORY.md index.]
+
+## Skill Version(s):
+
+3.0.10 (source: server release metadata; artifact frontmatter declares 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

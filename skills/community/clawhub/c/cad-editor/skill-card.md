@@ -1,44 +1,56 @@
-## Description: <br>
-CAD Editor turns natural language drafting requests into CAD engineering drawings across architectural, mechanical, electrical, piping, structural, and basic geometry domains, producing DXF files and PNG/SVG/PDF previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CAD Editor helps agents turn natural-language drafting requests into CAD drawing code and deliverable engineering drawing files for architectural, mechanical, electrical, piping, structural, and general geometry workflows.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers, engineers, and CAD users use this skill to convert natural language drafting requests into standards-oriented engineering drawings and preview/export files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run generated Python code derived from user drafting requests. <br>
-Mitigation: Review generated scripts before execution, run them only in a virtual environment or disposable workspace, and keep outputs in a dedicated folder. <br>
-Risk: Untrusted filenames, output paths, or direct generator parameters could affect where files are written or how generated code behaves. <br>
-Mitigation: Avoid passing untrusted paths or raw generator parameters; constrain output paths to a known project directory. <br>
+## Use Case:
 
+Developers, engineers, and drafting-focused agents use this skill to generate CAD drawings from natural-language requests or direct Python API calls, including DXF creation, preview rendering, and PDF/SVG/PNG export.
 
-## Reference(s): <br>
-- [CAD Editor release page](https://clawhub.ai/wangjiaocheng/cad-editor) <br>
-- [ACI color index and drafting color guidance](artifact/references/color_index.md) <br>
-- [DXF entity group code reference](artifact/references/dxf_entity_codes.md) <br>
-- [Natural language intent templates](artifact/references/intent_templates.json) <br>
-- [GB/T layer naming standards](artifact/references/layer_standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with Python code examples and generated CAD output files such as DXF, PNG, SVG, and PDF] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drawing scripts and file paths should be reviewed before execution or delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks agents to execute generated Python from user-influenced drawing parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before execution and run it only in a sandboxed environment with no sensitive credentials or broad filesystem access.
+
+Risk: User-provided filenames, output paths, or raw parameter dictionaries may affect generated outputs.
+
+Mitigation: Constrain outputs to a dedicated directory and validate filenames, output paths, and drawing parameters before running generated code.
+
+## Reference(s):
+
+- [ACI color index](artifact/references/color_index.md)
+- [DXF entity group codes](artifact/references/dxf_entity_codes.md)
+- [Natural-language intent templates](artifact/references/intent_templates.json)
+- [Layer standards](artifact/references/layer_standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with Python code blocks and generated DXF, PNG, SVG, or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ezdxf, matplotlib, and numpy; generated drawing code should be reviewed and run in a sandboxed output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

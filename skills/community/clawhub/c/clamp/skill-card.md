@@ -1,41 +1,57 @@
-## Description: <br>
-Provides Chinese-language game patch briefings that organize official changes, separate facts from commentary, highlight uncertainty, and include healthy-play and compliance reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured Chinese-language game patch briefings that separate official changes from opinion, identify possible meta shifts, and include healthy-play and compliance reminders.
 
-## Publisher: <br>
-[wjl110](https://clawhub.ai/user/wjl110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjl110](https://clawhub.ai/user/wjl110)
 
-## Use Case: <br>
-Players, esports viewers, and game-focused content creators use this skill to turn official patch notes or user-provided update summaries into concise Chinese meta briefings, action checklists, and clearly labeled opinion or uncertainty sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meta conclusions may be mistaken for guaranteed rankings, win-rate advice, or verified numerical changes. <br>
-Mitigation: Ground concrete patch details in official or user-provided source text, label commentary and speculation, and remind users that outcomes vary by mode, rank, lineup, and later updates. <br>
-Risk: Game guidance could drift into prohibited assistance such as cheats, boosting, bug abuse, gambling, or account-rental advice. <br>
-Mitigation: Refuse those requests and redirect to compliant patch-note summarization, healthy-play reminders, and official-source verification. <br>
+## Use Case:
 
+Players, commentators, and game analysts use this skill to turn a specified game patch or version update into a concise meta briefing, action checklist, and source-aware risk note. It is intended for patch understanding, not cheating, boosting, gambling, or exploit guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjl110/clamp) <br>
-- [Publisher profile](https://clawhub.ai/user/wjl110) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured brief with tables, bullet lists, confidence labels, and risk reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output; concrete patch values should be grounded in official or user-provided source text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact YAML block) <br>
+Risk: Broad patch and meta trigger terms may activate the skill outside its intended Chinese-language game patch briefing scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with a clear game name and patch reference, and keep the response limited to patch interpretation and player-facing analysis.
+
+Risk: Patch analysis can become misleading when official notes are missing or incomplete.
+
+Mitigation: Require official update text, a link, or a version date before asserting details; otherwise provide a verification checklist and label opinions or speculation.
+
+Risk: Game patch discussions can attract requests for cheating, boosting, exploit use, gambling, or account abuse.
+
+Mitigation: Refuse those requests and redirect to compliant patch understanding, official sources, healthy play, and non-exploitative strategy discussion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjl110/skills/clamp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown briefing with headings, tables, confidence labels, and checklist bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; marks facts, opinions, speculation, uncertainty, and required official-source checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Perform clear-tool operations from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform clear-tool operations from the command line.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and command-line users use this skill for basic terminal clear operations and shell-compatible clear-tool usage guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The instructions are minimal and may not fully explain how the bundled script is exposed as clear-tool.
+
+Mitigation: Confirm the installed command wiring and review the help output before relying on it in an automated shell workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and command-line agents use this skill to clear a terminal display during shell-oriented workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documented clear-tool command may not be wired to the included script in the artifact. <br>
-Mitigation: Verify the installed command name and entry point before relying on it in automated workflows. <br>
-Risk: Clearing the active terminal can hide recently printed command output from view. <br>
-Mitigation: Use it only after any important output has been captured in logs or reviewed. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Clear Tool on ClawHub](https://clawhub.ai/dinghaibin/clear-tool) <br>
-- [dinghaibin publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+**Other Properties Related to Output:** [The bundled helper clears the terminal display when executed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and terminal escape-code output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clears the active terminal display by emitting ANSI escape codes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

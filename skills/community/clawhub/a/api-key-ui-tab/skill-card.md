@@ -1,47 +1,61 @@
-## Description: <br>
-Vault-backed API Keys management for OpenClaw. Secure file-based secret storage with one-click migration from plaintext config, dynamic key discovery, vault key selector for skills, manual secret creation, and plugin-registered settings tab. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vault-backed API key management for OpenClaw with local file-based secret storage, migration from plaintext config, dynamic key discovery, a skills vault-key selector, manual secret creation, and a settings tab.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to manage API keys through a vault-backed settings UI, migrate plaintext keys into local secret references, and link skills to vault keys without exposing raw values in configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles high-value API credentials while the security evidence says local protection may be overstated. <br>
-Mitigation: Install only on a trusted machine, treat the vault as a local permission-protected JSON secrets file rather than proven encrypted storage, and restrict access to the local OpenClaw files. <br>
-Risk: Migration and auth-profile controls can change or delete local credential state. <br>
-Mitigation: Back up openclaw.json and secrets.json before migration, verify compatibility with the installed OpenClaw version, and use delete or reset controls carefully. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maverick-software/api-key-ui-tab) <br>
-- [Installation instructions](INSTALL_INSTRUCTIONS.md) <br>
-- [API keys controller reference](reference/apikeys-controller.ts) <br>
-- [API keys view reference](reference/apikeys-views.ts) <br>
-- [Secrets RPC reference](reference/secrets-rpc.ts) <br>
-- [Skills controller reference](reference/skills-controller.ts) <br>
-- [Skills RPC reference](reference/skills-rpc.ts) <br>
-- [Skills status reference](reference/skills-status.ts) <br>
-- [Skills view reference](reference/skills-views.ts) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to manage API keys in the Control dashboard, migrate plaintext config values into local file-backed SecretRef entries, and link skill API-key settings to vault keys.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript reference code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw installation and integration guidance; the release artifact includes reference implementation files rather than a standalone executable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles real credentials and stores them locally in plaintext JSON protected by file permissions, despite UI language saying encrypted.
+
+Mitigation: Review before installing or enabling with real credentials, restrict access to ~/.openclaw/secrets.json, and do not rely on UI encryption claims.
+
+Risk: Migration behavior can leave plaintext secrets in openclaw.json, especially nested skill or provider keys.
+
+Mitigation: After migration, inspect OpenClaw configuration for remaining plaintext API keys and convert or remove them before use.
+
+Risk: The included reference code can alter auth profiles and skill configuration, including skill installation flows.
+
+Mitigation: Review configuration and auth-profile changes before applying the code, and test in a non-production OpenClaw profile first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/api-key-ui-tab)
+- [Publisher profile](https://clawhub.ai/user/maverick-software)
+- [Skill source overview](artifact/SKILL.md)
+- [Installation instructions](artifact/INSTALL_INSTRUCTIONS.md)
+- [Vault RPC reference](artifact/reference/secrets-rpc.ts)
+- [Skills vault integration reference](artifact/reference/skills-rpc.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with TypeScript reference code and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on OpenClaw API-key and skill configuration workflows; review credential handling before use.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

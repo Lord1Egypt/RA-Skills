@@ -1,45 +1,64 @@
-## Description: <br>
-Adds JARVIS-style voice output, visible transcripts, and humor guidance to an OpenClaw agent using SkillBoss TTS and local audio playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn your AI into JARVIS with voice, wit, and personality, with humor set to maximum.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to make agent replies trigger a local Jarvis voice command, send spoken text to SkillBoss TTS, apply audio effects, play audio locally, and show a matching transcript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each spoken reply can send text to SkillBoss cloud TTS. <br>
-Mitigation: Avoid speaking sensitive content, protect SKILLBOSS_API_KEY, and review SkillBoss data handling before deployment. <br>
-Risk: Routine replies can execute a local jarvis command and play audio automatically. <br>
-Mitigation: Review and pin the exact jarvis script before placing it in PATH, and install only where automatic local audio playback is intended. <br>
-Risk: Workspace templates can persist voice, humor, memory-read, and daily-log behavior across sessions. <br>
-Mitigation: Copy the VOICE, SESSION, and HUMOR templates only for workspaces where persistent Jarvis behavior is desired. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add command-backed voice output, visible Jarvis-prefixed markdown transcripts, and a high-frequency humor/personality layer to agent replies. It is intended for Linux environments configured with SkillBoss API access and local audio tooling.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/marjoriebroad/jarvis-voice-2) <br>
-- [SkillBoss Jarvis Voice Page](https://skillboss.co/skills/jarvis-voice) <br>
-- [LIMBIC Humor Research Draft](https://github.com/globalcaos/tinkerclaw/blob/main/AI_reports/humor-embeddings-paper-draft.md) <br>
-- [TinkerClaw Project](https://github.com/globalcaos/tinkerclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown transcript with a background shell command for local audio playback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spoken output uses the local jarvis command, SkillBoss TTS, ffmpeg audio effects, and a visible Jarvis transcript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill persistently changes future agent behavior through workspace templates and can force always-speak behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the templates before copying them into a workspace, and avoid enabling always-speak or session-bootstrap rules in sensitive or shared environments.
+
+Risk: Selected response text may be sent to SkillBoss for audio generation.
+
+Mitigation: Avoid using voice output for sensitive content and confirm that users are comfortable with SkillBoss API processing before enabling the skill.
+
+Risk: The skill relies on command-backed audio output through a local jarvis script and external tools.
+
+Mitigation: Inspect the jarvis script and required binaries before use, keep the API key scoped appropriately, and run the command only in trusted local environments.
+
+Risk: Startup greetings can use recent memory or session context.
+
+Mitigation: Disable or narrow the session bootstrap behavior where recent memory may expose private or irrelevant context.
+
+## Reference(s):
+
+- [ClawHub Jarvis Voice skill page](https://clawhub.ai/marjoriebroad/skills/jarvis-voice-2)
+- [SkillBoss Jarvis Voice information](https://skillboss.co/skills/jarvis-voice)
+- [LIMBIC computational humor reference](https://github.com/globalcaos/tinkerclaw/blob/main/AI_reports/humor-embeddings-paper-draft.md)
+- [TinkerClaw project reference](https://github.com/globalcaos/tinkerclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with a visible transcript, shell-command execution guidance, and workspace template configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice output uses a local jarvis command, SkillBoss TTS, ffmpeg audio effects, and aplay playback when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

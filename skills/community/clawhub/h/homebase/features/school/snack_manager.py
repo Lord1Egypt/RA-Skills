@@ -8,7 +8,7 @@ Detects school closed days and warns when next month's schedule is missing.
 import json
 import os
 from datetime import datetime, timedelta
-from typing import Dict, Optional, List
+from typing import Dict, Optional
 
 from utils import write_json_atomic
 
@@ -48,29 +48,52 @@ class SnackManager:
     def get_today_snack(self) -> Optional[Dict]:
         return self.get_snack(datetime.now().strftime("%Y-%m-%d"))
 
-    def is_school_closed_today(self) -> bool:
-        today = datetime.now()
-        if today.weekday() >= 5:
+    def is_school_closed(self, date_str: str = None) -> bool:
+        if not date_str:
+            date_str = datetime.now().strftime("%Y-%m-%d")
+        try:
+            parsed = datetime.strptime(date_str, "%Y-%m-%d")
+        except ValueError:
+            return False
+        if parsed.weekday() >= 5:
             return True
-        snack = self.get_today_snack()
+        snack = self.get_snack(date_str)
         if snack and snack.get("school_closed"):
             return True
         return False
+
+    def is_school_closed_today(self) -> bool:
+        return self.is_school_closed()
 
     def is_current_month_loaded(self) -> bool:
         prefix = datetime.now().strftime("%Y-%m-")
         return any(k.startswith(prefix) for k in self.schedule)
 
-    def is_next_month_loaded(self) -> bool:
+    def _first_of_next_month(self) -> datetime:
+        """First day of next month, carrying today's time of day.
+
+        `day=1` is load-bearing rather than tidiness. `replace(month=m + 1)`
+        on the 31st of a month whose successor is shorter raises ValueError
+        ("day is out of range for month") — Jan, Mar, May, Aug and Oct 31,
+        five days a year, and every one of them inside the last-week window
+        this class exists to watch. Two copies of this arithmetic had the bug
+        and a third did not; one helper is why there cannot be a fourth.
+        """
         now = datetime.now()
         if now.month == 12:
-            next_month = now.replace(year=now.year + 1, month=1)
-        else:
-            next_month = now.replace(month=now.month + 1)
-        prefix = next_month.strftime("%Y-%m-")
+            return now.replace(year=now.year + 1, month=1, day=1)
+        return now.replace(month=now.month + 1, day=1)
+
+    def is_next_month_loaded(self) -> bool:
+        prefix = self._first_of_next_month().strftime("%Y-%m-")
         return any(k.startswith(prefix) for k in self.schedule)
 
     def should_warn_about_missing_schedule(self) -> Optional[str]:
+        """The one snack-schedule warning worth sending today, if any.
+
+        The two branches below are mutually exclusive by construction: the
+        next-month branch is only reached once the current month is loaded.
+        """
         now = datetime.now()
         if now.weekday() >= 5:
             return None
@@ -80,17 +103,18 @@ class SnackManager:
                 f"📸 *Snack schedule missing for {month_name}*\n"
                 f"Please send a photo of the school snack calendar to the group."
             )
-        if now.month == 12:
-            last_day = now.replace(year=now.year + 1, month=1, day=1) - timedelta(days=1)
-        else:
-            last_day = now.replace(month=now.month + 1, day=1) - timedelta(days=1)
+        last_day = self._first_of_next_month() - timedelta(days=1)
+        # Deliberately independent of whether today has a snack. Whether next
+        # month's photo has arrived has nothing to do with today's snack, and
+        # the caller gating this on `not snack_text` is what made this branch
+        # unreachable on every normal school day of its own window — the only
+        # days it is for. Do not reintroduce that guard here or at the call
+        # site; the current-month branch above already cannot fire when a
+        # snack exists, because that snack's own key is what makes
+        # is_current_month_loaded() true.
         if now.day >= last_day.day - 6:
             if not self.is_next_month_loaded():
-                if now.month == 12:
-                    next_month = now.replace(year=now.year + 1, month=1)
-                else:
-                    next_month = now.replace(month=now.month + 1)
-                next_name = next_month.strftime("%B")
+                next_name = self._first_of_next_month().strftime("%B")
                 return (
                     f"📸 *Heads up* — please send the snack schedule photo "
                     f"for {next_name} when it's posted at school."
@@ -98,24 +122,38 @@ class SnackManager:
         return None
 
     def format_for_briefing(self) -> Optional[str]:
+        """Today's snack block, or None when there isn't one.
+
+        Never returns a warning. Warnings travel in the briefing's own
+        `snack_warning` field; one returned from here lands in `snack`
+        instead, which the briefing prompt pastes verbatim under a "School
+        Snacks Today" heading. "Send next month's photo" is not a snack, and
+        rendering it as one is how the September 2026 reminder reached the
+        family mislabelled.
+        """
         if self.is_school_closed_today():
             return None
         snack = self.get_today_snack()
         if not snack:
-            return self.should_warn_about_missing_schedule()
+            return None
         lines = ["🍎 *School Snacks Today*"]
         if snack.get("morning"):
             lines.append(f"  Morning: {snack['morning']}")
         if snack.get("afternoon"):
             lines.append(f"  Afternoon: {snack['afternoon']}")
         if len(lines) == 1:
-            return self.should_warn_about_missing_schedule()
+            return None
         return "\n".join(lines)
 
 
 if __name__ == "__main__":
     import sys
-    mgr = SnackManager(os.path.dirname(os.path.abspath(__file__)))
+    # SKILL_DIR, not this module's directory. Passing the latter pointed the
+    # CLI at features/school/household/snack_schedule.json — a phantom file.
+    # `status` then reported an empty schedule and `clear` reported success
+    # while the real schedule sat untouched.
+    from core.config_loader import SKILL_DIR
+    mgr = SnackManager(SKILL_DIR)
     if len(sys.argv) > 1:
         cmd = sys.argv[1]
         if cmd == "today":

@@ -1,45 +1,62 @@
-## Description: <br>
-Builds and maintains a self-evolving agent skill system that captures corrective feedback, graduates repeated feedback into rule proposals, improves low-performing skills, and proposes new skills when repeated patterns are not covered. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a self-evolving agent skill system that captures corrective feedback, graduates repeated feedback into rule proposals, improves low-performing skills, and proposes new skills for uncovered repeated patterns.
 
-## Publisher: <br>
-[veezvg](https://clawhub.ai/user/veezvg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veezvg](https://clawhub.ai/user/veezvg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrective feedback, aggregate repeated issues, and present user-confirmed proposals for rule graduation, skill improvement, or new skill creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic feedback capture may save user corrections or sensitive context to local feedback files without clear opt-in. <br>
-Mitigation: Disclose the capture behavior before enabling it, redact secrets and personal data, and limit saved content to the minimum needed for feedback analysis. <br>
-Risk: Accumulated feedback records may persist longer than intended or be readable by unintended local users. <br>
-Mitigation: Restrict access to `.claude/feedback/` and define review, deletion, and retention controls before deployment. <br>
-Risk: Repeated feedback could be promoted into rules or skill changes incorrectly if proposals are accepted without review. <br>
-Mitigation: Require a user or maintainer to review each proposal, target file, and rationale before applying any rule or skill change. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to add a controlled feedback loop that captures corrective user feedback, accumulates repeated issues, and presents rule, skill optimization, or new-skill proposals for confirmation before changes are made.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veezvg/veezvg-auto-evolution) <br>
-- [README](artifact/README.md) <br>
-- [Reference Architecture](artifact/REFERENCE_ARCHITECTURE.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style proposals with optional shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces suggestions and structured feedback records; rule or skill changes require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Silent feedback monitoring may persist corrective messages or surrounding context that users did not expect to store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure explicit opt-in before recording, review and redact .claude/feedback regularly, and set retention and deletion rules.
+
+Risk: Generated rule or skill-change proposals could introduce incorrect or misleading guidance if applied without review.
+
+Mitigation: Keep CLAUDE.md and skill-file changes behind visible user confirmation and review proposed changes before deployment.
+
+Risk: Feedback with unclear source attribution could be graduated into the wrong rule or skill.
+
+Mitigation: Use source_skill metadata, keep uncertain sources as N/A, and manually verify the target before graduating feedback into formal rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veezvg/skills/veezvg-auto-evolution)
+- [README](artifact/README.md)
+- [Reference architecture](artifact/REFERENCE_ARCHITECTURE.md)
+- [Examples](artifact/EXAMPLES.md)
+- [Feedback signal detector](artifact/scripts/detect_feedback_signal.py)
+- [Evolution runner](artifact/scripts/evolution_runner.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update structured feedback files and proposal summaries when connected to a project feedback directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

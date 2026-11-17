@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn771x3ckcwnm3pw7d7rdggy7s82jyg7",
+  "ownerId": "kn7ee67pwhk1zfy5vp4t6xb2b182x0xr",
   "slug": "agent-stock-pro",
   "version": "0.4.0",
-  "publishedAt": 1780670022007
+  "publishedAt": null,
+  "forkOf": {
+    "slug": "agent-stock",
+    "author": "AnoyiX",
+    "version": "0.2.8",
+    "registry": "https://clawhub.ai",
+    "url": "https://clawhub.ai/anoyix/agent-stock",
+    "license": "MIT-0"
+  }
 }

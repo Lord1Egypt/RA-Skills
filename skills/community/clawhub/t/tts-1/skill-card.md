@@ -1,44 +1,58 @@
-## Description: <br>
-Text-to-speech conversion using node-edge-tts for generating audio from text with multiple voices, languages, speed adjustment, pitch control, and subtitle generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech conversion using node-edge-tts for generating audio from text with multiple voices, languages, speed adjustment, pitch control, and subtitle generation.
 
-## Publisher: <br>
-[17854566382](https://clawhub.ai/user/17854566382) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17854566382](https://clawhub.ai/user/17854566382)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert requested text into spoken audio, optionally choosing voice, language, speed, pitch, output format, and subtitles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text may be sent to an external Microsoft Edge TTS service. <br>
-Mitigation: Review the text for private, confidential, regulated, or credential-like content before conversion and get clear user intent for synthesis. <br>
-Risk: The skill may filter TTS trigger words before synthesis, changing the text that is spoken. <br>
-Mitigation: Confirm the final text to be synthesized when exact wording matters. <br>
-Risk: Generated audio files may be written to temporary storage and are not automatically deleted by the bundled script. <br>
-Mitigation: Delete generated files after delivery or configure an explicit output path with appropriate retention controls. <br>
+## Use Case:
 
+Developers and external users can use this skill to convert requested text into spoken audio, choose voices and prosody settings, and optionally generate subtitle timing data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/17854566382/tts-1) <br>
-- [node-edge-tts reference](references/node_edge_tts_guide.md) <br>
-- [Voice testing page](https://tts.travisvn.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [MP3 audio files, MEDIA paths, optional JSON subtitles, and Markdown guidance with shell and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports configurable voice, language, rate, pitch, volume, output path, proxy, timeout, and subtitle generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package metadata reports 2.0.0) <br>
+Risk: Requested text is sent to Microsoft Edge's online TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid converting secrets, private messages, regulated data, or proprietary content unless that external processing is acceptable.
+
+Risk: Generated audio and subtitle files can persist in temporary or custom output paths.
+
+Mitigation: Choose intentional output paths for sensitive audio and clean up generated files after use.
+
+Risk: The skill installs npm dependencies before using the bundled scripts.
+
+Mitigation: Audit or update npm dependencies before using the skill in automation.
+
+## Reference(s):
+
+- [node-edge-tts Reference](references/node_edge_tts_guide.md)
+- [Voice Testing](https://tts.travisvn.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript and shell command examples; generated runtime artifacts are MP3 audio files and optional JSON subtitle files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Microsoft Edge's online TTS service through node-edge-tts, requires internet access, and may write audio to a temporary directory or a user-selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package files report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: linux-security-guardian
-description: Autonomous multi-client Linux server security management via SSH MCP. Runs full audit at 1 AM IST nightly via cron. Iterates over all clients and their server fleets. Covers system hardening, CVE scanning (CISA KEV + OSV.dev + NVD API), user auditing, SSH config, firewall rules, running services, file permissions, log analysis, SSL certs, and kernel parameters. Non-breaking actions auto-applied. Critical patches and network/firewall changes require owner confirmation. Report sent per-server and per-client via email plugin/skill (not bundled). All owner-specific config lives in core-extra/config/ — no hardcoded names, domains, or emails.
-version: 1.4.2
+description: Autonomous multi-client Linux server security management via SSH MCP. Runs full audit at 1 AM IST nightly via cron. Iterates over all clients and their server fleets. Covers system hardening, CVE scanning (CISA KEV + OSV.dev + NVD API), user auditing, SSH config (incl. weak ciphers/MACs/Kex), firewall rules, running services, file permissions, log analysis, SSL certs, kernel parameters (incl. BPF restrictions), Docker daemon security defaults (userns-remap, no-new-privileges, seccomp), fail2ban auto-install, unattended-upgrades auto-enable, CIS benchmark scoring, systemd sandbox analysis, AppArmor/SELinux audit, and swap encryption check. Non-breaking actions auto-applied. Critical patches and network/firewall changes require owner confirmation. Report sent per-server and per-client via email plugin/skill (not bundled). All owner-specific config lives in core-extra/config/ — no hardcoded names, domains, or emails.
+version: 1.6.0
 metadata: {"openclaw": {"emoji": "🛡️", "requires": {"bins": ["bash","python3","ss","iptables","systemctl","grep","awk","sed","find","curl"], "mcp": ["ssh_conn","ssh_exec"]}}}
 ---
 
@@ -36,7 +36,7 @@ ssh_mcp:
 
 ### Audit Modules
 
-All 18 modules execute commands via SSH MCP. Each module file lists commands that get wrapped with `ssh_exec(op="run", sessionId, command)`:
+All 26 modules execute commands via SSH MCP. Each module file lists commands that get wrapped with `ssh_exec(op="run", sessionId, command)`:
 
 ```
 module command → ssh_exec(op="run", sessionId, command="module command")
@@ -176,22 +176,30 @@ The most important thing — what agent does vs what it asks first:
 |--------|---------------|-----------------|
 | `01-system` | OS, kernel, uptime, last reboot, hardware | `ssh_exec(op="run", sessionId, command="uname -a; cat /etc/*release")` |
 | `02-users` | Accounts, root access, sudo, empty passwords, inactive | `ssh_exec(op="run", sessionId, command="cat /etc/passwd; cat /etc/shadow; ...")` |
-| `03-ssh` | sshd_config full audit — 20+ checks | `ssh_exec(op="run", sessionId, command="cat /etc/ssh/sshd_config")` |
-| `04-auth` | Login history, failed logins, PAM config | `ssh_exec(op="run", sessionId, command="last; cat /var/log/auth.log")` |
+| `03-ssh` | sshd_config full audit — 20+ checks + weak ciphers/MACs/KexAlgorithms (CIS) | `ssh_exec(op="run", sessionId, command="cat /etc/ssh/sshd_config; sshd -T 2>/dev/null | grep -iE 'ciphers|macs|kex'")` |
+| `04-auth` | Login history, failed logins, PAM config, fail2ban auto-install + SSH jail config, password policy enforcement | `ssh_exec(op="run", sessionId, command="last; cat /var/log/auth.log")` |
 | `05-services` | Running services, unnecessary ones, failed units | `ssh_exec(op="run", sessionId, command="systemctl list-units ...")` |
-| `06-packages` | Pending updates, security updates count | `ssh_exec(op="run", sessionId, command="apt list --upgradable 2>/dev/null")` |
+| `06-packages` | Pending updates, security updates count, unattended-upgrades auto-enable (security-only) | `ssh_exec(op="run", sessionId, command="apt list --upgradable 2>/dev/null")` |
 | `07-cve` | CVE scan — remote via SSH MCP + API-based | `ssh_exec(op="run", sessionId, command="dpkg-query -W ...; curl ...")` |
 | `08-network` | Open ports, listening services, active connections | `ssh_exec(op="run", sessionId, command="ss -tulpn; netstat -tulpn")` |
 | `09-firewall` | iptables/nftables/ufw rules audit | `ssh_exec(op="run", sessionId, command="iptables-save 2>/dev/null")` |
 | `10-filesystem` | SUID/SGID, world-writable, /tmp, sticky bits | `ssh_exec(op="run", sessionId, command="find / -perm -4000 ...")` |
-| `11-kernel` | sysctl security params — 15+ checks | `ssh_exec(op="run", sessionId, command="sysctl -a 2>/dev/null")` |
+| `11-kernel` | sysctl security params — 15+ checks + BPF restrictions (unprivileged_bpf_disabled, bpf_jit_enable) | `ssh_exec(op="run", sessionId, command="sysctl -a 2>/dev/null")` |
 | `12-logs` | auth.log, syslog, kern.log — anomaly scan | `ssh_exec(op="run", sessionId, command="tail -100 /var/log/syslog")` |
 | `13-crons` | System + user cron jobs — unknown jobs flagged | `ssh_exec(op="run", sessionId, command="cat /etc/crontab; ls -la /var/spool/cron/")` |
 | `14-ssl` | Cert expiry check for all domains/services | `ssh_exec(op="run", sessionId, command="openssl x509 -in ... -noout -dates")` |
-| `15-docker` | If running — image vulns, container config | `ssh_exec(op="run", sessionId, command="docker ps; docker images")` |
+| `15-docker` | If running — image vulns, container config, daemon.json security defaults (userns-remap, no-new-privileges, seccomp) | `ssh_exec(op="run", sessionId, command="docker ps; docker images; cat /etc/docker/daemon.json")` |
 | `16-disk` | Disk usage, inode usage | `ssh_exec(op="run", sessionId, command="df -h; df -i")` |
 | `17-integrity` | AIDE/tripwire check if installed | `ssh_exec(op="run", sessionId, command="aide --check")` |
 | `18-rootkit` | rkhunter/chkrootkit if installed | `ssh_exec(op="run", sessionId, command="rkhunter --check --skip-keypress")` |
+| `19-cis-scoring` | CIS benchmark alignment score across all modules | `(aggregated from all modules)` |
+| `20-systemd-analyze` | systemd service sandboxing — 80+ security directives per service | `ssh_exec(op="run", sessionId, command="systemd-analyze security --json=short 2>/dev/null")` |
+| `21-mount-hardening` | Mount point security — noexec, nosuid, nodev on /tmp, /dev/shm, /var/tmp | `ssh_exec(op="run", sessionId, command="mount | grep -E '^/'")` |
+| `22-apparmor-selinux` | AppArmor/SELinux MAC status — enforcement mode, confined processes | `ssh_exec(op="run", sessionId, command="aa-status 2>/dev/null || sestatus 2>/dev/null")` |
+| `23-proc-hidepid` | /proc hidepid enforcement — process visibility isolation | `ssh_exec(op="run", sessionId, command="mount | grep 'proc on /proc'")` |
+| `24-swap-encryption` | Swap partition encryption — LUKS/dm-crypt check | `ssh_exec(op="run", sessionId, command="swapon --show 2>/dev/null")` |
+| `25-usbguard` | USB device authorization — USBGuard policy and daemon status | `ssh_exec(op="run", sessionId, command="systemctl is-active usbguard")` |
+| `26-ipv6-audit` | IPv6 security — RA acceptance, redirects, privacy extensions, NDP hardening | `ssh_exec(op="run", sessionId, command="sysctl net.ipv6.conf.all.disable_ipv6")` |
 
 **Execution rule**: All commands go through `ssh_exec(op="run", sessionId, command="<command>")` → `ssh_exec(op="logs", commandId=cmdId)`. No local execution.
 
@@ -316,7 +324,7 @@ Grade: 90-100 = A | 75-89 = B | 60-74 = C | < 60 = F
 ```
 linux-security-guardian/
   audit/
-    modules/                     ← 01-system.md ... 18-rootkit.md
+    modules/                     ← 01-system.md ... 26-ipv6-audit.md
     results/
       <client>/<server>/
         critical/  high/  warning/  info/  pass/

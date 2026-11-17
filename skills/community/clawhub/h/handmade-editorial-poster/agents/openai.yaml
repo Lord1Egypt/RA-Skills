@@ -1,0 +1,4 @@
+interface:
+  display_name: "Handmade Editorial Poster"
+  short_description: "Turn each photo into a quiet handmade editorial poster"
+  default_prompt: "Use $handmade-editorial-poster to turn each attached photo into a separate handmade editorial poster."

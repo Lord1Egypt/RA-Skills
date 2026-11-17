@@ -1,46 +1,66 @@
-## Description: <br>
-Skill/Agent发布前的标准化质量把控工具，确保产出经过案例支撑、一致性和合规检查 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill/Agent发布前的标准化质量把控工具，确保产出经过案例支撑、一致性和合规检查。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External skill creators and agent publishers use this checklist to review a Skill or Agent before release, major update, platform submission, or IP filing. It guides case-backed validation, consistency checks, competitive positioning, innovation documentation, commercialization review, and compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checklist output can be mistaken for final legal, IP, commercial, or compliance approval. <br>
-Mitigation: Treat generated reports as review aids and require human approval before release, filing, pricing, or compliance decisions. <br>
-Risk: Optional competitor research, report writing, or IP-management syncing may touch external platforms or internal business records. <br>
-Mitigation: Run those steps only when explicitly user-directed and confirm target systems, data scope, and access permissions first. <br>
+## Use Case:
 
+Developers, operators, and OPC creators use this skill to review a Skill or Agent before release, major version updates, marketplace evaluation, or IP preparation. It guides quality checks for case coverage, consistency, differentiation, commercialization, IP compliance, and safety.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/hutian-opc-pre-publish-check) <br>
-- [Prompt迭代文档模板](references/Prompt迭代文档模板.md) <br>
-- [一致性检测方法](references/一致性检测方法.md) <br>
-- [创新点提炼模板](references/创新点提炼模板.md) <br>
-- [发布前自查评分表](references/发布前自查评分表.md) <br>
-- [商业化审核与校正手册](references/商业化审核与校正手册.md) <br>
-- [竞品分析与卡位方法](references/竞品分析与卡位方法.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist reports and structured review templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces checklist-driven review guidance and template outputs; no executable tools or credential requirements were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is written in Chinese and is specific to an OPC-oriented release workflow, which may make the checklist or templates easy to misapply in other teams or languages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate and adapt the templates before operational use, and confirm that thresholds and review steps match the target release process.
+
+Risk: Optional integrations that update IP or management records could affect authoritative business records if granted write access without review.
+
+Mitigation: Review each integration separately and grant only the minimum required permissions after the write behavior is understood.
+
+Risk: Checklist outputs may be mistaken for final legal, IP, commercialization, or safety approval.
+
+Mitigation: Use the generated reports as review inputs and require accountable human approval before release or IP submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/golngod/skills/hutian-opc-pre-publish-check)
+- [发布前自查向导](README.md)
+- [Prompt迭代文档模板](references/Prompt迭代文档模板.md)
+- [一致性检测方法](references/一致性检测方法.md)
+- [创新点提炼模板](references/创新点提炼模板.md)
+- [发布前自查评分表](references/发布前自查评分表.md)
+- [商业化审核与校正手册](references/商业化审核与校正手册.md)
+- [竞品分析与卡位方法](references/竞品分析与卡位方法.md)
+- [Coze Platform](https://coze.cn)
+- [OPC Platform](https://opc.cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, analysis, configuration]
+
+**Output Format:** [Markdown checklists, report templates, scoring tables, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill guidance; security evidence reports no executable code or hidden high-risk behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

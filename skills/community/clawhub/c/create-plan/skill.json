@@ -1,0 +1,23 @@
+{
+  "slug": "create-plan",
+  "title": "Create Plan",
+  "category": "work",
+  "summary": "Create concise implementation plans for coding, documentation, repository, or workflow tasks before changes are made.",
+  "keywords": [
+    "planning",
+    "implementation plan",
+    "technical plan",
+    "rollout plan"
+  ],
+  "user_needs": [
+    "plan a coding task before implementation",
+    "turn a broad request into ordered action items",
+    "separate scope, assumptions, risks, and validation",
+    "decide what to do next without changing files yet"
+  ],
+  "source_dir": "skills/work/create-plan",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

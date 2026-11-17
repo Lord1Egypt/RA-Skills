@@ -1,42 +1,54 @@
-## Description: <br>
-Governs software development execution hygiene by checking commit readiness, suggesting commit messages, updating progress logs, summarizing completed work, and tracking blockers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Progress Governor helps software development agents evaluate commit readiness, draft commit messages, append progress-log updates, summarize completed work, and track blockers.
 
-## Publisher: <br>
-[Majmunu](https://clawhub.ai/user/Majmunu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[majmunu](https://clawhub.ai/user/majmunu)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to keep implementation steps commit-ready, generate concise commit messages, append structured progress-log updates, and track blockers without expanding project scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Progress-log entries can include changed files, blockers, task status, commit details, and other project context. <br>
-Mitigation: Review generated progress-log entries before committing or sharing them, and avoid recording secrets or private customer data. <br>
-Risk: Commit-readiness guidance may be based on incomplete evidence when the user provides only a diff or summary. <br>
-Mitigation: Treat readiness as evidence-limited in those cases and verify the changed files, tests, and blockers before committing. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to keep AI-assisted implementation steps small, inspectable, and ready for disciplined commits. It supports commit-readiness checks, commit-message drafting, progress-log updates, blocker tracking, and next-step recommendations.
 
-## Reference(s): <br>
-- [Commit Guidelines](references/commit-guidelines.md) <br>
-- [Progress Log Template](references/progress-log-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Majmunu/dev-progress-governor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with commit-readiness, rationale, changed areas, suggested commit message, progress-log entry, and next-step sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a ready/not-ready decision, blockers, affected files or areas, and a single recommended next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Suggested progress-log entries or commit messages may not match a project's preferred path or convention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed log updates and commit messages before accepting them, and provide the desired log path or commit convention when it differs from the default.
+
+Risk: Commit-readiness decisions may be incomplete when the agent only receives a diff or summary instead of the full project state.
+
+Mitigation: Treat readiness decisions as based on the supplied evidence and provide missing context before committing when the scope is unclear.
+
+## Reference(s):
+
+- [Commit Guidelines](references/commit-guidelines.md)
+- [Progress Log Template](references/progress-log-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline commit-message and progress-log blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commit-readiness status, changed-area summaries, suggested commit messages, progress-log entries, blockers, and a single next step.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

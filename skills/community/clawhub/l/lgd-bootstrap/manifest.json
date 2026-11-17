@@ -1,0 +1,44 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "lgd-bootstrap",
+  "version": "1.1.0",
+  "author": "注册老炮 (MedXpert)",
+  "year": "2026",
+  "timestamp_utc": "2026-11-04T04:23:55.410888+00:00",
+  "timestamp_local": "2026-11-04T12:23:55.410919",
+  "package_fingerprint_sha256": "0dbce8027cb863272c9f80df48f92d5d53a434cf7af39d0e60e6ee72681f0fc6",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "d21cabb68fb923b7345f05bb47369181196e6849ad4f3f733677276c60e42e71"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "ef8df72f52142744bbd50a67cfb25945c660f9273097fa291a0bef76bbe03eff"
+    },
+    {
+      "path": "_build_report.txt",
+      "sha256": "8e33ecdf317a89ab560852af5f4a40934f9e4e58e0e934c7b450aaa42427e3ad"
+    },
+    {
+      "path": "_copyright_section.md",
+      "sha256": "f2f7f5294b62b0bc54bb38b355b2efb805ae47a109f261f6e94589bc5a043516"
+    },
+    {
+      "path": "build_bootstrap_pkg.py",
+      "sha256": "c4f7a038baab449e1bcbca468e3ce10d0376d2fb0b04676ad33cc25475121e50"
+    },
+    {
+      "path": "lgd-bootstrap-v1.1.0.zip",
+      "sha256": "347ee7b7750b3cfcf2ef05619aef2c06d1d1026c5a9dc4cc5bdd24042ef58f03"
+    },
+    {
+      "path": "lgd-bootstrap-v1.1.0.zip.sha256",
+      "sha256": "82d1999d0bc5667152d81563e109ecc17d5b5db1b597d56bbb56478f4a458e09"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "66db1e417359035c256a854b55643f2141c995048b6804d51e77355a13ae0bba"
+    }
+  ]
+}

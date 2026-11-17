@@ -1,43 +1,56 @@
-## Description: <br>
-基于100个热门TradingView Pine Script指标转换的Python技术分析工具集，提供专业的技术指标计算、分析和可视化功能(20260328V2) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users request technical indicator analysis, calculations, and visualization guidance based on a toolkit converted from popular TradingView Pine Script indicators.
 
-## Publisher: <br>
-[super-max21](https://clawhub.ai/user/super-max21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[super-max21](https://clawhub.ai/user/super-max21)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this OpenClaw skill to ask for TradingView-derived technical analysis over market data and receive calculated indicator analysis or visualization-oriented guidance. Because execution is delegated to a remote Prana service, users should avoid sending proprietary trading strategies, sensitive account data, or secrets unless that service is trusted.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prompts and user-provided trading context are sent to a remote Prana service.
+
+Mitigation: Use the skill only with a trusted remote service and do not submit proprietary strategies, sensitive account data, or other confidential information.
+
+Risk: The client handles API credentials and may fetch or write them to local configuration files.
+
+Mitigation: Prefer pre-provisioned narrowly scoped credentials, protect environment and config files, set PRANA_SKILL_NO_AUTO_API_KEY to prevent automatic key fetching when appropriate, and set PRANA_SKILL_SKIP_WRITE_API_KEY to avoid plaintext credential writes.
+
+Risk: Server security evidence marks this package suspicious because its visible technical-analysis helper behavior is implemented through a remote execution client.
+
+Mitigation: Review the package before installation, scan it before deployment, and run it only in environments where remote prompt handling and credential use are acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers can use this skill to request TradingView technical indicator analysis through a Prana-backed wrapper. It is intended for technical analysis assistance, not as a replacement for independent trading or investment review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, trading strategy details, and optional account, email, or phone values may be sent to a remote Prana service. <br>
-Mitigation: Use only in an environment where that data sharing is acceptable, and avoid sending sensitive trading or personal information. <br>
-Risk: Fetched API credentials may be written to local configuration files or global OpenClaw environment settings. <br>
-Mitigation: Prefer isolated test environments, disable automatic key fetching with PRANA_SKILL_NO_AUTO_API_KEY, and disable local key writes with PRANA_SKILL_SKIP_WRITE_API_KEY when possible. <br>
-Risk: The skill is advertised as a local TradingView analysis toolkit but delegates execution to a remote service. <br>
-Mitigation: Review the remote-service dependency and trust boundary before deployment, and validate outputs independently before using them for trading decisions. <br>
+**Output Format:** [JSON responses from the remote client and Markdown or plain-text guidance when returned by the remote skill]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/super-max21/zyz-skill-20260328t1) <br>
-- [Publisher profile](https://clawhub.ai/user/super-max21) <br>
+**Other Properties Related to Output:** [May include technical-analysis results, code snippets, setup commands, thread identifiers, or remote execution status depending on the Prana response.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON response from the Prana client; analysis text may appear in response content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Prana API credentials and may persist fetched API keys unless disabled.] <br>
+1.0.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

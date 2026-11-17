@@ -1,44 +1,67 @@
-## Description: <br>
-Helps agents use LinkFox-proxied TikTok Shop creator APIs to retrieve creator profiles, shop and showcase products, and manage shoppable video precheck, publishing, and status workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides LinkFox-proxied TikTok Shop creator data queries and shoppable-video operations, including creator profiles, shop and showcase products, content pre-checks, posting, and status checks.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-Commerce operators, creator-affiliate teams, and agents use this skill to inspect TikTok creator profile and product data, then run controlled shoppable video precheck, publish, and status workflows through LinkFox. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a LinkFox API key and a TikTok creator access token. <br>
-Mitigation: Provide credentials only through environment variables or explicit runtime parameters, mask tokens in outputs, and avoid placing secrets in prompts, feedback, or committed files. <br>
-Risk: The skill can initiate live TikTok creator workflows, including shoppable video publishing. <br>
-Mitigation: Manually confirm every publish and precheck request, verify the target creator account, product, file, title, and region before execution, and review upstream TikTok status responses. <br>
-Risk: Persisted response files may contain sensitive creator, product, pricing, or authorization-related data. <br>
-Mitigation: Write persisted responses outside repositories, read only the needed fields, and delete response files after use. <br>
+## Use Case:
 
+External developers and commerce operators use this skill to query TikTok Shop creator profile, shop product, and showcase product data, then guide supported shoppable-video pre-check, posting, and status workflows after a creator access token is available.
 
-## Reference(s): <br>
-- [TikTok Creator API Reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/linkfox-tiktok-creator) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell command invocations for bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist large API responses to local files for later field extraction; those files can contain sensitive creator, product, pricing, or authorization data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release and SKILL.md frontmatter) <br>
+Risk: The skill can handle creator access tokens, LinkFox API keys, and SMS login data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated environment, mask tokens in user-facing output, and remove shell-profile API keys when they are no longer needed.
+
+Risk: The onboarding flow can create paid plan orders and render payment information.
+
+Mitigation: Confirm billing intent, plan selection, and payment method explicitly before running order commands.
+
+Risk: Supported workflows may publish public shoppable videos or submit content for pre-check.
+
+Mitigation: Confirm publishing actions, target products, titles, and media inputs before invoking posting or pre-check calls.
+
+Risk: Complete API responses and cache entries may be written to local files.
+
+Mitigation: Clean up local response and cache files after use, especially when responses may contain creator or account data.
+
+Risk: The artifact describes automatic external feedback reporting for mismatches or quality issues.
+
+Mitigation: Avoid including secrets, creator tokens, personal data, or unnecessary business data in feedback reports.
+
+## Reference(s):
+
+- [TikTok Creator API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-tiktok-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses, with full responses saved as local JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Small responses are printed inline; larger responses are summarized and saved locally. The proxy script uses a 24-hour local cache for repeated parameter sets.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence, released 2026-08-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

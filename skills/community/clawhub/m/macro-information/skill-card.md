@@ -1,44 +1,58 @@
-## Description: <br>
-Macro-Information helps agents query FEEDAX-powered macroeconomic news and public-opinion data, including sentiment, event tags, heat scores, regions, and time-range filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Macro-Information queries macroeconomic news and public sentiment data across domestic and international topics, with filtering by sentiment, event tags, heat, and time range.
 
-## Publisher: <br>
-[longgggggg](https://clawhub.ai/user/longgggggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longgggggg](https://clawhub.ai/user/longgggggg)
 
-## Use Case: <br>
-Developers, analysts, and finance or policy research users use this skill to search domestic and international macroeconomic news, filter by topic, sentiment, recency, and heat, and generate summaries plus CSV and Markdown result files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security assessment flags unsafe API key handling and unclear credential instructions. <br>
-Mitigation: Use a scoped, revocable FEEDAX key through an environment variable or secret store, avoid pasting keys into chat, and review the credential flow before use. <br>
-Risk: Search output can reveal private research or business interests through generated files. <br>
-Mitigation: Use --no-output for sensitive searches or write results only to a controlled output directory. <br>
-Risk: The skill queries an HTTP endpoint and includes API key handling in request parameters. <br>
-Mitigation: Treat the endpoint as unsuitable for valuable credentials unless the transport and credential flow are reviewed and accepted. <br>
+## Use Case:
 
+External users, analysts, and agent operators use this skill to search recent macroeconomic news about topics such as GDP, CPI, central bank policy, trade, inflation, and financial markets. It supports domestic or international macro filters, sentiment filters, event tags, heat metrics, and time windows for macroeconomic monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/longgggggg/macro-information) <br>
-- [Publisher Profile](https://clawhub.ai/user/longgggggg) <br>
-- [FEEDAX](https://www.feedax.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, csv] <br>
-**Output Format:** [Terminal text with optional CSV and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FEEDAX API key and may write timestamped macro_information CSV and Markdown files unless output is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: API keys may be exposed through chat, local files, shell history, or printed environment/configuration contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped environment variable or secret store, do not paste API keys into chat, avoid --api-key in shell commands, and do not ask the agent to print .env or config files.
+
+Risk: The skill sends requests to the FEEDAX endpoint and depends on trust in that service.
+
+Mitigation: Review the endpoint and release before installing, and use the skill only when the FEEDAX service is trusted for the intended workflow.
+
+Risk: Default behavior can write timestamped CSV and Markdown result files containing query results.
+
+Mitigation: Use --no-output when local result files are not wanted, and choose an appropriate output directory when files are required.
+
+## Reference(s):
+
+- [ClawHub Macro-Information Skill Page](https://clawhub.ai/longgggggg/skills/macro-information)
+- [FEEDAX](https://www.feedax.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Terminal text with optional CSV and Markdown result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can suppress local output files with --no-output; default file outputs are timestamped macro_information CSV and Markdown files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

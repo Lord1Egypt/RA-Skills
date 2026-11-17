@@ -1,43 +1,58 @@
-## Description: <br>
-Interpret blockchain data strategically; identify patterns, anomalies, and flows with data-backed evidence and explicit uncertainty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret blockchain data strategically; identify patterns, anomalies, and flows with data-backed evidence and explicit uncertainty.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-External users and developers use this skill to analyze wallet, contract, and transaction activity, map fund flows, identify anomalies, and separate evidence-backed facts from hypotheses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide private keys, seed phrases, exchange credentials, signing access, or unnecessary financial context while requesting blockchain analysis. <br>
-Mitigation: Provide only public addresses, transaction hashes, chain, timeframe, and relevant labels; do not provide private keys, seed phrases, exchange credentials, signing access, or unnecessary financial context. <br>
-Risk: Analysis can be misleading if incomplete wallet, contract, transaction, chain, or timeframe data is treated as conclusive. <br>
-Mitigation: State missing inputs explicitly, distinguish facts from hypotheses, include confidence levels, and identify what evidence would change each conclusion. <br>
-Risk: Broad trigger phrases may activate the skill when a user did not intend to analyze sensitive blockchain activity. <br>
-Mitigation: Narrow trigger phrases during deployment if accidental activation is a concern. <br>
+## Use Case:
 
+Developers, analysts, and investigators use this skill to interpret wallet, contract, and transaction activity, map fund flows, identify anomalies, and separate evidence-backed facts from hypotheses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/onchain-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections for insights, risk signals, supported opportunities, hypotheses, and next checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires transaction hashes or transaction lists; should cite transaction hashes or block references when available and explicitly state missing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: skill.yml, SKILL.md frontmatter, and server release evidence) <br>
+Risk: Findings could be mistaken for definitive financial or compliance conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat conclusions as analytical hypotheses, require transaction-level evidence, and independently verify before financial or compliance decisions.
+
+Risk: Broad activation wording may apply the skill outside a concrete on-chain context.
+
+Mitigation: Use the skill only when the request includes blockchain context and transaction, wallet, contract, or chain evidence.
+
+Risk: Blockchain flow analysis could be misused for illicit activity or evasion.
+
+Mitigation: Decline requests that facilitate illicit activity or evasion and keep analysis limited to data-backed interpretation.
+
+## Reference(s):
+
+- [OnChain Analysis ClawHub Skill](https://clawhub.ai/mzfshark/skills/onchain-analysis)
+- [mzfshark Publisher Profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis with evidence-backed findings, risk signals, hypotheses, and next checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should cite transaction hashes or block references when available, distinguish facts from hypotheses, state missing data, and decline illicit or evasion-focused requests.]
+
+## Skill Version(s):
+
+2.0.0 (source: skill.yml, SKILL.md metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

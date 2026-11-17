@@ -1,42 +1,63 @@
-## Description: <br>
-Create a brand jingle (5-15 seconds) from a brand name and tone keywords for brand sound logos, audio identity, jingles, intro music, or short branded audio clips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create short brand jingles from a brand name, tone keywords, and campaign context.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External users and creative teams use this skill to turn brand names, tone keywords, and usage scenarios into short SenseAudio-generated jingles, instrumental variants, and spoken brand-name audio clips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand names, creative prompts, lyrics, tone keywords, and campaign details may be sent to SenseAudio. <br>
-Mitigation: Avoid confidential unreleased branding unless SenseAudio's terms and privacy handling are acceptable. <br>
-Risk: Generating multiple audio variants may consume SenseAudio API quota or paid usage. <br>
-Mitigation: Confirm the API key's quota and billing expectations before running generation steps. <br>
+## Use Case:
 
+External users and brand or marketing teams use this skill to turn a brand name, tone keywords, and intended placement into short audio-logo deliverables. It guides lyric drafting, music-style selection, vocal and instrumental generation, and a spoken brand-name read through SenseAudio.
 
-## Reference(s): <br>
-- [Jingle Forge on ClawHub](https://clawhub.ai/scikkk/jingle-forge) <br>
-- [SenseAudio](https://senseaudio.cn) <br>
-- [SenseAudio API Key](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and generated audio links or files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces vocal and instrumental jingle variants plus a brand-name MP3 when SenseAudio API calls succeed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Brand and campaign details are sent to SenseAudio during lyrics, music, and text-to-audio generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-confidential brand or campaign details that the user is willing to share with SenseAudio.
+
+Risk: Shell templates may handle raw user-provided brand text unsafely when building JSON request bodies.
+
+Mitigation: Rewrite request construction to serialize JSON with jq or another safe serializer before running the commands.
+
+Risk: Polling loops can run indefinitely if API tasks do not return a terminal status.
+
+Mitigation: Add bounded polling timeouts and clear failure handling before execution.
+
+Risk: Security evidence marks the release suspicious.
+
+Mitigation: Review the skill before installing or running it, especially the external API calls and shell snippets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scikkk/skills/jingle-forge)
+- [SenseAudio Homepage](https://senseaudio.cn)
+- [SenseAudio API Key Page](https://senseaudio.cn/platform/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks, generated audio URLs, and an MP3 file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY and the curl, jq, and xxd command-line tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

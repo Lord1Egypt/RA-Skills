@@ -1,37 +1,56 @@
-## Description: <br>
-Fetches web page content and Google search result pages through Jina AI Reader using curl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches web page content through Jina AI's r.jina.ai service, including arbitrary URLs and Google search result pages.
 
-## Publisher: <br>
-[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public web page text or search result pages through Jina AI Reader when direct access is limited. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Target URLs, query strings, search terms, and fetched page content are sent to Jina AI. <br>
-Mitigation: Avoid localhost, private intranet hosts, cloud metadata endpoints, authenticated pages, and URLs containing secrets or tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xaiohuangningde/jina-web-fetcher) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch public webpage text through Jina AI with curl commands, including search result pages and example public sites.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl examples that send requested URLs and query strings to Jina AI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Requested URLs, search terms, and retrieved public page content are sent to Jina AI.
+
+Mitigation: Use the skill only for public, non-sensitive pages and search terms where third-party processing is acceptable.
+
+Risk: URLs can contain secrets or sensitive query parameters.
+
+Mitigation: Do not use private intranet links, authenticated pages, confidential documents, regulated data, or URLs containing tokens, credentials, or sensitive parameters.
+
+Risk: Google result fetching through r.jina.ai may still be blocked when Google access is restricted.
+
+Mitigation: Treat search-result fetching as best effort and verify important retrieved content from an authoritative source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/skills/jina-web-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; fetched content is returned as text from r.jina.ai.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sending requested URLs and search terms to Jina AI; no API key or credential variable is indicated by the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

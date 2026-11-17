@@ -4,45 +4,36 @@ Use this skill to construct a `taste.md` file that captures the user's podcast t
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
-2. Collect the user's subscriptions and recent listening activity using the CLI.
-3. Ask a small set of clarifying questions to fill in things the CLI cannot infer.
+1. Verify the Podwise MCP connection.
+2. Collect the user's subscriptions and recent listening activity using the MCP tools.
+3. Ask a small set of clarifying questions to fill in things the data cannot infer.
 4. Write a `taste.md` file to the working directory.
 5. Confirm where the file was saved and tell the user which skills will use it.
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+## Step 2: Gather Data
 
-## Step 2: Gather Data from the CLI
+Call these tools to collect raw material for the taste profile:
 
-Run these commands to collect raw material for the taste profile:
+- `list_followed_podcasts` with `days: 30` — the user's subscriptions (shows with recent activity as a proxy for the follow list).
+- `list_my_episodes` with `type: "played"`, `pageSize: 50` — real listening behaviour (primary engagement signal).
+- `list_my_episodes` with `type: "read"`, `pageSize: 50` — reading/exploration behaviour beyond regular listens.
 
-```bash
-# All podcasts the user follows (podcasts with recent updates as proxy for subscription list)
-podwise list podcasts --json --latest 30
+Parse the results to extract:
 
-# Real listening behaviour (primary signal for engagement)
-podwise history listened --json --limit 100
+- Podcast names, categories, and languages (from `list_followed_podcasts`)
+- Which shows appear most frequently in listened episodes (strong engagement)
+- Which shows are followed but never appear in history (low engagement — candidates for Deprioritize)
+- Episode titles and topics from read episodes to understand what the user explores beyond their regular listens
 
-# Read activity (exploration behaviour beyond regular listens)
-podwise history read --json --limit 100
-```
-
-Parse the output to extract:
-- Podcast names, categories, and languages (from `list podcasts`)
-- Which shows appear most frequently in `history listened` (signals strong engagement)
-- Which shows are subscribed but never appear in history (signals low engagement — candidates for Deprioritize)
-- Episode titles and topics from `history read` to understand what the user explores beyond their regular listens
+If the user has many episodes, paginate with `page` until you have enough signal (a few hundred entries is plenty).
 
 ## Step 3: Ask Clarifying Questions
 
-The CLI data shows *what* the user subscribes to but not *why* or *how* they listen. Ask the following questions — all at once in a single message, not one by one:
+The data shows *what* the user subscribes to but not *why* or *how* they listen. Ask the following questions — all at once in a single message, not one by one:
 
 1. **Topics you care about most**: Of the podcasts you follow, which topics or themes matter most to you right now? (e.g. AI, investing, language learning, startup building)
 2. **Shows you actually listen to**: Are there shows you follow but rarely listen to, and shows you never miss? If so, which ones?
@@ -53,7 +44,7 @@ The CLI data shows *what* the user subscribes to but not *why* or *how* they lis
 
 ## Step 4: Write taste.md
 
-Synthesize the CLI data and the user's answers into a structured file. Save it as `taste.md` in the current working directory unless the user specifies another path.
+Synthesize the data and the user's answers into a structured file. Save it as `taste.md` in the current working directory unless the user specifies another path.
 
 Use this template:
 
@@ -105,13 +96,13 @@ After writing the file:
 
 1. Print the full path where `taste.md` was saved.
 2. Show the user a brief summary of what was captured: number of subscribed shows, core interest areas, and PKM tool detected.
-3. Tell the user which skills will read this file automatically: `podwise-catch-up`, `podwise-weekly-recap`, `podwise-discover`, `podwise-topic-research`, and `podwise-episode-debate`.
+3. Tell the user which skills will read this file automatically: `catch-up`, `weekly-recap`, `discover`, `topic-research`, `episode-debate`, `episode-notes`, and `language-learning`.
 4. Suggest re-running this skill if their listening habits change significantly.
 
 ## Common Failure Cases
 
-- If `podwise list podcasts` returns an empty list, the user has no subscriptions yet. Ask them to follow at least a few podcasts in Podwise before running this skill.
-- If the user skips the clarifying questions, write the taste profile from CLI data alone and mark skipped fields as `unknown`.
+- If `list_followed_podcasts` returns an empty list, the user has no subscriptions yet. Ask them to follow at least a few podcasts in Podwise before running this skill.
+- If the user skips the clarifying questions, write the taste profile from the data alone and mark skipped fields as `unknown`.
 - If `taste.md` already exists, ask whether to overwrite or append before writing.
 
 ## Output Contract

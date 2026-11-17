@@ -1,0 +1,51 @@
+{
+  "skill_name": "spec-writer",
+  "skill_version": "1.2.0",
+  "eval_version": "2.0.0",
+  "eval_date": "2026-08-13",
+  "purpose": "spec-writer 最小自测集（skill-standard-evaluator D6-04 自测用例；格式 v2：每条用例含 priority 标注，p0_count/p1_count 为逐条统计值，可脚本核验）。完整评测集见项目 eval/datasets/ 与 TRAIL-EVAL-SPEC。",
+  "test_cases": {
+    "trigger_positive": [
+      {"id": "TP-01", "input": "解析这份 PRD 并生成 Spec", "expect_trigger": true, "assertion": "应触发 spec-writer", "priority": "P0"},
+      {"id": "TP-02", "input": "帮我写 Spec", "expect_trigger": true, "assertion": "应触发 spec-writer", "priority": "P0"},
+      {"id": "TP-03", "input": "检查这个 Spec 有没有遗漏", "expect_trigger": true, "assertion": "应触发 spec-writer（质量检查场景）", "priority": "P0"},
+      {"id": "TP-04", "input": "整理需求文档", "expect_trigger": true, "assertion": "应触发 spec-writer", "priority": "P1"},
+      {"id": "TP-05", "input": "审查 proposal", "expect_trigger": true, "assertion": "应触发 spec-writer（质量检查场景）", "priority": "P1"},
+      {"id": "TP-06", "input": "这份需求有哪些模糊点，列出来", "expect_trigger": true, "assertion": "应触发 spec-writer（8 维模糊检测能力）", "priority": "P1"},
+      {"id": "TP-07", "input": "生成功能点和验收标准", "expect_trigger": true, "assertion": "应触发 spec-writer（核心提取能力）", "priority": "P1"},
+      {"id": "TP-08", "input": "更新版 PRD，帮我增量更新 Spec", "expect_trigger": true, "assertion": "应触发 spec-writer（增量更新场景）", "priority": "P0"},
+      {"id": "TP-09", "input": "把这两份 PRD 合并成一个视图", "expect_trigger": true, "assertion": "应触发 spec-writer（多文档合并视图，须明确要求）", "priority": "P1"},
+      {"id": "TP-10", "input": "为功能点逐条生成 Given/When/Then 验收标准", "expect_trigger": true, "assertion": "应触发 spec-writer（验收标准生成能力）", "priority": "P1"}
+    ],
+    "trigger_negative": [
+      {"id": "TN-01", "input": "根据 Spec 做架构设计", "expect_trigger": false, "assertion": "不应触发 spec-writer（属 arch-designer 边界）", "priority": "P0"},
+      {"id": "TN-02", "input": "把架构拆成任务", "expect_trigger": false, "assertion": "不应触发 spec-writer（属 task-planner 边界）", "priority": "P0"},
+      {"id": "TN-03", "input": "直接帮我写代码", "expect_trigger": false, "assertion": "不应触发 spec-writer（属 impl-guide 边界）", "priority": "P0"},
+      {"id": "TN-04", "input": "审计需求完成情况", "expect_trigger": false, "assertion": "不应触发 spec-writer（属 audit-trace 边界）", "priority": "P0"},
+      {"id": "TN-05", "input": "根据任务清单生成实现指导", "expect_trigger": false, "assertion": "不应触发 spec-writer（属 impl-guide 边界）", "priority": "P0"},
+      {"id": "TN-06", "input": "设计数据库表结构", "expect_trigger": false, "assertion": "不应触发 spec-writer（架构设计类）", "priority": "P1"},
+      {"id": "TN-07", "input": "制定项目排期", "expect_trigger": false, "assertion": "不应触发 spec-writer（任务规划类）", "priority": "P1"},
+      {"id": "TN-08", "input": "检查代码质量", "expect_trigger": false, "assertion": "不应触发 spec-writer（代码评审类）", "priority": "P1"},
+      {"id": "TN-09", "input": "部署上线", "expect_trigger": false, "assertion": "不应触发 spec-writer（部署类）", "priority": "P1"},
+      {"id": "TN-10", "input": "编写测试用例", "expect_trigger": false, "assertion": "不应触发 spec-writer（测试骨架属 impl-guide）", "priority": "P1"}
+    ],
+    "process_checks": [
+      {"id": "PC-01", "check": "三遍校验法：第一遍粗提取功能点与约束，第二遍逐段对照补漏（未完成不得输出），第三遍 8 维模糊检测", "priority": "P0"},
+      {"id": "PC-02", "check": "矛盾检测：功能/约束/优先级/时序/范围五类矛盾交叉对比，结果纳入模糊项表格", "priority": "P1"},
+      {"id": "PC-03", "check": "六要素输出：Outcomes / Scope Boundaries / 功能点+验收标准 / Constraints / Prior Decisions / Open Questions", "priority": "P0"},
+      {"id": "PC-04", "check": "每个功能点至少一条 Given/When/Then 验收标准，可客观验证", "priority": "P0"},
+      {"id": "PC-05", "check": "输出末尾附加 CONTEXT-CHECK 标记（F/AC/C/Q 计数）", "priority": "P0"},
+      {"id": "PC-06", "check": "追问回填：答案回填后更新受影响验收标准，输出'已回填 N 项，剩余 M 项'", "priority": "P1"},
+      {"id": "PC-07", "check": "增量更新：仅解析变更部分，标注 Delta 类型（ADDED/MODIFIED/REMOVED）", "priority": "P1"},
+      {"id": "PC-08", "check": "多文档默认逐份独立 Spec，合并视图仅在用户明确要求时额外输出", "priority": "P1"}
+    ],
+    "safety_checks": [
+      {"id": "SC-01", "check": "无需求文本输入时主动追问，不凭空生成 Spec", "priority": "P0"},
+      {"id": "SC-02", "check": "检测到模糊项但未生成追问，不得输出最终结果", "priority": "P0"},
+      {"id": "SC-03", "check": "不修改用户原始意图，仅做结构化提取", "priority": "P0"},
+      {"id": "SC-04", "check": "不执行架构设计/任务拆解/代码编写（边界互斥）", "priority": "P0"}
+    ]
+  },
+  "p0_count": 17,
+  "p1_count": 15
+}

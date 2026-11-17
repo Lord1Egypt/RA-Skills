@@ -1,0 +1,159 @@
+{
+  "pipeline_type": "PL-HOTSPOT",
+  "version": "1.0.0",
+  "description": "热点驱动内容生成管道",
+  "steps": [
+    {
+      "name": "热点获取",
+      "tool": "dailyhot-mcp",
+      "action": "get_hot_list",
+      "params": {}
+    },
+    {
+      "name": "选品方向",
+      "tool": "content-research-mcp",
+      "action": "generate_topic_suggestions",
+      "params": {
+        "focus": "hot_trend"
+      }
+    },
+    {
+      "name": "竞品采集",
+      "tool": "media-crawler-mcp",
+      "action": "search_posts",
+      "params": {
+        "platform": "xiaohongshu",
+        "keyword": "${prev_output.topic}"
+      }
+    },
+    {
+      "name": "选品分析",
+      "tool": "content-research-mcp",
+      "action": "search_wechat_articles",
+      "params": {},
+      "description": "待unified-product-ops exec脚本命名修正后迁移至unified-product-ops/analyze"
+    },
+    {
+      "name": "商品参数生成",
+      "tool": "content-template",
+      "action": "generate",
+      "params": {
+        "template_type": "product_hot"
+      }
+    },
+    {
+      "name": "品牌特质注入",
+      "tool": "agency-portal-mcp",
+      "action": "portal_get_tenant_brand_profile",
+      "params": {}
+    },
+    {
+      "name": "人设特质注入",
+      "tool": "pps-mcp",
+      "action": "get_persona_profile",
+      "params": {}
+    },
+    {
+      "name": "写作风格应用",
+      "tool": "agency-portal-mcp",
+      "action": "portal_get_tenant_style",
+      "params": {}
+    },
+    {
+      "name": "营销注入",
+      "tool": "market-copywriter",
+      "action": "adapt_platform",
+      "params": {
+        "platform": "${platform}"
+      }
+    },
+    {
+      "name": "SEO优化",
+      "tool": "seo-optimizer",
+      "action": "optimize",
+      "params": {
+        "content": "${prev_output.content}"
+      }
+    },
+    {
+      "name": "GEO优化",
+      "tool": "geo-content-optimizer",
+      "action": "optimize",
+      "params": {
+        "content": "${prev_output.content}"
+      }
+    },
+    {
+      "name": "防查重检测",
+      "tool": "content-rewriter",
+      "action": "detect",
+      "params": {
+        "content": "${prev_output.content}",
+        "platform": "${platform}"
+      }
+    },
+    {
+      "name": "内容质量评分",
+      "tool": "content-calibrator",
+      "action": "score",
+      "params": {
+        "content": "${prev_output.content}",
+        "platform": "${platform}"
+      }
+    },
+    {
+      "name": "内容审核",
+      "tool": "sensitive-word-mcp",
+      "action": "check_sensitive_words",
+      "params": {
+        "text": "${prev_output.content}"
+      }
+    },
+    {
+      "name": "AI声明注入",
+      "tool": "inline",
+      "action": "inject_ai_declaration",
+      "params": {}
+    },
+    {
+      "name": "合规风控(U19)",
+      "tool": "content-qa-guard",
+      "action": "check",
+      "params": {}
+    },
+    {
+      "name": "平台排版适配",
+      "tool": "content-formatter",
+      "action": "format",
+      "params": {
+        "content": "${prev_output.content}",
+        "platform": "${platform}",
+        "format_level": "auto"
+      }
+    },
+    {
+      "name": "闲鱼商品发布",
+      "tool": "fishclaw-mcp",
+      "action": "publish_item",
+      "params": {
+        "title": "${prev_output.title}",
+        "account_id": "default"
+      }
+    },
+    {
+      "name": "多平台内容分发",
+      "tool": "content-publisher",
+      "action": "publish_content",
+      "params": {}
+    },
+    {
+      "name": "发布反馈(U13)",
+      "tool": "self-growth",
+      "action": "learn",
+      "params": {
+        "category": "publish_feedback",
+        "importance": 5
+      }
+    }
+  ]
+}

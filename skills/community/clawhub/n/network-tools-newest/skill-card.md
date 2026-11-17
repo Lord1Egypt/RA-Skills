@@ -1,43 +1,60 @@
-## Description: <br>
-Network Tools provides AgentPMT-hosted utilities for IPv4 conversion, subnet and CIDR calculations, MAC address formatting, port validation, DNS lookups, reverse DNS, IP classification, and IPv6 generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network Tools provides AgentPMT-hosted network utilities for IP conversion and validation, subnet and CIDR calculations, MAC formatting, port lookup, DNS resolution, private IP detection, and related network analysis tasks.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, network administrators, and security analysts use this skill to call AgentPMT-hosted network utilities for subnet planning, IP conversion, DNS resolution, and address classification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote network-utility calls may send hostnames, IP addresses, or investigative targets to AgentPMT. <br>
-Mitigation: Avoid submitting private customer hostnames, internal domains, private IP ranges, MAC addresses, or investigative targets unless external processing by AgentPMT is approved. <br>
-Risk: Account, wallet, or payment credentials may be exposed if placed in prompts or logs. <br>
-Mitigation: Handle account, wallet, and payment credentials only through the referenced setup flow, not in prompts or logs. <br>
+## Use Case:
 
+Developers, network administrators, security analysts, and infrastructure engineers use this skill to perform network calculations, address conversions, DNS lookups, port classification, and IP range checks through AgentPMT-hosted tool calls.
 
-## Reference(s): <br>
-- [Network Tools schema](./schema.md) <br>
-- [Network Tools marketplace page](https://www.agentpmt.com/marketplace/network-tools) <br>
-- [Network Tools ClawHub page](https://clawhub.ai/agentpmt/network-tools-newest) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT calls; input values are strings unless an action declares no input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Network inputs such as internal hostnames, private CIDRs, MAC addresses, customer IPs, or topology details may be sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum input needed, avoid sensitive internal topology unless sharing with AgentPMT is intended, and review enterprise or incident-response use before installation.
+
+Risk: The skill references setup-install commands that may be unpinned.
+
+Mitigation: Prefer pinned and verified setup paths, and review installation sources before deploying the skill.
+
+Risk: Actions consume AgentPMT account credits.
+
+Mitigation: Confirm expected cost and account authorization before running repeated lookups or automation.
+
+## Reference(s):
+
+- [Network Tools marketplace page](https://www.agentpmt.com/marketplace/network-tools)
+- [Network Tools ClawHub page](https://clawhub.ai/agentpmt/skills/network-tools-newest)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown instructions with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines 15 AgentPMT network utility actions; most actions take string parameters and return JSON results from remote tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

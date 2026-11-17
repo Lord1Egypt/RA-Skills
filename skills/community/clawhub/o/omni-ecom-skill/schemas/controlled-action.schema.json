@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/controlled-action-2.0.json",
+  "title": "Omni E-commerce Controlled Action Request",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "action_id", "run_id", "client_scope", "platform", "account_id", "store_id", "operation", "target", "changes", "idempotency_key"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "controlled_action_request"},
+    "contract_name": {"const": "omni-ecom.controlled-action"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.controlled-action@1.0"], "current_execution_authority": false}},
+    "action_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "client_scope": {"type": "string", "minLength": 1},
+    "platform": {"type": "string", "minLength": 1},
+    "account_id": {"type": "string", "minLength": 1},
+    "store_id": {"type": "string", "minLength": 1},
+    "operation": {"type": "string", "minLength": 1},
+    "target": {"type": "object"},
+    "changes": {"type": "object", "minProperties": 1},
+    "idempotency_key": {"type": "string", "minLength": 1}
+  }
+}

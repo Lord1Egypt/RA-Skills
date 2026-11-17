@@ -1,39 +1,54 @@
-## Description: <br>
-Configure and benchmark agent tools and integration patterns. Use when setting up agent workflows, comparing tools, or evaluating agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and benchmark agent tools and integration patterns. Use when setting up agent workflows, comparing tools, or evaluating agents.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Agent Toolkit to log, search, summarize, and export notes while configuring, benchmarking, comparing, evaluating, and optimizing agent tools and integration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local plaintext records of agent-tool notes, which may expose secrets, private prompts, customer data, or confidential business metrics if users log them. <br>
-Mitigation: Do not enter sensitive information, and periodically review or delete ~/.local/share/agent-toolkit and generated export files. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure, log, benchmark, compare, evaluate, and report on agent tools and integration patterns across local workflows.
 
-## Reference(s): <br>
-- [Agent Toolkit on ClawHub](https://clawhub.ai/xueyetianya/agent-toolkit) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration, Guidance] <br>
-**Output Format:** [Plain text stdout plus JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped plaintext logs and export files under ~/.local/share/agent-toolkit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill stores user-entered agent workflow notes in local plaintext logs and export files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering API keys, tokens, passwords, confidential prompts, regulated data, or security incident details; treat the data directory and exports as sensitive.
+
+Risk: CSV exports can contain unescaped user-provided values that may be unsafe to open directly in spreadsheet software.
+
+Mitigation: Review or sanitize CSV values before opening exports in spreadsheet tools, especially values that begin with formula characters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/agent-toolkit)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Plain text and Markdown-style terminal output; optional JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local plaintext logs and export files under ~/.local/share/agent-toolkit/.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata; artifact frontmatter reports 2.0.1 and script output reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

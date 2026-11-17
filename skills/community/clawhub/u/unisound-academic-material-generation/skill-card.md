@@ -1,46 +1,67 @@
-## Description: <br>
-Generates structured academic medical affairs draft materials for pharmaceutical use cases from a topic, audience, key messages, evidence points, and references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured academic material drafts for pharmaceutical medical-affairs work from a material type, topic, audience, key messages, evidence points, and references.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Medical affairs teams and developers use this skill to create academic medical draft materials that can be reviewed by medical, compliance, and subject-matter experts before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical or pharmaceutical documents may be sent to the documented remote medical AI API. <br>
-Mitigation: Use only documents permitted for that provider, redact patient-identifying and confidential business details where possible, and verify the provider's privacy and retention terms. <br>
-Risk: Local document conversion and OCR can process complex files before generation. <br>
-Mitigation: Run conversion in a sandbox with patched, pinned tools and resource limits; prefer structured JSON input when possible. <br>
-Risk: AI-generated medical affairs drafts may be mistaken for clinical advice, promotional claims, or regulatory submission material. <br>
-Mitigation: Require medical, compliance, and subject-matter expert review before use and keep outputs within academic draft boundaries. <br>
-Risk: The appkey is a sensitive credential required for generation. <br>
-Mitigation: Pass the appkey through the execution environment or secret handling path and avoid storing it in input files, output files, prepared artifacts, or logs. <br>
+## Use Case:
 
+External developers and pharmaceutical medical-affairs teams use this skill to create first-draft academic materials for clinical or scientific audiences. The output is intended for review by medical, compliance, and subject-matter experts before use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unisound-llm/unisound-academic-material-generation) <br>
-- [Scientific Writing source skill](https://agent-skills.md/skills/ovachiever/droid-tings/scientific-writing) <br>
-- [Remote medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [UTF-8 JSON with structured data and Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey for remote medical LLM generation; supports JSON, CSV, Excel, text, PDF, Word, and image inputs through preprocessing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill conditionally runs preprocessing code from outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after manual review of the skill and the runtime _shared/doc-preprocess location.
+
+Risk: Submitted inputs are sent to the configured remote medical-model API.
+
+Mitigation: Do not submit PHI, confidential strategy, or regulated data unless the organization has approved that API flow.
+
+Risk: Document conversion and OCR for untrusted files can increase execution risk.
+
+Mitigation: Run document preprocessing in a sandboxed environment and limit optional converters or OCR tools to trusted inputs.
+
+Risk: Generated medical-affairs drafts may be mistaken for final reviewed materials.
+
+Mitigation: Require medical, compliance, and subject-matter expert review before publication or operational use.
+
+Risk: Long-lived API keys may be exposed when passed directly in shell commands.
+
+Mitigation: Use approved secret handling and short-lived credentials where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-academic-material-generation)
+- [Referenced Scientific Writing skill](https://agent-skills.md/skills/ovachiever/droid-tings/scientific-writing)
+- [Configured remote medical-model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json]
+
+**Output Format:** [UTF-8 JSON object with structured data and generated Markdown text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated medical-affairs content is a draft and requires expert review before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

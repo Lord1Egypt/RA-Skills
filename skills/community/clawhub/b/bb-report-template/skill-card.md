@@ -1,45 +1,56 @@
-## Description: <br>
-Generate professional bug bounty reports for HackerOne, Bugcrowd, and other platforms with pre-filled templates, CWE mapping, reproduction steps, and severity assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional bug bounty reports for HackerOne, Bugcrowd, and other platforms with pre-filled templates, CWE mapping, reproduction steps, and severity assessment.
 
-## Publisher: <br>
-[hostilespider](https://clawhub.ai/user/hostilespider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hostilespider](https://clawhub.ai/user/hostilespider)
 
-## Use Case: <br>
-Security researchers and bug bounty hunters use this skill to draft structured vulnerability reports for HackerOne, Bugcrowd, or generic disclosure workflows. It helps assemble report sections for summary, reproduction, proof of concept, impact, remediation, CWE mapping, and severity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include incomplete placeholders or inaccurate vulnerability details if submitted without review. <br>
-Mitigation: Review and complete the generated report before submitting it to a bug bounty program. <br>
-Risk: Examples or proof-of-concept sections may accidentally include real secrets or sensitive tokens. <br>
-Mitigation: Use redacted sample values and remove secrets from report examples before sharing. <br>
-Risk: Using an existing output path can overwrite a local file. <br>
-Mitigation: Choose the output path carefully and confirm it is safe to replace before running with --output. <br>
+## Use Case:
 
+Security researchers and developers use this skill to generate structured bug bounty report drafts for HackerOne, Bugcrowd, or generic submission workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hostilespider/bb-report-template) <br>
-- [Publisher Profile](https://clawhub.ai/user/hostilespider) <br>
-- [MITRE CWE](https://cwe.mitre.org/) <br>
-- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown report text, printed to stdout or written to a user-selected file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated report content includes placeholders that must be completed and reviewed before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: A user-specified output path may overwrite an existing file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a new report path or confirm the destination before using --output.
+
+Risk: Generated reports contain placeholders and severity guidance that may be incomplete for a real finding.
+
+Mitigation: Review and customize reproduction steps, impact, evidence, remediation, CWE, and severity before submission.
+
+## Reference(s):
+
+- [Bug Bounty Report Template on ClawHub](https://clawhub.ai/hostilespider/skills/bb-report-template)
+- [Publisher profile: hostilespider](https://clawhub.ai/user/hostilespider)
+- [MITRE CWE](https://cwe.mitre.org/)
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown report text written to stdout or a user-specified file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; generated reports include editable placeholders for evidence, impact, remediation, and submission checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

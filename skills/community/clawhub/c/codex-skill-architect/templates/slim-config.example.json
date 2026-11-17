@@ -1,0 +1,10 @@
+{
+  "sections": [
+    {
+      "start": "## Big Section",
+      "end": "## Next Section",
+      "output": "packs/big-section/SKILL.md",
+      "replace_marker": "## 已外移说明\n\n内容已外移。"
+    }
+  ]
+}

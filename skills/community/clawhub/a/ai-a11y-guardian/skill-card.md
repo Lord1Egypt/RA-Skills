@@ -1,41 +1,54 @@
-## Description: <br>
-AI辅助无障碍合规守护者，可自动化检测网页和移动端 H5 的无障碍问题，生成修复建议并出具合规报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI辅助无障碍合规守护者 — 自动化检测网页/移动端H5的无障碍问题，生成修复建议并出具合规报告
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers, QA teams, accessibility reviewers, and compliance teams use this skill to scan web or H5 experiences against WCAG-oriented checks and produce issue lists, repair guidance, and shareable compliance report cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may render pages, execute JavaScript, capture screenshots, and extract DOM content for analysis. <br>
-Mitigation: Use it only on authorized public pages, test pages, or redacted HTML, and confirm authorization before scanning login-protected, internal, regulated, or customer-data pages. <br>
-Risk: Accessibility findings are generated from screenshots, DOM structure, and AI analysis, so they may not fully replace manual assistive-technology testing. <br>
-Mitigation: Review generated findings before treating them as compliance evidence, and validate important flows with human review and relevant screen-reader or keyboard testing. <br>
+## Use Case:
 
+Developers, accessibility testers, and compliance teams use this skill to audit Web and mobile H5 pages against WCAG 2.1/2.2 and generate structured findings, repair guidance, and compliance report cards.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zlszhonglongshen/ai-a11y-guardian) <br>
-- [Publisher Profile](https://clawhub.ai/user/zlszhonglongshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown issue reports with structured findings, repair snippets, and generated report card files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include screenshots, DOM-derived findings, severity ratings, WCAG references, accessibility scores, and visual compliance cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow opens supplied pages in Chromium, executes page JavaScript, and captures rendered DOM, screenshots, and iframe content for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on approved public or authorized pages, and avoid private, authenticated, internal, regulated, or secret-bearing pages unless data handling has been approved.
+
+Risk: AI-generated WCAG findings and repair snippets may miss issues or produce guidance that still needs validation.
+
+Mitigation: Treat the report as an accessibility triage aid and verify important findings with manual review and assistive-technology testing before relying on it for formal compliance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-a11y-guardian)
+- [ClawHub publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance, files]
+
+**Output Format:** [Markdown or structured text with accessibility findings, WCAG references, repair snippets, and optional report card image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity ratings, accessibility scores, affected page context, and generated compliance summary cards.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

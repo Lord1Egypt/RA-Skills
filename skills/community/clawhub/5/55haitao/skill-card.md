@@ -1,37 +1,52 @@
-## Description: <br>
-55海淘中国最大海淘返利平台工具，覆盖数千海外商家，为中国用户提供海淘购物现金返利和优惠信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+55海淘返利助手 helps Chinese overseas-shopping users find cashback and coupon information for merchants such as Amazon, iHerb, 6PM, and Nordstrom.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers, especially Chinese overseas-shopping users, use this skill to ask an agent for cashback rates, coupon information, cashback links, and estimated RMB rebates for overseas merchants.
+
+### Deployment Geography for Use:
+
+Global; content and examples are focused on Chinese overseas-shopping users.
+
+## Known Risks and Mitigations:
+
+Risk: Broad shopping trigger phrases may cause general overseas-shopping questions to receive cashback-oriented output, including referral or cashback links.
+
+Mitigation: Confirm that the user wants cashback assistance before prioritizing cashback links, and clearly label cashback or referral links when provided.
+
+Risk: Cashback rates, coupon codes, and withdrawal terms can change after the skill response is generated.
+
+Mitigation: Tell users to verify current rates, coupon validity, and purchase terms on the relevant merchant or cashback platform before buying.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Chinese-language shoppers and shopping assistants use this skill to summarize 55haitao cashback, coupon, merchant, rebate-link, and estimated RMB rebate information for overseas purchases. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global; intended for Chinese-language shoppers. <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cashback rates, coupon validity, merchant URLs, withdrawal terms, or affiliate and referral status may be inaccurate or outdated. <br>
-Mitigation: Verify merchant URLs, rebate rates, coupon validity, withdrawal terms, and affiliate or referral links before using the generated shopping information. <br>
+**Output Format:** [Markdown-formatted Chinese shopping assistance response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Structured response fields include merchant, cashback rate, coupon, cashback link, and estimated RMB rebate.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style cashback query summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes merchant name, rebate rate, coupon details, rebate link, and estimated RMB rebate fields.] <br>
+0.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-UK Companies House CLI - search companies, profiles, officers, filings, PSC, charges, insolvency, and agent-friendly JSON output aligned with rail-cli and tfl-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UK Companies House CLI for searching companies, profiles, officers, filings, PSC, charges, insolvency, and producing agent-friendly JSON output.
 
-## Publisher: <br>
-[shan8851](https://clawhub.ai/user/shan8851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shan8851](https://clawhub.ai/user/shan8851)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to query public UK Companies House records through the `ch` CLI. It supports company search, profiles, officers, filings, PSC records, charges, insolvency checks, and stable JSON envelopes for downstream parsing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party npm CLI and a Companies House API key. <br>
-Mitigation: Install only if the npm package publisher is trusted, use a dedicated Companies House API key, and keep the key out of logs and shared shells. <br>
-Risk: Lookup queries could include secrets or unrelated sensitive personal information. <br>
-Mitigation: Limit queries to the public registry information needed for the task and avoid submitting secrets or unrelated sensitive data. <br>
-Risk: Broad person searches and all-page retrieval can fan out requests and consume API quota. <br>
-Mitigation: Use pagination controls and `--match-limit` for broad names, and account for the Companies House rate limit. <br>
+## Use Case:
 
+Developers, agents, and analysts use this skill to install and operate the ch CLI for UK Companies House lookups, including company search, profiles, officers, filings, PSC records, charges, and insolvency checks. It is useful when an agent needs stable text or JSON envelopes for downstream parsing.
 
-## Reference(s): <br>
-- [companies-house-cli homepage](https://ch-cli.xyz) <br>
-- [Companies House developer portal](https://developer.company-information.service.gov.uk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI responses are text or JSON envelopes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `ch` CLI and a Companies House API key; JSON success and error envelopes include ok, schemaVersion, command, requestedAt, and data or error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: release evidence) <br>
+Risk: The skill asks users to install a third-party npm CLI before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the @shan8851/companies-house-cli package version before installing it in environments that allow third-party packages.
+
+Risk: The skill requires COMPANIES_HOUSE_API_KEY for live API calls.
+
+Mitigation: Scope the key to the execution environment, keep any .env file out of version control, and rotate the key if exposure is suspected.
+
+Risk: Broad person searches can fan out into multiple appointment requests and increase API usage.
+
+Mitigation: Use --match-limit for broad names and avoid combining pagination choices that the CLI marks as incompatible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shan8851/skills/companies-house-cli)
+- [Skill homepage](https://ch-cli.xyz)
+- [Companies House developer portal](https://developer.company-information.service.gov.uk/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; the CLI itself returns text or JSON envelopes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ch binary and COMPANIES_HOUSE_API_KEY for live Companies House API calls.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Preflight Prisma migration state before deploy; fails fast on drift, failed migrations, missing DB URLs, or unapplied migration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Preflight Prisma migration state before deploy; fails fast on drift, failed migrations, missing DB URLs, or unapplied migration files.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and release engineers use this skill before CI release steps or deployments to check that Prisma migration state is healthy before deploy or startup migration steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured database URL could point to the wrong environment when used as a deploy gate. <br>
-Mitigation: Verify the selected environment variable and target database before enabling this check in CI or deployment workflows. <br>
-Risk: The Prisma CLI invoked through npx can vary if the project or CI environment does not pin dependencies. <br>
-Mitigation: Use the project's pinned Prisma dependency or a locked CI install for repeatable migration status checks. <br>
-Risk: Allowing drift or unapplied migrations can turn blocking findings into warnings. <br>
-Mitigation: Use PRISMA_MIGRATE_GUARD_ALLOW_DRIFT and PRISMA_MIGRATE_GUARD_ALLOW_UNAPPLIED only for explicitly approved workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prisma Migrate Guard on ClawHub](https://clawhub.ai/daniellummis/prisma-migrate-guard) <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill in CI or pre-deploy workflows to check Prisma migration status and fail fast on drift, failed migrations, missing database URLs, or unapplied migration files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text PASS/WARN/FAIL report with shell exit code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit code 0 indicates healthy migration status; exit code 1 indicates blocking migration issues.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deploy check can automatically run an unpinned Prisma package via npx in a sensitive CI or database environment.
+
+Mitigation: Review before installing in CI or production deploy workflows; prefer a pinned Prisma dependency installed from a lockfile and invoke the local binary, or require npx to use an already-installed package when deployment secrets are present.
+
+## Reference(s):
+
+- [Prisma Migrate Guard on ClawHub](https://clawhub.ai/daniellummis/skills/prisma-migrate-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and PASS/FAIL terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, node, and npx; exits 0 on healthy status and 1 on blocking migration issues.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

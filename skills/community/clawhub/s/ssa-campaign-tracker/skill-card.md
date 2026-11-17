@@ -1,46 +1,53 @@
-## Description: <br>
-Campaign Tracker archives outbound email campaign records, matches customer replies, generates performance reports, and recommends email template optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Campaign Tracker helps agents archive outbound email records, match customer replies, generate campaign performance reports, and suggest email template optimizations.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales, operations, and developer teams use this skill to maintain a local email campaign analytics loop: archive sent records, match replies, produce weekly or monthly reports, and identify template experiments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local email-system data, including draft, review, and captured inbox files that may contain sensitive customer information. <br>
-Mitigation: Set EMAIL_SKILL_ROOT and processed-file paths deliberately, run dry-run mode first, and limit execution to a workspace approved for customer email data. <br>
-Risk: The skill persists campaign analytics, reply tracking, logs, reports, and optional Obsidian output locally. <br>
-Mitigation: Review generated archives and reports before using metrics, and avoid shared or synced Obsidian vaults for sensitive customer data. <br>
-Risk: Template optimization can update A/B testing configuration based on local report data that may be incomplete or low-volume. <br>
-Mitigation: Inspect generated recommendations and configuration changes before running optimization live or acting on the proposed experiments. <br>
+## Use Case:
 
+Sales and growth teams use this skill to track outbound email campaign activity, connect sent messages to replies, and produce weekly or monthly performance summaries. Developers or operators can also use it to maintain local campaign tracking data and generate template optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-campaign-tracker) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Tracking schema](artifact/config/tracking-schema.json) <br>
-- [Sample weekly report](artifact/reports/weekly-report-2026-03-24.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON reports, JSONL records, configuration updates, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run previews and writes local archive, reply-tracking, reports, logs, and optional Obsidian output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README) <br>
+Risk: The skill processes email and customer campaign data and writes local archives, tracking files, reports, and logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, least-privileged mailbox or export directory and keep outputs in a private location.
+
+Risk: Under-scoped local writes or untrusted email-derived values could affect campaign tracking files or report paths.
+
+Mitigation: Run dry-run mode first, set OBSIDIAN_VAULT deliberately, and validate campaign IDs and report filenames before processing untrusted data.
+
+## Reference(s):
+
+- [Campaign Tracker ClawHub Skill Page](https://clawhub.ai/cjboy007/skills/ssa-campaign-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, JSONL, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run execution and optional Obsidian Markdown output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

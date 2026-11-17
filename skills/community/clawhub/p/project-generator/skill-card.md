@@ -1,46 +1,61 @@
-## Description: <br>
-Generates full-stack Java Spring Boot and Vue projects from requirements with guided technology stack selection for database, API, authentication, and UI choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates full-stack Java Spring Boot and Vue projects from requirements, with guided technology-stack selection, database and API scaffolding, CRUD flows, optional authentication, and setup documentation.
 
-## Publisher: <br>
-[smallest-ming](https://clawhub.ai/user/smallest-ming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallest-ming](https://clawhub.ai/user/smallest-ming)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn requirements, PRDs, or feature lists into Java/Vue application scaffolds, generated backend and frontend code, database schema, configuration, and setup documentation after confirming a technology stack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated database and Docker Compose templates may contain unsafe defaults for production, including default passwords, privileged database accounts, or public port mappings. <br>
-Mitigation: Review generated configuration before running it, replace default credentials, avoid superuser application accounts, remove unnecessary public database ports, and enable appropriate transport security. <br>
-Risk: Generated project dependencies and configuration are scaffolding and may not include deployment-ready lockfiles, audits, or environment-specific hardening. <br>
-Mitigation: Create lockfiles, audit dependencies, and apply the organization's security and deployment requirements before using generated projects beyond local development. <br>
+## Use Case:
 
+Developers use this skill to turn natural-language descriptions or PRD-style requirements into scaffolded Java and Vue applications for prototypes, MVPs, and CRUD systems. It helps select a backend, database, UI library, and optional features before generating code and setup files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallest-ming/project-generator) <br>
-- [Project Generator Specification Format](references/specification.md) <br>
-- [Project Generator Usage Examples](references/examples.md) <br>
-- [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/) <br>
-- [Vue Guide](https://vuejs.org/guide/) <br>
-- [MyBatis Spring Boot Starter](https://mybatis.org/spring-boot-starter/) <br>
-- [Flyway Documentation](https://documentation.red-gate.com/flyway/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with generated project files, code snippets, configuration files, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the user for requirements and explicit technology stack choices before generation; generated database, Docker, and application configuration should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated deployment templates can include default database usernames or passwords and published database ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review deployment files before running them, replace default credentials, avoid root or postgres application users, and remove or restrict database port publishing.
+
+Risk: Generated projects based on untrusted specifications may introduce unsafe code or configuration into an environment with secrets.
+
+Mitigation: Review all generated code and deployment files before building or deploying, and keep untrusted generated projects away from secret-bearing environments.
+
+## Reference(s):
+
+- [Project Generator Specification Format](references/specification.md)
+- [Project Generator Usage Examples](references/examples.md)
+- [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+- [Vue 3 Guide](https://vuejs.org/guide/)
+- [Element Plus](https://element-plus.org/)
+- [Ant Design Vue](https://antdv.com/)
+- [Naive UI](https://www.naiveui.com/)
+- [MyBatis Spring Boot](https://mybatis.org/spring-boot-starter/)
+- [Flyway Documentation](https://documentation.red-gate.com/flyway/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses plus generated project files and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files vary by selected Java, Spring Boot, database, Vue, UI library, and optional feature choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

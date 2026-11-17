@@ -1,42 +1,63 @@
-## Description: <br>
-This skill queries Eastmoney financial data from natural-language prompts, covering real-time market data, fund flows, valuation data, company fundamentals, financial indicators, executive information, business lines, ownership relationships, and operating data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent query Eastmoney financial market, company, relationship, and operating data through natural-language requests and returns structured JSON from the Eastmoney API.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Agents and users use this skill to retrieve current Eastmoney financial data for securities, sectors, indices, funds, bonds, company fundamentals, relationships, and operating information. It is useful when model-only knowledge may be stale and a structured JSON response from a remote financial-data API is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Query text and the API key are sent to Eastmoney's remote API. <br>
-Mitigation: Use the skill only in trusted environments, keep EASTMONEY_APIKEY in environment variables, and avoid submitting confidential personal, account, or proprietary trading information. <br>
-Risk: Large financial-data queries can return excessive data that may overwhelm the agent context. <br>
-Mitigation: Ask for bounded securities, indicators, and date ranges, and narrow the request before retrying if the response is too large. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current financial market and company data from Eastmoney when answering questions about securities, sectors, funds, bonds, valuation, financial indicators, executives, shareholders, and business relationships.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/eastmoney-financial-data-1-0-2) <br>
-- [Eastmoney API key page](https://marketing.dfcfs.com/views/finskillshub/indexuNdYscEA?appfenxiang=1) <br>
-- [Eastmoney query API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON responses from the Eastmoney API with Markdown usage guidance and shell or Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EASTMONEY_APIKEY and sends query text to Eastmoney's remote API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial query text is sent to Eastmoney's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending the query content to Eastmoney is acceptable for the user and deployment context.
+
+Risk: API keys can be exposed through terminal history, logs, or direct printing.
+
+Mitigation: Store EASTMONEY_APIKEY only in trusted environment variables and check whether it is set without printing the secret value.
+
+Risk: Large date ranges or broad financial queries can return too much data for an agent context.
+
+Mitigation: Prefer scoped entities, metrics, and time ranges, then summarize or paginate results before using them in model context.
+
+Risk: Production API calls without explicit timeouts or redirect controls can hang or follow unexpected network paths.
+
+Mitigation: Add request timeouts and disable redirects before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/eastmoney-financial-data-1-0-2)
+- [Eastmoney Skills API key page](https://marketing.dfcfs.com/views/finskillshub/indexuNdYscEA?appfenxiang=1)
+- [Eastmoney query API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EASTMONEY_APIKEY and sends the query text to Eastmoney's API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and generated changelog; artifact _meta.json lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

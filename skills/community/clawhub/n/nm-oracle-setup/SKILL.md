@@ -1,7 +1,7 @@
 ---
 name: setup
 description: Provisions the oracle ML inference daemon with onnxruntime via uv
-version: 1.9.8
+version: 1.10.3
 triggers:
   - setting up local ONNX model inference for skill quality evaluation
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/oracle", "emoji": "\ud83e\udd9e"}}
@@ -9,17 +9,22 @@ source: claude-night-market
 source_plugin: oracle
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/oracle](https://github.com/athola/claude-night-market/tree/master/plugins/oracle). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/oracle](https://github.com/athola/claude-night-market/tree/master/plugins/oracle). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Oracle Setup
 
 Provision the ML inference environment.
 
+## When NOT To Use
+
+- The daemon is already provisioned and only needs to be used
+- Evaluating skill quality itself (use `abstract:skills-eval`)
+
 ## What This Does
 
 1. Creates a Python 3.11+ virtual environment using uv
-2. Installs onnxruntime into the venv
+2. Installs onnxruntime and pyyaml into the venv
 3. Verifies the installation
 
 ## Prerequisites
@@ -40,5 +45,20 @@ print(result.message)
 ```
 
 2. Report result to the user.
-3. If successful, tell the user the daemon will start on next session.
+3. If successful, tell the user the daemon starts on the next
+   session once a `models/` directory exists in the plugin. None
+   ships yet, so until then the hook logs "models directory
+   missing" to `daemon.log` and consumers use local scoring.
 4. If failed, show the error and suggest checking uv and network.
+
+## Exit Criteria
+
+- [ ] `provision_venv()` returns a result with a non-error `message`
+  and the venv path exists on disk under `plugins/oracle/`
+- [ ] `onnxruntime` is importable inside the provisioned venv;
+  verified by `uv run python -c "import onnxruntime"` exiting 0
+- [ ] User receives a success message that states the daemon needs a
+  `models/` directory to start, or a failure message citing the
+  specific error and whether it is a uv or network issue
+- [ ] On failure, no partial venv left in a broken state that would
+  prevent a clean retry

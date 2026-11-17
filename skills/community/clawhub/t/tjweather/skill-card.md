@@ -1,45 +1,64 @@
-## Description: <br>
-全球地点天气预报及地理编码分析（TJWeather API）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球地点天气预报及地理编码分析（TJWeather API）。
 
-## Publisher: <br>
-[qiansonguio](https://clawhub.ai/user/qiansonguio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiansonguio](https://clawhub.ai/user/qiansonguio)
 
-## Use Case: <br>
-External users and agents use this skill to geocode a requested place, query TJWeather forecasts, and return concise weather statistics with a short practical summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location queries may be sent to TJWeather and, for geocoding, to OpenStreetMap Nominatim or Photon. <br>
-Mitigation: Avoid entering sensitive exact addresses unless that precision is needed. <br>
-Risk: API keys may be exposed if configured as plain text. <br>
-Mitigation: Use a personal TJWeather API key and prefer SecretRef or environment-variable configuration. <br>
-Risk: Forecast requests beyond the documented 10-day limit may not be fully supported. <br>
-Mitigation: Limit forecast requests to 10 days or clearly tell the user that only the first 10 days are shown. <br>
+## Use Case:
 
+External users and agents use this skill to resolve global place names, retrieve TJWeather forecasts, and produce concise weather summaries with matched-location context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiansonguio/tjweather) <br>
-- [TJWeather API Homepage](https://api.tjweather.com) <br>
-- [TJWeather Website](https://www.tjweather.com/) <br>
-- [TJWeather API Key Application](https://www.tjweather.com/Apply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with weather statistics, command-driven tool use, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and TJWEATHER_API_KEY; forecast output is documented for up to 10 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Location queries are sent to external geocoding services, and coordinates plus the TJWeather API key are sent to TJWeather.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with locations appropriate for those external services, disclose this data flow where relevant, and provide the API key through SecretRef or an environment variable.
+
+Risk: The documentation includes plaintext credential examples and shared trial keys.
+
+Mitigation: Use a private TJWeather API key, avoid plaintext configuration for deployed environments, and do not rely on the shared trial keys.
+
+Risk: Ambiguous places may fall back to city-level or fuzzy geocoding, which can reduce forecast precision.
+
+Mitigation: Show the matched location and fallback status in the first response line, and ask for a more precise location or coordinates when the match is uncertain.
+
+Risk: Forecasts beyond the supported window and daylight-saving-time assumptions can produce misleading timelines.
+
+Mitigation: Limit requests to the supported 10-day forecast window, tell the user when truncation occurs, and verify the local DST offset before calling the weather script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiansonguio/skills/tjweather)
+- [TJWeather API homepage](https://api.tjweather.com)
+- [TJWeather official website](https://www.tjweather.com/)
+- [TJWeather API key application](https://www.tjweather.com/Apply)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with weather statistics, matched-location notice, and summary guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are primarily Chinese and should include the query match, daily forecast statistics, and a brief user-facing summary.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

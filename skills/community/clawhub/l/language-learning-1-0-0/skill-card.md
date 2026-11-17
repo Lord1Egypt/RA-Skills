@@ -1,38 +1,51 @@
-## Description: <br>
-Language Learning is an adaptive AI tutor for vocabulary, grammar, conversation practice, flashcards, writing systems, cultural context, translation help, pronunciation support, and exam preparation across many languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Language Learning 1.0.0 is an AI language tutor for vocabulary, grammar, flashcards, conversation practice, translation, travel phrases, pronunciation, cultural context, and exam prep across many languages.
 
-## Publisher: <br>
-[Lion504](https://clawhub.ai/user/Lion504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lion504](https://clawhub.ai/user/lion504)
 
-## Use Case: <br>
-External learners use this skill to study a target language through adaptive lessons, drills, translation examples, conversation practice, writing-system guidance, cultural notes, and exam-oriented exercises. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's broad claim to support all languages may exceed available language depth or accuracy for some languages and dialects. <br>
-Mitigation: Treat all-language coverage as aspirational and review lessons, translations, pronunciation notes, and cultural guidance when accuracy matters. <br>
-Risk: User-provided private messages or sensitive personal text could be repeated in translations, drills, or practice examples. <br>
-Mitigation: Avoid entering sensitive personal content unless it is appropriate for the tutoring interaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External learners use this skill to study a target language through adaptive lessons, vocabulary drills, grammar practice, simulated conversations, translations, cultural context, and exam preparation. It is suited to general learning, travel preparation, heritage-language practice, professional communication, and casual exploration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad language, translation, and travel-phrase requests.
+
+Mitigation: Scope requests with the target language, dialect, activity, and desired level before relying on the response.
+
+Risk: The lesson format defaults to English explanations unless the agent adapts to the user's request.
+
+Mitigation: Specify the explanation language and immersion level when the learner needs non-English instruction or target-language-only practice.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational tutoring responses with target-language text, transliteration where helpful, English translation, pronunciation notes, drills, examples, and corrections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no code execution or external tool access.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown lessons, drills, translations, corrections, and practice prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include native-script text, transliteration, English translations, and pronunciation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Coordinates cross-platform message delivery through OpenClaw CLI commands for text, media, broadcasts, scheduled notifications, and alert-driven sends across supported messaging services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cross-channel message delivery and contact coordination through OpenClaw commands for sending text messages, media attachments, broadcasts, scheduled notifications, and alert-driven updates across common messaging platforms.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare OpenClaw message commands and scripts for direct, bulk, scheduled, or condition-triggered notifications across chat and messaging platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bulk-send script can accidentally turn message, media, or recipient text into local shell commands. <br>
-Mitigation: Prefer direct OpenClaw message commands or dry-run mode, and avoid scripts/notify.sh with untrusted message text, media paths, or target lists until the script is reviewed. <br>
-Risk: Messaging workflows can send live content to unintended recipients, channels, or scheduled jobs. <br>
-Mitigation: Confirm exact recipients, channels, content, attachments, and schedules before allowing live sends. <br>
+## Use Case:
 
+Developers and operators use this skill to route alerts, reports, summaries, and broadcast messages to people or groups across messaging services such as Feishu, WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Line, and Teams. It supports immediate sends, batch notifications, scheduled delivery, and condition-triggered alert workflows.
 
-## Reference(s): <br>
-- [Cross-platform channel reference](references/channels.md) <br>
-- [ClawHub release page](https://clawhub.ai/tujinsama/cross-platform-messenger-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw message and cron commands; live sends should be preceded by recipient, channel, content, and schedule confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper script can execute unintended shell commands from user-controlled message or target values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running the script; avoid untrusted recipients, message text, media paths, and target files unless the command construction is fixed.
+
+Risk: Messages, broadcasts, and attachments are transmitted to external communication services.
+
+Mitigation: Confirm recipients, channels, message content, and attachments before sending, especially for broadcasts or scheduled notifications.
+
+## Reference(s):
+
+- [Cross Platform Messenger Claw](https://clawhub.ai/tujinsama/skills/cross-platform-messenger-claw)
+- [Cross-platform channel reference](references/channels.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OpenClaw message commands and notification script usage patterns that transmit content to external messaging services.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

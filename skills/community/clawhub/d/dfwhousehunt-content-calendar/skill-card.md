@@ -1,43 +1,53 @@
-## Description: <br>
-Generate 7- or 30-day structured social media calendars with varied hooks, body copy, CTAs, and hashtags tailored by niche, audience, and platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 7- or 30-day structured social media calendars with varied hooks, body copy, CTAs, and hashtags tailored by niche, audience, and platform.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-External users, marketers, creators, and business operators use this skill to generate ready-to-review social media calendars for a selected niche, audience, platform, tone, and duration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request ANTHROPIC_API_KEY even when a user only wants demo or compliance-only modes. <br>
-Mitigation: Provide the API key only when using AI-generated custom calendars, and use demo or compliance-only modes without credentials when appropriate. <br>
-Risk: The artifact references a generate_calendar.py implementation that is not included in the provided artifact. <br>
-Mitigation: Verify the referenced implementation comes from a trusted source before running it locally or providing credentials. <br>
-Risk: Generated marketing copy can contain inaccurate, noncompliant, or misleading claims for regulated domains such as real estate, lending, crypto, or healthcare. <br>
-Mitigation: Review generated calendars before publishing and apply domain-specific compliance checks for the intended niche. <br>
+## Use Case:
 
+External marketers, creators, and business operators use this skill to draft social media content calendars tailored by niche, audience, platform, and tone for review and scheduling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/dfwhousehunt-content-calendar) <br>
-- [Skill homepage from metadata](https://github.com/dfw-area-house-hunt/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Human-readable schedule text, structured JSON, and optional CSV export.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include hooks, body copy, CTAs, hashtags, platform labels, content types, character counts, and optional A/B hook variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The security summary says the artifact is incomplete and inconsistent about whether generation runs locally or requires an Anthropic API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, and confirm the missing generator script, prompt handling, API calls, and credential handling before execution.
+
+Risk: Generated social media copy can be unsuitable for regulated or high-risk verticals without review.
+
+Mitigation: Require human review and applicable compliance checks before scheduling or publishing generated posts.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/drivenautoplex1/skills/dfwhousehunt-content-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV]
+
+**Output Format:** [Human-readable schedule, JSON calendar, or CSV export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calendars may include hooks, body copy, CTAs, hashtags, character counts, and optional A/B hook variants.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

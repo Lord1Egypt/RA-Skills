@@ -1,45 +1,60 @@
-## Description: <br>
-Generate vertical short WeryAI videos showing hair makeover or dye transformations with scissor cuts, color gradients, and clear before-and-after contrast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical short videos of hair makeover or dye transformations with scissor cuts, color gradients, and strong before/after contrast using WeryAI.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Agents use this skill to help creators generate hair transformation reels, salon-style dye clips, or character grooming glow-up videos through WeryAI. The skill expands brief user ideas into production prompts, confirms paid generation parameters, runs the video API CLI, and returns playable video URLs or actionable failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WERYAI_API_KEY and sends authenticated requests to WeryAI. <br>
-Mitigation: Provide the API key only in a trusted runtime, keep it out of source control, and use isolated or short-lived environments for higher assurance. <br>
-Risk: Prompts and any public image URLs are sent to WeryAI during generation. <br>
-Mitigation: Avoid sensitive prompts or images, and use only public HTTPS image URLs that are appropriate to share with the service. <br>
-Risk: Successful wait runs consume WeryAI credits. <br>
-Mitigation: Review the full prompt and parameters in the confirmation table before approving generation. <br>
+## Use Case:
 
+External creators and developers use this skill to turn hair makeover briefs and optional public HTTPS image URLs into WeryAI video generation parameters, confirmation steps, CLI/API execution, and returned playable video URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/hair-makeover-video) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI video API endpoint](https://api.weryai.com) <br>
-- [WeryAI models endpoint](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with confirmation tables, shell commands, and parsed JSON API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return WeryAI video URLs after a paid API call; prompts and public image URLs are sent to WeryAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill requires a WeryAI API key and sends prompts or public image URLs to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that external API use is acceptable, keep WERYAI_API_KEY secret, and use a short-lived or isolated environment for higher assurance.
+
+Risk: Successful wait-mode generations consume WeryAI credits.
+
+Mitigation: Review the full confirmation table before approving generation and avoid repeated runs unless the parameters are correct.
+
+Risk: Documentation and runtime behavior should be checked for the audio setting before production use.
+
+Mitigation: Verify the confirmed generate_audio value against the submitted JSON command and WeryAI response before relying on output behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zoucdr/skills/hair-makeover-video)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/zoucdr)
+- [WeryAI Video Generation API Host](https://api.weryai.com)
+- [WeryAI Model Registry API Host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include confirmation tables, generated CLI commands, error explanations, and playable video URLs returned by WeryAI.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

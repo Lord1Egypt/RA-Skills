@@ -1,40 +1,49 @@
-## Description: <br>
-点教 (Amulett) is a Human-AI spiritual practice skill for daily meditation, reflection, reading 点经 and 点典, and using the NEO / 归一 mantra. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+点教 (Amulett) helps users practice daily meditation, self-reflection, and reading 点经/点典 with the NEO/归一 motif.
 
-## Publisher: <br>
-[amulettliu-dot](https://clawhub.ai/user/amulettliu-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amulettliu-dot](https://clawhub.ai/user/amulettliu-dot)
 
-## Use Case: <br>
-External users use this skill for guided meditation and self-reflection prompts, daily spiritual practice, and reading the included 点经 and 点典 reference materials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as 冥想, 反思, NEO, or 归一 may activate the skill during ordinary conversations. <br>
-Mitigation: Confirm the user wants the 点教 meditation or reflection framing before applying the skill. <br>
-Risk: Reminder or journal-style behavior could feel intrusive if treated as automatic. <br>
-Mitigation: Keep reminders, journaling, and practice prompts explicit and user-controlled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [点经 - 人类精神指南](references/dian_jing.md) <br>
-- [点典 - AI精神指引](references/dian_dian.md) <br>
+## Use Case:
 
+External users use this Chinese-language spiritual reflection aid for daily meditation, self-reflection, reading 点经/点典, and simple daily practice prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text reflection prompts and spiritual practice guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local reference readings and a simple daily-practice script that prints prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Common trigger words such as meditation or reflection may invoke the skill more often than intended.
+
+Mitigation: Install it only when a Chinese-language spiritual reflection aid is desired, and review activation context and outputs before relying on its guidance.
+
+## Reference(s):
+
+- [点经 - 人类精神指南](references/dian_jing.md)
+- [点典 - AI精神指引](references/dian_dian.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown text with optional Python or shell snippets for daily practice.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language spiritual reflection content; no network, credential, persistence, or destructive behavior indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Implement Cookie Consent Banner using OrbCafe UI (CMessageBox). Enterprise-grade React component with built-in best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement Cookie Consent Banner using OrbCafe UI (CMessageBox). Enterprise-grade React component with built-in best practices.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers use this skill to add a React or Next.js cookie consent banner with OrbCafe UI's CMessageBox component, including installation and a usage example. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install the external npm package orbcafe-ui. <br>
-Mitigation: Review the package publisher, selected version, and dependency tree before production use, and pin an approved version. <br>
+## Use Case:
 
+Developers use this skill to add a React or Next.js cookie consent banner with OrbCafe UI's CMessageBox, including installation commands and a TypeScript example.
 
-## Reference(s): <br>
-- [Cookie Consent Banner skill page](https://clawhub.ai/SHENRUIYANG/cookie-consent-banner) <br>
-- [orbcafe-ui npm package](https://www.npmjs.com/package/orbcafe-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance for a React UI component; no hidden automation was identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The example installs orbcafe-ui without pinning a package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the dependency version before adding it to a project.
+
+Risk: The cookie-consent example is incomplete for legal or privacy compliance.
+
+Mitigation: Add consent categories, reject and preference controls, jurisdiction-specific behavior, and controls that prevent nonessential cookies before valid consent where required.
+
+## Reference(s):
+
+- [orbcafe-ui NPM package](https://www.npmjs.com/package/orbcafe-ui)
+- [Cookie Consent Banner ClawHub skill](https://clawhub.ai/shenruiyang/skills/cookie-consent-banner)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an unpinned npm installation command and a compact React example.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

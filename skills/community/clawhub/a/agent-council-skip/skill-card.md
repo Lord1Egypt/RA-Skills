@@ -1,47 +1,60 @@
-## Description: <br>
-Complete toolkit for creating autonomous AI agents and managing Discord channels for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete toolkit for creating autonomous AI agents and managing Discord channels for OpenClaw.
 
-## Publisher: <br>
-[izletenadam-creator](https://clawhub.ai/user/izletenadam-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[izletenadam-creator](https://clawhub.ai/user/izletenadam-creator)
 
-## Use Case: <br>
-Developers and operators use this skill to create OpenClaw agents with workspaces, memory files, gateway configuration, optional Discord bindings, and optional daily memory cron jobs. They also use it to create or rename Discord channels and produce the OpenClaw configuration commands needed to connect those channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent OpenClaw gateway, workspace, Discord, and cron changes. <br>
-Mitigation: Review every generated command before execution, use fresh workspaces, and remove or adjust gateway patches and cron jobs that are no longer needed. <br>
-Risk: Discord channel creation and rename actions can affect shared server organization. <br>
-Mitigation: Confirm channel IDs, category IDs, bot permissions, and rename targets before applying changes. <br>
-Risk: Agent memory and Discord channels may capture sensitive personal or health data. <br>
-Mitigation: Avoid sensitive data unless appropriate access controls, retention practices, and user consent are in place. <br>
-Risk: Workspace rename operations can modify Markdown files across a workspace. <br>
-Mitigation: Run from a clean workspace, inspect reported file changes, and review diffs before committing. <br>
+## Use Case:
 
+Developers and operators use Agent Council to create OpenClaw agents, bind them to Discord channels, and manage channel setup or renaming for multi-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/izletenadam-creator/agent-council-skip) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw agents documentation](https://docs.openclaw.ai/agents) <br>
-- [OpenClaw Discord channel documentation](https://docs.openclaw.ai/channels/discord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration patches, and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent OpenClaw gateway changes, Discord channel changes, workspace Markdown files, and optional cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Scripts can make durable OpenClaw gateway, workspace, Discord channel, and optional cron changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts and generated config patches before installing or running them, and back up OpenClaw gateway configuration first.
+
+Risk: Agent names, IDs, models, workspaces, and channel IDs are treated as trusted input for generated files and configuration.
+
+Mitigation: Limit use to trusted operators and validate these values before executing the scripts.
+
+Risk: Discord channels and agent memory may contain sensitive or personal data.
+
+Mitigation: Avoid sensitive health or personal data in Discord channels and agent memory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/izletenadam-creator/skills/agent-council-skip)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Agents Documentation](https://docs.openclaw.ai/agents)
+- [OpenClaw Discord Channels Documentation](https://docs.openclaw.ai/channels/discord)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown files, JSON gateway patches, shell commands, and console guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can make durable OpenClaw gateway, workspace, Discord channel, and optional cron changes when scripts are executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

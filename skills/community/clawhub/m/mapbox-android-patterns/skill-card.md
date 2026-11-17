@@ -1,50 +1,68 @@
-## Description: <br>
-Provides official integration patterns for Mapbox Maps SDK v11 on Android, covering installation, markers, user location, custom data, styles, camera control, and featureset interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official integration patterns for Mapbox Maps SDK on Android, covering installation, markers, user location, custom data, styles, camera control, and featureset interactions.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Mapbox Maps SDK v11 in Android apps with Kotlin, Jetpack Compose, or the Android View system. It helps with setup, map initialization, annotations, user-location display, GeoJSON data, camera and style controls, and map feature interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mapbox access tokens can be exposed if developers commit sensitive credentials or use overly broad token scopes. <br>
-Mitigation: Use scoped app tokens, avoid committing sensitive tokens, and review token handling before shipping an app. <br>
-Risk: Location display or tracking patterns can affect user privacy if enabled without clear user disclosure and consent. <br>
-Mitigation: Request platform permissions appropriately and add clear in-app disclosure and consent before enabling user-location features. <br>
+## Use Case:
 
+Developers use this skill to integrate Mapbox Maps SDK v11 into Android applications with Kotlin, Jetpack Compose, and the View system. It provides implementation patterns for setup, annotations, user location, GeoJSON data, styles, camera behavior, and map interactions.
 
-## Reference(s): <br>
-- [Android Maps Guides](https://docs.mapbox.com/android/maps/guides/) <br>
-- [Mapbox Maps SDK for Android API Reference](https://docs.mapbox.com/android/maps/api/11.18.1/) <br>
-- [Mapbox Android Example Apps](https://github.com/mapbox/mapbox-maps-android/tree/main/Examples) <br>
-- [Mapbox Android Interactions Guide](https://docs.mapbox.com/android/maps/guides/user-interaction/interactions/) <br>
-- [Mapbox Jetpack Compose Guide](https://docs.mapbox.com/android/maps/guides/using-jetpack-compose/) <br>
-- [Mapbox Android v11 Migration Guide](https://docs.mapbox.com/android/maps/guides/migrate-to-v11/) <br>
-- [Annotations reference](references/annotations.md) <br>
-- [Camera and styles reference](references/camera-styles.md) <br>
-- [Custom data reference](references/custom-data.md) <br>
-- [Interactions reference](references/interactions.md) <br>
-- [Location tracking reference](references/location-tracking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Kotlin, XML, and Gradle code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may include Mapbox token configuration and user-location permission patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Location examples can be adapted into apps that collect precise user location without sufficient user understanding or need.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add clear in-app disclosure, request runtime permission only when location is needed, and avoid background or continuous tracking unless the app use case requires it.
+
+Risk: Location listeners and camera-follow behavior can continue longer than intended if copied without lifecycle cleanup.
+
+Mitigation: Remove location listeners when tracking is no longer active and keep MapView lifecycle methods wired to the Android lifecycle.
+
+Risk: Mapbox token setup examples can be misused if developers substitute sensitive tokens or over-scoped credentials.
+
+Mitigation: Use appropriately scoped Mapbox access tokens and follow the app team's credential management process before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mapbox/skills/mapbox-android-patterns)
+- [Android Maps Guides](https://docs.mapbox.com/android/maps/guides/)
+- [API Reference](https://docs.mapbox.com/android/maps/api/11.18.1/)
+- [Interactions Guide](https://docs.mapbox.com/android/maps/guides/user-interaction/interactions/)
+- [Jetpack Compose Guide](https://docs.mapbox.com/android/maps/guides/using-jetpack-compose/)
+- [Migration Guide v10 to v11](https://docs.mapbox.com/android/maps/guides/migrate-to-v11/)
+- [Example Apps](https://github.com/mapbox/mapbox-maps-android/tree/main/Examples)
+- [Annotations](references/annotations.md)
+- [Camera Control and Map Styles](references/camera-styles.md)
+- [Custom Data](references/custom-data.md)
+- [Interactions](references/interactions.md)
+- [Location Tracking](references/location-tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Kotlin, XML, and Gradle code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides implementation patterns and troubleshooting guidance; it does not execute code or call external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

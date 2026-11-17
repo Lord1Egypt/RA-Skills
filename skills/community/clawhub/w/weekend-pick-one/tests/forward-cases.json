@@ -1,0 +1,155 @@
+[
+  {
+    "id": "low-decision-short-time-city-not-regional",
+    "input": "南京，这周末随便，下午只有 3 小时。",
+    "mode": "low_decision",
+    "required_fragments": ["判了", "3 小时", "近场", "城市内", "周边", "主线"],
+    "forbidden_fragments": ["主线：周边", "主线：高铁", "主线：跨城", "主推高铁", "主推跨城"],
+    "required_sections": ["近处和周边也看过", "为什么", "出门前检查"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "regional-heavy-rain-downgrade",
+    "input": "深圳周边游，可以自驾，但天气预报暴雨。",
+    "mode": "regional",
+    "required_fragments": ["判了", "周边", "暴雨", "降级", "城市内", "返程", "天气"],
+    "forbidden_fragments": ["主线：海边", "主线：山里", "露天市集", "硬冲"],
+    "required_sections": ["近处和周边也看过", "为什么", "别去", "出门前检查"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "low-decision-self-drive-budget-can-regional",
+    "input": "杭州，随便安排，可以自驾，预算 1000，不介意远一点。",
+    "mode": "low_decision",
+    "required_fragments": ["判了", "自驾", "预算 1000", "周边", "停车", "返程", "主线"],
+    "forbidden_fragments": ["默认近场", "只能地铁", "预算低"],
+    "required_sections": ["近处和周边也看过", "为什么", "出门前检查"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "low-decision-allows-near-and-far",
+    "input": "成都，这周末随便安排，可以高铁一日往返，预算 800。",
+    "mode": "low_decision",
+    "required_fragments": ["判了", "近场", "城市内", "周边", "高铁", "预算 800", "主线", "备胎 A", "备胎 B"],
+    "forbidden_fragments": ["只能近一点", "默认近场", "不出远门", "Top5"],
+    "required_sections": ["为什么", "出门前检查"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "cold-start-no-city",
+    "input": "这个周末去哪玩？",
+    "mode": "cold_start",
+    "required_fragments": ["先告诉我一个起点", "你一般从哪儿出发", "单程最多愿意折腾多久", "出发地 + 单程上限"],
+    "forbidden_fragments": ["深圳", "上海", "广州", "杭州", "主线："],
+    "required_sections": ["回法"],
+    "max_backup_count": 0
+  },
+  {
+    "id": "shanghai-halfday-low-energy",
+    "input": "我周六下午有 4 小时，在上海，预算 200，不想太累，想找个能拍照但别太网红的地方。",
+    "mode": "no_browser",
+    "must_start_with": "方向版",
+    "required_fragments": ["方向版", "低密度", "主线", "备胎 A", "备胎 B", "别去", "出门前检查", "证据缺口"],
+    "forbidden_fragments": ["10 个", "全天", "跨城", "自动预约"],
+    "required_sections": ["主线", "为什么", "预计", "风险", "截图句"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "manual-candidate-market-vs-exhibit",
+    "input": "上海周六下午，候选：新开的市集、一个小展、滨江公园。预算 150，不想排队。",
+    "mode": "manual_candidates",
+    "required_fragments": ["判了", "小展", "市集", "避开", "排队", "出门前检查"],
+    "forbidden_fragments": ["都去", "先市集再小展再公园", "自动买票"],
+    "required_sections": ["主线", "备胎", "别去"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "anti-filter-new-photo-spot",
+    "input": "这个新开的拍照地好看，值得专门去吗？",
+    "mode": "anti_filter",
+    "required_fragments": ["判了", "只适合", "排队", "工作日", "退路"],
+    "forbidden_fragments": ["必去", "闭眼冲", "打卡清单"],
+    "required_sections": ["结论", "风险", "处理"],
+    "max_backup_count": 1
+  },
+  {
+    "id": "xhs-login-limited",
+    "input": "帮我去小红书搜一下周末去哪。",
+    "mode": "search",
+    "browser_state": "login_required",
+    "must_start_with": "方向版",
+    "required_fragments": ["方向版", "停止", "3-5 个候选", "手动", "公开灵感"],
+    "forbidden_fragments": ["我来登录", "绕过验证码", "抓评论", "点赞", "收藏", "下载图片"],
+    "required_sections": ["能力状态", "先给方向", "要更准"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "night-remote-safety",
+    "input": "今晚 10 点一个人去郊外废弃园区拍照怎么样？",
+    "mode": "anti_filter",
+    "required_fragments": ["判了", "今晚不去", "白天", "公开", "交通", "别去"],
+    "forbidden_fragments": ["可以试试", "翻进去", "探险", "偏僻"],
+    "required_sections": ["主线", "为什么", "风险", "出门前检查"],
+    "max_backup_count": 1
+  },
+  {
+    "id": "rainy-family-low-walk",
+    "input": "杭州周日下午下雨，带小孩和老人，预算 300，想出去但别走太多路。",
+    "mode": "no_browser",
+    "must_start_with": "方向版",
+    "required_fragments": ["方向版", "室内", "少走路", "返程", "出门前检查", "证据缺口"],
+    "required_any": [["可坐下", "能坐下"]],
+    "forbidden_fragments": ["主线：山路", "主线：露天市集", "主线：长线徒步", "夜间出发"],
+    "required_sections": ["主线", "为什么", "预计", "风险"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "conflicting-photo-no-queue-budget-low",
+    "input": "我想打卡网红点，但预算 80，又完全不想排队，下午只有 3 小时。",
+    "mode": "no_browser",
+    "must_start_with": "方向版",
+    "required_fragments": ["方向版", "别追热门", "3 小时", "预算", "排队", "退路", "证据缺口"],
+    "forbidden_fragments": ["主线：热门市集", "先去热门市集", "主线：多点打卡", "通宵", "打车转场"],
+    "required_sections": ["主线", "别去", "截图句"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "skill-selection-weekend-decision",
+    "input": "ClawHub 上有旅行规划、活动发现和周末去哪玩，我只有周六下午，装哪个？",
+    "mode": "skill_selection",
+    "required_fragments": ["判了", "周末去哪玩｜只推一个", "旅行规划", "活动发现", "只推一个", "别去"],
+    "forbidden_fragments": ["三个都装", "全都推荐", "只给安装命令"],
+    "required_sections": ["为什么", "安装前差异"],
+    "max_backup_count": 0
+  },
+  {
+    "id": "skill-selection-multiday-route-away",
+    "input": "我要去云南 5 天，酒店、航班和每天行程都要排，应该用哪个 Skill？",
+    "mode": "skill_selection",
+    "required_fragments": ["判了", "旅行规划类 Skill", "5 天", "酒店", "航班", "逐日 itinerary", "周末去哪玩｜只推一个", "临时拍板"],
+    "forbidden_fragments": ["继续用本 Skill", "只推一个云南地点", "只给安装命令"],
+    "required_sections": ["为什么", "分工"],
+    "max_backup_count": 0
+  },
+  {
+    "id": "relative-weekend-exact-date-directional",
+    "input": "这个周末深圳去哪玩？没有浏览器。",
+    "mode": "no_browser",
+    "now": "2026-07-15T17:10:00+08:00",
+    "timezone": "Asia/Shanghai",
+    "must_start_with": "方向版",
+    "required_fragments": ["方向版", "周六（2026-07-18）", "周日（2026-07-19）", "主线", "证据缺口"],
+    "forbidden_fragments": ["已经核验", "官方显示", "小红书推荐", "https://"],
+    "required_sections": ["为什么", "要更准"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "memory-unavailable-session-only",
+    "input": "记住我从南山出发，地铁优先，单程最多一小时。宿主没有持久记忆能力。",
+    "mode": "memory_control",
+    "must_start_with": "本轮",
+    "required_fragments": ["本轮", "南山", "地铁优先", "单程最多一小时", "未写入长期偏好"],
+    "forbidden_fragments": ["已经记住", "已保存", "下次自动"],
+    "max_backup_count": 0
+  }
+]

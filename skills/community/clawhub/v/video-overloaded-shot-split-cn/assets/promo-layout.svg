@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f7f2e7"/>
+  <image href="promo-visual.png" x="0" y="0" width="1600" height="900"/>
+  <rect width="930" height="900" fill="#f9f5ec" opacity="0.96"/>
+  <rect x="96" y="105" width="210" height="4" fill="#0e454c"/>
+  <text x="96" y="88" fill="#0e454c" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="2">免费开源 · EASY SKILLS</text>
+  <text x="96" y="280" fill="#0e454c" font-family="PingFang SC, Arial, sans-serif" font-size="100" font-weight="800">复杂镜头</text>
+  <text x="96" y="397" fill="#0e454c" font-family="PingFang SC, Arial, sans-serif" font-size="100" font-weight="800">拆分计划</text>
+  <text x="96" y="490" fill="#0e454c" font-family="PingFang SC, Arial, sans-serif" font-size="35" font-weight="600">12 秒，也能拍清楚</text>
+  <text x="96" y="555" fill="#596367" font-family="PingFang SC, Arial, sans-serif" font-size="26">保留必留剧情，把动作过载镜头</text>
+  <text x="96" y="598" fill="#596367" font-family="PingFang SC, Arial, sans-serif" font-size="26">拆成可执行镜头表与衔接要求</text>
+  <text x="96" y="810" fill="#586363" font-family="PingFang SC, Arial, sans-serif" font-size="23">一件事，一个好用的 Skill</text>
+</svg>

@@ -1,0 +1,5844 @@
+{
+  "updated": "2026-09-21T09:07:13.596603",
+  "models": {
+    "kimi/k2.6": {
+      "pricing": {
+        "input_per_million": 0.9,
+        "output_per_million": 3.75,
+        "cache_read_per_million": 0.15,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {
+        "openrouter": {
+          "input_per_million": 0.95,
+          "output_per_million": 4.0
+        }
+      },
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.586776",
+      "pricing_source": "moonshot-direct"
+    },
+    "kimi/k2.7": {
+      "pricing": {
+        "input_per_million": 0.9,
+        "output_per_million": 3.75,
+        "cache_read_per_million": 0.15,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.586782",
+      "pricing_source": "moonshot-direct"
+    },
+    "kimi/k2.7-code": {
+      "pricing": {
+        "input_per_million": 0.9,
+        "output_per_million": 3.75,
+        "cache_read_per_million": 0.18,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {
+        "openrouter": {
+          "input_per_million": 0.7062,
+          "output_per_million": 3.21
+        }
+      },
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.586786",
+      "pricing_source": "moonshot-direct"
+    },
+    "kimi/k3": {
+      "pricing": {
+        "input_per_million": 2.78,
+        "output_per_million": 13.89,
+        "cache_read_per_million": 0.28,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {
+        "openrouter": {
+          "input_per_million": 1.7,
+          "output_per_million": 8.5
+        }
+      },
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.586790",
+      "pricing_source": "moonshot-direct"
+    },
+    "anthropic/claude-sonnet-4-5": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": 0.3,
+        "cache_write_per_million": 3.75
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.586798",
+      "pricing_source": "fallback"
+    },
+    "prism-ml/ternary-bonsai-2-27b": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "prism-ml",
+      "last_pricing_update": "2026-09-21T09:07:13.582454",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.3-flashx": {
+      "pricing": {
+        "input_per_million": 0.37,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582500",
+      "pricing_source": "openrouter"
+    },
+    "unbiased/pareto": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 7.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "unbiased",
+      "last_pricing_update": "2026-09-21T09:07:13.582507",
+      "pricing_source": "openrouter"
+    },
+    "~deepseek/deepseek-pro-latest": {
+      "pricing": {
+        "input_per_million": 0.7,
+        "output_per_million": 2.88,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582514",
+      "pricing_source": "openrouter"
+    },
+    "~deepseek/deepseek-flash-latest": {
+      "pricing": {
+        "input_per_million": 0.12,
+        "output_per_million": 0.48,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582521",
+      "pricing_source": "openrouter"
+    },
+    "inference-net/schematron-v2-turbo": {
+      "pricing": {
+        "input_per_million": 0.03,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inference-net",
+      "last_pricing_update": "2026-09-21T09:07:13.582528",
+      "pricing_source": "openrouter"
+    },
+    "inference-net/schematron-v2-small": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.23,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inference-net",
+      "last_pricing_update": "2026-09-21T09:07:13.582535",
+      "pricing_source": "openrouter"
+    },
+    "~openai/gpt-astra-latest": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 50.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582541",
+      "pricing_source": "openrouter"
+    },
+    "~openai/gpt-sol-latest": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582547",
+      "pricing_source": "openrouter"
+    },
+    "~openai/gpt-terra-latest": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582553",
+      "pricing_source": "openrouter"
+    },
+    "~openai/gpt-luna-latest": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582559",
+      "pricing_source": "openrouter"
+    },
+    "sakana/fugu-ultra-v2": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 30.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sakana",
+      "last_pricing_update": "2026-09-21T09:07:13.582565",
+      "pricing_source": "openrouter"
+    },
+    "sakana/fugu-max": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sakana",
+      "last_pricing_update": "2026-09-21T09:07:13.582571",
+      "pricing_source": "openrouter"
+    },
+    "inclusionai/ling-3.0-flash-vl": {
+      "pricing": {
+        "input_per_million": 0.06,
+        "output_per_million": 0.18,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inclusionai",
+      "last_pricing_update": "2026-09-21T09:07:13.582578",
+      "pricing_source": "openrouter"
+    },
+    "inclusionai/ling-3.0-flash-vl:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inclusionai",
+      "last_pricing_update": "2026-09-21T09:07:13.582585",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582597",
+      "pricing_source": "openrouter"
+    },
+    "inception/mercury-2.5": {
+      "pricing": {
+        "input_per_million": 0.04,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inception",
+      "last_pricing_update": "2026-09-21T09:07:13.582604",
+      "pricing_source": "openrouter"
+    },
+    "nex-agi/nex-n2.5-mini:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nex-agi",
+      "last_pricing_update": "2026-09-21T09:07:13.582611",
+      "pricing_source": "openrouter"
+    },
+    "nex-agi/nex-n2.5-pro:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nex-agi",
+      "last_pricing_update": "2026-09-21T09:07:13.582618",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-6-astra": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 50.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582624",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-6-astra:batch": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582631",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-6-astra-pro": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 50.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582639",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-6-astra-pro:batch": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.582645",
+      "pricing_source": "openrouter"
+    },
+    "inclusionai/ling-3.0-flash-sante:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inclusionai",
+      "last_pricing_update": "2026-09-21T09:07:13.582651",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.8-max-0902": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582657",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-spark-1.3-contributor": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.582663",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-spark-1.3": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 4.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.582670",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.8-flash": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 3.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.582676",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.8-flash:batch": {
+      "pricing": {
+        "input_per_million": 0.375,
+        "output_per_million": 1.875,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.582683",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-fable-5.1": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 50.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.582688",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-fable-5.1:batch": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.582694",
+      "pricing_source": "openrouter"
+    },
+    "ibm-granite/granite-4.2-8b": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "ibm-granite",
+      "last_pricing_update": "2026-09-21T09:07:13.582699",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hy4-preview": {
+      "pricing": {
+        "input_per_million": 0.834,
+        "output_per_million": 2.501,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.582704",
+      "pricing_source": "openrouter"
+    },
+    "inclusionai/ling-3.0-flash-fin": {
+      "pricing": {
+        "input_per_million": 0.06,
+        "output_per_million": 0.18,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inclusionai",
+      "last_pricing_update": "2026-09-21T09:07:13.582713",
+      "pricing_source": "openrouter"
+    },
+    "inclusionai/ling-3.0-flash-fin:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inclusionai",
+      "last_pricing_update": "2026-09-21T09:07:13.582719",
+      "pricing_source": "openrouter"
+    },
+    "~z-ai/glm-flash-latest": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582726",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.8-flash": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.47,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582731",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.3-flash": {
+      "pricing": {
+        "input_per_million": 0.09,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582737",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.3-flash:batch": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582743",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-spark-1.2-contributor": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.582749",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-flash-vision-exp": {
+      "pricing": {
+        "input_per_million": 0.22,
+        "output_per_million": 0.66,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582757",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-flash-vision-exp:batch": {
+      "pricing": {
+        "input_per_million": 0.11,
+        "output_per_million": 0.33,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582764",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hy-mt2-1.8b": {
+      "pricing": {
+        "input_per_million": 0.044,
+        "output_per_million": 0.177,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.582770",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hy-mt2-30b-a3b": {
+      "pricing": {
+        "input_per_million": 0.074,
+        "output_per_million": 0.295,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.582776",
+      "pricing_source": "openrouter"
+    },
+    "~z-ai/glm-latest": {
+      "pricing": {
+        "input_per_million": 0.7735,
+        "output_per_million": 2.431,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582783",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hy-mt2-7b": {
+      "pricing": {
+        "input_per_million": 0.074,
+        "output_per_million": 0.295,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.582788",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.3": {
+      "pricing": {
+        "input_per_million": 0.91,
+        "output_per_million": 2.86,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582795",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.3:batch": {
+      "pricing": {
+        "input_per_million": 0.7,
+        "output_per_million": 2.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582802",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.8-27b": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582807",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.8-27b:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582813",
+      "pricing_source": "openrouter"
+    },
+    "dots-studio/dots-3-note-preview:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "dots-studio",
+      "last_pricing_update": "2026-09-21T09:07:13.582819",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.7-flash": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 3.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.582824",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.7-flash:batch": {
+      "pricing": {
+        "input_per_million": 0.375,
+        "output_per_million": 1.875,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.582831",
+      "pricing_source": "openrouter"
+    },
+    "bytedance-seed/seed-2-1-turbo": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance-seed",
+      "last_pricing_update": "2026-09-21T09:07:13.582843",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.8-2.4t-a95b": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582851",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.8-2.4t-a95b:batch": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582858",
+      "pricing_source": "openrouter"
+    },
+    "bytedance-seed/seed-2.0-code": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 3.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance-seed",
+      "last_pricing_update": "2026-09-21T09:07:13.582864",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-pro-0813": {
+      "pricing": {
+        "input_per_million": 1.32,
+        "output_per_million": 3.96,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582871",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-pro-0813:batch": {
+      "pricing": {
+        "input_per_million": 0.66,
+        "output_per_million": 1.98,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582880",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-4.6": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.582888",
+      "pricing_source": "openrouter"
+    },
+    "liquid/lfm-2.5-2.6b:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "liquid",
+      "last_pricing_update": "2026-09-21T09:07:13.582894",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3.5-lightning": {
+      "pricing": {
+        "input_per_million": 0.07,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.582901",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3.5-lightning:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.582907",
+      "pricing_source": "openrouter"
+    },
+    "sakana/sakana-namazu": {
+      "pricing": {
+        "input_per_million": 0.95,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sakana",
+      "last_pricing_update": "2026-09-21T09:07:13.582915",
+      "pricing_source": "openrouter"
+    },
+    "upstage/solar-pro4": {
+      "pricing": {
+        "input_per_million": 0.09,
+        "output_per_million": 0.36,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "upstage",
+      "last_pricing_update": "2026-09-21T09:07:13.582922",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-glimmer-30b": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.582928",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-glimmer-30b:batch": {
+      "pricing": {
+        "input_per_million": 0.175,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.582936",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-spark-1.2": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 4.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.582943",
+      "pricing_source": "openrouter"
+    },
+    "~deepseek/deepseek-v4-flash-latest": {
+      "pricing": {
+        "input_per_million": 0.04,
+        "output_per_million": 0.16,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582950",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-flash-0731": {
+      "pricing": {
+        "input_per_million": 0.04,
+        "output_per_million": 0.16,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582955",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-flash-0731:batch": {
+      "pricing": {
+        "input_per_million": 0.11,
+        "output_per_million": 0.33,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.582962",
+      "pricing_source": "openrouter"
+    },
+    "thinkingmachines/inkling-small": {
+      "pricing": {
+        "input_per_million": 0.45,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thinkingmachines",
+      "last_pricing_update": "2026-09-21T09:07:13.582969",
+      "pricing_source": "openrouter"
+    },
+    "thinkingmachines/inkling-small:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thinkingmachines",
+      "last_pricing_update": "2026-09-21T09:07:13.582976",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.7-flash": {
+      "pricing": {
+        "input_per_million": 0.03,
+        "output_per_million": 0.13,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.582982",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-5": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.582990",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-5:batch": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 12.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.582998",
+      "pricing_source": "openrouter"
+    },
+    "inclusionai/ling-3.0-flash": {
+      "pricing": {
+        "input_per_million": 0.021,
+        "output_per_million": 0.063,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inclusionai",
+      "last_pricing_update": "2026-09-21T09:07:13.583004",
+      "pricing_source": "openrouter"
+    },
+    "poolside/laguna-s-2.1": {
+      "pricing": {
+        "input_per_million": 0.09,
+        "output_per_million": 0.18,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "poolside",
+      "last_pricing_update": "2026-09-21T09:07:13.583013",
+      "pricing_source": "openrouter"
+    },
+    "poolside/laguna-s-2.1:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "poolside",
+      "last_pricing_update": "2026-09-21T09:07:13.583026",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.6-flash": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 3.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583033",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.6-flash:batch": {
+      "pricing": {
+        "input_per_million": 0.375,
+        "output_per_million": 1.875,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583041",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.5-flash-lite": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583047",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.5-flash-lite:batch": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583054",
+      "pricing_source": "openrouter"
+    },
+    "meituan/longcat-2.0": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meituan",
+      "last_pricing_update": "2026-09-21T09:07:13.583062",
+      "pricing_source": "openrouter"
+    },
+    "thinkingmachines/inkling": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 4.05,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thinkingmachines",
+      "last_pricing_update": "2026-09-21T09:07:13.583070",
+      "pricing_source": "openrouter"
+    },
+    "thinkingmachines/inkling:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 4.05,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thinkingmachines",
+      "last_pricing_update": "2026-09-21T09:07:13.583077",
+      "pricing_source": "openrouter"
+    },
+    "thinkingmachines/inkling:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thinkingmachines",
+      "last_pricing_update": "2026-09-21T09:07:13.583093",
+      "pricing_source": "openrouter"
+    },
+    "openrouter/auto-beta": {
+      "pricing": {
+        "input_per_million": -1000000.0,
+        "output_per_million": -1000000.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openrouter",
+      "last_pricing_update": "2026-09-21T09:07:13.583101",
+      "pricing_source": "openrouter"
+    },
+    "kimi/k3:batch": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.583115",
+      "pricing_source": "openrouter"
+    },
+    "meta/muse-spark-1.1": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 4.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta",
+      "last_pricing_update": "2026-09-21T09:07:13.583122",
+      "pricing_source": "openrouter"
+    },
+    "kwaipilot/kat-coder-pro-v2.5": {
+      "pricing": {
+        "input_per_million": 0.74,
+        "output_per_million": 2.96,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kwaipilot",
+      "last_pricing_update": "2026-09-21T09:07:13.583130",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-luna-pro": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583135",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-luna-pro:batch": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583142",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-luna": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583148",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-luna:batch": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583153",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-terra-pro": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583159",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-terra-pro:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583166",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-terra": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583173",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-terra:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583179",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-sol-pro": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583186",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-sol-pro:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583192",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-sol": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583198",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.6-sol:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583204",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-4.5": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583209",
+      "pricing_source": "openrouter"
+    },
+    "~x-ai/grok-latest": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583215",
+      "pricing_source": "openrouter"
+    },
+    "aion-labs/aion-3.0-mini": {
+      "pricing": {
+        "input_per_million": 0.7,
+        "output_per_million": 1.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "aion-labs",
+      "last_pricing_update": "2026-09-21T09:07:13.583222",
+      "pricing_source": "openrouter"
+    },
+    "aion-labs/aion-3.0": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "aion-labs",
+      "last_pricing_update": "2026-09-21T09:07:13.583229",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hy3": {
+      "pricing": {
+        "input_per_million": 0.132,
+        "output_per_million": 0.528,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.583235",
+      "pricing_source": "openrouter"
+    },
+    "poolside/laguna-xs-2.1": {
+      "pricing": {
+        "input_per_million": 0.06,
+        "output_per_million": 0.12,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "poolside",
+      "last_pricing_update": "2026-09-21T09:07:13.583242",
+      "pricing_source": "openrouter"
+    },
+    "poolside/laguna-xs-2.1:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "poolside",
+      "last_pricing_update": "2026-09-21T09:07:13.583249",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-5": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583257",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-5:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583265",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-flash-lite-image": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583271",
+      "pricing_source": "openrouter"
+    },
+    "sakana/fugu-ultra": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 30.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sakana",
+      "last_pricing_update": "2026-09-21T09:07:13.583278",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-flash-image": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 3.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583284",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3-pro-image": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583294",
+      "pricing_source": "openrouter"
+    },
+    "cohere/north-mini-code:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "cohere",
+      "last_pricing_update": "2026-09-21T09:07:13.583301",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.2": {
+      "pricing": {
+        "input_per_million": 0.6496,
+        "output_per_million": 2.0416,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583309",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.2:batch": {
+      "pricing": {
+        "input_per_million": 0.7,
+        "output_per_million": 2.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583316",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.2:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583322",
+      "pricing_source": "openrouter"
+    },
+    "openrouter/fusion": {
+      "pricing": {
+        "input_per_million": -1000000.0,
+        "output_per_million": -1000000.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openrouter",
+      "last_pricing_update": "2026-09-21T09:07:13.583329",
+      "pricing_source": "openrouter"
+    },
+    "~anthropic/claude-fable-latest": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 50.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583344",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-fable-5": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 50.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583351",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-fable-5:batch": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583358",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3.5-content-safety": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583365",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3.5-content-safety:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583372",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3-ultra-550b-a55b": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 2.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583380",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3-ultra-550b-a55b:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583387",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.7-plus": {
+      "pricing": {
+        "input_per_million": 0.32,
+        "output_per_million": 1.28,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583394",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m3": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.583402",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m3:batch": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.583407",
+      "pricing_source": "openrouter"
+    },
+    "stepfun/step-3.7-flash": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "stepfun",
+      "last_pricing_update": "2026-09-21T09:07:13.583413",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.8": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583420",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.8:batch": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 12.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583428",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.7-max": {
+      "pricing": {
+        "input_per_million": 1.475,
+        "output_per_million": 4.425,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583436",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-build-0.1": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583443",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.5-flash": {
+      "pricing": {
+        "input_per_million": 1.5,
+        "output_per_million": 9.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583452",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.5-flash:batch": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 4.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583460",
+      "pricing_source": "openrouter"
+    },
+    "perceptron/perceptron-mk1": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 1.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "perceptron",
+      "last_pricing_update": "2026-09-21T09:07:13.583467",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-flash-lite": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583474",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-flash-lite:batch": {
+      "pricing": {
+        "input_per_million": 0.125,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583487",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-chat-latest": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 30.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583494",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-4.3": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583500",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-4.3:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583506",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-medium-3-5": {
+      "pricing": {
+        "input_per_million": 1.5,
+        "output_per_million": 7.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.583512",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-medium-3-5:batch": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 3.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.583518",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583524",
+      "pricing_source": "openrouter"
+    },
+    "~anthropic/claude-haiku-latest": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583531",
+      "pricing_source": "openrouter"
+    },
+    "~openai/gpt-mini-latest": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 4.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583538",
+      "pricing_source": "openrouter"
+    },
+    "~google/gemini-pro-latest": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~google",
+      "last_pricing_update": "2026-09-21T09:07:13.583545",
+      "pricing_source": "openrouter"
+    },
+    "~moonshotai/kimi-latest": {
+      "pricing": {
+        "input_per_million": 1.7,
+        "output_per_million": 8.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~moonshotai",
+      "last_pricing_update": "2026-09-21T09:07:13.583553",
+      "pricing_source": "openrouter"
+    },
+    "~google/gemini-flash-latest": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 3.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~google",
+      "last_pricing_update": "2026-09-21T09:07:13.583560",
+      "pricing_source": "openrouter"
+    },
+    "~anthropic/claude-sonnet-latest": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583569",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-plus-20260420": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583576",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.6-flash": {
+      "pricing": {
+        "input_per_million": 0.1875,
+        "output_per_million": 1.125,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583583",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.6-35b-a3b": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583590",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.6-max-preview": {
+      "pricing": {
+        "input_per_million": 1.027,
+        "output_per_million": 6.162,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583597",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.6-27b": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583606",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.5-pro": {
+      "pricing": {
+        "input_per_million": 30.0,
+        "output_per_million": 180.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583613",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.5-pro:batch": {
+      "pricing": {
+        "input_per_million": 15.0,
+        "output_per_million": 90.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583620",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.5": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 30.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583626",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.5:batch": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583632",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-pro": {
+      "pricing": {
+        "input_per_million": 0.9553,
+        "output_per_million": 1.9105,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.583639",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v4-flash": {
+      "pricing": {
+        "input_per_million": 0.0886,
+        "output_per_million": 0.1772,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.583646",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hy3-preview": {
+      "pricing": {
+        "input_per_million": 0.18,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.583653",
+      "pricing_source": "openrouter"
+    },
+    "xiaomi/mimo-v2.5-pro": {
+      "pricing": {
+        "input_per_million": 0.435,
+        "output_per_million": 0.87,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "xiaomi",
+      "last_pricing_update": "2026-09-21T09:07:13.583660",
+      "pricing_source": "openrouter"
+    },
+    "xiaomi/mimo-v2.5": {
+      "pricing": {
+        "input_per_million": 0.14,
+        "output_per_million": 0.28,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "xiaomi",
+      "last_pricing_update": "2026-09-21T09:07:13.583666",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-image-2": {
+      "pricing": {
+        "input_per_million": 8.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583673",
+      "pricing_source": "openrouter"
+    },
+    "~anthropic/claude-opus-latest": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "~anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583680",
+      "pricing_source": "openrouter"
+    },
+    "openrouter/pareto-code": {
+      "pricing": {
+        "input_per_million": -1000000.0,
+        "output_per_million": -1000000.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openrouter",
+      "last_pricing_update": "2026-09-21T09:07:13.583691",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.7": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583702",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.7:batch": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 12.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.583710",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5.1": {
+      "pricing": {
+        "input_per_million": 0.966,
+        "output_per_million": 3.036,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583716",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-4-26b-a4b-it": {
+      "pricing": {
+        "input_per_million": 0.09,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583721",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-4-26b-a4b-it:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583728",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-4-31b-it": {
+      "pricing": {
+        "input_per_million": 0.09,
+        "output_per_million": 0.34,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583734",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-4-31b-it:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583746",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.6-plus": {
+      "pricing": {
+        "input_per_million": 0.325,
+        "output_per_million": 1.95,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583752",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5v-turbo": {
+      "pricing": {
+        "input_per_million": 1.2,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583759",
+      "pricing_source": "openrouter"
+    },
+    "arcee-ai/trinity-large-thinking": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 0.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "arcee-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583766",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-4.20-multi-agent": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583772",
+      "pricing_source": "openrouter"
+    },
+    "x-ai/grok-4.20": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "x-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583778",
+      "pricing_source": "openrouter"
+    },
+    "google/lyria-3-pro-preview": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583783",
+      "pricing_source": "openrouter"
+    },
+    "google/lyria-3-clip-preview": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583789",
+      "pricing_source": "openrouter"
+    },
+    "kwaipilot/kat-coder-pro-v2": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kwaipilot",
+      "last_pricing_update": "2026-09-21T09:07:13.583795",
+      "pricing_source": "openrouter"
+    },
+    "rekaai/reka-edge": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.1,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "rekaai",
+      "last_pricing_update": "2026-09-21T09:07:13.583801",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m2.7": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.583807",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-nano": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583815",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-nano:batch": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.625,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583822",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-mini": {
+      "pricing": {
+        "input_per_million": 0.75,
+        "output_per_million": 4.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583829",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-mini:batch": {
+      "pricing": {
+        "input_per_million": 0.375,
+        "output_per_million": 2.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583837",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-small-2603": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.583844",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-small-2603:batch": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.583851",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5-turbo": {
+      "pricing": {
+        "input_per_million": 1.2,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.583860",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3-super-120b-a12b": {
+      "pricing": {
+        "input_per_million": 0.08,
+        "output_per_million": 0.45,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583866",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3-super-120b-a12b:free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.583873",
+      "pricing_source": "openrouter"
+    },
+    "bytedance-seed/seed-2.0-lite": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance-seed",
+      "last_pricing_update": "2026-09-21T09:07:13.583879",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-9b": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583887",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-9b:batch": {
+      "pricing": {
+        "input_per_million": 0.17,
+        "output_per_million": 0.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583895",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-pro": {
+      "pricing": {
+        "input_per_million": 30.0,
+        "output_per_million": 180.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583903",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4-pro:batch": {
+      "pricing": {
+        "input_per_million": 15.0,
+        "output_per_million": 90.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583911",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583920",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.4:batch": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 7.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.583927",
+      "pricing_source": "openrouter"
+    },
+    "inception/mercury-2": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "inception",
+      "last_pricing_update": "2026-09-21T09:07:13.583934",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-flash-lite-preview": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583946",
+      "pricing_source": "openrouter"
+    },
+    "bytedance-seed/seed-2.0-mini": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance-seed",
+      "last_pricing_update": "2026-09-21T09:07:13.583953",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-flash-image-preview": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 3.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.583961",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-35b-a3b": {
+      "pricing": {
+        "input_per_million": 0.3125,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583970",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-27b": {
+      "pricing": {
+        "input_per_million": 0.195,
+        "output_per_million": 1.56,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583978",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-122b-a10b": {
+      "pricing": {
+        "input_per_million": 0.26,
+        "output_per_million": 2.08,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583985",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-flash-02-23": {
+      "pricing": {
+        "input_per_million": 0.065,
+        "output_per_million": 0.26,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.583992",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-pro-preview-customtools": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584000",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.3-codex": {
+      "pricing": {
+        "input_per_million": 1.75,
+        "output_per_million": 14.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584007",
+      "pricing_source": "openrouter"
+    },
+    "aion-labs/aion-2.0": {
+      "pricing": {
+        "input_per_million": 0.8,
+        "output_per_million": 1.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "aion-labs",
+      "last_pricing_update": "2026-09-21T09:07:13.584014",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-pro-preview": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584021",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3.1-pro-preview:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584028",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-4.6": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584035",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-4.6:batch": {
+      "pricing": {
+        "input_per_million": 1.5,
+        "output_per_million": 7.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584041",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-plus-02-15": {
+      "pricing": {
+        "input_per_million": 0.26,
+        "output_per_million": 1.56,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584047",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3.5-397b-a17b": {
+      "pricing": {
+        "input_per_million": 0.55,
+        "output_per_million": 3.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584056",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m2.5": {
+      "pricing": {
+        "input_per_million": 0.27,
+        "output_per_million": 1.08,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.584063",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-5": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 1.92,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584069",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-max-thinking": {
+      "pricing": {
+        "input_per_million": 0.78,
+        "output_per_million": 3.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584076",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.6": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584082",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.6:batch": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 12.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584089",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-coder-next": {
+      "pricing": {
+        "input_per_million": 0.12,
+        "output_per_million": 0.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584094",
+      "pricing_source": "openrouter"
+    },
+    "openrouter/free": {
+      "pricing": {
+        "input_per_million": 0.0,
+        "output_per_million": 0.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openrouter",
+      "last_pricing_update": "2026-09-21T09:07:13.584100",
+      "pricing_source": "openrouter"
+    },
+    "stepfun/step-3.5-flash": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "stepfun",
+      "last_pricing_update": "2026-09-21T09:07:13.584106",
+      "pricing_source": "openrouter"
+    },
+    "kimi/k2.5": {
+      "pricing": {
+        "input_per_million": 0.45,
+        "output_per_million": 2.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.584113",
+      "pricing_source": "openrouter"
+    },
+    "upstage/solar-pro-3": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "upstage",
+      "last_pricing_update": "2026-09-21T09:07:13.584119",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m2-her": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.584128",
+      "pricing_source": "openrouter"
+    },
+    "writer/palmyra-x5": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "writer",
+      "last_pricing_update": "2026-09-21T09:07:13.584134",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-audio": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584140",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-audio-mini": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 2.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584149",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.7-flash": {
+      "pricing": {
+        "input_per_million": 0.0605,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584155",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.2-codex": {
+      "pricing": {
+        "input_per_million": 1.75,
+        "output_per_million": 14.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584163",
+      "pricing_source": "openrouter"
+    },
+    "bytedance-seed/seed-1.6-flash": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance-seed",
+      "last_pricing_update": "2026-09-21T09:07:13.584172",
+      "pricing_source": "openrouter"
+    },
+    "bytedance-seed/seed-1.6": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance-seed",
+      "last_pricing_update": "2026-09-21T09:07:13.584179",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m2.1": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.584187",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.7": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 1.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584202",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3-flash-preview": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 3.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584209",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3-flash-preview:batch": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584216",
+      "pricing_source": "openrouter"
+    },
+    "nvidia/nemotron-3-nano-30b-a3b": {
+      "pricing": {
+        "input_per_million": 0.06,
+        "output_per_million": 0.24,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nvidia",
+      "last_pricing_update": "2026-09-21T09:07:13.584223",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.2-chat": {
+      "pricing": {
+        "input_per_million": 1.75,
+        "output_per_million": 14.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584231",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.2-pro": {
+      "pricing": {
+        "input_per_million": 21.0,
+        "output_per_million": 168.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584239",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.2-pro:batch": {
+      "pricing": {
+        "input_per_million": 10.5,
+        "output_per_million": 84.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584246",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.2": {
+      "pricing": {
+        "input_per_million": 1.75,
+        "output_per_million": 14.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584253",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.2:batch": {
+      "pricing": {
+        "input_per_million": 0.875,
+        "output_per_million": 7.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584264",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/devstral-2512": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584270",
+      "pricing_source": "openrouter"
+    },
+    "relace/relace-search": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 3.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "relace",
+      "last_pricing_update": "2026-09-21T09:07:13.584278",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.6v": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 0.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584286",
+      "pricing_source": "openrouter"
+    },
+    "openrouter/bodybuilder": {
+      "pricing": {
+        "input_per_million": -1000000.0,
+        "output_per_million": -1000000.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openrouter",
+      "last_pricing_update": "2026-09-21T09:07:13.584294",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.1-codex-max": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584301",
+      "pricing_source": "openrouter"
+    },
+    "amazon/nova-2-lite-v1": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "amazon",
+      "last_pricing_update": "2026-09-21T09:07:13.584309",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/ministral-14b-2512": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584317",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/ministral-8b-2512": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584325",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/ministral-8b-2512:batch": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.075,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584331",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/ministral-3b-2512": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.1,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584339",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-large-2512:batch": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584347",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v3.2": {
+      "pricing": {
+        "input_per_million": 0.269,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.584355",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.5": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 25.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584363",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.5:batch": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 12.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584368",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-3-pro-image-preview": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 12.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584377",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.1": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584382",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.1:batch": {
+      "pricing": {
+        "input_per_million": 0.625,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584391",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.1-codex": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584399",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5.1-codex-mini": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584404",
+      "pricing_source": "openrouter"
+    },
+    "kimi/k2-thinking": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.584409",
+      "pricing_source": "openrouter"
+    },
+    "amazon/nova-premier-v1": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 12.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "amazon",
+      "last_pricing_update": "2026-09-21T09:07:13.584415",
+      "pricing_source": "openrouter"
+    },
+    "perplexity/sonar-pro-search": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "perplexity",
+      "last_pricing_update": "2026-09-21T09:07:13.584421",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/voxtral-small-24b-2507": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584426",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-oss-safeguard-20b": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584433",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m2": {
+      "pricing": {
+        "input_per_million": 0.255,
+        "output_per_million": 1.02,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.584440",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-32b-instruct": {
+      "pricing": {
+        "input_per_million": 0.104,
+        "output_per_million": 0.416,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584447",
+      "pricing_source": "openrouter"
+    },
+    "ibm-granite/granite-4.0-h-micro": {
+      "pricing": {
+        "input_per_million": 0.017,
+        "output_per_million": 0.112,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "ibm-granite",
+      "last_pricing_update": "2026-09-21T09:07:13.584455",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-image-mini": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584462",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-haiku-4.5": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584469",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-haiku-4.5:batch": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584474",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-8b-thinking": {
+      "pricing": {
+        "input_per_million": 0.18,
+        "output_per_million": 2.1,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584481",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-8b-instruct": {
+      "pricing": {
+        "input_per_million": 0.117,
+        "output_per_million": 0.455,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584486",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-image": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584494",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-flash-image": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584500",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-30b-a3b-thinking": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 2.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584504",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-30b-a3b-instruct": {
+      "pricing": {
+        "input_per_million": 0.13,
+        "output_per_million": 0.52,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584510",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-pro": {
+      "pricing": {
+        "input_per_million": 15.0,
+        "output_per_million": 120.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584516",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-pro:batch": {
+      "pricing": {
+        "input_per_million": 7.5,
+        "output_per_million": 60.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584522",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.6": {
+      "pricing": {
+        "input_per_million": 0.43,
+        "output_per_million": 1.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584528",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-4.5": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584534",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-4.5:batch": {
+      "pricing": {
+        "input_per_million": 1.5,
+        "output_per_million": 7.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584541",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v3.2-exp": {
+      "pricing": {
+        "input_per_million": 0.27,
+        "output_per_million": 0.41,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.584547",
+      "pricing_source": "openrouter"
+    },
+    "thedrummer/cydonia-24b-v4.1": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 0.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thedrummer",
+      "last_pricing_update": "2026-09-21T09:07:13.584553",
+      "pricing_source": "openrouter"
+    },
+    "relace/relace-apply-3": {
+      "pricing": {
+        "input_per_million": 0.85,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "relace",
+      "last_pricing_update": "2026-09-21T09:07:13.584559",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-235b-a22b-thinking": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584565",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-vl-235b-a22b-instruct": {
+      "pricing": {
+        "input_per_million": 0.21,
+        "output_per_million": 1.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584571",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-max": {
+      "pricing": {
+        "input_per_million": 0.78,
+        "output_per_million": 3.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584576",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-coder-plus": {
+      "pricing": {
+        "input_per_million": 0.65,
+        "output_per_million": 3.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584581",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-v3.1-terminus": {
+      "pricing": {
+        "input_per_million": 0.27,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.584587",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-coder-flash": {
+      "pricing": {
+        "input_per_million": 0.195,
+        "output_per_million": 0.975,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584591",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-next-80b-a3b-thinking": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584597",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-next-80b-a3b-instruct": {
+      "pricing": {
+        "input_per_million": 0.09,
+        "output_per_million": 1.1,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584602",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen-plus-2025-07-28": {
+      "pricing": {
+        "input_per_million": 0.26,
+        "output_per_million": 0.78,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584608",
+      "pricing_source": "openrouter"
+    },
+    "kimi/k2-0905": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.584613",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-30b-a3b-thinking-2507": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 2.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584623",
+      "pricing_source": "openrouter"
+    },
+    "nousresearch/hermes-4-405b": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 3.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nousresearch",
+      "last_pricing_update": "2026-09-21T09:07:13.584629",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-chat-v3.1": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 0.95,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.584636",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-medium-3.1": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584643",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-medium-3.1:batch": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584650",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.5v": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 1.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584655",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584661",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5:batch": {
+      "pricing": {
+        "input_per_million": 0.625,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584667",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-mini": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584675",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-mini:batch": {
+      "pricing": {
+        "input_per_million": 0.125,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584683",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-nano": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584690",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-5-nano:batch": {
+      "pricing": {
+        "input_per_million": 0.025,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584695",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-oss-120b": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584700",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-oss-120b:batch": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584704",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-oss-20b": {
+      "pricing": {
+        "input_per_million": 0.03,
+        "output_per_million": 0.13,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584709",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.1": {
+      "pricing": {
+        "input_per_million": 15.0,
+        "output_per_million": 75.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584714",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4.1:batch": {
+      "pricing": {
+        "input_per_million": 7.5,
+        "output_per_million": 37.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584719",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/codestral-2508": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 0.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584724",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/codestral-2508:batch": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.45,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584730",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-coder-30b-a3b-instruct": {
+      "pricing": {
+        "input_per_million": 0.07,
+        "output_per_million": 0.28,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584736",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-30b-a3b-instruct-2507": {
+      "pricing": {
+        "input_per_million": 0.0481,
+        "output_per_million": 0.193,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584746",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.5": {
+      "pricing": {
+        "input_per_million": 0.6,
+        "output_per_million": 2.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584752",
+      "pricing_source": "openrouter"
+    },
+    "z-ai/glm-4.5-air": {
+      "pricing": {
+        "input_per_million": 0.13,
+        "output_per_million": 0.85,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "z-ai",
+      "last_pricing_update": "2026-09-21T09:07:13.584758",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-235b-a22b-thinking-2507": {
+      "pricing": {
+        "input_per_million": 0.23,
+        "output_per_million": 2.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584764",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-coder": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584771",
+      "pricing_source": "openrouter"
+    },
+    "bytedance/ui-tars-1.5-7b": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "bytedance",
+      "last_pricing_update": "2026-09-21T09:07:13.584779",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-flash-lite": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584786",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-flash-lite:batch": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584791",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-235b-a22b-2507": {
+      "pricing": {
+        "input_per_million": 0.0875,
+        "output_per_million": 0.35,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584797",
+      "pricing_source": "openrouter"
+    },
+    "kimi/k2": {
+      "pricing": {
+        "input_per_million": 0.57,
+        "output_per_million": 2.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "kimi",
+      "last_pricing_update": "2026-09-21T09:07:13.584802",
+      "pricing_source": "openrouter"
+    },
+    "cognitivecomputations/dolphin-mistral-24b-venice-edition": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 0.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "cognitivecomputations",
+      "last_pricing_update": "2026-09-21T09:07:13.584807",
+      "pricing_source": "openrouter"
+    },
+    "tencent/hunyuan-a13b-instruct": {
+      "pricing": {
+        "input_per_million": 0.14,
+        "output_per_million": 0.57,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "tencent",
+      "last_pricing_update": "2026-09-21T09:07:13.584812",
+      "pricing_source": "openrouter"
+    },
+    "morph/morph-v3-large": {
+      "pricing": {
+        "input_per_million": 0.9,
+        "output_per_million": 1.9,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "morph",
+      "last_pricing_update": "2026-09-21T09:07:13.584818",
+      "pricing_source": "openrouter"
+    },
+    "morph/morph-v3-fast": {
+      "pricing": {
+        "input_per_million": 0.8,
+        "output_per_million": 1.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "morph",
+      "last_pricing_update": "2026-09-21T09:07:13.584823",
+      "pricing_source": "openrouter"
+    },
+    "baidu/ernie-4.5-vl-424b-a47b": {
+      "pricing": {
+        "input_per_million": 0.42,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "baidu",
+      "last_pricing_update": "2026-09-21T09:07:13.584829",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-small-3.2-24b-instruct": {
+      "pricing": {
+        "input_per_million": 0.0938,
+        "output_per_million": 0.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584834",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-m1": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 2.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.584840",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-flash": {
+      "pricing": {
+        "input_per_million": 0.3,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584851",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-flash:batch": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584856",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-pro": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584862",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-pro:batch": {
+      "pricing": {
+        "input_per_million": 0.625,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584868",
+      "pricing_source": "openrouter"
+    },
+    "openai/o3-pro": {
+      "pricing": {
+        "input_per_million": 20.0,
+        "output_per_million": 80.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.584873",
+      "pricing_source": "openrouter"
+    },
+    "google/gemini-2.5-pro-preview": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.584878",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-r1-0528": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 2.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.584884",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-opus-4": {
+      "pricing": {
+        "input_per_million": 15.0,
+        "output_per_million": 75.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584889",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-sonnet-4": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.584894",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-medium-3": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.584899",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-guard-4-12b": {
+      "pricing": {
+        "input_per_million": 0.18,
+        "output_per_million": 0.18,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.584904",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-30b-a3b": {
+      "pricing": {
+        "input_per_million": 0.12,
+        "output_per_million": 0.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584908",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-8b": {
+      "pricing": {
+        "input_per_million": 0.117,
+        "output_per_million": 0.455,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584913",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-14b": {
+      "pricing": {
+        "input_per_million": 0.12,
+        "output_per_million": 0.24,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584918",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-32b": {
+      "pricing": {
+        "input_per_million": 0.08,
+        "output_per_million": 0.28,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.584923",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen3-235b-a22b": {
+      "pricing": {
+        "input_per_million": 0.455,
+        "output_per_million": 1.82,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.585004",
+      "pricing_source": "openrouter"
+    },
+    "openai/o4-mini-high": {
+      "pricing": {
+        "input_per_million": 1.1,
+        "output_per_million": 4.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585016",
+      "pricing_source": "openrouter"
+    },
+    "openai/o3": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 8.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585023",
+      "pricing_source": "openrouter"
+    },
+    "openai/o3:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585030",
+      "pricing_source": "openrouter"
+    },
+    "openai/o4-mini": {
+      "pricing": {
+        "input_per_million": 1.1,
+        "output_per_million": 4.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585036",
+      "pricing_source": "openrouter"
+    },
+    "openai/o4-mini:batch": {
+      "pricing": {
+        "input_per_million": 0.55,
+        "output_per_million": 2.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585043",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4.1": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 8.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585056",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4.1:batch": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585063",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4.1-mini": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 1.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585070",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4.1-mini:batch": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 0.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585076",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4.1-nano": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585082",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4.1-nano:batch": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585088",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-4-maverick": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 0.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585094",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-4-scout": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585100",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-chat-v3-0324": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.585106",
+      "pricing_source": "openrouter"
+    },
+    "openai/o1-pro": {
+      "pricing": {
+        "input_per_million": 150.0,
+        "output_per_million": 600.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585112",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-small-3.1-24b-instruct": {
+      "pricing": {
+        "input_per_million": 0.351,
+        "output_per_million": 0.555,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585119",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-3-4b-it": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.1,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.585125",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-3-12b-it": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.585130",
+      "pricing_source": "openrouter"
+    },
+    "cohere/command-a": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "cohere",
+      "last_pricing_update": "2026-09-21T09:07:13.585137",
+      "pricing_source": "openrouter"
+    },
+    "rekaai/reka-flash-3": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "rekaai",
+      "last_pricing_update": "2026-09-21T09:07:13.585143",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-3-27b-it": {
+      "pricing": {
+        "input_per_million": 0.08,
+        "output_per_million": 0.45,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.585149",
+      "pricing_source": "openrouter"
+    },
+    "thedrummer/skyfall-36b-v2": {
+      "pricing": {
+        "input_per_million": 0.55,
+        "output_per_million": 0.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thedrummer",
+      "last_pricing_update": "2026-09-21T09:07:13.585155",
+      "pricing_source": "openrouter"
+    },
+    "perplexity/sonar-reasoning-pro": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 8.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "perplexity",
+      "last_pricing_update": "2026-09-21T09:07:13.585161",
+      "pricing_source": "openrouter"
+    },
+    "perplexity/sonar-pro": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "perplexity",
+      "last_pricing_update": "2026-09-21T09:07:13.585167",
+      "pricing_source": "openrouter"
+    },
+    "perplexity/sonar-deep-research": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 8.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "perplexity",
+      "last_pricing_update": "2026-09-21T09:07:13.585174",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-saba": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585180",
+      "pricing_source": "openrouter"
+    },
+    "openai/o3-mini-high": {
+      "pricing": {
+        "input_per_million": 1.1,
+        "output_per_million": 4.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585186",
+      "pricing_source": "openrouter"
+    },
+    "aion-labs/aion-rp-llama-3.1-8b": {
+      "pricing": {
+        "input_per_million": 0.8,
+        "output_per_million": 1.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "aion-labs",
+      "last_pricing_update": "2026-09-21T09:07:13.585192",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen2.5-vl-72b-instruct": {
+      "pricing": {
+        "input_per_million": 0.8,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.585198",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen-plus": {
+      "pricing": {
+        "input_per_million": 0.26,
+        "output_per_million": 0.78,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.585204",
+      "pricing_source": "openrouter"
+    },
+    "openai/o3-mini": {
+      "pricing": {
+        "input_per_million": 1.1,
+        "output_per_million": 4.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585210",
+      "pricing_source": "openrouter"
+    },
+    "openai/o3-mini:batch": {
+      "pricing": {
+        "input_per_million": 0.55,
+        "output_per_million": 2.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585217",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-small-24b-instruct-2501": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.08,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585223",
+      "pricing_source": "openrouter"
+    },
+    "perplexity/sonar": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "perplexity",
+      "last_pricing_update": "2026-09-21T09:07:13.585230",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-r1-distill-llama-70b": {
+      "pricing": {
+        "input_per_million": 0.8,
+        "output_per_million": 0.8,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.585240",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-r1": {
+      "pricing": {
+        "input_per_million": 0.7,
+        "output_per_million": 2.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.585251",
+      "pricing_source": "openrouter"
+    },
+    "minimax/minimax-01": {
+      "pricing": {
+        "input_per_million": 0.2,
+        "output_per_million": 1.1,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "minimax",
+      "last_pricing_update": "2026-09-21T09:07:13.585258",
+      "pricing_source": "openrouter"
+    },
+    "microsoft/phi-4": {
+      "pricing": {
+        "input_per_million": 0.07,
+        "output_per_million": 0.14,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "microsoft",
+      "last_pricing_update": "2026-09-21T09:07:13.585264",
+      "pricing_source": "openrouter"
+    },
+    "deepseek/deepseek-chat": {
+      "pricing": {
+        "input_per_million": 0.32,
+        "output_per_million": 0.89,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "deepseek",
+      "last_pricing_update": "2026-09-21T09:07:13.585270",
+      "pricing_source": "openrouter"
+    },
+    "sao10k/l3.3-euryale-70b": {
+      "pricing": {
+        "input_per_million": 0.65,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sao10k",
+      "last_pricing_update": "2026-09-21T09:07:13.585277",
+      "pricing_source": "openrouter"
+    },
+    "openai/o1": {
+      "pricing": {
+        "input_per_million": 15.0,
+        "output_per_million": 60.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585283",
+      "pricing_source": "openrouter"
+    },
+    "cohere/command-r7b-12-2024": {
+      "pricing": {
+        "input_per_million": 0.0375,
+        "output_per_million": 0.15,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "cohere",
+      "last_pricing_update": "2026-09-21T09:07:13.585289",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-3.3-70b-instruct": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.32,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585295",
+      "pricing_source": "openrouter"
+    },
+    "amazon/nova-lite-v1": {
+      "pricing": {
+        "input_per_million": 0.06,
+        "output_per_million": 0.24,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "amazon",
+      "last_pricing_update": "2026-09-21T09:07:13.585302",
+      "pricing_source": "openrouter"
+    },
+    "amazon/nova-micro-v1": {
+      "pricing": {
+        "input_per_million": 0.035,
+        "output_per_million": 0.14,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "amazon",
+      "last_pricing_update": "2026-09-21T09:07:13.585308",
+      "pricing_source": "openrouter"
+    },
+    "amazon/nova-pro-v1": {
+      "pricing": {
+        "input_per_million": 0.8,
+        "output_per_million": 3.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "amazon",
+      "last_pricing_update": "2026-09-21T09:07:13.585314",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o-2024-11-20": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585320",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-large-2407": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585326",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen-2.5-coder-32b-instruct": {
+      "pricing": {
+        "input_per_million": 0.66,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.585332",
+      "pricing_source": "openrouter"
+    },
+    "thedrummer/unslopnemo-12b": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "thedrummer",
+      "last_pricing_update": "2026-09-21T09:07:13.585338",
+      "pricing_source": "openrouter"
+    },
+    "anthracite-org/magnum-v4-72b": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthracite-org",
+      "last_pricing_update": "2026-09-21T09:07:13.585344",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen-2.5-7b-instruct": {
+      "pricing": {
+        "input_per_million": 0.1,
+        "output_per_million": 0.2,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.585351",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-3.2-1b-instruct": {
+      "pricing": {
+        "input_per_million": 0.027,
+        "output_per_million": 0.201,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585357",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-3.2-3b-instruct": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.33,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585364",
+      "pricing_source": "openrouter"
+    },
+    "qwen/qwen-2.5-72b-instruct": {
+      "pricing": {
+        "input_per_million": 0.36,
+        "output_per_million": 0.4,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "qwen",
+      "last_pricing_update": "2026-09-21T09:07:13.585370",
+      "pricing_source": "openrouter"
+    },
+    "cohere/command-r-08-2024": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "cohere",
+      "last_pricing_update": "2026-09-21T09:07:13.585376",
+      "pricing_source": "openrouter"
+    },
+    "cohere/command-r-plus-08-2024": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "cohere",
+      "last_pricing_update": "2026-09-21T09:07:13.585382",
+      "pricing_source": "openrouter"
+    },
+    "sao10k/l3.1-euryale-70b": {
+      "pricing": {
+        "input_per_million": 0.85,
+        "output_per_million": 0.85,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sao10k",
+      "last_pricing_update": "2026-09-21T09:07:13.585388",
+      "pricing_source": "openrouter"
+    },
+    "nousresearch/hermes-3-llama-3.1-70b": {
+      "pricing": {
+        "input_per_million": 0.7,
+        "output_per_million": 0.7,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nousresearch",
+      "last_pricing_update": "2026-09-21T09:07:13.585394",
+      "pricing_source": "openrouter"
+    },
+    "nousresearch/hermes-3-llama-3.1-405b": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 1.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "nousresearch",
+      "last_pricing_update": "2026-09-21T09:07:13.585400",
+      "pricing_source": "openrouter"
+    },
+    "sao10k/l3-lunaris-8b": {
+      "pricing": {
+        "input_per_million": 0.04,
+        "output_per_million": 0.05,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "sao10k",
+      "last_pricing_update": "2026-09-21T09:07:13.585406",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o-2024-08-06": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585412",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-3.1-70b-instruct": {
+      "pricing": {
+        "input_per_million": 0.72,
+        "output_per_million": 0.72,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585418",
+      "pricing_source": "openrouter"
+    },
+    "meta-llama/llama-3.1-8b-instruct": {
+      "pricing": {
+        "input_per_million": 0.05,
+        "output_per_million": 0.08,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "meta-llama",
+      "last_pricing_update": "2026-09-21T09:07:13.585424",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-nemo": {
+      "pricing": {
+        "input_per_million": 0.019,
+        "output_per_million": 0.03,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585430",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o-mini": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585436",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o-mini-2024-07-18": {
+      "pricing": {
+        "input_per_million": 0.15,
+        "output_per_million": 0.6,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585442",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o-mini:batch": {
+      "pricing": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.3,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585449",
+      "pricing_source": "openrouter"
+    },
+    "google/gemma-2-27b-it": {
+      "pricing": {
+        "input_per_million": 0.65,
+        "output_per_million": 0.65,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "google",
+      "last_pricing_update": "2026-09-21T09:07:13.585455",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o": {
+      "pricing": {
+        "input_per_million": 2.5,
+        "output_per_million": 10.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585461",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o-2024-05-13": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585471",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4o:batch": {
+      "pricing": {
+        "input_per_million": 1.25,
+        "output_per_million": 5.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585477",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mixtral-8x22b-instruct": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585483",
+      "pricing_source": "openrouter"
+    },
+    "microsoft/wizardlm-2-8x22b": {
+      "pricing": {
+        "input_per_million": 0.62,
+        "output_per_million": 0.62,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "microsoft",
+      "last_pricing_update": "2026-09-21T09:07:13.585489",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4-turbo": {
+      "pricing": {
+        "input_per_million": 10.0,
+        "output_per_million": 30.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585495",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4-turbo:batch": {
+      "pricing": {
+        "input_per_million": 5.0,
+        "output_per_million": 15.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585501",
+      "pricing_source": "openrouter"
+    },
+    "anthropic/claude-3-haiku": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.25,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "anthropic",
+      "last_pricing_update": "2026-09-21T09:07:13.585507",
+      "pricing_source": "openrouter"
+    },
+    "mistralai/mistral-large": {
+      "pricing": {
+        "input_per_million": 2.0,
+        "output_per_million": 6.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mistralai",
+      "last_pricing_update": "2026-09-21T09:07:13.585513",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-3.5-turbo-0613": {
+      "pricing": {
+        "input_per_million": 1.0,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585519",
+      "pricing_source": "openrouter"
+    },
+    "openrouter/auto": {
+      "pricing": {
+        "input_per_million": -1000000.0,
+        "output_per_million": -1000000.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openrouter",
+      "last_pricing_update": "2026-09-21T09:07:13.585529",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-3.5-turbo-instruct": {
+      "pricing": {
+        "input_per_million": 1.5,
+        "output_per_million": 2.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585535",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-3.5-turbo-16k": {
+      "pricing": {
+        "input_per_million": 3.0,
+        "output_per_million": 4.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585540",
+      "pricing_source": "openrouter"
+    },
+    "mancer/weaver": {
+      "pricing": {
+        "input_per_million": 0.4,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "mancer",
+      "last_pricing_update": "2026-09-21T09:07:13.585547",
+      "pricing_source": "openrouter"
+    },
+    "undi95/remm-slerp-l2-13b": {
+      "pricing": {
+        "input_per_million": 0.35,
+        "output_per_million": 0.65,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "undi95",
+      "last_pricing_update": "2026-09-21T09:07:13.585553",
+      "pricing_source": "openrouter"
+    },
+    "gryphe/mythomax-l2-13b": {
+      "pricing": {
+        "input_per_million": 0.08,
+        "output_per_million": 0.11,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "gryphe",
+      "last_pricing_update": "2026-09-21T09:07:13.585559",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-3.5-turbo": {
+      "pricing": {
+        "input_per_million": 0.5,
+        "output_per_million": 1.5,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585565",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-3.5-turbo:batch": {
+      "pricing": {
+        "input_per_million": 0.25,
+        "output_per_million": 0.75,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585571",
+      "pricing_source": "openrouter"
+    },
+    "openai/gpt-4": {
+      "pricing": {
+        "input_per_million": 30.0,
+        "output_per_million": 60.0,
+        "cache_read_per_million": null,
+        "cache_write_per_million": null
+      },
+      "alternative_pricing": {},
+      "availability": "available",
+      "provider": "openai",
+      "last_pricing_update": "2026-09-21T09:07:13.585578",
+      "pricing_source": "openrouter"
+    }
+  }
+}

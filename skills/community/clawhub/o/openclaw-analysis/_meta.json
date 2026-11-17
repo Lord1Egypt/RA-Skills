@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7en4zg3axabpax1xfwftm4gs82f9sb",
-  "slug": "openclaw-analysis",
+  "id": "openclaw-analysis",
+  "name": "OpenClaw 架构分析",
   "version": "1.0.0",
-  "publishedAt": 1773593405510
+  "description": "用 OpenClaw 七大核心理念分析重大项目架构",
+  "author": "X",
+  "tags": ["openclaw", "analysis", "architecture", "framework"]
 }

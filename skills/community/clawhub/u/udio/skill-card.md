@@ -1,44 +1,61 @@
-## Description: <br>
-Generate AI music with Udio via API wrappers or browser automation, with prompt engineering and song extensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI music with Udio via API wrappers or browser automation, with prompt engineering and song extensions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to craft Udio prompts, generate or extend AI music through browser automation or community API wrappers, and organize local project notes, seeds, and downloaded songs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API mode depends on a sensitive Udio session token and unofficial/internal Udio API behavior. <br>
-Mitigation: Treat sb-api-auth-token like a password, avoid pasting it into chats or plain files, store it in a credential manager or environment variable, and refresh it only through the user's authenticated Udio session. <br>
-Risk: Community wrapper packages receive the user's Udio token when used for API generation. <br>
-Mitigation: Review the selected wrapper source and package before installation or execution, and use prompt-only or browser mode when token sharing is not acceptable. <br>
-Risk: Local project memory under ~/udio/ can contain creative preferences, project details, seeds, and generated-song references. <br>
-Mitigation: Review ~/udio/memory.md and project files for sensitive details before sharing, syncing, or committing local workspace content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Udio skill page](https://clawhub.ai/ivangdavila/udio) <br>
-- [Udio](https://www.udio.com) <br>
-- [Python UdioWrapper community wrapper](https://github.com/flowese/UdioWrapper) <br>
-- [Node udio-wrapper community wrapper](https://github.com/josephgodwinkimani/udio-wrapper) <br>
+## Use Case:
 
+Developers, creators, and agents use this skill to create Udio music workflows: craft prompts and lyrics, use community API wrappers when authorized, automate the Udio browser UI, extend tracks, and track local project history.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, prompt text, setup commands, and browser or API workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local file organization under ~/udio/ and may produce code or commands that use UDIO_AUTH_TOKEN when API mode is selected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to extract a live Udio browser session token for unofficial community wrappers.
+
+Mitigation: Prefer prompt-only or browser-only use when automation is not required; if wrappers are used, store the token only in a credential manager or environment variable and never in plain text project files.
+
+Risk: Unofficial wrapper packages may change behavior or handle account tokens unexpectedly.
+
+Mitigation: Review and pin wrapper versions before installation, and run wrapper-based workflows in an isolated environment.
+
+Risk: Prompts, lyrics, and creative project details are sent to Udio when generation workflows are used.
+
+Mitigation: Use Udio only for creative content the user is comfortable sending to that service, and avoid retaining sensitive project details unless local history is desired.
+
+## Reference(s):
+
+- [ClawHub Udio skill page](https://clawhub.ai/ivangdavila/skills/udio)
+- [Udio website](https://www.udio.com)
+- [Udio create page](https://www.udio.com/create)
+- [Python UdioWrapper repository](https://github.com/flowese/UdioWrapper.git)
+- [TypeScript udio-wrapper repository](https://github.com/josephgodwinkimani/udio-wrapper)
+- [Clawic Udio homepage](https://clawic.com/skills/udio)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, browser actions, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local notes under ~/udio/ and save downloaded audio files when the user chooses generation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Export a standard .srt subtitle file from measured word timings in a job's input.json, grouping words into readable subtitle cues and writing subtitles.srt without making API calls or modifying input.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export a standard .srt subtitle file from the MEASURED word timings in a job's input.json (written by elevenlabs-tts). Flattens the per-word timings into readable cues (max ~3.5s / ~10 words per cue, breaking on sentence punctuation) and writes <job>/subtitles.srt for upload to YouTube and other platforms. No API call. Re-runnable. Does not modify input.json.
 
-## Publisher: <br>
-[pushpendrachauhan](https://clawhub.ai/user/pushpendrachauhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pushpendrachauhan](https://clawhub.ai/user/pushpendrachauhan)
 
-## Use Case: <br>
-Developers and creators use this skill to turn measured OpenClaw job word timings into a ready-to-upload SRT subtitle file for platforms such as YouTube. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the script on a job folder can create or overwrite subtitles.srt in that folder. <br>
-Mitigation: Run it only on job folders where updating subtitles.srt is intended, as noted in the security guidance. <br>
-Risk: The skill depends on measured word timings already being present in input.json. <br>
-Mitigation: Run the timing-producing workflow first and treat a missing-timings error as a precondition failure rather than a successful export. <br>
+## Use Case:
 
+Developers and content automation users use this skill to convert measured word timings in a job input.json into readable SRT subtitle cues for video platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pushpendrachauhan/skills/subtitle-srt-export) <br>
-- [Input timing producer: elevenlabs-tts](../elevenlabs-tts/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [SRT subtitle file plus a short shell status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and awk. Reads <job>/input.json and writes or overwrites <job>/subtitles.srt in the same job folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The local shell script reads input.json and overwrites subtitles.srt in the selected job folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in job folders you control and review the target path before execution.
+
+Risk: A fixed .cues.tmp temporary file may be less robust in shared or untrusted job folders.
+
+Mitigation: Avoid running in directories writable by other users, avoid root execution, and consider replacing the fixed temporary file with mktemp.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pushpendrachauhan/skills/subtitle-srt-export)
+- [Publisher profile](https://clawhub.ai/user/pushpendrachauhan)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated SRT file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes <job>/subtitles.srt and prints cue and word counts; requires jq and awk.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

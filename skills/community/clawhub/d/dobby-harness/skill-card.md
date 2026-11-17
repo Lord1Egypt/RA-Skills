@@ -1,46 +1,63 @@
-## Description: <br>
-Provides multi-agent orchestration with task decomposition, parallel execution, result aggregation, and self-improving workflows for complex coding tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multi-agent orchestration with task decomposition, parallel execution, result aggregation, and self-improving workflows for complex coding tasks.
 
-## Publisher: <br>
-[panb-kg](https://clawhub.ai/user/panb-kg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panb-kg](https://clawhub.ai/user/panb-kg)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multiple coding agents for code review, test generation, documentation, CI/CD configuration, and complex task decomposition. It is intended for workflows where parallel execution, result aggregation, and recoverable working state are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security scan reports suspicious memory and session-state behavior because the skill may persist sensitive session or environment context without sufficient safeguards. <br>
-Mitigation: Review memory and session-state behavior before installation, and add redaction, retention limits, and strict file-permission controls before storing tokens, secrets, private paths, or detailed internal reasoning. <br>
-Risk: Generated CI/CD or PR-commenting workflows can cause real repository or deployment side effects if enabled directly. <br>
-Mitigation: Treat generated automation as draft output and require human review before enabling repository comments, commits, deployments, or other side effects. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multiple coding agents for complex software tasks such as code review, test generation, documentation, CI/CD configuration, and stateful workflow improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panb-kg/dobby-harness) <br>
-- [README](artifact/README.md) <br>
-- [Skill usage guide](artifact/SKILL.md) <br>
-- [Harness architecture](artifact/HARNESS-ARCHITECTURE.md) <br>
-- [Workflow guide](artifact/WORKFLOWS.md) <br>
-- [Self-improvement system](artifact/SELF-IMPROVEMENT.md) <br>
-- [Security audit](artifact/SECURITY-AUDIT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JavaScript code, JSON-like reports, configuration snippets, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may propose repository changes or automation steps; generated CI/CD and PR-commenting workflows should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist broad agent or session data to local plaintext WAL, buffer, or log files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, tokens, full environment dumps, private code context, or personal data unless restrictive file permissions, redaction, retention limits, and encryption are added.
+
+Risk: CI/CD and PR-commenting examples can affect external review or deployment surfaces when connected to real integrations.
+
+Mitigation: Require explicit user approval and safe target environments before enabling automated comments, commits, deployment configuration, or CI/CD actions.
+
+Risk: Broad automation guidance may produce changes that are inappropriate for sensitive workspaces.
+
+Mitigation: Review generated code, configuration, and workflow outputs before applying them, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panb-kg/skills/dobby-harness)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [HARNESS-ARCHITECTURE.md](artifact/HARNESS-ARCHITECTURE.md)
+- [WORKFLOWS.md](artifact/WORKFLOWS.md)
+- [SELF-IMPROVEMENT.md](artifact/SELF-IMPROVEMENT.md)
+- [SECURITY-AUDIT.md](artifact/SECURITY-AUDIT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, JSON-style reports, generated code or configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow reports, test or documentation drafts, CI/CD configuration drafts, and local state artifacts when the persistence features are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

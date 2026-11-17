@@ -1,43 +1,61 @@
-## Description: <br>
-Discovers and enumerates all subdomains associated with a target domain using deep reconnaissance techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers and enumerates all subdomains associated with a target domain using deep reconnaissance techniques.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security professionals, penetration testers, bug bounty hunters, DevSecOps teams, and organizations use this skill to enumerate active and inactive subdomains for authorized attack surface mapping and asset discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subdomain reconnaissance can be misused against domains the user is not authorized to assess. <br>
-Mitigation: Use the skill only on domains you own or have explicit permission to test. <br>
-Risk: Target domains are sent to an external API provider for enumeration. <br>
-Mitigation: Submit only domains appropriate for the provider to process and avoid sensitive targets unless organizational policy allows it. <br>
+## Use Case:
 
+Security professionals, penetration testers, bug bounty hunters, DevSecOps teams, and organizations use this skill to enumerate active and inactive subdomains for authorized attack-surface mapping and asset discovery.
 
-## Reference(s): <br>
-- [Subdomain Enumerator ClawHub Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/subdomain-enumerator) <br>
-- [Subdomain Enumerator API Docs](https://api.mkkpro.com:8006/docs) <br>
-- [Subdomain Enumerator API Route](https://api.mkkpro.com/security/subdomain-enumerator) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, guidance] <br>
-**Output Format:** [JSON response with the target domain, discovered subdomains, IP addresses, activity status, total count, and enumeration timing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target domain and returns active and inactive subdomain records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Target domains are sent to a third-party API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when disclosure to the provider is acceptable for the organization or client.
+
+Risk: Subdomain enumeration results may reveal sensitive reconnaissance data.
+
+Mitigation: Handle results as sensitive security assessment data and share them only with authorized parties.
+
+Risk: Reconnaissance against domains without authorization can violate policy or law.
+
+Mitigation: Run enumeration only for domains the user owns or is explicitly authorized to assess.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/subdomain-enumerator)
+- [API Documentation](https://api.mkkpro.com:8006/docs)
+- [API Route](https://api.mkkpro.com/security/subdomain-enumerator)
+- [ToolWeb](https://toolweb.in)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Analysis]
+
+**Output Format:** [JSON response containing the target domain, discovered subdomains, IP addresses, status values, total count, and enumeration timing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a target domain and sends that domain to a third-party API provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

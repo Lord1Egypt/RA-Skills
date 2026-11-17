@@ -1,44 +1,67 @@
-## Description: <br>
-AgentCloud helps AI agents register cloud storage, upload and download files, create share links, and check usage through REST API, CLI, and dashboard workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentCloud gives AI agents cloud storage for registration, file upload and download, share links, and usage checks across Hermes Agent and OpenClaw.
 
-## Publisher: <br>
-[jiangzh0202](https://clawhub.ai/user/jiangzh0202) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangzh0202](https://clawhub.ai/user/jiangzh0202)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to give agents a managed file-storage workflow for registration, uploads, downloads, listing, sharing, and storage-plan checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files and API keys are handled by AgentCloud/traceclaw.cn. <br>
-Mitigation: Use the skill only when you trust that service with the uploaded files and store API keys as secrets. <br>
-Risk: Share URLs can expose files to anyone who has the link until they expire. <br>
-Mitigation: Treat share URLs like secrets, use short expirations, and avoid sharing sensitive or regulated data unless the service controls meet your requirements. <br>
-Risk: The download helper can write downloads to server-chosen local paths. <br>
-Mitigation: Use explicit output paths, review downloaded filenames before relying on them, and be cautious with the helper until filename sanitization is fixed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register an AI agent with AgentCloud, configure API-key access, upload and download files, create expiring share links, and inspect storage usage.
 
-## Reference(s): <br>
-- [AgentCloud ClawHub listing](https://clawhub.ai/jiangzh0202/agentcloud) <br>
-- [AgentCloud website](https://agentcloud.traceclaw.cn) <br>
-- [AgentCloud API health endpoint](https://api.traceclaw.cn/health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, Python examples, and CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local configuration containing an AgentCloud API key and may call the AgentCloud API when helper commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Selected files are uploaded to the AgentCloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading sensitive files unless the service and account controls are acceptable for the data.
+
+Risk: The AgentCloud API key grants access to the agent storage account.
+
+Mitigation: Store the key in a protected secret store or locked-down config file, prefer environment-based injection, and avoid passing the key on the command line.
+
+Risk: Share links behave like bearer links until they expire.
+
+Mitigation: Use short expiration windows, share links only with intended recipients, and revoke or delete shared files when no longer needed.
+
+Risk: Downloads can write service-provided content to local paths.
+
+Mitigation: Download into a trusted directory, review output filenames and paths, and avoid overwriting important local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangzh0202/skills/agentcloud)
+- [AgentCloud web dashboard](https://agentcloud.traceclaw.cn)
+- [AgentCloud API base](https://api.traceclaw.cn/api/v1)
+- [AgentCloud API health check](https://api.traceclaw.cn/health)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [agentcloud.py helper script](artifact/scripts/agentcloud.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands, Python examples, API endpoint guidance, and helper-script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include API calls, local configuration paths, file identifiers, share links, and storage-plan details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

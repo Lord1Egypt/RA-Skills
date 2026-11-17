@@ -1,45 +1,67 @@
-## Description: <br>
-LeadFlow builds targeted business lead lists from Google Maps and Yelp, enriches and verifies contact data, scores lead quality, and exports CRM-ready files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any city into a lead list in 60 seconds by scraping Google Maps and Yelp, enriching and verifying contacts, scoring lead quality, and exporting CRM-ready results.
 
-## Publisher: <br>
-[LKocaj](https://clawhub.ai/user/LKocaj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lkocaj](https://clawhub.ai/user/lkocaj)
 
-## Use Case: <br>
-Sales teams, agencies, service businesses, freelancers, and consultants use LeadFlow to generate local business prospect lists, enrich them with contact data, prioritize them by quality score, and prepare exports for CRM or outreach workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Business and contact lead data may be sent to configured enrichment, verification, and webhook providers. <br>
-Mitigation: Use only approved provider keys and webhook destinations, and confirm the audience and compliance basis before enrichment, verification, export, or webhook workflows. <br>
-Risk: Lead data is saved locally and can be exported to spreadsheet or CRM import files. <br>
-Mitigation: Protect the local database and export files, restrict access to generated lead lists, and remove stale exports when they are no longer needed. <br>
-Risk: Large scraping, verification, export, or webhook batches can increase provider costs or send more records than intended. <br>
-Mitigation: Start with small limits, use available filters and batch-size controls, monitor provider quotas, and avoid large sends until the target list has been reviewed. <br>
+## Use Case:
 
+Sales teams, marketing agencies, service businesses, freelancers, and consultants use LeadFlow to collect local business leads, enrich contact details, verify reachable contacts, score lead quality, and export lists for CRM or outreach workflows.
 
-## Reference(s): <br>
-- [LeadFlow on ClawHub](https://clawhub.ai/LKocaj/leadflow) <br>
-- [LeadFlow npm package](https://www.npmjs.com/package/leadflow) <br>
-- [OnCall Automation](https://oncallautomation.ai) <br>
-- [Node.js](https://nodejs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON command responses, local database records, exports, and webhook payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports can include CSV, XLSX, Instantly, HubSpot, Salesforce, Pipedrive, and Airtable formats; webhook delivery posts lead data as JSON batches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The CLI fetches websites discovered from business listings, which can expose the user's network to untrusted sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the workflow in a network-restricted environment when possible and limit scraping to trusted use cases and expected geographies.
+
+Risk: Lead data and API-provider responses are stored locally and may contain personal or business contact information.
+
+Mitigation: Store output in controlled locations, protect local databases and exports, and delete data that is no longer needed.
+
+Risk: Generated spreadsheet files may contain untrusted fields from external sources.
+
+Mitigation: Treat generated CSV and XLSX files as untrusted and review them before opening in spreadsheet software or importing into business systems.
+
+Risk: Webhook delivery can send selected lead data to a user-provided URL.
+
+Mitigation: Use only approved webhook endpoints and verify filters, batch size, and destination ownership before sending data.
+
+Risk: The workflow uses several external data providers with user-supplied API keys.
+
+Mitigation: Use limited-scope API keys, monitor provider usage, and avoid debug logging that could expose proxy credentials or sensitive configuration.
+
+## Reference(s):
+
+- [LeadFlow ClawHub page](https://clawhub.ai/lkocaj/skills/leadflow)
+- [LeadFlow npm package](https://www.npmjs.com/package/leadflow)
+- [OnCall Automation](https://oncallautomation.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown instructions with bash command examples and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can create local SQLite data and CSV, XLSX, CRM import, or webhook outputs depending on user-selected workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

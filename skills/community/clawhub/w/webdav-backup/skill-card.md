@@ -1,45 +1,55 @@
-## Description: <br>
-Backs up OpenClaw workspace data and configuration to local tar.gz archives and, when configured, to a WebDAV endpoint with automatic local and remote retention cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebDAV backup tool for OpenClaw that creates local and cloud backups and automatically retains the latest 7 local backups and 20 remote backups.
 
-## Publisher: <br>
-[caozeal](https://clawhub.ai/user/caozeal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caozeal](https://clawhub.ai/user/caozeal)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to create local and WebDAV backups of workspace files, configuration, cron data, and related settings, then list or restore those backups when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives may include OpenClaw workspace data, configuration, cron files, and sensitive values in openclaw.json before upload to WebDAV. <br>
-Mitigation: Review the backup scope and openclaw.json before uploading; use a dedicated WebDAV folder and an application password. <br>
-Risk: Old backups are automatically pruned, which can remove recovery points that a user expected to keep. <br>
-Mitigation: Confirm the documented retention policy before relying on this skill for long-term archival backups. <br>
-Risk: Restoring an untrusted or unchecked archive can place unwanted files into the target directory, and forced restores can overwrite existing files. <br>
-Mitigation: Restore only trusted archives, extract to an isolated directory first, inspect backup-manifest.json, and use --force only after confirming the target path and overwrite intent. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to create tar.gz backups of an OpenClaw workspace, core configuration, cron files, or a selected source path, then store them locally or upload them to a configured WebDAV server. It also helps list backups, restore local archives, and clean up older local and remote backup files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caozeal/skills/webdav-backup) <br>
-- [README](README.md) <br>
-- [WebDAV backup configuration guide](references/config.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, tar.gz backup archives, and JSON backup manifests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local backup archives by default and can upload to a user-configured WebDAV endpoint when credentials are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Backups may include unencrypted OpenClaw workspace and configuration data, including stored credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege WebDAV account, prefer HTTPS-only endpoints, restrict local backup directory permissions, and encrypt archives before uploading when sensitive data may be included.
+
+Risk: Restore operations and --force can write to local filesystem paths and overwrite existing files.
+
+Mitigation: Restore to a separate test directory first, inspect openclaw/backup-manifest.json, and use --force only after confirming the target path and overwrite intent.
+
+## Reference(s):
+
+- [WebDAV backup configuration guide](references/config.md)
+- [ClawHub skill page](https://clawhub.ai/caozeal/skills/webdav-backup)
+- [Publisher profile](https://clawhub.ai/user/caozeal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create tar.gz backup files locally, upload archives to a configured WebDAV endpoint, list backups, restore archives, and report status or errors.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

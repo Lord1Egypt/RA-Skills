@@ -178,7 +178,7 @@ export OPENWEATHER_API_KEY="your_openweather_key"
 export AIS_API_KEY="your_ais_provider_key"  # e.g., MarineTraffic
 
 # Notifications
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 export SENDGRID_API_KEY="your_sendgrid_key"
 
 # Database & ERP

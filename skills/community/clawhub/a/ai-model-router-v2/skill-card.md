@@ -1,43 +1,57 @@
-## Description: <br>
-Automatically routes requests between local and cloud AI models based on task complexity and privacy, with auto-detection and context tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically routes requests between local and cloud AI models based on task complexity and privacy, with auto-detection and context tracking.
 
-## Publisher: <br>
-[yuldrone](https://clawhub.ai/user/yuldrone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuldrone](https://clawhub.ai/user/yuldrone)
 
-## Use Case: <br>
-Developers and engineers use this skill to route agent requests between configured local and cloud models, preferring local handling for sensitive prompts and stronger cloud models for complex tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact names the package and install command as ai-model-router while the server release is ai-model-router-v2. <br>
-Mitigation: Confirm the ClawHub slug and publisher handle before installation or use. <br>
-Risk: Regex-based privacy detection may not catch every secret or sensitive prompt. <br>
-Mitigation: Force the primary/local model for private work and avoid relying on automatic detection as the only privacy control. <br>
-Risk: Context tracking can store truncated conversation content in ~/.model-router/contexts.json. <br>
-Mitigation: Review or delete the context file periodically when context tracking is enabled. <br>
+## Use Case:
 
+Developers and agent users use this skill to choose a primary or secondary AI model for a request, favoring local models for sensitive inputs and cloud models for more complex tasks. It supports CLI and Python API workflows for listing models, checking router status, and returning route decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuldrone/ai-model-router-v2) <br>
-- [Publisher Profile](https://clawhub.ai/user/yuldrone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; the router CLI can return text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write optional local model and context configuration under ~/.model-router when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and package.json) <br>
+Risk: Privacy mode can still route sensitive requests to the configured primary model even when that model is not local.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the primary model is local before using the skill with sensitive inputs, and configure or force routing accordingly.
+
+Risk: Context tracking can store conversation excerpts locally in plaintext.
+
+Mitigation: Disable context recording for sensitive conversations or add redaction and stricter local storage controls before enabling it.
+
+Risk: The documented installer command uses a moving @latest target.
+
+Mitigation: Use a pinned installer version when installing or reproducing this release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuldrone/skills/ai-model-router-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text or JSON route decisions, with Markdown documentation and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit JSON with --json; optional context tracking may write local conversation excerpts under the user's model-router configuration directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and package.json; SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

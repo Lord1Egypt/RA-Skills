@@ -1,42 +1,55 @@
-## Description: <br>
-Helps users structure human-in-the-loop multi-agent workflows for product development, content production, code changes, MVP iteration, and other complex deliverables by separating owner direction, orchestration, execution, review, and acceptance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides human-supervised multi-agent collaboration by helping an orchestrating AI clarify requirements, decompose work into atomic tasks, review agent outputs, and keep the human owner responsible for direction and acceptance.
 
-## Publisher: <br>
-[allin-zhang](https://clawhub.ai/user/allin-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allin-zhang](https://clawhub.ai/user/allin-zhang)
 
-## Use Case: <br>
-External users, developers, product managers, independent builders, small teams, and creators use this skill to turn ambiguous goals into bounded, reviewable tasks for one or more AI agents. It is intended for supervised collaboration where humans confirm plans, review outputs, and perform final acceptance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsupervised or loosely scoped agent execution can expand task scope or produce changes that are difficult to review. <br>
-Mitigation: Keep task boundaries explicit, require human confirmation before execution, and review agent outputs before accepting changes. <br>
-Risk: Reusable task or review templates can accidentally expose secrets, private paths, or internal project details. <br>
-Mitigation: Remove secrets and private internal details before turning project-specific notes into reusable public templates. <br>
+## Use Case:
 
+External users, product managers, independent developers, small teams, and creators use this skill to turn vague product, content, code, or MVP work into bounded multi-agent workflows with explicit planning, execution, review, and human acceptance steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allin-zhang/multi-agent-collaboration-2) <br>
-- [Atomic task template](references/task-template.md) <br>
-- [Review checklist](references/review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Structured Markdown, tables, and task templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is Chinese and emphasizes concise, reviewable task instructions and review summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill is a Chinese-language workflow guide, so users who do not read Chinese may misunderstand task boundaries or review steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to translate outputs or explicitly follow the user's preferred language before applying the workflow.
+
+Risk: Agent-generated task plans or reviews can still contain incorrect guidance or miss risks in the actual project.
+
+Mitigation: Keep human confirmation at planning, review, and final acceptance steps, and run project-specific checks before accepting work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/allin-zhang/skills/multi-agent-collaboration-2)
+- [Atomic Task Template](references/task-template.md)
+- [Review Checklist](references/review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables, structured task blocks, review tables, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default response language is Chinese; outputs emphasize bounded task scope, reviewability, and human acceptance.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

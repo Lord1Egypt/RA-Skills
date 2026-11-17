@@ -1,49 +1,66 @@
-## Description: <br>
-Circuit Intimate Therapy uses circuit analogies to explain relationship theory, analyze counseling cases, design interventions, and generate context-specific HTML teaching demos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents explain, diagnose, and teach relationship dynamics through circuit analogies such as RLC response, DC bias, impedance, damping, and diode behavior, with optional local HTML demos for interactive explanation.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Counselors, educators, and assisting agents use this skill to translate relationship concepts into circuit metaphors, reason through therapy-adjacent cases, choose intervention directions, and produce teaching-oriented HTML demos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML demos may retain therapy-adjacent relationship details on disk. <br>
-Mitigation: Use generic names and anonymized facts, request text-only answers for sensitive cases, and delete generated files under the configured circapps/generated directory when local retention is not desired. <br>
-Risk: Circuit metaphors may be mistaken for clinical diagnosis or emergency guidance. <br>
-Mitigation: Treat the skill as a teaching and reasoning aid, not a substitute for professional care; for self-harm, abuse, or other crisis scenarios, prioritize local emergency and safety resources before using the analogy. <br>
+## Use Case:
 
+Counselors, educators, and relationship-theory learners can use this skill to translate intimate-relationship concepts into circuit-language explanations, structured case readings, intervention planning, and teaching demos. It is a conceptual and educational aid, not a substitute for clinical diagnosis, crisis response, medical advice, or legal advice.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/junwugit/circuit-intimate-therapy) <br>
-- [references/components.md](references/components.md) <br>
-- [references/dc-and-zvector.md](references/dc-and-zvector.md) <br>
-- [references/conjugate-and-damping.md](references/conjugate-and-damping.md) <br>
-- [references/diodes.md](references/diodes.md) <br>
-- [references/theory-mapping.md](references/theory-mapping.md) <br>
-- [references/diagnosis-intervention.md](references/diagnosis-intervention.md) <br>
-- [references/apps-guide.md](references/apps-guide.md) <br>
-- [references/case-walkthrough.md](references/case-walkthrough.md) <br>
-- [references/app-generation-template.md](references/app-generation-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Markdown explanations and generated single-page HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write context-specific HTML demos under the configured circapps/generated directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive relationship-case details may be written into local HTML files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when users understand the write location, can decline app generation, and can manage or delete generated files.
+
+Risk: The circuit analogy may be mistaken for clinical diagnosis or crisis intervention.
+
+Mitigation: Present outputs as conceptual teaching and planning aids, and route self-harm, family violence, coercion, child abuse, or other urgent safety situations to appropriate local emergency or professional resources.
+
+Risk: Generated relationship guidance could be incomplete or misleading for a specific couple or family context.
+
+Mitigation: Review outputs before relying on them, verify case assumptions with the user, and keep interventions grounded in qualified human judgment.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [Part 1: Basic Component Mapping](artifact/references/components.md)
+- [Part 2 and 3: DC Bias and Complex Impedance Vector](artifact/references/dc-and-zvector.md)
+- [Part 4: Conjugate Relationships and Damping](artifact/references/conjugate-and-damping.md)
+- [Part 5: Diode and Nonlinear Phenomena](artifact/references/diodes.md)
+- [Part 6: Relationship Theory Mapping](artifact/references/theory-mapping.md)
+- [Part 7: Diagnosis and Intervention](artifact/references/diagnosis-intervention.md)
+- [Case Walkthrough](artifact/references/case-walkthrough.md)
+- [Visualization App Guide](artifact/references/apps-guide.md)
+- [HTML App Generation Template](artifact/references/app-generation-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown explanations with optional single-page HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write context-specific HTML demos under ~/circapps/generated/ when the skill's app-generation behavior is applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,175 @@
+<!--
+  oh-my-ui-style / Mode A step 2 (palette on the chosen shell) or Mode B (single page).
+  Fragment only: no doctype, html, head, or body.
+  Keep the preview structure identical across cards; only palette and type change.
+-->
+<div id="oh-my-ui-style-palette">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+#oh-my-ui-style-palette{ font-family:"Space Grotesk","PingFang SC",sans-serif; color:#E8EDF6; }
+#oh-my-ui-style-palette .hint{ font-size:12px; color:#9AA9C0; margin:0 0 10px; }
+#oh-my-ui-style-palette .grid{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+
+#oh-my-ui-style-palette .card{
+  --c-bg:#0B1220; --c-panel:#141F33; --c-line:#24334D; --c-ink:#E6EEF9; --c-ink2:#9DB0CB;
+  --c-accent:#38BDF8; --c-alert:#F87171;
+  display:flex; flex-direction:column; gap:8px; text-align:left; width:100%;
+  background:var(--c-panel); border:1px solid var(--c-line); border-radius:10px; padding:10px;
+  color:var(--c-ink); font:inherit; cursor:pointer; transition:border-color .16s ease, box-shadow .16s ease;
+}
+#oh-my-ui-style-palette .card:hover{ border-color:color-mix(in srgb,var(--c-accent) 55%,var(--c-line)); }
+#oh-my-ui-style-palette .card[aria-pressed="true"]{
+  border-color:var(--c-accent); box-shadow:inset 0 0 0 1px var(--c-accent), 0 0 22px -12px var(--c-accent);
+}
+#oh-my-ui-style-palette .p-amber{ --c-bg:#121417; --c-panel:#1B1F24; --c-line:#2B323A; --c-ink:#ECEFF3; --c-ink2:#A6AEB8; --c-accent:#F59E0B; --c-alert:#EF4444; }
+#oh-my-ui-style-palette .p-green{ --c-bg:#0A0F0D; --c-panel:#121A17; --c-line:#22302A; --c-ink:#E3EFE9; --c-ink2:#98B0A6; --c-accent:#10B981; --c-alert:#F97316; }
+#oh-my-ui-style-palette .p-light{ --c-bg:#F6F8FB; --c-panel:#FFFFFF; --c-line:#DCE4EF; --c-ink:#101828; --c-ink2:#5B6B82; --c-accent:#0E7490; --c-alert:#DC2626; }
+
+#oh-my-ui-style-palette .ch{ display:flex; align-items:center; gap:7px; }
+#oh-my-ui-style-palette .cid{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--c-accent);
+  border:1px solid color-mix(in srgb,var(--c-accent) 45%,transparent); border-radius:4px; padding:0 5px;
+}
+#oh-my-ui-style-palette .cname{ font-size:13px; font-weight:700; }
+#oh-my-ui-style-palette .selmark{ margin-left:auto; font-size:12px; color:var(--c-accent); opacity:0; }
+#oh-my-ui-style-palette .card[aria-pressed="true"] .selmark{ opacity:1; }
+
+/* same shell preview in every card; palette comes from the card variables */
+#oh-my-ui-style-palette .wf{
+  height:124px; display:grid; grid-template-columns:76px 1fr; gap:5px; padding:6px;
+  background:var(--c-bg); border:1px solid var(--c-line); border-radius:7px; overflow:hidden;
+}
+#oh-my-ui-style-palette .col{ display:flex; flex-direction:column; gap:4px; min-height:0; }
+#oh-my-ui-style-palette .bar{ height:8px; border-radius:3px; background:color-mix(in srgb,var(--c-ink) 10%,var(--c-panel)); border:1px solid var(--c-line); }
+#oh-my-ui-style-palette .bar.on{ background:var(--c-accent); border-color:var(--c-accent); }
+#oh-my-ui-style-palette .bar.sm{ width:62%; }
+#oh-my-ui-style-palette .blk{
+  flex:1; min-height:0; border-radius:5px; position:relative; overflow:hidden;
+  background:color-mix(in srgb,var(--c-ink) 7%,var(--c-panel)); border:1px solid var(--c-line);
+}
+#oh-my-ui-style-palette .dot{ position:absolute; left:6px; top:6px; width:6px; height:6px; border-radius:2px; background:var(--c-accent); }
+#oh-my-ui-style-palette .dot.alert{ left:auto; right:6px; background:var(--c-alert); }
+
+#oh-my-ui-style-palette .sw{ display:flex; gap:5px; flex-wrap:wrap; font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--c-ink2); }
+#oh-my-ui-style-palette .sw i{ width:9px; height:9px; border-radius:2px; display:inline-block; margin-right:3px; vertical-align:-1px; box-shadow:inset 0 0 0 1px rgba(140,155,180,.45); }
+#oh-my-ui-style-palette .ty{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--c-ink2); }
+#oh-my-ui-style-palette .fit{ font-size:11.5px; color:var(--c-ink2); line-height:1.45; }
+
+#oh-my-ui-style-palette .pickbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; padding:10px 12px;
+  border:1px dashed #33455F; border-radius:9px; background:#101724;
+}
+#oh-my-ui-style-palette .pkl{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:#66788F; letter-spacing:.06em; }
+#oh-my-ui-style-palette .pkv{ font-size:13px; font-weight:600; color:#E8EDF6; }
+#oh-my-ui-style-palette .go{
+  margin-left:auto; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; border-radius:7px;
+  border:1px solid #22D3EE; background:#22D3EE; color:#04212A;
+}
+#oh-my-ui-style-palette .go:disabled{ background:transparent; color:#66788F; border-color:#253347; cursor:not-allowed; }
+#oh-my-ui-style-palette .note{ margin:9px 0 0; font-size:11px; color:#66788F; line-height:1.5; }
+
+@media (max-width:640px){
+  #oh-my-ui-style-palette .grid{ grid-template-columns:1fr; }
+  #oh-my-ui-style-palette .wf{ height:140px; }
+}
+</style>
+
+<p class="hint">同一骨架下的配色与字体方案，点选即选中（单选）。深色运维示例配色。</p>
+
+<div class="grid" role="group" aria-label="配色与字体方案">
+
+  <button type="button" class="card" data-key="cyan" data-name="深海青" aria-pressed="false">
+    <span class="ch"><b class="cid">A</b><span class="cname">深海青</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf" aria-hidden="true">
+      <span class="col"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar sm"></span></span>
+      <span class="col"><span class="bar" style="width:46%"></span><span class="blk"><i class="dot"></i></span><span class="blk"><i class="dot alert"></i></span></span>
+    </span>
+    <span class="sw"><i style="background:#0B1220"></i>#0B1220 <i style="background:#141F33"></i>#141F33 <i style="background:#38BDF8"></i>#38BDF8 <i style="background:#F87171"></i>#F87171</span>
+    <span class="ty">Space Grotesk + IBM Plex Mono</span>
+    <span class="fit">冷蓝主色，告警用珊瑚红区分。适合长时间盯屏的监控与配置后台。</span>
+  </button>
+
+  <button type="button" class="card p-amber" data-key="amber" data-name="石墨琥珀" aria-pressed="false">
+    <span class="ch"><b class="cid">B</b><span class="cname">石墨琥珀</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf" aria-hidden="true">
+      <span class="col"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar sm"></span></span>
+      <span class="col"><span class="bar" style="width:46%"></span><span class="blk"><i class="dot"></i></span><span class="blk"><i class="dot alert"></i></span></span>
+    </span>
+    <span class="sw"><i style="background:#121417"></i>#121417 <i style="background:#1B1F24"></i>#1B1F24 <i style="background:#F59E0B"></i>#F59E0B <i style="background:#EF4444"></i>#EF4444</span>
+    <span class="ty">IBM Plex Sans + JetBrains Mono</span>
+    <span class="fit">中性石墨底加琥珀强调，告警红最醒目。适合值班与应急操作台。</span>
+  </button>
+
+  <button type="button" class="card p-green" data-key="green" data-name="曜石墨绿" aria-pressed="false">
+    <span class="ch"><b class="cid">C</b><span class="cname">曜石墨绿</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf" aria-hidden="true">
+      <span class="col"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar sm"></span></span>
+      <span class="col"><span class="bar" style="width:46%"></span><span class="blk"><i class="dot"></i></span><span class="blk"><i class="dot alert"></i></span></span>
+    </span>
+    <span class="sw"><i style="background:#0A0F0D"></i>#0A0F0D <i style="background:#121A17"></i>#121A17 <i style="background:#10B981"></i>#10B981 <i style="background:#F97316"></i>#F97316</span>
+    <span class="ty">Chakra Petch + IBM Plex Mono</span>
+    <span class="fit">墨绿表示健康，橙色表示异常。适合稳定性看板与值班大屏。</span>
+  </button>
+
+  <button type="button" class="card p-light" data-key="light" data-name="石板浅色" aria-pressed="false">
+    <span class="ch"><b class="cid">D</b><span class="cname">石板浅色</span><span class="selmark" aria-hidden="true">已选</span></span>
+    <span class="wf" aria-hidden="true">
+      <span class="col"><span class="bar on"></span><span class="bar"></span><span class="bar"></span><span class="bar sm"></span></span>
+      <span class="col"><span class="bar" style="width:46%"></span><span class="blk"><i class="dot"></i></span><span class="blk"><i class="dot alert"></i></span></span>
+    </span>
+    <span class="sw"><i style="background:#F6F8FB"></i>#F6F8FB <i style="background:#FFFFFF"></i>#FFFFFF <i style="background:#0E7490"></i>#0E7490 <i style="background:#DC2626"></i>#DC2626</span>
+    <span class="ty">Inter + IBM Plex Mono</span>
+    <span class="fit">白昼高对比，打印与投屏都清晰。适合白天为主的运营后台。</span>
+  </button>
+</div>
+
+<div class="pickbar">
+  <span class="pkl">当前选择</span>
+  <span class="pkv" id="palettePick">未选择（点上方配色卡挑选）</span>
+  <button type="button" class="go" id="paletteGo" disabled>采用此配色</button>
+</div>
+<p class="note">交互说明：点选配色卡即选中（单选）；选中后点「采用此配色」，我会把色板与字体固化成 CSS 变量并继续生成界面。</p>
+
+<script>
+(function(){
+  var root = document.getElementById('oh-my-ui-style-palette');
+  var cards = Array.prototype.slice.call(root.querySelectorAll('.card'));
+  var value = document.getElementById('palettePick');
+  var go = document.getElementById('paletteGo');
+  var current = null;
+
+  var TOKENS = {
+    cyan:'底色 #0B1220、面板 #141F33、主色 #38BDF8、告警 #F87171；Space Grotesk + IBM Plex Mono',
+    amber:'底色 #121417、面板 #1B1F24、主色 #F59E0B、告警 #EF4444；IBM Plex Sans + JetBrains Mono',
+    green:'底色 #0A0F0D、面板 #121A17、主色 #10B981、告警 #F97316；Chakra Petch + IBM Plex Mono',
+    light:'底色 #F6F8FB、面板 #FFFFFF、主色 #0E7490、告警 #DC2626；Inter + IBM Plex Mono'
+  };
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      var key = card.getAttribute('data-key');
+      current = { key:key, name: card.getAttribute('data-name'), tokens: TOKENS[key] };
+      cards.forEach(function(c){ c.setAttribute('aria-pressed', c === card ? 'true' : 'false'); });
+      value.textContent = current.name;
+      go.disabled = false;
+      if(window.openai && window.openai.setWidgetState){
+        window.openai.setWidgetState({ modelContent:{ palette: current.key, paletteName: current.name }, privateContent:null }).catch(function(){});
+      }
+    });
+  });
+
+  go.addEventListener('click', function(){
+    if(!current) return;
+    if(window.openai && window.openai.sendFollowUpMessage){
+      window.openai.sendFollowUpMessage({
+        title:'采用「' + current.name + '」配色',
+        prompt:'我选定「' + current.name + '」配色方案（' + current.tokens + '）。请把这些 token 写成 CSS 变量并继续生成界面，后续页面只引用这套变量。'
+      });
+    }else{
+      go.textContent = '已选择：' + current.name;
+    }
+  });
+})();
+</script>
+</div>

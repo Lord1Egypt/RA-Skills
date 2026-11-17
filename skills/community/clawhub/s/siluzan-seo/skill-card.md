@@ -1,45 +1,64 @@
-## Description: <br>
-Siluzan SEO helps agents generate schema-valid structured JSON packages for industrial B2B SEO landing pages, blog articles, and backlink articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured JSON SEO packages for industrial B2B websites, including traffic landing pages, blog SEO packages, and backlink article packages aligned to the included output schemas.
 
-## Publisher: <br>
-[sigedev01-bit](https://clawhub.ai/user/sigedev01-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sigedev01-bit](https://clawhub.ai/user/sigedev01-bit)
 
-## Use Case: <br>
-Developers, marketers, and SEO operators use this skill to route industrial B2B SEO requests into the correct schema-backed workflow and produce JSON packages for CMS or website ingestion. It also guides optional DOCX or PDF exports when a human-readable review copy is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can make broad global changes to the local agent environment. <br>
-Mitigation: Review the install scripts before running them, prefer manual npm installation from a registry you trust, avoid one-line curl or iex installers, and use a scoped init target instead of --global --force when possible. <br>
-Risk: Generated SEO content may include testimonials or review-like claims that are not supported by source material. <br>
-Mitigation: Require source-backed customer evidence for testimonials and remove reviews, customer names, certifications, or order claims unless they are verified in the provided knowledge base. <br>
+## Use Case:
 
+External marketing teams and agents use this skill to create CMS-ready SEO JSON for industrial B2B landing pages, blog packages, and guest-post packages from supplied title, keyword, and knowledge-base context. It is intended for schema-conformant SEO content generation rather than general copywriting.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sigedev01-bit/skills/siluzan-seo) <br>
-- [Setup guide](references/setup.md) <br>
-- [Export guide](references/export.md) <br>
-- [Traffic page output schema](seo-traffic-page/schemas/output.json) <br>
-- [Blog article output schema](blog/schemas/output.json) <br>
-- [Backlink article output schema](backlink-article/schemas/output.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Schema-valid JSON with plain-text content fields, plus optional shell commands for installation and DOCX or PDF export.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs target the bundled schemas for traffic pages, blog SEO packages, and backlink SEO packages; blog and backlink outputs may include Chinese summary or audit fields where required by the schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.30 (source: server release metadata) <br>
+Risk: One-click installation asks agents to run remote shell or PowerShell scripts and install software globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer first, prefer a manual pinned install, and avoid running it with administrator or root privileges.
+
+Risk: The installer can force-write skill files across multiple global AI assistant directories.
+
+Mitigation: Register the skill only in the specific assistant directory needed for the deployment.
+
+Risk: The installer may change the npm registry setting to a mirror.
+
+Mitigation: Check npm registry settings after installation and restore the expected registry for the environment.
+
+Risk: Generated SEO content may contain unsupported claims when knowledge-base context is incomplete or when synthetic review-like content is allowed by the artifact workflow.
+
+Mitigation: Review generated JSON against authoritative company sources before publishing and remove unverifiable customer, certification, or performance claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sigedev01-bit/skills/siluzan-seo)
+- [Siluzan homepage](https://www.siluzan.com)
+- [Installation and configuration](references/setup.md)
+- [Word and PDF export](references/export.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured JSON conforming to the included output schemas, with plain-text English content and Chinese summary or translation fields where required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes schemas for traffic pages, blog SEO packages, and backlink article packages; CLI export can produce Word or PDF review copies from generated JSON.]
+
+## Skill Version(s):
+
+1.1.30 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

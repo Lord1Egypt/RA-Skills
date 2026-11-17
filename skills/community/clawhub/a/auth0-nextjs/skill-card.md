@@ -1,48 +1,64 @@
-## Description: <br>
-Use when adding authentication to Next.js applications (login, logout, protected pages, middleware, server components) - supports App Router and Pages Router with @auth0/nextjs-auth0 SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when adding authentication to Next.js applications (login, logout, protected pages, middleware, server components) - supports App Router and Pages Router with @auth0/nextjs-auth0 SDK.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers use this skill to add Auth0 authentication to Next.js applications, including login, logout, protected pages, middleware, server components, and Pages Router or App Router integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated setup can write Auth0 credentials or placeholders to an environment file. <br>
-Mitigation: Require explicit user approval before writing to .env or .env.local, and have the user review the target file and values before proceeding. <br>
-Risk: Installation instructions can involve downloading and running an Auth0 CLI install script. <br>
-Mitigation: Review the downloaded installer before execution, and prefer official Auth0 installation instructions or a pinned installer when possible. <br>
-Risk: The skill handles OAuth client identifiers, secrets, and Auth0 session configuration. <br>
-Mitigation: Do not read existing env files without permission, keep secrets out of version control, generate a strong AUTH0_SECRET, and verify production HTTPS callback settings. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Auth0 authentication to Next.js applications, including login, logout, protected pages, middleware, server components, Pages Router routes, and App Router routes.
 
-## Reference(s): <br>
-- [Auth0 Next.js SDK Documentation](https://auth0.com/docs/libraries/nextjs) <br>
-- [Auth0 Next.js Quickstart](https://auth0.com/docs/quickstart/webapp/nextjs) <br>
-- [Auth0 Next.js SDK GitHub](https://github.com/auth0/nextjs-auth0) <br>
-- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Integration Guide](references/integration.md) <br>
-- [API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, environment variable, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Auth0 CLI steps and environment-file changes that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The automated Linux setup downloads and runs a remote Auth0 CLI installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual setup or a trusted package manager; if the installer path is used, inspect and pin or verify the script before execution and avoid unnecessary elevated privileges.
+
+Risk: Setup guidance may write Auth0 credentials and secrets to environment files.
+
+Mitigation: Confirm env-file changes before writing, do not expose existing env-file contents to the agent, keep env files out of version control, and rotate secrets when needed.
+
+Risk: Examples show using Auth0 access tokens when calling external APIs.
+
+Mitigation: Forward tokens only to trusted endpoints, request minimal scopes, and keep authentication and authorization checks on the server side.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Integration Guide](references/integration.md)
+- [API Reference](references/api.md)
+- [Auth0 Next.js SDK Documentation](https://auth0.com/docs/libraries/nextjs-auth0)
+- [Auth0 Next.js Quickstart](https://auth0.com/docs/quickstart/webapp/nextjs)
+- [Auth0 Next.js SDK GitHub Repository](https://github.com/auth0/nextjs-auth0)
+- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills)
+- [ClawHub Skill Page](https://clawhub.ai/auth0/skills/auth0-nextjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file placement guidance, environment variable configuration, Auth0 dashboard or CLI setup steps, and Next.js router-specific implementation snippets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

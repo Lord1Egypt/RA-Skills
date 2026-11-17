@@ -1,43 +1,56 @@
-## Description: <br>
-Proactive cron job health monitoring, failure detection, and auto-repair delegation for recurring and silent cron failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive cron job health monitoring, failure detection, and auto-repair delegation.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect cron job health, diagnose recurring or silent failures, and prepare repair or delegation steps for cron jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to change, run, create, or disable cron jobs and write files while attempting repairs. <br>
-Mitigation: Require explicit approval for cron updates, runs, creation, disable actions, shell commands, and file writes; restrict repairs to known job IDs and approved directories. <br>
-Risk: A generated repair payload could misdiagnose a cron failure or change an operational schedule unexpectedly. <br>
-Mitigation: Review generated repair cron payloads before execution and verify changes with a bounded test run before relying on the repair. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect cron job health, identify common failure patterns, and prepare repair actions for failed or silently unhealthy scheduled jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/biobrain-cron-health-monitor) <br>
-- [Server-resolved GitHub source](https://github.com/Ygq19901001/biobrain-cron-health-monitor) <br>
-- [Common cron error catalog](references/common-errors.md) <br>
-- [Cron repair playbook](references/repair-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with cron command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose cron updates, test runs, repair payloads, shell commands, and file writes that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Risk: Automatic cron repair can change scheduled job behavior, output paths, alert routing, or model/provider settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cron jobs, output paths, alert channels, and update permissions the agent may use before enabling automatic repair.
+
+Risk: Cron health findings may lead to incorrect or incomplete repair actions if applied without checking the affected job state.
+
+Mitigation: Review proposed changes, run the repaired cron job once, and verify lastRunStatus and output content before relying on the fix.
+
+## Reference(s):
+
+- [Source repository](https://github.com/Ygq19901001/biobrain-cron-health-monitor)
+- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/biobrain-cron-health-monitor)
+- [Common Cron Error Catalog](references/common-errors.md)
+- [Cron Repair Playbook](references/repair-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with cron command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose cron updates, alert settings, fallback model configuration, and repair verification steps.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

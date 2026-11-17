@@ -1,42 +1,56 @@
-## Description: <br>
-Query DeFi portfolios, token holdings, NFTs, transactions, and prices via the Zapper API across 50+ chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query DeFi portfolios, token holdings, NFTs, transactions, and prices via Zapper API across 50+ chains.
 
-## Publisher: <br>
-[zivhm](https://clawhub.ai/user/zivhm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zivhm](https://clawhub.ai/user/zivhm)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to retrieve wallet portfolio, token, DeFi, NFT, transaction, claimable reward, and token price data through Zapper's API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried wallet addresses and lookup activity are sent to Zapper. <br>
-Mitigation: Query only the intended address or wallet label, and avoid all-wallet lookups unless that is the intended action. <br>
-Risk: The Zapper API key and configured wallet list can expose account access or private portfolio context if shared. <br>
-Mitigation: Use a dedicated Zapper API key, keep ~/.config/zapper/addresses.json private, and do not commit API keys or wallet configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zapper GraphQL API Reference](references/API.md) <br>
-- [Zapper API Documentation](https://build.zapper.xyz/docs/api/) <br>
-- [Zapper Developers](https://zapper.xyz/developers) <br>
-- [Zapper](https://zapper.xyz) <br>
+## Use Case:
 
+Developers and external users can use this skill to inspect wallet balances, DeFi positions, NFT holdings, transaction history, claimable rewards, and token prices through Zapper's GraphQL API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text CLI summaries or raw JSON, with Markdown documentation and bash examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional limits, short totals, per-wallet breakdowns, and 24-hour price-change views.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured wallet addresses and query contents may be sent to Zapper, including all configured wallets when no explicit address or label is supplied.
+
+Mitigation: Use explicit addresses or labels for each query and avoid storing unrelated pseudonymous wallets together in the same configuration.
+
+Risk: The skill can read an API key from a local plaintext config file.
+
+Mitigation: Prefer ZAPPER_API_KEY for credentials, and restrict permissions on ~/.config/zapper/addresses.json if a config file is used.
+
+## Reference(s):
+
+- [Zapper GraphQL API Reference](references/API.md)
+- [Zapper API Documentation](https://build.zapper.xyz/docs/api/)
+- [Zapper Developer Dashboard](https://zapper.xyz/developers)
+- [Zapper](https://zapper.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/zivhm/skills/openclaw-zapper-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a ZAPPER_API_KEY for live API queries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-一键生成项目介绍页，支持本地编辑和长图导出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键生成项目介绍页，支持本地编辑和长图导出。
 
-## Publisher: <br>
-[kunyashaw](https://clawhub.ai/user/kunyashaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kunyashaw](https://clawhub.ai/user/kunyashaw)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan a local project directory, render a project introduction page, and export a long screenshot for sharing or documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the project directory provided by the user and may include project metadata in generated or opened HTML. <br>
-Mitigation: Run it only on project directories whose contents are appropriate to summarize, and review generated HTML before sharing. <br>
-Risk: The security review flags the remote repository clone mode because user input can reach a shell command. <br>
-Mitigation: Avoid using the --git or remote-repository mode until clone execution uses a safe argument-array API with URL validation. <br>
+## Use Case:
 
+Developers use this skill to scan a local project or existing HTML file and generate a project introduction page plus an exported long PNG screenshot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kunyashaw/project-intro-generator) <br>
-- [Demo video](https://www.youtube.com/watch?v=6ZRcgbdZSXw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands] <br>
-**Output Format:** [HTML file, PNG image, and text paths or CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read the target project directory and write generated HTML/PNG outputs to that project or requested output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Unsafe handling of remote repositories and untrusted HTML may let attacker-controlled input run code or make network requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted project directories and HTML files, and run it in an isolated workspace without secrets or private network access.
+
+Risk: The hidden --git option is not suitable for untrusted repository URLs.
+
+Mitigation: Avoid --git for untrusted repositories until shell-safe git invocation is added.
+
+Risk: Rendering untrusted README or HTML content can expose the browser renderer to attacker-controlled content.
+
+Mitigation: Avoid rendering untrusted content until HTML sanitization and restricted Playwright rendering are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kunyashaw/skills/project-intro-generator)
+- [Project repository link from skill documentation](https://github.com/kunyashaw/createRepoIntro)
+- [Demo video](https://www.youtube.com/watch?v=6ZRcgbdZSXw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance plus generated HTML and PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated HTML is editable and the PNG is exported from the rendered page when Playwright is available.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,65 @@
-## Description: <br>
-Complete Miro REST API reference for building integrations, automating workflows, and programmatically managing boards, cards, shapes, users, and team resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Miro REST API reference for building integrations, automating workflows, and programmatically managing boards, cards, shapes, users, and team resources.
 
-## Publisher: <br>
-[bigbubbaagent-bot](https://clawhub.ai/user/bigbubbaagent-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bigbubbaagent-bot](https://clawhub.ai/user/bigbubbaagent-bot)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to reference Miro REST API authentication, endpoints, rate limits, webhooks, examples, and error handling while building integrations or workflow automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples that use POST, PATCH, DELETE, team-member, or webhook endpoints can modify real Miro resources when run with a valid token. <br>
-Mitigation: Use least-privilege scopes, test boards, and explicit human review before executing mutating API examples. <br>
-Risk: Personal access tokens or OAuth credentials can expose board, user, or team access if logged or committed. <br>
-Mitigation: Store tokens in environment variables or a secrets manager, keep them out of logs and source control, rotate them regularly, and revoke unused tokens. <br>
-Risk: Webhook examples can expose receiving endpoints or process untrusted events if signature checks are omitted. <br>
-Mitigation: Verify webhook signatures, acknowledge quickly, process asynchronously, and delete unused webhooks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Miro REST API - Authentication Guide](references/authentication.md) <br>
-- [Miro REST API - Complete Endpoint Reference](references/endpoints.md) <br>
-- [Miro REST API - Code Examples](references/examples.md) <br>
-- [Miro REST API - Webhooks Guide](references/webhooks.md) <br>
-- [Miro REST API - Rate Limiting](references/rate-limiting.md) <br>
-- [Miro REST API - Error Handling](references/errors.md) <br>
-- [Miro REST API - Best Practices](references/best-practices.md) <br>
-- [Miro Developer Documentation](https://developer.miro.com/) <br>
-- [Miro API Playground](https://developers.miro.com/playground) <br>
-- [Miro Status](https://status.miro.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bigbubbaagent-bot/miro-api) <br>
+## Use Case:
 
+Developers and integration engineers use this skill to look up Miro REST API authentication, endpoints, examples, webhooks, rate limits, and error handling while building or automating Miro workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with HTTP, JSON, JavaScript, Python, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not install code or execute API calls by itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Miro API token examples may encourage use of high-scope credentials in agent sessions.
+
+Mitigation: Use least-privilege scopes, store tokens in a credential manager or environment variable, and avoid pasting production tokens into agent prompts.
+
+Risk: OAuth state and webhook signature examples are reference patterns and may not be production-hardened.
+
+Mitigation: Replace sample state generation and webhook verification with reviewed production implementations before deployment.
+
+Risk: Create, update, delete, invite, and webhook examples can mutate Miro workspaces.
+
+Mitigation: Run examples first in a development workspace, review scopes and payloads, and prefer read-only operations until behavior is verified.
+
+## Reference(s):
+
+- [Miro REST API - Authentication Guide](references/authentication.md)
+- [Miro REST API - Best Practices](references/best-practices.md)
+- [Miro REST API - Complete Endpoint Reference](references/endpoints.md)
+- [Miro REST API - Error Handling](references/errors.md)
+- [Miro REST API - Code Examples](references/examples.md)
+- [Miro REST API - Rate Limiting](references/rate-limiting.md)
+- [Miro REST API - Webhooks Guide](references/webhooks.md)
+- [Miro Developer Documentation](https://developer.miro.com/)
+- [Miro API Playground](https://developers.miro.com/playground)
+- [Miro Status](https://status.miro.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTTP examples, JSON payloads, and language-specific code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language-agnostic API guidance with cURL, JavaScript, and Python examples]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,52 @@
-## Description: <br>
-Loops is a connector skill for reading, creating, updating, and deleting Loops data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete Loops data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Loops connector schemas and run Loops contact, mailing-list, and event actions through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: State-changing Loops actions can create or update contacts, create custom contact properties, or send events that trigger workflows. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running actions tagged [write]. <br>
-Risk: The delete_contact action can remove Loops contacts. <br>
-Mitigation: Require explicit user approval for the target email or userId before running actions tagged [destructive]. <br>
-Risk: The skill operates an OOMOL-connected Loops account and requires sensitive account access. <br>
-Mitigation: Install and use it only when the user intends the agent to operate that Loops account; review write, delete, and event payloads carefully before approval. <br>
-Risk: Connector input and output schemas can change independently of the skill text. <br>
-Mitigation: Run oo connector schema for the selected Loops action before building each payload. <br>
+## Use Case:
 
+Developers use this skill to manage Loops contacts, contact properties, mailing lists, and events through an agent. The skill requires confirmation for writes and explicit approval for deletions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-loops) <br>
-- [Loops homepage](https://loops.so) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, text, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; connector runs return JSON when --json is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence release metadata and SKILL.md metadata) <br>
+Risk: Automatic setup executes downloaded code that has not been verified, and the remote installers and hosted connector implementation were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI installation separately and prefer a pinned, verified release. Check bundled-skill synchronization settings and the OOMOL account and Loops permissions being authorized; retain exact-payload confirmation for writes and explicit approval for deletions.
+
+## Reference(s):
+
+- [Loops](https://loops.so)
+- [Loops API Reference](https://loops.so/docs/api-reference/intro)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Loops skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-loops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON connector responses presented as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

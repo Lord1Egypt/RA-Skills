@@ -1,52 +1,68 @@
-## Description: <br>
-Create AI images with GPT Image, Gemini Nano Banana, FLUX, Imagen, and top providers using prompt engineering, style control, and smart editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create AI images with GPT Image, Gemini Nano Banana, FLUX, Imagen, and top providers using prompt engineering, style control, and smart editing.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to choose image-generation providers, write stronger prompts, plan edits, and manage cost-aware fallback workflows across hosted and local image models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images can be sent to external image providers selected by the user. <br>
-Mitigation: Use only providers approved for the content, avoid confidential material in prompts or references, and confirm provider data-handling terms before use. <br>
-Risk: API keys and provider access can create unintended spend or expose broader account privileges. <br>
-Mitigation: Use scoped or budget-limited API keys and rotate or revoke keys that are no longer needed. <br>
-Risk: Local memory and optional history files may contain sensitive project context. <br>
-Mitigation: Review, redact, or delete ~/image-generation/memory.md and history.md when they may contain sensitive information. <br>
-Risk: Model names, aliases, availability, and leaderboard rankings can change quickly. <br>
-Mitigation: Resolve aliases to official provider model IDs and recheck current provider documentation or rankings before quality-critical work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/image-generation) <br>
-- [Skill Homepage](https://clawic.com/skills/image-generation) <br>
-- [Setup - AI Image Generation](artifact/setup.md) <br>
-- [API Patterns (2026)](artifact/api-patterns.md) <br>
-- [Benchmark Snapshot (2025-2026)](artifact/benchmarks-2026.md) <br>
-- [Image Prompting Guide (2026)](artifact/prompting.md) <br>
-- [GPT Image (OpenAI)](artifact/gpt-image.md) <br>
-- [Google Image Models (Gemini + Imagen)](artifact/gemini.md) <br>
-- [FLUX (Black Forest Labs)](artifact/flux.md) <br>
-- [Stable Diffusion (Local)](artifact/stable-diffusion.md) <br>
+## Use Case:
 
+Developers, designers, and other users use this skill to choose image-generation providers, write prompts, plan edits, and manage model-specific setup for AI-generated visuals and consistent asset sets.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, configuration snippets, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider selection guidance, prompt templates, fallback chains, local memory setup, and cost-control recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and reference images may be sent to the selected image provider.
+
+Mitigation: Use the skill only with providers approved for the content, and avoid sensitive or regulated images unless provider policy allows it.
+
+Risk: API keys and optional package installs can increase setup exposure.
+
+Mitigation: Use environment variables for secrets and run optional pip installs in a dedicated virtual environment with pinned dependencies where possible.
+
+Risk: Model aliases, provider endpoints, and benchmark rankings can drift after publication.
+
+Mitigation: Resolve aliases to official provider model IDs and re-check current provider documentation or rankings when quality is critical.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/image-generation)
+- [Skill Homepage](https://clawic.com/skills/image-generation)
+- [Setup - AI Image Generation](artifact/setup.md)
+- [Image Prompting Guide (2026)](artifact/prompting.md)
+- [API Patterns (2026)](artifact/api-patterns.md)
+- [Benchmark Snapshot (2025-2026)](artifact/benchmarks-2026.md)
+- [GPT Image (OpenAI)](artifact/gpt-image.md)
+- [Google Image Models (Gemini + Imagen)](artifact/gemini.md)
+- [FLUX (Black Forest Labs)](artifact/flux.md)
+- [Stable Diffusion (Local)](artifact/stable-diffusion.md)
+- [Ideogram API](https://ideogram.ai/api)
+- [Leonardo AI Documentation](https://docs.leonardo.ai/)
+- [Replicate](https://replicate.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider-specific API call examples, model-routing guidance, and optional local preference-memory setup.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

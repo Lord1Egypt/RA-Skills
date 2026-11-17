@@ -1,0 +1,26 @@
+{
+  "name": "QuickScene",
+  "color": "Purple",
+  "steps": [
+    {
+      "do": "menu",
+      "prompt": "要做什么？",
+      "items": [
+        {
+          "title": "上班",
+          "steps": [
+            { "do": "lowpower", "operation": "off" },
+            { "do": "notify", "WFNotificationActionTitle": "已切上班", "WFNotificationActionBody": "省电已关" }
+          ]
+        },
+        {
+          "title": "睡觉",
+          "steps": [
+            { "do": "lowpower", "operation": "on" },
+            { "do": "volume.set", "WFVolume": 0.2, "WFVolumeSetting": "Media" }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,42 +1,56 @@
-## Description: <br>
-Manage Planka (Kanban) projects, boards, lists, cards, and notifications via a custom Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Planka (Kanban) projects, boards, lists, cards, and notifications via a custom Python CLI.
 
-## Publisher: <br>
-[voydz](https://clawhub.ai/user/voydz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[voydz](https://clawhub.ai/user/voydz)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Planka workspaces from an agent-assisted command line workflow, including listing boards and cards, checking notifications, and creating, moving, updating, or deleting cards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install an external planka-cli Homebrew tap. <br>
-Mitigation: Install only if the third-party tap and publisher are trusted, and review the CLI before use. <br>
-Risk: Passing a real Planka password directly in a shell command can expose credentials through shell history or process inspection. <br>
-Mitigation: Prefer an interactive prompt, secure credential storage, or a limited-use Planka account. <br>
-Risk: The CLI can create, move, update, or delete Planka cards. <br>
-Mitigation: Require confirmation before mutating actions and use an account scoped to the intended boards. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/voydz/planka) <br>
-- [Publisher profile](https://clawhub.ai/user/voydz) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and update Planka projects, boards, lists, cards, and notifications through the planka-cli command line tool.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the planka-cli binary and configured Planka credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.12 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented login flow passes a password on the command line.
+
+Mitigation: Prefer a protected credential mechanism or an interactive prompt so credentials are not exposed through shell history or process listings.
+
+Risk: The installation path relies on an unpinned third-party executable.
+
+Mitigation: Verify the Homebrew tap and planka-cli source before installation, and pin or review the installed version where possible.
+
+Risk: The CLI can read and change Planka data.
+
+Mitigation: Use an account limited to the Planka permissions required for the intended task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/voydz/skills/planka)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the planka-cli executable and access to a Planka instance.]
+
+## Skill Version(s):
+
+0.1.12 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

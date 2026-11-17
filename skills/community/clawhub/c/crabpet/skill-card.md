@@ -1,45 +1,60 @@
-## Description: <br>
-CrabPet turns OpenClaw usage logs into a virtual pixel lobster pet with levels, moods, achievements, and shareable pet cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI pet companion that turns OpenClaw usage into a pixel pet experience with status, personality, mood, achievements, summaries, and shareable pet cards.
 
-## Publisher: <br>
-[liqiwa](https://clawhub.ai/user/liqiwa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liqiwa](https://clawhub.ai/user/liqiwa)
 
-## Use Case: <br>
-OpenClaw users use this skill to view a persistent pet companion that reflects their activity history, generate status summaries, list achievements, and create shareable pet cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw memory logs to infer activity habits and personality traits. <br>
-Mitigation: Install only when that local activity analysis is acceptable, and review the generated status or card content before sharing it. <br>
-Risk: Shareable pet cards can contain derived activity data such as level, streak, achievements, mood, and personality labels. <br>
-Mitigation: Treat generated cards as public-facing summaries and avoid sharing them when those derived signals reveal sensitive work patterns. <br>
-Risk: PNG card generation can use local Chrome/Chromium execution and a web template that may request Google Fonts. <br>
-Mitigation: Use text or Markdown card output when avoiding browser execution or external font requests is required. <br>
+## Use Case:
 
+OpenClaw users use CrabPet to view and update a virtual pixel pet whose level, mood, personality, and achievements are derived from their local OpenClaw activity logs. The skill can generate text, Markdown, and optional PNG pet cards for sharing pet status.
 
-## Reference(s): <br>
-- [CrabPet ClawHub listing](https://clawhub.ai/liqiwa/crabpet) <br>
-- [CrabPet README](README.md) <br>
-- [CrabPet Personality System](references/personality.md) <br>
-- [CrabPet Design Notes](openclaw-ai-pet-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output, Markdown/text pet cards, optional PNG pet card files, and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw memory logs and writes persistent pet state and generated card files under the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill scans local OpenClaw memory logs to infer activity, mood, and personality traits, then stores derived pet state locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local memory-log scanning is acceptable, and review generated pet cards before sharing because they may reveal usage patterns.
+
+Risk: The security guidance flags an unsafe web/Chrome PNG rendering path for card generation.
+
+Mitigation: Disable or fix the web/Chrome renderer before using PNG card generation, or use text and Markdown card output until the renderer is reviewed.
+
+Risk: Untrusted or markup-like pet names may be embedded in generated cards.
+
+Mitigation: Use plain pet names and sanitize or reject markup-like input before rendering shareable cards.
+
+## Reference(s):
+
+- [CrabPet README](README.md)
+- [CrabPet Personality System](references/personality.md)
+- [OpenClaw AI Pet Design](openclaw-ai-pet-design.md)
+- [CrabPet ClawHub Skill Page](https://clawhub.ai/liqiwa/skills/crabpet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JSON command output and generated text, Markdown, or PNG card files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; optional Pillow and Chrome/Chromium affect PNG card generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

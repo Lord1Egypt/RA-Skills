@@ -1,42 +1,60 @@
-## Description: <br>
-Connects OpenClaw to Offlyn Clipper on macOS through a local MCP bridge so an agent can search saved Clipper notes and summarize the live meeting being recorded. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw to local Offlyn Clipper so an agent can search saved notes, use chat presets, check bridge health, and summarize the live meeting currently being recorded.
 
-## Publisher: <br>
-[joelnishanth](https://clawhub.ai/user/joelnishanth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joelnishanth](https://clawhub.ai/user/joelnishanth)
 
-## Use Case: <br>
-External users and developers who use Offlyn Clipper with OpenClaw use this skill to install and pair a local MCP bridge, search saved notes, retrieve note context, list Clipper chat presets, and recap the live meeting currently being recorded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give OpenClaw access to private Offlyn Clipper notes and live meeting recaps. <br>
-Mitigation: Install only when that sharing is intended, use explicit Clipper-specific requests, and review Clipper's per-tool sharing settings. <br>
-Risk: The MCP bridge stores local pairing credentials for continued access. <br>
-Mitigation: Protect the local credentials file and remove it if OpenClaw should no longer remain paired with Offlyn Clipper. <br>
+## Use Case:
 
+External users and developers who run Offlyn Clipper on macOS use this skill to connect OpenClaw to local Clipper notes and live meeting context for recaps, note search, chat presets, and troubleshooting.
 
-## Reference(s): <br>
-- [Offlyn Clipper OpenClaw guide](https://clipper.offlyn.ai/openclaw.html) <br>
-- [Offlyn Clipper ClawHub listing](https://clawhub.ai/joelnishanth/offlyn-clipper) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and MCP tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, Node.js, OpenClaw, Offlyn Clipper running locally, and a paired local credentials file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose sensitive local notes and live meeting context to OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts Offlyn Clipper and is comfortable sharing local notes and live meeting context with OpenClaw.
+
+Risk: The integration stores reusable credentials and relies on a local socket path.
+
+Mitigation: Review the credential file location, keep the socket path under the user's control, and avoid custom CLIPPER_SOCKET_PATH values unless they are intentional.
+
+Risk: Broad prompts such as 'catch me up' may retrieve live meeting data.
+
+Mitigation: Use live-meeting recap prompts deliberately and confirm Offlyn Clipper's per-tool sharing settings before using the integration.
+
+## Reference(s):
+
+- [Offlyn Clipper OpenClaw setup](https://clipper.offlyn.ai/openclaw.html)
+- [ClawHub skill page](https://clawhub.ai/joelnishanth/skills/offlyn-clipper)
+- [Publisher profile](https://clawhub.ai/user/joelnishanth)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local MCP setup, verification, troubleshooting steps, note-search guidance, and live-meeting recap guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

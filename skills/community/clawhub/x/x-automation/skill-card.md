@@ -1,43 +1,58 @@
-## Description: <br>
-Automates X posting through a logged-in browser session by scraping trends, generating tweet ideas, queueing approvals, and posting approved tweets without X API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates X posting workflows by scraping trends, generating tweet ideas, managing approval queues, and posting through a logged-in browser session without X API keys.
 
-## Publisher: <br>
-[nightfullstar](https://clawhub.ai/user/nightfullstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nightfullstar](https://clawhub.ai/user/nightfullstar)
 
-## Use Case: <br>
-Creators, developers, and operators use this skill to draft and publish X posts from trends through browser automation. It supports manual posting, approval queues, scheduled workflows, and local history files for accounts already logged in to X. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a logged-in X session and publish posts. <br>
-Mitigation: Use a dedicated browser profile or test account, keep per-post approval enabled, and avoid unattended cron or full-auto mode unless strict limits and a kill switch are added. <br>
-Risk: Local queue, history, and trend files may contain account activity or generated content. <br>
-Mitigation: Review local data files regularly, keep data/ excluded from version control, and remove sensitive drafts or history before sharing the skill directory. <br>
-Risk: The security review flags weak guardrails around automated social posting. <br>
-Mitigation: Set conservative daily limits, review every generated post before publication, and do not rely on credential-free or Terms of Service claims as security guarantees. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent gather X trends, draft social posts, queue content for review, and publish approved tweets from a logged-in browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nightfullstar/x-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/nightfullstar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON cron configuration, local JSON data files, and browser automation actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local trend, queue, approval, and tweet-history JSON files under data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can control a logged-in X browser session and publish public posts from the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep human approval mandatory for every post, review queued content before posting, and avoid whitelist or full-auto modes.
+
+Risk: Persistent browser sessions and local JSON files may expose account context, scraped trends, queued tweets, or posting history.
+
+Mitigation: Use an isolated browser profile where possible and review or delete local data files regularly.
+
+Risk: Browser-based posting automation may create account, policy, or abuse risk if used aggressively.
+
+Mitigation: Use conservative posting schedules and rate limits, avoid spam-like behavior, and pin dependencies before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nightfullstar/skills/x-automation)
+- [Publisher profile](https://clawhub.ai/user/nightfullstar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated tweet text, and local JSON data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write trend, queue, and tweet-history JSON files under data/ and can publish public posts through the user's logged-in X browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

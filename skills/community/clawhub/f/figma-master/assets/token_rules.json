@@ -1,0 +1,13 @@
+{
+  "_comment": "Figma 设计系统规范配置 —— scripts/lint_design_tokens.py 的规则来源。以 _ 开头的键为注释/元信息，脚本加载时跳过。团队可自定义分类与类型。",
+  "allowed_categories": [
+    "color", "space", "size", "radius", "font",
+    "shadow", "opacity", "border", "motion", "zIndex", "duration"
+  ],
+  "allowed_types": [
+    "color", "dimension", "fontFamily", "fontWeight",
+    "duration", "number", "string", "cubicBezier", "shadow"
+  ],
+  "segment_regex": "^[a-zA-Z0-9][a-zA-Z0-9-]*$",
+  "variant_regex": "^[A-Z][A-Za-z0-9]*/[a-z][a-zA-Z0-9-]*=[a-z0-9-]+$"
+}

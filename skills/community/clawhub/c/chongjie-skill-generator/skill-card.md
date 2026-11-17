@@ -1,41 +1,53 @@
-## Description: <br>
-Generates reusable Skill definitions from natural-language requirements, including skill structure, editable previews, local saving, and optional publishing support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reusable agent skills from natural-language requirements, including skill structure, templates, preview editing, saving, and optional publishing.
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Developers and skill authors use this skill to turn natural-language requirements into reusable Skill definitions with names, descriptions, triggers, and Markdown usage guidance. It also supports previewing, saving, and optionally publishing generated skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent local skills. <br>
-Mitigation: Review generated skill folders and scan their contents before deployment. <br>
-Risk: The publish helper can publish whole skill folders through local ClawHub and GitHub accounts, with GitHub repository creation public by default. <br>
-Mitigation: Verify active accounts, remove secrets or private prompts, and confirm publication scope before using the publish helper. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn a natural-language description into a reusable Skill definition, including generated structure, usage guidance, and optional publication support.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chongjie-ran/chongjie-skill-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/chongjie-ran) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown and JSON-like skill definitions with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent local skill files and optional publication artifacts when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Generated skill content can be incorrect, incomplete, or misleading before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Skill files and scan them before deployment.
+
+Risk: Save and publish behavior can affect local files or public repositories more broadly than intended.
+
+Mitigation: Use only trusted skill names, inspect generated files before saving or publishing, and require explicit confirmation before public ClawHub or GitHub publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chongjie-ran/skills/chongjie-skill-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown skill files, JSON metadata, generated text, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create Skill files and publication-oriented text that should be reviewed before saving or publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

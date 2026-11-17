@@ -1,43 +1,57 @@
-## Description: <br>
-ByteRover Context Tree helps agents query and curate project memory in `.brv/context-tree` using the `brv` CLI and a configured LLM provider. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ByteRover CLI guidance for agents to query, curate, and optionally sync project knowledge stored as Markdown files in `.brv/context-tree` through a configured LLM provider.
 
-## Publisher: <br>
-[pratiknarola](https://clawhub.ai/user/pratiknarola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratiknarola](https://clawhub.ai/user/pratiknarola)
 
-## Use Case: <br>
-Developers and coding agents use this skill to retrieve project conventions, prior decisions, and stored implementation context before work, then curate durable project knowledge after meaningful changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: `brv query` and `brv curate` can send query text and included file contents to a configured LLM provider. <br>
-Mitigation: Use the skill only when project memory is needed, avoid sending secrets or sensitive files, and confirm provider choice before including source files. <br>
-Risk: The skill encourages memory use before and after work without explicit task-by-task consent. <br>
-Mitigation: Set local operating boundaries so `brv query` and `brv curate` run only when relevant to the task or explicitly requested by the user. <br>
-Risk: Optional cloud sync commands can send stored knowledge to ByteRover cloud after authentication. <br>
-Mitigation: Use cloud sync only with an authenticated account and after confirming the intended team space and data-sharing policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let agents retrieve project context before work and save durable implementation patterns or decisions after work. It is intended for projects that want reusable, local Markdown-based memory with optional provider-backed processing and cloud sync.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pratiknarola/byterover-context-tree) <br>
-- [Publisher profile](https://clawhub.ai/user/pratiknarola) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local `.brv/context-tree` Markdown memory, configured LLM-provider behavior, and optional ByteRover cloud sync commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to send project context and optional file contents through a configured external LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill deliberately, review query and curate inputs before execution, and avoid secrets, personal data, or sensitive files.
+
+Risk: The skill persists memory as Markdown under `.brv/context-tree`, which may be committed to repository history.
+
+Mitigation: Review generated memory files before committing and exclude sensitive content from stored context.
+
+Risk: Global installation of a third-party CLI and optional cloud sync expand trust and data exposure.
+
+Mitigation: Prefer pinned and verified package installation, and run cloud sync commands only after reviewing what will be pushed or pulled.
+
+## Reference(s):
+
+- [ByteRover Context Tree ClawHub listing](https://clawhub.ai/pratiknarola/skills/byterover-context-tree)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing instructions for running ByteRover CLI query, curate, provider setup, and optional sync commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

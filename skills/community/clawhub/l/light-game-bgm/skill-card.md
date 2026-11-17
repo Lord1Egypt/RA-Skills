@@ -1,43 +1,60 @@
-## Description: <br>
-Composes light, melodic, loopable background music for cozy game themes and helps render it into playable audio using MIDI, soundfonts, expressive performance, reverb, and loop verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Composes original light, melodic, loopable background music for cozy game town, village, and overworld themes and renders it into playable audio using MIDI, soundfonts, expressive performance, reverb, and loop verification.
 
-## Publisher: <br>
-[yzwu2017](https://clawhub.ai/user/yzwu2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzwu2017](https://clawhub.ai/user/yzwu2017)
 
-## Use Case: <br>
-Developers, designers, and creators use this skill to create original loopable BGM for games, prototypes, or soundtrack experiments, including MIDI composition, sampled-instrument rendering, reverb processing, and loop quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may install local audio tools or Python packages and may download soundfonts from external sites. <br>
-Mitigation: Install only the listed dependencies you trust, validate downloaded soundfonts before use, and keep package and soundfont sources under normal project review. <br>
-Risk: The skill creates local MIDI, WAV, MP3, and Python files whose paths and generated content may need review before use. <br>
-Mitigation: Review generated output paths, inspect editable scripts, and run the bundled loop verification before shipping or relying on rendered audio. <br>
+## Use Case:
 
+External developers, composers, and game makers use this skill to create original loopable background music for light game scenes and deliver playable audio with supporting MIDI and editable composition code.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yzwu2017/light-game-bgm) <br>
-- [Soundfonts, instruments, and rendering reference](references/soundfonts.md) <br>
-- [FluidR3_GM soundfont release](https://github.com/fhunleth/midi_synth/releases/download/v0.1.0/FluidR3_GM.sf2) <br>
-- [GeneralUser GS soundfont download](https://www.dropbox.com/s/4x27l49kxcwamp5/GeneralUser_GS_v1.471.sf2?dl=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline bash and Python snippets; generated artifacts may include MP3, WAV, MIDI, and Python files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, FluidSynth, FFmpeg, mido, numpy, and scipy; metadata indicates macOS and Linux support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow installs third-party audio tools and Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only reviewed tools and prefer pinned or reviewed dependency versions.
+
+Risk: Downloaded soundfont files may be untrusted, redirected, or invalid.
+
+Mitigation: Use trusted sources, verify downloaded soundfonts with SHA-256 hashes when possible, and confirm the file is a real SoundFont before loading it in FluidSynth.
+
+Risk: Generated loops may have audible seams or clipping if shipped without verification.
+
+Mitigation: Run the bundled loop verification step and review seam and peak results before delivery.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yzwu2017/skills/light-game-bgm)
+- [Soundfonts, instruments & rendering reference](artifact/references/soundfonts.md)
+- [GeneralUser GS soundfont download](https://www.dropbox.com/s/4x27l49kxcwamp5/GeneralUser_GS_v1.471.sf2?dl=1)
+- [FluidR3 GM soundfont release](https://github.com/fhunleth/midi_synth/releases/download/v0.1.0/FluidR3_GM.sf2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, Audio files]
+
+**Output Format:** [Markdown guidance with Python and bash code blocks plus generated MP3, MIDI, WAV, and Python composition files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Loopable music assets should be verified for seam continuity and clipping before delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

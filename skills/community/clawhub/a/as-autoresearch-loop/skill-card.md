@@ -1,45 +1,62 @@
-## Description: <br>
-AS Autoresearch Loop helps agents run measurable iterative improvement loops for reusable artifacts by defining a metric, testing changes, keeping improvements, and stopping on explicit criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies Karpathy's autoresearch methodology to iteratively improve measurable artifacts such as Claude skills, n8n workflows, system prompts, business processes, or reusable documents.
 
-## Publisher: <br>
-[autosolutionsai-didac](https://clawhub.ai/user/autosolutionsai-didac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autosolutionsai-didac](https://clawhub.ai/user/autosolutionsai-didac)
 
-## Use Case: <br>
-Developers, prompt engineers, and operations teams use this skill to improve reusable skills, workflows, system prompts, business processes, and other measurable artifacts through controlled experiment loops. It is best suited when the user can define a stable artifact, metric, evaluation set, and budget before iteration begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes conflicting active instructions, including historical or nested skill files that may encourage long-running file-changing loops. <br>
-Mitigation: Review the installed artifact before use, quarantine historical skill drafts, and run only the intended current skill file. <br>
-Risk: Iterative improvement loops can modify files beyond the user's intended scope if paths and boundaries are unclear. <br>
-Mitigation: Use sandbox copies or isolated branches, confirm writable paths, and define fixed files before starting the loop. <br>
-Risk: Unbounded iteration can consume excessive time, tokens, or cost. <br>
-Mitigation: Set explicit maximum iterations, time, cost, and stopping criteria before execution. <br>
-Risk: Running the loop against live workflows or production prompts can introduce regressions before review. <br>
-Mitigation: Avoid live workflows and production prompts; evaluate candidates separately and require human approval before deployment. <br>
+## Use Case:
 
+Developers, operators, and workflow owners use this skill to set up a measured improvement loop for a reusable artifact. It guides them to define the artifact, fixed evaluation set, metric, budget, experiment log, and stop conditions before iterating.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/autosolutionsai-didac/as-autoresearch-loop) <br>
-- [Karpathy autoresearch methodology](https://github.com/karpathy/autoresearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file edits, evaluation runs, results logging, and versioned artifact backups; users should set explicit limits before starting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The package includes nested and historical skill copies with broad trigger and unbounded loop language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and remove or quarantine obsolete nested/versioned skill copies so only the intended bounded release is active.
+
+Risk: The skill can guide an agent to edit files, run evaluations, and keep persistent experiment logs.
+
+Mitigation: Run loops in a sandbox, branch, or copied workspace with explicit time, iteration, and cost limits before applying a winning artifact.
+
+Risk: Evaluation data can overfit the artifact or expose real user data if handled carelessly.
+
+Mitigation: Keep evals separate from artifact editing, redact sensitive data, and reserve holdout or regression prompts for validation rather than optimization.
+
+Risk: Automated or unattended loops can create misleading improvements or unsafe production changes.
+
+Mitigation: Require deterministic evals, anomaly alerts, periodic human review, and human approval before any production deployment.
+
+## Reference(s):
+
+- [Karpathy autoresearch methodology](https://github.com/karpathy/autoresearch)
+- [ClawHub AS Autoresearch Loop release page](https://clawhub.ai/autosolutionsai-didac/skills/as-autoresearch-loop)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with example commands, checklists, and tabular experiment logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update experiment logs, evaluation rubrics, backup instructions, and candidate artifact changes when the user authorizes an improvement loop.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

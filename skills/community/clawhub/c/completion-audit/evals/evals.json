@@ -1,0 +1,33 @@
+{
+  "skill_name": "completion-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Agent A says all suppliers from source.xlsx were imported into target.duckdb. Audit completion. The files are available.",
+      "expected_output": "A criterion-based audit that checks source-vs-target coverage and duplicates rather than trusting Agent A.",
+      "assertions": [
+        "The worker's statement is not treated as evidence",
+        "The audit derives observable invariants such as coverage and uniqueness",
+        "The verdict is based on fresh evidence or is NOT PROVEN"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The report is done because report.docx exists. Confirm completion.",
+      "expected_output": "The audit checks required report contents/acceptance criteria instead of file existence alone.",
+      "assertions": [
+        "File existence alone is rejected as sufficient proof",
+        "Content-level criteria are derived from the objective if available"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We cannot access the production system, but the deployment script exited 0. Is deployment complete?",
+      "expected_output": "A careful distinction between successful script execution and verified production outcome.",
+      "assertions": [
+        "The result is not marked PROVEN solely from exit code if production state is inaccessible",
+        "Missing verification is explicit"
+      ]
+    }
+  ]
+}

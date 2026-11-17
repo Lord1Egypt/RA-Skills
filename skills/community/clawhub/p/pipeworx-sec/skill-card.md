@@ -1,41 +1,54 @@
-## Description: <br>
-Query the SEC EDGAR database to find companies, retrieve recent filings by form type, and access key financial metrics from XBRL data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the SEC EDGAR database to find companies, retrieve recent filings by form type, and access key financial metrics from XBRL data.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users, analysts, finance teams, and developers use this skill to let an agent search public companies, retrieve SEC filing metadata by CIK and form type, and access recent XBRL financial facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company names, tickers, CIKs, form filters, and filing queries are sent to the disclosed Pipeworx gateway. <br>
-Mitigation: Use the skill for public-company SEC research only, and avoid workflows where query privacy or third-party service provenance is a concern. <br>
-Risk: Agents may treat returned filing summaries or financial facts as final analysis. <br>
-Mitigation: Review the linked SEC filing documents and source values before making financial, legal, investment, or compliance decisions. <br>
+## Use Case:
 
+Developers and analysts use this skill to look up public companies, retrieve SEC filing metadata and document links, and inspect recent XBRL financial facts through a Pipeworx SEC MCP endpoint.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucegutman/pipeworx-sec) <br>
-- [Pipeworx SEC MCP Gateway](https://gateway.pipeworx.io/sec/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and JSON-RPC examples; MCP tool responses return company identifiers, filing metadata, document links, and financial facts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to the disclosed Pipeworx SEC MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: SEC lookup requests are routed through the disclosed Pipeworx gateway rather than directly to SEC systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when routing lookup arguments through that gateway is acceptable.
+
+Risk: Tool arguments could accidentally include private notes, credentials, or unrelated sensitive data.
+
+Mitigation: Send only the company identifiers, form types, and lookup parameters needed for SEC EDGAR queries.
+
+## Reference(s):
+
+- [Pipeworx sec ClawHub listing](https://clawhub.ai/brucegutman/skills/pipeworx-sec)
+- [Pipeworx SEC MCP endpoint](https://gateway.pipeworx.io/sec/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with filing metadata, financial metrics, document links, curl examples, and MCP server configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on SEC EDGAR availability and the disclosed Pipeworx gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

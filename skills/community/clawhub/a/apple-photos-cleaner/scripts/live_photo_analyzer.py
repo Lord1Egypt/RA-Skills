@@ -5,17 +5,42 @@ find Live Photos that could be converted to stills to save space.
 """
 
 import sys
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
+    QUALITY_SCORE_COLUMNS,
     PhotosDB,
     _safe_col,
-    coredata_to_datetime,
+    computed_scores_sql,
+    coredata_to_local,
+    display_name,
     format_size,
     get_quality_score,
+    has_timezone_offset,
+    local_datetime_sql,
+    original_filename_sql,
     run_script,
+    tz_offset_sql,
     validate_year,
 )
+from _schema import FILE_SIZE, ORIGINAL_FILENAME, QUALITY_SCORES, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZHEIGHT",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    "ZASSET.ZWIDTH",
+    *FILE_SIZE,
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "original_filenames": ORIGINAL_FILENAME,
+    "live_photos": ("asset.kind_subtype", "asset.playback_style"),
+    "quality": QUALITY_SCORES,
+}
 
 # Live Photo sub-kinds
 LIVE_PHOTO_SUBTYPE = 2
@@ -34,8 +59,8 @@ PLAYBACK_NAMES = {
 
 
 def analyze_live_photos(
-    db_path: Optional[str] = None,
-    year: Optional[str] = None,
+    db_path: str | None = None,
+    year: str | None = None,
 ) -> dict[str, Any]:
     """
     Analyze Live Photos in the library.
@@ -43,17 +68,23 @@ def analyze_live_photos(
     Returns breakdown of live vs still, storage comparison, and
     Live Photos that are rarely played (candidates for conversion).
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Live Photo analysis") as conn:
+        name_col = original_filename_sql(get_schema(conn))
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
 
         # Check which columns exist
-        cursor.execute("PRAGMA table_info(ZASSET)")
-        columns = {row["name"] for row in cursor.fetchall()}
-        has_subtype = "ZKINDSUBTYPE" in columns
-        has_playback = "ZPLAYBACKSTYLE" in columns
+        schema = get_schema(conn)
+        degraded = Degradation(schema)
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
+        degraded.check("live_photos", *OPTIONAL_COLUMNS["live_photos"])
+        degraded.check("quality", *OPTIONAL_COLUMNS["quality"])
+        has_subtype = schema.has("asset.kind_subtype")
+        has_playback = schema.has("asset.playback_style")
 
         if not has_subtype and not has_playback:
             return {
+                "degraded": degraded.entries,
                 "error": "Live Photo columns not found in this database version",
                 "live_photos": [],
                 "summary": {
@@ -73,12 +104,14 @@ def analyze_live_photos(
         select_cols = [
             "a.Z_PK",
             "a.ZFILENAME",
+            name_col,
             "a.ZDATECREATED",
             "a.ZKIND",
             "a.ZFAVORITE",
             "a.ZWIDTH",
             "a.ZHEIGHT",
             "aa.ZORIGINALFILESIZE",
+            f"{tz_offset_sql(tz_available)} AS tz_offset",
         ]
         if has_subtype:
             select_cols.append("a.ZKINDSUBTYPE")
@@ -86,27 +119,21 @@ def analyze_live_photos(
             select_cols.append("a.ZPLAYBACKSTYLE")
 
         # Include quality scores for identifying best live photos
-        select_cols.extend(
-            [
-                "ca.ZPLEASANTCOMPOSITIONSCORE",
-                "ca.ZPLEASANTLIGHTINGSCORE",
-                "ca.ZFAILURESCORE",
-                "ca.ZNOISESCORE",
-            ]
-        )
+        score_terms, score_join = computed_scores_sql(schema, *QUALITY_SCORE_COLUMNS)
+        select_cols.extend(score_terms)
 
         where = ["a.ZTRASHEDSTATE != 1", "a.ZKIND = 0"]  # photos only
         params: list = []
         if year:
             year = validate_year(year)
-            where.append("strftime('%Y', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) = ?")
+            where.append(f"strftime('%Y', {local_datetime_sql(tz_available)}) = ?")
             params.append(year)
 
         query = f"""
             SELECT {", ".join(select_cols)}
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
-            LEFT JOIN ZCOMPUTEDASSETATTRIBUTES ca ON a.Z_PK = ca.ZASSET
+            {score_join}
             WHERE {" AND ".join(where)}
             ORDER BY a.ZDATECREATED DESC
         """
@@ -116,7 +143,7 @@ def analyze_live_photos(
         still_photos_count = 0
         still_photos_size = 0
         live_total_size = 0
-        by_playback = {}
+        by_playback: dict[Any, int] = {}
         by_year: dict[str, dict] = {}
 
         for row in cursor.fetchall():
@@ -126,7 +153,7 @@ def analyze_live_photos(
             size = rd.get("ZORIGINALFILESIZE") or 0
             is_live = subtype == LIVE_PHOTO_SUBTYPE or playback >= PLAYBACK_LIVE
 
-            created = coredata_to_datetime(rd["ZDATECREATED"])
+            created = coredata_to_local(rd["ZDATECREATED"], rd["tz_offset"])
             yr = str(created.year) if created else "Unknown"
 
             if yr not in by_year:
@@ -145,6 +172,7 @@ def analyze_live_photos(
                     {
                         "id": rd["Z_PK"],
                         "filename": rd["ZFILENAME"],
+                        "original_filename": rd["original_filename"],
                         "created": created.isoformat() if created else None,
                         "size": size,
                         "size_formatted": format_size(size),
@@ -172,6 +200,7 @@ def analyze_live_photos(
         conversion_candidates = [p for p in live_photos if not p["is_favorite"]]
 
         return {
+            "degraded": degraded.entries,
             "live_photos": live_photos[:200],
             "conversion_candidates": conversion_candidates[:100],
             "by_playback_style": by_playback,
@@ -241,14 +270,14 @@ def format_summary(data: dict[str, Any]) -> str:
         lines.append("Largest Live Photos:")
         for p in data["live_photos"][:10]:
             fav = "⭐" if p["is_favorite"] else "  "
-            lines.append(f"  {fav} {p['filename']:40s} {p['size_formatted']:>10} ({p['playback_style']})")
+            lines.append(f"  {fav} {display_name(p):40s} {p['size_formatted']:>10} ({p['playback_style']})")
 
     return "\n".join(lines)
 
 
 def main():
     def add_args(parser):
-        parser.add_argument("--year", help="Filter to specific year (YYYY)")
+        parser.add_argument("--year", help="Filter to specific year (YYYY, local capture time)")
 
     def invoke(db_path, args):
         return analyze_live_photos(db_path=db_path, year=args.year)

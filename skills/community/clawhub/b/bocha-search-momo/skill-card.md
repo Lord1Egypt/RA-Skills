@@ -1,42 +1,59 @@
-## Description: <br>
-博查 AI 搜索工具，调用 https://api.bocha.cn 进行网页搜索，返回带摘要的中文结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+博查 AI 搜索工具。调用 https://api.bocha.cn 进行网页搜索，返回带摘要的中文结果。不依赖 OpenClaw 内置 web_search。
 
-## Publisher: <br>
-[justaboyhai-wq](https://clawhub.ai/user/justaboyhai-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[justaboyhai-wq](https://clawhub.ai/user/justaboyhai-wq)
 
-## Use Case: <br>
-External users and developers use this skill to run Bocha web searches from an agent workflow and receive summarized Chinese search results. It is intended for query-and-result retrieval, not for private data handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Bocha's external API. <br>
-Mitigation: Avoid searching for secrets or sensitive private text, and use the skill only when sending the query to Bocha is acceptable. <br>
-Risk: The Bocha API key can be stored in a local configuration file. <br>
-Mitigation: Use a dedicated Bocha API key, protect the local config file, and do not commit the key or config file to a repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bocha Search skill page](https://clawhub.ai/justaboyhai-wq/bocha-search-momo) <br>
-- [Bocha website](https://www.bocha.cn) <br>
-- [Bocha open platform](https://open.bocha.cn) <br>
-- [Bocha Web Search API documentation](https://bocha.com/documents/web-search-api) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run Bocha web searches from an agent workflow and receive Chinese search results with titles, links, and AI-generated summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text search results with title, URL, and summary fields; setup guidance uses shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Bocha API key stored in a local config file or provided through BOCHA_API_KEY; search result count defaults to 5 and supports 1-10 results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends search queries to the external Bocha web search API.
+
+Mitigation: Avoid submitting secrets, private terms, or sensitive business data in search queries.
+
+Risk: The setup script stores the Bocha API key in ~/.openclaw/skills-config/bocha-search.json.
+
+Mitigation: Prefer BOCHA_API_KEY or another protected secret input; if the config file is used, restrict its filesystem permissions.
+
+Risk: The skill requires a Bocha API key to authorize outbound API calls.
+
+Mitigation: Use a low-privilege API key and rotate it if the local configuration may have been exposed.
+
+## Reference(s):
+
+- [Bocha Web Search API documentation](https://bocha.com/documents/web-search-api)
+- [Bocha Open Platform](https://open.bocha.cn)
+- [Bocha website](https://www.bocha.cn)
+- [ClawHub skill page](https://clawhub.ai/justaboyhai-wq/skills/bocha-search-momo)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Markdown, Configuration]
+
+**Output Format:** [Terminal text with search result titles, URLs, and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, a Bocha API key, and outbound access to the Bocha web search API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

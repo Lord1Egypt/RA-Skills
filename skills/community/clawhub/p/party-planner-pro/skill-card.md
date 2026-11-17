@@ -1,46 +1,61 @@
-## Description: <br>
-Party Planner Pro helps an agent plan events by organizing guest lists, budgets, menus, timelines, vendors, day-of logistics, and post-event wrap-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Party Planner Pro helps an agent plan, manage, and track events through guest lists, budgets, menus, timelines, vendors, day-of logistics, and post-party wrap-up.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-People planning private, social, or team events use this skill to coordinate event details, guest needs, spending, schedules, vendors, and follow-up tasks. Agents can also use its helper scripts and structured templates to export plans and generate budget reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guest contact details, dietary needs, addresses, vendor information, and budget data can be sensitive. <br>
-Mitigation: Share only the event details needed for planning and treat exported reports as private. <br>
-Risk: Setup and helper scripts can create or modify local planning files. <br>
-Mitigation: Install only from a trusted copy, inspect setup commands before execution, and back up data before uninstalling. <br>
-Risk: Event details discussed with an agent may remain in the host platform's chat or session context. <br>
-Mitigation: Review the host agent platform's data retention controls and use appropriate local storage protections for sensitive event data. <br>
+## Use Case:
 
+External users and personal event hosts use this skill to organize parties and gatherings from initial setup through wrap-up. It supports event planning tasks such as RSVP tracking, dietary accommodation, budget reporting, vendor coordination, menu planning, checklists, and day-of schedules.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nollio/party-planner-pro) <br>
-- [README](artifact/README.md) <br>
-- [Security notes](artifact/SECURITY.md) <br>
-- [Codex security audit](artifact/CODEX-SECURITY-AUDIT.md) <br>
-- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational guidance with structured JSON event data, Markdown exports, and optional generated budget reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May handle guest, dietary, venue, vendor, and budget details that should be treated as private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional PNG budget report path can render untrusted event data as active HTML, creating privacy and integrity risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid PNG budget reports for untrusted event data until text is HTML-escaped, JavaScript is disabled, and network requests are blocked during rendering.
+
+Risk: Guest, vendor, and budget imports can contain sensitive personal or financial information.
+
+Mitigation: Review imported data before use, treat it as untrusted content, and store event data only in locations appropriate for the user's privacy needs.
+
+Risk: The documented uninstall command removes the skill directory and local event data.
+
+Mitigation: Back up event data before uninstalling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/party-planner-pro)
+- [README](artifact/README.md)
+- [Security audit](artifact/CODEX-SECURITY-AUDIT.md)
+- [Security notes](artifact/SECURITY.md)
+- [Dashboard companion specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational guidance, JSON event records, Markdown reports, optional PNG budget reports, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local event data files and reports; optional PNG budget reports require Playwright.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

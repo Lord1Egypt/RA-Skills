@@ -1,45 +1,58 @@
-## Description: <br>
-Request expert help by submitting queries to the HeySummon platform, which routes them to registered human providers for assistance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Request expert help by submitting queries to the HeySummon platform, which routes them to registered human providers for assistance.
 
-## Publisher: <br>
-[thomasansems](https://clawhub.ai/user/thomasansems) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thomasansems](https://clawhub.ai/user/thomasansems)
 
-## Use Case: <br>
-Agents and their operators use this skill when an automated workflow is stuck and needs help from a named or matching human expert through the HeySummon platform. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles API keys, local key material, request records, and event logs. <br>
-Mitigation: Keep .env, providers.json, .keys, .requests, and logs out of version control, restrict local file permissions, and avoid sending secrets in submitted prompts or context. <br>
-Risk: The watcher runs persistently and uses the local OpenClaw gateway token while active. <br>
-Mitigation: Review the watcher script before starting it, run it only in trusted workspaces, and stop it when the skill is not in use. <br>
-Risk: The optional auto-sync script can commit and push local changes to a git remote. <br>
-Mitigation: Disable, remove, or rewrite auto-sync unless the repository hygiene and destination remote have been reviewed. <br>
-Risk: Submitted prompts and context are shared with the HeySummon platform and human providers. <br>
-Mitigation: Treat requests as external disclosures and redact credentials, private data, and sensitive business context before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/thomasansems/heysummon) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and AI-agent operators use Hey Summon when an agent is blocked and needs to route a help request to a registered human expert through the HeySummon platform.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local status text and script-driven configuration or state files when the user runs the provided commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0-beta (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run a persistent background watcher and use a local OpenClaw gateway token.
+
+Mitigation: Review before installing, run only with a trusted HeySummon endpoint, prefer HTTPS for non-local servers, and treat the OpenClaw gateway token as sensitive.
+
+Risk: Auto-sync behavior can accidentally publish local secrets or request state.
+
+Mitigation: Do not run auto-sync.sh until a restrictive .gitignore and staging allowlist are in place.
+
+Risk: Local files such as .env, providers.json, .keys, .requests, and watcher logs may contain credentials or sensitive conversation context.
+
+Mitigation: Keep these files out of commits and backups unless explicitly intended, avoid sending secrets or sensitive context, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomasansems/skills/heysummon)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration, provider registry, key, request-tracking, log, and notification files during use.]
+
+## Skill Version(s):
+
+0.1.0-beta (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

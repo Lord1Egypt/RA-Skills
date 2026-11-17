@@ -119,7 +119,7 @@ from fc import create_and_invoke
 # Option 1: pass a script file path directly (recommended; auto-detects .sh / .py and base64-wraps it)
 result = create_and_invoke(
     script_path="/path/to/script.sh",     # auto read, base64-wrap, infer type
-    # function_name=None,                 # if omitted, auto-generated: acf-task-20260423-143052-a1b2c3
+    # function_name=None,                 # if omitted, auto-generated: acf-taREDACTED-SECRET
     memory_size=512,
     cpu=0.35,
     timeout=60,

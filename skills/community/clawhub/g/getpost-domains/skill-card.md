@@ -1,41 +1,54 @@
-## Description: <br>
-Register domains, manage DNS, and set up email sending via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register domains, manage DNS, and set up email sending via API.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-Developers and agents use this skill to check domain availability and pricing, register domains, manage DNS records, and configure email sending through the GetPost API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API-key exposure can allow unauthorized GetPost domain management actions. <br>
-Mitigation: Keep the API key secret and provide it only in secure agent or shell environments. <br>
-Risk: Domain registration, DNS edits, and email or redirect setup can spend credits or alter live infrastructure. <br>
-Mitigation: Start with availability and pricing endpoints, then require confirmation of the exact domain, price or credits, DNS record values, and email or redirect changes before any POST request. <br>
+## Use Case:
 
+Developers and agent builders use this skill to check domain availability, register domains, manage DNS records, and configure email authentication through the GetPost API.
 
-## Reference(s): <br>
-- [GetPost API reference: domains](https://getpost.dev/docs/api-reference#domains) <br>
-- [ClawHub skill page](https://clawhub.ai/dommholland/getpost-domains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples and API endpoint descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GetPost API key; POST requests can register domains or change DNS, email, and redirect settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide account signup, domain purchases, DNS changes, redirects, and email-authentication setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any signup, purchase, registration, nameserver, DNS, redirect, or email-authentication change.
+
+Risk: The skill uses a bearer API key for GetPost API access.
+
+Mitigation: Store the API key outside prompts and shared logs, and avoid exposing it in generated commands or transcripts.
+
+## Reference(s):
+
+- [GetPost Domains API documentation](https://getpost.dev/docs/api-reference#domains)
+- [ClawHub skill page](https://clawhub.ai/dommholland/skills/getpost-domains)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include domain registration, DNS, redirect, and email-authentication steps that require user approval before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

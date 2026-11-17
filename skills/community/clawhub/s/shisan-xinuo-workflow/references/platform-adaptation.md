@@ -1,0 +1,196 @@
+# 平台适配（中文）
+
+第 0 步（平台检测与适配）以及提问工具降级链、结构化提问协议需要时加载本文件。
+
+## 1. 检测当前平台
+
+按顺序检查下列信号，第一个强命中即判定：
+
+| 平台 | 强信号 |
+|---|---|
+| Codex（OpenAI） | CLI `codex` 可用；`~/.codex/` 存在；项目中 `AGENTS.md` 已载入上下文 |
+| Claude Code | CLI `claude` 可用；`~/.claude/` 存在；`.claude/skills/` 可解析 |
+| Cursor | 项目存在 `.cursor/` 目录或 `.cursorrules`；存在 Cursor 环境变量（`CURSOR_*`） |
+| Windsurf | 项目存在 `.windsurfrules`；存在 Windsurf 环境变量 |
+| Trae | Trae 运行时特征（插件 / Skill 机制激活、Trae 环境变量） |
+| WorkBuddy | agent-app 全局规则文件（如 `~/.workbuddy/AGENTS.md`，已实证）；`AskUserQuestion` 工具可用 |
+| Reasonix | `AGENTS.md` 作为插件 / 规则输入 |
+| 通用 CLI / 其他 | 以上皆无；纯 shell + 模型 API |
+
+无法确定时直接问用户是哪个平台——要写规则文件时不允许猜测。
+
+## 2. 注入点——agent 应用每会话真正自动注入规则的位置
+
+> 只把规则文件写进应用从不读取的工作区目录是**无效的**——Skill 仍会被迫手动触发。必须对准平台真正的注入点；平台要求应用内启用时，先引导用户在应用里启用。
+
+| 平台 | 注入点（每会话自动注入） | 层级 | 是否需要应用内启用 | 原生提问工具 |
+|---|---|---|---|---|
+| Codex | `AGENTS.md`（项目根） | 项目-应用层（按策略可设全局） | 否——自动读取 | `request_user_input` |
+| Claude Code | `CLAUDE.md`（项目）或 `~/.claude/CLAUDE.md`（用户全局） | 项目层 / 全局层 | 否——自动读取 | 无原生 → 文本协议 |
+| Cursor | `.cursor/rules/*.mdc` 或应用设置中的全局 Rules | 项目层 / 全局层 | 通常自动读取；核对 Rules 开关 | 无原生 → 文本协议 |
+| Windsurf | `.windsurfrules`（项目）或全局规则 | 项目层 / 全局层 | 否——自动读取 | 无原生 → 文本协议 |
+| Trae | `~/.trae-cn/user_rules/*.md`（用户全局，所有项目每会话自动注入）或项目 `.trae/rules/project_rules.md` | 全局层（`~/.trae-cn/user_rules/*.md`）/ 项目-应用层（`.trae/rules/project_rules.md`） | 否——文件存在即注入（已实证） | 有平台提问工具则用，否则文本协议 |
+| WorkBuddy | agent-app 全局规则文件（如 `~/.workbuddy/AGENTS.md`）或项目引导 | 全局层 / 项目-应用层 | 视应用配置 | `AskUserQuestion` |
+| Reasonix | `AGENTS.md`（插件 / 规则输入） | 项目-应用层 | 视插件配置 | 无原生 → 文本协议 |
+| 通用 CLI | 无自动注入 | 不适用 | 不适用 | 无原生 → 文本协议 |
+
+**项目级注入点表（项目承载检查 / 自动创建项目规则文件时按此表定名——不凭记忆猜文件名）**：
+
+| 平台 | 项目级注入文件 | 说明 |
+|---|---|---|
+| Codex | 项目根 `AGENTS.md` | **必建**——Codex 项目级唯一注入点，自动读取 |
+| Claude Code | 项目 `CLAUDE.md` | 自动读取 |
+| Trae | `.trae/rules/project_rules.md` | 文件存在即注入（注意：是 `.trae/rules/` 子目录，不是根目录裸文件） |
+| Cursor | `.cursor/rules/*.mdc` | 自动读取（核对 Rules 开关） |
+| Windsurf | `.windsurfrules` | 项目根，自动读取 |
+| WorkBuddy | 项目规则 / 引导文件（按应用配置） | 视应用机制 |
+| 未知平台 | **按 §3 步骤 1.5 同口径联网调研官方项目级注入点**（不猜）；离线降级 → `AGENTS.md` 兜底（跨平台事实标准）+ 文件头注「按平台调研后迁移」 | 调研结论回写本表 |
+
+> 创建/合并一律走 `templates/project-rules.md`（先查既有规则文件：存在则合并不覆盖+先备份）；写入内容含核心纪律 + 回指本 Skill。
+
+**注入分层规则（普通 vs 硬注入，见 `rules.md` §47）**：**普通（按需 / 精简）注入只写「项目-应用层」**（按上方项目级注入点表定名），不写全局层——防污染无关会话上下文；**硬注入（强制）才写「agent 应用全局层」**，且执行前**必须先提醒用户确认**（平台 / 目标注入点 / 内容长度（约行数）/ 每会话 token 成本 / 影响范围），确认后再写入。
+
+**对每个平台**：写入 / 合并文件后，向用户复述生效要点（平台、注入点、注入模式、提问工具）并确认未丢失既有内容；若某平台后续证实需要应用内启用，再引导用户在应用设置里启用。
+
+**强制注入（硬加载）** = 把 `references/injection-core.md` 的核心全文（含上下文预算法 + 工作区 `memory/` 约定）写入上面检测到的平台注入点（先备份、合并不覆盖）——工作流每会话无条件在场。**不要**用「每会话完整读取 SKILL.md」这类弱指令实现强制注入：模型不会可靠执行额外读取动作，必须直接写入核心全文（实测教训：弱指令模式下新会话只遵循最通用的几条纪律）。
+
+**硬注入承载面 = 规则文件 + 平台配置文件（hooks / 全局设置）**：除上面的规则文件注入点外，平台配置层的承载点与实测能力见下节「平台配置文件层」——先实测可用性再部署，不支持的如实标注（见 `templates/hooks/` 多平台说明）。
+
+通用 CLI（无自动注入）：提示用户每会话打开一次本 Skill，或将规则写入其自定义提示词。
+
+## 2.1 平台配置文件层（规则文件之外的承载点；硬注入承载面之一）
+
+> 规则文件（上表）是自动注入的主体；本层是**加固面**——平台支持时把纪律/钩子挂到配置文件，让行为更接近「自动在场」。**先实测再部署**：配置格式、hooks 支持度、Windows 下脚本执行环境（如 .sh 需 bash）各平台不同；不支持的如实标注「平台可选/不可用」，不硬撑。
+
+| 平台 | 配置文件承载点 | 实测能力（本机） | 备注 |
+|---|---|---|---|
+| Claude Code | `~/.claude/settings.json`（hooks：`SessionStart`/`SessionEnd`） | hooks 模板就绪（`templates/hooks/`）；**本机实测 bash 不可用（`bash.exe` 为 WSL 启动器且无发行版 → `execvpe(/bin/bash)` 失败），.sh hooks 无法运行 → 本机不创建 hooks，降级为「规则文件/注入核心已在场」**；有 bash/WSL 的环境可按模板启用 | 钩子属「强制模式最强形态」（§3.2）；不可行则降级，如实标注 |
+| Codex | `~/.codex/config.toml`（事件 / hooks 支持） | **实测：config.toml 仅 `notify`（turn-ended 外部程序），无 SessionStart/SessionEnd hooks 槽位 → 如实标注「不支持 hooks，AGENTS.md 为唯一硬注入承载」**；不清洗既有字段 | config.toml 含凭据时走环境变量，不落明文 |
+| Cursor | 应用**全局 Rules**（无目录时放应用设置） | 本机无 `.cursor/` 目录 → 文档指引「应用内全局 Rules」 | 规则文件自动读取；配置层按应用设置启用 |
+| Trae | 应用设置启用（`user_rules/*.md` 文件即注入，无需启用） | 已激活（全局注入副本每会话在场） | 文件存在即注入（已实证） |
+| WorkBuddy | `settings.json` + `BOOTSTRAP.md`（平台机制要求时作启动锚定） | **实测：settings.json 无 hooks 字段（仅 sandbox/plugins/claw）→ 不支持 hooks；BOOTSTRAP.md 为身份锚定会话模板（非纪律锚定，当前未启用）→ 以 `~/.workbuddy/AGENTS.md` 注入为承载** | 全局规则文件已注入 |
+| ZCode | 全局 `AGENTS.md` | 已注入（全局副本每会话在场） | 与 Codex 同构（AGENTS.md 规则输入） |
+| 通用 CLI | 无 | — | 每会话手动加载或写入自定义提示词 |
+
+**凭据纪律**：平台配置（config.toml / settings.json 等）若含凭据字段（token / key / 加密后凭据），绝不写入明文——一律走环境变量注入，配置文件内只放 `${VAR}` 引用；本层文档与模板也不得出现真实令牌样例。
+
+## 2.2 平台记忆层（每会话在场承载 · 硬注入第三层）
+
+> 记忆层 = 平台**每个新会话真正读取的记忆文件**（Agent 的「记忆承载」——规则文件未必每会话自动读，但记忆文件是平台持续在场机制）。硬注入 = **三层同时写入**：记忆层（本锚点）＋ 规则层（§2 注入点表，注入核心全文）＋ 配置文件层（§2.1）——任一缺失都可能造成「规则已写但新会话未生效」的假阳性外挂。**写前先识别平台 → 联网调研官方注入点（不猜）→ 授权 → 三层写入 → 回读校验**（§3.3 五步）。
+
+| 平台 | 记忆层承载点 | 记忆内容 | 实测状态（本机） |
+|---|---|---|---|
+| WorkBuddy | `~/.workbuddy/MEMORY.md`（主记忆）＋ SOUL.md / IDENTITY.md / USER.md | 在场锚点块（精简） | MEMORY.md 现为空（仅 `#`）——写入锚点 |
+| Trae | `~/.trae-cn/memory/user_profile.md`（全局）＋ `projects/<名>/project_memory.md` | 在场锚点块（追加，不覆盖既有偏好） | user_profile.md 已含用户偏好、无工作流锚点——追加 |
+| Codex | `~/.codex/AGENTS.md`（顶部注记，规则/记忆合一）+ `~/.codex/memories/*`（sqlite 记忆库） | 在场锚点块（AGENTS.md 顶部注记段落） | AGENTS.md 已 v2.0.3 核心——补注记段；memories sqlite 不直接写 |
+| Claude Code | `~/.claude/CLAUDE.md`（规则/记忆合一） | —（无目录则不写） | 本机 `~/.claude/` 仅 mcp.json——文档指引 |
+| Cursor / Windsurf | 应用内全局 Rules（记忆即规则） | — | 本机无目录——文档指引 |
+
+**在场提示（新增提醒，非替代）**：记忆层锚点**首行**固定一句「在场提示 · 工作流 Skill 现已在场（shisan-xinuo-workflow · vX.Y.Z 硬注入）」——让新会话 Agent 读到记忆文件即识别本 Skill 在场并按三级跑道推进（即使未触发 Skill 的 name/description）。锚点块模板见 `templates/memory-anchor.md`（精简、平台无关、授权注记）。
+
+**硬注入 = 三层强制**：记忆层 + 规则层 + 配置文件层**同时写入**，缺一不可；写前必须**提醒用户授权**（平台 / 三层目标 / 内容长度 / 每会话成本 / 影响范围）。**按需注入只写「应用层」**（按 §2 项目级注入点表定名，精简纪律约 9 行 + 询问用户是否写规则层；**不写记忆层**）。
+
+## 3. 生成 / 合并规则文件
+
+### 3.0 先选注入模式（询问用户）
+
+写任何规则文件前，用第 4 节降级链让用户选择注入模式；无提问工具可用时默认**按需注入**并明确告知。
+
+**安装期「注入模式选择提问」用双语**：本「先选注入模式」的提问文本（含选项单与推荐）以**中 + 英双语呈现**——该提问是安装共用的一步，不同语言用户 / 模型都能看懂并各选其**自己想要的真正答案**；**仅此一个安装期提问双语**，安装完成后的日常交互一律用 `preferences.md` 择定的用户偏好语言（默认中文），不做双语重复记录（本 Skill 不设「语言桥」条款）。
+
+| 模式 | 规则文件内容 | 上下文开销 | 适用场景 |
+|---|---|---|---|
+| **按需注入（默认）** | 精简纪律（约 9 行）+ 回指本 Skill | 最低 | 多数项目；Skill 按触发激活 |
+| **强制注入（硬加载）** | `references/injection-core.md` 核心全文（判级速查 + 9 步主流程 + 上下文预算法 + 设计铁律 + 双模式 + 红线 + 工作区 `memory/` 约定 + 完成后更新序 + 交付留档） | 每会话固定约 2-3K token | 要求工作流每会话无条件在场、不依赖模型自觉 |
+
+强制注入即把 `references/injection-core.md` 核心全文写入注入点（先备份、合并）——**没有**额外的「每会话必读」行：这类弱指令模型不可靠执行，不得作为强制注入的实现方式。
+
+**安装期「注入模式选择提问」用双语**：这是安装共用的一步，本「先选注入模式」的提问（含选项单与推荐）以**中 + 英双语呈现**，让不同语言用户 / 模型都能看懂并各选其**自己想要的真正答案**——
+
+**请选注入模式（Please choose the injection mode）：**
+1. **按需注入（默认 / On-demand, default）**——只写精简纪律并回指本 Skill，上下文开销最低（writes a compact discipline block and points back to this Skill; lowest context cost）。
+2. **强制注入 / 硬加载（Force injection / Hard-load）**——把核心全文写入注入点，工作流每会话无条件在场、固定约 2-3K token/会话（writes the core full-text into the injection point; the workflow is present every session; ~2-3K token/session）。
+
+**推荐 / Recommended**：默认按需注入（On-demand by default）；要求工作流每会话无条件在场时才用强制注入（choose force injection only when you need it present in every session）。
+
+### 3.1 步骤
+
+1. **先备份**：目标文件若已存在，先复制为 `<文件名>.bak-<日期>` 再动。绝不直接原地改既有规则文件。
+2. **合并而非覆盖**：完整保留用户已有的每一行规则，把规则区块追加到清晰分隔的位置——**按需注入**用下面的精简纪律块；**强制注入**用 `references/injection-core.md` 核心全文。按需注入精简块：
+
+```markdown
+## Agent 工作流纪律（shisan-xinuo-workflow）
+
+1. 任务分级 L1/L2/L3；L3（密钥 / 权限 / 数据删除 / 迁移 / 对外发布 /
+   架构选型）必须先问用户。
+2. 双模式：普通模式（关键决策必问）；目标模式（关键词 目标：/ 目标模式 /
+   无人值守 / goal mode / unattended —— 按计划自主执行，但密钥与破坏性
+   操作暂停等待）。
+3. 开工先复述任务（目标 / 边界 / 验收），前置写 3-5 条可验证验收标准。
+4. 绝不假实现——未完成内容显式标注。
+5. 质量门禁：审查 diff、跑项目测试基线、文档与代码同批提交。
+6. 重大修改 / 破坏性操作前必建回滚点（commit/stash 或快照）。
+7. 每会话维护任务记录；排查前先读经验库。
+8. 完整规则见 shisan-xinuo-workflow Skill（references/rules.md）。
+```
+
+3. **回指本 Skill**：规则文件中注明完整工作流的所在位置（本 Skill 目录或仓库 URL），让细节保持渐进式披露。
+4. **校验**：写完后用一句话向用户复述生效要点（分级、双模式、注入模式、密钥红线、回滚规则、留档纪律），并确认未丢失既有内容。
+
+### 3.2 会话钩子（可选，仅平台支持时）
+
+平台支持会话钩子时（如 Claude Code 的 `SessionStart`/`SessionEnd`，经 `.claude/settings.json` 或 `hooks.json`），可让纪律**自动**加载，而不只依赖规则文件文本——这是「强制」模式的最强形态。
+
+- **效果**：每个新会话启动时，start 钩子打印纪律横幅（分级 / 双模式 / 密钥红线 / 回滚 / 留档纪律），并指向规则文件与记忆文件，让 Agent 在任何工作前重新锚定；会话结束前，end 钩子重新锚定收尾事项（最终验证 / 任务记录 / 记忆同步 / 密钥红线 / 回滚 / 显式安全清理）。
+- **方式**：模板位于 `templates/hooks/`——`session-start.example.sh`（横幅脚本）+ `session-end.example.sh`（收尾脚本）+ `hooks.example.json`（Claude Code 配置：`SessionStart`/`SessionEnd` → 运行脚本）。复制并按平台适配。
+- **契约**：钩子**可选且受平台门控**——它是配置示例，不是捆绑运行时；钩子面保持零捆绑脚本（scripts/detail_lookup.py 为唯一随包分发的标准库只读检索工具）。无 hooks 的平台跳过。
+## 4. 提问工具降级链
+
+1. 平台原生提问工具（`request_user_input` / `AskUserQuestion` / `ask_user` / 平台提问工具）。
+2. 结构化文本协议（见下），然后**结束回合等待答复**——所有平台通用兜底。
+
+适用场景：方向、歧义、风险（权限 / 密钥 / 破坏性操作 / 需求不明 / 架构与技术选型 / 范围扩大 / 方案分歧 / 复杂任务）。L1 常规任务不问。
+
+## 5. 结构化提问协议（文本兜底）
+
+依次写出以下四节，然后结束回合。保持紧凑。
+
+```markdown
+【需要确认】
+<一句话说明必须决定什么>
+
+【我的理解】
+<目标 / 边界 / 验收口径的复述>
+
+【选项对比】
+1. <方案 A> — 优点 <…> / 缺点 <…> / 风险 <…>
+2. <方案 B> — 优点 <…> / 缺点 <…> / 风险 <…>
+
+【推荐】
+<方案 X>，理由：<…；含后果与代价>
+
+请确认或修正后我再继续。
+```
+
+## 6. 生成规则文件的体量
+
+## 6.1 副本验收：内容哈希（细则 #374）
+
+- **版本串一致 ≠ 内容一致**：注入副本的验收除「版本串 + 锚点在场 + 细条计数」外，必须比**载体内容哈希**。
+- 运行：`python scripts/deploy_injection.py --check --hash` → 输出源库载体 `core-sha256` 与各副本哈希；`HASH-DRIFT` 即副本内容与源库不一致（重部署或查明原因前，不得以该副本的行为面结论代表源库）。
+- 形态方向：**不可变包 + 薄适配**（只写注入点差异）是目标形态；目标平台强制全文注入时，维持全文注入 + 哈希验收兜底。
+- 边界：哈希只保证「文本一致」，不保证「被平台消费」——触达验收仍需新会话探针（平台已解析的 Base directory 判据）。
+
+## 7. 平台能力矩阵（触达面差异速查 · 2026-09-16 机证口径）
+
+> 用途：选注入通道前对照平台能力边界（与 §2 注入点表、hooks 模板 INSTALL 段互补）；只填有机证/官方文档佐证的格。机证来源：路测 v12-v19（EVIDENCE §三十二）＋ WorkBuddy traces 复核。
+
+| 能力 | ZCode | WorkBuddy | 对标参照（Cursor / Kiro） |
+|---|---|---|---|
+| hooks 事件 | 7 事件（SessionStart/UserPromptSubmit/PostToolUse(Failure)/Stop…；**无 SessionEnd**） | **无 hooks 事件系统**（结构性缺位，非部署缺位） | Kiro hooks=独立特性；Cursor 无通用 hooks |
+| 每轮再触达 | ✓ 双点（SessionStart+UserPromptSubmit 同一纪律包） | ✗ | Cursor auto-glob / Kiro fileMatch=按文件域条件加载（知识到场≠纪律消费） |
+| 全局规则文件 | ~/.zcode AGENTS.md ✓ 每会话注入 | **全局 AGENTS.md 平台不读**；MEMORY.md=真记忆通道 | AGENTS.md 标准被 60k+ 项目/多工具读取 |
+| 会话取证通道 | rollout jsonl（**分钟级清刷**；messages 在 request 层；长会话窗口化记录） | traces（近期会话无模型请求载荷；generation span 键名已变） | — |
+| 按域条件加载 | ✗（症状索引=模型手动等价物） | ✗ | Cursor auto-glob / Kiro fileMatch ✓（平台原生） |
+
+**按需注入**：规则文件控制在约 30 行内（即上文精简块）。**强制注入（硬加载）**：写入 `references/injection-core.md` 核心全文（含判级速查 + 主流程 + 上下文预算法 + 双模式 + 红线 + 工作区 `memory/` 约定 + 完成后更新序，约 55 行，每会话固定约 2-3K token——用固定小成本换取工作流无条件在场、不再依赖模型自觉加载）。完整 47 条规则与工作流细节保留在本 Skill 的 `references/` 中按需加载。若平台规则机制只接受单个短文件，用精简块即可。

@@ -1,41 +1,59 @@
-## Description: <br>
-An A-share equity research framework for analyzing listed companies across fundamentals, capital flows, technical signals, sentiment, and news to prepare trading scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese A-share equity research framework covering fundamentals, capital flows, technical signals, market sentiment, and news to help agents structure stock analysis and trading plans.
 
-## Publisher: <br>
-[zif10765-maker](https://clawhub.ai/user/zif10765-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zif10765-maker](https://clawhub.ai/user/zif10765-maker)
 
-## Use Case: <br>
-Analysts, traders, and agents use this skill to structure A-share company research and draft trading plans from market, company, capital-flow, technical, sentiment, and news signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact ships an embedded QVeris API key. <br>
-Mitigation: Remove and rotate the key before release, and require users to provide QVERIS_API_KEY from their own environment. <br>
-Risk: The stock lookup script calls an under-documented external market-data helper. <br>
-Mitigation: Document the external request path and verify the QVeris helper from a trusted source before running it. <br>
-Risk: The skill can generate ratings, position guidance, and trading scenarios. <br>
-Mitigation: Present generated outputs as informational research only and require human review before any investment decision. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zif10765-maker/astock-research) <br>
+## Use Case:
+
+External users and developers use this skill to guide agent-assisted research on Chinese A-share listed companies. It organizes market, company, technical, sentiment, and news inputs into a structured analysis and trading-plan format.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact includes an exposed market-data API key in an executable script.
+
+Mitigation: Remove the bundled key, rotate it, and require users to provide their own credential through a secure local secret mechanism.
+
+Risk: The optional quote script sends requested stock codes to an external market-data service.
+
+Mitigation: Disclose the external data transfer before use and avoid submitting confidential watchlists or trading intentions.
+
+Risk: The executable quote script has weak input handling for stock-code arguments.
+
+Mitigation: Validate stock codes against an allowed exchange-code pattern before executing the query.
+
+Risk: Research outputs may be mistaken for personalized financial advice.
+
+Mitigation: Present outputs as research support only and require human review before any investment or trading decision.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research guidance with structured tables and optional bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stock research outputs should be treated as informational analysis, not investment advice.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, target metadata, artifact/_meta.json) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown analysis guidance with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a stock-code input when invoking the optional quote script.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

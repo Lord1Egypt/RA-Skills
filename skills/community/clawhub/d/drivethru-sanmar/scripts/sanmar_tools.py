@@ -21,8 +21,15 @@ are provided, the typed dataclass wins.
 from __future__ import annotations
 
 import logging
+from collections import namedtuple
 from typing import Any
 
+from feed_parsers import (  # noqa: E402  (sibling module, scripts dir on sys.path)
+    parse_daily_invoice_fixedwidth,
+    parse_edi810,
+    parse_inventory_feed,
+    parse_shipment_status,
+)
 from ftp_resolver import (  # noqa: E402  (sibling module, scripts dir on sys.path)
     SanMarFTPConfigError,
     SanMarFTPError,
@@ -40,10 +47,18 @@ from sanmar_client import (  # noqa: E402  (sibling module, scripts dir on sys.p
     SanMarError,
     credentials_from_env,
 )
+from sanmar_ftp import (  # noqa: E402  (sibling module, scripts dir on sys.path)
+    DEFAULT_OUTBOUND_DIR,
+    PDD_DIR,
+    SanMarFTP,
+)
 from schemas import (  # noqa: E402  (sibling module, scripts dir on sys.path)
     CancelResult,
     CartValidationResult,
+    InventoryFeedResult,
+    InventoryLevelsResult,
     InventoryResult,
+    InvoiceResult,
     MainframeColorResolution,
     OrderStatusResult,
     ParsedPurchaseOrder,
@@ -58,6 +73,7 @@ from schemas import (  # noqa: E402  (sibling module, scripts dir on sys.path)
     SanMarFTPCredentials,
     SanMarPortalCredentials,
     ShipTo,
+    ShipmentStatusResult,
     TrackingResult,
     to_dict,
 )
@@ -113,6 +129,70 @@ def _build_creds_if_needed(
             password=ftp_password or "",
         )
     return credentials, ftp_credentials
+
+
+def _invoice_result_to_dict(result: InvoiceResult) -> dict[str, Any]:
+    """Serialize an InvoiceResult, attaching the normalized ``common``
+    invoice shape to every invoice for the payables workflow."""
+
+    payload = to_dict(result)
+    for native, invoice in zip(payload.get("invoices", []), result.invoices):
+        native["common"] = invoice.to_common()
+    return payload
+
+
+_FileContent = namedtuple("_FileContent", ["text", "source"])
+
+
+def _looks_like_dir(remote_path: str) -> bool:
+    if remote_path.endswith("/"):
+        return True
+    base = remote_path.rstrip("/").rsplit("/", 1)[-1]
+    return "." not in base  # a basename with no extension → treat as a directory
+
+
+def _load_file_content(
+    *,
+    path: str | None,
+    text: str | None,
+    remote_path: str | None,
+    default_dir: str,
+    default_glob: str,
+    customer_number: str | None,
+    ftp_password: str | None,
+    ftp_credentials: SanMarFTPCredentials | None,
+) -> "_FileContent":
+    """Resolve file contents from inline text, a local path, or SFTP.
+
+    For the SFTP path, an exact ``remote_path`` (one that looks like a
+    file) is read directly; a directory or an omitted path selects the
+    newest file matching ``default_glob``.
+    """
+
+    if text is not None:
+        return _FileContent(text=text, source="inline")
+    if path:
+        try:
+            with open(path, "rb") as handle:
+                raw = handle.read()
+        except OSError as exc:
+            raise ValueError(f"could not read file {path!r}: {exc}") from exc
+        return _FileContent(text=raw.decode("utf-8-sig", errors="replace"), source=path)
+
+    _, ftp_credentials = _build_creds_if_needed(
+        None, ftp_credentials, customer_number=customer_number, ftp_password=ftp_password
+    )
+    with SanMarFTP(ftp_credentials) as ftp:
+        target = remote_path
+        if not target or _looks_like_dir(target):
+            directory = target or default_dir
+            found = ftp.find_latest(directory, default_glob)
+            if not found:
+                raise SanMarFTPError(
+                    f"no file matching {default_glob!r} found in {directory!r}"
+                )
+            target = found
+        return _FileContent(text=ftp.read_text(target), source=target)
 
 
 def _coerce_pricing_line(value: Any) -> PricingLine:
@@ -424,8 +504,10 @@ def sanmar_check_order_status(
 
 
 def sanmar_get_tracking(
-    po_number: str,
+    po_number: str | None = None,
     *,
+    sales_order_number: str | None = None,
+    shipment_date: str | None = None,
     credentials: SanMarCredentials | None = None,
     customer_number: str | None = None,
     username: str | None = None,
@@ -433,21 +515,270 @@ def sanmar_get_tracking(
     environment: str = "production",
     ftp_password: str | None = None,
 ) -> dict[str, Any]:
-    """Tracking numbers and normalized carriers for a SanMar PO.
+    """Tracking + shipment detail for a SanMar order (PromoStandards OSN).
 
-    Returns ``{shipments: [{tracking_number, carrier}]}``. Carrier is
-    normalized to ``fedex``/``ups``/``usps`` or ``None``. Read-only.
+    Query by ``po_number`` (default), ``sales_order_number`` (SanMar's
+    ``SO-…`` number), or ``shipment_date`` (UTC, e.g.
+    ``2024-01-12T00:00:00Z``; 7-day max window). Returns one package per
+    shipment with ``{tracking_number, carrier, shipment_method,
+    ship_date, sales_order_number, ship_from_*, ship_to_*, items[]}``.
+    Read-only.
     """
 
-    if not po_number:
-        raise SanMarConfigError("po_number is required")
+    if not (po_number or sales_order_number or shipment_date):
+        raise SanMarConfigError(
+            "one of po_number, sales_order_number, or shipment_date is required"
+        )
     credentials, _ = _build_creds_if_needed(
         credentials, None,
         customer_number=customer_number, username=username, password=password,
         environment=environment, ftp_password=ftp_password,
     )
     client = _client(credentials)
-    result: TrackingResult = client.get_tracking(po_number=po_number)
+    result: TrackingResult = client.get_tracking(
+        po_number=po_number,
+        sales_order_number=sales_order_number,
+        shipment_date=shipment_date,
+    )
+    return to_dict(result)
+
+
+# ---------------------------------------------------------------------------
+# Inventory levels (PromoStandards v2.0.0 — per-warehouse)
+# ---------------------------------------------------------------------------
+
+
+def sanmar_get_inventory_levels(
+    style: str,
+    *,
+    part_ids: Any = None,
+    credentials: SanMarCredentials | None = None,
+    customer_number: str | None = None,
+    username: str | None = None,
+    password: str | None = None,
+    environment: str = "production",
+    ftp_password: str | None = None,
+) -> dict[str, Any]:
+    """Named per-warehouse availability for a style (PromoStandards
+    ``getInventoryLevels`` v2.0.0).
+
+    Returns ``{style, parts: [{part_id, color, size, total_available,
+    warehouses: [{warehouse_id, warehouse_name, quantity}]}]}``. Pass
+    ``part_ids`` (a list of SanMar unique keys) to limit the response to
+    specific color/size variants. Read-only.
+    """
+
+    if not style:
+        raise SanMarConfigError("style is required")
+    if part_ids is not None and not isinstance(part_ids, list):
+        part_ids = [part_ids]
+    credentials, _ = _build_creds_if_needed(
+        credentials, None,
+        customer_number=customer_number, username=username, password=password,
+        environment=environment, ftp_password=ftp_password,
+    )
+    client = _client(credentials)
+    result: InventoryLevelsResult = client.get_inventory_levels(
+        style=style, part_ids=[str(p) for p in part_ids] if part_ids else None
+    )
+    return to_dict(result)
+
+
+# ---------------------------------------------------------------------------
+# Invoicing (SanMar Standard InvoicePort + FTP daily invoice file)
+# ---------------------------------------------------------------------------
+
+
+def sanmar_get_invoices(
+    *,
+    po_number: str | None = None,
+    invoice_number: str | None = None,
+    order_date: str | None = None,
+    start_date: str | None = None,
+    end_date: str | None = None,
+    unpaid: bool = False,
+    headers_only: bool = False,
+    credentials: SanMarCredentials | None = None,
+    customer_number: str | None = None,
+    username: str | None = None,
+    password: str | None = None,
+    environment: str = "production",
+    ftp_password: str | None = None,
+) -> dict[str, Any]:
+    """Retrieve SanMar invoices via the ``InvoicePort`` web service.
+
+    Pick exactly one query:
+    - ``po_number`` — invoices for a customer PO (the payables match key).
+    - ``invoice_number`` — a single invoice by number.
+    - ``order_date`` — invoices for an order date (``yyyy-mm-dd``).
+    - ``start_date`` + ``end_date`` — invoice date range (≤ 3 months).
+    - ``unpaid: true`` — all open (unpaid) invoices.
+
+    Each returned invoice carries the SanMar-native header/lines **and** a
+    ``common`` block — the cross-vendor invoice shape consumed by
+    ``drivethru-payable-matching``. ``headers_only`` skips line items
+    where the query type supports it. Read-only.
+
+    Note: SanMar invoices once/day after 9 p.m. PT; an order is only
+    invoiced after it ships. Pull invoice data a day after the order date.
+    """
+
+    if po_number:
+        query_type, value = "purchase_order", po_number
+    elif invoice_number:
+        query_type, value = "invoice_number", invoice_number
+    elif order_date:
+        query_type, value = "order_date", order_date
+    elif start_date or end_date:
+        query_type, value = "invoice_date_range", None
+    elif unpaid:
+        query_type, value = "unpaid", None
+    else:
+        raise SanMarConfigError(
+            "provide one of: po_number, invoice_number, order_date, "
+            "start_date+end_date, or unpaid=true"
+        )
+
+    credentials, _ = _build_creds_if_needed(
+        credentials, None,
+        customer_number=customer_number, username=username, password=password,
+        environment=environment, ftp_password=ftp_password,
+    )
+    client = _client(credentials)
+    result: InvoiceResult = client.get_invoices(
+        query_type=query_type,
+        value=value,
+        start_date=start_date,
+        end_date=end_date,
+        headers_only=headers_only,
+    )
+    return _invoice_result_to_dict(result)
+
+
+def sanmar_parse_invoice_file(
+    *,
+    path: str | None = None,
+    text: str | None = None,
+    remote_path: str | None = None,
+    edi: bool = False,
+    customer_number: str | None = None,
+    ftp_password: str | None = None,
+    ftp_credentials: SanMarFTPCredentials | None = None,
+) -> dict[str, Any]:
+    """Parse a SanMar FTP Daily Invoice file into normalized invoices.
+
+    Supply the file one of three ways: ``text`` (raw contents), ``path``
+    (a local file), or ``remote_path`` (fetched over SFTP; if the value is
+    a directory or omitted, the newest ``*Invoice_Details*`` file in the
+    account's outbound folder is used). Set ``edi: true`` for the EDI-810
+    format; otherwise the fixed-width Daily Invoice layout is assumed.
+
+    Returns the same shape as ``get-invoices`` (native + ``common`` per
+    invoice) so it feeds the payables workflow identically. Read-only.
+    """
+
+    content = _load_file_content(
+        path=path,
+        text=text,
+        remote_path=remote_path,
+        default_dir=DEFAULT_OUTBOUND_DIR,
+        default_glob="*Invoice_Details*.txt",
+        customer_number=customer_number,
+        ftp_password=ftp_password,
+        ftp_credentials=ftp_credentials,
+    )
+    invoices = parse_edi810(content.text) if edi else parse_daily_invoice_fixedwidth(
+        content.text
+    )
+    result = InvoiceResult(
+        query_type="file",
+        query_value=content.source,
+        count=len(invoices),
+        invoices=invoices,
+        source_file=content.source,
+        surface="sanmar_ftp",
+        operation="edi810" if edi else "daily_invoice_file",
+    )
+    return _invoice_result_to_dict(result)
+
+
+# ---------------------------------------------------------------------------
+# Shipment status + inventory feed (FTP files)
+# ---------------------------------------------------------------------------
+
+
+def sanmar_get_shipment_status(
+    *,
+    path: str | None = None,
+    text: str | None = None,
+    remote_path: str | None = None,
+    po_number: str | None = None,
+    customer_number: str | None = None,
+    ftp_password: str | None = None,
+    ftp_credentials: SanMarFTPCredentials | None = None,
+) -> dict[str, Any]:
+    """Parse the FTP Daily Shipment Status (Advance Ship Notification) file.
+
+    Each row is a shipped line item carrying the tracking number, ship
+    date/from, per-line costs, and box/LPN detail. Supply ``text``,
+    ``path``, or ``remote_path`` (a directory or omission fetches the
+    newest ``*Status.txt`` from the outbound folder). Filter to one
+    ``po_number`` to see just that order's shipment lines. Read-only.
+    """
+
+    content = _load_file_content(
+        path=path,
+        text=text,
+        remote_path=remote_path,
+        default_dir=DEFAULT_OUTBOUND_DIR,
+        default_glob="*Status.txt",
+        customer_number=customer_number,
+        ftp_password=ftp_password,
+        ftp_credentials=ftp_credentials,
+    )
+    rows = parse_shipment_status(content.text)
+    if po_number:
+        rows = [r for r in rows if r.customer_po == po_number]
+    result = ShipmentStatusResult(
+        rows=rows, count=len(rows), source_file=content.source
+    )
+    return to_dict(result)
+
+
+def sanmar_get_inventory_feed(
+    *,
+    style: str | None = None,
+    path: str | None = None,
+    text: str | None = None,
+    remote_path: str | None = None,
+    customer_number: str | None = None,
+    ftp_password: str | None = None,
+    ftp_credentials: SanMarFTPCredentials | None = None,
+) -> dict[str, Any]:
+    """Parse the pipe-delimited ``sanmar_dip.txt`` inventory-by-warehouse
+    feed (updated hourly on SanMar's SFTP).
+
+    Supply ``text``, ``path``, or ``remote_path`` (omitted →
+    ``/SanMarPDD/sanmar_dip.txt``). Pass ``style`` to keep only that
+    catalog number's rows — strongly recommended, as the full feed is
+    large. Bulk companion to the real-time ``get-inventory-levels`` SOAP
+    call. Read-only.
+    """
+
+    content = _load_file_content(
+        path=path,
+        text=text,
+        remote_path=remote_path or f"{PDD_DIR}/sanmar_dip.txt",
+        default_dir=PDD_DIR,
+        default_glob="sanmar_dip.txt",
+        customer_number=customer_number,
+        ftp_password=ftp_password,
+        ftp_credentials=ftp_credentials,
+    )
+    rows = parse_inventory_feed(content.text, style_filter=style)
+    result = InventoryFeedResult(
+        style=style, rows=rows, count=len(rows), source_file=content.source
+    )
     return to_dict(result)
 
 
@@ -732,11 +1063,16 @@ __all__ = [
     "SanMarFTPError",
     "sanmar_search_products",
     "sanmar_check_inventory",
+    "sanmar_get_inventory_levels",
+    "sanmar_get_inventory_feed",
     "sanmar_get_pricing",
     "sanmar_validate_cart",
     "sanmar_create_purchase_order",
     "sanmar_check_order_status",
     "sanmar_get_tracking",
+    "sanmar_get_shipment_status",
+    "sanmar_get_invoices",
+    "sanmar_parse_invoice_file",
     "sanmar_cancel_order",
     "sanmar_process_return",
     "sanmar_parse_po_pdf",

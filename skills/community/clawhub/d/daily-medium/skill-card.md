@@ -1,40 +1,58 @@
-## Description: <br>
-Fetch and summarize Medium Daily Digest emails from Gmail. Extracts article URLs, generates Freedium links to bypass paywalls, and provides article summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and summarize Medium Daily Digest emails from Gmail, extract article URLs, generate Freedium links, and provide article summaries.
 
-## Publisher: <br>
-[omnimahui](https://clawhub.ai/user/omnimahui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omnimahui](https://clawhub.ai/user/omnimahui)
 
-## Use Case: <br>
-External users and developers use this skill to fetch the latest Medium Daily Digest from Gmail, extract article metadata, generate Freedium mirror links, and guide article summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Gmail IMAP access through mailbox credentials, which can expose mailbox data if the credential is misused. <br>
-Mitigation: Use a revocable Gmail app password, prefer a dedicated or low-risk mailbox, and revoke the app password when the skill is no longer needed. <br>
-Risk: Freedium mirror links and article summaries can expose article URLs and reading activity to a third-party mirror and may have terms-of-service implications. <br>
-Mitigation: Review organizational policy before using Freedium links and avoid sending sensitive reading activity or private article URLs to the mirror. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve the latest Medium Daily Digest from Gmail, extract article links, and prepare readable article summaries with Freedium mirror links.
 
-## Reference(s): <br>
-- [Daily Medium on ClawHub](https://clawhub.ai/omnimahui/daily-medium) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and JSON-like article metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns digest date, digest title, article title, author, original URL, and Freedium URL; defaults to a maximum of 15 articles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Gmail app-password credentials may be exposed or reused if placed in a broad agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, easily revocable Gmail app password only in a trusted environment, keep EMAIL_PASSWORD scoped away from unrelated tools, and revoke the credential after use.
+
+Risk: The configurable IMAP server parameter could direct credentials to an unintended mail server.
+
+Mitigation: Remove the parameter or strictly allowlist imap.gmail.com before normal use.
+
+Risk: Freedium mirror links route article access through a third-party mirror service.
+
+Mitigation: Review whether Freedium use is acceptable for the user's policy and compliance requirements before relying on mirrored content.
+
+## Reference(s):
+
+- [Daily Medium on ClawHub](https://clawhub.ai/omnimahui/skills/daily-medium)
+- [Publisher profile: omnimahui](https://clawhub.ai/user/omnimahui)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON-like article data and human-readable summaries or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns digest date, digest title, article titles, authors, original Medium URLs, and Freedium mirror URLs; defaults to a maximum of 15 articles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

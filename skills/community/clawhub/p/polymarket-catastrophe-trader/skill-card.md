@@ -1,43 +1,59 @@
-## Description: <br>
-Trades Polymarket prediction markets on hurricane seasons, earthquake probabilities, wildfire forecasts, and extreme weather records using catastrophe-market bias correction and seasonal data quality timing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on hurricane seasons, earthquake probabilities, wildfire forecasts, and extreme weather records.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to configure and run a Polymarket catastrophe-market trading workflow that discovers relevant markets, sizes positions, and places paper or explicitly enabled live orders through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real financial orders. <br>
-Mitigation: Start in paper mode, avoid --live unless real trades are intended, and keep conservative position limits. <br>
-Risk: SIMMER_API_KEY grants trading authority. <br>
-Mitigation: Use the least-privileged key available and protect it as a sensitive credential. <br>
-Risk: Catastrophe markets may be thin or volatile. <br>
-Mitigation: Use the configured max position, max spread, minimum volume, and max open position controls before considering live execution. <br>
+## Use Case:
 
+Developers and trading agents use this skill to discover catastrophe and extreme-weather prediction markets, evaluate conviction using documented hazard and seasonality heuristics, and run paper or live Polymarket trades with configured limits.
 
-## Reference(s): <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Plain text logs, configuration values, and Simmer SDK trading requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket orders require the --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Running with --live can submit real Polymarket trades and spend USDC.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode until review is complete, and use a limited trading key with only the balance and permissions intended for this strategy.
+
+Risk: Some advertised trading safeguards are not actually enforced.
+
+Mitigation: Review and fix the minimum-volume filter and final order-size cap before live use.
+
+Risk: The simmer-sdk dependency can affect trading behavior.
+
+Mitigation: Pin simmer-sdk to a reviewed version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-catastrophe-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [Console text from Python execution plus configured paper or live trading actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading and uses --live for real Polymarket trades.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

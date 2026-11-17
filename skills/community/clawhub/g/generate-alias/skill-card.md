@@ -1,40 +1,53 @@
-## Description: <br>
-Generates company aliases and matching keywords from enterprise names using brand mappings, core-term extraction, filtering rules, and optional public web lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise Chinese enterprise aliases and brand keywords from company names for matching and import workflows.
 
-## Publisher: <br>
-[hyqdq888](https://clawhub.ai/user/hyqdq888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyqdq888](https://clawhub.ai/user/hyqdq888)
 
-## Use Case: <br>
-Developers and data operators use this skill to normalize enterprise names into concise aliases or keywords for matching, import, and deduplication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional web lookup helpers may send company names to third-party public services, which can expose sensitive or pre-public names in service logs. <br>
-Mitigation: Keep offline mode enabled for confidential company names, and only enable web lookups when those names are acceptable to disclose to external services. <br>
+## Use Case:
 
+Developers and data operations teams use this skill to normalize Chinese enterprise names into concise aliases or brand keywords for entity matching, imports, and deduplication workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyqdq888/generate-alias) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Release changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Plain text aliases separated by vertical bars, with Python API and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default operation is offline; optional web lookup helpers may query public services when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Optional public lookup modes may disclose private or internal company names to third-party web services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default offline mode for confidential names, and enable public lookup modules only for queries that are safe to share externally.
+
+Risk: Alias generation based on static mappings and rules may produce incomplete or outdated aliases for some enterprises.
+
+Mitigation: Review generated aliases before using them in high-impact matching, import, or deduplication pipelines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyqdq888/skills/generate-alias)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text alias lists separated with |, with optional Markdown examples and command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline rule-based generation is the default; optional public web and Wikipedia lookups can send queried company names to third-party services when enabled.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

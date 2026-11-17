@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Claid AI"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["claid_ai"]
   icon: "https://static.oomol.com/logo/third-party/claid_ai.svg"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `edit_image` — Edit one publicly accessible image with Claid's synchronous image editing API and return the processed image metadata. [write]
-- `get_edit_task` — Poll one Claid async image editing task by ID and return its current status plus the finished result when available. [write]
+- `get_edit_task` — Poll one Claid async image editing task by ID and return its current status plus the finished result when available.
 - `submit_edit_image` — Submit one publicly accessible image to Claid's async image editing API and return the task handle for later polling. [write]
 
 ## Safety
@@ -70,11 +70,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Claid AI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=claid_ai
+  https://console.oomol.com/connections/claid_ai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Claid AI homepage: https://claid.ai
+- API documentation: https://docs.claid.ai/authentication

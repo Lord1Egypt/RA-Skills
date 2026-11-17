@@ -28,6 +28,15 @@ if ! python3 -m pip --version &>/dev/null; then
   exit 1
 fi
 
+if [[ -z "${VIRTUAL_ENV:-}" ]]; then
+  echo "ERROR: Refusing to install packages into the global Python environment."
+  echo "Create and activate a virtual environment, then rerun:"
+  echo "  python3 -m venv .venv"
+  echo "  source .venv/bin/activate"
+  echo "  bash scripts/setup.sh"
+  exit 2
+fi
+
 # ── Install Python packages ───────────────────────────────────────────────────
 echo ""
 echo "==> Installing Python dependencies..."
@@ -50,18 +59,6 @@ for pkg in "${PACKAGES[@]}"; do
     echo "  installed: $pkg_name"
   fi
 done
-
-# ── clawhub CLI check (optional) ──────────────────────────────────────────────
-echo ""
-echo "==> Checking optional dependencies..."
-
-if command -v clawhub &>/dev/null; then
-  CLAWHUB_VERSION=$(clawhub --version 2>&1 || echo "unknown")
-  echo "  clawhub CLI: found ($CLAWHUB_VERSION)"
-else
-  echo "  clawhub CLI: NOT found (optional — auditor will fall back to URL-based fetching)"
-  echo "    To install: see https://clawhub.ai/install"
-fi
 
 # ── ANTHROPIC_API_KEY check (optional) ────────────────────────────────────────
 echo ""

@@ -1,48 +1,62 @@
-## Description: <br>
-cc-insider is a documentation-only Claude Code v2.1.88 reference for developers analyzing internals, diagnosing behavior, and building extensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cc-insider provides Chinese-language Claude Code v2.1.88 internals notes covering Tool, Task, Agent, Coordinator, Hooks, permissions, context caching, and MCP integration.
 
-## Publisher: <br>
-[1491007406](https://clawhub.ai/user/1491007406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1491007406](https://clawhub.ai/user/1491007406)
 
-## Use Case: <br>
-Developers and engineers use this skill as a technical reference for Claude Code internals, including tool execution, task lifecycle, agent coordination, hooks, permissions, context caching, MCP integration, and extension patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Permission, hook, and tool examples may be copied into real implementations without validating security-sensitive behavior. <br>
-Mitigation: Treat the skill as reference material and independently review security-sensitive designs before implementation. <br>
+## Use Case:
 
+Developers and engineers use this skill as a technical reference for understanding Claude Code internals, diagnosing behavior, and planning Tool, Skill, Agent, Hook, permission, context, and MCP extensions.
 
-## Reference(s): <br>
-- [cc-insider on ClawHub](https://clawhub.ai/1491007406/cc-insider) <br>
-- [Architecture](references/architecture.md) <br>
-- [Tool Internals](references/tool-internals.md) <br>
-- [Task System](references/task-system.md) <br>
-- [Agent System](references/agent-system.md) <br>
-- [Coordinator](references/coordinator.md) <br>
-- [Hooks](references/hooks.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Context System](references/context-system.md) <br>
-- [Patterns](references/patterns.md) <br>
-- [Design Highlights](references/design-highlights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no runtime automation or installer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tool permission examples could be copied into real tools without sufficient security checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as explanatory and require explicit permission checks, accurate read-only/destructive classification, meaningful classifier input, and user confirmation for state-changing actions.
+
+Risk: Claude Code internals guidance is scoped to the documented v2.1.88 release and may not match other versions.
+
+Mitigation: Verify behavior against the target Claude Code version before applying the guidance to diagnosis or extension work.
+
+## Reference(s):
+
+- [Architecture Overview](references/architecture.md)
+- [Tool Internals](references/tool-internals.md)
+- [Task System](references/task-system.md)
+- [Agent System](references/agent-system.md)
+- [Coordinator](references/coordinator.md)
+- [Hooks System](references/hooks.md)
+- [Permissions](references/permissions.md)
+- [Context System](references/context-system.md)
+- [Patterns](references/patterns.md)
+- [Design Highlights and Debugging](references/design-highlights.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; security evidence reports no executable installer or hidden runtime behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

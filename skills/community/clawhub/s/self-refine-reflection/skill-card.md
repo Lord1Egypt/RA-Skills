@@ -1,44 +1,63 @@
-## Description: <br>
-Systematically reviews and refines an agent's draft responses for logic, accuracy, completeness, conciseness, actionability, and consistency before delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds an internal self-review loop that helps an agent critique and refine responses before delivery.
 
-## Publisher: <br>
-[thomaszhou22](https://clawhub.ai/user/thomaszhou22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thomaszhou22](https://clawhub.ai/user/thomaszhou22)
 
-## Use Case: <br>
-Developers and agent users use this skill to add an internal self-review loop before final responses, with deeper review for complex, factual, code, or high-stakes outputs. It can also persist brief reflection notes so later sessions can avoid repeated response-quality mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist brief task-derived reflection notes, which may retain information from sensitive prompts, proprietary code, or regulated data. <br>
-Mitigation: Review the memory behavior before installing and disable or periodically delete memory/reflections.md when persistent self-correction notes are not acceptable. <br>
+## Use Case:
 
+Agents and their users use this skill to add a pre-delivery self-review loop that checks responses for logic, factual accuracy, completeness, conciseness, actionability, and consistency. It is especially aimed at developers and engineers who need precise, actionable AI responses with less follow-up correction.
 
-## Reference(s): <br>
-- [Reflection Prompt Templates](references/reflection-templates.md) <br>
-- [Academic Sources](references/sources.md) <br>
-- [Benchmark Report](BENCHMARK.md) <br>
-- [Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651) <br>
-- [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366) <br>
-- [Chain-of-Verification Reduces Hallucination in Large Language Models](https://arxiv.org/abs/2309.11495) <br>
-- [ClawHub Skill Page](https://clawhub.ai/thomaszhou22/self-refine-reflection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands] <br>
-**Output Format:** [Refined agent responses in the format requested by the user, commonly plain text or Markdown with optional code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Internal critique is not shown to the user; optional local reflection notes may be appended for cross-session memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Persistent reflection notes can retain sensitive project or user information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove the memory/reflections.md behavior for sensitive work, or restrict the skill to in-conversation memory and periodically review or delete stored notes.
+
+Risk: The skill broadly changes agent behavior by adding self-review before final responses.
+
+Mitigation: Enable it only where an agent-wide self-review layer is desired, and prefer project-scoped installation when global behavior changes are not acceptable.
+
+Risk: Self-review can still miss factual errors or reinforce an incorrect assumption.
+
+Mitigation: Use external verification and human review for factual, high-stakes, or security-sensitive claims before acting on the refined response.
+
+## Reference(s):
+
+- [Benchmark Report](BENCHMARK.md)
+- [Academic Sources](references/sources.md)
+- [Reflection Prompt Templates](references/reflection-templates.md)
+- [Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651)
+- [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366)
+- [Chain-of-Verification Reduces Hallucination in Large Language Models](https://arxiv.org/abs/2309.11495)
+- [Language Models (Mostly) Know What They Know](https://arxiv.org/abs/2207.05221)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code blocks, shell command blocks, and reflection notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent reflection notes when file-backed memory is available; otherwise stores notes only in conversation context.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata; artifact changelog top entry is 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

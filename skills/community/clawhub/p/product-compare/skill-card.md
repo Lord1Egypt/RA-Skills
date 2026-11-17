@@ -1,41 +1,58 @@
-## Description: <br>
-Analyzes multiple products across features, pricing, sales signals, reputation, and user reviews to produce a structured comparison report and purchase recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language product comparison skill that helps compare features, prices, sales signals, reputation, and user feedback to produce detailed comparison reports and purchase recommendations.
 
-## Publisher: <br>
-[Josephyb97](https://clawhub.ai/user/Josephyb97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[josephyb97](https://clawhub.ai/user/josephyb97)
 
-## Use Case: <br>
-External users and purchasing teams use this skill to compare candidate products and get a concise buying recommendation. It is also useful for competitor analysis when agents need to summarize product strengths, weaknesses, price/value, and user sentiment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Product prices, availability, sales rankings, and reviews can be stale, incomplete, or manipulated. <br>
-Mitigation: Verify current prices, source URLs, review authenticity, and official product specifications before acting on the recommendation. <br>
-Risk: The skill's buying advice may over-weight external review platforms or user-generated claims. <br>
-Mitigation: Compare official claims against independent reviews and clearly distinguish verified facts from user sentiment in the final report. <br>
+## Use Case:
 
+External users and shopping researchers use this skill to compare multiple products across price, features, sales signals, reputation, and real-user feedback. It is intended to support purchase decisions, product reviews, and competitive product analysis.
 
-## Reference(s): <br>
-- [Product Compare on ClawHub](https://clawhub.ai/Josephyb97/product-compare) <br>
-- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown comparison table with recommendation bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product attributes, pros and cons, price/value assessment, user sentiment, and need-based purchase recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Web search results, seller claims, prices, and review content may be inaccurate, outdated, promotional, or low quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices, source quality, seller claims, and user-review credibility before relying on recommendations.
+
+Risk: Broad Chinese trigger phrases may activate the skill for general recommendation requests beyond product comparison.
+
+Mitigation: Confirm that the user is asking for a product comparison, purchase recommendation, product review, or competitive analysis before applying the workflow.
+
+Risk: External review platforms may be unavailable or incomplete during research.
+
+Mitigation: State unavailable information clearly, avoid fabricating links or findings, and separate official claims from observed user feedback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephyb97/skills/product-compare)
+- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown comparison report with tables and recommendation bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product comparison tables, source-qualified findings, limitations when information is unavailable, and segmented purchase recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

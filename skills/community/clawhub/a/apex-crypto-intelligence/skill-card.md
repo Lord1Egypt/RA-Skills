@@ -1,45 +1,57 @@
-## Description: <br>
-AI-powered multi-exchange crypto market analysis, arbitrage detection, and hedge fund-quality trading reports using live data from major exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered multi-exchange crypto market analysis, arbitrage detection, and trading reports using live data from major exchanges.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-External users and developers use this skill to request cryptocurrency market scans, cross-exchange arbitrage analysis, and AI-generated trading reports from live exchange data. It is informational analysis only and does not execute trades or transfer funds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles exchange API secrets and may contact CoinGecko and exchange APIs when client.py is run. <br>
-Mitigation: Use read-only exchange keys only, with trading and withdrawal permissions disabled, and review network behavior before installing or running the skill. <br>
-Risk: The security summary says the verification mode may present live third-party network calls as if nothing is transmitted. <br>
-Mitigation: Do not treat the verification script as an offline audit until that wording and behavior are fixed. <br>
-Risk: The external analysis service receives market data and query text for AI analysis. <br>
-Mitigation: Avoid including personal data, wallet addresses, credentials, or sensitive trading strategy details in queries. <br>
+## Use Case:
 
+External users and agents use this skill to gather cryptocurrency market data, compare exchange pricing, identify arbitrage opportunities, and produce AI-assisted trading analysis reports. It is intended for informational market analysis, not trade execution or financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/contrario/apex-crypto-intelligence) <br>
-- [Publisher profile](https://clawhub.ai/user/contrario) <br>
-- [Project homepage and privacy policy](https://masterswarm.net) <br>
-- [External analysis endpoint](https://api.neurodoc.app/aetherlang/execute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Text or Markdown analysis with optional report-oriented output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market summaries, arbitrage observations, risk commentary, and trading blueprint content; does not place trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence and frontmatter) <br>
+Risk: The security review says the skill makes misleading safety claims and uses network and exchange credentials more broadly than users may expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, use only dedicated read-only exchange keys, and never provide keys with trading or withdrawal permissions.
+
+Risk: The skill sends market data and query text to an external analysis endpoint and verification mode can make live outbound market-data requests.
+
+Mitigation: Avoid putting wallet addresses, secrets, private strategies, or personal data in prompts, and expect live outbound market-data requests during verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/contrario/skills/apex-crypto-intelligence)
+- [Publisher profile](https://clawhub.ai/user/contrario)
+- [Publisher homepage](https://masterswarm.net)
+- [Privacy policy](https://masterswarm.net)
+- [External analysis endpoint](https://api.neurodoc.app/aetherlang/execute)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text analysis with optional API response content and report-oriented summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-analysis narratives, arbitrage summaries, configuration guidance for optional exchange keys, and report content.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

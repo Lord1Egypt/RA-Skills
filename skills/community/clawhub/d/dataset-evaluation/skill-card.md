@@ -1,41 +1,48 @@
-## Description: <br>
-Evaluates miner dataset submissions by scoring content consistency across cleaned text samples and structured JSON quality against a dataset schema. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates dataset submissions by scoring content consistency and structured data quality, then computing a final miner score.
 
-## Publisher: <br>
-[levey](https://clawhub.ai/user/levey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[levey](https://clawhub.ai/user/levey)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and dataset evaluators use this skill to grade miner submissions by comparing cleaned text samples with structured JSON against a dataset schema.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Subjective similarity and value-accuracy judgments can produce inconsistent or misleading scores.
+
+Mitigation: Use deterministic similarity metrics where possible, base judgments only on provided inputs, and review final scores for judgment quality.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Dataset evaluators and agent workflows use this skill to score miner submissions that include cleaned text samples, structured JSON, and a dataset schema. It produces deterministic sub-scores and a weighted final miner score for comparison or review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, json, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Scoring weights or rubric assumptions may not match the evaluation task. <br>
-Mitigation: Confirm the 40/60 weighting and sub-score criteria before using results for ranking or decisions. <br>
-Risk: Similarity and value-accuracy judgments can vary if the evaluator uses unstated external knowledge. <br>
-Mitigation: Base judgments only on the provided cleaned data, structured JSON, and schema, and keep all scores within the required 0 to 100 range. <br>
+**Output Format:** [JSON score object with concise evaluative rationale when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/levey/dataset-evaluation) <br>
-- [Publisher profile](https://clawhub.ai/user/levey) <br>
+**Other Properties Related to Output:** [Scores are expected to remain deterministic, reproducible, and bounded from 0 to 100.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON score report with concise evaluation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores are bounded from 0 to 100 and include content consistency, structuring quality, final miner score, and detailed sub-scores.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

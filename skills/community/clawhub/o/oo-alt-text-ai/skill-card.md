@@ -1,44 +1,59 @@
-## Description: <br>
-AltText.ai (alttext.ai). Use this skill for ANY AltText.ai request - reading, creating, updating, and deleting data. Whenever a task involves AltText.ai, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use AltText.ai to generate image alt text, scrape pages for images, and manage image records through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, content teams, and operators use this skill to manage AltText.ai image records and generate alt text through an OOMOL-connected account without handling raw API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting AltText.ai through OOMOL and uses account credentials through the oo CLI. <br>
-Mitigation: Before installation, confirm the user is comfortable with the OOMOL connection and the AltText.ai credential posture. <br>
-Risk: Image creation and deletion actions change the user's AltText.ai library. <br>
-Mitigation: Review the exact payload, target asset, and expected effect with the user before approving write or destructive actions. <br>
-Risk: Create and scrape actions may submit public image URLs or page content for alt-text generation. <br>
-Mitigation: Confirm the source URLs or HTML scope are intended for processing before running create_image or scrape_page. <br>
+## Use Case:
 
+External content teams and developers can generate alt text for public image URLs, scrape pages for images, and inspect or manage records in an AltText.ai library.
 
-## Reference(s): <br>
-- [AltText.ai homepage](https://alttext.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Page scraping may include more images than intended and can incur charges; image creation changes the AltText.ai library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the page or HTML, discovered-image scope, exact write action, and possible charges before proceeding.
+
+Risk: The recommended CLI installer scripts were not verified by the security review.
+
+Mitigation: Verify the CLI release and installer source before running an installer.
+
+Risk: The hosted connector implementation and automatic skill synchronization across agent hosts were not verified.
+
+Mitigation: Review connector behavior and synchronization scope before granting access across hosts.
+
+## Reference(s):
+
+- [AltText.ai API documentation](https://alttext.ai/apidocs)
+- [AltText.ai](https://alttext.ai)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON inputs and JSON connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses can include generated alt text and image-record data.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

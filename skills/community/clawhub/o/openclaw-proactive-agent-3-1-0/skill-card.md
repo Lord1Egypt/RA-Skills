@@ -1,47 +1,62 @@
-## Description: <br>
-Openclaw Proactive Agent 3.1.0 helps agents maintain persistent memory, perform proactive check-ins, recover from context loss, and improve safely through documented guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI agents from task-followers into proactive partners that anticipate needs, preserve working context, harden against unsafe instructions, and improve over time.
 
-## Publisher: <br>
-[q262045312-ui](https://clawhub.ai/user/q262045312-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[q262045312-ui](https://clawhub.ai/user/q262045312-ui)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure a proactive agent that records durable memory, performs periodic self-checks, handles onboarding, and proposes useful work while requiring approval for external or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages durable memory, which can retain sensitive user or workspace context. <br>
-Mitigation: Restrict which files and accounts the agent may access, periodically inspect or purge created memory files, and avoid storing secrets in memory documents. <br>
-Risk: The skill supports proactive and autonomous local-environment work. <br>
-Mitigation: Require confirmation before deletion, cleanup, external sends or posts, and operating-rule changes; limit crons and sub-agent permissions to approved scopes. <br>
-Risk: A proactive agent may process untrusted external content while also using private memory. <br>
-Mitigation: Treat external content as data, not instructions; use prompt-injection checks and require approval before actions that leave the machine. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure proactive agent behavior, durable memory files, onboarding flow, heartbeat checks, self-healing practices, and security review habits for OpenClaw-style agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/q262045312-ui/openclaw-proactive-agent-3-1-0) <br>
-- [Publisher profile](https://clawhub.ai/user/q262045312-ui) <br>
-- [Onboarding Flow Reference](artifact/references/onboarding-flow.md) <br>
-- [Security Patterns Reference](artifact/references/security-patterns.md) <br>
-- [Security Audit Script](artifact/scripts/security-audit.sh) <br>
-- [Author profile](https://x.com/halthelobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with workspace template files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional local security-audit script and reusable reference documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: artifact/SKILL.md frontmatter; ClawHub release version 1.0.0) <br>
+Risk: Persistent memory files may capture broad personal, conversation, or project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require opt-in memory categories, exclude secrets and regulated data, and disable automatic transcript logging unless the user explicitly enables it.
+
+Risk: Proactive background behaviors and autonomous crons may act with too little user control.
+
+Mitigation: Disable autonomous crons by default and require approval before changing AGENTS.md, TOOLS.md, skill files, or other persistent operating rules.
+
+Risk: System hygiene guidance can involve disruptive local actions such as closing apps, tabs, or moving files.
+
+Mitigation: Require confirmation before closing applications or browser tabs, moving files, deleting files, sending messages, publishing content, or making purchases.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/q262045312-ui/skills/openclaw-proactive-agent-3-1-0)
+- [Publisher profile](https://clawhub.ai/user/q262045312-ui)
+- [Onboarding Flow Reference](references/onboarding-flow.md)
+- [Security Patterns Reference](references/security-patterns.md)
+- [Hal profile](https://x.com/halthelobster)
+- [Clawdbot](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, workspace file templates, and a shell audit script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance and local artifacts for an agent; proactive actions and persistent memory behavior depend on host-agent configuration and user approval.]
+
+## Skill Version(s):
+
+3.1.0 (source: artifact/SKILL.md frontmatter; ClawHub release package version: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

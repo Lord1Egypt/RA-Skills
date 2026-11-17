@@ -1,38 +1,50 @@
-## Description: <br>
-Generate images from text prompts and iterate on style/composition for posters, thumbnails, product mockups, logos, concept art, and social visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from text prompts and iterate on style/composition for posters, thumbnails, product mockups, logos, concept art, and social visuals.
 
-## Publisher: <br>
-[wallaby16](https://clawhub.ai/user/wallaby16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wallaby16](https://clawhub.ai/user/wallaby16)
 
-## Use Case: <br>
-External users and creators use this skill to turn image-generation requests into structured prompts, alternatives, negative prompts, suggested settings, and concise revision plans for visual assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated images may be unsuitable for publication because of rights, accuracy, safety, or brand concerns. <br>
-Mitigation: Review generated images for rights, accuracy, safety, and brand suitability before publishing. <br>
+## Use Case:
 
+Creators, designers, marketers, and developers use this skill to turn image goals and constraints into prompt variants, negative prompts, suggested settings, and revision plans for image generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wallaby16/image-create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt package with primary prompt, alternatives, negative prompt, suggested settings, and revision plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs are prompt-writing guidance for external image-generation tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Image prompts may include private or sensitive information when sent to an external image-generation backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing private or sensitive information in prompts unless the selected backend is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wallaby16/skills/image-create)
+- [Publisher profile](https://clawhub.ai/user/wallaby16)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a primary prompt, alternatives, negative prompt, suggested settings, and revision plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt guidance only; it does not include executable code, persistence, credential handling, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

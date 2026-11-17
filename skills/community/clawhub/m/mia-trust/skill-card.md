@@ -1,45 +1,59 @@
-## Description: <br>
-MIA-Trust is a Memory-Intelligent Assistant pipeline that checks user questions and draft plans for trust and safety risks before storing reusable memory and trust experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MIA-Trust is a Memory-Intelligent Assistant pipeline that gates user questions, reviews generated plans, and stores memory and trust experience for future agent runs.
 
-## Publisher: <br>
-[sii-yucheng2002](https://clawhub.ai/user/sii-yucheng2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sii-yucheng2002](https://clawhub.ai/user/sii-yucheng2002)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run a trust-gated assistant workflow: pre-check a user question, generate a plan, review the plan for safety, and persist memory, trust experience, or feedback for later reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The one-click runner is reported by security evidence to have command-injection risk. <br>
-Mitigation: Review before installing and run only in an isolated environment unless run.mjs is patched to use execFile or spawn with argument arrays and no shell. <br>
-Risk: User prompts, plans, feedback, and trust experience may be stored locally or sent to configured model endpoints. <br>
-Mitigation: Avoid entering secrets or sensitive personal, medical, business, or security data unless persistence is disabled or the memory and trust files are redacted and managed. <br>
-Risk: Configured planner or trust endpoints may receive sensitive prompt data. <br>
-Mitigation: Use a trusted local or allowlisted model endpoint and verify what data will be sent before setting API keys. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a question-safety gate, generate or review execution plans, and persist reusable memory, feedback, and trust-review experience for OpenClaw-style assistants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sii-yucheng2002/mia-trust) <br>
-- [Publisher profile](https://clawhub.ai/user/sii-yucheng2002) <br>
-- [MIA Pipeline guide](artifact/PIPELINE.md) <br>
-- [Skill source documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON and plain text guidance with shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist memory, trust experience, and feedback records to local JSON or JSONL files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Normal use can expose prompt and model text to shell command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated, low-privilege environment and review shell-command construction before deployment.
+
+Risk: The skill broadly persists user questions, plans, model outputs, feedback, and trust experience.
+
+Mitigation: Do not process secrets or confidential prompts until persistent-memory behavior is reviewed and appropriate retention controls are in place.
+
+Risk: The skill calls configurable local or HTTPS model endpoints for planning and trust review.
+
+Mitigation: Use trusted local endpoints or allowlisted HTTPS endpoints and keep API credentials out of prompts and stored memories.
+
+## Reference(s):
+
+- [MIA-Trust pipeline guide](PIPELINE.md)
+- [ClawHub skill page](https://clawhub.ai/sii-yucheng2002/skills/mia-trust)
+- [Publisher profile](https://clawhub.ai/user/sii-yucheng2002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON and Markdown/text with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plan-review results, final plans, memory records, feedback records, and trust-audit summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

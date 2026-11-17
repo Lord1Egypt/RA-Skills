@@ -1,44 +1,58 @@
-## Description: <br>
-GStable AI Payment Protocol - enables AI Agents to discover, negotiate, and execute cryptocurrency payments on behalf of users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GStable AI Payment Protocol - enables AI Agents to discover, negotiate, and execute cryptocurrency payments on behalf of users
 
-## Publisher: <br>
-[d5c5ceb0](https://clawhub.ai/user/d5c5ceb0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[d5c5ceb0](https://clawhub.ai/user/d5c5ceb0)
 
-## Use Case: <br>
-Developers and external agent users use this skill to let an OpenClaw agent inspect GStable payment links, create signed payment sessions, check balances and allowances, and prepare or submit supported stablecoin payments on Polygon, Ethereum, Arbitrum, and Base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad live-wallet authority, including automatic on-chain payments. <br>
-Mitigation: Use only a dedicated low-balance hot wallet and review every payment link, chain, token, recipient or executor contract, calldata, gas cost, and allowance before running payment commands. <br>
-Risk: Token approvals can expose funds if approvals are broad or left in place. <br>
-Mitigation: Prefer exact approval amounts for the intended payment and revoke allowances after use. <br>
-Risk: A primary wallet private key would expose high-value funds to agent-driven signing and transaction execution. <br>
-Mitigation: Do not use a primary wallet key; provide only the dedicated wallet key through `WALLET_PRIVATE_KEY`. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect GStable payment links, create signed payment sessions, prepare payment calldata, check balances and allowances, and submit stablecoin payments across supported chains.
 
-## Reference(s): <br>
-- [GStable AI Payment Protocol Docs](https://docs.gstable.io/zh-Hans/docs/category/ai-payment-protocol) <br>
-- [GStable AI Agent Integration Docs](https://docs.gstable.io/zh-Hans/docs/category/ai-agent-integration) <br>
-- [ClawHub Skill Page](https://clawhub.ai/d5c5ceb0/gstable-ai-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WALLET_PRIVATE_KEY for signing and transaction execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: pyproject.toml and server release metadata) <br>
+Risk: The skill can use a wallet private key to sign and submit live on-chain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and verify the chain, token, recipient, spender, amount, and calldata before approval or execution.
+
+Risk: The one-command payment path can automatically approve tokens and the approval command defaults to a maximum token allowance when no amount is supplied.
+
+Mitigation: Prefer the step-by-step flow for review, supply explicit approval amounts where possible, and revoke unneeded allowances after payment.
+
+Risk: Custom API or RPC endpoints can affect returned payment details, calldata, balances, gas estimates, and submitted transactions.
+
+Mitigation: Use only GStable API and RPC endpoints that the operator fully trusts.
+
+## Reference(s):
+
+- [GStable AI Payment Protocol Documentation](https://docs.gstable.io/zh-Hans/docs/category/ai-payment-protocol)
+- [GStable AI Agent Integration Documentation](https://docs.gstable.io/zh-Hans/docs/category/ai-agent-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WALLET_PRIVATE_KEY; outputs can include wallet addresses, payment session identifiers, transaction calldata, balances, allowances, and transaction hashes.]
+
+## Skill Version(s):
+
+1.0.0 (source: pyproject.toml and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

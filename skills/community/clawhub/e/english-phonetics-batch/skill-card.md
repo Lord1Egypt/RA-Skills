@@ -1,43 +1,60 @@
-## Description: <br>
-Batch-adds, checks, and annotates American English IPA pronunciations for English word lists, with text, Markdown, and CSV output options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English Phonetics Batch helps agents batch annotate English word lists with American IPA pronunciations, check existing phonetic entries, and save results in text, CSV, or Markdown formats.
 
-## Publisher: <br>
-[pe1984](https://clawhub.ai/user/pe1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe1984](https://clawhub.ai/user/pe1984)
 
-## Use Case: <br>
-Developers, educators, and vocabulary maintainers use this skill to batch annotate English word lists with American IPA pronunciations, verify or repair existing phonetic entries, and export formatted vocabulary files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vocabulary terms are sent to dictionaryapi.dev during lookup. <br>
-Mitigation: Use non-sensitive word lists, avoid confidential vocabulary, and review whether the public API is appropriate for the data being processed. <br>
-Risk: The script writes results to a user-selected output file. <br>
-Mitigation: Choose a separate output path when preserving the original input file matters. <br>
+## Use Case:
 
+Developers, educators, and content maintainers use this skill to convert English vocabulary files into pronunciation-annotated outputs and to repair corrupted or missing IPA entries in existing word lists.
 
-## Reference(s): <br>
-- [Usage Examples](references/usage-examples.md) <br>
-- [API Notes & IPA Reference](references/api-notes.md) <br>
-- [Free Dictionary API](https://dictionaryapi.dev/) <br>
-- [ClawHub skill page](https://clawhub.ai/pe1984/english-phonetics-batch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python examples; generated agent workflows produce text, Markdown, or CSV vocabulary files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include word, American IPA phonetic transcription, part of speech, and validity status where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Input words are sent to a public dictionary API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive internal vocabulary lists or replace the lookup source with an approved internal or offline dictionary before sensitive use.
+
+Risk: The script writes to a user-selected output path.
+
+Mitigation: Review output paths before execution and use versioned or temporary destinations when preserving existing files matters.
+
+Risk: The skill depends on the unpinned requests package range from requirements.txt.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pe1984/skills/english-phonetics-batch)
+- [Usage examples](artifact/references/usage-examples.md)
+- [API notes and IPA reference](artifact/references/api-notes.md)
+- [Free Dictionary API](https://dictionaryapi.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated text, CSV, or Markdown vocabulary files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated entries include word, American IPA phonetic text, part of speech when available, and a validity flag for CSV output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

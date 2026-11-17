@@ -1,43 +1,53 @@
-## Description: <br>
-AI 冰箱管家 — 上传食材图片识别 → 推荐菜谱。支持多图混搭、冰箱食材管理、采购提醒。Food recognition, recipe recommendation, ingredient management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigFood helps an agent identify ingredients from user-provided food or fridge photos, recommend recipes, suggest shopping items, and provide meal-planning guidance.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-External users can use this skill to identify ingredients from fridge or food photos, combine ingredients across multiple images, and receive recipe recommendations, shopping suggestions, and approximate calorie guidance. It also supports text-only ingredient descriptions when no image is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad food-related trigger phrases may invoke the skill more often than intended. <br>
-Mitigation: Review the generated response before acting on it and invoke the skill intentionally for fridge, ingredient, or recipe tasks. <br>
-Risk: Fridge or ingredient photos can reveal private household details. <br>
-Mitigation: Share only the food images needed for the request and avoid including personal documents, labels, addresses, or other sensitive background details. <br>
-Risk: Ingredient recognition, freshness labels, recipe suitability, and calorie estimates may be imperfect. <br>
-Mitigation: Verify food safety, allergy constraints, and nutrition-sensitive decisions independently before preparing or consuming food. <br>
+## Use Case:
 
+External users use this skill to turn food photos or typed ingredient lists into practical recipe options, shopping suggestions, and meal-planning guidance. It is suited for recipe help and fridge inventory conversations, not precise nutrition, freshness, or food-safety decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kobenfang/bigfood) <br>
-- [Publisher profile](https://clawhub.ai/user/kobenfang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style conversational responses with ingredient lists, recipe options, shopping suggestions, calorie estimates, and follow-up prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided food photos or ingredient text; server security evidence reports no executable code, external data transfer, credential use, or persistent tracking in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release evidence) <br>
+Risk: Ingredient recognition, freshness labels, and calorie estimates may be inaccurate or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for recipe ideation only; users should verify freshness, allergens, cooking safety, and nutritional needs before preparing or eating food.
+
+Risk: Broad Chinese food and cooking triggers may activate the skill outside a narrow recipe-request context.
+
+Mitigation: Deploy it where broad recipe assistance is acceptable and make clear that outputs are suggestions, not health or food-safety advice.
+
+## Reference(s):
+
+- [BigFood ClawHub skill page](https://clawhub.ai/kobenfang/skills/bigfood)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recipe recommendations, ingredient lists, shopping suggestions, and calorie estimates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided photos or ingredient descriptions; no executable code, external backend, credential use, or cross-session persistence is identified in security evidence.]
+
+## Skill Version(s):
+
+0.1.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

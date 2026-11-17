@@ -1,19 +1,17 @@
-﻿# 接口路由
+# 接口路由
 
-每轮**重新**选接口。优先级：
+每轮重新判断，优先处理输入文件：DOCX/PDF 使用对应文档接口；图片或截图先 OCR；音频先 ASR。图片/音频识别完成后，只有用户还要求翻译时才另行调用翻译接口，两个步骤分别付费并使用不同幂等键。
 
-1. 图 → `POST /ocr/`（默认 `language=mw`，西里尔 `mn`）— 细节 [OCR.md](./OCR.md)
-2. 音 → `POST /audio/async/` + 轮询 `GET /audio/async/{jobId}/`；极短试 `POST /audio/` — [ASR.md](./ASR.md)
-3. TTS → `POST /tts/async/`；极短试 `POST /tts/`；**禁用** `POST /tts/stream` — [TTS.md](./TTS.md)
-4. 纯翻译 → `POST /translation/` — [TRANSLATION.md](./TRANSLATION.md)
-5. 蒙文 + 要中文说明 → `POST /chat/completions/` 中文模板 — [CHAT-COMPLETIONS.md](./CHAT-COMPLETIONS.md)
-6. 用户明确蒙文答 / 纯蒙无译词 → `POST /chat/completions/` 蒙文模板 — [CHAT-COMPLETIONS.md](./CHAT-COMPLETIONS.md)
-7. Word/PDF 文档蒙文翻译 → [DOCUMENT-TRANSLATION.md](./DOCUMENT-TRANSLATION.md)
+给定原文的翻译、译成、转换、什么意思、西里尔转传统、传统转西里尔，使用 /translation；介绍、生成、写作、问答使用 /chat/completions；朗读、配音、文字转语音使用 /tts。两类词同时出现时按核心意图区分，不用对话接口代替原文互译。
 
-传统蒙/西里尔：无译词多 **chat**；有译词 → **translation**（如 `mw→zh`）；蒙蒙互译 → **translation** `mn↔mw`（单次）；要中文解释蒙文 → **chat** 中文模板。无蒙字：创作/介绍 → **chat**；翻译/转换 → **translation**。冲突：**给定原文要译成另一文字** → translation；**写新稿** → chat。[CHAT-COMPLETIONS.md](./CHAT-COMPLETIONS.md) · [TRANSLATION.md](./TRANSLATION.md)
+zh 是中文，mw 是传统蒙古文，mn 是西里尔蒙古文。传统蒙古文可由 U+1800–U+18AF 判断；西里尔字符 U+0400–U+04FF 只能作为线索，不能把俄语等自动当成蒙古语。方向不明确、混合文字或只说“蒙文”但无法判断目标时询问用户。纯蒙古文交流默认以相同文字回复；“中文回答”是对话输出语言，不等同翻译。
 
-**网页/长文**：净正文后 `POST /translation/`；若超过单次 `content` 上限则按 [TRANSLATION.md](./TRANSLATION.md) 分批，勿整篇用 chat 代替互译。
+mn → mw 与 mw → mn 均直接发送一次翻译请求，不在客户端自行经中文中转。网页翻译先获取用户授权的正文，再按翻译长度限制分段。
 
-## OCR / ASR 衔接
+## 场景与职责边界
 
-OCR/ASR **成功后**只取 `data.text`；再译 → `POST /translation/`。[HTTP-REQUESTS.md](./HTTP-REQUESTS.md) · [OCR.md](./OCR.md) · [ASR.md](./ASR.md)
+- 蒙文邮件回复、通知、消息、社媒文案和文件正文属于内容生成，使用 `/chat/completions`；本 Skill 只生成正文，不代用户发送邮件、发布内容或上传到第三方平台。
+- 网页翻译必须先由用户提供正文，或由具备网页访问能力的工具在用户授权范围内提取正文；本 Skill 不负责登录网站、绕过访问控制或抓取 URL。
+- 长文和批量翻译由调用侧按自然段或句子边界拆分，每段遵守 `/translation` 的长度、幂等和计费规则；不存在批量专用接口。
+- 定时任务、cron、远程登录、云端队列和跨机器编排由宿主环境或其它自动化能力负责；每次实际蒙语处理仍调用本 Skill 的平台接口。
+- 其它能力获取的文字、图片、音频或文档在交给本 Skill 前仍需满足用户授权、格式、大小和隐私要求。

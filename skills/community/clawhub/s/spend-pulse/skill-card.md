@@ -1,42 +1,53 @@
-## Description: <br>
-Spend Pulse helps an agent sync Plaid-backed card transactions, compare monthly spending against a budget, and generate pace-based spending alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive spending alerts via Plaid. Track credit card spending against a monthly budget with pace-based alerts.
 
-## Publisher: <br>
-[jbornhorst1524](https://clawhub.ai/user/jbornhorst1524) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbornhorst1524](https://clawhub.ai/user/jbornhorst1524)
 
-## Use Case: <br>
-Individuals and agents use this skill to monitor credit card spending, decide when a spending update is warranted, and compose short private alerts with optional chart attachments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to Plaid-backed financial accounts and processes sensitive spending data. <br>
-Mitigation: Install only for trusted private use, connect only accounts the user intends to monitor, and avoid sharing generated summaries or charts outside private contexts. <br>
-Risk: Alerts and charts can expose recent merchants, account context, budgets, and spending pace. <br>
-Mitigation: Review message content and chart attachments before sending them, especially in shared chats or public channels. <br>
-Risk: Spending decisions may be based on stale data if transactions have not been synced recently. <br>
-Mitigation: Run a fresh sync before relying on status, check, or chart output for timely budget decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jbornhorst1524/spend-pulse) <br>
-- [Plaid developer keys](https://dashboard.plaid.com/developers/keys) <br>
+## Use Case:
 
+External users and agents use this skill to set up Spend Pulse, sync Plaid transaction data, check monthly budget pace, and compose concise spending alerts with optional chart attachments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [YAML-style text summaries, concise Markdown prose, shell command guidance, configuration values, and PNG chart file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive spending totals, transaction snippets, alert decisions, and local chart paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can handle real financial credentials and transaction data through an external CLI.
+
+Mitigation: Review the CLI package and source before installing, prefer a pinned or verified release, and avoid exposing Plaid credentials or stored transaction data.
+
+Risk: Generated spending messages and charts may contain sensitive merchant, account, or transaction details.
+
+Mitigation: Confirm the recipient and channel before sending, and include only the transaction details the user explicitly wants shared.
+
+## Reference(s):
+
+- [Spend Pulse ClawHub listing](https://clawhub.ai/jbornhorst1524/skills/spend-pulse)
+- [Plaid developer keys](https://dashboard.plaid.com/developers/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated spending chart image paths when the underlying CLI returns them.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

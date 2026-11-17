@@ -1,45 +1,60 @@
-## Description: <br>
-JEP Primitive Skills provides atomic reference implementations of Judge, Delegate, Terminate, and Verify for agent collaboration grammar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Construct explicitly unsigned J/D/T/V event drafts.
 
-## Publisher: <br>
-[schchit](https://clawhub.ai/user/schchit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schchit](https://clawhub.ai/user/schchit)
 
-## Use Case: <br>
-Developers and agent-system engineers use this skill to generate JEP-04 event JSON for judge, delegate, terminate, and verify operations in multi-agent collaboration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public API deployment could allow unauthenticated event generation if exposed directly. <br>
-Mitigation: Run the API behind authentication, TLS, and rate limits before exposing it outside a trusted environment. <br>
-Risk: Open dependency ranges can change runtime behavior across installations. <br>
-Mitigation: Pin or audit dependency versions for the target deployment. <br>
-Risk: The optional signature field is metadata unless the surrounding system verifies it. <br>
-Mitigation: Integrate real signature verification before relying on signature values for trust decisions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create unsigned draft Judge, Delegate, Terminate, and Verify events for JEP-style workflows while keeping authority, signing, and verification outside the draft-construction step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/schchit/jep-primitive-skills) <br>
-- [README](artifact/jep-primitive-skills/README.md) <br>
-- [Skill definition](artifact/jep-primitive-skills/SKILL.md) <br>
-- [Changelog](artifact/jep-primitive-skills/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON events, API responses, Python objects] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include JEP verb, actor, timestamp, nonce, hash, references, optional task linkage, and canonical JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, artifact frontmatter, manifest, and changelog) <br>
+Risk: Unsigned draft events could be mistaken for signed, verified, or action-executing records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat draft=true and signature_valid=false as authoritative, and sign or verify only complete events with the configured security helpers.
+
+Risk: Exposing the FastAPI service beyond loopback can increase authentication and traffic-control risk.
+
+Mitigation: Bind locally by default; for remote use, add trusted TLS termination, request-rate limits, read-time limits, and proxy controls.
+
+Risk: Bearer tokens and trusted key configuration can become sensitive operational secrets.
+
+Mitigation: Generate high-entropy tokens, store only token digests in JEP_CLIENTS, protect environment configuration, and keep private keys outside the artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/schchit/skills/jep-primitive-skills)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses and Python dataclass results with canonical JSON strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are draft-only with draft=true and signature_valid=false; signing and verification require separate configured security helpers.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, release evidence, manifest, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

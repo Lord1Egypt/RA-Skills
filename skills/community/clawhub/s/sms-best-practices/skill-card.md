@@ -1,43 +1,53 @@
-## Description: <br>
-Provides SMS compliance, formatting, and delivery best practices for the Sendly API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides SMS compliance, formatting, and delivery best practices for Sendly API integrations, including TCPA compliance, quiet hours, opt-out handling, E.164 phone formatting, message segmentation, and carrier verification.
 
-## Publisher: <br>
-[sendly-live](https://clawhub.ai/user/sendly-live) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sendly-live](https://clawhub.ai/user/sendly-live)
 
-## Use Case: <br>
-Developers and external teams use this skill when building Sendly SMS features that need compliant phone formatting, message classification, opt-out handling, quiet-hours behavior, delivery preparation, and error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SMS compliance rules, Sendly behavior, and pricing can change after release. <br>
-Mitigation: Verify current legal requirements and Sendly documentation before using the guidance for production messaging. <br>
-Risk: Incorrectly treating marketing messages as transactional can lead to consent, quiet-hours, or opt-out failures. <br>
-Mitigation: Review message type, recipient consent, opt-out status, and recipient local time before sending marketing traffic. <br>
+## Use Case:
 
+Developers and teams building SMS features with the Sendly API use this skill to apply compliance, formatting, delivery, carrier verification, and error-handling guidance.
 
-## Reference(s): <br>
-- [Sendly compliance docs](https://sendly.live/docs/concepts/compliance) <br>
-- [Sendly quiet hours](https://sendly.live/docs/quiet-hours) <br>
-- [Sendly country requirements](https://sendly.live/docs/country-requirements) <br>
-- [Sendly opt-out handling](https://sendly.live/docs/how-to/handle-opt-outs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with inline API paths, error codes, and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only guidance; no code execution or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Quiet-hours troubleshooting guidance could lead an agent to bypass marketing quiet-hour protections by relabeling a message as transactional.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and revise quiet-hours guidance so blocked marketing messages are delayed or scheduled for a permitted recipient-local time, and transactional classification is used only when the content and consent basis are genuinely transactional.
+
+## Reference(s):
+
+- [SMS Best Practices on ClawHub](https://clawhub.ai/sendly-live/skills/sms-best-practices)
+- [Sendly Compliance Docs](https://sendly.live/docs/concepts/compliance)
+- [Sendly Quiet Hours](https://sendly.live/docs/quiet-hours)
+- [Sendly Country Requirements](https://sendly.live/docs/country-requirements)
+- [Sendly Opt-Out Handling](https://sendly.live/docs/how-to/handle-opt-outs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with tables, bullet lists, and inline API and error identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

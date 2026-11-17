@@ -1,41 +1,59 @@
-## Description: <br>
-Reviews user-provided contracts and legal documents to flag risky clauses, explain implications in plain language, identify missing protections, and suggest negotiation or revision options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload a contract to receive an AI-generated risk analysis with flagged clauses, plain-language explanations, negotiation tips, and missing-protection checks.
 
-## Publisher: <br>
-[a799549967-lang](https://clawhub.ai/user/a799549967-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a799549967-lang](https://clawhub.ai/user/a799549967-lang)
 
-## Use Case: <br>
-External users, freelancers, employees, and small teams use this skill before signing routine contracts such as NDAs, employment agreements, service agreements, leases, SaaS terms, and investment agreements. It produces an initial risk screen, not legal advice, so high-value or complex agreements still require qualified legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-generated contract analysis can miss context-specific legal issues or produce incomplete recommendations. <br>
-Mitigation: Use the report as an initial screening aid and have a qualified lawyer review material terms before relying on it for binding decisions. <br>
-Risk: Privileged, confidential, or high-value contract text may be exposed to the agent and the user's configured AI service during analysis. <br>
-Mitigation: Confirm the skill is intentionally active before uploading sensitive agreements and only provide contract text you are comfortable having analyzed. <br>
+## Use Case:
 
+External users, freelancers, HR teams, procurement teams, founders, and contract reviewers use this skill for first-pass contract risk triage before signing or negotiating. It reviews uploaded or pasted contracts, flags risk levels and missing protections, and suggests negotiation language while reminding users to consult a qualified attorney for binding decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a799549967-lang/ai-contract-reviewer) <br>
-- [Publisher profile](https://clawhub.ai/user/a799549967-lang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with document summary, risk counts, flagged clauses, missing protections, power-balance assessment, recommended actions, and suggested revision language.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Begins with a legal disclaimer and uses Chinese for Chinese contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Contract contents may include confidential, privileged, or regulated information and may be sent to the AI provider configured in OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data flow is acceptable; review the configured provider's retention and privacy terms before processing sensitive files.
+
+Risk: AI-generated legal analysis can miss context-specific issues or be mistaken if treated as definitive legal advice.
+
+Mitigation: Use the report as informational triage, keep the disclaimer visible, and consult a qualified attorney for binding legal decisions.
+
+Risk: The artifact's safety wording understates that contract content may leave the local environment for the configured AI provider.
+
+Mitigation: Ask the agent before processing sensitive documents and avoid uploading highly confidential material unless the provider handling terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/a799549967-lang/skills/ai-contract-reviewer)
+- [Skill Definition](artifact/SKILL.md)
+- [操作说明](artifact/操作说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown contract risk report with suggested clause revisions and follow-up drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes mandatory legal-disclaimer language and follows the contract language where possible, including Chinese for Chinese contracts.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

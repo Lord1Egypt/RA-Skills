@@ -1,40 +1,58 @@
-## Description: <br>
-PigBun RedNote helps agents automate RedNote workflows for search, content publishing, comment management, social interaction, and account analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PigBun RedNote helps agents automate RedNote/Xiaohongshu content search, publishing, comment management, social engagement, and creator analytics.
 
-## Publisher: <br>
-[PigBun-AI](https://clawhub.ai/user/PigBun-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pigbun-ai](https://clawhub.ai/user/pigbun-ai)
 
-## Use Case: <br>
-Creators, operators, and developers use this skill to connect an OpenClaw agent to PigBun's RedNote tools for account operations such as searching posts, publishing content, managing comments, and generating analytics reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live RedNote account actions including publishing, editing, deleting, commenting, following, liking, and collecting content. <br>
-Mitigation: Use a test or low-value RedNote account first and require explicit per-action approval before enabling publish, delete, edit, comment, follow, or collect operations. <br>
-Risk: The skill requires a PigBun API key and an authenticated browser session. <br>
-Mitigation: Keep the API key out of shared files and chats, verify pigbunai.com and the publisher profile before installation, and rotate credentials if they are exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PigBun-AI/pigbun-rednote) <br>
-- [PigBun AI website](https://pigbunai.com) <br>
+## Use Case:
 
+External social media operators, creators, and developers use this skill through an agent to search RedNote content, publish and manage posts, respond to comments, perform social interactions, and generate operational analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and natural-language agent responses with JSON configuration examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PigBun API key, Playwright Chromium setup, and an authenticated RedNote session before live account actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.8.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can perform visible RedNote account actions such as publishing, editing, deleting, commenting, following, liking, and collecting.
+
+Mitigation: Require explicit user confirmation before any publish, edit, delete, comment, follow, like, or collect action, and review generated content before submission.
+
+Risk: The skill uses a PigBun API key and an authenticated RedNote account session.
+
+Mitigation: Store the API key as a secret, avoid committing account configuration, and use the skill only with accounts approved for agent-assisted automation.
+
+Risk: The setup requires a Playwright Chromium installation flow.
+
+Mitigation: Use a pinned, trusted Playwright installation and review browser automation dependencies before deployment.
+
+## Reference(s):
+
+- [PigBun RedNote ClawHub listing](https://clawhub.ai/pigbun-ai/skills/pigbun-rednote)
+- [PigBun website](https://pigbunai.com)
+- [PigBun-AI ClawHub profile](https://clawhub.ai/user/pigbun-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce agent actions that use configured PigBun credentials and an authenticated RedNote account session.]
+
+## Skill Version(s):
+
+0.8.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

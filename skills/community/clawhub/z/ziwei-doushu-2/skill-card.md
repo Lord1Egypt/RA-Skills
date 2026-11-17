@@ -1,41 +1,55 @@
-## Description: <br>
-Provides Ziwei Doushu charting data and interpretation guidance for agents using the MyFate AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Ziwei Doushu chart data for an agent to support fortune and destiny analysis.
 
-## Publisher: <br>
-[letswinone888](https://clawhub.ai/user/letswinone888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[letswinone888](https://clawhub.ai/user/letswinone888)
 
-## Use Case: <br>
-External users and agent developers use this skill to collect birth details, call MyFate AI charting endpoints, and turn Ziwei Doushu chart data into clear fortune-analysis guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth date, birth time, gender, and related chart parameters are sent to skill.myfate.ai. <br>
-Mitigation: Use the skill only with user consent, review the provider's privacy terms, and avoid persisting exact birth details unless the user explicitly requests it. <br>
-Risk: The API may require paid quota or recharge before continued use. <br>
-Mitigation: Tell users when quota is exhausted, direct them to the provider homepage for billing actions, and resume only after they confirm they want to continue. <br>
+## Use Case:
 
+External users and agents use this skill to request Ziwei Doushu charting data from myfate.ai, including lunar-to-solar conversion, natal charts, period fortunes, and decade ranges. The agent uses the returned data to produce clear, balanced fortune interpretations.
 
-## Reference(s): <br>
-- [MyFate AI skill homepage](https://skill.myfate.ai) <br>
-- [ClawHub skill listing](https://clawhub.ai/letswinone888/ziwei-doushu-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline curl examples and API response interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MYFATE_AI_API_KEY environment variable and curl for API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill sends personal birth date, birth time, calendar details, gender, and an API key to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts that data sharing, and avoid sending unnecessary personal details.
+
+Risk: The skill includes a payment or recharge retry workflow after quota errors.
+
+Mitigation: Before retrying after recharge, show the fields that will be resent and obtain explicit user confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/letswinone888/skills/ziwei-doushu-2)
+- [Publisher profile](https://clawhub.ai/user/letswinone888)
+- [Skill homepage](https://skill.myfate.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl command examples and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MYFATE_AI_API_KEY and curl; API calls send birth date, birth time, calendar details, and gender to skill.myfate.ai.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

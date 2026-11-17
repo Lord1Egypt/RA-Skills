@@ -1,41 +1,49 @@
-## Description: <br>
-Manage Omadeus entities via the Omadeus REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Maestro API to create tasks, list tasks, and send room messages using the configured OpenClaw Maestro connection.
 
-## Publisher: <br>
-[mohammadsheikhian](https://clawhub.ai/user/mohammadsheikhian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohammadsheikhian](https://clawhub.ai/user/mohammadsheikhian)
 
-## Use Case: <br>
-Developers and external users can use this skill to draft curl-based REST API calls for managing Omadeus entities, including listing nugget views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the release suspicious because the advertised Omadeus purpose is unclear while examples target milestone.xeba.ir and mention unrelated Trello credentials. <br>
-Mitigation: Install only after the publisher explains the target API domain, removes or documents the Trello credential warning, and clarifies required credentials and scopes. <br>
-Risk: The skill provides API commands that may change live data when custom methods such as create are used. <br>
-Mitigation: Review each generated or copied API operation before execution and confirm whether it is read-only or mutating. <br>
+## Use Case:
 
+Developers and external users use this skill to operate a configured Maestro connection from an agent, including creating tasks, listing tasks, and sending room messages without exposing configured credentials.
 
-## Reference(s): <br>
-- [Omadeus homepage](https://omadeus.com/) <br>
-- [Omadeus ClawHub release](https://clawhub.ai/mohammadsheikhian/omadeus) <br>
-- [Publisher profile](https://clawhub.ai/user/mohammadsheikhian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces curl command examples that call external REST API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Configured Maestro credentials can authorize task creation, task listing, and room messages through the connected Maestro account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted Maestro connection, validate channels.omadeus configuration before requests, and never expose or hardcode baseUrl, apiKey, or openClawMemberId.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mohammadsheikhian/skills/omadeus)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, guidance]
+
+**Output Format:** [Concise text or Markdown summaries with Maestro API actions performed when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or list Maestro tasks and send room messages through configured OpenClaw Maestro credentials; does not expose raw credential values.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-古人诗词大师 helps agents answer classical Chinese poetry questions, generate poems in selected traditional styles, analyze form and imagery, explain allusions, compare poets, and produce interactive poetry knowledge graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ancient Poetry Master helps agents answer Chinese classical poetry questions, compose or compare poems in selected poet styles, analyze meter and allusions, and generate interactive poet knowledge-graph reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to support classical Chinese poetry education, creative drafting, literary analysis, allusion lookup, and relationship visualization across poets, dynasties, schools, and themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad poetry-related terms. <br>
-Mitigation: Confirm the user's intent before routing ambiguous general poetry requests into classical Chinese poetry workflows. <br>
-Risk: Generated graph HTML loads D3 from d3js.org when viewed. <br>
-Mitigation: Review the generated HTML before sharing or opening it in restricted environments, and account for the external D3 dependency. <br>
+## Use Case:
 
+External users and developers use this skill to explore Chinese classical poetry, request original poems or lyric-style compositions, analyze supplied poems, compare poets, query allusions, and generate knowledge-graph visualizations.
 
-## Reference(s): <br>
-- [Poet Data](references/poets.json) <br>
-- [Classical Chinese Poetry Forms](references/forms.md) <br>
-- [Poetry Allusions Reference](references/allusions.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bettermen/ancient-poetry-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON analysis output, and generated HTML graph files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Graph output is an HTML file that loads D3 from d3js.org when viewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The knowledge-graph generator can overwrite arbitrary writable paths if given an unsafe output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run graph generation only with a trusted, dedicated .html output path inside an intended report directory.
+
+Risk: Generated graph reports load D3.js from the internet when opened.
+
+Mitigation: Open generated reports only in environments where remote JavaScript loading is acceptable, or revise the skill to bundle or integrity-pin D3.js.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/bettermen/skills/ancient-poetry-master)
+- [Chinese Classical Poetry Meter Reference](artifact/references/forms.md)
+- [Poetry Allusions Quick Reference](artifact/references/allusions.md)
+- [Core Poets Dataset](artifact/references/poets.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, HTML files, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown responses, Chinese poem text, structured JSON analysis output, and generated interactive HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Graph generation writes an HTML file to a caller-supplied path; poem analysis can emit structured JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

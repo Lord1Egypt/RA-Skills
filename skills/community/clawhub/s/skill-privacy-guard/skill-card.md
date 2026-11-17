@@ -1,39 +1,53 @@
-## Description: <br>
-Skill Privacy Guard helps agents detect and sanitize sensitive information in skill files before they are shared or published. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Privacy Guard scans skill files for sensitive information and sanitizes paths, credentials, personal data, network identifiers, and other confidential details.
 
-## Publisher: <br>
-[zhanggroot7](https://clawhub.ai/user/zhanggroot7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanggroot7](https://clawhub.ai/user/zhanggroot7)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to review skill files for credentials, personal data, private infrastructure details, and other sensitive examples before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad sanitization rules can replace legitimate examples or miss some sensitive values. <br>
-Mitigation: Keep version control or backups, review diffs before publishing, and manually inspect any high-impact credential or personal-data findings. <br>
+## Use Case:
 
+Developers and skill authors use this skill to review and sanitize skill files before release so examples, paths, credentials, personal data, and infrastructure details remain generic and shareable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhanggroot7/skill-privacy-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/zhanggroot7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status summary with sanitized-item counts and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports whether sensitive information was found and summarizes replacements or removals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may run during skill editing and rewrite files automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or review mode and require explicit user approval before applying file changes.
+
+Risk: Broad sanitization patterns may remove legitimate examples, identifiers, dates, hashes, or configuration details.
+
+Mitigation: Review proposed replacements against the intended skill behavior before committing sanitized content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanggroot7/skills/skill-privacy-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown security scan summary with sanitization counts and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or report replacements for sensitive values in skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

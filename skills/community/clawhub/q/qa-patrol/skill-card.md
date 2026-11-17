@@ -1,44 +1,59 @@
-## Description: <br>
-QA Patrol provides local browser automation for web app QA across smoke, auth/payment, static analysis, and database integrity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated QA testing for web apps using local browser automation, with smoke, auth, payment, data integrity, and static analysis workflows for Supabase/Firebase auth, Stripe payments, React Native Web, Next.js, and SPAs.
 
-## Publisher: <br>
-[tahseen137](https://clawhub.ai/user/tahseen137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tahseen137](https://clawhub.ai/user/tahseen137)
 
-## Use Case: <br>
-Developers and engineers use this skill to run local QA checks against web applications, including smoke tests, authentication and payment flows, data integrity comparisons, and static analysis for known web app bug patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser automation and advanced QA checks can interact with real application state. <br>
-Mitigation: Run the skill against staging apps with synthetic data, disposable test accounts, and Stripe test mode. <br>
-Risk: Level 3 checks can require local repo read access or a user-provided database connection. <br>
-Mitigation: Grant Level 3 access only when needed, prefer read-only or disposable database credentials, and avoid production DATABASE_URL values. <br>
-Risk: Screenshots, console logs, and reports can contain sensitive application data. <br>
-Mitigation: Review, secure, or delete generated evidence after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QA Patrol ClawHub release](https://clawhub.ai/tahseen137/qa-patrol) <br>
-- [Test Patterns](references/test-patterns.md) <br>
-- [Bug Patterns](references/bug-patterns.md) <br>
-- [QA Report Format](references/report-format.md) <br>
+## Use Case:
 
+Developers and QA engineers use this skill to run local browser-based checks against web applications, generate test plans, identify common web app defects, and produce structured QA reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with YAML test plans and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser snapshots, console findings, screenshots, pass/fail tables, confidence scores, and remediation recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Auth, payment, and database checks can submit credentials or database connection values to a configured target application.
+
+Mitigation: Use only staging or disposable targets with unique low-privilege test accounts, and never provide production passwords or production DATABASE_URL values.
+
+Risk: Some templates include delete, storage-clearing, and payment-completion behavior that can modify test data or trigger checkout flows.
+
+Mitigation: Review the selected plan before execution and disable destructive or payment-completion tests unless those actions are intended for the test environment.
+
+Risk: Screenshots, console logs, and QA reports can capture sensitive details from authenticated, payment, or admin screens.
+
+Mitigation: Avoid capturing sensitive screens where possible and redact screenshots or reports before sharing them.
+
+## Reference(s):
+
+- [Qa Patrol Skill Page](https://clawhub.ai/tahseen137/skills/qa-patrol)
+- [Test Patterns](references/test-patterns.md)
+- [Bug Patterns](references/bug-patterns.md)
+- [Report Format](references/report-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with YAML test plans, inline code examples, browser automation steps, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PASS/FAIL/SKIP results, screenshots or screenshot paths, console logs, confidence scoring, SQL snippets, and fix recommendations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

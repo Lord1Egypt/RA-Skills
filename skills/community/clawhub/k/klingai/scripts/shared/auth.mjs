@@ -2,17 +2,17 @@
  * Kling AI — 鉴权层（无网络）
  *
  * 凭证优先级：
- *   1. 当前进程 KLING_TOKEN（仅环境变量显式传入，不落盘）
- *   2. ~/.config/kling/.credentials（INI，[profile] access_key_id / secret_access_key）→ 请求时 makeJwt（30min exp）
+ *   1. 当前进程 KLING_API_KEY（仅环境变量显式传入，不落盘；原样作为 Bearer）
+ *   2. ~/.config/kling/.credentials（INI，[profile] api_key）→ 原样作为 Bearer，不再签 JWT
  * bind / configure 写入 credentials，固定 default profile。
  * 存储根目录默认 ~/.config/kling；可选 KLING_STORAGE_ROOT 指向统一存储根。
  * 非凭证 env：仅读 <storageRoot>/kling.env，不覆盖启动前已在 process.env 中的键。
  * 探测得到的 API Base 由 client 调用 `persistProbedApiBase` 写回 ~/.config/kling/kling.env 中的 KLING_API_BASE；
- * **不会**从文件注入 KLING_TOKEN（凭证仅 credentials 文件 + 可选进程内 KLING_TOKEN）。
+ * **不会**从文件注入 KLING_API_KEY（凭证仅 credentials 文件 + 可选进程内 KLING_API_KEY）。不认 KLING_TOKEN。
  *
  * 网络与 API Base 探测统一在 client.mjs。
  */
-import { createHmac, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import {
   readFileSync, writeFileSync, mkdirSync, chmodSync,
 } from 'node:fs';
@@ -29,14 +29,12 @@ const CREDENTIALS_FILENAME = '.credentials';
 const STORAGE_ROOT_ENV = 'KLING_STORAGE_ROOT';
 
 /** 写入 process.env 时跳过（凭证不走 dotenv 文件） */
-const CREDENTIAL_ENV_DENYLIST = new Set(['KLING_TOKEN']);
+const CREDENTIAL_ENV_DENYLIST = new Set(['KLING_API_KEY', 'KLING_TOKEN']);
 
 /**
  * @param {string} content
- * @param {{ shellKeys: Set<string> }} opts
  */
-function parseEnvContent(content, opts) {
-  const { shellKeys } = opts;
+function parseEnvContent(content) {
   for (const line of content.split('\n')) {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
@@ -48,8 +46,8 @@ function parseEnvContent(content, opts) {
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
       val = val.slice(1, -1);
     }
-    // 已在启动前导出的环境变量优先，不被文件覆盖。
-    if (!shellKeys.has(key) && !(key in process.env)) {
+    // 启动前已存在的键优先。只查询文件里的这一个键，不枚举 process.env。
+    if (!Object.hasOwn(process.env, key)) {
       process.env[key] = val;
     }
   }
@@ -79,9 +77,8 @@ function upsertEnvFileKey(content, key, value) {
 }
 
 (function loadEnvFiles() {
-  const shellKeys = new Set(Object.keys(process.env));
   try {
-    parseEnvContent(readFileSync(getDefaultKlingEnvPath(), 'utf-8'), { shellKeys });
+    parseEnvContent(readFileSync(getDefaultKlingEnvPath(), 'utf-8'));
   } catch {}
 })();
 
@@ -107,8 +104,8 @@ export class CredentialsMissingError extends Error {
 
 function logAuthSource(source) {
   const messageMap = {
-    credentials: 'Auth source / 鉴权来源: credentials (AK/SK -> JWT)',
-    env_token: 'Auth source / 鉴权来源: KLING_TOKEN (process env)',
+    credentials: 'Auth source / 鉴权来源: credentials (api_key -> Bearer)',
+    env_api_key: 'Auth source / 鉴权来源: KLING_API_KEY (process env)',
   };
   const msg = messageMap[source];
   if (msg) console.error(msg);
@@ -138,52 +135,69 @@ function parseCredentialsIni(content) {
   return profiles;
 }
 
-/** @returns {{ access_key_id: string, secret_access_key: string }} */
+const LEGACY_CREDENTIAL_KEYS = ['access_key_id', 'secret_access_key', 'access_key', 'secret_key'];
+
+function stripLegacyCredentialKeys(obj = {}) {
+  const next = { ...obj };
+  for (const k of LEGACY_CREDENTIAL_KEYS) delete next[k];
+  return next;
+}
+
+/** @returns {{ api_key: string, access_key_id: string, secret_access_key: string }} */
 export function readCredentialsProfile(profile) {
   try {
     const raw = readFileSync(getCredentialsFilePath(), 'utf-8');
     const all = parseCredentialsIni(raw);
     const p = all[profile] || {};
+    const apiKey = String(p.api_key || p.apikey || p.apiKey || '').trim();
     const ak = String(p.access_key_id || p.access_key || '').trim();
     const sk = String(p.secret_access_key || p.secret_key || '').trim();
-    return { access_key_id: ak, secret_access_key: sk };
+    return { api_key: apiKey, access_key_id: ak, secret_access_key: sk };
   } catch {
-    return { access_key_id: '', secret_access_key: '' };
+    return { api_key: '', access_key_id: '', secret_access_key: '' };
   }
 }
 
+export function hasStoredApiKey() {
+  const { api_key } = readCredentialsProfile(getActiveProfile());
+  return Boolean(api_key);
+}
+
+/** @deprecated 与 hasStoredApiKey 相同；旧 AK/SK 不再视为可用凭证 */
 export function hasStoredAccessKeys() {
-  const { access_key_id, secret_access_key } = readCredentialsProfile(getActiveProfile());
-  return Boolean(access_key_id && secret_access_key);
+  return hasStoredApiKey();
 }
 
 export function hasSessionBearerOverride() {
-  return Boolean((process.env.KLING_TOKEN || '').trim());
+  return Boolean((process.env.KLING_API_KEY || '').trim());
 }
 
 export function hasUsableCredentialSource() {
-  return hasStoredAccessKeys() || hasSessionBearerOverride();
+  return hasStoredApiKey() || hasSessionBearerOverride();
 }
 
 /**
- * 写入 [profile] 下 AK/SK，Unix 上 chmod 600
+ * 写入 [profile] 下 api_key，并清除历史 AK/SK 键；Unix 上 chmod 600
  * @param {string} profile
- * @param {string} accessKey
- * @param {string} secretKey
- * @param {Record<string,string>} [extra]  如 region
+ * @param {string} apiKey
+ * @param {Record<string,string>} [extra]  如 credentialId / accountId
  */
-export function writeCredentialsProfile(profile, accessKey, secretKey, extra = {}) {
+export function writeCredentialsProfile(profile, apiKey, extra = {}) {
   const path = getCredentialsFilePath();
   mkdirSync(dirname(path), { recursive: true });
   let all = {};
   try {
     all = parseCredentialsIni(readFileSync(path, 'utf-8'));
   } catch {}
+  const cleanedExtra = {};
+  for (const [k, v] of Object.entries(extra || {})) {
+    if (v == null || String(v) === '') continue;
+    cleanedExtra[k] = String(v);
+  }
   all[profile] = {
-    ...all[profile],
-    access_key_id: String(accessKey || '').trim(),
-    secret_access_key: String(secretKey || '').trim(),
-    ...extra,
+    ...stripLegacyCredentialKeys(all[profile]),
+    api_key: String(apiKey || '').trim(),
+    ...cleanedExtra,
   };
   const lines = [];
   for (const prof of Object.keys(all)) {
@@ -219,49 +233,35 @@ export function makeKlingHeaders(token, contentType = 'application/json') {
   return h;
 }
 
-function base64url(buf) {
-  return Buffer.from(buf).toString('base64')
-    .replace(/=/g, '')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_');
-}
-
-function makeJwt(accessKey, secretKey) {
-  const header = base64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-  const now = Math.floor(Date.now() / 1000);
-  const payload = base64url(JSON.stringify({
-    iss: accessKey,
-    exp: now + 1800,
-    nbf: now - 5,
-  }));
-  const signature = base64url(
-    createHmac('sha256', secretKey).update(`${header}.${payload}`).digest()
-  );
-  return `${header}.${payload}.${signature}`;
-}
-
 /**
- * 1) 进程环境变量 KLING_TOKEN（不落盘；kling.env 不会注入 KLING_TOKEN）
- * 2) 否则 credentials 文件 AK/SK → 每次调用重新签发 JWT（30min exp）
+ * 1) 进程环境变量 KLING_API_KEY（不落盘；kling.env 不会注入 KLING_API_KEY）
+ * 2) 否则 credentials 文件 api_key → 原样作为 Bearer（不再签 JWT）
+ * 不认 KLING_TOKEN。
  */
 export function getBearerToken() {
-  let token = (process.env.KLING_TOKEN || '').trim();
+  let token = (process.env.KLING_API_KEY || '').trim();
   if (token) {
-    logAuthSource('env_token');
+    logAuthSource('env_api_key');
     if (token.toLowerCase().startsWith('bearer ')) {
       token = token.slice(7).trim();
     }
     return token;
   }
   const profile = getActiveProfile();
-  const { access_key_id, secret_access_key } = readCredentialsProfile(profile);
-  if (access_key_id && secret_access_key) {
+  const { api_key, access_key_id, secret_access_key } = readCredentialsProfile(profile);
+  if (api_key) {
     logAuthSource('credentials');
-    return makeJwt(access_key_id, secret_access_key);
+    return api_key;
+  }
+  if (access_key_id || secret_access_key) {
+    console.error(
+      'Warning / 提示: stored AK/SK is ignored; re-run account --bind-url --force to get an API Key / '
+      + '本地 AK/SK 已停用，请重新绑定以获取 API Key',
+    );
   }
   throw new CredentialsMissingError(
-    'Configure credentials under KLING_STORAGE_ROOT (or ~/.config/kling), set KLING_TOKEN for this session, or run account bind/configure / '
-    + '请在 KLING_STORAGE_ROOT（或 ~/.config/kling）下配置 credentials、本次 shell 导出 KLING_TOKEN，或执行 account --bind|--configure',
+    'Configure credentials under KLING_STORAGE_ROOT (or ~/.config/kling), set KLING_API_KEY for this session, or run account bind/configure / '
+    + '请在 KLING_STORAGE_ROOT（或 ~/.config/kling）下配置 credentials、本次 shell 导出 KLING_API_KEY，或执行 account --bind|--configure',
   );
 }
 
@@ -356,26 +356,24 @@ export function patchKlingIdentity(patch) {
   return next;
 }
 
-/** 绑定 / configure 成功后写入 credentials；identity 中不保留 AK/SK（并清除历史字段） */
-export function persistBoundApiKeys(accessKey, secretKey, extraIdentity = {}, extraCredentials = {}) {
-  const ak = String(accessKey || '').trim();
-  const sk = String(secretKey || '').trim();
-  if (!ak || !sk) throw new Error('Missing access_key or secret_key / 缺少 access_key 或 secret_key');
+/** 绑定 / configure 成功后写入 credentials；identity 中不保留明文 API Key / AK/SK */
+export function persistBoundApiKeys(apiKey, extraIdentity = {}, extraCredentials = {}) {
+  const key = String(apiKey || '').trim();
+  if (!key) throw new Error('Missing api_key / 缺少 api_key');
   const profile = getActiveProfile();
-  const savePath = writeCredentialsProfile(profile, ak, sk, extraCredentials);
+  const savePath = writeCredentialsProfile(profile, key, extraCredentials);
   const cur = readIdentity() || {};
   const next = { ...cur, ...extraIdentity, bound_at: Date.now(), updated_at: Date.now() };
-  delete next.access_key;
-  delete next.secret_key;
+  for (const k of LEGACY_CREDENTIAL_KEYS) delete next[k];
+  delete next.api_key;
+  delete next.apiKey;
   delete next.credential_id;
   delete next.account_id;
   delete next.credentialId;
   delete next.accountId;
   writeIdentity(next);
-  return { savePath, token: makeJwt(ak, sk) };
+  return { savePath, token: key };
 }
-
-export { makeJwt };
 
 function readHiddenLine(prompt) {
   function sanitizeChunk(chunk) {
@@ -429,7 +427,7 @@ function readHiddenLine(prompt) {
   });
 }
 
-/** 交互式录入 AK/SK → credentials（SK 在 TTY 下隐藏输入，支持粘贴） */
+/** 交互式录入 API Key → credentials（TTY 下隐藏输入，支持粘贴） */
 export async function promptInteractiveCredentialsFile() {
   if (!process.stdin.isTTY || !process.stderr.isTTY) {
     throw new CredentialsMissingError(
@@ -442,16 +440,9 @@ export async function promptInteractiveCredentialsFile() {
   console.error(`File / 文件: ${getCredentialsFilePath()}`);
   console.error('────────────────────────────────────────────────\n');
 
-  const rl1 = createInterface({ input: process.stdin, output: process.stderr });
-  const accessKey = await new Promise((r) => {
-    rl1.question('Access Key ID / 访问密钥 ID: ', (a) => r(a.trim()));
-  });
-  rl1.close();
-  if (!accessKey) throw new Error('Access Key required / 需要 Access Key');
-
-  const secretKey = await readHiddenLine('Secret Access Key / 秘密访问密钥（隐藏输入，可粘贴）: ');
-  if (!secretKey) throw new Error('Secret Key required / 需要 Secret Key');
-  const savePath = writeCredentialsProfile(getActiveProfile(), accessKey, secretKey);
+  const apiKey = await readHiddenLine('API Key / API 密钥（隐藏输入，可粘贴）: ');
+  if (!apiKey) throw new Error('API Key required / 需要 API Key');
+  const savePath = writeCredentialsProfile(getActiveProfile(), apiKey);
   console.error(`\n✓ Saved / 已保存（密钥未在日志中输出）: ${savePath}\n`);
-  return makeJwt(accessKey, secretKey);
+  return apiKey;
 }

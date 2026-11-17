@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users find grants, funding opportunities, subsidies, and charitable foundations relevant to a project or cause. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users find grants, funding opportunities, subsidies, and charitable foundations relevant to their project or cause.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users, nonprofits, individuals, and small organizations use this skill to identify potential grants, subsidies, foundation funding, and corporate social responsibility programs that match their project, location, organization type, and funding needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Grant opportunities, deadlines, and eligibility requirements may be incomplete, outdated, or inapplicable to the user's situation. <br>
-Mitigation: Verify eligibility, deadlines, application requirements, and award details directly with the funder before relying on results. <br>
-Risk: Grant searches can involve sensitive budgets, donor records, organizational plans, or personal information. <br>
-Mitigation: Share only the details needed to scope the search and avoid disclosing unnecessary confidential or personal information. <br>
+## Use Case:
 
+Nonprofits, individuals, and small organizations use this skill to identify potentially relevant grants, subsidies, foundation funding, and corporate social responsibility programs for a project, cause, location, organization type, and budget scale.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/grant-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text lists with funder details, eligibility checks, deadlines, application process, and application-writing tips.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Funding opportunities, deadlines, eligibility rules, and application requirements may be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify deadlines and eligibility with the official funder before applying.
+
+Risk: Project, location, organization, and budget details may be needed to match funding opportunities.
+
+Mitigation: Share only information needed for the search and avoid unnecessary sensitive details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/grant-finder)
+- [Publisher profile](https://clawhub.ai/user/jiwenbing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include funder names, grant purposes, typical amount ranges, application steps, deadlines, eligibility checks, and application tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

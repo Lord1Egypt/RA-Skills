@@ -12,6 +12,17 @@ A conversational OpenClaw skill for freelancers and consultants to track clients
 - **Dashboard** -- see all active work, upcoming deadlines, and revenue at a glance
 - **Proactive Nudges** -- flags overdue deliverables, unpaid invoices, and quiet clients
 
+## Privacy and Data Handling
+
+This tracker holds client contact details, notes about your conversations, and your business finances. Here's how it's handled:
+
+- **Local only.** Everything is saved in one file, `client-data.json`, in the skill's data directory. The skill makes no network calls. The file isn't encrypted, so anyone with access to the computer or its backups can read it.
+- **You're told before anything is saved.** The first time the tracker saves something, the assistant says what it keeps and where.
+- **Only what's needed.** Business contact details and short conversation summaries. It never saves payment card or bank numbers, passwords, tax IDs, or Social Security numbers.
+- **Careful about what it shows.** Lookups cover the client you asked about. Anything drafted for someone else leaves out revenue and internal notes unless you ask.
+- **Delete anytime.** Remove one client and everything linked to them, or clear the whole tracker.
+- **Only when you're tracking.** It activates when you're recording or looking up something in your tracker, not on general talk about clients or invoicing.
+
 ## Example Usage
 
 **Add a client:**

@@ -1,43 +1,63 @@
-## Description: <br>
-Uploads local files to Alibaba Cloud OSS and can generate temporary signed access URLs for stored objects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local files to Alibaba Cloud OSS and generates temporary signed access URLs using Aliyun OSS credentials supplied through environment variables.
 
-## Publisher: <br>
-[chengjiaxiongkf](https://clawhub.ai/user/chengjiaxiongkf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chengjiaxiongkf](https://clawhub.ai/user/chengjiaxiongkf)
 
-## Use Case: <br>
-Developers and engineers use this skill to upload selected local files to an Alibaba Cloud OSS bucket and share them through temporary signed URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload selected local files to an Aliyun OSS bucket. <br>
-Mitigation: Confirm each file is intended for upload before running the skill, and use a private bucket unless public access is explicitly required. <br>
-Risk: Broad or long-lived Aliyun credentials could expose more OSS access than the workflow needs. <br>
-Mitigation: Use dedicated least-privilege RAM credentials or temporary STS credentials scoped to the required bucket and actions. <br>
-Risk: Signed URLs can grant temporary access to uploaded objects. <br>
-Mitigation: Keep signed URL expirations short and share generated links only with intended recipients. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chengjiaxiongkf/aliyun-oss-upload) <br>
-- [Aliyun OSS Configuration Guide](references/config.md) <br>
-- [Alibaba Cloud OSS regions and endpoints](https://help.aliyun.com/document_detail/31837.html) <br>
+## Use Case:
 
+Developers and operators use this skill to upload selected local files to Alibaba Cloud Object Storage Service and return temporary signed URLs for controlled file sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Text] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return temporary signed OSS URLs; the default expiry is 3600 seconds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chosen local files are uploaded to Alibaba Cloud OSS.
+
+Mitigation: Use the skill only when OSS upload is intended, avoid sensitive files unless sharing is approved, and confirm the target bucket and object key before upload.
+
+Risk: OSS AccessKeys are required in environment variables.
+
+Mitigation: Use least-privileged AccessKeys, keep secrets out of prompts and logs, and rotate credentials according to the user's cloud security policy.
+
+Risk: Temporary signed URLs can expose uploaded objects for their validity period.
+
+Mitigation: Use private buckets, choose short expirations, and share signed URLs only with intended recipients.
+
+Risk: A misconfigured endpoint or bucket could send data to the wrong OSS location.
+
+Mitigation: Verify the HTTPS Aliyun OSS endpoint and bucket name before running upload or URL generation commands.
+
+## Reference(s):
+
+- [Aliyun OSS configuration guide](references/config.md)
+- [Aliyun OSS regions and endpoints](https://help.aliyun.com/document_detail/31837.html)
+- [Alibaba Cloud console](https://www.aliyun.com/)
+- [ClawHub skill page](https://clawhub.ai/chengjiaxiongkf/skills/aliyun-oss-upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and returned URL text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns temporary signed URLs; default expiry is 3600 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

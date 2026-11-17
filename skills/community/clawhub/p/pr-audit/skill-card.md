@@ -1,39 +1,54 @@
-## Description: <br>
-Use when the user wants a local review of a GitHub pull request based on its diff, risks, quality, performance, tests, and security implications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants a local review of a GitHub pull request based on its diff, risks, quality, performance, tests, and security implications.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and engineers use this skill to review GitHub pull request diffs for correctness, security-sensitive changes, performance concerns, test coverage, and actionable follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pull request diffs may contain sensitive code or accidental secrets. <br>
-Mitigation: Avoid sharing secrets in review prompts and use least-privileged GitHub access when fetching private pull requests. <br>
-Risk: Review findings may be incomplete or incorrect if the diff or repository context is missing. <br>
-Mitigation: Verify important findings against the actual diff, tests, and repository conventions before acting on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to review GitHub pull request diffs for correctness, conventions, performance, test coverage, and security-sensitive changes before merging.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown review with ordered findings, risk summary, and improvement suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to be grounded in the actual pull request diff and prioritized by risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pull request metadata and diffs may contain sensitive source code or business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sharing the PR metadata and diff with the reviewing agent before use.
+
+Risk: Review findings can be incomplete or incorrect if the available diff lacks enough repository context.
+
+Mitigation: Ground findings in the actual diff and have a human reviewer verify recommendations before applying changes.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/wimi321/skills/pr-audit)
+- [Provenance](references/provenance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown review]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritized findings, risk summary, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

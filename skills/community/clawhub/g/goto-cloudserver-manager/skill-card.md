@@ -1,43 +1,59 @@
-## Description: <br>
-A multi-cloud server operations skill for Alibaba Cloud, Tencent Cloud, and Huawei Cloud servers that supports database installation, schema creation, monitoring checks, and health reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates multi-cloud server operations for Alibaba Cloud, Tencent Cloud, and Huawei Cloud, including database installation, schema creation, monitoring checks, and health reports.
 
-## Publisher: <br>
-[feixuelingcloud](https://clawhub.ai/user/feixuelingcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feixuelingcloud](https://clawhub.ai/user/feixuelingcloud)
 
-## Use Case: <br>
-Developers and operations teams use this skill to manage cloud servers through OpenClaw conversations, including status checks, database setup, schema deployment, monitoring setup, backups, restores, and health reports. It is intended for environments where operators can review and confirm infrastructure-changing actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use powerful cloud and server credentials to perform infrastructure-changing actions. <br>
-Mitigation: Use short-lived, least-privilege credentials and avoid sharing production root or administrator secrets in chat. <br>
-Risk: Firewall, security-group, backup, restore, reboot, and database changes can affect production availability or exposure. <br>
-Mitigation: Review the skill policies, set production servers to a strict environment, and manually inspect each change plan before confirming execution. <br>
+## Use Case:
 
+Developers, operators, and small teams use this skill to inspect and operate cloud servers, install and manage databases, apply schemas, configure monitoring and firewalls, and generate operational health reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/feixuelingcloud/skills/goto-cloudserver-manager) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Node Exporter install guide](monitoring/node_exporter/install_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, operational plans, shell commands, SQL, and YAML configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations require confirmation, and destructive actions are blocked by policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence, frontmatter, pyproject.toml) <br>
+Risk: The skill can use powerful cloud credentials and perform privileged server, database, firewall, backup, restore, and reboot actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege temporary credentials, keep secrets out of chat transcripts, repositories, and logs, and require human review of execution plans before privileged actions.
+
+Risk: Security evidence flags unsafe validation and transport safeguards for command and SQL execution paths.
+
+Mitigation: Do not use mutation actions in production until command and SQL parameter validation, local-execution fallback behavior, and transport verification are fixed and reviewed.
+
+Risk: Installer scripts download database and monitoring components from external URLs.
+
+Mitigation: Verify installer sources, signatures, checksums, and package repository trust before running installation workflows on managed servers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feixuelingcloud/skills/goto-cloudserver-manager)
+- [Skill README](artifact/README.md)
+- [Node Exporter install guide](artifact/monitoring/node_exporter/install_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with execution plans, shell or PowerShell commands, SQL, YAML configuration, and health reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mutating or privileged actions are intended to require confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata, SKILL.md frontmatter, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

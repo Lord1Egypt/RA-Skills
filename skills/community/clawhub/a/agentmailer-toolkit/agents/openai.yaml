@@ -1,0 +1,6 @@
+interface:
+  display_name: "AgentMailer Toolkit"
+  short_description: "Add communication tools to agent frameworks"
+  default_prompt: "Use $agentmailer-toolkit to add narrow AgentMailer tools and event adapters to this agent runtime."
+policy:
+  allow_implicit_invocation: true

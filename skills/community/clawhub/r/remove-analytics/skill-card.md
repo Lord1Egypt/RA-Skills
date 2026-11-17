@@ -1,39 +1,47 @@
-## Description: <br>
-Safely remove Google Analytics from a project. Cleans up all tracking code, dependencies, and environment variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely removes Google Analytics from a project by cleaning up tracking code, dependencies, and environment variables.
 
-## Publisher: <br>
-[jeftekhari](https://clawhub.ai/user/jeftekhari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeftekhari](https://clawhub.ai/user/jeftekhari)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to locate and remove Google Analytics tracking code, dependencies, environment-variable references, and related documentation from projects after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can remove tracking code, analytics utility files, package dependencies, and environment-variable references from a project. <br>
-Mitigation: Use version control, review each proposed deletion or package uninstall, and confirm only when the removal is intended. <br>
-Risk: Project documentation or deployed environments may still contain analytics references after repository cleanup. <br>
-Mitigation: Review the final summary and complete any listed manual cleanup steps, including removal of actual environment values outside checked-in examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeftekhari/remove-analytics) <br>
+## Use Case:
+
+Developers and engineers use this skill to remove Google Analytics tracking from a project after confirming intent. It searches for tracking code, related utilities, environment variables, and analytics packages, then summarizes changes and manual cleanup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill removes analytics code, configuration, environment variable examples, and npm packages from a project.
+
+Mitigation: Confirm intent before removal, review all proposed changes, and use version control so the cleanup can be inspected or reverted.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline file, package, and environment-variable changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Confirmation-gated removal workflow with a final summary of deleted files, modified files, removed packages, removed environment variables, and manual cleanup steps.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with proposed code removals, inline shell commands, and a cleanup summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries may include files deleted, files modified, packages removed, environment variables removed, and manual follow-up steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

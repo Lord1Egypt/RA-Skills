@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn70j08280nh3fjk067z4n6r0182nb5m",
   "slug": "jetson-tools",
+  "name": "Jetson Tools",
   "version": "1.0.0",
-  "publishedAt": 1774017727507
+  "description": "NVIDIA Jetson 系统监控工具集"
 }

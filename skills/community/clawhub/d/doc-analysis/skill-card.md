@@ -1,43 +1,56 @@
-## Description: <br>
-Doc Analysis helps agents analyze Word .doc and .docx files with MinerU and return structured Markdown that preserves headings, paragraphs, tables, lists, and layout cues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Analysis helps agents analyze Word (.doc/.docx) documents with MinerU and return structured Markdown that preserves headings, paragraphs, tables, lists, and layout information.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Researchers, editors, quality assurance teams, and agent developers use this skill to inspect Word document structure, extract content, and preserve layout before processing, editing, or conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents or URLs processed by the skill may be sent to MinerU or the configured extraction backend. <br>
-Mitigation: Review the extraction service's data-handling terms and avoid confidential, regulated, or private documents until the processing path is approved. <br>
-Risk: The skill relies on a MinerU authentication token for full extraction. <br>
-Mitigation: Provide the token through the documented auth flow or environment variable and avoid committing, logging, or sharing token values. <br>
+## Use Case:
 
+Developers, researchers, editors, and quality-assurance teams use this skill to inspect the structure, layout, and content of Word documents before processing, editing, or conversion. It is suited for local files or URLs where structured Markdown output is needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzlzyca/doc-analysis) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU API Token Management](https://mineru.net/apiManage/token) <br>
-- [OpenDataLab MinerU Repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with CLI command examples and structured document extraction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN for full extraction; supports local Word files and URLs; document content is written to stdout or an output directory while progress messages go to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Document contents may be sent to an external MinerU/OpenDataLab service during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the documents are approved for processing with MinerU/OpenDataLab before use, and avoid submitting confidential, regulated, or private content unless that data handling is acceptable.
+
+Risk: Global CLI installation and broad token handling can increase exposure if the installed package or credential storage is not reviewed.
+
+Mitigation: Prefer pinned, reviewed CLI versions and least-privilege token handling for MINERU_TOKEN.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/doc-analysis)
+- [MinerU homepage](https://mineru.net)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured document Markdown output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mineru-open-api and, for full extraction, MINERU_TOKEN; document content may be processed by the MinerU/OpenDataLab service.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

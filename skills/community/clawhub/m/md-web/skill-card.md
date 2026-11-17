@@ -1,45 +1,62 @@
-## Description: <br>
-Render Markdown as a shareable browser page by uploading selected .md files to a user-configured S3-compatible bucket where Docsify serves the public page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes a Markdown file to an S3-compatible bucket and returns a public share link rendered by a Docsify viewer.
 
-## Publisher: <br>
-[rockbenben](https://clawhub.ai/user/rockbenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockbenben](https://clawhub.ai/user/rockbenben)
 
-## Use Case: <br>
-External users, developers, and documentation authors use this skill when they want an agent to publish selected Markdown as a public, shareable web page instead of returning long Markdown directly in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded Markdown is publicly accessible at the returned URL. <br>
-Mitigation: Use the skill only for content intended for public sharing, and avoid secrets, credentials, PII, confidential material, or untrusted Markdown. <br>
-Risk: S3-compatible storage credentials are stored in plaintext in ~/.md-web/config.json. <br>
-Mitigation: Protect the config file, avoid committing or sharing it, and restrict the storage token to the dedicated bucket where possible. <br>
-Risk: Setting expire_days to 0 can clear the bucket lifecycle configuration. <br>
-Mitigation: Use a dedicated bucket for this skill and review lifecycle settings before disabling automatic expiration. <br>
+## Use Case:
 
+Developers and users who need to share Markdown publicly use the skill to publish a document through their S3-compatible bucket and receive a share link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rockbenben/md-web) <br>
-- [Skill homepage](https://github.com/rockbenben/aishort-skills/tree/main/skills/md-web) <br>
-- [README.md](README.md) <br>
-- [Docsify server README](docsify-server/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown response with a filename and clickable URL, plus setup guidance or shell commands when configuration or upload execution is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes selected Markdown to a public S3-compatible bucket and returns a Docsify-rendered URL; falls back to direct chat text if upload fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: ClawScan reports a benign verdict with medium confidence, but coverage is incomplete at 46.7%, including partial inspection of upload.js.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shipped release before installation and start with bucket-scoped credentials in a dedicated bucket.
+
+Risk: Publishing makes the Markdown publicly accessible; viewer setup replaces shared bucket-root files, and optional expiry changes the bucket lifecycle policy.
+
+Mitigation: Screen documents for sensitive content and authorize setup or retention changes explicitly; use a dedicated bucket to limit impact.
+
+Risk: Credentials can be stored in plaintext in ~/.md-web/config.json.
+
+Mitigation: Use the environment variables for keys when practical, restrict local config permissions, and keep credentials out of shared output and version control.
+
+Risk: The viewer renders Markdown as HTML, and inline HTML can add page elements.
+
+Mitigation: Review unfamiliar markup before publishing and treat published pages as untrusted content.
+
+## Reference(s):
+
+- [Cloudflare R2 token permissions](https://developers.cloudflare.com/r2/api/tokens/#permissions)
+- [Amazon S3 lifecycle configuration API](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Public share URL, Configuration guidance]
+
+**Output Format:** [Text response with a public URL and concise Markdown guidance when setup or errors require it.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Publishes the supplied Markdown as a public document; viewer setup and optional retention changes are separate operations.]
+
+## Skill Version(s):
+
+1.3.12 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

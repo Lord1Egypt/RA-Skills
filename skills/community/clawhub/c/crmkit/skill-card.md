@@ -1,42 +1,55 @@
-## Description: <br>
-An agent-first CRM, built for an AI agent to operate over a plain-text HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An agent-first CRM, built for an AI agent to operate over a plain-text HTTP API.
 
-## Publisher: <br>
-[pdparchitect](https://clawhub.ai/user/pdparchitect) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pdparchitect](https://clawhub.ai/user/pdparchitect)
 
-## Use Case: <br>
-Agents use CRM Kit to manage CRM contacts, companies, deals, activities, workspaces, members, tokens, reminders, and audit records through a headless HTTP API or MCP connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses bearer-token access to CRM data, so exposed tokens could allow unauthorized access or modification. <br>
-Mitigation: Treat bearer tokens like passwords, avoid exposing them in chat logs or screenshots, review active tokens periodically, and revoke unused sessions. <br>
-Risk: The skill can create, update, or delete CRM and workspace records, including sensitive workspace actions. <br>
-Mitigation: Confirm destructive or privileged actions with the user and use the documented confirmation or step-up flows before proceeding. <br>
+## Use Case:
 
+Agents and CRM operators use this skill to authenticate with CRM Kit, query and update contacts, companies, deals, activities, workspaces, members, tokens, reminders, and audit logs through HTTP or MCP.
 
-## Reference(s): <br>
-- [CRM Kit ClawHub Release](https://clawhub.ai/pdparchitect/crmkit) <br>
-- [CRM Kit API](https://api.crmkit.ai) <br>
-- [CRM Kit MCP Endpoint](https://api.crmkit.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown operating manual with HTTP endpoint descriptions, request conventions, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API responses are plain text by default and JSON when requested with an Accept header or format parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill can give an agent broad read and write authority over CRM records in the selected workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted crmkit.ai workspaces, scope tokens to the intended workspace, confirm destructive or sensitive actions with the user, and review audit logs when available.
+
+Risk: The skill relies on bearer tokens that may be long-lived when used regularly.
+
+Mitigation: Store tokens only in a secure credential manager, avoid putting tokens in chat memory or transcripts, and review or revoke active tokens with the documented token endpoints.
+
+## Reference(s):
+
+- [CRM Kit ClawHub Page](https://clawhub.ai/pdparchitect/skills/crmkit)
+- [CRM Kit API Base URL](https://api.crmkit.ai)
+- [CRM Kit MCP Endpoint](https://api.crmkit.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown operating manual with HTTP endpoint examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses from the CRM service are plain text by default or JSON when requested.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

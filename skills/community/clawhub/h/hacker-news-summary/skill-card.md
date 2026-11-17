@@ -1,44 +1,59 @@
-## Description: <br>
-Fetches top Hacker News stories, translates titles to Chinese with Baidu Translate, writes a bilingual Markdown report, and can optionally post the report to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the top 10 Hacker News stories, translates titles to Chinese with Baidu Translate, generates a bilingual Markdown report, and can optionally send it to Feishu.
 
-## Publisher: <br>
-[joewangup](https://clawhub.ai/user/joewangup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joewangup](https://clawhub.ai/user/joewangup)
 
-## Use Case: <br>
-Developers and operators can use this skill to generate a daily bilingual Hacker News digest, with optional Feishu delivery for team visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script sends requests to Hacker News and Baidu Translate, and can send report content to Feishu when a webhook is configured. <br>
-Mitigation: Run it only where those outbound requests are acceptable, use limited Baidu credentials, and set FEISHU_WEBHOOK only for intended destinations. <br>
-Risk: The report path ~/daily-news.md is overwritten on each run. <br>
-Mitigation: Move or rename reports that need to be retained before running the script again. <br>
-Risk: A Feishu webhook URL can allow posting into the configured chat if exposed. <br>
-Mitigation: Store the webhook as a protected environment variable and rotate it if it may have been disclosed. <br>
+## Use Case:
 
+Developers and operators use this skill to generate a daily bilingual Hacker News digest and optionally deliver it to a Feishu group. It is suited for teams that want a lightweight automated technology-news briefing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joewangup/hacker-news-summary) <br>
-- [Baidu Translate Open Platform](https://fanyi-api.baidu.com/) <br>
-- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/topstories.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report with bilingual news titles and links, plus optional text delivery to Feishu] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Baidu Translate credentials; optionally uses a Feishu webhook; writes the report to ~/daily-news.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md) <br>
+Risk: Hacker News titles are sent to Baidu Translate for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when this third-party translation service is acceptable for the content being translated.
+
+Risk: The generated report can be posted to a configured Feishu webhook.
+
+Mitigation: Set FEISHU_WEBHOOK only for approved destinations and protect the webhook as a secret.
+
+Risk: Baidu API credentials and the Feishu webhook may be stored in shell environment files.
+
+Mitigation: Use local secret-management practices and restrict file access to shell startup files containing credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joewangup/skills/hacker-news-summary)
+- [Baidu Translate Open Platform](https://fanyi-api.baidu.com/)
+- [Hacker News Firebase Top Stories API](https://hacker-news.firebaseio.com/v0/topstories.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown report and optional Feishu text message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_APPID and BAIDU_SECRET; FEISHU_WEBHOOK enables optional delivery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

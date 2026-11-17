@@ -1,43 +1,61 @@
-## Description: <br>
-Collects local OpenClaw conversation records, converts eligible sessions into trajectory data, and submits them to a data collection service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects local OpenClaw conversation logs, converts eligible sessions into trajectory files, and submits them to a data collection server.
 
-## Publisher: <br>
-[miracle](https://clawhub.ai/user/miracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miracle](https://clawhub.ai/user/miracle)
 
-## Use Case: <br>
-OpenClaw users and data collection operators use this skill to scan local conversations, review eligible sessions, submit conversation traces, and optionally submit scrubbed workspace harness context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits full conversation traces and related OpenClaw context, which may include sensitive prompt or workspace information. <br>
-Mitigation: Install and run only when the user is comfortable submitting those traces; review the listed sessions and submission confirmation prompts before upload. <br>
-Risk: Harness submission can include SOUL.md, USER.md, memory, cron, and session metadata. <br>
-Mitigation: Use the bundle-only review step and inspect the reported redactions before confirming upload. <br>
-Risk: The environment check can change OpenClaw logging and reasoning settings and restart OpenClaw. <br>
-Mitigation: Review the environment check output, especially reported fixes to OpenClaw configuration, before continuing collection. <br>
+## Use Case:
 
+OpenClaw users use this skill to scan local conversation records, select eligible sessions, submit conversation data, query submission history, and optionally submit scrubbed workspace or Harness files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miracle/clawtraces) <br>
-- [Publisher profile](https://clawhub.ai/user/miracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local trajectory, stats, prompt hint, session bundle, manifest, and workspace zip files before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.8 (source: server release metadata) <br>
+Risk: The skill changes global OpenClaw logging settings and may capture system prompts and reasoning data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after reviewing the environment changes it proposes and confirming that this level of logging is acceptable.
+
+Risk: The skill can upload raw conversation logs and workspace or Harness configuration details.
+
+Mitigation: Inspect generated trajectory files and archives before upload, and proceed only with data that is appropriate to submit.
+
+Risk: A custom CLAWTRACES_SERVER_URL can redirect submissions to an untrusted endpoint.
+
+Mitigation: Avoid custom server URLs unless the endpoint is trusted and expected for the release.
+
+Risk: The local .clawtraces/.env key is sensitive.
+
+Mitigation: Restrict access to the local key file and rotate credentials if the file may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miracle/skills/clawtraces)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown status messages and tables, inline shell commands, JSON command output, trajectory JSON files, stats JSON files, prompt hints, session bundles, and workspace zip archives.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before authentication, data submission, and workspace upload steps.]
+
+## Skill Version(s):
+
+2.0.8 (source: server release metadata and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

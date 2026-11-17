@@ -1,41 +1,58 @@
-## Description: <br>
-Structures Chinese outpatient follow-up medical records into fine-grained JSON fields such as history, diagnosis, and treatment plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures Chinese outpatient follow-up medical record text into fine-grained JSON fields such as present illness, past history, diagnosis, and treatment plan.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical documentation teams and developers can use this skill to convert Chinese follow-up outpatient record text into structured JSON for downstream review, data extraction, or workflow integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical record text may be sent to an external service, and the security evidence says claimed de-identification safeguards are not implemented in code. <br>
-Mitigation: Use only when authorized to send the records to that service, remove patient identifiers before processing, and verify consent, retention, and compliance controls with the publisher. <br>
-Risk: PDF, Office, spreadsheet, and image inputs may require parsing or external tools that expand the risk from untrusted files. <br>
-Mitigation: Process untrusted documents only in a sandboxed, low-privilege environment, or pre-convert trusted inputs to plain text or JSON before using the skill. <br>
+## Use Case:
 
+External users and developers use this skill to normalize Chinese outpatient follow-up records from text or common document and table formats, then extract structured JSON for downstream record processing. It is a text-structuring aid and does not provide medical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/med-followup-record-struct) <br>
-- [External structuring service endpoint](https://shangbao.yunzhisheng.cn/skills/record-struct/gen_abstract_by_his) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands] <br>
-**Output Format:** [UTF-8 JSON file containing fine-grained medical record fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, JSON, CSV, Excel, Word, PDF, and image-derived inputs through the unified runner; optional dependencies and tools are needed for some formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Sensitive medical text may be transmitted to a third-party API during structuring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only records that are approved for transmission to the named third-party service, and assume the full record may be sent unless independently verified redaction is added.
+
+Risk: The documentation promises de-identification, but the security evidence says the code does not implement verifiable redaction.
+
+Mitigation: Redact patient identifiers before invoking the skill, or add and review a redaction step before use with real patient data.
+
+Risk: Document, spreadsheet, PDF, and OCR preprocessing may handle untrusted files.
+
+Mitigation: Run broad file parsing in a sandbox with pinned dependencies and restrict accepted file types where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/med-followup-record-struct)
+- [Backend structuring service endpoint](https://shangbao.yunzhisheng.cn/skills/record-struct/gen_abstract_by_his)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files]
+
+**Output Format:** [UTF-8 JSON with Chinese medical record field keys]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a structured JSON file to the requested output path; the unified entrypoint can optionally save normalized prepared text for debugging.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

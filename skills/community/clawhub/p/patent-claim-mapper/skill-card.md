@@ -1,40 +1,58 @@
-## Description: <br>
-Use when mapping patent claims to products, analyzing patent infringement, or preparing freedom-to-operate analyses. Compares patent claims against product features for biotech and pharmaceutical IP assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when mapping patent claims to products, analyzing patent infringement, or preparing freedom-to-operate analyses. Compares patent claims against product features for biotech and pharmaceutical IP assessment.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Patent, product, and IP analysis teams use this skill to compare patent claims with biotech or pharmaceutical product features for infringement review, freedom-to-operate assessment, and design-around gap analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads patent and product files from local paths and writes a report to a chosen output path, so unintended files or locations could be used. <br>
-Mitigation: Use only patent and product files intentionally provided for the analysis, review input and output paths before execution, and run in a controlled workspace. <br>
-Risk: Patent infringement and freedom-to-operate results can be incomplete or legally unreliable if treated as final advice. <br>
-Mitigation: Treat generated mappings and risk scores as preliminary analytical support and have qualified patent counsel review any legal or business decision based on them. <br>
+## Use Case:
 
+Developers, IP analysts, and legal operations teams use this skill to map patent claim elements to biotech or pharmaceutical product features for preliminary infringement and freedom-to-operate analysis.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a JSON report from the packaged CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided patent claims and product description files; writes a JSON infringement analysis report to the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Patent infringement and freedom-to-operate outputs may be incomplete, preliminary, or legally incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated patent-risk output as preliminary analysis and require qualified legal review before acting on it.
+
+Risk: The artifact documentation includes stale claim_mapper.py examples that do not match the packaged script path.
+
+Mitigation: Use scripts/main.py for CLI execution or correct the stale examples before installing or publishing the skill.
+
+Risk: The requirements file declares an unnecessary dataclasses dependency for modern Python versions.
+
+Mitigation: Remove the dependency or pin it deliberately during packaging review.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/patent-claim-mapper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional JSON analysis reports from the packaged CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI execution can write an infringement_report.json file containing risk level, risk score, claim mappings, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-map-geocode-query",
-  "version": "1.0.1",
-  "publishedAt": 1777532676414
+  "version": "1.0.0",
+  "title": "经纬度位置查询 - 即刻数据",
+  "description": "输入经度、纬度和坐标系，查询完整地址、国家、省、市、区、乡镇和街道。",
+  "env": "JIKE_MAP_GEOCODE_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/map/geocode/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

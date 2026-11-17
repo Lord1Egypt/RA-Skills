@@ -1,38 +1,54 @@
-## Description: <br>
-高价值目标任务猎头使用猎头筛选人才的方法论管理个人任务，通过量化分析任务价值、资源消耗与互斥关系，帮助用户评估并动态优化任务优先级。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高价值目标任务猎头。使用猎头筛选人才的方法论管理个人任务，通过量化分析任务价值、资源消耗与互斥关系，科学评估和动态优化任务优先级。
 
-## Publisher: <br>
-[spaceack](https://clawhub.ai/user/spaceack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spaceack](https://clawhub.ai/user/spaceack)
 
-## Use Case: <br>
-External users and agents use this skill to create, update, rank, pause, resume, and complete personal tasks in Chinese using command triggers such as 挖坑 and 填坑. It supports prioritization based on expected value, success probability, time, energy cost, urgency, and conflict checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task names, deadlines, notes, tags, and progress history are stored locally as plaintext JSON. <br>
-Mitigation: Avoid entering secrets or highly sensitive plans, and protect or delete the task file when the history is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to create, prioritize, update, pause, resume, complete, and review personal tasks using a value, effort, probability, urgency, and conflict model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spaceack/high-value-task-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown task summaries with JSON task records and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task data as local plaintext JSON under ~/.openclaw/workspace/memory/tasks/tasks.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: Task descriptions, schedules, and progress notes may contain sensitive personal or work information stored in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or highly sensitive details, and review local task files before sharing or backing up the workspace.
+
+Risk: Chinese command phrases and generated task recommendations may be misunderstood by users who do not read Chinese.
+
+Mitigation: Use this skill only when the operator is comfortable with the Chinese command interface and reviews task changes before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spaceack/skills/high-value-task-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/spaceack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with command examples and JSON task records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores task data in a local JSON file under the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

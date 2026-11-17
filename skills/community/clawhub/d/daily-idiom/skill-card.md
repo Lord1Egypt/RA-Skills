@@ -1,39 +1,54 @@
-## Description: <br>
-Daily Chinese idiom (成语) — origin story, meaning, usage examples, and memory tip. Build Chinese vocabulary and cultural knowledge one 成语 per day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Chinese idiom (chengyu) learning with origin stories, meanings, usage examples, memory tips, and review quizzes.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External Chinese learners and culture enthusiasts use this skill to receive a daily Chinese idiom or proverb with story context, meaning, examples, memory help, and review questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enabling push delivery creates scheduled morning and evening jobs and stores per-user push preferences locally. <br>
-Mitigation: Enable pushes only for user IDs and external channels you control, and use the documented off command to remove scheduled delivery when no longer wanted. <br>
+## Use Case:
 
+External Chinese learners, culture enthusiasts, and Mandarin practice users use this skill to receive a daily idiom lesson with story, meaning, modern usage, examples, and an evening quiz.
 
-## Reference(s): <br>
-- [Daily Idiom ClawHub Page](https://clawhub.ai/jiajiaoy/daily-idiom) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text with optional shell command examples and scheduled-push configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bilingual idiom lessons, usage examples, quiz prompts, and optional scheduled push setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Scheduled notifications could send learning content to an unintended user ID or external channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable push notifications only for user IDs and channels you control, and verify the selected channel before scheduling.
+
+Risk: Opt-in scheduled messages may continue after the user no longer wants daily idiom reminders.
+
+Mitigation: Use the documented off command to remove scheduled notifications when reminders are no longer desired.
+
+## Reference(s):
+
+- [Daily Idiom ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/daily-idiom)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text lesson content with optional shell command examples for push notification management.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces daily morning lesson prompts, evening review quiz prompts, and opt-in notification management output.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

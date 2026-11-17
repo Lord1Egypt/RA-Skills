@@ -1,40 +1,52 @@
-## Description: <br>
-Production-grade bash watchdog for the OpenClaw gateway that runs via launchd every 5 minutes and uses boot grace, retry backoff, port checks, stale PID detection, and restart cooldowns to avoid restart loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade bash watchdog for the OpenClaw gateway that runs via launchd every 5 minutes and uses boot grace, progressive retry with backoff, port checks, stale PID detection, and restart cooldowns to keep the gateway available.
 
-## Publisher: <br>
-[BryanTegomoh](https://clawhub.ai/user/BryanTegomoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bryantegomoh](https://clawhub.ai/user/bryantegomoh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to install or run a macOS watchdog that monitors a local OpenClaw gateway and restarts the launchd service after conservative health checks fail.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill installs a user-level background job that checks the OpenClaw gateway every 5 minutes and may restart it automatically.
+
+Mitigation: Install it only when persistent monitoring and automatic restarts are desired, verify the LaunchAgent script path, and know how to unload the LaunchAgent before loading it.
+
+Risk: The cooldown state uses a shared /tmp path, which evidence flags as an unsafe temporary-file pattern.
+
+Mitigation: Move the cooldown file to a private directory such as ~/.openclaw/run before deployment and protect that directory with user-only permissions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to install or run a macOS watchdog that monitors the local OpenClaw gateway and restarts it when health checks, retries, and cooldown checks indicate it is stale or unavailable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The watchdog is a persistent macOS background task that can restart the local OpenClaw gateway. <br>
-Mitigation: Install it only when that behavior is intended, verify the script path before loading the plist, keep an unload or removal command available, and monitor ~/.openclaw/logs/watchdog.log for unexpected restarts. <br>
-Risk: An incorrect launchd label, port, or local environment could cause failed checks or unnecessary restart attempts. <br>
-Mitigation: Confirm the gateway runs under ai.openclaw.gateway on macOS, that curl and lsof are available, and that the gateway listens on 127.0.0.1:18789 before scheduling the watchdog. <br>
+**Output Format:** [Markdown setup guidance with XML and bash code blocks, plus a bash watchdog script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BryanTegomoh/gateway-watchdog-v2) <br>
+**Other Properties Related to Output:** [Designed for macOS launchd; writes operational logs to ~/.openclaw/logs/watchdog.log.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and launchd plist configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance and a bash watchdog script for macOS launchd.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

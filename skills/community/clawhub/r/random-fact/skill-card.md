@@ -1,38 +1,53 @@
-## Description: <br>
-Provides a random interesting fact about science, history, or everyday life from a preloaded trivia list without external data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a random interesting fact about science, history, or everyday life from a preloaded trivia list without external data sources.
 
-## Publisher: <br>
-[hahg199](https://clawhub.ai/user/hahg199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hahg199](https://clawhub.ai/user/hahg199)
 
-## Use Case: <br>
-People use this skill for lightweight trivia interactions where an agent should answer with one general random fact. It is suited to casual entertainment or simple conversational variety rather than sourced factual research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The prewritten trivia facts may be inaccurate, outdated, or oversimplified. <br>
-Mitigation: Review and update the fixed fact list before use in contexts where factual accuracy matters. <br>
+## Use Case:
 
+People using an agent for casual trivia can ask for a general random fact and receive one concise sentence from the skill's preloaded fact list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hahg199/random-fact) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Single-sentence plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external calls; facts are selected from a fixed built-in list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may answer broad prompts such as "surprise me" with a random fact when the user intended a different kind of response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in casual trivia contexts and clarify ambiguous or topic-specific requests before providing a fact.
+
+Risk: The skill's facts are hardcoded and are not checked against an external source at response time.
+
+Mitigation: Treat responses as lightweight trivia and verify facts separately before using them in educational, published, or decision-making contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hahg199/skills/random-fact)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text sentence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects one random fact from a hardcoded list and avoids external data or API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

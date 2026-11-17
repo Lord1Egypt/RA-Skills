@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn716knk173nsbh2ak5hcrg5zd80kty8",
-  "slug": "tokenbroker",
-  "version": "1.0.2",
-  "publishedAt": 1770810656080
+  "name": "TokenBroker",
+  "version": "1.0.0",
+  "description": "Automated token launch preparation and deployment for nad.fun on Monad.",
+  "author": "TokenBrokerTeam",
+  "license": "MIT",
+  "tags": ["monad", "nadfun", "token", "launch", "marketing"]
 }

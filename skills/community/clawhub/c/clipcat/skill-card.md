@@ -1,44 +1,64 @@
-## Description: <br>
-Clipcat is a TikTok e-commerce video creation skill for video search, product insights, viral replication, product-to-video generation, breakdown analysis, and video download through the Clipcat CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clipcat helps agents use the Clipcat CLI for TikTok e-commerce video search, product insights, viral video replication, product-to-video generation, video analysis, and video download workflows.
 
-## Publisher: <br>
-[a2888409](https://clawhub.ai/user/a2888409) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a2888409](https://clawhub.ai/user/a2888409)
 
-## Use Case: <br>
-Developers, operators, and e-commerce marketers use this skill to operate the Clipcat CLI for TikTok Shop research, AI video and image generation, viral-video replication, breakdown analysis, downloads, and async task tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Clipcat service availability and supported marketplace region flags. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a2888409/skills/clipcat) <br>
-- [Clipcat homepage](https://clipcat.ai) <br>
-- [Clipcat API key settings](https://clipcat.ai/workspace?modal=settings&tab=apikeys) <br>
-- [Clipcat CLI macOS Apple Silicon installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_darwin_arm64.tar.gz) <br>
-- [Clipcat CLI macOS Intel installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_darwin_amd64.tar.gz) <br>
-- [Clipcat CLI Linux x86_64 installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_linux_amd64.tar.gz) <br>
-- [Clipcat CLI Linux arm64 installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_linux_arm64.tar.gz) <br>
-- [Clipcat CLI Windows x86_64 installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_windows_amd64.zip) <br>
+External developers, creators, and commerce teams use this skill to direct agents through Clipcat CLI workflows for TikTok Shop research, product video generation, viral video replication, and asynchronous task tracking.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON-oriented command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLIPCAT_API_KEY. Commands may consume Clipcat credits and may return task IDs, generated media links, or signed output URLs that should be treated as sensitive access links.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill installs a third-party native Clipcat CLI without pinned checksums or signature verification.
+
+Mitigation: Install only when the Clipcat distribution channel is trusted, and request or verify pinned checksums or signatures for platform archives before deployment.
+
+Risk: The Clipcat CLI uses a Clipcat API key and may process local media paths or remote asset URLs supplied by the user.
+
+Mitigation: Use a scoped API key where available, avoid sharing unnecessary local media, and review commands before exposing sensitive file paths or assets.
+
+Risk: Some video generation commands consume paid credits.
+
+Mitigation: Run `clipcat quote` with the same parameters, show the returned total cost, get explicit user approval, and submit with `--expected-credits`.
+
+## Reference(s):
+
+- [Clipcat Skill Page](https://clawhub.ai/a2888409/skills/clipcat)
+- [Clipcat Homepage](https://clipcat.ai)
+- [Clipcat API Key Settings](https://clipcat.ai/workspace?modal=settings&tab=apikeys)
+- [Clipcat CLI macOS Apple Silicon archive](https://static.clipcat.ai/public/cli/v1.0.24/clipcat_darwin_arm64.tar.gz)
+- [Clipcat CLI macOS Intel archive](https://static.clipcat.ai/public/cli/v1.0.24/clipcat_darwin_amd64.tar.gz)
+- [Clipcat CLI Linux x86_64 archive](https://static.clipcat.ai/public/cli/v1.0.24/clipcat_linux_amd64.tar.gz)
+- [Clipcat CLI Linux arm64 archive](https://static.clipcat.ai/public/cli/v1.0.24/clipcat_linux_arm64.tar.gz)
+- [Clipcat CLI Windows x86_64 archive](https://static.clipcat.ai/public/cli/v1.0.24/clipcat_windows_amd64.zip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI JSON output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLIPCAT_API_KEY and the Clipcat CLI; paid video commands should be quoted and explicitly confirmed before submission.]
+
+## Skill Version(s):
+
+1.0.24 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

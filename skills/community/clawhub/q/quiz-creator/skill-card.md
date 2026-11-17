@@ -1,37 +1,52 @@
-## Description: <br>
-Generate quizzes and assessments from any topic or content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate quizzes and assessments from any topic or content with varied difficulty levels, multiple question formats, answers, and detailed explanations.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Educators, trainers, developers, and other users can use this skill to turn topics, documents, or learning materials into structured quizzes and assessments. It is suited for generating multiple choice, true/false, fill-in-the-blank, short answer, and matching questions with answer keys and explanations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill description is broad enough that an agent might invoke it for general question-generation requests where a quiz was not explicitly intended.
+
+Mitigation: Confirm that the user wants an assessment or quiz-style output before applying the full quiz structure.
+
+Risk: Generated quiz answers and explanations can be inaccurate or ambiguous if the source material is incomplete or unclear.
+
+Mitigation: Review the questions, answer key, and explanations against the source material before using the quiz for assessment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn topics, documents, or learning materials into quizzes with varied question formats, difficulty levels, answer keys, and explanations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, JSON, Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generic requests to generate questions may route into the quiz workflow even when the user intended a different kind of question list. <br>
-Mitigation: Review generated outputs against the user's intent and clarify the request when the desired output is not a quiz or assessment. <br>
+**Output Format:** [Markdown by default, with optional JSON or plain text quiz output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes quiz title, description, target audience level, estimated completion time, question count, difficulty labels, correct answers, explanations, answer key, and optional scoring guide.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown by default; JSON or plain text when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes quiz title, description, question difficulty, question type, correct answers, explanations, answer key, and optional scoring guide.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

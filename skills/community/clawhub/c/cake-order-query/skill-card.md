@@ -1,41 +1,56 @@
-## Description: <br>
-通过订单号调用蛋糕订单查询 API，返回对应的蛋糕商品名称或接口错误消息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up cake product names by order number using an internal order API and returns the product name or API message.
 
-## Publisher: <br>
-[echojiandong](https://clawhub.ai/user/echojiandong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[echojiandong](https://clawhub.ai/user/echojiandong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill when a user asks to check a cake order or provides an order number and needs the corresponding cake product name.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unauthenticated order lookup can expose order-product information when numeric order IDs are guessable.
+
+Mitigation: Use only in controlled test environments, or require authentication, authorization, rate limits, and non-enumerable identifiers before production use.
+
+Risk: Raw API error messages may expose internal details or provide poor user-facing feedback.
+
+Mitigation: Normalize error responses and avoid exposing raw backend messages to users.
+
+Risk: Users may request lookups outside the intended merchant or order domain.
+
+Mitigation: Require users to identify the specific merchant/order domain and verify they are allowed to access the order before lookup.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and service agents use this skill to look up cake order details when a user provides a valid order number or asks for cake order lookup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, API Calls]
 
-## Known Risks and Mitigations: <br>
-Risk: Order numbers are sent to the disclosed cake order API. <br>
-Mitigation: Use the skill only with the intended cake order system and provide only the specific order number needed for the lookup. <br>
-Risk: Ambiguous order requests could cause the agent to query the wrong order. <br>
-Mitigation: Ask for clarification before sending any API request when the user has not provided a clear numeric order number. <br>
+**Output Format:** [Plain text response with a cake product name or an error message]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/echojiandong/cake-order-query) <br>
-- [Cake order lookup API](https://trade.dangaoss.cn/cake_api/ck_orders) <br>
+**Other Properties Related to Output:** [Requires a numeric order ID and depends on the order lookup API being available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text response with the matched cake product name or the API error message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a specific numeric order number before the agent sends a lookup request.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

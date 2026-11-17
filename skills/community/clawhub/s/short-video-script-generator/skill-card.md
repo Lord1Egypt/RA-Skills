@@ -1,46 +1,61 @@
-## Description: <br>
-Generates Chinese short-video scripts for multiple platforms, including hooks, shot outlines, voiceover copy, subtitle text, background music suggestions, calls to action, and script management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI短视频脚本生成工具，支持多平台、多时长，自动生成hook、镜头、文案、BGM、CTA完整方案，支持脚本管理。
 
-## Publisher: <br>
-[baolige2023](https://clawhub.ai/user/baolige2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baolige2023](https://clawhub.ai/user/baolige2023)
 
-## Use Case: <br>
-External creators and social media operators use this skill to generate platform-specific short-video scripts from a topic, target platform, and duration. It is intended for drafting Chinese video content with structured creative elements and exportable script text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds live-looking service keys and may expose third-party billing or AI service credentials. <br>
-Mitigation: Rotate or remove embedded keys and configure credentials outside the distributed artifact before use. <br>
-Risk: Billing can be triggered through broad automatic request handling rather than only an explicit generation action. <br>
-Mitigation: Require clear user confirmation before charging and review the billing behavior before installation. <br>
-Risk: Generated topics and prompts are processed by a third-party AI service. <br>
-Mitigation: Use only after accepting third-party AI processing and avoid submitting sensitive or confidential prompts. <br>
-Risk: Script history storage and retention are not clearly documented. <br>
-Mitigation: Document where generated script history is stored, how long it is retained, and how users can delete it. <br>
-Risk: The application is configured for public binding and debug operation. <br>
-Mitigation: Disable debug mode and avoid public network binding for normal deployments. <br>
+## Use Case:
 
+External short-video creators use this skill to generate Chinese-language scripts for platforms such as Douyin, Kuaishou, WeChat Channels, Xiaohongshu, YouTube Shorts, and TikTok. The skill drafts a hook, shot plan, voiceover, subtitles, background music suggestion, and CTA for 15, 30, or 60 second videos, with local script history and export support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baolige2023/short-video-script-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured script content with optional Markdown or text export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include hook text, shot descriptions, voiceover copy, subtitle text, background music suggestions, and CTA guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review says the skill ships exposed provider credentials and unsafe payment/session controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate provider keys, load secrets from a managed secret store or environment, and require server-side payment verification before every billable generation.
+
+Risk: The security review says the web app should not be run as-is with real users or real billing.
+
+Mitigation: Disable debug mode, bind privately or use production deployment controls, and complete a security review before handling real users or payments.
+
+Risk: Prompts are sent to SiliconFlow for script generation.
+
+Mitigation: Disclose the external AI provider to users before generation and avoid submitting sensitive or confidential topics.
+
+Risk: The security guidance calls for safe DOM rendering.
+
+Mitigation: Render generated script fields with safe text handling or sanitization before displaying AI-produced content in the browser.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baolige2023/skills/short-video-script-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Chinese script content returned as JSON, rendered in a web UI, and exportable as Markdown/text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hook, shot descriptions, voiceover, subtitles, BGM suggestion, CTA, platform, duration, and local history records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

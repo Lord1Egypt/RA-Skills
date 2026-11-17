@@ -1,42 +1,54 @@
-## Description: <br>
-Instruction-only PII detector and redactor for AI outputs that screens for emails, phone numbers, national IDs, payment data, crypto wallet addresses, IP addresses, and document identifiers within the agent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and redacts common personally identifiable information in AI outputs through an instruction-only checklist or an optional paid MCP scan.
 
-## Publisher: <br>
-[daririnch](https://clawhub.ai/user/daririnch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daririnch](https://clawhub.ai/user/daririnch)
 
-## Use Case: <br>
-Developers, privacy reviewers, and compliance-focused agent users use this skill as a local checkpoint to detect and redact potential personal data before AI output is delivered, logged, or passed downstream. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PII screening may miss sensitive data or over-flag benign content. <br>
-Mitigation: Use the results as a review aid rather than proof of legal compliance or complete detection. <br>
-Risk: Scanning real sensitive data may expose it to the agent environment's retention or logging controls. <br>
-Mitigation: Avoid pasting unnecessary sensitive data and confirm the agent environment's privacy and logging settings before use. <br>
+## Use Case:
 
+Developers, data teams, and AI operators use this skill as a privacy checkpoint before sending, logging, or storing model output that may contain personal data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daririnch/dcl-sentinel-trace) <br>
-- [Fronesis Labs privacy policy](https://fronesislabs.com/#privacy) <br>
-- [DCL Security Suite](https://hub.fronesislabs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with a JSON-style detection report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports a COMMIT or NO_COMMIT verdict, detected categories, redacted samples, severity, counts, and categories checked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The optional paid live MCP mode sends the text being scanned to Fronesis Labs and may incur x402/USDC charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the free instruction-only checklist for offline review, or opt into live mode only after reviewing the server-returned tool terms and price at call time.
+
+Risk: Checklist-style PII detection can miss context-specific identifiers or produce false positives.
+
+Mitigation: Treat the skill as a privacy review aid and keep human review or domain-specific checks in place for regulated or high-impact data flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daririnch/skills/dcl-sentinel-trace)
+- [DCL Trust Oracle MCP endpoint](https://mcp.fronesislabs.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and code examples when live MCP use is configured]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include redacted samples, verdicts, finding categories, and audit references when the optional live scan is used.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

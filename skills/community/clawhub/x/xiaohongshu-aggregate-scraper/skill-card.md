@@ -1,51 +1,65 @@
-## Description: <br>
-小红书全场景数据查询助手，支持 App 和 Web 多版本 API，覆盖笔记详情、用户数据、搜索、商品、评论和话题等查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书全场景数据查询助手，支持 App 和 Web 多版本 API，用于查询笔记详情、用户数据、搜索结果、商品、评论和话题数据。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External users, marketers, brand teams, analysts, and developers use this skill to query Xiaohongshu notes, users, searches, products, comments, and topics through MaxHub APIs. It supports content research, KOL screening, brand monitoring, and consumer trend analysis with concise Markdown summaries and tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a MaxHub API key and may use Xiaohongshu cookies or tokens for some endpoints. <br>
-Mitigation: Use scoped or dedicated test credentials where possible, avoid personal browser cookies, keep secrets out of prompts and logs, and rotate or revoke credentials after use. <br>
-Risk: Requests and supplied credentials are sent to the third-party MaxHub service at aconfig.cn. <br>
-Mitigation: Install only if the user or organization trusts MaxHub/aconfig.cn for the intended data, credentials, and account context. <br>
-Risk: Security evidence flags under-scoped scraping/session helpers and an unexpected Douyin fallback path. <br>
-Mitigation: Review the skill before deployment and remove or disable fallback or session-helper behavior if a strictly Xiaohongshu-only, read-only assistant is required. <br>
-Risk: The skill produces third-party data analysis that may be incomplete, delayed, or unsuitable as the sole source for high-impact decisions. <br>
-Mitigation: Treat returned data as reference material and verify important business, compliance, or partnership decisions against authoritative sources. <br>
+## Use Case:
 
+External users, marketing teams, product teams, and developers use this skill to collect and analyze Xiaohongshu notes, comments, user profiles, products, topics, KOL candidates, and consumer-trend signals through MaxHub APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/xiaohongshu-aggregate-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/new-ironman) <br>
-- [MaxHub API service](https://www.aconfig.cn) <br>
-- [Note API reference](artifact/references/api-note.md) <br>
-- [User API reference](artifact/references/api-user.md) <br>
-- [Search API reference](artifact/references/api-search.md) <br>
-- [Product and topic API reference](artifact/references/api-product-topic.md) <br>
-- [Parameter mappings](artifact/references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with concise text, tables, links, and optional curl or environment-variable setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAXHUB_API_KEY and curl; some endpoints may require Xiaohongshu cookies or tokens supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release evidence, target metadata, and artifact frontmatter) <br>
+Risk: Some Xiaohongshu endpoints can send sensitive session cookies or proxy credentials to a third-party API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts and credentials appropriate for MaxHub/aconfig.cn, prefer test accounts when possible, and rotate or revoke cookies and proxy credentials after use.
+
+Risk: The security scan verdict is suspicious because the skill depends on a third-party data API and credential-bearing requests.
+
+Mitigation: Install only after reviewing the provider trust boundary, required MAXHUB_API_KEY, and network access to https://www.aconfig.cn.
+
+Risk: Mutable installer commands can change what is installed over time.
+
+Mitigation: Prefer a pinned or otherwise verified installer before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/new-ironman/skills/xiaohongshu-aggregate-scraper)
+- [MaxHub API Website](https://www.aconfig.cn)
+- [README](README.md)
+- [Chinese README](README_CN.md)
+- [Note Data API](references/api-note.md)
+- [User Data API](references/api-user.md)
+- [Search API](references/api-search.md)
+- [Product & Topic API](references/api-product-topic.md)
+- [Parameter Mappings](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese or English responses, with API keys omitted from output.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

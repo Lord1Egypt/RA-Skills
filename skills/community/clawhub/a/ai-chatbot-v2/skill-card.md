@@ -1,42 +1,53 @@
-## Description: <br>
-AI Chatbot Service provides a local customer-service chatbot with FAQ replies, intent recognition, sentiment handling, multi-turn chat, FAQ management, and basic handoff prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language customer service helper that provides FAQ replies, intent recognition, sentiment handling, and multi-turn chat commands.
 
-## Publisher: <br>
-[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto)
 
-## Use Case: <br>
-External support teams, operators, and developers can use this skill to answer common customer-service questions, classify support intent, detect negative sentiment, manage a lightweight FAQ, and produce scripted responses for commerce or internal helpdesk scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the chatbot's handoff text as a completed real-world complaint escalation. <br>
-Mitigation: Use it only where a separate human escalation workflow exists, and make operators confirm that escalation outside the chatbot. <br>
-Risk: Recent conversation snippets can appear in statistics output during a shared session. <br>
-Mitigation: Avoid entering sensitive customer details and clear conversation history before sharing session output. <br>
-Risk: FAQ and policy responses are local canned content and may not match a real organization's current customer-service policies. <br>
-Mitigation: Review and replace the bundled FAQ content before deployment in a live support workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windy-001-crypto/ai-chatbot-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/windy-001-crypto) <br>
+## Use Case:
 
+Support teams, operators, and developers can use this skill to run a local Chinese-language FAQ assistant for ecommerce, internal FAQ, technical support, and basic consultation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style chatbot responses, command help, FAQ listings, statistics, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are generated locally from in-memory FAQ, intent, sentiment, and conversation-history state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recent chat snippets may be displayed by the stats command within the same runtime.
+
+Mitigation: Avoid entering unnecessary personal, order, payment, or contact details, and use the clear command when finished in shared environments.
+
+Risk: FAQ answers are local, predefined responses and may be incomplete or unsuitable for a specific business policy.
+
+Mitigation: Review and customize the knowledge base before customer-facing use, and route complaints or uncertain cases to a human support process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/windy-001-crypto/skills/ai-chatbot-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/windy-001-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Plain text and Markdown-like command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output may include FAQ answers, intent-oriented guidance, knowledge-base listings, statistics, and session-local recent chat snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

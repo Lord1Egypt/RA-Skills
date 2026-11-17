@@ -1,0 +1,7 @@
+{
+  "name": "lister",
+  "version": "1.1.0",
+  "description": "Natural language task management with MyLister.dev",
+  "main": "dist/index.js",
+  "commands": ["add", "get", "list", "mark", "remove", "update", "move", "note", "comment", "reminder", "project", "priority", "export", "email", "send", "attachment", "upload", "health", "version", "set", "environment", "env", "staging", "production", "api", "key"]
+}

@@ -1,45 +1,58 @@
-## Description: <br>
-Shared .md interchange library for OpenClaw skills - atomic writes, deterministic serialization, YAML frontmatter, advisory locking, and schema validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared .md interchange library for OpenClaw skills - atomic writes, deterministic serialization, YAML frontmatter, advisory locking, and schema validation.
 
-## Publisher: <br>
-[frank-bot07](https://clawhub.ai/user/frank-bot07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[frank-bot07](https://clawhub.ai/user/frank-bot07)
 
-## Use Case: <br>
-Developers and agent builders use this library to read, write, validate, index, and reconcile Markdown interchange files shared across OpenClaw skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local file writes and arbitrary file paths can affect files outside the intended interchange workspace. <br>
-Mitigation: Set INTERCHANGE_ROOT to a dedicated directory, avoid untrusted file paths, and run the skill with least filesystem privilege. <br>
-Risk: Advisory locking and stale-lock handling may be unsuitable for sensitive or high-concurrency workflows. <br>
-Mitigation: Avoid high-concurrency production use until locking and path containment are reviewed or patched. <br>
-Risk: The security verdict is suspicious because the file-write and locking design needs review before use. <br>
-Mitigation: Audit the source and apply local patches before installing in workflows that handle important or sensitive data. <br>
+## Use Case:
 
+Developers and skill authors use this library to read, write, validate, lock, index, and reconcile Markdown interchange files shared between OpenClaw skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frank-bot07/openclaw-interchange) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Security review](artifact/CODEX_REVIEW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, JavaScript API results, and validation metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local filesystem I/O; callers can set INTERCHANGE_ROOT to isolate interchange files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: Public file APIs accept raw paths and may affect files outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted callers, constrain interchange paths to a dedicated workspace, and avoid passing user-supplied paths directly.
+
+Risk: The library is a foundational file-writing dependency for other OpenClaw skills.
+
+Mitigation: Review and test integrations before deployment, especially write, locking, indexing, and validation workflows.
+
+Risk: Dependencies were flagged for update by the server security guidance.
+
+Mitigation: Update flagged dependencies and rerun security and regression checks before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frank-bot07/skills/openclaw-interchange)
+- [Publisher profile](https://clawhub.ai/user/frank-bot07)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Configuration]
+
+**Output Format:** [JavaScript library APIs that produce and consume Markdown files with YAML frontmatter]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include deterministic Markdown serialization, content hashes, generation IDs, indexes, and validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -13,6 +13,8 @@ from .base import (
     StyleEntry,
     DimenEntry,
     TextStyleEntry,
+    SemanticLabel,
+    SCANNER_VERSION,
 )
 
 # Android scanner:
@@ -23,11 +25,15 @@ from .android_drawables import DrawableShapeEntry
 from .ios_scanner import IOSScanner
 from .ios_detector import IOSDetector
 
+# Flutter scanner:
+from .flutter_scanner import FlutterScanner
+from .flutter_detector import FlutterDetector
+
 # Registry of all known platform detectors and their scanners
 PLATFORM_REGISTRY: list[tuple[PlatformDetector, type[ProjectScanner]]] = [
     (AndroidDetector(), AndroidScanner),
     (IOSDetector(), IOSScanner),
-    # Future: (FlutterDetector(), FlutterScanner),
+    (FlutterDetector(), FlutterScanner),
 ]
 
 __all__ = [
@@ -43,6 +49,8 @@ __all__ = [
     "StyleEntry",
     "DimenEntry",
     "TextStyleEntry",
+    "SemanticLabel",
+    "SCANNER_VERSION",
     # Android
     "AndroidDetector",
     "AndroidScanner",
@@ -50,6 +58,9 @@ __all__ = [
     # iOS
     "IOSDetector",
     "IOSScanner",
+    # Flutter
+    "FlutterDetector",
+    "FlutterScanner",
     # Registry
     "PLATFORM_REGISTRY",
 ]

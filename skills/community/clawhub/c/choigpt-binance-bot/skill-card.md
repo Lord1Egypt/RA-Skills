@@ -1,42 +1,57 @@
-## Description: <br>
-Automates Binance futures trading with Sweepzone V1 market scanning, dynamic risk management, backtesting, dashboard monitoring, and Telegram notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Binance futures trading with the Sweepzone V1 strategy, real-time market scanning, risk management, and Telegram notifications.
 
-## Publisher: <br>
-[alexchoi21](https://clawhub.ai/user/alexchoi21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexchoi21](https://clawhub.ai/user/alexchoi21)
 
-## Use Case: <br>
-Developers and trading operators use this skill to run or evaluate a Binance futures trading bot that scans markets, backtests a strategy, places automated trades, and sends Telegram status and profit updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated live trading can place leveraged Binance futures orders and may cause financial loss. <br>
-Mitigation: Audit the bot before use, start with testnet or dry-run mode, use restricted no-withdrawal Binance API keys, and add explicit confirmations or hard exposure limits before live trading. <br>
-Risk: Account, trade, or position context may be sent to Google Gemini or Telegram. <br>
-Mitigation: Decide whether those services are acceptable for the deployment, minimize shared details, and keep all API tokens in managed secrets. <br>
-Risk: Hardcoded Google key material or paths can expose credentials. <br>
-Mitigation: Remove hardcoded key material and require Gemini credentials to come from environment or secret-management configuration. <br>
+## Use Case:
 
+Developers and trading operators use this skill to configure, run, and monitor a Binance Futures trading bot for live trading, backtesting, market scanning, dashboard monitoring, and Telegram-based status reporting.
 
-## Reference(s): <br>
-- [ChoiGPT Binance Trading Bot on ClawHub](https://clawhub.ai/alexchoi21/choigpt-binance-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples and generated trading or status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Binance Futures, Google Gemini, and Telegram APIs when configured; may create logs, charts, and local data files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact manifest) <br>
+Risk: The skill can operate as a real Binance Futures auto-trading bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted, IP-limited Binance API keys without withdrawal permission and verify testnet or dry-run behavior before any live run.
+
+Risk: Telegram access control may expose trading controls or account information.
+
+Mitigation: Require an explicit Telegram chat allowlist before enabling Telegram commands or notifications.
+
+Risk: Account balances, positions, chat history, and trade performance may be sent to Google Gemini.
+
+Mitigation: Rotate or remove the embedded Gemini key and disable or review AI context sharing before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexchoi21/skills/choigpt-binance-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell commands with textual trading status, signals, reports, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate live trading, backtesting, market scanning, dashboard monitoring, and Telegram notifications when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

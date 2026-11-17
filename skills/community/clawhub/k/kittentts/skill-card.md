@@ -1,39 +1,54 @@
-## Description: <br>
-Generate local TTS audio with KittenTTS using selectable voices and model sizes for quality or speed tradeoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate local text-to-speech audio using the KittenTTS model with selectable voices and multiple model sizes.
 
-## Publisher: <br>
-[fredguile](https://clawhub.ai/user/fredguile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredguile](https://clawhub.ai/user/fredguile)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local KittenTTS speech generation with voice and model-size choices, including OpenClaw workflows that send generated audio through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated speech audio may leave the local machine when the OpenClaw Telegram integration is used. <br>
-Mitigation: Use the skill only with non-confidential text unless the Telegram account, chat destination, and configuration have been reviewed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate local TTS audio files with KittenTTS and selectable voices, including workflows where OpenClaw sends generated audio through Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fredguile/kittentts) <br>
-- [KittenTTS package release](https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide WAV audio generation with selectable voices and model sizes; Telegram delivery may transmit generated audio outside the local machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing a remote wheel and dependencies without verification can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment, verify the KittenTTS release source, and pin dependency versions and hashes where practical.
+
+Risk: Text converted to speech through the Telegram integration may be transmitted externally.
+
+Mitigation: Avoid processing sensitive text through Telegram unless external audio transmission is intended and approved.
+
+## Reference(s):
+
+- [ClawHub Kittentts skill page](https://clawhub.ai/fredguile/skills/kittentts)
+- [KittenTTS 0.8.1 release wheel](https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, audio files]
+
+**Output Format:** [Markdown with bash and Python code blocks; generated WAV audio when the commands are executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice and model size are configurable; Telegram delivery depends on the OpenClaw integration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

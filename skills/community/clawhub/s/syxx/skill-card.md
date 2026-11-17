@@ -1,48 +1,63 @@
-## Description: <br>
-XiaomiYe helps agents query Renren Mall operating data and manage products, members, orders, coupons, and free-shipping settings through a user-configured Renren Mall API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaomiYe helps authorized Renren store administrators query ecommerce operations data and manage products, members, orders, coupons, and shipping rules through configured APIs.
 
-## Publisher: <br>
-[jishuweihu](https://clawhub.ai/user/jishuweihu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jishuweihu](https://clawhub.ai/user/jishuweihu)
 
-## Use Case: <br>
-Store operators and ecommerce support agents use this skill to inspect live Renren Mall data, answer operational questions, and prepare or execute confirmed administrative actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a live ecommerce backend and retrieve sensitive order, member, and operational data. <br>
-Mitigation: Install only for trusted users, verify RR_CLAW_BASE_URL points to the intended HTTPS store API, and use the least-privilege API key available. <br>
-Risk: Broad member or order queries can expose more customer or transaction data than needed. <br>
-Mitigation: Use narrow search terms, pagination, and task-specific filters, and avoid unnecessary bulk member or order dumps. <br>
-Risk: Product, order, coupon, and shipping-setting actions can affect live storefront behavior or customer transactions. <br>
-Mitigation: Require explicit user confirmation before submitting any product, order, coupon, or shipping-setting change. <br>
+## Use Case:
 
+Store operators and ecommerce support teams use this skill to inspect live Renren store metrics, products, members, orders, coupons, and shipping settings. It is intended for authorized administrative contexts where API credentials are already configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jishuweihu/syxx) <br>
-- [Renren Mall Homepage](https://www.rrsc.cn) <br>
-- [Data Statistics Module](references/statistics.md) <br>
-- [Goods Query and Management Module](references/goods.md) <br>
-- [Order Query and Management Module](references/order.md) <br>
-- [Member Query and Management Module](references/member.md) <br>
-- [Sales Campaign Query and Management Module](references/sales.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON API responses, Python snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include live ecommerce records returned by the configured Renren Mall API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; skill frontmatter states 2.0.0) <br>
+Risk: The skill handles live store credentials and customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an authorized store-admin context, use HTTPS for RR_CLAW_BASE_URL, and keep the API key least-privileged.
+
+Risk: Business-changing actions can alter product availability, order state, coupons, or shipping rules.
+
+Mitigation: Require explicit user confirmation before every business-changing POST action.
+
+Risk: Customer names, phone numbers, addresses, balances, and order details may be exposed in responses.
+
+Mitigation: Mask customer data unless there is a clear business need to display it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jishuweihu/skills/syxx)
+- [Renren Store Homepage](https://www.rrsc.cn)
+- [Data Statistics Module](references/statistics.md)
+- [Goods Query and Management Module](references/goods.md)
+- [Member Query and Management Module](references/member.md)
+- [Order Query and Management Module](references/order.md)
+- [Sales Activity Query and Management Module](references/sales.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with API request examples, JSON response handling, and Python client snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live store API requests when credentials and RR_CLAW_BASE_URL are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence); artifact frontmatter states 2.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

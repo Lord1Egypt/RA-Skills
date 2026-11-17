@@ -1,44 +1,59 @@
-## Description: <br>
-Trades Polymarket coffee markets using three compounding seasonal edges: Brazil frost window mispricing, harvest cycle awareness, and ENSO phase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket coffee markets using Brazil frost-window timing, harvest-cycle awareness, and ENSO phase as seasonal conviction signals.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to run a configurable Polymarket coffee-market trading agent that searches for coffee-related markets, applies seasonal conviction sizing, and defaults to paper trading unless live mode is explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades using the configured account. <br>
-Mitigation: Start in paper mode, enable live mode only intentionally, and use a dedicated low-balance API key or account. <br>
-Risk: The trading edge is speculative and may not perform as described. <br>
-Mitigation: Review max position and max open position settings before live use and treat seasonal signals as assumptions to validate, not guarantees. <br>
-Risk: SIMMER_API_KEY grants trading authority. <br>
-Mitigation: Store the key as a secret, limit its balance and permissions where possible, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and trading-automation users use this skill to scan coffee-related Polymarket markets, compute seasonal YES/NO trade conviction, and run paper trades by default or live trades when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-coffee-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with trade decisions, skip reasons, and configuration-driven behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and uses tunable limits for maximum position size, spread, minimum volume, days to resolution, open positions, thresholds, minimum trade size, and ENSO phase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live mode can place real USDC trades while documented safeguards may not reliably enforce all advertised limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode unless live trading is explicitly intended; for live use, apply a tightly limited API key and verify position, portfolio, volume, and spread limits before deployment.
+
+Risk: A high-value SIMMER_API_KEY is required for trading authority.
+
+Mitigation: Store the key as a secret, scope or cap it where possible, rotate it regularly, and avoid exposing it in logs or skill artifacts.
+
+Risk: The ENSO phase is manually configured and can become stale, affecting trade conviction.
+
+Mitigation: Review SIMMER_ENSO_PHASE before live operation and update it from a trusted climate outlook source on the cadence required by the strategy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-coffee-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Console logs and agent guidance with trade side, size, mode, and reasoning]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paper trading is the default; live trading requires the --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

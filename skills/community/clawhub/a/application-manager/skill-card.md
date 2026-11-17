@@ -1,42 +1,57 @@
-## Description: <br>
-Manage a shared Windows application registry and control which agents may run registered apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a shared Windows application registry and control which agents may run registered apps.
 
-## Publisher: <br>
-[gregtysick](https://clawhub.ai/user/gregtysick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gregtysick](https://clawhub.ai/user/gregtysick)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a shared Windows application registry, configure per-agent launch policy, validate registry entries, and launch or stop registered applications through controlled registry lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored launch paths determine what future app-launch requests execute. <br>
-Mitigation: Review every launch path before saving it and protect the registry file because future launches depend on its contents. <br>
-Risk: Sensitive applications could be launched by unintended agents if policy settings are too broad. <br>
-Mitigation: Use allowlist or off mode for sensitive apps and confirm policy changes before writing them. <br>
-Risk: Malformed or incomplete registry entries can cause failed launches or unreliable stop behavior. <br>
-Mitigation: Run registry validation, keep runtime executable and process-name metadata when known, and avoid guessing repairs without approval. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a shared Windows application registry, update app launch policy, validate registry entries, and launch or stop registered applications through an agent-controlled workflow.
 
-## Reference(s): <br>
-- [Application Manager on ClawHub](https://clawhub.ai/gregtysick/application-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with text menus, JSON registry examples, and Windows shell command shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manages a human-readable JSON registry at ~/.openclaw/registries/application_registry.json and prompts for confirmation before registry changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Shared app launch policies can be mutated by the skill workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where registry writers are trusted, require explicit confirmation for registry changes, and add an administrator policy for registry mutations.
+
+Risk: Registered launch paths can start local Windows applications.
+
+Mitigation: Review and validate launch paths before use, prefer stronger path validation, and avoid ambiguous shell launch forms where possible.
+
+Risk: The skill can stop running applications when process metadata is stored.
+
+Mitigation: Use explicit stop confirmation and store precise process metadata to reduce accidental termination.
+
+## Reference(s):
+
+- [Application Manager ClawHub Page](https://clawhub.ai/gregtysick/skills/application-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with JSON registry examples and Windows shell command shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a human-readable JSON registry at ~/.openclaw/registries/application_registry.json and may propose Windows launch or stop commands for registered applications.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-HPC/AI job status query skill that fetches job status information by jobId from a specific API endpoint and parses the jobState field from the JSON response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries HPC/AI job status by jobId from a configured API endpoint and returns the jobState from the JSON response.
 
-## Publisher: <br>
-[bylikai](https://clawhub.ai/user/bylikai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bylikai](https://clawhub.ai/user/bylikai)
 
-## Use Case: <br>
-Developers, operators, and HPC/AI users can query a numeric job ID to check whether a computing job is pending, running, completed, failed, cancelled, or timed out. The skill is useful for monitoring job progress and returning status details from the configured job-status API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends job IDs to www.aicnic.cn over plain HTTP and may display detailed job metadata. <br>
-Mitigation: Use only when job IDs and returned metadata are safe to expose; avoid confidential workloads unless this exposure is acceptable. <br>
-Risk: The installer can install an unpinned dependency and replace an existing local skill directory. <br>
-Mitigation: Review the installer before running it and install in a controlled environment with dependency and backup expectations confirmed. <br>
+## Use Case:
 
+Developers, operators, and HPC/AI users use this skill to check the current status of submitted jobs and monitor whether jobs are pending, running, completed, failed, or otherwise blocked.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bylikai/job-status) <br>
-- [Job status API endpoint](http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28) <br>
-- [README](artifact/README.md) <br>
-- [Usage examples](artifact/examples/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON response or concise text/table status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success, jobId, status, message, timestamp, and optional job metadata or error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Job IDs and detailed job metadata are sent and received over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an HTTPS endpoint or a trusted private network path before using the skill with confidential workloads.
+
+Risk: The executable scripts do not enforce the numeric jobId validation described in metadata.
+
+Mitigation: Add jobId validation in the Python and Bash entry points before constructing or sending requests.
+
+Risk: Returned details can include operational metadata such as user IDs, commands, working directories, resource usage, and exit status.
+
+Mitigation: Limit use to job IDs and environments where those returned details are acceptable to expose to the agent and its logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bylikai/skills/job-status)
+- [Publisher profile](https://clawhub.ai/user/bylikai)
+- [Configured job status API endpoint](http://www.aicnic.cn/jobs/api/jobs/infos/hpcai28)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or concise text/table job-status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include returned job metadata such as status, timestamps, HPC ID, resource fields, command, workDir, and exit status when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

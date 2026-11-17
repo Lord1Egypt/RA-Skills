@@ -1,40 +1,53 @@
-## Description: <br>
-Korean Side Hustle Generator helps users create Korea-focused side-hustle ideas and execution plans based on available time, skills, budget, and income goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates practical Korean side-hustle ideas and execution plans tailored to available time, skills, budget, and monthly income goals.
 
-## Publisher: <br>
-[jochoonhwan](https://clawhub.ai/user/jochoonhwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jochoonhwan](https://clawhub.ai/user/jochoonhwan)
 
-## Use Case: <br>
-External users use this skill to brainstorm practical side-hustle options for the South Korean market. The skill produces concrete options, start-up steps, expected income ranges, revenue models, and cautions tailored to the user's time, skills, budget, and income target. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-South Korea <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated earnings estimates or business recommendations may be inaccurate or unsuitable for a user's circumstances. <br>
-Mitigation: Treat outputs as brainstorming guidance and independently verify platform rules, taxes, legal requirements, and realistic earnings before spending money or committing significant time. <br>
-Risk: Users may share unnecessary sensitive personal or financial details while seeking tailored side-hustle ideas. <br>
-Mitigation: Avoid sharing sensitive personal details; use broad ranges for availability, budget, skills, and income goals. <br>
+## Use Case:
 
+External users use this skill to get 3-5 concrete side-hustle options for the Korean market, including needed skills, startup steps, revenue model, estimated income, time investment, costs, and cautions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jochoonhwan/korean-side-hustle-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured side-hustle options, execution steps, revenue models, expected income ranges, and cautions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed as brainstorming guidance rather than financial, legal, or tax advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Side-hustle, income, legal, tax, and platform guidance may be incomplete or inaccurate for a user's specific situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated plans as starting points and independently verify legal, tax, platform, and income claims before acting.
+
+Risk: The artifact contains mixed-language wording, which may reduce output precision when Korean-only advice is required.
+
+Mitigation: Review generated recommendations for language consistency and ask for Korean-only wording when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jochoonhwan/skills/korean-side-hustle-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured side-hustle recommendations with expected income, required skills, startup steps, revenue model, time investment, costs, and cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

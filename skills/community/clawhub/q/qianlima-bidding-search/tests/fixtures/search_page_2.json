@@ -1,0 +1,22 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 3,
+    "pageCount": 2,
+    "list": [
+      {
+        "id": 103,
+        "title": "北京学校实验室设备采购中标通知",
+        "purchasingUnit": "北京市示范学校",
+        "areaName": "北京市-北京市-海淀区",
+        "infoType": "结果-中标通知",
+        "budgetAmount": "1500000.00",
+        "biddingAmount": "1380000.00",
+        "winningBidderUnit": "北京中标服务有限公司",
+        "publishTime": "2026-04-12",
+        "url": "https://www.qianlima.com/bid-103.html"
+      }
+    ]
+  }
+}

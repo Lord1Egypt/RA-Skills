@@ -1,42 +1,59 @@
-## Description: <br>
-Image Gen helps OpenClaw agents generate or edit images from text prompts or reference images through a configured Nano-banana-compatible image API, compressing large results and saving them to the workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Gen helps an agent generate or edit images from text prompts or reference images using the Nano-banana API, compress large outputs, and save results to the workspace image directory.
 
-## Publisher: <br>
-[zweien](https://clawhub.ai/user/zweien) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zweien](https://clawhub.ai/user/zweien)
 
-## Use Case: <br>
-Developers and external OpenClaw users use this skill to generate images from prompts or edit images from user-provided references, then save the generated image files for follow-up use or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images may be sent to the configured image API provider. <br>
-Mitigation: Avoid private, regulated, copyrighted, or confidential inputs unless the provider account and data-handling terms permit that use. <br>
-Risk: A misconfigured API base URL could send generation requests or uploaded image data to an unintended provider. <br>
-Mitigation: Verify IMAGE_API_BASE_URL and account credentials before use. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to add text-to-image and image-to-image generation workflows that save generated images, preserve originals, and compress large files for sharing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zweien/image-gen-skill) <br>
-- [Nano-banana API](https://api.imyaigc.top) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved with timestamped filenames; images over 1 MB may be compressed while originals are retained.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The shell script sources a local .env file, so unsafe contents could execute in the user's shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, restrict .env permissions, inspect configuration before running, and prefer safer config parsing before deployment.
+
+Risk: Prompts, reference images, and generated image URLs are sent to and retrieved from the configured external image API.
+
+Mitigation: Do not use private, regulated, or sensitive images unless the API provider is trusted for that data, and require HTTPS endpoints.
+
+Risk: The script trusts downloaded image URLs and writes output paths provided at runtime.
+
+Mitigation: Constrain outputs to the workspace image directory and verify downloaded files are valid images before sharing or further processing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zweien/skills/image-gen-skill)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Nano-banana API](https://api.imyaigc.top)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Text]
+
+**Output Format:** [Generated or edited image files with textual status messages and configuration-driven shell/API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are timestamped; originals may be retained and files larger than 1MB are compressed when possible.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

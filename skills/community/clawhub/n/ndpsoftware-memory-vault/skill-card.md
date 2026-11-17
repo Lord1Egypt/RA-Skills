@@ -1,44 +1,50 @@
-## Description: <br>
-Enables autonomous agents to store, retrieve, and recall long-term, durable memory fragments and state across independent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables autonomous agents to store, retrieve, and recall long-term, durable memory fragments and state across independent sessions.
 
-## Publisher: <br>
-[ndp](https://clawhub.ai/user/ndp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ndp](https://clawhub.ai/user/ndp)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect autonomous agents to a persistent cloud memory service for durable notes, logs, preferences, project context, task state, vector fragments, and cross-session recall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent memory, logs, preferences, project context, and task state are sent to and retained by a remote service. <br>
-Mitigation: Install only when the publisher is trusted, use a service-specific bearer token, and confirm review and deletion controls before relying on stored memory. <br>
-Risk: Sensitive secrets or regulated personal data could be persisted in long-term memory. <br>
-Mitigation: Avoid storing secrets, credentials, regulated personal data, or confidential material in memory fragments or logs. <br>
-Risk: Retrieved memory may be stale, incomplete, or inappropriate for the current task. <br>
-Mitigation: Review recalled notes and state before using them to guide agent actions. <br>
+## Use Case:
 
+Developers and agent operators use Memory Vault to persist durable notes, compact summaries, preferences, and execution state so autonomous agents can recall context across independent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ndp/ndpsoftware-memory-vault) <br>
-- [Publisher profile](https://clawhub.ai/user/ndp) <br>
-- [Memory Vault endpoint](https://memory-vault.ndpsoftware.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with endpoint and bearer-token configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote memory storage and recall may retain notes, logs, preferences, project context, and task state outside the active agent session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Agent memory is stored in the provider's cloud service and may contain sensitive context if users send it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after reviewing the provider's retention, deletion, and access-control practices; do not store credentials, tokens, regulated data, private prompts, or sensitive project material unless approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ndp/skills/ndpsoftware-memory-vault)
+- [Memory Vault service endpoint](https://memory-vault.ndpsoftware.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown guidance with endpoint and authentication configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports persistent cloud memory for logs, vector fragments, notes, preferences, summaries, and state recall.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

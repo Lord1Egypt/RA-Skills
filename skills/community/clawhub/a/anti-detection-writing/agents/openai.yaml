@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anti-Detection Writing"
+  short_description: "Polish AI prose and measure detector-score changes"
+  default_prompt: "Use $anti-detection-writing to make this text smoother and easier to read while preserving its meaning, then measure detector-score changes if requested."

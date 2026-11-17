@@ -1,40 +1,54 @@
-## Description: <br>
-Automatically compresses images above Telegram's 10 MB limit by resizing width, adjusting quality, and preserving the original file with a new compressed copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically compresses oversized images on macOS with configurable width, quality, and size thresholds, and can optionally send compressed files through WeChat or Telegram.
 
-## Publisher: <br>
-[yeholdon](https://clawhub.ai/user/yeholdon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeholdon](https://clawhub.ai/user/yeholdon)
 
-## Use Case: <br>
-Developers and agents use this skill on macOS to reduce large image files before sending them through messaging workflows such as Telegram or WeChat. It is useful when preserving the original image while creating a smaller platform-compatible copy matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Send helpers can immediately upload a user-selected image to Telegram or WeChat. <br>
-Mitigation: Use the compression-only script for local resizing, and verify the image path, recipient, account, and destination before running any send helper. <br>
-Risk: The WeChat helper calls a hard-coded local WeChat script that is outside this artifact. <br>
-Mitigation: Avoid the WeChat helper unless the local script has been inspected and trusted on the executing machine. <br>
+## Use Case:
 
+Developers and agent users use this skill to compress local PNG, JPEG, or GIF images before sharing them through messaging services or other size-limited channels. It is intended for macOS environments where the built-in `sips` tool is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yeholdon/image-compression) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local image paths for compressed files and may invoke send helpers when the user chooses a messaging workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Helper scripts can send selected local images to WeChat or Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the compression-only script unless the destination has been verified, and confirm the chat or contact target before running send helpers.
+
+Risk: Certain input images can be overwritten, especially files already named with `_compressed`.
+
+Mitigation: Use a backup or disposable copy for important images and check the output path before running compression.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yeholdon/skills/image-compression)
+- [Publisher profile](https://clawhub.ai/user/yeholdon)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text, Files, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands, plain-text script output, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates compressed images with a `_compressed` suffix when input files exceed the configured size threshold; helper scripts can send the resulting image to WeChat or Telegram.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

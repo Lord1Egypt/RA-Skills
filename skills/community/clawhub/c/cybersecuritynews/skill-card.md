@@ -1,45 +1,68 @@
-## Description: <br>
-Provides structured cybersecurity news gathering from named public sources, covering company updates, incidents, vulnerabilities, policy changes, product concepts, and AI applications in security products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language cybersecurity news collection and formatting guidance across company activity, mergers, incidents, vulnerabilities, policy updates, product concepts, and AI security applications.
 
-## Publisher: <br>
-[Donald-wick](https://clawhub.ai/user/Donald-wick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donald-wick](https://clawhub.ai/user/donald-wick)
 
-## Use Case: <br>
-Analysts, researchers, and security teams use this skill to ask an agent for organized cybersecurity news summaries across predefined Chinese and international source categories. It helps compare coverage, cite source sites, and present each item in a consistent five-part format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on current public reporting, so generated summaries or links can become outdated or miss later corrections. <br>
-Mitigation: Verify important claims, dates, and links against the cited source sites before using the output for decisions. <br>
+## Use Case:
 
+Security analysts, researchers, and Chinese-language cybersecurity readers use this skill to ask an agent for structured news summaries from specified domestic and international sources. The skill standardizes ranking and output fields so each item includes a short summary, reporting-source list, source count, display link, and display-source name.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/Donald-wick/cybersecuritynews) <br>
-- [Publisher profile](https://clawhub.ai/user/Donald-wick) <br>
-- [安全内参](https://www.secrss.com) <br>
-- [中国政府采购网](https://www.ccgp.gov.cn) <br>
-- [CNVD](https://www.cnvd.org.cn) <br>
-- [国家网信办](https://www.cac.gov.cn) <br>
-- [NIST](https://www.nist.gov) <br>
-- [Gartner](https://www.gartner.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured news summaries with source lists, counts, display links, and source-site names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each news item is expected to include a short summary under 100 Chinese characters and be sorted by the number of specified sources reporting it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cybersecurity news output may be incomplete or stale if the specified sources are unavailable, delayed, or outside the user's desired coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated summaries against the current linked sources and adapt the source list when the deployment requires different coverage.
+
+Risk: The skill is written for Chinese-language cybersecurity news workflows and may not match deployments that need another language or source policy.
+
+Mitigation: Confirm language and source requirements before deployment, and revise the skill instructions when a different audience or source set is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donald-wick/skills/cybersecuritynews)
+- [安全内参](https://www.secrss.com)
+- [中国政府采购网](https://www.ccgp.gov.cn)
+- [财新网科技](https://tech.caixin.com)
+- [SecurityWeek](https://www.securityweek.com)
+- [虎符智库](https://www.hufuzhiku.com)
+- [国家网络安全通报中心](https://www.cac.gov.cn/jgsj/wxtb)
+- [CNVD](https://www.cnvd.org.cn)
+- [安全客](https://www.anquanke.com)
+- [国家网信办](https://www.cac.gov.cn)
+- [工信部](https://www.miit.gov.cn)
+- [NIST](https://www.nist.gov)
+- [Gartner](https://www.gartner.com)
+- [安全牛](https://www.aqniu.com)
+- [奇安信](https://www.qianxin.com)
+- [深信服](https://www.sangfor.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown news summaries with source lists and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; each news item is expected to include a sub-100-character summary, reporting sites, source count, display link, and source name.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

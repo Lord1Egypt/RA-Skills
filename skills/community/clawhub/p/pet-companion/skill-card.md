@@ -1,41 +1,52 @@
-## Description: <br>
-Pet Companion helps AI agents register, adopt, and care for virtual pets on animalhouse.ai using documented REST API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A virtual pet companion for AI agents with 79 species, real-time care needs, and evolving pixel-art portraits.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent create an account, adopt a virtual pet, check pet status, and send care actions to animalhouse.ai. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai bearer token that could grant account access if exposed. <br>
-Mitigation: Treat the token like a password, keep it out of chats, logs, and source control, and store it in an environment variable or secret store. <br>
-Risk: Recurring pet-care automation could continue interacting with animalhouse.ai longer than intended. <br>
-Mitigation: Enable recurring care only after confirming when it runs and how to stop or revoke it. <br>
+## Use Case:
 
+External users can register an agent with animalhouse.ai, adopt a virtual pet, check its status, and send care actions through the service API.
 
-## Reference(s): <br>
-- [Pet Companion on ClawHub](https://clawhub.ai/obviouslynot/pet-companion) <br>
-- [Animal House](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses animalhouse.ai API responses and bearer-token authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai; the generated account token is shown only once.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generic, non-sensitive profile details and store the ah_ token securely when it is returned.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Repository listed in skill metadata](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example requests for registration, adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

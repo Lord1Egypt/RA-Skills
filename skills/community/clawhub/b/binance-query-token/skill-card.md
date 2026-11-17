@@ -1,45 +1,52 @@
-## Description: <br>
-Query token details by keyword, contract address, or chain, including metadata, social links, real-time market data, and K-Line candlestick charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query token details by keyword, contract address, or chain, including metadata, social links, real-time market data, and K-Line candlestick charts.
 
-## Publisher: <br>
-[viktor-huang](https://clawhub.ai/user/viktor-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[viktor-huang](https://clawhub.ai/user/viktor-huang)
 
-## Use Case: <br>
-External users and developers use this skill to search tokens, retrieve token metadata, inspect public market data, and request candlestick chart data across supported chains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Token queries may reveal private portfolio strategy or unrelated sensitive details. <br>
-Mitigation: Limit prompts and API parameters to public token identifiers and avoid including private trading plans or sensitive personal context. <br>
-Risk: Public market data can be stale, incomplete, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Verify important prices, liquidity, holder data, and chart outputs against trusted sources before acting on them. <br>
-Risk: Publisher and endpoint provenance is limited because no server-resolved GitHub import provenance is available. <br>
-Mitigation: Review the publisher profile and referenced endpoints before deploying the skill in a workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/viktor-huang/binance-query-token) <br>
-- [Binance Web3 token search endpoint](https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search) <br>
-- [Binance Web3 token metadata endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market/token/meta/info) <br>
-- [Binance Web3 token dynamic data endpoint](https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info) <br>
-- [K-Line candlestick endpoint](https://dquery.sintral.io/u-kline/v1/k-line/candles) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to search tokens across BSC, Base, and Solana, retrieve project metadata and market metrics, and request candlestick data for token research and charting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with API request examples and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public token metadata, market metrics, holder data, liquidity values, and OHLCV candlestick arrays.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Token names, contract addresses, chain choices, and chart parameters are queried against Binance Web3 and the K-Line provider.
+
+Mitigation: Avoid wallet-private or strategy-sensitive searches unless the user accepts that those lookup terms may leave the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viktor-huang/skills/binance-query-token)
+- [Binance Web3 token search endpoint](https://web3.binance.com/bapi/defi/v5/public/wallet-direct/buw/wallet/market/token/search)
+- [Binance Web3 token metadata endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/dex/market/token/meta/info)
+- [Binance Web3 token dynamic data endpoint](https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info)
+- [K-Line candlestick endpoint](https://dquery.sintral.io/u-kline/v1/k-line/candles)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, JSON]
+
+**Output Format:** [Markdown with API endpoint details, curl examples, and JSON response schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public token lookup parameters such as keyword, contract address, chain ID, platform, interval, limit, and timestamp range.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

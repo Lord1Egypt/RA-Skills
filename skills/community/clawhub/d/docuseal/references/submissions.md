@@ -38,6 +38,25 @@ docuseal submissions retrieve 502
 
 ---
 
+## `docuseal submissions update <id>`
+
+Update a submission's name, expiration, or archive state.
+
+| Option | Description |
+|---|---|
+| `--name <value>` | Submission name |
+| `--expire-at <value>` | Expiration date/time (use `-d '{"expire_at":null}'` to clear) |
+| `--archive` | Archive the submission |
+| `--unarchive` | Unarchive the submission |
+
+```bash
+docuseal submissions update 502 --name "Q3 Contract"
+docuseal submissions update 502 --expire-at "2025-12-31 23:59"
+docuseal submissions update 502 --unarchive
+```
+
+---
+
 ## `docuseal submissions archive <id>`
 
 Archive a submission.
@@ -84,6 +103,7 @@ Create a submission from an existing template.
 | `submitters[N][order]` | Signing order (0, 1, 2...) |
 | `submitters[N][require_phone_2fa]` | Require phone 2FA (true/false) |
 | `submitters[N][require_email_2fa]` | Require email 2FA (true/false) |
+| `submitters[N][invite_by]` | Role name of inviting party |
 | `submitters[N][message][subject]` | Per-submitter email subject |
 | `submitters[N][message][body]` | Per-submitter email body |
 | `submitters[N][fields][M][name]` | Field name (required) |

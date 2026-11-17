@@ -1,42 +1,56 @@
-## Description: <br>
-Use Axiom Wallet via MCP to manage payment methods, review account activity, and complete user-requested purchases through Axiom's server-managed browser checkout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent place user-requested orders for specific physical products through Axiom and check saved payment methods, order status, and receipts.
 
-## Publisher: <br>
-[axiom-wallet](https://clawhub.ai/user/axiom-wallet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axiom-wallet](https://clawhub.ai/user/axiom-wallet)
 
-## Use Case: <br>
-External users and agents use this skill to connect to Axiom Wallet, check saved payment-method metadata, review recent transactions, and start user-requested purchases that require Axiom approval flows before completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A connected agent can read wallet transaction and payment-method metadata. <br>
-Mitigation: Install only when the user intends to let an agent use Axiom Wallet, use OAuth approval, and avoid exposing tokens, cookies, browser state, or OAuth authorize URLs. <br>
-Risk: The skill can start purchases through Axiom Wallet. <br>
-Mitigation: Require clear user intent, verify the payment method before purchase, wait for Axiom approval links, and never claim success until purchase status returns completed. <br>
+## Use Case:
 
+People using an agent to buy a specific physical product with their Axiom account can place an order, check their saved payment method, and review order status or receipts. The agent asks for missing product details before ordering and relays any required approval to the user.
 
-## Reference(s): <br>
-- [Axiom ClawHub listing](https://clawhub.ai/axiom-wallet/axiom) <br>
-- [Authentication guide](references/authentication.md) <br>
-- [Axiom MCP endpoint](https://mcp.useaxiom.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool-call instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter >=0.8.0 and OAuth approval before account or purchase tools can be used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and VERSION) <br>
+Risk: A clear purchase request can result in an order charged to the saved payment method without another chat confirmation when it meets the user's Axiom spending rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review spending rules, approval limits, the saved payment method, and OAuth scopes before enabling ordering; require an explicit request for a specific product and clarify missing options first.
+
+Risk: An order above the auto-approval limit needs the user's authorization outside chat.
+
+Mitigation: Share Axiom's approval link with the user and stop; never approve on their behalf or report completion until Axiom confirms it.
+
+## Reference(s):
+
+- [Axiom skill on ClawHub](https://clawhub.ai/axiom-wallet/axiom)
+- [Axiom skill release](https://clawhub.ai/axiom-wallet/skills/axiom)
+- [Authentication guide](artifact/references/authentication.md)
+- [Tool reference](artifact/references/tool-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Relays order updates, approval links, and receipts from Axiom; ordering may complete after the initial response.]
+
+## Skill Version(s):
+
+0.3.2 (source: release metadata, VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

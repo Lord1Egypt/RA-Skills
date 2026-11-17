@@ -1,45 +1,65 @@
-## Description: <br>
-Guides agents through Chinese-language creative image generation and editing workflows, routing requests for logos, IP characters, packaging, brand assets, ecommerce visuals, educational diagrams, and media graphics to the appropriate image-generation or image-editing path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes image generation and editing requests into Doubao-oriented prompt workflows for logos, IP characters, packaging, brand applications, ecommerce assets, educational visuals, media creatives, and related commercial design materials.
 
-## Publisher: <br>
-[gu2003li](https://clawhub.ai/user/gu2003li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu2003li](https://clawhub.ai/user/gu2003li)
 
-## Use Case: <br>
-External users and creative teams use this skill to plan, prompt, and route commercial creative image tasks across brand, ecommerce, educational, and media-design outputs. It helps an agent decide when to ask clarifying questions, when to preserve a core asset with image editing, and which reference rules to apply for each visual deliverable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation may route many image-generation and image-editing requests, especially Chinese-language creative design workflows. <br>
-Mitigation: Review activation scope, routing preferences, and locale expectations before deployment when narrower behavior is required. <br>
+## Use Case:
 
+External users, designers, and marketing operators use this skill to turn creative briefs or source images into routed image-generation and image-editing work for commercial visual assets. It helps an agent select the right product reference, preserve core visual assets, and produce concise prompts or tool calls for the requested image task.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gu2003li/doubao-creative-design) <br>
-- [Logo 系统](artifact/references/brand-logo-system.md) <br>
-- [品牌 IP 角色系统](artifact/references/brand-ip-character-system.md) <br>
-- [包装系统](artifact/references/brand-packaging-system.md) <br>
-- [应用系统](artifact/references/brand-application-system.md) <br>
-- [电商主图与详情页设计生成器](artifact/references/ecommerce-design.md) <br>
-- [知识教育视觉 Prompt 改写](artifact/references/knowledge-education-visual.md) <br>
-- [全平台营销配图与文案生成器](artifact/references/media-creative.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Chinese-language text or Markdown with image-generation or image-editing prompts and ratio parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route requests to image_gen or image_edit when those tools are available; otherwise it should explain the capability gap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: English, multilingual, legal, educational, or exact-brand-text work may be affected by the skill's strong default toward Chinese prompt conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell the agent to preserve the requested language and exact visible text when those details matter.
+
+Risk: Image outputs can contain incorrect text, invented numbers, or unsupported claims when key copy, dates, prices, discounts, credentials, or data are missing.
+
+Mitigation: Require user-provided or confirmed values for visible text and factual claims; otherwise omit them or ask for clarification.
+
+Risk: Brand, logo, product, character, or layout consistency can be lost if follow-up work is generated from text alone.
+
+Mitigation: Use the confirmed core asset or source image with image-editing workflows for derivative or consistency-sensitive outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gu2003li/skills/doubao-creative-design)
+- [Main skill routing rules](SKILL.md)
+- [Logo system](references/brand-logo-system.md)
+- [Brand IP character system](references/brand-ip-character-system.md)
+- [Packaging system](references/brand-packaging-system.md)
+- [Brand application system](references/brand-application-system.md)
+- [Ecommerce design](references/ecommerce-design.md)
+- [Knowledge and education visuals](references/knowledge-education-visual.md)
+- [Media creative](references/media-creative.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, API Calls]
+
+**Output Format:** [Chinese prompt guidance and image generation or editing tool-call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes requests to product-specific references, may ask 1-3 clarification questions, and uses existing image assets for consistency when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

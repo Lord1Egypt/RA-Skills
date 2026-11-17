@@ -1,40 +1,50 @@
-## Description: <br>
-Triage tenant maintenance requests by severity, assign priority, identify the right contractor type, estimate costs, and generate work orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage tenant maintenance requests by severity, priority, contractor type, cost range, and work-order needs using Massachusetts habitability requirements.
 
-## Publisher: <br>
-[AdamsJB](https://clawhub.ai/user/AdamsJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamsjb](https://clawhub.ai/user/adamsjb)
 
-## Use Case: <br>
-Self-managing landlords and property managers use this skill to classify tenant maintenance issues, draft tenant and owner notifications, route work to the right trade, and create standardized work orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Massachusetts, United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated work orders can contain tenant, property, phone, and cost details. <br>
-Mitigation: Install and run the skill only where tenant and property information is appropriate to store, and review or delete old work-order files according to retention needs. <br>
-Risk: Draft messages, contractor dispatch recommendations, and cost estimates could be acted on before review. <br>
-Mitigation: Require human approval before sending tenant or owner messages, dispatching contractors, or committing to repair costs. <br>
+## Use Case:
 
+External property managers and self-managing landlords use this skill to classify tenant maintenance reports, determine response timelines, route issues to the right trade, draft communications, and generate standardized work orders.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/AdamsJB/homestruk-maintenance-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown work orders and drafted tenant or owner messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local work-order files under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated work orders and maintenance communications can contain tenant PII or sensitive contractor records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store generated files only in a private, access-controlled workspace and avoid shared or synced folders unless that storage is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamsjb/skills/homestruk-maintenance-triage)
+- [Homestruk](https://homestruk.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown work orders and concise prose drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local OpenClaw SOP, contractor roster, and work-order paths when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

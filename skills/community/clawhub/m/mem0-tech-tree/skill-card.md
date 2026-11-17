@@ -1,39 +1,64 @@
-## Description: <br>
-Manage and explore a local tech-tree memory graph with knowledge nodes, dependencies, unlock paths, synergies, tiers, and mastery progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and explore a local tech tree of knowledge nodes with dependencies, unlock paths, synergies, tiers, and mastery progress tracking.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Developers and agent users use this skill to store, retrieve, and inspect local memories as a dependency-aware tech tree. It supports command-line workflows for finding related knowledge, prerequisites, synergies, branch maps, and node details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled tree.json contains preloaded personal and environment-specific memories. <br>
-Mitigation: Review tree.json before installing, clear or replace the bundled memories for your environment, avoid storing tokens or private account details, and back up tree.json before using the clear command. <br>
+## Use Case:
 
+Developers and agent users use this skill to persist local knowledge as tiered nodes, retrieve relevant memories with dependency context, inspect branch maps, and track mastery progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/371166758-qq/mem0-tech-tree) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/371166758-qq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains and updates a local tree.json memory graph.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata) <br>
+Risk: The release includes real-looking personal memory records in plaintext tree.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review tree.json before installation and replace bundled records with empty or synthetic data.
+
+Risk: Runtime memories are stored in the published package path.
+
+Mitigation: Keep runtime memory data outside the packaged skill directory and avoid storing secrets or private account details.
+
+Risk: The clear command can delete the local memory tree without a confirmation step.
+
+Mitigation: Add confirmation or maintain a backup before using destructive memory deletion.
+
+Risk: The package declares an unused mem0ai dependency.
+
+Mitigation: Remove the dependency if unused or pin and review it before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/mem0-tech-tree)
+- [Publisher profile](https://clawhub.ai/user/371166758-qq)
+- [Bundled skill instructions](artifact/SKILL.md)
+- [Bundled memory database](artifact/tree.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-line operations read and update a local tree.json memory database.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release evidence; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

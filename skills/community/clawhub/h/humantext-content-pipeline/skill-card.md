@@ -1,48 +1,64 @@
-## Description: <br>
-Detects AI-generated content and humanizes text to sound natural using the humantext.pro API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect AI-generated content and humanize it to sound natural.
 
-## Publisher: <br>
-[fyt84](https://clawhub.ai/user/fyt84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fyt84](https://clawhub.ai/user/fyt84)
 
-## Use Case: <br>
-External users and content teams use this skill to draft or revise text, check an AI-detection score, and optionally produce a more natural-sounding version with humantext.pro. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user writing to the third-party humantext.pro service. <br>
-Mitigation: Use it only with text the user is comfortable sharing with humantext.pro, and avoid confidential, regulated, hiring, compliance, or similar sensitive content. <br>
-Risk: The workflow can be used to conceal AI assistance or authorship where disclosure is expected. <br>
-Mitigation: Do not use it in academic, platform, compliance, or other contexts where bypassing authorship or AI-use rules would violate policy or expectations. <br>
-Risk: The MCP configuration requires a humantext.pro API key. <br>
-Mitigation: Store HUMANTEXT_API_KEY only in the local MCP configuration or secret store and do not paste it into prompts, logs, or shared files. <br>
-Risk: Humanization consumes paid word credits. <br>
-Mitigation: Check balance before long or batch jobs and warn the user before processing credit-heavy text. <br>
+## Use Case:
 
+External users and content teams use this skill to draft, check, humanize, and verify text with the humantext.pro MCP service. It is intended for workflows where users need a content quality report and revised natural-sounding text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fyt84/humantext-content-pipeline) <br>
-- [humantext.pro homepage](https://humantext.pro) <br>
-- [humantext.pro API dashboard](https://humantext.pro/api) <br>
-- [humantext.pro API docs](https://humantext.pro/api/docs) <br>
-- [@humantext/mcp-server npm package](https://www.npmjs.com/package/@humantext/mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated or revised text, score summaries, and MCP setup snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HUMANTEXT_API_KEY, npx, an active humantext.pro account, and word credits for humanization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Text is sent to a third-party service for detection and humanization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not process confidential, regulated, personal, legal, or proprietary text unless humantext.pro's data handling is acceptable.
+
+Risk: The workflow can be used to misrepresent authorship or bypass disclosure rules.
+
+Mitigation: Use it only where content policies, academic rules, platform rules, and workplace disclosure requirements permit this kind of rewriting.
+
+Risk: The MCP server is installed through an unpinned npx package.
+
+Mitigation: Pin and review the @humantext/mcp-server package before running it.
+
+Risk: The skill requires a HUMANTEXT_API_KEY secret.
+
+Mitigation: Protect the API key, avoid logging it, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fyt84/skills/humantext-content-pipeline)
+- [humantext.pro](https://humantext.pro)
+- [humantext.pro API docs](https://humantext.pro/api/docs)
+- [humantext MCP server package](https://www.npmjs.com/package/@humantext/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with prose, reports, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI-detection scores, humanized text, credit-use notes, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

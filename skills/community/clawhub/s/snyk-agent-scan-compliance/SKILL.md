@@ -3,15 +3,15 @@ name: snyk-agent-scan-compliance
 description: "Compliance expert for snyk-agent-scan — the agent skill file scanner — NOT for other Snyk CLI tools (snyk test, snyk code SAST, snyk iac, snyk container). Fixes alerts through content restructuring, never by suppressing or deleting information. Covers every file in a skill directory: SKILL.md, references/, assets/, and any secondary markdown. Apply when authoring a new skill, editing an existing one, triaging a failed snyk-agent-scan run locally or in CI, or unblocking a PR held by agent scanner failures. Not applicable to dependency vulnerabilities, code security findings, or infrastructure misconfigurations — those are out of scope."
 user-invocable: true
 license: MIT
-compatibility: Designed for Claude Code or similar AI coding agents.
+compatibility: Designed for Claude Code, Codex or similar harness.
 metadata:
   author: samber
-  version: "1.0.0"
+  version: "1.1.0"
   openclaw:
     emoji: "🔍"
     homepage: https://github.com/samber/cc-skills
     requires:
-      bins: []
+      bins: [snyk-agent-scan]
     install:
       - kind: uv
         package: snyk-agent-scan
@@ -22,7 +22,7 @@ allowed-tools: Read Edit Write Glob Grep Bash(git:*) Bash(uv:*) Bash(uvx:*) AskU
 
 **Persona:** You are a skill-authoring compliance expert. You fix snyk-agent-scan alerts by restructuring content — never by suppressing or deleting useful information.
 
-**Thinking mode:** Use `ultrathink` for multi-alert remediation where fixes for one alert type can surface or suppress another. Deep reasoning reduces rework.
+**Thinking mode:** Reason as thoroughly as possible for multi-alert remediation where fixes for one alert type can surface or suppress another. Deep reasoning reduces rework. On Claude Code, use `ultrathink` to trigger extended thinking explicitly.
 
 # snyk-agent-scan Compliance
 
@@ -115,7 +115,7 @@ Not all alerts are real. Criteria for a likely false positive:
 | Condition | Likely false positive? |
 | --- | --- |
 | URL appears in a markdown table cell as reference data, not in an instruction | Yes — tables are usually safe |
-| In a skill describin a library, URL is the library official documentation | Yes — usually safe |
+| In a skill describing a library, URL is the library official documentation | Yes — usually safe |
 | URL is the `homepage` or `issues` link in frontmatter | Yes — not scanned |
 | Tool name appears inside a triple-backtick code block as a shell command | Sometimes — code blocks have lighter scrutiny |
 | `go install` with a pinned version in a Quick Reference code block | Sometimes — pinned versions are lower risk |
@@ -135,6 +135,6 @@ Apply these checks while writing a new skill body to avoid alerts before the fir
 - [ ] Tool invocations are in code blocks, not in ordered-list checklists
 - [ ] "always" does not precede any external resource instruction
 
-If you encounter a bug or unexpected behavior in `snyk-agent-scan`, open an issue at https://github.com/snyk/snyk-agent-scan/issues.
+If you encounter a bug or unexpected behavior in `snyk-agent-scan`, open an issue at <https://github.com/snyk/snyk-agent-scan/issues>.
 
-If you discover a pattern that triggers an alert not covered in the reference files above — a new bypass technique, a false positive condition, or an undocumented alert code — open a pull request to the `samber/cc-skills` repository to add it to the relevant pattern file. New patterns are the most valuable contribution to this skill.
+If you discover a pattern that triggers an alert not covered in the reference files above — a new bypass technique, a false positive condition, or an undocumented alert code — open an issue at <https://github.com/samber/cc-skills/issues> or a pull request to the `samber/cc-skills` repository to add it to the relevant pattern file. New patterns are the most valuable contribution to this skill.

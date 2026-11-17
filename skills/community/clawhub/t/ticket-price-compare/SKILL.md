@@ -1,6 +1,7 @@
 ---
 name: ticket-price-compare
-version: 1.2.6
+version: 1.2.7
+author: Amurtiger01
 description: This skill should be used when the user wants to compare and search for flight or train ticket prices across multiple platforms. It supports both domestic (China) and international routes, fetches real-time train availability via 12306, uses Firecrawl to render Ctrip JS pages for detailed flight data (flight numbers, times, aircraft types, prices), generates direct search links for all major booking platforms and airline official websites, provides WeChat mini program quick links for mobile search, and highlights discount conditions. Trigger scenarios include: searching for cheap flights, comparing train ticket prices, finding international flight deals, looking for the best ticket booking platform, or asking about ticket discount conditions.
 environment_variables:
   - name: FIRECRAWL_API_KEY
@@ -43,9 +44,10 @@ This skill enables real-time comparison of flight and train ticket prices. It fe
 ## Data Sources
 
 ### Firecrawl + Ctrip (Primary for Flight Data, Optional API Key)
-- Uses Firecrawl's `/v2/scrape` API to render Ctrip's JavaScript-heavy flight search pages
+- Uses Firecrawl's `/v2/scrape` API (v2) to render Ctrip's JavaScript-heavy flight search pages
 - **PC page** (primary): Returns individual flight numbers, times, aircraft types, and prices
 - **Mobile H5 page** (fallback): Returns price calendar with daily lowest prices across dates
+- v2 features used: `maxAge` (5-min cache window for price freshness), `location` (geo-targeted scraping: CN for domestic, US for international), `actions` (explicit wait for JS rendering), 60s timeout
 - Requires `FIRECRAWL_API_KEY` environment variable. Register at [firecrawl.dev](https://firecrawl.dev)
 - Falls back gracefully to direct scraping if not configured
 
@@ -164,6 +166,7 @@ If a user asks for "cheapest dates" or "price trends":
 - **12306 train data** is always real-time (no API key needed)
 - **SSL verification**: All connections use full TLS verification. 12306 endpoints never bypass SSL — if certificate verification fails, train data is unavailable for that request but all other features (flight search, platform links) still work.
 - **Firecrawl proxy**: Uses `proxy: "basic"` for optimal reliability with Chinese booking sites
+- **Firecrawl v2 features**: `maxAge: 300000` (5-min cache for price freshness), `location` (CN for domestic, US+en for international), `actions` (wait for JS rendering), `timeout: 60000` (60s for v2 JS pipeline)
 - Prices vary in real-time; recommend checking 2-3 platforms for confirmation
 - Airline official websites sometimes offer exclusive prices not available on OTA platforms
 - Always remind users about potential discount conditions before booking

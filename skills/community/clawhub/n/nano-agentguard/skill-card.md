@@ -1,47 +1,61 @@
-## Description: <br>
-Agent Identity & Permission Guardian - Trust middleware for credential management, permission scopes, human approval workflows, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentGuard is trust middleware for credential management, permission scopes, human approval workflows, and audit trails for AI agents.
 
-## Publisher: <br>
-[sendwealth](https://clawhub.ai/user/sendwealth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sendwealth](https://clawhub.ai/user/sendwealth)
 
-## Use Case: <br>
-Developers and agent operators use AgentGuard to store agent credentials, define permission scopes, require approval for dangerous operations, and audit agent activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Credential handling has high-impact safety gaps, including risky secret output and a default master-password concern identified by the authoritative security evidence. <br>
-Mitigation: Review before installing, use test credentials or a contained environment, remove default credential behavior, and make secret output opt-in before production use. <br>
-Risk: Shell command construction was flagged as a safety gap by the authoritative security evidence. <br>
-Mitigation: Replace shell command construction with argument-based execution and review command paths before enabling the tool in agent workflows. <br>
-Risk: External approval notifications may expose sensitive operation details or reach unintended Feishu destinations. <br>
-Mitigation: Redact notification payloads, restrict approval destinations, and avoid dangerous auto-approve unless the agents and operations are fully controlled. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure credential vaulting, permission checks, human approval gates, audit logging, and optional 1Password or Feishu integrations for AI agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sendwealth/nano-agentguard) <br>
-- [Publisher profile](https://clawhub.ai/user/sendwealth) <br>
-- [AgentGuard README](README.md) <br>
-- [Feishu Integration](docs/FEISHU-INTEGRATION.md) <br>
-- [Credit Score System](docs/CREDIT-SCORE.md) <br>
-- [1Password Comparison](docs/1PASSWORD-COMPARISON.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, JavaScript examples, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce approval instructions, credential-management commands, audit-report guidance, and configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: ClawHub release metadata) <br>
+Risk: Current artifacts may expose credentials or weaken approval controls if used with real secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use with real secrets until the default password is removed, approvals are authenticated, and credential handling has been reviewed.
+
+Risk: Shell-based 1Password calls, unvalidated agent IDs, and loose webhook or file-permission handling can create command, identity, or data-access risks.
+
+Mitigation: Replace shell-based credential calls with safe argument-based execution, validate agent identifiers, and tighten webhook and file permissions before deployment.
+
+Risk: The server security verdict is suspicious because the security-tool purpose is stronger than the implementation and documentation evidence.
+
+Mitigation: Review and scan the package carefully before installation, and treat it as unsuitable for production secret management until the listed security gaps are closed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sendwealth/skills/nano-agentguard)
+- [AgentGuard README](https://github.com/openclaw/agentguard#readme)
+- [1Password comparison](docs/1PASSWORD-COMPARISON.md)
+- [Credit score system](docs/CREDIT-SCORE.md)
+- [Feishu integration](docs/FEISHU-INTEGRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline JavaScript, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Node.js >=18; covers local vault files, approval requests, audit logs, and optional 1Password or Feishu integrations.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

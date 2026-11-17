@@ -1,41 +1,49 @@
-## Description: <br>
-Guides an agent to make precise code edits by reading context first, applying minimal diffs, and checking the result after changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to make precise code edits by reading target context first, applying minimal replacements, and self-checking changes after editing.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and coding agents use this skill when modifying existing files, fixing bugs, or refactoring while keeping edits small, targeted, and reviewable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Code changes can affect the wrong location or introduce unrelated diffs if the agent edits without first reading the target context. <br>
-Mitigation: Require the agent to read the relevant file section, match replacement text precisely, and keep each edit narrowly scoped. <br>
-Risk: Sensitive maintenance actions or externally shared review bundles may have operational or disclosure impact if executed casually. <br>
-Mitigation: Follow the security guidance for confirmation and dry-run steps before bans, restores, ownership changes, email sending, production migrations, or external review handoffs. <br>
+## Use Case:
 
+Developers and coding agents use this skill when modifying existing files, fixing bugs, refactoring, or changing code logic while keeping diffs small and reviewable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-edit) <br>
-- [Skill-supplied homepage](https://github.com/zhaobod1/huo15-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell-command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Promotes small, targeted edits followed by rereading and validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Suggested code edits may still be incorrect or incomplete even though the artifact is low risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the resulting diff and run relevant type checks, lint, or tests before relying on changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-edit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with code-editing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No required binaries; guides read-edit-review workflows and validation handoff.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,152 @@
+{
+ "category": "trade",
+ "zh": "外贸与出口专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "export-fx-collection-check",
+   "name": "出口报关与收汇核销核对",
+   "layer": "local",
+   "entry": "export-fx-collection-check-full.js",
+   "kw": [
+    "免费",
+    "出口报关与收汇核销核对",
+    "出口报关与收汇核销表",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "佣金率",
+    "已收汇",
+    "应收外汇",
+    "所属期",
+    "报关单号",
+    "报关金额",
+    "核销差额",
+    "汇率"
+   ]
+  },
+  {
+   "id": "export-monthly-selfcheck",
+   "name": "外贸月度自查包",
+   "layer": "local",
+   "entry": "export-monthly-selfcheck-full.js",
+   "kw": [
+    "\"出口退税核算核对\"",
+    "\"外贸月度自查包\"",
+    "\"月度自查\"",
+    "\"核对\"",
+    "外贸月度自查包"
+   ],
+   "cols": []
+  },
+  {
+   "id": "export-rebate-doc-consistency-check",
+   "name": "出口退税申报单证一致性核对",
+   "layer": "local",
+   "entry": "export-rebate-doc-consistency-check-full.js",
+   "kw": [
+    "免费",
+    "出口退税申报单证一致性核对",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "出口发票号",
+    "出口数量",
+    "发票金额",
+    "商品编码",
+    "商品编码适用退税率",
+    "差额",
+    "应退税额",
+    "所属期",
+    "报关单号",
+    "报关金额",
+    "收汇金额",
+    "计税金额",
+    "进项发票金额",
+    "退税率"
+   ]
+  },
+  {
+   "id": "export-tax-refund-check",
+   "name": "出口退税申报与单证核对",
+   "layer": "local",
+   "entry": "export-tax-refund-check-full.js",
+   "kw": [
+    "免费",
+    "出口退税申报与单证对照表",
+    "出口退税申报与单证核对",
+    "单证核对",
+    "报关单",
+    "退税"
+   ],
+   "cols": [
+    "出口发票号",
+    "出口发票状态",
+    "出口发票金额",
+    "出口数量",
+    "出口额人民币",
+    "商品编码",
+    "商品编码适用退税率",
+    "外币离岸价",
+    "所属期",
+    "报关单号",
+    "报关单状态",
+    "收汇水单状态",
+    "汇率",
+    "申报企业",
+    "计税金额",
+    "退税率",
+    "退税额"
+   ]
+  },
+  {
+   "id": "foreign-trade-pack",
+   "name": "外贸与出口技能包",
+   "layer": "local",
+   "entry": "foreign-trade-pack-full.js",
+   "kw": [
+    "出口",
+    "外贸",
+    "外贸与出口技能包",
+    "报关",
+    "收汇",
+    "核对",
+    "退税"
+   ],
+   "cols": []
+  },
+  {
+   "id": "fx-settlement-check",
+   "name": "外币结算与汇兑损益核对",
+   "layer": "local",
+   "entry": "fx-settlement-check-full.js",
+   "kw": [
+    "免费",
+    "外币结算与汇兑损益核对",
+    "外币结算核对表",
+    "核算核对",
+    "财务"
+   ],
+   "cols": [
+    "单据号",
+    "外币金额",
+    "已收本位币",
+    "汇兑损益",
+    "结算本位币",
+    "结算汇率",
+    "记账本位币",
+    "记账汇率"
+   ]
+  }
+ ],
+ "coverage": {
+  "local": 6,
+  "total": 7,
+  "note": "本公开包内可本地运行 6 个子技能；本类共 7 个，其余 1 个只在订阅版里提供"
+ }
+}

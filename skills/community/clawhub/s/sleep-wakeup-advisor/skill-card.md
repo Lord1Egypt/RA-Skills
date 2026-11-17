@@ -1,39 +1,52 @@
-## Description: <br>
-Calculates sleep-cycle-aligned wake-up times and recommends ranked options based on bedtime, day type, and workday or holiday constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate sleep-cycle-aligned wake-up times when the user says "晚安" or asks for best wake-up times, recommending several options with the best option first and top recommendations before 09:00 on workdays and before 11:00 on weekends or China public holidays.
 
-## Publisher: <br>
-[nathanshan](https://clawhub.ai/user/nathanshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nathanshan](https://clawhub.ai/user/nathanshan)
 
-## Use Case: <br>
-External users use this skill to get concise wake-up time suggestions after saying goodnight or providing a bedtime. It helps choose ranked alarm times around 90-minute sleep cycles while respecting workday and rest-day latest-time constraints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wake-up suggestions are heuristic and may not fit personal health, schedule, or medical needs. <br>
-Mitigation: Treat results as planning guidance and adjust for personal constraints or qualified sleep-health advice. <br>
-Risk: The skill may answer generic wake-up-time requests and may default to Chinese output. <br>
-Mitigation: Ask for clarification, a different language, or a more specific bedtime and day type when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nathanshan/sleep-wakeup-advisor) <br>
+## Use Case:
 
+External users use this skill to get concise wake-up time recommendations based on sleep-cycle timing, bedtime, and workday or China public holiday constraints.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Concise Markdown-style list with ranked wake-up times] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks 3-6 sleep-cycle options, prioritizes 5 cycles, and applies workday or rest-day latest-time constraints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recommendations rely on generic sleep-cycle timing and may not reflect an individual user's medical needs or actual sleep quality.
+
+Mitigation: Present the output as practical scheduling guidance and avoid treating it as medical advice.
+
+Risk: The skill assumes Chinese-language output and China public holiday handling, which may not match every user's locale.
+
+Mitigation: Confirm locale, workday, or holiday assumptions when the user's context differs from China.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nathanshan/skills/sleep-wakeup-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Concise Markdown-style bullet list with wake-up times]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language response template; ranks 3-, 4-, 5-, and 6-cycle wake-up options with a 15-minute sleep-onset buffer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

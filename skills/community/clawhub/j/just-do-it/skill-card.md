@@ -1,37 +1,48 @@
-## Description: <br>
-Guides coding agents to work autonomously through code tasks, make reasonable implementation decisions, verify their work, and report back only after the requested work is complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous programming mode for coding tasks that directs an agent to inspect the codebase, execute requested work fully, and self-verify before reporting completion.
 
-## Publisher: <br>
-[ubuntume](https://clawhub.ai/user/ubuntume) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ubuntume](https://clawhub.ai/user/ubuntume)
 
-## Use Case: <br>
-Developers and coding agents use this skill to reduce avoidable clarification loops during code changes, refactors, bug fixes, and project tasks while still requiring completion checks before reporting work as done. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: High-autonomy coding behavior can lead an agent to change code with fewer approval checkpoints. <br>
-Mitigation: Use version control, review diffs carefully, and require explicit confirmation before destructive edits, dependency changes, migrations, production configuration changes, secrets handling, or large refactors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ubuntume/just-do-it) <br>
+## Use Case:
 
+Developers and coding agents use this skill to make code-change sessions more autonomous, complete multi-step implementation work, and verify changes before reporting completion.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance for agent behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs autonomous task execution, codebase convention matching, and self-verification before completion reporting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages autonomous coding decisions with fewer confirmations, which can be inappropriate for sensitive repositories or high-impact changes.
+
+Mitigation: Review proposed edits before applying or committing them, especially in sensitive repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ubuntume/skills/just-do-it)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and implementation-oriented responses, often with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces behavioral guidance for an agent; it does not define external tools, credentials, or API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

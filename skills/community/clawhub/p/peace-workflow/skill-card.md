@@ -1,39 +1,52 @@
-## Description: <br>
-Peace Workflow guides an agent through reviewing, improving, versioning, and delivering HTML game or UI files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peace Workflow automates review, iterative code improvement, versioned output generation, and result delivery for HTML game files.
 
-## Publisher: <br>
-[kukuxNd](https://clawhub.ai/user/kukuxNd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to send a selected HTML file for review, apply jury feedback, and produce an improved versioned HTML file with a changelog.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow sends the selected HTML file and generated result through Feishu, which may expose sensitive or private project content.
+
+Mitigation: Confirm the file path and Feishu target before running the skill, and avoid using it on files that contain confidential data unless sharing is approved.
+
+Risk: The workflow creates new versioned HTML files, so an incorrect target filename can overwrite or misplace expected outputs.
+
+Mitigation: Review the requested input path and next version filename before execution, and keep existing versions available for comparison.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and designers use this skill to run a structured review-and-improvement loop for HTML game or UI files, including reviewer feedback analysis, code changes, versioned output, and result delivery. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks the agent to send selected local HTML files through Feishu without clear destination checks. <br>
-Mitigation: Before execution, confirm the exact local file path, recipient or channel, and output filename. <br>
-Risk: HTML files may contain secrets, private data, or confidential project content. <br>
-Mitigation: Do not use the workflow on sensitive files unless the user has reviewed the contents and approved sharing through the configured channel. <br>
+**Output Format:** [Markdown guidance with code blocks and generated or modified HTML files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Creates versioned HTML outputs and includes changelog-style review notes when the workflow is executed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with HTML code edits and versioned file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a new versioned HTML file, changelog notes, review scores, and delivery instructions when the agent has appropriate tool access.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Automates Meituan coupon claiming in an OpenClaw browser session and summarizes claimed coupon counts, total value, and coupon categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动领取美团优惠券，并读取领取后的券数量、总金额和分类明细。
 
-## Publisher: <br>
-[ayue-oss](https://clawhub.ai/user/ayue-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayue-oss](https://clawhub.ai/user/ayue-oss)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to open the Meituan coupon page, claim available coupons, read the coupon-detail snapshot, and report the results. It can also guide a daily scheduled reminder for recurring coupon collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a browser session to claim Meituan coupons and those clicks may affect the logged-in account. <br>
-Mitigation: Use it only in the intended browser profile, confirm the account before running, and treat the actions as real account activity. <br>
-Risk: Daily scheduling can cause recurring coupon-claim attempts without another prompt. <br>
-Mitigation: Enable the daily schedule only when recurring automation is desired, and review or disable the schedule if account or coupon preferences change. <br>
-Risk: Coupon availability, page state, login requirements, and Meituan page behavior can change. <br>
-Mitigation: Check the returned status and coupon summary after execution, and retry manually after login or later when the page reports login, already-claimed, or high-traffic states. <br>
+## Use Case:
 
+External users and agent operators use this skill to automate claiming Meituan coupons in a browser session and summarize the coupons that were received. It can also provide a recurring daily coupon-claim configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayue-oss/meituan-coupon-auto) <br>
-- [Publisher profile](https://clawhub.ai/user/ayue-oss) <br>
-- [Meituan coupon page](https://click.meituan.com/t?t=1&c=2&p=mcB9ObxznZMn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code] <br>
-**Output Format:** [Markdown with browser tool calls, JavaScript snippets, JSON schedule configuration, and coupon summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser automation may perform real account actions in the logged-in Meituan session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: The skill can use a logged-in Meituan browser session to click coupon-claim controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after the user confirms they want the agent to act in that account session.
+
+Risk: The skill includes recurring daily scheduling behavior without enough disablement guidance.
+
+Mitigation: Confirm the schedule, timezone, and how to list, pause, or delete the scheduled task before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayue-oss/skills/meituan-coupon-auto)
+- [Meituan coupon claim URL](https://click.meituan.com/t?t=1&c=2&p=mcB9ObxznZMn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with browser automation snippets and JSON schedule configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes coupon counts, total value, coupon categories, status handling, and optional daily scheduling.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

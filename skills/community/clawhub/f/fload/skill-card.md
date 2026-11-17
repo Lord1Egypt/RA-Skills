@@ -1,43 +1,54 @@
-## Description: <br>
-Fload helps agents use Fload MCP tools for mobile app analytics, reviews, growth metrics, ad performance, anomalies, and app store optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fload helps agents use Fload MCP tools for mobile app analytics, reviews, growth metrics, ad performance, anomalies, and app store optimization.
 
-## Publisher: <br>
-[hassanbazzi](https://clawhub.ai/user/hassanbazzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hassanbazzi](https://clawhub.ai/user/hassanbazzi)
 
-## Use Case: <br>
-Mobile app publishers and growth teams use this skill to query Fload MCP tools for portfolio health, reviews, revenue and download metrics, ad performance, anomalies, forecasts, and growth audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent access sensitive Fload organization and app-business data. <br>
-Mitigation: Install it only for intended Fload organizations, protect the FLOAD_API_KEY, and use the narrowest available Fload permissions or scopes. <br>
-Risk: Review-reply approval tools can change or delete customer-facing review responses. <br>
-Mitigation: Require explicit user confirmation before approving, editing, rejecting, sending, or deleting review replies. <br>
-Risk: The documented MCP setup runs the @fload-ai/mcp package through npx. <br>
-Mitigation: Verify the package source and version before running it in an agent environment. <br>
+## Use Case:
 
+Mobile app publishers and their agents use this skill to query Fload MCP tools for app health, reviews, analytics, ad performance, anomalies, growth scoring, and business overviews.
 
-## Reference(s): <br>
-- [Fload app](https://app.fload.app) <br>
-- [ClawHub skill page](https://clawhub.ai/hassanbazzi/fload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline tool names, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide MCP API calls that retrieve sensitive app analytics and review-management data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The setup runs npm/MCP code with a FLOAD_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the MCP package version, use a narrowly scoped FLOAD_API_KEY, and rotate the key if it is exposed.
+
+Risk: Review-reply approval and rejection tools can publish or delete replies.
+
+Mitigation: Require explicit human approval and review reply content before using approve_action or reject_action.
+
+## Reference(s):
+
+- [Fload app setup](https://app.fload.app)
+- [ClawHub Fload skill page](https://clawhub.ai/hassanbazzi/skills/fload)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Fload MCP tools and a FLOAD_API_KEY when configured by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

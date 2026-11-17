@@ -1,17 +1,17 @@
 # Instagram API Reference
 
 **App name:** `instagram`
-**Base URL:** `https://api.agntdata.dev/v1/data/instagram`
+**Base URL:** `https://api.superagnt.com/v1/data/instagram`
 **Endpoints:** 22
 
 Unified access to user profiles, reels, explore, locations, and hashtag media. Built for LLMs and automation — not one-off scraping.
 
 ## Authentication
 
-All requests require the agntdata API key:
+All requests require the superagnt API key:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
 ---
@@ -50,7 +50,7 @@ The following JSON defines all available tools with their parameters. Each tool 
 ```json
 [
   {
-    "name": "agntdata_instagram_Search_users_by_keyword",
+    "name": "superagnt_instagram_Search_users_by_keyword",
     "description": "Search users by keyword",
     "method": "GET",
     "path": "/search",
@@ -77,7 +77,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_by_explore_section_ID",
+    "name": "superagnt_instagram_Media_by_explore_section_ID",
     "description": "Media by explore section ID",
     "method": "GET",
     "path": "/section",
@@ -108,7 +108,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Explore_sections_list",
+    "name": "superagnt_instagram_Explore_sections_list",
     "description": "Explore sections list",
     "method": "GET",
     "path": "/sections",
@@ -123,7 +123,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Cities_by_country_code",
+    "name": "superagnt_instagram_Cities_by_country_code",
     "description": "Cities by country code",
     "method": "GET",
     "path": "/cities",
@@ -149,7 +149,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_by_location_ID",
+    "name": "superagnt_instagram_Media_by_location_ID",
     "description": "Media by location ID",
     "method": "GET",
     "path": "/location-feeds",
@@ -180,7 +180,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Download_link_by_media_ID_or_URL",
+    "name": "superagnt_instagram_Download_link_by_media_ID_or_URL",
     "description": "Download link by media ID or URL",
     "method": "GET",
     "path": "/post-dl",
@@ -202,7 +202,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_info_by_URL",
+    "name": "superagnt_instagram_Media_info_by_URL",
     "description": "Media info by URL",
     "method": "GET",
     "path": "/post",
@@ -224,7 +224,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Related_profiles_by_user_ID",
+    "name": "superagnt_instagram_Related_profiles_by_user_ID",
     "description": "Related profiles by user ID",
     "method": "GET",
     "path": "/related-profiles",
@@ -246,7 +246,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Reels_by_user_ID",
+    "name": "superagnt_instagram_Reels_by_user_ID",
     "description": "Reels by user ID",
     "method": "GET",
     "path": "/reels",
@@ -277,7 +277,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_list__V2__by_user_ID",
+    "name": "superagnt_instagram_Media_list__V2__by_user_ID",
     "description": "Media list (V2) by user ID",
     "method": "GET",
     "path": "/user-feeds2",
@@ -308,7 +308,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_list_by_user_ID",
+    "name": "superagnt_instagram_Media_list_by_user_ID",
     "description": "Media list by user ID",
     "method": "GET",
     "path": "/user-feeds",
@@ -343,7 +343,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_User_info__V2__by_username",
+    "name": "superagnt_instagram_User_info__V2__by_username",
     "description": "User info (V2) by username",
     "method": "GET",
     "path": "/profile2",
@@ -365,7 +365,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_User_info_by_user_ID",
+    "name": "superagnt_instagram_User_info_by_user_ID",
     "description": "User info by user ID",
     "method": "GET",
     "path": "/profile",
@@ -387,7 +387,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_shortcode_from_media_ID",
+    "name": "superagnt_instagram_Media_shortcode_from_media_ID",
     "description": "Media shortcode from media ID",
     "method": "GET",
     "path": "/id-media",
@@ -409,7 +409,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Username_from_user_ID",
+    "name": "superagnt_instagram_Username_from_user_ID",
     "description": "Username from user ID",
     "method": "GET",
     "path": "/id",
@@ -431,7 +431,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Tagged_media_by_user_ID",
+    "name": "superagnt_instagram_Tagged_media_by_user_ID",
     "description": "Tagged media by user ID",
     "method": "GET",
     "path": "/user-tags",
@@ -462,7 +462,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Reposts_by_user_ID",
+    "name": "superagnt_instagram_Reposts_by_user_ID",
     "description": "Reposts by user ID",
     "method": "GET",
     "path": "/user-reposts",
@@ -488,7 +488,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Locations_by_city_ID",
+    "name": "superagnt_instagram_Locations_by_city_ID",
     "description": "Locations by city ID",
     "method": "GET",
     "path": "/locations",
@@ -514,7 +514,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Location_info_by_location_ID",
+    "name": "superagnt_instagram_Location_info_by_location_ID",
     "description": "Location info by location ID",
     "method": "GET",
     "path": "/location-info",
@@ -536,7 +536,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Web_profile_info_by_username",
+    "name": "superagnt_instagram_Web_profile_info_by_username",
     "description": "Web profile info by username",
     "method": "GET",
     "path": "/web-profile",
@@ -558,7 +558,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Music_info_by_music_ID",
+    "name": "superagnt_instagram_Music_info_by_music_ID",
     "description": "Music info by music ID",
     "method": "GET",
     "path": "/music",
@@ -584,7 +584,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_instagram_Media_by_hashtag",
+    "name": "superagnt_instagram_Media_by_hashtag",
     "description": "Media by hashtag",
     "method": "GET",
     "path": "/tag-feeds",
@@ -615,12 +615,12 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET "https://api.agntdata.dev/v1/data/instagram/search?param=value" \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY"
+curl -X GET "https://api.superagnt.com/v1/data/instagram/search?param=value" \
+  -H "Authorization: Bearer $SUPERAGNT_API_KEY"
 ```
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/instagram)
-- [Dashboard](https://app.agntdata.dev/dashboard)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/instagram)
+- [superagnt app](https://app.superagnt.com/dashboard)

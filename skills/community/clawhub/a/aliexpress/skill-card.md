@@ -1,40 +1,55 @@
-## Description: <br>
-Navigate Aliexpress as buyer, seller, or dropshipper with vendor evaluation, price comparison, and scam detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Aliexpress as buyer, seller, or dropshipper with vendor evaluation, price comparison, and scam detection.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External buyers, sellers, and dropshippers use this skill to evaluate AliExpress vendors, compare real landed costs, identify scam patterns, and plan disputes or supplier workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Seller, listing, price, shipping, and dispute details can change or be incomplete, which may make shopping guidance inaccurate. <br>
-Mitigation: Verify seller metrics, reviews, landed costs, tracking, and buyer-protection dates directly on AliExpress before purchasing or recommending a supplier. <br>
-Risk: Shopping and dropshipping workflows may involve personal, customer, payment, or order information. <br>
-Mitigation: Avoid sharing sensitive information with the agent; provide such details only in the intended purchasing or business system when deliberately completing a transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dropshipping - Aliexpress](artifact/dropshipping.md) <br>
-- [Vendor Evaluation - Aliexpress](artifact/vendors.md) <br>
+## Use Case:
 
+External buyers, sellers, and dropshippers use this skill for AliExpress vendor evaluation, landed-cost and margin analysis, dispute guidance, scam detection, and supplier vetting.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown guidance with checklists, comparisons, and calculations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, hidden access, or credential use is indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AliExpress seller safety, platform policy, import fee, dispute-window, and supplier claims may be incomplete or outdated.
+
+Mitigation: Verify current AliExpress policies, import fees, dispute windows, and supplier claims before spending money or running a dropshipping workflow.
+
+Risk: Guidance output could be mistaken for a guarantee of seller safety or legal, tax, or logistics correctness.
+
+Mitigation: Treat the skill as decision-support guidance and review conclusions against current platform, shipping, and local compliance requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/aliexpress)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Vendor Evaluation Guidance](artifact/vendors.md)
+- [Dropshipping Guidance](artifact/dropshipping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, comparison criteria, and simple cost formulas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, tools, credential requirements, persistence, or hidden authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

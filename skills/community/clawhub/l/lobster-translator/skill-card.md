@@ -1,41 +1,57 @@
-## Description: <br>
-Clarifies vague Chinese user requests, rewrites formal or technical text into casual language, and formats multi-agent task handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents clarify vague user requests, translate formal or technical content into plain Chinese, and prepare structured task-delegation templates for multi-agent work.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to turn ambiguous Chinese requests into actionable prompts, casual rewrites, or structured delegation notes before another agent executes work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation on vague or ambiguous phrasing may trigger clarification behavior when the user expected direct execution. <br>
-Mitigation: Review whether clarification is useful for the current task and ask the user for missing goals, scope, resources, timing, and constraints before handing work to another agent. <br>
-Risk: The skill's casual Chinese rewriting style may be unsuitable for formal documents or precise multi-agent handoffs. <br>
-Mitigation: Preserve the original meaning first, reduce playful style in formal contexts, and confirm translated or delegated outputs before relying on them. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to turn ambiguous requests into clearer prompts, rewrite formal or technical wording into approachable Chinese, and package handoffs for other agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/lobster-translator) <br>
-- [Template library](templates/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON-shaped fields and handoff templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool execution, installation steps, binaries, or credential access are described by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad activation language may cause the skill to intervene on requests that only need direct execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when ambiguity, style translation, or delegation packaging is needed, and bypass it for already-clear tasks.
+
+Risk: Playful Chinese wording and emoji-heavy style may be inappropriate for formal or business-critical content.
+
+Mitigation: Ask for a formal tone or reduced stylistic embellishment when the output will be used in professional settings.
+
+Risk: Clarification templates could overfill missing context or imply decisions the user has not made.
+
+Mitigation: Keep unresolved decisions explicit and ask the user to confirm goals, scope, resources, deadlines, and constraints.
+
+## Reference(s):
+
+- [Template library](templates/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown guidance and structured JSON-like response objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces clarification prompts, missing-information lists, recommended templates, translated content, or task-delegation blocks depending on mode.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

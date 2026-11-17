@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes local or downloaded MP4/MOV videos with Volcengine/Kickart services to extract metadata, shot breakdowns, and Seedance-ready outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes local or downloaded short videos to extract metadata, shot breakdowns, product details, and Seedance-oriented video generation data.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and content teams use this skill to upload short product or marketing videos, request cloud analysis, and turn the results into readable shot metadata or Seedance-oriented generation input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud credentials may be exposed if users paste AK/SK secrets into chat or run commands that echo secret values. <br>
-Mitigation: Provide credentials through a secure secret mechanism, avoid echoing credential environment variables, and review logging before use. <br>
-Risk: Video files and metadata are sent to remote Volcengine/Kickart services for analysis. <br>
-Mitigation: Use only media approved for that remote processing path and avoid private or sensitive video unless the service terms and account controls are acceptable. <br>
-Risk: Security evidence flags account-affecting and under-disclosed backend actions. <br>
-Mitigation: Review or patch package-registration behavior before using the skill with real accounts. <br>
+## Use Case:
 
+Developers and content operators use this skill to validate, upload, and analyze short MP4/MOV videos. It returns structured video metadata, product information, shot-level analysis, and Seedance-format JSON for downstream creative workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-kickart-video-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/volcengine-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces original analysis JSON and Seedance-formatted JSON; requires cloud credentials and sends video files or metadata to remote Volcengine/Kickart services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release metadata) <br>
+Risk: Videos are sent to an external Volcengine/Ark service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external processing is approved, and avoid submitting sensitive or restricted media.
+
+Risk: The workflow asks for cloud credentials and may expose them in chat output or logs.
+
+Mitigation: Provide tightly scoped, disposable credentials through a secure environment mechanism, avoid pasting long-lived AK/SK values into chat, and rotate any keys already used.
+
+Risk: The version-check workflow can return a command to update the skill.
+
+Mitigation: Review the update command, package source, and integrity information before approving or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-kickart-video-analyzer)
+- [Publisher profile](https://clawhub.ai/user/volcengine-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, json, guidance]
+
+**Output Format:** [Markdown user responses with JSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces original analysis JSON and Seedance-format JSON; inputs are local MP4/MOV videos up to 60 seconds, 50 MB, and at least 480p.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

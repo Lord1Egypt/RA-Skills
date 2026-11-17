@@ -1,44 +1,60 @@
-## Description: <br>
-Supabase Vault replaces OpenClaw's local file vault with a Supabase-backed encrypted secret store and dashboard workflow for connecting, migrating, and managing API keys and auth tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Replace OpenClaw's local file vault with Supabase Vault for AES-256 encrypted-at-rest secret storage, dashboard-based connection and migration, and exec-provider secret retrieval.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure Supabase Vault as a secrets backend, migrate existing local secrets, and manage OpenClaw API keys and auth tokens through dashboard and CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle plaintext secrets and a Supabase admin-level service_role key. <br>
-Mitigation: Use a dedicated test Supabase project or least-privilege setup where possible, avoid production credentials until the flow is verified, and rotate credentials if exposure is suspected. <br>
-Risk: Secrets can be migrated without enough confirmation. <br>
-Mitigation: Run a dry-run or preview first, confirm the exact keys and configuration changes before migration, and keep backups available until the new provider is verified. <br>
-Risk: The service_role key bypasses Supabase row-level security. <br>
-Mitigation: Use a project dedicated to OpenClaw secrets, restrict access to the key, and monitor or rotate the key according to the team's credential policy. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Supabase as the OpenClaw secrets backend, migrate existing local secrets, and manage secrets through the OpenClaw dashboard.
 
-## Reference(s): <br>
-- [Supabase Vault Architecture & Threat Model](references/architecture.md) <br>
-- [Supabase](https://supabase.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/supabase-vault) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, SQL, TypeScript, JavaScript, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and migration guidance for OpenClaw and Supabase Vault; it may handle secret names, secret values, and Supabase bootstrap credentials during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires persistent access to a Supabase service_role key, which can bypass Row Level Security in the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Supabase project for OpenClaw secrets, validate the project URL yourself, monitor access, and rotate the service_role key if it may have been exposed.
+
+Risk: The migration flow rewrites OpenClaw secret configuration and leaves the original local secrets file in place as a backup.
+
+Mitigation: Run a dry-run or review the migration output first, verify the updated SecretRefs, and manually decide whether to retain, move, or delete ~/.openclaw/secrets.json after migration.
+
+Risk: The skill installs executable bridge code and depends on @supabase/supabase-js for secret retrieval.
+
+Mitigation: Pin and verify dependencies, keep the skill directory trusted and permission-restricted, and review the copied gateway and dashboard files before deployment.
+
+## Reference(s):
+
+- [Supabase Vault Architecture & Threat Model](references/architecture.md)
+- [Supabase](https://supabase.com)
+- [Supabase Dashboard API Settings](https://supabase.com/dashboard/project/_/settings/api)
+- [Supabase Dashboard SQL Editor](https://supabase.com/dashboard/project/_/sql)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with TypeScript, SQL, JavaScript, JSON, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces OpenClaw integration files and setup guidance for Supabase-backed secret storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

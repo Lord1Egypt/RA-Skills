@@ -1,40 +1,49 @@
-## Description: <br>
-Openclaw Office Hours provides YC Office Hours-style product consultation before coding, using Startup and Builder modes to clarify demand, minimal entry points, metrics, and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Office Hours provides YC Office Hours-style product consultation that reframes problem definition before coding using Startup and Builder modes to surface demand evidence, minimal entry points, metrics, and risks.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers, founders, and builders use this skill before implementation to refine the problem, choose Startup or Builder mode, compare implementation approaches, and produce a design document with next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may inspect repository context such as project documents, recent commit history, and relevant code areas. <br>
-Mitigation: Install only in repositories you are comfortable letting an agent inspect, and avoid exposing logs, docs, or history that contain secrets or private information. <br>
-Risk: The generated design document may contain incorrect assumptions or product guidance that could affect implementation decisions. <br>
-Mitigation: Review the design document before keeping, sharing, committing, or using it to guide development. <br>
+## Use Case:
 
+Developers, founders, and builders use this skill to clarify product goals before implementation, choose Startup or Builder framing, compare implementation approaches, and draft a design document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/openclaw-office-hours) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown design document with conversational guidance and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a project design document after consultation; no API keys or external services are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may inspect project context and create a design document in the user's project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where project inspection and document creation are acceptable; specify the desired document path or ask to review the draft before writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/openclaw-office-hours)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Files]
+
+**Output Format:** [Conversational guidance and Markdown design document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect project context and create a design document in the user's project.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

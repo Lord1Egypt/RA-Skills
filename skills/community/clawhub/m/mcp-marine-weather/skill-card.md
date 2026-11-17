@@ -1,41 +1,54 @@
-## Description: <br>
-Marine weather forecasts via NOAA api.weather.gov for current conditions, multi-day forecasts, and marine weather warnings without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marine weather forecasts from NOAA api.weather.gov, including current conditions, multi-day forecasts, and marine weather warnings without an API key.
 
-## Publisher: <br>
-[haveblue997](https://clawhub.ai/user/haveblue997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haveblue997](https://clawhub.ai/user/haveblue997)
 
-## Use Case: <br>
-Developers and agents use this skill to add NOAA marine weather lookup for sailing, charter planning, offshore activity checks, coastal event assessment, and pre-departure weather briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States and U.S. territories <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A floating npx install can resolve a different package version over time. <br>
-Mitigation: Confirm the exact npm package name and pin a reviewed version before installation. <br>
-Risk: Latitude and longitude queries are sent to NOAA weather services for forecast lookup. <br>
-Mitigation: Avoid entering sensitive location data unless an external NOAA lookup is acceptable. <br>
+## Use Case:
 
+Agents and developers use this MCP server to check NOAA marine weather for sailing, offshore activity, coastal events, and pre-departure briefings for supported U.S. and territorial waters.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/haveblue997/mcp-marine-weather) <br>
-- [NOAA Weather API](https://api.weather.gov) <br>
+### Deployment Geography for Use:
 
+United States and U.S. territories
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [JSON returned as MCP text content, with Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecast output includes conditions, forecast periods, and filtered marine-relevant warnings for latitude and longitude inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill frontmatter, and package.json) <br>
+Risk: The documented setup runs an unpinned third-party package through npx with normal local code execution authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the npx command to a reviewed exact package version and confirm the package identity before installation.
+
+Risk: Weather functionality depends on NOAA service availability and coverage.
+
+Mitigation: Use the output as a planning aid and verify safety-critical marine decisions with official weather channels.
+
+## Reference(s):
+
+- [NOAA Weather API](https://api.weather.gov)
+- [ClawHub skill page](https://clawhub.ai/haveblue997/skills/mcp-marine-weather)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [JSON serialized as MCP text content, plus MCP server setup configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts latitude and longitude coordinates; returns current conditions, forecast periods, and marine-relevant warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

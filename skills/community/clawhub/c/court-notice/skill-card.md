@@ -1,43 +1,63 @@
-## Description: <br>
-Processes court notice SMS messages and court-document PDFs by downloading the PDF, extracting case details, classifying the document, creating calendar events for hearing-related notices, setting reminders, and returning a concise summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes court SMS messages and court-document PDFs by downloading the PDF, extracting case details, classifying the document, creating calendar reminders for hearing-related notices, and returning a concise summary report.
 
-## Publisher: <br>
-[breezewang19](https://clawhub.ai/user/breezewang19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breezewang19](https://clawhub.ai/user/breezewang19)
 
-## Use Case: <br>
-External users and agents use this skill to turn court SMS links or court-document PDFs into extracted case summaries and, when the document appears to require attendance or response, local calendar reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive legal documents and stores downloaded PDFs on the user's Desktop. <br>
-Mitigation: Use only trusted court links, confirm the destination file is appropriate, and avoid running it on shared or untrusted machines. <br>
-Risk: The skill can modify Calendar data and install persistent LaunchAgent reminder files. <br>
-Mitigation: Review planned Calendar and reminder changes before execution and remove generated LaunchAgent files when reminders are no longer needed. <br>
-Risk: The security evidence flags weak scoping and unsafe script generation around AppleScript and plist values. <br>
-Mitigation: Prefer a reviewed version that escapes AppleScript and plist values, asks for confirmation, and clearly documents any event-deletion behavior. <br>
+## Use Case:
 
+External users and developers can use this skill to process received court notices, extract key hearing details, and prepare calendar reminders and user-facing summaries. It is most relevant when court-document links arrive by SMS and the user needs structured follow-up information.
 
-## Reference(s): <br>
-- [Document type rules](references/document_types.md) <br>
-- [Court SMS template](references/sms_template.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown summary with shell command workflows and local calendar/reminder file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download PDFs, create Calendar entries, and write LaunchAgent reminder files on macOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can silently download court-document PDFs and save them to a fixed Desktop path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before download, validate that links come from trusted court-document sources, and avoid overwriting fixed Desktop filenames.
+
+Risk: The helper can write Calendar events and persistent local reminders without enough user control.
+
+Mitigation: Require confirmation before Calendar writes or reminder creation, and prefer Calendar-native alerts over LaunchAgents where possible.
+
+Risk: Extracted court-document text can contain sensitive legal information.
+
+Mitigation: Avoid printing full document text by default and limit summaries to the minimum details needed for the user's requested workflow.
+
+Risk: Unescaped values passed into AppleScript or plist content can create execution or data-integrity risk.
+
+Mitigation: Escape or pass all AppleScript and plist values as data rather than executable source.
+
+## Reference(s):
+
+- [Document type rules](references/document_types.md)
+- [Court SMS template](references/sms_template.txt)
+- [ClawHub skill page](https://clawhub.ai/breezewang19/skills/court-notice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown summary with shell command examples and generated calendar/reminder configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save PDFs to the Desktop, create Calendar events, and configure local reminders when helper scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

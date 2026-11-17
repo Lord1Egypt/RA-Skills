@@ -1,40 +1,57 @@
-## Description: <br>
-Automatically drafts academic paper sections, including the abstract, introduction, methodology, experiments, and conclusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates academic paper sections, including abstracts, introductions, methods, experiments, and conclusions.
 
-## Publisher: <br>
-[lilianzeng19891988-cyber](https://clawhub.ai/user/lilianzeng19891988-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilianzeng19891988-cyber](https://clawhub.ai/user/lilianzeng19891988-cyber)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to turn project code, experiment results, and citation material into structured academic paper drafts. It supports common sections and conference-oriented formats for machine learning and computer vision papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read private or unpublished project code, experiment results, and research material. <br>
-Mitigation: Use a narrow project directory, set a clear output path, and avoid WebSearch or provide sanitized search terms when working with sensitive research. <br>
-Risk: Generated paper text, equations, results, or citations may be incomplete or inaccurate. <br>
-Mitigation: Review generated LaTeX files, numerical claims, formulas, and references before compiling, submitting, or sharing the paper. <br>
+## Use Case:
 
+Researchers, students, and technical authors use this skill to draft structured academic paper content from project code, experiment results, references, and target conference format requirements.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lilianzeng19891988-cyber/research-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status summary plus LaTeX project files and BibTeX references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated paper sections, a compile command, and a review checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may read confidential or unpublished research content from a selected project directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on appropriate project paths, and redact or summarize sensitive details before generation.
+
+Risk: Generated paper drafts, citations, and numerical claims may be inaccurate or incomplete.
+
+Mitigation: Review generated sections, references, formulas, and reported results before submission or publication.
+
+Risk: The skill may use web search for references or propose a LaTeX compile command.
+
+Mitigation: Disable web search for sensitive work and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lilianzeng19891988-cyber/skills/research-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and LaTeX project files with BibTeX references and compile commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce separate paper section files, a bibliography file, editing checklists, and conference-format guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

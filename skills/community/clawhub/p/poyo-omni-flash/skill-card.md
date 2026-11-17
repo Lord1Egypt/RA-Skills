@@ -1,44 +1,65 @@
-## Description: <br>
-Helps agents prepare PoYo Omni Flash video-generation requests for text-to-video, image-to-video, three-image reference fusion, and video-input workflows, with polling or webhook follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poyo Omni Flash helps agents prepare and submit PoYo Omni Flash video generation jobs for text-to-video, image-to-video, three-image reference fusion, and video-input workflows.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Omni Flash video-generation payloads, optional curl submissions, and follow-up polling or webhook guidance for PoYo jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys could be exposed if placed in browser code, logs, screenshots, repositories, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid echoing or logging it. <br>
-Risk: Prompts, source media URLs, and callback URLs are sent to a third-party PoYo API when a job is submitted. <br>
-Mitigation: Submit only content approved for third-party processing, and avoid confidential or regulated inputs unless the user has explicitly accepted that processing. <br>
-Risk: The submit script can make a live external API request with the provided payload. <br>
-Mitigation: Use the script only after reviewing the payload JSON and only when the user explicitly wants a live submission from a trusted shell. <br>
+## Use Case:
 
+Developers and external agent users use this skill to prepare PoYo Omni Flash video generation payloads, submit reviewed asynchronous jobs, and explain polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Omni Flash API Reference](references/api.md) <br>
-- [PoYo Omni Flash documentation](https://docs.poyo.ai/api-manual/video-series/omni-flash) <br>
-- [PoYo Omni Flash model page](https://poyo.ai/models/omni-flash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON payloads and bash or curl code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes selected model parameters, source media usage, returned task IDs when submitted, and next-step polling or webhook guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: POYO_API_KEY could be exposed if placed in browser code, logs, public repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid echoing it in generated examples or command output.
+
+Risk: Private prompts, source media URLs, or callback URLs may be shared with PoYo or the callback receiver during submission.
+
+Mitigation: Submit sensitive prompts, media, and callback URLs only when the user explicitly trusts PoYo and the receiver.
+
+Risk: A live API call could submit an unintended job or incur cost if a payload is not reviewed first.
+
+Mitigation: Make live calls only after the user explicitly requests submission from a trusted shell and the payload JSON has been reviewed.
+
+Risk: Model-specific options can change over time, causing invalid or unexpected requests.
+
+Mitigation: Verify current field support in the PoYo docs before relying on resolution, duration, aspect ratio, image, or video options.
+
+## Reference(s):
+
+- [PoYo Omni Flash API Reference](references/api.md)
+- [PoYo Omni Flash model page](https://poyo.ai/models/omni-flash)
+- [PoYo Omni Flash API docs](https://docs.poyo.ai/api-manual/video-series/omni-flash)
+- [PoYo API key page](https://poyo.ai/dashboard/api-key)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-omni-flash)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and bash/curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a returned task_id and polling or webhook next steps after an explicit submission.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

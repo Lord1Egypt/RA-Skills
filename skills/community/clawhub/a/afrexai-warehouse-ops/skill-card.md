@@ -1,42 +1,55 @@
-## Description: <br>
-Analyze warehouse setup to optimize space, labor, picking efficiency, inventory accuracy, cost per order, automation ROI, and safety compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Warehouse Operations Optimizer helps an agent analyze warehouse space utilization, pick paths, labor productivity, inventory accuracy, fulfillment costs, automation ROI, and safety considerations from user-provided warehouse details.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Warehouse managers, 3PL operators, ecommerce fulfillment teams, and supply chain directors use this skill to audit warehouse operations and generate prioritized recommendations for space utilization, pick paths, labor productivity, inventory accuracy, cost control, automation ROI, and safety compliance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may require warehouse business details to produce useful recommendations. <br>
-Mitigation: Share only operational information that is appropriate for the agent environment and avoid unnecessary sensitive data. <br>
-Risk: ROI, OSHA, safety, and compliance recommendations are advisory and may not match site-specific requirements. <br>
-Mitigation: Have qualified operations, safety, compliance, or legal reviewers validate recommendations before implementation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-warehouse-ops) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Warehouse managers, 3PL operators, ecommerce fulfillment teams, and supply chain leaders use this skill to turn operational metrics into prioritized recommendations for layout, picking, labor, inventory, cost, automation, and safety improvements.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown action plan with prioritized recommendations, benchmarks, ROI estimates, timelines, and resource requirements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output quality depends on the warehouse details provided by the user; ROI, OSHA, and compliance recommendations are advisory and should be reviewed by qualified professionals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share sensitive warehouse volumes, staffing, cost, WMS, or operational details while seeking tailored recommendations.
+
+Mitigation: Avoid providing confidential business data unless the agent environment is approved for that information.
+
+Risk: Operational recommendations, ROI estimates, benchmarks, and safety guidance may be incomplete or unsuitable for a specific facility.
+
+Mitigation: Review recommendations with qualified operations, finance, and safety personnel before implementation.
+
+## Reference(s):
+
+- [Warehouse Operations Optimizer on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-warehouse-ops)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown action plan with prioritized recommendations, benchmarks, ROI estimates, timelines, and resource requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include advisory calculations and operational benchmarks based on user-provided warehouse metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

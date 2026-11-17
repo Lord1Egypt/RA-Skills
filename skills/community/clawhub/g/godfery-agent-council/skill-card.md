@@ -1,41 +1,58 @@
-## Description: <br>
-Creates and manages autonomous AI agents with self-contained workspaces, memory files, OpenClaw gateway configuration, and Discord channel bindings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages autonomous AI agents with workspaces and memory, plus Discord channel setup and organization for OpenClaw integration.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and operators use this skill to create specialized OpenClaw agents, bind them to Discord channels, and manage channel configuration for multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent Discord, OpenClaw gateway, cron, and workspace-file changes. <br>
-Mitigation: Run first against a test guild and test gateway, keep affected workspaces under version control, and review generated config patches before applying them. <br>
-Risk: Discord and gateway administration can affect channels, prompts, bindings, and agent access. <br>
-Mitigation: Use a least-privilege Discord bot and avoid workspace rewrites or cron setup until target paths and schedules have been reviewed. <br>
+## Use Case:
 
+Developers and operators use this skill to create OpenClaw agents, bind them to Discord channels, and maintain channel configuration and workspace references for multi-agent systems.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/godferylindsay/godfery-agent-council) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration patches, and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent OpenClaw gateway changes, Discord channel changes, workspace files, and optional cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change Discord, OpenClaw, and workspace state by creating or renaming channels, updating gateway configuration, and generating agent files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands and configuration patches before running them; use least-privilege Discord bot credentials and keep the target workspace narrow and under version control.
+
+Risk: Optional memory cron jobs can create persistent autonomous file writes.
+
+Mitigation: Enable memory cron only for agents that need scheduled updates, set an explicit time zone, and periodically audit the generated cron jobs and memory files.
+
+Risk: Channel names, context text, and system prompts flow into configuration.
+
+Mitigation: Avoid untrusted inputs for channel names, context, and prompts; inspect generated prompts before applying gateway changes.
+
+## Reference(s):
+
+- [Complete setup guide](https://skillboss.co/skill.md)
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/godfery-agent-council)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration patches, and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update OpenClaw gateway configuration, Discord channels, workspace Markdown files, and optional cron jobs when commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

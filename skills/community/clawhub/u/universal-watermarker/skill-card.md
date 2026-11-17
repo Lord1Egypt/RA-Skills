@@ -1,43 +1,57 @@
-## Description: <br>
-Adds customizable text watermarks with adjustable opacity, responsive scaling, color handling, and layout modes to PDFs and common image files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds customizable text watermarks with adjustable opacity and layout to PDFs and images, saving results with a wm_ prefix in the original folder.
 
-## Publisher: <br>
-[cribug](https://clawhub.ai/user/cribug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cribug](https://clawhub.ai/user/cribug)
 
-## Use Case: <br>
-Developers and agent users use this skill to apply visible anti-counterfeiting, confidentiality, or review-status watermarks to batches of PDFs and images while preserving outputs next to the originals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes wm_-prefixed files next to the original PDFs and images, which may place derived files in sensitive directories. <br>
-Mitigation: Run it only on intended local files and review the output paths reported after processing. <br>
-Risk: Environment setup can download a font from GitHub, creating a supply-chain dependency during setup. <br>
-Mitigation: Use an isolated environment for sensitive work and prefer a pinned, pre-reviewed local font path when possible. <br>
-Risk: PDFs and images can be untrusted or sensitive inputs. <br>
-Mitigation: Process untrusted or confidential files in an isolated workspace with audited dependency versions. <br>
+## Use Case:
 
+Developers and operators use this skill to add visible text watermarks to batches of PDFs and common image files for document marking, confidentiality notices, or anti-counterfeiting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cribug/universal-watermarker) <br>
-- [Publisher profile](https://clawhub.ai/user/cribug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Python function calls and local files saved with a wm_ filename prefix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes PDF, JPG, JPEG, PNG, and BMP inputs; writes output files beside the source files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The skill automatically fetches a font from GitHub without an integrity check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in an isolated environment where outbound GitHub access is acceptable, and prefer a bundled or hash-pinned font.
+
+Risk: Python dependencies are declared with lower bounds rather than exact reproducible versions.
+
+Mitigation: Pin and hash dependencies before production use.
+
+Risk: Watermarked outputs use a wm_ prefix in the source directory and may conflict with important existing files.
+
+Mitigation: Run on copied inputs or an isolated working directory and add overwrite protection before trusted deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cribug/skills/universal-watermarker)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, guidance]
+
+**Output Format:** [Watermarked PDF or image files plus concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are saved beside the input files with a wm_ filename prefix.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

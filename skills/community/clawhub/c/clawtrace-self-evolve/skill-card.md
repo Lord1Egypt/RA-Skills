@@ -1,40 +1,60 @@
-## Description: <br>
-Ask Tracy to analyze recent ClawTrace trajectories and return data-driven recommendations for improving agent behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask Tracy to analyze your recent trajectories and improve your agent behavior based on data-driven recommendations.
 
-## Publisher: <br>
-[richard-epsilla](https://clawhub.ai/user/richard-epsilla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard-epsilla](https://clawhub.ai/user/richard-epsilla)
 
-## Use Case: <br>
-Developers and agent operators use this skill to ask ClawTrace for analysis of recent runs, failures, cost spikes, and recurring tool or context issues, then apply the resulting recommendations to future agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends trajectory-analysis requests to ClawTrace, which may include sensitive run history. <br>
-Mitigation: Use it only when the operator trusts ClawTrace with trajectory data, redact sensitive trace content where possible, and require explicit approval before API calls. <br>
-Risk: The skill asks the agent to immediately change behavior and write persistent memory based on returned recommendations. <br>
-Mitigation: Review recommendations and any proposed MEMORY.md entry before applying or storing them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to ask ClawTrace for analysis of recent trajectory failures, costs, context growth, and tool-call patterns, then apply concise recommendations to improve future runs.
 
-## Reference(s): <br>
-- [ClawTrace homepage](https://clawtrace.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with Python API-call examples and recommendation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWTRACE_OBSERVE_KEY and sends trajectory-analysis requests to ClawTrace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: An external analysis service can shape current and future agent behavior through recommendations based on trajectory data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before applying each recommendation, and reject changes to safety rules or unrelated goals.
+
+Risk: Trajectory data may contain sensitive task, prompt, or tool-output content.
+
+Mitigation: Redact sensitive trace content where possible before analysis and install only when ClawTrace trajectory analysis is acceptable.
+
+Risk: Persisting recommendations to MEMORY.md can carry incorrect or inappropriate guidance into later sessions.
+
+Mitigation: Review every MEMORY.md entry before it is written and keep entries narrow, factual, and tied to observed behavior.
+
+## Reference(s):
+
+- [ClawTrace](https://clawtrace.ai)
+- [ClawTrace Evolve API endpoint](https://api.clawtrace.ai/v1/evolve/ask)
+- [ClawHub skill page](https://clawhub.ai/richard-epsilla/skills/clawtrace-self-evolve)
+- [Publisher profile](https://clawhub.ai/user/richard-epsilla)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and API request instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWTRACE_OBSERVE_KEY and may produce recommendations for current-session behavior and future memory notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

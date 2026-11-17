@@ -1,0 +1,102 @@
+{
+  "skill_id": "edo-tensei-1fef9b18bc9c451395d4bf85c0814afd",
+  "skill_name": "秽土转生 (Multi-Session Control Tower)",
+  "version": "1.0.4",
+  "author_declared": "晋锡斌",
+  "author_contact": "jinxibin1993@foxmail.com",
+  "created_utc": "2026-09-15T08:35:05Z",
+  "files": {
+    "LICENSE": {
+      "sha256": "30de40c5f673fece106736887db8b56e5eb782bcac3a13da50d5bd2a1f89c05a",
+      "bytes": 1329
+    },
+    "SKILL.md": {
+      "sha256": "6f8cb5ab993592a12f34cefd2528b4a4dae1e56e302d063a8ca25d98d18d551d",
+      "bytes": 30999
+    },
+    "assets/SEAL.schema.json": {
+      "sha256": "bfb801eee3f52defa7a1855606d1600af38f32c3bd12925c6fd44589ba23f94f",
+      "bytes": 585
+    },
+    "assets/pubkey.pem": {
+      "sha256": "fa0bb93c291aa692cdfb5d4fde8ce1f65c29486e4285ad20fd25e2f847ba31cb",
+      "bytes": 116
+    },
+    "config.yaml": {
+      "sha256": "831bc5a1061399e46acd00df87bc73b18b667c782c52263ca59552e3fa5e04c4",
+      "bytes": 930
+    },
+    "manifest.yaml": {
+      "sha256": "a4f69b7fcec6b67e32deb3def56c546db6ad8dbf191dab683ba6530c9a20ac91",
+      "bytes": 1093
+    },
+    "references/INDEX模板.md": {
+      "sha256": "fed61da04a8a9ed0bdd12db62aff21829327a74f9f54acd06b2a45d63147a6ad",
+      "bytes": 5701
+    },
+    "references/会话上下文交接模板.md": {
+      "sha256": "f9dec74027e5d68bda73bffa24a1e355d1130839668c2b79227ff3e701dc13b0",
+      "bytes": 2239
+    },
+    "references/依赖图谱与行动看板.md": {
+      "sha256": "7c07d9cc6b1ef17b856eec041a2efc3b35c3c18671425f53e006e270e0c67eb0",
+      "bytes": 2979
+    },
+    "references/发布与上架指南.md": {
+      "sha256": "ae0b62ed75d2e43c25205cbff25d883f66b038adcafc6d0d98e122458494626b",
+      "bytes": 6213
+    },
+    "references/子任务拆分交接清单.md": {
+      "sha256": "35df24a704ceb95a39199e9bae75fe533335b0daba263d1dc978c37548c52a4c",
+      "bytes": 2086
+    },
+    "references/控制塔机制.md": {
+      "sha256": "331b3cbbb5c6e576afd3fc089fb82767cbad41e1ca945711d34ac9be37fdaaa5",
+      "bytes": 45215
+    },
+    "references/新会话启动提示词.md": {
+      "sha256": "35314e003f005f4c40186d808f0d903b05ed6fa0d5e8d07f4a9bc19b27777fc9",
+      "bytes": 2646
+    },
+    "references/跨平台移植工具包.md": {
+      "sha256": "369863860431b22d22de095e998cee172ddf704d746a5cfbde31dd355c1a7744",
+      "bytes": 13207
+    },
+    "references/路由投送清单.md": {
+      "sha256": "44459a8e41b92244c6c335cf5b37e300d658487ac5214cabb7c13b8f003e0232",
+      "bytes": 2696
+    },
+    "scripts/_ed25519.py": {
+      "sha256": "62e694d66ef7384ee8ce9789bd32528d22f1f127257b52e536bbdd8116e8a746",
+      "bytes": 7111
+    },
+    "scripts/config.py": {
+      "sha256": "8e706ce900165a7b04bebd45ba261ab9beb73982de11fc1912bfe87f6562622d",
+      "bytes": 6957
+    },
+    "scripts/export_package.py": {
+      "sha256": "133388cf0b653c381a0e1a4c0f99ac0690fd285e3cf331430626f7cf73f5b6bf",
+      "bytes": 23872
+    },
+    "scripts/gen_seal.py": {
+      "sha256": "86b79478fb0bc566d000551b4fc41ab7fd533c95bdacefe63ae2e695120b12aa",
+      "bytes": 4817
+    },
+    "scripts/import_package.py": {
+      "sha256": "8a77b741a094cf02759bd617f410091612d865ea900caa558073ab6da74b54ee",
+      "bytes": 19065
+    },
+    "scripts/maintenance_lock.py": {
+      "sha256": "7df16be62a3eca6901ad1ff415abf26823b155c9ef38e5a62e284a9c327c0d80",
+      "bytes": 13261
+    }
+  },
+  "package_sha256": "e927c2990f222708a44a960ac8923d9c5bacf39db60eb5df07c3326418c687f6",
+  "seal_hash": "0f8ad854f6dc42e797db571f5adc850fb01f9ae37cb84455cb433af572ee0b38",
+  "watermark_token": "edo-seal-1fef9b18bc9c451395d4bf85c0814afd",
+  "tsa_timestamp": null,
+  "notes": "本 SEAL 为权属溯源指纹，非加密。发布时建议另取可信时间戳（RFC3161 TSA）锚定存在时间。",
+  "signed_at": "2026-09-18T04:52:48Z",
+  "signed_key_id": "edo-tensei-main",
+  "seal_signature": "vCOPsjZ+k69ZRlBrh/7voSIxyKKo+sn3lHEvBN8TMk6kSjD8U5dOAWL2eabDR3zZj6L4CB3uhuFS8vKFv/hgCw=="
+}

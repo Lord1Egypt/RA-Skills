@@ -1,39 +1,48 @@
-## Description: <br>
-Audit GitHub Actions run reliability by actor to surface high-risk contributors and flaky automation owners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions run reliability by actor to surface high-risk contributors and flaky automation owners.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze exported GitHub Actions run data, rank actors or actor-workflow groups by reliability, and identify contributors or automation owners that may need CI triage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reports can include actor, repository, run ID, and URL details from selected GitHub Actions exports. <br>
-Mitigation: Point RUN_GLOB only at exports intended for analysis and review generated reports before sharing them. <br>
-Risk: Critical findings can fail a CI job or automation step when FAIL_ON_CRITICAL is enabled. <br>
-Mitigation: Enable FAIL_ON_CRITICAL only when the workflow is intended to enforce reliability gates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daniellummis/github-actions-actor-reliability-audit) <br>
+## Use Case:
 
+Developers and CI maintainers use this skill to analyze exported GitHub Actions run data, rank unreliable actors or actor-workflow groups, and support triage or policy gating decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON summary with ranked actor groups and critical findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May exit with code 1 when FAIL_ON_CRITICAL=1 and critical actor groups are detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GitHub Actions run exports may include repository names, actor logins, branch names, events, run URLs, and failure history.
+
+Mitigation: Keep RUN_GLOB pointed at the intended export directory and review JSON output before enabling FAIL_ON_CRITICAL as an automated gate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daniellummis/skills/github-actions-actor-reliability-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit with code 1 when FAIL_ON_CRITICAL=1 and one or more critical actor groups are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

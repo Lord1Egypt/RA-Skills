@@ -1,0 +1,11 @@
+name: agnes-image
+version: 1.0.0
+description: "调用 Agnes Image 2.1 Flash 生成图像，支持文生图、图生图、URL/Base64 输出，API 端点 apihub.agnes-ai.cn/v1。需用户自备 AGNES_API_KEY。"
+category: image-generation
+author: hevin
+triggers:
+  - "生成一张图"
+  - "文生图"
+  - "图生图"
+  - "agnes image"
+  - "agnes-image-2.1-flash"

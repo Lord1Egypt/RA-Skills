@@ -1,46 +1,60 @@
-## Description: <br>
-Universal discipline for any LM-driven loop: agent retries, plan-act-observe flows, multi-agent handoffs, optimizer passes, and test-fix cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentsop Bounded Loop gives agents framework-agnostic guidance for designing LM-driven loops with explicit counters, progress witnesses, stagnation checks, budgets, and escalation paths.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and repair cyclic LM-agent workflows so retries, handoffs, tool loops, and test-fix cycles terminate with explicit counters, progress checks, budgets, and escalation paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Framework examples may be applied without adapting shared loop state, human escalation, or timeout budgets to the user's application. <br>
-Mitigation: Review the proposed loop bounds, escalation branch, and timeout or token budgets against the target workflow before deployment. <br>
-Risk: The skill provides guidance for control flow patterns but does not validate the user's implementation. <br>
-Mitigation: Add tests that inject permanent failures and assert termination, stagnation handling, and final-state preservation. <br>
+## Use Case:
 
+Developers and engineers use this skill when building, diagnosing, or porting cyclic LM workflows such as agent retries, plan-act-observe loops, multi-agent handoffs, optimizer passes, and test-fix cycles. It helps them replace vague stop conditions with deterministic counters, progress witnesses, safety budgets, and escalation paths.
 
-## Reference(s): <br>
-- [R1 Source Evidence](references/R1-source-evidence.md) <br>
-- [R2 Cross-Framework Comparison](references/R2-cross-framework.md) <br>
-- [LangGraph GRAPH_RECURSION_LIMIT](https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT) <br>
-- [LangGraph issue #6731](https://github.com/langchain-ai/langgraph/issues/6731) <br>
-- [CrewAI issue #330](https://github.com/crewAIInc/crewAI/issues/330) <br>
-- [Delegation ping-pong in CrewAI](https://azguards.com/technical/the-delegation-ping-pong-breaking-infinite-handoff-loops-in-crewai-hierarchical-topologies/) <br>
-- [LangGraph FAQs and Gotchas](https://sumanmichael.github.io/langgraph-cheatsheet/cheatsheet/faqs-gotchas/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and framework-specific recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance only; it does not execute tools or change runtime state by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can influence an agent to make loop-control changes that are too strict, too loose, or mismatched to the application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed counters, progress witnesses, budgets, and escalation behavior against the target workflow before deployment.
+
+Risk: Refusing to simply raise recursion or iteration limits can change existing operational behavior.
+
+Mitigation: Validate the replacement bounds with regression tests that cover permanent failure, stagnation, and successful completion paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentsope/skills/agentsop-bounded-loop)
+- [R1 source evidence](references/R1-source-evidence.md)
+- [R2 cross-framework comparison](references/R2-cross-framework.md)
+- [LangGraph GRAPH_RECURSION_LIMIT documentation](https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT)
+- [LangGraph issue 6731](https://github.com/langchain-ai/langgraph/issues/6731)
+- [CrewAI issue 330](https://github.com/crewAIInc/crewAI/issues/330)
+- [LangGraph FAQs and gotchas](https://sumanmichael.github.io/langgraph-cheatsheet/cheatsheet/faqs-gotchas/)
+- [CrewAI delegation ping-pong writeup](https://azguards.com/technical/the-delegation-ping-pong-breaking-infinite-handoff-loops-in-crewai-hierarchical-topologies/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline examples and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose framework-specific loop counters, exit predicates, tests, budgets, and escalation branches.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

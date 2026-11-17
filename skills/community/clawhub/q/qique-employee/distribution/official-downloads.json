@@ -1,0 +1,19 @@
+{
+  "snapshot_date": "2026-10-06",
+  "repository_contains_runtime": false,
+  "downloads": [
+    {
+      "file": "qique-ai-assistant-chrome.zip",
+      "url": "https://res.qique.cn/system/skill/qique-ai-assistant-chrome.zip",
+      "bytes": 154582,
+      "sha256": "7c6c9ef013ad6e02f3ce82db9342bf12d8a8670e9d26efd217a50f2b83375b59"
+    },
+    {
+      "file": "qique-employee-skill.zip",
+      "url": "https://res.qique.cn/system/skill/qique-employee-skill.zip",
+      "bytes": 42920799,
+      "sha256": "06f21e4b27c5660cc672ef261ec8834d04def05f4a1ca1929c92bbe44f0bc35e"
+    }
+  ],
+  "note": "Runtime packages remain hosted by the product publisher. Snapshot hashes do not establish functional compatibility or grant a license."
+}

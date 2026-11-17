@@ -26,6 +26,7 @@ skills/launch-bnb-token-on-flap/
 ├── SKILL.md                        ← this file
 └── references/
     ├── preflight.md                ← Step 0: prerequisites
+    ├── quote-tokens.md              ← Step 1: quote token selection
     ├── vault-factory.md            ← Step 2: vault factory setup
     ├── meta-upload.md              ← Steps 3 & 6: metadata upload
     ├── tax-params.md               ← Step 4: tax parameters
@@ -42,6 +43,7 @@ Before starting, verify that all required reference files are present. If any ar
 **Required files:**
 
 - `references/preflight.md`
+- `references/quote-tokens.md`
 - `references/vault-factory.md`
 - `references/meta-upload.md`
 - `references/tax-params.md`
@@ -52,18 +54,22 @@ Check each file exists, then read `references/preflight.md` and verify every pre
 
 ---
 
-## Step 1 — Choose token type
+## Step 1 — Choose token type and quote token
+
+Every token launched by this skill is a **Flap Tax Token V3** (`TOKEN_TAXED_V3`). Standard
+(non-tax) tokens are out of scope for this skill.
 
 Determine the token configuration:
 
-1. **Tax token or standard (non-tax) token?**
-2. If tax token: **Use a Vault Factory for revenue management?**
+1. **Use a Vault Factory for revenue management?**
+2. **Which quote token to launch against?** Read `references/quote-tokens.md` to fetch the
+   current list of supported quote tokens on BNB Chain and resolve the `quoteToken` address and
+   `decimals` to use in later steps. Defaults to native BNB if the user has no preference.
 
 Decision map:
 
 | Choice | Contract to call |
 |---|---|
-| Standard token | `Portal.newTokenV6` with `tokenVersion = TOKEN_V2_PERMIT` |
 | Tax token, no vault | `Portal.newTokenV6` with `tokenVersion = TOKEN_TAXED_V3` |
 | Tax token + vault | `VaultPortal.newTokenV6WithVault` with `tokenVersion = TOKEN_TAXED_V3` |
 
@@ -77,7 +83,7 @@ Read `references/vault-factory.md` to:
 2. Call the factory's `vaultDataSchema()` to understand the required `vaultData` encoding.
 3. Determine the values needed to encode `vaultData`.
 
-Skip this step for standard tokens or tax tokens without a vault.
+Skip this step for tax tokens without a vault.
 
 ---
 
@@ -92,7 +98,7 @@ Read `references/meta-upload.md` when ready to upload the image and construct th
 
 ---
 
-## Step 4 — Tax parameters *(tax token only)*
+## Step 4 — Tax parameters
 
 Read `references/tax-params.md` to determine and validate:
 
@@ -102,13 +108,16 @@ Read `references/tax-params.md` to determine and validate:
 - `minimumShareBalance`
 - `beneficiary` address *(only for tax token without vault)*
 
-Skip this step for standard tokens.
-
 ---
 
 ## Step 5 — Launch buy amount
 
-Determine `quoteAmt`: the amount of BNB to spend on the initial buy at launch (in BNB, will be converted to wei). This becomes both the `quoteAmt` field and the `msg.value` of the transaction. Use `0` to skip the initial buy.
+Determine `quoteAmt`: the amount of the chosen quote token (Step 1) to spend on the initial buy at
+launch, in human units. Convert to base units using the quote token's `decimals` (see
+`references/quote-tokens.md`) before encoding. If the quote token is native BNB, this also equals
+the `msg.value` of the transaction; for any other (ERC-20) quote token, `msg.value` is `0` and the
+wallet must instead hold and approve `quoteAmt` of that token beforehand. Use `0` to skip the
+initial buy.
 
 ---
 
@@ -123,7 +132,6 @@ Follow `references/meta-upload.md` to upload the image and metadata JSON to Flap
 Read `references/salt-finding.md` to mine a vanity salt using CREATE2 prediction:
 
 - Tax token address must end in `7777`.
-- Standard token address must end in `8888`.
 
 Save the resulting `salt` (bytes32) and the predicted `tokenAddress`.
 

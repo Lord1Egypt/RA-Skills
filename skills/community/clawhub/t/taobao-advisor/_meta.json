@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7d8pcxzx9w95v6tr05xb4869837sed",
+  "ownerId": "kn70pywhg0fyz996kpa8xj89s57yhv26",
   "slug": "taobao-advisor",
   "version": "1.0.0",
-  "publishedAt": 1774840385705
+  "publishedAt": 1774512000000,
+  "tags": ["taobao", "advisor", "menwear", "marketing"],
+  "category": "ecommerce"
 }

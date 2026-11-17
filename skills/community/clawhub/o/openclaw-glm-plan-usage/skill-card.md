@@ -1,47 +1,57 @@
-## Description: <br>
-Query GLM coding plan usage statistics, including quota, model usage, and MCP tool usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query GLM coding plan usage statistics, including quota, model usage, and MCP tool usage.
 
-## Publisher: <br>
-[OrientLuna](https://clawhub.ai/user/OrientLuna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[orientluna](https://clawhub.ai/user/orientluna)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to check GLM Coding Plan quotas, 24-hour model usage, and 24-hour MCP tool usage from their local OpenClaw configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local OpenClaw configuration that contains the GLM API key. <br>
-Mitigation: Protect ~/.openclaw/openclaw.json and avoid commands or logs that print full API keys. <br>
-Risk: The release includes a shell script that performs local checks and remote usage queries. <br>
-Mitigation: Review scripts/query-usage.sh before running it and install only from a trusted source. <br>
-Risk: Installation guidance includes cleanup commands that remove skill directories. <br>
-Mitigation: Verify rm -rf paths before cleanup so unrelated local files are not removed. <br>
-Risk: Scheduled checks can repeatedly query usage data. <br>
-Mitigation: Add a cron job only when scheduled local usage checks are intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to check GLM coding plan quota, model usage, and MCP tool usage from their configured provider.
 
-## Reference(s): <br>
-- [GLM Coding Plan API Endpoints Reference](references/api-endpoints.md) <br>
-- [Installation Guide](docs/INSTALLATION.md) <br>
-- [OpenClaw Documentation](https://openclaw.dev) <br>
-- [GLM Coding Plan](https://open.bigmodel.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal text output and Markdown documentation with shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English output; reads local OpenClaw provider configuration and queries GLM monitoring endpoints with curl and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The optional cron setup can keep running every hour and write usage output to a local log.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script on demand unless continuous monitoring is intentional; document and verify how to remove the cron entry and manage the generated log.
+
+Risk: The script reads the GLM API key from the local OpenClaw configuration.
+
+Mitigation: Protect the OpenClaw configuration file, avoid exposing logs or command output that could reveal sensitive configuration context, and rotate the API key if exposure is suspected.
+
+## Reference(s):
+
+- [GLM Coding Plan API Endpoints Reference](artifact/references/api-endpoints.md)
+- [Installation Guide](artifact/docs/INSTALLATION.md)
+- [OpenClaw Documentation](https://openclaw.dev)
+- [GLM Coding Plan](https://open.bigmodel.cn)
+- [ClawHub Skill Page](https://clawhub.ai/orientluna/skills/openclaw-glm-plan-usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal-formatted usage statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English output; requires curl, jq, OpenClaw provider configuration, and a GLM Coding Plan API key.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

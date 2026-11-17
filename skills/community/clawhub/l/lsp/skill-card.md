@@ -1,40 +1,57 @@
-## Description: <br>
-LSP Code Navigation gives agents multi-language code navigation through persistent Language Server Protocol daemons for definitions, references, hover information, symbols, diagnostics, completions, signatures, and rename previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-language code navigation via persistent LSP daemons for definitions, references, hover information, symbols, diagnostics, completions, signature help, and rename previews across common programming languages.
 
-## Publisher: <br>
-[AdamNaghs](https://clawhub.ai/user/AdamNaghs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adamnaghs](https://clawhub.ai/user/adamnaghs)
 
-## Use Case: <br>
-Developers and coding agents use this skill to inspect source code with language-server semantics across Python, TypeScript/JavaScript, Rust, Go, C/C++, Bash, Java, CSS, HTML, and JSON workspaces. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local language-server binaries and a short-lived daemon against the user's workspace. <br>
-Mitigation: Install only trusted or pinned language servers, use the skill in trusted workspaces, and run the shutdown command when the daemon should stop. <br>
-Risk: Environment variables such as LSP_SERVER and LSP_SOCK can change which command runs or which socket is used. <br>
-Mitigation: Do not let untrusted projects or wrappers set LSP_SERVER or LSP_SOCK before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdamNaghs/lsp) <br>
-- [Eclipse JDT Language Server](https://github.com/eclipse-jdtls/eclipse.jdt.ls) <br>
+## Use Case:
 
+Developers and engineers use this skill to navigate codebases through installed language servers, including finding definitions and references, reading hover/type information, listing symbols, checking diagnostics, and previewing rename edits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and command-line output with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+ and at least one trusted language-server binary for the target language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A local background daemon reads queried source files and sends them to installed language servers.
+
+Mitigation: Use the skill only in workspaces where local language servers are trusted to receive the queried source files.
+
+Risk: The LSP_SERVER environment variable can replace the language server command with another executable that receives source file contents.
+
+Mitigation: Keep LSP_SERVER unset unless intentionally pointing it at a trusted executable.
+
+Risk: A system-wide symlink can broaden who invokes or modifies the installed command.
+
+Mitigation: Prefer direct invocation or a user-writable PATH location over a system-wide symlink.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamnaghs/skills/lsp)
+- [Eclipse JDT Language Server](https://github.com/eclipse-jdtls/eclipse.jdt.ls)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown-formatted command output from LSP queries and setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and at least one installed language server for queried languages.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Wip Branch Guard is a Claude Code and OpenClaw hook that enforces branch discipline, blocks destructive commands, requires repo onboarding before first write, tracks blocked-file retries, and gates external pull request creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PreToolUse hook that enforces branch discipline, blocks destructive commands, requires repo onboarding before first write, tracks blocked-file retries, and gates PR creation against external repos.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to keep coding agents off protected branches, require onboarding reads before repository writes, and surface unsafe or out-of-scope mutation attempts before they execute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The current command allowlist can let some writes through that users may expect a strict branch guard to block. <br>
-Mitigation: Review before installing as a strict main-branch protection control, and patch or validate the allowlist against actual write destinations if stronger enforcement is required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and operate a branch guard for Claude Code or OpenClaw sessions, reducing accidental writes on protected branches and blocking selected destructive commands.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/parkertoddbrooks/wip-branch-guard) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces hook decisions, denial guidance, SessionStart warnings, and installation configuration for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release evidence) <br>
+Risk: Machine-wide Claude/OpenClaw hooks can deny tool calls and write local guard state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, keep a documented removal path for the hook, and review retained data under ~/.ldm/state.
+
+Risk: Security evidence reports verified bypasses that weaken the protection users are asked to rely on.
+
+Mitigation: Treat the guard as workflow assistance rather than a strong access-control boundary until the disclosed bypass and state issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/skills/wip-branch-guard)
+- [AI DevOps Toolbox](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+- [README.md](artifact/README.md)
+- [INSTALL.md](artifact/INSTALL.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit deny messages, SessionStart warnings, and local audit or session-state records when installed as a hook.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata; bundled package version 1.9.84)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

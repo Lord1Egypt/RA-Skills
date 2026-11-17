@@ -1,37 +1,52 @@
-## Description: <br>
-Time Capsule helps agents write future-facing project notes that surface when specified code, date, dependency, contributor, milestone, or metric conditions are met. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write messages to your future self or future team that unlock when specific code conditions are met, encoding institutional knowledge into the codebase so it appears when needed.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to capture institutional knowledge as time-delayed notes tied to code changes, dates, dependency updates, metrics, contributors, or milestones. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Capsules may persist stale, sensitive, or misleading project notes in a repository. <br>
-Mitigation: Review generated or modified capsule content before committing it, avoid credentials or private data, include clear authorship and context, and remove or expire notes that are no longer accurate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jcools1977/time-capsule) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create future-facing repository notes that appear when codebase events make the information relevant, such as file changes, date reminders, dependency upgrades, contributor onboarding, or metric thresholds.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text notes with trigger descriptions and optional repository file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or runtime dependencies are required by the skill metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Capsules may preserve secrets, private personal data, or sensitive internal context in durable repository notes.
+
+Mitigation: Use capsules only for appropriate project knowledge and avoid storing secrets or private personal data.
+
+Risk: Generated trigger mechanisms could affect repository behavior if committed without review.
+
+Mitigation: Review any generated trigger mechanism before committing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/time-capsule)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with example capsule text and trigger descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload, network use, credential handling, or hidden install behavior found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

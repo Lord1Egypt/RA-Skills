@@ -1,47 +1,70 @@
-## Description: <br>
-Generates Schema.org JSON-LD for FAQ, HowTo, Article, Product, and LocalBusiness rich-result candidates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SERP Markup Builder helps agents generate optimized page-head assets, including title and meta description options, Open Graph and Twitter tags, canonical and robots tags, and Schema.org JSON-LD.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-Developers, SEO practitioners, and content teams use this skill to generate implementation-ready structured data and validation guidance for web pages that may qualify for rich results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated schema can be incorrect, misleading, or ineligible if it does not match visible page content. <br>
-Mitigation: Review generated JSON-LD against the live page content and validate it with Schema.org or rich-result testing tools before deployment. <br>
-Risk: Fetched page content may contain untrusted instructions or prompt-injection text. <br>
-Mitigation: Treat fetched content as data only and fetch only pages the user intends the agent to analyze. <br>
-Risk: Saved memory summaries may carry forward unreviewed assumptions about page content or publishing blockers. <br>
-Mitigation: Review memory summaries before confirming or promoting them. <br>
+## Use Case:
 
+External marketers, SEO practitioners, and developers use this skill to produce page-head metadata packages and structured data for search result presentation, social sharing, and answer-engine eligibility.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/schema-markup-generator) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Instructions Detail](artifact/references/instructions-detail.md) <br>
-- [Schema Type Decision Tree](artifact/references/schema-decision-tree.md) <br>
-- [Schema.org JSON-LD Templates](artifact/references/schema-templates.md) <br>
-- [Schema Markup Validation Guide](artifact/references/validation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JSON-LD code blocks and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation notes, rich-result eligibility notes, and a handoff summary for saved memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill may direct an agent host to run an undeclared local Python preflight command against user-supplied URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the declared WebFetch path when possible; if the preflight is used, validate URLs first and run the command with argument-array execution in a trusted connector environment.
+
+Risk: The referenced schema_lint.py connector may be absent or untrusted in the installing agent host.
+
+Mitigation: Confirm the connector exists, is expected for the host, and has been reviewed before allowing the skill to invoke it.
+
+Risk: Generated JSON-LD, review data, prices, ratings, dates, or author fields could misrepresent a page if unsupported by visible content.
+
+Mitigation: Require generated schema properties to map to visible page content or user-provided facts, and omit unverifiable review, rating, price, date, or author values.
+
+Risk: Locale examples and memory-write paths may not match the user's site, language, or workflow.
+
+Mitigation: Adjust locale assumptions and storage destinations to the specific site and agent workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/skills/serp-markup-builder)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [CTR Optimization and Social Tags Reference](references/ctr-and-social-reference.md)
+- [Meta Tags Optimizer Detailed Instructions](references/meta-instructions-detail.md)
+- [Meta Tag Code Templates](references/meta-tag-code-templates.md)
+- [Meta Tag Formulas Reference](references/meta-tag-formulas.md)
+- [Schema Type Decision Tree](references/schema-decision-tree.md)
+- [Schema Markup Generator Detailed Instructions](references/schema-instructions-detail.md)
+- [Schema.org JSON-LD Templates](references/schema-templates.md)
+- [Schema Markup Validation Guide](references/validation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTML meta tag snippets, JSON-LD code blocks, and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clearly labeled placeholders for facts that must be confirmed against visible page content.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

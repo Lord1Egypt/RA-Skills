@@ -1,40 +1,59 @@
-## Description: <br>
-Adapt pricing psychology for any overseas market in minutes with market price-perception audits, culturally appropriate discount frames, trust signals, and testing plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapt pricing psychology for any overseas market in minutes. Get market price-perception audits, culturally appropriate discount frames, trust signals, and testing plans — install and optimize your pricing strategy in under 30 seconds.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Founders, pricing managers, ecommerce operators, and conversion-rate optimization teams use this skill to adapt pricing pages, discount framing, bundles, trust signals, and testing plans for overseas markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, discount, tax, fee, or regulated-market recommendations may conflict with local law, platform rules, or market-specific disclosure requirements. <br>
-Mitigation: Treat outputs as strategic guidance and review recommendations with qualified local legal, tax, and pricing professionals before changing real prices, discount claims, tax displays, or regulated-market offers. <br>
-Risk: Conversion-focused price framing can become misleading if urgency claims, reference prices, discounts, or total-cost presentations are not accurate. <br>
-Mitigation: Use only evidence-backed claims, show transparent total costs, avoid false urgency, and document ethical tests with clear sample-size thresholds and stopping rules. <br>
+## Use Case:
 
+External business teams use this skill to adapt pricing pages, discount framing, bundles, trust signals, and pricing-message tests for overseas markets. It is intended for founders, pricing managers, ecommerce operators, and conversion-rate optimization teams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cb-pricing-psychology-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured audits, recommendations, checklists, and testing plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls, code execution, persistence, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact/skill.json) <br>
+Risk: Pricing recommendations may be mistaken for legal or tax advice in markets with consumer-protection pricing rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as business strategy support and obtain qualified local legal, tax, and pricing review before implementing changes.
+
+Risk: Discount, urgency, or reference-price framing can become misleading if local promotion rules or actual offer terms are not checked.
+
+Mitigation: Validate each claim, fee disclosure, promotion term, and test variant against local consumer-protection requirements before launch.
+
+Risk: Guidance may be too generic if the user provides incomplete market, segment, margin, or benchmark inputs.
+
+Mitigation: Collect current pricing structure, target market, category benchmarks, customer segment, channel context, and margin constraints before relying on recommendations.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [Acceptance Criteria](artifact/ACCEPTANCE.md)
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-pricing-psychology-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with market audits, pricing-frame alternatives, localization checklists, and testing plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conceptual business guidance; no API access or code execution required.]
+
+## Skill Version(s):
+
+1.0.1 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

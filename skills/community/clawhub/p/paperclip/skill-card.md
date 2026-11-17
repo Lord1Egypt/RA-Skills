@@ -1,43 +1,59 @@
-## Description: <br>
-Run Paperclip locally for agent orchestration, AI company setup, and OpenClaw, Codex, or Claude control-plane operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Paperclip locally for agent orchestration, AI company setup, and OpenClaw, Codex, or Claude control-plane operations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and operators use Paperclip to set up and run a local control plane for AI agent companies, including adapter selection, OpenClaw integration, issue tracking, approvals, budgets, and heartbeats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can create or update Paperclip companies, issues, approvals, or heartbeats. <br>
-Mitigation: Review CLI/API commands before running them and confirm the target Paperclip API base and company context. <br>
-Risk: Memory and configuration files may reference operational details or environment names. <br>
-Mitigation: Keep tokens and provider keys out of memory files and review saved Paperclip notes periodically. <br>
-Risk: Configured adapters can send operational data to Paperclip, OpenClaw, and selected model providers. <br>
-Mitigation: Use only trusted deployments and provider accounts, and enable adapters only for runtimes the operator authorizes. <br>
+## Use Case:
 
+Developers and operators use this skill to install, configure, and operate a local Paperclip control plane for coordinating AI companies, agents, issues, approvals, budgets, and adapters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/paperclip) <br>
-- [Paperclip homepage](https://clawic.com/skills/paperclip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local configuration paths, environment variable names, and commands for Paperclip, OpenClaw, Codex, or Claude adapters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and SKILL.md frontmatter) <br>
+Risk: Mutable setup commands may install or run changing package code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed package version or repository commit, and run first-time setup in an isolated environment before using it with real workspaces.
+
+Risk: Operational context may be persisted to local Paperclip memory files.
+
+Mitigation: Confirm with the user before saving environment details or work context, and never store provider tokens or other secrets in memory files.
+
+Risk: Configured Paperclip deployments, adapters, and model providers may receive operational data.
+
+Mitigation: Use only trusted local or remote deployments and adapters, and verify the selected API base, gateway URL, and provider credentials before sending work data.
+
+## Reference(s):
+
+- [Paperclip ClawHub Listing](https://clawhub.ai/ivangdavila/skills/paperclip)
+- [Paperclip Homepage](https://clawic.com/skills/paperclip)
+- [Paperclip Repository](https://github.com/paperclipai/paperclip.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, API examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local setup steps, adapter selection guidance, memory file structure, and API or CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

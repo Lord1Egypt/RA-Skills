@@ -1,43 +1,54 @@
-## Description: <br>
-Team Work helps multiple OpenClaw agents join a shared team service, exchange team messages, and coordinate task status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team Work helps multiple OpenClaw agents join the same team service, exchange messages, and keep collaboration state synchronized.
 
-## Publisher: <br>
-[the-invulnus](https://clawhub.ai/user/the-invulnus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[the-invulnus](https://clawhub.ai/user/the-invulnus)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect OpenClaw agents to the same team server, send broadcasts or direct messages, and coordinate lead/member workflows during shared tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may send sensitive task data or secrets through the configured team service. <br>
-Mitigation: Use only trusted team servers and instruct agents not to include secrets, credentials, or private tokens in team messages. <br>
-Risk: The workflow can involve Git credentials and pushes to shared repositories. <br>
-Mitigation: Use a dedicated workspace, avoid token-bearing clone URLs, and require human review of the repository, branch, and diff before pushing changes. <br>
-Risk: The helper scripts write and reuse a local team configuration file. <br>
-Mitigation: Store the config in an isolated workspace path and remove it after the collaboration session ends. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multiple OpenClaw agents in a shared team by registering agents, sending broadcast or direct team messages, and tracking task progress in local workspace files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/the-invulnus/team-work) <br>
-- [Publisher profile](https://clawhub.ai/user/the-invulnus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with shell command examples and JavaScript helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local team configuration JSON file and sends HTTP requests to the configured team service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata) <br>
+Risk: Remote team messages and Git or network operations may have under-scoped authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted team service and approved HTTPS endpoint, avoid sending secrets in messages, and require explicit user approval before accepting remote tasks or pushing changes.
+
+Risk: Git credential material may be exposed if embedded directly in repository URLs or shared in team communication.
+
+Mitigation: Use approved authentication handling, avoid embedding Git tokens in URLs, and keep configuration and task files in a dedicated workspace path.
+
+## Reference(s):
+
+- [Team Work ClawHub Listing](https://clawhub.ai/the-invulnus/skills/team-work)
+- [the-invulnus ClawHub Publisher Profile](https://clawhub.ai/user/the-invulnus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local task-planning files and a team configuration file for message routing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-专为亮哥打造的务实、高效、带情绪支持的 Web3/AI 工作流助手。基于艾森豪威尔矩阵和四类任务状态进行高频管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lianggeskills is a Chinese personal workflow assistant for Web3/AI work that manages task priorities, task status, progress check-ins, and supportive responses.
 
-## Publisher: <br>
-[271498019](https://clawhub.ai/user/271498019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[271498019](https://clawhub.ai/user/271498019)
 
-## Use Case: <br>
-External users who want a Chinese-language Web3/AI work assistant can use this skill to triage tasks, track task status, receive reminders, and get brief emotional support responses. It is especially tailored to a user working in crypto, on-chain trading, meme-coin monitoring, alpha discovery, and AI news tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task titles, blockers, and status history are stored in local task memory and may contain sensitive work details. <br>
-Mitigation: Avoid storing secrets, private keys, credentials, or sensitive account details in task titles or blockers. <br>
-Risk: Abandoned tasks are deleted from the active local task workspace, which can cause data loss if used accidentally. <br>
-Mitigation: Review task names before issuing abandon commands and consider adding an undo or archive step before deployment in stricter workflows. <br>
-Risk: Periodic reminders and proactive check-ins may be disruptive outside the intended work rhythm. <br>
-Mitigation: Adjust the configured work hours, timezone, reminder intervals, and trigger phrases before use. <br>
+## Use Case:
 
+External users can use this skill as a Chinese-language personal work assistant for Web3, crypto, on-chain trading, meme-coin, alpha-discovery, and AI-trend workflows. It helps sort work through an Eisenhower matrix, track tasks across four states, issue progress reminders, and provide emotional-support responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/271498019/lianggeskills) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/271498019) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language task updates, reminder messages, status summaries, and supportive responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local task memory and reads a local quote library for emotional-support responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Broad high-priority trigger phrases can interrupt work or change task state too easily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger phrases before deployment, and require explicit confirmation before actions that pause work or alter task state.
+
+Risk: The skill can proactively message the user during configured work hours.
+
+Mitigation: Confirm the desired timezone, work-hour window, and reminder intervals before enabling timer-driven actions.
+
+Risk: Task records are kept in local task memory and may include sensitive work details.
+
+Mitigation: Clarify where task memory is stored, restrict access to the storage location, and avoid sensitive tasks unless retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/271498019/skills/lianggeskills)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/271498019)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-style task/status responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local task-state and quote-library JSON files when executed in a compatible OpenClaw environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

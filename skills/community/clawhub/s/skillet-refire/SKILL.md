@@ -1,5 +1,7 @@
 ---
 name: refire
+version: 0.1.0
+license: MIT
 description: Use when anything misbehaves - a failing test, a production bug, a build break, flaky or unexpected behavior - before proposing or attempting any fix. Especially under pressure ("CI is blocking everyone", "just get it green") and after a previous fix didn't hold.
 ---
 

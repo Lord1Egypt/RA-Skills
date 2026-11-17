@@ -1,44 +1,59 @@
-## Description: <br>
-语雀 (Yuque) 知识库管理。搜索、阅读、创建、编辑语雀文档，管理知识库和目录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yuque (语雀) knowledge base management for searching, reading, creating, editing, and organizing Yuque documents, repositories, and tables of contents.
 
-## Publisher: <br>
-[lt5227](https://clawhub.ai/user/lt5227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt5227](https://clawhub.ai/user/lt5227)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search, read, create, edit, delete, and organize Yuque knowledge base content through Yuque OpenAPI scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store a Yuque API token in a local config.json file. <br>
-Mitigation: Use a limited-scope Yuque token when possible and prefer an environment variable or protected secret storage over plaintext local configuration. <br>
-Risk: The skill can delete remote Yuque documents. <br>
-Mitigation: Require the agent to show the exact repository and document target and get explicit confirmation before any delete operation. <br>
-Risk: Document content may be written locally and sent to Yuque. <br>
-Mitigation: Avoid using the skill for highly sensitive documents unless local handling and Yuque upload are acceptable. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to let shell-capable agents search, read, create, update, delete, and organize content in their Yuque knowledge bases through Yuque OpenAPI.
 
-## Reference(s): <br>
-- [Yuque OpenAPI v2 Reference](references/api-reference.md) <br>
-- [Yuque](https://www.yuque.com) <br>
-- [ClawHub skill page](https://clawhub.ai/lt5227/yuque-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts write JSON to stdout and send errors to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Yuque API tokens may be stored in plaintext config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the YUQUE_TOKEN environment variable, avoid committing config.json, and rotate the token if it is exposed.
+
+Risk: A configurable base_url can receive the Yuque token and document data if changed from the intended service.
+
+Mitigation: Verify base_url remains https://www.yuque.com before running scripts that authenticate or transfer content.
+
+Risk: The skill can delete documents, change visibility, and reorganize table-of-contents nodes without built-in confirmations.
+
+Mitigation: Require manual confirmation for destructive or visibility-changing actions and review target repository, document, and TOC identifiers before execution.
+
+## Reference(s):
+
+- [Yuque OpenAPI v2 Reference](references/api-reference.md)
+- [Yuque](https://www.yuque.com)
+- [ClawHub skill release page](https://clawhub.ai/lt5227/skills/yuque-knowledge-base)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, Python scripts, configuration JSON, and Yuque API JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Yuque API token; scripts use Python standard library and return JSON to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Downloads TikTok, Instagram Reel, X/Twitter video, YouTube Short, and other social video links with yt-dlp, with an optional transcript workflow for creating reusable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads social video links with yt-dlp, either saving the best available video file or preparing downloaded media and transcripts for reusable skill creation.
 
-## Publisher: <br>
-[olliewazza](https://clawhub.ai/user/olliewazza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olliewazza](https://clawhub.ai/user/olliewazza)
 
-## Use Case: <br>
-External users and developers use this skill to download social video links in best available quality and, when needed, produce a transcript and source material for creating a concise OpenClaw skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcription mode may upload extracted audio to OpenAI when OPENAI_API_KEY is set. <br>
-Mitigation: Run without OPENAI_API_KEY for local-only download and extraction, or require an explicit confirmation before cloud transcription. <br>
-Risk: The skill can download media from third-party social platforms. <br>
-Mitigation: Use it only for videos the user is allowed to download and ask before using logged-in browser sessions or cookies. <br>
+## Use Case:
 
+External users and developers use this skill to download social media videos in best available quality and, when needed, generate transcripts that can support concise OpenClaw skill creation.
 
-## Reference(s): <br>
-- [ClawHub release: Social Downloader](https://clawhub.ai/olliewazza/social-downloader) <br>
-- [OpenAI audio transcription API](https://api.openai.com/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded video files, extracted audio, result JSON, transcript text, and guidance for creating or updating an OpenClaw skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Transcription mode can send extracted audio to OpenAI when OPENAI_API_KEY is present, creating privacy and billing implications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use transcription only for authorized videos, run it in a private output directory, and unset OPENAI_API_KEY unless sending audio to OpenAI is intended.
+
+Risk: Some social sites may require login, cookies, or permission to access media.
+
+Mitigation: Use only URLs the user is authorized to download, and ask before using a logged-in browser session or cookies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olliewazza/skills/social-downloader)
+- [OpenAI audio transcriptions API endpoint](https://api.openai.com/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, JSON, Text, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts produce media files, result JSON, and optional transcript text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create downloaded video and audio files in a local output directory; transcription sends audio to OpenAI only when OPENAI_API_KEY is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

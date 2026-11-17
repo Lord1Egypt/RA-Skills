@@ -1,48 +1,61 @@
-## Description: <br>
-Manage monday.com boards, items, columns, groups, updates, and workflows via MCP server (preferred) and GraphQL API (fallback). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage monday.com boards, items, columns, groups, updates, and workflows via MCP server or GraphQL API fallback.
 
-## Publisher: <br>
-[regevguym](https://clawhub.ai/user/regevguym) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[regevguym](https://clawhub.ai/user/regevguym)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to manage monday.com project, CRM, workflow, and reporting resources through the official MCP server or direct GraphQL API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to access and modify broad monday.com business data. <br>
-Mitigation: Install only for intended monday.com use, use a least-privilege token, and verify board access before operations. <br>
-Risk: Destructive or bulk actions could delete or alter boards, items, groups, or workflows. <br>
-Mitigation: Require explicit user confirmation for destructive or bulk changes and summarize what will change before execution. <br>
-Risk: The MCP configuration uses an unpinned package reference in the artifact. <br>
-Mitigation: Pin or review the monday.com MCP package before installation instead of relying on an @latest install. <br>
-Risk: The artifact encourages retaining board and item names, URLs, and context in persistent memory. <br>
-Mitigation: Disable or limit persistent memory for monday.com resource details unless users knowingly opt in. <br>
+## Use Case:
 
+Employees, operators, and developers use this skill to create, query, and update monday.com project, CRM, workflow, board, item, column, group, update, webhook, and file resources through an agent. It is suited for task tracking, project status summaries, CRM pipeline setup, sprint planning, reporting, and monday.com AI workflow support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/regevguym/monday-com) <br>
-- [monday.com Developer Docs](https://developer.monday.com) <br>
-- [monday.com API Reference](https://developer.monday.com/api-reference) <br>
-- [monday.com MCP Server](https://github.com/mondaycom/mcp) <br>
-- [GraphQL API Examples](references/graphql-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON, GraphQL, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce monday.com MCP configuration, GraphQL requests, direct resource URLs, summaries, and operational next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup uses an unpinned package install pattern, so the executed server can change between installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the MCP package version before operational use and update it through normal review.
+
+Risk: The monday.com API token can grant broad access to business data and workspace actions.
+
+Mitigation: Use a dedicated, least-privilege token and store it only in an approved secrets mechanism.
+
+Risk: Destructive changes, file uploads, webhook destinations, and workspace-level changes can modify or expose monday.com data.
+
+Mitigation: Require explicit user confirmation before those operations and verify the target board, item, file, endpoint, or workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/regevguym/skills/monday-com)
+- [monday.com developer docs](https://developer.monday.com)
+- [monday.com API reference](https://developer.monday.com/api-reference)
+- [monday.com MCP server](https://github.com/mondaycom/mcp)
+- [GraphQL API Examples](references/graphql-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline JSON, GraphQL, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include direct monday.com board, item, dashboard, file, webhook, or update URLs when operations create or locate resources.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

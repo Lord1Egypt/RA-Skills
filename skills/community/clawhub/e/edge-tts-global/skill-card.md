@@ -1,40 +1,52 @@
-## Description: <br>
-Use the globally installed edge-tts command to generate Chinese or multilingual text-to-speech audio on this machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the globally installed edge-tts command to generate Chinese or multilingual text-to-speech audio on this machine.
 
-## Publisher: <br>
-[mrliugangqiang](https://clawhub.ai/user/mrliugangqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mrliugangqiang](https://clawhub.ai/user/mrliugangqiang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to convert user-provided text into speech with the globally installed edge-tts command, including Chinese or multilingual audio, Telegram voice-message style audio, and optional subtitle files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Text may be sent to the online Edge TTS provider.
+
+Mitigation: Use only non-sensitive text unless the user is comfortable sending that text to the provider.
+
+Risk: The cleanup helper can delete arbitrary user-writable file paths.
+
+Mitigation: Avoid cleanup on untrusted paths until it is constrained to generated files under the workspace temp directory and rejects absolute paths, parent traversal, symlinks, and non-MP3/VTT files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to convert supplied text into Chinese or multilingual speech with the globally installed edge-tts command, optionally producing Telegram voice-message style audio and subtitles. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup can delete files outside the intended temporary audio workflow. <br>
-Mitigation: Limit execution to agents with constrained filesystem access or change cleanup to delete only files created under the workspace temp/ directory. <br>
-Risk: The workflow depends on a globally installed edge-tts binary and sends text to the TTS provider used by that binary. <br>
-Mitigation: Confirm the installed binary is trusted and that the text being synthesized is appropriate to send to the provider. <br>
+**Output Format:** [Markdown guidance with inline bash commands; generated MP3 audio files and optional VTT subtitle files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrliugangqiang/edge-tts-global) <br>
+**Other Properties Related to Output:** [Temporary outputs are intended for the caller workspace temp directory and should be deleted after successful sending.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [MP3 audio files, optional VTT subtitles, and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a globally installed edge-tts binary and writes temporary outputs under the caller workspace temp/ directory by default.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

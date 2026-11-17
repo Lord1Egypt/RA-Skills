@@ -1,42 +1,59 @@
-## Description: <br>
-Generates standardized XMind-format test cases from requirements documents and supporting code analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized XMind test-case files from requirements documents, with guidance for requirement review, code analysis, priority tagging, and case statistics.
 
-## Publisher: <br>
-[wxl1779766474](https://clawhub.ai/user/wxl1779766474) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxl1779766474](https://clawhub.ai/user/wxl1779766474)
 
-## Use Case: <br>
-QA engineers, developers, and product teams use this skill to turn requirements and implementation details into XMind test-case files with prioritized P1 smoke and P3 normal cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill for generic Chinese requests to write or generate test cases. <br>
-Mitigation: Confirm that the user expects XMind-format output when the request is not explicitly XMind-specific. <br>
-Risk: The bundled generator writes .xmind files to a fixed local Desktop work directory by default. <br>
-Mitigation: Confirm the desired output location or adjust the generator path before running it in a new environment. <br>
+## Use Case:
 
+QA engineers and developers use this skill to turn requirement documents into structured XMind test-case maps, including module breakdowns, numbered steps, expected results, priority markers, and output statistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wxl1779766474/xmind-testcase-generator) <br>
-- [XMind Test Case Specification](artifact/xmind-testcase.md) <br>
-- [gen_xmind.py API Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance plus Python code edits and generated .xmind files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated XMind files are ZIP packages containing content.json, metadata.json, and manifest.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can fetch full requirement documents and inspect relevant local project code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only for explicit XMind test-case generation tasks and confirm the intended source document and repository scope before use.
+
+Risk: The generator script writes generated XMind files under a fixed Desktop path.
+
+Mitigation: Confirm the output location before execution and review generated files before sharing or relying on them.
+
+Risk: The workflow asks the agent to modify the bundled generator script to build case data.
+
+Mitigation: Review script changes before running the generator and keep edits limited to the test-case data function.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/wxl1779766474/skills/xmind-testcase-generator)
+- [gen_xmind.py API reference](artifact/reference.md)
+- [XMind test-case generation specification](artifact/xmind-testcase.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance plus Python code edits and generated .xmind files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated XMind files are written by the bundled script, which reports total, smoke, and normal test-case counts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

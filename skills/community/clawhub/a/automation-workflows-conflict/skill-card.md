@@ -1,42 +1,53 @@
-## Description: <br>
-Design and implement no-code automation workflows for solopreneurs, including task audits, tool selection, workflow setup, testing, and maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement no-code automation workflows that help solopreneurs identify repetitive tasks, choose tools, set up triggers and actions, test workflows, and maintain automations.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Solopreneurs and small-business operators use this skill to identify repetitive work, select no-code automation tools, design triggers and actions, test workflows, and maintain automations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automations may expose or copy customer, payment, or other sensitive business data across third-party tools. <br>
-Mitigation: Use test data first, sync only necessary fields, grant the smallest useful OAuth scopes, and review each vendor's retention and sharing settings. <br>
-Risk: Automated customer messages, public posts, invoices, payment updates, or sensitive personal-data actions can cause business or privacy harm if misconfigured. <br>
-Mitigation: Keep human approval in the workflow for these actions and test edge cases before relying on the automation. <br>
-Risk: Packaged metadata and registry metadata do not fully match. <br>
-Mitigation: Verify the publisher and version before installing or following the skill. <br>
+## Use Case:
 
+Solopreneurs and business operators use this skill to audit repetitive work, compare no-code automation tools, design workflow triggers and actions, test automations, monitor failures, and estimate automation ROI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/automation-workflows-conflict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute automations or connect to external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: No-code automations can connect customer data, email, CRM, accounting, payment, or public posting tools with broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed workflow and third-party account authorization before enabling it, especially where sensitive data, payments, or public communications are involved.
+
+Risk: Incorrect field mapping, duplicate triggers, missing error handling, or failed actions can create incorrect data or missed business tasks.
+
+Mitigation: Test with real-world sample data, include error notifications, monitor workflow logs, and document each active automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/automation-workflows-conflict)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with checklists, workflow templates, tool comparisons, and example automation designs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain instructional content; no code execution or external tool calls are embedded in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

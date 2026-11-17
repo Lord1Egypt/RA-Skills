@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7fgm829te36r33ybgx1v7jpx82khse",
-  "slug": "subagent-orchestrator-whhh",
-  "version": "2.0.1",
-  "publishedAt": 1779697892293
+  "name": "subagent-orchestrator",
+  "description": "通用大型任务分工框架：Subagent编排、三文件持久化、串行/并行调度、断点续传、上下文溢出分流。从tourism-guide-harvester提炼泛化。",
+  "version": "1.3.0",
+  "triggerWords": ["大型任务拆分", "任务分工", "子任务编排", "多agent协作", "复杂任务执行", "上下文溢出", "context快满了", "任务分流"]
 }

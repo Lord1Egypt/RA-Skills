@@ -1,43 +1,56 @@
-## Description: <br>
-Secure, safe-by-default Fastmail integration (email, contacts, calendar) via JMAP + CalDAV for setup checks, email triage/search, thread inspection, contact lookup, calendar review, and explicitly enabled sending or calendar changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure, safe-by-default Fastmail integration for email, contacts, and calendar via JMAP and CalDAV.
 
-## Publisher: <br>
-[TassieDaddy](https://clawhub.ai/user/TassieDaddy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tassiedaddy](https://clawhub.ai/user/tassiedaddy)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent work with their Fastmail mailbox, contacts, and calendars through local CLI scripts. It supports read-first workflows such as setup validation, triage, search, thread summaries, contact lookup, and upcoming-event review, with sending and calendar writes only when explicitly enabled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses real Fastmail credentials and can expose mailbox, contact, and calendar data to the agent workflow. <br>
-Mitigation: Install only when that access is intended, prefer read-only Fastmail tokens for normal use, and keep credentials scoped to the minimum required roles. <br>
-Risk: Sending mail or changing calendar events can occur if write mode and suitable credentials are enabled. <br>
-Mitigation: Keep FASTMAIL_ENABLE_WRITES unset or 0 for routine use, and enable it only for deliberate sending or calendar changes. <br>
-Risk: Raw output and custom service endpoints can weaken the default safety posture. <br>
-Mitigation: Avoid --raw unless needed, keep redaction enabled by default, and do not point FASTMAIL_BASE_URL or FASTMAIL_CALDAV_BASE_URL at non-Fastmail hosts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fastmail Suite on ClawHub](https://clawhub.ai/TassieDaddy/fastmail-suite) <br>
-- [TassieDaddy publisher profile](https://clawhub.ai/user/TassieDaddy) <br>
-- [Fastmail API token settings](https://app.fastmail.com/settings/security/tokens) <br>
+## Use Case:
 
+External users and developers use this skill to verify Fastmail setup, triage and search email, inspect threads, read contacts, view upcoming calendar events, and optionally perform explicitly enabled email and calendar writes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and optional JSON from bundled Python CLI scripts, with Markdown setup guidance in the skill instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redacted by default unless raw output is explicitly requested; writes require FASTMAIL_ENABLE_WRITES=1 and suitable credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fastmail credentials and account data may be sent to configurable or discovered network destinations.
+
+Mitigation: Use the default Fastmail endpoints, avoid custom FASTMAIL_BASE_URL and FASTMAIL_CALDAV_BASE_URL values, and review destination settings before use.
+
+Risk: Email, contact, and calendar output can expose private account content despite default redaction.
+
+Mitigation: Keep FASTMAIL_REDACT enabled, avoid --raw unless necessary, and use narrow read-only tokens for normal workflows.
+
+Risk: Write-enabled operation can send email or create, update, or delete calendar data.
+
+Mitigation: Leave FASTMAIL_ENABLE_WRITES unset for routine use and provide write-capable credentials only for deliberate send or calendar modification tasks.
+
+## Reference(s):
+
+- [Fastmail Suite on ClawHub](https://clawhub.ai/tassiedaddy/skills/fastmail-suite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain private account data; redaction is enabled by default unless raw output is requested.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

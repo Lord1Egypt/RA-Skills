@@ -1,45 +1,59 @@
-## Description: <br>
-Verify an email address's deliverability and reputation using OpenMerch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify an email address's deliverability and reputation. Powered by OpenMerch.
 
-## Publisher: <br>
-[kernel-gd](https://clawhub.ai/user/kernel-gd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernel-gd](https://clawhub.ai/user/kernel-gd)
 
-## Use Case: <br>
-Agents and developers use this skill to check a single email address for deliverability and basic reputation signals before outreach, onboarding, or list hygiene work. It requires an authorized OpenMerch account and API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each verification sends the submitted email address and OpenMerch API key to OpenMerch. <br>
-Mitigation: Use the skill only with email addresses you are authorized to check, and keep OPENMERCH_API_KEY scoped and protected. <br>
-Risk: Each successful execution can consume OpenMerch account credits. <br>
-Mitigation: Review the /v1/plan quote before execution and rely on max_cost from the plan response rather than a hardcoded price. <br>
-Risk: The skill may fail while the documented upstream provider outage remains active. <br>
-Mitigation: Do not use the skill until the outage notice is removed or OpenMerch confirms the provider is available. <br>
+## Use Case:
 
+Developers and external users can check whether a single email address is deliverable and review basic reputation signals before using it in workflows such as outreach or account validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kernel-gd/openmerch-email-verify) <br>
-- [Publisher profile](https://clawhub.ai/user/kernel-gd) <br>
-- [OpenMerch documentation](https://docs.openmerch.dev) <br>
-- [OpenMerch API endpoint](https://api.openmerch.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and normalized JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes one email address per run and includes the raw OpenMerch job output, actual cost, and job id when execution completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence.json release.version and SKILL.md frontmatter) <br>
+Risk: The target email address is sent to OpenMerch for verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only verify addresses you are allowed to share with OpenMerch.
+
+Risk: Each verification consumes the user's OpenMerch account balance or credits.
+
+Mitigation: Use the plan quote as the price source of truth before execution and report the actual charged cost from the completed job.
+
+Risk: Changing OPENMERCH_BASE_URL can send email addresses and API credentials to an unintended endpoint.
+
+Mitigation: Leave OPENMERCH_BASE_URL unset unless using a trusted OpenMerch staging endpoint, and rotate the API key if it was used with an untrusted or plaintext endpoint.
+
+## Reference(s):
+
+- [OpenMerch Documentation](https://docs.openmerch.dev)
+- [OpenMerch Email Verify on ClawHub](https://clawhub.ai/kernel-gd/skills/openmerch-email-verify)
+- [Kernel Studio ClawHub Profile](https://clawhub.ai/user/kernel-gd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON result with normalized summary fields, raw provider output, cost, and job ID; Markdown guidance and shell examples in documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One email address per run. Requires OPENMERCH_API_KEY and either Node 18+ or curl. Uses OpenMerch plan, execute, and conditional polling calls.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

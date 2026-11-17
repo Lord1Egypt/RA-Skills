@@ -1,49 +1,66 @@
-## Description: <br>
-Diagnose and fix bugs using runtime execution traces. Use when debugging errors, analyzing failures, or finding root causes in Python, Node.js, or Java applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix bugs using runtime execution traces. Use when debugging errors, analyzing failures, or finding root causes in Python, Node.js, or Java applications.
 
-## Publisher: <br>
-[dxsup](https://clawhub.ai/user/dxsup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxsup](https://clawhub.ai/user/dxsup)
 
-## Use Case: <br>
-Developers and engineers use this skill to instrument Python, Node.js, or Java applications with Syncause runtime tracing, reproduce bugs, inspect live trace data, and apply verified fixes with cleanup afterward. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs remote SDKs or MCP components and changes application startup or build behavior. <br>
-Mitigation: Review installers and dependency changes before execution, pin versions where possible, and verify all startup hooks and build changes during teardown. <br>
-Risk: Runtime traces and API keys may expose secrets or sensitive project data outside the local machine. <br>
-Mitigation: Keep API keys out of committed files, redact secrets before tracing, and use the skill only where outbound trace collection is approved. <br>
-Risk: Incomplete cleanup can leave tracing dependencies, configuration, or .syncause files in the project. <br>
-Mitigation: Follow the language-specific uninstall guides and confirm dependencies, MCP configuration, startup hooks, and .syncause files are removed. <br>
+## Use Case:
 
+Developers and engineers use this skill to instrument Python, Node.js, or Java applications, reproduce failures, inspect runtime traces, and apply evidence-based fixes. It is intended for debugging crashes, incorrect behavior, and performance issues where live execution context helps identify root cause.
 
-## Reference(s): <br>
-- [Syncause Java SDK Installation Guide](artifact/references/install/java.md) <br>
-- [Syncause Node.js SDK Installation Guide](artifact/references/install/nodejs.md) <br>
-- [Syncause Python SDK Installation Guide](artifact/references/install/python.md) <br>
-- [MCP Server Installation - Anonymous Mode](artifact/references/install/mcp-install-anonymous.md) <br>
-- [MCP Server Installation - Login Mode](artifact/references/install/mcp-install-login.md) <br>
-- [Syncause Java SDK Uninstallation Guide](artifact/references/uninstall/java.md) <br>
-- [Syncause Node.js SDK Uninstallation Guide](artifact/references/uninstall/nodejs.md) <br>
-- [Syncause Python SDK Uninstallation Guide](artifact/references/uninstall/python.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code edits, shell commands, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, trace analysis, fix summary, and teardown guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Persistent external debugging tooling may remain active after troubleshooting and affect application performance or data exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the included teardown guides after debugging, remove the SDK and generated configuration, delete the .syncause folder, and verify the application runs without instrumentation.
+
+Risk: Runtime traces can capture request data, return values, database queries, or other sensitive execution context.
+
+Mitigation: Trace only synthetic or approved non-sensitive data unless explicit approval and redaction controls are in place.
+
+Risk: Installation steps may introduce unpinned or remotely fetched tooling and credential-bearing configuration.
+
+Mitigation: Prefer project-scoped MCP configuration, pin package versions, avoid curl-piped shell execution, and keep API keys out of committed files.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [MCP Server Installation - Anonymous Mode](artifact/references/install/mcp-install-anonymous.md)
+- [MCP Server Installation - Login Mode](artifact/references/install/mcp-install-login.md)
+- [Syncause Python SDK Installation Guide](artifact/references/install/python.md)
+- [Syncause Node.js SDK Installation Guide](artifact/references/install/nodejs.md)
+- [Syncause JAVA SDK Installation Guide](artifact/references/install/java.md)
+- [Syncause Python SDK Uninstallation Guide](artifact/references/uninstall/python.md)
+- [Syncause Node.js SDK Uninstallation Guide](artifact/references/uninstall/nodejs.md)
+- [Syncause JAVA SDK Uninstallation Guide](artifact/references/uninstall/java.md)
+- [ClawHub Skill Page](https://clawhub.ai/dxsup/skills/runtime-debugging-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with inline code snippets, shell commands, configuration examples, and debugging summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dependency, instrumentation, reproduction-test, application-code, and cleanup changes during debugging workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,53 @@
-## Description: <br>
-Paper Assistant helps users structure and draft academic writing, including topic selection, outlines, abstracts, introductions, literature reviews, methods, results discussion, revision, and submission preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language academic writing assistant for paper topics, outlines, abstracts, introductions, literature reviews, research methods, discussion, polishing, and submission preparation.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to turn unclear paper ideas or draft sections into structured, formal, and expandable academic text. It supports Chinese-language workflows for thesis, coursework, literature review, journal draft, submission, and defense preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated academic writing may contain incorrect facts, unsupported claims, or unverifiable citations if the user does not provide reliable source material. <br>
-Mitigation: Require users to verify citations, facts, statistics, and source-specific claims before using the output in academic work. <br>
-Risk: Submitting generated text without review may conflict with institution-specific academic integrity requirements. <br>
-Mitigation: Ask users to check their institution, course, journal, or supervisor requirements and revise outputs into their own accountable work. <br>
-Risk: Requests involving latest policies, journal requirements, statistics, or research developments may require current external information. <br>
-Mitigation: Tell users when current sources or user-provided materials are needed, and avoid presenting unsupported updates as authoritative. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to structure, draft, revise, and prepare academic papers, proposals, literature reviews, and defense materials. It is especially oriented toward Chinese academic writing workflows where users need structured, directly usable prose without fabricated references or data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/paper-assistant) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured prose, with Chinese as the default response language unless the user requests another language.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; generated academic content should not fabricate citations, data, publication status, or unsupported research claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and changelog) <br>
+Risk: The skill may be asked to address current policies, journal requirements, statistics, or recent research that are not available in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require browsing-enabled tools or user-provided source material before presenting time-sensitive information as current.
+
+Risk: Academic writing assistance can accidentally present unsupported references, data, or findings as real.
+
+Mitigation: Keep the skill's stated guardrails active: do not fabricate literature, experimental data, publication status, or consensus claims without evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/paper-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, outlines, templates, and revision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output unless the user requests another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

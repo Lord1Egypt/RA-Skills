@@ -1,46 +1,61 @@
-## Description: <br>
-Formal verification with Lean 4, Coq, and Z3 SMT solver. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formal verification with Lean 4, Coq, and Z3 SMT solver.
 
-## Publisher: <br>
-[willamhou](https://clawhub.ai/user/willamhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willamhou](https://clawhub.ai/user/willamhou)
 
-## Use Case: <br>
-Developers, researchers, and technical users use this skill to check Lean 4 proofs, verify Coq theories, solve Z3 SMT-LIB2 satisfiability problems, and inspect local prover availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proof, Coq, or SMT inputs are written to local temporary storage during checks. <br>
-Mitigation: Avoid including secrets or sensitive data in prover inputs. <br>
-Risk: Lean and Coq may read local standard libraries, toolchains, package paths, and environment-defined search paths during normal prover execution. <br>
-Mitigation: Install Lean, Coq, and Z3 from trusted sources, keep them updated, and run the skill in an environment with appropriate filesystem boundaries. <br>
-Risk: Unresolved Lean imports could trigger package tooling behavior outside the skill's direct network requests. <br>
-Mitigation: Avoid lake-managed project files in the temporary working area and review Lean imports before execution. <br>
+## Use Case:
 
+Developers, researchers, and engineers use this skill to check Lean 4 and Coq proofs, compile Coq files, solve SMT-LIB2 satisfiability problems with Z3, and inspect local prover availability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willamhou/formal-provers) <br>
-- [Prismer source and homepage](https://github.com/Prismer-AI/Prismer) <br>
-- [Lean 4 setup documentation](https://leanprover.github.io/lean4/doc/setup.html) <br>
-- [Coq download documentation](https://coq.inria.fr/download) <br>
-- [Z3 project](https://github.com/Z3Prover/z3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Structured tool results with stdout, stderr, return codes, prover status, satisfiability results, and model text when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local lean, coqc, and z3 binaries; prover invocations use temporary files and a 60-second timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: Lean and Coq inputs run through local prover binaries without a documented sandbox or constrained environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for trusted proofs by default; run third-party Lean or Coq files inside a container or other sandbox with a cleaned environment and restricted filesystem access.
+
+Risk: Lean and Coq may read installed standard libraries, toolchains, package search paths, and environment-dependent configuration during normal verification.
+
+Mitigation: Review local Lean and Coq configuration before use and constrain include paths, package search paths, and environment variables when checking untrusted material.
+
+Risk: Unresolved Lean imports could trigger package-management behavior outside the skill's direct network behavior.
+
+Mitigation: Avoid placing lake project files with checked inputs and disable or isolate package-manager network access when evaluating unfamiliar Lean code.
+
+## Reference(s):
+
+- [Prismer project homepage](https://github.com/Prismer-AI/Prismer)
+- [Lean 4 setup documentation](https://leanprover.github.io/lean4/doc/setup.html)
+- [Coq download documentation](https://coq.inria.fr/download)
+- [Z3 project repository](https://github.com/Z3Prover/z3)
+- [ClawHub skill page](https://clawhub.ai/willamhou/skills/formal-provers)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON tool results and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lean, Coq, and Z3 checks depend on locally installed prover binaries and use a 60-second timeout.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

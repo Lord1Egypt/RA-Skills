@@ -1,46 +1,58 @@
-## Description: <br>
-AI-powered web scraping framework for extracting structured data from websites. Use when Codex needs to crawl, scrape, or extract data from web pages using AI-powered parsing, handle dynamic content, or work with complex HTML structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered web scraping framework for extracting structured data from websites. Use when Codex needs to crawl, scrape, or extract data from web pages using AI-powered parsing, handle dynamic content, or work with complex HTML structures.
 
-## Publisher: <br>
-[codylrn804](https://clawhub.ai/user/codylrn804) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codylrn804](https://clawhub.ai/user/codylrn804)
 
-## Use Case: <br>
-Developers and agents use this skill to scrape, crawl, clean, and extract structured data from web pages, including JavaScript-driven pages and complex HTML. It supports authorized extraction workflows for products, articles, tables, forms, links, markdown, clean HTML, screenshots, and batch scraping. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill supports browser-based scraping and includes guidance that could be applied to sites where scraping is not authorized. <br>
-Mitigation: Use it only on sites and pages the user is authorized to access, and check robots.txt and terms of service before scraping. <br>
-Risk: The security review notes anti-bot bypass advice and Cloudflare or proxy guidance. <br>
-Mitigation: Avoid bypass-oriented guidance and do not use proxies or anti-bot workarounds unless there is explicit authorization and a legitimate operational need. <br>
-Risk: The artifact includes an unrelated GitHub CLI login instruction. <br>
-Mitigation: Do not run gh auth login for this skill unless a separate GitHub task specifically requires it. <br>
-Risk: Scraped HTML, screenshots, and extracted records can contain personal, confidential, or otherwise sensitive information. <br>
-Mitigation: Store outputs only where appropriate, minimize collected data, and review outputs before sharing or committing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crawl4ai ClawHub release](https://clawhub.ai/codylrn804/crawl4ai) <br>
-- [Crawl4ai API Reference](references/api_reference.md) <br>
-- [Crawl4ai Examples](references/examples.md) <br>
-- [Crawl4ai Error Handling and Troubleshooting](references/error_handling.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents through web scraping, crawling, and structured extraction from public or authorized web pages, including JavaScript-rendered content and complex HTML. It supports generating Python examples, shell commands, and output-file workflows for single-page, multi-page, and local HTML extraction tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code blocks; helper scripts can emit markdown, HTML, JSON, screenshots, and saved files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include scraped page content and screenshots; treat saved HTML, screenshots, and extracted records as potentially sensitive.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch arbitrary URLs, including pages outside the user's intended scope.
+
+Mitigation: Use only public or explicitly authorized URLs, and avoid authenticated, internal, or private-network pages.
+
+Risk: Scraped page contents may be saved to disk and could include sensitive or unwanted data.
+
+Mitigation: Review output paths before execution and inspect saved files before sharing, committing, or reusing them.
+
+Risk: Batch scraping can create excessive requests or capture more content than intended.
+
+Mitigation: Set conservative page counts and delays, and confirm the target site's robots.txt and terms before scraping.
+
+## Reference(s):
+
+- [Crawl4ai API Reference](references/api_reference.md)
+- [Crawl4ai Examples](references/examples.md)
+- [Crawl4ai Error Handling and Troubleshooting](references/error_handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; helper scripts can write JSON, Markdown, HTML, screenshots, and extracted web content files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save scraped page contents to user-selected files or directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

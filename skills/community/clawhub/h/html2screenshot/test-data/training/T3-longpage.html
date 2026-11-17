@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T3 - 长页面（>2000px）</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #1a1a2e; color: #eee; }
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 40px; text-align: center; }
+    .header h1 { font-size: 42px; margin-bottom: 12px; }
+    .header p { font-size: 18px; opacity: 0.9; }
+    .section { max-width: 900px; margin: 0 auto; padding: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .section h2 { font-size: 28px; margin-bottom: 20px; color: #667eea; }
+    .section p { line-height: 1.9; font-size: 16px; margin-bottom: 16px; color: #ccc; }
+    .section ul { margin-left: 24px; margin-bottom: 16px; }
+    .section li { margin-bottom: 8px; color: #bbb; }
+    .metric { display: inline-block; background: rgba(102,126,234,0.2); border: 1px solid #667eea; border-radius: 8px; padding: 12px 24px; margin: 8px; font-size: 14px; }
+    .footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.3); margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>T3 - 超长页面测试</h1>
+    <p>这个页面超过 3000px 高度，用于测试长截图的完整性</p>
+  </div>
+
+  <div class="section">
+    <h2>📋 第一部分：页面头部</h2>
+    <p>这是长页面的起始部分。关键测试点：确保截图工具能正确计算页面总高度，而不是只截取 viewport 可见区域。</p>
+    <p>如果截图被截断，说明 viewport 高度计算或 fullPage 参数有问题。</p>
+    <span class="metric">测试点：高度计算</span>
+    <span class="metric">预期：完整捕获</span>
+  </div>
+
+  <div class="section">
+    <h2>📋 第二部分：中间内容</h2>
+    <p>页面中部内容，包含多个段落和列表：</p>
+    <ul>
+      <li>列表项 1：测试滚动过程中的渲染</li>
+      <li>列表项 2：验证内容不被截断</li>
+      <li>列表项 3：检查底部是否完整</li>
+      <li>列表项 4：确保所有元素可见</li>
+      <li>列表项 5：长页面底部测试</li>
+    </ul>
+    <p>这一部分用于确认页面中间区域的内容能够正确渲染和捕获。</p>
+  </div>
+
+  <div class="section">
+    <h2>📋 第三部分：更多内容</h2>
+    <p>继续添加更多内容以增加页面高度。这个段落用于测试当页面内容超出初始 viewport 时，截图工具是否能正确扩展 viewport 并捕获全部内容。</p>
+    <p>关键指标：document.body.scrollHeight 应该远大于初始 viewport 高度（800px）。</p>
+    <span class="metric">scrollHeight 目标：>3000px</span>
+  </div>
+
+  <div class="section">
+    <h2>📋 第四部分：更多段落</h2>
+    <p>这是第四个内容区块。每个区块都有独立的标题和段落，用于验证分页/分段捕获的准确性。</p>
+    <p>如果某个区块缺失，说明截图过程中出现了分页或截断问题。</p>
+  </div>
+
+  <div class="section">
+    <h2>📋 第五部分：接近底部</h2>
+    <p>接近页面底部了。这是倒数第二个内容区块，用于测试截图工具在接近页面底部时的行为。</p>
+    <p>常见问题：底部内容被截断、footer 区域未捕获、最后几行文字丢失。</p>
+  </div>
+
+  <div class="section">
+    <h2>📋 第六部分：底部区域</h2>
+    <p>这是最后一个内容区块。如果这个区块完整显示，说明长页面截图功能正常工作。</p>
+    <p>✅ 如果能看到这个段落，说明截图工具成功捕获了整个页面！</p>
+  </div>
+
+  <div class="footer">
+    <p>🎉 页面底部 — 如果这部分可见，说明长截图功能正常！</p>
+    <p style="margin-top:12px; font-size:14px; opacity:0.6;">T3 - 长页面测试完成</p>
+  </div>
+</body>
+</html>

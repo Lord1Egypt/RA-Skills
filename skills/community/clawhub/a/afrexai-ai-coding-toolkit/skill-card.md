@@ -1,42 +1,55 @@
-## Description: <br>
-Provides a tool-agnostic methodology for using AI coding assistants through tool selection, context engineering, prompt templates, workflow patterns, verification checklists, and team adoption guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a tool-agnostic methodology for improving AI-assisted coding workflows through tool selection, context engineering, prompt templates, verification checklists, cost optimization, and team adoption guidance.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to choose AI coding tools, structure prompts and project rules, verify AI-generated code, manage costs, and roll out AI-assisted development practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated project rule files or prompt-library files can shape future agent behavior in a repository. <br>
-Mitigation: Review generated .cursorrules, CLAUDE.md, AGENTS.md, .windsurfrules, .aider.conf.yml, and prompt-library files before committing or deploying them. <br>
-Risk: AI coding guidance can lead to incorrect code or weak verification if applied without human review. <br>
-Mitigation: Use the skill's review, testing, and security checklists before accepting AI-generated changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-ai-coding-toolkit) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to select AI coding assistants, structure project context, write stronger prompts, review AI-generated code, manage costs, and create team guidance for AI-assisted development.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, templates, and inline code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate project rule files, prompt-library templates, review checklists, tool comparisons, rollout plans, or cost-optimization recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated or recommended project rules files may persist guidance that does not fit the repository.
+
+Mitigation: Review any .cursorrules, CLAUDE.md, AGENTS.md, .windsurfrules, or Aider configuration before committing or using it.
+
+Risk: Tool and model recommendations may lead to paid AI provider usage.
+
+Mitigation: Confirm provider choices, model routing, budgets, and approval settings before running paid or autonomous workflows.
+
+## Reference(s):
+
+- [Skill overview](artifact/README.md)
+- [Skill methodology](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-ai-coding-toolkit)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, checklists, decision tables, command examples, and optional project rules or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend external AI coding tools, models, and persistent project guidance files; review recommendations before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Analysis presents a single option without comparing alternatives or articulating the costs of the chosen approach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analysis presents a single option without comparing alternatives or articulating the costs of the chosen approach.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers, engineers, and reviewers use this skill to make analysis more trustworthy by comparing viable alternatives, naming tradeoffs, and explaining why the recommended option wins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence how an agent frames recommendations and may make weak option comparisons appear more complete than they are. <br>
-Mitigation: Review generated analysis against the stated decision criteria and verify that meaningful alternatives, costs, and limitations are covered. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to prompt agents to compare viable options, state decision criteria, and explain the costs and benefits behind a recommendation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mvogt99/analysis-missing-tradeoffs) <br>
-- [Publisher Profile](https://clawhub.ai/user/mvogt99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code execution, data access, or credential handling behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill may make agent responses longer by adding alternatives and tradeoffs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for recommendations or decisions where balanced comparison is valuable, and keep alternative dismissals brief when one option is clearly preferable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/analysis-missing-tradeoffs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces writing and reasoning guidance; no code execution, shell commands, or sensitive data access are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

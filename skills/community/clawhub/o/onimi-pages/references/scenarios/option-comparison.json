@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "option-comparison",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "work",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "方案对比",
+      "goal": "让标准、取舍和建议可检查，适合工具选型、采购或方案评审。",
+      "optionalInputs": [
+        {
+          "key": "decision",
+          "question": "要解决什么问题，候选方案有哪些？"
+        },
+        {
+          "key": "criteria",
+          "question": "最看重哪些标准或不可妥协的约束？"
+        },
+        {
+          "key": "cost",
+          "question": "预算、时间和维护成本有哪些已知信息？"
+        },
+        {
+          "key": "sources",
+          "question": "有哪些报价、实测或资料来源？"
+        }
+      ],
+      "sections": [
+        "决策问题",
+        "比较标准",
+        "并列对照",
+        "情景和权重",
+        "建议与待验证项"
+      ],
+      "qualityChecks": [
+        "采用同维度对照表，明确单位、时间与未知项。",
+        "有可信数据时才增加权重或成本计算器，并展示计算方法。",
+        "不把缺失数据当作零分；调整权重时推荐结论必须同步更新。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Option comparison",
+      "goal": "Make criteria, tradeoffs and recommendations inspectable for selection or review.",
+      "optionalInputs": [
+        {
+          "key": "decision",
+          "question": "What decision is needed and which options are being considered?"
+        },
+        {
+          "key": "criteria",
+          "question": "Which criteria and hard constraints matter most?"
+        },
+        {
+          "key": "cost",
+          "question": "What is known about budget, time and maintenance cost?"
+        },
+        {
+          "key": "sources",
+          "question": "Which quotes, measurements or sources can be cited?"
+        }
+      ],
+      "sections": [
+        "Decision",
+        "Criteria",
+        "Side-by-side comparison",
+        "Scenarios and weights",
+        "Recommendation and open checks"
+      ],
+      "qualityChecks": [
+        "Compare matching dimensions with explicit units, dates and unknown values.",
+        "Add weighting or cost calculators only when supported by credible data; expose the method.",
+        "Missing evidence is not a zero score; changing weights must update recommendations."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

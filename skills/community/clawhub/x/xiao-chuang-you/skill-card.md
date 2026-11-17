@@ -1,52 +1,63 @@
-## Description: <br>
-Xiao Chuang You is a Chinese-language lifestyle aesthetics assistant that routes requests across weather, pets, wellness, music, literature, fashion, handcrafts, photography, gardening, objects, seasonal customs, travel, and emotional support topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Chuang You is a Chinese-language new-Chinese lifestyle aesthetics guide that answers or routes questions about weather, pets, wellness, music, literature, clothing, crafts, photography, gardening, objects, seasons, travel, and emotions in a gentle classical style.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users use this skill for culturally styled lifestyle guidance, recommendations, and routing to specialized subskills for everyday topics such as weather-aware clothing, wellness routines, reading, music, crafts, gardening, travel, and mood support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly activates on ordinary lifestyle and recommendation requests. <br>
-Mitigation: Review the trigger scope before installation and disable or narrow activation if it conflicts with other assistant workflows. <br>
-Risk: The skill may store user location, wellness, preference, and planning context in workspace memory files. <br>
-Mitigation: Inspect memory behavior, avoid entering sensitive personal or medical data, and use the documented deletion workflow when memory should be cleared. <br>
-Risk: The skill may query external weather or search services for time-sensitive answers. <br>
-Mitigation: Share only the minimum location or query details needed, and verify important travel, price, event, or weather information against primary sources. <br>
-Risk: Sleep, diet, acupressure, pet-care, and emotion guidance may be mistaken for professional advice. <br>
-Mitigation: Treat those responses as general lifestyle guidance and seek qualified medical, veterinary, or mental health support for diagnosis, treatment, or urgent concerns. <br>
-Risk: The skill declares a recurring monthly background memory-check task. <br>
-Mitigation: Review scheduled jobs after installation and remove the cron task if background review is not desired. <br>
+## Use Case:
 
+External users use this agent skill for Chinese-language lifestyle recommendations, seasonal suggestions, and aesthetic guidance across daily living domains. Agents can also use it to route domain-specific requests to companion subskills or fall back to bundled reference material when those subskills are unavailable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zcr3344/xiao-chuang-you) <br>
-- [Module Index](references/INDEX.md) <br>
-- [Capability Matrix](references/capabilities.md) <br>
-- [Conversation Flow](references/conversation-flow.md) <br>
-- [Data Declaration](references/data-declaration.md) <br>
-- [Response Style Guide](references/guidelines.md) <br>
-- [Weather System](references/weather.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational responses with recommendations, tables, links, and follow-up questions when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local memory files and external weather or search results when the user asks for personalized or time-sensitive guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence, changelog dated 2026-05-26) <br>
+Risk: The skill asks to remember location, preference, and health-adjacent personalization details in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this local personalization is acceptable; avoid sharing medical details, diagnoses, medications, or highly private location information, and review or delete /workspace/MEMORY.md and memory summaries as needed.
+
+Risk: The skill declares an automatic monthly memory-checking job.
+
+Mitigation: Verify any scheduled cron task before relying on it, and remove it if unwanted.
+
+Risk: Time-sensitive recommendations may use live search, weather data, or third-party links.
+
+Mitigation: Verify external links, weather results, and current-event recommendations before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you)
+- [Reference Index](references/INDEX.md)
+- [Capabilities Matrix](references/capabilities.md)
+- [Conversation Flow](references/conversation-flow.md)
+- [Data Declaration](references/data-declaration.md)
+- [Response Guidelines](references/guidelines.md)
+- [Weather System](references/weather.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational responses with recommendations, short lists, tables, and links when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include routed subskill guidance, fallback answers from bundled references, local-memory personalization notes, and source labels for weather responses.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release evidence and target metadata; artifact _meta.json reports 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

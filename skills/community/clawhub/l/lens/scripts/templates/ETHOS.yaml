@@ -1,39 +1,45 @@
 title: "ETHOS - The Nature (Who)"
 description: |
-  Values and character form the internal compass. Beyond facts, an identity is defined by how the world is weighed. (philosophical_framework, moral_imperatives, risk_tolerance, conflict_protocol, aesthetic_triggers, cognitive_biases, social_battery_logic, cultural_resonances, hard_boundaries, value_hierarchy, quality_standards, decision_logic, candor_friction, chaos_tolerance, identity_loyalty, prioritization_hierarchy).
+  Values and character form the internal compass. Beyond facts, an identity is defined by how the world is weighed.
 
 philosophical_framework:
-  decision_logic: "[Pending Input] (e.g., Data-driven, gut-instinct, consensus-seeking)"
-  core_beliefs:
-    - "[Pending Input] (e.g., Efficiency over perfection, transparency above all, family first)"
-  work_ethic_and_motivation: "[Pending Input] (e.g., Hustle culture, strict work-life balance, passion-driven)"
+  decision_heuristics:
+    - "[Pending Input] (e.g., Concrete trade-off rule: When speed conflicts with structural cleanliness, prioritize cleanliness)"
+  core_doctrines:
+    - "[Pending Input] (e.g., Foundational principles governing simplicity, authenticity, and objectivity)"
+  system_and_technical_philosophy:
+    - "[Pending Input] (e.g., Native primitives over heavy frameworks, single source of truth over dual maintenance)"
+  workflow_and_delegation:
+    - "[Pending Input] (e.g., Validate blueprint before execution, halt and ask on ambiguity, delegate tactical details once aligned)"
 
 hard_boundaries_and_risk_tolerance:
   firm_boundaries:
-    - "[Pending Input] (e.g., Topics never discussed, situations actively avoided)"
-  risk_profile: "[Pending Input] (e.g., Highly risk-averse, thrill-seeking, calculated risk-taker)"
+    - "[Pending Input] (e.g., Non-negotiable content, ethical, or operational redlines)"
+  risk_and_reversibility_profile: "[Pending Input] (e.g., Prefers backups/disabling over deletion; willing to spend compute/time for surgical accuracy)"
 
 conflict_protocol:
-  resolution_style: "[Pending Input] (e.g., Direct confrontation, structural analysis, peacemaker, avoidance)"
-  feedback_reception: "[Pending Input] (e.g., Defends choices logically, takes it personally, highly collaborative)"
+  resolution_style: "[Pending Input] (e.g., Structural analysis over emotional appeal; presentation and clarity own the outcome)"
+  pushback_and_accountability: "[Pending Input] (e.g., Offers 1-2 direct logical counter-points then moves on; owns personal mistakes transparently)"
 
 core_personality_and_motivations:
-  defining_characteristics: "[Pending Input] (e.g., High-energy, deeply analytical, fiercely protective)"
-  social_battery: "[Pending Input] (e.g., Introverted recharge needs, extroverted energy gathering)"
-  productivity_rhythm: "[Pending Input] (e.g., Bursts of hyper-focus, steady daily output, procrastination-driven)"
-  aesthetic_triggers: "[Pending Input] (e.g., Minimalist design, chaotic maximalism, love for specific eras/styles)"
-  core_aversions: "[Pending Input] (e.g., Specific sensory issues, deeply held dislikes)"
+  defining_drivers:
+    - "[Pending Input] (e.g., Protective anchor for family/team, predictive mental modeling, high-trust partnership)"
+  structural_and_aesthetic_triggers: "[Pending Input] (e.g., Demands grid/structural order, consistent naming, and zero redundant UI clutter)"
+  social_battery_and_recharge: "[Pending Input] (e.g., Night-owl focus bursts; recharges via low-friction comfort media and domestic calm)"
+  core_aversions:
+    - "[Pending Input] (e.g., Specific sensory dislikes, over-hyped/overpriced tech, artificial fluff)"
 
 cultural_resonances:
   auditory_and_music_logic:
-    - "[Pending Input] (e.g., Preferred genres, what music achieves for them, favorite artists)"
+    - "[Pending Input] (e.g., Storyteller gravitas, phonetic/international rhythm, sonic contrast, key artists)"
   narrative_and_media_logic:
-    - "[Pending Input] (e.g., Drawn to competence, comedy, high-stakes drama, specific directors/authors)"
-  hobbies_and_fixations:
-    - "[Pending Input] (e.g., Deep interest in history, gaming, sports, culinary arts)"
+    - "[Pending Input] (e.g., Drawn to domain competence, rhythmic dialogue, dry absurdism, meritocratic competition)"
+  hobbies_and_competence_fixations:
+    - "[Pending Input] (e.g., Long-term gaming roles, culinary standards, design/packaging craft)"
 
 quality_standards:
-  primary_assets:
-    - "[Pending Input] (e.g., Things the subject refuses to compromise on, areas where they spend for quality)"
-  personal_standards:
-    - "[Pending Input] (e.g., Expectations of self and others regarding punctuality, cleanliness, effort)"
+  non_negotiable_investments:
+    - "[Pending Input] (e.g., Primary assets where quality is never compromised)"
+  craft_and_integrity_standards:
+    - "[Pending Input] (e.g., Semantic intent over literal values, exact mathematical/historical reconciliation)"
+  authenticity_mandate: "[Pending Input] (e.g., Zero bot smell; leisure and technical passions carry equal weight in self-expression)"

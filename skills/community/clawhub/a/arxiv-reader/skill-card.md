@@ -1,40 +1,60 @@
-## Description: <br>
-Fetches a specified arXiv paper by ID or URL, classifies it with an LLM agent, and prints Chinese deep-reading notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Python and an LLM agent to classify and deeply read a specified arXiv paper by ID or URL, then prints reading notes.
 
-## Publisher: <br>
-[Aurora-1412](https://clawhub.ai/user/Aurora-1412) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aurora-1412](https://clawhub.ai/user/aurora-1412)
 
-## Use Case: <br>
-Developers, researchers, and technical readers use this skill to fetch a public arXiv paper, classify it into a reading category, and generate structured Markdown reading notes through a configured OpenAI-compatible LLM endpoint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected paper text and metadata are sent to the LLM provider configured in .env. <br>
-Mitigation: Use a trusted or local-compatible endpoint and avoid processing private or unpublished manuscripts. <br>
-Risk: Dependency behavior may change over time because requirements use lower-bound version constraints. <br>
-Mitigation: Review and pin dependency versions before deploying in sensitive or controlled environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Aurora-1412/arxiv-reader) <br>
-- [arXiv abstract URL format](https://arxiv.org/abs/{arxiv_id}) <br>
+## Use Case:
 
+Developers and researchers use this skill to fetch an arXiv paper, classify it into a reading category, and generate structured Markdown notes for review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reading notes printed to stdout, with setup and run commands documented in the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese output by default; reading behavior depends on the selected category prompt and configured LLM endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Paper content is sent to the configured LLM provider.
+
+Mitigation: Explicitly set LLM_BASE_URL and LLM_API_KEY for the intended provider before use.
+
+Risk: Python dependencies are unpinned.
+
+Mitigation: Install in an isolated virtual environment and review or pin dependencies before running.
+
+Risk: Generated notes summarize untrusted arXiv paper text and may be influenced by that content.
+
+Mitigation: Treat generated notes as untrusted summaries and review them before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aurora-1412/skills/arxiv-reader)
+- [Publisher profile](https://clawhub.ai/user/aurora-1412)
+- [arXiv abstract URL example](https://arxiv.org/abs/2401.12345)
+- [arXiv PDF URL example](https://arxiv.org/pdf/2401.12345.pdf)
+- [OpenAI-compatible API base URL](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reading notes printed to stdout, including paper metadata and analysis sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese prompts are used by default; output may depend on the configured OpenAI-compatible LLM provider and token settings.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

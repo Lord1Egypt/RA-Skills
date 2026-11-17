@@ -1,0 +1,6 @@
+interface:
+  display_name: "杰哥黑客松交付"
+  short_description: "把内部业务想法或半成品交付为可运行、可部署、可验收的小产品"
+  default_prompt: "使用 $jiege-hackathon 通过提问完善这个内部业务想法，再规划可验收的最小产品。"
+policy:
+  allow_implicit_invocation: false

@@ -15,18 +15,19 @@ export class CausalGateService {
   async process(req: ExecutionRequest): Promise<GateResult> {
     // 1. Generate Judge event (pending)
     const judgeEvent = this.core.createJudge({
+      requester: req.requester,
       action: req.action,
       target: req.target,
       context: req.context,
       request_type: req.type
-    }, req.requester);
+    });
 
     // 2. Check skill identity
     const skill = this.registry.get(req.requester);
     if (!skill) {
       this.core.createTerminate(
         { reason: 'unregistered_skill', target: req.requester },
-        req.requester,
+        undefined,
         [judgeEvent.nonce]
       );
       this.core.updateStatus(judgeEvent.nonce, 'denied');
@@ -35,10 +36,11 @@ export class CausalGateService {
 
     // 3. Policy evaluation
     const policyResult = await this.policy.evaluate(req, skill);
-    if (policyResult.decision === 'deny') {
+    if (policyResult.decision === 'review') return {action:'review',reason:'policy_review',event:judgeEvent,requiredVerifiers:policyResult.required_verifiers};
+    if (policyResult.decision !== 'allow') {
       this.core.createTerminate(
         { reason: policyResult.rule_matched || 'policy_deny' },
-        req.requester,
+        undefined,
         [judgeEvent.nonce]
       );
       this.core.updateStatus(judgeEvent.nonce, 'denied');
@@ -63,7 +65,7 @@ export class CausalGateService {
         if (this.core.dag.hasCycle(d.who, targetSkill)) {
           this.core.createTerminate(
             { reason: 'circular_delegation', target: targetSkill },
-            req.requester,
+            undefined,
             [judgeEvent.nonce]
           );
           return { action: 'block', reason: 'circular_delegation_detected', event: judgeEvent };
@@ -77,7 +79,7 @@ export class CausalGateService {
       if (res.action === 'block') {
         this.core.createTerminate(
           { reason: `${res.extension}: ${res.rule_matched}` },
-          req.requester,
+          undefined,
           [judgeEvent.nonce]
         );
         this.core.updateStatus(judgeEvent.nonce, 'denied');
@@ -95,22 +97,21 @@ export class CausalGateService {
 
     // 6. Grant
     this.core.updateStatus(judgeEvent.nonce, 'granted');
-    const token = this.issueCapabilityToken(judgeEvent, skill);
+    const token = this.issueCapabilityToken(judgeEvent, skill, req);
     return { action: 'allow', reason: 'granted', event: judgeEvent, capabilityToken: token };
   }
 
-  private issueCapabilityToken(event: JPEvent, skill: SkillIdentity): string {
+  private issueCapabilityToken(event: JPEvent, skill: SkillIdentity, req: ExecutionRequest): string {
     const payload = {
       type: 'jep-cap',
       event_id: event.nonce,
-      agent: event.who,
+      agent: skill.skill_id,
+      request_digest: require("../../transport").requestDigest(skill.skill_id,{action:req.action,target:req.target,context:req.context}),
       capabilities: skill.capabilities,
       issued_at: event.when,
-      expires_at: event.when + 300
+      expires_at: event.when + 60
     };
-    const canonical = JSON.stringify(payload);
-    // @ts-ignore - accessing private crypto for signing
-    const sig = this.core['crypto'].sign(canonical);
+    const sig = this.core.signPayload(payload);
     return Buffer.from(JSON.stringify({ ...payload, sig })).toString('base64');
   }
 }

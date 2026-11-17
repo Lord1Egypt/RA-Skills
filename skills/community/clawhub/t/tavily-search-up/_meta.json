@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn77yknnp1vwqgkmzdewmyxmd581zfpn",
-  "slug": "tavily-search-up",
+  "ownerId": "kn7azq5e6sw0fbwwzdpcwvvjzd7z0x4z",
+  "slug": "tavily-insight-engine",
   "version": "1.1.0",
-  "publishedAt": 1773155842227
+  "publishedAt": 1768114920544,
+  "changelog": "增加了 Vibe Check 情绪分析和 Mission Brief 情报汇总功能。"
 }

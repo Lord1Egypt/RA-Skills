@@ -1,46 +1,59 @@
-## Description: <br>
-Universal coding standards for maintainable TypeScript, JavaScript, React, and Node.js projects, covering readability, type safety, error handling, API design, file organization, testing, and common code smells. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal coding standards for TypeScript, JavaScript, React, and Node.js, covering readability, KISS, DRY, YAGNI, naming, type safety, error handling, async patterns, React hooks, API design, file organization, performance, testing, and code smells.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide code review and implementation decisions for TypeScript, JavaScript, React, and Node.js codebases. It helps agents produce concise standards, examples, and recommendations for maintainability, testing, API design, and code quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad coding standards guidance may influence code review or implementation prompts in ways that conflict with a repository's local conventions. <br>
-Mitigation: Treat the skill as advisory guidance and prefer project-specific architecture, tests, style guides, and maintainer instructions when they differ. <br>
-Risk: Marketplace capability tags are broader than the documentation-only artifact behavior. <br>
-Mitigation: Do not treat the capability tags as evidence of executable behavior; rely on the security evidence and artifact contents before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill as coding guidance for TypeScript, JavaScript, React, and Node.js projects, especially when reviewing code quality, naming, type safety, API design, file organization, testing, and common code smells.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djc00p/coding-standards) <br>
-- [API Design Standards](references/api-design.md) <br>
-- [Code Smell Detection](references/code-smells.md) <br>
-- [File Organization & Naming](references/file-org.md) <br>
-- [React Best Practices](references/react.md) <br>
-- [Testing Standards](references/testing.md) <br>
-- [TypeScript & JavaScript Standards](references/typescript.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with TypeScript, JavaScript, React, API, testing, and shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable scripts, binaries, or required environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation terms such as code review and best practices may surface this guidance in contexts with project-specific standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the repository's local conventions before applying them.
+
+Risk: General coding guidance can be incomplete for framework versions, libraries, or compliance requirements not covered by the reference files.
+
+Mitigation: Use the guidance as a baseline and confirm specialized requirements with project documentation or domain reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djc00p/skills/coding-standards)
+- [API Design Standards](references/api-design.md)
+- [Code Smell Detection](references/code-smells.md)
+- [File Organization & Naming](references/file-org.md)
+- [React Best Practices](references/react.md)
+- [Testing Standards](references/testing.md)
+- [TypeScript & JavaScript Standards](references/typescript.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with TypeScript, JavaScript, React, API, file organization, and testing examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no required binaries, environment variables, runtime execution, or sensitive data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

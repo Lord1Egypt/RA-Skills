@@ -1,41 +1,52 @@
-## Description: <br>
-Read, analyze, convert, and manipulate image files (PNG, JPG, GIF, WebP, TIFF, BMP, HEIC, SVG, ICO). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, analyze metadata, convert formats, resize, rotate, crop, compress, and batch process PNG, JPG, GIF, WebP, TIFF, BMP, HEIC, SVG, and ICO images.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect image metadata, convert image formats, resize, rotate, crop, compress, strip metadata, and batch process local image files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image conversion and batch processing can overwrite or create local files at selected paths. <br>
-Mitigation: Confirm input and output paths before running commands and keep originals when converting, resizing, or stripping metadata. <br>
-Risk: Image metadata can contain private location, device, or author information. <br>
-Mitigation: Review metadata before sharing images and use the documented metadata-stripping workflow when privacy is required. <br>
-Risk: Generated shell commands can behave differently depending on local tool availability and image format support. <br>
-Mitigation: Review commands before execution and verify that required local tools such as sips or ffmpeg are available for the requested format. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/image-handler) <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect image metadata and generate local image-processing commands for format conversion, resizing, rotation, cropping, compression, metadata stripping, and batch processing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, files] <br>
-**Output Format:** [Markdown with inline bash commands and generated local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local input and output paths; conversions may preserve, transform, or strip image metadata depending on the selected command.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversion and batch commands can create or overwrite image files.
+
+Mitigation: Use explicit output paths and check whether destination files already exist before running commands.
+
+Risk: Untrusted filenames or unusual quality arguments may behave unexpectedly in shell-based image workflows.
+
+Mitigation: Avoid untrusted filenames and unusual quality values until the scripts are hardened.
+
+## Reference(s):
+
+- [Image Handler skill page](https://clawhub.ai/neckr0ik/skills/image-handler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file reads, image conversion commands, and output file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

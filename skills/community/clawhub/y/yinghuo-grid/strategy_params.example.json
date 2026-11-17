@@ -1,0 +1,18 @@
+{
+  "_comment": "演示参数（非实盘调优值）。付费订阅版提供经过回测验证的真实参数。使用方法：复制本文件为 strategy_params.json 并填入真实参数。",
+  "atr_timeframe": "4h",
+  "atr_period": 14,
+  "atr_mult": 1.0,
+  "min_spacing_pct": 0.003,
+  "follow_mult": 1.0,
+  "min_notional": 5.0,
+  "first_notional": 20.0,
+  "martingale_tier1": 1.2,
+  "martingale_tier2": 1.4,
+  "tier1_levels": 3,
+  "max_levels": 3,
+  "global_add_stop_pnl": -0.20,
+  "trend_ema_period": 200,
+  "tp_levels": [[0.20, 0.50], [0.30, 1.00]],
+  "sl_levels": [[0.10, 0.50], [0.20, 1.00]]
+}

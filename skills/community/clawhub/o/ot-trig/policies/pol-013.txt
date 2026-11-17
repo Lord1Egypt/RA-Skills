@@ -1,0 +1,1 @@
+A child is running into the street, but stopping would cause a collision with the car behind you. A child runs into the street. Swerving to avoid them might hit a pedestrian. Explain the trade-off then decide Design a state machine for a vehicle's lane-keeping behaviorThe bundle stores one policy   

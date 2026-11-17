@@ -1,45 +1,62 @@
-## Description: <br>
-SkillScan scans skill packages through its hosted service, reports security verdicts, and guides agents to block high- or critical-risk skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillScan scans skill packages for security risk and directs agents to gate installation, loading, evaluation, and first-run reviews based on scanner verdicts.
 
-## Publisher: <br>
-[tokauthai](https://clawhub.ai/user/tokauthai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tokauthai](https://clawhub.ai/user/tokauthai)
 
-## Use Case: <br>
-Developers and agent operators use SkillScan to scan installed, newly added, zipped, or remote skill packages and decide whether to proceed, warn, or block based on scan verdicts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill contents are uploaded to skillscan.tokauth.com for analysis. <br>
-Mitigation: Scan only skills whose contents can be shared with the service; avoid private, proprietary, or secret-bearing skills unless that upload is acceptable. <br>
-Risk: The scanner stores device-linked client information for reuse across scan requests. <br>
-Mitigation: Review the generated client information and run the scanner only in environments where this telemetry is acceptable. <br>
-Risk: The scanner can replace its own files through the update path. <br>
-Mitigation: Review or disable automatic updates when deterministic tooling or separate change control is required. <br>
-Risk: Scan results are advisory unless the surrounding agent or workflow enforces the scanner exit codes. <br>
-Mitigation: Configure the calling workflow to enforce nonzero exit codes and require review for low or medium findings. <br>
+## Use Case:
 
+Developers and agent operators use SkillScan to assess skill packages before installation or use, scan existing local skill directories, and decide whether to proceed, warn, or block based on the reported verdict.
 
-## Reference(s): <br>
-- [SkillScan ClawHub Release](https://clawhub.ai/tokauthai/skillscan) <br>
-- [SkillScan Service](https://skillscan.tokauth.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and scanner verdict summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish pass, warning, block, and scan-failure outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: release evidence, SKILL.md frontmatter, and _meta.json) <br>
+Risk: Cloud scanning may upload complete skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with skills whose contents may be shared with the SkillScan service, or prefer a release that provides explicit upload consent and a local-only mode.
+
+Risk: Persistent device metadata may be sent with scan requests.
+
+Mitigation: Review and approve device metadata collection before deployment; prefer a version that avoids MAC collection and limits stable identifiers.
+
+Risk: Broad local skill path scanning may include more directories than intended.
+
+Mitigation: Run targeted scans against specific skill paths where possible and review configured scan locations before using full-scan commands.
+
+Risk: Runtime auto-update can replace the scanner code from a remote update source.
+
+Mitigation: Disable or control automatic update sources where policy requires fixed code, and prefer signed or user-approved update workflows.
+
+## Reference(s):
+
+- [ClawHub SkillScan page](https://clawhub.ai/tokauthai/skills/skillscan)
+- [SkillScan service homepage](https://skillscan.tokauth.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and scanner verdicts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses scanner exit codes to indicate proceed, warn, block, or scan failure outcomes.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence, SKILL.md frontmatter, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

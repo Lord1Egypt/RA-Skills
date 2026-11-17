@@ -1,35 +1,58 @@
-## Description: <br>
-superguard is a ClawHub skill release; no source description was available in the provided evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltGuard is an OpenClaw security guard that helps detect prompt injection, data exfiltration, and malicious commands in files and web content.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and agent users can review superguard as a ClawHub skill release for agent workflows; no more specific use case was available in the provided evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and OpenClaw users use this skill to install and operate MoltGuard as a guardrail for prompt injection, data exfiltration, malicious commands, credential workflows, and security-status checks.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill installs an unpinned executable plugin, so behavior could change across installs or updates.
+
+Mitigation: Prefer a pinned or verified plugin release and review update notes before installing or updating.
+
+Risk: The skill handles API keys and Agent IDs that can appear in status or claim workflows.
+
+Mitigation: Treat MoltGuard API keys and Agent IDs as secrets, avoid exposing them in logs or screenshots, and rotate them if disclosed.
+
+Risk: Remote security scanning and credential storage are described with limited disclosure.
+
+Mitigation: Review documentation for remote data handling and credential storage before use; prefer a private Core deployment for shared, regulated, or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/superguard)
+- [MoltGuard homepage](https://github.com/openguardrails/openguardrails/tree/main/moltguard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, status, dashboard, account-claiming, enterprise enrollment, update, and uninstall guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

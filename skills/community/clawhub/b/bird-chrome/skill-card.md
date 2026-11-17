@@ -1,44 +1,58 @@
-## Description: <br>
-Use bird with Chrome cookies to read, search, and carefully post on X/Twitter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use bird with Chrome cookies to read, search, and carefully post on X/Twitter.
 
-## Publisher: <br>
-[EvanDataForge](https://clawhub.ai/user/EvanDataForge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evandataforge](https://clawhub.ai/user/evandataforge)
 
-## Use Case: <br>
-External developers and agent operators use this skill to inspect X/Twitter content through the bird CLI with Chrome cookie authentication, then route posts and replies through browser-based confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent use a logged-in X/Twitter session through Chrome cookies. <br>
-Mitigation: Use a dedicated browser profile or test account, keep workflows read-only by default, and do not share raw session tokens unless absolutely necessary. <br>
-Risk: Posting and replying can publish content publicly from the user's account. <br>
-Mitigation: Require explicit confirmation of the exact post or reply before submission and review browser actions before clicking Post or Reply. <br>
-Risk: Direct bird write commands are identified by the artifact as account-suspension risk. <br>
-Mitigation: Use bird only for read-only commands and route posts or replies through the OpenClaw Browser Gateway. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through reading, searching, and inspecting X/Twitter content with bird and Chrome authentication. It also provides guarded browser-based posting and reply guidance when a user explicitly requests account actions.
 
-## Reference(s): <br>
-- [Bird CLI homepage](https://bird.fast) <br>
-- [Bird Chrome on ClawHub](https://clawhub.ai/EvanDataForge/bird-chrome) <br>
-- [EvanDataForge publisher profile](https://clawhub.ai/user/EvanDataForge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON output flags for read-only bird commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an authenticated X/Twitter browser session, which can expose account access through Chrome cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile, verify the bird package source and version before use, and install only when this account access is acceptable.
+
+Risk: Posting or replying from the user's account can publish unintended content or trigger platform account-protection systems.
+
+Mitigation: Require explicit confirmation before each post or reply, avoid bird write commands, and use the browser workflow only for user-approved account actions.
+
+Risk: Host browser control broadens the impact of an agent session beyond read-only command execution.
+
+Mitigation: Avoid making host browser control a global default and allow it only for the specific browser profile and posting workflow that require it.
+
+## Reference(s):
+
+- [Bird CLI homepage](https://bird.fast)
+- [Bird Chrome skill page](https://clawhub.ai/evandataforge/skills/bird-chrome)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request explicit user confirmation before posting or replying; read-oriented bird commands can be shaped for plain text or JSON output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

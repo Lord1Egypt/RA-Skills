@@ -1,41 +1,53 @@
-## Description: <br>
-Access ATXP paid API tools for real-time web search, AI image generation, music creation, video generation, and X/Twitter search after authenticating with `npx atxp login`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access ATXP paid API tools for web search, AI image generation, music creation, video generation, and X/Twitter search.
 
-## Publisher: <br>
-[syveraerp](https://clawhub.ai/user/syveraerp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[syveraerp](https://clawhub.ai/user/syveraerp)
 
-## Use Case: <br>
-External users and developers use this skill to access ATXP paid search, media generation, and X/Twitter search tools from an agent workflow after authenticating an ATXP account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill tells agents to run unpinned external CLI code through `npx atxp`. <br>
-Mitigation: Install only if the user trusts the ATXP npm package and provider, and review the package/version before execution. <br>
-Risk: The skill instructs agents to source a local ATXP credential config file. <br>
-Mitigation: Confirm which ATXP account is loaded and prefer a scoped environment variable export over broadly sourcing `~/.atxp/config` in a long-lived shell. <br>
-Risk: ATXP operations may consume paid usage or expose prompts to the provider. <br>
-Mitigation: Expect paid usage or credit consumption, and avoid sensitive prompts unless ATXP's data handling is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ATXP Search MCP endpoint](https://search.mcp.atxp.ai) <br>
+## Use Case:
 
+Developers and agent users use this skill to access ATXP CLI and MCP-backed tools for real-time search, X/Twitter search, and AI media generation after authenticating with ATXP.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API calls] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to run ATXP CLI commands or call ATXP MCP tools after authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses an unpinned remote CLI for paid API access.
+
+Mitigation: Use a pinned and trusted ATXP CLI version before running commands.
+
+Risk: The skill handles ATXP credentials and suggests reading or sourcing shell configuration.
+
+Mitigation: Avoid exposing ATXP_CONNECTION and inspect or safely parse ~/.atxp/config before loading it into an agent or shell session.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/syveraerp/skills/sss)
+- [ATXP Search MCP Server](https://search.mcp.atxp.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated ATXP credentials and paid API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

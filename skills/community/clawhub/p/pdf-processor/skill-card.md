@@ -1,45 +1,64 @@
-## Description: <br>
-Processes academic PDFs by extracting text, detecting language, translating English papers to Chinese with a local Ollama model, and generating concise Chinese summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF Processor extracts text from academic PDFs, detects language, translates English content into Chinese, generates concise Chinese summaries, and organizes outputs using a local Ollama model.
 
-## Publisher: <br>
-[reaperchen](https://clawhub.ai/user/reaperchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reaperchen](https://clawhub.ai/user/reaperchen)
 
-## Use Case: <br>
-Developers, researchers, and document-processing users use this skill to run a local workflow that extracts academic PDF text, translates English papers into Chinese, produces short Chinese summaries, and organizes the resulting files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow moves original PDFs and deletes temporary extraction files during processing. <br>
-Mitigation: Run it in a dedicated working folder and back up important originals before processing. <br>
-Risk: The script may start a local Ollama service in the background. <br>
-Mitigation: Start and manage Ollama yourself when operating in sensitive or controlled environments. <br>
-Risk: Progress data is stored in plaintext while processing. <br>
-Mitigation: Avoid processing sensitive documents unless the local folder permissions and retention behavior are acceptable. <br>
+## Use Case:
 
+Developers, researchers, and students use this skill to process academic papers and research reports locally: extract PDF text, translate English papers into Chinese, generate concise Chinese summaries, and create a searchable paper index.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reaperchen/pdf-processor) <br>
-- [PDF processing workflow](references/workflow.md) <br>
-- [PDF processing directory structure](references/directory-structure.md) <br>
-- [Ollama](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated text, JSON index files, and local text output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include translated text files, summary text files, plaintext progress JSON during processing, and optional paper index JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and package.json) <br>
+Risk: Local PDF contents are sent to an Ollama service on localhost during translation and summary generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated local environment, avoid sensitive PDFs on shared machines, and confirm the Ollama service endpoint is local before processing.
+
+Risk: Temporary extraction and progress files can contain document text while processing is in progress.
+
+Mitigation: Run the skill in a controlled processing directory with appropriate file permissions and remove residual temporary files after interrupted runs.
+
+Risk: The original PDF is moved into the completed/original folder as part of normal processing.
+
+Mitigation: Process copies when the original file location must be preserved, or use the documented directory layout so movement is expected.
+
+Risk: The skill can attempt to start the local Ollama service if the required model is unavailable.
+
+Mitigation: Start and monitor Ollama manually in production-like use, and stop the service if it starts unexpectedly.
+
+## Reference(s):
+
+- [PDF Processing Workflow](references/workflow.md)
+- [PDF Directory Structure](references/directory-structure.md)
+- [Ollama](https://ollama.ai)
+- [ClawHub Skill Page](https://clawhub.ai/reaperchen/skills/pdf-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts include text translations, text summaries, temporary JSON progress files, and a JSON paper index.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local PDF files and a local Ollama qwen2.5:7b service; English PDFs are translated in segments with resumable progress.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

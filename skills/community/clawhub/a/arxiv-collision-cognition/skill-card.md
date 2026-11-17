@@ -1,51 +1,68 @@
-## Description: <br>
-Helps agents compare ArXiv papers with project context through four-direction collision reasoning to extract actionable research insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to compare ArXiv papers against a project context from four reasoning angles and extract actionable research insights.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and researchers use this skill to have an agent compare ArXiv papers against project context, separate known and unknown items, and turn intersections into actionable research or implementation insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated daily or heartbeat screening can fetch ArXiv data and write local research logs without close review. <br>
-Mitigation: Enable scheduled screening deliberately, keep collision logs in a workspace you can inspect, and review queued insights before acting on them. <br>
-Risk: Project context supplied to the skill may include confidential details that are stored in local logs or passed to downstream tools. <br>
-Mitigation: Avoid supplying confidential project details unless the workspace and downstream tools are approved for that data. <br>
-Risk: Paper-collision insights may be incomplete or misleading if treated as validated research conclusions. <br>
-Mitigation: Use the human feedback and verification flow to mark insights as validated or disproven before relying on them. <br>
+## Use Case:
 
+Developers, researchers, and technical teams use this skill to screen ArXiv papers, compare them with known and unknown project context, and turn promising overlaps into actionable insight queues.
 
-## Reference(s): <br>
-- [ArXiv Collision Cognition on ClawHub](https://clawhub.ai/kingofzhao/arxiv-collision-cognition) <br>
-- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837) <br>
-- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [VLM for 3D CAD Code](https://arxiv.org/abs/2410.05340) <br>
-- [2D to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892) <br>
-- [Efficient VLA Models](https://arxiv.org/abs/2510.17111) <br>
-- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) <br>
-- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and JSON-style collision logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces four-direction paper comparisons, confidence-labeled actionable insights, and local collision log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, SKILL.md frontmatter, README) <br>
+Risk: Project context and collision logs may contain persistent or sensitive project knowledge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive business details in project_context, and periodically review stored collision_log entries and queued insights.
+
+Risk: Research insights may be incorrect, low confidence, or unsuitable for direct knowledge base updates.
+
+Mitigation: Use the documented confidence thresholds and human validation workflow before promoting insights into project knowledge.
+
+Risk: Paper handling may raise copyright or data-sharing concerns if full text is sent to third-party services.
+
+Mitigation: Follow the artifact's disclosed guardrail to block full-paper external requests and record the event for review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/arxiv-collision-cognition)
+- [Project Homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837)
+- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046)
+- [SAGE: Multi-Agent Self-Evolution for LLM Reasoning](https://arxiv.org/abs/2603.15255)
+- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411)
+- [Generating CAD Code with Vision-Language Models for 3D Designs](https://arxiv.org/abs/2410.05340)
+- [From 2D CAD Drawings to 3D Parametric Models](https://arxiv.org/abs/2412.11892)
+- [Efficient Vision-Language-Action Models for Embodied Manipulation](https://arxiv.org/abs/2510.17111)
+- [Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027)
+- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564)
+- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and text guidance with Python and shell examples, plus JSON-style collision log records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce confidence-scored insight lists, local collision logs, and human review queues when executed by the host agent.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, SKILL.md frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

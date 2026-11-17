@@ -1,47 +1,58 @@
-## Description: <br>
-Auto-update OpenClaw and skills with OpenClaw cron, per-skill defaults, backups, and migration-aware summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-update OpenClaw and skills with OpenClaw cron, per-skill defaults, backups, and migration-aware summaries.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure recurring OpenClaw and ClawHub skill updates with per-skill defaults, backups, migration gates, and update summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring update automation can apply OpenClaw or skill changes after setup. <br>
-Mitigation: Review the exact cron entry before approving it, and use notify, manual, or all-out modes when tighter control is needed. <br>
-Risk: Backups can copy sensitive folders if the user intentionally includes them. <br>
-Mitigation: Keep credential folders out of backup scope unless there is an explicit need to copy them. <br>
-Risk: Skill updates may involve migration or state-path changes. <br>
-Mitigation: Keep migration pauses enabled so unclear or stateful changes require review before application. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure a scheduled maintenance flow that checks OpenClaw and installed ClawHub skills, applies approved updates, creates backups, pauses on migration risk, and summarizes results.
 
-## Reference(s): <br>
-- [Auto-Update ClawHub page](https://clawhub.ai/ivangdavila/auto-update) <br>
-- [Auto-Update homepage](https://clawic.com/skills/auto-update) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Daily execution order](artifact/execution.md) <br>
-- [Defaults and modes](artifact/policy.md) <br>
-- [Rollback rules](artifact/recovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local policy, schedule, backup, migration, and run-log ledgers when the user approves setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: A persistent auto-update workflow can apply changes on a schedule the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact scheduler entry and choose auto, notify, or manual mode for OpenClaw before enabling recurring runs.
+
+Risk: Skill updates can introduce migration changes to paths, state files, or workspace hooks.
+
+Mitigation: Pause updates with pending or ask-first migration states, show the user what changed, and ask before moving or deleting anything.
+
+Risk: Backups may include sensitive OpenClaw credential material if the backup scope is too broad.
+
+Mitigation: Avoid backing up ~/.openclaw/credentials/ unless the user has a secure encrypted destination and a clear recovery need.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/auto-update)
+- [Skill homepage](https://clawic.com/skills/auto-update)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration ledger templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local policy files, scheduler commands, backup and migration records, run logs, and update summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

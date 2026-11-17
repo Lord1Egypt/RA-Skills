@@ -1,42 +1,59 @@
-## Description: <br>
-EU AI Act Compliance for Autonomous Agents provides a compliance toolkit for AI agent commerce, including EU AI Act risk classification, Annex IV technical documentation, cryptographic audit trails, liability-bounded escrow patterns, service contract templates, continuous compliance monitoring, and implementation checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EU AI Act Compliance for Autonomous Agents provides a compliance toolkit for AI agent commerce, including EU AI Act risk classification, Annex IV technical documentation, cryptographic audit trails, liability-bounded escrow patterns, service contracts, monitoring, and implementation checklists.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers, engineers, and compliance teams use this guide to add EU AI Act-oriented risk classification, audit logging, escrow controls, contract terms, monitoring, and documentation patterns to autonomous agent commerce systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runnable examples can change GreenHelix accounts, escrows, disputes, webhooks, and monitoring state, with unclear sandbox versus production boundaries. <br>
-Mitigation: Use the sandbox or least-privilege test credentials first, and require explicit human approval before escrow, registration, webhook, dispute, daemon, or production monitoring actions. <br>
-Risk: The guide references sensitive credentials, including GREENHELIX_API_KEY and AGENT_SIGNING_KEY. <br>
-Mitigation: Do not provide production signing keys casually; scope, protect, and rotate credentials before using any production-capable example. <br>
+## Use Case:
 
+Developers and compliance engineers use this skill to design, document, and monitor autonomous agent commerce systems against EU AI Act obligations, audit-trail requirements, human oversight expectations, and liability-aware escrow patterns.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/mirni/greenhelix-agent-compliance-toolkit) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix A2A Commerce Gateway API](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with Python examples, contract templates, checklists, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-installing guide; examples may require GREENHELIX_API_KEY and AGENT_SIGNING_KEY for authenticated GreenHelix workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Code examples may affect live GreenHelix agents, escrows, disputes, webhooks, or reports if used with production endpoints or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each GreenHelix-calling example, set an explicit sandbox URL during testing, and use least-privilege test credentials.
+
+Risk: Escrow, dispute, webhook, daemon, and reporting workflows can create operational or legal consequences when run against production systems.
+
+Mitigation: Require operational and legal approval before adapting those examples for production use.
+
+Risk: The guide references API and signing credentials needed for real integrations.
+
+Mitigation: Provide GREENHELIX_API_KEY and AGENT_SIGNING_KEY through managed secrets and avoid exposing them in prompts, logs, or generated reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-agent-compliance-toolkit)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/mirni)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python examples, contract templates, checklists, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable skill content; real integrations may require GREENHELIX_API_KEY and AGENT_SIGNING_KEY.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Scalable memory system for AI agents with short-term, long-term, and episodic memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Memory Layer provides a three-tier memory system for AI agents with short-term, long-term, and episodic memory for persistence, context management, retrieval, and episodic recall.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent memory, conversation context management, knowledge retrieval, and episodic recall to AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally supports persistent local agent memory, which can retain sensitive user, business, or regulated data if used without a retention plan. <br>
-Mitigation: Review the .agent_memory storage location before deployment, avoid storing secrets or regulated personal data, and define deletion and retention procedures. <br>
+## Use Case:
 
+Developers and engineers use this skill to add memory persistence, conversation context management, knowledge retrieval, and episodic recall patterns to AI agents.
 
-## Reference(s): <br>
-- [Short-Term Memory](references/short-term.md) <br>
-- [Long-Term Memory](references/long-term.md) <br>
-- [Episodic Memory](references/episodic.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/evezart/agent-memory-layer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local memory-layer code patterns and operational guidance for retention and deletion planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can persist potentially sensitive memories in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the memory directory access-controlled, avoid storing secrets or credentials, and add retention and deletion controls before production use.
+
+Risk: Storage paths and agent identifiers may not be safely constrained.
+
+Mitigation: Use only with trusted callers, validate agent_id and storage paths, and review deployments before use in environments that handle private user data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evezart/skills/agent-memory-layer)
+- [Short-Term Memory](references/short-term.md)
+- [Long-Term Memory](references/long-term.md)
+- [Episodic Memory](references/episodic.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist memory records to local JSON files or external stores when implemented by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

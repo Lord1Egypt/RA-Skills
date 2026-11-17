@@ -1,38 +1,52 @@
-## Description: <br>
-Standardized Git commit message templates using changelog-style categories for creating structured commit messages across Added, Changed, Deprecated, Removed, and Fixed changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized Git commit message templates using changelog-style categories for creating commits, standardizing commit history, and choosing Added, Changed, Deprecated, Removed, or Fixed categories.
 
-## Publisher: <br>
-[ihomway](https://clawhub.ai/user/ihomway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ihomway](https://clawhub.ai/user/ihomway)
 
-## Use Case: <br>
-Developers and engineers use this skill to create consistent, changelog-style Git commit messages manually or through a bundled helper script. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper creates local Git commits and the documentation mentions skipping Git hooks. <br>
-Mitigation: Review staged files before use, and avoid bypassing Git hooks unless the project explicitly permits it and equivalent checks run elsewhere. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Commit Message Examples and Guidelines](references/examples.md) <br>
-- [Git Commit Template on ClawHub](https://clawhub.ai/ihomway/git-commit-template) <br>
+## Use Case:
 
+Developers and engineers use this skill to create consistent Git commit messages, either by following the documented template manually or by using the bundled Python helper to preview and create structured commits.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash commands and commit message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured commit message text and optional local Git commit commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper can create local Git commits from staged repository changes.
+
+Mitigation: Review staged files and the generated commit preview before confirming commit creation.
+
+Risk: Hook-skipping guidance can bypass normal repository checks when used carelessly.
+
+Mitigation: Keep standard Git hooks enabled by default and use hook skipping only when repository policy allows it.
+
+## Reference(s):
+
+- [Commit Message Examples and Guidelines](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Git command examples and optional Python helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper can create local Git commits from staged changes after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

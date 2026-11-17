@@ -1,41 +1,49 @@
-## Description: <br>
-Best practices for writing high-quality emails that look professional and avoid spam filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for writing high-quality emails that look professional and avoid spam filters. Reference this before composing, replying, or forwarding emails with ravi-email-send.
 
-## Publisher: <br>
-[raunaksingwi](https://clawhub.ai/user/raunaksingwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raunaksingwi](https://clawhub.ai/user/raunaksingwi)
 
-## Use Case: <br>
-Employees and external users use this skill to draft, reply to, and forward professional emails with clear subjects, semantic HTML bodies, concise tone, and deliverability-aware formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email text could be sent without adequate review, causing inaccurate, misleading, or inappropriate communication. <br>
-Mitigation: Review every message before sending and adapt tone, facts, recipients, and requested actions to the real context. <br>
-Risk: Email drafting guidance could be misused for impersonation or misleading outreach. <br>
-Mitigation: Use accurate sender identity, avoid deceptive claims, and do not use the skill for impersonation. <br>
-Risk: AI assistance may need to be disclosed under workplace, contractual, recipient, or legal requirements. <br>
-Mitigation: Follow applicable disclosure rules even when the email is edited to read naturally. <br>
+## Use Case:
 
+Employees and external users use this skill to draft, reply to, and forward Ravi emails with clear subjects, semantic HTML bodies, concise tone, and anti-spam hygiene.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown guidance with HTML and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include email subject guidance, HTML body snippets, and ravi email compose command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: The writing guidance encourages emails that hide AI involvement, which may conflict with organizational AI disclosure, customer outreach, recruiting, legal, or sales policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the guidance before use in sensitive outreach, and add required AI disclosure or approval steps where policy requires them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raunaksingwi/skills/ravi-email-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with HTML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides email composition guidance; it does not execute code or send email by itself.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

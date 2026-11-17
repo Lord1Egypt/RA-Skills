@@ -164,7 +164,7 @@ export DASHPASS_IDENTITY_ID="36SxvpAKXeBJByUdJ364Hnhp2NfVDe6Gkj7xtTRZj6hh"
 ### Step 7: Store Your First Credential (put)
 
 ```bash
-echo "sk-test-fake-api-key-12345" | node dashpass-cli.mjs put \
+echo "REDACTED-SECRET" | node dashpass-cli.mjs put \
   --service my-first-test \
   --type api-key \
   --level normal \
@@ -189,7 +189,7 @@ Expected output:
   Level: normal
 ```
 
-> **What just happened?** The CLI encrypted your value (`sk-test-fake-api-key-12345`) using your WIF-derived key, then stored the encrypted blob on the Dash blockchain. The plain-text value never left your machine.
+> **What just happened?** The CLI encrypted your value (`REDACTED-SECRET`) using your WIF-derived key, then stored the encrypted blob on the Dash blockchain. The plain-text value never left your machine.
 
 ### Step 8: Retrieve Your Credential (get)
 
@@ -209,20 +209,20 @@ Expected output:
   Status:      active
   Version:     1
   Expires:     never
-  Value:       sk-test-fake-api-key-12345
+  Value:       REDACTED-SECRET
 ---
 ```
 
 ### Step 9: Verify
 
-The value you got back (`sk-test-fake-api-key-12345`) matches what you stored. The round-trip is complete: **put → encrypt → blockchain → fetch → decrypt → get**.
+The value you got back (`REDACTED-SECRET`) matches what you stored. The round-trip is complete: **put → encrypt → blockchain → fetch → decrypt → get**.
 
 You can also try pipe-friendly output for use in scripts:
 
 ```bash
 # Returns just the value, no formatting, no newline
 node dashpass-cli.mjs get --service my-first-test --pipe
-# Output: sk-test-fake-api-key-12345
+# Output: REDACTED-SECRET
 ```
 
 Or JSON output:

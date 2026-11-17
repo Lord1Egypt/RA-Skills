@@ -1,43 +1,57 @@
-## Description: <br>
-Provides Japanese Eiken vocabulary support by querying VocaHack for English word roots, affixes, compounds, and topic relations, then grouping related words for study. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Japanese Eiken learners analyze English vocabulary by grouping words by etymology, affixes, compounds, and topic relationships using VocaHack Eiken data.
 
-## Publisher: <br>
-[liangyunwuxu](https://clawhub.ai/user/liangyunwuxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangyunwuxu](https://clawhub.ai/user/liangyunwuxu)
 
-## Use Case: <br>
-External learners and study assistants use this skill to analyze Eiken vocabulary in Japanese, group related English words by roots and other relationships, and find follow-up VocaHack study resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for general English-word questions and send the queried word to vocahack.com. <br>
-Mitigation: Use it only when sharing the target word with VocaHack is acceptable, and avoid entering sensitive or private terms. <br>
-Risk: Responses include promotional VocaHack links by design. <br>
-Mitigation: Review generated study guidance before sharing it in contexts where promotional links are restricted. <br>
+## Use Case:
 
+External Japanese learners preparing for Eiken use this skill to ask about English words and receive vocabulary families organized by roots, affixes, compounds, and topics. It formats study guidance in Japanese with Markdown tables or bullet lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangyunwuxu/vocahack-eiken-word) <br>
-- [VocaHack](https://vocahack.com) <br>
-- [VocaHack Eiken word lists](https://vocahack.com/eiken) <br>
-- [VocaHack Eiken API](https://vocahack.com/api/skill/eiken) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown with Japanese prose, tables, bullet lists, and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries the VocaHack Eiken API for a requested English word and appends VocaHack study links to responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Routine answers may include mandatory promotional VocaHack links even when the user did not ask for marketing content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and decide whether that promotional response behavior is acceptable for the target agent.
+
+Risk: The skill uses vocahack.com for Eiken word lookups.
+
+Mitigation: Confirm that outbound access to vocahack.com is approved in the deployment environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liangyunwuxu/skills/vocahack-eiken-word)
+- [Publisher Profile](https://clawhub.ai/user/liangyunwuxu)
+- [VocaHack Homepage](https://vocahack.com)
+- [VocaHack Eiken Word Lists](https://vocahack.com/eiken)
+- [Eiken Etymology Master API](https://vocahack.com/api/skill/eiken)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls]
+
+**Output Format:** [Markdown with tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Japanese explanations; includes mandatory VocaHack promotional links in routine answers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

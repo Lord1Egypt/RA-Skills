@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""播客音频全流程处理脚本：抓取 Show Notes → 下载 → ASR转录 → 生成Markdown → 上传乐享知识库。
+"""播客音频处理脚本：抓取 Show Notes → 下载 → ASR 转录 → 生成标准工作包。
 
 核心设计原则：
 - 所有操作固化在脚本中，Agent 只需准备 JSON 配置文件 + 一行命令调用
 - 长音频预切片 → 逐片段转录 → 按标点切分 → 章节对齐
 - 热词通过 generate(hotword="词1 词2") 传入，提升专有名词准确率
-- 大文档通过预签名 URL 上传，不经过 MCP 参数传递
+- 本脚本不上传 Markdown 或媒体；归档编排分别调用 uploader 和 VOD 专用脚本
 
 用法：
   # 完整流程（下载 + 转录 + 生成 Markdown）
@@ -14,21 +14,10 @@
       --language zh \\
       --metadata-json metadata.json \\
       --chapters-json chapters.json \\
-      --hotwords-json hotwords.json \\
-      --no-upload
-
-  # 含上传（需要 LEXIANG_TOKEN）
-  python3 podcast_to_lexiang.py "<播客链接>" \\
-      --output-dir ./output \\
-      --space-id <SPACE_ID> --parent-entry-id <日期目录ID>
+      --hotwords-json hotwords.json
 
 依赖安装（首次使用）：
   pip install funasr torch torchaudio modelscope yt-dlp opencc-python-reimplemented
-
-环境变量（上传到乐享时需要）：
-  LEXIANG_TOKEN  - 乐享 MCP Token（约2小时有效）
-  COMPANY_FROM   - 乐享企业ID
-  MCP_BASE_URL   - MCP 服务地址（默认 https://mcp.lexiang-app.com）
 
 已知经验和踩坑记录：
   1. FunASR 热词必须通过 generate(hotword="词1 词2") 传入，不能放 AutoModel 构造函数
@@ -210,7 +199,7 @@ def format_shownotes_markdown(shownotes: str) -> str:
 def download_audio(url: str, output_dir: Path) -> Path:
     """使用 yt-dlp 下载播客音频。已存在则跳过。"""
     print(f"\n{'='*60}")
-    print(f"[1/5] 下载音频: {url}")
+    print(f"[1/4] 下载音频: {url}")
     print(f"{'='*60}", flush=True)
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -246,7 +235,7 @@ def download_audio(url: str, output_dir: Path) -> Path:
 def prepare_audio(audio_path: Path, output_dir: Path, chunk_seconds: int = 600) -> tuple[Path, list[Path]]:
     """转换为 WAV 16kHz 单声道，并切成固定时长的片段。"""
     print(f"\n{'='*60}")
-    print(f"[2/5] 音频预处理: WAV转换 + 切片({chunk_seconds}s/片)")
+    print(f"[2/4] 音频预处理: WAV转换 + 切片({chunk_seconds}s/片)")
     print(f"{'='*60}", flush=True)
 
     wav_path = output_dir / "audio_16k.wav"
@@ -283,7 +272,7 @@ def transcribe(chunk_files: list[Path], hotwords: str = "", chunk_seconds: int =
     - merge_vad=True + merge_length_s=15 避免段落过碎
     """
     print(f"\n{'='*60}")
-    print(f"[3/5] ASR 转录 (FunASR Paraformer + CT-Punc + 热词)")
+    print(f"[3/4] ASR 转录 (FunASR Paraformer + CT-Punc + 热词)")
     print(f"{'='*60}", flush=True)
 
     from funasr import AutoModel
@@ -423,7 +412,7 @@ def generate_markdown(segments: list[dict], title: str, metadata: dict,
                       chapters: list[tuple[int, str]] | None = None, language: str = "zh") -> str:
     """将分段结果生成带 shownotes、章节和时间戳的 Markdown。"""
     print(f"\n{'='*60}")
-    print(f"[4/5] 生成 Markdown 文字稿")
+    print(f"[4/4] 生成 Markdown 文字稿")
     print(f"{'='*60}", flush=True)
 
     # 繁简转换
@@ -488,76 +477,6 @@ def generate_markdown(segments: list[dict], title: str, metadata: dict,
 
 
 # ============================================================
-# 5. 上传到乐享（可选）
-# ============================================================
-def upload_to_lexiang(md_content: str, md_path: Path, audio_path: Path,
-                      title: str, space_id: str, parent_entry_id: str):
-    """上传文字稿和音频到乐享知识库。"""
-    print(f"\n{'='*60}")
-    print(f"[5/5] 上传到乐享知识库")
-    print(f"{'='*60}", flush=True)
-
-    token = os.environ.get("LEXIANG_TOKEN", "")
-    company_from = os.environ.get("COMPANY_FROM", "")
-    base_url = os.environ.get("MCP_BASE_URL", "https://mcp.lexiang-app.com")
-
-    if not token or not company_from:
-        print("⚠️ 未设置 LEXIANG_TOKEN 或 COMPANY_FROM")
-        print(f"📌 文字稿已保存本地: {md_path}")
-        print(f"📌 音频文件: {audio_path}")
-        print("📌 请通过 Agent MCP connector 执行 3 步预签名上传")
-        return {"status": "local_only", "md_path": str(md_path), "audio_path": str(audio_path)}
-
-    import requests
-
-    def call_mcp(tool_name, arguments):
-        url = f"{base_url}/mcp?company_from={company_from}"
-        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        payload = {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": tool_name, "arguments": arguments}}
-        resp = requests.post(url, headers=headers, json=payload, timeout=120)
-        if resp.status_code == 401:
-            return {"error": "token_expired"}
-        for line in resp.text.strip().split("\n"):
-            line = line.strip()
-            if line.startswith("data:"): line = line[5:].strip()
-            if not line or line == "[DONE]": continue
-            try:
-                data = json.loads(line)
-                if "result" in data:
-                    for c in data["result"].get("content", []):
-                        if c.get("type") == "text":
-                            return json.loads(c["text"])
-            except (json.JSONDecodeError, KeyError):
-                continue
-        return {"error": "no_response"}
-
-    # 上传文字稿（直接传 content，HTTP 无大小限制）
-    print(f"📤 上传文字稿...")
-    result = call_mcp("entry_import_content", {
-        "name": title, "content": md_content, "content_type": "markdown",
-        "parent_id": parent_entry_id, "space_id": space_id,
-    })
-    entry_id = result.get("data", {}).get("entry", {}).get("id", "")
-    if entry_id:
-        print(f"✅ 文字稿: entry_id={entry_id}")
-
-    # 上传音频（VOD 路径）
-    print(f"📤 上传音频...")
-    script_dir = Path(__file__).parent
-    upload_script = script_dir / "upload_video_via_openapi.py"
-    if upload_script.exists():
-        cmd = [sys.executable, str(upload_script), str(audio_path),
-               "--space-id", space_id, "--parent-entry-id", parent_entry_id, "--media-type", "audio"]
-        proc = subprocess.run(cmd, capture_output=True, text=True)
-        if proc.returncode == 0:
-            print(f"✅ 音频已上传")
-        else:
-            print(f"⚠️ 音频上传失败，请手动上传")
-
-    return {"status": "uploaded", "entry_id": entry_id}
-
-
-# ============================================================
 # 热词构建
 # ============================================================
 def build_hotwords(args, metadata: dict, chapters: list | None) -> str:
@@ -601,13 +520,10 @@ def build_hotwords(args, metadata: dict, chapters: list | None) -> str:
 # 主入口
 # ============================================================
 def main():
-    parser = argparse.ArgumentParser(description="播客全流程：下载→转录→Markdown→上传")
+    parser = argparse.ArgumentParser(description="播客下载→转录→标准工作包")
     parser.add_argument("url", help="播客链接")
     parser.add_argument("--output-dir", "-o", default="./podcast_output", help="输出目录")
     parser.add_argument("--language", "-l", default="auto", choices=["zh", "en", "auto"])
-    parser.add_argument("--space-id", help="乐享 space_id")
-    parser.add_argument("--parent-entry-id", help="乐享目标目录 entry_id")
-    parser.add_argument("--no-upload", action="store_true", help="仅转录不上传")
     parser.add_argument("--title", help="自定义标题")
     parser.add_argument("--metadata-json", help="元信息 JSON")
     parser.add_argument("--chapters-json", help="章节时间线 JSON")
@@ -639,7 +555,7 @@ def main():
     # 自动抓取 shownotes（小宇宙等平台信息量远高于 yt-dlp description）
     if not args.skip_shownotes_fetch and not metadata.get("shownotes"):
         print(f"\n{'='*60}")
-        print(f"[0/5] 抓取 Show Notes")
+        print(f"[0/4] 抓取 Show Notes")
         print(f"{'='*60}", flush=True)
         fetched = fetch_episode_metadata(args.url)
         metadata = merge_metadata(metadata, fetched)
@@ -676,24 +592,44 @@ def main():
 
     # Step 4: 生成 Markdown
     md_content = generate_markdown(segments, title, metadata, chapters, args.language)
-    md_path = output_dir / f"{title[:80]}.md"
+    md_path = output_dir / "source.md"
+    if md_path.exists() and md_path.read_text(encoding="utf-8") != md_content:
+        raise FileExistsError(f"{md_path} 已存在且内容不同；请使用新的输出目录，避免覆盖不可变原文")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(md_content)
 
-    # Step 5: 上传（可选）
-    if not args.no_upload and args.space_id and args.parent_entry_id:
-        upload_to_lexiang(md_content, md_path, audio_path, title, args.space_id, args.parent_entry_id)
-    else:
-        print(f"\n{'='*60}")
-        print(f"🎉 转录完成!")
-        print(f"{'='*60}")
-        print(f"  音频: {audio_path}")
-        print(f"  文字稿: {md_path}")
-        print(f"  segments: {segments_path}")
+    detected_language = "zh" if args.language == "auto" else args.language
+    standard_meta = {
+        "title": title,
+        "source_url": metadata.get("url") or args.url,
+        "source_title": metadata.get("title") or title,
+        "source_type": "podcast",
+        "language": detected_language,
+    }
+    if metadata.get("parent_id"):
+        standard_meta["parent_id"] = metadata["parent_id"]
+    standard_meta.update({
+        key: value for key, value in metadata.items()
+        if key not in standard_meta and key not in {"url"}
+    })
+    meta_path = output_dir / "meta.json"
+    meta_path.write_text(
+        json.dumps(standard_meta, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    print(f"\n{'='*60}")
+    print("转录与工作包生成完成")
+    print(f"{'='*60}")
+    print(f"  音频: {audio_path}")
+    print(f"  原文: {md_path}")
+    print(f"  元信息: {meta_path}")
+    print(f"  segments: {segments_path}")
 
     # 输出 result.json
     result = {"status": "success", "segments_count": len(segments), "content_length": len(md_content),
-              "md_path": str(md_path), "audio_path": str(audio_path), "title": title}
+              "source_path": str(md_path), "meta_path": str(meta_path),
+              "audio_path": str(audio_path), "title": title}
     with open(output_dir / "result.json", "w") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 

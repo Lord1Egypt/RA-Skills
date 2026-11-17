@@ -1,40 +1,52 @@
-## Description: <br>
-Check factual claims in drafts before publication, delivery, or decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check factual claims in drafts before publication, delivery, or decisions.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[juanbastias](https://clawhub.ai/user/juanbastias)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers use this skill to review draft text containing factual claims before publication, delivery, or decision-making. It identifies checkable claims, classifies support, flags uncertainty or exaggeration, and suggests safer wording.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may cause the agent to fact-check drafts more often and browse for current claims when needed.
+
+Mitigation: Use it for publication review, and keep the user's publishing or action decision separate from the skill's recommendations.
+
+Risk: High-stakes factual claims can remain uncertain even after review.
+
+Mitigation: Confirm legal, medical, financial, safety, copyright, and compliance claims with authoritative primary sources or qualified reviewers before publishing or acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, editors, operators, and agents use this skill to review factual claims in drafts, messages, reports, product copy, and AI-generated answers before they are published, sent, or used for decisions. It separates factual assertions from opinion, checks important claims against available sources, flags uncertainty or exaggeration, and suggests safer wording. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Current or high-stakes claims may require browsing or authoritative source checks, and unavailable sources can leave residual uncertainty. <br>
-Mitigation: Use primary sources where possible, label unsupported claims clearly, and require authoritative confirmation for legal, medical, financial, safety, or compliance claims. <br>
-Risk: The skill can suggest factual corrections and safer wording but does not approve publication, external messages, uploads, financial action, or account changes. <br>
-Mitigation: Keep final publication and decision authority with a human reviewer or the applicable approval workflow. <br>
+**Output Format:** [Markdown report with a verdict, summary, claim review table, risks, required corrections, safer rewrite, and residual uncertainty.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/juanbastias/factual-claim-verifier) <br>
+**Other Properties Related to Output:** [Returns the report in the same language as the reviewed text unless the user asks otherwise.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with a verdict, claim review table, risks, corrections, safer rewrite, and residual uncertainty] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is returned in the same language as the reviewed text unless the user asks otherwise.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically push code and monitor CI/CD pipeline status across GitHub and GitLab in one place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically push code and monitor CI/CD pipeline status across GitHub and GitLab in one place.
 
-## Publisher: <br>
-[okoddcat](https://clawhub.ai/user/okoddcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okoddcat](https://clawhub.ai/user/okoddcat)
 
-## Use Case: <br>
-Developers and engineers use GitFlow to push local commits and monitor GitHub or GitLab CI/CD pipeline status without switching to separate pipeline dashboards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can push commits or rerun CI jobs using the user's GitHub or GitLab access. <br>
-Mitigation: Require explicit confirmation before any git push or CI rerun, and verify the remote, branch, and target repository first. <br>
-Risk: CI logs can expose sensitive build details or secrets to the agent session. <br>
-Mitigation: Fetch full or failed-job logs only when the user confirms the contents are appropriate to share in the session. <br>
-Risk: Broad GitHub or GitLab credentials can increase the impact of accidental commands. <br>
-Mitigation: Use least-privilege tokens and repository-scoped access where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use GitFlow to push local commits and monitor GitHub or GitLab CI/CD status, logs, and failures without switching between repository and pipeline dashboards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose git push, gh, and glab commands; require confirmation before executing state-changing commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Push commands can send local commits to a remote GitHub or GitLab repository and trigger CI/CD pipelines.
+
+Mitigation: Review the target remote and branch before using pushflow or any generated push command.
+
+Risk: Pipeline monitoring can consume CI resources and expose build status, URLs, or logs through configured CLI tools.
+
+Mitigation: Confirm CLI authentication, repository permissions, and log sensitivity before streaming or sharing pipeline output.
+
+## Reference(s):
+
+- [ClawHub GitFlow skill page](https://clawhub.ai/okoddcat/skills/gitflow)
+- [okoddcat publisher profile](https://clawhub.ai/user/okoddcat)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and gitconfig code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose git push, gh, and glab commands that act on the current repository and remote CI/CD systems.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

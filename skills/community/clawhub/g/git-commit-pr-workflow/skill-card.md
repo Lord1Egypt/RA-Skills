@@ -1,42 +1,49 @@
-## Description: <br>
-Guides an agent through safe branch checks, commits, pushes, and pull request creation or updates with a concise summary and test plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a safe git workflow to create a branch when needed, commit relevant changes, push, and create or update a pull request.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to turn an existing working tree into a pushed branch and a ready pull request while preserving safe git practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent could commit unrelated or sensitive changes while preparing the pull request. <br>
-Mitigation: Inspect branch state and staged diffs before committing, stage only relevant files, and avoid committing secrets. <br>
-Risk: Git operations could overwrite shared history or affect a default branch. <br>
-Mitigation: Create a feature branch when needed, avoid destructive git commands unless explicitly requested, and do not force push to default branches. <br>
-Risk: A pull request body could misstate the actual diff or test coverage. <br>
-Mitigation: Base the title, summary, and test plan on the inspected diff and clearly report any tests that were not run. <br>
+## Use Case:
 
+Developers and agents use this skill to turn a working tree into a ready pull request by inspecting git state, committing intended changes, pushing a branch, and preparing a concise PR body with a test plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wimi321/git-commit-pr-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with shell commands and pull request body text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces git workflow steps, commit and push actions, and a concise pull request summary and test plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can publish code changes to a remote repository through commits, branch pushes, and pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the working tree before use and stage only intended files before committing or pushing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wimi321/skills/git-commit-pr-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with git commands and pull request summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in a new commit, pushed branch, and created or updated pull request when authorized by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

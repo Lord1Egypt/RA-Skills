@@ -1,41 +1,54 @@
-## Description: <br>
-Demonstrates dynamic JSON data processing and Node.js console output to showcase ClawHub skill capabilities. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Demonstrates JSON data processing and Node.js console output using static sample data.
 
-## Publisher: <br>
-[zhanglong12138](https://clawhub.ai/user/zhanglong12138) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanglong12138](https://clawhub.ai/user/zhanglong12138)
 
-## Use Case: <br>
-Developers and ClawHub users can use this demonstration skill to observe simple JSON list filtering and basic Node.js console output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this low-utility demonstration for a production capability. <br>
-Mitigation: Install it only as a basic example of console output and simple list filtering. <br>
-Risk: The behavior is limited to hard-coded sample data. <br>
-Mitigation: Review and adapt the logic before using it with real project data. <br>
+## Use Case:
 
+Developers and reviewers can use this demonstration skill to observe simple handling of static JSON-like sample data and console output from a standalone Node.js script.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhanglong12138/unique-demo-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhanglong12138) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code] <br>
-**Output Format:** [Node.js console output from JavaScript code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses hard-coded sample data and prints active list items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Executable JavaScript is included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before running it; scanner evidence indicates it only processes static sample data and writes console output.
+
+Risk: The release is a demonstration and should not be treated as production automation.
+
+Mitigation: Use it for demonstration or review workflows unless the skill is expanded, tested, and approved for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanglong12138/skills/unique-demo-skill)
+- [Publisher profile](https://clawhub.ai/user/zhanglong12138)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses static sample data and produces console-oriented output; no external services or private data access are indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

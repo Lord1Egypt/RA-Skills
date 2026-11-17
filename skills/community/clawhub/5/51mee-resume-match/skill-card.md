@@ -1,41 +1,54 @@
-## Description: <br>
-Evaluates how well a candidate resume matches a job description and produces an overall score, dimensional analysis, and interview recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Matches resumes to job descriptions to assess candidate-role fit and help rank candidates for a position.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiters, hiring teams, and agents supporting hiring workflows use this skill to compare a resume against a job description, rank candidates, and produce a structured match report with interview suggestions. It is intended as decision support, with final hiring decisions reviewed by a person. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate resumes and job descriptions are sent to an external 51mee API. <br>
-Mitigation: Use the skill only when authorized to share that data with 51mee, redact unnecessary personal or confidential information where practical, and review the provider's privacy, retention, and compliance terms before use. <br>
-Risk: Resume-to-job match scores and recommendations may be incomplete or misleading. <br>
-Mitigation: Treat the output as decision support and have qualified hiring staff review the report before interview or rejection decisions. <br>
+## Use Case:
 
+Recruiters and hiring teams use this skill to compare candidate resumes with job descriptions, generate match scores across skills, experience, education, and salary, and produce interview suggestions or batch ranking summaries.
 
-## Reference(s): <br>
-- [51mee Resume Match API endpoint](https://openapi.51mee.com/api/v1/parse/match) <br>
-- [ClawHub release page](https://clawhub.ai/51mee-com/51mee-resume-match) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with JSON API response examples and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses multipart/form-data with a resume file and job description; match results should be reviewed before hiring decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Candidate resumes and job descriptions are sent to the third-party API at openapi.51mee.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm candidate and organizational permission, remove unnecessary personal details where possible, and verify the provider's privacy, retention, deletion, and compliance terms before use.
+
+Risk: Automated match scores and recommendations could be over-relied on in hiring decisions.
+
+Mitigation: Use the report as decision support and require human review before making candidate screening or interview decisions.
+
+## Reference(s):
+
+- [51mee resume match API endpoint](https://openapi.51mee.com/api/v1/parse/match)
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-resume-match)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report with structured score tables, fit analysis, gaps, interview suggestions, and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a resume file and job description text; check the API response code before using the returned analysis.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

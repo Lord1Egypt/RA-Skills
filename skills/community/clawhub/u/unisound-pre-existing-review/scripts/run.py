@@ -14,7 +14,7 @@ from urllib.request import Request, urlopen
 
 SKILL_TITLE = "既往症审核"
 DEFAULT_API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-DEFAULT_MODEL = "u1-insuremed"
+DEFAULT_MODEL = "u2-med"
 DEFAULT_SYSTEM_PROMPT = (
     "你是保险理赔与临床诊断关系审核辅助专家。用户会给出病历或理赔材料文字，"
     "要求判断「其他诊断与主诊断的关系」以及「是否报销」。\n"

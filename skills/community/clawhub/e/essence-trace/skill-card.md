@@ -1,45 +1,61 @@
-## Description: <br>
-Essence Trace helps agents analyze a claim, phenomenon, or question by repeatedly asking why, applying first principles, and identifying root causes and leverage points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essence Trace guides an agent to drill into opinions, phenomena, or questions using 5 Whys and first-principles reasoning until it reaches a practical root-cause boundary.
 
-## Publisher: <br>
-[jack-long-2022](https://clawhub.ai/user/jack-long-2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-long-2022](https://clawhub.ai/user/jack-long-2022)
 
-## Use Case: <br>
-External users and agents use this skill for Chinese-language root-cause analysis and first-principles reasoning. It is intended for exploring views, phenomena, or questions until the agent can summarize the underlying mechanism and practical leverage points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generic 'why' trigger may activate more often than intended. <br>
-Mitigation: Use explicit invocation or confirm the user's intent before applying the full root-cause workflow. <br>
-Risk: Root-cause analysis can overstate causality for complex, subjective, or value-based topics. <br>
-Mitigation: Review the assumptions in each question chain, distinguish evidence from judgment, and stop at clearly marked value or boundary conditions. <br>
-Risk: The skill is written for Chinese-language use and may be difficult for non-Chinese users. <br>
-Mitigation: Translate or localize the prompts and output labels before deploying it for non-Chinese users. <br>
+## Use Case:
 
+External users and developers use this skill to structure root-cause analysis, repeatedly challenge assumptions, identify an indivisible stopping point, and summarize high-leverage points for a viewpoint, phenomenon, or problem.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-long-2022/skills/essence-trace) <br>
-- [Detailed process](artifact/PROCESS.md) <br>
-- [Housing analysis example](artifact/examples/case-1-housing.md) <br>
-- [Second-curve analysis example](artifact/examples/case-2-second-curve.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with a question chain, indivisible node, leverage points, and essence summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language, text-only reasoning output; no code execution or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad trigger wording may activate the skill for ordinary why-questions more often than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocation for deep root-cause analysis, and confirm intent before applying the full framework to routine factual questions.
+
+Risk: Investment-oriented outputs may be mistaken for financial advice.
+
+Mitigation: Treat investment branches as general reasoning support and require independent financial review before acting on any investment conclusion.
+
+Risk: Root-cause chains can overstate certainty for complex social, economic, or personal questions.
+
+Mitigation: Ask users to validate assumptions, flag value-judgment stopping points, and separate evidence-backed causes from speculative links.
+
+## Reference(s):
+
+- [ClawHub Essence Trace release](https://clawhub.ai/jack-long-2022/skills/essence-trace)
+- [Publisher profile](https://clawhub.ai/user/jack-long-2022)
+- [Process guide](artifact/PROCESS.md)
+- [Housing analysis example](artifact/examples/case-1-housing.md)
+- [Second-curve analysis example](artifact/examples/case-2-second-curve.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured question chains and concise summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs typically include the initial problem statement, recursive why-chain, indivisible node, key leverage points, and a one-sentence essence summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

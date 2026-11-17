@@ -1,40 +1,53 @@
-## Description: <br>
-Standardizes memory backfill work that upgrades agent memory from abstract guidelines into project-level records with outcomes, evidence anchors, and acceptance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes agent memory backfill by upgrading abstract memory into project-level records with result status, evidence anchors, gaps, and reusable acceptance criteria.
 
-## Publisher: <br>
-[jiangwill2023](https://clawhub.ai/user/jiangwill2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangwill2023](https://clawhub.ai/user/jiangwill2023)
 
-## Use Case: <br>
-Developers and agent operators use this skill to diagnose existing memory files, issue memory backfill tasks, and verify durable project-level records with final status, evidence paths, and open gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory updates can capture secrets, credentials, regulated data, private third-party details, or stale information. <br>
-Mitigation: Review proposed memory changes before writing them, avoid sensitive data, and periodically audit MEMORY.md and memory/*.md. <br>
-Risk: Backfilled memory can misrepresent project status when evidence paths or final delivery details are weak. <br>
-Mitigation: Require concrete status, evidence paths, final delivery evidence, and unresolved gaps before accepting memory entries. <br>
+## Use Case:
 
+Developers and agent operators use this skill to standardize memory backfill tasks, acceptance checks, and archive records across agent workspaces. It is intended for cases where memory files need project facts, result closure status, and evidence paths rather than abstract principles alone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangwill2023/memory-backfill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured checklists, task templates, and verification criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide updates to MEMORY.md and memory/*.md files; proposed memory changes should be reviewed before persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill asks agents to read sensitive context files and persist memory entries that may influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show exact files and diffs, approve changes manually, and limit reads and writes to intended workspace memory files.
+
+Risk: Stored memory text could be mistaken for instructions in later work.
+
+Mitigation: Treat stored memory as project context rather than executable instruction, and review proposed memory content before accepting it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiangwill2023/skills/memory-backfill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with task templates and acceptance checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead an agent to propose or edit workspace memory files after user review.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact _meta.json and skill text list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

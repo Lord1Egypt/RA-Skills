@@ -1,40 +1,54 @@
-## Description: <br>
-Mael helps draft and publish formal LinkedIn status updates with relevant hashtags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps draft and publish LinkedIn status updates from user requests, using a formal tone and relevant hashtags.
 
-## Publisher: <br>
-[muhammad194494-pixel](https://clawhub.ai/user/muhammad194494-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muhammad194494-pixel](https://clawhub.ai/user/muhammad194494-pixel)
 
-## Use Case: <br>
-External users and agents use this skill to prepare LinkedIn posts, confirm the content with the user, and invoke a local publisher script to post or report failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local Python script outside the artifact to authenticate and publish to LinkedIn. <br>
-Mitigation: Review ~/.openclaw/workspace/linkedin_post.py and its authentication behavior before installation or use. <br>
-Risk: The skill can publish content under the user's public LinkedIn account. <br>
-Mitigation: Confirm the final post text with the user before running the publishing command. <br>
+## Use Case:
 
+Users use this skill to prepare LinkedIn posts and, after confirmation, submit the post while receiving the resulting LinkedIn link. It is intended for social posting workflows that need professional wording, line breaks, and a small set of relevant hashtags.
 
-## Reference(s): <br>
-- [Mael on ClawHub](https://clawhub.ai/muhammad194494-pixel/linkedin22) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and concise posting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts should stay within LinkedIn's 3000 character limit and use a formal, professional tone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The documented posting command can turn post text into local command execution if used literally with shell evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass post text as a literal process argument without shell evaluation, and do not use untrusted text or shell metacharacters until this is fixed.
+
+Risk: The referenced LinkedIn posting script is not included in the artifact and cannot be verified from the release files.
+
+Mitigation: Package the script with the release or otherwise make it verifiable before relying on the skill for posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muhammad194494-pixel/skills/linkedin22)
+- [Publisher profile](https://clawhub.ai/user/muhammad194494-pixel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and LinkedIn status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [LinkedIn post text is limited to 3000 characters; user confirmation is expected before posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

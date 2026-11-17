@@ -1,47 +1,64 @@
-## Description: <br>
-Autoimprove helps AI agents optimize measurable outcomes by editing scoped files, running checks, comparing scores, and keeping only successful changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoimprove runs an autonomous optimization loop that changes scoped project files, checks correctness, measures a score, and keeps only experiments that meet the configured goal.
 
-## Publisher: <br>
-[zanetworker](https://clawhub.ai/user/zanetworker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zanetworker](https://clawhub.ai/user/zanetworker)
 
-## Use Case: <br>
-Developers and engineers use Autoimprove to run guided or headless optimization loops for code performance, ML training, Docker images, SQL queries, prompts, CI speed, frontend bundles, Kubernetes configs, and other measurable targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit repository files, run configured shell commands, create commits, and hard-reset failed experiments. <br>
-Mitigation: Run it only in a clean dedicated branch, worktree, disposable clone, or container, and commit or stash existing work before use. <br>
-Risk: A malicious or poorly reviewed improve.md or exported program.md could direct the agent toward unsafe commands or unintended changes. <br>
-Mitigation: Inspect improve.md and any exported program.md before execution, confirm the resolved change scope, and run interactively before headless or overnight use. <br>
-Risk: Configured commands may interact with production credentials, Kubernetes contexts, databases, cloud resources, or other sensitive environments. <br>
-Mitigation: Strip production credentials and avoid production kube, database, and cloud contexts during optimization runs. <br>
+## Use Case:
 
+Developers and engineers use this skill to optimize measurable software or AI system outcomes such as performance, cost, bundle size, model quality, prompt quality, SQL latency, CI speed, or infrastructure health. It guides setup, establishes a baseline, then iterates through scoped changes using tests, guards, scoring, commits, and rollback.
 
-## Reference(s): <br>
-- [ClawHub Autoimprove release](https://clawhub.ai/zanetworker/autoimprove) <br>
-- [Autoimprove README](README.md) <br>
-- [Autoimprove Protocol](references/protocol.md) <br>
-- [Autoimprove Examples](references/examples.md) <br>
-- [Karpathy autoresearch](https://github.com/karpathy/autoresearch) <br>
-- [Shopify Liquid optimization PR](https://github.com/Shopify/liquid/pull/2056) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, generated files, and JSON experiment logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify scoped repository files, create commits, run configured commands, export program.md, and write .autoimprove experiment logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill runs project-supplied shell commands and can inherit credentials from the agent process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with least-privilege credentials in an isolated clone, container, or disposable worktree, and remove secrets, production kubeconfigs, database credentials, and API tokens from the environment.
+
+Risk: Headless runs can edit files, create commits, and reset repository history while pursuing the configured score.
+
+Mitigation: Complete an interactive first run, review improve.md, verify the exact scope and commands, and confirm the backup branch and recovery process before any overnight or unattended execution.
+
+Risk: Scope restrictions are policy constraints rather than a technical sandbox.
+
+Mitigation: Use explicit scope and exclude rules, keep sensitive repositories in disposable forks or containers, and review diffs before accepting results.
+
+Risk: Optimization pressure can encourage metric gaming or changes to evaluation guardrails.
+
+Mitigation: Keep tests, eval scripts, golden sets, and scoring commands immutable during the loop, and use guard metrics for secondary regressions.
+
+## Reference(s):
+
+- [ClawHub Autoimprove Skill Page](https://clawhub.ai/zanetworker/skills/autoimprove)
+- [Autoimprove Protocol](references/protocol.md)
+- [Autoimprove Examples](references/examples.md)
+- [From Autoresearch to Autoimprove](docs/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions, shell commands, project file edits, and JSON experiment logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create improve.md, program.md, test or eval scaffolds, git commits, backup branches, and .autoimprove JSON records depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

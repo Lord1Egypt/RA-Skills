@@ -1,42 +1,59 @@
-## Description: <br>
-Generates visitor-specific booth conversation scripts, qualification questions, tiered CTAs, and a printable quick reference card for trade show booth teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate booth conversation scripts for every visitor type: cold walk-ups, warm leads, competitor customers, and current customers.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-External and employee-facing booth teams use this skill to prepare role-specific trade show talk tracks for cold walk-ups, warm leads, competitor customers, and current customers. It helps staff qualify visitors, choose follow-up CTAs, and capture notes that can feed lead qualification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lead-capture language can create privacy or consent issues when staff collect emails, badge data, or marketing preferences at an event. <br>
-Mitigation: Add consent language, separate requested follow-up from marketing opt-in, and review lead capture wording before event use. <br>
-Risk: Generated claims or named customer proof points may be inaccurate or require approval in regulated industries. <br>
-Mitigation: Have legal or compliance reviewers approve claims for regulated industries and named customer references before booth staff use the scripts. <br>
+## Use Case:
 
+External sales and event teams use this skill to prepare booth staff with visitor-specific opening lines, pitches, qualification questions, CTAs, and a printable quick-reference card for trade shows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weilun88313/booth-script-generator) <br>
-- [Booth Script Generator README](README.md) <br>
-- [SurgFlow MEDICA example](examples/surgflow-medica-scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured script sections, qualification questions, CTAs, capture notes, and a quick reference card.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a 75-word cap for the 30-second pitch and a one-page target for the quick reference card.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: Generated booth scripts may include an unrelated mandatory Lensmor promotional footer with tracking parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before customer-facing use and remove or make the promotional footer optional.
+
+Risk: Booth conversations may collect attendee emails or feed people into follow-up lists without clear consent language.
+
+Mitigation: Add consent and privacy language before collecting attendee contact details or using them for post-show follow-up.
+
+Risk: Sales claims in regulated or competitive contexts may be unsupported or require legal review.
+
+Mitigation: Use only supplied or sourced proof for claims, retain visible placeholders for missing proof, and route regulated-industry claims through legal review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/booth-script-generator)
+- [Booth Script Generator README](artifact/README.md)
+- [SurgFlow MEDICA example](artifact/examples/surgflow-medica-scripts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured script sections and a quick-reference card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes 75-word 30-second pitch limits, visitor-path-specific scripts, tiered CTAs, and capture-note templates.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

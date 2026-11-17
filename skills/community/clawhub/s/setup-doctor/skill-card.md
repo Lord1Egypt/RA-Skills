@@ -1,43 +1,59 @@
-## Description: <br>
-Diagnose OpenClaw setup in one command with quick or full checks for Node, npm, gateway, config, workspace, and platform issues while reporting config and workspace file existence only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Setup Doctor diagnoses OpenClaw setup issues by checking Node.js, npm, gateway status, configuration file presence, and workspace presence with quick and opt-in full modes.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose local OpenClaw setup issues, including Node, npm, gateway, configuration, workspace, and platform checks. It helps troubleshoot setup failures quickly and proposes fixes only after showing the planned change and getting user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run local diagnostic commands while troubleshooting setup errors. <br>
-Mitigation: Use the quick or full diagnostic scope appropriate to the issue and review the reported commands and results before taking action. <br>
-Risk: Fix mode can modify the local OpenClaw setup if the user approves the proposed fix. <br>
-Mitigation: Show exactly what will change, get explicit confirmation, apply the fix, and re-run the check to verify the result. <br>
-Risk: The skill advertises companion skills as part of a suite. <br>
-Mitigation: Assess each companion skill separately before installing it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to troubleshoot setup failures, gateway connectivity problems, missing configuration, and workspace readiness issues. It provides quick status checks, optional deeper diagnostics, and proposed fixes that require user confirmation before changes are made.
 
-## Reference(s): <br>
-- [Setup Doctor ClawHub Page](https://clawhub.ai/tommot2/setup-doctor) <br>
-- [Node.js](https://nodejs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown diagnostic report with inline shell commands and one-line fix suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quick check is intended to complete in about 10 seconds; full checks add file existence, workspace, platform, and common pitfall diagnostics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata) <br>
+Risk: Local diagnostics can expose environment status, local paths, tool versions, and OpenClaw file presence in the agent transcript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diagnostic output before sharing it outside the working context, and avoid including sensitive local details in public reports.
+
+Risk: Fix mode may propose local setup changes that could be incorrect for a user's environment.
+
+Mitigation: Require explicit user confirmation, show exactly what will change, and re-run diagnostics after applying a confirmed fix.
+
+Risk: The optional full-suite install suggestion installs additional skills beyond Setup Doctor.
+
+Mitigation: Treat the suite install as optional and review each additional skill before installation.
+
+## Reference(s):
+
+- [Setup Doctor ClawHub skill page](https://clawhub.ai/tommot2/skills/setup-doctor)
+- [Setup Doctor homepage](https://clawhub.ai/skills/setup-doctor)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style diagnostic reports with inline shell commands and JSON output from the bundled diagnostic script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quick mode targets about 10 seconds; full diagnostics are opt-in; fix mode requires user confirmation before applying changes.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

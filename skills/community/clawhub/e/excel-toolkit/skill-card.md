@@ -1,43 +1,55 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable handling for formulas, dates, data types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it)
 
-## Use Case: <br>
-Developers and agents use this skill when working with Excel or spreadsheet artifacts that need reliable reading, editing, conversion, formulas, dates, formatting, workbook structure, or template preservation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet operations can overwrite or delete workbook content during sheet deletion, merging, conversion, or save operations. <br>
-Mitigation: Work on backups or save to a new output path before destructive edits, merging workbooks, or converting formats. <br>
-Risk: Processing spreadsheets from untrusted sources can expose the agent environment to unsafe workbook content or dependency-level vulnerabilities. <br>
-Mitigation: Install in an isolated Python environment and pin current patched versions of openpyxl and pandas where possible. <br>
+## Use Case:
 
+Developers and agents use this skill to create, read, edit, convert, and preserve Excel, XLSX, CSV, and TSV workbook deliverables where formulas, formatting, workbook structure, and data-type fidelity matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiuwenxi416488212-ship-it/excel-toolkit) <br>
-- [Skill homepage](https://clawic.com/skills/excel-xlsx) <br>
-- [README.md](artifact/README.md) <br>
-- [README_CN.md](artifact/README_CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; generated work may include Excel workbooks, CSV, or TSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local spreadsheet files using openpyxl and pandas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted spreadsheet cell values can influence filenames during split-by-column workflows and may cause output to be written outside the intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies of important workbooks, sanitize filename values before splitting, and avoid split-by-column workflows on attacker-controlled data until filename handling is fixed.
+
+Risk: Formula-like values from untrusted CSV or spreadsheet content may remain active in generated XLSX files.
+
+Mitigation: Review generated workbooks before opening or sharing them, and neutralize formula-like cells when processing untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuwenxi416488212-ship-it/skills/excel-toolkit)
+- [Skill homepage](https://clawic.com/skills/excel-xlsx)
+- [ClawHub registry](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and workbook or tabular file outputs when applied by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports linux, darwin, and win32; depends on openpyxl and pandas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

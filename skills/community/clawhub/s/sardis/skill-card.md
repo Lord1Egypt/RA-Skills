@@ -1,44 +1,61 @@
-## Description: <br>
-Payment OS for AI agents that creates MPC wallets, executes stablecoin payments with automatic policy enforcement, sets spending rules in natural language, checks balances across chains, and issues virtual cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Payment OS for AI agents that creates MPC wallets, executes stablecoin payments with automatic policy enforcement, sets spending rules in natural language, checks balances across chains, and issues virtual cards.
 
-## Publisher: <br>
-[efedurmaz16](https://clawhub.ai/user/efedurmaz16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[efedurmaz16](https://clawhub.ai/user/efedurmaz16)
 
-## Use Case: <br>
-External developers and agent builders use this skill to let agents create payment wallets, enforce spending policies, check balances, issue virtual cards, and initiate stablecoin payments through Sardis infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can initiate actions against live payment infrastructure. <br>
-Mitigation: Use a dedicated low-limit or least-privilege API key and require explicit human approval for each payment, bridge, escrow release, card issuance, and card reveal. <br>
-Risk: API keys and full card details may be exposed through prompts, logs, traces, or transcripts. <br>
-Mitigation: Keep credentials and card data out of agent context and operational logs; rotate keys if exposure is suspected. <br>
-Risk: Public exposure of the skill server could widen access to financial operations. <br>
-Mitigation: Run the FastAPI server only in a private, access-controlled environment and prefer sandbox or testnet flows before production use. <br>
+## Use Case:
 
+External developers and agent builders use this skill to let agents provision Sardis wallets, apply spending policies, check balances, issue virtual cards, and initiate stablecoin payments through Sardis APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/efedurmaz16/sardis) <br>
-- [Sardis website](https://sardis.sh) <br>
-- [Sardis API reference](https://api.sardis.sh/api/v2/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SARDIS_API_KEY; payment, card, bridge, escrow, and wallet operations can affect live financial infrastructure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata; pyproject.toml lists 1.0.0) <br>
+Risk: The executable server may expose API credentials or sensitive payment/card data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or low-limit Sardis credentials, avoid live secrets during review, and require trusted server-side credential retrieval before production use.
+
+Risk: Payment execution may proceed without confirmed policy approval.
+
+Mitigation: Require authenticated execute requests and fail-closed policy checks before enabling live payment workflows.
+
+Risk: Examples can move real funds when used with live credentials.
+
+Mitigation: Treat all payment, card, wallet, escrow, and mandate examples as live-money operations and review parameters before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/efedurmaz16/skills/sardis)
+- [Sardis Website](https://sardis.sh)
+- [Sardis Documentation](https://sardis.sh/docs)
+- [Sardis API Reference](https://api.sardis.sh/api/v2/docs)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SARDIS_API_KEY and network access to Sardis APIs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

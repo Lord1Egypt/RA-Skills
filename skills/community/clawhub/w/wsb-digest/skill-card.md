@@ -1,46 +1,61 @@
-## Description: <br>
-Automatically fetches r/wallstreetbets hot-stock data, generates a daily Markdown report, and posts it to Discord with message chunking for Discord limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动抓取 r/wallstreetbets 热股数据，生成每日报告推送到 Discord。使用 ApeWisdom API，支持分片发送避免 Discord 2000 字符限制。
 
-## Publisher: <br>
-[Mingkko](https://clawhub.ai/user/Mingkko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mingkko](https://clawhub.ai/user/mingkko)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to automate a scheduled WallStreetBets stock-trend digest for a configured Discord channel. It is intended for informational monitoring and does not provide investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduled trigger can repeatedly post to the configured Discord channel if cron is enabled with the wrong channel ID, binary path, or local skill path. <br>
-Mitigation: Review both scripts, set the Discord channel ID and OpenClaw path manually, run a manual test, and confirm the cron entry points to the reviewed local copy before enabling the schedule. <br>
-Risk: Running the cron job as root increases impact if local configuration or script contents are changed later. <br>
-Mitigation: Run the job under a least-privilege user where possible and remove the crontab entry when automatic Discord posts are no longer needed. <br>
-Risk: The generated stock digest could be mistaken for financial advice. <br>
-Mitigation: Keep the report's informational-use disclaimer visible and treat the ApeWisdom data as a monitoring signal, not investment guidance. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to publish scheduled WallStreetBets stock-mention digests to a configured Discord channel. It helps monitor ApeWisdom trend data, including top tickers, rank changes, newcomers, and message chunks sized for Discord.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Mingkko/wsb-digest) <br>
-- [Publisher Profile](https://clawhub.ai/user/Mingkko) <br>
-- [Project Homepage](https://github.com/mingkko/wsb-digest) <br>
-- [ApeWisdom WallStreetBets API](https://apewisdom.io/api/v1.0/filter/wallstreetbets) <br>
-- [WSB Digest 安装指南](references/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON containing a Markdown digest; Discord delivery uses chunked Markdown messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public ApeWisdom data with retries and splits long Discord messages to stay below character limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The cron job can automatically post stock-market digests to Discord without an operator reviewing each message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target Discord channel and posting schedule before enabling cron, and test a manual run first.
+
+Risk: The documented install paths and HOME setting assume root-level execution.
+
+Mitigation: Run the skill as an unprivileged user and update OPENCLAW_BIN, SKILL_DIR, HOME, and cron paths for that account.
+
+Risk: Fixed files and directories under /tmp can expose or collide with digest data on shared systems.
+
+Mitigation: Use a private temporary directory with restrictive permissions for logs, raw output, JSON, and chunks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingkko/skills/wsb-digest)
+- [Publisher profile](https://clawhub.ai/user/mingkko)
+- [Project homepage](https://github.com/mingkko/wsb-digest)
+- [Install guide](references/install-guide.md)
+- [ApeWisdom WallStreetBets API](https://apewisdom.io/api/v1.0/filter/wallstreetbets)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON payload containing a Markdown digest, with shell-based Discord delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discord delivery is chunked below the 2000 character message limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

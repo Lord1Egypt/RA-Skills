@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7127430q1rddt7px2nnp4gwn80vsvd",
-  "slug": "aliyun-mail",
-  "version": "1.0.0",
-  "publishedAt": 1770622061549
+  "name": "aliyun-mail",
+  "description": "A skill to send emails via Aliyun enterprise email service with support for markdown, HTML text, attachments, and syntax highlighting.",
+  "version": "1.0.0"
 }

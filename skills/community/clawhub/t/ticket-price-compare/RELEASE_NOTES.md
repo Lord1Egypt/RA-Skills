@@ -1,6 +1,21 @@
 # Release Notes — ticket-price-compare
 
-## v1.2.5 — Security Hardening
+## v1.2.6 — Remove SSL Bypass Entirely
+
+**🔒 Security Fix**: All `ssl.CERT_NONE` code removed from codebase.
+
+### Changes
+- **SSL bypass completely removed**: The `_urlopen_12306()` function and all related code no longer contain any `ssl.CERT_NONE` or unverified SSL context. Full TLS verification is always enforced for all connections.
+- **Removed `TICKET_ALLOW_UNVERIFIED_SSL` environment variable**: No longer exists — there is no way to disable SSL verification from within the script.
+- **Graceful degradation**: If 12306 SSL verification fails, train data is unavailable for that request but all other features (flight search, platform links) continue to work normally.
+- **Updated manifest**: `environment_variables` and `network_access` declarations in SKILL.md and skill.json no longer reference the removed env var.
+
+### Rationale
+ClawHub security review flagged the presence of any SSL bypass mechanism (even opt-in) as a significant vulnerability. The 12306 queries are public data with no credentials transmitted, so the impact of a MITM attack is limited to data integrity only. Removing the bypass entirely eliminates the attack surface while preserving all other functionality.
+
+---
+
+## v1.2.5 — Security Hardening (superseded by v1.2.6)
 
 **⚠️ Breaking Change**: 12306 SSL unverified fallback is no longer automatic.
 

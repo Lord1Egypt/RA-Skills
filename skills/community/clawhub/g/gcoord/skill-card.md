@@ -1,43 +1,58 @@
-## Description: <br>
-Use when converting coordinates between WGS84, GCJ02, BD09, BD09MC, or WebMercator coordinate systems for Chinese map services such as Baidu, Amap, Google China, and Tencent Maps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when converting coordinates between WGS84, GCJ02, BD09, BD09MC, or WebMercator coordinate systems for Chinese map services (Baidu, Amap, Google China, etc.).
 
-## Publisher: <br>
-[zhyt1985](https://clawhub.ai/user/zhyt1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhyt1985](https://clawhub.ai/user/zhyt1985)
 
-## Use Case: <br>
-Developers and mapping workflows use this skill to convert individual coordinates, coordinate arrays, GeoJSON, or batch coordinate text among Chinese map coordinate systems. It helps normalize coordinates when moving data between GPS, Baidu, Amap, Tencent, and Web Mercator map contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private location coordinates entered for conversion may be visible to the local agent session processing them. <br>
-Mitigation: Avoid submitting sensitive locations unless the local workspace, logs, and agent session are appropriate for that data. <br>
-Risk: The skill relies on an external Node dependency for coordinate conversion. <br>
-Mitigation: Install dependencies from a trusted registry or the provided lockfile, and review dependency integrity before use. <br>
+## Use Case:
 
+Developers and mapping-data operators use this skill to convert points, coordinate arrays, GeoJSON, or batch coordinate text between common Chinese web-map coordinate systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhyt1985/gcoord) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhyt1985) <br>
-- [README.md](README.md) <br>
-- [gcoord 1.0.7 package tarball](https://registry.npmmirror.com/gcoord/-/gcoord-1.0.7.tgz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and coordinate conversion text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates are returned in the same general shape as the input when using the bundled conversion script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: Coordinate conversion output may be used in workflows subject to Chinese mapping and surveying rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated coordinate data against applicable legal and operational requirements before publication or production use.
+
+Risk: Dependency changes could alter conversion behavior if installation ignores the included lockfile.
+
+Mitigation: Install with the included package-lock.json honored and review dependency updates before deployment.
+
+Risk: Chinese-first prompts and command output may be hard to operate in English-only workflows.
+
+Mitigation: Confirm the target users can work with Chinese prompts and output, or localize the interaction text before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhyt1985/skills/gcoord)
+- [gcoord 1.0.7 package artifact](https://registry.npmmirror.com/gcoord/-/gcoord-1.0.7.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON coordinate conversion output, with shell command examples and interactive parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the input shape for supported point, array, GeoJSON, and batch coordinate text inputs where possible.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

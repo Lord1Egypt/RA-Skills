@@ -1,42 +1,52 @@
-## Description: <br>
-Framework core engineer skill for CLI commands, code generation standards, PHP 8.4 compatibility, and framework-safe scaffolding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework core engineer skill for CLI commands, code generation standards, PHP 8.4 compatibility, and framework-safe scaffolding.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aiweline](https://clawhub.ai/user/aiweline)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create or repair Weline CLI commands, scaffold generated code, refresh command registration, and apply framework-specific PHP 8.4 and Windows command-quoting guardrails.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or scaffolded command code can introduce incorrect behavior or stale command registration in a Weline repository.
+
+Mitigation: Review the generated code, run the framework command metadata refresh when registration changes, and validate the new or updated command with a focused scenario.
+
+Risk: Shell command composition, especially on Windows-sensitive paths, can fail or behave unexpectedly if quoting is fragile.
+
+Mitigation: Validate shell commands on the intended platform and apply explicit quoting discipline before relying on generated command strings.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill when creating or repairing Weline CLI commands, scaffolding generated code, and applying PHP 8.4-safe framework conventions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated command or scaffold changes may not match the local Weline project conventions. <br>
-Mitigation: Review generated diffs against local project guidance before applying or deploying changes. <br>
-Risk: Command registration, PHP 8.4 compatibility, or Windows command quoting mistakes can break CLI behavior. <br>
-Mitigation: Run the relevant command upgrade flow and focused command validation in a development environment. <br>
-Risk: The skill references a team workflow involving @Weline-技术主管 that may not match every organization. <br>
-Mitigation: Confirm the referenced collaboration workflow is expected before relying on its escalation guidance. <br>
+**Output Format:** [Markdown guidance with code and shell command snippets when implementation work is requested]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/core-command-codegen) <br>
+**Other Properties Related to Output:** [May include validation notes, platform assumptions, affected services, and command registration steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill output should be reviewed as diffs and validated in a development environment.] <br>
+1.1.0 (source: artifact frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

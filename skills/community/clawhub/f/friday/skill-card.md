@@ -1,44 +1,58 @@
-## Description: <br>
-专用编程代理 - 使用 opencode 进行代码编写、审查、重构和调试. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+星期五 is a Chinese-language programming-agent skill for using the opencode CLI to write, review, refactor, test, and debug code.
 
-## Publisher: <br>
-[easeclick](https://clawhub.ai/user/easeclick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easeclick](https://clawhub.ai/user/easeclick)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate coding work to the opencode CLI, including code generation, review, refactoring, debugging, testing, and technical documentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Normal or automatic opencode runs can modify project files. <br>
-Mitigation: Use read-only or interactive mode for unfamiliar repositories and review generated changes before committing. <br>
-Risk: Prompts may expose sensitive information to the coding agent workflow. <br>
-Mitigation: Avoid including secrets, passwords, API keys, or other sensitive values in prompts. <br>
-Risk: Generated code, reviews, or fixes may be incomplete or incorrect. <br>
-Mitigation: Run the relevant tests and code checks, and manually review proposed changes before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/easeclick/friday) <br>
-- [Skill homepage](https://clawdhub.com/skills/friday) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to run opencode-based coding workflows for feature implementation, code review, refactoring, debugging, testing, and technical documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, file-change summaries, review findings, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the opencode CLI; supports Linux, macOS, and Windows according to ClawHub metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide opencode workflows that modify project files.
+
+Mitigation: Run it only in trusted project directories and use read-only or interactive mode for unfamiliar repositories.
+
+Risk: Automatic code changes may be incorrect, unsafe, or misaligned with project requirements.
+
+Mitigation: Review generated diffs, run tests and linters, and inspect critical changes before committing or deploying.
+
+Risk: Prompts or project context may expose sensitive information to the configured coding agent or model provider.
+
+Mitigation: Avoid including secrets, passwords, API keys, or other sensitive data in prompts or shared context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/easeclick/skills/friday)
+- [Skill source](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, code-oriented recommendations, and review findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include changed-file lists, change summaries, decision notes, risk notes, issue severity, fix suggestions, and code examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

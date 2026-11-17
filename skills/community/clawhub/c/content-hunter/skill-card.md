@@ -1,43 +1,61 @@
-## Description: <br>
-内容捕手 Content Hunter scrapes trending short-video content from Xiaohongshu, Douyin, and Bilibili, then saves platform data and generates scheduled reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Hunter helps agents scrape trending content from Xiaohongshu, Douyin, and Bilibili, save platform records, and generate scheduled trend reports.
 
-## Publisher: <br>
-[judefluen-coder](https://clawhub.ai/user/judefluen-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[judefluen-coder](https://clawhub.ai/user/judefluen-coder)
 
-## Use Case: <br>
-Users use this skill to collect trending social video content across Xiaohongshu, Douyin, and Bilibili, archive per-platform Markdown data, and produce daily or scheduled trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use logged-in browser sessions and persist scraped social-platform content. <br>
-Mitigation: Run it only with accounts and platforms you are authorized to access, review stored archives, and delete retained data when it is no longer needed. <br>
-Risk: The skill supports recurring scraping jobs and report delivery to a fixed group destination. <br>
-Mitigation: Review scheduled jobs and the destination before enabling automation, and disable or remove related cron jobs after the reporting workflow is complete. <br>
+## Use Case:
 
+External users and content teams use this skill to collect hot content from supported short-video platforms, persist per-run Markdown records, and generate trend summaries or scheduled daily reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/judefluen-coder/content-hunter) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
-- [Douyin](https://www.douyin.com) <br>
-- [Bilibili](https://www.bilibili.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown data files, Markdown summary reports, and cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped task folders and can aggregate multiple platform captures into a report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Saved scraped content and raw-data links may expose collected platform data beyond the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients before sending reports, limit access to generated task folders, and set retention limits for saved data.
+
+Risk: The skill includes a fixed group-sharing rule for reports and raw-data links.
+
+Mitigation: Remove or change the fixed group rule before use and require explicit confirmation before sharing raw-data links.
+
+Risk: Broad scheduled-job cleanup by name matching could delete unrelated cron jobs.
+
+Mitigation: Delete only reviewed, exact scheduled job IDs instead of broad name matches.
+
+Risk: Scraping logged-in or third-party platform pages can collect sensitive or policy-restricted content.
+
+Mitigation: Use authorized accounts, respect platform rules, and review collected records before redistributing summaries or source links.
+
+## Reference(s):
+
+- [Content Hunter ClawHub skill page](https://clawhub.ai/judefluen-coder/skills/content-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown records and reports with occasional shell command and scheduling guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates timestamped task folders for scraped platform data and summary reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

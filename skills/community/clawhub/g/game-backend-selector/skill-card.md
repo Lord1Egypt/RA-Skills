@@ -1,42 +1,56 @@
-## Description: <br>
-Choose or compare backend profiles based on required capabilities, project state, and quality target. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Choose or compare backend profiles based on required capabilities, project state, and quality target.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Game developers use this skill to choose or compare backend profiles for browser and engine-based game projects. It helps produce an evidence-based backend decision before implementation work begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated backend decision notes may include confidential schedules, budgets, or unreleased product details. <br>
-Mitigation: Review generated Markdown before committing or sharing it, and remove confidential project details. <br>
-Risk: A backend recommendation can be misleading when project constraints or quality targets are incomplete. <br>
-Mitigation: Review the stated tradeoffs and validate the selected backend profile against the project requirements before implementation. <br>
+## Use Case:
 
+Developers and game teams use this skill to choose or compare backend profiles for browser or engine-based game projects. It helps produce an evidence-based backend decision note that accounts for project state, required capabilities, tradeoffs, and companion specialist follow-through.
 
-## Reference(s): <br>
-- [Backend Profiles (Capability-Driven)](shared/reference/backend-profiles.md) <br>
-- [Usage Examples](examples/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike007jd/game-backend-selector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown decision document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intended deliverable is docs/game-studio/backend-decision.md; companion skills are separate installs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may read project context and write a backend decision note under docs/game-studio/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed decision document before relying on it for project planning.
+
+Risk: The skill references companion specialists that are not bundled with this release.
+
+Mitigation: Install or invoke companion specialist skills only when follow-up implementation guidance is desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike007jd/skills/game-backend-selector)
+- [Backend Profiles](shared/reference/backend-profiles.md)
+- [Usage Examples](examples/usage.md)
+- [Smoke Test](tests/smoke.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown decision document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normally writes docs/game-studio/backend-decision.md and may recommend separate companion specialist skills for follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

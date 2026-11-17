@@ -1,41 +1,50 @@
-## Description: <br>
-Helps draft WeChat public-account articles with a conversational, story-driven, opinionated writing style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates WeChat public-account articles with a conversational, story-driven, opinionated style and mobile-friendly structure.
 
-## Publisher: <br>
-[dongrebeccahhh-boop](https://clawhub.ai/user/dongrebeccahhh-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongrebeccahhh-boop](https://clawhub.ai/user/dongrebeccahhh-boop)
 
-## Use Case: <br>
-Content creators and marketing teams use this skill to draft WeChat public-account articles, choose concise titles, structure short mobile-friendly sections, and prepare cover-image and publishing steps for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted articles or generated cover images may be inaccurate, off-brand, or inappropriate for publication. <br>
-Mitigation: Review and edit the final article and cover image before publishing. <br>
-Risk: The workflow references external image-generation and WeChat publishing tools. <br>
-Mitigation: Run those tools only when installed from trusted sources and configured for the intended WeChat account. <br>
+## Use Case:
 
+Content creators and marketing teams use this skill to draft WeChat public-account articles with title strategy, short mobile-friendly sections, optional cover-image prompts, and publication workflow guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dongrebeccahhh-boop/dongrebeccahhh-wechat-article) <br>
-- [Publisher Profile](https://clawhub.ai/user/dongrebeccahhh-boop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose with optional shell commands for cover-image generation and WeChat publishing workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides drafting guidance; final articles, images, and publishing actions should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may guide an agent to generate a cover image or use a WeChat publishing toolkit connected to a real account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated article and image content, and require explicit human confirmation before any publication action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongrebeccahhh-boop/skills/dongrebeccahhh-wechat-article)
+- [ClawHub publisher profile](https://clawhub.ai/user/dongrebeccahhh-boop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown article draft with headings, short sections, optional cover-image command, and publishing checklist.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include title options, cover-image prompt guidance, and a publication workflow checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

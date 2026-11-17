@@ -76,7 +76,7 @@ npm view @clawtip/clawtip-sandbox-cli version
 
 ## 2. 超参数
 
-* **`skill-version`**（string）：技能版本。当前为 `1.0.12`。
+* **`skill-version`**（string）：技能版本。当前为 `1.0.3`。
 
 ## 3. 执行命令
 

@@ -1,38 +1,50 @@
-## Description: <br>
-StitchFlow Legacy Alias redirects older stitch-design-local prompts and setups to the canonical StitchFlow skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legacy compatibility alias for StitchFlow. Use when a user explicitly references stitch-design-local, or when older prompts and setups still call that skill name.
 
-## Publisher: <br>
-[yshishenya](https://clawhub.ai/user/yshishenya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshishenya](https://clawhub.ai/user/yshishenya)
 
-## Use Case: <br>
-Developers and agent users with older prompts use this alias to route stitch-design-local references to the canonical StitchFlow workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The alias depends on the separate stitchflow skill and local StitchFlow toolkit, so an unexpected source could change the delegated workflow. <br>
-Mitigation: Verify the canonical stitchflow skill and local toolkit source before use, and avoid separate install scripts unless their source is trusted. <br>
+## Use Case:
 
+Developers and agent users use this compatibility alias when older prompts or setups still reference stitch-design-local. It directs the agent toward the canonical StitchFlow skill and migration name.
 
-## Reference(s): <br>
-- [StitchFlow homepage](https://github.com/yshishenya/stitchflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates users to the canonical stitchflow skill and local StitchFlow toolkit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The alias delegates real workflow trust to the separate canonical StitchFlow skill and local toolkit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the canonical stitchflow skill and installer are intended and trusted before installation or use.
+
+## Reference(s):
+
+- [StitchFlow homepage](https://github.com/yshishenya/stitchflow)
+- [ClawHub skill listing](https://clawhub.ai/yshishenya/skills/stitch-design-local)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline command and path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Alias-only workflow; no executable code is bundled in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

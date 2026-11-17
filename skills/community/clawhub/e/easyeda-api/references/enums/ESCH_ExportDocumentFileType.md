@@ -1,11 +1,11 @@
 # ESCH\_ExportDocumentFileType enum
 
-导出文档文件类型
+Export document file type
 
 ## Signature
 
 ```typescript
-declare enum ESCH_ExportDocumentFileType 
+enum ESCH_ExportDocumentFileType
 ```
 
 ## Enumeration Members
@@ -14,64 +14,46 @@ declare enum ESCH_ExportDocumentFileType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 PDF
 
-
 </td><td>
 
-`"PDF"`
-
+`'PDF'`
 
 </td><td>
-
-PDF 文档
-
 
 </td></tr>
 <tr><td>
 
 PNG
 
-
 </td><td>
 
-`"PNG"`
-
+`'PNG'`
 
 </td><td>
-
-PNG 位图
-
 
 </td></tr>
 <tr><td>
 
 SVG
 
-
 </td><td>
 
-`"SVG"`
-
+`'SVG'`
 
 </td><td>
-
-SVG 矢量图
-
 
 </td></tr>
 </tbody></table>

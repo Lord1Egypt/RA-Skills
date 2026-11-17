@@ -1,43 +1,60 @@
-## Description: <br>
-Analyzes how macroeconomic events and indicators such as CPI, NFP, Fed decisions, rates, and payrolls may affect crypto markets using Gate Info and Gate News MCP data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Macro-driven crypto via Gate-Info and Gate-News MCP for analyzing how macro events such as CPI, NFP, Fed decisions, rates, and payrolls relate to crypto calendars, indicators, news, and market snapshots.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers use this skill to connect macro calendars, indicators, related news, and crypto market snapshots into a structured impact analysis for assets such as BTC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured Gate Info or Gate News MCP servers may be unavailable or untrusted. <br>
-Mitigation: Confirm the configured MCP servers are trusted before installation and degrade gracefully when required tools are unavailable. <br>
-Risk: Macro-to-crypto analysis can be mistaken for trading advice or deterministic price prediction. <br>
-Mitigation: Treat outputs as informational market analysis, avoid buy or sell recommendations, and state that macro impacts on crypto are probabilistic. <br>
-Risk: Broad macro questions may be answered in a crypto context by default. <br>
-Mitigation: Clarify the requested event, indicator, asset, and time range when the user's intent is ambiguous. <br>
+## Use Case:
 
+External users and agents use this skill to answer macro-to-crypto impact questions by combining economic calendar data, macro indicators, related news, and crypto market snapshots into a structured analysis report. It is intended for data-driven context, not trading advice.
 
-## Reference(s): <br>
-- [Gate Info Macro Impact Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured market analysis with calendar, indicator, news, market-correlation, impact-assessment, and risk-factor sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may mistake macro-to-crypto analysis for trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs data-driven, avoid buy/sell recommendations, and state that macro impacts on crypto are uncertain and non-deterministic.
+
+Risk: Missing or failed Gate Info or Gate News MCP tools can leave sections incomplete.
+
+Mitigation: Confirm required MCP servers before use, label unavailable dimensions clearly, degrade gracefully on partial failures, and return a concise setup or retry message if all required tools fail.
+
+Risk: Macro event attribution can overstate causality between economic data and crypto price movement.
+
+Mitigation: Frame relationships as correlation rather than causation, compare actual, forecast, and previous values transparently, and include source timing for data points.
+
+## Reference(s):
+
+- [Gate Info Macro Impact Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+- [ClawHub skill page](https://clawhub.ai/gaixianggeng/skills/gate-info-macroimpact-staging)
+- [ClawHub publisher profile](https://clawhub.ai/user/gaixianggeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with tables, links, and concise narrative assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only Gate Info and Gate News MCP results; labels unavailable data and avoids buy/sell recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+{
+ "campaign": "campaign.json",
+ "manifest": "clips/manifest.json",
+ "timezone": "America/New_York",
+ "ai_generated": false,
+ "accounts": [
+  {"name": "TikTok", "platform": "TIKTOK", "handle": "@example.clipper", "socialAccountId": "example-tiktok-1",
+   "privacyLevel": "PUBLIC_TO_EVERYONE", "allowComment": true, "allowDuet": false, "allowStitch": false,
+   "marketplace_verified": true},
+  {"name": "Reels", "platform": "INSTAGRAM", "handle": "@example.clipper.reels", "socialAccountId": "example-instagram-1",
+   "marketplace_verified": true},
+  {"name": "Shorts", "platform": "YOUTUBE", "handle": "@exampleclipper", "privacy": "public", "madeForKids": false,
+   "marketplace_verified": true, "by_hand": true}
+ ],
+ "posts": [
+  {"id": "groundhog-tiktok", "account": "TikTok", "file": "clips/clip-01.mp4",
+   "caption": "#ad Astronaut Bob Behnken trains until launch day holds no surprises, like Groundhog Day. Clip from @example.orbit, more at example.com/orbit #exampleorbit #nasa #spacex"},
+  {"id": "safe-path-reels", "account": "Reels", "file": "clips/clip-02.mp4",
+   "caption": "#ad \"Save the crew, not the mission.\" How NASA thought about a spacecraft that mostly flies itself. Clip from @example.orbit, more at example.com/orbit #exampleorbit #nasa #crewdragon"},
+  {"id": "curse-names-shorts", "account": "Shorts", "file": "clips/clip-03.mp4",
+   "title": "His goal: future crews forget his name",
+   "caption": "#ad Good design means the next crew never has to think about you. Bob Behnken on building Crew Dragon. Clip from @example.orbit, more at example.com/orbit #exampleorbit #nasa",
+   "tags": ["nasa", "crew dragon", "astronaut"]}
+ ]
+}

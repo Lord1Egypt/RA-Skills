@@ -1,41 +1,57 @@
-## Description: <br>
-HexaLotto 六爻奇门测彩 is a Chinese-language entertainment skill that uses a local Python divination engine to generate lottery number suggestions for SSQ, DLT, and Mark Six. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HexaLotto 六爻奇门测彩 is a Chinese-language entertainment skill that uses public lottery draw data and a local Liuyao-style calculator to produce lottery-themed divination reports for SSQ, DLT, and Mark Six.
 
-## Publisher: <br>
-[Eamonnn101](https://clawhub.ai/user/Eamonnn101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamonnn101](https://clawhub.ai/user/eamonnn101)
 
-## Use Case: <br>
-External users use this skill for entertainment and cultural exploration of traditional Chinese divination applied to lottery-style number selection. Outputs should be treated as non-predictive entertainment, not financial advice or a reliable way to gamble. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake lottery number suggestions for reliable gambling or financial guidance. <br>
-Mitigation: Treat all outputs as entertainment only and retain the skill's disclaimer that it is not investment, gambling, or financial advice. <br>
-Risk: Generic Chinese divination or lottery phrases may trigger the skill when the user did not intend to request lottery suggestions. <br>
-Mitigation: Review the agent's skill invocation before use and disable or avoid the skill in contexts where lottery-themed entertainment is inappropriate. <br>
+## Use Case:
 
+External users interested in Chinese traditional divination use this skill to generate entertainment-only lottery-themed reports and number recommendations for SSQ, DLT, or Mark Six. Agents use it by collecting public draw results or user-provided prior numbers, running the bundled calculator, and returning a concise report.
 
-## Reference(s): <br>
-- [六爻基础速查手册 V2.0](references/liuyao_guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Eamonnn101/hexalotto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown narrative with lottery number summaries and optional shell command examples; the local script can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include entertainment disclaimers and depend on user-provided or web-fetched prior lottery numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Generated numbers may be mistaken for betting, investment, or financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as entertainment-only cultural divination and include the disclaimer that results are not gambling or investment advice.
+
+Risk: Generic Chinese trigger phrases such as 算一卦 or 排盘 may activate the skill when the user's intent is ambiguous.
+
+Mitigation: Ask for confirmation and the intended lottery type before running the calculator when the request is unclear.
+
+Risk: Incorrect or stale public draw data can affect the generated report.
+
+Mitigation: State the draw source and period used, and ask the user to provide the latest numbers if web retrieval is uncertain.
+
+## Reference(s):
+
+- [六爻基础速查手册 V2.0](artifact/references/liuyao_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON]
+
+**Output Format:** [Markdown report with optional JSON calculator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entertainment-only recommendations depend on public draw data or user-provided prior numbers.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

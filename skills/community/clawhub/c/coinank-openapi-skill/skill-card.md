@@ -1,59 +1,80 @@
-## Description: <br>
-Calls CoinAnk OpenAPI endpoints to retrieve cryptocurrency market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to query CoinAnk OpenAPI cryptocurrency market-data endpoints using a user-supplied API key.
 
-## Publisher: <br>
-[a4205586](https://clawhub.ai/user/a4205586) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a4205586](https://clawhub.ai/user/a4205586)
 
-## Use Case: <br>
-External users and developers use this skill to select relevant CoinAnk OpenAPI definitions, validate required parameters, and construct authenticated market-data API calls for crypto analytics workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a CoinAnk API key to CoinAnk OpenAPI endpoints. <br>
-Mitigation: Use a dedicated CoinAnk key in COINANK_API_KEY and avoid logging commands or headers that expose the key. <br>
-Risk: Improper query construction can produce incorrect requests or expose unsafe shell input. <br>
-Mitigation: Validate required parameters against the OpenAPI definitions and safely quote or URL-encode query parameters before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CoinAnk](https://coinank.com) <br>
-- [CoinAnk OpenAPI Base URL](https://open-api.coinank.com) <br>
-- [ClawHub skill page](https://clawhub.ai/a4205586/coinank-openapi-skill) <br>
-- [ETF OpenAPI reference](references/ETF.openapi.json) <br>
-- [K-line OpenAPI reference](references/K线.openapi.json) <br>
-- [RSI screener OpenAPI reference](references/RSI选币器.openapi.json) <br>
-- [HyperLiquid whale OpenAPI reference](references/hyperLiquid鲸鱼.openapi.json) <br>
-- [Net long and short OpenAPI reference](references/净多头和净空头.openapi.json) <br>
-- [Long-short ratio OpenAPI reference](references/多空比.openapi.json) <br>
-- [Large order OpenAPI reference](references/大额订单.openapi.json) <br>
-- [Coins and trading pairs OpenAPI reference](references/币种和交易对.openapi.json) <br>
-- [Market order statistics OpenAPI reference](references/市价单统计指标.openapi.json) <br>
-- [Indicator data OpenAPI reference](references/指标数据.openapi.json) <br>
-- [News flash OpenAPI reference](references/新闻快讯.openapi.json) <br>
-- [Open interest OpenAPI reference](references/未平仓合约.openapi.json) <br>
-- [Trending ranking OpenAPI reference](references/热门排行.openapi.json) <br>
-- [Liquidation data OpenAPI reference](references/爆仓数据.openapi.json) <br>
-- [Order book OpenAPI reference](references/订单本.openapi.json) <br>
-- [Order flow OpenAPI reference](references/订单流.openapi.json) <br>
-- [Fund flow OpenAPI reference](references/资金流.openapi.json) <br>
-- [Funding rate OpenAPI reference](references/资金费率.openapi.json) <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent retrieve CoinAnk cryptocurrency market data, including K-line data, ETF flows, open interest, long-short ratios, funding rates, liquidations, order books, order flow, news, and related indicators.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses COINANK_API_KEY for authenticated CoinAnk API requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a CoinAnk API key and injects it into API request headers.
+
+Mitigation: Store the key only in COINANK_API_KEY, treat it as sensitive, and avoid pasting it into prompts, logs, or generated examples.
+
+Risk: The skill sends outbound requests to CoinAnk's OpenAPI service.
+
+Mitigation: Install it only when external CoinAnk market-data queries are intended and network access to open-api.coinank.com is acceptable.
+
+Risk: CoinAnk endpoints may require specific VIP access levels and current millisecond timestamps.
+
+Mitigation: Validate required parameters against the selected OpenAPI definition and generate fresh millisecond timestamps for time-bound requests.
+
+Risk: Most source documentation is Chinese, which can make endpoint behavior harder to review for some users.
+
+Mitigation: Review the relevant README section and selected OpenAPI file before enabling requests for unfamiliar endpoint categories.
+
+## Reference(s):
+
+- [CoinAnk homepage](https://coinank.com)
+- [CoinAnk OpenAPI endpoint](https://open-api.coinank.com)
+- [ClawHub skill page](https://clawhub.ai/a4205586/skills/coinank-openapi-skill)
+- [CoinAnk ETF OpenAPI definition](artifact/references/ETF.openapi.json)
+- [CoinAnk K-line OpenAPI definition](artifact/references/K线.openapi.json)
+- [CoinAnk RSI selector OpenAPI definition](artifact/references/RSI选币器.openapi.json)
+- [CoinAnk HyperLiquid whale OpenAPI definition](artifact/references/hyperLiquid鲸鱼.openapi.json)
+- [CoinAnk net long and net short OpenAPI definition](artifact/references/净多头和净空头.openapi.json)
+- [CoinAnk long-short ratio OpenAPI definition](artifact/references/多空比.openapi.json)
+- [CoinAnk large orders OpenAPI definition](artifact/references/大额订单.openapi.json)
+- [CoinAnk coins and trading pairs OpenAPI definition](artifact/references/币种和交易对.openapi.json)
+- [CoinAnk market-order statistics OpenAPI definition](artifact/references/市价单统计指标.openapi.json)
+- [CoinAnk indicator data OpenAPI definition](artifact/references/指标数据.openapi.json)
+- [CoinAnk news OpenAPI definition](artifact/references/新闻快讯.openapi.json)
+- [CoinAnk open interest OpenAPI definition](artifact/references/未平仓合约.openapi.json)
+- [CoinAnk popular rankings OpenAPI definition](artifact/references/热门排行.openapi.json)
+- [CoinAnk liquidation data OpenAPI definition](artifact/references/爆仓数据.openapi.json)
+- [CoinAnk order book OpenAPI definition](artifact/references/订单本.openapi.json)
+- [CoinAnk order flow OpenAPI definition](artifact/references/订单流.openapi.json)
+- [CoinAnk capital flow OpenAPI definition](artifact/references/资金流.openapi.json)
+- [CoinAnk funding rate OpenAPI definition](artifact/references/资金费率.openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with curl commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires COINANK_API_KEY and sends GET requests to https://open-api.coinank.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

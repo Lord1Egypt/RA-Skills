@@ -1,41 +1,62 @@
-## Description: <br>
-Operates the Message-in-a-Bottle LIFO callback stack so agents can register wake paths, create, forward, return, and resolve callbacks, inspect the ledger, and optionally pipe callback activity to Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates the Message-in-a-Bottle (MIAB) LIFO callback stack for local agent ensembles, helping agents register wake paths and create, forward, return, resolve, inspect, and reap file-based callbacks.
 
-## Publisher: <br>
-[albzhu](https://clawhub.ai/user/albzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albzhu](https://clawhub.ai/user/albzhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate delegated work across agents without polling by packaging continuation context in a local callback ledger. It also supports observing callback events and reaping stale callback envelopes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Callback task names, results, and workflow details can be exposed if the Discord observer is enabled for sensitive work. <br>
-Mitigation: Keep the observer disabled for sensitive workflows unless the destination channel is trusted and appropriate for those details. <br>
-Risk: Local callback state under ~/.openclaw can contain continuation context and delegation results. <br>
-Mitigation: Install and run the skill only in environments where local callback state is expected and access to that state is controlled. <br>
+## Use Case:
 
+Developers and operators of trusted single-user ClawHub or OpenClaw agent ensembles use this skill to coordinate asynchronous delegation without polling. It provides command guidance and broker tooling for routing wake events, managing callback state, and cleaning up stale work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albzhu/skills/miab-broker) <br>
-- [Publisher profile](https://clawhub.ai/user/albzhu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The callback CLI emits machine-readable JSON for mutating commands; observer output may be rendered as human-readable log messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Callback task, summary, result, and resume content is persisted in local state and may be copied into messages sent to agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not place secrets or sensitive values in callback fields; reference locations only when necessary and keep $CLAW_HOME private.
+
+Risk: Local agents can change wake routing without strong actor authentication.
+
+Mitigation: Install only for a trusted single-user agent ensemble and restrict who can run the CLI or modify $CLAW_HOME.
+
+Risk: Administrative overrides and outside resume files can bypass normal safety boundaries.
+
+Mitigation: Review uses of --force, --allow-outside, register, and --session-key before operation and keep an audit trail of intentional overrides.
+
+Risk: A scheduled reaper can fail legitimate long-running callbacks if the TTL is too short.
+
+Mitigation: Run the reaper in dry-run mode first, review callback-reaper.log, and set a TTL that matches the deployment's workload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albzhu/skills/miab-broker)
+- [Publisher profile](https://clawhub.ai/user/albzhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with inline shell commands and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for local file-backed callback state; command output can include dispatch messages, next steps, warnings, and status JSON.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

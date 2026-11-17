@@ -224,7 +224,7 @@ async function main() {
   let version = null;
   let autoCheck = false;
   let outputJson = false;
-  /** 为 true 时：有新版本才 exit 1（供 CI 严格失败）；默认 false，避免 Workerbuddy 等把「有更新」当成任务失败 */
+  /** 为 true 时：有新版本才 exit 1（供 CI 严格失败）；默认 false，避免 WorkBuddy 等把「有更新」当成任务失败 */
   let failOnUpdate = false;
 
   for (let i = 0; i < args.length; i++) {
@@ -286,7 +286,7 @@ function showHelp() {
 选项:
   -v, --version <ver>  指定当前版本号，默认使用 package.json 的 version
   -a, --auto           自动检查模式，有更新时才输出
-  --fail-on-update     有新版本时退出码 1（默认退出码 0，避免 Workerbuddy 等误判失败）
+  --fail-on-update     有新版本时退出码 1（默认退出码 0，避免 WorkBuddy 等误判失败）
   --json               输出原始 JSON 响应
   -h, --help           显示帮助信息
 

@@ -1,42 +1,54 @@
-## Description: <br>
-Monitors Polymarket World Cup winner odds, scans national-team markets, and alerts when odds move by more than 0.5%. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket Worldcup Watcher monitors Polymarket World Cup winner markets, scans 100+ national team markets, and alerts when odds move by more than 0.5%.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External prediction-market traders and developers use this skill to monitor World Cup winner markets, compare odds against prior baselines, and receive Telegram alerts for short-term trading or arbitrage signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market alerts may be sent through Telegram, which shares alert content outside the local agent environment. <br>
-Mitigation: Install only when Telegram delivery is acceptable, and configure bot tokens and chat IDs carefully. <br>
-Risk: The skill depends on Polymarket API access and may require proxy use. <br>
-Mitigation: Confirm API and proxy settings before running the skill, and review network access expectations with the deployment environment. <br>
-Risk: The USDT subscription and contact flow are separate trust decisions about the third-party publisher. <br>
-Mitigation: Evaluate the publisher profile and payment flow independently before purchasing or enabling paid access. <br>
+## Use Case:
 
+Prediction-market traders and monitoring agents use this skill to track World Cup winner odds, compare baseline movements, and receive Telegram alerts for notable price changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/polymarket-worldcup-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration notes, and market-alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Alerts may be delivered through Telegram and depend on Polymarket API access, possibly through a proxy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Telegram alerts may reveal trading interests or market activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private Telegram bot or chat for alerts, as recommended by the server security guidance.
+
+Risk: The skill depends on installing and running a ClawHub package that monitors an external prediction-market API.
+
+Mitigation: Confirm the package source and version in ClawHub before installation, and avoid granting broader filesystem, credential, or account permissions than the monitor needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/skills/polymarket-worldcup-watcher)
+- [ClawHub publisher profile](https://clawhub.ai/user/sg345662365-oss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with alert text examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces odds-monitoring guidance and Telegram alert content for Polymarket World Cup markets.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

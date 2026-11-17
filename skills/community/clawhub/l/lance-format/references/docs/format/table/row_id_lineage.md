@@ -1,0 +1,454 @@
+# Row ID and Lineage Specification
+
+## Overview
+
+Lance provides row identification and lineage tracking capabilities.
+Row addressing enables efficient random access to rows within the table through a physical location encoding.
+Stable row IDs provide persistent identifiers that remain constant throughout a row's lifetime, even as its physical location changes.
+Row version tracking records when rows were created and last modified, enabling incremental processing, change data capture, and time-travel queries.
+
+## Row Identifier Forms
+
+A row in Lance has two forms of row identifiers:
+
+- **Row address** - the current physical location of the row in the dataset.
+- **Row ID** - a logical identifier of the row. When stable row IDs are enabled, this remains stable for the lifetime of a logical row. When disabled (default mode), it is exactly equal to the row address.
+
+
+### Row Address
+
+Row address is the physical location of a row in the table, represented as a 64-bit identifier composed of two 32-bit values:
+
+```
+row_address = (fragment_id << 32) | local_row_offset
+```
+
+This addressing scheme enables efficient random access: given a row address, the fragment and offset are extracted with bit operations.
+Row addresses change when data is reorganized through compaction or updates.
+
+Row address is currently the primary form of identifier used for indexing purposes.
+Secondary indices (vector indices, scalar indices, full-text search indices) reference rows by their row addresses.
+
+!!! note
+      Work to support stable row IDs in indices is in progress.
+
+### Row ID
+
+Row ID is a logical identifier for a row.
+
+#### Stable Row ID
+
+When a dataset is created with stable row IDs enabled, each row is assigned a unique auto-incrementing `u64` identifier that remains constant throughout the row's lifetime, even when the row's physical location (row address) changes.
+The `_rowid` system column exposes this logical identifier to users.
+See the next section for more details on assignment and update semantics.
+
+#### Historical/unstable usage
+
+Historically, the term "row id" was often used to refer to the physical row address (`_rowaddr`), which is not stable across compaction or updates.
+
+!!! warning
+      With the introduction of stable row IDs, there may still be places in code and documentation that mix the terms "row ID" and "row address" or "row ID" and "stable row ID".
+      Please raise a PR if you find any place incorrect or confusing.
+
+## Stable Row ID
+
+### Row ID Assignment
+
+Row IDs are assigned using a monotonically increasing `next_row_id` counter stored in the manifest.
+
+**Assignment Protocol:**
+
+1. Writer reads the current `next_row_id` from the manifest at the read version
+2. Writer assigns row IDs sequentially starting from `next_row_id` for new rows
+3. Writer updates `next_row_id` in the new manifest to `next_row_id + num_new_rows`
+4. If commit fails due to conflict, writer rebases:
+   - Re-reads the new `next_row_id` from the latest version
+   - Reassigns row IDs to new rows using the updated counter
+   - Retries commit
+
+This protocol mirrors fragment ID assignment and ensures row IDs are unique across all table versions.
+
+### Enabling Stable Row IDs
+
+Stable row IDs are a dataset-level feature recorded in the table manifest.
+
+- Stable row IDs may be enabled when a dataset is created or by migrating an existing dataset.
+- An ordinary write with `enable_stable_row_ids = true` does not migrate an existing dataset. Use the stable row ID migration operation instead; the Rust API exposes it as `Dataset::migrate_to_stable_row_ids`.
+- Before migrating a dataset whose current manifest has no writer version, use the current Lance writer to commit an ordinary no-op deletion with predicate `false`, then reopen the latest version. This metadata-upgrade commit recomputes the authoritative physical row count for every fragment. Do not invoke stable row ID migration directly on such a legacy manifest: affected releases may have recorded stale counts, which would produce incomplete row ID sequences.
+- Before migration, stop all index builds and index commits, drop every secondary index so no index entry remains in the dataset metadata, and keep index creation quiesced until migration completes. An in-flight index commit from a pre-migration snapshot can otherwise attach stale physical row addresses after activation. Recreate indices after migration.
+- Quiesce data-modifying writers during migration. The migration uses a single atomic merge commit and does not retry when a concurrent write causes a conflict; the caller must retry the migration.
+- Migration assigns an ID to every physical row position, including deleted positions, and atomically enables the feature and advances `next_row_id`. Migrating a dataset that already uses stable row IDs is a no-op.
+- When stable row IDs are disabled, the `_rowid` column (if requested) is not stable and should not be used as a persistent identifier.
+
+Row-level version tracking (`_row_created_at_version`, `_row_last_updated_at_version`) and the row ID index described below are only available when stable row IDs are enabled.
+
+### Row ID Behavior on Updates
+
+When stable row IDs are enabled, updates preserve the logical row ID and remap it to a new physical address instead of assigning a new ID.
+
+**Update Workflow:**
+
+1. Original row with `_rowid = R` exists at address `(F1, O1)`.
+2. An update operation writes a new physical row with the updated values at address `(F2, O2)`.
+3. The new physical row is assigned the same `_rowid = R`, so the logical identifier is preserved.
+4. The original physical row at `(F1, O1)` is marked deleted using the deletion vector for fragment `F1`.
+5. The row ID index for the new dataset version maps `_rowid = R` to `(F2, O2)`, and uses deletion vectors and fragment bitmaps to avoid returning the tombstoned row at `(F1, O1)`.
+
+This design keeps `_rowid` stable for the lifetime of a logical row while allowing physical storage and secondary indices to be maintained independently.
+
+### Row ID Sequences
+
+#### Storage Format
+
+Row ID sequences are stored using the `RowIdSequence` protobuf message.
+The sequence is partitioned into segments, each encoded optimally based on the data pattern.
+
+<details>
+<summary>RowIdSequence protobuf message</summary>
+
+```protobuf
+%%% proto.message.RowIdSequence %%%
+```
+
+</details>
+
+#### Segment Encodings
+
+Each segment uses one of five encodings optimized for different data patterns:
+
+##### Range (Contiguous Values)
+
+For sorted, contiguous values with no gaps.
+Example: Row IDs `[100, 101, 102, 103, 104]` → `Range{start: 100, end: 105}`.
+Used for new fragments where row IDs are assigned sequentially.
+
+<details>
+<summary>Range protobuf message</summary>
+
+```protobuf
+%%% proto.message.Range %%%
+```
+
+</details>
+
+##### Range with Holes (Sparse Deletions)
+
+For sorted values with few gaps.
+Example: Row IDs `[100, 101, 103, 104]` (missing 102) → `RangeWithHoles{start: 100, end: 105, holes: [102]}`.
+Used for fragments with sparse deletions where maintaining the range is efficient.
+
+<details>
+<summary>RangeWithHoles protobuf message</summary>
+
+```protobuf
+%%% proto.message.RangeWithHoles %%%
+```
+
+</details>
+
+##### Range with Bitmap (Dense Deletions)
+
+For sorted values with many gaps.
+The bitmap encodes 8 values per byte, with the most significant bit representing the first value.
+Used for fragments with dense deletion patterns.
+
+<details>
+<summary>RangeWithBitmap protobuf message</summary>
+
+```protobuf
+%%% proto.message.RangeWithBitmap %%%
+```
+
+</details>
+
+##### Sorted Array (Sparse Values)
+
+For sorted but non-contiguous values, stored as an `EncodedU64Array`.
+Used for merged fragments or fragments after compaction.
+
+##### Unsorted Array (General Case)
+
+For unsorted values, stored as an `EncodedU64Array`.
+Rare; most operations maintain sorted order.
+
+#### Encoded U64 Arrays
+
+The `EncodedU64Array` message supports bitpacked encoding to minimize storage.
+The implementation selects the most compact encoding based on the value range, choosing between base + 16-bit offsets, base + 32-bit offsets, or full 64-bit values.
+
+<details>
+<summary>EncodedU64Array protobuf message</summary>
+
+```protobuf
+%%% proto.message.EncodedU64Array %%%
+```
+
+</details>
+
+#### Inline and Spilled Storage
+
+`DataFragment` defines inline and column alternatives for row ID sequences and row
+version sequences. This allows small sequences to stay in the manifest (fewer
+IOPS) while larger sequences (resulting from frequent updates) move outside the
+manifest.
+
+Sequences small enough (~200KB encoded and under) are stored inline in the fragment
+metadata to avoid additional I/O. An inline sequence is rewritten into every manifest
+version.
+
+A larger sequence is **spilled to a hidden column of one of the fragment's data
+files**. The column arm of the oneof (`column_row_ids`, `column_created_at_versions`
+or `column_last_updated_at_versions`) is an empty `RowLineageColumn` marker: it carries
+no file reference, because the file is one of the fragment's `files` and is found by a
+reserved negative field id in that entry's `fields`. Exactly one file of the fragment
+carries each reserved field; zero or more than one is corruption. The `column_indices`
+entry paired with the field id locates the column the way it does for a user column, so
+a lineage column
+may share a file with the user columns or with the other lineage columns, or sit in a
+file that holds nothing else. Reading it uses the ordinary data file reader and its
+encodings.
+
+The marker is valid only in a fragment whose data files are Lance v2 files. A legacy
+v1 data file has no `column_indices` to locate the column by, and a fragment cannot
+mix v1 and v2 files, so a writer on a dataset that stores v1 files MUST leave every
+sequence inline; a marker in a fragment with a v1 data file is corruption.
+
+The columns have this schema, with the field ids `-3`, `-4` and `-5` respectively.
+The three names are reserved: a writer MUST reject a user column with any of them
+(every Lance write path does), so a hidden column never collides with a field of the
+dataset schema.
+
+```python
+import pyarrow as pa
+
+row_lineage_columns = pa.schema([
+    pa.field("_rowid", pa.uint64(), nullable=False),
+    pa.field("_row_created_at_version", pa.uint64(), nullable=False),
+    pa.field("_row_last_updated_at_version", pa.uint64(), nullable=False),
+])
+```
+
+Each column present holds exactly `physical_rows` values, one per physical row in
+physical row order, deleted rows included; the value at offset `i` is the row id or
+version of the row at offset `i`, the same thing the inline encoding's `i`-th entry
+would be. A null value, or a column whose length differs from `physical_rows`, is
+corruption and MUST be rejected rather than read as a default. A file may carry any
+subset of the three columns; a sequence whose arm is not the column marker is not read
+from any file, whatever the file holds.
+
+Which sequences may leave the manifest follows from when their values are known.
+A value the commit assigns -- an appended fragment's row ids, an inserted row's
+created-at version, every row's last-updated-at version -- can change when a commit
+conflict is retried, so it stays inline where the retry can rewrite it; those
+sequences are single runs and cost a few bytes. A value carried over from existing
+rows -- the row ids and created-at versions that compaction or a row rewrite
+preserves -- is fixed before the commit and may be written to a data file.
+A writer spills only on a table that opts in through the `lance.row_lineage.spill`
+config key; a table that never sets it is unchanged. This configuration controls
+placement by the writer, not support for reading existing spilled sequences.
+
+A writer that emits any column arm MUST set the spilled row lineage feature flag
+(bit 11, value 2048) in both the reader and writer flag words. A reader without that
+bit sees an unset oneof and would take the fragment to have no row IDs at all, on a
+table whose manifest says every fragment has them.
+
+Field numbers 6, 8 and 10 of `DataFragment` (`external_row_ids`,
+`external_last_updated_at_versions`, `external_created_at_versions`) once named an
+opaque byte range in a file holding the same encoding as the inline arm. No Lance
+writer ever emitted them; the column arms replace that design, and the numbers and
+names are reserved.
+
+!!! note
+    Spilled row lineage is a stable table-format feature. Readers and writers that
+    do not support bit 11 MUST refuse a dataset that requires it. Supporting the
+    flag does not opt a table into spilling.
+
+<details>
+<summary>DataFragment row_id_sequence field</summary>
+
+```protobuf
+message DataFragment {
+  oneof row_id_sequence {
+    bytes inline_row_ids = 5;
+    RowLineageColumn column_row_ids = 12;
+  }
+}
+```
+
+</details>
+
+### Row ID Index
+
+Row ID resolution maps a stable row ID to its live physical row address in a chosen
+dataset snapshot. The format does not require readers to build a complete mapping
+when opening the table.
+
+#### Persisted Reverse Lookup
+
+An ordinary [BTree index](../index/scalar/btree.md#stable-row-id-reverse-lookup)
+may index the logical `_rowid` field, using reserved field ID `-3` in its index
+metadata. This field has the same identity for inline and spilled row-ID sequences
+and does not become part of the user schema. The BTree stores stable IDs as keys
+and physical addresses as payloads, using its existing address-domain format.
+
+The index is optional and may cover only part of the table. Readers resolve any
+remaining fragments through their row-ID sequences, including hidden columns.
+An index miss alone cannot distinguish an absent row from an uncovered row.
+
+#### In-Memory Construction
+
+An in-memory reverse index may instead be derived from the snapshot's fragment
+sequences. For each fragment, the reader pairs each row's position with its stable
+ID, excludes positions marked deleted, and maps each remaining ID to that
+fragment and position. This is a reader implementation, not a separate persisted
+index format. It remains valid for existing tables and historical readers.
+
+#### Index Invalidation with Updates
+
+When an update moves a row, the new physical row keeps its stable ID and the old
+physical row is tombstoned. Resolution in the new snapshot must return only the
+new live address. An in-memory index can exclude the old address during
+construction; an immutable BTree can retain it on disk and exclude it during
+lookup. Both must apply the selected snapshot's deletion and coverage metadata.
+Historical snapshots continue to resolve using their own data and index state.
+
+For example, with addresses written as `(fragment_id, row_offset)`:
+
+1. In version V, fragment 1 contains row IDs `[1, 2, 3]` at offsets `[0, 1, 2]`.
+2. An update writes the row with `_rowid = 2` to fragment 2 at offset `0` and marks
+    its old position `(1, 1)` deleted in the deletion vector.
+3. In version V+1, row IDs `1`, `2`, and `3` resolve to `(1, 0)`, `(2, 0)`, and
+    `(1, 2)`, respectively.
+
+An immutable BTree may still contain the old entry for row ID `2` at `(1, 1)`, but
+the deletion vector excludes it from version V+1 lookups. Version V still resolves
+row ID `2` to `(1, 1)`.
+
+#### Fragment Bitmaps for Index Masking
+
+Secondary indices use fragment bitmaps to track which row IDs remain valid:
+
+**Without Row Updates:**
+
+```
+String Index on column "str":
+  Fragment Bitmap: {1, 2}  (covers fragments 1 and 2)
+  All indexed row addresses are valid
+```
+
+**With Row Updates:**
+
+```
+Vector Index on column "vec":
+  Fragment Bitmap: {1}  (only fragment 1)
+  The row with _rowid = 2 was updated, so the index entry that points to its old physical address is stale
+  Index queries filter out the stale address using deletion vectors while returning the row at its new address
+```
+
+This bitmap-based approach allows indices to remain immutable while accounting for row modifications.
+
+## Row Version Tracking
+
+Row version tracking is available for datasets that use stable row IDs. Version sequences are aligned with the stable `_rowid` ordering within each fragment.
+
+### Created At Version
+
+Each row tracks the version at which it was created.
+For rows that are later updated, this creation version remains the version in which the row first appeared; updates do not change it.
+The sequence uses run-length encoding for efficient storage, where each run specifies a span of consecutive rows and the version they were created in.
+
+Example: Fragment with 1000 rows created in version 5:
+```
+RowDatasetVersionSequence {
+  runs: [
+    RowDatasetVersionRun { span: Range{start: 0, end: 1000}, version: 5 }
+  ]
+}
+```
+
+<details>
+<summary>DataFragment created_at_version_sequence field</summary>
+
+```protobuf
+message DataFragment {
+  oneof created_at_version_sequence {
+    bytes inline_created_at_versions = 9;
+    RowLineageColumn column_created_at_versions = 14;
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>RowDatasetVersionSequence protobuf messages</summary>
+
+```protobuf
+%%% proto.message.RowDatasetVersionSequence %%%
+```
+
+</details>
+
+### Last Updated At Version
+
+Each row tracks the version at which it was last modified.
+When a row is created, `last_updated_at_version` equals `created_at_version`.
+
+When stable row IDs are enabled and a row is updated, Lance writes a new physical row for the same logical `_rowid` while tombstoning the old physical row. The `created_at_version` for that logical row is preserved from the original row, and `last_updated_at_version` is set to the current dataset version at the time of the update.
+
+Example: Row created in version 3, updated in version 7:
+```
+Old physical row (tombstoned):
+  _rowid: R
+  created_at_version: 3
+  last_updated_at_version: 3
+
+New physical row (current):
+  _rowid: R
+  created_at_version: 3
+  last_updated_at_version: 7
+```
+
+<details>
+<summary>DataFragment last_updated_at_version_sequence field</summary>
+
+```protobuf
+message DataFragment {
+  oneof last_updated_at_version_sequence {
+    bytes inline_last_updated_at_versions = 7;
+    RowLineageColumn column_last_updated_at_versions = 13;
+  }
+}
+```
+
+</details>
+
+## Change Data Feed
+
+Lance supports querying rows that changed between versions through version tracking columns.
+These queries can be expressed as standard SQL predicates on the `_row_created_at_version` and `_row_last_updated_at_version` columns.
+
+### Inserted Rows
+
+Rows created between two versions can be retrieved by filtering on `_row_created_at_version`:
+
+```sql
+SELECT * FROM dataset
+WHERE _row_created_at_version > {begin_version}
+  AND _row_created_at_version <= {end_version}
+```
+
+This query returns all rows inserted in the specified version range, including the version metadata columns `_row_created_at_version`, `_row_last_updated_at_version`, and `_rowid`.
+
+### Updated Rows
+
+Rows modified (but not newly created) between two versions can be retrieved by combining filters on both version columns:
+
+```sql
+SELECT * FROM dataset
+WHERE _row_created_at_version <= {begin_version}
+  AND _row_last_updated_at_version > {begin_version}
+  AND _row_last_updated_at_version <= {end_version}
+```
+
+This query excludes newly inserted rows by requiring `_row_created_at_version <= {begin_version}`, ensuring only pre-existing rows that were subsequently updated are returned.

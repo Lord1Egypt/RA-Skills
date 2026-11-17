@@ -9,7 +9,6 @@ A pre-configured AI Persona setup for high-level executive support.
 | File | Purpose |
 |------|---------|
 | `SOUL.md` | Atlas — an anticipatory, discreet executive assistant |
-| `HEARTBEAT.md` | Daily ops with calendar, comms triage, relationship tracking |
 
 ---
 
@@ -71,12 +70,6 @@ A pre-configured AI Persona setup for high-level executive support.
 - [ ] Configure relationship tracking tables
 - [ ] Set boundaries specific to your role
 
-### In HEARTBEAT.md:
-- [ ] Configure calendar access commands
-- [ ] Set up email monitoring
-- [ ] Define relationship tiers
-- [ ] Add key recurring meetings
-
 ---
 
 ## Example Daily Briefing
@@ -107,7 +100,6 @@ Key: Board sync at 2:00 PM (prep ready)
 2. Board sync meeting (2 PM)
 3. Follow up with Chen on partnership
 
-HEARTBEAT_OK
 ```
 
 ---

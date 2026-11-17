@@ -1,43 +1,60 @@
-## Description: <br>
-Identity infrastructure for AI agents: register identities, issue tokens, delegate to sub-agents, revoke credentials, and manage policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity infrastructure for AI agents - register identities, issue tokens, delegate to sub-agents, revoke credentials, manage policies.
 
-## Publisher: <br>
-[abhijitjavelin](https://clawhub.ai/user/abhijitjavelin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhijitjavelin](https://clawhub.ai/user/abhijitjavelin)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate ZeroID identity infrastructure for autonomous agents, including agent registration, OAuth token issuance, delegated access, credential revocation, and policy management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through credential, token, revocation, and policy operations that may affect active identities. <br>
-Mitigation: Use the least-privileged ZEROID_API_KEY available and require human review before operations that revoke, delete, or change credential policies. <br>
-Risk: Commands depend on the configured ZeroID server and may target production infrastructure if environment variables are pointed there. <br>
-Mitigation: Install only when the ZeroID server is trusted, verify ZEROID_BASE_URL before use, and test revoke, delete, and policy changes outside production first. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate a ZeroID identity service for AI agents, including registering identities, issuing tokens, delegating access to sub-agents, revoking credentials, and managing credential policies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhijitjavelin/zeroid) <br>
-- [ZeroID homepage](https://github.com/highflame-ai/zeroid) <br>
-- [Quickstart Notebook](https://github.com/highflame-ai/zeroid/blob/main/examples/zeroid_quickstart.ipynb) <br>
-- [Interactive API docs](https://auth.highflame.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZEROID_API_KEY, ZEROID_BASE_URL, and curl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill handles powerful identity credentials through a configurable API URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted ZeroID server, confirm ZEROID_BASE_URL is the intended HTTPS origin, and use the least-privileged ZEROID_API_KEY available.
+
+Risk: Credential revocation and agent deactivation commands can disrupt downstream access.
+
+Mitigation: Double-check credential IDs and agent IDs before revocation or deactivation.
+
+Risk: Secrets may be exposed through shell history when commands include credentials or tokens.
+
+Mitigation: Avoid pasting secrets into shell history where possible and handle API keys and tokens as sensitive credentials.
+
+## Reference(s):
+
+- [ZeroID GitHub](https://github.com/highflame-ai/zeroid)
+- [Quickstart Notebook](https://github.com/highflame-ai/zeroid/blob/main/examples/zeroid_quickstart.ipynb)
+- [Interactive API Docs](https://auth.highflame.ai/docs)
+- [ClawHub Skill Page](https://clawhub.ai/abhijitjavelin/skills/zeroid)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request and response examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZEROID_API_KEY, ZEROID_BASE_URL, and curl.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

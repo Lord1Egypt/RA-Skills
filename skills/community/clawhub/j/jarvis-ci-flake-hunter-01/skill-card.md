@@ -1,38 +1,51 @@
-## Description: <br>
-Provides a reusable, evidence-backed workflow for development tasks with success criteria, checkpointing, quality gates, and implementation-ready next actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and reduce flaky tests with deterministic isolation. Use when handling development work that needs repeatable steps, quality gates, and practical outputs.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn task inputs, constraints, and available artifacts into a concise plan, ranked findings, risks, mitigations, and concrete next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill name suggests flaky-test hunting, while the reviewed artifact behaves more like a broad planning and checklist workflow. <br>
-Mitigation: Use it for structured development planning, and supplement flaky-test investigations with concrete CI triage steps such as reproduction loops, seed and time isolation, quarantine criteria, and verification commands. <br>
-Risk: Planning outputs can be misleading if they are based on incomplete or weak task evidence. <br>
-Mitigation: Apply the skill's quality gates: keep claims evidence-backed, state assumptions and tradeoffs, use checkpoints, and include fallbacks for risky work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineers use this skill to structure flaky CI and nondeterministic test work into measurable criteria, checkpoints, quality gates, and implementation-ready next actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill name targets flaky CI work, but the security review notes that the skill body is broad enough to apply to generic planning tasks.
+
+Mitigation: Use it when a reusable planning and checkpoint workflow is acceptable; narrow the description and examples before release if it should trigger only for flaky CI or nondeterministic test work.
+
+Risk: The skill can produce implementation-ready recommendations that may be incomplete or misleading if the supplied evidence is weak.
+
+Mitigation: Require evidence-backed claims, explicit assumptions, quality gates, and fallback steps as described in the skill playbook.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with ranked findings, action plans, risk mitigations, checklists, and commands where useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with concise summaries, ranked findings, action plans, risks, mitigations, and exact checklists or commands when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces planning and review guidance only; evidence reports no code execution, persistence, credential handling, or hidden data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

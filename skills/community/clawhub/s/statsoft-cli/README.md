@@ -1,179 +1,131 @@
 # statsoft-cli
 
-[🇨🇳 中文 (Chinese)](./README_zh-CN.md) | [🇬🇧 English](./README.md)
+[🇨🇳 中文 (Chinese)](./README_zh-CN.md) | [🇬🇧 English (Current)](#)
+
+<div align="center">
+  <img src="assets/icon.svg" alt="statsoft-cli logo" width="120" height="120">
+</div>
+
+> **Cross-platform statistical software CLI integration for your AI Agent**
+>
+> You don't need to learn each tool's CLI — just tell the assistant which statistical software you want to use in plain language, and it detects, configures, and runs them inside your AI workflow. Covers 34+ packages (R, Stata, SAS, SPSS, Python, Bayesian, ML…), bilingual (Chinese / English). By default it only **detects** — it never writes config or runs anything risky without your explicit go-ahead.
 
 ---
 
-Cross-platform statistical software CLI integration for AI Agent (such as WorkBuddy / OpenClaw). 
+## 1. How to Use It in a Chat (the Core)
 
-Supports 34 statistical software packages: SPSS Statistics, R, Stata, SAS, AMOS, CmdStan, EViews, GenStat, GraphPad Prism, Gretl, H2O.ai, JAGS, JASP, JMP, Julia, KNIME, LIMDEP, Mathematica, Matlab, Microfit, Minitab, Mplus, NCSS, NLOGIT, OpenBUGS, Orange, OriginLab Origin, OxMetrics, PSPP, Q (MRKS), Rattle, SHAZAM, Stat/Transfer, Statistica, TSP, Tanagra, Weka, jamovi.
+statsoft-cli is a **conversational skill**: you simply name the tool and the action in natural language — no commands to memorize. As a WorkBuddy skill it **auto-loads with no extra installation**.
 
-Multiple versions of the same software can coexist — for example, R4.5 and R4.0 can coexist, with a default version configured. Switch versions seamlessly by mentioning it in your prompt.
+> **Quick start:** just name a tool and an action — *"Connect SPSS 26"*, *"Convert data.sav to data.dta"* — and the assistant detects, configures, and (with your OK) runs it. **It will not push you into a long menu:** a clear request acts immediately; a routing menu only appears when you're undecided (see Examples 4–5).
 
-Note: If your goal is to **seamlessly read various statistical data files or convert between formats without loss**, we strongly recommend installing the standalone skill **statdata-transfer**. This skill can perfectly achieve data format conversion without relying on any statistical software support.
+Below are real conversational examples ordered from simple to advanced. Each shows **"You say"** and a sketch of **"The assistant replies"**, plus how to actually trigger the real action.
 
-## Purpose
+### Example 1 · Connect a single tool (most common)
+**You say:**
+> Connect SPSS 26
 
-Many statistical software packages have CLI (Command Line Interface) execution modes, but not everyone knows how to use them. This skill integrates these tools into the AI Agent environment for unified access, enabling statisticians to fully leverage these tools' capabilities. **The core value of this skill lies in activating historical code assets and solving the reusability problem in AI workflow automation**. Over years of project accumulation, teams have gathered reusable analysis code—R modeling scripts, SPSS syntax files, SAS macro programs, Stata do-files—and this skill brings them into a unified execution framework as standard AI workflow nodes.
+**Assistant replies (sketch):**
+> Scanning for SPSS Statistics… Found it at `C:\Program Files\IBM\SPSS\Statistics\26\stats.exe` (v26).
+> Detected only — I did not change config.json. To save this, say "save it" or set `STATSOFT_AUTO_WRITE` to `1`.
 
-## Quick Start
+**📌 No menu forced (simple path):** because this is a *simple* request (a named tool + action), the assistant detects and reports directly — no scan/routing menu pops up (see the Clarification Gate in SKILL.md).
 
-### One-Click Setup
+**📌 Trigger the real action:** By default only detection runs (fail-closed). To persist the result, say **"save the config"** / **"yes, write it"** at the prompt, or set `STATSOFT_AUTO_WRITE` to `1`. Execution of syntax / binaries also needs explicit confirmation.
 
-Trigger in AI Agent conversation:
-```
-Connect SPSS 26
-Help me configure R
-```
+### Example 2 · Run a syntax / convert data
+**You say:**
+> Convert data.sav to data.dta
 
-The Agent will auto-detect the software path and write to `config.json`.
+**Assistant replies (sketch):**
+> I'll use Stat/Transfer for that. Here is the planned command (dry-run shown). Confirm and I'll run it.
 
-### Verify Installation
+### Example 3 · Multi-software workflow
+**You say:**
+> In one session, use R for modeling and SPSS for descriptive stats
 
-```
-Run SPSS syntax: SHOW VERSION.
-Convert data.sav to data.dta
-```
+### Example 4 · Not sure what's installed (Complex menu)
+**You say:**
+> Set up my statistics tools, but I'm not sure which are installed or which versions I have
 
----
+**Assistant replies (sketch):**
+> Two ways to proceed — here's a menu:
+> **① How should I find your tools?**
+> - (a) Auto-scan my machine (~30s on Windows) — finds everything
+> - (b) I'll specify the paths myself (faster if you have ≤3)
+>
+> **② Can't decide?** → Say "what's the difference" and I'll explain scan vs manual before you choose.
+>
+> Pick ①(a)/(b), or ② to hear the explanation.
 
-## Use Cases
+**📌 Note:** When you name the goal but are undecided on *method* (scan vs manual paths), the assistant **pops a routing menu** to confirm step by step — instead of deciding for you or dumping a huge list.
 
-### 1. Multi-Software Mixed Workflow
-Seamlessly invoke R modeling + SPSS descriptive + Stata data prep in a single AI Agent session.
+### Example 5 · Vague request (grill-me)
+**You say:**
+> I want to use statistical software but don't really know where to start
 
-### 2. Historical Code Asset Reuse
-Bring R scripts, SPSS syntax, SAS macros, Stata do-files into the AI workflow as standard nodes.
+**Assistant replies (sketch):**
+> Sure — a few quick questions will pin it down:
+> 1. Which tool(s) do you actually have installed (R / SPSS / Stata / SAS / other)?
+> 2. What do you want to do — run old scripts, convert data, or build a new analysis?
+> 3. Do you need it headless (command line) or is a GUI fine?
+>
+> (After you answer, the assistant keeps probing until the right tool is locked, then configures it.)
 
-### 3. Data Format Conversion
-StatTransfer migrates data between software (SAS ↔ SPSS ↔ Stata ↔ Excel).
+**📌 Note:** When you say "not sure", the assistant uses **branch-by-branch probing** instead of dumping the 34-tool list or picking for you.
 
-### 4. SPSS Statistics Splash-Free Batch
-Execute `.sps` syntax via built-in Python engine, skipping splash screen.
-
-### 5. SAS Batch Automation
-Schedule SAS macro programs via SAS CLI for periodic reporting.
-
-### 6. SPSS Modeler Batch
-Execute `.str` streams via `clemb.exe` in local mode.
-
-> 📚 **Full details for all 34 software packages** → see [`ADDITIONAL_SOFTWARE.md`](./ADDITIONAL_SOFTWARE.md)
-
----
-
-## Important Notes
-
-Splash Screen: The 34 supported statistical software packages have **varying levels of CLI support**. Some are fully command-line driven, while others may still require GUI interaction during use. The specific behavior varies by software:
-
-- ✅ **Pure CLI, no splash screen** (e.g., R, Stata, SAS, CmdStan, Julia, Gretl, Mathematica)
-- ⚠️ **CLI mode with brief splash screen** (e.g., JMP, Minitab, EViews, Statistica)
-- 🔴 **GUI required, cannot be avoided** (e.g., AMOS, GraphPad Prism, jamovi, JASP)
-
-After configuration is complete, the AI Agent will provide detailed notifications about the behavior of each software.
+> 💡 **Language:** On a Chinese-locale system the assistant replies in Chinese; otherwise English. You can force-switch anytime (e.g. "用中文回复" / "switch to English").
 
 ---
 
-## Excluded Software
+## 2. What You Can Do — 34+ Packages
 
-The following software was evaluated but not included due to listed reasons. For data format conversion without statistical software dependency, see the statdata-transfer skill.
+| What you can do | Typical scenario | Try saying in chat |
+|:---|:---|:---|
+| Configure & detect a tool | SPSS / R / Stata / SAS / Mplus / CmdStan … | "Connect SPSS 26" |
+| Run syntax / scripts | `.sps` / `.do` / `.sas` / `.R` via the tool's engine | "Run my Stata do-file in batch" |
+| Convert data formats | Stat/Transfer migrates SAS ↔ SPSS ↔ Stata ↔ Excel | "Convert data.sav to data.dta" |
+| Multi-software mix | R modeling + SPSS descriptive + Stata prep in one session | "Use R for modeling and SPSS for descriptives" |
+| Reuse historical code | Bring old R scripts / SPSS syntax / SAS macros into the workflow | "Wire my old R scripts into the workflow" |
+| GUI-only launch guide | AMOS / GraphPad / JASP / jamovi / Minitab — detect + manual launch | "How do I launch JASP?" |
 
-| Software | Reason |
-|----------|--------|
-| Systat | Market severely squeezed by SPSS/R/Python, user base shrinking |
-| MaxStat | Niche positioning, very few users, limited functionality |
-| SmartPLS | GUI-only, no CLI or batch mode |
-| WinBUGS | Fully superseded by OpenBUGS (both Bayesian MCMC sampling) |
+Tools are auto-routed by platform; non-Windows auto-hides incompatible software. The full matrix is in the [Advanced Reference](ADVANCED.md).
 
 ---
 
-## Platform Support
+## 3. First-Time FAQ
 
-### Core Software
+**Q: Does it modify config.json automatically?**
+A: No. Detection is the default — it only reports what it finds. Writing config.json requires your explicit opt-in (set `STATSOFT_AUTO_WRITE` to `1`, or answering `y` at the prompt).
 
-| Software | Windows Script | Cross-Platform Script | Verify |
-|----------|---------------|----------------------|--------|
-| SPSS Statistics | `scripts/windows-only/SPSS/setup_spss.ps1` | — | `stats.com -production silent -nologo "exit.spj"` |
-| R | `scripts/windows-only/statsoft-r.ps1` | `scripts/cross-platform/R/setup_r.sh` | `Rscript --version` |
-| Stata | — | `scripts/cross-platform/Stata/setup_stata.sh` | `stata-mp -b do "exit"` |
-| SAS | `scripts/windows-only/statsoft-sas.ps1` | `scripts/cross-platform/SAS/setup_sas.sh` | `sas -version` |
+**Q: Will it run my software or send data anywhere without asking?**
+A: No. Every execution, install, network fetch, and persistent write needs explicit confirmation or an opt-in flag. Read-only detection is the default.
 
-(Full routing table with all additional software packages — see ADDITIONAL_SOFTWARE.md)
+**Q: Does it drive GUI-only software (AMOS, GraphPad, JASP, jamovi, Minitab)?**
+A: No. These are detected and given a manual launch guide only; the skill never drives them via CLI / headless (e.g. `mtb.exe /run` opens the Minitab GUI, not headless).
 
-## Project Structure
+**Q: Is the output in Chinese on a Chinese system?**
+A: Yes. Output language follows your OS locale by default; you can force-switch anytime via a prompt.
 
-```
-statsoft-cli/
-├── SKILL.md                          # Main skill file
-├── README_zh-CN.md                   # Chinese README
-├── ADDITIONAL_SOFTWARE.md            # Extended software configs
-├── LICENSE                           # MIT license
-├── config.json.example               # Config template
-├── scripts/
-│   ├── cross-platform/              # Cross-platform setup scripts
-│   │   ├── _platform-detect.sh      # Platform detection
-│   │   ├── scan/                    # System scan scripts
-│   │   │   └── scan_all.sh          # Batch detection (Linux/Mac/Win)
-│   │   ├── R/                       # R setup
-│   │   ├── Stata/                   # Stata setup
-│   │   ├── SAS/                     # SAS setup
-│   │   ├── CmdStan/                 # CmdStan (Bayesian MCMC)
-│   │   ├── Weka/                    # Weka (Data Mining)
-│   │   ├── KNIME/                   # KNIME (Workflow)
-│   │   ├── jamovi/                  # jamovi (Stats)
-│   │   ├── JASP/                    # JASP (Stats)
-│   │   ├── PSPP/                    # PSPP (SPSS alternative)
-│   │   ├── Mplus/                   # Mplus (SEM, Win/Mac)
-│   │   ├── JAGS/                    # JAGS (Bayesian MCMC)
-│   │   ├── SHAZAM/                  # SHAZAM (Econometrics)
-│   │   ├── OxMetrics/               # OxMetrics (Econometrics)
-│   │   ├── TSP/                     # TSP (Time Series)
-│   │   ├── Tanagra/                 # Tanagra (Data Mining)
-│   │   ├── Orange/                  # Orange (Data Mining)
-│   │   ├── H2O/                     # H2O.ai (AutoML)
-│   │   ├── GenStat/                 # GenStat (Statistics)
-│   │   ├── Mathematica/             # Mathematica (Math/Stats)
-│   │   ├── Rattle/                  # Rattle (R Data Mining)
-│   │   └── OpenBUGS/                # OpenBUGS (Bayesian)
-│   └── windows-only/                # Windows-only scripts
-│       ├── scan/
-│       │   └── scan_all.ps1         # Batch detection (Windows, registry-based)
-│       ├── SPSS/                    # SPSS Statistics + Modeler
-│       ├── JMP/                     # JMP JSL batch
-│       ├── GraphPad/                # GraphPad Prism
-│       ├── EViews/                  # EViews econometrics
-│       ├── Statistica/              # Statistica data mining
-│       ├── StatTransfer/            # Stat/Transfer data conversion
-│       ├── Mplus/                   # Mplus (Win/Mac)
-│       ├── AMOS/                    # AMOS (SPSS family)
-│       ├── Q_MRKS/                  # Q Research (MRKS)
-│       ├── Limdep/                  # LIMDEP (Econometrics)
-│       ├── NLOGIT/                  # NLOGIT (Discrete Choice)
-│       ├── SHAZAM/                  # SHAZAM (Econometrics)
-│       ├── Microfit/                # Microfit (Time Series)
-│       ├── statsoft-r.ps1           # R Windows wrapper
-│       └── statsoft-sas.ps1         # SAS Windows wrapper
-├── references/                       # Reference files
-│   ├── command-examples.md           # CLI examples
-│   ├── version-specifics.md          # Version differences
-│   ├── completion-prompts.md         # Completion templates
-│   └── config-templates.md           # Config templates
-└── tests/                            # Test files
+**Q: Do I need network access?**
+A: Offline by default. Network is used only to install local dependencies (R packages / software) and only with your explicit confirmation.
 
-## Usage
+---
 
-Trigger with natural language in AI Agent conversations:
+## 4. Safety & Disclaimer
 
-```
-Connect SPSS 26
-Help me configure R 
-Convert data.sav to data.dta
-Run Stata do-file
-```
+- **Fail-closed by default:** All persistence and sensitive operations are **off unless you explicitly authorize** them. Five gates (`STATSOFT_AUTO_WRITE` / `STATSOFT_CONFIRM` / `STATSOFT_REVEAL` / `STATSOFT_VERIFY` / `STATSOFT_CMDSTAN_RUN`) guard config writes, detail disclosure, binary launches, and untrusted native-code (Stan) compilation.
+- **Detection-only default:** Scanning reports only a boolean `installed` unless you opt into path/version disclosure.
+- **Local only:** No user data leaves your machine. Network use is limited to reading public docs / installing local dependencies, disclosed per action.
+- For details see [ADVANCED.md](ADVANCED.md) → Trust & Safety.
 
-## Trust & Safety
+---
 
-This skill executes **high-risk operations** (running local executables, modifying configs, network access). See SKILL.md for full Trust & Safety documentation.
+## 5. Advanced Reference (for developers)
 
-## License
+CLI commands, the full platform-support matrix, project structure, activation boundary, and detailed Trust & Safety have moved to **[ADVANCED.md](ADVANCED.md)**. Ordinary users don't need it; Sections 1–4 cover daily use.
 
-[MIT](LICENSE)
+---
+
+**Version**: v2.8.0 | **License**: MIT | **Authors**: medstatstar, phoe-zip
+
+For feature requests, bug reports, or other feedback, please contact the author directly at medstatstar@gmail.com (Wintone Zhang / 张文彤).

@@ -1,43 +1,58 @@
-## Description: <br>
-Extract structured data from bills of lading, packing lists, and shipping manifests as typed JSON, including shipper, consignee, carrier, tracking, containers, line items, weights, and per-field confidence flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from bills of lading, packing lists, and shipping manifests, including shipper, consignee, carrier, tracking, containers, line items, weights, and per-field confidence flags, as typed JSON.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-External logistics, freight, warehouse, customs, and supply-chain teams use this skill to convert shipping documents into structured shipment data for TMS capture, filings, receiving reconciliation, and visibility workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a DeepRead API key and sends documents to the DeepRead API. <br>
-Mitigation: Use a scoped key, keep it out of shared logs, and submit only documents approved for third-party processing. <br>
-Risk: The authoritative security evidence marks the release suspicious. <br>
-Mitigation: Install only in a trusted ClawHub maintainer environment and review the skill before deployment. <br>
+## Use Case:
 
+Logistics, customs, warehouse, and supply-chain teams use this skill to extract machine-readable shipment data from bills of lading, packing lists, and manifests for downstream review, reconciliation, or filing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uday390/deepread-shipping-docs) <br>
-- [DeepRead homepage](https://www.deepread.tech) <br>
-- [DeepRead dashboard](https://www.deepread.tech/dashboard) <br>
-- [DeepRead optimizer](https://www.deepread.tech/dashboard/optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces typed extraction fields with location data and needs_review confidence flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shipping documents may contain confidential, private, regulated, or commercially sensitive information and are uploaded to DeepRead for extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm organizational approval and review DeepRead data handling and retention terms before uploading bills of lading, manifests, packing lists, or similarly sensitive documents.
+
+Risk: Extracted fields can be uncertain, especially for handwritten weights or quantities.
+
+Mitigation: Use the per-field needs_review flags and human review before relying on extracted values for filings, reconciliation, or operational decisions.
+
+## Reference(s):
+
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead dashboard](https://www.deepread.tech/dashboard)
+- [DeepRead dashboard signup](https://www.deepread.tech/dashboard/?utm_source=clawhub)
+- [DeepRead optimizer](https://www.deepread.tech/dashboard/optimizer)
+- [DeepRead API endpoint](https://api.deepread.tech/v1/process)
+- [ClawHub skill page](https://clawhub.ai/uday390/skills/deepread-shipping-docs)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Typed JSON extraction results with Markdown setup and cURL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY and user-selected shipping documents; results include needs_review flags for extracted fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

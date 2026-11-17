@@ -1,43 +1,56 @@
-## Description: <br>
-DB Smart Import helps agents analyze CSV, SQL dump, and database schemas, suggest column mappings, and prepare or run imports into MySQL, MariaDB, or SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent database import from .csv and .sql dumps into MySQL, MariaDB, and SQLite.
 
-## Publisher: <br>
-[jarbcs1-prog](https://clawhub.ai/user/jarbcs1-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jarbcs1-prog](https://clawhub.ai/user/jarbcs1-prog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and database operators use this skill to analyze source and destination schemas, suggest column mappings, and import CSV or SQL dump data into MySQL, MariaDB, or SQLite. It is intended for data migration and ingestion workflows where mappings and database changes are reviewed before execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can run high-impact database changes and execute SQL dumps that may alter or destroy data.
+
+Mitigation: Use only trusted CSV and SQL files, prefer a staging database, and take verified backups before running imports or SQL dumps.
+
+Risk: Credential examples use command-line passwords and root-like accounts, which can expose secrets or over-privilege import operations.
+
+Mitigation: Avoid putting database passwords directly in command lines and use least-privilege database accounts.
+
+Risk: Automated column mapping suggestions may be incorrect.
+
+Mitigation: Review suggested mappings and verify column types before executing imports.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and database operators use this skill to inspect source and destination schemas, map columns, import CSV data, and execute SQL dumps during database migration or ingestion work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: SQL dumps can execute statements that permanently change or delete data in a live database. <br>
-Mitigation: Inspect SQL dumps as executable code, test first on staging or a fresh restore, back up the target database, and use least-privilege database users. <br>
-Risk: Automated column mappings can be incorrect and import values into the wrong destination fields. <br>
-Mitigation: Review suggested mappings and verify column types before running any bulk import. <br>
-Risk: Database passwords passed directly on the command line can be exposed through shell history or process listings. <br>
-Mitigation: Use safer credential handling where available and avoid passing real production passwords directly as command-line arguments. <br>
+**Output Format:** [Markdown guidance with inline shell commands, JSON mapping examples, and Python script usage]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jarbcs1-prog/db-smart-importer) <br>
-- [Publisher profile](https://clawhub.ai/user/jarbcs1-prog) <br>
+**Other Properties Related to Output:** [Produces schema analysis, column mapping suggestions, and import commands for local database workflows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON mapping objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use bundled Python scripts to inspect schemas, suggest mappings, import CSV rows, or execute SQL dump statements.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

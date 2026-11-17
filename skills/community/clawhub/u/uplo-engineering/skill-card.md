@@ -1,45 +1,59 @@
-## Description: <br>
-AI-powered engineering knowledge management. Search architecture docs, API specs, incident reports, runbooks, and infrastructure documentation with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered engineering knowledge management. Search architecture docs, API specs, incident reports, runbooks, and infrastructure documentation with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to search organizational architecture documents, API specifications, runbooks, incident reports, repository metadata, and technical decision records for engineering research, onboarding, incident review, and technical debt investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote token-backed MCP access may expose broad internal engineering context. <br>
-Mitigation: Use scoped tokens, least-privilege document access, and avoid broad organization exports unless they are required for the task. <br>
-Risk: Identity, clearance lookup, and activity logging may process sensitive organizational information. <br>
-Mitigation: Confirm logging, retention, redaction, clearance, and audit controls with the publisher and the connected UPLO instance before deployment. <br>
-Risk: Outdated or incomplete engineering documentation can mislead incident response, RFC review, or operational decisions. <br>
-Mitigation: Cross-check high-impact answers against current runbooks, service owners, directives, and source systems before making production changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to search organizational architecture docs, API specs, incident reviews, runbooks, repository metadata, and infrastructure records for RFC research, onboarding, code archaeology, incident review, and technical debt investigation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-engineering) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/RooJenkins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include service names, repository paths, team ownership, runbook steps, escalation contacts, and links returned from the connected knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+Risk: The release evidence says the skill runs an unpinned external MCP package with a secret API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed MCP server version, store the UPLO token as a dedicated least-privilege secret, and rotate it regularly.
+
+Risk: The release evidence says the skill can expose broad organizational engineering context.
+
+Mitigation: Confirm that organization-wide context export and update/reporting tools are authorized for the data the configured UPLO token can access.
+
+Risk: The release evidence gives a suspicious security verdict.
+
+Mitigation: Install only after reviewing the UPLO publisher, the @agentdocs1 npm package source, and the configured MCP server behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-engineering)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a UPLO instance URL and API token; output may include organization-specific engineering context based on configured access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

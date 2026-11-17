@@ -1,39 +1,52 @@
-## Description: <br>
-Generates or restores ThinkPHP `.tpl` UI components, CSS, mock data, and controller view bindings using the project's existing conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and restore ThinkPHP UI components using this project's existing conventions.
 
-## Publisher: <br>
-[cnoder-wgh](https://clawhub.ai/user/cnoder-wgh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cnoder-wgh](https://clawhub.ai/user/cnoder-wgh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to create or restore ThinkPHP template UI components, matching nearby project structure, styles, mock data, and controller assignments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Template, CSS, mock data, or controller assignment edits can change rendered ThinkPHP pages in unintended ways.
+
+Mitigation: Review generated diffs against nearby components and run the relevant page or test flow before deployment.
+
+Risk: Missing field guards in restored templates can cause undefined index or rendering issues.
+
+Mitigation: Use ThinkPHP default filters and conditional checks for optional fields, then verify pages with representative mock data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to create or restore ThinkPHP page sections and components while matching existing template, CSS, mock data, and controller assignment patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [code, configuration, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Template, shared CSS, mock data, or controller view assignment edits may affect multiple ThinkPHP pages. <br>
-Mitigation: Install only in ThinkPHP projects where those edits are expected, and review generated changes before committing. <br>
+**Output Format:** [Markdown with code snippets, file edits, and command suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnoder-wgh/thinkphp-ui-restoration) <br>
-- [Publisher profile](https://clawhub.ai/user/cnoder-wgh) <br>
+**Other Properties Related to Output:** [May include ThinkPHP template changes, CSS updates, mock data, and controller or view assignment guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with ThinkPHP template, CSS, mock data, and controller change guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

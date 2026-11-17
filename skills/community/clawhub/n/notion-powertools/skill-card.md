@@ -1,42 +1,58 @@
-## Description: <br>
-Reference tool for devtools that provides quick plain-text help for Notion Powertools concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for Notion Powertools.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Notion Powertools-related devtools workflows. It emits topic-focused guidance for introductory concepts, setup, patterns, troubleshooting, performance, security, migration, and cheatsheet lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference text is generic guidance rather than authoritative Notion documentation. <br>
-Mitigation: Confirm Notion-specific implementation details, commands, and configuration changes against authoritative documentation before applying them in real environments. <br>
-Risk: The skill prints operational guidance that may not match a user's production environment. <br>
-Mitigation: Review suggested workflows and security steps before using them for real-world configuration, migration, or troubleshooting decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for Notion Powertools concepts, setup, operating patterns, troubleshooting, performance, security, and migration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/notion-powertools) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference documentation printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, file mutation, or persistence behavior are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides generic reference guidance that may not match a user's specific Notion Powertools environment or requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance before applying it and validate decisions against project-specific documentation and constraints.
+
+Risk: The skill does not need credentials, so sharing tokens or secrets with it would add unnecessary exposure.
+
+Mitigation: Do not provide credentials or sensitive configuration values when using this static reference skill.
+
+Risk: One cheatsheet entry names an undocumented troubleshooting command rather than the documented debugging command.
+
+Mitigation: Use the documented debugging command for troubleshooting workflows.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Notion Powertools on ClawHub](https://clawhub.ai/xueyetianya/skills/notion-powertools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown-style headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys, credentials, network access, or persistent system state required.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

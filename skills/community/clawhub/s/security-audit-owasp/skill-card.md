@@ -1,42 +1,53 @@
-## Description: <br>
-Full OWASP, Nmap, Nikto vulnerability assessment for OpenClaw deployments. Scan your infrastructure, harden configs, and generate compliance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Audit Pro helps developers run OWASP-oriented infrastructure checks with Nmap and Nikto for OpenClaw deployments, producing scan reports and hardening guidance.
 
-## Publisher: <br>
-[larios613-hub](https://clawhub.ai/user/larios613-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larios613-hub](https://clawhub.ai/user/larios613-hub)
 
-## Use Case: <br>
-Developers and security engineers use this skill to plan and run authorized infrastructure security checks, including port scans, web vulnerability scans, OWASP checklist review, and hardening recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Active network scans can affect systems outside the user's authority or expected scope. <br>
-Mitigation: Run scans only against infrastructure the user owns or is explicitly authorized to test, and review the target range before execution. <br>
-Risk: Generated reports can expose sensitive infrastructure, service, and vulnerability details. <br>
-Mitigation: Store audit reports in a controlled location, limit access, and review the output directory before sharing results. <br>
-Risk: Automated scans and checklist output are not a complete OWASP or compliance audit. <br>
-Mitigation: Use the results as input to a broader manual security review and validate findings before making compliance decisions. <br>
+## Use Case:
 
+Developers and security engineers use this skill to perform authorized OpenClaw infrastructure audits, check OWASP Top 10 categories, and generate scan reports with remediation guidance.
 
-## Reference(s): <br>
-- [OWASP Top 10 Audit Checklist](references/owasp-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with bash commands and generated text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include target details and vulnerability findings; treat generated audit output as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Active Nmap and Nikto scans can generate alerts, affect services, or reach unintended systems when targets are scoped incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only against systems that are owned or explicitly authorized, confirm target values before execution, and start with narrow scopes.
+
+Risk: The skill can overstate OWASP, hardening, and compliance coverage.
+
+Mitigation: Treat outputs as basic scan evidence and have findings reviewed through a qualified security process before relying on them for compliance claims.
+
+## Reference(s):
+
+- [OWASP Top 10:2025 Audit Checklist](references/owasp-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text reports with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create timestamped local audit report files when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

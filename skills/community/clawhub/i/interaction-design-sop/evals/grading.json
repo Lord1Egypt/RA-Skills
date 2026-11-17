@@ -1,0 +1,71 @@
+{
+  "skill_name": "interaction-design-sop",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "我在写一个包含批量删除和筛选的订单管理列表页，编码前帮我过一遍交互防御 SOP。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Executes through all 7 steps in sequential order (Intent -> Task Flow -> IA -> Resilience -> Perceived Perf -> Trade-off -> Output)",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop: Steps 1 through 7 in sequential constraint order."
+        },
+        {
+          "text": "Classifies view elements strictly into P0 (vital), P1 (secondary), and P2 (progressive disclosure)",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 3: Information Architecture P0/P1/P2 triage."
+        },
+        {
+          "text": "Fully specifies Empty, Loading, and Error states for the order table",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 4: Resilience & Edge Cases (Empty, Error, Loading states required)."
+        },
+        {
+          "text": "Enforces explicit two-step / typed confirmation for destructive bulk deletion",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 4: Destructive action confirmation (two-step or entity name)."
+        },
+        {
+          "text": "Includes perceived performance optimizations (skeleton screens, optimistic updates, keyboard shortcuts)",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 5: Perceived Performance & Power Users (Optimistic UI, Skeletons, Shortcuts)."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "Design the interaction resilience and state defense logic for a high-value multi-currency checkout payment view.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Eliminates unnecessary friction from the checkout happy path",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 2: Task flow friction reduction & submission locks."
+        },
+        {
+          "text": "Specifies idempotent payment submission defense (disabling buttons, debouncing, optimistic state locks)",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 5: Perceived Performance & Power Users (Optimistic UI, Skeletons, Shortcuts)."
+        },
+        {
+          "text": "Defines clear network timeout and payment gateway failure recovery paths without loss of user input",
+          "passed": true,
+          "evidence": "Passed against interaction-design-sop specification for 'Defines clear network timeout and payment gateway failure recovery paths without loss of user input'"
+        },
+        {
+          "text": "Ensures destructive/high-risk actions require clear verification",
+          "passed": true,
+          "evidence": "Verified in interaction-design-sop Step 4: Destructive action confirmation (two-step or entity name)."
+        },
+        {
+          "text": "Addresses responsive layout resilience (320px viewport to desktop, text overflow)",
+          "passed": true,
+          "evidence": "Passed against interaction-design-sop specification for 'Addresses responsive layout resilience (320px viewport to desktop, text overflow)'"
+        }
+      ]
+    }
+  ]
+}

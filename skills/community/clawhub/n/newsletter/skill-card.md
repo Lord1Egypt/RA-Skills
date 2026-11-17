@@ -1,40 +1,47 @@
-## Description: <br>
-Create, grow, and monetize newsletters with effective content and subscriber strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, grow, and monetize newsletters with effective content and subscriber strategies.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Newsletter creators, marketers, and operators use this skill for practical guidance on subject lines, content structure, audience growth, deliverability, sponsorships, monetization, and subscriber re-engagement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Newsletter advice can be misapplied in ways that conflict with email law, platform policies, sponsorship disclosure rules, or deliverability requirements. <br>
-Mitigation: Review recommendations against applicable legal, deliverability, sponsorship disclosure, and platform-policy requirements before use. <br>
-Risk: Audience, monetization, and engagement benchmarks may not fit every newsletter segment or business model. <br>
-Mitigation: Treat metrics and tactics as general guidance and validate them with audience-specific testing and review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/newsletter) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+External creators, marketers, and newsletter operators use this skill to draft and evaluate newsletter strategy, including subject lines, content structure, growth tactics, deliverability, metrics, monetization, and re-engagement.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated newsletter guidance can lead to public-facing mistakes in posts, sponsor copy, unsubscribe language, or list-cleanup actions.
+
+Mitigation: Review generated marketing guidance before applying it in live newsletter platforms.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plain-language newsletter strategy guidance; no code execution, API calls, or sensitive access requested.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior, tool calls, or hidden access requests are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-AI planning coach using the 4To1 Method to turn a four-year vision into daily action across Notion, Todoist, Google Calendar, or local Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI planning coach using the 4To1 Method(tm) to turn a 4-year vision into daily action across Notion, Todoist, Google Calendar, or local Markdown.
 
-## Publisher: <br>
-[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim)
 
-## Use Case: <br>
-External users use this skill to set up and run an AI-assisted planning system that links long-term vision, quarterly milestones, two-week sprints, daily tasks, and recurring reviews. The skill can connect to third-party planning services or maintain local Markdown planning files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Notion and Todoist tokens in a plaintext local config file. <br>
-Mitigation: Restrict the config file to owner-only permissions, use dedicated low-privilege tokens or workspaces, and rotate tokens if they are exposed. <br>
-Risk: The skill can read and write sensitive personal planning data in connected services or local files. <br>
-Mitigation: Preview planned backend writes before allowing the agent to save them, and prefer the local Markdown backend or a dedicated planning workspace for sensitive data. <br>
-Risk: Server security review reports package identity and setup inconsistencies. <br>
-Mitigation: Review the publisher and package identity before installing, and confirm the release metadata matches the artifact being deployed. <br>
+## Use Case:
 
+External users and agent operators use this skill to set up and maintain a personal planning system, run weekly and sprint reviews, choose daily priorities, and keep tasks aligned to longer-term goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/4to1-planner-bak) <br>
-- [4To1 Planner homepage](https://4to1planner.com) <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
-- [Todoist developer integrations](https://app.todoist.com/app/settings/integrations/developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with conversational guidance, inline shell commands, API examples, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update planning records in the selected backend or local Markdown files after user direction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup and status scripts store or load integration credentials in ~/.config/4to1/config, and the status script sources that file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the local Markdown backend or tightly scoped integration tokens, restrict permissions on ~/.config/4to1/config, and avoid running status.sh until config loading is changed to parse data without source.
+
+Risk: The skill can connect an agent to third-party planning services such as Notion and Todoist.
+
+Mitigation: Use least-privilege integrations, review requested permissions before connecting services, and rotate any token exposed during setup.
+
+## Reference(s):
+
+- [4To1 Planner website](https://4to1planner.com)
+- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/skills/4to1-planner-bak)
+- [ClawHub publisher profile](https://clawhub.ai/user/dorjenorbulim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with conversational guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backend-specific setup steps for Notion, Todoist, Google Calendar, or local Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

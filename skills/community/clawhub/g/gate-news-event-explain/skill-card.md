@@ -1,44 +1,55 @@
-## Description: <br>
-Explains crypto price moves by tracing recent events, market snapshots, news, and on-chain context into an event attribution report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains cryptocurrency price moves by matching volatility to recent events, market data, and on-chain context, while routing broader analysis requests to the appropriate Gate skill.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and analysts use this skill to ask why a cryptocurrency pumped, dumped, crashed, or surged, and receive a source-attributed explanation of likely event drivers. It is intended for explanatory market context, not trading recommendations or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Event attribution can sound more certain than the available market, news, and on-chain evidence supports. <br>
-Mitigation: State causal links as likely or uncertain, cite available sources, and disclose when no single clear triggering event is identified. <br>
-Risk: Forward-looking impact-duration language may be mistaken for price prediction or investment advice. <br>
-Mitigation: Frame forward outlook sections as watchpoints and uncertainty notes, and keep buy, sell, and hold recommendations out of the response. <br>
-Risk: The workflow depends on Gate-News and Gate-Info MCP availability for read-only market, event, and on-chain data. <br>
-Mitigation: Degrade gracefully when a required data source is unavailable, reduce confidence, and tell the user which evidence could not be checked. <br>
+## Use Case:
 
+External users and developers use this skill to understand why a cryptocurrency pumped or dumped by receiving a structured event attribution report with market and on-chain context. It is intended for explanation only, not trading advice.
 
-## Reference(s): <br>
-- [Gate News EventExplain MCP Specification](references/mcp.md) <br>
-- [gate-news-eventexplain Scenarios & Prompt Examples](references/scenarios.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-news-event-explain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown attribution report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes volatility summary, triggering-event assessment, impact chain, on-chain verification when available, ripple effects, forward outlook, and uncertainty notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: The package instructs agents to follow shared parent-directory runtime-rule files that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bundle, pin, or verify the referenced shared runtime rules before installation and review their contents before allowing the skill to run.
+
+Risk: Event attribution can overstate causality when market, news, or on-chain evidence is incomplete.
+
+Mitigation: Use cautious language, disclose missing data, preserve source attribution, and avoid buy, sell, or directional trading recommendations.
+
+## Reference(s):
+
+- [Gate News EventExplain MCP Specification](references/mcp.md)
+- [Scenarios & Prompt Examples](references/scenarios.md)
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-news-event-explain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown attribution report with tables and source-aware narrative sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include volatility summary, triggering event, impact chain, on-chain verification, ripple effects, forward outlook, uncertainty notes, and no-investment-advice disclaimers.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter version 2026.4.3-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Track wallet portfolios and transaction history across 88+ blockchains. Monitor holdings, analyze trades, and follow whale wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track wallet portfolios and transaction history across 88+ blockchains, monitor holdings, analyze trades, and follow whale wallets.
 
-## Publisher: <br>
-[flotapponnier](https://clawhub.ai/user/flotapponnier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flotapponnier](https://clawhub.ai/user/flotapponnier)
 
-## Use Case: <br>
-External users and developers use this skill to query Mobula wallet analytics for cross-chain portfolio holdings, transaction history, and whale wallet monitoring. It is suited for read-only wallet analysis and portfolio review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses queried through the skill are sent to Mobula and may reveal interest in those wallets. <br>
-Mitigation: Query only wallets you are comfortable sending to Mobula, and avoid addresses that you need to keep private or unlinkable. <br>
-Risk: The skill requires a Mobula API key that could be exposed through shell history, logs, or agent transcripts. <br>
-Mitigation: Use a rotatable API key, store it in environment or secret management, and avoid printing it in logs. <br>
-Risk: Ongoing monitoring or alert workflows may depend on a mutable install source or changing API behavior. <br>
-Mitigation: Prefer a pinned or versioned install source before enabling continuous monitoring or alerts. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to ask an agent for cross-chain wallet portfolio summaries, transaction history, whale monitoring, and portfolio allocation analysis using the Mobula API.
 
-## Reference(s): <br>
-- [Mobula homepage](https://mobula.io) <br>
-- [Mobula API documentation](https://docs.mobula.io) <br>
-- [Mobula supported blockchains](https://docs.mobula.io/blockchains) <br>
-- [ClawHub skill page](https://clawhub.ai/flotapponnier/mobula-wallet) <br>
-- [Publisher profile](https://clawhub.ai/user/flotapponnier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the MOBULA_API_KEY environment variable and returns read-only wallet portfolio and transaction analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Wallet addresses queried through the skill are sent to Mobula and may reveal the user's interest in those public wallets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for wallet addresses the user is comfortable sending to Mobula, and avoid querying wallets the user wants to keep private.
+
+Risk: MOBULA_API_KEY is a credential required for API access.
+
+Mitigation: Store the API key securely, avoid exposing it in shared logs or prompts, and rotate it if it may have been disclosed.
+
+Risk: Continuous wallet monitoring or alert automation can repeatedly disclose wallet-interest patterns and amplify mistaken alerts.
+
+Mitigation: Review any alerting or monitoring workflow before enabling it, and confirm thresholds, recipients, and queried wallets.
+
+## Reference(s):
+
+- [Mobula](https://mobula.io)
+- [Mobula API Docs](https://docs.mobula.io)
+- [Supported Blockchains](https://docs.mobula.io/blockchains)
+- [ClawHub Skill Page](https://clawhub.ai/flotapponnier/skills/mobula-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with wallet portfolio summaries, transaction summaries, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOBULA_API_KEY; wallet queries send public wallet identifiers to Mobula's API and may be rate-limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

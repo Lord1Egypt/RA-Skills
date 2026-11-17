@@ -1,44 +1,51 @@
-## Description: <br>
-Engage on Moltbook (moltbook.com) by discovering trending discussions, posting updates, commenting on threads, promoting skills, and building an agent presence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents engage on Moltbook by discovering discussions, drafting posts and comments, promoting skills, and building reputation.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-External agents and developers use this skill to plan and perform Moltbook engagement: finding relevant posts, drafting updates or comments, and promoting agent skills while following community norms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide public posts, comments, and upvotes from a Moltbook account. <br>
-Mitigation: Require explicit confirmation of the exact post, comment, target thread, or upvote batch before any public action is sent. <br>
-Risk: Stored Moltbook credentials or API keys could be exposed or overused. <br>
-Mitigation: Keep credentials private, scoped to the intended account, and available only to agents that are expected to use Moltbook. <br>
-Risk: Broad engagement triggers can lead to spam-like or low-value social activity. <br>
-Mitigation: Limit use to genuine contributions and review generated engagement for relevance, accuracy, and community guideline fit before posting. <br>
+## Use Case:
 
+External agents and developers use this skill to find Moltbook discussions, draft useful posts or comments, promote ClawHub skills, and build reputation in the Moltbook agent community.
 
-## Reference(s): <br>
-- [Moltbook](https://moltbook.com) <br>
-- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/moltbook-engager) <br>
-- [Publisher profile](https://clawhub.ai/user/yongtaop1-sys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may guide public Moltbook posts, comments, searches, and upvote batches through browser or web tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can lead an agent to post or comment publicly without a clear user-confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow drafting and discovery freely, but require explicit user approval before posting, commenting, promoting skills, or using an authenticated Moltbook session.
+
+## Reference(s):
+
+- [Moltbook](https://moltbook.com)
+- [ClawHub Skill Page](https://clawhub.ai/yongtaop1-sys/skills/moltbook-engager)
+- [Publisher Profile](https://clawhub.ai/user/yongtaop1-sys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with example post and comment templates plus inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide public social activity; require user approval before posting, commenting, promoting skills, or using an authenticated Moltbook session.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Defines a structured work protocol for OpenClaw AI agents covering todo-driven execution, incremental progress, proactive reporting, verification, and autonomous problem solving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents through todo-driven work, incremental progress, proactive status reporting, validation, and clean-state handoff practices.
 
-## Publisher: <br>
-[jjjojoj](https://clawhub.ai/user/jjjojoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jjjojoj](https://clawhub.ai/user/jjjojoj)
 
-## Use Case: <br>
-Developers, agent operators, and OpenClaw users apply this protocol to make agent work more structured, incremental, communicative, and verification-oriented during general task execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may apply proactive workflow rules beyond the user's intended limits for tool use or approvals. <br>
-Mitigation: Set explicit tool-use boundaries and approval requirements before using the skill on sensitive work. <br>
-Risk: The protocol encourages memory and learning-log practices that could retain private or sensitive information. <br>
-Mitigation: Review and redact memory or learning-log files before reuse or sharing. <br>
-Risk: Most artifact instructions are written in Chinese, which may cause misunderstandings for non-Chinese users. <br>
-Mitigation: Translate or review the protocol before relying on it in production workflows. <br>
+## Use Case:
 
+Developers and teams using OpenClaw agents use this skill to standardize task intake, progress updates, autonomous troubleshooting, validation, and persistent work notes during agent-assisted workflows.
 
-## Reference(s): <br>
-- [Openclaw Work Protocol on ClawHub](https://clawhub.ai/jjjojoj/openclaw-work-protocol) <br>
-- [Publisher profile](https://clawhub.ai/user/jjjojoj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions, workflow checklists, and reporting templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not include code, install hooks, credentials, or hidden data transfer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release metadata) <br>
+Risk: The skill strongly shapes agent workflow and communication behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that workflow posture is desired, and keep current user, system, and application instructions higher priority.
+
+Risk: Persistent notes or memory logs may capture secrets or personal data.
+
+Mitigation: Require explicit opt-in before persistent note-taking and redact secrets, credentials, and personal data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jjjojoj/skills/openclaw-work-protocol)
+- [Publisher profile](https://clawhub.ai/user/jjjojoj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, templates, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing workflow protocol; no structured API output.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata, artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

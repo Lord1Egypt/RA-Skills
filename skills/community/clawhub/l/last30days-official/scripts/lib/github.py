@@ -17,7 +17,7 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any, Dict, List, Optional
 
-from . import dates, log
+from . import log
 from .query import extract_core_subject
 from .relevance import token_overlap_relevance
 
@@ -106,14 +106,13 @@ def _parse_repo_from_url(html_url: str) -> str:
 
 
 def _parse_date(iso_str: Optional[str]) -> Optional[str]:
-    """Parse a GitHub ISO 8601 datetime string and return YYYY-MM-DD.
-
-    Returns None for non-date input. GitHub's API always emits ISO 8601
-    (e.g. "2026-02-26T16:00:00Z"), but we defer to dates.parse_date() so
-    garbage input gets rejected instead of silently sliced.
-    """
-    dt = dates.parse_date(iso_str)
-    return dt.strftime("%Y-%m-%d") if dt else None
+    """Extract YYYY-MM-DD from ISO 8601 datetime string."""
+    if not iso_str:
+        return None
+    try:
+        return iso_str[:10]
+    except (IndexError, TypeError):
+        return None
 
 
 def _compute_relevance(

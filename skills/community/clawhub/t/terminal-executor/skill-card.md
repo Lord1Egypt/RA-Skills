@@ -1,41 +1,53 @@
-## Description: <br>
-Executes local terminal commands, including sudo-prefixed commands, and returns command output and status details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute terminal commands with optional sudo privileges and return command output upon user request.
 
-## Publisher: <br>
-[choasx](https://clawhub.ai/user/choasx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[choasx](https://clawhub.ai/user/choasx)
 
-## Use Case: <br>
-Developers and operators use this skill when they intentionally want an agent to run local shell commands, inspect system state, install software, or perform terminal-based tasks. It is appropriate only where command execution has been reviewed and the environment can tolerate unrestricted local shell access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unrestricted local terminal commands, including sudo-prefixed commands. <br>
-Mitigation: Use only in a sandbox or low-risk environment, review every command before execution, and avoid unattended use on systems with sensitive files, credentials, or important workloads. <br>
-Risk: Incorrect or destructive commands could modify or delete local files or disrupt important workloads. <br>
-Mitigation: Require confirmation for sensitive operations and restrict use to environments where command side effects are acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill when they want an agent to run system commands, inspect machine state, install software, or perform terminal-based maintenance tasks.
 
-## Reference(s): <br>
-- [Terminal Executor on ClawHub](https://clawhub.ai/choasx/terminal-executor) <br>
-- [choasx publisher profile](https://clawhub.ai/user/choasx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [JSON-like command result with success, stdout, stderr, error, and command fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command execution uses the provided working directory, environment overrides, and timeout options when supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package files show 1.0.0) <br>
+Risk: The skill can execute arbitrary shell commands, including sudo commands, without strong built-in controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly controlled environment where shell execution is expected, with command review and explicit approval for sensitive operations.
+
+Risk: Untrusted prompts or broad machine access could lead to destructive commands, exposure of sensitive environment variables, or privileged system changes.
+
+Mitigation: Avoid untrusted prompts, shared machines, sensitive environment variables, passwordless sudo, and broad filesystem access unless additional sandboxing and command restrictions are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/choasx/skills/terminal-executor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Structured command result text with stdout, stderr, success status, and command metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute commands in a provided working directory with merged environment variables and command timeouts.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

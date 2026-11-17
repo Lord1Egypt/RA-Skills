@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-img2-generation-direct",
+  "displayName": "ZM IMG2 直接生图执行",
   "version": "0.1.0",
-  "publishedAt": 1782235903928
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "通过 happy/gpt-image-2 执行文生图/参考图生图，保留输入、输出、日志和结果 JSON 作为正式视觉证据。"
 }

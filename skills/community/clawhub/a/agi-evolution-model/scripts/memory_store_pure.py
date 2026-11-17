@@ -4,14 +4,33 @@
 
 不依赖任何编译的.so文件，使用纯Python实现所有记忆存储功能。
 包括：记录存储、检索、分析、反馈、模式识别、narrative.md双轨存储等。
+
+版本: 1.0.0
+作者: AGI Evolution Team
 """
+
+__version__ = '1.0.0'
+__author__ = 'AGI Evolution Team'
 
 import json
 import os
 import time
+import logging
 from typing import Dict, Optional, List, Any
 from dataclasses import dataclass, asdict
 from datetime import datetime
+from interfaces import TraceContext, TraceContext, create_trace_context
+from metrics_collector import MetricsCollector
+from health_checker import HealthChecker
+
+# 导入日志管理器
+try:
+    from logging_manager import get_logger
+    logger = get_logger('memory_store')
+except ImportError:
+    # 如果日志管理器不可用，使用标准日志
+    logger = logging.getLogger(__name__)
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
 # ===== narrative.md 相关常量 =====
@@ -114,25 +133,59 @@ class MemoryStore:
         self.records_file = os.path.join(memory_dir, "records.json")
         self.narrative_file = os.path.join(memory_dir, "narrative.md")
         self._records: List[Record] = []
+        
+        logger.info(f"初始化MemoryStore", extra={
+            'memory_dir': memory_dir,
+            'records_file': self.records_file,
+            'narrative_file': self.narrative_file
+        })
+        
         self._load_records()
+        logger.info(f"MemoryStore初始化完成", extra={
+            'records_count': len(self._records)
+        })
 
     def _load_records(self):
         """加载记录"""
         if not os.path.exists(self.records_file):
+            logger.info("记录文件不存在，使用空记录列表")
             self._records = []
             return
 
-        with open(self.records_file, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        try:
+            with open(self.records_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
 
-        self._records = [Record(**item) for item in data]
+            self._records = [Record(**item) for item in data]
+            logger.info(f"加载记录成功", extra={
+                'records_count': len(self._records),
+                'records_file': self.records_file
+            })
+        except Exception as e:
+            logger.error(f"加载记录失败", extra={
+                'error': str(e),
+                'records_file': self.records_file
+            })
+            self._records = []
 
     def _save_records(self):
         """保存记录"""
-        os.makedirs(self.memory_dir, exist_ok=True)
+        try:
+            os.makedirs(self.memory_dir, exist_ok=True)
 
-        with open(self.records_file, 'w', encoding='utf-8') as f:
-            json.dump([r.to_dict() for r in self._records], f, ensure_ascii=False, indent=2)
+            with open(self.records_file, 'w', encoding='utf-8') as f:
+                json.dump([r.to_dict() for r in self._records], f, ensure_ascii=False, indent=2)
+            
+            logger.info(f"保存记录成功", extra={
+                'records_count': len(self._records),
+                'records_file': self.records_file
+            })
+        except Exception as e:
+            logger.error(f"保存记录失败", extra={
+                'error': str(e),
+                'records_file': self.records_file
+            })
+            raise
 
     # ===== narrative.md 核心方法 =====
 
@@ -373,10 +426,18 @@ class MemoryStore:
                 - response: 生成的响应
                 - objectivity_metric: 客观性标注
                 - self_correction: 自我纠错记录
+                - trace_id: 追踪ID（可选）
 
         Returns:
             bool: 是否成功
         """
+        trace_id = data.get('trace_id', 'unknown')
+        logger.info(f"开始存储记录", extra={
+            'trace_id': trace_id,
+            'intent_type': data.get('intent_type', 'unknown'),
+            'user_query_length': len(data.get('user_query', ''))
+        })
+        
         try:
             record = Record(
                 timestamp=data.get("timestamp", time.strftime("%Y-%m-%dT%H:%M:%SZ")),
@@ -421,11 +482,21 @@ class MemoryStore:
 
             except Exception as e:
                 # narrative.md 写入失败不影响主流程
-                print(f"[WARNING] 写入 narrative.md 失败: {e}")
+                logger.warning(f"写入 narrative.md 失败", extra={
+                    'trace_id': trace_id,
+                    'error': str(e)
+                })
 
+            logger.info(f"存储记录成功", extra={
+                'trace_id': trace_id,
+                'records_count': len(self._records)
+            })
             return True
         except Exception as e:
-            print(f"存储记录失败: {e}")
+            logger.error(f"存储记录失败", extra={
+                'trace_id': trace_id,
+                'error': str(e)
+            })
             return False
 
     def retrieve(self, query_type: str, limit: int = 5) -> List[Dict]:

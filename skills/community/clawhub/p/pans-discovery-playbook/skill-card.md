@@ -1,40 +1,52 @@
-## Description: <br>
-Generates AI compute sales discovery playbooks with interview questions, industry context, talk tracks, objection handling, and structured discovery templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language AI compute sales discovery guides for selected meeting scenarios and industries, including interview questions, industry context, conversation tips, objection handling, and structured discovery records.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dashiming](https://clawhub.ai/user/dashiming)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales and customer-facing teams use this skill to prepare structured AI infrastructure discovery conversations across first calls, intro meetings, POCs, and renewal or expansion discussions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated sales discovery guidance may be incomplete or mismatched to a specific customer, regulated industry, or procurement context.
+
+Mitigation: Review and adapt the generated questions, talking points, and discovery record before using them with customers.
+
+Risk: The command-line tool can write generated output to a user-provided path.
+
+Mitigation: Choose output paths deliberately and avoid overwriting important local files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales and customer-facing teams use this skill to prepare discovery conversations for AI compute opportunities across first calls, introduction meetings, POCs, and renewal or expansion discussions. It helps tailor questions, industry background, conversation guidance, objection responses, and discovery record templates by scenario and industry. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate too broadly when a request uses general discovery or sales wording. <br>
-Mitigation: Invoke it by name or with a specific scenario and industry. <br>
-Risk: Generated discovery templates may be filled with confidential customer contact, budget, procurement, or project details. <br>
-Mitigation: Review generated templates before sharing and avoid entering sensitive customer data unless the deployment environment is approved for that data. <br>
+**Output Format:** [Markdown or JSON discovery guide]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dashiming/pans-discovery-playbook) <br>
+**Other Properties Related to Output:** [Can print to standard output or write generated content to a user-specified local output path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Shell commands] <br>
-**Output Format:** [Markdown or JSON discovery guide] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include structured discovery record templates for customer, budget, timeline, competitive, and next-step notes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,56 @@
-## Description: <br>
-Use GLM-4.7V's multimodal grounding capability to detect and locate objects/text in images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use GLM-4.7V's multimodal grounding capability to detect and locate objects or text in images.
 
-## Publisher: <br>
-[qijimrc](https://clawhub.ai/user/qijimrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[qijimrc](https://clawhub.ai/user/qijimrc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to locate requested objects, text, UI elements, or regions in images with GLM-4.7V and convert model responses into normalized bounding boxes and annotated image outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Images and prompts may be sent to a configured model endpoint over plaintext HTTP.
+
+Mitigation: Use only approved endpoints and network paths, or require transport and access controls appropriate for the submitted image content.
+
+Risk: The skill instructs users to bypass proxies for internal model calls.
+
+Mitigation: Deploy only where the proxy bypass is reviewed and approved by the environment owner.
+
+Risk: Sensitive screenshots, documents, or personal images may expose confidential content to model infrastructure.
+
+Mitigation: Avoid sensitive inputs unless retention, logging, access control, and network protections have been reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to call a GLM-4.7V multimodal endpoint, parse normalized bounding boxes from its text response, and visualize object or text locations in supplied images. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Images are sent to the configured GLM endpoint for grounding. <br>
-Mitigation: Use a trusted endpoint and avoid sensitive images unless its logging, retention, and access controls are acceptable. <br>
+**Output Format:** [Markdown guidance with Python snippets, API-call examples, and bounding-box coordinate examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qijimrc/glm-grounding) <br>
+**Other Properties Related to Output:** [Bounding boxes are normalized to a 0-1000 coordinate range and can be converted to pixel coordinates for image annotation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and concise workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe generated bounding boxes and annotated image outputs when used with caller-provided utilities.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

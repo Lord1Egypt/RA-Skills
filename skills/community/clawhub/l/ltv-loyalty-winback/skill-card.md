@@ -1,39 +1,53 @@
-## Description: <br>
-Predict repeat-customer churn from purchase and tier data, then trigger branch-specific win-back workflows with VIP care or time-limited offers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict repeat-customer churn risk from purchase history and tier activity, then output branch-specific win-back and activation workflows.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Marketing, CRM, and ecommerce retention teams use this skill to classify repeat-customer lapse risk and draft win-back plans with separate VIP, standard buyer, and points-expiry tracks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use sensitive customer purchase, tier, points, consent, and campaign data. <br>
-Mitigation: Share only the minimum customer data needed, avoid personal identifiers where possible, and manually review consent, unsubscribe handling, frequency caps, discount terms, and final campaign content before sending. <br>
+## Use Case:
 
+Commerce and retention teams use this skill to identify silent or at-risk repeat customers, split them into VIP and standard segments, and plan win-back workflows across email, SMS, app push, or customer success outreach.
 
-## Reference(s): <br>
-- [LTV & loyalty win-back playbook](references/loyalty_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/RIJOYAI/ltv-loyalty-winback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured risk summaries, branch descriptions, and win-back plan tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include channel timing, consent constraints, offer terms, and reactivation metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may request or operate on customer metrics such as purchase recency, loyalty tier, points expiry, and consent status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriately scoped or anonymized customer data where possible, and verify consent and local marketing rules before applying campaign recommendations.
+
+Risk: Vague business phrasing about falling repeat rates can lead to broad retention recommendations without enough cohort context.
+
+Mitigation: Confirm the intended retention workflow and gather recency, frequency, value, tier, channel, and consent constraints before producing a full win-back plan.
+
+## Reference(s):
+
+- [LTV & loyalty win-back playbook](references/loyalty_playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with risk summaries, segment branches, workflow tables, and campaign recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include channel timing, points-expiry sequences, success metrics, and consent-aware workflow notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

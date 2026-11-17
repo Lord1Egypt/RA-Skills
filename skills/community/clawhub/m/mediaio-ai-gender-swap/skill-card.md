@@ -1,44 +1,59 @@
-## Description: <br>
-Runs Media.io's asynchronous female gender-swap image effect from a user-provided image URL and returns generated preview URLs after polling for task completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Media.io OpenAPI to create an asynchronous image gender-swap task and return generated image URLs.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agents use this skill to check Media.io credits, submit an authorized portrait image URL for a female gender-swap generation task, poll task status, and return generated image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public description may lead users to expect a Studio Ghibli-style filter even though the artifact implements a Media.io female gender-swap workflow. <br>
-Mitigation: Present the skill as a gender-swap workflow before use and do not describe generated results as Ghibli-style output. <br>
-Risk: The workflow sends image URLs to Media.io and may consume paid credits. <br>
-Mitigation: Use a dedicated revocable Media.io API key, check credits before generation, and submit only images the user owns or is authorized to process. <br>
-Risk: Generated results are synthetic edits of people and could be mistaken for identity or biometric assertions. <br>
-Mitigation: Label outputs as edited synthetic media and avoid claims about identity verification or biometric certainty. <br>
+## Use Case:
 
+External users and developers use this skill to submit authorized portrait image URLs to Media.io for task-based gender-swap image generation and to poll for the resulting edited image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-ai-gender-swap) <br>
-- [Media.io platform documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY, curl, an externally reachable PNG/JPEG/JPG image URL, and asynchronous polling by task_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The top-level description may mislead users into expecting Studio Ghibli-style generation rather than Media.io gender-swap behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and use it only when the intended task is Media.io gender-swap image editing.
+
+Risk: Images are sent to Media.io using the user's API key.
+
+Mitigation: Submit only images the user is authorized to edit and comfortable sending to Media.io, and keep MEDIAIO_API_KEY out of logs and responses.
+
+Risk: The API is asynchronous and may return pending, failed, timeout, authentication, validation, or insufficient-credit statuses.
+
+Mitigation: Check credits before generation, poll by task_id until a terminal status, stop on insufficient credits, and include trace_id when troubleshooting failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-ai-gender-swap)
+- [Media.io platform](https://developer.media.io/)
+- [Media.io API documentation](https://platform.media.io/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY and image URLs reachable by Media.io servers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

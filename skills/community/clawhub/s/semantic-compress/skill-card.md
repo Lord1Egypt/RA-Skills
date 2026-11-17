@@ -1,42 +1,54 @@
-## Description: <br>
-语义压缩 helps an agent build compression prompts that preserve key meaning while removing redundant text to reduce token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+语义压缩 helps agents build prompts that remove redundant text while preserving key facts, decisions, data, and logical structure to reduce token usage.
 
-## Publisher: <br>
-[licool88](https://clawhub.ai/user/licool88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[licool88](https://clawhub.ai/user/licool88)
 
-## Use Case: <br>
-Developers and agent users use this skill to compress long conversation histories, articles, or documents into tighter prompts before sending them to an LLM. Review compressed output before relying on it, especially for factual, sensitive, or long-term-memory use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overpromise lossless or accuracy-preserving compression for text that still needs human or model judgment. <br>
-Mitigation: Review compressed output against the source before relying on it for decisions, records, or downstream automation. <br>
-Risk: Conversation histories can contain secrets or personal data before they are saved or sent through a compression workflow. <br>
-Mitigation: Redact secrets and personal data before preserving compressed history in long-term memory or sharing it with another model. <br>
+## Use Case:
 
+Developers and agent users use this skill to prepare long conversations, documents, or memory candidates for LLM-based semantic compression while preserving important facts and decisions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/licool88/semantic-compress) <br>
-- [README](README.md) <br>
-- [System compression prompt](prompts/system-compress.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript examples; runtime helpers return prompt text and length estimates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a prompt for an external LLM rather than performing guaranteed lossless compression locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The generated prompt still includes the original input and may expose sensitive or unrelated context to a downstream LLM.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets or unnecessary sensitive context in the input before sending the prompt to an LLM.
+
+Risk: Model-produced compressed text may omit or distort details if used as memory or as a replacement for the original.
+
+Mitigation: Review compressed results before storing them, relying on them for decisions, or discarding the original source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/licool88/skills/semantic-compress)
+- [Publisher profile](https://clawhub.ai/user/licool88)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown and plain text prompt content with optional JavaScript API and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper returns or writes a prompt for downstream LLM compression; it does not locally compress text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

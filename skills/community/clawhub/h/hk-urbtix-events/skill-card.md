@@ -1,42 +1,54 @@
-## Description: <br>
-Fetches and returns detailed Hong Kong URBTIX event performances by parsing natural language questions with date, venue, and event filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Hong Kong URBTIX event listings, parses natural language event questions, and returns matching performances by date, venue, and event filters.
 
-## Publisher: <br>
-[stevenho1394](https://clawhub.ai/user/stevenho1394) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenho1394](https://clawhub.ai/user/stevenho1394)
 
-## Use Case: <br>
-External users and agents use this skill to answer natural-language questions about Hong Kong URBTIX performances, including event dates, times, venues, and official ticket links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with outputs focused on Hong Kong URBTIX event information. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the documented URBTIX/Tencent COS endpoint and stores cached public XML in the OpenClaw workspace. <br>
-Mitigation: Deploy only in environments where that outbound request and local cache storage are acceptable. <br>
-Risk: Ticketing and schedule information can change after the cached XML is fetched. <br>
-Mitigation: Verify important purchases and attendance plans on the official URBTIX site before acting. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about Hong Kong URBTIX event performances, including show dates, venues, and ticket links. It is suited for public event lookup workflows that need English or Traditional Chinese responses.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/stevenho1394/hk-urbtix-events) <br>
-- [Publisher profile](https://clawhub.ai/user/stevenho1394) <br>
-- [URBTIX batch XML distribution](https://fs-open-1304240968.cos.ap-hongkong.myqcloud.com/prod/gprd/URBTIX_eventBatch_YYYYMMDD.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Structured data] <br>
-**Output Format:** [Markdown table answer plus JSON object containing matches and clarification status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include official ticket links, cached public XML lookup results, or a clarification message when the query cannot be matched.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and plugin metadata) <br>
+Risk: The skill contacts a public URBTIX XML distribution endpoint and stores event-feed cache files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where outbound public web requests and local workspace cache writes are acceptable; no credentials are required.
+
+Risk: Public event listings can change, become unavailable, or be delayed relative to ticketing status.
+
+Mitigation: Verify final event details and ticket availability through the official booking link before making purchase or attendance decisions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/stevenho1394/skills/hk-urbtix-events)
+- [URBTIX public XML distribution endpoint](https://fs-open-1304240968.cos.ap-hongkong.myqcloud.com/prod/gprd/URBTIX_eventBatch_YYYYMMDD.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [JSON object containing a human-readable markdown answer, structured event matches, and an optional clarification message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English and Traditional Chinese responses; results may include official booking links when available.]
+
+## Skill Version(s):
+
+1.0.4 (source: evidence.release.version and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

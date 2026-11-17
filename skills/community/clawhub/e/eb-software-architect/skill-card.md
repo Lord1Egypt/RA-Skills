@@ -1,40 +1,54 @@
-## Description: <br>
-Design high-level software architecture, tech stack choices, system diagrams, ADRs, and risk mitigations before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design high-level software architecture and system structure before implementation, including architecture style, technology stack, C4 diagrams, data model, API surface, ADRs, and risks.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers, founders, and engineering teams use this skill to turn product requirements and constraints into pragmatic architecture recommendations, text C4 diagrams, data models, API boundaries, ADRs, and implementation next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace capability tags mention OAuth tokens, purchases, and crypto even though the visible skill text does not use or require those capabilities. <br>
-Mitigation: Review the visible skill text before use and do not grant OAuth tokens, payment authority, crypto-wallet access, or other sensitive capabilities based only on the current metadata tags. <br>
-Risk: Architecture guidance can be misleading when requirements, scale, budget, compliance obligations, or team constraints are incomplete. <br>
-Mitigation: Validate the proposed architecture, ADRs, security controls, and operational trade-offs against the actual project context before implementation. <br>
+## Use Case:
 
+Developers, founders, and engineering teams use this skill to turn product requirements and constraints into pragmatic software architecture decisions before implementation. It is suited for planning system structure, service boundaries, technology choices, architecture diagrams, ADRs, and risk mitigations.
 
-## Reference(s): <br>
-- [Architecture Patterns Reference](references/architecture-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with text diagrams, tables, and structured decision records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Architecture recommendations depend on the requirements, constraints, scale, and team context provided by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad architecture guidance may be used where implementation-specific code changes are needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill for planning and design review, then switch to a more specific implementation skill for code changes.
+
+Risk: Architecture recommendations can be incomplete or incorrect when requirements, scale, team size, budget, or compliance constraints are missing.
+
+Mitigation: Provide concrete constraints up front and review the generated ADRs, risks, and trade-offs before implementation.
+
+## Reference(s):
+
+- [Architecture Patterns Reference](references/architecture-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-software-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with text diagrams, tables, ADR templates, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces architecture reviews with requirements, architecture style, technology stack, C4-style diagrams, data model, API surface, ADRs, risks, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

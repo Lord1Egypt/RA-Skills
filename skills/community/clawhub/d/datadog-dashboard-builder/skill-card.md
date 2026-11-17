@@ -1,40 +1,52 @@
-## Description: <br>
-Design Datadog dashboards and monitors, recommend metrics, widget layouts, alerting thresholds, and SLO definitions, and analyze existing dashboards for blind spots and noise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Datadog dashboards and monitors — recommend metrics, widget layouts, alerting thresholds, and SLO definitions. Analyze existing dashboards for blind spots and noise. Use when asked to build monitoring, set up alerts, or improve observability in Datadog.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, SREs, and platform engineers use this skill to design or audit Datadog dashboards, monitors, and SLOs for production services.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Suggested alert thresholds or notification routes may not match a production service's business impact or on-call process.
+
+Mitigation: Review thresholds, severity levels, and notification routes with service owners before applying them in production.
+
+Risk: Sample Datadog or Terraform snippets may need adaptation to local metric names, tags, environments, and dashboard conventions.
+
+Mitigation: Validate generated queries and configuration against the target Datadog account before rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, SREs, and on-call engineers use this skill to design Datadog dashboards, monitors, and SLOs for services or to audit existing observability for blind spots and noisy alerts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended alert thresholds, no-data settings, notification routing, or SLO targets may not match a service's production behavior. <br>
-Mitigation: Review and adapt those recommendations with service owners before applying them in production. <br>
-Risk: Dashboard or monitor guidance may be incomplete if the user omits service tier, dependencies, traffic pattern, or current incident history. <br>
-Mitigation: Collect the service profile and validate proposed widgets and monitors against real Datadog metrics before relying on the design. <br>
+**Output Format:** [Markdown with Datadog query examples, YAML monitor templates, JSON widget snippets, and step-by-step guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/datadog-dashboard-builder) <br>
+**Other Properties Related to Output:** [May include service profiles, dashboard layouts, monitor thresholds, SLO targets, audit findings, and implementation steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with example Datadog widget, monitor, and SLO configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations and implementation steps for user review; it does not automatically modify Datadog resources.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

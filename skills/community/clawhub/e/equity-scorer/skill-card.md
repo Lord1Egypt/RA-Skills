@@ -1,39 +1,56 @@
-## Description: <br>
-Compute HEIM diversity and equity metrics from VCF or ancestry data, generating heterozygosity, FST, PCA plots, and a composite HEIM Equity Score with markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compute HEIM diversity and equity metrics from VCF or ancestry data. Generates heterozygosity, FST, PCA plots, and a composite HEIM Equity Score with markdown reports.
 
-## Publisher: <br>
-[manuelcorpas](https://clawhub.ai/user/manuelcorpas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manuelcorpas](https://clawhub.ai/user/manuelcorpas)
 
-## Use Case: <br>
-Bioinformatics practitioners and researchers use this skill to assess representation and diversity in VCF genotype data or ancestry tables, then produce HEIM equity reports with figures and reproducibility details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CSV-only analyses can present estimated genetic metrics as if they were computed from genotype data. <br>
-Mitigation: Use VCF input when genotype-derived heterozygosity, FST, and PCA are required, and label CSV-only HEIM scores as estimates before sharing reports. <br>
-Risk: Genomic and ancestry data can be sensitive personal data. <br>
-Mitigation: Run the skill only on data you are authorized to analyze, keep generated reports in a private local directory, and review outputs before distribution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawBio homepage](https://github.com/ClawBio/ClawBio) <br>
+## Use Case:
 
+External users and developers use this skill to analyze VCF or ancestry CSV data for genomic diversity, population representation, and HEIM equity scoring. It produces reports that help assess representation gaps before sharing or relying on study-level conclusions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, CSV tables, JSON score files, PNG figures, and reproducibility commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on authorized VCF or ancestry CSV inputs and writes results to an output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill writes persistent genomic and ancestry analysis reports that may contain sensitive dataset characteristics.
+
+Mitigation: Run it in a restricted workspace with non-sensitive or approved data, and review generated reports before sharing.
+
+Risk: Generated markdown includes reproducibility commands that may be copied or re-run later.
+
+Mitigation: Review generated markdown and commands before executing or redistributing them.
+
+Risk: HEIM scores and FST outputs can be mistaken for publication-ready conclusions.
+
+Mitigation: Treat outputs as analytical aids and independently validate results before using them for research, publication, or operational decisions.
+
+## Reference(s):
+
+- [ClawBio repository](https://github.com/ClawBio/ClawBio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with PNG figures, CSV tables, JSON score data, checksums, and reproducibility commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent local analysis artifacts under an output directory.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

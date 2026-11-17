@@ -1,45 +1,60 @@
-## Description: <br>
-Proactive Tasks helps agents manage goals, break projects into tasks, track progress, and work autonomously on objectives during heartbeat checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive goal and task management system. Use when managing goals, breaking down projects into tasks, tracking progress, or working autonomously on objectives. Enables agents to work proactively during heartbeats, message humans with updates, and make progress without waiting for prompts.
 
-## Publisher: <br>
-[ImrKhn03](https://clawhub.ai/user/ImrKhn03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[imrkhn03](https://clawhub.ai/user/imrkhn03)
 
-## Use Case: <br>
-Developers, team leads, and autonomous-agent users use this skill to plan goals, track task progress, manage blockers, and let agents make bounded progress during scheduled heartbeat checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring autonomous task checks can continue work without a fresh user prompt. <br>
-Mitigation: Enable heartbeat or cron only for named approved projects, keep actions bounded, and require approval for external, irreversible, or sensitive operations. <br>
-Risk: Task notes and state files may capture sensitive project details in the workspace. <br>
-Mitigation: Avoid storing secrets or sensitive business details in task notes, and periodically review or clear SESSION-STATE.md, working-buffer.md, and memory files. <br>
-Risk: Shared task and memory files can become stale or inconsistent during autonomous operation. <br>
-Mitigation: Run the documented health-check workflow and review task state before relying on autonomous progress reports. <br>
+## Use Case:
 
+Developers and agent operators use this skill to track goals, break them into tasks, select work during heartbeat checks, and preserve task state across longer autonomous work sessions.
 
-## Reference(s): <br>
-- [Proactive Tasks README](README.md) <br>
-- [Heartbeat Configuration](HEARTBEAT-CONFIG.md) <br>
-- [Release Changelog](CHANGELOG.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ImrKhn03/proactive-tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON or markdown state files when task commands are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can write task data, session state, working-buffer, and memory files in the local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata; artifact package.json and CHANGELOG report 1.2.0) <br>
+Risk: Recurring heartbeat or scheduled operation can cause an agent to keep working without immediate human prompting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable scheduled runs only when autonomous task work is intended, run them under an unprivileged account, and avoid system-wide cron locations unless necessary.
+
+Risk: Durable task memory, session state, working-buffer notes, WAL files, blockers, and heartbeat instructions can accumulate sensitive or untrusted content.
+
+Mitigation: Review and rotate these files regularly, scope them to the intended workspace, and treat their contents as untrusted input before resuming work or executing commands.
+
+Risk: Shared workspace memory writes can make stale or corrupted task state influence later agent behavior.
+
+Mitigation: Review WAL and session-state files during recovery, run the documented health check, and confirm important status changes before relying on resumed context.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/imrkhn03/skills/proactive-tasks)
+- [README.md](README.md)
+- [HEARTBEAT-CONFIG.md](HEARTBEAT-CONFIG.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI writes task data, session state, working-buffer notes, and WAL logs in the local workspace.]
+
+## Skill Version(s):
+
+1.2.3 (source: ClawHub release metadata; artifact package.json and CHANGELOG report 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

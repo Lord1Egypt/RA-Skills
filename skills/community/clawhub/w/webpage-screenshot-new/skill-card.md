@@ -1,40 +1,58 @@
-## Description: <br>
-Captures and saves screenshots of specified web pages using Puppeteer or a similar browser automation tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures and saves screenshots of specified web pages using Puppeteer or similar browser automation tools.
 
-## Publisher: <br>
-[wxx94666](https://clawhub.ai/user/wxx94666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxx94666](https://clawhub.ai/user/wxx94666)
 
-## Use Case: <br>
-Developers and agents use this skill when they need guidance, setup steps, and sample code for capturing a webpage screenshot from a provided URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots can capture sensitive page content if the user points the tool at private dashboards, account pages, or other confidential URLs. <br>
-Mitigation: Use trusted URLs, avoid private pages unless capture is intended, and review saved screenshots before sharing or storing them. <br>
-Risk: The workflow depends on installing Puppeteer from npm and running local browser automation. <br>
-Mitigation: Install dependencies only in an environment where npm packages and browser automation are acceptable, and review the sample code before running it. <br>
+## Use Case:
 
+Developers and automation users use this skill to capture webpage screenshots for visual checks, documentation, or saved page evidence.
 
-## Reference(s): <br>
-- [Puppeteer documentation](https://pptr.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshot output path is user-selected; browser automation requires Node.js, npm, and Puppeteer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Browser automation may make network requests to untrusted, private, or internal URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run screenshots only for URLs the user is comfortable requesting, and avoid private or internal targets unless the environment is approved for that access.
+
+Risk: Installing Puppeteer without a pinned version or lockfile can introduce dependency drift.
+
+Mitigation: Use a pinned Puppeteer version with a lockfile before installing or deploying the skill.
+
+Risk: Running a browser automation stack with broad privileges can increase impact if a page or dependency behaves unexpectedly.
+
+Mitigation: Run Puppeteer in a low-privilege or isolated environment.
+
+## Reference(s):
+
+- [Puppeteer documentation](https://pptr.dev/)
+- [ClawHub skill page](https://clawhub.ai/wxx94666/skills/webpage-screenshot-new)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions and example browser automation code; screenshot files are created by the user's runtime environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-万象绘卷人格系统分卷 - 包含人格系统、输出规则、质量控制、创作工具 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language personality, output-rule, quality-control, and creative-tool reference module for the Wanxiang Scroll interactive story system.
 
-## Publisher: <br>
-[dandanllab](https://clawhub.ai/user/dandanllab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dandanllab](https://clawhub.ai/user/dandanllab)
 
-## Use Case: <br>
-External users and writers use this companion skill with the main wanxiang-scroll package to guide Chinese interactive-fiction persona, output style, quality control, and creative tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains storytelling templates that can influence persona, inner-state, and output style. <br>
-Mitigation: Keep platform and assistant safety rules above the skill's templates, and treat the artifact as creative guidance rather than runtime policy. <br>
-Risk: Some reference material includes hidden-reasoning and adult-roleplay oriented guidance. <br>
-Mitigation: Do not expose hidden reasoning in final answers, and avoid applying adult-roleplay guidance to real people or sensitive scenarios. <br>
+## Use Case:
 
+External users and developers use this companion module with the main wanxiang-scroll skill to guide Chinese interactive-story roleplay style, output structure, quality checks, and creative tooling.
 
-## Reference(s): <br>
-- [SKILL.md](SKILL.md) <br>
-- [Personality system](references/01-personality-system.md) <br>
-- [Output rules](references/02-output-rules.md) <br>
-- [Quality control](references/03-quality-control.md) <br>
-- [Creative tools](references/04-creative-tools.md) <br>
-- [Reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured story-output templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; does not run code or request private data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The reference files include adult roleplay-related mechanics that may be inappropriate for some deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reference content against the deployment's audience, policy, and moderation requirements before enabling the skill.
+
+Risk: The reference files include visible thinking templates that could be misapplied as hidden reasoning output.
+
+Mitigation: Treat thinking templates as public-facing story-structure examples only and do not expose private chain-of-thought reasoning.
+
+## Reference(s):
+
+- [Wanxiang Scroll Personality ClawHub page](https://clawhub.ai/dandanllab/skills/wanxiang-scroll-personality)
+- [System personality reference](references/01-personality-system.md)
+- [Output rules reference](references/02-output-rules.md)
+- [Quality control reference](references/03-quality-control.md)
+- [Creative tools reference](references/04-creative-tools.md)
+- [Reference index](references/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reference material and structured Chinese story-output templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or system access; intended for use with the main wanxiang-scroll skill package.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

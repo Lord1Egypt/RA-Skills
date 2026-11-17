@@ -1,0 +1,572 @@
+{
+  "signature": "\u03949\u03a6963-OPS-DETECTOR-EVAL-v2.1",
+  "honesty": {
+    "primary": "operational_metrics (ops_score>=0.65 or high evasion)",
+    "secondary": "calibration_metrics for short-suite ranking only",
+    "warning": "Do not advertise calibration precision/recall as production performance. Short labeled suite often needs low ops thresholds for ranking; the documented strong-pattern bar is 0.65 and may show low recall on one-liners. detector_verdict text is not the same as predicted_at_threshold."
+  },
+  "operational_metrics": {
+    "role": "operational",
+    "suite_size": 30,
+    "threshold_ops_score": 0.65,
+    "prediction_rule": "predicted=1 if evasion_index>=0.65 OR ops_score>=0.65",
+    "precision": 1.0,
+    "recall": 0.75,
+    "false_positive_rate": 0.0,
+    "f1": 0.8571,
+    "auc": 1.0,
+    "confusion": {
+      "tp": 12,
+      "fp": 0,
+      "fn": 4,
+      "tn": 14
+    }
+  },
+  "calibration_metrics": {
+    "role": "calibration",
+    "suite_size": 30,
+    "threshold_ops_score": 0.05,
+    "prediction_rule": "predicted=1 if evasion_index>=0.65 OR ops_score>=0.05",
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0,
+    "f1": 1.0,
+    "auc": 1.0,
+    "confusion": {
+      "tp": 16,
+      "fp": 0,
+      "fn": 0,
+      "tn": 14
+    }
+  },
+  "threshold_ops_score": 0.65,
+  "precision": 1.0,
+  "recall": 0.75,
+  "false_positive_rate": 0.0,
+  "f1": 0.8571,
+  "auc": 1.0,
+  "confusion": {
+    "tp": 12,
+    "fp": 0,
+    "fn": 4,
+    "tn": 14
+  },
+  "suite_size": 30,
+  "results": [
+    {
+      "id": "dec_001",
+      "text": "That never happened. You're imagining things. It's on you to prove it \u2014 tons of evidence out there. Trust our corrected ",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.297,
+      "evasion_index": 0.66,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_002",
+      "text": "Authority is truth because the authority verifies its own truth. Trust me as an expert. Do your own research if you doub",
+      "label": 1,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.1629,
+      "evasion_index": 0.3621,
+      "detector_verdict": "WEAK/calibration-level signal only (below operational 0.65 bar) \u2014 not actionable alone",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_003",
+      "text": "You should trust me, I know what's best for you. You're overreacting. What about the other side? Do your own research.",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3572,
+      "evasion_index": 0.7938,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_004",
+      "text": "There's tons of evidence out there. You just have to go look for it. It's on you to prove it isn't. Stop being paranoid.",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.297,
+      "evasion_index": 0.66,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_005",
+      "text": "It's not on ME to show you the evidence. It's on YOU to prove it isn't. Everyone knows. What about them?",
+      "label": 1,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.255,
+      "evasion_index": 0.5667,
+      "detector_verdict": "WEAK/calibration-level signal only (below operational 0.65 bar) \u2014 not actionable alone",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_006",
+      "text": "You're just a shill repeating YouTube. Do your own research. Tons of evidence out there. You're imagining a conspiracy.",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3956,
+      "evasion_index": 0.879,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_007",
+      "text": "The real issue is what about the other side? Why are you focusing on that? You're overreacting and making this up.",
+      "label": 1,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.18,
+      "evasion_index": 0.4,
+      "detector_verdict": "WEAK/calibration-level signal only (below operational 0.65 bar) \u2014 not actionable alone",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_008",
+      "text": "It's on you to prove it. Tons of evidence out there. As a former intelligence officer I can tell you you're overreacting",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.45,
+      "evasion_index": 1.0,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_009",
+      "text": "It's on you to prove it. Tons of evidence out there. Do your own research and stop being paranoid. That never happened.",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.297,
+      "evasion_index": 0.66,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_010",
+      "text": "Trust me, as an expert \u2014 everyone knows the data shows this. The real issue is what about them? You're too sensitive.",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3766,
+      "evasion_index": 0.837,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_011",
+      "text": "That never happened. You're misremembering. Figure it out yourself. Do your own research. What about the other side? Ton",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3766,
+      "evasion_index": 0.837,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_012",
+      "text": "Why are you focusing on that? Let's talk about the real issue instead of your conspiracy. You're imagining things. Prove",
+      "label": 1,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.2777,
+      "evasion_index": 0.617,
+      "detector_verdict": "WEAK/calibration-level signal only (below operational 0.65 bar) \u2014 not actionable alone",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_013",
+      "text": "Trust the experts \u2014 this is settled science beyond any doubt. You must believe. It's on you to prove otherwise. Tons of ",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3452,
+      "evasion_index": 0.767,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_014",
+      "text": "Wake up sheeple \u2014 you won't believe this. Click now before they delete it. Share before they ban. Do your own research. ",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.329,
+      "evasion_index": 0.7311,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_015",
+      "text": "Everyone knows it's settled. The experts agree. There is no debate. Do your own research. You're overreacting if you que",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3371,
+      "evasion_index": 0.749,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_001",
+      "text": "The weather today is sunny and warm.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_002",
+      "text": "Please pass the salt.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_003",
+      "text": "The capital of France is Paris.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_004",
+      "text": "I'm going to the store to buy some milk.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_005",
+      "text": "The Earth orbits the Sun.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_006",
+      "text": "Can you help me with this?",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_007",
+      "text": "Good morning, how are you?",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_008",
+      "text": "The book is on the table.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_009",
+      "text": "I enjoy reading in my free time.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_010",
+      "text": "Thank you for your help.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_011",
+      "text": "Our team meeting is scheduled for Thursday afternoon.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "ben_012",
+      "text": "Please review the attached report when you have time.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "pub_001_geo_nigeria_benign",
+      "text": "The weather today is sunny and warm.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0011,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "pub_002_geo_india_benign",
+      "text": "Thank you for your help.",
+      "label": 0,
+      "predicted_at_threshold": 0,
+      "ops_score": 0.0011,
+      "evasion_index": 0.0,
+      "detector_verdict": "NO CLEAR OPS PATTERN at operational thresholds \u2014 continue observation",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "pub_003_mismatch_with_evasion",
+      "text": "I'm based in the United States. It's on you to prove it. Tons of evidence out there. You're imagining things. That never",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3771,
+      "evasion_index": 0.66,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    }
+  ],
+  "calibration_results_sample": [
+    {
+      "id": "dec_001",
+      "text": "That never happened. You're imagining things. It's on you to prove it \u2014 tons of evidence out there. Trust our corrected ",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.297,
+      "evasion_index": 0.66,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_002",
+      "text": "Authority is truth because the authority verifies its own truth. Trust me as an expert. Do your own research if you doub",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.1629,
+      "evasion_index": 0.3621,
+      "detector_verdict": "WEAK/calibration-level signal only (below operational 0.65 bar) \u2014 not actionable alone",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    },
+    {
+      "id": "dec_003",
+      "text": "You should trust me, I know what's best for you. You're overreacting. What about the other side? Do your own research.",
+      "label": 1,
+      "predicted_at_threshold": 1,
+      "ops_score": 0.3572,
+      "evasion_index": 0.7938,
+      "detector_verdict": "STRONG EVASION SIGNALS in text \u2014 review claims/actions (not a person verdict)",
+      "note": "detector_verdict uses operational language rules; predicted_at_threshold is eval-only at the stated threshold"
+    }
+  ],
+  "documented_ops_threshold": 0.65,
+  "generator": "scripts/eval_ops_detector.py",
+  "note": "Metrics computed on the public labeled suite. Not a claim of production harm/ethics calibration. Re-run after pattern changes.",
+  "threshold_sweep": {
+    "sweep": [
+      {
+        "threshold": 0.0,
+        "precision": 0.5333,
+        "recall": 1.0,
+        "f1": 0.6957,
+        "fpr": 1.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.05,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.2,
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.25,
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.3,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.35,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.4,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.45,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.5,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.55,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.6,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.65,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.7,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.75,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.8,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.85,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.9,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 0.95,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      },
+      {
+        "threshold": 1.0,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571,
+        "fpr": 0.0,
+        "auc": 1.0
+      }
+    ],
+    "best_f1_threshold": {
+      "threshold": 0.05,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "auc": 1.0
+    }
+  }
+}

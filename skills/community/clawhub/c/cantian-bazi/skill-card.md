@@ -1,43 +1,54 @@
-## Description: <br>
-Bazi-first skill for charting, Chinese almanac lookup, and range queries of decade, annual, monthly, daily, and hourly luck cycles, with true solar time conversion as an auxiliary step when time correction is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Bazi/Four Pillars charting, Chinese almanac lookup, true-solar-time conversion, and decade, annual, monthly, daily, and hourly fortune-cycle range queries for an agent.
 
-## Publisher: <br>
-[tianlinle](https://clawhub.ai/user/tianlinle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianlinle](https://clawhub.ai/user/tianlinle)
 
-## Use Case: <br>
-External users and agents use this skill to calculate Four Pillars Bazi charts from solar or lunar birth times, query Chinese calendar and almanac information, convert Beijing time to true solar time, and inspect fortune-cycle ranges. It is best suited for cultural reference or entertainment workflows rather than high-stakes decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth details and gender can be personal information. <br>
-Mitigation: Provide only the details needed for the requested reading and avoid entering someone else's personal data without consent. <br>
-Risk: Bazi, almanac, and fortune-cycle results may be mistaken for decision-grade advice. <br>
-Mitigation: Treat outputs as entertainment or cultural reference and avoid using them for high-stakes financial, legal, medical, employment, or safety decisions. <br>
-Risk: Installation depends on an external npm package. <br>
-Mitigation: Install and run the skill only if the dependency is acceptable for the deployment environment. <br>
+## Use Case:
 
+External users and agent developers use this skill to answer Bazi/Four Pillars, solar and lunar calendar, huangli, true-solar-time, and fortune-cycle range questions by running local TypeScript scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianlinle/cantian-bazi) <br>
-- [Publisher profile](https://clawhub.ai/user/tianlinle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bazi and fortune-range outputs may include Chinese calendar, ganzhi, ten-god, shensha, relation, true-solar-time, and almanac details depending on the script used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.8 (source: server release evidence) <br>
+Risk: Installing npm dependencies can execute third-party code during install or runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a restricted project directory after reviewing the dependency set.
+
+Risk: The cantian-tymext dependency is declared as a version range.
+
+Mitigation: Pin cantian-tymext to an exact reviewed version and add a package-lock.json before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tianlinle/skills/cantian-bazi)
+- [Publisher profile](https://clawhub.ai/user/tianlinle)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and plain text strings from local TypeScript commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fortune range outputs expand by requested level; hourly queries are limited to ranges of 62 days or less.]
+
+## Skill Version(s):
+
+0.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

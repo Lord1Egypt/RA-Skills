@@ -188,6 +188,56 @@ if [[ ! -f "$CACHE_FILE" ]]; then
   exit 1
 fi
 
+# ---------- Stale-cache warning ----------
+# List queries read the LOCAL CACHE (that is the point — jq is fast). But a stale
+# cache returns stale values, and a stale `latestVersion` looks EXACTLY like a
+# fresh one: there is no signal telling you to doubt it. Observed failure: a cache
+# untouched for 67 days reported an old version as "latest", which nearly caused a
+# release decision against the wrong baseline.
+#
+# Thresholds: >7 days -> notice, >30 days -> loud warning. Warn only, never block
+# (offline use is intentional). All output goes to stderr so stdout stays pipeable.
+_cache_age_days() {
+  local ts=""
+  # Use lastFullSync ONLY. It is a local wall-clock stamp meaning "a sync actually ran".
+  #
+  # Never mix in lastIncrementalSync: that field is the server-side max updatedAt
+  # (the incremental cursor — see sync.sh), i.e. "when the newest skill on the hub
+  # changed", NOT "when I last synced". Taking max() of the two makes the age
+  # collapse to 0 whenever the hub has recent activity, silently skipping the very
+  # case this warning exists for (verified: 67 days stale + fresh cursor = no warning).
+  if [[ -f "$CACHE_META" ]]; then
+    ts="$(jq -r '.lastFullSync // 0 | floor' "$CACHE_META" 2>/dev/null)"
+  fi
+  # Fall back to the cache file mtime when meta is missing or lastFullSync is 0
+  # (e.g. only incremental syncs have run). mtime is also a local clock, so it is
+  # semantically safe here.
+  if [[ -z "$ts" || "$ts" == "null" || "$ts" == "0" ]]; then
+    local mt
+    mt="$(stat -c %Y "$CACHE_FILE" 2>/dev/null || stat -f %m "$CACHE_FILE" 2>/dev/null)"
+    [[ -n "$mt" ]] && ts="$((mt * 1000))" || return 1
+  fi
+  echo "$(( ( $(date +%s) - ts / 1000 ) / 86400 ))"
+}
+
+if _cache_age="$(_cache_age_days 2>/dev/null)" && [[ "$_cache_age" =~ ^[0-9]+$ ]]; then
+  if (( _cache_age > 30 )); then
+    echo "[warn] Local cache has not been synced for ${_cache_age} days." >&2
+    echo "       Version numbers and newly published skills below are likely STALE." >&2
+    echo "       Run: bash $SELF_DIR/sync.sh" >&2
+    # NOTE: no point suggesting `query.sh versions` here — that subcommand lives
+    # inside the skillhub_cn branch, which returns before reaching this code
+    # (that provider queries live and never touches this cache).
+    echo "       Version numbers below come from the cache, not from the hub." >&2
+    echo "       Re-sync before relying on them for a release decision." >&2
+    echo "" >&2
+  elif (( _cache_age > 7 )); then
+    echo "[warn] Local cache is ${_cache_age} days old. For current version numbers run:" >&2
+    echo "       bash $SELF_DIR/sync.sh" >&2
+    echo "" >&2
+  fi
+fi
+
 MODE="${1:-}"
 shift || true
 

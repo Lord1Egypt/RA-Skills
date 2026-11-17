@@ -1,38 +1,49 @@
-## Description: <br>
-Douyin livestream operations assistant for live planning, script design, analytics, and ecommerce selling guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin Live helps agents plan Douyin livestream scripts, diagnose livestream performance metrics, and structure e-commerce product sequencing.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External creators, livestream hosts, and ecommerce operators use this skill to plan Douyin live rooms, draft sales and interaction scripts, review performance metrics, and avoid common platform-rule violations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotional scripts may include discounts, inventory claims, product-effect claims, giveaways, countdowns, or lowest-price language that could mislead viewers or violate Douyin rules if reused without checking. <br>
-Mitigation: Verify factual claims, inventory, pricing, product effects, giveaway mechanics, and platform-rule compliance before using suggested promotional language in a public livestream. <br>
+## Use Case:
 
+External creators, livestream operators, and e-commerce teams use this skill to create Douyin livestream run-of-show plans, persuasive talk tracks, product sequencing, and post-stream diagnostics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/douyin-live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown guidance with scripts, checklists, tables, and operational recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory livestream operations content; it does not execute code or automate platform actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated livestream sales scripts may include platform-sensitive urgency language or absolute price claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust scripts for Douyin platform-rule compliance before use, especially claims about lowest prices, urgency, medical effects, guarantees, or off-platform transactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/douyin-live)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style operational guidance with scripts, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden data handling reported by security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,30 @@
+{
+  "name": "qique-employee",
+  "owner": {
+    "name": "企雀AI助手"
+  },
+  "metadata": {
+    "description": "企雀 Qique 医美系统与医美软件的员工 AI 助手。通过本机 MCP 按员工权限查询经营、顾客、预约和报表，并办理已开放且经员工确认的操作。Use for Qique employee assistance, clinic CRM queries and local MCP setup."
+  },
+  "plugins": [
+    {
+      "name": "qique-employee",
+      "source": ".",
+      "description": "企雀 Qique 医美系统与医美软件的员工 AI 助手。通过本机 MCP 按员工权限查询经营、顾客、预约和报表，并办理已开放且经员工确认的操作。Use for Qique employee assistance, clinic CRM queries and local MCP setup.",
+      "version": "0.2.0",
+      "keywords": [
+        "qique",
+        "企雀",
+        "企雀AI助手",
+        "医美系统",
+        "医美软件",
+        "clinic crm",
+        "employee assistant",
+        "appointment",
+        "mcp",
+        "agent skills"
+      ],
+      "license": "MIT-0"
+    }
+  ]
+}

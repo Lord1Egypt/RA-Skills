@@ -1,40 +1,59 @@
-## Description: <br>
-Submits Dataify Builder tasks that collect Reddit post comments from one or more Reddit URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect comments from a known Reddit post URL and return the collected result after the Dataify task completes.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Users who collect Reddit discussion data use this skill to confirm collection parameters, submit Dataify Reddit comment jobs, and receive the resulting task ID and status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reddit collection tasks and parameters are sent to Dataify, and broad requests may invoke the skill implicitly. <br>
-Mitigation: Use explicit prompts, review the target Reddit URL and collection parameters before submission, and install only if sending this task data to Dataify is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to collect Reddit comment data from specific known Reddit post URLs through Dataify. It is intended for targeted comment collection, not Reddit post discovery or subreddit listing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-reddit-comment-by-url) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown parameter tables, shell commands, and JSON task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Dataify task ID, status, submitted parameters, file name, dashboard URL, and token setup guidance when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill requires a Dataify API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token in DATAIFY_API_TOKEN and avoid pasting token values into chat or generated artifacts.
+
+Risk: Submitted Dataify jobs may consume account credits.
+
+Mitigation: Review target URLs and collection scope before high-volume or multi-input runs, and resume existing task IDs instead of resubmitting paid jobs.
+
+Risk: Result monitoring depends on the separate dataify-task-operations runtime.
+
+Mitigation: Install and use the skill only when both this package and that runtime are trusted and available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-reddit-comment-by-url)
+- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill)
+- [Dataify API token sign-in](https://dashboard.dataify.com/login?utm_source=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the final collected result by default after asynchronous task monitoring; large payloads may be summarized while preserving access to the raw result.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

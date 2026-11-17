@@ -1,44 +1,59 @@
-## Description: <br>
-OpenClaw Teaching helps agents maintain an OpenClaw knowledge base and generate teaching materials such as PPT or Word documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Teaching helps agents maintain an OpenClaw knowledge base and generate teaching materials as PowerPoint or Word documents.
 
-## Publisher: <br>
-[RoadheroGB](https://clawhub.ai/user/RoadheroGB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roadherogb](https://clawhub.ai/user/roadherogb)
 
-## Use Case: <br>
-Developers, educators, and OpenClaw platform users can use this skill to organize OpenClaw teaching knowledge, update knowledge entries, and prepare generated learning documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create generated documents and mutate local knowledge-base files. <br>
-Mitigation: Run it in a controlled workspace, keep output paths constrained, and require explicit approval before update, delete, restore, or export actions. <br>
-Risk: generate_docs.py modifies Python's import search path before importing document libraries. <br>
-Mitigation: Review or remove the external sys.path insertion before installation, and prefer trusted dependencies from the active environment. <br>
-Risk: The security scan labels the release suspicious because file mutation is under-disclosed. <br>
-Mitigation: Review the scripts and generated backups before deployment, and document expected file writes for users. <br>
+## Use Case:
 
+Developers, educators, and OpenClaw users use this skill to retrieve OpenClaw platform knowledge, update the bundled knowledge base, and produce tutorial documents or slide decks.
 
-## Reference(s): <br>
-- [OpenClaw Teaching on ClawHub](https://clawhub.ai/RoadheroGB/openclaw-teaching) <br>
-- [README](artifact/README.md) <br>
-- [Knowledge Base](artifact/KNOWLEDGE_BASE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated files may include PPTX, DOCX, or text reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, delete, restore, or export local knowledge-base files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unsafe local import precedence in generate_docs.py could load unintended Python code in some deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated environment, or remove the path manipulation before shared deployment.
+
+Risk: Knowledge update, delete, and restore commands can change KNOWLEDGE_BASE.md.
+
+Mitigation: Keep backups, review diffs before publishing updated knowledge, and limit these commands to trusted operators.
+
+Risk: Document generation writes files to caller-supplied output paths.
+
+Mitigation: Use dedicated output directories and review paths before execution to avoid accidental overwrites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roadherogb/skills/openclaw-teaching)
+- [README](artifact/README.md)
+- [OpenClaw knowledge base](artifact/KNOWLEDGE_BASE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated outputs may include PPTX, DOCX, and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documents are written to caller-supplied output paths; knowledge update commands modify the bundled knowledge base and create backups.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Fetches Amazon product reviews through the Reveyes API, including rating distribution, star filtering, and critical review summaries across supported marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Amazon product reviews through the Reveyes API across 20 marketplaces, returning review data, star distribution statistics, and critical review summaries.
 
-## Publisher: <br>
-[zhuojiuya](https://clawhub.ai/user/zhuojiuya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuojiuya](https://clawhub.ai/user/zhuojiuya)
 
-## Use Case: <br>
-External sellers, ecommerce analysts, and agents use this skill to fetch Amazon product review data by ASIN across supported marketplaces and summarize ratings, review volume, and critical feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a REVEYES_API_KEY and calls the Reveyes API. <br>
-Mitigation: Store the API key only in environment or secret configuration, avoid committing it to files, and rotate it if exposed. <br>
-Risk: Review fetching consumes Reveyes credits per page. <br>
-Mitigation: Keep page counts small unless broader collection is necessary, and confirm credit availability before large requests. <br>
-Risk: Fetched review results depend on the requested ASIN, marketplace, page count, star filter, and external service availability. <br>
-Mitigation: Treat outputs as a collected sample for the requested parameters and verify important business conclusions against additional sources. <br>
+## Use Case:
 
+External users, sellers, and commerce analysts use this skill to fetch Amazon review data for an ASIN, compare marketplace sentiment, inspect star distributions, and summarize critical feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuojiuya/amazon-review) <br>
-- [Reveyes official site](https://www.reveyes.cn) <br>
-- [Reveyes Python SDK](https://pypi.org/project/reveyes/) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhuojiuya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and JSON review data from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ASIN, marketplace, total reviews, average rating, rating distribution, top critical reviews, and credits used when the API call succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact files report 1.0.0) <br>
+Risk: Amazon ASINs, marketplace selections, page counts, and star filters are sent to Reveyes for review retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those review-query parameters with Reveyes is acceptable.
+
+Risk: The Reveyes API key can consume account credits when review pages are fetched.
+
+Mitigation: Use a dedicated revocable key, monitor credit usage, and limit requested page counts to the analysis need.
+
+Risk: The helper depends on the external reveyes Python package.
+
+Mitigation: Pin or review the reveyes dependency in controlled environments before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuojiuya/skills/amazon-review)
+- [Reveyes official site](https://www.reveyes.cn)
+- [Reveyes Python SDK on PyPI](https://pypi.org/project/reveyes/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown response with JSON helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVEYES_API_KEY and sends Amazon ASIN, marketplace, page count, and star-filter parameters to Reveyes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

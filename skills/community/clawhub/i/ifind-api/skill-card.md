@@ -1,44 +1,57 @@
-## Description: <br>
-同花顺 iFinD (51ifind.com) 金融数据查询，支持 A 股、基金、债券、期货、指数的实时行情、历史行情、财务指标、宏观经济数据等 18 个 API 接口。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China iFinD Skill(同花顺Skill) helps agents query THS iFinD financial data for A-shares, funds, bonds, futures, indices, macroeconomic indicators, fund valuation, announcements, and related market data through documented iFinD API endpoints.
 
-## Publisher: <br>
-[sinabs](https://clawhub.ai/user/sinabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sinabs](https://clawhub.ai/user/sinabs)
 
-## Use Case: <br>
-External developers and financial-data users use this skill to configure iFinD access and query Chinese market data through supported iFinD API endpoints. It can return market, financial, macroeconomic, fund, announcement, and portfolio-related API results for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires durable iFinD credential handling through IFIND_REFRESH_TOKEN and may create local .env or .data token files. <br>
-Mitigation: Configure IFIND_REFRESH_TOKEN through a secure local secret or environment mechanism, avoid pasting credentials into chat, and protect or delete local token files when finished. <br>
-Risk: The supported iFinD API surface includes portfolio-changing actions. <br>
-Mitigation: Restrict normal use to read-only endpoints unless the user explicitly intends to modify iFinD portfolio records. <br>
+## Use Case:
 
+External developers and financial analysts use this skill to let an agent fetch Chinese market, fundamentals, macroeconomic, fund, announcement, and portfolio-related data from THS iFinD. It is suited to data lookup and workflow assistance where the user already has a valid iFinD refresh token.
 
-## Reference(s): <br>
-- [iFinD API Reference](references/API_REFERENCE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sinabs/ifind-api) <br>
-- [iFinD Official Site](https://www.51ifind.com) <br>
-- [iFinD Quant API](https://quantapi.51ifind.com) <br>
-- [iFinD Quant Terminal](https://ft.10jqka.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and raw JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IFIND_REFRESH_TOKEN; API output depends on the selected iFinD endpoint and request body.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill depends on IFIND_REFRESH_TOKEN, and the security evidence warns that sharing or storing a long-lived token unsafely can expose account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret-management path for IFIND_REFRESH_TOKEN, avoid pasting tokens into chat, and restrict file permissions if local storage is unavoidable.
+
+Risk: The skill exposes portfolio_manage actions that may alter portfolio data.
+
+Mitigation: Do not allow portfolio_manage mutation actions unless the user explicitly intends to let the agent alter portfolio data.
+
+## Reference(s):
+
+- [API_REFERENCE.md](references/API_REFERENCE.md)
+- [ClawHub skill page](https://clawhub.ai/sinabs/skills/ifind-api)
+- [THS iFinD](https://www.51ifind.com)
+- [iFinD Quant API](https://quantapi.51ifind.com)
+- [iFinD Quant API base endpoint](https://quantapi.51ifind.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API request or response content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IFIND_REFRESH_TOKEN and network access to quantapi.51ifind.com; portfolio_manage endpoints can mutate portfolio data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

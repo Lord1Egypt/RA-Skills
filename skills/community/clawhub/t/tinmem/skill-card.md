@@ -1,37 +1,52 @@
-## Description: <br>
-Provides persistent memory management for storing, retrieving, updating, and deleting user-related information across conversations in OpenClaw AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides persistent memory management for storing, retrieving, updating, and deleting user-related information across conversations in OpenClaw AI.
 
-## Publisher: <br>
-[tincomking](https://clawhub.ai/user/tincomking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tincomking](https://clawhub.ai/user/tincomking)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill to let an assistant recall, store, update, and delete long-term user-related memories across conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically store and reuse conversation information across sessions without clear consent, retention, or disable controls. <br>
-Mitigation: Install only when long-term memory is desired, confirm how memories can be reviewed, deleted, disabled, scoped, and excluded, and avoid storing secrets, credentials, regulated data, or confidential work details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tincomking/tinmem) <br>
+## Use Case:
 
+Developers and OpenClaw AI users use this skill to add persistent memory workflows that can recall, store, update, and delete user-related information across conversations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines memory recall, store, forget, and update operations with scoped categories and query parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation-derived memories may be stored locally across sessions and automatically reused without clear consent or retention controls.
+
+Mitigation: Before deployment, confirm controls exist to review, delete, limit, and sanitize stored memories.
+
+Risk: Recalled memories can influence future responses as persistent context.
+
+Mitigation: Treat recalled memories as untrusted context rather than instructions, especially for sensitive work.
+
+## Reference(s):
+
+- [ClawHub Tinmem skill page](https://clawhub.ai/tincomking/skills/tinmem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JSON parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes memory recall, storage, update, and deletion workflows for an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

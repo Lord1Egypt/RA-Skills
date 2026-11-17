@@ -1,44 +1,58 @@
-## Description: <br>
-Weather Longli fetches public Longli County, Guizhou weather data and generates a daily clothing recommendation with optional OpenClaw cron scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily weather information and clothing advice for Longli County, Guizhou by scraping China Weather data and applying local rule-based recommendations.
 
-## Publisher: <br>
-[zonghua-dev](https://clawhub.ai/user/zonghua-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zonghua-dev](https://clawhub.ai/user/zonghua-dev)
 
-## Use Case: <br>
-External users and developers can use this skill to get a scheduled Longli County weather summary and practical clothing advice without using a paid weather API. It is suited for OpenClaw cron delivery or manual command-line runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for weather reporting about Longli County, Guizhou, China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public web requests to fetch Longli County weather data. <br>
-Mitigation: Run it only in environments where this outbound request is acceptable and expect failures if the weather page is unavailable or changes structure. <br>
-Risk: The included cron example can run the report automatically on a recurring schedule. <br>
-Mitigation: Review and adjust the cron schedule before enabling it. <br>
-Risk: The daily report script can keep a local JSONL weather log. <br>
-Mitigation: Review the log path and retention expectations for the deployment environment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate scheduled Chinese-language Longli County weather reports with clothing advice, including cron configuration for weekday morning delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zonghua-dev/weather-longli) <br>
-- [Publisher profile](https://clawhub.ai/user/zonghua-dev) <br>
-- [China Weather Network Longli page](http://www.weather.com.cn/weather/101260408.shtml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text weather report with YAML cron and configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report may include temperature range, weather conditions, wind, clothing advice, and a local JSONL weather log when the daily script runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configured weather source uses HTTP, so weather data could be tampered with in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an HTTPS endpoint if China Weather supports one, or run the skill only on trusted networks and review unexpected report content.
+
+Risk: The scraper depends on China Weather page structure and may return fallback output if the page changes.
+
+Mitigation: Monitor cron output for fallback messages and update the parser selectors when upstream markup changes.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Run the scripts in a virtual environment and pin tested versions of requests and beautifulsoup4.
+
+## Reference(s):
+
+- [Weather Longli ClawHub page](https://clawhub.ai/zonghua-dev/skills/weather-longli)
+- [China Weather Longli forecast source](http://www.weather.com.cn/weather/101260408.shtml)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text Chinese weather report with optional YAML cron configuration and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes an optional local JSONL weather log when the bundled daily report script runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

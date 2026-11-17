@@ -1,45 +1,55 @@
-## Description: <br>
-Use one API key to pull TikTok short-form video and creator data for agents, automations, and analytics, returning structured JSON with credit-based pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public TikTok creator profiles for agents — follower, video, and like counts as structured JSON, with no TikTok key.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-Developers, automation builders, analytics teams, and social research teams use this skill to call agntdata TikTok endpoints for video details, creator profiles, account search, video search, collections, and user video feeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an agntdata API key and sends TikTok usernames, video IDs, search terms, and use-case text to agntdata. <br>
-Mitigation: Install only when agntdata is trusted for the request data, keep the key in an environment variable or secrets manager, and avoid sending confidential research terms unless approved. <br>
-Risk: Requests use credit-based pricing and can incur usage costs. <br>
-Mitigation: Monitor account credit usage and scope automated requests to the minimum data needed. <br>
-Risk: The skill recommends a separate OpenClaw plugin for native tools. <br>
-Mitigation: Review and scan the @agntdata/openclaw-tiktok plugin independently before installing it. <br>
+## Use Case:
 
+Developers and research or marketing teams use the skill to retrieve TikTok creator profiles, video details, account and video search results, and related content for creator research, monitoring, and analytics workflows.
 
-## Reference(s): <br>
-- [TikTok API documentation](https://agnt.mintlify.app/apis/social/tiktok) <br>
-- [agntdata documentation](https://agnt.mintlify.app) <br>
-- [agntdata dashboard](https://app.agntdata.dev/dashboard) <br>
-- [ClawHub skill page](https://clawhub.ai/jaencarrodine/agntdata-tiktok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with JSON examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTDATA_API_KEY and curl; API responses are structured JSON from agntdata endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill's documented features include video and search access in addition to creator statistics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the documented endpoint scope and use the skill only when those data features fit the task.
+
+Risk: The service receives the SUPERAGNT_API_KEY used for API requests.
+
+Mitigation: Use the skill only if you trust the external service to handle the key, and keep the key in the designated environment variable.
+
+## Reference(s):
+
+- [TikTok Data documentation](https://superagnt.com/r/ch-tiktok-data-docs)
+- [TikTok Data MCP server](https://mcp.superagnt.com/mcp/tiktok)
+- [TikTok Data on ClawHub](https://clawhub.ai/superagnt/skills/tiktok-data)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Structured JSON returned by TikTok data endpoints, with Markdown instructions and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live API access requires SUPERAGNT_API_KEY and available service credits.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

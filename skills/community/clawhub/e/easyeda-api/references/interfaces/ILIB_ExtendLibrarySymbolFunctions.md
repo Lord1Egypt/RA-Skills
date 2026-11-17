@@ -1,11 +1,11 @@
 # ILIB\_ExtendLibrarySymbolFunctions interface
 
-外部库符号方法
+External library symbol functions
 
 ## Signature
 
 ```typescript
-interface ILIB_ExtendLibrarySymbolFunctions extends ILIB_ExtendLibraryFunctions 
+interface ILIB_ExtendLibrarySymbolFunctions extends ILIB_ExtendLibraryFunctions
 ```
 **Extends:** [ILIB\_ExtendLibraryFunctions](./ILIB_ExtendLibraryFunctions.md)
 
@@ -15,57 +15,45 @@ interface ILIB_ExtendLibrarySymbolFunctions extends ILIB_ExtendLibraryFunctions
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [getList](./ILIB_ExtendLibrarySymbolFunctions.md)
 
+</td><td>
 
 </td><td>
 
+(props: [ILIB\_ExtendLibrarySearchProperty](./ILIB_ExtendLibrarySearchProperty.md)<!-- -->&lt;{ symbolType?: [ELIB\_SymbolType](../enums/ELIB_SymbolType.md) }&gt;) =&gt; Promise&lt;[ILIB\_ExtendLibrarySearchResult](./ILIB_ExtendLibrarySearchResult.md)<!-- -->&lt;[ILIB\_ExtendLibraryItem](./ILIB_ExtendLibraryItem.md) &amp; [ILIB\_ExtendLibrarySearchResultDataLine](./ILIB_ExtendLibrarySearchResultDataLine.md) &amp; { symbolType: [ELIB\_SymbolType](../enums/ELIB_SymbolType.md) }&gt;&gt;
 
 </td><td>
-
-(props: [ILIB\_ExtendLibrarySearchProperty](./ILIB_ExtendLibrarySearchProperty.md)<!-- -->&lt;{ symbolType?: [ELIB\_SymbolType](../enums/ELIB_SymbolType.md)<!-- -->; }&gt;) =&gt; Promise&lt;[ILIB\_ExtendLibrarySearchResult](./ILIB_ExtendLibrarySearchResult.md)<!-- -->&lt;[ILIB\_ExtendLibraryItem](./ILIB_ExtendLibraryItem.md) &amp; [ILIB\_ExtendLibrarySearchResultDataLine](./ILIB_ExtendLibrarySearchResultDataLine.md) &amp; { symbolType: [ELIB\_SymbolType](../enums/ELIB_SymbolType.md)<!-- -->; }&gt;&gt;
-
-
-</td><td>
-
 
 </td></tr>
 <tr><td>
 
 [getSupportedSymbolTypes](./ILIB_ExtendLibrarySymbolFunctions.md)
 
-
 </td><td>
-
 
 </td><td>
 
 () =&gt; Promise&lt;Array&lt;[ELIB\_SymbolType](../enums/ELIB_SymbolType.md)<!-- -->&gt;&gt;
 
-
 </td><td>
 
 获取支持的符号类型
-
 
 </td></tr>
 </tbody></table>
@@ -81,11 +69,13 @@ Description
 ## Signature
 
 ```typescript
-getList: (props: ILIB_ExtendLibrarySearchProperty<{
-        symbolType?: ELIB_SymbolType;
-    }>) => Promise<ILIB_ExtendLibrarySearchResult<ILIB_ExtendLibraryItem & ILIB_ExtendLibrarySearchResultDataLine & {
-        symbolType: ELIB_SymbolType;
-    }>>;
+getList: (props: ILIB_ExtendLibrarySearchProperty<{ symbolType?: ELIB_SymbolType }>) =>
+	Promise<
+		ILIB_ExtendLibrarySearchResult<
+			ILIB_ExtendLibraryItem
+			& ILIB_ExtendLibrarySearchResultDataLine & { symbolType: ELIB_SymbolType }
+		>
+	>;
 ```
 
 ### getsupportedsymboltypes

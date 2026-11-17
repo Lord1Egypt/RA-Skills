@@ -1,43 +1,57 @@
-## Description: <br>
-Generate Office files with a bundled Python engine. Use when creating or exporting Word (.docx), Excel (.xlsx), or PowerPoint (.pptx) files from structured JSON, reports, meeting minutes, project plans, trackers, business briefs, or natural-language requirements that must be turned into Office documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Office files with a bundled Python engine. Use when creating or exporting Word (.docx), Excel (.xlsx), or PowerPoint (.pptx) files from structured JSON, reports, meeting minutes, project plans, trackers, business briefs, or natural-language requirements that must be turned into Office documents.
 
-## Publisher: <br>
-[lujohn74](https://clawhub.ai/user/lujohn74) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujohn74](https://clawhub.ai/user/lujohn74)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured JSON or natural-language office-document requirements into Word, Excel, or PowerPoint files through a bundled Python generator. It is suited for reports, meeting minutes, project plans, trackers, and business briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup step installs third-party Python Office-generation libraries. <br>
-Mitigation: Install in a normal non-privileged environment and proceed only if the dependency installation is acceptable for the workspace. <br>
-Risk: Generated files are written to user-selected output paths and may embed local image files referenced by the request. <br>
-Mitigation: Choose output paths deliberately and include only image files intended to be embedded in the generated document. <br>
-Risk: The wrapper can run an alternate Python binary through OFFICE_GENERATOR_PYTHON. <br>
-Mitigation: Set OFFICE_GENERATOR_PYTHON only to a trusted Python binary. <br>
+## Use Case:
 
+Developers and agents use this skill to turn structured JSON or natural-language document requirements into Word, Excel, or PowerPoint files for reports, meeting minutes, project plans, trackers, and business briefs.
 
-## Reference(s): <br>
-- [Input formats](references/input-formats.md) <br>
-- [ClawHub skill release](https://clawhub.ai/lujohn74/office-generator-py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Office document files (.docx, .xlsx, .pptx), stdout file paths, and JSON request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written to caller-selected output paths; standard mode accepts full JSON requests and business mode accepts built-in template kinds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup downloads unpinned Python packages into the bundled environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in an isolated environment that the user trusts.
+
+Risk: Spreadsheet cells generated from untrusted JSON may contain formula-like values.
+
+Mitigation: Sanitize untrusted spreadsheet input before generating Excel files.
+
+Risk: Generated Office files can overwrite existing files at the requested output path.
+
+Mitigation: Choose output paths deliberately and check for existing files before generation.
+
+## Reference(s):
+
+- [Input formats](references/input-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Office document file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates .docx, .xlsx, or .pptx files from JSON requests or built-in business templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

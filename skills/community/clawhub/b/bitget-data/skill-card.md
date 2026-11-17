@@ -1,45 +1,64 @@
-## Description: <br>
-Automates multi-coin spot grid trading on Bitget with dynamic adjustments, risk management, portfolio monitoring, and analysis tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates multi-coin spot grid trading on Bitget with dynamic adjustments, risk management, portfolio monitoring, and analysis tools.
 
-## Publisher: <br>
-[hotflame-cloud](https://clawhub.ai/user/hotflame-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hotflame-cloud](https://clawhub.ai/user/hotflame-cloud)
 
-## Use Case: <br>
-Developers and trading operators use this skill to configure and operate Bitget spot grid trading workflows, including starting and stopping grids, monitoring balances and orders, optimizing parameters, and generating reports. It should be used only by operators who can review exchange-account permissions and trading risk before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports plaintext Bitget credentials in the skill. <br>
-Mitigation: Revoke any exposed credentials, remove them from local copies, and create new least-privilege keys with no withdrawal permission before use. <br>
-Risk: The release evidence reports live order-changing scripts with weak safety boundaries. <br>
-Mitigation: Review every script that can place, cancel, or modify orders, enable simulation or dry-run behavior where possible, and test with tightly limited balances before any live trading. <br>
-Risk: Background or scheduled agents can continue trading after setup. <br>
-Mitigation: Avoid enabling cron or background monitors until the operator has confirmed the exact account, symbols, permissions, and stop procedure. <br>
+## Use Case:
 
+Developers and trading operators use this skill to configure, monitor, and operate Bitget spot grid strategies across assets such as BTC, ETH, SOL, and BNB. It supports balance checks, grid deployment, order cancellation, optimization, dynamic adjustment, and status reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hotflame-cloud/bitget-data) <br>
-- [Publisher Profile](https://clawhub.ai/user/hotflame-cloud) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JavaScript scripts, and JSON configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger Bitget API actions when generated commands or bundled scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports live-looking credentials and examples that default to live trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace shipped credential files, use restricted API keys, disable withdrawal permissions, apply IP restrictions, and test with paper trading or very small amounts before any live use.
+
+Risk: The skill can place market or limit orders and cancel existing orders on Bitget.
+
+Mitigation: Review commands before execution, confirm target symbol and order size, and require operator approval for order placement or cancellation.
+
+Risk: The skill can configure recurring OpenClaw or cron-based monitoring activity.
+
+Mitigation: Remove or disable cron setup unless recurring activity is explicitly intended, and periodically audit installed scheduled jobs.
+
+Risk: Cryptocurrency grid trading can lose capital during volatile or trending markets.
+
+Mitigation: Set conservative position limits, keep order sizes small, monitor grids actively, and stop strategies when price moves outside configured ranges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hotflame-cloud/skills/bitget-data)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Bitget website](https://www.bitget.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, JavaScript script references, JSON configuration, and generated report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trading operations that may call external exchange APIs and write local status, configuration, and report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

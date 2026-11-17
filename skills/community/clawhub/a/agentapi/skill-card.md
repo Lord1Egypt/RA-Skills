@@ -1,38 +1,59 @@
-## Description: <br>
-Browse and search the AgentAPI directory, a curated database of APIs designed for AI agents, including MCP-compatible APIs and optional x402 pay-per-use API information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentAPI helps agents browse and search a curated directory of MCP-compatible APIs across search, AI, communication, databases, payments, and related integrations.
 
-## Publisher: <br>
-[gizmo-dev](https://clawhub.ai/user/gizmo-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gizmo-dev](https://clawhub.ai/user/gizmo-dev)
 
-## Use Case: <br>
-Developers and agent builders use this skill to find APIs for search, AI, communication, databases, payments, scraping, development, and productivity workflows. It helps agents identify API options and understand free directory access versus optional paid x402 endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional x402 endpoints can involve paid API calls using a wallet and USDC on Base. <br>
-Mitigation: Require explicit user approval, set strict per-request and daily spending limits, and verify the recipient before any paid call. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentAPI Website](https://agentapihub.com) <br>
-- [AgentAPI API Documentation](https://api.agentapihub.com/api/docs) <br>
+## Use Case:
 
+Developers and agents use this skill to find AgentAPI directory entries and identify APIs by capability, category, MCP compatibility, authentication model, pricing, and documentation links.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; the skill does not auto-execute payments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AgentAPI directory lookups are external network requests and may expose sensitive search terms.
+
+Mitigation: Avoid putting secrets, private customer data, or confidential project details in AgentAPI search terms.
+
+Risk: Optional x402 payment flows can spend USDC if implemented without controls.
+
+Mitigation: Require explicit user confirmation, verify the payment recipient, and configure per-request and daily spending limits before using any payment flow.
+
+Risk: Directory entries and linked third-party API details may change outside this documentation-only skill.
+
+Mitigation: Review the linked provider documentation before integrating an API or relying on current pricing, rate limits, or authentication requirements.
+
+## Reference(s):
+
+- [AgentAPI ClawHub listing](https://clawhub.ai/gizmo-dev/skills/agentapi)
+- [AgentAPI website](https://agentapihub.com)
+- [AgentAPI API documentation](https://api.agentapihub.com/api/docs)
+- [AgentAPI directory endpoint](https://agentapihub.com/api/v1/apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and API response JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable behavior is defined by the skill.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

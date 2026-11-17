@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn77hs1avkzm5stbtqhkyzn24182gvvw",
-  "slug": "bizyair-banana2",
+  "name": "bizyair-banana2",
   "version": "1.0.0",
-  "publishedAt": 1775635218268
+  "description": "使用 BizyAir 云端 ComfyUI 和 Nano Banana 2 模型生成图片",
+  "author": "小钳宝",
+  "license": "MIT",
+  "skills": ["image-generation", "bizyair", "banana2"],
+  "triggers": ["生成图片", "画", "BizyAir", "Banana", "表情包"],
+  "runtime": "bun"
 }

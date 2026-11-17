@@ -1,6 +1,111 @@
 {
-  "ownerId": "kn7386y46e3nghpssayt7b6jeh82zjqh",
-  "slug": "educlaw-ielts-planner",
+  "name": "educlaw-ielts-planner",
   "version": "1.0.1",
-  "publishedAt": 1773594299307
+  "description": "EduClaw - Personal IELTS Study Secretary: automated planning, Google Calendar scheduling via gcalcli, unique lesson plans per session, Google Sheet progress tracking, Discord notifications, bilingual support (EN/VI).",
+  "author": "moclaw",
+  "emoji": "📚",
+  "license": "MIT",
+  "homepage": "https://github.com/moclaw/educlaw-ielts-planner",
+  "repository": "https://github.com/moclaw/educlaw-ielts-planner",
+  "requires": {
+    "bins": ["gcalcli", "sqlite3"],
+    "skills": ["gcalcli-calendar"],
+    "env": [
+      {
+        "name": "GEMINI_API_KEY",
+        "description": "Google Gemini API key — used to generate unique lesson content for each study session.",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "GOOGLE_API_KEY",
+        "description": "Google API key (Custom Search JSON API) — used to fetch study resource URLs during session research.",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "GOOGLE_OAUTH_CLIENT_JSON",
+        "description": "Path to Google OAuth 2.0 client JSON file — required by gcalcli to authenticate with Google Calendar.",
+        "required": true,
+        "secret": false
+      },
+      {
+        "name": "DISCORD_BOT_TOKEN",
+        "description": "Discord bot token — used to send study reminders and progress notifications to a Discord channel.",
+        "required": true,
+        "secret": true
+      },
+      {
+        "name": "DISCORD_CHANNEL_ID",
+        "description": "Discord channel ID where notifications are sent.",
+        "required": true,
+        "secret": false
+      },
+      {
+        "name": "TELEGRAM_BOT_TOKEN",
+        "description": "Telegram bot token — optional, enables Telegram notifications as an alternative to Discord.",
+        "required": false,
+        "secret": true
+      }
+    ],
+    "config": [
+      {
+        "key": "openclaw.workspace",
+        "description": "Path to the OpenClaw workspace directory where IELTS_STUDY_PLAN.md and tracker/educlaw.db are stored.",
+        "required": true
+      }
+    ],
+    "data": [
+      {
+        "path": "workspace/IELTS_STUDY_PLAN.md",
+        "access": "read-write",
+        "description": "Markdown file that accumulates the full IELTS study plan across sessions."
+      },
+      {
+        "path": "workspace/tracker/educlaw.db",
+        "access": "read-write",
+        "description": "Local SQLite database tracking completed sessions, band-score progress, and study hours."
+      },
+      {
+        "path": "~/.gcalcli_oauth",
+        "access": "read-write",
+        "description": "Google OAuth credentials file created and used by gcalcli."
+      }
+    ],
+    "network": [
+      {
+        "host": "calendar.google.com",
+        "purpose": "Read/write Google Calendar events via gcalcli."
+      },
+      {
+        "host": "generativelanguage.googleapis.com",
+        "purpose": "Call Gemini API to generate lesson plans."
+      },
+      {
+        "host": "customsearch.googleapis.com",
+        "purpose": "Fetch study resource URLs via Google Custom Search API."
+      },
+      {
+        "host": "discord.com",
+        "purpose": "Send study reminders and progress notifications via Discord bot."
+      },
+      {
+        "host": "api.telegram.org",
+        "purpose": "Optional: send notifications via Telegram bot."
+      }
+    ]
+  },
+  "tags": [
+    "education",
+    "ielts",
+    "english",
+    "calendar",
+    "study-plan",
+    "google-calendar",
+    "discord",
+    "cron",
+    "bilingual",
+    "progress-tracking"
+  ],
+  "languages": ["en", "vi"]
 }

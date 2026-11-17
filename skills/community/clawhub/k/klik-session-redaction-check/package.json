@@ -1,0 +1,8 @@
+{
+  "name": "klik-session-redaction-check-skill",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node test/validate-skill.mjs"
+  }
+}

@@ -1,0 +1,82 @@
+strict_aliases:
+  营业收入:
+    aliases: [营业收入]
+    category: 收入类
+  主营业务收入:
+    aliases: [主营业务收入]
+    category: 收入类
+  其他业务收入:
+    aliases: [其他业务收入]
+    category: 收入类
+  净利润:
+    aliases: [净利润]
+    category: 利润类
+  归母净利润:
+    aliases: [归母净利润, 归属于母公司股东的净利润, 归属于母公司所有者的净利润]
+    category: 利润类
+  扣非归母净利润:
+    aliases: [扣非归母净利润, 扣除非经常性损益后归属于母公司股东的净利润, 扣除非经常性损益后归属于母公司所有者的净利润]
+    category: 利润类
+  应收账款:
+    aliases: [应收账款]
+    category: 应收款项类
+  应收账款余额:
+    aliases: [应收账款余额]
+    category: 应收款项类
+  应收账款账面余额:
+    aliases: [应收账款账面余额]
+    category: 应收款项类
+  应收账款账面价值:
+    aliases: [应收账款账面价值]
+    category: 应收款项类
+  期后回款金额:
+    aliases: [期后回款金额, 期后回款]
+    category: 期后回款类
+  期后回款比例:
+    aliases: [期后回款比例, 回款比例]
+    category: 期后回款类
+  未回款金额:
+    aliases: [未回款金额]
+    category: 期后回款类
+  未回款比例:
+    aliases: [未回款比例, 未回款占比]
+    category: 期后回款类
+  经销商销售收入:
+    aliases: [经销商销售收入, 经销模式销售收入]
+    category: 经销商类
+  经销商应收余额:
+    aliases: [经销商应收余额, 经销商应收账款余额]
+    category: 经销商类
+  经销商期后回款比例:
+    aliases: [经销商期后回款比例, 经销模式期后回款比例]
+    category: 经销商类
+  直销期后回款比例:
+    aliases: [直销期后回款比例, 直销客户期后回款比例]
+    category: 直销客户类
+  应收票据期后兑付比例:
+    aliases: [应收票据期后兑付比例]
+    category: 应收款项类
+  应收款项融资期后兑付比例:
+    aliases: [应收款项融资期后兑付比例]
+    category: 应收款项类
+  坏账准备:
+    aliases: [坏账准备]
+    category: 应收款项类
+  毛利率:
+    aliases: [毛利率, 综合毛利率]
+    category: 毛利率类
+  主营业务毛利率:
+    aliases: [主营业务毛利率]
+    category: 毛利率类
+  研发费用:
+    aliases: [研发费用]
+    category: 研发类
+  研发投入:
+    aliases: [研发投入]
+    category: 研发类
+  资本化研发支出:
+    aliases: [资本化研发支出]
+    category: 研发类
+  前五大客户销售额:
+    aliases: [前五大客户销售额]
+    category: 客户类

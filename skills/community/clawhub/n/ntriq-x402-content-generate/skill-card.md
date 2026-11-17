@@ -1,42 +1,56 @@
-## Description: <br>
-AI content generation for blogs, emails, social posts, product descriptions. $0.02 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI content for blogs, emails, social posts, and product descriptions for $0.02 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-External users and developers use this skill to send paid x402 requests that generate professional content such as blog posts, emails, social posts, product descriptions, reports, and ad copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to x402.ntriq.co.kr for content generation. <br>
-Mitigation: Confirm that the prompt content is appropriate to send to the remote service before invoking the skill. <br>
-Risk: Each API call spends $0.02 USDC via x402 on Base mainnet. <br>
-Mitigation: Use wallet limits or confirmation controls when an agent could invoke the skill repeatedly. <br>
+## Use Case:
 
+External users and developers use this skill to call a paid content-generation service for blogs, emails, social media, product descriptions, reports, and ad copy with configurable style, tone, language, and word count.
 
-## Reference(s): <br>
-- [Ntriq x402 homepage](https://x402.ntriq.co.kr) <br>
-- [x402 protocol](https://x402.org) <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-x402-content-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON response containing generated content and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The service accepts prompt, style, tone, language, and max_words inputs and returns generated content with status, style, title, and word count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts are sent to the provider's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or confidential content unless the provider and service handling are approved for that data.
+
+Risk: Each call is intended to spend $0.02 USDC through x402.
+
+Mitigation: Confirm the payment flow and expected charge before using the skill in automated or high-volume workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-content-generate)
+- [Publisher profile](https://clawhub.ai/user/ntriq-gh)
+- [Service homepage](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [JSON content-generation response with generated text fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports style, tone, language, and maximum word-count request parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

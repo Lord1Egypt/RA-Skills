@@ -1,47 +1,68 @@
-## Description: <br>
-MemPalace archives AI conversations into local long-term storage and supports semantic search over saved memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemPalace archives AI conversations to local long-term storage and enables semantic search through OpenClaw commands for archive, search, and daily auto-save.
 
-## Publisher: <br>
-[deveuper](https://clawhub.ai/user/deveuper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deveuper](https://clawhub.ai/user/deveuper)
 
-## Use Case: <br>
-Developers and agent users use this skill to archive, search, and restore important conversation memories across OpenClaw-compatible workflows. It is intended for local memory retention where users want searchable context without relying on a cloud memory service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist broad conversation and project data into durable local memory. <br>
-Mitigation: Install only when durable searchable memory is intended, verify storage paths before use, and avoid mining directories that contain secrets or private files. <br>
-Risk: Initial setup can modify the active Python environment by installing dependencies. <br>
-Mitigation: Use an isolated virtual environment and review package installation commands before first execution. <br>
-Risk: Hooks or scheduled saving can automatically capture session content. <br>
-Mitigation: Disable or avoid hooks and cron-style automation unless automatic saving is explicitly desired. <br>
-Risk: The artifact may perform Wikipedia lookups despite local-only messaging. <br>
-Mitigation: Block or remove Wikipedia lookup behavior when fully offline operation is required. <br>
+## Use Case:
 
+External users and developers use this skill to preserve agent conversation memory locally, search previous decisions or notes semantically, and optionally enable scheduled or hook-driven saves.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deveuper/mempalace-openclaw) <br>
-- [Bundled skill instructions](artifact/SKILL.md) <br>
-- [Bundled README](artifact/README.md) <br>
-- [Bundled MemPalace package README](artifact/mempalace/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and searches local conversation archives and vector index files when executed in a configured environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence) <br>
+Risk: The skill can retain conversation and code content durably and later surface stored material verbatim to agents or tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when durable local memory is intended, review what is archived, and avoid storing secrets or sensitive conversations.
+
+Risk: Hook-driven or scheduled saves can automatically capture content without a fresh manual command.
+
+Mitigation: Enable Stop, PreCompact, or cron auto-save only after confirming the desired capture behavior and review hook configuration before use.
+
+Risk: Mining broad directories can index files that contain credentials, private data, or unrelated project content.
+
+Mitigation: Mine narrowly scoped directories, filter sensitive files before ingestion, and avoid broad project roots unless they have been reviewed.
+
+Risk: First-run setup can modify the active Python environment by installing the bundled package and runtime dependencies.
+
+Mitigation: Use a dedicated virtual environment with pinned dependencies when installing or running the skill.
+
+Risk: Wikipedia entity research can disclose the exact term being researched over the network.
+
+Mitigation: Disable or avoid entity research when offline operation or lookup privacy is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deveuper/skills/mempalace-openclaw)
+- [MemPalace upstream project referenced by the skill](https://github.com/milla-jovovich/mempalace)
+- [Core package README](artifact/mempalace/README.md)
+- [Hooks README](artifact/mempalace/hooks/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file or configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local conversation archives, ChromaDB indexes, SQLite data, hook state, and Python package/dependency changes during use.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

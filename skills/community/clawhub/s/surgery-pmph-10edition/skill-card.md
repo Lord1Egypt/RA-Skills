@@ -1,43 +1,56 @@
-## Description: <br>
-Provides a multilingual reference collection of 240 surgery, emergency, critical care, perioperative, trauma, oncology, infection-control, and multi-system clinical skills based on People's Medical Publishing House Surgery, 10th Edition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a ClawHub agent skill registry and 240 clinical education/reference modules covering surgery, emergency and critical care, perioperative management, trauma, oncology, infection control, imaging, anesthesia, rehabilitation, and related specialties based on Surgery, 10th Edition from People's Medical Publishing House.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Clinicians, supervised trainees, medical educators, and medical students use this skill as a quick reference for surgery and critical care topics, including diagnostic criteria, procedure steps, risk assessment, treatment strategy summaries, and exam-style explanations. Because it contains medical treatment instructions, outputs should be treated as clinician-reviewed educational reference material rather than standalone medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Detailed medical treatment and procedure instructions may be incomplete, outdated, or inappropriate for a specific patient. <br>
-Mitigation: Use the skill only as an educational or clinician-reviewed reference and verify recommendations against current guidelines, institutional protocols, and specialist judgment. <br>
-Risk: Emergency or prescribing guidance may be unsafe if treated as standalone authority. <br>
-Mitigation: Do not rely on outputs as standalone medical advice, prescribing authority, emergency guidance, or a substitute for licensed clinical care. <br>
+## Use Case:
 
+External clinicians, medical educators, and medical students can use this skill as clinical education and reference support for looking up surgical and acute-care concepts, classifications, workflows, precautions, and exam-style explanations. It should be treated as decision support for qualified medical review, not as patient self-care or autonomous diagnosis or treatment guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/surgery-pmph-10edition) <br>
-- [README_EN.md](README_EN.md) <br>
-- [Skill index](index.md) <br>
-- [Security policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown and plain text, sometimes with tables or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Medical outputs should be checked against current guidelines, institutional protocols, and licensed clinical judgment before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill contains high-risk surgical and emergency medical instructions with weak safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as clinical education/reference support under qualified medical review; do not rely on it for patient self-care or autonomous diagnosis or treatment.
+
+Risk: Emergency, invasive, medication, anesthesia, resuscitation, oncology, transplant, or serious infection content could be harmful if applied without local clinical oversight.
+
+Mitigation: Rely on licensed clinicians, local protocols, and urgent in-person care for these situations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/surgery-pmph-10edition)
+- [English README](artifact/README_EN.md)
+- [Primary README](artifact/README.md)
+- [Skill index](artifact/skills-index.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown responses with tables, checklists, explanations, and occasional shell command examples for skill search or reporting.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include clinical classifications, procedure summaries, precautions, differential considerations, and education-oriented case or exam explanations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

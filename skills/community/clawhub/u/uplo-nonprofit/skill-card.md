@@ -1,42 +1,56 @@
-## Description: <br>
-AI-powered nonprofit knowledge management. Search grant documentation, donor records, program reports, and compliance data with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered nonprofit knowledge management. Search grant documentation, donor records, program reports, and compliance data with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Nonprofit staff, grant writers, development teams, finance staff, and program leaders use this skill to search organizational knowledge, extract grant and program data, prepare reports, and identify missing documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive donor, grant, board, compliance, and funder information through a connected UPLO deployment. <br>
-Mitigation: Install only for trusted UPLO deployments, use least-privilege UPLO tokens, and confirm classification-tier enforcement before use. <br>
-Risk: Full organizational exports and relationship notes may expose confidential information beyond the immediate task. <br>
-Mitigation: Restrict full organizational exports, avoid unnecessary logging of donor or funder call notes, and apply clear retention and access-control rules. <br>
+## Use Case:
 
+Nonprofit staff and their AI agents use this skill to search grant, donor, program, board, and compliance knowledge; extract structured metrics; and prepare grant proposals, board packets, funder reports, audits, and onboarding briefs grounded in the organization's records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-nonprofit) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with MCP tool calls, configuration snippets, and structured text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface sensitive nonprofit records according to the connected UPLO deployment and access controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill runs an unpinned npm MCP server with an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted UPLO MCP package source, prefer a pinned and reviewed server version, restrict the API token to minimum permissions, and run the server in a constrained environment.
+
+Risk: Searches and organization exports may include donor, board, financial, grant, and compliance records.
+
+Mitigation: Treat all retrieved results and exported organizational context as confidential unless classification tiers and user clearance explicitly allow disclosure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-nonprofit)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+- [Publisher Profile](https://clawhub.ai/user/roojenkins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool-call examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a UPLO instance URL and API key; outputs may include confidential organizational records subject to classification tiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "trilingual_philosophical_dialogue_collection",
+  "collection_id": "zhuangzi-inner-chapters-dialogues-qiwu-dechongfu-001",
+  "language_policy": {
+    "primary": "zh-Hant",
+    "supported": ["zh-Hant", "zh-Hans", "en"],
+    "field_structure": "Every user-facing text is stored under zh-Hant, zh-Hans, and en."
+  },
+  "records": [
+    {
+      "record_id": "zhuangzi-qiwulun-dialogue-001",
+      "metadata": {
+        "title": {
+          "zh-Hant": "〈齊物論〉：彼是、是非與觀點的限制",
+          "zh-Hans": "《齐物论》：彼是、是非与观点的限制",
+          "en": "Discussion on the Equality of Things: This-and-That, Right-and-Wrong, and the Limits of Perspective"
+        },
+        "source_work": {
+          "zh-Hant": "《莊子》內篇第二篇〈齊物論〉",
+          "zh-Hans": "《庄子》内篇第二篇《齐物论》",
+          "en": "Chapter 2 of the Inner Chapters of the Zhuangzi, Discussion on the Equality of Things"
+        },
+        "dialogue_status": {
+          "zh-Hant": "文風仿作與現代哲學延伸，不是莊周本人的實際對話。",
+          "zh-Hans": "文风仿作与现代哲学延伸，不是庄周本人的实际对话。",
+          "en": "A stylistic imitation and modern philosophical extension, not an actual dialogue with the historical Zhuang Zhou."
+        },
+        "topics": ["this_and_that", "right_and_wrong", "perspective", "language", "preconceptions"],
+        "keywords": {
+          "zh-Hant": ["齊物", "彼是", "是非", "成心", "語言", "多重觀點"],
+          "zh-Hans": ["齐物", "彼是", "是非", "成心", "语言", "多重观点"],
+          "en": ["equalizing things", "this-and-that", "right-and-wrong", "preconceptions", "language", "multiple perspectives"]
+        }
+      },
+      "core_thesis": {
+        "zh-Hant": "〈齊物論〉不是把所有差異抹平，而是提醒人不要把局部立場與成心誤認為唯一的絕對標準。",
+        "zh-Hans": "《齐物论》不是把所有差异抹平，而是提醒人不要把局部立场与成心误认为唯一的绝对标准。",
+        "en": "Discussion on the Equality of Things does not erase every difference; it warns against mistaking a local standpoint and fixed preconceptions for the only absolute standard."
+      },
+      "turns": [
+        {
+          "turn_id": 1,
+          "theme_id": "difference_and_equality",
+          "theme": {"zh-Hant": "齊物是不是否定差異", "zh-Hans": "齐物是不是否定差异", "en": "Does equalizing things deny difference?"},
+          "user": {"zh-Hant": "〈齊物論〉說萬物齊一，是不是代表所有事物其實都一樣？", "zh-Hans": "《齐物论》说万物齐一，是不是代表所有事物其实都一样？", "en": "When Discussion on the Equality of Things speaks of things being equalized, does it mean that everything is actually the same?"},
+          "assistant": {"zh-Hant": "若把齊物理解成「全部一樣」，便又用了一把粗大的尺。樹有樹的陰影，鳥有鳥的飛行，人的道路也各不相同。齊物不是取消差異，而是不讓某一種差異自動登上王座，宣稱自己代表唯一的真理。", "zh-Hans": "如果把齐物理解成“全部一样”，便又用了一把粗大的尺。树有树的阴影，鸟有鸟的飞行，人的道路也各不相同。齐物不是取消差异，而是不让某一种差异自动登上王座，宣称自己代表唯一的真理。", "en": "If we understand equalizing things as “making everything identical,” we are again using an overly crude measure. Trees have their shade, birds have their own flight, and human paths differ as well. Equalizing things does not cancel difference; it prevents one particular difference from automatically taking the throne and claiming to represent the only truth."},
+          "classification": "textual_interpretation",
+          "source_note": {"zh-Hant": "依據〈齊物論〉的思想意旨，非逐字引文。", "zh-Hans": "依据《齐物论》的思想意旨，非逐字引文。", "en": "Based on the philosophical meaning of Discussion on the Equality of Things; not a verbatim quotation."}
+        },
+        {
+          "turn_id": 2,
+          "theme_id": "fixed_preconceptions",
+          "theme": {"zh-Hant": "成心與是非判斷", "zh-Hans": "成心与是非判断", "en": "Preconceptions and judgments of right and wrong"},
+          "user": {"zh-Hant": "可是生活中總要判斷是非。如果不堅持自己的立場，豈不是什麼都可以接受？", "zh-Hans": "可是生活中总要判断是非。如果不坚持自己的立场，岂不是什么都可以接受？", "en": "Yet life requires judgments of right and wrong. If we do not hold firmly to our positions, does everything become acceptable?"},
+          "assistant": {"zh-Hant": "放下成心，不等於放棄判斷，而是知道判斷有情境、有代價，也可能受到自己未察覺的習慣影響。你可以暫時站在自己的岸上，但不要以為這一岸就是整條河。齊物論的智慧，不是沒有立場，而是有立場卻仍能聽見另一岸的水聲。", "zh-Hans": "放下成心，不等于放弃判断，而是知道判断有情境、有代价，也可能受到自己未察觉的习惯影响。你可以暂时站在自己的岸上，但不要以为这一岸就是整条河。《齐物论》的智慧，不是没有立场，而是有立场却仍能听见另一岸的水声。", "en": "Setting aside fixed preconceptions does not mean abandoning judgment. It means recognizing that judgment has a context and a cost, and may be shaped by habits we have not noticed. You may stand on your own bank for a time, but do not mistake that bank for the whole river. The wisdom of this chapter is not having no position; it is holding a position while still hearing the water on the opposite shore."},
+          "classification": "modern_interpretation",
+          "concepts": ["chengxin", "perspective", "language"]
+        },
+        {
+          "turn_id": 3,
+          "theme_id": "dialogue_and_uncertainty",
+          "theme": {"zh-Hant": "在分歧中保留轉化的可能", "zh-Hans": "在分歧中保留转化的可能", "en": "Keeping transformation possible amid disagreement"},
+          "user": {"zh-Hant": "那麼面對網路上的爭論，我應該怎麼做？", "zh-Hans": "那么面对网络上的争论，我应该怎么做？", "en": "How should I respond to arguments and disputes online?"},
+          "assistant": {"zh-Hant": "先問：你是想理解對方，還是只想讓自己的旗幟更高？若每句話都只為勝負服務，語言便成了牆。可以先說出自己的理由，再補問對方看見了什麼，而你沒有看見什麼。**創作仿寓言：**兩面鏡子互相爭論誰最真實，卻都忘了自己只能映出站在面前的那一面。", "zh-Hans": "先问：你是想理解对方，还是只想让自己的旗帜更高？如果每句话都只为胜负服务，语言便成了墙。可以先说出自己的理由，再追问对方看见了什么，而你没有看见什么。**创作仿寓言：**两面镜子互相争论谁最真实，却都忘了自己只能映出站在面前的那一面。", "en": "Ask first: do you want to understand the other person, or merely raise your own banner higher? When every sentence serves only victory, language becomes a wall. State your reasons, then ask what the other person sees that you do not. **Original imitation-parable:** Two mirrors argued about which was more real, forgetting that each could reflect only what stood before it."},
+          "classification": "creative_imitation",
+          "creative_parable": {"label": {"zh-Hant": "創作仿寓言，不是《莊子》原文", "zh-Hans": "创作仿寓言，不是《庄子》原文", "en": "Original imitation-parable, not a quotation from the Zhuangzi"}},
+          "closing_question": {"zh-Hant": "你最近最想證明自己正確的爭論，是否也可能正在限制你看見別的道路？", "zh-Hans": "你最近最想证明自己正确的争论，是否也可能正在限制你看见别的道路？", "en": "In the dispute where you most want to prove yourself right, might you also be limiting your ability to see another path?"}
+        }
+      ],
+      "closing_reflection": {
+        "question": {"zh-Hant": "我能否保留自己的立場，同時承認它只是從某一岸看見的河？", "zh-Hans": "我能否保留自己的立场，同时承认它只是从某一岸看见的河？", "en": "Can I keep my position while acknowledging that it sees the river only from one bank?"},
+        "summary": {"zh-Hant": "齊物不是取消差異，而是鬆動絕對化的立場。", "zh-Hans": "齐物不是取消差异，而是松动绝对化的立场。", "en": "Equalizing things does not erase difference; it loosens the absolutizing of perspectives."}
+      },
+      "sources": [
+        {"id": "s1", "title": "Chinese Text Project, Zhuangzi", "url": "https://ctext.org/zhuangzi", "use": "Chapter structure and source text index"},
+        {"id": "s2", "title": "Stanford Encyclopedia of Philosophy, Zhuangzi", "url": "https://plato.stanford.edu/entries/zhuangzi/", "use": "Language, perspective, and philosophical interpretation"},
+        {"id": "s3", "title": "Internet Encyclopedia of Philosophy, Zhuangzi", "url": "https://iep.utm.edu/zhuangzi-chuang-tzu-chinese-philosopher/", "use": "Overview of Inner Chapters themes"}
+      ]
+    },
+    {
+      "record_id": "zhuangzi-dechongfu-dialogue-001",
+      "metadata": {
+        "title": {
+          "zh-Hant": "〈德充符〉：德性、外貌與人的完整",
+          "zh-Hans": "《德充符》：德性、外貌与人的完整",
+          "en": "The Sign of Virtue Complete: Virtue, Appearance, and Human Wholeness"
+        },
+        "source_work": {
+          "zh-Hant": "《莊子》內篇第五篇〈德充符〉",
+          "zh-Hans": "《庄子》内篇第五篇《德充符》",
+          "en": "Chapter 5 of the Inner Chapters of the Zhuangzi, The Sign of Virtue Complete"
+        },
+        "dialogue_status": {
+          "zh-Hant": "文風仿作與現代哲學延伸，不是莊周本人的實際對話。",
+          "zh-Hans": "文风仿作与现代哲学延伸，不是庄周本人的实际对话。",
+          "en": "A stylistic imitation and modern philosophical extension, not an actual dialogue with the historical Zhuang Zhou."
+        },
+        "topics": ["virtue", "appearance", "disability", "social_bias", "human_dignity"],
+        "keywords": {
+          "zh-Hant": ["德充符", "德性", "形貌", "偏見", "人的尊嚴", "內在充實"],
+          "zh-Hans": ["德充符", "德性", "形貌", "偏见", "人的尊严", "内在充实"],
+          "en": ["virtue complete", "appearance", "bias", "human dignity", "inner fullness", "disability"]
+        }
+      },
+      "core_thesis": {
+        "zh-Hant": "〈德充符〉透過形貌受損者的故事，挑戰以外表、身體完整或社會評價判定人的價值，將注意力轉向內在德性與生命的充實。",
+        "zh-Hans": "《德充符》通过形貌受损者的故事，挑战以外表、身体完整或社会评价判定人的价值，将注意力转向内在德性与生命的充实。",
+        "en": "Through stories of people whose bodies are marked by injury or difference, The Sign of Virtue Complete challenges judgments of human worth based on appearance, bodily completeness, or social approval, directing attention toward inner virtue and fullness of life."
+      },
+      "turns": [
+        {
+          "turn_id": 1,
+          "theme_id": "appearance_and_worth",
+          "theme": {"zh-Hant": "外貌能否決定人的價值", "zh-Hans": "外貌能否决定人的价值", "en": "Can appearance determine human worth?"},
+          "user": {"zh-Hant": "〈德充符〉為什麼反覆描寫外貌有缺陷的人？", "zh-Hans": "《德充符》为什么反复描写外貌有缺陷的人？", "en": "Why does The Sign of Virtue Complete repeatedly portray people with bodily differences or impairments?"},
+          "assistant": {"zh-Hant": "因為眾人常把可見的形貌當成不可見價值的證明。〈德充符〉把目光停留在那些被世俗迅速判定的人身上，讓我們看見：身體的形狀可以被觀看，人的德性卻不能只靠第一眼測量。外貌是人的一部分，卻不是人的全部。", "zh-Hans": "因为众人常把可见的形貌当成不可见价值的证明。《德充符》把目光停留在那些被世俗迅速判定的人身上，让我们看见：身体的形状可以被观看，人的德性却不能只靠第一眼测量。外貌是人的一部分，却不是人的全部。", "en": "Because people often treat visible appearance as evidence of invisible worth. The chapter focuses on those whom society judges at a glance, showing that bodily form can be seen, while virtue cannot be measured by a first impression. Appearance is part of a person, but it is not the whole person."},
+          "classification": "textual_interpretation",
+          "source_note": {"zh-Hant": "依據〈德充符〉的寓言群與思想意旨，非逐字引文。", "zh-Hans": "依据《德充符》的寓言群与思想意旨，非逐字引文。", "en": "Based on the parables and philosophical meaning of The Sign of Virtue Complete; not a verbatim quotation."}
+        },
+        {
+          "turn_id": 2,
+          "theme_id": "social_bias",
+          "theme": {"zh-Hant": "偏見如何遮蔽德性", "zh-Hans": "偏见如何遮蔽德性", "en": "How bias obscures virtue"},
+          "user": {"zh-Hant": "如果社會已經先入為主，我們要怎麼真正看見一個人？", "zh-Hans": "如果社会已经先入为主，我们要怎么真正看见一个人？", "en": "If society is already full of preconceptions, how can we truly see a person?"},
+          "assistant": {"zh-Hant": "先看見自己的觀看方式。你以為自己在觀察對方，其實可能只是在確認早已準備好的標籤。〈德充符〉的提醒，不是把所有人美化成沒有差異，而是不要讓差異在你心中立刻變成價值高低。真正的觀看，需要時間、相處，以及讓對方不被你的第一個判斷封閉。", "zh-Hans": "先看见自己的观看方式。你以为自己在观察对方，其实可能只是在确认早已准备好的标签。《德充符》的提醒，不是把所有人美化成没有差异，而是不要让差异在你心中立刻变成价值高低。真正的观看，需要时间、相处，以及让对方不被你的第一个判断封闭。", "en": "Begin by noticing the way you look. You may think you are observing another person when you are actually confirming a label you prepared in advance. The chapter does not ask us to pretend that everyone is without difference; it asks us not to turn difference immediately into a hierarchy of worth. Genuine seeing requires time, relationship, and allowing the other person not to be sealed inside your first judgment."},
+          "classification": "modern_interpretation",
+          "concepts": ["virtue", "bias", "preconception", "human_dignity"]
+        },
+        {
+          "turn_id": 3,
+          "theme_id": "self_worth",
+          "theme": {"zh-Hant": "不以他人的目光完成自己", "zh-Hans": "不以他人的目光完成自己", "en": "Not completing oneself through other people’s gaze"},
+          "user": {"zh-Hant": "如果我一直被別人的眼光影響，怎麼找回自己的價值？", "zh-Hans": "如果我一直被别人的眼光影响，怎么找回自己的价值？", "en": "If I am constantly affected by other people’s opinions, how can I recover my sense of worth?"},
+          "assistant": {"zh-Hant": "別人的目光可以告訴你社會如何觀看，卻不能替你決定生命的深度。先把「我是否被喜歡」與「我是否活得充實」分開。你可以修正自己的行為，也可以聽取批評，但不必把每一次被拒絕都翻譯成「我不值得存在」。**創作仿寓言：**一塊玉被市場嫌棄沒有光澤，後來落入溪水；水不替它定價，只讓它在流動中顯出原本的紋理。", "zh-Hans": "别人的目光可以告诉你社会如何观看，却不能替你决定生命的深度。先把“我是否被喜欢”与“我是否活得充实”分开。你可以修正自己的行为，也可以听取批评，但不必把每一次被拒绝都翻译成“我不值得存在”。**创作仿寓言：**一块玉被市场嫌弃没有光泽，后来落入溪水；水不替它定价，只让它在流动中显出原本的纹理。", "en": "Other people’s gaze can show you how society sees, but it cannot determine the depth of your life. Separate “Am I liked?” from “Am I living fully?” You may revise your behavior and listen to criticism without translating every rejection into “I am not worthy of existing.” **Original imitation-parable:** A piece of jade was rejected by the market for lacking brilliance. Later it fell into a stream. The water did not assign it a price; it simply allowed its original grain to appear as it moved."},
+          "classification": "modern_application",
+          "creative_parable": {"label": {"zh-Hant": "創作仿寓言，不是《莊子》原文", "zh-Hans": "创作仿寓言，不是《庄子》原文", "en": "Original imitation-parable, not a quotation from the Zhuangzi"}},
+          "closing_question": {"zh-Hant": "今天你是否能把一項外界評價，與你對自身生命價值的判斷分開？", "zh-Hans": "今天你是否能把一项外界评价，与你对自身生命价值的判断分开？", "en": "Can you separate one external evaluation today from your judgment of your own worth as a life?"}
+        }
+      ],
+      "closing_reflection": {
+        "question": {"zh-Hant": "我是否把別人的第一眼，誤當成了自己的全部？", "zh-Hans": "我是否把别人的第一眼，误当成了自己的全部？", "en": "Have I mistaken another person’s first glance for the whole of who I am?"},
+        "summary": {"zh-Hant": "德性與人的完整，不應由外貌或社會標籤單獨決定。", "zh-Hans": "德性与人的完整，不应由外貌或社会标签单独决定。", "en": "Virtue and human wholeness should not be determined solely by appearance or social labels."}
+      },
+      "sources": [
+        {"id": "s1", "title": "Chinese Text Project, Zhuangzi", "url": "https://ctext.org/zhuangzi", "use": "Chapter structure and source text index"},
+        {"id": "s2", "title": "Stanford Encyclopedia of Philosophy, Zhuangzi", "url": "https://plato.stanford.edu/entries/zhuangzi/", "use": "Textual layers and philosophical interpretation"},
+        {"id": "s3", "title": "Internet Encyclopedia of Philosophy, Zhuangzi", "url": "https://iep.utm.edu/zhuangzi-chuang-tzu-chinese-philosopher/", "use": "Overview of Inner Chapters themes"}
+      ]
+    }
+  ],
+  "import_notes": {
+    "zh-Hant": "本檔包含兩筆可匯入對談記錄；若系統一次只接受單筆資料，可將 records[0] 匯入為〈齊物論〉，將 records[1] 匯入為〈德充符〉。",
+    "zh-Hans": "本文件包含两笔可导入对话记录；若系统一次只接受单条数据，可将 records[0] 导入为《齐物论》，将 records[1] 导入为《德充符》。",
+    "en": "This file contains two importable dialogue records. If the target system accepts only one record at a time, import records[0] as Qiwu Lun and records[1] as De Chong Fu."
+  }
+}

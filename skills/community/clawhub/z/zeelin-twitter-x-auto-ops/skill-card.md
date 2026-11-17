@@ -1,45 +1,60 @@
-## Description: <br>
-Automate Twitter/X growth and content operations by discovering AI trends, generating tweets, posting to X, finding follow-back threads, commenting for engagement, quoting viral tweets, and supporting follower growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Twitter/X growth and content workflows for AI and Tech Twitter, including trend discovery, tweet drafting, posting, follow-back engagement, and quote-tweet preparation.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External users and developers use this skill to operate a Twitter/X account for AI and Tech Twitter content workflows, including trend discovery, tweet drafting, posting, quote-tweeting, and growth engagement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, reply, quote, comment, or follow from a logged-in X account. <br>
-Mitigation: Use only an account intentionally designated for automation and require manual review before any external account action. <br>
-Risk: Some workflows rely on hardcoded local helper paths and external scripts without clear account scoping. <br>
-Mitigation: Inspect and configure helper scripts and paths before use, and verify the active browser session belongs to the intended account. <br>
-Risk: Automated report-posting workflows can promote a fixed ZeeLin report URL from the user's account. <br>
-Mitigation: Confirm the report URL, generated text, and posting intent before publishing. <br>
+## Use Case:
 
+Creators and operators managing AI or Tech Twitter accounts use this skill to discover current AI topics, draft English-language tweets, publish or prepare posts, and run follow-back or quote-tweet engagement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/zeelin-twitter-x-auto-ops) <br>
-- [X platform](https://x.com) <br>
-- [Hacker News Algolia API](https://hn.algolia.com/api/v1/search?query=AI&tags=story&hitsPerPage=5) <br>
-- [THU ZeeLin Reports](https://thu-nmrc.github.io/THU-ZeeLin-Reports/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated tweet text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open browser pages and invoke local shell scripts that publish, quote, comment, or follow through a logged-in X account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill can publish or prepare posts from a user's Twitter/X account through automated workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an account intended for ZeeLin or AI promotional automation and require manual review of every final tweet before posting.
+
+Risk: The artifact calls hard-coded local publisher paths that are not bundled with this release.
+
+Mitigation: Replace external publisher paths with a bundled or integrity-checked implementation before use.
+
+Risk: Noninteractive posting and growth engagement can create unwanted account activity.
+
+Mitigation: Avoid unattended auto-posting on valued accounts and keep engagement activity within explicit, reviewed limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-twitter-x-auto-ops)
+- [X](https://x.com)
+- [Hacker News Algolia API](https://hn.algolia.com/api/v1/search?query=AI&tags=story&hitsPerPage=5)
+- [THU ZeeLin Reports](https://thu-nmrc.github.io/THU-ZeeLin-Reports/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tweet text, operational guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows open X pages, fetch public trend or report data, or call local posting helpers when executed.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

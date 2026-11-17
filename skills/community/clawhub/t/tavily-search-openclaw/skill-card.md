@@ -1,40 +1,54 @@
-## Description: <br>
-Tavily AI Search API integration for OpenClaw. Provides web search capabilities using Tavily's AI-powered search engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily AI Search API integration for OpenClaw. Provides web search capabilities using Tavily's AI-powered search engine.
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to add Tavily-powered web search to an agent, configure the required API key, and run searches with options for depth, result count, generated answers, and images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Tavily API key is required and could be exposed if copied into shared files, logs, or prompts. <br>
-Mitigation: Store the API key privately, prefer environment variables or protected configuration, and avoid including it in prompts or shared examples. <br>
-Risk: Search queries are sent to an external search provider. <br>
-Mitigation: Avoid sending secrets, regulated data, or confidential internal queries through the Tavily search API. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add Tavily-powered web search, including configurable search depth, result count, AI-generated answers, and image inclusion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/tavily-search-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, bash, and Python examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Tavily API key and the tavily-python package; search queries are sent to Tavily as the external provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill uses Tavily as an external search provider, so search queries may be sent outside the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private data, credentials, or confidential business information in search queries.
+
+Risk: The Tavily API key is required for use and could be exposed if committed, shared, or logged.
+
+Mitigation: Treat TAVILY_API_KEY as a secret and keep it out of repositories, examples with real values, and logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/skills/tavily-search-openclaw)
+- [Skill homepage](https://github.com/ryan-wuxl/tavily-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, bash, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tavily API key supplied through OpenClaw configuration or the TAVILY_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

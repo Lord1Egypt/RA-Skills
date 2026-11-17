@@ -1,45 +1,55 @@
-## Description: <br>
-Transform audio recordings into professional Markdown documentation with intelligent summaries using LLM integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio Transcriber Pro transforms audio recordings into professional Markdown documentation with intelligent summaries using LLM integration.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this skill to turn meeting, interview, lecture, or content audio into Markdown transcripts, summaries, meeting minutes, action items, and optional subtitle files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional LLM features can send sensitive transcript text to Claude CLI or GitHub Copilot under the user's existing accounts. <br>
-Mitigation: Use transcript-only local Whisper mode for confidential, regulated, or client recordings, or disable external LLM calls before deployment. <br>
-Risk: Runtime dependency installation can install transcription and terminal UI packages on the host. <br>
-Mitigation: Review installation scripts and preinstall approved dependencies in a controlled environment before enabling automatic setup. <br>
-Risk: Privacy expectations may be unclear because local transcription and optional external LLM processing are both documented. <br>
-Mitigation: State the selected processing mode before use and require user confirmation before any LLM processing of transcript text. <br>
+## Use Case:
 
+Developers, knowledge workers, and teams use this skill to transcribe audio or video recordings into Markdown reports, meeting notes, action items, and summaries.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
-- [Transcription Tools Comparison](references/tools-comparison.md) <br>
-- [Claude CLI documentation](https://docs.anthropic.com/en/docs/claude-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with timestamped transcripts, metadata tables, summaries, action items, and optional subtitle or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create transcript and meeting-minutes files; optional LLM processing can generate summaries from transcript text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Full transcript text may be sent to external AI tools when summary mode runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use transcript-only or local processing for confidential audio, and enable LLM summary mode only when external processing is acceptable.
+
+Risk: Dependency installation can add unpinned Python packages into the user's environment.
+
+Mitigation: Review the installer first and prefer an isolated virtual environment before installing or running the transcription tooling.
+
+## Reference(s):
+
+- [Audio Transcriber Pro release page](https://clawhub.ai/bingze00000/skills/audio-transcriber-pro)
+- [Transcription Tools Comparison](references/tools-comparison.md)
+- [Claude CLI documentation](https://docs.anthropic.com/en/docs/claude-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with terminal guidance and optional subtitle or structured data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates timestamped transcript and summary files; summary mode may use Claude or GitHub Copilot CLI when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

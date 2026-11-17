@@ -1,42 +1,53 @@
-## Description: <br>
-Analyze Hong Kong and A-share Chinese stocks by company name or ticker, producing multi-dimension BUY/HOLD/SELL signals with confidence scores using AkShare data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Hong Kong and A-share stocks using akshare data to produce informational BUY, HOLD, or SELL signals with confidence scores.
 
-## Publisher: <br>
-[coxlong](https://clawhub.ai/user/coxlong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coxlong](https://clawhub.ai/user/coxlong)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Hong Kong and A-share Chinese equities, search related news, and generate text, JSON, or HTML reports for informational review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated stock signals and reports could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only and require qualified human review before investment or trading decisions. <br>
-Risk: Generated reports persist under /data/stock-reports. <br>
-Mitigation: Store reports only in approved locations and remove them when they are no longer needed. <br>
-Risk: HTML reports load browser script content. <br>
-Mitigation: Open only reports that were intentionally generated from trusted inputs. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate Chinese equities by ticker or company name, retrieve market and news data, and generate informational stock-analysis outputs for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coxlong/akshare-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Plain text, JSON, Markdown guidance, shell commands, and optional self-contained HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate report directories containing structured analysis data, chart data, optional AI analysis, and rendered HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Generated HTML reports may execute untrusted report content or unverified runtime code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review report inputs before rendering, avoid untrusted ai_analysis.md or unexpected upstream data, escape HTML, add a CSP, and pin or integrity-check browser scripts.
+
+Risk: Stock signals and market data may be delayed, incomplete, or unsuitable as financial advice.
+
+Mitigation: Treat outputs as informational decision support only and verify findings against authoritative market and financial sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coxlong/skills/akshare-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML files, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create report directories containing data.json, chart_data.json, and index.html; outputs include an informational disclaimer.]
+
+## Skill Version(s):
+
+1.1.2 (source: server-resolved release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Compares 2-5 stocks or options across GBM Five Pillars scores, options metrics, technical indicators, and valuations, identifying category winners and an overall recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Side-by-side comparison of 2-5 stocks or options across GBM Five Pillars scores, options metrics, technicals, and valuations, identifying the winner by category.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-External developers, analysts, and finance-oriented agent users use this skill to compare a small set of tickers or options contracts side by side, review category winners, and get research-supporting trade ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated rankings or trade ideas may be mistaken for financial advice. <br>
-Mitigation: Use outputs as research support, verify against reliable market data, and have a qualified reviewer assess decisions before trading. <br>
-Risk: Broad comparison prompts may activate unintentionally or compare the wrong securities. <br>
-Mitigation: Use explicit ticker symbols and options details such as expiry when requesting comparisons. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to compare 2-5 stocks or options side by side across AlphaGBM scoring dimensions, options metrics, technicals, and valuation signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-compare) <br>
-- [AlphaGBM](https://alphagbm.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown comparison table with narrative recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output; no executable code, persistence, credentials, or hidden data access is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can produce stock or options recommendations that may be incomplete, outdated, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as comparison guidance only and verify financial conclusions independently before acting.
+
+Risk: Broad trigger phrases may activate the skill for general comparison requests that are not intended as finance analysis.
+
+Mitigation: Use the skill for explicit finance comparisons and confirm the tickers, instruments, and comparison scope before relying on the result.
+
+## Reference(s):
+
+- [AlphaGBM](https://alphagbm.com)
+- [ClawHub Skill Page](https://clawhub.ai/clementgu/skills/alphagbm-compare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison summary with tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include category winners, composite ranking, key differentiators, and trade ideas for 2-5 tickers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

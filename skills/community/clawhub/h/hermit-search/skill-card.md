@@ -1,40 +1,54 @@
-## Description: <br>
-Local semantic search over knowledge base collections powered by Hermit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local semantic search over knowledge base collections powered by Hermit.
 
-## Publisher: <br>
-[xxxgqcoder](https://clawhub.ai/user/xxxgqcoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xxxgqcoder](https://clawhub.ai/user/xxxgqcoder)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to install and operate Hermit for local semantic search across selected knowledge base folders, including collection management, indexing, querying, and service lifecycle tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexing broad folders can place private or sensitive files into local search collections. <br>
-Mitigation: Index narrow, dedicated folders and configure ignore rules for secrets, private files, generated files, and irrelevant file types. <br>
-Risk: The workflow depends on installing and running the upstream Hermit tool and a local service. <br>
-Mitigation: Install only when the upstream Hermit project is trusted, review the configured collections before use, and stop the local service when work is complete. <br>
+## Use Case:
 
+Developers and knowledge-base users use this skill to install Hermit, manage local collections, index folders, and query documents with semantic search.
 
-## Reference(s): <br>
-- [Hermit project homepage](https://github.com/xxxgqcoder/hermit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hermit commands documented by the skill return JSON when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The install path runs mutable third-party code and downloads unverified model assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted Hermit source, prefer a pinned commit or signed release, and verify model sources where possible.
+
+Risk: Indexing broad local folders can expose credentials, private keys, tokens, browser profiles, or unrelated sensitive files.
+
+Mitigation: Index only specific intended folders and configure ignore rules before adding a collection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xxxgqcoder/skills/hermit-search)
+- [Hermit homepage](https://github.com/xxxgqcoder/hermit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hermit CLI commands return JSON, with optional pretty formatting.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

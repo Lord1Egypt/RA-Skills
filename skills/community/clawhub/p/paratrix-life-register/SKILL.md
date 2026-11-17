@@ -1,7 +1,7 @@
 ---
-name: paratrix-life-register
-description: Automate Paratrix Life registration and SBT minting on the Karpak Living Map. Activate when user asks to register/mint an SBT.
-version: 1.0.4
+name: karpak-life-register
+description: Automate Karpak Life registration and SBT minting on the Karpak Living Map. Activate when user asks to register/mint an SBT.
+version: 1.0.6
 platforms: [macos, linux]
 user-invocable: false
 metadata:
@@ -15,16 +15,16 @@ metadata:
     requires_toolsets: [terminal]
 ---
 
-# Paratrix Life — Registration + Mint Skill
+# Karpak Life — Registration + Mint Skill
 
-Automate the full flow: **wallet connect → paratrix-life registration → SBT mint**.
+Automate the full flow: **wallet connect → karpak-life registration → SBT mint**.
 Zero external dependencies — uses Node.js built-in modules + browser bridge for wallet interactions.
 
 ## Trigger
 
 Activate when the user's message contains any of:
-- `PARATRIX-LIFE`
-- `paratrix-life`
+- `KARPAK-LIFE`
+- `karpak-life`
 - Explicit request to register on the Living Map or mint an SBT
 
 ## How It Works
@@ -46,7 +46,7 @@ No Puppeteer/Playwright required. No external npm packages needed.
 | **testnet** | `https://devnet-lifestyle-api.karpak.xyz` | `https://devnet.paratrix-sbt.pages.dev` | BSC Testnet (97) |
 | **mainnet** | `https://lifestyle-api.karpak.xyz` | `https://sbt.karpak.xyz` | BSC Mainnet (56) |
 
-Default: **testnet** unless user specifies mainnet.
+**--env is required** — always pass `--env=testnet` or `--env=mainnet`. If the user doesn't specify an environment, ask them which one before running.
 
 ## Parameter Extraction (MANDATORY)
 
@@ -63,14 +63,14 @@ Extract them from natural language and map to CLI flags:
 
 **If the user provides a parameter, you MUST pass it. Never silently drop user-provided values.**
 
-If a parameter is NOT provided by the user, omit the flag entirely — the script will auto-generate nicknames/twitter or use sensible defaults.
+If a parameter is NOT provided by the user, omit the flag entirely — the script will auto-generate nicknames/twitter. **Exception: `--env` is always required — if the user doesn't specify, ask them (testnet or mainnet) before running.**
 
 ### Extraction Examples
 
 User says:
-> paratrix-life-register
+> karpak-life-register
 >
-> Please register my wallet on Paratrix Life and mint the Soulbound Token.
+> Please register my wallet on Karpak Life and mint the Soulbound Token.
 >
 > Registration details:
 >
@@ -83,13 +83,13 @@ User says:
 
 You run:
 ```bash
-node {{SKILL_DIR}}/register-and-mint.mjs --nickname=test --twitter=abc --identity=IDENTITY_TYPE_AGENT --env=testnet
+node ${HERMES_SKILL_DIR}/register-and-mint.mjs --nickname=test --twitter=abc --identity=IDENTITY_TYPE_AGENT --env=testnet
 ```
 
 User says:
-> paratrix-life-register
+> karpak-life-register
 >
-> Please register my wallet on Paratrix Life and mint the Soulbound Token.
+> Please register my wallet on Karpak Life and mint the Soulbound Token.
 >
 > Registration details:
 >
@@ -101,15 +101,15 @@ User says:
 
 You run:
 ```bash
-node {{SKILL_DIR}}/register-and-mint.mjs --nickname=test --twitter=abc --identity=IDENTITY_TYPE_AGENT --env=mainnet
+node ${HERMES_SKILL_DIR}/register-and-mint.mjs --nickname=test --twitter=abc --identity=IDENTITY_TYPE_AGENT --env=mainnet
 ```
 
 User says:
-> paratrix-life-register, nickname: alice, identity: HUMAN, env: mainnet
+> karpak-life-register, nickname: alice, identity: HUMAN, env: mainnet
 
 You run:
 ```bash
-node {{SKILL_DIR}}/register-and-mint.mjs --nickname=alice --identity=IDENTITY_TYPE_HUMAN --env=mainnet
+node ${HERMES_SKILL_DIR}/register-and-mint.mjs --nickname=alice --identity=IDENTITY_TYPE_HUMAN --env=mainnet
 ```
 
 ## Execution
@@ -117,24 +117,20 @@ node {{SKILL_DIR}}/register-and-mint.mjs --nickname=alice --identity=IDENTITY_TY
 Construct the CLI command from extracted parameters and run:
 
 ```bash
-node {{SKILL_DIR}}/register-and-mint.mjs [OPTIONS]
+node ${HERMES_SKILL_DIR}/register-and-mint.mjs [OPTIONS]
 ```
 
-> **Path Resolution:** `{{SKILL_DIR}}` resolves to the skill's installed directory:
-> - OpenClaw: `~/.openclaw/workspace/skills/paratrix-life-register`
-> - Hermes: `~/.hermes/skills/paratrix-life-register`
->
-> If `{{SKILL_DIR}}` is not supported, use the appropriate path above for your platform.
+> **Path Resolution:** `${HERMES_SKILL_DIR}` is automatically replaced with the skill's absolute directory at load time.
 
 ### Full Flag Reference
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--nickname=NAME` | Auto-generated (`openclaw_XXXXXXXX`) | Display name on paratrix-life |
+| `--nickname=NAME` | Auto-generated (`karpak_agent_XXXXXXXX`) | Display name on karpak-life |
 | `--identity=TYPE` | `IDENTITY_TYPE_HUMAN` | `IDENTITY_TYPE_HUMAN` or `IDENTITY_TYPE_AGENT` |
 | `--twitter=USER` | Auto-generated | Twitter username for SBT (no @) |
 | `--wallet=0x...` | (via bridge) | Skip wallet connect step |
-| `--env=testnet\|mainnet` | `testnet` | Target environment |
+| `--env=testnet\|mainnet` | *(required)* | Target environment |
 
 ## Flow Diagram
 
@@ -197,7 +193,7 @@ ACCOUNT_STATUS_ACTIVE → done
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `KARPAK_ENV` | `testnet` | Target environment |
+| `KARPAK_ENV` | — | Target environment (alternative to `--env`) |
 | `KARPAK_NICKNAME` | (auto) | Default nickname |
 | `KARPAK_IDENTITY` | `IDENTITY_TYPE_HUMAN` | Identity type |
 | `KARPAK_TWITTER` | (auto) | Default Twitter handle |

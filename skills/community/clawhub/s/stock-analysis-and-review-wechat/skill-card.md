@@ -1,48 +1,67 @@
-## Description: <br>
-Helps personal investors review A-share, Hong Kong, and U.S. stock holdings, fetch market data, calculate portfolio profit and loss, format review reports, configure scheduled OpenClaw tasks, and prepare WeChat delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language workflow for stock market review, portfolio profit and loss checks, position-building evaluation, financial-news review, scheduled OpenClaw tasks, and WeChat report delivery.
 
-## Publisher: <br>
-[cavillie-crypto](https://clawhub.ai/user/cavillie-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cavillie-crypto](https://clawhub.ai/user/cavillie-crypto)
 
-## Use Case: <br>
-External users and personal investors use this skill to generate daily post-market portfolio reviews, assess buy or add-position conditions, summarize market context, and send concise reports through WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process private portfolio details and send recurring reports to WeChat. <br>
-Mitigation: Confirm report contents, destination account, and WeChat delivery configuration with harmless test messages before enabling automation. <br>
-Risk: Scheduled market reports may keep running after they are no longer needed. <br>
-Mitigation: Review cron schedules regularly and remove automated tasks when reports are no longer required. <br>
-Risk: Stock analysis output may be incomplete, stale, or unsuitable as investment advice. <br>
-Mitigation: Treat generated reviews as decision support only and verify market data, assumptions, and trade decisions independently. <br>
+## Use Case:
 
+External users and personal investors use this skill to produce daily stock-review reports, monitor holdings, evaluate buy or sell conditions, and send concise reports through WeChat. Developers can also use the included scripts and references as examples for Tencent/Sina market data retrieval, portfolio-report formatting, OpenClaw cron scheduling, and WeChat delivery setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cavillie-crypto/stock-analysis-and-review-wechat) <br>
-- [Position building guide](references/position_building.md) <br>
-- [Technical guide](references/technical_guide.md) <br>
-- [WeChat push guide](references/wechat_push.md) <br>
-- [Tencent Finance quote API](https://qt.gtimg.cn/) <br>
-- [Sina Finance quote API](https://hq.sinajs.cn/) <br>
-- [OpenClaw cron documentation](https://docs.openclaw.ai/cron) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON configuration, Python helper output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include scheduled task setup, WeChat-friendly report formatting, and portfolio review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Recurring OpenClaw cron tasks may repeatedly process portfolio data and send reports after the user no longer needs monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each task name, schedule, target agent, and report cadence before enabling automation; prefer one-time reports unless recurring monitoring is intentional, and remove stale tasks.
+
+Risk: Reports may be sent to the wrong WeChat recipient or account if delivery fields are misconfigured.
+
+Mitigation: Verify the WeChat recipient, account ID, plugin authorization, and delivery mode before enabling scheduled delivery or sending a report.
+
+Risk: Automated reviews may update memory with stale or incorrect portfolio state.
+
+Mitigation: Review memory-write behavior and validate holdings, prices, and alert thresholds before allowing the workflow to update persistent notes.
+
+Risk: Stock review output can be mistaken for investment advice.
+
+Mitigation: Treat the generated analysis as decision-support material only and require human review before trading or portfolio changes.
+
+## Reference(s):
+
+- [Position Building Reference](references/position_building.md)
+- [Stock Review Technical Guide](references/technical_guide.md)
+- [WeChat Push Integration Guide](references/wechat_push.md)
+- [Tencent Finance API](https://qt.gtimg.cn/)
+- [Sina Finance API](https://hq.sinajs.cn/)
+- [Eastmoney](https://www.eastmoney.com/)
+- [OpenClaw Cron Documentation](https://docs.openclaw.ai/cron)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON examples, Python code, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include market data, portfolio calculations, cron task commands, WeChat delivery configuration, and investment-risk reminders.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

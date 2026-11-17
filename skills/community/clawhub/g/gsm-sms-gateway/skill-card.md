@@ -1,46 +1,61 @@
-## Description: <br>
-Send and receive SMS messages through a self-hosted SMS Gateway running on a USB GSM modem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive SMS messages through a self-hosted SMS Gateway running on a USB GSM modem.
 
-## Publisher: <br>
-[mattboston](https://clawhub.ai/user/mattboston) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mattboston](https://clawhub.ai/user/mattboston)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent send allowlisted SMS messages and check received SMS messages through a local, self-hosted GSM modem gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real SMS messages through the configured gateway. <br>
-Mitigation: Confirm the recipient and message text before sending, and keep the allowlist limited to approved contacts. <br>
-Risk: Checking unread messages marks displayed messages as read. <br>
-Mitigation: Run receive commands only when it is acceptable to change unread message state, and communicate that side effect to users. <br>
-Risk: The gateway API key grants access to SMS operations. <br>
-Mitigation: Store SMS_GATEWAY_API_KEY with restrictive permissions or in a secret manager, and do not expose it in agent responses. <br>
-Risk: The upstream installer configures a self-hosted service on the user's machine or device. <br>
-Mitigation: Review the upstream installer and trust the self-hosted SMS Gateway service before installing or upgrading. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to let an agent send SMS messages to allowlisted phone numbers and review incoming messages through a locally hosted GSM modem gateway.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mattboston/gsm-sms-gateway) <br>
-- [SMS Gateway README](https://github.com/mattboston/sms-gateway/blob/main/openclaw/README.md) <br>
-- [SMS Gateway Repository](https://github.com/mattboston/sms-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON/text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, SMS_GATEWAY_API_KEY, and a configured allowlist. Receiving unread messages marks displayed messages as read.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata) <br>
+Risk: The setup path includes running an unpinned remote installer with root privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use and prefer a pinned release with a verified checksum or signature.
+
+Risk: The SMS gateway API key can authorize message access or sending if exposed.
+
+Mitigation: Store the key outside shared or synced workspaces where possible and restrict access to the local gateway environment.
+
+Risk: Checking messages prints SMS contents and marks unread messages as read.
+
+Mitigation: Use the receive command only when the user expects message contents to be displayed and read state to change.
+
+Risk: A non-local gateway over plain HTTP can expose SMS traffic and API credentials.
+
+Mitigation: Use HTTPS for any gateway that is not strictly local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mattboston/skills/gsm-sms-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Send operations return status text and JSON from the gateway; receive operations print message metadata and bodies, then mark unread messages as read.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

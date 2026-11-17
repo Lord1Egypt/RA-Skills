@@ -1,46 +1,61 @@
-## Description: <br>
-Performs a three-part customer compliance background check covering OFAC sanctions name and address searches, BIS/eCFR restricted-address keyword checks, and a drafted internal export-data follow-up message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a preliminary customer compliance background check by guiding OFAC sanctions searches, BIS/ECFR address keyword checks, and drafting an internal export-data coordination request.
 
-## Publisher: <br>
-[kittymi](https://clawhub.ai/user/kittymi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kittymi](https://clawhub.ai/user/kittymi)
 
-## Use Case: <br>
-Employees use this skill to run an initial customer compliance screen, document OFAC and eCFR lookup results, flag possible matches for manual review, and draft a Dora or Shellen follow-up request for export-data checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer names and address keywords are entered into public government lookup pages. <br>
-Mitigation: Use only customer information the user is comfortable querying publicly, and make clear which keywords were searched. <br>
-Risk: No-result lookup pages can be mistaken for a final compliance clearance. <br>
-Mitigation: Treat results as an initial screen only, report the exact lookup terms used, and avoid absolute compliance conclusions. <br>
-Risk: Possible OFAC or eCFR matches may be false positives or require context outside the page result. <br>
-Mitigation: Record candidate names, addresses, scores, and nearby context, then require manual review for any possible match. <br>
-Risk: A drafted follow-up message could be sent before the user has checked it. <br>
-Mitigation: Confirm explicitly before sending any message to Dora, Shellen, or another recipient, and do not invent export-data conclusions. <br>
+## Use Case:
 
+Employees or compliance operators use this skill to perform an initial customer sanctions and blacklist screening workflow, summarize unresolved matches, and prepare a coordination message for export-data review. It supports triage and documentation, not final legal or compliance determinations.
 
-## Reference(s): <br>
-- [OFAC Sanctions List Search](https://sanctionssearch.ofac.treas.gov/) <br>
-- [eCFR Supplement No. 4 to Part 744](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-744/appendix-Supplement%20No.%204%20to%20Part%20744) <br>
-- [Customer Background Check Checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with lookup findings, review notes, and drafted follow-up message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes actual search keywords, whether follow-up retries were attempted, and manual-review status for possible matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Potential OFAC or ECFR matches can be false positives or incomplete due to keyword choice and source-page behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review candidate names, addresses, entity types, scores, and page context manually before treating any result as a compliance finding.
+
+Risk: The drafted Dora or Shellen coordination message may be sent before export-data facts are verified.
+
+Mitigation: Require user confirmation before sending the message and keep the result labeled as a request or draft until a human response is received.
+
+Risk: A no-result search can be mistaken for a final compliance clearance.
+
+Mitigation: Frame clean searches as preliminary non-matches for the tested keywords and keep information gaps visible in the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kittymi/skills/customer-background-check)
+- [Publisher profile](https://clawhub.ai/user/kittymi)
+- [OFAC Sanctions List Search](https://sanctionssearch.ofac.treas.gov/)
+- [ECFR Supplement No. 4 to Part 744](https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-744/appendix-Supplement%20No.%204%20to%20Part%20744)
+- [Customer background check quick checklist](references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with screening results, open questions, and a drafted coordination message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires manual review of potential OFAC or ECFR matches and user confirmation before any drafted message is sent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

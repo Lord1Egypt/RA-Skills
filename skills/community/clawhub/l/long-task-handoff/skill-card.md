@@ -1,42 +1,55 @@
-## Description: <br>
-Long Task Handoff helps agents create, update, recover, and validate concise Markdown handoff packets for long-running work when context compaction or session transfer occurs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Task Handoff provides an ultra-light automatic handoff manager for long-running agent sessions at context-boundary moments.
 
-## Publisher: <br>
-[hollis9087](https://clawhub.ai/user/hollis9087) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis9087](https://clawhub.ai/user/hollis9087)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve restart-critical task state during long coding or analysis sessions. It creates or refreshes handoff files with current goals, changed state, test status, next actions, risks, and recovery instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handoff files persist local task context, file paths, branch state, and summaries of user instructions. <br>
-Mitigation: Review generated handoffs before committing or sharing a repository, and remove sensitive or unnecessary context. <br>
-Risk: The skill writes handoff artifacts into the workspace or a temporary location during long tasks. <br>
-Mitigation: Install it only where persistent handoff files are desired, and keep the generated files within the intended workspace boundary. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve restart-critical state during context compaction, session transfer, or recovery from an active handoff signal. It helps agents create, update, recover, and validate concise Markdown handoff packets without turning them into project documentation.
 
-## Reference(s): <br>
-- [Long Task Handoff Protocol Reference](artifact/references/protocol.md) <br>
-- [Secret Pattern Validation Rules](artifact/references/secret-patterns.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hollis9087/long-task-handoff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown handoff files with JSON command responses and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped handoff files and an ACTIVE.md pointer in the workspace or temporary location when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.6 (source: ClawHub release evidence) <br>
+Risk: The handoff manager can follow untrusted handoff paths and may write outside the intended workspace in some cases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted workspaces, inspect handoffs/ACTIVE.md and the handoffs directory for symlinks or external paths, and require strict workspace containment and pre-write validation before low-risk automation use.
+
+Risk: Handoff content may accidentally include secrets or sensitive workspace details if passed into handoff fields.
+
+Mitigation: Do not pass secrets into handoff fields; review generated handoffs and use the bundled validation behavior before relying on the handoff.
+
+## Reference(s):
+
+- [Long Task Handoff Protocol Reference](references/protocol.md)
+- [Secret Pattern Rules](references/secret-patterns.json)
+- [ClawHub Skill Page](https://clawhub.ai/hollis9087/skills/long-task-handoff)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown handoff files, JSON command results, and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes restart handoff files and ACTIVE.md pointers in the workspace or configured handoff directory.]
+
+## Skill Version(s):
+
+0.3.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

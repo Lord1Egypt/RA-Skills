@@ -1,42 +1,56 @@
-## Description: <br>
-Connects an agent to Wolai's MCP API so it can search, read, create, update, and delete Wolai notes, pages, blocks, and databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wolai MCP skill for operating Wolai notes, including blocks, pages, search, and database workflows through the MCP protocol.
 
-## Publisher: <br>
-[cizixiu](https://clawhub.ai/user/cizixiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cizixiu](https://clawhub.ai/user/cizixiu)
 
-## Use Case: <br>
-External users and developers use this skill to let an assistant operate their Wolai workspace through MCP. It supports note workflows such as searching pages, reading outlines or sections, creating pages and blocks, updating content, and deleting pages or blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Wolai MCP token could be exposed to chat or logs if copied into an assistant conversation. <br>
-Mitigation: Configure WOLAI_MCP_TOKEN manually in the local environment or a secure credential store, and rotate the token if it may have been shared. <br>
-Risk: The skill can perform destructive Wolai operations, including deletes. <br>
-Mitigation: Confirm destructive operations, especially permanent deletes, before executing them. <br>
+## Use Case:
 
+Developers and Wolai users use this skill to let an agent read, search, create, update, and delete Wolai pages and blocks through Wolai's MCP endpoint.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cizixiu/wolai-mcp-skill) <br>
-- [Wolai](https://www.wolai.com) <br>
-- [Wolai MCP endpoint](https://api.wolai.com/v1/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with PowerShell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WOLAI_MCP_TOKEN to be configured outside chat; generated actions may read, create, update, or delete Wolai content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: server release metadata; artifact frontmatter reports 1.3.1) <br>
+Risk: Users may expose their Wolai access token in chat while trying to configure the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure WOLAI_MCP_TOKEN manually through the operating system environment or a secure secret store, and revoke any token that was shared in chat.
+
+Risk: A valid Wolai token can give the assistant-driven workflow broad access to read, write, delete, and permanently delete Wolai notes.
+
+Mitigation: Use the narrowest Wolai token available, review requested operations before execution, and avoid permanent delete operations unless explicitly intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cizixiu/skills/wolai-mcp-skill)
+- [Publisher profile](https://clawhub.ai/user/cizixiu)
+- [Wolai](https://www.wolai.com)
+- [Wolai MCP endpoint](https://api.wolai.com/v1/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided WOLAI_MCP_TOKEN environment variable for Wolai API access.]
+
+## Skill Version(s):
+
+1.3.4 (source: server release metadata; artifact frontmatter reports 1.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

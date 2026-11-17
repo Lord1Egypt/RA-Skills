@@ -1,0 +1,11 @@
+{
+  "name": "codemap",
+  "tagline": "One-lookup code-symbol index for agents.",
+  "description": "Builds a compact local SQLite map of every function, class, method, interface and type across your repos. Turns 'where is X / what's its signature' into a single file:line lookup instead of a tree-wide grep plus whole-file read. Pure Python standard library — no network, no model, no dependencies. Indexes Python and JS/TS/JSX/TSX.",
+  "category": "developer-tools",
+  "tags": ["code-search", "symbols", "sqlite", "agents", "context-efficiency", "python", "typescript"],
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://workloft.ai/labs",
+  "support_url": "https://workloft.ai"
+}

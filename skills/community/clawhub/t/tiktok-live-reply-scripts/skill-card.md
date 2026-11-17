@@ -1,43 +1,58 @@
-## Description: <br>
-Handle TikTok Live sales objections in real time with structured reply strategies, risk-safe phrasing, and conversion-focused response sequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle TikTok Live sales objections in real time with structured reply strategies, risk-safe phrasing, and conversion-focused response sequences.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External TikTok Shop live hosts and moderators use this skill to diagnose buyer objections, draft live-safe replies, and build follow-up response sequences for price, trust, fit, shipping, urgency, quality, and social-proof concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated live replies could include inaccurate claims, unsupported guarantees, or policy-sensitive language. <br>
-Mitigation: Review replies against provided product facts, offer terms, proof points, and TikTok policy requirements before using them live. <br>
-Risk: Conversion-focused scripts can become overly pressuring or misleading if buyer hesitation is handled aggressively. <br>
-Mitigation: Prefer trust-building, clarity, safer alternative phrasing, and recommendations to collect proof when evidence is missing. <br>
-Risk: The artifact states CC BY-NC-SA 4.0 non-commercial terms and requires a separate Razestar license for commercial use. <br>
-Mitigation: Confirm license rights and attribution requirements before public or commercial deployment. <br>
+## Use Case:
 
+TikTok Shop live hosts and moderators use this skill to diagnose buyer objections and draft live-safe reply packs, escalation ladders, and training loops for live commerce sessions.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/tiktok-live-reply-scripts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces objection diagnosis, reply variants, escalation ladders, fallback close scripts, and a 7-day live training loop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated sales replies could include inaccurate product facts, offer terms, shipping promises, guarantees, or proof claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide accurate product facts and offer terms, then review generated replies before using them live.
+
+Risk: Live sales phrasing could become manipulative or policy-sensitive if unsupported claims or pressure language are used.
+
+Mitigation: Use the skill's claim checks, avoid pressure language, and replace policy-risk phrases with safer alternatives.
+
+Risk: Business use may conflict with the included non-commercial license terms.
+
+Mitigation: Confirm licensing before business use and obtain a separate commercial license from Razestar when required.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/tiktok-live-reply-scripts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables and structured bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes objection diagnosis, reply variants, escalation ladder, and a 7-day live training loop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

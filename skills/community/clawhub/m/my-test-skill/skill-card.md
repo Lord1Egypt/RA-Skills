@@ -1,43 +1,55 @@
-## Description: <br>
-Intelligent code security scanner with hybrid local-cloud detection that fingerprints packages, runs static behavioral analysis, and consults cloud threat intelligence for confidence scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent code security scanner with hybrid local-cloud detection that fingerprints packages, runs static behavioral analysis, and consults cloud threat intelligence for confidence scoring.
 
-## Publisher: <br>
-[jinxiaotian1](https://clawhub.ai/user/jinxiaotian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinxiaotian1](https://clawhub.ai/user/jinxiaotian1)
 
-## Use Case: <br>
-Developers and engineers use this skill to vet third-party code packages before installation. It produces a safety score, threat labels, and review guidance based on package fingerprints, static behavior tags, and optional cloud threat intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Matched scan evidence is sent to as.dun.163.com by default. <br>
-Mitigation: Install only when the publisher is trusted; set YIDUN_SKILL_SEC_CLOUD=false before scanning private, regulated, or proprietary code. <br>
-Risk: The server release name is my-test-skill, but artifact files identify the skill as yidun-skill-sec. <br>
-Mitigation: Verify the release identity and publisher before relying on the skill's security verdicts. <br>
+## Use Case:
 
+Developers and engineers use this skill to vet third-party code packages before installation by producing security scores, behavior tags, and install guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinxiaotian1/my-test-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/jinxiaotian1) <br>
-- [Yidun cloud threat intelligence endpoint](https://as.dun.163.com/v1/agent-sec/skill/check) <br>
-- [ClawHub ecosystem](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a numeric safety score, threat labels, source-vetting results, local behavioral findings, and cloud-intelligence status when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release and artifact frontmatter) <br>
+Risk: The skill sends source-derived evidence to NetEase Yidun cloud analysis by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For private repositories, proprietary packages, or code that may contain secrets, set YIDUN_SKILL_SEC_CLOUD=false before use or avoid the skill until cloud submission is opt-in.
+
+Risk: Documentation does not reliably prove that extracted snippets cannot include sensitive material.
+
+Mitigation: Review scanner output and payload handling before using the skill on sensitive code, and prefer test packages or local-only mode until stronger redaction and payload review are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinxiaotian1/skills/my-test-skill)
+- [Publisher profile](https://clawhub.ai/user/jinxiaotian1)
+- [ClawHub ecosystem](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown scan reports with scores, behavior tags, and suggested install decisions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and openssl; cloud threat intelligence is enabled by default and can be disabled with YIDUN_SKILL_SEC_CLOUD=false.]
+
+## Skill Version(s):
+
+0.0.1 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Enable and configure Moltbot/Clawdbot memory search for persistent context, including memorySearch configuration, MEMORY.md, daily logs, and vector search setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables and configures Moltbot/Clawdbot memory search with guidance for MEMORY.md, daily logs, provider setup, and troubleshooting.
 
-## Publisher: <br>
-[Gwsq](https://clawhub.ai/user/Gwsq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gwsq](https://clawhub.ai/user/gwsq)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure persistent memory search for Moltbot/Clawdbot agents, organize workspace memory files, and troubleshoot memory recall behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Memory indexing can expose secrets, credentials, regulated data, or sensitive personal details if those values are stored in memory files or indexed sessions. <br>
-Mitigation: Keep sensitive data out of indexed memory sources; use the local embedding provider for sensitive work, or review remote provider data-handling terms before enabling Voyage or OpenAI embeddings. <br>
-Risk: Incorrect memory configuration can produce missing or irrelevant recall results. <br>
-Mitigation: Verify memorySearch is enabled, restart the gateway after configuration changes, confirm MEMORY.md exists, and tune minScore or maxResults when results are too narrow or noisy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Gwsq/memory-setup-1-0-0) <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up persistent memory search for Moltbot/Clawdbot agents, including configuration, workspace memory structure, daily logs, and troubleshooting.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides step-by-step setup, verification, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Memory and session indexing can expose private, confidential, regulated, or credential-bearing content to the selected embedding provider.
+
+Mitigation: Review what will be indexed before installation, avoid storing secrets or regulated data, and use an approved provider and retention policy.
+
+Risk: The default guidance recommends remote embedding providers for memory search, which may not fit sensitive workflows.
+
+Mitigation: Prefer the local provider or memory-only sources when handling sensitive work or when provider approval is not established.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwsq/skills/memory-setup-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON configuration examples, shell commands, and file structure examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup and troubleshooting guidance; does not execute commands directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

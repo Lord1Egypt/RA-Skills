@@ -1,43 +1,58 @@
-## Description: <br>
-Provides a three-layer persistent memory system for AI agents, with core, archival, and recall memory for context continuity across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system for AI agents inspired by Letta/MemGPT, using Core, Archival, and Recall layers so agents can remember user preferences, context, decisions, and prior sessions.
 
-## Publisher: <br>
-[renateparma](https://clawhub.ai/user/renateparma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[renateparma](https://clawhub.ai/user/renateparma)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give agents durable memory for user preferences, project context, decisions, and recurring maintenance across sessions. It is suited for agents that need continuity, not for simple question answering with no persistence need. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain personal details, session history, or sensitive context beyond the original conversation. <br>
-Mitigation: Use the skill only in workspaces where durable memory is intended, avoid storing health data, secrets, or credential references, and maintain a clear process to inspect, edit, and delete saved memory. <br>
-Risk: Session synchronization can read OpenClaw session transcripts from workspace, home, or OPENCLAW_STATE_DIR locations and create a shared session index. <br>
-Mitigation: Review or disable session-sync before use, set workspace and state directories deliberately, and run dry-run modes first where available. <br>
-Risk: Memory maintenance scripts can write or reorganize files in memory/ and memory/archival/. <br>
-Mitigation: Run maintenance commands with dry-run first, review proposed changes, and keep backups or version control for memory files that matter. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent, file-backed memory to OpenClaw, Claude Code, Codex, or generic agents. It supports session-start context loading, user-requested memory updates, archival notes, and periodic memory maintenance.
 
-## Reference(s): <br>
-- [Integration Guide](references/integration.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/renateparma/memoria-persistente-agentes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, file templates, and Python utility scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and maintains workspace memory files under memory/ and memory/archival/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Durable local memory can retain sensitive personal context longer than a single session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets, medication details, or other sensitive personal data in memory files; review memory contents before enabling broad reuse.
+
+Risk: Session synchronization can index all sessions visible to the configured OpenClaw account.
+
+Mitigation: Run session-sync.py only when that scope is intended and approved, and limit access to the account and workspace being indexed.
+
+Risk: Automated heartbeat or cron maintenance can update memory without direct per-entry review.
+
+Mitigation: Avoid enabling the cron job until review and approval controls are in place.
+
+## Reference(s):
+
+- [Letta Memory Integration Guide](references/integration.md)
+- [ClawHub release page](https://clawhub.ai/renateparma/skills/memoria-persistente-agentes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may create or update local memory Markdown files and JSON session indexes when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

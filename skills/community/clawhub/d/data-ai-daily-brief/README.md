@@ -320,7 +320,6 @@ The built-in configuration covers:
 
 ## ❤️ Support This Project
 
-If this project helps you, consider [becoming a sponsor](https://github.com/sponsors/haiyangchenbj). Your support keeps it maintained and improved.
 
 ## 🤝 Contributing
 

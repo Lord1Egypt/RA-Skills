@@ -1,49 +1,64 @@
-## Description: <br>
-Read, manage, share, upload, and download OneDrive files via Microsoft Graph API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, manage, share, upload, and download OneDrive files via the Microsoft Graph API.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trendex](https://clawhub.ai/user/trendex)
 
-## Use Case: <br>
-Developers and operators use this skill to give an agent command-line access to OneDrive, OneDrive for Business, and SharePoint document libraries for browsing, file transfer, metadata inspection, sharing, and permission management through Microsoft Graph. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad Microsoft Graph permissions and persistent OAuth credentials that can provide read/write access to OneDrive and SharePoint content. <br>
-Mitigation: Use a dedicated Microsoft app registration, grant the narrowest scopes that fit the task, isolate the runtime, protect ~/.onedrive-mcp/config.json and credentials.json, and revoke the app or refresh tokens when no longer needed. <br>
-Risk: Commands can delete, move, upload, share, invite, revoke, or target non-default drives. <br>
-Mitigation: Review the exact command, drive prefix, item identifiers, recipients, and sharing scope before execution; prefer read-only or test accounts for exploration. <br>
-Risk: The bootstrap path can make unrelated host-level changes. <br>
-Mitigation: Avoid the bootstrap script unless those changes are acceptable, or remove the openclaw process stop, /root permission change, and bashrc edit before use. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Microsoft OneDrive and SharePoint document libraries through Microsoft Graph shell tooling, including file operations, sharing, permissions, drive targeting, and token management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/trendex/trendex-onedrive) <br>
-- [Microsoft Graph OneDrive overview](https://learn.microsoft.com/en-us/graph/api/resources/onedrive) <br>
-- [DriveItem resource](https://learn.microsoft.com/en-us/graph/api/resources/driveitem) <br>
-- [Large file upload](https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession) <br>
-- [Sharing concepts](https://learn.microsoft.com/en-us/graph/api/resources/sharing) <br>
-- [Microsoft Graph OneDrive API Reference](references/api-reference.md) <br>
-- [OAuth Scopes and Permissions](references/permissions.md) <br>
-- [OneDrive Manual Setup Guide](references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, code, text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can read, create, modify, delete, share, invite, revoke, upload, and download cloud files according to the configured Microsoft Graph token and scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses broad Microsoft Graph access for OneDrive and SharePoint read, write, delete, and sharing operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reduced Microsoft Graph scopes where possible, prefer a dedicated account, and review commands before running actions that modify or share files.
+
+Risk: Access tokens, refresh tokens, and client secrets are handled by shell commands and local credential files.
+
+Mitigation: Keep credential files private, avoid printing or passing live tokens in logged shells, and do not set live tokens through unsafe environment or command history patterns.
+
+Risk: The bootstrap path performs host setup while handling live credentials.
+
+Mitigation: Avoid the bootstrap script on shared or production hosts; run setup in an isolated environment and review host changes before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trendex/skills/trendex-onedrive)
+- [Microsoft Graph OneDrive overview](https://learn.microsoft.com/en-us/graph/api/resources/onedrive)
+- [DriveItem resource](https://learn.microsoft.com/en-us/graph/api/resources/driveitem)
+- [Large file upload](https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession)
+- [Sharing concepts](https://learn.microsoft.com/en-us/graph/api/resources/sharing)
+- [API reference](references/api-reference.md)
+- [Permissions](references/permissions.md)
+- [Setup guide](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands perform Microsoft Graph requests using configured OAuth tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

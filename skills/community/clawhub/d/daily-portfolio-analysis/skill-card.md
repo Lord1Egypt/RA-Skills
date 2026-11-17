@@ -1,44 +1,55 @@
-## Description: <br>
-Daily Portfolio Analysis helps an agent combine holdings across brokerage accounts, fetch current prices and exchange rates, and produce a portfolio allocation and daily-change report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily portfolio analysis reports by merging brokerage holdings, fetching current prices and exchange rates, and summarizing allocation, daily movement, country, and industry exposure.
 
-## Publisher: <br>
-[shengbinxu](https://clawhub.ai/user/shengbinxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shengbinxu](https://clawhub.ai/user/shengbinxu)
 
-## Use Case: <br>
-External users and agents use this skill to summarize personal investment holdings, compare account allocation, and generate scheduled or conversational portfolio reports. It is intended for users who understand the sensitivity of their brokerage data and can review any report-push configuration before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive financial holdings and generated portfolio summaries. <br>
-Mitigation: Store portfolio configuration and generated reports in a private workspace, avoid sharing brokerage screenshots unless necessary, and review outputs before forwarding them. <br>
-Risk: Reports may be sent to Feishu without clear opt-in or prominent disclosure. <br>
-Mitigation: Confirm the Feishu notification configuration before use, disable report push behavior if it is not required, and verify the destination before sending any report. <br>
-Risk: Market prices and exchange rates are fetched from external services and may be unavailable or stale. <br>
-Mitigation: Treat generated analysis as informational, check important values against authoritative brokerage or market data sources, and review cached or fallback exchange-rate behavior. <br>
+## Use Case:
 
+External users and personal finance operators use this skill to consolidate brokerage account holdings and generate a scheduled or conversational portfolio report. The report includes current prices, exchange rates, allocation percentages, daily gains or losses, and country and industry breakdowns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shengbinxu/daily-portfolio-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/shengbinxu) <br>
-- [Futu OpenD documentation](https://openapi.futunn.com/futu-api-doc/opend/opend-cmd.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown-style portfolio report text with tables, plus JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include sensitive holdings, market values, allocation percentages, and daily performance changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can send sensitive holdings reports to Feishu without clear per-run consent or visible destination controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Feishu destination before use, redact brokerage screenshots and account identifiers, and add a local-only or confirmation step before push delivery.
+
+Risk: Real portfolio data is stored under the OpenClaw workspace and may include sensitive holdings information.
+
+Mitigation: Keep portfolio configuration files private, avoid uploading them to public repositories, and limit workspace access to trusted users.
+
+## Reference(s):
+
+- [Futu OpenD command documentation](https://openapi.futunn.com/futu-api-doc/opend/opend-cmd.html)
+- [ClawHub skill page](https://clawhub.ai/shengbinxu/skills/daily-portfolio-analysis)
+- [Publisher profile](https://clawhub.ai/user/shengbinxu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown-style text report with tabular portfolio summaries and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send complete reports through the configured Feishu notifier and uses local portfolio configuration data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

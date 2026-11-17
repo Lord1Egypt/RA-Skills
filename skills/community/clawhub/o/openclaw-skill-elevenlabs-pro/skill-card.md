@@ -1,43 +1,60 @@
-## Description: <br>
-ElevenLabs advanced TTS for converting text to speech, listing voices, and managing credits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ElevenLabs advanced TTS for converting text to speech, listing voices, and managing credits
 
-## Publisher: <br>
-[mrnsmh](https://clawhub.ai/user/mrnsmh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrnsmh](https://clawhub.ai/user/mrnsmh)
 
-## Use Case: <br>
-Developers and agents use this skill to call ElevenLabs for text-to-speech generation, voice discovery, and credit checks from a command-line or importable Python workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Input text is sent to ElevenLabs for text-to-speech generation. <br>
-Mitigation: Review text before use and avoid sending confidential or restricted content unless the ElevenLabs account and terms are approved for that data. <br>
-Risk: The skill uses an ElevenLabs API key and generated audio can consume account credits. <br>
-Mitigation: Prefer the ELEVENLABS_API_KEY environment variable over command-line keys and check credits before large runs. <br>
-Risk: Generated audio is written to a user-provided output path. <br>
-Mitigation: Review the output path before running to avoid overwriting important files. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate ElevenLabs text-to-speech audio, list and filter available voices, check credits, and integrate the bundled Python helper into workflows.
 
-## Reference(s): <br>
-- [ElevenLabs popular voices and API parameters](references/voices.md) <br>
-- [ElevenLabs API v1 endpoint](https://api.elevenlabs.io/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Text, Shell commands] <br>
-**Output Format:** [MP3 audio files, JSON voice listings, and plain-text credit summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ElevenLabs API key and may consume account credits when generating audio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may expose an ElevenLabs API key when passed directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ELEVENLABS_API_KEY from the environment or a secret manager instead of the --api-key option.
+
+Risk: Text submitted for speech generation is sent to ElevenLabs for processing.
+
+Mitigation: Do not submit sensitive or regulated text unless that external processing is acceptable for the intended use.
+
+Risk: Generated audio can overwrite an existing file if the same output path is reused.
+
+Mitigation: Choose a unique output filename or review the target path before generation.
+
+## Reference(s):
+
+- [Popular voices and API parameters](references/voices.md)
+- [ElevenLabs API endpoint](https://api.elevenlabs.io/v1)
+- [ClawHub skill page](https://clawhub.ai/mrnsmh/skills/openclaw-skill-elevenlabs-pro)
+- [Publisher profile](https://clawhub.ai/user/mrnsmh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; CLI output may be plain text, JSON, or generated MP3 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an ElevenLabs API key and can write audio output to a caller-selected path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

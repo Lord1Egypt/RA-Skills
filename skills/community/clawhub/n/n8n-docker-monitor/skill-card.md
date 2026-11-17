@@ -1,41 +1,53 @@
-## Description: <br>
-N8N Docker Monitor helps agents inspect n8n Docker container status, recent logs, health, and resource usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors n8n Docker containers by checking container status, recent logs, health, and CPU and memory usage.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect n8n services running in Docker, summarize container status, review recent logs, and check health and resource signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent n8n logs may include URLs, workflow details, or secrets if the application emits them. <br>
-Mitigation: Review log output before sharing it outside the operating context. <br>
-Risk: The package has inconsistent metadata across release evidence and artifact files. <br>
-Mitigation: Confirm the publisher and package identity before installing or deploying the skill. <br>
+## Use Case:
 
+Developers and operations teams use this skill to monitor n8n running in Docker by checking container status, recent logs, health, and resource usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/n8n-docker-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/yesong-hue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Docker command examples and simple status tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface Docker status, recent n8n logs, container health, CPU usage, and memory usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter; artifact metadata also lists 1.0.1 and skill.yaml lists 0.1.0) <br>
+Risk: Recent n8n Docker logs may contain sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted hosts and limit sharing of log excerpts to appropriate operational contexts.
+
+Risk: Docker inspection exposes local container status, health, and resource information.
+
+Mitigation: Install only where the agent is intended to inspect the local n8n Docker environment and has appropriate Docker access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/n8n-docker-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with simple tables and inline Docker command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference recent Docker logs and container health and status signals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter; artifact _meta.json and skill.yaml differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

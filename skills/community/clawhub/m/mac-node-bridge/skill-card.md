@@ -1,43 +1,62 @@
-## Description: <br>
-Bridge macOS-only tools into a Linux OpenClaw gateway via SSH wrappers and connected Mac nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge macOS-only tools into a Linux OpenClaw gateway via SSH wrappers and connected Mac nodes.
 
-## Publisher: <br>
-[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect Linux OpenClaw gateways to trusted Mac nodes for macOS-only command-line tools such as imsg, remindctl, memo, things, peekaboo, brew-backed CLIs, and other node-local binaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates SSH wrappers that let a Linux gateway run selected tools on a trusted Mac over SSH. <br>
-Mitigation: Install only for trusted Mac nodes, use a dedicated non-root Mac account and SSH key, and keep each wrapper scoped to a specific tool. <br>
-Risk: Wrapper access or SSH credentials may remain after the bridge is no longer needed. <br>
-Mitigation: Remove the relevant wrapper and revoke or rotate the associated SSH key during rollback. <br>
+## Use Case:
 
+Developers and operators use this skill to expose Mac-only command-line tools to a Linux OpenClaw gateway through explicit SSH wrappers, verification steps, and publishable wrapper contracts.
 
-## Reference(s): <br>
-- [Mac Node Bridge on ClawHub](https://clawhub.ai/matthewxmurphy/mac-node-bridge) <br>
-- [Publisher Profile](https://clawhub.ai/user/matthewxmurphy) <br>
-- [Security Model](references/security-model.md) <br>
-- [Publish Pattern](references/publish-pattern.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces wrapper installation, verification, and publication guidance for a Linux gateway and trusted Mac nodes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: Crafted host or path values could run unintended commands through generated SSH wrappers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with trusted host, path, key, and known-hosts values; validate SSH destinations and safely serialize wrapper configuration before wider use.
+
+Risk: The bridge grants a Linux gateway remote access to Mac-side tools and data surfaces.
+
+Mitigation: Use dedicated SSH keys, non-root Mac accounts, known-hosts pinning where feasible, and one wrapper per tool instead of a broad shell bridge.
+
+Risk: A missing or unavailable Mac node can disrupt workflows that depend on Mac-only tools.
+
+Mitigation: Verify each remote binary before publishing, document node ownership, and fail with a clear degraded state while keeping unrelated gateway tools running.
+
+Risk: Existing wrapper files may be overwritten during installation.
+
+Mitigation: Review target wrapper names and install directories before running installers, and keep rollback steps for removing individual wrappers.
+
+## Reference(s):
+
+- [Security Model](references/security-model.md)
+- [Publish Pattern](references/publish-pattern.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces wrapper installation and verification steps for SSH access to Mac-side tools.]
+
+## Skill Version(s):
+
+0.6.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

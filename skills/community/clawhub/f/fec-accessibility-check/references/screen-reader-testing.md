@@ -1,33 +1,33 @@
-# 屏幕阅读器测试
+# Screen reader testing
 
-## 何时测试
+## When to test
 
-以下场景需要使用屏幕阅读器或浏览器无障碍树进行检查：
+The following scenarios require checking using a screen reader or browser accessibility tree:
 
-- 对话框、抽屉、菜单、标签页、组合框、树形控件和自定义控件。
-- 异步状态更新、toast 通知、校验错误和 loading 区域。
-- 表格、虚拟列表、图表、dashboard 和数据密集型控件。
-- 触摸探索、虚拟键盘或焦点顺序可能与桌面不同的移动端流程。
+- Dialog boxes, drawers, menus, tabs, combo boxes, tree controls and custom controls.
+- Asynchronous status updates, toast notifications, validation errors and loading areas.
+- Tables, virtual lists, charts, dashboards and data-intensive controls.
+- Mobile processes where touch exploration, virtual keyboard, or focus order may differ from desktop.
 
-## 最小流程
+## Minimum process
 
-1. 先只用键盘操作：Tab、Shift+Tab、Enter、Space、Esc，以及适用场景下的方向键。
-2. 在浏览器开发者工具中检查可访问名称、角色、状态和元素关系。
-3. 条件允许时至少跑一轮辅助技术验证：NVDA/Firefox、JAWS/Chrome、VoiceOver/Safari 或 TalkBack/Chrome。
-4. 验证路由变化、校验错误、加载完成和破坏性确认是否有正确公告。
-5. 记录具体用户影响、期望读法、实际读法和建议修复方式。
+1. First use the keyboard only: Tab, Shift+Tab, Enter, Space, Esc, and the arrow keys in applicable scenarios.
+2. Check accessible names, roles, states, and element relationships in the browser developer tools.
+3. If possible, run at least one round of assistive technology verification: NVDA/Firefox, JAWS/Chrome, VoiceOver/Safari or TalkBack/Chrome.
+4. Verify that routing changes, check errors, load completion, and destructive acknowledgments are properly advertised.
+5. Document specific user impact, expected reading, actual reading, and recommended fixes.
 
-## 动态内容
+## Dynamic content
 
-- 非阻塞状态更新使用 `aria-live="polite"`。
-- 紧急错误可谨慎使用 `role="alert"`，不要滥用。
-- 只有当用户任务上下文发生变化时才移动焦点，例如打开弹窗或提交后跳转。
-- 关闭浮层后，将焦点恢复到触发控件。
+- Use `aria-live="polite"` for non-blocking state updates.
+- Use `role="alert"` with caution for emergency errors and do not abuse it.
+- Only move focus when the user task context changes, such as opening a pop-up window or jumping after submission.
+- After closing the overlay, return focus to the trigger control.
 
-## 常见问题
+## FAQ
 
-- 纯图标按钮没有可访问名称。
-- 对话框内容先于标题被朗读，或缺少模态边界。
-- 表单错误只在视觉上展示，没有用 `aria-describedby` 与字段关联。
-- Toast 消失太快，屏幕阅读器用户来不及理解。
-- 虚拟列表行丢失行位置、表格语义或键盘连续性。
+- Icon-only buttons don't have accessible names.
+- The dialog content is read before the title, or the modal boundary is missing.
+- Form errors are only displayed visually and are not associated with fields using `aria-describedby`.
+- Toast disappears too quickly for screen reader users to understand.
+- Virtual list rows lose row position, table semantics, or keyboard continuity.

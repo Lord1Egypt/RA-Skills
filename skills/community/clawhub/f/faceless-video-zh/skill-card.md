@@ -1,43 +1,55 @@
-## Description: <br>
-面向 faceless/no-face 场景的 Sparki skill 变体，沿用最新版官方 Sparki 安装、API key、上传和命令说明，同时保留 faceless 场景定位。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Sparki skill variant for faceless/no-face video workflows that guides agents through API key setup, video upload, prompt-driven editing, and command usage.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users and agents use this skill to create faceless, automation-style, narration-led videos through Sparki's cloud video editing workflow. It is aimed at no-face explainers, short-form clips, captions, montages, vlog edits, and prompt-driven video processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video files are uploaded to Sparki for processing. <br>
-Mitigation: Use the skill only with videos that are appropriate to send to Sparki, and avoid confidential content unless the service is trusted for that data. <br>
-Risk: A Sparki API key can be provided through SPARKI_API_KEY or saved locally. <br>
-Mitigation: Prefer environment-based key handling where possible, protect local configuration files, and rotate the key if it may have been exposed. <br>
-Risk: Changing the default Sparki endpoint can send data to an unintended service. <br>
-Mitigation: Keep the default endpoint unless there is a deliberate and reviewed reason to override it. <br>
+## Use Case:
 
+External users and agents use this skill to create faceless explainers, automation-style videos, and narration-focused video edits through the Sparki service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/faceless-video-zh) <br>
-- [Sparki homepage](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; Sparki CLI responses are JSON and completed edits download as video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Sparki API key; accepts local MP4 or MOV inputs up to 3GB each and writes results under the configured OpenClaw workspace unless an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: frontmatter and server release evidence) <br>
+Risk: Selected videos, prompts, and API keys may be sent to the configured Sparki service, and changing --base-url can route them outside the declared Sparki domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use SPARKI_API_KEY from the environment when possible, avoid --base-url unless the endpoint is fully trusted, and review before using private videos or sensitive account keys.
+
+Risk: The security verdict is suspicious because the skill promotes a broad external video-editing workflow.
+
+Mitigation: Review the generated commands before execution and confirm that sending the selected media and prompt to Sparki matches the user's intent.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fischerlam/skills/faceless-video-zh)
+- [Sparki homepage](https://sparki.io)
+- [Sparki Telegram upload](https://t.me/Sparki_AI_bot/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; executed Sparki CLI commands return JSON status data and may download video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and SPARKI_API_KEY; supports local video paths or the Sparki Telegram upload flow.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

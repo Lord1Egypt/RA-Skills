@@ -1,40 +1,53 @@
-## Description: <br>
-Drafts a minute-by-minute run-of-show (ROS) document for conferences, galas, product launches, awards ceremonies, and hybrid events with cue-level timing and contingency notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an event producer, production manager, technical director, or meeting planner needs to draft a run-of-show (ROS) document for a conference, gala, product launch, awards ceremony, hybrid event, or large corporate meeting.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Event producers, production managers, technical directors, and meeting planners use this skill to turn an event brief, agenda, and technical inventory into a draft ROS for review before crew or client distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports a full-access autoreview helper that may run with broader permissions than expected. <br>
-Mitigation: Review or disable the helper's default full-access mode before installation, and restrict maintainer-oriented commands to trusted staff accounts with clear targets and audit reasons. <br>
-Risk: The generated ROS can include operational details for venues, speakers, and internal event teams. <br>
-Mitigation: Keep the document in DRAFT status until production manager approval, and include personal contact information only after confirming the output is internal-only. <br>
+## Use Case:
 
+Event producers, production managers, technical directors, and meeting planners use this skill to turn event details, agendas, speakers, technical inventory, and contingencies into a draft run-of-show for review before crew distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/run-of-show-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured as a draft run-of-show document with timeline tables, open items, speaker status, and a sign-off block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output is explicitly marked DRAFT until reviewed and approved by the production manager.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog, released 2026-05-29) <br>
+Risk: The ROS may include personal phone numbers, personal emails, or sensitive security details if the user provides them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid personal contact information and sensitive security details unless the document is explicitly intended to remain internal.
+
+Risk: A draft ROS can be mistaken for an approved production document.
+
+Mitigation: Keep the document marked as DRAFT and require production manager review and sign-off before distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/run-of-show-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Structured Markdown table document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a draft ROS with pre-show, main program, post-show/strike, open-items, speaker-status, contingency, hard-out, and production manager sign-off sections.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-05-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

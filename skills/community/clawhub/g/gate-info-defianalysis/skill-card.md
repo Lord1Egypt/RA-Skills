@@ -1,44 +1,63 @@
-## Description: <br>
-Provides DeFi ecosystem analysis through Gate Info MCP for TVL rankings, protocol metrics, yield/APY, stablecoins, bridges, exchange reserves, and liquidation heatmaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi ecosystem analysis via Gate-Info MCP for TVL rankings, protocol metrics, yield/APY, stablecoins, bridges, exchange reserves, and liquidation heatmaps.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to route DeFi platform-metrics questions to read-only Gate Info MCP tools and produce neutral, data-driven analysis. It is intended for informational DeFi research, not financial advice or trade recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external Gate Info MCP data source, so unavailable or untrusted MCP access can produce missing or unreliable analysis. <br>
-Mitigation: Confirm the Gate Info MCP server is installed and trusted before use; if tools are missing or fail, degrade gracefully and label unavailable data. <br>
-Risk: Yield, reserve, liquidation, and protocol metrics can be mistaken for financial advice or guarantees. <br>
-Mitigation: Treat outputs as informational market data, avoid buy/sell recommendations, and state that APY, reserves, and liquidation levels are historical or estimated signals. <br>
-Risk: DeFi protocols and yield pools can carry smart contract, liquidity, and market risks that are not fully captured by the returned metrics. <br>
-Mitigation: Present analysis neutrally, include relevant DeFi risk caveats, and require users to perform independent review before acting on the information. <br>
+## Use Case:
 
+External users and developers use this skill to route DeFi market questions to read-only Gate-Info MCP tools and receive neutral markdown analysis of protocol, yield, bridge, reserve, stablecoin, and liquidation data.
 
-## Reference(s): <br>
-- [Gate Info DeFi Analysis Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/gate-exchange/gate-info-defianalysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analytical reports with summary metrics, ranked tables, concise analysis, and disclaimers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Gate Info MCP results and does not produce code, shell commands, configuration changes, or local files during normal execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Yield, APY, liquidation, reserve, and protocol metrics can change quickly and may be misread as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label outputs as informational market data, include source and generated-time context where available, and avoid buy/sell or guaranteed-yield language.
+
+Risk: The required Gate-Info MCP server or individual tools may be unavailable or return incomplete data.
+
+Mitigation: Confirm the Gate-Info MCP server is configured before use; if a tool fails, label that section as unavailable and continue only with available documented data.
+
+Risk: Calling tools outside the documented scenario can broaden data exposure or produce unsupported analysis.
+
+Mitigation: Use only the Gate-Info MCP tools listed in the skill and route unrelated coin, technical, news, macro, or risk requests to the matching dedicated skill.
+
+Risk: Users may over-rely on exchange reserve or liquidation heatmap outputs.
+
+Mitigation: State that reserve data may not reflect total assets and that liquidation heatmaps are estimates, not guaranteed triggers.
+
+## Reference(s):
+
+- [Gate Info DeFi Analysis Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+- [ClawHub skill page](https://clawhub.ai/gate-exchange/skills/gate-info-defianalysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with tables, concise analysis, source notes, and risk disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Gate-Info MCP data is summarized in the user's language; unsupported or failed data dimensions are labeled rather than fabricated.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

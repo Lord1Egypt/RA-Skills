@@ -1,41 +1,52 @@
-## Description: <br>
-Meta-skill that orchestrates comprehensive testing across a project by coordinating testing-patterns, e2e-testing, and testing agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Testing Workflow orchestrates project testing by routing agents through discovery, strategy, implementation, validation, and maintenance workflows.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, implement, validate, and maintain project test coverage across unit, integration, and end-to-end workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to edit tests, documentation, or CI quality gates. <br>
-Mitigation: Review diffs before allowing commits or CI changes, and verify that proposed changes match the project's testing policy. <br>
-Risk: The workflow routes to related testing skills that may affect the final testing strategy. <br>
-Mitigation: Inspect the routed skills before relying on the full workflow. <br>
-Risk: Installing from an unreviewed or moving source can change the skill behavior over time. <br>
-Mitigation: Install only from a trusted source, preferably from a reviewed or pinned version. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/testing-workflow) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to set up, improve, validate, and maintain testing workflows across unit, integration, and end-to-end coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, test strategy templates, and file-change guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or edit tests, documentation, and CI quality-gate configuration when applied by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The recommended installer executes unpinned remote tooling from a mutable branch.
+
+Mitigation: Install from a pinned, reviewed commit or use the manual copy path after inspecting the files, and do not run the installer with elevated privileges.
+
+Risk: Invoking the skill can lead an agent to inspect a project and propose or make test, documentation, and CI-related changes.
+
+Mitigation: Review proposed changes before applying them, run the relevant test suite, and separately trust any related skills the workflow routes to.
+
+## Reference(s):
+
+- [Testing Workflow ClawHub Page](https://clawhub.ai/wpank/skills/testing-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route the agent to related testing, code review, quality gate, and debugging skills when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

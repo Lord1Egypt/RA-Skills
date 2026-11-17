@@ -1,0 +1,9 @@
+/**
+ * @wireframe-skill multi-screen-wireframe@2.1.0
+ * 创建基于 v2.0.0
+ * 修改基于 v2.1.0
+ */
+WireframeVue.defineScreen('profile', ({ ref }) => ({
+  setup() { return { notifications: ref(true), offlineMaps: ref(false) } },
+  template: /*html*/ `<WfMobileLayout><WfColumn id="profile-page" :gap="20" class="weekend-page profile__page"><WfPageHeader id="profile-header" title-id="profile-title" class="profile__header" title="我的" subtitle="个人偏好与旅行设置" /><WfRow id="profile-summary" class="profile__summary" :gap="12" align-items="center"><WfAvatar class="profile__avatar" :size="58" label="用户头像占位" /><div class="profile__identity"><strong class="profile__name">林晓野</strong><WfText class="profile__bio">已走过 12 座城市</WfText></div></WfRow><WfColumn id="profile-account" class="profile__account" :gap="0"><WfCell class="profile__account-cell" title="旅行档案" subtitle="偏好、足迹与收藏" /><WfCell class="profile__account-cell" title="同行人" subtitle="3 位常用同行人" /><WfCell class="profile__account-cell" title="紧急联系人" subtitle="已设置" /></WfColumn><WfColumn id="profile-settings" class="profile__settings" :gap="12"><WfRow class="profile__setting-row" align-items="center" justify-content="space-between"><WfText class="profile__setting-label">行程提醒</WfText><WfToggle id="profile-notifications" v-model:checked="notifications" class="profile__notifications" /></WfRow><WfRow class="profile__setting-row" align-items="center" justify-content="space-between"><WfText class="profile__setting-label">自动下载离线地图</WfText><WfToggle id="profile-offline-maps" v-model:checked="offlineMaps" class="profile__offline-maps" /></WfRow></WfColumn><WfColumn id="profile-support" class="profile__support" :gap="0"><WfCell class="profile__support-cell" title="帮助与反馈" /><WfCell class="profile__support-cell" title="隐私设置" /><WfCell class="profile__support-cell" title="关于周末出发" value="1.0" /></WfColumn></WfColumn></WfMobileLayout>`,
+}))

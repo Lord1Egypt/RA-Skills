@@ -1,37 +1,54 @@
-## Description: <br>
-整理、汇总并分析每日 AI 领域前沿资讯，覆盖行业事件、模型更新、学术论文、开源工具和技术标准。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI日报测试版 helps agents search current AI news in Chinese and English, then produce a structured Chinese Markdown digest covering industry events, model updates, research papers, open-source tools, and technical standards.
 
-## Publisher: <br>
-[ranbin](https://clawhub.ai/user/ranbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ranbin](https://clawhub.ai/user/ranbin)
 
-## Use Case: <br>
-External users and developers use this skill to produce structured Chinese-language daily AI news digests with source links, summaries, and impact analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily AI news summaries can become stale or rely on weak sources. <br>
-Mitigation: Verify timestamps and source links before relying on the digest, and specify the preferred language when Chinese output is not desired. <br>
+## Use Case:
 
+Developers, researchers, and AI practitioners use this skill to request daily or near-real-time AI news digests with categorized summaries, source links, and technical impact analysis.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured Chinese daily digest with titles, summaries, analysis, and source links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Web-search-based AI news digests may include inaccurate, stale, or incomplete public-source information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source links, compare multiple sources, and verify time-sensitive claims before relying on the briefing.
+
+Risk: The skill is oriented toward Chinese Markdown summaries and may not fit other language or scope requirements.
+
+Mitigation: Adjust the language, source, and category instructions before use when a different audience or narrower topic scope is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ranbin/skills/ai-daily-news-rb)
+- [ClawHub publisher profile](https://clawhub.ai/user/ranbin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily briefing with categorized summaries, impact analysis, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-oriented output using current public web sources; source links are included when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

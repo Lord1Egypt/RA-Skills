@@ -1,47 +1,61 @@
-## Description: <br>
-Automatically reduce OpenClaw API costs by 60-80%. One-command setup: config optimization, spend caps, retry loop protection, and ClawTK Engine compression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically reduce OpenClaw API costs by 60-80%. One-command setup: config optimization, spend caps, retry loop protection, and ClawTK Engine compression.
 
-## Publisher: <br>
-[skl3](https://clawhub.ai/user/skl3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skl3](https://clawhub.ai/user/skl3)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to reduce API spend by applying reversible configuration optimizations, enforcing spend caps, detecting retry loops, and optionally enabling token compression and semantic caching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow persistently changes OpenClaw configuration, including heartbeat behavior, context limits, image sizing, and some model routing. <br>
-Mitigation: Run setup only after reviewing the documented config patches, and use the restore or uninstall commands to revert from the backup if the changes are not acceptable. <br>
-Risk: Pro features can install a global command-output compression hook that changes what command output reaches the agent. <br>
-Mitigation: Confirm the rtk hook behavior before enabling Pro features, keep the documented bypass available for commands that need full output, and verify hook removal during uninstall. <br>
-Risk: Pro or Cloud activation and sync can transmit a license key and local spend metadata to ClawTK's cloud. <br>
-Mitigation: Inspect the local spend log before syncing and avoid activation or sync when the user does not want that metadata transmitted. <br>
-Risk: Spend caps and retry-loop detection may block legitimate repeated or high-volume work. <br>
-Mitigation: Use the temporary override command for intentional bursts and review spend-cap settings before long-running work. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect, apply, restore, and monitor cost-saving configuration changes, spend caps, retry-loop protection, and optional ClawTK Pro compression or cloud sync features.
 
-## Reference(s): <br>
-- [ClawTK Homepage](https://clawtk.co) <br>
-- [ClawTK Config Patches](references/config-patches.md) <br>
-- [ClawTK Savings Guide](references/savings-guide.md) <br>
-- [ClawTK Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell scripts that update OpenClaw configuration, install hooks, write local state, and optionally sync spend metadata for Pro or Cloud tiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: The skill modifies OpenClaw configuration and installs persistent hooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only after reviewing the planned changes, keep the generated backup path, and use the restore or uninstall command if the optimizations should be removed.
+
+Risk: Pro activation may run a third-party engine installer and configure additional hooks.
+
+Mitigation: Review the tagged installer or use a manual installation path before activating Pro features in sensitive environments.
+
+Risk: The skill stores a license key locally and can cache local tool outputs that may contain sensitive data.
+
+Mitigation: Avoid Pro cache or cloud sync on workspaces with sensitive command output, and remove local ClawTK state, spend logs, and cache files during cleanup.
+
+## Reference(s):
+
+- [ClawTK Homepage](https://clawtk.co)
+- [ClawHub Skill Page](https://clawhub.ai/skl3/skills/clawtk)
+- [ClawTK Config Patches](references/config-patches.md)
+- [ClawTK Savings Guide](references/savings-guide.md)
+- [ClawTK Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local setup, status, restore, override, activation, sync, uninstall, and troubleshooting commands for OpenClaw environments.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

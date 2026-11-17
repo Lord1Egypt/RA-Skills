@@ -91,11 +91,11 @@ curl -s "https://api.github.com/search/issues?q=checkpoint+orphan+repo:openclaw/
 
 ## GitHub Token
 
-当前 token：`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`
+当前 token：`REDACTED-SECRET`
 
 Header 格式：
 ```
-Authorization: token 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
+Authorization: token REDACTED-SECRET
 Accept: application/vnd.github+json
 Content-Type: application/vnd.github+json
 ```

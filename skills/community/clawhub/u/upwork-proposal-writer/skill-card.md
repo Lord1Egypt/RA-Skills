@@ -1,40 +1,53 @@
-## Description: <br>
-Generates tailored Upwork proposals for automation, bot, and web scraping jobs by analyzing postings and suggesting pricing and portfolio highlights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates tailored Upwork proposals for automation, bot development, and web scraping jobs by analyzing postings and suggesting pricing and portfolio highlights.
 
-## Publisher: <br>
-[merjua14](https://clawhub.ai/user/merjua14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merjua14](https://clawhub.ai/user/merjua14)
 
-## Use Case: <br>
-Freelancers and business development agents use this skill to turn Upwork job postings into concise, tailored proposals with a problem-specific opening, solution outline, social proof, next step, and pricing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release as suspicious and says one bundled review helper gives a nested reviewer full local access by default. <br>
-Mitigation: Install only if the publisher is trusted; run review helpers without elevated/yolo behavior, confirm moderation or publishing commands before execution, and avoid external reviewer fallbacks unless sharing diffs is acceptable. <br>
-Risk: Generated proposals may include inaccurate project claims, timelines, pricing, or client-specific assumptions. <br>
-Mitigation: Review each proposal before sending and edit claims, estimates, portfolio references, and pricing to match the user's real experience and availability. <br>
+## Use Case:
 
+Freelancers and proposal-writing agents use this skill to turn an Upwork job posting into a concise customized proposal with an opening hook, solution outline, social proof, next step, and pricing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/merjua14/upwork-proposal-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal text with pricing and portfolio guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated proposals should be reviewed for accuracy, client fit, and truthful claims before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and config.json) <br>
+Risk: Generated proposals may include portfolio-style claims, results, demos, or delivery timelines that are not true for the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit each proposal so experience, metrics, examples, and timelines are accurate before sending it to a client.
+
+Risk: Job posting content may be subject to platform, client, or confidentiality restrictions.
+
+Mitigation: Use only job posting content the user is allowed to process and avoid adding client-sensitive details beyond the proposal task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/merjua14/skills/upwork-proposal-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown proposal text with pricing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested portfolio claims, results, delivery timelines, and price ranges that the user should verify before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

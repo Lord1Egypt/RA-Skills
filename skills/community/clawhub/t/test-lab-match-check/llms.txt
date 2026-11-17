@@ -1,0 +1,10 @@
+# test-lab-match-check
+
+> 医疗器械检测项目与实验室匹配器 — 医疗器械合规判定器（决策支持，非权威结论）
+
+- 类型：零依赖确定性 CLI 技能
+- 输入：命令行参数（枚举值）
+- 输出：JSON IR（result / rc / error_code / aigc_mark）
+- 规则源：GB/T 16886 系列 / GB 9706.1 / YY 0505 / ISO 11135·11137·17665 / ISO 11607 / IEC 62304
+- 定位：决策支持；正式结论以主管部门决定与官方最新文件为准
+- 作者：SynomosAI contributors · © 2026 SynomosAI · MIT

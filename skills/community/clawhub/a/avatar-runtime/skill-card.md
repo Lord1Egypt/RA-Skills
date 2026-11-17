@@ -1,43 +1,60 @@
-## Description: <br>
-Embeds and controls a virtual avatar using the avatar-runtime npm package, with Live2D rendering, VRM 3D, vector fallback, and control-driven expression, body, and scene animation through a provider-agnostic session bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embeds and controls a virtual avatar through the avatar-runtime npm package, with Live2D rendering, VRM 3D, vector fallback, and provider-agnostic control for expression, body, and scene animation.
 
-## Publisher: <br>
-[NeilJo-GY](https://clawhub.ai/user/NeilJo-GY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neiljo-gy](https://clawhub.ai/user/neiljo-gy)
 
-## Use Case: <br>
-Developers and engineers use this skill to add and control avatar sessions, browser widgets, Live2D or VRM renderers, and provider-backed avatar interactions from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs the avatar-runtime npm package through npx, which may download and execute remote npm code. <br>
-Mitigation: Review the referenced package and setup scripts, prefer a pinned and audited package version for production, and test in a sandbox before deployment. <br>
-Risk: Optional providers use API keys and external services for avatar rendering or image generation. <br>
-Mitigation: Use scoped test credentials during evaluation, keep production credentials out of shared environments, and avoid logging provider API keys. <br>
-Risk: Sample avatar assets and setup scripts may introduce third-party asset licensing or redistribution constraints. <br>
-Mitigation: Inspect asset download scripts before use and deploy only avatar models and Live2D or VRM assets that are licensed for the intended environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to start, configure, embed, and control avatar-runtime sessions for browser avatar widgets, Live2D characters, VRM 3D avatars, and provider-backed avatar interactions.
 
-## Reference(s): <br>
-- [ClawHub Avatar Runtime listing](https://clawhub.ai/NeilJo-GY/avatar-runtime) <br>
-- [Web Embedding Reference](references/WEB-EMBEDDING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, JavaScript, and HTML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local runtime URLs, environment variable names, curl requests, and browser embedding snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill asks the agent to run an unpinned npx avatar-runtime command, so the executed package could change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package identity, pin a reviewed version before deployment, and test it in a sandboxed environment first.
+
+Risk: Provider API keys may be passed to the runtime process through environment variables.
+
+Mitigation: Use least-privilege non-production keys during evaluation, avoid shared shell histories and logs, and rotate exposed credentials.
+
+Risk: Sample Live2D assets described by the artifact have license restrictions that may prohibit redistribution or commercial use.
+
+Mitigation: Use only models with rights appropriate for the deployment, and keep restricted sample assets limited to local development.
+
+## Reference(s):
+
+- [Web Embedding Reference](references/WEB-EMBEDDING.md)
+- [ClawHub Avatar Runtime skill page](https://clawhub.ai/neiljo-gy/skills/avatar-runtime)
+- [Live2D Free Material License](https://www.live2d.com/en/sdk/license/free-material/)
+- [VRoid Hub](https://hub.vroid.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, HTML, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local runtime endpoints, environment variable settings, curl requests, and browser embedding snippets.]
+
+## Skill Version(s):
+
+0.2.1 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

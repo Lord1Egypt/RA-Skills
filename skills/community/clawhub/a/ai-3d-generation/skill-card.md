@@ -1,43 +1,56 @@
-## Description: <br>
-Create, convert, and download AI-generated 3D models using Neural4D APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, convert, and download AI-generated 3D models using Neural4D APIs. Optimized for commercial pipelines.
 
-## Publisher: <br>
-[6e6e6e](https://clawhub.ai/user/6e6e6e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[6e6e6e](https://clawhub.ai/user/6e6e6e)
 
-## Use Case: <br>
-Developers, designers, and manufacturing engineers use this skill to generate 3D assets from text or images, poll Neural4D jobs, download GLB outputs, and convert models into manufacturing-friendly formats such as STL, FBX, OBJ, or USDZ. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and images selected for generation are sent to Neural4D/DreamTech cloud processing. <br>
-Mitigation: Avoid submitting confidential, regulated, personal, or proprietary content unless the provider and retention terms are approved for that use. <br>
-Risk: The Neural4D API token could be exposed through logs, shared files, or shell history. <br>
-Mitigation: Keep NEURAL4D_API_TOKEN secret, pass it through the environment or a secure secret store, and avoid printing bearer tokens in command output. <br>
-Risk: Bulk generation, image generation, chibi-style generation, and format conversion consume API points. <br>
-Mitigation: Check the point balance before bulk runs and confirm expected operation counts before starting asynchronous jobs. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide text-to-3D, image-to-3D, and 3D format conversion workflows with Neural4D APIs, especially when generated assets need downloadable model files or manufacturing-oriented export formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/6e6e6e/ai-3d-generation) <br>
-- [Neural4D API base endpoint](https://alb.neural4d.com:3000/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with API request details and command-oriented steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for command workflows, optional NEURAL4D_API_TOKEN configuration, and user-selected prompts or images for cloud processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Using the skill sends prompts and uploaded images to Neural4D and may consume API points.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm point costs and remaining balance before bulk runs, and only submit prompts or images approved for the external Neural4D service.
+
+Risk: The skill uses a bearer token and downloads generated model files from an external service.
+
+Mitigation: Protect the NEURAL4D_API_TOKEN, avoid exposing it in logs or shared files, and store downloaded assets in a project directory for review before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/6e6e6e/skills/ai-3d-generation)
+- [Neural4D API base endpoint](https://alb.neural4d.com:3000/api)
+- [Neural4D text-to-3D endpoint](https://alb.neural4d.com:3000/api/generateModelWithText)
+- [Neural4D format conversion endpoint](https://alb.neural4d.com:3000/api/convertToFormat)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include API endpoints, bearer-token configuration, asynchronous polling steps, point-cost checks, and download handling for generated model files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

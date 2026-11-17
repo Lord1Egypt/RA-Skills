@@ -1,0 +1,123 @@
+{
+  "schema": "site-layout-base-map/v1",
+  "contract_id": "CONTRACT-SYNTH-001",
+  "source_file": "synthetic-site.dxf",
+  "source_sha256": "c9a4bc160a462e555b29880dac42f2a49246ba3ba9fcd7ee74fdbadc1f993612",
+  "source_schema": "cad-site-geometry/v1",
+  "reader_version": "0.41.0",
+  "drawing_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "reader_contract_id": "CONTRACT-SYNTH-001",
+  "coord_unit": "mm",
+  "unit": {
+    "basis": "audit",
+    "source_unit": "mm",
+    "mm_per_unit": 1.0,
+    "evidence": [
+      {
+        "unit": "mm",
+        "source": "audit[0]:units",
+        "evidence": "单位审计第 1 条"
+      }
+    ],
+    "confirmed_by": ""
+  },
+  "prepared_at": "2026-11-10T08:34:53+08:00",
+  "prepared_by": "site-layout-plan/0.2.1",
+  "redline": [
+    [
+      0.0,
+      0.0
+    ],
+    [
+      100000.0,
+      0.0
+    ],
+    [
+      100000.0,
+      60000.0
+    ],
+    [
+      0.0,
+      60000.0
+    ]
+  ],
+  "redline_closed": true,
+  "redline_gap_mm": 0.0,
+  "redline_area_m2": 6000.0,
+  "structure_outline": [[45000.0, 17000.0], [68000.0, 17000.0],
+                        [68000.0, 43000.0], [45000.0, 43000.0]],
+  "fence": [],
+  "fence_closed": false,
+  "site_geometry": [
+    {
+      "category": "site_boundary",
+      "layer": "红线",
+      "system": "site",
+      "geometry": [
+        0.0,
+        0.0,
+        100000.0,
+        0.0
+      ],
+      "status": "candidate"
+    },
+    {
+      "category": "site_boundary",
+      "layer": "红线",
+      "system": "site",
+      "geometry": [
+        100000.0,
+        0.0,
+        100000.0,
+        60000.0
+      ],
+      "status": "candidate"
+    },
+    {
+      "category": "site_boundary",
+      "layer": "红线",
+      "system": "site",
+      "geometry": [
+        100000.0,
+        60000.0,
+        0.0,
+        60000.0
+      ],
+      "status": "candidate"
+    },
+    {
+      "category": "site_boundary",
+      "layer": "红线",
+      "system": "site",
+      "geometry": [
+        0.0,
+        60000.0,
+        0.0,
+        0.0
+      ],
+      "status": "candidate"
+    },
+    {
+      "category": "road",
+      "layer": "道路",
+      "system": "road",
+      "geometry": [
+        0.0,
+        30000.0,
+        100000.0,
+        30000.0
+      ],
+      "status": "candidate"
+    }
+  ],
+  "extents_mm": [
+    0.0,
+    0.0,
+    100000.0,
+    60000.0
+  ],
+  "warnings": [
+    "合成 fixture，用于回归；不含真实项目数据"
+  ],
+  "boundary": "底图适配层只做单位换算、红线串接与留痕；不重新识图、不判定合规。"
+}

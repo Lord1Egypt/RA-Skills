@@ -1,39 +1,54 @@
-## Description: <br>
-Cn Base64 Tool provides a pure Python standard-library helper for Base64 encoding and decoding strings and files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Base64 Tool provides a local Python standard-library utility for Base64 encoding and decoding strings and files.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need local Base64 encoding or decoding for strings and files without external dependencies or API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File conversion commands read from and write to paths selected by the user, and decode_file can overwrite the output path provided. <br>
-Mitigation: Run it only on intentionally selected files, choose output paths deliberately, and avoid targeting files that must be preserved. <br>
+## Use Case:
 
+Developers and agents use this skill to encode text or file contents as Base64 and decode Base64 content back into text or files using a small local Python script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-base64-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain text Base64 output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-selected input files and write Base64-decoded content to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Risk: File decode operations can overwrite content at a user-specified output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit non-critical output paths and review the target path before running decode_file.
+
+Risk: Chinese-language documentation includes stale or unsupported examples, including commands not implemented by the bundled script.
+
+Mitigation: Confirm supported commands against the bundled Python script and use the implemented encode, decode, encode_file, and decode_file subcommands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-base64-tool)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text, local files, and Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with the Python standard library; file decode operations write to user-specified output paths.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

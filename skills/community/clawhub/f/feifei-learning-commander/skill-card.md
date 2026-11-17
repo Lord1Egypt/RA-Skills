@@ -1,47 +1,56 @@
-## Description: <br>
-菲菲老师学习主控 is a bilingual family education agent for K-12 learning planning, knowledge-network tracking, parent-child communication support, growth coaching, and learning report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+菲菲老师学习主控 is a bilingual family education assistant that coordinates subject tutoring, knowledge-map based study planning, parent-child communication, progress tracking, and learning reports.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-External families, students, and parents use this agent to plan K-12 study sessions, coordinate subject-specific tutoring, track knowledge mastery, produce learning reports, and translate parent-child communication. It is intended for education support, not mental-health assessment or crisis intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with source content focused on Chinese K-12 education contexts <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive child and family data, including names, schedules, school context, progress, and family communication details. <br>
-Mitigation: Use it only with parent or guardian and student awareness, and avoid entering real names, school names, exact schedules, or unnecessary family details. <br>
-Risk: The skill describes reminders and cloud syncing, which can increase exposure of student routines and learning records. <br>
-Mitigation: Limit or disable reminders unless wanted, and confirm where records are stored before using sync features with child data. <br>
-Risk: The skill includes psychological support and emotion-coaching language that could be mistaken for mental-health assessment. <br>
-Mitigation: Use it for general education support only, and rely on qualified professionals or emergency services for mental-health concerns or crises. <br>
-Risk: The skill includes a polishing feature that mentions lowering AIGC detection rates. <br>
-Mitigation: Do not use that feature to evade academic or professional integrity checks. <br>
+## Use Case:
 
+External families, students, guardians, and education-support agents use this skill to plan study tasks, track knowledge mastery, coordinate subject help, translate parent-child concerns into constructive guidance, and generate student progress reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonstang/feifei-learning-commander) <br>
-- [Knowledge Network Control Database](references/knowledge_base.md) <br>
-- [Feifei Teacher Output Templates](references/templates/output_templates.md) <br>
-- [OpenClaw](https://github.com/nicepkg/open-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Bilingual Markdown learning plans, progress reports, parent communication drafts, and study guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include student profile fields, schedules, mastery percentages, and task templates supplied by the user or platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may track or synchronize sensitive student learning profile data and parent-facing reports without clear consent, storage, or safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit guardian and student consent, minimize school, location, and schedule data, and disable or clarify cloud sync before using it with real minors.
+
+Risk: Emotional-support and parent-child communication output may be mistaken for professional mental-health care.
+
+Mitigation: Treat emotional-support output as educational support, keep guardians involved, and refer serious mental-health concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/simonstang/skills/feifei-learning-commander)
+- [Knowledge Network Control Database](artifact/references/knowledge_base.md)
+- [Output Template Library](artifact/references/templates/output_templates.md)
+- [OpenClaw](https://github.com/nicepkg/open-claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Bilingual Markdown guidance, study plans, learning reports, parent communication reports, and structured profile templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-like student profile templates, tables, schedules, mastery scores, and report sections intended for human review.]
+
+## Skill Version(s):
+
+3.5.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

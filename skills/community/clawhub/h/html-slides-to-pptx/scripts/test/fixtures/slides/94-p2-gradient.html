@@ -1,0 +1,100 @@
+<!doctype html>
+<!--
+================================================================
+  P2 渐变夹具页(2026-07-27)
+  覆盖:线性渐变(多角度/多色停/圆角/边框/文字叠加)。
+  nativeGradient=false(默认):全部走截图;
+  nativeGradient=true:linear-gradient → 原生 a:gradFill,radial → 截图回退。
+  自包含(不引外部 CSS),L1/L2/L3 三层基线锚定(nativeGradient=false 行为)。
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>P2 渐变夹具页</title>
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;font-family:'Noto Sans SC',Arial,sans-serif;">
+
+  <!-- 页头 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:60px;width:1200px;height:50px;font-size:36px;font-weight:700;color:#0A2E5C;line-height:50px;">P2 1.6 原生线性渐变</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:120px;width:1720px;height:2px;background:#D5D5D0;"></div>
+
+  <!-- ============================================ -->
+  <!-- 1. 基础线性渐变:不同角度                    -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:160px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;line-height:40px;">① 基础线性渐变</div>
+
+  <!-- 水平渐变(to right = 90deg) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:210px;width:380px;height:120px;background:linear-gradient(to right,#64D2FF,#5E5CE6);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:340px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">to right (90°)</div>
+
+  <!-- 垂直渐变(to bottom = 180deg,默认) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:540px;top:210px;width:380px;height:120px;background:linear-gradient(#FF6B6B,#FFD93D);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:540px;top:340px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">to bottom (180°,默认)</div>
+
+  <!-- 对角渐变(135deg) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:980px;top:210px;width:380px;height:120px;background:linear-gradient(135deg,#0A2E5C,#2D9CDB);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:980px;top:340px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">135deg</div>
+
+  <!-- 反向对角(45deg) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1420px;top:210px;width:380px;height:120px;background:linear-gradient(45deg,#27AE60,#A8E6CF);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1420px;top:340px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">45deg</div>
+
+  <!-- ============================================ -->
+  <!-- 2. 多色停渐变 + 圆角/边框                   -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:400px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;line-height:40px;">② 多色停 + 圆角/边框</div>
+
+  <!-- 三色渐变 + 圆角 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:450px;width:380px;height:120px;background:linear-gradient(to right,#FF6B6B,#FFD93D,#6BCB77);border-radius:12px;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:580px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">三色 + 圆角 12px</div>
+
+  <!-- 四色渐变 + 边框 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:540px;top:450px;width:380px;height:120px;background:linear-gradient(90deg,#0A2E5C,#2D9CDB,#64D2FF,#A8E6CF);border:2px solid #0A2E5C;border-radius:8px;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:540px;top:580px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">四色 + 边框 + 圆角</div>
+
+  <!-- 渐变 + 虚线边框 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:980px;top:450px;width:380px;height:120px;background:linear-gradient(135deg,#9B59B6,#E74C3C);border:2px dashed #333;border-radius:10px;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:980px;top:580px;width:380px;height:24px;font-size:14px;text-align:center;color:#666;">渐变 + 虚线边框</div>
+
+  <!-- 椭圆渐变(border-radius:50%) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1440px;top:450px;width:120px;height:120px;background:linear-gradient(135deg,#F39800,#FF6B6B);border-radius:50%;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1440px;top:580px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">椭圆(50%)</div>
+
+  <!-- ============================================ -->
+  <!-- 3. 渐变卡片 + 文字叠加                     -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:640px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;line-height:40px;">③ 渐变卡片 + 文字叠加</div>
+
+  <!-- 深色渐变卡片 + 白色文字 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:690px;width:540px;height:280px;background:linear-gradient(135deg,#0A2E5C,#1A4A7A);border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.2);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:720px;width:460px;height:40px;font-size:28px;font-weight:700;color:#FFFFFF;line-height:40px;">AI 赋能</div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:780px;width:460px;height:80px;font-size:18px;color:rgba(255,255,255,0.85);line-height:1.55;">智能工作流让协作更高效,让创意更自由,让决策更精准。</div>
+
+  <!-- 彩色渐变卡片 + 深色文字 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:680px;top:690px;width:540px;height:280px;background:linear-gradient(to right,#FFD93D,#FF6B6B);border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.15);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:720px;top:720px;width:460px;height:40px;font-size:28px;font-weight:700;color:#0A2E5C;line-height:40px;">创新驱动</div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:720px;top:780px;width:460px;height:80px;font-size:18px;color:#333333;line-height:1.55;">从想法到落地,从原型到产品,加速每一步。</div>
+
+  <!-- ============================================ -->
+  <!-- 4. radial-gradient(恒走截图,不转原生)     -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1260px;top:690px;width:540px;height:40px;font-size:20px;font-weight:600;color:#333;line-height:40px;">④ radial(恒截图)</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1260px;top:740px;width:240px;height:200px;background:radial-gradient(circle,#64D2FF,#0A2E5C);border-radius:12px;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1260px;top:950px;width:240px;height:24px;font-size:14px;text-align:center;color:#666;">radial 恒截图</div>
+
+  <!-- 底部分隔线 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:1000px;width:1720px;height:2px;background:#D5D5D0;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:1015px;width:1720px;height:40px;font-size:16px;color:#999;">线性渐变(多角度/多色停/圆角/边框/卡片) · radial 回退 — P2 1.6</div>
+
+  <template data-slide-notes>
+P2 1.6 原生线性渐变夹具:① 基础线性渐变(4 角度);② 多色停(三色/四色)+ 圆角/边框/虚线/椭圆;③ 渐变卡片+文字叠加(深色/彩色);④ radial-gradient 恒走截图回退。
+nativeGradient=false(默认):全部截图;nativeGradient=true:linear→原生 a:gradFill,radial→截图。
+  </template>
+</div>
+</body>
+</html>

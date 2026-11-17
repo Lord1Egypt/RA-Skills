@@ -1,42 +1,54 @@
-## Description: <br>
-Automatically sets up a three-layer OpenClaw memory system with long-term memory, daily notes, and nightly fact extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up a bilingual three-layer AI memory system with long-term MEMORY.md, daily notes, and nightly fact extraction.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create durable AI memory files, record daily notes, and configure recurring extraction of important facts from conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-term memory files may retain secrets or sensitive personal information from conversations. <br>
-Mitigation: Define allowed data categories, add rules to avoid storing secrets or sensitive personal information, and review generated memory files before relying on them. <br>
-Risk: The scheduled nightly extraction job may continue reviewing conversations without clear consent, limits, or removal guidance. <br>
-Mitigation: Confirm consent, allowed scope, timezone, disable steps, and deletion or redaction process before enabling the cron job. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up a local memory workflow that records durable user facts, daily events, decisions, and preferences across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/talonforge-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/casperzinou) <br>
-- [TalonForge homepage](https://talonforge.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with memory-file templates and an OpenClaw cron command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs an agent to create persistent memory files and configure a recurring nightly extraction job.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: A recurring unattended job may review conversations and write long-term notes beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the cron job only after confirming the target files, timezone, review scope, and how to inspect or remove the job.
+
+Risk: Durable memory files may retain sensitive, outdated, or incorrect facts without clear deletion or correction guidance.
+
+Mitigation: Provide a regular review process for MEMORY.md and memory/ notes, including how to correct, supersede, or delete stored facts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/casperzinou/skills/talonforge-memory)
+- [TalonForge Homepage](https://talonforge.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with file templates and an OpenClaw cron command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory file templates and configuration guidance for a recurring nightly extraction job.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

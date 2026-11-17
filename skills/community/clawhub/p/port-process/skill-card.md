@@ -1,42 +1,58 @@
-## Description: <br>
-Port Process helps agents find and manage system processes by port, including identifying port owners, listing listening ports, and terminating selected processes on macOS and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Port Process helps agents and developers find processes bound to local ports, list active ports, and terminate selected processes on macOS and Linux.
 
-## Publisher: <br>
-[wang-junjian](https://clawhub.ai/user/wang-junjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang-junjian](https://clawhub.ai/user/wang-junjian)
 
-## Use Case: <br>
-Developers and operators use this skill during local development, debugging, and automation to identify processes occupying ports and safely free ports before starting services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Process termination commands can stop the wrong local process or interrupt stateful work if the PID and process name are not reviewed first. <br>
-Mitigation: Inspect the PID and command with the find or dry-run workflow before terminating, and avoid applying kill commands to critical or unfamiliar processes. <br>
-Risk: Force-kill behavior can prevent graceful shutdown and may cause data loss for services with unsaved state. <br>
-Mitigation: Prefer graceful termination first, use the safe mode when available, and reserve SIGKILL or kill -9 for cases where the process can be stopped. <br>
+## Use Case:
 
+Developers and engineers use this skill while debugging local services, automation scripts, and port conflicts to identify which process owns a port and decide whether to terminate it.
 
-## Reference(s): <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wang-junjian/port-process) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for local process inspection and port cleanup workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Terminating the wrong process can interrupt unrelated local services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the find or dry-run flow first and verify the port, PID, user, and command before approving termination.
+
+Risk: Forceful process termination can cause data loss or service disruption, especially on shared or production systems.
+
+Mitigation: Prefer the safe SIGTERM flow, save work before terminating stateful processes, and avoid using the skill on shared or production hosts unless authorized.
+
+Risk: Using elevated privileges can terminate processes outside the current user's normal control.
+
+Mitigation: Avoid sudo unless the target process is understood and the operator has explicit permission to manage it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wang-junjian/skills/port-process)
+- [Publisher profile](https://clawhub.ai/user/wang-junjian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON output from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include process identifiers, usernames, commands, ports, protocols, and termination recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

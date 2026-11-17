@@ -1,40 +1,58 @@
-## Description: <br>
-Offers custom web scraping services for single-page, multi-page, scheduled, and real-time data extraction with CSV, JSON, API, and dashboard delivery options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds custom web scrapers for websites, including single-page, multi-page, and real-time data extraction with CSV/JSON export and API delivery options.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-External users can use this skill to understand available web scraping service packages for lead generation, price monitoring, competitor tracking, and market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web scraping work can unintentionally target unauthorized, sensitive, authenticated, or access-controlled data. <br>
-Mitigation: Before use, define authorized target sites, allowed fields, rate limits, retention rules, and opt-out or stop controls. <br>
-Risk: Broad scraping requests may create legal, compliance, or terms-of-service issues if the scope is not reviewed. <br>
-Mitigation: Confirm authorization and a valid legal basis for each target and data category before hiring or using the service. <br>
+## Use Case:
 
+External customers use this skill to request custom web scraping services for lead generation, price monitoring, competitor tracking, and market research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/web-scraper-seller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only service listing; no executable code, installation steps, or direct data extraction workflow is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The advertised scraping services may be used on sites or data that the customer is not authorized to collect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only for authorized sites and data, and require written confirmation of permitted targets before work begins.
+
+Risk: Scheduled, real-time, unlimited, or full-site scraping can violate site terms, rate limits, or privacy expectations.
+
+Mitigation: Define rate limits, scope limits, privacy constraints, and terms-of-service checks before enabling broad or recurring collection.
+
+Risk: The listing does not describe safeguards for personal, credentialed, or sensitive data.
+
+Mitigation: Avoid personal or credentialed data unless explicit authorization, minimization, retention, and handling requirements are documented.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yongtaop1-sys/skills/web-scraper-seller)
+- [Publisher profile](https://clawhub.ai/user/yongtaop1-sys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown service listing with pricing, delivery timelines, supported data delivery options, use cases, and contact details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; describes scraping service tiers and customer contact channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

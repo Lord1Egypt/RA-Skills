@@ -1,40 +1,49 @@
-## Description: <br>
-Position a company with Treacy & Wiersema's Value Disciplines model for strategic positioning and competitive differentiation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Position company using Treacy & Wiersema's Value Disciplines model. Use for strategic positioning and competitive differentiation.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business strategy teams, founders, and consultants use this skill to assess a company's primary value discipline, compare competitors, identify gaps, and prioritize strategic investments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive company strategy, financial, customer, or competitive information while completing the analysis. <br>
-Mitigation: Use public, sanitized, or approved internal information unless the current agent session is cleared for sensitive business data. <br>
-Risk: The framework output may be treated as final strategic advice even though it is a structured assessment template. <br>
-Mitigation: Have qualified business stakeholders review assumptions, scores, competitors, and investment priorities before acting on the recommendations. <br>
+## Use Case:
 
+External business strategists, founders, product leaders, and consultants use this skill to assess a company's strategic positioning against the Product Leadership, Operational Excellence, and Customer Intimacy disciplines. It supports scoring, competitive comparison, gap analysis, and investment-priority planning.
 
-## Reference(s): <br>
-- [Value Disciplines skill page](https://clawhub.ai/linuszz/value-disciplines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, scoring, a positioning map, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a company-level value discipline assessment, competitive comparison, gap analysis, and investment priorities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may include confidential business details in company assessments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information that is appropriate for the current workspace or conversation, and review generated analysis before using it in business planning.
+
+## Reference(s):
+
+- [Value Disciplines ClawHub skill page](https://clawhub.ai/linuszz/skills/value-disciplines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with positioning map, assessment tables, competitive comparison, and strategic implications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include framework-based scoring and recommendations derived from user-provided company context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

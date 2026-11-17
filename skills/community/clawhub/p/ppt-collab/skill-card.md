@@ -1,43 +1,56 @@
-## Description: <br>
-Guides agents working in the PPTAgent or BotSlide repository on slide generation, editing, export fidelity, preview behavior, prompt rules, and project versioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when working in the PPTAgent or BotSlide repository to add features, fix bugs, or adjust slide generation, editing, export, prompt rules, project versioning, or preview behavior.
 
-## Publisher: <br>
-[Mrguanglei](https://clawhub.ai/user/Mrguanglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrguanglei](https://clawhub.ai/user/mrguanglei)
 
-## Use Case: <br>
-Developers and engineers use this skill when modifying or debugging the PPTAgent/BotSlide repository, especially changes to fixed-size slide generation, HTML-to-PPTX export, preview flows, editing behavior, and project version APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validation commands may install dependencies, start services, run Docker, or expose a development service on 0.0.0.0. <br>
-Mitigation: Confirm the repository working directory and review Docker, pip, pnpm, Playwright, and uvicorn commands before execution. <br>
-Risk: Slide-generation changes can break the 1280x720 fixed-canvas assumption or reduce HTML-to-PPTX export fidelity. <br>
-Mitigation: Keep fixed slide dimensions and export constraints in scope, and validate with targeted preview or PPTX export checks when those paths are affected. <br>
+## Use Case:
 
+Developers and engineers use this skill while working inside PPTAgent or BotSlide repositories to navigate slide generation, editing, preview, export, versioning, and validation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mrguanglei/ppt-collab) <br>
-- [Project map](references/project-map.md) <br>
-- [Slide rules](references/slide-rules.md) <br>
-- [Validation workflow](references/validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify the changed layer, explain why the change belongs there, and include the smallest relevant validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Following validation steps may install dependencies or run local services in a development environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency manifests and lockfiles first, and run installs in a contained development environment without unrelated secrets.
+
+Risk: Slide layout, preview, or export changes can break fixed 1280x720 rendering assumptions or PPTX export fidelity.
+
+Mitigation: Check generated slide output against the fixed canvas rules and run a PPTX export smoke test when export behavior changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mrguanglei/skills/ppt-collab)
+- [项目地图](references/project-map.md)
+- [幻灯片规则](references/slide-rules.md)
+- [验证方式](references/validation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown prose with inline code, commands, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task-scoped validation guidance and explicit verification gaps when complete validation is not possible.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

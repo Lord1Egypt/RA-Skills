@@ -1,41 +1,53 @@
-## Description: <br>
-Guide for SenseAudio voice selection, plan-level voice entitlement checks, and cloned voice usage constraints in TTS calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for SenseAudio voice selection, plan-level voice entitlement checks, and cloned voice usage constraints in TTS calls.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and support agents use this skill to troubleshoot SenseAudio TTS voice availability, account-tier entitlements, cloned voice usage, and dictionary/model constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice entitlement or model compatibility guidance may become stale as SenseAudio account tiers, voice lists, and TTS model behavior change. <br>
-Mitigation: Verify current voice entitlements and model compatibility against official SenseAudio materials before changing production TTS behavior. <br>
-Risk: Troubleshooting TTS accounts can expose unnecessary account details or secrets if users overshare context. <br>
-Mitigation: Ask only for the minimum voice ID, account tier, and model information needed, and avoid collecting account secrets. <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot SenseAudio voice availability, check plan-level voice entitlements, configure cloned voice usage, and decide fallbacks when a requested voice is unavailable.
 
-## Reference(s): <br>
-- [SenseAudio Voice ClawHub page](https://clawhub.ai/scikkk/senseaudio-voice) <br>
-- [Voice and Cloning Reference](references/voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown guidance with configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only guidance; no code, shell commands, credential handling, or installation scripts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A requested paid or cloned voice may be unavailable if the account tier or platform entitlement is not confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact voice_id, account tier, and platform voice-list result before using a paid or cloned voice in production.
+
+Risk: Dictionary-based polyphone correction may be misapplied to unsupported voices or models.
+
+Mitigation: Verify clone voice usage and current model compatibility before enabling dictionary behavior; provide a fallback without dictionary when unsupported.
+
+## Reference(s):
+
+- [Voice and Cloning Reference](references/voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; guidance centers on voice IDs, entitlement checks, cloned voice constraints, and fallback selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

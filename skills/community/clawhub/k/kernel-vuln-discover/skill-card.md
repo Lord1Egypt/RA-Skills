@@ -1,44 +1,59 @@
-## Description: <br>
-Guides agents through proactive Linux kernel vulnerability discovery using subsystem attack-surface enumeration, CVE pattern scanning, fuzzing, static audit, diff analysis, and vulnerability report drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through proactive Linux kernel vulnerability discovery using subsystem attack-surface enumeration, CVE pattern scanning, fuzzing workflows, static code review, differential analysis, and vulnerability report drafting.
 
-## Publisher: <br>
-[wjd6910502](https://clawhub.ai/user/wjd6910502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjd6910502](https://clawhub.ai/user/wjd6910502)
 
-## Use Case: <br>
-Security researchers, kernel engineers, and agent developers use this skill to plan and document Linux kernel vulnerability discovery work, including targeted subsystem audits, fuzzing setup, pattern-based scans, and report preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fuzzing workflows, proof-of-concept code, or generated vulnerability reports could be unsafe or misleading if run against production systems or trusted as confirmed findings. <br>
-Mitigation: Run fuzzers and PoCs only in isolated VMs or test machines, and manually validate every result before reporting or acting on it. <br>
-Risk: Pattern-scan output has a high false-positive rate and may reference CVE patterns that need independent confirmation. <br>
-Mitigation: Review the local scan script before use, verify CVE references independently, and confirm code context before treating a hit as a vulnerability. <br>
+## Use Case:
 
+Security researchers, kernel engineers, and developers use this skill to plan and execute Linux kernel vulnerability discovery across subsystems such as io_uring, Netfilter, SMB, OverlayFS, BPF, filesystems, and drivers. It helps produce audit plans, scan commands, fuzzing configurations, code-review findings, PoC-oriented analysis, and vulnerability reports.
 
-## Reference(s): <br>
-- [CVE Pattern Library](references/cve-patterns.md) <br>
-- [Subsystem Audit Checklists](references/subsystem-checklists.md) <br>
-- [Trinity syscall fuzzer](https://github.com/kernelsploit/trinity) <br>
-- [Linux kernel upstream commit log](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/) <br>
-- [ClawHub skill page](https://clawhub.ai/wjd6910502/kernel-vuln-discover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands, C snippets, YAML snippets, and vulnerability report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pattern-scan guidance and report structure; scan hits require manual validation before disclosure or remediation work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow directs users to fetch, build, and run kernel fuzzers, kernel sources, and proof-of-concept oriented artifacts that can affect host stability or expose sensitive systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run fuzzing, kernel builds, and PoCs only inside disposable VMs or isolated lab infrastructure, and avoid privileged accounts or environments containing secrets.
+
+Risk: Downloaded tools and kernel sources introduce supply-chain risk if they are fetched or executed without verification.
+
+Mitigation: Pin or verify downloaded tools and kernel sources before execution.
+
+Risk: Pattern scans and generated findings can produce false positives or misleading vulnerability conclusions.
+
+Mitigation: Manually review scan hits, confirm code context, and validate root cause and exploitability before reporting.
+
+## Reference(s):
+
+- [CVE Pattern Library](references/cve-patterns.md)
+- [Subsystem Audit Checklists](references/subsystem-checklists.md)
+- [Trinity Fuzzer](https://github.com/kernelsploit/trinity)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, C, YAML, and report-template code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs require expert review before acting on vulnerability findings or executing generated commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

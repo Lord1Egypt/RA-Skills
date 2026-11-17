@@ -1,40 +1,53 @@
-## Description: <br>
-Simplified man pages from tldr-pages. Use this to quickly understand CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplified man pages from tldr-pages. Use this to quickly understand CLI tools.
 
-## Publisher: <br>
-[liuji10000qian-svg](https://clawhub.ai/user/liuji10000qian-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liuji10000qian-svg](https://clawhub.ai/user/liuji10000qian-svg)
 
-## Use Case: <br>
-Developers and command-line users use this skill to ask an agent for concise tldr examples before consulting full manuals or help output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local tldr executable may be unavailable, outdated, or untrusted. <br>
-Mitigation: Confirm the installed tldr binary is trusted and update its cache before relying on generated examples. <br>
-Risk: Concise command examples may omit flags, side effects, or safety context for destructive operations. <br>
-Mitigation: Check full man pages, --help output, or official documentation before running commands that delete, overwrite, publish, or otherwise change important data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuji10000qian-svg/tldr-xiaren-test-v2) <br>
-- [tldr-pages project](https://github.com/tldr-pages/tldr) <br>
+## Use Case:
 
+Developers and technical users use this skill to get concise examples for command-line tools before consulting longer manual pages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local tldr executable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can cause an agent to prefer concise tldr pages over full man pages, which may omit detailed command behavior or edge cases.
+
+Mitigation: Use full man pages or --help output when complete option details, platform-specific behavior, or authoritative command documentation is needed.
+
+Risk: The skill may suggest updating the local tldr cache when a page is missing.
+
+Mitigation: Review cache update behavior against the local environment's package and network policies before running updates.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liuji10000qian-svg/skills/tldr-xiaren-test-v2)
+- [tldr-pages project](https://github.com/tldr-pages/tldr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prefer concise tldr pages over full manual pages and may suggest updating the local tldr cache when a page is missing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

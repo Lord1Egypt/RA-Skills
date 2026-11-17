@@ -1,38 +1,58 @@
-## Description: <br>
-Break a project, objective, or task list into safe, bounded one-time OpenClaw cron work blocks with dependencies, risk classification, and strong isolated agentTurn payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break a project, objective, or task list into safe, bounded one-time OpenClaw cron work blocks with dependencies, risk classification, and strong isolated agentTurn payloads.
 
-## Publisher: <br>
-[sebclawops](https://clawhub.ai/user/sebclawops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebclawops](https://clawhub.ai/user/sebclawops)
 
-## Use Case: <br>
-Agents and operators use this skill to turn multi-step projects into supervised, one-time scheduled work blocks. It is aimed at low-risk audits, recaps, documentation cleanup, asset prep, support follow-up, and phased project execution that should remain bounded and reviewable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled agent jobs may perform unsafe or overly broad work if their payloads are vague or insufficiently reviewed. <br>
-Mitigation: Review each proposed job before scheduling and confirm it is one-time, narrowly scoped, non-destructive, and does not send messages, change production systems, make purchases, or use credentials without explicit approval. <br>
+## Use Case:
 
+Developers, operators, and project leads use this skill to convert multi-step work into supervised one-time OpenClaw cron blocks with clear dependencies, risk classification, payloads, and review checkpoints.
 
-## Reference(s): <br>
-- [Workflow Orchestrator Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown orchestration plan with block-by-block schedule proposals, cron payload text, assumptions, dependencies, risks, and documentation suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposals by default; creates only approved safe scheduled blocks when the user has already authorized scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Future scheduled work may run without the parent session's live context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use bounded isolated agentTurn payloads that include the exact scope, prior state, inputs to inspect, expected output, forbidden actions, and blocker reporting instructions.
+
+Risk: Unsafe actions could be scheduled unattended if project blocks are not reviewed carefully.
+
+Mitigation: Classify every block and schedule only work that is safe, auditable, low risk, reversible, and explicitly approved when approval is needed.
+
+Risk: Destructive changes, purchases, public or customer-facing sends, and credential-dependent flows could create operational or trust risk.
+
+Mitigation: Keep those activities behind explicit review and approval, and use the skill for bounded audits, recaps, cleanup proposals, prep tasks, and checkpoints.
+
+## Reference(s):
+
+- [Project Workflow Scheduler examples](artifact/references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/sebclawops/skills/project-workflow-scheduler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured schedule proposals and cron payload text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumptions, dependencies, risks, and documentation update suggestions when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-一间吧 — 企业管理诊断系统。基于施炜"企业成长五阶段模型"+"一心开二门"+"三大矛盾"理论框架，提供标准化的企业管理诊断能力，涵盖调研设计、深度诊断、根因分析、报告撰写全流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yijianba is an enterprise management diagnosis skill that guides agents through research design, organizational diagnosis, root-cause analysis, change recommendations, and structured diagnostic report writing.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Management consultants, business leaders, and organizational diagnosis practitioners use this skill to structure company research, analyze strategy, organization, talent, culture, and leadership issues, and produce diagnosis reports with recommended change paths.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Enterprise materials, interview notes, and questionnaire responses may contain confidential company data or sensitive employee feedback.
+
+Mitigation: Use only information you are authorized to share, anonymize interview and questionnaire content, and aggregate sensitive feedback where practical.
+
+Risk: Diagnosis outputs may be mistaken for legal, financial, or investment advice.
+
+Mitigation: Treat outputs as management guidance and route legal, financial, or investment decisions to qualified professionals.
+
+Risk: The documented methodology is aimed at growth-stage companies and may be less reliable for very early, very large, or unusual platform businesses.
+
+Mitigation: Confirm company fit before use and adjust diagnostic dimensions or weights for the industry and organization type.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Management consultants, founders, executives, and organizational-development teams use this skill to structure enterprise management diagnosis, including research design, interviews, questionnaires, root-cause analysis, transformation recommendations, and Markdown diagnosis reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Company diagnostics may involve trade secrets, employee feedback, personal data, or regulated business information. <br>
-Mitigation: Confirm authorization before using real company materials, redact sensitive details where possible, anonymize or aggregate questionnaire responses, and use only organization-approved handling processes. <br>
-Risk: Interview recordings and employee responses can create consent and confidentiality concerns. <br>
-Mitigation: Obtain consent before recording interviews and keep responses anonymized or aggregated when preparing diagnostic outputs. <br>
+**Output Format:** [Markdown reports, diagnostic frameworks, interview guides, questionnaires, analysis notes, and implementation recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/yijianba) <br>
-- [Publisher profile](https://clawhub.ai/user/tuobadaidai) <br>
+**Other Properties Related to Output:** [Requires user-supplied company context and supporting materials; no code execution or data persistence is indicated by the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, diagnostic frameworks, interview guides, questionnaires, analysis summaries, and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable methodology guidance; users provide company context and source materials.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Paymax recognizes payment intents or payment parameters from other skills, creates payment requests through an external payment API, and returns the trade code and payment link for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paymax recognizes payment-related user intents or skill calls, creates a payment request, and returns the trade code and payment link.
 
-## Publisher: <br>
-[sayxxx](https://clawhub.ai/user/sayxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sayxxx](https://clawhub.ai/user/sayxxx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent workflows use Paymax to collect a payment amount, create a payment request, and present the returned trade code and payment link for completion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Payment details are sent to an external payment service.
+
+Mitigation: Use the skill only when the publisher and payment API are trusted and the user is comfortable sharing payment details with that service.
+
+Risk: Command examples include user-controlled payment fields.
+
+Mitigation: Invoke scripts with argument-array execution, or strictly validate and escape payment amount, payee, order type, and description values before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and calling skills use Paymax to collect a payment amount, create a payment request, and present the resulting trade code and payment link. Operators should verify the payee, amount, and destination link before any real payment is completed. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Payment details may be sent to an unverified external payment service. <br>
-Mitigation: Use only when the operator of pay.4199191.xyz is trusted, and test first with non-sensitive payment data. <br>
-Risk: A payment request may be created without a clear final user confirmation or provider disclosure. <br>
-Mitigation: Require manual verification of the amount, payee, and payment link before completing any real payment. <br>
-Risk: Other skills may invoke this skill with payment parameters. <br>
-Mitigation: Treat calls from other skills as payment requests that still need user-visible review before payment. <br>
+**Output Format:** [Plain text or Markdown-style chat response with tradeCode, tradeLink, or a failure message.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sayxxx/paymax) <br>
-- [Publisher profile](https://clawhub.ai/user/sayxxx) <br>
+**Other Properties Related to Output:** [May include a trade code and external payment link; no token cap specified.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with payment status text, tradeCode, tradeLink, and optional shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Payment request output may include a tradeCode and tradeLink returned by the external payment service.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

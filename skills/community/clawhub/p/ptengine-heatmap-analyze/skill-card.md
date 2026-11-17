@@ -1,53 +1,70 @@
-## Description: <br>
-Ptengine Heatmap Analyze fetches heatmap metrics through a user-installed ptengine-cli tool and guides CRO behavior analysis with a four-stage psychology model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ptengine Heatmap Analyze helps agents fetch Ptengine heatmap metrics through the user-installed ptengine-cli tool and produce CRO behavior analysis reports using a four-stage psychology model.
 
-## Publisher: <br>
-[zhaichen](https://clawhub.ai/user/zhaichen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaichen](https://clawhub.ai/user/zhaichen)
 
-## Use Case: <br>
-External marketers, CRO practitioners, analysts, and site operators use this skill to analyze Ptengine heatmap data, compare segments, validate A/B tests, evaluate ad performance, and identify conversion barriers or opportunities on landing pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill needs review because it tells the agent to handle a Ptengine API key despite also saying it does not. <br>
-Mitigation: Configure ptengine-cli manually or through a secure credential prompt, do not paste API keys into chat, and prefer a least-privileged Ptengine key. <br>
-Risk: Heatmap queries and generated reports may expose sensitive business analytics. <br>
-Mitigation: Limit use to authorized Ptengine profiles and avoid sharing outputs outside the teams approved to view the underlying analytics. <br>
+## Use Case:
 
+Marketing practitioners, CRO specialists, and site operators use this skill to analyze Ptengine heatmap data, compare audience segments, validate A/B tests, evaluate ad channels, and identify conversion barriers or opportunities on webpages.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/zhaichen/ptengine-heatmap-analyze) <br>
-- [ptengine-cli upstream repository](https://github.com/Kocoro-lab/ptengine-cli) <br>
-- [ptengine-cli releases](https://github.com/Kocoro-lab/ptengine-cli/releases) <br>
-- [ptengine-cli command reference](references/ptengine-cli.md) <br>
-- [Data transform reference](references/data-transform.md) <br>
-- [Page classification reference](references/page-classification.md) <br>
-- [Page types reference](references/page-types.md) <br>
-- [Quality constraints reference](references/quality-constraints.md) <br>
-- [Single page analysis task](references/single-page-task.md) <br>
-- [Segment comparison task](references/compare-task.md) <br>
-- [A/B test validation task](references/ab-test-task.md) <br>
-- [Ad performance analysis task](references/ad-performance.md) <br>
-- [Audience analysis task](references/audience-analysis.md) <br>
-- [Block analysis reference](references/block-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and evidence-grounded recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Ptengine CLI JSON responses as the authoritative data source and presents concise CRO findings, barriers, opportunities, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Ptengine API credentials are required for the external ptengine-cli tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure ptengine-cli in a trusted terminal instead of pasting API keys into chat, and use the CLI's masked configuration display for checks.
+
+Risk: Shell-style ptengine-cli command templates include user-provided URL, date range, filter, and profile inputs.
+
+Mitigation: Validate parameters and invoke ptengine-cli without shell interpolation before operational use.
+
+Risk: Attacker-supplied URLs could lead to misleading or unsafe analysis requests.
+
+Mitigation: Use the skill on trusted or owned URLs and keep data collection bounded to Ptengine CLI results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaichen/skills/ptengine-heatmap-analyze)
+- [ptengine-cli upstream repository](https://github.com/Kocoro-lab/ptengine-cli)
+- [ptengine-cli releases](https://github.com/Kocoro-lab/ptengine-cli/releases)
+- [ptengine-cli command reference](references/ptengine-cli.md)
+- [Data transformation reference](references/data-transform.md)
+- [Page classification](references/page-classification.md)
+- [Block content analysis and stage classification](references/block-analysis.md)
+- [Quality constraints](references/quality-constraints.md)
+- [Single page analysis task](references/single-page-task.md)
+- [Compare task](references/compare-task.md)
+- [A/B test task](references/ab-test-task.md)
+- [Ad performance analysis](references/ad-performance.md)
+- [Audience analysis](references/audience-analysis.md)
+- [Page type interpretation guide](references/page-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Human-readable Markdown report with inline ptengine-cli commands and JSON-oriented data handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-installed ptengine-cli and user-configured Ptengine credentials; analysis should use Ptengine CLI data only.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

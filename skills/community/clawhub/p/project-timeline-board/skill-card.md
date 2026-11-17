@@ -1,39 +1,50 @@
-## Description: <br>
-Project Timeline Board helps agents generate a configurable project timeline page from a JavaScript project configuration, including key nodes, a Gantt chart, milestones, and a to-do board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A data-driven project timeline board that lets users edit a JavaScript configuration file to generate an HTML page with an intelligent timeline, Gantt chart, milestone tracking, and to-do board.
 
-## Publisher: <br>
-[ildar981105-create](https://clawhub.ai/user/ildar981105-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ildar981105-create](https://clawhub.ai/user/ildar981105-create)
 
-## Use Case: <br>
-Developers, product teams, and project planners use this skill to create a data-driven timeline board by editing project dates, milestones, Gantt rows, and task lists in configuration rather than hand-editing HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unreviewed PROJECT_CONFIG files may contain embedded HTML or script-like payloads that run in the rendered page. <br>
-Mitigation: Install only from trusted sources, review shared configuration files before opening them, and prefer versions that render fields as text or sanitize allowed markup. <br>
+## Use Case:
 
+Developers, product managers, and project teams use this skill to create a configurable project planning page for milestones, schedules, task status, and delivery coordination. It is suited to product planning, release scheduling, design handoff, and project progress updates.
 
-## Reference(s): <br>
-- [Timeline CSS reference](references/timeline-css.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ildar981105-create/project-timeline-board) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML and JavaScript configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local page assets and configuration-oriented instructions for rendering a project timeline board.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: Configured timeline text and extras content may be treated as page markup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project configuration only, or sanitize/rewrite renderer fields to use textContent or explicit DOM creation before hosting on a sensitive origin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ildar981105-create/skills/project-timeline-board)
+- [Timeline CSS component reference](references/timeline-css.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, JavaScript, CSS, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a static project timeline template driven by PROJECT_CONFIG data.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

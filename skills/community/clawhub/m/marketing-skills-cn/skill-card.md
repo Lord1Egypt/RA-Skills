@@ -1,41 +1,54 @@
-## Description: <br>
-Chinese-language marketing skill that helps agents draft and refine social media posts, short-video scripts, ecommerce copy, SEO content, conversion copy, and growth plans for China-focused platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文营销全栈Skills supports Chinese-language marketing content creation for Xiaohongshu, Douyin, WeChat Official Accounts, WeChat Moments, ecommerce copy, SEO, conversion copy, and user growth.
 
-## Publisher: <br>
-[guo123dong](https://clawhub.ai/user/guo123dong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[guo123dong](https://clawhub.ai/user/guo123dong)
 
-## Use Case: <br>
-Marketing practitioners, founders, and content teams use this skill to create or improve Chinese-language campaigns for Xiaohongshu, Douyin, WeChat public accounts, WeChat Moments, Weibo, Bilibili, ecommerce pages, and Chinese SEO. It provides platform-specific templates, compliance checks, copy frameworks, and growth strategy guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated advertising, product, or growth claims may be inaccurate or noncompliant with platform rules or advertising law. <br>
-Mitigation: Review factual claims, prohibited superlatives, platform constraints, and legal compliance before publishing generated content. <br>
-Risk: Broad marketing terms may activate the skill in ambiguous conversations. <br>
-Mitigation: Confirm the target platform, audience, product facts, and intended marketing goal before applying its templates. <br>
+## Use Case:
 
+External users and marketing practitioners use this skill to draft, optimize, and review Chinese social-media, ecommerce, SEO, conversion, and growth content for platforms such as Xiaohongshu, Douyin, WeChat Official Accounts, WeChat Moments, Weibo, and Bilibili.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guo123dong/skills/marketing-skills-cn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/guo123dong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with reusable copy templates and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; produces no executable code, credentials, persistence, or hidden data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, ClawHub release metadata) <br>
+Risk: Platform and advertising-law guidance may become outdated or may not fit a specific campaign or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy and compliance suggestions against current platform rules and applicable advertising requirements before professional use.
+
+Risk: The skill may activate on broad marketing terms such as SEO or Xiaohongshu even when the user intent is unrelated.
+
+Mitigation: Confirm that the marketing workflow is relevant before applying its templates or recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guo123dong/skills/marketing-skills-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/guo123dong)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text marketing copy, outlines, scripts, checklists, and compliance review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only skill output; ClawHub security evidence reports no code execution, persistence, credential use, or hidden data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, artifact/SKILL.md frontmatter, artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Unified interface to 42+ NVIDIA NIM API models - LLM chat, vision, embeddings, image generation, with price comparison and model recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified interface to 42+ NVIDIA NIM API models for LLM chat, vision, embeddings, image generation, price comparison, and model recommendation.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect NVIDIA NIM model options, compare costs, request model recommendations, and call chat, embedding, and image-generation APIs from Python. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation contains unrelated merged learning-history records with user-like identifiers. <br>
-Mitigation: Review and remove unrelated records before reuse or redistribution. <br>
-Risk: Prompts and inputs sent through the skill are transmitted to NVIDIA API endpoints. <br>
-Mitigation: Avoid sending secrets, proprietary text, personal data, or regulated content unless the user has approved that disclosure. <br>
-Risk: Live API calls require a sensitive NVIDIA_API_KEY credential. <br>
-Mitigation: Store the key in the environment, avoid committing it to files, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover NVIDIA NIM models, compare model pricing, estimate costs, and call chat, embedding, and image generation APIs through a Python interface.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/534422530/model-center) <br>
-- [NVIDIA API catalog](https://build.nvidia.com) <br>
-- [NVIDIA API base endpoint](https://integrate.api.nvidia.com/v1) <br>
-- [NVIDIA model listing endpoint](https://integrate.api.nvidia.com/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python return values and Markdown usage guidance, including JSON-like API responses and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, the requests package, and an NVIDIA_API_KEY for live NVIDIA API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Prompts, chat messages, and embedding text are sent to NVIDIA API endpoints and may contain sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential or regulated data unless the deployment has approved data handling controls for the NVIDIA API use case.
+
+Risk: The skill requires an NVIDIA API key and includes an interactive CLI path that can prompt for a key.
+
+Mitigation: Use a limited-scope API key and provide it through a protected NVIDIA_API_KEY environment variable instead of typing it into the CLI.
+
+Risk: The artifact contains unrelated appended learning/log content, and server-resolved provenance is unavailable.
+
+Mitigation: Review the package contents and publisher source before installation, and do not infer GitHub provenance from the artifact text.
+
+## Reference(s):
+
+- [NVIDIA API Catalog](https://build.nvidia.com)
+- [NVIDIA NIM API Base](https://integrate.api.nvidia.com/v1)
+- [NVIDIA NIM Models Endpoint](https://integrate.api.nvidia.com/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, API Calls, Configuration]
+
+**Output Format:** [Python objects, JSON-like API responses, and text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an NVIDIA_API_KEY environment variable for live API calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

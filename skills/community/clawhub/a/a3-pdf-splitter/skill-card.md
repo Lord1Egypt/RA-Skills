@@ -1,44 +1,57 @@
-## Description: <br>
-智能A3试卷PDF切分工具，自动识别页面中间空白位置，将横向或纵向A3试卷PDF切分为A4 PDF以便打印。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能 A3 试卷 PDF 切分工具，自动识别页面中间空白位置，将 A3 格式试卷 PDF 转换为便于打印的 A4 PDF。
 
-## Publisher: <br>
-[boxertan](https://clawhub.ai/user/boxertan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boxertan](https://clawhub.ai/user/boxertan)
 
-## Use Case: <br>
-Educators, students, office staff, and agents assisting them use this skill to split local A3 exam or document PDFs into ordered A4 pages for printing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The output path may overwrite an existing file. <br>
-Mitigation: Confirm the destination path before running and use a distinct filename for converted output. <br>
-Risk: Broad trigger wording could cause the skill to be used for generic PDF or printing requests. <br>
-Mitigation: Confirm that the user specifically wants A3-to-A4 PDF splitting before invoking the tool. <br>
-Risk: The skill installs and runs Python PDF-processing dependencies locally. <br>
-Mitigation: Install dependencies in a virtual environment and process only PDFs the user intends to provide. <br>
+## Use Case:
 
+External users, educators, office workers, and agent operators use this skill to split A3 exam-paper PDFs into A4 pages for printing or document preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boxertan/a3-pdf-splitter) <br>
-- [README](artifact/README.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Text guidance with command examples; the tool writes a PDF file to the requested output path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local input and output file paths, renders pages at 400 DPI, and preserves page order by appending each split half to the output PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted or very large PDF inputs can create local processing, parsing, or resource-consumption risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on trusted, reasonably sized PDFs and review files before processing.
+
+Risk: Output paths can overwrite or misplace local files if chosen carelessly.
+
+Mitigation: Confirm input and output paths before running and choose a distinct output filename.
+
+Risk: Installing dependencies from PyPI depends on trusted package resolution.
+
+Mitigation: Install only in an environment where PyPI dependency resolution is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boxertan/skills/a3-pdf-splitter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown guidance with shell or Python commands and a generated PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local console status messages including split positions, source page count, output page count, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

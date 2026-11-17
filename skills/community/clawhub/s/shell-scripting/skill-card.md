@@ -1,38 +1,53 @@
-## Description: <br>
-Write robust, portable shell scripts. Use when parsing arguments, handling errors properly, writing POSIX-compatible scripts, managing temp files, running commands in parallel, managing background processes, or adding --help to scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write robust, portable shell scripts. Use when parsing arguments, handling errors properly, writing POSIX-compatible scripts, managing temp files, running commands in parallel, managing background processes, or adding --help to scripts.
 
-## Publisher: <br>
-[gitgoodordietrying](https://clawhub.ai/user/gitgoodordietrying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gitgoodordietrying](https://clawhub.ai/user/gitgoodordietrying)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft, review, and improve shell scripts for automation, argument parsing, cleanup, portability, parallel execution, process management, and self-documenting command-line behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated shell commands may include destructive operations or network calls that affect real files, services, or data. <br>
-Mitigation: Review scripts before running them, test on non-critical data first, and handle commands such as rm -rf, curl, and source with extra care. <br>
-Risk: Parallel jobs and background processes can continue running, fail silently, or interfere with local resources if not supervised. <br>
-Mitigation: Use explicit traps, waits, cleanup logic, and small test runs before applying parallel or long-running process patterns to production workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to draft and improve shell scripts for automation, argument parsing, error handling, cleanup, portability, parallel execution, process management, and help text.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated shell scripts and command examples should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to suggest insecure shell snippets.
+
+Mitigation: Review generated shell code before use, especially snippets that handle filenames, source configuration files, download URLs, or remove files recursively.
+
+Risk: Shell guidance can produce unintended command execution or deletion when copied into a script without local review.
+
+Mitigation: Validate generated scripts with manual review and shell linting before running them against real files or systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitgoodordietrying/skills/shell-scripting)
+- [Publisher profile](https://clawhub.ai/user/gitgoodordietrying)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides examples and implementation guidance for shell scripts; it does not execute commands by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

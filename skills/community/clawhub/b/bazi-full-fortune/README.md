@@ -17,6 +17,7 @@
 - 分析层 — 全方位命理解读模板，覆盖家庭、健康、事业、财富、感情、人际、学业、精神八大维度
 - 参考层 — 家庭背景命理模式速查清单，用于校准分析准确性
 - 反推层 — 从已知八字四柱反查阳历日期
+- 交叉验证层（可选）— 紫微斗数排盘参考文档与安星校验脚本，支持可选的紫微斗数交叉验证以提升结论稳定性
 
 ### 安装
 
@@ -135,10 +136,12 @@ npm run scan -- 2004 1 --day-pillar 甲寅 --hour 12:00:00
 ```
 
 Agent 会自动：
-1. 调用排盘脚本获取完整数据（四柱、十神、神煞、大运、刑冲合会）
-2. 向你提出 5 个校准问题（父母关系、父亲驻地、母亲角色、家庭经济、自身状态）
-3. 根据你的回答校准分析
-4. 按八大维度模板输出完整解读报告
+1. 先确认命造信息（出生日期公历/农历与是否闰月、出生时间、性别、出生地、是否已有现成排盘结果）
+2. 调用排盘脚本获取完整数据（四柱、十神、神煞、大运、刑冲合会），并自检年干阴阳与大运顺逆、月支节气、起运岁数、十神推算
+3. 向你提出 5 个家庭校准问题（父母关系、父亲驻地、母亲角色、家庭经济、自身状态）
+4. 用近一两年实际顺逆与 2-3 个已发生关键事件做回测校验，校准身强身弱与喜用假设
+5. 询问是否需要紫微斗数交叉验证（默认不启用；如需要，按 references/ziwei/ 规则排紫微盘并交叉验证）
+6. 按八大维度模板输出完整解读报告，并附温馨提示
 
 反推阳历：
 
@@ -157,7 +160,17 @@ Agent 会自动：
 
 如果你想手动走完整流程，步骤如下：
 
-第一步：排盘
+第一步：确认命造信息（先访谈，再排盘）
+
+1. 出生日期是公历还是农历？农历需问清是否闰月
+2. 出生时间精确到分钟，或至少到时辰
+3. 性别（影响大运顺逆）
+4. 出生地（涉及时辰边界校正时可能需要）
+5. 是否已有现成排盘结果（有的话优先校盘）
+
+访谈问题库见 references/interview.md
+
+第二步：排盘
 
 ```bash
 node scripts/buildBaziFromSolar.ts "2004-04-05T12:00:00" 1 2
@@ -165,7 +178,9 @@ node scripts/buildBaziFromSolar.ts "2004-04-05T12:00:00" 1 2
 
 输出包含：四柱天干地支、十神、纳音、星运、自坐、藏干、宫位、神煞、大运、刑冲合会。
 
-第二步：校准（向用户确认 5 个事实）
+排盘自检：年干阴阳与大运顺逆一致、月支对应正确节气、起运岁数取自脚本输出（严禁手估）、十神推算无误。
+
+第三步：校准（向用户确认 5 个事实）
 
 1. 父母是否在一起？
 2. 父亲做什么工作？常驻地在哪里？
@@ -173,9 +188,13 @@ node scripts/buildBaziFromSolar.ts "2004-04-05T12:00:00" 1 2
 4. 家里做什么的？（开店/体制内/务农/外出务工）
 5. 你目前在做什么？（学业/工作/哪个阶段）
 
-第三步：根据排盘数据 + 校准信息，按 SKILL.md 中的八大维度模板填充分析报告。
+第四步：回测校验——先给身强身弱与喜用假设，请用户用近一两年实际顺逆（忌神年是否难受、喜用月是否得财）及 2-3 个已发生关键事件反校验，校准后再输出完整报告。
 
-第四步：输出为 txt 文件，文件名格式 `八字全解_日主X_生肖X.txt`。
+第五步（可选）：紫微斗数交叉验证——询问用户是否需要，默认不启用。如启用，按 references/ziwei/calculation.md 规则排紫微盘（命宫身宫十二宫、五行局、十四主星、四化、大限），排盘前声明口径（默认三合派；闰月归属默认「闰月按下月」并明确告知，用户有既定口径优先沿用）；两体系各自独立分析、不混用术语，按性格、事业、财运、感情、健康五维度逐项比对，结论一致标注「双体系一致，结论稳定性提升」，不一致则回查各自排盘口径（重点查闰月与子时换日），不强行调和；安紫微星可用 python3 scripts/ziwei_verify.py 校验。
+
+第六步：根据排盘数据 + 校准信息，按 SKILL.md 中的八大维度模板填充分析报告。
+
+第七步：输出为 txt 文件，文件名格式 `八字全解_日主X_生肖X.txt`，文末附温馨提示。
 
 ### 核心特性
 
@@ -197,14 +216,18 @@ node scripts/buildBaziFromSolar.ts "2004-04-05T12:00:00" 1 2
 
 ### 推荐 LLM 模型
 
-本项目依赖 LLM 进行命理分析和解读，以下是实测后推荐的模型：
+本项目依赖 LLM 进行命理分析和解读，以下模型按实测效果从高到低排名：
 
-| 模型 | 推荐理由 |
-|------|----------|
-| Claude 4.* | Claude 系列越新越好，分析深度最强，逻辑严密，长文输出稳定，对命理术语理解精准 |
-| Qwen 3.7 Max | 中文理解力极强，对八字术语和文化背景把握到位，性价比高 |
-| MiniMax M3 | 中文输出流畅自然，分析有条理，响应速度快 |
-| MiMo v2.5 Pro | 推理能力强，逻辑链条清晰，适合复杂命盘 |
+| 排名 | 模型 | 推荐理由 |
+|------|------|----------|
+| 1 | Qwen3.8 Max | 当前效果最佳，中文理解力与八字术语把握最强，逻辑严密，支持超长上下文，性价比高 |
+| 2 | Kimi K3 | 长文分析能力强，推理出色，对命理术语和文化背景理解到位 |
+| 3 | GLM-5 | 推理与 Agent 能力突出，中文命理语境把握准确，开源且性价比高 |
+| 4 | GPT-5.6 | 综合能力全面，分析严谨，中文命理术语理解稍逊于国产旗舰 |
+| 5 | DeepSeek V4 | 推理链条清晰，适合复杂命盘拆解，价格低廉 |
+| 6 | Claude Opus 5 | 分析深度强，长文输出稳定，对命理术语理解精准 |
+
+此外，MiniMax M3、MiMo v2.5 Pro 也可正常使用，可作为备选。
 
 ### 项目结构
 
@@ -219,9 +242,15 @@ bazi-full-fortune/
 │   ├── buildBaziFromLunar.ts       农历排盘
 │   ├── getChineseCalendar.ts       黄历查询
 │   ├── scan_year.ts                反推扫描
+│   ├── ziwei_verify.py             紫微安星校验（可选交叉验证用）
 │   └── util.ts                     公共工具
 └── references/
-    └── family-patterns.md          家庭背景命理模式参考
+    ├── family-patterns.md          家庭背景命理模式参考
+    └── ziwei/                      紫微斗数参考（可选交叉验证用）
+        ├── calculation.md          紫微排盘计算
+        ├── stars.md                星曜解读
+        ├── sihua.md                四化
+        └── patterns.md             格局
 ```
 
 ### 文档
@@ -229,6 +258,12 @@ bazi-full-fortune/
 完整命理工作流文档（含排盘用法、六亲规则、分析模板、常见陷阱）请参阅 [SKILL.md](./SKILL.md)
 
 家庭背景命理模式参考（8 种模式：命理信号 → 现实推断 → 校准问题）请参阅 [references/family-patterns.md](./references/family-patterns.md)
+
+访谈问题库（第一轮核心问题、第二轮条件追问、家庭校准 5 问、回测校验问题、可选服务询问、不要这样问）请参阅 [references/interview.md](./references/interview.md)
+
+完整八字分析请求提示词模板（可直接复制使用，输出要求对齐八大维度模板）请参阅 [references/prompt-template.md](./references/prompt-template.md)
+
+紫微斗数交叉验证参考（可选）——排盘计算请参阅 [references/ziwei/calculation.md](./references/ziwei/calculation.md)，星曜解读请参阅 [references/ziwei/stars.md](./references/ziwei/stars.md)，四化请参阅 [references/ziwei/sihua.md](./references/ziwei/sihua.md)，格局请参阅 [references/ziwei/patterns.md](./references/ziwei/patterns.md)，安紫微星校验脚本为 `scripts/ziwei_verify.py`（Python 3 运行：`python3 scripts/ziwei_verify.py`）
 
 ### 依赖
 
@@ -255,6 +290,7 @@ Bazi Full Fortune Telling Skill is a complete Bazi (Four Pillars of Destiny) wor
 - Analysis Layer — Full destiny interpretation template covering 8 dimensions: Family, Health, Appearance, Career, Wealth, Love & Marriage, Social Relations, Education, and Spiritual World
 - Reference Layer — Family background pattern lookup table for calibrating analysis accuracy
 - Reverse Lookup — Find the solar date matching known Bazi four pillars
+- Cross-Validation Layer (optional) — Zi Wei Dou Shu (Purple Star Astrology) charting references and a star-placement verification script, supporting optional cross-validation to improve conclusion stability
 
 ### Installation
 
@@ -371,10 +407,12 @@ Full analysis:
 ```
 
 The Agent will automatically:
-1. Run the charting script to get complete data (Four Pillars, Ten Gods, Auspicious Stars, Luck Cycles, Interactions)
-2. Ask you 5 calibration questions (parents' relationship, father's location, mother's role, family economy, your current status)
-3. Calibrate the analysis based on your answers
-4. Output a full interpretation report across 8 dimensions
+1. Confirm your birth data first (solar/lunar date + leap month, birth time, gender, birthplace, any existing chart)
+2. Run the charting script to get complete data (Four Pillars, Ten Gods, Auspicious Stars, Luck Cycles, Interactions), then self-check year-stem polarity vs. luck-cycle direction, month branch vs. solar term, luck-cycle start age, and Ten Gods
+3. Ask you 5 family calibration questions (parents' relationship, father's location, mother's role, family economy, your current status)
+4. Backtest the strong/weak day-master and favorable-element hypotheses against the last 1-2 years of actual outcomes and 2-3 key past events
+5. Ask whether you want Zi Wei Dou Shu cross-validation (disabled by default; if enabled, chart the Zi Wei chart per references/ziwei/ rules and cross-validate)
+6. Output a full interpretation report across 8 dimensions, with a closing reminder
 
 Reverse lookup:
 
@@ -391,7 +429,17 @@ Look up the lunar date and auspicious/inauspicious activities for 2024-02-10
 
 #### 4. Full Analysis Workflow (for Developers / Advanced Users)
 
-Step 1: Chart generation
+Step 1: Confirm birth data (interview before charting)
+
+1. Solar or lunar birth date? If lunar, confirm whether it falls in an intercalary (leap) month
+2. Birth time — precise to the minute if possible, at least to the 2-hour shichen
+3. Gender (determines luck-cycle direction)
+4. Birthplace (needed for boundary-hour corrections)
+5. Whether an existing chart from another tool is available (if so, verify it first)
+
+Interview question bank: references/interview.md
+
+Step 2: Chart generation
 
 ```bash
 node scripts/buildBaziFromSolar.ts "2004-04-05T12:00:00" 1 2
@@ -399,7 +447,9 @@ node scripts/buildBaziFromSolar.ts "2004-04-05T12:00:00" 1 2
 
 Output includes: Four Pillars (Heavenly Stems + Earthly Branches), Ten Gods, Nayin, Star Phase, Self-Position, Hidden Stems, Palaces, Auspicious Stars, Luck Cycles, and Interactions (clashes, combinations, punishments, harms).
 
-Step 2: Calibration (confirm 5 key facts with the user)
+Post-chart self-check: year-stem polarity matches luck-cycle direction; month branch matches the correct solar term; luck-cycle start age taken from script output (never estimated by hand); Ten Gods derived correctly.
+
+Step 3: Calibration (confirm 5 key facts with the user)
 
 1. Are the parents together?
 2. What does the father do for work? Where is he based?
@@ -407,9 +457,13 @@ Step 2: Calibration (confirm 5 key facts with the user)
 4. What does the family do? (business / government / farming / migrant work)
 5. What are you currently doing? (education / career / which life stage)
 
-Step 3: Fill in the 8-dimension analysis template (from SKILL.md) using chart data + calibration answers.
+Step 4: Backtest verification — first present the strong/weak day-master and favorable-element hypotheses, then ask the user to verify against the last 1-2 years of actual ups and downs and 2-3 key past events; recalibrate before the full report.
 
-Step 4: Output as a txt file, named `八字全解_{DayMaster}_{Zodiac}.txt`.
+Step 5 (optional): Zi Wei Dou Shu cross-validation — ask the user whether it is needed; disabled by default. If enabled, chart the Zi Wei chart per references/ziwei/calculation.md (Life/Body palace + 12 palaces, Five-Element Bureau, 14 major stars, Four Transformations, decade limits), declaring the conventions first (default San He school; leap-month convention defaults to "leap month counts as the next month" and must be stated explicitly — the user's established convention takes priority; this is separate from the Bazi leap-month conversion). The two systems are analyzed independently without mixing terminology; compare personality, career, wealth, relationships, and health dimension by dimension. Matching conclusions are labeled "consistent across both systems, conclusion stability improved"; mismatches trigger a re-check of each system's charting conventions (leap month and late-zi-hour day boundary first), never forced reconciliation. Star placement can be verified with `python3 scripts/ziwei_verify.py`.
+
+Step 6: Fill in the 8-dimension analysis template (from SKILL.md) using chart data + calibration answers.
+
+Step 7: Output as a txt file, named `八字全解_{DayMaster}_{Zodiac}.txt`, with the closing reminder appended.
 
 ### Key Features
 
@@ -431,14 +485,18 @@ Calibration workflow: Ask 5 key questions after charting (parents' relationship,
 
 ### Recommended LLMs
 
-This project relies on LLMs for destiny analysis and interpretation. Recommended models after real-world testing:
+This project relies on LLMs for destiny analysis and interpretation. Models below are ranked by real-world performance (best first):
 
-| Model | Why Recommended |
-|-------|----------------|
-| Claude 4.* | Claude series (newer is better), deepest analysis, rigorous logic, stable long-form output, precise understanding of Bazi terminology |
-| Qwen 3.7 Max | Excellent Chinese comprehension, strong grasp of Bazi terms and cultural context, great value |
-| MiniMax M3 | Fluent and natural Chinese output, well-structured analysis, fast response |
-| MiMo v2.5 Pro | Strong reasoning capability, clear logical chains, ideal for complex charts |
+| Rank | Model | Why Recommended |
+|------|-------|----------------|
+| 1 | Qwen3.8 Max | Best overall performance: strongest Chinese comprehension and Bazi terminology grasp, rigorous logic, ultra-long context support, great value |
+| 2 | Kimi K3 | Excellent long-form analysis and reasoning, solid grasp of metaphysics terms and cultural context |
+| 3 | GLM-5 | Outstanding reasoning and agent capabilities, accurate Chinese metaphysics context, open-source and cost-effective |
+| 4 | GPT-5.6 | Well-rounded and rigorous analysis, slightly behind top Chinese models on Bazi terminology |
+| 5 | DeepSeek V4 | Clear reasoning chains for complex charts, very affordable |
+| 6 | Claude Opus 5 | Deep analysis, stable long-form output, precise understanding of Bazi terminology |
+
+MiniMax M3 and MiMo v2.5 Pro are also viable alternatives.
 
 ### Project Structure
 
@@ -453,9 +511,15 @@ bazi-full-fortune/
 │   ├── buildBaziFromLunar.ts       Lunar calendar chart
 │   ├── getChineseCalendar.ts       Almanac query
 │   ├── scan_year.ts                Reverse lookup
+│   ├── ziwei_verify.py             Zi Wei star-placement verification (optional cross-validation)
 │   └── util.ts                     Shared utilities
 └── references/
-    └── family-patterns.md          Family pattern reference
+    ├── family-patterns.md          Family pattern reference
+    └── ziwei/                      Zi Wei Dou Shu references (optional cross-validation)
+        ├── calculation.md          Zi Wei charting calculations
+        ├── stars.md                Star interpretations
+        ├── sihua.md                Four Transformations
+        └── patterns.md             Chart patterns
 ```
 
 ### Documentation
@@ -463,6 +527,12 @@ bazi-full-fortune/
 Full workflow documentation (charting usage, six-relations rules, analysis templates, common pitfalls): [SKILL.md](./SKILL.md)
 
 Family background pattern reference (8 patterns: signal → real-world inference → calibration questions): [references/family-patterns.md](./references/family-patterns.md)
+
+Interview question bank (round-1 core questions, round-2 conditional follow-ups, 5 family calibration questions, backtest verification questions, optional service inquiry): [references/interview.md](./references/interview.md)
+
+Ready-to-use full analysis prompt template (output requirements aligned with the 8-dimension template): [references/prompt-template.md](./references/prompt-template.md)
+
+Zi Wei Dou Shu cross-validation references (optional) — charting: [references/ziwei/calculation.md](./references/ziwei/calculation.md), stars: [references/ziwei/stars.md](./references/ziwei/stars.md), four transformations: [references/ziwei/sihua.md](./references/ziwei/sihua.md), patterns: [references/ziwei/patterns.md](./references/ziwei/patterns.md); star-placement verification script: `scripts/ziwei_verify.py` (run with Python 3: `python3 scripts/ziwei_verify.py`)
 
 ### Dependencies
 

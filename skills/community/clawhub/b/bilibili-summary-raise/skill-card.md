@@ -1,42 +1,58 @@
-## Description: <br>
-通过内置脚本获取B站视频信息并总结 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过内置脚本获取B站视频信息并总结。
 
-## Publisher: <br>
-[raise7727](https://clawhub.ai/user/raise7727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raise7727](https://clawhub.ai/user/raise7727)
 
-## Use Case: <br>
-External users and agents use this skill to fetch basic metadata for a Bilibili video from a URL or BV identifier and produce a short content summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Bilibili BV identifiers to Bilibili's public API. <br>
-Mitigation: Use it only when sharing the video identifier with Bilibili is acceptable. <br>
-Risk: The artifact references scripts/fetch.js, but the included file is scripts/fecth.js, which may prevent reliable execution. <br>
-Mitigation: Fix the script filename or the skill reference before relying on the skill in production. <br>
+## Use Case:
 
+External users can provide a Bilibili video URL or BV ID to retrieve public video metadata and generate a concise summary from the returned title, uploader, play count, likes, and description.
 
-## Reference(s): <br>
-- [Bilibili API 文档](references/api.md) <br>
-- [Bilibili video info API](https://api.bilibili.com/x/web-interface/view?bvid=) <br>
-- [ClawHub skill page](https://clawhub.ai/raise7727/bilibili-summary-raise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown summary with video metadata fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes title, uploader, play count, likes, and a content summary when video data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The BV video ID from the user's request is sent to Bilibili's public API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with public Bilibili video identifiers that are appropriate to share with Bilibili's API.
+
+Risk: The summary is based on metadata and description fields, not full transcript or video-content analysis.
+
+Mitigation: Treat summaries as metadata-based and verify against the source video when content-level accuracy matters.
+
+Risk: The artifact script filename is scripts/fecth.js while the skill instructions refer to scripts/fetch.js.
+
+Mitigation: Confirm or correct the script path before deployment so the agent can call the intended helper reliably.
+
+## Reference(s):
+
+- [Bilibili API reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/raise7727/skills/bilibili-summary-raise)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown summary with title, uploader, play count, likes, and content summary fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summary is based on public Bilibili metadata and description fields rather than a full video transcript.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

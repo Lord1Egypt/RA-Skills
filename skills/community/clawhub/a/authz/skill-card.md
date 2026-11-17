@@ -1,39 +1,52 @@
-## Description: <br>
-Provides structured guidance for permissions, roles, policies, and enforcement points when designing RBAC/ABAC or fixing authorization holes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for permissions, roles, policies, and enforcement points when designing RBAC/ABAC systems or fixing authorization holes.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and teams use this skill to structure authorization design, review, implementation planning, and rollout follow-through for RBAC, ABAC, ReBAC, policy enforcement, auditing, and admin paths.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Authorization guidance can be misapplied if goals, constraints, enforcement points, or failure modes are incomplete.
+
+Mitigation: Use the skill's context-gathering prompts, state trade-offs explicitly, and validate with negative tests, peer review, monitoring, and rollback planning.
+
+Risk: The skill may lead to future code or configuration recommendations that affect access control behavior.
+
+Mitigation: Review any resulting code or configuration changes before deployment and align verification depth with the change's security impact.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to structure authorization design, review, implementation, validation, and rollout work for RBAC, ABAC, ReBAC, permissions, policies, and enforcement points. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Authorization guidance may be applied to production permissions without enough validation. <br>
-Mitigation: Use peer review, negative-case tests, staged rollout, monitoring, and rollback planning before changing production permissions. <br>
-Risk: Incomplete authorization context can lead to advice that misses constraints, failure modes, or operational impact. <br>
-Mitigation: Ask targeted questions about goals, constraints, affected models, enforcement points, auditing, admin paths, and rollback expectations before making strong recommendations. <br>
+**Output Format:** [Markdown or plain text guidance with staged workflows, checklists, questions, trade-offs, and verification steps.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden behavior found in security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; advisory workflow only.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

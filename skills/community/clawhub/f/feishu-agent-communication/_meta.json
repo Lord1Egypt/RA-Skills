@@ -1,0 +1,59 @@
+{
+  "name": "feishu-multi-agent-communication",
+  "version": "0.1.4",
+  "date": "2026-09-30",
+  "category": "communication",
+  "platforms": [
+    "feishu",
+    "openclaw",
+    "autoclaw",
+    "workbuddy",
+    "cherrystudio",
+    "deepseek-harness",
+    "pi",
+    "claude-code",
+    "codex"
+  ],
+  "tested_date": "2026-09-29",
+  "pricing": {
+    "mode": "freemium",
+    "free": "SKILL.md 公开：理念 + 双路线原理 + 8条踩坑方向 + 排障指引",
+    "paid": "部署文档（8卡点配置模板 + 分步操作每步期望日志 + 一键验证）",
+    "payment_link": "https://www.jinengpu.chat/feishu-multi-agent-detail.html",
+    "detail_page": "https://www.jinengpu.chat/feishu-multi-agent-detail.html",
+    "price": "0.99元（一次买断）"
+  },
+  "dependencies": {
+    "feishu": "免费版",
+    "openclaw": "免费开源",
+    "autoclaw": "免费开源"
+  },
+  "keywords": {
+    "zh": [
+      "飞书多Agent",
+      "Agent群聊",
+      "多bot协作",
+      "Agent互相@",
+      "Agent交接",
+      "飞书机器人中转",
+      "多智能体通信",
+      "Gateway路由",
+      "飞书",
+      "群聊通信",
+      "WebSocket",
+      "消息路由"
+    ],
+    "en": [
+      "feishu multi agent",
+      "agent to agent chat",
+      "bot relay",
+      "group chat agents",
+      "gateway routing",
+      "feishu",
+      "multi-agent",
+      "agent collaboration",
+      "websocket",
+      "message routing"
+    ]
+  }
+}

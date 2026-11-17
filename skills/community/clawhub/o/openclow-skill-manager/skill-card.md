@@ -1,39 +1,57 @@
-## Description: <br>
-Skill Manager helps OpenClaw users list installed skills, view skill descriptions, and identify overlapping skill functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages OpenClaw skills by listing installed skills, summarizing their functions, and identifying overlapping capabilities.
 
-## Publisher: <br>
-[damienCronw](https://clawhub.ai/user/damienCronw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[damiencronw](https://clawhub.ai/user/damiencronw)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to inspect locally installed skills, review their descriptions, and spot categories or duplicate capabilities while managing a skill workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented category and duplicate-detection features may not be fully implemented in the current artifact. <br>
-Mitigation: Treat category and duplicate findings as informational and verify them against the actual installed skills. <br>
-Risk: The script invokes the local clawhub command to list ClawHub-installed skills. <br>
-Mitigation: Run it only in an environment where the local clawhub command is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/damienCronw/openclow-skill-manager) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to inventory installed skills, understand their purposes, and spot duplicated functionality across local and ClawHub-installed skill sets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and terminal text listings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local skill inventory; category and duplicate-detection behavior should be treated as informational.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version and artifact metadata.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running the helper inspects local OpenClaw skill folders and prints installed skill information.
+
+Mitigation: Run it only in environments where exposing the local skill inventory in terminal output is acceptable.
+
+Risk: The helper executes `clawhub list`, so results depend on the installed ClawHub CLI and its current authentication or configuration.
+
+Mitigation: Use a trusted ClawHub CLI installation and review CLI behavior before running the helper in shared or sensitive environments.
+
+Risk: Some documented capabilities, such as category display, appear incomplete in the inspected script.
+
+Mitigation: Validate the helper behavior before relying on categorized or duplicate-skill reporting, and update the script or documentation if those workflows are required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/damiencronw/skills/openclow-skill-manager)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/damiencronw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect local OpenClaw skill folders and call the ClawHub CLI when the helper script is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

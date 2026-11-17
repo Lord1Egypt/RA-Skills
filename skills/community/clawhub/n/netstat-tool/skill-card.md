@@ -1,39 +1,53 @@
-## Description: <br>
-Display network connections, routing tables, and interface statistics for network diagnostics and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display network connections, routing tables, and interface statistics for network diagnostics and monitoring.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and system administrators use this skill to ask an agent to inspect local listening TCP and UDP sockets during network troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes local listening port and socket information, which may reveal service inventory or network configuration. <br>
-Mitigation: Run it only where the agent is authorized to inspect network diagnostics, and avoid sharing output outside the intended troubleshooting context. <br>
-Risk: The advertised command options are broader than the current behavior, which runs a fixed netstat -tuln command. <br>
-Mitigation: Treat results as listening TCP and UDP socket output, and verify behavior before relying on options such as process, routing, or interface views. <br>
+## Use Case:
 
+Developers, operators, and support engineers use this skill to inspect local network sockets, listening ports, routing information, and interface statistics during troubleshooting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs netstat -tuln; advertised CLI options may not be honored by the current script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose local listening ports and network socket information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where local network diagnostics are appropriate and review output before sharing it.
+
+Risk: The documented options describe broader netstat behavior than the bundled script currently implements.
+
+Mitigation: Validate expected command behavior before relying on the skill for complete routing table, interface, process, TCP-only, UDP-only, or numeric-address diagnostics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/netstat-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local network diagnostic output may include listening ports, socket addresses, and service metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

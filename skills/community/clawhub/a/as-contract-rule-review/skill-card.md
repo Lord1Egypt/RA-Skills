@@ -1,42 +1,62 @@
-## Description: <br>
-合同规则审阅助手 - 上传本地合同文件到 AnyShare 并调用规则审阅技能进行自动化审阅，支持保存结果和生成分享链接 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local contract files to AnyShare, applies a contract-rule review template through the AnyShare review skill, saves the review report, and generates a share link.
 
-## Publisher: <br>
-[anyshare-aishu](https://clawhub.ai/user/anyshare-aishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyshare-aishu](https://clawhub.ai/user/anyshare-aishu)
 
-## Use Case: <br>
-Contract, legal operations, and business users can use this skill to upload a local contract to AnyShare, run an automated rule review with built-in or custom templates, save a Markdown review report, and generate a share link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract uploads, stored review reports, generated share links, and AnyShare tokens are sensitive. <br>
-Mitigation: Use a least-privilege token when available, keep mcporter configuration private, verify the AnyShare account and link permissions, and remove local or cloud copies that are no longer needed. <br>
-Risk: Automated contract review results may be incomplete or unsuitable for direct legal reliance. <br>
-Mitigation: Review the generated Markdown report with qualified legal or business stakeholders before acting on findings. <br>
+## Use Case:
 
+Employees and contract operations teams use this skill to upload contracts to AnyShare, run structured rule-based review, store the original document and review report in a dated folder hierarchy, and share the resulting report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anyshare-aishu/as-contract-rule-review) <br>
-- [Security Checklist](SECURITY.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command, JSON, and TOML snippets; the workflow saves a Markdown review report and share link in AnyShare.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AnyShare access token and a user-selected contract file; outputs should be reviewed before relying on them for legal or business decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill handles confidential contracts, AnyShare credentials, generated review reports, and share links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for workflows where uploading contracts to AnyShare is intended, use narrowly scoped short-lived credentials where possible, and require manual confirmation before uploading documents or generating links.
+
+Risk: Unsafe handling of untrusted or quote-containing filenames may affect command interpolation.
+
+Mitigation: Avoid untrusted or quote-containing filenames until the interpolation issue identified by security evidence is fixed.
+
+Risk: AI-generated contract review can be incomplete or incorrect.
+
+Mitigation: Treat the report as review assistance and require qualified human review before business or legal action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyshare-aishu/skills/as-contract-rule-review)
+- [AnyShare MCP endpoint](https://anyshare.aishu.cn/asmcp/)
+- [AnyShare default template API](https://anyshare.aishu.cn/api/intelli-search/v1/skills/templates/default?skill_name=__规则审阅__1)
+- [AnyShare temporary-area API](https://anyshare.aishu.cn/api/intelli-search/v1/temporary-area)
+- [AnyShare index-check API](https://anyshare.aishu.cn/api/intelli-search/v1/index-check?target_index=pageindex)
+- [Troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review report with shell command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an AnyShare folder structure, uploads the source contract and review report, and returns a share link when the AnyShare workflow succeeds.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter); release version 1.0.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

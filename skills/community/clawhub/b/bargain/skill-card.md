@@ -1,43 +1,61 @@
-## Description: <br>
-Ruofan Bargain Arena helps an agent guide users through Ruofan's coupon-bargaining activity by joining a session, relaying bargain messages, and presenting any resulting coupon code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ruofan Bargain Arena helps an agent guide a user through a Ruofan coupon-code bargaining chat with Ruofan's shop assistant.
 
-## Publisher: <br>
-[ruffood](https://clawhub.ai/user/ruffood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruffood](https://clawhub.ai/user/ruffood)
 
-## Use Case: <br>
-External users use this skill to participate in Ruofan's bargain activity, send their chosen messages to Ruofan's AI shopkeeper, and receive the current offer, remaining rounds, deal status, and any coupon code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The user's nickname and bargain messages are sent to Ruofan and may be shown publicly on the activity page. <br>
-Mitigation: Use a non-sensitive nickname and only send bargain messages the user is comfortable sharing with Ruofan and potentially displaying publicly. <br>
-Risk: The session token and coupon code are specific to the user's bargain session. <br>
-Mitigation: Treat the session token and any returned coupon code as session-specific values and avoid sharing them beyond the intended checkout flow. <br>
+## Use Case:
 
+External shoppers and their agents use this skill to join Ruofan's bargain activity, relay user-approved bargain messages, monitor remaining rounds, and present any resulting coupon code to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruffood/bargain) <br>
-- [Ruofan bargain join API](https://www.ruffood.com/api/bargain/join) <br>
-- [Ruofan bargain message API](https://www.ruffood.com/api/bargain/message) <br>
-- [Ruofan bargain session API](https://www.ruffood.com/api/bargain/session) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with API request examples and user-facing bargain status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session status, remaining rounds, offer amount, coupon amount, coupon code, or coupon availability message returned by Ruofan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release evidence) <br>
+Risk: The bargain conversation may be publicly displayed on Ruofan's activity page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-sensitive nickname and avoid sending private information in bargain messages.
+
+Risk: Session tokens and coupon codes can provide access to a user's bargain session or discount.
+
+Mitigation: Treat session tokens and coupon codes as private session data and do not expose them beyond the intended user flow.
+
+Risk: The skill sends user-provided bargain messages to Ruofan's public API.
+
+Mitigation: Relay only user-approved content unless the user explicitly asks the agent to draft bargain wording.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruffood/skills/bargain)
+- [Publisher profile](https://clawhub.ai/user/ruffood)
+- [Ruofan bargain join API](https://www.ruffood.com/api/bargain/join)
+- [Ruofan bargain message API](https://www.ruffood.com/api/bargain/message)
+- [Ruofan bargain session API](https://www.ruffood.com/api/bargain/session)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with inline shell command examples and user-facing bargain status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include coupon amounts, remaining-round status, final deal state, and coupon codes returned by Ruofan's API.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-MeiShi helps agents organize public QQ Reading pages, including book library entries, membership information, help content, activities, and related usage notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MeiShi helps agents organize public QQ Reading pages, including book catalog entries, membership information, help content, and activity pages.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use MeiShi to summarize and structure publicly visible QQ Reading information such as book categories, ranking links, membership benefits, download rules, device support, FAQ content, and activity pages. The skill is scoped to public information and excludes piracy, account sharing, private user data, and platform bypass guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Membership benefits, download limits, content availability, and regional availability can change over time. <br>
-Mitigation: Verify time-sensitive or region-specific details against official QQ Reading pages before relying on the output. <br>
-Risk: The skill could be misused to request piracy, membership sharing, account workarounds, scraping, or non-public account data. <br>
-Mitigation: Keep usage limited to public pages and refuse requests involving piracy, credential handling, private user records, or platform bypass guidance. <br>
+## Use Case:
 
+External users can use this skill to summarize public QQ Reading book-library, membership, help, FAQ, and activity-page information while avoiding account-private data and copyright-bypass guidance.
 
-## Reference(s): <br>
-- [QQ Reading homepage](https://book.qq.com/) <br>
-- [ClawHub MeiShi release page](https://clawhub.ai/mike47512/meishi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public information only; no credentials, private account data, API access, or persistent access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Membership terms, content authorization, and regional availability may change over time or vary by location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current QQ Reading terms and note the date, region, and page context when summarizing benefits or restrictions.
+
+Risk: Users may try to provide private account information or request piracy, sharing, or bypass guidance.
+
+Mitigation: Limit use to public QQ Reading pages and decline requests involving private account data, unauthorized downloads, member sharing, payment workarounds, or interface bypasses.
+
+## Reference(s):
+
+- [QQ Reading homepage](https://book.qq.com/)
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/meishi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on publicly visible information and excludes private account data, piracy, account sharing, and bypass instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

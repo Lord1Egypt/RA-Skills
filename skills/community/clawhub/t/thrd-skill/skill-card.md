@@ -1,45 +1,59 @@
-## Description: <br>
-Provision a dedicated inbox for your AI agent and manage email safely via thrd.email. Includes instant onboarding, inbound polling, reply/send (idempotent + policy-gated), Proof of Reasoning for cold outbound, Human Claiming for verification, and trust/delivery tracking. Does not persist API keys to disk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision a dedicated inbox for your AI agent and manage email safely via thrd.email, including instant onboarding, inbound polling, idempotent and policy-gated reply/send flows, Proof of Reasoning for cold outbound, Human Claiming for verification, and trust and delivery tracking.
 
-## Publisher: <br>
-[SergioRico1](https://clawhub.ai/user/SergioRico1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sergiorico1](https://clawhub.ai/user/sergiorico1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to provision and operate a dedicated thrd.email inbox for an AI agent, including onboarding, inbound polling, replies, sends, delivery tracking, billing upgrades, and human verification flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a dedicated email inbox and initiate outbound email or billing-related flows. <br>
-Mitigation: Define clear human approval rules for outbound email, billing upgrades, and verification flows before deployment. <br>
-Risk: THRD_API_KEY grants access to authenticated thrd.email operations. <br>
-Mitigation: Store THRD_API_KEY in a secret manager or runtime environment and do not write it to disk. <br>
-Risk: The optional poll-daemon callback can run local commands when events arrive. <br>
-Mitigation: Use only harmless callback commands that the operator would run directly; shell operators are unsupported and callbacks run without a shell. <br>
-Risk: Using a non-default API endpoint can route email operations through an untrusted service. <br>
-Mitigation: Use the default Thrd API endpoint unless the alternative endpoint is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Thrd API Reference](references/api.md) <br>
-- [Thrd Skill on ClawHub](https://clawhub.ai/SergioRico1/thrd-skill) <br>
-- [Thrd Email](https://thrd.email) <br>
+## Use Case:
 
+Developers and agents use this skill to create and operate a dedicated THRD email inbox without connecting a personal mailbox. It supports onboarding, event polling, wake-webhook workflows, send/reply actions, usage checks, billing checkout, human verification, and delivery/trust status checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3, the requests package, and THRD_API_KEY for authenticated API operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The polling daemon can be pointed at a non-default server while sending THRD_API_KEY.
+
+Mitigation: Use only the default https://api.thrd.email endpoint and prevent untrusted instructions or email content from changing poll_daemon.py arguments.
+
+Risk: The release does not include a pinned dependency lockfile for the Python requests dependency.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+Risk: Onboarding returns an API key that must be treated as a secret.
+
+Mitigation: Store returned API keys in a secret manager and expose them only through THRD_API_KEY at runtime; do not write them to disk.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sergiorico1/skills/thrd-skill)
+- [Thrd API Reference](references/api.md)
+- [Thrd](https://thrd.email)
+- [THRD OpenAPI Contract](https://api.thrd.email/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and THRD_API_KEY for authenticated operations; onboarding prints a new API key to stdout once.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

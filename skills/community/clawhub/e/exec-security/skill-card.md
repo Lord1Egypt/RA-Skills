@@ -1,42 +1,56 @@
-## Description: <br>
-Exec Security provides pre-execution validation for shell commands, flagging destructive operations, credential leaks, data exfiltration, download-and-execute patterns, injection, Unicode obfuscation, resource exhaustion, and system file tampering before an agent runs exec or bash tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-execution security checker for shell commands that detects dangerous patterns before running exec/bash tools, including destructive operations, credential leaks, data exfiltration, download-and-execute attacks, injection, Unicode obfuscation, resource exhaustion, and system file tampering.
 
-## Publisher: <br>
-[yozu](https://clawhub.ai/user/yozu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yozu](https://clawhub.ai/user/yozu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to review non-trivial shell commands before execution, especially commands assembled programmatically or derived from external data. It helps agents decide whether to refuse, ask for confirmation, warn, or proceed with safer alternatives.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill provides advisory shell-command safety guidance, not runtime enforcement.
+
+Mitigation: Treat results as a pre-execution checklist and pair them with the agent platform's execution approval or deny policy for enforcement.
+
+Risk: Credential-handling guidance could be misapplied if an agent prints raw secret values after user confirmation.
+
+Mitigation: Never print raw secrets; use redacted checks such as length, set/unset status, or scoped variable names.
+
+Risk: Pattern-based command review can miss encoded strings, multi-step attacks, Unicode obfuscation, symlink targets, or shell-specific behavior.
+
+Mitigation: Inspect each command segment, warn on unusual Unicode or shell-specific constructs, resolve paths before writes, and use timeouts for resource-heavy commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to review non-trivial shell commands before execution, especially commands built programmatically, derived from external data, or touching destructive tools, sensitive paths, pipes, redirections, or substitutions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advisory and does not provide sandboxing or runtime enforcement. <br>
-Mitigation: Pair it with OpenClaw exec approval controls such as allowlists or deny mode, and require explicit user confirmation for high-risk commands. <br>
-Risk: Pattern-based review can miss encoded, multi-step, symlink, or context-dependent attacks. <br>
-Mitigation: Inspect commands in context, resolve paths before writes, avoid executing untrusted downloaded scripts directly, and prefer safe alternatives. <br>
-Risk: The skill may add warnings or confirmation prompts around deletion, secret exposure, outbound transfers, remote scripts, and system-file edits. <br>
-Mitigation: Treat warnings as checkpoints for review and user confirmation rather than complete proof that a command is malicious. <br>
+**Output Format:** [Markdown guidance with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yozu/exec-security) <br>
+**Other Properties Related to Output:** [Advisory pre-execution review; it does not enforce command execution policy.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and refusal or confirmation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory pre-execution assessment; no runtime enforcement.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

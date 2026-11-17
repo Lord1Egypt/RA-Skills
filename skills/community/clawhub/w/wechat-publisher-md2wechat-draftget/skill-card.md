@@ -1,45 +1,60 @@
-## Description: <br>
-Orchestrate the official WeChat draft publishing path for already-prepared article HTML or Markdown using md2wechat, with mandatory draft/get verification before reporting success. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate the official WeChat draft publishing path for already-prepared article HTML or Markdown using md2wechat, with mandatory draft/get verification before reporting success.
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers and operators use this skill to push prepared WeChat Official Account HTML or Markdown into the draft box, upload the cover image, and verify the created draft before reporting success. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected article content and a cover image to the configured WeChat Official Account. <br>
-Mitigation: Review the article, cover image, title, author, and digest before running publish.sh, and use it only when draft creation is intended. <br>
-Risk: The workflow depends on md2wechat credentials and WeChat API access. <br>
-Mitigation: Protect WECHAT_APPID, WECHAT_SECRET, and the md2wechat config file; confirm the current public IP is authorized before publishing. <br>
-Risk: Generated verification JSON files can contain draft metadata or article content. <br>
-Mitigation: Delete generated verification files when they contain sensitive draft content or are no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to push already prepared WeChat Official Account article HTML or Markdown into the draft box through md2wechat, then verify the draft with WeChat draft/get before reporting success.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/wechat-publisher-md2wechat-draftget) <br>
-- [md2wechat skill repository](https://github.com/geekjourneyx/md2wechat-skill) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Themes and layout notes](references/themes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON verification files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft request, upload result, create-draft result, and draft/get verification artifacts next to the article.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can create WeChat Official Account drafts and upload article assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when draft creation is intended, and confirm the article, cover, and images are approved for upload to WeChat before execution.
+
+Risk: The workflow requires WeChat AppID/AppSecret credentials and produces verification files that may contain unpublished draft content and metadata.
+
+Mitigation: Protect md2wechat configuration and generated verification artifacts as sensitive material.
+
+Risk: A local conversion, preview, or media_id receipt can be mistaken for a completed draft push.
+
+Mitigation: Report success only after create_draft succeeds and draft/get verification confirms the backend draft and expected fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/wechat-publisher-md2wechat-draftget)
+- [README.md](README.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Themes and Layout Notes](references/themes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, configuration examples, and JSON verification artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The publish workflow writes md2wechat inspection, conversion, upload, draft creation, and draft/get verification JSON files next to the article.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents create, update, and audit OpenClaw skills with structured guidance for triggers, boundaries, workflows, examples, testing, and quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create, update, and audit OpenClaw skills by guiding use-case definition, skill structure, instruction writing, testing, and quality checks.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, improve, or audit OpenClaw skill definitions so they have clear activation triggers, scoped responsibilities, actionable workflows, examples, testing expectations, and security considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill-authoring guidance can introduce overly broad trigger phrases or persistent instructions that change how agents behave. <br>
-Mitigation: Review proposed SKILL.md changes for narrow triggers, clear boundaries, scoped tool permissions, and behavior that remains limited to the intended skill. <br>
-Risk: Generated skill guidance may be incorrect, incomplete, or unsuitable for a specific workspace. <br>
-Mitigation: Review and test generated or modified skill files before relying on them in an agent environment. <br>
+## Use Case:
 
+Developers and skill maintainers use this meta-skill to create, update, or audit OpenClaw skills. It helps define concrete triggers and workflows, structure SKILL.md files, document boundaries, and check skill quality before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asimons81/claude-skill-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to SKILL.md and related skill-supporting files; users should review proposed changes before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and embedded SKILL.md metadata) <br>
+Risk: Broad skill-development trigger wording may cause this meta-skill to activate outside the intended authoring or audit task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use specific trigger phrases, narrow scope boundaries, and review downstream skill descriptions before deployment.
+
+Risk: Incorrect or overly broad generated guidance could weaken downstream skill quality or guardrails.
+
+Mitigation: Apply the documented quality checklist and scan or review created skills before release.
+
+## Reference(s):
+
+- [OpenClaw Skill Builder ClawHub page](https://clawhub.ai/asimons81/skills/claude-skill-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with examples, checklists, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata block)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

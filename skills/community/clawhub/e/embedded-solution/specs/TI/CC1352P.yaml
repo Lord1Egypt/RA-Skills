@@ -1,0 +1,129 @@
+part: CC1352P
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI SimpleLink CC1352P \u2014 Multi-Protocol Sub-1 GHz + 2.4 GHz + integrated PA"
+main_page: https://www.ti.com/product/CC1352P
+datasheet_path_expected: datasheets/cc1352p.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/cc1352p.pdf
+created_at: '2026-06-30T10:06:00+08:00'
+specs:
+  family: SimpleLink Multi-Protocol Wireless (with integrated PA)
+  cores:
+  - Arm Cortex-M4F @ 48 MHz
+  eembc_coremark: 148
+  memory:
+    flash: 352 KB (in-system programmable)
+    rom: 256 KB (protocols + library)
+    cache_sram: 8 KB (or general-purpose)
+    sram: 80 KB ultra-low leakage (parity-protected)
+    sensor_controller_sram: 4 KB
+  wireless:
+    sub_1ghz:
+      bands_mhz:
+      - 1069-1329
+      - 861-1054
+      - 431-527
+      modulation:
+      - (G)MSK
+      - 2(G)FSK
+      - 4(G)FSK
+      - ASK
+      - OOK
+      rx_sensitivity_dbm_best: -121
+      tx_power_max_dbm: 20
+    ghz:
+      band_mhz: 2360-2500
+    protocols_in_rom:
+    - 6LoWPAN
+    - Amazon Sidewalk
+    - Bluetooth LE 5.2
+    - IEEE 802.15.4
+    - MIOTY
+    - Matter
+    - Proprietary
+    - Thread
+    - Wi-SUN
+    - Wireless M-Bus
+    - Zigbee
+  security:
+    features:
+    - Secure Boot
+    - Secure Debug
+    - Secure Firmware & Software Update (OTA)
+    - Device attestation + anti-counterfeit
+    - Cryptographic acceleration
+    crypto_accelerators:
+    - AES (128 and 256-bit)
+    - ECC (public key)
+    - RSA (public key)
+    - SHA-2 (up to SHA-512)
+    - TRNG
+  peripherals:
+    adc_12bit: 200 ksamples/s, 8 channels
+    comparators: 2 (1x continuous-time, 1x ultra-low power, internal ref DAC)
+    programmable_current_source: true
+    timers: 4x 32-bit or 8x 16-bit GP
+    uart: 2
+    ssi_spi: 2
+    i2c: true
+    i2s: true
+    rtc: true
+    dac_8bit: true
+    capacitive_sensing: yes (up to 8 channels)
+    temperature_monitor: integrated
+    battery_monitor: integrated
+    gpio_pins: 26 (any GPIO routable for digital peripherals)
+  sensor_controller:
+    description: Ultra-low-power sensor controller, sample-store-process independent of main CPU
+    fast_wakeup: true
+  os:
+    ti_rtos_in_rom: true
+    drivers: true
+    bootloader: true
+    ble_5_2_controller_in_rom: true
+    ieee_802_15_4_mac_in_rom: true
+    support:
+    - FreeRTOS
+    - RTOS
+    - TI-RTOS
+  debug_interfaces:
+  - 2-pin cJTAG
+  - JTAG
+  operating_temp_c_min: -40
+  operating_temp_c_max: 85
+  rating: Catalog
+  package:
+    type: VQFN (RGZ)
+    pins: 48
+    dim_mm: 7x7
+    area_mm2: 49
+    gpio: 26
+    rohs: true
+  dev_tools:
+    launchpad: LAUNCHXL-CC1352P
+  applications:
+  - Smart metering (Wi-SUN)
+  - Asset tracking (Amazon Sidewalk)
+  - Building automation (Matter + Thread/Zigbee)
+  - Industrial IoT (Wireless M-Bus, MIOTY)
+  - Long-range Sub-1 GHz sensor networks
+unverified:
+- exact integrated PA current consumption (TX 20 dBm)
+- exact wake-up time from SHUTDOWN
+- exact OTA image transfer time
+- exact peak RX current across bands
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com CC1352P product page via Firecrawl (302,015 bytes raw)."
+- 'Family differentiator vs CC1310 (already in yaml set): CC1310 is Sub-1 GHz only; CC1352P is dual-band Sub-1 + 2.4 GHz +
+  integrated PA (20 dBm).'
+- 'Family differentiator vs CC2640R2F (BLE-only): CC1352P is multi-band, higher TX power, more protocols. CC2640R2F is BLE-only
+  cost-down.'
+- 'Family differentiator vs CC2340R5 (newly in yaml set): CC1352P is Cortex-M4F @ 48 MHz + multi-band + 20 dBm PA; CC2340R5
+  is Cortex-M0+ @ 48 MHz + 2.4 GHz only + 8 dBm output.'
+- 'Use case: long-range wireless sensor (km via Sub-1 GHz 20 dBm); Matter over Thread gateway; Wi-SUN smart meter.'
+- 'Verified 2026-07-01 via pdfplumber against cc1352p.pdf: 24/25 spec fields matched (96%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T10:06:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/CC1352P-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/CC1352P-family_raw.md
+extraction_credits_used: 1

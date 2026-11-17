@@ -1,41 +1,57 @@
-## Description: <br>
-Semantic memory for AI agents. 95% token savings with vector search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic memory for AI agents. 95% token savings with vector search.
 
-## Publisher: <br>
-[khli01](https://clawhub.ai/user/khli01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[khli01](https://clawhub.ai/user/khli01)
 
-## Use Case: <br>
-Developers and agent builders use MemoryLayer to store, search, and retrieve relevant long-term memories for AI agents without injecting full memory files into every prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memories, metadata, and search queries may be sent to an external MemoryLayer service. <br>
-Mitigation: Use a dedicated API key when possible, avoid storing passwords, tokens, regulated data, private documents, or sensitive operational procedures, and review retrieved memories before relying on them for important agent actions. <br>
+## Use Case:
 
+Developers and agent builders use MemoryLayer to store, search, and retrieve relevant long-term memories for prompt context without loading full memory files.
 
-## Reference(s): <br>
-- [MemoryLayer ClawHub Release](https://clawhub.ai/khli01/memorylayer) <br>
-- [MemoryLayer Homepage](https://memorylayer.clawbot.hk) <br>
-- [MemoryLayer Documentation](https://memorylayer.clawbot.hk/docs) <br>
-- [MemoryLayer API Reference](https://memorylayer.clawbot.hk/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown-formatted memory context and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MemoryLayer credentials and sends selected memories, metadata, and search queries to a hosted or configured MemoryLayer endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Agent memories, metadata, search queries, and credentials may be sent to a hosted MemoryLayer service or configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved endpoints, complete a privacy review before storing sensitive information, and avoid storing secrets, regulated personal data, internal procedures, or tool-use instructions.
+
+Risk: Retrieved memories can influence future prompts even when their source or trustworthiness is uncertain.
+
+Mitigation: Treat retrieved memories as untrusted context and require agent or human validation before using them as instructions or facts for consequential actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/khli01/skills/memorylayer)
+- [MemoryLayer Homepage](https://memorylayer.clawbot.hk)
+- [MemoryLayer Documentation](https://memorylayer.clawbot.hk/docs)
+- [MemoryLayer API Reference](https://memorylayer.clawbot.hk/api)
+- [MemoryLayer Dashboard](https://dashboard.memorylayer.clawbot.hk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript and Python code examples and shell configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns stored memories, semantic search results, formatted memory context, and usage statistics through JavaScript and Python wrappers.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

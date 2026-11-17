@@ -1,41 +1,54 @@
-## Description: <br>
-Reminder captures natural-language events in Chinese or English, stores structured reminders in a workspace YAML file, schedules Telegram notifications through SkillBoss cron, and answers upcoming-plan queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural-language reminder secretary that captures events from Chinese or English chat, saves structured reminder data in a workspace file, schedules Telegram reminders through SkillBoss cron, and answers upcoming-plan queries.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and SkillBoss users use this skill to capture meetings, birthdays, deadlines, and other plans from chat, persist reminders locally, schedule Telegram alerts, and ask for upcoming events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder text may contain sensitive personal or work information that is processed by SkillBoss and stored in a local workspace YAML file. <br>
-Mitigation: Install only when that data flow is acceptable, keep secrets out of committed files, and review local reminder data before syncing or sharing the workspace. <br>
-Risk: Incorrect timezone, ambiguous natural-language dates, or notification offsets can create reminders at the wrong time. <br>
-Mitigation: Confirm resolved dates and times, configure REMINDER_TZ and REMINDER_OFFSETS_MINUTES deliberately, and ask clarifying questions for ambiguous events. <br>
+## Use Case:
 
+Individuals and teams use this skill to turn natural-language schedule notes into saved reminders, Telegram notifications, and quick summaries of upcoming meetings, birthdays, deadlines, and plans.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/godferylindsay/godfery-reminder) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with structured reminder details, YAML event updates, and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local reminder data and schedule Telegram notifications when the host agent provides those capabilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reminder text may contain private personal or work schedule information and can be sent to SkillBoss's API for parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sensitive reminder text before use and install only if sending that content to SkillBoss for parsing is acceptable.
+
+Risk: The skill can create persistent cron notifications and write reminder records after resolving event details.
+
+Mitigation: Confirm the resolved event, timezone, reminder offsets, and notification schedule before allowing file writes or cron job creation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/godferylindsay/skills/godfery-reminder)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, yaml, shell commands, configuration]
+
+**Output Format:** [Concise natural-language responses with structured YAML reminder records and cron scheduling actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default reminder offsets are 24 hours, 1 hour, and 10 minutes before the event unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

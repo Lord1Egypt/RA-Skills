@@ -1,39 +1,56 @@
-## Description: <br>
-Use this skill when a Registered Dietitian (RD/RDN), dietetic intern, or nutrition support team member needs to draft a Medical Nutrition Therapy (MNT) documentation note using the Nutrition Care Process (NCP) ADIME format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Medical Nutrition Therapy documentation notes in ADIME format using the Nutrition Care Process, with assessment, PES nutrition diagnosis, intervention goals, monitoring parameters, and draft flags for licensed RD/RDN review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Registered Dietitians, dietetic interns, and nutrition support team members use this skill to turn completed nutrition assessment data into a structured draft ADIME note. It is intended for clinician review before medical record entry or payer submission.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The draft note may be mistaken for signed clinical documentation.
+
+Mitigation: Keep the draft label and RD/RDN attestation placeholder, and require licensed RD/RDN review before medical record entry or payer submission.
+
+Risk: The workflow may process sensitive health information.
+
+Mitigation: Use the minimum necessary case details, avoid direct identifiers, and use a case ID or pseudonym only.
+
+Risk: Nutrition recommendations may be inappropriate if clinical data, lab interpretation, or facility protocols are incomplete.
+
+Mitigation: Flag unknown data, document interpretation caveats, and have the supervising RD/RDN verify prescriptions and calculations against facility protocol.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External RD/RDNs, dietetic interns, and nutrition support teams use this skill to turn supplied nutrition assessment data into a draft ADIME-format Medical Nutrition Therapy note for licensed RD/RDN review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical nutrition drafts may contain incorrect calculations, recommendations, or payer documentation details. <br>
-Mitigation: Have a licensed RD/RDN review calculations, recommendations, and documentation requirements before use in a medical record or payer submission. <br>
-Risk: Prompts or draft notes may include protected patient identifiers. <br>
-Mitigation: Use only de-identified case IDs or pseudonyms and keep names, dates of birth, addresses, Social Security numbers, MRNs, and insurer IDs out of prompts and outputs. <br>
+**Output Format:** [Structured Markdown DRAFT ADIME note with an RD attestation placeholder and draft flags checklist]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires licensed RD/RDN review and signature before use in medical records or billing; directs users to avoid direct patient identifiers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Structured Markdown draft ADIME note with a DRAFT FLAGS checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft clinical documentation only; requires licensed RD/RDN review before medical record entry or payer submission.] <br>
+0.1.0 (source: server release metadata and CHANGELOG, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.0 (source: changelog, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

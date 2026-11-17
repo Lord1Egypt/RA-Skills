@@ -1,45 +1,60 @@
-## Description: <br>
-Manage, create, and study flashcards, generate AI-based cards and podcasts, and track progress using EchoDecks API integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage, create, and study flashcards, generate AI-based cards and podcasts, and track progress using EchoDecks API integration.
 
-## Publisher: <br>
-[drgeld](https://clawhub.ai/user/drgeld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[drgeld](https://clawhub.ai/user/drgeld)
 
-## Use Case: <br>
-External users and learning-focused agents use this skill to manage EchoDecks flashcard decks, generate study cards and audio podcasts, retrieve study links, and submit spaced-repetition reviews through the EchoDecks API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a broad EchoDecks API key that can access account data and perform account actions. <br>
-Mitigation: Use only an API key approved for the intended account scope, store it in ECHODECKS_API_KEY, and rotate or revoke it if access is no longer needed. <br>
-Risk: Generation, podcast creation, and review submission can consume credits or change account history. <br>
-Mitigation: Require explicit user confirmation before card generation, podcast creation, or review submission. <br>
-Risk: Study material submitted to EchoDecks may include confidential or regulated content. <br>
-Mitigation: Avoid submitting confidential or regulated study material unless EchoDecks is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drgeld/echodecks-clawdbot-skill) <br>
-- [EchoDecks Developer Settings](https://echodecks.app/settings/developer) <br>
-- [EchoDecks website](https://echodecks.com) <br>
-- [API documentation](API_DOCS.md) <br>
-- [README](README.md) <br>
+## Use Case:
 
+Learners and agents connected to an EchoDecks account use this skill to manage decks and cards, generate study material and podcasts, open study sessions, and submit spaced-repetition reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ECHODECKS_API_KEY; API actions may create or modify account content and consume EchoDecks credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses ECHODECKS_API_KEY to access and modify an EchoDecks account.
+
+Mitigation: Treat the API key like a password and install only when the agent should use that account.
+
+Risk: Generation, podcast, deck creation, and review commands can spend credits or change account state.
+
+Mitigation: Confirm credit-spending or state-changing commands before execution.
+
+Risk: Study text and deck content may be sent to EchoDecks for AI card or podcast generation.
+
+Mitigation: Avoid sending sensitive material unless sharing it with EchoDecks is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drgeld/skills/echodecks-clawdbot-skill)
+- [EchoDecks External API Documentation](artifact/API_DOCS.md)
+- [EchoDecks README](artifact/README.md)
+- [EchoDecks Developer Settings](https://echodecks.app/settings/developer)
+- [EchoDecks](https://echodecks.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ECHODECKS_API_KEY; some commands can spend EchoDecks credits or change account state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Monitor the most recent run result of a configured OpenClaw cron job and send a compact Feishu private message with the latest execution time, status, and detail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor the most recent run result of a configured OpenClaw cron job and send a compact Feishu private message with the latest execution time, status, and detail.
 
-## Publisher: <br>
-[aaronstuart](https://clawhub.ai/user/aaronstuart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronstuart](https://clawhub.ai/user/aaronstuart)
 
-## Use Case: <br>
-Developers and operators use this skill to check the latest finished OpenClaw cron run and send a concise Feishu status notification for routine monitoring or alerting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardcoded cron-run and Feishu config paths may target the wrong local files if reused without changes. <br>
-Mitigation: Confirm or update TARGET_JOB_ID, TARGET_JOB_NAME, RUNS_PATH, and CONFIG_PATH before running the script. <br>
-Risk: The script uses a Feishu app secret and recipient open_id to send private messages. <br>
-Mitigation: Use a Feishu app secret scoped only to the required message-sending permission and verify the intended recipient before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor the latest finished OpenClaw cron run and send a compact Feishu private message with the run time, status, and detail.
 
-## Reference(s): <br>
-- [Configuration](references/configuration.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [ClawHub release page](https://clawhub.ai/aaronstuart/tracker-latest-run-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Feishu text notification and JSON status log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Notification text includes latest execution time, status, and details; the script exits quietly when no finished run exists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill is configured for a specific OpenClaw cron job, run-log path, config path, recipient, and message labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and update the hard-coded job ID, run-log path, config path, recipient, and labels before running it in another environment.
+
+Risk: Feishu app credentials and run error or summary details may be sensitive.
+
+Mitigation: Protect the Feishu app secret, limit access to the configuration file, and review message content before sending run details externally.
+
+Risk: Notifications can be sent to the wrong Feishu user if the configured recipient is stale or incorrect.
+
+Mitigation: Verify feishu.notifyUserOpenId and send a controlled test notification before enabling routine monitoring.
+
+## Reference(s):
+
+- [Configuration](references/configuration.md)
+- [Feishu Open Platform](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command and Feishu text notification behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends one Feishu private message for the latest finished run and emits JSON status to stdout; exits quietly when no finished run exists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

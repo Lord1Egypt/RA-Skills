@@ -1,42 +1,53 @@
-## Description: <br>
-Local hybrid search for markdown notes and docs. Use when searching notes, finding related content, or retrieving documents from indexed collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local hybrid search for markdown notes and docs. Use when searching notes, finding related content, or retrieving documents from indexed collections.
 
-## Publisher: <br>
-[aryannate](https://clawhub.ai/user/aryannate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aryannate](https://clawhub.ai/user/aryannate)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to search local Markdown notes, documentation, and knowledge bases, then retrieve matching files or chunks from indexed collections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs qmd through a Bun-based GitHub install path and depends on the upstream qmd project. <br>
-Mitigation: Install only when the upstream qmd project and install path are trusted. <br>
-Risk: Indexed Markdown folders may include secrets or highly sensitive notes that become searchable by the agent. <br>
-Mitigation: Add only Markdown folders intended for agent search and exclude secret or highly sensitive collections. <br>
-Risk: Scheduled updates or embedding refreshes can continue re-indexing local content in the background. <br>
-Mitigation: Enable scheduled updates only when ongoing background re-indexing is desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [qmd project homepage](https://github.com/tobi/qmd) <br>
-- [ClawHub release page](https://clawhub.ai/aryannate/qmd-skill-4) <br>
+## Use Case:
 
+Developers and agents use this skill to search local Markdown notes, documentation, and knowledge-base collections, then retrieve matching files or document content for follow-up work.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON-producing qmd commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to use qmd search by default, retrieve Markdown documents, maintain local indexes, and reserve slower semantic or hybrid search modes for fallback use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path globally installs qmd from its current GitHub source via Bun without a pinned commit or release.
+
+Mitigation: Install only after reviewing the referenced source, and prefer pinning a reviewed commit or release where possible.
+
+Risk: Indexed Markdown collections become searchable by the agent and may contain sensitive local content.
+
+Mitigation: Add only folders intentionally approved for indexing and search.
+
+## Reference(s):
+
+- [qmd GitHub repository](https://github.com/tobi/qmd)
+- [Qmd ClawHub skill page](https://clawhub.ai/aryannate/skills/qmd-skill-4)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qmd command examples, setup steps, search-mode selection guidance, and JSON output options for downstream agent use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

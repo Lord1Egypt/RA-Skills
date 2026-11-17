@@ -1,42 +1,58 @@
-## Description: <br>
-Trade crypto on Toobit exchange via natural language. Spot & USDT-M futures trading, market data queries, wallet management. Use when user mentions Toobit, or wants to trade/query crypto on Toobit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade crypto on Toobit through natural language, including spot and USDT-M futures trading, market data queries, and wallet management.
 
-## Publisher: <br>
-[xuxizhen](https://clawhub.ai/user/xuxizhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxizhen](https://clawhub.ai/user/xuxizhen)
 
-## Use Case: <br>
-External users and developers use this skill to query Toobit market, account, wallet, spot trading, and USDT-M futures endpoints from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use exchange API keys for financially sensitive actions including trades, cancellations, leverage changes, transfers, and withdrawals. <br>
-Mitigation: Install only when an agent should operate a Toobit account, use a dedicated restricted API key, disable withdrawals unless required, and enable IP restrictions when available. <br>
-Risk: Incorrect symbols, sides, amounts, prices, leverage values, cancellation scopes, destination addresses, or generated commands can cause unwanted financial outcomes. <br>
-Mitigation: Manually verify each parameter and command before confirming any write action, and require explicit confirmation for withdrawals. <br>
+## Use Case:
 
+External users and developers use this skill to query Toobit market, account, wallet, spot, and USDT-M futures information and to prepare or execute Toobit trading actions through agent-generated API calls. It is intended for users who explicitly want an agent to operate a Toobit account with their API credentials.
 
-## Reference(s): <br>
-- [Toobit API base URL](https://api.toobit.com) <br>
-- [ClawHub skill page](https://clawhub.ai/xuxizhen/toobit) <br>
-- [Publisher profile](https://clawhub.ai/user/xuxizhen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with inline bash and curl commands plus readable summaries of JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require TOOBIT_API_KEY and TOOBIT_API_SECRET for signed exchange operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can operate a real Toobit account, including placing orders, canceling orders, changing futures settings, transferring assets, and withdrawing funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent access to the Toobit account is intended, use minimum-permission API keys, and avoid withdrawal permission unless it is required.
+
+Risk: Confirmed write actions can create financial exposure or move funds.
+
+Mitigation: Carefully review every confirmation prompt for orders, cancellations, leverage, transfers, and withdrawals before approving.
+
+Risk: Withdrawal capability can transfer assets out of the account.
+
+Mitigation: Require explicit confirmation and verify the asset, quantity, destination address, and chain before approving any withdrawal.
+
+## Reference(s):
+
+- [Toobit API base endpoint](https://api.toobit.com)
+- [ClawHub skill page](https://clawhub.ai/xuxizhen/skills/toobit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline bash commands, API request details, confirmation prompts, and readable summaries of JSON API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Signed requests require TOOBIT_API_KEY and TOOBIT_API_SECRET; write operations should present parameters and wait for user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

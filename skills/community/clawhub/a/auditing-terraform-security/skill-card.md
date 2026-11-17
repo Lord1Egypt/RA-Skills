@@ -1,47 +1,62 @@
-## Description: <br>
-Audits Terraform infrastructure-as-code for security misconfigurations using Checkov, tfsec, Terrascan, and OPA/Rego policies before cloud deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Terraform infrastructure-as-code for security misconfigurations using Checkov, tfsec, Terrascan, and OPA/Rego policies to detect overly permissive IAM policies, public resource exposure, missing encryption, and insecure defaults before cloud deployment.
 
-## Publisher: <br>
-[ling-qian](https://clawhub.ai/user/ling-qian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ling-qian](https://clawhub.ai/user/ling-qian)
 
-## Use Case: <br>
-Developers, DevOps engineers, and security engineers use this skill to audit Terraform modules, plans, and state for cloud security issues and to add security scanning gates to CI/CD workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Terraform plans, state files, scan outputs, and SARIF or JSON reports can expose sensitive infrastructure details. <br>
-Mitigation: Treat these artifacts as sensitive, limit sharing, and store reports only in approved systems. <br>
-Risk: Optional integrations may require API keys or other sensitive credentials. <br>
-Mitigation: Use least-privilege credentials, avoid embedding secrets in Terraform or CI configuration, and rotate credentials according to policy. <br>
-Risk: Running scans against unauthorized Terraform projects or cloud environments can expose data outside the user's remit. <br>
-Mitigation: Install and use the skill only for Terraform projects the user is authorized to review. <br>
+## Use Case:
 
+Developers, platform engineers, and security teams use this skill to audit Terraform code, plans, and state before cloud deployment. It helps add IaC security checks and policy-as-code gates to CI/CD workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ling-qian/auditing-terraform-security) <br>
-- [API Reference: Auditing Terraform Infrastructure for Security](artifact/references/api-reference.md) <br>
-- [Checkov documentation](https://www.checkov.io/) <br>
-- [tfsec documentation](https://aquasecurity.github.io/tfsec/) <br>
-- [Terrascan documentation](https://runterrascan.io/) <br>
-- [Conftest documentation](https://www.conftest.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, YAML, Rego, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Terraform plans, state files, scanner output, and SARIF or JSON reports that should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Third-party scanner packages and CI actions can change behavior across releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin scanner packages and GitHub Actions to reviewed versions or commit SHAs before using the workflow in CI.
+
+Risk: Terraform plan and state files may contain sensitive infrastructure details or secrets.
+
+Mitigation: Run scans in isolated development or CI environments and handle generated plan, state, SARIF, and JSON outputs as sensitive artifacts.
+
+Risk: Automated IaC findings can include false positives or accepted exceptions.
+
+Mitigation: Review findings before changing infrastructure and document justified suppressions or accepted risks.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/ling-qian/skills/auditing-terraform-security)
+- [Checkov Documentation](https://www.checkov.io/)
+- [tfsec Documentation](https://aquasecurity.github.io/tfsec/)
+- [Terrascan Documentation](https://runterrascan.io/)
+- [Conftest Documentation](https://www.conftest.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, Rego, YAML, and JSON examples; optional JSON audit reports from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scanner findings grouped by severity and file/resource location]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

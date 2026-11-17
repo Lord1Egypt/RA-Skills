@@ -14,9 +14,10 @@ import sys
 
 try:
     from cryptography.fernet import Fernet
+    FERNET_AVAILABLE = True
 except ImportError:
-    print("错误：缺少 cryptography 库。请运行: pip install cryptography")
-    sys.exit(1)
+    Fernet = None
+    FERNET_AVAILABLE = False
 
 # 配置文件路径（使用通用目录，兼容 QoderWork / QClaw 等不同工具）
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), "yqzl-ai-service")
@@ -40,6 +41,11 @@ def _derive_key():
 
 def save_api_key(api_key):
     """加密并保存 API KEY"""
+    if not FERNET_AVAILABLE:
+        print("警告：当前环境缺少 cryptography 库，无法加密存储 API KEY。")
+        print("请改用环境变量注入 API KEY：")
+        print('  export YQZL_API_KEY="你的API_KEY"')
+        return
     f = Fernet(_derive_key())
     encrypted = f.encrypt(api_key.encode("utf-8"))
     os.makedirs(CONFIG_DIR, exist_ok=True)
@@ -55,8 +61,15 @@ def save_api_key(api_key):
 
 
 def get_api_key():
-    """读取并解密 API KEY"""
+    """读取 API KEY（优先环境变量，其次本地加密文件）"""
+    # 优先读取环境变量，便于扣子编程等平台通过凭证变量注入
+    env_key = os.environ.get("YQZL_API_KEY") or os.environ.get("YQZL_APIKEY")
+    if env_key:
+        return env_key
     if not os.path.exists(CONFIG_FILE):
+        return None
+    if not FERNET_AVAILABLE:
+        # 无加密库则无法读取本地加密文件，退回让上层使用环境变量注入的 Key
         return None
     try:
         with open(CONFIG_FILE, "rb") as fp:
@@ -83,7 +96,7 @@ def check_config():
         return True
     else:
         print("未配置 API KEY。")
-        print("请访问 http://8.135.62.13:5000/ 获取 API KEY 后，运行以下命令配置：")
+        print("请访问 https://www.yunqi-zhilian.com/ 获取 API KEY 后，运行以下命令配置：")
         print('  python scripts/config_manager.py set "你的API_KEY"')
         return False
 
@@ -99,26 +112,12 @@ def main():
 
     subparsers.add_parser("check", help="检查是否已配置 API KEY")
 
-    # 集成升级命令
-    upgrade_parser = subparsers.add_parser("upgrade", help="检查并升级技能到最新版本")
-    upgrade_parser.add_argument("--force", action="store_true", help="强制升级")
-    upgrade_parser.add_argument("--url", help="自定义升级源地址")
-
     args = parser.parse_args()
 
     if args.command == "set":
         save_api_key(args.api_key)
     elif args.command == "check":
         check_config()
-    elif args.command == "upgrade":
-        # 延迟导入 updater，避免循环依赖
-        try:
-            import updater
-        except ImportError:
-            # Python 3 相对导入兼容性处理
-            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-            import updater
-        updater.do_update(args.url, force=args.force)
     else:
         parser.print_help()
         sys.exit(1)

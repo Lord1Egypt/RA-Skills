@@ -1,42 +1,62 @@
-## Description: <br>
-Build AI agents that operate Solana policy-controlled vaults using the Maestro SDK for token transfers, swaps, and vault interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build AI agents that operate Solana vaults using the Maestro SDK (@trionlabs/maestro-sdk) for transfers, swaps, and policy-controlled vault interactions.
 
-## Publisher: <br>
-[yamancan](https://clawhub.ai/user/yamancan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yamancan](https://clawhub.ai/user/yamancan)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure agents that operate Maestro Solana vaults, check vault health, and execute policy-controlled payment or balance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through token transfer and swap flows using a policy-controlled Solana vault. <br>
-Mitigation: Use a dedicated limited wallet or session key, enforce strict Maestro vault policies, and require explicit user confirmation before each transfer or swap. <br>
-Risk: Automatic key setup and persistent memory may leave sensitive operational state in local files. <br>
-Mitigation: Protect generated key material and MEMORY.md files, restrict file permissions, and clear or re-verify saved vault ownership and session key data when access changes. <br>
-Risk: Incorrect vault, owner, recipient, or policy state could cause failed or unintended financial operations. <br>
-Mitigation: Run the documented health checks before transactions, verify the vault owner on first connection, and use Maestro recipient policies and spending limits. <br>
+## Use Case:
 
+Developers building ClawHub agents use this skill to integrate Maestro SDK flows for Solana policy-controlled vault discovery, health checks, balance checks, and transfers while preserving vault-owner controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yamancan/maestro-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational status messages, wallet setup guidance, vault health checks, transfer instructions, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill initializes or loads local wallet credentials and may access local key material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local key access is approved, pin the Maestro SDK version, and avoid placing real private keys in the agent environment unless a separate key-management policy is in place.
+
+Risk: The skill can guide policy-authorized Solana transfers from a vault.
+
+Mitigation: Require explicit user confirmation for setup and every transfer, and stop before transactions when health checks report critical issues.
+
+Risk: The skill persists vault, owner, network, and transfer state for continuity.
+
+Mitigation: Install only where persistent vault memory is acceptable and review stored memory for sensitive operational details.
+
+Risk: The skill prompts funding and setup automatically when loaded.
+
+Mitigation: Review before installing and require explicit user confirmation before any funding, setup, or transfer action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yamancan/skills/maestro-sdk)
+- [Source skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational guardrails, health checks, error responses, memory persistence guidance, and Maestro app navigation paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

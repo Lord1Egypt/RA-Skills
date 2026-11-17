@@ -1,0 +1,98 @@
+# 天星密派 · 知识加载矩阵（v2.0）
+# 命名唯一：全库体系名统一为「天星密派」（王玉川创立），不再保留任何历史分支体系名。
+# canonical 字段为引擎唯一可用的知识名；source_file 保留 vault 实体文件名，供本地只读加载与追溯。
+# 引擎不得自由决定读取哪些笔记，必须且只能通过本矩阵 canonical 名加载。
+version: "0.2.0"
+vault_base: "/Volumes/珑/我的AI大脑/08_命理"
+
+knowledge:
+  - canonical: "天星密派 — 全书总纲与体系地图"
+    source_file: "天星密派 — 全书总纲与体系地图.md"
+    rule_ids: ["TX-TERM-000"]
+    use: "术语速查 / 断法要诀 / 体系地图"
+  - canonical: "八字排盘校验规范"
+    source_file: "八字排盘校验规范 — 防止时柱与节气错误.md"
+    rule_ids: ["TX-AUDIT-001", "TX-PAIPAN-001"]
+    use: "Step0/1 强制：日界、节气、时柱校验"
+  - canonical: "天星密派 — 核心方法·格局七神阴阳局"
+    source_file: "八字核心方法 — 天星密派体系.md"
+    rule_ids: ["TX-PATTERN-001", "TX-YONGJI-001"]
+    use: "主干口径：格局 / 七神 / 阴阳局 / 三角取象"
+  - canonical: "AI 运用天星密派八字推理 — 能力边界"
+    source_file: "AI 运用天星密派八字推理 — 能力边界与核查清单.md"
+    rule_ids: ["TX-BOUND-001"]
+    use: "硬边界与自检清单"
+  - canonical: "天星密派 — 基础·排盘·命局大运流年"
+    source_file: "天星密派 — 基础·排盘·命局大运流年.md"
+    rule_ids: ["TX-PAIPAN-002", "TX-DAYUN-001", "TX-LIUNIAN-001"]
+    use: "排盘 / 大运 / 流年"
+  - canonical: "天星密派 — 定格·取用·运算规律"
+    source_file: "天星密派 — 定格·取用·运算规律.md"
+    rule_ids: ["TX-PATTERN-002", "TX-YONGJI-002"]
+    use: "定格 / 五种神 / 失脱"
+  - canonical: "天星密派 — 六亲十神应事十二诀"
+    source_file: "天星密派 — 六亲十神应事十二诀.md"
+    rule_ids: ["TX-INFER-001"]
+    use: "按问事主题（婚恋财官）应事"
+  - canonical: "天星密派 — 能量流·计算规律·空亡论"
+    source_file: "天星密派 — 能量流·计算规律·空亡论.md"
+    rule_ids: ["TX-KONGWANG-001", "TX-INFER-002"]
+    use: "同柱六类关系 / 空亡分柱"
+  - canonical: "天星密派 — 应事律·发散律与名人案例"
+    source_file: "天星密派 — 应事律·发散律与名人案例.md"
+    rule_ids: ["TX-INFER-003"]
+    use: "断点 / 取象 / 发散律 / 案例"
+  - canonical: "天星密派 — 象理数收敛方法论"
+    source_file: "天星密派 — 象理数收敛方法论.md"
+    rule_ids: ["TX-PHILO-001"]
+    use: "象理数框架 / 收敛唯一性 / 流派哲学"
+
+# 每个 Pipeline Step 必须经过本矩阵加载指定知识，禁止 AI 自由选取
+pipeline:
+  - step: "input_audit"
+    canonical: ["八字排盘校验规范"]
+    rule_ids: ["TX-AUDIT-001"]
+  - step: "paipan"
+    canonical: ["八字排盘校验规范", "天星密派 — 基础·排盘·命局大运流年"]
+    rule_ids: ["TX-PAIPAN-001", "TX-PAIPAN-002"]
+  - step: "pattern"
+    canonical: ["天星密派 — 核心方法·格局七神阴阳局", "天星密派 — 定格·取用·运算规律"]
+    rule_ids: ["TX-PATTERN-001", "TX-PATTERN-002"]
+  - step: "yongji"
+    canonical: ["天星密派 — 核心方法·格局七神阴阳局", "天星密派 — 定格·取用·运算规律"]
+    rule_ids: ["TX-YONGJI-001", "TX-YONGJI-002"]
+  - step: "dayun"
+    canonical: ["天星密派 — 基础·排盘·命局大运流年"]
+    rule_ids: ["TX-DAYUN-001"]
+  - step: "liunian"
+    canonical: ["天星密派 — 基础·排盘·命局大运流年"]
+    rule_ids: ["TX-LIUNIAN-001"]
+  - step: "inference"
+    canonical:
+      - "天星密派 — 六亲十神应事十二诀"
+      - "天星密派 — 能量流·计算规律·空亡论"
+      - "天星密派 — 应事律·发散律与名人案例"
+      - "天星密派 — 全书总纲与体系地图"
+      - "天星密派 — 象理数收敛方法论"
+    rule_ids: ["TX-INFER-001", "TX-INFER-002", "TX-INFER-003", "TX-TERM-000", "TX-PHILO-001"]
+  - step: "validation"
+    canonical: ["AI 运用天星密派八字推理 — 能力边界"]
+    rule_ids: ["TX-BOUND-001"]
+
+# 原子库速查层（从长文蒸馏的极简规则，断事前快速校验，不参与结论生成）
+atom_library:
+  enabled: true
+  path: "原子库"
+  note: "08_命理/原子库 下『原子 — *.md』为从长文蒸馏的极简规则速查层；断事前经 evidence.search_atoms(theme) 检索与问事主题相关的原子，先交叉校验再用长文笔记。"
+  theme_domain_map:
+    事业: [发散律, 大运流年作用, 应事律, 能量流, 岁运应期, 十神运动]
+    财运: [六亲应事, 应事律, 发散律, 大运流年作用, 岁运应期, 十神运动]
+    婚姻: [六亲应事, 空亡应用, 应事律, 十神运动]
+    健康: [六亲应事, 作用律]
+    学业: [发散律, 应事律]
+    子女: [空亡应用, 六亲应事]
+    官非: [六亲应事, 应事律, 岁运应期]
+    排盘: [排盘校验]
+    格局: [格局, 旺衰, 取用]
+    空亡: [空亡, 空亡应用]
+    取象: [能量流, 应事律, 发散律, 取象]

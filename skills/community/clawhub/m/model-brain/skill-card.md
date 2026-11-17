@@ -1,40 +1,56 @@
-## Description: <br>
-Route each incoming message to the right Bankr/OpenClaw model or to a zero-LLM path based on task type, risk, and cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route each incoming message to the right Bankr/OpenClaw model or to a zero-LLM path based on task type, risk, and cost.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose a Bankr model or zero-LLM route for each incoming aaigotchi/OpenClaw message based on task type, risk, and cost. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake a model-routing recommendation for approval to perform wallet signing, approvals, fund transfers, or other security-sensitive actions. <br>
-Mitigation: Keep separate human or policy approval for wallet actions, and force the high-stakes route when a request is ambiguous or financially important. <br>
+## Use Case:
 
+Developers and agent operators use this skill to select a Bankr/OpenClaw model or zero-LLM workflow for a single incoming message based on task type, risk, and cost.
 
-## Reference(s): <br>
-- [Model Brain ClawHub Release](https://clawhub.ai/aaigotchi/model-brain) <br>
-- [Routing Table](artifact/references/routing-table.md) <br>
-- [Bankr Models Available to aaigotchi](artifact/references/bankr-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text, JSON, or shell-style environment lines with route, fallback, risk, task type, and reason] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory routing recommendations only; it does not execute wallet actions or approve transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and artifact/clawhub.json) <br>
+Risk: Wallet signing, transfer, approval, or fund-movement requests may be routed to a low-scrutiny zero-LLM path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require independent high-stakes checks before accepting any routing recommendation for wallet, treasury, signing, approvals, or fund movement.
+
+Risk: The skill output is a routing recommendation and not an authorization or safety gate.
+
+Mitigation: Keep transaction approval, signing, and policy enforcement in separate controls that override deterministic routing.
+
+## Reference(s):
+
+- [Routing table](references/routing-table.md)
+- [Bankr models available to aaigotchi](references/bankr-models.md)
+- [Model Brain on ClawHub](https://clawhub.ai/aaigotchi/skills/model-brain)
+- [aaigotchi publisher profile](https://clawhub.ai/user/aaigotchi)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, shell-style environment lines, or summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a recommended route, optional fallback route, risk level, task type, and short reason.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

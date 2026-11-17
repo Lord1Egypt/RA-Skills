@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Character Reference"
+  short_description: "Generate character reference sheets from an image or text"
+  default_prompt: "Use $crun-agent-skills to generate a character reference sheet (nine-grid, turnaround, expression sheet, etc.)."

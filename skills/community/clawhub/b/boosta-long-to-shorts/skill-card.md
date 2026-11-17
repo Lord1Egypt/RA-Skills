@@ -1,51 +1,66 @@
-## Description: <br>
-Create, monitor, and troubleshoot Boosta API video-processing jobs from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, monitor, and troubleshoot Boosta API video-processing jobs from natural-language requests.
 
-## Publisher: <br>
-[hundevmode](https://clawhub.ai/user/hundevmode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hundevmode](https://clawhub.ai/user/hundevmode)
 
-## Use Case: <br>
-Creators, agencies, and automation engineers use this skill to submit long-form video URLs to Boosta, monitor processing, and retrieve generated short clip URLs through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends video URLs to Boosta as an external processor. <br>
-Mitigation: Use the skill only when Boosta's policies meet the user's needs, and avoid submitting private or sensitive video URLs unless that processing is acceptable. <br>
-Risk: The skill requires a Boosta API key for authenticated network requests. <br>
-Mitigation: Provide BOOSTA_API_KEY through the environment, grant the minimum access practical, and do not print or store raw API keys in agent output. <br>
-Risk: Boosta allows one active job at a time per account or key and may rate-limit polling. <br>
-Mitigation: Reuse the returned active job when present, respect retry_after values, and keep polling intervals bounded. <br>
-Risk: An incorrect video_type can produce invalid requests or lower-quality processing. <br>
-Mitigation: Use the bundled video type reference, state any inference explicitly, and ask a clarifying question when confidence is low. <br>
+## Use Case:
 
+Creators, agencies, developers, and automation teams use this skill to submit long-form video URLs to Boosta, monitor asynchronous processing jobs, and return generated short-clip URLs with clear status and error handling.
 
-## Reference(s): <br>
-- [Boosta Homepage](https://boosta.pro) <br>
-- [Boosta API Getting Started](https://docs.boosta.pro/api/getting-started) <br>
-- [Boosta API Authentication](https://docs.boosta.pro/api/authentication) <br>
-- [Boosta API Endpoints](https://docs.boosta.pro/api/endpoints) <br>
-- [Boosta API Reference](references/api-reference.md) <br>
-- [Boosta Video Type Selection](references/video-types.md) <br>
-- [Boosta API Error Handling](references/errors.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hundevmode/boosta-long-to-shorts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Boosta job_id, status, progress, clips_count, clip_urls, and next-step guidance; requires BOOSTA_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0) <br>
+Risk: The skill sends submitted video URLs to the external Boosta API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only video URLs that the user is allowed to share with Boosta.
+
+Risk: The skill requires a Boosta API key and uses it for authenticated API requests.
+
+Mitigation: Store BOOSTA_API_KEY as an environment variable and avoid exposing it in logs, prompts, or command output.
+
+Risk: Unpinned install examples can resolve to changing upstream code.
+
+Mitigation: Prefer the ClawHub package or a pinned commit or release before installation.
+
+## Reference(s):
+
+- [Boosta homepage](https://boosta.pro)
+- [Boosta API getting started](https://docs.boosta.pro/api/getting-started)
+- [Boosta API authentication](https://docs.boosta.pro/api/authentication)
+- [Boosta API endpoints](https://docs.boosta.pro/api/endpoints)
+- [Boosta API video types](https://docs.boosta.pro/api/video-types)
+- [Boosta API errors](https://docs.boosta.pro/api/errors)
+- [API reference](references/api-reference.md)
+- [Error handling playbook](references/errors.md)
+- [Video type selection](references/video-types.md)
+- [ClawHub skill page](https://clawhub.ai/hundevmode/skills/boosta-long-to-shorts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include job IDs, job status, progress details, clip URLs, usage summaries, and retry or troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

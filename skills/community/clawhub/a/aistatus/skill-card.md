@@ -1,39 +1,56 @@
-## Description: <br>
-Check real-time AI provider status, search model availability, get trending models, LLM benchmark leaderboard, and recent outage incidents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check real-time AI provider status, search model availability, get trending models, LLM benchmark leaderboard, and recent outage incidents.
 
-## Publisher: <br>
-[fangxm233](https://clawhub.ai/user/fangxm233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangxm233](https://clawhub.ai/user/fangxm233)
 
-## Use Case: <br>
-Developers and operators use this skill to check public AI provider availability, model pricing and context details, model popularity, benchmark rankings, and recent outage incidents before choosing or calling an AI service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may disclose private model names, internal provider details, or sensitive operational terms to aistatus.cc. <br>
-Mitigation: Use the skill for ordinary public AI service status and model lookup questions, and avoid sensitive operational queries unless disclosure to aistatus.cc is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to check AI provider availability, model pricing and availability, trending model usage, benchmark rankings, and recent outage incidents before making decisions about AI services.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fangxm233/aistatus) <br>
-- [AI Status API](https://aistatus.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status summaries, ranked lists, and incident timelines based on fetched JSON data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider status, model availability, pricing, context length, benchmark scores, trending usage, and recent incident details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill makes network requests to aistatus.cc for AI status and model information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing provider or model names with that public service is acceptable, and review returned status data before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangxm233/skills/aistatus)
+- [aistatus.cc](https://aistatus.cc)
+- [All data API](https://aistatus.cc/api/all)
+- [Provider status API](https://aistatus.cc/api/status)
+- [Model search API](https://aistatus.cc/api/model?q={query})
+- [Trending models API](https://aistatus.cc/api/trending)
+- [LLM benchmark API](https://aistatus.cc/api/mmlu)
+- [Recent incidents API](https://aistatus.cc/api/incidents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown text summarizing public JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider statuses, model availability and pricing, ranked model lists, benchmark scores, and incident timelines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

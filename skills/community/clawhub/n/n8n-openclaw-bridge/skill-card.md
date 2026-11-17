@@ -1,44 +1,62 @@
-## Description: <br>
-Connects an OpenClaw agent to n8n so it can create, trigger, manage, and monitor automation workflows from natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OpenClaw agent to n8n so it can create, trigger, manage, and monitor workflows through natural-language automation requests.
 
-## Publisher: <br>
-[marlowne12](https://clawhub.ai/user/marlowne12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlowne12](https://clawhub.ai/user/marlowne12)
 
-## Use Case: <br>
-Developers and operators use this skill to let an OpenClaw agent orchestrate n8n automations, including workflow creation, webhook triggering, execution monitoring, retries, and basic workflow administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over n8n workflows, including create, delete, activate, retry, and publish-style actions. <br>
-Mitigation: Use a test n8n workspace first and require explicit approval before create, delete, activate, retry, or publish actions. <br>
-Risk: n8n API keys and webhook endpoints can expose automation control if stored or shared insecurely. <br>
-Mitigation: Use a dedicated least-privilege API key, avoid prompt-visible secret storage, and add authentication or shared-secret validation to webhook templates before exposure. <br>
+## Use Case:
 
+Developers and automation operators use this skill to let an OpenClaw agent create, trigger, monitor, and manage n8n workflows. It supports business automations such as lead alerts, content publishing, website monitoring, execution debugging, and webhook-based agent-to-workflow dispatch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marlowne12/n8n-openclaw-bridge) <br>
-- [n8n](https://n8n.io) <br>
-- [Lead notification workflow template](artifact/templates/lead-notification.json) <br>
-- [Content publisher workflow template](artifact/templates/content-publisher.json) <br>
-- [Website monitor workflow template](artifact/templates/website-monitor.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON workflow templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces n8n API examples, workflow JSON structures, webhook patterns, and operational guidance for agent-controlled automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can let an agent operate a live n8n instance with broad workflow control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped n8n API key, separate development and production instances where possible, and pin the package version before use.
+
+Risk: Workflow deletion, activation, deactivation, execution retry, and production webhook triggers can affect real automations.
+
+Mitigation: Require human confirmation before these actions and review workflow changes before applying them to production.
+
+Risk: n8n API URLs, API keys, and webhook URLs may be exposed if stored in broadly readable agent files.
+
+Mitigation: Store secrets in environment variables or a secret manager and avoid placing credentials in shared plaintext files.
+
+Risk: Included webhook templates may be unsafe if exposed without request authentication or payload validation.
+
+Mitigation: Add webhook authentication, schema validation, and rate limiting before exposing workflows beyond a trusted environment.
+
+## Reference(s):
+
+- [N8n Openclaw Bridge on ClawHub](https://clawhub.ai/marlowne12/skills/n8n-openclaw-bridge)
+- [n8n](https://n8n.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON workflow templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable n8n workflow JSON templates and API request examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

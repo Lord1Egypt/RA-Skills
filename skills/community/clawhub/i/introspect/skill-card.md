@@ -1,41 +1,61 @@
-## Description: <br>
-Analyze Claude Code sessions to produce a personalized developer workflow report with grades, archetypes, behavioral patterns, chrono analysis, and growth tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze your Claude Code sessions to discover your developer DNA - gamified performance report with letter grades, archetypes, behavioral patterns, shadow archetype, chrono analysis, and growth tips.
 
-## Publisher: <br>
-[umang-dabhi](https://clawhub.ai/user/umang-dabhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[umang-dabhi](https://clawhub.ai/user/umang-dabhi)
 
-## Use Case: <br>
-Developers using Claude Code use Introspect to analyze their local session history, understand prompting and workflow patterns, and receive personalized guidance for improving how they collaborate with an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads recent local Claude Code conversation history, which may contain sensitive snippets, project names, or workflow details. <br>
-Mitigation: Start with a small date range and a specific project, keep generated reports local, and review or delete JSON and Markdown reports before sharing. <br>
-Risk: Personalized interpretations may be incomplete or overly confident if the selected sessions are not representative. <br>
-Mitigation: Treat the report as reflective guidance, rerun it across a broader or different date range when needed, and compare recommendations against the underlying session sample. <br>
+## Use Case:
 
+Developers using Claude Code use Introspect to analyze recent local session history and generate a personalized markdown performance report covering grades, archetypes, behavioral patterns, timing analysis, and growth tips.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/umang-dabhi/introspect) <br>
-- [Publisher Profile](https://clawhub.ai/user/umang-dabhi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown report with intermediate JSON analysis data and shell commands for local extraction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated from local Claude Code session history and may include sensitive workflow details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill reads recent local Claude Code conversations and can create persistent plaintext reports or JSON files containing private prompt or response snippets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the date range and project filter before running, avoid sessions containing secrets or proprietary material, and review or delete generated report and data files when finished.
+
+Risk: Users may rely on privacy-oriented wording and underestimate that snippets from private sessions can be written to disk.
+
+Mitigation: Tell users before execution that local reports may include conversation snippets, and store outputs only in locations appropriate for sensitive development history.
+
+Risk: Unpinned npx or latest-style install commands may fetch a different package version than the reviewed artifact.
+
+Mitigation: Prefer pinned, reviewed installation commands and verify the installed package or ClawHub release version before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/umang-dabhi/skills/introspect)
+- [npm Package](https://www.npmjs.com/package/@umang-boss/introspect)
+- [Artifact README](artifact/README.md)
+- [Package README](artifact/npm-package/README.md)
+- [Declared Repository](https://github.com/umang-dabhi/introspect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with supporting JSON session-analysis data and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local Claude Code session JSONL files, writes plaintext analysis artifacts under the configured reports directory, and prints JSON analysis data to stdout.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

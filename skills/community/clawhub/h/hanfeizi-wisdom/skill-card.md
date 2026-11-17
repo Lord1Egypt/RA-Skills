@@ -1,38 +1,54 @@
-## Description: <br>
-韩非子智慧 provides Chinese-language guidance on Han Feizi legalist strategy, combining law, technique, and authority for institution design, checks on power, organizational control, leadership, and crisis handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+韩非子智慧提供中文韩非子与法家法、术、势思想的管理、组织控制、权力制衡、领导艺术和危机处理指导。
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users and organization leaders use this skill to ask an agent for Han Feizi-style strategic guidance, checklists, and decision frameworks for governance, team management, power balancing, and crisis response. The guidance should be treated as historical and strategic framing, not as a substitute for legal, ethical, or workplace policy review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains leadership, discipline, power-balancing, and testing-of-subordinates guidance that could be misapplied coercively or outside modern workplace norms. <br>
-Mitigation: Treat the advice as historical or strategic framing and apply it only with current legal, ethical, human-resources, and workplace safeguards. <br>
+## Use Case:
 
+Chinese-language users and agents use this skill to summarize and apply Han Feizi and Legalist management philosophy to institution building, leadership, power balancing, organizational control, personnel evaluation, strategy, and crisis response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taro291/hanfeizi-wisdom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists and structured decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language methodology content; no executable code, install hooks, credential access, or network behavior identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill discusses power, control, and covert management tactics that could be misapplied in real organizations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply ethical and legal judgment before use, and adapt any guidance to transparent policies, legitimate authority, and local workplace rules.
+
+Risk: The artifact cautions that Legalist tactics may be unsuitable for intimate relationships, innovation environments, high-trust cultures, or personal cultivation.
+
+Mitigation: Use the guidance only in appropriate organizational or strategic contexts and balance it with human-centered review before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taro291/skills/hanfeizi-wisdom)
+- [Publisher profile](https://clawhub.ai/user/taro291)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style Chinese-language explanations, tables, checklists, and practical guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden system access is included in the artifact evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

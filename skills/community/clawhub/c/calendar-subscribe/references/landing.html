@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAL_NAME</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; margin: 1.5rem; max-width: 36rem; }
+    .banner { display: none; background: #3a1a12; color: #ffd4c4; padding: .8rem 1rem; border-radius: 10px; }
+    body.wechat .banner { display: block; }
+    .panel { display: none; }
+    body.android .android, body.ios .ios, body.desktop .desktop { display: block; }
+    body.wechat .android, body.wechat .ios, body.wechat .desktop { display: none; }
+    a.btn { display: inline-block; margin: .4rem .4rem 0 0; padding: .7rem 1rem; border-radius: 999px; background: #c4121a; color: #fff; text-decoration: none; }
+    a.alt { background: #222; }
+    code { display: block; word-break: break-all; background: #f4f4f4; padding: .6rem; margin-top: .5rem; }
+  </style>
+</head>
+<body>
+  <div class="banner">微信里加不了日历。点右上角 ··· → 在浏览器打开。</div>
+  <h1>CAL_NAME</h1>
+  <p>订阅后改课只需更新网上的 ICS，不用重新导入。</p>
+  <div class="panel android">
+    <a class="btn" id="gcal" href="#">加到 Google 日历</a>
+    <a class="btn alt" href="ICS_URL">打开 ICS</a>
+  </div>
+  <div class="panel ios">
+    <a class="btn" href="webcal://HOST_AND_PATH">订阅到日历</a>
+    <a class="btn alt" href="ICS_URL">下载 ICS</a>
+  </div>
+  <div class="panel desktop">
+    <a class="btn" href="webcal://HOST_AND_PATH">订阅到 Apple 日历</a>
+    <a class="btn alt" id="gcal-d" href="#">加到 Google 日历</a>
+    <a class="btn alt" href="ICS_URL">下载 ICS</a>
+  </div>
+  <p>订阅地址</p>
+  <code>ICS_URL</code>
+  <script>
+    var ics = "ICS_URL";
+    var g = "https://calendar.google.com/calendar/r?cid=" + encodeURIComponent(ics);
+    var el = document.getElementById("gcal"); if (el) el.href = g;
+    var ed = document.getElementById("gcal-d"); if (ed) ed.href = g;
+    var ua = navigator.userAgent || "";
+    var wechat = /MicroMessenger|wxwork/i.test(ua);
+    var android = /Android/i.test(ua);
+    var ios = /iPhone|iPad|iPod/i.test(ua);
+    document.body.classList.add(wechat ? "wechat" : android ? "android" : ios ? "ios" : "desktop");
+  </script>
+</body>
+</html>

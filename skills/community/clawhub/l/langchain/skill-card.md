@@ -1,36 +1,64 @@
-## Description: <br>
-Avoid common LangChain mistakes — LCEL gotchas, memory persistence, RAG chunking, and output parser traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and debugs LangChain apps in Python across LCEL chains, agents, tools, retrievers, streaming, structured output, LangGraph workflows, production hardening, testing, observability, security, and migration issues.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick LangChain reference for avoiding common LCEL, memory, RAG, parser, retrieval, and agent mistakes while building applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LangChain guidance may become outdated or be misapplied as LangChain APIs and application requirements change. <br>
-Mitigation: Verify advice against current LangChain documentation and review generated implementations before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, review, debug, and harden LangChain applications in Python. It is aimed at practical work on chains, agents, retrieval, streaming, structured output, LangGraph state, tests, observability, production limits, security, and version migration.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only reference material; no executable code is produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local LangChain preferences and project notes may persist across sessions in ~/Clawic/data/langchain/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secrets and customer data out of those files, and remove the directory if cross-session memory is not desired.
+
+Risk: Generated LangChain guidance and code can be wrong for a specific package version, provider, or deployment environment.
+
+Mitigation: Check the installed lockfile or requirements, run the suggested tests, and review security-sensitive code before use.
+
+Risk: Tracing, retrieved documents, tool arguments, or saved fixtures can expose private data when copied into examples or observability systems.
+
+Mitigation: Redact PII and credentials at the source, avoid storing secrets in metadata or tags, and scrub recorded fixtures before committing them.
+
+## Reference(s):
+
+- [ClawHub LangChain Skill Page](https://clawhub.ai/ivangdavila/skills/langchain)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Clawic LangChain Skill Homepage](https://clawic.com/skills/langchain)
+- [LangChain Skill Guide](artifact/SKILL.md)
+- [Setup](artifact/setup.md)
+- [Security](artifact/security.md)
+- [Production](artifact/production.md)
+- [Testing](artifact/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local preferences in ~/Clawic/data/langchain/ when present.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

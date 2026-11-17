@@ -1,47 +1,63 @@
-## Description: <br>
-ClawDef is a self-hosted OpenClaw token optimization dashboard that tracks token usage, estimates costs, supports provider setup, manages budgets, detects waste, and can switch models locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawDef is a self-hosted token optimization dashboard for OpenClaw that tracks token usage, estimates costs, supports provider setup, budget controls, waste detection, and local model switching.
 
-## Publisher: <br>
-[gs921302](https://clawhub.ai/user/gs921302) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gs921302](https://clawhub.ai/user/gs921302)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run a local dashboard for monitoring token usage, estimating model costs, managing provider setup, enforcing budgets, and adjusting model routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has sensitive OpenClaw administration powers, including model-routing changes. <br>
-Mitigation: Install it only when administration is intended, review model provider configuration before use, and keep automatic optimization paused or disabled when model switching is not desired. <br>
-Risk: Provider credentials used with the dashboard could affect spending or access if over-permissioned. <br>
-Mitigation: Use limited-scope or budget-capped provider keys and keep budget limits aligned with expected usage. <br>
-Risk: Local dashboard access controls protect administrative functions. <br>
-Mitigation: Create and protect the first-run admin account, use strong credentials, and restrict local machine access to trusted users. <br>
+## Use Case:
 
+OpenClaw users and administrators use ClawDef to monitor local token usage, estimate costs, configure model providers, enforce budgets, and choose lower-cost models from a localhost dashboard.
 
-## Reference(s): <br>
-- [ClawDef ClawHub release page](https://clawhub.ai/gs921302/clawdef) <br>
-- [Publisher profile](https://clawhub.ai/user/gs921302) <br>
-- [ClawDef skill definition](artifact/SKILL.md) <br>
-- [ClawDef security documentation](artifact/SECURITY.md) <br>
-- [Node.js runtime](https://nodejs.org) <br>
-- [Chart.js](https://www.chartjs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local dashboard configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and operating guidance for a localhost OpenClaw monitoring dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and frontmatter) <br>
+Risk: The local SQLite database may contain sensitive monitoring data, including tool arguments and account records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run ClawDef only as the intended OpenClaw user on a trusted machine and treat the database as sensitive data with restricted local access.
+
+Risk: Provider credential handling and custom provider URLs can expose API keys to an untrusted destination.
+
+Mitigation: Use custom provider URLs only when the destination is trusted with the associated API key.
+
+Risk: Service installation guidance can be overprivileged if run as a root systemd service.
+
+Mitigation: Avoid the root systemd service as written and run the dashboard with least-privilege user permissions.
+
+Risk: The first-run administrator account controls dashboard actions and should not remain uninitialized.
+
+Mitigation: Initialize the admin account immediately after first launch and keep the service bound to localhost unless explicitly reviewed.
+
+## Reference(s):
+
+- [ClawDef ClawHub skill page](https://clawhub.ai/gs921302/skills/clawdef)
+- [Node.js](https://nodejs.org)
+- [Chart.js](https://www.chartjs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on a local OpenClaw dashboard and related setup, configuration, and operating steps.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

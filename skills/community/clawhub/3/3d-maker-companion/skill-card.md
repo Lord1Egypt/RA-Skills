@@ -1,42 +1,56 @@
-## Description: <br>
-Professional assistant for 3D printing, laser engraving, and 3D modeling workflows, including visual references for sculpting, Meshy AI 3D model generation, and FDM or resin print-setting optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional assistant for 3D printing, laser engraving, and 3D modeling workflows. Supports generating visual references for sculpting (Forger/ZBrush), creating 3D models via Meshy AI, and optimizing FDM/Resin print settings.
 
-## Publisher: <br>
-[Jaulustus](https://clawhub.ai/user/Jaulustus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaulustus](https://clawhub.ai/user/jaulustus)
 
-## Use Case: <br>
-Developers, makers, artists, and fabrication teams use this skill to plan 3D printing, laser engraving, sculpting-reference, and Meshy.ai model-generation workflows. It helps connect AI-generated references to practical modeling, slicing, and manufacturing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and image URLs are sent to Meshy.ai using the user's API key. <br>
-Mitigation: Install only when Meshy.ai use is intended, and avoid submitting prompts or image URLs that should not be shared with that external service. <br>
-Risk: The set-key helper saves MESHY_API_KEY in a local plaintext .env file. <br>
-Mitigation: Prefer setting MESHY_API_KEY in the environment; if .env is used, keep it private, do not commit it, and rotate the key if it is exposed. <br>
+## Use Case:
 
+External makers, developers, and fabrication teams use this skill to plan 3D modeling, Meshy-assisted asset generation, 3D printing, slicer preparation, and laser engraving workflows.
 
-## Reference(s): <br>
-- [3D Maker Companion on ClawHub](https://clawhub.ai/Jaulustus/3d-maker-companion) <br>
-- [Meshy OpenAPI v1 endpoint](https://api.meshy.ai/openapi/v1) <br>
-- [Meshy OpenAPI v2 endpoint](https://api.meshy.ai/openapi/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON API responses from the Meshy client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MESHY_API_KEY for Meshy.ai API calls; the set-key helper can write the key to a local .env file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Local API key storage can expose Meshy credentials if a generated .env file is shared or committed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set MESHY_API_KEY through the environment or a secret manager, avoid the set-key helper for persistent storage, and exclude any .env file from sharing and source control.
+
+Risk: Prompts and image URLs submitted through the helper are sent to Meshy.
+
+Mitigation: Review prompts and image URLs before submission and avoid sending confidential, proprietary, or personal data unless approved for that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaulustus/skills/3d-maker-companion)
+- [Publisher profile](https://clawhub.ai/user/jaulustus)
+- [Meshy API v1 endpoint](https://api.meshy.ai/openapi/v1)
+- [Meshy API v2 endpoint](https://api.meshy.ai/openapi/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and JSON responses from helper API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require MESHY_API_KEY for Meshy API helper workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

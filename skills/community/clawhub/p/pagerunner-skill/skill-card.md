@@ -1,48 +1,67 @@
-## Description: <br>
-Real Chrome automation for AI agents, including authenticated sessions, PII anonymization, sealed secrets, site adapters, session checkpoints, and video recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real Chrome automation for AI agents - authenticated sessions, PII anonymization, sealed secrets, site adapters, session checkpoints, and video recording.
 
-## Publisher: <br>
-[enreign](https://clawhub.ai/user/enreign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enreign](https://clawhub.ai/user/enreign)
 
-## Use Case: <br>
-Developers, power users, and automation engineers use this skill to drive real Chrome sessions from MCP-compatible agents for authenticated web workflows, frontend verification, sensitive-data automation, and persistent browser tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can control real logged-in Chrome sessions and may access authenticated pages, persistent browser state, recordings, or sensitive account data. <br>
-Mitigation: Use dedicated low-privilege Chrome profiles, enable domain allowlists, treat snapshots and recordings like credentials, and require human confirmation before external posts, form submissions, account changes, or sealed-secret command execution. <br>
-Risk: Sensitive data may be exposed through page content, browser state, snapshots, recordings, or automation outputs if security controls are not configured for the workflow. <br>
-Mitigation: Enable anonymization for sensitive work, avoid storing long-lived credentials in general KV state, and follow the skill's guidance for sealed secrets and audit handling. <br>
-Risk: Stealth mode and unattended automation can increase misuse or policy risk when used on third-party services. <br>
-Mitigation: Use stealth mode only with explicit approval and keep humans in the loop for workflows that affect external systems or accounts. <br>
+## Use Case:
 
+Developers, power users, and automation engineers use this skill to guide agents through real Chrome workflows, including logged-in browser tasks, frontend verification, form filling, session recovery, secure handling of sensitive pages, and browser-session recording.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/enreign/pagerunner-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/enreign) <br>
-- [Repository URL from Skill Metadata](https://github.com/Enreign/pagerunner-skill) <br>
-- [Quick Start Guide](SKILL.md) <br>
-- [Security and Privacy](SECURITY.md) <br>
-- [Complete Tool Reference](REFERENCE.md) <br>
-- [Workflow Patterns](PATTERNS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript, shell, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser automation steps, MCP tool-call patterns, security guidance, and local setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill gives an MCP server access to real logged-in Chrome profiles and persistent browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated agent Chrome profile, set strict allowed_domains, keep retention short, and enable anonymize:true for sensitive pages.
+
+Risk: Credentials, webhook URLs, or sensitive values could be exposed through shared KV state or unsafe automation flows.
+
+Mitigation: Use sealed secrets or a proper secret manager instead of storing secrets in shared KV, and review audit logs for sensitive workflows.
+
+Risk: Included selector-debug scripts and scheduled automation examples can be unsafe when used with untrusted selectors or temporary scripts.
+
+Mitigation: Avoid selector-debug scripts with untrusted selectors, do not schedule /tmp scripts in cron, and review scripts before use.
+
+Risk: Registering an unverified Pagerunner binary as an MCP server can expand local automation risk.
+
+Mitigation: Pin and verify the Pagerunner binary before registering it as an MCP server.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/enreign/skills/pagerunner-skill)
+- [Repository (metadata)](https://github.com/Enreign/pagerunner-skill)
+- [Quick Start Guide](SKILL.md)
+- [Pagerunner Tools Reference](REFERENCE.md)
+- [Security, Privacy, and Guardrails](SECURITY.md)
+- [Advanced Topics](ADVANCED.md)
+- [Video Recording Guide](RECORDING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, shell, JSON, and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs operational guidance for agent use of Pagerunner MCP tools; no model-generated media or structured dataset is produced by the skill itself.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

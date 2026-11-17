@@ -1,38 +1,50 @@
-## Description: <br>
-Web performance measurement and debugging toolkit for auditing pages, analyzing Core Web Vitals, and investigating loading, interaction, media, and network quality issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webperf helps agents audit and debug web performance in Chrome DevTools, including Core Web Vitals, loading, interaction, media, and network quality.
 
-## Publisher: <br>
-[nucliweb](https://clawhub.ai/user/nucliweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nucliweb](https://clawhub.ai/user/nucliweb)
 
-## Use Case: <br>
-Developers and performance engineers use this skill to choose Chrome DevTools workflows for page audits, Core Web Vitals debugging, loading investigations, interaction analysis, media optimization, and network quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to run JavaScript in a browser page context, which can expose sensitive page state on logged-in or private sites. <br>
-Mitigation: Use it only on pages intended for audit, avoid sensitive authenticated sessions when possible, and review external snippets before execution. <br>
+## Use Case:
 
+Developers and performance engineers use Webperf to run Chrome DevTools based page audits, interpret metrics such as LCP, CLS, INP, and TTFB, and identify concrete performance fixes.
 
-## Reference(s): <br>
-- [Webperf snippets repository](https://github.com/nucliweb/webperf-snippets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with Chrome DevTools tool calls and JavaScript snippet recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to run JavaScript in a browser page context and summarize performance findings with actionable recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Running page-context performance snippets on sensitive logged-in pages may expose or inspect private page data during an audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target URL before use and avoid banking, admin, private, or other sensitive logged-in pages unless that audit is intentional.
+
+## Reference(s):
+
+- [Webperf Snippets repository](https://github.com/nucliweb/webperf-snippets)
+- [Webperf ClawHub skill page](https://clawhub.ai/nucliweb/skills/webperf)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Guidance]
+
+**Output Format:** [Markdown with JavaScript snippets, Chrome DevTools tool guidance, and performance recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Chrome DevTools MCP interactions to inspect the target page when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

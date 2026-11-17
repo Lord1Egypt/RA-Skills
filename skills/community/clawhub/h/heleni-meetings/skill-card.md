@@ -1,39 +1,56 @@
-## Description: <br>
-Helps agents coordinate meetings, create calendar invites, and turn pasted meeting notes or transcripts into summaries and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heleni Meetings helps an agent coordinate meetings, create calendar invites, summarize meeting notes or transcripts, and extract action items with owners and deadlines.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and assistants use this skill to schedule meetings by finding availability, coordinating with another PA, and creating calendar invites. They can also turn pasted meeting notes or transcripts into summaries, decisions, action items, saved notes, and optional todo.md updates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Meeting transcripts, notes, and action items can include confidential, legal, HR, financial, or personal information.
+
+Mitigation: Review the skill before installing for sensitive meetings, omit raw transcripts by default, and require explicit consent before saving notes.
+
+Risk: Calendar and task operations can modify calendar entries or todo.md without strong upfront consent.
+
+Mitigation: Preview calendar invites and todo.md changes, then require explicit confirmation before applying them.
+
+Risk: Previous-meeting searches could expose unrelated workspace content if run broadly.
+
+Mitigation: Limit searches to the meeting-notes folder unless the user explicitly chooses a broader search.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, assistants, and agents use this skill to schedule meetings, coordinate availability with another PA, create calendar invites, and convert meeting notes or transcripts into summaries, decisions, and owner-tagged action items. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes or transcripts may include confidential, legal, HR, customer, or credential-related content and may be saved locally. <br>
-Mitigation: Use only in approved workspaces, avoid saving raw transcripts unless users explicitly request local retention, and redact sensitive content before storage. <br>
-Risk: Calendar events may be created or deleted without consistently requiring explicit user approval. <br>
-Mitigation: Require user confirmation before creating, rescheduling, or deleting calendar events, and use only an approved calendar account. <br>
+**Output Format:** [Markdown with inline shell commands and structured meeting-note templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create meeting-notes/YYYY-MM-DD_topic.md and update todo.md when the user chooses items to add.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional shell command blocks and local Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create meeting-notes/*.md and update todo.md when the notes workflow is used.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

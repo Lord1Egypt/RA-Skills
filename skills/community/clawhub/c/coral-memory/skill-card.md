@@ -1,41 +1,55 @@
-## Description: <br>
-DEPRECATED - Use persistent-agent-memory instead. This skill has been replaced by persistent-agent-memory (clawhub install persistent-agent-memory). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated Coral Memory directs users to install persistent-agent-memory, its replacement for storing, retrieving, and deleting memories by meaning.
 
-## Publisher: <br>
-[divyvasal](https://clawhub.ai/user/divyvasal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[divyvasal](https://clawhub.ai/user/divyvasal)
 
-## Use Case: <br>
-Developers and agent users encounter this deprecated skill as a migration pointer from Coral Memory to persistent-agent-memory. It tells users which replacement skill to install for memory storage, retrieval, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deprecated skill redirects users to persistent-agent-memory, which may have separate API key, storage, retrieval, deletion, network, or persistence behavior. <br>
-Mitigation: Review the replacement skill's security card and permissions before installing or deploying it. <br>
-Risk: The artifact declares CORAL_API_KEY as an environment requirement even though this deprecated version contains only a migration notice. <br>
-Mitigation: Do not provide credentials to this deprecated skill unless a reviewed replacement workflow requires them. <br>
+## Use Case:
 
+Developers and agent users who previously relied on Coral Memory use this deprecated skill to find the supported replacement, persistent-agent-memory, for memory storage, retrieval, and deletion workflows.
 
-## Reference(s): <br>
-- [Coral Bricks](https://coralbricks.ai) <br>
-- [Persistent Agent Memory for AI Agents](https://www.coralbricks.ai/blog/persistent-memory-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with an inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated notice; no executable code is included in this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Users may rely on a deprecated skill instead of the supported replacement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install persistent-agent-memory directly before using memory workflows.
+
+Risk: The replacement memory workflow may require CORAL_API_KEY access.
+
+Mitigation: Provide CORAL_API_KEY only when you intend to use Coral Bricks memory functionality.
+
+## Reference(s):
+
+- [Coral Memory skill page](https://clawhub.ai/divyvasal/skills/coral-memory)
+- [Coral Bricks](https://coralbricks.ai)
+- [Persistent Agent Memory for AI Agents](https://www.coralbricks.ai/blog/persistent-memory-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with an inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated redirect only; this skill does not perform memory operations itself.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

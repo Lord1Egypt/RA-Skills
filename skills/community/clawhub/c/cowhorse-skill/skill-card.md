@@ -1,41 +1,53 @@
-## Description: <br>
-A skill that actively extracts and quantifies workflow requirements from users through structured Q&A about inputs, outputs, and objectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill that actively extracts and quantifies workflow requirements from users through structured Q&A about inputs, outputs, and objectives.
 
-## Publisher: <br>
-[SPA3K](https://clawhub.ai/user/SPA3K) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spa3k](https://clawhub.ai/user/spa3k)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn repeatable AI-assisted tasks into clarified workflow requirements and reusable skills. It guides discovery, confirms inputs and outputs, outlines build steps, and can produce skill structure, scripts, references, packaging guidance, and memory-update guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide creation or modification of skill files, scripts, packages, and memory entries. <br>
-Mitigation: Review target paths, generated scripts, packaged output, and any memory updates before approving build or finalize steps. <br>
-Risk: Incomplete or incorrect requirements could be turned into a reusable workflow skill. <br>
-Mitigation: Confirm the structured input, output, process, and constraint summary with the user before building or relying on the generated skill. <br>
+## Use Case:
 
+Developers and workflow authors use this skill to turn repeated AI-supported tasks into reusable agent skills by clarifying goals, input and output specifications, process steps, constraints, and validation needs before building.
 
-## Reference(s): <br>
-- [Workflow Patterns Reference](references/workflow_guide.md) <br>
-- [Cowhorse Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with structured summaries, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated skill-file structure, scripts, references, packaging steps, and memory-update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create persistent agent skills and scripts that may encode incorrect requirements or unsafe automation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SKILL.md files, scripts, and package contents before deployment, and scan generated artifacts before reuse.
+
+Risk: Workflow discovery may capture credentials, private paths, schemas, business details, or other sensitive information in generated files or memory logs.
+
+Mitigation: Keep generated files in a scoped workspace and avoid storing sensitive workflow details unless persistence is explicitly intended.
+
+## Reference(s):
+
+- [Workflow Patterns Reference](references/workflow_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands, Python helper output, and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent skill files, scripts, references, assets, packaging steps, and memory updates when the user confirms requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

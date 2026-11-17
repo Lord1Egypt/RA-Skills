@@ -1,43 +1,58 @@
-## Description: <br>
-AI Chief of Staff that autonomously finds leads, manages communications, schedules tasks, delivers software, and provides daily business briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Chief of Staff framework that helps an agent find leads, manage communications and scheduling, deliver software, and produce business briefings.
 
-## Publisher: <br>
-[shalin1982](https://clawhub.ai/user/shalin1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shalin1982](https://clawhub.ai/user/shalin1982)
 
-## Use Case: <br>
-Developers and business operators use Henry OS to configure an autonomous assistant that monitors opportunities, drafts communications, manages schedules, and coordinates software-delivery tasks with approval gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run a remote installer from an external domain. <br>
-Mitigation: Verify the publisher and installer source before running it, and prefer a versioned installer with checksums or signatures. <br>
-Risk: The skill describes a persistent autonomous agent with broad access to private communications, calendars, contacts, online accounts, and local projects. <br>
-Mitigation: Grant only necessary account permissions, keep approval gates enabled for sensitive actions, and monitor or revoke access when it is no longer needed. <br>
-Risk: The security summary flags overbroad privacy claims around local-first and offline behavior. <br>
-Mitigation: Confirm data flows and configuration before connecting sensitive accounts, especially where external services or installer-managed dependencies are involved. <br>
+## Use Case:
 
+Developers, freelancers, and small-business operators use Henry OS to configure an autonomous assistant for opportunity discovery, communications triage, calendar support, software delivery, and daily operational briefings. The skill provides setup commands, configuration guidance, and operational patterns for running that assistant.
 
-## Reference(s): <br>
-- [Henry OS ClawHub Page](https://clawhub.ai/shalin1982/henry-os) <br>
-- [Henry OS Documentation](https://docs.henryos.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installer, configuration, status, and troubleshooting commands for an autonomous business assistant workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The one-line installer is not auditable from the submitted artifact and pipes a remote script into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect a pinned copy of the install script before running it, verify checksums or signatures when available, and avoid pipe-to-shell installation in trusted environments.
+
+Risk: The described assistant may need broad access to email, messages, calendars, contacts, local projects, network services, and persistent background agents.
+
+Mitigation: Run in a constrained account or sandbox first, grant the minimum permissions needed, and document each data flow before connecting sensitive accounts.
+
+Risk: Automated communications, opportunity hunting, scheduling, and software delivery can create business or privacy impact if actions occur without review.
+
+Mitigation: Keep approval gates enabled for sending messages, changing calendars, outreach, deployments, and other external actions; review drafts and task plans before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shalin1982/skills/henry-os)
+- [Henry OS Documentation](https://docs.henryos.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration examples, task workflows, and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require local account, calendar, contacts, messages, email, browser, and project access depending on enabled integrations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

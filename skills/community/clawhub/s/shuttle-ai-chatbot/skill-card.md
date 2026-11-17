@@ -1,43 +1,55 @@
-## Description: <br>
-Shuttle AI Chatbot queries a configured local AI `/chat_direct` service for single or batch product questions and returns the service response as JSON or text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shuttle AI Chatbot is a CLI skill that sends single or batch queries to a configured Shuttle AI /chat_direct endpoint and returns the response as JSON or plain text.
 
-## Publisher: <br>
-[sean810720](https://clawhub.ai/user/sean810720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sean810720](https://clawhub.ai/user/sean810720)
 
-## Use Case: <br>
-Developers and operators use this skill to send product-specification or comparison prompts to a configured Shuttle AI service, either one query at a time or from a batch file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and batch-file contents may be sent to a configurable network endpoint, including the default HTTP service URL. <br>
-Mitigation: Verify the endpoint operator and transport security before use, prefer localhost or HTTPS endpoints, and avoid sending secrets, credentials, private documents, or sensitive batch files. <br>
-Risk: The configured AI service controls the response content and may return incorrect or unexpected product guidance. <br>
-Mitigation: Review responses before using them for customer-facing, procurement, or operational decisions. <br>
+## Use Case:
 
+Developers and operational users can use this skill to query a trusted local Shuttle AI service for product specifications, product comparisons, and batch lookup workflows. It is intended for environments where the configured backend endpoint is approved for the submitted prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sean810720/shuttle-ai-chatbot) <br>
-- [Publisher profile](https://clawhub.ai/user/sean810720) <br>
-- [README](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON or plain text emitted by a CLI command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include the original query, service response, elapsed time, timestamp, service URL, and generated session ID when JSON output is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and package metadata) <br>
+Risk: Crafted query text, batch files, endpoint URLs, or language values could cause unintended local shell command execution in this version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, pass only trusted inputs, and restrict URL and language values until the CLI uses safer process invocation and input validation.
+
+Risk: Prompts are sent to the configured Shuttle AI endpoint and may be unsuitable for sensitive data unless that backend is approved.
+
+Mitigation: Use only trusted Shuttle AI endpoints and avoid sensitive prompts unless the backend is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sean810720/skills/shuttle-ai-chatbot)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [JSON objects or plain text responses printed by the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the query, response, elapsed time, timestamp, endpoint URL, and session ID when JSON output is selected.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata, package.json, skill.json, SKILL.md changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

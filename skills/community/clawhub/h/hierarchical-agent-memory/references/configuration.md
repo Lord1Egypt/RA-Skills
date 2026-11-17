@@ -12,7 +12,7 @@ customize, add a `memory_structure` block to your workspace configuration.
 Best for: single-project agents, simple setups, users who want structure
 without complexity.
 
-Creates: `MEMORY.md` (routing table) + `memory/daily/` (platform default)
+Creates: `MEMORY.md` (routing table). Daily notes stay at OpenClaw's own `memory/YYYY-MM-DD.md`.
 
 ```json
 { "memory_structure": { "preset": "minimal" } }
@@ -23,7 +23,7 @@ Creates: `MEMORY.md` (routing table) + `memory/daily/` (platform default)
 Best for: multi-project agents, users who work across several topics or
 with multiple contacts.
 
-Creates: `MEMORY.md` + `memory/daily/` + `memory/topics/` + `memory/contacts/`
+Creates: `MEMORY.md` + `memory/topics/` + `memory/contacts/`. Daily notes stay at `memory/YYYY-MM-DD.md`.
 
 ```json
 { "memory_structure": { "preset": "standard" } }
@@ -89,7 +89,7 @@ This gives you `standard` plus weekly summaries, but skips monthly and yearly.
           "default": 3,
           "minimum": 1,
           "maximum": 10,
-          "description": "Maximum MEMORY.md size in KB before warning"
+          "description": "Maximum size in KB of the hand-maintained part of MEMORY.md, excluding dreaming-managed entries"
         },
         "topics": {
           "type": "boolean",
@@ -155,20 +155,23 @@ This gives you `standard` plus weekly summaries, but skips monthly and yearly.
 
 ## Directory Structure by Preset
 
+The daily-note location is not configurable. OpenClaw reads and writes
+`memory/YYYY-MM-DD.md` (plus `memory/YYYY-MM-DD-HHMM.md` from the
+session-memory hook), and this skill uses those files as its intake layer.
+`MEMORY.md` lives at the workspace root, not inside `memory/`.
+
 ### minimal
 ```
+MEMORY.md
 memory/
-  MEMORY.md
-  daily/
-    YYYY-MM-DD.md
+  YYYY-MM-DD.md
 ```
 
 ### standard
 ```
+MEMORY.md
 memory/
-  MEMORY.md
-  daily/
-    YYYY-MM-DD.md
+  YYYY-MM-DD.md
   topics/
     project-name.md
     infrastructure.md
@@ -181,10 +184,9 @@ memory/
 
 ### full
 ```
+MEMORY.md
 memory/
-  MEMORY.md
-  daily/
-    YYYY-MM-DD.md
+  YYYY-MM-DD.md
   topics/
     project-name.md
     infrastructure.md
@@ -199,3 +201,7 @@ memory/
   yearly/
     YYYY.md
 ```
+
+> `memory/dreaming/` (phase reports) and `DREAMS.md` are written by OpenClaw's
+> dreaming feature, not by this skill, and overlap with the `full` preset's
+> archives. Prefer `standard` when dreaming is on (the default from 2026.8.1).

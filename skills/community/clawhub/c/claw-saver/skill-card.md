@@ -1,46 +1,62 @@
-## Description: <br>
-Back up the full OpenClaw environment (~/.openclaw) to a Git repository. Supports scheduled backups, interactive restore, and Git LFS for large model files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Back up the full OpenClaw environment (~/.openclaw) to a Git repository. Supports scheduled backups, interactive restore, and Git LFS for large model files.
 
-## Publisher: <br>
-[jixsonwang](https://clawhub.ai/user/jixsonwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jixsonwang](https://clawhub.ai/user/jixsonwang)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to back up OpenClaw state to a trusted Git repository, schedule recurring backups, and restore prior backup commits when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can copy highly sensitive OpenClaw data, including credentials, identity keys, knowledge bases, and agent memory, into a Git repository. <br>
-Mitigation: Use only a trusted private repository, review the generated .gitignore and repository contents before pushing, and treat backup repositories as secret-bearing data. <br>
-Risk: The skill requires a Git token and stores or passes credentials for backup and scheduled push operations. <br>
-Mitigation: Use a minimally scoped, revocable token, rotate it when access changes, and remove scheduled jobs before decommissioning the backup. <br>
-Risk: Untrusted repository URLs or cron expressions can affect shell-based Git and scheduling behavior. <br>
-Mitigation: Configure only trusted repository URLs and cron expressions, then inspect the installed crontab after enabling or changing scheduled backups. <br>
-Risk: Restore operations overwrite the current OpenClaw directory from a selected backup commit. <br>
-Mitigation: Restore only from trusted backup history and confirm the selected commit before allowing the restore to proceed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up a full OpenClaw home directory to a configured Git repository, schedule recurring backups, inspect backup status, and restore from recent backup commits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jixsonwang/claw-saver) <br>
-- [Publisher profile](https://clawhub.ai/user/jixsonwang) <br>
-- [Skill homepage from artifact metadata](https://clawhub.ai/skills/claw-saver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Markdown, Guidance] <br>
-**Output Format:** [CLI text output, JSON configuration, Git commits, and generated RESTORE.md guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git, git-lfs, skills/claw-saver/config.json, and OPENCLAW_BACKUP_GIT_TOKEN; backup data may include sensitive OpenClaw state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.2 (source: frontmatter and server release metadata) <br>
+Risk: The backup repository can contain a near-complete copy of the OpenClaw home directory, including credentials, identity keys, tokens, memory, and knowledge data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private repository, a narrowly scoped or expiring token, and consider encrypting the backup before it enters Git history.
+
+Risk: Scheduled backups can upload data unattended and can expose the backup token through local cron or Git configuration.
+
+Mitigation: Enable cron only after accepting unattended uploads, and periodically review local crontab and Git remote configuration for token exposure.
+
+Risk: Generated RESTORE.md exclusion claims may be unreliable for sensitive-data exposure.
+
+Mitigation: Inspect repository contents and exclusions directly before relying on RESTORE.md to describe what was or was not backed up.
+
+Risk: Restore operations can overwrite the current OpenClaw directory with files from a selected backup commit.
+
+Mitigation: Restore only from a trusted repository and verified commit, and preserve current local data before confirming the restore.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jixsonwang/skills/claw-saver)
+- [Skill homepage](https://clawhub.ai/skills/claw-saver)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Markdown, Configuration]
+
+**Output Format:** [CLI output, Git commits and backup files, and RESTORE.md Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git, git-lfs, a configured backup repository, and OPENCLAW_BACKUP_GIT_TOKEN.]
+
+## Skill Version(s):
+
+1.6.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

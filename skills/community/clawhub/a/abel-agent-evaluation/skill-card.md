@@ -1,42 +1,55 @@
-## Description: <br>
-Guides agents through testing and benchmarking LLM agents with behavioral tests, capability assessments, reliability metrics, and production monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Testing and benchmarking LLM agents including behavioral testing, capability assessment, reliability metrics, and production monitoring.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers, quality engineers, and agent builders use this skill to design evaluations for LLM agents, including statistical test runs, behavioral contracts, adversarial checks, and reliability tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, benchmark cases, transcripts, or production traces may be sent to a third-party API. <br>
-Mitigation: Review the external setup guide, provide SKILLBOSS_API_KEY only when the API Hub is intended, and redact secrets, regulated data, and sensitive traces before use. <br>
-Risk: Evaluation guidance can produce misleading conclusions if benchmarks do not match production behavior. <br>
-Mitigation: Pair benchmark results with behavioral regression tests, adversarial checks, and production-oriented reliability metrics. <br>
+## Use Case:
 
+Developers, quality engineers, and agent builders use this skill to design and run behavioral regression tests, capability assessments, adversarial tests, and reliability evaluations for LLM agents before production deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abel-agent-evaluation) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API integration examples that require SKILLBOSS_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Evaluation prompts, transcripts, model outputs, and test cases may be sent to the SkillBoss/HeyBossAI API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and personal or regulated data before use, and avoid confidential evaluations unless the provider is approved for that data.
+
+Risk: The skill routes evaluation chat messages to a fixed third-party API without clear privacy controls or user choice.
+
+Mitigation: Review the provider relationship, endpoint behavior, and data handling requirements before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abel-agent-evaluation)
+- [Complete setup guide](https://skillboss.co/skill.md)
+- [SkillBoss API endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require SKILLBOSS_API_KEY and may send evaluation prompts, transcripts, model outputs, and test cases to the SkillBoss/HeyBossAI API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

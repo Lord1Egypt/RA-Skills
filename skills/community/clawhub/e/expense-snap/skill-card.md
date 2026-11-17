@@ -1,44 +1,59 @@
-## Description: <br>
-Capture receipt details, categorize spending, and generate monthly reports from a local SQLite ledger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture receipt details, categorize spending, and generate monthly reports from a local SQLite ledger.
 
-## Publisher: <br>
-[mehulupase01](https://clawhub.ai/user/mehulupase01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mehulupase01](https://clawhub.ai/user/mehulupase01)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to record receipt or spending details, keep categories consistent, review monthly totals against budgets, and export expense records for reimbursement or spreadsheet workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt records, notes, and CSV exports may contain sensitive spending or account details stored on the local filesystem. <br>
-Mitigation: Use a trusted local runtime and export folder, avoid entering secrets or full account numbers, and restrict access to generated SQLite and CSV files. <br>
-Risk: Receipt OCR or transcription may be incomplete or ambiguous, leading to incorrect merchant, amount, currency, category, or line-item data. <br>
-Mitigation: Mark ambiguous fields as inferred, keep totals and currencies aligned with the source receipt, and avoid fabricating unreadable line items. <br>
-Risk: CSV export paths are user supplied and can write expense records to an unintended location. <br>
-Mitigation: Review the output path before exporting and choose a trusted folder for generated CSV files. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to convert receipt text or image transcriptions into structured expense records, review monthly spending, compare category budgets, and export reimbursement-ready CSV data.
 
-## Reference(s): <br>
-- [Category Rules](references/category-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mehulupase01/expense-snap) <br>
-- [Project Homepage](https://github.com/Mehulupase01/openclaw-skill-suite/tree/main/skills/expense-snap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper script emits JSON responses and CSV exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores receipt data locally in SQLite under the skill runtime directory and can write month-filtered CSV exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Receipt and spending details are stored in a local SQLite database inside the skill runtime directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of expense details is acceptable, and protect the runtime directory as sensitive financial data.
+
+Risk: CSV exports can contain sensitive receipt fields and may overwrite a user-selected output path.
+
+Mitigation: Export only to intended locations, avoid overwriting important files, and treat generated CSV files as sensitive.
+
+Risk: Receipt fields from untrusted text or OCR can produce unsafe or misleading spreadsheet content when exported.
+
+Mitigation: Review receipt fields before export and be cautious when opening CSV files in spreadsheet applications.
+
+## Reference(s):
+
+- [Category Rules](references/category-rules.md)
+- [ClawHub skill page](https://clawhub.ai/mehulupase01/skills/expense-snap)
+- [Project homepage](https://github.com/Mehulupase01/openclaw-skill-suite/tree/main/skills/expense-snap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python shell commands and JSON or CSV results from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores receipt records in a local SQLite database and can export monthly records to CSV.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

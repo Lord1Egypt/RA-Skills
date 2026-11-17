@@ -1,40 +1,58 @@
-## Description: <br>
-Safe Shell is a read-only command-line helper that allows file, system, and network queries while blocking destructive or modifying commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Shell helps an agent propose read-only shell commands for inspecting files, system state, network configuration, and environment information while blocking commands described as destructive or execution-oriented.
 
-## Publisher: <br>
-[chengyusheng188](https://clawhub.ai/user/chengyusheng188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengyusheng188](https://clawhub.ai/user/chengyusheng188)
 
-## Use Case: <br>
-Developers and AI-assistant operators use Safe Shell to propose or check read-only diagnostic commands for file inspection, system status, and network troubleshooting across macOS, Linux, and Windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The command filter is best-effort and should not be treated as a secure sandbox. <br>
-Mitigation: Review each command before execution and run commands with least privilege in an appropriate sandbox or controlled environment. <br>
-Risk: Read-only filesystem, environment, and network diagnostics can expose sensitive local or network information. <br>
-Mitigation: Avoid broad filesystem reads, private files, and environment-variable dumps; require explicit approval for network diagnostics or wide system inspection. <br>
+## Use Case:
 
+Developers, engineers, and agent operators can use this skill when an assistant needs to inspect directories, files, host status, or network settings through read-only command suggestions. It is intended for cautious diagnostic and monitoring workflows rather than system modification.
 
-## Reference(s): <br>
-- [Safe Shell on ClawHub](https://clawhub.ai/chengyusheng188/safe-shell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with shell command suggestions and safety refusals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only command suggestions or refusal messages; command execution should remain separately reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The security evidence says the validator can approve unsafe command strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the skill as a hard safety boundary until command parsing is structured and shell control syntax is rejected.
+
+Risk: The security evidence says the skill permits broad environment-variable disclosure.
+
+Mitigation: Remove, disable, or redact environment-variable output before using the skill in environments that may contain secrets.
+
+Risk: The security guidance calls for a pinned, verifiable installer.
+
+Mitigation: Install only from a verified release or pinned artifact and review the package before deployment.
+
+## Reference(s):
+
+- [ClawHub Safe Shell release](https://clawhub.ai/chengyusheng188/skills/safe-shell)
+- [ClawHub publisher profile](https://clawhub.ai/user/chengyusheng188)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes allowed and blocked command patterns; actual execution depends on the hosting agent or tool environment.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

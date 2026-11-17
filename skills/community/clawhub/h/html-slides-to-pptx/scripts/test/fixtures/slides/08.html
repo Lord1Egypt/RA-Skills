@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>大语言模型核心原理</title>
+<link rel="stylesheet" href="../assets/theme.css">
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+  .slide-container{font-family:"Noto Sans SC","Inter",sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;">
+
+  <!-- 标题 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:60px;width:1200px;z-index:10;">
+    <div style="font-size:40px;font-weight:800;color:#0A2E5C;line-height:1.4;">大语言模型：<span style="color:#E2232A;">一切的核心引擎</span></div>
+  </div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:140px;top:130px;width:80px;height:4px;background:#F39800;z-index:3;"></div>
+
+  <!-- 流程图：数据→训练→模型→推理→输出 -->
+  <!-- 节点1 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:120px;top:220px;width:280px;height:120px;background:#0A2E5C;border-radius:12px;z-index:3;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:120px;top:220px;width:280px;height:120px;z-index:10;">
+    <div style="font-size:16px;font-weight:400;color:#A9BCD6;line-height:1.4;text-align:center;padding-top:25px;">STEP 1</div>
+    <div style="font-size:22px;font-weight:700;color:#FFFFFF;line-height:1.4;text-align:center;">海量数据</div>
+    <div style="font-size:14px;font-weight:400;color:#A9BCD6;line-height:1.4;text-align:center;">互联网文本万亿 token</div>
+  </div>
+
+  <!-- 箭头1 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:410px;top:268px;width:60px;height:4px;background:#E5E7EB;z-index:2;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:460px;top:258px;width:16px;height:16px;border-top:3px solid #E2232A;border-right:3px solid #E2232A;z-index:3;"></div>
+
+  <!-- 节点2 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:490px;top:220px;width:280px;height:120px;background:#14477A;border-radius:12px;z-index:3;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:490px;top:220px;width:280px;height:120px;z-index:10;">
+    <div style="font-size:16px;font-weight:400;color:#A9BCD6;line-height:1.4;text-align:center;padding-top:25px;">STEP 2</div>
+    <div style="font-size:22px;font-weight:700;color:#FFFFFF;line-height:1.4;text-align:center;">预训练</div>
+    <div style="font-size:14px;font-weight:400;color:#A9BCD6;line-height:1.4;text-align:center;">预测下一个 token</div>
+  </div>
+
+  <!-- 箭头2 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:780px;top:268px;width:60px;height:4px;background:#E5E7EB;z-index:2;"></div>
+
+  <!-- 节点3 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:860px;top:220px;width:280px;height:120px;background:#E2232A;border-radius:12px;z-index:3;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:860px;top:220px;width:280px;height:120px;z-index:10;">
+    <div style="font-size:16px;font-weight:400;color:#FFFFFF;line-height:1.4;text-align:center;padding-top:25px;">STEP 3</div>
+    <div style="font-size:22px;font-weight:700;color:#FFFFFF;line-height:1.4;text-align:center;">对齐微调</div>
+    <div style="font-size:14px;font-weight:400;color:#FFFFFF;line-height:1.4;text-align:center;">RLHF / 人类反馈</div>
+  </div>
+
+  <!-- 箭头3 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1150px;top:268px;width:60px;height:4px;background:#E5E7EB;z-index:2;"></div>
+
+  <!-- 节点4 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1230px;top:220px;width:280px;height:120px;background:#F39800;border-radius:12px;z-index:3;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1230px;top:220px;width:280px;height:120px;z-index:10;">
+    <div style="font-size:16px;font-weight:400;color:#FFFFFF;line-height:1.4;text-align:center;padding-top:25px;">STEP 4</div>
+    <div style="font-size:22px;font-weight:700;color:#FFFFFF;line-height:1.4;text-align:center;">推理部署</div>
+    <div style="font-size:14px;font-weight:400;color:#FFFFFF;line-height:1.4;text-align:center;">API / 本地化</div>
+  </div>
+
+  <!-- 箭头4 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1520px;top:268px;width:60px;height:4px;background:#E5E7EB;z-index:2;"></div>
+
+  <!-- 节点5 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1600px;top:220px;width:240px;height:120px;background:#00A651;border-radius:12px;z-index:3;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1600px;top:220px;width:240px;height:120px;z-index:10;">
+    <div style="font-size:16px;font-weight:400;color:#FFFFFF;line-height:1.4;text-align:center;padding-top:25px;">OUTPUT</div>
+    <div style="font-size:22px;font-weight:700;color:#FFFFFF;line-height:1.4;text-align:center;">智能输出</div>
+    <div style="font-size:14px;font-weight:400;color:#FFFFFF;line-height:1.4;text-align:center;">文本/代码/图像</div>
+  </div>
+
+  <!-- 核心概念解释区 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:400px;width:1640px;z-index:10;">
+    <div style="font-size:20px;font-weight:700;color:#0A2E5C;line-height:1.5;">核心机制：Transformer 架构（2017, Google）</div>
+  </div>
+
+  <!-- 三个关键概念卡片 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:140px;top:450px;width:520px;height:240px;background:#F5F7FA;border-radius:12px;z-index:2;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:175px;top:475px;width:450px;z-index:10;">
+    <div style="font-size:18px;font-weight:800;color:#E2232A;line-height:1.5;">自注意力机制</div>
+    <div style="font-size:15px;font-weight:400;color:#666666;line-height:1.8;margin-top:8px;">每个词同时"看到"序列中所有其他词，自动学会哪些词之间有关联。让模型理解"他"指代谁、上下文如何相互影响。</div>
+  </div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:700px;top:450px;width:520px;height:240px;background:#F5F7FA;border-radius:12px;z-index:2;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:735px;top:475px;width:450px;z-index:10;">
+    <div style="font-size:18px;font-weight:800;color:#F39800;line-height:1.5;">规模定律 Scaling Law</div>
+    <div style="font-size:15px;font-weight:400;color:#666666;line-height:1.8;margin-top:8px;">模型参数越多 + 训练数据越多 + 计算越多 = 能力越强。这条"定律"驱动了GPT从1.17亿参数到万亿参数的指数增长。</div>
+  </div>
+
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1260px;top:450px;width:520px;height:240px;background:#F5F7FA;border-radius:12px;z-index:2;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1295px;top:475px;width:450px;z-index:10;">
+    <div style="font-size:18px;font-weight:800;color:#00A651;line-height:1.5;">涌现能力 Emergence</div>
+    <div style="font-size:15px;font-weight:400;color:#666666;line-height:1.8;margin-top:8px;">当模型规模超过临界点，突然"涌现"出之前没有的能力——如逻辑推理、代码编写、多步规划——无法被简单预测。</div>
+  </div>
+
+  <!-- 底部分隔线 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:140px;top:750px;width:1640px;height:1px;background:#E5E7EB;z-index:2;"></div>
+
+  <!-- 数据亮点 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:780px;width:400px;z-index:10;">
+    <div style="font-size:48px;font-weight:900;color:#0A2E5C;line-height:1.2;">1.8万亿</div>
+    <div style="font-size:16px;font-weight:400;color:#666666;line-height:1.5;">GPT-4 推测参数量</div>
+  </div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:600px;top:780px;width:400px;z-index:10;">
+    <div style="font-size:48px;font-weight:900;color:#E2232A;line-height:1.2;">13万亿</div>
+    <div style="font-size:16px;font-weight:400;color:#666666;line-height:1.5;">训练 token 数量级</div>
+  </div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1060px;top:780px;width:400px;z-index:10;">
+    <div style="font-size:48px;font-weight:900;color:#F39800;line-height:1.2;">$100M+</div>
+    <div style="font-size:16px;font-weight:400;color:#666666;line-height:1.5;">单次训练成本估算</div>
+  </div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1520px;top:780px;width:400px;z-index:10;">
+    <div style="font-size:48px;font-weight:900;color:#00A651;line-height:1.2;">2 个月</div>
+    <div style="font-size:16px;font-weight:400;color:#666666;line-height:1.5;">ChatGPT 破亿用户</div>
+  </div>
+
+  <!-- 页码 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1780px;top:1000px;width:100px;z-index:10;">
+    <div style="font-size:14px;font-weight:400;color:#999999;text-align:right;">08</div>
+  </div>
+
+</div>
+<template data-slide-notes>
+【大语言模型核心原理】
+训练流程：海量数据→预训练（预测下一token）→对齐微调（RLHF）→推理部署→智能输出。
+三大核心机制：自注意力、规模定律、涌现能力。GPT-4推测有1.8万亿参数，训练成本超1亿美元。
+</template>
+</body>
+</html>

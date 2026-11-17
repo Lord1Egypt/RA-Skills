@@ -1,41 +1,54 @@
-## Description: <br>
-Echo Gate helps agents register, expose, call, secure, audit, and operate local-first tools through the BuiltByEcho gateway, including API keys, receipts, approvals, spend limits, local secret storage, and x402 paid-tool readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Echo Gate when registering, exposing, calling, securing, auditing, or operating local-first agent-callable tools through the BuiltByEcho gateway.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Echo Gate local-first agent-tool gateways, including tool registration, authenticated calls, key lifecycle operations, receipt checks, local health checks, and release readiness tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports sensitive key operations, including API key creation, listing, revocation, and policy changes. <br>
-Mitigation: Approve key creation, revocation, and policy changes deliberately, and keep ECHO_GATE_ADMIN_TOKEN and egk_ API keys out of chat, commits, docs, and memory. <br>
-Risk: The skill may guide remote deployment or paid-tool preparation actions. <br>
-Mitigation: Review the external npm package before global installation and explicitly approve remote deployment or paid-tool preparation steps before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to register and operate local-first agent-callable tools through Echo Gate, including API keys, gateway calls, receipts, approvals, secret handling, and spend limits.
 
-## Reference(s): <br>
-- [Echo Gate ClawHub release page](https://clawhub.ai/builtbyecho/echo-gate) <br>
-- [Declared Echo Gate GitHub project](https://github.com/BuiltByEcho/echo-gate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and API endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference sensitive credentials such as ECHO_GATE_ADMIN_TOKEN and egk_ API keys; users should keep those values out of chat, commits, docs, and memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: A global npm install without a pinned reviewed version could install code the reviewer has not assessed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted BuiltByEcho package source and prefer a pinned, reviewed @builtbyecho/echo-gate version.
+
+Risk: Gateway administration and tool calls involve sensitive tokens such as ECHO_GATE_ADMIN_TOKEN and ECHO_GATE_KEY.
+
+Mitigation: Keep tokens out of chat, documentation, commits, and public issue comments; use local environment variables and revoke keys that are no longer needed.
+
+## Reference(s):
+
+- [Echo Gate ClawHub Skill Page](https://clawhub.ai/builtbyecho/skills/echo-gate)
+- [Echo Gate Project Repository](https://github.com/BuiltByEcho/echo-gate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, environment variables, HTTP endpoints, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on local-first gateway operations; may include commands that install or call the @builtbyecho/echo-gate package.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

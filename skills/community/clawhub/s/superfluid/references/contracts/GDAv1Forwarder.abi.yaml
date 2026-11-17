@@ -34,13 +34,13 @@ meta:
       avalanche-c: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
       celo-mainnet: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
       scroll-mainnet: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
-      degenchain: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
+      arc-mainnet: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
     testnet:
       avalanche-fuji: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
       base-sepolia: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
       eth-sepolia: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
       optimism-sepolia: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
-      scroll-sepolia: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
+      arc-testnet: "0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08"
 
 # == Glossary ==
 # pool                  — a SuperfluidPool contract distributing tokens to members

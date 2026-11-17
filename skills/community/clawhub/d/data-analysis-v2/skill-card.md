@@ -1,44 +1,59 @@
-## Description: <br>
-Data Analysis helps agents analyze, visualize, and explain data from databases, spreadsheets, notebooks, dashboards, exports, and ad hoc tables so results become decision-ready insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data analysis and visualization. Query databases, generate reports, automate spreadsheets, and turn raw data into clear, actionable insights.
 
-## Publisher: <br>
-[janeaaaa](https://clawhub.ai/user/janeaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[janeaaaa](https://clawhub.ai/user/janeaaaa)
 
-## Use Case: <br>
-External users, employees, analysts, and developers use this skill to turn raw data, KPI questions, experiments, funnels, cohorts, and reports into clear analysis, visual recommendations, caveats, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Platform capability tags may imply crypto or purchase capability even though the reviewed artifacts are documentation-only. <br>
-Mitigation: Review the capability tags before installation or deployment and treat the skill as documentation-only unless those tags are confirmed or corrected. <br>
+## Use Case:
 
+Developers, analysts, and business teams use this skill to plan and explain data analysis from SQL, spreadsheets, notebooks, dashboards, exports, or ad hoc tables. It supports KPI debugging, experiment readouts, funnel and cohort analysis, anomaly reviews, executive reporting, metric quality checks, chart selection, and decision briefs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/janeaaaa/data-analysis-v2) <br>
-- [Skill homepage](https://clawic.com/skills/data-analysis) <br>
-- [Metric Contracts](metric-contracts.md) <br>
-- [Chart Selection](chart-selection.md) <br>
-- [Decision Briefs](decision-briefs.md) <br>
-- [Analytical Pitfalls](pitfalls.md) <br>
-- [Analysis Techniques](techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown narrative with decision briefs, metric definitions, chart recommendations, caveats, and optional SQL, Python, or spreadsheet snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should lead with the insight, quantify uncertainty, state limitations, and recommend next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact frontmatter lists 1.0.2) <br>
+Risk: The active agent may receive sensitive datasets, credentials, or business data while performing analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an agent environment appropriate for the data, and avoid pasting sensitive datasets or credentials unless that environment is approved for them.
+
+Risk: Analysis outputs can become misleading when metric definitions, sample sizes, comparison groups, or confounders are weak.
+
+Mitigation: Require metric contracts, uncertainty, baseline checks, caveats, and escalation when the data cannot support the requested claim.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/janeaaaa/skills/data-analysis-v2)
+- [Skill homepage](https://clawic.com/skills/data-analysis)
+- [Metric Contracts](artifact/metric-contracts.md)
+- [Chart Selection](artifact/chart-selection.md)
+- [Decision Briefs](artifact/decision-briefs.md)
+- [Analytical Pitfalls](artifact/pitfalls.md)
+- [Analysis Techniques](artifact/techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code, query, shell command, configuration, table, and decision-brief snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no external network requests, hidden persistence, background jobs, or required local setup are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

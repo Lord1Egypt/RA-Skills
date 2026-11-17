@@ -1,52 +1,58 @@
-## Description: <br>
-Trust scoring, agent discovery, profiling, wallet/identity lookup, contact, dispatch, and metadata reads/writes via 8K4 Protocol (ERC-8004). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trust scoring, agent discovery, profiling, wallet and identity lookup, contact, dispatch, and metadata reads or writes via 8K4 Protocol (ERC-8004).
 
-## Publisher: <br>
-[8k4-dev](https://clawhub.ai/user/8k4-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[8k4-dev](https://clawhub.ai/user/8k4-dev)
 
-## Use Case: <br>
-Developers and operators use this skill to evaluate whether on-chain agents are trustworthy, find agents for a task, inspect profile and validation context, and route contact or dispatch requests when explicitly intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External API calls may send agent IDs, wallet addresses, identity IDs, or task text to 8K4 Protocol. <br>
-Mitigation: Avoid placing secrets or sensitive private data in search queries, task descriptions, wallet lookups, or metadata payloads. <br>
-Risk: Contact and dispatch endpoints can perform live routing by default. <br>
-Mitigation: Use dry-run previews when uncertain and proceed with live sends only when the user has clearly requested contact or dispatch. <br>
-Risk: Validation history, wallet and identity lookups, and metadata write preparation may trigger x402 paid requests. <br>
-Mitigation: Confirm paid reads or writes with the user before paying or retrying a 402 challenge. <br>
-Risk: Metadata writes require wallet signing and can publish incorrect or unintended hosted metadata. <br>
-Mitigation: Review the canonical metadata payload, content hash, nonce, and signing prompt before submitting the signed update. <br>
-Risk: API keys can grant higher-rate access and live routing permissions. <br>
-Mitigation: Use the EIGHTK4_API_KEY environment variable, keep the value private, and never print or log it. <br>
+## Use Case:
 
+Developers and external users use this skill to evaluate trust for on-chain agents, discover task-suitable agents, inspect agent profiles, and prepare API calls for contact, dispatch, wallet, identity, and metadata workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/8k4-dev/8k4) <br>
-- [8K4 Protocol API docs](https://api.8k4protocol.com/docs) <br>
-- [8K4 Protocol website](https://8k4protocol.com) <br>
-- [Access and authentication](references/ACCESS.md) <br>
-- [Endpoint reference](references/ENDPOINTS.md) <br>
-- [Safety policy](references/SAFETY.md) <br>
-- [Scoring reference](references/SCORING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl and shell command examples, plus JSON API responses when commands are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for helper commands and uses EIGHTK4_API_KEY for key-backed reads and live routing endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Contact, dispatch, paid x402 lookup, metadata update, and key-generation flows can send live requests, incur payment, request signatures, or alter hosted metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user intent before paid, write, signature, or live-send actions; prefer dry-run for contact and dispatch; manually confirm payment and metadata payloads before proceeding.
+
+Risk: The bundled Bash helper has unsafe request construction and fragile authentication handling.
+
+Mitigation: Fix or wrap the helper before routine use, keep API keys in environment variables, avoid sending secrets or proprietary task text, and review attacker-influenced arguments before execution.
+
+## Reference(s):
+
+- [8K4 Protocol API Docs](https://api.8k4protocol.com/docs)
+- [8K4 Protocol Website](https://8k4protocol.com)
+- [Access & Authentication](references/ACCESS.md)
+- [Endpoint Reference](references/ENDPOINTS.md)
+- [Safety Policy](references/SAFETY.md)
+- [Scoring Reference](references/SCORING.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl and the EIGHTK4_API_KEY environment variable when authenticated 8K4 API access is needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,51 @@
-## Description: <br>
-Turn one piece of content into 10+ formats. Transform blog posts, podcasts, videos, or talks into tweets, LinkedIn posts, newsletters, carousels, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn one piece of content into 10+ formats. Transform blog posts, podcasts, videos, or talks into tweets, LinkedIn posts, newsletters, carousels, and more.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Content creators, marketers, founders, and external teams use this skill to turn a source article, transcript, talk notes, or idea into platform-native social posts, newsletters, video scripts, outlines, email sequences, and related content assets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated social or marketing drafts may contain factual inaccuracies, off-brand wording, unsuitable hashtags, or platform-specific compliance issues. <br>
-Mitigation: Review generated posts before publishing, especially for brand voice, factual claims, hashtags, calls to action, and platform-specific rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-social-repurposer) <br>
+## Use Case:
+
+External content creators, marketers, and founders use this skill to repurpose a blog post, transcript, video script, talk notes, or raw idea into platform-specific marketing assets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated posts, emails, or calls to action may contain incorrect, misleading, or unsuitable marketing claims.
+
+Mitigation: Review and edit all generated content before publishing or sending it.
+
+Risk: The artifact includes promotional links and suggested installs.
+
+Mitigation: Treat promotional links and suggested installs as optional, and evaluate them separately before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates multiple draft content formats from one user-provided source; the skill does not publish content or manage social accounts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and plain text organized by platform or content format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces multiple platform-specific drafts, including social posts, newsletter copy, video scripts, outlines, email sequences, talking points, and SEO descriptions.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

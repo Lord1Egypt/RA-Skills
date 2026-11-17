@@ -1,42 +1,56 @@
-## Description: <br>
-Prepare and submit an MCP server to Anthropic's Connectors Directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare MCP server submission materials for Anthropic's Connectors Directory and Claude connector marketplace.
 
-## Publisher: <br>
-[lucaperret](https://clawhub.ai/user/lucaperret) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaperret](https://clawhub.ai/user/lucaperret)
 
-## Use Case: <br>
-Developers and MCP server maintainers use this skill to prepare Anthropic connector directory submissions, including readiness checks, form fields, testing details, media assets, documentation, and follow-up distribution steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External submission form fields may be completed inaccurately or with unsupported privacy, retention, encryption, or GDPR claims. <br>
-Mitigation: Review each field against the deployed server's actual behavior before submission, and select compliance statements only when they are true. <br>
-Risk: Testing credentials or sample data could expose production secrets or broad account permissions. <br>
-Mitigation: Use a dedicated least-privilege test account with sample data, and share credentials through a secure channel. <br>
+## Use Case:
 
+Developers and MCP server maintainers use this skill to prepare directory submission content, readiness checks, testing details, documentation links, and marketplace follow-up steps for Anthropic and Claude connector listings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lucaperret/anthropic-connector-submit) <br>
-- [Publisher profile](https://clawhub.ai/user/lucaperret) <br>
-- [Homepage](https://github.com/lucaperret/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown checklist and form-completion guidance with example text blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution or hidden behavior was found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may overstate compliance, privacy, testing, or ownership readiness in a connector submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each compliance, privacy, testing, and ownership statement against the actual MCP server before submitting.
+
+Risk: Test account credentials could be exposed if shared through an insecure channel.
+
+Mitigation: Share test credentials only through a secure channel controlled by the submitter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucaperret/skills/anthropic-connector-submit)
+- [Publisher repository homepage](https://github.com/lucaperret/agent-skills)
+- [Anthropic connector submission form](https://docs.google.com/forms/d/e/1FAIpQLSeafJF2NDI7oYx1r8o0ycivCSVLNq92Mpc1FPxMKSw1CzDkqA/viewform)
+- [Smithery submission page](https://smithery.ai/new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, field templates, and example submission wording]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; produces checklist and submission-preparation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Use when the user wants aviation route maps, ETOPS-aware route analysis, projection comparisons, airport lookup, or SVG map rendering through a local Circulus Map MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants aviation route maps, ETOPS-aware route analysis, projection comparisons, airport lookup, or SVG map rendering through a local Circulus Map MCP server.
 
-## Publisher: <br>
-[skylinehk](https://clawhub.ai/user/skylinehk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skylinehk](https://clawhub.ai/user/skylinehk)
 
-## Use Case: <br>
-Developers, operators, and aviation workflow users use this skill to solve routes, compare projections, prepare ETOPS-aware map specifications, look up airports, and render export-ready SVG maps through a local Circulus Map MCP worker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a localhost MCP endpoint, so a misconfigured endpoint could route requests to a service the operator does not control. <br>
-Mitigation: Confirm the configured MCP URL points to the intended local Circulus Map worker before using route-solving or rendering tools. <br>
-Risk: The local app and worker are separate runtime components outside this skill package. <br>
-Mitigation: Review and run the local app and MCP worker in the intended environment before relying on generated route analysis or SVG output. <br>
+## Use Case:
 
+Developers, engineers, and aviation workflow operators use this skill to solve local route-map requests, normalize route inputs, build MapSpecV1 payloads, compare projections, evaluate ETOPS scenarios, and render export-ready SVG maps through an operator-controlled localhost MCP worker.
 
-## Reference(s): <br>
-- [Local setup](references/local-setup.md) <br>
-- [MapSpecV1 notes](references/mapspec.md) <br>
-- [Input understanding guide](references/input-understanding.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, SVG, Shell commands, Configuration] <br>
-**Output Format:** [Markdown responses with route guidance, MapSpecV1 JSON, shell commands, configuration notes, and SVG rendering output when the local MCP worker is available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an operator-controlled localhost Circulus Map MCP worker for tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.24 (source: server release evidence) <br>
+Risk: The skill routes aviation map requests through a localhost MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows that intentionally use a local Circulus Map MCP worker, and verify that the configured localhost endpoint is controlled by the operator.
+
+Risk: Malformed or ambiguous airport and route inputs can produce incorrect map requests.
+
+Mitigation: Use the bundled input-understanding guidance to normalize route phrasing, search ambiguous locations before solving, and echo important resolution choices before final SVG rendering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skylinehk/skills/circulus-map-offline)
+- [Local setup](references/local-setup.md)
+- [MapSpecV1 notes](references/mapspec.md)
+- [Input understanding guide](references/input-understanding.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON MapSpec examples, shell commands, MCP tool calls, and SVG rendering outputs when the local worker is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an operator-controlled localhost MCP endpoint; no hosted credentials are required in normal flows.]
+
+## Skill Version(s):
+
+1.3.24 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

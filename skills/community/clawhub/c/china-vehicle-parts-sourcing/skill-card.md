@@ -1,38 +1,52 @@
-## Description: <br>
-Comprehensive vehicle parts industry sourcing guide for international buyers, with cluster-level information about China's automotive component manufacturing regions for passenger cars, commercial vehicles, and motorcycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive vehicle parts industry sourcing guide for international buyers, covering China's automotive component manufacturing clusters for passenger cars, commercial vehicles, and motorcycles, with supply chain structure, regional specializations, and 2026 industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's vehicle parts supply chain, compare regional manufacturing clusters, and get practical supplier evaluation guidance for automotive, commercial vehicle, and motorcycle parts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sourcing guidance and 2026 market figures may be incomplete, outdated, or unsuitable for a specific purchasing decision. <br>
-Mitigation: Treat the output as business reference material and independently confirm supplier claims, certifications, current market data, and commercial terms before acting. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to understand China's vehicle parts manufacturing clusters, supply chain structure, subsectors, and supplier evaluation considerations. It supports reference-style sourcing research for passenger car, commercial vehicle, motorcycle, NEV, electronics, and aftermarket component categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/china-vehicle-parts-sourcing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural language sourcing guidance backed by structured reference data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only cluster-level industry intelligence; no individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Sourcing guidance and industry figures may be incomplete, outdated, or insufficient for supplier selection decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the data as reference material and independently verify supplier claims, certifications, and current market figures before making business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-vehicle-parts-sourcing)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+- [Bundled skill documentation](artifact/SKILL.md)
+- [Bundled sourcing data](artifact/data.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Structured data]
+
+**Output Format:** [Markdown or JSON-style reference responses derived from bundled local data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained reference output; security evidence reports no network, credential, persistence, or destructive behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

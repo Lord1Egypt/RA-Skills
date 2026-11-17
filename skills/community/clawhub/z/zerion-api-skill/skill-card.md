@@ -1,44 +1,61 @@
-## Description: <br>
-Query crypto wallet portfolios, transactions, DeFi positions, NFTs, token prices, and gas fees across EVM chains and Solana using Zerion's API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zerion API queries real-time crypto wallet portfolios, transactions, DeFi positions, NFTs, token prices, and gas fees across EVM chains and Solana using Zerion's API.
 
-## Publisher: <br>
-[abishekdharshan](https://clawhub.ai/user/abishekdharshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abishekdharshan](https://clawhub.ai/user/abishekdharshan)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to research wallet addresses, analyze portfolio composition, review DeFi and NFT activity, inspect transaction history, and retrieve current token or gas-price data across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, portfolio lookups, transaction-history requests, and related analysis intent are sent to Zerion's remote MCP service. <br>
-Mitigation: Use the skill only for data you are authorized to send to Zerion, and avoid confidential customer lists, unreleased investigation targets, or sensitive internal annotations. <br>
-Risk: The skill requires an API key for the remote Zerion MCP server. <br>
-Mitigation: Use a dedicated Zerion API key in the MCP configuration and manage it separately from other production or personal credentials. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to inspect authorized wallet portfolios, transaction histories, DeFi positions, NFT holdings, token prices, and gas fees through Zerion's MCP/API integration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abishekdharshan/zerion-api-skill) <br>
-- [Zerion API Documentation](https://developers.zerion.io) <br>
-- [Building with AI](https://developers.zerion.io/reference/building-with-ai) <br>
-- [Zerion Dashboard](https://dashboard.zerion.io) <br>
-- [Zerion llms.txt](https://developers.zerion.io/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown with JSON configuration snippets and example natural-language queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Zerion API key and a configured remote MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Wallet histories, portfolio composition, DeFi positions, and NFT holdings can expose sensitive financial behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for lawful, approved analysis of wallets you own or are clearly authorized to review.
+
+Risk: The skill requires a Zerion API key for the remote MCP server.
+
+Mitigation: Protect the API key in MCP configuration and avoid exposing it in prompts, logs, or shared outputs.
+
+Risk: Security review flagged the release as suspicious because sensitive third-party financial profiling use cases are under-scoped.
+
+Mitigation: Review the skill before installation and apply the provided security guidance before analyzing third-party wallets.
+
+## Reference(s):
+
+- [Zerion API Documentation](https://developers.zerion.io)
+- [Building with AI](https://developers.zerion.io/reference/building-with-ai)
+- [Zerion Dashboard](https://dashboard.zerion.io)
+- [Zerion llms.txt](https://developers.zerion.io/llms.txt)
+- [ClawHub Skill Page](https://clawhub.ai/abishekdharshan/skills/zerion-api-skill)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Configuration]
+
+**Output Format:** [Markdown with JSON configuration snippets and natural-language API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Zerion API key and configured remote HTTP MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,51 @@
-## Description: <br>
-The Baidu Baike Component is a knowledge service tool that queries Baidu Baike for standardized encyclopedia explanations of nouns such as objects, people, locations, concepts, and events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Baidu Baike Component is a knowledge service tool designed to query authoritative encyclopedia explanations for various nouns.
 
-## Publisher: <br>
-[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Baidu Baike encyclopedia entries for queried nouns, including direct title lookup and homonym disambiguation before selecting a specific entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup terms are sent to Baidu's API. <br>
-Mitigation: Avoid submitting sensitive or confidential terms unless that data sharing is acceptable for the deployment. <br>
-Risk: The skill requires a Baidu API key. <br>
-Mitigation: Use a scoped key where possible and keep it out of shared logs and transcripts. <br>
-Risk: The query script depends on the Python requests package. <br>
-Mitigation: Confirm the runtime includes requests before using the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to query Baidu Baike for encyclopedia entries about people, places, concepts, events, and other nouns. It supports direct title lookup and homonym resolution before returning structured entry data.
 
-## Reference(s): <br>
-- [Baidu Baike](https://baike.baidu.com/) <br>
-- [Baidu Baike API endpoint](https://appbuilder.baidu.com/v2/baike) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/baidu-baike-data-1-1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON returned by the Baidu Baike query script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the Python requests package, and BAIDU_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: API key exposure or unintended third-party data sharing when search terms are sent to Baidu's AppBuilder Baike API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Baidu Baike is the intended source, provide BAIDU_API_KEY through environment configuration, and avoid submitting sensitive search terms unless appropriate for that service.
+
+## Reference(s):
+
+- [Baidu Baike](https://baike.baidu.com/)
+- [Baidu AppBuilder Baike API](https://appbuilder.baidu.com/v2/baike)
+- [ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/skills/baidu-baike-data-1-1-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; queries send search terms and the API key to Baidu's AppBuilder Baike API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

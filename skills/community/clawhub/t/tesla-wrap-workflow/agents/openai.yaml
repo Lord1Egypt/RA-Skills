@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tesla Wrap Workflow"
+  short_description: "Build in-car wraps per official templates; check motif orientation, completeness, and file size to avoid repeated rework"
+  default_prompt: "Use $tesla-wrap-workflow to create and inspect my Tesla in-car custom wrap."
+policy:
+  allow_implicit_invocation: true

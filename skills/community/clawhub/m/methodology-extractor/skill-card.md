@@ -1,41 +1,58 @@
-## Description: <br>
-Batch extraction of experimental methods from multiple papers for protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps compare experimental protocol steps across research papers, with the packaged executable currently limited to demo output.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and evidence-review teams use this skill to extract and compare experimental protocol details across multiple research papers, with explicit assumptions and fallback handling when inputs are incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper performs local methodology comparison and may produce incomplete or misleading protocol summaries when source papers are incomplete, inconsistently formatted, or outside the documented scope. <br>
-Mitigation: Confirm the input papers, scope filters, method type, output expectations, and assumptions before execution; review the resulting comparison before relying on it. <br>
-Risk: The skill is intended for local paper files and workspace outputs, so uncontrolled paths or untrusted files can create operational risk. <br>
-Mitigation: Run it only against paper files in a workspace you control and keep generated outputs within the workspace. <br>
+## Use Case:
 
+Researchers and evidence-review agents use this skill to compare experimental methods and protocol steps across papers for systematic reviews, reproducibility checks, and protocol optimization. Treat packaged execution as demo-limited until real paper input and output path handling is implemented.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/methodology-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON-style comparison outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should separate assumptions, workflow, deliverables, risks, unresolved items, and validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The packaged script only runs demo data and does not process the advertised paper input or output file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a demonstration helper until the --papers and --output behavior is implemented or the documentation is corrected.
+
+Risk: Methodology comparisons can be incomplete or misleading if extracted protocol steps are accepted without checking the source papers.
+
+Mitigation: Review extracted steps against the original methods sections and state assumptions, missing inputs, and unresolved evidence in the final response.
+
+Risk: The workflow may read input files and write workspace outputs when expanded beyond the current demo behavior.
+
+Mitigation: Run in a sandboxed workspace, validate input and output paths, and avoid sensitive or unapproved paper data.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/methodology-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and terminal text; demo comparison output is printed to stdout.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documented comparison table, parameter variation, and recommendation outputs should be validated against actual paper evidence before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

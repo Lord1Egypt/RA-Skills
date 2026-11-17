@@ -1,6 +1,6 @@
 ---
 name: riskstate
-version: 1.4.0
+version: 1.4.1
 description: Pre-trade risk API for crypto trading agents. Returns exposure limits, allowed actions, and policy constraints for BTC/USD and ETH/USD from 30+ real-time signals. Spot, perpetual futures (perps), and DeFi borrowing aware.
 category: risk-management
 auth: bearer-token
@@ -10,7 +10,7 @@ assets: [BTC, ETH]
 refresh: 60s cache, recommend 5min polling
 homepage: https://riskstate.ai
 docs: https://riskstate.ai/docs/api
-repository: https://github.com/likidodefi/riskstate-docs
+repository: https://github.com/Riskstate/risk-engine
 tags: [crypto, ai, bitcoin, trading, ethereum, trading-bot, agents, policy-engine, ai-agents, defi, decentralized-finance, ai-trading, agent-skills, defi-risk-management, risk-governance, skills-sh, perpetual-futures, perps, spot-trading, btc-usd, eth-usd]
 pricing: free-beta
 author: RiskState

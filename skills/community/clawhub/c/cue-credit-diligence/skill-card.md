@@ -1,48 +1,65 @@
-## Description: <br>
-Runs Cue deep research for credit diligence, cross-referencing public data from multiple sources and returning source-linked conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 运行信贷尽调深度研究，针对企业工商、股权、财务与经营基本面交叉公开数据并产出带来源的预尽调报告。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-Credit, diligence, and research teams use this skill to run Cue research workflows for company diligence, credit risk review, disclosure and regulatory checks, and pre-lending screening. It helps an agent select a live Cue research template, confirm credit use, run the research, and return the source-linked report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A deep research run may spend Cue credits. <br>
-Mitigation: Confirm the selected Cue research workflow, subject, and credit use with the user before running. <br>
-Risk: The workflow uses Cue services and local Cue credentials. <br>
-Mitigation: Use it only where Cue access is approved, and protect the local Cue configuration that stores credentials. <br>
-Risk: The workflow may clone or update the Cue runner from external repositories. <br>
-Mitigation: Review the runner source and repository location before executing it in controlled environments. <br>
-Risk: Public-data diligence reports can be incomplete or unsuitable as a sole basis for lending, legal, or underwriting decisions. <br>
-Mitigation: Preserve source links, review conclusions manually, and apply formal diligence and compliance review before relying on the output. <br>
+## Use Case:
 
+Financial services, risk, and diligence users can run Cue workflows for company credit diligence, public-disclosure review, financial diligence, preliminary borrower screening, and source-linked research reports. The skill is intended to support review workflows and does not replace legal, underwriting, or formal due-diligence judgment.
 
-## Reference(s): <br>
-- [Cue Credit Diligence on ClawHub](https://clawhub.ai/wangxiaoxu/skills/cue-credit-diligence) <br>
-- [Cue playbook](https://cuecue.cn/playbook) <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [Cue runner repository](https://github.com/sensedeal/cue-skills) <br>
-- [Cue runner mirror](https://gitee.com/sensedeal/cue-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with source links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before spending Cue credits; final reports should keep source links intact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can clone, update, and run an external Cue runner from the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream runner source, pin or mirror a vetted version where possible, and run it in a restricted environment before using it with sensitive work.
+
+Risk: The workflow uses a Cue account and consumes credits after user confirmation.
+
+Mitigation: Confirm the selected buddy, subject, and credit use before execution, and use an account approved for the intended workflow.
+
+Risk: The available Cue workflows include high-net-worth prospect mining beyond credit diligence.
+
+Mitigation: Avoid the prospect-mining workflow unless it fits applicable compliance, privacy, and business-use obligations.
+
+Risk: The generated reports rely on public data and do not replace formal diligence, legal review, or underwriting judgment.
+
+Mitigation: Have qualified reviewers verify source-linked findings before using outputs in credit, legal, or risk decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-credit-diligence)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [Cue API key](https://cuecue.cn/hub/api-key)
+- [Cue skills runner source](https://github.com/sensedeal/cue-skills)
+- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with source links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run a Cue research runner, consume credits after confirmation, and return empty results without fabricating content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

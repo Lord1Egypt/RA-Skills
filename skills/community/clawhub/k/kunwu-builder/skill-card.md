@@ -1,46 +1,57 @@
-## Description: <br>
-Controls Kunwu Builder industrial simulation software through its HTTP API for model management, robot control, logistics equipment, cameras, sensors, scenes, and behavior configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls the Kunwu Builder industrial simulation software HTTP API for model management, robot control, logistics equipment, cameras, sensors, scenes, and behavior configuration.
 
-## Publisher: <br>
-[SamWLH](https://clawhub.ai/user/SamWLH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samwlh](https://clawhub.ai/user/samwlh)
 
-## Use Case: <br>
-Developers and simulation engineers use this skill to control a Kunwu Builder test or lab environment, create and arrange simulation models, configure gripper and robot behaviors, query scene state, and run supporting Node.js utilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send unauthenticated HTTP commands to configured or hard-coded Kunwu Builder hosts. <br>
-Mitigation: Set and verify KUNWU_API_URL before use, prefer an isolated local or lab instance, and avoid running it against shared or production scenes. <br>
-Risk: Included scripts and API helpers can reset scenes, destroy or delete models, export data, change behaviors, and load models from cloud-backed sources. <br>
-Mitigation: Review the exact script and endpoint before execution, use disposable test scenes, and confirm destructive operations before allowing an agent to run them. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to control a trusted Kunwu Builder industrial simulation instance through HTTP API calls for scene and model management, robot and equipment control, sensor/camera operations, and behavior configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SamWLH/kunwu-builder) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [Kunwu Builder API Reference](artifact/api-reference.md) <br>
-- [Export and Migration Guide](artifact/EXPORT-GUIDE.md) <br>
-- [Industrial Patterns](artifact/INDUSTRIAL-PATTERNS.md) <br>
-- [Test Report](artifact/TEST-REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON request bodies, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions and API call patterns; scripts may send HTTP commands to a configured Kunwu Builder instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can control a real Kunwu Builder scene through HTTP endpoints and includes unsafe remote defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for a trusted, isolated Kunwu Builder instance; set KUNWU_API_URL explicitly and avoid hardcoded remote API defaults.
+
+Risk: Scene reset, delete, export, batch execution, robot/equipment movement, and cloud model-loading actions can alter or destroy shared work.
+
+Mitigation: Require manual confirmation and backups before destructive or high-impact actions, and do not run destructive test scripts on shared or production scenes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samwlh/skills/kunwu-builder)
+- [Skill Usage Guide](artifact/SKILL_USAGE.md)
+- [Kunwu Builder API Reference](artifact/api-reference.md)
+- [Export Guide](artifact/EXPORT-GUIDE.md)
+- [Industrial Patterns](artifact/INDUSTRIAL-PATTERNS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples, shell commands, and JavaScript helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for an agent controlling a trusted Kunwu Builder HTTP API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

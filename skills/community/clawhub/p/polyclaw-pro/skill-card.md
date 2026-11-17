@@ -1,46 +1,66 @@
-## Description: <br>
-Trade on Polymarket via split and CLOB execution, browse markets, track positions with P&L, discover hedges with LLM analysis, and use automation tools for live portfolio tracking, auto-redeem, discipline scanning, and an API bridge on Polygon/Web3. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Polymarket via split + CLOB execution, browse markets, track positions with P&L, discover hedges via LLM analysis, and use automation tools for live portfolio tracking, auto-redeem, discipline scanning, and API bridge workflows on Polygon/Web3.
 
-## Publisher: <br>
-[lmanchu](https://clawhub.ai/user/lmanchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lmanchu](https://clawhub.ai/user/lmanchu)
 
-## Use Case: <br>
-External users and developers use this skill to browse Polymarket markets, manage wallet-backed prediction-market positions, execute trades, monitor live portfolio P&L, and identify hedge opportunities. It is intended for agents operating with user-provided wallet and API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent live wallet authority for trading, approvals, redemptions, swaps, and other financial actions. <br>
-Mitigation: Use a fresh low-balance wallet, keep only funds you can afford to risk, and manually review each command before enabling automated execution. <br>
-Risk: Cron automation and the API bridge can trigger financial actions without interactive review. <br>
-Mitigation: Do not enable cron jobs or delegated API/SSH access until the code, risk rules, environment, and wallet addresses have been reviewed. <br>
-Risk: Hard-coded wallet or funder addresses and missing delegated-trading modules may make behavior differ from the user's intended account or fail at runtime. <br>
-Mitigation: Correct wallet and funder configuration for the deployment account and verify all required modules before running buy, sell, redeem, approve, or swap flows. <br>
+## Use Case:
 
+External developers and trading-oriented agents use PolyClaw Pro to browse Polymarket markets, inspect wallet balances and positions, execute prediction-market trades on Polygon, and analyze hedge candidates. Operators should use reviewed transaction controls because the skill can automate trade, redeem, sell, and swap actions.
 
-## Reference(s): <br>
-- [ClawHub PolyClaw Pro release](https://clawhub.ai/lmanchu/polyclaw-pro) <br>
-- [Polymarket](https://polymarket.com) <br>
-- [PolyClaw video explainer](https://www.youtube.com/watch?v=s_uP802NVTE) <br>
-- [Chainstack console](https://console.chainstack.com) <br>
-- [OpenRouter API keys](https://openrouter.ai/settings/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with optional structured JSON outputs from CLI/API bridge commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can initiate live wallet, approval, buy, sell, redeem, swap, portfolio, and market-data operations when configured with credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact pyproject.toml reports 0.1.0) <br>
+Risk: Wallet private keys can be used by trading, redemption, sell, and swap flows, including unattended automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance throwaway wallet, keep only funds you can afford to lose, and require manual approval for first-time or high-impact transaction paths.
+
+Risk: Cron jobs and the API swap bridge can initiate unattended financial actions.
+
+Mitigation: Do not enable cron jobs or the API swap bridge until every transaction path has explicit account checks, spending limits, and reviewed approval logic.
+
+Risk: Hardcoded wallet addresses and incomplete account handling can cause actions or portfolio views to target the wrong account.
+
+Mitigation: Remove hardcoded wallet addresses and derive all account state from the configured wallet before enabling trading automation.
+
+Risk: Missing modules and unpinned dependencies reduce confidence in the reviewed transaction behavior.
+
+Mitigation: Supply and audit all required modules, pin dependencies, and review the installed environment before running commands with funds.
+
+## Reference(s):
+
+- [PolyClaw Pro ClawHub listing](https://clawhub.ai/lmanchu/skills/polyclaw-pro)
+- [PolyClaw README](artifact/README.md)
+- [Polymarket](https://polymarket.com)
+- [PolyClaw video explainer](https://www.youtube.com/watch?v=s_uP802NVTE)
+- [Chainstack console](https://console.chainstack.com)
+- [OpenRouter API keys](https://openrouter.ai/settings/keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, tables, and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live market, wallet, portfolio, risk, and transaction-status data from Polymarket, Polygon RPC, and configured API providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

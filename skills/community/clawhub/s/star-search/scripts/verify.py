@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 60 验证码 (2026-06-16) - Turnstile 图形验证码版
+"""v20.60 验证码 (2026-06-16) - Turnstile 图形验证码版
 - Cloudflare Turnstile (0 认证 0 费用)
 - 后期换短信验证/邮箱验证只换 verify_token 实现
 - 测试 site_key: 1x00000000000000000000AA (始终通过)
@@ -40,7 +40,7 @@ def _save_pool(data: Dict):
 
 
 def verify_turnstile_token(token: str, remote_ip: str = '') -> Dict:
-    """实战 60: 验证 Turnstile token
+    """v20.60: 验证 Turnstile token
     调用 Cloudflare siteverify API
     """
     if not token:
@@ -86,7 +86,7 @@ def verify_captcha(token: str, remote_ip: str = '', method: str = 'turnstile') -
 
 
 def get_site_key() -> str:
-    """实战 60: 前端获取 site_key
+    """v20.60: 前端获取 site_key
     (site_key 公开放, 不算秘密)
     """
     return TURNSTILE_SITE_KEY

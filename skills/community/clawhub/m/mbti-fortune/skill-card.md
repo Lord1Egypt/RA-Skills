@@ -1,38 +1,54 @@
-## Description: <br>
-MBTI Fortune Teller draws a random MBTI type for any question and answers through that type's cognitive function stack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MBTI Fortune Teller draws a random MBTI type for any user question and returns a playful answer interpreted through the type's cognitive function stack.
 
-## Publisher: <br>
-[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leilei926524-tech](https://clawhub.ai/user/leilei926524-tech)
 
-## Use Case: <br>
-External users use this skill for entertainment-oriented MBTI-themed readings about casual questions. It should not be used for consequential medical, legal, financial, workplace, relationship, or safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad fortune-telling triggers can produce confident-sounding answers to questions that users may treat as real advice. <br>
-Mitigation: Use the skill only for playful entertainment and avoid relying on its readings for medical, legal, financial, workplace, relationship, safety, or other consequential decisions. <br>
+## Use Case:
 
+External users use this skill for playful MBTI-style fortune readings about arbitrary questions. It is intended for entertainment output, not for real decisions about work, health, money, relationships, or other consequential topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leilei926524-tech/mbti-fortune) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted fortune reading with an MBTI type, function stack, answer, reading, and verdict.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, tools, or external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Fortune-style answers may sound decisive even when a question involves consequential real-world choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as fictional entertainment and avoid relying on them for work, health, money, relationships, legal, or other real decisions.
+
+Risk: Broad trigger wording such as ordinary will, does, or type questions may activate the skill unintentionally.
+
+Mitigation: Use the skill only when the user explicitly wants an MBTI fortune reading, and ignore or disable it for ordinary factual or advice requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leilei926524-tech/skills/mbti-fortune)
+- [ClawHub publisher profile](https://clawhub.ai/user/leilei926524-tech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style fortune reading with a drawn MBTI type, function stack, answer, reading, and verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entertainment-oriented responses; no tool calls, credentials, network access, persistence, or file mutation requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

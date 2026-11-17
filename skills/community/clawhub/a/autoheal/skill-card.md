@@ -1,44 +1,59 @@
-## Description: <br>
-Add AI-powered error monitoring and auto-fix generation to any project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add AI-powered error monitoring and auto-fix generation to any project.
 
-## Publisher: <br>
-[hankmint](https://clawhub.ai/user/hankmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hankmint](https://clawhub.ai/user/hankmint)
 
-## Use Case: <br>
-Developers and engineers use this skill to add AutoHeal error monitoring to JavaScript and TypeScript projects, report runtime errors, check analysis status, and retrieve AI-generated fix prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Raw production errors may include secrets, customer data, request details, internal paths, or other sensitive context before they are sent to autohealai.com. <br>
-Mitigation: Redact tokens, URLs, headers, request bodies, customer data, and internal paths before sending error reports. <br>
-Risk: A long-lived API key may be exposed if copied into browser-side code. <br>
-Mitigation: Use a server-side proxy or a scoped ingestion token instead of embedding a long-lived API key in client code. <br>
-Risk: The release was flagged as suspicious by the authoritative security evidence. <br>
-Mitigation: Review the integration and data handling path before installing in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AutoHeal AI ClawHub release](https://clawhub.ai/hankmint/autoheal) <br>
-- [AutoHeal AI](https://autohealai.com) <br>
-- [AutoHeal error ingest API](https://autohealai.com/api/errors/ingest) <br>
-- [AutoHeal error status API](https://autohealai.com/api/errors/{ERROR_ID}/status) <br>
+## Use Case:
 
+Developers and engineers use this skill to add AutoHeal error monitoring to JavaScript and TypeScript projects, report runtime errors, and check whether AutoHeal has generated a fix prompt.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with JavaScript snippets, shell commands, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AUTOHEAL_API_KEY and sends reported error data to autohealai.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser integration examples can expose an AutoHeal API key to client-side users.
+
+Mitigation: Use a backend proxy or restricted public ingestion token instead of placing a privileged AutoHeal API key in frontend code.
+
+Risk: Error messages, stack traces, source URLs, browser details, or user data may be sent to AutoHeal without redaction.
+
+Mitigation: Redact sensitive stack trace, message, URL, and user data fields before sending telemetry.
+
+Risk: Agent-applied monitoring changes can alter production application entry points.
+
+Mitigation: Require explicit human approval and code review before modifying production entry points.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hankmint/skills/autoheal)
+- [AutoHeal AI](https://autohealai.com)
+- [AutoHeal error ingestion API](https://autohealai.com/api/errors/ingest)
+- [AutoHeal error status API](https://autohealai.com/api/errors/{ERROR_ID}/status)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JavaScript, HTML, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AUTOHEAL_API_KEY environment variable for authenticated API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

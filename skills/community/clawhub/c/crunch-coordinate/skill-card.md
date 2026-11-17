@@ -1,42 +1,58 @@
-## Description: <br>
-Use when managing Crunch coordinators, competitions (crunches), rewards, checkpoints, staking, or cruncher accounts via the crunch-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Crunch coordinators, competitions (crunches), rewards, checkpoints, staking, or cruncher accounts via the crunch-cli.
 
-## Publisher: <br>
-[philippWassibauer](https://clawhub.ai/user/philippWassibauer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[philippwassibauer](https://clawhub.ai/user/philippwassibauer)
 
-## Use Case: <br>
-Developers and operators use this skill to translate natural-language Crunch protocol administration requests into crunch-cli commands for coordinators, competitions, staking, checkpoints, rewards, and cruncher accounts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward wallet-backed Crunch/Solana transactions. <br>
-Mitigation: Require explicit manual confirmation before deposits, drains, staking actions, withdrawals, delegation changes, claims, registrations, checkpoint creation, or competition state changes. <br>
-Risk: Commands may run against the wrong wallet, RPC endpoint, profile, or Solana network. <br>
-Mitigation: Verify the active profile, wallet path, RPC URL, and network before executing any state-changing command. <br>
-Risk: A wallet keypair could be exposed or overfunded during agent-assisted operations. <br>
-Mitigation: Use a dedicated limited-balance wallet and do not read, display, generate, or commit wallet keypair files unless the user explicitly requests an appropriate action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coordinator CLI Full Reference](references/cli-reference.md) <br>
-- [Crunch CLI npm package](https://www.npmjs.com/package/@crunchdao/crunch-cli) <br>
+## Use Case:
 
+Developers, coordinators, and protocol operators use this skill to translate natural language requests into crunch-cli commands for CrunchDAO coordinator, competition, staking, reward, checkpoint, and cruncher account workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and optional Slack, Telegram, Discord, JSON, table, or YAML formatting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose wallet-backed on-chain operations through crunch-cli and should preserve user-selected profile, network, wallet, RPC, and output settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet-backed commands can move, drain, stake, withdraw, delegate, create, start, or end protocol state and funds.
+
+Mitigation: Require the agent to show the exact command, active profile, wallet public address, network/RPC, target, token, amount, and expected effect, then obtain explicit confirmation before execution.
+
+Risk: Using the wrong Solana network, RPC endpoint, wallet path, or profile can direct actions to the wrong account or environment.
+
+Mitigation: Prefer devnet and dry runs where available, and verify the active profile, wallet public address, network, and RPC endpoint before any state-changing command.
+
+Risk: Global npm installation introduces package supply-chain and version drift risk.
+
+Mitigation: Install only @crunchdao/crunch-cli from the official npm registry after user consent, and pin or verify the package version before installing.
+
+## Reference(s):
+
+- [Coordinator CLI Full Reference](references/cli-reference.md)
+- [Crunch CLI npm package](https://www.npmjs.com/package/@crunchdao/crunch-cli)
+- [ClawHub skill page](https://clawhub.ai/philippwassibauer/skills/crunch-coordinate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and formatted text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May format responses for Slack, Telegram, Discord, or plain text.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

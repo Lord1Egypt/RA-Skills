@@ -1,45 +1,66 @@
-## Description: <br>
-FlowVisualExplainer generates self-contained HTML pages for diagrams, architecture overviews, comparison tables, slide decks, and other visual explanations of technical concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowVisualExplainer generates self-contained HTML diagrams, architecture overviews, comparison tables, reviews, recaps, and slide decks for visual explanations of technical concepts.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Developers and technical teams use this skill to turn systems, code, plans, data, and reviews into visual HTML explanations. It is especially suited for diagrams, architecture summaries, comparison tables, slide decks, project recaps, and diff or plan reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may load third-party web resources when opened in a browser. <br>
-Mitigation: Review generated pages and their external resource usage before opening or sharing sensitive work. <br>
-Risk: The share workflow can publish generated HTML to a public Vercel URL. <br>
-Mitigation: Do not use sharing for pages containing secrets, private code, internal architecture, customer data, or confidential plans unless publication has been approved. <br>
+## Use Case:
 
+Developers and technical teams use this skill to turn system descriptions, code reviews, implementation plans, comparisons, and presentation requests into visual HTML artifacts for inspection or sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/windseeker1111/flow-visual-explainer) <br>
-- [Project homepage](https://github.com/nicobailon/visual-explainer) <br>
-- [CSS Patterns for Diagrams](references/css-patterns.md) <br>
-- [External Libraries](references/libraries.md) <br>
-- [Responsive Section Navigation](references/responsive-nav.md) <br>
-- [Slide Patterns](references/slide-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets; generated artifacts are self-contained HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May load third-party web resources when viewed and may publish generated HTML to a public Vercel URL through the share workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Public sharing can expose confidential code, architecture, business plans, customer data, or incident material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated pages before sharing and avoid the share or deploy workflow for sensitive material unless external publication is intentionally approved.
+
+Risk: Generated pages may load CDN scripts or fonts, and slide workflows may use remote image generation paths.
+
+Mitigation: Use local assets or offline templates for sensitive work, and disable remote image generation or CDN-backed templates when external services are not acceptable.
+
+Risk: Visual explanations can misstate source code, plans, data relationships, or review findings.
+
+Mitigation: Compare generated diagrams, tables, and slides against the source material before relying on them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/windseeker1111/skills/flow-visual-explainer)
+- [Visual Explainer homepage](https://github.com/nicobailon/visual-explainer)
+- [CSS Patterns for Diagrams](references/css-patterns.md)
+- [External Libraries (CDN)](references/libraries.md)
+- [Responsive Section Navigation](references/responsive-nav.md)
+- [Slide Deck Patterns](references/slide-patterns.md)
+- [Architecture Diagram Reference Template](templates/architecture.html)
+- [Data Table Reference Template](templates/data-table.html)
+- [Mermaid Flowchart Reference Template](templates/mermaid-flowchart.html)
+- [Slide Deck Reference Template](templates/slide-deck.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Self-contained HTML files with optional Markdown guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes HTML to ~/clawd/output/diagrams/, opens it in a browser, may load CDN libraries, and can optionally deploy pages through Vercel.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

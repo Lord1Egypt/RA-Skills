@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
+  "ownerId": "s172yaxxd2drm0sc92554g9aq983hegj",
   "slug": "wewe-rss-reader",
   "version": "1.2.0",
-  "publishedAt": 1775049189193
+  "publishedAt": "2026-04-01T07:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [],
+  "primaryCredential": null,
+  "persistence": null,
+  "credentialSetup": {
+    "type": "none",
+    "description": "无需凭证。本地部署，localhost 访问。"
+  },
+  "requires": {
+    "anyBinaries": [],
+    "os": ["windows", "macos", "linux"]
+  }
 }

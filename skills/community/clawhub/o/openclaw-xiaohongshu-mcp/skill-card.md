@@ -1,43 +1,63 @@
-## Description: <br>
-OpenClaw Xiaohongshu MCP helps agents use a local Xiaohongshu MCP service to search notes, read note details and comments, post comments or replies, and publish image or video content with reusable shell scripts and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local OpenClaw workflow skill for operating Xiaohongshu / RED through a local MCP server and mcporter, including search, note detail retrieval, comments, replies, image publishing, video publishing guidance, reusable shell scripts, and publish templates.
 
-## Publisher: <br>
-[xiaomilizhipeng](https://clawhub.ai/user/xiaomilizhipeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomilizhipeng](https://clawhub.ai/user/xiaomilizhipeng)
 
-## Use Case: <br>
-Developers, content operators, and agent users can use this skill to automate Xiaohongshu workflows through a local MCP service, including search, note inspection, commenting, replies, and publishing. It is intended for users who can review generated payloads and operate the linked account responsibly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or comment through a real Xiaohongshu account. <br>
-Mitigation: Use a test or least-privilege account where possible, inspect publish and comment payloads before execution, and test new posts with private visibility before making them public. <br>
-Risk: The local service persists login state and browser profile data on disk. <br>
-Mitigation: Protect the cookie and profile directories, stop the container when work is complete, and delete persisted state when access should be revoked. <br>
-Risk: The Docker Compose file references an unpinned third-party image. <br>
-Mitigation: Install only after reviewing and trusting the image source, and pin or audit the image before use in controlled environments. <br>
+## Use Case:
 
+Developers, content operators, and OpenClaw users use this skill to search Xiaohongshu content, inspect notes and comments, manage comments or replies, and prepare or publish Xiaohongshu posts through a local MCP service.
 
-## Reference(s): <br>
-- [Setup and persistence notes](references/setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaomilizhipeng/openclaw-xiaohongshu-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON payload examples, and configuration file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local MCP calls that return JSON or text responses from Xiaohongshu workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can publish public Xiaohongshu posts and submit comments or replies from an authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated post or comment before execution and use private visibility for test publishes.
+
+Risk: The local MCP service uses persistent Xiaohongshu login and browser session data.
+
+Mitigation: Install only when the Docker image publisher is trusted and restrict access to the persisted cookie and browser-profile volumes.
+
+Risk: The Docker image reference is not pinned to a reviewed digest.
+
+Mitigation: Pin the container image to a reviewed digest before production or sensitive-account use.
+
+Risk: Untrusted text or identifiers passed into helper scripts may be unsafe until JSON serialization is reviewed.
+
+Mitigation: Avoid passing untrusted inputs to the scripts and review or fix JSON argument construction before broad use.
+
+## Reference(s):
+
+- [Setup](references/setup.md)
+- [OpenClaw Xiaohongshu MCP on ClawHub](https://clawhub.ai/xiaomilizhipeng/skills/openclaw-xiaohongshu-mcp)
+- [xiaomilizhipeng publisher profile](https://clawhub.ai/user/xiaomilizhipeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local MCP tools that return Xiaohongshu search results, note details, comments, or publish responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

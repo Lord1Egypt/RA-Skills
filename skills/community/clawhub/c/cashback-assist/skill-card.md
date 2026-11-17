@@ -1,38 +1,49 @@
-## Description: <br>
-返利全流程助手，从选品比价、领券下单到返利追踪、提现指导，覆盖返利购物完整链路。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+返利全流程助手，从选品比价、领券下单到返利追踪、提现指导，覆盖返利购物完整链路。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers and cashback users use this skill to compare products, find coupons, follow cashback-safe order steps, track rebate status, and get withdrawal guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process shopping, order, and cashback-related details. <br>
-Mitigation: Avoid sharing account credentials or unnecessary purchase history, and use the skill only when cashback or order-tracking help is explicitly needed. <br>
+## Use Case:
 
+返利购物用户使用该技能在购物前比较价格和返利，在下单时检查优惠券与返利链路，并在售后阶段跟踪返利到账与提现。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/cashback-assist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown cashback report with product recommendations, order checklist, and cashback tracking summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shopping, order, and cashback details supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may disclose sensitive account, payment, bank card, or recovery details while seeking cashback withdrawal help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official platform pages for login and withdrawals, and share only the minimum order or rebate information needed for guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/cashback-assist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with structured shopping recommendation, order checklist, cashback tracking, and withdrawal guidance sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance and summaries only; users should complete login, checkout, and withdrawals on official platform pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

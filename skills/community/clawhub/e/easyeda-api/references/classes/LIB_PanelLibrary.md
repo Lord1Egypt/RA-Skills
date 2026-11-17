@@ -1,11 +1,11 @@
 # LIB\_PanelLibrary class
 
-综合库 / 面板库类
+Comprehensive library / panel library class
 
 ## Signature
 
 ```typescript
-declare class LIB_PanelLibrary 
+class LIB_PanelLibrary
 ```
 
 ## Methods
@@ -14,114 +14,90 @@ declare class LIB_PanelLibrary
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [copy(panelLibraryUuid, libraryUuid, targetLibraryUuid, targetClassification, newPanelLibraryName)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 复制面板库
-
+**_(BETA)_** Copy Panel library
 
 </td></tr>
 <tr><td>
 
 [create(libraryUuid, panelLibraryName, classification, description)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 创建面板库
-
+**_(BETA)_** Create Panel library
 
 </td></tr>
 <tr><td>
 
 [delete(panelLibraryUuid, libraryUuid)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 删除面板库
-
+**_(BETA)_** Delete Panel library
 
 </td></tr>
 <tr><td>
 
 [get(panelLibraryUuid, libraryUuid)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取面板库的所有属性
-
+**_(BETA)_** Get all properties of the panel library
 
 </td></tr>
 <tr><td>
 
 [modify(panelLibraryUuid, libraryUuid, panelLibraryName, classification, description)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 修改面板库
-
+**_(BETA)_** Modify Panel library
 
 </td></tr>
 <tr><td>
 
 [openInEditor(panelLibraryUuid, libraryUuid, splitScreenId)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 在编辑器打开文档
-
+**_(BETA)_** Open in the editor document
 
 </td></tr>
 <tr><td>
 
 [search(key, libraryUuid, classification, itemsOfPage, page)](./LIB_PanelLibrary.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 搜索面板库
-
+**_(BETA)_** Search panel library
 
 </td></tr>
 </tbody></table>
@@ -136,12 +112,18 @@ Description
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-复制面板库
+Copy Panel library
 
 ## Signature
 
 ```typescript
-copy(panelLibraryUuid: string, libraryUuid: string, targetLibraryUuid: string, targetClassification?: ILIB_ClassificationIndex | Array<string>, newPanelLibraryName?: string): Promise<string | undefined>;
+function copy(
+	panelLibraryUuid: string,
+	libraryUuid: string,
+	targetLibraryUuid: string,
+	targetClassification?: ILIB_ClassificationIndex | Array<string>,
+	newPanelLibraryName?: string,
+): Promise<string | undefined>;
 ```
 
 ## Parameters
@@ -150,107 +132,113 @@ copy(panelLibraryUuid: string, libraryUuid: string, targetLibraryUuid: string, t
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 panelLibraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 <tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-库 UUID，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+Library UUID, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 <tr><td>
 
 targetLibraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-目标库 UUID
-
+Target library UUID
 
 </td></tr>
 <tr><td>
 
 targetClassification
 
-
 </td><td>
 
 [ILIB\_ClassificationIndex](../interfaces/ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 目标库内的分类
-
+_(Optional)_ Classification in the target library
 
 </td></tr>
 <tr><td>
 
 newPanelLibraryName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 新面板库名称，如若目标库内存在重名面板库将导致复制失败
-
+_(Optional)_ New panel library name. If a panel library with the same name exists in the target library, the copy will fail
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;string \| undefined&gt;
 
-目标库内新面板库的 UUID
+UUID of the new panel library in the target library
+
+## Example
+
+```javascript
+// 1. 搜索系统库，取一个面板库作为复制来源
+const [source] = await eda.lib_PanelLibrary.search('', undefined, undefined, 1, 1);
+
+// 2. 获取个人库 UUID
+const targetLibraryUuid = await eda.lib_LibrariesList.getPersonalLibraryUuid();
+
+// 3. 从系统库复制到个人库，指定新名称避免同名冲突（分类传 [] = 不分类）
+const newName = `嘉立创示例_面板库副本_${Date.now()}`;
+const copiedUuid = await eda.lib_PanelLibrary.copy(
+	source.uuid,
+	source.libraryUuid,
+	targetLibraryUuid,
+	[],
+	newName
+);
+
+// 创建类保留现场（副本留在个人库中供观察）
+
+console.log('sourceUuid:', source.uuid);
+console.log('copiedUuid:', copiedUuid);
+console.log('newName:', newName);
+```
 
 ### create
 
@@ -258,12 +246,17 @@ Promise&lt;string \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-创建面板库
+Create Panel library
 
 ## Signature
 
 ```typescript
-create(libraryUuid: string, panelLibraryName: string, classification?: ILIB_ClassificationIndex | Array<string>, description?: string): Promise<string | undefined>;
+function create(
+	libraryUuid: string,
+	panelLibraryName: string,
+	classification?: ILIB_ClassificationIndex | Array<string>,
+	description?: string,
+): Promise<string | undefined>;
 ```
 
 ## Parameters
@@ -272,91 +265,90 @@ create(libraryUuid: string, panelLibraryName: string, classification?: ILIB_Clas
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-库 UUID，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+Library UUID, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 <tr><td>
 
 panelLibraryName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库名称
-
+Panel library name
 
 </td></tr>
 <tr><td>
 
 classification
 
-
 </td><td>
 
 [ILIB\_ClassificationIndex](../interfaces/ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 description
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;string \| undefined&gt;
 
-面板库 UUID
+Panel library UUID
+
+## Example
+
+```javascript
+// 1. 获取个人库 UUID
+const libraryUuid = await eda.lib_LibrariesList.getPersonalLibraryUuid();
+
+// 2. 创建面板库（分类传 [] = 不分类）
+const panelLibraryName = `嘉立创示例_新面板库_${Date.now()}`;
+const panelLibraryUuid = await eda.lib_PanelLibrary.create(libraryUuid, panelLibraryName, [], '示例面板库描述');
+
+// 创建类保留现场（新面板库留在个人库中供观察）
+
+console.log('panelLibraryUuid:', panelLibraryUuid);
+console.log('panelLibraryName:', panelLibraryName);
+```
 
 ### delete
 
@@ -364,12 +356,12 @@ Promise&lt;string \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-删除面板库
+Delete Panel library
 
 ## Signature
 
 ```typescript
-delete(panelLibraryUuid: string, libraryUuid: string): Promise<boolean>;
+function delete(panelLibraryUuid: string, libraryUuid: string): Promise<boolean>;
 ```
 
 ## Parameters
@@ -378,59 +370,66 @@ delete(panelLibraryUuid: string, libraryUuid: string): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 panelLibraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 <tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-库 UUID，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+Library UUID, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
+
+## Example
+
+```javascript
+// 1. 获取个人库 UUID 并新建删除对象
+const libraryUuid = await eda.lib_LibrariesList.getPersonalLibraryUuid();
+const panelLibraryUuid = await eda.lib_PanelLibrary.create(
+	libraryUuid,
+	`嘉立创示例_待删除面板库_${Date.now()}`,
+	[]
+);
+
+// 2. 删除该面板库
+const deleted = await eda.lib_PanelLibrary.delete(panelLibraryUuid, libraryUuid);
+
+console.log('panelLibraryUuid:', panelLibraryUuid);
+console.log('deleted:', deleted);
+```
 
 ### get
 
@@ -438,12 +437,15 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取面板库的所有属性
+Get all properties of the panel library
 
 ## Signature
 
 ```typescript
-get(panelLibraryUuid: string, libraryUuid?: string): Promise<ILIB_PanelLibraryItem | undefined>;
+function get(
+	panelLibraryUuid: string,
+	libraryUuid?: string,
+): Promise<ILIB_PanelLibraryItem | undefined>;
 ```
 
 ## Parameters
@@ -452,59 +454,48 @@ get(panelLibraryUuid: string, libraryUuid?: string): Promise<ILIB_PanelLibraryIt
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 panelLibraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 <tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 库 UUID，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+_(Optional)_ Library UUID, default is system library, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;[ILIB\_PanelLibraryItem](../interfaces/ILIB_PanelLibraryItem.md) \| undefined&gt;
 
-面板库属性
+Panel library property
 
 ### modify
 
@@ -512,12 +503,18 @@ Promise&lt;[ILIB\_PanelLibraryItem](../interfaces/ILIB_PanelLibraryItem.md) \| u
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-修改面板库
+Modify Panel library
 
 ## Signature
 
 ```typescript
-modify(panelLibraryUuid: string, libraryUuid: string, panelLibraryName?: string, classification?: ILIB_ClassificationIndex | Array<string> | null, description?: string | null): Promise<boolean>;
+function modify(
+	panelLibraryUuid: string,
+	libraryUuid: string,
+	panelLibraryName?: string,
+	classification?: ILIB_ClassificationIndex | Array<string> | null,
+	description?: string | null,
+): Promise<boolean>;
 ```
 
 ## Parameters
@@ -526,111 +523,114 @@ modify(panelLibraryUuid: string, libraryUuid: string, panelLibraryName?: string,
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 panelLibraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 <tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-库 UUID，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+Library UUID, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 <tr><td>
 
 panelLibraryName
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 面板库名称
-
+_(Optional)_ Panel library name
 
 </td></tr>
 <tr><td>
 
 classification
 
-
 </td><td>
 
 [ILIB\_ClassificationIndex](../interfaces/ILIB_ClassificationIndex.md) \| Array&lt;string&gt; \| null
 
-
 </td><td>
 
-_(Optional)_ 分类
-
+_(Optional)_ Classification
 
 </td></tr>
 <tr><td>
 
 description
 
-
 </td><td>
 
 string \| null
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-如希望清除某些属性，则将其的值设置为 `null`
+If you want to clear certain properties, set their values to `null`
+
+## Example
+
+```javascript
+// 1. 获取个人库 UUID 并新建修改对象
+const libraryUuid = await eda.lib_LibrariesList.getPersonalLibraryUuid();
+const panelLibraryUuid = await eda.lib_PanelLibrary.create(
+	libraryUuid,
+	`嘉立创示例_面板库修改前_${Date.now()}`,
+	[],
+	'修改前的描述'
+);
+
+// 2. 修改名称和描述（分类保持不变传 []）
+const newName = `嘉立创示例_面板库修改后_${Date.now()}`;
+const modified = await eda.lib_PanelLibrary.modify(panelLibraryUuid, libraryUuid, newName, [], '修改后的描述');
+
+// 修改类保留现场
+
+console.log('panelLibraryUuid:', panelLibraryUuid);
+console.log('modified:', modified);
+console.log('newName:', newName);
+```
 
 ### openineditor
 
@@ -638,12 +638,16 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-在编辑器打开文档
+Open in the editor document
 
 ## Signature
 
 ```typescript
-openInEditor(panelLibraryUuid: string, libraryUuid: string, splitScreenId?: string): Promise<string | undefined>;
+function openInEditor(
+	panelLibraryUuid: string,
+	libraryUuid: string,
+	splitScreenId?: string,
+): Promise<string | undefined>;
 ```
 
 ## Parameters
@@ -652,75 +656,82 @@ openInEditor(panelLibraryUuid: string, libraryUuid: string, splitScreenId?: stri
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 panelLibraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-面板库 UUID
-
+Panel library UUID
 
 </td></tr>
 <tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-库 UUID，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+Library UUID, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 <tr><td>
 
 splitScreenId
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 分屏 ID，不填写则默认在最后输入焦点的分屏内打开，可以使用 [DMT\_EditorControl](./DMT_EditorControl.md) 内的接口获取
-
+_(Optional)_ Split screen ID. If not filled in, it opens in the split screen with the last input focus by default. It can be obtained using the APIs in [DMT\_EditorControl](./DMT_EditorControl.md)
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;string \| undefined&gt;
 
-标签页 ID，对应 [IDMT\_EditorTabItem.tabId](../interfaces/IDMT_EditorTabItem.md)<!-- -->，可使用 [DMT\_EditorControl.getSplitScreenIdByTabId()](./DMT_EditorControl.md) 获取到分屏 ID
+Tab ID, corresponding to [IDMT\_EditorTabItem.tabId](../interfaces/IDMT_EditorTabItem.md)<!-- -->. You can use [DMT\_EditorControl.getSplitScreenIdByTabId()](./DMT_EditorControl.md) to get the split screen ID
+
+## Example
+
+```javascript
+// 1. 获取个人库 UUID 并新建面板库
+const libraryUuid = await eda.lib_LibrariesList.getPersonalLibraryUuid();
+const panelLibraryUuid = await eda.lib_PanelLibrary.create(
+	libraryUuid,
+	`嘉立创示例_编辑面板库_${Date.now()}`,
+	[]
+);
+
+// 2. 在编辑器中打开该面板库，返回标签页 ID（uuid@libraryUuid 格式）
+const tabId = await eda.lib_PanelLibrary.openInEditor(panelLibraryUuid, libraryUuid);
+
+// 打开后保留现场（编辑器停留在新面板库页供观察；不需要时可传 tabId 给
+// dmt_EditorControl.closeDocument 关闭）
+
+console.log('panelLibraryUuid:', panelLibraryUuid);
+console.log('tabId:', tabId);
+```
 
 ### search
 
@@ -728,12 +739,18 @@ Promise&lt;string \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-搜索面板库
+Search panel library
 
 ## Signature
 
 ```typescript
-search(key: string, libraryUuid?: string, classification?: ILIB_ClassificationIndex | Array<string>, itemsOfPage?: number, page?: number): Promise<Array<ILIB_PanelLibrarySearchItem>>;
+function search(
+	key: string,
+	libraryUuid?: string,
+	classification?: ILIB_ClassificationIndex | Array<string>,
+	itemsOfPage?: number,
+	page?: number,
+): Promise<Array<ILIB_PanelLibrarySearchItem>>;
 ```
 
 ## Parameters
@@ -742,104 +759,97 @@ search(key: string, libraryUuid?: string, classification?: ILIB_ClassificationIn
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 key
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-搜索关键字
-
+Search keyword
 
 </td></tr>
 <tr><td>
 
 libraryUuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 库 UUID，默认为系统库，可以使用 [LIB\_LibrariesList](./LIB_LibrariesList.md) 内的接口获取
-
+_(Optional)_ Library UUID, default is system library, you can use [LIB\_LibrariesList](./LIB_LibrariesList.md) APIs in
 
 </td></tr>
 <tr><td>
 
 classification
 
-
 </td><td>
 
 [ILIB\_ClassificationIndex](../interfaces/ILIB_ClassificationIndex.md) \| Array&lt;string&gt;
 
-
 </td><td>
 
-_(Optional)_ 分类，默认为全部
-
+_(Optional)_ Classification, defaults to all
 
 </td></tr>
 <tr><td>
 
 itemsOfPage
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-_(Optional)_ 一页搜索结果的数量
-
+_(Optional)_ Number of search results per page
 
 </td></tr>
 <tr><td>
 
 page
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-_(Optional)_ 页数
-
+_(Optional)_ Page count
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;Array&lt;[ILIB\_PanelLibrarySearchItem](../interfaces/ILIB_PanelLibrarySearchItem.md)<!-- -->&gt;&gt;
 
-搜索到的面板库属性列表
+List of searched panel library properties
+
+## Example
+
+```javascript
+// 1. 按空关键字列出系统库中的面板库，每页 5 条（换成 '三角' 等关键字即为按名称过滤）
+const results = await eda.lib_PanelLibrary.search('', undefined, undefined, 5, 1);
+
+// 2. 输出搜索结果
+console.log('count:', results.length);
+results.forEach((item, i) => {
+	console.log(`[${i}] name:`, item.name, 'uuid:', item.uuid, 'libraryUuid:', item.libraryUuid);
+});
+```

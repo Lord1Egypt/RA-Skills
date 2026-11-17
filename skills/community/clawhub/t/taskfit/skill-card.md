@@ -1,39 +1,51 @@
-## Description: <br>
-TaskFit is an OpenClaw discovery skill that points users to the TaskFit plugin, which rewrites rough requests into stronger execution briefs using anonymous local task patterns on the same device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taskfit is a discovery skill for the TaskFit OpenClaw plugin, which rewrites rough user requests into stronger execution briefs using anonymous structure patterns learned locally from successful past tasks on the same device.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External developers and OpenClaw users use this discovery skill to find and install the TaskFit plugin when they want request optimization that keeps local task-history patterns on device. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced TaskFit plugin rewrites prompts and may use local task-history patterns. <br>
-Mitigation: Review the plugin's behavior before installing and use the documented /taskfit off, /taskfit adaptive, and /taskfit status controls to manage when optimization is active. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to discover and install the TaskFit plugin, then enable request optimization controls for clearer agent execution briefs while keeping local task-history text on-device.
 
-## Reference(s): <br>
-- [Taskfit Skill on ClawHub](https://clawhub.ai/sheygoodbai/taskfit) <br>
-- [OpenClaw TaskFit plugin page](https://clawhub.ai/plugins/openclaw-taskfit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Points users to canonical TaskFit installation, enablement, and runtime-control commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence and frontmatter) <br>
+Risk: TaskFit can rewrite requests before agent planning using patterns derived from local task history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked TaskFit plugin before installing, use documented off and status controls when request rewriting should not be active, and prefer a reviewed or pinned release when available.
+
+## Reference(s):
+
+- [TaskFit ClawHub plugin page](https://clawhub.ai/plugins/openclaw-taskfit)
+- [Taskfit Skill ClawHub page](https://clawhub.ai/sheygoodbai/skills/taskfit)
+- [TaskFit GitHub repository](https://github.com/Sheygoodbai/taskfit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes plugin routes, installation commands, enablement commands, and runtime control commands.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

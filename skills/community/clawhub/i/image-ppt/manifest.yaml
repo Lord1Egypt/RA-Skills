@@ -1,0 +1,37 @@
+# 图片PPT (image-ppt) 技能清单 — 通用方法论 / Generic Skill Manifest
+
+name: image-ppt
+display_name: 图片PPT
+version: 1.0.0
+description: >-
+  将书籍、PDF 或任意文字材料转化为精美可编辑 PPT 的工作流技能（图片PPT）。
+  三步流程：内容提炼与风格设计 → 图片版PPT生成 → 可编辑PPTX还原。
+  推荐运行环境：Codex + GPT-Image 2.0（Codex 编排流程、GPT-Image 2.0 绘制页面）。
+  平台无关，也可在任何具备文档读取、图像生成与文件输出能力的 AI 助手中使用。
+  A platform-agnostic workflow to turn books/PDFs/text into beautiful, editable PPT decks.
+  Recommended: Codex + GPT-Image 2.0.
+  适用于课堂汇报、读书分享、组会汇报、项目汇报、比赛路演等场景。
+author: 风清云影 (helloo1568)
+license: MIT
+category: content
+triggers:
+  - 图片PPT
+  - 做PPT
+  - 生成PPT
+  - 把书做成PPT
+  - 读书分享PPT
+  - 课堂汇报PPT
+  - image-ppt
+  - doc-to-editable-ppt
+requires_api_keys: false
+platforms:
+  - Codex (recommended, with GPT-Image 2.0)
+  - ChatGPT/GPT, Claude, Kimi, Doubao, WorkBuddy, Tongyi, etc.
+security_notes: >-
+  纯提示词型方法论，不含任何脚本、可执行代码或网络请求，
+  无密钥、无数据外传、无越权系统操作。安全等级 P2（安全）。
+files:
+  - SKILL.md
+  - README.md
+  - README.en.md
+  - references/prompts.md

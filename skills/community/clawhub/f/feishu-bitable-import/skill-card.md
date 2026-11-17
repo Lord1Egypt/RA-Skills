@@ -1,43 +1,63 @@
-## Description: <br>
-Imports local CSV, Excel, or JSON data into Feishu Bitable, with field-type inference, incremental sync, full replacement, append-only sync, and table creation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports local CSV, Excel, or JSON data into Feishu Bitable, with field type inference, table creation support, and incremental, full, or append sync modes.
 
-## Publisher: <br>
-[guanlansss](https://clawhub.ai/user/guanlansss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guanlansss](https://clawhub.ai/user/guanlansss)
 
-## Use Case: <br>
-Developers and operations teams use this skill to prepare Feishu credentials, identify app and table IDs, and run import or sync commands that move local business data into Feishu Bitable tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete or overwrite Feishu Bitable business records, especially when full sync mode is used. <br>
-Mitigation: Back up important tables, verify app_token and table_id before running commands, and avoid --mode full unless replacing all existing records is intentional. <br>
-Risk: The skill requires Feishu credentials and write access to Bitable data. <br>
-Mitigation: Use a dedicated least-privilege Feishu app, grant only the required Bitable permissions, and keep the .env file out of source control. <br>
+## Use Case:
 
+Developers and operations teams use this skill to import exported business data, reports, or records from local files into Feishu Bitable for team collaboration and recurring data synchronization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guanlansss/feishu-bitable-import) <br>
-- [How to get app_token and table_id](references/get-id-guide.md) <br>
-- [Feishu Bitable API Documentation](https://open.feishu.cn/document/ukTMukTMukTM/uYTM5UjL2ETO14iNkozM) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of local Python scripts that read CSV, Excel, or JSON files and call Feishu Bitable APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Full sync mode can delete all existing records in the target Feishu Bitable table.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use full mode only after confirming the app_token and table_id and keeping a current backup of the target table.
+
+Risk: Setup guidance requests an extra document-read permission that is not needed for the Bitable import flow.
+
+Mitigation: Limit Feishu application permissions to the target Bitable resources and remove unused document-read scope before installation.
+
+Risk: Imported local file contents are transmitted to Feishu through API calls.
+
+Mitigation: Review source files for sensitive data and confirm the target Feishu workspace and table are appropriate before syncing.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Run the scripts in an isolated Python environment with reviewed, pinned dependency versions.
+
+## Reference(s):
+
+- [How to get app_token and table_id](references/get-id-guide.md)
+- [Feishu Open Platform - Bitable API](https://open.feishu.cn/document/ukTMukTMukTM/uYTM5UjL2ETO14iNkozM)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Python scripts that read local data files and call Feishu APIs when the user provides credentials and target Bitable identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

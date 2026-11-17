@@ -1,39 +1,50 @@
-## Description: <br>
-Generates a Mermaid sequence diagram showing how data moves between components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Mermaid sequence diagram showing how data moves between components
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to trace request flows, data transformation pipelines, and API call chains in a codebase, then summarize the flow as a Mermaid sequence diagram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendered diagrams may reveal repository structure or call flows to the configured Mermaid MCP. <br>
-Mitigation: Use narrow analysis scopes for private or sensitive projects and review generated diagrams before rendering or sharing them. <br>
+## Use Case:
 
+Developers use this skill to trace request flows, API call chains, and data transformations in a codebase, then document those interactions as a sequence diagram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-cartograph-data-flow) <br>
-- [Cartograph homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Mermaid sequence diagram code and a brief prose description] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use the Mermaid Chart MCP to validate and render the sequence diagram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The workflow may send codebase-derived diagram content to Mermaid Chart without a privacy warning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, review repository sharing rules and Mermaid Chart’s handling policies.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-cartograph-data-flow)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Diagram, Text]
+
+**Output Format:** [Mermaid sequence diagram with a brief text description]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows component interactions and data direction; supports up to 10 participants.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

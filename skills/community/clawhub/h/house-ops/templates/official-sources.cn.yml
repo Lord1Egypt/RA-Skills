@@ -1,0 +1,88 @@
+# templates/official-sources.cn.yml — 各城市政务房地产公开数据源登记表（scan 模式交叉验证用）
+#
+# 规则：与 policy-notes.cn.yml 相同——**本表会过时**。用前必须联网核实该源当前
+#       可达性、数据口径与粒度，并把 as_of 写进扫描记录；表内与核实结果冲突时，
+#       以核实结果为准，并提示用户可更新本表。
+#
+# 字段约定：
+#   data       该源公开的数据类型（内联数组）
+#   granularity 数据粒度：内联数组，取值 ∈ 单套级|地块级|楼盘级|小区级|街区级|片区级|区级|全市级|全国级
+#                 （枚举 SoT：scrapers/_fields.mjs 的 SOURCE_GRANULARITIES；doctor 断言本表不漂移）
+#   access     访问方式：免登录 | 需注册 | 需现场/窗口 | 未知
+#   verify_before_use 恒为 true——登记 ≠ 核实
+# 补充新城市：检索「城市名 + 住建委/房地产交易中心」的官方域名，核实后按现有格式补入。
+
+as_of_registry: "2026-09-04"
+sources:
+  - city: 上海
+    name: 网上房地产（上海市房地产交易中心主办）
+    url: https://www.fangdi.com.cn
+    data: [一手房预售与网签备案, 二手房挂牌与成交信息, 区域成交统计]
+    granularity: [楼盘级, 区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 二手房成交频道的覆盖范围与时效需核实；部分数据仅公示至区级。
+  - city: 北京
+    name: 北京市住房和城乡建设委员会（房屋管理交易数据）
+    url: https://zjw.beijing.gov.cn
+    data: [月度网签成交量统计, 存量房交易政策与公告]
+    granularity: [全市级]
+    access: 免登录
+    verify_before_use: true
+    notes: 以月度统计公告为主，无小区级成交明细。
+  - city: 广州
+    name: 阳光家缘（广州市住房和城乡建设局）
+    url: https://zfcj.gz.gov.cn
+    data: [网签备案数据, 楼盘表与预售证公示]
+    granularity: [楼盘级, 区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 一手房楼盘表可细到栋；二手房网签以汇总口径为主。
+  - city: 深圳
+    name: 深圳市房地产信息平台（市住房和建设局）
+    url: https://zjj.sz.gov.cn
+    data: [新房备案价公示, 二手房网签数据, 交易政策公告]
+    granularity: [楼盘级, 全市级]
+    access: 免登录
+    verify_before_use: true
+    notes: 二手房官方成交明细的公开程度需核实。
+  - city: 杭州
+    name: 杭州市住房保障和房产管理局（二手房交易监管服务平台）
+    url: https://fgj.hangzhou.gov.cn
+    data: [二手房挂牌与成交监管数据, 经纪机构备案公示]
+    granularity: [小区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 历史上有小区级挂牌/成交查询入口，页面可能调整，用前核实。
+  - city: 成都
+    name: 成都市住房和城乡建设局
+    url: https://cdzjj.chengdu.gov.cn
+    data: [网签备案统计, 预售许可公示]
+    granularity: [全市级, 区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 小区级成交明细公开程度需核实。
+  - city: 南京
+    name: 网上房地产（南京市住房保障和房产局）
+    url: https://www.njhouse.com.cn
+    data: [新房网上签约备案, 二手房成交数据]
+    granularity: [楼盘级, 区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 官方主办；数据口径以当日公示为准。
+  - city: 武汉
+    name: 武汉市住房保障和房屋管理局
+    url: https://fgj.wuhan.gov.cn
+    data: [月度成交统计, 预售许可与备案公示]
+    granularity: [全市级, 区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 小区级明细公开程度需核实。
+  - city: 重庆
+    name: 重庆市住房和城乡建设委员会
+    url: https://zfcxjw.cq.gov.cn
+    data: [网签备案统计, 预售许可公示]
+    granularity: [全市级, 区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 小区级明细公开程度需核实。

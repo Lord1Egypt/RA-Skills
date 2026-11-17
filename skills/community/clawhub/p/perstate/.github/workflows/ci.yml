@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+    paths-ignore: ['**/*.md', 'LICENSE']
+  pull_request:
+    branches: [master, main]
+    paths-ignore: ['**/*.md', 'LICENSE']
+
+jobs:
+  syntax-check:
+    name: Shell Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all scripts for syntax errors
+        run: |
+          for s in scripts/*.sh tests/*.sh; do
+            bash -n "$s" && echo "OK: $s" || { echo "SYNTAX ERROR: $s"; exit 1; }
+          done
+
+  correctness:
+    name: Correctness Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run correctness test suite
+        run: |
+          chmod +x tests/*.sh scripts/*.sh
+          bash tests/test-correctness.sh
+
+  benchmark:
+    name: Performance Benchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run performance benchmarks
+        run: |
+          chmod +x tests/*.sh scripts/*.sh
+          bash tests/benchmark-perf.sh 100 1000 > /tmp/bench-results.json
+          cat /tmp/bench-results.json
+          # Verify search < 10s and save < 60s targets
+          python3 -c "
+import json, sys
+with open('/tmp/bench-results.json') as f:
+    data = json.load(f)
+for b in data['benchmarks']:
+    scale = b['scale']
+    if b['search_sec'] > 10:
+        print(f'FAIL: search at scale {scale} took {b[\"search_sec\"]}s (>10s)')
+        sys.exit(1)
+    if b['save_local_sec'] > 60:
+        print(f'FAIL: save at scale {scale} took {b[\"save_local_sec\"]}s (>60s)')
+        sys.exit(1)
+    print(f'scale={scale}: search={b[\"search_sec\"]}s save={b[\"save_local_sec\"]}s view={b[\"view_sec\"]}s info={b[\"info_sec\"]}s recall={b[\"recall\"]}')
+print('All performance targets met.')
+"

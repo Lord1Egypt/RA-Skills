@@ -1,39 +1,51 @@
-## Description: <br>
-Query headlines and articles from a self-hosted FreshRSS instance with category, time range, unread, and count filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query headlines and articles from a self-hosted FreshRSS instance with category, time range, unread, and count filters.
 
-## Publisher: <br>
-[nickian](https://clawhub.ai/user/nickian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickian](https://clawhub.ai/user/nickian)
 
-## Use Case: <br>
-Developers and external users with a self-hosted FreshRSS account use this skill to retrieve latest, unread, category-specific, or recent headlines from their reader. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses FreshRSS account credentials to authenticate to the user's server. <br>
-Mitigation: Use HTTPS, configure a dedicated API password, and revoke that password when the skill is no longer needed. <br>
-Risk: The skill can access feeds, categories, and headlines available to the configured FreshRSS account. <br>
-Mitigation: Install only from a trusted publisher and use credentials scoped to the intended FreshRSS account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FreshRSS Reader on ClawHub](https://clawhub.ai/nickian/freshrss-reader) <br>
+## Use Case:
+
+External users and agents use this skill to query a configured self-hosted FreshRSS reader for recent headlines, unread items, categories, and feeds.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: FreshRSS API credentials can be exposed if the skill is used with HTTP or if authenticated URLs are captured in logs.
+
+Mitigation: Use only an HTTPS FreshRSS URL, avoid shared machines where process arguments may be observable, and prefer authentication that does not place the API password in the URL.
+
+Risk: A previously used FreshRSS API password may already have been captured if used over HTTP or logged URLs.
+
+Mitigation: Rotate the FreshRSS API password if it may have been exposed.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text command output with setup and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FRESHRSS_URL, FRESHRSS_USER, and FRESHRSS_API_PASSWORD; category names are case-sensitive.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, released 2026-01-28) <br>
+**Output Type(s):** [Text, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FRESHRSS_URL, FRESHRSS_USER, and FRESHRSS_API_PASSWORD in the environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

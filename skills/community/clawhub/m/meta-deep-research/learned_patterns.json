@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "skill": "meta-deep-research",
+  "totalOps": 1,
+  "totalErrors": 0,
+  "capabilityStats": {
+    "蒸馏增强": {
+      "count": 1,
+      "success": 1,
+      "fail": 0
+    }
+  },
+  "errorPatterns": {},
+  "preferences": {},
+  "recentOps": [
+    {
+      "t": "2026-07-23T01:40",
+      "cap": "蒸馏增强",
+      "ok": true,
+      "err": null,
+      "note": null
+    }
+  ],
+  "optimizations": {},
+  "lastUpdated": "2026-07-23T01:40"
+}

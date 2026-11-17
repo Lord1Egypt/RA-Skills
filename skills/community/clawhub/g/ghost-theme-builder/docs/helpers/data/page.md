@@ -1,0 +1,28 @@
+---
+title: "@page"
+description: The `@page` object provides access to page properties, which are available anywhere in your theme.
+---
+
+***
+
+* `@page.show_title_and_feature_image` - `true` (default) or `false` boolean toggle set on the page settings panel in the editor. 
+
+This toggle lets editors hide a page’s title and feature image on a per-page basis, useful for pages that look radically different from posts (full-width headers, CTAs, landing pages). Gate any relevant markup in your page templates for the toggle to take effect.
+
+## Example code
+
+```handlebars
+{{#match @page.show_title_and_feature_image}}
+...content...
+{{/match}}
+```
+
+## Styling tips when hiding the title and feature image
+
+1. Whenever the page title and feature image are hidden, and the page content starts with a full-width card (such cards will have the class `.kg-width-full`), remove spacing between the top navigation and content (on pages only).
+2. Whenever multiple full-width cards are stacked, remove spacing between them (on posts and pages).
+3. Whenever content ends with a full-width card, remove spacing between the content and the footer (on pages only, posts often have additional content at the bottom such as comments, CTAs, related posts, etc.).
+
+As a reminder, cards that have the ability to be set to full width are header cards, signup cards, image cards, and video cards. When an image or video has a caption, it will have the class `.kg-card-hascaption`, and maintaining spacing is desirable in this case.
+
+The implementation of these changes will look different on every theme. Find examples of these recommended changes in Source [here](https://github.com/TryGhost/Source/blob/main/page.hbs#L9) (1 and 3) and [here](https://github.com/TryGhost/Casper/blob/a60e3e976a341df462ba948d395bc52c37faffa4/assets/css/screen.css#L1345-L1348) (2).

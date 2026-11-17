@@ -1,47 +1,61 @@
-## Description: <br>
-Track Closing Line Value by logging placement odds, fetching closing lines, computing CLV, and generating betting performance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Closing Line Value — the gold standard for measuring betting edge. Log placement odds, fetch closing lines, compute CLV, and generate performance reports.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and developers use this skill to track sports betting performance by comparing placement odds with closing lines. It helps log bets, compute Closing Line Value, export history, and report whether results indicate a betting edge or variance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores betting history locally in ~/.openclaw/data/clv.db, which may contain sensitive personal betting data. <br>
-Mitigation: Treat the SQLite database as sensitive, restrict local access, and avoid sharing or uploading the file unless the user explicitly intends to export that data. <br>
-Risk: The skill requires an ODDS_API_KEY for The Odds API. <br>
-Mitigation: Provide the API key through the local environment, keep it out of committed files and transcripts, and rotate it if exposure is suspected. <br>
-Risk: The skill proposes commands that write real bet details into a local database and may use external odds data. <br>
-Mitigation: Review commands and placeholder substitutions before running them with real bet details. <br>
+## Use Case:
 
+External bettors and betting analysts use this skill to log wagers, compare placement odds against closing lines, calculate closing line value, and summarize whether betting performance reflects edge or variance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rsquaredsolutions2026/clv-tracker) <br>
-- [The Odds API](https://the-odds-api.com/) <br>
-- [AgentBets](https://agentbets.ai) <br>
-- [OpenClaw CLV Tracker Skill Guide](https://agentbets.ai/guides/openclaw-clv-tracker-skill/) <br>
-- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Analysis, Files, Markdown] <br>
-**Output Format:** [Markdown with inline bash and SQL commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ODDS_API_KEY and stores betting history locally in ~/.openclaw/data/clv.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The documented command pattern can turn supplied bet fields into executable Python or SQL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use only trusted, simple numeric and text inputs, and prefer a revised version that validates odds and uses SQLite parameter binding.
+
+Risk: Betting history is stored locally, and the artifact does not document how stored records can be deleted.
+
+Mitigation: Document and review a deletion procedure for ~/.openclaw/data/clv.db before using the skill with sensitive betting history.
+
+Risk: The security guidance flags unused credential or tool requirements until implemented.
+
+Mitigation: Remove unused credential and tool requirements or document their implemented use before release.
+
+## Reference(s):
+
+- [CLV Tracker skill page](https://clawhub.ai/rsquaredsolutions2026/skills/clv-tracker)
+- [The Odds API](https://the-odds-api.com/)
+- [AgentBets CLV Tracker tutorial](https://agentbets.ai/guides/openclaw-clv-tracker-skill/)
+- [OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and SQLite command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference a local SQLite database at ~/.openclaw/data/clv.db and an ODDS_API_KEY credential.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

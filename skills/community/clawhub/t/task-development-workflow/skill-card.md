@@ -1,40 +1,53 @@
-## Description: <br>
-TDD-first development workflow with structured planning, task tracking, and PR-based code review. Use when building software projects that require clarification phases, planning approval gates, Trello task management, test-driven development, Git branching policies, and PR feedback loops with reviewers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TDD-first development workflow with structured planning, task tracking, and PR-based code review.
 
-## Publisher: <br>
-[anikgnr](https://clawhub.ai/user/anikgnr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anikgnr](https://clawhub.ai/user/anikgnr)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide agents through software tasks that require clarification, planning approval, Trello-style tracking, TDD, branch discipline, pull requests, and review feedback loops. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow may lead an agent to update task boards, create branches or repositories, push commits, open pull requests, and notify reviewers. <br>
-Mitigation: Before use, specify the exact repository, task board, branch rules, reviewer, and accounts the agent may operate in. <br>
-Risk: Strict planning, approval, TDD, and merge gates may block progress if the user has not authorized exceptions. <br>
-Mitigation: State any allowed exceptions explicitly, especially for skipping tests or proceeding before approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anikgnr/task-development-workflow) <br>
-- [Workflow Details](references/workflow-details.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run a structured software delivery workflow with clarification, planning approval, task tracking, test-driven implementation, pull requests, review feedback, and merge gates.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with task plans, PR descriptions, code changes, tests, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task-board updates, branch and PR actions, reviewer notifications, and repository bootstrap steps when the agent has appropriate access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can direct an agent to perform Git, pull request, reviewer notification, and external task tracking actions.
+
+Mitigation: Provide explicit access and direction for Trello or Git hosting services only when those actions should be performed.
+
+Risk: Strict approval gates and one-task-at-a-time sequencing may slow urgent work if applied without adjustment.
+
+Mitigation: Confirm the workflow posture with stakeholders before applying it to time-sensitive development tasks.
+
+## Reference(s):
+
+- [Workflow Details](references/workflow-details.md)
+- [ClawHub Skill Page](https://clawhub.ai/anikgnr/skills/taREDACTED-SECRET)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with workflow checklists and command-oriented development steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require access to external task tracking and Git hosting services when the workflow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

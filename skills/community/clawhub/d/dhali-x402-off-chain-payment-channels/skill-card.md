@@ -1,40 +1,59 @@
-## Description: <br>
-Manage Dhali assets and x402 payments for high-frequency, low-latency applications with minimal on-chain fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Dhali assets and implement off-chain x402 payment flows for providers and consumers.
 
-## Publisher: <br>
-[desimmons](https://clawhub.ai/user/desimmons) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[desimmons](https://clawhub.ai/user/desimmons)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up Dhali-backed x402 payment flows for paid APIs, including provider resource servers and consumer payment signatures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment examples include automatic funding and paid-request flows without explicit spending limits. <br>
-Mitigation: Use dedicated low-balance test wallets and require explicit user approval plus a spending cap before any deposit, asset update, or paid request. <br>
-Risk: The skill depends on external SDKs and a facilitator endpoint for payment handling. <br>
-Mitigation: Pin and verify SDK dependencies, confirm the exact network and facilitator endpoint, and review the full flow before installation or execution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure Dhali x402 provider resource servers and consumer payment-signature flows for monetized APIs. The examples cover Python and JavaScript setup across XRPL and Ethereum/EVM-style networks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/desimmons/dhali-x402-off-chain-payment-channels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python, JavaScript, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment-channel setup guidance, provider resource-server examples, and consumer payment-signature examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Consumer examples can automatically fund a payment channel when no channel is found.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before deposit calls, default to test networks, and configure spend caps before connecting a funded wallet.
+
+Risk: Payment-channel examples can perform real financial operations.
+
+Mitigation: Verify currency units, networks, destination asset IDs, and facilitator URLs before use.
+
+Risk: Unpinned SDK and framework installs can change behavior over time.
+
+Mitigation: Pin dependencies and run examples in an isolated environment before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/desimmons/skills/dhali-x402-off-chain-payment-channels)
+- [ClawHub publisher profile](https://clawhub.ai/user/desimmons)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands and payment-channel examples for provider and consumer x402 flows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

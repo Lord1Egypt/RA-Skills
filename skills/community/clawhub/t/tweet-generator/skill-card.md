@@ -1,41 +1,58 @@
-## Description: <br>
-Craft tweets, threads, and viral hooks with schedule tips for drafting copy, editing threads, optimizing engagement, and planning posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft tweets, threads, and viral hooks with schedule tips. Use when drafting copy, editing threads, optimizing engagement, scheduling posts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Social media writers, marketers, and content operators use this skill to draft tweets, refine copy, log content ideas, plan posts, search prior drafts, and export local content history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, campaign ideas, and command history are saved locally under ~/.local/share/tweet-generator. <br>
-Mitigation: Avoid entering secrets or highly sensitive unpublished material, and remove that directory manually when stored history should be cleared. <br>
-Risk: Export files can contain the same locally saved content history. <br>
-Mitigation: Review JSON, CSV, or TXT exports before sharing them outside the local environment. <br>
+## Use Case:
 
+External social media writers and content teams use this skill to draft and refine short-form content, log content history, plan scheduled posts, search prior entries, and export local content records.
 
-## Reference(s): <br>
-- [Tweet Generator on ClawHub](https://clawhub.ai/xueyetianya/tweet-generator) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text command output plus local log and export files in JSON, CSV, or TXT format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command history and generated exports locally under ~/.local/share/tweet-generator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Entered content is retained in local logs under ~/.local/share/tweet-generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, confidential, or embargoed text and clear local history according to local retention requirements.
+
+Risk: CSV exports can expose user-entered content to spreadsheet handling risks.
+
+Mitigation: Inspect or sanitize exported CSV values before opening them in spreadsheet software.
+
+Risk: The script logs inputs but does not itself generate, optimize, or translate content.
+
+Mitigation: Use the agent or a human reviewer for content generation and treat the script as local history and export tooling.
+
+## Reference(s):
+
+- [Tweet Generator on ClawHub](https://clawhub.ai/xueyetianya/skills/tweet-generator)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text with shell command examples and optional JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores command history locally under ~/.local/share/tweet-generator.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

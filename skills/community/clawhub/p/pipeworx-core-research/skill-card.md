@@ -1,41 +1,55 @@
-## Description: <br>
-Search open-access research papers by keyword and retrieve full metadata including title, authors, abstract, and full text by CORE ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search open-access research papers by keyword and retrieve full metadata including title, authors, abstract, and full text by CORE ID.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to search CORE open-access papers and retrieve paper metadata or full text through a configured MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries are sent through the third-party Pipeworx gateway. <br>
-Mitigation: Avoid sending private research topics or sensitive queries unless the MCP provider is trusted. <br>
+## Use Case:
 
+Researchers, analysts, and developers use this skill to search CORE open-access research papers and retrieve paper metadata or full text through the configured MCP connector.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-core-research) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
-- [CORE API](https://api.core.ac.uk/v3) <br>
-- [Pipeworx CORE Research MCP gateway](https://gateway.pipeworx.io/core-research/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with MCP server configuration JSON and research result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paper titles, authors, abstracts, metadata, and full text when available from CORE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Research queries are routed through the pipeworx.io MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential research topics, proprietary prompts, credentials, or personal data unless the gateway operator and its relationship to CORE are verified.
+
+Risk: The skill has a low-trust quality assessment and is marked for quarantine review in the server evidence.
+
+Mitigation: Review the artifact and deployment configuration before listing or installing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-core-research)
+- [CORE API endpoint](https://api.core.ac.uk/v3)
+- [Pipeworx CORE research MCP gateway](https://gateway.pipeworx.io/core-research/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses containing research paper titles, authors, abstracts, full text, and related metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on CORE API availability and the configured pipeworx.io MCP gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

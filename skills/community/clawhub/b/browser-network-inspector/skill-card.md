@@ -1,42 +1,53 @@
-## Description: <br>
-Browser-side request inspection and reporting for user-authorized web debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser-side request inspection and reporting for user-authorized web debugging of page fetch, XMLHttpRequest, WebSocket, login, registration, and API flows.
 
-## Publisher: <br>
-[dougzl](https://clawhub.ai/user/dougzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougzl](https://clawhub.ai/user/dougzl)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect browser-side fetch, XMLHttpRequest, and basic WebSocket activity for web pages they are authorized to debug, then produce redacted JSON and Markdown reports for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture and save sensitive browser traffic. <br>
-Mitigation: Use it only on sites and sessions the user is authorized to inspect, prefer isolated or throwaway browser sessions, review reports before sharing, and delete report files when finished. <br>
-Risk: Captured browser activity may include more hosts or messages than intended. <br>
-Mitigation: Configure include and exclude host filters before capture and disable WebSocket capture when it is not needed. <br>
-Risk: Redaction and truncation reduce exposure but may not remove every sensitive value. <br>
-Mitigation: Treat generated JSON and Markdown reports as sensitive artifacts and avoid committing or echoing raw logs into chat. <br>
+## Use Case:
 
+Developers and engineers use this skill to capture browser-side fetch, XHR, and basic WebSocket activity during authorized web debugging flows and produce redacted JSON and Markdown reports for analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dougzl/browser-network-inspector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON capture files, Markdown reports, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Request and response content is truncated and sensitive fields are redacted before export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Plaintext capture reports may contain tokens, cookies, passwords, personal data, or private API payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use include-host filters, avoid sensitive login flows unless necessary, disable WebSocket capture when possible, and treat generated JSON and Markdown reports as sensitive files.
+
+Risk: The security summary reports weaker redaction than users are told to expect.
+
+Mitigation: Review generated reports before sharing or storing them, and remove sensitive payloads that redaction did not suppress.
+
+## Reference(s):
+
+- [Browser Network Inspector ClawHub page](https://clawhub.ai/dougzl/skills/browser-network-inspector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper scripts produce JSON capture logs and Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are local files. Captured request and response bodies are truncated and redacted by default, but security evidence warns sensitive data may still appear in plaintext outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

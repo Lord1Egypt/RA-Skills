@@ -1,43 +1,57 @@
-## Description: <br>
-Guides users through personalized cold-exposure progression, session logging, reminders, safety checks, and escalation prompts while the user performs the physical exposure work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to personalize and track progressive cold exposure routines while screening for safety issues and keeping the human responsible for all physical exposure.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to plan and track a progressive at-home cold-exposure routine, including safety screening, local supply research prompts, logs, and medical escalation drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cold exposure can be physically risky, especially for users with cardiovascular conditions, Raynaud's, pregnancy, recent illness, dizziness, chest pain, or extreme water temperatures. <br>
-Mitigation: Use only after considering medical clearance, start with conservative exposure, stop immediately for concerning symptoms, and avoid unsupervised natural-water plunges or breath-hold cold activities. <br>
-Risk: The skill asks users to log health-related data such as fitness, symptoms, mood, energy, and session details. <br>
-Mitigation: Keep logs local, minimize sensitive details, and only allow filesystem writes after the user approves where data will be stored. <br>
-Risk: Some described reminders, calendar actions, research, and email drafting depend on tools the agent may not actually have. <br>
-Mitigation: Treat those actions as unavailable unless the running agent has the required tools and the user approves each external lookup, message, or integration. <br>
+## Use Case:
 
+External users use this skill to have an agent plan reminders, logs, safety checks, and progression for deliberate cold exposure training. It is most relevant for people seeking structured cold tolerance, mood, circulation, or resilience routines while retaining responsibility for medical judgment and the physical exposure itself.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/deliberate-cold-exposure) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with install command, checklists, logs, reminders, and draft messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local markdown logs when the agent has filesystem access and the user approves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill guides cold-exposure routines that can carry medical risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use medical clearance and stop-or-escalate checks before following immersion guidance, especially for cardiovascular, respiratory, neurological, circulatory, pregnancy-related, or medication-related risk.
+
+Risk: The skill may keep local health, energy, and mood logs and draft doctor communications from them.
+
+Mitigation: Install only when local health logging is acceptable, and review any drafted medical communication before sending it.
+
+Risk: Unsupervised natural-water exposure or breath-hold practices can be dangerous.
+
+Mitigation: Avoid breath-hold routines and unsupervised natural-water exposure unless qualified medical and safety guidance supports it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/deliberate-cold-exposure)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local markdown log templates, reminders, safety check prompts, sourcing prompts, and doctor communication drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

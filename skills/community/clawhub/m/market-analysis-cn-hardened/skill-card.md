@@ -1,44 +1,59 @@
-## Description: <br>
-Market analysis service for enterprise market trend analysis, competitor analysis, and user behavior insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese and English market trend, competitor, and user behavior analysis services with paid tiers and guardrails for consent, confidentiality, and sourced quantitative claims.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External business users use this skill to request paid market trend, competitor, user behavior, and deeper strategic analysis. The skill is intended to support decision-making with clear service-tier pricing and sourced market claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger paid consulting-style services or crypto-denominated charges. <br>
-Mitigation: Confirm the exact service tier and price with the user before any paid analysis or subscription is started. <br>
-Risk: Users may share confidential business data while requesting market or competitor analysis. <br>
-Mitigation: Ask users to avoid confidential business data unless a separate agreement is in place, and limit responses to publicly documented service information. <br>
-Risk: Unsupported market-size, revenue, or growth claims could mislead business decisions. <br>
-Mitigation: Require named credible sources for specific market statistics and clearly label estimates and assumptions. <br>
+## Use Case:
 
+External users and business teams use this skill to request paid market trend, competitor, user behavior, and deeper strategic analysis for a chosen industry or region. The skill is intended to support business decision-making while requiring explicit pricing confirmation and sourced numerical claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/market-analysis-cn-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Faberlens safety evaluation](https://faberlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown with optional JSON API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid service tiers require explicit itemized user confirmation before analysis begins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Users may be charged for a paid analysis tier without explicit, itemized consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected service tier and exact price with the user before starting any paid analysis, and reconfirm separately when multiple services are requested.
+
+Risk: Unsourced market statistics, revenue figures, growth rates, or market sizes could mislead business or investment decisions.
+
+Mitigation: Require named, credible sources for quantitative market claims and avoid presenting unsupported figures as verified facts.
+
+Risk: Requests for internal cost structures, data sources, backend architecture, or implementation details could expose confidential service information.
+
+Mitigation: Limit responses to publicly documented service information, including service descriptions, the pricing table, and the API format.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/market-analysis-cn-hardened)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+- [Faberlens safety evaluation](https://faberlens.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown analysis with API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid service tiers require explicit user confirmation; numerical market claims require named credible sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,112 +1,112 @@
 # Food Guide — Spain
 
-## Por Región (Lo Imprescindible)
+## By Region (The Must-Eats)
 
-### País Vasco
-| Plato | Qué es | Dónde mejor |
+### Basque Country
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Pintxos | Tapas en palillo | Parte Vieja San Sebastián |
-| Bacalao al pil-pil | Bacalao en emulsión ajo | Cualquier sidrería |
-| Txuleta | Chuletón vasco | Asadores (Casa Julián, Elkano) |
-| Kokotxas | Barbilla de merluza | Restaurantes buenos |
-| Marmitako | Guiso atún patatas | Puertos pesqueros |
-| Idiazabal | Queso ahumado | Todo el País Vasco |
+| Pintxos | Tapas on a toothpick | Old Town San Sebastián |
+| Bacalao al pil-pil | Cod in a garlic emulsion | Any cider house |
+| Txuleta | Basque rib steak | Grills (Casa Julián, Elkano) |
+| Kokotxas | Hake cheeks | Good restaurants |
+| Marmitako | Tuna and potato stew | Fishing ports |
+| Idiazabal | Smoked cheese | All over the Basque Country |
 
 ### Galicia
-| Plato | Qué es | Dónde mejor |
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Pulpo á feira | Pulpo con pimentón | O Grove, Carballiño |
-| Percebes | Crustáceo caro | Costa da Morte |
-| Empanada gallega | Rellena atún/carne | Cualquier panadería |
-| Lacón con grelos | Cerdo con verdura | Interior Galicia |
-| Pimientos Padrón | Unos pican, otros no | Todo Galicia |
-| Tarta de Santiago | Almendra | Pastelerías Santiago |
+| Pulpo á feira | Octopus with paprika | O Grove, Carballiño |
+| Percebes | Pricey goose barnacles | Costa da Morte |
+| Empanada gallega | Filled with tuna/meat | Any bakery |
+| Lacón con grelos | Pork with greens | Inland Galicia |
+| Padrón peppers | Some are hot, some aren't | All over Galicia |
+| Tarta de Santiago | Almond cake | Santiago pastry shops |
 
 ### Asturias
-| Plato | Qué es | Dónde mejor |
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Fabada | Judiones con embutidos | Cualquier restaurante |
-| Cachopo | Escalope gigante relleno | Casa Gerardo (estrella) |
-| Arroz con leche | Postre cremoso | Tabernas |
-| Queso Cabrales | Azul potente | Queserías zona |
-| Sidra | Bebida, escanciar | Sidrerías Oviedo |
+| Fabada | Beans with cured meats | Any restaurant |
+| Cachopo | Giant stuffed schnitzel | Casa Gerardo (star) |
+| Arroz con leche | Creamy rice pudding | Taverns |
+| Cabrales cheese | Powerful blue | Local dairies |
+| Sidra (cider) | Drink, poured from height | Oviedo cider houses |
 
-### Cataluña
-| Plato | Qué es | Dónde mejor |
+### Catalonia
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Pa amb tomàquet | Pan tomate aceite | TODO (desayuno) |
-| Escalivada | Verduras asadas | Restaurantes tradicionales |
-| Calçots | Cebolletas a la brasa | Enero-marzo, Valls |
-| Botifarra amb mongetes | Salchicha con judías | Masías rurales |
-| Crema catalana | Flan quemado | Postres |
-| Cava | Espumoso | Sant Sadurní d'Anoia |
+| Pa amb tomàquet | Bread with tomato and oil | EVERYWHERE (breakfast) |
+| Escalivada | Roasted vegetables | Traditional restaurants |
+| Calçots | Grilled spring onions | January-March, Valls |
+| Botifarra amb mongetes | Sausage with beans | Rural farmhouses |
+| Crema catalana | Burnt custard | Desserts |
+| Cava | Sparkling wine | Sant Sadurní d'Anoia |
 
 ### Valencia
-| Plato | Qué es | Dónde mejor |
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Paella valenciana | Arroz con pollo/conejo | Albufera, L'Eliana |
-| Arroz negro | Con calamar y tinta | Costa |
-| Fideuà | Paella con fideos | Gandía |
-| Horchata | Bebida chufa | Alboraia |
-| Fartons | Bollitos para mojar | Con horchata |
-| All i pebre | Anguilas con ajo | Albufera |
+| Paella valenciana | Rice with chicken/rabbit | Albufera, L'Eliana |
+| Arroz negro | With squid and ink | Coast |
+| Fideuà | Paella with noodles | Gandía |
+| Horchata | Tiger-nut drink | Alboraia |
+| Fartons | Buns for dunking | With horchata |
+| All i pebre | Eel with garlic | Albufera |
 
-### Andalucía
-| Plato | Qué es | Dónde mejor |
+### Andalusia
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Gazpacho | Sopa fría tomate | Todo Andalucía (verano) |
-| Salmorejo | Más espeso que gazpacho | Córdoba |
-| Pescaíto frito | Fritura de pescado | Cádiz, Málaga |
-| Jamón ibérico | El rey | Jabugo (Huelva) |
-| Flamenquín | Rollo empanado jamón | Córdoba |
-| Atún de almadraba | Atún rojo captura tradicional | Cádiz (mayo-junio) |
-| Espinacas con garbanzos | Tapa | Sevilla |
+| Gazpacho | Cold tomato soup | All Andalusia (summer) |
+| Salmorejo | Thicker than gazpacho | Córdoba |
+| Pescaíto frito | Fried fish | Cádiz, Málaga |
+| Jamón ibérico | The king | Jabugo (Huelva) |
+| Flamenquín | Breaded ham roll | Córdoba |
+| Almadraba tuna | Traditionally caught bluefin | Cádiz (May-June) |
+| Spinach with chickpeas | A tapa | Seville |
 
 ### Madrid
-| Plato | Qué es | Dónde mejor |
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Cocido madrileño | Guiso garbanzos/carne | Lhardy, Malacatín |
-| Bocadillo calamares | Bocata de chipirón | Plaza Mayor zona |
-| Callos | Tripas guisadas | Tabernas antiguas |
-| Tortilla de patatas | Tortilla clásica | Casa Dani |
-| Oreja | Oreja de cerdo | Bares castizos |
+| Cocido madrileño | Chickpea/meat stew | Lhardy, Malacatín |
+| Bocadillo de calamares | Fried squid sandwich | Plaza Mayor area |
+| Callos | Braised tripe | Old taverns |
+| Tortilla de patatas | Classic potato omelette | Casa Dani |
+| Oreja | Pig's ear | Traditional bars |
 
-### Castilla
-| Plato | Qué es | Dónde mejor |
+### Castile
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Cochinillo asado | Lechón al horno | Segovia (Cándido, Duque) |
-| Lechazo asado | Cordero lechal | Aranda de Duero |
-| Morcilla de Burgos | Arroz y sangre | Burgos |
-| Sopa castellana | Ajo, pan, huevo | Mesones Castilla |
-| Judiones de La Granja | Judías gigantes | La Granja |
+| Cochinillo asado | Roast suckling pig | Segovia (Cándido, Duque) |
+| Lechazo asado | Roast milk-fed lamb | Aranda de Duero |
+| Morcilla de Burgos | Rice and blood sausage | Burgos |
+| Sopa castellana | Garlic, bread, egg | Castile inns |
+| Judiones de La Granja | Giant beans | La Granja |
 
-### Navarra
-| Plato | Qué es | Dónde mejor |
+### Navarre
+| Dish | What it is | Best where |
 |-------|--------|-------------|
-| Pimientos del piquillo | Asados, rellenos | Lodosa |
-| Chistorra | Salchicha fina picante | Todo Navarra |
-| Pochas | Judías frescas | Otoño |
-| Pacharán | Licor endrinas | Digestivo típico |
+| Piquillo peppers | Roasted, stuffed | Lodosa |
+| Chistorra | Thin spicy sausage | All Navarre |
+| Pochas | Fresh beans | Autumn |
+| Pacharán | Sloe liqueur | Typical digestif |
 
-## Mercados Gastro (Los Buenos)
+## Food Markets (The Good Ones)
 
-| Ciudad | Mercado | Qué tiene |
+| City | Market | What it has |
 |--------|---------|-----------|
-| Madrid | Antón Martín | Tapas, pescado, local |
-| Madrid | San Fernando | Multicultural, barato |
-| Madrid | Vallehermoso | Local, poco turista |
-| Barcelona | Santa Caterina | Arquitectura, productos |
-| Barcelona | Sant Antoni | Renovado, dominical libros |
-| Valencia | Central | El mejor de España quizás |
-| Sevilla | Triana | Auténtico, barra tapas |
-| Bilbao | La Ribera | Mayor de Europa cubierto |
-| Málaga | Atarazanas | Pescado, tapas |
+| Madrid | Antón Martín | Tapas, fish, local |
+| Madrid | San Fernando | Multicultural, cheap |
+| Madrid | Vallehermoso | Local, few tourists |
+| Barcelona | Santa Caterina | Architecture, produce |
+| Barcelona | Sant Antoni | Renovated, Sunday book market |
+| Valencia | Central | Maybe the best in Spain |
+| Seville | Triana | Authentic, tapas bar |
+| Bilbao | La Ribera | Largest covered market in Europe |
+| Málaga | Atarazanas | Fish, tapas |
 
-**Evitar:** San Miguel (Madrid), Boqueria centro (Barcelona) — turistificados.
+**Avoid:** San Miguel (Madrid), central Boqueria (Barcelona) — touristified.
 
-## Restaurantes Estrella Michelin (Asequibles)
+## Michelin-Star Restaurants (Affordable)
 
-| Restaurante | Ciudad | Estrellas | Menú desde |
+| Restaurant | City | Stars | Menu from |
 |-------------|--------|-----------|------------|
 | Smoked Room | Madrid | ⭐⭐ | €85 |
 | Cocina Hermanos Torres | Barcelona | ⭐⭐ | €165 |
@@ -116,48 +116,68 @@
 | Arzak | San Sebastián | ⭐⭐⭐ | €250 |
 | Akelarre | San Sebastián | ⭐⭐⭐ | €250 |
 
-**Reservar:** 1-3 meses antes para los top.
+**Book:** 1-3 months ahead for the top ones.
 
-## Bebidas por Región
+## Drinks by Region
 
-| Región | Bebida | Nota |
+| Region | Drink | Note |
 |--------|--------|------|
-| País Vasco | Txakoli | Blanco ácido, escanciado |
-| Asturias | Sidra natural | Escanciar obligatorio |
-| Galicia | Albariño | Blanco, con marisco |
-| La Rioja | Rioja crianza | Tinto clásico |
-| Cataluña | Cava | Espumoso, con comida |
-| Jerez | Fino, Manzanilla | Fríos, aperitivo |
-| Valencia | Horchata | Sin alcohol, verano |
-| Madrid | Vermut | Domingo mediodía |
-| Andalucía | Rebujito | Sherry con 7up (feria) |
-| Todo | Tinto de verano | Vino + gaseosa limón |
+| Basque Country | Txakoli | Tart white, poured from height |
+| Asturias | Natural cider | Pouring from height mandatory |
+| Galicia | Albariño | White, with seafood |
+| La Rioja | Rioja crianza | Classic red |
+| Catalonia | Cava | Sparkling, with food |
+| Jerez | Fino, Manzanilla | Chilled, aperitif |
+| Valencia | Horchata | Non-alcoholic, summer |
+| Madrid | Vermouth | Sunday midday |
+| Andalusia | Rebujito | Sherry with 7up (fair) |
+| Everywhere | Tinto de verano | Wine + lemon soda |
 
-## Vocabulario Útil
+## Dietary Needs (What Actually Works)
 
-| Español | Qué es |
+Apply when `dietary` is set in config, or the moment the user mentions a restriction.
+
+### Vegetarian / Vegan
+- The traditional menu is meat- and fish-heavy; the safe classics: tortilla de patatas, patatas bravas, pimientos de Padrón, gazpacho/salmorejo, espinacas con garbanzos, pisto, pan con tomate
+- **"Sin jamón" must be said explicitly** — ham garnish is not considered "meat" by many kitchens (salmorejo arrives topped with it; croquetas default to jamón)
+- **"Vegetal" is a trap:** a sandwich vegetal usually contains tuna and egg
+- Big cities (Madrid, Barcelona, Valencia) have deep vegan scenes; rural Spain does not — in villages, build meals from sides and salads or call ahead
+- Vegan check: tortilla has egg; most pastries have lard (manteca) — ask
+
+### Gluten-Free (Celiac)
+- Spain is one of Europe's easiest celiac countries: certified menus common in cities, "sin gluten" universally understood
+- EU rules require allergens marked on menus — ask for "la carta de alérgenos" anywhere
+- Naturally safe orders: grilled fish/meat, tortilla, jamón, most rice dishes; danger zone is shared fryers (croquetas, calamares) — ask "¿freidora aparte?"
+
+### Halal
+- Widely available in Madrid, Barcelona, and Granada (the Calderería Nueva area is the hub); scarce elsewhere
+- Pork is the default protein of the tapas canon — cross-contamination on grills and fryers is the real issue, not just the menu; seafood and egg dishes are the reliable lane
+
+## Useful Vocabulary
+
+| Spanish | What it is |
 |---------|--------|
-| Menú del día | Comida fija €10-17 |
-| Ración | Plato grande para compartir |
-| Tapa | Porción pequeña |
-| Pincho/Pintxo | Tapa en palillo |
-| Caña | Cerveza pequeña |
-| Tubo | Cerveza mediana |
-| Doble | Cerveza grande |
-| Clara | Cerveza con limón/gaseosa |
-| Tinto de verano | Vino tinto con gaseosa |
-| Cortado | Café con poca leche |
+| Menú del día | Fixed lunch €10-17 |
+| Ración | Large plate to share |
+| Tapa | Small portion |
+| Pincho/Pintxo | Tapa on a toothpick |
+| Caña | Small beer |
+| Tubo | Medium beer |
+| Doble | Large beer |
+| Clara | Beer with lemon/soda |
+| Tinto de verano | Red wine with lemon soda |
+| Cortado | Coffee with a little milk |
 | Café con leche | Latte |
 | Solo | Espresso |
 
-## Horarios (Recordatorio)
+## Meal Times (Reminder)
 
-| Comida | Hora | Nota |
+| Meal | Time | Note |
 |--------|------|------|
-| Desayuno | 7-10 | Café + tostada |
-| Almuerzo (tentempié) | 11-12 | Bocadillo media mañana |
-| Comida | 14-16 | Principal, menú del día |
-| Merienda | 17-19 | Café, pastel |
-| Cena | 21-23 | Segunda principal |
+| Breakfast | 7-10 | Coffee + toast |
+| Mid-morning snack | 11-12 | Mid-morning sandwich |
+| Lunch | 14-16 | Main meal, menú del día |
+| Merienda (afternoon snack) | 17-19 | Coffee, pastry |
+| Dinner | 21-23 | Second main meal |
 
-**Cocinas cierran** entre servicios. No hay comida a las 18h.
+**Kitchens close** between services. There's no food at 6pm.

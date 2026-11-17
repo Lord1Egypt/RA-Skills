@@ -1,43 +1,60 @@
-## Description: <br>
-Rewrites English, Chinese, or mixed serious nonfiction in academic or popular-science mode so AI-looking prose reads more human while preserving register and avoiding new facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites AI-sounding academic and serious popular-science prose in English or Chinese while preserving the source's facts and register, and leaves already-natural prose unchanged.
 
-## Publisher: <br>
-[vincentjiang06](https://clawhub.ai/user/vincentjiang06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentjiang06](https://clawhub.ai/user/vincentjiang06)
 
-## Use Case: <br>
-Writers, researchers, editors, and agents use this skill to triage and revise AI-looking thesis chapters, abstracts, literature reviews, policy reports, and serious science explainers while keeping the source meaning intact. It can also return a detect-only signal map when the user asks to score prose without rewriting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentjiang06/skills/humanizer-academic) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.en.md](README.en.md) <br>
-- [Academic Register](references/academic-register.md) <br>
-- [Popular-Science Register](references/popsci-register.md) <br>
-- [Blind-Judge Rubric](references/blind-judge-rubric.md) <br>
-- [Rewrite Protocol](rules/rewrite-protocol.md) <br>
+Researchers, students, editors, and science communicators use this skill to revise templated serious nonfiction without adding claims, citations, or numbers. It can also report writing signals without rewriting when requested.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown; detect-only mode may include JSON-like diagnostic results and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Abstain-first behavior may return the original text unchanged with a short note; rewrites must preserve source facts, citations, numbers, named entities, and register.] <br>
+Global
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence, SKILL.md, CHANGELOG.md) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Rewriting could change a claim, citation, or scholarly qualifier.
+
+Mitigation: Compare the revision with the original and verify facts, citations, and hedging before use.
+
+Risk: Confidential or unpublished drafts may be shared with a separate quality-review agent.
+
+Mitigation: Disable or avoid blind review unless the review agent's data handling is acceptable for the draft.
+
+Risk: The README's unpinned installation command may fetch a different release later.
+
+Mitigation: Install from a pinned, reviewed release source.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/vincentjiang06/skills/humanizer-academic)
+- [Academic mode guide](artifact/references/academic-pack.md)
+- [Popular-science mode guide](artifact/references/popsci-pack.md)
+- [Blind review rubric](artifact/references/blind-judge-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Revised prose or unchanged draft; optional change notes or a diagnostic JSON signal report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports academic and popular-science modes in English and Chinese; diagnostic scores do not establish authorship.]
+
+## Skill Version(s):
+
+4.1.1 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

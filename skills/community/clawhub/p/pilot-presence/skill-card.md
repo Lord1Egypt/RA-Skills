@@ -1,39 +1,54 @@
-## Description: <br>
-Real-time online/offline/busy presence tracking for agent fleets using ping and pub/sub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time online/offline/busy presence tracking for agent fleets using ping and pub/sub.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to track agent availability, broadcast presence changes, discover available agents for routing, and maintain a real-time agent directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presence updates may share agent identifiers or hostnames, availability status, and timing information with the configured Pilot Protocol coordinator or peers. <br>
-Mitigation: Use trusted coordinators and topics, and verify pilotctl transport and authentication behavior before using the skill in a sensitive fleet. <br>
+## Use Case:
 
+Developers and engineers use this skill to track agent availability, broadcast presence changes, and discover available agents for task routing in Pilot Protocol fleets.
 
-## Reference(s): <br>
-- [Pilot Presence on ClawHub](https://clawhub.ai/teoslayer/pilot-presence) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, the pilot-protocol skill, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow example uses Bash commands that publish agent presence data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in Pilot Protocol environments where publishing presence data is expected, and avoid running the loop with elevated privileges.
+
+Risk: The example loop uses a predictable /tmp status file path for continuous presence updates.
+
+Mitigation: Replace the fixed status file with a private temporary directory or another authenticated status source, and validate status values before publishing.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-presence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, the pilot-protocol skill, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

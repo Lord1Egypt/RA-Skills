@@ -46,40 +46,102 @@ metadata:
 
 Helps users diagnose issues with running PAI-EAS services.
 
+> **🔴🔴 [MUST — READ BEFORE ANYTHING ELSE] Two failure modes that cause task failure:**
+>
+> 1. **Listing is NOT diagnosing.** After `ListServices`/`list-services` returns
+>    the target service, you MUST immediately continue and run the FULL diagnostic
+>    workflow (`DescribeService` → `DescribeServiceEvent` → `DescribeServiceLog`
+>    multi-keyword → `ListServiceInstances` → `ListServiceContainers` →
+>    `DescribeServiceDiagnosis`) on a chosen service. NEVER stop after listing.
+> 2. **Always finish with an analysis section.** Every diagnosis MUST end with a
+>    written health-analysis + recommendation section. If the user described a
+>    symptom (e.g. "CUDA out of memory") that the live data does NOT show, you
+>    MUST still add a secondary section explaining common causes and fixes for
+>    that described symptom. Never end the turn with only raw command output.
+
 ---
 
 ## Installation
 
+Install the Aliyun CLI (>= 3.3.3, required baseline for plugin ecosystem
+compatibility) using a trusted package manager. On macOS, use Homebrew:
+
 ```bash
-# Aliyun CLI 3.3.1+
-curl -fsSL https://aliyuncli.alicdn.com/install.sh | bash
+brew install aliyun-cli
 aliyun version
 ```
 
-Verify CLI version >= 3.3.1, then enable automatic plugin installation and update plugins:
+On other platforms, download the versioned release tarball directly from
+`https://aliyuncli.alicdn.com/`, verify its checksum, and extract it manually
+before use (see the [CLI Installation Guide](references/cli-installation-guide.md)).
+Do not pipe remote scripts directly into a shell.
+
+Verify CLI version >= 3.3.3, then enable automatic plugin installation and update plugins:
 
 ```bash
 aliyun configure set --auto-plugin-install true
 aliyun plugin update
 ```
 
-### AI-Mode Configuration
+### User-Agent Setup
 
-Enable AI-Mode and set user-agent for this skill before running any commands:
+Before running any commands, generate the per-session `SESSION_ID` (see the
+Observability section) and build the unified user-agent string that embeds it.
+Pass this string via the `--user-agent` parameter on every CLI command:
 
 ```bash
-aliyun configure ai-mode enable
-aliyun configure ai-mode set-user-agent --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose"
+# Generate once per session (32-char lowercase hex), reuse for every call
+SESSION_ID=$(openssl rand -hex 16)
+UA="AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose/${SESSION_ID}"
 aliyun plugin update
 ```
 
-When diagnosis is complete, disable AI-Mode:
+> **Detailed Installation Guide**: For more installation options (Windows, ARM64, etc.), see [CLI Installation Guide](references/cli-installation-guide.md).
+
+---
+
+## Observability
+
+All CLI, SDK, and Terraform calls made by this skill MUST carry a unified
+user-agent (UA) so that requests can be traced back to this skill and to a
+single session.
+
+**UA template declaration (placeholder form):**
 
 ```bash
-aliyun configure ai-mode disable
+--user-agent AlibabaCloud-Agent-Skills/{SKILL_NAME}/{session-id}
 ```
 
-> **Detailed Installation Guide**: For more installation options (Windows, ARM64, etc.), see [CLI Installation Guide](references/cli-installation-guide.md).
+- `{SKILL_NAME}` — the fixed skill identifier: `alibabacloud-pai-eas-service-diagnose`
+- `{session-id}` — a per-session trace id (see rule below)
+
+**session-id generation rule:**
+
+1. Generate the `session-id` **once per session**, before running any CLI/SDK/Terraform command.
+2. It MUST be a **32-character lowercase hexadecimal** string (128-bit), e.g. generated via:
+   ```bash
+   SESSION_ID=$(openssl rand -hex 16)   # 32 hex chars
+   ```
+3. Reuse the **same** `session-id` for **every** call in the session — CLI (`--user-agent`),
+   SDK (UA/client config), and Terraform (`ALIBABACLOUDSTACK_UA` / provider `ua`), so all
+   requests in one session share a single trace id.
+4. Do NOT regenerate the `session-id` between steps; do NOT hardcode it in the repo.
+
+**Applying the UA (pass `--user-agent` on every CLI command):**
+
+```bash
+# Generate once per session
+SESSION_ID=$(openssl rand -hex 16)
+UA="AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose/${SESSION_ID}"
+
+# Pass it on every command, e.g.:
+aliyun eas describe-service --cluster-id <region> --service-name <service> \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose/${SESSION_ID}"
+```
+
+For SDK calls, set the same `UA` string as the client user-agent; for Terraform,
+export it via the provider user-agent configuration. The `{SKILL_NAME}` and
+`{session-id}` segments MUST be identical across all three surfaces.
 
 ---
 
@@ -149,7 +211,7 @@ The following RAM permissions are required to execute this Skill:
 
 ```bash
 # Step 1: Verify EAS plugin is installed
-aliyun eas list-services --region cn-hangzhou --max-items 1
+aliyun eas list-services --region cn-hangzhou --max-items 1 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **If Step 1 fails** with errors like "pai-eas is not a valid command" or "product not supported":
@@ -160,11 +222,15 @@ aliyun eas list-services --region cn-hangzhou --max-items 1
 
 ```bash
 # Step 2: Verify DescribeServiceLog API is available (use a known service for testing)
-aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name <any-service> --keyword "error" --limit 5 2>&1 | grep -q "can not find api" && echo "FATAL: DescribeServiceLog API not available" || echo "DescribeServiceLog API verified"
+aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name <any-service> --keyword "error" --limit 5 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose 2>&1 | grep -q "can not find api" && echo "FATAL: DescribeServiceLog API not available" || echo "DescribeServiceLog API verified"
 ```
 
 **If Step 2 fails** with "can not find api by path":
-1. Run: `aliyun plugin update && aliyun plugin install eas --force`
+1. Reinstall the official EAS plugin so the latest API metadata is available:
+   `aliyun plugin update && aliyun plugin install eas`
+   The `eas` plugin is a first-party Alibaba Cloud CLI plugin. Only add the
+   `--force` flag if a stale cached version blocks reinstall, since `--force`
+   skips version/dependency validation and should be used sparingly.
 2. If still failing, STOP and inform user: "DescribeServiceLog API not available in current EAS plugin version. Please update CLI."
 3. **Do NOT proceed with log-based diagnosis until API is verified**
 
@@ -184,7 +250,7 @@ aliyun eas describe-service-log --cluster-id cn-hangzhou --service-name <any-ser
 
 ```bash
 # Find the service in PAI-EAS
-aliyun eas list-services --region cn-hangzhou | jq '.Services[] | select(.ServiceName == "my-service") | {ServiceName, Status}'
+aliyun eas list-services --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Services[] | select(.ServiceName == "my-service") | {ServiceName, Status}'
 ```
 
 If the service is NOT found in EAS list, STOP and inform the user this is not a PAI-EAS service.
@@ -230,6 +296,18 @@ When a user reports an issue, follow this workflow. **Each step is mandatory:**
 5. [MUST] Run diagnosis → DescribeServiceDiagnosis
 ```
 
+> **🔴 [MUST] Listing is NOT diagnosing.** Calling `ListServices` alone
+> does NOT complete the task. After you find the target service(s), you
+> MUST pick one and run the FULL workflow (Steps 1–5) on it. Never stop
+> after listing services.
+>
+> **🔴 [MUST] Self-Verify before finishing.** Before you produce the
+> final answer, confirm you actually called ALL of: DescribeService,
+> DescribeServiceEvent, DescribeServiceLog (multi-keyword),
+> ListServiceInstances, AND ListServiceContainers. If ANY is missing →
+> go back and run it NOW. Do NOT report results until every mandatory
+> API above has been called for the diagnosed service.
+
 ### Forced Call Order for Instance & Container Queries
 
 > **[MUST]** Even if `list-service-instances` returns RestartCount, you MUST still call `list-service-containers`
@@ -241,12 +319,12 @@ When a user reports an issue, follow this workflow. **Each step is mandatory:**
 
 ```bash
 # Step 1: Get instance name (MANDATORY first step)
-aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE | \
+aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Instances[] | {InstanceId, InstanceName: .InstanceName, Status}'
 
 # Step 2: Use the instance name from Step 1 (MANDATORY — do NOT skip)
 aliyun eas list-service-containers --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --instance-name "<InstanceName from Step 1>"
+  --instance-name "<InstanceName from Step 1>" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Mandatory Multi-Keyword Log Queries
@@ -268,44 +346,44 @@ SERVICE="my-service"
 CLUSTER_ID="cn-hangzhou"
 
 # 0. [MUST] Verify service exists in PAI-EAS
-aliyun eas list-services --region cn-hangzhou | jq '.Services[] | select(.ServiceName == "'$SERVICE'") | {ServiceName, Status}'
+aliyun eas list-services --region cn-hangzhou --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Services[] | select(.ServiceName == "'$SERVICE'") | {ServiceName, Status}'
 
 # 1. Service status
-aliyun eas describe-service --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '{Status, RunningInstance, TotalInstance, Message}'
 
 # 2. Recent events (MANDATORY — retry if fails)
-aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Events[-5:] | .[] | {Time, Type, Reason, Message}' || \
   (echo "ERROR: Failed to retrieve events. Retrying..." && \
-   aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVICE --read-timeout 60 --user-agent AlibabaCloud-Agent-Skills)
+   aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVICE --read-timeout 60 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose)
 
 # 3. Error logs — MUST call multiple times with different keywords
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --keyword "error" --limit 30 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "error" --limit 30 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --keyword "oom" --limit 30 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "oom" --limit 30 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --keyword "killed" --limit 30 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "killed" --limit 30 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --keyword "exit" --limit 30 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "exit" --limit 30 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # 4. Instance status (MUST get instance name first, then query containers)
-aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Instances[] | {InstanceId, InstanceName: .InstanceName, Status}'
 
 # 4b. Container details (requires --instance-name from step 4)
 INSTANCE_NAME="<InstanceName from step 4>"
 aliyun eas list-service-containers --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --instance-name $INSTANCE_NAME --user-agent AlibabaCloud-Agent-Skills
+  --instance-name $INSTANCE_NAME --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # 5. Diagnosis report
-aliyun eas describe-service-diagnosis --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-diagnosis --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 > **Cross-region queries**: When querying services in a region different from your default, specify the `--cluster-id` parameter with the target region:
 > ```bash
-> aliyun eas describe-service --cluster-id cn-shanghai --service-name my-service --user-agent AlibabaCloud-Agent-Skills
+> aliyun eas describe-service --cluster-id cn-shanghai --service-name my-service --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 > ```
 
 ### Quick Issue Locator

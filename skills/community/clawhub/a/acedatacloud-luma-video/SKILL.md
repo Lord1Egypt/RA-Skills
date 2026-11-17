@@ -5,18 +5,22 @@ license: Apache-2.0
 metadata:
   author: acedatacloud
   version: "1.0"
-compatibility: Requires ACEDATACLOUD_API_TOKEN environment variable. Optionally pair with mcp-luma for tool-use.
+compatibility: Requires ACEDATACLOUD_API_TOKEN in .env file (get an API key at https://platform.acedata.cloud/console/applications). Optionally pair with mcp-luma for tool-use.
 ---
 
 # Luma Video Generation
 
 Generate AI videos through AceDataCloud's Luma Dream Machine API.
 
-## Authentication
+## First-time setup
 
-```bash
-export ACEDATACLOUD_API_TOKEN="your-token-here"
-```
+1. Install the official Skill with `clawhub install @acedatacloud/luma`. Check that the ClawHub publisher is **@acedatacloud**.
+2. Sign in at [AceDataCloud → Applications](https://platform.acedata.cloud/console/applications), open **General application**, and check Luma access, balance, and current pricing. Copy its API key, or select **Manage Keys → Create** for a separate key. Copy the key value without `Bearer `; a `platform-...` management token is not a service API key.
+3. If you enable **Allowed APIs** restrictions, include `/luma/videos` and `/luma/tasks`. Advanced workflows below may call additional routes.
+4. On the OpenClaw Gateway host, put `ACEDATACLOUD_API_TOKEN=your_api_key_here` in `~/.openclaw/.env`, then restart the Gateway and start a new session. For a direct terminal test, run `export ACEDATACLOUD_API_TOKEN="your_api_key_here"` in that shell. Never put the key in a prompt or commit an `.env` file.
+5. Run the **Quick Start** below. If this workflow returns a task ID, query that same task until it finishes; do not submit the same billable request again just to check progress.
+
+[Illustrated key setup, first run, and troubleshooting](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw) · [Token details](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
 
 ## Quick Start
 
@@ -24,8 +28,10 @@ export ACEDATACLOUD_API_TOKEN="your-token-here"
 curl -X POST https://api.acedata.cloud/luma/videos \
   -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "a drone flying over a mountain lake at sunrise", "action": "generate", "wait": true}'
+  -d '{"prompt": "a drone flying over a mountain lake at sunrise", "action": "generate", "async": true}'
 ```
+
+> **Async:** See [async task polling](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md). Poll via `POST /luma/tasks` with `{"id": "..."}`.
 
 ## Workflows
 
@@ -93,32 +99,18 @@ POST /luma/videos
 | `enhancement` | bool | `true` | Enhance prompt for better results |
 | `start_image_url` | string | — | Reference image for first frame |
 | `end_image_url` | string | — | Reference image for last frame |
-| `video_id` | string | — | Required for extend action |
-
-## Task Polling
-
-```json
-POST /luma/tasks
-{"task_id": "your-task-id"}
-```
-
-Poll every 5 seconds. States: `pending` → `completed` or `failed`.
-
-## MCP Server
-
-```bash
-pip install mcp-luma
-```
-
-Or hosted: `https://luma.mcp.acedata.cloud/mcp`
-
-Key tools: `luma_generate_video`, `luma_generate_video_from_image`, `luma_extend_video`
+| `video_id` | string | — | ID of video to extend (alternative to `video_url`) |
+| `video_url` | string | — | URL of video to extend (alternative to `video_id`) |
+| `timeout` | number | — | Timeout in seconds for the API to return data |
+| `callback_url` | string | — | Webhook URL for async notifications |
 
 ## Gotchas
 
 - `enhancement: true` (default) improves prompt quality but may alter your intent — set to `false` for literal prompts
 - Start/end image URLs must be publicly accessible
 - `loop: true` creates seamless looping video — good for backgrounds and social media
-- Extend requires the `video_id` from a previously completed generation
+- Extend requires either `video_id` or `video_url` from a previously completed generation
 - Video generation takes 1–5 minutes depending on complexity
 - Both start and end images are optional — you can use just one for partial guidance
+
+> **MCP:** `pip install mcp-luma` | Hosted: `https://luma.mcp.acedata.cloud/mcp` | See [all MCP servers](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/mcp-servers.md)

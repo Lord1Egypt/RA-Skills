@@ -1,42 +1,56 @@
-## Description: <br>
-Google Workspace Bridge (Gmail, Drive, Sheets, Calendar) via local API at http://127.0.0.1:8787 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Bridge for Gmail, Drive, Sheets, and Calendar via a local API at http://127.0.0.1:8787.
 
-## Publisher: <br>
-[spinzerus](https://clawhub.ai/user/spinzerus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spinzerus](https://clawhub.ai/user/spinzerus)
 
-## Use Case: <br>
-Developers and assistants use this skill to inspect Gmail messages, search Drive files, read or update Sheets ranges, and list or create Calendar events through a trusted local bridge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify sensitive Google Workspace data through an external local bridge. <br>
-Mitigation: Install only when you operate and trust the bridge, verify the Google account and OAuth scopes, and keep the bridge bound to localhost. <br>
-Risk: Write-capable actions can update Sheets, create Calendar events, or forward email. <br>
-Mitigation: Require explicit user confirmation before Sheets writes, Calendar creation, or email forwarding. <br>
-Risk: Bridge access may expose OAuth-backed account actions if the local endpoint is weakly protected. <br>
-Mitigation: Use a strong bridge secret when supported and verify token storage and bridge authentication before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spinzerus/gmail-bridge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/spinzerus) <br>
+## Use Case:
 
+External users and developers use this skill to query Gmail, search Drive, read or update Sheets, and list or create Calendar events through a local Google Workspace bridge.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON bridge responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq, and optionally BRIDGE_SECRET when the local bridge enforces a secret header.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive Google Workspace mail, files, sheets, and calendar data through a local bridge.
+
+Mitigation: Review before installing and use only with a trusted local bridge.
+
+Risk: A non-local bridge endpoint or exposed bridge secret could expand access beyond the intended local setup.
+
+Mitigation: Avoid setting GMAIL_BRIDGE_URL to non-local destinations and rotate BRIDGE_SECRET if it may have been exposed.
+
+Risk: Write and create operations can modify Google Sheets or Calendar data.
+
+Mitigation: Require explicit user approval before running write or create operations.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/spinzerus/skills/gmail-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text summaries with inline shell commands and JSON responses from the local bridge]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; may use BRIDGE_SECRET and GMAIL_BRIDGE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

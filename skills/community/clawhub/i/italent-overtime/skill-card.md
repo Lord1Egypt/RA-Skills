@@ -1,46 +1,61 @@
-## Description: <br>
-Manages Beisen iTalent overtime workflows by helping authorized users authenticate, submit overtime records, query scheduled overtime, and request overtime cancellation through the iTalent Open Platform API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Italent Overtime helps agents authenticate with Beisen iTalent and push, query, or cancel employee overtime records through the iTalent open API.
 
-## Publisher: <br>
-[zjm1226](https://clawhub.ai/user/zjm1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjm1226](https://clawhub.ai/user/zjm1226)
 
-## Use Case: <br>
-HR staff, managers, and authorized employees use this skill to manage overtime records in Beisen iTalent, including authentication, overtime submission, overtime lookup, and cancellation requests. It should be used only by users who are authorized to manage the relevant employee overtime records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles AppKey, AppSecret, and access tokens for an HR system. <br>
-Mitigation: Use least-privilege iTalent API credentials, avoid sharing secrets in chats or shell history, and use --save only when ~/.italent-overtime.conf is protected. <br>
-Risk: The push and cancel commands can change live overtime records and initiate approval workflows. <br>
-Mitigation: Require explicit human confirmation before push or cancel actions, including the target employee, overtime dates, reason, and overtime ID where applicable. <br>
-Risk: A stale or overbroad token may allow unauthorized access to employee overtime data. <br>
-Mitigation: Re-authenticate when tokens expire, rotate credentials as needed, and install the skill only for users authorized to manage the relevant iTalent records. <br>
+## Use Case:
 
+Employees, HR operators, and agents use this skill to manage Beisen iTalent overtime workflows, including submitting overtime, querying employee overtime records, and requesting cancellation of submitted overtime.
 
-## Reference(s): <br>
-- [API interface documentation](references/api-docs.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Beisen iTalent Open Platform](https://open.italent.cn) <br>
-- [iTalent token endpoint](https://openapi.italent.cn/token) <br>
-- [ClawHub skill page](https://clawhub.ai/zjm1226/italent-overtime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call live iTalent APIs and may write an access token to ~/.italent-overtime.conf when --save is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact files mention 1.1.0) <br>
+Risk: The skill handles iTalent AppKey/AppSecret values and saved access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-shared credentials, avoid entering secrets into shell history, rotate any credential-shaped values found in the package, and store saved tokens with strict local permissions or a credential store.
+
+Risk: The skill can submit or revoke HR overtime records in a real iTalent tenant.
+
+Mitigation: Require explicit human confirmation and review target employee, time range, and overtime ID before push or cancel actions.
+
+Risk: The security verdict is suspicious for this release.
+
+Mitigation: Review and scan the package before installing it in any real HR environment.
+
+## Reference(s):
+
+- [API docs](references/api-docs.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+- [Beisen iTalent open platform](https://open.italent.cn)
+- [iTalent OpenAPI endpoint](https://openapi.italent.cn)
+- [ClawHub skill page](https://clawhub.ai/zjm1226/skills/italent-overtime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or JSON CLI output with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied iTalent AppKey/AppSecret and employee identifiers; can submit or revoke HR overtime records.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

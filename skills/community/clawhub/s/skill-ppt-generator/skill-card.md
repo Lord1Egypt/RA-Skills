@@ -1,37 +1,48 @@
-## Description: <br>
-Generate PowerPoint (.pptx) files from Markdown input when a user requests a presentation to be created or exported. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PowerPoint (.pptx) files from Markdown input. Use when user requests a PPT to be created or exported.
 
-## Publisher: <br>
-[mlnmg2020](https://clawhub.ai/user/mlnmg2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mlnmg2020](https://clawhub.ai/user/mlnmg2020)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to convert structured Markdown into downloadable PowerPoint (.pptx) presentations when a request asks to create or export a PPT file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill runs a local Python script on user-selected Markdown and writes a PowerPoint output file.
+
+Mitigation: Use explicit input and output paths, run it only on Markdown files you choose, and install python-pptx from a trusted environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to convert structured Markdown into downloadable PowerPoint presentations. It is suited for requests such as creating a PPT, exporting content as .pptx, or generating slides from user-provided content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [files, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated presentation is written to the selected output path and could overwrite an existing file. <br>
-Mitigation: Use an explicit output path and confirm overwrites before running the conversion. <br>
+**Output Format:** [PowerPoint (.pptx) file generated from Markdown input, with shell command guidance.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires an input Markdown file and an output .pptx path; slide breaks use ---.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration] <br>
-**Output Format:** [PowerPoint (.pptx) file generated from Markdown input, with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.7+ and python-pptx in the execution environment.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-A browser-based JSON query tool for extracting values from pasted JSON with path queries, array indexes, wildcards, and nested access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A client-side JSON query utility for extracting values from JSON with path queries, array indexes, wildcards, and nested traversal.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers, testers, and data analysts use this skill to inspect JSON payloads and extract specific fields or nested values without sending the data to a backend service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive JSON entered into a hosted page may still expose visit metadata to the hosting site even when processing runs locally. <br>
-Mitigation: Use the included local HTML file or a trusted self-hosted deployment for sensitive JSON. <br>
-Risk: Deployment-token instructions could expose account access if used casually or pasted into an untrusted environment. <br>
-Mitigation: Use deployment tokens only for intentional self-hosting and follow the hosting provider's least-privilege token guidance. <br>
+## Use Case:
 
+Developers, testers, and data analysts use this skill to query JSON payloads locally and return selected fields or formatted results for debugging, validation, and data extraction.
 
-## Reference(s): <br>
-- [JSON Query Tool on ClawHub](https://clawhub.ai/shenghoo123-png/json-query-tool) <br>
-- [Hosted JSON Query Tool](https://json-query-tool.pages.dev/) <br>
-- [Project repository link from skill documentation](https://github.com/shenghoo123-png/json-query-tool-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, configuration] <br>
-**Output Format:** [JSON, table, or raw text results; Markdown guidance for agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes JSON in the browser; deployment notes include optional self-hosting commands and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive JSON may be exposed if users rely on a hosted or modified deployment that enables third-party ads or other external integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the reviewed static file locally or a no-ads self-hosted deployment before processing sensitive JSON.
+
+Risk: The Chinese-language interface and documentation may cause misunderstandings for users who are not comfortable with Chinese.
+
+Mitigation: Verify the query syntax and returned data before relying on results in production workflows.
+
+## Reference(s):
+
+- [ClawHub JSON Query Tool page](https://clawhub.ai/shenghoo123-png/skills/json-query-tool)
+- [Hosted JSON Query Tool](https://json-query-tool.pages.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, guidance]
+
+**Output Format:** [JSON, table, or raw text results with concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries and JSON parsing are handled client-side; output depends on the selected query path and display format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

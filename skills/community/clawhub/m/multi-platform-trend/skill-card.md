@@ -1,39 +1,62 @@
-## Description: <br>
-Multi Platform Trend helps an agent fetch public trending-topic lists from Zhihu, Weibo, Baidu, and Bilibili for content ideation and topic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public trending topics from Zhihu, Weibo, Baidu, and Bilibili and returns structured trend data for content planning.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Content creators, social media operators, and agents use this skill to collect current public trend data from Chinese content platforms, filter it by platform or keyword, and identify timely topics for writing or campaign planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching trend data contacts external public platforms, which may expose request metadata such as IP address and user-agent. <br>
-Mitigation: Confirm before running in locked-down or privacy-sensitive environments, and use an approved network route or proxy when required. <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to retrieve current Chinese-platform trending topics, filter them by platform or keyword, and prepare topic candidates for follow-on analysis or drafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/multi-platform-trend) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled script can emit text reports or JSON trend records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trend records include title, platform, heat, heat_display, url, category, and excerpt when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+Risk: The skill runs a local Python script that makes outbound requests to Zhihu, Weibo, Baidu, and Bilibili.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where those public trend lookups are acceptable, and apply normal outbound network controls.
+
+Risk: Broad trigger phrases may cause the skill to run more often than intended.
+
+Mitigation: Review and narrow the trigger phrases or require confirmation before fetching trends in sensitive workflows.
+
+Risk: Trend heat values are estimates and source availability can vary by platform.
+
+Mitigation: Treat fetched rankings as directional signals and verify important topics against the source platform before publication decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/freedompixels/skills/multi-platform-trend)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+- [Zhihu hot-list API endpoint](https://api.zhihu.com/topstory/hot-lists/total)
+- [Weibo hot search endpoint](https://weibo.com/ajax/side/hotSearch)
+- [Baidu realtime board endpoint](https://top.baidu.com/api/board?platform=wise&tab=realtime)
+- [Bilibili ranking endpoint](https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown-facing instructions with optional JSON trend records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trend records include title, platform, heat, heat_display, url, category, and excerpt when available.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Get current weather and forecasts through wttr.in without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts from wttr.in without requiring an API key.
 
-## Publisher: <br>
-[164149043](https://clawhub.ai/user/164149043) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[164149043](https://clawhub.ai/user/164149043)
 
-## Use Case: <br>
-Developers and agent users use this skill to compose curl-based weather lookups for current conditions, forecasts, compact weather formats, and location-specific weather queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries, including specific locations or coordinates, leave the user's machine when the generated curl commands are run. <br>
-Mitigation: Avoid exact home addresses, internal site names, or sensitive coordinates unless they are intended to be shared with the public weather provider. <br>
+## Use Case:
 
+Agents use this skill to provide shell-command guidance for retrieving current conditions, forecasts, compact weather summaries, and custom weather formats from wttr.in.
 
-## Reference(s): <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [ClawHub skill page](https://clawhub.ai/164149043/weather-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; location and format selections are sent to wttr.in when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Weather lookups send location names, format parameters, and request metadata to wttr.in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive private location labels and review commands before execution.
+
+## Reference(s):
+
+- [wttr.in help](https://wttr.in/:help)
+- [Weather Tools on ClawHub](https://clawhub.ai/164149043/skills/weather-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands call wttr.in and may include location names or output format parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

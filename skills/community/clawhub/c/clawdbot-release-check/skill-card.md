@@ -1,41 +1,58 @@
-## Description: <br>
-Check for new clawdbot releases and notify once per new version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check for new clawdbot releases and notify once per new version.
 
-## Publisher: <br>
-[pors](https://clawhub.ai/user/pors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pors](https://clawhub.ai/user/pors)
 
-## Use Case: <br>
-Developers and Clawdbot users use this skill to check whether their local Clawdbot install is behind the latest GitHub release and to receive a one-time update notification. It can also configure a daily notification job when the user opts in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A persistent daily check can notify the wrong recipient or channel if setup is run with incorrect delivery settings. <br>
-Mitigation: Run setup only when scheduled notifications are wanted, verify the recipient and channel before enabling it, and uninstall with setup.sh --uninstall when no longer needed. <br>
-Risk: The scripts use predictable temporary file paths, which can be unsafe on shared machines. <br>
-Mitigation: Use the skill on trusted machines or update the scripts to use mktemp-style temporary files before deployment in shared environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pors/clawdbot-release-check) <br>
-- [Clawdbot GitHub repository](https://github.com/clawdbot/clawdbot) <br>
-- [Clawdbot GitHub releases](https://github.com/clawdbot/clawdbot/releases) <br>
+## Use Case:
 
+Developers and operators use this skill to check whether their installed Clawdbot version is behind the latest published release and to receive a one-time notification when an update is available.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown status and notification text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local state and cache files under ~/.clawdbot and can optionally add a daily notification job.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scheduled update checks may process untrusted release data before notifying the user.
+
+Mitigation: Review or patch the skill before enabling the scheduled job; prefer manual checks until release notes are handled as quoted untrusted data.
+
+Risk: Release tag parsing may be unsafe for non-numeric or unexpected version strings.
+
+Mitigation: Validate release tags as numeric versions before Bash arithmetic or skip comparison for unsupported tag formats.
+
+Risk: Fixed temporary file paths can be overwritten or raced on shared systems.
+
+Mitigation: Replace fixed files under /tmp with mktemp-created paths or files in the skill state directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pors/skills/clawdbot-release-check)
+- [Clawdbot repository](https://github.com/clawdbot/clawdbot)
+- [Clawdbot releases API](https://api.github.com/repos/clawdbot/clawdbot/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown notifications with inline shell commands and plain-text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local state, cache release data, and install or remove a scheduled notification job.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

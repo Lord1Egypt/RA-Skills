@@ -1,0 +1,651 @@
+{
+  "algorithms": [
+    {
+      "name": "玩手机监视",
+      "appUuid": "a1000004",
+      "appName": "play_phone_monitoring",
+      "label": "playing_phone",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出在工作时间玩手机的员工，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "垃圾检测",
+      "appUuid": "a1000005",
+      "appName": "garbage_detection",
+      "label": "garbage",
+      "category": "环境卫生与园区",
+      "intro": "检测出目标区域内出现的垃圾，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "口罩检测",
+      "appUuid": "a1000007",
+      "appName": "mask_detection",
+      "label": "no mask",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出目标区域内未戴口罩的人员，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "吸烟检测",
+      "appUuid": "a1000009",
+      "appName": "smoking_detection",
+      "label": "smoking",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出在目标区域内抽烟的人员，支持视频流和图片检测。算法支持环境：人至少漏出三分之二人体，烟需要白色外壳的烟。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "睡岗检测",
+      "appUuid": "a1000010",
+      "appName": "sleeping_detection",
+      "label": "sleeping",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出员工上班期间在岗位睡觉的行为，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "室内火情检测",
+      "appUuid": "a1000013",
+      "appName": "indoor_fire_detection",
+      "label": "indoor_fire",
+      "category": "消防安全",
+      "intro": "对视频场景中室内的火情进行检测，支持视频流。",
+      "needs_diku": "",
+      "support": "视频流",
+      "has_areas": false
+    },
+    {
+      "name": "电动车检测",
+      "appUuid": "a1000015",
+      "appName": "motorcycle_detection",
+      "label": "motorcycle",
+      "category": "车辆与交通",
+      "intro": "检测出目标区域内出现的电动摩托车，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "离岗检测",
+      "appUuid": "a1000016",
+      "appName": "off_duty_detection",
+      "label": "off duty",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出员工上班期间离岗的行为，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": false
+    },
+    {
+      "name": "室外火情检测",
+      "appUuid": "a1000017",
+      "appName": "outdoor_fire_detection",
+      "label": "outdoor_fire",
+      "category": "消防安全",
+      "intro": "对视频场景中室外的火情进行检测，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "包裹检测",
+      "appUuid": "a1000020",
+      "appName": "package_detection",
+      "label": "package",
+      "category": "零售与门店运营",
+      "intro": "检测出目标区域内出现的包裹，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "安全帽检测",
+      "appUuid": "a1000021",
+      "appName": "hardhat_detection",
+      "label": "no_hardhat",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出目标区域内未穿戴安全帽的人员，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "宠物检测",
+      "appUuid": "a1000024",
+      "appName": "pet_detection",
+      "label": "dog",
+      "category": "宠物",
+      "intro": "检测出目标区域内出现的猫、狗、鸟，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "人形检测",
+      "appUuid": "a1000025",
+      "appName": "human_detection",
+      "label": "human",
+      "category": "人员识别与跟踪",
+      "intro": "检测出目标区域内出现的人，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "区域闯入",
+      "appUuid": "a1000026",
+      "appName": "area_invasion",
+      "label": "area_invasion",
+      "category": "区域安防与周界",
+      "intro": "检测区域内是否有人员闯入，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "区域离开",
+      "appUuid": "a1000027",
+      "appName": "area_departure",
+      "label": "area departure",
+      "category": "区域安防与周界",
+      "intro": "检测区域内是否有人员离开，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "客情分析",
+      "appUuid": "a1000029",
+      "appName": "gender_age",
+      "label": "age:old \\n gender:woman",
+      "category": "人员识别与跟踪",
+      "intro": "检测出目标区域内出现的顾客年龄和性别。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "鸟识别",
+      "appUuid": "a1000030",
+      "appName": "bird_identification",
+      "label": "Purple_Finch",
+      "category": "环境卫生与园区",
+      "intro": "识别出目标区域内出现的鸟种类，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "时光缩影(一日快放)",
+      "appUuid": "a1000031",
+      "appName": "",
+      "label": "",
+      "category": "视频处理与质量",
+      "intro": "24小时片段浓缩，将24小时的视频浓缩成1分钟的视频，快速浏览一日的精彩片段。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "人车宠物包检测",
+      "appUuid": "a1000032",
+      "appName": "pcpp_combined_detection",
+      "label": "person",
+      "category": "复合多目标",
+      "intro": "检测出目标区域内出现的人、车、宠物、包裹，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "图像质量检测",
+      "appUuid": "a1000035",
+      "appName": "image_quality_detection",
+      "label": "snow",
+      "category": "视频处理与质量",
+      "intro": "检测摄像头的全黑、全白、偏色、条纹、雪花、模糊等质量问题。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "中国车牌识别",
+      "appUuid": "a1000037",
+      "appName": "china_lpr",
+      "label": "京000000",
+      "category": "车辆与交通",
+      "intro": "检测车牌并识别车牌号码，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": true
+    },
+    {
+      "name": "视觉问答",
+      "appUuid": "a1000040",
+      "appName": "jf_vqa",
+      "label": "",
+      "category": "视频处理与质量",
+      "intro": "给定一张图片提出与该图片相关的问题，能返回一个正确的回答。",
+      "needs_diku": "",
+      "support": "图片",
+      "has_areas": false
+    },
+    {
+      "name": "车辆识别",
+      "appUuid": "a1000042",
+      "appName": "vehicle_recognition",
+      "label": "Car",
+      "category": "车辆与交通",
+      "intro": "车辆识别。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": true
+    },
+    {
+      "name": "人体打码",
+      "appUuid": "a1000045",
+      "appName": "human_obfuscation_image",
+      "label": "",
+      "category": "视频处理与质量",
+      "intro": "对画面中的人体进行实时打码，支持视频流和图片，输出的是打码后的人体图片。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": false
+    },
+    {
+      "name": "车牌打码",
+      "appUuid": "a1000046",
+      "appName": "license_plate_obfuscation_image",
+      "label": "",
+      "category": "视频处理与质量",
+      "intro": "对视频中的车牌进行实时打码，支持视频流和图片，输出的是打码后的人体图片。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": false
+    },
+    {
+      "name": "跌倒检测",
+      "appUuid": "a1000048",
+      "appName": "fall_detection_image",
+      "label": "down",
+      "category": "人员识别与跟踪",
+      "intro": "检测目标区域内是否有人跌倒，支持图片检测。应用场景：独居老人跌倒检测。算法要求：跌倒人体全部露出且少量遮挡（<30%）。推荐阈值：0.6。推荐检测距离：3-10米。",
+      "needs_diku": "",
+      "support": "图片",
+      "has_areas": false
+    },
+    {
+      "name": "宠物行为识别",
+      "appUuid": "a1000070",
+      "appName": "pet_action_recognition",
+      "label": "eating",
+      "category": "宠物",
+      "intro": "检测出宠物（猫、狗）的行为（躺卧、走动、跳跃、进食）。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "视图摘要",
+      "appUuid": "jf000009",
+      "appName": "",
+      "label": "person",
+      "category": "视频处理与质量",
+      "intro": "基于视频文件或图片将所处的场景提取相关重点事件信息，以文本方式输出。",
+      "needs_diku": "",
+      "support": "图片",
+      "has_areas": false
+    },
+    {
+      "name": "烟火检测",
+      "appUuid": "a1000064",
+      "appName": "fire_smoke_detection",
+      "label": "fire",
+      "category": "消防安全",
+      "intro": "对场景中火情和烟雾进行检测，支持视频流和图片检测。",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": false
+    },
+    {
+      "name": "人形ReID",
+      "appUuid": "a1000078",
+      "appName": "human_reid",
+      "label": "human",
+      "category": "人员识别与跟踪",
+      "intro": "> 检测出目标区域内出现的人（ReID、朝向、完整度），支持视频流和图片检测。 > ReID：行人重识别",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": false
+    },
+    {
+      "name": "厨师帽检测",
+      "appUuid": "a1000083",
+      "appName": "chef_hat_detection",
+      "label": "no head covering",
+      "category": "安全生产与岗位行为",
+      "intro": "检测出目标区域内所有未佩戴任何头部防护装备或帽子的人员目标，支持视频流和图片检测",
+      "needs_diku": "",
+      "support": "视频流/图片",
+      "has_areas": false
+    },
+    {
+      "name": "消防车道占用",
+      "appUuid": "a1000085",
+      "appName": "fire_lane_occupied",
+      "label": "fire lane occupied",
+      "category": "消防安全",
+      "intro": "检测建筑地产、智慧工业、园区消防通道是否被占用，保障通道畅通，满足应急救援需求。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "灭火器检测",
+      "appUuid": "a1000086",
+      "appName": "fire_extinguisher_detection",
+      "label": "灭火器",
+      "category": "消防安全",
+      "intro": "识别建筑地产、智慧工业、油站灭火器位置、数量及完好度，确保设备可用，辅助应急管理与安全检查。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "化学危险品车辆检测",
+      "appUuid": "a1000087",
+      "appName": "chemical_vehicles_detection",
+      "label": "chemical vehicles",
+      "category": "车辆与交通",
+      "intro": "识别智慧工业、交通、园区内的危化品车辆，实现实时监控、路径追踪与违规预警，保障公共安全。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "攀爬识别",
+      "appUuid": "a1000088",
+      "appName": "climbing_wall_detection",
+      "label": "climbing wall",
+      "category": "区域安防与周界",
+      "intro": "检测智慧园区、建筑地产人员攀爬外墙、围栏、脚手架等行为，阻止违规攀爬，防范坠落与非法入侵。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "静电服检测",
+      "appUuid": "a1000089",
+      "appName": "anti_static_clothing_detection",
+      "label": "anti static clothing",
+      "category": "安全生产与岗位行为",
+      "intro": "检测智慧能源、工业工作人员是否穿戴静电服，防止静电引发火灾 / 爆炸，适用于易燃易爆场景。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "特种工程车检测",
+      "appUuid": "a1000091",
+      "appName": "engineering_vehicles_detection",
+      "label": "engineering vehicles",
+      "category": "车辆与交通",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "渣土车检测",
+      "appUuid": "a1000092",
+      "appName": "dump_truck_detection",
+      "label": "dump truck",
+      "category": "车辆与交通",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "员工进食检测",
+      "appUuid": "a1000093",
+      "appName": "office_snacking_detection",
+      "label": "eating",
+      "category": "安全生产与岗位行为",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "门店清台检测",
+      "appUuid": "a1000094",
+      "appName": "table_uncleared_detection",
+      "label": "messy table",
+      "category": "零售与门店运营",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "明火离人",
+      "appUuid": "a1000095",
+      "appName": "fire_near_detection",
+      "label": "middle risk",
+      "category": "消防安全",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "广告屏未开检测",
+      "appUuid": "a1000096",
+      "appName": "screen_play_detection",
+      "label": "off add screen",
+      "category": "零售与门店运营",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "过道垃圾检测",
+      "appUuid": "a1000097",
+      "appName": "aisle_garbage_detection",
+      "label": "garbage",
+      "category": "环境卫生与园区",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "吊旗遮挡检测",
+      "appUuid": "a1000098",
+      "appName": "banner_block_detection",
+      "label": "banner block",
+      "category": "零售与门店运营",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "物流箱占道检测",
+      "appUuid": "a1000099",
+      "appName": "cargo_box_detection",
+      "label": "obstructive cargo box",
+      "category": "零售与门店运营",
+      "intro": "支持各类物流箱检测服务，可应用于零售、餐饮等需要经常上货、补货的场景，能及时检出物流箱、并对零售门店堆积情占道况进行告警，有效解决因清理不及时导致的货物占道、拥堵情况。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "队列管理",
+      "appUuid": "a1000100",
+      "appName": "queue_vision_manager",
+      "label": "in queue",
+      "category": "零售与门店运营",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "翻越栏杆识别",
+      "appUuid": "a1000101",
+      "appName": "railing_crossing_detection",
+      "label": "railing crossing",
+      "category": "区域安防与周界",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "跨位停车检测",
+      "appUuid": "a1000102",
+      "appName": "cross_parking_detection",
+      "label": "cross_parking",
+      "category": "车辆与交通",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "垃圾满溢检测",
+      "appUuid": "a1000103",
+      "appName": "trash_fullness_detection",
+      "label": "full trash",
+      "category": "环境卫生与园区",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "聚众识别",
+      "appUuid": "a1000104",
+      "appName": "crowd_gathering_detection",
+      "label": "crowd gathering",
+      "category": "区域安防与周界",
+      "intro": "检测智慧城市、园区、零售区域人员聚集情况，聚集超阈值时触发预警，辅助人群管控与客流疏导。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "偷盗识别（视频版）",
+      "appUuid": "a1000110",
+      "appName": "theft_detection",
+      "label": "thief",
+      "category": "区域安防与周界",
+      "intro": "",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    },
+    {
+      "name": "植物枯萎检测",
+      "appUuid": "a1000118",
+      "appName": "plant_wilt_detection",
+      "label": "wilt",
+      "category": "环境卫生与园区",
+      "intro": "检测植物是否枯萎。",
+      "needs_diku": "",
+      "support": "图片/视频流",
+      "has_areas": false
+    }
+  ],
+  "scenes": {
+    "明厨亮灶/后厨监管": [
+      "口罩检测",
+      "厨师帽检测",
+      "吸烟检测",
+      "员工进食检测",
+      "明火离人",
+      "门店清台检测"
+    ],
+    "工地/车间安全生产": [
+      "安全帽检测",
+      "静电服检测",
+      "玩手机监视",
+      "睡岗检测",
+      "离岗检测",
+      "吸烟检测"
+    ],
+    "消防安全": [
+      "室内火情检测",
+      "室外火情检测",
+      "烟火检测",
+      "明火离人",
+      "消防车道占用",
+      "灭火器检测"
+    ],
+    "周界安防/园区": [
+      "区域闯入",
+      "区域离开",
+      "攀爬识别",
+      "翻越栏杆识别",
+      "聚众识别",
+      "偷盗识别（视频版）",
+      "人形检测"
+    ],
+    "门禁/访客管理": [
+      "跌倒检测"
+    ],
+    "车辆与停车管理": [
+      "中国车牌识别",
+      "车辆识别",
+      "电动车检测",
+      "跨位停车检测",
+      "化学危险品车辆检测",
+      "渣土车检测",
+      "特种工程车检测"
+    ],
+    "零售门店运营": [
+      "门店清台检测",
+      "队列管理",
+      "广告屏未开检测",
+      "吊旗遮挡检测",
+      "物流箱占道检测",
+      "包裹检测",
+      "客情分析"
+    ],
+    "环卫/园区环境": [
+      "垃圾检测",
+      "垃圾满溢检测",
+      "过道垃圾检测",
+      "植物枯萎检测",
+      "鸟识别"
+    ],
+    "宠物场景": [
+      "宠物检测",
+      "宠物行为识别"
+    ],
+    "视频质量与内容理解": [
+      "图像质量检测",
+      "视图摘要",
+      "视觉问答",
+      "时光缩影(一日快放)",
+      "人体打码",
+      "车牌打码"
+    ]
+  }
+}

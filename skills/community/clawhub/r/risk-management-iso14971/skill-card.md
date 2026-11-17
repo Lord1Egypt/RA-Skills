@@ -1,46 +1,57 @@
-## Description: <br>
-Medical device risk management specialist implementing ISO 14971 throughout the product lifecycle, including risk analysis, risk evaluation, risk control, and post-production information analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ISO 14971 medical device risk management guidance for planning, hazard analysis, risk evaluation, risk control, residual risk assessment, and post-production monitoring.
 
-## Publisher: <br>
-[AyangAI](https://clawhub.ai/user/AyangAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayangai](https://clawhub.ai/user/ayangai)
 
-## Use Case: <br>
-Regulatory, quality, clinical, and engineering teams use this skill to draft ISO 14971 risk-management plans, hazard analyses, risk evaluations, risk-control records, residual-risk assessments, and post-production monitoring updates for medical-device work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft risk-management outputs may be mistaken for approved regulatory, quality, clinical, or legal conclusions. <br>
-Mitigation: Require qualified regulatory, quality, clinical, and legal review before using outputs in regulated medical-device work. <br>
-Risk: Risk matrix and RPN calculations may be applied without aligning criteria to the device-specific risk management plan. <br>
-Mitigation: Confirm probability, severity, detection, acceptability, and ALARP criteria against the approved risk management plan before relying on calculator results. <br>
-Risk: Publisher provenance is unavailable for this version. <br>
-Mitigation: Verify the publisher profile and release source before installing in controlled or production environments. <br>
+## Use Case:
 
+Medical device quality, regulatory, and engineering teams use this skill to structure ISO 14971 risk management work across the product lifecycle, including risk plans, hazard analysis, FMEA/FTA/HAZOP method selection, risk controls, ALARP rationale, benefit-risk analysis, and post-market monitoring.
 
-## Reference(s): <br>
-- [ISO 14971 Implementation Guide](references/iso14971-implementation-guide.md) <br>
-- [Risk Analysis Methods](references/risk-analysis-methods.md) <br>
-- [Risk Assessment Templates](references/risk-assessment-templates.md) <br>
-- [Risk Matrix Calculator](scripts/risk_matrix_calculator.py) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AyangAI/risk-management-iso14971) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, templates, tables, and optional JSON from the local risk calculator] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafting aids for risk-management files and require qualified review before regulated use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The security evidence reports a boundary-case classification bug in FMEA RPN threshold handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the threshold handling before relying on calculator output, or manually classify RPN values at 50 and 100 according to the organization's approved risk policy.
+
+Risk: Medical-device risk documentation can be product-specific and safety-critical.
+
+Mitigation: Have qualified quality, regulatory, or clinical reviewers validate generated risk plans, analyses, controls, residual-risk conclusions, and post-production triggers before using them as controlled documentation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ayangai/skills/risk-management-iso14971)
+- [ISO 14971 Implementation Guide](artifact/references/iso14971-implementation-guide.md)
+- [Risk Analysis Methods](artifact/references/risk-analysis-methods.md)
+- [Risk Assessment Templates](artifact/references/riREDACTED-SECRET.md)
+- [Risk Matrix Calculator](artifact/scripts/risk_matrix_calculator.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, reusable templates, shell command examples, and optional text or JSON calculator output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local ISO 14971-style risk matrix and FMEA RPN calculator behavior; evidence reports no hidden access or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

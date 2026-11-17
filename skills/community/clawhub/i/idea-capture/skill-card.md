@@ -1,38 +1,53 @@
-## Description: <br>
-Capture or update an idea, append an update log, and write a session summary for later retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture or update an idea, append an update log, and write a session summary for later retrieval.
 
-## Publisher: <br>
-[kid0114](https://clawhub.ai/user/kid0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kid0114](https://clawhub.ai/user/kid0114)
 
-## Use Case: <br>
-Developers and workspace users use this skill to preserve project ideas across sessions by creating or updating local idea records, update logs, indexes, catalogs, and session summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted idea ID could make the skill write outside its documented ideas folder. <br>
-Mitigation: Use simple lowercase slug-style idea IDs, avoid path-like values, and review changed files after running the skill until path validation is fixed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to capture project ideas, update existing idea records, and preserve concise session summaries for later retrieval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kid0114/idea-capture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON files with a JSON command result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes workspace-local idea records, session summaries, a human-readable index, and a machine-readable catalog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unconstrained idea IDs or catalog IDs could cause writes outside the intended ideas directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict idea IDs to a slug format, validate IDs loaded from catalog.json, and enforce that resolved write paths stay under the ideas directory.
+
+Risk: Using untrusted titles, idea IDs, or catalog data may lead to unintended local file changes.
+
+Mitigation: Review or fix the script before installing it in workspaces that process untrusted idea data, and review changed files after each run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kid0114/skills/idea-capture)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
+
+**Output Format:** [Markdown idea files, JSON catalog data, and a short JSON status report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates workspace-local files under the ideas directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

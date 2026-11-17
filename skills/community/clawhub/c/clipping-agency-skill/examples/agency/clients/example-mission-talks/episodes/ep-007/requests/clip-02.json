@@ -1,0 +1,66 @@
+{
+ "content": [
+  {
+   "text": "Asked for the most dangerous moments of the flight, the command module pilot gave the answer every engineer knows. #apollo11 #engineering #space",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-mission-02"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-16T23:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-acct-mission-tiktok",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "FOLLOWER_OF_CREATOR",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": true,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "contentOverride": [
+    {
+     "text": "Asked for the most dangerous moments of the flight, the command module pilot gave the answer every engineer knows. #apollo11 #engineering #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-mission-02"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "example-acct-mission-youtube",
+   "title": "The most dangerous part of Apollo 11, from its command module pilot (1969)",
+   "privacy": "public",
+   "madeForKids": false,
+   "tags": [
+    "apollo 11",
+    "risk",
+    "space history"
+   ],
+   "contentOverride": [
+    {
+     "text": "Apollo 11's command module pilot in 1969 on what the real danger of a mission is. #Shorts",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-mission-02"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

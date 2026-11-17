@@ -1,52 +1,72 @@
-## Description: <br>
-VexPath turns an OpenClaw instance into an operations assistant for email triage, inbox monitoring, lead classification, workflow automation, bottleneck audits, follow-up tracking, onboarding, content strategy, CRM sync, scheduling coordination, approval-based email drafting, and business operations analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VexPath turns an OpenClaw instance into an operations assistant for email triage, inbox monitoring, lead classification, workflow automation, bottleneck audits, follow-up tracking, client onboarding, content strategy, CRM sync, scheduling coordination, approval-based email drafting, and business operations analysis.
 
-## Publisher: <br>
-[smithbrock02-cmyk](https://clawhub.ai/user/smithbrock02-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smithbrock02-cmyk](https://clawhub.ai/user/smithbrock02-cmyk)
 
-## Use Case: <br>
-Business operators, agencies, and service teams use this skill to triage email, draft approved replies, track follow-ups, design repeatable workflows, onboard clients, plan content, and identify operational bottlenecks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox credentials and persistent inbox monitoring can expose sensitive business communications. <br>
-Mitigation: Use OAuth or app passwords where possible, avoid passing passwords on the command line, restrict workspace file access, and install only the email features that are required. <br>
-Risk: Approval-based email drafting and cold-outreach tooling can create unwanted or noncompliant outbound communication if misused. <br>
-Mitigation: Keep outbound sending approval-only, review every draft before sending, and confirm consent, unsubscribe handling, and lawful basis for contacted leads. <br>
-Risk: Roofing lead enrichment and estimation workflows process addresses and rely on external API calls. <br>
-Mitigation: Remove or disable the roofing estimator and cold-outreach scripts unless they are explicitly needed, legally justified, and configured with protected API credentials. <br>
-Risk: Workspace behavior files can change how an agent operates after they are copied into a client workspace. <br>
-Mitigation: Review behavior files before copying them, keep human approval gates for important messages, and preserve logging and error handling in generated workflows. <br>
+## Use Case:
 
+Business operators, agencies, service teams, and their agents use VexPath to triage email, classify leads, draft approved replies, track follow-ups, document workflows, audit bottlenecks, and coordinate CRM or calendar updates. The skill is aimed at repeatable business operations support rather than autonomous unsupervised messaging.
 
-## Reference(s): <br>
-- [VexPath Skill Page](https://clawhub.ai/smithbrock02-cmyk/vexpath) <br>
-- [Email Triage Reference](references/email-triage.md) <br>
-- [Onboarding Reference](references/onboarding.md) <br>
-- [Follow-Up Tracking Reference](references/follow-up.md) <br>
-- [Content Strategy Reference](references/content-strategy.md) <br>
-- [Bottleneck Audit Reference](references/bottleneck-audit.md) <br>
-- [Workflow Templates Reference](references/workflow-templates.md) <br>
-- [Gmail Setup Reference](references/gmail-setup.md) <br>
-- [Roofing Estimator Reference](references/roofing-estimator.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured triage summaries, JSON-like reports, shell commands, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce email triage summaries, draft replies, workflow documentation, bottleneck audit reports, CRM update guidance, setup commands, and local configuration when the operator runs bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad mailbox, calendar, CRM, and memory-file access for triage, scheduling, follow-up tracking, and heartbeat checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the accounts and folders needed for the deployment, review access scopes before enabling monitoring, and confirm retention for follow-up and daily log files.
+
+Risk: Email setup examples and scripts accept mailbox passwords or app passwords and may store them in local configuration.
+
+Mitigation: Use OAuth, a keychain, or a password manager where possible; avoid placing mailbox passwords in command history or chat; restrict local config permissions and rotate exposed credentials.
+
+Risk: The VPS provisioning path uses remote shell installation patterns and installs system or npm dependencies.
+
+Mitigation: Do not run curl-to-bash provisioning directly; inspect scripts first, pin dependency versions, and execute deployment steps manually in a controlled environment.
+
+Risk: The SOUL.md and HEARTBEAT.md assets establish persistent operating behavior and periodic monitoring instructions.
+
+Mitigation: Deploy those files only when persistent VEX behavior is desired, review the heartbeat checklist, and disable or narrow checks that are outside the intended business workflow.
+
+Risk: The skill drafts outbound emails, follow-ups, outreach, estimates, and scheduling responses that could affect customers or prospects.
+
+Mitigation: Keep human approval gates enabled for important outbound communication and verify estimates, legal or payment-related messages, and customer-facing drafts before sending.
+
+## Reference(s):
+
+- [Bottleneck Audit Reference](references/bottleneck-audit.md)
+- [Content Strategy Reference](references/content-strategy.md)
+- [Email Triage Reference](references/email-triage.md)
+- [Follow-Up Tracking Reference](references/follow-up.md)
+- [Gmail Setup Guide](references/gmail-setup.md)
+- [Client Onboarding Reference](references/onboarding.md)
+- [VexPath Roofing Contractor Automation Module](references/roofing-estimator.md)
+- [Workflow Templates Reference](references/workflow-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON triage reports, CSV templates, shell scripts, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows create local configuration, memory, report, or CRM files and require human approval before sending important outbound messages unless explicitly permitted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

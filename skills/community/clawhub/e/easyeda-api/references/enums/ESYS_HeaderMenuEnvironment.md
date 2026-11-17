@@ -1,11 +1,11 @@
 # ESYS\_HeaderMenuEnvironment enum
 
-顶部菜单环境
+Header menu environment
 
 ## Signature
 
 ```typescript
-declare enum ESYS_HeaderMenuEnvironment 
+enum ESYS_HeaderMenuEnvironment
 ```
 
 ## Enumeration Members
@@ -14,160 +14,145 @@ declare enum ESYS_HeaderMenuEnvironment
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 BLANK
 
-
 </td><td>
 
-`"blank"`
-
+`'blank'`
 
 </td><td>
-
-空白页
-
 
 </td></tr>
 <tr><td>
 
 FOOTPRINT
 
-
 </td><td>
 
-`"footprint"`
-
+`'footprint'`
 
 </td><td>
-
-封装
-
 
 </td></tr>
 <tr><td>
 
 HOME
 
-
 </td><td>
 
-`"home"`
-
+`'home'`
 
 </td><td>
-
-主页
-
 
 </td></tr>
 <tr><td>
 
 PANEL
 
+</td><td>
+
+`'panel'`
 
 </td><td>
 
-`"panel"`
+</td></tr>
+<tr><td>
 
+PANEL\_LIBRARY
 
 </td><td>
 
-面板
+`'panelLibrary'`
 
+</td><td>
 
 </td></tr>
 <tr><td>
 
 PANEL\_VIEW
 
-
 </td><td>
 
-`"panelView"`
-
+`'panelView'`
 
 </td><td>
-
-面板预览
-
 
 </td></tr>
 <tr><td>
 
 PCB
 
-
 </td><td>
 
-`"pcb"`
-
+`'pcb'`
 
 </td><td>
-
-PCB
-
 
 </td></tr>
 <tr><td>
 
 PCB\_VIEW
 
-
 </td><td>
 
-`"pcbView"`
-
+`'pcbView'`
 
 </td><td>
-
-PCB 预览（包括 2D、3D 预览）
-
 
 </td></tr>
 <tr><td>
 
 SCHEMATIC
 
+</td><td>
+
+`'sch'`
 
 </td><td>
 
-`"sch"`
+</td></tr>
+<tr><td>
 
+SIMULATION\_SCHEMATIC\_NGSPICE
 
 </td><td>
 
-原理图
+`'simulationSchematicNgspice'`
 
+</td><td>
+
+</td></tr>
+<tr><td>
+
+SIMULATION\_SCHEMATIC\_SIMULIDE
+
+</td><td>
+
+`'simulationSchematicSimulIDE'`
+
+</td><td>
 
 </td></tr>
 <tr><td>
 
 SYMBOL
 
-
 </td><td>
 
-`"symbol"`
-
+`'symbol'`
 
 </td><td>
-
-符号（包括 CBB 符号）
-
 
 </td></tr>
 </tbody></table>

@@ -1,40 +1,57 @@
-## Description: <br>
-High-accuracy Burmese audio transcription using Gemini 3.1 Flash Preview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-accuracy Burmese audio transcription using Gemini 3.1 Flash Preview.
 
-## Publisher: <br>
-[thelapyae](https://clawhub.ai/user/thelapyae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thelapyae](https://clawhub.ai/user/thelapyae)
 
-## Use Case: <br>
-Developers and users use this skill to transcribe Burmese voice notes or speech into Burmese text through a local Node.js command that uploads the selected audio to Google Gemini with their own API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio recordings are sent to Google Gemini for transcription. <br>
-Mitigation: Use a scoped Gemini API key and avoid confidential or regulated recordings unless Google's handling terms fit the use case. <br>
-Risk: Failed runs may not delete the uploaded remote file automatically. <br>
-Mitigation: Review failed executions and remove uploaded files from the Gemini file service when cleanup does not complete. <br>
+## Use Case:
 
+Developers and external users can use this skill to transcribe Burmese voice notes or speech recordings into Burmese text with their own Google Gemini API key.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/thelapyae/burmese-audio-understanding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcription with setup and execution commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and an audio file path; the included script uploads audio as audio/ogg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: Selected audio files are sent to Google Gemini for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for recordings whose transfer to Google Gemini is acceptable under the user's API terms and data-handling requirements.
+
+Risk: Remote file deletion occurs after successful transcription and may not run on failure paths.
+
+Mitigation: Avoid highly sensitive recordings until cleanup is moved into a finally block and failure-path deletion is verified.
+
+Risk: Dependency ranges may resolve to newer SDK versions with changed behavior.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thelapyae/skills/burmese-audio-understanding)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text transcription with setup and execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEMINI_API_KEY and a local audio file path; the script uploads the selected audio file to Google Gemini and prints only the transcription.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

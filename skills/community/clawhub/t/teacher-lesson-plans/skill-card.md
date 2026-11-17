@@ -1,42 +1,55 @@
-## Description: <br>
-Generate UK National Curriculum-aligned lesson plans, differentiated worksheets, assessment questions with mark schemes, and student report comments for KS1-KS5 teachers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates UK National Curriculum-aligned lesson plans, differentiated worksheets, assessment questions with mark schemes, report comments, and curriculum maps for EYFS through KS5 teaching contexts.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External teachers, tutors, home educators, and school staff use this skill to generate classroom-ready lesson plans, differentiated worksheets, assessments with mark schemes, curriculum maps, and report comments aligned to UK curriculum stages and exam boards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with content tailored to UK curriculum and exam-board contexts. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter identifiable or sensitive pupil information when requesting report comments, SEND adaptations, or behavior-related support. <br>
-Mitigation: Use initials or placeholders where possible, avoid unnecessary safeguarding, medical, behavioral, SEND, or other sensitive details, and follow school or district policy for AI use with student information. <br>
-Risk: Generated curriculum or specification references may be incomplete, outdated, or mismatched to the teacher's local exam board requirements. <br>
-Mitigation: Treat outputs as starting points and verify National Curriculum, GCSE, A-Level, and exam-board references against the latest published documents before classroom use. <br>
+## Use Case:
 
+External educators use this skill to create UK curriculum-aligned lesson plans, worksheets, assessments, mark schemes, report comments, and curriculum maps for EYFS through KS5 teaching contexts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamespatrickthom2003-star/teacher-lesson-plans) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown lesson plans, worksheets, assessment tables, mark schemes, curriculum maps, and report comments.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are starting points for teacher review and adaptation against current school policies and exam-board specifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may enter unnecessary identifiable pupil details when requesting report comments or SEND tailoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholders or initials and follow school or organisational rules for pupil data, especially for minors, SEND, medical, behavioural, or safeguarding information.
+
+Risk: Generated curriculum and exam specification references may need confirmation before classroom use.
+
+Mitigation: Teachers should review and adapt outputs to their class needs, school policies, and the latest published curriculum or exam board documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jamespatrickthom2003-star/skills/teacher-lesson-plans)
+- [README](artifact/README.md)
+- [Marketplace Listing](artifact/listing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Text]
+
+**Output Format:** [Markdown with headings, tables, bullet lists, and mark schemes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are classroom resource drafts intended for teacher review and adaptation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

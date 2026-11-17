@@ -1,47 +1,62 @@
-## Description: <br>
-Schedules meetings, checks availability, and manages calendars across Google, Outlook, and CalDAV while routing datetime and scheduling tasks to focused sub-skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule meetings, check availability, and manage calendars across Google, Outlook, and CalDAV.
 
-## Publisher: <br>
-[billylui](https://clawhub.ai/user/billylui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billylui](https://clawhub.ai/user/billylui)
 
-## Use Case: <br>
-Individuals and developers use this skill to let MCP-compatible agents check availability, resolve times, manage calendars, and book or propose meetings across connected calendar providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access connected calendars and create bookings through configured providers. <br>
-Mitigation: Review OAuth scopes during setup, discover calendars before use, check availability before booking, and keep user confirmation enabled before booking or sending proposals. <br>
-Risk: OAuth credentials are stored locally for the MCP server. <br>
-Mitigation: Protect ~/.config/temporal-cortex/credentials.json and use Docker containment or restricted filesystem access where appropriate. <br>
-Risk: Platform Mode can send scheduling identifiers to Temporal Cortex platform APIs for cross-user scheduling. <br>
-Mitigation: Use Local Mode when scheduling identifiers should not be sent to Temporal Cortex platform APIs. <br>
+## Use Case:
 
+Individual users and developers use this skill to route calendar requests to Temporal Cortex datetime and scheduling tools for availability checks, meeting proposals, and bookings across Google, Outlook, and CalDAV.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billylui/calendar-scheduling) <br>
-- [Temporal Cortex homepage](https://temporal-cortex.com) <br>
-- [Temporal Cortex MCP package](https://www.npmjs.com/package/@temporal-cortex/cortex-mcp) <br>
-- [Security Model](references/SECURITY-MODEL.md) <br>
-- [REST API reference](https://temporal-cortex.com/docs/rest-api) <br>
-- [Platform docs](https://app.temporal-cortex.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes routing guidance and safety checks for calendar reads, scheduling proposals, and booking actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: server release evidence and frontmatter) <br>
+Risk: Calendar credentials are required for scheduling tools and are stored in the local Temporal Cortex configuration directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested OAuth scopes before connecting calendars and isolate credentials by running the MCP server with Docker containment when stronger separation is needed.
+
+Risk: Booking tools can create calendar events or external booking requests.
+
+Mitigation: Confirm booking details and availability checks before executing book_slot or request_booking.
+
+Risk: Unpinned package installation can increase supply-chain exposure.
+
+Mitigation: Install from the pinned OpenClaw package or run npx with the explicit @0.9.1 package version.
+
+## Reference(s):
+
+- [Security Model](references/SECURITY-MODEL.md)
+- [Temporal Cortex Homepage](https://temporal-cortex.com)
+- [Temporal Cortex Skills Repository](https://github.com/temporal-cortex/skills)
+- [Temporal Cortex MCP Server Source](https://github.com/temporal-cortex/mcp)
+- [@temporal-cortex/cortex-mcp npm Package](https://www.npmjs.com/package/@temporal-cortex/cortex-mcp)
+- [Temporal Cortex REST API Reference](https://temporal-cortex.com/docs/rest-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool names, workflow steps, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes requests to datetime and scheduling sub-skills; calendar booking actions should be confirmed before execution.]
+
+## Skill Version(s):
+
+0.9.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

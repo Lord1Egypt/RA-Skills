@@ -87,3 +87,13 @@ export RELAY_CONFIG="/path/to/agents.json"  # Custom config path
 ## Session Management
 
 Sessions are stored locally at `~/.cache/relay-to-agent/sessions/`. Each agent+session combination keeps up to 50 messages. Use `--session` for parallel conversations with the same agent.
+
+`--agent` and `--session` values are restricted to `[A-Za-z0-9._-]`; path separators and `..` are rejected so session files stay inside the cache directory.
+
+## Privacy Notice
+
+This skill is a **relay**: each message you send — plus prior session history — is transmitted to the configured OpenAI-compatible endpoint (`baseUrl` / `RELAY_BASE_URL`), which may be a third-party service. Conversation transcripts (up to 50 messages per session) are also **persisted in plaintext** on disk at `~/.cache/relay-to-agent/sessions/`.
+
+- Do not send secrets, credentials, or regulated/sensitive data unless you trust the endpoint and control the machine.
+- Use `--reset` to clear a session before sending, or delete files under the cache dir to remove stored history.
+- Point `baseUrl`/`RELAY_BASE_URL` only at endpoints you trust.

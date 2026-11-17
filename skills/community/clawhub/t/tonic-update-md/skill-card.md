@@ -1,40 +1,57 @@
-## Description: <br>
-Create or update project documentation in Markdown for new doc sets, deploy or feature updates, and standard project file maps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or update project documentation in Markdown for new project doc sets, deploy or feature changes, and standard file map conventions.
 
-## Publisher: <br>
-[tonylnng](https://clawhub.ai/user/tonylnng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tonylnng](https://clawhub.ai/user/tonylnng)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to create and maintain structured Markdown project documentation, including overview, deployment, app, database, and history files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation can expose private keys, passwords, tokens, host details, or sensitive infrastructure information if users paste real secrets into templates. <br>
-Mitigation: Use placeholders or secret-manager references for sensitive values and review Markdown changes before committing or sharing them. <br>
-Risk: Documentation updates can become misleading if generated or changed files are not reviewed against the actual project state. <br>
-Mitigation: Review generated AGENTS.md and project documentation changes before committing, and update only the files affected by the project change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Update MD on ClawHub](https://clawhub.ai/tonylnng/tonic-update-md) <br>
-- [Documentation Templates](references/doc-templates.md) <br>
+## Use Case:
 
+Developers and project-maintenance agents use Update MD to create or update concise Markdown documentation sets, including project overviews, deployment notes, app specs, database docs, and release history after changes.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown documents and update guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Templates cover project overview, deployment, app, database, and history documentation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Project documentation can accidentally expose passwords, tokens, private keys, or sensitive host details.
+
+Mitigation: Keep secrets and sensitive host details out of shared Markdown and review generated documentation before publishing.
+
+Risk: Documentation navigation updates can broaden an agent's context beyond the intended project documents.
+
+Mitigation: Review any AGENTS.md doc-map update so it stays limited to documentation navigation.
+
+Risk: Stale or overly broad documentation changes can mislead future project work.
+
+Mitigation: Apply the skill's update rules, edit only affected documents, and review documentation diffs after deploys or feature changes.
+
+## Reference(s):
+
+- [doc-templates.md](references/doc-templates.md)
+- [ClawHub skill page](https://clawhub.ai/tonylnng/skills/tonic-update-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents and concise guidance, with optional inline shell-command examples in deployment templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; outputs are documentation structure, templates, update rules, and maintenance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

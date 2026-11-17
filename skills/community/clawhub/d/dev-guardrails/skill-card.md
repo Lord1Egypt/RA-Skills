@@ -1,47 +1,63 @@
-## Description: <br>
-Universal AI agent development guardrails with five defense layers: instruction gate, project monitoring, delivery reliability, code quality audit, and scope fidelity enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal AI agent development guardrails with five defense layers: instruction gate, project monitoring, delivery reliability, code quality audit, and scope fidelity enforcement.
 
-## Publisher: <br>
-[nagi-226](https://clawhub.ai/user/nagi-226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nagi-226](https://clawhub.ai/user/nagi-226)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to make coding agents challenge ambiguous, unrealistic, or unsafe development requests before implementation. It supports scope confirmation, project-drift monitoring, delivery reliability checks, quality auditing, and over-engineering prevention during software work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make an agent more conservative and may slow straightforward development tasks with extra confirmation steps. <br>
-Mitigation: Use the documented micro-task exception for small, unambiguous changes and keep confirmations focused on scope, approach, and key decisions. <br>
-Risk: The skill may refuse, narrow, or redirect oversized or vague development requests. <br>
-Mitigation: Ask the agent to state the capability boundary, offer scaled alternatives, and proceed only after the user confirms a feasible scope. <br>
-Risk: Because the skill is text-only, it depends on the host agent consistently applying the guardrail behavior. <br>
-Mitigation: Review the agent's plans and delivery notes for explicit scope checks, regression checks, and quality-audit outcomes before relying on generated code. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to make coding agents challenge unclear requirements, confirm scope before non-trivial implementation, monitor project drift, and run delivery-quality checks before presenting work as complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nagi-226/dev-guardrails) <br>
-- [Project homepage](https://github.com/FJL03/Nagi-Skills) <br>
-- [Capability Boundaries](references/boundaries.md) <br>
-- [Scenario SOP Library](references/scenarios.md) <br>
-- [L5 Defense Test](references/l5-defense-test.md) <br>
-- [Simulation Test Report](references/test-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, text] <br>
-**Output Format:** [Markdown and text guidance, with code, shell commands, or configuration when the guarded development task requires them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Behavioral guardrail for coding-agent sessions; no hidden execution, data collection, or destructive behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: The security review says the skill gives itself broad session-wide control and states that its rules override other development instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill subordinate to platform, system, developer, and current user instructions, and treat its guardrails as process guidance rather than authority over higher-priority instructions.
+
+Risk: The security guidance says the skill may pause ordinary work, force confirmations, reject vague requests, and push back on scope changes.
+
+Mitigation: Use it where explicit scope confirmation and engineering pushback are desired, and review agent responses for proportionality on small or clearly bounded tasks.
+
+Risk: The security verdict is suspicious even though no specific risk findings were listed.
+
+Mitigation: Review and scan the skill before deployment, then monitor whether it over-constrains normal development workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nagi-226/skills/dev-guardrails)
+- [Project Homepage](https://github.com/FJL03/Nagi-Skills)
+- [Capability Boundaries](references/boundaries.md)
+- [Scenario SOP Library](references/scenarios.md)
+- [L5 Defense Test](references/l5-defense-test.md)
+- [Simulation Test Report](references/test-report.md)
+- [Release Overview](overview.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with decision flows, checklists, response templates, and implementation review prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing development-process guidance; no API calls, tools, or credentials are required.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

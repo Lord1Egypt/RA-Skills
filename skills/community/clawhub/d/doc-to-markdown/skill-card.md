@@ -1,43 +1,60 @@
-## Description: <br>
-Converts Word .doc and .docx documents into structured Markdown with MinerU while preserving headings, lists, tables, and paragraph structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc To Markdown helps agents convert Word documents (.doc and .docx) into clean Markdown using MinerU's document processing tooling.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, technical writers, and content teams use this skill to convert Word documents from local files or URLs into Markdown for documentation, static sites, wikis, blogs, GitHub, Notion, Obsidian, or migration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document conversion may involve the third-party MinerU/OpenDataLab service, including content from Word documents or private URLs. <br>
-Mitigation: Avoid processing confidential documents or private URLs unless that service use is approved, and use a revocable MINERU_TOKEN where possible. <br>
-Risk: .doc conversion requires MINERU_TOKEN authentication. <br>
-Mitigation: Use the token-free flash-extract path for eligible .docx files, and avoid exposing MINERU_TOKEN in shared logs or transcripts. <br>
+## Use Case:
 
+Developers, technical writers, and content teams use this skill to convert Word files or URLs into Markdown for documentation, static sites, wikis, blogs, GitHub, Notion, Obsidian, and related Markdown-based workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzlzyca/doc-to-markdown) <br>
-- [MinerU Homepage](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Converted document content can stream to stdout or be saved to an output directory; status messages are sent to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: The skill installs a mutable third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed mineru-open-api version where possible, and review the CLI before use in sensitive environments.
+
+Risk: Document contents may be processed by an external MinerU service.
+
+Mitigation: Avoid confidential documents unless approved, and verify whether the selected mode is local-only before converting sensitive files.
+
+Risk: The MINERU_TOKEN credential is required for some extraction modes.
+
+Mitigation: Provide MINERU_TOKEN only to commands that need it and avoid persisting or logging the token unnecessarily.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/doc-to-markdown)
+- [MinerU homepage](https://mineru.net)
+- [MinerU project](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command snippets and converted document content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converted content is written to stdout by default or saved to a directory with -o; progress and status messages are sent to stderr.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

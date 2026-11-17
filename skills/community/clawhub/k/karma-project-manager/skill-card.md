@@ -1,43 +1,58 @@
-## Description: <br>
-Manage projects, grants, milestones, updates, payouts, and invoices on the Karma protocol through the Karma API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage projects, grants, milestones, updates, payouts, and invoices on the Karma protocol through the Karma REST API.
 
-## Publisher: <br>
-[maheshmurthy](https://clawhub.ai/user/maheshmurthy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maheshmurthy](https://clawhub.ai/user/maheshmurthy)
 
-## Use Case: <br>
-External users and developers use this skill to create and update Karma projects, manage grants and milestones, report impact, add team members, and retrieve payout or invoice information. The skill is intended for account-backed Karma API workflows where the user confirms the exact action and parameters before requests are sent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send account-backed Karma API requests for project, grant, payout, and invoice tasks. <br>
-Mitigation: Use a least-privileged Karma API key where possible and confirm the exact project, grant, network, action, and parameters before any request is sent. <br>
-Risk: The skill depends on a Karma API key for authenticated operations. <br>
-Mitigation: Keep the API key out of chat and use the separate setup-agent flow to configure or rotate credentials. <br>
-Risk: Some payout and invoice data may be permissioned or reduced on public endpoints. <br>
-Mitigation: Check permissions when an authenticated request returns 403 and clearly distinguish public endpoint results from full account-authorized results. <br>
+## Use Case:
 
+External users and developers use this skill to create and update Karma projects, grants, milestones, project updates, endorsements, and team members, and to check payout status and invoice information through authenticated Karma API calls.
 
-## Reference(s): <br>
-- [Karma API Documentation](https://gapapi.karmahq.xyz/v2/docs/static/index.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maheshmurthy/karma-project-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Karma API key for authenticated actions; some public lookup endpoints return reduced data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill can send a Karma API key to a configurable endpoint if KARMA_API_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep KARMA_API_URL unset unless intentionally using a trusted Karma endpoint, and use a narrowly scoped Karma API key.
+
+Risk: The skill can alter remote Karma project, grant, milestone, update, endorsement, and member records through authenticated actions.
+
+Mitigation: Confirm requested record changes with the user before execution and review API responses for the affected project, grant, network, and reference.
+
+Risk: Broad trigger wording may route payout, invoice, or project-management requests into authenticated API workflows.
+
+Mitigation: Install only when the agent is expected to manage Karma records, and verify the intended action before sending authenticated requests.
+
+## Reference(s):
+
+- [Karma API Documentation](https://gapapi.karmahq.xyz/v2/docs/static/index.html)
+- [ClawHub Skill Page](https://clawhub.ai/maheshmurthy/skills/karma-project-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authenticated Karma API calls and asks the user to confirm project, grant, and milestone changes before execution.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

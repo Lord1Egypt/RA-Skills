@@ -1,45 +1,61 @@
-## Description: <br>
-Granola MCP integration with managed authentication for searching meeting content, retrieving summaries and action items, listing meetings, and accessing transcripts via Maton. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Granola meeting notes, retrieve summaries and transcripts, and find action items through a user-authorized Maton connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to query their connected Granola meeting notes, retrieve meeting metadata and summaries, find action items, and review transcripts when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorized Granola meeting titles, attendees, notes, summaries, private notes, queries, and possible transcripts are routed through Maton. <br>
-Mitigation: Install only when the user trusts Maton to broker Granola access, and revoke the Maton connection when it is no longer needed. <br>
-Risk: The skill requires a sensitive MATON_API_KEY credential. <br>
-Mitigation: Store the key in the MATON_API_KEY environment variable, avoid printing it in shared logs, and rotate or revoke it if exposed. <br>
-Risk: Requests can target the wrong Granola account when multiple connections exist. <br>
-Mitigation: Set the Maton-Connection header to the intended connection ID when more than one connection is available. <br>
+## Use Case:
 
+People with authorized Granola access use this skill to search meetings, review notes and transcripts, and identify decisions and action items. With separate approval, they can set up scheduled or event-driven workflows using Maton.
 
-## Reference(s): <br>
-- [ClawHub Granola Skill](https://clawhub.ai/byungkyu/granola-api) <br>
-- [Maton](https://maton.ai) <br>
-- [Granola MCP Documentation](https://docs.granola.ai/help-center/sharing/integrations/mcp) <br>
-- [Granola Help Center](https://docs.granola.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-shaped API responses and Python or JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and an active Granola MCP connection; responses may include cited meeting-note links, XML-like meeting data, summaries, private notes, and transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Meeting notes and transcripts may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust Maton; use the authorized OAuth connection and avoid exposing API keys or sharing meeting content with third parties without explicit intent.
+
+Risk: Connections, hosted functions, triggers, and writes can create or change access and ongoing automation.
+
+Mitigation: Approve each new connection, function, trigger, destination, and write separately before use.
+
+Risk: Persistent destinations may forward event data outside the intended workflow.
+
+Mitigation: Confirm the destination and data flow before enabling forwarding; keep meeting content out of third-party destinations unless explicitly intended.
+
+## Reference(s):
+
+- [Granola skill release](https://clawhub.ai/byungkyu/skills/granola-api)
+- [Maton](https://maton.ai)
+- [Meeting query schema](schemas/query_granola_meetings.json)
+- [Meeting transcript schema](schemas/get_meeting_transcript.json)
+- [Schedule trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with meeting findings and optional command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Meeting content is limited by the user's authorized connection.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

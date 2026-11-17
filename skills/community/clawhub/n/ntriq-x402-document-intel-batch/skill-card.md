@@ -1,42 +1,56 @@
-## Description: <br>
-Batch document OCR, classification, and extraction for up to 500 images with a flat $15.00 USDC x402 payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch document OCR, classification, and extraction for up to 500 images. Flat $15.00 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and agents use this skill to submit batches of document image URLs for OCR, extraction, summarization, classification, or table analysis through the provider's x402-enabled service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document URLs, document contents, and extracted text may be sent to a third-party remote service. <br>
-Mitigation: Use only documents appropriate for that provider, and avoid confidential, regulated, identity, legal, medical, financial, or business-sensitive content unless privacy, retention, and deletion terms have been reviewed. <br>
-Risk: The skill describes a paid x402 flow that charges a flat $15.00 USDC per batch request. <br>
-Mitigation: Confirm payment headers, network, recipient, and request size before execution, and require user approval for purchases. <br>
+## Use Case:
 
+External developers and operators use this skill to submit batches of document image URLs for paid OCR, classification, table extraction, extraction, and summarization through the provider's x402-enabled API.
 
-## Reference(s): <br>
-- [Ntriq x402 document service homepage](https://x402.ntriq.co.kr) <br>
-- [x402 protocol](https://x402.org) <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-x402-document-intel-batch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on remote document analysis for the requested image URLs and analysis type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Document image URLs and extracted content are shared with the provider's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only documents you are authorized to share, and avoid confidential, regulated, or third-party materials unless the provider's retention and privacy practices are acceptable.
+
+Risk: Each batch call requires a $15 USDC x402 payment.
+
+Mitigation: Confirm payment intent, network, and batch contents before sending the request.
+
+## Reference(s):
+
+- [Ntriq service homepage](https://x402.ntriq.co.kr)
+- [Document intelligence batch API endpoint](https://x402.ntriq.co.kr/document-intel-batch)
+- [x402 protocol](https://x402.org)
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-document-intel-batch)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP and curl examples; service responses are JSON containing document analysis text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts up to 500 document image URLs per request and supports extract, summarize, classify, and table analysis modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

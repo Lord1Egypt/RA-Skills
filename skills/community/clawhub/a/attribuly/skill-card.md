@@ -1,52 +1,70 @@
-## Description: <br>
-A comprehensive AI marketing partner for DTC ecommerce. Combines multiple diagnostic and optimization skills powered by Attribuly first-party data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI marketing partner for DTC ecommerce that combines multiple diagnostic and optimization skills powered by Attribuly first-party data.
 
-## Publisher: <br>
-[alexchulee](https://clawhub.ai/user/alexchulee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexchulee](https://clawhub.ai/user/alexchulee)
 
-## Use Case: <br>
-External ecommerce teams and marketing operators use this skill to analyze Shopify or WooCommerce performance with Attribuly first-party attribution data, compare ad-platform reporting against attributed revenue, and produce profit-focused optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query sensitive store, revenue, funnel, Google Ads, and Meta Ads data through an Attribuly API key. <br>
-Mitigation: Install only for intended Attribuly-connected workspaces and prefer a least-privilege or read-only API key when available. <br>
-Risk: API-key handling guidance may expose secrets if keys are printed, stored in shell history, or embedded in Docker or service files. <br>
-Mitigation: Use a secret manager or protected environment configuration and avoid logging or sharing the full ATTRIBULY_API_KEY value. <br>
-Risk: Automatic triggers and chained reports may run analyses over connected ad and store accounts without enough operator context. <br>
-Mitigation: Confirm scheduled or chained report runs and review account, date range, and attribution-model assumptions before relying on the output. <br>
-Risk: Budget, pause, bid, and scaling recommendations could materially affect advertising spend if applied directly. <br>
-Mitigation: Require human review and approval before changing budgets, bids, campaign status, or audience targeting. <br>
+## Use Case:
 
+External DTC ecommerce merchants, marketers, and developers use this skill to analyze Shopify and WooCommerce marketing performance, reconcile ad-platform reporting with Attribuly first-party data, and generate optimization guidance for spend, audiences, creatives, funnels, and landing pages.
 
-## Reference(s): <br>
-- [Attribuly homepage](https://attribuly.com) <br>
-- [Attribuly DTC skills source](https://github.com/Attribuly-US/ecommerce-dtc-skills) <br>
-- [Attribuly ClawHub listing](https://clawhub.ai/alexchulee/attribuly) <br>
-- [Weekly marketing performance reference](references/weekly-marketing-performance.md) <br>
-- [Daily marketing pulse reference](references/daily-marketing-pulse.md) <br>
-- [Google Ads performance reference](references/google-ads-performance.md) <br>
-- [Meta Ads performance reference](references/meta-ads-performance.md) <br>
-- [Budget optimization reference](references/budget-optimization.md) <br>
-- [Attribution discrepancy reference](references/attribution-discrepancy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with tables, recommendations, API-derived metrics, and occasional shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include budget, bid, pause, and scaling recommendations that require human approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.8 (source: server release metadata; artifact frontmatter version 1.1.0) <br>
+Risk: Setup guidance can expose the sensitive ATTRIBULY_API_KEY if users paste real keys into shell history, profile files, Compose files, screenshots, or support logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or masked OpenClaw secret facility, avoid storing keys in logs or shell profiles, and rotate the key if exposure is suspected.
+
+Risk: Daily, weekly, and threshold-triggered analyses may run automatically outside the user's intended workspace or account scope.
+
+Mitigation: Confirm automatic analyses are opt-in, scoped to the intended workspace and account, and reviewed before budget or campaign changes are applied.
+
+Risk: Marketing recommendations based on attribution data can be incorrect or misleading if source data, attribution model, date range, or account selection is wrong.
+
+Mitigation: Verify account IDs, date ranges, response codes, and platform-vs-Attribuly comparisons before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexchulee/skills/attribuly)
+- [Attribuly homepage](https://attribuly.com)
+- [Weekly Marketing Performance](references/weekly-marketing-performance.md)
+- [Daily Marketing Pulse](references/daily-marketing-pulse.md)
+- [Google Ads Performance](references/google-ads-performance.md)
+- [Meta Ads Performance](references/meta-ads-performance.md)
+- [Google Creative Analysis](references/google-creative-analysis.md)
+- [Meta Creative Analysis](references/meta-creative-analysis.md)
+- [Budget Optimization](references/budget-optimization.md)
+- [Audience Optimization](references/audience-optimization.md)
+- [Bid Strategy Optimization](references/bid-strategy-optimization.md)
+- [Funnel Analysis](references/funnel-analysis.md)
+- [Landing Page Analysis](references/landing-page-analysis.md)
+- [Attribution Discrepancy Analysis](references/attribution-discrepancy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and recommendations with occasional shell commands, configuration snippets, and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include multilingual analysis, metric tables, diagnostics, and human-approved optimization recommendations.]
+
+## Skill Version(s):
+
+2026.4.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

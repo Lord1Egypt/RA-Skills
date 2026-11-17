@@ -1,43 +1,62 @@
-## Description: <br>
-ClawGuard governance layer that must run before any SQL, file-system, or API write. Use evaluate_action(action_type, justification, risk_level) to log/authorize actions and get_audit_report(limit) to review the SQLite-based audit ledger. Blocks risk_level >= 4 automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawGuard governance layer that must run before any SQL, file-system, or API write. Use evaluate_action(action_type, justification, risk_level) to log/authorize actions and get_audit_report(limit) to review the SQLite-based audit ledger. Blocks risk_level >= 4 automatically.
 
-## Publisher: <br>
-[mithileshgau](https://clawhub.ai/user/mithileshgau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mithileshgau](https://clawhub.ai/user/mithileshgau)
 
-## Use Case: <br>
-Developers and agents use ClawGuard to log and authorize write-capable SQL, file-system, and API actions before execution, then inspect recent audit ledger entries for governance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on the skill as a guaranteed enforcement layer even when their environment does not force all write actions through it. <br>
-Mitigation: Use it only where write-capable SQL, file-system, and API operations are routed through evaluate_action before execution. <br>
-Risk: Redis-based throttling and the Civic verification message may surprise operators because they are not clearly disclosed in the skill documentation. <br>
-Mitigation: Clarify Redis configuration and treat the Civic-related message as unimplemented unless a separate identity-verification integration is provided. <br>
-Risk: Action justifications can expose secrets or sensitive personal data in the persistent audit ledger. <br>
-Mitigation: Keep justifications specific but omit secrets and sensitive personal data, and restrict access to the audit ledger. <br>
+## Use Case:
 
+Developers and operators use this skill to require logged governance checks before write-capable SQL, file-system, or API actions and to review recent decisions from a persistent audit ledger.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mithileshgau/clawguard1) <br>
-- [ClawGuard Governance Protocol](artifact/GUIDANCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON tool responses and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns allowed or blocked status messages and recent audit ledger entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill claims session-wide control over write-capable actions, which can create false assurance if actions bypass the governance call.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workflows where write-capable actions are explicitly routed through evaluate_action and blocked results are honored.
+
+Risk: Action types and justifications are persisted in a SQLite audit ledger and may expose sensitive context if users include secrets or personal data.
+
+Mitigation: Keep secrets and sensitive personal data out of justifications, restrict access to clawguard.db, and define retention controls before real governance use.
+
+Risk: Redis-based velocity checks introduce a network dependency and use REDIS_URL or a localhost default.
+
+Mitigation: Contain, remove, or explicitly configure Redis unless velocity throttling is required for the deployment.
+
+Risk: The package uses range-based dependency versions for governance-relevant runtime components.
+
+Mitigation: Pin and review dependencies before relying on the skill for production governance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mithileshgau/skills/clawguard1)
+- [ClawGuard Governance Protocol](GUIDANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON-style tool responses and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns approval status, block messages, optional Civic escalation flags, and audit ledger rows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

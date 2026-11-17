@@ -1,41 +1,53 @@
-## Description: <br>
-256-state binary pattern recognition engine. 8-bit Odu logic for signal classification, state mapping, and decision execution. 4,000 years of pattern recognition at machine speed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Odu is a 256-state, 8-bit binary pattern recognition format for signal classification, state mapping, and action-oriented analysis.
 
-## Publisher: <br>
-[arosstale](https://clawhub.ai/user/arosstale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arosstale](https://clawhub.ai/user/arosstale)
 
-## Use Case: <br>
-Developers and external users can use this skill to classify an input situation into an 8-bit Odu state and produce a structured pattern, state, range, channel, and action report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags instructions that tell the agent to act immediately and avoid normal checks. <br>
-Mitigation: Use this skill only for low-risk, clearly bounded analysis unless approval prompts and stop conditions are in place. <br>
-Risk: The skill can produce decisive action guidance from a simplified pattern score. <br>
-Mitigation: Review outputs before using them for changes to files, accounts, finances, deployments, messages, or other external state. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent for structured binary-pattern analysis of a situation, including channel scores, a decimal state, range classification, and recommended action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arosstale/odu) <br>
-- [Project homepage](https://github.com/arosstale/clawoney) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with pattern, state, action, and channel breakdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an 8-bit channel classification mapped to decimal states 0-255.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill encourages automatic execution of mapped actions after classification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as an analysis and reporting format only; keep normal confirmation, safety, uncertainty, and authorization checks in place before any action.
+
+Risk: The skill asks the agent to suppress deliberation and avoid second-guessing.
+
+Mitigation: Require review before using outputs in workflows that can change files, call APIs, spend money, post content, or affect accounts.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/arosstale/clawoney)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report with binary pattern, decimal state, range, action, and channel-level notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides an analysis format and should not be treated as authority to act automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

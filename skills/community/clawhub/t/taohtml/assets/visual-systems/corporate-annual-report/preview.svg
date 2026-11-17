@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">稳重企业年报</title><desc id="desc">稳重配色、图文平衡、品牌化版面、适度留白</desc>
+  <rect width="800" height="450" fill="#f5f1e8"/><rect x="0" y="0" width="800" height="30" fill="#15324b"/><line x1="48" y1="58" x2="112" y2="58" stroke="#b89a5b"/><text x="126" y="63" font-family="Arial,PingFang SC,sans-serif" font-size="13" font-weight="700" fill="#315a73">ANNUAL NARRATIVE</text>
+  <text x="48" y="129" font-family="Georgia,Songti SC,serif" font-size="43" font-weight="700" fill="#17263b">稳重企业年报</text><rect x="48" y="153" width="292" height="6" fill="#68717a" opacity=".5"/><rect x="48" y="172" width="248" height="6" fill="#68717a" opacity=".35"/>
+  <rect x="48" y="222" width="194" height="118" rx="10" fill="#fffdf8" stroke="#d6cebe"/><text x="68" y="282" font-family="Georgia,serif" font-size="42" font-weight="700" fill="#15324b">12</text><rect x="68" y="306" width="116" height="6" fill="#b89a5b"/>
+  <rect x="265" y="222" width="194" height="118" rx="10" fill="#fffdf8" stroke="#d6cebe"/><text x="285" y="282" font-family="Georgia,serif" font-size="42" font-weight="700" fill="#315a73">08</text><rect x="285" y="306" width="116" height="6" fill="#81928a"/>
+  <path d="M566 73h186v314H512V151a78 78 0 0 1 54-78z" fill="#15324b"/><path d="M512 230c86-92 158-98 240-62v219H512z" fill="#315a73"/><circle cx="704" cy="144" r="92" fill="none" stroke="#fff" opacity=".25"/><circle cx="704" cy="144" r="54" fill="none" stroke="#b89a5b" opacity=".8"/><line x1="544" y1="344" x2="720" y2="344" stroke="#b89a5b"/>
+  <line x1="48" y1="401" x2="752" y2="401" stroke="#c9c0ad"/><rect x="48" y="416" width="180" height="5" fill="#68717a" opacity=".35"/>
+</svg>

@@ -1,41 +1,52 @@
-## Description: <br>
-Provides a Bilibili-focused learning resource for building AI agents with large language models, with a small sample Python responder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a curated Chinese-language learning guide and simple chatbot stub for AI agent development with large language models.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this skill to find tutorial material for LLM agent development and to inspect a simple sample agent responder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python helper contains an unnecessary hard-coded local import-path insertion. <br>
-Mitigation: Remove the sys.path insertion before running or reusing the helper, and treat the helper as sample code rather than production agent code. <br>
+## Use Case:
 
+Developers and learners use this skill to find Bilibili learning resources for building LLM-based AI agents, from introductory concepts through practical development. The included executable stub can also return simple text responses for greeting, goodbye, and fallback prompts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/534422530/auto-llm-4891) <br>
-- [OmniRoute Bilibili tutorial](https://www.bilibili.com/video/BV1W9DUBMEVs) <br>
-- [Comfyui local LLM prompt tutorial](https://www.bilibili.com/video/BV1e8TSzhEgT) <br>
-- [LLM MoE expert parallelism tutorial](https://www.bilibili.com/video/BV1W314BfEHr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with links and sample Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes external Bilibili learning links and a simple local sample responder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The executable Python file inserts a hard-coded local directory into the module search path, which could allow local import hijacking if that directory is writable by untrusted users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the hard-coded sys.path insertion before use, or run the skill only in an environment where the referenced local path cannot be modified by untrusted users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/auto-llm-4891)
+- [Bilibili: OmniRoute LLM access video](https://www.bilibili.com/video/BV1W9DUBMEVs)
+- [Bilibili: ComfyUI local LLM prompt-polishing video](https://www.bilibili.com/video/BV1e8TSzhEgT)
+- [Bilibili: LLM MoE expert parallelism video](https://www.bilibili.com/video/BV1W314BfEHr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance and plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No structured output contract; the Python stub returns a single text string.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

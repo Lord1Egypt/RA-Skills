@@ -1,45 +1,59 @@
-## Description: <br>
-Typed knowledge graph for structured agent memory and composable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Typed knowledge graph for structured agent memory and composable skills.
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovefromio](https://clawhub.ai/user/lovefromio)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create, query, link, and validate typed workspace entities such as people, projects, tasks, events, and documents. It supports shared local memory and graph-based planning across skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent local workspace memory that other local tools or skills may read or reuse. <br>
-Mitigation: Install it only when shared local memory is intended, and avoid storing raw secrets, private message contents, or sensitive account details. <br>
-Risk: Publisher and source provenance may matter in controlled environments, and server-resolved GitHub provenance is unavailable for this release. <br>
-Mitigation: Verify the lovefromio publisher profile, release version, and artifact hashes before deployment. <br>
-Risk: Some higher-level ontology constraints may be documentation-only unless implemented in code. <br>
-Mitigation: Run validation after ontology changes and review schema-dependent behavior before relying on it for enforcement. <br>
+## Use Case:
 
+Developers and agents use this skill to create, update, link, query, and validate workspace-local ontology entities for structured memory and cross-skill state sharing.
 
-## Reference(s): <br>
-- [Ontology Schema Reference](references/schema.md) <br>
-- [Query Reference](references/queries.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lovefromio/lovefromio-ontology) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lovefromio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local workspace ontology files under memory/ontology when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes persistent workspace-local ontology data that other skills may later rely on.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory/ontology contents before sharing or allowing other skills to depend on the stored graph.
+
+Risk: Sensitive values could be stored in ontology memory if users place raw secrets in entity properties.
+
+Mitigation: Do not store raw passwords, tokens, API keys, or other secrets; use secret references instead.
+
+Risk: Validation and rollback protections may be overstated relative to implemented checks.
+
+Mitigation: Treat validation as a manual review aid and inspect proposed ontology changes before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lovefromio/skills/lovefromio-ontology)
+- [Ontology Schema Reference](artifact/references/schema.md)
+- [Query Reference](artifact/references/queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON/YAML examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates workspace-local ontology data under memory/ontology when its CLI operations are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

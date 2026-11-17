@@ -1,41 +1,58 @@
-## Description: <br>
-Visualizes Hermes Agent work with task progress, skill usage, code changes, session statistics, and bilingual reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize Hermes Agent work with bilingual summaries and reports for task progress, skill usage, tool calls, code changes, session statistics, and monitoring status.
 
-## Publisher: <br>
-[erich1566](https://clawhub.ai/user/erich1566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erich1566](https://clawhub.ai/user/erich1566)
 
-## Use Case: <br>
-Developers and Hermes users use this skill to generate visual summaries and reports about agent work, including task progress, tool activity, skill usage, code changes, and session metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may present sample-style values as if they were real Hermes telemetry. <br>
-Mitigation: Verify that reports are connected to real telemetry before relying on them for audits, reviews, or operational decisions. <br>
-Risk: The monitor stop command may terminate local processes whose command line broadly matches its search pattern. <br>
-Mitigation: Review matching processes before stopping the monitor, and run the skill in an isolated environment when process termination could disrupt other work. <br>
+## Use Case:
 
+Developers and Hermes Agent users use this skill to generate bilingual work summaries, reports, and monitoring views that make agent activity easier to inspect and share.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erich1566/hermes-work-visualization) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/erich1566) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Shell commands, Configuration] <br>
-**Output Format:** [Console text plus Markdown, JSON, and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English output with configurable metrics, chart style, report frequency, and export formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: release evidence and frontmatter) <br>
+Risk: Generated reports may present hard-coded sample analytics as current Hermes work metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as illustrative until the scripts are connected to real Hermes telemetry, and verify report contents before using or sharing them.
+
+Risk: The monitor stop command can terminate unrelated processes that match its search pattern.
+
+Mitigation: Patch monitoring control to record and stop only its own PID before enabling long-running monitoring.
+
+Risk: Generated reports and monitor logs may contain workflow details that are not intended for external sharing.
+
+Mitigation: Review generated report and log files before distributing them outside the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erich1566/skills/hermes-work-visualization)
+- [Publisher profile](https://clawhub.ai/user/erich1566)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, HTML, Shell commands, Configuration]
+
+**Output Format:** [Console text plus generated Markdown, JSON, and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese/English output; report and monitor artifacts are written under the Hermes work-visualization skill directory.]
+
+## Skill Version(s):
+
+1.1.4 (source: SKILL.md frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

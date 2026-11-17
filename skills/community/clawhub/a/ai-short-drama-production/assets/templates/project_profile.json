@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "project_id": "replace-with-project-id",
+    "project_name": "Replace With Project Name",
+    "ip_owner": "Replace With Rights Owner",
+    "copyright": "© 2026 Replace With Rights Owner. All rights reserved.",
+    "language": "zh-CN",
+    "deliverable_type": "series",
+    "status": "preproduction"
+  },
+  "format": {
+    "aspect_ratio": "9:16",
+    "final_resolution": "1080x1920",
+    "test_resolution": "720p",
+    "fps": 24,
+    "episode_duration_sec": 120,
+    "episodes": 20,
+    "shots_per_episode": 15
+  },
+  "series": [
+    {
+      "series_id": "main",
+      "title": "Replace With Series Title",
+      "genre": "",
+      "audience": "",
+      "visual_style": "",
+      "voice_style": ""
+    }
+  ],
+  "characters": [
+    {
+      "character_id": "CHAR-001",
+      "name": "Replace With Character Name",
+      "role": "protagonist",
+      "anchor": "Describe immutable face, silhouette, proportions, outfit and signature feature.",
+      "reference_images": [],
+      "outfit_ids": [],
+      "voice_id": "",
+      "rights_owner": "Replace With Rights Owner"
+    }
+  ],
+  "models": {
+    "video": {
+      "provider": "volcengine_ark",
+      "model_id": "doubao-seedance-2-5-260628",
+      "api_surface": "contents/generations/tasks"
+    },
+    "image": {
+      "provider": "",
+      "model_id": ""
+    },
+    "tts": {
+      "provider": "",
+      "voice_ids": []
+    }
+  },
+  "generation": {
+    "max_task_duration_sec": 30,
+    "ratios": [
+      "9:16"
+    ],
+    "resolutions": [
+      "720p",
+      "1080p"
+    ],
+    "generate_audio": false,
+    "watermark": false,
+    "variants_per_shot": 2.5,
+    "rework_rate": 0.15
+  },
+  "policies": {
+    "text_in_post": true,
+    "dialogue_separate": true,
+    "paid_generation_requires_approval": true,
+    "copyright_watermark": true,
+    "ai_label_required": true
+  },
+  "audience": {
+    "primary": "",
+    "secondary": "",
+    "promise": "",
+    "emotional_driver": "",
+    "comment_identity": ""
+  },
+  "release": {
+    "cadence": "",
+    "free_episodes": 3,
+    "season_episodes": 20,
+    "cliffhanger_budget": "1 major cliffhanger per episode; 2-3 open loops maximum",
+    "targets": {
+      "hook_3s": "",
+      "completion": "",
+      "follow_conversion": "",
+      "comment_rate": ""
+    }
+  }
+}

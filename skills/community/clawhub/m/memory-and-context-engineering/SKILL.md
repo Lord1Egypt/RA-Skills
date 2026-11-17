@@ -289,6 +289,7 @@ orchestrator.register_custom_type(
 7. **统一入口**：推荐使用 `ContextOrchestrator` 作为统一入口，避免直接调用内部模块
 8. **Skill 定位**：本 Skill 是能力扩展包，由智能体动态加载，非独立应用
 9. **隐私同意流程**：`request_consent()` 不会弹窗，智能体需要负责向用户呈现描述信息并调用 `grant_consent()` 授予同意
+10. **安全优先**：使用安全模块进行路径验证、操作权限控制、输出清洗
 
 ## 常见问题
 
@@ -329,7 +330,9 @@ orchestrator.register_custom_type(
 | **核心参考** | | |
 | [module_index.md](references/module_index.md) | 模块索引 | 查找特定模块和功能（67 个模块完整索引） |
 | [usage_guide.md](references/usage_guide.md) | 使用指南 | 学习各模块的详细使用方法 |
-| [api_reference.md](references/api_reference.md) | API 参考 | 查询所有公开 API 的详细文档 |
+| [api_reference.md](references/api_reference.md) | API 参考（自动生成） | 查询所有公开 API 的详细文档（代码即真相源） |
+| [api_class_reference.md](references/api_class_reference.md) | 类名速查表（自动生成） | 快速查找符号→模块路径映射 |
+| [api_usage_notes.md](references/api_usage_notes.md) | API 使用注意事项 | 查看测试中发现的API接口问题和正确用法，防止调用出错 |
 | [best_practices.md](references/best_practices.md) | 最佳实践 | 学习架构设计、性能优化、安全性等最佳实践 |
 | [troubleshooting.md](references/troubleshooting.md) | 故障排查 | 解决常见问题和错误 |
 | **架构与设计** | | |
@@ -347,7 +350,7 @@ orchestrator.register_custom_type(
 
 ### 核心模块
 
-本系统包含 **67 个脚本模块**，按四层架构分类为总控层、协调层、存储层、基础设施层。
+本系统包含 **71 个脚本模块**，按四层架构分类为总控层、协调层、存储层、基础设施层（含安全模块）。
 
 | 模块 | 路径 | 功能 | 层级 |
 |------|------|------|------|
@@ -381,6 +384,16 @@ orchestrator.register_custom_type(
 | PrivacyManager | `scripts/privacy.py` | 隐私管理 | 基础设施层 |
 | Encryption | `scripts/encryption.py` | 加密解密 | 基础设施层 |
 | MonitoringSystem | `scripts/monitoring_system.py` | 监控系统 | 基础设施层 |
+| **安全模块** | | | |
+| PathSecurity | `scripts/path_security.py` | 路径安全验证，防止路径遍历攻击 | 基础设施层 |
+| IntentSafetyManager | `scripts/intent_safety_manager.py` | 操作权限控制，审计日志 | 基础设施层 |
+| ToolOutputSanitizer | `scripts/tool_output_sanitizer.py` | 输出清洗，防注入攻击 | 基础设施层 |
+| PrivacyConsent | `scripts/privacy_consent.py` | 增强隐私同意管理，数据删除权 | 基础设施层 |
+| **新增模块（优化阶段）** | | | |
+| LoggingConfig | `scripts/logging_config.py` | 统一日志配置，结构化日志 | 基础设施层 |
+| AgentMemoryConfig | `scripts/config.py` | 统一配置管理，支持环境变量 | 基础设施层 |
+| BenchmarkRunner | `scripts/benchmark.py` | 性能基准测试套件 | 基础设施层 |
+| GenerateApiDocs | `scripts/generate-api-docs.py` | API 文档自动生成（代码即真相源） | 项目工具 |
 
 > **查看完整模块索引**：详见 [module_index.md](references/module_index.md)（包含所有 67 个模块的详细信息、用途和使用建议）
 
@@ -405,6 +418,16 @@ orchestrator.register_custom_type(
   - 明确双轨架构为协调层子层，为认知模型层提供技术实现
   - 完善架构总览、API参考文档、双轨架构文档
 - **阶段 8**：文档完善（API 参考文档、最佳实践、故障排查指南、上下文压缩规则、链感知压缩文档）
+- **阶段 9**：安全修复（基于安全评估报告，采用纵深防御策略）
+  - **P0 紧急修复**：
+    - 路径遍历防护（PathSecurity）
+    - 依赖版本锁定（requirements.txt）
+    - Redis 安全增强（密码认证、SSL、加密存储）
+    - 高风险意图安全（操作白名单、权限分级、审计日志）
+  - **P1 安全增强**：
+    - 密钥管理增强（强度验证、PBKDF2 派生、密钥轮换）
+    - 提示词注入防护（ToolOutputSanitizer）
+    - 隐私同意增强（完整性哈希、数据删除权）
 
 ### 性能特性
 

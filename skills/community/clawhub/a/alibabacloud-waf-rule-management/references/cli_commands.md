@@ -34,7 +34,7 @@ aliyun configure get --profile default
 **Alibaba Cloud CLI (aliyun)**:
 - **Do NOT use `--profile` parameter**, rely on default credential chain
 - **Do NOT explicitly pass credentials**
-- All commands MUST include `--user-agent AlibabaCloud-Agent-Skills`
+- All commands MUST include `--user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"`
 
 ---
 
@@ -43,6 +43,22 @@ aliyun configure get --profile default
 > **IMPORTANT**: Use `aliyun sls get-logs-v2` (SLS plugin required).
 > 
 > Credentials must be configured in advance via `aliyun configure`, stored in `~/.aliyun/config.json`.
+
+### 1.0 SLS Project & Logstore Naming Rules (PayType-driven)
+
+**Determine Project and Logstore names by WAF instance PayType:**
+
+| PayType | SLS Project | Logstore |
+|---------|-------------|----------|
+| POSTPAY (Pay-As-You-Go) | `wafnew-project-<AccountId>-<SLSRegion>` | `wafnew-logstore` |
+| Subscription (Annual/Monthly) | `wafng-project-<AccountId>-<SLSRegion>` | `wafng-logstore` |
+
+**How to determine parameters:**
+1. Get AccountId: `aliyun sts get-caller-identity`
+2. Get PayType: `aliyun waf-openapi describe-instance --version 2021-10-01 --force --region <WafRegion>` → check `PayType` field
+3. Determine SLSRegion: ⚠️ May DIFFER from WAF instance RegionId. Try WAF region first, if `ProjectNotExist` then try other regions (cn-hangzhou, cn-shenzhen, cn-beijing, etc.)
+
+**CRITICAL**: ALL `aliyun sls get-logs-v2` commands MUST include `--region <SLSRegion>`, otherwise CLI uses default region and returns 404 errors.
 
 ### 1.1 Query by traceid (Recommended, explicit field selection)
 
@@ -54,22 +70,23 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "request_traceid: <traceid>" \
   --line 10 \
-  --accept_encoding lz4 \
+  --region <SLSRegion> \
   --read-timeout 30 --connect-timeout 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
-**Example**:
+**Example** (POSTPAY instance, SLS in cn-shenzhen):
 ```bash
 aliyun sls get-logs-v2 \
-  --project "wafnew-project-1882089769163987-cn-hangzhou" \
+  --project "wafnew-project-1882089769163987-cn-shenzhen" \
   --logstore "wafnew-logstore" \
   --from "$(( $(date +%s) - 604800 ))" \
   --to "$(date +%s)" \
   --query "request_traceid:2f6f0cbc17759652456034145eef13" \
   --line 10 \
+  --region cn-shenzhen \
   --read-timeout 30 --connect-timeout 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### 1.2 Query by traceid (Simplified, may truncate fields)
@@ -82,8 +99,9 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "request_traceid: <traceid>" \
   --line 10 \
+  --region <SLSRegion> \
   --read-timeout 30 --connect-timeout 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### 1.3 Query by host + url_path + status combination
@@ -96,8 +114,9 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "host:<domain> and request_path:<path> and status:<status_code>" \
   --line 10 \
+  --region <SLSRegion> \
   --read-timeout 30 --connect-timeout 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 ```
 
@@ -111,8 +130,9 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "host:<domain> and real_client_ip:<ip>" \
   --line 10 \
+  --region <SLSRegion> \
   --read-timeout 30 --connect-timeout 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### 1.5 Query blocked requests
@@ -125,8 +145,9 @@ aliyun sls get-logs-v2 \
   --to "$TO" \
   --query "request_traceid:<traceid> and final_action:block" \
   --line 10 \
+  --region <SLSRegion> \
   --read-timeout 30 --connect-timeout 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### ⚠️ Common Errors
@@ -134,6 +155,8 @@ aliyun sls get-logs-v2 \
 | Error | Cause | Solution |
 |------|------|---------|  
 | `Invalid parameters` | Used `--profile` | Remove `--profile`, rely on default credential chain |
+| `ProjectNotExist` | Missing `--region` or wrong region | Add `--region <SLSRegion>`, SLS region may differ from WAF region |
+| `LogStoreNotExist` | Wrong PayType naming or wrong region | Check PayType to determine correct Project/Logstore name, verify region |
 
 **Note**: Using `aliyun sls get-logs-v2` (SLS plugin required)
 
@@ -146,7 +169,7 @@ aliyun sls get-logs-v2 \
 ```bash
 aliyun waf-openapi describe-instance \
   --version 2021-10-01 --force --region <region> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}"
 ```
 
 ### 2.2 Query protection templates bound to protected resources
@@ -154,7 +177,7 @@ aliyun waf-openapi describe-instance \
 ```bash
 aliyun waf-openapi describe-defense-resource-templates \
   --version 2021-10-01 --force --region <region> \
-  --user-agent AlibabaCloud-Agent-Skills \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}" \
   --InstanceId '<instance_id>' --Resource '<resource>'
 ```
 
@@ -163,7 +186,7 @@ aliyun waf-openapi describe-defense-resource-templates \
 ```bash
 aliyun waf-openapi describe-defense-template \
   --version 2021-10-01 --force --region <region> \
-  --user-agent AlibabaCloud-Agent-Skills \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}" \
   --InstanceId '<instance_id>' --TemplateId <template_id>
 ```
 
@@ -176,7 +199,7 @@ aliyun waf-openapi describe-defense-template \
 ```bash
 aliyun waf-openapi describe-defense-rules \
   --version 2021-10-01 --force --region <region> \
-  --user-agent AlibabaCloud-Agent-Skills \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}" \
   --InstanceId '<instance_id>' \
   --Query '{"templateId":<template_id>}' \
   --RuleType '<defense_scene>'
@@ -189,7 +212,7 @@ aliyun waf-openapi describe-defense-rules \
 ```bash
 aliyun waf-openapi describe-defense-rules \
   --version 2021-10-01 --force --region <region> \
-  --user-agent AlibabaCloud-Agent-Skills \
+  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-waf-rule-management/{{SESSION_ID}}" \
   --InstanceId '<instance_id>' \
   --Query '{"ruleId":<rule_id>}'
 ```

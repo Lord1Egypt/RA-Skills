@@ -1,42 +1,56 @@
-## Description: <br>
-BaoStock is a free China A-share market data skill for K-line, financial data, industry classification, trading calendar, securities list, and index component queries without registration or an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BaoStock helps agents query free China A-share market data, including K-line, financial, trading-calendar, industry, and index-constituent data without registration.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and agents use this skill to install and use BaoStock for China A-share historical price, financial statement, industry, trading calendar, and index component data workflows. It provides command examples, Python snippets, and usage guidance for querying data into pandas DataFrames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the bundle suspicious because an autoreview helper may run a nested reviewer with sandbox bypass and send code diffs to fallback reviewer tools. <br>
-Mitigation: Install only if the publisher is trusted; before using autoreview behavior, prefer --no-yolo or AUTOREVIEW_YOLO=0, confirm available fallback reviewer CLIs, and avoid sensitive workflows unless credentials, target, and command are explicitly verified. <br>
+## Use Case:
 
+Developers and agent builders use this skill to install BaoStock, call its Python APIs, and retrieve China A-share securities, price history, financial metrics, industry classifications, and index constituent data for analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub BaoStock listing](https://clawhub.ai/coderwpf/baostock) <br>
-- [BaoStock homepage](https://www.baostock.com) <br>
-- [BaoStock documentation](https://www.baostock.com/baostock/index.php) <br>
-- [BaoStock Python API manual](https://www.baostock.com/baostock/index.php/Python_API%E6%96%87%E6%A1%A3) <br>
-- [Publisher profile](https://clawhub.ai/user/coderwpf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus the baostock and pandas Python packages for examples that execute live data queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact files also mention 1.2.0 and 1.3.0) <br>
+Risk: Package installation can introduce unreviewed dependency changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill dependencies in a virtual environment and pin reviewed versions of baostock and pandas before use.
+
+Risk: Sample scripts contact BaoStock services and examples may create or overwrite CSV files with the shown filenames.
+
+Mitigation: Review scripts before execution, confirm outbound network access is acceptable, and choose explicit output paths for generated CSV files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coderwpf/skills/baostock)
+- [BaoStock Homepage](https://www.baostock.com)
+- [BaoStock Python API Documentation](http://baostock.com/baostock/index.php/Python_API%E6%96%87%E6%A1%A3)
+- [BaoStock API Manual](https://www.baostock.com/baostock/index.php/Python_API%E6%96%87%E6%A1%A3)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run Python package installation, query remote BaoStock services, and write CSV outputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

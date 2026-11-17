@@ -1,40 +1,54 @@
-## Description: <br>
-招聘需求智能解读技能，可将粘贴、上传或 URL 来源的岗位 JD 转换为 8 维结构化解读，并生成交互式 HTML 可视化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+招聘需求智能解读技能，将粘贴、上传或URL提供的岗位JD拆解为结构化岗位画像、显性与隐性需求、需求权重、差距自评、面试预测、学习路线、ATS关键词和可选薪资对标分析。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External job seekers and career advisors use this skill to understand job descriptions before tailoring resumes or preparing for interviews. It extracts role facts, explicit and implicit requirements, weighted priorities, self-assessment prompts, interview topics, learning paths, ATS keywords, and optional salary context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted job-description content can be rendered into a local interactive HTML report without escaping or sanitizing all fields. <br>
-Mitigation: Use only trusted JD inputs, review generated HTML before opening or sharing it, and update the report generator to escape fields and disable inline script execution where feasible. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to understand a job description before tailoring a resume, preparing for interviews, or deciding whether to apply. It produces a structured JD interpretation and can guide follow-on resume matching or resume rewriting workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bettermen/jd-interpreter) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/bettermen) <br>
-- [analysis.json Schema Reference](references/analysis_schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured analysis, analysis.json, and an interactive HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates jd-interpretation-report.html from analysis.json; optional salary benchmarking may use web search when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML reports may execute injected browser code from malicious job-description content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted job descriptions or URLs, and avoid opening generated reports from untrusted postings until report content is escaped.
+
+Risk: analysis.json and generated HTML reports may contain private job-search notes or self-assessment information.
+
+Mitigation: Manually delete analysis.json and generated HTML reports when they contain sensitive job-search or self-assessment data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/jd-interpreter)
+- [analysis.json Schema Reference](references/analysis_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, HTML, Shell commands, Guidance]
+
+**Output Format:** [Structured analysis text with JSON input for an optional generated interactive HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report generator reads analysis.json and writes jd-interpretation-report.html; optional salary benchmarking may use web search when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

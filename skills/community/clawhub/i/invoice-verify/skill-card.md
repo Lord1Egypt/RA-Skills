@@ -1,41 +1,58 @@
-## Description: <br>
-发票查验技能按票面信息或上传文件查验发票真伪，并返回完整票面信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发票查验技能。按票面信息或上传文件查验发票真伪，返回完整票面信息。适用于验证发票真实性的场景。
 
-## Publisher: <br>
-[zxt](https://clawhub.ai/user/zxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxt](https://clawhub.ai/user/zxt)
 
-## Use Case: <br>
-Finance, reimbursement, and audit users can use this skill to verify invoice authenticity from invoice fields or supported invoice files. It can also query prior verification records by date range, invoice number, invoice code, invoice type, and status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice details, uploaded invoice files, and the invoice-service API key are sent to skill.quandianfapiao.com. <br>
-Mitigation: Use only with data approved for that service, and keep ZXT_API_KEY in a secure secret store or temporary environment variable. <br>
-Risk: The artifact guidance asks users to provide an API key in chat and may persist it in shell startup files. <br>
-Mitigation: Do not paste production API keys into chat, and avoid adding the key to shell startup files unless the exposure is understood. <br>
+## Use Case:
 
+External users and business operators use this skill to verify invoice authenticity from invoice fields or uploaded invoice files, retrieve complete invoice details, and query prior verification records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxt/invoice-verify) <br>
-- [ZXT invoice skill service](https://skill.quandianfapiao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown guidance with CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ZXT_API_KEY; file verification supports pdf, ofd, xml, jpg, and png files up to 10 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: Invoice files and invoice metadata may contain sensitive business, tax, or personal information and are sent to skill.quandianfapiao.com for verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only after confirming that this external service is acceptable for the data being checked, and avoid submitting invoices that exceed the user's data-sharing policy.
+
+Risk: The skill asks users to provide an API key in chat and includes instructions that may persist the key in plaintext shell startup files.
+
+Mitigation: Use a temporary environment variable, a secret manager, or a restricted throwaway key instead of pasting production credentials into chat or storing them permanently; rotate any key that may have been exposed.
+
+Risk: Invoice authenticity and record outputs depend on responses from the remote service and the user's account authorization.
+
+Mitigation: Review non-200 status messages before acting on results, and confirm important tax or compliance decisions against authoritative records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxt/skills/invoice-verify)
+- [中兴通简税Skill平台](https://skill.quandianfapiao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Human-readable invoice verification results, record summaries, status messages, and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include invoice metadata returned by the external service; file verification supports pdf, ofd, xml, jpg, and png files up to 10MB.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

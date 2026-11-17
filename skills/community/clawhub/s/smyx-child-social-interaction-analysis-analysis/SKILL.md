@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-social-interaction-analysis-analysis"
 description: "Using fixed cameras in kindergartens or early-education centers, the system analyzes multi-person video to detect social-interaction behaviors among children, including approach (distance < 1 m), conversation (face-to-face with mouth movement), and cooperative play (collaborative play, chasing, etc.). | 通过幼儿园或早教中心的固定摄像头，分析多人视频，检测儿童之间的社交互动行为，包括接近（距离<1米）、对话（面对面且嘴部运动）、共同游戏（合作玩耍、追逐等）。系统定期生成社交互动热力图，为教师提供参考。"
-version: "1.0.2"
+version: "1.0.22"
 license: "MIT-0"
 ---
 
@@ -157,7 +157,7 @@ python -m scripts.smyx_child_social_interaction_analysis_analysis --list
 | 🔏 隐私合规 | 隐私合规：幼儿园多人视频涉及未成年人隐私，使用前需取得监护人/园方知情同意，并妥善保管/加密相关录像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

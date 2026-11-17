@@ -1,46 +1,66 @@
-## Description: <br>
-Semantic memory system using Baidu Embedding-V1 for vector-based memory storage and retrieval in Clawdbot with SQLite persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Clawdbot semantic memory store that embeds memory text and search queries with Baidu Embedding-V1, persists records in SQLite, and supports tag-filtered retrieval.
 
-## Publisher: <br>
-[xqicxx](https://clawhub.ai/user/xqicxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xqicxx](https://clawhub.ai/user/xqicxx)
 
-## Use Case: <br>
-Developers and Clawdbot operators use this skill to store, retrieve, and search conversational or knowledge memories by semantic similarity using Baidu embeddings and local SQLite storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Memory content and search queries may be sent to Baidu for embedding despite local-storage privacy claims. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, disclose external embedding processing to users, and use approved Baidu credentials only for data appropriate for that service. <br>
-Risk: The skill depends on an external baidu-vector-db helper located outside the artifact. <br>
-Mitigation: Inspect and pin the helper before installation, and verify its source and behavior before enabling Baidu-backed embeddings. <br>
-Risk: Maintenance and disable instructions can modify /root/clawd files, backups, symlinks, or Clawdbot extension directories. <br>
-Mitigation: Review each command before execution, run with the least privileges needed, and back up affected Clawdbot memory and configuration files first. <br>
+## Use Case:
 
+Developers and operators use this skill to add persistent semantic memory to Clawdbot, storing conversation context, user preferences, and knowledge snippets locally while retrieving related memories with natural-language queries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xqicxx/memory-baidu-embedding-db) <br>
-- [Baidu Qianfan Console](https://console.bce.baidu.com/qianfan/) <br>
-- [README](README.md) <br>
-- [API Reference](API_REFERENCE.md) <br>
-- [Security Configuration](SECURITY_CONFIG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and bash examples; runtime memory APIs return JSON-like dictionaries and lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores memory text, tags, metadata, and embeddings in SQLite; Baidu-backed embedding calls require BAIDU_API_STRING and BAIDU_SECRET_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Memory text and search queries may be sent to Baidu when embedding generation is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the privacy boundary before use, avoid storing sensitive personal, business, health, financial, or secret data unless approved, and use fallback or local-only behavior where required.
+
+Risk: Operational scripts assume root-level Clawdbot paths and can modify files, permissions, symlinks, backups, and restored data.
+
+Mitigation: Inspect scripts before installation, run them first in an unprivileged test environment, replace hard-coded paths, and require confirmation for cleanup, restore, and maintenance actions.
+
+Risk: Persistent SQLite memory files and backups can retain sensitive or stale information.
+
+Mitigation: Apply filesystem permissions, retention rules, backup validation, and deletion processes for data that should not be retained.
+
+Risk: The embedding client is loaded from an absolute local path and may be unavailable or changed outside this release.
+
+Mitigation: Use a pinned and reviewed embedding client package, verify startup checks, and document fallback behavior before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xqicxx/skills/memory-baidu-embedding-db)
+- [Publisher Profile](https://clawhub.ai/user/xqicxx)
+- [Baidu Qianfan Console](https://console.bce.baidu.com/qianfan/)
+- [README](artifact/README.md)
+- [API Reference](artifact/API_REFERENCE.md)
+- [Security Configuration](artifact/SECURITY_CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with Python and shell code blocks; Python methods return booleans, lists of dictionaries, and statistics dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Baidu API credentials from environment variables and stores persistent memory records in a local SQLite database.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

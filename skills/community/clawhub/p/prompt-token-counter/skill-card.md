@@ -1,42 +1,58 @@
-## Description: <br>
-Count tokens and estimate costs for 300+ LLM models, with a primary use case of auditing OpenClaw workspace token consumption across memory, persona, and skill files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count tokens and estimate costs for 300+ LLM models. Primary use: audit OpenClaw workspace token consumption (memory, persona, skills).
 
-## Publisher: <br>
-[Zhaobudaoyuema](https://clawhub.ai/user/Zhaobudaoyuema) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobudaoyuema](https://clawhub.ai/user/zhaobudaoyuema)
 
-## Use Case: <br>
-Developers and agent operators use this skill to count prompt or file tokens, estimate model API costs, compare model token usage, and audit OpenClaw workspace context size before or after changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local OpenClaw workspace and skill files, which may contain personal data or secrets. <br>
-Mitigation: Install and run it only when token auditing those files is intended, and avoid pointing it at sensitive files that are not needed for the audit. <br>
-Risk: The URL input option can make outbound HTTP or HTTPS requests and may expose network metadata or interact with untrusted, localhost, or internal URLs. <br>
-Mitigation: Use local files or inline text when possible, and require explicit user confirmation before fetching only trusted external URLs. <br>
-Risk: The benchmark example can send text to a configured model API endpoint. <br>
-Mitigation: Do not run API benchmarking on sensitive text unless the endpoint and credentials are trusted for that data. <br>
+## Use Case:
 
+External users and developers use this skill to count prompt tokens, estimate model API costs, compare token usage across models, and audit OpenClaw workspace files that contribute to context size.
 
-## Reference(s): <br>
-- [Prompt Token Counter on ClawHub](https://clawhub.ai/Zhaobudaoyuema/prompt-token-counter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-style text with token counts, cost estimates, model lists, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OpenAI models use tiktoken when available; other model counts are approximate. Cost output depends on available pricing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: The CLI can fetch arbitrary HTTP or HTTPS URLs when URL input is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local files or inline text; use URL input only after confirming the URL is trusted and appropriate to fetch.
+
+Risk: API-mode benchmarking can send prompt text to an external model provider.
+
+Mitigation: Use local benchmarking for private content, and run API-mode benchmarks only with text that is approved for the configured provider.
+
+Risk: Workspace audits may read memory, persona, and skill files that contain sensitive information.
+
+Mitigation: Review files before counting them and avoid cost or benchmark workflows that transmit private workspace content externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobudaoyuema/skills/prompt-token-counter)
+- [Project repository listed by artifact metadata](https://github.com/Zhaobudaoyuema/prompt-token-counter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with optional shell commands and tabular summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs token counts and optional cost estimates; OpenAI token counts use tiktoken when installed, while other model counts are formula-based approximations.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

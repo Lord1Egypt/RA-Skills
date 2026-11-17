@@ -1,12 +1,17 @@
 ---
 name: agclaw
+version: 1.1.1
+display_name: "AppGrowing 智能广告素材分析助手"
+display_name_en: "AppGrowing Ad Creative Analysis Assistant"
+description_zh: "AppGrowing 智能广告素材分析助手，支持策略探索(chat_mode=6)和灵感激发(chat_mode=10)两种模式。触发：关键词 投放分析、分析素材、素材分析、素材解析；命令 /agclaw(自动推断模式)、/ag(策略探索)、/ag-inspire(灵感激发)"
+description_en: "AppGrowing intelligent ad creative analysis assistant with Strategy Exploration (chat_mode=6) and Inspiration (chat_mode=10) modes. Trigger keywords: ad analysis, creative analysis; commands: /agclaw (auto), /ag (strategy), /ag-inspire (inspiration)."
 description: "AppGrowing 智能广告素材分析助手，支持策略探索(chat_mode=6)和灵感激发(chat_mode=10)两种模式。触发：关键词 投放分析、分析素材、素材分析、素材解析；命令 /agclaw(自动推断模式)、/ag(策略探索)、/ag-inspire(灵感激发)"
 homepage: https://appgrowing.cn/
 metadata:
   {
     "openclaw": {
       "slug": "agclaw",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": "youcloud",
       "emoji": "🐳",
       "requires": {
@@ -104,4 +109,11 @@ Invoke-RestMethod @params | Select-Object -ExpandProperty output
   ```
 - 超时："还在分析中，稍后再问我结果或者再次请求。"
 - 其他错误："请求返回错误 (code={code})，请检查API Key权限、账号配额或联系客服"
+
+## 素材链接拼接模板
+当分析结果中包含素材 ID 时，按以下模板拼接为素材详情页链接，方便用户点击跳转查看视频/投放数据：
+
+- **拼接模板**：`https://appgrowing-cn.youcloud.com/material/{{ID}}`
+- **用法**：将 `{{ID}}` 替换为实际素材 ID。例如素材 ID 为 `abc123`，拼接结果为 `https://appgrowing-cn.youcloud.com/material/abc123`
+- **输出规范**：以 Markdown 链接形式呈现，例如 `[素材 abc123](https://appgrowing-cn.youcloud.com/material/abc123)`，让用户可直接点击跳转
 

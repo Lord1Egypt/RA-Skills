@@ -1,39 +1,57 @@
-## Description: <br>
-Build your digital twin through conversation. Your AI learns who you are by talking to you - not by reading a form. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build your digital twin through conversation. Your AI learns who you are by talking to you -- not by reading a form.
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-External users use this skill to build and maintain a local digital-twin profile through guided conversation. The agent interviews the user, writes a SOUL.md identity document, tracks onboarding progress, and evolves the profile when the user confirms updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive personal and workplace details in a persistent local profile. <br>
-Mitigation: Avoid sharing secrets or confidential company information, review the generated SOUL.md and session files, and delete ~/.openclaw/data/second-me/ when the stored profile is no longer wanted. <br>
+## Use Case:
 
+External users use Second Me to build and maintain a personal digital-twin profile through guided conversation. The agent captures identity, work style, values, boundaries, and progress in local Markdown and JSON records so future sessions can adapt to the same person.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paul-leo/second-me) <br>
-- [Publisher profile](https://clawhub.ai/user/paul-leo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown files and JSON progress records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores SOUL.md, progress.json, and conversation session files under ~/.openclaw/data/second-me/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill builds and stores a sensitive personal and workplace identity profile over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information you intentionally want stored, and periodically review or delete ~/.openclaw/data/second-me/ contents.
+
+Risk: Conversation logs and profile sections may contain sensitive health, relationship, employer, conflict, or identity details.
+
+Mitigation: Avoid raw session logs and highly sensitive details unless persistent local storage is acceptable for the deployment.
+
+Risk: A digital-twin profile could be used to overstep the user's authority or expose private information.
+
+Mitigation: Keep the skill's confirmation boundaries in place for money, legal commitments, credentials, confidential data, irreversible actions, and external relationships.
+
+## Reference(s):
+
+- [Second Me ClawHub Skill Page](https://clawhub.ai/paul-leo/skills/second-me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Conversational text with local Markdown and JSON profile files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists SOUL.md, progress.json, and conversation session logs under ~/.openclaw/data/second-me/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,21 @@
 # 聚合支付下单
 
-这份文档覆盖聚合支付的下单场景选择、关键字段和状态理解。
+这份文档覆盖聚合支付的下单场景选择、关键字段和状态理解。极速版正式产品范围为 9 个场景；V4 下单参数表另含 `T_APP`，形成 10 个 `trade_type` 枚举。不得删除 `T_APP` API 支持，也不得把它称为极速版正式第十场景。
+
+## 目录
+
+- 什么时候读这里
+- 下单主流程
+- 场景与关键返回
+- 关键前置条件
+- 通用请求字段
+- 请求头强制约束
+- 通用返回字段
+- 必须保存的字段
+- 易错点
+- PHP 官方 SDK 路由
+- 下一步
+- 按需分册
 
 ## 什么时候读这里
 
@@ -38,6 +53,8 @@
 | 各类付款码 | `auth_code` |
 
 ## 通用请求字段
+
+本页只给场景和关键字段，不是完整 DTO。所有请求、同步响应和正扫/反扫异步字段的完整路径、类型、长度、Y/N/C 必须读取 `references/payment-complete-field-catalog.md` 的“聚合支付下单”，再按 `trade_type` 联读微信、支付宝或银联分册。
 
 | 字段 | 说明 |
 | --- | --- |
@@ -91,3 +108,18 @@
 ## 下一步
 
 支付发起后统一读 `references/aggregation-query.md` 做最终确认。
+
+## 按需分册
+
+| 文件 | 内容 |
+|-----|------|
+| `references/aggregation-order.md` | 场景总览与阅读入口 |
+| `references/aggregation-customer-preparation.md` | 客户前置准备清单、场景参数来源 |
+| `references/aggregation-payload-construction.md` | `method_expand` / 顶层交易能力扩展字段参数校验与序列化规范 |
+| `references/aggregation-order-request.md` | 公共请求参数与顶层字段 |
+| `references/aggregation-order-method-wechat.md` | 微信请求与回调字段 |
+| `references/aggregation-order-method-alipay.md` | 支付宝请求与回调字段 |
+| `references/aggregation-order-method-unionpay.md` | 银联请求与回调字段 |
+| `references/aggregation-order-tx-metadata.md` | 请求顶层交易能力扩展字段与返回 `tx_metadata` 的边界说明 |
+| `references/aggregation-order-response.md` | 同步返回、异步回调、解冻通知 |
+| `references/aggregation-order-errors.md` | 返回码与文档勘误 |

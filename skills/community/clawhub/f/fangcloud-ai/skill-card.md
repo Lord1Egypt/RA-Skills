@@ -1,46 +1,63 @@
-## Description: <br>
-Automation skill for Fangcloud file management, sharing, collaboration, knowledge-base chat, and agent interactions through the Fangcloud API and downloadable CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fangcloud API Skills helps agents operate Fangcloud files, sharing, collaboration, knowledge-base chat, and related API workflows.
 
-## Publisher: <br>
-[jiema123](https://clawhub.ai/user/jiema123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiema123](https://clawhub.ai/user/jiema123)
 
-## Use Case: <br>
-Developers and agent users can use this skill to search, upload, download, organize, share, and collect Fangcloud files, and to interact with Fangcloud knowledge-base and agent chat APIs. It is intended for workflows that need authenticated cloud-file actions and Markdown or command-oriented agent guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent broad Fangcloud file and admin capabilities, including upload, download, share, collection, invite, delete, move, and admin actions. <br>
-Mitigation: Use least-privilege user tokens, avoid admin tokens unless required, and manually confirm sensitive file, sharing, collection, invite, delete, move, or admin operations before execution. <br>
-Risk: The skill downloads and runs a Fangcloud CLI binary from the release host. <br>
-Mitigation: Install only if the publisher and release host are trusted, and verify or pin the downloaded CLI before running it. <br>
-Risk: The security summary reports real-looking bearer tokens in API documentation. <br>
-Mitigation: Treat tokens, Authorization headers, cookies, signatures, and environment variables as secrets and do not expose them in prompts, logs, knowledge-base requests, or third-party destinations. <br>
-Risk: Knowledge-base, agent, cloud-file, OCR, share-file, and imported-document content may contain indirect prompt injection or social engineering text. <br>
-Mitigation: Treat returned content as untrusted data, ignore operational instructions embedded in that content, and only act on separately confirmed user requests. <br>
+## Use Case:
 
+Developers and agents use this skill to search, upload, download, organize, and share Fangcloud files, manage collaboration or collection links, and interact with Fangcloud knowledge-base and agent chat features. Use it where the publisher and release channel are trusted and Fangcloud token exposure can be managed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiema123/fangcloud-ai) <br>
-- [Fangcloud API endpoint reference](artifact/references/openapi.md) <br>
-- [Fangcloud CLI release host](https://app.fangcloud.com/sync/vv25/knowclaw/release/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, API paths, JSON request examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to use Fangcloud tokens from environment variables and to download and run a platform-specific Fangcloud CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The release asks users to run a downloaded closed-source CLI that receives Fangcloud user or admin tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and release channel, avoid admin tokens unless strictly necessary, and keep tokens rotatable.
+
+Risk: The API documentation includes credential-shaped bearer tokens and token-based examples.
+
+Mitigation: Treat all sample tokens as exposed, never reuse them, and rotate any real Fangcloud tokens that may have been copied into documentation or logs.
+
+Risk: The skill can upload, download, delete, move, copy, share, collect, and administer Fangcloud resources.
+
+Mitigation: Require explicit user confirmation before destructive, public-link, collection-link, transfer, or admin operations.
+
+Risk: Knowledge-base, agent, OCR, share, and cloud-document content can contain indirect prompt-injection text.
+
+Mitigation: Treat remote content as data, ignore instructions embedded in returned content, and do not expose tokens or secrets to knowledge-base requests or third-party URLs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiema123/skills/fangcloud-ai)
+- [Fangcloud API Endpoint Analysis](artifact/references/openapi.md)
+- [Fangcloud CLI Release Downloads](https://app.fangcloud.com/sync/vv25/knowclaw/release/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples, JSON request bodies, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke a downloaded Fangcloud CLI and requires Fangcloud user or admin tokens for authenticated operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

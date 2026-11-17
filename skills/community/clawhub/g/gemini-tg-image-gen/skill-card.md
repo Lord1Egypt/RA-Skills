@@ -1,44 +1,53 @@
-## Description: <br>
-Generate images via OpenRouter (google/gemini-2.5-flash-image) and send to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images via OpenRouter (google/gemini-2.5-flash-image) and send them to Telegram.
 
-## Publisher: <br>
-[drones277](https://clawhub.ai/user/drones277) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[drones277](https://clawhub.ai/user/drones277)
 
-## Use Case: <br>
-External users and automation agents use this skill to generate AI images from a prompt through OpenRouter and deliver the resulting image to a Telegram chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch unvalidated URLs returned by the model response. <br>
-Mitigation: Validate or allowlist downloaded image URLs before fetching them. <br>
-Risk: The Telegram workflow may send unintended temporary files if a broad file glob is used. <br>
-Mitigation: Send only the exact file paths returned by the generation script. <br>
-Risk: Generated image prompts and API credentials may expose sensitive data to external services. <br>
-Mitigation: Use a revocable OpenRouter API key and avoid sensitive prompts. <br>
-Risk: Generated temporary images may remain after delivery. <br>
-Mitigation: Delete temporary image files after they are sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drones277/gemini-tg-image-gen) <br>
-- [OpenRouter chat completions API](https://openrouter.ai/api/v1/chat/completions) <br>
+## Use Case:
 
+External users and agents use this skill to generate AI images from a prompt through OpenRouter and deliver the resulting image file to Telegram.
 
-## Skill Output: <br>
-**Output Type(s):** [files, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Telegram text and image messages, local image files, and JSON path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and writes generated image files under the OpenClaw workspace temporary directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The image-fetching script can follow arbitrary URLs returned by the model, which creates network and data-exposure risk.
+
+Mitigation: Accept only trusted structured image outputs or validated inline image data, enforce content type and size limits, and avoid sensitive prompts or internal-network environments until URL fetching is constrained.
+
+Risk: Generated images are written to local temporary storage for Telegram delivery.
+
+Mitigation: Delete temporary image files after sending and avoid prompts or outputs that contain sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drones277/skills/gemini-tg-image-gen)
+- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON path output from the generation script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and produces local image file paths for Telegram delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

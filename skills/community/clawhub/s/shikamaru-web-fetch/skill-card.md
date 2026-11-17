@@ -1,43 +1,58 @@
-## Description: <br>
-Fetches a known URL and returns page content as markdown, plain text, raw HTML, or a downloaded image file using a local Node.js helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch a known URL and return the page as markdown, plain text, raw HTML, or a downloaded image file using the local fetch.js helper.
 
-## Publisher: <br>
-[shikamaru-cc](https://clawhub.ai/user/shikamaru-cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shikamaru-cc](https://clawhub.ai/user/shikamaru-cc)
 
-## Use Case: <br>
-Developers and agents use this skill when a URL is already known and the task is retrieval, inspection, summarization, conversion, or saving a page asset rather than web discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch private or internal URLs if the agent is asked to do so. <br>
-Mitigation: Use it only for intended URLs and avoid private or internal targets unless that access is explicitly required. <br>
-Risk: Image downloads write to the requested output path. <br>
-Mitigation: Choose output paths deliberately and avoid overwriting important files. <br>
-Risk: Fetched page content may be incomplete, blocked, misleading, or too large to retrieve. <br>
-Mitigation: Treat fetched content as untrusted input, quote or summarize only relevant excerpts, and report fetch failures plainly. <br>
+## Use Case:
 
+Developers and agent users use this skill when they already have a target URL and need the agent to retrieve, inspect, quote, summarize, convert, or save that page or asset.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shikamaru-cc/shikamaru-web-fetch) <br>
-- [Publisher profile](https://clawhub.ai/user/shikamaru-cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files] <br>
-**Output Format:** [XML-like <web_fetch> block containing title, URL, MIME metadata, and either content text or a saved image path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports markdown, text, HTML, and image download outputs; rejects responses larger than 5MB; timeout is capped at 120 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can contact arbitrary network locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for URLs the user intentionally wants fetched and avoid internal or private network addresses.
+
+Risk: Fetched content may be untrusted.
+
+Mitigation: Review retrieved content before quoting, summarizing, or using it to drive further agent actions.
+
+Risk: Image downloads can overwrite writable files at the selected output path.
+
+Mitigation: Save images only to a safe temporary or download directory where overwrites are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shikamaru-cc/skills/shikamaru-web-fetch)
+- [Publisher Profile](https://clawhub.ai/user/shikamaru-cc)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Code, Files]
+
+**Output Format:** [Markdown, plain text, raw HTML, or saved image file path in a web_fetch block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses over 5 MB are rejected; timeout can be set up to 120 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

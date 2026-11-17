@@ -1,50 +1,68 @@
-## Description: <br>
-Drafts Zhihu answers by selecting eligible hot questions, calling a documented AI endpoint, and saving generated Chinese answers as drafts without publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Zhihu answers by selecting hot or keyword-matched questions, collecting discussion context, generating Chinese answer text through zhihuiapi, and saving validated output as drafts without publishing.
 
-## Publisher: <br>
-[joly123456](https://clawhub.ai/user/joly123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joly123456](https://clawhub.ai/user/joly123456)
 
-## Use Case: <br>
-External users and content operators use this skill to prepare Zhihu draft answers from hot or keyword-filtered topics while keeping manual control over account login and final publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Zhihu account access and service availability. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a Chrome session logged into Zhihu. <br>
-Mitigation: Use a dedicated browser profile when possible, disable browser host control after use, and review all drafts before publishing. <br>
-Risk: Selected Zhihu page context is sent to the documented third-party AI endpoint. <br>
-Mitigation: Use a revocable API key, avoid sensitive topics or private content, and verify the endpoint and model configuration before running. <br>
-Risk: Generated answers may be incorrect, unsafe, or unsuitable for the account holder's voice. <br>
-Mitigation: Keep the workflow draft-only, require manual review before publishing, and rely on the skill's validation and safety skip rules as a first-pass filter. <br>
+## Use Case:
 
+External users and content operators use this skill in OpenClaw to prepare Zhihu draft answers from hot or keyword-filtered topics while keeping final publishing under manual control.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joly123456/zhihu-draft-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/joly123456) <br>
-- [Setup](artifact/references/setup.md) <br>
-- [Runtime Options](artifact/references/runtime-options.md) <br>
-- [Answer Generation Prompt](artifact/references/answer-generation.md) <br>
-- [Answer Schema](artifact/references/answer-schema.json) <br>
-- [Manual Test Checklist](artifact/references/manual-test-checklist.md) <br>
-- [Zhihu Hot List](https://www.zhihu.com/hot) <br>
-- [zhihuiapi Chat Completions Endpoint](https://cc.zhihuiapi.top/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status reports, JSON API payloads, shell commands, and drafted Chinese answer text saved through the browser.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates draft-only Zhihu answers, appends local deduplication history, and reports successes, skips, and failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Untrusted Zhihu or user text can become shell execution if interpolated into the documented curl command literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass collected text through stdin, a secure request file, or a structured HTTP client instead of embedding it directly in shell source.
+
+Risk: The skill controls a logged-in Zhihu browser session.
+
+Mitigation: Use a dedicated browser profile, keep automated login disabled, and verify the workflow only saves drafts.
+
+Risk: Selected Zhihu question and comment data is sent to zhihuiapi for answer generation.
+
+Mitigation: Install only when that provider data flow is acceptable, and avoid using the skill on sensitive or private material.
+
+Risk: Generated drafts may still be inaccurate, unsafe, or legally risky.
+
+Mitigation: Review saved drafts manually before publishing and retain the schema, safety, and anti-copy validation steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joly123456/skills/zhihu-draft-writer)
+- [Setup](references/setup.md)
+- [Runtime Options](references/runtime-options.md)
+- [Answer Generation Prompt](references/answer-generation.md)
+- [Answer Schema](references/answer-schema.json)
+- [Manual Test Checklist](references/manual-test-checklist.md)
+- [Zhihu Hot List](https://www.zhihu.com/hot)
+- [zhihuiapi Chat Completions Endpoint](https://cc.zhihuiapi.top/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON contracts, shell commands, Chinese draft text, and an end-of-run status report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated answer output is expected as JSON with answer_text, then validated for length, safety, non-copying, and draft-only handling before being written to Zhihu.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

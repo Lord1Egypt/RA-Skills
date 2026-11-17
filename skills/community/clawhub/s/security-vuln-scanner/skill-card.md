@@ -1,40 +1,53 @@
-## Description: <br>
-Scans code for common vulnerability patterns, including SQL injection, cross-site scripting, hardcoded secrets, insecure randomness, command injection, and sensitive information leaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans code for common security vulnerability patterns such as SQL injection, XSS, hardcoded secrets, insecure random number use, command injection, and sensitive information leaks.
 
-## Publisher: <br>
-[HonestQiao](https://clawhub.ai/user/HonestQiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honestqiao](https://clawhub.ai/user/honestqiao)
 
-## Use Case: <br>
-Developers and security reviewers use this skill for lightweight checks of code snippets and small changes before deeper review. It returns vulnerability hints, severity information, line numbers, and a security score to guide remediation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Regex-based scanning can miss vulnerabilities or flag benign code. <br>
-Mitigation: Treat findings as review prompts and validate important issues with manual review or dedicated security tooling. <br>
-Risk: Code samples may contain real secrets or sensitive information. <br>
-Mitigation: Avoid submitting real credentials or confidential code unless intentional and permitted for inspection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HonestQiao/security-vuln-scanner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/HonestQiao) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to perform lightweight, local pattern-based checks of source code and receive vulnerability findings, severity labels, line numbers, scores, and remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON and concise remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Regex-based findings should be treated as hints rather than a complete security audit.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner is lightweight and pattern-based, so it may produce false positives or miss real vulnerabilities.
+
+Mitigation: Use the results as triage input and confirm findings with human review and established security testing tools before relying on them.
+
+Risk: The generic "vulnerability" trigger may activate the skill in broad security discussions.
+
+Mitigation: Confirm that the user wants a vulnerability scan before analyzing code when the trigger context is ambiguous.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/honestqiao/skills/security-vuln-scanner)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/honestqiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or JSON-style vulnerability report with code findings and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include vulnerability type, line number, severity, message, and a security score.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

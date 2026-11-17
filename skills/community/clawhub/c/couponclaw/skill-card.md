@@ -1,41 +1,54 @@
-## Description: <br>
-Find verified coupons, compare cashback rates, and generate savings guidance for products and stores across China, the United States, the United Kingdom, Australia, Southeast Asia, and global direct-to-consumer brands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CouponClaw finds coupons, stacks cashback, and calculates the exact final price before checkout across China, the US, the UK, Australia, and Southeast Asia.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External shoppers and shopping agents use CouponClaw to search coupon and cashback sources, compare stacking options, and produce concise deal recommendations before checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad shopping triggers may route general shopping questions through a coupon and cashback lookup workflow. <br>
-Mitigation: Invoke the skill explicitly for coupon, cashback, or daily-deal searches when broad routing is not desired. <br>
-Risk: The skill asks an agent to open third-party coupon, cashback, and merchant pages based on user product or store queries. <br>
-Mitigation: Use only non-sensitive shopping queries and review the extracted deals before relying on coupon codes, cashback rates, or final-price calculations. <br>
+## Use Case:
 
+External users and shopping assistants use CouponClaw to find currently valid coupon codes, compare cashback rates, and prepare final-price savings summaries for products, stores, and daily deals.
 
-## Reference(s): <br>
-- [CouponClaw on ClawHub](https://clawhub.ai/jiajiaoy/couponclaw) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and browser-navigation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include coupon tables, cashback comparisons, source links, and final-price calculations in English or Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata, package.json, README badge) <br>
+Risk: Coupon or cashback recommendations may be stale, unavailable, expired, or incompatible with cashback portal rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review live merchant, coupon, and cashback pages before checkout and do not fabricate coupon codes when a page cannot be accessed.
+
+Risk: The optional daily deals push can create a recurring scheduled notification until the user disables it.
+
+Mitigation: Enable push only after reviewing the command, channel, region, language, and morning time; disable it with the provided push-toggle off command when no longer wanted.
+
+## Reference(s):
+
+- [CouponClaw on ClawHub](https://clawhub.ai/jiajiaoy/skills/couponclaw)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with source links, coupon and cashback tables, shell command examples, and optional cron protocol messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output unless --lang en is passed; optional daily deal push uses a user-enabled recurring cron subscription.]
+
+## Skill Version(s):
+
+1.1.8 (source: server release metadata, package.json, _meta.json, and SKILL.md footer)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

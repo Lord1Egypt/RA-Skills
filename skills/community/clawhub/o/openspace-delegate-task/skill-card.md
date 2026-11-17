@@ -1,43 +1,58 @@
-## Description: <br>
-Delegates coding, DevOps, web research, and automation tasks to OpenSpace through MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate tasks to OpenSpace, a full-stack autonomous worker for coding, DevOps, web research, and desktop automation, backed by an MCP tool and skill library.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and agents use this skill to delegate complex coding, DevOps, web research, and automation work to an OpenSpace MCP server when local tools or skills are insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes work to an external autonomous system with cloud search, auto-import, and public sharing paths. <br>
-Mitigation: Install only when the configured OpenSpace MCP server and cloud skill ecosystem are trusted. <br>
-Risk: Delegated tasks may change systems, accounts, or local skill files. <br>
-Mitigation: Require explicit approval before delegating state-changing tasks and inspect evolved or fixed skills before upload. <br>
-Risk: Cloud search and automatic imports may expose or introduce sensitive workflow content. <br>
-Mitigation: Use local-only search for sensitive work when available and avoid automatic cloud imports for confidential tasks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate coding, DevOps, web research, desktop automation, skill search, skill repair, and skill upload workflows to OpenSpace when local capabilities are insufficient or a multi-step task benefits from OpenSpace orchestration.
 
-## Reference(s): <br>
-- [OpenSpace Delegate Task on ClawHub](https://clawhub.ai/x-rayluan/openspace-delegate-task) <br>
-- [Publisher profile](https://clawhub.ai/user/x-rayluan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text returned from delegated OpenSpace tasks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task results, evolved skill summaries, and upload decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Delegated tasks and cloud skills may execute or import behavior that has not been reviewed locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local-only search and disable automatic cloud imports unless the operator has reviewed and approved the behavior.
+
+Risk: Evolved or fixed skills may contain secrets, internal details, or project-specific behavior before upload.
+
+Mitigation: Review and scan any evolved skill directory before reuse or upload.
+
+Risk: Public upload can share skill changes more broadly than intended.
+
+Mitigation: Require explicit approval before public uploads and use private visibility or skip upload for project-specific changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/x-rayluan/skills/openspace-delegate-task)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/x-rayluan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with optional code, shell command, JSON, and configuration snippets returned by delegated OpenSpace tasks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task status, delegated task results, evolved skill summaries, and upload decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

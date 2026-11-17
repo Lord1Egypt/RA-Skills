@@ -1,7 +1,7 @@
 ---
 name: "smyx-trauma-stress-behavior-detection-analysis"
 description: "Using fixed cameras in emergency shelters, the system analyzes video of disaster-affected crowds to detect typical acute stress reactions: stupor (prolonged motionless state with no response to external stimulation), tremor (involuntary shaking of body or limbs), unresponsiveness (no orientation or avoidance reaction to calls or sounds), and hypervigilance (frequent scanning of surroundings, startle reactions). | 通过应急避难所内的固定摄像头，分析受灾人群的行为视频，检测急性应激反应下的典型行为：木僵（长时间静止不动，对外界刺激无反应）、颤抖（身体或四肢不自主抖动）、无反应（对呼唤、声响等刺激没有定向或回避反应）以及过度警觉（频繁环顾四周、惊跳反应）。当检测到上述行为时，输出心理危机预警，提示现场心理救援团队及时介入，提供紧急心理支持，预防急性应激障碍或创伤后应激障碍。"
-version: "1.0.3"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

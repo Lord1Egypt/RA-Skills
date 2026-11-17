@@ -1,47 +1,57 @@
-## Description: <br>
-Guides agents to design, implement, refine, and review WeChat Mini Program pages, flows, and design systems in WXML/WXSS/JS using platform-specific UI constraints and a compact design-system workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to design, implement, refine, or review a WeChat Mini Program page, flow, or design system in WXML/WXSS/JS.
 
-## Publisher: <br>
-[go-goll](https://clawhub.ai/user/go-goll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[go-goll](https://clawhub.ai/user/go-goll)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to create or review WeChat Mini Program interfaces, especially WXML/WXSS/JS pages for lists, details, forms, dashboards, feeds, account screens, checkout, approval, and settings flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan notes minor ambiguity because the Chinese README is a localized documentation option. <br>
-Mitigation: Treat README.md and README.zh-CN.md as parallel documentation and prefer the language that matches the reader or project team. <br>
-Risk: UI guidance can be misapplied to generic web pages or non-WeChat surfaces. <br>
-Mitigation: Use this skill only for WeChat Mini Program work and validate final designs against mini program constraints, state coverage, and mobile tap behavior. <br>
-Risk: Generated UI or code changes may introduce usability regressions if adopted without review. <br>
-Mitigation: Review outputs against the included delivery checklist before deployment, with special attention to loading, empty, error, permission, and disabled states. <br>
+## Use Case:
 
+Developers and designers use this skill to guide WeChat Mini Program UI design, implementation, refinement, and review. It helps agents apply mobile-first hierarchy, WeChat-specific constraints, state coverage, and WXML/WXSS/JS implementation patterns.
 
-## Reference(s): <br>
-- [WeChat Mini Program Design Principles](references/wechat-design-principles.md) <br>
-- [Design-System Pattern For Mini Programs](references/design-system-pattern.md) <br>
-- [WeChat Mini Program design guidelines](https://developers.weixin.qq.com/miniprogram/design/) <br>
-- [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/go-goll/wechat-miniprogram-ui-ux) <br>
-- [Publisher profile](https://clawhub.ai/user/go-goll) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or code-oriented guidance for WXML, WXSS, and JS changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are structured around page intent, primary action, content hierarchy, state coverage, visual system, and interaction details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can influence user-facing Mini Program layout, state handling, and implementation choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated WXML, WXSS, JavaScript, and UI guidance before applying changes to production pages.
+
+Risk: UI changes may make destructive actions, permission prompts, loading, empty, or error states unclear if applied without context.
+
+Mitigation: Check the skill's delivery checklist for state coverage, action priority, recovery paths, and destructive-action separation.
+
+## Reference(s):
+
+- [WeChat Mini Program Design Principles](references/wechat-design-principles.md)
+- [Design-System Pattern For Mini Programs](references/design-system-pattern.md)
+- [WeChat Mini Program Design Guidelines](https://developers.weixin.qq.com/miniprogram/design/)
+- [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+- [ClawHub Skill Page](https://clawhub.ai/go-goll/skills/wechat-miniprogram-ui-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with possible WXML, WXSS, and JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page intent, primary action, content hierarchy, state coverage, visual system, and interaction details.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

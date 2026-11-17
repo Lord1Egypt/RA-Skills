@@ -1,42 +1,53 @@
-## Description: <br>
-Control Clash Verge Rev via the mihomo API to query proxy status, switch nodes, test delays, manage connections, DNS, and maintenance tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Clash Verge Rev via mihomo API to query proxy status, switch nodes, test delays, manage connections, DNS, and related proxy settings.
 
-## Publisher: <br>
-[brianping7](https://clawhub.ai/user/brianping7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianping7](https://clawhub.ai/user/brianping7)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect and manage a local Clash Verge Rev or mihomo proxy, including proxy mode, node selection, latency checks, active connections, DNS queries, and maintenance actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform disruptive local proxy operations such as switching nodes, closing connections, flushing DNS, restarting the mihomo core, and updating GeoIP or GeoSite data. <br>
-Mitigation: Require an explicit user request or confirmation before running commands that change proxy state, close traffic, restart services, or update databases. <br>
-Risk: The broad activation scope around Clash, proxy, VPN, nodes, and network proxy management may bring the skill into sensitive network troubleshooting workflows. <br>
-Mitigation: Review the intended command, target group or node, and expected effect before executing proxy-management actions. <br>
-Risk: Status, connection, DNS, and rule commands can expose local network configuration or active connection details. <br>
-Mitigation: Limit use to the local Clash or mihomo endpoint and avoid sharing connection metadata unless it is needed for the user's request. <br>
+## Use Case:
 
+Developers and operators use this skill to administer a local Clash Verge Rev or mihomo controller from an agent session, including inspecting proxy state, changing routing mode or selected nodes, testing node latency, managing active connections, querying DNS, and triggering maintenance actions.
 
-## Reference(s): <br>
-- [Clash Verge Skill on ClawHub](https://clawhub.ai/brianping7/clash-verge-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change or interrupt the user's proxy service by switching routing mode or nodes, closing connections, flushing DNS, restarting the core, or updating Geo data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before state-changing or disruptive controller commands.
+
+Risk: Controller credentials can be sent to an arbitrary HTTP endpoint if the API URL is configured that way.
+
+Mitigation: Keep the controller endpoint on a local Unix socket or loopback address and avoid passing secrets on the command line.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/brianping7/skills/clash-verge-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue local Unix socket or loopback HTTP API calls to the user's configured mihomo controller.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

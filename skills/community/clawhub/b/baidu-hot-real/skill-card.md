@@ -1,42 +1,54 @@
-## Description: <br>
-Baidu Hot Real fetches real-time Baidu hot-search rankings directly from top.baidu.com/board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time Baidu hot-search rankings directly from top.baidu.com/board.
 
-## Publisher: <br>
-[iph0n3](https://clawhub.ai/user/iph0n3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iph0n3](https://clawhub.ai/user/iph0n3)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current public Baidu hot-search rankings for Chinese search-trend context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python or Bash and makes outbound requests to Baidu. <br>
-Mitigation: Install only when outbound access to top.baidu.com is acceptable, and review future updates for any expansion beyond the Baidu hot-search fetch workflow. <br>
-Risk: The Baidu page format or rate limits can change, which may cause incomplete or failed ranking output. <br>
-Mitigation: Keep request frequency modest and review parser behavior when results look empty, malformed, or outdated. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and summarize current Baidu hot-search topics from the public Baidu board without relying on simulated data or a separate API.
 
-## Reference(s): <br>
-- [Baidu Hot Search Board](https://top.baidu.com/board) <br>
-- [Baidu Hot Search Realtime Board](https://top.baidu.com/board?tab=realtime) <br>
-- [ClawHub Skill Page: Baidu Hot Real](https://clawhub.ai/iph0n3/baidu-hot-real) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text ranking output with optional Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches up to 50 public ranking items; network access to top.baidu.com is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter, package.json, evidence.json release) <br>
+Risk: The ClawHub security summary flags an unnecessary npm python3 dependency in package metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and prefer documenting Python 3 as a local prerequisite instead of installing a third-party npm dependency.
+
+Risk: The skill depends on public Baidu page structure and network access, so results may fail or degrade if the page changes, the network is unavailable, or requests are rate-limited.
+
+Mitigation: Use reasonable request intervals, keep timeouts in place, and review parser output before relying on retrieved trend data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iph0n3/skills/baidu-hot-real)
+- [Baidu Hot Search Board](https://top.baidu.com/board)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Text or markdown containing ranked Baidu hot-search entries, status messages, and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can limit output to a requested top-N count or return up to 50 entries.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata, SKILL.md frontmatter, _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-多平台内容分发器 v1.0。一次输入，自动适配小红书/知乎/公众号/抖音四种平台格式，直接输出可发布内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多平台内容分发器 v1.0。一次输入，自动适配小红书/知乎/公众号/抖音四种平台格式，直接输出可发布内容。
 
-## Publisher: <br>
-[hyjaixiao](https://clawhub.ai/user/hyjaixiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyjaixiao](https://clawhub.ai/user/hyjaixiao)
 
-## Use Case: <br>
-Content creators, marketing teams, and social media operators use this skill to turn one Chinese content topic into platform-specific drafts for Xiaohongshu, Zhihu, WeChat public accounts, and Douyin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Topics, points, and draft context are sent to the configured OpenAI-compatible API provider. <br>
-Mitigation: Use a trusted OPENAI_BASE and avoid confidential or regulated inputs unless that provider and use case are approved. <br>
-Risk: The skill requires an API key that can authorize model usage and cost. <br>
-Mitigation: Use a limited-quota API key and rotate or revoke it if it is exposed. <br>
-Risk: Generated drafts may contain inaccurate or unsuitable claims for public posting. <br>
-Mitigation: Review and edit generated claims before publishing on social platforms. <br>
-Risk: Generated drafts are saved locally and may contain sensitive campaign or topic details. <br>
-Mitigation: Set CONTENT_OUTPUT_DIR to an appropriate location and delete or redirect output when drafts are sensitive. <br>
+## Use Case:
 
+External creators, operators, and marketing teams use this skill to turn one Chinese content topic and optional talking points into platform-specific drafts for Xiaohongshu, Zhihu, WeChat public accounts, and Douyin.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyjaixiao/content-producer) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [OpenAI-compatible API endpoint](https://api.openai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown files with YAML front matter, plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated draft files under CONTENT_OUTPUT_DIR and can generate one selected platform or all supported platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill forwards user topics, talking points, prompts, and the configured bearer token to the selected OpenAI-compatible API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default trusted OpenAI endpoint or a third-party endpoint you independently trust, and prefer a separate scoped API key with spending limits.
+
+Risk: Generated social content can contain unsupported claims or platform-inappropriate messaging.
+
+Mitigation: Review, fact-check, and edit generated drafts before publishing them externally.
+
+Risk: Generated markdown files may store sensitive campaign drafts or personal topics locally.
+
+Mitigation: Choose an appropriate output directory and apply normal local access controls or cleanup practices for sensitive drafts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hyjaixiao/skills/content-producer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Markdown files with YAML front matter, plus command-line status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate one selected platform or all configured platforms; stores dated output files locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

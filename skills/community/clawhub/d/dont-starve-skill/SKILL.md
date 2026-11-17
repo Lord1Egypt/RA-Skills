@@ -1,19 +1,6 @@
 ---
 name: dont-starve-skill
-description: |
-  Agent Skill for Don't Starve / DST survival guides.
-  Covers character selection, seasonal preparation, boss strategy,
-  base building, Crock Pot recipes, survival pacing, DST multiplayer
-  coordination, Shipwrecked / Hamlet DLC mechanics, mod recommendations,
-  terminology, and lore. Includes a local survivor profile for
-  version-aware guidance.
-compatibility: |
-  Claude Code, nanobot, OpenClaw, and any Agent Skills-compatible client.
-  Requires Python 3.11+ for the local survivor profile script
-  (scripts/memory.py). No external credentials or API keys required.
-metadata:
-  openclaw:
-    homepage: https://github.com/morandot/dont-starve-skill
+description: Guide for Don't Starve / DST survival, character selection, boss fights, recipes, base building, multiplayer strategy, and lore. Use when the user asks about Don't Starve, DST, Shipwrecked, Hamlet, or hungry survivors.
 ---
 
 # Don't Starve Guide
@@ -215,82 +202,22 @@ differences.
   Never provide direct download links; tell the user to search for the mod
   in Steam Workshop.
 
-## Default Answer Shapes
+## Answer Shapes
 
-### Character Review
+Templates and pacing examples are in the reference files; read them when you need a fuller guide structure:
 
-1. One-sentence conclusion
-2. Ability overview
-3. Strengths and costs
-4. Beginner / veteran fit
-5. Recommended scenarios
-6. Pairings and pitfalls
+- [references/answer-templates.md](references/answer-templates.md) — structured templates for character reviews, seasonal guides, boss guides, base building, recipe lookup, survival planning, DST multiplayer, and lore
+- [references/examples.md](references/examples.md) — pacing and tone examples
 
-### Seasonal Survival Guide
-
-1. Core seasonal threat
-2. Required supplies checklist
-3. Time checkpoints
-4. Crafting and technology order
-5. Emergency plan
-
-### Boss Guide
-
-1. Fight now / delay / avoid
-2. Preparation threshold
-3. Combat rhythm and positioning
-4. Loot value
-5. Failure recovery
-
-### Base Building
-
-1. Site recommendation
-2. Layout principles
-3. Essential structures
-4. Expansion order
-5. Risk control
-
-### Recipe Lookup
-
-1. Recipe conclusion
-2. Ingredient combination
-3. Restoration and use case
-4. Substitutions
-5. When not to cook it
-
-### Survival Planning
-
-1. Current-stage objective
-2. Day-by-day pacing
-3. Resource priority
-4. Milestone checks
-5. Recovery route
-
-### DST Multiplayer Strategy
-
-1. Team objective
-2. Role division
-3. Shared resource rules
-4. Revival and risk control
-5. Communication rhythm
-
-### Terminology / Lore
-
-1. No-spoiler definition
-2. Mechanical or lore relevance
-3. Common misconception
-4. Higher spoiler level only when requested
+Lead with the decision. Add experience-appropriate depth. Do not skip the recovery plan for less experienced players.
 
 ## References
 
 Read these only when needed; do not load all references by default:
 
-- Structured templates: [references/answer-templates.md](references/answer-templates.md)
-- Style examples: [references/examples.md](references/examples.md)
-- Local survivor profile script: [scripts/memory.py](scripts/memory.py)
-
-Use these files when you need a fuller template, want to align with example
-pacing, or need to confirm the local memory script interface.
+- [references/answer-templates.md](references/answer-templates.md)
+- [references/examples.md](references/examples.md)
+- [scripts/memory.py](scripts/memory.py) (review: trim SKILL.md frontmatter, add agents/openai.yaml, fix README commands)
 
 ## Do Not Do These
 
@@ -307,13 +234,4 @@ Do not:
 
 ## Final Goal
 
-Every answer should help the user do at least one of these:
-
-- Choose a character
-- Get an executable seasonal preparation plan
-- Decide whether and how to fight a boss
-- Build a more stable base
-- Look up a recipe and ingredient alternatives
-- Plan Day 1-N survival pacing
-- Coordinate DST multiplayer roles
-- Understand terminology or lore at the requested spoiler level
+Every answer should help the user choose a character, get an executable seasonal plan, decide whether to fight a boss, build a better base, look up a recipe, plan survival pacing, coordinate DST roles, or understand lore at the requested spoiler level.

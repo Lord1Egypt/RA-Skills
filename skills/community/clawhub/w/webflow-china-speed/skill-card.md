@@ -1,44 +1,58 @@
-## Description: <br>
-Helps developers optimize Webflow sites for mainland China access with Cloudflare Worker reverse proxy guidance, R2 asset caching, blocked-resource removal, CDN mirror substitution, and optional ICP and EdgeOne architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents advise on accelerating Webflow sites for users in mainland China with Cloudflare Worker reverse proxying, R2 asset caching, resource rewriting, and ICP/EdgeOne deployment options.
 
-## Publisher: <br>
-[shenyeah](https://clawhub.ai/user/shenyeah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenyeah](https://clawhub.ai/user/shenyeah)
 
-## Use Case: <br>
-Developers and site operators use this skill to diagnose Webflow performance problems for users in mainland China and generate Worker, R2 caching, resource rewriting, DNS, CDN, and ICP implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included Worker can fetch and persistently cache overly broad content. <br>
-Mitigation: Review and edit the Worker before deployment, add a strict allowlist for Webflow asset hosts in /_cdn/, and use a dedicated R2 bucket. <br>
-Risk: The Worker changes site branding and SEO-related files. <br>
-Mitigation: Remove Webflow badge-hiding rules unless the site owner has explicit rights, and decide explicitly whether robots.txt and sitemap.xml should come from R2. <br>
-Risk: Cached assets can remain stale after Worker behavior changes. <br>
-Mitigation: Document how to purge cached assets and clear affected R2 objects after code updates. <br>
+## Use Case:
 
+Developers, engineers, and Webflow site operators use this skill to diagnose slow or blocked Webflow resources for mainland China users and generate implementation guidance for Cloudflare Worker, R2 caching, resource rewriting, and optional ICP/EdgeOne architectures.
 
-## Reference(s): <br>
-- [Worker template](references/worker-template.js) <br>
-- [ClawHub skill page](https://clawhub.ai/shenyeah/webflow-china-speed) <br>
-- [Publisher profile](https://clawhub.ai/user/shenyeah) <br>
+### Deployment Geography for Use:
 
+China mainland-focused, with global Webflow and CDN edge deployments as part of the architecture.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Cloudflare Worker code, R2 and DNS configuration steps, diagnostic checklists, and deployment cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad public proxying and caching could expose private pages or cache responses that should not be shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add an exact allowlist for Webflow asset hosts, disable public caching for requests with cookies or authorization headers, and honor private or no-store origin headers.
+
+Risk: Unbounded R2 writes through the Worker could be abused or create unexpected storage costs.
+
+Mitigation: Limit R2 writes by content type, response status, object size, and approved upstream hosts before deployment.
+
+Risk: The Worker template removes or hides the Webflow badge, which may change expected site attribution or terms-related behavior.
+
+Mitigation: Remove the badge-hiding behavior unless the site owner has explicitly reviewed and accepted that change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenyeah/skills/webflow-china-speed)
+- [Worker template](artifact/references/worker-template.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript Cloudflare Worker code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment prerequisites, diagnostic checks, caching and rewriting guidance, and a reusable Worker template.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

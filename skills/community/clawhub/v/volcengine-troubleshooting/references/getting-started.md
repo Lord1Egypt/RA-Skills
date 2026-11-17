@@ -22,10 +22,10 @@
 - `tosutil`：TOS bucket、object、ACL、policy 和连通性排查。默认只允许 `ls`、`stat`、`du` 等读取动作，不下载大对象。
 - `python3`：运行轻量只读聚合脚本和 SDK import 检查。
 
-推荐先执行：
+推荐先执行。`${SKILL_ROOT}` 是包含本 skill `SKILL.md` 的绝对目录：
 
 ```bash
-bash skills/volcengine-troubleshooting/scripts/common_check.sh
+bash "${SKILL_ROOT}/scripts/common_check.sh"
 ```
 
 支持的 Python SDK：

@@ -1,39 +1,48 @@
-## Description: <br>
-Chat with Immanuel Kant (1724-1804), a simulated philosopher persona that responds in Kant's voice and discusses his major philosophical positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Immanuel Kant (1724-1804), a Prussian philosopher associated with rationalism, empiricism, the Categorical Imperative, and the Critique of Pure Reason.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users invoke /kant to converse with an in-character Immanuel Kant persona for philosophical discussion and roleplay.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat the simulated Kant persona as transparent system status or modern factual authority.
+
+Mitigation: Present and use responses as roleplay-style philosophical simulation rather than as authoritative modern facts or AI status.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users invoke the skill to hold a philosophy-themed conversation with a Kant persona for educational, roleplay, or exploratory discussion. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill simulates Kant's voice and may produce inaccurate or non-authoritative philosophical claims. <br>
-Mitigation: Verify factual and scholarly claims against primary sources or trusted academic references before relying on them. <br>
-Risk: The skill is designed to remain in character, which can make uncertainty or modern limitations less explicit. <br>
-Mitigation: Use it for educational or roleplay discussion and avoid treating persona responses as authoritative research without independent review. <br>
+**Output Format:** [Conversational prose in the user's language]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Stays in character as Immanuel Kant and avoids post-1804 knowledge.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona remains in character as Immanuel Kant and has no tool, credential, or persistence behavior.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

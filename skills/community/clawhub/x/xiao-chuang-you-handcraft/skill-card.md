@@ -1,40 +1,49 @@
-## Description: <br>
-Provides Chinese handcraft guidance for traditional crafts, seasonal projects, DIY accessories, weaving, knotting, embroidery, paper-cutting, sachets, lacquer art, bamboo weaving, and silk tapestry topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小窗幽手工子技能，当用户询问手工、非遗、手作、小饰物DIY、编织、结艺、绣花等话题时，提供非遗手作介绍、节气手作方案和小饰品制作指导。
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users and craft-focused agents use this skill to answer Chinese handcraft questions with cultural context, materials, difficulty, time estimates, and practical step-by-step project guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Craft guidance may involve sharp tools, powders, lacquer, or other materials that can cause cuts, irritation, fumes, or unsafe exposure. <br>
-Mitigation: Use gloves and ventilation for lacquer or powders, handle sharp tools carefully, and keep materials away from children and pets. <br>
-Risk: Cultural craft background and workshop or material details may be approximate or locally variable. <br>
-Mitigation: Use the skill for orientation and confirm specialized techniques, materials, and workshop details with local instructors or authoritative craft sources before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language questions about handcrafts, intangible cultural heritage crafts, seasonal craft ideas, and small DIY accessories with materials, difficulty, time estimates, and step summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-handcraft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with materials lists, difficulty ratings, time estimates, and step-by-step instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool calls, credentials, or persistent access are indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence, changelog dated 2026-05-26) <br>
+Risk: Home-use lacquer and herbal-powder instructions may omit important safety precautions for allergens, children, pets, powders, coatings, and ventilation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as cultural craft guidance, add safety checks before use, choose safer beginner materials when possible, avoid known allergens, keep powders away from children and pets, and use protective handling and ventilation for coatings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-handcraft)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with lists and step-by-step instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include craft materials, difficulty ratings, time estimates, cultural notes, and safety-oriented cautions.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

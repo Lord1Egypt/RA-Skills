@@ -1,40 +1,53 @@
-## Description: <br>
-Calculate cold chain transport risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate cold chain transport risks.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Operations teams, developers, and logistics users can use this skill to estimate temperature-excursion risk for cold chain transport routes based on route, duration, and packaging type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local command execution runs publisher-provided Python code. <br>
-Mitigation: Review the script before installing or running updates, and execute it in a controlled workspace. <br>
-Risk: Route details entered at the command line may appear in terminal output or shared workspace logs. <br>
-Mitigation: Avoid entering sensitive route details when command output or logs may be shared. <br>
+## Use Case:
 
+Developers and operations teams use this skill to estimate temperature excursion risk for cold chain transport routes based on route, duration, and packaging type.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AIPOCH-AI/cold-chain-risk-calculator-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces route, duration, packaging, numeric risk score, and qualitative risk level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Risk results can be misleading when invalid or unrealistic durations are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate transport duration before relying on the score, and treat the output as a lightweight estimate rather than operationally authoritative.
+
+Risk: Future versions may add file output, input files, or data retention behavior.
+
+Mitigation: Review and rescan future releases before deployment if those behaviors are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/cold-chain-risk-calculator-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints route, duration, packaging, numeric risk score, and risk level.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

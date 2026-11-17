@@ -1,46 +1,59 @@
-## Description: <br>
-Jetlag recovery optimization - score flights, generate recovery plans, optimize travel timing <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jetlag recovery optimization - score flights, generate recovery plans, optimize travel timing.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to score flight jetlag impact, generate recovery plans, and choose practical timing or itinerary adjustments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Aerobase API key, which could be exposed if pasted into chat or printed in responses. <br>
-Mitigation: Store the key in AEROBASE_API_KEY, do not ask users to paste secrets, and redact any displayed key material. <br>
-Risk: Jetlag scoring and recovery plans require sending travel details to Aerobase. <br>
-Mitigation: Use the skill only when users are comfortable sharing the needed itinerary details with Aerobase. <br>
-Risk: Advertised Pro Gmail import and calendar sync features may request account permissions beyond basic API scoring. <br>
-Mitigation: Review requested permissions, privacy policy, and data retention controls before enabling Gmail import or calendar sync. <br>
-Risk: Recovery advice could be mistaken for medical or dosing guidance. <br>
-Mitigation: Keep plans practical and avoid unsafe medical or dosing recommendations. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to score flight jetlag impact, generate recovery plans, and choose timing or routine adjustments for same-day travel recovery.
 
-## Reference(s): <br>
-- [Aerobase homepage](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/kurosh87/aerobase-jetlag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown text with API request guidance and concise action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the AEROBASE_API_KEY environment variable and should redact raw API keys in output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends relevant travel and recovery-planning details to the Aerobase API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing those details with Aerobase is acceptable, and provide only the information needed for flight scoring or recovery planning.
+
+Risk: API keys or unrelated credentials could be exposed if users provide secrets directly.
+
+Mitigation: Use the AEROBASE_API_KEY environment variable, redact API keys in output, and do not provide passwords, OTPs, cookies, or third-party login sessions.
+
+Risk: Recovery advice could be mistaken for medical or dosing guidance.
+
+Mitigation: Keep recommendations practical and travel-oriented, and avoid unsafe medical or dosing instructions.
+
+## Reference(s):
+
+- [Aerobase homepage](https://aerobase.app)
+- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent)
+- [ClawHub skill page](https://clawhub.ai/kurosh87/skills/aerobase-jetlag)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown]
+
+**Output Format:** [Markdown with concise travel scoring and recovery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AEROBASE_API_KEY and Aerobase API endpoints for flight scoring and recovery planning.]
+
+## Skill Version(s):
+
+3.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Create a Gougoubi proposal condition from minimal input with deterministic defaults for deadline, trade deadline, normalization, and transaction submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a Gougoubi proposal condition from minimal input with deterministic defaults for deadline, trade deadline, normalization, and transaction submission.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External users and agents use this skill to add a condition to an existing Gougoubi proposal from a proposal identifier and condition name, with deterministic deadline defaults and a normalized transaction payload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect proposal or condition details could create or submit an unintended condition. <br>
-Mitigation: Before signing, verify the proposal address, condition name, generated deadlines, network, gas cost, and wallet account shown in the generated payload and wallet confirmation. <br>
-Risk: Wallet transaction submission can have financial or governance consequences. <br>
-Mitigation: Do not bypass wallet confirmation; review the canonical contract call and normalized payload before execution. <br>
+## Use Case:
 
+External users and developers use this skill when a Gougoubi proposal already exists and they need to add a condition from a proposal identifier and condition name. It prepares deterministic deadline, trade-deadline, normalization, and transaction fields while preserving wallet confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/gougoubi-create-condition) <br>
-- [Gougoubi proposals](https://gougoubi.ai/premarket/proposals) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [structured JSON, guidance] <br>
-**Output Format:** [JSON success or failure object with normalized input, transaction hash when available, warnings, and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses deterministic deadline defaults; wallet confirmation remains required before transaction submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A condition transaction could be submitted with an unintended proposal address, condition name, deadline, trade deadline, or normalization flag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated condition details and wallet prompt before signing.
+
+Risk: The skill prepares transaction data for a wallet action.
+
+Mitigation: Keep wallet confirmation in the flow; the evidence does not show automatic wallet bypass.
+
+## Reference(s):
+
+- [Gougoubi Premarket Proposals](https://gougoubi.ai/premarket/proposals)
+- [ClawHub Skill Page](https://clawhub.ai/chinasong/skills/gougoubi-create-condition)
+- [Publisher Profile](https://clawhub.ai/user/chinasong)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured JSON response with normalized input, transaction status, warnings, or failure details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a transaction hash after user-confirmed submission; defaults are deterministic and reflected in the normalized payload.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

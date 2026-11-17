@@ -1,40 +1,54 @@
-## Description: <br>
-Guides users through architecture design thinking with Socratic questions, from PRD understanding to tradeoffs, component decomposition, interfaces, data design, failure planning, technology choices, and ADRs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture thinking training that uses guided questioning to teach users how to reason from a PRD to architecture decisions instead of directly producing an architecture for them.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to practice architecture reasoning for real project or PRD inputs. It helps them identify system boundaries, quality attributes, tradeoffs, components, integration patterns, storage choices, failure modes, and architecture decision records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share secrets, production credentials, sensitive unreleased PRDs, or other confidential design details while seeking architecture guidance. <br>
-Mitigation: Avoid pasting sensitive information unless it is appropriate for the active agent environment, and validate recommendations against internal security, privacy, and operational requirements. <br>
+## Use Case:
 
+Developers, engineers, and product builders use this skill to practice architecture reasoning for real project or PRD scenarios through Socratic prompts, tradeoff analysis, component decomposition, interface choices, data design, failure planning, and ADR writing.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/PHY041/phy-architect-mentor) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Conversational Markdown with diagrams, checklists, decision records, and architecture design guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces architecture coaching content and templates; does not request code execution, credentials, files, or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad trigger phrases may activate the skill when the user did not intend to start architecture coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the explicit /architect-mentor command for predictable activation and disable or avoid broad trigger phrasing when working in unrelated contexts.
+
+Risk: Architecture coaching can shape technical decisions, and users may over-apply generated prompts or examples without validating them against project constraints.
+
+Mitigation: Review resulting diagrams, ADRs, quality-attribute priorities, and tradeoffs with project stakeholders before using them for implementation decisions.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-architect-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational coaching with questions, explanations, checklists, diagrams, and ADR examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructional architecture coaching and structured reasoning artifacts such as context diagrams, component diagrams, data models, ADRs, and quality-attribute priorities.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

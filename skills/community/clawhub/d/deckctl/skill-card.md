@@ -1,42 +1,56 @@
-## Description: <br>
-Steam Deck and Bazzite system management for gamescope, Flatpak, Podman, GPU, performance, game mode, and system health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Steam Deck & Bazzite system management — gamescope, flatpak, podman, GPU, performance, game mode, system health.
 
-## Publisher: <br>
-[silverod](https://clawhub.ai/user/silverod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[silverod](https://clawhub.ai/user/silverod)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents supporting Steam Deck or Bazzite users use this skill to propose system health checks, Gamescope troubleshooting, Flatpak and container management, performance diagnostics, and gaming setup guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Network exposure commands can make a streaming service reachable outside the local device.
+
+Mitigation: Require explicit user confirmation and review the intended service, port, and access controls before running network exposure commands.
+
+Risk: Package changes, service restarts, and persistent configuration writes can alter the user's system state.
+
+Mitigation: Present commands for review, explain the expected effect, and ask for confirmation before Flatpak install or update operations, service restarts, or persistent configuration writes.
+
+Risk: Flatpak reset commands using `--delete-data` can remove application data.
+
+Mitigation: Warn about data loss and recommend backups before suggesting destructive Flatpak reset commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Steam Deck and Bazzite users, developers, and operators use this skill to inspect system health, troubleshoot gaming sessions, manage Flatpak apps, review GPU and performance state, and configure common gaming tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Some commands can expose a local service to a Tailscale tailnet. <br>
-Mitigation: Confirm the service, port, and intended tailnet exposure before using `tailscale serve --bg`. <br>
-Risk: Some Flatpak commands can delete application data. <br>
-Mitigation: Back up important application data and confirm the target app ID before running `flatpak uninstall --delete-data`. <br>
-Risk: Some configuration examples make persistent changes to user files. <br>
-Mitigation: Review append-style configuration writes such as `>>` before execution and keep a reversible copy of the original configuration. <br>
+**Output Format:** [Markdown guidance with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/silverod/deckctl) <br>
+**Other Properties Related to Output:** [Commands are proposals for user review before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and task checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command examples should be reviewed before execution on the target device.] <br>
+1.0.0 (source: evidence release and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

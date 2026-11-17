@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Calculus concepts and workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, and quick lookup for Calculus concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Calculus-related devtools concepts, common workflows, troubleshooting, performance, security, migration, and cheat sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The content is generic reference material and may not be current or specific enough for a particular Calculus/devtools workflow. <br>
-Mitigation: Verify the guidance against the intended workflow and current project documentation before relying on it. <br>
-Risk: Version labels differ across the server release and artifact files. <br>
-Mitigation: Use the server release version for distribution records and review embedded artifact version labels before republishing. <br>
+## Use Case:
 
+Developers and engineers use Calculus as a local reference skill for devtools-oriented calculus concepts, quickstarts, patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Calculus Skill Page](https://clawhub.ai/ckchzh/calculus) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access according to the artifact and security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release metadata) <br>
+Risk: Future updates to the shell-based artifact could add commands, network calls, or file writes beyond the current static reference behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan future releases before installation or deployment.
+
+Risk: The reference text includes generic operational guidance about credentials, systems, migration, and security that could be misread as actions the skill performs.
+
+Mitigation: Treat the output as advisory documentation and review proposed operational changes before applying them.
+
+## Reference(s):
+
+- [Calculus on ClawHub](https://clawhub.ai/ckchzh/skills/calculus)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally and prints static heredoc documentation; no credentials, network access, or persistent system changes are required by the provided artifact.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

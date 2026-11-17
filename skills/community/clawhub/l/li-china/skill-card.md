@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a structured framework for analyzing China investment opportunities through modernization stages, core-asset criteria, and long-term trend considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents structure China-focused investment opportunity analysis using a long-term modernization, core-asset, and risk-review framework.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Analysts and agent users can use this skill to produce structured China investment opportunity analyses, including modernization-stage context, core-asset checks, and risk reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's investment-analysis framing could be mistaken for personalized financial advice. <br>
-Mitigation: Use outputs as a research framework only and require qualified review before making investment decisions. <br>
-Risk: Market facts, company fundamentals, and policy assumptions may be outdated or incomplete. <br>
-Mitigation: Verify current market data, company disclosures, and policy conditions independently before relying on the analysis. <br>
-Risk: China investment conclusions may be sensitive to policy, geopolitical, demographic, and environmental risks. <br>
-Mitigation: Include explicit risk checks and scenario analysis when applying the framework to a company or sector. <br>
+## Use Case:
 
+External users and agents use this skill to organize China market investment analysis, screen candidate core assets, and document long-term trend considerations. Its outputs should be treated as research support, not personalized financial, legal, or compliance advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/li-china) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes structured investment-analysis prompts, a reusable Markdown template, and a local Python analysis script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Investment analysis outputs may be mistaken for personalized financial, legal, or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research support only and require independent review before acting on investment conclusions.
+
+Risk: Company-specific claims, valuations, and China market conditions can become stale or incomplete.
+
+Mitigation: Verify company facts, policy context, and market data with current independent sources before relying on the analysis.
+
+Risk: China-focused investment theses may understate policy, geopolitical, demographic, or environmental risks.
+
+Mitigation: Include explicit risk review for policy, geopolitical, aging-population, and environmental constraints in any final analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/li-china)
+- [China Analysis Template](artifact/templates/china-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance and terminal text from an optional local Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a checklist-style investment analysis framework, example analysis structure, and risk reminders.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

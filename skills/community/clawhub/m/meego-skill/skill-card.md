@@ -1,43 +1,60 @@
-## Description: <br>
-Meego Skill helps agents query and manage Feishu Project work items, statuses, comments, teams, schedules, views, charts, fields, and MQL searches through documented Meego commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meego Skill helps agents query and manage Feishu Project work items, workflow states, teams, schedules, comments, views, charts, fields, and MQL searches through OAuth-protected CLI calls.
 
-## Publisher: <br>
-[longsasasasasa](https://clawhub.ai/user/longsasasasasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longsasasasasa](https://clawhub.ai/user/longsasasasasa)
 
-## Use Case: <br>
-Developers, project teams, and agents use this skill to retrieve, create, update, transition, and comment on Feishu Project work items with step-by-step command guidance. It supports project administration workflows such as team lookup, schedule review, field discovery, chart inspection, and MQL-based filtering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags credential-handling guidance that may lead users to paste OAuth credentials, access tokens, or refresh tokens into chat. <br>
-Mitigation: Provision credentials directly on the target host or through a secret manager, rotate any token already shared, and never paste credential files into chat. <br>
-Risk: The skill can perform broad Feishu Project read/write actions, including comments, field updates, status transitions, and work-item creation. <br>
-Mitigation: Use least-privilege Feishu credentials and require explicit user confirmation before any state-changing command is executed. <br>
+## Use Case:
 
+Developers, project operators, and agent users use this skill to inspect and update Feishu Project work items, comments, schedules, fields, teams, views, charts, and MQL queries. It is intended for OAuth-authorized Meego project-management workflows that may include both read and write actions.
 
-## Reference(s): <br>
-- [Meego MCP tools reference](references/tools.md) <br>
-- [MQL query syntax reference](references/mql.md) <br>
-- [Work item field configuration reference](references/fields.md) <br>
-- [Feishu Project MCP endpoint](https://project.feishu.cn/mcp_server/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for OAuth setup, Meego MCP calls, work item mutations, comments, field lookup, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release metadata) <br>
+Risk: OAuth credential files or tokens could be exposed if users paste credentials into chat or store them with broad access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste OAuth credentials into AI chats; use secure transfer or a secret manager, restrictive file permissions, least-privilege scopes, and a dedicated service account where possible.
+
+Risk: Privileged or unpinned npm installation patterns can increase supply-chain and host-permission exposure.
+
+Mitigation: Use pinned package versions, review package sources before deployment, and run the tooling under an unprivileged runtime user.
+
+Risk: The skill supports write actions such as adding comments, updating fields, creating work items, and changing workflow states.
+
+Mitigation: Require user confirmation before write operations and verify project keys, work item IDs, target fields, permissions, and intended state transitions.
+
+## Reference(s):
+
+- [Meego Work Item Fields Reference](references/fields.md)
+- [MQL Query Syntax Reference](references/mql.md)
+- [Meego MCP Tools Reference](references/tools.md)
+- [Feishu Project MCP Server](https://project.feishu.cn/mcp_server/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide OAuth setup and produce command arguments for Meego read and write operations.]
+
+## Skill Version(s):
+
+2.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

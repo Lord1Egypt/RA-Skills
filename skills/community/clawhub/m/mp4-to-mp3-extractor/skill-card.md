@@ -1,41 +1,62 @@
-## Description: <br>
-Batch extracts audio from MP4 files in a selected folder and saves MP3 files while preserving the source folder structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch extracts audio from .mp4 files in a chosen directory into .mp3 files while preserving the source folder structure.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-External users and developers use this skill with OpenClaw agents to batch convert local MP4 video folders into MP3 audio, with optional source and output directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill automatically installs Python packages, changes packaging tools, downloads FFmpeg, writes logs, and generates MP3 files under the selected output path. <br>
-Mitigation: Review before installing, run only in a disposable or dedicated environment, prefer preinstalling FFmpeg and dependencies yourself, and choose the output path deliberately. <br>
-Risk: The documented URL-download workflow can bring unreviewed remote media into the conversion flow. <br>
-Mitigation: Avoid URL downloads unless that workflow has been separately reviewed and explicitly approved. <br>
+## Use Case:
 
+External users and developers use this skill to convert local folders of MP4 videos into MP3 audio files, optionally choosing an output folder or letting the skill create a default sibling folder.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wangminrui2022/mp4-to-mp3-extractor) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated MP3 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recursively processes .mp4 files and writes .mp3 outputs to the selected output directory while preserving relative paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Risk: The skill reads a user-selected video folder and writes MP3 outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended local folders and review the output directory before processing large or sensitive collections.
+
+Risk: The skill changes Python package state and uses a shared virtual environment.
+
+Mitigation: Prefer a private, pinned virtual environment and review dependency changes before installation.
+
+Risk: The skill may download and run FFmpeg automatically.
+
+Mitigation: Prefer preinstalled FFmpeg from a trusted source and verify the executable path before running conversions.
+
+Risk: The documented sudo symlink workaround can affect system-wide Python command resolution.
+
+Mitigation: Avoid the workaround unless an administrator has reviewed the command and confirmed the host-level impact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/mp4-to-mp3-extractor)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated MP3 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves relative folder structure and writes conversion logs in the skill logs directory.]
+
+## Skill Version(s):
+
+1.1.8 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

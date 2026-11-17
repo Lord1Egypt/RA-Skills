@@ -1,40 +1,54 @@
-## Description: <br>
-City Walker helps Chinese-language users plan walkable city exploration routes around a start point, mood, available time, and theme. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+City Walker helps Chinese-language users generate walkable city exploration routes based on location, available time, theme, and mood.
 
-## Publisher: <br>
-[yunhanli7](https://clawhub.ai/user/yunhanli7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunhanli7](https://clawhub.ai/user/yunhanli7)
 
-## Use Case: <br>
-External users and agents use this skill to generate city walking plans for lunch breaks, half-day local exploration, solo walks, photography routes, dates, or family outings. It produces practical route overviews, stop-by-stop highlights, timing, walking-distance guidance, and local tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad walking or nearby-exploration requests and may ask for a current location, hotel, workplace, or start point. <br>
-Mitigation: Share only location details you are comfortable using for point-of-interest search; an approximate start point is usually enough. <br>
-Risk: Walking routes and venue details can become inaccurate because hours, weather, closures, and local safety conditions change. <br>
-Mitigation: Check current hours, weather, closures, and route safety before following a suggested itinerary. <br>
+## Use Case:
 
+External users use this skill to plan spontaneous city walks, short local trips, quiet solo routes, photography walks, and themed neighborhood exploration without building a full itinerary from scratch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunhanli7/city-walker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown route plan with structured itinerary sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route summaries, stop descriptions, timing, walking-distance estimates, practical tips, and navigation-link suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may ask for a current area or starting point to create specific routes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share an approximate neighborhood, transit stop, or landmark unless precise routing is necessary.
+
+Risk: Suggested points of interest, hours, routes, or safety conditions may be outdated or unsuitable for the user's circumstances.
+
+Mitigation: Verify live opening hours, weather, transit, and local safety conditions before following the route.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunhanli7/skills/city-walker)
+- [ClawHub publisher profile](https://clawhub.ai/user/yunhanli7)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown itinerary with route overview, textual route map, point-of-interest details, and practical tips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on POI/search tooling and user-provided city, start point, available time, theme, or mood.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

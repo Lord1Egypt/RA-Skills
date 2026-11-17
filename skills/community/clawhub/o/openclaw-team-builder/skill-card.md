@@ -1,44 +1,60 @@
-## Description: <br>
-Manage OpenClaw agent teams by adding agents, deploying templates, running health checks and fixes, viewing org trees, rolling back changes, and suggesting team structures from goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Team Builder helps agents manage OpenClaw teams by adding agents, deploying templates, checking health, fixing configuration, viewing org trees, rolling back changes, and suggesting team setups.
 
-## Publisher: <br>
-[eggyrooch-blip](https://clawhub.ai/user/eggyrooch-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eggyrooch-blip](https://clawhub.ai/user/eggyrooch-blip)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to manage multi-agent teams, configure channel bindings, inspect health, fix configuration issues, and generate suggested team structures from a business goal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad persistent changes to OpenClaw agents, SOUL files, channel bindings, agent-to-agent permissions, and gateway state. <br>
-Mitigation: Install only if the publisher is trusted, request an exact change summary before write actions, and review backups and rollback options before approving changes. <br>
-Risk: Channel setup may involve bot tokens, app IDs, and app secrets. <br>
-Mitigation: Do not paste secrets into ordinary chat or shell commands; use a secure local prompt, environment reference, or secret manager where possible. <br>
-Risk: External channel bindings can expand where an agent can receive or send messages. <br>
-Mitigation: Approve external channels one by one and verify each binding after creation. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inspect and update multi-agent team structure, role templates, channel bindings, health checks, rollback state, and goal-based team recommendations.
 
-## Reference(s): <br>
-- [ClawHub Openclaw Team Builder page](https://clawhub.ai/eggyrooch-blip/openclaw-team-builder) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw install documentation](https://docs.openclaw.ai/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash snippets and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local OpenClaw CLI actions that persist agent, SOUL, channel binding, gateway, and backup state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata) <br>
+Risk: Unsafe credential handling and a confirmed local code-injection risk are reported by the security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid sharing real bot tokens or Feishu secrets in chat or shell history, test with throwaway credentials, and rotate any credentials already exposed.
+
+Risk: Mutating commands can change persistent OpenClaw agent configuration, channel bindings, and trust relationships.
+
+Mitigation: Use --yes, --fix, --rollback, and channel binding commands only after reviewing the planned change and checking the resulting team status.
+
+Risk: Production OpenClaw setups may be impacted by automatic fixes, gateway restarts, or rollback operations.
+
+Mitigation: Review the skill before production installation, run changes during a controlled window, and keep backups available before applying administrative operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eggyrooch-blip/skills/openclaw-team-builder)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw installation documentation](https://docs.openclaw.ai/install)
+- [OpenClaw multi-agent documentation](https://docs.openclaw.ai/concepts/multi-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw 2026.3.0 or newer, python3, and macOS or Linux.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

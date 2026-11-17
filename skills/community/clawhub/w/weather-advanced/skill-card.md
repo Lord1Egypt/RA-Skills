@@ -1,39 +1,54 @@
-## Description: <br>
-Provides detailed city weather lookups with current conditions, a 7-day forecast, air quality, UV level, clothing advice, wind details, and related life indices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language city weather lookup with current conditions, a 7-day forecast, air quality, UV information, clothing suggestions, and cold-risk guidance.
 
-## Publisher: <br>
-[dreamximu](https://clawhub.ai/user/dreamximu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreamximu](https://clawhub.ai/user/dreamximu)
 
-## Use Case: <br>
-External users and agent developers use this skill to answer city-level weather questions with formatted current conditions, forecasts, air quality, UV, clothing, wind, and lifestyle guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City names supplied to the skill are sent to api.vvhan.com for weather lookup. <br>
-Mitigation: Avoid entering sensitive personal details as the city value, and use the skill only when external weather lookup is acceptable. <br>
+## Use Case:
 
+Developers and end users can use this skill to query weather for Chinese cities and receive a concise forecast with practical life-index guidance. It is suited for agent workflows that need human-readable weather status rather than raw meteorological data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreamximu/weather-advanced) <br>
-- [External weather API endpoint](https://api.vvhan.com/api/weather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Formatted plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill accepts a city name and returns a single formatted weather report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: City names are sent to the third-party api.vvhan.com weather service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sharing the queried city with that external service is acceptable.
+
+Risk: Weather responses depend on availability and accuracy of the third-party API.
+
+Mitigation: Treat results as informational and retry or verify through another source when weather accuracy is important.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dreamximu/skills/weather-advanced)
+- [Weather API endpoint](https://api.vvhan.com/api/weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text with formatted Chinese weather sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns current weather, forecast, air quality, UV, clothing advice, wind details, and error messages when a city is missing or unsupported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

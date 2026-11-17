@@ -1,43 +1,55 @@
-## Description: <br>
-Billions/Iden3 authentication and identity management tools for agents. Link, proof, sign, and verify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billions/Iden3 authentication and identity management tools for agents. Link, proof, sign, and verify.
 
-## Publisher: <br>
-[adhamelswesy](https://clawhub.ai/user/adhamelswesy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adhamelswesy](https://clawhub.ai/user/adhamelswesy)
 
-## Use Case: <br>
-External developers and agent operators use this skill to create and manage Billions/Iden3 decentralized identities, link agent and human identities, sign challenges, and verify DID ownership. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private keys are stored unencrypted under $HOME/.openclaw/billions. <br>
-Mitigation: Install only on trusted single-user machines, restrict local filesystem and backup access, and rotate or abandon identities if kms.json is exposed. <br>
-Risk: Signed identity material can be sent to caller-provided recipients. <br>
-Mitigation: Verify every --to recipient before linking or signing and stop if the recipient or challenge is unexpected. <br>
+## Use Case:
 
+External developers and agent operators use this skill to create and manage Billions Network decentralized identities for agents, link an agent DID to a human owner, sign identity challenges, and verify DID ownership.
 
-## Reference(s): <br>
-- [Billions Network](https://billions.network/) <br>
-- [DryptoBillions on ClawHub](https://clawhub.ai/adhamelswesy/dryptobillions) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or reads local identity files under $HOME/.openclaw/billions and may send direct messages through openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill creates and stores long-lived private keys for agent identities under $HOME/.openclaw/billions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or low-value identity, restrict filesystem access to the key directory, and review key-storage handling before using it for important identity workflows.
+
+Risk: The skill can send signed identity material through OpenClaw messages and relies on remote services and npm dependencies.
+
+Mitigation: Review the destination, use a reviewed and pinned release, and install only when the listed services and dependencies are acceptable for the intended identity workflow.
+
+## Reference(s):
+
+- [Billions Network](https://billions.network/)
+- [DryptoBillions on ClawHub](https://clawhub.ai/adhamelswesy/skills/dryptobillions)
+- [adhamelswesy ClawHub Profile](https://clawhub.ai/user/adhamelswesy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text and JSON responses with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local identity files under $HOME/.openclaw/billions and may send signed identity material through OpenClaw messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

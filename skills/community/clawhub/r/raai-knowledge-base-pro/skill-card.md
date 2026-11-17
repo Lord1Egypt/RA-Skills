@@ -1,47 +1,67 @@
-## Description: <br>
-Knowledge Base Pro helps Russian-speaking teams build and maintain an internal knowledge base with FAQ search, role-based onboarding, SOP templates, audits, gap analysis, and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Base Pro helps Russian-speaking teams build and maintain a business knowledge base with search, FAQ, role-based onboarding, SOP templates, audit, analytics, and export workflows.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-HR, operations, support, and leadership teams use this skill to organize recurring company knowledge, answer routine questions, guide new employees through role-specific onboarding, and identify stale or missing internal documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the package under-discloses networked indexing, query logging, exports, and record-changing actions that can affect internal company data. <br>
-Mitigation: Review before installing, require corrected network declarations, and confirm local-only versus cloud behavior before using it with sensitive company knowledge. <br>
-Risk: Indexing, export, delete, and update workflows can change or expose internal knowledge-base records. <br>
-Mitigation: Require confirmation for delete, export, and indexing operations; enforce access controls; and review generated records before relying on them. <br>
-Risk: Query logs and knowledge-base exports may contain sensitive internal information. <br>
-Mitigation: Define logging retention and redaction controls before deployment, and limit credentials to the minimum integrations needed. <br>
+## Use Case:
 
+Developers, HR operators, operations leaders, and business teams use this skill to structure internal knowledge, answer repeated questions, onboard employees by role, create SOPs, audit knowledge gaps, and export knowledge-base content for bots or documentation.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/raaipro/raai-knowledge-base-pro) <br>
-- [README](README.md) <br>
-- [Onboarding guide](docs/onboarding.md) <br>
-- [ROI guide](docs/roi.md) <br>
-- [Anti-fail guide](docs/anti-fail.md) <br>
-- [Quick start example](examples/quick-start.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional JSON, YAML, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces search answers, FAQ and SOP drafts, onboarding plans, audit reports, taxonomy guidance, and export-ready knowledge-base content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Networked document processing may be used when indexing from Notion, Google Docs, Confluence, YouTube, embeddings, vector databases, or Telegram reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these workflows as requiring network access, review each integration before enabling it, and explicitly configure external-provider destinations and credentials.
+
+Risk: Sensitive HR, salary, contract, finance, or NDA material may appear in searches, query logs, exports, or external indexing destinations.
+
+Mitigation: Do not use confidential material until access control, redaction, query-log retention, export approval, and data-destination rules are configured.
+
+Risk: Archive, delete, export, and indexing commands can materially change what the knowledge base contains or exposes.
+
+Mitigation: Require explicit commands, confirmations, and review for archive, delete, export, and indexing workflows.
+
+Risk: The knowledge base can become inaccurate if the company lacks content owners, real source material, or revision discipline.
+
+Mitigation: Assign owners for critical sections, start with verified FAQ and SOP content, and run regular stale-record and gap-analysis reviews.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/raaipro/skills/raai-knowledge-base-pro)
+- [README](artifact/README.md)
+- [Configuration Reference](artifact/config.yaml)
+- [Implementation Guide](artifact/docs/onboarding.md)
+- [Limitations and Anti-Fail Guide](artifact/docs/anti-fail.md)
+- [ROI Guide](artifact/docs/roi.md)
+- [Quick Start Example](artifact/examples/quick-start.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown responses with tables, checklists, templates, and optional JSON or YAML exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language operational knowledge-base outputs; optional indexing, analytics, bot, and external-document workflows depend on configured integrations.]
+
+## Skill Version(s):
+
+3.5.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

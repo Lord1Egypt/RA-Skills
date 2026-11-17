@@ -1,38 +1,50 @@
-## Description: <br>
-Track and analyze income and expenses from multiple sources with automatic categorization, ROI calculation, and detailed reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and analyze income and expenses from multiple sources with automatic categorization, ROI calculation, and detailed reports.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Creators, developers, and operators use this skill to record income and expenses across channels, compare channel performance, and generate daily, weekly, or monthly summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Income, expense, and description text entered into the tracker is stored in local JSONL files under the OpenClaw workspace. <br>
-Mitigation: Avoid entering secrets or unnecessarily sensitive financial details, and protect or remove the local data folder according to your privacy needs. <br>
+## Use Case:
 
+Developers and independent operators use this skill to record income and expenses across channels, compare channel performance, and produce day, week, or month reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/multi-channel-income-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [CLI text output and local JSONL records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores income and expense records locally and prints period reports or channel summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Income and expense entries, including descriptions, are saved locally in plaintext under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or highly sensitive personal details, and use the tracker only on systems where home directory permissions are private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/multi-channel-income-tracker)
+- [Publisher profile](https://clawhub.ai/user/dagangtj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSONL income and expense records when the tracker script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

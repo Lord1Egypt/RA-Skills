@@ -1,44 +1,59 @@
-## Description: <br>
-Store, recall, and manage personal wine tastings and labels using natural language queries with durable image storage in a local SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store, recall, and manage personal wine tastings and label images through natural-language queries backed by a local SQLite archive.
 
-## Publisher: <br>
-[sidvorak](https://clawhub.ai/user/sidvorak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sidvorak](https://clawhub.ai/user/sidvorak)
 
-## Use Case: <br>
-Individuals and agents use this skill to maintain a local personal wine archive, including tasting history, purchase context, ratings, label images, natural-language recall, export/import, and optional Telegram label sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wine history, purchase locations, notes, ratings, and label photos can reveal private personal information. <br>
-Mitigation: Keep the local archive and any exports secure, especially exports that embed label images. <br>
-Risk: Optional LLM intent classification can send relevant text to the configured model provider. <br>
-Mitigation: Leave LLM intent classification disabled unless provider processing is acceptable for the archive content. <br>
-Risk: Telegram label sharing can disclose archived label images to the wrong chat or thread. <br>
-Mitigation: Use Telegram sending only for labels intended to be shared and verify the target before sending. <br>
-Risk: Removing entries by ID can delete the wrong wine record. <br>
-Mitigation: Double-check record IDs before using remove operations. <br>
+## Use Case:
 
+Developers and agents use this skill to log, search, recall, export, import, and share a personal wine tasting archive, including archived label images and optional Telegram delivery. It supports local-first operation with optional LLM-based intent classification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sidvorak/wine-archive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses, JSON bridge payloads, and shell command or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local SQLite records, archived label image paths, and optional external LLM or Telegram integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence and package.json) <br>
+Risk: Crafted imports or label paths can expose arbitrary local files during import/export or Telegram label sending.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, import only trusted archives, and avoid --include-images or Telegram label sending until image paths are constrained to the label directory.
+
+Risk: Optional LLM intent classification may send message text to a model provider and store interactions locally.
+
+Mitigation: Keep LLM classification disabled unless needed, configure provider keys deliberately, avoid sensitive inputs, and protect local interaction logs.
+
+Risk: Export archives can contain personal tasting history and embedded label images.
+
+Mitigation: Store and transfer exported archives as sensitive personal data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sidvorak/skills/wine-archive)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown and CLI-oriented text, with structured JSON for Telegram bridge actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local SQLite records, label image files, export archives, and audit logs.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

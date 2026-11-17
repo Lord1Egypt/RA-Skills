@@ -1,41 +1,58 @@
-## Description: <br>
-Reddit Pain Workflow helps agents run a daily pipeline that scans Reddit communities, classifies developer pain points, generates Markdown reports, pushes them to GitHub, and tracks metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a daily workflow that scans Reddit communities, classifies developer pain points, generates Markdown reports, pushes them to GitHub, and tracks metrics.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and automation operators use this skill to orchestrate scheduled Reddit monitoring, categorize community pain signals, and produce GitHub-published Markdown reports for trend and content analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact describes running an external script named reddit_pain_workflow.py, but that script is not included in the artifact evidence. <br>
-Mitigation: Confirm which script or repository supplies reddit_pain_workflow.py before installing or running the workflow. <br>
-Risk: The workflow publishes generated reports to GitHub and may require repository credentials. <br>
-Mitigation: Use a test or dedicated GitHub repository and grant any GitHub token only the minimum permissions needed to push generated reports. <br>
+## Use Case:
 
+Developers and automation maintainers use this skill to schedule Reddit scans, classify recurring developer pain points, and publish Markdown reports to a GitHub repository for product research and content planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/reddit-pain-workflow) <br>
-- [HermesMade homepage](https://github.com/minirr890112-byte/HermesMade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces daily pain-point report guidance intended for scheduled automation and GitHub publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The described workflow can push generated reports to a GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target repository before use and run with narrowly scoped GitHub credentials.
+
+Risk: Scheduled Reddit scanning may rely on Reddit credentials or access tokens.
+
+Mitigation: Use narrowly scoped Reddit credentials and review rate limits, retention, and community rules before running the workflow on a schedule.
+
+Risk: Automated classification can mislabel community posts or overstate product pain signals.
+
+Mitigation: Review generated reports before publishing or using them for product or content decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/reddit-pain-workflow)
+- [HermesMade project page](https://github.com/minirr890112-byte/HermesMade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduled workflow guidance and Markdown-style daily pain point reports; no bundled executable code is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

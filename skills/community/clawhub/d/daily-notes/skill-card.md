@@ -1,41 +1,57 @@
-## Description: <br>
-Daily Notes helps an agent record, list, search, update, archive, and delete personal notes, including notes with image attachments and multi-image associations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Notes helps an agent capture everyday thoughts, ideas, memos, discoveries, and image attachments as local notes.
 
-## Publisher: <br>
-[kazuya-ecnu](https://clawhub.ai/user/kazuya-ecnu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kazuya-ecnu](https://clawhub.ai/user/kazuya-ecnu)
 
-## Use Case: <br>
-External users and agent operators use this skill to capture casual thoughts, reminders, ideas, discoveries, and image-backed notes in a local notes store. The skill is intended for personal note management workflows where the agent may create, retrieve, update, archive, or delete entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically persist casual messages and images as notes without clear per-note consent. <br>
-Mitigation: Review or edit the proactive capture rule before deployment if explicit save commands, confirmation before storage, or stricter deletion and retention controls are required. <br>
-Risk: Saved notes may contain sensitive personal topics in local files under ~/.openclaw/workspace/notes-data. <br>
-Mitigation: Limit installation to environments where local note storage is acceptable and periodically review, archive, or delete stored notes and image attachments. <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to record, list, search, update, and delete daily notes with optional image associations.
 
-## Reference(s): <br>
-- [Daily Notes on ClawHub](https://clawhub.ai/kazuya-ecnu/daily-notes) <br>
-- [Publisher profile](https://clawhub.ai/user/kazuya-ecnu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with JSON-backed local note records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist note content and image references under ~/.openclaw/workspace/notes-data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may automatically save casual messages as notes, including personal thoughts or sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intentional journaling, avoid entering private or regulated information, and prefer workflows that ask for confirmation before saving.
+
+Risk: Notes and image references are retained as raw local files.
+
+Mitigation: Review local retention expectations before installation and periodically inspect or remove stored notes and attachments.
+
+Risk: Delete operations can remove notes and associated images.
+
+Mitigation: Require explicit user confirmation before deleting records or image attachments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kazuya-ecnu/skills/daily-notes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [Markdown responses and local JSON note records with image path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores notes locally under ~/.openclaw/workspace/notes-data/ with optional image attachments.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

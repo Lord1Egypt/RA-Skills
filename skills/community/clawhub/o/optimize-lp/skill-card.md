@@ -1,40 +1,58 @@
-## Description: <br>
-Get the optimal LP strategy for a token pair — recommends version (V2/V3/V4), fee tier, range width, and rebalance approach based on pair characteristics, historical data, and risk tolerance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get the optimal LP strategy for a token pair by recommending Uniswap version, fee tier, range width, and rebalance approach based on pair characteristics, historical data, and risk tolerance.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users, developers, and DeFi operators use this skill to compare Uniswap LP options for a token pair and receive a strategy covering version, fee tier, range width, expected returns, impermanent loss, and rebalance approach. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: LP recommendations may be incorrect, stale, or unsuitable for the user's position size, chain, time horizon, or risk tolerance. <br>
-Mitigation: Require users to provide the token pair, chain, position size, time horizon, and risk tolerance, and independently review recommendations before depositing liquidity or making trades. <br>
-Risk: Users may mistake strategy guidance for trade or liquidity execution. <br>
-Mitigation: Present outputs as financial research only and make clear that this skill does not execute trades, access credentials, or deposit liquidity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/optimize-lp) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
+## Use Case:
 
+External users, developers, and DeFi operators use this skill to evaluate Uniswap liquidity-provider strategy for a token pair, including pool version, fee tier, range width, rebalance timing, expected returns, and impermanent-loss risk.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy recommendation with numeric estimates and risk assessment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides financial research and LP strategy guidance only; it does not execute trades or deposit liquidity.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill produces liquidity-provider strategy guidance involving APY and impermanent-loss estimates.
+
+Mitigation: Treat recommendations as decision support, review assumptions before acting, and do not use the output as automatic execution instructions.
+
+Risk: Mutable installation commands such as @latest or main can change what is installed over time.
+
+Mitigation: Prefer a pinned ClawHub or package version and an immutable Git commit before installation.
+
+Risk: Delegated agents such as lp-strategist, pool-researcher, or risk-assessor may affect recommendation quality.
+
+Mitigation: Review those agents separately before relying on the combined workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/optimize-lp)
+- [Skill specification](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, guidance, markdown]
+
+**Output Format:** [Markdown or plain text strategy recommendation with pool, range, APY, impermanent-loss, rebalance, risk, and alternative-strategy sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces financial strategy guidance only; it does not execute liquidity-management actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

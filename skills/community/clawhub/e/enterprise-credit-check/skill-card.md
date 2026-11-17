@@ -1,48 +1,69 @@
-## Description: <br>
-Enterprise Credit Check helps an agent prepare official-source enterprise credit checks with weighted scoring, hard-stop risk triggers, and Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise Credit Check helps agents guide five-dimensional enterprise credit checks using official Chinese government data sources, scoring rules, hard-stop risk triggers, and Markdown report templates.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Employees and external due diligence users use this skill to organize enterprise credit checks from official Chinese public and credit data sources, calculate a risk score, and draft a report for business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated report may appear like an authoritative credit report even when findings depend on manual or unverified inputs. <br>
-Mitigation: Treat outputs as checklist and report drafting assistance; require official source evidence for every finding before relying on the result. <br>
-Risk: Credit and business checks can involve sensitive information or restricted account access. <br>
-Mitigation: Use only legally authorized queries and avoid entering sensitive credentials or business information unless the operator has confirmed authorization. <br>
-Risk: The artifact includes a private contact solicitation for credit repair or deeper due diligence. <br>
-Mitigation: Do not share business, credit, or identity information through that contact unless the operator independently verifies and trusts the recipient. <br>
+## Use Case:
 
+External users and business reviewers use this skill to structure enterprise credit checks, calculate risk scores, identify hard-stop risk conditions, and generate concise Markdown reports for Chinese enterprise due-diligence workflows.
 
-## Reference(s): <br>
-- [Data Sources](references/data_sources.md) <br>
-- [Risk Rules](references/risk_rules.md) <br>
-- [Scoring Standards](references/scoring_standards.md) <br>
-- [People's Bank of China Credit Reference Center](https://www.pbccrc.org.cn) <br>
-- [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn) <br>
-- [China Enforcement Information Disclosure Network](http://zxgk.court.gov.cn) <br>
-- [China Judgments Online](https://wenshu.court.gov.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports, risk alerts, scoring summaries, and structured calculation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report outputs should cite official source evidence supplied by the user or agent and should be treated as reference material, not an independently verified credit report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Official-source claims and generated reports may be unreliable if live source checks, provenance, authorization, or missing-data handling are not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require documented authorization, record live source checks with retained evidence, verify provenance, and treat missing or inaccessible data as a review blocker before using reports in credit, lending, procurement, or compliance decisions.
+
+Risk: Fail-open scoring can understate risk when data is incomplete or unavailable.
+
+Mitigation: Require explicit missing-data status in each report section and escalate incomplete checks to human review rather than relying on the calculated score alone.
+
+Risk: The artifact includes a hardcoded promotional contact in generated report templates.
+
+Mitigation: Remove promotional contact content or replace it with an approved organizational contact before deployment.
+
+Risk: One referenced official source URL uses HTTP rather than HTTPS.
+
+Mitigation: Require secure HTTPS source access where supported and document any exception before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/enterprise-credit-check)
+- [Publisher profile](https://clawhub.ai/user/golngod)
+- [Data Sources](references/data_sources.md)
+- [Risk Rules](references/risk_rules.md)
+- [Scoring Standards](references/scoring_standards.md)
+- [People's Bank of China Credit Reference Center](https://www.pbccrc.org.cn)
+- [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn)
+- [China Enforcement Information Disclosure Network](http://zxgk.court.gov.cn)
+- [China Judgments Online](https://wenshu.court.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown reports, risk alerts, scoring summaries, and Python helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory enterprise credit-check materials that require live source verification, authorization, and human review before use in decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

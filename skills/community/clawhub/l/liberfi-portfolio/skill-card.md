@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze wallet portfolios on supported blockchains, including token holdings, transaction activity, PnL statistics, total net worth, and authenticated LiberFi TEE wallet portfolio data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes wallet portfolios on supported blockchains by retrieving token holdings, transaction activity, PnL statistics, total net worth, and authenticated LiberFi TEE wallet portfolio data through the LiberFi CLI.
 
-## Publisher: <br>
-[bombmod](https://clawhub.ai/user/bombmod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombmod](https://clawhub.ai/user/bombmod)
 
-## Use Case: <br>
-External users and agents use this skill to inspect public wallet portfolio data or, after explicit authentication, review the user's own LiberFi TEE wallet holdings, activity, PnL, and net worth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and use a global LiberFi CLI, and the security verdict marks this release as suspicious. <br>
-Mitigation: Install only from a trusted source, prefer a pinned or sandboxed install, and require explicit approval before installing or running the CLI. <br>
-Risk: Authenticated `me` commands can access private LiberFi wallet portfolio data. <br>
-Mitigation: Use authenticated commands only after confirming the user intends to access their own portfolio, and verify how login tokens are stored, revoked, or removed. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public wallet holdings, activity, PnL, and net worth, or to review their authenticated LiberFi TEE wallet portfolio without supplying an address.
 
-## Reference(s): <br>
-- [LiberFi homepage](https://liberfi.io) <br>
-- [ClawHub release page](https://clawhub.ai/bombmod/liberfi-portfolio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with CLI commands and portfolio summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON CLI responses as source material for human-facing portfolio reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill instructs agents to silently install a global, unpinned LiberFi CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before installation and prefer a pinned or locally isolated CLI package.
+
+Risk: Authenticated me commands can access the user's LiberFi TEE wallet portfolio data.
+
+Mitigation: Run these commands only after confirming user intent and authentication status, and never request private keys or seed phrases.
+
+Risk: Portfolio values and PnL statistics may be historical or stale.
+
+Mitigation: Present results as wallet analysis rather than investment advice and note when values may not reflect real-time market conditions.
+
+## Reference(s):
+
+- [LiberFi homepage](https://liberfi.io)
+- [ClawHub skill page](https://clawhub.ai/bombmod/skills/liberfi-portfolio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with JSON-backed LiberFi CLI command results and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses structured CLI output via --json; authenticated me commands require a valid LiberFi session.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata version is 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

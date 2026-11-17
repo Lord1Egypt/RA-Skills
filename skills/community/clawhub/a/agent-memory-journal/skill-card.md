@@ -1,45 +1,56 @@
-## Description: <br>
-Agent Memory Journal provides durable, file-based episodic and core memory for agents, with CLI and Python API workflows for recording, recalling, curating, and reviewing agent memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Memory Journal provides a durable three-tier memory system for agents with a Python Journal API, CLI workflows, and inspectable hot, warm, and cold storage.
 
-## Publisher: <br>
-[misolith](https://clawhub.ai/user/misolith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misolith](https://clawhub.ai/user/misolith)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an agent an inspectable local memory journal, including hot context, searchable core facts, episodic logs, session notes, and maintenance commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable local memory can retain sensitive notes, preferences, session context, or personal data longer than intended. <br>
-Mitigation: Treat .memory as sensitive storage, avoid logging secrets or regulated personal data, and periodically review, delete, archive, or supersede stored memories. <br>
-Risk: Hot memory and promoted core memories can influence future agent context and behavior. <br>
-Mitigation: Review generated hot memory files and use explicit curation, forget, review, and doctor workflows before relying on persisted memories. <br>
-Risk: A configured hot_path override can write generated memory into framework-specific files such as AGENT.md or AGENTS.md. <br>
-Mitigation: Review .memory/config.json before enabling hot_path overrides and treat the configured hot target as generated output. <br>
+## Use Case:
 
+Developers and agent operators use this skill to embed persistent, searchable memory in an agent workspace, record episodic notes and curated facts, and review or rebuild generated hot memory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/misolith/agent-memory-journal) <br>
-- [README](artifact/README.md) <br>
-- [Agent Installation Guide](artifact/docs/agent_install.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plaintext memory entries, CLI output, Python API results, and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists local .memory files and may generate hot memory files such as AGENT.md according to configuration] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence, pyproject.toml, CHANGELOG) <br>
+Risk: Persistent memory can carry untrusted or stale instructions into future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat stored memory as untrusted, avoid pinning content from untrusted sources, and review .memory/AGENT.md before loading it into an agent startup prompt.
+
+Risk: Hot-memory configuration can write generated memory to workspace files.
+
+Mitigation: Keep hot_path at the default or a known generated file, and review .memory/config.json before maintenance cycles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/misolith/skills/agent-memory-journal)
+- [Agent installation guide](artifact/docs/agent_install.md)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown memory files, JSON configuration, Python API calls, and CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local memory under .memory/ and uses a character budget for generated hot memory.]
+
+## Skill Version(s):
+
+0.2.3 (source: evidence release metadata, pyproject.toml, CHANGELOG, released 2026-04-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

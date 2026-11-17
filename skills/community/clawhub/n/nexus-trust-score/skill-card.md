@@ -1,48 +1,67 @@
-## Description: <br>
-Generate on-chain trust scores for wallets and agents using Masumi transaction data on Cardano. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate on-chain trust scores for wallets and agents using Masumi transaction data on Cardano.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and agent operators use this skill to request wallet or agent trust scoring from the NEXUS remote service when evaluating on-chain reputation signals. It is most relevant for Cardano, Stellar, and XRP Ledger payment-aware agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid remote payment flows may incur charges or initiate transaction-related activity without clear per-call consent or spending limits. <br>
-Mitigation: Require explicit approval before each paid call or transaction, set spending limits outside the skill, and test with sandbox_test before using live payment credentials. <br>
-Risk: Wallet, agent trust-score requests, payment proofs, and payment metadata are sent to a third-party remote service. <br>
-Mitigation: Install only when the operator trusts NEXUS for this data, send the minimum necessary input, and avoid broad signing authority or reusable payment proofs. <br>
+## Use Case:
 
+External developers and agents use this skill to request a NEXUS trust and reputation score for a Cardano wallet address or AI agent based on on-chain transaction activity. It is suited to workflows that need wallet or agent trust assessment before interaction.
 
-## Reference(s): <br>
-- [NEXUS Trust Score on ClawHub](https://clawhub.ai/cyberforexblockchain/nexus-trust-score) <br>
-- [NEXUS Agent-as-a-Service Platform](https://ai-service-hub-15.emergent.host) <br>
-- [NEXUS Trust Score API](https://ai-service-hub-15.emergent.host/api/original-services/trust-score) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stellar Payment Information](https://ai-service-hub-15.emergent.host/api/mpp/stellar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON service response or text summary returned by the remote NEXUS API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires payment proof or payment credential for paid calls; sandbox testing is documented with sandbox_test.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can direct an agent to make cryptocurrency payments based on service-provided payment requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for every non-sandbox payment and verify the recipient, asset, network, and total amount before sending funds.
+
+Risk: Payment costs may exceed user expectations if local wallet controls do not enforce limits.
+
+Mitigation: Cap payments to the advertised $0.75 request price plus clearly understood fees, and use sandbox_test where possible.
+
+Risk: Wallet addresses, agent identifiers, and input queries are sent to a third-party remote API.
+
+Mitigation: Install only in environments that trust NEXUS as the service provider and avoid sending sensitive data that should not leave the local environment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cyberforexblockchain/skills/nexus-trust-score)
+- [NEXUS Agent-as-a-Service Platform](https://ai-service-hub-15.emergent.host)
+- [Trust Score API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/trust-score)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [Stellar payment information](https://ai-service-hub-15.emergent.host/api/mpp/stellar)
+- [Stellar fee sponsorship information](https://ai-service-hub-15.emergent.host/api/mpp/stellar/sponsor-info)
+- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON service response summarized as Markdown guidance, with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a payment proof or x402/MPP payment credential; sandbox_test is documented for testing.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

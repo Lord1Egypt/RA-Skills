@@ -1,40 +1,53 @@
-## Description: <br>
-Advisory Committee runs four specialist perspectives in sequence to analyze strategic proposals and produce a majority-vote recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs CS, Marketing, Finance, and Tech advisory perspectives in sequence to analyze strategic proposals and deliver a majority-vote recommendation.
 
-## Publisher: <br>
-[jini92](https://clawhub.ai/user/jini92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jini92](https://clawhub.ai/user/jini92)
 
-## Use Case: <br>
-Founders, product teams, and developers use this skill to evaluate strategy, prioritization, or new-build proposals through customer, marketing, finance, and technical perspectives before choosing an action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The committee framing can make broad strategy or prioritization advice feel more formal than the underlying reasoning warrants. <br>
-Mitigation: Use it as decision support, review each perspective's reasoning, and keep a human accountable for final prioritization. <br>
-Risk: The skill may activate for broad strategy requests where lightweight informal advice would be preferable. <br>
-Mitigation: Use or enable it when a structured multi-perspective review is desired; avoid it for quick informal decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Committee Role Definitions](references/committee-roles.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jini92/advisory-committee) <br>
+## Use Case:
 
+People evaluating strategy, prioritization, or product build decisions use this skill to compare CS, Marketing, Finance, and Tech perspectives and receive a concise majority-vote recommendation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured committee verdict sections and a decision log row] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sequential CS, marketing, finance, and technical perspectives plus a final recommendation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Strategic recommendations may be too broad or incorrect for consequential decisions.
+
+Mitigation: Review each agent recommendation before acting and treat the majority vote as advisory input rather than approval.
+
+Risk: The decision log can expose sensitive proposal details if used with confidential strategy work.
+
+Mitigation: Avoid recording sensitive proposal details in the decision log unless they are intentionally meant to be visible.
+
+## Reference(s):
+
+- [Committee role definitions](references/committee-roles.md)
+- [ClawHub skill page](https://clawhub.ai/jini92/skills/advisory-committee)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Markdown decision report with short rationale sections and a decision log row]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses four sequential advisory perspectives and a majority-vote recommendation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

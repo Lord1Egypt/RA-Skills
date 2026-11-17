@@ -1,42 +1,53 @@
-## Description: <br>
-Monitors a coding session for drift from the stated task and surfaces off-scope work before unrelated changes accumulate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors coding sessions for scope drift by comparing the stated task with file changes and prompting the agent to keep unrelated work separate.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and coding agents use this skill during focused implementation, bug fixes, and review preparation to keep file changes aligned with a task anchor and make off-scope work visible. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scope monitoring can interrupt open-ended exploration when the task anchor or drift tolerance is too strict. <br>
-Mitigation: Set a clear task anchor and use Off or Exploratory mode for open-ended work. <br>
-Risk: Session summaries may include sensitive project details. <br>
-Mitigation: Avoid saving or sharing summaries that include confidential code, filenames, business logic, or project context. <br>
-Risk: Suggested stash, commit, or scope expansion actions can affect the user's workflow state. <br>
-Mitigation: Require explicit confirmation before any stash, commit, or scope expansion action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Scope Sentinel on ClawHub](https://clawhub.ai/jcools1977/scope-sentinel) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and coding agents use this skill during focused implementation work to define a task boundary, monitor file changes for scope drift, and produce alerts or session summaries that separate unrelated follow-up work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with structured alerts, options, and session summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, network access, or hidden install behavior reported by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scope-drift alerts may surface sensitive or unfinished local repository changes.
+
+Mitigation: Review alert content in the intended local session and avoid sharing repository details outside approved channels.
+
+Risk: Suggestions to stash, commit separately, expand scope, or continue could affect version-control workflow if accepted without review.
+
+Mitigation: Treat alerts as advisory and explicitly confirm any version-control action before executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/scope-sentinel)
+- [Publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown alerts, decision prompts, and session summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls or automatic privileged actions; recommendations require user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

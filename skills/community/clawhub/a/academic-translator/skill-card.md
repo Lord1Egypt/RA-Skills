@@ -1,43 +1,58 @@
-## Description: <br>
-Translate and analyze academic computer science papers between English and Chinese, summarize content, answer paper-grounded questions, and compare related works. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate and analyze academic CS papers in English and Chinese, summarize content, answer paper-specific questions, and compare related works.
 
-## Publisher: <br>
-[levinaz69](https://clawhub.ai/user/levinaz69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[levinaz69](https://clawhub.ai/user/levinaz69)
 
-## Use Case: <br>
-External users and developers use this skill to ingest academic PDFs or arXiv papers, produce English-Chinese academic translations, and answer research questions using extracted paper content with supplementary web research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded, local, or downloaded papers may be extracted and cached under /tmp for multi-turn use. <br>
-Mitigation: Avoid confidential or unpublished papers unless temporary paper folders are cleared after the session. <br>
-Risk: Supplementary web research can expose paper topics or produce citations that need review. <br>
-Mitigation: Disable web search for sensitive papers and review cited sources before relying on answers. <br>
+## Use Case:
 
+Developers, researchers, and students use this skill to ingest academic papers from arXiv links or PDFs, translate English and Chinese content, summarize methods and findings, and answer follow-up questions with paper-grounded context.
 
-## Reference(s): <br>
-- [Academic Translator on ClawHub](https://clawhub.ai/levinaz69/academic-translator) <br>
-- [Publisher profile](https://clawhub.ai/user/levinaz69) <br>
-- [arXiv](https://arxiv.org/) <br>
-- [PyMuPDF](https://pymupdf.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with translated sections, summaries, citations, and JSON emitted by helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use temporary local paper context and web research when answering follow-up questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can download academic papers and use web search for supplementary context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review paper URLs and search-derived context before relying on outputs, and use trusted sources for paper ingestion.
+
+Risk: The skill may temporarily store current paper metadata and extracted text under /tmp.
+
+Mitigation: Avoid processing sensitive unpublished PDFs unless the runtime protects /tmp appropriately, and clear temporary files when the session no longer needs them.
+
+Risk: Large PDFs can increase processing time, memory use, and output length.
+
+Mitigation: Use page limits or batch extraction and translation for long papers.
+
+## Reference(s):
+
+- [Academic Translator ClawHub page](https://clawhub.ai/levinaz69/skills/academic-translator)
+- [arXiv](https://arxiv.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with extracted paper metadata, translations, summaries, Q&A responses, citations, and occasional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use temporary paper metadata and extracted text under /tmp for multi-turn follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

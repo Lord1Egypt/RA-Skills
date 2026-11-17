@@ -1,38 +1,49 @@
-## Description: <br>
-Atomic node skill to delete a Google Calendar event using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to delete a Google Calendar event using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents used by calendar users or operators use this skill to delete a specified Google Calendar event through the local gog CLI when a calendar ID and event ID are known. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete the wrong Google Calendar event if the calendar ID or event ID is incorrect. <br>
-Mitigation: Verify the calendar ID and event ID, and have the agent show the event details before deletion when accuracy matters. <br>
+## Use Case:
 
+External users and agents use this skill to delete a specific Google Calendar event through the gog CLI.
 
-## Reference(s): <br>
-- [Google Calendar Delete Event on ClawHub](https://clawhub.ai/zvirb/google-calendar-delete-event) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, guidance] <br>
-**Output Format:** [Markdown or plain text with a gog calendar delete command and deletion confirmation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gog CLI and a target calendar ID and event ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can delete a Google Calendar event when an agent runs a destructive gog command without built-in confirmation or event verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to identify the exact calendar and event, restate what will be deleted, and get explicit confirmation before running the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-calendar-delete-event)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Markdown instructions with an inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and Google Calendar access to be configured before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

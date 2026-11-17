@@ -1,41 +1,54 @@
-## Description: <br>
-Matches PowerPoint slide styling by analyzing an existing deck's palette, fonts, layout, rhythm, and validation rules, then guiding python-pptx edits for new or replacement pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT Style Matcher helps agents analyze an existing PowerPoint deck's colors, fonts, layout, and rhythm, then generate or revise slides that match that style with python-pptx validation.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Developers, analysts, and presentation authors use this skill to inspect an existing PowerPoint deck and generate or replace slides that follow the source deck's colors, typography, layout formulas, and quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a whole-deck residual keyword replacement step that could alter unrelated business content. <br>
-Mitigation: Run it only on copies of PPT files, specify the exact pages to modify, and allow global residual keyword replacement only after reviewing the replacement list. <br>
-Risk: Generated or modified slides may drift from the intended source deck style or layout constraints. <br>
-Mitigation: Use the extracted palette, font tiers, layout formulas, and validate_layout checks before delivering the modified deck. <br>
+## Use Case:
 
+Developers and presentation-focused agents use this skill to inspect a source PPTX, lock style parameters, create matching replacement or new slides, rebuild slide order, and run P0-P3 layout validation before delivery.
 
-## Reference(s): <br>
-- [Design Patterns Reference](references/design-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/ppt-style-matcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to create or modify PPTX files using python-pptx and validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release evidence) <br>
+Risk: The documented global residual-keyword replacement can silently alter unrelated slide content across a whole deck.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact replacement map before running it, scope replacements to intended slides when possible, and inspect the output deck after validation.
+
+Risk: The skill assumes Chinese presentation font and language conventions that may not fit non-Chinese decks.
+
+Mitigation: Adjust font, East Asian font handling, and language assumptions before applying the workflow to non-Chinese presentations.
+
+## Reference(s):
+
+- [Design Patterns Reference](references/design-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/ppt-style-matcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks; generated or modified PPTX files when applied]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses extracted deck style parameters and readback validation; may apply presentation-wide text replacement only when explicitly reviewed.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

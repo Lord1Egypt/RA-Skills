@@ -1,44 +1,60 @@
-## Description: <br>
-聘才猫 - 职业规划助手 V2 Use when calling Pincaimao Career Planning Assistant V2 API to generate career advice based on a resume and advice type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the Pincaimao Career Planning Assistant V2 API to upload a resume and generate career advice for an initial career stage, career transition, or promotion path.
 
-## Publisher: <br>
-[pincaimao](https://clawhub.ai/user/pincaimao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pincaimao](https://clawhub.ai/user/pincaimao)
 
-## Use Case: <br>
-External users and agents use this skill to upload a resume to Pincaimao and request career advice for early-career planning, career transition, or promotion-path scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume contents and related user inputs are transmitted to api.pincaimao.com for processing. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, redact unnecessary personal details, and verify the resume path before invoking the API. <br>
-Risk: The API key authorizes requests to the Pincaimao service. <br>
-Mitigation: Use a dedicated PCM_CAREER_PLANNING_KEY and keep it in the environment rather than hardcoding or sharing it. <br>
-Risk: Uploaded resume file references such as cos_key values may be sensitive. <br>
-Mitigation: Treat returned file keys as sensitive and avoid exposing them in shared logs, prompts, or public output. <br>
+## Use Case:
 
+External users and agents use this skill to send a selected resume to Pincaimao and receive career-planning advice for one of three supported advice types. It is intended for authenticated users with a Pincaimao API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pincaimao/pincaimao-career-planning-v2) <br>
-- [Pincaimao publisher profile](https://clawhub.ai/user/pincaimao) <br>
-- [Pincaimao homepage](https://www.pincaimao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or raw API answer text, with bash examples for API invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PCM_CAREER_PLANNING_KEY, curl, python3, a resume file, and one advice type: 初入职场, 转型建议, or 晋升路径.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Resume content and the selected career advice request are sent to Pincaimao for processing and may be stored by Pincaimao.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, avoid unnecessary sensitive details in resumes, and review Pincaimao's terms before use.
+
+Risk: A wrong or overly broad resume file could be uploaded.
+
+Mitigation: Confirm the exact resume file path before running the upload request.
+
+Risk: The API key authorizes requests to the Pincaimao API.
+
+Mitigation: Use a dedicated API key stored in PCM_CAREER_PLANNING_KEY and do not hardcode or share it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pincaimao/skills/pincaimao-career-planning-v2)
+- [Pincaimao homepage](https://www.pincaimao.com)
+- [Pincaimao API endpoint](https://api.pincaimao.com)
+- [Pincaimao API key registration](https://www.pincaimao.com/agents/login?invite_code=uwqc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown or raw API answer text, with shell command examples for API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a summarized answer by default or the raw answer field when raw output is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

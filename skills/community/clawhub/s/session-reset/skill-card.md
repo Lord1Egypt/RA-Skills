@@ -1,46 +1,60 @@
-## Description: <br>
-Safely resets OpenClaw agent session files with backup, preview, restore, and batch cleanup support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Reset helps manage OpenClaw agent session files through preview, backup, restore, cleanup, and scoped reset workflows.
 
-## Publisher: <br>
-[traceless929](https://clawhub.ai/user/traceless929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[traceless929](https://clawhub.ai/user/traceless929)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to preview and reset stale or targeted agent sessions, apply updated agent configuration, manage backups, and restore accidentally removed session state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad reset scopes can remove active or useful OpenClaw session context. <br>
-Mitigation: Run with --dry-run first, review the listed sessions, and avoid --force unless the reset scope is intentional. <br>
-Risk: Backups can retain private conversation context from session JSONL files. <br>
-Mitigation: Protect access to ~/.openclaw/session-backups and periodically remove old backups with --cleanup. <br>
-Risk: A restore operation can overwrite current session files. <br>
-Mitigation: List backups first and confirm the timestamp before running --restore. <br>
+## Use Case:
 
+OpenClaw developers and operators use this skill to preview and reset stale or targeted agent sessions, apply updated agent configuration, free disk space, and restore backups after accidental deletion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/traceless929/session-reset) <br>
-- [OpenClaw official documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Skill development guide](https://docs.openclaw.ai/skills) <br>
-- [OpenClaw Session management](https://docs.openclaw.ai/sessions) <br>
-- [Session Reset reference material](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may operate on local OpenClaw session files and backups under ~/.openclaw when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/config.json and server release metadata) <br>
+Risk: Reset and restore operations may delete or overwrite files outside intended OpenClaw session directories when crafted scope or restore inputs are accepted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after strict scope and restore-input validation, path containment checks, and review of backup manifests; pass only known agent names or valid backup timestamps.
+
+Risk: The --force option bypasses confirmation on destructive reset operations.
+
+Mitigation: Avoid --force on important environments; use --dry-run first and require clear human confirmation before deleting session files.
+
+Risk: Untrusted backup manifests can influence restore destinations and overwrite existing session files.
+
+Mitigation: Restore only from trusted backups and inspect the manifest contents before running restore commands.
+
+## Reference(s):
+
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw Skill development guide](https://docs.openclaw.ai/skills)
+- [OpenClaw Session management](https://docs.openclaw.ai/sessions)
+- [Artifact reference README](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference destructive reset, restore, and cleanup commands that should be previewed and confirmed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

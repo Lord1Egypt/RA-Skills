@@ -1,42 +1,57 @@
-## Description: <br>
-操作小红书（搜索笔记、获取面经、查看热门内容）。当用户想搜索小红书面经、查找面试经验、了解某公司/岗位的面试情况时使用。基于本地 MCP 服务（localhost:18060）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use a local Xiaohongshu MCP service to search interview-experience posts, fetch note details, view recommendations, and check account status.
 
-## Publisher: <br>
-[krisdontknowcoding](https://clawhub.ai/user/krisdontknowcoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krisdontknowcoding](https://clawhub.ai/user/krisdontknowcoding)
 
-## Use Case: <br>
-Agents use this skill to help users search Xiaohongshu for interview experience posts, retrieve note details, review popular content, and summarize useful interview signals from returned results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run an external Xiaohongshu MCP binary and connect it to a local MCP endpoint. <br>
-Mitigation: Install only from a trusted source, keep the localhost endpoint private, and stop the background process when finished. <br>
-Risk: The workflow depends on Xiaohongshu session cookies stored in cookies.json. <br>
-Mitigation: Protect or delete cookies.json after use and avoid sharing the file or logs that may expose session data. <br>
-Risk: The artifact describes account-changing actions such as like, favorite, and comment. <br>
-Mitigation: Require explicit user confirmation before any action that modifies a Xiaohongshu account. <br>
+## Use Case:
 
+Developers and agents use this skill to query Xiaohongshu interview-experience content through a local MCP service and extract useful note details for hiring or career research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krisdontknowcoding/xhs-interview-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local MCP setup steps, mcporter command examples, search guidance, and result interpretation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local MCP service uses downloaded external binaries that handle Xiaohongshu session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the binary source and integrity independently before use, and run the service without elevated privileges.
+
+Risk: The service stores account cookies locally and runs as a background process.
+
+Mitigation: Use it only on trusted machines, protect or remove cookies when finished, and stop the background service after the task.
+
+Risk: The available tools can like, favorite, or comment from the user's account.
+
+Mitigation: Keep workflows read-only by default and require explicit user confirmation before account-modifying actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krisdontknowcoding/skills/xhs-interview-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local MCP service responses including Xiaohongshu note metadata, comments, images, and account status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Automatically generate professional PowerPoint presentations with AI, supporting multiple styles, templates, and export formats including PPTX, PDF, and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates professional AI-assisted presentation decks with support for outlines, templates, multiple slide styles, and exports to PPTX, PDF, or PNG images.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External users can use this skill to generate presentation outlines, complete slide decks, and template-based presentation files for work reports, product demos, training materials, academic defenses, and marketing plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation generation can overwrite existing files if the output path points to an important deck. <br>
-Mitigation: Use a dedicated output folder and check target filenames before writing generated presentations. <br>
-Risk: Confidential presentation content may be sent to the configured AI provider. <br>
-Mitigation: Avoid submitting sensitive content until the processing account and provider are approved for that data. <br>
+## Use Case:
 
+Employees, educators, marketers, and other external users can use this skill to draft work reports, product demos, training materials, academic defenses, roadshow decks, and marketing presentations. It is intended for Chinese-language PPT workflows that need fast outline, content, layout, template, and export assistance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/ppt-auto-generator-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bingze00000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with presentation-generation commands and file outputs such as PPTX, PDF, and PNG] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or modify presentation files in a user-selected output folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: Batch generation or template application may create or replace presentation files in paths supplied by the user or agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output filenames and directories before running batch generation or applying templates.
+
+Risk: Generated presentation content, layouts, or images may be inaccurate or unsuitable for the intended audience.
+
+Mitigation: Review generated decks before sharing or presenting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/ppt-auto-generator-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Guidance]
+
+**Output Format:** [Presentation files such as PPTX, PDF, and PNG image sequences, with concise text or Markdown generation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or replace presentation output files at user- or agent-provided paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

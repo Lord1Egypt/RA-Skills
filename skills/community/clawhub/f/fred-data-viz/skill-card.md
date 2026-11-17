@@ -1,44 +1,54 @@
-## Description: <br>
-Create publication-ready economic comparison charts from Federal Reserve Economic Data (FRED). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create publication-ready economic comparison charts from Federal Reserve Economic Data (FRED) for visualizing, comparing, and analyzing macroeconomic time series.
 
-## Publisher: <br>
-[pratyushchauhan](https://clawhub.ai/user/pratyushchauhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratyushchauhan](https://clawhub.ai/user/pratyushchauhan)
 
-## Use Case: <br>
-Developers, analysts, and economic researchers use this skill to configure and generate indexed comparison charts for FRED time series such as GDP, wages, inflation, employment, and corporate profits. It supports annotated timelines and gap visualization for economic comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper contacts FRED over the network and depends on remote FRED responses for chart data. <br>
-Mitigation: Review the requested FRED series IDs and date ranges, and confirm the retrieved data source before using generated charts in decisions or publications. <br>
-Risk: The helper writes to the user-provided output path and may overwrite an existing file at that location. <br>
-Mitigation: Choose a new or disposable output path unless overwriting an existing chart is intentional. <br>
-Risk: The helper requires pandas and matplotlib in the execution environment. <br>
-Mitigation: Install and verify these dependencies in an isolated environment before running the script. <br>
+## Use Case:
 
+Analysts, researchers, and developers use this skill to configure and generate indexed comparison charts for FRED economic time series, including wage, GDP, inflation, employment, and profit indicators.
 
-## Reference(s): <br>
-- [FRED](https://fred.stlouisfed.org) <br>
-- [FRED CSV graph endpoint](https://fred.stlouisfed.org/graph/fredgraph.csv) <br>
-- [ClawHub skill page](https://clawhub.ai/pratyushchauhan/fred-data-viz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands; the helper script produces chart image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided FRED series IDs, date ranges, labels, colors, annotations, and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The chart script contacts FRED with the configured series IDs and date ranges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive series choices and date ranges in chart configurations.
+
+Risk: The chart script can overwrite the output file path selected by the user.
+
+Mitigation: Choose a deliberate output path and check for existing files before running chart generation.
+
+## Reference(s):
+
+- [Federal Reserve Economic Data (FRED)](https://fred.stlouisfed.org)
+- [FRED Data Viz on ClawHub](https://clawhub.ai/pratyushchauhan/skills/fred-data-viz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, bash commands, and a generated chart image file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public FRED CSV data and writes the requested chart output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

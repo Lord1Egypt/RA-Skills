@@ -1,0 +1,13 @@
+{
+  "module": "精神天气台",
+  "route": "mood-notice",
+  "time_label": "15:00",
+  "title": "LOW-2",
+  "reason": "低电量，但还能小步动",
+  "action": "接水，再写下一句",
+  "tags": ["低电量", "小步"],
+  "corner": "只给动作",
+  "footer": "今天先这么过。",
+  "alt_text": "精神天气台。LOW-2。低电量，但还能小步动。现在做：接水，再写下一句。",
+  "share_safe": true
+}

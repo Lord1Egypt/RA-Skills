@@ -1,44 +1,64 @@
-## Description: <br>
-Orchard is an OpenClaw project and task management plugin with a persistent task board, agent tools, REST API access, a web dashboard, and an autonomous queue runner that dispatches ready tasks as subagents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic project and task management plugin for OpenClaw with a persistent SQLite-backed task board, queue runner that auto-dispatches ready tasks as subagents, REST API, native agent tools, and a web dashboard.
 
-## Publisher: <br>
-[derp42](https://clawhub.ai/user/derp42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derp42](https://clawhub.ai/user/derp42)
 
-## Use Case: <br>
-Developers and OpenClaw operators use Orchard to organize projects, create and track agent tasks, and let configured subagents execute ready work while preserving run history and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously spawn OpenClaw subagents and persist project data under ~/.openclaw. <br>
-Mitigation: Install only where autonomous task execution is acceptable, and use the documented debug or log-only modes to suppress or limit spawning during review. <br>
-Risk: The local dashboard and API can expose operational controls and bearer-token-mediated access if bound or proxied too broadly. <br>
-Mitigation: Keep the UI bound to 127.0.0.1, use SSH tunneling for remote access, avoid non-local HTTP with bearer tokens, and treat watchdog or queue-control endpoints as administrative capabilities. <br>
-Risk: Context injection and external configuration sources may process sensitive project text. <br>
-Mitigation: Disable or carefully scope context injection and GEMINI_API_KEY usage when project content may be sensitive, and review any config-safety documentation URLs before use. <br>
+## Use Case:
 
+Developers and OpenClaw operators use Orchard to organize agent projects, add and track tasks, and let configured subagents work through ready tasks while preserving run history and comments.
 
-## Reference(s): <br>
-- [Orchard ClawHub listing](https://clawhub.ai/derp42/orchard) <br>
-- [README.md](README.md) <br>
-- [Orchard local debugging](docs/local-debugging.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and REST API route tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent project, task, run, comment, and knowledge-base records through OpenClaw tools, API routes, and dashboard interactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5-rc.5 (source: server release metadata and package.json) <br>
+Risk: Autonomous queue execution can spawn subagents and continue work without direct step-by-step operator involvement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration before enabling the plugin, use debug.logOnly or disable spawn flags for initial testing, and set conservative concurrency and task-rate limits.
+
+Risk: Stored project knowledge and task content may be reused in later prompts, including prompt-injection text.
+
+Mitigation: Review stored knowledge before reuse and keep contextInjection disabled unless the operator explicitly wants embedding-backed context injection.
+
+Risk: Provider API keys and gateway tokens can be exposed if placed directly in plugin configuration or sent through unsafe access paths.
+
+Mitigation: Avoid putting provider API keys directly in plugin config until /orchard/config redacts them, do not pass gateway tokens on command lines or over plain HTTP, and restrict access to gateway-authenticated routes.
+
+Risk: The standalone UI forwards bearer authorization to the local OpenClaw gateway and can become risky if exposed beyond loopback.
+
+Mitigation: Keep the UI bound to 127.0.0.1 by default, use SSH tunneling for remote access, and only widen bindAddress with explicit intent and access controls.
+
+## Reference(s):
+
+- [Orchard ClawHub Skill Page](https://clawhub.ai/derp42/skills/orchard)
+- [README](README.md)
+- [Orchard local debugging](docs/local-debugging.md)
+- [OrchardOS Dashboard UX/UI Design Brief](docs/ux-brief.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, structured tool and API responses, and task execution outputs from OpenClaw subagents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist project data, task state, knowledge entries, comments, and run history in SQLite.]
+
+## Skill Version(s):
+
+0.2.5-rc.5 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

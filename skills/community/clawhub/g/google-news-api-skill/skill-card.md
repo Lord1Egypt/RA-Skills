@@ -1,44 +1,59 @@
-## Description: <br>
-This skill helps agents retrieve structured Google News results through BrowserAct, including headlines, sources, publication times, article links, and optional authors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents retrieve structured Google News results through the BrowserAct API using search keywords, time filters, and item limits.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users, developers, and analysts can use this skill to collect Google News results for topic monitoring, market research, PR tracking, competitor intelligence, daily summaries, and breaking-news review. The skill is intended for intentional third-party news collection using a BrowserAct API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News search terms and task parameters are sent to BrowserAct for third-party collection. <br>
-Mitigation: Use the skill only for intentional news collection and avoid sending sensitive or confidential search terms. <br>
-Risk: The skill requires a BrowserAct API key and the security guidance flags unsafe key handling as a concern. <br>
-Mitigation: Configure BROWSERACT_API_KEY through a secure environment variable or secret manager and do not paste the key into chat. <br>
-Risk: The security verdict is suspicious due to broad automatic third-party use. <br>
-Mitigation: Review the intended collection scope before execution and keep use limited to the user's requested news-gathering task. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to collect current news items for topic research, trend tracking, competitor monitoring, PR monitoring, daily summaries, and market research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/google-news-api-skill) <br>
-- [BrowserAct Console](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct Workflow API](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text containing status logs and structured news result fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; accepts search keywords, publish-date filter, and item limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release evidence) <br>
+Risk: Search terms and task data may be sent to BrowserAct and Google News without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the query, time filter, and item limit before running, and use the skill only for searches the user is comfortable sharing with those services.
+
+Risk: The artifact includes unsafe guidance that may lead users to paste the BrowserAct API key into chat.
+
+Mitigation: Configure BROWSERACT_API_KEY locally or through a secret manager and do not request or transmit the key in chat.
+
+Risk: Long-running polling may continue longer than intended.
+
+Mitigation: Monitor task status and stop the run manually if polling continues too long.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/google-news-api-skill)
+- [BrowserAct Console](https://www.browseract.com/reception/integrations)
+- [BrowserAct Workflow API](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON news results with terminal status logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python and BROWSERACT_API_KEY; polling may continue for several minutes.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

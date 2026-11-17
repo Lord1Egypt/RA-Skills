@@ -1,43 +1,54 @@
-## Description: <br>
-Automates batch uploads of game marketing assets to the mmgame operations platform through a logged-in browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates batch uploads of game assets to the mmgame.woa.com operations platform using a logged-in browser session.
 
-## Publisher: <br>
-[xymhxy](https://clawhub.ai/user/xymhxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xymhxy](https://clawhub.ai/user/xymhxy)
 
-## Use Case: <br>
-Game operations staff and developers use this skill to guide an agent-driven browser session that uploads image and composite game assets to mmgame. It is intended for workflows where the user has already logged in, selected the target game, and prepared the asset files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may operate a logged-in mmgame account and upload or submit assets under that account. <br>
-Mitigation: Confirm the account, target game, templates, files, and generated configuration before allowing browser automation to proceed. <br>
-Risk: The artifact describes running a separate upload script, but no script is included in this package. <br>
-Mitigation: Inspect any upload script separately before running it, and only execute scripts from a trusted workspace. <br>
-Risk: Incorrect asset dimensions, file sizes, names, or submission timing can cause upload or review failures. <br>
-Mitigation: Check each asset against the documented template requirements and review lead times before submission. <br>
+## Use Case:
 
+Developers and operations teams use this skill to upload image and combination game marketing assets to the WeChat game operations platform, including repeated updates across templates and categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xymhxy/mmgamexxyanguo) <br>
-- [mmgame platform](https://mmgame.woa.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires workspace-accessible asset files and a logged-in mmgame.woa.com browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use a logged-in mmgame browser session to upload and submit selected assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target game, file list, and upload category before running the workflow.
+
+Risk: The artifact references scripts/upload.js, but that script is not included in the package.
+
+Mitigation: Review any external upload script before using it with a logged-in browser session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xymhxy/skills/mmgamexxyanguo)
+- [Publisher profile](https://clawhub.ai/user/xymhxy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown instructions with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide browser automation through Playwright MCP and report upload results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

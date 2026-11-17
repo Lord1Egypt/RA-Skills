@@ -1,0 +1,6 @@
+interface:
+  display_name: C4 Architecture Diagrams and Documentation
+  short_description: Create C4 context, container, component, and code diagrams with Mermaid.
+  default_prompt: Use $architect-4c to derive a C4 model from the discussion, design material, or source code. Establish the system boundary, audience, and current or target state, then produce the needed Context, Container, Component, and Code diagrams, with dynamic or deployment views to check collaboration and runtime placement.
+policy:
+  allow_implicit_invocation: false

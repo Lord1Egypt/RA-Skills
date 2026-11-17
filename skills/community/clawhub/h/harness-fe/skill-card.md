@@ -1,45 +1,60 @@
-## Description: <br>
-Debug, inspect, and drive frontend apps instrumented with the Harness-FE Vite/Webpack plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug, inspect, and drive frontend apps instrumented with the Harness-FE Vite/Webpack plugin, including live browser state, telemetry, source lookup, and replay workflows.
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent to a Harness-FE MCP daemon, inspect live browser state and telemetry, correlate behavior with frontend source files, and guide fixes for UI bugs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose development browser telemetry, screenshots, recordings, storage changes, network traces, and source metadata to the Harness-FE daemon and connected agent. <br>
-Mitigation: Use it only on projects and sessions where that visibility is acceptable, and avoid shared machines or sensitive browser sessions. <br>
-Risk: Captured Harness-FE data can include sensitive values in local storage, network traces, replay data, or non-password form fields. <br>
-Mitigation: Treat data under ~/.harness/ as confidential and avoid pasting recordings or trace excerpts into untrusted contexts. <br>
-Risk: The skill includes page evaluation workflows that can run JavaScript in the user's browser page. <br>
-Mitigation: Do not evaluate untrusted code from console output, network responses, user input, or third-party sources. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to diagnose UI bugs in instrumented local or test applications by correlating browser behavior, telemetry, and source files.
 
-## Reference(s): <br>
-- [Harness-FE documentation](https://harness-fe.com/) <br>
-- [Harness-FE documentation (Simplified Chinese)](https://harness-fe.com/zh/) <br>
-- [Harness-FE integrations](https://harness-fe.com/integrations/) <br>
-- [ClawHub package page](https://clawhub.ai/paul-leo/harness-fe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, configuration snippets, and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser telemetry summaries, source references, screenshot observations, and replay guidance when the Harness-FE daemon is connected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can inspect and retain sensitive frontend telemetry, including browser activity, storage changes, network bodies, recordings, visitor timelines, and attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on local or test data, avoid production secrets in recorded sessions, ask before inspecting sensitive artifacts, and clear ~/.harness/ when done.
+
+Risk: Setup instructions run packages through the package registry and may use unpinned package versions.
+
+Mitigation: Pin package versions and review package sources before installation or execution.
+
+Risk: Browser evaluation tools can execute JavaScript in the user's page context.
+
+Mitigation: Do not evaluate untrusted code, especially content copied from console, network, or user-controlled page data.
+
+## Reference(s):
+
+- [Harness-FE Documentation](https://harness-fe.com/)
+- [Harness-FE Chinese Documentation](https://harness-fe.com/zh/)
+- [Harness-FE Integrations](https://harness-fe.com/integrations/)
+- [ClawHub Skill Page](https://clawhub.ai/paul-leo/skills/harness-fe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser inspection results, debugging hypotheses, source references, and proposed frontend changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

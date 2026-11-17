@@ -1,13 +1,21 @@
 ---
 name: rus-chn05-analyzer
-version: 1.0.1
-author: povoss
+version: 1.1.1
+author: 杭州中子网络科技有限公司
+display_name: 中华05骨龄分析 RUS-CHN05
+display_name_en: Chinese-05 Bone Age Analyzer (RUS-CHN05)
 displayName: 中华05骨龄分析 RUS-CHN05
-description: |
-  中华05骨龄分析 RUS-CHN05 —— 基于慧龄云®骨龄AI检测系统，采用中华05标准RUS-CHN05计分法，分析手腕X光片，评估3~18岁儿童青少年骨骼发育程度。
+description: >
+  中华05骨龄分析 RUS-CHN05 ——
+  基于慧龄云®骨龄AI检测系统，采用中华05标准RUS-CHN05计分法，分析手腕X光片，评估3~18岁儿童青少年骨骼发育程度。
+
   当用户上传手腕/手部X光片并请求骨龄分析、骨龄评估、生长发育评估、身高预测时触发。
-  完整流程：注册激活→密码登录→图片上传→AI骨龄推算→生成中文诊断报告。
+
+  完整流程：注册激活→密码登录→图片上传→AI骨龄推算→生成中文骨龄测评报告。
+
   支持两种调用路径：轻量路径（仅骨龄识别）和完整路径（骨龄+身高预测，中华05查表法+BCPE拟合法）。
+description_zh: 基于慧龄云骨龄AI检测系统的中华05标准骨龄分析技能，上传手腕X光片即可AI推算骨龄并预测成年身高，支持人工复核骨骺等级后重算。
+description_en: Chinese-05 (RUS-CHN05) bone-age analysis powered by Huiling Cloud AI. Upload a left-wrist X-ray to estimate bone age and predict adult height; supports manual re-scoring and recalculation.
 license: MIT-0
 triggers:
   - 骨龄
@@ -27,7 +35,7 @@ agent_created: true
 
 ## 功能概述
 
-本技能对接**慧龄云®骨龄人工智能检测系统**（host: `www.pipitu.net`），基于**中华05标准**（RUS-CHN05计分法），通过分析左手腕部正位X光片，评估儿童青少年骨骼发育程度，输出规范的骨龄诊断报告。
+本技能对接**慧龄云®骨龄人工智能检测系统**（host: `www.pipitu.net`），基于**中华05标准**（RUS-CHN05计分法），通过分析左手腕部正位X光片，评估儿童青少年骨骼发育程度，输出规范的骨龄测评报告。
 
 **核心能力**：
 - AI自动推算骨龄（中华05 RUS-CHN05计分法，推理服务器端执行）
@@ -197,7 +205,7 @@ POST {host}/bmd/v2/predictHeightFromWebBySms
 }
 ```
 
-### Step 3：生成完整诊断报告
+### Step 3：生成完整测评报告
 
 基于 API 返回结果，按以下模板输出报告（**使用中文，语气专业亲切**）：
 
@@ -205,7 +213,7 @@ POST {host}/bmd/v2/predictHeightFromWebBySms
 
 ## 📋 骨龄分析报告
 
-> ⚠️ **免责声明**：本报告由AI辅助分析生成，仅供参考，不构成医疗诊断。如有疑问，请咨询专业医师。
+> ⚠️ **免责声明**：本报告由AI辅助分析生成，仅供参考，不能作为医疗依据。如有疑问，请咨询专业医师。
 
 ### 基本信息
 | 项目 | 内容 |
@@ -251,7 +259,7 @@ POST {host}/bmd/v2/predictHeightFromWebBySms
 ### 发育状态解读
 {2~3句话解释当前骨龄的含义，用家长能理解的语言}
 
-### 临床建议
+### 后续建议
 {根据骨龄差值，给出1~4条具体、可操作的建议}
 
 ### 温馨提示
@@ -313,7 +321,7 @@ POST {host}/service/serviceLogs/getHistoryReports
 2. **密码安全**：密码必须SHA256加密后传输，禁止明文
 3. **图片格式**：支持JPG/PNG，通过预签名URL上传至腾讯云COS
 4. **性别必须确认**：男女评估标准不同（RUSCHNTables 分 scoreBoy/scoreGirl），性别错误会导致骨龄偏差
-5. **不要过度诊断**：骨龄差值在±1岁内属正常范围，使用"偏快/偏慢"而非"异常"
+5. **不轻易下异常结论**：骨龄差值在±1岁内属正常范围，使用"偏快/偏慢"而非"异常"
 6. **免责声明**：每份报告必须包含免责声明
 7. **手机号格式**：需符合 `1[3-9]\d{9}` 格式，否则校验失败
 8. **空值处理**：空值字段需传递null，不可省略或留空字符串

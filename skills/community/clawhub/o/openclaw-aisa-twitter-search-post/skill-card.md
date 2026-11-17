@@ -1,47 +1,61 @@
-## Description: <br>
-Searches and reads X (Twitter): profiles, timelines, mentions, followers, tweet search, trends, lists, communities, and Spaces. Publishes posts after the user completes OAuth in the browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and reads X (Twitter) profiles, timelines, mentions, followers, tweets, trends, lists, communities, and Spaces, and publishes posts after user OAuth authorization.
 
-## Publisher: <br>
-[0xjordansg-yolo](https://clawhub.ai/user/0xjordansg-yolo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xjordansg-yolo](https://clawhub.ai/user/0xjordansg-yolo)
 
-## Use Case: <br>
-External users and developers use this skill to search and inspect Twitter/X data, monitor profiles and trends, and publish text or media posts through an OAuth-based workflow without sharing account passwords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command output may expose the configured AIsa API key. <br>
-Mitigation: Do not share or log output from status, authorize, or post commands until the key-printing behavior is fixed. <br>
-Risk: Twitter/X queries, uploaded media, OAuth posting, and the API key are handled by AIsa. <br>
-Mitigation: Install only when the user trusts AIsa for these operations and data flows. <br>
-Risk: Posting mode ambiguity can cause an unintended quote, reply, thread, or standalone post. <br>
-Mitigation: Review every post before publishing and require explicit tweet URLs or IDs for quote and targeted reply workflows. <br>
-Risk: Changing TWITTER_RELAY_BASE_URL can route requests through a different relay. <br>
-Mitigation: Leave TWITTER_RELAY_BASE_URL unset unless the user intentionally trusts the alternate relay. <br>
+## Use Case:
 
+External users and developers use this skill to search and monitor Twitter/X data, inspect profiles and conversations, and publish text or media posts through an OAuth-based workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xjordansg-yolo/openclaw-aisa-twitter-search-post) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [OAuth Posting Workflow](references/post_twitter.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; posting may return an OAuth authorization link before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The posting helper can expose the AISA API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated, revocable AISA API key and avoid running the status, authorize, or post helper until the API-key output issue is fixed.
+
+Risk: Credentials or post content can be sent to an arbitrary relay URL.
+
+Mitigation: Do not set TWITTER_RELAY_BASE_URL to untrusted or HTTP destinations.
+
+Risk: Searches, media, and post content are disclosed to AIsa as part of the skill workflow.
+
+Mitigation: Avoid sensitive searches or media unless that disclosure is acceptable for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xjordansg-yolo/skills/openclaw-aisa-twitter-search-post)
+- [OpenClaw homepage](https://openclaw.ai)
+- [AIsa API reference](https://docs.aisa.one/reference/)
+- [AIsa signup](https://aisa.one)
+- [OAuth posting workflow](references/post_twitter.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples, Python command examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and uses curl or Python 3 for Twitter/X read and posting workflows.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

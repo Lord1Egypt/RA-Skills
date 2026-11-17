@@ -1,43 +1,53 @@
-## Description: <br>
-Disk Space Analyzer scans local disk drives, identifies major space consumers, and generates JSON and HTML reports with cleanup and optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Disk Space Analyzer scans local disk drives, identifies top space consumers and cache locations, and helps an agent generate a disk usage report with optimization guidance.
 
-## Publisher: <br>
-[raingingkleec](https://clawhub.ai/user/raingingkleec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raingingkleec](https://clawhub.ai/user/raingingkleec)
 
-## Use Case: <br>
-Developers, operators, and end users use this skill to inspect local disk usage, find large directories, and prepare reports that support cleanup decisions. It is especially useful when a Windows drive is nearly full and the user needs a prioritized explanation before deleting or moving data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON and HTML reports can expose local folder paths, software layout, cache locations, drive structure, and hostname. <br>
-Mitigation: Review generated reports before sharing them and remove sensitive local details when needed. <br>
-Risk: Cleanup suggestions can affect user data if acted on without review. <br>
-Mitigation: Approve deletion or migration actions separately after checking the listed paths; the skill should present candidates before cleanup. <br>
-Risk: The skill performs a broad local disk-usage survey. <br>
-Mitigation: Install and run it only when a broad local storage scan is expected and appropriate for the workspace. <br>
+## Use Case:
 
+Developers, support staff, and end users use this skill to inspect local disk usage, produce an HTML report, identify large directories and caches, and prioritize cleanup or migration actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raingingkleec/disk-space-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/raingingkleec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON scan data, and an HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include local folder paths, drive layout, cache locations, and hostname.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated reports can expose hostnames, full paths, directory names, cache locations, and Windows component sizes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep reports local, review them before sharing, and redact sensitive paths or machine identifiers when distribution is necessary.
+
+Risk: The HTML report generation can render untrusted file or folder names unsafely.
+
+Mitigation: Escape report data or render it through safe DOM/text APIs before opening reports from systems with untrusted filenames.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raingingkleec/skills/disk-space-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [JSON scan data, HTML report, and concise Markdown/text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may contain hostnames, full paths, directory names, cache locations, and Windows component sizes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

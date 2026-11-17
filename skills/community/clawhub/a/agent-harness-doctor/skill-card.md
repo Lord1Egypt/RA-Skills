@@ -1,38 +1,53 @@
-## Description: <br>
-Automated audit and fix for OpenClaw agent harnesses. Scans your setup, scores on 8 dimensions (Session Bridge, Startup Sequence, Smoke Test, Atomic Checkpoint, Output Verification, State Format, Multi-Agent Protocol, Fallback Plan), generates a prioritized improvement plan, and can auto-apply P0 fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated audit and fix for OpenClaw agent harnesses. Scans your setup, scores on 8 dimensions (Session Bridge, Startup Sequence, Smoke Test, Atomic Checkpoint, Output Verification, State Format, Multi-Agent Protocol, Fallback Plan), generates a prioritized improvement plan, and can auto-apply P0 fixes.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neroagent](https://clawhub.ai/user/neroagent)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess and harden OpenClaw agent harnesses by scoring startup, state, verification, checkpointing, and fallback practices. It can produce a diagnostic report and optionally apply prioritized harness fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A diagnostic workflow can still make persistent changes to agent instruction or state files when fix application is requested. <br>
-Mitigation: Use diagnostic mode with an empty fix_apply list for report-only runs, and review or back up AGENTS.md and agent-progress.json before applying fixes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit OpenClaw harness readiness, identify weak reliability controls, and generate a prioritized remediation plan. When explicitly requested, it can apply selected P0 fixes to workspace state and agent instruction files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neroagent/agent-harness-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON diagnostic results and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace harness files when fix application is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The scanner reports that this skill's diagnostic path can persistently change workspace and agent instruction files when fix_apply is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnostics without fix_apply first, review the target workspace, and inspect any file changes before relying on the modified harness.
+
+Risk: Applied fixes can alter agent startup and state-handling behavior.
+
+Mitigation: Limit automatic fixes to reviewed P0 items and keep a revert path for AGENTS.md and agent-progress.json changes.
+
+## Reference(s):
+
+- [Agent Harness Doctor on ClawHub](https://clawhub.ai/neroagent/skills/agent-harness-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON diagnostic results with recommended actions and optional workspace file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update agent-progress.json and AGENTS.md when fix application is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

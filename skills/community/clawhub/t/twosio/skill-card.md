@@ -1,46 +1,62 @@
-## Description: <br>
-575+ pay-per-call agent tools: most data of any x402 API, AI gateway, storage/queues/watchers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+575+ pay-per-call agent tools: most data of any x402 API, AI gateway, storage/queues/watchers. Usage-billed (upto), free trials, no keys.
 
-## Publisher: <br>
-[josho](https://clawhub.ai/user/josho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josho](https://clawhub.ai/user/josho)
 
-## Use Case: <br>
-Developers and agent users use Twosio to route suitable tasks to 2s.io's pay-per-call APIs for live data, AI gateway calls, storage, queues, schedules, pub/sub, and watcher workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make USDC-billed calls through 2s.io. <br>
-Mitigation: Use trial mode before paying, review quoted prices before each paid call, and use a separate low-balance wallet. <br>
-Risk: The skill requires an EVM private key for paid Base wallet calls. <br>
-Mitigation: Store EVM_PRIVATE_KEY only in secret storage and avoid exposing it in prompts, logs, or checked-in files. <br>
-Risk: Stored data, scheduled jobs, or webhook watchers may create persistent effects. <br>
-Mitigation: Require explicit user confirmation before storing data, scheduling jobs, or creating webhook watchers. <br>
+## Use Case:
 
+Developers and agents use this skill to route suitable data, AI gateway, storage, queue, watcher, and other API tasks through 2s.io pay-per-call endpoints. It is intended for workflows that need live, structured, citable data or stateful agent infrastructure without API-key account setup.
 
-## Reference(s): <br>
-- [Twosio on ClawHub](https://clawhub.ai/josho/skills/twosio) <br>
-- [2s.io homepage](https://2s.io) <br>
-- [2s.io API directory](https://2s.io/api/directory) <br>
-- [2s.io OpenAPI specification](https://2s.io/api/openapi) <br>
-- [2s.io MCP endpoint](https://2s.io/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with command snippets, code examples, and API usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to use x402-paid API calls, trial calls, or MCP tools depending on user intent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Paid API calls can spend funds from the configured wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trial mode first, never use a primary wallet, and configure a dedicated low-balance wallet with strict spending limits.
+
+Risk: Persistent storage, schedules, queues, and watchers can create lasting state or ongoing activity.
+
+Mitigation: Require explicit approval before creating persistent resources and clean up any storage, schedules, queues, or watchers after use.
+
+Risk: SDK or MCP package use can introduce dependency and supply-chain risk.
+
+Mitigation: Pin and verify SDK and MCP package versions before installation or deployment.
+
+## Reference(s):
+
+- [Twosio on ClawHub](https://clawhub.ai/josho/skills/twosio)
+- [Publisher profile](https://clawhub.ai/user/josho)
+- [2s.io homepage](https://2s.io)
+- [2s.io API directory](https://2s.io/api/directory)
+- [2s.io OpenAPI specification](https://2s.io/api/openapi)
+- [2s.io hosted MCP](https://2s.io/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, code examples, endpoint paths, and structured API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for paid Base wallet calls; trial mode is described for testing without wallet payment.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

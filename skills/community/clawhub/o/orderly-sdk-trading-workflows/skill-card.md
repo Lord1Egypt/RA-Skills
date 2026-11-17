@@ -1,41 +1,52 @@
-## Description: <br>
-Complete trading workflows for Orderly Network DEX applications, from wallet connection through order execution, position management, and withdrawal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete trading workflows for Orderly Network DEX applications, from wallet connection through order execution, position management, and withdrawal.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers use this skill to implement Orderly Network DEX trading flows, including wallet authentication, deposits, order placement, position monitoring, leverage handling, risk monitoring, and withdrawals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trading workflows can move real funds or place market and limit orders. <br>
-Mitigation: Add clear confirmations and previews, verify token and chain details, and enforce amount limits before enabling real transactions. <br>
-Risk: Automated trading behavior can execute unintended or excessive trades. <br>
-Mitigation: Provide controls to disable or restrict automation and test behavior on testnet or with small amounts before production use. <br>
-Risk: Leverage and margin workflows can increase liquidation risk. <br>
-Mitigation: Show leverage warnings, expose margin and risk indicators, and require user review before leverage changes or position-closing actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-trading-workflows) <br>
+## Use Case:
 
+Developers building Orderly Network DEX interfaces or trading bots use this skill to implement wallet authentication, deposits, order execution, position monitoring, leverage management, risk checks, and withdrawals.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with TypeScript and TSX code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides workflow-oriented examples for Orderly SDK trading interfaces and automated trading bots.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated deposit, withdrawal, leverage, order, and close-position paths may affect real funds if used directly in production code.
+
+Mitigation: Require human confirmation, parameter review, validation, pending-state protection, and tests before executing or deploying generated trading flows.
+
+Risk: The security evidence reports underdeveloped safety controls and one verified order-direction bug in the trading workflow examples.
+
+Mitigation: Test the exact submitted side, symbol, quantity, price, and reduce-only settings for each generated order path before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tarnadas/skills/orderly-sdk-trading-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes workflow examples for wallet connection, deposits, orders, positions, leverage, risk monitoring, and withdrawals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

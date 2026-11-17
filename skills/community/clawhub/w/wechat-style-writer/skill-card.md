@@ -1,49 +1,66 @@
-## Description: <br>
-Rewrites user-provided WeChat public-account articles in the style of a selected author using bundled style profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites user-provided Chinese WeChat public-account articles in selected author style profiles and returns a title plus a complete Markdown article.
 
-## Publisher: <br>
-[harven-droid](https://clawhub.ai/user/harven-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harven-droid](https://clawhub.ai/user/harven-droid)
 
-## Use Case: <br>
-External writers and content editors use this skill to transform source articles into WeChat-style Markdown drafts that follow a selected bundled author profile while preserving the article's core information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill imitates named authors' writing styles and could be used to publish output as if it came from the imitated author. <br>
-Mitigation: Use only content the user owns or is authorized to rewrite, remove author-specific identifiers, and do not represent generated drafts as work by the imitated author. <br>
-Risk: The artifact includes instructions to make AI-written text appear human-written by adding deliberate mistakes. <br>
-Mitigation: Remove or ignore deliberate-error instructions before publication and review outputs for accuracy, transparency, and editorial standards. <br>
-Risk: The security guidance flags under-scoped risky examples, including scraping and workplace-monitoring scenarios. <br>
-Mitigation: Do not apply those examples without clear permission and appropriate legal, privacy, and data-handling safeguards. <br>
-Risk: The security guidance warns against exposing secrets in prompts or files. <br>
-Mitigation: Do not paste real API keys, credentials, or other sensitive secrets into source articles, style profiles, prompts, or generated files. <br>
+## Use Case:
 
+External writers, editors, and content operators use this skill to transform an existing Chinese article into a WeChat-style Markdown draft based on bundled style profiles. Users should review outputs for attribution, originality, factual accuracy, and acceptable use before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harven-droid/wechat-style-writer) <br>
-- [Style profile template](references/styles/README.md) <br>
-- [Banfo style profile](references/styles/banfo.md) <br>
-- [Dayu style profile](references/styles/dayu.md) <br>
-- [Kazike style profile](references/styles/kazike.md) <br>
-- [Laoxu style profile](references/styles/laoxu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown article draft with title candidates and rewritten body; optional .md file after user confirmation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source article facts and key points while applying the selected style profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill includes behavior intended to make AI-written text appear human-authored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user review for transparent authorship, platform policy compliance, and appropriate disclosure before publication.
+
+Risk: The skill can imitate named writers or public-account styles, which may create impersonation or attribution concerns.
+
+Mitigation: Use the output as an original draft, avoid representing it as the named author's work, and remove personal identifiers or platform-specific calls to action.
+
+Risk: The security review notes example workflows involving scraping third-party content.
+
+Mitigation: Only use content the user has rights to process, and verify that collection and reuse comply with the source platform's terms.
+
+Risk: Rewriting can preserve or introduce inaccurate facts, unsupported claims, or misleading examples.
+
+Mitigation: Fact-check names, data, links, quotes, and claims against the original source before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harven-droid/skills/wechat-style-writer)
+- [Style profile guide](references/styles/README.md)
+- [Banfo style profile](references/styles/banfo.md)
+- [Dayu style profile](references/styles/dayu.md)
+- [Kazike style profile](references/styles/kazike.md)
+- [Laoxu style profile](references/styles/laoxu.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown article draft with title candidates and body text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally save a .md file after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

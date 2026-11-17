@@ -1,46 +1,60 @@
-## Description: <br>
-Camera API helps agents query camera device lists, resolve device IDs, check thumbnails and online status, summarize cloud events by date, inspect event details, and trigger a user-requested screenshot workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use the Tange camera cloud API to resolve camera devices, check status, retrieve cover images and event details, summarize daily cloud events, and request fresh snapshots.
 
-## Publisher: <br>
-[flyfinec](https://clawhub.ai/user/flyfinec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyfinec](https://clawhub.ai/user/flyfinec)
 
-## Use Case: <br>
-External users and developers use this skill to operate authorized camera cloud API workflows from an agent, including device lookup, current status checks, event summaries, thumbnails, and requested screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access camera account data and may trigger a new camera screenshot when the user asks for a current view. <br>
-Mitigation: Install it only for camera accounts and devices the user owns or is authorized to access, and treat current-view requests as active screenshot operations. <br>
-Risk: Camera API credentials can expose private device and event data if shared in chat or hardcoded. <br>
-Mitigation: Keep TIVS_API_KEY and TIVS_APP_ID in environment configuration and do not paste or embed secrets in prompts, skill text, code, or responses. <br>
-Risk: Signed camera image URLs may expose private media if returned directly. <br>
-Mitigation: Download and display image content when possible, and avoid sending raw signed image URLs as final user-facing output. <br>
+## Use Case:
 
+Developers and end users can use this skill through an agent to query camera devices, online status, cloud events, event details, cover images, and user-requested snapshots from a configured camera cloud account.
 
-## Reference(s): <br>
-- [ClawHub Camera API release](https://clawhub.ai/flyfinec/camera-api) <br>
-- [flyfinec publisher profile](https://clawhub.ai/user/flyfinec) <br>
-- [Camera cloud API endpoint](https://openapi-cn01.tange365.com/) <br>
-- [icam365 API key page](https://skill.webcamapp.cc/icam365/api-key) <br>
-- [wosee API key page](https://skill.webcamapp.cc/wosee/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration guidance] <br>
-**Output Format:** [Markdown response with summarized camera status, event details, and image-display guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TIVS_API_KEY and TIVS_APP_ID from environment configuration; does not expose raw signed image URLs to users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can access camera-cloud account data, including device status, event history, images, and requested snapshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts where agent access to camera data is intended, and configure credentials through environment variables rather than chat messages.
+
+Risk: Signed image URLs may expose private camera imagery if shared directly.
+
+Mitigation: Return downloaded image content or a concise explanation instead of exposing raw signed image URLs to users.
+
+Risk: Users may configure the wrong API-key setup page for their camera app.
+
+Mitigation: Verify the current app name and use only a known or user-provided official API-key setup page before creating credentials.
+
+## Reference(s):
+
+- [Camera API Skill Page](https://clawhub.ai/flyfinec/skills/camera-api)
+- [Tange Camera Cloud API Endpoint](https://openapi-cn01.tange365.com/)
+- [icam365 API Key Setup](https://skill.webcamapp.cc/icam365/api-key)
+- [wosee API Key Setup](https://skill.webcamapp.cc/wosee/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Concise text or Markdown responses summarizing camera status, events, image availability, and next actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include downloaded image content when the execution environment can fetch signed image URLs; raw signed image URLs should not be returned to users.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

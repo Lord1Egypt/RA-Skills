@@ -253,7 +253,6 @@ Every session, ask:
 ## What Success Looks Like
 
 - ✅ Decisions documented immediately
-- ✅ HEARTBEAT runs every session
 - ✅ Context loss handled gracefully
 - ✅ Permission errors fixed, not reported
 - ✅ Ideas are proactive, not just reactive

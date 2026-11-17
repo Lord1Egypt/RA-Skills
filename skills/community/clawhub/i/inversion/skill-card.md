@@ -1,44 +1,54 @@
-## Description: <br>
-Guides an agent through an Inversion Audit that identifies, ranks, and mitigates plausible failure paths before a high-stakes or hard-to-reverse decision is made. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies an inversion audit to high-stakes plans by working backward from failure, ranking failure paths, and designing mitigations.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, developers, and decision makers use this skill to run a structured pre-mortem on important plans, investments, launches, or other high-stakes decisions. The expected result is a practical audit with failure paths, load-bearing risks, mitigations, not-to-do rules, and abort triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive business, legal, financial, or personnel details while applying the advisory framework. <br>
-Mitigation: Avoid sharing sensitive details unless the user is comfortable exposing them to the agent environment where the skill runs. <br>
-Risk: The audit can produce incomplete or misleading guidance if treated as expert judgment instead of structured decision support. <br>
-Mitigation: Review outputs with relevant domain experts before using them for high-stakes commitments. <br>
+## Use Case:
 
+Decision-makers and teams use this skill to stress-test high-stakes or hard-to-reverse plans, prioritize load-bearing failure paths, and define mitigations, not-to-do rules, and abort triggers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/inversion) <br>
-- [Sources - inversion](references/sources.md) <br>
-- [Method in Action: Apollo 1 and the FMEA Mandate (1967)](examples/apollo-1-fmea-1967.md) <br>
-- [Performing a Project Premortem](https://hbr.org/2007/09/performing-a-project-premortem) <br>
-- [Apollo 204 Review Board Final Report](https://history.nasa.gov/Apollo204/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured audit sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hard-stop prompts for stepwise user reflection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks the agent to fetch changeable online instructions each run; remote revisions may differ from the reviewed local copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed local copy with the runtime fetch disabled, or review remote revisions before adopting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/inversion)
+- [deciqAI current skill instructions](https://www.deciqai.com/s/inversion.json)
+- [Source list](references/sources.md)
+- [Performing a Project Premortem (Harvard Business Review)](https://hbr.org/2007/09/performing-a-project-premortem)
+- [Apollo 204 Review Board Final Report](https://history.nasa.gov/Apollo204/)
+- [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown inversion audit with ranked failure paths, mitigation actions, not-to-do rules, and an abort trigger.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a concrete decision and adequate domain knowledge; not intended for immediate crisis response or low-stakes reversible choices.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

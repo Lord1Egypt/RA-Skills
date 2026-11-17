@@ -143,9 +143,9 @@ Under Article 14(3), deployers must keep records of:
 
 | Phase | Timeline | Actions |
 |-------|----------|---------|
-| **Preparation** | Now — February 2025 | Assess current systems, identify gaps |
-| **Implementation** | February 2025 — February 2026 | Implement oversight mechanisms, train staff |
-| **Full Compliance** | February 2026 onwards | Documentation and ongoing monitoring |
+| **Now — August 2026** | AI literacy (Art. 4) | Train staff on AI capabilities, limitations, risks. NOT extended by Digital Omnibus. |
+| **Now — December 2027** | High-risk preparation | Assess systems, implement oversight, prepare documentation. Extended from Aug 2026. |
+| **December 2027 onwards** | Full compliance | Annex III high-risk systems must meet all requirements. |
 
 ---
 
@@ -158,6 +158,6 @@ Under Article 14(3), deployers must keep records of:
 
 ---
 
-*Last updated: April 2026*  
+*Last updated: July 2026 | Updated for Digital Omnibus package (deadline extension to Dec 2027)*  
 *Author: Enda Rochford*  
 *For informational purposes only — not legal advice*

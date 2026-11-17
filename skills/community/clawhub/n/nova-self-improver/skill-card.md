@@ -1,42 +1,56 @@
-## Description: <br>
-Complete self-improvement system for AI agents with four-layer memory, continuous learning, experimentation, and autonomous file maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete self-improvement system for AI agents that implements a four-layer memory architecture with continuous learning, experimentation, and autonomous file maintenance.
 
-## Publisher: <br>
-[j3m2b](https://clawhub.ai/user/j3m2b) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[j3m2b](https://clawhub.ai/user/j3m2b)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external agent builders use this skill to add persistent memory, task reflection, learning loops, and self-maintenance practices to an AI agent workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can cause an agent to write persistent memory, user preferences, and learning logs without clear approval boundaries.
+
+Mitigation: Require explicit approval before memory writes, restrict writable paths, and review stored preferences regularly.
+
+Risk: The skill encourages scheduled self-maintenance jobs that can continue running after initial setup.
+
+Mitigation: Require explicit approval before cron creation and disable or remove scheduled jobs when they are no longer needed.
+
+Risk: The skill includes a protocol for drafting or evolving skills based on repeated patterns.
+
+Mitigation: Require explicit approval for skill creation and review generated skill content before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to add long-lived memory, self-evaluation, learning logs, experiment tracking, and autonomous maintenance routines to AI agents. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, configuration, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to maintain long-lived memory and store learned user preferences, which can retain sensitive or stale information. <br>
-Mitigation: Define retention, redaction, and deletion rules before deployment; review USER.md, MEMORY.md, and memory logs regularly. <br>
-Risk: The skill directs autonomous file maintenance and recurring self-maintenance jobs, which can modify workspace files without timely human review. <br>
-Mitigation: Constrain writable paths, require approval for scheduled jobs and generated skills, and review changes before they are used by future agent sessions. <br>
-Risk: Learned patterns and self-created skills can reinforce incorrect behavior if failures are logged or summarized inaccurately. <br>
-Mitigation: Periodically audit .learnings files and generated skills, and scan any new or updated skill before deployment. <br>
+**Output Format:** [Markdown guidance with file templates, workflow steps, and cron configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Nova Self-Improver ClawHub page](https://clawhub.ai/j3m2b/nova-self-improver) <br>
+**Other Properties Related to Output:** [Produces instructions for creating and maintaining workspace memory files, learning logs, user preference notes, scheduled maintenance jobs, and evolved skills.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with file templates, procedural steps, JSON cron examples, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace memory-file structures, learning-loop procedures, maintenance schedules, and skill-creation guidance for an agent.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

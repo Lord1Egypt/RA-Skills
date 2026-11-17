@@ -1,0 +1,44 @@
+# A fallback for the case where OpenClaw's own scheduler is unavailable, that is
+# `cron.enabled: false` or OPENCLAW_SKIP_CRON=1. Prefer cron when you have it:
+# the cron route is what delivers an alert over your configured channel without
+# this skill holding any credential of its own.
+#
+# This unit runs one uptime round and exits. The timer beside it sets the cadence,
+# so this is Type=oneshot rather than a daemon: a long-running process would have
+# to reimplement the scheduling that both cron and systemd already do.
+#
+# Install:
+#   mkdir -p ~/.config/systemd/user
+#   cp web-observer-monitor.* ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now web-observer-monitor.timer
+#
+# Edit SKILL_DIR below if the skill is installed elsewhere.
+
+[Unit]
+Description=Web Observer uptime round
+Documentation=https://github.com/anatoli-iliev/web-observer
+# Nothing to alert about if there is no network yet.
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment=SKILL_DIR=%h/.openclaw/workspace/skills/web-observer
+
+# Two steps, because unlike cron there is nothing here to deliver stdout: the
+# round is run, and anything it printed other than the silent token is sent with
+# `openclaw message send`. Adjust --channel and --to to match your config's
+# notify block.
+ExecStart=/bin/sh -c '\
+  out=$$(node "$${SKILL_DIR}/lib/cli.js" watch); \
+  case "$$out" in \
+    ""|NO_REPLY|no_reply) exit 0 ;; \
+  esac; \
+  openclaw message send --channel telegram --to "telegram:REPLACE_WITH_YOUR_CHAT_ID" --message "$$out"'
+
+# A round is bounded by the per-watch timeouts, but a hung DNS resolver is not,
+# so the unit is bounded too.
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

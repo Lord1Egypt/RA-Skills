@@ -1,44 +1,59 @@
-## Description: <br>
-This skill guides an agent through researching, planning, writing, building, and versioning 100-page-plus PDF manuals with modular HTML fragments and Playwright PDF rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through researching a topic, planning a long-form manual, writing modular HTML fragments, and building a book-length PDF with Node.js and Playwright.
 
-## Publisher: <br>
-[RenBigCheng](https://clawhub.ai/user/RenBigCheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renbigcheng](https://clawhub.ai/user/renbigcheng)
 
-## Use Case: <br>
-Developers, technical writers, and content teams use this skill to produce complete PDF manuals, ebooks, reference guides, and similar long-form documents. It supports a workflow from topic research and outline planning through parallel HTML-fragment drafting, build assembly, PDF rendering, and version updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts handle user-controlled titles and update messages unsafely. <br>
-Mitigation: Review or patch the scripts before use, especially paths and changelog message handling. <br>
-Risk: Untrusted or punctuation-heavy titles can affect generated paths and file names. <br>
-Mitigation: Run in an isolated project directory and avoid slashes, '..', and untrusted title strings. <br>
-Risk: PDF rendering may download npm, Chromium, or font assets. <br>
-Mitigation: Expect dependency downloads and possible Google Fonts network requests during setup or rendering. <br>
+## Use Case:
 
+Developers, technical writers, and agent users use this skill to turn a topic into a structured PDF manual or ebook through research, outline planning, parallel HTML-fragment writing, build automation, and version updates.
 
-## Reference(s): <br>
-- [Design System Reference](references/design-system.md) <br>
-- [Node.js](https://nodejs.org/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RenBigCheng/book-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and HTML, JavaScript, CSS, and JSON project files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow can create or update a project scaffold, research notes, PROJECT.md, HTML fragments, version metadata, changelog entries, rendered HTML, archived versions, and PDF outputs when its scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local shell and Node.js scripts use user-provided project titles, paths, metadata, and update messages while creating files and running builds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the workflow in a dedicated project directory and avoid untrusted titles, metadata, paths, and update messages.
+
+Risk: The workflow depends on mutable external packages and browser assets for Playwright-based PDF rendering.
+
+Mitigation: Pin Playwright and related dependencies with a lockfile before use.
+
+Risk: PDF rendering may load remote fonts from the generated HTML/CSS.
+
+Mitigation: Remove remote font imports or block network access during PDF rendering when reproducibility or network isolation is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renbigcheng/skills/book-pdf)
+- [Design system reference](artifact/references/design-system.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, HTML/CSS/JavaScript templates, and project configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local project skeleton, modular HTML fragments, build scripts, changelog/version metadata, rendered HTML, and PDF outputs when the generated workflow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

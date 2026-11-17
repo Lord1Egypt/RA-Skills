@@ -1,42 +1,59 @@
-## Description: <br>
-Translate and localize text, multimedia, and content across 100+ languages with translation memory integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate and localize text, multimedia, and content across 100+ languages with translation memory integration.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Content teams, localization teams, developers, and marketers use this skill to translate and localize documents, websites, product copy, subtitles, and structured content while preserving terminology, tone, placeholders, and formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External translation providers may receive submitted text when API-backed translation is used. <br>
-Mitigation: Use restricted Google and DeepL API keys with quotas, and avoid sending secrets or regulated data unless provider settings and organizational policy allow it. <br>
-Risk: Bulk folder translation, translation-memory reuse, webhooks, or scheduled automation can process more content than intended. <br>
-Mitigation: Confirm the target scope before running batch or automated workflows, and review outputs before publishing localized content. <br>
+## Use Case:
 
+External users, content teams, marketers, software teams, and localization teams use Translatepro to translate and localize product copy, documentation, websites, subtitles, and structured content while preserving glossary terms, formatting, and translation memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/translatepro) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [DeepL API plan settings](https://www.deepl.com/pro/change-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with translation examples, reports, configuration snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Google Translate or DeepL API keys and may produce localized text, structured-file guidance, QA notes, glossary suggestions, or batch workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Submitted text may be sent to external translation, messaging, CMS, or workflow services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider terms, encryption, retention, deletion controls, and data classification before using the skill with personal, regulated, legal, medical, or proprietary content.
+
+Risk: Translation memory may retain source or translated content locally.
+
+Mitigation: Define storage location, retention period, access controls, and deletion practices for translation memory before processing sensitive content.
+
+Risk: API keys for Google Translate and DeepL are required.
+
+Mitigation: Store credentials in environment variables or a secret manager, restrict key permissions and quotas, rotate keys regularly, and avoid passing secrets on command lines.
+
+## Reference(s):
+
+- [Translatepro ClawHub skill page](https://clawhub.ai/ncreighton/skills/translatepro)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [DeepL account plan and API key settings](https://www.deepl.com/pro/change-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with translation examples, configuration snippets, shell commands, structured reports, and localized text outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce translated/localized content, translation memory and glossary guidance, QA reports, workflow automation steps, and API configuration instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

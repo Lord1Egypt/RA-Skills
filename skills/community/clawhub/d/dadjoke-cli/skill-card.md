@@ -1,37 +1,49 @@
-## Description: <br>
-Tells programming jokes to brighten your day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tells programming jokes to brighten your day.
 
-## Publisher: <br>
-[MarjorieBroad](https://clawhub.ai/user/MarjorieBroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and engineering teams can use this skill to print simple programming jokes during debugging breaks or code review icebreakers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables Bash even though its documented behavior is limited to printing jokes. <br>
-Mitigation: Use it only as documented, review proposed commands before execution, and avoid extending it to run unrelated shell commands. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to generate light programming jokes during debugging, code reviews, or other team interactions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain text joke output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs offline and does not require an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill declares Bash as an allowed tool, so an agent could propose shell commands while using it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution; the supplied artifact behavior is limited to static joke-printing echo commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/dadjoke-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Plain text jokes or Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline static joke output; no API key required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

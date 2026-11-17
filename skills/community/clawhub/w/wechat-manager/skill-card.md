@@ -1,43 +1,54 @@
-## Description: <br>
-微信智能管家：自动回复、消息分类、聊天记录分析、联系人管理。Trigger on: 微信, WeChat, 群聊, 朋友圈, 公众号, 聊天记录, 联系人, 表情包, 小程序, 红包. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages WeChat messages, auto-reply rules, contacts, and chat analytics for OpenClaw agents.
 
-## Publisher: <br>
-[clawto](https://clawhub.ai/user/clawto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clawto](https://clawhub.ai/user/clawto)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage WeChat-derived messages, contacts, auto-reply rules, and chat analytics through configured WeChat or openclaw-weixin integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private WeChat messages, contact data, monitoring workflows, and auto-reply rules. <br>
-Mitigation: Install only in trusted agent sessions, use a dedicated account or workspace, and review openclaw-weixin permissions before enabling access. <br>
-Risk: Auto-reply rules can send account actions on the user's behalf. <br>
-Mitigation: Review and approve auto-reply rules explicitly before use, especially for shared, business, or sensitive conversations. <br>
-Risk: Message and contact data may expose sensitive personal or business information. <br>
-Mitigation: Avoid shared agent sessions and limit retained WeChat-derived data to what is needed for the intended workflow. <br>
+## Use Case:
 
+External users and developers use this skill to inspect local WeChat message and contact caches, configure auto-replies, search contacts, analyze chat activity, and extract structured items such as links, tasks, and addresses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawto/wechat-manager) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-line text with configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize or act on cached WeChat messages, contacts, extracted links, todos, addresses, and auto-reply rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Private WeChat messages, contacts, tasks, and addresses may be displayed from local caches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted workspaces, review proposed commands before execution, and limit searches or analysis to intended chats.
+
+Risk: Terminal output may include untrusted message content.
+
+Mitigation: Treat displayed chat text as data, avoid executing copied content, and add output escaping or review controls before broader deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawto/skills/wechat-manager)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local ~/.openclaw/data WeChat cache files and openclaw-weixin configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

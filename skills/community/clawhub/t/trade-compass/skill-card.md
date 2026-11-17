@@ -1,48 +1,56 @@
-## Description: <br>
-Global landed cost calculator for traders shipping to the US. Combines live USITC tariffs, Section 232/301/AD-CVD duties, real-time exchange rates (ECB), ocean freight costs, UFLPA compliance, and customs entry fees into a single per-unit cost. Supports 18+ origin countries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global landed cost calculator for traders shipping to the US. Combines live USITC tariffs, Section 232/301/AD-CVD duties, real-time exchange rates (ECB), ocean freight costs, UFLPA compliance, and customs entry fees into a single per-unit cost. Supports 18+ origin countries.
 
-## Publisher: <br>
-[zhaoningliu1-lang](https://clawhub.ai/user/zhaoningliu1-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaoningliu1-lang](https://clawhub.ai/user/zhaoningliu1-lang)
 
-## Use Case: <br>
-External traders, importers, ecommerce operators, and trade-compliance teams use this skill to estimate US landed costs from HTS classification, country of origin, tariffs, exchange rates, freight, customs fees, and compliance flags. It is intended for planning and analysis, with final import obligations verified by a licensed customs broker or qualified counsel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a separate local backend and dependencies before it can answer tariff and landed-cost questions. <br>
-Mitigation: Review the backend repository and dependencies before installing, and run the backend in an isolated virtual environment. <br>
-Risk: Tariff, AD/CVD, compliance, exchange-rate, and freight outputs can be estimates or change-sensitive. <br>
-Mitigation: Verify import obligations with a licensed customs broker or qualified counsel before making business decisions. <br>
-Risk: Optional paid provider API keys may expose account access if configured carelessly. <br>
-Mitigation: Only set provider API keys when needed, keep them out of shared prompts or files, and scope them according to provider guidance. <br>
+## Use Case:
 
+External traders, importers, ecommerce operators, and their agents use this skill to estimate US landed cost per unit from HTS code, origin country, local cost of goods, freight, exchange rates, customs entry costs, and compliance warnings. Outputs should be treated as decision support and verified with a licensed customs broker or qualified trade counsel before making import decisions.
 
-## Reference(s): <br>
-- [Trade Compass source repository](https://github.com/zhaoningliu1-lang/tariff-watch) <br>
-- [USITC HTS Schedule](https://hts.usitc.gov/) <br>
-- [ECB exchange rates via Frankfurter](https://www.frankfurter.app/) <br>
-- [Commerce Department AD/CVD information](https://enforcement.trade.gov/antidumping/antidumping.html) <br>
-- [CBP UFLPA Entity List](https://www.cbp.gov/trade/forced-labor/UFLPA) <br>
-- [Freightos API](https://www.freightos.com/api/) <br>
-- [ExchangeRate-API](https://www.exchangerate-api.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with API endpoint examples, shell commands, and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a reviewed local FastAPI backend on localhost:8000; may use optional paid API keys for fuller exchange-rate and freight coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: release evidence and skill documentation) <br>
+Risk: Trade-cost, tariff, and compliance results may be incomplete, stale, or unsuitable as final customs advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the outputs as business and legal decision support only, and verify obligations with a licensed customs broker or qualified trade counsel.
+
+Risk: The skill can use optional Freightos or exchange-rate API keys and external data services.
+
+Mitigation: Review the linked backend source and provide optional API keys only when comfortable with those providers and their terms.
+
+## Reference(s):
+
+- [Trade Compass ClawHub Page](https://clawhub.ai/zhaoningliu1-lang/skills/trade-compass)
+- [Backend Source](https://github.com/zhaoningliu1-lang/tariff-watch)
+- [ExchangeRate-API](https://www.exchangerate-api.com/)
+- [Freightos API](https://www.freightos.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, JSON, Guidance]
+
+**Output Format:** [Markdown summaries with API request examples and JSON-derived tariff, freight, exchange-rate, compliance, and landed-cost breakdowns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local FastAPI backend on http://localhost:8000; optional Freightos and exchange-rate API keys can improve data coverage.]
+
+## Skill Version(s):
+
+3.2.0 (source: release evidence and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

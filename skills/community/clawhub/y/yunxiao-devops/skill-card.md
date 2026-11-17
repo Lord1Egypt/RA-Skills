@@ -1,46 +1,67 @@
-## Description: <br>
-Yunxiao DevOps helps agents interact with Alibaba Cloud Yunxiao DevOps across project collaboration, Codeup repositories, Flow pipelines, AppStack delivery, package, testing, insight, and knowledge workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+yunxiao-devops helps agents interact with Alibaba Cloud Yunxiao DevOps across project tracking, Codeup repositories and merge requests, Flow pipelines, AppStack delivery, artifacts, testing, insights, and knowledge-base workflows.
 
-## Publisher: <br>
-[codingadai](https://clawhub.ai/user/codingadai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codingadai](https://clawhub.ai/user/codingadai)
 
-## Use Case: <br>
-Developers and DevOps teams use this skill to inspect and operate Yunxiao projects, work items, merge requests, pipelines, releases, and application delivery flows from an agent. It supports routine DevOps workflows by producing command guidance, helper-script invocations, API-call examples, and configuration instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports hardcoded account details and an embedded Yunxiao token. <br>
-Mitigation: Remove or rotate embedded credentials and require explicit user configuration through environment variables or local config files before use. <br>
-Risk: The security evidence reports powerful repository-changing automation for bug-fix, release, pipeline, and merge-request flows. <br>
-Mitigation: Use least-privilege tokens, repository allowlists, and confirmation gates before enabling flows that can push code, merge changes, tag releases, or trigger production pipelines. <br>
-Risk: The security guidance calls for stop controls for background pollers. <br>
-Mitigation: Run pollers under explicit supervision with logging, timeouts, and a documented stop procedure. <br>
+## Use Case:
 
+Developers and DevOps teams use this skill to query and automate Yunxiao work items, code review, repository initialization, pipeline runs, release workflows, test cases, and Feishu notification cards from an agent.
 
-## Reference(s): <br>
-- [Projex Guide](references/projex-guide.md) <br>
-- [Pipeline YAML Guide](references/pipeline-yaml-guide.md) <br>
-- [Pipeline YAML Syntax](references/pipeline-yaml-syntax.md) <br>
-- [Workflow Transitions](references/workflow-transitions.json) <br>
-- [Yunxiao OpenAPI Docs Index](references/api-docs/INDEX.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, API-call snippets, JSON payloads, and script invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call local Node.js and Python helper scripts that interact with Yunxiao and Feishu services when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata) <br>
+Risk: The skill can perform high-impact repository, merge request, pipeline, and deployment actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege test credentials first, require human review for proposed code and deployment changes, and keep automated merge or deploy flows disabled until reviewed.
+
+Risk: Credential and SSH-key handling can expose or persist sensitive access material.
+
+Mitigation: Rotate or revoke any exposed or generated tokens and SSH keys, avoid storing production secrets in local configuration files, and scope credentials to the minimum Yunxiao and Feishu permissions needed.
+
+Risk: Shell command construction and unrestricted agent execution modes can make automation unsafe on trusted systems.
+
+Mitigation: Avoid running the skill as root, review command inputs before execution, and do not enable automated bug-fix flows until shell command construction and bypass-permission behavior are remediated.
+
+Risk: Shared temporary state can mix workflow data across executions or users.
+
+Mitigation: Run the skill in an isolated workspace, clear temporary state between workflows, and avoid concurrent multi-user execution with shared credentials.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/codingadai/skills/yunxiao-devops)
+- [Skill instructions](artifact/SKILL.md)
+- [Projex workflow guide](artifact/references/projex-guide.md)
+- [Pipeline YAML guide](artifact/references/pipeline-yaml-guide.md)
+- [Pipeline YAML syntax](artifact/references/pipeline-yaml-syntax.md)
+- [Workflow transition cache](artifact/references/workflow-transitions.json)
+- [Yunxiao OpenAPI index](artifact/references/api-docs/INDEX.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, and script invocation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local scripts and external DevOps APIs when the agent executes the generated commands.]
+
+## Skill Version(s):
+
+2.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

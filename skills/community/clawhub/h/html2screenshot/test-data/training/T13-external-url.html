@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T13 - 外部 URL 页面（东方财富）</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #f5f5f5; padding: 20px; }
+    .header { background: #c71f25; color: white; padding: 16px 24px; border-radius: 8px; margin-bottom: 20px; }
+    .header h1 { font-size: 22px; }
+    .header p { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+    .quote-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 900px; margin: 0 auto 20px; }
+    .quote-card { background: white; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .quote-card .name { font-size: 13px; color: #666; margin-bottom: 8px; }
+    .quote-card .price { font-size: 20px; font-weight: bold; font-family: 'SF Mono', monospace; }
+    .quote-card .change { font-size: 12px; margin-top: 4px; }
+    .positive { color: #c71f25; }
+    .negative { color: #00a655; }
+    .market-section { max-width: 900px; margin: 0 auto; background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .market-section h2 { font-size: 16px; margin-bottom: 16px; color: #333; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+    .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .market-item { text-align: center; padding: 12px; background: #f8f9fa; border-radius: 6px; }
+    .market-item .label { font-size: 12px; color: #999; }
+    .market-item .value { font-size: 18px; font-weight: bold; color: #333; margin-top: 4px; }
+    .footer { text-align: center; margin-top: 20px; color: #999; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📈 T13 - 外部 URL 页面模拟（东方财富风格）</h1>
+    <p>模拟财经网站数据展示页面，测试外部资源加载和复杂布局</p>
+  </div>
+
+  <div class="quote-box">
+    <div class="quote-card">
+      <div class="name">上证指数</div>
+      <div class="price positive">4,218.35</div>
+      <div class="change positive">+1.23%</div>
+    </div>
+    <div class="quote-card">
+      <div class="name">深证成指</div>
+      <div class="price positive">13,567.89</div>
+      <div class="change positive">+1.87%</div>
+    </div>
+    <div class="quote-card">
+      <div class="name">创业板指</div>
+      <div class="price positive">4,038.12</div>
+      <div class="change positive">+2.63%</div>
+    </div>
+    <div class="quote-card">
+      <div class="name">科创50</div>
+      <div class="price negative">1,023.45</div>
+      <div class="change negative">-0.56%</div>
+    </div>
+  </div>
+
+  <div class="market-section">
+    <h2>📊 板块表现</h2>
+    <div class="market-grid">
+      <div class="market-item"><div class="label">电子半导体</div><div class="value positive">+3.45%</div></div>
+      <div class="market-item"><div class="label">电源设备</div><div class="value positive">+2.89%</div></div>
+      <div class="market-item"><div class="label">医疗器械</div><div class="value positive">+2.12%</div></div>
+      <div class="market-item"><div class="label">保险</div><div class="value negative">-1.23%</div></div>
+      <div class="market-item"><div class="label">白酒</div><div class="value negative">-0.87%</div></div>
+      <div class="market-item"><div class="label">房地产</div><div class="value negative">-0.45%</div></div>
+    </div>
+  </div>
+
+  <div class="market-section" style="margin-top:16px;">
+    <h2>🔥 热门概念</h2>
+    <div class="market-grid">
+      <div class="market-item"><div class="label">人工智能</div><div class="value positive">+4.56%</div></div>
+      <div class="market-item"><div class="label">低空经济</div><div class="value positive">+3.78%</div></div>
+      <div class="market-item"><div class="label">固态电池</div><div class="value positive">+2.34%</div></div>
+      <div class="market-item"><div class="label">数据要素</div><div class="value positive">+1.89%</div></div>
+      <div class="market-item"><div class="label">中特估</div><div class="value positive">+1.23%</div></div>
+      <div class="market-item"><div class="label">高股息</div><div class="value positive">+0.78%</div></div>
+    </div>
+  </div>
+
+  <div class="market-section" style="margin-top:16px;">
+    <h2>💰 资金流向</h2>
+    <div class="market-grid">
+      <div class="market-item"><div class="label">主力资金</div><div class="value positive">+125.6亿</div></div>
+      <div class="market-item"><div class="label">北向资金</div><div class="value positive">+67.8亿</div></div>
+      <div class="market-item"><div class="label">融资余额</div><div class="value">1.52万亿</div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    T13 - 外部 URL 页面模拟 | 数据来源：模拟东方财富风格
+  </div>
+</body>
+</html>

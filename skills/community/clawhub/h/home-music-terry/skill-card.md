@@ -1,42 +1,60 @@
-## Description: <br>
-Control whole-house music scenes combining Spotify playback with Airfoil speaker routing, with quick presets for morning, party, chill, reading, status, and off modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control whole-house music scenes combining Spotify playback with Airfoil speaker routing.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Home users and agents use this skill to start, stop, and inspect predefined music scenes across Spotify and Airfoil speakers on macOS. It is useful for quickly routing audio to selected rooms at configured volumes without manually opening each app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad voice-style triggers or loud presets can start disruptive speaker playback unintentionally. <br>
-Mitigation: Use explicit commands such as home-music party or home-music off, and review the configured scene volumes before use. <br>
-Risk: Hard-coded speaker names, playlist URIs, and the spotify-applescript path may not match the user's local Mac. <br>
-Mitigation: Review and update the speaker names, playlist URIs, and helper path before installing or invoking scenes. <br>
+## Use Case:
 
+External users and home automation operators use this skill to ask an agent for macOS-based Spotify and Airfoil music scenes such as morning, party, chill, reading, off, and status.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/terrycarter1985/home-music-terry) <br>
-- [Spotify](https://spotify.com) <br>
-- [Airfoil](https://rogueamoeba.com/airfoil/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with Spotify Desktop, Airfoil, and the referenced spotify-applescript helper configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill controls Spotify playback and Airfoil speaker routing on macOS, so broad or accidental triggers could change home-audio state unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where macOS Spotify and Airfoil control is intended, and narrow the trigger phrases if accidental activation would be disruptive.
+
+Risk: The documented install path includes an optional sudo symlink that exposes the command globally.
+
+Mitigation: Skip the global symlink unless it is needed, or install it only after reviewing the script path and local permissions.
+
+Risk: The reading scene references Living Room and Bedroom speakers that are not listed in the configured speaker inventory.
+
+Mitigation: Confirm and correct Airfoil speaker names before using the reading scene.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/home-music-terry)
+- [Publisher Profile](https://clawhub.ai/user/terrycarter1985)
+- [Spotify](https://spotify.com)
+- [Airfoil](https://rogueamoeba.com/airfoil/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and scene names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces macOS home-audio control guidance and commands for Spotify and Airfoil scenes.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

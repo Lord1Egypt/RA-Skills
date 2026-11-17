@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0",
+  "sample": "v5.0 Chinese research overview: Agents, robots, and us",
+  "sample_generation": "v5.0 development acceptance; historical output, not regenerated with v5.1.0",
+  "build_id": "build-6348507f4e4f44479497c2e1b40471f1",
+  "input": {
+    "title": "Agents, robots, and us: How AI reshapes work and skills in Latin America",
+    "kind": "user-provided PDF",
+    "pages": 67,
+    "source_sha256": "942e77172f54742efde336937c531d67ef531d25fe21dcccbe926f10ae4df728"
+  },
+  "output": {
+    "file": "v5.0-latin-america-ai-zh-native.pptx",
+    "sha256": "58086e7bc389e5502376cec3c40097bbcf0b493564384fa7a2eb934ac76a4c27",
+    "slides": 20,
+    "native_editable_objects": 447,
+    "replaceable_images": 1,
+    "total_objects": 448,
+    "objects": {
+      "native_text": 274,
+      "native_shape": 164,
+      "native_chart": 7,
+      "native_table": 2,
+      "image": 1,
+      "group": 0
+    },
+    "embedded_chart_workbooks": 7,
+    "slides_with_speaker_notes": 20
+  },
+  "counting_method": "Read the delivered PPTX using python-pptx. Count each text box, shape/path, chart and table once. Exclude the replaceable image from the native-editable total. Do not count chart data points, table cells, embedded workbooks, characters or notes again. No groups occur in this sample.",
+  "pages": [
+    {
+      "slide": 1,
+      "objects": {
+        "native_text": 7,
+        "native_shape": 2,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 1,
+        "group": 0
+      },
+      "native_editable_objects": 9,
+      "total_objects": 10,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 2,
+      "objects": {
+        "native_text": 15,
+        "native_shape": 18,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 33,
+      "total_objects": 33,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 3,
+      "objects": {
+        "native_text": 19,
+        "native_shape": 6,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 25,
+      "total_objects": 25,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 4,
+      "objects": {
+        "native_text": 13,
+        "native_shape": 5,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 19,
+      "total_objects": 19,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 5,
+      "objects": {
+        "native_text": 14,
+        "native_shape": 7,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 22,
+      "total_objects": 22,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 6,
+      "objects": {
+        "native_text": 9,
+        "native_shape": 3,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 13,
+      "total_objects": 13,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 7,
+      "objects": {
+        "native_text": 9,
+        "native_shape": 3,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 13,
+      "total_objects": 13,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 8,
+      "objects": {
+        "native_text": 16,
+        "native_shape": 10,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 26,
+      "total_objects": 26,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 9,
+      "objects": {
+        "native_text": 11,
+        "native_shape": 5,
+        "native_chart": 0,
+        "native_table": 1,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 17,
+      "total_objects": 17,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 10,
+      "objects": {
+        "native_text": 13,
+        "native_shape": 8,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 22,
+      "total_objects": 22,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 11,
+      "objects": {
+        "native_text": 9,
+        "native_shape": 3,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 13,
+      "total_objects": 13,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 12,
+      "objects": {
+        "native_text": 12,
+        "native_shape": 5,
+        "native_chart": 1,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 18,
+      "total_objects": 18,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 13,
+      "objects": {
+        "native_text": 15,
+        "native_shape": 9,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 24,
+      "total_objects": 24,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 14,
+      "objects": {
+        "native_text": 7,
+        "native_shape": 3,
+        "native_chart": 0,
+        "native_table": 1,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 11,
+      "total_objects": 11,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 15,
+      "objects": {
+        "native_text": 20,
+        "native_shape": 9,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 29,
+      "total_objects": 29,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 16,
+      "objects": {
+        "native_text": 15,
+        "native_shape": 6,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 21,
+      "total_objects": 21,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 17,
+      "objects": {
+        "native_text": 16,
+        "native_shape": 13,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 29,
+      "total_objects": 29,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 18,
+      "objects": {
+        "native_text": 20,
+        "native_shape": 9,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 29,
+      "total_objects": 29,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 19,
+      "objects": {
+        "native_text": 17,
+        "native_shape": 28,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 45,
+      "total_objects": 45,
+      "speaker_notes_present": true
+    },
+    {
+      "slide": 20,
+      "objects": {
+        "native_text": 17,
+        "native_shape": 12,
+        "native_chart": 0,
+        "native_table": 0,
+        "image": 0,
+        "group": 0
+      },
+      "native_editable_objects": 29,
+      "total_objects": 29,
+      "speaker_notes_present": true
+    }
+  ],
+  "preview": {
+    "file": "v5.0-latin-america-ai-zh-overview.png",
+    "sha256": "3298d00956db91c5b71b7279e9bf61e55e83a741a221bfc860b5c3873fb65430",
+    "dimensions": [
+      2400,
+      1730
+    ],
+    "origin": "Unmodified user-supplied contact sheet from the historical delivered PPTX real-render previews"
+  },
+  "workflow": "Source PDF -> full-slide design target images -> multimodal interpretation and declarative scene -> native PPTX -> actual office render -> independent review and edit/save/reopen checks",
+  "acceptance": {
+    "status": "final_delivery_ready",
+    "blockers": 0,
+    "review_sha256": "864a2653ed840e26e14939b8882a38edf6d9200617c8f690790dab52932bf037"
+  },
+  "actual_application_edit_test": {
+    "software": "LibreOffice 26.2.4.2",
+    "software_build_id": "0229ac93fcf0d7cbc6376066c6f35021cef002dc",
+    "platform": "macOS",
+    "method": "Basic/UNO edits on a disposable copy, save as PPTX, close, reopen and export PDF; not GUI clicking",
+    "passed": true,
+    "checks": {
+      "reopened_slide_count": true,
+      "text_edit_persisted": true,
+      "chart_edit_persisted": true,
+      "table_edit_persisted": true,
+      "image_replacement_persisted": true,
+      "original_artifact_unchanged": true,
+      "reopened_export_has_20_pages": true
+    },
+    "sampled_edits": [
+      {
+        "slide": 2,
+        "type": "text"
+      },
+      {
+        "slide": 5,
+        "type": "chart_data"
+      },
+      {
+        "slide": 14,
+        "type": "table_data"
+      },
+      {
+        "slide": 1,
+        "type": "image_replacement"
+      }
+    ]
+  },
+  "limits": [
+    "Historical v5.0 example; excluded from the separate v5.1 six-slide sample counts.",
+    "Native reconstruction has recorded font, icon, gradient and chart-style differences from design targets; not pixel-perfect 1:1.",
+    "The cover image is replaceable as a whole; internal illustration elements are not editable.",
+    "Hiragino Sans GB and Arial are not embedded; recheck fonts and layout on other devices.",
+    "No actual PowerPoint/WPS or Windows/Linux validation is claimed."
+  ]
+}

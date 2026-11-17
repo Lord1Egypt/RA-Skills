@@ -1,40 +1,58 @@
-## Description: <br>
-Provides Chinese-language presales technical diagnostic briefs for customer test scenarios, error analysis, resolution planning, validation, and risk communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language presales technical diagnosis briefs for customer test scenarios, error logs, root-cause analysis, resolution planning, validation, and risk communication.
 
-## Publisher: <br>
-[892577738-bot](https://clawhub.ai/user/892577738-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[892577738-bot](https://clawhub.ai/user/892577738-bot)
 
-## Use Case: <br>
-Presales solution architects and technical support engineers use this skill to convert customer test requirements, software and hardware stack details, logs, and prior remediation attempts into a concise diagnostic and remediation brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic prompts may include customer secrets, credentials, private tokens, or unnecessary personal data. <br>
-Mitigation: Remove secrets and unnecessary personal or customer data before using the skill. <br>
-Risk: Suggested commands, vendor errata comparisons, or GitHub issue references may be incomplete or outdated. <br>
-Mitigation: Verify commands, version-specific claims, vendor documentation, and issue references before acting on recommendations. <br>
+## Use Case:
 
+Presales engineers and technical support teams use this skill to turn customer test requirements, software and hardware stack details, error logs, and prior remediation attempts into a structured Chinese technical diagnosis and remediation brief.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/892577738-bot/presales-tech-support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown diagnostic brief with structured sections and optional command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output; instruction-only behavior; no code installation or persistent access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Users may paste sensitive customer logs, stack details, or incident data into the prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact secrets, credentials, personal data, and confidential customer identifiers before using the skill.
+
+Risk: The skill may propose troubleshooting commands, configuration changes, or architecture changes that need environment-specific validation.
+
+Mitigation: Have qualified engineers review recommendations and test changes in a controlled environment before applying them to production systems.
+
+Risk: The artifact requests comparison with current vendor errata, GitHub issues, or expert knowledge, but server-resolved provenance is unavailable.
+
+Mitigation: Treat external-current claims as unverified unless separately checked against authoritative sources during use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/892577738-bot/skills/presales-tech-support)
+- [Skill artifact](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown diagnostic brief with structured sections and optional command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only; does not execute commands, write files, or persist data by itself.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

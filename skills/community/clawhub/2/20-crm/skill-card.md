@@ -1,41 +1,52 @@
-## Description: <br>
-Interact with Twenty CRM (self-hosted) via REST/GraphQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Twenty CRM (self-hosted) via REST/GraphQL.
 
-## Publisher: <br>
-[w7tf](https://clawhub.ai/user/w7tf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[w7tf](https://clawhub.ai/user/w7tf)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an agent for a self-hosted Twenty CRM instance and perform REST or GraphQL operations such as finding companies, creating companies, and updating CRM records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can write, update, or delete business CRM data through Twenty REST and GraphQL calls. <br>
-Mitigation: Use a narrowly scoped Twenty API key and require explicit user approval before PATCH or DELETE operations. <br>
-Risk: The shell configuration loader can source a file selected through TWENTY_CONFIG_FILE. <br>
-Mitigation: Set TWENTY_CONFIG_FILE only to a trusted local file, use restrictive file permissions, or export TWENTY_BASE_URL and TWENTY_API_KEY directly. <br>
-Risk: The skill handles a bearer token for Twenty CRM. <br>
-Mitigation: Keep TWENTY_API_KEY out of source control and shared files, and rotate the token if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twenty CRM ClawHub listing](https://clawhub.ai/w7tf/20-crm) <br>
+## Use Case:
 
+Developers and CRM operators use this skill to let an agent configure access to a self-hosted Twenty CRM instance and run REST or GraphQL operations such as finding, creating, updating, and deleting CRM records.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, TWENTY_BASE_URL, and TWENTY_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make authenticated changes to CRM data, including deletes and destroy operations.
+
+Mitigation: Use a least-privilege Twenty API key and require explicit human approval before running DELETE or destroy commands.
+
+Risk: A misconfigured base URL or exposed config file could send sensitive CRM operations to the wrong endpoint or reveal credentials.
+
+Mitigation: Set TWENTY_BASE_URL only to the intended CRM instance and keep TWENTY_API_KEY or config/twenty.env private and user-owned.
+
+## Reference(s):
+
+- [ClawHub skill page for Twenty CRM](https://clawhub.ai/w7tf/skills/20-crm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, python3, TWENTY_BASE_URL, and TWENTY_API_KEY; commands may make authenticated changes to the configured CRM instance.]
+
+## Skill Version(s):
+
+0.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Python-based database connectivity skill supporting MySQL, PostgreSQL, Oracle, SQL Server, and SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python-based database connectivity skill supporting MySQL, PostgreSQL, Oracle, SQL Server, and SQLite with connection management, parameterized query execution, schema introspection, and transaction management.
 
-## Publisher: <br>
-[jami-lin](https://clawhub.ai/user/jami-lin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jami-lin](https://clawhub.ai/user/jami-lin)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect agents to relational databases, run parameterized SQL queries, inspect schemas, and manage transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify connected databases through UPDATE, DELETE, INSERT, and batch SQL execution. <br>
-Mitigation: Use least-privileged or read-only database accounts by default and review every modifying statement or batch SQL file before running it. <br>
-Risk: The agent may be connected to real databases that contain sensitive or production data. <br>
-Mitigation: Avoid production credentials for exploration and only connect to databases the user intentionally authorizes. <br>
-Risk: Connection metadata can persist in a temporary saved-connections file. <br>
-Mitigation: Do not put passwords in JDBC URLs and clear the saved-connections file when connection metadata should not persist. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents through connecting to relational databases, running SQL queries, applying updates, managing transactions, and inspecting schema metadata. It is useful when an agent needs database access workflows rather than text-only analysis.
 
-## Reference(s): <br>
-- [Connection management](references/connection-pooling.md) <br>
-- [Query execution](references/query-execution.md) <br>
-- [Supported databases](references/supported-databases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python, SQL, YAML, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include executable database commands and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Database accounts used through the skill can read or mutate data, including production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege database accounts and avoid production mutation unless it is explicitly intended and reviewed.
+
+Risk: Untrusted SQL files executed with batch mode can run database-changing statements without parameter binding.
+
+Mitigation: Use --batch only with trusted SQL and prefer parameterized query or update execution for user-provided values.
+
+Risk: Credentials or secrets can be exposed through command-line arguments, database URLs, shell expansion, or shared-machine connection metadata.
+
+Mitigation: Use environment variables, avoid literal passwords and embedded URL credentials, and move the connection store to a private protected location on shared machines.
+
+Risk: Connections may lack enforced transport protection.
+
+Mitigation: Require TLS for database connections before using the skill with sensitive or network-accessible databases.
+
+## Reference(s):
+
+- [Connection management](references/connection-pooling.md)
+- [Query execution](references/query-execution.md)
+- [Supported databases](references/supported-databases.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, YAML, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce database query results, schema summaries, connection guidance, and command-line usage examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

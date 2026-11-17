@@ -1,39 +1,52 @@
-## Description: <br>
-Perform privacy-focused web searches via DDGS metasearch for webpages, news, images, videos, or books with no tracking and no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents perform privacy-focused DDGS metasearch across webpages, news, images, videos, and books without requiring an API key.
 
-## Publisher: <br>
-[idkwhodatis](https://clawhub.ai/user/idkwhodatis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[idkwhodatis](https://clawhub.ai/user/idkwhodatis)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current search results, news, images, videos, and books through DDGS with configurable region, safe-search, time limit, and result-count parameters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and related network metadata are sent to external search services or configured proxies. <br>
-Mitigation: Do not search for secrets, credentials, confidential prompts, sensitive internal identifiers, or other private data. <br>
-Risk: The skill depends on the external ddgs package and live search services. <br>
-Mitigation: Install only from the expected ddgs package source, preferably in a virtual environment, and handle DDGS exceptions or rate limits before relying on results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/idkwhodatis/ddgs) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add real-time web, news, image, video, and book search to agents through DDGS, with configurable region, safesearch, time limit, result count, backend, and proxy settings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include titles, URLs, snippets, source metadata, dates, image links, video links, or book details depending on the selected DDGS method.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms may be sent to external search services and could expose secrets, private identifiers, or internal-only information.
+
+Mitigation: Avoid using sensitive queries and deploy the skill only where external search traffic is acceptable.
+
+Risk: The installation guidance uses an unpinned ddgs package, which can change behavior across releases.
+
+Mitigation: Install in an isolated virtual environment and use a reviewed pinned package version for governed deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/idkwhodatis/skills/ddgs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search behavior can be configured by query type, region, safesearch level, time limit, result count, backend, and proxy settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

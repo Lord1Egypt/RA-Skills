@@ -1,39 +1,52 @@
-## Description: <br>
-Provides omni-channel e-commerce operations guidance across platform compliance, free and paid traffic, product and supply chain management, conversion optimization, content and livestream commerce, analytics, campaign execution, private-domain operations, team management, and risk control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for end-to-end ecommerce operations, including platform compliance, traffic acquisition, product and supply chain management, conversion optimization, livestream commerce, data operations, campaign planning, private-domain operations, team management, and risk control.
 
-## Publisher: <br>
-[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and ecommerce operators use this skill to plan, audit, and improve full-funnel ecommerce operations across major Chinese commerce, social commerce, and livestream platforms.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation triggers and requested toolsets may cause the skill to activate for general ecommerce planning tasks.
+
+Mitigation: Review the triggers and requested toolsets before deployment if a narrower activation scope is required.
+
+Risk: Operational recommendations may become outdated as ecommerce platform policies, advertising rules, and marketplace practices change.
+
+Mitigation: Confirm platform-specific compliance, advertising, and campaign guidance against current official platform rules before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-E-commerce operators, growth teams, and managers use this skill to plan and review omni-channel store operations, including traffic acquisition, merchandising, supply chain coordination, conversion, livestream commerce, data review, campaigns, private-domain user operations, team workflows, and risk controls. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms and optional terminal or file tool access may cause the skill to be invoked more often or with more access than needed. <br>
-Mitigation: Install it as an e-commerce planning and operations reference, and limit terminal or file access when only written guidance is required. <br>
+**Output Format:** [Markdown or structured text guidance in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccynthia5098-wq/omni-channel-ecommerce-master) <br>
-- [Publisher profile](https://clawhub.ai/user/ccynthia5098-wq) <br>
+**Other Properties Related to Output:** [No executable code; guidance may request web, terminal, file, and calculator toolsets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static planning guidance; no autonomous execution, persistence, or credential handling is described.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,55 @@
-## Description: <br>
-Build RAG systems for construction knowledge bases and create searchable AI-powered construction document systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build RAG systems for construction knowledge bases. Create searchable AI-powered construction document systems.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction professionals, project teams, and developers use this skill to build searchable RAG knowledge bases over construction documents for semantic search and question answering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Construction documents and exported knowledge bases may include sensitive contract, RFI, safety report, specification, and project metadata text. <br>
-Mitigation: Use a dedicated project folder, process only documents intended for the agent, and review exported knowledge-base content before sharing or reuse. <br>
+## Use Case:
 
+Developers and construction project teams use this skill to create searchable construction-document knowledge bases, chunk project documents, run semantic search, and draft RAG-style answers with source context.
 
-## Reference(s): <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples, structured summaries, and optional CSV, Excel, or JSON export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include searchable knowledge-base structures, semantic search results, question-answering responses, source references, summary statistics, and exportable project data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Construction documents may contain confidential project, contract, safety, or design information that could be indexed into a RAG knowledge base or included in exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the agent to the relevant project folder, avoid indexing confidential files unless their contents are intended for agent use, and review generated exports before sharing them.
+
+Risk: RAG answers and semantic search results can be incomplete or misleading if source documents are stale, missing, or chunked poorly.
+
+Mitigation: Validate input documents before processing, review cited source context, and treat generated answers as draft support for construction professionals rather than authoritative determinations.
+
+## Reference(s):
+
+- [Rag Construction ClawHub page](https://clawhub.ai/datadrivenconstruction/skills/rag-construction)
+- [datadrivenconstruction publisher profile](https://clawhub.ai/user/datadrivenconstruction)
+- [Data Driven Construction](https://datadrivenconstruction.io)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python code examples, structured tables, summaries, and optional CSV, Excel, or JSON export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on user-provided construction data and referenced skill patterns.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

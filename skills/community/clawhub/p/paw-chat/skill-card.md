@@ -1,47 +1,56 @@
-## Description: <br>
-Install and manage Paw - a standalone web chat frontend for OpenClaw Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and manage Paw, a standalone web chat frontend for OpenClaw Gateway.
 
-## Publisher: <br>
-[oriliz](https://clawhub.ai/user/oriliz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oriliz](https://clawhub.ai/user/oriliz)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, update, or run Paw as a static web chat interface for an OpenClaw Gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The web UI stores a powerful OpenClaw Gateway token in browser storage. <br>
-Mitigation: Use only trusted browser profiles and machines, treat the token like a password, and clear browser site data after use on shared or untrusted systems. <br>
-Risk: Agent editing and scheduled-task controls can affect future OpenClaw behavior. <br>
-Mitigation: Use these controls only when intentionally granting the UI administrative influence over agent files or scheduled tasks. <br>
-Risk: Connecting through an untrusted hosted page, local file set, browser profile, or Gateway endpoint can expose credentials or actions. <br>
-Mitigation: Install only from a trusted publisher and connect only to trusted Gateway endpoints. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, update, or configure Paw as a browser-based chat interface for an OpenClaw Gateway. It supports local static hosting or deployment into the Gateway control UI directory.
 
-## Reference(s): <br>
-- [Paw Chat on ClawHub](https://clawhub.ai/oriliz/paw-chat) <br>
-- [OpenClaw Website](https://openclaw.ai) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub](https://github.com/openclaw/openclaw) <br>
-- [Paw Package Repository](https://github.com/openclaw/paw.git) <br>
-- [Marked Markdown Parser](https://github.com/markedjs/marked) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation and operating instructions for a static OpenClaw web chat frontend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: package.json and server release metadata) <br>
+Risk: Gateway tokens can grant broad access to chats, agent settings, and scheduled-task controls if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Paw only from a trusted local or HTTPS-served page, prefer wss:// for non-local Gateways, never paste the token into an untrusted Paw page, and rotate any token that may have been exposed.
+
+Risk: The Paw UI can modify agent behavior and manage scheduled tasks.
+
+Mitigation: Treat the UI as an administrative surface and restrict access to users who are authorized to read chats, change agent behavior, and manage scheduled tasks.
+
+## Reference(s):
+
+- [Paw Chat on ClawHub](https://clawhub.ai/oriliz/skills/paw-chat)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Project Repository](https://github.com/openclaw/openclaw)
+- [Paw Package Repository](https://github.com/openclaw/paw.git)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local server URLs, Gateway WebSocket URL guidance, token setup steps, and install or update commands.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

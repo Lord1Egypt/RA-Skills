@@ -1,43 +1,57 @@
-## Description: <br>
-Automates local processing of documents, spreadsheets, presentations, and PDFs for generation, polishing, contract review, data analysis, charting, conversion, extraction, merging, and splitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local office workflows for documents, spreadsheets, presentations, and PDFs, including generation, polishing, review, cleaning, analysis, charting, conversion, extraction, merge, and split tasks.
 
-## Publisher: <br>
-[zyuanhua](https://clawhub.ai/user/zyuanhua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyuanhua](https://clawhub.ai/user/zyuanhua)
 
-## Use Case: <br>
-Developers, employees, and office users use this skill to automate local document, spreadsheet, presentation, and PDF workflows without external API keys. Typical tasks include drafting official documents, polishing text, reviewing contracts, cleaning and analyzing spreadsheets, generating charts and presentations, and converting or restructuring PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local office files and can be given broad file paths. <br>
-Mitigation: Restrict input and output paths to reviewed workspace locations, and require user review before processing arbitrary paths. <br>
-Risk: The changelog includes an upgrade cleanup command that deletes environment files. <br>
-Mitigation: Run cleanup commands only after confirming backups exist and the files are no longer needed. <br>
+## Use Case:
 
+Developers and office users use this skill to automate local processing of office files, including document creation, contract review, spreadsheet cleanup and analysis, presentation creation, and PDF conversion or extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zyuanhua/wps-office-automation-skill) <br>
-- [README](artifact/README.md) <br>
-- [Deployment guide](artifact/DEPLOYMENT.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [JSON response with status, message, structured data, and optional base64-encoded file data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated file names and base64 payloads for office documents, spreadsheets, presentations, or PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact files report 1.1.0) <br>
+Risk: Broad filesystem access can expose sensitive local office documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained workspace and only grant access to directories needed for the current task.
+
+Risk: Malformed PDFs, spreadsheets, or images may cause denial of service or increase parser exploit risk.
+
+Mitigation: Avoid untrusted files, update parsing dependencies before deployment, and add file type and size limits.
+
+Risk: Generated file output and overwrite behavior is not fully documented.
+
+Mitigation: Review output paths before use and require explicit destination handling for workflows that write files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zyuanhua/skills/wps-office-automation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, structured data]
+
+**Output Format:** [JSON responses with text, structured fields, and Base64-encoded office files when a file is produced.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return generated DOCX, XLSX, PPTX, or PDF artifacts, extracted text, analysis results, and status messages.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

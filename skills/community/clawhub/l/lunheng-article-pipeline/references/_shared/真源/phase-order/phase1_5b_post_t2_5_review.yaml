@@ -1,0 +1,23 @@
+# 论衡流程真源 · 第二部分：节点 phase1_5b_post_t2_5_review（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: phase1_5b_post_t2_5_review   # 别名：文档层「Phase 1.5 后置（T2.5 红数据窗口）」（非独立 Phase 标签，主控呈现时归入 Phase 1.5）
+  phase: "Phase 1.5 后置（T2.5 红数据窗口）"
+  phase_seq: 6
+  kind: conditional_review_window
+  verdict_scale: four_tier   # v2.12.40：结论落四档（通过/不通过/无法判定/路径或参数错误），不用退出码
+  rerun_after_report: true   # 「报告后激活」：前提 = t2_5_integrity 判定已落盘；**必须在该判定写出之后**取数（预跑结果不得充当闸门输入）
+  input: literature/文献卡.md + data/数据卡.md + cases/案例卡.md
+  condition_undecidable: report_to_owner   # v2.12.54 R-6：条件证据不可判定 ⇒ 呈主人 + 按安全侧（触发）继续，禁止静默按 on_not_triggered 吞掉
+  condition: phase1_5b_red_data_trigger   # 激活逻辑：下方 trigger_conditions 命中即触发；未命中 → on_not_triggered 留痕
+  on_not_triggered: record_not_triggered_in_status
+  owner_visible: true
+  blocking: false
+  trigger_conditions:
+    - t2_5_red_data_unresolved          # 命中定义：t2_5_integrity 闸门报 🔴 二手转引未回溯到原始来源（M-Form-6 判定；未报红 = 不命中）
+  decisions: [triggered, not_triggered]
+  output_if_triggered: literature/回查报告-vN.md
+  required_record: status.md
+  after_trigger: rerun_t2_5_integrity   # 动作名（非节点 id）：触发后重跑 t2_5_integrity 闸门（回查改数后必须复判）
+  note: 2026-10-08 审计 R-1（B1）：原单节点承载「简报标记 + T2.5 红数据」两类触发，却排在 t2_5_integrity 之前 ⇒ 红数据项首次到达**恒为假**、且被 on_not_triggered 记成「未触发」（与「闸门真没跑」不可分）。现拆两个求值点：简报标记留 seq 4、红数据入本节点（seq 6，排在闸门后）；各记一次 evaluated_against，命中出口同为 after_trigger。理由全文见 pipeline-overview.md 版本注记
+  next: t4_analysis

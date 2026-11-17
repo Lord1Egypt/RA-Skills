@@ -1,37 +1,54 @@
-## Description: <br>
-Provides a graduate-level signal-processing reference covering analysis, filters, estimation, modulation, space-time processing, communications, and embedded DSP implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language signal-processing reference covering DSP theory, filter design, estimation and detection, modulation, MIMO, communications workflows, and implementation examples.
 
-## Publisher: <br>
-[viewway](https://clawhub.ai/user/viewway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viewway](https://clawhub.ai/user/viewway)
 
-## Use Case: <br>
-Students, developers, and signal-processing engineers use this skill as a technical reference for DSP theory, communication-system methods, algorithm examples, and implementation considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Signal Processing on ClawHub](https://clawhub.ai/viewway/signal-processing) <br>
+Students, developers, and communications engineers use this skill as a compact reference for signal-processing theory, design methods, and implementation patterns across Python, MATLAB-like workflows, GNU Radio, and embedded DSP.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown reference material with equations, tables, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill itself is self-contained; review any separate package installations, SDR hardware setup, or network configuration before running examples.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Included example code may require scientific Python, GNU Radio, or DSP libraries and may need adaptation before execution.
+
+Mitigation: Review examples in the target environment and install or substitute required DSP libraries before running them.
+
+Risk: The skill is a broad technical study reference and may not validate design choices for a specific production signal-processing system.
+
+Mitigation: Have qualified engineers review formulas, assumptions, and implementation choices against the target system requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viewway/skills/signal-processing)
+- [Publisher profile](https://clawhub.ai/user/viewway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown reference material with formulas and illustrative code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language technical guidance with examples that may require scientific Python, GNU Radio, or DSP libraries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

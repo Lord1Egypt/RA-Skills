@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Discord workspace structure and OpenClaw routing as code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Discord workspace structure and OpenClaw routing as code.
 
-## Publisher: <br>
-[ofan](https://clawhub.ai/user/ofan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ofan](https://clawhub.ai/user/ofan)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to create, rename, delete, validate, import, and roll back Discord categories, channels, threads, and OpenClaw agent-to-channel bindings from a YAML configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates Discord workspace and OpenClaw routing administration to a privileged external CLI. <br>
-Mitigation: Verify the @ofan/disclaw npm package and publisher before installation, and use least-privilege Discord and gateway credentials. <br>
-Risk: Applying changes with --yes or --prune can make real channel, thread, category, and routing changes. <br>
-Mitigation: Run validate and diff before apply, review dry-run output, and use --prune only when deletion of unmanaged resources is intended. <br>
-Risk: Misconfigured Discord or gateway credentials can expose more workspace control than the workflow needs. <br>
-Mitigation: Scope bot permissions to the required server administration actions and protect Discord and gateway tokens in OpenClaw configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Disclaw Skill Page](https://clawhub.ai/ofan/disclaw) <br>
-- [Publisher Profile](https://clawhub.ai/user/ofan) <br>
+## Use Case:
 
+Developers and workspace administrators use Disclaw to define, validate, preview, apply, import, and roll back Discord server structure and OpenClaw agent-to-channel bindings from a YAML configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML and JSON configuration snippets, and operational checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides validation, diff, dry-run, apply, import, rollback, and pruning workflows for Discord and OpenClaw routing changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to globally install an unpinned external npm tool.
+
+Mitigation: Use a pinned and trusted version of @ofan/disclaw where possible before installation.
+
+Risk: The tool handles Discord and OpenClaw credentials.
+
+Mitigation: Grant the Discord bot and OpenClaw gateway only the minimum permissions needed for the intended server and channels.
+
+Risk: The tool can change or delete Discord server structure.
+
+Mitigation: Run validation, diff, or dry-run first, and review uses of --yes and --prune before applying changes.
+
+## Reference(s):
+
+- [Disclaw on ClawHub](https://clawhub.ai/ofan/skills/disclaw)
+- [Publisher profile: ofan](https://clawhub.ai/user/ofan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML, JSON, and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation, diff, dry-run, apply, import, rollback, and troubleshooting command sequences.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

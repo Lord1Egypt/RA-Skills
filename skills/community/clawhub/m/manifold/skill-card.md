@@ -1,43 +1,62 @@
-## Description: <br>
-Read and trade on Manifold Markets by searching markets, fetching probabilities, inspecting users and bets, and preparing bets, share sales, or comments only after explicit user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and trade on Manifold Markets by searching markets, fetching probabilities, inspecting users and bets, and placing bets, sales, or comments only after explicit user confirmation.
 
-## Publisher: <br>
-[Crotalus](https://clawhub.ai/user/Crotalus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crotalus](https://clawhub.ai/user/crotalus)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search Manifold Markets, inspect market and user data, and prepare account actions such as bets, share sales, and comments. Actions that spend funds or post content require the user's explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent use a Manifold account for actions that spend funds or post content. <br>
-Mitigation: Install only when account access is intended, keep MANIFOLD_API_KEY private, prefer a revocable key when available, and approve every proposed bet, sale, or comment before execution. <br>
-Risk: A trade or sale could target the wrong market, side, amount, or limit if details are ambiguous. <br>
-Mitigation: Fetch the market first, restate the market question, identifier, action, side, amount or shares, and any limits, then stop and ask when required details are missing. <br>
-Risk: Comments submitted through the API may post user-visible content and can incur a fee. <br>
-Mitigation: Confirm the exact comment text and target market before submitting the API request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Manifold Markets](https://manifold.markets) <br>
-- [Manifold API Documentation](https://docs.manifold.markets/api) <br>
-- [Manifold Markets Skill on ClawHub](https://clawhub.ai/Crotalus/manifold) <br>
+## Use Case:
 
+Developers and agents use this skill to read Manifold Markets data and prepare authenticated market actions. Write actions are intended to proceed only after the user confirms the market, payload, and exact action.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples and MANIFOLD_API_KEY for write actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use MANIFOLD_API_KEY to perform authenticated actions on a user's Manifold account.
+
+Mitigation: Keep MANIFOLD_API_KEY private and install the skill only when account interaction is intended.
+
+Risk: Bets or share sales can affect the user's Manifold holdings if executed with the wrong market, side, amount, or payload.
+
+Mitigation: Fetch the market first, restate the exact market and payload, and proceed only after explicit user confirmation.
+
+Risk: Comments submitted through the API may be public and may incur fees.
+
+Mitigation: Confirm the target market and exact comment text before posting.
+
+Risk: Rate limits and access restrictions may affect API results, including private or unlisted markets.
+
+Mitigation: Treat API failures or missing data as platform constraints and consult the Manifold API documentation before retrying or changing behavior.
+
+## Reference(s):
+
+- [Manifold Markets](https://manifold.markets)
+- [Manifold API Documentation](https://docs.manifold.markets/api)
+- [ClawHub Skill Page](https://clawhub.ai/crotalus/skills/manifold)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated write actions require MANIFOLD_API_KEY and explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

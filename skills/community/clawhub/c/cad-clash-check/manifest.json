@@ -1,0 +1,26 @@
+{
+  "name": "cad-clash-check",
+  "version": "0.3.4",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "requires": {
+    "skill": "cad-file-reader>=0.38.8 (识图引擎，显式依赖；离线模式可只给识图产物)",
+    "python": ">=3.10"
+  },
+  "scripts": [
+    "scripts/cad_clash_check.py",
+    "scripts/clash_engine.py",
+    "scripts/clash_adapt.py",
+    "scripts/clash_building_extract.py",
+    "scripts/state-v2.json"
+  ],
+  "tests": [],
+  "redlines": [
+    "2D 图面候选提示，非 BIM 碰撞检测；碰撞位置须人工复核",
+    "final_quantity=false：不输出工程量",
+    "图纸数据只落本机，不上云"
+  ],
+  "displayName": "跨专业碰撞校对·按轴定位",
+  "description": "把各专业 DWG/DXF 图纸（或已解析识图产物）自动判专业、比对构件，输出跨专业碰撞候选位置与属性冲突清单（json+md）。优先消费 cad-file-reader 的 axis_networks[] 轴格区间做轴格定位（不同专业落入同轴格才判碰撞，坐标为佐证）；轴网缺失或不可用时如实降级为坐标判定并标 axis_missing=degraded。目标是图纸会审前的快速交叉核对；是 2D 图面重叠/冲突倾向提示，候选须人工复核，非 BIM 碰撞检测。"
+}

@@ -1,42 +1,61 @@
-## Description: <br>
-Run a comprehensive HubSpot CRM database audit that analyzes contacts, companies, deals, engagement, data quality, and deliverability for CRM cleanup, client onboarding, or quarterly health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a comprehensive HubSpot CRM database audit. Analyzes contacts, companies, deals, engagement, data quality, and deliverability. Use when starting a CRM cleanup, onboarding a new client, or performing quarterly health checks.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-CRM administrators, RevOps teams, and consultants use this skill to audit a HubSpot portal across data quality, deliverability, engagement, ownership, automation, and pipeline health. The skill helps produce a graded markdown report and an ordered cleanup prescription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HubSpot CRM records and private app tokens are sensitive and could be exposed through local files or generated reports. <br>
-Mitigation: Use a dedicated least-privilege HubSpot token, keep .env and reports out of source control, and treat generated reports as confidential. <br>
-Risk: The artifact includes optional repository-changing behavior for creating skills, pushing branches, forking, and opening pull requests. <br>
-Mitigation: Do not allow the skill to create skills, commit, push, fork, or open pull requests unless the user explicitly requests that separate workflow. <br>
-Risk: Large HubSpot portals can produce incomplete or misleading counts if API limits, null checks, pagination, and rate limits are mishandled. <br>
-Mitigation: Use the documented HubSpot null-check operators, segment Search API queries that may exceed 10,000 results, and apply delays or exponential backoff for rate limits. <br>
+## Use Case:
 
+CRM administrators, consultants, and RevOps teams use this skill to audit a HubSpot portal across contacts, companies, deals, engagement, data quality, owner health, workflows, and pipeline hygiene. It helps produce a graded Markdown cleanup report with prioritized recommendations and an ordered follow-on skill prescription.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomgranot/hubspot-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with Python code, shell commands, configuration notes, and ordered recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reports/hubspot-audit-{YYYY-MM-DD}.md and may guide creation of scripts/audit_portal.py when run by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a sensitive HubSpot private app token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege read-only token and provide it through a secure environment or secret store rather than saving it to .env.
+
+Risk: Generated audit reports may contain sensitive CRM information.
+
+Mitigation: Review the report before sharing it and store outputs according to the organization's CRM data handling requirements.
+
+Risk: Dependency installation can introduce supply-chain or environment risk.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions.
+
+Risk: The artifact describes optional follow-on actions that create skills, commit code, push to a fork, or open a pull request.
+
+Mitigation: Do not allow those contribution actions unless the user explicitly starts that separate development workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomgranot/skills/hubspot-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks, plus generated Python and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dated HubSpot audit report, graded findings, prioritized recommendations, and suggested follow-on skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

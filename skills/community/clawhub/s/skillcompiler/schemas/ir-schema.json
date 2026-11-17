@@ -48,6 +48,49 @@
         }
       }
     },
+    "pass_ingestion": {
+      "type": "object",
+      "description": "v2.0: 多源摄取阶段。仅当输入为 URL/文件/图片/视频等非纯文本 Prompt 时执行。执行后将任意来源统一为标准化结构化内容，供 Pass 1 消费。纯文本 Prompt 时此字段缺失。",
+      "properties": {
+        "executed": { "type": "boolean", "description": "是否执行了摄取阶段" },
+        "source_type": {
+          "type": "string",
+          "enum": ["direct_prompt", "url", "pdf", "doc", "markdown", "image", "video", "audio", "github_repo", "mixed"],
+          "description": "原始输入来源类型"
+        },
+        "extracted_by": {
+          "type": "string",
+          "description": "实际使用的解析方式（如 pdftotext / ffmpeg+whisper / tesseract / WebFetch）"
+        },
+        "raw_content_hash": { "type": "string", "description": "提取后结构化内容的哈希，用于去重" },
+        "structured_content": {
+          "type": "string",
+          "description": "提取后的标准化文本（Pass 1 的输入）。若内容过长，存摘要 + 指向外部文件的引用"
+        },
+        "evidence_grade": {
+          "type": "string",
+          "enum": ["primary", "secondary", "inferred"],
+          "description": "整份内容的默认证据等级。详见 references/evidence-grading.md"
+        },
+        "provenance": {
+          "type": "array",
+          "description": "来源溯源链。每条知识在 Pass 2 提取时可覆盖此默认等级",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string", "description": "原始来源标识（URL/文件名/页码/时间戳）" },
+              "extractor": { "type": "string", "description": "提取方式" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "extraction_warnings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "提取过程中的质量警告（如 OCR 置信度低、字幕缺失、PDF 为扫描件）"
+        }
+      }
+    },
     "pass_1_analyze": {
       "type": "object",
       "required": ["prompt_summary", "prompt_goal", "input_spec", "output_spec", "capability_hints", "boundary"],
@@ -65,7 +108,7 @@
           "type": "object",
           "required": ["type", "description"],
           "properties": {
-            "type": { "type": "string", "enum": ["string", "file", "api", "mixed"] },
+            "type": { "type": "string", "enum": ["string", "structured_content", "file", "api", "mixed"] },
             "description": { "type": "string" },
             "inferred": { "type": "boolean", "default": false }
           }
@@ -125,7 +168,9 @@
                 "properties": {
                   "content": { "type": "string" },
                   "source": { "type": "string", "enum": ["from source prompt", "inferred"] },
-                  "target_file": { "type": "string" }
+                  "target_file": { "type": "string" },
+                  "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"], "description": "v2.0: 证据等级。默认继承 pass_ingestion.evidence_grade。" },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "v2.0: 置信度，补充 evidence 的细粒度。" }
                 }
               }
             },
@@ -137,7 +182,9 @@
                 "properties": {
                   "name": { "type": "string" },
                   "structure": { "type": "string" },
-                  "target_file": { "type": "string" }
+                  "target_file": { "type": "string" },
+                  "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"] },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
                 }
               }
             },
@@ -149,7 +196,9 @@
                 "properties": {
                   "content": { "type": "string" },
                   "domain": { "type": "string" },
-                  "target_file": { "type": "string" }
+                  "target_file": { "type": "string" },
+                  "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"] },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
                 }
               }
             },
@@ -161,7 +210,9 @@
                 "properties": {
                   "type": { "type": "string", "enum": ["minimal", "normal", "complex", "edge-case", "failure", "anti-pattern"] },
                   "content": { "type": "string" },
-                  "target_file": { "type": "string" }
+                  "target_file": { "type": "string" },
+                  "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"] },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
                 }
               }
             },
@@ -173,7 +224,9 @@
                 "properties": {
                   "type": { "type": "string", "enum": ["scoring", "quality", "acceptance"] },
                   "content": { "type": "string" },
-                  "target_file": { "type": "string" }
+                  "target_file": { "type": "string" },
+                  "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"] },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
                 }
               }
             },
@@ -184,9 +237,36 @@
                 "required": ["content", "target_file"],
                 "properties": {
                   "content": { "type": "string" },
-                  "target_file": { "type": "string" }
+                  "target_file": { "type": "string" },
+                  "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"] },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
                 }
               }
+            }
+          }
+        },
+        "conflicts": {
+          "type": "array",
+          "description": "v2.0: 多源矛盾信息。不强行统一，保留所有版本并标注。Pass 6 Layer B B11 验证每个冲突在生成文件中有对应呈现。",
+          "items": {
+            "type": "object",
+            "required": ["topic", "versions", "resolution"],
+            "properties": {
+              "topic": { "type": "string", "description": "冲突主题" },
+              "versions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["content", "source"],
+                  "properties": {
+                    "content": { "type": "string" },
+                    "source": { "type": "string" },
+                    "evidence": { "type": "string", "enum": ["primary", "secondary", "inferred"] }
+                  }
+                }
+              },
+              "resolution": { "type": "string", "enum": ["unresolved", "prefer_higher_evidence", "prefer_newer", "flag_for_user"] },
+              "note": { "type": "string" }
             }
           }
         },

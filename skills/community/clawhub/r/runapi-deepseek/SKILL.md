@@ -1,6 +1,6 @@
 ---
 name: deepseek
-description: Call the DeepSeek API (deepseek-v4-pro, deepseek-v4-flash) through RunAPI using the official OpenAI SDK, Anthropic SDK, or compatible clients. Use when the user asks for DeepSeek chat, streaming completions, Anthropic Messages compatibility, Gemini contents compatibility, or when they want to point an existing LLM SDK setup at RunAPI as the base URL.
+description: Call the DeepSeek API (deepseek-flash, deepseek-v4-pro, deepseek-v4-flash, and deepseek-v4-flash-vision-exp) through RunAPI using OpenAI-compatible Chat Completions and Responses. Use deepseek-flash for the current V4.1 Flash 1017 model; the v4 names remain compatibility aliases.
 documentation: https://runapi.ai/models/deepseek.md
 provider_page: https://runapi.ai/providers/deepseek.md
 catalog: https://runapi.ai/models.md
@@ -9,182 +9,81 @@ metadata:
     homepage: https://runapi.ai/models/deepseek
     primaryEnv: OPENAI_API_KEY
     requires:
-      env:
-      - OPENAI_API_KEY
-      - OPENAI_BASE_URL
+      env: [OPENAI_API_KEY, OPENAI_BASE_URL]
     envVars:
-    - name: OPENAI_API_KEY
-      required: true
-      description: RunAPI API key used by OpenAI-compatible DeepSeek clients.
-    - name: OPENAI_BASE_URL
-      required: true
-      description: Set to https://runapi.ai/v1 for DeepSeek on RunAPI.
-    - name: ANTHROPIC_API_KEY
-      required: false
-      description: Optional RunAPI API key alias when using Anthropic Messages examples.
-    - name: ANTHROPIC_BASE_URL
-      required: false
-      description: Optional base URL for Anthropic-compatible DeepSeek requests.
+    - {name: OPENAI_API_KEY, required: true, description: RunAPI API key used by OpenAI-compatible DeepSeek clients.}
+    - {name: OPENAI_BASE_URL, required: true, description: Set to https://runapi.ai/v1 for DeepSeek on RunAPI.}
 ---
 
 # DeepSeek on RunAPI
 
-DeepSeek on RunAPI exposes **OpenAI-compatible Chat Completions** and
-**Anthropic-compatible Messages**. Use the OpenAI SDK for most integrations,
-or point Anthropic-compatible clients at `https://runapi.ai` when the existing
-application already speaks `/v1/messages`.
+The current official revision is DeepSeek-V4.1-Flash-1017, updated on
+2026-10-17. V4.1 Flash first launched on 2026-09-10. Use `deepseek-flash`;
+`deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` remain compatibility
+names. The official upgrade does not establish the revision of every RunAPI
+service option. Third-party versions remain unconfirmed unless separately
+verified. See the [current model reference](https://runapi.ai/models/deepseek/v4.1-flash.md).
 
-## Setup
+Use OpenAI-compatible endpoints at `https://runapi.ai/v1` as the primary protocol.
 
-```dotenv
-OPENAI_API_KEY=YOUR_RUNAPI_TOKEN
-OPENAI_BASE_URL=https://runapi.ai/v1
-```
+## Primary protocol recipe
 
-Get a RunAPI API Key at <https://runapi.ai/api_keys>.
+### Authenticate
 
-## OpenAI-compatible setup
+Set `OPENAI_API_KEY` to a RunAPI API key and `OPENAI_BASE_URL` to `https://runapi.ai/v1`.
+
+### Send request
 
 ```python
 from openai import OpenAI
-
-client = OpenAI(
-    api_key="YOUR_RUNAPI_TOKEN",
-    base_url="https://runapi.ai/v1",
-)
-```
-
-```typescript
-import OpenAI from "openai";
-
-const client = new OpenAI({
-  apiKey: "YOUR_RUNAPI_TOKEN",
-  baseURL: "https://runapi.ai/v1",
-});
-```
-
-## Core recipe - Chat Completions
-
-```python
+client = OpenAI(api_key="YOUR_RUNAPI_TOKEN", base_url="https://runapi.ai/v1")
 response = client.chat.completions.create(
     model="deepseek-v4-pro",
-    messages=[{"role": "user", "content": "Explain vector databases simply."}],
+    messages=[{"role": "user", "content": "Explain this decision."}],
 )
 print(response.choices[0].message.content)
 print(response.usage)
 ```
 
-```typescript
-const response = await client.chat.completions.create({
-  model: "deepseek-v4-pro",
-  messages: [{ role: "user", content: "Explain vector databases simply." }],
-});
-```
+For long output, set `stream=True` and
+`stream_options={"include_usage": True}`; consume through `[DONE]`.
+`deepseek-v4-flash` additionally supports one custom function on Responses;
+keep automatic tool selection and one serial call/result lifecycle.
 
-```bash
-curl -X POST "https://runapi.ai/v1/chat/completions" \
-  -H "Authorization: Bearer YOUR_RUNAPI_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "deepseek-v4-pro",
-    "messages": [{"role": "user", "content": "Hello, DeepSeek!"}]
-  }'
-```
+For image input, use `deepseek-flash` only where the current model contract
+permits it. DeepSeek documents image input, but RunAPI has not tested vision
+on every service option. The retired `deepseek-v4-flash-vision-exp` name is
+a historical compatibility alias, not a separate recommended vision model.
 
-## Streaming
+### Verify result
 
-```python
-stream = client.chat.completions.create(
-    model="deepseek-v4-flash",
-    messages=[{"role": "user", "content": "Write a concise release note."}],
-    stream=True,
-)
-for chunk in stream:
-    delta = chunk.choices[0].delta.content
-    if delta:
-        print(delta, end="", flush=True)
-```
+For Chat, require final assistant content, `finish_reason`, and `usage`. For
+Responses, require final output, one usage-bearing `response.completed`, and
+`[DONE]` when streaming.
 
-Streaming runs through a regional edge proxy so the request does not hold a
-Rails/Puma thread. Long generations should always stream.
+### Stop boundaries
 
-## Anthropic Messages compatibility
+Correct a rejected shape once using the structured error. Retry transport once
+only before any response or Usage and when replay is safe. Record a terminal
+error and stop without changing model or protocol. Add tools, reasoning,
+storage, cache controls, documents, or multimodal input only when the current
+RunAPI contract verifies the exact model/protocol shape.
 
-```python
-import anthropic
+## Compatibility protocols
 
-client = anthropic.Anthropic(
-    api_key="YOUR_RUNAPI_TOKEN",
-    base_url="https://runapi.ai",
-)
-
-message = client.messages.create(
-    model="deepseek-v4-pro",
-    max_tokens=1024,
-    messages=[{"role": "user", "content": "Draft a migration checklist."}],
-)
-print(message.content[0].text)
-```
-
-```bash
-curl -X POST "https://runapi.ai/v1/messages" \
-  -H "x-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "deepseek-v4-flash",
-    "max_tokens": 1024,
-    "messages": [{"role": "user", "content": "Summarize this incident."}]
-  }'
-```
-
-`max_tokens` is required for Anthropic-compatible requests.
-
-## Gemini contents compatibility
-
-```bash
-curl -X POST \
-  "https://runapi.ai/v1beta/models/deepseek-v4-flash:streamGenerateContent" \
-  -H "x-goog-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "contents": [
-      { "role": "user", "parts": [{ "text": "Write a short product FAQ." }] }
-    ]
-  }'
-```
-
-Use this path only when the caller already expects Gemini `contents` streaming.
-RunAPI bridges this client shape to DeepSeek's OpenAI-compatible chat request
-format.
-For new app code, prefer the OpenAI-compatible setup.
-
-## List models
-
-```bash
-curl https://runapi.ai/v1/models \
-  -H "Authorization: Bearer YOUR_RUNAPI_TOKEN"
-```
+Load [compatibility protocols](references/compatibility-protocols.md) only when an existing client requires Anthropic Messages or Gemini contents.
 
 ## Supported models
 
 | Model ID | Use when |
 |---|---|
-| `deepseek-v4-pro` | Higher quality DeepSeek chat and reasoning tasks |
-| `deepseek-v4-flash` | Fast DeepSeek chat |
+| `deepseek-flash` | Current V4.1 Flash 1017 official revision for fast text and reasoning |
+| `deepseek-v4-flash-vision-exp` | Historical compatibility alias, not a separate vision model |
+| `deepseek-v4-pro` | Higher-quality verified text workloads |
+| `deepseek-v4-flash` | Compatibility alias for Flash |
 
 ## References
 
-- Model overview, pricing, and rate limits: https://runapi.ai/models/deepseek.md
-- Provider comparison: https://runapi.ai/providers/deepseek.md
-- Catalog: https://runapi.ai/models.md
-
-## Agent rules
-
-- Keep API keys in `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `RUNAPI_TOKEN`, or a
-  secret manager; never inline them in commits or shell history.
-- Default new integrations to the OpenAI-compatible client at
-  `https://runapi.ai/v1`.
-- Use streaming for responses longer than a few hundred tokens.
-- For pricing, rate-limit, and commercial-usage answers, link to
-  https://runapi.ai/models/deepseek.md rather than copying values.
+- <https://runapi.ai/models/deepseek.md>
+- <https://runapi.ai/providers/deepseek.md>
+- <https://runapi.ai/models.md>

@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "cli-obsidian",
-  "version": "1.0.1",
-  "publishedAt": 1776822421225
+  "name": "cli-obsidian",
+  "displayName": "Obsidian CLI 工具",
+  "version": "1.0.0",
+  "description": "命令行管理 Obsidian 笔记，AI Agent 友好",
+  "emoji": "📝",
+  "author": "小鸣 🦞",
+  "license": "commercial",
+  "tags": ["obsidian", "cli", "automation", "ai", "agent", "notes"],
+  "category": "productivity",
+  "price": {
+    "model": "paid",
+    "oneTime": 68,
+    "currency": "CNY"
+  }
 }

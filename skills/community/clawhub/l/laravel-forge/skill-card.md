@@ -1,41 +1,54 @@
-## Description: <br>
-Manage Laravel Forge servers, sites, deployments, databases, integrations, and more via the Forge API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Laravel Forge servers, sites, deployments, databases, integrations, and more via the Forge API.
 
-## Publisher: <br>
-[florianbeer](https://clawhub.ai/user/florianbeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[florianbeer](https://clawhub.ai/user/florianbeer)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent administer Laravel Forge infrastructure through the Forge API, including servers, sites, deployments, databases, backups, teams, and integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over Laravel Forge infrastructure, including servers, deployments, credentials, and remote commands. <br>
-Mitigation: Install only for intended Forge administration workflows, use the least-privileged Forge token available, and manually confirm production-impacting actions. <br>
-Risk: Credential exposure could allow unauthorized Forge administration. <br>
-Mitigation: Protect the Laravel Forge API token and credentials file, and set an explicit organization when multiple organizations are available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Laravel Forge API Reference](https://forge.laravel.com/docs/api-reference/introduction) <br>
-- [Laravel Forge API Documentation](https://forge.laravel.com/api-documentation) <br>
-- [ClawHub Laravel Forge release page](https://clawhub.ai/florianbeer/laravel-forge) <br>
+## Use Case:
 
+Developers and operators managing Laravel Forge infrastructure use this skill to inspect and change servers, sites, deployments, databases, credentials, teams, roles, recipes, backups, and related resources through Forge API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a Laravel Forge API token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Forge API access can change infrastructure, deployments, databases, credentials, teams, roles, scheduled jobs, firewall rules, and remote commands.
+
+Mitigation: Install only for trusted operators managing Forge infrastructure and require human review before delete, credential, role/team, deployment-script, scheduled-job, firewall, or remote-command operations.
+
+Risk: Forge API tokens and related secrets may be exposed if passed directly on command lines or stored with broad filesystem permissions.
+
+Mitigation: Use narrowly scoped tokens where possible, store credentials in the configured credentials file with owner-only permissions, and avoid passing secrets directly on the command line.
+
+## Reference(s):
+
+- [ClawHub Laravel Forge skill page](https://clawhub.ai/florianbeer/skills/laravel-forge)
+- [Laravel Forge API reference introduction](https://forge.laravel.com/docs/api-reference/introduction)
+- [Laravel Forge API documentation](https://forge.laravel.com/api-documentation)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON or plain-text API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and a Laravel Forge API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,49 @@
-## Description: <br>
-Expand a structured brief in `content-production/inbox/` into a reusable long-form markdown article draft, then run a local writer / critic / judge quality loop with a constrained humanization pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expand a structured brief in `content-production/inbox/` into a reusable long-form markdown article draft, then run a local writer / critic / judge quality loop with a constrained humanization pass.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Content creators and developers use this skill to turn a structured brief with a topic, reader, arguments, and examples into a first-draft long-form article plus reusable writing sidecars for downstream image generation and WeChat formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local brief files and writes generated draft and review files into content-production folders. <br>
-Mitigation: Use trusted brief files and review generated article, writing pack, and review trace outputs before downstream publication. <br>
-Risk: User-controlled slug values affect generated file paths. <br>
-Mitigation: Keep slug values simple and predictable so generated files stay in the intended content-production folders. <br>
-Risk: External repository dependencies may affect local execution behavior. <br>
-Mitigation: Review dependencies before running the skill in a local article-drafting workflow. <br>
+## Use Case:
 
+Content creators and publishing workflow developers use this skill to turn structured briefs into long-form article drafts with reusable writing packs and review traces. It is intended for a controlled local drafting loop that preserves supplied arguments and stops downstream handoff when quality gates fail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abigale-cyber/case-writer-hybrid) <br>
-- [Publisher profile](https://clawhub.ai/user/abigale-cyber) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files] <br>
-**Output Format:** [Markdown article draft with Markdown and JSON sidecar files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the article draft, writing pack, review trace, and optional quality-gate notice under content-production paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unvalidated slug values from briefs can write generated files outside the documented draft folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted or pre-validated briefs, and validate slug/date fields plus output-path containment before processing third-party or automatically generated briefs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/case-writer-hybrid)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Text]
+
+**Output Format:** [Markdown article draft plus Markdown and JSON sidecar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit a quality-gate notice when the draft fails after up to 3 local review rounds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

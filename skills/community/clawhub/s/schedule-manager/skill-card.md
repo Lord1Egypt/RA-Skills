@@ -1,40 +1,57 @@
-## Description: <br>
-Helps agents view, add, edit, pause, delete, and clean up scheduled tasks and one-time reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule Manager helps agents view, add, edit, pause, delete, and run local scheduled tasks and one-time reminders.
 
-## Publisher: <br>
-[cowboy231](https://clawhub.ai/user/cowboy231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cowboy231](https://clawhub.ai/user/cowboy231)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to manage recurring local reminders, one-time reminders, and schedule-related task configuration from an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and change cron jobs on the user's machine. <br>
-Mitigation: Review schedule changes before running commands and prefer a release with explicit confirmations, validation, managed cron entries, and clear cleanup instructions. <br>
-Risk: Reminder content may be sent through Feishu with incomplete privacy disclosure. <br>
-Mitigation: Avoid sensitive reminder text and confirm notification destinations and privacy expectations before use. <br>
+## Use Case:
 
+External users and developers use this skill to manage recurring cron-backed reminders and temporary reminders in an OpenClaw workspace. It supports task listing, creation, editing, pausing, deletion, cleanup, and local text-to-speech reminder execution.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/cowboy231/schedule-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [CLI text output with Markdown-backed task configuration and YAML-like temporary reminder records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write schedule files and crontab entries in the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill rewrites the user's crontab when recurring tasks are changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the current crontab before installation or use, and review generated cron entries before relying on them.
+
+Risk: Persistent cron commands are built from weakly validated task fields.
+
+Mitigation: Only add task names, weekdays, and times from trusted sources until field validation and safe quoting are confirmed.
+
+Risk: Running the skill from a privileged account could expand the impact of cron or file-write mistakes.
+
+Mitigation: Run it under a non-privileged user account with access limited to the intended OpenClaw workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cowboy231/skills/schedule-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Command-line text and Markdown-backed task configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, python3, and edge-tts; updates local workspace task files and the user's crontab.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

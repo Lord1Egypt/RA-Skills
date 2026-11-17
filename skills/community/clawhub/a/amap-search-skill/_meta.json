@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77qk560nr7ws74b1j9krfng182peax",
+  "owner": "mahongting",
   "slug": "amap-search-skill",
-  "version": "2.0.0",
-  "publishedAt": 1773664811991
+  "displayName": "高德地图全功能工具 - Gaode Map All-in-One",
+  "latest": {
+    "version": "2.0.0",
+    "publishedAt": 1770585600000,
+    "commit": "https://github.com/mahongting/skills/commit/main"
+  },
+  "history": []
 }

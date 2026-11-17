@@ -1,46 +1,60 @@
-## Description: <br>
-面向跨境卖家的选品与竞品情报助手，自动监控 Amazon ASIN 动态并追踪 TikTok 爆品趋势 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A product and competitor intelligence assistant for cross-border sellers that monitors Amazon ASIN changes and tracks TikTok product trends.
 
-## Publisher: <br>
-[xifengzhu](https://clawhub.ai/user/xifengzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xifengzhu](https://clawhub.ai/user/xifengzhu)
 
-## Use Case: <br>
-External cross-border e-commerce sellers and operators use this skill to monitor Amazon ASIN price, BSR, review, and listing changes, track TikTok product trend signals, manage watchlists, trigger scans, and generate daily or weekly market reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watchlist entries, TikTok keywords, and marketplace observations may be sent to a configured external Intel API backend. <br>
-Mitigation: Install only when the publisher and backend are trusted, and use a least-privilege OpenClaw gateway token where available. <br>
-Risk: Local SQLite storage may contain sensitive commerce monitoring data, including raw Amazon and TikTok response data. <br>
-Mitigation: Periodically inspect, protect, or clear the local database when monitored ASINs, keywords, alerts, or reports are sensitive. <br>
-Risk: The security verdict requires review before normal deployment. <br>
-Mitigation: Review the ClawHub security summary and configured backend before enabling automated scans or scheduled reports. <br>
+## Use Case:
 
+External cross-border e-commerce sellers use this skill to maintain Amazon ASIN and TikTok keyword watchlists, run scans, detect market changes, and generate daily or weekly intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xifengzhu/cross-border-intel) <br>
-- [README](artifact/README.md) <br>
-- [OpenClaw local testing guide](artifact/docs/OPENCLAW_TESTING.md) <br>
-- [Historical architecture reference](artifact/docs/architecture.md) <br>
-- [Default Intel API endpoint](https://api.haixia.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, TypeScript API usage examples, shell commands, and locally stored report data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores watchlists, snapshots, TikTok hits, alerts, reports, jobs, and configuration in a local SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill forwards a privileged OpenClaw gateway token to a configurable external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher and backend, and constrain INTEL_API_URL to the intended service endpoint.
+
+Risk: The skill stores watchlists, snapshots, alerts, reports, and raw provider data locally.
+
+Mitigation: Review local retention requirements and protect the OpenClaw state directory before use.
+
+Risk: The skill exposes broad helper functions beyond the documented user-facing commands.
+
+Mitigation: Review the exported API surface and restrict agent/tool access to functions required for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xifengzhu/skills/cross-border-intel)
+- [README](artifact/README.md)
+- [Historical architecture reference](artifact/docs/architecture.md)
+- [Backend API base URL](https://api.haixia.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown and JSON results from slash commands, TypeScript API calls, and command-line wrappers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include watchlists, scan summaries, alerts, local report data, and configuration values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

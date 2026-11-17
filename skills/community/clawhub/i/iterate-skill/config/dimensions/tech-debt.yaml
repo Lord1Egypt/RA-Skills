@@ -1,0 +1,8 @@
+# Tech Debt review dimension
+name: "技术债"
+name_en: "Tech Debt"
+priority: medium
+focus: |
+  TODO/FIXME/HACK markers, deprecated APIs, workaround code.
+  Inconsistent patterns across modules, missing observability/logging.
+  Hardcoded configuration that should be externalized.

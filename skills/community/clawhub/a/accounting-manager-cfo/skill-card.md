@@ -1,41 +1,57 @@
-## Description: <br>
-专注于日常会计操作、财务对账、月末结账流程和内部控制的专业账务主管与财务总监。确保财务记录的准确性、完整性和及时性，同时始终遵循中国企业会计准则并保持审计就绪状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专注于日常会计操作、财务对账、月末结账流程和内部控制的专业账务主管与财务总监。确保财务记录的准确性、完整性和及时性，同时始终遵循中国企业会计准则并保持审计就绪状态。
 
-## Publisher: <br>
-[liucheng007](https://clawhub.ai/user/liucheng007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liucheng007](https://clawhub.ai/user/liucheng007)
 
-## Use Case: <br>
-Finance and accounting teams use this skill for Chinese accounting standards-oriented operational guidance, monthly close checklists, account reconciliation templates, financial reporting routines, and internal control review support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance guidance may be incorrect or misapplied if the user has not confirmed the applicable jurisdiction, accounting framework, or company policy. <br>
-Mitigation: Use the skill as an advisory checklist and drafting aid; require qualified human review before relying on outputs for accounting, tax, audit, or reporting decisions. <br>
-Risk: Confidential financial details could be exposed if users place sensitive company records into agent memory or prompts without approval. <br>
-Mitigation: Avoid storing confidential financial details in memory unless permitted by policy, and redact sensitive records where possible. <br>
-Risk: Connecting advisory output directly to ERP, banking, tax, or payment workflows could create unauthorized financial actions. <br>
-Mitigation: Do not connect the skill to ERP, banking, tax, or payment systems without explicit human approval controls. <br>
+## Use Case:
 
+Finance employees and business operators use this skill to draft Chinese accounting standards-focused guidance, month-end close checklists, account reconciliation templates, internal control steps, and management reporting support.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, tables, and finance workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; no executable install behavior or direct ERP, banking, tax, or payment-system actions are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Accounting guidance may be inappropriate if the user's jurisdiction or accounting framework differs from Chinese Accounting Standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the applicable jurisdiction and accounting framework before relying on the skill's recommendations.
+
+Risk: Generated accounting entries, payment approvals, or period-close actions could affect official financial records if used without review.
+
+Mitigation: Use outputs as drafting and review support only; keep human approval for postings, payments, period locks, and control sign-offs.
+
+Risk: Finance workflows may involve sensitive company financial details.
+
+Mitigation: Avoid unnecessary retention of sensitive financial data and apply company data-handling controls when sharing inputs with the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liucheng007/skills/accounting-manager-cfo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, installs, credential access, or hidden behavior were identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

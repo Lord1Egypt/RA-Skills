@@ -1,0 +1,35 @@
+{
+  "input": {
+    "referenceUrl": "https://替换为用户提供的文章链接",
+    "supplement": "保留事实，写清楚核心观点。"
+  },
+  "spec": {
+    "name": "链接成文并排版",
+    "steps": [
+      {
+        "id": "source",
+        "tool": "article-import",
+        "enabled": true,
+        "params": {
+          "importAs": "reference"
+        }
+      },
+      {
+        "id": "write",
+        "tool": "generation",
+        "enabled": true,
+        "params": {
+          "targetChars": 1500
+        }
+      },
+      {
+        "id": "layout",
+        "tool": "formatting",
+        "enabled": true,
+        "params": {
+          "theme": "classic"
+        }
+      }
+    ]
+  }
+}

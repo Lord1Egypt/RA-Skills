@@ -1,39 +1,55 @@
-## Description: <br>
-Helps developers generate Webpack and Vite build configuration guidance, including project setup, plugins, loaders, optimization, code splitting, and migration support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Webpack and Vite configuration guidance for plugins, loaders, optimization, code splitting, and migrations.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to produce build-tool configuration, loader snippets, and command guidance for Webpack/Vite projects and automation pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags a review helper that may default to a nested Codex review with broader authority than a review workflow normally needs. <br>
-Mitigation: Install only if the publisher is trusted; before running autoreview, disable the default full-access mode with --no-yolo or AUTOREVIEW_YOLO=0. <br>
-Risk: Generated build configuration can change project build behavior, including output cleanup, source map generation, dev-server settings, and dependency expectations. <br>
-Mitigation: Review generated configuration before committing it or running builds, and test it in a non-production workspace first. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly produce build-tool configuration, command guidance, and generated webpack.config.js content for JavaScript projects and automation pipelines.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and generated shell/code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit webpack.config.js templates, loader configuration snippets, and terminal command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated webpack.config.js content can embed unsafe user-supplied values into executable JavaScript configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, simple arguments and inspect generated webpack.config.js files before running webpack.
+
+Risk: Untrusted project metadata or user input in options such as --entry, --output, or --port may create unsafe or misleading configuration.
+
+Mitigation: Avoid populating generator options from untrusted input in automation.
+
+## Reference(s):
+
+- [Webpack Config on ClawHub](https://clawhub.ai/bytesagain3/skills/webpack-config)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Source Link from Skill Metadata](https://github.com/bytesagain/ai-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell output with generated JavaScript configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate executable webpack.config.js content based on command-line options.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

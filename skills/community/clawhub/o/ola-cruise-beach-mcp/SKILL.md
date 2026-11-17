@@ -1,0 +1,35 @@
+---
+name: ola-cruise-beach-mcp
+description: Cruise Products for Beach Vacations MCP Server — Explore cruise products specifically tailored for beach vacation enthusiasts. Perfect for sun seekers and relaxation lovers.
+metadata:
+  openclaw:
+    kind: MCP
+    published_with: cruiseskillbridge
+---
+
+# Cruise Products for Beach Vacations · MCP
+
+Explore cruise products specifically tailored for beach vacation enthusiasts. Perfect for sun seekers and relaxation lovers.
+
+## Remote URL
+
+```
+https://cruise-mcp.olavacations.com/api/gw/mcp/a6060d76-a93a-43af-aca2-e3051a9d47c7
+```
+
+## server.json
+
+```json
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/ola-cruise-beach",
+  "description": "Explore cruise products specifically tailored for beach vacation enthusiasts. Perfect for sun seekers and relaxation lovers.",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/a6060d76-a93a-43af-aca2-e3051a9d47c7"
+    }
+  ]
+}
+```

@@ -1,88 +1,88 @@
 ---
 name: testagent-browser-testing
 version: 1.4.0
-description: 使用 Playwright MCP、browser-use CLI 和 openclaw 内置浏览器对 Web 产品进行功能测试，包含完整的测试 SOP：制定计划、执行测试、记录 bug 并截图，最终输出报告并录入 Coding。当用户说「去测」「测试一下」「帮我测」「QA」某个 URL 或功能时触发。
+description: Functional testing of web products using Playwright MCP, browser-use CLI, and the openclaw built-in browser, following a full testing SOP — planning, execution, bug logging with screenshots, and finally producing a report and filing it in Coding. Triggered when the user says "go test", "test this", "help me test", "QA" a given URL or feature.
 ---
 
 # Browser Testing
 
-## ⚠️ 铁律（每次测试前必须确认，不得跳过）
+## ⚠️ Ground rules (must be confirmed before every test — do not skip)
 
-**1. 截图必须用 Playwright MCP，绝不用内置浏览器截图**
-内置浏览器 `browser screenshot` 只返回 AI 分析文本，`MEDIA:` 无法渲染，用户看不到图片。
-截图唯一正确方式：`playwright__browser_take_screenshot` → 存文件 → `MEDIA:<路径>`
+**1. Screenshots must use Playwright MCP — never the built-in browser's screenshot**
+The built-in browser's `browser screenshot` only returns AI analysis text; `MEDIA:` can't render it, so the user won't see the image.
+The only correct way to take a screenshot: `playwright__browser_take_screenshot` → save to a file → `MEDIA:<path>`
 
-**2. 使用内置浏览器前，先检查 ssrfPolicy 白名单**
-目标域名和登录域名（Auth0 等）必须在 `~/.openclaw/openclaw.json` 的 `allowedHostnames` 中，否则导航报 `blocked by policy`。
-配置改完必须执行完整重启序列：`browser stop` → `gateway restart` → 等 15 秒 → `browser start`
+**2. Before using the built-in browser, check the ssrfPolicy allowlist first**
+The target domain and the login domain (Auth0, etc.) must be in `allowedHostnames` in `~/.openclaw/openclaw.json`, or navigation will fail with `blocked by policy`.
+After changing the config, you must run the full restart sequence: `browser stop` → `gateway restart` → wait 15 seconds → `browser start`
 
-**3. 字体/环境问题，先检查 browser-setup 是否跑过，不要手动折腾**
-中文乱码、浏览器启动超时等环境问题，优先运行 `bash testagent-browser-setup/scripts/setup.sh`，不要手动装字体或逐步排查。
+**3. For font/environment issues, first check whether browser-setup has been run — don't troubleshoot manually**
+For environment issues like mojibake in Chinese text or browser startup timeouts, first run `bash testagent-browser-setup/scripts/setup.sh` rather than manually installing fonts or debugging step by step.
 
 ---
 
-## 测试 SOP
+## Testing SOP
 
-### 阶段一：收集启动信息
+### Phase 1: Gather startup info
 
-收到测试指令后，只询问登录前无法自行获取的信息：
+After receiving a testing request, only ask for information that can't be obtained on your own before logging in:
 
-1. **目标 URL**（若用户未提供）
-2. **测试账号和密码**（登录用）
-3. **测试目标描述**（如「测试创建团队功能」）
+1. **Target URL** (if not provided by the user)
+2. **Test account and password** (for login)
+3. **Test goal description** (e.g. "test the create-team feature")
 
-不要在看到产品之前提任何关于产品细节的问题（字段格式、必填项、二级账号等），这些登录后自己看。
+Don't ask about product details (field formats, required fields, secondary accounts, etc.) before you've seen the product — those you can check yourself after logging in.
 
-### 阶段二：探索产品，制定测试计划（需用户确认）
+### Phase 2: Explore the product and draft a test plan (requires user confirmation)
 
-1. 按 [REFERENCE.md 工具选择](REFERENCE.md#工具选择) 选定主用工具
-2. **若使用内置浏览器**，导航前先确认 `~/.openclaw/openclaw.json` 的 `browser.ssrfPolicy.allowedHostnames` 已包含目标域名和登录域名；若未包含，先添加并执行完整重启序列（见 [REFERENCE.md 踩坑](REFERENCE.md#踩坑)），再导航
-3. 导航到目标 URL，自动登录
-4. **Viewport 检查（必做，自主判断）**：用 Playwright MCP 截图，自行判断页面是否适合测试：
-   - 若内容拥挤、元素重叠、按钮被遮挡、侧边栏挤压主内容区 → 执行 `playwright__browser_resize → width=1440, height=900`，再截图确认
-   - 若页面显示正常 → 直接继续
-   - 不需要询问用户，自主决定是否调整
-5. 浏览目标功能区域，了解实际页面结构和交互
-6. **基于真实页面**，输出 3-5 个测试点，**等用户确认或修改后再开始执行**
-
-```
-（登录并查看产品后）我计划测试以下场景，确认后开始：
-1. 创建团队 — 填写名称和必要字段，验证创建成功
-2. 表单校验 — 必填项为空时是否有提示
-3. 团队内发送消息 — 消息是否正常显示
-4. 边界输入 — 团队名称超长时的处理
-```
-
-**只有在探索后发现确实需要额外信息时**（如：测试场景需要第二个账号、需要特定测试数据），才在此阶段向用户追问。
-
-### 阶段三：执行测试（全程自主，不打断用户）
-
-- 逐一执行每个测试点
-- **发现 bug 立刻截图**，不要攒到最后（页面状态随时可能变化）
-- 截图命名：`/root/.openclaw/workspace/bug_<序号>_<简短描述>.png`
-- 同一操作失败 2-3 次后，立即切换工具或策略（见 [REFERENCE.md 踩坑](REFERENCE.md#踩坑)）
-
-### 阶段四：输出测试报告
-
-所有测试点完成后，聊天内输出完整报告（格式见 [REFERENCE.md 报告格式](REFERENCE.md#报告格式)）。
-
-### 阶段五：确认录入 Coding（需用户确认）
-
-报告输出后询问：
+1. Pick the primary tool per [REFERENCE.md tool selection](REFERENCE.md#tool-selection)
+2. **If using the built-in browser**, before navigating, confirm that `browser.ssrfPolicy.allowedHostnames` in `~/.openclaw/openclaw.json` already includes the target domain and login domain; if not, add them and run the full restart sequence first (see [REFERENCE.md pitfalls](REFERENCE.md#pitfalls)), then navigate
+3. Navigate to the target URL and log in automatically
+4. **Viewport check (mandatory, use your own judgment)**: take a screenshot with Playwright MCP and judge for yourself whether the page is suitable for testing:
+   - If content looks cramped, elements overlap, buttons are obscured, or the sidebar is crowding the main content area → run `playwright__browser_resize → width=1440, height=900`, then screenshot again to confirm
+   - If the page looks fine → proceed directly
+   - No need to ask the user — decide on your own whether to adjust
+5. Browse the target feature area to understand the actual page structure and interactions
+6. **Based on the real page**, produce 3-5 test points, and **wait for the user to confirm or revise them before starting execution**
 
 ```
-以上 N 个 Bug 是否录入 Coding？
-可修改建议的优先级、assignee、工期后回复「录入」，或指定修改某条。
+(after logging in and viewing the product) I plan to test the following scenarios — let me know if this works:
+1. Create team — fill in the name and required fields, verify creation succeeds
+2. Form validation — check whether empty required fields show a prompt
+3. Send a message within the team — verify the message displays correctly
+4. Boundary input — behavior when the team name is excessively long
 ```
 
-用户确认后，调用 **coding-net skill** 的 `create_issue` 批量录入：
+**Only ask the user for additional info at this stage if exploration reveals it's genuinely needed** (e.g. a test scenario requires a second account, or specific test data).
+
+### Phase 3: Execute the tests (fully autonomous, don't interrupt the user)
+
+- Execute each test point one by one
+- **Screenshot a bug the moment it's found** — don't save it for the end (page state can change at any time)
+- Screenshot naming: `/root/.openclaw/workspace/bug_<number>_<short description>.png`
+- If the same action fails 2-3 times, switch tools or strategy immediately (see [REFERENCE.md pitfalls](REFERENCE.md#pitfalls))
+
+### Phase 4: Produce the test report
+
+Once all test points are complete, output the full report in chat (format in [REFERENCE.md report format](REFERENCE.md#report-format)).
+
+### Phase 5: Confirm filing into Coding (requires user confirmation)
+
+After the report, ask:
+
+```
+Should these N bugs be filed into Coding?
+You can adjust the suggested priority, assignee, or timeline, then reply "file it", or specify a change to a particular one.
+```
+
+Once the user confirms, call the **coding-net skill**'s `create_issue` to bulk-file the bugs:
 - `issue_type="DEFECT"`
-- `priority`：按优先级规则（见 [REFERENCE.md](REFERENCE.md#优先级规则)）
-- `due_date`：今日日期 + 建议修复工期（天）
-- `assignee_id`：按 AGENTS.md 分工规则查成员 ID（用 `get_team_members_id_and_name` 或 `extract_members_from_issue_list`）
+- `priority`: per the priority rules (see [REFERENCE.md](REFERENCE.md#priority-rules))
+- `due_date`: today's date + the suggested fix timeline (in days)
+- `assignee_id`: look up the member ID per the assignment rules in AGENTS.md (using `get_team_members_id_and_name` or `extract_members_from_issue_list`)
 
-录入完成后输出每条 bug 的 Coding issue 编号。
+Once filed, output the Coding issue number for each bug.
 
 ---
 
-详细工具对比、截图流程、报告模板见 [REFERENCE.md](REFERENCE.md)
+For detailed tool comparisons, screenshot workflow, and report templates, see [REFERENCE.md](REFERENCE.md)

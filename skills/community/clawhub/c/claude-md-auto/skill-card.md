@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically discovers local CLAUDE.md guidance files from the current project and nearby parent directories for use by an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically discovers and loads CLAUDE.md files from the project root, supporting @include directives and reverse loading up to 40,000 characters.
 
-## Publisher: <br>
-[shaoxiang616](https://clawhub.ai/user/shaoxiang616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaoxiang616](https://clawhub.ai/user/shaoxiang616)
 
-## Use Case: <br>
-Developers and agent users can use this skill to surface project-specific CLAUDE.md instructions from a workspace so the agent can follow local guidance while working in that project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically load local CLAUDE.md files into high-priority agent context without a clear confirmation step. <br>
-Mitigation: Install only in trusted workspaces and inspect nearby CLAUDE.md files before allowing their contents to guide agent behavior. <br>
-Risk: A leading-space file named ' CLAUDE.md' may be discovered alongside the standard CLAUDE.md name. <br>
-Mitigation: Check for both CLAUDE.md and ' CLAUDE.md' in the current project and parent directories before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to find nearby CLAUDE.md instruction files and surface their contents as project context during agent work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaoxiang616/claude-md-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown content assembled from discovered CLAUDE.md files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits combined output to 40,000 characters and searches the current directory plus parent directories up to four levels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill automatically reads local CLAUDE.md files and promotes their contents into privileged agent context without clear user control or containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, review discovered files before use, and treat loaded content as untrusted reference material.
+
+Risk: Nearby parent-directory files or symlinks may introduce unexpected CLAUDE.md content into the agent context.
+
+Mitigation: Review the current directory, nearby parent directories, and symlinks first; prefer an opt-in version confined to an approved project root.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaoxiang616/skills/claude-md-auto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text assembled from discovered CLAUDE.md files, or a short status string when no file is found.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads up to 40,000 characters from discovered CLAUDE.md files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

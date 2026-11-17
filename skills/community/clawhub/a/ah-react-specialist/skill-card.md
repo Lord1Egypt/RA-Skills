@@ -1,42 +1,48 @@
-## Description: <br>
-Expert React specialist mastering React 18+ with modern patterns and ecosystem. Specializes in performance optimization, advanced hooks, server components, and production-ready architectures with focus on creating scalable, maintainable applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert React specialist mastering React 18+ with modern patterns and ecosystem. Specializes in performance optimization, advanced hooks, server components, and production-ready architectures with focus on creating scalable, maintainable applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to plan, implement, optimize, test, and modernize React applications using React 18+ patterns and common ecosystem tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to produce React code, tests, configuration, deployment, or CI/CD changes that affect an application.
+
+Mitigation: Review generated code and explicitly confirm deployments or CI/CD changes before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to plan, implement, test, optimize, and modernize React 18+ applications with attention to performance, accessibility, state management, and maintainable architecture. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose broad React code, test, build, CI/CD, or deployment changes that may affect application behavior or release flow. <br>
-Mitigation: Review proposed code changes before applying them, and require explicit approval for CI/CD or deployment changes. <br>
-Risk: Project context shared with the skill may include secrets or unrelated private application data. <br>
-Mitigation: Avoid sharing secrets and unrelated private project data in the context available to the agent. <br>
-Risk: Performance, coverage, accessibility, and bundle-size targets in generated guidance may not reflect the actual project constraints. <br>
-Mitigation: Validate recommendations with the project's own tests, accessibility checks, bundle analysis, and production performance measurements. <br>
+**Output Format:** [Markdown with code snippets, shell commands, configuration guidance, and implementation recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-react-specialist) <br>
+**Other Properties Related to Output:** [Agent output should be reviewed before generated code, deployment changes, or CI/CD changes are applied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, implementation plans, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included in the release; outputs depend on the host agent's project context and permissions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

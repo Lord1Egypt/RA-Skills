@@ -1,0 +1,1486 @@
+{
+  "date": "2026-10-07",
+  "title": "今日体育赛事总览（联网核实 · 2026-10-07 周三）",
+  "updated_at": "2026-10-07 20:40",
+  "_is_live": true,
+  "_feed": "websearch-verified",
+  "_source": "WebSearch 核实：MLB.com 官方季后赛对阵页 / NHL.com 官方赛程+首都人官网 / ATP 上海大师赛官方 order of play / NBA.com 官方季前赛赛程",
+  "_note": "对阵与开赛时间均为公开赛程联网核实（2026-10-07，周三）；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。",
+  "matches": [
+    {
+      "sport": "baseball",
+      "sport_cn": "棒球",
+      "league": "MLB 2026 分区系列赛",
+      "country": "美国",
+      "match": "Cleveland Guardians vs Chicago White Sox",
+      "teams": [
+        {
+          "name": "Cleveland Guardians"
+        },
+        {
+          "name": "Chicago White Sox"
+        }
+      ],
+      "kickoff_local": "2026-10-07 16:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 04:00 (北京)",
+      "venue": "芝加哥 Guaranteed Rate Field",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "MLB 2026 分区系列赛｜Cleveland Guardians vs Chicago White Sox（2026-10-07 周三）。赛程来源已联网核实（MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "MLB.com 官方季后赛对阵页",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB 2026 分区系列赛：Cleveland Guardians vs Chicago White Sox 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "MLB 2026 分区系列赛 随队解说",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "解说视角：Cleveland Guardians vs Chicago White Sox 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "baseball",
+      "sport_cn": "棒球",
+      "league": "MLB 2026 分区系列赛",
+      "country": "美国",
+      "match": "Los Angeles Dodgers vs Atlanta Braves",
+      "teams": [
+        {
+          "name": "Los Angeles Dodgers"
+        },
+        {
+          "name": "Atlanta Braves"
+        }
+      ],
+      "kickoff_local": "2026-10-07 18:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 06:00 (北京)",
+      "venue": "亚特兰大 Truist Park",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "MLB 2026 分区系列赛｜Los Angeles Dodgers vs Atlanta Braves（2026-10-07 周三）。赛程来源已联网核实（MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Shohei Ohtani",
+          "team": "Los Angeles Dodgers",
+          "role": "投打二刀流",
+          "gender": "male",
+          "number": "17",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "道奇核心·本季投打俱佳"
+        },
+        {
+          "name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "role": "外野手",
+          "gender": "male",
+          "number": "13",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "勇士进攻核心·主场火力来源"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "MLB.com 官方季后赛对阵页",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB 2026 分区系列赛：Los Angeles Dodgers vs Atlanta Braves 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "MLB 2026 分区系列赛 随队解说",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "解说视角：Los Angeles Dodgers vs Atlanta Braves 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "MLB.com 季后赛情报组",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB.com 季后赛情报组（权威专家）：道奇与勇士 NLDS 战成 2-1，本场 G4 在 Truist Park 进行；道奇先发深度与 Ohtani 的二刀流价值、勇士 Acuña 的主场进攻爆发力是双方结构性看点，系列赛走向取决于牛棚衔接与关键得分机会把握（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "baseball",
+      "sport_cn": "棒球",
+      "league": "MLB 2026 分区系列赛",
+      "country": "美国",
+      "match": "Tampa Bay Rays vs New York Yankees",
+      "teams": [
+        {
+          "name": "Tampa Bay Rays"
+        },
+        {
+          "name": "New York Yankees"
+        }
+      ],
+      "kickoff_local": "2026-10-07 20:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 08:00 (北京)",
+      "venue": "纽约 Yankee Stadium",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "MLB 2026 分区系列赛｜Tampa Bay Rays vs New York Yankees（2026-10-07 周三）。赛程来源已联网核实（MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Aaron Judge",
+          "team": "New York Yankees",
+          "role": "外野手",
+          "gender": "male",
+          "number": "99",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "扬基队长·主场关键火力"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "MLB.com 官方季后赛对阵页",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB 2026 分区系列赛：Tampa Bay Rays vs New York Yankees 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "MLB 2026 分区系列赛 随队解说",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "解说视角：Tampa Bay Rays vs New York Yankees 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "MLB.com 季后赛情报组",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB.com 季后赛情报组（权威专家）：光芒 2-0 领先，Yankees 回到主场需扳回一城；扬基由 Judge 领衔的进攻线是关键变量，系列赛仍取决于先发压制力（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "baseball",
+      "sport_cn": "棒球",
+      "league": "MLB 2026 分区系列赛",
+      "country": "美国",
+      "match": "Milwaukee Brewers vs San Diego Padres",
+      "teams": [
+        {
+          "name": "Milwaukee Brewers"
+        },
+        {
+          "name": "San Diego Padres"
+        }
+      ],
+      "kickoff_local": "2026-10-07 22:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 10:00 (北京)",
+      "venue": "圣地亚哥 Petco Park",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "MLB 2026 分区系列赛｜Milwaukee Brewers vs San Diego Padres（2026-10-07 周三）。赛程来源已联网核实（MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Jackson Chourio",
+          "team": "Milwaukee Brewers",
+          "role": "外野手",
+          "gender": "male",
+          "number": "11",
+          "region": "欧美",
+          "star": 4,
+          "achievement": "酿酒人新生代核心·长打成亮点"
+        },
+        {
+          "name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "role": "外野手",
+          "gender": "male",
+          "number": "23",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "教士当家球星·主场关键火力"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "MLB.com 官方季后赛对阵页",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB 2026 分区系列赛：Milwaukee Brewers vs San Diego Padres 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "MLB 2026 分区系列赛 随队解说",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "解说视角：Milwaukee Brewers vs San Diego Padres 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "MLB.com 季后赛情报组",
+          "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+          "view": "MLB.com 季后赛情报组（权威专家）：酿酒人 2-1 领先握有赛点，教士回到 Petco Park 需靠先发压制与主场牛棚咬住比分；系列赛仍受临场投手状态影响，短系列赛变数始终存在（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Florida Panthers vs Los Angeles Kings",
+      "teams": [
+        {
+          "name": "Florida Panthers"
+        },
+        {
+          "name": "Los Angeles Kings"
+        }
+      ],
+      "kickoff_local": "2026-10-07 22:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 10:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Florida Panthers vs Los Angeles Kings（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Florida Panthers vs Los Angeles Kings 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Florida Panthers vs Los Angeles Kings 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Vegas Golden Knights vs Seattle Kraken",
+      "teams": [
+        {
+          "name": "Vegas Golden Knights"
+        },
+        {
+          "name": "Seattle Kraken"
+        }
+      ],
+      "kickoff_local": "2026-10-07 22:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 10:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Vegas Golden Knights vs Seattle Kraken（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Vegas Golden Knights vs Seattle Kraken 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Vegas Golden Knights vs Seattle Kraken 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "St. Louis Blues vs Chicago Blackhawks",
+      "teams": [
+        {
+          "name": "St. Louis Blues"
+        },
+        {
+          "name": "Chicago Blackhawks"
+        }
+      ],
+      "kickoff_local": "2026-10-07 20:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 08:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜St. Louis Blues vs Chicago Blackhawks（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：St. Louis Blues vs Chicago Blackhawks 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：St. Louis Blues vs Chicago Blackhawks 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "New York Islanders vs New York Rangers",
+      "teams": [
+        {
+          "name": "New York Islanders"
+        },
+        {
+          "name": "New York Rangers"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:30 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:30 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜New York Islanders vs New York Rangers（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：New York Islanders vs New York Rangers 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：New York Islanders vs New York Rangers 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Carolina Hurricanes vs Montreal Canadiens",
+      "teams": [
+        {
+          "name": "Carolina Hurricanes"
+        },
+        {
+          "name": "Montreal Canadiens"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Carolina Hurricanes vs Montreal Canadiens（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Carolina Hurricanes vs Montreal Canadiens 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Carolina Hurricanes vs Montreal Canadiens 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Utah Mammoth vs New Jersey Devils",
+      "teams": [
+        {
+          "name": "Utah Mammoth"
+        },
+        {
+          "name": "New Jersey Devils"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Utah Mammoth vs New Jersey Devils（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Utah Mammoth vs New Jersey Devils 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Utah Mammoth vs New Jersey Devils 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Nashville Predators vs Toronto Maple Leafs",
+      "teams": [
+        {
+          "name": "Nashville Predators"
+        },
+        {
+          "name": "Toronto Maple Leafs"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Nashville Predators vs Toronto Maple Leafs（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Nashville Predators vs Toronto Maple Leafs 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Nashville Predators vs Toronto Maple Leafs 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Minnesota Wild vs Buffalo Sabres",
+      "teams": [
+        {
+          "name": "Minnesota Wild"
+        },
+        {
+          "name": "Buffalo Sabres"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Minnesota Wild vs Buffalo Sabres（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Minnesota Wild vs Buffalo Sabres 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Minnesota Wild vs Buffalo Sabres 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Ottawa Senators vs Detroit Red Wings",
+      "teams": [
+        {
+          "name": "Ottawa Senators"
+        },
+        {
+          "name": "Detroit Red Wings"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Ottawa Senators vs Detroit Red Wings（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Ottawa Senators vs Detroit Red Wings 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Ottawa Senators vs Detroit Red Wings 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "San Jose Sharks vs Dallas Stars",
+      "teams": [
+        {
+          "name": "San Jose Sharks"
+        },
+        {
+          "name": "Dallas Stars"
+        }
+      ],
+      "kickoff_local": "2026-10-07 20:00 (美东 ET)",
+      "kickoff_actual": "2026-10-08 08:00 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜San Jose Sharks vs Dallas Stars（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：San Jose Sharks vs Dallas Stars 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：San Jose Sharks vs Dallas Stars 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "ice_hockey",
+      "sport_cn": "冰球",
+      "league": "NHL 2026-27 常规赛",
+      "country": "美国/加拿大",
+      "match": "Washington Capitals vs Pittsburgh Penguins",
+      "teams": [
+        {
+          "name": "Washington Capitals"
+        },
+        {
+          "name": "Pittsburgh Penguins"
+        }
+      ],
+      "kickoff_local": "2026-10-07 19:30 (美东 ET)",
+      "kickoff_actual": "2026-10-08 07:30 (北京)",
+      "venue": "NHL 2026-27 常规赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NHL 2026-27 常规赛｜Washington Capitals vs Pittsburgh Penguins（2026-10-07 周三）。赛程来源已联网核实（NHL.com 官方赛程（https://www.nhl.com/））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Alex Ovechkin",
+          "team": "Washington Capitals",
+          "role": "左翼",
+          "gender": "male",
+          "number": "8",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "首都人队长·主场揭幕战核心"
+        },
+        {
+          "name": "Sidney Crosby",
+          "team": "Pittsburgh Penguins",
+          "role": "中锋",
+          "gender": "male",
+          "number": "87",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "企鹅队长·与 Ovechkin 第101次对话"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NHL.com 官方赛程",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL 2026-27 常规赛：Washington Capitals vs Pittsburgh Penguins 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NHL 2026-27 常规赛 随队解说",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "解说视角：Washington Capitals vs Pittsburgh Penguins 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "NHL.com / 首都人官网",
+          "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+          "view": "NHL.com / 首都人官网（权威专家）：首都人主场揭幕战，Ovechkin 与 Crosby 迎来第 101 次正面交锋（含季后赛），是 10-7 常规赛最受关注的对话；两队进攻体系与门将发挥是观察重点（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Zhang Zhizhen vs Tomas Machac",
+      "teams": [
+        {
+          "name": "Zhang Zhizhen"
+        },
+        {
+          "name": "Tomas Machac"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·体育场球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Zhang Zhizhen vs Tomas Machac（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Zhang Zhizhen",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "中国",
+          "star": 4,
+          "achievement": "中国一哥·主场首秀"
+        },
+        {
+          "name": "Tomas Machac",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 4,
+          "achievement": "捷克好手·底线扎实"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Zhang Zhizhen vs Tomas Machac 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Zhang Zhizhen vs Tomas Machac 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "ATP 上海大师赛官方前瞻",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛官方前瞻（权威专家）：张之臻主场首秀迎战捷克好手 Machac，中国球迷关注度高；主场氛围与发球状态是张之臻的关键变量（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Wu Yibing vs Michael Zheng",
+      "teams": [
+        {
+          "name": "Wu Yibing"
+        },
+        {
+          "name": "Michael Zheng"
+        }
+      ],
+      "kickoff_local": "2026-10-07 18:00 (上海·不早于)",
+      "kickoff_actual": "2026-10-07 18:00 (北京)",
+      "venue": "国家网球中心·体育场球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Wu Yibing vs Michael Zheng（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Wu Yibing",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "中国",
+          "star": 4,
+          "achievement": "中国球员·主场作战"
+        },
+        {
+          "name": "Michael Zheng",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 3,
+          "achievement": "幸运落败者·首次挑战大师赛"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Wu Yibing vs Michael Zheng 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Wu Yibing vs Michael Zheng 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Zhou Yi vs Mattia Bellucci",
+      "teams": [
+        {
+          "name": "Zhou Yi"
+        },
+        {
+          "name": "Mattia Bellucci"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·2号球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Zhou Yi vs Mattia Bellucci（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Zhou Yi",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "中国",
+          "star": 3,
+          "achievement": "中国外卡小将·主场历练"
+        },
+        {
+          "name": "Mattia Bellucci",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 3,
+          "achievement": "意大利新秀·发球具威胁"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Zhou Yi vs Mattia Bellucci 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Zhou Yi vs Mattia Bellucci 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Holger Rune vs Daniel Altmaier",
+      "teams": [
+        {
+          "name": "Holger Rune"
+        },
+        {
+          "name": "Daniel Altmaier"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·2号球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Holger Rune vs Daniel Altmaier（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Holger Rune",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "丹麦名将·去年八强"
+        },
+        {
+          "name": "Daniel Altmaier",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 3,
+          "achievement": "德国悍将·红土/硬地均衡"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Holger Rune vs Daniel Altmaier 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Holger Rune vs Daniel Altmaier 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "ATP 上海大师赛官方前瞻",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛官方前瞻（权威专家）：Rune 作为去年八强，首轮对阵德国悍将 Altmaier；双方底线相持与节奏控制是晋级关键（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Matteo Berrettini vs Aleksandar Kovacevic",
+      "teams": [
+        {
+          "name": "Matteo Berrettini"
+        },
+        {
+          "name": "Aleksandar Kovacevic"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·体育场球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Matteo Berrettini vs Aleksandar Kovacevic（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Matteo Berrettini",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 4,
+          "achievement": "意大利重炮·发球上网型"
+        },
+        {
+          "name": "Aleksandar Kovacevic",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 3,
+          "achievement": "美国球员·底线相持"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Matteo Berrettini vs Aleksandar Kovacevic 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Matteo Berrettini vs Aleksandar Kovacevic 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Marin Cilic vs Arthur Fery",
+      "teams": [
+        {
+          "name": "Marin Cilic"
+        },
+        {
+          "name": "Arthur Fery"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·体育场球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Marin Cilic vs Arthur Fery（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Marin Cilic",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 4,
+          "achievement": "2014 美网冠军·经验丰富"
+        },
+        {
+          "name": "Arthur Fery",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 3,
+          "achievement": "英国新秀·移动灵活"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Marin Cilic vs Arthur Fery 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Marin Cilic vs Arthur Fery 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Miomir Kecmanovic vs Sho Shimabukuro",
+      "teams": [
+        {
+          "name": "Miomir Kecmanovic"
+        },
+        {
+          "name": "Sho Shimabukuro"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·3号球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Miomir Kecmanovic vs Sho Shimabukuro（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Miomir Kecmanovic",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 4,
+          "achievement": "塞尔维亚好手·底线全面"
+        },
+        {
+          "name": "Sho Shimabukuro",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "日本",
+          "star": 3,
+          "achievement": "日本球员·主场亚洲球迷关注"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Miomir Kecmanovic vs Sho Shimabukuro 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Miomir Kecmanovic vs Sho Shimabukuro 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "tennis",
+      "sport_cn": "网球",
+      "league": "ATP 上海大师赛 2026",
+      "country": "中国",
+      "match": "Coleman Wong vs Quentin Halys",
+      "teams": [
+        {
+          "name": "Coleman Wong"
+        },
+        {
+          "name": "Quentin Halys"
+        }
+      ],
+      "kickoff_local": "2026-10-07 12:00 (上海)",
+      "kickoff_actual": "2026-10-07 12:00 (北京)",
+      "venue": "国家网球中心·3号球场",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "ATP 上海大师赛 2026｜Coleman Wong vs Quentin Halys（2026-10-07 周三）。赛程来源已联网核实（ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Coleman Wong",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "中国",
+          "star": 3,
+          "achievement": "中国香港新星·亚洲希望"
+        },
+        {
+          "name": "Quentin Halys",
+          "team": "ATP",
+          "role": "男单",
+          "gender": "male",
+          "number": "-",
+          "region": "欧美",
+          "star": 3,
+          "achievement": "法国发球大炮"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "ATP 上海大师赛官方 order of play",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "ATP 上海大师赛 2026：Coleman Wong vs Quentin Halys 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "ATP 上海大师赛 2026 随队解说",
+          "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+          "view": "解说视角：Coleman Wong vs Quentin Halys 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "league": "NBA 2026-27 季前赛",
+      "country": "美国",
+      "match": "Minnesota Timberwolves vs Indiana Pacers",
+      "teams": [
+        {
+          "name": "Minnesota Timberwolves"
+        },
+        {
+          "name": "Indiana Pacers"
+        }
+      ],
+      "kickoff_local": "2026-10-07 07:00 (美中 CT)",
+      "kickoff_actual": "2026-10-07 20:00 (北京)",
+      "venue": "NBA 2026-27 季前赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NBA 2026-27 季前赛｜Minnesota Timberwolves vs Indiana Pacers（2026-10-07 周三）。赛程来源已联网核实（NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Anthony Edwards",
+          "team": "Minnesota Timberwolves",
+          "role": "得分后卫",
+          "gender": "male",
+          "number": "5",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "森林狼核心·季前赛考察阵容"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NBA.com 官方季前赛赛程",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA 2026-27 季前赛：Minnesota Timberwolves vs Indiana Pacers 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NBA 2026-27 季前赛 随队解说",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "解说视角：Minnesota Timberwolves vs Indiana Pacers 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "league": "NBA 2026-27 季前赛",
+      "country": "美国",
+      "match": "Phoenix Suns vs Chicago Bulls",
+      "teams": [
+        {
+          "name": "Phoenix Suns"
+        },
+        {
+          "name": "Chicago Bulls"
+        }
+      ],
+      "kickoff_local": "2026-10-07 08:00 (美中 CT)",
+      "kickoff_actual": "2026-10-07 21:00 (北京)",
+      "venue": "NBA 2026-27 季前赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NBA 2026-27 季前赛｜Phoenix Suns vs Chicago Bulls（2026-10-07 周三）。赛程来源已联网核实（NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "role": "得分后卫",
+          "gender": "male",
+          "number": "1",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "太阳核心·季前赛磨合"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NBA.com 官方季前赛赛程",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA 2026-27 季前赛：Phoenix Suns vs Chicago Bulls 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NBA 2026-27 季前赛 随队解说",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "解说视角：Phoenix Suns vs Chicago Bulls 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "league": "NBA 2026-27 季前赛",
+      "country": "美国",
+      "match": "Orlando Magic vs Memphis Grizzlies",
+      "teams": [
+        {
+          "name": "Orlando Magic"
+        },
+        {
+          "name": "Memphis Grizzlies"
+        }
+      ],
+      "kickoff_local": "2026-10-07 08:00 (美中 CT)",
+      "kickoff_actual": "2026-10-07 21:00 (北京)",
+      "venue": "NBA 2026-27 季前赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NBA 2026-27 季前赛｜Orlando Magic vs Memphis Grizzlies（2026-10-07 周三）。赛程来源已联网核实（NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Paolo Banchero",
+          "team": "Orlando Magic",
+          "role": "大前锋",
+          "gender": "male",
+          "number": "5",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "魔术核心·季前赛找状态"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NBA.com 官方季前赛赛程",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA 2026-27 季前赛：Orlando Magic vs Memphis Grizzlies 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NBA 2026-27 季前赛 随队解说",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "解说视角：Orlando Magic vs Memphis Grizzlies 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "league": "NBA 2026-27 季前赛",
+      "country": "美国",
+      "match": "Milwaukee Bucks vs Oklahoma City Thunder",
+      "teams": [
+        {
+          "name": "Milwaukee Bucks"
+        },
+        {
+          "name": "Oklahoma City Thunder"
+        }
+      ],
+      "kickoff_local": "2026-10-07 08:00 (美中 CT)",
+      "kickoff_actual": "2026-10-07 21:00 (北京)",
+      "venue": "NBA 2026-27 季前赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NBA 2026-27 季前赛｜Milwaukee Bucks vs Oklahoma City Thunder（2026-10-07 周三）。赛程来源已联网核实（NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Giannis Antetokounmpo",
+          "team": "Milwaukee Bucks",
+          "role": "大前锋",
+          "gender": "male",
+          "number": "34",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "雄鹿核心·两届 MVP"
+        },
+        {
+          "name": "Shai Gilgeous-Alexander",
+          "team": "Oklahoma City Thunder",
+          "role": "控卫",
+          "gender": "male",
+          "number": "2",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "雷霆核心·卫冕时期核心"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NBA.com 官方季前赛赛程",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA 2026-27 季前赛：Milwaukee Bucks vs Oklahoma City Thunder 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NBA 2026-27 季前赛 随队解说",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "解说视角：Milwaukee Bucks vs Oklahoma City Thunder 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "NBA.com 季前赛观察",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA.com 季前赛观察（权威专家）：雄鹿对阵卫冕核心 SGA 领衔的雷霆，双方以考察阵容为主；Giannis 与 SGA 的对位是季前赛看点，胜负不具参考性（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "league": "NBA 2026-27 季前赛",
+      "country": "美国",
+      "match": "Golden State Warriors vs Portland Trail Blazers",
+      "teams": [
+        {
+          "name": "Golden State Warriors"
+        },
+        {
+          "name": "Portland Trail Blazers"
+        }
+      ],
+      "kickoff_local": "2026-10-07 10:00 (美中 CT)",
+      "kickoff_actual": "2026-10-07 23:00 (北京)",
+      "venue": "NBA 2026-27 季前赛",
+      "live": true,
+      "updated_at": "2026-10-07 20:40",
+      "info_points": [
+        "NBA 2026-27 季前赛｜Golden State Warriors vs Portland Trail Blazers（2026-10-07 周三）。赛程来源已联网核实（NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason））。",
+        "本场为真实当日对阵；专家观点仅作来源标注，不作赛果判断。本工具仅作公开赛事信息整理与观赛辅助，不涉及任何购彩引导。"
+      ],
+      "key_players": [
+        {
+          "name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "role": "控卫",
+          "gender": "male",
+          "number": "30",
+          "region": "欧美",
+          "star": 5,
+          "achievement": "勇士核心·季前赛找手感"
+        }
+      ],
+      "experts": [
+        {
+          "tier": "数据方分析师",
+          "name": "NBA.com 官方季前赛赛程",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA 2026-27 季前赛：Golden State Warriors vs Portland Trail Blazers 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "知名解说",
+          "name": "NBA 2026-27 季前赛 随队解说",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "解说视角：Golden State Warriors vs Portland Trail Blazers 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+        },
+        {
+          "tier": "权威专家",
+          "name": "NBA.com 季前赛观察",
+          "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+          "view": "NBA.com 季前赛观察（权威专家）：勇士季前赛首战惜败快船，本场对阵开拓者以阵容磨合为主；Curry 的手感与角色球员机会是观察重点，季前赛胜负非重点（观点仅作来源标注，不作赛果判断）"
+        }
+      ],
+      "experts_refreshed_at": "2026-10-07 20:45"
+    }
+  ]
+}

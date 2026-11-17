@@ -1,0 +1,82 @@
+{
+ "content": [
+  {
+   "text": "In 1989 an Apollo 11 astronaut argued for one long-range goal, with no firm timetable. Do you agree? #apollo11 #mars #space",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-orbit-02"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-10-08T16:30:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "PUBLIC_TO_EVERYONE",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": false,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "contentOverride": [
+    {
+     "text": "In 1989 an Apollo 11 astronaut argued for one long-range goal, with no firm timetable. Do you agree? #apollo11 #mars #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-02"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-acct-orbit-instagram",
+   "postType": "REEL",
+   "contentOverride": [
+    {
+     "text": "Twenty years after Apollo 11, one of its crew on the goal he thought would unite everyone.\n\nFull episode: link in bio.\n#apollo11 #mars #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-02"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "example-acct-orbit-youtube",
+   "title": "An Apollo 11 astronaut makes the case for Mars (1989)",
+   "privacy": "public",
+   "madeForKids": false,
+   "tags": [
+    "apollo 11",
+    "mars",
+    "space history"
+   ],
+   "contentOverride": [
+    {
+     "text": "An Apollo 11 astronaut in 1989 on a long-range goal for Mars. #Shorts",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-02"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

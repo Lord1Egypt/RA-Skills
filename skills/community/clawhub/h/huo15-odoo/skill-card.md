@@ -1,42 +1,58 @@
-## Description: <br>
-Provides Odoo 19 XML-RPC guidance, configuration prompts, and examples for querying and operating Huo15 Odoo business models, including projects, tasks, CRM, inventory, sales, Knowledge, and local Docker development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Odoo 19 XML-RPC access guide for configuring connections, querying and changing Odoo business records, troubleshooting common errors, and running a local Docker development setup.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Odoo connection details and generate XML-RPC examples for common ERP workflows. It is intended for agents that need guidance, code snippets, shell commands, and configuration steps for Huo15 Odoo 19 integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide live ERP credentials and may store them in local OpenClaw configuration files. <br>
-Mitigation: Install only from a trusted publisher, use a least-privilege Odoo account, and confirm where credential files are stored and who can read them. <br>
-Risk: The artifact documents disabling TLS certificate verification for Odoo connections. <br>
-Mitigation: Avoid production credentials until TLS verification is fixed or certificate trust is handled safely. <br>
-Risk: The Odoo API examples include create, update, and delete operations against business records. <br>
-Mitigation: Review generated operations before execution, test with non-production data when possible, and restrict the Odoo account to only the required models and permissions. <br>
+## Use Case:
 
+Developers and business-system operators use this skill to guide Odoo 19 XML-RPC setup, authentication, model operations, CRM activity workflows, reporting examples, troubleshooting, and local Docker development.
 
-## Reference(s): <br>
-- [Odoo Docker Configuration Repository](https://cnb.cool/huo15/tools/odoo19_docker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Odoo XML-RPC examples and configuration guidance; no structured machine-readable output contract is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.1 (source: skill.json and server release metadata) <br>
+Risk: The skill stores and uses Odoo credentials for access to business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged, revocable Odoo account and avoid granting production access without review.
+
+Risk: The skill recommends bypassing TLS certificate verification for SSL troubleshooting.
+
+Mitigation: Use the SSL verification bypass only in controlled non-production troubleshooting; fix certificate trust for normal use.
+
+Risk: The skill includes examples for write, delete, bulk conversion, and activity-creation operations on Odoo records.
+
+Mitigation: Require confirmation before allowing an agent to run data-changing or bulk operations, especially in production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-odoo)
+- [Odoo Docker configuration repository](https://cnb.cool/huo15/tools/odoo19_docker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes XML-RPC request examples, configuration prompts, troubleshooting notes, and Docker commands.]
+
+## Skill Version(s):
+
+1.7.1 (source: artifact/skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Biometric guardrail for OpenClaw. Intercepts dangerous tool calls and requires Face ID verification via TruClaw iOS app before execution. Biometric processing is on-device only. A relay (Cloudflare Worker, source included) handles push delivery and JWT exchange. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Biometric guardrail for OpenClaw that intercepts dangerous tool calls and requires Face ID authorization through the TruClaw iOS app before execution.
 
-## Publisher: <br>
-[sanjaymk908](https://clawhub.ai/user/sanjaymk908) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanjaymk908](https://clawhub.ai/user/sanjaymk908)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to require biometric approval before sensitive tool calls such as shell commands, file changes, network sends, or message and financial actions are allowed to proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a privileged external plugin and sensitive identity enrollment. <br>
-Mitigation: Review the exact npm and GitHub plugin sources before installing, and enroll only after confirming the identity and biometric data handling model is acceptable. <br>
-Risk: Tool-call details and approval metadata may pass through third-party services. <br>
-Mitigation: Prefer a self-hosted relay for sensitive work and avoid using the shared relay around secrets until its filtering, storage, and transmission behavior is reviewed. <br>
-Risk: The skill requires a sensitive Anthropic API key. <br>
-Mitigation: Use a dedicated, revocable API key scoped to this integration. <br>
+## Use Case:
 
+External developers and OpenClaw operators use this skill to require phone-based biometric authorization before high-risk agent tool calls such as write, delete, network, install, messaging, financial, process, and permission-changing actions.
 
-## Reference(s): <br>
-- [TruClaw source repository](https://github.com/sanjaymk908/trukyc-openclaw) <br>
-- [TruClaw relay source](https://github.com/sanjaymk908/trukyc-openclaw/tree/main/cloudflare-worker) <br>
-- [Truclaw Biometric on ClawHub](https://clawhub.ai/sanjaymk908/truclaw-biometric) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with inline configuration and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TruClaw iOS app enrollment, TRUKYC_RELAY_URL, and ANTHROPIC_API_KEY_TRUKYC.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill installs a persistent privileged hook that can inspect tool-call arguments and affect execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the exact plugin source before installing, and prefer testing in an isolated environment before using it in higher-impact workflows.
+
+Risk: Tool names and arguments may be sent to external services while privacy and approval details are under-specified.
+
+Mitigation: Be comfortable with data sent to Anthropic, consider self-hosting the relay, and avoid secrets, private file contents, or high-impact automation until authorization JWT claims and data minimization behavior are documented and verifiable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanjaymk908/skills/truclaw-biometric)
+- [Project homepage](https://github.com/sanjaymk908/trukyc-openclaw)
+- [Plugin source](https://github.com/sanjaymk908/trukyc-openclaw/tree/main/)
+- [Relay source](https://github.com/sanjaymk908/trukyc-openclaw/tree/main/cloudflare-worker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide installation, pairing, self-hosting, and risk-review guidance for an OpenClaw plugin.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

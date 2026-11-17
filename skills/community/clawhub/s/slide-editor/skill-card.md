@@ -1,46 +1,59 @@
-## Description: <br>
-Visual editor for HTML presentations. Self-contained, offline-capable, designed for AI agent control. HTML 演示文稿可视化编辑器，自包含可离线，支持 AI Agent 控制。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A browser-based visual editor for HTML presentations that can inject an offline editor, expose agent-controllable slide editing APIs, and export edited HTML.
 
-## Publisher: <br>
-[DTacheng](https://clawhub.ai/user/DTacheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dtacheng](https://clawhub.ai/user/dtacheng)
 
-## Use Case: <br>
-Developers and agents use this skill to inject a browser-based editor into HTML presentations, manipulate slide elements visually or through a JavaScript API, and export clean or editor-enabled HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recommended workflow rewrites local HTML presentation files. <br>
-Mitigation: Run the injector against a copy of the presentation and review the exported HTML before replacing original files. <br>
-Risk: The injector can execute local shell commands to open files in a browser. <br>
-Mitigation: Avoid the --open option for untrusted or unusually named files until the shell execution path has been reviewed and hardened. <br>
-Risk: The editor exposes broad browser-global editing controls. <br>
-Mitigation: Use the editor only on presentations you intend to modify and inspect exported files before sharing or deploying them. <br>
-Risk: The documentation includes curl pipe-to-shell and PowerShell installer commands for Bun. <br>
-Mitigation: Install Bun through a trusted, independently verified method before running the skill workflow. <br>
+## Use Case:
 
+Developers, presentation authors, and AI agents use this skill to add a browser-based editor to HTML presentations, manipulate slides and elements through a visual UI or JavaScript API, and export clean edited HTML.
 
-## Reference(s): <br>
-- [ClawHub Slide Editor listing](https://clawhub.ai/DTacheng/slide-editor) <br>
-- [Bun runtime](https://bun.sh) <br>
-- [Bun install documentation](https://bun.sh/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript examples; generated or rewritten HTML presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can inject the editor inline or as a linked bundle, open the edited presentation in a browser, and export clean HTML without editor artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Install and open workflows create avoidable command-execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid curl|bash or PowerShell iex Bun installation commands, and avoid --open on files with untrusted names until the shell execution path is fixed.
+
+Risk: Injected or exported presentations can be active JavaScript-bearing HTML documents.
+
+Mitigation: Work on copies, inspect exported HTML before sharing, and open generated presentations only in trusted contexts.
+
+Risk: The injector can modify the source presentation file in place.
+
+Mitigation: Use a separate output path or a backup copy when editing valuable presentations.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/dtacheng/skills/slide-editor)
+- [Publisher profile](https://clawhub.ai/user/dtacheng)
+- [Bun runtime](https://bun.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JavaScript API examples; runtime output is edited or exported HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inject JavaScript into presentation HTML and may export active JavaScript-bearing HTML documents.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

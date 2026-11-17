@@ -1,55 +1,68 @@
-## Description: <br>
-Web Coder provides expert web-development guidance for HTML, CSS, JavaScript, web APIs, HTTP/HTTPS, security, performance, accessibility, and modern frontend and backend standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert 10x engineer with comprehensive knowledge of web development, internet protocols, and web standards. Use when working with HTML, CSS, JavaScript, web APIs, HTTP/HTTPS, web security, performance optimization, accessibility, or any web/internet concepts. Specializes in translating web terminology accurately and implementing modern web standards across frontend and backend development.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to interpret web-development requirements and produce standards-aligned guidance, code, shell commands, and configuration for frontend, backend, security, accessibility, performance, and infrastructure work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated commands or code for deployment, package installation, authentication, or security changes could affect systems if used without review. <br>
-Mitigation: Review generated commands and code before running them, and test changes in an appropriate development or staging environment first. <br>
-Risk: Broad web-development guidance may need adaptation to project-specific security, accessibility, performance, and compatibility requirements. <br>
-Mitigation: Validate recommendations against the target application's requirements and include normal code review, security review, and testing before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhauga/web-coder) <br>
-- [Accessibility Reference](references/accessibility.md) <br>
-- [Architecture & Patterns Reference](references/architecture-patterns.md) <br>
-- [Browsers & Engines Reference](references/browsers-engines.md) <br>
-- [CSS & Styling Reference](references/css-styling.md) <br>
-- [Data Formats & Encoding Reference](references/data-formats-encoding.md) <br>
-- [Development Tools Reference](references/development-tools.md) <br>
-- [Glossary](references/glossary.md) <br>
-- [HTML & Markup Reference](references/html-markup.md) <br>
-- [HTTP & Networking Reference](references/http-networking.md) <br>
-- [JavaScript & Programming Reference](references/javascript-programming.md) <br>
-- [Media & Graphics Reference](references/media-graphics.md) <br>
-- [Performance & Optimization Reference](references/performance-optimization.md) <br>
-- [Security & Authentication Reference](references/security-authentication.md) <br>
-- [Servers & Infrastructure Reference](references/servers-infrastructure.md) <br>
-- [Web APIs & DOM Reference](references/web-apis-dom.md) <br>
-- [Web Protocols & Standards Reference](references/web-protocols-standards.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to work across web development tasks, including standards-compliant HTML, CSS, JavaScript, web APIs, HTTP/HTTPS, accessibility, security, performance, and infrastructure topics. It supports translating web requirements into accurate terminology, implementation guidance, code, commands, and configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation guidance, generated code, configuration snippets, and commands that should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes examples for package installation, deployment, privileged service management, and secret-handling patterns.
+
+Mitigation: Review commands before execution, prefer pinned package versions, use least-privilege environments, and keep secrets in placeholder-only example files.
+
+Risk: Broad web-development guidance can be applied in security-sensitive contexts such as authentication, authorization, CORS, CSP, TLS, and infrastructure changes.
+
+Mitigation: Require project-specific security review before deploying authentication, authorization, network, or infrastructure changes derived from the skill.
+
+## Reference(s):
+
+- [Web Coder Skill Page](https://clawhub.ai/jhauga/skills/web-coder)
+- [Accessibility Reference](references/accessibility.md)
+- [Architecture & Patterns Reference](references/architecture-patterns.md)
+- [Browsers & Engines Reference](references/browsers-engines.md)
+- [CSS & Styling Reference](references/css-styling.md)
+- [Data Formats & Encoding Reference](references/data-formats-encoding.md)
+- [Development Tools Reference](references/development-tools.md)
+- [Glossary](references/glossary.md)
+- [HTML & Markup Reference](references/html-markup.md)
+- [HTTP & Networking Reference](references/http-networking.md)
+- [JavaScript & Programming Reference](references/javascript-programming.md)
+- [Media & Graphics Reference](references/media-graphics.md)
+- [Performance & Optimization Reference](references/performance-optimization.md)
+- [Security & Authentication Reference](references/security-authentication.md)
+- [Servers & Infrastructure Reference](references/servers-infrastructure.md)
+- [Web APIs & DOM Reference](references/web-apis-dom.md)
+- [Web Protocols & Standards Reference](references/web-protocols-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include implementation steps, code snippets, configuration examples, terminology clarification, and review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

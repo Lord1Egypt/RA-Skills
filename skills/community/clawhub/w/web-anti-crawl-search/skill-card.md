@@ -1,40 +1,60 @@
-## Description: <br>
-Uses a headless browser to search multiple domestic and international search engines for current web results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches current web content across multiple search engines with headless browser scripts and returns result titles, links, snippets, and source labels.
 
-## Publisher: <br>
-[dlutwuwei](https://clawhub.ai/user/dlutwuwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dlutwuwei](https://clawhub.ai/user/dlutwuwei)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to run live searches for recent news, market information, and other time-sensitive queries. It can compare results across supported search engines and fall back when an engine is unavailable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Headless browser automation loads remote pages while Chromium sandboxing is disabled.
+
+Mitigation: Run the skill only in an isolated environment and prefer removing Chromium no-sandbox flags before deployment.
+
+Risk: Stealth browser automation may bypass anti-crawl controls and can raise policy or terms-of-use concerns.
+
+Mitigation: Review target engine terms and remove the stealth plugin unless its use is explicitly approved.
+
+Risk: Search terms may be sent to third-party search engines and remote pages.
+
+Mitigation: Avoid sensitive, confidential, or regulated search terms.
+
+Risk: Dependencies and documented engine support may need release review before installation.
+
+Mitigation: Regenerate dependencies from an approved registry with pinned versions and align the documented engine list with the scripts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current search results, news, finance-related pages, and cross-engine comparisons when static knowledge is insufficient. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to external search providers. <br>
-Mitigation: Avoid secrets, credentials, regulated data, private customer data, and confidential internal project names in queries. <br>
-Risk: Browser automation uses stealth behavior and no-sandbox launch flags. <br>
-Mitigation: Run the skill in a constrained environment and review these browser settings for site-policy compliance and containment requirements before deployment. <br>
+**Output Format:** [Markdown or JSON search-result lists with titles, links, snippets, and source labels.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlutwuwei/web-anti-crawl-search) <br>
+**Other Properties Related to Output:** [Requires network access and a headless Chromium runtime; result quality depends on search engine availability and page markup.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON search-result lists with titles, links, snippets, and source labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are gathered from selected external search providers through browser automation and may vary by provider availability.] <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Provides a local Python helper to send minimal review payloads to a trusted AANA HTTP bridge for policy guidance inside the skill package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guardrail instructions and a bundled Python helper that sends minimal, redacted review payloads to a trusted localhost AANA HTTP bridge for policy guidance.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agents use this skill to route redacted action-review summaries to a trusted local AANA bridge before acting on sensitive or policy-relevant work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payloads may contain secrets or unnecessary private records. <br>
-Mitigation: Use redacted summaries only, avoid secrets and raw private records, and rely on the helper's secret-like key checks before sending a payload. <br>
-Risk: Bridge recommendations may be treated as authoritative without review. <br>
-Mitigation: Treat bridge output as guidance unless the bridge and policy have been separately reviewed and trusted. <br>
-Risk: A missing or untrusted local bridge could lead to unreliable guardrail decisions. <br>
-Mitigation: Use the helper only with a trusted localhost AANA bridge; otherwise perform manual review. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a local guardrail review step before taking actions that need policy guidance. The helper packages a minimal review payload, posts it to a user-approved localhost AANA bridge, and treats non-accept recommendations as prompts to revise, ask, defer, or refuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-guardrail-bundled) <br>
-- [README](README.md) <br>
-- [Review payload schema](schemas/review-payload.schema.json) <br>
-- [Redacted review payload example](examples/redacted-review-payload.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown instructions and JSON bridge responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires redacted JSON payloads and a user-approved localhost AANA bridge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Payloads may contain sensitive or unnecessary private information if prepared carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted summaries only, omit secrets and full private records, and delete temporary payload files unless an audit record is explicitly required.
+
+Risk: The helper depends on the trustworthiness of the configured local AANA bridge.
+
+Mitigation: Run it only with a reviewed localhost bridge approved by the user or administrator; use manual review when no trusted bridge is available.
+
+Risk: Strict localhost-only deployments may be exposed to redirect behavior from the HTTP client stack.
+
+Mitigation: Prefer a helper version that rejects redirects when strict localhost-only networking is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-guardrail-bundled)
+- [Publisher profile](https://clawhub.ai/user/mindbomber)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Package manifest](artifact/manifest.json)
+- [Review payload schema](artifact/schemas/review-payload.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with JSON payload examples and helper JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local payload file and a trusted localhost AANA bridge; exits nonzero when the recommendation is not accept.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, created 2026-05-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

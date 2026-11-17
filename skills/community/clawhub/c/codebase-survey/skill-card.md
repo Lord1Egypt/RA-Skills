@@ -1,41 +1,55 @@
-## Description: <br>
-Surveys an existing codebase to understand its structure, scope, architecture, and current state before planning or implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codebase Survey guides an agent through repository reconnaissance so it can summarize structure, architecture, code quality, deployment context, and maintainability before planning or implementation.
 
-## Publisher: <br>
-[adelvillar1](https://clawhub.ai/user/adelvillar1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adelvillar1](https://clawhub.ai/user/adelvillar1)
 
-## Use Case: <br>
-Developers and engineers use this skill to orient an agent in an unfamiliar or long-neglected repository, survey architecture and project state, and produce a concise markdown report before planning or implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A repository survey can expose private project context or credential-adjacent details if the agent reads outside the intended scope. <br>
-Mitigation: Keep the survey scoped to the intended repository and do not approve reads of local/private context or secret files unless that information is appropriate to use. <br>
-Risk: The generated architecture or maintainability summary may be incomplete or misleading if source files are sampled too narrowly or stale documentation is treated as current. <br>
-Mitigation: Review the synthesized report against the repository's current source, docs, and security guidance before using it for planning or implementation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to onboard to unfamiliar or long-neglected codebases, run full surveys or targeted domain deep dives, and produce concise Markdown reports that support planning, handoffs, and maintenance decisions.
 
-## Reference(s): <br>
-- [Codebase Survey Checklist](references/codebase-survey-checklist.md) <br>
-- [Targeted Domain Deep Dive Checklist](references/targeted-deep-dive-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with command snippets, tables, and concise analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Synthesizes findings instead of dumping raw files and includes cautions around secrets and private local context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Repository surveys can expose sensitive architecture, timeline, customer, velocity, or operating-context details in the generated report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the requested report before use and omit maturity, velocity, or future-reader context sections when those details are sensitive.
+
+Risk: The workflow asks the agent to inspect repository structure, recent git history, documentation, schemas, and representative source files.
+
+Mitigation: Run it only in repositories where that level of code and documentation access is appropriate, and keep secret-bearing files out of scope.
+
+## Reference(s):
+
+- [Codebase Survey ClawHub Skill Page](https://clawhub.ai/adelvillar1/skills/codebase-survey)
+- [Codebase Survey Checklist](references/codebase-survey-checklist.md)
+- [Targeted Domain Deep Dive Checklist](references/targeted-deep-dive-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with concise prose, tables, checklists, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Synthesizes representative repository evidence and avoids raw file dumps except for brief quoted patterns.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

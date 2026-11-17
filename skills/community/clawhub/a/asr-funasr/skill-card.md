@@ -1,43 +1,49 @@
-## Description: <br>
-Provides local speech-to-text transcription using FunASR SenseVoice by default or OpenAI Whisper for multilingual transcription and translation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic Speech Recognition using OpenAI Whisper (local GPU). Supports Chinese, English, and 90+ languages. Auto-detects language.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe local audio files, choose FunASR or Whisper, set language and model options, and optionally save transcripts to a file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default FunASR path can run downloaded model code. <br>
-Mitigation: Use an isolated Python environment and review or pin the ModelScope model and dependencies before deployment. <br>
-Risk: First run downloads model weights into the local cache. <br>
-Mitigation: Allow downloads only from approved sources or pre-populate a reviewed cache in controlled environments. <br>
-Risk: The script prepends a hard-coded /home/vincent dependency path. <br>
-Mitigation: Remove or adjust the path before use so dependency resolution matches the target environment. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe audio files into text with either the default FunASR SenseVoice engine for Chinese, Japanese, Korean, and Cantonese speech or Whisper for multilingual transcription and translation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vincentlau2046-sudo/asr-funasr) <br>
-- [Skill source README](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands] <br>
-**Output Format:** [Plain text transcript on stdout with optional transcript file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Engine, language, task, model size, and output path options affect runtime, quality, and saved output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The default FunASR engine executes unpinned remote model code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in an isolated environment without sensitive files or credentials, prefer Whisper when acceptable, and require pinned dependencies/model revisions or removal of trust_remote_code=True before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/skills/asr-funasr)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [Plain text transcript printed to stdout or written to a requested output file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes detected language metadata in console output; Whisper mode can translate speech to English text.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

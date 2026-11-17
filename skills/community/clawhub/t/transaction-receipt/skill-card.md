@@ -1,47 +1,61 @@
-## Description: <br>
-Transaction Receipt helps an agent turn valid BTC or EVM transaction hashes into human-readable on-chain receipts with status, fees, transfers, approvals, swaps, DeFi interactions, NFT activity, and clear fallback behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-readable on-chain transaction receipt that resolves transaction status, fees, and intent for transfers, swaps, approvals, DeFi-style calls, and NFT mint or transfer activity.
 
-## Publisher: <br>
-[bevanding](https://clawhub.ai/user/bevanding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bevanding](https://clawhub.ai/user/bevanding)
 
-## Use Case: <br>
-External users, wallet operators, support teams, and developers use this skill to explain blockchain transaction hashes in plain language, including whether a transaction succeeded, what assets moved, what fees were paid, and what contract interaction appears to have occurred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction hashes and request metadata may be sent to Tokenview or public blockchain endpoints during lookups. <br>
-Mitigation: Use the skill only when sharing transaction lookup data with those endpoints is acceptable for the deployment environment. <br>
-Risk: A configured Tokenview API key is sensitive and could be exposed if pasted into chat or logs. <br>
-Mitigation: Provide TOKENVIEW_API_KEY through the agent environment or an approved secret store, rotate it if exposed, and do not paste full keys into prompts. <br>
-Risk: On-chain data can be incomplete, unavailable, or difficult to decode for complex contract interactions. <br>
-Mitigation: Treat the receipt as a best-effort explanation, avoid inventing missing amounts or counterparties, and fall back to clearly stating unavailable or not fully decoded fields. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to turn a Bitcoin or EVM transaction hash into a concise, human-readable receipt with status, fees, fund flow, and a plain-language interpretation of common transaction intents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bevanding/transaction-receipt) <br>
-- [Publisher profile](https://clawhub.ai/user/bevanding) <br>
-- [Repository listed in skill metadata](https://github.com/AntalphaAI/transaction-receipt) <br>
-- [Tokenview](https://tokenview.io) <br>
-- [Ethereum public RPC endpoint](https://ethereum.publicnode.com) <br>
-- [Blockstream transaction API](https://blockstream.info/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown receipt summaries with concise status, overview, interaction, fee, and takeaway sections; setup guidance may include shell commands and environment-variable configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; TOKENVIEW_API_KEY is optional and fallback lookups use public read-only endpoints with rate limiting and response validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release metadata) <br>
+Risk: Transaction hashes are sent to Tokenview and public blockchain endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing transaction hashes with those services is acceptable for the use case.
+
+Risk: The optional Tokenview API key is used in URL-based curl requests and may be visible in local process or URL logs.
+
+Mitigation: Use a low-privilege API key, avoid pasting secrets into chat, and review local logging exposure before enabling the key.
+
+Risk: A user-configured rate-limit file path can be rewritten by the skill.
+
+Mitigation: Set TRANSACTION_RECEIPT_RATE_FILE only to a dedicated, non-critical state file path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bevanding/skills/transaction-receipt)
+- [Source Repository](https://github.com/AntalphaAI/transaction-receipt)
+- [Tokenview](https://tokenview.io)
+- [Ethereum PublicNode](https://ethereum.publicnode.com)
+- [Blockstream API](https://blockstream.info/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown transaction receipt or concise plain-text error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction status, overview, interaction summary, fees, and a one-line takeaway; avoids raw upstream response bodies.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

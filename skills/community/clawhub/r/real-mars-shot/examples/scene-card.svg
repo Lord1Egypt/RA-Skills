@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" id="scene-card">
+  <rect width="960" height="540" fill="#12151c"/>
+  <circle cx="760" cy="150" r="70" fill="#c4553a"/>
+  <circle cx="730" cy="120" r="18" fill="#8d3a2c"/>
+  <rect x="80" y="300" width="220" height="70" rx="8" fill="#2c3340" stroke="#d7c4a3"/>
+  <rect x="100" y="250" width="80" height="50" fill="#3d4c5c"/>
+  <polygon points="150,250 190,210 230,250" fill="#d7c4a3"/>
+  <rect x="360" y="330" width="16" height="80" fill="#888"/>
+  <polygon points="352,330 384,330 368,250" fill="#eee"/>
+  <text x="48" y="56" fill="#f3efe6" font-family="Georgia, serif" font-size="28">火种计划</text>
+  <text x="48" y="92" fill="#d7c4a3" font-family="sans-serif" font-size="16">2026-08 · earth_analog · scene</text>
+  <text x="48" y="470" fill="#c9d2df" font-family="sans-serif" font-size="14">阶段：地球模拟</text>
+  <text x="48" y="500" fill="#8ea0b5" font-family="sans-serif" font-size="12">zh · real mars shot</text>
+</svg>

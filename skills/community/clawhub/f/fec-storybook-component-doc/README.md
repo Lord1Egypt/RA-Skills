@@ -1,4 +1,4 @@
-# Storybook 组件文档化
+# Storybook component documentation
 
 Storybook component documentation, design-system presentation, isolated state previews, and Storybook-scoped visual baselines.
 
@@ -6,12 +6,12 @@ Storybook component documentation, design-system presentation, isolated state pr
 
 - ID: `fec-storybook-component-doc`
 - Category: `design-ui`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-storybook-component-doc/SKILL.md`
 
 ## Description
 
-Use when setting up or reviewing Storybook component documentation, design-system presentation, isolated component state previews, stories, addons, decorators, MDX docs, component-state interaction checks, visual baselines, or Chromatic. For real-browser cross-page journeys or broader coverage planning, choose the matching testing workflow first; Chinese triggers include Storybook, 组件文档, Design System, 视觉回归.
+Use when setting up or reviewing Storybook component documentation, design-system presentation, isolated component state previews, stories, addons, decorators, MDX docs, component-state interaction checks, visual baselines, or Chromatic. For real-browser cross-page journeys or broader coverage planning, choose the matching testing workflow first; Chinese triggers include Storybook, component documentation, Design System, visual regression.
 
 ## Usage
 

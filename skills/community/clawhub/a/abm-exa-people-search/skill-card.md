@@ -1,42 +1,52 @@
-## Description: <br>
-Helps users find specific people at companies or discover who holds certain roles using Exa similarity search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find specific public professional profiles by role, company, or known profile using Exa similarity search.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mariokarras](https://clawhub.ai/user/mariokarras)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to identify specific people at companies by role, profile, or company context for legitimate professional research, outreach, hiring, or partnership workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: People-search workflows can collect or expose unnecessary personal details or be used for inappropriate targeting.
+
+Mitigation: Use only for legitimate professional research or outreach, limit collection to necessary public professional information, and avoid harassment lists or uses that bypass platform terms or privacy laws.
+
+Risk: Profile URLs or titles may be misleading if inferred from search result patterns alone.
+
+Mitigation: Verify names, titles, companies, and relevance from fetched profile content before presenting results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to identify specific individuals by company, role, or profile for outreach, research, hiring, or partnership work. It is intended for finding the right person, not for building broad company prospect lists. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: People-search queries, company names, roles, and profile URLs may be sent to Exa through the referenced CLI. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid submitting sensitive personal or confidential business information. <br>
-Risk: The skill depends on a local tools/clis/exa.js CLI whose source is outside the provided artifact. <br>
-Mitigation: Confirm the CLI comes from a trusted source before using commands produced by the skill. <br>
-Risk: The skill may read local product-marketing context files for task context. <br>
-Mitigation: Keep secrets and sensitive internal details out of those context files unless they are approved for this workflow. <br>
+**Output Format:** [Markdown with inline bash code blocks and structured results tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-exa-people-search) <br>
+**Other Properties Related to Output:** [Results should include names, titles, companies, profile URLs, key details, and relevance notes when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tables, person-detail sections, and inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should include target context, count found, name, title, company, profile URL, key information, background when available, and relevance.] <br>
+1.0.0 (source: release metadata and skill frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Fetch and save WeChat Official Account articles with full content and images, including automatic image download, JSON export, and full-page screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and save WeChat Official Account articles with full content and images, including image downloads, JSON export, and full-page screenshots.
 
-## Publisher: <br>
-[robertstarry-gif](https://clawhub.ai/user/robertstarry-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robertstarry-gif](https://clawhub.ai/user/robertstarry-gif)
 
-## Use Case: <br>
-Developers and content operations users can use this skill to archive, back up, or analyze WeChat Official Account articles. It supports single-article and batch workflows that save article text, metadata, images, and screenshots for local review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local archives of WeChat article text, images, and screenshots, which may include sensitive or copyrighted content. <br>
-Mitigation: Use it only for content you are authorized to store, choose the output directory deliberately, and use --no-images or --no-screenshot when those files are not needed. <br>
-Risk: The virtual environment helper includes a --script option that can run a user-selected local Python script. <br>
-Mitigation: Use --script only when both the script path and virtual environment are fully trusted. <br>
-Risk: Batch fetching can produce broad network activity and local storage growth. <br>
-Mitigation: Start with a small test set, keep delays enabled for batch runs, and review the generated output before scaling up. <br>
+## Use Case:
 
+Developers and content operations teams use this skill to archive, save, or analyze WeChat Official Account articles. It supports single-article and batch capture workflows that preserve article text, metadata, images, and screenshots.
 
-## Reference(s): <br>
-- [Playwright Python Documentation](https://playwright.dev/python/) <br>
-- [WeChat Open Platform](https://open.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples; runtime outputs include JSON files, downloaded images, and PNG screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped local output directories; image download and screenshot capture can be disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reaches remote sites and stores downloaded content from user-supplied article URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a contained environment with restricted outbound network access, a quota-limited output directory, and verified HTTPS mp.weixin.qq.com article URLs.
+
+Risk: The virtual-environment wrapper can run a caller-selected script path.
+
+Mitigation: Avoid the arbitrary --script wrapper option and invoke the intended fetch.py or batch_fetch.py scripts directly.
+
+Risk: Weak URL handling and broad helper scripts can reach or execute more than users expect.
+
+Mitigation: Review the skill before installation, avoid running it as root, and test with a small set of known-good articles before batch use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/robertstarry-gif/skills/liuzln-openclaw-skills-wechat-article-fetcher)
+- [Playwright Python documentation](https://playwright.dev/python/)
+- [WeChat Open Platform](https://open.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command and Python examples; fetched article data is saved as JSON plus image and screenshot files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs may include local article directories containing article.json, article.png, and downloaded image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

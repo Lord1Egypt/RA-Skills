@@ -1,43 +1,52 @@
-## Description: <br>
-Provides Cloudflare Developer Platform guidance for Workers, Pages, D1, R2, KV, Workers AI, security practices, deployment patterns, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Cloudflare Developer Platform guidance for Workers, Pages, D1, R2, KV, Workers AI, security practices, deployment workflows, architecture patterns, and troubleshooting.
 
-## Publisher: <br>
-[infamoustho](https://clawhub.ai/user/infamoustho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infamoustho](https://clawhub.ai/user/infamoustho)
 
-## Use Case: <br>
-Developers and engineers use this skill to get practical guidance for building, deploying, securing, and troubleshooting applications on Cloudflare's developer platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment, creation, and migration commands can create or modify live Cloudflare resources. <br>
-Mitigation: Confirm the intended Cloudflare account and environment before running wrangler deploy, create, or migrations apply commands; test changes first where possible. <br>
-Risk: Documentation guidance may be copied into a production workflow without review. <br>
-Mitigation: Review generated commands and configuration against the target application, account, and environment before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to get practical Cloudflare guidance for building, deploying, securing, optimizing, and troubleshooting serverless applications on the Cloudflare Developer Platform.
 
-## Reference(s): <br>
-- [Cloudflare Developer Docs](https://developers.cloudflare.com/) <br>
-- [Cloudflare Starter Hub](https://onboarding.orangecloud.vn/) <br>
-- [Cloudflare Developer Changelog](https://developers.cloudflare.com/changelog/) <br>
-- [Cloudflare Community Forums](https://community.cloudflare.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; users should review commands before applying them to live Cloudflare accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: Example Wrangler deploy, create, and migration commands may affect live Cloudflare resources, environments, or billing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the active Cloudflare account, project, environment, and target resource before running commands; prefer local development, staging, listing, or dry-run checks where available.
+
+## Reference(s):
+
+- [Cloudflare Developer Docs](https://developers.cloudflare.com/)
+- [Cloudflare Starter Hub](https://onboarding.orangecloud.vn/)
+- [Cloudflare Developer Changelog](https://developers.cloudflare.com/changelog/)
+- [Cloudflare Community](https://community.cloudflare.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples may include live Wrangler commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

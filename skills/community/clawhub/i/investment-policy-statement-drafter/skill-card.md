@@ -1,40 +1,61 @@
-## Description: <br>
-Use this skill when an IAR, CFP practitioner, trust officer, or ERISA fiduciary needs to draft an Investment Policy Statement for an individual, trust, plan, or endowment client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an IAR, CFP practitioner, trust officer, or ERISA fiduciary needs to draft an Investment Policy Statement for an individual, trust, plan, or endowment client.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External investment advisers, CFP practitioners, trust officers, ERISA fiduciaries, and investment committees use this skill to collect client and governance facts and draft a fiduciary-review Investment Policy Statement. It produces a draft IPS with objectives, constraints, asset allocation policy, rebalancing rules, monitoring language, and a reason-why audit log for qualified review before signature or implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft IPS content could be mistaken for final investment, legal, tax, or fiduciary advice. <br>
-Mitigation: Treat each output as a draft and route it through qualified compliance, legal, tax, and fiduciary review before client signature or implementation. <br>
-Risk: Client identifiers or account credentials could be exposed if pasted into the drafting session. <br>
-Mitigation: Use client codes or initials only, and do not paste SSNs, full account numbers, taxpayer IDs, DOBs, government IDs, login credentials, or other direct identifiers. <br>
+## Use Case:
 
+External financial professionals use this skill to draft a review-ready Investment Policy Statement from client facts, objectives, constraints, fiduciary context, and source documents. It is intended to support professional compliance review, not to provide investment advice or make portfolio decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/investment-policy-statement-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft document with intake questions, structured sections, tables, self-check results, and an unsigned sign-off block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output; requires qualified compliance, legal, tax, and fiduciary review before client signature or implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28) <br>
+Risk: The skill may process sensitive financial planning facts or client context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-identifying client codes and redact Social Security numbers, full account numbers, taxpayer IDs, dates of birth, government IDs, custodian logins, and similar direct identifiers.
+
+Risk: A draft IPS could be mistaken for final investment advice or an approved client document.
+
+Mitigation: Keep outputs clearly labeled as drafts and require review, editing, and approval by the adviser, fiduciary, compliance function, and client or plan fiduciary before signature or use.
+
+Risk: The document could include unsupported investment assumptions, product recommendations, or execution instructions.
+
+Mitigation: Limit the output to policy-level drafting, avoid specific securities or managers, avoid orders and guarantees, and preserve unresolved information for professional follow-up.
+
+Risk: Backdated or signed language could create compliance and recordkeeping risk.
+
+Mitigation: Decline backdating, keep sign-off blocks unsigned, and require the responsible professional to complete records through approved firm procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/investment-policy-statement-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft document with structured intake, tables, self-checks, and sign-off blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a draft IPS for fiduciary and client review; requires redacted client identifiers and professional compliance review before use.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

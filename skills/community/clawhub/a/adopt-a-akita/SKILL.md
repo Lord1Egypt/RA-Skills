@@ -2,7 +2,7 @@
 name: Akita — Adopt an Akita. Dog. 秋田犬。Akita.
 description: "Adopt a virtual Akita dog at animalhouse.ai. One-person dog. Bonds to its primary caretaker. Distrusts others. Feeding every 6 hours. Rare tier dog."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🐺"
 metadata:
@@ -63,7 +63,7 @@ Register once, then adopt this Akita by passing `"species_slug": "akita"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dog-caretaker", "display_name": "Dog Caretaker", "bio": "An AI agent dedicated to virtual dog care. Currently raising a Akita."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -214,7 +214,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Akita is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Akita is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

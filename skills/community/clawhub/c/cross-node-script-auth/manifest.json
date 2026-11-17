@@ -1,0 +1,88 @@
+{
+  "id": "cross_node_script_auth",
+  "spec": "usk/3.0",
+  "version": "1.3.0",
+  "name": "Cross‑Device Encrypted Script Authorization (Zero‑Exposure)",
+  "description": "Zero‑exposure cross‑device script authorization using MGC Blackbox. Scripts are sealed with the target node's RSA public key, delivered as ciphertext, and decrypted only in memory on the authorized node; also supports key‑exchange‑free free mode for public distribution. Adapted to MGC 1.5.4 — dual‑layer encryption, link authorization, and self‑describing capsule delivery.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": ["security", "cross-device", "encryption", "zero-exposure", "mgc", "authorization", "seal", "RSA", "dual-layer encryption", "free-distribution", "link authorization", "blackbox execution", "encrypted-delivery", "public-distribution"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": ["mgc_save", "mgc_save_file", "mgc_get", "mgc_run", "mgc_find", "mgc_list", "mgc_seal", "mgc_seal_package", "mgc_package", "mgc_delete", "mgc_open_webui", "mgc_skill"],
+  "requirements": {
+    "mgc_version": ">=1.5.4"
+  },
+  "install": "pip install mgc-blackbox>=1.5.4",
+  "runtime": "mgc",
+  "port": 57219,
+  "files": {
+    "skill": "SKILL.md",
+    "readme": "README.md"
+  },
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "cross-device",
+    "encrypted authorization",
+    "script sealing",
+    "zero trust",
+    "delegation",
+    "RSA",
+    "blackbox execution",
+    "dual-layer encryption",
+    "link authorization",
+    "free mode",
+    "public distribution",
+    "capsule delivery",
+    "sealed capsule",
+    "node binding"
+  ],
+  "changelog": [
+    {
+      "version": "1.3.0",
+      "changes": [
+        "Upgraded to MGC 1.5.4: sealing now uses dual-layer encryption, with the new ext09 mode field and ext07 owner binding",
+        "Rewrote the core concept chapter: from single-layer RSA binding to dual-layer encryption plus link authorization, and added a free-mode comparison table",
+        "Fixed the sealing flow: ext04 is optional since 1.5.4 (omitting it means free mode); an empty ext04 no longer errors out",
+        "Fixed the storage flow: switched to mgc_save_file(path=capsule file) for one-shot import, which parses every ext field automatically",
+        "Fixed the security notes: item 3 (\"no other node can decrypt\") does not hold in free mode, and item 6 (\"integrity is not verified\") is outdated",
+        "Added a Link Authorization chapter covering ext07 / ext09 tampering detection plus a hands-on verification procedure",
+        "Fixed mgc_run parameters: diff_1 is optional since 1.5.4, diff_3 is the most reliable locator, and the AMBIGUOUS_SCRIPT error code was added",
+        "Fixed the capsule structure: 4 fields became 8 (added ext05 / ext06 / ext07 / ext09), and the legacy underscore keys were dropped",
+        "Documented ext05 dependency list, ext06 platform list, and the ext10 runnability badge",
+        "Added the output_dir requirement and the capsule directory layout",
+        "Fixed broken Windows absolute-path links",
+        "Neutralized the wording (\"the caller\" instead of agent-centric phrasing) and restated the security boundary around content confidentiality and responsibility",
+        "Completed mcp_tools to all 12 tools, adding mgc_delete and mgc_skill"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "changes": [
+        "Upgraded to adapt to MGC 1.4.10",
+        "Replaced mgc_get(action=run) with mgc_run (1.4.7+) for executing sealed scripts",
+        "Documented ext02 auto-parsing (1.4.10): argparse defaults are bundled into ext_02 during sealing",
+        "Fixed mgc_seal required parameters: info_type is optional, ext04 must be multi-line PEM",
+        "Added mgc_find fuzzy search tool (1.4.10)",
+        "Updated node_pub retrieval flow: WebUI Settings → Node Public Key",
+        "Added update_if_exists parameter for overwriting same-name scripts",
+        "Added brief note on 1.4.9 sandbox mode"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "changes": [
+        "Clarified lazy generation mechanism differences for node_pub (MCP/API vs WebUI)"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release for cross-device encrypted script authorization"
+      ]
+    }
+  ]
+}

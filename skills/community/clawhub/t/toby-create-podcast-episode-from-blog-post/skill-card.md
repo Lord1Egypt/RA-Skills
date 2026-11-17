@@ -1,41 +1,54 @@
-## Description: <br>
-Converts written content into a podcast episode with AI narration and original intro/outro music for repurposing blog posts into audio content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts written content into a podcast episode with AI narration and original intro/outro music.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External creators, bloggers, solopreneurs, and content marketers use this skill to turn blog posts into podcast episode drafts with AI narration and intro/outro music guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source blog content may be reused without sufficient rights or attribution. <br>
-Mitigation: Confirm rights to repurpose the source post before using the generated podcast material. <br>
-Risk: Generated narration, music direction, or episode content may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Review the generated episode, narration, music, and brand voice before external publication. <br>
+## Use Case:
 
+Solopreneurs, bloggers, and content marketers use this skill to repurpose blog posts into podcast-ready episodes with narration and intro/outro music guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/toby-create-podcast-episode-from-blog-post) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/create-podcast-episode-from-blog-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown episode draft with narration and intro/outro music guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated narration, music direction, and content accuracy before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated narration, scripts, or music may be inaccurate, off-brand, or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content and audio before publishing, with attention to factual accuracy, tone, rights, and brand fit.
+
+Risk: External AI services for text-to-speech or music generation may introduce rights, usage, or cost considerations.
+
+Mitigation: Confirm service terms, usage rights, and cost expectations before using generated media commercially.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-create-podcast-episode-from-blog-post)
+- [SkillBoss skill page](https://www.skillboss.co/skills/create-podcast-episode-from-blog-post)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured prose for podcast scripts, narration direction, music direction, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference chat, text-to-speech, and music-generation workflows; generated audio and music should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

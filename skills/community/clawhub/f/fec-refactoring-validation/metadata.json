@@ -1,0 +1,63 @@
+{
+  "id": "fec-refactoring-validation",
+  "name": "Refactoring Validation",
+  "category": "review-quality",
+  "tags": [
+    "refactoring",
+    "validation",
+    "behavior-preservation",
+    "rollback"
+  ],
+  "summary": "Behavior-preservation contracts, safety-net selection, validation ladders, rollback, and proof levels for refactoring.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactoring",
+    "validation",
+    "behavior-preservation",
+    "rollback"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when proving that a frontend refactoring preserved existing behavior, selecting an appropriate safety net, validating each structural step, or assigning a PASS, PARTIAL, or NOT PROVEN preservation verdict.",
+  "source": "skills/fec-refactoring-validation",
+  "references": [
+    "references/behavior-preservation.md",
+    "references/refactoring-test-checklist.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-refactoring",
+      "fec-testing-strategy",
+      "fec-tdd-workflow",
+      "fec-validation-fix",
+      "fec-debug-framework",
+      "fec-code-review"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "refactoring",
+      "validation",
+      "behavior-preservation",
+      "rollback"
+    ]
+  }
+}

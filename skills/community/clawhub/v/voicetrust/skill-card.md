@@ -1,45 +1,63 @@
-## Description: <br>
-Interpret VoiceTrust results for owner verification on voice/audio inputs, including trust labels, command-gating decisions, and minimal handling rules for voice messages alongside STT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret VoiceTrust results for owner verification on voice/audio inputs. Use when you need the meaning of VoiceTrust fields, trust labels, command-gating decisions, or the minimal rule for handling voice messages alongside STT. For first-time setup or environment bootstrap, read `references/quickstart.md`.
 
-## Publisher: <br>
-[kunyancai](https://clawhub.ai/user/kunyancai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kunyancai](https://clawhub.ai/user/kunyancai)
 
-## Use Case: <br>
-Developers and operators use VoiceTrust to interpret local owner voice-verification results and decide whether voice-command execution should proceed. It supports STT-plus-voice-trust workflows by explaining trust labels, failure reasons, and command-gating outputs without replacing transcript handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Owner enrollment samples and derived voiceprints are sensitive local biometric data. <br>
-Mitigation: Keep runtime/data/owners and runtime/data/voiceprints private, protect them with local filesystem permissions, and exclude them from publishing, sharing, and cloud backup sync. <br>
-Risk: Setup may download model assets before local verification can run. <br>
-Mitigation: Run the downloader only when you accept the documented mirror flow, and rely on the built-in SHA-256 verification before using downloaded assets. <br>
-Risk: Voice verification can be inconclusive or degraded by short, noisy, silent, or low-speech audio. <br>
-Mitigation: Use the skill's decision field and threshold guidance for command execution, keep STT handling separate, and treat degraded results as low trust or unavailable rather than proof of owner identity. <br>
+## Use Case:
 
+Developers and agent operators use VoiceTrust to interpret local voice owner-verification results, combine them with STT output, and gate command execution based on trust labels and decision fields.
 
-## Reference(s): <br>
-- [VoiceTrust ClawHub page](https://clawhub.ai/kunyancai/voicetrust) <br>
-- [VoiceTrust Quickstart](references/quickstart.md) <br>
-- [VoiceTrust Runtime README](runtime/README.md) <br>
-- [SpeechBrain ECAPA VoxCeleb model](https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON result interpretation and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interprets VoiceTrust result fields such as trust_label, decision, confidence, identity_score, speech_duration, vad_status, and decision_reasons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release evidence) <br>
+Risk: The runtime stores local biometric voiceprint data for enrolled speakers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the runtime and owner profile directories private, use a simple fixed speaker ID such as `owner`, and do not publish enrollment data.
+
+Risk: `allow_command` can be produced from voice similarity and should not be the only authorization signal for sensitive actions.
+
+Mitigation: Require a separate confirmation factor before destructive, financial, administrative, or privacy-sensitive commands.
+
+Risk: Downloaded model assets may be incomplete or altered.
+
+Mitigation: Use the bundled model preparation flow and review SHA256 verification output before enrollment or verification.
+
+Risk: Voice similarity checks can be affected by spoofing, short speech, low speech ratio, or unclear audio.
+
+Mitigation: Treat low or rejected decisions as inconclusive for identity, ask for text confirmation or a longer clearer voice sample, and keep non-command content separate from command execution.
+
+## Reference(s):
+
+- [VoiceTrust Quickstart](references/quickstart.md)
+- [VoiceTrust ClawHub Skill Page](https://clawhub.ai/kunyancai/skills/voicetrust)
+- [SpeechBrain ECAPA VoxCeleb Model](https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, text]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON runtime result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime JSON may include speaker_match, audio_quality, overall_trust, confidence, identity_score, trust_label, decision, decision_reasons, speaker_id, speech_duration, speech_ratio, vad_status, failure_reason, and raw_scores.speaker_similarity.]
+
+## Skill Version(s):
+
+0.4.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

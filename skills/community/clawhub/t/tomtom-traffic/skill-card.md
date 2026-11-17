@@ -1,41 +1,59 @@
-## Description: <br>
-Provides real-time traffic monitoring, route calculation, and departure planning using the TomTom Traffic API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time traffic data, route calculation, and departure planning using the TomTom Traffic API for commute and meeting alerts.
 
-## Publisher: <br>
-[jkimnw-code](https://clawhub.ai/user/jkimnw-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkimnw-code](https://clawhub.ai/user/jkimnw-code)
 
-## Use Case: <br>
-Developers and agent users use this skill to check commute traffic, calculate traffic-aware routes, and plan departure times for meetings using a configured TomTom API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route lookups send configured origin and destination coordinates to TomTom. <br>
-Mitigation: Review or edit the default home, work, and coffee coordinates before running commands, and use only locations appropriate for sharing with TomTom. <br>
-Risk: API-key or quota misuse could affect account security or availability. <br>
-Mitigation: Store a dedicated TomTom API key in TOMTOM_API_KEY, apply quota limits, and monitor usage in the TomTom dashboard. <br>
+## Use Case:
 
+Developers and agent users use this skill to check current commute traffic, calculate traffic-aware routes, and plan departure times for meetings using a configured TomTom API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkimnw-code/tomtom-traffic) <br>
-- [TomTom Developer Portal](https://developer.tomtom.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with shell and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Traffic checks require TOMTOM_API_KEY and may send configured route coordinates to TomTom APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured route coordinates are shared with TomTom when traffic or routing checks are run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, and review the configured locations before use.
+
+Risk: The skill relies on a TOMTOM_API_KEY from the environment.
+
+Mitigation: Store the key outside source files and rotate it if it is exposed.
+
+Risk: Default Seattle and Bellevue locations may not match the user's commute or meeting context.
+
+Mitigation: Edit the configured locations, buffers, and time zone before using it for personal departure planning.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jkimnw-code/skills/tomtom-traffic)
+- [Publisher Profile](https://clawhub.ai/user/jkimnw-code)
+- [TomTom Developer Portal](https://developer.tomtom.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI text with route summaries, traffic delays, congestion alerts, and departure-time guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOMTOM_API_KEY and sends configured route coordinates to TomTom APIs when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

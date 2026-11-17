@@ -5,13 +5,21 @@ Aggregate locally stored Apple Health snapshots into daily/weekly/monthly summar
 
 import argparse
 import json
+import os
 import sqlite3
+import stat
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Tuple
-from config import load_effective_config, resolve_state_dir, resolve_user_paths
+from typing import Any, Dict, Iterable, List, Optional, Tuple
+from config import (
+    load_effective_config,
+    resolve_state_dir,
+    resolve_user_paths,
+    secure_private_file,
+    secure_state_directory,
+)
 
 
 @dataclass
@@ -66,6 +74,7 @@ def flatten_numeric(data: Any, prefix: str = "") -> Dict[str, List[float]]:
 def load_sqlite_samples(sqlite_path: Path, start: datetime) -> List[Sample]:
     if not sqlite_path.exists():
         return []
+    secure_private_file(sqlite_path)
     conn = sqlite3.connect(sqlite_path)
     try:
         rows = conn.execute(
@@ -99,6 +108,7 @@ def load_sqlite_samples(sqlite_path: Path, start: datetime) -> List[Sample]:
 def load_json_samples(json_path: Path, start: datetime) -> List[Sample]:
     if not json_path.exists():
         return []
+    secure_private_file(json_path)
     samples: List[Sample] = []
     for line in json_path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
@@ -149,13 +159,11 @@ def summarize(samples: Iterable[Sample]) -> Dict[str, Any]:
             "latest": values[-1],
         }
 
-    by_record: Dict[str, int] = {}
-    for sample in sample_list:
-        by_record[sample.user_id] = by_record.get(sample.user_id, 0) + 1
+    record_count = len({sample.user_id for sample in sample_list})
 
     return {
         "sample_count": len(sample_list),
-        "records": by_record,
+        "record_count": record_count,
         "metrics": summary_metrics,
     }
 
@@ -167,13 +175,7 @@ def format_text(period: str, start: datetime, end: datetime, summary: Dict[str, 
         f"Samples: {summary['sample_count']}",
     ]
 
-    records = summary["records"]
-    if records:
-        lines.append("Samples per record:")
-        for user_id, count in sorted(records.items()):
-            lines.append(f"- {user_id}: {count}")
-    else:
-        lines.append("Samples per record: none")
+    lines.append(f"Source records: {summary['record_count']}")
 
     metrics = summary["metrics"]
     if metrics:
@@ -189,7 +191,7 @@ def format_text(period: str, start: datetime, end: datetime, summary: Dict[str, 
     return "\n".join(lines) + "\n"
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build Apple Health aggregate summaries.")
     parser.add_argument(
         "--state-dir",
@@ -213,14 +215,74 @@ def parse_args() -> argparse.Namespace:
         choices=("text", "json"),
         default="text",
     )
-    parser.add_argument("--save", default="")
-    return parser.parse_args()
+    parser.add_argument(
+        "--save",
+        default="",
+        help="Write the sensitive report to a new file. Requires --confirm-sensitive-save.",
+    )
+    parser.add_argument(
+        "--confirm-sensitive-save",
+        action="store_true",
+        help="Confirm that the destination is intended for private Apple Health data.",
+    )
+    return parser.parse_args(argv)
 
 
-def main() -> int:
-    args = parse_args()
+def resolve_save_path(raw_path: str) -> Path:
+    return Path(os.path.abspath(os.path.expanduser(raw_path)))
+
+
+def write_sensitive_report(save_path: Path, rendered: str) -> None:
+    parent = save_path.parent
+    if not parent.exists() or not parent.is_dir():
+        raise RuntimeError(f"Report destination directory does not exist: {parent}")
+    if save_path.is_symlink():
+        raise RuntimeError(f"Report destination must not be a symbolic link: {save_path}")
+    if save_path.exists():
+        raise RuntimeError(f"Refusing to overwrite existing report: {save_path}")
+
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    file_descriptor = None
+    created = False
+    try:
+        file_descriptor = os.open(save_path, flags, 0o600)
+        created = True
+        if not stat.S_ISREG(os.fstat(file_descriptor).st_mode):
+            raise RuntimeError(f"Report destination is not a regular file: {save_path}")
+        os.fchmod(file_descriptor, 0o600)
+        with os.fdopen(file_descriptor, "w", encoding="utf-8") as file_handle:
+            file_descriptor = None
+            file_handle.write(rendered)
+            file_handle.flush()
+            os.fsync(file_handle.fileno())
+    except Exception:
+        if file_descriptor is not None:
+            os.close(file_descriptor)
+        if created:
+            save_path.unlink(missing_ok=True)
+        raise
+
+
+def main(argv: Optional[List[str]] = None) -> int:
+    os.umask(0o077)
+    args = parse_args(argv)
+    if args.save and not args.confirm_sensitive_save:
+        print(
+            "Error: --save writes sensitive Apple Health data and requires --confirm-sensitive-save.",
+            file=sys.stderr,
+        )
+        return 2
+    if args.confirm_sensitive_save and not args.save:
+        print("Error: --confirm-sensitive-save requires --save <path>.", file=sys.stderr)
+        return 2
+
     state_dir = resolve_state_dir(args.state_dir)
     paths = resolve_user_paths(state_dir)
+    for private_dir in (state_dir, paths["config_dir"], paths["secrets_dir"]):
+        if private_dir.exists():
+            secure_state_directory(private_dir)
     try:
         _, config = load_effective_config(state_dir)
     except Exception as runtime_error:
@@ -253,9 +315,17 @@ def main() -> int:
         rendered = format_text(args.period, start, end, summary)
 
     if args.save:
-        save_path = Path(args.save).expanduser().resolve()
-        save_path.parent.mkdir(parents=True, exist_ok=True)
-        save_path.write_text(rendered, encoding="utf-8")
+        save_path = resolve_save_path(args.save)
+        print(
+            "Warning: this report contains sensitive Apple Health information. "
+            "Keep the destination private and exclude it from shared backups.",
+            file=sys.stderr,
+        )
+        try:
+            write_sensitive_report(save_path, rendered)
+        except Exception as runtime_error:
+            print(f"Error: {runtime_error}", file=sys.stderr)
+            return 1
         print(f"Report written to: {save_path}")
     else:
         print(rendered, end="")

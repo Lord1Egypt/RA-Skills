@@ -1,41 +1,56 @@
-## Description: <br>
-Send images from Mac to phone via iMessage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send images from Mac to phone via iMessage.
 
-## Publisher: <br>
-[Wzyyyyyyyy](https://clawhub.ai/user/Wzyyyyyyyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wzyyyyyyyy](https://clawhub.ai/user/wzyyyyyyyy)
 
-## Use Case: <br>
-External users and developers use this skill to send local image files from a macOS machine to a configured phone number through the Messages app. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically send local images through the user's Mac Messages account. <br>
-Mitigation: Review each requested recipient and image path before execution, and use an explicit phone number instead of relying on ambiguous defaults. <br>
-Risk: Sent images are retained as copied files under ~/Pictures/openclaw-send. <br>
-Mitigation: Periodically clear ~/Pictures/openclaw-send when images are sensitive or no longer needed. <br>
-Risk: AppleScript input handling is weak for unusual characters in filenames or recipients. <br>
-Mitigation: Use simple file paths and recipient strings until AppleScript escaping is improved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Images Sender on ClawHub](https://clawhub.ai/Wzyyyyyyyy/images-sender) <br>
+## Use Case:
 
+External users and developers use this skill to send image files from a Mac to a configured phone number via the Messages app/iMessage.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain text status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target macOS Messages through osascript and copy sent images to ~/Pictures/openclaw-send.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically send images through Messages, which may expose files to the wrong recipient.
+
+Mitigation: Require explicit confirmation before each send and show the recipient and image path before Messages is invoked.
+
+Risk: Crafted recipient or file path input could alter the AppleScript command and run unintended local actions.
+
+Mitigation: Pass AppleScript arguments safely, escape values correctly, and validate phone numbers and image paths before sending.
+
+Risk: Copied images are retained in ~/Pictures/openclaw-send/ after sending.
+
+Mitigation: Define a retention policy, clean up copied files after successful sends, or ask the user before retaining copies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wzyyyyyyyy/skills/images-sender)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Copies images to ~/Pictures/openclaw-send/ before sending through Messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

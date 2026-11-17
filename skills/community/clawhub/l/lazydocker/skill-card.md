@@ -1,42 +1,65 @@
-## Description: <br>
-Guides agents through installing and using lazydocker to manage Docker containers, images, volumes, networks, and Docker Compose services from a terminal UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide users through lazydocker, a terminal UI for managing Docker and Docker Compose resources.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Docker state, launch lazydocker, follow keyboard-driven workflows, and generate Docker or Docker Compose commands and configuration snippets for container operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Lazydocker GitHub repository](https://github.com/jesseduffield/lazydocker) <br>
-- [Lazydocker releases](https://github.com/jesseduffield/lazydocker/releases) <br>
-- [Installation guide](guides/01-installation.md) <br>
-- [Quickstart guide](guides/02-quickstart.md) <br>
-- [Advanced usage guide](guides/03-advanced-usage.md) <br>
-- [Troubleshooting guide](troubleshooting.md) <br>
+Developers and operations engineers use this skill to install and operate lazydocker for Docker containers, images, volumes, networks, and Docker Compose services. It supports setup checks, TUI navigation, configuration, log and resource inspection, remote Docker connection guidance, cleanup workflows, and troubleshooting.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review destructive Docker operations, remote Docker access settings, and diagnostic output before execution or sharing.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Installation guidance can run mutable remote code or download latest release artifacts.
+
+Mitigation: Prefer package-manager installation or pinned releases with checksum or signature verification, and review commands before execution.
+
+Risk: Docker socket access, container exec, prune/delete, and environment-variable inspection can grant broad host control or expose sensitive data.
+
+Mitigation: Confirm the target host and environment before executing Docker operations, avoid exposing Docker on tcp://0.0.0.0:2375, and use SSH or TLS-protected remote Docker connections.
+
+Risk: Remote Docker management can affect the wrong host if DOCKER_HOST or Docker context is misconfigured.
+
+Mitigation: Verify Docker context and daemon identity with docker info before launching lazydocker or running lifecycle operations.
+
+## Reference(s):
+
+- [Installation guide](guides/01-installation.md)
+- [Quickstart guide](guides/02-quickstart.md)
+- [Advanced usage guide](guides/03-advanced-usage.md)
+- [Troubleshooting guide](troubleshooting.md)
+- [lazydocker GitHub project](https://github.com/jesseduffield/lazydocker)
+- [lazydocker releases](https://github.com/jesseduffield/lazydocker/releases)
+- [lazydocker configuration documentation](https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md)
+- [lazydocker issues](https://github.com/jesseduffield/lazydocker/issues)
+- [lazydocker discussions](https://github.com/jesseduffield/lazydocker/discussions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and YAML or JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker and lazydocker binaries; guidance may include Docker socket access, container exec, cleanup, and remote host connection steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

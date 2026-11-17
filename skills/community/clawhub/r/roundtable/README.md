@@ -1,6 +1,6 @@
 # Roundtable — Multi-Agent Debate Council
 
-[![Version](https://img.shields.io/badge/version-0.4.0--beta-green)](./package.json)
+[![Version](https://img.shields.io/badge/version-0.5.0-green)](./CHANGELOG.md)
 [![ClawHub](https://img.shields.io/badge/ClawHub-roundtable-blue)](https://www.clawhub.ai/skills/roundtable)
 
 Roundtable is a skill that runs a structured 3-role council (**Scholar**, **Engineer**, **Muse**) to solve complex questions from multiple perspectives, then synthesizes a Captain-level answer. It supports an optional second debate round for cross-examination, role-specific model selection, domain templates, and session logging.
@@ -335,3 +335,7 @@ Each log contains:
 - Timestamp
 
 This creates a useful audit/history trail for major decisions.
+
+## Download History
+
+[![Download History](https://skill-history.com/chart/robbyczgw-cla/roundtable.svg)](https://skill-history.com/robbyczgw-cla/roundtable)

@@ -1,41 +1,56 @@
-## Description: <br>
-Monitor and control AllStar Link amateur radio nodes via REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and control AllStar Link amateur radio nodes via REST API.
 
-## Publisher: <br>
-[KJ5IRQ](https://clawhub.ai/user/KJ5IRQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kj5irq](https://clawhub.ai/user/kj5irq)
 
-## Use Case: <br>
-Amateur radio operators and station maintainers use this skill to check ASL3 node status, inspect connected nodes, connect or disconnect remote nodes, manage favorites, and run timed net sessions through an existing ASL Agent REST API backend. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control live ASL node connections through API-key-authenticated connect and disconnect commands. <br>
-Mitigation: Use it only with a trusted ASL Agent backend, protect ASL_API_KEY, and review generated commands before execution. <br>
-Risk: The shell helper contains a fallback IP address that may be used if ASL_PI_IP is not set. <br>
-Mitigation: Set ASL_PI_IP or ASL_API_BASE explicitly before use, or remove the fallback from asl-api.sh. <br>
-Risk: Saved net sessions and cron-driven net tick commands can trigger later disconnect actions. <br>
-Mitigation: Review state files and cron entries before enabling timed sessions, and clear stale sessions when no timed net should be active. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KJ5IRQ/asl-control) <br>
+## Use Case:
 
+External operators and developers use this skill to monitor an AllStar Link node, inspect connected nodes and audit logs, manage favorites, and issue connect, disconnect, and timed net-session commands through an ASL Agent REST API backend.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; runtime commands emit JSON or short text output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus ASL_PI_IP or ASL_API_BASE and ASL_API_KEY environment configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can issue live connect, disconnect, net start, net stop, and cron-driven net tick actions against an AllStar Link node.
+
+Mitigation: Install it only for an ASL Agent backend you control, and require explicit user confirmation before commands that change live radio-node connections.
+
+Risk: The client may send ASL_API_KEY over HTTP when pointed at an ordinary LAN or Internet endpoint.
+
+Mitigation: Use HTTPS or a trusted encrypted tunnel such as Tailscale, avoid untrusted HTTP networks, and keep the API key least-privileged.
+
+Risk: Timed net sessions and cron-based net tick can automatically disconnect a node after the configured duration.
+
+Mitigation: Review net profile names, node numbers, and durations before starting a session, and log scheduled net tick output for operator review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kj5irq/skills/asl-control)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; invoked tooling returns JSON or concise text reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus ASL_PI_IP and ASL_API_KEY environment variables; optional ASL_API_BASE and ASL_STATE_DIR change backend URL and local state storage.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

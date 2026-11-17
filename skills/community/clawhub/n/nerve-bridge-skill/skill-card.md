@@ -1,42 +1,52 @@
-## Description: <br>
-Bi-directional control of Trae via macOS AppleScript with built-in feedback mechanism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nerve Bridge controls Trae via macOS AppleScript and waits for completion confirmation through a local feedback mechanism.
 
-## Publisher: <br>
-[88901111hz-lang](https://clawhub.ai/user/88901111hz-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[88901111hz-lang](https://clawhub.ai/user/88901111hz-lang)
 
-## Use Case: <br>
-Developers and engineers use this skill to send instructions to Trae on macOS, wait for a file-based completion signal, and collect feedback from the automated workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad UI-driven ability to send code or command instructions into Trae. <br>
-Mitigation: Use it only with trusted prompts and trusted projects, keep the Trae window visible while it runs, and review requested actions before relying on the result. <br>
-Risk: Instructions are passed through the macOS clipboard, which can expose sensitive prompt content. <br>
-Mitigation: Avoid including secrets, credentials, or confidential data in instructions sent through this skill. <br>
-Risk: The workflow depends on macOS Accessibility automation and the currently focused application. <br>
-Mitigation: Grant Accessibility permissions only when intentionally using the skill and confirm Trae is the focused target before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/88901111hz-lang/nerve-bridge-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/88901111hz-lang) <br>
+## Use Case:
 
+Developers and engineers use this skill on macOS to send instructions to Trae, execute code or commands in that IDE, and wait for a completion signal.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown with inline shell and Python examples; runtime feedback is JSON text when the Trae signal file is received.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, python3, osascript, an active Trae window, and Accessibility permissions for UI automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-v1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can drive Trae through macOS Accessibility and send IDE instructions that execute code or commands.
+
+Mitigation: Install only when that automation is intentional, review instructions before sending them, and avoid use in sensitive repositories or active sessions.
+
+Risk: The local completion file is a weak feedback signal and may be stale, spoofed, or cleaned up unsafely.
+
+Mitigation: Treat feedback as unreliable unless the skill is changed to use per-run authenticated feedback and safer cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/88901111hz-lang/skills/nerve-bridge-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; command output may include JSON feedback.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, python3, osascript, Trae, and Accessibility permissions for System Events and Terminal.]
+
+## Skill Version(s):
+
+v1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

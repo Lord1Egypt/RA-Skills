@@ -1,46 +1,55 @@
-## Description: <br>
-Deploy static HTML/CSS/JS websites, landing pages, and single-page apps to W-Spaces with project creation, code push, and deployment via API key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy static websites to W-Spaces for HTML/CSS/JS sites, landing pages, and single-page apps using project creation, code push, and API key authenticated deployment.
 
-## Publisher: <br>
-[trandactruong](https://clawhub.ai/user/trandactruong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trandactruong](https://clawhub.ai/user/trandactruong)
 
-## Use Case: <br>
-Developers and engineers use this skill to create and manage W-Spaces projects, push static HTML/CSS/JS content, and deploy public sites to wspaces.app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: W-Spaces API keys can grant deployment and key-management access. <br>
-Mitigation: Use a dedicated API key, avoid pasting real credentials into chat or committing them to files, and revoke keys that are no longer needed. <br>
-Risk: A custom WSPACES_API_URL could send credentials or deployment content to an unintended endpoint. <br>
-Mitigation: Leave WSPACES_API_URL unset unless the endpoint is known and trusted. <br>
-Risk: Deploy actions can publish static site content to a public wspaces.app URL. <br>
-Mitigation: Review site contents before pushing or deploying and confirm deployment actions before they run. <br>
-Risk: API key creation or revocation changes account access. <br>
-Mitigation: Confirm any key creation or revocation action before executing the relevant script. <br>
+## Use Case:
 
+Developers and agents use this skill to create W-Spaces projects, push static HTML/CSS/JS content, deploy live wspaces.app URLs, and manage API keys and deployment history.
 
-## Reference(s): <br>
-- [W-Spaces Public API v1](references/wspaces-api.md) <br>
-- [W-Spaces](https://wspaces.app) <br>
-- [W-Spaces API](https://api.wspaces.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WSPACES_API_KEY, curl, and jq; actions may publish static site content to W-Spaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Passwords and API keys can be exposed through shell history, logs, committed environment files, or persistent shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted shells or CI secret stores, avoid passing real passwords where history or logs are captured, do not commit .env files, avoid storing live keys in ~/.bashrc, and rotate any key that may have appeared in logs.
+
+Risk: If WSPACES_API_URL is changed, credentials and project content can be sent to a non-default endpoint.
+
+Mitigation: Verify WSPACES_API_URL is unset or exactly the intended W-Spaces API before running authentication, project, push, or deployment commands.
+
+## Reference(s):
+
+- [W-Spaces Public API v1](references/wspaces-api.md)
+- [W-Spaces](https://wspaces.app)
+- [ClawHub Skill Page](https://clawhub.ai/trandactruong/skills/wspaces-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a W-Spaces account, WSPACES_API_KEY, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

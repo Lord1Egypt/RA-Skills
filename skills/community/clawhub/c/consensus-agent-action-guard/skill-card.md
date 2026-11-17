@@ -1,47 +1,60 @@
-## Description: <br>
-Pre-execution governance for high-risk agent actions. Uses persona-weighted consensus to decide ALLOW/BLOCK/REQUIRE_REWRITE before external or irreversible side effects occur, with board-native audit artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-execution governance for high-risk agent actions. Uses persona-weighted consensus to decide ALLOW/BLOCK/REQUIRE_REWRITE before external or irreversible side effects occur, with board-native audit artifacts.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and agent platform teams use this skill as a final pre-execution gate for destructive, external, privileged, or otherwise high-risk agent actions. It returns a deterministic allow, block, or rewrite decision with audit references before side effects occur. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured consensus state path or blocking policy could cause the guard to allow, block, or rewrite actions differently than the team expects. <br>
-Mitigation: Review CONSENSUS_STATE_FILE, CONSENSUS_STATE_ROOT, and the action blocking policy before relying on the skill in an automation path. <br>
-Risk: The skill writes local board and decision artifacts under the configured consensus state path. <br>
-Mitigation: Use a scoped writable state directory and monitor generated decision artifacts as part of the workflow audit trail. <br>
-Risk: In external_agent mode, externally supplied votes influence the final decision. <br>
-Mitigation: Accept external votes only from trusted agents, humans, or models and validate inputs before invoking the guard. <br>
+## Use Case:
 
+Developers and automation teams use this skill to gate destructive operations, privileged tool use, outbound communication, and other high-risk agent actions before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-agent-action-guard) <br>
-- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [consensus-guard-core repository](https://github.com/kaicianflone/consensus-guard-core) <br>
-- [consensus-tools repository](https://github.com/kaicianflone/consensus-tools) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Guidance] <br>
-**Output Format:** [JSON decision response with board artifact references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns ALLOW, BLOCK, or REQUIRE_REWRITE, required follow-up actions, vote aggregation details, and decision artifact references under the configured consensus state path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.14 (source: server release metadata and package.json) <br>
+Risk: High-impact decisions can be driven by weakly validated caller input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authenticate external votes, enforce schema validation, and apply conservative action metadata before relying on the decision.
+
+Risk: The skill may be placed in automation paths that can delete data, post publicly, send messages, or mutate business systems.
+
+Mitigation: Review deployment carefully and require human confirmation for irreversible or high-risk actions.
+
+Risk: Dependency drift can change the guard behavior after installation.
+
+Mitigation: Install with the committed package-lock file and review dependency updates before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/consensus-agent-action-guard)
+- [Publisher profile: kaicianflone](https://clawhub.ai/user/kaicianflone)
+- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [json, guidance, configuration]
+
+**Output Format:** [JSON decision object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes final_decision, vote aggregation, required_actions, and board_writes references.]
+
+## Skill Version(s):
+
+1.1.14 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

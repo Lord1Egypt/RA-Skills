@@ -1,115 +1,111 @@
 ---
 name: token-safety-checker
-description: Scan openclaw.json for plaintext secrets (tokens, API keys, passwords) and migrate them to environment variables using SecretRef. Use when the user asks to "check token safety", "privatize secrets", "move tokens to env vars", "audit openclaw config for secrets", or after any openclaw.json edit that may have introduced plaintext credentials. Also use when setting up a new OpenClaw instance for the first time.
-homepage: https://github.com/maoisdamao/token-safety-checker
-author: maoisdamao
+description: Find and fix leaked API keys, tokens and passwords in your AI agent's config, long/short-term memory and session transcripts (OpenClaw + Claude Code). Use when the user asks to check token or secret safety, scan for leaked credentials, audit agent memory, MEMORY.md, CLAUDE.md or chat history for secrets, move plaintext tokens in openclaw.json to env vars, or stop secrets from being written into memory. Also use after editing openclaw.json or when setting up a new OpenClaw instance. Secret values are never printed.
+license: MIT
+allowed-tools: Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/safeclaw.py scan *), Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/safeclaw.py memory *), Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/safeclaw.py verify *)
+metadata: {"author": "maoisdamao", "version": "3.0.2", "homepage": "https://github.com/maoisdamao/token-safety-checker", "openclaw": {"emoji": "🔐", "homepage": "https://github.com/maoisdamao/token-safety-checker", "requires": {"bins": ["python3"]}}}
 ---
 
-# Token Safety Checker
+# Token Safety Checker 🔐 (tightlip)
 
-Scan `openclaw.json` for plaintext secrets and migrate them to environment variables via SecretRef.
-All operations run locally. Secret values are never passed as CLI arguments, never logged, and never appear in agent context.
+Find leaked secrets in agent **config**, **long-term memory**, **short-term memory** and **transcripts**,
+migrate config secrets to env vars, and install a guard that stops new leaks.
+Everything runs locally with the Python standard library. No network calls.
 
-## Script
+**Script:** `scripts/safeclaw.py` inside this skill's folder.
+Skill folder — OpenClaw: `{baseDir}` · Claude Code: `${CLAUDE_SKILL_DIR}` (use whichever is an absolute path).
+Below, `SC` means `python3 <skill folder>/scripts/safeclaw.py`.
 
-Single entry point: `scripts/safeclaw.py`
+## Hard rules (secret hygiene)
 
-```
-python3 safeclaw.py scan    [--config PATH]
-python3 safeclaw.py migrate [--findings JSON] [--config PATH] [--profile PATH] [--dry-run] [--restore]
-```
+1. Never `cat`, `grep`, `head` or otherwise open a file the scanner flagged, and never echo a secret.
+   Doing so copies the secret into this conversation's transcript — a new leak.
+2. Only show the user what the script prints: paths, line numbers, detector names, lengths,
+   `sha256:` fingerprints. These are safe. The script never prints secret values.
+3. Never pass secret values on the command line. `migrate` reads them from disk itself.
+4. Ask for explicit confirmation before `migrate` or `install-guard` (they change files).
 
-## How secrets are protected
+## Pick the workflow
 
-| Risk | Mitigation |
-|------|-----------|
-| Secret values in `scan` output | `scan` returns **paths + lengths only** — never values |
-| Secret values in CLI args | `migrate` reads values from disk internally — never via `--values` arg |
-| Secret values in dry-run output | Masked as `export VAR="***"` |
-| Secret values in agent context | `findings` JSON only contains `path`, `env_var`, `length` — safe to pass through SKILL |
-| Secret values in logs | No logging of values at any point |
+| User asks about… | Run |
+|---|---|
+| "check token safety", openclaw.json, OpenClaw setup | **A. Config** (OpenClaw only) |
+| memory, MEMORY.md, CLAUDE.md, chat history, transcripts, "did I leak a key?" | **B. Memory** |
+| "stop this from happening again", prevention | **C. Guard** |
+| full audit | A + B (`SC scan --memory`), then offer C |
 
-## Workflow
+On Claude Code without OpenClaw, skip A — there is no openclaw.json.
 
-### 1. Scan
+## A. Config secrets (OpenClaw `openclaw.json`)
 
-```bash
-python3 <skill_dir>/scripts/safeclaw.py scan [--config ~/.openclaw/openclaw.json]
-```
+1. **Scan**: `SC scan` (add `--deep` to also check git history of the config).
+   Exit 0 = clean → report and stop. Exit 1 = findings. Exit 2 = no config found.
+   Output: `findings[]` with `path`, `env_var`, `length`, `risk` (🔴 HIGH / 🟡 MEDIUM / 🟢 LOW), `fingerprint`.
+   `checks.file_permissions` (should be 600) and `checks.format` (JSON5 configs can be scanned, not migrated).
+2. **Confirm**: show a table `path | env_var | risk`. Let the user rename env vars. Do not proceed without a yes.
+3. **Dry run**: `SC migrate --findings '<findings JSON from step 1>' --dry-run` and show the plan.
+4. **Migrate**: `SC migrate --findings '<findings JSON>'`
+   It re-scans from disk, writes a timestamped backup created with mode 600 (`openclaw.json.bak-<time>`),
+   appends `export` lines to a **private secrets file** (`~/.openclaw/tightlip.env`, mode 600 before any
+   value is written; exact-name dedupe; refuses if a var exists with a different value), adds one line to the
+   shell profile that loads that file (no secret values in the profile; `--no-profile` to skip, `--profile`
+   / `--secrets-file` to choose paths), replaces values with `{"source":"env","provider":"default","id":"VAR"}`
+   and runs the read-only `verify`.
+5. **Reload**: shell-launched gateway → `source ~/.openclaw/tightlip.env` then `openclaw gateway restart`.
+   systemd → put the vars in `EnvironmentFile=`. Docker → `-e` / `environment:`.
+6. **Verify**: `SC verify` (exit 0 = clean). `SC verify --clean-backup` deletes backups once rollback is not needed.
+7. **Rollback**: `SC migrate --restore` (newest backup), `SC migrate --list-backups`,
+   `SC migrate --restore --backup <file>`.
 
-Output (safe to use in agent context — no secret values):
-```json
-{
-  "findings": [
-    { "path": "channels.discord.token", "env_var": "OPENCLAW_DISCORD_TOKEN", "length": 72 }
-  ],
-  "shell": { "name": "zsh", "profile": "~/.zshrc", "source_cmd": "source ~/.zshrc" }
-}
-```
+## B. Memory + transcript secrets (OpenClaw and Claude Code)
 
-Exit 0 = clean → report and stop. Exit 1 = findings → continue. Exit 2 = config not found.
+`SC memory` — read-only. Auto-detects `~/.openclaw` and `~/.claude`.
+Options: `--platform openclaw|claude|all`, `--project <dir>` (default: cwd, for CLAUDE.md / .claude/rules),
+`--no-transcripts` (memory files only — faster), `--claude-dir`, `--openclaw-dir`.
 
-### 2. Show findings to user and confirm
+What it scans:
 
-Present the findings table (`path | env_var | length`). Allow renaming env vars. **Do not proceed without explicit confirmation.**
+| Scope | OpenClaw | Claude Code |
+|---|---|---|
+| `long_term` | workspace `MEMORY.md`, `USER.md`, `DREAMS.md`, `SOUL.md`, `AGENTS.md`, `TOOLS.md`…, `memory/imports/` | `~/.claude/CLAUDE.md`, `~/.claude/rules/`, auto memory `~/.claude/projects/*/memory/`, project `CLAUDE.md`, `CLAUDE.local.md`, `.claude/rules/`, `AGENTS.md` |
+| `short_term` | daily notes `memory/YYYY-MM-DD*.md` (written by the pre-compaction memory flush) | `~/.claude/history.jsonl` (prompt history) |
+| `transcript` | `agents/*/sessions/*.jsonl`, `agents/*/agent/*.sqlite` | `~/.claude/projects/*/*.jsonl`, tool results |
+| `log` | `logs/*.jsonl` (e.g. `config-audit.jsonl`, which recorded `openclaw config set` arguments up to OpenClaw 2026.6) | — |
 
-### 3. Dry-run
+Output `memory.secrets[]` — one entry per unique secret: `detector`, `risk`, `fingerprint`, `length`,
+`occurrences`, `scopes`, `locations[]` (`file`, `line`; sqlite rows show `table:rowid=N`), `live_match`
+(set when it equals a secret currently used in openclaw.json or a SecretRef env var — rotate these first), `rotate`.
 
-```bash
-python3 <skill_dir>/scripts/safeclaw.py migrate \
-  --findings '<findings JSON from step 1>' \
-  --dry-run
-```
+Report to the user:
+1. Summary: unique secrets, how many are HIGH, how many are live.
+2. Table: `risk | detector | fingerprint | ×occurrences | scopes | first location`.
+3. **Rotation is mandatory.** Anything in memory or a transcript has already been sent to a model provider;
+   deleting the file does not un-send it. Use each entry's `rotate` hint.
+4. Cleanup: the user removes the lines by hand (redaction is planned for a later release). Claude Code
+   transcripts can also be deleted per session file. Do not open the files yourself.
+5. Offer workflow C so it does not happen again.
 
-Show output to user. The script re-reads config from disk to verify findings are still current. Confirm before proceeding.
+## C. Guard — stop new leaks
 
-### 4. Migrate
+`SC install-guard --platform claude|openclaw|all` — the platform must be named explicitly; confirm it with the
+user first, because this installs a persistent hook.
 
-```bash
-python3 <skill_dir>/scripts/safeclaw.py migrate \
-  --findings '<findings JSON from step 1>'
-```
+- **Claude Code**: adds a `PreToolUse` hook (`Write|Edit|MultiEdit|NotebookEdit`) to `~/.claude/settings.json`
+  that denies writing a detected secret into memory / instruction files (CLAUDE.md, auto memory,
+  `.claude/rules`, MEMORY.md, …). `--scope all` guards every file write. Existing settings and hooks are kept,
+  a settings backup is written, and the hook script is copied to `~/.claude/hooks/token-safety-guard.py`.
+  New sessions pick it up.
+- **OpenClaw**: adds a git `pre-commit` hook to git-backed workspaces that blocks committing secrets.
+  An existing non-guard pre-commit hook is never overwritten (manual instructions are printed instead).
 
-The script:
-1. **Re-scans** config from disk to confirm findings are still plaintext
-2. **Backs up** `openclaw.json` → `openclaw.json.bak`
-3. **Reads** secret values internally from disk (not from CLI args)
-4. **Appends** env exports to shell profile (skips duplicates, masks values in output)
-5. **Replaces** plaintext values with SecretRef in `openclaw.json`
+Remove with `SC uninstall-guard --platform claude|openclaw|all`.
 
-### 5. Source profile + restart gateway
-
-⚠️ Check how the gateway is managed:
-
-**Shell-launched (most local setups):**
-```bash
-source <profile>
-openclaw gateway restart
-```
-
-**systemd:** Add vars to `EnvironmentFile=` in the unit — sourcing a shell profile won't work.
-
-**Docker:** Pass via `-e` or `environment:` in compose.
-
-### 6. Verify
-
-```bash
-python3 <skill_dir>/scripts/safeclaw.py scan   # exit 0 = clean
-openclaw gateway status
-```
-
-### 7. Rollback
-
-```bash
-python3 <skill_dir>/scripts/safeclaw.py migrate --restore
-```
-
-## SecretRef format
+## SecretRef format (OpenClaw)
 
 ```json
 { "source": "env",  "provider": "default", "id": "MY_ENV_VAR" }
-{ "source": "file", "provider": "default", "id": "/path/to/secret.txt" }
+{ "source": "file", "provider": "default", "id": "/path/to/token-file" }
 { "source": "exec", "provider": "default", "id": "command --prints --secret" }
 ```
 
-`env` is recommended for most setups. For higher-security environments, prefer `file` or `exec`.
+`env` suits most setups; prefer `file` (chmod 600) or `exec` (password manager) for higher security.

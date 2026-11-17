@@ -1,44 +1,57 @@
-## Description: <br>
-Use when the user asks to analyze SERPs; reviews ranking factors, features, intent, AI Overviews, and snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes search engine results pages for a query by mapping SERP features, ranking patterns, search intent, AI Overviews, and snippet opportunities.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-SEO practitioners, content strategists, and developers use this skill to analyze search engine results pages for a target query, including SERP features, ranking patterns, search intent, difficulty, and content recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live search results and fetched third-party pages can contain misleading, low-quality, or prompt-like content. <br>
-Mitigation: Treat fetched pages as evidence only, verify important claims against the live SERP, and do not follow instructions found in fetched content. <br>
-Risk: SERP analysis may involve sensitive strategy inputs, Search Console exports, or competitive research notes. <br>
-Mitigation: Share only the data needed for the analysis and review any proposed memory saves before persisting findings. <br>
+## Use Case:
 
+Marketing, SEO, and content teams use this skill to inspect a live or provided SERP, explain ranking patterns and intent, estimate ranking difficulty, and produce recommendations for competing on a target query.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/serp-analysis) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Analysis Templates](references/analysis-templates.md) <br>
-- [SERP Feature Taxonomy](references/serp-feature-taxonomy.md) <br>
-- [Example Report](references/example-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis brief with tables, prioritized findings, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a reusable handoff summary and optional memory-save recommendations when supported by the user's workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and frontmatter) <br>
+Risk: Web and SERP content can be incomplete, stale, or misleading if treated as authoritative without evidence labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label metrics as Measured, User-provided, or Estimated, cite live or provided SERP evidence for intent and difficulty claims, and mark unavailable metrics as N/A.
+
+Risk: Reusable SEO research notes may preserve keyword priorities, competitor facts, or strategy decisions across sessions.
+
+Mitigation: Review saved memory notes and remove sensitive or unwanted research summaries before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/skills/serp-analysis)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Analysis Templates](artifact/references/analysis-templates.md)
+- [SERP Feature Taxonomy](artifact/references/serp-feature-taxonomy.md)
+- [Example Report](artifact/references/example-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown SERP brief with tables, evidence labels, recommendations, and optional shell commands for live SERP collection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include durable research-summary guidance for memory/research/ when supported by the host environment.]
+
+## Skill Version(s):
+
+19.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

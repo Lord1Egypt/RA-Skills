@@ -1,38 +1,53 @@
-## Description: <br>
-How to generate video scripts for the Video Generator from user prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+How to generate video scripts for the Video Generator from user prompts.
 
-## Publisher: <br>
-[itspremkumar](https://clawhub.ai/user/itspremkumar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itspremkumar](https://clawhub.ai/user/itspremkumar)
 
-## Use Case: <br>
-External users and developers use this skill to turn storytelling prompts into video-generator script JSON with titles, orientation, voice selection, narration, and visual cue tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated video-script JSON can fail or produce unexpected narration if the local generator expects different file paths, voice IDs, orientation values, or visual tag syntax. <br>
-Mitigation: Confirm the target generator's accepted schema and voice list before using the output, and review the generated script text so only intended narration is spoken. <br>
+## Use Case:
 
+External users and developers use this skill to turn storytelling prompts into structured video-generator script JSON with narration text, visual cue tags, orientation, voice, and optional display settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itspremkumar/video-gen-script) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON entries for input/input-scripts.json with narrative text and visual tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes job fields such as id, title, orientation, voice, optional caption and fallback-video settings, and script content with [Visual: ...] tags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated script JSON may use unsupported voice IDs, malformed fields, or visual cue syntax that downstream video tooling cannot process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate generated entries against the documented keys, accepted orientation values, supported voice IDs, and `[Visual: ...]` tag format before use.
+
+Risk: Voiceover text may accidentally include production notes or scene labels that would be read aloud.
+
+Mitigation: Review the final `script` value and remove non-narration instructions such as scene labels before passing it to text-to-speech.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/itspremkumar/skills/video-gen-script)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces video-generator script entries using supported voice IDs, orientation settings, optional caption and fallback-video keys, and inline visual cue tags.]
+
+## Skill Version(s):
+
+5.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

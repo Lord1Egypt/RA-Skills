@@ -1,42 +1,56 @@
-## Description: <br>
-需求真实性验证器 - 用数据验证需求的真实性，避免伪需求浪费资源。多维度验证用户一致性、需求频次、影响面、竞品覆盖、替代方案、ROI等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Requirement Validator validates whether product requirements are worth implementing by analyzing user feedback, behavior data, competitor coverage, alternatives, impact, frequency, and ROI.
 
-## Publisher: <br>
-[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel)
 
-## Use Case: <br>
-Product managers, founders, and product teams use this skill to evaluate whether proposed requirements are worth implementing. It analyzes feedback, optional behavior data, competitor coverage, alternatives, and ROI signals to produce a data-driven requirement validation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requirement validation may involve specific requirements, feedback, or behavior datasets that contain sensitive internal information. <br>
-Mitigation: Use the skill only for intended requirement validation tasks and avoid providing sensitive internal datasets unless they are meant to be processed. <br>
-Risk: Validation results depend on the quality and relevance of supplied feedback, behavior, competitor, and keyword data. <br>
-Mitigation: Review input files and treat the generated score as decision support rather than an automatic implementation decision. <br>
+## Use Case:
 
+Product managers, founders, and product teams use this skill to score proposed requirements against product feedback data and produce decision guidance before implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/requirement-validator) <br>
-- [README](artifact/README.md) <br>
-- [Validation rules configuration](artifact/config/validation_rules.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with command examples and data-driven scoring summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read CSV feedback data, optional CSV behavior data, JSON competitor data, and YAML validation rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Input CSV or JSON files may contain sensitive customer or user feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize the data before running the skill, and keep analysis local unless your own workflow requires sharing the report.
+
+Risk: Generated scores and recommendations can be misleading if keywords, feedback samples, behavior data, or competitor data are incomplete.
+
+Mitigation: Use explicit input paths and requirement keywords, inspect the generated report, and treat the result as decision support rather than an automatic implementation decision.
+
+## Reference(s):
+
+- [Requirement Validator on ClawHub](https://clawhub.ai/lijinhongucl-pixel/skills/requirement-validator)
+- [Publisher profile](https://clawhub.ai/user/lijinhongucl-pixel)
+- [README](artifact/README.md)
+- [Validation rules](artifact/config/validation_rules.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a numeric validity score, per-dimension analysis, and decision recommendations from local CSV or JSON inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Get YouTube video info, statistics, descriptions, thumbnails, and optionally transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get YouTube video info, statistics, descriptions, thumbnails, and optionally transcripts. Uses YouTube Data API (free) for basic info and Apify (optional) for transcripts.
 
-## Publisher: <br>
-[TevfikGulep](https://clawhub.ai/user/TevfikGulep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tevfikgulep](https://clawhub.ai/user/tevfikgulep)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve YouTube video metadata, statistics, thumbnails, descriptions, and optional transcripts from a command-line workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a YouTube API key and may use an Apify token for transcript requests. <br>
-Mitigation: Use restricted API keys, protect the credentials file, and install only if this credential access is acceptable. <br>
-Risk: Transcript requests can consume Apify usage or billing. <br>
-Mitigation: Request transcripts only when needed and monitor Apify account usage. <br>
-Risk: The advertised environment variables differ from the script behavior, which expects credentials in the documented OpenClaw credentials file. <br>
-Mitigation: Place credentials in the documented OpenClaw credentials file or review the script before relying on environment-variable setup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Youtube Master skill page](https://clawhub.ai/TevfikGulep/youtube-master) <br>
-- [ClawHub TevfikGulep publisher profile](https://clawhub.ai/user/TevfikGulep) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [Apify](https://apify.com/) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve YouTube video metadata, statistics, thumbnails, descriptions, and optional transcripts from a video URL or ID.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with Markdown setup and usage instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The command output can include YouTube metadata, statistics, a shortened description, and optional transcript lines when transcript retrieval is requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires API credentials for YouTube metadata and optional Apify transcript retrieval.
+
+Mitigation: Use dedicated, revocable, least-privilege credentials and protect the local credentials file.
+
+Risk: Transcript requests send the requested video URL to Apify.
+
+Mitigation: Request transcripts only when sharing the video URL with Apify is acceptable for the use case.
+
+Risk: The documented environment variables may not work as expected because the script reads credentials from the local credentials file.
+
+Mitigation: Configure credentials in the documented local credentials file or verify runtime credential loading before deployment.
+
+## Reference(s):
+
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Apify](https://apify.com/)
+- [ClawHub Skill Page](https://clawhub.ai/tevfikgulep/skills/youtube-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text output with video metadata and optional transcript lines, plus Markdown usage examples in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a YouTube Data API key for metadata; transcript retrieval requires an Apify token and sends the video URL to Apify.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

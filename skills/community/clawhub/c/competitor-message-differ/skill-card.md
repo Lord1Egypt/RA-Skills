@@ -1,45 +1,59 @@
-## Description: <br>
-Compares competitor messaging and information architecture to identify useful lessons, points to avoid copying, differentiation opportunities, and validation suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares competitor messaging, information architecture, and narrative differences to identify useful lessons, avoid imitation, and surface validation suggestions.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Marketing, product, and strategy teams use this skill to turn competitor copy, page excerpts, and audience context into a structured, reviewable messaging comparison. It is intended for strategy analysis and validation planning, not for copying competitor content or inventing competitor facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input may include sensitive competitor, customer, or positioning material. <br>
-Mitigation: Use only necessary local inputs, redact sensitive material before processing or sharing reports, and avoid sensitive directories. <br>
-Risk: The local script can write a report to a user-selected output path. <br>
-Mitigation: Use dry-run or an explicit review output path when testing, and inspect generated Markdown before using it in downstream work. <br>
-Risk: The artifact includes unused broader audit modes that can inspect local files if intentionally enabled. <br>
-Mitigation: Do not modify resources/spec.json to enable audit modes unless local file auditing is the intended task. <br>
+## Use Case:
 
+Marketing, positioning, and competitive strategy users apply this skill to turn competitor copy, page excerpts, and audience context into a structured review of architecture differences, narrative differences, lessons, risks to avoid, differentiation opportunities, and validation suggestions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/competitor-message-differ) <br>
-- [README.md](artifact/README.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local report when an output path is provided; otherwise prints to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Input files and directories are visible to the agent and local helper when used for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended local inputs, and remove or redact personal, confidential, or sensitive material before running the skill.
+
+Risk: Modified versions of the helper may be pointed at broad private directories or used for wider audit-style reports than the advertised messaging workflow.
+
+Mitigation: Review modified scripts and specs before use, prefer narrow input paths, and use dry-run or review-only outputs for sensitive work.
+
+Risk: Competitive analysis can become misleading or infringing if the agent fabricates facts or copies competitor wording.
+
+Mitigation: Require source-backed inputs, list missing information as confirmation items, and keep outputs focused on strategy analysis rather than copied messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/competitor-message-differ)
+- [Output template](artifact/resources/template.md)
+- [Structured skill specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown report; the helper script can also wrap the report in JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Python 3 local helper uses local input only, supports dry-run behavior, and can write reports to a selected output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-AI小红书信息源 scans AI-related Xiaohongshu posts, ranks them by engagement, clusters topics, and generates local HTML daily reports with cover images, metrics, and subscription support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI小红书信息源 scans AI-related Xiaohongshu posts by keyword, ranks them by engagement, clusters topics, and generates terminal summaries plus local HTML daily reports with optional daily subscription.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External content operators, Xiaohongshu creators, and industry analysts use this skill to fetch trending AI posts, review engagement metrics, and generate daily or historical reports for content and market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key for normal operation. <br>
-Mitigation: Verify the key source, scope, validity period, and revocation path before use; provide it through the REDFOX_API_KEY environment variable and avoid hardcoding or logging it. <br>
-Risk: Subscription mode creates a persistent daily scheduled task and may store the API key on disk on macOS. <br>
-Mitigation: Prefer one-off runs unless daily automation is needed; avoid --subscribe unless you accept the persistence behavior, and rotate the API key if subscription mode was previously enabled. <br>
-Risk: Normal runs create local HTML reports and may open them automatically in a browser. <br>
-Mitigation: Use --no-open when browser launch is not desired and review the generated files in ~/Downloads/QoderReports before sharing them. <br>
+## Use Case:
 
+External content operators, Xiaohongshu creators, and industry analysts use this skill to monitor AI-related Xiaohongshu trends, review popular posts, and generate daily or historical reports for content planning and market observation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/xiaohongshu-ai-feed) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=skillhub) <br>
-- [RedFoxHub](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Terminal text plus local HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; default reports are saved under ~/Downloads/QoderReports and can be opened in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill needs a RedFox API key and makes outbound RedFox API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable API key and install only when outbound RedFox requests are acceptable.
+
+Risk: Subscription mode may store the API key in plaintext and install recurring execution with unsafe command handling.
+
+Mitigation: Avoid --subscribe until credential storage and scheduled-task handling are fixed.
+
+Risk: Generated HTML reports contain external data and may open automatically in a browser.
+
+Mitigation: Use --no-open when reviewing reports from external data and open generated files only after inspection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/xiaohongshu-ai-feed)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox API endpoint](https://redfox.hk/story/api/parseWork/queryXhsAiMsgs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, HTML, Shell commands, Configuration]
+
+**Output Format:** [Terminal text plus local HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under ~/Downloads/QoderReports by default and may open the generated report in a browser unless --no-open is used.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

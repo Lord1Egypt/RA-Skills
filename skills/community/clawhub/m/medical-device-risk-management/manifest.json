@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械风险管理专家",
+  "version": "1.0.0",
+  "author": "注册老炮 (Regulatory Veteran)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:02:27.158382+00:00",
+  "timestamp_local": "2026-08-28T00:02:27.158390",
+  "package_fingerprint_sha256": "ac75de2e50f01de8ba83fd4462755108cc2e220e12fea84c780de3c9cc730afb",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "37c67dc8c7399b06e6072f938fa1a9dcf96a4891cad1069a6435d7c094735e0b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "7021c37efa93b65b66c702fd9749e990901ed312abea53872b15300dc3786630"
+    },
+    {
+      "path": "medical-device-riREDACTED-SECRET.py",
+      "sha256": "9c7be32260ad82949457aed51564770ff76f077c7e0c3f905c74f8cef4d52354"
+    },
+    {
+      "path": "references/风险管理知识库.md",
+      "sha256": "9eeaaf3bec39cc6e81090ffac73f987239396b98555ce339a3e82143940e53ac"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "6bc5aaa3f1ecc1f890d2b4b56cc101bb006c286ef445f7d276e8274bad0eecd6"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "e6ce9b779e00c126ebff89908d0bdf7f7d8a343e57612fbaaa41335ce0f29238"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "0fd85fac9ee6e4ddf5ef5bfba8921244db23e5ad4f5740e8c8dc774e10e5bd33"
+    }
+  ]
+}

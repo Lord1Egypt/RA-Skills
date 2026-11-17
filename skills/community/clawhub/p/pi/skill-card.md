@@ -1,43 +1,66 @@
-## Description: <br>
-Personal investigator and people lookup skill for deep background research on a person using public records, court documents, property records, social media, corporate filings, and web OSINT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+People Investigation guides an agent through public-records and OSINT research on a target person, including identity anchors, court records, property records, corporate filings, social media, and a structured dossier.
 
-## Publisher: <br>
-[tag-assistant](https://clawhub.ai/user/tag-assistant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tag-assistant](https://clawhub.ai/user/tag-assistant)
 
-## Use Case: <br>
-External users or analysts use this skill to compile an OSINT-style investigation report about a named person from public records, web search, court, property, business, social, and donation sources. It should be used only for lawful, non-harassing purposes with careful review of sensitive findings before sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global, subject to local privacy, public-records, and permissible-use laws. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to mine private local contacts, payments, calls, messages, and memory while investigating a person. <br>
-Mitigation: Disable or remove local-data searches unless the user gives explicit per-run consent and the purpose is lawful and non-harassing. <br>
-Risk: The skill can collect sensitive personal details such as contact information, addresses, family connections, legal records, and financial indicators. <br>
-Mitigation: Minimize sensitive details, avoid SSNs, driver's license numbers, and exact home or contact details, and review any generated dossier carefully before sharing. <br>
-Risk: People-search aggregators and public records can conflate people with similar names. <br>
-Mitigation: Verify findings against identity anchors, label uncertain claims clearly, and avoid attributing unverified information to the target person. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tag-assistant/pi) <br>
-- [Court Systems Quick Reference](references/court-systems.md) <br>
-- [People Search and OSINT Resources](references/osint-resources.md) <br>
+## Use Case:
 
+External users and agents use this skill to organize people-search investigations across public records, web OSINT, court systems, property records, business filings, social media, and donation records. The expected result is a structured investigation report with source links, confidence notes, and caveats.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown dossier with source links, caveats, and optional shell command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence notes, disambiguation notes, and leads requiring manual follow-up.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can compile sensitive personal dossiers from people-search sources.
+
+Mitigation: Use only with explicit consent and a lawful, non-harassing purpose; avoid returning home addresses, personal contact details, children, unrelated relatives, or financial proxies unless strictly necessary and authorized.
+
+Risk: The artifact instructs agents to search private local archives, messages, payments, call logs, and memory.
+
+Mitigation: Disable or remove private-local-source searches unless the user has clear authority over the data and the target has consented where required.
+
+Risk: People-search aggregators and public-records snippets can mix identities and cause misattribution.
+
+Mitigation: Verify findings against identity anchors, mark uncertainty clearly, and document disambiguation notes instead of presenting unverified leads as facts.
+
+Risk: Investigation reports may be misused for stalking, harassment, or regulated background-check decisions.
+
+Mitigation: Do not use the skill for harassment or FCRA-covered decisions such as employment, credit, housing, insurance, or tenant screening.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tag-assistant/skills/pi)
+- [People Search & OSINT Resources](references/osint-resources.md)
+- [Florida Court Systems - Quick Reference](references/court-systems.md)
+- [FEC Individual Contributions](https://www.fec.gov/data/receipts/individual-contributions/)
+- [CourtListener](https://www.courtlistener.com/)
+- [PACER Case Locator](https://pcl.uscourts.gov/pcl/)
+- [Florida Sunbiz Officer Search](https://search.sunbiz.org/Inquiry/CorporationSearch/SearchByOfficerRA)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown dossier with linked source references, confidence notes, caveats, and optional shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contain sensitive personal information; outputs should avoid unnecessary contact details, home addresses, family details, and other sensitive identifiers unless authorized and strictly necessary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

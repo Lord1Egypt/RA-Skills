@@ -1,50 +1,64 @@
-## Description: <br>
-Launch tokens with guidance for Clanker, Flaunch, Pump.fun, and the Tator API, including fee economics, claims, recipient updates, and tax and legal awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps builders evaluate token launch ideas and generate guidance, code patterns, API examples, and fee-management workflows for launching tokens through Clanker, Flaunch, Pump.fun, or the Tator API.
 
-## Publisher: <br>
-[azep-ninja](https://clawhub.ai/user/azep-ninja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azep-ninja](https://clawhub.ai/user/azep-ninja)
 
-## Use Case: <br>
-External builders and developers use this skill to evaluate token launch concepts, compare launch platforms, and generate implementation guidance for launching tokens, configuring creator fee recipients, claiming fees, and managing post-launch operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill concerns crypto token launches, fee management, wallet signatures, and irreversible on-chain actions with real financial consequences. <br>
-Mitigation: Use a dedicated wallet with minimal funds, verify contract addresses, payment details, fee recipients, and bot-wallet setup before signing or submitting any transaction. <br>
-Risk: External API calls and x402 payment signatures can trigger paid requests or launch-related operations. <br>
-Mitigation: Confirm the operation, cost, wallet address, token details, and recipient settings before creating or sending a PAYMENT-SIGNATURE or API request. <br>
-Risk: The artifact includes reference code patterns for developer infrastructure rather than code executed by the skill itself. <br>
-Mitigation: Review, test, and secure any implementation separately, including private-key handling, SDK dependencies, RPC endpoints, and production secrets management. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/azep-ninja/token-launch-pad) <br>
-- [Direct Mode Reference](REFERENCE.md) <br>
-- [Clanker v4 Direct Mode Reference](references/clanker.md) <br>
-- [Flaunch Direct Mode Reference](references/flaunch.md) <br>
-- [Pump.fun Direct Mode Reference](references/pumpfun.md) <br>
-- [Tator documentation](https://docs.tator.bot) <br>
-- [x402 protocol](https://www.x402.org) <br>
-- [Clanker SDK documentation](https://clanker.gitbook.io/clanker-documentation/sdk/v4.0.0) <br>
-- [Flaunch builder documentation](https://docs.flaunch.gg/for-builders) <br>
-- [Pump.fun public documentation](https://github.com/pump-fun/pump-public-docs) <br>
+## Use Case:
 
+External developers and token builders use this skill to compare launch paths, prepare token deployment details, configure creator-fee recipients, claim fees, update recipients, and understand tax, legal, and operational cautions before acting.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with code blocks, API examples, command snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may describe external API calls, wallet signatures, unsigned transactions, and blockchain operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Token launches, fee claims, recipient updates, and hosted API requests can have irreversible financial effects.
+
+Mitigation: Require explicit confirmation that names the chain, wallet, token, recipient, service endpoint, payment amount, and irreversible effect before taking action.
+
+Risk: Wallet keys, contract addresses, dependencies, and funded wallets can expose users to financial loss if handled carelessly.
+
+Mitigation: Use dedicated minimally funded wallets, never share private keys, pin dependencies, and verify contract addresses before signing or submitting transactions.
+
+Risk: The skill provides token launch guidance in an area with tax, legal, and market risk.
+
+Mitigation: Present the guidance as informational, encourage professional review where appropriate, and avoid implying guaranteed returns or legal compliance.
+
+## Reference(s):
+
+- [Token Launcher Direct Mode Reference](REFERENCE.md)
+- [Clanker v4 Direct Mode Reference](references/clanker.md)
+- [Flaunch Direct Mode Reference](references/flaunch.md)
+- [Pump.fun Direct Mode Reference](references/pumpfun.md)
+- [Tator documentation](https://docs.tator.bot)
+- [x402 protocol](https://www.x402.org)
+- [Clanker SDK documentation](https://clanker.gitbook.io/clanker-documentation/sdk/v4.0.0)
+- [Flaunch builder documentation](https://docs.flaunch.gg/for-builders)
+- [Pump.fun public documentation](https://github.com/pump-fun/pump-public-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code snippets, JSON payloads, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include unsigned transaction patterns and hosted API request examples for token launches, fee claims, recipient updates, and security scans.]
+
+## Skill Version(s):
+
+1.0.15 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

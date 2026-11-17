@@ -1,40 +1,53 @@
-## Description: <br>
-Automate web navigation, interaction, and data extraction using a fast Rust-based headless browser CLI with Node.js fallback and structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web navigation, interaction, and data extraction using a fast Rust-based headless browser CLI with Node.js fallback and structured commands.
 
-## Publisher: <br>
-[gxw975](https://clawhub.ai/user/gxw975) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxw975](https://clawhub.ai/user/gxw975)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser workflows such as navigation, form filling, UI testing, and structured data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a browser session and may access page contents, logged-in sessions, form inputs, screenshots, and saved files when directed. <br>
-Mitigation: Use least-privilege Ziniao/API key access and avoid assigning tasks involving sensitive accounts unless that browser access is intended. <br>
-Risk: Browser automation can submit forms, run page JavaScript, and change web application state. <br>
-Mitigation: Review the target site, commands, and session context before allowing actions that submit data or perform account changes. <br>
+## Use Case:
 
+Developers and AI agents use this skill to automate browser workflows such as login, form filling, structured page extraction, and web UI testing through the agent-browser CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gxw975/clawhub-publish-146156) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct browser actions, page snapshots, screenshots, PDF export, video recording, and JSON output when the underlying CLI is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill asks users to globally install an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the agent-browser npm package and intended version before installation; prefer a pinned or local install where possible.
+
+Risk: Browser automation can expose sensitive session data such as credentials, screenshots, videos, cookies, storage, and internal pages.
+
+Mitigation: Run automation in a least-privileged browser profile without unrelated saved sessions, and only capture or enter sensitive data with explicit authorization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gxw975/skills/clawhub-publish-146156)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with inline bash commands and CLI output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-browser commands may produce page snapshots, screenshots, PDFs, videos, and browser session data when invoked.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

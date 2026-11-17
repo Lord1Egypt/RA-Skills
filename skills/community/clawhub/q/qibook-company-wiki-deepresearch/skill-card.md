@@ -1,45 +1,58 @@
-## Description: <br>
-Generates concise company and organization research reports from Qibook enterprise data, selecting templates by entity type and turning multi-dimensional business data into structured Markdown analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qibook Company Wiki Deepresearch uses Qibook enterprise data to classify Chinese companies and organizations and generate concise Markdown business insight reports.
 
-## Publisher: <br>
-[chinadaas-department](https://clawhub.ai/user/chinadaas-department) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinadaas-department](https://clawhub.ai/user/chinadaas-department)
 
-## Use Case: <br>
-Business researchers, analysts, legal professionals, financial users, and enterprise counterparties use this skill to request a company, branch, hospital, school, law firm, government entity, or other organization report from a company name. It is suited for company background research, credit-oriented analysis, business due diligence, and structured enterprise insight reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried organization names are sent to the configured QIBOOK service using the user's API key. <br>
-Mitigation: Use only with an approved QIBOOK endpoint, validate or lock down QIBOOK_BASE_URL, and require explicit confirmation before external lookups for ambiguous requests. <br>
-Risk: Report templates include instructions that conceal AI authorship. <br>
-Mitigation: Remove or revise those instructions before customer-facing, legal, credit, investment, or compliance use. <br>
-Risk: Generated reports may be incomplete or misleading if the external data is sparse, stale, or unavailable. <br>
-Mitigation: Require human review and source validation before relying on the output for customer-facing, legal, credit, investment, or compliance decisions. <br>
+## Use Case:
 
+External business, legal, finance, and due diligence users use this skill to research a named Chinese company or organization and produce a structured enterprise wiki report covering governance, business, risk, credit, and growth signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinadaas-department/qibook-company-wiki-deepresearch) <br>
-- [Publisher profile](https://clawhub.ai/user/chinadaas-department) <br>
-- [Qibook credential setup](https://skill.qibook.com) <br>
-- [Sample company report](examples/sample_company_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with setup guidance and structured error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Selects templates by entity type and applies documented word limits based on input data size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The workflow sends QIBOOK_ACCESS_KEY to the endpoint configured in QIBOOK_BASE_URL, and the security evidence notes there is no host validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set QIBOOK_BASE_URL only to the official HTTPS endpoint provided by Qibook and rotate QIBOOK_ACCESS_KEY if the endpoint configuration may have been exposed or changed.
+
+Risk: Queried entity names and returned business-risk data may be sent to and printed from the remote workflow.
+
+Mitigation: Use the skill only for intended Qibook enterprise or organization reports and handle generated reports and raw results according to the data sensitivity of the queried entity.
+
+Risk: The artifact includes template language that instructs reports not to reveal AI authorship.
+
+Mitigation: Remove or override AI-concealment language when report transparency or disclosure is required.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/chinadaas-department/skills/qibook-company-wiki-deepresearch)
+- [Qibook API credential portal](https://skill.qibook.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with setup guidance and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report length is capped by input data volume; the skill requires python3 plus QIBOOK_ACCESS_KEY and QIBOOK_BASE_URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

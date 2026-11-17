@@ -1,40 +1,53 @@
-## Description: <br>
-Drafts a Phase I Archaeological Survey report for cultural resource management work, covering APE definition, background research, field methods, site documentation, and NRHP eligibility recommendations for principal investigator review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts a Phase I Archaeological Survey report for CRM archaeologists and cultural resource specialists, covering project intake, APE definition, background research, field methods, results, recommendations, and draft report assembly for PI review before SHPO or agency submission.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-CRM archaeologists, principal investigators, and cultural resource specialists use this skill to prepare draft Phase I Archaeological Survey documentation for Section 106 NHPA, CEQA, SEPA, or similar cultural resource review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft regulatory archaeology content may be mistaken for final compliance, NRHP eligibility, or agency concurrence. <br>
-Mitigation: Keep outputs marked as DRAFT and require principal investigator review plus SHPO, THPO, ACHP, or agency concurrence where applicable. <br>
-Risk: Precise archaeological site locations, tribal consultation records, or protected cultural resource information could be exposed in shared drafts. <br>
-Mitigation: Exclude precise GPS coordinates and confidential consultation material from broadly shared drafts; place sensitive details only in authorized confidential appendices or project channels. <br>
+## Use Case:
 
+External CRM archaeologists, principal investigators, and cultural resource specialists use this skill to draft Phase I Archaeological Survey reports for Section 106 NHPA, CEQA, SEPA, or comparable cultural resource management reviews. The skill helps organize project context, APE details, background research, field methods, cultural resource findings, NRHP eligibility recommendations, appendices, and PI review placeholders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/phase-1-archaeological-survey-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft report with structured sections, tables, bibliography stubs, appendix placeholders, and review checkboxes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs must remain marked as DRAFT and require principal investigator review before SHPO or agency submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: changelog, released 2026-05-29; server release metadata) <br>
+Risk: Draft reports may be mistaken for final regulatory submissions or definitive NRHP eligibility determinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs marked as draft and route them through principal investigator review and SHPO, THPO, ACHP, or agency concurrence where required.
+
+Risk: Archaeological site locations, tribal consultation records, and Traditional Cultural Property information may be confidential.
+
+Mitigation: Keep precise locations and consultation records in authorized confidential appendices or controlled distribution channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/phase-1-archaeological-survey-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft report with structured sections, tables, bibliography stubs, appendix placeholders, and a principal investigator review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs must remain draft-only and should exclude precise archaeological site coordinates, tribal consultation records, and confidential THPO communications unless authorized for protected distribution.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and changelog, released 2026-05-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

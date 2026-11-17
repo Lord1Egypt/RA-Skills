@@ -1,43 +1,54 @@
-## Description: <br>
-报销助手 helps users organize business entertainment and travel reimbursement materials by recognizing invoices and vouchers, classifying expenses, generating reimbursement summaries, and renaming receipt files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expense Assistant helps users organize business entertainment and travel reimbursement materials by recognizing invoices and receipts, classifying expenses, generating reimbursement summaries, and preparing evidence filenames.
 
-## Publisher: <br>
-[esther-muye](https://clawhub.ai/user/esther-muye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[esther-muye](https://clawhub.ai/user/esther-muye)
 
-## Use Case: <br>
-Employees and reimbursement preparers use this skill to manage business entertainment and travel reimbursement workflows, including invoice extraction, voucher classification, reimbursement summary generation, and receipt file organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt files may be renamed in place and copied into a reimbursement directory. <br>
-Mitigation: Test the workflow on sample files first, keep backups of important receipts, and check for filename conflicts before processing a large folder. <br>
-Risk: Invoice, voucher, or image extraction may produce incorrect dates, amounts, vendors, or expense categories. <br>
-Mitigation: Review extracted fields and generated reimbursement summaries before submitting materials to an expense system. <br>
-Risk: Transportation subsidy rules and reimbursement periods may differ from a user's company policy. <br>
-Mitigation: Confirm subsidy amounts, reimbursement windows, and category rules against the applicable company policy before use. <br>
+## Use Case:
 
+Employees and finance-support agents use this skill to collect reimbursement evidence, separate business entertainment, travel, and transportation-subsidy documents, calculate reimbursement summaries, and prepare files for company reimbursement workflows.
 
-## Reference(s): <br>
-- [报销助手 reference document](references/数据结构.md) <br>
-- [ClawHub skill page](https://clawhub.ai/esther-muye/expense-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, generated reimbursement summaries, structured records, and local file operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rename original receipt files and copy them into a local reimbursement directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release metadata) <br>
+Risk: The skill handles sensitive financial and reimbursement documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on intended reimbursement materials in a dedicated folder, and avoid mixing unrelated personal or business files into the working directory.
+
+Risk: The included workflow can rename, move, and copy documents automatically.
+
+Mitigation: Require a preview and explicit confirmation before file operations, sanitize generated filenames, and keep backups of original documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/esther-muye/skills/expense-assistant)
+- [报销助手参考文档](references/数据结构.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text summaries with optional file operations and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rename, move, or copy reimbursement documents when the user authorizes file handling.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

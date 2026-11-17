@@ -60,7 +60,7 @@ def _get_ak_raw_from_config() -> Optional[str]:
 
 
 def get_ak_from_env() -> Tuple[Optional[str], Optional[str]]:
-    """读取 AK：优先环境变量（OpenClaw 注入），其次配置文件（Gateway 未重启时 fallback）"""
+    """读取 AK，优先级：环境变量（OpenClaw 注入）> 配置文件（fallback）"""
     raw_input = os.environ.get("ALI_1688_AK") or _get_ak_raw_from_config()
     if not raw_input:
         return None, None

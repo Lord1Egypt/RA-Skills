@@ -1,41 +1,57 @@
-## Description: <br>
-Creates and publishes an Instagram carousel post from a tabiji.ai itinerary by sourcing destination photos, applying text overlays, and publishing via Instagram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and publish an Instagram carousel post from a tabiji.ai itinerary.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Content creators, travel marketers, or operators of tabiji.ai social accounts use this skill to turn an itinerary URL, destination, attraction list, and optional caption into a six-slide Instagram carousel and published post URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public Instagram carousel posts using configured Instagram credentials. <br>
-Mitigation: Require a final preview of images and caption, confirm the target Instagram account, and publish only with an approved token for that account. <br>
-Risk: The workflow can push and later delete hosted carousel images in the tabiji GitHub repository. <br>
-Mitigation: Use a dedicated repository path, inspect the git diff before push, and confirm cleanup changes before deleting hosted images. <br>
-Risk: Destination titles, captions, and sourced photos can create rights, attribution, or content-quality issues. <br>
-Mitigation: Sanitize user-provided titles and captions, verify image rights before publishing, and replace low-quality or unsuitable photos before API submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Instagram Graph API - Carousel Publishing Reference](references/instagram-graph-api.md) <br>
+## Use Case:
 
+Travel and social media operators use this skill to turn a tabiji.ai itinerary into an Instagram carousel by sourcing destination photos, applying text overlays, preparing a caption, and publishing through the Instagram Graph API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, API Calls, Guidance] <br>
-**Output Format:** [Markdown workflow with bash and curl examples, JSON manifest, JPEG carousel images, and Instagram post URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates temporary image files and may publish public Instagram content through configured Instagram and GitHub credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use Instagram publishing credentials and publish content to an Instagram account.
+
+Mitigation: Require an explicit human preview and approval of the target account, images, caption, and publish action before any Instagram API call is made.
+
+Risk: The skill can make temporary carousel images publicly accessible and modify a GitHub repository.
+
+Mitigation: Review the exact hosted image URLs and git changes before push, and remove temporary hosted images after publication is confirmed.
+
+Risk: The security summary notes broad authority without clear approval gates or tight scoping.
+
+Mitigation: Run the workflow with scoped credentials and repository access limited to the intended Instagram account and image-hosting path.
+
+## Reference(s):
+
+- [Instagram Graph API - Carousel Publishing Reference](references/instagram-graph-api.md)
+- [ClawHub Skill Page](https://clawhub.ai/psyduckler/skills/itinerary-carousel-post)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the workflow creates temporary image files, a JSON image manifest, overlaid carousel slides, and an Instagram post URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-自主研究助手 - 深度调研、交叉验证、生成引用报告 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous research assistant for deep research, cross-validation, and cited report generation.
 
-## Publisher: <br>
-[Bandwe](https://clawhub.ai/user/Bandwe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bandwe](https://clawhub.ai/user/bandwe)
 
-## Use Case: <br>
-External users and developers use this prompt-only skill to run structured research, evaluate sources with CRAAP criteria, cross-check findings, and produce cited research reports. It also provides templates for knowledge graph entries, monitoring settings, and research dashboard metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research outputs can be incomplete, stale, or misleading if sources are weak or contradictory. <br>
-Mitigation: Use the built-in CRAAP scoring, cross-check important claims across multiple sources, and preserve confidence labels and unresolved contradictions in the report. <br>
-Risk: Private, proprietary, or personal research topics may be stored in notes, knowledge graph entries, monitoring jobs, or dashboard metrics. <br>
-Mitigation: Require explicit confirmation before storing research notes, creating knowledge graph entries, enabling monitoring, scheduling recurring checks, or using shell/exec tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bandwe/auto-researcher) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to structure multi-source research, evaluate source credibility, synthesize conflicting findings, and produce cited research reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown research reports with citations, JSON knowledge graph records, and TOML-style configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only workflow; optional monitoring and knowledge storage should be confirmed before use on private, proprietary, or personal topics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may search the web, store research data, create recurring monitoring jobs, or invoke shell-style execution without enough user controls or scope limits.
+
+Mitigation: Set explicit limits for research scope, source count, monitoring duration, storage location, and deletion; require confirmation before any exec command or scheduled task is used.
+
+Risk: Research outputs may include outdated, low-quality, or conflicting source claims.
+
+Mitigation: Use the documented CRAAP scoring, cross-check important claims across sources, label confidence and uncertainty, and include citations with the final report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bandwe/skills/auto-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Markdown research reports, JSON knowledge graph records, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include source lists, CRAAP credibility scores, confidence labels, contradictory findings, knowledge gaps, and APA or MLA citations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

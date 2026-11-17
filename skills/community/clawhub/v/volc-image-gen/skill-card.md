@@ -1,46 +1,54 @@
-## Description: <br>
-Use Volc Engine AI to generate, edit, batch produce, and create variations of images with customizable styles and sizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Volc Engine AI to generate, edit, batch produce, and create variations of images with customizable styles and sizes.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers and content-producing teams use this skill to call Volcengine Ark image-generation services for text-to-image, image editing, batch generation, and image-variation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and input images are sent to Volcengine for processing. <br>
-Mitigation: Avoid confidential or regulated prompts and images unless the deployment has approved Volcengine processing for that data. <br>
-Risk: API keys, prompts, local paths, and generated file locations can appear in runtime logs or local output. <br>
-Mitigation: Use a dedicated low-quota VOLC_API_KEY, restrict log access, and avoid including secrets or sensitive paths in prompts and filenames. <br>
-Risk: Changing VOLC_API_BASE can route prompts and images to a non-default service. <br>
-Mitigation: Keep VOLC_API_BASE on the official Volcengine endpoint unless another endpoint has been explicitly reviewed and trusted. <br>
-Risk: Generated outputs and downloaded input images may remain on disk under /tmp/openclaw. <br>
-Mitigation: Review retention expectations and clean /tmp/openclaw after workflows that use sensitive source images or generated results. <br>
+## Use Case:
 
+Developers and agents use this skill to call Volc Engine Ark image APIs for text-to-image generation, image editing, batch generation, and image variations with selected styles and sizes.
 
-## Reference(s): <br>
-- [ClawHub Volc Image Gen Listing](https://clawhub.ai/rfdiosuao/volc-image-gen) <br>
-- [Volcengine Ark Documentation](https://www.volcengine.com/docs/82379) <br>
-- [Volcengine Ark Console](https://console.volcengine.com/ark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, API calls, guidance] <br>
-**Output Format:** [JSON responses with generated image URLs, local file paths, usage metadata, and error details; help output is structured JSON guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated and input images may be written under /tmp/openclaw; repeated text-to-image requests can be served from an in-memory cache for one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Image-edit inputs can read arbitrary local files or internal URLs and send their contents to an external image API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a constrained runtime and do not pass private documents, secrets, internal URLs, or regulated images as inputs.
+
+Risk: Outbound API calls depend on a Volcengine credential and can incur spend or expose data if misconfigured.
+
+Mitigation: Use a narrowly scoped Volcengine key, a fixed trusted API base URL, outbound network restrictions, and spending limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rfdiosuao/skills/volc-image-gen)
+- [Volc Engine Ark Console](https://console.volcengine.com/ark)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, API Calls, Guidance]
+
+**Output Format:** [JSON result objects with image URLs, local file paths, usage metadata, and error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download generated or input images to local temporary storage and uses a one-hour cache for generation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

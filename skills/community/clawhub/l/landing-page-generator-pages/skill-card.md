@@ -1,41 +1,53 @@
-## Description: <br>
-When the user wants to create, optimize, or audit campaign landing pages for paid ads, email, or other traffic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, optimize, and audit campaign landing pages for paid ads, email, affiliate, launch, lead capture, webinar, and other single-goal conversion flows.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users, marketers, and developers use this skill to plan, create, optimize, or audit single-goal landing pages for paid ads, email, affiliate, lead capture, product launch, webinar, and similar campaign traffic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence notes that the available scan inputs show no issues but were limited for a full artifact review. <br>
-Mitigation: Review the ClawHub file listing and metadata before installing, especially for declared credentials, command execution, or broad filesystem access. <br>
-Risk: Landing page recommendations can produce misleading conversion claims or noncompliant campaign content if copied without business review. <br>
-Mitigation: Review claims, disclosures, accessibility, privacy, and form behavior before publishing campaign pages. <br>
+## Use Case:
 
+Developers, marketers, and agent users use this skill to plan conversion-focused landing pages for paid ads, email, affiliate signup, product launch, lead capture, webinar registration, and similar campaigns. It guides headline, page structure, trust signals, CTA placement, objection handling, internal links, and SEO metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/landing-page-generator-pages) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with landing page copy, structure, CTA placement, trust signals, objection handling, internal links, and SEO metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation-oriented checklist items for accessibility, responsive layout, performance, image optimization, and interaction behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may read existing project context files to tailor landing-page recommendations, which can expose project and campaign details to the active agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project context files before use and avoid storing secrets or unnecessary confidential information in those files.
+
+Risk: Landing-page recommendations, conversion claims, CTAs, disclosures, or SEO metadata may be unsuitable for a specific campaign if accepted without review.
+
+Mitigation: Have a human review claims, accessibility, performance, affiliate or paid disclosures, and conversion flow before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/landing-page-generator-pages)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with landing-page copy, structure, checklist items, links, and metadata recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations using available project context files; does not require executable code, network access, persistence, or credential handling.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

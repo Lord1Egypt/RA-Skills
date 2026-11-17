@@ -2,7 +2,7 @@ const { createMemoryCore } = require('../index');
 
 const CONFIG = {
   verbose: true,
-  apiKey: 'sk-BrwHc1ZiaEGQ1GecD3D760384b874795A194882c2cF3AbE6',
+  apiKey: 'REDACTED-SECRET',
   baseUrl: 'https://api.edgefn.net/v1',
   embeddingProvider: {
     type: 'edgefn',

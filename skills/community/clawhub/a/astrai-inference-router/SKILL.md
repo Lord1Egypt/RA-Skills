@@ -7,7 +7,7 @@ metadata:
   clawdbot:
     emoji: "⚡"
     requires:
-      env: ["ASTRAI_API_KEY", "ANTHROPIC_API_KEY"]
+      env: ["ASTRAI_API_KEY"]
     primaryEnv: "ASTRAI_API_KEY"
     files: ["plugin.py", "config.example.toml"]
 tags: [inference, routing, privacy, cost-optimization, gdpr, eu, savings, llm-gateway]

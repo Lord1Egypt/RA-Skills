@@ -1,41 +1,52 @@
-## Description: <br>
-Master Excel, Word, PowerPoint, and Google Workspace with formulas, formatting, and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Excel, Word, PowerPoint, and Google Workspace with formulas, formatting, and automation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and office administrators use this skill as a concise reference for common spreadsheet, document, presentation, and office operations tasks across Microsoft 365 and Google Workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Office guidance may be applied to important spreadsheets, documents, vendor records, or shared office processes without review. <br>
-Mitigation: Review suggested manual changes before applying them to important files, vendor records, or office operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Office Skill Definition](artifact/SKILL.md) <br>
-- [Documents Deep Dive](artifact/documents.md) <br>
-- [Spreadsheets Deep Dive](artifact/spreadsheets.md) <br>
-- [Presentations Deep Dive](artifact/presentations.md) <br>
-- [Office Administration](artifact/facilities.md) <br>
+## Use Case:
 
+Employees, office administrators, and productivity-tool users use this skill for practical guidance on spreadsheets, documents, presentations, and physical office operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior or sensitive access requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mail merge workflows can involve recipient lists and generated documents that contain personal information or could be sent to the wrong audience.
+
+Mitigation: Review recipient lists and generated merge output carefully before printing, sending, or sharing.
+
+## Reference(s):
+
+- [Documents Deep Dive](documents.md)
+- [Office Administration](facilities.md)
+- [Presentations Deep Dive](presentations.md)
+- [Spreadsheets Deep Dive](spreadsheets.md)
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/office)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, formulas, and step-by-step office productivity instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; guidance may need human review before use with personal data or operational records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

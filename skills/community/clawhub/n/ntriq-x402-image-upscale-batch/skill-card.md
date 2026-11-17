@@ -1,43 +1,55 @@
-## Description: <br>
-Batch AI image upscaling for up to 500 images using Real-ESRGAN. Flat $30.00 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch AI image upscaling for up to 500 images using Real-ESRGAN. Flat $30.00 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and external users use this skill to submit batches of public or shareable image URLs for Real-ESRGAN upscaling through the ntriq x402 API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected image URLs to x402.ntriq.co.kr for processing. <br>
-Mitigation: Use only public or intentionally shared image URLs, and avoid private images, intranet URLs, or long-lived signed links unless sharing them with the provider is acceptable. <br>
-Risk: The workflow requires a disclosed flat $30.00 USDC payment through x402 on Base mainnet. <br>
-Mitigation: Confirm the payment amount, network, and x402 payment header before making a request. <br>
+## Use Case:
 
+Developers and external agents use this skill to prepare paid batch image-upscaling API requests for up to 500 image URLs with selectable scale and mode settings.
 
-## Reference(s): <br>
-- [Ntriq x402 Homepage](https://x402.ntriq.co.kr) <br>
-- [Ntriq Image Upscale Batch API](https://x402.ntriq.co.kr/image-upscale-batch) <br>
-- [Ntriq Services Endpoint](https://x402.ntriq.co.kr/services) <br>
-- [x402 Protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTTP and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API usage instructions for image URL batches, scale selection, mode selection, and x402 payment headers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Using the skill can trigger a disclosed $30 USDC payment through the Base mainnet/x402 flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the price, payment network, and x402 payment header before making requests.
+
+Risk: Image URLs are sent to a remote third-party upscaling service.
+
+Mitigation: Use only image URLs that are appropriate to share with the provider, and avoid private or confidential images unless the provider's handling is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-image-upscale-batch)
+- [Ntriq x402 service homepage](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON request examples and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests submit image URLs to a remote paid service and may require an x402 payment header.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

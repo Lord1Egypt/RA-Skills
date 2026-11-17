@@ -1,45 +1,59 @@
-## Description: <br>
-Bridge macOS-only tools into a Linux OpenClaw gateway via SSH wrappers and connected Mac nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge macOS-only tools into a Linux OpenClaw gateway via SSH wrappers and connected Mac nodes.
 
-## Publisher: <br>
-[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthewxmurphy](https://clawhub.ai/user/matthewxmurphy)
 
-## Use Case: <br>
-Developers and engineers use this skill when a Linux OpenClaw gateway needs a repeatable way to call macOS-only command-line tools on trusted Mac nodes through SSH wrappers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent SSH wrappers can create durable remote access from the Linux gateway to a Mac node. <br>
-Mitigation: Install wrappers only for trusted gateway and Mac accounts, use non-root accounts, and remove wrappers when they are no longer needed. <br>
-Risk: Weak setup-value escaping can make untrusted hostnames or paths unsafe during wrapper generation. <br>
-Mitigation: Do not pass hostnames, paths, or wrapper names from untrusted sources until the quoting behavior is fixed and reviewed. <br>
-Risk: Broad tool wrappers such as brew or gh can expose more remote capability than a workflow needs. <br>
-Mitigation: Prefer one narrow wrapper per tool, use dedicated SSH keys, and pin known hosts where practical. <br>
+## Use Case:
 
+Developers and operators use this skill when a Linux OpenClaw gateway needs a repeatable SSH-wrapper path to tools that must run on connected Mac nodes, such as imsg, remindctl, memo, things, peekaboo, brew-backed CLIs, or other macOS-local binaries.
 
-## Reference(s): <br>
-- [Security Model](references/security-model.md) <br>
-- [Publish Pattern](references/publish-pattern.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/matthewxmurphy/src) <br>
-- [Publisher Profile](https://clawhub.ai/user/matthewxmurphy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and wrapper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces wrapper-oriented setup guidance for trusted Linux gateway to macOS node workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.1 (source: server release metadata) <br>
+Risk: Installer inputs or target Mac details could cause unsafe wrapper generation or command execution if they are malicious or insufficiently trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the target Mac and installer inputs are trusted, inspect generated wrappers before use, and keep wrappers narrow to a single intended tool.
+
+Risk: Broad SSH access can expand the blast radius of a compromised gateway or Mac node.
+
+Mitigation: Use dedicated non-root SSH accounts, scoped SSH keys, known-hosts pinning where feasible, and one wrapper per tool rather than a general shell bridge.
+
+Risk: Generated wrappers can persist after the original need has passed.
+
+Mitigation: Track who installed or rotated wrappers, document the owning node and rollback command, and remove wrappers or revoke keys that are no longer needed.
+
+## Reference(s):
+
+- [Security Model](artifact/references/security-model.md)
+- [Publish Pattern](artifact/references/publish-pattern.md)
+- [ClawHub Skill Page](https://clawhub.ai/matthewxmurphy/skills/src)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples, wrapper script paths, and configuration conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installer scripts can create executable SSH wrapper files on the Linux gateway when run by the user.]
+
+## Skill Version(s):
+
+0.6.1 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

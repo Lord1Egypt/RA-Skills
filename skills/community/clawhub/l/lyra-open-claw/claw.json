@@ -1,0 +1,33 @@
+{
+  "name": "lyra-open-claw",
+  "displayName": "LYRA OpenClaw Hybrid",
+  "version": "1.0.0",
+  "description": "Public hybrid LYRA + OpenClaw super-system map — browser, Discord, Moltbook/MoltX, Clawnch economy, memory layers, local Ollama. Runtime secrets never ship in package. Consent-gated; no auto-publish.",
+  "slug": "lyra-open-claw",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lyra-open-claw",
+  "signature": "Delta9Phi963-lyra-open-claw-PUBLIC-v1.0.0",
+  "tags": ["latest", "lyra", "lygo", "openclaw", "hybrid", "browser", "discord", "moltbook", "agents"],
+  "entry": "SKILL.md",
+  "scripts": { "self_check": "scripts/self_check.py" },
+  "openclaw": {
+    "emoji": "🌌",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": { "https_get": false, "http_post": false, "note": "Host runtime may network; this package does not ship network clients" },
+    "filesystem": { "shell": false, "os_system": false, "subprocess": false },
+    "publish": { "git_push": false, "clawhub": false, "social": false }
+  },
+  "security": {
+    "consent_required": true,
+    "no_auto_publish": true,
+    "no_secrets_in_package": true,
+    "public_surface": true,
+    "version": "1.0.0"
+  }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Helps deeply understand consumer psychology and behavioral patterns based on psychological principles, providing strategic guidance on price anchoring, scarcity effect, social proof, reciprocity principle, loss aversion, framing effect, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps deeply understand consumer psychology and behavioral patterns based on psychological principles, providing strategic guidance on price anchoring, scarcity effect, social proof, reciprocity principle, loss aversion, framing effect, and more.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Marketing, sales, and growth teams use this skill to analyze consumer psychology and draft strategies, pricing approaches, promotional plans, advertising copy, and sales scripts. It supports customer needs analysis, brand trust building, and conversion rate optimization using documented marketing psychology principles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated urgency, inventory, popularity, endorsement, discount, or live-activity claims may be inaccurate, privacy-sensitive, or unsuitable for advertising-law compliance. <br>
-Mitigation: Review and substantiate claims before public use; remove or revise any claim that cannot be supported by current business records and applicable legal review. <br>
-Risk: Persuasive marketing recommendations may overuse scarcity or social-proof tactics in ways that reduce customer trust. <br>
-Mitigation: Use genuine constraints and truthful customer evidence, especially for scarcity and social-proof messaging. <br>
+## Use Case:
 
+Marketing, sales, and growth teams use this skill to apply consumer psychology principles to pricing, copy, promotions, brand trust, customer analysis, and conversion optimization. It helps turn a user's marketing scenario into actionable recommendations, scripts, and brief mechanism explanations.
 
-## Reference(s): <br>
-- [Marketing Psychology Principle Library](references/principles.md) <br>
-- [Marketing Psychology Scenario Application Guide](references/applications.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/marketing-psychology-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown prose with lists, recommendations, and script templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not install code, request credentials, or take actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persuasion guidance could be used to create fabricated scarcity, reviews, authority claims, countdowns, or social proof.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only truthful, substantiated marketing claims and review campaigns for consumer protection and advertising compliance.
+
+Risk: Marketing recommendations may be applied in regulated contexts or to vulnerable audiences without adequate review.
+
+Mitigation: Have qualified reviewers check claims, targeting, disclosures, and local advertising rules before launch.
+
+## Reference(s):
+
+- [Marketing Psychology Principle Library](references/principles.md)
+- [Marketing Psychology Scenario Application Guide](references/applications.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/marketing-psychology-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with examples, scripts, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local principle and scenario guides; no code execution or external services required.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

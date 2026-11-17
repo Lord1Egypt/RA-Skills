@@ -1,45 +1,62 @@
-## Description: <br>
-Ocr Benchmark runs multi-model OCR on local images, compares model accuracy against human-verified ground truth with fuzzy line-level scoring, and generates ranked reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-model OCR benchmark and comparison tool for running OCR on local images with Claude via Bedrock, Gemini via Google AI Studio, and optional PaddleOCR, then comparing accuracy, cost, and speed against human-verified ground truth.
 
-## Publisher: <br>
-[yingfengli](https://clawhub.ai/user/yingfengli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yingfengli](https://clawhub.ai/user/yingfengli)
 
-## Use Case: <br>
-Developers, engineers, and evaluation teams use this skill to run OCR across configured providers, compare accuracy, cost, and speed against human-verified ground truth, and generate JSON, terminal, and PPTX reports for OCR quality review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images may be sent to AWS Bedrock, Google AI Studio, or a configured PaddleOCR endpoint. <br>
-Mitigation: Run only on images the user is allowed to share with the selected providers, and disable providers whose data handling is not acceptable for the workload. <br>
-Risk: Provider credentials and OCR service permissions can create cost or access exposure. <br>
-Mitigation: Use least-privileged credentials, install in a virtual environment, and monitor cloud usage while benchmarking. <br>
-Risk: Generated JSON and PPTX reports may contain sensitive text extracted from source images. <br>
-Mitigation: Store, share, and retain benchmark outputs according to the sensitivity of the input images and extracted OCR text. <br>
-Risk: OCR model outputs can be inaccurate and should not be treated as ground truth. <br>
-Mitigation: Use human-verified ground truth for scoring and manually review benchmark findings before relying on them. <br>
+## Use Case:
 
+Developers and evaluation teams use this skill to benchmark OCR quality across supported model providers, score results against human-reviewed ground truth, and generate comparison reports for product packaging or document images.
 
-## Reference(s): <br>
-- [Ground Truth Format](references/ground-truth-format.md) <br>
-- [Model Registry](references/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; benchmark runs produce JSON results, terminal reports, scores.json, and optional PPTX reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs require local image paths and provider credentials for selected cloud or external OCR services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can upload user-selected images to cloud providers or a configured OCR endpoint, which may expose sensitive documents, product images, personal data, or regulated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved providers for the data being processed and avoid running the benchmark on sensitive or regulated images unless those providers are authorized.
+
+Risk: A custom PaddleOCR endpoint may receive image data and an optional OCR token without strong endpoint validation.
+
+Mitigation: Use a trusted HTTPS PaddleOCR endpoint, avoid setting PADDLEOCR_TOKEN for untrusted destinations, and review endpoint configuration before execution.
+
+Risk: Generated OCR results and scores may be incorrect or misleading if model output is treated as ground truth.
+
+Mitigation: Use human-verified ground truth and review benchmark outputs before relying on rankings or reports.
+
+Risk: Installing runtime dependencies can affect the host Python environment.
+
+Mitigation: Install in an isolated virtual environment with pinned or reviewed dependencies.
+
+## Reference(s):
+
+- [Model Registry](artifact/references/models.md)
+- [Ground Truth Format](artifact/references/ground-truth-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON result files, scored terminal summaries, and optional PPTX reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-image per-model JSON files, scores.json, ranked terminal output, and optional presentation reports.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

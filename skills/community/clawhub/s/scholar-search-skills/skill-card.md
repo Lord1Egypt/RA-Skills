@@ -1,47 +1,59 @@
-## Description: <br>
-Scholar Search Skills helps agents search, filter, download, score, and summarize academic papers from sources such as arXiv, ICLR, ICML, and NeurIPS, including BibTeX citation output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scholar Search Skills helps agents search, filter, download, and summarize academic papers from sources such as arXiv, ICLR, ICML, and NeurIPS, including structured summaries and BibTeX citations.
 
-## Publisher: <br>
-[WOWCharlotte](https://clawhub.ai/user/WOWCharlotte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wowcharlotte](https://clawhub.ai/user/wowcharlotte)
 
-## Use Case: <br>
-Researchers, students, and developer agents use this skill to collect literature for a topic, score paper relevance, organize PDFs, and produce summaries, paper lists, BibTeX citations, and optional literature review outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad or sensitive research topic names may create revealing local folder paths under ~/papers. <br>
-Mitigation: Confirm the output folder before use and avoid sensitive path names. <br>
-Risk: The workflow may propose pip, npx, or download commands for dependencies and PDFs. <br>
-Mitigation: Review commands before execution and prefer a virtual environment or non-global install. <br>
-Risk: Downloaded PDFs and generated notes may include irrelevant or rights-sensitive material. <br>
-Mitigation: Use the workflow for research collection, review selected papers before saving or sharing, and keep summaries and citations traceable to their sources. <br>
+## Use Case:
 
+Researchers, students, and developer agents use this skill to collect academic papers for literature reviews, score papers by keyword relevance, download PDFs, and produce organized paper lists, summaries, and citations.
 
-## Reference(s): <br>
-- [Summary Template](references/summary_template.md) <br>
-- [BibTeX Template](references/bibtex_template.md) <br>
-- [arXiv Search](https://arxiv.org/search/) <br>
-- [ICLR 2025 OpenReview](https://openreview.net/group?id=ICLR.cc/2025/Conference) <br>
-- [NeurIPS Proceedings](https://proceedings.neurips.cc/) <br>
-- [Proceedings of Machine Learning Research](https://proceedings.mlr.press/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown research notes, BibTeX entries, JSON scoring results, local PDF files, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates organized local research outputs such as PAPER_LIST.md, PAPER_SUMMARIES.md, references.bib, scored_papers.json, and PDF folders under the chosen papers directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned global third-party installs can introduce dependency and supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies manually in an isolated environment and verify the source before using global install commands.
+
+Risk: Paper downloads and generated research files may be written into broad user-controlled directories.
+
+Mitigation: Choose a dedicated storage location for downloaded PDFs and generated research files, then review outputs before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wowcharlotte/skills/scholar-search-skills)
+- [Summary Template](references/summary_template.md)
+- [BibTeX Template](references/bibtex_template.md)
+- [arXiv Search](https://arxiv.org/search/)
+- [ICLR OpenReview](https://openreview.net/group?id=ICLR.cc/2025/Conference)
+- [NeurIPS Proceedings](https://proceedings.neurips.cc/)
+- [PMLR Proceedings](https://proceedings.mlr.press/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, BibTeX, JSON scoring output, CSV-compatible paper lists, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create paper directories, downloaded PDFs, markdown summaries, BibTeX files, literature review outlines, and relevance-scoring JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

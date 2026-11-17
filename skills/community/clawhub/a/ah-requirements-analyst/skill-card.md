@@ -1,41 +1,51 @@
-## Description: <br>
-Requirements Analyst helps agents elicit, analyze, validate, and document software requirements, user stories, acceptance criteria, stakeholder analysis, and traceability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft and organize requirements artifacts, including user stories, acceptance criteria, stakeholder analysis, traceability matrices, validation checklists, and related requirements documentation.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Product managers, business analysts, and development teams use this skill to turn stakeholder input into requirements documentation, user stories, acceptance criteria, traceability matrices, validation checklists, and stakeholder analyses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requirements analysis may involve confidential business plans, customer data, or internal project details. <br>
-Mitigation: Avoid sharing sensitive requirements content unless the agent environment is approved for that information. <br>
-Risk: Generated requirements or acceptance criteria may be incomplete, ambiguous, or misaligned with stakeholder intent. <br>
-Mitigation: Review outputs with stakeholders and validate requirements before using them for planning or implementation. <br>
+## Use Case:
 
+Product teams, business analysts, and developers use this skill to turn requirements discussions into structured requirements documentation, user stories, acceptance criteria, and validation materials. It is suited for planning and analysis workflows where generated artifacts are reviewed before implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-requirements-analyst) <br>
-- [Requirements Analyst examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with structured requirements templates and occasional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user stories, acceptance criteria, traceability matrices, validation checklists, stakeholder analysis, and requirements documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated implementation tasks or test cases may go beyond the strict requirements wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated tasks, acceptance criteria, and test cases with stakeholders before using them for planning or implementation.
+
+## Reference(s):
+
+- [Requirements Analyst examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-requirements-analyst)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured templates and occasional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as planning suggestions and reviewed before implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

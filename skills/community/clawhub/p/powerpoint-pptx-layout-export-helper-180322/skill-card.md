@@ -1,44 +1,59 @@
-## Description: <br>
-Generate, repair, and export Microsoft PowerPoint PPTX decks with reliable slide layouts, placeholders, charts, images, speaker notes, template fidelity, and presentation-safe rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, repair, and export Microsoft PowerPoint PPTX decks with reliable slide layouts, placeholders, charts, images, speaker notes, template fidelity, and presentation-safe rendering.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External users, presentation builders, and developers use this skill to generate, repair, or inspect PowerPoint decks while preserving slide masters, placeholders, theme styling, charts, images, and speaker notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be invoked too broadly on generic presentation discussions. <br>
-Mitigation: Use it intentionally for PowerPoint/PPTX generation, repair, inspection, or export tasks. <br>
-Risk: Deck repair or export guidance can lead to accidental changes in important presentations. <br>
-Mitigation: Work on a copy of the deck, keep backups, and validate slide count, layout assignments, placeholders, media, charts, and speaker notes before replacing the original. <br>
+## Use Case:
 
+Developers, analysts, presentation designers, consultants, and educators use this skill to generate, repair, inspect, and export PowerPoint PPTX decks while preserving layouts, placeholders, charts, images, speaker notes, and template fidelity.
 
-## Reference(s): <br>
-- [PowerPoint PPTX Layout Export on ClawHub](https://clawhub.ai/kyro-ma/powerpoint-pptx-layout-export-helper-180322) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Python PPT automation article](https://segmentfault.com/a/1190000047186829) <br>
-- [AI PPT automation article](https://segmentfault.com/a/1190000047541288) <br>
-- [PPTX speaker notes XML article](https://segmentfault.com/a/1190000047686362) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration notes, and deck artifacts when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PPTX diagnostics, repair plans, validation notes, or generated/edited presentation files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: PPTX generation or repair can unintentionally alter source decks, templates, layouts, embedded media, chart data, or speaker notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Work on a copy, keep the original deck and template untouched, and review the generated or repaired PPTX before relying on it.
+
+Risk: Incorrect layout, placeholder, or OOXML guidance could produce visually misleading slides or broken presentation assets.
+
+Mitigation: Validate slide count, layout assignment, placeholder population, image cropping, chart relationships, notes, and rendered appearance after edits.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/powerpoint-pptx-layout-export-helper-180322)
+- [Python PPT automation demand signal](https://segmentfault.com/a/1190000047186829)
+- [AI PPT automation demand signal](https://segmentfault.com/a/1190000047541288)
+- [PPT page copy demand signal](https://segmentfault.com/q/1010000021456549/a-1020000021466136)
+- [PPT thumbnail automation demand signal](https://segmentfault.com/q/1010000018112239/a-1020000018116097)
+- [PPTX speaker notes editing demand signal](https://segmentfault.com/a/1190000047686362)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks, command snippets, configuration notes, and written validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also produce or modify PPTX deck artifacts when requested by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

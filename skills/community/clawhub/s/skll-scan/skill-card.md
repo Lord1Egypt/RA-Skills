@@ -1,45 +1,62 @@
-## Description: <br>
-A local static scanner for OpenClaw Skills that detects risky code patterns, extracts referenced domains, and generates risk reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanning tool for OpenClaw Skills that detects malicious code patterns, extracts domains, and checks threat intelligence APIs.
 
-## Publisher: <br>
-[niuqun2003](https://clawhub.ai/user/niuqun2003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niuqun2003](https://clawhub.ai/user/niuqun2003)
 
-## Use Case: <br>
-Developers and operators use this skill to run pre-installation or audit scans of OpenClaw Skills and review local risk reports before distribution or installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner may overstate its threat-intelligence protection and give users more confidence than the code supports. <br>
-Mitigation: Treat results as lightweight local static analysis and pair them with manual review or stronger security tooling before installing or distributing a skill. <br>
-Risk: Scan reports and optional lookup examples can expose code snippets, paths, secrets, or confidential indicators. <br>
-Mitigation: Avoid scanning code that contains secrets unless you control or delete the generated /tmp report, and do not send internal or customer indicators to third-party lookup APIs without approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan OpenClaw Skills before installation, during audits, or before distribution. It helps identify suspicious code patterns, referenced domains, and threat-intelligence signals that need manual review.
 
-## Reference(s): <br>
-- [Threat Intelligence APIs Reference](references/threat-intel-apis.md) <br>
-- [Abuse.ch URLhaus API](https://urlhaus-api.abuse.ch/) <br>
-- [AbuseIPDB API](https://www.abuseipdb.com/api) <br>
-- [VirusTotal API](https://www.virustotal.com/api/) <br>
-- [AlienVault OTX API](https://otx.alienvault.com/api) <br>
-- [Google Safe Browsing API](https://safebrowsing.googleapis.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-style guidance with shell commands, scanner report text, and an optional JSON report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local scan reports under /tmp/skill-scan-<skill>.json when the scanner is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scanner results may be mistaken for installation approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as review input and manually review SKILL.md, install scripts, manifests, and files outside the Python, JavaScript, and TypeScript scan scope before deployment.
+
+Risk: The skill overstates its security coverage for runtime behavior and obfuscated code.
+
+Mitigation: Combine the static scan with manual review, complementary security tools, and deployment controls for critical systems.
+
+Risk: Operational examples include scheduled scanning and third-party threat-intelligence lookups that can create privacy or operational risk.
+
+Mitigation: Run with least privilege, harden and monitor scheduled jobs, and get approval before submitting internal domains or URLs to external threat-intelligence services.
+
+## Reference(s):
+
+- [Threat Intelligence APIs Reference](references/threat-intel-apis.md)
+- [Abuse.ch URLhaus](https://urlhaus-api.abuse.ch/)
+- [AbuseIPDB API](https://www.abuseipdb.com/api)
+- [VirusTotal API](https://www.virustotal.com/api/)
+- [AlienVault OTX API](https://otx.alienvault.com/api)
+- [Google Safe Browsing API](https://safebrowsing.googleapis.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and text or JSON scan reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scanner can write a JSON report to /tmp when the script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

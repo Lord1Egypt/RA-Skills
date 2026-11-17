@@ -1,0 +1,58 @@
+{
+  "capabilities": [
+    "inline-delivery",
+    "canonical-state-read"
+  ],
+  "capability_ceiling": "lite",
+  "catalog_sha256": "6f0256cf52710f2916ecebaea0f3110c9313099ec4a69a11cac72ba9b2f3b940",
+  "files": [
+    {
+      "bytes": 10672,
+      "mode": "0644",
+      "path": "SKILL.md",
+      "sha256": "c67de3d2d06615f08e5b74275d645fa7903f84fd39401effa03427063b5143c6"
+    },
+    {
+      "bytes": 4239,
+      "mode": "0644",
+      "path": "references/audit-example.md",
+      "sha256": "a2c0ebff60a5315572a19a57d9c4a2df0f18bfc0c092d48697bc266c62546246"
+    },
+    {
+      "bytes": 4471,
+      "mode": "0644",
+      "path": "references/audit-templates.md",
+      "sha256": "940c4d42657a533a9f1c1aac25addcd3f6d8192cd62df974f787bdfb48ca0e64"
+    },
+    {
+      "bytes": 3712,
+      "mode": "0644",
+      "path": "references/bulk-audit-playbook.md",
+      "sha256": "1b8a4aebf7d5e0ea4b73113e6bb4482b00632a4767a78a9efce2e2e50be60033"
+    },
+    {
+      "bytes": 5914,
+      "mode": "0644",
+      "path": "references/scoring-rubric.md",
+      "sha256": "031fea0ec2306d77d40398026bfc74e8d12ea0fc64434a663c562998fe2dcafd"
+    }
+  ],
+  "files_sha256": "8dd4edce135a7d1f52ed25d8a10331220af4b1c726a8e493025015ce1edb98e9",
+  "hash_algorithm": "sha256",
+  "kind": "standalone-skill",
+  "manifest_excludes": [
+    "distribution-manifest.json"
+  ],
+  "manifest_path": "distribution-manifest.json",
+  "package_ceiling": {
+    "max_bytes": 1000000,
+    "max_files": 64
+  },
+  "profile": "lite",
+  "profile_definition_sha256": "4598e1f7bba667ef928ea2a60a6252ad9348086e9eecab29437db442df2a568e",
+  "schema_version": "1.1",
+  "source": {
+    "commit": "f552620c278afddcb25d09637a0cfcc1ce48faf4",
+    "repository": "aaron-he-zhu/aaron-marketing-skills"
+  }
+}

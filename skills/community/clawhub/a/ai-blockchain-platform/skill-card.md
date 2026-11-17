@@ -1,41 +1,54 @@
-## Description: <br>
-Provides blockchain platform guidance for smart contract development, DApp integration, on-chain data analysis, wallet management, and transaction monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blockchain platform support for smart contract and DApp development.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and teams use this skill to plan and support blockchain development workflows, including Solidity smart contracts, DApp frontend integration, DeFi applications, NFT platforms, and supply-chain traceability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is documentation-only and points to an external repository that is not included in the artifact. <br>
-Mitigation: Review the referenced repository, dependencies, and app.py before installing or running it. <br>
-Risk: Blockchain workflows can expose wallet secrets or request signing actions. <br>
-Mitigation: Do not enter seed phrases or private keys, or approve wallet signing, unless the implementation is clearly scoped and independently trusted. <br>
+## Use Case:
 
+Developers and engineers can use this skill for blockchain application work involving Solidity smart contracts, DApp frontend integration, on-chain data analysis, multi-chain wallet management, and transaction monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-blockchain-platform) <br>
-- [Referenced repository URL in artifact](https://github.com/openclaw-skills/ai-intelligent-blockchain-platform) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No required local binaries are declared in the artifact metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+Risk: Install steps download and run mutable third-party code from GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the referenced repository, pin a trusted revision, and run it only in an isolated environment.
+
+Risk: Blockchain and wallet workflows can expose wallet keys or sensitive credentials if run in an unsafe environment.
+
+Mitigation: Do not make wallet keys, private keys, seed phrases, production credentials, or sensitive environment variables available while evaluating or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-blockchain-platform)
+- [Referenced install repository](https://github.com/openclaw-skills/ai-intelligent-blockchain-platform)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with code snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include blockchain development guidance, smart contract examples, DApp integration steps, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

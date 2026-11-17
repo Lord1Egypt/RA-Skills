@@ -1,0 +1,17 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "F1_ROA": "out = (d['ROA'] > 0).astype(float)",
+    "F2_OCF": "out = (d['每股经营现金流净额'] > 0).astype(float)",
+    "F3_dROA": "out = (d['ROA'] - d['ROA'].shift(252) > 0).astype(float)",
+    "F4_Accrual": "out = (d['每股经营现金流净额'] > d['每股收益']).astype(float)",
+    "F5_dLev": "out = (d['资产负债率'] - d['资产负债率'].shift(252) < 0).astype(float)",
+    "F6_dLiq": "out = (d['流动比率'] - d['流动比率'].shift(252) > 0).astype(float)",
+    "F7_NoDil": "out = (d['总股本'] - d['总股本'].shift(252) <= 0).astype(float)",
+    "F8_dGM": "out = (d['销售毛利率'] - d['销售毛利率'].shift(252) > 0).astype(float)",
+    "F9_dATO": "out = (d['总资产周转率'] - d['总资产周转率'].shift(252) > 0).astype(float)",
+    "Piotroski_FScore": "out = (d['ROA']>0).astype(float) + (d['每股经营现金流净额']>0).astype(float) + (d['ROA']-d['ROA'].shift(252)>0).astype(float) + (d['每股经营现金流净额']>d['每股收益']).astype(float) + (d['资产负债率']-d['资产负债率'].shift(252)<0).astype(float) + (d['流动比率']-d['流动比率'].shift(252)>0).astype(float) + (d['总股本']-d['总股本'].shift(252)<=0).astype(float) + (d['销售毛利率']-d['销售毛利率'].shift(252)>0).astype(float) + (d['总资产周转率']-d['总资产周转率'].shift(252)>0).astype(float)"
+  },
+  "save_path": "output\\factor-Piotroski.xlsx"
+}

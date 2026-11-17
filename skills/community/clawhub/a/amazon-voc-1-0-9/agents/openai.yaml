@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon-VOC"
+  short_description: "亚马逊买家之声：评论采集 + VOC 洞察报告"
+  default_prompt: "使用 $amazon-voc 采集并分析一个 Amazon ASIN 的评论。"

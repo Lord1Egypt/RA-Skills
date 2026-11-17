@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>十维拓客 · 录音转写洞察报告</title>
+  <style>
+    :root {
+      --bg:#f4f6f9; --card:#fff; --text:#1a1d26; --muted:#5c6370; --accent:#2563eb; --border:#e5e7eb;
+      --chart-h: clamp(200px, 42vw, 280px);
+      --chart-h-wide: clamp(240px, 55vw, 340px);
+      --safe-x: max(16px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+      background:var(--bg); color:var(--text); line-height:1.6;
+      overflow-x:hidden; word-break:break-word; overflow-wrap:anywhere;
+    }
+    .wrap { max-width:960px; margin:0 auto; padding:20px var(--safe-x) calc(48px + env(safe-area-inset-bottom, 0px)); }
+    header { background:linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:22px 18px; border-radius:12px; margin-bottom:16px; }
+    header h1 { margin:0 0 8px; font-size:clamp(1.15rem, 4vw, 1.5rem); line-height:1.35; }
+    header .meta { opacity:.92; font-size:clamp(.8rem, 2.5vw, .9rem); line-height:1.5; }
+    .summary { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:16px; }
+    .summary h2 { margin:0 0 8px; font-size:1.05rem; color:var(--accent); }
+    .notice { background:#fffbeb; border-left:4px solid #f59e0b; padding:8px 12px; margin:8px 0; font-size:.88rem; }
+    .charts-panel { margin-bottom:20px; }
+    .charts-panel > h2 { margin:0 0 6px; font-size:clamp(1rem, 3.5vw, 1.15rem); }
+    .charts-intro { color:var(--muted); font-size:.88rem; margin:0 0 14px; }
+    .chart-grid { display:grid; grid-template-columns:1fr; gap:14px; }
+    @media (min-width: 640px) {
+      .chart-grid { grid-template-columns:1fr 1fr; gap:16px; }
+      .chart-grid .chart-card-wide { grid-column: 1 / -1; }
+    }
+    @media (min-width: 1024px) {
+      header { padding:28px 24px; }
+      .wrap { padding-top:24px; }
+    }
+    .chart-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; min-width:0; }
+    .chart-card h3 { margin:0 0 8px; font-size:clamp(.92rem, 3vw, 1rem); line-height:1.4; }
+    .chart-canvas-wrap { position:relative; width:100%; height:var(--chart-h); min-height:200px; }
+    .chart-card-wide .chart-canvas-wrap { height:var(--chart-h-wide); min-height:240px; }
+    .chart-canvas-wrap canvas { display:block; width:100% !important; height:100% !important; max-width:100%; touch-action:pan-y pinch-zoom; }
+    .chart-note { font-size:.78rem; color:var(--muted); margin:0 0 6px; }
+    .dim-table-panel { margin-bottom:16px; }
+    .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -4px; padding:0 4px 4px; }
+    .dim-table { width:100%; min-width:280px; border-collapse:collapse; font-size:.88rem; }
+    .dim-table th, .dim-table td { border:1px solid var(--border); padding:8px 10px; text-align:left; }
+    .dim-table th { background:#f8fafc; font-weight:600; white-space:nowrap; }
+    .dim-table .num { text-align:right; white-space:nowrap; }
+    .dim-table tbody tr:nth-child(even) { background:#fafbfc; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:12px; min-width:0; }
+    .card h2 { margin:0 0 10px; font-size:clamp(.98rem, 3.2vw, 1.05rem); }
+    .findings { margin:0 0 8px; }
+    .metrics { font-size:.88rem; color:var(--muted); margin:0 0 10px; }
+    .excerpts { margin:0; padding-left:1.1rem; }
+    .excerpts li { margin-bottom:8px; }
+    .record-name { display:inline-block; color:#1e40af; font-size:.78rem; font-weight:600; margin-right:4px; vertical-align:top; }
+    .tag { display:inline-block; background:#eff6ff; color:var(--accent); font-size:.72rem; padding:2px 8px; border-radius:4px; margin-right:6px; vertical-align:top; }
+    .suggest { font-size:.88rem; color:var(--muted); margin:12px 0 0; }
+    .muted,.empty { color:var(--muted); }
+    footer { text-align:center; font-size:.78rem; color:var(--muted); margin-top:20px; padding:0 8px; line-height:1.5; }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 正文由 generate_asr_insight_html.py 动态生成；此处仅保留图表脚本模板 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous" onerror="this.onerror=null;this.src='https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js'"></script>
+<script>
+(function () {
+  var charts = [];
+  var colors = ["#2563eb","#059669","#d97706","#dc2626","#7c3aed","#0891b2","#ca8a04","#4f46e5","#0d9488","#e11d48"];
+  var instances = [];
+
+  function isNarrow() {
+    return window.matchMedia("(max-width: 639px)").matches;
+  }
+
+  function baseFont() {
+    return isNarrow() ? 10 : 11;
+  }
+
+  function legendPosition() {
+    return isNarrow() ? "bottom" : "bottom";
+  }
+
+  function makeConfig(chart) {
+    var narrow = isNarrow();
+    if (chart.type === "radar") {
+      return {
+        type: "radar",
+        data: {
+          labels: chart.labels,
+          datasets: [{
+            label: "覆盖率 %",
+            data: chart.values,
+            backgroundColor: "rgba(37, 99, 235, 0.25)",
+            borderColor: "#2563eb",
+            borderWidth: 2,
+            pointRadius: narrow ? 2 : 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: function(ctx) { return ctx.label + ": " + ctx.raw + "%"; } } }
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              ticks: { stepSize: 20, font: { size: baseFont() }, backdropColor: "transparent" },
+              pointLabels: { font: { size: narrow ? 9 : 10 }, padding: narrow ? 4 : 8 }
+            }
+          }
+        }
+      };
+    }
+    if (chart.type === "bar") {
+      var horizontal = narrow && chart.meta && chart.meta.preferHorizontalOnMobile;
+      return {
+        type: "bar",
+        data: {
+          labels: chart.labels,
+          datasets: [{
+            label: "覆盖率 %",
+            data: chart.values,
+            backgroundColor: "rgba(37, 99, 235, 0.65)",
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: horizontal ? "y" : "x",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: horizontal
+              ? { beginAtZero: true, max: 100, title: { display: !narrow, text: "覆盖率 %" }, ticks: { font: { size: baseFont() } } }
+              : { ticks: { maxRotation: narrow ? 60 : 45, minRotation: narrow ? 45 : 28, font: { size: baseFont() }, autoSkip: true, maxTicksLimit: narrow ? 6 : 12 } },
+            y: horizontal
+              ? { ticks: { font: { size: baseFont() }, autoSkip: false } }
+              : { beginAtZero: true, max: 100, title: { display: !narrow, text: "覆盖率 %" }, ticks: { font: { size: baseFont() } } }
+          }
+        }
+      };
+    }
+    var datasets = (chart.series || []).map(function (s, i) {
+      return {
+        label: s.name,
+        data: s.data,
+        borderColor: colors[i % colors.length],
+        backgroundColor: colors[i % colors.length] + "33",
+        tension: 0.3,
+        fill: chart.series.length === 1,
+        pointRadius: narrow ? 0 : 2,
+        borderWidth: narrow ? 1.5 : 2
+      };
+    });
+    if (!datasets.length && chart.values) {
+      datasets = [{
+        label: chart.title,
+        data: chart.values,
+        borderColor: colors[0],
+        backgroundColor: colors[0] + "33",
+        tension: 0.3,
+        fill: true,
+        pointRadius: narrow ? 0 : 2
+      }];
+    }
+    return {
+      type: "line",
+      data: { labels: chart.labels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: {
+            position: legendPosition(),
+            labels: { boxWidth: narrow ? 10 : 12, font: { size: baseFont() }, padding: narrow ? 8 : 12 }
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0, font: { size: baseFont() } } },
+          x: { ticks: { maxRotation: narrow ? 50 : 45, minRotation: 0, font: { size: baseFont() }, autoSkip: true, maxTicksLimit: narrow ? 8 : 15 } }
+        }
+      }
+    };
+  }
+
+  function mountAll() {
+    instances.forEach(function (c) { try { c.destroy(); } catch (e) {} });
+    instances = [];
+    charts.forEach(function (chart, i) {
+      var el = document.getElementById("chart-" + (chart.id || i));
+      if (!el || typeof Chart === "undefined") return;
+      var inst = new Chart(el, makeConfig(chart));
+      instances.push(inst);
+    });
+  }
+
+  function scheduleResize() {
+    if (window.__chartResizeTimer) clearTimeout(window.__chartResizeTimer);
+    window.__chartResizeTimer = setTimeout(mountAll, 200);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountAll);
+  } else {
+    mountAll();
+  }
+  window.addEventListener("resize", scheduleResize);
+  window.addEventListener("orientationchange", scheduleResize);
+  window.setTimeout(function () {
+    if (typeof Chart !== "undefined") return;
+    document.querySelectorAll(".charts-panel").forEach(function (panel) {
+      if (panel.querySelector(".chart-load-failed")) return;
+      var tip = document.createElement("p");
+      tip.className = "chart-note chart-load-failed";
+      tip.textContent = "图表库未加载（网络或内置浏览器限制）。请优先查看上方「各维度统计一览」表格；或在系统浏览器中打开本链接。";
+      panel.insertBefore(tip, panel.children[1] || null);
+    });
+  }, 3000);
+})();
+</script>
+</body>
+</html>

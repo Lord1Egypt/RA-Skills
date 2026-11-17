@@ -1,45 +1,66 @@
-## Description: <br>
-以大卫风格辅助微信公众号科技、AI、管理和职场文章的选题、调研、写作、改稿与审校。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with topic selection, research, outlining, drafting, editing, and WeChat-ready formatting for Chinese articles in the David style.
 
-## Publisher: <br>
-[wzdavid](https://clawhub.ai/user/wzdavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzdavid](https://clawhub.ai/user/wzdavid)
 
-## Use Case: <br>
-External authors and content teams use this skill to plan, draft, revise, and proofread Chinese WeChat public-account articles in a defined personal style. It supports topic selection, source-aware research, article structure, editorial review, publish-ready Markdown, and optional skill-rule retrospectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, research notes, and article archives may be retained on disk by default. <br>
-Mitigation: Use the skill only in a controlled workspace for confidential drafts, and review or remove retained run files when the work is complete. <br>
-Risk: The retrospective workflow can propose or apply changes to the skill's own writing rules. <br>
-Mitigation: Review Step 8 recommendations and file diffs before accepting any change to the skill rules or reference files. <br>
-Risk: Generated RAG or API setup guidance may involve privacy-sensitive data or credentials. <br>
-Mitigation: Keep secrets out of drafts and examples, and review any generated setup instructions for credential handling before use. <br>
+## Use Case:
 
+Creators, editors, and content teams use this skill to plan, research, draft, revise, and prepare Chinese WeChat public-account articles about technology, AI, management, and workplace topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzdavid/wechat-writer) <br>
-- [Writing style reference](references/style.md) <br>
-- [Article structure reference](references/structures.md) <br>
-- [Quality and proofreading reference](references/quality.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown articles, outlines, review notes, source-link lists, and skill-update guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write drafts, research notes, publish-ready articles, and retrospective recommendations to workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Draft archives may retain sensitive article material or unpublished work in local run directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local draft storage is acceptable, and review or remove archived runs before sharing a workspace.
+
+Risk: The workflow can delegate to helper skills that are not pinned in the artifact.
+
+Mitigation: Pin, review, or disable helper skills before using the workflow with sensitive drafts or high-trust publication work.
+
+Risk: Step 8 can propose updates to the skill and reference files.
+
+Mitigation: Require explicit user approval before applying any change to skill or reference files.
+
+Risk: Example assets include operational commands and API-key environment variable names.
+
+Mitigation: Treat commands in sample articles as writing examples and review them separately before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzdavid/skills/wechat-writer)
+- [Publisher profile](https://clawhub.ai/user/wzdavid)
+- [Skill definition](artifact/SKILL.md)
+- [Style reference](artifact/references/style.md)
+- [Structure reference](artifact/references/structures.md)
+- [Quality reference](artifact/references/quality.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown articles, outlines, topic cards, review notes, and publish-ready WeChat copy.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save research notes, outlines, drafts, edited versions, final Markdown, and publish-format Markdown to local run directories.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

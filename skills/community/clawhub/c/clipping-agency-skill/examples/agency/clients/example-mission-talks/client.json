@@ -1,0 +1,106 @@
+{
+ "id": "example-mission-talks",
+ "name": "Example Mission Talks",
+ "status": "active",
+ "example": true,
+ "show": "Example Mission Talks",
+ "sources": [],
+ "platforms": [
+  "TIKTOK",
+  "INSTAGRAM",
+  "YOUTUBE"
+ ],
+ "clips_per_episode": 3,
+ "agreed_clips_per_month": 6,
+ "cadence": {
+  "days": [
+   "mon",
+   "wed",
+   "fri"
+  ],
+  "times": [
+   "18:00"
+  ],
+  "max_per_day": 1,
+  "min_gap_hours": 4,
+  "start_after_hours": 2
+ },
+ "timezone": "America/New_York",
+ "brand": {
+  "accent": "#FF6B6B",
+  "text": "#FFFFFF",
+  "hook_bg": "#FFFFFF",
+  "hook_text": "#B3262B",
+  "uppercase": false,
+  "font": null,
+  "logo": "brand/logo.png",
+  "logo_position": "top-right",
+  "logo_scale": 0.14,
+  "end_card": null
+ },
+ "names": {
+  "Apollo": [
+   "Appolo"
+  ],
+  "Saturn": [],
+  "Moonwalk": [
+   "moon walk"
+  ]
+ },
+ "no_go": [
+  "salary",
+  "politics"
+ ],
+ "approvers": [
+  {
+   "name": "Jordan Example",
+   "contact": "jordan@example.com"
+  }
+ ],
+ "approval": {
+  "rule": "auto_after_hours",
+  "hours": 48,
+  "agreed_in_writing": "EXAMPLE ONLY: email from Jordan Example, 1 Nov 2026"
+ },
+ "guest_release": "covered_by_contract",
+ "guest_release_note": "EXAMPLE ONLY: an invented clause of a made-up agreement. The footage is NASA's public-domain archive video",
+ "youtube": {
+  "privacy": "public",
+  "madeForKids": false
+ },
+ "woopsocial": {
+  "projectId": "example-project-mission",
+  "accounts": {
+   "TIKTOK": {
+    "socialAccountId": "example-acct-mission-tiktok",
+    "handle": "@example.missiontalks",
+    "status": "CONNECTED",
+    "privacyOptions": [
+     "PUBLIC_TO_EVERYONE",
+     "FOLLOWER_OF_CREATOR",
+     "SELF_ONLY"
+    ],
+    "max_video_s": 600
+   },
+   "INSTAGRAM": {
+    "socialAccountId": null,
+    "handle": "@example.missiontalks"
+   },
+   "YOUTUBE": {
+    "socialAccountId": "example-acct-mission-youtube",
+    "handle": "@example.missiontalks",
+    "status": "CONNECTED"
+   }
+  }
+ },
+ "agency": {
+  "name": "Example Clip Studio",
+  "reply_to": "clips@example.com"
+ },
+ "report": {
+  "recipients": [
+   "jordan@example.com"
+  ]
+ },
+ "expect_episode_every_days": 14
+}

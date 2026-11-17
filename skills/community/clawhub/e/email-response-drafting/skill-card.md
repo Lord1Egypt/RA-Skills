@@ -1,43 +1,53 @@
-## Description: <br>
-Drafts email replies with tone matching, proper threading, email-client-safe formatting, and a draft-first approval pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft email replies with tone matching, proper threading, and formatting that survives email clients.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-Employees and external users use this skill to draft individual email replies that match the thread's tone, preserve reply threading, and remain reviewable before sending. It is scoped to response drafting, not marketing campaigns or mass outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email drafts could be sent or saved before the user has confirmed recipients, subject, and body. <br>
-Mitigation: Follow the skill's draft-first workflow: present the draft for review, ask for explicit confirmation when intent is ambiguous, and send only after direct approval. <br>
-Risk: A reply can break email threading if the original message is not found. <br>
-Mitigation: Verify the original message and message ID before creating a threaded reply; if unavailable, tell the user instead of silently creating a standalone draft. <br>
-Risk: Markdown email content can render incorrectly across email clients. <br>
-Mitigation: Convert Markdown to email-safe HTML where needed, include a plain-text body, and avoid formatting patterns called out by the skill as fragile. <br>
+## Use Case:
 
+Employees and external users use this skill to draft concise, tone-matched email replies that preserve thread context and are ready for human review before sending.
 
-## Reference(s): <br>
-- [Email Agent MCP](https://github.com/UseJunior/email-agent-mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stevenobiajulu/email-response-drafting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown email drafts and concise drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include YAML frontmatter for saved draft files and threading metadata when the user requests a file-backed draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Broad trigger wording may activate the skill on general response-writing prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants an email draft and review the generated recipients, subject, and body before approving any send action.
+
+Risk: An email could be sent or saved with incorrect content, recipients, or threading if the draft is not reviewed.
+
+Mitigation: Follow the draft-first workflow: present the draft for review, preserve thread context when available, and wait for explicit send approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stevenobiajulu/skills/email-response-drafting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text email drafts with recipient, subject, body, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-first workflow; the user must explicitly approve before any email is sent.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

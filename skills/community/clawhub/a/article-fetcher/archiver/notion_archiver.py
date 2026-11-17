@@ -293,11 +293,13 @@ class NotionArchiver:
                 })
             return rich_texts
 
-        # 图片（不应该出现在内联中，但做防御处理）
+        # 图片（内联：转为文本链接，不创建 image block）
         if element.name == 'img':
-            src = element.get('data-src') or element.get('src')
-            if src:
-                return [self._image_block(src, element.get('alt', ''))]
+            src = str(element.get('data-src') or element.get('src', ''))
+            alt = element.get('alt', '图片')
+            if src and not src.startswith('data:image/svg'):
+                return [{"type": "text", "text": {"content": f"[{alt}]({src})"}}]
+            return []
 
         # 递归处理子元素（嵌套样式）
         for child in element.children:

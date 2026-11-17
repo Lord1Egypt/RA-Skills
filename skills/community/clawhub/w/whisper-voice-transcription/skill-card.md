@@ -1,43 +1,62 @@
-## Description: <br>
-Build and use whisper.cpp for local speech-to-text workflows, with optional cloud fallback when local transcription is not practical. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and use whisper.cpp for local speech-to-text workflows, with optional cloud fallback when local transcription is not practical.
 
-## Publisher: <br>
-[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate)
 
-## Use Case: <br>
-Developers and operators use this skill to build whisper.cpp, prepare audio, run local speech-to-text, and choose a cloud fallback only when local transcription is impractical. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloning and building whisper.cpp and downloading speech models can introduce supply-chain risk if unofficial sources are used. <br>
-Mitigation: Use official whisper.cpp releases or repositories, verify hashes when available, and review commands before running them. <br>
-Risk: Audio can contain sensitive information, and cloud fallback changes the privacy model. <br>
-Mitigation: Prefer local transcription for sensitive audio and tell the user before sending audio to an external provider. <br>
-Risk: Broad filesystem searches can expose unrelated audio files. <br>
-Mitigation: Search only expected cache or upload paths when locating audio for transcription. <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill to build whisper.cpp, prepare audio, run local speech-to-text transcription, and choose an approved cloud fallback when local transcription is not practical.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/whisper-voice-transcription) <br>
-- [whisper.cpp repository](https://github.com/ggerganov/whisper.cpp.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local build guidance, audio conversion commands, model download guidance, and privacy notices for cloud fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Building third-party code from a moving upstream branch can change the behavior or trust boundary of local transcription over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin whisper.cpp to a known release or commit before building and review updates before adopting them.
+
+Risk: Downloaded transcription models may be tampered with or may not match the intended source.
+
+Mitigation: Download models only from official sources and verify hashes when available.
+
+Risk: Using a fixed temporary audio path can expose private audio or leave sensitive files behind.
+
+Mitigation: Use a unique private temporary file for each transcription and remove it after use.
+
+Risk: Cloud transcription fallback sends audio outside the local machine.
+
+Mitigation: Use cloud fallback only with user acceptance and an approved speech API.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuxuclassmate/skills/whisper-voice-transcription)
+- [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.1 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

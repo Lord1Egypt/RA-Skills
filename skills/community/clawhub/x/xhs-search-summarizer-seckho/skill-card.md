@@ -1,41 +1,58 @@
-## Description: <br>
-Searches Xiaohongshu for a keyword, extracts top posts with text, images, and comments, and helps synthesize the collected material into a comprehensive analytical report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Xiaohongshu (小红书) for a keyword, extracts posts with text, images, and comments, and helps synthesize the results into a concise analytical report.
 
-## Publisher: <br>
-[seckho1985](https://clawhub.ai/user/seckho1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seckho1985](https://clawhub.ai/user/seckho1985)
 
-## Use Case: <br>
-External users and agent operators use this skill to research Xiaohongshu topics by collecting representative posts, comments, and images, then turning that evidence into a structured thematic report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation against Xiaohongshu may require manual login or may conflict with site terms or local privacy obligations. <br>
-Mitigation: Run only when permitted, complete any login challenge manually, and verify compliance with Xiaohongshu terms and applicable privacy rules. <br>
-Risk: Collected post text, comments, images, raw JSON, and reports are stored locally and may contain personal or sensitive information. <br>
-Mitigation: Use a dedicated output folder, avoid sensitive directories, and review generated files before sharing or retaining them. <br>
+## Use Case:
 
+External users and analysts use this skill to collect Xiaohongshu search results for a topic and convert posts, comments, and images into a thematic Markdown summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seckho1985/xhs-search-summarizer-seckho) <br>
-- [Publisher profile](https://clawhub.ai/user/seckho1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with local image files and raw JSON artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are saved to the selected local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill launches a headed browser and may require Xiaohongshu login during scraping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a disposable browser/workspace and avoid exposing unrelated authenticated sessions or sensitive data.
+
+Risk: The skill runs mutable external Playwright tooling.
+
+Mitigation: Pin and review Playwright dependencies before execution.
+
+Risk: The skill saves scraped posts, comments, and images locally and may write outside the intended output path under some inputs.
+
+Mitigation: Use a non-sensitive output directory and avoid path-like keywords or inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seckho1985/skills/xhs-search-summarizer-seckho)
+- [Publisher profile](https://clawhub.ai/user/seckho1985)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with local image files and supporting scrape output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create raw data Markdown, JSON scrape output, and downloaded image files in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

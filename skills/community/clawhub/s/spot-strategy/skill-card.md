@@ -1,38 +1,56 @@
-## Description: <br>
-Design an interruption-resilient EC2 Spot instance strategy with fallback configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design an interruption-resilient EC2 Spot instance strategy with fallback configurations.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Developers, cloud engineers, and FinOps teams use this skill to evaluate exported AWS EC2 inventory, Auto Scaling, and cost data and plan a resilient Spot, On-Demand, and Savings Plan mix. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS inventory, Auto Scaling, and cost exports may contain sensitive environment details. <br>
-Mitigation: Share only sanitized exports with the agent, run AWS CLI commands yourself using a least-privilege read-only role, and do not paste access keys, secret keys, session tokens, or unrelated sensitive data. <br>
-Risk: Spot migration recommendations can affect workload availability if applied to stateful or interruption-sensitive systems without review. <br>
-Mitigation: Review the generated eligibility matrix and fallback architecture before implementation, keep stateful workloads off Spot, and test interruption handling such as graceful shutdown and checkpoint patterns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and cloud infrastructure engineers use this skill to analyze exported AWS EC2 inventory, Auto Scaling configuration, and EC2 cost data, then design Spot, On-Demand, and Savings Plan fallback strategies.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, AWS CLI command examples, and optional Karpenter NodePool YAML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided exported AWS data and does not require credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share AWS inventory, Auto Scaling, and cost exports that contain sensitive account details.
+
+Mitigation: Use exported read-only data only, limit shared data to the requested EC2 planning inputs, and remove unrelated account information before analysis.
+
+Risk: Users may accidentally include credentials, access keys, secret keys, or unrelated secrets in pasted CLI or console output.
+
+Mitigation: Do not provide credentials or secrets; confirm pasted data contains no credentials before processing it.
+
+Risk: Spot planning recommendations can be unsuitable for stateful workloads or services without interruption handling.
+
+Mitigation: Flag stateful or single-replica workloads as not Spot-safe and include graceful shutdown hooks, checkpoint patterns, and On-Demand fallback capacity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anmolnagpal/skills/spot-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, inline bash examples, and optional YAML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Karpenter NodePool YAML when EKS context is detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

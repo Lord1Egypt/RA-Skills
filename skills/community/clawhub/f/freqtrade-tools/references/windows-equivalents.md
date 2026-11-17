@@ -1,5 +1,75 @@
 # Windows PowerShell & Command Prompt Equivalents
 
+> **Prefer the PowerShell functions over the `.bat` equivalents.** The batch
+> files interpolate `%DAYS%` into a `powershell -Command` string, which is a
+> command-injection vector if that value is ever attacker-controlled. This
+> reference no longer ships the `.bat` templates for that reason. If you keep
+> them, validate `DAYS` as a positive integer first and quote every variable.
+
+## Safety helper (required)
+
+Every command below calls `ft_guard` first. It does three things:
+
+1. **Targets one project explicitly.** `docker-compose` without `-p` acts on
+   whatever project happens to be in the current directory. `ft_guard` resolves
+   a single project name and passes it to every `docker-compose` call, so a
+   command can never start or stop an unrelated container set.
+2. **Detects the trading mode.** It reads `dry_run` from the Freqtrade config
+   and refuses to run live-control commands against a live bot unless you
+   confirm.
+3. **Confirms destructive actions.** `--erase` deletes cached market data and
+   `ftstop`/`ftrestart` interrupt a running bot. Both require confirmation.
+
+Set `$env:FT_PROJECT` to your Freqtrade project name (it defaults to
+`freqtrade`). Set `$env:FT_CONFIRM = "yes"` to skip the interactive prompts in
+non-interactive shells where you have already confirmed the action yourself.
+
+```powershell
+# The compose project name. Override with $env:FT_PROJECT if yours differs.
+if (-not $env:FT_PROJECT) { $env:FT_PROJECT = "freqtrade" }
+
+# Resolve the Freqtrade config that holds dry_run.
+if (-not $env:FT_CONFIG) { $env:FT_CONFIG = "user_data/config.json" }
+
+# Read dry_run out of the config. Returns $true, $false, or $null (unknown).
+function Get-FtDryRun {
+  if (-not (Test-Path $env:FT_CONFIG)) { return $null }
+  try {
+    $cfg = Get-Content $env:FT_CONFIG -Raw | ConvertFrom-Json
+    return [bool]$cfg.dry_run
+  } catch {
+    return $null
+  }
+}
+
+# Guard for bot-control commands. Requires an explicit target and, against a
+# live bot, an explicit confirmation.
+function Invoke-FtGuard {
+  param([string]$Action = "safe")
+
+  $dry = Get-FtDryRun
+
+  if ($null -eq $dry) {
+    Write-Host "REFUSING: could not read dry_run from $env:FT_CONFIG."
+    Write-Host "Check the config path (override with FT_CONFIG) and confirm the bot is in dry-run."
+    return $false
+  }
+
+  if (-not $dry) {
+    Write-Host "REFUSING: $($env:FT_PROJECT) is configured with dry_run: false (LIVE trading)."
+    Write-Host "Confirm the target project and mode, then set FT_CONFIRM=yes to proceed."
+    return $false
+  }
+
+  if ($Action -eq "destructive" -and $env:FT_CONFIRM -ne "yes") {
+    Write-Host "CONFIRM REQUIRED: this command affects a running bot or deletes cached data."
+    Write-Host "Re-run with FT_CONFIRM=yes once you have confirmed the target: $($env:FT_PROJECT)"
+    return $false
+  }
+  return $true
+}
+```
+
 ## PowerShell Functions
 
 Add these to your PowerShell profile (`$PROFILE`) or dot-source this file.
@@ -14,27 +84,34 @@ function ftdata {
     [string]$Timeframe = "5m",
     [string]$Erase = ""
   )
-  
+
   # Validate Pair (alphanumeric + / only)
   if ($Pair -notmatch '^[A-Za-z0-9/]+$') {
     Write-Host "Error: invalid pair format. Use alphanumeric and / only (e.g., BTC/USDT)"
     return
   }
-  
+
   # Validate Timeframe (digits + m/h/d)
   if ($Timeframe -notmatch '^\d+(m|h|d)$') {
     Write-Host "Error: invalid timeframe format. Use format like 5m, 1h, 1d"
     return
   }
-  
-  # Handle --erase flag safely
+
+  # Validate Days (positive integer) — it is interpolated into a command line
+  if ($Days -lt 1) {
+    Write-Host "Error: invalid days. Use a positive integer (e.g., 30)"
+    return
+  }
+
+  # Handle --erase flag safely — deletes cached data, so it needs confirmation
   $EraseFlag = ""
   if ($Erase -eq "--erase") {
+    if (-not (Invoke-FtGuard -Action "destructive")) { return }
     $EraseFlag = "--erase"
   }
-  
+
   $StartDate = (Get-Date).AddDays(-$Days).ToString("yyyyMMdd")
-  docker-compose run --rm freqtrade download-data `
+  docker-compose -p $env:FT_PROJECT run --rm freqtrade download-data `
     --exchange kraken `
     --pairs "$Pair" `
     --timerange "${StartDate}-" `
@@ -54,6 +131,7 @@ ftdata "XRP/USDT" 365 5m "--erase" # Download 1 year, erase old data first
 **Critical Notes:**
 - Call with ONE pair at a time. Multiple pairs cause errors.
 - Use `--erase` when extending your data range backward in time.
+- Set `$env:FT_PROJECT` if your compose project is not named `freqtrade`.
 
 ### ftback — Run Backtest
 
@@ -65,34 +143,40 @@ function ftback {
     [string]$Timeframe = "5m",
     [string]$Pairs = ""
   )
-  
+
   # Validate Strategy (alphanumeric, underscore, hyphen only)
   if ($Strategy -notmatch '^[A-Za-z0-9_-]+$') {
     Write-Host "Error: invalid strategy name. Use alphanumeric, underscore, or hyphen only"
     return
   }
-  
+
   # Validate Timeframe (digits + m/h/d)
   if ($Timeframe -notmatch '^\d+(m|h|d)$') {
     Write-Host "Error: invalid timeframe format. Use format like 5m, 1h, 1d"
     return
   }
-  
+
+  # Validate Days (positive integer) — it is interpolated into a command line
+  if ($Days -lt 1) {
+    Write-Host "Error: invalid days. Use a positive integer (e.g., 30)"
+    return
+  }
+
   # Validate Pairs if provided (alphanumeric + / and comma)
   if (-not [string]::IsNullOrEmpty($Pairs) -and $Pairs -notmatch '^[A-Za-z0-9/,]+$') {
     Write-Host "Error: invalid pairs format. Use alphanumeric, /, and comma only"
     return
   }
-  
+
   $StartDate = (Get-Date).AddDays(-$Days).ToString("yyyyMMdd")
   if ([string]::IsNullOrEmpty($Pairs)) {
-    docker-compose run --rm freqtrade backtesting `
+    docker-compose -p $env:FT_PROJECT run --rm freqtrade backtesting `
       --strategy "$Strategy" `
       --timerange "${StartDate}-" `
       --timeframe "$Timeframe" `
       --breakdown day
   } else {
-    docker-compose run --rm freqtrade backtesting `
+    docker-compose -p $env:FT_PROJECT run --rm freqtrade backtesting `
       --strategy "$Strategy" `
       --timerange "${StartDate}-" `
       --timeframe "$Timeframe" `
@@ -109,18 +193,21 @@ ftback "MyStrategy" 90 1h "BTC/USDT"          # Test on specific pair
 ftback                                         # Use defaults: SampleStrategy, 30 days, 5m
 ```
 
-### Bot Control — One-Liners
+### Bot Control
+
+These act on a running bot. Each one targets exactly one project and refuses
+to run against a live (`dry_run: false`) bot unless `$env:FT_CONFIRM` is `yes`.
 
 ```powershell
-function ftstop    { docker-compose stop }
-function ftstart   { docker-compose start }
-function ftrestart { docker-compose restart }
-function ftlogs    { docker-compose logs -f freqtrade }
-function ftstatus  { 
-  docker-compose ps
-  docker-compose logs --tail=20 freqtrade
+function ftstop    { if (Invoke-FtGuard -Action "destructive") { docker-compose -p $env:FT_PROJECT stop } }
+function ftstart   { if (Invoke-FtGuard -Action "destructive") { docker-compose -p $env:FT_PROJECT start } }
+function ftrestart { if (Invoke-FtGuard -Action "destructive") { docker-compose -p $env:FT_PROJECT restart } }
+function ftlogs    { docker-compose -p $env:FT_PROJECT logs -f freqtrade }
+function ftstatus  {
+  docker-compose -p $env:FT_PROJECT ps
+  docker-compose -p $env:FT_PROJECT logs --tail=20 freqtrade
 }
-function ftlist    { 
+function ftlist    {
   if (Test-Path user_data/data/kraken/) {
     Get-ChildItem -Path user_data/data/kraken/ -Recurse | `
       Format-Table FullName, Length
@@ -131,118 +218,28 @@ function ftlist    {
 function ftui      { Start-Process "http://localhost:8080" }
 ```
 
+`ftlogs`, `ftstatus`, `ftlist`, and `ftui` are read-only and need no
+confirmation. `ftstop`, `ftstart`, and `ftrestart` do.
+
 ---
 
-## Command Prompt (.bat) Equivalents
+## Command Prompt (cmd.exe)
 
-For traditional `cmd.exe`, create batch files or use `doskey` macros.
-
-### ftdata.bat
-
-```batch
-@echo off
-setlocal enabledelayedexpansion
-
-REM Parameters: ftdata.bat PAIR DAYS TIMEFRAME [--erase]
-set PAIR=%~1
-if "%PAIR%"=="" set PAIR=BTC/USDT
-set DAYS=%~2
-if "%DAYS%"=="" set DAYS=30
-set TIMEFRAME=%~3
-if "%TIMEFRAME%"=="" set TIMEFRAME=5m
-set ERASE=%~4
-
-REM NOTE: Windows cmd/PowerShell lack bash regex. Validate in PowerShell before calling batch,
-REM or add whitelist checks: verify PAIR contains only alphanumeric/slash,
-REM TIMEFRAME matches ^\d+(m|h|d)$, and ERASE is empty or "--erase".
-REM To prevent injection, always quote variables: "%PAIR%", "%TIMEFRAME%", etc.
-
-REM Calculate start date (DAYS ago)
-for /f %%A in ('powershell -Command "(Get-Date).AddDays(-!DAYS!).ToString('yyyyMMdd')"') do (
-  set START_DATE=%%A
-)
-
-REM Handle --erase flag safely
-set ERASE_FLAG=
-if "%ERASE%"=="--erase" set ERASE_FLAG=--erase
-
-docker-compose run --rm freqtrade download-data ^
-  --exchange kraken ^
-  --pairs "%PAIR%" ^
-  --timerange !START_DATE!- ^
-  --timeframe "%TIMEFRAME%" ^
-  %ERASE_FLAG%
-
-endlocal
-```
-
-**Usage (from cmd.exe):**
-```batch
-ftdata.bat "BTC/USDT" 90 5m           # Download 90 days of 5-min BTC/USDT data
-ftdata.bat "ETH/USDT" 30 1h           # 30 days of 1-hour ETH/USDT
-ftdata.bat "SOL/USDT"                 # Use defaults: 30 days, 5-min
-ftdata.bat "XRP/USDT" 365 5m --erase  # Download 1 year, erase old data first
-```
-
-### ftback.bat
+Prefer the PowerShell functions above from `cmd.exe` too — you can call them
+from `cmd` via `powershell -NoProfile -Command ftstatus`. If you need native
+cmd-only macros, use `doskey` with the project pinned and the guard applied
+through the PowerShell helper rather than raw `docker-compose`:
 
 ```batch
-@echo off
-setlocal enabledelayedexpansion
-
-REM Parameters: ftback.bat STRATEGY DAYS TIMEFRAME [PAIRS]
-set STRATEGY=%~1
-if "%STRATEGY%"=="" set STRATEGY=SampleStrategy
-set DAYS=%~2
-if "%DAYS%"=="" set DAYS=30
-set TIMEFRAME=%~3
-if "%TIMEFRAME%"=="" set TIMEFRAME=5m
-set PAIRS=%~4
-
-REM NOTE: Windows cmd/PowerShell lack bash regex. Validate in PowerShell before calling batch,
-REM or add whitelist checks: verify STRATEGY contains only alphanumeric/hyphen/underscore,
-REM TIMEFRAME matches ^\d+(m|h|d)$, and PAIRS (if present) contains only alphanumeric/slash/comma.
-REM To prevent injection, always quote variables: "%STRATEGY%", "%TIMEFRAME%", "%PAIRS%", etc.
-
-for /f %%A in ('powershell -Command "(Get-Date).AddDays(-!DAYS!).ToString('yyyyMMdd')"') do (
-  set START_DATE=%%A
-)
-
-if "%PAIRS%"=="" (
-  docker-compose run --rm freqtrade backtesting ^
-    --strategy "%STRATEGY%" ^
-    --timerange !START_DATE!- ^
-    --timeframe "%TIMEFRAME%" ^
-    --breakdown day
-) else (
-  docker-compose run --rm freqtrade backtesting ^
-    --strategy "%STRATEGY%" ^
-    --timerange !START_DATE!- ^
-    --timeframe "%TIMEFRAME%" ^
-    --pairs "%PAIRS%" ^
-    --breakdown day
-)
-
-endlocal
+REM Save to freqtrade-macros.bat and reference it from your cmd session.
+REM These delegate to the PowerShell functions, which apply the guard.
+doskey ftstop=powershell -NoProfile -Command ftstop
+doskey ftstart=powershell -NoProfile -Command ftstart
+doskey ftrestart=powershell -NoProfile -Command ftrestart
+doskey ftlogs=powershell -NoProfile -Command ftlogs
+doskey ftstatus=powershell -NoProfile -Command ftstatus
+doskey ftui=powershell -NoProfile -Command ftui
 ```
 
-**Usage (from cmd.exe):**
-```batch
-ftback.bat "MyStrategy" 60 5m                      # Test MyStrategy for 60 days
-ftback.bat "MyStrategy" 90 1h "BTC/USDT"          # Test on specific pair
-ftback.bat                                         # Use defaults: SampleStrategy, 30 days, 5m
-```
-
-### Bot Control — doskey Macros
-
-```batch
-doskey ftstop=docker-compose stop
-doskey ftstart=docker-compose start
-doskey ftrestart=docker-compose restart
-doskey ftlogs=docker-compose logs -f freqtrade
-doskey ftstatus=docker-compose ps $t docker-compose logs --tail=20 freqtrade
-doskey ftui=start http://localhost:8080
-doskey ftlist=dir /s user_data\data\kraken\
-```
-
-**Installation:** Save the above to `freqtrade-macros.bat` and run it in each cmd session, or add to your startup folder.
+**Installation:** Add `call C:\path\to\freqtrade-macros.bat` to your cmd
+startup, or run it in each session.

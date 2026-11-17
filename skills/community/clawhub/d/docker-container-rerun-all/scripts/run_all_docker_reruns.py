@@ -21,20 +21,36 @@ def list_container_names():
 
 def parse_memory_safe(memory_text, container_names):
     # 1. 尝试定位章节（允许部分匹配）
-    start_pattern = re.compile(r'^##\s+已记住的\s+Docker\s+容器固定重建命令', re.M)
-    end_pattern = re.compile(r'^##\s+Nginx\s+Proxy\s+Manager\s+托管', re.M)
+    start_pattern = re.compile(r'^##?\s+已记住的\s+Docker\s+容器固定重建命令', re.M)
+    end_pattern = re.compile(r'^##?\s+(?:Nginx\s+Proxy\s+Manager|青龙面板|源码构建型)', re.M)
     
+    # 检查是否引用了外部独立文件或存在单独的 docker_containers_recreate.md
+    external_match = re.search(r'(/root/\S+/docker_containers_recreate\.md|memory/docker_containers_recreate\.md)', memory_text)
+    extra_text = ""
+    if external_match:
+        ext_path = Path(external_match.group(1))
+        if not ext_path.is_absolute():
+            ext_path = WORKSPACE / ext_path
+        if ext_path.exists():
+            extra_text = ext_path.read_text(encoding='utf-8')
+    elif (WORKSPACE / 'memory' / 'docker_containers_recreate.md').exists():
+        extra_text = (WORKSPACE / 'memory' / 'docker_containers_recreate.md').read_text(encoding='utf-8')
+
+    target_text = ""
+    if extra_text:
+        target_text += extra_text + "\n"
+
     m_start = start_pattern.search(memory_text)
     m_end = end_pattern.search(memory_text)
     
     if m_start:
         start_idx = m_start.end()
         if m_end and m_end.start() > start_idx:
-            target_text = memory_text[start_idx:m_end.start()]
+            target_text += memory_text[start_idx:m_end.start()]
         else:
-            target_text = memory_text[start_idx:]
+            target_text += memory_text[start_idx:]
     else:
-        target_text = memory_text
+        target_text += memory_text
 
     # 2. 提取所有代码块（更宽松的匹配）
     blocks = re.findall(r'```(?:bash|sh)?\s*\n(.*?)\n\s*```', target_text, re.DOTALL)

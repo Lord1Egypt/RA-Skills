@@ -1,40 +1,58 @@
-## Description: <br>
-Generates 9:16 Tibetan cinematic videos with Google Veo from a user image and exactly three Chinese theme words, saving the resulting MP4 under ~/.openclaw/workspace/tibetanProc/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates authentic Tibetan cinematic videos in 9:16 portrait format via Google Veo from a user-provided image and exactly three Chinese theme words.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External creators and developers use this skill to turn a Tibetan source image and three Chinese theme words into a short vertical cinematic video while preserving the skill's cultural style guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected image is uploaded to the configured Google Veo service for video generation. <br>
-Mitigation: Use only images appropriate for remote processing and confirm the endpoint's retention and privacy handling before use. <br>
-Risk: Generated MP4 files are written locally under ~/.openclaw/workspace/tibetanProc/. <br>
-Mitigation: Review the generated file location, manage cleanup as needed, and avoid sensitive, confidential, or copyrighted images unless their use is permitted. <br>
+## Use Case:
 
+External users and creators use this skill to turn Tibetan-themed source imagery and three Chinese theme words into a short portrait video prompt and generated MP4. It is intended for cinematic cultural video generation with explicit input validation, output-path constraints, and Tibetan authenticity guardrails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/tibetan-cinematic-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Files] <br>
-**Output Format:** [Google Veo prompt text and a generated MP4 video file saved as ~/.openclaw/workspace/tibetanProc/yymmddHHMM_{title}.mp4] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one input image and exactly three comma-separated Chinese theme words; the skill is designed for a single portrait clip per call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill sends the supplied image to Google Veo for video generation, which can expose sensitive personal or proprietary imagery to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive images and confirm that users are comfortable sending the image to Google Veo before generation.
+
+Risk: Broad trigger terms such as monastery, prayer wheel, and Himalayan could start generation when the user did not intend to create a video.
+
+Mitigation: Consider tightening triggers or adding an explicit confirmation step before calling Google Veo.
+
+Risk: Generated media is saved locally under ~/.openclaw/workspace/tibetanProc/, which may retain user-provided image derivatives or generated content longer than expected.
+
+Mitigation: Review local retention expectations and clean generated media when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/tibetan-cinematic-video)
+- [ClawHub publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Google Veo prompt parameters and an MP4 file saved to the configured local path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires one input image and exactly three comma-separated Chinese theme words; outputs a single 9:16 video file named yymmddHHMM_{title}.mp4 under ~/.openclaw/workspace/tibetanProc/.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

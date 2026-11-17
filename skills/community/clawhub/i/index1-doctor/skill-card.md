@@ -1,39 +1,53 @@
-## Description: <br>
-Diagnose index1 environment - check Python, Ollama, models, index health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses an index1 environment by checking Python, Ollama, model availability, and index health.
 
-## Publisher: <br>
-[gladego](https://clawhub.ai/user/gladego) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[gladego](https://clawhub.ai/user/gladego)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a local index1 setup, check index health, review Ollama model availability, and get fix recommendations before or after troubleshooting search behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic output may include local index, database, model, or environment details that should not be shared broadly. <br>
-Mitigation: Review diagnostic output before sharing it outside the local troubleshooting context. <br>
-Risk: Installer, model-pull, and indexing commands can change the local environment or add selected local directories to an index. <br>
-Mitigation: Treat remediation commands as manual actions and run them only after confirming the source, target directories, and expected local changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to verify an index1 setup, inspect index status, check local embedding model availability, and get fix recommendations when search or vector indexing behaves unexpectedly.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local environment health summaries, installed model listings, index status details, and recommended manual remediation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Suggested installation commands can download scripts or install packages on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review official installation documentation, inspect downloaded scripts before execution, and approve package installation only when it matches the intended environment.
+
+Risk: Suggested indexing commands can process local project files.
+
+Mitigation: Run indexing commands only against projects and directories the user intends to index.
+
+## Reference(s):
+
+- [index1 Doctor ClawHub skill page](https://clawhub.ai/gladego/skills/index1-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

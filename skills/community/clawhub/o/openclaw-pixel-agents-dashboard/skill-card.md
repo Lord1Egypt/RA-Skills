@@ -1,46 +1,61 @@
-## Description: <br>
-Real-time pixel art ops dashboard for OpenClaw deployments that visualizes agent activity as character sprites in a shared office with live activity bubbles, hardware monitoring, service controls, and task spawning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, configures, manages, and troubleshoots the Pixel Agents Dashboard, a real-time pixel art operations dashboard for OpenClaw deployments.
 
-## Publisher: <br>
-[jaffer1979](https://clawhub.ai/user/jaffer1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaffer1979](https://clawhub.ai/user/jaffer1979)
 
-## Use Case: <br>
-Developers and operators use this skill to install, configure, run, and troubleshoot a real-time dashboard for monitoring OpenClaw agent sessions, gateway connectivity, hardware status, and task spawning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: If the dashboard server is reachable by untrusted users, unauthenticated controls could restart services, change configuration, run updates, or trigger SSH-related behavior. <br>
-Mitigation: Install only in a trusted local environment, bind the dashboard to localhost or place it behind strong authentication, and review the generated configuration before exposing it on any network. <br>
-Risk: Remote agent monitoring can introduce SSH credential and remote access risk, especially when password-based SSH is enabled. <br>
-Mitigation: Disable remote agents unless needed, prefer SSH key authentication over password-based SSH, and keep secrets in environment variables rather than committed configuration files. <br>
-Risk: Service controls and update checks can affect running OpenClaw services. <br>
-Mitigation: Disable service-control features that are not required and restrict use to operators who are allowed to manage the local OpenClaw environment. <br>
+## Use Case:
 
+Developers and operators use this skill to set up and manage a local dashboard that visualizes OpenClaw agent activity, monitors hardware and services, and supports spawning agent tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jaffer1979/openclaw-pixel-agents-dashboard) <br>
-- [README](README.md) <br>
-- [Dashboard configuration example](dashboard.config.example.json) <br>
-- [Sprite asset license](public/assets/ASSET-LICENSE.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct setup scripts to generate dashboard.config.json and may provide troubleshooting steps for local services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The dashboard exposes powerful controls and agent conversation data over unauthenticated network services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted local environment, bind the service to localhost or place it behind authentication, and avoid exposing port 5070 to a network.
+
+Risk: Remote administration features may rely on SSH access and sensitive credentials.
+
+Mitigation: Prefer SSH keys over passwords and keep secrets in environment variables or protected local configuration.
+
+Risk: Dependency risk may affect real deployments.
+
+Mitigation: Update vulnerable dependencies before relying on the dashboard for production or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaffer1979/skills/openclaw-pixel-agents-dashboard)
+- [OpenClaw](https://openclaw.ai)
+- [Artifact README](artifact/README.md)
+- [Example dashboard configuration](artifact/dashboard.config.example.json)
+- [Asset license](artifact/public/assets/ASSET-LICENSE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local dashboard configuration files and provide service-management commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,71 @@
-## Description: <br>
-WeChat Official Account article writing assistant that guides users through planning, research, drafting, structured review, media planning, title and summary optimization, final delivery, personal style learning, article comparison, and series splitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat Article Writer guides users through a multi-phase WeChat Official Account article workflow for requirements clarification, research, outline co-creation, drafting, structured review, header and footer completion, media planning, title and summary optimization, article comparison, and long-article series splitting.
 
-## Publisher: <br>
-[ChenChen913](https://clawhub.ai/user/ChenChen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-Content creators and operators use this skill to plan, draft, polish, and deliver WeChat Official Account articles in Chinese. It supports requirement clarification, market research, outline co-creation, style matching from local writing samples, three-round review, media resource planning, title and summary options, and final Markdown delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can read writing samples placed in my-articles and save local style or creation-log notes. <br>
-Mitigation: Do not place confidential drafts or sensitive personal material in the skill folders, and review or delete my-style.md and creation-log.md when needed. <br>
-Risk: Research and media-generation steps may use external tools or produce claims and assets that need review. <br>
-Mitigation: Skip web research or automatic media generation for sensitive topics, and review factual claims, citations, prompts, and generated media before publication. <br>
+## Use Case:
 
+External users and content creators use this skill to plan, draft, review, polish, and package Chinese WeChat Official Account articles. It also supports style-library use, article comparison, and splitting longer drafts into a series.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChenChen913/wechat-article-writer-cc) <br>
-- [Research guide](references/research-guide.md) <br>
-- [Review checklist](references/review-checklist.md) <br>
-- [Style guide](references/style-guide.md) <br>
-- [Media guide](references/media-guide.md) <br>
-- [Article comparison guide](references/article-compare.md) <br>
-- [Series split guide](references/series-split.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Chinese conversational guidance and Markdown article drafts, checklists, media prompts, title and summary options, and final article packages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local writing-style and creation-log Markdown files when the workflow uses personal style learning or session state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can use private writing samples and drafts to infer style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep confidential drafts out of the skill folder unless that use is intended, and review or remove local style summaries after use.
+
+Risk: The skill may persist progress and style details in local files.
+
+Mitigation: Review generated style and creation-log files before sharing the workspace or publishing outputs.
+
+Risk: Research and media-generation steps may rely on external tools even though the artifact includes local-only wording.
+
+Mitigation: Confirm external search, image, or video generation before use, especially when drafts contain private or embargoed material.
+
+Risk: Broad activation phrases and strong workflow language may steer an agent into long, multi-step behavior.
+
+Mitigation: Use the skill for intended WeChat article workflows and keep user instructions explicit when only a narrow review or edit is needed.
+
+## Reference(s):
+
+- [Brief Template](artifact/references/brief-template.md)
+- [Research Guide](artifact/references/research-guide.md)
+- [Research Templates](artifact/references/research-templates.md)
+- [Style Guide](artifact/references/style-guide.md)
+- [Review Checklist](artifact/references/review-checklist.md)
+- [Header and Footer Templates](artifact/references/header-footer-templates.md)
+- [Media Guide](artifact/references/media-guide.md)
+- [Article Compare Guide](artifact/references/article-compare.md)
+- [Series Split Guide](artifact/references/series-split.md)
+- [Creation Log Template](artifact/references/creation-log-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/chenchen913/skills/wechat-article-writer-cc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article drafts, briefs, outlines, review tables, title and summary options, and media resource prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local style summaries and creation logs as part of the article workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/openclaw/mcporter/main/mcporter.schema.json",
+  "mcpServers": {
+    "heyyumi": {
+      "description": "HeyYumi: Korean restaurant search and in-chat reservation requests (OAuth sign-in)",
+      "baseUrl": "https://mcp.heyyumi.ai/mcp",
+      "auth": "oauth"
+    },
+    "heyyumi-key": {
+      "description": "HeyYumi with an API key from https://heyyumi.ai/mcp (set HEYYUMI_API_KEY)",
+      "baseUrl": "https://mcp.heyyumi.ai/mcp",
+      "headers": { "Authorization": "Bearer ${HEYYUMI_API_KEY}" }
+    }
+  }
+}

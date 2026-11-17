@@ -1,42 +1,56 @@
-## Description: <br>
-Search and manage knowledge bases using LightRAG API. Supports multiple servers, context-aware writing, and direct information retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and manage knowledge bases using LightRAG API. Supports multiple servers, context-aware writing, and direct information retrieval. Use when the user wants to query a LightRAG-powered knowledge base or use it as context for tasks.
 
-## Publisher: <br>
-[RuslanLanket](https://clawhub.ai/user/RuslanLanket) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ruslanlanket](https://clawhub.ai/user/ruslanlanket)
 
-## Use Case: <br>
-Developers and agents use this skill to configure LightRAG API servers, query knowledge bases in supported retrieval modes, and reuse returned context for writing or analysis tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper disables HTTPS certificate verification, which can expose queries and API keys to interception. <br>
-Mitigation: Enable normal TLS certificate verification and use trusted certificates before sending API keys, private documents, or sensitive queries. <br>
-Risk: Server configuration may include API keys stored in the local LightRAG config file. <br>
-Mitigation: Protect the local config file with appropriate filesystem permissions and avoid sharing it with logs, prompts, or generated artifacts. <br>
-Risk: Retrieved knowledge-base text may contain untrusted or misleading content. <br>
-Mitigation: Treat retrieved context as reference material and review it before following instructions or using it in downstream work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LightRAG API Reference](references/API_DOCS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RuslanLanket/lightrag) <br>
+## Use Case:
 
+Developers and agents use this skill to configure LightRAG API servers, query knowledge bases in supported retrieval modes, and pass retrieved context into writing or analysis tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command-line invocations and plain-text query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured LightRAG server alias; query output depends on the connected knowledge base.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured API keys and knowledge-base queries may expose credentials or sensitive query content.
+
+Mitigation: Use only trusted LightRAG endpoints, avoid API keys on HTTP URLs, and treat ~/.lightrag_config.json as sensitive.
+
+Risk: Broad use is risky while TLS verification and credential storage controls remain unresolved.
+
+Mitigation: Re-enable normal TLS verification and store API keys with restrictive file permissions or a credential store before broader deployment.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the skill before installation and deployment, following the server-provided security guidance.
+
+## Reference(s):
+
+- [LightRAG API Reference](references/API_DOCS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown guidance, with command-line usage and LightRAG query responses or retrieved context.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retrieved knowledge-base context from configured LightRAG endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

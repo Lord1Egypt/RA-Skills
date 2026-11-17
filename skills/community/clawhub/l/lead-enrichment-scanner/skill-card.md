@@ -1,42 +1,64 @@
-## Description: <br>
-B2B lead enrichment skill that uses public HTTPS scraping and optional MiniMax LLM metadata extraction to produce basic company information, guessed email patterns, social links, and scraped homepage context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enriches B2B company leads from public websites by guessing domains and email patterns, scraping homepage descriptions and social links, and optionally using MiniMax LLM metadata extraction.
 
-## Publisher: <br>
-[jzargona](https://clawhub.ai/user/jzargona) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzargona](https://clawhub.ai/user/jzargona)
 
-## Use Case: <br>
-Sales, growth, and operations users can use this skill to look up companies, scrape public homepage context, generate guessed email patterns, and export basic lead records for review. Developers can configure scraping posture, dry-run enrichment, and optional MiniMax-based metadata extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags a code and documentation mismatch: user-facing docs say outreach drafts are not implemented, but the script exposes a drafts command. <br>
-Mitigation: Review available commands before production use and avoid draft-generation workflows unless they are approved, documented, and tested for the intended outreach process. <br>
-Risk: The security review notes that the skill scrapes public company homepages, saves discovered email addresses, and can send company or lead text to MiniMax when MINIMAX_API_KEY is set. <br>
-Mitigation: Use approved company targets, verify lawful basis and CAN-SPAM/GDPR obligations before outreach, and leave MINIMAX_API_KEY unset when external LLM processing is not approved. <br>
+## Use Case:
 
+External users, sales teams, and developers can use this skill to create CSV lead-enrichment records from company names or domains before manual verification and compliant outreach decisions.
 
-## Reference(s): <br>
-- [Lead Enrichment Scanner Reference Docs](references/README.md) <br>
-- [Marketing Copy](references/marketing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jzargona/skills/lead-enrichment-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [CSV lead records with optional Markdown outreach drafts and command-line configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to user-specified output paths, scrapes public HTTPS homepages, and can call MiniMax when MINIMAX_API_KEY is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, release evidence, script __version__) <br>
+Risk: Lead enrichment may collect scraped email addresses and produce guessed email patterns that are not verified contacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public company data, verify addresses before any use, and follow CAN-SPAM, GDPR, and applicable local requirements.
+
+Risk: MiniMax may receive company or lead details when MINIMAX_API_KEY is set and enrichment or draft generation runs.
+
+Mitigation: Unset MINIMAX_API_KEY unless LLM processing is intended, and avoid using sensitive CRM exports or confidential lead data.
+
+Risk: The implemented outreach-drafts command contradicts the documentation that says outreach drafts are not implemented in v1.0.
+
+Mitigation: Review available commands before deployment and restrict use to enrichment workflows unless outreach drafting has been approved.
+
+Risk: Writing to user-specified output paths may replace existing files.
+
+Mitigation: Choose new output paths or back up existing CSV and Markdown files before running the skill.
+
+## Reference(s):
+
+- [Lead Enrichment Scanner ClawHub Listing](https://clawhub.ai/jzargona/skills/lead-enrichment-scanner)
+- [jzargona Publisher Profile](https://clawhub.ai/user/jzargona)
+- [Lead Enrichment Scanner Reference Docs](references/README.md)
+- [Marketplace Listing Copy](references/marketing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [CSV lead-enrichment files, Markdown drafts, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network scraping uses public HTTPS homepages; optional MiniMax LLM calls may process company or lead details when MINIMAX_API_KEY is set.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

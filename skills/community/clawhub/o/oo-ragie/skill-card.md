@@ -1,44 +1,56 @@
-## Description: <br>
-Ragie lets an agent inspect schemas and run Ragie connector actions through the oo CLI for reading, creating, updating, retrieving, and deleting Ragie data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete Ragie data through the OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage Ragie RAG resources from an OOMOL-connected account, including document ingestion, retrieval, metadata updates, partition management, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents may be sent to Ragie for cloud indexing. <br>
-Mitigation: Only ingest data approved for Ragie, and avoid secrets, private files, regulated data, or confidential documents unless upload has been explicitly authorized. <br>
-Risk: Write and destructive actions can modify or delete Ragie documents, partitions, metadata, or limits. <br>
-Mitigation: Confirm the exact action, target IDs, payload, and expected effect before running write or destructive commands. <br>
-Risk: The skill requires an OAuth-backed connection and sensitive credentials managed through OOMOL. <br>
-Mitigation: Use only intended connected accounts, do not expose raw credentials, and reconnect or adjust scopes only when an auth or connection error requires it. <br>
+## Use Case:
 
+Developers and teams use this skill to retrieve Ragie content and manage documents, partitions, and connections through their OOMOL-connected Ragie account.
 
-## Reference(s): <br>
-- [ClawHub Ragie Skill](https://clawhub.ai/oomol/oo-ragie) <br>
-- [Ragie Homepage](https://www.ragie.ai) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses may include a data object and meta.executionId when actions run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: The required CLI can silently install or refresh skills across other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review its skill synchronization behavior and set OO_SKILLS_SYNC_DISABLED=1 before invoking oo when only Ragie access is needed.
+
+Risk: The remote installer and exact installed CLI version are unverified.
+
+Mitigation: Review the installer separately and confirm the CLI version before use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-ragie)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Ragie homepage](https://www.ragie.ai)
+- [Ragie API documentation](https://docs.ragie.ai/docs/step-1-create-an-api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Text]
+
+**Output Format:** [oo CLI commands with JSON payloads and connector results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the Ragie action and may include retrieved content or operation status.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

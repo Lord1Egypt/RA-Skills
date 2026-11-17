@@ -1,42 +1,55 @@
-## Description: <br>
-用统一脚本执行 pdf2zh-next。支持单/多PDF、目录批处理、按 glob 筛选；未指定 provider 时按 config.toml 生效；指定 provider 时按官方 --<Services> 参数传给主程序；支持实时监控与并行翻译。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用统一脚本执行 pdf2zh-next，支持单个或多个 PDF、目录批处理、glob 筛选、可选 provider 参数、实时监控与并行翻译。
 
-## Publisher: <br>
-[mxingchtongaelofficial2568](https://clawhub.ai/user/mxingchtongaelofficial2568) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mxingchtongaelofficial2568](https://clawhub.ai/user/mxingchtongaelofficial2568)
 
-## Use Case: <br>
-Developers and users who work with PDFs use this skill to run pdf2zh-next through a controlled wrapper for translating one PDF, multiple PDFs, or PDF directories into Chinese output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper depends on the external pdf2zh-next tool and its dependency chain. <br>
-Mitigation: Install pdf2zh-next from a trusted source and review the package before running the wrapper. <br>
-Risk: PDF text may be sent to the configured translation provider. <br>
-Mitigation: Review config.toml before use and translate confidential PDFs only through providers approved for that data. <br>
-Risk: Upstream pdf2zh-next or babeldoc may download models, fonts, or cmap files on first run. <br>
-Mitigation: Run the skill in an environment where expected first-run downloads are allowed and can be reviewed. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to run pdf2zh-next from an agent workflow for translating PDF files or batches of PDFs into Chinese while selecting a configured translation provider when needed.
 
-## Reference(s): <br>
-- [pdf2zh-next Advanced Documentation](https://pdf2zh-next.com/zh/advanced/advanced.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with bash command examples and translated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs pdf2zh-next against selected PDF files and writes translated PDFs to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Selected PDF contents may be sent to the configured translation provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config.toml before use and choose a local or trusted provider for sensitive documents.
+
+Risk: An untrusted executable path could run unexpected code through the wrapper.
+
+Mitigation: Use the installed pdf2zh-next CLI from a trusted environment and avoid passing an untrusted --exe-path.
+
+## Reference(s):
+
+- [pdf2zh-next advanced documentation](https://pdf2zh-next.com/zh/advanced/advanced.html)
+- [ClawHub skill page](https://clawhub.ai/mxingchtongaelofficial2568/skills/pdf2zh-translator)
+- [ClawHub publisher profile](https://clawhub.ai/user/mxingchtongaelofficial2568)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash commands and references to generated PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a local pdf2zh-next CLI wrapper and writes translated PDF outputs to the selected output directory.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

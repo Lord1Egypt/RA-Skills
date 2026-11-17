@@ -1,40 +1,52 @@
-## Description: <br>
-Provides guidance for finding ecommerce coupons, supermarket discounts, and brand internal purchase offers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供全网电商红包、线下超市折扣及品牌内购优惠汇总指引。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers and agents use this skill to summarize e-commerce coupons, offline supermarket discounts, and brand internal-purchase offers, with filters for category, scenario, status, and access channel.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Suggested third-party links or authorization steps could expose users to privacy or account risks.
+
+Mitigation: Review links and authorization requests before following them, and avoid sharing sensitive credentials or unnecessary personal data.
+
+Risk: Discount availability, offer terms, and third-party interface behavior may change.
+
+Mitigation: Confirm offer status, eligibility, and terms with the merchant or platform before purchase.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to request filtered discount guidance across ecommerce, supermarket, and brand offer scenarios. It returns offer discovery steps, useful entry points, feature highlights, status notes, reminders, and privacy cautions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Discount offers and availability can be time-sensitive or incorrect. <br>
-Mitigation: Verify important offers directly with the retailer before relying on them. <br>
-Risk: Requests for deal guidance may involve private account, payment, or authorization details. <br>
-Mitigation: Avoid sharing payment details, credentials, or private account information when asking for discounts. <br>
+**Output Format:** [Markdown text with discount summaries, operational steps, filtering details, status notes, and cautions.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike47512/discount) <br>
+**Other Properties Related to Output:** [No executable code, persistence, credential access, or privileged installation behavior is included in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with lists and concise procedural notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include time-sensitive offer status, reminders, privacy cautions, and retailer verification notes.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

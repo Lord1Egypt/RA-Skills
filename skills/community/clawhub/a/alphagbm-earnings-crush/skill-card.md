@@ -1,41 +1,54 @@
-## Description: <br>
-Full earnings-season implied-volatility analysis with historical crush, implied move forecast, IV Rank strategy guidance, and priced Iron Condor details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full earnings-season IV analysis covering historical IV crush, implied move forecasts, IV Rank strategy tags, and priced Iron Condor quote inputs.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Developers and trading-analysis agents use this skill to answer earnings-season options questions for a ticker, including historical IV crush, implied move, IV Rank, and Iron Condor pricing details. Outputs should be treated as analysis and not guaranteed trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Options and earnings outputs may be incorrect, incomplete, or unsuitable for a user's trading decision. <br>
-Mitigation: Treat the skill output as financial analysis rather than guaranteed trading advice, and review data, assumptions, and risk before acting. <br>
-Risk: Iron Condor and other strategy details may imply actionable trades. <br>
-Mitigation: Require human review of position sizing, market data freshness, broker quotes, and loss exposure before placing trades. <br>
+## Use Case:
 
+External traders, analysts, and agent workflows use this skill to evaluate earnings-week options volatility from a ticker, including historical IV crush, implied moves, IV Rank posture, and Iron Condor quote inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-earnings-crush) <br>
-- [AlphaGBM](https://alphagbm.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown or structured JSON-style options analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ticker-focused earnings and options inputs; includes financial-analysis guidance that should be reviewed before trading decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Options and earnings trades can involve substantial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Iron Condor quotes and recommendations as research inputs, verify pricing independently, and make trading decisions outside the skill.
+
+Risk: Broad conversational prompts could substitute for a deliberate trading decision.
+
+Mitigation: Use the skill output as analysis context only and require an explicit user decision before any trade action.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/clementgu/skills/alphagbm-earnings-crush)
+- [AlphaGBM](https://alphagbm.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative with structured options-analysis fields and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ticker symbols and optional API query parameters; options-trading outputs should be treated as research inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

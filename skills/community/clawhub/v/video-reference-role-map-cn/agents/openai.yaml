@@ -1,0 +1,8 @@
+interface:
+  display_name: "视频参考素材分工表"
+  short_description: "将授权参考素材拆解为身份地点风格动作职责并标注冲突缺项"
+  default_prompt: "使用 $video-reference-role-map-cn。请根据我提供的授权素材列表和生成目标，输出视频参考素材分工表；缺少必要信息时列出缺项，不下载外部来源，不虚构模型参数。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,5 @@
 """HaluCatch 分类器：根据文件内容判定 Skill 类型。"""
 
-from .config import MESSAGES
 
 
 def classify_skill(info):

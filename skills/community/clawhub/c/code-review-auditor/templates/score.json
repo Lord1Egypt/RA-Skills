@@ -1,0 +1,24 @@
+{
+  "risk_score": null,
+  "maintainability_score": null,
+  "security_posture": "Unknown",
+  "test_confidence": "Unknown",
+  "refactorability": null,
+  "severity_counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 0
+  },
+  "category_counts": {
+    "bugs": 0,
+    "security": 0,
+    "architecture": 0,
+    "code_smells": 0,
+    "patterns": 0,
+    "performance": 0,
+    "testing": 0,
+    "observability": 0
+  }
+}

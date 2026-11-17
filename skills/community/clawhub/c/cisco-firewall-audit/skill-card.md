@@ -1,41 +1,55 @@
-## Description: <br>
-Dual-platform Cisco ASA and Firepower Threat Defense (FTD) firewall audit with ACL analysis, NAT policy validation, Modular Policy Framework / Access Control Policy evaluation, Snort IPS assessment, VPN configuration review, and logging completeness verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dual-platform Cisco ASA and Firepower Threat Defense (FTD) firewall audit with ACL analysis, NAT policy validation, Modular Policy Framework / Access Control Policy evaluation, Snort IPS assessment, VPN configuration review, and logging completeness verification.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network security engineers, firewall administrators, and auditors use this skill to review Cisco ASA and FTD firewall policy posture, including ACLs, NAT, inspection, IPS, VPN, failover, and logging. It is suited to authorized compliance audits, post-incident reviews, and pre-migration baselines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to sensitive firewall configuration, VPN, policy export, and log data. <br>
-Mitigation: Use only with explicit authorization, prefer a read-only audit account, and treat collected firewall data as sensitive security information. <br>
-Risk: Audit scope that is too broad can expose more firewall domains or devices than intended. <br>
-Mitigation: Limit use to named ASA and FTD devices and specific FMC domains approved for the review. <br>
+## Use Case:
 
+Network security engineers, firewall administrators, and compliance reviewers use this skill to perform read-only Cisco ASA and FTD firewall policy audits, including ACL, NAT, inspection, IPS, VPN, failover, and logging checks.
 
-## Reference(s): <br>
-- [Cisco ASA and FTD CLI Reference - Audit Commands](references/cli-reference.md) <br>
-- [Cisco ASA and FTD Policy Models](references/policy-model.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration review] <br>
-**Output Format:** [Markdown audit guidance with inline shell command blocks and a report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit workflow for authorized Cisco ASA and FTD environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version and artifact frontmatter metadata.version) <br>
+Risk: Firewall configuration, VPN details, tokens, and logs collected during an audit may contain sensitive network security data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authorized read-only accounts where possible, avoid configuration mode, and handle collected outputs as sensitive data.
+
+Risk: Audit guidance may be misapplied to firewalls outside the operator's authorization or change-control scope.
+
+Mitigation: Install and use the skill only for Cisco firewalls the operator is explicitly authorized to audit.
+
+## Reference(s):
+
+- [Cisco ASA and FTD CLI Reference - Audit Commands](references/cli-reference.md)
+- [Cisco ASA and FTD Policy Models](references/policy-model.md)
+- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/skills/cisco-firewall-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with read-only command blocks and structured audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; command execution should use authorized read-only Cisco ASA, FTD, FMC, FDM, SSH, console, or web/API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

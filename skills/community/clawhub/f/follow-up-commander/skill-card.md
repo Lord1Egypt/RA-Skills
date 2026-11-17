@@ -1,42 +1,66 @@
-## Description: <br>
-Organizes meeting notes into review-ready action items, owner mappings, follow-up cadence, email drafts, next-sync agenda topics, and open questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes meeting notes into reviewable action items, owner mappings, follow-up cadence, email drafts, next-sync topics, and open issues.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees and team leads use this skill to turn meeting notes, participant roles, and priorities into structured follow-up material that can be reviewed before anything is sent or acted on. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags the local Python helper as including under-disclosed local audit and secret-scanning behavior outside the meeting follow-up purpose. <br>
-Mitigation: Use the skill only on explicit meeting-note inputs, avoid broad folders or unrelated repositories, review drafts before sending, and prefer removing or separating the audit modes before deployment. <br>
+## Use Case:
 
+Employees, external collaborators, and developers can use this skill to turn meeting notes, participant roles, and priorities into structured follow-up plans and reviewable email drafts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/follow-up-commander) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Structured Specification](resources/spec.json) <br>
-- [Output Template](resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON from the local helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review-ready drafts and can write generated output to a local file when run with an explicit output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Meeting notes may contain personal, confidential, or sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive details before use and keep generated reports in approved local storage.
+
+Risk: Draft follow-ups or action lists may be incomplete or inaccurate if the input notes are ambiguous.
+
+Mitigation: Review generated drafts and confirm owners, deadlines, and open questions before sending or executing.
+
+Risk: The helper can write a local report file when an output path is supplied.
+
+Mitigation: Choose the output path deliberately and avoid writing sensitive reports to shared or untrusted locations.
+
+Risk: The package includes unused audit helper code.
+
+Mitigation: Document or remove audit behavior before exposing or relying on any audit mode.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/follow-up-commander)
+- [Output Specification](resources/spec.json)
+- [Output Template](resources/template.md)
+- [Example Input](examples/example-input.md)
+- [Example Output](examples/example-output.md)
+- [Smoke Test](tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown by default, with optional JSON from the local helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write a user-specified local report file; requires python3 and no third-party dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

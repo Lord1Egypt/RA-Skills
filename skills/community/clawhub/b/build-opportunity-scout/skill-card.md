@@ -1,37 +1,49 @@
-## Description: <br>
-Analyze harvested trend data and generate prioritized build opportunities for new skills/apps (P0/P1/P2) with implementation hints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze harvested trend data and generate prioritized build opportunities for new skills/apps (P0/P1/P2) with implementation hints.
 
-## Publisher: <br>
-[meilihulee](https://clawhub.ai/user/meilihulee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meilihulee](https://clawhub.ai/user/meilihulee)
 
-## Use Case: <br>
-Developers and builders use this skill to turn harvested trend patterns into a concise, prioritized queue of skill or app opportunities with impact, effort, score, rationale, and MVP steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the local script overwrites the declared opportunity report files in the OpenClaw workspace. <br>
-Mitigation: Back up existing opportunity outputs before running the skill when those files may contain work that should be preserved. <br>
+## Use Case:
 
+Developers and skill builders use this skill to turn harvested trend patterns into a prioritized build queue with implementation-oriented next steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes opportunities.json and opportunities.md from the harvested feature pattern input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill reads a harvested-trends file and creates or overwrites local opportunity reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the harvest input and output paths are expected before installation or execution.
+
+## Reference(s):
+
+- [Build Opportunity Scout on ClawHub](https://clawhub.ai/meilihulee/skills/build-opportunity-scout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [JSON and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prioritized opportunity entries with title, type, priority, impact, effort, score, why-now rationale, and MVP steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

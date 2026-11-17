@@ -24,7 +24,7 @@ UE材质生成器：输入自然语言描述 → 生成UE材质节点图（支�
 ## API配置
 - Base: `https://api.minimaxi.com/v1`
 - Model: `MiniMax-M2.7`
-- Key: `sk-cp-g2MZf43bhLucC0sCMI-BeaXycKl5MDj_dPN_mPKn7IfqlAL1bS8YP-ERiEi9ZJMLu7I2XXIMjw9Xb8x-9iONlnOg24dBV5imId_W5v1oyivKwZCMr7nix6c`
+- Key: `REDACTED-SECRET`
 
 ## 节点颜色（UE官方标准）
 - texture_sample: header=#A855F7 紫色

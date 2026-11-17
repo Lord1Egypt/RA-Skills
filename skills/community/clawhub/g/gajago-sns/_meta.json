@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7decfeqbp88a2qefrw60adt183mpcw",
-  "slug": "gajago-sns",
-  "version": "1.0.1",
-  "publishedAt": 1774621501645
+  "name": "gajago-sns",
+  "version": "1.0.0",
+  "description": "경기도교육청 취창업지원센터 SNS 콘텐츠 자동 생성. /가자고 명령어로 인스타/페이스북/밴드 카피+이미지+영상 자동 제작.",
+  "author": "claw",
+  "triggers": ["/가자고"]
 }

@@ -1,0 +1,44 @@
+/* ===== translated-zh: 双语段落 / 表格样式 ===== */
+.translated-zh {
+    color: #1a4d8c;
+    font-family: "LXGW WenKai", "Source Han Serif SC",
+                 "Noto Serif CJK SC", "Microsoft YaHei", serif;
+    line-height: 1.8;
+    margin-top: 0.2em;
+    margin-bottom: 1em;
+    border-left: 3px solid #c5d6ec;
+    padding-left: 0.6em;
+}
+
+/* 标题级译文 — 颜色更深，无左侧色条 */
+h1.translated-zh, h2.translated-zh, h3.translated-zh,
+h4.translated-zh, h5.translated-zh, h6.translated-zh {
+    color: #0c2e5a;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0.15em;
+}
+
+/* 列表项译文 */
+li.translated-zh {
+    list-style: none;
+    margin-left: -1.2em;
+}
+
+/* 引用译文 */
+blockquote.translated-zh {
+    border-left: 3px solid #c5d6ec;
+}
+
+/* 翻译表 — 在原表下方，加虚线分隔 */
+.translated-zh.table-zh {
+    margin-top: 0.5em;
+    border-top: 2px dashed #888;
+    border-left: none;
+    padding-left: 0;
+    color: #1a4d8c;
+}
+.translated-zh.table-zh th,
+.translated-zh.table-zh td {
+    color: #1a4d8c;
+}

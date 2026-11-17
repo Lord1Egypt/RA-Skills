@@ -1,44 +1,59 @@
-## Description: <br>
-Use this skill to generate AI images using the SeaArt platform with multiple text-to-image models, custom dimensions, LoRA models, and negative prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to generate AI images using the SeaArt platform (seaart.ai). Supports text-to-image generation with multiple models, custom dimensions, LoRA models, and negative prompts.
 
-## Publisher: <br>
-[seaartpublic](https://clawhub.ai/user/seaartpublic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seaartpublic](https://clawhub.ai/user/seaartpublic)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate images from text prompts through SeaArt, selecting supported models, aspect ratios, LoRA settings, and negative prompts as needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SeaArt browser session token stored in SEAART_TOKEN. <br>
-Mitigation: Treat SEAART_TOKEN like a password, store it only in local agent configuration, and use non-printing checks instead of commands that echo the token. <br>
-Risk: Prompts and generation parameters are sent to SeaArt for image generation. <br>
-Mitigation: Use the skill only when the user is comfortable sharing creative prompts and generation settings with SeaArt. <br>
+## Use Case:
 
+External users and developers use this skill to generate SeaArt text-to-image results from prompts, model choices, dimensions, negative prompts, and optional LoRA settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seaartpublic/seaart-image) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/seaartpublic) <br>
-- [SeaArt platform](https://www.seaart.ai) <br>
-- [SeaArt text-to-image endpoint](https://www.seaart.ai/api/v1/task/v2/text-to-img) <br>
-- [SeaArt batch progress endpoint](https://www.seaart.ai/api/v1/task/batch-progress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and returned image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SeaArt session token in SEAART_TOKEN and Python with the requests library.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill instructions can expose the SeaArt authentication token in logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-printing token presence check and never print, paste, or log the SEAART_TOKEN value.
+
+Risk: Prompts, generation settings, and the SeaArt session token are sent to SeaArt to generate images.
+
+Mitigation: Use the skill only when the user trusts SeaArt with the prompt content and account session token.
+
+Risk: The skill may require installing the Python requests dependency.
+
+Mitigation: Install dependencies from a trusted source, preferably in a virtual environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seaartpublic/skills/seaart-image)
+- [Publisher profile](https://clawhub.ai/user/seaartpublic)
+- [SeaArt platform](https://www.seaart.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SeaArt generation status, cost information, content-review filtering notes, and one or more generated image URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

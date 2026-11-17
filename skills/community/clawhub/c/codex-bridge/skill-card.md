@@ -1,44 +1,53 @@
-## Description: <br>
-Dispatch coding tasks to the local OpenAI Codex CLI with background execution, status polling, and answerable clarifying questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispatch coding tasks to the local OpenAI Codex CLI with background execution, status polling, and answerable clarifying questions.
 
-## Publisher: <br>
-[abeperl](https://clawhub.ai/user/abeperl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abeperl](https://clawhub.ai/user/abeperl)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate multi-file coding tasks, refactors, script creation, and project work from OpenClaw to a local Codex CLI process while preserving status polling and clarifying-question handoff. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A background Codex process can perform broad automated coding work in the selected local work directory. <br>
-Mitigation: Run it only in narrow, trusted, preferably git-tracked directories and review diffs before using the results. <br>
-Risk: Prompts, logs, answers, status, and result data are stored on disk under ~/.codex-bridge. <br>
-Mitigation: Avoid secrets in prompts and delete old task directories when they are no longer needed. <br>
-Risk: Task identifiers map to local task directories. <br>
-Mitigation: Use simple task IDs without path characters. <br>
-Risk: Long-running background jobs may continue outside the initiating interaction. <br>
-Mitigation: Monitor task status and logs while jobs are running. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeperl/codex-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/abeperl) <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate script building, code edits, refactors, and multi-step coding work from OpenClaw to a local Codex CLI session while keeping status polling and clarifying-question handling available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with shell commands, status output, JSON task records, and generated code or file changes from Codex.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the codex CLI; task state, prompts, output, logs, questions, answers, and results are stored under ~/.codex-bridge/tasks/<task-id>/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill launches local Codex jobs with broad coding-agent authority in the selected project directory.
+
+Mitigation: Install only when this delegation behavior is intended, and prefer running jobs in a contained workspace.
+
+Risk: Server security evidence reports local path and storage safety gaps.
+
+Mitigation: Use simple safe task IDs, avoid secrets in prompts, inspect or clean ~/.codex-bridge regularly, and wait for task-ID validation and restrictive file permissions before higher-trust use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeperl/skills/codex-bridge)
+- [Publisher profile](https://clawhub.ai/user/abeperl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell commands with JSON status, question, and result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the local codex CLI; bridge state is stored under ~/.codex-bridge/tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

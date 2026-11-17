@@ -1,44 +1,55 @@
-## Description: <br>
-社交媒体自动化运营助手。自动生成并发布小红书、微博、Twitter 内容，定时发送、互动回复。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SocialPost Auto helps generate, schedule, and run social media posting workflows for Xiaohongshu, Weibo, and Twitter/X, with optional auto-reply support.
 
-## Publisher: <br>
-[anson125chen](https://clawhub.ai/user/anson125chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anson125chen](https://clawhub.ai/user/anson125chen)
 
-## Use Case: <br>
-External users and social media operators use this skill to generate, schedule, list, and run posts for Twitter/X, Xiaohongshu, and Weibo, with optional comment auto-reply workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect public social media accounts through real posts, scheduled posts, and auto-replies. <br>
-Mitigation: Require manual confirmation before any post, scheduled post, or auto-reply is sent. <br>
-Risk: The skill asks users to configure sensitive platform credentials, including API secrets, access tokens, and cookies. <br>
-Mitigation: Use scoped, revocable credentials; avoid cookie-based authentication where possible; and protect local configuration files. <br>
-Risk: Cron configuration can create recurring automation that runs without an interactive user present. <br>
-Mitigation: Do not install the cron job unless recurring automation is intended, and review scheduled tasks before enabling automated runs. <br>
+## Use Case:
 
+External users and social media operators use this skill to draft platform-specific posts, schedule publication tasks, and manage basic automated reply workflows across supported social platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anson125chen/socialpost-auto) <br>
-- [Publisher profile](https://clawhub.ai/user/anson125chen) <br>
-- [Project website](https://asmartglobal.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local scheduled-task records and execute posting commands when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can schedule unattended public social media posts and auto-replies using account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content before publication, test with non-public or low-risk accounts first, and enable scheduled or auto-reply behavior only when preview, logging, pause, and removal procedures are in place.
+
+Risk: Platform credentials and cookies are required for posting workflows.
+
+Mitigation: Store credentials with restrictive permissions, limit account privileges where possible, and rotate credentials if they may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anson125chen/skills/socialpost-auto)
+- [Publisher profile](https://clawhub.ai/user/anson125chen)
+- [Project website](https://asmartglobal.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create scheduled posting tasks and print task status when its helper script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

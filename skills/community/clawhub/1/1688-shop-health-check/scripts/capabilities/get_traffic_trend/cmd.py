@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.get_traffic_trend.service import get_traffic_trend
 
-COMMAND_NAME = "get_traffic_trend"
+COMMAND_NAME = "alibaba.1688.get.traffic.trend"
 COMMAND_DESC = "获取逐日流量趋势数据（近7天/30天）"
 
 def main():
@@ -29,10 +29,12 @@ def main():
     parser.add_argument("--days", "-d", type=int, default=7,
                         choices=[7, 30],
                         help="天数: 7(近7天,默认) / 30(近30天)")
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
     args = parser.parse_args()
 
     try:
-        result = get_traffic_trend(args.query_date, args.days)
+        result = get_traffic_trend(args.query_date, args.days, login_id=args.NEWTON_SHOP_LOGIN_ID)
         print_output(True, f"逐日流量趋势查询成功（近{args.days}天）", {
             "data": result,
         })

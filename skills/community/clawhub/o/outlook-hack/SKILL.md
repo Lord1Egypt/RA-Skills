@@ -1,133 +1,63 @@
 ---
 name: outlook-hack
-version: 3.0.0
-description: "Your agent reads Outlook email all day. Drafts replies for you. Won't send a single one. Not even if you ask nicely."
+version: 3.4.2
+description: "Read and search Outlook, inspect attachments, and create or edit drafts without any send endpoint. Uses one short-lived Microsoft Graph access token supplied on stdin for one run; it never stores credentials. Bulk mailbox export is opt-in."
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "📧",
-        "os": ["linux", "darwin"],
-        "requires": { "capabilities": ["browser"] },
-        "notes":
-          {
-            "security": "This skill captures Outlook Web session tokens via browser tab sharing to make direct REST calls to Microsoft's Outlook REST API v2.0. No API keys or admin approval needed. SENDING IS CODE-DISABLED: the fetch script physically blocks /sendmail, /reply, /replyall, /forward. It reads, searches, and creates drafts only. Drafts land in the user's Drafts folder for manual review and sending. Tokens are stored at ~/.openclaw/credentials/outlook-msal.json with 0600 permissions.",
-          },
-      },
-  }
+  openclaw:
+    emoji: "📧"
+    os: ["linux", "darwin"]
+    requires:
+      capabilities: ["network", "file_write"]
+    permissions:
+      network: "Credentialed HTTPS requests only to graph.microsoft.com; enforced by a runtime allowlist."
+      file_write: "No credential storage. Optional mailbox exports require --yes and use mode 0600 files inside a mode 0700 directory."
+      mail_write: "Can create and patch drafts. No send, reply-to-network, forward-to-network, move, flag, or delete operation is shipped."
 ---
 
-# Outlook Hack
+> Part of **[TinkerClaw](https://github.com/globalcaos/tinkerclaw)**.
 
-**Your AI agent won't email the CEO at 3am.**
+# Outlook — read, search, and draft; never send
 
-Not because there's a setting. Not because there's a policy. Because the code physically cannot send emails. We removed that capability the way you'd remove a chainsaw from a toddler — completely and without negotiation.
+This skill reads Outlook mail and creates or edits drafts through Microsoft Graph. The shipped client has no send endpoint. It does not install packages, run subprocesses, store credentials, contact telemetry services, or transmit mailbox data anywhere except Microsoft Graph.
 
-## What It Does
+## What ships
 
-- 📧 Read, search, and bulk-fetch emails across all folders
-- 📎 Index all attachments (name, type, size) per message
-- 📊 Generate digest summaries with top senders, unread counts, full body text
-- ✏️ Create email drafts (lands in Drafts folder — never sends)
-- 📅 Access calendar events, 👥 Browse contacts
+One zero-dependency Node.js client: `scripts/outlook-mail-fetch.mjs`.
 
-## Quick Start
+It can:
+- list recent messages and drafts;
+- read a complete message body;
+- download attachments to a directory you choose;
+- create or patch drafts while preserving the existing signature;
+- export mailbox bodies and attachment metadata locally, only with `--fetch-all --yes`.
 
-### 1. Token Extraction (one-time, ~30 seconds)
+It cannot send, reply, forward, permanently delete, move, flag, read contacts, or read calendars. Those capabilities are intentionally outside this public package.
 
-**Extract from the Teams tab, NOT Outlook.** Classic Outlook no longer exists in most orgs, and new Outlook uses PoP tokens that can't be extracted. The Teams tab provides an MSAL refresh token (90-day, auto-rotating) that powers both this skill and the `teams-hack` skill.
+## Permissions, data flow, and consent
 
-Open **Microsoft Teams** (`teams.cloud.microsoft`) in Chrome with the OpenClaw browser relay attached. Then run this in-browser evaluation:
+**Authentication.** Supply a short-lived Microsoft Graph access token on standard input for each invocation. This package does not extract, refresh, print, or store tokens. Obtain the token through a Microsoft-supported login tool or identity flow approved by your organisation, requesting only the mail scopes needed for the command.
 
-```javascript
-(() => {
-  const keys = Object.keys(localStorage).filter(
-    (k) => k.includes("refreshtoken") || k.includes("RefreshToken"),
-  );
-  const parsed = JSON.parse(localStorage.getItem(keys[0]));
-  const accountKeys = Object.keys(localStorage).filter((k) => {
-    try {
-      return JSON.parse(localStorage.getItem(k)).tenantId;
-    } catch {
-      return false;
-    }
-  });
-  let tenantId = null;
-  for (const k of accountKeys) {
-    try {
-      tenantId = JSON.parse(localStorage.getItem(k)).tenantId;
-      break;
-    } catch {}
-  }
-  return { secret: parsed.secret, tenantId };
-})();
-```
+**Network boundary.** Every credentialed request is runtime-checked before the token is read. The destination must be exactly `https://graph.microsoft.com` with no user information, custom port, HTTP downgrade, or lookalike subdomain. Pagination URLs are checked by the same function.
 
-Save the token via the `teams` CLI (NOT the outlook-mail-fetch script):
+**Local mailbox data.** Normal list/read commands print to the current process and do not create a mailbox mirror. Bulk export refuses to run without `--yes`. Export directories are rejected if they are symlinks and forced to mode `0700`; exported bodies, summaries, indexes, and downloaded attachments reject symlink targets and are forced to mode `0600`, including pre-existing paths. Attachment downloads never overwrite an existing file: they allocate a unique name and create it with exclusive `wx`. Message IDs are restricted to Graph-safe characters and encoded before they enter a URL. Data is plaintext at rest.
+
+**No command-line secrets.** The client refuses tokens as command-line arguments. Pipe the access token on stdin so it does not appear in process listings or shell history.
+
+## Commands
 
 ```bash
-teams token store --refresh-token "<secret>" --tenant-id "<tenantId>"
+printf '%s' "$OUTLOOK_ACCESS_TOKEN" | node {baseDir}/scripts/outlook-mail-fetch.mjs --test --access-token-stdin
+printf '%s' "$OUTLOOK_ACCESS_TOKEN" | node {baseDir}/scripts/outlook-mail-fetch.mjs --list-drafts --access-token-stdin --limit 15
+printf '%s' "$OUTLOOK_ACCESS_TOKEN" | node {baseDir}/scripts/outlook-mail-fetch.mjs --get '<message-id>' --access-token-stdin
+printf '%s' "$OUTLOOK_ACCESS_TOKEN" | node {baseDir}/scripts/outlook-mail-fetch.mjs --get-attachments '<message-id>' --access-token-stdin --out '<private-dir>'
+printf '%s' "$OUTLOOK_ACCESS_TOKEN" | node {baseDir}/scripts/outlook-mail-fetch.mjs --patch-draft '<draft-id>' --body-file body.html --keep-signature --access-token-stdin
+printf '%s' "$OUTLOOK_ACCESS_TOKEN" | node {baseDir}/scripts/outlook-mail-fetch.mjs --fetch-all --yes --months 6 --access-token-stdin
 ```
 
-### 2. Verify Access
+Review every draft in Outlook before sending it manually. This skill never sends on your behalf.
 
-```bash
-node {baseDir}/scripts/outlook-mail-fetch.mjs --test
-```
+## Cleanup
 
-### 3. Bulk Fetch
+Optional exports live under `~/.openclaw/workspace/data/outlook-emails/`. Inspect that directory and remove it with your normal file manager or recovery-aware deletion tool when no longer needed.
 
-```bash
-# Last 6 months (default)
-node {baseDir}/scripts/outlook-mail-fetch.mjs --fetch-all
-
-# Custom range
-node {baseDir}/scripts/outlook-mail-fetch.mjs --fetch-all --months 12
-```
-
-**Output:** `~/.openclaw/workspace/data/outlook-emails/`
-
-- `raw-emails.jsonl` — full email data (subject, from, to, body text, preview)
-- `attachments-index.jsonl` — every attachment per message
-- `email-summary.md` — readable digest with stats and per-email summaries
-
-## Critical: Teams is the Token Source
-
-| Source                                  | Token Type                      | Extractable?       | Lifetime                |
-| --------------------------------------- | ------------------------------- | ------------------ | ----------------------- |
-| Teams (`teams.cloud.microsoft`)         | MSAL refresh token              | ✅ Yes             | 90 days, auto-rotates   |
-| New Outlook (`outlook.cloud.microsoft`) | PoP token (Proof-of-Possession) | ❌ No              | Crypto-bound to browser |
-| Classic Outlook (`outlook.office.com`)  | Bearer access token             | ⚠️ Deprecated/gone | Most orgs migrated      |
-
-**Always extract from the Teams tab.** New Outlook uses Proof-of-Possession tokens that cannot be extracted or replayed. Classic Outlook is deprecated and no longer available in most orgs.
-
-## How It Works (Technical)
-
-1. Share your **Microsoft Teams** tab with OpenClaw via the Browser Relay
-2. The agent reads `localStorage` to extract the MSAL refresh token
-3. Token is stored and exchanged for a Graph API access token via `teams token store`
-4. Both this skill and `teams-hack` share `~/.openclaw/credentials/outlook-msal.json` (0600)
-5. The `outlook-mail-fetch.mjs` script uses the Graph API access token for mail operations
-6. Refresh token lasts 90 days and auto-rotates on each use
-
-The skill is NOT scraping the page. It speaks Outlook's own REST API, authenticated through your existing browser session.
-
-## Token Lifetime & Refresh
-
-- Refresh token: 90 days, auto-rotates on each use (shared with `teams-hack`)
-- Access token: ~1 hour, automatically refreshed by the scripts
-- Any cron job using either skill keeps the refresh token alive
-- When expired: re-extract from Teams tab (one browser relay session)
-
-## Architecture Notes
-
-- **Zero external dependencies** — pure Node.js (v18+), no npm packages
-- **Send-blocked** — the script has no send/reply/forward functions. They don't exist.
-- **Rate-limited** — fetches 50 emails per page with automatic pagination
-- **Body text cleaned** — HTML stripped, whitespace normalized, truncated to 3000 chars per email
-
-## The Full Stack
-
-Pair with [**whatsapp-ultimate**](https://clawhub.com/globalcaos/whatsapp-ultimate) for messaging and [**jarvis-voice**](https://clawhub.com/globalcaos/jarvis-voice) for voice.
-
-👉 **[Clone it. Fork it. Break it. Make it yours.](https://github.com/globalcaos/tinkerclaw)**
+Source and issues: **https://github.com/globalcaos/tinkerclaw**

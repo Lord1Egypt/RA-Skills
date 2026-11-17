@@ -1,45 +1,58 @@
-## Description: <br>
-Claw Body gives an OpenClaw agent a real-time NuwaAI avatar with voice chat, lip-synced video, and presentation narration for PPT/PDF slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your Claw a body by turning an OpenClaw agent into a real-time digital avatar with face, voice, expressions, voice chat, and presentation narration through NuwaAI.
 
-## Publisher: <br>
-[jianglingling007](https://clawhub.ai/user/jianglingling007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianglingling007](https://clawhub.ai/user/jianglingling007)
 
-## Use Case: <br>
-External users and developers use this skill to interact with an OpenClaw agent through a browser-based digital avatar, including voice conversation and narrated presentation playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local server exposes unauthenticated APIs while it is running. <br>
-Mitigation: Run the server only when needed, keep it bound to local use, and close it when the avatar session is finished. <br>
-Risk: The workflow can use NuwaAI credentials and microphone audio. <br>
-Mitigation: Use only trusted NuwaAI accounts, avoid high-value credentials, and confirm microphone use is acceptable before starting a session. <br>
-Risk: Uploaded presentations may be parsed and used for narration. <br>
-Mitigation: Do not upload confidential presentations unless their contents may be processed for narration. <br>
-Risk: The server can proxy requests to the local OpenClaw agent. <br>
-Mitigation: Use this skill only with a trusted local OpenClaw agent and review the enabled Gateway chat endpoint before use. <br>
+## Use Case:
 
+External OpenClaw users run this skill to start a local avatar interface for voice conversations with their OpenClaw agent. Users can also use it to narrate prepared PPT/PDF slide presentations through a browser-based avatar experience.
 
-## Reference(s): <br>
-- [Claw Body release page](https://clawhub.ai/jianglingling007/claw-body) <br>
-- [NuwaAI](https://nuwaai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and presentation control tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts a local browser interface for voice, avatar, chat, and presentation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server-resolved release evidence) <br>
+Risk: The local server exposes sensitive unauthenticated APIs that can store or use NuwaAI credentials and proxy prompts through the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on localhost, use a test NuwaAI account or key, avoid exposing the port to other devices, and stop the server when finished.
+
+Risk: Presentation parsing can process local PPT/PDF files and route slide content into narration generation.
+
+Mitigation: Use trusted, non-confidential slide decks and review generated narration before presenting sensitive material.
+
+Risk: The security scan verdict is suspicious because local-server risks need review before installation.
+
+Mitigation: Review the security guidance and local API behavior before installing or running the release.
+
+## Reference(s):
+
+- [Claw Body release page](https://clawhub.ai/jianglingling007/skills/claw-body)
+- [NuwaAI](https://nuwaai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and presentation control tags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a local browser interface on localhost:3099 and may produce presentation control tags such as [PRESENTATION_START:<dir>], [SLIDE:N], and [PRESENTATION_END].]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

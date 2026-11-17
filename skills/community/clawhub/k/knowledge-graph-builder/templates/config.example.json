@@ -1,0 +1,30 @@
+{
+  "cat_meta": {
+    "🤖": {"layer": "L3", "color": "#f59e0b", "label": "AI Agent"},
+    "🧠": {"layer": "L2", "color": "#10b981", "label": "Psychology"},
+    "🏗️": {"layer": "L3", "color": "#8b5cf6", "label": "Engineering"},
+    "📊": {"layer": "L3", "color": "#3b82f6", "label": "Macro"},
+    "📚": {"layer": "L1", "color": "#6366f1", "label": "Cognition"}
+  },
+  "keywords": [
+    "AI", "Agent", "macro", "cognition", "data", "investment",
+    "emotion", "decision", "system", "strategy", "management"
+  ],
+  "framework_nodes": [
+    {
+      "id": "FW-core-1",
+      "label": "Core Framework A",
+      "layer": "L1",
+      "color": "#6366f1",
+      "category": "核心框架",
+      "cat_label": "L1 Core",
+      "insight": "Replace with your own framework node",
+      "concepts": ["concept-a"],
+      "source": "MEMORY.md",
+      "isFramework": true
+    }
+  ],
+  "manual_links": [
+    ["article-id-1", "FW-core-1", "explicit relationship label"]
+  ]
+}

@@ -1,44 +1,57 @@
-## Description: <br>
-Extracts contradictions from multi-source information, identifies primary and secondary conflicts, analyzes source stance and credibility, and produces structured contradiction analysis briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contradiction Analyzer helps agents extract contradictions from multi-source information, identify primary and secondary conflicts, analyze source bias, and produce structured contradiction analysis briefings.
 
-## Publisher: <br>
-[UyNewNas](https://clawhub.ai/user/UyNewNas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uynewnas](https://clawhub.ai/user/uynewnas)
 
-## Use Case: <br>
-External users, analysts, researchers, and developers use this skill to structure complex or controversial multi-source research around contradictions, source stances, credibility, and next questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence broad discussion prompts by framing research around contradictions, source stances, and credibility. <br>
-Mitigation: Use it for complex or controversial multi-source analysis and verify factual claims, source weighting, and final conclusions against the cited sources. <br>
-Risk: The installation guide includes uninstall commands that delete the configured skill directory. <br>
-Mitigation: Verify the exact skill directory path before running deletion commands. <br>
+## Use Case:
 
+OpenClaw users and analysts use this skill to organize complex, controversial, or multi-perspective questions into contradiction hierarchies, source stance maps, flagged extreme viewpoints, and follow-up inquiry prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/UyNewNas/contradiction-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/UyNewNas) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Installation Guide](artifact/INSTALL.md) <br>
-- [Usage Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown briefing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefings include contradiction overview, source stance map, extreme viewpoint identification, and trend judgment with recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may activate for broad debate-style questions and make answers more conflict-focused than the user intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for questions that benefit from comparing perspectives, and ask for a neutral factual summary when contradiction analysis is not needed.
+
+Risk: Source stance and credibility assessments are analytical judgments and may misclassify a source or overstate bias.
+
+Mitigation: Review the original sources, require citations for important claims, and adjust credibility labels when domain evidence contradicts the initial assessment.
+
+Risk: Installation and uninstall documentation includes local shell commands, including deletion commands.
+
+Mitigation: Review command paths before execution and avoid running uninstall commands unless the target skill directory is confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uynewnas/skills/contradiction-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown contradiction analysis briefing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections for contradiction overview, source stance mapping, extreme viewpoint identification, and trend judgment.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

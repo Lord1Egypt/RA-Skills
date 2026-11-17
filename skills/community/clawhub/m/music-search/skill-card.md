@@ -1,45 +1,61 @@
-## Description: <br>
-Searches for music resources such as songs, albums, and lossless audio across Quark, Baidu, Aliyun, and UC cloud-drive links. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Searches for music resources such as songs, albums, and lossless audio, returning public cloud-drive resource links from Quark, Baidu, Aliyun, and UC Netdisks.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and agents use this skill to search for publicly indexed music-resource links, filter results by cloud-drive provider or audio format, and summarize JSON results for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can crawl arbitrary third-party pages and resolve arbitrary URLs. <br>
-Mitigation: Run it in a contained environment, review returned links before sharing them, and avoid use on networks with access to sensitive internal services. <br>
-Risk: The Bash launcher sources local .env content during startup. <br>
-Mitigation: Keep the skill directory trusted, review .env changes before execution, and do not store secrets in the skill .env file. <br>
-Risk: The skill may install cloudscraper into a local virtual environment on first use. <br>
-Mitigation: Review dependency installation behavior and pin or preinstall dependencies in managed environments. <br>
-Risk: @file arguments may read local file contents into the search query. <br>
-Mitigation: Avoid @file arguments that point to sensitive files and review command arguments before execution. <br>
+## Use Case:
 
+External users and agents use this skill to search public web results for music-resource links, filter by cloud-drive provider or audio format, and present structured results with titles, links, formats, extraction codes, and source pages. The artifact states it is for personal learning and research use.
 
-## Reference(s): <br>
-- [ClawHub Music Search listing](https://clawhub.ai/patches429/music-search) <br>
-- [Publisher profile](https://clawhub.ai/user/patches429) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [JSON command output with agent-facing text or Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results can include cloud-drive links, magnet links, extraction codes, detected audio formats, source page URLs, and configurable result limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Live third-party crawling and URL fetching can expose the runtime to untrusted pages or unsafe redirects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment, avoid internal or sensitive networks, and validate fetched URLs before use.
+
+Risk: Unsafe @file argument expansion can read local files when untrusted arguments are passed.
+
+Mitigation: Do not pass untrusted arguments to the skill; remove or restrict @file expansion before broader deployment.
+
+Risk: Runtime Python dependency installation can introduce supply-chain or environment drift risk.
+
+Mitigation: Pin and pre-review dependencies in a controlled virtual environment before installation.
+
+Risk: Local caching may retain search terms or result links.
+
+Mitigation: Avoid sensitive queries and clear the temporary cache according to local retention requirements.
+
+## Reference(s):
+
+- [ClawHub Music Search skill page](https://clawhub.ai/patches429/skills/music-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command output with agent-facing Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include cloud-drive links, audio format labels, extraction codes, source pages, and provider filters.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

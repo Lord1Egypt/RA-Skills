@@ -1,42 +1,53 @@
-## Description: <br>
-Provides Chinese-language productivity coaching for time management, task planning, energy management, procrastination, and focus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Productivity Master provides Chinese-language coaching for time management, task planning, focus, procrastination, and energy management.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Employees and external users can use this skill for practical productivity coaching, including diagnosing time-management issues, planning tasks and schedules, managing energy, improving focus, and reducing procrastination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad productivity-related triggers may activate the skill for general time-management, focus, task-planning, or procrastination prompts. <br>
-Mitigation: Review the trigger scope before deployment and route only productivity-coaching use cases to the skill. <br>
-Risk: The skill may answer in Chinese by default and provides static coaching guidance that may not fit every user's circumstances. <br>
-Mitigation: Set language expectations for target users and treat responses as general productivity guidance requiring user judgment. <br>
-Risk: Release evidence reports MIT-0 while artifact package metadata reports MIT. <br>
-Mitigation: Confirm the intended release license before public submission or downstream redistribution. <br>
+## Use Case:
 
+External users use this skill to get Chinese-language productivity guidance for diagnosing time-use issues, organizing tasks, planning schedules, improving focus, managing energy, and overcoming procrastination.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yesong-hue/productivity-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese-language coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static advice selected by productivity-related trigger terms; no external tools or credential access detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can activate on broad productivity, planning, focus, and procrastination prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy where Chinese-language productivity coaching is desired and review trigger behavior against the host agent's routing policy.
+
+Risk: Productivity advice may not fit every user's workload, health, or personal constraints.
+
+Mitigation: Treat outputs as general coaching guidance and have users adapt plans to their own needs before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/productivity-master)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance in Chinese with headings, bullet lists, and occasional examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance is selected from keyword-triggered productivity topics; server security evidence reports no data access, persistence, credentials, network calls, or system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

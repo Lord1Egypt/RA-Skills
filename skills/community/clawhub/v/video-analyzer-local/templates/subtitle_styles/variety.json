@@ -1,0 +1,27 @@
+{
+  "id": "variety",
+  "name": "综艺",
+  "description": "大字亮黄+黑粗描边+轻微阴影，适合综艺/娱乐/搞笑短视频，画面跳跃时依然醒目",
+  "ass": {
+    "font": "Microsoft YaHei",
+    "size": 54,
+    "primary": "&H0000FFFF",
+    "secondary": "&H000000FF",
+    "outline": "&H00000000",
+    "back": "&H80000000",
+    "bold": -1,
+    "italic": 0,
+    "border_style": 1,
+    "outline_width": 4,
+    "shadow": 1,
+    "alignment": 2,
+    "margin_l": 100,
+    "margin_r": 100,
+    "margin_v": 60,
+    "encoding": 1
+  },
+  "bilingual": {
+    "orig": {"primary": "&H00FFFFFF", "size": 42, "margin_v": 150, "alignment": 2, "outline_width": 3},
+    "trans": {"primary": "&H0000FFFF", "size": 52, "margin_v": 55, "alignment": 2, "outline_width": 4}
+  }
+}

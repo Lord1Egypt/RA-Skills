@@ -1,43 +1,54 @@
-## Description: <br>
-Recognize and identify faces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognize and identify faces.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to run image face-recognition workflows that process an input image and return JSON results for integration into automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive biometric identification may be performed without enough disclosure about provider, consent, or data handling. <br>
-Mitigation: Use only for explicit, authorized face-recognition tasks and confirm consent, provider identity, storage, sharing, and deletion practices before use. <br>
-Risk: The workflow requires a recognition API key and may submit images or identification results to an external provider. <br>
-Mitigation: Use a limited API key and avoid processing sensitive images until the recognition provider and data-handling terms are verified. <br>
-Risk: The documented command references a script that is not included in the artifact. <br>
-Mitigation: Verify the implementation exists and review it before installation or execution. <br>
+## Use Case:
 
+External developers and automation users use this skill to process images for face recognition and identification workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-image-face-recognition) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [JSON results with Markdown usage guidance and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an input image path, an output path, and RECOGNITION_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Face recognition may process biometric personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for explicit, consented workflows and apply the user's biometric-data handling requirements before processing images.
+
+Risk: The external recognition service, retention behavior, and API-key handling are not fully specified by the artifact.
+
+Mitigation: Verify the service, retention terms, consent flow, and secret management for RECOGNITION_API_KEY before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-image-face-recognition)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with bash snippets and a JSON result shape]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RECOGNITION_API_KEY; output is described as success/data JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

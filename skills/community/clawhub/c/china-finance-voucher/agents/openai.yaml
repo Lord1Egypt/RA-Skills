@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw Finance Voucher"
+  short_description: "Generate import-ready China finance voucher and bank statement workbooks"
+  default_prompt: "Use $openclaw-finance-voucher to convert monthly input VAT invoice exports or bank statements into import-ready finance workbooks."

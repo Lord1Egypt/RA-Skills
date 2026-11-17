@@ -1,41 +1,58 @@
-## Description: <br>
-Organizes public Prime Video information about site entry points, content channels, membership details, creator support, and playback help. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prime Video helps agents organize publicly visible Prime Video site information, including content entry points, membership details, creator resources, and playback-help guidance.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to summarize publicly visible Prime Video membership, content, device, help, and creator information. It is intended for public research and structured summaries, not account access or restricted content handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prime Video pricing, catalog availability, and membership terms can vary by region or change over time. <br>
-Mitigation: Verify pricing, availability, and membership details against official Prime Video pages for the user's region before relying on them. <br>
-Risk: Requests could drift toward account, viewing-history, or restricted-content information. <br>
-Mitigation: Keep use limited to public pages and do not request or process account credentials, private assets, viewing history, or non-public content. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Prime Video membership, content navigation, creator support, and playback-help information. It is intended for public-web research and should identify the applicable market when package, pricing, or content availability differs by region.
 
-## Reference(s): <br>
-- [Prime Video Home](https://www.primevideo.com/) <br>
-- [ClawHub Prime Video Skill](https://clawhub.ai/mike47512/prime-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, comparison tables, and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-specific notes for pricing, availability, device support, and content access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill could be used with Prime Video login sessions, account data, viewing history, or private creator materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public-web research and keep it away from authenticated sessions, account assets, viewing history, and private creator materials.
+
+Risk: Membership packages, pricing, content libraries, and channels can vary by market or region.
+
+Mitigation: State the applicable market and source context when summarizing package, pricing, channel, or content availability information.
+
+Risk: Requests could drift into account sharing, copyright bypass, membership resale, or platform-rule evasion.
+
+Mitigation: Limit outputs to public information, platform rules, copyright requirements, creator guidance, and playback-help summaries; refuse bypass or evasion guidance.
+
+## Reference(s):
+
+- [Prime Video homepage](https://www.primevideo.com/)
+- [ClawHub Prime Video skill page](https://clawhub.ai/mike47512/skills/prime-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, and structured lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite public information boundaries and note applicable markets for region-sensitive membership, package, pricing, or content-library details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

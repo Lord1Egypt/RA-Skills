@@ -1,43 +1,55 @@
-## Description: <br>
-Error Detective helps developers investigate software failures by analyzing error context, stack traces, recurring patterns, performance symptoms, and likely root causes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Error Detective helps agents investigate software errors through root cause analysis, stack trace interpretation, error pattern recognition, memory leak analysis, and performance bottleneck identification.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and reliability engineers use this skill to investigate application errors, classify failure patterns, analyze stack traces, and produce actionable debugging reports with evidence and confidence scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reused example code may read source files from stack-frame paths outside the intended project. <br>
-Mitigation: Restrict file reads to the intended workspace and validate stack-frame paths before loading source snippets. <br>
-Risk: Debug logs, source snippets, or investigation reports may expose sensitive data. <br>
-Mitigation: Redact secrets and sensitive source or log content before sharing reports or storing examples. <br>
-Risk: Example metrics or telemetry patterns could collect data unexpectedly if copied into a real project. <br>
-Mitigation: Make telemetry explicit and opt-in, and document what data is collected before enabling it. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate application errors, classify recurring patterns, analyze stack traces and system context, and produce evidence-based remediation steps.
 
-## Reference(s): <br>
-- [Error Detective code examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-error-detective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown investigation reports with root cause analysis, evidence, ranked solutions, code examples, and confidence scores.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The installed skill is markdown-only and does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Debugging workflows can expose sensitive stack traces, source snippets, source maps, or host metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict file reads to the intended project directory and avoid sharing diagnostic data with third parties without consent.
+
+Risk: The TypeScript example includes metrics endpoint behavior that could transmit diagnostic metadata.
+
+Mitigation: Review any metrics endpoint before enabling telemetry and limit collected data to approved fields.
+
+## Reference(s):
+
+- [Error Detective Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-error-detective)
+- [Publisher Profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown investigation reports with code examples, ranked fixes, evidence notes, and confidence scores]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic context, source snippets, stack traces, and remediation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

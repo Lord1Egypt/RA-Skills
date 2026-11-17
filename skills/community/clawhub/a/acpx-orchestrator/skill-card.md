@@ -1,42 +1,61 @@
-## Description: <br>
-Enhanced terminal AI agent orchestrator with parallel execution, health checks, and workflow presets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced terminal AI agent orchestrator with parallel execution, health checks, and workflow presets.
 
-## Publisher: <br>
-[qriiz112](https://clawhub.ai/user/qriiz112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qriiz112](https://clawhub.ai/user/qriiz112)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate terminal AI agents for discovery, health checks, single-agent runs, parallel or sequential task files, workflow presets, and JSON-formatted agent output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Batch and parallel task files can coordinate powerful terminal agent workflows. <br>
-Mitigation: Review task files before running batch or parallel modes, especially when prompts or command flags come from untrusted sources. <br>
-Risk: External packages and optional agent CLIs execute runtime code that was not included in the reviewed skill artifacts. <br>
-Mitigation: Verify the external acpx npm package and any optional agent CLIs before installation or use. <br>
-Risk: No-confirm or yolo-style execution flags can reduce oversight of agent actions. <br>
-Mitigation: Avoid untrusted prompts and no-confirm execution flags unless the environment is isolated and the task has been reviewed. <br>
+## Use Case:
 
+Developers and engineers use ACP Orchestrator to coordinate terminal AI agents for discovery, health checks, single-agent tasks, parallel or sequential batch execution, preset review/refactor/test/debug workflows, and JSON-formatted runs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qriiz112/acpx-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and task-file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can also request JSON-formatted agent output through the documented acpx json command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata) <br>
+Risk: The skill delegates core behavior to npm packages without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify and pin acceptable npm package versions before installing or running the orchestrator.
+
+Risk: Parallel, batch, and passthrough commands can execute task files or prompts from untrusted sources.
+
+Mitigation: Use only trusted task files and prompts, and review commands before execution.
+
+Risk: Invoked agents may inherit the same file, tool, and credential access as the normal agent environment.
+
+Mitigation: Run the orchestrator in a constrained workspace with only the files and credentials needed for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qriiz112/skills/acpx-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/qriiz112)
+- [Project repository listed in manifest](https://github.com/qriiz112/acpx-orchestrator)
+- [Quick reference](artifact/COMPARISON.md)
+- [Example batch tasks](artifact/examples/tasks-example.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke external terminal agents and can request JSON output through the acpx CLI.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata; artifact metadata reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

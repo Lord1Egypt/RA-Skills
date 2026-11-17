@@ -1,40 +1,59 @@
-## Description: <br>
-Bidirectional sync between Obsidian PKM notes and a structured ontology graph, with extraction of entities and relationships plus feedback to improve note structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes Obsidian markdown notes with a structured ontology graph by extracting entities and relationships, running analysis, and generating feedback to improve note structure.
 
-## Publisher: <br>
-[shi8103312](https://clawhub.ai/user/shi8103312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shi8103312](https://clawhub.ai/user/shi8103312)
 
-## Use Case: <br>
-Developers and knowledge-work users use this skill to convert selected Obsidian markdown folders into a local ontology graph, run analytics, and generate feedback about missing fields or relationship gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can repeatedly convert private Obsidian notes about contacts, clients, teams, and work behavior into durable local graph and feedback files. <br>
-Mitigation: Install only when that conversion is intended; run dry-run mode first, review input and output paths, and exclude sensitive folders or fields where possible. <br>
-Risk: Scheduled sync can preserve sensitive extracted data over time in generated ontology and feedback outputs. <br>
-Mitigation: Before enabling cron, use a narrow configuration and protect or periodically delete generated graph and feedback files. <br>
+## Use Case:
 
+Developers, knowledge workers, and teams use this skill to turn Obsidian notes into a queryable ontology for contact, project, team, and business analysis while keeping notes as the primary source.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shi8103312/obsidian-ontology-sync-1-0-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML configuration examples, JSONL graph records, and feedback reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can append extracted entities and relationships to local graph.jsonl files and write dated markdown feedback reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can centralize sensitive Obsidian note content into plaintext ontology and feedback files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow vault path, run dry-run first, restrict permissions on ontology and feedback directories, and avoid syncing those outputs to shared storage unless reviewed.
+
+Risk: Scheduled cron execution may repeatedly process more note data than intended.
+
+Mitigation: Review extraction outputs before enabling cron, limit configured source paths, and use the least frequent schedule that meets the workflow need.
+
+Risk: Contact and team extraction can collect personal or confidential fields such as email, phone, project assignments, and behavioral patterns.
+
+Mitigation: Disable or remove sensitive extractors when generated graph data may be backed up, synced, or readable by other local users or tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shi8103312/skills/obsidian-ontology-sync-1-0-1)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, Python code references, JSON/JSONL ontology records, and generated Markdown feedback.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local plaintext ontology JSONL and feedback Markdown when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

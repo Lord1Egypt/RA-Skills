@@ -1,43 +1,58 @@
-## Description: <br>
-Audit and correct LinkedIn experience descriptions for overclaims, fabricated metrics, and inaccuracies using browser automation + LLM accuracy review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and correct LinkedIn experience descriptions for overclaims, fabricated metrics, and inaccuracies using browser automation and LLM accuracy review.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-External users and developers use this skill to review LinkedIn experience descriptions before job searches, AI-assisted rewrites, reference checks, or background screening. It flags potentially inaccurate claims, asks targeted clarification questions, and helps apply corrected wording through the user's authenticated browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and edit LinkedIn profile content through the user's logged-in browser session. <br>
-Mitigation: Install only if comfortable with that automation, keep the browser session local, and review proposed edits before saving. <br>
-Risk: Profile descriptions and local review notes may contain sensitive personal career details. <br>
-Mitigation: Keep backups of original descriptions and delete local review or memory files when they are no longer needed. <br>
-Risk: Automated corrections could still leave inaccurate or misleading career claims if the user provides incomplete context. <br>
-Mitigation: Answer targeted clarification questions role by role and manually verify final wording against actual work, ownership, and measured outcomes. <br>
+## Use Case:
 
+External users use this skill before job searches, AI-assisted profile rewrites, or reference checks to identify inaccurate LinkedIn experience claims, ask targeted clarification questions, and prepare corrected profile descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/linkedin-profile-audit) <br>
-- [LinkedIn experience edit URL pattern](https://www.linkedin.com/in/{profile}/edit/forms/position/{position_id}/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with corrected profile text, local review notes, and Playwright script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update LinkedIn descriptions in the user's logged-in browser session and write a local fact/data log for later review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can operate a logged-in LinkedIn browser session and make live profile edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require read-only extraction first, review the proposed diff in the visible browser session, and approve each save explicitly.
+
+Risk: The skill may retain profile and employment facts in a memory log for later writing.
+
+Mitigation: Disable or decline memory logging unless the user explicitly wants those facts retained.
+
+Risk: Profile edits may still introduce inaccurate or misleading claims if clarification is incomplete.
+
+Mitigation: Answer one targeted clarification question per flagged claim and verify all corrected descriptions before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/linkedin-profile-audit)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with generated Playwright scripts and local log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce corrected LinkedIn descriptions, local review files, and a memory log when the user permits retention.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

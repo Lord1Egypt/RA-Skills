@@ -1,44 +1,61 @@
-## Description: <br>
-Complete Feishu integration setup guidance for configuring OpenClaw with the openclaw-lark plugin, Feishu app capabilities, OAuth scopes, event subscriptions, tool enablement, and connectivity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through Feishu app creation, openclaw-lark plugin installation, OAuth scopes, event subscriptions, configuration, tool enablement, permission verification, and connectivity troubleshooting.
 
-## Publisher: <br>
-[liangzhipengdamon-maker](https://clawhub.ai/user/liangzhipengdamon-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangzhipengdamon-maker](https://clawhub.ai/user/liangzhipengdamon-maker)
 
-## Use Case: <br>
-Developers and administrators use this skill to set up a Feishu app, install and configure the OpenClaw Feishu plugin, select permissions and tools, and verify that the integration works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide may lead administrators to enable broad Feishu chat, document, calendar, contact, search, OAuth, and send-as-user access. <br>
-Mitigation: Start with the minimum Feishu scopes required for the actual use case, avoid batch-authorizing all scopes, and require admin, privacy, and audit review before enabling sensitive access. <br>
-Risk: Incorrect tool or permission choices can expose chat history, file downloads, contact phone or email data, document write access, approvals, or cross-chat search. <br>
-Mitigation: Review the selected tools and scopes before deployment, deny unused tools, use allowlists for users and groups, and recheck authorization after publishing new Feishu app versions. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure an OpenClaw instance for Feishu/Lark messaging, OAuth authorization, event subscriptions, plugin installation, and Feishu tool access. It is intended for setup and troubleshooting guidance rather than direct automation.
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
-- [Feishu App Configuration](references/feishu-app-config.md) <br>
-- [OpenClaw Configuration Reference for Feishu](references/openclaw-config-reference.md) <br>
-- [Feishu Permission Scopes Reference](references/permissions-reference.md) <br>
-- [Feishu Tool Matrix](references/tool-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu app setup steps, OAuth scope selection, OpenClaw configuration patches, and verification checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The guide recommends broad Feishu permissions and many Feishu tools, including user-identity, message history, search, batch authorization, and write-capable operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with an IM-only scope and tool set, enable additional scopes only for a documented business need, and restrict rollout to test users or departments first.
+
+Risk: The guide uses mutable plugin install commands that may resolve to different package versions over time.
+
+Mitigation: Use pinned, verified plugin versions and review package provenance before installation.
+
+Risk: The integration depends on webhook endpoints, app secrets, and stored OAuth tokens.
+
+Mitigation: Secure the webhook endpoint, store secrets and tokens with an approved secret provider, and disable user-identity sending, chat history/search, and batch authorization unless needed.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [Feishu Open Platform App Configuration](references/feishu-app-config.md)
+- [OpenClaw Configuration Reference for Feishu](references/openclaw-config-reference.md)
+- [Feishu Permission Scopes Reference](references/permissions-reference.md)
+- [Feishu Tool Matrix](references/tool-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON5 configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions, configuration snippets, permission scope lists, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

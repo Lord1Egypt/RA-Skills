@@ -5,17 +5,50 @@ Unlink a previously paired iOS device by resetting write-token binding via chall
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Tuple
 from urllib import error, request
-from config import load_effective_config, resolve_state_dir, resolve_user_paths, write_user_config
+from config import (
+    load_effective_config,
+    open_relay_request,
+    resolve_state_dir,
+    resolve_user_paths,
+    secure_state_directory,
+    write_user_config,
+)
 from sync_cryptography import public_key_base64_from_pem, sign_legacy_challenge, sign_v5_challenge
 
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def record_unlink_success(user_config: Dict[str, Any], attempted_at: str, succeeded_at: str) -> None:
+    user_config["last_unlink_attempt_at"] = attempted_at
+    user_config["last_unlink_success_at"] = succeeded_at
+    user_config["last_unlink_at"] = succeeded_at
+    user_config["last_unlink_status"] = "ok"
+    user_config.pop("last_unlink_error", None)
+
+
+def migrate_legacy_unlink_timestamp(user_config: Dict[str, Any]) -> None:
+    if "last_unlink_success_at" in user_config:
+        return
+    legacy_timestamp = user_config.get("last_unlink_at")
+    if user_config.get("last_unlink_status") == "ok" and legacy_timestamp:
+        user_config["last_unlink_success_at"] = legacy_timestamp
+    else:
+        user_config.pop("last_unlink_at", None)
+
+
+def record_unlink_failure(user_config: Dict[str, Any], attempted_at: str, error_message: str) -> None:
+    migrate_legacy_unlink_timestamp(user_config)
+    user_config["last_unlink_attempt_at"] = attempted_at
+    user_config["last_unlink_status"] = "error"
+    user_config["last_unlink_error"] = error_message
 
 
 def normalize_public_key_base64(value: str) -> str:
@@ -35,7 +68,7 @@ def http_post_json(url: str, payload: Dict[str, Any], timeout: int, apikey: str,
         method="POST",
     )
     try:
-        with request.urlopen(req, timeout=timeout) as response:
+        with open_relay_request(req, timeout=timeout) as response:
             raw = response.read()
             return json.loads(raw.decode("utf-8"))
     except error.HTTPError as http_error:
@@ -102,14 +135,20 @@ def resolve_runtime(
 
 
 def main() -> int:
+    os.umask(0o077)
     args = parse_args()
     state_dir = resolve_state_dir(args.state_dir)
     paths = resolve_user_paths(state_dir)
+    for private_dir in (state_dir, paths["config_dir"], paths["secrets_dir"]):
+        if private_dir.exists():
+            secure_state_directory(private_dir)
     user_config: Dict[str, Any] = {}
     config: Dict[str, Any] = {}
+    unlink_attempted_at = ""
 
     try:
         user_config, config = load_effective_config(state_dir)
+        unlink_attempted_at = now_iso()
         runtime = resolve_runtime(args, config, paths)
         publishable_key = str(config.get("supabase_publishable_key", "")).strip()
         region = str(config.get("supabase_region", "")).strip()
@@ -159,8 +198,7 @@ def main() -> int:
             raise RuntimeError(f"Unexpected unlink response: {unlink_response}")
 
         unlinked_at = unlink_response.get("unlinkedAt") or now_iso()
-        user_config["last_unlink_at"] = unlinked_at
-        user_config["last_unlink_status"] = "ok"
+        record_unlink_success(user_config, unlink_attempted_at, unlinked_at)
         write_user_config(user_config, state_dir)
         print(
             f"Unlink successful: user_id={runtime['user_id']}, "
@@ -171,9 +209,11 @@ def main() -> int:
         print(f"Error: {runtime_error}", file=sys.stderr)
         try:
             if user_config:
-                user_config["last_unlink_at"] = now_iso()
-                user_config["last_unlink_status"] = "error"
-                user_config["last_unlink_error"] = str(runtime_error)
+                record_unlink_failure(
+                    user_config,
+                    unlink_attempted_at or now_iso(),
+                    str(runtime_error),
+                )
                 write_user_config(user_config, state_dir)
         except Exception:
             pass

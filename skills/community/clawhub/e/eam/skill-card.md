@@ -1,41 +1,54 @@
-## Description: <br>
-Enterprise asset management tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise asset management tracker.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operations teams use Eam to add, list, search, remove, export, and summarize local asset-management entries from a shell. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local asset records are stored under ~/.eam and may contain sensitive operational details. <br>
-Mitigation: Avoid entering secrets or highly sensitive asset data unless local storage is acceptable, and manage file access according to organizational policy. <br>
-Risk: Removing an entry permanently deletes it from the local JSONL data file. <br>
-Mitigation: Back up ~/.eam/data.jsonl or export records before using remove. <br>
+## Use Case:
 
+Developers and operations teams use this skill to track enterprise asset entries from a local command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/eam) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text command output with JSONL, JSON, or CSV data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local records under ~/.eam by default; export writes JSONL or CSV files; exits 0 on success and 1 on error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe input handling in the helper script can allow crafted configuration data to run commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installing and use only trusted input until the input handling is fixed.
+
+Risk: Remove and export commands persistently change local files, and exports may overwrite files in the current directory.
+
+Mitigation: Avoid storing secrets in configuration, review data before removal, and run exports from a controlled working directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/eam)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes command usage and local JSONL data storage under the configured EAM directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

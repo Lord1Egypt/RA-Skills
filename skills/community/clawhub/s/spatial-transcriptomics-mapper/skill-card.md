@@ -1,47 +1,66 @@
-## Description: <br>
-Maps 10x Genomics Visium or Xenium spatial transcriptomics data onto tissue images for gene expression, clustering, multi-gene overlay, and report outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps 10x Genomics Visium and Xenium spatial transcriptomics outputs onto tissue images for gene expression, clustering, and multi-gene visualization.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, bioinformatics analysts, and spatial biology teams use this skill to run bounded Visium or Xenium mapping workflows, visualize selected genes or clusters, and produce reproducible images or HTML reports from local datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpinned dependencies and the declared 'pil' package name can make production installs inconsistent or pull an unintended package. <br>
-Mitigation: Use a virtual environment or container, replace 'pil' with pinned 'Pillow', and pin the remaining scientific Python dependencies before production use. <br>
-Risk: The skill reads local user-provided Visium or Xenium datasets and writes reports or images that may contain sensitive sample-derived information. <br>
-Mitigation: Provide only datasets intended for analysis, choose the output directory deliberately, and handle generated reports and images as sensitive derived data. <br>
-Risk: Large Xenium or high-resolution image inputs can increase runtime and memory use. <br>
-Mitigation: Use documented crop or downsampling options for large samples and validate outputs on a small subset before full processing. <br>
+## Use Case:
 
+Developers and data analysts use this skill to process Visium or Xenium spatial transcriptomics datasets and generate visual maps of gene expression, clusters, and multi-gene patterns on tissue imagery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/spatial-transcriptomics-mapper) <br>
-- [10x Genomics Visium Spatial Gene Expression](https://www.10xgenomics.com/products/spatial-gene-expression) <br>
-- [10x Genomics Xenium Platform](https://www.10xgenomics.com/platforms/xenium) <br>
-- [Scanpy Documentation](https://scanpy.readthedocs.io/) <br>
-- [Squidpy Documentation](https://squidpy.readthedocs.io/) <br>
-- [Matplotlib Colormap Reference](https://matplotlib.org/stable/tutorials/colors/colormaps.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG or HTML analysis files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include gene spatial maps, heatmaps, multi-gene overlays, cluster maps, expression statistics, and an HTML report written to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/__init__.py) <br>
+Risk: Processing untrusted datasets may expose file-output and report-generation weaknesses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated Python environment as an unprivileged user and avoid untrusted datasets unless inputs have been reviewed.
+
+Risk: Generated HTML reports may include unsanitized gene names or filenames from input data.
+
+Mitigation: Do not open generated HTML reports from untrusted inputs until gene names and filenames have been escaped or sanitized.
+
+Risk: Configurable output paths can write analysis artifacts outside the intended workspace if not contained.
+
+Mitigation: Keep output paths in a disposable workspace and add output path containment checks before deployment.
+
+Risk: Unpinned dependencies and the declared pil package can reduce reproducibility or install reliability.
+
+Mitigation: Pin dependencies for the deployment environment and replace pil with Pillow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/spatial-transcriptomics-mapper)
+- [10x Genomics Visium](https://www.10xgenomics.com/products/spatial-gene-expression)
+- [10x Genomics Xenium](https://www.10xgenomics.com/platforms/xenium)
+- [Scanpy documentation](https://scanpy.readthedocs.io/)
+- [Squidpy documentation](https://squidpy.readthedocs.io/)
+- [Matplotlib colormap reference](https://matplotlib.org/stable/tutorials/colors/colormaps.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated local image or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate PNG spatial maps, multi-gene visualizations, clustering plots, and HTML reports in the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact scripts/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

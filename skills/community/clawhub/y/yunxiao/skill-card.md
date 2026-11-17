@@ -1,42 +1,54 @@
-## Description: <br>
-Helps an agent manage Yunxiao project work items, including listing projects, viewing work items, and creating or updating tasks, requirements, defects, and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+云效项目协作操作助手，支持工作项（任务、需求、缺陷）的查询、创建和更新。
 
-## Publisher: <br>
-[fengerzh](https://clawhub.ai/user/fengerzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengerzh](https://clawhub.ai/user/fengerzh)
 
-## Use Case: <br>
-Developers, project managers, and delivery teams use this skill through an agent to query Yunxiao projects and work items, then create or update work items after choosing the target project. It is intended for users who can provide an appropriate Yunxiao organization ID, user ID, and personal access token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a stored Yunxiao access token to read and modify project data. <br>
-Mitigation: Use a least-privilege token, keep config.json out of source control, and rotate the token if it is exposed. <br>
-Risk: Create and update actions can change project work items when triggered by broad project-management requests. <br>
-Mitigation: Require explicit user confirmation before running any create or update action, including the target project and work item changes. <br>
+## Use Case:
 
+Developers and project collaborators use this skill to inspect Yunxiao projects and work item details, then create or update tasks, requirements, bugs, and related statuses through Yunxiao OpenAPI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengerzh/yunxiao) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text or JSON returned by Python CLI scripts, with Markdown command examples in the skill guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local config.json values for Yunxiao organization ID, user ID, token, and optional default project settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent read/write Yunxiao tokens can expose sensitive or business-critical workspace data if config.json is shared or committed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest token scope, keep config.json out of shared repositories and transcripts, restrict local file access, and rotate any token that may have been exposed.
+
+Risk: Create, update, complete, or close operations can change live project data.
+
+Mitigation: Require explicit user confirmation for write or status-changing actions and verify the target project and work item before running commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengerzh/skills/yunxiao)
+- [Yunxiao OpenAPI base endpoint](https://openapi-rdc.aliyuncs.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local config.json containing Yunxiao organization, user, project, and token settings; write actions affect live Yunxiao data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

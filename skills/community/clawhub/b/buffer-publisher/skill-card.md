@@ -1,41 +1,59 @@
-## Description: <br>
-Publish social media posts to LinkedIn and Twitter/X via Buffer GraphQL API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes or schedules LinkedIn and Twitter/X posts through Buffer's GraphQL API for configured Buffer channels.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Agents and operators use this skill to publish or schedule approved posts to Nissan's connected LinkedIn and Twitter/X channels through Buffer. Users should confirm the exact post text, channel, and schedule before creating a post. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish publicly through Buffer-connected social accounts. <br>
-Mitigation: Confirm the exact post text, target channel, and schedule before any createPost call. <br>
-Risk: The Buffer API key authorizes actions on behalf of the account owner. <br>
-Mitigation: Keep the Buffer key restricted and use account or channel lookup only when channel discovery is needed. <br>
+## Use Case:
 
+Agents supporting Nissan's social publishing use this skill to publish immediately, queue, or schedule prepared posts on connected LinkedIn and Twitter/X channels through Buffer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nissan/buffer-publisher) <br>
-- [Buffer GraphQL API](https://api.buffer.com/graphql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with Python, shell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Buffer GraphQL createPost and channel lookup guidance for immediate or scheduled publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The connected-channels account query retrieves unnecessary email and account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or avoid the Get Connected Channels example as written, especially the email field.
+
+Risk: Buffer API bearer tokens and authenticated API responses could be exposed in logs or shared transcripts.
+
+Mitigation: Keep bearer tokens and Buffer API responses out of logs and shared transcripts, and use only the account owner's credential.
+
+Risk: The skill can publish or schedule posts to connected social channels.
+
+Mitigation: Install only for agents that are intended to publish or schedule posts, and review target channel, post text, and schedule before API calls.
+
+## Reference(s):
+
+- [Buffer Publisher on ClawHub](https://clawhub.ai/nissan/skills/buffer-publisher)
+- [Publisher profile: nissan](https://clawhub.ai/user/nissan)
+- [Buffer GraphQL API endpoint](https://api.buffer.com/graphql)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks, GraphQL payload examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Buffer channel IDs, API endpoint details, scheduling field guidance, and response-checking notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Analyzes uploaded images of faces, palms, body posture, or bone structure using traditional Chinese physiognomy reference rules to generate an entertainment-oriented markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kanxiang analyzes user-provided face, palm, body, or bone-structure photos using traditional Chinese physiognomy reference rules and returns a structured, entertainment-oriented reading.
 
-## Publisher: <br>
-[timerzz](https://clawhub.ai/user/timerzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timerzz](https://clawhub.ai/user/timerzz)
 
-## Use Case: <br>
-External users use this skill to request culture and entertainment oriented physiognomy readings from personal images. It produces reports covering observed visual features, personality or ability themes, fortune-style notes, health prompts, and development suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can analyze sensitive personal images through broad photo triggers. <br>
-Mitigation: Use it only for explicit physiognomy requests and avoid uploading photos of other people or minors without consent. <br>
-Risk: Outputs may make health, personality, career, or fortune inferences that users could over-trust. <br>
-Mitigation: Treat results as cultural or entertainment content, not factual medical, career, personality, or life advice. <br>
-Risk: Marketplace capability tags include unrelated sensitive capabilities. <br>
-Mitigation: Review the listing capability tags before trusting or deploying the skill. <br>
+## Use Case:
 
+External users can upload clear photos of themselves to receive a structured cultural-reference reading covering observed features, personality and ability tendencies, fortune-style notes, health caveats, and development suggestions. The output should be treated as entertainment and cultural commentary, not as scientific, medical, hiring, relationship, or life-planning advice.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/timerzz/kanxiang) <br>
-- [README](README.md) <br>
-- [README English](README_EN.md) <br>
-- [Face reading reference rules](references/mianxiang.md) <br>
-- [Palmistry reference rules](references/shouxiang.md) <br>
-- [Bone reading reference rules](references/guxiang.md) <br>
-- [Body physiognomy reference rules](references/tixiang.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include a disclaimer that the analysis is for cultural reference and entertainment only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may generate sensitive personality, health, relationship, or fortune claims from a person's appearance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for entertainment or cultural-reference purposes, avoid decisions based on the output, and keep the disclaimer visible in every report.
+
+Risk: The artifact documentation includes placeholder GitHub installation commands that may point users to an unverified source.
+
+Mitigation: Install only from a verified canonical repository or the ClawHub-provided package, and prefer project-local installation.
+
+Risk: Uploaded photos can expose personal or third-party privacy.
+
+Mitigation: Use photos only with the subject's permission and avoid uploading images that reveal other people's private information.
+
+## Reference(s):
+
+- [README_EN.md](README_EN.md)
+- [Face reading rules](references/mianxiang.md)
+- [Palmistry rules](references/shouxiang.md)
+- [Bone reading rules](references/guxiang.md)
+- [Body physiognomy rules](references/tixiang.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown analysis report with disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from a user-provided image; outputs should avoid absolute predictions and include entertainment/cultural-reference framing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, README version history, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

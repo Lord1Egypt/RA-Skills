@@ -1,39 +1,54 @@
-## Description: <br>
-Provides HoneyBook client-portal MCP workflows for checking vendor contracts, invoices, proposals, payment methods, and user-confirmed sign or pay deep links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent work with HoneyBook client-portal data for vendor contracts, invoices, proposals, payment links, and signing links.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and agents working with HoneyBook client-portal data use this skill to review wedding-vendor contracts, invoices, proposals, sessions, and payment status, and to obtain portal deep links for user-confirmed signing or payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Magic links and the local HoneyBook session cache can function like login credentials. <br>
-Mitigation: Install only on a trusted personal machine, treat magic links and ~/.honeybook-mcp/sessions.json as credentials, and delete the session cache when retained access is no longer needed. <br>
-Risk: The skill can surface contracts, invoices, payment-method metadata, and sign or pay links tied to financial actions. <br>
-Mitigation: Review returned details before acting; signing and payment flows require explicit confirmation and complete in the browser with device or SCA handling. <br>
+## Use Case:
 
+External HoneyBook client-portal users can ask an agent to inspect vendor sessions, list shared files, summarize contract or invoice status, and return portal deep links for confirmed signing or payment workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured MCP tool outputs with setup snippets, status summaries, and deep links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May expose sensitive HoneyBook contract, invoice, payment-method, and session information to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.5 (source: ClawHub release metadata) <br>
+Risk: HoneyBook magic links and returned portal links may provide sensitive session access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat pasted and returned links as sensitive, avoid sharing them broadly, and refresh sessions only from trusted vendor emails.
+
+Risk: Signing or payment links could be used for the wrong vendor, contract, invoice, or amount.
+
+Mitigation: Confirm the intended HoneyBook vendor and request details before using any returned signing or payment link.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrischall/skills/honeybook-mcp)
+- [Publisher Profile](https://clawhub.ai/user/chrischall)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text with HoneyBook portal status summaries and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive session, signing, or payment links that should be reviewed before use.]
+
+## Skill Version(s):
+
+0.4.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

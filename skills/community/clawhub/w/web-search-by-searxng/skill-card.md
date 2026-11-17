@@ -1,41 +1,54 @@
-## Description: <br>
-Search using a custom SearXNG instance via HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search using a custom SearXNG instance via HTTP API. Enables privacy-friendly web search by aggregating results from multiple search engines. Supports query, format (json/csv/rss), language, time range, categories, engines, pagination, and safe search filtering. Requires a user-provided or configured SearXNG instance URL.
 
-## Publisher: <br>
-[cyijun](https://clawhub.ai/user/cyijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyijun](https://clawhub.ai/user/cyijun)
 
-## Use Case: <br>
-Developers and agents use this skill to query a configured SearXNG instance, collect web results, and narrow searches by language, time range, category, engine, pagination, or safe-search level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to the configured SearXNG instance and may also be sent to selected upstream search engines. <br>
-Mitigation: Use a trusted or self-hosted HTTPS SearXNG instance, avoid secrets or confidential terms in queries, and choose engines appropriate for the data being searched. <br>
-Risk: Some public SearXNG instances disable JSON, CSV, or RSS output or apply rate limits. <br>
-Mitigation: Check instance settings before relying on structured formats, add delays between requests, and self-host for predictable API access. <br>
+## Use Case:
 
+Developers and agents use this skill to run web searches through a configured SearXNG instance, narrow searches by language, time range, category, engine, safe-search level, and page number, then present returned results.
 
-## Reference(s): <br>
-- [SearXNG Engines and Categories Reference](references/engines_and_categories.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cyijun/web-search-by-searxng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON, CSV, or RSS search responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided SearXNG instance URL or SEARXNG_URL environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence) <br>
+Risk: Search queries are sent to the configured SearXNG instance, which may expose sensitive investigative terms to that server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted HTTPS or self-hosted SearXNG instance and avoid submitting secrets, private project names, or sensitive search terms to public instances.
+
+Risk: Some public SearXNG instances disable JSON, CSV, or RSS output or enforce rate limits.
+
+Mitigation: Confirm the instance supports the required output format before relying on it, and space repeated requests to respect server limits.
+
+## Reference(s):
+
+- [SearXNG Engines and Categories Reference](references/engines_and_categories.md)
+- [ClawHub Skill Page](https://clawhub.ai/cyijun/skills/web-search-by-searxng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and formatted search results or JSON text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output depends on the configured SearXNG instance, enabled result formats, selected engines, and rate limits.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Get Unicode codepoint, name, and category for characters, including Chinese characters, English text, and emoji, using the Python standard library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get Unicode codepoint, name, and category for characters. Support Chinese characters, English text, emoji. Pure Python standard library, no API key required.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and text-processing users use this skill to inspect characters, debug encoding issues, and extract Unicode code point, name, and category data for Chinese text, English text, emoji, and other Unicode characters.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill documentation includes promotional Chinese-language links unrelated to the Unicode inspection utility.
+
+Mitigation: Review those links before publishing in environments that require neutral or localized documentation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and text-processing users can use this skill to inspect unknown characters, debug encoding issues, and extract Unicode properties for supplied text. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary states that available scans are clean but the exact skill files were not available for a full artifact review. <br>
-Mitigation: Before installation, confirm the listed files and SHA-256 hashes match the release evidence and that the files match the Unicode lookup purpose. <br>
-Risk: The skill runs a local Python script on user-supplied text. <br>
-Mitigation: Review the script before execution and avoid placing sensitive text directly in shell history or logs. <br>
+**Output Format:** [JSON emitted by a local Python CLI, with Markdown guidance for invoking it]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-unicode-info) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+**Other Properties Related to Output:** [Pure Python standard library; no API key or external dependency required]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints JSON containing per-character codepoint, Unicode name, category, and total input length.] <br>
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

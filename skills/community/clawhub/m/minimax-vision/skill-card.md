@@ -1,40 +1,61 @@
-## Description: <br>
-Uses MiniMax MCP to analyze user-provided images and return image-understanding results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Vision uses a configured MiniMax MCP service to analyze user-provided images and return image-understanding results.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Agents and users use this skill to inspect uploaded image files with a configured MiniMax MCP image-understanding tool and return the analysis to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are processed by the configured MiniMax MCP provider, which can expose sensitive personal, financial, or proprietary content to that provider. <br>
-Mitigation: Avoid sensitive images unless the provider and configuration are trusted for the intended use. <br>
-Risk: The skill invokes the mcporter executable, so an unintended binary or provider configuration could route image data incorrectly. <br>
-Mitigation: Verify that mcporter resolves to the intended binary and that the MiniMax MCP configuration is correct before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route image-analysis requests to MiniMax MCP and return concise image recognition results to the user.
 
-## Reference(s): <br>
-- [MiniMax Vision on ClawHub](https://clawhub.ai/hongjiahao371-pixel/minimax-vision) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with an optional shell command invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and a configured MiniMax MCP provider; supports common inbound image file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Images and prompts may be processed by the configured MiniMax MCP service without enough user confirmation or disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit user confirmation before sending image content and disclose the configured service handling the image.
+
+Risk: Sensitive photos, IDs, documents, private screenshots, or confidential business images could be sent to an external image-analysis service.
+
+Mitigation: Avoid sensitive images unless the service configuration, retention policy, and organizational approval are acceptable.
+
+Risk: Unvalidated image paths could allow analysis of files outside the intended inbound media directory.
+
+Mitigation: Validate image paths against the inbound media directory and accepted image extensions before invoking the MCP call.
+
+Risk: The helper script modifies PATH with a hard-coded local directory.
+
+Mitigation: Remove the hard-coded PATH modification and rely on documented runtime configuration for mcporter.
+
+## Reference(s):
+
+- [MiniMax Vision Skill Page](https://clawhub.ai/hongjiahao371-pixel/skills/minimax-vision)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown response with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns MiniMax MCP image-analysis output for a supplied image path and prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

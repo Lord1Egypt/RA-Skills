@@ -1,6 +1,6 @@
-# 传统前端维护模式
+# Traditional front-end maintenance mode
 
-## 命名空间
+## Namespace
 
 ```javascript
 var App = App || {};
@@ -20,12 +20,12 @@ App.UserModule = (function ($) {
 })(jQuery);
 ```
 
-## 事件与 DOM
+## Events and DOM
 
-- 事件触发元素用 `.js-*` class，与样式 class 分离。
-- 缓存频繁使用的选择器。
-- 批量 DOM 操作用 `DocumentFragment` 或一次性插入。
-- 页面卸载或模块销毁时解绑事件或调用插件 destroy。
+- Event triggering elements use `.js-*` classes, separated from style classes.
+- Cache frequently used selectors.
+- Batch DOM manipulation with `DocumentFragment` or one-time insertion.
+- Unbind the event or call the plug-in destroy when the page is unloaded or the module is destroyed.
 
 ## Ajax
 
@@ -42,7 +42,7 @@ function fetchUserList(params) {
       else showError(res.message);
     })
     .fail(function () {
-      showError("网络错误，请稍后重试");
+      showError("Network error, please try again later");
     })
     .always(function () {
       hideLoading();
@@ -50,7 +50,7 @@ function fetchUserList(params) {
 }
 ```
 
-## XSS 转义
+## XSS escaping
 
 ```javascript
 $(".username").text(userData.name);
@@ -62,7 +62,7 @@ function escapeHtml(str) {
 }
 ```
 
-## 文件组织
+## File organization
 
 ```text
 project/
@@ -76,10 +76,10 @@ project/
 └── pages/
 ```
 
-## 检查清单
+## Checklist
 
-- 没有全局变量泄漏。
-- 事件绑定在合理容器上。
-- Ajax 处理 loading/error/empty。
-- 用户输入已转义。
-- 未扩大第三方库或框架依赖。
+- No global variables leaked.
+- Events are bound to reasonable containers.
+- Ajax handling loading/error/empty.
+- User input is escaped.
+- No third-party library or framework dependencies have been expanded.

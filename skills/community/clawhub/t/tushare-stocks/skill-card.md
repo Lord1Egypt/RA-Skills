@@ -1,41 +1,59 @@
-## Description: <br>
-Provides a bounded Tushare Pro wrapper for querying 23 A-share stock data interfaces, including market data, stock metadata, fundamentals, adjustment factors, and trading calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a defined Tushare Pro connector for 23 A-share stock data interfaces covering market data, stock reference data, adjustment factors, trading calendars, and related China equity datasets.
 
-## Publisher: <br>
-[gaingush](https://clawhub.ai/user/gaingush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaingush](https://clawhub.ai/user/gaingush)
 
-## Use Case: <br>
-Developers, quantitative analysts, and agents use this skill to fetch structured A-share market data and reference data from Tushare Pro by selecting one of the supported API names and providing valid query parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tushare token exposure through request JSON, logs, or chat history. <br>
-Mitigation: Prefer setting TUSHARE_TOKEN through a protected environment or secret store, and rotate the token if it is exposed. <br>
-Risk: Returned market data may be unavailable, delayed, or limited by the caller's Tushare account permissions and points. <br>
-Mitigation: Check Tushare account permissions, points, official documentation, and response errors before relying on the data for downstream analysis. <br>
+## Use Case:
 
+Developers and quantitative analysts use this skill to query supported Tushare Pro A-share stock datasets by API name, stock code, date range, fields, and interface-specific parameters. It is useful for market data retrieval, basic screening, backtesting inputs, and data exploration when the caller has valid Tushare credentials and data entitlements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaingush/tushare-stocks) <br>
-- [Tushare Pro official documentation](https://tushare.pro/document/2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, guidance] <br>
-**Output Format:** [Structured JSON responses with success flags, data arrays, counts, columns, request metadata, and error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Tushare token through request parameters or the TUSHARE_TOKEN environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill requires a Tushare API token and can expose credentials if users paste tokens into shared chat or invocation logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure TUSHARE_TOKEN through an environment variable or secret manager, and avoid sharing tokens in prompts or reusable invocation JSON.
+
+Risk: The skill performs expected network calls to Tushare Pro and depends on account permissions, points, interface limits, and data freshness.
+
+Mitigation: Install it only where Tushare Pro access is expected, verify account entitlements before relying on results, and handle delayed or empty data responses in downstream workflows.
+
+Risk: The Python dependencies are specified with minimum versions rather than an exact lockfile.
+
+Mitigation: Use a locked environment or pinned dependency set for reproducible deployments.
+
+## Reference(s):
+
+- [Tushare Pro official documentation](https://tushare.pro/document/2)
+- [Tushare Pro token registration](https://tushare.pro)
+- [ClawHub skill release page](https://clawhub.ai/gaingush/skills/tushare-stocks)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, guidance]
+
+**Output Format:** [JSON object containing success status, returned data or error text, count, columns when available, and request metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls require a supported api_name and either a Tushare token parameter or the TUSHARE_TOKEN environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

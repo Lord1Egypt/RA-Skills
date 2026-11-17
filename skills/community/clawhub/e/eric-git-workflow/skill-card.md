@@ -1,39 +1,49 @@
-## Description: <br>
-Expert-level Git workflow guidance covering branching strategies, commit conventions, merge/rebase workflows, conflict resolution, and CI/CD integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Git workflow guidance for branching strategies, commit conventions, merge and rebase workflows, conflict resolution, CI/CD integration, and recovery from common mistakes.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose Git branching strategies, write conventional commits, resolve merge and rebase conflicts, recover from mistakes, and apply team workflow patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recovery guidance includes destructive reset commands that can discard local changes. <br>
-Mitigation: Run git status first and preserve needed work with a stash, backup branch, or safer command; prefer git revert for pushed or shared commits and git reset --soft when changes should be kept. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose Git branching models, write conventional commits, resolve merge or rebase conflicts, clean commit history, configure common aliases or commit templates, and recover from common Git mistakes.
 
-## Reference(s): <br>
-- [Git Workflow Patterns](references/workflows.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/eric-git-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline Git commands and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow comparisons, command sequences, commit message examples, and recovery steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes destructive Git command examples that can discard local work or rewrite shared history if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before destructive Git operations, check `git status` first, avoid force-pushing shared or protected branches, and prefer safer recovery commands such as `git revert` when appropriate.
+
+## Reference(s):
+
+- [Git Workflow Patterns](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Step-by-step onboarding guide for setting up a new AI Personal Assistant on OpenClaw. Use when: a new PA is being created, someone asks how to set up an agent, or guiding a user through the full setup process from account creation to first response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step onboarding guide for setting up a new AI Personal Assistant on OpenClaw.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers, operators, and personal-assistant owners use this skill to guide a new AI Personal Assistant through account setup, WhatsApp verification, integrations, configuration, and first-response checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The onboarding flow can grant broad account access across WhatsApp, Google Calendar, Gmail, Drive, contacts, and monday.com. <br>
-Mitigation: Use least-privilege service accounts, enable only integrations needed for the assistant, and define which messages, calendar edits, workspace changes, and briefings require explicit owner approval. <br>
-Risk: The monday.com setup stores an API token in plaintext. <br>
-Mitigation: Store the token in a secret manager or locked-down credentials file, restrict file permissions, and rotate or revoke the token when no longer needed. <br>
+## Use Case:
 
+Developers, operators, and PA owners use this skill to guide a new OpenClaw personal assistant through account creation, WhatsApp setup, integrations, configuration, and first-response verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/pa-onboarding) <br>
-- [monday.com agents signup](https://monday.com/agents-signup) <br>
-- [pa-skills reference repository](https://github.com/netanel-abergel/pa-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One-step-at-a-time procedural guidance with confirmation before continuing] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: The onboarding flow asks users to connect sensitive business accounts such as Google Calendar, Gmail, Drive, contacts, WhatsApp, and monday.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant the agent only the minimum permissions needed for each integration and require explicit owner approval before enabling optional briefing, directory, or public coordination steps.
+
+Risk: The artifact shows a monday.com token being written to a plaintext credential file.
+
+Mitigation: Use a secret manager or a hardened credential file with owner-only permissions, and avoid placing real tokens directly in shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/pa-onboarding)
+- [Publisher profile](https://clawhub.ai/user/netanel-abergel)
+- [PA skills reference library](https://github.com/netanel-abergel/pa-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with checklist items, tables, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One-step-at-a-time onboarding flow with confirmation before moving to later phases.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

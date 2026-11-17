@@ -1,42 +1,53 @@
-## Description: <br>
-Security Constitution provides a four-level OpenClaw prompt-level security policy for classifying operations, requiring confirmation for high-risk actions, logging audits, and refusing critical or bypass attempts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Constitution provides OpenClaw with a four-level risk control workflow for classifying requests, requiring confirmation for sensitive actions, logging operations, and blocking security-bypass attempts.
 
-## Publisher: <br>
-[byronbanck-ai](https://clawhub.ai/user/byronbanck-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byronbanck-ai](https://clawhub.ai/user/byronbanck-ai)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to add a prompt-level security gate that classifies user requests, blocks critical actions, requires confirmation for high-risk actions, and records security-relevant activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to act as a broad prompt-level security gate, which can interrupt or refuse tasks. <br>
-Mitigation: Install it only where that control behavior is intended, and define who controls security-policy.json before use. <br>
-Risk: Password confirmation is under-scoped and may encourage entering reusable secrets in chat. <br>
-Mitigation: Avoid reusable real passwords in chat; use a dedicated confirmation secret or an external approval process. <br>
-Risk: Operation logging and notifications can expose sensitive content if ownership, access, retention, and redaction are not defined. <br>
-Mitigation: Set explicit rules for what is logged, who can read logs or notifications, how secrets are redacted, and how long records are kept. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add request-level risk review, owner confirmation, audit logging, and bypass blocking guidance to an OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byronbanck-ai/security-constitution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Security decisions] <br>
-**Output Format:** [Markdown guidance with policy examples, decision flows, JSON configuration snippets, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt-level allow, confirm, log, or refuse decisions; no external API output is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Chat-based approval passwords can be exposed in transcripts or reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an external approval mechanism instead of reusable passwords sent through chat.
+
+Risk: The skill attempts to govern every agent request and depends on policy, identity, hooks, notifications, logs, and approval flow being protected outside the model.
+
+Mitigation: Deploy only in controlled environments where those controls are externally protected, reviewed, and audited before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/byronbanck-ai/skills/security-constitution)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk-level policies, approval flow descriptions, audit-log format, and hook behavior guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

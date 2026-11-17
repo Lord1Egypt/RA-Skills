@@ -1,45 +1,59 @@
-## Description: <br>
-通过 Clawec API 跟踪亚马逊新品发布与排行，可按类目筛选。在用户需要亚马逊新品跟踪、New Releases 监控、类目新品榜、选品发现、新品趋势调研时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Amazon New Releases and ranking data through the Clawec API, with optional category filtering for new-product monitoring, category bestseller discovery, product selection, and trend research.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External ClawHub users and ecommerce operators use this skill to query ClawEC for Amazon New Releases data by category, then summarize new products, rankings, prices, ratings, links, and follow-up product research signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A ClawEC API key is required and could be exposed if pasted into prompts, shell history, or shared logs. <br>
-Mitigation: Store CLAWEC_API_KEY in environment or secret storage, avoid embedding it in files, and rotate the key if it is exposed. <br>
-Risk: Category queries and the API key are sent to ClawEC when the skill performs lookups. <br>
-Mitigation: Use the skill only when sharing the selected Amazon category with ClawEC is acceptable, and do not pass unrelated sensitive text as the category argument. <br>
-Risk: The ClawEC API response data fields may vary, so rigid downstream parsing could omit or mislabel product details. <br>
-Mitigation: Validate the response shape before acting on results and present uncertain or missing fields as unavailable rather than inferred. <br>
+## Use Case:
 
+External marketplace operators and ecommerce researchers use this skill to query ClawEC for Amazon New Releases by category and summarize product lists, rankings, and trend observations.
 
-## Reference(s): <br>
-- [Response schema](references/response-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-amazon-new-release) <br>
-- [ClawEC API base URL](https://www.clawec.com/api) <br>
-- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are based on the live ClawEC API response, whose data fields may vary by request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill sends category queries and an API bearer token to the external ClawEC service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the CLAWEC_API_KEY environment variable, avoid hardcoding credentials, and run the skill only when use of ClawEC is acceptable.
+
+Risk: Returned Amazon product data may influence product selection or other business decisions.
+
+Mitigation: Review ClawEC account and API terms and verify important product, ranking, pricing, and link data before acting on it.
+
+Risk: The API response data shape is dynamic and may vary across categories or responses.
+
+Mitigation: Parse responses defensively, check status values, and summarize only fields actually returned by the API.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-amazon-new-release)
+- [ClawEC API base URL](https://www.clawec.com/api)
+- [Response schema reference](references/response-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with optional shell commands and JSON API response handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the CLAWEC_API_KEY environment variable and accepts an optional Amazon category code.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

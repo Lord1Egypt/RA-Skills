@@ -1,43 +1,58 @@
-## Description: <br>
-workspace-manager helps agents maintain an OpenClaw workspace with standard folders, file organization, cleanup, archiving, health audits, and optional Google Drive sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and maintains OpenClaw workspace structure by organizing folders, archiving and classifying files, cleaning temporary items, auditing workspace health, and optionally syncing backups.
 
-## Publisher: <br>
-[mslchy](https://clawhub.ai/user/mslchy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mslchy](https://clawhub.ai/user/mslchy)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to audit workspace health, standardize expected directories, classify generated artifacts, clean temporary files, archive older artifacts, and optionally back up selected workspace content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The full pipeline can run the optional sync step and upload Workspace_Human content plus core configuration backups when gog is installed and authenticated. <br>
-Mitigation: Run only the needed steps, such as audit or organize, and disable sync in config/sync-config.json or avoid authenticating gog unless cloud backup is intended. <br>
-Risk: --dry-run does not fully preview every pipeline action because archiving is skipped in dry-run and sync behavior depends on gog configuration. <br>
-Mitigation: Use individual script dry-runs or step-specific commands before broad maintenance, and review sync configuration before running pipeline.sh --all. <br>
-Risk: Cleanup can move matched files to trash when execution is confirmed. <br>
-Mitigation: Run cleanup.py without --execute first, review the proposed file list, and keep protected path settings aligned with workspace requirements. <br>
+## Use Case:
 
+Developers and agents working in OpenClaw workspaces use this skill to audit workspace health, create a standard directory layout, organize generated artifacts, archive old files, clean temporary files, and optionally back up workspace content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mslchy/workspace-manage) <br>
-- [Publisher profile](https://clawhub.ai/user/mslchy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local logs and JSON cleanup reports when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and changelog, released 2026-03-19) <br>
+Risk: The full pipeline can move local workspace files and upload broad workspace contents, including memory and configuration files, to Google Drive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation, run only the needed steps, and disable sync_human and sync_backup or remove/unauthenticate gog unless Google Drive backup is intentional.
+
+Risk: The release evidence warns not to rely on --dry-run as non-mutating in this version.
+
+Mitigation: Avoid --all for first use and test with a disposable workspace or manually selected audit-only commands until dry-run behavior is confirmed.
+
+Risk: File organization, cleanup, and archiving can relocate or trash workspace files.
+
+Mitigation: Inspect proposed file lists and confirmation prompts, keep backups for important workspace content, and execute cleanup only after validating the target workspace path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mslchy/skills/workspace-manage)
+- [Publisher Profile](https://clawhub.ai/user/mslchy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and script-generated text or JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May move, archive, clean, or sync workspace files when the bundled scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog, released 2026-03-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

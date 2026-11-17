@@ -1,0 +1,226 @@
+# menu.yaml — IVR 多级菜单配置（v2.6）
+# 支持说数字或说名称双选择方式
+# 0 = 重复听 | 9 = 转人工
+
+version: "1.0"
+description: "企业微信语音助手 IVR 多级菜单 — 中小企业不买传统话务系统的完整替代方案"
+
+# ==========================================
+# 根菜单（来电首层）
+# ==========================================
+root:
+  welcome_text: "您好，欢迎致电。请根据语音提示选择服务。"
+  repeat_text: "重新为您播报菜单。"
+  invalid_input_text: "输入有误，请重新选择。"
+  timeout_text: "输入超时，重新为您播报菜单。"
+  timeout_seconds: 10
+  max_retries: 3
+
+  menu_items:
+    - key: "1"
+      name: "销售咨询"
+      display_name: "销售咨询"
+      description: "产品咨询、报价、购买引导"
+      action: "submenu"
+      target: "sales_menu"
+
+    - key: "2"
+      name: "技术支持"
+      display_name: "技术支持"
+      description: "产品使用、故障排查、技术问题"
+      action: "submenu"
+      target: "tech_menu"
+
+    - key: "3"
+      name: "财务报销"
+      display_name: "财务报销"
+      description: "报销查询、发票问题、费用审批"
+      action: "submenu"
+      target: "finance_menu"
+
+    - key: "4"
+      name: "订单物流"
+      display_name: "订单物流"
+      description: "订单查询、物流跟踪、退换货"
+      action: "submenu"
+      target: "order_menu"
+
+    - key: "5"
+      name: "人工服务"
+      display_name: "人工服务"
+      description: "转接人工客服"
+      action: "transfer_human"
+      target: ""
+
+  # 全局特殊按键
+  key_0:
+    name: "重复听"
+    action: "repeat"
+    description: "重新播报当前菜单"
+
+  key_9:
+    name: "转人工"
+    action: "transfer_human"
+    description: "转接人工客服"
+
+# ==========================================
+# 子菜单：销售咨询
+# ==========================================
+sales_menu:
+  title: "销售咨询"
+  intro_text: "请选择您需要的服务："
+  menu_items:
+    - key: "1"
+      name: "产品报价"
+      display_name: "产品报价"
+      description: "获取产品价格信息"
+      action: "intent"
+      target: "query_price"
+
+    - key: "2"
+      name: "产品演示"
+      display_name: "产品演示"
+      description: "预约产品演示"
+      action: "intent"
+      target: "book_demo"
+
+    - key: "3"
+      name: "购买咨询"
+      display_name: "购买咨询"
+      description: "购买流程咨询"
+      action: "intent"
+      target: "purchase_query"
+
+    - key: "8"
+      name: "返回上级"
+      display_name: "返回上级"
+      description: "返回根菜单"
+      action: "back"
+      target: "root"
+
+# ==========================================
+# 子菜单：技术支持
+# ==========================================
+tech_menu:
+  title: "技术支持"
+  intro_text: "请选择您需要的技术服务："
+  menu_items:
+    - key: "1"
+      name: "故障报修"
+      display_name: "故障报修"
+      description: "报告产品故障"
+      action: "intent"
+      target: "report_issue"
+
+    - key: "2"
+      name: "使用指导"
+      display_name: "使用指导"
+      description: "产品使用方法指导"
+      action: "intent"
+      target: "usage_guide"
+
+    - key: "3"
+      name: "远程协助"
+      display_name: "远程协助"
+      description: "申请远程技术支持"
+      action: "intent"
+      target: "remote_assist"
+
+    - key: "8"
+      name: "返回上级"
+      display_name: "返回上级"
+      description: "返回根菜单"
+      action: "back"
+      target: "root"
+
+# ==========================================
+# 子菜单：财务报销
+# ==========================================
+finance_menu:
+  title: "财务报销"
+  intro_text: "请选择您需要的服务："
+  menu_items:
+    - key: "1"
+      name: "报销查询"
+      display_name: "报销查询"
+      description: "查询报销进度"
+      action: "intent"
+      target: "query_reimbursement"
+
+    - key: "2"
+      name: "发票问题"
+      display_name: "发票问题"
+      description: "发票开具、发票相关咨询"
+      action: "intent"
+      target: "invoice_query"
+
+    - key: "3"
+      name: "费用审批"
+      display_name: "费用审批"
+      description: "费用审批进度查询"
+      action: "intent"
+      target: "expense_approval"
+
+    - key: "8"
+      name: "返回上级"
+      display_name: "返回上级"
+      description: "返回根菜单"
+      action: "back"
+      target: "root"
+
+# ==========================================
+# 子菜单：订单物流
+# ==========================================
+order_menu:
+  title: "订单物流"
+  intro_text: "请选择您需要的服务："
+  menu_items:
+    - key: "1"
+      name: "订单查询"
+      display_name: "订单查询"
+      description: "查询订单状态"
+      action: "intent"
+      target: "query_order"
+
+    - key: "2"
+      name: "物流跟踪"
+      display_name: "物流跟踪"
+      description: "查询物流信息"
+      action: "intent"
+      target: "track_shipping"
+
+    - key: "3"
+      name: "退换货"
+      display_name: "退换货"
+      description: "申请退货退款"
+      action: "intent"
+      target: "return_apply"
+
+    - key: "8"
+      name: "返回上级"
+      display_name: "返回上级"
+      description: "返回根菜单"
+      action: "back"
+      target: "root"
+
+# ==========================================
+# 全局配置
+# ==========================================
+settings:
+  # 语音合成配置（预留）
+  tts:
+    engine: "edge"  # edge / volcengine
+    language: "zh-CN"
+    voice: "zh-CN-XiaoxiaoNeural"
+
+  # 输入配置
+  input:
+    timeout: 10           # 等待用户输入超时（秒）
+    max_retries: 3        # 最大重试次数
+    inter_digit_timeout: 3  # 数字输入间隔超时（秒）
+
+  # 路由配置
+  routing:
+    transfer_number: ""   # 人工客服号码（空=使用企微默认）
+    voicemail_enabled: true  # 无人接听时是否启用语音留言
+    voicemail_timeout: 30    # 转留言前等待秒数

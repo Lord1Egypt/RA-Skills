@@ -1,40 +1,56 @@
-## Description: <br>
-Manages HubSpot CRM contacts and deals for USC SYNERGY, including search, creation, updates, associations, pipeline tracking, notes, tasks, and cURL-based workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides HubSpot CRM command guidance for USC SYNERGY, including contact and deal search, creation, updates, associations, pipeline reporting, and contact archiving.
 
-## Publisher: <br>
-[mibbou](https://clawhub.ai/user/mibbou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mibbou](https://clawhub.ai/user/mibbou)
 
-## Use Case: <br>
-Operators or agents managing USC SYNERGY's HubSpot CRM use this skill to look up and maintain contacts and deals, advance pipeline stages, add notes and tasks, and prepare daily pipeline reports. It is intended for environments where the user controls the relevant HubSpot account and token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, associate, change stages for, or archive live customer CRM records. <br>
-Mitigation: Use a least-privilege HubSpot token and require explicit confirmation before any create, update, association, note or task creation, stage change, or archive action. <br>
-Risk: External n8n webhook flows are listed without complete scoping, payload, consent, retention, or access-control details. <br>
-Mitigation: Do not enable or invoke webhook flows until the destination, payload contents, consent, retention, and access controls are approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mibbou/hubspot-crm) <br>
-- [Publisher profile](https://clawhub.ai/user/mibbou) <br>
+## Use Case:
 
+CRM operators and agents use this skill to manage USC SYNERGY HubSpot contacts, deals, notes, tasks, associations, and daily pipeline checks through documented cURL commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash cURL command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HUBSPOT_ACCESS_TOKEN and explicit user confirmation before mutating CRM records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to create, update, associate, or archive live HubSpot CRM records.
+
+Mitigation: Require human confirmation for write and archive payloads before execution.
+
+Risk: A broad HubSpot access token could expose or modify more CRM data than the workflow needs.
+
+Mitigation: Use a least-privilege HUBSPOT_ACCESS_TOKEN scoped only to the required CRM operations.
+
+Risk: Placeholder n8n webhooks could send CRM data to workflows whose ownership, authentication, or data handling has not been verified.
+
+Mitigation: Enable webhook workflows only after confirming their owner, authentication controls, and data-processing behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mibbou/skills/hubspot-crm)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with cURL command examples and CRM workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require HUBSPOT_ACCESS_TOKEN and may read, create, update, associate, or archive HubSpot CRM records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

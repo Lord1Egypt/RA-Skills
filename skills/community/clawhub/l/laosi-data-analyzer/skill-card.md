@@ -1,41 +1,53 @@
-## Description: <br>
-Loads CSV or JSON datasets, computes descriptive statistics, detects outliers, estimates trends, calculates correlations, and can save a local JSON analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analyzer Pro helps an agent load CSV or JSON datasets, compute descriptive statistics, detect outliers, assess trends, calculate correlations, and persist analysis results as JSON.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, analysts, and agent users can use this skill to inspect CSV or JSON datasets, summarize numeric columns, identify outliers, compare correlations, and generate a local analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive CSV or JSON contents may be exposed through local analysis or saved reports. <br>
-Mitigation: Use only datasets appropriate for local analysis, and avoid highly sensitive data unless local report storage is acceptable. <br>
-Risk: A generated report could overwrite an existing local file if the same output path is reused. <br>
-Mitigation: Specify a clear, non-conflicting output filename before saving reports. <br>
+## Use Case:
 
+Developers, analysts, and business users can use this skill to analyze structured CSV or JSON data for summaries, outliers, trends, and correlations. It is suitable for operational reports, A/B test review, data-quality checks, and metric monitoring.
 
-## Reference(s): <br>
-- [Data Analyzer Pro on ClawHub](https://clawhub.ai/534422530/laosi-data-analyzer) <br>
-- [Publisher profile 534422530](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and optional JSON report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read user-selected CSV or JSON files and write a local JSON report when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence, SKILL.md frontmatter, hub.json) <br>
+Risk: Report output paths can overwrite arbitrary writable local files when a filename is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only explicit trusted output paths, keep generated reports in a dedicated directory, and confirm before overwriting existing files.
+
+Risk: Broad activation or manifest disclosures may invoke the skill in contexts where local file writes are not expected.
+
+Mitigation: Avoid broad auto-invocation and review the intended dataset and output path before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-data-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, JSON, files]
+
+**Output Format:** [Markdown guidance with Python code examples and optional JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be written to a user-supplied local output path.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release, SKILL.md frontmatter, hub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

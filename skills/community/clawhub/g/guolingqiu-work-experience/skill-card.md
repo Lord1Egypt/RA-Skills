@@ -1,43 +1,60 @@
-## Description: <br>
-Provides Chinese-language career guidance, resume drafting, interview preparation, work-experience structuring, and internet/AI industry knowledge based on a bundled three-year work-experience dataset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language career coaching skill that uses Guolingqiu's three-year work history across platform operations, e-commerce product management, project management, and AI product management to help job seekers structure experience, write resumes, and prepare for interviews.
 
-## Publisher: <br>
-[futurezyx](https://clawhub.ai/user/futurezyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurezyx](https://clawhub.ai/user/futurezyx)
 
-## Use Case: <br>
-External job seekers and early-career professionals use this skill to organize platform operations, e-commerce product management, project management, and AI product management experience into resume content, interview answers, and industry explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is tailored to a specific audience and warm coaching tone, which may not fit every user or professional context. <br>
-Mitigation: Ask the agent to adapt the tone, audience assumptions, and advice to the user's actual background and target role. <br>
-Risk: Resume or interview drafts may include generalized career details that do not match the user's real experience. <br>
-Mitigation: Review all generated content and keep only claims the user can truthfully support in applications or interviews. <br>
+## Use Case:
 
+External Chinese-speaking job seekers use this skill for resume drafting, interview preparation, work-experience analysis, and career-positioning guidance based on structured career records and industry reference material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurezyx/skills/guolingqiu-work-experience) <br>
-- [Career Data](references/career-data.md) <br>
-- [Industry Knowledge](references/industry-knowledge.md) <br>
-- [Interview Guide](references/interview-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only responses based on bundled career, industry, resume, and interview reference material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The security summary notes that the advice is narrowly framed around young women job seekers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the demographic framing before deployment and adapt the guidance style when serving broader or more neutral career-coaching audiences.
+
+Risk: The security guidance flags broad activation wording for this career coaching skill.
+
+Mitigation: Review trigger terms and deployment scope so the skill is installed only where Chinese-language, persona-styled career coaching is desired.
+
+Risk: The artifact supports supplementing work-experience details with industry-common knowledge, which could be mistaken for a user's real work history.
+
+Mitigation: Require users to verify and edit generated resume or interview content against their actual experience before using it professionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futurezyx/skills/guolingqiu-work-experience)
+- [Career data reference](references/career-data.md)
+- [Industry knowledge reference](references/industry-knowledge.md)
+- [Interview guide reference](references/interview-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown responses with structured coaching guidance, resume bullets, interview prompts, and explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, persona-styled career coaching output; no code execution or persistence indicated by security evidence]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, clawhub.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

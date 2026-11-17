@@ -1,49 +1,70 @@
-## Description: <br>
-End-to-end Meta Facebook and Instagram advertising system orchestrator covering strategy research, creative generation, campaign delivery, and post-campaign optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Meta advertising system orchestrator for strategy research, creative generation, campaign delivery, and post-campaign optimization.
 
-## Publisher: <br>
-[LanbowAI](https://clawhub.ai/user/LanbowAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanbowai](https://clawhub.ai/user/lanbowai)
 
-## Use Case: <br>
-External users and developers use this skill to plan, create, launch, monitor, and optimize Meta advertising campaigns through guided research, creative generation, and lanbow-ads CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use powerful Meta ad-management credentials and change paid advertising campaigns. <br>
-Mitigation: Install only when the lanbow-ads CLI is trusted, use a test ad account with a low budget, grant the narrowest scopes possible, and manually approve campaign activation, budget, targeting, media upload, and credential-storage steps. <br>
-Risk: Advertising tokens, app secrets, Gemini keys, or long-lived system-user tokens may be exposed if pasted into chat. <br>
-Mitigation: Use platform secret fields or environment variables for credentials, and only provide optional secrets such as META_APP_SECRET or GEMINI_API_KEY when the requested workflow requires them. <br>
+## Use Case:
 
+Developers, marketers, and agency operators use this skill to plan, create, launch, monitor, and optimize Meta advertising campaigns across the full ad lifecycle.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LanbowAI/lanbow-claw-skill) <br>
-- [Lanbow homepage](https://lanbow.com/) <br>
-- [Lanbow Claw Skill guide](https://lanbow.com/blog/lanbow-claw-skill) <br>
-- [lanbow-ads npm package](https://www.npmjs.com/package/lanbow-ads) <br>
-- [Meta Ad Account Setup Guide](references/meta-account-setup.md) <br>
-- [Lanbow Ads CLI](references/ad-delivery.md) <br>
-- [Meta Ads CLI Commands Reference](references/ad-delivery-commands.md) <br>
-- [Ads Strategy Researcher](references/strategy-research.md) <br>
-- [AI Ad Creative Image Generation](references/creative-generation.md) <br>
-- [Post-Campaign Review](references/post-campaign-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, campaign configuration, strategy reports, review plans, and generated creative file references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the lanbow-ads CLI, Meta Marketing API, web research tools, and Google Gemini for creative generation when the user supplies the required credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can give an agent and the lanbow-ads CLI authority over Meta ad accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use platform secret fields or environment variables, provide least-privilege short-lived tokens, start with a test ad account and small budgets, and revoke credentials after use.
+
+Risk: The release depends on installing a global lanbow-ads CLI package that the security evidence describes as unpinned.
+
+Mitigation: Pin and verify the CLI package before use, and only run it in a trusted runtime.
+
+Risk: Generated campaign recommendations or delivery commands could spend budget or publish unintended ads.
+
+Mitigation: Create campaigns in paused status where supported, review campaign settings before activation, and require human approval for budget or status changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanbowai/skills/lanbow-claw-skill)
+- [Lanbow Homepage](https://lanbow.com/)
+- [Lanbow Claw Skill Guide](https://lanbow.com/blog/lanbow-claw-skill)
+- [lanbow-ads npm Package](https://www.npmjs.com/package/lanbow-ads)
+- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+- [Meta Developer Apps](https://developers.facebook.com/apps/)
+- [Meta Ads Manager](https://adsmanager.facebook.com/)
+- [Meta Business Settings](https://business.facebook.com/settings/)
+- [Ad Delivery](references/ad-delivery.md)
+- [Ad Delivery Commands](references/ad-delivery-commands.md)
+- [Creative Generation](references/creative-generation.md)
+- [Meta Account Setup](references/meta-account-setup.md)
+- [Post-Campaign Review](references/post-campaign-review.md)
+- [Strategy Research](references/strategy-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON artifacts, shell command blocks, and generated image files when creative generation is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May configure and invoke the lanbow-ads CLI; creative generation can produce PNG image files and proposal JSON.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

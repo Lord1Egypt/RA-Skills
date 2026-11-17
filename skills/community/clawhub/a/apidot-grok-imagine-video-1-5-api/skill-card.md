@@ -1,48 +1,63 @@
-## Description: <br>
-Grok Imagine Video 1.5 API on APIDot for xAI image-to-video generation, reference image animation, prompt-guided motion, short video clips, duration planning, 480p 720p planning, async task submission, task_id handling, polling, webhooks, API key safety, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grok Imagine Video 1.5 API on APIDot for xAI image-to-video generation, reference image animation, prompt-guided motion, short video clips, duration planning, 480p 720p planning, async task submission, task_id handling, polling, webhooks, API key safety, and APIDot docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan APIDot Grok Imagine Video 1.5 integrations, route to the right APIDot docs, and handle async image-to-video workflows with polling or webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys and request data can expose credentials, prompts, private media URLs, callback URLs, or generated video links. <br>
-Mitigation: Keep APIDOT_API_KEY in server-side secrets, avoid logging sensitive request or result data, and do not place keys or private URLs in browser code, public repositories, screenshots, or chat output. <br>
-Risk: Live APIDot calls may submit media-generation jobs or trigger webhook workflows unintentionally. <br>
-Mitigation: Only make live API calls when the user explicitly asks and provides a controlled server-side environment; use polling for local testing and idempotent webhook handlers for production workflows. <br>
-Risk: Model-specific request fields, availability, limits, and commercial terms may change over time. <br>
-Mitigation: Use the current APIDot docs and model page as the source of truth before generating copyable request examples or implementation details. <br>
+## Use Case:
 
+Developers and engineers use this documentation-only skill to route Grok Imagine Video 1.5 integration work to APIDot model pages, docs, async task guidance, polling, webhooks, and API-key handling notes.
 
-## Reference(s): <br>
-- [APIDot Grok Imagine Video 1.5 Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [Grok Imagine Video 1.5 Model Page](https://apidot.ai/models/grok-imagine-video-1-5) <br>
-- [Grok Imagine Video 1.5 API Docs](https://apidot.ai/docs/grok-imagine-video-1-5) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with optional code and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it includes no executable scripts and makes no automatic network requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API keys or private media details could be exposed if copied into browser code, logs, public repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side environment variables or a backend secret manager, and avoid logging private prompts, private media URLs, generated video URLs, callback URLs, or API keys.
+
+Risk: APIDot request fields, model availability, limits, or commercial terms may change after the skill release.
+
+Mitigation: Verify the live APIDot docs and model page before making real API calls or publishing copyable request examples.
+
+Risk: Webhook retries or duplicate callback delivery can create duplicate visible results in production workflows.
+
+Mitigation: Persist task IDs and make webhook handlers idempotent before attaching generated videos to user-visible records.
+
+## Reference(s):
+
+- [APIDot Grok Imagine Video 1.5 Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [Grok Imagine Video 1.5 Model Page](https://apidot.ai/models/grok-imagine-video-1-5)
+- [Grok Imagine Video 1.5 API Docs](https://apidot.ai/docs/grok-imagine-video-1-5)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with links, planning notes, and copyable integration guidance when supported by current APIDot docs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable files, bundled clients, automatic network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Control desktop apps via mouse and keyboard, capture screenshots, teach AI tasks by demonstration, and automate workflows with saved reusable tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control desktop applications with screen capture, OCR, mouse and keyboard automation, and reusable demonstration-taught tasks.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent capture the desktop, issue mouse and keyboard actions, and record reusable desktop automation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad unsandboxed control over the live screen, mouse, keyboard, screenshots, and saved task replay. <br>
-Mitigation: Use it only when intentional and supervised; close sensitive applications before use. <br>
-Risk: Screenshots and OCR can expose passwords, tokens, payments, private messages, or administrative settings visible on screen. <br>
-Mitigation: Avoid teaching or replaying workflows involving sensitive data and remove private content from view before capture. <br>
-Risk: Saved task JSON can replay desktop actions later without enough built-in safeguards. <br>
-Mitigation: Review saved task JSON before running it and keep learned tasks scoped to low-risk workflows. <br>
+## Use Case:
 
+Developers and power users use this skill to let an agent inspect the desktop, manipulate applications, and record or replay reusable workflow automations.
 
-## Reference(s): <br>
-- [Desktop Agent ClawHub listing](https://clawhub.ai/fuzzyb33s/desktop-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create screenshot image files and learned task JSON files in the local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad access to screen contents and mouse and keyboard control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this level of desktop access is intentional, and avoid use around passwords, banking, admin prompts, private messages, or sensitive documents.
+
+Risk: Saved desktop tasks can replay actions with weak safeguards.
+
+Mitigation: Review learned task files before running them, and treat task names and task JSON as trusted inputs only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/desktop-agent)
+- [Skill usage documentation](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown with Python examples, CLI commands, task JSON, screenshots, and plain-text execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create screenshot image files and saved learned-task JSON files in the configured workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-CLI for the Seer media request management API, including search, media requests, user management, issue tracking, system status checks, and administration for a self-hosted Seer instance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for the Seer media request management API that helps agents search movies and TV shows, create and manage media requests, manage users, track issues, and administer a self-hosted Seer instance.
 
-## Publisher: <br>
-[electather](https://clawhub.ai/user/electather) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[electather](https://clawhub.ai/user/electather)
 
-## Use Case: <br>
-External users and administrators use this skill to connect an agent to a self-hosted Seer server, search media catalogs, create and manage media requests, inspect issues, and perform user or system administration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes high-impact administration operations, including delete actions, bulk user updates, imports, password resets, and other account-changing workflows. <br>
-Mitigation: Use least-privileged Seer API credentials, avoid user-administration rights unless required, and require explicit human confirmation before delete, bulk update, import, password reset, or other account-changing operations. <br>
-Risk: The skill requires Seer server credentials and may run an MCP HTTP server for remote clients. <br>
-Mitigation: Protect SEER_API_KEY and MCP authentication tokens, prefer authenticated transports, and avoid exposing the MCP endpoint without a secret path, bearer token, or equivalent access control. <br>
+## Use Case:
 
+External developers and administrators use this skill to connect agents or shell workflows to a self-hosted Seer instance for media discovery, request management, user administration, issue tracking, and system status checks.
 
-## Reference(s): <br>
-- [Seer CLI repository](https://github.com/electather/seer-cli) <br>
-- [Seer application repository](https://github.com/seerr/app) <br>
-- [Seer CLI releases](https://github.com/electather/seer-cli/releases/latest) <br>
-- [ClawHub listing](https://clawhub.ai/electather/seer-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return JSON; verbose mode can include request URLs and HTTP status before the JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v0.4.0 (source: server release evidence) <br>
+Risk: Powerful Seer API credentials can expose media, user, and administrative operations more broadly than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged Seer API key, store it securely, and restrict who can access the configured skill or MCP server.
+
+Risk: Network-accessible MCP HTTP transport can be exposed without strong authentication if no-auth mode is used or route tokens are weak.
+
+Mitigation: Prefer bearer-token authentication, bind HTTP services to localhost or a protected network, and avoid no-auth mode for network-accessible MCP servers.
+
+Risk: Administrative actions such as delete, password reset, bulk user updates, or external media-file actions can be destructive.
+
+Mitigation: Require explicit human confirmation before executing high-impact administrative or file-management actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/electather/skills/seer-manager)
+- [seer-cli repository](https://github.com/electather/seer-cli)
+- [seer-cli releases](https://github.com/electather/seer-cli/releases/latest)
+- [Seer application](https://github.com/seerr/app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output is JSON; verbose mode may add request URLs and HTTP status before JSON.]
+
+## Skill Version(s):
+
+v0.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

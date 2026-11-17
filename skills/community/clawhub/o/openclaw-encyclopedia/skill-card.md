@@ -1,45 +1,57 @@
-## Description: <br>
-OpenClaw Encyclopedia gives agents a documentation-first workflow for OpenClaw product, runtime, configuration, troubleshooting, automation, security, and operational questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Encyclopedia guides agents through docs-first answers and operational work for OpenClaw behavior, configuration, troubleshooting, automation, security, and runtime diagnostics.
 
-## Publisher: <br>
-[kklouzal](https://clawhub.ai/user/kklouzal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklouzal](https://clawhub.ai/user/kklouzal)
 
-## Use Case: <br>
-Developers and operators use this skill when working with OpenClaw behavior, CLI usage, configuration review, live troubleshooting, automation planning, and local operational documentation. It helps agents prefer official OpenClaw documentation and clearly separate official docs, observed local state, and inferred guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workspace-local cache and notes can preserve operational details from an OpenClaw environment. <br>
-Mitigation: Review .OpenClaw-Encyclopedia notes before sharing a workspace and do not store secrets, tokens, private URLs, recovery codes, or sensitive access details there. <br>
-Risk: OpenClaw operational guidance can affect gateway, session, channel, automation, skill, plugin, or security behavior. <br>
-Mitigation: Consult the relevant official OpenClaw documentation and inspect current state before applying commands or configuration changes, especially in high-sensitivity areas. <br>
+## Use Case:
 
+Developers and operators use this skill to answer OpenClaw-specific questions, plan commands, review configuration, troubleshoot runtime behavior, and maintain a local documentation-and-operations cache.
 
-## Reference(s): <br>
-- [OpenClaw Encyclopedia on ClawHub](https://clawhub.ai/kklouzal/openclaw-encyclopedia) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [Workflow Reference](references/workflow.md) <br>
-- [Cache Layout Reference](references/cache-layout.md) <br>
-- [Topic Map Reference](references/topic-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a workspace-local .OpenClaw-Encyclopedia cache and notes tree.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence) <br>
+Risk: Workspace notes may accidentally capture secrets, tokens, private URLs, or confidential access details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use .OpenClaw-Encyclopedia as operational memory only, and redact or omit secrets and sensitive access details from cached notes and inventories.
+
+Risk: The cache helper has a bounded fetcher weakness around redirect validation, response size limits, and content-type checks.
+
+Mitigation: Use the helper only for intended docs.openclaw.ai pages and review fetched cache content before relying on it or sharing it.
+
+## Reference(s):
+
+- [OpenClaw Encyclopedia on ClawHub](https://clawhub.ai/kklouzal/skills/openclaw-encyclopedia)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Workflow](references/workflow.md)
+- [Cache Layout](references/cache-layout.md)
+- [Topic Map](references/topic-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, configuration notes, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace-local .OpenClaw-Encyclopedia cache and notes when used by an agent.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

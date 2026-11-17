@@ -1,43 +1,62 @@
-## Description: <br>
-Scores improvement candidates with heuristic rules, evaluator evidence, optional LLM judging, and optional multi-reviewer blind panel review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores and ranks skill improvement candidates using heuristic rules, evaluator evidence, LLM-as-judge review, and multi-reviewer blind panels.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and improvement-pipeline maintainers use this skill to rank proposed skill changes, inspect scoring rationale, and produce advisory accept, conditional, hold, or reject signals before a separate gate makes final decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes local Python evaluation behavior that can be unsafe for untrusted files. <br>
-Mitigation: Run the real-skill evaluator only on trusted Python files or inside a sandboxed environment. <br>
-Risk: Non-mock LLM judging may send candidate or skill content through a configured Claude or OpenAI account or proxy. <br>
-Mitigation: Use mock LLM judging for sensitive skills, and verify account and proxy settings before non-mock runs. <br>
-Risk: accept_for_execution and executor handoff signals are advisory rather than final approvals. <br>
-Mitigation: Require a separate gate to approve execution before applying any candidate changes. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to evaluate proposed skill improvements, compare candidates, and produce explainable scoring artifacts before execution or gate review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lanyasheng/improvement-discriminator) <br>
-- [Publisher profile](https://clawhub.ai/user/lanyasheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON scoring reports and markdown-facing guidance with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include per-candidate scores, blockers, recommendations, judge notes, panel reviews, cognitive labels, aggregated scores, and LLM verdicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: Runtime evaluation of untrusted skill paths can load local Python code in process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run runtime evaluation only inside a controlled sandbox and review the target path before execution.
+
+Risk: accept_for_execution recommendations are gate-adjacent and could be mistaken for final approval.
+
+Mitigation: Require a separate execution or release gate before applying any recommended candidate.
+
+Risk: Human-review receipts are advisory unless real signer verification is added.
+
+Mitigation: Treat receipts as supporting evidence and verify reviewers through an independent signing or approval process.
+
+Risk: LLM judge mode can send candidate and target content to external model providers when configured.
+
+Mitigation: Use mock or approved provider configurations for sensitive content, and limit provider credentials to controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/improvement-discriminator)
+- [ClawHub publisher profile](https://clawhub.ai/user/lanyasheng)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance, shell commands]
+
+**Output Format:** [JSON scoring artifact with ranked candidates, recommendations, blockers, panel reviews, and LLM verdicts when enabled]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit the output artifact path on the command line; LLM judge mode may use external model providers when configured.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

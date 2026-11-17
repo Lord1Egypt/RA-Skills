@@ -1,46 +1,62 @@
-## Description: <br>
-Assists with generating Juejin-style technical article drafts from AI-GEO content assets and preparing them for manual review and publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists developers and technical content teams in turning AI-GEO content assets into Juejin-style article drafts, metadata, and publish review materials for manual publication.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-Developers and technical operations teams use this skill to turn local AI-GEO content assets into Juejin-ready article drafts, titles, summaries, tags, and a pre-publication checklist. It supports visible-browser draft filling while keeping final save and publish actions under human control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated public article content may be inaccurate, over-promotional, or unsuitable for publication. <br>
-Mitigation: Review the generated article and publish checklist manually before saving or publishing on Juejin. <br>
-Risk: Optional browser automation interacts with a logged-in Juejin draft form. <br>
-Mitigation: Use only a visible local browser session, keep login and security prompts manual, and leave final save and publish actions to the user. <br>
-Risk: Platform security prompts or risk controls may appear during draft preparation. <br>
-Mitigation: Stop automation when CAPTCHA, secondary verification, or risk-control prompts appear and let the user take over manually. <br>
+## Use Case:
 
+Developers and technical operations teams use this skill to adapt local AI-GEO brand assets into Juejin-ready technical drafts, summaries, title candidates, tags, and a pre-publication checklist. The browser-fill flow is intended to assist draft preparation while leaving review, saving, and final publishing under human control.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ljseeking/juejin-geo-draft-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/ljseeking) <br>
-- [README](artifact/README.md) <br>
-- [Automation Safety Rules](artifact/automation/safety_rules.md) <br>
-- [Playwright Draft Flow](artifact/automation/playwright_draft_flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown files, text metadata, checklists, and optional local Playwright draft-filling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces article body, Markdown-ready content, title candidates, summary, tags, publish checklist, and draft status for manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-05-12) <br>
+Risk: Generated articles, titles, tags, or summaries may contain factual errors, unsupported claims, or over-marketing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content against the publish checklist and source assets before saving or publishing.
+
+Risk: The optional browser automation uses a visible browser session and may interact with sensitive logged-in account state.
+
+Mitigation: Do not export credentials or browser storage, stop for login or risk-control prompts, and keep final saving and publishing as manual actions.
+
+Risk: The example automation depends on Playwright behavior and may overwrite clipboard contents while filling article text.
+
+Mitigation: Install it in a virtual environment, pin Playwright for operational use, and expect clipboard contents to be replaced during the draft-fill flow.
+
+Risk: Brand inputs and generated drafts may contain sensitive business information.
+
+Mitigation: Treat local input files as sensitive and confirm the selected model and runtime privacy settings before generating drafts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ljseeking/skills/juejin-geo-draft-generator)
+- [Juejin Creator Draft Page](https://juejin.cn/creator/content/article/draft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, generated draft text, title and tag lists, checklist content, and optional Playwright-assisted browser actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files under output/juejin and requires human review before any Juejin publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog, released 2026-05-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

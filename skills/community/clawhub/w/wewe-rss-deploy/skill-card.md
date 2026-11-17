@@ -1,44 +1,63 @@
-## Description: <br>
-Deploys a WeWe RSS service that uses WeChat Read to fetch WeChat public-account articles and publish RSS-style feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys WeWe RSS to fetch WeChat public-account articles through WeChat Reading and generate RSS feeds with SQLite configuration and optional background process management.
 
-## Publisher: <br>
-[agasding](https://clawhub.ai/user/agasding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agasding](https://clawhub.ai/user/agasding)
 
-## Use Case: <br>
-Developers and operators use this skill to install, configure, run, and remove a local WeWe RSS service backed by SQLite, with PM2 as an optional process manager. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service is configured to bind to all interfaces and listen on port 4000, which can expose an account-linked RSS service to untrusted networks. <br>
-Mitigation: Bind to 127.0.0.1 unless remote access is intentionally required, restrict firewall access to port 4000, and use a strong AUTH_CODE. <br>
-Risk: The deployment uses a public WeChat Read relay through PLATFORM_URL, which may expose account-linked traffic to a third party. <br>
-Mitigation: Use a trusted or self-hosted relay and scan the WeChat Read login QR code only when the upstream project and relay are trusted. <br>
-Risk: Uninstall commands remove the project directory and local configuration, which may delete the SQLite database and feed state. <br>
-Mitigation: Back up the database before uninstalling or replacing the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to install, configure, run, verify, and uninstall a local WeWe RSS service that exposes RSS and API feeds for WeChat public-account articles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agasding/wewe-rss-deploy) <br>
-- [Publisher profile](https://clawhub.ai/user/agasding) <br>
-- [Referenced upstream WeWe RSS project](https://github.com/cooderl/wewe-rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell and environment-variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment, verification, usage, troubleshooting, and uninstall steps for an agent to execute or relay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill downloads and runs upstream project code without pinning a known commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the upstream repository or archive to a reviewed commit, verify downloads, and review dependency changes before running install or build commands.
+
+Risk: The deployment example binds the service to 0.0.0.0 on port 4000.
+
+Mitigation: Bind to localhost unless network exposure is required, restrict access with firewall or reverse-proxy controls, and use a strong auth code.
+
+Risk: The configuration uses a default third-party WeChat Reading relay URL.
+
+Mitigation: Use that relay only if trusted, or replace it with a self-hosted or reviewed relay endpoint.
+
+Risk: PM2 startup can make the service persist across restarts.
+
+Mitigation: Enable PM2 startup only after explicit approval and document how to stop and remove the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agasding/skills/wewe-rss-deploy)
+- [ClawHub publisher profile](https://clawhub.ai/user/agasding)
+- [WeWe RSS upstream project](https://github.com/cooderl/wewe-rss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, env, and table snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment steps, environment configuration, API endpoint examples, troubleshooting, and uninstall guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Use when receiving code review feedback - requires technical verification before implementing suggestions, with reasoned pushback when feedback is technically questionable; no performative agreement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when receiving code review feedback - requires technical verification before implementing suggestions, with reasoned pushback when feedback is technically questionable; no performative agreement.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when responding to code review feedback. It guides them to verify suggestions against the codebase, ask clarifying questions, push back on technically unsound changes, and implement validated fixes with tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect and modify project code when review feedback is provided. <br>
-Mitigation: Review the resulting changes and tests before merging, and require the agent to validate feedback against the codebase before implementation. <br>
+## Use Case:
 
+Developers and coding agents use this skill to handle code review feedback by verifying suggestions against the codebase, clarifying unclear requests, applying fixes one at a time, and pushing back when feedback is technically unsound.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/openclaw-receiving-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, shell commands] <br>
-**Output Format:** [Markdown or plain text guidance with code, commands, and test notes when implementation is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external services, credentials, MCP tools, or API keys are required by the skill evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Non-Chinese-speaking users may misunderstand or fail to review the operational instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate and review the skill text before use if the operator cannot read Chinese.
+
+Risk: The skill can encourage rejecting review feedback when the agent incorrectly assesses the codebase context.
+
+Mitigation: Require tests or code references for any pushback, and involve the project owner for architecture-level disagreements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-receiving-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operational instructions for code review response behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

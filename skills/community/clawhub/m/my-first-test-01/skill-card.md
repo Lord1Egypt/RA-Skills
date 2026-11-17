@@ -1,48 +1,65 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement across agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections so agents can record failures, user corrections, missing capabilities, outdated knowledge, and recurring better practices for later review.
 
-## Publisher: <br>
-[muyangsx](https://clawhub.ai/user/muyangsx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muyangsx](https://clawhub.ai/user/muyangsx)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture corrections, command failures, missing capabilities, and reusable task learnings as local Markdown notes that can later be promoted into agent guidance or extracted into reusable skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning notes and promoted memory can influence future agent sessions. <br>
-Mitigation: Use project-local .learnings storage by default and review entries before promoting them into AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or similar prompt files. <br>
-Risk: Broad hooks can inject reminders into many prompts and increase persistent behavioral influence. <br>
-Mitigation: Enable hooks only when desired, avoid global empty matchers unless every prompt should trigger the hook, and disable hooks when the reminder workflow is no longer needed. <br>
-Risk: Learning entries may capture sensitive operational context if copied too broadly. <br>
-Mitigation: Redact secrets, tokens, environment variables, private keys, full source files, and raw transcripts before saving or sharing learning entries. <br>
-Risk: Package identity is unclear enough to require review before installation. <br>
-Mitigation: Verify the ClawHub publisher, release metadata, and intended package before installing or enabling the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture concise learning, error, and feature-request records during coding sessions, then promote durable patterns into project or agent memory after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muyangsx/my-first-test-01) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, templates, and optional hook or scaffold scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append local .learnings files, inject opt-in reminder text through hooks, or scaffold a skill directory when the helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Persistent self-improvement logs and promoted memory files can preserve incorrect guidance or sensitive context across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review entries before promotion, keep records concise, and redact secrets, tokens, environment variables, full command outputs, and raw transcripts.
+
+Risk: Broad or global hook configuration can inject reminders in more sessions than intended and may inspect command output for error patterns.
+
+Mitigation: Prefer project-local hooks, use the minimal activator-only setup by default, and enable command-output inspection only in trusted workspaces.
+
+Risk: Cross-session sharing can expose transcripts or private working context if used casually.
+
+Mitigation: Use cross-session tools only in trusted environments and share sanitized summaries plus relevant file paths instead of raw transcripts.
+
+Risk: The skill extraction helper creates files from local inputs and should not be treated as an unattended automation path.
+
+Mitigation: Run extraction manually, review generated skill content before use, and avoid running the helper in workspaces with untrusted symlinks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/muyangsx/skills/my-first-test-01)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JSON, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update local .learnings files, configure opt-in hooks, or scaffold reusable skill files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

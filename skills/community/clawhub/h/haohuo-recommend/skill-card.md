@@ -1,44 +1,54 @@
-## Description: <br>
-电商导购助手 is a conversational shopping assistant that uses haohuo-cps product data to provide end buyers with product recommendations, price checks, deal reminders, and shopping advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商导购助手，以对话方式为终端买家提供商品推荐、价格查询、优惠提醒、购物建议。基于 haohuo-cps 获取实时商品数据，链接默认为 CPS 推广链接（推广者可赚取佣金）。适合 CPS 推广者接入到自己的 APP 或购物群，作为买家侧的导购入口
 
-## Publisher: <br>
-[zachariah-77](https://clawhub.ai/user/zachariah-77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zachariah-77](https://clawhub.ai/user/zachariah-77)
 
-## Use Case: <br>
-External CPS promoters can embed this skill in apps, websites, customer-service windows, or shopping groups to answer buyer shopping questions, retrieve product data through haohuo-cps, and present buyer-facing recommendations without exposing commission fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on sensitive credential setup through haohuo-cps; missing or incorrect LINKBOT_API_KEY configuration may prevent promoter attribution for purchase links. <br>
-Mitigation: Configure LINKBOT_API_KEY in haohuo-cps before deployment and test generated purchase links with a non-production buyer flow. <br>
-Risk: Buyer-facing replies could accidentally expose promoter-only information such as commission rate, CPS terminology, or product IDs. <br>
-Mitigation: Review responses for the required field filtering before publishing them to buyer channels. <br>
-Risk: Product prices, coupons, stock, and regional subsidy details can change after haohuo-cps returns data. <br>
-Mitigation: Use fresh haohuo-cps results for each buyer request and include clear reminders to confirm time-limited or region-limited offers before purchase. <br>
+## Use Case:
 
+External CPS promoters and shopping-service operators use this skill to provide buyer-facing product recommendations, price checks, discount reminders, and purchase guidance based on haohuo-cps product data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zachariah-77/haohuo-recommend) <br>
-- [Haohuo homepage](https://www.haohuo.com) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Buyer-facing conversational Markdown with short product cards, prices, offer notes, rationale, and purchase links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters promoter-only fields such as commission rate, CPS terminology, and product ID from buyer replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Buyer-facing recommendations may include affiliate purchase links while suppressing the commission relationship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Operators should add clear affiliate disclosure and confirm compliance obligations before deploying in buyer-facing settings.
+
+Risk: Product recommendations, prices, discounts, stock, and purchase links depend on haohuo-cps data.
+
+Mitigation: Require current haohuo-cps results before making product claims, and avoid presenting unsupported prices, promotions, availability, or links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zachariah-77/skills/haohuo-recommend)
+- [Haohuo homepage](https://www.haohuo.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown-style conversational shopping recommendations with product summaries, prices, discount notes, and purchase links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on haohuo-cps for product data and should not fabricate product prices, offers, stock, or links.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

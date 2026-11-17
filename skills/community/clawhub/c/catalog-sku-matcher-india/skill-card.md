@@ -1,46 +1,60 @@
-## Description: <br>
-Match and normalize product listings across Indian ecommerce catalogs with variant-aware rules, confidence scoring, false-match prevention, and review queues for ambiguous pairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Match and normalize product listings across Indian ecommerce catalogs with variant-aware rules, confidence scoring, false-match prevention, and review queues for ambiguous pairs.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Catalog, marketplace, and ecommerce teams use this skill to normalize Indian ecommerce listings, match equivalent products across stores, and route ambiguous pairs for review before using matches in price comparison or catalog operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic SKU matches can be wrong when catalog data is incomplete, ambiguous, or missing variant fields. <br>
-Mitigation: Validate thresholds against labeled category data, route medium-confidence pairs to manual review, and monitor false-positive rates before production use. <br>
-Risk: Published homepage metadata appears to reference a different price-tracker page. <br>
-Mitigation: Confirm the metadata link before using it as product, support, or provenance documentation. <br>
+## Use Case:
 
+Developers and catalog operations teams use this skill to normalize Indian ecommerce listings, compare candidate product pairs, assign confidence decisions, reject unsafe matches, and queue ambiguous pairs for manual review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anugotta/catalog-sku-matcher-india) <br>
-- [Matching rules](matching-rules.md) <br>
-- [Confidence scoring guide](scoring-guide.md) <br>
-- [Setup guide](setup.md) <br>
-- [Validation checklist](validation-checklist.md) <br>
-- [Edge-case examples](examples.md) <br>
-- [Metadata homepage](https://clawhub.ai/Michael-laffin/price-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured match decisions, confidence levels, reason codes, and review queue entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces canonical SKU candidates, matched listings, rejected candidates, and manual review entries; no code execution or credential use indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: False matches can affect price comparison quality or downstream catalog decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tune confidence thresholds by category, validate on labeled test sets, and monitor false-positive rates before production use.
+
+Risk: Missing or conflicting variant, bundle, or condition fields can make a pair ambiguous.
+
+Mitigation: Route medium-confidence or incomplete pairs to manual review and require explainable reason codes for rejects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anugotta/skills/catalog-sku-matcher-india)
+- [Publisher profile](https://clawhub.ai/user/anugotta)
+- [Artifact metadata homepage](https://clawhub.ai/Michael-laffin/price-tracker)
+- [Matching rules](artifact/matching-rules.md)
+- [Confidence scoring guide](artifact/scoring-guide.md)
+- [Edge-case examples](artifact/examples.md)
+- [Setup guide](artifact/setup.md)
+- [Validation checklist](artifact/validation-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured match, rejection, and manual-review entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes canonical SKU candidates, matched listings with confidence levels, rejected candidates with reason codes, and manual review queue entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

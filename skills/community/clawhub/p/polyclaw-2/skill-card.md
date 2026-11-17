@@ -1,43 +1,59 @@
-## Description: <br>
-Polyclaw helps agents browse Polymarket markets, execute YES/NO trades, track positions and P&L, and discover hedges with LLM analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Polymarket via split + CLOB execution. Browse markets, track positions with P&L, discover hedges via LLM. Polygon/Web3.
 
-## Publisher: <br>
-[woody2434](https://clawhub.ai/user/woody2434) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[woody2434](https://clawhub.ai/user/woody2434)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Polymarket markets, manage a trading wallet, execute Polygon/Polymarket trades, track positions, and identify possible hedging relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests a wallet private key and can initiate live Polygon/Polymarket transactions. <br>
-Mitigation: Use a dedicated low-balance wallet, verify every trade or approval command manually, and revoke token approvals when finished. <br>
-Risk: The submitted artifact describes trading scripts that are not included in the artifact evidence. <br>
-Mitigation: Review the actual PolyClaw source before running any trade, wallet approval, or dependency installation command. <br>
-Risk: Hedge discovery and CLOB workarounds may involve OpenRouter and proxy services. <br>
-Mitigation: Review data-sharing and network-routing implications before using API keys, proxy credentials, or market data with external services. <br>
+## Use Case:
 
+External developers and trading operators use this skill to browse Polymarket markets, manage a Polygon wallet, execute YES/NO trades, track positions and P&L, and discover possible hedges with LLM assistance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/woody2434/polyclaw-2) <br>
-- [Polymarket](https://polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, formatted tables, and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv plus CHAINSTACK_NODE and POLYCLAW_PRIVATE_KEY for trading; hedge discovery also uses OPENROUTER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill requires a raw EVM private key in the environment for trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, avoid storing keys in shell history or long-lived environment files, and inspect the scripts and dependencies before use.
+
+Risk: The skill performs persistent on-chain approvals for Polymarket trading contracts.
+
+Mitigation: Understand exactly what each approval permits before running approval commands and plan how to revoke approvals after trading.
+
+Risk: Trading and hedge discovery can expose users to market, liquidity, CLOB execution, and LLM analysis errors.
+
+Mitigation: Review proposed trades manually, keep balances small, verify liquidity and pricing independently, and treat hedge suggestions as decision support rather than guarantees.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/woody2434/skills/polyclaw-2)
+- [Publisher profile](https://clawhub.ai/user/woody2434)
+- [Polymarket](https://polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, environment variable names, and command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request structured JSON output for some market and hedge commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-AI UGC video production from the terminal using the `agent-media` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI UGC video production from the terminal using the `agent-media` CLI.
 
-## Publisher: <br>
-[nevo-david](https://clawhub.ai/user/nevo-david) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nevo-david](https://clawhub.ai/user/nevo-david)
 
-## Use Case: <br>
-Developers, marketers, and content teams use this skill to draft scripts and construct `agent-media` CLI commands for UGC videos, SaaS review videos, subtitles, personas, and generated media workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated commands may upload product screenshots, URLs, local files, face photos, voice samples, or videos to external services. <br>
-Mitigation: Use only media approved for upload, review commands before execution, and verify the npm package and GitHub project before installing the CLI. <br>
-Risk: Generated media jobs may use the authenticated account and consume paid credits. <br>
-Mitigation: Authenticate only with the intended account and check available credits before running generation commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Media ClawHub listing](https://clawhub.ai/nevo-david/agent-media) <br>
-- [agent-media CLI GitHub project](https://github.com/gitroomhq/agent-media) <br>
-- [agent-media-cli npm package](https://www.npmjs.com/package/agent-media-cli) <br>
-- [Agent Media official website](https://agent-media.ai) <br>
+## Use Case:
 
+Developers and content operators use this skill to guide agents through generating short UGC and SaaS review videos with the `agent-media` CLI, including script preparation, actor selection, B-roll screenshots, subtitles, and job management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, CLI flags, checklists, and short scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill itself provides guidance and command text; running those commands may produce external media URLs or downloaded media files through the agent-media CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The CLI authenticates with an external service and may upload user-provided screenshots, face photos, voice samples, and video files.
+
+Mitigation: Use a contained environment for installation and execution, and get explicit user permission before sending private or third-party media to the service.
+
+Risk: The skill depends on an npm-distributed CLI package.
+
+Mitigation: Verify the npm package before installation and review the package source or publisher details when supply-chain assurance is required.
+
+Risk: Browsing product URLs or using third-party images can introduce privacy, copyright, or permission issues.
+
+Mitigation: Ask the user before browsing product URLs or reusing third-party images, and prefer user-provided or clearly authorized assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nevo-david/skills/agent-media)
+- [agent-media CLI npm package](https://www.npmjs.com/package/agent-media-cli)
+- [agent-media GitHub repository](https://github.com/gitroomhq/agent-media)
+- [agent-media official website](https://agent-media.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance can reference external media URLs, local media paths, actor or persona choices, script duration limits, and generated job URLs from the CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

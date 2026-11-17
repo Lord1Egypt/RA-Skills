@@ -1,47 +1,61 @@
-## Description: <br>
-Systematic team status tracking via Slack DMs with confidential Obsidian-based internal tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic team status tracking via Slack DMs with confidential Obsidian-based internal tracking that gathers actionable project updates from team members.
 
-## Publisher: <br>
-[parthpandya1729](https://clawhub.ai/user/parthpandya1729) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[parthpandya1729](https://clawhub.ai/user/parthpandya1729)
 
-## Use Case: <br>
-Managers, founders, and team leads use this skill to request project updates through Slack DMs, follow up on missing responses, and maintain internal Obsidian notes about progress, blockers, and response patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables confidential workplace monitoring of response behavior and performance-adjacent notes. <br>
-Mitigation: Use it only where employee or contractor monitoring is formally approved, with clear privacy, consent, access-control, retention, and deletion rules. <br>
-Risk: Slack data processing and local Obsidian storage can expose sensitive workplace information. <br>
-Mitigation: Use least-privilege Slack credentials, avoid broad conversation-history collection, and restrict access to the Obsidian vault. <br>
-Risk: Behavioral notes and response metrics could be used for unauthorized performance judgments. <br>
-Mitigation: Do not use behavioral or performance-adjacent tracking for evaluation decisions unless formally authorized by organizational policy. <br>
+## Use Case:
 
+Managers and team leads use this skill to request project status updates by Slack DM, follow up on missing or vague responses, and maintain confidential Obsidian notes about progress, blockers, response quality, and support needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parthpandya1729/team-status-tracker) <br>
-- [README](README.md) <br>
-- [Skill guide](SKILL.md) <br>
-- [Status request templates](templates/status-request.md) <br>
-- [Obsidian tracking templates](templates/obsidian-tracking.md) <br>
-- [Configuration template](config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with message templates, YAML configuration, and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Slack and Obsidian-related skills; may use MATON_API_KEY for Slack API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can use Slack access for direct messages and status monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only after organizational approval, configure Slack scopes narrowly, and verify the gateway used for Slack access is trusted.
+
+Risk: The skill stores named workplace behavior, response quality, and response-time records in Obsidian.
+
+Mitigation: Store notes only in a protected location, define retention and deletion rules before use, and avoid subjective behavioral profiling unless explicitly authorized.
+
+Risk: The workflow may expose sensitive commercial or personnel information if confidentiality settings are changed without approval.
+
+Mitigation: Keep finance transparency disabled by default and share financial or personnel details only under approved policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parthpandya1729/skills/team-status-tracker)
+- [README](README.md)
+- [Status Request Templates](templates/status-request.md)
+- [Obsidian Daily Status Tracking Template](templates/obsidian-tracking.md)
+- [Configuration Template](config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with message templates, configuration snippets, and example shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Slack and Obsidian skills; Slack access should be scoped narrowly and configured through an approved gateway.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

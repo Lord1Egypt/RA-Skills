@@ -1,46 +1,56 @@
-## Description: <br>
-Dub (dub.co). Use this skill for ANY Dub request, including reading, creating, updating, and deleting data through the OOMOL Dub connector instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dub (dub.co). Use this skill for ANY Dub request — reading, creating, updating, and deleting data. Whenever a task involves Dub, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to manage Dub workspaces through an installed OOMOL CLI connection, including listing links, folders, tags, analytics, and making confirmed changes when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update Dub links, folders, and tags in the authenticated workspace. <br>
-Mitigation: Confirm the exact target and JSON payload with the user before running actions tagged as write operations. <br>
-Risk: The skill can delete Dub links, folders, and tags. <br>
-Mitigation: Require explicit approval for destructive actions and verify the target identifier before execution. <br>
-Risk: The skill relies on an authenticated OOMOL connection and sensitive credentials injected outside the agent session. <br>
-Mitigation: Use it only in environments where the agent is expected to operate the connected Dub account, and avoid unnecessary authentication or connection setup steps. <br>
+## Use Case:
 
+Employees and developers can use this skill to read, create, update, and delete links, folders, and tags, and retrieve analytics in a connected Dub workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-dub) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Dub Homepage](https://dub.co) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger OOMOL CLI connector calls that return JSON responses from the authenticated Dub workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup installer and installed oo CLI binary are unverified, and the CLI may make broader changes to agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and provision a pinned CLI before use. Set OO_SKILLS_SYNC_DISABLED=1 before invoking oo to prevent automatic agent-skill changes.
+
+Risk: Dub writes and deletions can change or remove workspace data.
+
+Mitigation: Restrict the Dub connection's permissions and keep the skill's confirmation requirement for every write or destructive action.
+
+## Reference(s):
+
+- [Dub API documentation](https://dub.co/docs/api-reference/introduction)
+- [Dub homepage](https://dub.co)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and connector results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas are fetched before use; writes and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

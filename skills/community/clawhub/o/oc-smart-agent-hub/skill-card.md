@@ -1,46 +1,61 @@
-## Description: <br>
-Multi-provider LLM assignment system for agents supporting cloud providers, local models, user-defined providers, auto-discovery, zero-code configuration, and task-based model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-provider LLM assignment system for agents supporting cloud providers and local models, with user-defined providers, local-model discovery, YAML configuration, and task-based model routing.
 
-## Publisher: <br>
-[msonline1110](https://clawhub.ai/user/msonline1110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[msonline1110](https://clawhub.ai/user/msonline1110)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and route agent workloads across multiple cloud and local LLM providers. It helps assign models by agent role or task type while considering cost, latency, quality, and fallback behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Provider configuration may expose API keys if users place credentials directly in config/models.yaml or share local configuration files. <br>
-Mitigation: Use environment variables for API keys, keep config/models.yaml out of version control, and remove or replace credentials before sharing configuration. <br>
-Risk: Local model discovery can contact local endpoints and reveal or depend on services running in the user's workspace or network environment. <br>
-Mitigation: Review local_discovery endpoints and only run discovery commands in a controlled environment where local model services are expected. <br>
-Risk: The skill includes Python scripts and third-party dependencies for provider management and routing. <br>
-Mitigation: Review scripts before execution and install dependencies in a controlled environment, especially in sensitive workspaces. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure cloud and local LLM providers, assign preferred models to agents, and route tasks by cost, latency, quality, or task type.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/msonline1110/oc-smart-agent-hub) <br>
-- [OpenClaw Homepage](https://github.com/openclaw/openclaw) <br>
-- [English Documentation](docs/README_en.md) <br>
-- [Chinese Documentation](docs/README_zh.md) <br>
-- [Security Notice](SECURITY_NOTICE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, shell commands, guidance, code] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples, Python command examples, and supporting script files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference provider API keys through environment variables and may scan configured local model endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The provider manager can probe configured local model endpoints during discovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict discovery endpoints to trusted localhost services and review endpoint configuration before running scans.
+
+Risk: Provider configuration can include API keys or references to credential environment variables.
+
+Mitigation: Use environment variables instead of inline api_key values, do not share real config files, and rotate any key that was committed or shared.
+
+Risk: Running the management scripts can write local configuration or cache files.
+
+Mitigation: Run scripts only against trusted configuration files and add runtime config and cache paths to the local .gitignore.
+
+## Reference(s):
+
+- [OpenClaw Smart Agent Hub on ClawHub](https://clawhub.ai/msonline1110/skills/oc-smart-agent-hub)
+- [OpenClaw homepage](https://github.com/openclaw/openclaw)
+- [English documentation](docs/README_en.md)
+- [Chinese documentation](docs/README_zh.md)
+- [Security notice](SECURITY_NOTICE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration and cache files when its bundled management scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, and VERSION_CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

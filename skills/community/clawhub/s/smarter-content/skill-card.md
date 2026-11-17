@@ -1,40 +1,57 @@
-## Description: <br>
-Smarter Content helps agents plan, draft, adapt, fact-check, and export content for WeChat, Zhihu, Xiaohongshu, blogs, and ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smarter Content helps agents plan, draft, optimize, fact-check, and export content for WeChat, Zhihu, Xiaohongshu, blogs, and ClawHub.
 
-## Publisher: <br>
-[rudagebil11-jpg](https://clawhub.ai/user/rudagebil11-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudagebil11-jpg](https://clawhub.ai/user/rudagebil11-jpg)
 
-## Use Case: <br>
-Content creators and developers use this skill to turn ideas into platform-specific drafts, analyze an optional reference article's style, check factual claims, and export finished content as Markdown or HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts may run shell commands built from user-provided article text or URLs. <br>
-Mitigation: Review before installing, avoid untrusted text or sensitive URLs, and replace shell execution with safe argument passing before use in sensitive environments. <br>
-Risk: Private drafts or internal URLs may expose sensitive content through the skill's network and execution behavior. <br>
-Mitigation: Use only non-sensitive sources unless the network and privacy behavior is documented and the execution path has been hardened. <br>
+## Use Case:
 
+External users and content creators use this skill to turn ideas into platform-specific articles, add SEO metadata, optionally analyze a reference article's style, fact-check generated claims, and export Markdown or HTML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rudagebil11-jpg/smarter-content) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and prose, with optional shell command examples and Markdown or HTML export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drafts and exported files should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence.release.version) <br>
+Risk: Crafted article text or reference URLs may trigger local command execution through unsafe subprocess handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted prompts and reference URLs until subprocess calls are replaced with non-shell APIs and all inputs are validated.
+
+Risk: Exported HTML may execute browser scripts if generated from untrusted Markdown.
+
+Mitigation: Do not open or publish exported HTML from untrusted content until HTML export uses a real sanitizer; review generated HTML before release.
+
+Risk: The fact-checking helper may fail or be unavailable, leaving unsupported claims in generated content.
+
+Mitigation: Manually verify factual claims and dependency availability before publishing generated articles.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rudagebil11-jpg/skills/smarter-content)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown, HTML files, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use reference URLs for style analysis and local helper scripts for fact checking and export.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

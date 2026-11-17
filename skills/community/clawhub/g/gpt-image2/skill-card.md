@@ -1,41 +1,58 @@
-## Description: <br>
-Generate high-quality images with GPT Image 2 (OpenAI gpt-image-2) through the ClawdChat tool gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with OpenAI gpt-image-2 through the ClawdChat gateway, including text-heavy designs, multi-element prompts, image-to-image workflows, and preset visual styles.
 
-## Publisher: <br>
-[lxyd-ai](https://clawhub.ai/user/lxyd-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxyd-ai](https://clawhub.ai/user/lxyd-ai)
 
-## Use Case: <br>
-External users and developers use this skill to submit GPT Image 2 image-generation jobs, poll for completed image URLs, and create images from prompts or reference-image URLs with explicit cost confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image-generation submissions send prompts and reference-image URLs to the ClawdChat gateway and use a ClawdChat credential. <br>
-Mitigation: Install only if the user trusts ClawdChat and the uno-cli dependency, and avoid private or identifying prompt content unless the user accepts ClawdChat's data handling. <br>
-Risk: Each image-generation submission deducts 300 ClawdChat credits from the logged-in account. <br>
-Mitigation: Confirm the prompt, reference image URLs, image count, size, style, and submit cost before each paid generation or pre-authorized batch. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to submit and poll paid image-generation jobs through ClawdChat, then return generated image URLs and status details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxyd-ai/gpt-image2) <br>
-- [ClawdChat](https://clawdchat.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces job IDs, polling guidance, generated image URLs, and surfaced error messages; image files are not written locally by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Risk: Image-generation submissions spend 300 ClawdChat credits per call.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the prompt, size, style, image count, and expected credit cost before each paid submit call.
+
+Risk: Prompts and reference-image URLs are sent to the external ClawdChat gateway.
+
+Mitigation: Do not submit confidential prompts, personal data, or sensitive signed reference-image URLs unless the user accepts that external processing.
+
+Risk: The uno-cli dependency is part of the trust boundary and is not pinned to an exact package version in the release evidence.
+
+Mitigation: Review and approve the installed uno-cli version before using the skill in controlled environments.
+
+## Reference(s):
+
+- [Gpt Image2 Skill Page](https://clawhub.ai/lxyd-ai/skills/gpt-image2)
+- [ClawdChat](https://clawdchat.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns job status, job IDs, generated image URLs, errors, and cost metadata from the gateway.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

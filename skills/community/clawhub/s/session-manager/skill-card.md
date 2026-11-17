@@ -1,41 +1,54 @@
-## Description: <br>
-Session Manager tracks conversation sessions, prompts before starting new topics, and records sessions to a user-selected Feishu Bitable or local Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Manager helps an agent detect topic changes, ask whether to start a new session, and save user-selected session records to Feishu Bitable or local Markdown files.
 
-## Publisher: <br>
-[zh40](https://clawhub.ai/user/zh40) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zh40](https://clawhub.ai/user/zh40)
 
-## Use Case: <br>
-External users and developers use this skill to keep long agent conversations organized by detecting topic changes, opening new sessions with consent, and saving summaries, decisions, and follow-up items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session records can retain sensitive conversation details in local Markdown files or a configured Feishu workspace. <br>
-Mitigation: Choose the storage destination deliberately and avoid saving sensitive details unless that storage location is appropriate for the user's needs. <br>
-Risk: Automatic topic-shift detection may suggest a new session at the wrong time. <br>
-Mitigation: Ask the user to confirm before opening a new session and before carrying previous context forward. <br>
+## Use Case:
 
+Agents and users use this skill to organize ongoing work into explicit sessions, preserve selected context across topic changes, and record summaries, decisions, and follow-up tasks.
 
-## Reference(s): <br>
-- [Session template](references/session-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zh40/session-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Conversation prompts plus Markdown session records or Feishu Bitable field entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update MEMORY.md with current session state and save records in the user-selected storage location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Session records may contain sensitive conversation metadata, summaries, decisions, or follow-up tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a storage location with appropriate access controls, prefer local Markdown when more control is needed, and avoid saving highly sensitive sessions unless retention and deletion practices are clear.
+
+Risk: Feishu Bitable storage can expose session records to workspace permissions outside the agent's control.
+
+Mitigation: Use a preconfigured Bitable only after confirming who can access it, or select local Markdown storage for tighter control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zh40/skills/session-manager)
+- [Session template](references/session-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown session records, Feishu Bitable field guidance, and concise user prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update user-selected session records and MEMORY.md state when the user has chosen a storage mode.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

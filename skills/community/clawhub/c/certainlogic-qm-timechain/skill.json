@@ -1,0 +1,32 @@
+{
+    "name": "certainlogic-qm-timechain",
+    "slug": "certainlogic-qm-timechain",
+    "version": "0.1.0",
+    "description": "Query the CertainLogic Timechain from any Y Combinator QM deployment. 75K+ cryptographically verified agent execution traces for training, audit, and research. Free open-source skill (API sold separately).",
+    "author": "CertainLogic",
+    "license": "MIT",
+    "category": "data-source",
+    "tags": [
+        "qm",
+        "y-combinator-qm",
+        "timechain",
+        "agent-execution-traces",
+        "training-data",
+        "cryptographic-verification",
+        "agent-audit",
+        "agent-data",
+        "agent-traces",
+        "provenance",
+        "audit",
+        "y-combinator",
+        "yc-qm",
+        "execution-data",
+        "ai-training-data",
+        "data-provenance"
+    ],
+    "repository": "https://github.com/CertainLogicAI/CertainLogic",
+    "homepage": "https://certainlogic.ai",
+    "marketplace": {
+        "clawhub": "certainlogicai/certainlogic-qm-timechain"
+    }
+}

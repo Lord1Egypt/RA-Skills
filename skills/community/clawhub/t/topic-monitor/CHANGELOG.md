@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0] - 2026-08-31
+
+### Fixed
+- `requires.env` was an object mapping variable names to prose. OpenClaw expects a string array and silently drops anything else, so none of the three variables were ever surfaced. They are now `envVars` entries with `required: false`.
+- Rewrote `metadata.openclaw` from single-line JSON to YAML.
+- Removed . It declared npm scripts that only wrapped the  commands already documented in the README, and a package name that was never published to npm. ClawHub CLI 0.22+ refuses to publish any folder containing a  as a skill.
+
 ## [1.5.2] - 2026-03-29
 
 ### Fixed

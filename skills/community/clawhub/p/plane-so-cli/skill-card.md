@@ -1,42 +1,55 @@
-## Description: <br>
-Manage Plane.so projects and work items using a zero-dependency Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Plane.so projects and work items using a zero-dependency Python CLI.
 
-## Publisher: <br>
-[luiseduardoaugusto](https://clawhub.ai/user/luiseduardoaugusto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[luiseduardoaugusto](https://clawhub.ai/user/luiseduardoaugusto)
 
-## Use Case: <br>
-Developers and teams use this skill to let an agent inspect and manage Plane.so projects, issues, comments, states, labels, cycles, and modules from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Plane API key can read or modify workspace project and issue data according to its permissions. <br>
-Mitigation: Use a Plane API key with only the permissions needed for the intended workspace and avoid installing it where the agent should not change Plane records. <br>
-Risk: The skill sends Plane workspace and work-item data to the Plane.so API. <br>
-Mitigation: Use it only with workspaces whose data may be processed by Plane.so, and verify the target workspace before running create, update, assign, comment, or delete commands. <br>
+## Use Case:
 
+Developers and project teams use this skill to inspect Plane.so workspace data and propose or run CLI commands for listing projects, creating and updating issues, assigning work, adding comments, and searching work items.
 
-## Reference(s): <br>
-- [Plane.so CLI source](https://github.com/luiseduardoaugusto/plane-so-cli) <br>
-- [Plane.so](https://plane.so) <br>
-- [ClawHub skill page](https://clawhub.ai/luiseduardoaugusto/plane-so-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default CLI output is human-readable text; the bundled CLI can return raw JSON with the -f json option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can change or delete Plane.so project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped Plane.so API token where possible and confirm project, issue, update, and delete targets before executing commands.
+
+Risk: The inspected package did not contain the bundled CLI executable/source it claims to provide.
+
+Mitigation: Verify the installed package includes the intended plane-so-cli executable/source before relying on the skill.
+
+## Reference(s):
+
+- [Plane.so CLI homepage](https://github.com/luiseduardoaugusto/plane-so-cli)
+- [Plane.so](https://plane.so)
+- [ClawHub skill page](https://clawhub.ai/luiseduardoaugusto/skills/plane-so-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require PLANE_API_KEY, PLANE_WORKSPACE, python3, and internet access to the Plane.so API.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

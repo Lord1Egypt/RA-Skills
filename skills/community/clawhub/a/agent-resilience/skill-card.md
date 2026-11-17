@@ -1,40 +1,53 @@
-## Description: <br>
-Agent resilience patterns for surviving context loss, capturing critical details, and self-improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent resilience patterns for surviving context loss, capturing critical details, and self-improvement.
 
-## Publisher: <br>
-[xinian5216](https://clawhub.ai/user/xinian5216) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinian5216](https://clawhub.ai/user/xinian5216)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve important task state, recover from context loss, and apply resilience practices during long or complex sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause broad conversation details or raw messages to be written to persistent local memory files. <br>
-Mitigation: Use it only when persistent local task memory is desired, and define rules to skip secrets, personal data, customer data, credentials, and proprietary material. <br>
-Risk: Persisted memory files may retain sensitive or stale context longer than intended. <br>
-Mitigation: Routinely inspect, rotate, or delete the memory files and clear task state when starting unrelated work. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve task state, capture important corrections and decisions, recover after context loss, and improve agent behavior during complex or long-running work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xinian5216/agent-resilience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, files] <br>
-**Output Format:** [Markdown guidance and local memory file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files such as SESSION-STATE.md and working-buffer.md when applied by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to persist broad conversation details and raw exchanges in local memory files, which can expose sensitive data if used in unsuitable workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in workspaces where persistent local notes are acceptable, and avoid recording secrets, credentials, private URLs, regulated data, or sensitive personal or business information.
+
+Risk: Recovered notes may carry stale or overbroad context into later work.
+
+Mitigation: Scope session state to the active task, reset it for unrelated work, and review recovered notes before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinian5216/skills/agent-resilience)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance and local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent local session-state and working-buffer notes when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Notificaciones que llueven</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+// Caen en este orden y cada vez más rápido. icono: 'mensaje', 'comentario', 'corazon', 'venta', 'agenda' o 'mencion'.
+// 4 a 8 notificaciones; texto ≤ 40 letras. Nada de marcas: los íconos son genéricos.
+const NOTIFS = [
+  { icono: 'mensaje',    titulo: 'nuevo mensaje',    texto: '¿todavía tienes lugares?' },
+  { icono: 'comentario', titulo: 'nuevo comentario', texto: 'lo quiero' },
+  { icono: 'corazon',    titulo: 'le gustó tu reel', texto: 'y lo compartió con una amiga' },
+  { icono: 'mencion',    titulo: 'te mencionaron',   texto: 'mira, esto es lo que te decía' },
+  { icono: 'mensaje',    titulo: 'nuevo mensaje',    texto: '¿cómo te pago?' },
+  { icono: 'venta',      titulo: 'nueva venta',      texto: 'acaba de entrar un pedido' },
+];
+const FRASE = 'tu contenido ya está vendiendo';      // remata en grande al final (máx. ~50 letras)
+const COLORES = {
+  fondo: '#ffe3cf',       // detrás del celular
+  celular: '#211d26',     // el marco
+  pantallaA: '#7b5cd6',   // fondo de pantalla (arriba)
+  pantallaB: '#ff8a6b',   // fondo de pantalla (abajo)
+  tarjeta: '#fffaf4',     // las notificaciones
+  tinta: '#211d26',
+  cartel: '#ffe24d',      // el cartel de la frase final
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const T0 = .9;                                        // cae la primera
+const LLEGA = []; { let t = T0, gap = .8; for (let i = 0; i < NOTIFS.length; i++) { LLEGA.push(t); t += gap; gap = Math.max(.17, gap * .7); } }
+const T_FRASE = LLEGA[LLEGA.length - 1] + .55;
+const DUR = +(T_FRASE + .6 + 1.6).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+WOBBLE = .9;
+const PAPEL = hacerPapel(COLORES.fondo, { fibras: false, viñeta: .2 });
+const CEL = { x: 150, y: 280, w: 780, h: 1170 };      // dentro de la zona segura
+const PANT = { x: CEL.x + 30, y: CEL.y + 30, w: CEL.w - 60, h: CEL.h - 60 };
+const TJ = { x: PANT.x + 22, w: PANT.w - 44, y0: PANT.y + 400, hueco: 18 };   // la pila de tarjetas
+
+// fondo de pantalla: degradado + 3 manchas suaves, pintado una vez
+const FONDO_PANT = (() => {
+  const c = document.createElement('canvas'); c.width = PANT.w; c.height = PANT.h; const p = c.getContext('2d');
+  const g = p.createLinearGradient(0, 0, PANT.w * .3, PANT.h); g.addColorStop(0, COLORES.pantallaA); g.addColorStop(1, COLORES.pantallaB);
+  p.fillStyle = g; p.fillRect(0, 0, PANT.w, PANT.h);
+  const r = rng(12);
+  for (let i = 0; i < 4; i++) { const x = r() * PANT.w, y = r() * PANT.h, rad = 200 + r() * 250;
+    const m = p.createRadialGradient(x, y, 0, x, y, rad); m.addColorStop(0, `rgba(255,255,255,${.12 + r() * .1})`); m.addColorStop(1, 'rgba(255,255,255,0)');
+    p.fillStyle = m; p.fillRect(0, 0, PANT.w, PANT.h); }
+  for (let i = 0; i < PANT.w * PANT.h / 30; i++) { p.fillStyle = r() < .5 ? 'rgba(0,0,0,.035)' : 'rgba(255,255,255,.05)'; p.fillRect(r() * PANT.w, r() * PANT.h, 2, 2); }
+  return c;
+})();
+
+// cada tarjeta: medida una vez
+const TARJ = NOTIFS.map(n => {
+  const aj = autoajuste(n.texto, LETRA_LIMPIA, 500, TJ.w - 190, 2, 40, 30);
+  return { ...n, aj, h: 118 + aj.rs.length * aj.size * 1.2 };
+});
+const COLOR_ICONO = { mensaje: '#3bb273', comentario: '#4a7bff', corazon: '#ff4d6d', venta: '#ffb020', agenda: '#ff6b3d', mencion: '#8f5cff' };
+
+// ---------- íconos genéricos, dibujados ----------
+function icono(tipo, cx, cy, s) {
+  const blanco = '#ffffff';
+  fill(roundRect(cx - 44 * s, cy - 44 * s, 88 * s, 88 * s, 24 * s), COLOR_ICONO[tipo] || '#888', { amp: .8, seed: 3 });
+  ink(roundRect(cx - 44 * s, cy - 44 * s, 88 * s, 88 * s, 24 * s), { closed: true, w: 3, col: COLORES.tinta, passes: 1, amp: 1, seed: 3 });
+  const o = { amp: .7, seed: 4 };
+  if (tipo === 'mensaje' || tipo === 'comentario') {
+    fill(circle(cx, cy - 3 * s, 26 * s, 21 * s), blanco, o);
+    fill(resample([[cx - 16 * s, cy + 10 * s], [cx - 24 * s, cy + 26 * s], [cx - 2 * s, cy + 16 * s]], 5, true), blanco, o);
+    if (tipo === 'comentario') for (let k = -1; k <= 1; k++) fill(circle(cx + k * 11 * s, cy - 3 * s, 3.6 * s), COLOR_ICONO[tipo], o);
+  } else if (tipo === 'corazon') {
+    const pts = []; for (let a = 0; a < Math.PI * 2; a += .12) { const x = 16 * Math.pow(Math.sin(a), 3), y = -(13 * Math.cos(a) - 5 * Math.cos(2 * a) - 2 * Math.cos(3 * a) - Math.cos(4 * a)); pts.push([cx + x * 1.7 * s, cy + y * 1.7 * s]); }
+    fill(pts, blanco, o);
+  } else if (tipo === 'venta') {
+    fill(roundRect(cx - 24 * s, cy - 12 * s, 48 * s, 40 * s, 8 * s), blanco, o);
+    ink(arc(cx, cy - 12 * s, 13 * s, Math.PI, Math.PI * 2), { w: 5 * s, col: blanco, passes: 1, amp: .6, seed: 5 });
+  } else if (tipo === 'agenda') {
+    fill(roundRect(cx - 26 * s, cy - 22 * s, 52 * s, 48 * s, 8 * s), blanco, o);
+    fill(rect(cx - 26 * s, cy - 22 * s, 52 * s, 13 * s), '#e0e0e0', o);
+    for (let k = 0; k < 3; k++) fill(circle(cx - 14 * s + k * 14 * s, cy + 8 * s, 4 * s), COLOR_ICONO[tipo], o);
+  } else {                                           // mención: una arroba
+    ctx.save(); ctx.font = `800 ${58 * s}px ${LETRA_LIMPIA}`; ctx.fillStyle = blanco; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('@', cx, cy + 2 * s); ctx.restore();
+  }
+}
+
+function tarjeta(n, x, y, alpha) {
+  ctx.save(); ctx.globalAlpha = alpha;
+  fill(roundRect(x + 8, y + 12, TJ.w, n.h, 38), 'rgba(30,10,40,.22)', { amp: 1 });
+  fill(roundRect(x, y, TJ.w, n.h, 38), COLORES.tarjeta, { amp: 1, seed: 20 });
+  ink(roundRect(x, y, TJ.w, n.h, 38), { closed: true, w: 4, col: COLORES.tinta, passes: 1, amp: 1.3, seed: 21 });
+  icono(n.icono, x + 76, y + 76, .95);
+  ctx.fillStyle = COLORES.tinta; ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
+  ctx.font = `800 38px ${LETRA_LIMPIA}`; ctx.fillText(n.titulo, x + 150, y + 66);
+  ctx.textAlign = 'right'; ctx.globalAlpha = alpha * .55; ctx.font = `500 30px ${LETRA_LIMPIA}`; ctx.fillText('ahora', x + TJ.w - 30, y + 64);
+  ctx.globalAlpha = alpha * .85; ctx.textAlign = 'left'; ctx.font = n.aj.font;
+  n.aj.rs.forEach((r, j) => ctx.fillText(r, x + 150, y + 66 + 46 + j * n.aj.size * 1.2));
+  ctx.restore();
+}
+
+// ---------- el celular ----------
+function celular(t) {
+  const { x, y, w, h } = CEL;
+  fill(roundRect(x + 20, y + 28, w, h, 90), 'rgba(40,15,20,.28)', { amp: 2 });
+  fill(roundRect(x, y, w, h, 90), COLORES.celular, { amp: 1.4, seed: 1 });
+  ctx.save(); tracePath(roundRect(PANT.x, PANT.y, PANT.w, PANT.h, 64), true); ctx.clip();
+  ctx.drawImage(FONDO_PANT, PANT.x, PANT.y);
+  // candado + reloj
+  ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ink(arc(W / 2, PANT.y + 92, 14, Math.PI, Math.PI * 2), { w: 5, col: '#fff', passes: 1, amp: .5, seed: 2 });
+  fill(roundRect(W / 2 - 20, PANT.y + 90, 40, 30, 7), '#ffffff', { amp: .5 });
+  ctx.globalAlpha = .9; ctx.font = `600 38px ${LETRA_LIMPIA}`; ctx.fillText('martes', W / 2, PANT.y + 190);
+  ctx.globalAlpha = 1; ctx.font = `700 170px ${LETRA_LIMPIA}`; ctx.fillText('9:41', W / 2, PANT.y + 350);
+  pila(t);
+  ctx.restore();
+  fill(roundRect(W / 2 - 90, CEL.y + 48, 180, 44, 22), COLORES.celular, { amp: .6, seed: 7 });   // la isla
+  ink(roundRect(x, y, w, h, 90), { closed: true, w: 5, col: 'rgba(0,0,0,.6)', passes: 1, amp: 1.2, seed: 1 });
+}
+
+// la pila: la más nueva arriba, empuja a las demás hacia abajo
+function pila(t) {
+  const llegadas = LLEGA.map((l, i) => i).filter(i => t >= LLEGA[i] - .3);
+  // desplazamiento de cada tarjeta = suma de los altos de las que llegaron después, animado
+  for (let i = 0; i < TARJ.length; i++) {
+    if (t < LLEGA[i] - .3) continue;
+    let dy = 0;
+    for (let j = i + 1; j < TARJ.length; j++) dy += (TARJ[j].h + TJ.hueco) * back(prog(t, LLEGA[j] - .3, LLEGA[j]));
+    const cae = back(prog(t, LLEGA[i] - .3, LLEGA[i]));
+    const y = TJ.y0 + dy - (1 - cae) * 260;
+    const s = lerp(.85, 1, cae);
+    ctx.save(); ctx.translate(W / 2, y); ctx.scale(s, s); ctx.translate(-W / 2, -y);
+    tarjeta(TARJ[i], TJ.x, y, clamp(cae * 1.5));
+    ctx.restore();
+  }
+}
+
+// vibración: cada llegada sacude más fuerte que la anterior
+function vibra(t) {
+  let v = 0;
+  LLEGA.forEach((l, i) => { const k = prog(t, l, l + .22); if (k > 0 && k < 1) v += Math.sin(k * Math.PI * 9) * (1 - k) * (8 + i * 4); });
+  return v;
+}
+function zumbido(t, v) {                              // rayitas a los lados cuando vibra
+  if (Math.abs(v) < 2) return;
+  for (const lado of [-1, 1]) for (let k = 0; k < 3; k++) {
+    const x = W / 2 + lado * (CEL.w / 2 + 40 + k * 8), y = CEL.y + 360 + k * 70;
+    ink(resample([[x, y], [x + lado * 26, y + 16], [x, y + 32], [x + lado * 26, y + 48]], 6), { w: 5, col: COLORES.tinta, passes: 1, amp: 1, seed: 60 + k, alpha: clamp(Math.abs(v) / 12) });
+  }
+}
+
+// la lluvia de atrás: burbujitas que caen alrededor del celular, cada vez más
+const TIPOS = Object.keys(COLOR_ICONO);
+const GOTAS = []; { const t0 = LLEGA[Math.min(2, LLEGA.length - 1)], t1 = T_FRASE + .3;   // deja de llover antes del final: el último cuadro queda limpio
+  let t = t0, k = 0;
+  while (t < t1 && k < 60) { GOTAS.push({ t, x: 40 + hash2(k, 3) * (W - 80), v: 1300 + hash2(k, 7) * 900, rot: (hash2(k, 9) - .5) * .5, s: .7 + hash2(k, 11) * .5, tipo: TIPOS[k % TIPOS.length] });
+    t += lerp(.22, .06, clamp((t - t0) / (T_FRASE - t0))); k++; } }
+function lluvia(t) {
+  for (const g of GOTAS) {
+    const y = -120 + (t - g.t) * g.v; if (t < g.t || y > H + 120) continue;
+    ctx.save(); ctx.translate(g.x, y); ctx.rotate(g.rot + Math.sin((t - g.t) * 5) * .08); ctx.scale(g.s, g.s);
+    fill(roundRect(-120, -40, 240, 80, 40), 'rgba(255,250,244,.92)', { amp: .8, seed: 30 });
+    ink(roundRect(-120, -40, 240, 80, 40), { closed: true, w: 3.5, col: COLORES.tinta, passes: 1, amp: 1, seed: 31 });
+    fill(circle(-78, 0, 24), COLOR_ICONO[g.tipo], { amp: .5, seed: 32 });
+    fill(roundRect(-42, -16, 130, 12, 6), 'rgba(33,29,38,.55)', { amp: .4 });
+    fill(roundRect(-42, 6, 90, 12, 6), 'rgba(33,29,38,.3)', { amp: .4 });
+    ctx.restore();
+  }
+}
+
+// ---------- el remate: un cartel que cae encima ----------
+const AJF = autoajuste(FRASE, LETRA_MANO, 700, 760, 3, 132, 64);
+function remate(t) {
+  const k = prog(t, T_FRASE, T_FRASE + .45); if (k <= 0) return;
+  ctx.save(); ctx.globalAlpha = .45 * easeOut(k); ctx.fillStyle = '#140c1a'; ctx.fillRect(0, 0, W, H); ctx.restore();
+  const inter = AJF.size * 1.12, alto = AJF.rs.length * inter + 150, ancho = 900;
+  const cx = W / 2, cy = 860;
+  const s = back(k), rot = lerp(-.2, -.045, easeOut(k));
+  // rayos de impacto
+  const r = prog(t, T_FRASE + .3, T_FRASE + .8);
+  if (r > 0 && r < 1) for (let i = 0; i < 12; i++) {
+    const a = i / 12 * Math.PI * 2 + .2, r0 = 470 + r * 90, r1 = r0 + 80 * (1 - r);
+    ink(line(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0 * .8, cx + Math.cos(a) * r1, cy + Math.sin(a) * r1 * .8), { w: 9, col: COLORES.cartel, passes: 1, amp: 1.2, seed: 80 + i, alpha: 1 - r });
+  }
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(s, s);
+  fill(roundRect(-ancho / 2 + 14, -alto / 2 + 18, ancho, alto, 30), 'rgba(0,0,0,.35)', { amp: 1.5 });
+  fill(roundRect(-ancho / 2, -alto / 2, ancho, alto, 30), COLORES.cartel, { amp: 2, seed: 90 });
+  ink(roundRect(-ancho / 2, -alto / 2, ancho, alto, 30), { closed: true, w: 8, col: COLORES.tinta, passes: 2, amp: 2, seed: 91 });
+  // cinta adhesiva arriba
+  ctx.save(); ctx.rotate(.06);
+  fill(rect(-90, -alto / 2 - 34, 180, 62), 'rgba(255,255,255,.55)', { amp: 1.2, seed: 92 });
+  ctx.restore();
+  ctx.fillStyle = COLORES.tinta; ctx.font = AJF.font; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const dx = (vnoise(BOIL * .7, 1) - .5) * 2.4, dy = (vnoise(1, BOIL * .7) - .5) * 2.4;
+  AJF.rs.forEach((rr, j) => ctx.fillText(rr, dx, -(AJF.rs.length - 1) * inter / 2 + j * inter + dy));
+  ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(PAPEL, 0, 0);
+  lluvia(t);
+  const entra = back(prog(t, 0, .6));
+  const v = vibra(t);
+  ctx.save(); ctx.translate(v, (1 - entra) * 1500); ctx.rotate(v * .002 - (1 - entra) * .05);
+  celular(t);
+  ctx.restore();
+  zumbido(t, v);
+  remate(t);
+});
+</script>
+</body>
+</html>

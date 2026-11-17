@@ -1,45 +1,63 @@
-## Description: <br>
-Generate visually unified image-based PPT/PPTX decks from articles, reports, papers, notes, or outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate visually unified image-based PPT/PPTX decks from articles, reports, papers, notes, or outlines.
 
-## Publisher: <br>
-[ningzimu](https://clawhub.ai/user/ningzimu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ningzimu](https://clawhub.ai/user/ningzimu)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to turn articles, reports, papers, notes, or outlines into visually unified image-based PowerPoint decks with slide images, speaker notes, and assembled PPTX output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create local project files and install or use a small Python runtime. <br>
-Mitigation: Review the generated project directory and runtime setup before deployment, and install only in environments where local file creation is acceptable. <br>
-Risk: Slide prompts or source images may be sent to OpenAI or a configured compatible image provider when API fallback is used. <br>
-Mitigation: Prefer the built-in image tool for sensitive decks when available, verify OPENAI_BASE_URL before API fallback, and avoid sending confidential source material to untrusted providers. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to turn source material into visually unified, image-based PowerPoint decks with slide images, speaker notes, and assembly guidance. It is best suited for decks where full-slide generated images are acceptable rather than separately editable text boxes, charts, and shapes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ningzimu/codex-ppt) <br>
-- [Project homepage from metadata](https://github.com/ningzimu/codex-ppt-skill) <br>
-- [Backend selection](artifact/docs/backend-selection.md) <br>
-- [CLI/API fallback](artifact/docs/cli-api-fallback.md) <br>
-- [Workflow gates and progress](artifact/docs/workflow-gates-and-progress.md) <br>
-- [Project assembly and reporting](artifact/docs/project-assembly-and-reporting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON project artifacts, PNG slide images, speaker notes, and PPTX assembly output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project files and may call a configured image-generation provider when API fallback is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The optional API fallback and shared local runtime can store API credentials and send presentation text or selected images to an image provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the built-in image tool when available, avoid untrusted OPENAI_BASE_URL values, and do not place real API keys directly in command lines.
+
+Risk: Persistent saved styles under the local Codex PPT home can be reused in later deck generation.
+
+Mitigation: Review files under ~/.codex-ppt-skill/references before allowing the skill to reuse saved styles.
+
+Risk: The security verdict is suspicious because credential and data-handling behavior need review before installation.
+
+Mitigation: Review the skill and its runtime configuration before deployment, especially API provider settings and any content sent for image generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ningzimu/skills/codex-ppt)
+- [Project homepage](https://github.com/ningzimu/codex-ppt-skill)
+- [Backend selection](docs/backend-selection.md)
+- [CLI/API fallback](docs/cli-api-fallback.md)
+- [Project assembly and reporting](docs/project-assembly-and-reporting.md)
+- [Slide generation and subagents](docs/slide-generation-and-subagents.md)
+- [User-supplied assets](docs/user-supplied-assets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON job files, PNG slide images, speaker notes, and PPTX deck files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces full-slide 16:9 image pages and assembled PPTX decks; optional CLI/API fallback may use local configuration and external image providers.]
+
+## Skill Version(s):
+
+0.6.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

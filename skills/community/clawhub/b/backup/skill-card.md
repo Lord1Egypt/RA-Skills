@@ -1,41 +1,53 @@
-## Description: <br>
-Backup helps agents create, schedule, rotate, and restore OpenClaw backups for configuration, credentials, workspace data, sessions, and scheduled tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Handles ~/.openclaw directory archiving with proper exclusions.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate full OpenClaw backup archives, configure daily backup schedules, rotate older archives, and restore a previous OpenClaw state when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives may contain API keys, auth profiles, Telegram sessions, workspace memory, user files, and scheduled tasks. <br>
-Mitigation: Store archives privately, preferably encrypted, and limit access to trusted users and systems. <br>
-Risk: Restoring an archive can replace newer OpenClaw configuration or reintroduce old credentials and cron jobs. <br>
-Mitigation: Verify the backup source and contents, and make a separate copy of the current ~/.openclaw directory before restore. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create, rotate, schedule, and restore archives of local OpenClaw configuration, credentials, sessions, workspace data, and scheduled tasks.
 
-## Reference(s): <br>
-- [Restore OpenClaw from Backup](references/restore.md) <br>
-- [ClawHub Backup Skill](https://clawhub.ai/paudyyin/backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference compressed OpenClaw backup archives named openclaw-YYYY-MM-DD_HHMM.tar.gz.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Backups may contain credentials, tokens, sessions, private workspace files, and scheduled tasks from ~/.openclaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store backups in an owner-only directory, encrypt archives, and avoid shared or synced locations unless separately protected.
+
+Risk: Restore instructions replace the active ~/.openclaw directory and include destructive rollback commands.
+
+Mitigation: Verify the selected archive before restoring, keep the temporary ~/.openclaw-old copy until validation succeeds, and review commands before execution.
+
+## Reference(s):
+
+- [Restore OpenClaw from Backup](references/restore.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create compressed backup archives in a user-selected backup directory when the shell script is executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact package metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

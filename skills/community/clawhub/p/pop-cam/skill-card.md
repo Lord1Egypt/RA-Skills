@@ -1,45 +1,60 @@
-## Description: <br>
-AI image generation in any visual style, including photorealistic, cinematic, cartoon, illustration, and more, with support for transforming photos or generating from text prompts through the Pop-cam NanoBanana API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image generation in any visual style, transforming photos or generating images from text prompts via the Pop-cam NanoBanana API.
 
-## Publisher: <br>
-[petagit](https://clawhub.ai/user/petagit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[petagit](https://clawhub.ai/user/petagit)
 
-## Use Case: <br>
-Developers and agents use this skill to create images from prompts or transform user-provided images through the Pop-cam NanoBanana API. It supports synchronous generation and webhook-based asynchronous workflows when an HTTPS callback endpoint is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and source images are sent to Pop-cam for generation. <br>
-Mitigation: Use the skill only when the user is comfortable sharing that content with Pop-cam. Avoid sending sensitive images or prompts unless the user has approved the disclosure. <br>
-Risk: The POPCAM_API_TOKEN can spend Pop-cam credits. <br>
-Mitigation: Keep the token private, pass it through the declared environment variable, and avoid exposing it in logs, prompts, or shared files. <br>
-Risk: Webhook delivery can send generated-image results to a callback URL. <br>
-Mitigation: Use only HTTPS webhook URLs that the user controls and trusts, or omit webhook_url for synchronous operation. <br>
+## Use Case:
 
+Developers and external users use this skill to generate new images from prompts or transform source images through the Pop-cam NanoBanana API.
 
-## Reference(s): <br>
-- [Pop-cam OpenClaw homepage](https://www.pop-cam.com/openclaw) <br>
-- [Pop-cam OpenClaw skill definition](https://www.pop-cam.com/api/openclaw/skill) <br>
-- [ClawHub skill page](https://clawhub.ai/petagit/pop-cam) <br>
-- [Publisher profile](https://clawhub.ai/user/petagit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POPCAM_API_TOKEN and curl for API requests; generation responses include job metadata and image download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, source images, and related generation metadata are sent to Pop-cam for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that third-party handling is acceptable, and avoid sensitive or regulated images unless the user has approved that data sharing.
+
+Risk: The POPCAM_API_TOKEN is required for authenticated generation requests.
+
+Mitigation: Keep the token private, pass it through environment variables, and refresh it if it may have been exposed.
+
+Risk: The optional webhook_url sends generation results to a caller-provided endpoint.
+
+Mitigation: Use webhook_url only with trusted HTTPS endpoints that the user controls.
+
+## Reference(s):
+
+- [Pop-cam OpenClaw](https://www.pop-cam.com/openclaw)
+- [Pop-cam Skill Definition JSON](https://www.pop-cam.com/api/openclaw/skill)
+- [Pop-cam NanoBanana API Endpoint](https://www.pop-cam.com/api/v1/nanobanana)
+- [ClawHub Skill Page](https://clawhub.ai/petagit/skills/pop-cam)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request/response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires POPCAM_API_TOKEN; outputs may include API request guidance, webhook usage guidance, and generated image download URLs.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

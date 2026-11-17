@@ -1,45 +1,54 @@
-## Description: <br>
-StackAI helps agents use StackAI through the OOMOL oo CLI to inspect connector schemas, run deployed flows, and retrieve run metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, and update data in StackAI through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External developers and agent operators use this skill to access a connected StackAI account through OOMOL, run deployed StackAI flows, and fetch run metadata without handling raw API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup path includes a visible CLI installer risk from running remote install scripts. <br>
-Mitigation: Install only if OOMOL is trusted, and review the oo CLI install guide or installer script before running the curl-to-bash or PowerShell setup. <br>
-Risk: The run_flow action executes a deployed StackAI flow rather than performing a read-only lookup. <br>
-Mitigation: Inspect the live connector schema, construct the payload from that schema, and confirm the intended flow inputs and effects before execution. <br>
-Risk: The skill requires a connected StackAI account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Use the OOMOL connection flow rather than raw tokens, and install the skill only when connecting that StackAI account through OOMOL is intended. <br>
+## Use Case:
 
+Developers with an OOMOL-connected StackAI account use this skill to inspect action schemas, run deployed flows, and retrieve metadata for previous runs through the oo CLI.
 
-## Reference(s): <br>
-- [ClawHub StackAI skill page](https://clawhub.ai/oomol/oo-stack-ai) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [StackAI homepage](https://www.stack-ai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; action results are returned as normalized JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup can execute unverified remote code, and local changes may occur without separate approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup, install a CLI version you have verified, and approve its local changes separately.
+
+Risk: Using the integration requires trusting OOMOL with submitted data and the StackAI connection; the hosted implementation remains unverified.
+
+Mitigation: Review the integration and its data handling before connecting an account or submitting sensitive data.
+
+## Reference(s):
+
+- [StackAI API documentation](https://docs.stackai.com/)
+- [oo CLI command reference and environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON inputs and normalized JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The run_flow action changes StackAI state and requires confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

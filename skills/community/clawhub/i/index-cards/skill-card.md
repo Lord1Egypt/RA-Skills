@@ -1,45 +1,59 @@
-## Description: <br>
-Index Cards helps an agent design and mail physical greeting cards through the Index Cards API, including artwork generation, previews, checkout, and order placement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send real, physical greeting cards through the mail by helping the user design custom cards, preview them, and place mail orders through the Index Cards API.
 
-## Publisher: <br>
-[jonwheatley](https://clawhub.ai/user/jonwheatley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jonwheatley](https://clawhub.ai/user/jonwheatley)
 
-## Use Case: <br>
-External users use this skill when they want an agent to help create, preview, purchase, and send a real greeting card by mail. The skill is intended for occasions such as birthdays, holidays, thank-yous, and other personal messages, with explicit confirmation before using personal data or placing an order. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recipient names, mailing addresses, phone numbers, card artwork URLs, and occasion text may be sent to Index Cards to fulfill physical card orders. <br>
-Mitigation: Use the skill only when comfortable sharing delivery details, confirm recipient and address information with the user, and place orders only after explicit approval. <br>
-Risk: The skill may use a configured Gemini API key for image generation, which can send prompts to Google and consume the user's quota. <br>
-Mitigation: Require explicit approval before using a Gemini API key and make clear that prompt content may be sent to Google and billed against the user's quota. <br>
-Risk: The optional contacts cache can store names, birthdays, addresses, phone numbers, notes, and prior card history locally. <br>
-Mitigation: Create, read, or reuse the contacts cache only after opt-in consent, and confirm saved address details before reusing them. <br>
-Risk: The security review notes conflicting privacy wording around contact and address data. <br>
-Mitigation: Review the current privacy terms and the data sent for delivery before installing or deploying the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jonwheatley/index-cards) <br>
-- [Index Cards Homepage](https://indexcards.com) <br>
-- [Index Cards Privacy Policy](https://indexcards.com/privacy) <br>
+## Use Case:
 
+External users use this skill to create and mail personalized physical greeting cards for birthdays, holidays, thank-yous, and other occasions. It guides card design, recipient details, payment by credits, order confirmation, and delivery status checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration, Text] <br>
-**Output Format:** [Markdown instructions with API request examples and user-facing text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an opt-in local contacts cache and may guide authenticated API calls for card generation, checkout, and ordering.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recipient names, mailing addresses, phone numbers, artwork, occasion text, and messages are sent to Index Cards when an order is approved.
+
+Mitigation: Confirm the recipient, address, message, cost, and order details with the user before placing an irreversible order.
+
+Risk: The optional contacts cache stores names, birthdays, addresses, phone numbers, notes, and card history locally in plaintext.
+
+Mitigation: Create or read the contacts cache only after explicit user consent, and remind the user that the file is local, user-visible, and deletable.
+
+Risk: Payment is required when the user has no credits.
+
+Mitigation: Use only Stripe-hosted checkout links returned by the service, and do not collect payment card data through the agent or skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonwheatley/skills/index-cards)
+- [Index Cards homepage](https://indexcards.com)
+- [Index Cards privacy policy](https://indexcards.com/privacy)
+- [Index Cards API base](https://indexcards.com/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Conversational Markdown with API request guidance and order summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce hosted image URLs, preview video URLs, Stripe checkout links, and optional local contact-cache entries with user consent.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

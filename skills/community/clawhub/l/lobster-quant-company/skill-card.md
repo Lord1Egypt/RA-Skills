@@ -1,41 +1,53 @@
-## Description: <br>
-龙虾量化研究公司 multi-agent 架构，可召唤完整的量化投研团队，包含直属、研究、执行、内容四大部门共17名专家。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+龙虾量化研究公司 multi-agent 架构。一键召唤完整的量化投研团队，包含直属、研究、执行、内容四大部门共17名专家。触发词：召唤团队、公司架构、龙虾公司、量化团队、研究团队。
 
-## Publisher: <br>
-[swyxh](https://clawhub.ai/user/swyxh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swyxh](https://clawhub.ai/user/swyxh)
 
-## Use Case: <br>
-External users and developers use this skill to coordinate a quant-research agent team for research analysis, compliance review, risk assessment, strategy development, testing, operations, and content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quant research and betting-market workflows could be mistaken for approval to trade, deploy, configure market-data credentials, or publish recommendations. <br>
-Mitigation: Keep explicit human confirmation before any real trading, deployment, market-data credential setup, betting-market action, or public publishing. <br>
-Risk: The skill coordinates specialist agent roles but does not itself provide live market data, execution controls, or legal review. <br>
-Mitigation: Use real data sources and require compliance and risk review before strategy development moves to execution. <br>
+## Use Case:
 
+Developers and agent users use this skill to coordinate a Chinese-language multi-agent quant research workflow spanning compliance, risk review, market research, implementation, operations, and content review.
 
-## Reference(s): <br>
-- [Agent configuration](references/agents-config.json) <br>
-- [ClawHub skill page](https://clawhub.ai/swyxh/lobster-quant-company) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with role and workflow references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only template; no code, persistence, credential access, or hidden automation in the artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and references/agents-config.json) <br>
+Risk: The workflow discusses real trading, publishing, deployment, and regulated financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm outputs with appropriate compliance, risk, and human review before using them for trading, publication, deployment, or regulated financial decisions.
+
+Risk: The skill can generate research, code, commands, or deployment guidance that may be incorrect or incomplete.
+
+Mitigation: Review, test, and scan proposed outputs before execution or production use.
+
+## Reference(s):
+
+- [Agent configuration](references/agents-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured agent workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses oriented around 17 configured specialist agent roles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and agents-config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

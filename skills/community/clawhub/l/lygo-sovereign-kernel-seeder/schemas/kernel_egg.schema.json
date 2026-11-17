@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lygo.local/schemas/kernel_egg.schema.json",
+  "title": "LYGO Sovereign Kernel Egg",
+  "type": "object",
+  "required": [
+    "egg_id",
+    "version",
+    "kind",
+    "signature",
+    "created_utc",
+    "content_sha256",
+    "payload",
+    "seal"
+  ],
+  "properties": {
+    "egg_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$",
+      "description": "Stable lowercase id for lattice plug-in"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semver of egg contents"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "protocol",
+        "agent",
+        "champion",
+        "driver",
+        "skill-pin",
+        "memory",
+        "policy",
+        "tool",
+        "seed"
+      ]
+    },
+    "signature": {
+      "type": "string",
+      "description": "Δ9 seal string e.g. Delta9Phi963-EGG-<id>-vN"
+    },
+    "created_utc": { "type": "string", "format": "date-time" },
+    "steward": {
+      "type": "string",
+      "default": "Lightfather / Excavationpro / DeepSeekOracle"
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Bounded modular payload (no secrets)",
+      "properties": {
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+              "bytes": { "type": "integer", "minimum": 0 },
+              "inline_b64": { "type": "string" },
+              "role": { "type": "string" }
+            }
+          }
+        },
+        "hooks": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Stack hook names this egg satisfies"
+        },
+        "depends_on": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Other egg_ids required before activate"
+        }
+      }
+    },
+    "seal": {
+      "type": "object",
+      "required": ["alg", "leaf_hash", "sovereign"],
+      "properties": {
+        "alg": { "const": "sha256" },
+        "leaf_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "sovereign": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true — local lattice only"
+        },
+        "zero_external_surface": { "type": "boolean", "const": true },
+        "self_verify_on_insert": { "type": "boolean", "const": true }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

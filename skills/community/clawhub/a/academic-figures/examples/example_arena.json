@@ -1,0 +1,25 @@
+{
+ "_source": "OSWorld benchmark (Xie et al., 2024; arXiv:2404.07972), Table 5 accessibility-tree setting success rates (%); human baseline 72.36%",
+ "labels": [
+  "GPT-4",
+  "GPT-4o",
+  "Qwen-Max",
+  "Gemini-Pro-1.5",
+  "Mixtral-8x7B",
+  "GPT-3.5",
+  "人类基线"
+ ],
+ "series": {
+  "任务成功率(%)": [
+   12.24,
+   11.36,
+   6.87,
+   4.81,
+   2.98,
+   2.69,
+   72.36
+  ]
+ },
+ "title": "OSWorld 基线对比：最佳模型 vs 人类（可达性树输入）",
+ "ylabel": "任务成功率 (%)"
+}

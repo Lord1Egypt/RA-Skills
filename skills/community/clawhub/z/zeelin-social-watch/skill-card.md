@@ -1,46 +1,61 @@
-## Description: <br>
-Zeelin Social Watch helps agents monitor social media sentiment, trending events, platform rankings, and account data through the GSData open platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zeelin Social Watch monitors social media sentiment, trending events, platform rankings, and account data through the GSData open platform.
 
-## Publisher: <br>
-[thu-nmrc](https://clawhub.ai/user/thu-nmrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thu-nmrc](https://clawhub.ai/user/thu-nmrc)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to query GSData for social media sentiment, hot events, platform rankings, content search, and account data. It supports read-only monitoring by default and requires explicit confirmation for write-like warning, ranking-group, and tracked-account actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes raw or write-like GSData actions that can change warning rules, recipient emails, custom ranking groups, or tracked accounts. <br>
-Mitigation: Run dry-run checks first, require explicit user confirmation before write-like actions, append --allow-write only after approval, and review the exact route and parameters before execution. <br>
-Risk: Authenticated requests use a plaintext HTTP base URL by default. <br>
-Mitigation: Prefer an HTTPS GSDATA_BASE_URL if GSData supports it, avoid using credentials over untrusted networks, and confirm transport security before handling sensitive monitoring data. <br>
-Risk: GSData credentials give the agent access to the user's GSData account. <br>
-Mitigation: Use environment variables for GSDATA_APP_KEY and GSDATA_APP_SECRET, avoid hardcoded keys, prefer least-privilege credentials, and rotate or revoke keys if exposure is suspected. <br>
-Risk: Large API responses can flood chat context or hide important details. <br>
-Mitigation: Use small page sizes for conversational answers, respect the API maximum of 20 items per page, probe total counts before pagination, and summarize key fields before showing raw data. <br>
+## Use Case:
 
+Developers and analysts use this skill to query GSData-backed social media monitoring data, including public sentiment searches, hot events, platform rankings, account metrics, and related NLP endpoints.
 
-## Reference(s): <br>
-- [Zeelin Social Watch ClawHub page](https://clawhub.ai/thu-nmrc/zeelin-social-watch) <br>
-- [Publisher profile](https://clawhub.ai/user/thu-nmrc) <br>
-- [GSData API base endpoint](http://databus.gsdata.cn:8888/api/service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown summaries with shell commands and selected JSON fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; write-like actions require explicit confirmation and --allow-write; chat responses should use small page sizes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter declares 1.2.0) <br>
+Risk: The skill can use GSData credentials to make broad API calls, including remote state-changing account and warning-rule actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an intended GSData account, run dry-run checks before new requests, and require explicit user confirmation plus the write-enable flag before state-changing actions.
+
+Risk: The default GSData endpoint is plaintext HTTP.
+
+Mitigation: Prefer an HTTPS GSDATA_BASE_URL when GSData supports it and review network exposure before installation.
+
+Risk: The raw command can call arbitrary GSData routes.
+
+Mitigation: Avoid raw calls unless the endpoint and parameters are understood and approved for the task.
+
+Risk: Social media searches can return large JSON payloads.
+
+Mitigation: Use small page sizes, paginate deliberately, and summarize key fields before returning results to users.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/thu-nmrc/skills/zeelin-social-watch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GSData credentials; large result sets should be paginated and summarized.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,9 +14,6 @@ Do not treat these as the blessed authoring model. When the engine-hosted path s
 
 **Living reference implementations:**
 
-- `registry/examples/airbnb-deck/index.html` + `demo.html` — full pattern set (Three.js, fragments, SFX, branch slide)
-- `registry/examples/startup-pitch/index.html` — minimal version (no 3D), good starting point
-
 ---
 
 ## 2. The parent wrapper (`index.html` for deliverables, `demo.html` in examples)
@@ -878,7 +875,7 @@ Do NOT add a mute button inside the composition. The `#sfx-mute` coral button pa
 </script>
 ```
 
-**Sourcing SFX files:** use the HeyGen MCP `search_audio_sounds` tool with `type=sound_effects` and keywords like "whoosh", "click", "transition". Download the results to a local `sfx/` directory next to `demo.html` and reference them by relative path. Do not fetch SFX at render time — the HyperFrames determinism rule forbids runtime network requests; pre-download and commit them.
+**Sourcing SFX files:** resolve each one with `npx hyperframes media-use resolve --type sfx --intent "<whoosh | click | transition>" --project .` (Openverse CC0 / CC BY, bundled library offline; CC BY credits land in a `CREDITS.md` beside the resolved files), copy the files to a local `sfx/` directory next to `demo.html` and reference them by relative path. Do not fetch SFX at render time — the HyperFrames determinism rule forbids runtime network requests; pre-download and commit them.
 
 ---
 

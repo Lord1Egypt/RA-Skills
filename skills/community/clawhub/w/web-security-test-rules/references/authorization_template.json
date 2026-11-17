@@ -1,0 +1,46 @@
+{
+  "authorized_by": "授权方名称 / 联系人（例如：XX 公司安全负责人 张三）",
+  "issued_at": "2026-08-15T02:00:00+08:00",
+  "valid_from": "2026-08-15T00:00:00+08:00",
+  "valid_until": "2026-08-22T23:59:59+08:00",
+  "targets": [
+    "https://example.com",
+    "https://api.example.com"
+  ],
+  "allowed_methods": ["GET", "POST", "PUT", "DELETE", "HEAD"],
+  "scope_note": "仅限授权范围内的安全测试；禁止 DoS、对真实员工的社工、生产高峰压测（见 A1 / A3）",
+  "scope": {
+    "in_scope": [
+      "https://example.com",
+      "https://api.example.com/admin/*"
+    ],
+    "internal_ranges": [
+      "10.0.0.0/8",
+      "192.168.1.0/24",
+      "http://10.0.0.5:8080",
+      "https://intra.example.com"
+    ],
+    "include_internal": true,
+    "out_of_scope": [
+      "https://example.com/payment",
+      "10.0.0.9"
+    ],
+    "accounts": [
+      "test-user-01"
+    ],
+    "destructive": {
+      "allowed": false,
+      "items": [
+        "DELETE /api/orders/*",
+        "DROP TABLE temp_test"
+      ],
+      "backup_required": true,
+      "note": "破坏性操作须显式授权并逐项列出；执行前必须对目标资源做备份并记录备份位置"
+    }
+  },
+  "key_id": "example",
+  "nonce": "临时随机串，签名防重放用",
+  "_comment": "以下两个字段由 scripts/sign_auth.sh 生成，勿手填：",
+  "signed_payload": "<由 sign_auth.sh 生成：被签名的规范化声明字符串>",
+  "signature": "<由 sign_auth.sh 生成：RSA-SHA256 签名，base64>"
+}

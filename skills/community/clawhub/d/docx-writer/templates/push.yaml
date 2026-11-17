@@ -1,0 +1,41 @@
+# ============================================================
+# docx-writer 模板：push（微信公众号推送稿 / 图文体例）
+# 依据《THU问道无穹公众号发布规范2.0》
+# 用法：Template.load('push')
+# ============================================================
+name: push
+base_docx: null                  # 推送稿无脚注，用空白文档
+page:
+  size: A4
+  margin: { top: 2.54cm, bottom: 2.54cm, left: 3.18cm, right: 3.18cm }
+
+styles:
+  # 文章大标题：黑体加粗居中
+  title:    { cn: 黑体, en: Arial,           size: 17pt, bold: true,  align: center, indent: 0,     line_spacing: 1.8 }
+  # 栏目/通栏小标题：黑体加粗居中
+  banner:   { cn: 黑体, en: Arial,           size: 16pt, bold: true,  align: center, indent: 0,     line_spacing: 1.8 }
+  # 环节小标题：黑体加粗左起
+  h1:       { cn: 黑体, en: Arial,           size: 16pt, bold: true,  align: left,   indent: 0,     line_spacing: 1.8 }
+  h2:       { cn: 黑体, en: Arial,           size: 15pt, bold: true,  align: left,   indent: 0,     line_spacing: 1.8 }
+  # 正文：宋体 15pt / 1.8 倍行距 / 首行缩进 2 字
+  body:     { cn: 宋体, en: Times New Roman, size: 15pt, align: justify, indent: 0.74cm, line_spacing: 1.8 }
+  # 图注：12pt 灰色居中
+  caption:  { cn: 宋体, en: Times New Roman, size: 12pt, color: "888888", align: center, indent: 0, line_spacing: 1.5 }
+  # 编辑提示（占位说明）：红色加粗居中
+  note:     { cn: 宋体, en: Times New Roman, size: 12.5pt, bold: true, color: "C00000", align: center, indent: 0, line_spacing: 1.5 }
+  image:    { align: center, width: 14cm }
+  formula:  { align: center, indent: 0, scale: 0.92, line_spacing: 1.8 }
+  # 落款：12pt 灰色右对齐
+  signature: { cn: 宋体, en: Times New Roman, size: 12pt, color: "888888", align: right, indent: 0, line_spacing: 1.5 }
+  table:
+    mode: three_line
+    word_style: Table Grid
+    header: { cn: 黑体, en: Arial,           size: 10.5pt, bold: true, align: center }
+    cell:   { cn: 宋体, en: Times New Roman, size: 10.5pt, align: center }
+
+footnote:
+  enabled: false
+
+features:
+  fix_quotes: true
+  superscript_footnotes: false

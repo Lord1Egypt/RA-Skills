@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Web Replica</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f;
+      --accent: #5e5ce6;
+      --accent2: #0a84ff;
+      --text: #f5f5f7;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, "PingFang SC", "SF Pro Display", system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    /* Fixed 3D canvas behind everything */
+    #webgl {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* Scroll content on top */
+    .scroll-content {
+      position: relative;
+      z-index: 1;
+    }
+    /* Hero section — super tall for scroll animation */
+    .hero {
+      height: 200vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .hero-inner {
+      position: sticky;
+      top: 40vh;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 96px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 22px);
+      opacity: 0.6;
+      margin-top: 16px;
+    }
+    /* Feature section */
+    .features {
+      min-height: 100vh;
+      padding: 120px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .features h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      margin-bottom: 48px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(20px);
+    }
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .feature-card p {
+      opacity: 0.6;
+      line-height: 1.7;
+    }
+    /* CTA section */
+    .cta {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    .cta h2 {
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+    .cta-button {
+      padding: 16px 48px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+      box-shadow: 0 10px 40px -8px rgba(94,92,230,0.6);
+      cursor: pointer;
+      border: none;
+    }
+    /* Word reveal animation prep */
+    .word {
+      display: inline-block;
+      overflow: hidden;
+    }
+    .word-inner {
+      display: inline-block;
+      transform: translateY(100%);
+    }
+  </style>
+</head>
+<body>
+  <div id="webgl"></div>
+  <div class="scroll-content">
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <h1 id="hero-title">Vibe Web</h1>
+        <p>Powered by Three.js + GSAP + Lenis</p>
+      </div>
+    </section>
+    <section class="features" id="features">
+      <h2 id="features-title">Features</h2>
+      <div class="feature-card" id="card1">
+        <h3>3D Rendering</h3>
+        <p>WebGL2 powered real-time 3D with Draco compressed GLB models, bloom post-processing, and particle systems.</p>
+      </div>
+      <div class="feature-card" id="card2">
+        <h3>Scroll Animations</h3>
+        <p>GSAP ScrollTrigger drives pinning, scrubbing, and timeline chains for immersive scroll storytelling.</p>
+      </div>
+      <div class="feature-card" id="card3">
+        <h3>Smooth Scrolling</h3>
+        <p>Lenis provides buttery smooth inertia scrolling, synced with GSAP ticker for perfect animation alignment.</p>
+      </div>
+    </section>
+    <section class="cta" id="cta">
+      <h2>Ready to Vibe?</h2>
+      <button class="cta-button" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">Get Started</button>
+    </section>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

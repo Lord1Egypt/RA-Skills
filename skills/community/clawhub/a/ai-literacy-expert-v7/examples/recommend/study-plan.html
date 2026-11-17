@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 通识课 · 智能课程推荐 · 零基础路径</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #faf5ff; color: #0f172a; }
+  header { padding: 14px 20px; background: #7c3aed; color: #fff; }
+  h1 { margin: 0; font-size: 19px; }
+  .wrap { padding: 16px 20px; }
+  .box { background:#fff; border:1px solid #e9d5ff; border-radius:8px; padding:14px; margin-top:12px; }
+  .week { margin: 8px 0; }
+  .week b { display:block; margin-bottom:4px; }
+  label { margin-right: 14px; font-size: 14px; }
+  button { background:#7c3aed; color:#fff; border:0; padding:9px 16px; border-radius:6px; margin:6px 8px 0 0; cursor:pointer; }
+  #plan { font-family: monospace; white-space: pre-wrap; background:#f5f3ff; padding:10px; border-radius:6px; }
+  .gate { margin: 16px 20px; }
+</style>
+</head>
+<body>
+<header><h1>AI 通识课 · 智能课程推荐 · 零基础 → 应用</h1></header>
+<div class="wrap">
+  <div class="box">
+    <b>推荐路径（知识图谱推导）</b>
+    <div>A 认知基础 → C 方法论 → D 通用实练 → E 专业应用 → F 安全伦理 → G 最新发展</div>
+    <button id="gen">生成 4 周可执行周计划</button>
+    <button id="memo">写入备忘录/日历</button>
+  </div>
+  <div class="box">
+    <div id="plan">点击「生成周计划」查看按周拆解的里程碑与每日任务。</div>
+  </div>
+</div>
+
+<script>
+const PLAN = [
+  { w:'第1周 · AI 认知与协作', days:['A1 AI 进化历程','A2 AI 是什么','A3 协作哲学'] },
+  { w:'第2周 · 方法论奠基', days:['C1 Prompt 工程','C2 需求拆解','C3 验证闭环'] },
+  { w:'第3周 · 通用实练', days:['D1 数据分析','D2 Vibe Coding'] },
+  { w:'第4周 · 责任与应用', days:['F1 对抗与安全','G1 能力边界'] },
+];
+function renderPlan() {
+  let html = '';
+  PLAN.forEach((wk, i) => {
+    html += `<div class="week"><b>${wk.w}</b>`;
+    wk.days.forEach(d => { html += `<label><input type="checkbox" /> ${d}</label>`; });
+    html += '</div>';
+  });
+  document.getElementById('plan').innerHTML = html;
+}
+document.getElementById('gen').addEventListener('click', renderPlan);
+document.getElementById('memo').addEventListener('click', () => {
+  try { localStorage.setItem('aiPlan', JSON.stringify(PLAN)); } catch (_) {}
+  const el = document.getElementById('plan');
+  el.innerHTML += '\n✅ 已写入备忘录/日历（WorkBuddy 设备侧能力演示）。';
+});
+</script>
+</body>
+</html>

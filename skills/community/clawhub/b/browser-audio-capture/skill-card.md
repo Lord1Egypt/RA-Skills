@@ -1,39 +1,57 @@
-## Description: <br>
-Capture audio from browser tabs, including meetings, videos, podcasts, courses, and webinars, and stream it to an AI agent or local transcription pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture audio from any browser tab, including meetings, YouTube, podcasts, courses, and webinars, and stream it to an AI agent without API keys.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Developers and agent builders use this skill to give an AI agent access to audio playing in a Chrome tab for meeting summaries, media notes, course notes, call analysis, or transcription workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill records browser-tab audio and tab metadata, which can include sensitive meeting, call, course, or media content. <br>
-Mitigation: Use it only when recording is intentional, obtain appropriate consent, and stop captures when finished. <br>
-Risk: Audio is sent to a local transcription pipeline and relies on local Chrome debugging or extension capture controls. <br>
-Mitigation: Keep the receiver and Chrome debugging interface bound to localhost, use a separate Chrome profile, and avoid leaving watch mode running. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Browser Audio Capture on ClawHub](https://clawhub.ai/jarvis563/browser-audio-capture) <br>
+## Use Case:
 
+Developers and AI-agent builders use this skill to capture audio from authorized browser tabs and route PCM16 chunks to local transcription or agent pipelines for summaries, notes, and analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill streams base64-encoded PCM16 audio chunks with tab metadata to a local HTTP receiver.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser-tab audio capture can include private or sensitive conversations.
+
+Mitigation: Use the skill only with browser profiles, meetings, and tabs that the operator is authorized to capture.
+
+Risk: Audio chunks include tab URL and title metadata sent every few seconds to the receiver.
+
+Mitigation: Keep the receiver bound to localhost and avoid opening sensitive tabs in a CDP-enabled browser while capture is active.
+
+Risk: Continuous watch mode can start repeated or ongoing capture when matching browser tabs are detected.
+
+Mitigation: Disable or avoid watch mode unless continuous auto-capture is explicitly intended and monitored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarvis563/skills/browser-audio-capture)
+- [Extension README](artifact/scripts/extension/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, code references, configuration details, and JSON audio payload examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When run, the skill streams base64 PCM16 audio chunks with session, tab URL, and tab title metadata to a localhost receiver.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,58 @@
-## Description: <br>
-Institutional Desk-Level Fully Automated Trading OS for XAU/USD and XAG/USD that runs continuous analysis, risk management, performance tracking, and optional MT5 execution inside OpenClaw's trader agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XAUUSD is an institutional desk-level automated trading OS for XAU/USD and XAG/USD with an event-driven, risk-first, multi-engine architecture that runs as a continuous analysis and execution pipeline inside OpenClaw's trader agent.
 
-## Publisher: <br>
-[cfilipemt](https://clawhub.ai/user/cfilipemt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cfilipemt](https://clawhub.ai/user/cfilipemt)
 
-## Use Case: <br>
-External users and trading developers use this skill to analyze XAU/USD and XAG/USD market conditions, generate trade plans, monitor risk, and optionally route execution through MT5. Start with demo or paper credentials and Advisory mode before any live trading use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Automated or semi-automated operation can affect a real broker account. <br>
-Mitigation: Begin with demo or paper credentials and Advisory mode, and do not enable Semi-Automated or Fully-Automated modes until live execution approvals and safeguards are fixed. <br>
-Risk: Unauthenticated WebSocket mode control can change system behavior. <br>
-Mitigation: Restrict the WebSocket service to trusted local access or remove command handling before deployment. <br>
-Risk: Trading credentials and alert tokens are configured through environment variables. <br>
-Mitigation: Protect the .env file, limit credential scope, and avoid sharing configured release copies. <br>
-Risk: Known buy/sell order and simulated-price fallback issues can undermine live execution reliability. <br>
-Mitigation: Fix those issues and validate in paper trading before allowing broker-connected execution. <br>
+## Use Case:
 
+External users and trading agents use this skill to analyze XAU/USD and XAG/USD, generate trade plans, run advisory or automated execution workflows, monitor risk, and track performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cfilipemt/metals-desk-os) <br>
-- [Publisher profile](https://clawhub.ai/user/cfilipemt) <br>
-- [MetaAPI](https://metaapi.cloud) <br>
-- [Telegram Bot API](https://api.telegram.org) <br>
-- [WhatsApp Business Platform](https://graph.facebook.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text instructions, JSON dashboard payloads, event logs, alerts, and broker action requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run continuously as an event-driven trading workflow with Advisory, Semi-Automated, Fully-Automated, and Risk-Off modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Unauthenticated dashboard clients may expose trading state or change the system into live automated execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the WebSocket to localhost or require authentication, keep port 3078 unexposed, and require explicit local approval for mode changes.
+
+Risk: Automated execution and risk controls may be unreliable before validation with broker events.
+
+Mitigation: Run only in Mode 1 or an isolated demo environment until short-order execution is fixed and all risk controls are tested against live or sandbox broker events.
+
+Risk: Broker and API credentials can permit account access or message dispatch.
+
+Mitigation: Use least-privilege credentials, keep secrets out of committed files, and avoid Mode 2 or Mode 3 with real funds until the security guidance is resolved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cfilipemt/skills/metals-desk-os)
+- [MetaAPI](https://metaapi.cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, trade plans, alerts, and status data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trading analysis, execution guidance, operational modes, risk status, dashboard events, and alert payloads for an OpenClaw trading agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

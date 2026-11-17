@@ -1,40 +1,56 @@
-## Description: <br>
-DeepSeek API complete guide covering registration, configuration, and cost-saving tips for users who want lower-cost AI API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepSeek API complete guide for registration, configuration, and cost-saving tips for users who want lower-cost AI access.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and cost-conscious AI users use this skill as a practical guide for creating a DeepSeek account, obtaining an API key, configuring OpenClaw or OpenAI-compatible clients, checking balance, and reducing API spend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DeepSeek API keys can be exposed if pasted into public files, chats, or shared examples. <br>
-Mitigation: Store real API keys in environment variables or a secret manager and keep only placeholder values in configuration examples. <br>
-Risk: DeepSeek API usage can incur costs and may involve sending sensitive prompts to an external service. <br>
-Mitigation: Review current DeepSeek pricing, account balance, and privacy terms before sending sensitive data or running high-volume workloads. <br>
+## Use Case:
 
+External users and developers use this skill to learn how to register for DeepSeek API access, configure OpenClaw, Python, or Node.js clients, and manage basic usage costs.
 
-## Reference(s): <br>
-- [DeepSeek API Platform](https://platform.deepseek.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guide with YAML, Python, JavaScript, and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, model comparisons, cost-saving practices, balance-check command, and contact information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.24 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Following the guide's examples may send prompts or account requests to DeepSeek.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-sharing expectations before use and avoid sending sensitive prompts unless approved for the intended environment.
+
+Risk: API keys can be exposed if copied into source code or committed configuration files.
+
+Mitigation: Store DeepSeek API keys in environment variables or a secrets manager, avoid committing secrets, and rotate any exposed key.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/deepseek-api-guide)
+- [DeepSeek Platform](https://platform.deepseek.com/)
+- [DeepSeek API Base URL](https://api.deepseek.com/v1)
+- [DeepSeek Balance Endpoint](https://api.deepseek.com/user/balance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with YAML, Python, JavaScript, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint examples and configuration snippets that may require user-provided DeepSeek credentials.]
+
+## Skill Version(s):
+
+1.0.24 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

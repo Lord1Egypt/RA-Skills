@@ -1,41 +1,50 @@
-## Description: <br>
-Deep dive on a Hyperliquid perp trader, including identity, open positions, recent trades, and overall PnL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep dive on a Hyperliquid perp trader. Identity, open positions, recent trades, and overall PnL.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External analysts and developers use this skill to inspect a Hyperliquid perpetuals trader address, summarize identity labels, open positions, recent trades, margin usage, PnL, and leaderboard standing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad Nansen CLI access, which may allow commands outside the documented trader-profile lookups. <br>
-Mitigation: Review proposed nansen commands before execution and keep usage limited to the documented research profiler and leaderboard commands. <br>
-Risk: A configured Nansen CLI may have access to wallets, Privy credentials, payment setup, or trading capabilities. <br>
-Mitigation: Use credentials appropriate for research workflows and prefer narrower command permissions before deploying this skill. <br>
+## Use Case:
 
+Crypto traders and analysts can use this skill to review a Hyperliquid perpetual trader's labels, open positions, recent trades, PnL, and leaderboard standing using Nansen data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-perp-trader-profile) <br>
-- [Publisher profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI; commands profile one trader address across labels, positions, trades, and leaderboard data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Research calls, including repeated calls in loops, can incur x402 payments from the configured wallet under its existing authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run `nansen auth status` before the research task and stop if the selected session or authentication state is invalid. Review the wallet payment policy, spending limits, and call count before queries or loops; do not switch to anonymous access after authentication fails.
+
+## Reference(s):
+
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [ClawHub skill release](https://clawhub.ai/nansen-devops/skills/nansen-perp-trader-profile)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trader-address specific; lookback and result limits can be selected for applicable queries. Results depend on data available through Nansen.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-Generates a China mainland litigation intake assessment report that structures case facts, evidence, claims, venue information, legal relationships, litigation risks, case-law research, and estimated win probability, timeline, and costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成中国大陆争议解决与诉讼管理场景下的《案件初步评估报告》，适用于接案评估阶段对案件基本事实、初步证据材料、我方诉求和管辖法院信息进行结构化梳理、法律关系识别、风险标注、司法裁判检索，并量化估算胜诉概率、诉讼周期、资金与时间成本。
 
-## Publisher: <br>
-[coolalam](https://clawhub.ai/user/coolalam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolalam](https://clawhub.ai/user/coolalam)
 
-## Use Case: <br>
-Legal intake teams and dispute-resolution lawyers use this skill to prepare preliminary China mainland litigation assessments for case acceptance, evidence planning, risk review, and client expectation setting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Mainland) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive legal matter details and an API key to a third-party legal data service. <br>
-Mitigation: Use redacted, non-confidential facts unless the user controls the API account and accepts the third-party data flow. <br>
-Risk: The bundled search scripts disable normal HTTPS certificate verification. <br>
-Mitigation: Fix TLS verification before using real credentials or client matter details. <br>
-Risk: Generated litigation probabilities, timelines, costs, and intake recommendations may be incomplete when facts, evidence, or searches are limited. <br>
-Mitigation: Treat outputs as preliminary and have a qualified reviewer verify assumptions, source materials, and current legal authorities before relying on them. <br>
+## Use Case:
 
+Lawyers and litigation teams use this skill during China mainland dispute-resolution intake to structure facts, identify legal relationships and risks, search legal and case materials, estimate litigation likelihood, duration, and costs, and draft an initial case assessment report for internal decision-making and client communication.
 
-## Reference(s): <br>
-- [Assessment metrics](references/assessment-metrics.md) <br>
-- [Prompt template](references/prompt-template.md) <br>
-- [Search query patterns](references/search-query-patterns.md) <br>
-- [Delilegal API key management](https://open.delilegal.com/personal/keys) <br>
+### Deployment Geography for Use:
 
+China mainland
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are conditional legal-intake assessments and should preserve stated assumptions, evidence gaps, and search limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Legal search can send matter details and API credentials to a third-party service without server identity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use confidential or privileged matter details until TLS verification is fixed; redact names, identifiers, account data, trade secrets, and unnecessary facts before external search.
+
+Risk: Generated legal conclusions, case matches, and quantified estimates may be incomplete or misleading if inputs are sparse or searches are unavailable.
+
+Mitigation: Treat outputs as preliminary assessment only, mark search limitations, lower confidence when evidence is incomplete, and verify legal results against official sources before client or filing use.
+
+Risk: A real Delilegal API key may be exposed or reused if configured carelessly.
+
+Mitigation: Store the API key carefully, avoid sharing configured skill copies, and rotate any key previously used on untrusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolalam/skills/litigation-intake-assessment)
+- [Publisher profile](https://clawhub.ai/user/coolalam)
+- [Assessment metrics](references/assessment-metrics.md)
+- [Prompt template](references/prompt-template.md)
+- [Search query patterns](references/search-query-patterns.md)
+- [Delilegal API key setup](https://open.delilegal.com/personal/keys)
+- [Delilegal case search endpoint](https://platform.delilegal.com/api/v1/generice/case/list)
+- [Delilegal law search endpoint](https://platform.delilegal.com/api/v1/generice/law/list)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance, configuration]
+
+**Output Format:** [Markdown report with optional shell command examples for legal and case searches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs conditional legal assessment prose; search results depend on a configured Delilegal API key and available public legal data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

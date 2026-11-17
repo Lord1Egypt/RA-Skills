@@ -1,41 +1,58 @@
-## Description: <br>
-Routes Huoshan and Qifu knowledge requests through the default structured Feishu document INDEX and returns relevant original Feishu links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Huoshan and Qifu knowledge requests through a structured Feishu document index and returns relevant original Feishu links.
 
-## Publisher: <br>
-[zzj997](https://clawhub.ai/user/zzj997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzj997](https://clawhub.ai/user/zzj997)
 
-## Use Case: <br>
-Employees and internal knowledge workers use this skill to find, recommend, or verify Huoshan/Qifu Feishu learning documents from a structured INDEX while preserving original Feishu document links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad source-grounded-answer requests beyond the intended Huoshan/Qifu document-routing use case. <br>
-Mitigation: Use it only when the user explicitly requests Huoshan/Qifu knowledge routing or Feishu document recommendations, and keep the trigger wording narrow during review. <br>
-Risk: The agent may request read-only Feishu Wiki and Docx scopes and use the current user's document access. <br>
-Mitigation: Install only for users who expect Feishu reads, approve only the minimal read-only scopes, and rely on existing document ACLs for access control. <br>
+## Use Case:
 
+Employees, developers, and knowledge workers use this skill to find, recommend, or verify Huoshan and Qifu Feishu documents from the default index while preserving source links and read status.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zzj997/huoshan-qifu-doc-knowledge-router) <br>
-- [Default Feishu Wiki INDEX](https://bytedance.larkoffice.com/wiki/UOzdwymi8ibRgBko04bcX1yRnNh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Feishu document links and concise status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves directory-provided detail URLs and marks whether recommendations are based on directory metadata or source text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill uses the current user's Feishu access to read the default Huoshan/Qifu index and linked documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for users who should search that workspace content, and rely on existing Feishu document ACLs for access control.
+
+Risk: The trigger wording is broad and may activate for general Huoshan, Qifu, Feishu knowledge-base, onboarding, or document-recommendation requests.
+
+Mitigation: Review and narrow the trigger wording if the skill should run only when explicitly named.
+
+Risk: The default Wiki URL determines the routing source for normal requests.
+
+Mitigation: Confirm that the configured Feishu Wiki index is appropriate for the target workspace before deployment.
+
+## Reference(s):
+
+- [Default Huoshan Qifu Feishu Wiki INDEX](https://bytedance.larkoffice.com/wiki/UOzdwymi8ibRgBko04bcX1yRnNh)
+- [ClawHub skill page](https://clawhub.ai/zzj997/skills/huoshan-qifu-doc-knowledge-router)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Feishu links, read-status labels, and occasional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one to three ranked links per requested topic when relevant evidence is available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

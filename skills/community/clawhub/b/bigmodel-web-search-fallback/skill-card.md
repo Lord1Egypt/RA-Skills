@@ -1,43 +1,59 @@
-## Description: <br>
-Use Zhipu / BigModel web search as a non-invasive fallback when the built-in web_search route is unavailable, failing, or the user explicitly wants Zhipu / BigModel / GLM search, with direct structured search results and chat-completions search-with-summary across search_std, search_pro, search_pro_sogou, and search_pro_quark. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Zhipu / BigModel web search as a fallback when the built-in web_search route is unavailable, with raw structured results or chat-completions search summaries across supported search engines.
 
-## Publisher: <br>
-[gxhdky2345](https://clawhub.ai/user/gxhdky2345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxhdky2345](https://clawhub.ai/user/gxhdky2345)
 
-## Use Case: <br>
-Developers and agents use this skill when OpenClaw's built-in web search is unavailable or when a task specifically needs BigModel/Zhipu search. It supports structured search results for agent-written summaries and chat-based search answers for quick synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and chat prompts are sent to BigModel/Zhipu using the configured API key. <br>
-Mitigation: Use this skill only where that provider is approved, and do not send secrets, regulated data, or confidential internal content unless approved for the environment. <br>
-Risk: Chat mode returns a synthesized answer that may need verification before use. <br>
-Mitigation: Review the returned answer and sources before presenting or acting on the result; use raw mode when structured source data is needed for independent summarization. <br>
+## Use Case:
 
+Developers and agents use this skill when built-in web search is unavailable or when a user specifically requests Zhipu, BigModel, or GLM search. It helps choose a search engine, run the wrapper script, and return either structured results for agent synthesis or a chat-generated search summary.
 
-## Reference(s): <br>
-- [Zhipu Web Search Notes](references/api-notes.md) <br>
-- [BigModel Web Search API endpoint](https://open.bigmodel.cn/api/paas/v4/web_search) <br>
-- [BigModel Chat Completions API endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions) <br>
-- [ClawHub release page](https://clawhub.ai/gxhdky2345/bigmodel-web-search-fallback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the wrapper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The wrapper supports raw structured results and chat-generated answers; users should sanity-check chat output before relying on it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries and optional request_id or user_id values are sent to BigModel/Zhipu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where that provider use is approved, and avoid secrets, personal data, or confidential internal content.
+
+Risk: Chat mode returns a synthesized answer that may need validation before use.
+
+Mitigation: Sanity-check synthesized answers and review source links before presenting final claims.
+
+Risk: The wrapper requires API-key environment variables and external network access.
+
+Mitigation: Confirm the runtime is authorized for BigModel/Zhipu API access, and stop when credentials are missing.
+
+## Reference(s):
+
+- [Zhipu Web Search Notes](references/api-notes.md)
+- [BigModel Web Search API endpoint](https://open.bigmodel.cn/api/paas/v4/web_search)
+- [BigModel Chat Completions API endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output from the wrapper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script can emit structured JSON search results or a synthesized chat answer, depending on mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

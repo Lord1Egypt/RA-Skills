@@ -3,9 +3,11 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import math
 import os
 import re
 import secrets
+import stat
 import time
 import urllib.error
 import urllib.parse
@@ -15,7 +17,13 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-from .shared import normalize_space, redact_sensitive_payload, redact_sensitive_text, write_json_atomic
+from .shared import (
+    normalize_space,
+    read_limited_bytes,
+    redact_sensitive_payload,
+    redact_sensitive_text,
+    write_json_atomic,
+)
 
 
 AUDIBLE_AUTH_SCHEMA_VERSION = 1
@@ -39,6 +47,14 @@ SUPPORTED_AUTH_MARKETPLACES = {
 
 class AudibleAuthError(RuntimeError):
     pass
+
+
+class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req: Any, fp: Any, code: int, msg: str, headers: Any, newurl: str) -> None:
+        return None
+
+
+_NO_REDIRECT_OPENER = urllib.request.build_opener(_NoRedirectHandler())
 
 
 def _auth_marketplace_spec(marketplace: Any) -> dict[str, str]:
@@ -107,10 +123,21 @@ def _secure_write_json(path: Path, payload: dict[str, Any]) -> None:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
+    if path.is_symlink():
+        raise AudibleAuthError(f"Audible auth file at {path} must not be a symbolic link.")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
+        with os.fdopen(os.open(path, flags), "r", encoding="utf-8") as handle:
+            info = os.fstat(handle.fileno())
+            if not stat.S_ISREG(info.st_mode):
+                raise AudibleAuthError(f"Audible auth path at {path} must be a regular file.")
+            if info.st_size > 1024 * 1024:
+                raise AudibleAuthError(f"Audible auth file at {path} exceeds the 1 MiB safety limit.")
+            payload = json.load(handle)
     except FileNotFoundError as exc:
         raise AudibleAuthError(f"Audible auth file not found at {path}.") from exc
+    except AudibleAuthError:
+        raise
     except Exception as exc:
         raise AudibleAuthError(f"Could not read Audible auth file at {path}: {redact_sensitive_text(exc)}") from exc
     if not isinstance(payload, dict):
@@ -120,13 +147,19 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 def _urlopen_json(request: urllib.request.Request, *, timeout: int = 30) -> dict[str, Any]:
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
-            raw = response.read().decode("utf-8", "ignore")
+        with _NO_REDIRECT_OPENER.open(request, timeout=timeout) as response:
+            raw = read_limited_bytes(response, limit=1024 * 1024).decode("utf-8", "ignore")
     except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8", "ignore")
+        try:
+            body = read_limited_bytes(exc, limit=128 * 1024).decode("utf-8", "ignore")
+        except ValueError:
+            body = "response body exceeded the safety limit"
+        exc.close()
         raise AudibleAuthError(f"Audible API HTTP {exc.code}: {redact_sensitive_text(body or exc.reason)}") from exc
     except urllib.error.URLError as exc:
         raise AudibleAuthError(f"Audible API request failed: {redact_sensitive_text(exc)}") from exc
+    except ValueError as exc:
+        raise AudibleAuthError(str(exc)) from exc
     try:
         payload = json.loads(raw)
     except json.JSONDecodeError as exc:
@@ -289,8 +322,6 @@ def register_device(*, authorization_code: str, code_verifier: str, domain: str,
         "accessToken": bearer["access_token"],
         "refreshToken": bearer["refresh_token"],
         "expires": expires.timestamp(),
-        "deviceInfo": success.get("extensions", {}).get("device_info"),
-        "customerInfo": success.get("extensions", {}).get("customer_info"),
     }
 
 
@@ -316,8 +347,6 @@ def finish_external_auth(auth_path: Path, *, redirect_url: str) -> dict[str, Any
         "updatedAt": _now_iso(),
         "marketplace": pending.get("marketplace") or "us",
         "domain": domain,
-        "marketPlaceId": pending["marketPlaceId"],
-        "serial": pending["serial"],
         **registered,
     }
     _secure_write_json(path, payload)
@@ -334,22 +363,29 @@ def auth_file_status(auth_path: Path, *, fix_permissions: bool = False) -> dict[
     path = auth_path.expanduser()
     warnings: list[str] = []
     errors: list[str] = []
-    exists = path.exists()
+    exists = os.path.lexists(path)
     permission_mode: str | None = None
     permission_secure: bool | None = None
     if exists:
         try:
-            mode = path.stat().st_mode & 0o777
-            permission_mode = oct(mode)
-            permission_secure = (mode & 0o077) == 0
-            if not permission_secure:
-                if fix_permissions:
-                    os.chmod(path, 0o600)
-                    permission_mode = "0o600"
-                    permission_secure = True
-                    warnings.append("Auth file permissions were tightened to 0600.")
-                else:
-                    warnings.append("Auth file is readable by group or others; run audible-auth-status --fix-permissions.")
+            info = path.lstat()
+            regular_file = stat.S_ISREG(info.st_mode) and not path.is_symlink()
+            if not regular_file:
+                errors.append("Auth path must be a regular file and must not be a symbolic link.")
+            else:
+                mode = info.st_mode & 0o777
+                permission_mode = oct(mode)
+                permission_secure = (mode & 0o077) == 0
+                if not permission_secure:
+                    if fix_permissions:
+                        os.chmod(path, 0o600)
+                        permission_mode = "0o600"
+                        permission_secure = True
+                        warnings.append("Auth file permissions were tightened to 0600.")
+                    else:
+                        warnings.append(
+                            "Auth file is readable by group or others; run audible-auth-status --fix-permissions."
+                        )
         except OSError as exc:
             warnings.append(f"Could not inspect auth file permissions: {redact_sensitive_text(exc)}")
     if not exists:
@@ -387,6 +423,10 @@ def auth_file_status(auth_path: Path, *, fix_permissions: bool = False) -> dict[
             "errors": [str(exc)],
         }
     status = normalize_space(str(payload.get("status") or "unknown")) or "unknown"
+    if payload.get("schemaVersion") != AUDIBLE_AUTH_SCHEMA_VERSION:
+        errors.append(f"Auth file schemaVersion must be {AUDIBLE_AUTH_SCHEMA_VERSION}.")
+    if payload.get("purpose") != AUDIBLE_AUTH_PURPOSE:
+        errors.append("Auth file purpose is missing or unsupported.")
     expires_raw = payload.get("expires")
     expires: float | None = None
     seconds_remaining: int | None = None
@@ -394,6 +434,8 @@ def auth_file_status(auth_path: Path, *, fix_permissions: bool = False) -> dict[
     if expires_raw not in (None, ""):
         try:
             expires = float(expires_raw)
+            if not math.isfinite(expires):
+                raise ValueError("expires must be finite")
             seconds_remaining = int(expires - time.time())
             expired = seconds_remaining <= 0
             if expired:
@@ -407,6 +449,8 @@ def auth_file_status(auth_path: Path, *, fix_permissions: bool = False) -> dict[
         errors.append(f"Auth file status is {status!r}, not 'ready'.")
     if status == "ready" and not payload.get("refreshToken"):
         errors.append("Auth file is missing refreshToken.")
+    if status == "ready" and expired is False and not payload.get("accessToken"):
+        errors.append("Auth file is missing accessToken for its unexpired session.")
     if status == "ready":
         try:
             _validate_auth_domain(payload.get("domain"), marketplace=payload.get("marketplace") or "us")
@@ -420,7 +464,7 @@ def auth_file_status(auth_path: Path, *, fix_permissions: bool = False) -> dict[
         "status": status,
         "authPath": str(path),
         "exists": True,
-        "ready": ready,
+        "ready": ready and not errors,
         "marketplace": payload.get("marketplace"),
         "domain": payload.get("domain"),
         "createdAt": payload.get("createdAt"),
@@ -437,12 +481,28 @@ def auth_file_status(auth_path: Path, *, fix_permissions: bool = False) -> dict[
 
 
 def load_ready_auth(auth_path: Path) -> dict[str, Any]:
-    payload = _load_json(auth_path.expanduser())
+    path = auth_path.expanduser()
+    payload = _load_json(path)
+    if payload.get("schemaVersion") != AUDIBLE_AUTH_SCHEMA_VERSION:
+        raise AudibleAuthError(f"Audible auth file at {path} has an unsupported schemaVersion.")
+    if payload.get("purpose") != AUDIBLE_AUTH_PURPOSE:
+        raise AudibleAuthError(f"Audible auth file at {path} has an unsupported purpose.")
     if payload.get("status") != "ready":
-        raise AudibleAuthError(f"Audible auth file at {auth_path} is not ready. Run audible-auth-start/finish first.")
+        raise AudibleAuthError(f"Audible auth file at {path} is not ready. Run audible-auth-start/finish first.")
     if not payload.get("refreshToken"):
-        raise AudibleAuthError(f"Audible auth file at {auth_path} is missing refreshToken.")
+        raise AudibleAuthError(f"Audible auth file at {path} is missing refreshToken.")
+    mode = path.stat().st_mode & 0o777
+    if mode & 0o077:
+        raise AudibleAuthError(f"Audible auth file at {path} must have permissions 0600.")
     _validate_auth_domain(payload.get("domain"), marketplace=payload.get("marketplace") or "us")
+    try:
+        expires = float(payload.get("expires") or 0)
+    except (TypeError, ValueError) as exc:
+        raise AudibleAuthError(f"Audible auth file at {path} has an invalid expires value.") from exc
+    if not math.isfinite(expires):
+        raise AudibleAuthError(f"Audible auth file at {path} has an invalid expires value.")
+    if expires - time.time() > 120 and not payload.get("accessToken"):
+        raise AudibleAuthError(f"Audible auth file at {path} is missing accessToken.")
     return payload
 
 
@@ -465,6 +525,8 @@ def refresh_access_token(auth_path: Path, *, force: bool = False) -> dict[str, A
     )
     try:
         payload["accessToken"] = response["access_token"]
+        if response.get("refresh_token"):
+            payload["refreshToken"] = response["refresh_token"]
         payload["expires"] = (datetime.now(UTC) + timedelta(seconds=int(response["expires_in"]))).timestamp()
         payload["updatedAt"] = _now_iso()
     except Exception as exc:

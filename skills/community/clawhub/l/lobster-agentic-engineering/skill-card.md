@@ -1,41 +1,54 @@
-## Description: <br>
-Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted implementation work with completion criteria, eval-first validation, task decomposition, model routing, and review discipline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may be used by an agent with broad repository write access, code execution, production access, or credentials. <br>
-Mitigation: Keep those permissions controlled by normal workspace policy and require review and regression checks before deployment. <br>
-Risk: AI-generated engineering work can miss invariants, edge cases, security assumptions, hidden coupling, or rollout risk. <br>
-Mitigation: Use the skill's eval-first loop and review focus to define completion criteria, rerun regression checks, and prioritize security and edge-case review. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide agent-led implementation work with upfront completion criteria, small independently verifiable task units, eval-first feedback loops, cost-aware model routing, and focused review of AI-generated code.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangxiaofei860208-source/lobster-agentic-engineering) <br>
-- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable workflow guidance for planning, evaluating, routing, and reviewing agentic engineering work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can influence how an agent plans engineering work, chooses model tiers, and prioritizes review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat its recommendations as process guidance and keep human review over task decomposition, model escalation, and quality gates.
+
+Risk: Eval or regression criteria chosen too narrowly may miss defects in AI-generated implementation work.
+
+Mitigation: Define completion criteria before execution, run baseline and post-change evals, and review invariants, edge cases, security assumptions, and rollout risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-agentic-engineering)
+- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and concise engineering workflow recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides process guidance and does not add code execution, persistence, credential access, or data-access behavior by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

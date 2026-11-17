@@ -1,43 +1,59 @@
-## Description: <br>
-Enables two OpenClaw instances to monitor each other with heartbeats, run health checks, diagnose failures, and issue repair actions for high-availability operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables two OpenClaw instances to monitor each other with heartbeat checks, report health status, diagnose failures, and perform configured repair actions.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Operators and developers use this skill to configure paired OpenClaw nodes that exchange health signals, report local resource and process status, diagnose peer failures, and perform administrator-level restart actions when repair is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes remote repair controls without built-in authentication or confirmation. <br>
-Mitigation: Install only in a private, firewalled environment, restrict port 9528 to trusted peer IPs, and treat restart actions as administrator-only until authentication, request validation, audit logging, and explicit approval are added. <br>
-Risk: The release package evidence includes an exposed ClawHub token in publication instructions. <br>
-Mitigation: Remove the token from release materials and rotate it before installation or reuse. <br>
-Risk: Remote host and port configuration can drive network checks and repair requests toward unintended systems. <br>
-Mitigation: Use trusted configuration values, validate peer addresses before deployment, and keep the service isolated from untrusted networks. <br>
+## Use Case:
 
+Developers and operators use this skill to run paired OpenClaw instances that monitor peer availability, check memory, CPU, and process health, and provide diagnostics or repair actions for high-availability deployments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rfdiosuao/openclaw-mutual-repair) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with status summaries, diagnostic findings, configuration snippets, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local HTTP heartbeat and repair listener and may execute local health-check or restart commands when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json) <br>
+Risk: The skill exposes heartbeat and repair endpoints that can trigger powerful remote restart behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not expose port 9528 publicly; bind to trusted interfaces, restrict access to the peer host, and require authentication or mutual TLS before deployment.
+
+Risk: Published material includes an exposed ClawHub token.
+
+Mitigation: Revoke the published token and remove secrets from release artifacts and documentation before reuse.
+
+Risk: Repair and diagnostic behavior can execute shell commands using host and port configuration.
+
+Mitigation: Validate host and port inputs, avoid shell interpolation, add request limits, and keep repair actions explicit and reversible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/openclaw-mutual-repair)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw stability optimization document](https://my.feishu.cn/docx/Tgu7dwKX5ol7m8xNF4ycadjznPe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with health status, diagnostic findings, repair suggestions, and inline shell command or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured peer host and port values; repair workflows may issue PM2 or systemd restart commands when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

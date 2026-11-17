@@ -1,42 +1,55 @@
-## Description: <br>
-Multi-query research tool with LLM-ranked results and freshness control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-query research tool with LLM-ranked results and freshness control. Breaks a topic into focused queries, previews top results. No API key.
 
-## Publisher: <br>
-[c5huracan](https://clawhub.ai/user/c5huracan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c5huracan](https://clawhub.ai/user/c5huracan)
 
-## Use Case: <br>
-Developers, engineers, and research-oriented agents use this skill to break a topic into multiple focused web research queries, retrieve LLM-ranked results, and preview selected result content without managing an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, agent identifiers, and selected result URLs are transmitted to api.rhdxm.com. <br>
-Mitigation: Avoid submitting confidential investigations, proprietary plans, secrets, customer data, or regulated personal information unless the provider's data handling is approved for that use. <br>
-Risk: Search results and previews may be incomplete, stale, or misleading despite LLM ranking and freshness controls. <br>
-Mitigation: Treat returned results as research leads and verify important claims against primary or trusted sources before relying on them. <br>
+## Use Case:
 
+Developers, external researchers, and agent users use this skill to break a research topic into focused queries, retrieve LLM-ranked web results, and preview selected results with configurable freshness.
 
-## Reference(s): <br>
-- [Meyhem API Docs](https://api.rhdxm.com/docs) <br>
-- [Meyhem MCP Endpoint](https://api.rhdxm.com/mcp/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/c5huracan/meyhem-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style console output containing generated queries, ranked result titles, URLs, and short previews.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on api.rhdxm.com availability, selected freshness, requested result count, query count, and transmitted agent identifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: frontmatter and server release evidence) <br>
+Risk: Research queries, chosen agent_id values, and selected result URLs are transmitted to api.rhdxm.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private business information, proprietary research topics, or sensitive identifiers unless that external service is approved for the use case.
+
+Risk: Search previews and LLM-ranked results can be incomplete, outdated, or misleading for decisions that require authoritative sources.
+
+Mitigation: Review the linked source pages and corroborate important claims before using results in high-impact work.
+
+## Reference(s):
+
+- [Meyhem Researcher on ClawHub](https://clawhub.ai/c5huracan/skills/meyhem-researcher)
+- [RHDXM API documentation](https://api.rhdxm.com/docs)
+- [RHDXM MCP endpoint](https://api.rhdxm.com/mcp/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and terminal text containing search queries, result titles, URLs, and short previews.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill sends search queries, an agent_id, and selected result URLs to api.rhdxm.com; no API key is required.]
+
+## Skill Version(s):
+
+0.2.5 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

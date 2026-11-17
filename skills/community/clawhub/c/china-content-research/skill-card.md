@@ -1,42 +1,58 @@
-## Description: <br>
-Research and analyze WeChat articles and Chinese social content for market intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and analyze WeChat articles and Chinese social content for market intelligence.
 
-## Publisher: <br>
-[wulaosiji](https://clawhub.ai/user/wulaosiji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulaosiji](https://clawhub.ai/user/wulaosiji)
 
-## Use Case: <br>
-External researchers, founders, and market intelligence teams use this skill to scope, extract, and synthesize public WeChat and Chinese social content for China market entry, competitive intelligence, trend monitoring, and content strategy analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Collected article content and metadata may be sent to configured storage or API services. <br>
-Mitigation: Install only when those services are acceptable for the data, minimize personal data collection, and define retention rules for archived material. <br>
-Risk: Research workflows may collect content that the user does not have permission to process or that is restricted by platform terms. <br>
-Mitigation: Limit collection to public content the user has permission to process, respect access restrictions and paywalls, and follow applicable platform policies and regulations. <br>
+## Use Case:
 
+External users and market research teams use this skill to scope, collect, and synthesize public WeChat Official Account and Chinese platform content for China market entry, competitor monitoring, trend analysis, and content strategy research.
 
-## Reference(s): <br>
-- [China Content Research on ClawHub](https://clawhub.ai/wulaosiji/china-content-research) <br>
-- [UniqueClub](https://uniqueclub.ai) <br>
-- [Founder Skills Repository](https://github.com/wulaosiji/founder-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plans, extraction schemas, and analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Chinese and English research prompts, article metadata, engagement metrics, topic analysis, sentiment observations, and strategic recommendations when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Public content collection may conflict with platform terms, paywalls, or access restrictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for lawful, user-directed research on publicly available content; do not bypass paywalls or access controls.
+
+Risk: Research outputs may archive or summarize public WeChat content in ways that require data-handling review.
+
+Mitigation: Follow applicable regulations and internal retention policies before storing, sharing, or operationalizing collected content.
+
+Risk: Engagement metrics and sentiment analysis may be unavailable, incomplete, or misleading.
+
+Mitigation: Label unavailable data clearly, distinguish observed metrics from analysis, and review findings before business use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wulaosiji/skills/china-content-research)
+- [UniqueClub](https://uniqueclub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research briefs, extraction schemas, and analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public article metadata, available engagement metrics, topic and sentiment summaries, and strategic recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Retrieves real-time stock quote data such as price, change, volume, turnover, and market details through Sina Finance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves real-time stock quote data for A-share and Hong Kong market symbols via Sina Finance.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Agents and developers use this skill to query stock symbols and return concise market snapshots for quick informational lookup. It is suitable for retrieving current quote fields for supported A-share and Hong Kong symbols, with documentation also describing US market examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data from an external quote endpoint may be delayed, unavailable, or parsed incorrectly. <br>
-Mitigation: Treat the output as informational and verify important financial or trading decisions against an authoritative market data source. <br>
-Risk: The documentation and implementation differ on US stock support. <br>
-Mitigation: Validate market support in the installed version before relying on US symbols; the included command implementation accepts six-digit A-share symbols and five-digit Hong Kong symbols. <br>
+## Use Case:
 
+Agents use this skill to query current stock quote fields such as price, change, open, high, low, volume, turnover, and market for supported Chinese-language market lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asterisk622/xiaoding-stock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns quote fields including current price, price change, open, high, low, volume, amount, turnover, and market when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Queried stock symbols are sent to Sina Finance over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or confidential watchlist information through the command.
+
+Risk: The interface and market data output are primarily Chinese.
+
+Mitigation: Confirm that downstream users or agents can interpret the returned Chinese labels before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-stock)
+- [Publisher profile](https://clawhub.ai/user/asterisk622)
+- [Sina Finance](https://finance.sina.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with stock quote fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The interface and output are primarily Chinese, and queried stock symbols are sent to Sina Finance over HTTPS.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

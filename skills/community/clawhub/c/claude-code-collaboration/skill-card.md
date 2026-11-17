@@ -1,42 +1,61 @@
-## Description: <br>
-Integrates OpenClaw with Claude Code CLI to delegate coding tasks via JSON queues for multi-turn code collaboration and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates OpenClaw with Claude Code CLI to delegate coding tasks via JSON queues for advanced multi-turn code collaboration and analysis.
 
-## Publisher: <br>
-[gesilajerry](https://clawhub.ai/user/gesilajerry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gesilajerry](https://clawhub.ai/user/gesilajerry)
 
-## Use Case: <br>
-Developers using OpenClaw use this skill to hand off coding, analysis, and multi-turn collaboration tasks to Claude Code through JSON queues and receive structured JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queued tasks may receive broad automatic execution authority in the configured workspace. <br>
-Mitigation: Review before installing, remove the permission-bypass flag unless the risk is accepted, and restrict queue and work directories. <br>
-Risk: The artifact includes an embedded API token. <br>
-Mitigation: Remove and rotate the embedded token, then configure credentials securely through environment or secret management. <br>
-Risk: Prompts, outputs, and local logs may expose secrets or private code. <br>
-Mitigation: Avoid submitting sensitive material unless local logs and result files are access-controlled and protected. <br>
+## Use Case:
 
+Developers and agent builders use this skill to let OpenClaw hand coding or analysis prompts to Claude Code through local JSON queues and consume result JSON for continued collaboration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gesilajerry/claude-code-collaboration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON result files containing task metadata, stdout, stderr, return code, and completion time.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses queue files for task input and result output; logs conversation and status files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes a hardcoded external API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the credential from the artifact, rotate any exposed secret, and provide credentials through a protected environment or secret manager.
+
+Risk: Queued prompts are executed with normal Claude Code permission checks disabled.
+
+Mitigation: Restore normal permission checks and run the skill only in a tightly controlled, low-privilege workspace.
+
+Risk: Queue directories can trigger automatic execution of local task files.
+
+Mitigation: Restrict write access to queue directories and validate task files before allowing the bridge to process them.
+
+Risk: Prompts, outputs, status, and logs may be sent to the configured external provider or stored locally.
+
+Mitigation: Confirm the data handling policy before use and protect local queue, result, status, and log files.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gesilajerry/skills/claude-code-collaboration)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON result files containing task status, prompt, stdout, stderr, return code, and completion timestamp.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts, responses, status, and logs may be stored in local workspace files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

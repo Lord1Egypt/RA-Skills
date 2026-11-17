@@ -1,42 +1,59 @@
-## Description: <br>
-TikHub connector skill that lets agents inspect schemas and run TikHub actions through the OOMOL oo CLI for TikTok, Douyin, Xiaohongshu, and TikHub account queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TikHub (tikhub.io). Use this skill for ANY TikHub request — searching and reading data. Whenever a task involves TikHub, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve public TikTok, Douyin, and Xiaohongshu data and to check TikHub account, usage, endpoint, and pricing information through a connected OOMOL TikHub account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some actions may expose TikHub account or API-key-related information. <br>
-Mitigation: Run account and usage actions only when needed, and review returned data before sharing or storing it. <br>
-Risk: Actions marked write may change TikHub state, and the exact side effect may depend on the live connector contract. <br>
-Mitigation: Fetch the live action schema, confirm the exact payload and expected effect with the user, and avoid write actions without explicit approval. <br>
+## Use Case:
 
+Developers and analysts use this skill to discover TikHub endpoints, inspect endpoint pricing and metadata, review account usage information, and invoke functional endpoints through an OOMOL-connected TikHub account.
 
-## Reference(s): <br>
-- [TikHub homepage](https://tikhub.io/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub TikHub skill page](https://clawhub.ai/oomol/skills/oo-tikhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the OOMOL oo CLI; action schemas should be fetched before constructing JSON payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The documented CLI installation commands execute remote installer code, whose exact behavior is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and use a vetted, pinned CLI installation; avoid running the installer until its source and behavior are trusted.
+
+Risk: The required CLI can install additional agent skills through automatic synchronization, a behavior this skill does not explain.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 to disable automatic skill synchronization when only this integration is wanted.
+
+Risk: TikHub account access and endpoint use can expose account information or incur request charges.
+
+Mitigation: Use minimum TikHub scopes, protect account and key information, and monitor request charges.
+
+## Reference(s):
+
+- [TikHub API documentation](https://docs.tikhub.io/)
+- [TikHub](https://tikhub.io/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON API responses with concise text or Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some actions require TikHub account path scopes; endpoint requests may incur charges.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

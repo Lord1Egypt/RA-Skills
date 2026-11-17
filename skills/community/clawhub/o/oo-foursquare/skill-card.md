@@ -1,44 +1,55 @@
-## Description: <br>
-Foursquare helps agents search and read Foursquare place data through the OOMOL connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Foursquare (foursquare.com). Use this skill for ANY Foursquare request — searching and reading data. Whenever a task involves Foursquare, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to search Foursquare places, retrieve nearby venues, and read place details, photos, and tips through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Foursquare account and may prompt setup or login steps if authentication fails. <br>
-Mitigation: Install only if OOMOL is an acceptable connector layer, avoid repeating one-time login or install steps unless commands fail, and follow the security guidance for authentication and connection errors. <br>
-Risk: Future connector actions could be marked write or destructive even though the current listed Foursquare actions are read operations. <br>
-Mitigation: Inspect the live connector schema before running actions and confirm any write or destructive action, target, and payload with the user before execution. <br>
+## Use Case:
 
+People using an OOMOL-connected Foursquare account can search for nearby places and retrieve place details, photos, and tips.
 
-## Reference(s): <br>
-- [Foursquare homepage](https://foursquare.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-foursquare) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action execution; connector responses are JSON when run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Setup runs unverified downloaded code, and the installer's approval scope is unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the oo CLI installer and downloaded release before running it; check bundled-skill synchronization settings and local changes before enabling the skill.
+
+Risk: Location and search details are shared through OOMOL with Foursquare when actions run.
+
+Mitigation: Use only location and search information you intend to share through OOMOL with Foursquare.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Foursquare API documentation](https://docs.foursquare.com/developer/reference)
+- [Foursquare](https://foursquare.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses from Foursquare read actions, with natural-language summaries as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Place search and retrieval; requires the oo CLI and a connected Foursquare account.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

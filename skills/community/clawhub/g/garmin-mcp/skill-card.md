@@ -1,44 +1,55 @@
-## Description: <br>
-Connect an MCP-compatible agent to local Garmin Connect sleep, Body Battery, HRV, stress, activities, and training readiness. Use when an AI agent needs setup, usage, safety boundaries, or troubleshooting for Garmin MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an MCP-compatible agent to local Garmin Connect sleep, Body Battery, HRV, stress, activities, and training readiness.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, configure, troubleshoot, and verify privacy boundaries for a Garmin MCP server in MCP-compatible clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Garmin MCP access can expose private wellness data to an authenticated agent. <br>
-Mitigation: Run privacy and status checks first, keep user consent explicit, and avoid placing private health data in prompts or logs. <br>
-Risk: OAuth tokens or local token files could be exposed during setup or troubleshooting. <br>
-Mitigation: Use the local helper/token flow, keep tokens under ~/.garmin-mcp/, and do not print credentials, token files, API keys, or private user data. <br>
-Risk: The npm package or linked repository may not match the intended release. <br>
-Mitigation: Verify the linked repository and garmin-mcp-unofficial package before installing or running commands. <br>
+## Use Case:
 
+Developers and users of MCP-compatible agents use this skill to install, configure, and troubleshoot Garmin MCP access to Garmin Connect wellness and activity data while keeping credential handling local and explicit.
 
-## Reference(s): <br>
-- [Garmin MCP repository](https://github.com/davidmosiah/garminmcp) <br>
-- [Garmin connector documentation](https://wellness.delx.ai/connectors/garmin) <br>
-- [ClawHub skill page](https://clawhub.ai/davidmosiah/garmin-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include safety, privacy, and troubleshooting guidance for local Garmin MCP setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill asks users to run an unpinned npm package as the MCP server and authentication helper for sensitive Garmin health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed package version, verify package provenance before use, and reassess trust before accepting future package updates.
+
+Risk: Garmin credentials, tokens, or private wellness data could be exposed during setup or troubleshooting.
+
+Mitigation: Use the local helper/token flow, keep token files protected under ~/.garmin-mcp/, and avoid printing OAuth tokens, API keys, local token files, or private user data.
+
+## Reference(s):
+
+- [ClawHub Garmin MCP Skill Page](https://clawhub.ai/davidmosiah/skills/garmin-mcp)
+- [Garmin MCP Repository](https://github.com/davidmosiah/garminmcp)
+- [Garmin Connector Docs](https://wellness.delx.ai/connectors/garmin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include MCP client setup, safety boundaries, privacy checks, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-将论文 PDF 批处理为中文精读总结报告的工作流技能，支持使用 pdfplumber 或可配置的 PaddleOCR 端点抽取文本，并通过可配置的大模型端点生成论文研读报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将论文 PDF 批处理为中文精读总结报告的工作流技能，支持通过 PaddleOCR 或 pdfplumber 抽取文本并调用配置的大模型生成报告。
 
-## Publisher: <br>
-[mxingchtongaelofficial2568](https://clawhub.ai/user/mxingchtongaelofficial2568) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mxingchtongaelofficial2568](https://clawhub.ai/user/mxingchtongaelofficial2568)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, and analysts use this skill to batch-process paper PDFs into Chinese close-reading reports. It extracts PDF text locally with pdfplumber or optionally through a configured PaddleOCR endpoint, then sends the extracted text to a configured OpenAI-compatible summarizer.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Configured OCR or LLM providers can receive PDF contents and extracted text.
+
+Mitigation: Use only user-approved endpoints, prefer internal or self-hosted providers for confidential documents, and remove unused provider configuration.
+
+Risk: The optional PaddleOCR path can fetch an unvalidated remote result URL returned by the OCR service.
+
+Mitigation: Keep PaddleOCR disabled unless the endpoint is trusted, and validate OCR result URLs before treating the skill as low-risk.
+
+Risk: Python dependencies can change behavior over time when installed from broad version ranges.
+
+Mitigation: Install dependencies in an isolated environment and pin versions before production use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to turn one or more PDF papers into structured Chinese deep-reading reports with evidence excerpts, methods summaries, and reusable review tables. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Selected document content may be sent to configured OCR or LLM services. <br>
-Mitigation: Review config.json before use, confirm each OCR and LLM endpoint with the user, and prefer trusted self-hosted or internal endpoints for sensitive papers. <br>
-Risk: API keys or tokens can be exposed if stored directly or printed in logs. <br>
-Mitigation: Use environment variable references for secrets when possible and keep log and exception output redacted. <br>
-Risk: Broad input folders can include unintended PDFs for processing. <br>
-Mitigation: Pass specific PDF files or narrow directories instead of broad document folders. <br>
+**Output Format:** [Markdown reports and concise shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mxingchtongaelofficial2568/llm-paper-review-generator) <br>
+**Other Properties Related to Output:** [Generates one *_研读报告.md file per input PDF; token-like values should be redacted from logs and errors.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown report files plus console progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one *_研读报告.md file per input PDF; output quality and data exposure depend on the configured OCR and LLM endpoints.] <br>
+0.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,34 @@
+# Add this block to ~/.hermes/config.yaml under the mcp_servers key.
+# If you already have mcp_servers configured, merge mumo as a sibling entry.
+#
+# The key itself does not go in this file. Put it in ~/.hermes/.env:
+#
+#     MUMO_API_KEY=mmo_live_your_key_here
+#
+# Hermes resolves ${MUMO_API_KEY} in headers at connect time, and .env is where
+# it expects secrets to live — config.yaml is for everything that isn't one.
+# A hub install (`hermes skills install clawhub/mumo-hermes`) prompts for the
+# key and writes that .env line for you.
+#
+# After saving, fully exit and restart Hermes — /reload-mcp is unreliable across versions.
+
+mcp_servers:
+  mumo:
+    url: "https://mumo.chat/api/mcp"
+    headers:
+      Authorization: "Bearer ${MUMO_API_KEY}"
+    connect_timeout: 60
+    timeout: 180
+    supports_parallel_tool_calls: true
+    tools:
+      include:
+        - create_deliberation
+        - wait_for_round
+        - append_round
+        - get_session
+        - list_sessions
+        - list_models
+        - share_session
+        - get_credit
+      resources: false
+      prompts: false

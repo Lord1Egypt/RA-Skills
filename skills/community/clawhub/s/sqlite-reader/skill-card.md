@@ -1,41 +1,54 @@
-## Description: <br>
-Read and query SQLite database files for inspection and extraction, including basic SELECT queries, table listing, and schema inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and query SQLite database files. Use when user wants to inspect or extract data from .sqlite files, especially OpenClaw's main.sqlite memory database. Supports basic SELECT queries, table listing, and schema inspection.
 
-## Publisher: <br>
-[SenKnight](https://clawhub.ai/user/SenKnight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[senknight](https://clawhub.ai/user/senknight)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local SQLite databases, list tables, view table schemas, run basic queries, and export query results while investigating application or OpenClaw data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The query mode can modify SQLite databases despite the read-oriented presentation. <br>
-Mitigation: Use copies of important databases and run only SELECT-style queries unless write access is intentional. <br>
-Risk: SQLite databases can contain sensitive OpenClaw memory or user data. <br>
-Mitigation: Avoid exporting sensitive data unless you control and approve the output path. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect SQLite databases, list tables, view table schemas, run SQL queries, and export selected query results while investigating local application data.
 
-## Reference(s): <br>
-- [SQLite Schema Reference](references/schema.md) <br>
-- [ClawHub release page](https://clawhub.ai/SenKnight/sqlite-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and text or CSV query output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local CSV exports when the user supplies an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper can execute arbitrary SQL against a database file and may change or damage writable databases despite the skill being presented as read-oriented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use database copies or read-only files, and allow only trusted users or reviewed instructions to provide SQL queries.
+
+Risk: CSV export writes to a caller-provided output path, which can expose sensitive query results or overwrite an unintended file.
+
+Mitigation: Review output paths before execution and write exports only to approved working directories.
+
+## Reference(s):
+
+- [SQLite Schema Reference](artifact/references/schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/senknight/skills/sqlite-reader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python command examples; terminal text output or CSV export from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query execution depends on the SQLite database path, selected action, optional SQL query, optional row limit, and optional CSV output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

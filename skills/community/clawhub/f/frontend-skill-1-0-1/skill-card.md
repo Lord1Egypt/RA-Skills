@@ -1,40 +1,53 @@
-## Description: <br>
-Frontend Skill 1.0.1 guides agents through modern frontend development with React, shadcn/ui, Tailwind CSS v4, TypeScript, Next.js, responsive UI patterns, interaction effects, component reuse, and injection-aware implementation practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend Skill 1.0.1 guides agents through modern frontend development using React, shadcn/ui, Tailwind CSS v4, TypeScript, Next.js, interaction effects, reusable components, responsive layouts, and basic injection-risk awareness.
 
-## Publisher: <br>
-[000sonic](https://clawhub.ai/user/000sonic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[000sonic](https://clawhub.ai/user/000sonic)
 
-## Use Case: <br>
-Developers and frontend-focused agents use this skill to build polished web pages, components, responsive interfaces, and interaction-heavy frontend applications. It is most applicable when the user wants a modern React-centered frontend stack or has not specified a different stack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms may cause the skill to influence general web or UI development requests. <br>
-Mitigation: State the desired stack, constraints, and project conventions explicitly when they differ from the skill's React, shadcn/ui, Tailwind CSS, TypeScript, and Next.js defaults. <br>
-Risk: Frontend implementation guidance can affect user-facing behavior, styling, and security-sensitive input handling. <br>
-Mitigation: Review generated UI changes, dependency additions, and input-handling code before deployment. <br>
+## Use Case:
 
+Developers and frontend-focused agents use this skill to plan and implement polished web interfaces, components, animations, responsive layouts, and modern React/Next.js project work when no more specific stack is requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/000sonic/frontend-skill-1-0-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or modify frontend files, component structure, styling, and project commands depending on the host agent's permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill has broad frontend-development triggers and may activate for general web or UI requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the task request and confirm that a frontend-focused helper with the documented default stack is appropriate before relying on its guidance.
+
+Risk: Generated frontend guidance or code can introduce incorrect implementation details, weak UX choices, or injection-risk regressions.
+
+Mitigation: Review proposed code, configuration, and UI behavior before deployment, with attention to responsive layouts, component reuse, and input-handling security.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/000sonic/skills/frontend-skill-1-0-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May default to React, shadcn/ui, Tailwind CSS v4, TypeScript, and Next.js unless the user specifies a different frontend stack.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

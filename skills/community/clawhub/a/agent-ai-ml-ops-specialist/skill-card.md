@@ -1,40 +1,53 @@
-## Description: <br>
-Imported specialist agent skill for ai ml ops specialist. Use when requests match this domain or role. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imported specialist agent skill for AI/ML operations, used when requests match that domain or role.
 
-## Publisher: <br>
-[nntrivi2001](https://clawhub.ai/user/nntrivi2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nntrivi2001](https://clawhub.ai/user/nntrivi2001)
 
-## Use Case: <br>
-Developers and ML engineers use this skill for model lifecycle planning, deployment, monitoring, retraining, compliance-aware operations, and cost optimization across production ML systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad MLOps activation scope may overlap with adjacent data, compliance, or DevOps skills. <br>
-Mitigation: Review trigger wording and invoke the skill only for clearly MLOps-focused requests. <br>
-Risk: Guidance may affect production, compliance, or infrastructure decisions. <br>
-Mitigation: Require explicit confirmation and human review before applying production, compliance, or infrastructure changes. <br>
+## Use Case:
 
+Developers and engineers use this skill for ML lifecycle management, including model development, deployment, monitoring, retraining, compliance, cost optimization, and production incident support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nntrivi2001/agent-ai-ml-ops-specialist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool-agnostic MLOps recommendations; production, compliance, and infrastructure changes should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on an unbundled local skill file whose contents can change outside this package review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the referenced local skill file before installation or use, and avoid treating its guidance as reviewed package content unless it is separately validated.
+
+Risk: Example commands may affect services, feature-store state, or network exposure if run directly.
+
+Mitigation: Review commands in a non-production environment and adapt them to the target infrastructure before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nntrivi2001/skills/agent-ai-ml-ops-specialist)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external MLOps tools, cloud platforms, and a local skill file that is not bundled with the package.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

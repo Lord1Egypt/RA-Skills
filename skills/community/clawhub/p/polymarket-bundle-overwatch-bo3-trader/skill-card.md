@@ -1,46 +1,55 @@
-## Description: <br>
-Detects and can trade pricing gaps between Overwatch best-of-3 series winner markets and individual game winner markets on Polymarket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades structural arbitrage between Overwatch BO3 series winner markets and individual game winner markets on Polymarket.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading agents use this skill to monitor Overwatch BO3 Polymarket bundles, compare implied series probabilities with quoted series prices, and submit paper or explicitly enabled live trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades using USDC. <br>
-Mitigation: Run in the default paper mode first and use live mode only with the explicit --live flag after reviewing position limits. <br>
-Risk: SIMMER_API_KEY is a high-value trading credential. <br>
-Mitigation: Store the credential securely, avoid logging it, and limit access to agents that are intended to trade. <br>
-Risk: The trading strategy should not be treated as guaranteed or risk-free, especially when no Game 3 market is available. <br>
-Mitigation: Review the signal before live use, keep conservative tunables, and adjust the minimum violation, position size, and market filters for the user's risk tolerance. <br>
-Risk: Thin markets, spreads, slippage, and short time to resolution can degrade execution quality. <br>
-Mitigation: Use the configured minimum volume, maximum spread, slippage, days-to-resolution, and maximum open-position controls before submitting live trades. <br>
+## Use Case:
 
+External trading-agent users use this skill to monitor Overwatch best-of-3 Polymarket bundles, compare series-winner prices against individual game-winner probabilities, and optionally place paper or live trades based on detected inconsistencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-bundle-overwatch-bo3-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration] <br>
-**Output Format:** [Console logs and Simmer trade requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trades require an explicit --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The security evidence marks the release suspicious because live-trading safeguards are under-enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode until the risk checks are reviewed, SDK dependency is pinned, and a tightly scoped limited API key is configured.
+
+Risk: Running with --live can place real-money Polymarket orders.
+
+Mitigation: Use --live only after verifying thresholds, position limits, spread checks, and max open-position settings for the intended account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-bundle-overwatch-bo3-trader)
+- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/)
+- [Simmer SDK on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and trading actions through the configured Simmer venue]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper trading unless run with --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

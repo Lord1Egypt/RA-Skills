@@ -1,38 +1,58 @@
-## Description: <br>
-Searches live flight prices and schedules from Google Flights through SearchAPI.io for route, date, passenger, cabin, stop, return-flight, and booking-option lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches live Google Flights prices and schedules through SearchAPI.io and returns structured flight options for comparison, booking-link lookup, and price monitoring.
 
-## Publisher: <br>
-[GalDayan](https://clawhub.ai/user/GalDayan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[galdayan](https://clawhub.ai/user/galdayan)
 
-## Use Case: <br>
-External users and agents use this skill to find and compare flight options, retrieve booking-option links, and prepare ranked travel results from live SearchAPI.io responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The supplied security evidence reports that travel searches and user delivery identifiers may be saved for recurring price monitoring without a clear consent boundary. <br>
-Mitigation: Use price monitoring only after explicit user consent, confirm saved searches can be deleted, and present booking links for user review rather than opening or following them automatically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/GalDayan/google-flights-search) <br>
-- [SearchAPI.io signup](https://www.searchapi.io/users/sign_up) <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to search flight options, compare prices and schedules, retrieve booking links, and prepare price monitoring for requested trips.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [JSON flight-search and booking-option results with agent-facing workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEARCHAPI_KEY; writes local search logs; round-trip searches can include return-leg details for top results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic price monitoring can store travel plans or contact identifiers without clear consent.
+
+Mitigation: Require explicit user consent before saving monitoring data, and define retention and deletion rules for saved travel plans.
+
+Risk: Raw flight API responses and booking or departure tokens may be written to logs.
+
+Mitigation: Restrict or disable raw logs, redact booking/departure tokens and contact identifiers, and audit log access before deployment.
+
+Risk: The skill depends on a live SearchAPI.io credential.
+
+Mitigation: Use a limited SearchAPI.io key stored in environment secrets, and monitor quota, errors, and unexpected use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/galdayan/skills/google-flights-search)
+- [SearchAPI.io signup](https://www.searchapi.io/users/sign_up)
+- [SearchAPI.io Google Flights API endpoint](https://www.searchapi.io/api/v1/search)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the helper script, with concise text or markdown flight recommendations after scoring and formatting.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SEARCHAPI_KEY; uses live SearchAPI.io calls and can include booking tokens, prices, schedules, layovers, and booking URLs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

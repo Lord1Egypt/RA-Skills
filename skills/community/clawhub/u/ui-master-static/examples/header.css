@@ -1,0 +1,178 @@
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #111114;
+  --color-muted: #6b6b76;
+  --color-primary: #3a5fff;
+  --color-primary-hover: #2c49d6;
+  --color-border: #e4e4e8;
+
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-md: 0.625rem;
+  --shadow-sm: 0 2px 8px rgb(0 0 0 / 0.08);
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: var(--color-fg); }
+a { color: inherit; text-decoration: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Block: header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  padding-inline: var(--space-6);
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__brand {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+
+.header__nav {
+  display: none;
+  gap: var(--space-8);
+}
+
+.header__link {
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.header__link:hover,
+.header__link:focus-visible {
+  color: var(--color-fg);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.header__mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-fg);
+}
+
+@media (min-width: 768px) {
+  .header__nav { display: flex; }
+  .header__mobile-toggle { display: none; }
+}
+
+/* Block: button — reused across header + rest of the UI */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.button:hover { transform: translateY(-1px); }
+.button:active { transform: translateY(0); transition-duration: 50ms; }
+.button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+.button--primary {
+  background: var(--color-primary);
+  color: white;
+}
+.button--primary:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-fg);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .button--ghost { display: inline-flex; }
+}
+
+/* Block: mobile-nav */
+.mobile-nav {
+  position: fixed;
+  inset: 4rem 0 auto 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--duration-base) var(--ease-standard),
+    opacity var(--duration-base) var(--ease-standard);
+}
+
+.mobile-nav[data-open="true"] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav__link {
+  padding-block: var(--space-2);
+  font-size: 1rem;
+  color: var(--color-fg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-nav__link:last-child { border-bottom: none; }
+
+@media (min-width: 768px) {
+  .mobile-nav { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button, .header__link, .mobile-nav {
+    transition: none;
+  }
+}

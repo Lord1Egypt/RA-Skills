@@ -1,4 +1,4 @@
-# OEF 查询功能安装工作流：open-fund-query
+# OEF 查询功能 v3.0.0 安装工作流：open-fund-query
 
 本工作流用于单独安装并初始化场外指数基金查询功能（open-fund-query）。安装时请按阶段执行；如果遇到异常，按对应阶段的处理方式给出原因和修复建议，不要跳过。
 
@@ -8,23 +8,33 @@
 - `skillsDir`：可选。安装目录，默认 `~/.openclaw/workspace/skills`。也可以通过环境变量 `OPENCLAW_SKILLS_DIR` 覆盖。
 - `--skip-api-verify`：可选。离线安装或网络受限时跳过接口连通性校验。
 
+## API Key 与额度说明
+
+安装前请准备基金查询服务 API Key。每位用户每日享有 500 次免费 API 接口调用额度；单次提问可能调用多个接口，额度按实际接口调用次数计算。
+
+如需获取API Key，请在微信搜索“指数直通车”小程序，在「AI Skills」页面申请。更多说明可访问帮助文档：https://cdn.efunds.com.cn/eda/h5/itcenter/pd/ai-skills-doc/help.pdf
+
+问题反馈或技术支持邮箱：indexhub@efunds.com.cn
+
 一键安装命令：
 
 ```bash
-./install.sh --api-key "YOUR_KEY"
+./install.sh
 ```
 
 离线或仅做本地配置校验：
 
 ```bash
-./install.sh --api-key "YOUR_KEY" --skip-api-verify
+./install.sh --skip-api-verify
 ```
 
 只更新本机私有 key，不重新复制功能文件：
 
 ```bash
-./install.sh --api-key "YOUR_KEY" --no-install --skip-api-verify
+./install.sh --no-install --skip-api-verify
 ```
+
+`--no-install` 仅适用于已经安装独立凭据文件版本的用户。若安装脚本检测到旧版 `config.py`，会在写入新 Key 前停止；请改用当前安装包的安装入口执行一次完整安装，不要使用 `--no-install`。
 
 ## 阶段 1：环境检测
 
@@ -46,7 +56,7 @@
 检查项：
 
 - `open-fund-query/` 目录是否完整存在。
-- `SKILL.md`、`config.py` 和 `references/catalog-oef.md` 是否齐全。
+- `SKILL.md`、`config.py`、`guardrails.py` 和 `references/catalog-oef.md` 是否齐全。
 
 异常处理：
 
@@ -61,7 +71,7 @@
 
 异常处理：
 
-- key 为空：使用 `./install.sh --api-key YOUR_KEY` 重新运行。
+- key 为空：重新运行 `./install.sh` 并按提示隐藏输入。
 
 ## 阶段 4：安装并写入 API Key
 
@@ -69,14 +79,15 @@
 
 - 将 `open-fund-query` 复制到目标安装目录。
 - 将对应版本的 `config.py` 写入已安装功能目录。
-- 写入 API Key（两处同时写入）：
-  1. 写入 shell profile（zsh -> `~/.zshrc`，bash -> `~/.bash_profile`）。
-  2. 写入本地配置文件（`_FALLBACK_KEY`）。
+- 将 API Key 写入独立凭据文件 `~/.config/index-hub/api_key`，目录权限设为 `0700`，文件权限设为 `0600`。
+- 不修改 `~/.zshrc`、`~/.bash_profile`，也不把 Key 写入 `config.py`。
+- 运行时可用 `INDEX_HUB_API_KEY` 临时覆盖凭据文件，并兼容旧变量 `ETF_API_KEY`。
+- 从旧版本升级时，安装器不会自动修改 shell profile；如果旧安装器曾写入 `INDEX_HUB_API_KEY` 或 `ETF_API_KEY`，请在确认新版本查询正常后手动删除对应的 `export` 行。
 
 异常处理：
 
 - 复制失败：检查目标目录权限，或使用 `--skills-dir DIR`。
-- 两种写入方式均失败：检查 HOME 目录和安装目录权限。
+- 凭据文件写入失败：检查 HOME 目录、`~/.config/index-hub` 的所有权和写入权限。
 
 ## 阶段 5：能力校验
 
@@ -86,7 +97,7 @@
 
 接口连通性校验：
 
-- 调用场外基金详情接口，使用测试代码 `006748`。
+- 调用场外基金详情接口，使用示例代码 `006748`。
 
 异常处理：
 

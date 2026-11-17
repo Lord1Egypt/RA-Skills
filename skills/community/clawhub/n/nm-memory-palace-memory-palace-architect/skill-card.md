@@ -1,42 +1,50 @@
-## Description: <br>
-Designs memory palace structures with spatial layouts and domain organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs memory palace structures with spatial layouts and domain organization.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, writers, researchers, and other knowledge workers use this skill to design spatial mnemonic structures for organizing complex topics, documentation, learning paths, and project knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad activation keywords and may activate in conversations where mnemonic architecture is not needed. <br>
-Mitigation: Use it when intentionally designing memory-palace structures and disable or avoid it for ordinary memory, search, or organization requests. <br>
-Risk: The documented palace_manager.py commands require files that are not included in this package. <br>
-Mitigation: Treat the package as markdown guidance unless the separate source plugin or required scripts are installed. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to organize complex topics into spatially structured memory palaces, with conceptual layouts, sensory cues, and recall checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-memory-palace-memory-palace-architect) <br>
-- [Memory Palace source homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace) <br>
-- [Franklin Protocol reference](https://spf13.com/p/how-benjamin-franklin-invented-machine-learning-in-1720/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce palace schemas, sensory encoding profiles, navigation maps, recall testing notes, and optimization recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence; artifact frontmatter reports 1.9.8) <br>
+Risk: The benign security result has medium confidence and is partial; unresolved install references were not verified, so their behavior is not covered.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or running the skill, confirm that you expect the referenced CLI commands and review those references.
+
+## Reference(s):
+
+- [Franklin Protocol source](https://spf13.com/p/how-benjamin-franklin-invented-machine-learning-in-1720/)
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-memory-palace-memory-palace-architect)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [Structured palace data and written design guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include spatial coordinates, sensory associations, navigation paths, recall results, and optimization recommendations.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Feishu (Lark) group chat messaging guide for OpenClaw. Includes Raw/Card message modes, @ mention formatting, and group member management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu (Lark) group chat messaging guide for OpenClaw, covering Raw/Card message modes, @ mention formatting, and group member management.
 
-## Publisher: <br>
-[Heimo-He](https://clawhub.ai/user/Heimo-He) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heimo-he](https://clawhub.ai/user/heimo-he)
 
-## Use Case: <br>
-OpenClaw users use this skill to send Feishu group messages with the right raw or card formatting, @ mention syntax, and member ID handling. It is useful when coordinating group chat replies, formatted Markdown messages, and bot or human mentions in Feishu groups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages may be sent to the wrong Feishu group or include unintended @ mentions, including @everyone. <br>
-Mitigation: Confirm the target group, message content, and mention IDs before sending, and use @everyone only when the group policy allows it. <br>
-Risk: Changing renderMode or restarting the OpenClaw gateway can affect how Feishu messages are delivered. <br>
-Mitigation: Apply renderMode and gateway restart changes intentionally, then verify the active setting before relying on formatted messages. <br>
-Risk: Stored Feishu member IDs can expose group membership details if kept too broadly. <br>
-Mitigation: Store member IDs only when needed in a private, scoped memory file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Feishu Chat Skill Page](https://clawhub.ai/Heimo-He/feishu-chat) <br>
-- [Feishu Developer Console](https://open.feishu.cn/app) <br>
+## Use Case:
 
+Developers and operators use this skill to guide OpenClaw agents when sending Feishu or Lark group messages, choosing between raw and card rendering, formatting @ mentions, and managing known group member identifiers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces messaging instructions only; users should confirm groups, message content, mentions, and configuration changes before sending.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill's examples can be used to send messages to real Feishu groups, including @everyone when workspace permissions allow it.
+
+Mitigation: Confirm the target group, recipient scope, and message content before sending, and reserve @everyone for cases approved by the workspace.
+
+Risk: Saved Feishu member identifiers and bot App IDs can expose workspace-specific routing details.
+
+Mitigation: Store member IDs only in appropriate workspace memory or configuration locations and avoid sharing them outside the intended group context.
+
+Risk: Using both direct replies and the message tool for the same content can produce duplicate group messages.
+
+Mitigation: Choose one sending method per message: use the message tool for raw plain text and direct replies for card-formatted Markdown.
+
+## Reference(s):
+
+- [Feishu Developer Console](https://open.feishu.cn/app)
+- [ClawHub skill page](https://clawhub.ai/heimo-he/skills/feishu-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline command, YAML, and message-format examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu chat IDs, member IDs, App IDs, renderMode settings, and @ mention syntax supplied by the user or workspace.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

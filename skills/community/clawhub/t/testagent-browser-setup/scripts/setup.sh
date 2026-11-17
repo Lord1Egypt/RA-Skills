@@ -8,7 +8,7 @@ CHROME_BIN=$(command -v chromium chromium-browser google-chrome 2>/dev/null | he
 # Fall back to Playwright cache
 [ -z "$CHROME_BIN" ] && CHROME_BIN=$(ls "$HOME/.cache/ms-playwright/chromium-"*/chrome-linux/chrome 2>/dev/null | head -1)
 
-# ── 幂等检查 ──────────────────────────────────────────────
+# ── Idempotency check ─────────────────────────────────────
 if [ -f "$SETUP_DONE_FLAG" ]; then
     echo "=== Environment already initialized. Running quick health check... ==="
     HEALTHY=true
@@ -40,7 +40,7 @@ else
     fi
 fi
 
-# ── [2/3] Chrome CDP 启动脚本 ─────────────────────────────
+# ── [2/3] Chrome CDP launcher script ──────────────────────
 echo "=== [2/3] Creating chrome-cdp launcher ==="
 mkdir -p "$HOME/.local/bin"
 cat > "$HOME/.local/bin/chrome-cdp" << WRAPPER
@@ -57,7 +57,7 @@ WRAPPER
 chmod +x "$HOME/.local/bin/chrome-cdp"
 echo "  ✓ chrome-cdp launcher created at ~/.local/bin/chrome-cdp"
 
-# fontconfig：指向用户字体目录
+# fontconfig: point at the user font directory
 mkdir -p "$HOME/.config/fontconfig" "$HOME/.cache/fontconfig"
 cat > "$HOME/.config/fontconfig/fonts.conf" << 'EOF'
 <?xml version="1.0"?>
@@ -84,15 +84,15 @@ else
     fc-cache "$HOME/.local/share/fonts" 2>/dev/null || true
 fi
 
-# ws 模块（CDP 直连脚本用 Node.js，需要此包）
+# ws module (the direct-CDP scripts use Node.js and need this package)
 echo "=== Installing ws (Node.js CDP WebSocket) ==="
 npm install -g ws 2>/dev/null || npm install --prefix "$HOME/.local/npm" ws 2>/dev/null || true
 
-# Playwright MCP 注册
+# Register Playwright MCP
 echo "=== Registering Playwright MCP ==="
 openclaw mcp set playwright '{"command":"npx","args":["-y","@playwright/mcp","--headless","--browser","chromium"]}' 2>/dev/null || true
 
-# ── 标记安装完成 ──────────────────────────────────────────
+# ── Mark setup as complete ────────────────────────────────
 touch "$SETUP_DONE_FLAG"
 
 echo ""

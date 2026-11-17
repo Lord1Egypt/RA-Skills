@@ -1,40 +1,54 @@
-## Description: <br>
-张雪峰视角 - 就业倒推法的职业规划思维。触发词：张雪峰、考研、高考志愿、专业选择、职业规划。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a Zhang Xuefeng-style perspective for career planning, exam-path decisions, major selection, and graduate-school choice using an employment-backward analysis frame.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-External users can use this skill to ask an agent for blunt career-planning, major-selection, exam-planning, and graduate-school decision guidance from an employment-first perspective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad education and career-planning activation terms may make the skill influence responses outside narrow planning requests. <br>
-Mitigation: Install only when this opinionated career-planning posture is desired, and review outputs against the user's actual intent. <br>
-Risk: The artifact lists email, WeChat, and paid-service contact details. <br>
-Mitigation: Treat off-platform contact and payment information as third-party claims that require independent trust judgment. <br>
+## Use Case:
 
+External users and education or career content creators use this skill to analyze Chinese education and career choices through a blunt, employment-oriented perspective. Typical tasks include gaokao major selection, postgraduate exam choices, and career planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sjj2026/shike-zhangxuefeng-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text career-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden system access indicated by evidence.security.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may steer education or career questions into a specific, blunt persona style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important school, exam, career, and financial decisions independently and adapt advice to the user's circumstances.
+
+Risk: The artifact includes paid service and contact details that may appear in agent behavior.
+
+Mitigation: Review public-facing outputs for promotional contact details before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sjj2026/skills/shike-zhangxuefeng-perspective)
+- [Publisher profile](https://clawhub.ai/user/sjj2026)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Text, Markdown]
+
+**Output Format:** [Markdown or plain text advisory responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; users should independently verify important school, exam, career, and financial decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

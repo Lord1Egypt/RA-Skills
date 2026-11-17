@@ -1,0 +1,7 @@
+interface:
+  display_name: "Skill Vitals"
+  short_description: "Audit installed skills, cost, conflicts, and risk"
+  default_prompt: "Use $skill-vitals to audit my installed Agent Skills and recommend concrete cleanup or fixes."
+
+policy:
+  allow_implicit_invocation: true

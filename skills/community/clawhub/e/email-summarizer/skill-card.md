@@ -1,44 +1,60 @@
-## Description: <br>
-Fetches emails from IMAP or local exports (.pst, .mbox, .msg), builds HTML and Excel contact profile reports, and can send the report by email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches emails from an IMAP mailbox or local exports, builds contact profile reports as HTML and Excel files, and can send the report by email.
 
-## Publisher: <br>
-[momothemage](https://clawhub.ai/user/momothemage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[momothemage](https://clawhub.ai/user/momothemage)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers use this skill to summarize mailbox contents, analyze contact relationships, and generate shareable contact profile reports from IMAP mailboxes or exported email archives.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill processes private mailbox contents and writes generated JSON, HTML, and XLSX reports that may contain sensitive email data.
+
+Mitigation: Run it in a restricted workspace, fetch only the needed mailbox scope, and treat all generated report files as sensitive.
+
+Risk: IMAP and SMTP workflows require mailbox credentials.
+
+Mitigation: Use least-privilege app passwords and avoid hardcoding or sharing credentials.
+
+Risk: Reports can be sent by email, which may expose sensitive results to unintended recipients.
+
+Mitigation: Verify recipient addresses and report contents before sending.
+
+Risk: Generated spreadsheets from untrusted mailbox content may expose spreadsheet formula injection risk.
+
+Mitigation: Do not open generated spreadsheets from untrusted mailboxes unless formulas are neutralized or the output is reviewed first.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external users use this skill to fetch or parse mailbox content, summarize important messages, profile email contacts, and create shareable contact reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive mailbox contents and local email archives. <br>
-Mitigation: Use app-specific email passwords, limit date ranges and max counts, and keep generated JSON, HTML, and XLSX reports private. <br>
-Risk: The optional SMTP delivery step can disclose reports to the wrong recipient. <br>
-Mitigation: Review the generated report and verify the recipient address before running the send step. <br>
-Risk: Local export parsing may invoke local Node.js or readpst executables for PST files. <br>
-Mitigation: Install parsing dependencies from trusted sources and run the parser only on email exports the user intends to analyze. <br>
+**Output Format:** [Markdown guidance with shell commands; generated JSON, HTML, and XLSX report files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/momothemage/email-summarizer) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Python dependency manifest](requirements.txt) <br>
+**Other Properties Related to Output:** [Uses local email exports or mailbox credentials as inputs and can send reports by SMTP when configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated artifacts include JSON email data, HTML reports, Excel workbooks, and optional email messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses EMAIL_USER and EMAIL_PASS only for IMAP fetch and SMTP send workflows; local file parsing does not require credentials.] <br>
+1.0.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Generate and edit AI images from text prompts or source images with Seedream models through the AceDataCloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in generating, editing, streaming, and decomposing images with Seedream through AceDataCloud.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and external users use this skill to generate images from text prompts and edit existing images with inpainting or outpainting through AceDataCloud's Seedream API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, source image URLs, and mask URLs are sent to AceDataCloud/Seedream. <br>
-Mitigation: Use only approved non-sensitive content and follow organizational data-handling requirements before submitting images or URLs. <br>
-Risk: The AceDataCloud API token can be exposed if copied into prompts, source files, logs, or shell history. <br>
-Mitigation: Keep ACEDATACLOUD_API_TOKEN in an environment variable or secret manager and avoid hardcoding or committing it. <br>
-Risk: Optional MCP package or hosted MCP usage adds another external integration path. <br>
-Mitigation: Verify the mcp-seedream package or hosted MCP server before enabling it in agent workflows. <br>
+## Use Case:
 
+Developers and creative teams use this skill to guide image generation, reference-image editing, transparent-background edits, and extraction of editable image layers through AceDataCloud's Seedream API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Germey/acedatacloud-seedream-image) <br>
-- [AceDataCloud Seedream Image API](https://api.acedata.cloud/seedream/images) <br>
-- [Hosted Seedream MCP Server](https://seedream.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACEDATACLOUD_API_TOKEN; API workflows may return direct image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The AceDataCloud API key could be exposed through prompts or committed configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in the gateway environment, use a dedicated key restricted to required Seedream routes, and never include it in prompts or commits.
+
+Risk: Image generation and layer extraction can incur cloud usage charges, including on repeated requests.
+
+Mitigation: Poll returned task IDs instead of resubmitting requests, and check returned usage and current pricing before estimating costs.
+
+Risk: Optional MCP and CLI packages require trust in external package sources.
+
+Mitigation: Install optional packages only after verifying and trusting their sources.
+
+## Reference(s):
+
+- [Seedream skill listing](https://clawhub.ai/acedatacloud/skills/seedream)
+- [AceDataCloud API key setup and first run](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud async task polling guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+- [Seedream pricing](https://platform.acedata.cloud/services/seedream?tab=pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with API request examples in bash and JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers asynchronous polling, streaming events, image result handling, and usage-based billing.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

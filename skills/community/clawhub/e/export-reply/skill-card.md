@@ -1,43 +1,58 @@
-## Description: <br>
-Export Reply saves an agent reply or full conversation to local MD, TXT, HTML, PDF, or DOCX files with optional verbatim or condensed bilingual summary modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save any agent reply or full conversation to a local file, with support for MD, TXT, HTML, PDF, DOCX, raw export, condensed bilingual summaries, and remembered export settings.
 
-## Publisher: <br>
-[ryan-owo](https://clawhub.ai/user/ryan-owo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-owo](https://clawhub.ai/user/ryan-owo)
 
-## Use Case: <br>
-People who want a local record of AI work use this skill to export a selected reply or full conversation, either verbatim or as a condensed Chinese/English summary, into common document formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes chat content to local files, which may expose sensitive conversations if the destination is shared, synced, or otherwise accessible. <br>
-Mitigation: Review the export path before confirming and avoid saving sensitive conversations to shared or synced folders. <br>
-Risk: The skill can remember the last export destination and settings, which may cause later exports to reuse an unintended location. <br>
-Mitigation: Confirm reused settings before export and clear ~/.export_reply_prefs.json when saved preferences are no longer wanted. <br>
-Risk: PDF export may render content through a local browser. <br>
-Mitigation: Use extra caution with PDF exports and choose MD, TXT, or HTML when browser-based rendering is not acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to save an agent reply or full conversation as a local document for review, sharing, archiving, or follow-up work. It can preserve the original conversation or produce a condensed bilingual summary before export.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryan-owo/export-reply) <br>
-- [Format Reference](references/formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Local files in MD, TXT, HTML, PDF, DOCX, or all supported formats, with concise confirmation text from the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to a user-selected local path and may remember the last export settings in ~/.export_reply_prefs.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: HTML and PDF export can carry extra risk when used on untrusted or attacker-supplied conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MD or TXT for sensitive or untrusted content, and avoid HTML/PDF exports unless the content source is trusted.
+
+Risk: Full-conversation exports can save sensitive chat content to a local path selected by the user or recalled from preferences.
+
+Mitigation: Use explicit export requests, inspect the destination path before saving, and choose current-reply scope when a full conversation is not needed.
+
+Risk: Preference memory stores the last export scope, mode, format, and path in ~/.export_reply_prefs.json.
+
+Mitigation: Clear ~/.export_reply_prefs.json when remembered export paths or settings should not persist.
+
+## Reference(s):
+
+- [Format Reference](references/formats.md)
+- [ClawHub Skill Page](https://clawhub.ai/ryan-owo/skills/export-reply)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and local files in MD, TXT, HTML, PDF, or DOCX format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports current-reply or full-conversation scope, raw or condensed bilingual summary mode, and optional preference memory for repeat exports.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

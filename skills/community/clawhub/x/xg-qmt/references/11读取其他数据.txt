@@ -1,0 +1,318 @@
+'''
+11读取其他数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.get_svol - 根据代码获取对应股票的内盘成交量
+原型
+
+内置python
+
+ContextInfo.get_svol(stockcode)
+释义
+
+根据代码获取对应股票的内盘成交量
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，如 '000001.SZ'，缺省值''，默认为当前图代码
+返回值int:内盘成交量
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_svol('000001.SZ')
+	print(data)
+ContextInfo.get_bvol - 根据代码获取对应股票的外盘成交量
+原型
+
+内置python
+
+ContextInfo.get_bvol(stockcode)
+释义
+
+根据代码获取对应股票的外盘成交量
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，如 '000001.SZ'，缺省值''，默认为当前图代码
+返回值
+
+int:外盘成交量
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_bvol('000001.SZ')
+	print(data)
+ContextInfo.get_turnover_rate - 获取换手率
+提示
+
+使用之前需要下载财务数据(在财务数据下载中)以及日线数据
+
+如果不补充股本数据,将使用最新流通股本计算历史换手率,可能会造成历史换手率不正确
+
+原型
+
+内置python
+
+ContextInfo.get_turnover_rate(stock_list,startTime,endTime)
+释义
+
+获取换手率
+
+参数
+
+字段名	数据类型	解释
+stock_list	list	股票列表，如['600000.SH','000001.SZ']
+startTime	string	起始时间，如'20170101'
+endTime	string	结束时间，如'20180101'
+返回值
+
+pandas.Dataframe
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_turnover_rate(['000002.SZ'],'20170101','20170301')
+	print(data)
+ContextInfo.get_longhubang - 获取龙虎榜数据
+原型
+
+内置python
+
+ContextInfo.get_longhubang(stock_list, startTime, endTime)
+释义
+
+获取龙虎榜数据
+
+参数
+
+参数名称	类型	描述
+stock_list	list	股票列表，如 ['600000.SH', '600036.SH']
+startTime	str	起始时间，如 '20170101'
+endTime	str	结束时间，如 '20180101'
+返回值
+
+格式为pandas.DataFrame:
+参数名称	数据类型	描述
+stockCode	str	股票代码
+stockName	str	股票名称
+date	datetime	上榜日期
+reason	str	上榜原因
+close	float	收盘价
+SpreadRate	float	涨跌幅
+TurnoverVolume	float	成交量
+Turnover_Amount	float	成交金额
+buyTraderBooth	pandas.DataFrame	买方席位
+sellTraderBooth	pandas.DataFrame	卖方席位
+buyTraderBooth 或 sellTraderBooth 包含字段：
+参数名称	数据类型	描述
+traderName	str	交易营业部名称
+buyAmount	float	买入金额
+buyPercent	float	买入金额占总成交占比
+sellAmount	float	卖出金额
+sellPercent	float	卖出金额占总成交占比
+totalAmount	float	该席位总成交金额
+rank	int	席位排行
+direction	int	买卖方向
+示例
+
+示例返回值
+
+# coding:gbk
+
+def init(C):
+    return
+
+def handlebar(C):
+    print(C.get_longhubang(['000002.SZ'],'20100101','20180101'))
+ContextInfo.get_north_finance_change - 获取对应周期的北向数据
+原型
+
+内置python
+
+ContextInfo.get_north_finance_change(period)
+释义
+
+获取对应周期的北向数据
+
+参数
+
+字段名	数据类型	描述
+period	str	数据周期
+返回值
+
+根据period返回一个dict，该字典的key值是北向数据的时间戳，其值仍然是一个dict，其值的key值是北向数据的字段类型，其值是对应字段的值。该字典数据key值有：
+字段名	数据类型	描述
+hgtNorthBuyMoney	int	HGT北向买入资金
+hgtNorthSellMoney	int	HGT北向卖出资金
+hgtSouthBuyMoney	int	HGT南向买入资金
+hgtSouthSellMoney	int	HGT南向卖出资金
+sgtNorthBuyMoney	int	SGT北向买入资金
+sgtNorthSellMoney	int	SGT北向卖出资金
+sgtSouthBuyMoney	int	SGT南向买入资金
+sgtSouthSellMoney	int	SGT南向卖出资金
+hgtNorthNetInFlow	int	HGT北向资金净流入
+hgtNorthBalanceByDay	int	HGT北向当日资金余额
+hgtSouthNetInFlow	int	HGT南向资金净流入
+hgtSouthBalanceByDay	int	HGT南向当日资金余额
+sgtNorthNetInFlow	int	SGT北向资金净流入
+sgtNorthBalanceByDay	int	SGT北向当日资金余额
+sgtSouthNetInFlow	int	SGT南向资金净流入
+sgtSouthBalanceByDay	int	SGT南向当日资金余额
+示例：
+
+示例返回值
+
+# coding = gbk
+def init(C):
+    return
+# 获取市场北向数据
+def handlebar(C):
+    print(C.get_north_finance_change('1d'))
+ContextInfo.get_hkt_details - 获取指定品种的持股明细
+原型
+
+内置python
+
+ContextInfo.get_hkt_details(stockcode)
+释义
+
+获取指定品种的持股明细
+
+参数
+
+参数名称	数据类型	描述
+stockcode	string	必须是'stock.market'形式
+返回值
+
+根据stockcode返回一个dict，该字典的key值是北向持股明细数据的时间戳，其值仍然是一个dict，其值的key值是北向持股明细数据的字段类型，其值是对应字段的值，该字典数据key值有：
+参数名称	数据类型/单位	描述
+stockCode	str	股票代码
+ownSharesCompany	str	机构名称
+ownSharesAmount	int	持股数量
+ownSharesMarketValue	float	持股市值
+ownSharesRatio	float	持股数量占比
+ownSharesNetBuy	float	净买入金额（当日持股-前一日持股）
+示例：
+
+示例返回值
+
+# coding = gbk
+def init(C):
+    return
+def handlebar(C):
+    data = C.get_hkt_details('600000.SH')
+    print(data)
+ContextInfo.get_hkt_statistics - 获取指定品种的持股统计
+原型
+
+内置python
+
+ContextInfo.get_hkt_statistics(stockcode)
+释义
+
+获取指定品种的持股统计
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	必须是'stock.market'形式
+返回值
+
+根据stockcode返回一个dict，该字典的key值是北向持股统计数据的时间戳，其值仍然是一个dict，其值的key值是北向持股统计数据的字段类型，其值是对应字段的值，该字典数据key值有：
+
+字段名	数据类型	解释
+stockCode	string	股票代码
+ownSharesAmount	float	持股数量，单位：股
+ownSharesMarketValue	float	持股市值，单位：元
+ownSharesRatio	float	持股数量占比，单位：%
+ownSharesNetBuy	float	净买入，单位：元，浮点数（当日持股-前一日持股）
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+
+	print(C.get_hkt_statistics('600000.SH'))
+get_etf_info - 根据ETF基金代码获取ETF申赎清单及对应成分股数据
+原型
+
+内置python
+
+get_etf_info(stockcode)
+释义
+
+根据ETF基金代码获取ETF申赎清单及对应成分股数据,每日盘前更新
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	ETF基金代码如"510050.SH"
+返回值
+
+一个多层嵌套的dict
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+    pass
+    
+def handlebar(C):
+    d = get_etf_info("510050.SH")
+    print(d)
+get_etf_iopv - 根据ETF基金代码获取ETF的基金份额参考净值
+原型
+
+内置python
+
+get_etf_iopv(stockcode)
+释义
+
+根据ETF基金代码获取ETF的基金份额参考净值
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	ETF基金代码如"510050.SH"
+返回值
+
+float类型值,IOPV，基金份额参考净值
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	print(get_etf_iopv("510050.SH"))

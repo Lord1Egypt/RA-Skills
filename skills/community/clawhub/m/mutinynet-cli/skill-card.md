@@ -1,44 +1,55 @@
-## Description: <br>
-Interact with the Mutinynet Bitcoin testnet faucet to get testnet bitcoin on-chain, pay Lightning invoices, open Lightning channels, and generate BOLT11 invoices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Mutinynet Bitcoin testnet faucet to get testnet bitcoin on-chain, pay lightning invoices, open lightning channels, and generate BOLT11 invoices.
 
-## Publisher: <br>
-[benthecarman](https://clawhub.ai/user/benthecarman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benthecarman](https://clawhub.ai/user/benthecarman)
 
-## Use Case: <br>
-Developers and Bitcoin/Lightning testers use this skill to install and run the Mutinynet faucet CLI for signet/testnet funding, Lightning payments, channel setup, and BOLT11 invoice generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored faucet tokens can grant access to a local Mutinynet faucet session if exposed. <br>
-Mitigation: Treat ~/.mutinynet/token and MUTINYNET_FAUCET_TOKEN as credentials, and remove the stored token when the session is no longer needed. <br>
-Risk: Payment and channel commands can send testnet funds or open channels to unintended destinations if inputs are wrong. <br>
-Mitigation: Verify invoices, addresses, peer pubkeys, hosts, and amounts before running commands, and keep the default faucet URL unless another endpoint is trusted. <br>
+## Use Case:
 
+Developers and external users use this skill to obtain Mutinynet signet/testnet bitcoin and exercise Lightning workflows, including paying invoices, opening channels, and generating BOLT11 invoices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/benthecarman/mutinynet-cli) <br>
-- [Project repository metadata](https://github.com/benthecarman/mutinynet-cli) <br>
-- [GitHub releases](https://github.com/benthecarman/mutinynet-cli/releases/latest) <br>
-- [Mutinynet](https://mutinynet.com) <br>
-- [Mutinynet faucet](https://faucet.mutinynet.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include installation and command guidance for a Rust CLI that uses network access and stores a local faucet token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release, SKILL.md frontmatter, Cargo.toml) <br>
+Risk: Login can exchange a GitHub OAuth token with a user-configurable faucet URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default trusted faucet URL for login, avoid inherited or untrusted MUTINYNET_FAUCET_URL values, and revoke GitHub authorization if an untrusted endpoint was used.
+
+Risk: A reusable faucet token may be stored on disk or supplied through the MUTINYNET_FAUCET_TOKEN environment variable.
+
+Mitigation: Treat the stored token and environment variable as secrets, avoid shared machines unless permissions are locked down, and remove or rotate tokens when no longer needed.
+
+## Reference(s):
+
+- [Mutinynet CLI repository](https://github.com/benthecarman/mutinynet-cli)
+- [Mutinynet CLI releases](https://github.com/benthecarman/mutinynet-cli/releases/latest)
+- [Mutinynet](https://mutinynet.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Rust/cargo installation path or prebuilt binary, network access to the configured faucet URL, and careful handling of faucet authentication tokens.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release, SKILL.md metadata, Cargo.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 包装改进建议"
+  short_description: "从评论中的运输和开箱问题提出包装改进"
+  default_prompt: "使用 $amazon-packaging-improvement 根据 Amazon 评论中的包装问题提出改进任务。"

@@ -1,43 +1,63 @@
-## Description: <br>
-Systematically explores and tests a web application to find bugs, UX issues, and other problems, then produces a structured report with reproduction evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daxiang Dogfood guides agents through authorized web-application QA by exploring pages, testing workflows, capturing evidence, and producing a structured bug report.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to run exploratory web-app testing from a target URL and collect actionable issue reports with screenshots, videos, console observations, and reproduction steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save login sessions and capture sensitive screenshots or videos during web-app testing. <br>
-Mitigation: Use it only on authorized sites, prefer test accounts and test data, choose a safe output directory, and delete auth-state.json plus captured reports, screenshots, videos, and logs after review. <br>
-Risk: Exploratory testing on authenticated or production systems may exercise workflows that change data. <br>
-Mitigation: Confirm scope before testing, avoid destructive workflows unless explicitly intended, and run against staging or disposable data where possible. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill to dogfood web applications, reproduce issues, and hand off actionable bug reports with screenshots, videos, severity, category, and repro steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/daxiang-dogfood) <br>
-- [Publisher profile](https://clawhub.ai/user/daxiangnaoyang) <br>
-- [Issue Taxonomy](references/issue-taxonomy.md) <br>
-- [Dogfood Report Template](templates/dogfood-report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with linked screenshots, repro videos, issue tables, and concise summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local files such as reports, screenshots, videos, console logs, and saved browser authentication state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can interact with real web applications and may perform testing actions against systems outside the user's authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on applications and scopes the user is authorized to test.
+
+Risk: Screenshots, videos, reports, and saved browser state can contain sensitive application data or credentials.
+
+Mitigation: Use a private output directory, treat generated evidence and auth-state.json as sensitive, and delete saved session state after use.
+
+Risk: Testing with high-privilege production accounts can increase the impact of mistakes or unintended actions.
+
+Mitigation: Prefer test accounts or least-privilege non-admin accounts when authentication is required.
+
+Risk: Using the npx tool path can introduce uncontrolled package-source and version risk.
+
+Mitigation: Use the direct agent-browser binary, or only use npx when the package source and version are controlled.
+
+## Reference(s):
+
+- [Daxiang Dogfood ClawHub Page](https://clawhub.ai/daxiangnaoyang/skills/daxiang-dogfood)
+- [Issue Taxonomy](references/issue-taxonomy.md)
+- [Dogfood Report Template](templates/dogfood-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown report with linked screenshot and video evidence plus inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots, repro videos, report files, and saved browser authentication state in the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

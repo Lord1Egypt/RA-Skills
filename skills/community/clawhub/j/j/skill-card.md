@@ -1,40 +1,52 @@
-## Description: <br>
-Short alias skill for joining, merging, or combining files, data, or strings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short alias skill for joining, merging, or combining files, data, or strings.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and technical users use this skill when they need an agent to propose concise join, concatenate, or merge approaches for files, text, JSON, CSV/TSV, code files, URLs, or parameter lists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Examples that redirect output with > can overwrite existing files if users reuse filenames carelessly.
+
+Mitigation: Review output paths before running merge examples and write to a new filename or backup existing files first.
+
+Risk: The one-letter alias and broad merge examples may be invoked too loosely for unrelated tasks.
+
+Mitigation: Invoke the skill only for explicit join, concatenate, merge, or combine tasks and confirm the files or data sources before proposing commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill as a compact command reference for joining, merging, or combining files, text, structured data, code files, URLs, and command parameters. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: A short one-letter skill name can be invoked accidentally or in an ambiguous merge task. <br>
-Mitigation: Install only when a compact merge and join command reference is desired, and confirm the intended operation before using generated commands. <br>
-Risk: Wildcard inputs or output redirects can include unintended files or overwrite important files. <br>
-Mitigation: Check wildcard expansions and output filenames before execution; use explicit file lists for private or sensitive data. <br>
+**Output Format:** [Markdown with inline shell and code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page: J](https://clawhub.ai/openlang-cn/j) <br>
+**Other Properties Related to Output:** [Produces short command-reference guidance; no external tools, services, or credentials are required by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise command examples for file, text, JSON, CSV/TSV, code, and URL or parameter merging.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

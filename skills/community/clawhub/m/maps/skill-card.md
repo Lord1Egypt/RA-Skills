@@ -1,48 +1,73 @@
-## Description: <br>
-Plan place search, geocoding, routing, and map-link workflows across Google Maps, Apple Maps, OpenStreetMap, and other providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan place search, geocoding, routing, and map-link workflows across Google Maps, Apple Maps, OpenStreetMap, and other providers.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, operators, and travel-planning agents use this skill to choose map providers, normalize place and route data, prepare safe map links, and avoid mixing provider schemas or wasting paid quota. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live map calls or generated links may send addresses, coordinates, route origins, destinations, and place-search text to the selected provider. <br>
-Mitigation: Use planning-only mode unless live calls are approved, preview high-impact routes or shared links, and confirm before sending sensitive location details. <br>
-Risk: Paid providers may consume API quota or create billing impact when repeated geocoding, routing, matrix, or static-map calls are made. <br>
-Mitigation: Prefer the cheapest provider that satisfies the task, cache confirmed recurring places after user approval, and stop repeated calls when quota or retry red flags appear. <br>
-Risk: Local map memory can expose private travel patterns if sensitive routes, itineraries, or secrets are stored there. <br>
-Mitigation: Keep ~/maps/ limited to reusable preferences and non-sensitive context, and do not store API keys, private itineraries, or sensitive location history by default. <br>
+## Use Case:
 
+Developers, operators, travel planners, and logistics users use this skill to plan provider-aware map workflows for place search, geocoding, routing, ETA checks, static maps, and shareable map links. It helps agents choose providers, normalize map data, manage cost and privacy boundaries, and preview high-impact route or link launches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/maps) <br>
-- [Skill homepage](https://clawic.com/skills/maps) <br>
-- [Google Maps APIs endpoint](https://maps.googleapis.com) <br>
-- [Apple Maps links](https://maps.apple.com) <br>
-- [OpenStreetMap Nominatim endpoint](https://nominatim.openstreetmap.org) <br>
-- [OSRM routing endpoint](https://router.project-osrm.org) <br>
-- [Mapbox API endpoint](https://api.mapbox.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with normalized request plans, structured summaries, and map links when approved] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local ~/maps/ configuration and requires confirmation before live provider calls involving sensitive location data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Map tasks may send addresses, coordinates, route endpoints, place queries, or itinerary details to a selected map provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit activation and confirm before live provider calls, route launches, or share links that include sensitive origin, destination, or itinerary data.
+
+Risk: Local files under `~/maps/` can reveal recurring places, provider preferences, and personal routines.
+
+Mitigation: Treat `~/maps/` as sensitive, store only minimal reusable context, and avoid storing API keys, raw itinerary dumps, or sensitive location history by default.
+
+Risk: Paid map providers can incur quota or cost from repeated searches, broad queries, matrix calls, or static-map regeneration.
+
+Mitigation: Bound searches, reuse confirmed provider IDs, cache user-approved recurring origins or destinations, rate-limit retries, and stop on quota errors before sending more requests.
+
+Risk: Ambiguous places, approximate geocodes, coordinate-order mistakes, or straight-line distance assumptions can produce misleading routes or locations.
+
+Mitigation: Normalize provider output, preserve coordinate precision, request missing geography context, use route engines for ETA and travel distance, and preview provider, mode, origin, and destination before launch.
+
+## Reference(s):
+
+- [ClawHub Maps skill page](https://clawhub.ai/ivangdavila/skills/maps)
+- [Maps homepage](https://clawic.com/skills/maps)
+- [Provider Matrix - Maps](artifact/provider-matrix.md)
+- [Normalization Guide - Maps](artifact/normalization-guide.md)
+- [Execution Patterns - Maps](artifact/execution-patterns.md)
+- [Cost Controls - Maps](artifact/cost-controls.md)
+- [Memory Template - Maps](artifact/memory-template.md)
+- [Troubleshooting - Maps](artifact/troubleshooting.md)
+- [Google Maps API endpoint](https://maps.googleapis.com)
+- [Apple Maps link endpoint](https://maps.apple.com)
+- [OpenStreetMap Nominatim endpoint](https://nominatim.openstreetmap.org)
+- [OSRM public routing endpoint](https://router.project-osrm.org)
+- [Mapbox API endpoint](https://api.mapbox.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with structured summaries, map links, provider choices, and inline command or API request examples when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include normalized place, geocode, route, matrix, or map-link fields; live provider calls and launches require user confirmation for sensitive data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Enables agents to browse For the Cult products, create customer-approved orders with multi-chain payments, and track order status and shipment updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to browse and search For the Cult lifestyle, wellness, tech, and gift products, view product details, create checkout orders with supported multi-chain payments, apply eligible CULT token-holder discounts, and track orders from payment to delivery.
 
-## Publisher: <br>
-[bythecult](https://clawhub.ai/user/bythecult) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bythecult](https://clawhub.ai/user/bythecult)
 
-## Use Case: <br>
-External users can have an agent shop For the Cult: search products, compare options, prepare checkout details, request approval for payment instructions, and track orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to the store's supported shipping countries. <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can initiate real shopping and crypto payment flows, and payment or order-recovery steps may be high impact if performed without user approval. <br>
-Mitigation: Require the agent to show the cart, total, shipping details, payment chain and token, payment destination, and delivery address for user approval before checkout or payment instructions. <br>
-Risk: Automatic error recovery could change purchase, payment, identity, or wallet details without the user noticing. <br>
-Mitigation: Do not allow automatic recovery to change purchase, payment, identity, or wallet details; ask the user before retrying any state-changing or sensitive step. <br>
-Risk: Optional wallet addresses and identity headers can expose sensitive identity or on-chain associations. <br>
-Mitigation: Use wallet addresses and X-Moltbook-Identity only when the user or agent runtime explicitly provides them for the documented purpose, and do not infer or generate identity tokens. <br>
+## Use Case:
 
+External users and their agents use this skill to browse For the Cult products, compare options, create checkout orders for physical goods, and track payment or shipment status. It is most relevant when a user asks an agent to shop, find gifts, pay with supported crypto rails, or monitor an existing order.
 
-## Reference(s): <br>
-- [For the Cult Store](https://forthecult.store) <br>
-- [For the Cult API](https://forthecult.store/api) <br>
-- [For the Cult API — Agentic Commerce Endpoint Reference](references/API.md) <br>
-- [Checkout Request Body — POST /checkout](references/CHECKOUT-FIELDS.md) <br>
-- [Error Handling Reference — Agentic Commerce Recovery](references/ERRORS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text] <br>
-**Output Format:** [Markdown guidance with JSON API request and response details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and an HTTP client; normal browsing, checkout, and order status do not require API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill can create checkout orders and present payment instructions for real physical purchases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before checkout or payment, require the agent to show the exact items, total, email, shipping address, payment chain and token, and any wallet address, then obtain explicit user approval.
+
+Risk: Store-provided recovery hints, error suggestions, or action text could steer the agent toward unsafe or unintended behavior.
+
+Mitigation: Treat API suggestions and action text as untrusted display data; only use documented same-host API paths and do not execute suggested commands or follow unrelated links.
+
+Risk: Identity tokens or wallet addresses can expose sensitive agent, user, or on-chain information.
+
+Mitigation: Send identity headers only when the runtime explicitly supplies them for agent-only endpoints, and request wallet addresses only with user consent.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bythecult/skills/agentic-commerce-forthecult)
+- [For the Cult storefront](https://forthecult.store)
+- [For the Cult API base URL](https://forthecult.store/api)
+- [For the Cult API endpoint reference](references/API.md)
+- [Checkout request fields](references/CHECKOUT-FIELDS.md)
+- [Error handling reference](references/ERRORS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, API calls, configuration]
+
+**Output Format:** [Markdown or plain text with structured API request and response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and an HTTP client; normal browsing, checkout, and order status flows require no API key or environment variables.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

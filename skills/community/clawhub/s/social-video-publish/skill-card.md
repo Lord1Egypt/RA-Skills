@@ -1,47 +1,59 @@
-## Description: <br>
-帮助用户在抖音、快手、B站、小红书和微信视频号发布视频和图文内容，并要求用户在本地浏览器中确认登录和发布操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide or automate user-approved publishing of video and image-text content to Douyin, Kuaishou, Bilibili, Xiaohongshu, and WeChat Channels using the user's already logged-in local browser.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-External creators and social media operators use this skill to prepare platform-specific publishing guidance and browser-assisted posting steps for video or image-text content. It is intended for accounts already logged in locally by the user, with user confirmation before final publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing from a logged-in social account can post to the wrong account or publish unintended content. <br>
-Mitigation: Confirm the exact platform, account, file, title, description, tags, and final publish action before proceeding; test with a non-primary account when practical. <br>
-Risk: Browser-assisted workflows depend on active local sessions and visible page state. <br>
-Mitigation: Manually log in through the browser, do not provide credentials to the agent, and stop if the account or page context is unexpected. <br>
-Risk: Each platform has its own file-size, duration, aspect-ratio, and content rules. <br>
-Mitigation: Review the generated platform guidance and the platform's own publishing requirements before uploading or posting. <br>
+## Use Case:
 
+External users and content creators use this skill to prepare and publish video or image-text posts across supported Chinese social platforms while keeping login and final publishing actions under user control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/social-video-publish) <br>
-- [Douyin creator upload](https://creator.douyin.com/creator/micro/upload) <br>
-- [Kuaishou creator profile](https://cp.kuaishou.com/profile) <br>
-- [Bilibili creator publishing](https://member.bilibili.com/v/publish/spaces) <br>
-- [Xiaohongshu creator publishing](https://creator.xiaohongshu.com/creator/post/create) <br>
-- [WeChat Channels login](https://channels.weixin.qq.com/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command output and browser command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific publishing URLs, validation messages, recommended tags, and user-confirmed browser workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Browser guidance or automation may act in social accounts that are already logged in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target platform, account, video file, title, description, tags, and final publish action before proceeding.
+
+Risk: Posting from a primary account can have account, reputation, or policy consequences if content or platform settings are wrong.
+
+Mitigation: Test with a non-primary account first, review each platform's posting rules, and monitor account activity after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/social-video-publish)
+- [ClawHub source page](https://clawhub.ai/hitjcl/social-publish)
+- [Douyin creator upload](https://creator.douyin.com/creator/micro/upload)
+- [Kuaishou creator profile](https://cp.kuaishou.com/profile)
+- [Bilibili creator upload](https://member.bilibili.com/v/publish/spaces)
+- [Xiaohongshu creator post](https://creator.xiaohongshu.com/creator/post/create)
+- [WeChat Channels login](https://channels.weixin.qq.com/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown-style guidance with generated browser-command text and command-line script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-confirmed browser actions and existing platform login; evidence states it does not store credentials.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

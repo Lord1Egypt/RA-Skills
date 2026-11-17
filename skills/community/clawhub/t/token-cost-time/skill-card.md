@@ -1,41 +1,50 @@
-## Description: <br>
-Estimates LLM task token usage, cost, and duration using rule-based classification, baseline priors, and optional local profile data without external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate LLM task token usage, cost, and duration using rule-based classification and optional local profile data without external dependencies.
 
-## Publisher: <br>
-[highnoonoffice](https://clawhub.ai/user/highnoonoffice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[highnoonoffice](https://clawhub.ai/user/highnoonoffice)
 
-## Use Case: <br>
-Developers and engineers use this skill to estimate token usage, cost, duration, and model tradeoffs for LLM tasks, then improve estimates by recording local execution data over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local usage logs and profile data are written under ~/.token-cost-time by default. <br>
-Mitigation: Treat those files as private workflow metadata, review the recorded fields, and delete or relocate the directory if historical usage data should not be retained. <br>
-Risk: Cold-start estimates rely on baseline priors before enough local runs have been recorded. <br>
-Mitigation: Use the reported confidence value when interpreting estimates and record representative runs before relying on personalized cost or duration projections. <br>
+## Use Case:
 
+Developers and engineers use this skill to estimate LLM task token usage, cost, and duration, compare models, and record completed runs for local calibration.
 
-## Reference(s): <br>
-- [Token Cost Time ClawHub page](https://clawhub.ai/highnoonoffice/token-cost-time) <br>
-- [Self-Improvement Guide](references/self-improvement.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON CLI and library responses, plus local JSON and JSONL profile files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records profile and execution history under ~/.token-cost-time by default unless a custom profile path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Local profile and execution log files may contain sensitive objective text or proprietary task details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording sensitive objectives or proprietary task details in local calibration data, especially when those files may be shared or backed up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highnoonoffice/skills/token-cost-time)
+- [Project homepage](https://github.com/highnoonoffice/hno-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces estimates and model comparisons; optional local profile and execution log data can calibrate future estimates.]
+
+## Skill Version(s):
+
+0.1.4 (source: release evidence; artifact frontmatter lists 0.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

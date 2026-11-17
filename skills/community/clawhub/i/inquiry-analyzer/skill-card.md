@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes Alibaba International inquiry data for a selected time window, extracts product category, customer, country, and status fields, and generates structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Alibaba International inquiries over a selected time window, extracts product, customer, country, status, and background-check fields, and generates structured reports.
 
-## Publisher: <br>
-[likem90is-cmd](https://clawhub.ai/user/likem90is-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likem90is-cmd](https://clawhub.ai/user/likem90is-cmd)
 
-## Use Case: <br>
-External operators and business users use this skill to analyze Alibaba inquiries, run OKKI background checks for selected inquiries, and merge outputs into Markdown and CSV reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in Alibaba browser session and can write sensitive customer, inquiry, chat, and background-check data to local report directories. <br>
-Mitigation: Run it only with an authorized Alibaba account on a trusted machine, review generated outputs for sensitive data, and delete reports, chats, OKKI reports, and debug dumps when no longer needed. <br>
-Risk: The skill can trigger OKKI background checks without strong scoping controls. <br>
-Mitigation: Use explicit inquiry identifiers and time windows, confirm the intended account and scope before execution, and review generated OKKI outputs before use. <br>
-Risk: External INQUIRY_ANALYZER_PATH overrides can redirect execution outside the self-contained skill directory. <br>
-Mitigation: Prefer the bundled self-contained artifact path and use INQUIRY_ANALYZER_PATH only when the target directory is trusted. <br>
+## Use Case:
 
+Sales operators and business analysts use this skill to review Alibaba inquiry activity, classify requested products, capture customer and country details, and merge inquiry and OKKI background reports for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/likem90is-cmd/inquiry-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CSV report files with supporting chat text outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an authenticated OpenClaw browser session connected to Alibaba.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The skill controls a logged-in browser and can access Alibaba inquiry and OKKI background data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after source review, use a dedicated OpenClaw browser profile, and avoid running it on shared machines.
+
+Risk: Generated reports, chat transcripts, and debug dumps can contain sensitive customer information.
+
+Mitigation: Use restricted local output folders, avoid cloud-synced directories, clear reports and debug dumps after use, and request redaction or opt-in debug dumps before deployment.
+
+Risk: The release evidence reports a hard-coded browser relay token.
+
+Mitigation: Remove or rotate the token and prefer environment-based secret handling before operational use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/likem90is-cmd/skills/inquiry-analyzer)
+- [Alibaba inquiry message center](https://message.alibaba.com/message/default.htm#feedback/all?order=%7B%22order%22%3A%22desc%22%2C%22orderBy%22%3A%22gmt_create%22%7D&pageSize=100)
+- [Alibaba product management](https://i.alibaba.com/prod/product_manage#/product/online)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CSV report files with supporting command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local inquiry, chat, CSV, OKKI, and merged report artifacts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

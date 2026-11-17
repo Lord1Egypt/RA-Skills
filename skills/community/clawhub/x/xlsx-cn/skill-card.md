@@ -1,42 +1,59 @@
-## Description: <br>
-Excel spreadsheet processing for creating, reading, and editing Excel files with support for formulas, charts, and data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xlsx Cn helps agents create, read, edit, format, analyze, and recalculate Excel workbooks.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Anthropic Consumer or Commercial Terms of Service <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to create, edit, analyze, format, and recalculate .xlsx workbooks while checking for formula errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Anthropic Consumer or Commercial Terms of Service
 
-## Known Risks and Mitigations: <br>
-Risk: The recalculation helper can persistently change LibreOffice settings and load a compiled native compatibility shim. <br>
-Mitigation: Review before installation, run in a disposable or isolated environment, and avoid using a primary user profile for evaluation. <br>
-Risk: The skill may modify local Excel files during recalculation. <br>
-Mitigation: Work on copies of important spreadsheets and review recalculation results before relying on the workbook. <br>
+## Use Case:
 
+Developers and agents use this skill to create, modify, analyze, format, and validate Excel workbooks, including formula-driven financial models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/xlsx-cn) <br>
-- [OpenClaw fork source](https://github.com/anthropics/skills) <br>
-- [OpenClaw metadata homepage](https://clawhub.com/skills/xlsx-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands; generated or modified XLSX files may be produced when the agent follows the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return JSON formula-error details from the recalculation helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: LibreOffice automation may use an LD_PRELOAD shim that injects native code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated environment and review or disable the shim before broader deployment.
+
+Risk: Formula recalculation setup can leave persistent LibreOffice macro changes.
+
+Mitigation: Use a disposable LibreOffice profile or back up existing macros, then remove or reset the macro profile after use.
+
+Risk: Office archive extraction limits are not addressed for untrusted files.
+
+Mitigation: Avoid untrusted Office files, or unpack them only in a sandbox with size, path, and resource limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/xlsx-cn)
+- [Publisher profile](https://clawhub.ai/user/guohongbin-git)
+- [OpenClaw fork metadata link](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON status output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify Office files when the agent follows the documented workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

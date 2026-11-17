@@ -1,38 +1,48 @@
-## Description: <br>
-Risk-reward calculation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Risk-reward calculation.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this advisory persona to frame risk-reward calculations, cautious tradeoff review, and resource-maximization decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Risk-reward or actuarial-style guidance may be mistaken for professional financial, legal, or actuarial advice.
+
+Mitigation: Use outputs as advisory framing only and have qualified professionals review consequential decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External ClawHub users use this persona-style skill to ask an agent for concise risk-reward calculation guidance, risk reminders, and resource-maximization support. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Risk-reward guidance from the persona-style assistant could be mistaken for professional financial, actuarial, or safety advice. <br>
-Mitigation: Treat outputs as general guidance only and require independent expert review before using them for financial, actuarial, safety, or other high-impact decisions. <br>
+**Output Format:** [Markdown or plain text advisory responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Psyvector Pv25 ClawHub page](https://clawhub.ai/jkzfhq/psyvector-pv25) <br>
+**Other Properties Related to Output:** [Outputs should be treated as guidance, not professional financial, legal, or actuarial advice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include risk-reward guidance, risk reminders, and persona-style support based on the skill's configured caution and response parameters.] <br>
+3.0.0 (source: server release metadata and skill frontmatter)
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

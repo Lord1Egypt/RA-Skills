@@ -1,39 +1,57 @@
-## Description: <br>
-Analyzes product attributes and competitors to produce differentiated selling points, competitive advantages, and sales messaging for cross-border B2B wholesale workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes product features and competitor context to produce differentiated selling points and tiered sales messaging for cross-border B2B ecommerce.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-Sales, ecommerce, and product teams use this skill to turn product descriptions, links, images, parameters, and competitor information into prioritized selling points, comparison reports, and audience-specific sales copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product plans, supplier links, or customer context may be sensitive when used as analysis input, especially if external search or APIs are enabled. <br>
-Mitigation: Use public or sanitized inputs unless external sharing is acceptable, and invoke the skill explicitly for this analysis. <br>
-Risk: Generated competitor comparisons, pricing claims, and sales positioning may be incomplete or inaccurate. <br>
-Mitigation: Review outputs against current product data, competitor sources, pricing, and applicable sales or compliance requirements before use. <br>
+## Use Case:
 
+Ecommerce operators, sales teams, and developers use this skill to turn product links, descriptions, parameters, images, customer context, and optional competitor inputs into selling-point reports, marketing copy, quote language, and competitor comparisons.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, comparison tables, and sales copy templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional Tavily API access for competitor search when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Product links, descriptions, images, competitor inputs, and business context may include sensitive marketing, supplier, or pricing information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only data approved for marketing analysis and avoid confidential customer, supplier, or pricing details unless permitted.
+
+Risk: Generated selling points, competitor comparisons, or pricing claims may be inaccurate or overstated.
+
+Mitigation: Review outputs against product specifications and current competitor evidence before using them in listings, quotes, or outreach.
+
+Risk: Output may be generated in Chinese when another language is needed.
+
+Mitigation: State the desired output language explicitly before requesting the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzg007/skills/szzg007-product-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with sales copy and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use product descriptions, product links, images, customer type, optional competitor links, and explicit language preferences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

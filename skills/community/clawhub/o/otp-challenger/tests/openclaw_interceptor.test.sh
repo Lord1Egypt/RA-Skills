@@ -62,10 +62,10 @@ echo ""
 echo "Testing blocked patterns (should be blocked when unauthorized):"
 
 # Test 1: AWS Keys
-assert_blocked "My AWS key is AKIAEXAMPLE123456789" "AWS Access Key"
+assert_blocked "My AWS key is REDACTED-SECRET" "AWS Access Key"
 
 # Test 2: GitHub Tokens
-assert_blocked "Here is the token: ghp_aBcDeFgHiJkLmNoPqRsTuVwXyZ1234567890" "GitHub PAT"
+assert_blocked "Here is the token: REDACTED-SECRET" "GitHub PAT"
 
 # Test 3: New Relic
 # Note: New Relic test pattern triggers GitHub secret scanning even with fake keys

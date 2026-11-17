@@ -1,47 +1,64 @@
-## Description: <br>
-Turns articles or notes into mobile-readable HTML infographics with a visual style selected for the source content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article To Html turns articles or notes into mobile-readable, visually styled HTML infographics.
 
-## Publisher: <br>
-[partigle](https://clawhub.ai/user/partigle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[partigle](https://clawhub.ai/user/partigle)
 
-## Use Case: <br>
-External users, content creators, and developers use this skill to condense articles, posts, or notes into self-contained HTML infographics and screenshot-ready visual assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates local HTML files and runs an included post-processing script against those files. <br>
-Mitigation: Review generated HTML before running post-processing, execute only in a trusted workspace, and inspect script changes before deployment. <br>
-Risk: Generated or template HTML may load external web fonts, which can disclose request metadata to third-party font providers. <br>
-Mitigation: Remove external font imports or replace them with local fonts for private or sensitive content. <br>
-Risk: The screenshot workflow may start a temporary local HTTP server for generated output. <br>
-Mitigation: Bind the server to 127.0.0.1 where possible, serve only the output directory, and stop the server after capture. <br>
+## Use Case:
 
+External users and creators use this skill to condense articles, posts, or notes into self-contained mobile-first HTML infographics for browser preview and screenshot delivery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/partigle/article-to-html) <br>
-- [Quick Start](docs/01-快速开始.md) <br>
-- [Design Specification](docs/02-设计规范.md) <br>
-- [Technical Baseline](rules/01-技术底线.md) <br>
-- [Screenshot Workflow](rules/02-截图流程.md) <br>
-- [Style Inspiration](rules/03-风格灵感.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, files, shell commands, guidance] <br>
-**Output Format:** [Self-contained HTML, Markdown guidance, and optional PNG screenshot output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is post-processed by the included shell and Node.js scripts before screenshot delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The screenshot workflow can expose a local directory or leave a local HTTP server running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Serve only a dedicated temporary output directory on 127.0.0.1, stop the server after screenshots, and clean up generated files.
+
+Risk: Some templates contact Google Fonts despite the skill describing self-contained HTML output.
+
+Mitigation: Remove or replace remote font imports when offline, private, or no-third-party-network rendering is required.
+
+Risk: Sample output may include an unrelated install command that is not part of this skill's normal workflow.
+
+Mitigation: Treat sample outputs as examples only and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/partigle/skills/article-to-html)
+- [Publisher Profile](https://clawhub.ai/user/partigle)
+- [README](artifact/README.md)
+- [Quick Start](artifact/docs/01-快速开始.md)
+- [Design Specification](artifact/docs/02-设计规范.md)
+- [Technical Constraints](artifact/rules/01-技术底线.md)
+- [Screenshot Workflow](artifact/rules/02-截图流程.md)
+- [Style Inspiration](artifact/rules/03-风格灵感.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Self-contained HTML files with embedded CSS, plus workflow guidance and optional PNG screenshot output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mobile-first 1080px-wide infographic layout with post-processing for CSS, sizing, and screenshot readiness.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Searches and retrieves research reports from fxbaogao.com, including industry reports, company research, macro strategy reports, financial reports, and prospectuses, with filters for keyword, organization, author, and time range. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and retrieves research reports, industry reports, company research, macro strategy, financial reports, and prospectuses from fxbaogao.com using keyword, organization, author, and date filters.
 
-## Publisher: <br>
-[EliaukTM](https://clawhub.ai/user/EliaukTM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eliauktm](https://clawhub.ai/user/eliauktm)
 
-## Use Case: <br>
-External users and agents use this skill to search fxbaogao.com research reports, review result metadata, and retrieve summaries or selected report content by document ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, author or organization filters, and selected document IDs are sent to fxbaogao.com. <br>
-Mitigation: Install only if this external service use is acceptable for the intended workflow and data handling requirements. <br>
-Risk: SSL verification can be disabled with FXBAOGAO_SSL_NO_VERIFY=1. <br>
-Mitigation: Keep SSL verification enabled by default and use the bypass only briefly for a known local certificate-chain problem. <br>
+## Use Case:
 
+External users and developers use this skill to find fxbaogao.com research reports by keyword, publisher organization, author, or time range, then retrieve selected report summaries and content for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EliaukTM/report-search) <br>
-- [fxbaogao report site](https://www.fxbaogao.com) <br>
-- [fxbaogao API service](https://api.fxbaogao.com) <br>
-- [Usage examples](examples/sample.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON from local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include report metadata such as doc_id, organization, author, date, links, snippets, and optional detail summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Search terms and selected document IDs are sent to fxbaogao.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only search terms and report identifiers appropriate to share with fxbaogao.com.
+
+Risk: Disabling TLS verification can allow intercepted or misleading report data.
+
+Mitigation: Keep TLS verification enabled; use FXBAOGAO_SSL_NO_VERIFY=1 only for short local troubleshooting.
+
+Risk: Network or DNS restrictions can prevent report search or retrieval.
+
+Mitigation: Allow outbound access to api.fxbaogao.com and www.fxbaogao.com when deploying the skill.
+
+## Reference(s):
+
+- [Fxbaogao API endpoint](https://api.fxbaogao.com)
+- [Fxbaogao report view](https://www.fxbaogao.com/view?id=DOC_ID)
+- [ClawHub skill page](https://clawhub.ai/eliauktm/skills/report-search)
+- [Publisher profile](https://clawhub.ai/user/eliauktm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown summaries with JSON-backed report metadata and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results preserve doc_id, organization, authors, publish date, and report links; detail responses prioritize summary sections before longer content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

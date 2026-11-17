@@ -1,41 +1,54 @@
-## Description: <br>
-TACE (Tender Agentic Commerce Engine) runtime contract that provides concrete endpoint payloads and response schemas for authenticated commerce workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TACE (Tender Agentic Commerce Engine) runtime contract that provides concrete endpoint payloads and response schemas for authenticated commerce workflows.
 
-## Publisher: <br>
-[tender](https://clawhub.ai/user/tender) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tender](https://clawhub.ai/user/tender)
 
-## Use Case: <br>
-External developers and agent operators use this skill to integrate agents with TACE commerce APIs for authentication, product discovery, ordering, payment status updates, subscriptions, waitlists, and feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables wallet-backed purchases and account or order changes. <br>
-Mitigation: Require explicit user approval before wallet signing, registration, order placement, cancellation, payment-status changes, agent deactivation, feedback submission, or webhook and subscription setup. <br>
-Risk: The skill may require sensitive wallet-related credentials or signing material. <br>
-Mitigation: Do not provide private keys or seed phrases, and redact sensitive values in outputs, traces, and logs. <br>
+## Use Case:
 
+External developers and commerce agents use this skill to authenticate with TACE, discover products, place and monitor orders, manage subscriptions and waitlists, and submit feedback using documented API contracts.
 
-## Reference(s): <br>
-- [TACE skill page](https://clawhub.ai/tender/tace) <br>
-- [TACE homepage](https://tender.cash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; optional TACE_ENV and TACE_SKILL_VERSION environment variables are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can affect purchases, payment state, subscriptions, waitlist positions, and account status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require fresh user confirmation before any order, cancellation, payment update, account deactivation, or deletion.
+
+Risk: Mutable remote /skills.md instructions could expand behavior after installation.
+
+Mitigation: Review remote skill updates before allowing them to change the agent's permitted behavior.
+
+## Reference(s):
+
+- [TACE on ClawHub](https://clawhub.ai/tender/skills/tace)
+- [TACE Homepage](https://tender.cash)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples and optional curl-based API execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for command-line API calls and optional TACE_ENV and TACE_SKILL_VERSION environment variables.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,58 @@
-## Description: <br>
-Fetch on-chain Sui Move contract source code and let your agent explain how smart contracts work. Scrape from Suivision/Suiscan explorers, analyze DeFi protocols, and understand any contract on Sui. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch on-chain Sui Move contract source code and let your agent explain how smart contracts work.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers and smart contract analysts use this skill to fetch and study Sui Move package source or decompiled code from public Sui explorers, including multi-module packages and DeFi protocol examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide browser-based scraping of public Sui explorer pages. <br>
-Mitigation: Confirm that scraping complies with the target explorer's terms and limit use to public contract pages you are allowed to access. <br>
-Risk: The skill includes optional server automation setup such as package installation, local scraper execution, and headless-browser avoidance techniques. <br>
-Mitigation: Review and explicitly approve any sudo installation, local scraper process, or detection-avoidance setup before allowing the agent to run it. <br>
-Risk: Explorer output may include decompiled code that does not compile directly or may differ from verified source. <br>
-Mitigation: Treat fetched code as analysis material and verify it against official source or explorer labels before relying on it for development decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sui Decompile ClawHub page](https://clawhub.ai/EasonC13/sui-decompile) <br>
-- [Suivision](https://suivision.xyz) <br>
-- [Suivision package code view](https://suivision.xyz/package/{package_id}?tab=Code) <br>
-- [Suiscan package contracts view](https://suiscan.xyz/mainnet/object/{package_id}/contracts) <br>
-- [sui-move related skill](https://clawhub.ai/EasonC13/sui-move) <br>
-- [sui-coverage related skill](https://clawhub.ai/EasonC13/sui-coverage) <br>
-- [sui-agent-wallet related skill](https://clawhub.ai/EasonC13/sui-agent-wallet) <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve and inspect Sui Move package source from block explorers when studying deployed contracts, DeFi protocols, or multiple-module packages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with browser workflow steps, JavaScript snippets, shell commands, and optional Puppeteer code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to save extracted modules as separate .move files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Server automation may run Chromium against remote block explorer content with sandbox protections weakened.
+
+Mitigation: Use a sandboxed browser configuration where possible, run automation as an unprivileged user, and isolate it in a disposable environment without secrets.
+
+Risk: Using the Puppeteer/server workflow on CI or shared servers can expose sensitive environments to browser automation risk.
+
+Mitigation: Prefer the simple browser-based source lookup workflow, and avoid running the server automation workflow on systems that contain credentials or production access.
+
+Risk: Explorer-provided or decompiled Move code may be incomplete, misleading, or not directly compilable.
+
+Mitigation: Treat fetched code as analysis material, compare sources when available, and verify behavior against on-chain package data before reusing patterns.
+
+## Reference(s):
+
+- [Sui Decompile ClawHub page](https://clawhub.ai/easonc13/skills/sui-decompile)
+- [SuiVision package code explorer](https://suivision.xyz/package/{package_id}?tab=Code)
+- [Suiscan contracts explorer](https://suiscan.xyz/mainnet/object/{package_id}/contracts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with browser workflow steps and extracted Move code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce separate .move file contents for packages with multiple modules.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

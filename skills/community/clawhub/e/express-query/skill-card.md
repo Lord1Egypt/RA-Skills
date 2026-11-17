@@ -1,43 +1,59 @@
-## Description: <br>
-Identifies likely courier carriers from tracking numbers, guides package-status lookup through official or trusted courier sources, parses logistics timelines, and flags common delivery exceptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies Chinese express couriers from tracking numbers, guides official or aggregator lookup, parses shipment timelines, flags abnormal logistics states, and suggests next actions.
 
-## Publisher: <br>
-[zhili007](https://clawhub.ai/user/zhili007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhili007](https://clawhub.ai/user/zhili007)
 
-## Use Case: <br>
-External users and support agents use this skill to identify China-focused courier carriers, choose a query path, summarize logistics timelines, and provide practical next steps when delivery status appears abnormal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tracking numbers may be entered into third-party aggregator or courier websites during lookup. <br>
-Mitigation: Prefer official courier sources where possible, use trusted aggregators deliberately, and avoid entering extra personal information unless the courier site requires it. <br>
-Risk: Some courier lookups may request phone verification, login, or captcha completion. <br>
-Mitigation: Handle verification steps deliberately on the courier's official site and ask the user before providing or using sensitive verification details. <br>
+## Use Case:
 
+Consumers, support agents, and agent developers use this skill to identify the carrier for a package tracking number, choose a trustworthy lookup path, summarize logistics status, and decide what to do when delivery appears delayed, returned, or incorrectly marked as signed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhili007/express-query) <br>
-- [Carrier Recognition Rules](artifact/references/carriers.md) <br>
-- [Official Source Mapping](artifact/config/official_sources.json) <br>
-- [Test Cases](artifact/data/test_cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include carrier confidence, tiered query options, logistics timeline summaries, abnormal-status assessment, and suggested user actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tracking numbers may be shared with courier websites or aggregators such as kuaidi100 during lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the tracking number needed for the query and avoid adding extra personal or verification details unless the user understands which official site is requesting them.
+
+Risk: Some courier lookups may request phone-number suffixes, login, or captcha verification.
+
+Mitigation: Use official courier channels where possible, stop before providing verification details, and ask the user to confirm whether they want to continue.
+
+Risk: Carrier identification can be ambiguous for some tracking-number formats.
+
+Mitigation: Show confidence or multiple candidates, prefer official lookup results, and double-check outcomes when postal-carrier identification matters.
+
+## Reference(s):
+
+- [Carrier Identification Rules](artifact/references/carriers.md)
+- [Official Courier Source Configuration](artifact/config/official_sources.json)
+- [ClawHub Skill Page](https://clawhub.ai/zhili007/skills/express-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text status summaries, with optional JSON from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include courier candidates, confidence, query paths, source URLs, logistics timelines, abnormal-status checks, and recommended next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

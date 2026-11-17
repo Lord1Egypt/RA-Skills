@@ -1,43 +1,61 @@
-## Description: <br>
-Blender 3D Modeling helps agents use AgentPMT's cloud Blender service to render 3D model previews, convert model formats, check or repair printability, slice models for printing, and run reviewed Blender Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blender 3D Modeling gives agents instructions for using AgentPMT-hosted Blender remote tool calls to render and convert 3D models, check and repair printability, slice models for printing, manage render tasks, and run scoped Blender Python scripts.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to submit 3D assets to AgentPMT-hosted Blender actions for rendering, file conversion, 3D-printability checks, mesh repair, slicing, and controlled Blender Python automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: 3D model files and related prompts are sent to AgentPMT's remote Blender service. <br>
-Mitigation: Use the skill only for assets that may be shared with AgentPMT, and avoid placing secrets or sensitive data in models, prompts, scripts, or logs. <br>
-Risk: The run_script action executes custom Blender Python and can upload files written to OUTPUT_DIR. <br>
-Mitigation: Run only scripts that were written or reviewed for the task, keep them narrowly scoped, and save only intended outputs. <br>
+## Use Case:
 
+Developers and agents use this skill to invoke hosted Blender workflows for game asset previews, e-commerce product views, 3D format conversion, printability checks and repairs, slicing, and custom Blender automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/blender-3d-modeling) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/blender-3d-modeling) <br>
-- [Action Schema](artifact/schema.md) <br>
-- [AgentPMT Account Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and action parameter details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote actions may return task IDs, status JSON, signed file URLs, rendered images or videos, converted model files, G-code, and printability metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill relies on a hosted remote Blender provider and asks agents to trust mutable live schemas and remote instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when AgentPMT is trusted for the workflow, verify live schemas before production use, and prefer pinned or ClawHub-reviewed setup paths for account configuration.
+
+Risk: Custom Blender Python execution can process uploaded models and create arbitrary output files within the hosted task context.
+
+Mitigation: Keep scripts scoped to the requested task, avoid untrusted Blender Python, save only intended outputs, and do not include secrets, wallet material, signatures, or payment headers in prompts or logs.
+
+Risk: Large renders, voxel remeshing, and script jobs can fail or queue because of GPU capacity, memory, grid-size, payload-size, or timeout limits.
+
+Mitigation: Use documented limits and response warnings to select smaller renders, larger voxel sizes, or standard actions, then poll task status and retry only after correcting inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/blender-3d-modeling)
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/blender-3d-modeling)
+- [Action schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and response-handling instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote calls may return task IDs, JSON status responses, signed download URLs, rendered images or videos, converted model files, G-code, metadata, and Blender project files.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

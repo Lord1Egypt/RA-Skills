@@ -1,39 +1,52 @@
-## Description: <br>
-CLI tool for generating tests, scanning contracts, managing story-based tests, and setting up MCP integration in web projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool for generating tests, scanning contracts, managing story-based tests, and setting up MCP integration in web projects.
 
-## Publisher: <br>
-[ianderrington](https://clawhub.ai/user/ianderrington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianderrington](https://clawhub.ai/user/ianderrington)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply the Supernal Interface CLI in web projects for contract scanning, generated tests, story-based test workflows, validation, and MCP or Claude Code setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CLI can install software, rewrite project files, change IDE or MCP configuration, and install other agent components. <br>
-Mitigation: Review the @supernal/interface package and publisher before installation, then run commands first in a disposable project or clean git branch. <br>
-Risk: Automated setup and commit flags can apply changes before a developer has reviewed the resulting diffs. <br>
-Mitigation: Prefer --dry-run and --manual modes, avoid --force and --git-commit until diffs are reviewed, and require explicit approval before setup-mcp or setup-claude runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ianderrington/si) <br>
+## Use Case:
 
+Developers and engineers use this skill to run the Supernal Interface CLI for web project test generation, route and component contract scanning, story-based testing, validation, and MCP setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated project artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to run CLI commands that generate tests, contracts, route/name files, MCP configuration, IDE configuration, and Claude Code integration files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Global installation and setup commands can persistently change project, IDE, MCP, and agent configuration.
+
+Mitigation: Review before installing, use an isolated project or version-controlled checkout first, prefer dry-run or scan-only modes, and pin or verify the npm package version before global installation.
+
+Risk: Commands such as --force, --inject, --migrate, --git-commit, --skip-test, setup-mcp, and setup-claude can make broad or hard-to-review changes when used unintentionally.
+
+Mitigation: Avoid these options unless the change is specifically intended, review resulting diffs and configuration files, and validate generated contracts and tests before merging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ianderrington/skills/si)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation or validation of project files, tests, contracts, MCP configuration, and agent integration artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

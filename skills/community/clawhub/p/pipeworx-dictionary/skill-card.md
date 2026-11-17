@@ -1,41 +1,56 @@
-## Description: <br>
-Word definitions, phonetics, usage examples, synonyms, and antonyms from the Free Dictionary API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Word definitions, phonetics, usage examples, synonyms, and antonyms from the Free Dictionary API
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers, writing assistants, and education tools use this skill to look up English word definitions, phonetics, usage examples, synonyms, and antonyms through the Pipeworx dictionary service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dictionary lookup terms are sent to Pipeworx's remote gateway. <br>
-Mitigation: Use the skill only when remote dictionary queries are acceptable for the words being requested. <br>
-Risk: The MCP configuration fetches mcp-remote from npm through npx. <br>
-Mitigation: Review and approve the npm package execution path before deploying the MCP configuration in managed environments. <br>
+## Use Case:
 
+External users and developers use this skill to look up English word meanings, phonetics, usage examples, synonyms, and antonyms for writing, vocabulary, flashcard, and language-learning workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucegutman/pipeworx-dictionary) <br>
-- [Pipeworx Dictionary Pack](https://pipeworx.io/packs/dictionary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples; dictionary tool results are returned as structured text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries are sent to the Pipeworx remote dictionary gateway; MCP configuration fetches mcp-remote from npm through npx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup runs an unpinned npm package that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the mcp-remote version or run the MCP configuration in a constrained environment before trusting it.
+
+Risk: Dictionary lookups may send submitted words or phrases to an external service.
+
+Mitigation: Do not submit secrets, internal project names, or sensitive text through this skill.
+
+## Reference(s):
+
+- [Pipeworx Dictionary Pack](https://pipeworx.io/packs/dictionary)
+- [Pipeworx Dictionary MCP Endpoint](https://gateway.pipeworx.io/dictionary/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-dictionary)
+- [Publisher Profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dictionary responses may include grouped definitions, phonetics, examples, synonyms, antonyms, and audio pronunciation URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Highway 485",
+  "creator": "Allen Tucker",
+  "institution": "Smithsonian American Art Museum",
+  "item_record_url": "https://americanart.si.edu/artwork/highway-485-24266",
+  "official_image_url": "https://ids.si.edu/ids/download?id=SAAM-1966.34.9_1.tif",
+  "object_number": "1966.34.9",
+  "medium": "lithograph",
+  "date": "n.d.",
+  "rights_status": "FREE TO USE",
+  "rights_statement": "This media is in the public domain (free of copyright restrictions). You can copy, modify, and distribute this work without contacting the Smithsonian.",
+  "license_url": "https://americanart.si.edu/artwork/highway-485-24266",
+  "retrieval_date": "2026-08-27",
+  "download_date": "2026-08-27",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "TIFF",
+    "width": 3150,
+    "height": 2192,
+    "bytes": 20740108,
+    "sha256": "b6332487b7b2e7087a19b69fb129aaccf3c64c66e44d5a383f3e63a76dfd910a"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 1600,
+    "height": 1113,
+    "long_edge_px": 1600,
+    "bytes": 83298,
+    "sha256": "8ac8a779fa4d1501fb9cb6e399bf2c520304ff6ac2a7b3e01d5f41c62a487439",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "sparse broken dry-crayon and contour-line construction",
+    "paper-white negative-space preservation",
+    "restrained dark accents",
+    "radical subject simplification",
+    "limited hatching and lithographic texture"
+  ],
+  "subject_exclusions": [
+    "road",
+    "road sign",
+    "utility poles",
+    "wires",
+    "landscape subject",
+    "reference composition"
+  ]
+}

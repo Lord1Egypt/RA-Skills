@@ -1,43 +1,56 @@
-## Description: <br>
-Transit Least Squares (TLS) algorithm for detecting exoplanet transits in light curves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using the Transit Least Squares algorithm to detect exoplanet transits in light curves with the transitleastsquares Python package.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and researchers use this skill to build or review Python workflows that search light curves for transit-shaped exoplanet signals with the transitleastsquares package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Python dependencies may introduce supply-chain or environment risk when installed into a shared environment. <br>
-Mitigation: Install dependencies in a virtual environment and verify the provenance of scientific packages before use, especially in controlled environments. <br>
-Risk: Transit candidates can be false positives or period aliases if uncertainties, preprocessing, or data gaps are mishandled. <br>
-Mitigation: Use flux uncertainties, inspect SDE, SNR, and phase-folded plots, and validate candidate periods before relying on results. <br>
+## Use Case:
 
+Developers and researchers use this skill to guide exoplanet transit searches, refine candidate periods, interpret TLS SDE and SNR outputs, and plan follow-up searches for additional planets.
 
-## Reference(s): <br>
-- [TLS GitHub Repository](https://github.com/hippke/tls) <br>
-- [TLS Tutorials](https://github.com/hippke/tls/tree/master/tutorials) <br>
-- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/index.html) <br>
-- [Lightkurve Exoplanet Examples](https://lightkurve.github.io/lightkurve/tutorials/3.1-identifying-transiting-exoplanets.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Unreviewed scientific package dependencies can affect shared or production environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated virtual environment and pin reviewed package versions before operational use.
+
+Risk: Transit detections can be false positives or period aliases when light curve quality, gaps, or preprocessing choices are poor.
+
+Mitigation: Use flux uncertainties, inspect SDE and SNR, check possible half-period or double-period aliases, and visually validate phase-folded light curves.
+
+## Reference(s):
+
+- [TLS GitHub Repository](https://github.com/hippke/tls)
+- [TLS Tutorials](https://github.com/hippke/tls/tree/master/tutorials)
+- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/index.html)
+- [Lightkurve Exoplanet Examples](https://lightkurve.github.io/lightkurve/tutorials/3.1-identifying-transiting-exoplanets.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No generated files by default; outputs guide dependency installation, TLS analysis steps, parameter choices, and result interpretation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

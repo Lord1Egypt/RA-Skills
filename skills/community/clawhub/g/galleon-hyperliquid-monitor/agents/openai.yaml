@@ -1,0 +1,4 @@
+interface:
+  display_name: Hyperliquid Monitor
+  short_description: Reconcile Hyperliquid state and live risk
+  default_prompt: Use $hyperliquid-monitor to reconcile this account or watch condition from current exchange data.

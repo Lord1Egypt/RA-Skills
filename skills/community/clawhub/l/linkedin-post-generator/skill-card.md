@@ -1,45 +1,59 @@
-## Description: <br>
-AI-powered LinkedIn post generator for professionals. Create engaging posts, thought leadership content, and career updates using Sloan agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered LinkedIn post generator for professionals that creates posts, thought leadership content, and career updates using the Sloan agent.
 
-## Publisher: <br>
-[icepopma](https://clawhub.ai/user/icepopma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[icepopma](https://clawhub.ai/user/icepopma)
 
-## Use Case: <br>
-Professionals, thought leaders, and job seekers use this skill to generate LinkedIn posts, thought-leadership content, celebrations, and announcements from a short topic prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact SkillPay before generation and charge per use. <br>
-Mitigation: Use --test while evaluating the skill and confirm payment expectations before normal use. <br>
-Risk: The topic prompt may be passed to OpenClaw/Sloan or a local gateway during generation. <br>
-Mitigation: Avoid sensitive prompts and use a trusted OpenClaw installation and gateway configuration. <br>
-Risk: Generated professional content may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Review and edit generated LinkedIn posts before publishing. <br>
+## Use Case:
 
+Professionals, thought leaders, and job seekers use this skill to draft LinkedIn posts for career updates, announcements, celebrations, and thought leadership.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icepopma/linkedin-post-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/icepopma) <br>
-- [Project repository listed in documentation](https://github.com/icepopma/linkedin-post-generator) <br>
-- [Community support listed in documentation](https://discord.gg/clawd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text LinkedIn post content with optional emojis and hashtags, plus command-line status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts are generated from a topic prompt and options for tone, post type, emojis, hashtags, and test mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The security review verdict is suspicious because the paid skill includes an embedded payment merchant key and has supply-chain and scoping issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if paid networked behavior is acceptable; the publisher should remove and rotate the embedded merchant key, pin reviewed dependency versions, regenerate the lockfile from HTTPS sources, and fix the syntax error before users rely on it.
+
+Risk: Normal use charges 0.002 USDT per generation through SkillPay before content generation.
+
+Mitigation: Confirm payment behavior and user consent before use; use the documented test mode only for evaluation.
+
+Risk: The skill contacts SkillPay and a local OpenClaw/Sloan agent during execution.
+
+Mitigation: Run it only in environments where those external and local agent calls are expected and authorized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/icepopma/skills/linkedin-post-generator)
+- [Publisher profile](https://clawhub.ai/user/icepopma)
+- [GitHub support link from artifact](https://github.com/icepopma/linkedin-post-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Console text containing generated LinkedIn post content and generation metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts are constrained by the artifact to a maximum of 3000 characters.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and SKILL.md frontmatter; package.json shows 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

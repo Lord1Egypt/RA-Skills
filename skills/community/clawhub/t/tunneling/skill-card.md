@@ -1,40 +1,56 @@
-## Description: <br>
-Create free SSH tunnels to expose local ports to the internet using tinyfi.sh for local app sharing, webhook testing, demos, and public HTTPS access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create free SSH tunnels to expose local ports to the internet using tinyfi.sh.
 
-## Publisher: <br>
-[simantak-dabhade](https://clawhub.ai/user/simantak-dabhade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simantak-dabhade](https://clawhub.ai/user/simantak-dabhade)
 
-## Use Case: <br>
-Developers and engineers use this skill to create public HTTPS access to a local service through an SSH tunnel when sharing a locally running app, testing webhooks, or demonstrating a prototype. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make a local service reachable from the public internet. <br>
-Mitigation: Confirm the exact port before opening a tunnel and avoid exposing admin, debug, private, or unauthenticated endpoints. <br>
-Risk: A background SSH tunnel may continue exposing a service longer than intended. <br>
-Mitigation: Track the tunnel process and provide clear stop instructions when creating a long-running tunnel. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simantak-dabhade/tunneling) <br>
-- [TinyFish tunneling service](https://tinyfi.sh) <br>
+## Use Case:
 
+Developers and engineers use this skill to expose a local web app or service through a temporary public HTTPS URL for webhook testing, prototype demos, or short-term sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an SSH tunnel command, a selected local port, and the resulting public URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The tunnel can make a local service publicly reachable on the internet.
+
+Mitigation: Use it only for non-sensitive local apps that are safe to publish, and avoid databases, admin consoles, debug ports, or services containing secrets.
+
+Risk: A public tunnel can remain available longer than intended while the SSH session is alive.
+
+Mitigation: Stop the SSH process as soon as sharing or testing is finished.
+
+Risk: Unauthenticated local services may be accessed by unintended users through the public URL.
+
+Mitigation: Add authentication or access restrictions around anything exposed through the tunnel.
+
+## Reference(s):
+
+- [Tunneling skill page](https://clawhub.ai/simantak-dabhade/skills/tunneling)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes SSH tunnel commands, port-selection guidance, public URL reporting guidance, common local ports, and TinyFish service limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

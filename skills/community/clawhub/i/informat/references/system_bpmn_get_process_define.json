@@ -1,0 +1,21 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_get_process_define",
+		"description": "Get the configuration information of the specified workflow process definition, including startup settings, process ID, process name. If the start form is enabled, the form structure information will be returned automatically",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "ID of the module where the workflow is located"
+				},
+				"processDefineId": {
+					"type": "string",
+					"description": "Workflow process definition ID"
+				}
+			},
+			"required": ["moduleId", "processDefineId"]
+		}
+	}
+}

@@ -1,39 +1,61 @@
-## Description: <br>
-A Chinese-language business assistant for drafting business plans, marketing plans, and competitive analyses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Popeye Business is a Chinese-language business writing helper for drafting business plans, marketing plans, and competitor analyses.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-External users and business teams use this skill to draft Chinese-language business plans, marketing campaign plans, and competitor analyses from project, product, market, and goal details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market data, competitor claims, financial projections, or marketing recommendations may be inaccurate or unsuitable for a real business decision. <br>
-Mitigation: Review and verify generated business content against reliable external sources and internal assumptions before using it for planning, financing, or execution. <br>
+## Use Case:
 
+Entrepreneurs, founders, and business teams use this skill to generate structured Chinese-language drafts for business planning, marketing campaigns, and competitor analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/popeye-business) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangtaoid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables and structured business recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language drafting templates for business plans, marketing plans, and competitive analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Business details provided by the user may be incorporated into generated plans or analyses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential or regulated business information unless the deployment environment is approved for that data.
+
+Risk: Generic requests for a business plan, marketing plan, or competitor analysis may route into this skill.
+
+Mitigation: Review the selected skill and generated output before using it for external decisions or publication.
+
+Risk: Generated business, financial, market, or competitive claims may be incomplete or inaccurate.
+
+Mitigation: Validate market data, financial assumptions, and competitor facts against current authoritative sources before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/popeye-business)
+- [Publisher profile](https://clawhub.ai/user/jiangtaoid)
+- [Business plan module](artifact/modules/business-plan.md)
+- [Marketing module](artifact/modules/marketing.md)
+- [Competitive analysis module](artifact/modules/competitive.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language structured writing templates for business, marketing, and competitive analysis outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

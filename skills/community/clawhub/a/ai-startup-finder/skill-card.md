@@ -1,39 +1,53 @@
-## Description: <br>
-Helps users identify practical AI and agent startup opportunities with a structured trend scanning, competitor analysis, and MVP planning methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find practical AI and agent startup opportunities using a structured market-scanning and competitor-analysis methodology.
 
-## Publisher: <br>
-[facadefish](https://clawhub.ai/user/facadefish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[facadefish](https://clawhub.ai/user/facadefish)
 
-## Use Case: <br>
-External users and developers use this skill to brainstorm AI and agent business ideas, evaluate opportunities against market and competitor signals, and plan a small MVP path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market, business, and financial suggestions may be incomplete, incorrect, or unsuitable for a user's situation. <br>
-Mitigation: Treat outputs as brainstorming and validate recommendations with independent market research, user interviews, and appropriate professional advice before investing time or money. <br>
-Risk: Future versions that add scraping, trading automation, account access, or API credentials could introduce operational and security risk. <br>
-Mitigation: Review and scan any implementation changes before deployment, minimize permissions, and avoid providing credentials unless the added behavior is clearly required and trusted. <br>
+## Use Case:
 
+External founders, indie developers, and business builders use this skill to scan market signals, evaluate competitors, choose AI startup directions, and plan a two-week MVP.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis with lists, tables, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential handling, install scripts, or persistence are part of the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Market, platform, or financial advice may be incomplete, outdated, or misleading if treated as a guarantee.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review opportunity recommendations against current market data, platform rules, business constraints, and independent judgment before acting.
+
+Risk: Finance-related startup ideas, including automated trading or arbitrage concepts, can create financial loss if treated as executable advice.
+
+Mitigation: Require domain review, explicit risk controls, and compliance checks before pursuing any finance-related recommendation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/facadefish/skills/ai-startup-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown with structured analysis, recommendations, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

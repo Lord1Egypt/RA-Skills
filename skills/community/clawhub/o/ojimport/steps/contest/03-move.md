@@ -29,40 +29,44 @@ read_file abc453.md         # 读内容
 
 ### Step 3-2 环境初始化
 
-工作目录名：`work_{PID}`
+工作目录：`{BASE_DIR}/work_{PID}`
 PID 可自题明确（如 `abc453` 赛中 A 题 → `abc453a`）。
 
 ```bash
-rm -rf work_{PID}
-cp -r question work_{PID}
-# {WORK_DIR} = work_{PID}
+BASE_DIR=$(detect_desktop)
+rm -rf $BASE_DIR/work_{PID}
+cp -r question $BASE_DIR/work_{PID}
+# {WORK_DIR} = $BASE_DIR/work_{PID}
 ```
 
 ### Step 3-3 生题面
 
-据读得信息生。生后更名目录加标题：
+据读得信息生。⚠️ **禁解题思路/解法分析/题解**：题面只含描述、输入输出格式、样例、数据范围，不附任何解题指引或算法讲解。
+生后更名目录加标题：
 
 ```bash
 mv {WORK_DIR} {WORK_DIR}_{标题简写}
 # {WORK_DIR} = work_{PID}_{标题简写}
 ```
 
-写入 `{WORK_DIR}/problem_zh.md`。
+写入 `{WORK_DIR}/problem_zh.md`（**题面末尾（`</div>` 前）加出处行** `> 出处：[原题链接](URL)`，自比赛 URL 拼出，如 `https://atcoder.jp/contests/abc453/tasks/abc453_a`）。
 
 ### Step 3-4 写配
 
 ```yaml
-pid: abc453a
+pid: "abc453a"
 title: "中(英)"
-score:  # AI 按 03-gesp.md「第六步：定分」规则估算，已知比赛分数直接采用
+score:  # AI 判定（03-gesp.md「第四步：CF 档位判定」，逐项判四维锁定档位），已知比赛分数直接采用
+source: "https://atcoder.jp/contests/abc453/tasks/abc453_a"
 tag:
   - "知识点标签1"
   - "知识点标签2"
-  - "GESP X级"
+  - "GESP X级 | CSP-J | CSP-S | NOI"
 ```
 
-⚠️ **tag 含 1~3 个知识点标签 + 1 个等级标签，禁只写 GESP 等级**
-⚠️ **score 按 03-gesp.md「第六步：定分」规则估算，已知比赛分数直接采用，禁写死默认值**
+⚠️ **tag 含 1~3 个知识点标签 + 1 个等级标签，禁只写等级**
+⚠️ **score 按 03-gesp.md「第四步：CF 档位判定」——逐项判四维（思维拐点/算法门槛/数据规模/实现细节）锁定档位，禁直接给感觉分；已知比赛分数直接采用，禁写死默认值；水题给分克制（零思维量 ≤900），拿不准取低档（宁低勿高）**
+⚠️ **等级标签（tag）按 03-gesp.md 第二步 + 2.4 跨体系锚定表定：GESP 大纲有→`GESP X级`；GESP 无（超纲）→循 2.5 兜底升 `CSP-J`/`CSP-S`/`NOI`。进阶结构（线段树/并查集/堆/AC自动机/网络流等）禁低估**
 
 写入 `{WORK_DIR}/problem.yaml`。
 
@@ -102,29 +106,27 @@ g++ -o mkdata mkdata.cpp -std=c++17
 ./mkdata
 ```
 
-### Step 3-9 打包发布
+### Step 3-9 审计
 
-⚠️ **打包铁律：必自 {WORK_DIR} 之父目录打包全 {WORK_DIR} 目录。**
+搬完测试数据后、打包前，必做审计：
+
+读 **`steps/08-audit.md`**，逐项审计：
+- 文件完整性
+- 题面模板一致性
+- 配置模板一致性
+- GESP 等级复核
+- 分值复核
+- AtCoder 题 CF 分复核（若适用）
+
+**审计不通过不得打包！** 发现问题则修正后重审。
+
+### Step 3-10 清理工作目录
+
+⚠️ **比赛搬运时不生成单题 zip**——合集 zip 会统一打包，单题 zip 冗余且可能嵌套致导入失败。
 
 ```bash
-# ✅ 正：打包全 {WORK_DIR}/ 目录（解压后有 {WORK_DIR}/ 壳）
-rm -f {WORK_DIR}/std {WORK_DIR}/mkdata {WORK_DIR}/*.exe
-zip -r {pid}_{title}.zip {WORK_DIR}
-
-# ❌ 误：cd 进 {WORK_DIR} 再打包（文件散根目录）
-# cd {WORK_DIR} && zip -r ../{pid}_{title}.zip .
-# ❌ 误：于 {WORK_DIR} 目录内打包当前目录
-# cd {WORK_DIR} && zip -r {pid}_{title}.zip *
-```
-
-**验打包构：**
-```bash
-unzip -l {pid}_{title}.zip | head -6
-# 望出：
-#   {WORK_DIR}/
-#   {WORK_DIR}/std.cpp
-#   {WORK_DIR}/problem_zh.md
-#   {WORK_DIR}/testdata/
+# 仅清理可执行文件，不打包
+rm -f {WORK_DIR}/std {WORK_DIR}/mkdata {WORK_DIR}/*.exe {WORK_DIR}/*.zip
 ```
 
 ## 成后
@@ -134,6 +136,27 @@ unzip -l {pid}_{title}.zip | head -6
 - ❌ 禁留上题上下文
 - ✅ 每题独读题面信息
 
+### Step 3-11 打包合集
+
+⚠️ **所有题目逐题搬完后，打包成比赛合集，不散包交付。**
+⚠️ **合集内不嵌套单题 zip**——Step 3-10 已清理之。
+
+```bash
+# 回到桌面基目录，将所有 work_* 汇总到同一 zip
+BASE_DIR=$(detect_desktop)
+cd $BASE_DIR
+rm -f work_*/*.zip      # 确保无嵌套 zip
+zip -r {contest_id}.zip work_*/
+# 例：$BASE_DIR/abc453.zip 内含 work_abc453a_题A/ work_abc453b_题B/ ...
+```
+
+**验合集：**
+```bash
+unzip -l $BASE_DIR/{contest_id}.zip | head -20
+# 应无 .zip 嵌套条目
+# 应见各题目录均在 zip 根下（无 work_ 前缀更佳）
+```
+
 ## 完成
 
-N 个 zip 文件已生，务成！
+1 个合集 zip 文件已生，务成！

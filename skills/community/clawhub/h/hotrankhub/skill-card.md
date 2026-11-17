@@ -1,51 +1,70 @@
-## Description: <br>
-HotRank Hub lets agents retrieve standardized JSON hot-list data from 47 public platforms through a third-party HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+聚合 47 个平台热榜数据的 API 服务。
 
-## Publisher: <br>
-[Rpeng666](https://clawhub.ai/user/Rpeng666) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rpeng666](https://clawhub.ai/user/rpeng666)
 
-## Use Case: <br>
-External users and agent developers use this skill to answer trend and hot-topic questions by retrieving current rankings from social, video, technology, finance, news, entertainment, lifestyle, and community platforms. Agents can return a single platform list, compare platforms, or summarize cross-platform topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the disclosed third-party service at airouter.tech for public trending-topic lookups. <br>
-Mitigation: Install and enable it only where outbound calls to that service are acceptable, and avoid sending private or sensitive user data in platform queries. <br>
-Risk: Ambiguous user requests may map to the wrong platform or an overly broad set of hot lists. <br>
-Mitigation: Ask the user to confirm or narrow the target platform when the intended source is unclear. <br>
-Risk: Scheduled polling or repeated multi-platform lookups can create unnecessary traffic. <br>
-Mitigation: Keep polling opt-in, apply local caching aligned with the documented five-minute refresh window, and rate-limit concurrent requests. <br>
-Risk: Hot-list data is sourced from third-party platforms and may be incomplete, stale, or inaccurate. <br>
-Mitigation: Present results as public trend signals and verify important claims against primary sources before acting on them. <br>
+## Use Case:
 
+Agent developers use this skill to fetch and summarize current trending-list data from social, news, technology, finance, video, and entertainment platforms through a standardized HTTP API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Rpeng666/hotrankhub) <br>
-- [Publisher profile](https://clawhub.ai/user/Rpeng666) <br>
-- [HotRank Hub API base](https://airouter.tech/api) <br>
-- [HotRank Hub homepage](https://airouter.tech) <br>
-- [API reference](artifact/api-reference.md) <br>
-- [Usage examples](artifact/examples.md) <br>
-- [Supported source list](artifact/sources.json) <br>
-- [User guide](artifact/USER_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with optional JSON payloads and JavaScript, TypeScript, or curl examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying API returns read-only public hot-list data with code, message, data, and timestamp fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill contacts airouter.tech to retrieve public trending-list data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where external network access to airouter.tech is acceptable, and avoid placing sensitive text in source IDs or custom API requests.
+
+Risk: Ambiguous news or trend requests could cause an agent to fetch external data when the user did not intend it.
+
+Mitigation: Configure the agent to confirm whether HotRank Hub should be used for broad or ambiguous news-summary requests.
+
+Risk: Trending data comes from third-party platforms and may be incomplete, unavailable, or inaccurate.
+
+Mitigation: Present source names and retrieval context to users, handle failed sources gracefully, and avoid treating trend entries as verified facts.
+
+Risk: Documentation claims 47 supported platforms, while sources.json contains 45 source entries in the artifact evidence.
+
+Mitigation: Verify the active source list before relying on complete platform coverage or advertising an exact source count.
+
+Risk: Repeated polling can waste requests because the service caches data for about 5 minutes and recommends no more than 60 requests per minute.
+
+Mitigation: Cache repeated source requests for about 5 minutes and use batching, backoff, and request deduplication for multi-platform workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rpeng666/skills/hotrankhub)
+- [Publisher profile](https://clawhub.ai/user/rpeng666)
+- [HotRank Hub API](https://airouter.tech/api)
+- [HotRank Hub website](https://airouter.tech)
+- [API reference](https://airouter.tech/docs/api)
+- [Usage examples](https://airouter.tech/docs/examples)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses and optional code or shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill retrieves public trending-list data from airouter.tech and returns current-source results; API data is server-cached for about 5 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

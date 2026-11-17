@@ -1,0 +1,27 @@
+{
+  "skill_name": "galleon-defillama-yield-screen",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rank Base USDC pools by base APY above one million TVL. Synthetic evidence: A base4/rewards8/total12; B base5/rewardsnull/total5; C basenull/total20. Exact token/chain/TVL match.",
+      "expected_output": "Rank B then A; exclude C missing base. Preserve null rewards. Include evidence source and remaining limits.",
+      "files": [],
+      "assertions": [
+        "Rank B then A; exclude C missing base. Preserve null rewards.",
+        "No financial action is executed.",
+        "Unknown evidence remains explicitly unknown."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Now rank those same pools by total APY instead. Synthetic evidence: A base4/rewards8/total12; B base5/rewardsnull/total5; C basenull/total20. Updated objective total APY.",
+      "expected_output": "Rank C then A then B; preserve unknown decomposition and explain changed objective. Include evidence source and remaining limits.",
+      "files": [],
+      "assertions": [
+        "Rank C then A then B; preserve unknown decomposition and explain changed objective.",
+        "No financial action is executed.",
+        "Unknown evidence remains explicitly unknown."
+      ]
+    }
+  ]
+}

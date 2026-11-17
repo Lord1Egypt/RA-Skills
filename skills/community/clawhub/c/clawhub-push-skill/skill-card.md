@@ -1,40 +1,58 @@
-## Description: <br>
-Publishes skills to the ClawHub registry while handling acceptLicenseTerms, tag-array formatting, token path detection, and per-file upload formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click publishing helper for pushing skills to the ClawHub registry while handling acceptLicenseTerms and upload format issues.
 
-## Publisher: <br>
-[bg1avd](https://clawhub.ai/user/bg1avd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bg1avd](https://clawhub.ai/user/bg1avd)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to publish one ClawHub skill or batch-publish local skill directories to the ClawHub registry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local ClawHub token to upload selected skill files, so publishing the wrong directory can expose secrets, private notes, or build artifacts. <br>
-Mitigation: Inspect the target skill directory before running it and remove secrets, environment files, private notes, and generated artifacts. <br>
-Risk: Batch mode can attempt to publish multiple skill directories without asking for confirmation for each one. <br>
-Mitigation: Use batch mode only on reviewed parent directories, or use single-skill publishing when contents need individual review. <br>
+## Use Case:
 
+Developers and engineers use this skill to publish individual or batched ClawHub skills from local directories, using SKILL.md metadata and a local ClawHub token.
 
-## Reference(s): <br>
-- [ClawHub Push Skill release page](https://clawhub.ai/bg1avd/clawhub-push-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local ClawHub token and can upload selected skill files to the ClawHub registry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can upload more files from a local skill directory than the user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on clean skill directories and remove secrets, .env files, private keys, local configuration, symlinks, and unrelated files before publishing.
+
+Risk: The skill uses the local ClawHub token to publish to clawhub.ai.
+
+Mitigation: Confirm the target registry, slug, version, and selected account before execution, and rotate the token if unintended content is published.
+
+Risk: The skill automatically includes acceptLicenseTerms when publishing.
+
+Mitigation: Confirm the applicable ClawHub license terms and release license before running the publish command.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bg1avd/skills/clawhub-push-skill)
+- [ClawHub registry](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish local skill files to clawhub.ai using the user's stored ClawHub token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

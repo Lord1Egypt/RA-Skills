@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
-echo "Running non-privileged smoke test for headful-browser-vnc"
-# Dry-run start/stop
-bash ../scripts/start_vnc.sh smoke_test :99 800x600 || true
-sleep 1
-bash ../scripts/start_chrome_debug.sh smoke_test --proxy=http://127.0.0.1:3128 9223 || true
-sleep 2
-echo "Attempting export (may fallback to wget)
-"
-bash ../scripts/export_page.sh smoke_test "https://ifconfig.co" 9223 || true
-# cleanup
-echo "Stopping"
-bash ../scripts/stop_vnc.sh smoke_test :99 || true
-echo "smoke test complete"
+cd "$(dirname "$0")/.."
+if [ "$(uname -s)" != Linux ] || [ "$(id -u)" = 0 ]; then
+  echo 'Full smoke test requires a non-root Linux user and working Chrome sandbox.' >&2
+  exit 1
+fi
+for file in scripts/*.sh tests/smoke_test.sh; do bash -n "$file"; done
+python3 -m unittest discover -s tests -p 'test_*.py'
+npm test
+npm run test:browser
+python3 tests/linux_integration.py

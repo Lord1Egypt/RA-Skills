@@ -1,44 +1,59 @@
-## Description: <br>
-Assess organizational readiness for AI adoption across six dimensions and generate a scored readiness report with gap analysis and a prioritized action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses organizational readiness for AI adoption across six dimensions and generates a scored readiness report with gap analysis and a prioritized action plan.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Business leaders, consultants, and operations teams use this skill before AI agent or automation deployments to evaluate readiness, identify blockers, and plan next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The assessment may use sensitive business context such as budgets, customer-facing workflows, internal blockers, tools, and strategy. <br>
-Mitigation: Use high-level or anonymized business details where possible and omit credentials, customer data, regulated data, exact confidential budgets, internal security details, and proprietary strategy unless intentionally provided. <br>
-Risk: Readiness scores and recommendations can be misleading when the input is incomplete or overly optimistic. <br>
-Mitigation: Flag missing information as an assessment gap and have accountable stakeholders review the report before using it for deployment, purchasing, or change-management decisions. <br>
+## Use Case:
 
+Business leaders, consultants, and AI implementation teams use this skill before deploying AI agents or automation to evaluate organizational readiness, identify adoption blockers, and plan remediation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-ai-adoption-readiness) <br>
-- [AfrexAI](https://afrexai.com) <br>
-- [Compliance Readiness](https://clawhub.com/skills/afrexai-compliance-readiness) <br>
-- [Change Management Plan](https://clawhub.com/skills/afrexai-change-management-plan) <br>
-- [Vendor Risk Assessment](https://clawhub.com/skills/afrexai-vendor-risk-assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown readiness report with scorecards, gap analysis, roadmap, risk register, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the provided organization context to produce a scored assessment across six readiness dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill asks for business context such as budgets, internal systems, timelines, and known blockers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an agent environment approved for that business information and omit confidential details unless sharing is authorized.
+
+Risk: Readiness scores, roadmaps, and risk registers are advisory and may be incomplete if the supplied organization context is partial.
+
+Mitigation: Have compliance, security, and executive stakeholders review the report before using it for investment, deployment, or governance decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-ai-adoption-readiness)
+- [Compliance Readiness](https://clawhub.com/skills/afrexai-compliance-readiness)
+- [Change Management Plan](https://clawhub.com/skills/afrexai-change-management-plan)
+- [Vendor Risk Assessment](https://clawhub.com/skills/afrexai-vendor-risk-assessment)
+- [Incident Response Plan](https://clawhub.com/skills/afrexai-incident-response-plan)
+- [SLA Monitor](https://clawhub.com/skills/afrexai-sla-monitor)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown readiness report with a scorecard, gap analysis, roadmap, quick wins, risk register, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; output quality depends on the organization context supplied by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

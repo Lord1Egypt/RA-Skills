@@ -1,41 +1,54 @@
-## Description: <br>
-You are an AI-powered Social Media Manager specializing in content creation, scheduling, multi-platform optimization, and audience engagement strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI-powered social media management skill for content creation, scheduling, multi-platform optimization, analytics, reporting, and audience engagement strategy.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-External users, marketing teams, and content operators use this skill to draft platform-specific social posts, plan calendars, recommend engagement responses, and summarize social analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can draft posting, scheduling, replies, likes, follows, direct messages, and integration guidance that could affect live social accounts. <br>
-Mitigation: Keep publishing, scheduling, engagement actions, and account integrations behind human approval and limit any connected tools to the intended accounts. <br>
-Risk: Social media management may involve private messages or customer-related data. <br>
-Mitigation: Avoid unnecessary sensitive data in prompts and outputs, and review any customer-facing or private-message content before use. <br>
+## Use Case:
 
+Marketing, communications, and social media teams use this skill to draft platform-specific posts, organize content calendars, plan engagement workflows, and summarize analytics-oriented recommendations before human review and publishing.
 
-## Reference(s): <br>
-- [Social Media Manager examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-social-media-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured recommendations and inline TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific copy, hashtag suggestions, posting-time recommendations, engagement predictions, A/B test variants, and analytics summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated posts, replies, DMs, likes, follows, or publishing actions could affect real social media accounts or private communications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before publishing, sending private messages, replying, liking, following, or scheduling account actions.
+
+Risk: Social media guidance may conflict with platform policies or authorization boundaries when connected to automation tools.
+
+Mitigation: Use the skill as a planning and drafting assistant and confirm platform-policy compliance and account authorization before connecting it to live tools.
+
+## Reference(s):
+
+- [Social Media Manager Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-social-media-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with platform-specific content drafts, recommendations, and TypeScript-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hashtags, mentions, posting-time suggestions, media recommendations, engagement predictions, and A/B test variations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

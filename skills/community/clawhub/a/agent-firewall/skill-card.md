@@ -1,42 +1,57 @@
-## Description: <br>
-Provides real-time input/output filtering for agent communications to help block prompt injection, data exfiltration, and unauthorized commands before they reach the model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Firewall provides real-time input and output filtering for agent communications to block prompt injection, data exfiltration, and unauthorized commands before they reach the model.
 
-## Publisher: <br>
-[arhadnane](https://clawhub.ai/user/arhadnane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arhadnane](https://clawhub.ai/user/arhadnane)
 
-## Use Case: <br>
-Developers and security reviewers use this skill as a helper filter around agent input and output to detect or redact prompt injections, encoded payloads, secrets, PII, internal paths, and other risky content before it is passed onward. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain or return raw sensitive content through originalData and full-context logs. <br>
-Mitigation: Make integrations consume processedData only, avoid sending secrets or full prompts in context, restrict access to .security/firewall-logs, and prefer redacted metadata in logs. <br>
-Risk: Users may treat the skill as a hard security boundary even though the security guidance frames it as a helper filter. <br>
-Mitigation: Use it as one layer in a reviewed defense-in-depth workflow, and test blocked, redacted, and pass-through cases before relying on it. <br>
-Risk: Artifact behavior indicates external YAML rules are not parsed and default rules are used instead. <br>
-Mitigation: Verify the effective rules loaded at runtime and add a real YAML parser or deployment test before assuming custom rule files are enforced. <br>
+## Use Case:
 
+Developers and security teams use Agent Firewall to pre-filter agent inputs and outputs for prompt-injection patterns, sensitive-data exposure, PII, and risky content before messages continue through an agent workflow.
 
-## Reference(s): <br>
-- [Agent Firewall on ClawHub](https://clawhub.ai/arhadnane/agent-firewall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON result with processed text, action metadata, success status, and retained original input; documentation includes Markdown and YAML configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write filter action logs under .security/firewall-logs; consumers should use processedData rather than originalData when enforcing filtered output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill.json, and index.js) <br>
+Risk: Sensitive prompts, tokens, or metadata may be retained in plaintext logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable logging or rewrite it to redact and bound context before using the skill with sensitive data.
+
+Risk: Consumers may accidentally use unfiltered originalData returned alongside processedData.
+
+Mitigation: Integrate callers to consume processedData only and ignore originalData in downstream agent steps.
+
+Risk: Advertised protections should not be treated as a dependable security boundary.
+
+Mitigation: Use the skill as an advisory local filter until custom rules, rate limits, URL blocking, and command blocking are implemented and tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arhadnane/skills/agent-firewall)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object with processedData, actions, status, and error fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include original input or output text and filter actions; review logging behavior before use with sensitive data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Builds K3 blockchain automation workflows from natural language requests, including on-chain data retrieval, AI analysis, and delivery through email, Telegram, or Slack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds automated blockchain analysis workflows on K3 from natural language requests to deployed automations that fetch on-chain data, analyze it with AI, and deliver insights via email, Telegram, or Slack.
 
-## Publisher: <br>
-[alexgrankinukr-hash](https://clawhub.ai/user/alexgrankinukr-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexgrankinukr-hash](https://clawhub.ai/user/alexgrankinukr-hash)
 
-## Use Case: <br>
-Developers and blockchain operators use this skill to create, test, deploy, and verify K3 workflows for DeFi monitoring, wallet alerts, token tracking, protocol reporting, Telegram bots, and automated on-chain actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent workflows can trade, transfer tokens, use exchange integrations, write smart contracts, or post to external services. <br>
-Mitigation: Require explicit final approval before enabling those actions, including exact chain, contracts, wallet addresses, recipients, amounts, limits, trigger conditions, and a pause or disable path. <br>
-Risk: Connected integrations may expose unnecessary account access or credentials. <br>
-Mitigation: Use least-privilege integrations and avoid connecting services that are not required for the workflow. <br>
-Risk: Incorrect API endpoints, subgraphs, contract addresses, or authentication settings can produce empty or misleading workflow data. <br>
-Mitigation: Test the data source with a minimal workflow and inspect run output before deploying the full automation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [K3 Data Sources Discovery Guide](artifact/references/data-sources.md) <br>
-- [K3 Node Types Reference](artifact/references/node-types.md) <br>
-- [K3 Workflow Patterns](artifact/references/workflow-patterns.md) <br>
-- [K3 Workflow Troubleshooting](artifact/references/troubleshooting.md) <br>
+## Use Case:
 
+Developers and blockchain operators use this skill to create K3 workflows for on-chain analytics, wallet and contract monitoring, DeFi reports, alerts, Telegram bots, and optional blockchain actions. It helps an agent clarify requirements, discover data sources, test workflow inputs, deploy K3 automations, and verify runs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with workflow prompts, configuration details, commands, and code snippets as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include deployed workflow configuration details, test results, and delivery-channel setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to create persistent K3 automations that send workflow data to third-party destinations.
+
+Mitigation: Require final user review before deployment, verify email, Telegram, Slack, webhook, API, and Google Sheets destinations, and confirm scheduled workflows can be paused or revoked.
+
+Risk: The skill can guide workflows that execute swaps, token transfers, Coinbase or Uniswap actions, or smart contract writes.
+
+Mitigation: Use testnet or limited-fund wallets for action workflows, require explicit approval for trade and contract-write conditions, and set practical limits before enabling live funds.
+
+Risk: Incorrect endpoints, chain-specific addresses, missing credentials, or rate limits can produce empty or misleading workflow data.
+
+Mitigation: Create and run a minimal data-fetch test workflow, inspect returned data with workflow run details, and fix the source before deploying the full automation.
+
+Risk: API keys, bot tokens, and MCP integration credentials may be exposed or misused if embedded directly in workflow instructions.
+
+Mitigation: Use connected K3 or MCP integrations for credentials, avoid placing secrets in prompts or reports, and verify credential scopes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexgrankinukr-hash/skills/k3-blockchain-agent)
+- [Data Sources Discovery Guide](references/data-sources.md)
+- [K3 Node Types Reference](references/node-types.md)
+- [Workflow Patterns](references/workflow-patterns.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with K3 workflow configuration details and tool-call instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide persistent K3 workflow deployment after user review; no local executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

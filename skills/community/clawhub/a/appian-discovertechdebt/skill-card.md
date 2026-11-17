@@ -1,40 +1,57 @@
-## Description: <br>
-Scan an Appian application for tech debt by finding objects whose SAIL definitions reference outdated versioned functions marked by Appian with a _v suffix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans an Appian application export for objects whose SAIL definitions reference outdated versioned functions.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and Appian application maintainers use this skill to export an Appian application and identify SAIL objects that reference deprecated versioned functions before releases or periodic maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Appian credentials and can load them from an appian.json file in the working tree or parent directories. <br>
-Mitigation: Run it only in trusted workspaces, prefer injected APPIAN_BASE_URL and APPIAN_API_KEY, and remove or tightly control appian.json files before execution. <br>
-Risk: The skill stores exported Appian application ZIPs locally. <br>
-Mitigation: Treat appian-exports directories as sensitive artifacts and delete or secure exported ZIPs according to the Appian environment's data handling policy. <br>
+## Use Case:
 
+Developers and Appian application maintainers use this skill before releases or during periodic audits to find deprecated SAIL function references that should be updated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solarspiker/appian-discovertechdebt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, shell commands] <br>
-**Output Format:** [Plain text report from a Node.js command, including per-object findings and a deduplicated summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY; writes exported Appian ZIPs to local appian-exports directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server-resolved release metadata and script header) <br>
+Risk: The skill requires an Appian API key with permission to export applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged Appian API key that can perform the intended export and install only where that access is acceptable.
+
+Risk: Exported Appian application ZIPs are saved locally after the scan.
+
+Mitigation: Store exports only in approved locations and delete retained ZIPs when they are no longer needed.
+
+Risk: The downloaded package ZIP and filename come from the Appian export response.
+
+Mitigation: Prefer a hardened version that validates the download origin and sanitizes or ignores remote filenames before writing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solarspiker/skills/appian-discovertechdebt)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, analysis]
+
+**Output Format:** [Plain text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Appian application UUID and Appian API environment variables; may write exported application ZIPs locally.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata and scripts/index.js header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

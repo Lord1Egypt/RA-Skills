@@ -1,42 +1,57 @@
-## Description: <br>
-Security review for OpenClaw skills before installation, covering static analysis, permission auditing, dependency checks, suspicious patterns, data exfiltration risks, secret exposure, and risk scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security review for OpenClaw skills before installation, covering static analysis, permission auditing, dependency scanning, data-exfiltration checks, and risk scoring.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to perform a first-pass review of third-party OpenClaw skills before installation. It helps identify suspicious patterns, broad permissions, dependency concerns, secret exposure, and other findings that need human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A low risk score or clean scan can be mistaken for proof that a skill is safe. <br>
-Mitigation: Use this as a lightweight first-pass scanner only, then manually review the skill and investigate material findings before installation. <br>
-Risk: Scanning a broad local path may expose more files than intended to the scanner process. <br>
-Mitigation: Run the skill on a copied or narrowly scoped skill directory. <br>
-Risk: The CLI depends on the click Python package when run directly. <br>
-Mitigation: Install or provide the click dependency in the execution environment before using the CLI. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to assess third-party OpenClaw skills before installation, reviewing permission scope, suspicious code patterns, potential secret exposure, dependency risks, and risk scores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-skill-vetter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands] <br>
-**Output Format:** [Plain text CLI report and JSON-like scan report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a 0-100 risk score and findings with severity, category, file, and line when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted skill folders may be handled too loosely, including links that can lead reads outside the selected folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the vetter only against a constrained directory or sandbox until symlink rejection and stronger path boundaries are added.
+
+Risk: Large or specially structured inputs can consume excessive local resources.
+
+Mitigation: Apply file-size and archive limits before scanning untrusted skills, and avoid running it directly on fully untrusted archives.
+
+Risk: Terminal output may include paths or findings from untrusted input.
+
+Mitigation: Review output in a controlled terminal and add terminal-safe path escaping before using results in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-skill-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text with risk scores and categorized findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports a 0-100 risk score, risk level, finding count, and categorized findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

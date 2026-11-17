@@ -1,40 +1,50 @@
-## Description: <br>
-High-growth innovation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-growth innovation.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can install this persona skill to prompt an agent for forceful, venture-capitalist-style brainstorming around high-growth innovation ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona intentionally favors forceful, risk-tolerant advice and may understate downsides. <br>
-Mitigation: Ask explicitly for assumptions, downsides, risk analysis, and independent verification before acting on recommendations. <br>
-Risk: Outputs may be unsuitable as the sole basis for business, financial, legal, hiring, or other consequential decisions. <br>
-Mitigation: Treat outputs as brainstorming and route consequential decisions through qualified reviewers and existing governance processes. <br>
+## Use Case:
 
+External users can install this persona-style skill to guide an agent toward a high-growth venture capitalist posture for decisive, resource-oriented innovation discussions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv13) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona settings favor faster, less cautious responses; users should request risk analysis when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill is a risk-seeking business persona preset and may produce less cautious guidance than a default assistant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review important business or investment-style outputs before use, and keep standard agent safety controls in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv13)
+- [ClawHub publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with an installation command, configuration table, and persona guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credentials, persistence, or external data flows are identified in the security evidence.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

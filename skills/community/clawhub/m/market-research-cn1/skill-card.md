@@ -1,46 +1,63 @@
-## Description: <br>
-市场调研分析助手。根据用户提供的调研主题（行业、产品或市场），生成结构化的市场分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+市场调研分析助手。根据用户提供的调研主题（行业、产品或市场），生成结构化的市场分析报告。触发条件：用户请求市场调研、行业分析、竞争分析、商业可行性分析等。
 
-## Publisher: <br>
-[xiaomxxx](https://clawhub.ai/user/xiaomxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomxxx](https://clawhub.ai/user/xiaomxxx)
 
-## Use Case: <br>
-External users and business analysts use this skill to produce structured Chinese-language market research reports for industries, products, or geographic markets. It supports market overview, target users, competitors, product and business models, trends, risks, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live retrieval may send research topics to third-party RSS, news, search, and result pages. <br>
-Mitigation: Do not use confidential market plans, internal project names, or proprietary research topics unless third-party disclosure is acceptable. <br>
-Risk: The fallback crawler can write retrieved research content to a local JSON file. <br>
-Mitigation: Use the output file option intentionally and review saved content before sharing or committing it. <br>
+## Use Case:
 
+External users and business analysts use this skill to create structured Chinese market research reports for industries, products, or target markets, including market overview, customers, competitors, trends, risks, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaomxxx/market-research-cn1) <br>
-- [36Kr AI information source](https://www.36kr.com/information/AI/) <br>
-- [Huxiu information source](https://www.huxiu.com/) <br>
-- [TMTPost information source](https://www.tmtpost.com/) <br>
-- [Ifanr information source](https://www.ifanr.com/) <br>
-- [Wired AI information source](https://www.wired.com/tag/artificial-intelligence/) <br>
-- [The Verge AI information source](https://www.theverge.com/ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown report with optional shell commands and optional JSON crawler output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to up to 5 retrieved items unless the user specifies a count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata; frontmatter reports 1.1) <br>
+Risk: The fallback crawler can make unscoped outbound web requests to URLs discovered from search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the crawler only in a sandbox with restricted outbound network access, and avoid environments where internal services or metadata endpoints are reachable.
+
+Risk: Crawled page text may contain untrusted content that could influence the agent's market analysis.
+
+Mitigation: Treat crawled text as source material rather than instructions, prefer RSS or web_fetch sources, and review generated claims before using them for decisions.
+
+Risk: The optional -o flag writes crawler output to a local JSON file.
+
+Mitigation: Use file output only when a local JSON artifact is intentionally needed and review the destination before running the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaomxxx/skills/market-research-cn1)
+- [36Kr AI](https://www.36kr.com/information/AI/)
+- [Huxiu](https://www.huxiu.com/)
+- [TMTPost](https://www.tmtpost.com/)
+- [ifanr](https://www.ifanr.com/)
+- [Wired AI](https://www.wired.com/tag/artificial-intelligence/)
+- [The Verge AI](https://www.theverge.com/ai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Chinese Markdown report with optional JSON crawler output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to up to 5 fetched items when the user does not specify a count; crawler output should be treated as untrusted source material.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "CN Stock Move Reason"
+  short_description: "用公告、东方财富股吧/话题和A股情绪周期分析个股异动。"
+  default_prompt: "分析这只A股今天为什么异动，并判断是公告驱动、题材情绪还是短线退潮。"

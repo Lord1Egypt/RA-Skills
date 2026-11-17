@@ -1,41 +1,56 @@
-## Description: <br>
-WebScraper.io (webscraper.io). Use this skill for reading, creating, updating, and deleting WebScraper.io data through the OOMOL connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebScraper.io (webscraper.io). Use this skill for ANY WebScraper.io request — reading, creating, updating, and deleting data. Whenever a task involves WebScraper.io, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect WebScraper.io schemas and run Web Scraper Cloud actions through an OOMOL-connected account, including sitemap and scraping job management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run account-changing WebScraper.io operations, including creating jobs, updating sitemaps, exporting data, and deleting items. <br>
-Mitigation: Confirm the exact action, target, and payload with the user before write or destructive operations, and inspect the live action schema before constructing payloads. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect WebScraper.io account information, sitemaps, and scraping jobs, download results, and create, update, or delete resources through a connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-webscraper-io) <br>
-- [WebScraper.io Homepage](https://webscraper.io/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include connector response JSON containing data and meta.executionId when actions are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Setup may execute unverified remote code, and the CLI may make persistent changes through automatic installation or synchronization of other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup, install a verified CLI release yourself, and review or disable automatic skill installation and synchronization using OO_SKILLS_SYNC_DISABLED as documented by the publisher.
+
+Risk: Actions can change or delete WebScraper.io resources.
+
+Mitigation: Connect only the intended account, confirm the exact effect of write actions, and require explicit approval for destructive actions.
+
+## Reference(s):
+
+- [WebScraper.io Cloud API documentation](https://webscraper.io/documentation/web-scraper-cloud/api)
+- [WebScraper.io](https://webscraper.io/)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI source repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, JSON Lines, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples; action results may be JSON or JSON Lines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions that create, update, or delete resources require user confirmation; destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

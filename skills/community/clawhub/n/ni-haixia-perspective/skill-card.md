@@ -1,45 +1,58 @@
-## Description: <br>
-Provides a Chinese-language persona and research framework for discussing Ni Haixia's historical writings, traditional Chinese medicine theories, and metaphysics as cultural study. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Supports an agent persona for academic discussion of Ni Haixia's historical writings, traditional medicine theories, and metaphysics-related cultural material.
 
-## Publisher: <br>
-[baodirewolf](https://clawhub.ai/user/baodirewolf) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baodirewolf](https://clawhub.ai/user/baodirewolf)
 
-## Use Case: <br>
-External users and researchers use this skill to explore Ni Haixia's thought, writing style, and cultural context for historical and traditional-culture study. It should not be used for medical, financial, relationship, career, or fortune-telling decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce confident medical or fortune-telling-style guidance despite academic-only framing. <br>
-Mitigation: Use it only for historical or cultural analysis; do not rely on it for diagnosis, treatment, medication changes, emergencies, investment, career, marriage, or fortune-telling decisions. <br>
-Risk: Persona instructions may reduce repeated disclaimers after activation, making risky outputs easier to mistake for advice. <br>
-Mitigation: Keep explicit safety boundaries in the surrounding agent prompt, review outputs before sharing or acting on them, and defer health or other consequential topics to qualified professionals. <br>
+## Use Case:
 
+External users and researchers use this skill to explore historical and cultural summaries of Ni Haixia's ideas. Use should remain limited to third-person academic discussion and should not include personalized medical, divination, financial, relationship, emergency, or life-planning advice.
 
-## Reference(s): <br>
-- [Ni Haixia Writings and Mental Models](references/research/01-writings.md) <br>
-- [Conversation Research](references/research/02-conversations.md) <br>
-- [Expression DNA](references/research/03-expression-dna.md) <br>
-- [External Views](references/research/04-external-views.md) <br>
-- [Decision Heuristics](references/research/05-decisions.md) <br>
-- [Tianji Research](references/research/07-tianji.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no code execution, tools, API keys, or data access detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and user changelog) <br>
+Risk: Security evidence says the skill can make an agent give authoritative medical guidance despite academic disclaimers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to third-person historical discussion, repeat safety notices, and refuse medical symptoms, diagnosis, treatment choices, medication decisions, cancer questions, and emergencies.
+
+Risk: Security evidence says the skill can make an agent give divination-style guidance.
+
+Mitigation: Refuse personal predictions and avoid advice about finances, relationships, life planning, or other consequential personal decisions.
+
+## Reference(s):
+
+- [Ni Haixia Writings and Core Mental Models Research](references/research/01-writings.md)
+- [Ni Haixia Conversations and Interview Thinking Process Research](references/research/02-conversations.md)
+- [Ni Haixia Expression DNA Research](references/research/03-expression-dna.md)
+- [External Views, Media, Peer, Patient Feedback, and Controversies](references/research/04-external-views.md)
+- [Ni Haixia Key Decisions and Turning Points Analysis](references/research/05-decisions.md)
+- [Ni Haixia Tianji and Zi Wei Dou Shu Research](references/research/07-tianji.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, API calls, or credential use detected; outputs should preserve academic framing and safety boundaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

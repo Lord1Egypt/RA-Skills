@@ -17,8 +17,8 @@ Use this when adding fixed companion life habits or creating the standard cron s
 
 | Job | Suggested cadence | Session | User-visible? |
 | --- | --- | --- | --- |
-| `companion-build-day-schedule` | `10 7 * * *` | isolated | no |
-| `companion-presence` | `0 * * * *` | isolated | wrapper starts stable session only when a current event is active |
+| `companion-build-day-schedule` | `10 7 * * *` | isolated model turn + light context | no |
+| `companion-presence` | `*/15 * * * *` | isolated exact argv command | wrapper starts a fresh dispatch session only when a current event is active |
 
 Create or update them in that order.
 
@@ -63,12 +63,25 @@ python3 scripts/validate_day_schedule.py --config <CONFIG> --path <DAY_SCHEDULE>
 
 ## Presence Handler Shape
 
-```text
-1. 第一个也是唯一业务动作是触发 companion_presence_tick.py --config <CONFIG>
-2. 脚本输出任何已处理状态后只回复 NO_REPLY
-3. 不直接读取 day-schedule.md，不直接判断事件，也不自己处理消息发送或媒体生成
-4. wrapper 内部 fresh prepare；只有命中事件时才启动稳定 companion session 负责发送、文本后提交和异步媒体补发
+```json
+{
+  "kind": "command",
+  "argv": [
+    "python3",
+    "<SKILL_DIR>/scripts/companion_presence_tick.py",
+    "--config",
+    "<CONFIG>"
+    ],
+    "cwd": "<SKILL_DIR>",
+    "env": {
+      "PYTHONUNBUFFERED": "1"
+    },
+    "timeoutSeconds": 120,
+  "outputMaxBytes": 65536
+}
 ```
+
+Use installer-authored exact argv, no shell wrapper and no interpolated user/model/config content. The wrapper performs fresh prepare and starts a fresh dispatch session only for a matched event, so archived sessions from earlier events are never resumed.
 
 ## Legacy Four-Slot Upgrades
 

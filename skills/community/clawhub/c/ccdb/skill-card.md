@@ -1,44 +1,64 @@
-## Description: <br>
-ccdb helps agents query Carbonstop CCDB carbon emission factor data through the pinned carbonstop-ccdb CLI for keyword search, structured JSON retrieval, and multi-keyword comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Carbonstop CCDB helps agents search, compare, and match carbon emission factors for materials, energy, transport, packaging, food, product carbon footprint, corporate carbon accounting, and lifecycle assessment workflows.
 
-## Publisher: <br>
-[lijihua2017](https://clawhub.ai/user/lijihua2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carbonstop-official](https://clawhub.ai/user/carbonstop-official)
 
-## Use Case: <br>
-Developers and sustainability analysts use this skill to find carbon emission factors by keyword, region, or year, then compare factors or use structured results in carbon calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a pinned npm CLI and queries an external CCDB API. <br>
-Mitigation: Run the CLI in a sandbox where possible and verify the npm package version or registry hash before use. <br>
-Risk: Emission factors can be incorrect for a calculation if the wrong region, year, unit, or source is selected. <br>
-Mitigation: Confirm the intended region, year, unit, and source before using any returned factor in carbon accounting or compliance workflows. <br>
-Risk: Formatted CLI output may be less reliable for arithmetic than structured records. <br>
-Mitigation: Use JSON output for calculations and inspect units before multiplying by activity data. <br>
+## Use Case:
 
+External users, developers, and sustainability analysts use this skill to query CCDB through ccdb-cli, inspect factor metadata, and select appropriate emission factors for product carbon footprint, enterprise accounting, and LCA tasks. It guides authentication, search, detail lookup, result-link handling, and common permission or restricted-value cases.
 
-## Reference(s): <br>
-- [ClawHub ccdb skill page](https://clawhub.ai/lijihua2017/ccdb) <br>
-- [carbonstop-ccdb npm package](https://www.npmjs.com/package/carbonstop-ccdb) <br>
-- [Carbonstop CCDB CLI source](https://github.com/carbonstop/skills/tree/main/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs pinned npx carbonstop-ccdb@1.0.1; requires Node.js 18 or newer and external CCDB API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Risk: Installing ccdb-cli can introduce supply-chain risk if the package or binary source is not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package or release source before installation, avoid elevated privileges, and prefer a pinned or checksum-verified release when available.
+
+Risk: CCDB credentials, API keys, OAuth tokens, and diagnostic logs may expose account access if pasted into chat or printed in commands.
+
+Mitigation: Use secure local configuration or controlled stdin, do not request or display secrets, and share only non-sensitive error codes, request IDs, HTTP status, or Retry-After values.
+
+Risk: Emission factors can be misapplied when material, geography, year, unit, accounting type, technology route, or lifecycle boundary does not match the user's task.
+
+Mitigation: Confirm the selection criteria before querying, read factor details before recommending a specific factor, preserve returned units and source metadata, and clearly state assumptions and mismatches.
+
+Risk: Restricted or masked values can be mistaken for usable numeric data.
+
+Mitigation: Treat masked, null, or missing values as unavailable rather than zero, explain access restrictions, and use only returned guidance or detail links for follow-up.
+
+## Reference(s):
+
+- [ClawHub ccdb skill page](https://clawhub.ai/carbonstop-official/skills/ccdb)
+- [ccdb-cli releases](https://github.com/carbonstop/ccdb-cli/releases/latest)
+- [ccdb-cli configuration](https://github.com/carbonstop/ccdb-cli/blob/main/docs/CONFIGURATION.md)
+- [ccdb-cli repository](https://github.com/carbonstop/ccdb-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, configuration]
+
+**Output Format:** [Markdown with inline shell commands, linked factor references, and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-reading guidance for ccdb-cli responses and explicit notes about restricted values, access limitations, credentials, and source boundaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

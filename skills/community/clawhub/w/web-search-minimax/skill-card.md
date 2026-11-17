@@ -1,39 +1,55 @@
-## Description: <br>
-Performs web searches through the Minimax Coding Plan Search API and returns results with related search suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+web-search-minimax uses the Minimax Coding Plan Search API to run web searches and return results with related search suggestions.
 
-## Publisher: <br>
-[xbos1314](https://clawhub.ai/user/xbos1314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbos1314](https://clawhub.ai/user/xbos1314)
 
-## Use Case: <br>
-Developers and agents use this skill to search for current information, technical documentation, news, and tutorials through Minimax-backed web search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Minimax using the configured API key. <br>
-Mitigation: Avoid including secrets, credentials, confidential project names, or sensitive personal data in queries, and prefer a dedicated API key when available. <br>
+## Use Case:
 
+Developers and agents use this skill to search for current information, technical documentation, news, and tutorials through Minimax-backed web search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbos1314/web-search-minimax) <br>
-- [Minimax API host](https://api.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results with titles, links, snippets, dates, and related search suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a MINIMAX_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries are sent to the external Minimax API and may disclose sensitive terms if users include them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, credentials, private customer data, or sensitive business terms in search queries.
+
+Risk: The skill requires a MINIMAX_API_KEY, and exposure of that key could allow unauthorized API use.
+
+Mitigation: Store the API key as an environment secret, avoid writing it into skill files or prompts, and rotate it if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xbos1314/skills/web-search-minimax)
+- [Publisher profile](https://clawhub.ai/user/xbos1314)
+- [Minimax API host](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text with search result titles, links, snippets, dates, and related search suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and MINIMAX_API_KEY; sends search query text to the external Minimax API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

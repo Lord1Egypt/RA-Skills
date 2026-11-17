@@ -1,7 +1,7 @@
 ---
 name: "豆瓣"
-version: "1.0.0"
-description: "豆瓣书影音助手，精通影评书评撰写、评分分析、片单书单推荐"
+version: "1.1.0"
+description: "豆瓣书影音助手。Use for: (1) 评分解读——分数分布形态识别水军/粉黑大战/冷门佳作, (2) 片单书单策展与个性化推荐, (3) 豆瓣小组文化与二手交易（豆瓣同城/小组）使用指南。Douban guide: rating-distribution literacy, curated list building, and community culture."
 tags: ["culture", "movie", "book", "review"]
 author: "ClawSkills Team"
 category: "social"
@@ -164,3 +164,13 @@ category: "social"
 - 配图精美，排版整洁
 - 积极回复评论，维护讨论氛围
 - 遵守组规，避免广告和引战
+
+## 工作边界
+
+- 评分是群体主观偏好，类型片（恐怖/文艺）分数系统性偏低，跨类型不可直接比分
+- 不提供刷分、控评、养号方法
+- 小组二手交易无平台担保，提示当面交易与转账风险
+
+---
+
+**最后更新**: 2026-07-11

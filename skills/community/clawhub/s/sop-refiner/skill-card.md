@@ -1,47 +1,62 @@
-## Description: <br>
-Refines existing SOPs by removing redundant steps, adding exception paths, rollback guidance, and quality gates without changing approval boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sop Refiner helps agents refine existing SOPs by removing redundancy, adding exception paths, rollback and recovery steps, and quality gates.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Operations teams, process owners, and employees use this skill to turn existing SOP text and pain-point feedback into reviewable Markdown recommendations for cleaner, safer, and more complete procedures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle has low provenance and includes a local Python script. <br>
-Mitigation: Install only if comfortable running the script, inspect the artifact before use, and run it only on specific SOP files you intend to process. <br>
-Risk: SOP inputs may contain sensitive operational, customer, or employee information. <br>
-Mitigation: Redact sensitive material where possible and avoid broad directory scans over unrelated or confidential files. <br>
-Risk: Generated SOP changes could be incomplete or unsuitable for the organization. <br>
-Mitigation: Treat outputs as review drafts, preserve existing approval boundaries, and verify rollback, exception, and quality-gate changes with the responsible owners. <br>
+## Use Case:
 
+Operations teams, process owners, and agents use this skill to turn existing SOP text and pain-point feedback into a conservative review draft with current issues, deletions, additions, exception paths, rollback and recovery steps, and an updated outline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/sop-refiner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](artifact/README.md) <br>
-- [Specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Smoke test](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON output from the bundled script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable SOP recommendations and checklists; generated content should be reviewed before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: SOP drafts may include incorrect, incomplete, or misleading process guidance if the source material is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the draft before adoption and resolve the skill's confirmation items before using the output as an execution checklist.
+
+Risk: Input SOPs may contain sensitive operational or personal data.
+
+Mitigation: Keep inputs local and redact sensitive material before using the skill, consistent with the server security guidance.
+
+Risk: The bundled script includes inactive local audit modes that inspect local files when intentionally enabled.
+
+Mitigation: Use the default structured SOP drafting mode unless local file audit behavior is specifically intended and reviewed.
+
+Risk: Recommendations could be mistaken for approval to change permissions, bypass safety checks, or modify external systems.
+
+Mitigation: Treat outputs as review drafts; preserve approval boundaries and use dry-run or review-only plans for any high-risk operational change.
+
+## Reference(s):
+
+- [Sop Refiner on ClawHub](https://clawhub.ai/52yuanchangxing/skills/sop-refiner)
+- [Publisher profile: 52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON report, with optional local shell command usage documented for script execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections include current issues, suggested deletions, suggested additions, exception paths, rollback and recovery, updated outline, confirmation items, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

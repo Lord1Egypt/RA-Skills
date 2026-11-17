@@ -1,40 +1,57 @@
-## Description: <br>
-Agent Bug Hunter helps agents proactively investigate, reproduce, fix, and verify software bugs using root cause analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imported specialist agent skill for bug hunter. Use when requests match this domain or role.
 
-## Publisher: <br>
-[nntrivi2001](https://clawhub.ai/user/nntrivi2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nntrivi2001](https://clawhub.ai/user/nntrivi2001)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to have an agent inspect code, investigate reported or suspected bugs, classify severity, propose fixes, and verify fixes with builds, tests, or reproduction steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad debugging prompts may cause the agent to inspect or change more code than intended. <br>
-Mitigation: Invoke it with a clear scope and review proposed shell commands and code changes before accepting them. <br>
-Risk: Bug-fix guidance can be wrong if it is not verified against the exact reproduction. <br>
-Mitigation: Require reproduction, root cause evidence, and passing tests or builds before treating fixes as complete. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide proactive bug hunting, root-cause investigation, security and performance checks, and verification of bug fixes before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nntrivi2001/agent-bug-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with code changes, shell commands, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply code changes and commands when the host agent has tools available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill encourages an active bug-hunting posture with broad activation triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended repository, scope, and allowed actions before running broad scans or applying fixes.
+
+Risk: The artifact references local files and companion debugging skills that may not exist in the target environment.
+
+Mitigation: Verify referenced resources before use and replace local path assumptions with available project documentation or explicit user-provided files.
+
+Risk: Generated fix proposals or shell commands could change project behavior if applied without review.
+
+Mitigation: Review proposed changes, run relevant tests, and verify the original issue is reproduced and resolved before declaring a fix complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nntrivi2001/skills/agent-bug-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Code, Shell commands, Markdown]
+
+**Output Format:** [Markdown text with code, shell command, and verification guidance as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose code changes, diagnostic commands, test runs, and review checklists; users should review actions before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Mxai helps an agent use the mxai REST API to generate images and videos, including MJ-style image workflows, from user prompts and supplied image inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mxai helps agents use the mxai REST API to generate and transform images and videos, including MJ-style drawing, variation, upscaling, description, blend, and video workflows.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users and developers use this skill to configure mxai API access, submit image or video generation requests, poll task status, view generated media links, and check account or task information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, pasted or base64 images, image URLs, and generated media requests are sent to the mxai service. <br>
-Mitigation: Avoid sensitive or private content unless the user trusts mxai to process it. <br>
-Risk: The skill requires a sensitive API key and supports query-string authentication. <br>
-Mitigation: Prefer Authorization-header authentication and mask MX_AI_API_KEY or nb_ tokens in all logs and responses. <br>
-Risk: Generation requests may consume user credits. <br>
-Mitigation: Confirm the requested generation intent and required inputs before submitting image, video, or MJ tasks. <br>
-Risk: Failure output may expose prompts, image references, response headers, or service metadata. <br>
-Mitigation: Keep detailed error logs masked and avoid sharing logs containing private prompts or image references. <br>
+## Use Case:
 
+External creators and developers use this skill to have an agent submit image, video, and MJ-style creative tasks to mxai, poll for completion, and return the resulting media links or embeds.
 
-## Reference(s): <br>
-- [ClawHub Mxai Skill Page](https://clawhub.ai/tianheihei002/mxai) <br>
-- [mxai API Key Setup](https://www.mxai.cn/home/#/mcp) <br>
-- [mxai REST API Base](https://mcp.mxai.cn) <br>
-- [mxai Skill Version Endpoint](https://mcp.mxai.cn/mcp/skill/version) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown responses with REST API request guidance, JSON response handling, generated media links, and masked error logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_AI_API_KEY; image and video tasks are polled until completion or failure; generated media may consume service credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: SKILL.md frontmatter; ClawHub release version 1.0.0) <br>
+Risk: Prompts, uploaded images, image URLs, task history queries, and account-credit checks may be sent to mxai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts mxai handling for the submitted content, and avoid private, regulated, or sensitive content unless that handling is approved.
+
+Risk: MJ public mode may expose generated works beyond the private session.
+
+Mitigation: Keep MJ public mode disabled unless the user explicitly intends to publish the generated work.
+
+Risk: API keys and task diagnostics can appear in request or error context.
+
+Mitigation: Mask MX_AI_API_KEY and bearer tokens in logs and avoid displaying full credential values.
+
+Risk: Generated media links can be misleading if an agent fabricates task results or skips polling.
+
+Mitigation: Return only URLs and status details obtained from completed mxai task-status responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/mxai)
+- [Publisher profile](https://clawhub.ai/user/tianheihei002)
+- [mxai API key portal](https://www.mxai.cn/home/#/mcp)
+- [mxai REST API base](https://mcp.mxai.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with image embeds, video links, JSON-derived status details, and masked diagnostic logs when calls fail]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_AI_API_KEY; generated media must come from completed mxai task-status responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.4.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

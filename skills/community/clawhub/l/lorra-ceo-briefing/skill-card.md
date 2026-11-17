@@ -1,49 +1,64 @@
-## Description: <br>
-Generates Chinese CEO-style daily briefings by fetching current technology, AI, finance, social, and GitHub sources, normalizing them to JSON, and producing Markdown analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese CEO-style daily briefings by collecting real-time technology, finance, AI, social, and open-source news from 28 sources, saving fetched data as JSON and synthesized reports as Markdown.
 
-## Publisher: <br>
-[yhlorra](https://clawhub.ai/user/yhlorra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhlorra](https://clawhub.ai/user/yhlorra)
 
-## Use Case: <br>
-External users and developers use this skill to collect public news and discussion sources, then generate Chinese daily briefings for executive review across technology, finance, AI, social trends, and GitHub activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches many external sites and uses browser scraping, including anti-bot behavior. <br>
-Mitigation: Install and run it only when those network behaviors are acceptable, and avoid sensitive internal URLs or private feeds. <br>
-Risk: Fetched content or repository metadata may be sent to MiniMax or OpenRouter when credentials are present. <br>
-Mitigation: Review API-key handling before use and avoid providing credentials when third-party model processing is not intended. <br>
-Risk: The skill writes local reports and cache files. <br>
-Mitigation: Use --no-save where supported and inspect generated reports or caches before sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to gather daily news from predefined web sources and produce Chinese executive briefings for leadership scanning, market awareness, and follow-up analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhlorra/lorra-ceo-briefing) <br>
-- [README](artifact/README.md) <br>
-- [General briefing instructions](artifact/references/briefing_general.md) <br>
-- [Finance briefing instructions](artifact/references/briefing_finance.md) <br>
-- [Technology briefing instructions](artifact/references/briefing_tech.md) <br>
-- [AI daily briefing instructions](artifact/references/briefing_ai_daily.md) <br>
-- [GitHub briefing instructions](artifact/references/briefing_github.md) <br>
-- [Social briefing instructions](artifact/references/briefing_social.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with intermediate JSON data files and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports and cache files may be saved locally; some commands support --no-save.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Broad web fetching and arbitrary URL fetching may access untrusted external pages or internal network services if run in a sensitive environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only where broad web access is acceptable, block internal network ranges, and review requested URLs before execution.
+
+Risk: Fetched article content and generated report context may be sent to external LLM providers such as MiniMax or OpenRouter.
+
+Mitigation: Do not process confidential or regulated content with external LLM credentials, and configure provider keys only for approved accounts.
+
+Risk: Credential access is under-disclosed and dependency versions are not pinned in the artifact.
+
+Mitigation: Provide only narrowly scoped API keys, keep secrets out of reports, and install from pinned dependencies or a reviewed release.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [General briefing instructions](artifact/references/briefing_general.md)
+- [Finance briefing instructions](artifact/references/briefing_finance.md)
+- [Technology briefing instructions](artifact/references/briefing_tech.md)
+- [AI daily briefing instructions](artifact/references/briefing_ai_daily.md)
+- [Social briefing instructions](artifact/references/briefing_social.md)
+- [GitHub briefing instructions](artifact/references/briefing_github.md)
+- [Integration briefing instructions](artifact/references/briefing_integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON source data, with shell commands and configuration guidance for agents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default reports are Chinese-language and are saved under reports/YYYY-MM-DD when persistence is enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

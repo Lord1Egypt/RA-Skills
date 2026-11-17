@@ -1,47 +1,54 @@
-## Description: <br>
-Helps an agent rank competing explanations, designs, or diagnoses by first checking evidence fit and then preferring the option with the fewest unsupported assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Occam's Razor to rank competing explanations, designs, or diagnoses that fit the evidence by comparing their unsupported assumptions.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Developers, analysts, and other agent users apply this skill when comparing two or more plausible hypotheses, designs, diagnoses, or incident explanations. It guides the agent through a Parsimony Audit that checks evidence fit, counts unsupported assumptions, and names what evidence would overturn the preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be misused to choose a simpler explanation that does not fit all known evidence. <br>
-Mitigation: Require the fit gate before comparing simplicity, and reject any candidate that drops known evidence. <br>
-Risk: The skill's output can be mistaken for proof rather than a prior for where to look first. <br>
-Mitigation: State the preferred candidate as provisional and include the specific observation that would overturn it. <br>
-Risk: Assumption counts can become biased toward the user's preferred answer. <br>
-Mitigation: Count unsupported assumptions consistently across candidates and call out asymmetric counting as a rationalization risk. <br>
+## Use Case:
 
+People comparing multiple explanations, designs, or diagnoses use the skill to check that each candidate fits the evidence, count unsupported assumptions, and identify what could overturn a provisional preference.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/occams-razor) <br>
-- [Sources - occams-razor](references/sources.md) <br>
-- [Method in Action: Wegener and Continental Drift (1912)](examples/wegener-continental-drift-1912.md) <br>
-- [Stanford Encyclopedia of Philosophy: William of Ockham](https://plato.stanford.edu/entries/ockham/) <br>
-- [Encyclopaedia Britannica: Occam's razor](https://www.britannica.com/topic/Occams-razor) <br>
-- [USGS: Plate tectonics](https://www.usgs.gov/programs/earthquake-hazards/plate-tectonics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a structured Parsimony Audit template and step-by-step coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve the fit gate, assumption-count comparison, over-shave check, and overturning-evidence statement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The startup check fetches changeable hosted instructions, and the request signals skill use to the publisher.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed local copy with the startup fetch removed, and review hosted instruction changes before adopting them.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [Stanford Encyclopedia of Philosophy: William of Ockham](https://plato.stanford.edu/entries/ockham/)
+- [Britannica: Occam's razor](https://www.britannica.com/topic/Occams-razor)
+- [Anthropic: Reasoning models don't always say what they think](https://www.anthropic.com/research/reasoning-models-dont-say-think)
+- [Occam's Razor on ClawHub](https://clawhub.ai/deciqai/skills/occams-razor)
+- [Occam's Razor skill page](https://www.deciqai.com/c/occams-razor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown Parsimony Audit with candidate fit checks, assumption counts, a preferred hypothesis, an over-shave check, and overturning evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-oriented comparison; the preferred explanation is a provisional prior, not proof.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

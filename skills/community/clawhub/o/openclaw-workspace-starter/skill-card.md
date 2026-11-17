@@ -1,43 +1,59 @@
-## Description: <br>
-OpenClaw Workspace Starter Agent Home Template provides editable workspace files and setup guides that give an OpenClaw agent identity, memory, operating rules, and heartbeat routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a starter OpenClaw workspace template with identity, user profile, memory, operating rules, heartbeat, and setup guide files for an agent.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-OpenClaw users and agent builders use this template to bootstrap a local agent workspace with identity, memory, planning, setup, and operating documentation so an agent can recover useful context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The template gives an agent broad local memory and background-maintenance authority, which may lead to unexpected edits during sessions or scheduled heartbeats. <br>
-Mitigation: Before use, edit AGENTS.md and HEARTBEAT.md to limit writes to specific memory files and require confirmation for file organization or documentation changes. <br>
-Risk: Local memory, daily notes, and backups may capture secrets or highly sensitive personal details if users place them in workspace files. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal details, and review memory and backup contents before syncing or sharing the workspace. <br>
+## Use Case:
 
+External developers and OpenClaw users use this template to set up an agent workspace with persistent markdown-based identity, memory, task tracking, heartbeat routines, and user preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/openclaw-workspace-starter) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown workspace template files and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The template produces local workspace files for identity, memory, planning, tool notes, heartbeat routines, and user-editable setup documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Workspace rules may give the agent broad persistent memory and background authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and tighten the workspace rules before installing, and make clear that local standing orders cannot override system, safety, privacy, or current-user instructions.
+
+Risk: No-ask and heartbeat behavior can lead to background file edits, email or calendar checks, external messages, backups, or sensitive data handling without enough user confirmation.
+
+Mitigation: Restrict no-ask actions to read-only or clearly reversible work, and require explicit approval for background edits, communication, backups, and sensitive data handling.
+
+Risk: Persistent memory files can accumulate secrets or highly personal details.
+
+Mitigation: Avoid storing secrets or highly personal details in memory files, and periodically review or prune stored memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/openclaw-workspace-starter)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown files and inline setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only workspace template; no executable scripts detected in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

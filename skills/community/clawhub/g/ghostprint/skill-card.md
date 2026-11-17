@@ -1,42 +1,69 @@
-## Description: <br>
-LLM fingerprint noise injector that sends behaviorally realistic randomized queries to Anthropic, Z.ai, and OpenAI-compatible providers on a schedule to depersonalize usage profiles and reduce behavioral fingerprinting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ghostprint sends behaviorally randomized LLM requests to configured providers on a schedule to make usage profiles less personally identifying.
 
-## Publisher: <br>
-[alarawms](https://clawhub.ai/user/alarawms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alarawms](https://clawhub.ai/user/alarawms)
 
-## Use Case: <br>
-Developers and OpenClaw users use Ghostprint to run scheduled synthetic LLM requests through configured provider accounts, either as an OpenClaw plugin or a standalone Python script, to add noise to usage patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring synthetic LLM requests can create API charges. <br>
-Mitigation: Configure explicit provider limits, monitor usage, and consider separate low-budget keys before enabling scheduled traffic. <br>
-Risk: Provider logging, account-policy issues, and audit noise may result from traffic that is designed to mimic real usage. <br>
-Mitigation: Review provider policies, use the plugin only deliberately, and keep the ability to disable the plugin or remove cron scheduling. <br>
-Risk: The skill reuses existing provider credentials in OpenClaw or configured API keys in standalone mode. <br>
-Mitigation: Use least-privilege or isolated provider keys where possible and avoid enabling providers that should not receive synthetic traffic. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to generate scheduled synthetic LLM traffic, inspect run statistics, and configure provider-specific noise behavior for privacy-oriented usage masking.
 
-## Reference(s): <br>
-- [Ghostprint ClawHub Release](https://clawhub.ai/alarawms/ghostprint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing tools can fire a noise round immediately or return run history and stats; standalone usage can install a cron schedule.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata; artifact frontmatter and root package metadata list 3.0.0) <br>
+Risk: The skill intentionally sends automated synthetic LLM requests from configured accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that behavior is desired, review provider policies and expected costs, and keep noise volume proportional to real usage.
+
+Risk: Provider credentials may be reused for both real and synthetic traffic, allowing account-level correlation.
+
+Mitigation: Use separate, low-privilege API keys or accounts dedicated to noise traffic.
+
+Risk: Custom provider base URLs can send credentials and traffic to unintended endpoints.
+
+Mitigation: Avoid custom base_url values unless credentials are endpoint-specific and the endpoint has been reviewed.
+
+Risk: The standalone cron installer creates persistent scheduled execution.
+
+Mitigation: Use --install-cron only when persistent background execution is intended, and inspect or remove the crontab entry manually when no longer needed.
+
+Risk: The documented install path clones from a moving source branch.
+
+Mitigation: Pin installation to a reviewed commit or release before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alarawms/skills/ghostprint)
+- [Publisher Profile](https://clawhub.ai/user/alarawms)
+- [Anti-Fingerprint Design](ANTI-FINGERPRINT.md)
+- [README](README.md)
+- [Declared Project Source](https://github.com/alarawms/ghostprint)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, inline shell commands, configuration snippets, and plain-text tool output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OpenClaw tool output includes immediate noise-run results and run statistics; standalone usage emits command-line status and metadata-only logs.]
+
+## Skill Version(s):
+
+3.0.1 (source: ClawHub release evidence; artifact frontmatter and package metadata report 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

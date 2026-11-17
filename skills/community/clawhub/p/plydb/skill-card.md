@@ -1,43 +1,61 @@
-## Description: <br>
-Skill for using the PlyDB CLI to perform SQL analysis across configured heterogeneous databases and files such as Postgres, MySQL, CSV, Parquet, JSON, Excel, SQLite, DuckDB, and Google Sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for using the PlyDB CLI to perform SQL analysis across heterogeneous data sources including Postgres, MySQL, CSV, Parquet, JSON, Excel, SQLite, DuckDB, and Google Sheets.
 
-## Publisher: <br>
-[ypt](https://clawhub.ai/user/ypt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ypt](https://clawhub.ai/user/ypt)
 
-## Use Case: <br>
-Developers and data analysts use this skill to configure PlyDB data sources, run SQL across databases and files, and gather semantic context for more accurate analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent query configured databases, local files, cloud storage, and Google Sheets, which may expose sensitive data if access is broad. <br>
-Mitigation: Use narrow configuration files, read-only database accounts, least-privilege cloud credentials, and only include local paths or S3 patterns that are needed for the task. <br>
-Risk: Cached Google OAuth authorization can allow later agent-driven access to private sheets through the delegated account. <br>
-Mitigation: Confirm which account is authorized, understand where tokens are stored, revoke tokens when no longer needed, and ask before querying private sheets. <br>
+## Use Case:
 
+Developers and data analysts use this skill to configure PlyDB data sources, run SQL across databases and files, fetch semantic context, and maintain OSI overlay files that enrich discovered data semantics.
 
-## Reference(s): <br>
-- [Database connections schema](references/config_schema.md) <br>
-- [Google Sheets OAuth troubleshooting](references/troubleshooting.md) <br>
-- [PlyDB installation instructions](https://github.com/kineticloom/plydb?tab=readme-ov-file#installation) <br>
-- [Open Semantic Interchange](https://github.com/open-semantic-interchange/OSI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, SQL examples, JSON configuration, and YAML guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference configured data sources and semantic-context overlays supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PlyDB can access configured databases, files, S3 objects, and Google Sheets using supplied credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration files before use and prefer least-privilege database, cloud, and sheet credentials.
+
+Risk: Google Sheets interactive OAuth may cache authorization for later PlyDB calls.
+
+Mitigation: Have the user complete OAuth intentionally before agent-driven calls and confirm the cached account is appropriate for the requested data.
+
+Risk: Generated SQL, config changes, or semantic overlays can produce incorrect analysis if they do not match the user's data model.
+
+Mitigation: Review proposed queries and overlay edits with the user, especially before persisting new semantic context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ypt/skills/plydb)
+- [PlyDB installation documentation](https://github.com/kineticloom/plydb?tab=readme-ov-file#installation)
+- [Open Semantic Interchange (OSI)](https://github.com/open-semantic-interchange/OSI)
+- [Database connections schema](references/config_schema.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose SQL queries, PlyDB commands, config edits, and OSI semantic overlay updates; the artifact instructs agents to ask the user before creating or editing overlays.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

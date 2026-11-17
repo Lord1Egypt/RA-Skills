@@ -1,38 +1,55 @@
-## Description: <br>
-AI全链路内容创作工厂 — 从热点发现到多平台发布，一站式内容生产工作流 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI全链路内容创作工厂 — 从热点发现到多平台发布，一站式内容生产工作流
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Content creators, AI bloggers, and content operations teams use this skill to coordinate trend discovery, long-form article drafting, visual asset generation, and Xiaohongshu-ready distribution for AI and technology topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can publish generated content through a user's Xiaohongshu session, and confirmation boundaries are not consistently documented. <br>
-Mitigation: Require preview and explicit user confirmation before each publish action, verify the active account, and avoid sharing sensitive drafts, private media, or session cookies unless the publishing tool is trusted. <br>
+## Use Case:
 
+External content creators, AI bloggers, and content teams use this skill to discover AI or technology trends, generate long-form WeChat-style articles, create visual assets, and adapt content for Xiaohongshu distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/ai-fullstack-content-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown articles, image assets, platform-specific post drafts, and publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate external search, image generation, card rendering, and Xiaohongshu publishing tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may reach a live Xiaohongshu publishing action using an authenticated session without a clearly documented final approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a final preview-and-confirm step for the exact text, images, tags, target account, and visibility before any live post.
+
+Risk: Generated trend coverage can become inaccurate or stale when search results are incomplete or time-sensitive.
+
+Mitigation: Review cited source material and factual claims before publication, especially for recent AI or technology news.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-fullstack-content-factory)
+- [README](artifact/README.md)
+- [Workflow definition](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown articles, platform-adapted post text, generated image assets, and publication links when posting succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a valid Xiaohongshu authenticated session for live publishing; some platform publication steps may need manual confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: workflow.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

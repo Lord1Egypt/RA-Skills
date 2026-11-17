@@ -1,48 +1,70 @@
-## Description: <br>
-XDesign helps agents turn rough visual requests into HTML decks, prototypes, animations, design systems, and exportable presentation assets using bundled themes, templates, layouts, and animation primitives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Design routes visual design requests into workflows for slide decks, interactive UI prototypes, animation, design systems, and review passes, producing polished HTML-based visual deliverables and export guidance.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-Employees, external users, designers, and developers use this skill to create visual deliverables such as slide decks, UI prototypes, landing pages, dashboards, animations, design-system notes, and exportable presentation files from brief or ambiguous prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML, decks, prototypes, and animations may contain incorrect content, misleading emphasis, or unsuitable visual decisions for the intended audience. <br>
-Mitigation: Review generated deliverables before sharing, publishing, or using them in business settings. <br>
-Risk: Some preview and export paths may use external CDNs, browser storage, popup presenter windows, or optional local tools such as Chrome, Playwright, pandoc, or juice. <br>
-Mitigation: Check dependency, privacy, and distribution requirements before public use; prefer reviewed self-contained exports when needed. <br>
-Risk: Optional web fetch or GitHub import workflows may introduce external content into generated design systems or deliverables. <br>
-Mitigation: Confirm external-source content and licenses before reusing or distributing generated assets. <br>
+## Use Case:
 
+Developers, designers, and content teams use this skill to turn vague visual requests into decks, landing pages, dashboards, animations, brand systems, review passes, and exportable HTML-based artifacts. It is most useful when an agent needs structured routing, design references, and quality checks for polished visual work.
 
-## Reference(s): <br>
-- [XDesign README](README.md) <br>
-- [XDesign Skill Instructions](SKILL.md) <br>
-- [Mode 2 Prototype Workflow](references/mode-2-prototype.md) <br>
-- [Workflow Guide](references/workflow-guide.md) <br>
-- [Deck Studio Catalog](references/deck-studio-catalog.md) <br>
-- [Deck Studio README](deck-studio/README.md) <br>
-- [HTML PPT Studio upstream component](https://github.com/lewislulu/html-ppt-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, shell command, and configuration snippets; generated deliverables may be HTML, PDF, PPTX, PNG, React code, or design-system markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes requests across presentation, prototype, and animation workflows; some export paths depend on optional browser or command-line tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Mutable install or remote-code guidance can resolve different code over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a reviewed immutable package or commit, and avoid following unpinned npx commands as written.
+
+Risk: Generated HTML may include CDN scripts or browser integrations.
+
+Mitigation: Review generated HTML and external script references before opening, publishing, or sharing artifacts.
+
+Risk: The package documentation may overstate bundled resources or capabilities.
+
+Mitigation: Confirm required templates, themes, layouts, and exporters are present in the reviewed package before relying on them.
+
+Risk: The skill may create or edit local visual artifacts and use network access for brand assets.
+
+Mitigation: Run it in a controlled workspace and verify that brand assets come from official or approved sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qomob/skills/xdesign)
+- [Server-Resolved Source Repository](https://github.com/qomob/xdesign)
+- [X Design Skill Definition](artifact/SKILL.md)
+- [Agent Playbook](artifact/references/agent-playbook.md)
+- [Workflow Guide](artifact/references/workflow-guide.md)
+- [Mode 2 and Mode 3 Prototype Guide](artifact/references/mode-2-prototype.md)
+- [Deck Studio Catalog](artifact/references/deck-studio-catalog.md)
+- [Brand Asset Protocol](artifact/references/brand-asset-protocol.md)
+- [Review Passes](artifact/references/review-passes.md)
+- [Evaluation Scenarios](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with code blocks and generated HTML/CSS/JavaScript files; may include PPTX, PDF, PNG, or self-contained HTML export instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or edits local visual artifacts and may use network access for current product facts or official brand assets when requested.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

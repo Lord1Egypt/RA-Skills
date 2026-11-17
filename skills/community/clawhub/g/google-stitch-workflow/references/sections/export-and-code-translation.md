@@ -321,16 +321,16 @@ For greenfield translation from exported Stitch code, also check:
 - the token layer can be mapped into the target project's theme system
 - there is a plan to replace placeholders and hardcoded demo content with real data
 - the team will translate deliberately instead of pasting large exports blindly
-- all required npm dependencies are installed before integration
+- any new dependency the generated code needs has been reviewed and approved by the user before it is added
 - hardcoded colors/sizes have been replaced with project theme tokens
 
 ### Design system file injection
 
-When the SDK doesn't support `design_system_id` in generate/edit calls, use this workaround: load a design system markdown file and append its content to the prompt. This carries design tokens (colors, typography, spacing rules) into each generation without relying on Stitch's built-in design system panel.
+Prefer the MCP design-system path: `upload_design_md` + `create_design_system_from_design_md`, then pass `designSystem` to `generate_screen_from_text` or use `apply_design_system`. Only when that path is unavailable, use this workaround: append the relevant tokens from a reviewed design system markdown file to the prompt. This carries design tokens (colors, typography, spacing rules) into each generation without relying on Stitch's built-in design system panel.
 
 ### Dependency check during integration
 
-When integrating Stitch output into a codebase, check whether the generated code uses libraries not yet installed (e.g. `recharts`, `framer-motion`, `lucide-react`). Run `npm install <pkg>` before integration to prevent build failures.
+When integrating Stitch output into a codebase, check whether the generated code imports libraries the project does not already use (e.g. `recharts`, `framer-motion`, `lucide-react`). Generated code is not a trusted source of dependencies: prefer the project's existing libraries, and for anything new, list the package with its exact name and version and ask the user before adding it to the project manifest and lockfile. Never install a package only because generated code imports it.
 
 Also check whether the generated code uses hardcoded colors or sizes that conflict with the project's existing theme — replace them with CSS variables or design tokens before saving.
 

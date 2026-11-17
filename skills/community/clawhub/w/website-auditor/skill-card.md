@@ -1,42 +1,55 @@
-## Description: <br>
-Audit any website across 8 quality signals to determine if it is outdated, broken, or neglected. Returns a structured audit dict used by the lead-scorer skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit any website across 8 quality signals to determine if it is outdated, broken, or neglected. Returns a structured audit dict used by the lead-scorer skill.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and agents use this skill to audit public websites for liveness, freshness, technology, performance, mobile readiness, SSL status, and design-age signals. It produces structured findings that can feed lead scoring or follow-on enrichment workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches target webpages and can return full page HTML into the agent workflow. <br>
-Mitigation: Audit only URLs whose contents are appropriate for the workflow, avoid private or internal URLs, and treat returned HTML as untrusted input. <br>
-Risk: PageSpeed checks can send audited URLs to Google PageSpeed when PAGESPEED_API_KEY is configured. <br>
-Mitigation: Use a restricted PageSpeed API key and avoid submitting sensitive URLs. <br>
-Risk: The skill depends on external Python packages for HTTP fetching, parsing, technology detection, and WHOIS behavior. <br>
-Mitigation: Pin and review the listed dependencies before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/website-auditor) <br>
-- [Google PageSpeed Insights API endpoint](https://www.googleapis.com/pagespeedonline/v5/runPagespeed) <br>
+## Use Case:
+
+Developers and automation teams use this skill to audit public websites for outdated, broken, or neglected signals and produce structured results for downstream lead scoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch arbitrary URLs, including sensitive internal or confidential targets if deployed without scope controls.
+
+Mitigation: Use outbound network controls, URL allowlisting, private-address blocking, and redirect validation before execution.
+
+Risk: The skill can return full page contents through raw_html, which may expose sensitive page data in downstream workflows.
+
+Mitigation: Apply response-size limits and clear handling controls for raw_html, especially before storing or sharing audit results.
+
+Risk: Google PageSpeed checks submit target URLs to an external service.
+
+Mitigation: Avoid using the skill on internal, customer-confidential, pre-release, or token-bearing URLs unless external submission is approved.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and structured audit dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PAGESPEED_API_KEY for PageSpeed checks; returns raw HTML for live pages.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [analysis, code, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Structured audit dictionary with supporting Markdown and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PAGESPEED_API_KEY for Google PageSpeed checks; returns raw_html when a site is live.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

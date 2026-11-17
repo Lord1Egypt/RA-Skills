@@ -1,0 +1,18 @@
+{
+  "name": "mijia-fan",
+  "version": "1.0.0",
+  "description": "Xiaomi Mijia fan control skill for OpenClaw",
+  "author": "Bob",
+  "license": "MIT",
+  "keywords": ["xiaomi", "mijia", "fan", "smart-home", "iot"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bob/mijia-fan"
+  },
+  "engines": {
+    "python": ">=3.8"
+  },
+  "dependencies": {
+    "mijiaAPI": "^1.0.0"
+  }
+}

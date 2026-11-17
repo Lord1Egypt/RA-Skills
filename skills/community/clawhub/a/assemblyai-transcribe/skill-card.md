@@ -1,48 +1,68 @@
-## Description: <br>
-Transcribe, diarise, translate, post-process, and structure audio/video with AssemblyAI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe, diarize, translate, post-process, and structure audio/video with AssemblyAI into agent-friendly Markdown, JSON, subtitles, and workflow outputs.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and agents use this skill to run AssemblyAI transcription workflows, including diarisation, translation, transcript exports, speaker mapping, and structured transcript post-processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents with autonomous command execution could delete remote transcripts without an additional confirmation safeguard. <br>
-Mitigation: Disable or restrict use of the delete command unless deletion is an intentional workflow requirement. <br>
-Risk: Media, transcripts, and LLM prompts are sent to AssemblyAI services and may be sensitive. <br>
-Mitigation: Process only content that is permitted to be sent to AssemblyAI and use a scoped AssemblyAI API key where possible. <br>
-Risk: Base URL overrides can redirect requests away from the expected AssemblyAI endpoints. <br>
-Mitigation: Avoid untrusted ASSEMBLYAI_BASE_URL and ASSEMBLYAI_LLM_BASE_URL values, and set the EU endpoints only when regional processing is required. <br>
+## Use Case:
 
+Developers and AI agents use this skill to run AssemblyAI-specific transcription workflows for local files or URLs, including speaker labels, speaker naming, translation, Speech Understanding, LLM Gateway extraction, and stable downstream transcript exports.
 
-## Reference(s): <br>
-- [AssemblyAI Documentation](https://www.assemblyai.com/docs) <br>
-- [Capabilities Reference](references/capabilities.md) <br>
-- [Workflows and Recipes](references/workflows.md) <br>
-- [Output Formats](references/output-formats.md) <br>
-- [Speaker Mapping](references/speaker-mapping.md) <br>
-- [LLM Gateway Notes](references/llm-gateway.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, plain text, SRT, VTT, manifest files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write transcript bundles with Markdown, agent JSON, raw JSON, subtitle, paragraph, sentence, and manifest outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: API keys and sensitive media can be sent to custom configured endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved official AssemblyAI HTTPS endpoints and do not set custom base URL variables from untrusted contexts.
+
+Risk: Confidential recordings and transcript content may be processed by external AssemblyAI services.
+
+Mitigation: Do not process confidential recordings without approval, and choose the required regional endpoint before upload or LLM Gateway use.
+
+Risk: The delete command can remove remote transcript data without stronger confirmation controls.
+
+Mitigation: Confirm transcript IDs before deletion, prefer dry-run checks in automation, and treat deletion as irreversible.
+
+Risk: AssemblyAI API keys may be exposed through prompts, logs, or command arguments.
+
+Mitigation: Inject API keys through environment variables, keep them out of chat logs, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [AssemblyAI documentation](https://www.assemblyai.com/docs)
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/assemblyai-transcribe)
+- [Capabilities](references/capabilities.md)
+- [Workflows and recipes](references/workflows.md)
+- [Output formats](references/output-formats.md)
+- [Speaker mapping](references/speaker-mapping.md)
+- [LLM Gateway notes](references/llm-gateway.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration guidance, Markdown, JSON, Text, Files]
+
+**Output Format:** [Markdown transcripts, normalized agent JSON, raw JSON, plain text, SRT/VTT subtitles, and bundle manifests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write sidecar files and bundle manifests; long transcripts should use bundle or explicit output paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,156 @@
+{
+ "brand": {
+  "name": "Earth in Numbers",
+  "handle": "@earthinnumbers"
+ },
+ "timezone": "America/New_York",
+ "accounts": {
+  "en": {
+   "handle": "@earthinnumbers",
+   "socialAccountId": "<id from social_accounts_list>",
+   "timezone": "America/New_York",
+   "times": [
+    "12:30"
+   ]
+  },
+  "es": {
+   "handle": "@latierraennumeros",
+   "socialAccountId": "<id from social_accounts_list>",
+   "timezone": "Europe/Madrid",
+   "times": [
+    "13:30"
+   ]
+  }
+ },
+ "posts": [
+  {
+   "id": "bottle",
+   "format": "carousel",
+   "media": [
+    "slides/bottle-en/slide-01.jpg",
+    "slides/bottle-en/slide-02.jpg",
+    "slides/bottle-en/slide-03.jpg",
+    "slides/bottle-en/slide-04.jpg",
+    "slides/bottle-en/slide-05.jpg",
+    "slides/bottle-en/slide-06.jpg"
+   ],
+   "alt": [
+    "Cover over a NASA photo of Earth: all of Earth's water in a 1-liter bottle. How much of it would be river?",
+    "Put all of Earth's water in a 1-liter bottle and pour out the oceans: 35 ml is left. Source: USGS.",
+    "Where those 35 ml are: ice caps and glaciers 17.4 ml, groundwater 16.9 ml (more than half salty), ground ice and permafrost 0.22 ml, lakes 0.13 ml, soil, air, swamps, rivers and living things 0.03 ml.",
+    "25 ml of the bottle is fresh water: 17.4 ml is ice and 7.6 ml is underground. Source: USGS.",
+    "0.002 ml for every river on Earth: less than a tenth of one drop. Source: USGS.",
+    "Save this for your next quiz night."
+   ],
+   "caption": "How much of Earth's water is in rivers? Put all of it in a 1-liter bottle and every river is less than a tenth of a drop.\n\nFigures: USGS Water Science School (freshwater distribution, groundwater, glaciers). Earth photo: NASA. Save this for your next quiz night.\n\n#freshwater #groundwater #glaciers #earthscience #geography",
+   "targets": [
+    {
+     "account": "en",
+     "at": "2026-11-16T12:30"
+    },
+    {
+     "account": "es",
+     "media": [
+      "slides/bottle-es/slide-01.jpg",
+      "slides/bottle-es/slide-02.jpg",
+      "slides/bottle-es/slide-03.jpg",
+      "slides/bottle-es/slide-04.jpg",
+      "slides/bottle-es/slide-05.jpg",
+      "slides/bottle-es/slide-06.jpg"
+     ],
+     "alt": [
+      "Portada sobre una foto de la Tierra de la NASA: toda el agua de la Tierra en una botella de 1 litro. ¿Cuánta sería de río?",
+      "Toda el agua de la Tierra en una botella de 1 litro: al vaciar los océanos quedan 35 ml. Fuente: USGS.",
+      "Dónde están esos 35 ml: casquetes y glaciares 17,4 ml, aguas subterráneas 16,9 ml (más de la mitad salada), hielo del suelo y permafrost 0,22 ml, lagos 0,13 ml, suelo, aire, pantanos, ríos y seres vivos 0,03 ml.",
+      "25 ml de la botella son agua dulce: 17,4 ml son hielo y 7,6 ml están bajo tierra. Fuente: USGS.",
+      "0,002 ml para todos los ríos del planeta: menos de una décima de gota. Fuente: USGS.",
+      "Guárdalo para tu próximo trivial."
+     ],
+     "caption": "¿Cuánta agua de la Tierra hay en los ríos? En una botella de 1 litro con toda ella, menos de una décima de gota.\n\nDatos: USGS, Water Science School (agua dulce, aguas subterráneas, glaciares). Foto de la Tierra: NASA. Guárdalo para tu próximo trivial.\n\n#aguadulce #aguassubterráneas #glaciares #cienciasdelatierra #geografía",
+     "at": "2026-11-16T13:30"
+    }
+   ],
+   "checklist": [
+    "Paste the alt text for each slide (... > Edit > Edit alt text)",
+    "Be online for the first hour to reply to comments"
+   ]
+  },
+  {
+   "id": "bottle-teaser",
+   "format": "story",
+   "media": [
+    "slides/story-en/slide-01.jpg"
+   ],
+   "with": {
+    "post": "bottle",
+    "minutes": -60
+   },
+   "targets": [
+    {
+     "account": "en",
+     "at": "2026-11-16T11:30"
+    },
+    {
+     "account": "es",
+     "media": [
+      "slides/story-es/slide-01.jpg"
+     ],
+     "at": "2026-11-16T12:30"
+    }
+   ],
+   "checklist": [
+    "After the carousel is live, share it to your Story from the app with the post sticker"
+   ]
+  },
+  {
+   "id": "groundwater",
+   "format": "image",
+   "media": [
+    "slides/groundwater-en/slide-01.jpg"
+   ],
+   "alt": [
+    "55% of the water under our feet is salty, not fresh. USGS: 12.87 of 23.4 million cubic km of groundwater is saline."
+   ],
+   "caption": "Is the water under our feet fresh? More than half of Earth's groundwater, 55%, is salty.\n\nUSGS Water Science School: 12.87 of 23.4 million km³ of groundwater is saline. Send this to someone who drinks well water.\n\n#groundwater #aquifer #freshwater #earthscience",
+   "targets": [
+    {
+     "account": "en",
+     "at": "2026-11-17T12:30"
+    },
+    {
+     "account": "es",
+     "media": [
+      "slides/groundwater-es/slide-01.jpg"
+     ],
+     "alt": [
+      "El 55% del agua bajo nuestros pies es salada, no dulce. USGS: 12,87 de 23,4 millones de km³ de agua subterránea son salinos."
+     ],
+     "caption": "¿El agua bajo nuestros pies es dulce? Más de la mitad del agua subterránea de la Tierra, el 55%, es salada.\n\nUSGS, Water Science School: 12,87 de 23,4 millones de km³ de agua subterránea son salinos. Mándaselo a quien bebe agua de pozo.\n\n#aguasubterránea #acuífero #aguadulce #cienciasdelatierra",
+     "at": "2026-11-17T13:30"
+    }
+   ],
+   "checklist": [
+    "Paste the alt text (... > Edit > Edit alt text)"
+   ]
+  },
+  {
+   "id": "air-reel",
+   "format": "reel",
+   "media": [
+    "media/air-short.mp4"
+   ],
+   "cover": "reel/cover.jpg",
+   "caption": "Is there more water in the sky or in every river on Earth? The sky, about 6 times more, as water vapor.\n\nData: USGS Water Science School. Made with our own animation. Follow for the planet in numbers.\n\n#watercycle #atmosphere #rivers #earthscience",
+   "targets": [
+    {
+     "account": "en",
+     "at": "2026-11-18T12:30"
+    }
+   ],
+   "checklist": [
+    "Add music from Instagram's library in the app if you want it (the API can't)"
+   ]
+  }
+ ],
+ "note": "Times are placeholders for this made-up account; use each account's Insights."
+}

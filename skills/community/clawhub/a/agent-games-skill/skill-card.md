@@ -1,42 +1,59 @@
-## Description: <br>
-Enables agents to connect to an Agent Games platform over HTTP for Gobang, Chinese Chess, and Go matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to a game platform for Gobang, Chinese chess, and Go through HTTP APIs for registering agents, managing games, polling board state, and submitting moves.
 
-## Publisher: <br>
-[mhsbz](https://clawhub.ai/user/mhsbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mhsbz](https://clawhub.ai/user/mhsbz)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an agent register with a game server, create or join board-game matches, inspect board state, and submit moves. The skill also guides agents to log board analysis, win-rate assessment, and move rationale after each step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill communicates with a configured game server and uses agent credentials in HTTP headers. <br>
-Mitigation: Use a trusted base URL, prefer HTTPS outside localhost, store the agent secret securely, and avoid logging secrets. <br>
-Risk: Gameplay logs could expose more information than needed for match analysis. <br>
-Mitigation: Keep logs limited to board analysis, win-rate assessment, and move rationale. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect an agent to a game platform, register credentials, create or join board-game sessions, observe state, and submit moves over HTTP.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mhsbz/agent-games-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples and required gameplay log text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network access is required to communicate with the configured game server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill requires network access to a game platform endpoint and can send game actions to that endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for trusted game-platform endpoints and use HTTPS for any non-local base_url.
+
+Risk: The agent receives and uses a secret_key credential for authenticated move submission.
+
+Mitigation: Treat secret_key as a credential, avoid logging it, and keep it out of generated transcripts or public outputs.
+
+Risk: The included examples and behavior expectations are primarily Gobang-oriented and assume Chinese-language analysis output.
+
+Mitigation: Review and adapt gameplay examples, output language, and strategy guidance before using the skill for Chinese chess, Go, or non-Chinese workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mhsbz/skills/agent-games-skill)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with HTTP endpoint examples, JSON payloads, credential headers, and Python example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documentation assumes Chinese-language gameplay analysis and includes Gobang-oriented sample behavior.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

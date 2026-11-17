@@ -1,0 +1,58 @@
+'''
+56如何获取委托持仓及资金数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+如何获取委托持仓及资金数据
+本示例用于演示如何通过函数获取指定账户的委托、持仓、资金数据。
+
+python
+
+#coding:gbk
+
+
+def to_dict(obj):
+	attr_dict = {}
+	for attr in dir(obj):
+		try:
+			if attr[:2] == 'm_':
+				attr_dict[attr] = getattr(obj, attr)
+		except:
+			pass
+	return attr_dict
+
+
+def init(C):
+	pass
+	#orders, deals, positions, accounts = query_info(C)
+
+
+def handlebar(C):
+	if not C.is_last_bar():
+		return
+	orders, deals, positions, accounts = query_info(C)
+
+
+def query_info(C):
+	orders = get_trade_detail_data('8000000213', 'stock', 'order')
+	for o in orders:
+		print(f'股票代码: {o.m_strInstrumentID}, 市场类型: {o.m_strExchangeID}, 证券名称: {o.m_strInstrumentName}, 买卖方向: {o.m_nOffsetFlag}',
+		f'委托数量: {o.m_nVolumeTotalOriginal}, 成交均价: {o.m_dTradedPrice}, 成交数量: {o.m_nVolumeTraded}, 成交金额:{o.m_dTradeAmount}')
+
+
+	deals = get_trade_detail_data('8000000213', 'stock', 'deal')
+	for dt in deals:
+		print(f'股票代码: {dt.m_strInstrumentID}, 市场类型: {dt.m_strExchangeID}, 证券名称: {dt.m_strInstrumentName}, 买卖方向: {dt.m_nOffsetFlag}', 
+		f'成交价格: {dt.m_dPrice}, 成交数量: {dt.m_nVolume}, 成交金额: {dt.m_dTradeAmount}')
+
+	positions = get_trade_detail_data('8000000213', 'stock', 'position')
+	for dt in positions:
+		print(f'股票代码: {dt.m_strInstrumentID}, 市场类型: {dt.m_strExchangeID}, 证券名称: {dt.m_strInstrumentName}, 持仓量: {dt.m_nVolume}, 可用数量: {dt.m_nCanUseVolume}',
+		f'成本价: {dt.m_dOpenPrice:.2f}, 市值: {dt.m_dInstrumentValue:.2f}, 持仓成本: {dt.m_dPositionCost:.2f}, 盈亏: {dt.m_dPositionProfit:.2f}')
+
+
+	accounts = get_trade_detail_data('8000000213', 'stock', 'account')
+	for dt in accounts:
+		print(f'总资产: {dt.m_dBalance:.2f}, 净资产: {dt.m_dAssureAsset:.2f}, 总市值: {dt.m_dInstrumentValue:.2f}', 
+		f'总负债: {dt.m_dTotalDebit:.2f}, 可用金额: {dt.m_dAvailable:.2f}, 盈亏: {dt.m_dPositionProfit:.2f}')
+
+	return orders, deals, positions, accounts

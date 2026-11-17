@@ -1,44 +1,55 @@
-## Description: <br>
-超能文献（Suppr）学术文献检索 API。当用户需要检索学术论文、查找 PubMed 文献、搜索研究资料时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+超能文献（Suppr）学术文献检索 API。当用户需要检索学术论文、查找 PubMed 文献、搜索研究资料时激活。
 
-## Publisher: <br>
-[zjg678](https://clawhub.ai/user/zjg678) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjg678](https://clawhub.ai/user/zjg678)
 
-## Use Case: <br>
-Researchers, students, and agents use this skill to search PubMed-backed academic literature with natural-language queries and retrieve paper metadata such as DOI, PMID, abstracts, citation counts, journal details, and impact factors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and requested metadata are sent to Suppr's third-party API. <br>
-Mitigation: Use a dedicated Suppr API key and avoid submitting confidential research queries unless the service's data handling is acceptable. <br>
-Risk: Literature search results or AI-selected matches may be incomplete or not suitable as final evidence. <br>
-Mitigation: Verify important papers, identifiers, citations, and abstracts against primary publication sources before relying on them. <br>
-Risk: The artifact discloses a 60 requests per minute rate limit. <br>
-Mitigation: Throttle automated searches and handle API errors or fewer-than-requested results gracefully. <br>
+## Use Case:
 
+External users and research-focused agents use this skill to search PubMed literature with natural-language queries and request article metadata such as DOI, PMID, abstracts, publication details, citation counts, and impact factors.
 
-## Reference(s): <br>
-- [Suppr API documentation](https://openapi.suppr.wilddata.cn/introduction.html) <br>
-- [Suppr API base endpoint](https://api.suppr.wilddata.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/zjg678/suppr-academic-search-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, API Calls] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Suppr API key; search results depend on the Suppr API and PubMed-backed retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries and Suppr API keys are sent to the hosted Suppr literature search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that provider relationship fits the user's data-handling requirements, and avoid sending sensitive unpublished research questions or private data.
+
+Risk: The skill depends on an external academic search API and may be affected by provider availability, authentication, or rate limits.
+
+Mitigation: Confirm API credentials and handle non-zero API response codes, missing results, or rate-limit failures before relying on returned literature metadata.
+
+## Reference(s):
+
+- [Suppr API documentation](https://openapi.suppr.wilddata.cn/introduction.html)
+- [Suppr homepage](https://suppr.wilddata.cn)
+- [ClawHub skill page](https://clawhub.ai/zjg678/skills/suppr-academic-search-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, markdown, JSON]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides authenticated requests to the hosted Suppr semantic literature search API and describes returned article metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

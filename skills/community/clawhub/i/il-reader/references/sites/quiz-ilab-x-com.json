@@ -1,0 +1,174 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-ilab-x-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:10.190Z",
+  "entry": {
+    "url": "http://www.ilab-x.com",
+    "final_url": "https://www.ilab-x.com/",
+    "title": "实验空间—国家虚拟仿真实验教学项目共享服务平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:10.190Z",
+    "identity": {
+      "declared_name": "实验空间（虚拟仿真）",
+      "hostname": "www.ilab-x.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "热门课程",
+        "href": "https://www.ilab-x.com/cloud#hot",
+        "target": ""
+      },
+      {
+        "text": "专业在线实验室",
+        "href": "javascript:",
+        "target": ""
+      },
+      {
+        "text": "经管类专业在线实验室",
+        "href": "javascript:",
+        "target": ""
+      },
+      {
+        "text": "虚拟仿真实验课\n\n支持虚拟仿真实验教学课程与“实验空间”的接口对接，实现虚拟仿真实验教学课程共享应用数据的采集与留存，与自有虚拟仿真实验教学课程的本校体系化应用；综合应用评价数据的采集与分析。",
+        "href": "https://www.ilab-x.com/cloud?type=4",
+        "target": ""
+      },
+      {
+        "text": "线上实验课\n\n方便的构建线上MOOC，集成虚拟仿真实验教学资源，实现理论教学与实验教学的高度融合，支持在线实验教学的全过程实施。充分利用线上实验课程资源，快速构建适合小规模教学的私有实验课程。",
+        "href": "https://www.ilab-x.com/cloud?type=1",
+        "target": ""
+      },
+      {
+        "text": "线上线下混合式实验课\n\n支持基于MOOC/SPOC、虚拟仿真实验教学课程建设线上线下混合式课程，实现混合式教学备课、班级、成绩、活动管理闭环。支持教师在线备课并根据教学计划开启学习任务，包括在线学习、在线实验、线下课堂活动、线下实验等内容。",
+        "href": "https://www.ilab-x.com/cloud?type=2",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "输入关键词查询",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "输入关键词查询",
+      "name": "navSearch",
+      "id": "",
+      "css": "input[name=\"navSearch\"]",
+      "role": null,
+      "form_action": "https://www.ilab-x.com/",
+      "locator": {
+        "css": "input[name=\"navSearch\"]"
+      },
+      "observed_url": "https://www.ilab-x.com/",
+      "observed_at": "2026-10-09T09:05:06.572Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-ilab-x-com:record-lookup",
+      "source_id": "quiz-ilab-x-com",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.ilab-x.com/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "输入关键词查询",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "输入关键词查询",
+          "name": "navSearch",
+          "id": "",
+          "css": "input[name=\"navSearch\"]",
+          "role": null,
+          "form_action": "https://www.ilab-x.com/",
+          "locator": {
+            "css": "input[name=\"navSearch\"]"
+          },
+          "observed_url": "https://www.ilab-x.com/",
+          "observed_at": "2026-10-09T09:05:06.572Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-066"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:10.190Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-ilab-x-com-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-ilab-x-com-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

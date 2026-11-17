@@ -1,42 +1,57 @@
-## Description: <br>
-Use kitchenowl-cli from terminal with pipx install, auth, and core read/write commands for KitchenOwl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use kitchenowl-cli from terminal with pipx install, auth, and core read/write commands for KitchenOwl.
 
-## Publisher: <br>
-[apetersson](https://clawhub.ai/user/apetersson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apetersson](https://clawhub.ai/user/apetersson)
 
-## Use Case: <br>
-Developers and external users use this skill to install, authenticate, and operate the KitchenOwl CLI for household, shopping list, recipe, and user-administration workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and drives a third-party KitchenOwl CLI package and connects it to a configured KitchenOwl server. <br>
-Mitigation: Install only when the kitchenowl-cli package and target KitchenOwl server are trusted. <br>
-Risk: KitchenOwl authentication can store server URL, access token, refresh token, user, and saved defaults in the local KitchenOwl config file. <br>
-Mitigation: Prefer interactive login, avoid putting passwords in shell history, protect the local config file, and use logout when finished. <br>
-Risk: Create, edit, remove, delete, and bulk-change commands can modify account data. <br>
-Mitigation: Review mutating commands before approval, start with read-only commands, and require confirmation before destructive operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [KitchenOwl CLI Command Reference](references/commands.md) <br>
-- [KitchenOwl CLI homepage](https://github.com/kitchenowl/kitchenowl-cli) <br>
+## Use Case:
 
+External users and developers use this skill to install and operate KitchenOwl through the kitchenowl CLI for authentication, server settings, households, shopping lists, recipes, and user lookup workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request JSON CLI output when command results are consumed programmatically.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A third-party CLI package or project could be different from the one the user intends to trust.
+
+Mitigation: Verify the kitchenowl-cli package and KitchenOwl CLI GitHub project before installation or upgrade.
+
+Risk: KitchenOwl authentication tokens are stored in a local config file.
+
+Mitigation: Treat the KitchenOwl config file as sensitive and avoid exposing token contents in agent output.
+
+Risk: Delete, remove-item, and bulk-edit commands can modify or remove KitchenOwl data.
+
+Mitigation: Start with read-only commands, use explicit IDs and household scope, and ask for confirmation before destructive actions.
+
+## Reference(s):
+
+- [KitchenOwl CLI Command Reference](references/commands.md)
+- [KitchenOwl CLI GitHub Project](https://github.com/kitchenowl/kitchenowl-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented CLI usage guidance when command output is consumed programmatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

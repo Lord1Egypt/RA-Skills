@@ -1,0 +1,12 @@
+name: 晨钟
+version: 1.0.0
+description: 每日晨间简报助手。每天早上定时生成个性化简报，提醒你今天要做的事、正在推进的项目和需要关注的方向。不是新闻摘要，是你的个人AI副驾驶晨间仪表盘。
+category: productivity
+author: chanzhi
+tags:
+  - daily-briefing
+  - morning-reminder
+  - personal-assistant
+  - habit-tracker
+  - productivity
+openclaw: ">=1.0.0"

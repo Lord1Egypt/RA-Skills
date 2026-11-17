@@ -1,41 +1,53 @@
-## Description: <br>
-Self-hosted infrastructure monitoring for HTTP and HTTPS endpoints, TCP services, Docker containers, system resources, SSL certificate expiry, DNS checks, and alerting channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-hosted infrastructure monitoring for HTTP, TCP, SSL, disk, memory, load, Docker, DNS, and custom commands with alerting via OpenClaw messaging.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to configure and run local health checks for self-hosted services, containers, hosts, certificates, and network dependencies. It helps surface uptime and resource issues through status views and configured chat alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: HTTPS checks are reported to disable certificate verification. <br>
-Mitigation: Review or patch HTTPS monitoring so certificate validation is enabled by default, and allow disabled verification only for explicitly approved self-signed internal endpoints. <br>
-Risk: Alerts can disclose infrastructure names, targets, or status details to third-party chat services. <br>
-Mitigation: Disable third-party alert channels unless needed, and avoid sensitive hostnames, secrets, customer names, or internal identifiers in monitor names and URLs. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to configure local health checks for endpoints, services, containers, system resources, DNS, SSL certificates, and alert delivery from an OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/infra-watchdog) <br>
-- [Publisher profile](https://clawhub.ai/user/mariusfit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local monitor configuration, SQLite state, status output, and alert messages when installed and run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: SSL certificate and HTTPS checks can falsely report certificates as valid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate SSL behavior before relying on this skill for certificate or HTTPS security monitoring.
+
+Risk: Some advertised monitoring features may be incomplete or inconsistent with the shipped code.
+
+Mitigation: Review configured monitor types and run checks in a controlled environment before operational deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/infra-watchdog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational monitoring guidance and local command examples that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact/skill.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

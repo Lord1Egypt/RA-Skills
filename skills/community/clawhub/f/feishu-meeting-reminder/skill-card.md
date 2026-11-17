@@ -1,41 +1,50 @@
-## Description: <br>
-Feishu Meeting Reminder helps an agent create Feishu calendar meetings, add attendee reminders, and list, search, update, or delete meeting events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Meeting Reminder helps agents create, view, search, modify, and delete Feishu calendar events with pre-meeting attendee reminders.
 
-## Publisher: <br>
-[ramlee77](https://clawhub.ai/user/ramlee77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramlee77](https://clawhub.ai/user/ramlee77)
 
-## Use Case: <br>
-Employees and agents that work with Feishu calendars use this skill to create meetings with reminders, check upcoming events, search meeting records, and manage calendar changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, edit, delete, and notify Feishu calendar meetings without clear confirmation requirements. <br>
-Mitigation: Require explicit user confirmation before creating, editing, deleting, adding attendees, creating video meetings, or sending notifications. <br>
-Risk: Meeting notifications may be sent unintentionally. <br>
-Mitigation: Keep notifications disabled unless the user explicitly asks to notify attendees. <br>
+## Use Case:
 
+Employees and external users can use this skill to manage Feishu meetings, set attendee reminders before meetings, inspect upcoming meetings, and search or update calendar events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ramlee77/feishu-meeting-reminder) <br>
-- [Publisher profile](https://clawhub.ai/user/ramlee77) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, JSON, API calls] <br>
-**Output Format:** [Markdown guidance with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Feishu calendar event actions for create, list, get, patch, delete, and search workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide agents to create, modify, delete, and notify attendees for Feishu calendar events, and the artifact does not document confirmation safeguards for meeting modification or deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before creating, modifying, deleting, or notifying attendees, and verify event details before destructive calendar actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ramlee77/skills/feishu-meeting-reminder)
+- [Publisher profile](https://clawhub.ai/user/ramlee77)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with JSON calendar-action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ISO 8601/RFC 3339 timestamps, Feishu user_open_id values, attendee lists, reminder offsets, and notification settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

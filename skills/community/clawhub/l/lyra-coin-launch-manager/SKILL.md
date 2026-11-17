@@ -1,75 +1,119 @@
 ---
 name: lyra-coin-launch-manager
-description: Coin launch memory + verification workflow for Clawnch (4claw/Moltx/Moltbook). Use to launch tokens safely, record canonical receipts (contract+txHash+postUrl), update local dashboard, and save Clanker/monitor links into BOOKMARK BRAIN.
+description: "Clawnch coin-launch receipts + local verify: pull launches from clawn.ch, write receipt JSON/MD, optional Blockscout/Dexscreener checks, local bookmark ref files. No git push, no GitHub token load, no repo create. Not for remote wallet control. Read references/SECURITY.md first."
+version: 1.2.0
+license: LYGO-Sovereign-v2.0
+metadata:
+  openclaw:
+    emoji: "🪙"
+    homepage: "https://github.com/DeepSeekOracle/lyra-crypto-operator"
+    requires:
+      anyBins: [python, python3]
+  lyra: true
+  lygo: false
+  lattice: "crypto_lane_separated"
+  signature: "Delta9Phi963-LYRA-COIN-LAUNCH-v1.2.0"
+  publisher: deepseekoracle
+  clawhub: "https://clawhub.ai/deepseekoracle/skills/lyra-coin-launch-manager"
+  security_audit: "skillspector-2026-07-29-v1.2.0"
+  permissions_declared:
+    filesystem: "cwd_state_and_reference_dirs_only"
+    network: "https_get_clawnch_blockscout_dexscreener"
+    process_spawn: false
+    shell: false
+    git_push: false
+    github_token: false
+    github_repo_create: false
+    social_autopublish: false
 ---
 
-# LYRA Coin Launch Manager (Clawnch) — v1
+# LYRA Coin Launch Manager v1.2.0
 
-## What “done right” means (non-negotiable)
-A coin is only considered **launched** when you have a **Clawnch receipt** containing at minimum:
-- `symbol`
-- `contractAddress`
-- `clankerUrl`
-- `postUrl` or `postId`
-- `txHash` (if present in API)
-- `chainId` (Base = 8453)
+**Clawnch receipt + verification workflow only.**  
+Crypto lane is **lattice-separated** from LYGO P0–P9 core (`CRYPTO_LATTICE_SEPARATION.md`). Token metrics ≠ lattice health.
 
-Never treat a wallet address, thread id, or post id as the contract.
+## What this skill does
 
-## Canonical data sources (priority order)
-1) **Clawnch API**: `https://clawn.ch/api/launches` (authoritative)
-2) **Clanker page**: `https://clanker.world/clanker/<contract>` (UI)
-3) Indexers (best-effort / laggy): Blockscout, Dexscreener
+| Action | Network | Disk | Credentials |
+|--------|---------|------|-------------|
+| Pull launches from Clawnch API | HTTPS GET `clawn.ch` | Write `state/*_clawnch_receipt.json` | None |
+| Normalize STARCORE family receipts | Optional Clawnch GET | Write state + `reference/*.md` | None |
+| Verify via Blockscout / Dexscreener | HTTPS GET | Write `state/*_verify.json` | None |
+| Local bookmark ref files | None | Write under `--bookmark-dir` | None |
 
-## Workspace conventions (v1)
-- State receipts (machine-readable): `state/<SYMBOL>_clawnch_receipt.json`
-- Human receipts: `reference/STARCORE_LAUNCH_RECEIPTS_YYYY-MM-DD.md`
-- Bookmark refs: `brainwave/BOOKMARK_BRAIN/refs/<topic>.md`
+## What this skill does **not** do
+
+- **No** GitHub token load / `git push` / `gh repo create`  
+- **No** git credential fill / pre-commit hook install  
+- **No** wallet private keys / signing / transfers  
+- **No** auto social posts (you post `!clawnch` yourself)  
+- **No** LYGO stack mutation  
+
+Operator-only publish helpers (if any) live outside this package in `operator_tools/` of the steward crypto repo — **not** shipped on ClawHub.
+
+---
+
+## Install
+
+```bash
+npx clawhub@latest install deepseekoracle/lyra-coin-launch-manager
+```
 
 ## Workflow
 
 ### 0) Preflight
-- Decide **symbol** + **trigger surface** (`4claw` | `moltx` | `moltbook`).
-- Confirm the **deployer wallet**.
+- Symbol + surface (`4claw` | `moltx` | `moltbook`)
+- Deployer **public** wallet only (never paste private keys into skill folders)
 
-### 1) Launch trigger post
-Post the exact Clawnch format:
+### 1) Launch trigger (human)
+Post Clawnch format on the chosen surface:
 
-```
+```text
 !clawnch
 name: <token name>
 symbol: <SYMBOL>
 wallet: <0x...>
 description: <...>
 image: <https://...>
-website: <https://...>   (optional)
-twitter: <@handle>       (optional)
 ```
 
-### 2) Pull canonical receipt(s) (Clawnch API)
-Use the script:
+### 2) Pull receipts
 
-- `python skills/public/lyra-coin-launch-manager/scripts/pull_clawnch_receipts.py --symbols STARCORE,STARCOREX --out state`
+```bash
+python scripts/pull_clawnch_receipts.py --symbols STARCORE,STARCOREX --out state
+```
 
-This writes per-symbol receipts + a combined summary.
+Writes per-symbol JSON + summary. **Human-reviewed** paths under `./state` (or `--out`).
 
-### 3) Save Clanker + monitoring links into BOOKMARK BRAIN
-Use existing bookmark tool:
+### 3) Optional family normalize / verify
 
-- `python tools/bookmark_brain_add_url.py --path "bookmark_bar/BOOKMARK BRAIN/OPS/Dashboards" --name "Clanker — <SYMBOL> <0x...>" --url "<clankerUrl>"`
+```bash
+python scripts/normalize_starcore_family.py --symbols STARCORE,STARCOREX,STARCORECOIN --workspace .
+python scripts/verify_starcore_family.py --symbols STARCORE,STARCOREX,STARCORECOIN --workspace .
+```
 
-### 4) Update local dashboard
-If using `enhanced_coin_dashboard_with_real_data.py`, ensure it reads receipts from `state/`.
-(Preferred: STARCORE family comes from Clawnch receipts.)
+### 4) Optional local bookmark refs (no external browser tools)
 
-### 5) Optional: monitoring cron
-If you want recurring checks, schedule a cron job that:
-- pulls latest receipts
-- checks Blockscout/Dexscreener pair existence
-- logs changes to `daily_health.md`
+```bash
+python scripts/bookmark_starcore_family.py --symbols STARCORE,STARCOREX --workspace . --bookmark-dir reference/bookmarks
+```
 
-(Keep this low frequency; indexers/API can lag.)
+### 5) Optional monitor (in-process chain)
 
-## Notes / troubleshooting
-- If Moltbook requires verification, complete it; Clawnch may still pick up the post (but posting state can be confusing).
-- Indexers can lag: “not a contract” on Blockscout can be temporary.
+```bash
+python scripts/starcore_monitor.py --symbols STARCORE,STARCOREX,STARCORECOIN --workspace . --log daily_health.md
+```
+
+---
+
+## Agents
+
+- Propose commands / review receipts; **do not** invent contract addresses.  
+- Clawnch is authoritative; indexers lag.  
+- Never run anything named push/github/gh from this skill (none ship).  
+
+## Security
+
+See `references/SECURITY.md` and `references/SKILLSPECTOR_AUDIT.md`.
+
+**Δ9Φ963 — receipts · verify · human posts · crypto lane separated · no silent publish.**

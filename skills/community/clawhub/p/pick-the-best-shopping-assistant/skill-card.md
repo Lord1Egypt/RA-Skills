@@ -1,43 +1,59 @@
-## Description: <br>
-Pick the Best - Personal shopping assistant for product search, price comparison, and recommendations powered by Pick the Best. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pick the Best - Personal shopping assistant for product search, price comparison, and recommendations powered by Pick the Best.
 
-## Publisher: <br>
-[nepp-an](https://clawhub.ai/user/nepp-an) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nepp-an](https://clawhub.ai/user/nepp-an)
 
-## Use Case: <br>
-External users can use this skill to search for products, compare prices, find deals, and receive shopping recommendations across supported Pick the Best markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use, with shopping results targeted to United Kingdom, Germany, Poland, and France markets. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches are sent to Pick the Best. <br>
-Mitigation: Avoid including sensitive personal information in shopping prompts. <br>
-Risk: Product links may include affiliate tracking. <br>
-Mitigation: Review the destination page and purchasing terms before buying. <br>
-Risk: Prices and availability may vary by country or currency. <br>
-Mitigation: Specify the target market and verify final price, availability, and seller details on the merchant page. <br>
+## Use Case:
 
+External shoppers use this skill to search for products, compare prices, find deals, and receive shopping recommendations through Pick the Best shopping tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nepp-an/pick-the-best-shopping-assistant) <br>
-- [Pick the Best shopping MCP endpoint](https://pickthebest.com/gb/en/v1/shopping/mcp) <br>
+### Deployment Geography for Use:
 
+United Kingdom, Germany, Poland, and France
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown shopping recommendations with product summaries, links, and optional JSON-RPC curl examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product prices, ratings, platform names, affiliate-tracked origin URLs, and refinement suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shopping requests and session identifiers may be sent to Pick the Best.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intentional shopping requests, avoid sensitive personal details, and do not use usernames, emails, account IDs, or other stable identifiers as session_id values.
+
+Risk: Product links may contain affiliate tracking.
+
+Mitigation: Make users aware that product links can include tracking before they open or share links.
+
+Risk: Ambiguous market requests may default to GB.
+
+Mitigation: Ask for or explicitly set the market when the user's location, country, or currency is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nepp-an/skills/pick-the-best-shopping-assistant)
+- [Pick the Best shopping MCP endpoint](https://pickthebest.com/gb/en/v1/shopping/mcp)
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with product summaries, shopping links, and JSON-RPC curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product links with affiliate tracking; unclear markets may default to GB.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

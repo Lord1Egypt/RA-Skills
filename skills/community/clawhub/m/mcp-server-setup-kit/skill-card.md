@@ -1,39 +1,56 @@
-## Description: <br>
-Guides agents through connecting Claude or OpenClaw to Notion, Linear, Slack, and GitHub MCP servers with checklists, configuration templates, tests, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through connecting Claude or OpenClaw to Notion, Linear, Slack, and GitHub with MCP setup checklists, configuration templates, tests, and troubleshooting guidance.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-Developers and teams use this skill to set up and validate MCP integrations for common work tools, including GitHub, Notion, Slack, and Linear. It provides readiness checks, copyable configuration examples, verification prompts, and troubleshooting guidance for agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Connecting an agent to work services with API keys or OAuth tokens can expose sensitive data or enable unintended write actions if credentials are over-scoped. <br>
-Mitigation: Use least-privilege tokens, verify MCP packages from official sources, test in sandbox projects or private channels, and revoke tokens or remove config entries when no longer needed. <br>
-Risk: Cross-tool workflows and Slack posting can share sensitive summaries with broader audiences than intended. <br>
-Mitigation: Avoid posting sensitive summaries to broad Slack channels and validate sharing behavior in private channels before using the setup with production data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flynndavid/mcp-server-setup-kit) <br>
+## Use Case:
 
+Developers, operators, and technical teams use this skill to configure MCP server connections for productivity tools, validate that Claude can use those tools, and troubleshoot setup failures.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes readiness checks, validation prompts, troubleshooting steps, and a setup scoring rubric.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run mutable third-party MCP server packages, including npx and uvx commands.
+
+Mitigation: Review packages before installing, pin exact MCP server versions from trusted publishers, and test in non-production environments first.
+
+Risk: The setup uses powerful Slack, Notion, GitHub, and Linear tokens that may allow agents to read or modify connected systems.
+
+Mitigation: Grant the narrowest token scopes possible and avoid connecting production workspaces or repositories unless that access is acceptable.
+
+Risk: The validation prompts include live write actions such as creating pages, issues, or messages.
+
+Mitigation: Run write tests only in sandbox workspaces, test channels, or disposable repositories, and review results before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flynndavid/skills/mcp-server-setup-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets, bash commands, checklists, prompts, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and templates for MCP connections; it does not itself provision services or credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

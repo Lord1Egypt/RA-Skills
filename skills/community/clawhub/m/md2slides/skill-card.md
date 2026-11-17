@@ -1,42 +1,58 @@
-## Description: <br>
-Converts Markdown presentation or report documents into editable PPTX slide decks for PowerPoint, Keynote, or WPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown presentation or report documents into editable PPTX slide decks that can be opened in PowerPoint, Keynote, or WPS.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn structured Markdown talks or reports into editable slide decks while preserving source content for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential presentation text or speaker notes may be included in intermediate schema files. <br>
-Mitigation: Use a dedicated working folder for confidential presentations and delete temporary schema JSON after generating the PPTX. <br>
-Risk: An unintended output path could place the generated deck somewhere unexpected. <br>
-Mitigation: Choose an explicit output path before running the local PPTX generation command. <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to turn structured Markdown presentations or reports into editable slide decks while preserving the source content. The agent scans the document structure, builds a presentation schema, runs the PPTX generator, and verifies generated text coverage.
 
-## Reference(s): <br>
-- [Presentation Schema](references/presentation-schema.md) <br>
-- [Analysis Prompt](references/analysis-prompt.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sopaco/md2slides) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance, PresentationSchema JSON, and a PPTX file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a local .pptx from an intermediate PresentationSchema JSON; users choose the Markdown input and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill reads a selected Markdown file and writes temporary schema and PPTX files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit input and output paths, and avoid running it in sensitive directories when temporary files matter.
+
+Risk: Dependency resolution may vary across installs without a reviewed lockfile or pinned dependency set.
+
+Mitigation: Use a reviewed install with pinned dependencies or a lockfile for reproducible production use.
+
+Risk: Some content may require manual handling if section parsing fails or Mermaid diagrams are converted into placeholders.
+
+Mitigation: Review the pagination plan and generated text verification, then manually handle any flagged sections or diagram placeholders.
+
+## Reference(s):
+
+- [Analysis Prompt](references/analysis-prompt.md)
+- [Presentation Schema](references/presentation-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Files]
+
+**Output Format:** [Markdown status updates, PresentationSchema JSON, shell command invocation, and editable PPTX file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads an explicit Markdown input path, writes a temporary schema JSON file, and writes the requested PPTX output file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

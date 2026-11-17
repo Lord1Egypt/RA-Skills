@@ -1,38 +1,52 @@
-## Description: <br>
-Provides step-by-step diagnostics and command-line fixes for common OpenClaw issues including memory plugin faults, Feishu disconnects, LLM timeouts, and Telegram errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides step-by-step diagnostics and command-line fixes for common OpenClaw issues including memory plugin faults, Feishu disconnections, LLM timeouts, and Telegram errors.
 
-## Publisher: <br>
-[Wayne19820905](https://clawhub.ai/user/Wayne19820905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wayne19820905](https://clawhub.ai/user/wayne19820905)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose and repair OpenClaw runtime, plugin, gateway, and channel configuration issues. It is especially useful when recovering memory behavior, Feishu connectivity, Telegram configuration, or LLM timeout handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Repair commands may modify OpenClaw configuration, plugin allow lists, or local gateway service state. <br>
-Mitigation: Review each command before execution, back up openclaw.json before configuration changes, and run openclaw doctor after changes. <br>
-Risk: Troubleshooting guidance includes high-impact local workflows such as restarting services and changing channel settings. <br>
-Mitigation: Use the commands only in the intended ClawHub or Convex development context and confirm the target OpenClaw environment before applying fixes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators maintaining OpenClaw installations use this skill to diagnose common runtime, plugin, channel, and configuration issues and apply manual command-line repairs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local diagnostic and repair commands that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Manual repair commands can disrupt the OpenClaw gateway or damage configuration if run carelessly.
+
+Mitigation: Back up ~/.openclaw/openclaw.json, avoid gateway restart or kill commands during active sessions, and review commands before execution.
+
+Risk: The /tmp/oc.json repair path can be unsafe for configuration updates.
+
+Mitigation: Use a secure mktemp-based configuration update path before applying that repair.
+
+## Reference(s):
+
+- [Openclaw Troubleshoot ClawHub page](https://clawhub.ai/wayne19820905/skills/openclaw-troubleshoot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended as manual troubleshooting steps and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

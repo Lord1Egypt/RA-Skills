@@ -1,41 +1,57 @@
-## Description: <br>
-Use when you want to quickly acquire, improve, or master a specific manual, trade, craft, or embodied skill; the agent designs personalized deliberate practice regimens, breaks down the skill, generates drills, tracks progress with logs, provides feedback loops, and adjusts based on your reports while you focus on physical execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you want to acquire, improve, or master a manual, trade, craft, or embodied skill through personalized deliberate practice regimens, targeted drills, progress logs, feedback loops, and adjustment based on user reports.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and developers use this skill to structure manual, trade, craft, or embodied practice into measurable drills, logs, feedback loops, and progression plans. It is suited for self-directed learning where the agent handles planning and tracking while the user performs the physical practice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Practice logs may contain sensitive health, workplace, or personal performance details. <br>
-Mitigation: Choose a storage location before use and avoid recording sensitive details unless they are necessary for the practice workflow. <br>
-Risk: Manual skills can involve injury, certification, or workplace safety requirements that an agent cannot validate physically. <br>
-Mitigation: Use qualified human instruction or oversight for safety-critical, regulated, or certification-related activities. <br>
+## Use Case:
 
+External users use this skill to have an agent plan and track deliberate practice for hands-on skills while they perform the physical work. It is intended for learning or improving manual, trade, craft, instrument, tool-handling, gardening, and other embodied skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/deliberate-practice-for-manual-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with practice plans, drills, checklists, logs, summaries, and resource lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and maintain local practice logs using filesystem access when the user chooses a storage location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command uses npx without a pinned trusted installer version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or otherwise trusted ClawHub installer version and run installation from a normal least-privileged account.
+
+Risk: The skill may create or update practice logs and planning files for the manual skill being coached.
+
+Mitigation: Review generated or modified files and keep practice logs in an expected workspace.
+
+Risk: Manual-skill practice can involve physical injury or legal certification requirements.
+
+Mitigation: Use proper form, low-stakes materials, professional oversight for high-risk activities, and qualified instructors or certification paths where required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/deliberate-practice-for-manual-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, files, shell commands]
+
+**Output Format:** [Markdown guidance, practice plans, checklists, resource lists, and practice-log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses filesystem access to create or update practice logs and planning files when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

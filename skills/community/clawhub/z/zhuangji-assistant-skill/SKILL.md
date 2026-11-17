@@ -1,63 +1,38 @@
 ---
-name: zhuangji-assistant-skill
-description: 中文市场台式机装机配置 OpenClaw Skill。用户明确在问预算装机、装机 DIY、硬件 DIY、配电脑、配置单、整机推荐、旧机升级、配置补全、搭配检查、预算分配、兼容性或硬件搭配原理，并且目标是选购、升级或评估台式机硬件时使用。触发后再按 3A/FPS、直播推流、本地 AI 编程/终端 agent 硬件需求、ComfyUI/SD、PS/剪辑/AE/Blender/CAD、黑白海景房、无光或纯性能等用途路由；单独询问软件、游戏、agent 或教程使用方法时不要触发。必须用离线库和脚本查候选、算价格、做兼容性检查；不要凭记忆编型号、价格或兼容结论。
-license: MIT
+name: pc-builder-assistant
+description: Use for budget desktop PC build planning and recommendations, PC hardware DIY, upgrades, configuration completion, compatibility checks, hardware guidance, local LLM GPU/VRAM/RAM sizing, and gaming, streaming, creator, aesthetic, compact or ITX builds. Bundled prices are China-market CNY references; explicit user overlays keep currencies separate. 中文支持预算装机、装机 DIY、整机推荐、旧机升级、配置补全、搭配或兼容检查、硬件问答，以及游戏直播、生产力、本地 AI、外观海景房和紧凑或 ITX 主机。 Do not use for laptops, server procurement, ordering or payment, remote control, security isolation, or standalone software, game or agent tutorials.
+license: MIT-0
 ---
 
-# 装机助手
+# PC Build Assistant
 
-这是面向 OpenClaw/ClawHub 的装机配置 skill。只做 DIY 配置参考、兼容性检查和硬件知识解释，不执行下单、登录、支付、远程控制或系统隔离/安全策略配置。
+## 语言与市场范围
 
-## 使用流程
+- English route: if the request is primarily in English or explicitly asks for an English answer, read `references/english-usage.md` first. English product or software names alone do not activate this route in a Chinese request; an explicit output language wins for mixed requests.
 
-1. 先识别入口：整机推荐、旧机升级、给定部分配置补全、搭配检查、硬件知识解释。
-   - 预算、用途、分辨率、色系、海景房、无光、纯性能等需求读 `references/routing.md`。
-   - 升级、补全、检查、解释模式读 `references/workflows.md`。
-   - 价格规则不清楚时读 `references/pricing.md`；兼容性字段含义不清楚时读 `references/compatibility.md`；硬件收录边界不清楚时读 `references/hardware-scope.md`。
-   - 用户明确要求 ITX、小机箱、背插、BTF 或 Project Zero 时，必须按对应形态读 `references/routing.md` 和 `references/workflows.md`，不要套普通 ATX 方案。
-2. 查候选只运行 `scripts/query_components.py`，不要直接读取 `data/*.yaml`。
-   - 完整配置至少分别查 CPU、主板、内存、硬盘、显卡、散热、电源、机箱。
-   - 中高端显卡/主板、系统盘/生产力 SSD、内存候选查询使用 `--sort tier`，不要把低价首屏当默认答案。
-   - 依赖收窄优先用脚本过滤器：`--socket`、`--chipset`、`--memory-gen`、`--form-factor`、`--max-length`、`--gpu-chip`、`--min-vram`、`--min-capacity`。`--budget` 是单品价格上限，不是整机预算。
-   - 用户明确显卡芯片时，显卡查询加 `--gpu-chip RTX5060Ti|RTX5080|RTX5090D V2`，并把 Ti/D/V2/XT/GRE 等后缀写完整；明确要 16GB/24GB/32GB 等显存容量时再叠加 `--min-vram 16|24|32`。例如 RTX5060Ti 16GB 用 `--gpu-chip RTX5060Ti --min-vram 16`，避免其它 16GB 显卡或 8GB 低价候选压住首屏。
-   - 用户明确 64GB/96GB/128GB 内存，或进入本地 AI、剪辑、AE、Blender、UE、大型 CAD 等生产力路线时，内存查询加 `--min-capacity 64|96|128 --sort tier`，不要让 32GB 低价首屏带偏。用户明确 1TB/2TB/4TB SSD 时，硬盘查询可用 `--min-capacity 1000|2000|4000 --sort tier` 收窄，避免 500GB/512GB 候选混入。
-   - 本地大模型/LLM 超高预算需要 RTX PRO 6000 时，显卡查询显式加 `--include-workstation-gpu`；普通高预算游戏或常规 ComfyUI 不加，避免工作站卡污染候选。
-   - 普通显卡查询默认加 `--gpu-cooling air`；只有用户明确要水冷显卡、显卡水冷、水神/水雕/水超龙/Neptune/WATERFORCE/LIQUID/LC，或 5080/5090 级高预算且明确追求低噪/展示效果时，才改用 `--gpu-cooling liquid`。CPU 水冷需求不能等同于显卡水冷需求。
-   - 优先选择有价格、价格日期和关键兼容字段的条目；海景房/好看需求查机箱时必须读取 `fan_mounts` 或 `fan_slots_count`。
-3. 最终配置必须运行 `scripts/check_compatibility.py --strict`。
-   - 显卡长度、机箱显卡限长、供电、散热限高/冷排位、机箱版型、电源尺寸缺失时，不能写成完整通过。
-   - 只有 `--strict` 输出 `skipped=0` 且无 `msg/warn/error` 时，才可写“完整通过”；否则必须逐条列出复核项。
-   - 主板 `m2_slots` / `sata_ports` 缺失不阻塞普通单 SSD 装机；多硬盘、旧 SATA 盘复用、剪辑素材盘、NAS/存储或工作站扩展需求必须补查。
-4. 输出必须列出每个配件的参考单价、总价、预算差额、兼容性结论、取舍理由和复核项。
-   - CPU、主板、内存、硬盘、显卡、散热、电源、机箱分行列出，不合并。
-   - 内存写容量、频率和时序；硬盘写容量、接口和颗粒/定位信息。
-   - 价格参考日期优先取所选条目的 `price_date`；全单日期一致时写统一日期，不一致时写“价格参考日期以各行 price_date 为准”。当前库 metadata 为 `2026-07-03`，并说明价格来自网络公开信息整理，仅供参考，下单前复核实时价格、库存和具体型号后缀。
-   - 用户报告不要写脚本命令、`overall=pass`、`channel_quote`、`needs_market_quote` 等内部字段；改用“兼容性检查完成，未发现硬不兼容/仍有复核项”“离线渠道参考价”等自然表述。
+## 工作流
 
-## 关键规则
+1. 所有需求先读 `references/routing.md`。需要具体型号、完整配置、升级、补全或搭配检查时，再读 `references/selection-policy.md`。
+2. 按需读取场景与模式：具体用途、外观或形态读 `references/scenarios.md`；升级、补全、检查和精确替换读 `references/workflows.md`；用户用文字或图片补充硬件/报价时读 `references/user-catalog.md`；硬件问答读 `references/hardware-faq.md`；本地大模型与显卡/内存双向适配读 `references/local-model-fit.md`；游戏帧率读 `references/game-performance.md`；历史价格或涨跌趋势读 `references/price-history.md`；给出具体型号、报价或兼容结论时还要读 `references/pricing.md` 和 `references/compatibility.md`。
+3. 查候选时运行 `scripts/query_components.py`，不要直接打开 `data/*.yaml`。新建完整整机时分别查询 CPU、主板、内存、硬盘、显卡、散热、电源、机箱；升级、补全和精确替换只查询需要新增或替换的品类，用户已有配件按精确型号或 ID 保留。中高端显卡、主板、SSD 和内存使用 `--sort tier`。用户明确不要独显时，CPU 查询加 `--integrated-graphics yes`，主板查询加 `--display-output any`，并跳过显卡查询。`--budget` 是单品价格上限，不是整机预算。
+4. 给出完整主机配置或明确宣称整机兼容时，运行 `scripts/check_compatibility.py --strict --require-complete` 并传入脚本中能精确匹配的全部实际配件；核显整机不传 `--gpu`。库外或用户已有配件无法精确匹配时，说明哪些项目未能进入程序化检查，不能宣称整机已完整通过。用户明确要内置采集卡/PCIe 扩展卡、USB4 或雷电口时，分别追加 `--require-extra-pcie-slot`、`--require-usb4`、`--require-thunderbolt`；普通直播不因未提采集卡而追加扩展槽门禁。存在硬不兼容时更换配件；有待复核字段时优先换字段完整候选，否则列明具体复核项，不得写成完整通过。
+5. 处理价格。读取查询结果的 `price_date` 和 `price_stale`；离线库优先，但过期、缺价或用户要求实时价格时，再搜索当前市场价。无法取得当前有效价格时，只能保留为历史或待核参考价，不能用它闭合预算。
+6. 输出配置。只回答方向或原理且未给具体采购型号时，不强制套整机报价表。新建完整整机时，分行列出八类配件及参考单价，并写总价、预算差额、兼容结论、取舍理由、下单前复核点、价格参考日期和仅供参考说明；任一必选项目缺同币种有效价格时，只写已覆盖小计或“总价待补”，不编预算差额。升级或精确替换按 `references/workflows.md` 只列新增/替换件，并写清增量预算、整机参考总价是否完整。核显整机的显卡行写“无独显，使用 CPU 核显，¥0”，并列出已核实的主板视频接口；接口字段缺失时不得写成完整通过。计划以后加卡时按目标显卡预留电源和机箱，目标未定则不得承诺未来显卡兼容。游戏帧率只引用 `scripts/query_game_fps.py` 已收录样本；本地大模型容量只引用 `scripts/query_model_fit.py` 结果，未收录具体模型时按公开 config 复核，不自行承诺长上下文或速度。
 
-- 不编型号、不编价格、不编兼容性结果。
-- 内部缺价条目不参与总价；不要把内部价格状态字段写给用户。
-- 内部渠道报价只能称为离线渠道参考价，不写成实时可下单价。
-- 机箱必须计入总价；海景房默认读取机箱风扇位并预留风扇预算。
-- 普通 ATX/MATX 机箱默认选 ATX 电源；SFX/SFX-L/FLEX/TFX 小电源只在 ITX、小型、NAS、卧式或用户明确复用小电源时使用。小电源装普通 ATX 机箱即使有转接架也默认不通过，只有用户明确复用时才作为例外并提示转接支架、线材长度和电源限长/限高复核。
-- 背插/BTF/Project Zero 不是默认外观升级；只有用户明确要求时采用，必须确认背插主板与背插兼容机箱，普通机箱不能按背插兼容处理。
-- ITX 主机必须同时收窄 Mini-ITX 主板、ITX/小型机箱、机箱指定电源规格、显卡长宽厚、散热限高/冷排位和线材空间；缺关键尺寸时不能写完整通过。
-- 白色/黑色海景房或用户说好看时，提高 240/360 水冷权重；预算充足且不挤压显卡、电源、SSD、内存底线时，可优先带屏/LCD 水冷。
-- 使用水冷时要扣减冷排占用位：360 水冷占 3 个 120 风扇位，240/280 水冷占 2 个，420 水冷占 3 个 140 风扇位；输出中写明水冷已占用位和剩余风扇预算预留。风扇位字段缺失不阻塞整机结论，提示用户自行核实风扇信息，并建议预留加装风扇预算。
-- 低预算候选池不要隐藏 8GB/12GB 内存或 480GB/512GB SSD；推荐方案仍优先 16GB 起步和 1TB SSD，只有预算硬卡、旧机临时过渡或办公入门时才降级，并明确后续优先升级内存和 SSD。
-- 预算优先给足 CPU 和显卡，CPU 够用即可；配置必须均衡，不用明显异常低价电源、机箱或散热硬贴预算。
-- 机箱、散热、电源按总预算比例做软复核，不套绝对低价地板；低于 `references/pricing.md` 的占比区间时，必须复核风道、噪音、线材、额定功率、保修和限长，不把低价首屏当默认。
-- 用户明确要求 ROG/全家桶/旗舰生态时，先核对预算是否足以同时保证核心性能、电源、散热和机箱风道；预算明显不足时不要硬凑零散旗舰件，必须说明预算缺口，并给同生态非旗舰、TUF/PRIME 或性能优先替代方案。
-- 公开输出使用中性候选池表达，不输出品牌贬损或商业背书；按销量、装机采用率、渠道覆盖、规格透明度、售后信息、数据完整度和价格稳定性说明取舍。
-- 低价位尤其 6000 元档优先 Intel 12/13/14 代 + B760 D4 + DDR4；AMD AM5 默认从 Ryzen 5 9600X 起步，Ryzen 5 7500F 只在低预算或强约束下作为取舍。
-- FPS 网游、三角洲、吃鸡、CS、无畏契约、P 社游戏等高 CPU 敏感场景提高 X3D 权重；预算够时 X3D 买新不买旧。
-- 为运行本地 AI 编程/终端 agent 工作流配置硬件时，优先内存、SSD 和 CPU；只要涉及 AI 辅助、embedding、向量库、本地小模型、ComfyUI 或 CUDA 弹性，预算允许时默认保留 NVIDIA 显卡。不要因用户只是询问如何使用某个 agent 就触发装机配置。ComfyUI/SD/文生视频必须优先 NVIDIA 显卡、显存、SSD 和内存；64GB+ 内存需求用 `--min-capacity` 收窄候选。
-- RTX5060Ti 8GB 与 16GB 是不同显存版本，配置单必须写显存容量；RTX5090、RTX5090D 和 RTX5090D V2 分开处理，V2 按 24GB/384-bit，5090/5090D 按 32GB/512-bit。
-- CPU、显卡、内存、SSD 使用 2026-07-03 网络公开行情地板做异常低价过滤；CPU 只看日低价地板，不套同型号中位数离群算法。低于可信行情地板的条目不作默认推荐，高价 ROG/白色旗舰/全家桶不设硬上限，但要说明溢价取舍。
-- RTX PRO 6000 Blackwell 96GB 只作为 13 万元以上本地大模型/工作站候选；默认不进入普通游戏/常规 ComfyUI 高预算候选。
-- 高端水冷显卡只有用户明确要求显卡水冷、水神/水雕/水超龙/Neptune/WATERFORCE/LIQUID/LC、低噪展示效果或预算足够且接受复杂装配时才进入候选；默认显卡按风冷处理，普通显卡查询应加 `--gpu-cooling air`；选择水冷显卡时必须复核机箱额外冷排位/风扇位、CPU 水冷冲突、显卡长度和线材空间。
+## 收录边界
 
-## 发布说明
+具体硬件范围见 `references/hardware-scope.md`。低预算 AM4 X3D、地区限定显卡、不同显存版本、水冷显卡和工作站卡等特殊路线只在用户需求或场景明确时启用。
 
-本包为 ClawHub/OpenClaw 发布面，元数据由 `SKILL.md` 和 `clawhub publish` 参数提供。GitHub 通用发布包另行维护，二者不要互相覆盖。
+## 硬规则
+
+- 不编型号、价格、帧率或兼容性结果。
+- 运行随包 Python 脚本统一使用 `python -B`，避免在只读安装包中生成 `__pycache__` / `.pyc`。
+- 默认输出人民币价格并标注价格参考日期；用户显式提供本地币种 overlay 时只按该币种查询、排序和合计，不做换算或跨币种混算，人民币基础价仍保留为独立参考。没有匹配 overlay 时，英语叶子仅在用户明确要求时可附加已核实汇率的外币估算。缺价条目不参与总价。
+- 默认只推荐可核验的新品渠道报价；二手、翻新和不确定到手价不进入默认总价。
+- 选择 RTX5090 / RTX5090D（同一品类）、RTX5090D V2 或 RTX PRO 6000 时，提醒当前市场行情变化快、该品类价格高，实际购买时请谨慎核对。
+- 公开输出使用中性候选池表达，不输出品牌贬损、商业背书或内部来源信息。
+- 白色配置必须使用白色/白色系配件；黑色配置使用黑色或中性色；无光/纯性能需求不要为灯效和外观溢价牺牲核心性能。
+- 机箱必须计入总价；海景房考虑风扇预算，风扇位缺失时只提示复核，不编数量。
+- 面向用户不要写脚本命令、退出码、完整度门禁、内部价格状态或脚本状态词；用自然语言说明“现有资料未发现硬不兼容，仍需复核具体项目”或“现有型号信息不足，暂不能确认整机完整兼容”等具体事项。
+- 兼容结论按实际结果分档：存在硬不兼容时先说明冲突；仅未见硬不兼容但仍有待复核项时，写“现有资料未发现硬不兼容，仍需复核具体项目”；只有核心项已核齐时，才能说“在已核对规格下未发现硬不兼容”。
+- 配置报告中 CPU、主板、内存、硬盘、显卡、散热、电源、机箱分别成行；核显整机也保留显卡行并明确不配独显。内存写清容量/频率/时序，硬盘写清容量/接口/颗粒或定位；选择独显时写清芯片和显存容量。

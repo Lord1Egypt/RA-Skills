@@ -1,42 +1,58 @@
-## Description: <br>
-Reviews GitLab branch or commit changes for Java projects across security, performance, correctness, maintainability, and testing, then produces a structured CR report and merge guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Java Code Review helps developers review GitLab branch or commit changes before merge, assess Security, Performance, Correctness, Maintainability, and Testing concerns, generate a CR report, track fixes, and execute a merge only after user confirmation.
 
-## Publisher: <br>
-[zhouyuzhy](https://clawhub.ai/user/zhouyuzhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouyuzhy](https://clawhub.ai/user/zhouyuzhy)
 
-## Use Case: <br>
-Java developers and code reviewers use this skill to review GitLab branch or commit changes before merging, identify critical and high-priority issues, and produce a structured CR report with merge recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide GitLab merge actions that affect repository branches. <br>
-Mitigation: Confirm the exact project, source branch, target branch, and merge intent before approving any merge action. <br>
-Risk: Generated CR reports may include repository details, security findings, or sensitive implementation context. <br>
-Mitigation: Keep reports private and use a limited-scope GitLab token when retrieving diffs or preparing merge requests. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Java changes in GitLab before merging branches or inspecting individual commits. It produces a structured CR report with severity-ranked findings, author attribution, pass items, and merge guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouyuzhy/java-code-review) <br>
-- [Code review checklist](references/checklist.md) <br>
-- [GitLab API reference](references/gitlab-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown CR report with tables, checklists, summaries, and GitLab API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitLab project identifier, source branch, target branch, and an appropriately scoped GitLab token before API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: GitLab credentials may grant repository access beyond the review task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token, keep credentials out of reviewed source and generated reports, and confirm the token source before API use.
+
+Risk: The workflow includes repository-changing merge actions after review.
+
+Mitigation: Verify the project, source branch, and target branch, prefer merge requests over direct commits, and require explicit user confirmation before any merge.
+
+Risk: Automated review findings can be incomplete or overly broad.
+
+Mitigation: Have a qualified reviewer validate CR findings and require Critical or High issues to be resolved before merging.
+
+## Reference(s):
+
+- [Code Review Checklist](references/checklist.md)
+- [GitLab API Reference](references/gitlab-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, API calls, shell commands]
+
+**Output Format:** [Markdown CR report with GitLab API request examples and merge guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include severity-ranked findings, affected file and line references, commit author attribution, pass items, and a merge recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

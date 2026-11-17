@@ -1,43 +1,61 @@
-## Description: <br>
-Create, manage, and deploy Voice.ai conversational AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and deploy Voice.ai conversational AI agents for listing, creating, and configuring voice agents.
 
-## Publisher: <br>
-[gizmoGremlin](https://clawhub.ai/user/gizmoGremlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gizmogremlin](https://clawhub.ai/user/gizmogremlin)
 
-## Use Case: <br>
-Developers and teams use this skill to create, list, update, deploy, pause, and delete Voice.ai conversational agents, including agents with knowledge bases, phone deployment, and MCP server integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage a Voice.ai account and perform deploy, pause, delete, phone-number, knowledge-base, and MCP-server actions. <br>
-Mitigation: Use only with a trusted publisher and manually confirm the exact agent ID and intended action before account-changing operations. <br>
-Risk: The skill requires Voice.ai API credentials and may use MCP server credentials. <br>
-Mitigation: Use a scoped API key if available, keep secrets out of logs and commits, and review MCP server credentials before use. <br>
+## Use Case:
 
+Developers and operators use this skill to create, inspect, update, deploy, pause, and delete Voice.ai conversational agents, including agents with knowledge-base and MCP integrations.
 
-## Reference(s): <br>
-- [Voice.ai Developer Dashboard](https://voice.ai/app/dashboard/developers) <br>
-- [Voice Agents Guide](https://voice.ai/docs/guides/voice-agents/quickstart) <br>
-- [Agent API Reference](https://voice.ai/docs/api-reference/agent-management/create-agent) <br>
-- [Voice.ai Status Page](https://status.voice.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON snippets, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Voice.ai API when invoked through the bundled JavaScript CLI or SDK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release metadata; artifact files also reference 1.0.0) <br>
+Risk: The skill can change or delete live Voice.ai resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before deploy, delete, knowledge-base deletion, or phone-number changes.
+
+Risk: API-key handling can expose credentials if keys are echoed or committed.
+
+Mitigation: Use a narrowly scoped Voice.ai API key, avoid echoing keys, and do not commit .env files.
+
+Risk: A custom API endpoint can redirect credentials or resource operations if it is not trusted.
+
+Mitigation: Prefer the default HTTPS endpoint unless the custom endpoint has been separately verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gizmogremlin/skills/openclaw-voiceai-voice-agent)
+- [Voice.ai Developer Dashboard](https://voice.ai/app/dashboard/developers)
+- [Voice.ai Voice Agents Guide](https://voice.ai/docs/guides/voice-agents/quickstart)
+- [Voice.ai Agent API Reference](https://voice.ai/docs/api-reference/agent-management/create-agent)
+- [Voice.ai Status Page](https://status.voice.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON snippets, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform Voice.ai API operations when credentials are provided.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

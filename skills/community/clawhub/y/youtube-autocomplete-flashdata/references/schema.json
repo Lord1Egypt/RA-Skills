@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 35,
+      "pattern": "^[A-Za-z0-9-]+$",
+      "default": "en"
+    },
+    "region": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "default": "US",
+      "pattern": "^[A-Za-z]{2}$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "realtime",
+        "async"
+      ],
+      "default": "realtime"
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

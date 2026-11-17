@@ -1,40 +1,56 @@
-## Description: <br>
-Agent Evaluation helps agents plan testing and benchmarking for LLM agents, including behavioral tests, capability assessment, reliability metrics, regression checks, and production monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Testing and benchmarking LLM agents, including behavioral testing, capability assessment, reliability metrics, and production monitoring.
 
-## Publisher: <br>
-[rustyorb](https://clawhub.ai/user/rustyorb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[rustyorb](https://clawhub.ai/user/rustyorb)
 
-## Use Case: <br>
-Developers and engineers use this skill to design practical LLM agent evaluations, including statistical test evaluation, behavioral contract testing, adversarial testing, and reliability monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may expose confidential benchmark, prompt, or production data while applying evaluation guidance. <br>
-Mitigation: Apply normal data-handling controls and avoid placing confidential evaluation data into prompts unless approved. <br>
-Risk: Users may treat the skill as an automated or definitive evaluator. <br>
-Mitigation: Use it as high-level guidance and validate evaluation plans with domain-specific tests and human review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rustyorb/agent-evaluation) <br>
+## Use Case:
 
+Developers and engineers use this skill to design and review LLM agent evaluations, including behavioral tests, capability assessments, reliability metrics, adversarial tests, and production monitoring practices.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with testing patterns, anti-patterns, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill; it does not execute tools, request credentials, or automate evaluation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Adversarial evaluation suggestions could be applied to agents or test data the user is not authorized to assess.
+
+Mitigation: Use the skill only with authorized agents, systems, and data, and review adversarial test plans before execution.
+
+Risk: Evaluation data leakage can make benchmark or regression results misleading.
+
+Mitigation: Keep held-out test data separate from training data, prompts, and optimization loops.
+
+Risk: Single-run LLM agent tests can produce unstable or misleading pass/fail results.
+
+Mitigation: Run tests multiple times and evaluate result distributions, invariants, and reliability metrics.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rustyorb/skills/agent-evaluation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include evaluation plans, behavioral test cases, benchmark designs, reliability metrics, and monitoring guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

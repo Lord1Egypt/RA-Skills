@@ -1,41 +1,49 @@
-## Description: <br>
-Generate professional business emails in seconds. Includes cold emails, follow-ups, meeting requests, and more for business communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional business emails in seconds. Includes cold emails, follow-ups, meeting requests, and more for business communication.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Employees, sales teams, support teams, and business users use this skill to draft polished business emails such as cold outreach, follow-ups, meeting requests, project updates, and customer responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated email drafts may contain inaccurate, unsuitable, or overly aggressive business messaging. <br>
-Mitigation: Review, personalize, and approve generated emails before sending, especially cold outreach or sales copy. <br>
-Risk: Prompts for email drafting may include confidential customer or business information. <br>
-Mitigation: Avoid sharing confidential details unless that fits the organization's normal AI-use policy. <br>
+## Use Case:
 
+Business users, sales teams, support teams, and professionals use this skill to draft cold outreach, follow-ups, meeting requests, support replies, job applications, thank-you notes, and other polished business emails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/email-template-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text email drafts with subject lines and placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated email text should be reviewed and personalized before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Generated outreach or customer messages may be inaccurate, insufficiently personalized, or inconsistent with consent and communication policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and personalize each generated email before sending, and check it against the organization's communication policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/email-template-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown email drafts with subject lines and editable placeholders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated messages should be reviewed and personalized before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

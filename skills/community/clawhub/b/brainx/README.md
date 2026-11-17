@@ -785,7 +785,7 @@ Before saving any memory, BrainX automatically applies sensitive data redaction.
 | `openai_key` | `sk-abc123...` |
 | `github_token` | `ghp_xxxx...` |
 | `github_pat` | `github_pat_xxxx...` |
-| `aws_access_key` | `AKIAIOSFODNN7EXAMPLE` |
+| `aws_access_key` | `REDACTED-SECRET` |
 | `slack_token` | `xoxb-xxx-xxx` |
 | `bearer_token` | `Bearer eyJ...` |
 | `api_key_assignment` | `api_key=sk_live_xxx` |

@@ -1,41 +1,54 @@
-## Description: <br>
-IAM security patterns by Watadot Studio. Manage users, roles, and policy verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IAM security patterns by Watadot Studio. Manage users, roles, and policy verification.
 
-## Publisher: <br>
-[ordiy](https://clawhub.ai/user/ordiy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ordiy](https://clawhub.ai/user/ordiy)
 
-## Use Case: <br>
-Developers, cloud engineers, and security teams use this skill to audit AWS IAM identities, inspect access keys, assume roles, review attached policies, and check effective policy documents with AWS CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IAM audit and role commands can expose sensitive account, identity, policy, or credential metadata when run in a real AWS environment. <br>
-Mitigation: Review commands before execution, use least-privilege AWS credentials, avoid sharing command output externally, and prefer read-only permissions for audit workflows. <br>
-Risk: Role assumption and policy inspection workflows can affect security decisions if run against the wrong AWS account, role, or policy ARN. <br>
-Mitigation: Confirm the target account, role ARN, policy ARN, and version ID before running commands, and require MFA or approved change controls for privileged sessions. <br>
+## Use Case:
 
+Developers, cloud engineers, and security practitioners use this skill to ask an agent for AWS IAM audit commands, role operations, policy inspection steps, and concise security best practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ordiy/watadot-aws-iam) <br>
-- [Publisher profile](https://clawhub.ai/user/ordiy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with AWS CLI command examples and concise best-practice guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the AWS CLI to run the command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can suggest AWS IAM CLI commands against a configured AWS account, and IAM listings or policy documents may reveal sensitive account structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged AWS profile where possible and review every command before execution.
+
+Risk: IAM audit and policy lookup output may include usernames, role names, ARNs, access-key metadata, and policy details.
+
+Mitigation: Handle command output as sensitive operational data and avoid sharing it outside approved channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ordiy/skills/watadot-aws-iam)
+- [Publisher profile](https://clawhub.ai/user/ordiy)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require the AWS CLI and an appropriately configured AWS account profile.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

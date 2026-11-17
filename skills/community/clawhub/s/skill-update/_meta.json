@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "skill-update",
-  "version": "1.0.0",
-  "publishedAt": 1770829883842
+  "displayName": "Skill Update",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764904
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784844638915
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784811871893
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770829883842
+    }
+  ]
 }

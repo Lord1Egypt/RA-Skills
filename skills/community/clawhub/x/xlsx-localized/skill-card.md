@@ -1,39 +1,53 @@
-## Description: <br>
-Use this skill when a spreadsheet file is the primary input or output, including reading, creating, editing, formatting, analyzing, or converting .xlsx, .xlsm, .csv, and .tsv files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, read, edit, analyze, convert, format, and verify .xlsx, .xlsm, .csv, and .tsv spreadsheets.
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-Developers and spreadsheet-focused agents use this skill to inspect, create, modify, and verify spreadsheet deliverables while preserving formulas, formatting, and financial-model conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The formula recalculation helper can run local LibreOffice, modify workbooks, and leave a persistent macro in the user's LibreOffice profile. <br>
-Mitigation: Review before installing, use copies of important spreadsheets, and prefer versions that ask before profile changes, use a temporary LibreOffice profile, clean up the macro, and remove shell=True. <br>
+## Use Case:
 
+Agents and developers use this skill to build, modify, inspect, and QA spreadsheet deliverables, especially Excel workbooks with formulas, formatting, financial-model conventions, and LibreOffice recalculation checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/xlsx-localized) <br>
-- [LibreOffice download](https://www.libreoffice.org/download/download-libreoffice/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify spreadsheet files when an agent follows the workflow. Formula recalculation depends on a local LibreOffice installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The formula recalculation helper can persistently modify or overwrite a user's LibreOffice macro module.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after review, preferably with a temporary LibreOffice profile, a skill-specific macro name, and explicit user consent for profile changes.
+
+Risk: Spreadsheet recalculation can overwrite important workbook files during processing.
+
+Mitigation: Use copies or backups of important workbooks until the helper adds file-type allowlisting and safer overwrite controls.
+
+## Reference(s):
+
+- [LibreOffice download](https://www.libreoffice.org/download/download-libreoffice/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus spreadsheet files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use pandas, openpyxl, and LibreOffice for formula recalculation and spreadsheet error checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

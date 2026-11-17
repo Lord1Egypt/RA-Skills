@@ -1,44 +1,59 @@
-## Description: <br>
-Free AI text-to-image generation that turns text descriptions into images using Pollinations.ai models without requiring an API key. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Free AI text-to-image generation that turns text descriptions into images without an API key and supports multiple Pollinations.ai models.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-Developers and agents use this skill to turn user image prompts into generated image files through Pollinations.ai, with controls for dimensions, model selection, watermark removal, and seed-based reproducibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to Pollinations.ai and could expose secrets, personal information, regulated data, or confidential project details. <br>
-Mitigation: Do not include sensitive or confidential information in prompts; review prompt content before execution. <br>
-Risk: Generated images depend on an external free API that may queue, delay, fail, or change behavior. <br>
-Mitigation: Set expectations for generation latency, retry failed requests deliberately, and review generated images before use. <br>
-Risk: The artifact notes a non-commercial limitation for the Pollinations.ai free tier. <br>
-Mitigation: Confirm Pollinations.ai terms before commercial deployment or use a service tier with suitable rights. <br>
+## Use Case:
 
+External users and agent builders use this skill to generate image files from text prompts with optional size, seed, and model parameters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustes01/text-to-image-free) <br>
-- [Skill homepage metadata](https://clawhub.ai/BusTes01/text-to-image-free) <br>
-- [Pollinations.ai image endpoint](https://image.pollinations.ai/prompt/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Generated image file with Markdown and bash command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports prompt text, width, height, model, nologo, and optional seed parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompt text is sent to Pollinations.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use sensitive, confidential, or regulated prompts with this skill.
+
+Risk: The documented command pattern can execute crafted prompt text as local Python code.
+
+Mitigation: Pass prompts as data to the URL-encoding step instead of interpolating them into python3 -c source.
+
+Risk: The documented output path is a fixed temporary file.
+
+Mitigation: Write generated images to a unique private temporary path before returning them to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bustes01/skills/text-to-image-free)
+- [ClawHub metadata homepage](https://clawhub.ai/BusTes01/text-to-image-free)
+- [Pollinations.ai image endpoint](https://image.pollinations.ai/prompt/{prompt})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports width, height, model, nologo, and seed parameters; generated images are written as local files.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

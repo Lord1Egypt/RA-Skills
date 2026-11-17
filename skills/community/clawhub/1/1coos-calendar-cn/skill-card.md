@@ -1,42 +1,59 @@
-## Description: <br>
-Queries Chinese traditional calendar and almanac information, including lunar dates, huangli, solar terms, five elements, auspicious and inauspicious activities, ganzhi, Buddhist calendar details, and Taoist calendar details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local Chinese traditional calendar and almanac lookups for Gregorian or lunar dates.
 
-## Publisher: <br>
-[1coos](https://clawhub.ai/user/1coos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1coos](https://clawhub.ai/user/1coos)
 
-## Use Case: <br>
-External users and agents use this skill to look up Chinese calendar, lunar date, and huangli details for a requested Gregorian or lunar date. It is intended for informational calendar lookup and configurable almanac output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be invoked for a broad range of Chinese calendar-related questions. <br>
-Mitigation: Review agent routing and invocation behavior so it is used only for intended Chinese calendar and almanac lookups. <br>
-Risk: A user-supplied --config path could point to sensitive local files. <br>
-Mitigation: Use only non-sensitive configuration files when passing --config. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese calendar, lunar date, almanac, solar term, festival, and auspicious-day questions from a date input.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1coos/1coos-calendar-cn) <br>
-- [Module Configuration Reference](references/modules.md) <br>
-- [lunar-typescript](https://github.com/6tail/lunar-typescript) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with calendar sections and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Bun and accepts optional date, lunar-date, help, and config-file parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Calendar and almanac results are generated from bundled data and library logic, so users may treat culturally specific or auspicious-day guidance as authoritative beyond its intended context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as calendar and almanac information and have users verify high-impact scheduling, legal, medical, financial, or religious decisions with appropriate sources.
+
+Risk: The skill requires Bun and includes a large bundled JavaScript file with embedded calendar data tables.
+
+Mitigation: Install only in environments where Bun is approved, and rely on the clean clawscan verdict plus normal review and scanning before deployment.
+
+Risk: English language mode may still include some Chinese section labels.
+
+Mitigation: Tell non-Chinese readers that output localization is partial and confirm important terms before acting on the result.
+
+## Reference(s):
+
+- [Module configuration reference](references/modules.md)
+- [lunar-typescript](https://github.com/6tail/lunar-typescript)
+- [ClawHub skill page](https://clawhub.ai/1coos/skills/1coos-calendar-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown-style formatted calendar report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output; requires Bun; optional local config can enable or disable output modules.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

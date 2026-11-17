@@ -1,39 +1,54 @@
-## Description: <br>
-AI Code Helper helps developers review, validate, generate, format, lint, explain, convert, and fix code-related work from the command line while keeping local records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review, validate, and generate code with AI-powered linting for fixing bugs, generating boilerplate, formatting, and running analysis.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to log and retrieve local records for code review, validation, generation, linting, formatting, conversion, diff, preview, and fix workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local plaintext logs may retain sensitive code notes, credentials, vulnerability details, or confidential customer data if users enter them. <br>
-Mitigation: Use the skill only for notes suitable for local plaintext retention, avoid logging secrets or confidential material, and periodically review or delete ~/.local/share/ai-code-helper when history is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to log code review notes, validation results, code generation requests, formatting and linting passes, explanations, conversions, fixes, reports, and related activity. It also supports status checks, recent-entry views, full-text search, statistics, and exports of the locally stored records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ckchzh/ai-code-helper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Plain text command output, local log files, and JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local plaintext history under ~/.local/share/ai-code-helper/ by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill can persist code-related notes, prompts, and other development text in plaintext local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, tokens, private keys, regulated data, proprietary source, or other sensitive material unless plaintext local storage is acceptable.
+
+Risk: Saved logs are searchable and exportable, which can make sensitive entries easier to redistribute.
+
+Mitigation: Review log contents before using search results or exports, and remove sensitive entries from ~/.local/share/ai-code-helper before sharing files.
+
+## Reference(s):
+
+- [Ai Code Helper on ClawHub](https://clawhub.ai/ckchzh/skills/ai-code-helper)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output with optional JSON, CSV, or text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores timestamped plaintext logs and generated export files under ~/.local/share/ai-code-helper.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

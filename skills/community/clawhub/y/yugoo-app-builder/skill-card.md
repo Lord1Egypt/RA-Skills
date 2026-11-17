@@ -1,45 +1,63 @@
-## Description: <br>
-Build full-stack web applications using 语构's chat-driven development platform. Manages conversations, sends development instructions, monitors build progress, extracts results (generated files, summaries, task status), publishes applications, and manages versions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build full-stack web applications through 语构's chat-driven platform, including conversation management, development instruction delivery, build monitoring, result extraction, publishing, and version management.
 
-## Publisher: <br>
-[yugoo](https://clawhub.ai/user/yugoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yugoo](https://clawhub.ai/user/yugoo)
 
-## Use Case: <br>
-Developers and teams use this skill to create, iterate, publish, and manage full-stack web applications through Yugoo's chat-driven platform and CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends app prompts and selected files to a third-party Yugoo/Creo4u service. <br>
-Mitigation: Install only when use of that service is intended, and avoid uploading secrets or private business data. <br>
-Risk: The skill requires sensitive credentials. <br>
-Mitigation: Use a revocable, least-privilege CREO4U_SKILL_API_KEY and rotate it if exposure is suspected. <br>
-Risk: The skill can publish applications publicly and the security evidence notes no clear user confirmation step. <br>
-Mitigation: Require explicit user approval before publishing applications or sharing production URLs. <br>
-Risk: The CLI supports an --insecure option that disables TLS certificate verification. <br>
-Mitigation: Use --insecure only in controlled test environments and never with real credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to create, iterate, publish, and manage full-stack web applications on the 语构 platform from focused natural-language requests.
 
-## Reference(s): <br>
-- [Creo4u homepage](https://creo4u.com) <br>
-- [ClawHub skill page](https://clawhub.ai/yugoo/yugoo-app-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-line CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREO4U_SKILL_API_KEY and may use uploaded files, remote project state, and publish actions through the Yugoo service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: The skill can perform credential-bearing network operations against the 语构 platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable, least-privilege CREO4U_SKILL_API_KEY and avoid untrusted YUGOO_BASE_URL values.
+
+Risk: The skill supports public publishing and destructive actions such as unpublishing, deleting conversations, and deleting versions.
+
+Mitigation: Require explicit user approval before publishing, unpublishing, deleting conversations, deleting versions, finalizing versions, or uploading local files.
+
+Risk: The --insecure option disables TLS certificate verification while transmitting authenticated requests.
+
+Mitigation: Do not use --insecure except in controlled test environments with non-production credentials.
+
+Risk: Generated applications may expose secrets or unsafe behavior if published without review.
+
+Mitigation: Inspect generated applications for secrets and unsafe behavior before making them public.
+
+## Reference(s):
+
+- [语构 App Builder ClawHub listing](https://clawhub.ai/yugoo/skills/yugoo-app-builder)
+- [yugoo publisher profile](https://clawhub.ai/user/yugoo)
+- [语构 homepage](https://creo4u.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-line command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CREO4U_SKILL_API_KEY for authenticated platform operations and may produce links to generated preview or published applications.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

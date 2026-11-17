@@ -1,39 +1,58 @@
-## Description: <br>
-Add governance to experiment workflows with PIN-protected destructive operations, standardized metric thresholds, compare-scores ranking with gating, and competition rules audit guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add governance to experiment workflows - PIN-protected destructive ops, standardized metrics registry with thresholds, compare-scores ranking with gating, and competition rules audit.
 
-## Publisher: <br>
-[diamond2nv](https://clawhub.ai/user/diamond2nv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diamond2nv](https://clawhub.ai/user/diamond2nv)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to add governance patterns to experiment workflows, including PIN checks for destructive actions, metric registries with thresholds, experiment ranking, and competition compliance audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destructive experiment actions can be performed without the intended PIN guard if automation normalizes `--force` or command-line PIN use. <br>
-Mitigation: Require scoped automation permissions, audit logging, and human review for cancel, stop, delete, and PIN-clear workflows; avoid command-line PINs and treat `--force` as an exception path. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to add governance controls to experiment workflows, including PIN protection for destructive operations, standardized metric reporting, score comparison with gates, and competition-rule audit checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diamond2nv/experiment-lifecycle-governance) <br>
-- [expflow repository](https://github.com/diamond2nv/expflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides implementation patterns, CLI examples, metric threshold conventions, audit checks, and operational cautions for experiment governance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Risk: Agents or automation may bypass PIN safeguards for destructive experiment actions by using force-style command paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval or scoped automation credentials for cancel, stop, delete, and PIN-clear actions; avoid blanket use of force flags on PIN-protected commands.
+
+Risk: Credential or local-state exposure can occur if ClearML, Langfuse, dataset paths, or PIN hashes are stored in tracked configuration files.
+
+Mitigation: Keep real credentials in local environment files or local config, store PIN hashes in the dedicated expflow state path, and review generated configuration before committing.
+
+Risk: Unpinned tool launches can reuse older local tool environments or drift from the intended release.
+
+Mitigation: Pin expflow-pde versions for uvx or tool-run workflows when reproducibility or supply-chain hygiene matters.
+
+## Reference(s):
+
+- [expflow homepage](https://github.com/diamond2nv/expflow)
+- [ClawHub skill page](https://clawhub.ai/diamond2nv/skills/experiment-lifecycle-governance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash, Python, YAML, and JSON-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe PIN-guarded experiment actions, ClearML metric reporting, comparison gates, audit commands, and local configuration patterns.]
+
+## Skill Version(s):
+
+0.7.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

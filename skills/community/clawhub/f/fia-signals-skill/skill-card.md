@@ -1,43 +1,60 @@
-## Description: <br>
-Fía Signals gives agents crypto market intelligence through shell commands and API lookups covering price predictions, technical indicators, gas prices, DeFi yields, wallet risk, MEV, and related market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fía Signals lets agents call a crypto market intelligence API for gas prices, Solana activity, DeFi yields, due diligence, MEV data, wallet risk, and related market signals.
 
-## Publisher: <br>
-[Odds7](https://clawhub.ai/user/Odds7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[odds7](https://clawhub.ai/user/odds7)
 
-## Use Case: <br>
-Developers and external agent users use this skill to query Fía Signals for crypto market data, technical signals, on-chain indicators, gas prices, DeFi yields, wallet risk, and premium x402-gated intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto lookup inputs such as wallet addresses, contract addresses, token symbols, and chain names are sent to Fía Signals. <br>
-Mitigation: Use the skill only when those inputs are appropriate to share with Fía Signals, and do not provide private keys, seed phrases, wallet passwords, or unrelated sensitive data. <br>
-Risk: Premium endpoints may lead to x402 USDC payment flows. <br>
-Mitigation: Review endpoint pricing and payment links before authorizing or following any paid request. <br>
+## Use Case:
 
+Developers and external agents use this skill to query third-party crypto market data, signals, and risk-style summaries from Fía Signals endpoints. Users should treat the responses as market intelligence inputs rather than financial, audit, or security advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/Odds7/fia-signals-skill) <br>
-- [Fía Signals API](https://api.fiasignals.com) <br>
-- [Fía Signals x402 Discovery](https://x402.fiasignals.com/.well-known/x402.json) <br>
-- [Fía Signals x402 Gateway](https://x402.fiasignals.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown and terminal text with JSON responses from API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Free endpoints require no API key; premium endpoints may return x402 payment links before data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Trading, audit, and wallet-risk outputs may be misleading if treated as advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as third-party market data and require qualified human review before trading, audit, or security decisions.
+
+Risk: Premium x402 endpoints can require paid USDC network use.
+
+Mitigation: Require explicit user confirmation before invoking paid endpoints and review the x402 discovery or endpoint price first.
+
+Risk: Artifact descriptions make broad and partly inconsistent endpoint-count claims.
+
+Mitigation: Confirm needed endpoint availability with the discovery or health endpoint before relying on a specific command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odds7/skills/fia-signals-skill)
+- [Fía Signals API](https://api.fiasignals.com)
+- [Fía Signals x402 discovery](https://x402.fiasignals.com/.well-known/x402.json)
+- [Fía Signals x402 gateway](https://x402.fiasignals.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and JSON returned by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some endpoints are free, while premium endpoints require x402 USDC payment.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-九马AI免费数字人视频生成技能，使用九马AI API将文本内容或音频内容生成口型同步的数字人视频，并支持选择不同数字人形象和音色。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates lip-synced Jiuma digital-human videos from text or audio input using selected avatar and voice IDs or URLs.
 
-## Publisher: <br>
-[dddcn1](https://clawhub.ai/user/dddcn1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dddcn1](https://clawhub.ai/user/dddcn1)
 
-## Use Case: <br>
-External users and developers use this skill to create Jiuma-hosted digital-human videos from text or audio inputs, then check generation status and retrieve the resulting video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user generation inputs to Jiuma and relies on a reusable Jiuma API key stored locally in plaintext. <br>
-Mitigation: Use only on trusted machines, avoid sensitive personal or regulated content, and delete or protect the local .jiuma credential files after use. <br>
-Risk: The skill may return login or recharge links during authentication, low balance, or account-required flows. <br>
-Mitigation: Verify login and recharge links before using them, and do not scan payment or login QR codes from untrusted sessions. <br>
+## Use Case:
 
+External users and developers use this skill to collect digital-human video parameters, call Jiuma APIs to create a video task, and check task status until a video URL is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dddcn1/jiuma-free-meta-human) <br>
-- [Jiuma API service endpoint](https://api.jiuma.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task IDs, status messages, login or payment links when required, and final video URLs returned by Jiuma.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Risk: Prompts, audio or avatar URLs, and generated-task data are sent to Jiuma.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated content unless the deployment owner has approved sending that data to Jiuma.
+
+Risk: The login flow can expose or persist API credentials in local .jiuma files and terminal logs.
+
+Mitigation: Treat .jiuma files and logs as sensitive, restrict local file permissions, and rotate the Jiuma key if it may have been printed or captured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dddcn1/skills/jiuma-free-meta-human)
+- [Skill instructions](artifact/SKILL.md)
+- [Login flow documentation](artifact/LOGIN.md)
+- [Avatar ID reference](artifact/meta-human.json)
+- [Voice ID reference](artifact/voice.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-like command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Jiuma task IDs, payment or login URLs, task status, and generated video URLs.]
+
+## Skill Version(s):
+
+1.0.13 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

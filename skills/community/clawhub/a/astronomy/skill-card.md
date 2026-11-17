@@ -1,39 +1,53 @@
-## Description: <br>
-Explore the cosmos from backyard stargazing to astrophysics research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore the cosmos from backyard stargazing to astrophysics research.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners, students, researchers, and teachers use this skill for astronomy explanations, observing guidance, astrophysics study support, and research-oriented source and tooling guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Observing guidance can become outdated or depend on the user's location, time, hemisphere, weather, and light pollution. <br>
-Mitigation: Verify current sky events and visibility against authoritative astronomy sources and the user's observing context before presenting time-sensitive recommendations. <br>
-Risk: Astronomy explanations may oversimplify uncertainty, measurement limits, or unsettled science. <br>
-Mitigation: State assumptions, distinguish settled results from open questions, and include uncertainty or error-bar context when discussing measurements or models. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/astronomy) <br>
+## Use Case:
 
+External users, students, teachers, and researchers use this skill for astronomy education, sky-observation guidance, astrophysics explanations, research workflow guidance, and classroom support.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include astronomy explanations, cited source suggestions, observational caveats, equations, and next-step guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Time- and location-sensitive sky-event guidance may become inaccurate for eclipses, meteor showers, ISS passes, and visible planets.
+
+Mitigation: Verify such results against current astronomy sources or local observing tools before relying on them.
+
+Risk: Astronomy explanations and calculations may depend on assumptions, units, observational constraints, and measurement uncertainty.
+
+Mitigation: State assumptions, units, observational constraints, and uncertainty when explaining calculations or observations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/astronomy)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code, shell commands, equations, citations, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts detail and rigor to beginner, student, teacher, or researcher contexts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,22 @@
+{
+  "chapters": [
+    {
+      "number": 1,
+      "file": "0001_入门.md",
+      "title": "入门",
+      "status": "drafting",
+      "wordCount": 16,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "number": 2,
+      "file": "0002_初遇.md",
+      "title": "初遇",
+      "status": "drafting",
+      "wordCount": 15,
+      "createdAt": "2024-01-02T00:00:00Z",
+      "updatedAt": "2024-01-02T00:00:00Z"
+    }
+  ]
+}

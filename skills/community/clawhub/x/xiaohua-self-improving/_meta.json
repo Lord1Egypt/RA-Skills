@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn74206nfykrny0t188frtq7n1814d5x",
-  "slug": "xiaohua-self-improving",
-  "version": "1.0.0",
-  "publishedAt": 1772438630140
+  "name": "self-improving-agent",
+  "displayName": "Self-Improving Agent (Enhanced)",
+  "description": "Captures learnings, errors, and corrections for continuous improvement. Enhanced with OpenClaw workflow integration, memory promotion, and China-friendly search patterns.",
+  "version": "2.0.0",
+  "author": "HuaNiu-Team",
+  "tags": ["productivity", "learning", "memory", "openclaw", "workflow"],
+  "changelog": "v2.0.0 - Enhanced for OpenClaw: Added MEMORY.md integration, workflow auto-promotion, China-friendly search (Baidu), error tracking templates, and battle-tested patterns from production use."
 }

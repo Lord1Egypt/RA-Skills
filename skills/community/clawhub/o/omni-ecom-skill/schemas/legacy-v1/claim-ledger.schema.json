@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/legacy-v1/claim-ledger-1.0.json",
+  "title": "Legacy Omni E-commerce Numeric Claim Ledger",
+  "type": "object",
+  "required": ["schema_version", "run_id", "client_scope", "period", "claims"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "run_id": {"type": "string", "minLength": 1},
+    "client_scope": {"type": "string", "minLength": 1},
+    "period": {"type": "string", "minLength": 1},
+    "additional_periods": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "source_context_policy": {"enum": ["legacy_unbound", "required"]},
+    "scope": {"type": "object"},
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["claim_id", "metric", "value", "unit", "period", "status", "source_ref"],
+        "properties": {
+          "claim_id": {"type": "string", "pattern": "^C-[A-Za-z0-9_-]+$"},
+          "metric": {"type": "string", "minLength": 1},
+          "value": {"type": ["number", "null"]},
+          "unit": {"type": "string", "minLength": 1},
+          "period": {"type": "string", "minLength": 1},
+          "status": {"enum": ["verified", "derived", "unknown"]},
+          "source_ref": {"type": "object"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

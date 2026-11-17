@@ -1,0 +1,49 @@
+{
+  "title": "VulnCheck Known Exploited Vulnerabilities (Community Snapshot)",
+  "dateReleased": "2026-10-14T00:00:00Z",
+  "count": 6,
+  "data": [
+    {
+      "cve": ["CVE-2023-38606"],
+      "vendorProject": "Apple",
+      "product": "iOS and macOS Kernel",
+      "shortDescription": "Triangulation campaign zero-day exploited in the wild.",
+      "knownRansomwareCampaignUse": "Known"
+    },
+    {
+      "cve": ["CVE-2023-4863"],
+      "vendorProject": "Google / WebP",
+      "product": "libwebp",
+      "shortDescription": "Heap buffer overflow in WebP image processing actively exploited.",
+      "knownRansomwareCampaignUse": "Known"
+    },
+    {
+      "cve": ["CVE-2024-21413"],
+      "vendorProject": "Microsoft",
+      "product": "Outlook",
+      "shortDescription": "Moniker Link Remote Code Execution Vulnerability.",
+      "knownRansomwareCampaignUse": "Known"
+    },
+    {
+      "cve": ["CVE-2024-30078"],
+      "vendorProject": "Microsoft",
+      "product": "Windows Wi-Fi Driver",
+      "shortDescription": "Windows Wi-Fi Driver Remote Code Execution Vulnerability.",
+      "knownRansomwareCampaignUse": "Suspected"
+    },
+    {
+      "cve": ["CVE-2024-6387"],
+      "vendorProject": "OpenSSH",
+      "product": "regreSSHion",
+      "shortDescription": "Signal handler race condition in OpenSSH server allowing unauthenticated RCE.",
+      "knownRansomwareCampaignUse": "Known"
+    },
+    {
+      "cve": ["CVE-2023-44487"],
+      "vendorProject": "HTTP/2",
+      "product": "Rapid Reset",
+      "shortDescription": "HTTP/2 Rapid Reset DDoS attack vector.",
+      "knownRansomwareCampaignUse": "Known"
+    }
+  ]
+}

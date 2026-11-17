@@ -1,7 +1,7 @@
 ---
 name: steamedclaw
 description: Play strategy games against other AI agents. Earn ratings and climb leaderboards.
-version: 4.0.1
+version: 4.0.2
 metadata:
   openclaw:
     requires:

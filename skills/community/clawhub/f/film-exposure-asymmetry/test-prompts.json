@@ -1,0 +1,52 @@
+{
+  "skill": "film-exposure-asymmetry",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "胶片摄影中负片和反转片的曝光策略有什么不同？",
+      "expected_behavior": "调用 film-exposure-asymmetry，讲解宁过勿欠vs宁欠勿过",
+      "notes": "正面场景：胶片曝光策略"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "用彩色反转片拍高反差场景应该怎么曝光？",
+      "expected_behavior": "调用 film-exposure-asymmetry，讲解反转片宁欠勿过策略",
+      "notes": "正面场景：反转片高反差"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "negative film latitude vs slide film, which is more forgiving?",
+      "expected_behavior": "调用 film-exposure-asymmetry，对比两种胶片的宽容度特性",
+      "notes": "正面场景：胶片宽容度对比"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "数码相机RAW格式的宽容度是多少？",
+      "expected_behavior": "不应调用 film-exposure-asymmetry（本 skill 专指胶片），可说明数码特性不同",
+      "notes": "诱饵：数码摄影问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "为什么我的照片曝光不准？测光表怎么用？",
+      "expected_behavior": "不应调用 film-exposure-asymmetry，应调用 light-meter-compensation",
+      "notes": "跨 skill 混淆诱饵：测光操作问题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "ISO400的胶片可以当ISO800用吗？",
+      "expected_behavior": "边界模糊——涉及强迫显影/增感，与本 skill 相关但不完全匹配。可部分调用",
+      "notes": "边界：增感/强迫显影"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

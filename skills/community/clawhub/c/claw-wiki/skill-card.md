@@ -1,47 +1,58 @@
-## Description: <br>
-Reference and refresh a local OpenClaw documentation snapshot for product usage, deployment, configuration, CLI commands, channels, gateway behavior, tools, troubleshooting, and docs-version verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+References and refreshes a local OpenClaw documentation snapshot for product usage, deployment, configuration, CLI commands, channels, gateway behavior, tools, troubleshooting, and docs-version verification.
 
-## Publisher: <br>
-[lueashes](https://clawhub.ai/user/lueashes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lueashes](https://clawhub.ai/user/lueashes)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to answer OpenClaw product, setup, configuration, CLI, integration, security, and troubleshooting questions from a pinned local documentation snapshot. Maintainers can also use it to refresh the bundled docs snapshot, rebuild indexes, validate the corpus, and summarize documentation changes when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refresh mode can replace the bundled documentation snapshot and relies on git or network access to the fixed upstream OpenClaw repository. <br>
-Mitigation: Run refresh only after an explicit user request, validate the docs, rebuild indexes, and review the generated diff before relying on refreshed answers. <br>
-Risk: Documentation examples may include commands, tokens, passwords, API keys, or bearer-auth examples that are not real credentials. <br>
-Mitigation: Treat example values as documentation text only; do not execute install snippets blindly or use/extract credential-like examples. <br>
-Risk: Answers can become outdated if the pinned local snapshot is stale. <br>
-Mitigation: For freshness-sensitive questions, read the source lock and report the snapshot commit/date; refresh from the upstream docs only when requested. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to answer product, deployment, configuration, CLI, channel, gateway, tool, and troubleshooting questions from a pinned local documentation snapshot. When explicitly requested, they use it to refresh, validate, index, and summarize changes in that snapshot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lueashes/claw-wiki) <br>
-- [OpenClaw documentation snapshot source lock](artifact/state/source-lock.json) <br>
-- [OpenClaw update workflow](artifact/references/update-workflow.md) <br>
-- [OpenClaw routing cheatsheet](artifact/references/routing-cheatsheet.md) <br>
-- [OpenClaw query examples](artifact/references/query-examples.md) <br>
-- [OpenClaw docs navigation metadata](artifact/docs.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown answers with file-path citations, command snippets, and maintenance summaries when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should be grounded in local snapshot files; refresh responses should include snapshot commit/date and validation or diff status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Refresh mode can clone upstream OpenClaw documentation and rewrite the local docs snapshot when explicitly requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use refresh mode only after an explicit user request, treat upstream refs as read-only, limit writes to the skill's docs and state files, and run validation, index rebuild, and diff generation before reporting success.
+
+Risk: Documentation examples may include installer commands or sample secrets that should not be executed or treated as credentials.
+
+Mitigation: Review quoted installer commands before running them, do not execute downloaded scripts from documentation examples, and treat example tokens or passwords as documentation text only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lueashes/skills/claw-wiki)
+- [SKILL.md](SKILL.md)
+- [README.md](README.md)
+- [SECURITY.md](SECURITY.md)
+- [Update workflow](references/update-workflow.md)
+- [Snapshot source lock](state/source-lock.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with file-path citations and occasional shell command snippets for explicit refresh workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should be grounded in files read from the bundled OpenClaw docs snapshot; refresh output should include validation and diff status.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

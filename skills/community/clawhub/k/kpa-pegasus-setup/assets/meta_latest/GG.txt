@@ -1,0 +1,1294 @@
+collection: GG
+sort-by: 10
+shortname: gg
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/gearsystem_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 15飞鹰
+file: 15飞鹰.gg
+assets.box_front: Imgs/15飞鹰.png
+description: 《15飞鹰》，由 MicroProse 出品，模拟类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: MicroProse
+genre: Simulation
+players: 1
+game: FIFA国际足球
+file: FIFA国际足球.gg
+assets.box_front: Imgs/FIFA国际足球.png
+description: 《FIFA国际足球》，由 Electronic Arts 出品，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Electronic Arts
+genre: Sports
+players: 2
+game: FIFA足球 96
+file: FIFA足球 96.gg
+assets.box_front: Imgs/FIFA足球 96.png
+description: 《FIFA足球 96》，世嘉 Game Gear 平台。
+game: GG描绘-結城晶
+file: GG描绘-結城晶.gg
+assets.box_front: Imgs/GG描绘-結城晶.png
+description: 《GG描绘-結城晶》，由 SEGA 出品，1996 年发行，Various类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1996
+genre: Various
+players: 1
+game: GG描绘-陈白
+file: GG描绘-陈白.gg
+assets.box_front: Imgs/GG描绘-陈白.png
+description: 《GG描绘-陈白》，由 SEGA 出品，1996 年发行，Various类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1996
+genre: Various
+players: 1
+game: GG雅士达
+file: GG雅士达.gg
+assets.box_front: Imgs/GG雅士达.png
+description: 《GG雅士达》，由 Compile 出品，1991 年发行，Shoot'em Up类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Compile
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: GG雅士达2
+file: GG雅士达2.gg
+assets.box_front: Imgs/GG雅士达2.png
+description: 《GG雅士达2》，由 SEGA 出品，1993 年发行，Shoot'em Up类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Shoot'em Up
+players: 1
+game: GP 车手
+file: GP 车手.gg
+assets.box_front: Imgs/GP 车手.png
+description: 《GP 车手》，世嘉 Game Gear 平台。
+game: MLBPA 棒球
+file: MLBPA 棒球.gg
+assets.box_front: Imgs/MLBPA 棒球.png
+description: 《MLBPA 棒球》，世嘉 Game Gear 平台。
+game: NBA嘉年华 - 锦标赛
+file: NBA嘉年华 - 锦标赛.gg
+assets.box_front: Imgs/NBA嘉年华 - 锦标赛.png
+description: 《NBA嘉年华 - 锦标赛》，世嘉 Game Gear 平台。
+game: NBA嘉年华
+file: NBA嘉年华.gg
+assets.box_front: Imgs/NBA嘉年华.png
+description: 《NBA嘉年华》，由 Arena Entertainment 出品，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Arena Entertainment
+genre: Sports
+players: 1
+game: PGA 高尔夫 1
+file: PGA 高尔夫 1.gg
+assets.box_front: Imgs/PGA 高尔夫 1.png
+description: 《PGA 高尔夫 1》，世嘉 Game Gear 平台。
+game: PGA 高尔夫 2
+file: PGA 高尔夫 2.gg
+assets.box_front: Imgs/PGA 高尔夫 2.png
+description: 《PGA 高尔夫 2》，世嘉 Game Gear 平台。
+game: PGA 高尔夫 96
+file: PGA 高尔夫 96.gg
+assets.box_front: Imgs/PGA 高尔夫 96.png
+description: 《PGA 高尔夫 96》，世嘉 Game Gear 平台。
+game: R.B.I.棒球 94
+file: R.B.I.棒球 94.gg
+assets.box_front: Imgs/R.B.I.棒球 94.png
+description: 《R.B.I.棒球 94》，世嘉 Game Gear 平台。
+game: SD高达-优胜者故事
+file: SD高达-优胜者故事.gg
+assets.box_front: Imgs/SD高达-优胜者故事.png
+description: 《SD高达-优胜者故事》，1995 年发行，世嘉 Game Gear 平台。
+release: 1995
+game: X战警1
+file: X战警1.gg
+assets.box_front: Imgs/X战警1.png
+description: 《X战警1》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: SEGA
+genre: Platform
+players: 4
+game: X战警2
+file: X战警2.gg
+assets.box_front: Imgs/X战警2.png
+description: 《X战警2》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: X战警3
+file: X战警3.gg
+assets.box_front: Imgs/X战警3.png
+description: 《X战警3》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: Zool-第N维度的忍者
+file: Zool-第N维度的忍者.gg
+assets.box_front: Imgs/Zool-第N维度的忍者.png
+description: 《Zool-第N维度的忍者》，由 Gremlin Graphics Software 出品，1994 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Gremlin Graphics Software
+release: 1994
+genre: Platform
+players: 1
+game: 一级方程式赛车
+file: 一级方程式赛车.gg
+assets.box_front: Imgs/一级方程式赛车.png
+description: 《一级方程式赛车》，由 Domark 出品，竞速类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Domark
+genre: Racing
+players: 2
+game: 七喜小子
+file: 七喜小子.gg
+assets.box_front: Imgs/七喜小子.png
+description: 《七喜小子》，由 Virgin Interactive 出品，1993 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Virgin Interactive
+release: 1993
+genre: Platform
+players: 1
+game: 三丁目公园
+file: 三丁目公园.gg
+assets.box_front: Imgs/三丁目公园.png
+description: 《三丁目公园》，由 SEGA 出品，1995 年发行，Casual Game类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Casual Game
+players: 1
+game: 上尉密令
+file: 上尉密令.gg
+assets.box_front: Imgs/上尉密令.png
+description: 《上尉密令》，由 Mindscape 出品，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Mindscape
+genre: Beat'em Up
+players: 1
+game: 上海2
+file: 上海2.gg
+assets.box_front: Imgs/上海2.png
+description: 《上海2》，由 Sunsoft 出品，1990 年发行，Board类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+release: 1990
+genre: Board
+players: 2
+game: 世嘉游戏合集 4 1n 1
+file: 世嘉游戏合集 4 1n 1.gg
+assets.box_front: Imgs/世嘉游戏合集 4 1n 1.png
+description: 《世嘉游戏合集 4 1n 1》，世嘉 Game Gear 平台。
+    本作为原作的合集版本。
+game: 世界冠军赛
+file: 世界冠军赛.gg
+assets.box_front: Imgs/世界冠军赛.png
+description: 《世界冠军赛》，由 Domark 出品，1995 年发行，竞速类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Domark
+release: 1995
+genre: Racing
+players: 1
+game: 世界杯足球
+file: 世界杯足球.gg
+assets.box_front: Imgs/世界杯足球.png
+description: 《世界杯足球》，由 Tengen 出品，体育类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: Tengen
+genre: Sports
+players: 4
+game: 世界系列棒球 95
+file: 世界系列棒球 95.gg
+assets.box_front: Imgs/世界系列棒球 95.png
+description: 《世界系列棒球 95》，世嘉 Game Gear 平台。
+game: 世界系列棒球
+file: 世界系列棒球.gg
+assets.box_front: Imgs/世界系列棒球.png
+description: 《世界系列棒球》，由 SEGA 出品，1993 年发行，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Sports
+players: 1
+game: 亚当斯一家
+file: 亚当斯一家.gg
+assets.box_front: Imgs/亚当斯一家.png
+description: 《亚当斯一家》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 交叉路口
+file: 交叉路口.gg
+assets.box_front: Imgs/交叉路口.png
+description: 《交叉路口》，由 Micronet 出品，1991 年发行，策略类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Micronet
+release: 1991
+genre: Strategy
+players: 1
+game: 企鹅大冒险
+file: 企鹅大冒险.gg
+assets.box_front: Imgs/企鹅大冒险.png
+description: 《企鹅大冒险》，由 SEGA 出品，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Puzzle
+players: 1
+game: 伊万德·霍利菲尔德的真实拳击
+file: 伊万德·霍利菲尔德的真实拳击.gg
+assets.box_front: Imgs/伊万德·霍利菲尔德的真实拳击.png
+description: 《伊万德·霍利菲尔德的真实拳击》，由 SEGA 出品，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Sports
+players: 2
+game: 侏罗纪公园
+file: 侏罗纪公园.gg
+assets.box_front: Imgs/侏罗纪公园.png
+description: 《侏罗纪公园》，由 SEGA 出品，冒险类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Adventure
+players: 1
+game: 光明力量外传1
+file: 光明力量外传1.gg
+assets.box_front: Imgs/光明力量外传1.png
+description: 《光明力量外传1》，由 SEGA 出品，1992 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 光明力量外传2
+file: 光明力量外传2.gg
+assets.box_front: Imgs/光明力量外传2.png
+description: 《光明力量外传2》，由 SEGA 出品，1994 年发行，策略类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1994
+genre: Strategy
+players: 1
+game: 光明力量外传3
+file: 光明力量外传3.gg
+assets.box_front: Imgs/光明力量外传3.png
+description: 《光明力量外传3》，由 SEGA 出品，1995 年发行，策略类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Strategy
+players: 1
+game: 全球角斗士
+file: 全球角斗士.gg
+assets.box_front: Imgs/全球角斗士.png
+description: 《全球角斗士》，由 Virgin 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 剑勇传说
+file: 剑勇传说.gg
+assets.box_front: Imgs/剑勇传说.png
+description: 《剑勇传说》，由 SEGA 出品，1994 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1994
+genre: Platform
+players: 1
+game: 动力赛车
+file: 动力赛车.gg
+assets.box_front: Imgs/动力赛车.png
+description: 《动力赛车》，由 U.S. Gold 出品，1994 年发行，竞速类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: U.S. Gold
+release: 1994
+genre: Racing
+players: 4
+game: 动态拼图
+file: 动态拼图.gg
+assets.box_front: Imgs/动态拼图.png
+description: 《动态拼图》，由 SEGA 出品，1991 年发行，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1991
+genre: Puzzle
+players: 1
+game: 动感足球-欧洲冠军杯
+file: 动感足球-欧洲冠军杯.gg
+assets.box_front: Imgs/动感足球-欧洲冠军杯.png
+description: 《动感足球-欧洲冠军杯》，由 Sony Imagesoft 出品，1993 年发行，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Sony Imagesoft
+release: 1993
+genre: Sports
+players: 1
+game: 双人篮球
+file: 双人篮球.gg
+assets.box_front: Imgs/双人篮球.png
+description: 《双人篮球》，由 Flying Edge 出品，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Flying Edge
+genre: Sports
+players: 2
+game: 命运之轮
+file: 命运之轮.gg
+assets.box_front: Imgs/命运之轮.png
+description: 《命运之轮》，由 GameTek 出品，Quiz类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: GameTek
+genre: Quiz
+players: 2
+game: 哆啦A梦-哇酷~哇酷~口袋乐园
+file: 哆啦A梦-哇酷~哇酷~口袋乐园.gg
+assets.box_front: Imgs/哆啦A梦-哇酷~哇酷~口袋乐园.png
+description: 《哆啦A梦-哇酷~哇酷~口袋乐园》，由 SEGA 出品，1996 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1996
+genre: Platform
+players: 2
+game: 哆啦A梦-野良之介的野心
+file: 哆啦A梦-野良之介的野心.gg
+assets.box_front: Imgs/哆啦A梦-野良之介的野心.png
+description: 《哆啦A梦-野良之介的野心》，由 SEGA 出品，1993 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Platform
+players: 1
+game: 哈雷大战
+file: 哈雷大战.gg
+assets.box_front: Imgs/哈雷大战.png
+description: 《哈雷大战》，由 SEGA 出品，Shoot'em Up类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Shoot'em Up
+players: 1
+game: 噗哟方块 2
+file: 噗哟方块 2.gg
+assets.box_front: Imgs/噗哟方块 2.png
+description: 《噗哟方块 2》，世嘉 Game Gear 平台。
+game: 噗哟方块
+file: 噗哟方块.gg
+assets.box_front: Imgs/噗哟方块.png
+description: 《噗哟方块》，由 SEGA 出品，策略类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Strategy
+players: 2
+game: 国际象棋大师
+file: 国际象棋大师.gg
+assets.box_front: Imgs/国际象棋大师.png
+description: 《国际象棋大师》，由 SEGA 出品，Board类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Board
+players: 2
+game: 塔罗屋
+file: 塔罗屋.gg
+assets.box_front: Imgs/塔罗屋.png
+description: 《塔罗屋》，由 SEGA 出品，1991 年发行，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1991
+genre: Puzzle
+players: 1
+game: 太空哈利
+file: 太空哈利.gg
+assets.box_front: Imgs/太空哈利.png
+description: 《太空哈利》，由 SEGA 出品，射击类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Shooter
+players: 1
+game: 失落世界-侏罗纪公园
+file: 失落世界-侏罗纪公园.gg
+assets.box_front: Imgs/失落世界-侏罗纪公园.png
+description: 《失落世界-侏罗纪公园》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 夺宝奇兵 3-圣战奇兵
+file: 夺宝奇兵 3-圣战奇兵.gg
+assets.box_front: Imgs/夺宝奇兵 3-圣战奇兵.png
+description: 《夺宝奇兵 3-圣战奇兵》，世嘉 Game Gear 平台。
+game: 奇幻森林
+file: 奇幻森林.gg
+assets.box_front: Imgs/奇幻森林.png
+description: 《奇幻森林》，由 Virgin 出品，1994 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Virgin
+release: 1994
+genre: Platform
+players: 1
+game: 奥林匹克金牌
+file: 奥林匹克金牌.sms
+assets.box_front: Imgs/奥林匹克金牌.png
+description: 《奥林匹克金牌》，由 U.S. Gold 出品，体育类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: U.S. Gold
+genre: Sports
+players: 4
+game: 女士吃豆人
+file: 女士吃豆人.gg
+assets.box_front: Imgs/女士吃豆人.png
+description: 《女士吃豆人》，由 Namco 出品，动作类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Namco
+genre: Action
+players: 2
+game: 女神转生外传
+file: 女神转生外传.gg
+assets.box_front: Imgs/女神转生外传.png
+description: 《女神转生外传》，由 SEGA 出品，1995 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Role-playing (RPG)
+players: 1
+game: 女神转生外传特别版
+file: 女神转生外传特别版.gg
+assets.box_front: Imgs/女神转生外传特别版.png
+description: 《女神转生外传特别版》，由 SEGA 出品，1994 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1994
+genre: Role-playing (RPG)
+players: 1
+game: 奶酪猫
+file: 奶酪猫.gg
+assets.box_front: Imgs/奶酪猫.png
+description: 《奶酪猫》，由 SEGA 出品，1995 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Platform
+players: 1
+game: 宇宙统领
+file: 宇宙统领.gg
+assets.box_front: Imgs/宇宙统领.png
+description: 《宇宙统领》，由 Codemasters 出品，1993 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Codemasters
+release: 1993
+genre: Platform
+players: 1
+game: 安德烈·阿加西网球赛
+file: 安德烈·阿加西网球赛.gg
+assets.box_front: Imgs/安德烈·阿加西网球赛.png
+description: 《安德烈·阿加西网球赛》，由 Tecmagik 出品，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Tecmagik
+genre: Sports
+players: 1
+game: 小原始人 1
+file: 小原始人 1.gg
+assets.box_front: Imgs/小原始人 1.png
+description: 《小原始人 1》，世嘉 Game Gear 平台。
+game: 小原始人
+file: 小原始人.sms
+assets.box_front: Imgs/小原始人.png
+description: 《小原始人》，由 Innovation 出品，1993 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Innovation
+release: 1993
+genre: Platform
+players: 1
+game: 小原始人2 - 查克之子
+file: 小原始人2 - 查克之子.gg
+assets.box_front: Imgs/小原始人2 - 查克之子.png
+description: 《小原始人2 - 查克之子》，世嘉 Game Gear 平台。
+game: 异形3
+file: 异形3.gg
+assets.box_front: Imgs/异形3.png
+description: 《异形3》，由 Arena Entertainment 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Arena Entertainment
+genre: Platform
+players: 1
+game: 异形特攻队
+file: 异形特攻队.gg
+assets.box_front: Imgs/异形特攻队.png
+description: 《异形特攻队》，由 SEGA 出品，1992 年发行，射击类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1992
+genre: Shooter
+players: 1
+game: 弗雷修行篇
+file: 弗雷修行篇.gg
+assets.box_front: Imgs/弗雷修行篇.png
+description: 《弗雷修行篇》，由 Microcabin 出品，1991 年发行，Shoot'em Up类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Microcabin
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 弗雷德·卡波斯 高尔夫
+file: 弗雷德·卡波斯 高尔夫.gg
+assets.box_front: Imgs/弗雷德·卡波斯 高尔夫.png
+description: 《弗雷德·卡波斯 高尔夫》，世嘉 Game Gear 平台。
+game: 忍空 2 - 通往天空龙之路
+file: 忍空 2 - 通往天空龙之路.gg
+assets.box_front: Imgs/忍空 2 - 通往天空龙之路.png
+description: 《忍空 2 - 通往天空龙之路》，世嘉 Game Gear 平台。
+game: 忍空 外传 - 英雄大活剧
+file: 忍空 外传 - 英雄大活剧.gg
+assets.box_front: Imgs/忍空 外传 - 英雄大活剧.png
+description: 《忍空 外传 - 英雄大活剧》，世嘉 Game Gear 平台。
+game: 忍空
+file: 忍空.gg
+assets.box_front: Imgs/忍空.png
+description: 《忍空》，1995 年发行，世嘉 Game Gear 平台。
+release: 1995
+game: 忍者蛙
+file: 忍者蛙.gg
+assets.box_front: Imgs/忍者蛙.png
+description: 《忍者蛙》，由 SEGA 出品，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Beat'em Up
+players: 1
+game: 忍者龙剑传
+file: 忍者龙剑传.gg
+assets.box_front: Imgs/忍者龙剑传.png
+description: 《忍者龙剑传》，由 SEGA 出品，1991 年发行，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1991
+genre: Beat'em Up
+players: 1
+game: 恶魔来袭
+file: 恶魔来袭.gg
+assets.box_front: Imgs/恶魔来袭.png
+description: 《恶魔来袭》，由 SEGA 出品，1991 年发行，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1991
+genre: Puzzle
+players: 1
+game: 战斗双子棒球
+file: 战斗双子棒球.gg
+assets.box_front: Imgs/战斗双子棒球.png
+description: 《战斗双子棒球》，由 SEGA 出品，1995 年发行，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1995
+genre: Sports
+players: 2
+game: 战舰-经典海军战斗游戏
+file: 战舰-经典海军战斗游戏.gg
+assets.box_front: Imgs/战舰-经典海军战斗游戏.png
+description: 《战舰-经典海军战斗游戏》，1993 年发行，世嘉 Game Gear 平台。
+release: 1993
+game: 扑克 保罗的21点
+file: 扑克 保罗的21点.gg
+assets.box_front: Imgs/扑克 保罗的21点.png
+description: 《扑克 保罗的21点》，世嘉 Game Gear 平台。
+game: 扑克 保罗的扑克
+file: 扑克 保罗的扑克.gg
+assets.box_front: Imgs/扑克 保罗的扑克.png
+description: 《扑克 保罗的扑克》，世嘉 Game Gear 平台。
+game: 扑克 保罗的接龙纸牌
+file: 扑克 保罗的接龙纸牌.gg
+assets.box_front: Imgs/扑克 保罗的接龙纸牌.png
+description: 《扑克 保罗的接龙纸牌》，世嘉 Game Gear 平台。
+game: 扑克 保罗的金拉米纸牌
+file: 扑克 保罗的金拉米纸牌.gg
+assets.box_front: Imgs/扑克 保罗的金拉米纸牌.png
+description: 《扑克 保罗的金拉米纸牌》，世嘉 Game Gear 平台。
+game: 接水管
+file: 接水管.gg
+assets.box_front: Imgs/接水管.png
+description: 《接水管》，世嘉 Game Gear 平台。
+game: 播磨滩相扑
+file: 播磨滩相扑.gg
+assets.box_front: Imgs/播磨滩相扑.png
+description: 《播磨滩相扑》，由 SEGA 出品，1993 年发行，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Sports
+players: 1
+game: 斩
+file: 斩.gg
+assets.box_front: Imgs/斩.png
+description: 《斩》，由 Wolf Team 出品，1990 年发行，策略类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Wolf Team
+release: 1990
+genre: Strategy
+players: 2
+game: 斯皮鲁
+file: 斯皮鲁.gg
+assets.box_front: Imgs/斯皮鲁.png
+description: 《斯皮鲁》，由 Infogrames 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Infogrames
+genre: Platform
+players: 1
+game: 新奇弹珠
+file: 新奇弹珠.gg
+assets.box_front: Imgs/新奇弹珠.png
+description: 《新奇弹珠》，由 Tengen 出品，益智类游戏，世嘉 Game Gear 平台。
+publisher: Tengen
+genre: Puzzle
+game: 方块跳棋
+file: 方块跳棋.gg
+assets.box_front: Imgs/方块跳棋.png
+description: 《方块跳棋》，1993 年发行，世嘉 Game Gear 平台。
+release: 1993
+game: 方格纸牌
+file: 方格纸牌.gg
+assets.box_front: Imgs/方格纸牌.png
+description: 《方格纸牌》，由 SEGA 出品，1991 年发行，Gambling类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1991
+genre: Gambling
+players: 2
+game: 旋风狗泰兹-寻找失落的海鸟
+file: 旋风狗泰兹-寻找失落的海鸟.gg
+assets.box_front: Imgs/旋风狗泰兹-寻找失落的海鸟.png
+description: 《旋风狗泰兹-寻找失落的海鸟》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 旋风狗泰兹-逃出火星
+file: 旋风狗泰兹-逃出火星.gg
+assets.box_front: Imgs/旋风狗泰兹-逃出火星.png
+description: 《旋风狗泰兹-逃出火星》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 星球大战1
+file: 星球大战1.gg
+assets.box_front: Imgs/星球大战1.png
+description: 《星球大战1》，由 U.S. Gold 出品，1993 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: U.S. Gold
+release: 1993
+genre: Platform
+players: 1
+game: 星球大战2-绝地归来
+file: 星球大战2-绝地归来.gg
+assets.box_front: Imgs/星球大战2-绝地归来.png
+description: 《星球大战2-绝地归来》，由 Black Pearl Software 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Black Pearl Software
+genre: Platform
+players: 1
+game: 星际之门
+file: 星际之门.gg
+assets.box_front: Imgs/星际之门.png
+description: 《星际之门》，由 Acclaim 出品，益智类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Acclaim
+genre: Puzzle
+players: 2
+game: 星际迷航1-继往开来
+file: 星际迷航1-继往开来.gg
+assets.box_front: Imgs/星际迷航1-继往开来.png
+description: 《星际迷航1-继往开来》，由 Absolute Entertainment 出品，射击类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Absolute Entertainment
+genre: Shooter
+players: 1
+game: 星际迷航2-下一代
+file: 星际迷航2-下一代.gg
+assets.box_front: Imgs/星际迷航2-下一代.png
+description: 《星际迷航2-下一代》，由 Absolute Entertainment 出品，模拟类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Absolute Entertainment
+genre: Simulation
+players: 1
+game: 最后的足球手
+file: 最后的足球手.gg
+assets.box_front: Imgs/最后的足球手.png
+description: 《最后的足球手》，由 SEGA 出品，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Sports
+players: 2
+game: 木头打砖块
+file: 木头打砖块.gg
+assets.box_front: Imgs/木头打砖块.png
+description: 《木头打砖块》，由 SEGA 出品，动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 梦幻战警
+file: 梦幻战警.gg
+assets.box_front: Imgs/梦幻战警.png
+description: 《梦幻战警》，由 SEGA 出品，格斗类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Fighting
+players: 1
+game: 森林传说
+file: 森林传说.gg
+assets.box_front: Imgs/森林传说.png
+description: 《森林传说》，1995 年发行，世嘉 Game Gear 平台。
+release: 1995
+game: 气泡破坏者
+file: 气泡破坏者.gg
+assets.box_front: Imgs/气泡破坏者.png
+description: 《气泡破坏者》，由 Microcabin 出品，1991 年发行，益智类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Microcabin
+release: 1991
+genre: Puzzle
+players: 2
+game: 水晶战士
+file: 水晶战士.gg
+assets.box_front: Imgs/水晶战士.png
+description: 《水晶战士》，由 SEGA 出品，策略类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Strategy
+players: 1
+game: 永恒的传说
+file: 永恒的传说.gg
+assets.box_front: Imgs/永恒的传说.png
+description: 《永恒的传说》，由 SEGA 出品，1991 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1991
+genre: Role-playing (RPG)
+players: 1
+game: 沙漠风暴-重返海湾
+file: 沙漠风暴-重返海湾.gg
+assets.box_front: Imgs/沙漠风暴-重返海湾.png
+description: 《沙漠风暴-重返海湾》，由 Domark 出品，1994 年发行，射击类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Domark
+release: 1994
+genre: Shooter
+players: 1
+game: 沙福传奇
+file: 沙福传奇.gg
+assets.box_front: Imgs/沙福传奇.png
+description: 《沙福传奇》，由 Electronic Arts 出品，格斗类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Electronic Arts
+genre: Fighting
+players: 1
+game: 法兰克汤姆斯棒球
+file: 法兰克汤姆斯棒球.gg
+assets.box_front: Imgs/法兰克汤姆斯棒球.png
+description: 《法兰克汤姆斯棒球》，由 Acclaim 出品，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Acclaim
+genre: Sports
+players: 1
+game: 泡泡龙
+file: 泡泡龙.gg
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，由 Taito 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Taito
+genre: Platform
+players: 1
+game: 泡泡龙解谜
+file: 泡泡龙解谜.gg
+assets.box_front: Imgs/泡泡龙解谜.png
+description: 《泡泡龙解谜》，由 SEGA 出品，益智类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Puzzle
+players: 2
+game: 波斯王子
+file: 波斯王子.gg
+assets.box_front: Imgs/波斯王子.png
+description: 《波斯王子》，世嘉 Game Gear 平台。
+game: 泰山
+file: 泰山.gg
+assets.box_front: Imgs/泰山.png
+description: 《泰山》，由 GameTek 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: GameTek
+genre: Platform
+players: 1
+game: 海豚历险记1
+file: 海豚历险记1.gg
+assets.box_front: Imgs/海豚历险记1.png
+description: 《海豚历险记1》，1994 年发行，世嘉 Game Gear 平台。
+release: 1994
+game: 海豚历险记2
+file: 海豚历险记2.gg
+assets.box_front: Imgs/海豚历险记2.png
+description: 《海豚历险记2》，由 SEGA 出品，冒险类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Adventure
+players: 1
+game: 滑雪者
+file: 滑雪者.gg
+assets.box_front: Imgs/滑雪者.png
+description: 《滑雪者》，由 SEGA 出品，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Puzzle
+players: 1
+game: 炎之斗球儿-躲避球弹平
+file: 炎之斗球儿-躲避球弹平.gg
+assets.box_front: Imgs/炎之斗球儿-躲避球弹平.png
+description: 《炎之斗球儿-躲避球弹平》，由 SEGA 出品，1992 年发行，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1992
+genre: Sports
+players: 1
+game: 独自在家
+file: 独自在家.gg
+assets.box_front: Imgs/独自在家.png
+description: 《独自在家》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 狮子王
+file: 狮子王.gg
+assets.box_front: Imgs/狮子王.png
+description: 《狮子王》，由 Virgin 出品，1994 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Virgin
+release: 1994
+genre: Platform
+players: 1
+game: 猫和老鼠
+file: 猫和老鼠.gg
+assets.box_front: Imgs/猫和老鼠.png
+description: 《猫和老鼠》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 猫捉老鼠
+file: 猫捉老鼠.gg
+assets.box_front: Imgs/猫捉老鼠.png
+description: 《猫捉老鼠》，由 Namco 出品，1991 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Namco
+release: 1991
+genre: Platform
+players: 2
+game: 猫鼠大战
+file: 猫鼠大战.gg
+assets.box_front: Imgs/猫鼠大战.png
+description: 《猫鼠大战》，由 Acclaim 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Acclaim
+genre: Platform
+players: 1
+game: 瑜珈熊淘金行动
+file: 瑜珈熊淘金行动.gg
+assets.box_front: Imgs/瑜珈熊淘金行动.png
+description: 《瑜珈熊淘金行动》，由 GameTek 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: GameTek
+genre: Platform
+players: 1
+game: 瑞迪克拳击
+file: 瑞迪克拳击.gg
+assets.box_front: Imgs/瑞迪克拳击.png
+description: 《瑞迪克拳击》，由 Extreme Entertainment 出品，1994 年发行，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Extreme Entertainment
+release: 1994
+genre: Sports
+players: 2
+game: 疯狂弹珠
+file: 疯狂弹珠.gg
+assets.box_front: Imgs/疯狂弹珠.png
+description: 《疯狂弹珠》，由 Tengen 出品，动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Tengen
+genre: Action
+players: 1
+game: 疯狂摔角-铁笼挑战赛
+file: 疯狂摔角-铁笼挑战赛.sms
+assets.box_front: Imgs/疯狂摔角-铁笼挑战赛.png
+description: 《疯狂摔角-铁笼挑战赛》，由 Flying Edge 出品，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Sports
+players: 1
+game: 疯狂摔角
+file: 疯狂摔角.gg
+assets.box_front: Imgs/疯狂摔角.png
+description: 《疯狂摔角》，由 Acclaim 出品，体育类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: Acclaim
+genre: Sports
+players: 4
+game: 疯狂面孔
+file: 疯狂面孔.gg
+assets.box_front: Imgs/疯狂面孔.png
+description: 《疯狂面孔》，由 Domark 出品，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Domark
+genre: Puzzle
+players: 1
+game: 瘪四与大头蛋
+file: 瘪四与大头蛋.gg
+assets.box_front: Imgs/瘪四与大头蛋.png
+description: 《瘪四与大头蛋》，世嘉 Game Gear 平台。
+game: 皮特·桑普拉斯网球赛
+file: 皮特·桑普拉斯网球赛.gg
+assets.box_front: Imgs/皮特·桑普拉斯网球赛.png
+description: 《皮特·桑普拉斯网球赛》，由 Codemasters 出品，体育类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: Codemasters
+genre: Sports
+players: 4
+game: 真人快打1
+file: 真人快打1.gg
+assets.box_front: Imgs/真人快打1.png
+description: 《真人快打1》，由 Arena Entertainment 出品，1993 年发行，格斗类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Arena Entertainment
+release: 1993
+genre: Fighting
+players: 2
+game: 真人快打2
+file: 真人快打2.gg
+assets.box_front: Imgs/真人快打2.png
+description: 《真人快打2》，由 Acclaim 出品，格斗类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Acclaim
+genre: Fighting
+players: 2
+game: 真人快打3
+file: 真人快打3.gg
+assets.box_front: Imgs/真人快打3.png
+description: 《真人快打3》，由 Acclaim 出品，格斗类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Acclaim
+genre: Fighting
+players: 2
+game: 真实拳击
+file: 真实拳击.gg
+assets.box_front: Imgs/真实拳击.png
+description: 《真实拳击》，由 Acclaim 出品，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Acclaim
+genre: Sports
+players: 1
+game: 真实谎言
+file: 真实谎言.gg
+assets.box_front: Imgs/真实谎言.png
+description: 《真实谎言》，由 Acclaim 出品，射击类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Acclaim
+genre: Shooter
+players: 1
+game: 神奇男孩-龙之陷井
+file: 神奇男孩-龙之陷井.gg
+assets.box_front: Imgs/神奇男孩-龙之陷井.png
+description: 《神奇男孩-龙之陷井》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 粉兔子寻友记
+file: 粉兔子寻友记.gg
+assets.box_front: Imgs/粉兔子寻友记.png
+description: 《粉兔子寻友记》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 紫禁城
+file: 紫禁城.gg
+assets.box_front: Imgs/紫禁城.png
+description: 《紫禁城》，由 Sunsoft 出品，1991 年发行，Board类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Sunsoft
+release: 1991
+genre: Board
+players: 1
+game: 约翰麦登实况橄榄球
+file: 约翰麦登实况橄榄球.gg
+assets.box_front: Imgs/约翰麦登实况橄榄球.png
+description: 《约翰麦登实况橄榄球》，由 SEGA 出品，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Sports
+players: 2
+game: 纸牌合集
+file: 纸牌合集.gg
+assets.box_front: Imgs/纸牌合集.png
+description: 《纸牌合集》，由 Interplay 出品，Gambling类游戏，世嘉 Game Gear 平台，单人游玩。
+    本作为原作的合集版本。
+publisher: Interplay
+genre: Gambling
+players: 1
+game: 纸牌扑克
+file: 纸牌扑克.gg
+assets.box_front: Imgs/纸牌扑克.png
+description: 《纸牌扑克》，由 SEGA 出品，Gambling类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Gambling
+players: 2
+game: 终结者1
+file: 终结者1.gg
+assets.box_front: Imgs/终结者1.png
+description: 《终结者1》，由 Virgin 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 终结者2 审判日
+file: 终结者2 审判日.gg
+assets.box_front: Imgs/终结者2 审判日.png
+description: 《终结者2 审判日》，世嘉 Game Gear 平台。
+game: 终结者2 街机
+file: 终结者2 街机.gg
+assets.box_front: Imgs/终结者2 街机.png
+description: 《终结者2 街机》，世嘉 Game Gear 平台。
+game: 美国世界杯足球 94
+file: 美国世界杯足球 94.gg
+assets.box_front: Imgs/美国世界杯足球 94.png
+description: 《美国世界杯足球 94》，世嘉 Game Gear 平台。
+game: 翻转方块
+file: 翻转方块.gg
+assets.box_front: Imgs/翻转方块.png
+description: 《翻转方块》，由 Tengen 出品，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Tengen
+genre: Puzzle
+players: 1
+game: 职业棒球 91
+file: 职业棒球 91.gg
+assets.box_front: Imgs/职业棒球 91.png
+description: 《职业棒球 91》，世嘉 Game Gear 平台。
+game: 职业棒球GG联盟 94
+file: 职业棒球GG联盟 94.gg
+assets.box_front: Imgs/职业棒球GG联盟 94.png
+description: 《职业棒球GG联盟 94》，世嘉 Game Gear 平台。
+game: 职业棒球GG联盟
+file: 职业棒球GG联盟.gg
+assets.box_front: Imgs/职业棒球GG联盟.png
+description: 《职业棒球GG联盟》，由 SEGA 出品，1993 年发行，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1993
+genre: Sports
+players: 2
+game: 芝加哥匪帮
+file: 芝加哥匪帮.gg
+assets.box_front: Imgs/芝加哥匪帮.png
+description: 《芝加哥匪帮》，由 SEGA 出品，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Beat'em Up
+players: 1
+game: 花式台球
+file: 花式台球.gg
+assets.box_front: Imgs/花式台球.png
+description: 《花式台球》，由 Data East 出品，1994 年发行，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Data East
+release: 1994
+genre: Sports
+players: 2
+game: 莫露托丽安-光与暗的姐妹
+file: 莫露托丽安-光与暗的姐妹.gg
+assets.box_front: Imgs/莫露托丽安-光与暗的姐妹.png
+description: 《莫露托丽安-光与暗的姐妹》，世嘉 Game Gear 平台。
+game: 葫芦岛的大航海
+file: 葫芦岛的大航海.gg
+assets.box_front: Imgs/葫芦岛的大航海.png
+description: 《葫芦岛的大航海》，由 SEGA 出品，1992 年发行，Board类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1992
+genre: Board
+players: 1
+game: 蚯蚓战士
+file: 蚯蚓战士.gg
+assets.box_front: Imgs/蚯蚓战士.png
+description: 《蚯蚓战士》，由 Virgin Interactive 出品，1995 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Virgin Interactive
+release: 1995
+genre: Platform
+players: 1
+game: 蜘蛛侠1-六邪归来
+file: 蜘蛛侠1-六邪归来.gg
+assets.box_front: Imgs/蜘蛛侠1-六邪归来.png
+description: 《蜘蛛侠1-六邪归来》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 蜘蛛侠3-蜘蛛侠大战金并
+file: 蜘蛛侠3-蜘蛛侠大战金并.gg
+assets.box_front: Imgs/蜘蛛侠3-蜘蛛侠大战金并.png
+description: 《蜘蛛侠3-蜘蛛侠大战金并》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 蝙蝠侠1
+file: 蝙蝠侠1.gg
+assets.box_front: Imgs/蝙蝠侠1.png
+description: 《蝙蝠侠1》，由 SEGA 出品，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Beat'em Up
+players: 1
+game: 蝙蝠侠2
+file: 蝙蝠侠2.gg
+assets.box_front: Imgs/蝙蝠侠2.png
+description: 《蝙蝠侠2》，由 SEGA 出品，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Beat'em Up
+players: 1
+game: 蝙蝠侠3
+file: 蝙蝠侠3.gg
+assets.box_front: Imgs/蝙蝠侠3.png
+description: 《蝙蝠侠3》，由 Acclaim 出品，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Acclaim
+genre: Beat'em Up
+players: 1
+game: 街头英雄
+file: 街头英雄.gg
+assets.box_front: Imgs/街头英雄.png
+description: 《街头英雄》，由 Innovation 出品，1993 年发行，清版动作类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Innovation
+release: 1993
+genre: Beat'em Up
+players: 1
+game: 詹姆斯庞德2-代号无人机
+file: 詹姆斯庞德2-代号无人机.gg
+assets.box_front: Imgs/詹姆斯庞德2-代号无人机.png
+description: 《詹姆斯庞德2-代号无人机》，由 U.S. Gold 出品，1991 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: U.S. Gold
+release: 1991
+genre: Platform
+players: 1
+game: 詹姆斯庞德3-海星行动
+file: 詹姆斯庞德3-海星行动.gg
+assets.box_front: Imgs/詹姆斯庞德3-海星行动.png
+description: 《詹姆斯庞德3-海星行动》，由 U.S. Gold 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: U.S. Gold
+genre: Platform
+players: 1
+game: 赌博恐慌
+file: 赌博恐慌.gg
+assets.box_front: Imgs/赌博恐慌.png
+description: 《赌博恐慌》，由 SEGA 出品，1995 年发行，Gambling类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Gambling
+players: 1
+game: 赌场娱乐合集
+file: 赌场娱乐合集.gg
+assets.box_front: Imgs/赌场娱乐合集.png
+description: 《赌场娱乐合集》，由 Interplay 出品，Gambling类游戏，世嘉 Game Gear 平台，单人游玩。
+    本作为原作的合集版本。
+publisher: Interplay
+genre: Gambling
+players: 1
+game: 超级太空入侵者
+file: 超级太空入侵者.gg
+assets.box_front: Imgs/超级太空入侵者.png
+description: 《超级太空入侵者》，由 Domark 出品，射击类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Domark
+genre: Shooter
+players: 2
+game: 超级桃太郎电铁3
+file: 超级桃太郎电铁3.gg
+assets.box_front: Imgs/超级桃太郎电铁3.png
+description: 《超级桃太郎电铁3》，由 Hudson 出品，1995 年发行，Board类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1995
+genre: Board
+players: 2
+game: 超级蛇方块
+file: 超级蛇方块.gg
+assets.box_front: Imgs/超级蛇方块.png
+description: 《超级蛇方块》，由 Spectrum Holobyte 出品，1994 年发行，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Spectrum Holobyte
+release: 1994
+genre: Puzzle
+players: 1
+game: 趣味方块
+file: 趣味方块.gg
+assets.box_front: Imgs/趣味方块.png
+description: 《趣味方块》，由 Viacom New Media 出品，1995 年发行，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Viacom New Media
+release: 1995
+genre: Puzzle
+players: 1
+game: 足球前锋
+file: 足球前锋.gg
+assets.box_front: Imgs/足球前锋.png
+description: 《足球前锋》，由 SEGA 出品，体育类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Sports
+players: 2
+game: 辛普森一家-决战太空怪
+file: 辛普森一家-决战太空怪.gg
+assets.box_front: Imgs/辛普森一家-决战太空怪.png
+description: 《辛普森一家-决战太空怪》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 辛普森一家-巴特对决全世界
+file: 辛普森一家-巴特对决全世界.gg
+assets.box_front: Imgs/辛普森一家-巴特对决全世界.png
+description: 《辛普森一家-巴特对决全世界》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 辛普森一家-蝙蝠侠与辐射超人
+file: 辛普森一家-蝙蝠侠与辐射超人.gg
+assets.box_front: Imgs/辛普森一家-蝙蝠侠与辐射超人.png
+description: 《辛普森一家-蝙蝠侠与辐射超人》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 辛普森一家超级快乐屋
+file: 辛普森一家超级快乐屋.gg
+assets.box_front: Imgs/辛普森一家超级快乐屋.png
+description: 《辛普森一家超级快乐屋》，由 Flying Edge 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 追踪H.Q
+file: 追踪H.Q.gg
+assets.box_front: Imgs/追踪H.Q.png
+description: 《追踪H.Q》，由 Taito 出品，1991 年发行，竞速类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Taito
+release: 1991
+genre: Racing
+players: 1
+game: 送报童 2
+file: 送报童 2.gg
+assets.box_front: Imgs/送报童 2.png
+description: 《送报童 2》，世嘉 Game Gear 平台。
+game: 送报童
+file: 送报童.gg
+assets.box_front: Imgs/送报童.png
+description: 《送报童》，由 Tengen 出品，体育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Tengen
+genre: Sports
+players: 1
+game: 遥远的王国
+file: 遥远的王国.gg
+assets.box_front: Imgs/遥远的王国.png
+description: 《遥远的王国》，由 SEGA 出品，1992 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 野茂英雄的世界棒球大赛
+file: 野茂英雄的世界棒球大赛.gg
+assets.box_front: Imgs/野茂英雄的世界棒球大赛.png
+description: 《野茂英雄的世界棒球大赛》，由 SEGA 出品，1995 年发行，体育类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: SEGA
+release: 1995
+genre: Sports
+players: 4
+game: 钢铁侠
+file: 钢铁侠.gg
+assets.box_front: Imgs/钢铁侠.png
+description: 《钢铁侠》，1996 年发行，世嘉 Game Gear 平台。
+release: 1996
+game: 青蛙过河
+file: 青蛙过河.gg
+assets.box_front: Imgs/青蛙过河.png
+description: 《青蛙过河》，由 SEGA 出品，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 驾照模拟
+file: 驾照模拟.gg
+assets.box_front: Imgs/驾照模拟.png
+description: 《驾照模拟》，由 Nayuta 出品，1995 年发行，教育类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Nayuta
+release: 1995
+genre: Educational
+players: 1
+game: 鬼神童子
+file: 鬼神童子.gg
+assets.box_front: Imgs/鬼神童子.png
+description: 《鬼神童子》，由 SEGA 出品，1995 年发行，平台跳跃类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Platform
+players: 1
+game: 魔导物语 1-3个魔法球
+file: 魔导物语 1-3个魔法球.gg
+assets.box_front: Imgs/魔导物语 1-3个魔法球.png
+description: 《魔导物语 1-3个魔法球》，世嘉 Game Gear 平台。
+game: 魔导物语 A-心跳加速
+file: 魔导物语 A-心跳加速.gg
+assets.box_front: Imgs/魔导物语 A-心跳加速.png
+description: 《魔导物语 A-心跳加速》，世嘉 Game Gear 平台。
+game: 魔导物语2-亚露露16岁
+file: 魔导物语2-亚露露16岁.gg
+assets.box_front: Imgs/魔导物语2-亚露露16岁.png
+description: 《魔导物语2-亚露露16岁》，由 SEGA 出品，1994 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1994
+genre: Role-playing (RPG)
+players: 1
+game: 魔导物语3-究极女王
+file: 魔导物语3-究极女王.gg
+assets.box_front: Imgs/魔导物语3-究极女王.png
+description: 《魔导物语3-究极女王》，由 SEGA 出品，1994 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1994
+genre: Role-playing (RPG)
+players: 1
+game: 魔法小子的冒险
+file: 魔法小子的冒险.gg
+assets.box_front: Imgs/魔法小子的冒险.png
+description: 《魔法小子的冒险》，由 Tsukuda Original 出品，1991 年发行，Shoot'em Up类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Tsukuda Original
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 魔法气泡外传-蛋头博士与卑鄙机器
+file: 魔法气泡外传-蛋头博士与卑鄙机器.gg
+assets.box_front: Imgs/魔法气泡外传-蛋头博士与卑鄙机器.png
+description: 《魔法气泡外传-蛋头博士与卑鄙机器》，由 SEGA 出品，益智类游戏，世嘉 Game Gear 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Puzzle
+players: 2
+game: 魔法气泡教学 2
+file: 魔法气泡教学 2.gg
+assets.box_front: Imgs/魔法气泡教学 2.png
+description: 《魔法气泡教学 2》，世嘉 Game Gear 平台。
+game: 魔法气泡教学 阿露露的规则
+file: 魔法气泡教学 阿露露的规则.gg
+assets.box_front: Imgs/魔法气泡教学 阿露露的规则.png
+description: 《魔法气泡教学 阿露露的规则》，世嘉 Game Gear 平台。
+game: 魔法气泡教学
+file: 魔法气泡教学.gg
+assets.box_front: Imgs/魔法气泡教学.png
+description: 《魔法气泡教学》，由 SEGA 出品，1993 年发行，益智类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Puzzle
+players: 1
+game: 魔法迷题波比尔斯
+file: 魔法迷题波比尔斯.gg
+assets.box_front: Imgs/魔法迷题波比尔斯.png
+description: 《魔法迷题波比尔斯》，由 Tengen 出品，益智类游戏，世嘉 Game Gear 平台，支持 4-4 人游玩。
+publisher: Tengen
+genre: Puzzle
+players: 4
+game: 魔法骑士 1 - 雷亚斯
+file: 魔法骑士 1 - 雷亚斯.gg
+assets.box_front: Imgs/魔法骑士 1 - 雷亚斯.png
+description: 《魔法骑士 1 - 雷亚斯》，世嘉 Game Gear 平台。
+game: 魔法骑士雷亚斯2-制造魔法骑士
+file: 魔法骑士雷亚斯2-制造魔法骑士.gg
+assets.box_front: Imgs/魔法骑士雷亚斯2-制造魔法骑士.png
+description: 《魔法骑士雷亚斯2-制造魔法骑士》，由 SEGA 出品，1995 年发行，Role-playing (RPG)类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Role-playing (RPG)
+players: 1
+game: 魔鬼撒旦
+file: 魔鬼撒旦.gg
+assets.box_front: Imgs/魔鬼撒旦.png
+description: 《魔鬼撒旦》，由 Codemasters 出品，策略类游戏，世嘉 Game Gear 平台，单人游玩。
+publisher: Codemasters
+genre: Strategy
+players: 1

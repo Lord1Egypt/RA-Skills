@@ -1,40 +1,50 @@
-## Description: <br>
-Zero-dependency Bash environment health check for Linux, macOS, containers, and K8s pods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A zero-dependency Bash health check for Linux, macOS, containers, and Kubernetes pods that reports system, user, tools, network, workspace, and optional PVC status.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a local, container, or Kubernetes shell environment, including OS details, current user, common runtime and tool versions, network context, workdir status, optional config presence, and PVC remount signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may print selected environment variable values and local environment details during diagnostics. <br>
-Mitigation: Run it only in shells where exposed environment values are acceptable, and avoid production, CI, or Kubernetes contexts that may contain tokens unless the script is changed to mask values by default. <br>
-Risk: PVC checks write local snapshot state under the configured snapshot directory. <br>
-Mitigation: Choose a snapshot directory appropriate for the workspace and review generated snapshot files before relying on them for operational decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to check a workstation or project environment, confirm available tools and runtime details, identify container or Kubernetes context, and optionally monitor for a possible PVC remount.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songhonglei/hello-env) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output with status lines and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a Bash diagnostic script and may create PVC snapshot files when PVC monitoring is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security review rates the skill suspicious because it reports a serious command-execution flaw in the environment-check script; this does not establish malicious intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installing, consider whether you trust the project content it may inspect, and avoid running it against untrusted projects.
+
+## Reference(s):
+
+- [hello-env on ClawHub](https://clawhub.ai/songhonglei/skills/hello-env)
+- [Publisher profile](https://clawhub.ai/user/songhonglei)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain-text environment health report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports detected environment details and statuses; optional config-file and PVC persistence checks depend on the supplied options and environment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

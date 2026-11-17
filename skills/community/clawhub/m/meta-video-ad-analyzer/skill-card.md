@@ -1,41 +1,55 @@
-## Description: <br>
-Extract and analyze content from video ads using Gemini Vision AI, including frame extraction, OCR text detection, audio transcription, scene analysis, and thumbnails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and analyze content from video ads using Gemini Vision AI. Supports frame extraction, OCR text detection, audio transcription, and AI-powered scene analysis. Use when analyzing video creative content, extracting text overlays, or generating scene-by-scene descriptions.
 
-## Publisher: <br>
-[fortytwode](https://clawhub.ai/user/fortytwode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fortytwode](https://clawhub.ai/user/fortytwode)
 
-## Use Case: <br>
-Developers and marketing teams use this skill to inspect video or image ad creatives, extract visible and spoken content, and generate scene-by-scene analysis for review workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Media content and extracted audio, text, frames, or thumbnails may include sensitive or proprietary ad material. <br>
-Mitigation: Analyze only media you are allowed to send to Google cloud services and use a dedicated least-privilege Google service account. <br>
-Risk: Generated thumbnails may expose reviewed creative assets if served from shared or public storage. <br>
-Mitigation: Keep generated thumbnails out of public access, or require authenticated serving and unique filenames in shared deployments. <br>
-Risk: OCR, transcription, and vision summaries can be incomplete or incorrect. <br>
-Mitigation: Treat extracted timelines and summaries as review aids and verify important claims against the source media. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fortytwode/meta-video-ad-analyzer) <br>
+## Use Case:
+
+Developers and marketing analysts use this skill to extract scene descriptions, visible text, transcripts, and thumbnail references from video or image ad creatives for review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Media content may be sent to Google AI services during analysis.
+
+Mitigation: Only analyze media that the user is authorized to process with those services.
+
+Risk: OCR, transcription, and scene descriptions may be incomplete or incorrect.
+
+Mitigation: Treat extracted text and descriptions as untrusted analysis output and review them before business, legal, or compliance decisions.
+
+Risk: The skill depends on local media tooling and Python packages that can vary by environment.
+
+Mitigation: Install it in a dedicated virtual environment or container and pin dependency versions when reproducibility matters.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python ExtractedVideoContent object with transcript text, text timeline, scene timeline, thumbnail URL, and setup guidance in Markdown examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Video and image analysis can depend on local ffmpeg or ffprobe, EasyOCR, Google Cloud Speech, Vertex AI, and the configured Gemini model.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+**Output Type(s):** [text, code, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Python dataclass output with structured text timelines and thumbnail references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include duration, transcript, OCR text timeline, scene timeline, thumbnail URL, and extraction status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Find nearby coworking spaces. Invoke when user asks for shared offices near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby coworking spaces when the user asks for shared offices near them.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users ask an agent to find nearby coworking or shared office options from a provided or authorized location, with optional radius, result-limit, and amenity filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user's current or intended location, which may expose sensitive location data. <br>
-Mitigation: Ask for location consent, prefer approximate locations where possible, and avoid retaining precise coordinates. <br>
-Risk: The referenced STANDARD_RESPONSE.md response-schema file is not included in the package, so downstream output shape may be ambiguous. <br>
-Mitigation: Confirm the expected point-of-interest fields before integrating results into frontends, APIs, or other downstream systems. <br>
+## Use Case:
 
+External users ask an agent to find coworking or shared office spaces near an authorized location, with optional radius, result limit, and amenity filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/coworking-spaces) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or structured point-of-interest list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location, radius, result limit, and optional filters; category is fixed to coworking-spaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill depends on user location data to find nearby coworking spaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after the user intentionally requests nearby coworking results and authorizes location access.
+
+Risk: Precise coordinates can expose sensitive location information if retained unnecessarily.
+
+Mitigation: Avoid retaining exact coordinates and use coarse or grid-obfuscated location data when persistence is necessary.
+
+Risk: Nearby-place results can be unavailable, rate limited, or constrained by invalid location or radius inputs.
+
+Mitigation: Validate location and radius inputs and return the documented error states when data providers are unavailable or rate limits apply.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/coworking-spaces)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text describing standardized nearby coworking-space results and error states.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses authorized location, radius, limit, and optional filters; category is fixed to coworking-spaces.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

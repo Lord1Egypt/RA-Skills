@@ -1,44 +1,55 @@
-## Description: <br>
-Vibe Remote helps agents guide installation, configuration, operation, and issue reporting for the Vibe Remote iOS-to-Mac/Linux AI coding workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vibe Remote helps agents guide users through installing, running, configuring, and filing GitHub issues for the Vibe Remote remote AI coding tool.
 
-## Publisher: <br>
-[FireTable](https://clawhub.ai/user/FireTable) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firetable](https://clawhub.ai/user/firetable)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and operate Vibe Remote, connect an iOS app to Mac or Linux AI coding agents, and prepare GitHub issue reports for the Vibe Remote project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote access workflows can expose a developer workstation if paired with an untrusted device or left running longer than needed. <br>
-Mitigation: Install and run Vibe Remote only from a trusted source, pair only trusted devices, and stop the remote session when finished. <br>
-Risk: Headless startup examples can place account passwords in command history or process listings. <br>
-Mitigation: Avoid putting real passwords directly on command lines when possible. <br>
-Risk: GitHub issue text, screenshots, videos, or public upload-host links can disclose sensitive project or personal information. <br>
-Mitigation: Review issue content and media before posting or uploading, especially when using catbox or another public third-party host. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need an agent to help operate Vibe Remote, connect an iOS app to a Mac or Linux coding environment, or prepare GitHub bug and feature reports for the project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FireTable/vibe-remote) <br>
-- [Vibe Remote documentation](https://docs.vibe-remote.com) <br>
-- [Vibe Remote repository](https://github.com/ymzuiku/vibe-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and issue body templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GitHub issue text, upload guidance, and Vibe Remote command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Headless usage examples include account and password values directly in a shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager, environment variables, or an interactive prompt instead of placing real passwords in commands, scripts, shell history, or CI logs.
+
+Risk: Issue media may be uploaded to a third-party file host.
+
+Mitigation: Inspect the exact file before upload, remove secrets and metadata, and confirm the user accepts sending the media to the third-party host.
+
+## Reference(s):
+
+- [Vibe Remote documentation](https://docs.vibe-remote.com)
+- [Vibe Remote GitHub repository](https://github.com/ymzuiku/vibe-remote)
+- [Catbox upload endpoint](https://catbox.moe/user/api.php)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline bash commands and issue templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub issue body text and media upload links when the user requests issue submission support.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

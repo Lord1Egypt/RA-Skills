@@ -1,16 +1,14 @@
 # 视频文案提取 · WorkBuddy Skill
 
-从本地视频文件中提取语音文案/字幕，完全离线运行。跨平台支持 macOS / Windows / Linux。
+"从本地视频文件中提取语音文案/字幕。跨平台支持macOS/Windows/Linux，完全离线运行。使用whisper模型进行高精度语音识别，支持多语言字幕提取和OCR文字识别。触发词：视频文案提取、提取字幕、语音转文字、视频转文字、提取文案。"
 
 ## 特性
 
-- 🎬 **一键提取**：MP4 → 文案，一条命令搞定
-- 🖥️ **跨平台**：macOS（Metal GPU 加速）/ Windows / Linux 全支持
-- 🔒 **完全离线**：无需网络，数据不上传
-- 🤖 **智能引擎**：自动检测环境选择最优转录引擎
-  - macOS：whisper-cpp（Metal GPU 加速，brew 安装）
-  - Windows：openai-whisper（pip 自动安装）
-  - Linux：whisper-cpp 优先，自动 fallback
+- 用户提供本地 MP4 视频文件路径，要求"提取文案"、"语音转文字"、"提取字幕"
+- 需要将视频口播内容整理为文字稿
+- 从抖音/B站/小红书等下载的视频中提取口播文案
+- **需要带时间戳的字幕文件导入剪辑软件**（剪映/PR/达芬奇/FCPX）
+- **中英混合视频的自动识别转录**（auto 模式自动检测语言切换）
 
 ## 安装
 
@@ -21,84 +19,50 @@
 ### 手动安装
 
 ```bash
-# 克隆仓库到 WorkBuddy 技能目录
-git clone https://github.com/guipi888/workbuddy-video-transcript.git \
+git clone https://github.com/guipi888/video-transcript.git \
   ~/.workbuddy/skills/video-transcript
 ```
 
 ### 环境依赖
 
-**macOS**：
-```bash
-brew install ffmpeg whisper-cpp
-```
-
-**Windows**：
-```bash
-# 安装 ffmpeg
-winget install ffmpeg
-# 或从 https://ffmpeg.org/download.html 下载
-```
-
-**Linux**：
-```bash
-sudo apt install ffmpeg
-```
+请参考 SKILL.md 中的环境要求章节
 
 ## 使用
 
 ```bash
-python3 scripts/pipeline.py "视频.mp4" "./output/" [模型大小] [语言]
-```
-
-### 参数说明
-
-| 参数 | 必填 | 说明 |
-|------|------|------|
-| 视频路径 | ✅ | 本地视频文件绝对路径 |
-| 输出目录 | ✅ | 输出 WAV 和 TXT 的目录 |
-| 模型大小 | ❌ | `tiny` / `base` / `small`，默认 `base` |
-| 语言 | ❌ | 默认 `zh` |
-
-### 示例
-
-```bash
-# 基本用法
-python3 scripts/pipeline.py ~/Downloads/video.mp4 ./output/
-
-# 使用 tiny 模型（更快）
-python3 scripts/pipeline.py ~/Downloads/video.mp4 ./output/ tiny
-
-# 转录英文视频
-python3 scripts/pipeline.py ~/Downloads/video.mp4 ./output/ base en
+python3 ~/.workbuddy/skills/video-transcript/scripts/pipeline.py \
+  "<视频文件路径>" \
+  "<输出目录>" \
+  [模型大小] [语言]
 ```
 
 ## 输出
 
 - `{视频名}.wav` — 提取的 16kHz 单声道音频
-- `{视频名}.txt` — 转录文案
+- `{视频名}.txt` — 转录文案（纯文本，无时间戳）
+- `{视频名}.srt` — 字幕文件（带时间戳，可直接导入剪辑软件）
 
 ## 项目结构
 
 ```
-├── SKILL.md              # WorkBuddy 技能定义
-├── README.md             # 本文件
-├── LICENSE               # MIT
-├── .gitignore
-├── assets/
-│   └── author-qrcode.jpg # 作者二维码
-└── scripts/
-    ├── extract_audio.py  # ffmpeg 音频提取
-    ├── transcribe.py     # 转录引擎（跨平台）
-    └── pipeline.py       # 一键管道
+.gitignore
+LICENSE
+SKILL.md
 ```
 
-## 作者
+## 关于作者
 
-**桂皮AI实战** — 专注 AI 工具教程 · 扣子编程 · 效率方法
+**桂皮 Guipi** — AI Agent 开发者 · 超级个体践行者
+专注 AI 效率工具与一人公司方法论，帮普通人用 AI 成为超级个体
 
-- 公众号 / 小红书 / 抖音：桂皮AI实战
-- 知识星球：桂皮AI实战
+| 平台 | 账号 |
+|------|------|
+| 📱 小红书 | [桂皮AI实战](https://www.xiaohongshu.com/user/profile/5a409dda44363b313b9d7e15) |
+| 🎬 抖音 | [桂皮AI实战](https://v.douyin.com/QJRjHGAtrvA/) |
+| 📺 视频号 | 微信内搜「桂皮AI实战」|
+| 💬 公众号 | 微信搜「桂皮AI实战」|
+| 🐙 GitHub | [guipi888](https://github.com/guipi888) |
+| 💬 微信 | guipi996（注明来意）|
 
 ## License
 

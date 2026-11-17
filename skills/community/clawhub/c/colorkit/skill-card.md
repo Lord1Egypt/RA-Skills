@@ -1,50 +1,60 @@
-## Description: <br>
-ColorKit provides expert guidance for Swift developers using ColorKit to create, convert, blend, persist, and accessibility-check colors across Apple platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance on ColorKit, a Swift library for advanced color manipulation, conversion, and accessibility management.
 
-## Publisher: <br>
-[SzpakKamil](https://clawhub.ai/user/SzpakKamil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[szpakkamil](https://clawhub.ai/user/szpakkamil)
 
-## Use Case: <br>
-Developers and engineers use this skill when implementing ColorKit-based Swift color logic, including color creation, color space conversion, adaptive colors, accessibility checks, blending, and Apple UI framework integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup examples may point developers at a moving branch or unreviewed upstream package state. <br>
-Mitigation: Review the ColorKit project before installation and prefer a tagged release or reviewed commit. <br>
-Risk: Color accessibility or gamut-conversion guidance can be misapplied if project platform targets, Swift version, color space, or typography context are unknown. <br>
-Mitigation: Confirm Swift 5.9+, target OS support, intended color space, and text size or weight before applying recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ColorKit on ClawHub](https://clawhub.ai/SzpakKamil/colorkit) <br>
-- [ColorKit Official Documentation](https://documentation.kamilszpak.com/documentation/colorkit/) <br>
-- [ColorKit Project Website](https://kamilszpak.com/pl/colorkit) <br>
-- [ColorKit Overview](references/ColorKit.md) <br>
-- [Setup & Installation](references/Setup.md) <br>
-- [CKColor](references/CKColor.md) <br>
-- [Color Operations](references/ColorOperations.md) <br>
-- [Color Models](references/ColorModels.md) <br>
-- [Native Bridges](references/NativeBridges.md) <br>
-- [Accessibility & Contrast](references/Accessibility.md) <br>
-- [Blending & Compositing](references/Blending.md) <br>
-- [ColorKit Reference Index](references/_index.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to get ColorKit guidance for Swift color creation, color space conversion, blending, accessibility checks, and Apple UI framework integration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Swift code examples and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution, data access, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact includes a user-run install command that resolves an npm package and GitHub source without pinning versions.
+
+Mitigation: Prefer a pinned npm package version and a reviewed Git commit or release tag; install without administrator privileges and review repository source when supply-chain assurance matters.
+
+## Reference(s):
+
+- [ColorKit Reference Index](artifact/references/_index.md)
+- [ColorKit Overview](artifact/references/ColorKit.md)
+- [Setup & Installation](artifact/references/Setup.md)
+- [CKColor](artifact/references/CKColor.md)
+- [Color Operations](artifact/references/ColorOperations.md)
+- [Color Models](artifact/references/ColorModels.md)
+- [Native Bridges](artifact/references/NativeBridges.md)
+- [Accessibility & Contrast](artifact/references/Accessibility.md)
+- [Blending & Compositing](artifact/references/Blending.md)
+- [ColorKit Official Documentation](https://documentation.kamilszpak.com/documentation/colorkit/)
+- [ColorKit Project Website](https://kamilszpak.com/pl/colorkit)
+- [ColorKit Swift Package](https://github.com/SzpakKamil/ColorKit.git)
+- [ClawHub Skill Page](https://clawhub.ai/szpakkamil/skills/colorkit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Swift code examples and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no tools, MCP servers, or credential environment variables detected.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

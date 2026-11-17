@@ -1,45 +1,62 @@
-## Description: <br>
-运营数据日报虾 automates multi-platform operations data collection, normalization, daily or weekly Markdown report generation, anomaly detection, and Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+运营数据日报虾 automates multi-platform operations data collection, normalization, anomaly detection, Markdown report generation, and Feishu delivery for Douyin, Xiaohongshu, WeChat Channels, Bilibili, and Weibo.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Operations, growth, and content teams use this skill to collect metrics from Douyin, Xiaohongshu, WeChat Channels, Bilibili, and Weibo, then generate structured daily, weekly, or monthly reports. It is also used to flag unusual changes such as traffic drops, follower loss, low engagement, or collection failures and send Feishu notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles platform tokens, cookies, SESSDATA, and other credentials. <br>
-Mitigation: Keep credentials in a private .env file, exclude that file from source control, rotate expired cookies or tokens, and install only in workspaces where this credential access is acceptable. <br>
-Risk: Generated reports and Feishu messages can expose business metrics or send alerts to unintended recipients. <br>
-Mitigation: Review report content, Feishu document targets, chat recipients, and any @all alert behavior before sending or enabling unattended delivery. <br>
-Risk: Scheduled collection can run without user review and repeatedly call third-party platform APIs. <br>
-Mitigation: Enable cron only when recurring collection is intended, respect platform rate limits, and monitor failures or stale credentials. <br>
+## Use Case:
 
+Operations teams, content teams, and supporting developers use this skill to gather creator-platform metrics, generate daily, weekly, or monthly Markdown reports, detect unusual performance changes, and optionally deliver results to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/operation-daily-report-claw) <br>
-- [Platform API guide](artifact/references/platform-api-guide.md) <br>
-- [Report templates](artifact/references/report-templates.md) <br>
-- [Anomaly rules](artifact/references/anomaly-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with supporting JSON data files and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write collected platform data under data/raw and generated reports under data/reports; optional Feishu delivery and cron scheduling depend on user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles live analytics credentials and session cookies for creator platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped official APIs where available, store secrets outside source control, and replace Bash .env sourcing with a safe dotenv parser before deployment.
+
+Risk: Automated Feishu delivery and cron execution can expose business metrics or run with excessive privilege.
+
+Mitigation: Confirm recipients before enabling sends and run scheduled jobs under a low-privilege account with reviewed environment variables.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/operation-daily-report-claw)
+- [Publisher profile](https://clawhub.ai/user/tujinsama)
+- [Anomaly rules](artifact/references/anomaly-rules.md)
+- [Platform API guide](artifact/references/platform-api-guide.md)
+- [Report templates](artifact/references/report-templates.md)
+- [Douyin Open Platform](https://open.douyin.com/)
+- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com/)
+- [WeCom developer platform](https://work.weixin.qq.com/)
+- [Bilibili Creator Center](https://member.bilibili.com/)
+- [Weibo Open Platform](https://open.weibo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON data files, shell commands, cron snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write raw platform data under data/raw and report files under data/reports when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-区分"真利好"和"假利好"，避免追高被套。用于A股消息面分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distinguishes genuine positive A-share market news from superficial positives to help users avoid chasing rallies.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External users can use this Chinese-language skill to evaluate A-share market news, distinguish stronger positive catalysts from weak or ineffective announcements, and reason about whether to participate, wait, or avoid chasing a move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce buy, chase, or position-size suggestions for A-share market news. <br>
-Mitigation: Verify market facts independently and do not treat the output as professional financial advice. <br>
-Risk: News sentiment heuristics may be incomplete or misleading when market context changes. <br>
-Mitigation: Use the analysis as one input alongside current disclosures, liquidity, sector flows, and independent judgment. <br>
+## Use Case:
 
+External users evaluating A-share market news use this skill to classify policy, sector, and company-announcement positives and decide whether to buy, participate lightly, or wait.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/news-sentiment-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/haohanyang92) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language A-share news sentiment heuristics; no account access, file access, credential access, or trade execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat market-news classifications and direct trading suggestions as personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a market-news interpretation aid only and apply independent financial review before making trades.
+
+Risk: Broad trigger phrases such as questions about whether news is positive may activate stock-analysis guidance unintentionally.
+
+Mitigation: Confirm that the user is asking for A-share market-news analysis before applying the skill's trading posture.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/news-sentiment-analysis)
+- [ClawHub publisher profile](https://clawhub.ai/user/haohanyang92)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, analysis]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language A-share news sentiment guidance with graded buy, light participation, or wait-and-see recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Plan and build small, readable coding projects in three reliable modes: start, continue, and review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple Code guides agents through small coding projects and practical code reviews using start, continue, and review workflows that emphasize planning, readable implementation, verification, and concise reporting.
 
-## Publisher: <br>
-[hyharry](https://clawhub.ai/user/hyharry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyharry](https://clawhub.ai/user/hyharry)
 
-## Use Case: <br>
-Developers and engineers use this skill to start small projects, continue existing code work, or perform practical code reviews while keeping implementation, verification, and notes simple. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit project files and keep local notes as part of coding workflows. <br>
-Mitigation: Use it in a version-controlled project, specify the target path, and request review-only behavior when no patches should be made. <br>
-Risk: .steps notes and delegated sub-agent work may include project context. <br>
-Mitigation: Review generated notes and outputs before sharing project artifacts outside the intended workspace. <br>
+## Use Case:
 
+Developers and engineers use Simple Code to create small projects, extend existing code, or review code changes with a simple planning, implementation, verification, and reporting workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and concise status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify project files, tests, documentation, git commits, and local .steps notes when used for coding tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can edit project files, create local .steps notes, initialize git, and make commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with an explicit mode and project path, and review planned changes and diffs before accepting them.
+
+Risk: Generated coding or review guidance may be incomplete or unsuitable for a specific codebase.
+
+Mitigation: Run available tests, builds, lint checks, or smoke checks before relying on the resulting code changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyharry/skills/simple-code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with code, shell commands, and file or configuration changes when applied by the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local project edits, .steps notes, git initialization, and commits when the user invokes those workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Send push notifications to your iOS / Android phones using Signalgrid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send push notifications to your iOS, Android, and web browser devices using Signalgrid.
 
-## Publisher: <br>
-[signalgridco](https://clawhub.ai/user/signalgridco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[signalgridco](https://clawhub.ai/user/signalgridco)
 
-## Use Case: <br>
-External users and developers use this skill to have an OpenClaw agent send phone, Android, iOS, or web push notifications through Signalgrid for alerts, status updates, and completion notices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Notification titles and bodies are sent to Signalgrid and printed to local logs. <br>
-Mitigation: Use a dedicated Signalgrid key and avoid secrets, personal data, or sensitive incident details in notification titles and bodies. <br>
-Risk: The skill requires local environment credentials to send notifications. <br>
-Mitigation: Set SIGNALGRID_CLIENT_KEY and SIGNALGRID_CHANNEL only in the intended OpenClaw environment and rotate the key if it is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent send status, alert, success, warning, or critical push notifications through Signalgrid.
 
-## Reference(s): <br>
-- [Signalgrid homepage](https://web.signalgrid.co) <br>
-- [ClawHub skill page](https://clawhub.ai/signalgridco/signalgrid-push) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Text] <br>
-**Output Format:** [Shell command invocation with JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and SIGNALGRID_CLIENT_KEY and SIGNALGRID_CHANNEL environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.35 (source: ClawHub release evidence) <br>
+Risk: The skill requires the full OpenClaw tool profile to reach the Signalgrid API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where enabling the full tool profile is acceptable.
+
+Risk: Notification titles and bodies may contain sensitive personal or business data.
+
+Mitigation: Avoid sending secrets or sensitive data in notification content.
+
+Risk: The script logs raw and parsed command arguments, which can expose notification content.
+
+Mitigation: Remove or disable debug logging before production use.
+
+## Reference(s):
+
+- [Signalgrid Homepage](https://web.signalgrid.co)
+- [ClawHub Skill Page](https://clawhub.ai/signalgridco/skills/signalgrid-push)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/signalgridco)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; runtime command returns JSON status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the SIGNALGRID_CLIENT_KEY and SIGNALGRID_CHANNEL environment variables.]
+
+## Skill Version(s):
+
+1.0.35 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

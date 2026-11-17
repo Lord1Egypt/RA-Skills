@@ -1,41 +1,54 @@
-## Description: <br>
-基于天龙引擎需求解构能力，挖掘需求本质，评估复杂度，提供批判性分析与结构化决策建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill helps agents deconstruct requirements, assess complexity, apply critical questioning, and produce structured decision recommendations.
 
-## Publisher: <br>
-[guilinleolee](https://clawhub.ai/user/guilinleolee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guilinleolee](https://clawhub.ai/user/guilinleolee)
 
-## Use Case: <br>
-Developers, product builders, project owners, and individual decision-makers use this skill to break down requirements, evaluate complexity, apply critical questioning, and produce structured action recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides product, technical, career, or investment recommendations that may affect user decisions. <br>
-Mitigation: Treat recommendations as advisory analysis and review important decisions with appropriate professional or domain expertise. <br>
-Risk: Users may paste sensitive private details into requirement or decision prompts. <br>
-Mitigation: Avoid sharing sensitive private information unless it is necessary for the analysis. <br>
+## Use Case:
 
+Chinese-speaking product, technical, project, and personal-decision users can use this skill to turn an initial request into a structured analysis report with root-cause framing, complexity assessment, critical questions, and action recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guilinleolee/tianlong-report) <br>
-- [Publisher profile](https://clawhub.ai/user/guilinleolee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or privileged behavior is described; outputs are advisory analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Decision-support outputs may be incomplete, overconfident, or unsuitable for business, technical, project, career, or investment decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as analysis support and review conclusions critically before acting on recommendations.
+
+Risk: The skill is a Chinese-language requirements-analysis prompt, which may be unsuitable for users who cannot assess Chinese outputs.
+
+Mitigation: Install and use it only when reviewers can understand and evaluate the Chinese-language analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guilinleolee/skills/tianlong-report)
+- [Publisher Profile](https://clawhub.ai/user/guilinleolee)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language decision-support output; users should review conclusions critically for business, technical, or investment decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

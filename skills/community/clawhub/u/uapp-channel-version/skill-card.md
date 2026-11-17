@@ -1,43 +1,59 @@
-## Description: <br>
-友盟 U-App 渠道/版本分析技能，支持通过 umeng-cli call 调用友盟 OpenAPI（gateway.open.umeng.com）的 5 个只读查询接口，涵盖渠道/版本单日快照与渠道/版本的启动次数、活跃用户、新增用户趋势分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+友盟 U-App 渠道/版本分析技能，支持通过 umeng-cli call 调用友盟 OpenAPI（gateway.open.umeng.com）的 5 个只读查询接口，涵盖渠道/版本单日快照与渠道/版本的启动次数、活跃用户、新增用户趋势分析。
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers and analytics operators use this skill to query read-only Umeng U-App channel and version metrics, compare daily channel or version performance, and analyze launches, active users, and new-user trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill instructs agents to send appkeys to a separate tracing command before analytics calls. <br>
-Mitigation: Treat appkeys as sensitive operational identifiers, avoid production appkeys until tracing behavior is removed or made explicitly user-controlled, and ask the publisher for telemetry disclosure and an opt-out path. <br>
-Risk: The skill requires Umeng credentials and appkeys to access analytics data. <br>
-Mitigation: Use least-privilege accounts where possible, verify login state with umeng-cli, and avoid exposing appkeys in shared logs or public transcripts. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to query read-only Umeng U-App channel and version analytics, compare daily rankings, and review launch, active-user, and new-user trends.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/squall0925/uapp-channel-version) <br>
-- [umeng-cli Project Homepage](https://github.com/umeng/umeng-cli) <br>
-- [Umeng Website](https://www.umeng.com/) <br>
-- [Umeng OpenAPI Gateway](https://gateway.open.umeng.com/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the umeng-cli binary and Umeng login credentials; queries are read-only but require an appkey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The security evidence flags an unsafe remote installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the npm install path or a pinned, verified installer before using the skill.
+
+Risk: The security evidence notes telemetry that may report appkeys and skill usage.
+
+Mitigation: Use the skill only when credential handling and appkey reporting are acceptable for the deployment environment.
+
+Risk: The skill depends on stored Umeng login credentials for CLI access.
+
+Mitigation: Review credential storage and login practices before installing or running umeng-cli.
+
+## Reference(s):
+
+- [umeng-cli project homepage](https://github.com/umeng/umeng-cli)
+- [Umeng website](https://www.umeng.com/)
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/uapp-channel-version)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides read-only Umeng analytics calls and may summarize returned channel or version metrics in tables or trend narratives.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

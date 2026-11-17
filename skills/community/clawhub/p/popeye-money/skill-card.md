@@ -1,45 +1,56 @@
-## Description: <br>
-Popeye Money helps Chinese-language users analyze spending, plan monthly budgets, and learn beginner investing concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Popeye Money is a Chinese-language personal finance assistant for expense analysis, budget planning, and beginner investment education.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-Individuals use this skill to turn spending records, income goals, and risk preferences into markdown analyses, monthly budget plans, and beginner investing guidance. Its investment content is educational and should not be treated as professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive financial details such as raw bank statements, account numbers, addresses, employer details, or exact merchant identifiers. <br>
-Mitigation: Share category totals where possible and remove account numbers, card numbers, addresses, employer details, and exact merchant identifiers before use. <br>
-Risk: Educational investing guidance could be mistaken for professional financial advice. <br>
-Mitigation: Treat investing responses as learning material only and make financial decisions with appropriate independent or professional advice. <br>
+## Use Case:
 
+External users use this skill to review spending records, create monthly budgets, and receive beginner-oriented investment education. It is intended for general financial literacy and planning support, not personalized investment, legal, tax, or regulated financial advice.
 
-## Reference(s): <br>
-- [Popeye Money ClawHub Page](https://clawhub.ai/jiangtaoid/popeye-money) <br>
-- [jiangtaoid Publisher Profile](https://clawhub.ai/user/jiangtaoid) <br>
-- [Skill README](artifact/SKILL.md) <br>
-- [Budgeting Module](artifact/modules/budgeting.md) <br>
-- [Investing Module](artifact/modules/investing.md) <br>
-- [Tracking Module](artifact/modules/tracking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports and recommendations in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; responses may depend on user-provided financial details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; SKILL.md frontmatter lists 1.0.0) <br>
+Risk: Users may paste sensitive financial or identity data into prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use summarized or redacted financial information and avoid account numbers, card details, passwords, government IDs, and exact transaction identifiers.
+
+Risk: Finance guidance may be mistaken for personalized regulated investment advice.
+
+Mitigation: Present outputs as educational planning support and retain the skill's disclaimer that investment decisions carry risk and require user judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/popeye-money)
+- [Budgeting module](artifact/modules/budgeting.md)
+- [Investing module](artifact/modules/investing.md)
+- [Tracking module](artifact/modules/tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, bullet lists, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses focused on expense summaries, budget allocations, savings suggestions, investment education, and risk reminders.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

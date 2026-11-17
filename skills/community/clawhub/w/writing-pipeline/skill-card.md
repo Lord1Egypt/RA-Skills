@@ -1,41 +1,54 @@
-## Description: <br>
-Writing Pipeline guides an agent through a Chinese content-recreation workflow from reference intake and AI drafting through human review, preference learning, and multi-platform publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a Chinese article writing pipeline from reference intake to draft generation, human review, preference learning, and multi-platform publishing output.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shing19](https://clawhub.ai/user/shing19)
 
-## Use Case: <br>
-Writers, editors, and publishing teams use this skill to turn reference material into Chinese drafts, preserve human review feedback, learn style preferences from edits, and prepare platform-specific outputs for blogs, WeChat, Xiaohongshu, Jike, and Twitter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The publish stage can upload article assets to R2 and WeChat and rewrite local article files. <br>
-Mitigation: Review the article directory, images, and target platforms before publishing; avoid confidential, licensed, or unpublished-sensitive material unless external upload is acceptable. <br>
-Risk: The review stage can propose updates to writing-style skills based on draft-to-final differences. <br>
-Mitigation: Approve writing-style skill updates only after checking that the proposed rules reflect the user's preferences, then review and scan changed skills before deployment. <br>
+## Use Case:
 
+External users and content teams use this skill to transform reference materials into Chinese article drafts, preserve reviewer comments and highlights, learn from manual edits, and prepare platform-specific publishing assets.
 
-## Reference(s): <br>
-- [Diff-and-Learn workflow](references/diff-learn.md) <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/writing-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, YAML metadata, JSON mappings, shell commands, and platform-specific article text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update article directories, drafts, final copy, diff analysis, platform output files, and image assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Publish stage may upload local article images to external services such as R2 or WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target platforms and image assets before approving publishing steps or upload-related skill calls.
+
+Risk: Diff-and-Learn can propose changes to writing-style skills that affect future articles.
+
+Mitigation: Approve style-skill updates only after reviewing the generated diff analysis and confirming the preference changes should persist.
+
+## Reference(s):
+
+- [Diff-and-Learn workflow](references/diff-learn.md)
+- [ClawHub skill page](https://clawhub.ai/shing19/skills/writing-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, structured notes, platform-specific article text, image asset instructions, shell commands, and metadata configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update article directories, drafts, final copy, diff analysis, platform output folders, image mappings, and publishing metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-A WeChat data assistant that uses MaxHub APIs to search, retrieve, and analyze WeChat Channels videos, Official Account articles, comments, users, and related metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信数据查询助手。覆盖视频号和公众号两大模块，支持搜索、视频详情、评论、文章、用户等全功能。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-Use for WeChat content monitoring and analysis, including Official Account article discovery, article details and comments, Channels video search, video details, user lookup, trend review, and comparative reporting through the MaxHub API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-No deployment geography is specified in the evidence. Users should deploy only where MaxHub, WeChat data access, and local privacy, platform, and content-use rules permit the intended workflow. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends WeChat search terms, article URLs, video identifiers, and related metadata to MaxHub/aconfig.cn using a sensitive API key. <br>
-Mitigation: Use only with data the user is permitted to query, protect MAXHUB_API_KEY as a secret, and avoid exposing credential values in prompts, logs, or outputs. <br>
-Risk: The evidence security summary flags protected video download and decryption workflows involving video URLs, tokens, and decode_key values. <br>
-Mitigation: Avoid video download or decryption workflows unless the user has clear rights to access and decrypt the media; prefer metadata-only analysis where rights are uncertain. <br>
-Risk: The security guidance notes unrelated Douyin and Xiaohongshu routing material in the artifact. <br>
-Mitigation: Keep use scoped to the documented WeChat and MaxHub workflows and treat non-WeChat fallback paths as out of scope for this release. <br>
+## Use Case:
 
+Marketing, operations, and social-media analysis teams use this skill to query WeChat Channels and Official Account data through MaxHub, then browse, analyze, or compare content, engagement, articles, comments, users, and related metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/wechat-aggregate-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/new-ironman) <br>
-- [MaxHub API website](https://www.aconfig.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational answers, markdown tables, summaries, comparisons, API-result analysis, setup guidance, and curl-based request examples.] <br>
-**Output Parameters:** [User search terms, WeChat article URLs, video identifiers, account identifiers, pagination cursors or offsets, analysis mode, and the required MAXHUB_API_KEY credential.] <br>
-**Other Properties Related to Output:** [Outputs may include third-party API data and metadata from WeChat-related queries. The skill should keep API key values out of responses and state limitations when endpoints fail, return empty data, or require permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 <br>
+Risk: Authenticated WeChat search terms, article links, share URLs, and the MaxHub API key are sent to www.aconfig.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable API key and install only when this third-party data flow is acceptable.
+
+Risk: Broad auto-invocation may cause the skill to run on requests that are not explicitly intended for WeChat data lookup.
+
+Mitigation: Invoke the skill only for explicit WeChat-related requests and review planned API calls before execution.
+
+Risk: Video download or decryption-related output may require extra review before use.
+
+Mitigation: Be cautious with any video download or decryption output and confirm that usage is authorized and appropriate.
+
+Risk: The documented install command uses an unpinned npx path.
+
+Mitigation: Prefer a pinned or otherwise trusted installer path for production use.
+
+## Reference(s):
+
+- [MaxHub API service](https://www.aconfig.cn)
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/wechat-aggregate-scraper)
+- [Channels API / 视频号接口](references/api-channels.md)
+- [Media Platform API / 公众号接口](references/api-mp.md)
+- [Parameter Mappings / 参数映射](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with tables, bullet summaries, links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual Chinese or English output, humanized numeric formatting, and notes when API data is unavailable or access is limited.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

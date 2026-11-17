@@ -1,45 +1,60 @@
-## Description: <br>
-Scan local media, request a cloud editing plan, and generate a Resolve-importable EDL package with pure Node. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate DaVinci Resolve import packages from local media plus a cloud editing API.
 
-## Publisher: <br>
-[afengzi](https://clawhub.ai/user/afengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afengzi](https://clawhub.ai/user/afengzi)
 
-## Use Case: <br>
-Developers and video-automation operators use this skill to scan a local media folder, request a cloud-generated edit plan, and produce DaVinci Resolve import files for manual review and import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local media folders and may send file metadata, paths, sizes, timestamps, summaries, and execution reports to a configured cloud API. <br>
-Mitigation: Use it only with media folders approved for provider exposure, review the configured API endpoint before running, and avoid including sensitive filenames or paths. <br>
-Risk: The API key is required for cloud task access and could be exposed if committed in configuration files. <br>
-Mitigation: Store the API key in a private secrets location or local-only config file and do not commit real credentials. <br>
-Risk: The security verdict is suspicious due to insufficient consent and privacy controls around cloud metadata sharing. <br>
-Mitigation: Review the skill before installing and run it only after confirming the cloud provider, data handling expectations, and user consent. <br>
+## Use Case:
 
+Developers and video automation users use this skill to scan local media, request a cloud editing plan, and prepare a DaVinci Resolve timeline import package. It is aimed at workflows where local execution should stay limited to media indexing, EDL generation, import guidance, and execution reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afengzi/davinci-auto-editor) <br>
-- [Metadata Homepage](https://github.com/imfengziaaa/video-auto-editor-skills) <br>
-- [README](artifact/README.md) <br>
-- [Example Configuration](artifact/examples/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to run a Node entrypoint that writes resolve-import.json, timeline.edl, IMPORT-TO-RESOLVE.txt, and execution-report.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence, manifest.json, package.json) <br>
+Risk: The skill can send an API key and detailed local media metadata to the configured cloud editing service, and the sample endpoint uses unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS API endpoint, avoid sensitive media folders unless that sharing is acceptable, and rotate any key already sent over HTTP.
+
+Risk: Unversioned package execution can make it harder to review the exact code that will run.
+
+Mitigation: Use a pinned package version or a reviewed local artifact when invoking the skill.
+
+Risk: Generated EDL output is intended for basic timeline import and may require manual review or relinking in DaVinci Resolve.
+
+Mitigation: Validate with sample media first, import source clips into the Resolve Media Pool, and manually review the timeline before relying on the edit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afengzi/skills/davinci-auto-editor)
+- [Project Homepage](https://github.com/imfengziaaa/video-auto-editor-skills)
+- [README](README.md)
+- [Skill Instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, CMX3600 EDL text, plain-text import guidance, and terminal JSON status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a Resolve import package under _davinci_auto_editor/<taskId>/ next to the configured media folder.]
+
+## Skill Version(s):
+
+0.2.1 (source: release evidence, manifest.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

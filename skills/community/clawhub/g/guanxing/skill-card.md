@@ -1,41 +1,59 @@
-## Description: <br>
-Chinese metaphysics AI for BaZi, daily fortune, crypto fortune, Feng Shui, Tarot, I-Ching divination, dream interpretation, name scoring, compatibility matching, and zodiac analysis powered by the GuanXing API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GuanXing provides Chinese metaphysics readings through a hosted API, including BaZi, daily fortune, crypto fortune, Feng Shui, Tarot, I-Ching divination, dream interpretation, name scoring, compatibility matching, and zodiac analysis.
 
-## Publisher: <br>
-[doggychip](https://clawhub.ai/user/doggychip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doggychip](https://clawhub.ai/user/doggychip)
 
-## Use Case: <br>
-External users and agent operators use this skill to call the GuanXing API for Chinese metaphysics readings, including birth-chart analysis, daily fortune, crypto fortune, Feng Shui, Tarot, I-Ching divination, dream interpretation, name scoring, compatibility, and zodiac readings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive personal details, including names, birth dates, birth hours, dreams, relationship details, and personal questions, to heartai.zeabur.app. <br>
-Mitigation: Confirm with the user before sending sensitive details and avoid submitting information the user does not want shared with the GuanXing service. <br>
-Risk: The skill depends on the GUANXING_API_KEY credential for API access. <br>
-Mitigation: Store GUANXING_API_KEY as a private environment variable and do not paste or log the key in chat transcripts, command output, or shared configuration. <br>
+## Use Case:
 
+External users and OpenClaw developers use GuanXing to route metaphysics requests to the GuanXing API for birth-chart, fortune, Feng Shui, Tarot, I-Ching, dream, name, compatibility, zodiac, and crypto fortune readings.
 
-## Reference(s): <br>
-- [GuanXing Web App and API](https://heartai.zeabur.app) <br>
-- [ClawHub Skill Page](https://clawhub.ai/doggychip/guanxing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GUANXING_API_KEY and sends user-provided request details to the GuanXing API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill sends personal reading details such as birth dates, names, dreams, relationship details, and questions to the GuanXing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user understands and accepts that data transfer, and avoid entering sensitive secrets or unnecessary personal details.
+
+Risk: Fortune, crypto, health, or relationship readings could be mistaken for professional advice.
+
+Mitigation: Present outputs as metaphysical or entertainment-oriented guidance, not as financial, medical, or legal advice.
+
+Risk: Optional MCP or publishing commands from the documentation may execute npm packages.
+
+Mitigation: Pin and verify npm package versions before using optional npm-based commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doggychip/skills/guanxing)
+- [GuanXing API documentation](https://heartai.zeabur.app)
+- [GuanXing MCP npm package](https://www.npmjs.com/package/@guanxing1/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GUANXING_API_KEY and sends user-provided reading details to external HTTPS API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

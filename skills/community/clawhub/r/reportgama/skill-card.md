@@ -1,49 +1,64 @@
-## Description: <br>
-Report-gama helps agents generate country- and category-specific market research reports using multilingual public-source collection, competitive analysis, ecommerce pricing, customs data, tenders, registration checks, social signals, charts, Markdown, and PDF-oriented report outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Report-gama helps agents generate country- and category-specific market research reports by gathering multilingual public data across search, news, competitor, ecommerce, advertising, customs, tender, registration, and social sources, then producing charts, Markdown, and PDF outputs.
 
-## Publisher: <br>
-[wangxuan1992asia-svg](https://clawhub.ai/user/wangxuan1992asia-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxuan1992asia-svg](https://clawhub.ai/user/wangxuan1992asia-svg)
 
-## Use Case: <br>
-Employees, external users, and analysts use this skill to assemble market intelligence reports for a target country and product category, especially for medical device research across Russia and CIS-oriented sources. It is intended to guide multilingual public-source collection, source quality grading, report structuring, chart generation, and PDF-oriented delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad public web research can run for a long time and collect from many source types. <br>
-Mitigation: Confirm the country, product category, language, research depth, source types, and output path before allowing a run. <br>
-Risk: The release artifact describes command examples for scripts that are not present in the submitted artifact files. <br>
-Mitigation: Review the installed artifact or source package for the referenced scripts before executing the command examples. <br>
-Risk: The skill installs several Python packages to support scraping, parsing, charting, and PDF generation. <br>
-Mitigation: Install and run it in an isolated Python environment. <br>
+## Use Case:
 
+External users and market analysts use this skill to request market intelligence for a target country and product category. The skill guides agents through multilingual public data collection, source quality grading, competitive analysis, and final report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxuan1992asia-svg/reportgama) <br>
-- [Publisher profile](https://clawhub.ai/user/wangxuan1992asia-svg) <br>
-- [HS code reference](artifact/hs_codes.md) <br>
-- [Industry keyword reference](artifact/industry_keywords.md) <br>
-- [Sample generated report](artifact/test_report.md) <br>
-- [UN Comtrade](https://comtrade.un.org) <br>
-- [OEC](https://oec.world) <br>
-- [Russian Federal Customs Service](http://www.customs.ru) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, command examples, structured tables, chart guidance, and PDF-oriented report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on Python 3, pip, public web access, and optional Python packages for parsing, charting, and PDF export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The install command uses unpinned Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a virtual environment or container, and review dependency versions before operational use.
+
+Risk: Broad report requests can trigger long, multi-module public web collection and PDF generation.
+
+Mitigation: Confirm the target country, category, output language, selected modules, report depth, and PDF requirement before running a large report.
+
+Risk: Market reports may include estimates or lower-confidence public-source signals.
+
+Mitigation: Use the skill's source quality grading and cross-check critical market, regulatory, customs, and pricing claims before business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxuan1992asia-svg/skills/reportgama)
+- [Publisher profile](https://clawhub.ai/user/wangxuan1992asia-svg)
+- [Report-gama HS code reference](artifact/hs_codes.md)
+- [Report-gama industry keyword reference](artifact/industry_keywords.md)
+- [Report-gama sample test report](artifact/test_report.md)
+- [UN Comtrade](https://comtrade.un.org)
+- [OEC trade data](https://oec.world)
+- [Russian Federal Customs Service](http://www.customs.ru)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown reports, chart files, PDF exports, command-line examples, and structured research tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can vary by country, category, language, selected modules, depth, and PDF export setting.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

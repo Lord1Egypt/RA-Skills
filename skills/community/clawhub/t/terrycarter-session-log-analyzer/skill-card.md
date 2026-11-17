@@ -1,41 +1,58 @@
-## Description: <br>
-View and analyze session logs, generate PDF reports, and sync to Notion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View and analyze session logs, generate PDF reports, and sync to Notion. Supports daily automated reporting via cron.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect agent session logs, summarize activity and errors, create PDF reports, and optionally sync reports to a Notion database on demand or through a daily schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring access to private session logs and Notion upload may expose sensitive operational data. <br>
-Mitigation: Use a narrowly scoped Notion integration and database, review generated reports before upload, and avoid enabling the cron job until the processed data and removal steps are understood. <br>
-Risk: The artifact describes analysis, sync, and cron scripts that are not present in the submitted artifact. <br>
-Mitigation: Inspect the referenced scripts from a trusted source before running manual analysis, Notion sync, or scheduled reporting. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect agent session logs, summarize operational activity, generate reports, and optionally sync those reports to Notion.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/terrycarter1985/terrycarter-session-log-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus generated PDF report files and Notion report entries when configured.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Notion credentials for Notion sync.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The daily cron workflow can repeatedly process session logs and upload generated reports to Notion without interactive review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable scheduled reporting only after reviewing the logs that may be processed, confirming the target Notion database, and documenting how to inspect and remove the crontab entry.
+
+Risk: Session logs may contain sensitive operational details before reports are synced externally.
+
+Mitigation: Review or redact logs before syncing reports, and run the workflow under an unprivileged account with only the required Notion access.
+
+Risk: The workflow depends on Python packages and another skill to generate and sync reports.
+
+Mitigation: Pin and audit dependencies where possible before installing or enabling unattended execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/terrycarter-session-log-analyzer)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate PDF reports and trigger Notion API uploads when the documented workflow is configured.]
+
+## Skill Version(s):
+
+1.2.1 (source: release evidence, artifact frontmatter, artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Configure OpenAI Codex CLI to use Vertex AI Gemini models via LiteLLM. A guide for translating strict Codex requests for Gemini compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure OpenAI Codex CLI to use Vertex AI Gemini models via LiteLLM. A guide for translating strict Codex requests for Gemini compatibility.
 
-## Publisher: <br>
-[bhrum](https://clawhub.ai/user/bhrum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhrum](https://clawhub.ai/user/bhrum)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Codex CLI to route requests through a local LiteLLM proxy to Vertex AI Gemini models and verify the setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup routes Codex through LiteLLM to Vertex AI and requires Google Cloud credentials. <br>
-Mitigation: Use least-privileged Google Cloud credentials and enable only the Vertex AI access needed for this workflow. <br>
-Risk: Persistent Codex trust settings or shell profile changes can affect future agent sessions beyond the intended workspace. <br>
-Mitigation: Apply trusted-workspace settings only to repositories you intend to trust and set the dummy OPENAI_API_KEY only for this workflow when possible. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Codex CLI to route requests to Vertex AI Gemini models through a local LiteLLM proxy. It provides setup, verification, and troubleshooting guidance for compatibility between Codex's expected OpenAI-style responses interface and Gemini-backed model endpoints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bhrum/litellm-vertex-codex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with YAML, TOML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides setup, verification, and troubleshooting guidance for a local LiteLLM-to-Vertex AI Codex workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release evidence) <br>
+Risk: The guide changes persistent Codex and shell configuration, including model provider settings, local proxy routing, workspace trust, and an OPENAI_API_KEY placeholder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each path, trust setting, endpoint, and shell-profile change before applying it; keep only settings that match the intended workspace and credential flow.
+
+Risk: The setup relies on Vertex AI credentials and a local LiteLLM proxy, so misconfiguration can route requests to the wrong project, model, or endpoint.
+
+Mitigation: Verify the GCP project, Vertex AI location, LiteLLM model aliases, and local base URL before running Codex against sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhrum/skills/litellm-vertex-codex)
+- [Publisher profile](https://clawhub.ai/user/bhrum)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML, TOML, and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces manual setup guidance for Codex CLI, LiteLLM, Vertex AI credentials, and local verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

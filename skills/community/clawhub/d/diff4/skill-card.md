@@ -1,40 +1,54 @@
-## Description: <br>
-Preview git diffs and files using the diff4 CLI for secure code change and file review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Preview git diffs and files using the diff4 CLI so users can securely review code changes and file content through diff4.
 
-## Publisher: <br>
-[djyde](https://clawhub.ai/user/djyde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djyde](https://clawhub.ai/user/djyde)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to share git diffs, staged changes, or selected UTF-8 text files through the diff4 CLI so reviewers can inspect encrypted content by URL with an out-of-band passphrase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected diffs or files can leave the user's machine as encrypted uploads. <br>
-Mitigation: Confirm the exact files, diff scope, and server before each share. <br>
-Risk: Passphrase setup or retrieval can expose the encryption passphrase during normal use. <br>
-Mitigation: Run key generation or retrieval only after explicit approval, and avoid sharing the passphrase in chat or logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to preview or share recent git diffs, staged changes, or selected UTF-8 text files through encrypted diff4 uploads. The skill returns the resulting URL and reminds users that recipients need the passphrase to decrypt the shared content.
 
-## Reference(s): <br>
-- [diff4 service](https://diff4.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and returned URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce share URLs for encrypted uploads; recipients need the passphrase out of band.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill can upload git diffs or arbitrary UTF-8 text files to a configured diff4 server, which may expose sensitive or regulated content even though the payload is encrypted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before every upload, verify the exact diff scope or file list, confirm the server URL, and avoid regulated content unless policy permits it.
+
+Risk: Passphrases may be exposed if printed, passed visibly in shell arguments, or returned in agent-visible command output.
+
+Mitigation: Avoid echoing or logging passphrases, do not pass them in visible command arguments, and share required decryption passphrases out of band.
+
+## Reference(s):
+
+- [diff4 default server](https://diff4.com)
+- [ClawHub skill page](https://clawhub.ai/djyde/skills/diff4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and returned URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup guidance, upload commands, returned share URLs, and passphrase handling reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

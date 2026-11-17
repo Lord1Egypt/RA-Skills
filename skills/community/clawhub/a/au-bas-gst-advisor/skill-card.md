@@ -1,42 +1,54 @@
-## Description: <br>
-Triage Australian BAS preparation issues and GST classification questions, including BAS field explanations, supply classification, lodgement cycles, anomalies, penalties, and correction steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage Australian BAS preparation issues and GST classification questions; explain BAS fields, categorise supplies as taxable, GST-free, or input-taxed, flag common anomalies and ATO audit triggers, and guide Australian businesses through lodgement cycles, penalties, and correction steps.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-Australian businesses, bookkeepers, and BAS/GST support users can use this skill to triage Business Activity Statement preparation questions, classify supplies, understand BAS labels, and identify when professional BAS or tax agent advice is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Australian BAS, GST, penalty, interest, and ATO procedure details can change over time. <br>
-Mitigation: Verify current ATO guidance before lodging, amending BAS amounts, responding to audits, or relying on penalty and interest calculations. <br>
-Risk: Users may mistake educational tax guidance for professional advice. <br>
-Mitigation: Consult a registered BAS agent or tax agent for complex classifications, material amendments, audit responses, or business-specific lodgement decisions. <br>
+## Use Case:
 
+External Australian business users and their supporting agents use this skill to triage Business Activity Statement and GST questions, including field reporting, supply classification, lodgement timing, corrections, and anomaly review. It provides educational guidance and directs complex or high-risk matters to registered BAS or tax professionals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/au-bas-gst-advisor) <br>
-- [Australian Taxation Office](https://www.ato.gov.au) <br>
-- [Tax Practitioners Board](https://www.tpb.gov.au) <br>
+### Deployment Geography for Use:
 
+Australia
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown or plain text with diagnostic questions, explanations, tables, formulas, and step-by-step guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only responses; no API calls, credentials, executable code, or file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Tax thresholds, rates, and ATO procedures can change after the embedded guidance was authored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current ATO guidance before lodging, amending, or relying on figures for a real business.
+
+Risk: Users may treat educational BAS/GST guidance as professional tax advice for complex or material matters.
+
+Mitigation: Consult a registered BAS agent or tax agent for complex supply classification, audits, significant amendments, penalties, or business-specific decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/au-bas-gst-advisor)
+- [Tax Practitioners Board](https://www.tpb.gov.au)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance with calculations, tables, and numbered steps when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; no API calls, credentials, persistence, or account authority]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

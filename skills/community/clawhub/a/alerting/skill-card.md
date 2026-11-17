@@ -1,37 +1,48 @@
-## Description: <br>
-Alert design: SLOs, noise reduction, routing, severity. Use when tuning pages or defining on-call policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alert design: SLOs, noise reduction, routing, severity. Use when tuning pages or defining on-call policy.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, SREs, and operations teams use this skill to structure alerting design, tune pages, define severity and routing, and prepare operational handoff.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may steer adjacent review, rollout, or stakeholder communication discussions toward a four-stage alerting workflow.
+
+Mitigation: Offer the workflow briefly, confirm whether the user wants it, and switch to freeform help when requested.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations teams use this skill to structure alerting work around SLOs, user-visible symptoms, routing, severity, ownership, validation, and operational handoff. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Alerting or on-call policy recommendations may create noisy, missing, or misrouted pages if applied without review. <br>
-Mitigation: Review proposed alert rules, routing, severity, and ownership with responsible operators before applying changes in production. <br>
+**Output Format:** [Markdown guidance with checklists, examples, and operational recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration guidance] <br>
-**Output Format:** [Markdown or plain-text operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, persistence, credentials, or privileged behavior required.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Reads, searches, and manages email via IMAP and sends email via SMTP, including mailbox checks, message fetch and search, read/unread updates, and attachments across common mail providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send email via IMAP/SMTP, including checking unread messages, fetching content, searching mailboxes, marking messages read or unread, downloading attachments, and sending email through common providers.
 
-## Publisher: <br>
-[apple133junjiang-a11y](https://clawhub.ai/user/apple133junjiang-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[apple133junjiang-a11y](https://clawhub.ai/user/apple133junjiang-a11y)
 
-## Use Case: <br>
-Developers and external users can configure this skill to let an agent check, search, fetch, and update mailbox messages over IMAP and send email over SMTP. It is intended for accounts where the user deliberately grants the agent mail access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent real authority to read mailbox contents, change read/unread state, download attachments, and send email. <br>
-Mitigation: Install only for an intended mailbox, use a dedicated or least-privilege account with an app password or authorization code, and review recipients, message bodies, attachments, and mailbox mutation commands before execution. <br>
-Risk: Credential and TLS settings can weaken account security if secrets are mishandled or certificate verification is disabled. <br>
-Mitigation: Keep credentials out of shared logs and repositories, rotate app passwords when needed, and keep IMAP_REJECT_UNAUTHORIZED and SMTP_REJECT_UNAUTHORIZED enabled except for a reviewed test environment. <br>
-Risk: Attachment download behavior writes email-provided filenames into a selected local directory. <br>
-Mitigation: Download only to a restricted safe directory, inspect files before opening or forwarding them, and avoid untrusted attachment filenames until filename and path handling is hardened. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate a configured IMAP/SMTP mailbox: inspect and search messages, change read state, download selected attachments, and send email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/apple133junjiang-a11y/imap-smtp-email-chinese) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/apple133junjiang-a11y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; invoked scripts return JSON or console text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May expose mailbox content, message metadata, attachment files, or SMTP delivery metadata depending on the invoked command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence; package.json and _meta.json list 1.0.0) <br>
+Risk: Stored mailbox credentials can expose an email account if the .env file or environment is shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated app password or limited mailbox account, protect or avoid the .env file, and rotate credentials after testing.
+
+Risk: Disabling TLS certificate verification can make mailbox traffic vulnerable outside controlled tests.
+
+Mitigation: Keep IMAP_REJECT_UNAUTHORIZED and SMTP_REJECT_UNAUTHORIZED enabled unless testing in a controlled environment.
+
+Risk: Outbound email and attachments can be sent from the configured account.
+
+Mitigation: Confirm every recipient, message body, and attachment before running SMTP send commands.
+
+Risk: Downloaded attachments can create unsafe or overwritten local files.
+
+Mitigation: Sanitize attachment filenames, choose a controlled output directory, and prevent overwrites before downloading attachments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apple133junjiang-a11y/skills/imap-smtp-email-chinese)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI scripts return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can read mailbox data, change message flags, download attachments, and send email when invoked with configured credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

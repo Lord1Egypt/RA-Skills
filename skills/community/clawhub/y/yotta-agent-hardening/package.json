@@ -1,0 +1,46 @@
+{
+  "name": "@yottameta/yotta-agent-hardening",
+  "version": "0.2.9",
+  "description": "YuanSafe (元安全) — a defensive AI-agent hardening skill: static configuration-facing hardening scan of an agent's own runtime (installed skills, MCP servers, tool descriptions, permissions and data surfaces) across three domains — prompt-injection defense / tool-call boundaries / data isolation — producing a hardening report and enforceable defense guardrails, with zero-dependency Python 3.8+, read-only scanning, sensitive-read detection on by default, \"class\" phrasing in reports (no copy-paste injection strings) and an audit trail on every scan. Triggers: user asks for a security check / hardening of an agent or skill environment, whether MCP servers or skills are trustworthy, prompt-injection / over-privilege / data-leak risk investigation, or the overall exposure after installing many skills. Boundaries: no executable injection strings or attack payloads; scans only directories and configs the user owns or is authorized to inspect; no runtime interception (that is yotta-guardian); no per-skill pre-install review (that is yotta-vetter / yotta-verify); human review and final decisions are not replaced.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-agent-hardening",
+    "agent-hardening",
+    "prompt-injection",
+    "guardrails",
+    "hardening",
+    "mcp",
+    "security",
+    "yottaskills"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!scripts/test_*.py"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-agent-hardening.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-agent-hardening": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_agent_hardening.py"
+  }
+}

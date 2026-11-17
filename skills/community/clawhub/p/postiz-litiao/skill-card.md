@@ -1,46 +1,65 @@
-## Description: <br>
-Postiz Litiao helps agents use the Postiz CLI to schedule, publish, upload media for, manage, and analyze social posts across 28+ connected channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Postiz is a tool to schedule social media and chat posts to 28+ channels including X, LinkedIn, Reddit, Instagram, Facebook Page, Threads, YouTube, Google My Business, TikTok, Pinterest, Discord, Slack, Mastodon, Bluesky, Telegram, WordPress, and ListMonk.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users, developers, and AI agents use this skill to configure the Postiz CLI, discover connected integrations and provider settings, create scheduled or draft social posts, upload media, manage posts, and review analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent publish, schedule, upload media, or delete content on live Postiz-connected social accounts. <br>
-Mitigation: Use draft or test integrations first and require explicit confirmation before posting, scheduling, batch runs, uploads, or deletion. <br>
-Risk: POSTIZ_API_KEY grants access to connected Postiz accounts and can leak through shell profiles, terminals, or logs. <br>
-Mitigation: Store the key in a controlled secret store or tightly scoped environment file and avoid printing it in terminals or logs. <br>
-Risk: Incorrect integration IDs, audience or privacy settings, content, media URLs, or scheduled dates can publish to the wrong destination or time. <br>
-Mitigation: Verify account IDs, provider settings, content, media URLs, and ISO 8601 dates before execution. <br>
+## Use Case:
 
+Developers, social media operators, and AI agents use this skill to configure and run the Postiz CLI for scheduling posts, uploading media, discovering integration settings, resolving missing platform IDs, and reviewing analytics across connected social channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/postiz-litiao) <br>
-- [Postiz API documentation](https://docs.postiz.com/public-api/introduction) <br>
-- [Postiz npm package](https://www.npmjs.com/package/postiz) <br>
-- [Postiz application repository](https://github.com/gitroomhq/postiz-app) <br>
-- [Postiz website](https://postiz.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POSTIZ_API_KEY and may use POSTIZ_API_URL for custom API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on a Postiz CLI installation that the security evidence describes as unaudited, including global install examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and trusted Postiz CLI version, prefer non-global installation where practical, and review the resolved package before running commands.
+
+Risk: Postiz commands require an API key and the evidence flags weak API-key handling guidance.
+
+Mitigation: Store POSTIZ_API_KEY in a secret manager or short-lived environment, avoid shell startup files and terminal output, and use a narrowly scoped key.
+
+Risk: The skill can upload media, publish or schedule posts, and delete Postiz content through CLI commands.
+
+Mitigation: Require explicit user confirmation before upload, publish, schedule, connect, or delete operations, and use draft or review workflows for high-impact accounts.
+
+Risk: The artifact recommends agent-media as an optional external tool, and the security evidence treats that recommendation as outside the reviewed Postiz skill.
+
+Mitigation: Treat agent-media as a separate third-party dependency and review it independently before using it in a posting workflow.
+
+## Reference(s):
+
+- [Postiz Public API Documentation](https://docs.postiz.com/public-api/introduction)
+- [Postiz Website](https://postiz.com)
+- [Postiz npm Package](https://www.npmjs.com/package/postiz)
+- [Postiz GitHub Repository](https://github.com/gitroomhq/postiz-app)
+- [ClawHub Skill Page](https://clawhub.ai/litiao1224/skills/postiz-litiao)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, JSON, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires POSTIZ_API_KEY and optionally POSTIZ_API_URL; generated commands may upload media, schedule or publish posts, retrieve analytics, connect missing post IDs, or delete posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

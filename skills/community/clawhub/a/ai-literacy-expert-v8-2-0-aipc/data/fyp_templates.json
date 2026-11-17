@@ -1,0 +1,156 @@
+{
+  "_meta": {
+    "name": "fyp_templates",
+    "version": "8.2.0-aipc",
+    "module": "module-h-s-academic-innovation",
+    "section": "S3 FYP I/II AI 脚手架",
+    "last_updated": "2026-08-24"
+  },
+  "description": "5 项目 × FYP I/II AI 脚手架（直接降低 6 学分创新门槛）",
+  "fyp_i_templates": {
+    "weeks_1_to_8": {
+      "W1": {
+        "task": "选题头脑风暴",
+        "ai_tools": ["S3.2 创意生成器", "DeepSeek-R1 本地"],
+        "output": "5-10 个候选选题",
+        "duration_hours": 4
+      },
+      "W2": {
+        "task": "文献检索",
+        "ai_tools": ["S3.3 综述助手", "arXiv / Google Scholar / CNKI"],
+        "output": "50-100 篇候选文献",
+        "duration_hours": 8
+      },
+      "W3": {
+        "task": "文献阅读（前半）",
+        "ai_tools": ["S3.3 自动摘要 + 主题聚类"],
+        "output": "5 段式摘要 × 前半文献 + 主题聚类图",
+        "duration_hours": 8
+      },
+      "W4": {
+        "task": "文献阅读（后半）",
+        "ai_tools": ["S3.3 自动摘要 + 主题聚类"],
+        "output": "5 段式摘要 × 后半文献 + 文献综述草稿",
+        "duration_hours": 8
+      },
+      "W5": {
+        "task": "研究问题定义",
+        "ai_tools": ["DeepSeek-R1 苏格拉底式提问"],
+        "output": "1 个具体研究问题",
+        "duration_hours": 4
+      },
+      "W6": {
+        "task": "方法论选择",
+        "ai_tools": ["S3.4 方法 AI 顾问"],
+        "output": "1 套研究方法",
+        "duration_hours": 4
+      },
+      "W7": {
+        "task": "实验设计",
+        "ai_tools": ["DeepSeek + 导师反馈"],
+        "output": "1 份实验设计方案",
+        "duration_hours": 8
+      },
+      "W8": {
+        "task": "开题答辩 PPT",
+        "ai_tools": ["compose_lesson.py 模板生成"],
+        "output": "1 份开题答辩 PPT",
+        "duration_hours": 4
+      }
+    },
+    "total_hours_fyp_i": 48
+  },
+  "fyp_ii_templates": {
+    "weeks_1_to_16": {
+      "W1-4": {
+        "task": "实验/数据采集",
+        "ai_tools": ["DeepSeek-R1 + 4 阶段流水线"],
+        "output": "1 份完整数据集",
+        "duration_hours": 32
+      },
+      "W5-8": {
+        "task": "数据分析",
+        "ai_tools": ["Pandas + Scikit-learn + AI 解释"],
+        "output": "1 份分析报告 + 可视化",
+        "duration_hours": 32
+      },
+      "W9-12": {
+        "task": "论文写作",
+        "ai_tools": ["DeepSeek-R1 草稿 + 导师批注"],
+        "output": "1 份完整论文草稿",
+        "duration_hours": 48
+      },
+      "W13": {
+        "task": "论文润色",
+        "ai_tools": ["LLM 语法 + 学术风格"],
+        "output": "1 份润色后论文",
+        "duration_hours": 8
+      },
+      "W14": {
+        "task": "答辩 PPT",
+        "ai_tools": ["compose_lesson.py 模板 + p5.js 互动"],
+        "output": "1 份答辩 PPT + 互动 demo",
+        "duration_hours": 8
+      },
+      "W15-16": {
+        "task": "模拟答辩",
+        "ai_tools": ["AI 模拟提问 + 学生自评"],
+        "output": "1 份自评报告",
+        "duration_hours": 16
+      }
+    },
+    "total_hours_fyp_ii": 144
+  },
+  "cross_disciplinary_fyp_examples": [
+    {
+      "title": "基于 NeRF 的低算力实时游戏数字化身重建",
+      "primary_major": "CM+GD",
+      "secondary_major": "Math+AI",
+      "innovation": "移动端（NPU/iGPU）实时 NeRF 推理",
+      "tools": ["DeepSeek-R1 本地", "3DGS", "OpenVINO"],
+      "expected_output": "可演示的移动端 3D 数字化身 demo"
+    },
+    {
+      "title": "AI 驱动的网格压缩对游戏性能的影响评估",
+      "primary_major": "CM+GD",
+      "secondary_major": "Math+STAT",
+      "innovation": "首次系统比较 5 种 AI 压缩算法",
+      "tools": ["MeshLab", "DeepSeek", "Python 统计"],
+      "expected_output": "游戏开发者可参考的网格压缩决策树"
+    },
+    {
+      "title": "基于本地大模型的中小企业信用风险评估系统",
+      "primary_major": "IBL+BUSA",
+      "secondary_major": "Math+DS",
+      "innovation": "DeepSeek-R1 本地推理 + 零上传隐私",
+      "tools": ["DeepSeek-R1", "OpenVINO", "Pandas"],
+      "expected_output": "可部署的信用评分模型"
+    },
+    {
+      "title": "AIGC 在金融营销内容生成中的合规性研究",
+      "primary_major": "IBL+BUSA",
+      "secondary_major": "DGC+PRA",
+      "innovation": "AIGC 营销 + 监管合规",
+      "tools": ["Kimi", "Qwen3", "智谱清言"],
+      "expected_output": "合规性评估框架"
+    },
+    {
+      "title": "AI 辅助的 GIS 碳监测系统",
+      "primary_major": "IST+ENVS",
+      "secondary_major": "Math+DS",
+      "innovation": "AI 卫星图像分析 + 碳排放估算",
+      "tools": ["DeepSeek-R1", "OpenCV", "GIS"],
+      "expected_output": "可部署的碳监测 web 平台"
+    }
+  ],
+  "ai_role_boundary": {
+    "can_ai_do": ["建议/草稿/初稿", "格式/语法/查重", "数据可视化", "文献摘要"],
+    "need_human": ["核心研究判断", "学术诚信决策", "实验伦理审查", "最终成果签名"]
+  },
+  "tracking_metrics": {
+    "fyp_completion_rate": {"baseline": "70%", "target": "90% (+20%)"},
+    "cross_disciplinary_fyp_ratio": {"baseline": "10%", "target": "40% (+30%)"},
+    "bozhifang_attendance": {"baseline": "50人/期", "target": "150人/期 (+200%)"},
+    "student_initiated_cross_disciplinary_projects": {"baseline": "5/年", "target": "30/年 (+500%)"}
+  }
+}

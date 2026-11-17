@@ -1,0 +1,8 @@
+{
+  "name": "stepper_28byj48",
+  "desc": "28BYJ-48 步进电机 + ULN2003 驱动（角度→步数→相序纯函数，精确减速比 63.684:1）",
+  "version": "1.0.0",
+  "verified": "C 逻辑测试 14 项断言全通过（9 款合计 107 项 0 失败，gcc 16.2.0 -Wall -Wextra -O1 逐款零警告，2026-10-27 实跑）；未做上板实测",
+  "usage": "复制 stepper_28byj48.h/stepper_28byj48.c/stepper_28byj48_port.h 进工程，port 里改 4 路 GPIO 即可；用 stepper_angle_to_steps + phase_pattern + rpm_to_delay_us 三件套跑起来",
+  "common_pitfalls": "5 针插头能反插→只抖不转；网上 2048/4096 是 64:1 近似值→精确 2038/4076，云台多圈累计误差明显；>15RPM 必失步；HAL_Delay 毫秒粒度拖慢步频"
+}

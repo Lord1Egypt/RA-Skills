@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing 可读性检查"
+  short_description: "检查页面结构、术语和买家理解障碍"
+  default_prompt: "使用 $amazon-listing-readability-check 检查 Amazon Listing 的可读性并找出买家理解障碍。"

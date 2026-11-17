@@ -1,6 +1,57 @@
 {
-  "ownerId": "kn74j824bn4xq1y1td0h2k093s8432mx",
-  "slug": "auto-accounting",
+  "schema": "skill",
+  "name": "auto-accounting",
   "version": "1.0.8",
-  "publishedAt": 1775126059794
+  "description": "自动识别图片中的记账信息，并在一日记账APP中自动记录。支持微信、支付宝、京东、淘宝、美团等主流平台。",
+  "author": "摇摇",
+  "repository": "https://github.com/taobaoaz/auto-accounting",
+  "tags": ["accounting", "image", "ocr", "automation", "finance", "记账", "自动记账"],
+  "dependencies": [
+    {
+      "name": "xiaoyi-image-understanding",
+      "version": ">=1.0.0",
+      "required": true,
+      "description": "小艺图像理解 - 必须使用小艺 Claw 官方组件"
+    },
+    {
+      "name": "xiaoyi-gui-agent",
+      "version": ">=1.0.0",
+      "required": true,
+      "description": "小艺 GUI Agent - 必须使用小艺 Claw 官方组件"
+    }
+  ],
+  "requirements": {
+    "runtime": "小艺 Claw",
+    "runtime_required": true,
+    "app": "一日记账 APP",
+    "app_required": true,
+    "connection": "手机连接",
+    "os": ["android"]
+  },
+  "restrictions": {
+    "modifiable": false,
+    "runtime_restricted": ["小艺 Claw"],
+    "runtime_required": true,
+    "app_required": true,
+    "dependencies_fixed": true
+  },
+  "triggers": {
+    "image_received": true,
+    "keywords": ["记账", "账单", "消费", "支出", "收入", "记一笔"]
+  },
+  "categories": ["finance", "automation", "image-processing"],
+  "platforms": [
+    {"name": "微信支付", "type": "payment"},
+    {"name": "支付宝", "type": "payment"},
+    {"name": "京东", "type": "shopping"},
+    {"name": "淘宝", "type": "shopping"},
+    {"name": "美团", "type": "food"},
+    {"name": "饿了么", "type": "food"}
+  ],
+  "license": "MIT-0",
+  "autoLoad": false,
+  "always": false,
+  "skillKey": "auto-accounting",
+  "emoji": "💰",
+  "homepage": "https://github.com/taobaoaz/auto-accounting"
 }

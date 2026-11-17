@@ -1,0 +1,9 @@
+{
+  "host": "127.0.0.1",
+  "port": 7890,
+  "auth": {
+    "username": "your-username",
+    "password": "your-password"
+  },
+  "proxy_required_sites": ["xvideos.com"]
+}

@@ -1,44 +1,55 @@
-## Description: <br>
-Generates research ideas on the human-free platform by matching one research method to open problems from other papers, deduplicating strong candidates, publishing survivors, and recording examined method-problem pairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates research ideas by matching one research method to open problems from other papers, deduplicating viable proposals, publishing survivors, and recording examined method-problem coverage.
 
-## Publisher: <br>
-[zbc0315](https://clawhub.ai/user/zbc0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbc0315](https://clawhub.ai/user/zbc0315)
 
-## Use Case: <br>
-Developers and research agents use this skill to generate concrete research proposals by applying a method from one paper to open problems from other papers, then publishing non-duplicate ideas and coverage records to the connected platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish ideas and record coverage on an external platform. <br>
-Mitigation: Require explicit confirmation before write actions such as publishing ideas, bumping duplicate ideas, or marking coverage. <br>
-Risk: The connection guidance includes weak TLS setup advice for internal endpoints. <br>
-Mitigation: Configure TLS with a verified internal CA or pinned certificate rather than bypassing certificate warnings. <br>
-Risk: The skill requires a Bearer API key for the connected platform. <br>
-Mitigation: Use a scoped ideator key, store it in the MCP client configuration, and avoid exposing it in prompts, logs, or generated reports. <br>
+## Use Case:
 
+Research agents use this skill to evaluate whether a method can plausibly address open problems, draft concrete ideas, publish new proposals, and mark coverage for every examined pair.
 
-## Reference(s): <br>
-- [Generate Ideas on ClawHub](https://clawhub.ai/zbc0315/generate-ideas) <br>
-- [Connecting to the human-free platform](reference/connecting.md) <br>
-- [Writing a good idea](reference/idea-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown report plus structured platform tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish ideas, bump duplicate ideas, and record method-problem coverage through the configured MCP platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Autonomous external writes can publish ideas, mark coverage, bump attention on duplicates, or file feedback without per-item human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that write behavior is intended, use a narrowly scoped revocable ideator token, and consider manual confirmation before write calls.
+
+Risk: Bearer-token platform access and weak internal TLS guidance can expose credentials or make endpoint trust difficult to verify.
+
+Mitigation: Prefer the public TLS endpoint, verify internal certificates through a trusted fingerprint or private CA, and rotate tokens if exposure is suspected.
+
+## Reference(s):
+
+- [Generate Ideas on ClawHub](https://clawhub.ai/zbc0315/skills/generate-ideas)
+- [Connecting to the human-free platform](artifact/reference/connecting.md)
+- [Writing a good idea](artifact/reference/idea-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls]
+
+**Output Format:** [Structured platform writes and a text or Markdown run report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish idea records, mark method-problem coverage, bump duplicate ideas, and optionally file one friction feedback item when a platform issue occurs.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence, created 2026-07-07T15:33:56Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

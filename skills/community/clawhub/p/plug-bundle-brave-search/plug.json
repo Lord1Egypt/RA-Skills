@@ -1,0 +1,74 @@
+{
+  "plug_slug": "plug-bundle-brave-search",
+  "bundle_slug": "bundle-brave-search",
+  "bundle_name": "Research Bundle: brave-search",
+  "members": [
+    {
+      "slug": "brave-search",
+      "name": "brave-search",
+      "category": "Research",
+      "role": "primary"
+    },
+    {
+      "slug": "data-analysis-litiao",
+      "name": "data-analysis-litiao",
+      "category": "Research",
+      "role": "primary"
+    },
+    {
+      "slug": "python-dataviz",
+      "name": "python-dataviz",
+      "category": "Research",
+      "role": "primary"
+    },
+    {
+      "slug": "web-crawler-engine",
+      "name": "web-crawler-engine-pro",
+      "category": "Research",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "信息检索效率低来源分散",
+    "brave-search: 存在易出错问题 (风险)",
+    "data-analysis-litiao: 存在易出错问题 (风险)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "brave-search",
+        "name": "brave-search",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "data-analysis-litiao",
+        "name": "data-analysis-litiao",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "python-dataviz",
+        "name": "python-dataviz",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "web-crawler-engine",
+        "name": "web-crawler-engine-pro",
+        "price": 15.0,
+        "tier": "business"
+      }
+    ],
+    "total_individual": 15.0,
+    "bundle_price": 12.0,
+    "savings": 3.0,
+    "savings_percent": 20.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill单买总价15.0元，Plug捆绑价12.0元，节省3.0元 (20.0% off)"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- brave-search (Research): 提供 read、exec、glob、grep\n- data-analysis-litiao (Research): 提供 read、write、exec、glob\n- python-dataviz (Research): 提供 read、exec、write、glob\n- web-crawler-engine-pro (Research): 提供 read、exec、write、glob\n\n组合工具集: read, exec, glob, grep, write\n\n典型工作流:\n  1. 使用 brave-search 的 read、exec、glob 完成相关任务\n  2. 使用 data-analysis-litiao 的 read、write、exec 完成相关任务\n  3. 使用 python-dataviz 的 read、exec、write 完成相关任务\n  4. 使用 web-crawler-engine-pro 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T18:17:17.420412"
+}

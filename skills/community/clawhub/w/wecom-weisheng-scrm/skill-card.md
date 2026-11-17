@@ -1,50 +1,67 @@
-## Description: <br>
-Built for WeCom customer operations, helping teams review customer and group activity, prepare campaign assets, and move follow-up, messaging, and opportunity workflows forward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents support WeCom customer operations by querying and managing Weisheng SCRM customers, tags, groups, campaign assets, live codes, mass messaging, follow-up records, conversations, opportunities, reports, lotteries, and schedules.
 
-## Publisher: <br>
-[fangfang19](https://clawhub.ai/user/fangfang19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangfang19](https://clawhub.ai/user/fangfang19)
 
-## Use Case: <br>
-Customer operations, sales, and service teams use this skill to query and manage WeCom SCRM data such as customers, tags, groups, campaign materials, follow-ups, chat archives, contacts, opportunities, reports, drawings, and schedules. The agent can guide authorized users through environment checks, identity checks, API discovery, controlled API calls, and structured result review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive WeCom SCRM APP KEY and can access business customer data. <br>
-Mitigation: Use a least-privilege APP KEY, avoid shared machines, and rotate the key if it may have appeared in logs or transcripts. <br>
-Risk: Some workflows can perform write-capable business actions such as creating, editing, deleting, or sending data. <br>
-Mitigation: Require explicit user confirmation before write operations and avoid automatic retries after write failures. <br>
-Risk: Disabling SSL verification can expose credentials and business data in transit. <br>
-Mitigation: Do not enable SCRM_SKIP_SSL_VERIFY except in a controlled internal environment with a reviewed network path. <br>
-Risk: Uploaded files may become publicly reachable through returned media URLs. <br>
-Mitigation: Treat uploaded files as potentially public and avoid uploading sensitive content unless the sharing behavior is acceptable. <br>
+## Use Case:
 
+Customer-operations employees and teams use this skill through an agent to inspect Weisheng SCRM records, prepare campaign and customer-follow-up work, and perform confirmed business actions while respecting the current user's role and data scope.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangfang19/wecom-weisheng-scrm) <br>
-- [Weisheng Open Platform](https://open.wshoto.com) <br>
-- [CLAW API summary](https://open.wshoto.com/doc/pages/claw/CLAW_SUMMARY.md) <br>
-- [Agent runbook](references/agent-runbook.md) <br>
-- [Usage guide](references/guide.md) <br>
-- [Examples](references/examples.md) <br>
-- [File utilities](references/file-utils.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python CLI commands, WeCom SCRM credentials, remote API documentation, cached identity and token data, and optional image upload/download workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence; artifact frontmatter says 1.0.3) <br>
+Risk: The skill handles live CRM data and can access broad SCRM capabilities through proxy calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only on a trusted single-user machine, confirm user identity and role scope before business calls, and require explicit confirmation before uploads or write actions.
+
+Risk: The skill stores an APP KEY and cached access tokens locally.
+
+Mitigation: Treat the APP KEY like a password, do not provide APP KEY values from untrusted sources, avoid exposing credentials in logs or command output, and rotate the APP KEY if exposure is suspected.
+
+Risk: Changing the base URL or disabling TLS verification can weaken request integrity.
+
+Mitigation: Keep the default Weisheng endpoint and TLS verification enabled unless a trusted controlled environment explicitly requires otherwise.
+
+Risk: Uploads and business write operations can change customer-operation records or publish uploaded assets.
+
+Mitigation: Verify API documentation and collected parameters before execution, confirm the exact operation with the user, and do not automatically retry failed write operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fangfang19/skills/wecom-weisheng-scrm)
+- [Publisher Profile](https://clawhub.ai/user/fangfang19)
+- [Weisheng Open Platform](https://open.wshoto.com)
+- [Claw API Summary](https://open.wshoto.com/doc/pages/claw/CLAW_SUMMARY.md)
+- [Agent Runbook](artifact/references/agent-runbook.md)
+- [User Guide](artifact/references/guide.md)
+- [File Upload and Download Reference](artifact/references/file-utils.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Business-language responses with structured JSON command results and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public image URLs or file IDs after upload; write actions require explicit user confirmation and should not be automatically retried after failure.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter says 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

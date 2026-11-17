@@ -1,41 +1,60 @@
-## Description: <br>
-Generates professional mind maps from natural language topics, structured Markdown, project outlines, and code architecture notes using the EdrawMind API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional mind maps from natural language topics, Markdown documents, code architecture notes, requirements, or other structured text through the EdrawMind API.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary Software License <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers, knowledge workers, and external users can use this skill to turn structured Markdown, requirements, project plans, or topic outlines into editable EdrawMind mind maps with layout, theme, background, and hand-drawn style options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary Software License
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided Markdown, outlines, project summaries, or source details are sent to EdrawMind's online API. <br>
-Mitigation: Submit only content approved for EdrawMind processing, avoid secrets or regulated personal data, and limit file or repository access to the material intended for conversion. <br>
+## Use Case:
 
+Developers, analysts, and content creators use this skill to convert topics, outlines, Markdown files, project structures, and requirements into editable EdrawMind mind maps with layout, theme, background, and hand-drawn style options.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wondershare-boop/edrawmind-mindmap) <br>
-- [Markdown Input Format](references/markdown-format.md) <br>
-- [Style Parameter Guide](references/style-guide.md) <br>
-- [CLI Tool Reference](references/tool-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON response files containing an edit URL and thumbnail URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can print the file URL, emit full JSON, save the API response to a file, and optionally open the generated mind map in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Markdown content is sent to EdrawMind's online API and may include sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for upload to EdrawMind's service, and avoid secrets, credentials, private documents, or confidential source material.
+
+Risk: The documented --text shell-command pattern can execute local shell commands if an agent interpolates untrusted Markdown into a command line.
+
+Mitigation: Prefer stdin or a safely created input file for generated or untrusted Markdown, and quote or avoid command-line interpolation when using --text.
+
+Risk: Custom API endpoints, --insecure transport, or command-line API keys can expose data or credentials to untrusted destinations or local process history.
+
+Mitigation: Avoid --insecure, custom --api-url, and command-line API keys unless the endpoint and environment are trusted; prefer EDRAWMIND_API_KEY for credentials.
+
+## Reference(s):
+
+- [Markdown input format](artifact/references/markdown-format.md)
+- [Style parameter guide](artifact/references/style-guide.md)
+- [CLI tool reference](artifact/references/tool-reference.md)
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/edrawmind-mindmap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and returned file_url, thumbnail_url, or JSON response data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate editable mind-map links and thumbnail previews; supports layout, theme, background, region, API key, and output options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

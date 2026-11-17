@@ -1,40 +1,61 @@
-## Description: <br>
-Expert system for designing, deploying, optimizing, and scaling autonomous AI agents on OpenClaw with multi-agent support and robust memory management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Mastery helps agents design, deploy, optimize, and scale autonomous AI agents on OpenClaw with multi-agent architecture, memory management, automation, security, and cost guidance.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and operators use this skill to assess, configure, automate, and scale OpenClaw agent workspaces, including multi-agent routing, memory architecture, cron jobs, channel integrations, security practices, and cost controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad autonomy and recurring access patterns may affect inboxes, calendars, sales tools, posting surfaces, or other personal and business data. <br>
-Mitigation: Decide exact data and tool access before installation, keep permissions narrow, and require review before outbound messages, public posts, or publishing actions. <br>
-Risk: Cron and heartbeat examples can cause an agent to act repeatedly without direct supervision. <br>
-Mitigation: Enable recurring jobs gradually, use clear schedules and quiet hours, monitor early runs, and avoid fully autonomous templates without narrow preauthorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-openclaw-mastery) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers, operators, and business automation teams use this skill to assess OpenClaw readiness, create workspace and agent configuration templates, design multi-agent deployments, add cron-based automation, and improve production operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational checklists, workspace templates, cron examples, channel configuration patterns, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some templates encourage broad persistent autonomy for operational agents.
+
+Mitigation: Require explicit scoping for autonomous actions, remove or rewrite broad 'run everything autonomously' instructions, and keep human approval for external actions unless the deployment has clear limits.
+
+Risk: Memory and automation guidance may involve private inbox, calendar, or personal context.
+
+Mitigation: Make memory logging opt-in, redact sensitive details, and limit inbox or calendar access to the specific workflow the operator approved.
+
+Risk: Secret-handling examples include sourced environment files as an alternative to a secret manager.
+
+Mitigation: Use a real secret manager for production deployments and keep plaintext environment files gitignored, encrypted, and limited to local development.
+
+Risk: Installation guidance includes package and skill installation commands.
+
+Mitigation: Pin or verify packages and installed skills before use, and review installed skill contents before granting tool or data access.
+
+## Reference(s):
+
+- [OpenClaw Mastery on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-openclaw-mastery)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklists, templates, scoring rubrics, troubleshooting tables, and operational playbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

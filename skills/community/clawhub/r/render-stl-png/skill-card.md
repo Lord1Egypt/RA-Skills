@@ -1,40 +1,52 @@
-## Description: <br>
-Render an STL file to a PNG image with a deterministic software renderer and adjustable 3D perspective parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render an ASCII or binary STL file to a PNG preview image with deterministic software rasterization and adjustable camera, color, lighting, and size parameters.
 
-## Publisher: <br>
-[ajmwagar](https://clawhub.ai/user/ajmwagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajmwagar](https://clawhub.ai/user/ajmwagar)
 
-## Use Case: <br>
-Developers and agents use this skill to create consistent preview or marketing PNG images from ASCII or binary STL models without depending on Blender or OpenGL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The wrapper downloads Pillow from PyPI into a cached Python virtual environment on first use. <br>
-Mitigation: For stricter environments, preinstall or pin dependencies before use. <br>
-Risk: The renderer reads an STL input path and writes a PNG output path supplied at runtime. <br>
-Mitigation: Pass only the input and output paths the agent is intended to access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ajmwagar/render-stl-png) <br>
-- [Publisher profile](https://clawhub.ai/user/ajmwagar) <br>
+## Use Case:
 
+Developers and technical content creators use this skill to generate consistent PNG preview images from STL models without requiring Blender or OpenGL. It is suited for quick product, documentation, or marketing previews where deterministic rendering is more important than photorealism.
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [PNG image files with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts STL input and PNG output paths plus optional image size, colors, camera angles, field of view, margin, and light direction.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The wrapper creates a cached Python virtual environment and downloads Pillow before rendering.
+
+Mitigation: Review the wrapper behavior, preinstall dependencies in a controlled environment, or run the renderer with an approved Python environment.
+
+Risk: Untrusted or very large STL files, or extreme --size values, can create availability or resource-consumption risk.
+
+Mitigation: Render trusted files where possible and use CPU, memory, time, and output-size limits for untrusted or large inputs.
+
+## Reference(s):
+
+- [Render Stl Png on ClawHub](https://clawhub.ai/ajmwagar/skills/render-stl-png)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image file plus Markdown or shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces square PNG previews from STL input; supports size, background color, mesh color, camera azimuth/elevation, field of view, margin, and directional light settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

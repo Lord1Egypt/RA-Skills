@@ -1,42 +1,50 @@
-## Description: <br>
-Repurpose a blog post, article, URL, file, or stdin text into X/Twitter threads, LinkedIn posts, Instagram captions, email snippets, and concise summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurposes a blog post, article, or supplied text into X/Twitter threads, LinkedIn posts, Instagram captions, email snippets, and summaries.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Content creators, marketing teams, agencies, and solo entrepreneurs use this skill to turn articles, blog posts, or supplied text into platform-specific social media and newsletter copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch user-supplied article URLs. <br>
-Mitigation: Use trusted URLs and review fetched content before publishing generated posts. <br>
-Risk: The skill can read selected text or markdown files and transform their contents. <br>
-Mitigation: Do not point it at secrets or private files unless that content is intended for repurposing. <br>
-Risk: Saving output can write files such as twitter.txt, linkedin.txt, instagram.txt, email.txt, and summary.txt in the selected output directory. <br>
-Mitigation: Choose an output directory where those generated files are expected and acceptable. <br>
+## Use Case:
 
+Content creators, marketing teams, agencies, and solo entrepreneurs use this skill to turn source articles into ready-to-post multi-channel social and email content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/oc-content-repurposer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON, or platform-specific text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate Twitter/X threads, LinkedIn posts, Instagram captions, email snippets, and summaries; selected formats may be saved as separate .txt files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: URL mode can fetch arbitrary user-supplied locations without safeguards against internal or local resource access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer file or stdin mode for sensitive content, avoid internal or private-network URLs, and review saved output locations because generated content may persist on disk or overwrite same-named files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/oc-content-repurposer)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files]
+
+**Output Format:** [Plain text, Markdown-like platform copy, JSON, or separate text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate selected platform formats and save each generated result to a separate file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

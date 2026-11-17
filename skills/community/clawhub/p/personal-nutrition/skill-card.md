@@ -1,36 +1,56 @@
-## Description: <br>
-Acts as the user's personal nutrition coach in the Nutrition topic, tracking meals, calories, water intake, eating habits, and balanced-diet advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Acts as the user's personal nutrition coach in the Nutrition topic, tracking meals, calories, water intake, eating habits, and giving balanced diet advice.
 
-## Publisher: <br>
-[GekaCross](https://clawhub.ai/user/GekaCross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gekacross](https://clawhub.ai/user/gekacross)
 
-## Use Case: <br>
-OpenClaw users use this skill as a personal nutrition coach for logging meals, water intake, calories, and weight, then receiving supportive nutrition observations and advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local nutrition journal may contain sensitive diet, weight, and wellness patterns. <br>
-Mitigation: Install only if comfortable storing that data on the OpenClaw VPS, and review filesystem access, backups, and deletion practices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Individuals use this skill as a personal nutrition coach in OpenClaw to log meals, water intake, calories, weight, and eating patterns, then receive supportive diet guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and Markdown journal entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update /data/.openclaw/workspace/knowledge/personal/nutrition.md when the user provides nutrition, water, or weight information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persistently read and update sensitive nutrition and weight notes.
+
+Mitigation: Install only if comfortable keeping a local nutrition history, use explicit logging language, and review the stored nutrition file periodically.
+
+Risk: Broad everyday food and water triggers may cause nutrition information to be logged when the user did not intend it.
+
+Mitigation: Use clear requests when logging meals, water, or weight, and check the nutrition log for unintended entries.
+
+Risk: The README includes a typo-like external download URL.
+
+Mitigation: Verify the README's external download URL before following it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gekacross/skills/personal-nutrition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and conversational text with updates to a local nutrition log]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update a local nutrition history file containing meals, calories, water intake, and weight.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

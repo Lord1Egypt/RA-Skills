@@ -1,43 +1,54 @@
-## Description: <br>
-Find any local business by category and location on Google Maps, including names, phone numbers, emails, websites, ratings, and hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find any local business by category and location on Google Maps, including names, phone numbers, emails, websites, ratings, and hours.
 
-## Publisher: <br>
-[gmapsscraper](https://clawhub.ai/user/gmapsscraper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmapsscraper](https://clawhub.ai/user/gmapsscraper)
 
-## Use Case: <br>
-External users and developers use this skill to find local businesses by category and location, optimize searches before spending service credits, and present Google Maps business profiles in a scannable format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches use a sensitive gmapsscraper.io API key. <br>
-Mitigation: Store GMAPS_SCRAPER_API_KEY securely, avoid sharing command logs that expose it, and revoke or rotate the key if it is disclosed. <br>
-Risk: Each search consumes third-party service credits. <br>
-Mitigation: Confirm the business type, location, and filters before running a search so credits are spent intentionally. <br>
-Risk: Search queries and collected business contact details are sent to or retrieved from a third-party service. <br>
-Mitigation: Use exported contacts only for legitimate, compliant purposes and review applicable local laws, source terms, and outreach rules. <br>
+## Use Case:
 
+External users and business operators use this skill to search for local businesses by category and location, confirm credit-consuming searches, and present Google Maps business profiles in a scannable format.
 
-## Reference(s): <br>
-- [Local Business Finder on ClawHub](https://clawhub.ai/gmapsscraper/local-business-finder) <br>
-- [gmapsscraper.io](https://gmapsscraper.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with inline bash commands and CSV download output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GMAPS_SCRAPER_API_KEY and curl; searches use third-party service credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: User-provided business type or location text could be inserted literally into the documented curl JSON payload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: JSON-encode values and pass them to curl without shell interpolation before executing any generated command.
+
+Risk: Business search queries are sent to gmapsscraper.io using the user's API key.
+
+Mitigation: Use only when the user is comfortable sharing the search terms with gmapsscraper.io and understands the credit cost.
+
+## Reference(s):
+
+- [gmapsscraper homepage](https://gmapsscraper.io)
+- [ClawHub skill page](https://clawhub.ai/gmapsscraper/skills/local-business-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown, Files]
+
+**Output Format:** [Markdown guidance with bash code blocks and CSV file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and GMAPS_SCRAPER_API_KEY; searches consume credits and should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

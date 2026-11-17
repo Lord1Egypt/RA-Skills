@@ -1,40 +1,53 @@
-## Description: <br>
-Generates token usage statistics and reference cost reports from local OpenClaw session history using Opus 4.7, GPT-5.5, or custom rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates token usage and reference cost reports from local OpenClaw session logs, with selectable Opus 4.7, GPT-5.5, or custom reference rates.
 
-## Publisher: <br>
-[sinoslug](https://clawhub.ai/user/sinoslug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sinoslug](https://clawhub.ai/user/sinoslug)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for recent and monthly token usage, billing-token totals, and estimated CNY costs from local OpenClaw session logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local session history may contain sensitive conversation content, and this skill reads those files to compute usage statistics. <br>
-Mitigation: Install only when local session-file access is acceptable; review the script before use and avoid running it on profiles with sensitive history that should not be scanned. <br>
-Risk: Cost figures are reference estimates based on configured rates and a fixed USD to CNY conversion, so they may not match actual provider billing. <br>
-Mitigation: Treat the report as informational and compare against provider invoices or account dashboards for financial decisions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to summarize recent and monthly token usage and estimate reference costs for agent conversations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sinoslug/token-stats-reporter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text token and cost report with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports last-message and current-month token totals; reads local OpenClaw session JSONL files and does not transmit data according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill reads local OpenClaw session logs, which may contain conversation metadata or usage history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only when local session-log scanning is acceptable, and review the generated token summary before sharing it.
+
+Risk: Broad trigger phrases may cause the agent to scan local history when a user asks about token usage or costs.
+
+Mitigation: Ask for confirmation before running the reporting script in contexts where local history access may be sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sinoslug/skills/token-stats-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and single-line token/cost report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local OpenClaw session logs and reports token totals, message counts, model name, and reference costs in CNY.]
+
+## Skill Version(s):
+
+1.5.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

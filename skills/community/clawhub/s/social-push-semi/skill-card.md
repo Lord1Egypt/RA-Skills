@@ -1,39 +1,57 @@
-## Description: <br>
-小红书半自动发布脚手架：自动生成文案、自动抽封面图、产出发布包；最后由人工确认发布。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepares semi-automated Xiaohongshu publishing packages by generating captions, extracting or generating cover media, and stopping for human confirmation before final publish.
 
-## Publisher: <br>
-[yugulugulu](https://clawhub.ai/user/yugulugulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yugulugulu](https://clawhub.ai/user/yugulugulu)
 
-## Use Case: <br>
-Content creators and operators use this skill to prepare Xiaohongshu posts from videos, themes, or keywords, then review the filled draft before publishing. It supports draft generation, cover extraction, publish-pack creation, and CDP-based preview filling with a manual final publish step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bundled scripts include live account actions beyond the documented manual publish flow. <br>
-Mitigation: Use only the documented preview wrappers and avoid direct publish, comment, notification, analytics, and account-reset commands unless those live actions are explicitly intended. <br>
-Risk: The workflow uses a logged-in browser session through Chrome DevTools Protocol. <br>
-Mitigation: Use a dedicated Xiaohongshu account/profile, keep CDP bound to localhost, and inspect the filled post manually before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yugulugulu/social-push-semi) <br>
+## Use Case:
 
+Content creators, operators, and developers use this skill to prepare Xiaohongshu posts from videos, topics, keywords, or generated images. It creates reusable publishing assets and can prefill a draft page while retaining manual review before publishing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, generated draft files, JSON publish packs, and checklist files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create draft.md, cover.jpg, publish-pack.json, checklist.md, images, and content files under the configured output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled vendor tools can automate actions on an authenticated Xiaohongshu account and may read account data.
+
+Mitigation: Use only an account you are comfortable automating, keep final publish manual, and review generated title, content, tags, and media before submission.
+
+Risk: Configurable network options can send API keys or media requests to unexpected destinations.
+
+Mitigation: Use trusted --base-url and --api-key-env values only, and avoid untrusted media URLs.
+
+Risk: The Chrome profile used for CDP automation stores an authenticated session.
+
+Mitigation: Treat the profile as sensitive session storage and avoid sharing or reusing it outside the intended workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yugulugulu/skills/social-push-semi)
+- [Xiaohongshu Creator Publish Page](https://creator.xiaohongshu.com/publish/publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown drafts, JSON publish package, checklist Markdown, generated or extracted media files, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local workspace paths; CDP Chrome is required for draft prefill, ffmpeg is used when available for video cover extraction, and DOUBAO_API_KEY is required for Doubao image generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

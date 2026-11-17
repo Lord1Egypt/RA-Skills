@@ -1,43 +1,54 @@
-## Description: <br>
-Simulate a full Chinese civil court hearing with 4 role-based agents (clerk, plaintiff, defendant, judge) orchestrated by deterministic Lobster workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulate a full Chinese civil court hearing with 4 role-based agents (clerk, plaintiff, defendant, judge) orchestrated by deterministic Lobster workflow.
 
-## Publisher: <br>
-[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater)
 
-## Use Case: <br>
-Legal educators, moot-court teams, and developers can use this skill to simulate a structured Chinese civil hearing with role-based agents and staged deliberation. It supports preparation of case materials and review of exported judgments and hearing logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Case files and hearing logs may contain confidential or personal legal information. <br>
-Mitigation: Redact confidential or personal details before loading real case files, and keep exported hearing logs private. <br>
-Risk: Model-provider API keys can expose accounts to unintended usage or spend. <br>
-Mitigation: Use dedicated DeepSeek and DashScope API keys with spending limits. <br>
-Risk: A separately downloaded Lobster workflow or related script may change what runs locally. <br>
-Mitigation: Review any separately downloaded workflow or script before execution. <br>
+## Use Case:
 
+Developers and legal-technology users use this skill to run a structured Chinese civil moot-court simulation with clerk, plaintiff, defendant, and judge agents, then review the resulting hearing log and judgment.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/baobaodawang-creater/moot-court-ai) <br>
-- [ClawHub skill page](https://clawhub.ai/baobaodawang-creater/moot-court-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text guidance for running a Lobster workflow and reviewing exported hearing artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DeepSeek and DashScope API keys plus OpenClaw and Lobster binaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Case materials may contain sensitive personal, financial, privileged, or confidential information and are processed through external LLM providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive details unless authorized to send them to DeepSeek and DashScope/Qwen, and review generated hearing logs and judgments before relying on them.
+
+Risk: The release evidence notes missing Lobster workflow/setup validation.
+
+Mitigation: Verify the Lobster workflow and local setup before operational use.
+
+## Reference(s):
+
+- [Moot Court AI homepage](https://github.com/baobaodawang-creater/moot-court-ai)
+- [ClawHub skill page](https://clawhub.ai/baobaodawang-creater/skills/moot-court-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text simulation outputs such as hearing logs and judgments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on external DeepSeek and DashScope/Qwen model providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

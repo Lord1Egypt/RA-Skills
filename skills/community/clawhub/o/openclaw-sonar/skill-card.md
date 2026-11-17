@@ -1,44 +1,55 @@
-## Description: <br>
-Local OpenRouter Sonar web search CLI using the user's OpenRouter API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a local sonar CLI for OpenRouter-backed Perplexity Sonar web search, cited research, model listing, and optional text, Markdown, or JSON file output.
 
-## Publisher: <br>
-[iamjameskeane](https://clawhub.ai/user/iamjameskeane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamjameskeane](https://clawhub.ai/user/iamjameskeane)
 
-## Use Case: <br>
-Developers and agents use this skill to run local OpenRouter-backed Sonar web search, cited research, model listing, and file output workflows from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and optional system prompts are sent to OpenRouter and may include sensitive context. <br>
-Mitigation: Use a dedicated or revocable OpenRouter API key, and avoid sending secrets, private documents, regulated data, or confidential business context unless that disclosure is approved. <br>
-Risk: The CLI can write output to user-supplied file paths. <br>
-Mitigation: Check --output paths before running commands to avoid overwriting or storing results in unintended locations. <br>
-Risk: Local installation commonly symlinks the cloned script into PATH. <br>
-Mitigation: Verify the cloned source before symlinking it into PATH. <br>
+## Use Case:
 
+Developers and agents use this skill to run OpenRouter Sonar web search and research queries from a local CLI, list available Sonar models, and save cited results in text, Markdown, or JSON formats.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iamjameskeane/openclaw-sonar) <br>
-- [OpenRouter API Reference](https://openrouter.ai/docs/api/reference/overview) <br>
-- [Bun Runtime](https://bun.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown, or JSON output with optional file writes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and sends queries and optional system prompts to OpenRouter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Searches, prompts, and optional system prompts are sent to OpenRouter for web-backed model responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped OpenRouter API key and avoid submitting secrets, regulated data, or other sensitive content.
+
+Risk: The CLI writes output directly to the path supplied by the user.
+
+Mitigation: Choose output paths deliberately and review generated files before relying on or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamjameskeane/skills/openclaw-sonar)
+- [OpenRouter API reference](https://openrouter.ai/docs/api/reference/overview)
+- [Bun runtime](https://bun.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI output or files in text, Markdown, or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OPENROUTER_API_KEY and optional OpenRouter environment variables; file output is written to the user-provided path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Summarizes URLs, articles, YouTube videos, PDFs, and pasted text into structured digests with TL;DR, key takeaways, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes URLs, articles, YouTube videos, PDFs, and pasted text into structured digests with TL;DR, key takeaways, action items, and a worth-reading assessment.
 
-## Publisher: <br>
-[billyhetech](https://clawhub.ai/user/billyhetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyhetech](https://clawhub.ai/user/billyhetech)
 
-## Use Case: <br>
-External users and employees use this skill to turn links, videos, PDFs, or pasted text into faithful digests that help decide whether source material is worth reading in full. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries may be saved locally without explicit opt-in or retention controls. <br>
-Mitigation: Avoid using the skill for confidential documents, secrets, regulated data, or sensitive business material unless the local archive is inspected and deleted as needed. <br>
+## Use Case:
 
+External users and developers use this skill to quickly understand long-form or linked content, compare multiple items, and decide whether the original material is worth reading in full.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billyhetech/smart-summarizer-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown summaries with TL;DR, key takeaways, optional action items, and a reading-worth assessment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save each summary as a Markdown file under ~/.openclaw/summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Summaries are saved locally by default, which can retain sensitive content from links, PDFs, videos, or pasted text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with material suitable for local archiving, or disable, review, or regularly delete the archive at ~/.openclaw/summaries.
+
+Risk: Broad auto-activation rules can summarize shared URLs or long text without clear opt-in.
+
+Mitigation: Confirm user intent before processing confidential, regulated, or ambiguous inputs, and report inaccessible sources instead of guessing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billyhetech/skills/smart-summarizer-v1)
+- [Publisher profile](https://clawhub.ai/user/billyhetech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Structured Markdown summary with optional saved Markdown archive file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the source or requested language and includes TL;DR, key takeaways, optional action items, and a worth-reading assessment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

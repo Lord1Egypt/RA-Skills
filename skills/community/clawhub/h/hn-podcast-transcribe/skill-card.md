@@ -1,40 +1,58 @@
-## Description: <br>
-Download, transcribe, and archive Hacker News podcast episodes into a searchable local archive, with incremental processing and support for custom podcast RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download, transcribe, and archive Hacker News podcast episodes into a searchable local archive, with incremental processing and support for custom podcast RSS feeds.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch podcast episodes from an RSS feed, transcribe local audio with Whisper, build a searchable archive, and search transcript text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download media from the configured RSS feed and store audio, metadata, transcripts, Whisper models, and a search index on the local machine. <br>
-Mitigation: Use trusted RSS feeds, choose an appropriate archive directory, and use --no-download when only episode metadata is needed. <br>
-Risk: Running the full pipeline on large or recurring feeds can consume local storage, network bandwidth, and compute. <br>
-Mitigation: Set --limit for large feeds and enable the cron example only when recurring automated processing is intended. <br>
+## Use Case:
 
+Developers, analysts, and podcast archivists use this skill to maintain a local searchable archive of podcast episodes by fetching RSS items, transcribing local audio with Whisper, indexing transcripts, and searching transcript snippets.
 
-## Reference(s): <br>
-- [Default Hacker News Recap RSS feed](https://rss.buzzsprout.com/2170103.rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local archive files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated archives may include episode metadata JSON, audio files, transcripts, and a searchable index on disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can make outbound requests to RSS feeds and feed-provided media URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted HTTPS podcast feeds and run the skill in a restricted network or container when processing unfamiliar feeds.
+
+Risk: The fallback downloader disables TLS certificate checks.
+
+Mitigation: Remove the no-check-certificates behavior or avoid unattended scheduled runs until that fallback is reviewed and hardened.
+
+Risk: Downloaded audio, episode metadata, transcript files, and search indexes are retained in a local archive.
+
+Mitigation: Store the archive in an access-controlled directory and apply an appropriate retention policy for the podcast content being processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/hn-podcast-transcribe)
+- [Default Hacker News Recap RSS feed](https://rss.buzzsprout.com/2170103.rss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands; local transcript files in txt, srt, vtt, or json; archive metadata and index files in JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable RSS feed, archive directory, Whisper model, transcript format, episode limit, and metadata-only fetching.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

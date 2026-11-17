@@ -1,42 +1,55 @@
-## Description: <br>
-Log To Alert helps agents turn recurring server, application, or system log errors and warnings into structured alert-rule drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts recurring error and warning patterns from user-provided logs and turns them into structured alert-rule drafts for monitoring systems.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers, site reliability engineers, and operations teams use this skill to convert user-provided logs into alert-rule drafts for monitoring systems such as Prometheus, Grafana, or PagerDuty. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logs may contain API keys, tokens, cookies, session IDs, customer data, internal hostnames, or other sensitive operational details. <br>
-Mitigation: Redact sensitive values before pasting logs or providing file paths. <br>
-Risk: Generated alert-rule drafts may be too broad, duplicated, or noisy if log patterns are not reviewed. <br>
-Mitigation: Review each draft rule for unique names, specific regex patterns, appropriate severity, and thresholds above one occurrence before deploying it. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to convert pasted server, application, or system logs into draft alert rules for tools such as Prometheus, Grafana, or PagerDuty. It is best suited for recurring error or warning patterns that need consistent monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/log-to-alert) <br>
-- [Reference Index](references/index.md) <br>
-- [Metadata Source](https://github.com/MiniMax-AI/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, JSON, or regex alert-rule snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts rules only; does not deploy, persist data, or contact external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0) <br>
+Risk: Generated alert rules may be incomplete, noisy, or mismatched to the target monitoring system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat rules as drafts and review match patterns, thresholds, severity, and routing before deployment.
+
+Risk: Logs can contain secrets, credentials, customer data, or other sensitive operational details.
+
+Mitigation: Redact sensitive values before pasting logs unless agent-side processing of that data is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/log-to-alert)
+- [Metadata source: MiniMax-AI skills](https://github.com/MiniMax-AI/skills)
+- [Reference index](references/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with YAML or JSON alert-rule examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft alert rules and validation guidance; rules should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

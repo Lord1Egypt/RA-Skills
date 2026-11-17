@@ -1,38 +1,54 @@
-## Description: <br>
-Provides guidance for graphic design, UI interaction, PPT beautification, and brand tone upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for graphic design, UI interaction, presentation beautification, and brand tone upgrades.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Designers, presenters, product teams, and other users can use this skill to request visual design, UI interaction, presentation polish, and brand tone guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide broad collaboration, sharing, backup, or export guidance that does not reflect a user's actual document permissions or platform settings. <br>
-Mitigation: Review real document permissions, sharing links, backups, and export settings before applying the guidance. <br>
+## Use Case:
 
+Designers, product teams, and other external users can use this skill to request visual-design, UI/UX, presentation-polishing, and brand-tone guidance. It can also provide generic collaboration and sharing-safety reminders around design workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike47512/visual) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or system access is described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may provide generic permissions, sharing-link, storage, or sync guidance outside a dedicated security or administration context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those responses as general reminders and validate access-control or collaboration settings against the relevant product documentation or administrator policy before applying them.
+
+Risk: The skill is a Chinese-language helper, which may not match every deployment team's language or review workflow.
+
+Mitigation: Review generated guidance in the intended operating language before using it in customer-facing or production design workflows.
+
+## Reference(s):
+
+- [Visual skill page](https://clawhub.ai/mike47512/skills/visual)
+- [mike47512 publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only advice; no system access or actions requested by the skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

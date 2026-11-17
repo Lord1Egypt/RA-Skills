@@ -1,41 +1,54 @@
-## Description: <br>
-Expands short user keywords into detailed prompts for whiteboard-style illustrations and uses image generation to produce tightly cropped whiteboard images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expands short Chinese keywords or reference-image requests into detailed whiteboard illustration prompts and invokes image_synthesize to generate tightly cropped whiteboard images.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-External users and content creators use this skill to turn brief Chinese topic requests or reference-image requests into reusable English prompts and generated whiteboard-style illustration assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability metadata advertises wallet, purchase, crypto, and sensitive-credential access that is unrelated to the documented whiteboard prompt workflow. <br>
-Mitigation: Install only after review, restrict use to whiteboard-style image generation, and do not grant those high-impact permissions unless the publisher provides a corrected purpose-aligned explanation. <br>
-Risk: Reference images and generated prompts may be processed by image-generation and messaging tools. <br>
-Mitigation: Avoid submitting sensitive images or confidential prompt content unless the deployment environment and tool data handling are approved. <br>
+## Use Case:
 
+Content creators and business users use this skill to turn brief Chinese topic ideas into reusable English prompts and generated whiteboard-style illustration images.
 
-## Reference(s): <br>
-- [Whiteboard Prompt Template Library](references/prompt-library.md) <br>
-- [Icon Guide](references/icon-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Generated image file plus Markdown/plain-text prompt details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image output is intended to be a tightly cropped whiteboard illustration; the skill also returns the full English prompt for reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Prompts can include confidential ideas and are sent to an image generation workflow and then through Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts before generation and avoid submitting confidential or sensitive content unless that sharing path is approved.
+
+Risk: Generated Chinese text in the image may be imprecise or unsuitable for publication.
+
+Mitigation: Review generated images before reuse and add precise final text in an editing tool when accuracy matters.
+
+## Reference(s):
+
+- [Whiteboard Prompt Template Library](references/prompt-library.md)
+- [Extended Icon Guide](references/icon-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Generated image file plus prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a PNG file under /workspace and send the generated image and prompt text to the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

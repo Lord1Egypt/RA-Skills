@@ -1,40 +1,60 @@
-## Description: <br>
-Creator Performance Audit for creators, ecommerce teams, and operators. Use when you need help with creator performance analysis for commerce teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit creator/influencer performance for commerce teams - score creators on reach quality, engagement authenticity, conversion contribution, and cost efficiency, then output a keep/scale/renegotiate/drop decision with evidence.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, ecommerce teams, operators, analysts, and growth teams use this skill to structure creator performance audits into practical diagnoses, recommendations, risks, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential creator contracts, sales figures, customer data, or other sensitive commercial information in audit inputs. <br>
-Mitigation: Use only approved agent environments for sensitive business data and redact confidential details when approval is not clear. <br>
-Risk: Recommendations can be misleading when the available creator performance evidence is incomplete or out of date. <br>
-Mitigation: Review assumptions, validate conclusions against current performance data, and flag gaps before operational handoff. <br>
+## Use Case:
 
+Commerce teams, creator marketers, and marketing operators use this skill to audit creator campaign history, compare creators on a common performance scorecard, and decide whether to keep, scale, renegotiate, or drop each creator.
 
-## Reference(s): <br>
-- [Creator Performance Audit Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured analysis, recommendation, risks, and next-step sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces decision-support output from user-provided business context, constraints, evidence, and examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may process sensitive creator contracts, full costs, revenue, margins, attribution data, and campaign performance details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data the operator is comfortable sharing with the agent, minimize unnecessary sensitive fields, and follow the organization's data-handling rules.
+
+Risk: Creator renewal, rate, or drop recommendations could be over-applied as automatic business actions.
+
+Mitigation: Treat outputs as decision support, review the evidence and confidence notes, and require human approval before contractual, budget, or relationship changes.
+
+Risk: Thin samples, mixed attribution methods, or incomplete full-cost inputs can produce misleading creator comparisons.
+
+Mitigation: State attribution method, sample window, and cost basis; flag data gaps; and run the pre-delivery checklist before relying on verdicts.
+
+## Reference(s):
+
+- [Four-Axis Scoring, Authenticity Checks, and Verdict Thresholds](artifact/references/audit-framework.md)
+- [Scorecard Metrics, Formulas, and Cost Checklist](artifact/references/metrics-benchmarks.md)
+- [Creator Audit Report Template](artifact/references/output-template.md)
+- [Creator Audit Pre-Delivery Checklist](artifact/assets/audit-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Structured Markdown audit report with scorecard tables, per-creator verdicts, evidence, confidence notes, and action plans.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses supplied campaign, cost, attribution, and business-context inputs; does not execute code or request credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

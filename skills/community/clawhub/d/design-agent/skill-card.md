@@ -1,46 +1,64 @@
-## Description: <br>
-Design consultation skill for AI agents that provides structured design prompts, DESIGN.md files, color systems, typography rules, spacing conventions, and component patterns for visual output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design consultation skill for AI agents that provides structured design prompts, DESIGN.md files, color systems, typography rules, spacing conventions, and component patterns for visual outputs.
 
-## Publisher: <br>
-[defineagain](https://clawhub.ai/user/defineagain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[defineagain](https://clawhub.ai/user/defineagain)
 
-## Use Case: <br>
-Developers, designers, and other agents use this skill to turn visual-output requests into reusable design guidance, including tokens, DESIGN.md content, component patterns, and review checklists for UI, HTML, newsletters, PDFs, and related artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated design files or guidance may be written to an unintended location or may introduce incorrect visual standards. <br>
-Mitigation: Review any generated DESIGN.md or design guidance, confirm the target path before writing, and verify the result before relying on it. <br>
-Risk: Screenshot-based visual review can expose confidential or sensitive UI content to a vision model. <br>
-Mitigation: Avoid sending confidential screenshots to vision review, or redact sensitive information before review. <br>
-Risk: The skill references third-party design sites and npx commands that may change over time. <br>
-Mitigation: Verify third-party sites and commands before opening links or running shell commands. <br>
+## Use Case:
 
+Developers and agents use this skill when generating or improving HTML, React, newsletters, PDFs, or other visual outputs that need consistent design tokens, typography, spacing, component patterns, and review guidance.
 
-## Reference(s): <br>
-- [Design Tokens - Base System](references/design-tokens.md) <br>
-- [Integration Guide - How Other Skills Call design-agent](references/integration-guide.md) <br>
-- [Design Prompt Template](assets/design-prompt-template.md) <br>
-- [design-extractor.com](https://www.design-extractor.com) <br>
-- [typeui.sh](https://www.typeui.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with design tokens, checklists, code blocks, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose writing DESIGN.md files and may request screenshot-based visual review before final sign-off.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill suggests running an unpinned third-party npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the package version and execute the command only in a trusted or restricted environment.
+
+Risk: The skill encourages broad invocation across visual workflows.
+
+Mitigation: Require agent or user confirmation before applying this skill automatically to unrelated visual tasks.
+
+Risk: The skill may create DESIGN.md files that affect downstream design decisions.
+
+Mitigation: Ask before writing DESIGN.md files and review the generated design guidance before other agents consume it.
+
+## Reference(s):
+
+- [Design Tokens - Base System](references/design-tokens.md)
+- [Integration Guide - How Other Skills Call design-agent](references/integration-guide.md)
+- [Design Prompt Template](assets/design-prompt-template.md)
+- [Vercel-Inspired Minimal Design Standards](assets/example-design-standards/vercel-minimal.md)
+- [design-extractor.com](https://www.design-extractor.com)
+- [typeui.sh](https://www.typeui.sh)
+- [Design prompts collection](https://lnkd.in/gy8z4XRF)
+- [awesome-design-md](https://lnkd.in/ghx8RddV)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with design tokens, checklists, CSS snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose creating a DESIGN.md file and may recommend visual review iterations before final output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

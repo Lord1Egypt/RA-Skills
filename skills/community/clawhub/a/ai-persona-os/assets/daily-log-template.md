@@ -2,7 +2,7 @@
 
 ---
 
-## Heartbeat
+## Session Start
 
 **Completed:** [time]
 **Status:** 🟢 / 🟡 / 🔴

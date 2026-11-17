@@ -1,41 +1,50 @@
-## Description: <br>
-Helps agents retrieve and summarize Kuaishou/Kwai creator video lists and recent creator-content activity through SocialDataX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于快手达人数据、快手达人作品、作品列表、近期发布、内容调研和创作者内容分析。覆盖 Kuaishou / Kwai creator works，来自 SocialDataX 社媒数据助手。
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-External users and developers use this skill to inspect creator video lists, recent publishing behavior, content style, and account benchmarks for Kuaishou/Kwai creators. The artifact also documents SocialDataX commands for related Weibo and WeChat Channels creator-post lookups, so users should confirm the intended platform before running collection commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a third-party SocialDataX npm CLI and SOCIALDATAX_API_KEY for external creator-content lookups. <br>
-Mitigation: Install only if that third-party dependency and API-key use are acceptable; provide the key through SOCIALDATAX_API_KEY and review commands before running them. <br>
-Risk: The Kuaishou-focused release also documents Weibo and WeChat Channels commands, which may cause users to collect from a broader platform scope than intended. <br>
-Mitigation: Confirm the exact platform and command before execution, and use --max-items or explicit page limits instead of --all unless broad collection is intended. <br>
+## Use Case:
 
+External users and analysts use this skill to retrieve Kuaishou creator videos and review recent posts, content style, creator benchmarks, or account activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/socialdatax-kuaishou-creator-videos) <br>
-- [SocialDataX API access homepage](https://socialdatax.52choujiang.com/?from=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only SocialDataX lookups require SOCIALDATAX_API_KEY, node, and npm; CLI output is JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The security assessment rates the skill suspicious with medium confidence because the CLI package is unpinned and may change while handling an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and its update process before installing. The scan was partial because some referenced paths could not be resolved, so treat the assessment as incomplete.
+
+## Reference(s):
+
+- [SocialDataX API access and skill information](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-kuaishou-creator-videos)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON creator-content data with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creator content may be retrieved by user ID or profile URL, with optional pagination.]
+
+## Skill Version(s):
+
+0.1.24 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

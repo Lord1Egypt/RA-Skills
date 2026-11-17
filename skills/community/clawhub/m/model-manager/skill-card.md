@@ -1,44 +1,63 @@
-## Description: <br>
-Fetches and displays OpenRouter AI models with pricing and context limits, and helps configure OpenClaw model routing for selected models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and displays OpenRouter model pricing and context limits, then helps configure OpenClaw model routing through automatic or fallback settings.
 
-## Publisher: <br>
-[Notestone](https://clawhub.ai/user/Notestone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[notestone](https://clawhub.ai/user/notestone)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to compare model pricing, plan cost-aware routing, and prepare configuration changes for selected models. It can also launch optional multi-agent execution workflows for task planning, coding, and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Execution mode can spawn kept agent sessions that write workspace files and retain task data. <br>
-Mitigation: Use list and plan for low-risk review; run --execute only in a dedicated workspace, avoid sensitive task text, and inspect generated files and kept sessions afterward. <br>
-Risk: Routing and configuration changes can affect OpenClaw model defaults and fallback behavior. <br>
-Mitigation: Review any generated routing or configuration changes before relying on them. <br>
-Risk: The skill was flagged as suspicious because execution mode lacks tight cleanup controls. <br>
-Mitigation: Treat execution mode as higher risk than read-only model listing and clean up retained sessions or local memory files after use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to compare model costs, plan task-specific model routing, and generate cost-aware configuration patches. Optional execution mode can spawn multi-agent workflows, so it should be used carefully in sensitive workspaces.
 
-## Reference(s): <br>
-- [OpenClaw Model Manager on ClawHub](https://clawhub.ai/Notestone/model-manager) <br>
-- [OpenRouter Models API](https://openrouter.ai/api/v1/models) <br>
-- [Model Benchmarks Skill](https://clawhub.ai/skills/model-benchmarks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown tables, JSON configuration patches, shell command output, and generated workspace files when execution mode is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retain spawned agent sessions and local swarm memory when execution mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: Optional execution mode can spawn agents that write files in the active workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use planning mode for routine model-routing decisions, and run execution mode only in a workspace where generated files can be reviewed or discarded.
+
+Risk: Task text, execution status, and error snippets may be retained in local swarm memory and insight files.
+
+Mitigation: Avoid sensitive tasks with execution mode and periodically remove ~/.openclaw/workspace/swarm_memory.json and ~/.openclaw/workspace/swarm_insights.json.
+
+Risk: The smart file finder can print matched local file contents.
+
+Mitigation: Run file-search helpers only from intended directories and avoid using them in repositories that contain secrets or private data.
+
+Risk: Configuration updates affect the local OpenClaw model fallback settings.
+
+Mitigation: Review generated configuration patches before applying them and keep a backup of existing OpenClaw configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/notestone/skills/model-manager)
+- [OpenRouter Models API](https://openrouter.ai/api/v1/models)
+- [Model Benchmarks Companion Skill](https://clawhub.ai/skills/model-benchmarks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, JSON configuration patches, shell commands, and local report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write OpenClaw configuration changes and local swarm memory or insight JSON when execution or consolidation modes are used.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and artifact title)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

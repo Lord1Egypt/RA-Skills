@@ -1,47 +1,62 @@
-## Description: <br>
-Book flights to mountain hotels and highland resort destinations, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more, powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search flights for mountain hotels and highland resort destinations, with related travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to search mountain hotel and highland resort routes with live flyai CLI results. The skill helps collect required route parameters and return Markdown flight options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install the flyai CLI globally. <br>
-Mitigation: Use a reviewed or pinned flyai CLI version in an isolated environment, and require confirmation before package installation. <br>
-Risk: Travel search details are sent to an external service. <br>
-Mitigation: Tell users before external searches and avoid submitting sensitive or unnecessary personal details. <br>
-Risk: Flight prices and booking links depend on live CLI output. <br>
-Mitigation: Show only results that include detailUrl booking links and disclose CLI failures instead of filling gaps from memory. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to collect route details, run live flyai flight searches, and return concise booking-oriented Markdown results for mountain hotel and highland resort travel.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejinsong/mountain-hotel) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include detailUrl booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: Security evidence flags automatic installation of an unpinned global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before installing software, pin and verify the dependency, and prefer local or sandboxed execution.
+
+Risk: Security evidence notes weak input scoping for route and date values and cautions against shell interpolation.
+
+Mitigation: Validate route and date inputs, limit activation to explicit flight-search requests, and pass command arguments without shell interpolation.
+
+Risk: The skill may present booking links from a third-party travel service.
+
+Mitigation: Have users verify price, itinerary, provider terms, and payment details on the provider page before booking.
+
+## Reference(s):
+
+- [Skill Source](SKILL.md)
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output and booking links for returned travel results.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

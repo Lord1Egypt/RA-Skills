@@ -1,42 +1,58 @@
-## Description: <br>
-Writes grant applications and funding proposals for UK charities, social enterprises, researchers, and small businesses, including need statements, project narratives, budgets, theories of change, and monitoring frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write compelling grant applications and funding proposals for UK charities, social enterprises, researchers, and small businesses. Generates need statements, project narratives, budgets, theories of change, and monitoring frameworks. Use when someone needs to apply for a grant, write a funding proposal, or prepare a bid.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External users such as charities, community organisations, social enterprises, researchers, small businesses, fundraisers, and consultants use this skill to draft funder-ready grant applications, budgets, logic models, risk registers, and monitoring plans from project details and funder context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive beneficiary, contact, safeguarding, health, financial, or third-party information while drafting applications. <br>
-Mitigation: Share only information that is necessary and permitted, and use an appropriate data handling process before entering confidential or personal details. <br>
-Risk: Generated applications may contain inaccurate funder criteria, eligibility assumptions, statistics, citations, budgets, or legal and financial implications. <br>
-Mitigation: Verify all funder requirements, figures, citations, budgets, eligibility, and compliance claims against authoritative sources before submission. <br>
-Risk: The output can look submission-ready even though it is produced as a drafting aid. <br>
-Mitigation: Treat the output as a draft for human review and adapt it to the funder's current guidance, forms, word limits, and assessment criteria. <br>
+## Use Case:
 
+External users such as UK charities, social enterprises, researchers, fundraisers, consultants, and small businesses use this skill to draft funder-ready grant applications, funding proposals, budgets, theories of change, monitoring frameworks, and risk registers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamespatrickthom2003-star/grant-application-writer) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections, tables, bullets, and optional clarifying questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft application content for review; it does not submit applications, access funder portals, guarantee funding, or replace funder guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Draft applications may include outdated funder criteria, programme details, statistics, legal requirements, or budget assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify funder guidance, cited statistics, compliance requirements, current programme details, and all budget figures before submission.
+
+Risk: The skill is UK-oriented and may not fit funders or compliance regimes outside the United Kingdom.
+
+Mitigation: Use it for UK grant contexts by default and adapt terminology, regulatory references, budgets, and eligibility checks for other jurisdictions.
+
+Risk: Generated proposal text may overstate readiness, evidence, partnerships, outcomes, or organisational capacity if the project brief is incomplete.
+
+Mitigation: Review every factual claim against the applicant's records, partner commitments, needs assessments, and governance documents before using the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jamespatrickthom2003-star/skills/grant-application-writer)
+- [Publisher Profile](https://clawhub.ai/user/jamespatrickthom2003-star)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with narrative sections, tables, and text-based frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces complete applications or focused sections based on the user's project brief and optional funder name.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "id": "wip-agent-pay",
+  "name": "Agent Pay",
+  "description": "Disposable wallet for agents. x402 + Coinbase isolated portfolio.",
+  "activation": {
+    "onStartup": true
+  },
+  "contracts": {
+    "tools": ["agent_pay", "agent_pay_x402", "agent_pay_fund"]
+  },
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

@@ -1,40 +1,52 @@
-## Description: <br>
-Analyzes EdgeComputing ATS (Automatic Ticket System) codebase architecture, device protocols, and business logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes EdgeComputing ATS (Automatic Ticket System) codebase architecture, device protocols, and business logic.
 
-## Publisher: <br>
-[Jason-ATS](https://clawhub.ai/user/Jason-ATS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-ats](https://clawhub.ai/user/jason-ats)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand the EdgeComputing ATS codebase, including its architecture layers, device integrations, communication protocols, and extension points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a local ATS project path and a build command example that may not apply to every environment. <br>
-Mitigation: Run build commands only after confirming the local repository path and intentionally choosing to build the ATS project. <br>
-Risk: Broad architecture and system-design triggers could activate the skill outside ATS-specific conversations. <br>
-Mitigation: Narrow trigger wording or install the skill only in workspaces where ATS codebase analysis is expected. <br>
+## Use Case:
 
+Developers and engineers use this skill to navigate the EdgeComputing ATS codebase, understand its layered architecture, inspect device protocols, and plan changes such as new device support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jason-ATS/edgecomputing-ats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with inline code blocks and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local ATS project paths and documentation names from the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for generic architecture or code-analysis requests that are not specific to the ATS project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation triggers to ATS-specific requests and install it only in workspaces where the EdgeComputing ATS project is relevant.
+
+## Reference(s):
+
+- [System architecture documentation](docs/系统架构文档.md)
+- [Project overview documentation](docs/项目概述文档.md)
+- [User operation manual](docs/用户操作手册.md)
+- [Design specification](docs/设计说明书.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-specific ATS architecture, protocol, and code navigation guidance]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

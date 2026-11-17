@@ -1,41 +1,59 @@
-## Description: <br>
-唯品会技能集 helps an agent log in to Vipshop, search products and promotions, inspect product details, and find similar products from images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Vipshop shopping assistant skill bundle for product search, product details, promotions, image-based search, and QR-code login workflows.
 
-## Publisher: <br>
-[vip](https://clawhub.ai/user/vip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vip](https://clawhub.ai/user/vip)
 
-## Use Case: <br>
-External users and shopping agents use this skill bundle to complete Vipshop shopping workflows, including account login, keyword search, product detail lookup, promotion browsing, and image-based product search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires users to log in to Vipshop and stores a reusable local Vipshop session. <br>
-Mitigation: Install and use it only when Vipshop account access is intended, and clear ~/.vipshop-user-login/tokens.json when the session should no longer be available. <br>
-Risk: Automatic login and install behavior can be triggered during shopping workflows. <br>
-Mitigation: Review login prompts and update/install prompts before proceeding, and avoid generic shopping requests unless Vipshop results are desired. <br>
+## Use Case:
 
+External users and shopping assistants use this skill bundle to search Vipshop products, compare prices and discounts, inspect product details, browse promotions, find similar products from images, and manage QR-code login when required.
 
-## Reference(s): <br>
-- [Vipshop Login API Reference](vipshop-user-login/references/api_reference.md) <br>
-- [Vipshop Login Integration Guide](vipshop-user-login/references/integration_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON-backed product, login, promotion, and image-search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product identifiers, prices, promotion details, image links, product links, login status, and next-page tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Risk: Login tokens may be exposed through displayed URLs or product links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not display links containing PASSPORT_ACCESS_TOKEN or exchange-token credentials; redact or replace them with non-authenticated product detail links before showing results.
+
+Risk: The skill can initiate login, image upload, or dependency installation too aggressively.
+
+Mitigation: Require explicit user consent before starting QR-code login, uploading local images, or installing dependencies.
+
+Risk: Unpinned dependencies may change behavior or introduce reviewed-surface drift.
+
+Mitigation: Pin requests, qrcode, Pillow, and packaging to reviewed versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vip/skills/vip-skill)
+- [唯品会扫码登录 API 接口文档](vipshop-user-login/references/api_reference.md)
+- [唯品会扫码登录 - 其他技能集成指南](vipshop-user-login/references/integration_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with structured JSON from helper scripts and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product links, prices, discounts, images, promotion details, login status, and next-step guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

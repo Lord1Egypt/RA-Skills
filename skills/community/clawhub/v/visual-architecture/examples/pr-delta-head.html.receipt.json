@@ -1,0 +1,51 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:51.390286+00:00",
+  "input": {
+    "bytes": 855,
+    "path": "examples/pr-delta-head.json",
+    "sha256": "ddf71bcac221f8b319f710ad30fa5d3b091da3d274b9b05e91477cf646e99dd3"
+  },
+  "mode": "architecture",
+  "output": {
+    "bytes": 8437,
+    "path": "examples/pr-delta-head.html",
+    "sha256": "9b6712e69841da46976c8d748ed742cba89268c6a2b6649b6efa717194f6455e"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 3,
+      "evidenceItems": 1,
+      "mode": "architecture",
+      "nodeKinds": [
+        "memory",
+        "service"
+      ],
+      "nodes": 4,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 1,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

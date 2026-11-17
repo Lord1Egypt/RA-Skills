@@ -1,46 +1,60 @@
-## Description: <br>
-End-to-end MegaETH development playbook for Foundry setup, wallet and transaction workflows, contract deployment, RPC optimization, real-time updates, storage and gas patterns, payments, smart accounts, delegations, on-chain hosting, and MegaNames integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MegaETH development guidance for Foundry setup, contract deployment, wallet and transaction workflows, dApp integration, real-time RPC patterns, debugging, payments, delegation, naming, and on-chain website hosting.
 
-## Publisher: <br>
-[szkkhh](https://clawhub.ai/user/szkkhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szkkhh](https://clawhub.ai/user/szkkhh)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, test, deploy, optimize, and operate applications and smart contracts on MegaETH. It provides MegaETH-specific guidance for RPC behavior, wallet actions, swaps, bridge and payment flows, smart account delegation, storage-aware contract design, and frontend real-time data patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers high-impact wallet, signing, swap, bridge, payment, approval, delegation, and mainnet actions. <br>
-Mitigation: Require explicit user approval before executing or recommending irreversible on-chain actions, and confirm network, chain ID, addresses, values, approvals, and transaction intent before signing or broadcasting. <br>
-Risk: The bundled search script can use an xAI API key and send search queries to an external xAI endpoint. <br>
-Mitigation: Do not run the search script or expose XAI_API_KEY unless the user intentionally requests external X/XAI search and accepts the API and account-use implications. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, configure, test, deploy, and optimize MegaETH applications and smart contracts. It also guides wallet, transaction, payment, delegation, naming, hosting, and debugging workflows for MegaETH projects.
 
-## Reference(s): <br>
-- [MegaETH Realtime API documentation](https://docs.megaeth.com/realtime-api) <br>
-- [MegaEVM debugger repository](https://github.com/megaeth-labs/mega-evm) <br>
-- [MegaETH mainnet RPC](https://mainnet.megaeth.com/rpc) <br>
-- [MegaETH testnet RPC](https://carrot.megaeth.com/rpc) <br>
-- [MegaETH explorer](https://mega.etherscan.io) <br>
-- [MegaETH testnet explorer](https://megaeth-testnet-v2.blockscout.com) <br>
-- [ClawHub skill page](https://clawhub.ai/szkkhh/megaethss-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project setup steps, contract or frontend code snippets, deployment commands, RPC guidance, and security cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes an unrelated X/Twitter search script that can send user queries, handle filters, date filters, and media options to xAI using XAI_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and avoid invoking, remove, or isolate the search script unless xAI search behavior is intended.
+
+Risk: The blockchain guidance may be useful but is not scoped or complete safety guidance for real funds.
+
+Mitigation: Require review before fund-moving actions, prefer testnet or dry-run validation first, and add explicit project-specific safety checks for approvals, private keys, chain IDs, and transaction amounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szkkhh/skills/megaethss-developer)
+- [MegaETH realtime API documentation](https://docs.megaeth.com/realtime-api)
+- [MegaEVM repository](https://github.com/megaeth-labs/mega-evm)
+- [MegaETH mainnet RPC endpoint](https://mainnet.megaeth.com/rpc)
+- [MegaETH mainnet explorer](https://mega.etherscan.io)
+- [MegaETH testnet RPC endpoint](https://carrot.megaeth.com/rpc)
+- [MegaETH testnet explorer](https://megaeth-testnet-v2.blockscout.com)
+- [xAI Responses API endpoint used by bundled search script](https://api.x.ai/v1/responses)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file-change summaries, build/test/deploy commands, gas notes, RPC optimization notes, and configuration values when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

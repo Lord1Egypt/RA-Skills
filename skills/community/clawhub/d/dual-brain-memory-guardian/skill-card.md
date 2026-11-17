@@ -1,44 +1,63 @@
-## Description: <br>
-Dual-brain memory skill for correction handling, rewrite quality, post-task reflection, and semantic recall of historical pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dual-brain memory skill for correction handling, rewrite quality, post-task reflection, and semantic recall of historical pitfalls.
 
-## Publisher: <br>
-[chenni666](https://clawhub.ai/user/chenni666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenni666](https://clawhub.ai/user/chenni666)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain cross-session rule memory, capture corrections and task reflections, and retrieve semantically related pitfalls before or during work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to persist cross-session memory in local Markdown files and Pinecone records. <br>
-Mitigation: Use it only when persistent memory is desired, start with a non-production tenant, and review or clear ~/dual-brain-memory-guardian and the Pinecone namespace when retention is no longer wanted. <br>
-Risk: The runtime requires a Pinecone API key. <br>
-Mitigation: Use a limited-scope key, provide it through environment configuration, and avoid placing secrets or sensitive personal data in prompts, memory content, or logs. <br>
-Risk: Corrections, reflections, and recalls may contain sensitive or outdated context if stored without review. <br>
-Mitigation: Follow the artifact's redaction and boundary guidance, keep Pinecone recall advisory rather than authoritative, and promote only explicit stable rules into Markdown. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain correction-driven memory across sessions. It combines explicit Markdown rules with Pinecone semantic recall for prior corrections, reflections, errors, and historical pitfalls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenni666/dual-brain-memory-guardian) <br>
-- [Publisher Profile](https://clawhub.ai/user/chenni666) <br>
-- [Node.js Download](https://nodejs.org/en/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with npm shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory workflow guidance and command proposals; runtime commands may read or write local Markdown memory and Pinecone records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata, package.json) <br>
+Risk: Corrections, task summaries, and root-cause notes may be persisted to Pinecone and local cross-session memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Pinecone key and a non-production namespace, keep secrets out of prompts and traces, and regularly review ~/dual-brain-memory-guardian/.
+
+Risk: Untrusted or ambiguous corrections may be promoted into durable Markdown behavior rules.
+
+Mitigation: Disable Markdown promotion for uncertain corrections and require explicit confirmation before treating durable or global rules as binding.
+
+Risk: Stored memory may leak across projects or sessions if tenant, project, and domain scoping are not used carefully.
+
+Mitigation: Keep metadata scoped by tenant, project, and domain, require explicit opt-in for cross-session patterns, and verify both local and vector deletion when forgetting data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenni666/skills/dual-brain-memory-guardian)
+- [Publisher profile](https://clawhub.ai/user/chenni666)
+- [Node.js download](https://nodejs.org/en/download)
+- [Skill definition](artifact/SKILL.md)
+- [Setup guide](artifact/setup.md)
+- [Runtime operations](artifact/operations.md)
+- [Security boundaries](artifact/boundaries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON/configuration snippets, and generated local memory files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, and PINECONE_API_KEY; stores local memory under ~/dual-brain-memory-guardian and vector memory in Pinecone tenant namespaces.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

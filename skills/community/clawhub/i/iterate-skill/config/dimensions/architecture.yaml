@@ -1,0 +1,8 @@
+# Architecture review dimension
+name: "架构"
+name_en: "Architecture"
+priority: high
+focus: |
+  Module boundary violations, circular dependencies, God objects (>500 lines).
+  Missing abstractions, inconsistent error codes, tight coupling.
+  Protocol versioning, public API surface bloat.

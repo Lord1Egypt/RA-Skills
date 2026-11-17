@@ -1,0 +1,43 @@
+{
+  "m01": {
+    "industry_description": "中式连锁咖啡赛道，价格战激烈",
+    "five_forces": {"competitors": 5, "new_entrants": 4, "substitutes": 4, "buyer_power": 4, "supplier_power": 2}
+  },
+  "m02": {
+    "market_type": "low_end",
+    "jtbd_statements": ["上班路上快速喝到一杯咖啡"],
+    "existing_solutions": ["门店现磨(贵且慢)"],
+    "rpv_assessment": {"resources": 4, "processes": 3, "values": 3},
+    "performance_overshoot": true
+  },
+  "m03": {
+    "level5_assessment": {"humility": 5, "will": 5},
+    "three_circles": {"best_at": "高性价比现制咖啡", "economic_engine": "单店模型盈利", "passionate_about": "让好咖啡触手可及"},
+    "flywheel_activities": ["开店", "口碑复购", "数据选品", "规模采购降本", "再投资开店"],
+    "discipline_culture": 4
+  },
+  "m04": {
+    "time_log": [{"activity": "战略会议", "hours": 10}, {"activity": "客户交付", "hours": 18}, {"activity": "邮件审批", "hours": 8}],
+    "current_habits": {"time_management": 3, "focus_contribution": 4, "people_strengths": 4, "prioritize": 3, "effective_decisions": 4},
+    "team_strengths": ["数据分析", "客户关系"]
+  },
+  "m05": {
+    "self_rating": {"humility": 4, "professional_will": 5, "credit_to_others": 4, "blame_self": 4}
+  },
+  "m06": {
+    "decision_question": "是否加盟挪瓦咖啡",
+    "options": ["加盟A区", "加盟B区", "暂不加盟"],
+    "known_biases": ["过度自信"]
+  },
+  "m07": {
+    "org_objective": "全年新增 200 家盈利门店",
+    "draft_targets": [
+      {"owner": "华东区", "target": "新增80家且单店盈利", "metric": "净增门店数", "deadline": "2026-12-31"},
+      {"owner": "华南区", "target": "新增60家", "metric": "净增门店数", "deadline": "2026-12-31"}
+    ]
+  },
+  "m08": {
+    "flywheel_steps": ["开店", "口碑复购", "数据选品", "规模采购降本", "再投资开店"],
+    "twenty_mile_targets": {"min": 50, "max": 80}
+  }
+}

@@ -1,42 +1,50 @@
-## Description: <br>
-Beta coefficient reference covering CAPM, systematic risk, portfolio sensitivity, and regression analysis for measuring stock volatility relative to the market or constructing risk-adjusted portfolios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beta provides a quick reference for CAPM, systematic risk, portfolio sensitivity, regression-based beta estimation, and risk-adjusted portfolio construction.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and finance-focused agent users use this skill as a local quick reference for beta, CAPM, portfolio beta, hedging, and common beta-estimation pitfalls. It prints explanatory finance material and worked examples through a bundled shell script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may cause an agent to run the bundled shell script. <br>
-Mitigation: The reviewed script prints reference material and showed no evidence of private data access, network activity, persistence, or destructive behavior; review commands before execution. <br>
-Risk: Finance reference output can be mistaken for individualized investment advice. <br>
-Mitigation: Treat the output as educational reference material and validate assumptions, benchmarks, and calculations before using it in financial decisions. <br>
+## Use Case:
 
+External users, educators, analysts, and agents use this skill as an educational finance reference for understanding beta, CAPM expected return calculations, portfolio beta, hedging concepts, and common estimation pitfalls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/beta) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text printed by shell commands, with markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script accepts named commands such as intro, capm, calculate, interpret, types, portfolio, pitfalls, examples, help, and version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Financial examples could be mistaken for investment advice or used with stale market assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational reference material and verify market assumptions before applying them to real financial decisions.
+
+## Reference(s):
+
+- [Beta skill page](https://clawhub.ai/xueyetianya/skills/beta)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static finance reference output; examples should be treated as educational material, not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

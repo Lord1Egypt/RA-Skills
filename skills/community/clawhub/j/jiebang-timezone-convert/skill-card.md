@@ -1,43 +1,54 @@
-## Description: <br>
-捷帮时区转换 helps agents query current times and convert times across global time zones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+时区转换工具，提供全球时区查询和时间转换功能，当用户需要时区转换、世界时钟、不同时区时间对比、时差计算、UTC 转换或跨时区会议时间时使用。
 
-## Publisher: <br>
-[jiebang-tools](https://clawhub.ai/user/jiebang-tools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebang-tools](https://clawhub.ai/user/jiebang-tools)
 
-## Use Case: <br>
-External users and developers use this skill to query world-clock times, convert times between IANA time zones, compare offsets, and plan meetings across time zones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timezone inputs are sent to an external service for processing. <br>
-Mitigation: Use only with timezone and meeting-time inputs that are appropriate to share with jiebang.site, and avoid including sensitive context in requests. <br>
-Risk: The skill requires an admin-style API key for the external service. <br>
-Mitigation: Provide credentials only in controlled runtimes, rotate them if exposed, and prefer a future version with a narrowly scoped API token. <br>
-Risk: The security scan verdict is suspicious because the external domain and data handling are not fully disclosed in the skill documentation. <br>
-Mitigation: Review the service dependency and disclosure before deployment, or prefer an implementation based on local timezone libraries. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query current time in named time zones, convert times between time zones, compare time differences, and plan meetings across regions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiebang-tools/jiebang-timezone-convert) <br>
-- [Jiebang API site](https://www.jiebang.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON results with converted time or timezone information, plus concise natural-language guidance when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the external jiebang.site API for timezone conversion and timezone lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Timezone inputs are sent to the external jiebang.site service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sending the requested time and timezone values to that service, and document the remote domain and transmitted data before deployment.
+
+Risk: The skill uses an admin-named Jiebang credential.
+
+Mitigation: Replace the admin key with a narrowly scoped token and restrict runtime access to only the credential needed for timezone conversion and lookup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiebang-tools/skills/jiebang-timezone-convert)
+- [Jiebang service endpoint](https://www.jiebang.site)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Guidance]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns converted time and timezone information from an external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

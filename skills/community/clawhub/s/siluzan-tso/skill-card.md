@@ -1,51 +1,62 @@
-## Description: <br>
-Routes agents through Siluzan TSO advertising workflows for account management, campaign operations, diagnostics, reporting, finance tasks, alerts, and platform-specific ad work across Google, Bing, Yandex, TikTok, Kwai, and Meta. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes advertising account operations, supported campaign workflows, and market-analysis and reporting tasks through Siluzan TSO for Google, Bing, Yandex, TikTok, and Meta.
 
-## Publisher: <br>
-[sigedev01-bit](https://clawhub.ai/user/sigedev01-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sigedev01-bit](https://clawhub.ai/user/sigedev01-bit)
 
-## Use Case: <br>
-External advertising operators and agents use this skill to select the correct Siluzan TSO workflow, run CLI-backed advertising account tasks, prepare campaign configurations, and generate account, market, website, and platform reports. Write actions affect advertising, finance, permissions, or account-linking workflows and should be confirmed before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide workflows with broad authority over advertising accounts, finance/account-management actions, permissions, and account links. <br>
-Mitigation: Install only when this access is intended, use short-lived credentials where possible, and require explicit confirmation before create, update, publish, delete, transfer, invoice, permission, or account-linking actions. <br>
-Risk: Installer behavior may change local agent environments through global npm installation, npm registry changes, dependency installation, and registration into multiple assistant skill directories. <br>
-Mitigation: Review the installer before use and verify the target assistant directories, registry settings, and installed dependencies before deploying broadly. <br>
-Risk: Generated campaign configurations, optimization guidance, and report outputs can influence ad spend, targeting, and business decisions. <br>
-Mitigation: Validate JSON templates and CLI outputs, review recommendations against account data and platform policy, and keep write operations gated behind human approval. <br>
+## Use Case:
 
+Advertising operators and marketing analysts use this skill to inspect accounts, carry out supported campaign operations, and prepare platform or market-analysis reports. Campaign creation workflows are documented for Google and Meta.
 
-## Reference(s): <br>
-- [Siluzan TSO ClawHub skill page](https://clawhub.ai/sigedev01-bit/skills/siluzan-tso) <br>
-- [Publisher profile](https://clawhub.ai/user/sigedev01-bit) <br>
-- [Core intent routing](references/core/intent-routing.md) <br>
-- [Agent conventions](references/core/agent-conventions.md) <br>
-- [Playbooks](references/core/playbooks.md) <br>
-- [Workflows](references/core/workflows.md) <br>
-- [Setup](references/core/setup.md) <br>
-- [Accounts](references/accounts/accounts.md) <br>
-- [Google Ads](references/google-ads/google-ads.md) <br>
-- [Reporting](references/analytics/reporting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration templates, and report-oriented deliverables such as HTML, Excel, Markdown, or JSON when a workflow renders them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, siluzan-tso-cli, and authenticated Siluzan credentials; write workflows require user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.30 (source: server release metadata) <br>
+Risk: Optional installers can make broad, lasting changes to the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual installation into one assistant directory, preserve the existing npm registry, and install Node separately.
+
+Risk: Account changes can affect live campaigns and budgets.
+
+Mitigation: Require explicit approval of target accounts, budgets, live activation, and deletions before those actions.
+
+Risk: Onboarding or uploads can expose identity, banking, or customer data.
+
+Mitigation: Use protected onboarding for identity and banking details, and authorize customer-data sharing before uploads.
+
+## Reference(s):
+
+- [Siluzan TSO on ClawHub](https://clawhub.ai/sigedev01-bit/skills/siluzan-tso)
+- [Intent routing](references/core/intent-routing.md)
+- [Workflows](references/core/workflows.md)
+- [Google Ads write workflows](references/google-ads/google-ads-write.md)
+- [Report templates](references/report-templates/README.md)
+- [Setup](references/core/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, HTML reports, Spreadsheets, JSON configuration, Shell commands]
+
+**Output Format:** [Markdown, HTML, XLSX, JSON, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output formats and schemas vary by workflow; campaign and report outputs use documented templates.]
+
+## Skill Version(s):
+
+1.1.65 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

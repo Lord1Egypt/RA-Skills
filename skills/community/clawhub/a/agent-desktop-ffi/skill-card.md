@@ -1,45 +1,62 @@
-## Description: <br>
-C-ABI bindings over agent-desktop's PlatformAdapter let Python ctypes, Swift, Node ffi-napi, Go cgo, C++, and Ruby fiddle consumers link libagent_desktop_ffi and call ad_* functions directly instead of spawning the CLI binary per call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in using C-ABI bindings to inspect and control desktop interfaces from host languages without spawning the agent-desktop CLI for each call.
 
-## Publisher: <br>
-[lahfir](https://clawhub.ai/user/lahfir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lahfir](https://clawhub.ai/user/lahfir)
 
-## Use Case: <br>
-Developers use this skill to integrate agent-desktop desktop automation through C ABI bindings while following build, threading, ownership, and error-handling constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Native desktop automation can expose screen content, clipboard text, action diagnostics, and accessibility permissions. <br>
-Mitigation: Install only when native desktop FFI access is intentionally needed, keep calls user-directed, and keep screen-derived details out of shared logs. <br>
-Risk: Host-process trust can broaden accessibility permission for interpreters or other processes that load the FFI library. <br>
-Mitigation: Require explicit opt-in permission handling in host applications and document which executable receives desktop automation trust. <br>
-Risk: Incorrect FFI threading or pointer ownership can cause failed calls, undefined behavior, or host instability. <br>
-Mitigation: Follow the main-thread rules, pair every returned pointer or handle with its documented release function, and use the release-ffi build profile. <br>
+## Use Case:
 
+Developers and engineers use this skill to build language bindings and observe-act desktop automation with the agent-desktop FFI, including snapshots, element targeting, and actions.
 
-## Reference(s): <br>
-- [Build and link](references/build-and-link.md) <br>
-- [Error handling](references/error-handling.md) <br>
-- [Pointer ownership](references/ownership.md) <br>
-- [Threading](references/threading.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and C/Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes FFI safety constraints for main-thread access, memory ownership, error handling, and privacy-sensitive diagnostics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter: 0.3.0) <br>
+Risk: Desktop inspection and actions may expose or change sensitive on-screen content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when low-level desktop automation is intended; limit access to trusted applications and review actions before execution.
+
+Risk: Snapshots, screenshots, clipboard reads, typed text, results, logs, and errors may contain sensitive information.
+
+Mitigation: Treat these outputs as sensitive and avoid sending them to shared logs or untrusted recipients.
+
+Risk: Optional tracing writes local diagnostic files that may persist after the session.
+
+Mitigation: Enable tracing only when needed and plan how to protect and remove diagnostic files.
+
+## Reference(s):
+
+- [ClawHub release: agent-desktop-ffi](https://clawhub.ai/lahfir/skills/agent-desktop-ffi)
+- [Build and link](artifact/references/build-and-link.md)
+- [Pointer ownership](artifact/references/ownership.md)
+- [Error handling](artifact/references/error-handling.md)
+- [Threading](artifact/references/threading.md)
+- [Apple Accessibility API](https://developer.apple.com/documentation/applicationservices/axuielement)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with C, Python, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers ABI compatibility, pointer ownership, error handling, and threading.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved ClawHub release; skill frontmatter lists 0.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

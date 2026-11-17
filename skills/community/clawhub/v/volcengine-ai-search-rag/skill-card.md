@@ -1,37 +1,53 @@
-## Description: <br>
-Provides a retrieval and RAG workflow on the Volcengine AI stack for embedding search, document indexing, top-k retrieval, grounding prompts, and search relevance tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieval and RAG workflow on Volcengine AI stack for embedding search, document indexing, top-k retrieval, grounding prompts, and search relevance tuning.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to design retrieval-first answering workflows backed by Volcengine AI search, including corpus chunking, embedding indexing, filtered retrieval, grounded response generation, and relevance tuning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Retrieval and RAG workflows may send source documents, prompts, or retrieved context to external Volcengine-backed services. <br>
-Mitigation: Confirm required credentials and data-handling policies before use, and avoid sending private or regulated content unless the Volcengine account and organizational policy allow it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [sources.md](references/sources.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to design retrieval-first answering workflows with explicit indexing, top-k retrieval, grounded generation, confidence reporting, and fallback behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include retrieval confidence, chunk citations, and fallback path recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Embeddings or retrieval indexes may contain sensitive document content if the selected corpus is not reviewed before indexing.
+
+Mitigation: Confirm the corpus scope before installation and configure Volcengine storage, indexes, and access controls for the sensitivity of the indexed content.
+
+Risk: Grounded answers can become misleading when retrieval returns weak, stale, or irrelevant chunks.
+
+Mitigation: Keep source, timestamp, and id metadata with chunks, return confidence, and provide a fallback path when retrieval has no useful hits.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/volcengine-ai-search-rag)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with ordered implementation steps and quality rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence notes, fallback paths, and citations to retrieved chunks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

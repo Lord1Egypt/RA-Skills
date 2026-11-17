@@ -1,43 +1,55 @@
-## Description: <br>
-Invoice tracker: track sent invoices, flag overdue payments, draft follow-up reminders, weekly on a cron or on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks sent invoices, flags overdue payments, and drafts payment follow-up reminders for review on demand or on a weekly schedule.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Business owners, finance operators, and agents use this skill to review invoice data, identify overdue payments, prepare invoice digests, and draft reminder messages for approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice sources and digests may expose sensitive business, client, payment, or revenue information. <br>
-Mitigation: Use only approved invoice sources and private, least-privilege delivery channels for digests and reports. <br>
-Risk: Payment reminders could be sent to the wrong recipient or sent before the user reviews the draft. <br>
-Mitigation: Keep reminder sending approval-based and verify recipients before any email or chat delivery. <br>
-Risk: A recurring schedule may continue checking or delivering invoice data after it is no longer needed. <br>
-Mitigation: Disable the recurring schedule when the workflow is no longer required. <br>
+## Use Case:
 
+Business owners and finance operators use this skill to review outstanding invoices, identify overdue accounts, generate aging and revenue summaries, and prepare payment reminder drafts before sending.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ceobotson-bot/doctorclaw-invoice-tracker) <br>
-- [DoctorClaw Website](https://www.doctorclaw.ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown invoice digest with drafted reminder text and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reminder messages are drafts for user approval before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Invoice data may be sensitive if the skill is granted broad access to files, sheets, accounting systems, or delivery channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only the intended invoice source and digest destination before installation.
+
+Risk: Email or accounting integrations can affect customer communications or invoice records if permissions are granted too broadly.
+
+Mitigation: Grant email or accounting access only when needed, keep reminders as drafts, and require explicit approval before sending reminders or updating records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-invoice-tracker)
+- [Publisher profile](https://clawhub.ai/user/ceobotson-bot)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown invoice digest, reminder email drafts, revenue summaries, aging reports, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reminder emails are drafted for user approval before sending; invoice sources, delivery channels, schedules, and integrations are configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Generate passwords, PINs, and passphrases from command-line options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate passwords, PINs, and memorable passphrases with configurable command-line options.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and other agent users can use this skill to generate candidate passwords, PINs, or memorable passphrases for low-risk workflows and local testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated passwords, PINs, and passphrases should not be treated as cryptographically secure because the security evidence reports non-cryptographic randomness. <br>
-Mitigation: Use the outputs only for low-risk testing or update the implementation to use Python's secrets module or another CSPRNG before generating real secrets. <br>
-Risk: The skill text claims secure generation, which may overstate the protection provided by the current implementation. <br>
-Mitigation: Review the generated values and documentation before deployment, and avoid using this release for account passwords, API tokens, recovery codes, or other important secrets. <br>
+## Use Case:
 
+Developers and end users can use this skill to ask an agent for command-line generation of passwords, PINs, and memorable passphrases for testing or low-risk workflows. Generated secrets should not be used for real accounts until the security guidance is addressed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/dinghaibin-password-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text values and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script supports configurable length, character classes, exclusions, PIN mode, passphrase mode, separators, and count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated passwords, PINs, and passphrases may not provide the security level promised by the skill documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generated values only for testing or low-risk workflows until the generator uses a cryptographically secure RNG and fixes passphrase entropy.
+
+Risk: The documentation and CLI behavior may lead users to assume stronger defaults or secure-token support than the artifact provides.
+
+Mitigation: Review the command options and generated output before use, and update documentation or implementation before relying on the skill for real secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/dinghaibin-password-generator)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text generated values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate one or more password, PIN, or passphrase strings; security guidance says not to trust generated secrets for real accounts until randomness and entropy issues are fixed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

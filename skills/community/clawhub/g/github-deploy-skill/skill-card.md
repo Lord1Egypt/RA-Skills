@@ -1,41 +1,54 @@
-## Description: <br>
-Commit and push local project changes to GitHub, with optional repo creation and deployment hints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Commit and push local project changes to GitHub, with optional repo creation and deployment hints.
 
-## Publisher: <br>
-[cruciata](https://clawhub.ai/user/cruciata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cruciata](https://clawhub.ai/user/cruciata)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare GitHub deployment steps for local projects, including git checks, commits, pushes, optional remote setup, optional repository creation, and deployment hints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented command references `github-deploy-skill.ps1`, but that script is not included in the package. <br>
-Mitigation: Do not run the command unless the script is supplied from a trusted source and reviewed first. <br>
-Risk: The workflow can commit, push, change remotes, or create a GitHub repository in the wrong destination. <br>
-Mitigation: Before use, inspect `git status` and `git diff`, confirm the repository and branch, and verify the authenticated GitHub CLI account. <br>
+## Use Case:
 
+Developers use this skill to prepare and run a Windows PowerShell workflow that commits local Git changes, pushes to a selected branch, optionally creates a GitHub repository, and prints deployment hints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cruciata/github-deploy-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/cruciata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Git, network access to a remote Git host, and GitHub CLI authentication when repository creation is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The advertised PowerShell script is not included in the artifact, so the commit, push, remote configuration, and repository creation behavior cannot be verified from this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the documented commands until the exact github-deploy-skill.ps1 file has been obtained from a trusted source and reviewed.
+
+Risk: The described workflow can use authenticated Git and GitHub CLI credentials to push code or create repositories.
+
+Mitigation: Run it only in the intended repository and account context after reviewing the pending git diff, target remote, branch, and GitHub authentication state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cruciata/skills/github-deploy-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/cruciata)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create commits, change git remotes, push branches, or create GitHub repositories when executed with authenticated local tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

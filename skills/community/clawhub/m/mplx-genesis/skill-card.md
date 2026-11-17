@@ -1,40 +1,52 @@
-## Description: <br>
-Launch tokens on Solana using Metaplex Genesis protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch tokens on Solana using Metaplex Genesis protocol.
 
-## Publisher: <br>
-[blockiosaurus](https://clawhub.ai/user/blockiosaurus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockiosaurus](https://clawhub.ai/user/blockiosaurus)
 
-## Use Case: <br>
-Developers and token creators use this skill to configure and launch Solana tokens with Metaplex Genesis, including LaunchPool distribution, unlocked allocations, Raydium liquidity pool graduation, lifecycle checks, and wallet setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of a local wallet for costly, hard-to-reverse Solana token launch actions. <br>
-Mitigation: Use a dedicated low-balance wallet and require explicit review of the network, wallet address, token allocations, fees, metadata upload, and finalization step before signing any transaction. <br>
-Risk: Genesis launch execution depends on a separate plugin that performs transactions. <br>
-Mitigation: Install only when the Genesis plugin is trusted and intended for use, and verify plugin configuration before launch operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/blockiosaurus/mplx-genesis) <br>
-- [Publisher profile](https://clawhub.ai/user/blockiosaurus) <br>
+## Use Case:
 
+External users and developers use this skill to plan and execute Solana token launches with Metaplex Genesis, including LaunchPool distribution, unlocked allocations, Raydium liquidity graduation, and wallet setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown or text guidance with structured launch parameters and tool-call recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the separate Genesis plugin to execute Solana transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide actions that spend SOL and publish irreversible on-chain token launch state.
+
+Mitigation: Require explicit user confirmation before creating or finalizing a launch, and verify the active wallet address and Solana network before every transaction.
+
+Risk: Use with a real Solana keypair can expose funds if the wrong wallet, excessive balance, or leaked keypair file is used.
+
+Mitigation: Use a dedicated low-balance wallet and keep the keypair path and file contents out of chat, logs, and shared artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockiosaurus/skills/mplx-genesis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with tool names, configuration values, and command-oriented steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet setup guidance, token launch parameters, allocation splits, timing, and status-check instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Solana Trading Api helps agents prepare Solana swaps, submit signed transactions through TradeRouter, inspect wallet holdings, and manage limit, trailing, TWAP, and combo orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana swap execution, MEV-protected transaction submission, wallet scanning, and market-cap-based limit, trailing, TWAP, and combo order guidance via the TradeRouter API.
 
-## Publisher: <br>
-[re-bruce-wayne](https://clawhub.ai/user/re-bruce-wayne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[re-bruce-wayne](https://clawhub.ai/user/re-bruce-wayne)
 
-## Use Case: <br>
-External developers and trading agents use this skill to build Solana token trading workflows through the TradeRouter API, including swap construction, MEV-protected submission, wallet holdings checks, and persistent WebSocket order management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through real Solana trades using wallet signing authority. <br>
-Mitigation: Use a dedicated low-balance wallet, keep dry-run mode enabled until tested, and require explicit confirmation for token, side, amount, slippage, expiry, and cancellation policy. <br>
-Risk: Persistent WebSocket orders can remain active after placement. <br>
-Mitigation: Track open order IDs, keep the WebSocket connected while orders are active, and check or cancel open orders after use. <br>
-Risk: Private key handling is required for signing transactions and WebSocket challenge responses. <br>
-Mitigation: Never expose a main wallet private key; sign only in a secure client environment and avoid logging secrets or signed payload material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/re-bruce-wayne/trade-router) <br>
-- [TradeRouter website](https://traderouter.ai) <br>
-- [TradeRouter API base](https://api.traderouter.ai) <br>
-- [TradeRouter security endpoint](https://api.traderouter.ai/security) <br>
+## Use Case:
 
+External developers and trading agents use this skill to build Solana swaps, inspect wallet holdings, submit signed transactions, and manage market-cap-based orders through the TradeRouter API. The skill is intended for agents that can prepare API requests, sign transactions with a wallet key, and apply trading safety checks before live execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trading workflow guidance that should be reviewed before live execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to sign and submit remote-built Solana transactions with a wallet key before transaction contents are independently checked.
+
+Mitigation: Use only a dedicated, low-balance wallet, keep dry-run enabled during review, and require local transaction validation or human confirmation before live signing.
+
+Risk: Live order flows require wallet signing authority for WebSocket challenge response and subsequent transaction execution.
+
+Mitigation: Keep the wallet key scoped to this trading use case, avoid primary wallets, and enable live mode only after reviewing order parameters and safety limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/re-bruce-wayne/skills/trade-router)
+- [TradeRouter Website](https://traderouter.ai)
+- [TradeRouter API](https://api.traderouter.ai)
+- [TradeRouter WebSocket API](wss://api.traderouter.ai/ws)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with JSON examples, API payloads, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes trading workflow guidance, transaction signing steps, timeout guidance, WebSocket order flows, and dry-run/live-mode configuration notes.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

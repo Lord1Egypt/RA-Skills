@@ -1,38 +1,58 @@
-## Description: <br>
-Runs ACT WebAssembly component tools via `act call` for agents that need sandboxed tools such as SQLite, HTTP, or filesystem components without system dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run ACT WebAssembly component tools via `act call` for sandboxed .wasm, OCI, or URL-based tools without system dependencies.
 
-## Publisher: <br>
-[actcore](https://clawhub.ai/user/actcore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[actcore](https://clawhub.ai/user/actcore)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover ACT component tools, inspect their schemas, and run them with JSON arguments, metadata, and explicit filesystem grants when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote or untrusted WebAssembly components can be risky when combined with broad filesystem grants. <br>
-Mitigation: Use pinned or trusted component references, inspect tools with `act info` first, and grant only the narrow directory access needed instead of using full filesystem access by default. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover ACT component tool schemas and run sandboxed WebAssembly tools through the `act` CLI with JSON inputs, metadata, and optional scoped filesystem access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/actcore/act-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [ACT command output is JSON on stdout; logs go to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence, frontmatter) <br>
+Risk: Remote ACT components can be downloaded and cached before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned, trusted OCI component references and avoid arbitrary HTTP component URLs.
+
+Risk: Filesystem permissions can expose host paths to a component when granted too broadly.
+
+Mitigation: Avoid `--allow-fs` for remote or untrusted components and grant only narrowly scoped `--allow-dir` access after checking the exact host path and purpose.
+
+Risk: The skill depends on the local `act` CLI.
+
+Mitigation: Install only when ACT component execution is intended and the ACT CLI source is trusted.
+
+## Reference(s):
+
+- [ACT Runtime on ClawHub](https://clawhub.ai/actcore/skills/act-cli)
+- [actcore publisher profile](https://clawhub.ai/user/actcore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [ACT command output is JSON on stdout; logs go to stderr when commands run.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

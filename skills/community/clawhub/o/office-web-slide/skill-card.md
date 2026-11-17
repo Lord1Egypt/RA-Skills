@@ -1,50 +1,63 @@
-## Description: <br>
-Web Slide helps agents turn user-provided material and style preferences into browser-ready interactive HTML presentations with layouts, themes, charts, and animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Slide helps an agent turn user-provided material and style preferences into interactive HTML slide decks that can be opened directly in a browser.
 
-## Publisher: <br>
-[balancegsr](https://clawhub.ai/user/balancegsr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[balancegsr](https://clawhub.ai/user/balancegsr)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to create browser-based slide decks from provided content, documents, or style references. It is intended for interactive HTML presentations with built-in navigation, theme selection, layouts, charts, and animation support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read presentation source materials that may contain confidential information. <br>
-Mitigation: Avoid sensitive source material where possible and review what is provided to the agent before generation. <br>
-Risk: Generated HTML may include or reference external CDN libraries for advanced charts or animations. <br>
-Mitigation: Ask for no CDN dependencies when offline use or stricter data-handling controls are required. <br>
-Risk: Generated slide content or HTML may contain mistakes before human review. <br>
-Mitigation: Review the generated HTML presentation before sharing or presenting it. <br>
+## Use Case:
 
+Developers, creators, and presentation authors use this skill to guide an agent through content collection, outline creation, visual theme selection, and browser-ready HTML slide generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/balancegsr/office-web-slide) <br>
-- [Publisher profile](https://clawhub.ai/user/balancegsr) <br>
-- [README](artifact/README.md) <br>
-- [Slide generation guidelines](artifact/references/guidelines.md) <br>
-- [HTML slide base template](artifact/references/base.html) <br>
-- [Theme picker](artifact/references/theme-picker.html) <br>
-- [Chart.js component reference](artifact/references/components/chart-js.html) <br>
-- [SVG chart component reference](artifact/references/components/chart-svg.html) <br>
-- [GSAP animation recipes](artifact/references/components/gsap-recipes.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance plus generated HTML, CSS, and JavaScript files for browser-based slide decks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-provided source material, write local HTML slide files, open browser previews, run a temporary localhost theme picker, and optionally reference CDN libraries for charts or advanced animation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact README) <br>
+Risk: The skill can read supplied materials and incorporate their contents into generated slides.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents you intend to use for slide generation, and avoid confidential inputs unless that use is approved.
+
+Risk: The skill launches a temporary localhost theme picker and reads a theme choice file.
+
+Mitigation: Validate selected theme IDs against the documented theme list before using them.
+
+Risk: Slides that use chart or advanced animation components may load libraries from CDNs.
+
+Mitigation: Review external dependency use before presenting in restricted or offline environments.
+
+## Reference(s):
+
+- [README](README.md)
+- [Slide Generation Guidelines](references/guidelines.md)
+- [HTML Slide Base](references/base.html)
+- [Theme Picker](references/theme-picker.html)
+- [Chart.js Component Reference](references/components/chart-js.html)
+- [SVG Chart Component Reference](references/components/chart-svg.html)
+- [GSAP Animation Recipes](references/components/gsap-recipes.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance plus generated HTML, CSS, and JavaScript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or edit local HTML slide files and may reference CDN-hosted chart or animation libraries when those components are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Submits WeChat Official Account draft media IDs for formal publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes a WeChat Official Account draft to followers by submitting its media_id.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and operators use this skill when they need an agent to submit a WeChat Official Account draft for final publication after confirming the correct media_id and access token.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A successful run submits a final WeChat public-account publication to followers.
+
+Mitigation: Run the skill only after the user explicitly confirms that final publication is intended and verifies the target media_id.
+
+Risk: The WeChat access token is required to publish and could authorize unintended posting if mishandled.
+
+Mitigation: Keep WECHAT_ACCESS_TOKEN scoped, protected, and available only in the execution environment where publication is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to submit a WeChat Official Account draft for formal publication from a known media_id after explicit user confirmation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A successful publish action may immediately push the article to followers. <br>
-Mitigation: Require explicit final user confirmation and verify the media_id before running the publish command. <br>
-Risk: The skill requires a WeChat access token to submit publication requests. <br>
-Mitigation: Use the narrowest practical WeChat token and provide it only through the WECHAT_ACCESS_TOKEN environment variable. <br>
+**Output Format:** [Markdown with inline bash commands and status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires a media_id argument and the WECHAT_ACCESS_TOKEN environment variable; successful execution submits the publication request to WeChat.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command execution and JSON API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WECHAT_ACCESS_TOKEN and a user-confirmed media_id before execution.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

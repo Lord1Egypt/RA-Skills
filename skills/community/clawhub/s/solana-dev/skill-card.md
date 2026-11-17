@@ -1,50 +1,67 @@
-## Description: <br>
-Provides Solana development guidance for dApp UI work, wallet and signing flows, transaction handling, on-chain programs, testing, and security review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana Dev helps agents plan and implement Solana dApp, wallet, transaction, on-chain program, SDK, testing, and security-review work using modern Solana tooling.
 
-## Publisher: <br>
-[PlaydaDev](https://clawhub.ai/user/PlaydaDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[playdadev](https://clawhub.ai/user/playdadev)
 
-## Use Case: <br>
-Developers use this skill to choose Solana stack patterns and implementation steps for React or Next.js dApps, wallet connections, transaction UX, Anchor or Pinocchio programs, client SDKs, tests, and security-focused reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Readers may mistake the skill for official Solana Foundation authorship. <br>
-Mitigation: Treat it as third-party Solana guidance unless separate publisher evidence establishes official authorship. <br>
-Risk: Suggested npm or cargo commands may add dependencies or tooling that affect a project. <br>
-Mitigation: Review install commands and package choices before running them. <br>
-Risk: Wallet, signing, fee, and transfer code can affect real funds if used directly on mainnet. <br>
-Mitigation: Test these flows on devnet or testnet before using real funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Solana Documentation](https://solana.com/docs) <br>
-- [Next.js + Solana React Hooks](https://solana.com/docs/frontend/nextjs-solana) <br>
-- [Solana Kit Docs](https://solana.com/docs/clients/kit) <br>
-- [framework-kit Repository](https://github.com/solana-foundation/framework-kit) <br>
-- [Anchor Documentation](https://www.anchor-lang.com/) <br>
-- [Pinocchio Repository](https://github.com/anza-xyz/pinocchio) <br>
-- [LiteSVM](https://github.com/LiteSVM/litesvm) <br>
-- [Mollusk](https://github.com/buffalojoec/mollusk) <br>
-- [Surfpool](https://docs.surfpool.dev/) <br>
-- [Solana Security Best Practices](https://solana.com/docs/programs/security) <br>
+## Use Case:
 
+Developers and engineers use this skill to classify Solana development tasks, select appropriate client, wallet, program, and testing tools, and produce implementation guidance with Solana-specific correctness checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file-change summaries, install/build/test commands, and risk notes for signing, fees, CPIs, or token transfers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Release provenance is unavailable, and artifact text may overstate official-source status.
+
+Mitigation: Confirm the publisher and upstream source before treating the skill as official Solana Foundation material.
+
+Risk: Package setup examples may use unpinned dependency installation commands.
+
+Mitigation: Pin reviewed package versions, commit lockfiles, and install in a least-privileged development environment without production secrets.
+
+Risk: Solana transaction, signing, CPI, token, and account-validation guidance can affect fund movement or program authority.
+
+Mitigation: Review generated changes before execution, test on local or non-production clusters first, and require explicit checks for signers, owners, writability, token program variants, and PDA derivation.
+
+## Reference(s):
+
+- [Solana Dev on ClawHub](https://clawhub.ai/playdadev/skills/solana-dev)
+- [Publisher profile](https://clawhub.ai/user/playdadev)
+- [Solana Documentation](https://solana.com/docs)
+- [Next.js + Solana React Hooks](https://solana.com/docs/frontend/nextjs-solana)
+- [Solana Kit Docs](https://solana.com/docs/clients/kit)
+- [framework-kit Repository](https://github.com/solana-foundation/framework-kit)
+- [Anchor Documentation](https://www.anchor-lang.com/)
+- [Pinocchio Repository](https://github.com/anza-xyz/pinocchio)
+- [LiteSVM](https://github.com/LiteSVM/litesvm)
+- [Mollusk](https://github.com/buffalojoec/mollusk)
+- [Surfpool](https://docs.surfpool.dev/)
+- [Solana Security Best Practices](https://solana.com/docs/programs/security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file-change summaries, install/build/test commands, and risk notes for signing, fees, CPIs, token transfers, and account validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

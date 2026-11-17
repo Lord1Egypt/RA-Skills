@@ -1,45 +1,60 @@
-## Description: <br>
-Trades F1 Drivers Championship markets on Kalshi using teammate anti-correlation and requires SIMMER_API_KEY, SOLANA_PRIVATE_KEY, and simmer-sdk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades F1 Drivers Championship markets on Kalshi using teammate anti-correlation, where structurally linked teammate probabilities can create relative mispricings.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading developers use this skill to scan Kalshi F1 Drivers Championship markets, review teammate anti-correlation signals, and optionally execute small USDC trades when run with --live. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles high-value trading credentials and can place real USDC trades when run with --live. <br>
-Mitigation: Start in dry-run mode, review the signals, and use --live only when ready for real trades. <br>
-Risk: Live trading exposes wallet funds to strategy, market, and execution risk. <br>
-Mitigation: Use a dedicated low-balance Solana wallet, conservative position limits, and a scoped Simmer API key where possible. <br>
-Risk: The trading implementation depends on simmer-sdk and uses configurable market safeguards. <br>
-Mitigation: Verify the simmer-sdk dependency before providing credentials and review the edge, slippage, liquidity, and trade-count settings before live use. <br>
+## Use Case:
 
+External users and trading agents use this skill to identify and optionally trade Kalshi F1 Drivers Championship teammate-pair mispricings. It defaults to dry-run mode and requires explicit live execution before it can place real-money trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-f1-teammate-anti-trader) <br>
-- [Simmer Markets skills](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Console text with optional JSON automaton summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run mode; live trading requires --live and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can place real-money trades when run with --live.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run workflows separate from live execution, require an explicit live flag, and review position limits before enabling live trading.
+
+Risk: The skill asks for a raw Solana private key and trading credentials.
+
+Mitigation: Use a dedicated low-value wallet, narrowly scoped or revocable trading credentials, and avoid provisioning wallet keys for dry-run use.
+
+Risk: Live trading depends on the external simmer-sdk package.
+
+Mitigation: Pin and review the simmer-sdk dependency before live use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-f1-teammate-anti-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Console text with optional automaton JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can show dry-run opportunities, positions, configuration, trade attempts, executed trades, skipped trades, and tunable risk settings.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

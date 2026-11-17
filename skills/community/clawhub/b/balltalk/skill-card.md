@@ -1,42 +1,54 @@
-## Description: <br>
-Use this skill when the user asks about basketball: NBA stats, player comparisons, fantasy advice, rules, play design, scouting, or coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Balltalk helps an agent answer basketball questions with current web data, including NBA statistics, player comparisons, fantasy advice, rules explanations, play design, scouting, and coaching context.
 
-## Publisher: <br>
-[kewang0622](https://clawhub.ai/user/kewang0622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kewang0622](https://clawhub.ai/user/kewang0622)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer basketball questions with current stats, player comparisons, fantasy basketball guidance, scouting reports, rules explanations, and play analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private fantasy league details or personal information could be exposed if included in web searches. <br>
-Mitigation: Use the skill for public basketball questions and avoid sharing private league details or personal information unless disclosure is acceptable. <br>
-Risk: Basketball stats, schedules, and injury status can change quickly, which can make advice stale or misleading. <br>
-Mitigation: Use current web sources for stats and injury checks, and cite or name the sources used for time-sensitive recommendations. <br>
+## Use Case:
 
+External users, analysts, fantasy basketball managers, and developers use this agent skill to get basketball analysis, stat-backed comparisons, fantasy start/sit guidance, scouting reports, rules explanations, and play breakdowns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kewang0622/balltalk) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, short structured sections, and occasional ASCII diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web-researched basketball statistics, injury status, schedules, and source citations when current data is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Basketball statistics, injury reports, schedules, and fantasy context can change quickly, so stale web data could lead to incorrect guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current sources for time-sensitive basketball claims and verify important fantasy or scouting decisions against the cited data.
+
+Risk: The skill is broad and may activate for many basketball or NBA questions.
+
+Mitigation: Use it for basketball analysis only, and do not apply it to other sports, video games, card collecting, private accounts, credentials, or local data access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kewang0622/skills/balltalk)
+- [ClawHub publisher profile](https://clawhub.ai/user/kewang0622)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables, short analysis, scouting reports, play diagrams, and fantasy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source-backed current statistics, injury context, schedule context, and ASCII play diagrams.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Voice Chat Skill helps an agent set up bidirectional voice conversations with speech-to-text input, text-to-speech output, and conversation flow management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bidirectional voice chat integration with speech-to-text and text-to-speech for OpenClaw-based agents.
 
-## Publisher: <br>
-[fangkelvin](https://clawhub.ai/user/fangkelvin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fangkelvin](https://clawhub.ai/user/fangkelvin)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add voice input, speech recognition, text-to-speech responses, and voice-chat testing workflows to an OpenClaw-based assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Microphone audio, transcripts, or generated responses may be sent to Google, ElevenLabs, or another configured speech provider. <br>
-Mitigation: Use local or offline modes for sensitive conversations, review provider settings before use, and avoid entering confidential speech when cloud providers are enabled. <br>
-Risk: Console transcripts and generated audio files may expose sensitive conversation content. <br>
-Mitigation: Treat logs and generated audio as sensitive data, limit retention, and review output locations before sharing or deploying the skill. <br>
-Risk: The documentation includes a shell-based playback sample. <br>
-Mitigation: Prefer safer platform playback APIs or review any shell invocation before copying it into production code. <br>
+## Use Case:
 
+Developers use this skill to add microphone-driven speech recognition, spoken responses, and voice conversation flows to OpenClaw-based agents. It supports local simulation as well as optional online speech services.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fangkelvin/voice-chat-skill) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw TTS documentation](https://docs.openclaw.ai/tools/tts) <br>
-- [SpeechRecognition package](https://pypi.org/project/SpeechRecognition/) <br>
-- [PyAudio documentation](https://people.csail.mit.edu/hubert/pyaudio/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and microphone access; optional cloud STT or TTS providers may process audio, transcripts, or generated responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: Microphone audio or generated text may be sent to third-party speech services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the offline or simulated mode when cloud sharing is not acceptable, and obtain clear user consent before enabling online STT or TTS providers.
+
+Risk: The artifact includes a shell=True TTS playback example.
+
+Mitigation: Do not copy that pattern into production code; use explicit platform playback commands without shell expansion and validate file paths.
+
+Risk: Unpinned speech and audio dependencies can change behavior across installs.
+
+Mitigation: Install in a virtual environment with pinned dependency versions and avoid administrator-level package installs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fangkelvin/skills/voice-chat-skill)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw TTS Documentation](https://docs.openclaw.ai/tools/tts)
+- [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
+- [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/)
+- [ElevenLabs Text-to-Speech API](https://api.elevenlabs.io/v1/text-to-speech/{voice_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, setup commands, and configuration notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference microphone input, generated speech output, local simulation mode, and optional cloud speech services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

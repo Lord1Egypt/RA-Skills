@@ -1,48 +1,66 @@
-## Description: <br>
-Developer Docs Framework helps agents write, plan, audit, and improve developer and partner documentation using Diataxis, Google OpenDocs, Good Docs Project, and related style-guide patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer Docs Framework helps agents write, plan, audit, and improve technical documentation using Diataxis, Google OpenDocs, Good Docs Project templates, style guides, and enterprise documentation patterns.
 
-## Publisher: <br>
-[anivar](https://clawhub.ai/user/anivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anivar](https://clawhub.ai/user/anivar)
 
-## Use Case: <br>
-Developers, technical writers, and documentation teams use this skill to create, organize, audit, and improve developer-facing documentation such as tutorials, how-to guides, API reference, migration guides, runbooks, and partner integration guides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad documentation requests and produce guidance that does not fit a project's style, accuracy needs, or licensing constraints. <br>
-Mitigation: Review generated documentation for project fit, factual accuracy, house style, and licensing before publishing or relying on it. <br>
+## Use Case:
 
+Developers, technical writers, and documentation teams use this skill to create or review developer and partner documentation, including tutorials, how-to guides, API references, migration guides, runbooks, and documentation strategy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anivar/developer-docs-framework) <br>
-- [Publisher-provided source URL](https://github.com/anivar/developer-docs-framework) <br>
-- [Author website](https://anivar.net) <br>
-- [Content Types Reference](references/content-types.md) <br>
-- [Templates Reference](references/templates.md) <br>
-- [Style Guide Reference](references/style-guide.md) <br>
-- [Enterprise Patterns Reference](references/enterprise-patterns.md) <br>
-- [Diataxis](https://diataxis.fr/) <br>
-- [Google OpenDocs](https://github.com/google/opendocs) <br>
-- [Good Docs Project](https://www.thegooddocsproject.dev/) <br>
-- [Google Developer Documentation Style Guide](https://developers.google.com/style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Broad documentation triggers can cause the skill to influence many documentation-writing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the trigger breadth matches the intended agent context before deployment.
+
+Risk: Credential examples and Stripe-style personalization guidance can normalize test-key handling if copied without controls.
+
+Mitigation: Use masked, scoped, non-production credentials in examples and require platform controls before personalized keys are shown.
+
+Risk: Generated documentation can be structurally sound while still being inaccurate or stale.
+
+Mitigation: Pair the skill output with product or API source review, runnable code-example tests, and a documented freshness cadence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anivar/skills/developer-docs-framework)
+- [Metadata source URL](https://github.com/anivar/developer-docs-framework)
+- [Publisher profile](https://clawhub.ai/user/anivar)
+- [Diataxis](https://diataxis.fr/)
+- [Google OpenDocs](https://github.com/google/opendocs)
+- [Good Docs Project](https://www.thegooddocsproject.dev/)
+- [Google Developer Documentation Style Guide](https://developers.google.com/style)
+- [Content types reference](references/content-types.md)
+- [Templates reference](references/templates.md)
+- [Enterprise patterns reference](references/enterprise-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with examples, checklists, templates, and occasional code or shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces documentation guidance only; it does not declare tools, MCP servers, credential environment variables, or hidden execution behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter metadata version is 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

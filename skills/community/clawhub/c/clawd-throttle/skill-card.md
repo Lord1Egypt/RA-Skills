@@ -1,44 +1,58 @@
-## Description: <br>
-Routes LLM requests to the cheapest capable model across 8 providers (Anthropic, Google, OpenAI, DeepSeek, xAI, Moonshot, Mistral, Ollama) and 25+ models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes LLM requests to the cheapest capable model across 8 providers (Anthropic, Google, OpenAI, DeepSeek, xAI, Moonshot, Mistral, Ollama) and 25+ models.
 
-## Publisher: <br>
-[liekzejaws](https://clawhub.ai/user/liekzejaws) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liekzejaws](https://clawhub.ai/user/liekzejaws)
 
-## Use Case: <br>
-Developers and engineers use Clawd Throttle to classify prompt complexity, route LLM requests across configured providers, and inspect routing or cost statistics from an MCP server or local HTTP proxy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional HTTP proxy mode can allow unauthenticated callers to use configured LLM provider accounts if exposed. <br>
-Mitigation: Run proxy mode only on trusted machines and networks, prefer localhost-only access, and add access controls before exposing the port. <br>
-Risk: Prompts are sent to whichever external LLM providers the user configures. <br>
-Mitigation: Configure only approved providers and install the skill only when provider-side prompt processing is acceptable. <br>
-Risk: Administrative tools can reveal routing setup or persistently change routing behavior. <br>
-Mitigation: Limit access to get_config and set_mode to trusted users and protect the local configuration directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawd Throttle ClawHub Page](https://clawhub.ai/liekzejaws/clawd-throttle) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Project Homepage](https://github.com/liekzejaws/clawd-throttle) <br>
+## Use Case:
 
+Developers and engineers use Clawd Throttle as an OpenClaw MCP server or optional local HTTP proxy to classify prompt complexity, route requests across configured LLM providers, and review routing and cost metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [MCP tool responses, HTTP proxy responses, JSON routing metadata, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected model, complexity tier, classifier score, request ID, cost statistics, and configuration summaries with keys redacted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional HTTP proxy mode can expose paid model accounts if reachable by untrusted clients.
+
+Mitigation: Keep HTTP proxy mode disabled unless needed; if enabled, bind it to loopback, protect it with authentication, and do not expose port 8484 to a LAN or the internet.
+
+Risk: Provider API keys and endpoint settings can route paid requests to unintended services if misconfigured.
+
+Mitigation: Use restricted provider API keys, verify every configured base URL, and review routing configuration before use.
+
+Risk: Local configuration may contain credentials.
+
+Mitigation: Store the local config file with appropriate filesystem permissions and prefer environment variables or a managed secret store where available.
+
+## Reference(s):
+
+- [Clawd Throttle ClawHub release](https://clawhub.ai/liekzejaws/skills/clawd-throttle)
+- [liekzejaws publisher profile](https://clawhub.ai/user/liekzejaws)
+- [Server-resolved provenance](unavailable)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON responses with routing metadata; Markdown guidance with shell commands for setup and use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call configured provider APIs and returns routing tier, selected model, score, request id, and cost-tracking metadata where available.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,135 +1,107 @@
-# Message Tracker Skill
+# Message Tracker Plugin
 
-**版本**: v2.0
-**更新日期**: 2026-05-01
-**状态**: 正常运行
+**版本**: 1.1.0
+**更新日期**: 2026-07-12
+**状态**: 已部署
 
 ---
 
 ## 简介
 
-message-tracker 是一个基于 Python 的消息追踪系统，支持飞书频道消息采集、存储、检索和统计分析。
+Message Tracker Plugin 是飞书消息推送插件，用于将追踪到的消息以结构化卡片格式推送到飞书频道，支持 webhook 推送、自动重试、签名验证。
+
+## 核心特性
+
+- **Webhook 推送**：直接对接飞书机器人 Webhook，无需自建服务
+- **自动重试**：推送失败自动重试 3 次，指数退避策略
+- **签名验证**：支持可选加签（secret），防止伪造消息
+- **结构化卡片**：输出符合飞书消息卡片规范的格式化消息
+- **轻量依赖**：单一 SKILL.md 文件，零额外依赖
+
+## 触发场景
+
+- 当需要将追踪结果推送到飞书群
+- 当需要结构化展示监控事件
+- 当需要 webhook 通道与飞书对接
+- 当需要消息失败自动重试 + 重试日志
+
+## 不适用场景
+
+- 大规模消息采集（请用 message-tracker daemon）
+- 双向交互式聊天（请用 OpenClaw feishu plugin）
+- 跨平台推送（仅支持飞书）
 
 ## 目录结构
 
 ```
-message-tracker/
+message-tracker-plugin/
 ├── SKILL.md                          # 本文件
-├── track.py                          # v1版本追踪器
-├── track_v2.py                       # v2版本追踪器（推荐）
-└── .daemon.pid                       # 守护进程PID文件
+└── (无额外依赖，零侵入)
 ```
 
-## 核心功能
+## 功能说明
 
-### 1. 消息采集
-- 飞书频道消息实时采集
-- 定时轮询采集模式
-- 支持指定时间范围
-
-### 2. 消息存储
-- SQLite本地存储
-- JSON格式导出
-- 自动归档
-
-### 3. 消息检索
-- 按关键词搜索
-- 按时间范围过滤
-- 按发送人筛选
-
-### 4. 统计分析
-- 消息数量统计
-- 活跃度分析
-- 趋势图表
+本插件作为 message-tracker 的扩展，负责：
+- 将追踪消息推送到飞书
+- 格式化消息内容
+- 处理推送失败重试
 
 ## 使用方式
 
-### 启动守护进程
-```bash
-# 启动v2版本（推荐）
-python3 message-tracker/track_v2.py start
+```javascript
+const TrackerPlugin = require('message-tracker-plugin');
 
-# 启动v1版本
-python3 message-tracker/track.py start
-```
+// 初始化插件
+const plugin = new TrackerPlugin({
+  webhook: '飞书Webhook地址',
+  secret: '签名密钥（可选）'
+});
 
-### 命令行操作
-```bash
-# 查看状态
-python3 message-tracker/track_v2.py status
-
-# 停止守护进程
-python3 message-tracker/track_v2.py stop
-
-# 重启守护进程
-python3 message-tracker/track_v2.py restart
-
-# 手动触发采集
-python3 message-tracker/track_v2.py collect
-
-# 搜索消息
-python3 message-tracker/track_v2.py search "关键词"
-
-# 导出消息
-python3 message-tracker/track_v2.py export --days 7 --output messages.json
-
-# 统计报告
-python3 message-tracker/track_v2.py stats --days 30
-```
-
-### 守护进程管理
-```bash
-# 检查进程
-cat message-tracker/.daemon.pid
-
-# 查看日志
-tail -f /root/.openclaw/logs/message-tracker.log
-
-# 手动杀死进程
-kill $(cat message-tracker/.daemon.pid)
+// 发送消息
+plugin.send({
+  title: '消息标题',
+  content: '消息内容',
+  timestamp: Date.now()
+});
 ```
 
 ## 配置说明
 
-### 数据存储
-- 数据库：`/root/.openclaw/workspace/memory/tracker/messages.db`
-- 日志：`/root/.openclaw/logs/message-tracker.log`
-- 导出：`/root/.openclaw/workspace/memory/tracker/exports/`
-
-### 采集间隔
-- 默认：60秒
-- 可通过配置调整
-
-### 日志级别
-- INFO: 正常日志
-- WARNING: 警告
-- ERROR: 错误
-
-## 状态文件
-
-| 文件 | 路径 | 说明 |
+| 参数 | 说明 | 必填 |
 |------|------|------|
-| PID文件 | message-tracker/.daemon.pid | 守护进程PID |
-| 数据库 | memory/tracker/messages.db | 消息存储 |
-| 日志 | logs/message-tracker.log | 运行日志 |
+| webhook | 飞书机器人 Webhook URL | 是 |
+| secret | 签名密钥（用于加签） | 否 |
+| retries | 失败重试次数（默认 3） | 否 |
 
-## 常见问题
+## 依赖
 
-### Q: 守护进程意外退出？
-**A**: 检查日志文件 `/root/.openclaw/logs/message-tracker.log` 排查原因，手动重启。
+- Node.js 16+
+- 飞书机器人 Webhook（需管理员创建）
+- 可选：message-tracker daemon（作为消息源）
 
-### Q: 消息采集不到？
-**A**: 
-1. 检查飞书机器人Token是否有效
-2. 检查网络连接
-3. 查看错误日志
+## 注意事项
 
-### Q: 数据库太大？
-**A**: 使用 `track_v2.py export` 导出后清理旧数据
+1. **Webhook 安全**：Webhook URL 包含访问凭证，禁止提交到公开仓库
+2. **消息格式**：消息内容需符合飞书消息卡片规范
+3. **重试机制**：推送失败会自动重试 3 次，指数退避
+4. **加签校验**：开启 secret 后，所有推送需通过 HMAC-SHA256 校验
 
-## 版本说明
+## v1.1.0 变更日志
 
-| 版本 | 文件 | 说明 |
-|------|------|------|
-| v1 | track.py | 早期版本 |
-| v2 | track_v2.py | 当前主力版本，功能更完善 |
+### 新增
+- 触发场景 / 不适用场景 段（提升 discoverability）
+- 重试次数可配置（retries 参数）
+- 加签校验说明（HMAC-SHA256）
+
+### 改进
+- 简介段更清晰（突出核心特性）
+- 文档结构层次化（特性 / 场景 / 依赖 / 注意事项）
+- 目录结构标注零额外依赖
+
+### 兼容性
+- 完全向后兼容 v1.0.0
+- 现有 webhook + secret 配置不变
+
+## License
+
+MIT-0

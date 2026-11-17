@@ -1,0 +1,157 @@
+{
+  "title": "周一打工人",
+  "season": 1,
+  "episode": 1,
+  "durationTarget": 60,
+  "platform": "douyin",
+  "aspectRatio": "9:16",
+  "hook": "提前一小时到公司，发现老板睡在工位",
+  "reversal": "老板让他专门监督自己摸鱼",
+  "characters": [
+    {
+      "name": "阿强",
+      "persona": "全公司最卷，卷的全是没用的事",
+      "voice": "云希-清亮少年",
+      "gender": "male"
+    },
+    {
+      "name": "老板",
+      "persona": "嘴上狼性，五点下班",
+      "voice": "云扬-沉稳男声",
+      "gender": "male"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "工位-早晨",
+      "background": "工位",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "props": [
+        "咖啡"
+      ]
+    },
+    {
+      "id": "S2",
+      "title": "会议室",
+      "background": "会议室",
+      "actors": [
+        "阿强",
+        "老板"
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "seq": 1,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "周一早上八点，阿强提前一小时到公司。",
+      "emotion": "平静",
+      "sfx": "闹钟",
+      "scene": "S1"
+    },
+    {
+      "seq": 2,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "只要我够早，老板就抓不到我摸鱼。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 3,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "他推开工位门，发现老板正睡在他的椅子上。",
+      "emotion": "惊讶",
+      "sfx": "开门声",
+      "scene": "S1"
+    },
+    {
+      "seq": 4,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "老板，您这是体验员工生活？",
+      "emotion": "疑惑",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 5,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "我在测试工位的舒适度，这是管理。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 6,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "阿强看了一眼老板的电脑，屏幕上是斗地主。",
+      "emotion": "嘲讽",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 7,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那您这局，也是在测试吗？",
+      "emotion": "嘲讽",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 8,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "对，测试员工的观察力。你通过了。",
+      "emotion": "坚定",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 9,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "十分钟后，阿强被叫进会议室。",
+      "emotion": "平静",
+      "sfx": "关门声",
+      "scene": "S2"
+    },
+    {
+      "seq": 10,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "从今天起，你负责监督我上班摸鱼。",
+      "emotion": "坚定",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 11,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那我这算升职还是背锅？",
+      "emotion": "无奈",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 12,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "算核心岗位。工资不变，责任翻倍。",
+      "emotion": "平静",
+      "sfx": "咚",
+      "scene": "S2"
+    }
+  ]
+}

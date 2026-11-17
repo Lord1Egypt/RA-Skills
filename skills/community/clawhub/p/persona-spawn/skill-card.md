@@ -1,44 +1,59 @@
-## Description: <br>
-Spawn subagents with personas from a local workspace library or the Emblem persona marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn subagents with personas from a local workspace library or the Emblem persona marketplace.
 
-## Publisher: <br>
-[decentraliser](https://clawhub.ai/user/decentraliser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[decentraliser](https://clawhub.ai/user/decentraliser)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare local persona files, assemble a deterministic persona prompt, and spawn a persona-preserving subagent for bounded tasks that benefit from a different voice, expertise, or operating style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported persona files can influence spawned subagent behavior. <br>
-Mitigation: Review imported persona files before use and prefer known local personas after import. <br>
-Risk: Shared context files may disclose workspace documents to spawned subagents. <br>
-Mitigation: Keep context_files pointed only at documents intended to be shared with subagents. <br>
-Risk: Bootstrapping or bulk importing personas can replace or alter an existing local personas directory. <br>
-Mitigation: Back up an existing personas directory before bootstrapping or bulk importing. <br>
+## Use Case:
 
+Developers and agent users use this skill to delegate bounded tasks to subagents with a selected persona, while keeping persona materials local or imported from a marketplace and preserving shared organization context.
 
-## Reference(s): <br>
-- [Emblem Persona Marketplace API](references/api-endpoints.md) <br>
-- [Writing a Custom SOUL.md](references/soul-guide.md) <br>
-- [Persona Spawn on ClawHub](https://clawhub.ai/decentraliser/persona-spawn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces assembled persona prompts and local persona-library setup guidance; spawned subagent output depends on the requested task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Imported marketplace persona files can influence spawned subagents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review imported personas before use and avoid bulk imports unless the source is trusted.
+
+Risk: Shared context files can expose sensitive local information to a spawned subagent.
+
+Mitigation: Keep context_files limited to non-secret documents and do not point them at credentials, private keys, agent state, or unrelated personal files.
+
+Risk: The release security verdict is suspicious because the skill imports mutable remote prompt content and can include broad local files in subagent prompts.
+
+Mitigation: Review the skill and its imported persona content before installing or running it.
+
+## Reference(s):
+
+- [ClawHub Persona Spawn listing](https://clawhub.ai/decentraliser/skills/persona-spawn)
+- [Emblem Persona Marketplace API](references/api-endpoints.md)
+- [Writing a Custom SOUL.md](references/soul-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persona setup guidance, deterministic subagent prompt assembly steps, and normal subagent task results.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

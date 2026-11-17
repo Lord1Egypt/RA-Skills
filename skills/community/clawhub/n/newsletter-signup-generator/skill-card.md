@@ -1,37 +1,57 @@
-## Description: <br>
-Designs, optimizes, and audits newsletter signup forms with guidance on structure, placement, value proposition, accessibility, validation, and privacy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, optimizes, and audits newsletter signup forms, including form structure, placement, value proposition, accessibility, validation, privacy, and opt-in considerations.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, product, and web teams use this skill to create or review newsletter signup forms that capture email subscribers while preserving usability, accessibility, privacy, and clear subscriber expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local project context files may contain secrets or sensitive business details that could be used while tailoring signup-form guidance. <br>
-Mitigation: Review `.claude/project-context.md` and `.cursor/project-context.md` before use, and remove secrets or sensitive details that are not needed for form design. <br>
+## Use Case:
 
+Developers, designers, and marketing teams use this skill to generate practical newsletter signup form recommendations for list growth, including placement, incentive framing, copy structure, accessibility, and privacy considerations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local project context files for audience and value proposition when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: The skill may activate for broad newsletter or email marketing requests where signup form design is only part of the task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for newsletter signup form design, optimization, or audit work; route broader email strategy, deliverability, and campaign planning to a dedicated email marketing skill.
+
+Risk: Privacy, GDPR, CCPA, and opt-in guidance may need jurisdiction-specific review before use in production.
+
+Mitigation: Treat privacy and consent recommendations as design prompts and confirm final requirements with the organization's legal or compliance process.
+
+Risk: Conversion-rate claims in the artifact are not backed by server-resolved provenance for this release.
+
+Mitigation: Use quantitative claims as directional context unless the user provides validated analytics or approved source material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/newsletter-signup-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with form structure, placement recommendations, value proposition suggestions, accessibility checklist, and optional HTML-oriented implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: skill frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

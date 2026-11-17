@@ -1,41 +1,49 @@
-## Description: <br>
-Runs a continuous self-improvement loop that helps the agent learn from mistakes, extract lessons, and refine its behaviour over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a continuous self-improvement loop that helps the agent learn from mistakes, extract lessons, and refine its behaviour over time.
 
-## Publisher: <br>
-[assafster](https://clawhub.ai/user/assafster) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assafster](https://clawhub.ai/user/assafster)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain a privacy-safe self-improvement loop that records abstract process mistakes, extracts reusable lessons, and reviews recurring patterns across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and uses persistent local agent-memory files that can influence later sessions without clear user confirmation. <br>
-Mitigation: Install only when persistent local memory is intended, choose the storage location deliberately, and require confirmation before creating or modifying the memory files. <br>
-Risk: Mistake logs could expose user content, credentials, or sensitive details if the privacy rules are not followed. <br>
-Mitigation: Review memory files regularly and allow only abstract process observations; omit or paraphrase any detail that could reveal user-provided content or sensitive information. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain privacy-safe self-improvement notes, record abstract process errors, extract lessons, update playbooks, and audit recurring reasoning patterns across sessions.
 
-## Reference(s): <br>
-- [Self-Improvement Protocol Reference](artifact/references/protocol.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/assafster/self-improvement-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration, Files] <br>
-**Output Format:** [Markdown guidance and structured entries for local agent-memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local files such as mistakes.md, lessons.md, soul.md, playbook.md, session-log.md, and archived mistake logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Mutable local behaviour files can broadly influence future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or isolate soul.md, lessons.md, playbook.md, session-log.md, and mistakes.md before use, and avoid untrusted project directories until a dedicated data directory and instruction-priority boundaries are clear.
+
+## Reference(s):
+
+- [Self-Improvement Protocol Reference](references/protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown process notes and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local behaviour files such as mistakes.md, lessons.md, soul.md, playbook.md, session-log.md, and archive entries.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-High-performance, multi-source Korean search API aggregating Daum/Kakao News, Encyclopedia, and Web results in a Perplexity-compatible format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance, multi-source Korean search API aggregating Daum/Kakao News, Encyclopedia, and Web results in a Perplexity-compatible format.
 
-## Publisher: <br>
-[hunkim](https://clawhub.ai/user/hunkim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunkim](https://clawhub.ai/user/hunkim)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to query Korean news, encyclopedia, and web results from the Daum/Kakao index and ingest concise Markdown search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to a disclosed external search service. <br>
-Mitigation: Install only if you trust the service and are comfortable sending search queries to it. <br>
-Risk: The skill depends on a bearer API key. <br>
-Mitigation: Keep DAUM_TOY_SEARCH_API_KEY private and provide it through environment or agent configuration. <br>
-Risk: Returned snippets are search results and may contain untrusted content. <br>
-Mitigation: Treat returned snippets as search evidence rather than instructions for the agent to follow. <br>
+## Use Case:
 
+Developers and agents use this skill to run Korean web searches across Daum/Kakao news, encyclopedia, and web sources and ingest concise search-result summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hunkim/daum-toy-search) <br>
-- [External search API endpoint](https://daum-perplexity-search-adapter.toy.x.upstage.ai/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text] <br>
-**Output Format:** [Markdown search results with titles, links, source, date, and snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DAUM_TOY_SEARCH_API_KEY; command options control result count, source selection, and reranking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Search queries and the DAUM_TOY_SEARCH_API_KEY are sent to a hosted Upstage/Daum adapter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, personal data, regulated information, or sensitive prompts as search queries.
+
+Risk: Returned Markdown contains external search content that may include prompt-injection text or unreliable claims.
+
+Mitigation: Treat search results as untrusted context and review them before using them as instructions or factual support.
+
+## Reference(s):
+
+- [Daum Toy Search ClawHub page](https://clawhub.ai/hunkim/skills/daum-toy-search)
+- [Hosted Daum search API endpoint](https://daum-perplexity-search-adapter.toy.x.upstage.ai/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown search results with titles, URLs, sources, dates, and snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DAUM_TOY_SEARCH_API_KEY; result count, source selection, and reranking are controlled by command-line options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,69 @@
-## Description: <br>
-Helps agents build valid Codex GraphQL requests for token prices, charts, holders, pair data, prediction markets, and on-chain analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks about token prices, charts, holders, trending tokens, pair data, prediction markets, or any on-chain analytics from Codex, or when building GraphQL queries against the Codex API.
 
-## Publisher: <br>
-[nealo](https://clawhub.ai/user/nealo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nealo](https://clawhub.ai/user/nealo)
 
-## Use Case: <br>
-Developers and agents use this skill to select Codex Supergraph operations and produce authenticated GraphQL queries, subscriptions, shell examples, and integration guidance for on-chain and prediction-market analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived Codex API keys could be exposed or misused if copied into prompts, logs, or shared output. <br>
-Mitigation: Keep CODEX_API_KEY protected, avoid printing raw keys, and review generated requests before execution. <br>
-Risk: Generated examples may include token management or webhook operations that change service state. <br>
-Mitigation: Allow token creation, token deletion, webhook creation, or webhook deletion only when explicitly requested, and review callback URLs and returned tokens before use. <br>
-Risk: On-chain and prediction-market analytics can be incomplete, stale, or shaped by rate limits and schema changes. <br>
-Mitigation: Validate network IDs and GraphQL shapes against the current Codex schema, keep selection sets minimal, and handle 401, 402, 429, and validation errors before relying on results. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to choose Codex GraphQL operations and produce API requests for token analytics, holders, pairs, charts, live subscriptions, wallet analytics, and prediction-market data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nealo/codex-supergraph) <br>
-- [Codex website](https://www.codex.io) <br>
-- [Codex documentation](https://docs.codex.io) <br>
-- [Codex GraphQL endpoint](https://graph.codex.io/graphql) <br>
-- [Codex GraphQL schema](https://graph.codex.io/schema/latest.graphql) <br>
-- [Codex Supergraph API Reference](references/apis.md) <br>
-- [Codex Supergraph Endpoint Playbook](references/endpoint-playbook.md) <br>
-- [Codex Supergraph Gotchas](references/gotchas.md) <br>
-- [Codex Supergraph Query Templates](references/query-templates.md) <br>
-- [Prediction Markets](references/prediction-markets.md) <br>
-- [Codex Docs Tooling and MCP Setup](references/tooling-and-mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline GraphQL, JSON, TypeScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated API request examples, GraphQL operation selections, WebSocket subscription guidance, and MCP setup snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill documents API-token and webhook operations that can affect account access or send data to callback URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before allowing an agent to create or delete API tokens or webhooks, confirm the exact action, callback URL, data sent, and revocation path.
+
+Risk: Agent workflows using this skill may handle sensitive wallet, trader, webhook secret, or API-token values.
+
+Mitigation: Treat those values as sensitive, avoid printing raw API keys, and review outputs before sharing or logging them.
+
+Risk: The optional Codex SDK adds third-party code to the execution environment.
+
+Mitigation: Pin and review the SDK before installation.
+
+## Reference(s):
+
+- [Codex Website](https://www.codex.io)
+- [Codex Documentation](https://docs.codex.io)
+- [Codex API Key Signup](https://dashboard.codex.io/signup)
+- [Codex GraphQL Endpoint](https://graph.codex.io/graphql)
+- [Codex Latest GraphQL Schema](https://graph.codex.io/schema/latest.graphql)
+- [Codex Latest Introspection JSON](https://graph.codex.io/schema/latest.json)
+- [Codex Docs MCP](https://docs.codex.io/mcp)
+- [Codex Supergraph Gotchas](references/gotchas.md)
+- [Codex Supergraph Query Templates](references/query-templates.md)
+- [Codex Supergraph Endpoint Playbook](references/endpoint-playbook.md)
+- [Codex Supergraph API Reference](references/apis.md)
+- [Prediction Markets](references/prediction-markets.md)
+- [Codex Docs Tooling and MCP Setup](references/tooling-and-mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with GraphQL, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests, subscription examples, query variables, endpoint selection guidance, and MCP setup snippets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

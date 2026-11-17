@@ -1,46 +1,60 @@
-## Description: <br>
-DiePre Embodied Bridge connects 2D vision and DXF detection to 3D spatial understanding and robot action planning through a vision-action-evolution loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DiePre Embodied Bridge maps 2D packaging dieline detections into 3D geometry, fold sequences, grasp points, and quality estimates for robotics planning.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to reason about converting 2D dieline or DXF inputs for known packaging geometries into 3D coordinates, fold sequences, grasp points, and quality checks. It also describes a feedback loop for logging failures and updating future robot-action parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Self-updating parameters may affect future robot actions without clear user controls. <br>
-Mitigation: Require manual approval before evolved parameters influence robot actions, and provide a clear way to inspect, reset, or disable the evolution state. <br>
-Risk: Automatic logging may store task details and failure records in uncontrolled locations. <br>
-Mitigation: Keep logs in a controlled location and review the implementation before using the skill with real equipment. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to bridge 2D carton dieline or CAD detections into structured 3D coordinates, folding plans, grasp parameters, and quality checks for packaging automation workflows.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/kingofzhao/diepre-embodied-bridge) <br>
-- [Project Homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [From 2D CAD to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892) <br>
-- [Vlaser: Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027) <br>
-- [Efficient VLA Models](https://arxiv.org/abs/2510.17111) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell examples plus structured tool and parameter schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes robot-planning outputs such as 3D coordinates, fold sequences, grasp points, quality scores, failure logs, and evolved parameter files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic persistent tuning of robot action parameters could change grasp force, fold sequence, or approach angle without clear safety bounds or operator approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require strict schema validation, trusted log writers, immutable safety limits, simulation or operator approval before activation, and rollback before use in a robotics workflow.
+
+Risk: Evolution logs and updated parameter files may retain operational data or alter future behavior in ways that are hard to audit.
+
+Mitigation: Define data retention rules, access controls, audit trails, and review gates for evolution_log entries and evolved parameter files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/diepre-embodied-bridge)
+- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [From 2D CAD to 3D Parametric via VLM](https://arxiv.org/abs/2412.11892)
+- [Tool-Augmented VLLMs as Generic CAD Task Solvers](https://arxiv.org/)
+- [Vlaser: Synergistic Embodied Reasoning](https://arxiv.org/abs/2510.11027)
+- [Efficient VLA Models](https://arxiv.org/abs/2510.17111)
+- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255)
+- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and structured examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe tool schemas, generated action-planning outputs, and persistent parameter update files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

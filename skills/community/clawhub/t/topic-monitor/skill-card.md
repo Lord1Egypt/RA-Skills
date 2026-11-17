@@ -1,45 +1,61 @@
-## Description: <br>
-Monitor topics of interest and proactively alert when important developments occur across web searches, RSS/Atom feeds, GitHub releases, and scheduled digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor topics of interest and proactively alert when important developments occur.
 
-## Publisher: <br>
-[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla)
 
-## Use Case: <br>
-Developers, researchers, operators, and analysts use this skill to configure recurring monitoring for topics, feeds, releases, and alerts. It helps turn configured sources into prioritized alerts, sentiment-aware summaries, and weekly digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring monitoring can repeatedly query external search, feed, or GitHub sources and send alerts through configured channels. <br>
-Mitigation: Review every configured query, feed, GitHub repository, alert channel, and generated cron job before enabling automation. <br>
-Risk: Sensitive watchlists or topics may be disclosed to search providers, feed hosts, or GitHub endpoints during monitoring. <br>
-Mitigation: Avoid sensitive watchlists unless the user accepts disclosure to those services, and keep local state in a controlled data directory. <br>
-Risk: A configured WEB_SEARCH_PLUS_PATH can cause the skill to invoke a local search script. <br>
-Mitigation: Set WEB_SEARCH_PLUS_PATH only to a trusted local web-search-plus script. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to configure scheduled monitoring for product releases, news, research, competitor updates, and other topics, then receive high-priority alerts or weekly digests.
 
-## Reference(s): <br>
-- [Topic Monitor ClawHub Skill Page](https://clawhub.ai/robbyczgw-cla/topic-monitor) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Example Configuration](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, alert records, and digest text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit Telegram or Discord alert payloads through the agent and maintain local monitoring state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata, SKILL.md frontmatter, package.json, CHANGELOG) <br>
+Risk: Feed discovery, RSS/Atom feeds, GitHub release feeds, and OPML imports can cause the skill to access unrestricted user-supplied URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public HTTPS feed and discovery URLs, and avoid importing OPML files from untrusted sources.
+
+Risk: Alerts and digests may send monitored topic details through Telegram, Discord, email, or another agent-delivered channel.
+
+Mitigation: Do not monitor sensitive internal topics when notification channels could expose the resulting content outside the intended audience.
+
+Risk: The documentation includes an unpinned pip installation path for feedparser even though the release vendors dependencies.
+
+Mitigation: Prefer the bundled vendored dependency or a pinned virtual environment for any external dependency installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robbyczgw-cla/skills/topic-monitor)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [DigitalOcean OpenClaw Skills guide](https://www.digitalocean.com/resources/articles/what-are-openclaw-skills)
+- [feedparser project](https://github.com/kurtmckee/feedparser/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and text alert or digest summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit structured alert payloads for agent-delivered Telegram, Discord, or email notifications.]
+
+## Skill Version(s):
+
+1.6.0 (source: frontmatter and changelog, released 2026-08-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

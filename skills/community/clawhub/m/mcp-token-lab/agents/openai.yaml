@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Token Lab Strategy Comparison"
+  short_description: "Generate importable multi-plan JSON to compare agent workflows, caching, compression, costs, and estimated durations"
+  default_prompt: "Use $mcp-token-lab to generate an importable JSON template for my agent workflow, including a template name, description, and plan descriptions."

@@ -1,41 +1,58 @@
-## Description: <br>
-Generate Apple Hide My Email addresses from the terminal and copy to clipboard. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Generate Apple Hide My Email addresses from the terminal and copy to clipboard.
 
-## Publisher: <br>
-[manikal](https://clawhub.ai/user/manikal) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manikal](https://clawhub.ai/user/manikal)
 
-## Use Case: <br>
-External macOS users can use this skill to install and run the hme CLI for creating Apple iCloud+ Hide My Email addresses from a terminal session. It is intended for local, attended use on a signed-in Mac with Terminal Accessibility permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installation can fetch runtime hme and AppleScript files that were not included in the reviewed bundle before running code with macOS Accessibility permissions. <br>
-Mitigation: Prefer cloning the repository and inspecting hme and hide_my_email.applescript before installation; avoid curl-pipe installation unless the source has been reviewed. <br>
-Risk: The tool relies on broad macOS Accessibility automation of System Settings, which can operate on the local GUI and may break when Apple changes the interface. <br>
-Mitigation: Run it only in an attended local macOS session, grant Terminal Accessibility only while needed, and revoke the permission after use if continued automation is not required. <br>
+## Use Case:
 
+Developers and macOS users use this skill to install and run the hme CLI for creating Apple Hide My Email aliases from an interactive terminal session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manikal/hide-my-email) <br>
-- [Project homepage from skill metadata](https://github.com/manikal/hide-my-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The hme CLI prints a masked iCloud email address to stdout, copies the generated address to the clipboard, and prints errors to stderr on failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Installer paths can run or install unaudited code from an external GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the installer before use, avoid the curl-to-shell path, and verify the upstream repository and exact commit before running installation commands.
+
+Risk: The tool requires broad macOS Accessibility permission for terminal-driven UI automation.
+
+Mitigation: Grant Accessibility only after trusting the installed code and understanding that the permission allows the terminal to automate user interface actions.
+
+Risk: Apple System Settings UI changes, rate limits, or non-interactive environments can break or block address generation.
+
+Mitigation: Use on a supported interactive macOS session with iCloud+, expect manual troubleshooting, and avoid headless or SSH-only workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manikal/skills/hide-my-email)
+- [Project homepage](https://github.com/manikal/hide-my-email)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and terminal output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI prints the generated masked email and copies the full address to the clipboard on success.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

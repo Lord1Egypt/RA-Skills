@@ -1,41 +1,52 @@
-## Description: <br>
-Monitors configured social channels daily to identify trending topics, viral content, and new content ideas within a user's niche, delivering structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured social channels daily to identify trending topics, viral content, and new content ideas within a user-selected niche, delivering structured reports.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to monitor configured X/Twitter, Reddit, RSS, and YouTube sources for trends and produce daily content planning reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public or API-backed content from user-configured sources, which may include untrusted links or misleading trend signals. <br>
-Mitigation: Review sources.json before use and validate important trends against source links before acting on the report. <br>
-Risk: Optional Twitter API access may expose credentials if broad or shared tokens are used. <br>
-Mitigation: Use scoped API credentials and rotate or revoke them if the configuration is shared or no longer needed. <br>
-Risk: Daily scheduled runs and notifications may publish trend summaries or source links to an inappropriate channel. <br>
-Mitigation: Confirm that the 6 AM schedule is desired and choose a notification channel suitable for the report contents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-content-scraper) <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to monitor configured social and feed sources, identify high-engagement topics and formats, and produce daily content ideas for a selected niche.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured JSON report with trend topics, content ideas, viral formats, source evidence, and optional notification guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves reports to data/trend-report-{date}.json and depends on a user-provided sources.json configuration; Twitter API credentials are optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses configured sources and optional Twitter API credentials.
+
+Mitigation: Review sources.json before installation and include only sources and credentials the agent is authorized to use.
+
+Risk: Generated trend reports may be saved under data/ and shared through a configured notification channel.
+
+Mitigation: Confirm that local report storage and the notification channel are appropriate for the derived trend summaries before enabling scheduled use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-content-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [Structured JSON report saved as data/trend-report-{date}.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily report includes trending topics, content ideas, viral formats, source evidence, suggested angles, hooks, key points, and calls to action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

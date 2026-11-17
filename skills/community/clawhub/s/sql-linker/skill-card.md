@@ -1,44 +1,58 @@
-## Description: <br>
-SQL-Linker helps agents query, insert, update, and delete records in configured MySQL, PostgreSQL, or SQLite databases with access controls and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when you need to query, insert, update, or delete records in a configured MySQL, PostgreSQL, or SQLite database and you know the target table name and approximate schema.
 
-## Publisher: <br>
-[cloudcode-hans](https://clawhub.ai/user/cloudcode-hans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudcode-hans](https://clawhub.ai/user/cloudcode-hans)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs controlled CRUD access to known database tables, audit-log review, or bootstrap and inspection of the sql-linker configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database writes can alter or delete production records. <br>
-Mitigation: Keep read_only enabled during setup and testing, and require explicit operator confirmation before running UPDATE or DELETE operations. <br>
-Risk: Credential persistence and auto-resolution can expose database access if configuration or environment variables are mishandled. <br>
-Mitigation: Review the generated .sql_linker configuration, keep dbpw_key secret, enable require_explicit_credential_approval for password_env or password_dpapi flows, and run set_env scripts only when persistent credential storage is acceptable. <br>
-Risk: Audit logs store operator metadata and masked SQL in the target database and are not tamper-evident by themselves. <br>
-Mitigation: Treat sql_audit_log as sensitive, avoid passing sensitive personal data in query parameters, and add database-layer immutable logging controls when tamper evidence is required. <br>
-Risk: Bootstrap can persist configuration and password setup scripts under .sql_linker. <br>
-Mitigation: Use dry-run first and run bootstrap with explicit confirmation only in the intended workspace. <br>
+## Use Case:
 
+Developers and agents use this skill to perform targeted CRUD operations and audit-log review against configured relational databases when a specific table or intent is known. It is suitable for local development and controlled database workflows that require explicit schema and configuration boundaries.
 
-## Reference(s): <br>
-- [SQL-Linker ClawHub release](https://clawhub.ai/cloudcode-hans/skills/sql-linker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and shell command snippets, configuration guidance, and database operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or inspect .sql_linker configuration files and may execute database operations when explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Database access controls and credential handling are weaker than the skill's security claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for local development or tightly controlled databases, use a least-privilege database account, and keep read-only mode enabled until write access is explicitly needed.
+
+Risk: Generated or configured credentials can be exposed when local configuration and environment values are available to the agent in the same trust boundary.
+
+Mitigation: Prefer a proper secret manager over the generated dbpw_key and environment setup, and enable explicit credential approval before credential-backed connections.
+
+Risk: Table allowlists and extra table configuration should not be treated as a hard security boundary.
+
+Mitigation: Restrict database permissions at the database account level and review requested SQL operations before execution, especially INSERT, UPDATE, and DELETE.
+
+## Reference(s):
+
+- [sql-linker ClawHub page](https://clawhub.ai/cloudcode-hans/skills/sql-linker)
+- [sql-linker-cli production alternative](https://clawhub.ai/cloudcode-hans/skills/sql-linker-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, configuration examples, and returned query or audit data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration files and return database rows, affected-row counts, audit records, or setup guidance depending on the requested operation.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

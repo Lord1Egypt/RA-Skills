@@ -1,47 +1,58 @@
-## Description: <br>
-Generate technical documentation from code or specs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate technical documentation from code or specs.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and technical teams use this skill to send code or specifications to the NEXUS documentation service and receive generated technical documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided code or specifications to a remote NEXUS service for processing. <br>
-Mitigation: Avoid submitting sensitive content unless the service is trusted for that data, and keep secrets out of submitted inputs. <br>
-Risk: Normal use can trigger paid remote requests through payment credentials or payment proofs. <br>
-Mitigation: Use sandbox or tightly scoped payment credentials where possible, and configure confirmations or spending limits for paid calls. <br>
+## Use Case:
 
+Developers and technical writers use this skill to generate technical documentation from source code, specifications, or short documentation prompts through the NEXUS remote documentation service.
 
-## Reference(s): <br>
-- [NEXUS Agent-as-a-Service Platform](https://ai-service-hub-15.emergent.host) <br>
-- [NEXUS Doc Writer API Endpoint](https://ai-service-hub-15.emergent.host/api/original-services/doc-writer) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON object containing a generated documentation string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a payment proof or payment credential for paid service calls; sandbox testing is available through the documented payment-proof header.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Submitted code or specifications are sent to a remote service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with approved material, avoid secrets or confidential source unless authorized, and install it only if the NEXUS service provider is trusted.
+
+Risk: The payment flow can direct blockchain payments from server-provided terms without a clear local approval gate.
+
+Mitigation: Use sandbox_test first and require manual confirmation plus local checks of recipient, chain, asset, and amount before any real payment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-doc-writer)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [Documentation Writer API](https://ai-service-hub-15.emergent.host/api/original-services/doc-writer)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON object containing a result string with generated documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to NEXUS and a payment proof or sandbox credential.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

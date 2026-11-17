@@ -1,43 +1,58 @@
-## Description: <br>
-MiniMax AI platform CLI - text, image, video, speech, music, vision, and web search from terminal or AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax CLI helps agents use the MiniMax AI platform from the terminal for text, image, video, speech, music, vision, and web search workflows.
 
-## Publisher: <br>
-[tylerdotai](https://clawhub.ai/user/tylerdotai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tylerdotai](https://clawhub.ai/user/tylerdotai)
 
-## Use Case: <br>
-Developers and agents use this skill to install and operate the MiniMax CLI for text, image, video, speech, music, vision, and web search workflows from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an external CLI package can introduce supply-chain trust risk. <br>
-Mitigation: Verify that mmx-cli is the MiniMax CLI package you intend to trust before installing it. <br>
-Risk: MiniMax API keys can be exposed through shared terminals, shell history, or scripts. <br>
-Mitigation: Use a dedicated or revocable MiniMax API key, prefer environment-variable or interactive secret entry when available, and avoid pasting real keys into shared terminals or scripts. <br>
-Risk: Prompts, images, audio, or video sent through the CLI may be processed by MiniMax. <br>
-Mitigation: Do not send sensitive prompts or media unless MiniMax processing is acceptable for that data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install, authenticate, and run mmx-cli commands for MiniMax multimodal generation, web search, quota checks, and direct API workflows.
 
-## Reference(s): <br>
-- [MiniMax CLI Reference Notes](references/api-notes.md) <br>
-- [MiniMax Platform](https://platform.minimax.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MiniMax CLI commands and notes for API key setup, quota checks, async video workflow, and region selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill shows an unpinned global npm installation for mmx-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, verified mmx-cli version or a local/project-scoped install, and avoid running npm with elevated privileges.
+
+Risk: The skill shows an API key passed directly on the command line.
+
+Mitigation: Use a safer authentication flow or environment-based secret handling when supported, avoid shared or logged terminal sessions, and check permissions on ~/.mmx/config.json.
+
+Risk: MiniMax usage can affect quota or billing.
+
+Mitigation: Check mmx quota before substantial use and monitor MiniMax quota or billing after running generation workflows.
+
+## Reference(s):
+
+- [MiniMax CLI Reference Notes](references/api-notes.md)
+- [MiniMax Platform](https://platform.minimax.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run mmx-cli commands that return JSON responses or create local media files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

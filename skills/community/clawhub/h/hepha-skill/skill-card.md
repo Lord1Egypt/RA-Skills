@@ -1,44 +1,64 @@
-## Description: <br>
-Runs autonomous iterative delivery loops for coding tasks using plan -> execute -> check -> review -> commit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs autonomous iterative delivery loops for coding tasks using plan -> execute -> check -> review -> commit.
 
-## Publisher: <br>
-[melonlee](https://clawhub.ai/user/melonlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melonlee](https://clawhub.ai/user/melonlee)
 
-## Use Case: <br>
-Developers and engineers use Hepha when they explicitly want an agent to run small autonomous implementation loops, maintain planning artifacts, validate changes, and commit each verified sub-task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous coding loops can make broad project changes or commits if the requested scope is unclear. <br>
-Mitigation: Run on a dedicated branch or disposable worktree, define files in scope, and review .autopilot artifacts and generated commits before pushing. <br>
-Risk: Web or browser validation may touch authenticated sessions or network resources during research and review. <br>
-Mitigation: Set clear limits for network use, authenticated browser sessions, and stop conditions before enabling the skill. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run unattended, small-step coding delivery loops that decompose work, implement changes, run checks, review behavior, and commit each completed loop.
 
-## Reference(s): <br>
-- [Planning Task Decomposition](references/planning_task-decomposition.md) <br>
-- [Validation Quality Gates](references/validation_quality-gates.md) <br>
-- [Decomposition Patterns](references/decomposition-patterns.md) <br>
-- [Progress Template](references/progress-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/melonlee/hepha-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status updates and project-local files, with code edits, shell commands, validation notes, and Git commits when checks pass.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates .autopilot backlog, progress, and decision-log artifacts during autonomous loops.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can direct an agent to autonomously modify repository files and create commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit boundaries for files in scope, allowed checks, network use, and commit permission before enabling the workflow.
+
+Risk: Automated implementation loops can propagate an incorrect plan if checks or review are incomplete.
+
+Mitigation: Require engineering checks and browser or behavior review evidence before each commit, and stop or re-plan after repeated failures.
+
+Risk: Research steps may use web or GitHub sources when technical choices are uncertain.
+
+Mitigation: Define whether external research is allowed for the target codebase and record chosen sources in the decision log.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melonlee/skills/hepha-skill)
+- [Planning task decomposition](artifact/references/planning_task-decomposition.md)
+- [Validation quality gates](artifact/references/validation_quality-gates.md)
+- [Decomposition patterns](artifact/references/decomposition-patterns.md)
+- [Progress visualization guide](artifact/references/progress-template.md)
+- [Backlog template](artifact/templates/backlog.md)
+- [Progress template](artifact/templates/progress.md)
+- [Decision log template](artifact/templates/decision-log.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .autopilot backlog, progress, and decision-log files, and may produce commit messages and validation summaries during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Detects low-quality images by analyzing blur, brightness, and resolution so image datasets can be cleaned efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects low-quality images by analyzing blur, brightness, and resolution so agents can help clean image datasets.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers, data engineers, and dataset curators use this skill to find blurry, dark, over-bright, or low-resolution images before keeping, moving, or deleting them from local image folders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move or delete local image files after images are flagged as low quality. <br>
-Mitigation: Use the default list action first, review flagged images and threshold settings, prefer move over delete for important datasets, and keep backups before deletion. <br>
-Risk: Quality thresholds can flag acceptable images as low quality. <br>
-Mitigation: Tune blur, brightness, and resolution thresholds for the dataset and manually review results before taking destructive actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mingo-318/image-quality-filter) <br>
+## Use Case:
 
+Developers and dataset maintainers use this skill to scan image folders, identify blurry, underexposed, overexposed, or low-resolution files, and choose whether to list, move, or delete low-quality images.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with command examples and local file-operation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May list matching image paths and quality scores, or move/delete flagged local files when the user chooses those actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bulk delete or move actions can remove original images or important dataset files.
+
+Mitigation: Run the default list action first, review reported images, and keep backups before using delete or move.
+
+Risk: Moving low-quality images into a destination that already contains same-named files may overwrite data.
+
+Mitigation: Use a new or empty output directory for move actions and test on a small sample before processing a full dataset.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingo-318/skills/image-quality-filter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include threshold recommendations, scan commands, and cautions for file-moving or deletion workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

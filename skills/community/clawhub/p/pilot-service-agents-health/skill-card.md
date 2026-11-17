@@ -1,44 +1,58 @@
-## Description: <br>
-Provides agent guidance for querying public-health and biomedical data sources including ClinicalTrials.gov, openFDA, CDC, WHO, ClinVar, DailyMed, and disease.sh through Pilot Protocol service agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query public-health and biomedical service agents for ClinicalTrials.gov, openFDA, CDC, WHO, ClinVar, DailyMed, and disease.sh data.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover health-related Pilot Protocol service agents, inspect each agent's filter contract, and query public clinical, regulatory, epidemiological, and biomedical data. It is intended for public data retrieval and structured summaries, not diagnosis, treatment advice, or private health-record access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Pilot Protocol, the pilotctl binary, a running daemon, and network 9 agents that may return external public-health data. <br>
-Mitigation: Install and use it only when those components and the queried agents are trusted, and verify each agent's /help contract before sending filters. <br>
-Risk: Queries may involve sensitive health topics even though the documented endpoints are public data sources. <br>
-Mitigation: Do not send PHI, private clinical records, or patient-identifying information through the service agents. <br>
-Risk: Gemini-generated /summary output may be incomplete or unsuitable for clinical decisions. <br>
-Mitigation: Treat summaries as convenience text and review the underlying structured records; do not use the output as medical advice. <br>
+## Use Case:
 
+External developers and data-focused agents use this skill to discover and query public health and biomedical service agents for clinical trials, drug labels, adverse events, surveillance indicators, disease statistics, and related public records.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill listing](https://clawhub.ai/teoslayer/pilot-service-agents-health) <br>
-- [Pilot skills index](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, text] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON response envelopes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses are fetched asynchronously from the Pilot Protocol inbox; /summary and free-text responses may return Gemini-generated prose.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake public biomedical records or generated summaries for medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public data retrieval only, avoid diagnostic advice, and require qualified review before applying outputs to health decisions.
+
+Risk: Pilot Protocol service-agent availability, catalog contents, and upstream public data sources can change.
+
+Mitigation: Run fresh list-agents discovery and request /help from the selected agent before sending data queries.
+
+Risk: The catalog snapshot includes some agents outside the core health scope, such as food recall, exercise, or tides data.
+
+Mitigation: Select hosts intentionally and avoid unrelated listed agents unless that data source is explicitly needed.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-health)
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on public data queries through Pilot Protocol service agents; service-agent responses may include JSON envelopes, plain-text help, or generated summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

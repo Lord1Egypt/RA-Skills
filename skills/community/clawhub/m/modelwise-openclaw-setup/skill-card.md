@@ -1,49 +1,60 @@
-## Description: <br>
-Guides agents through installing, configuring, and troubleshooting OpenClaw gateways across Windows, macOS, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through installing, configuring, running, and checking OpenClaw on Windows, macOS, and Linux.
 
-## Publisher: <br>
-[deerleo](https://clawhub.ai/user/deerleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deerleo](https://clawhub.ai/user/deerleo)
 
-## Use Case: <br>
-Developers and operators use this skill to set up OpenClaw, configure model-provider credentials and messaging channels, start the gateway, and run basic diagnostics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Copyable gateway examples can expose OpenClaw beyond the local machine. <br>
-Mitigation: Prefer binding the gateway to 127.0.0.1 unless LAN access is intentional, and keep token authentication enabled. <br>
-Risk: Telegram examples can allow broad access when open direct-message policy or wildcard allowlists are used. <br>
-Mitigation: Use pairing mode or explicit allowlists for private bots and review group activation settings before deployment. <br>
-Risk: Setup commands involve API keys and bot tokens that may be visible in terminals or shell history. <br>
-Mitigation: Avoid printing secrets in shared terminals and store credentials through OpenClaw credential commands or environment-backed configuration. <br>
-Risk: Reset and stop commands can delete local OpenClaw configuration or terminate running Node processes. <br>
-Mitigation: Back up configuration before reset operations and inspect target processes before force-stopping them. <br>
-Risk: The artifact includes a ClawHub publishing helper unrelated to installing OpenClaw. <br>
-Mitigation: Do not run publish.sh unless the intent is specifically to publish a ClawHub skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Website](https://openclaw.ai) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Configuration Reference](references/configuration-reference.md) <br>
-- [Telegram Setup Guide](examples/telegram-setup.md) <br>
-- [Example OpenClaw Configuration](examples/openclaw.json) <br>
+## Use Case:
 
+Developers and operators use this skill to set up OpenClaw, configure model providers and messaging channels, start the gateway, and verify an installation across Windows, macOS, and Linux.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific command variants for Windows, macOS, and Linux.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gateway or messaging-channel settings may expose the assistant to untrusted users when bound broadly or configured with open wildcard access.
+
+Mitigation: Bind the gateway to 127.0.0.1 unless LAN access is intentional, and use Telegram pairing or an explicit allowlist instead of open wildcard access.
+
+Risk: Installer and update commands may run unpinned or pipe-to-shell package installation steps.
+
+Mitigation: Avoid pipe-to-shell installers when possible, review commands before execution, and pin package versions for repeatable setup.
+
+Risk: Troubleshooting reset commands can delete local OpenClaw data.
+
+Mitigation: Run reset commands only after creating a complete backup outside ~/.openclaw.
+
+## Reference(s):
+
+- [OpenClaw Configuration Reference](references/configuration-reference.md)
+- [Telegram Bot Setup Guide](examples/telegram-setup.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw GitHub Repository](https://github.com/openclaw/openclaw)
+- [OpenClaw Website](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local OpenClaw configuration paths, credential names, and messaging-channel settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

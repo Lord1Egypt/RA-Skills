@@ -1,43 +1,58 @@
-## Description: <br>
-Doubao Media helps agents use a logged-in Doubao browser session to call chat/completion, capture SSE and browser network responses, extract image and video asset URLs, and optionally download generated media files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doubao Media helps agents use an authenticated Doubao web session to test chat completion flows, extract media URLs from SSE responses, and capture or download generated image and video assets from browser network traffic.
 
-## Publisher: <br>
-[huangm199](https://clawhub.ai/user/huangm199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangm199](https://clawhub.ai/user/huangm199)
 
-## Use Case: <br>
-Developers and technically capable users use this skill to inspect Doubao web media-generation flows and retrieve generated image or video assets from API responses or browser network traffic. It is suited to workflows that need captured media URLs, downloaded assets, session readiness checks, or capture manifests from a logged-in Doubao web session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill acts through a logged-in Doubao browser session and handles browser cookies. <br>
-Mitigation: Use a dedicated browser profile, enable Chrome remote debugging only while using the skill, and delete the saved session file when finished. <br>
-Risk: Captured manifests, media URLs, and downloads may persist sensitive session-derived or user-generated content on disk. <br>
-Mitigation: Choose the output directory carefully and remove capture manifests and downloaded files after review. <br>
-Risk: The security evidence marks the release suspicious because session handling has weak scoping and plaintext persistence. <br>
-Mitigation: Review the skill before installation and run it only in an environment where the logged-in Doubao session and generated media are acceptable to expose to the tool. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate a Doubao web session, verify chat access, capture generated media URLs, and save image or video assets for follow-on analysis or archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangm199/huangm-doubao-media) <br>
-- [Doubao web application](https://www.doubao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON capture manifests, summary text, media URLs, and optional downloaded image or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a logged-in browser session, Chrome remote debugging on port 18800 by default, and caller-selected output directories for captures and downloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and scripts/package.json) <br>
+Risk: The skill handles authenticated browser cookies and stores session data in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile for Doubao, inspect or delete the session file after use, and avoid sharing the profile with unrelated services.
+
+Risk: Network capture can include unrelated ByteDance, Douyin, or mixed browsing traffic.
+
+Mitigation: Run capture only in a controlled session with unrelated tabs and logins closed, and review generated manifests before retaining or sharing them.
+
+Risk: Captured media URLs and downloaded files may include sensitive generated content.
+
+Mitigation: Store captures in a controlled output directory, review contents before distribution, and delete files that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangm199/skills/huangm-doubao-media)
+- [Doubao web app](https://www.doubao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper scripts emit JSON, JSONL, text summaries, and downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Doubao browser session and access to a browser remote debugging port.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Summarize WeChat conversations, triage unread messages, identify which items need a reply, and draft concise response suggestions while preserving privacy boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize WeChat conversations, triage unread messages, identify which items need a reply, and draft concise response suggestions while preserving privacy boundaries.
 
-## Publisher: <br>
-[benboby](https://clawhub.ai/user/benboby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[benboby](https://clawhub.ai/user/benboby)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+People who manage WeChat conversations use this skill to catch up on long chats, identify action items, decide what needs a reply, and draft concise responses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Private or sensitive chat content may be included in the context provided for summarization.
+
+Mitigation: Share only the conversation content needed for the task and review summaries or reply drafts before using them.
+
+Risk: Partial message coverage can lead to incomplete summaries or misplaced reply recommendations.
+
+Mitigation: Provide the relevant conversation window when accuracy matters and treat low-confidence notes as a prompt to verify the thread.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external users use this skill to digest long WeChat chats, unread messages, and group threads into compact summaries, action items, reply triage, and short suggested replies. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat conversations can include private personal or business information. <br>
-Mitigation: Only provide chat content you are comfortable having summarized by the agent, and redact sensitive details when possible. <br>
-Risk: Suggested replies may not match the user's intent, relationship, or current context. <br>
-Mitigation: Review and edit any suggested reply before sending it. <br>
-Risk: Summaries may be incomplete when the provided message window is partial. <br>
-Mitigation: Provide enough surrounding messages for the task, and note when chat coverage is incomplete. <br>
+**Output Format:** [Compact Markdown summaries, triage lists, and suggested replies]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/benboby/wechat-summary) <br>
+**Other Properties Related to Output:** [May include confidence notes when message coverage is partial.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with compact bullet lists and short reply drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or hidden install behavior found in security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

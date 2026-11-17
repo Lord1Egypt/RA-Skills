@@ -1,41 +1,54 @@
-## Description: <br>
-Generates optimized marketing copy and title suggestions for Xiaohongshu, Douyin, WeChat Moments, e-commerce pages, and other platform-specific campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-tailored marketing copy, title variants, and keyword ideas for Xiaohongshu, Douyin, WeChat, ecommerce, and other campaign scenarios.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Marketing teams, creators, and developers use this skill to draft platform-specific promotional copy, adapt tone for common Chinese social and commerce channels, and generate title optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered product plans, customer details, campaign drafts, or regulated information may be sent to an external AI API. <br>
-Mitigation: Avoid entering confidential or regulated data unless OpenClaw's data-handling terms are acceptable for the intended use. <br>
-Risk: The skill depends on the openclaw Python package and an API key. <br>
-Mitigation: Verify the package before installation and use a limited, revocable API key where possible. <br>
+## Use Case:
 
+Marketing teams, ecommerce sellers, and content creators use this skill to draft Chinese marketing copy, optimize titles, and get keyword ideas for product campaigns across multiple social and commerce platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-copywriting-generator) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Plain text marketing copy, title suggestions, and Python CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw API key and sends user-provided marketing prompts to an AI API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/SKILL.md) <br>
+Risk: Prompts and campaign details are sent to an external OpenClaw LLM API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where OpenClaw's data-handling terms are acceptable; do not submit confidential product plans, customer information, or unreleased campaign details.
+
+Risk: The skill depends on the external openclaw package and API availability.
+
+Mitigation: Install in a virtual environment and pin the openclaw package version for repeatable installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-copywriting-generator)
+- [OpenClaw community Discord](https://discord.gg/clawd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Plain text marketing copy and keyword lists, with Markdown usage guidance and Python or shell examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OPENCLAW_API_KEY and sends prompts to the external OpenClaw LLM API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

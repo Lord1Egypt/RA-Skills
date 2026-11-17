@@ -1,39 +1,52 @@
-## Description: <br>
-Unified planning and execution workflow that creates a file-based plan with sub-plans, freezes it as FINALIZED, and executes in a separate session with checkpoints and progress and findings logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PlanSuite guides agents through a file-based planning and execution workflow with sub-plans, FINALIZED gating, checkpoints, progress logs, findings logs, and change control.
 
-## Publisher: <br>
-[double729](https://clawhub.ai/user/double729) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[double729](https://clawhub.ai/user/double729)
 
-## Use Case: <br>
-Developers and project maintainers use PlanSuite to create structured implementation plans, freeze approved milestones, and track execution progress, findings, validation steps, and rollback notes across sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PlanSuite creates and updates task_plan.md, progress.md, and findings.md in the active working directory, which may conflict with existing files of the same names. <br>
-Mitigation: Check the working directory for existing planning files before use and review generated updates before relying on them. <br>
-Risk: Planning and progress files may contain project-sensitive context if users include secrets, credentials, or private implementation details. <br>
-Mitigation: Do not place secrets or credentials in the generated planning files, and review the files before sharing or publishing the workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PlanSuite on ClawHub](https://clawhub.ai/double729/double729-plansuite) <br>
+## Use Case:
 
+Developers, engineers, and agent operators use PlanSuite to structure project work into reviewed plans, milestones, execution checkpoints, progress tracking, findings logs, and controlled plan changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown planning files and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or maintains task_plan.md, progress.md, and findings.md in the active working directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates and updates Markdown tracking files in the current project directory.
+
+Mitigation: Review the target working directory before use and keep task_plan.md, progress.md, and findings.md under version control or backed up when they already exist.
+
+Risk: Proceeding before reviewing the generated plan can lead to unreviewed execution steps or scope drift.
+
+Mitigation: Review the generated plan and only move into execution after explicitly approving the FINALIZED plan.
+
+## Reference(s):
+
+- [PlanSuite ClawHub listing](https://clawhub.ai/double729/skills/double729-plansuite)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown guidance and Markdown tracking files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates task_plan.md, progress.md, and findings.md in the current project directory.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

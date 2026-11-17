@@ -1,46 +1,63 @@
-## Description: <br>
-Iteratively rewrites essays to reduce AI-detector false positives while preserving meaning, citations, and natural writing style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essay Humanize Iterator iteratively measures and revises essays to reduce AI-detection false positives while preserving meaning, citations, and natural writing style.
 
-## Publisher: <br>
-[kevin0818-lxd](https://clawhub.ai/user/kevin0818-lxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevin0818-lxd](https://clawhub.ai/user/kevin0818-lxd)
 
-## Use Case: <br>
-Writers and writing-support agents use this skill to measure essay style signals, generate targeted rewrites, and return a final essay with an iteration report while preserving the original argument and citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to misrepresent authorship or bypass school, workplace, platform, or review policies. <br>
-Mitigation: Use it only for permitted style revision and false-positive reduction, and follow applicable disclosure or authorship policies. <br>
-Risk: Broad writing-help triggers may activate the workflow for requests where AI-detection evasion is inappropriate. <br>
-Mitigation: Narrow triggers or add explicit acceptable-use checks before allowing the rewrite loop to run. <br>
-Risk: Optimizing against AI-detector signals can overfit style metrics instead of improving factual quality. <br>
-Mitigation: Manually review the final essay, preserve citations and factual claims, and reject unsupported additions. <br>
+## Use Case:
 
+Writers, educators, and writing-support agents use this skill to revise essays through a transparent measure-and-improve loop. It produces a polished essay plus an iteration report that shows AI-pattern, syntactic-complexity, and semantic-density metrics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevin0818-lxd/essay-humanize-iterator) <br>
-- [Measurement Metrics](skill/references/metrics.md) <br>
-- [Iteration Strategy](skill/references/iteration_strategy.md) <br>
-- [AI Writing Patterns](skill/references/patterns.md) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text essay with a Markdown iteration table and change summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local measurement scripts and returns the best-scoring rewrite within the configured iteration limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version) <br>
+Risk: The skill is designed to make essays appear less AI-generated, which can be misused to conceal AI assistance or bypass academic or platform review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for transparent editing and require users to follow applicable academic, workplace, and platform disclosure rules.
+
+Risk: The security evidence flags shell-based measurement as under-scoped.
+
+Mitigation: Run the skill in an isolated environment and pass essay text through files, stdin, or shell-free argument APIs rather than interpolating text into command strings.
+
+Risk: The skill depends on spaCy and the en_core_web_sm model for measurement.
+
+Mitigation: Pin the spaCy package and model version before deployment so scoring behavior is reproducible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kevin0818-lxd/skills/essay-humanize-iterator)
+- [Publisher Profile](https://clawhub.ai/user/kevin0818-lxd)
+- [Project Homepage](https://github.com/kevin0818-lxd/essay-humanize-iterator)
+- [Issue Tracker](https://github.com/kevin0818-lxd/essay-humanize-iterator/issues)
+- [Measurement Metrics](skill/references/metrics.md)
+- [AI Writing Patterns](skill/references/patterns.md)
+- [Iteration Strategy](skill/references/iteration_strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain-text rewritten essay with a markdown iteration table and concise change summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may also return structured JSON metrics when its measurement scripts are used directly.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,66 @@
-## Description: <br>
-Intelligent AI model selection and orchestration via Poe API for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poe Api enables OpenClaw agents to route prompts through the Poe API with task-based model selection across text, search, image, video, and audio workloads.
 
-## Publisher: <br>
-[nwcalvin](https://clawhub.ai/user/nwcalvin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nwcalvin](https://clawhub.ai/user/nwcalvin)
 
-## Use Case: <br>
-Developers and agent builders use this skill to route programming, design, analysis, web search, image, video, and audio requests to Poe-hosted AI models with task-based model selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, code, datasets, and search queries are sent to Poe and selected model providers by design. <br>
-Mitigation: Redact secrets and sensitive personal or proprietary data before use, and confirm the selected provider is acceptable for the workload. <br>
-Risk: The skill requires a Poe API key for authentication. <br>
-Mitigation: Store the key only in the POE_API_KEY environment variable and avoid hardcoding credentials in files or prompts. <br>
-Risk: External model calls can consume quota or incur billing. <br>
-Mitigation: Monitor quota and billing, and use the built-in max_calls_per_task control for bounded runs. <br>
-Risk: The OpenAI dependency is declared broadly as openai>=1.0.0. <br>
-Mitigation: Pin and review dependency versions in controlled environments. <br>
+## Use Case:
 
+Developers and agent builders use this skill to call Poe-hosted models from OpenClaw workflows, automatically selecting models for coding, design, analysis, web search, and media-generation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nwcalvin/innotech-poe-api) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [MODEL_SELECTION_GUIDE.md](MODEL_SELECTION_GUIDE.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Python return values, dictionaries, strings, Markdown guidance, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POE_API_KEY and sends prompts to Poe-hosted models.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata, artifact/skill.json, CHANGELOG.md) <br>
+Risk: Prompts, attachments, code, documents, and search queries are sent to Poe and may be processed by downstream model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets or regulated data unless the deployment environment permits it, and review provider data-handling requirements before use.
+
+Risk: The Poe API key can be exposed if it is hardcoded, logged, or committed.
+
+Mitigation: Set POE_API_KEY only through the runtime environment or a secrets manager and rotate the key if exposure is suspected.
+
+Risk: The Python dependency is declared as openai>=1.0.0, which can admit unreviewed future dependency versions.
+
+Mitigation: Pin dependencies in a lockfile before production deployment and update them through normal dependency review.
+
+Risk: External model responses may include incorrect guidance, code, configuration, or shell commands.
+
+Mitigation: Review generated outputs before using them in workflows, especially before executing code or commands.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/nwcalvin/skills/innotech-poe-api)
+- [Publisher profile](https://clawhub.ai/user/nwcalvin)
+- [Skill documentation](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Model selection guide](artifact/MODEL_SELECTION_GUIDE.md)
+- [Poe client implementation](artifact/scripts/poe_client.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python dictionary responses and strings from Poe API calls, typically containing plain text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires POE_API_KEY and sends prompts to Poe-hosted external models.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/skill.json, artifact/SKILL.md, artifact/CHANGELOG.md, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

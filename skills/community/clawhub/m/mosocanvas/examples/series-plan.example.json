@@ -1,0 +1,44 @@
+{
+  "schema": "moso.series-plan/0.1",
+  "id": "example-observer-series-plan",
+  "spec_ref": "visual-spec.example.json",
+  "frame_count": 7,
+  "series_invariants": [
+    "ordinary physics remains credible outside one anomaly",
+    "one restrained red-violet attention accent",
+    "observer presence is relational rather than a literal eye"
+  ],
+  "variation_dimensions": [
+    "shot-distance",
+    "viewpoint",
+    "occlusion",
+    "narrative-time",
+    "information-power",
+    "value-key"
+  ],
+  "beats": [
+    {"index": 1, "shot_id": "threshold-reflection", "job": "establish the rule", "narrative_verb": "waits", "new_information": "an ordinary question has a physical setting", "spatial_strategy": "oblique threshold"},
+    {"index": 2, "shot_id": "overhead-administration", "job": "show system scale", "narrative_verb": "records", "new_information": "the exchange is already organized", "spatial_strategy": "overhead diagram", "continuity_from_previous": "the accent moves from reflection to empty response position"},
+    {"index": 3, "shot_id": "close-object", "job": "make anticipation tangible", "narrative_verb": "anticipates", "new_information": "an object responds before touch", "spatial_strategy": "compressed close-up", "continuity_from_previous": "grid interval becomes an object seam"},
+    {"index": 4, "shot_id": "public-obstruction", "job": "widen the behavior", "narrative_verb": "tracks", "new_information": "the relation extends beyond one room", "spatial_strategy": "foreground-obstructed public space", "continuity_from_previous": "response accent stays peripheral"},
+    {"index": 5, "shot_id": "intimate-negative-space", "job": "create complicity", "narrative_verb": "invites", "new_information": "the empty response position feels voluntary", "spatial_strategy": "void-dominant intimate frame", "continuity_from_previous": "public density collapses into a quiet gap"},
+    {"index": 6, "shot_id": "direct-return", "job": "reverse observer and observed", "narrative_verb": "returns", "new_information": "attention addresses the viewer directly", "spatial_strategy": "frontal axis with off-center subject", "continuity_from_previous": "the quiet gap aligns with the camera"},
+    {"index": 7, "shot_id": "absent-aftermath", "job": "leave consequence unresolved", "narrative_verb": "withholds", "new_information": "the exchange continues without visible participants", "spatial_strategy": "low hidden witness", "continuity_from_previous": "direct address disappears but its trace remains"}
+  ],
+  "color_script": [
+    {"index": 1, "value_key": "middle", "dominant_hue_family": "warm gray-green", "accent": "red-violet reflected interval", "accent_area_pct": 2, "contrast_locus": "hand then reflection", "light_source": "soft window plus one practical", "transition": "baseline"},
+    {"index": 2, "value_key": "high", "dominant_hue_family": "paper gray", "accent": "red-violet empty position", "accent_area_pct": 1, "contrast_locus": "figure-to-gap", "light_source": "broad overhead source", "transition": "opens value range"},
+    {"index": 3, "value_key": "low", "dominant_hue_family": "deep olive black", "accent": "muted red-violet seam", "accent_area_pct": 3, "contrast_locus": "pre-touch response", "light_source": "small motivated device spill", "transition": "compresses into close darkness"},
+    {"index": 4, "value_key": "middle", "dominant_hue_family": "cool concrete", "accent": "red-violet peripheral reflection", "accent_area_pct": 2, "contrast_locus": "obstructed human then reflection", "light_source": "public overhead fixtures", "transition": "restores spatial depth"},
+    {"index": 5, "value_key": "low", "dominant_hue_family": "brown-black neutral", "accent": "faint red-violet edge", "accent_area_pct": 1, "contrast_locus": "empty interval", "light_source": "single off-frame practical", "transition": "removes descriptive color"},
+    {"index": 6, "value_key": "high", "dominant_hue_family": "cold off-white", "accent": "red-violet returned line", "accent_area_pct": 4, "contrast_locus": "camera axis", "light_source": "large frontal diffuse source", "transition": "sharp high-key rupture"},
+    {"index": 7, "value_key": "middle", "dominant_hue_family": "desaturated warm gray", "accent": "residual red-violet trace", "accent_area_pct": 1, "contrast_locus": "empty chair then trace", "light_source": "late ambient window light", "transition": "returns to ordinary quiet"}
+  ],
+  "pilot_gate": {
+    "pilot_index": 1,
+    "status": "approved",
+    "artifact_ref": "codex://artifact/example-pilot",
+    "review_ref": "artifact-review.example.json",
+    "user_confirmed_at": "2026-07-28T01:00:00Z"
+  }
+}

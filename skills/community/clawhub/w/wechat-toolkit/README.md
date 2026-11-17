@@ -37,8 +37,8 @@ npm install -g cheerio
 # 3. 安装下载模块依赖
 cd skills/wechat-toolkit/scripts/downloader && npm install
 
-# 4. 发布模块使用内置 wenyan fork（推荐先 bootstrap 一次）
-node skills/wechat-toolkit/scripts/bootstrap/install_wenyan.js
+# 4. 安装发布模块依赖
+npm install -g @wenyan-md/cli
 ```
 
 ---
@@ -108,17 +108,6 @@ export WECHAT_APP_SECRET=your_app_secret
 node scripts/publisher/publish.js /path/to/article.md
 wenyan publish -f article.md -t lapis -h solarized-light
 node scripts/publisher/publish_with_video.js /path/to/article.md  # 含视频时使用
-
-# 草稿 / 已发布文章管理
-node scripts/publisher/manage_draft.js get MEDIA_ID
-node scripts/publisher/manage_draft.js list --count 10
-node scripts/publisher/manage_draft.js count
-node scripts/publisher/manage_draft.js delete MEDIA_ID
-node scripts/publisher/manage_draft.js publish MEDIA_ID --wait
-node scripts/publisher/manage_draft.js status PUBLISH_ID
-node scripts/publisher/manage_draft.js published-list --count 10
-node scripts/publisher/manage_draft.js published-get ARTICLE_ID
-node scripts/publisher/manage_draft.js published-delete ARTICLE_ID --index 0
 ```
 
 > ⚠️ **重要：** 你的 IP 必须添加到微信公众号后台白名单中！
@@ -132,8 +121,6 @@ cover: /absolute/path/to/cover.jpg（必填，使用绝对路径）
 
 # 正文内容...
 ```
-
-> ⚠️ 图片路径不要带空格，包括 `cover` 和正文图片文件名/目录名。
 
 ---
 
@@ -166,15 +153,12 @@ wechat-toolkit/
 │   ├── themes.md                   #   主题配置说明
 │   └── troubleshooting.md          #   故障排查指南
 └── scripts/                        # 脚本目录（全部 Node.js，跨平台）
-    ├── bootstrap/                  #   安装 / 同步辅助脚本
-    │   └── install_wenyan.js
     ├── search/                     #   搜索模块
     │   └── search_wechat.js
     ├── downloader/                 #   下载模块
     │   └── download.js
     └── publisher/                  #   发布模块
         ├── publish.js              #   基础发布
-        ├── manage_draft.js         #   草稿 / 已发布文章管理
         └── publish_with_video.js   #   含视频发布
 ```
 
@@ -185,11 +169,10 @@ wechat-toolkit/
 | 问题 | 解决方法 |
 |------|----------|
 | IP 不在白名单 | `curl ifconfig.me` → 添加到公众号后台 |
-| 内置 wenyan 未就绪 | `node scripts/bootstrap/install_wenyan.js` |
+| wenyan 未安装 | `npm install -g @wenyan-md/cli` |
 | 环境变量未设置 | `export WECHAT_APP_ID=xxx` |
 | 缺少 frontmatter | 添加 `title` + `cover` 字段 |
 | 40001 token 失效 | 使用 `publish_with_video.js` |
-| 图片路径带空格 | 重命名目录/文件，确保 `cover` 和正文图片路径都不含空格 |
 
 更多排查方法见 [`references/troubleshooting.md`](references/troubleshooting.md)
 

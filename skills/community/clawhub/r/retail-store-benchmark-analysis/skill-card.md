@@ -1,42 +1,56 @@
-## Description: <br>
-门店Benchmark分析 compares a target retail store against group, region, province, or city peers to report store tier, ranking movement, and piece-price by attach-rate quadrant position. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+门店Benchmark分析 compares a retail store against group, regional, provincial, or city peers and reports rank, tier, rank change, and piece-price by attach-rate quadrant.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gwyang7](https://clawhub.ai/user/gwyang7)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Retail analysts, operations managers, and agents use this skill to benchmark an individual store against a selected comparison scope, identify its performance tier, track ranking changes, and understand its position in a piece-price and attach-rate matrix.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The authoritative security summary reports unsafe database query construction.
+
+Mitigation: Run only with parameterized queries, strict validation for dates and comparison scope, and read-only database credentials.
+
+Risk: The authoritative security summary reports an unaudited local module imported from a hard-coded user path.
+
+Mitigation: Install and review a trusted api_client module in a controlled environment before enabling the skill.
+
+Risk: The authoritative security guidance says documentation should be corrected to match the actual benchmark logic.
+
+Mitigation: Review the benchmark formulas, ranking semantics, and quadrant labels against the deployed business logic before release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Retail analysts, operators, and agents use this skill to benchmark a selected store against comparable stores and summarize relative sales performance, rank changes, tier, top peers, and matrix quadrant placement. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries sensitive store-performance data through a local database helper. <br>
-Mitigation: Review before installing and use only read-only, store-scoped database credentials. <br>
-Risk: SQL is built from user-controlled store, scope, and date inputs. <br>
-Mitigation: Require parameterized queries or strict validation for store IDs, scope codes, and dates before deployment. <br>
-Risk: The code depends on a hardcoded local api_client path. <br>
-Mitigation: Replace the local dependency with a packaged or declared dependency before operational use. <br>
+**Output Format:** [JSON result data and plain-text benchmark report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gwyang7/retail-store-benchmark-analysis) <br>
+**Other Properties Related to Output:** [Returns store performance metrics, ranking, matrix quadrant, top peer stores, and error messages when data is unavailable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Markdown, Code] <br>
-**Output Format:** [Python dictionary results and formatted text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries store-performance data and returns rankings, tiers, quadrant distribution, and top-store summaries.] <br>
+1.0.0 (source: server release evidence and artifact version section)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version note) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Guides agents through learning Hermes v0.15.0 Skill Bundles from a Douyin video tutorial, including key concepts, practice steps, triggers, and related Bilibili learning links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language guide skill for learning Hermes v0.15.0 Skill Bundles from a Douyin video tutorial.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agent users use this guide-only skill to learn and recall Hermes v0.15.0 Skill Bundles concepts, tutorial steps, and related learning resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording can activate the skill when users make ordinary references to Hermes. <br>
-Mitigation: Narrow trigger wording or require clearer user intent before applying the guide. <br>
-Risk: The skill summarizes learning material from external videos and may omit context from the original tutorials. <br>
-Mitigation: Review the referenced videos and validate advice before using it to update or operate a skill bundle. <br>
+## Use Case:
 
+Developers and agent users can use this skill as guidance for learning Hermes skill bundle management and related skill activation patterns from a video-based tutorial.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/skill-learner-818d6a) <br>
-- [Bilibili: HIGGSFIELD script skill deep dive](https://www.bilibili.com/video/BV1DiVn6LEzg) <br>
-- [Bilibili: OpenClaw Skill Vetter skill sharing](https://www.bilibili.com/video/BV1Zhw1z1EAz) <br>
-- [Bilibili: open-source PPT skills experience](https://www.bilibili.com/video/BV12HRLBREeV) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guide-only output; no shell commands, code, credential handling, persistence, or privileged actions are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases such as "skill-learner" and "Hermes" may activate the skill during ordinary conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation triggers before deployment if the phrases conflict with normal agent usage.
+
+Risk: The guidance is Chinese-language and may not fit every user's workflow.
+
+Mitigation: Confirm language requirements before installation or add translated guidance for the intended audience.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/534422530/skills/skill-learner-818d6a)
+- [Bilibili Reference: HIGGSFIELD Script Skill Deep Dive](https://www.bilibili.com/video/BV1DiVn6LEzg)
+- [Bilibili Reference: OpenClaw Skill Vetter](https://www.bilibili.com/video/BV1Zhw1z1EAz)
+- [Bilibili Reference: Open Source PPT Skills](https://www.bilibili.com/video/BV12HRLBREeV)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with tutorial steps and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language instructional content; no executable artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

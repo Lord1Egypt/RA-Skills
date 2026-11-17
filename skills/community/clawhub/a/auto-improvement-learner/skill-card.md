@@ -1,43 +1,57 @@
-## Description: <br>
-Evaluates skill quality, runs a Pareto-protected self-improvement loop, and tracks score trends across six structural dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates skill quality, runs automated SKILL.md improvement loops with Pareto-front protection, and tracks score trends across six dimensions.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to score a skill across structural quality dimensions, run bounded self-improvement iterations, and review historical progress data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The self-improvement workflow can modify or restore files in target skill directories. <br>
-Mitigation: Run it only against trusted, backed-up, version-controlled skills and review diffs before accepting changes. <br>
-Risk: The workflow can run target tests and invoke the local Claude CLI. <br>
-Mitigation: Disable or sandbox pytest and Claude execution when evaluating untrusted packages or sensitive skill content. <br>
-Risk: The workflow can make git commits as part of accepting generated changes. <br>
-Mitigation: Use a clean branch or disposable worktree and inspect any commits before merging or publishing. <br>
+## Use Case:
 
+Developers and engineers use this skill to score agent skills across accuracy, coverage, reliability, efficiency, security, and trigger quality, then optionally apply iterative improvements and track score history.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/auto-improvement-learner) <br>
-- [Publisher Profile](https://clawhub.ai/user/lanyasheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON result artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces six-dimension quality scores, self-improvement iteration summaries, memory statistics, and trend data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can modify target skill repositories and create git commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a disposable copy of trusted skills, review diffs before keeping changes, and avoid running it in repositories where automatic commits are unacceptable.
+
+Risk: The skill can run target test code and documented evaluation commands that may not be read-only.
+
+Mitigation: Use a sandbox with no sensitive environment variables and no network access before evaluating private or third-party skill directories.
+
+Risk: The skill can send SKILL.md content to an external Claude CLI path.
+
+Mitigation: Use --mock when external model calls are not acceptable, especially for private, proprietary, or sensitive skill content.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lanyasheng/skills/auto-improvement-learner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON score reports and improvement summaries, Markdown progress reports, code or file edits, and shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write memory, state, report, test, reference, and SKILL.md changes in the target skill directory; optional plotting can emit image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

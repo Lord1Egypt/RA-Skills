@@ -1,45 +1,64 @@
-## Description: <br>
-ABTI (AI-Based Type Indicator) analyzes how users talk to AI to assign one of 28 personality types and generate a roast-style personality result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ABTI analyzes how a user talks to AI, assigns one of 28 personality types, and produces a roast-style personality result and shareable card.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-External users ask an agent to analyze the chat context available to it for entertainment, identify an ABTI personality type, and produce a roast-style result or shareable card without exposing raw chat content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to review chat context that may contain sensitive information. <br>
-Mitigation: Use a fresh or minimized conversation and avoid running it where unrelated sensitive history is available. <br>
-Risk: The skill relies on instructions that may be missing or changeable. <br>
-Mitigation: Inspect the prompt or reference instructions before use and stop if they request broader access or unexpected actions. <br>
-Risk: The skill can create a shareable result through YouMind. <br>
-Mitigation: Require confirmation before posting and verify that only the personality type and roast text are shared. <br>
+## Use Case:
 
+External users run this entertainment-oriented agent skill to analyze available AI chat history and receive an ABTI personality type, roast text, and optional shareable card. Agents can either return a local markdown result or submit derived card data to the ABTI web service when the user explicitly chooses sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindy-youmind/abti) <br>
-- [ABTI homepage](https://youmind.com/abti) <br>
-- [Manual ABTI card generator](https://youmind.com/abti/g) <br>
-- [YouMind](https://youmind.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls] <br>
-**Output Format:** [Markdown personality result or shareable URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send only the derived personality result to YouMind when HTTP posting is available; raw chat content should not be included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence; package.json reports 1.0.0) <br>
+Risk: The skill asks an assistant to inspect available chat history, which can include sensitive personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user is comfortable with local chat-history analysis, and do not include raw chat excerpts in the result.
+
+Risk: The reviewed artifact refers to additional core instructions that were not present in the artifact.
+
+Mitigation: Review the complete installed skill contents before deployment and prefer local markdown output when the referenced instructions cannot be verified.
+
+Risk: The skill may submit derived result data to an external ABTI endpoint to create a shareable card.
+
+Mitigation: Use external card creation only after explicit user choice; otherwise return the non-HTTP markdown card path.
+
+Risk: Install instructions include unpinned npx commands.
+
+Mitigation: Avoid running unpinned installer commands in high-trust environments without first checking the source and version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindy-youmind/skills/abti)
+- [Publisher profile](https://clawhub.ai/user/mindy-youmind)
+- [ABTI website](https://youmind.com/abti)
+- [YouMind](https://youmind.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown personality result with optional shareable URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce derived personality type and roast text; source chat content should not be exposed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

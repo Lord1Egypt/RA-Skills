@@ -1,47 +1,67 @@
-## Description: <br>
-同步多个微信公众号的文章列表，抓取单篇或单账号文章详情和图片，并导出最近文章汇总或 Markdown 报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号文章同步与详情抓取助手，支持公众号后台登录、账号管理、文章同步、文章详情和图片下载、代理配置以及 Markdown 汇总报告导出。
 
-## Publisher: <br>
-[henryczq](https://clawhub.ai/user/henryczq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henryczq](https://clawhub.ai/user/henryczq)
 
-## Use Case: <br>
-External users and developers use this skill to manage WeChat official-account login, sync account article lists, fetch article bodies and images, configure proxies, and export recent article reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable WeChat login credentials, imported cookie/token files, or JSON command output may expose sensitive session data. <br>
-Mitigation: Treat session files and command output as credentials, restrict where they are stored or shared, and clear login state when finished. <br>
-Risk: Configured gateways, proxy URLs, or messaging targets may receive sensitive article-fetch or synchronization traffic. <br>
-Mitigation: Use only trusted private messaging targets and trusted gateways, and avoid public or unknown proxy URLs. <br>
-Risk: Article detail fetches can be incomplete when image downloads fail or WeChat returns an environment-check page. <br>
-Mitigation: Verify image downloads before treating a fetch as complete, inspect proxy settings, and retry through a trusted gateway when the skill reports environment-check failures. <br>
+## Use Case:
 
+External users and developers use this skill to manage WeChat public accounts, synchronize article lists, fetch article details and images, and export recent-article Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/henryczq/wechat-article-assistant) <br>
-- [Operations Reference](references/operations.md) <br>
-- [Interface Reference](references/interface-reference.md) <br>
-- [Design Reference](references/design.md) <br>
-- [SQLite Schema Notes](references/sqlite-schema.md) <br>
-- [Account Classification and Summary Design](references/account-classification-summary-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command output, and exported article or report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite records, downloaded images, and Markdown/HTML/JSON article exports when save options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release metadata) <br>
+Risk: The skill stores WeChat MP login session data and fetched article content in local persistent storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the configured data directory private, restrict filesystem access, and clear or rotate login sessions when no longer needed.
+
+Risk: Diagnostics or login-status output may expose sensitive session details if copied into shared logs or tickets.
+
+Mitigation: Redact doctor, login-info, and debug JSON before sharing, especially cookie, token, QR-code, target, and account fields.
+
+Risk: User-configured gateway or proxy URLs can relay authenticated WeChat requests through third-party infrastructure.
+
+Mitigation: Use only trusted private gateways for authenticated sync and article fetching; avoid public or untrusted proxy endpoints.
+
+Risk: QR-code and sync-status notifications can reveal login flow or account activity to the wrong recipient.
+
+Mitigation: Disable notifications unless needed, or send them only to a private trusted channel and target.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/henryczq/skills/wechat-article-assistant)
+- [henryczq publisher profile](https://clawhub.ai/user/henryczq)
+- [operations.md](references/operations.md)
+- [interface-reference.md](references/interface-reference.md)
+- [sqlite-schema.md](references/sqlite-schema.md)
+- [design.md](references/design.md)
+- [account-classification-summary-design.md](references/account-classification-summary-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON command output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local SQLite state, downloaded article images, article Markdown files, reports, QR-code images, and logs in the configured data directory.]
+
+## Skill Version(s):
+
+0.3.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

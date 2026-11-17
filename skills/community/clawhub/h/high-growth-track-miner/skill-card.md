@@ -1,38 +1,52 @@
-## Description: <br>
-Generates a structured Chinese-language high-growth industry track report by decomposing an industry chain and evaluating sub-sectors across market growth, capital activity, technology innovation, enterprise momentum, policy alignment, regional fit, and investment or招商 value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language industry research skill that decomposes an industry chain and identifies high-growth sub-sectors with market, capital, technology, enterprise, policy, investment-attraction, and industry-impact analysis.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, planners, and investment teams use this skill to produce structured high-growth industry-track opportunity reports for regional industry planning, investment evaluation, and targeted business attraction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill depends on extensive web research, so market sizes, financing events, policies, and company activity may be incomplete, outdated, or source-dependent.
+
+Mitigation: Require citations for decision-critical claims and independently verify key figures, policy references, and financing events before using the report for planning or investment decisions.
+
+Risk: The skill is designed for detailed Chinese-language reports and can produce output that is longer or more comprehensive than some users need.
+
+Mitigation: State the desired language, scope, target region, time range, and report depth before running the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Industry researchers, regional planning teams, investment analysts, and招商 teams use this skill to identify promising industry sub-sectors, compare growth drivers, and produce decision-support recommendations for planning, investment, and business attraction workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces research and decision-support analysis that could be mistaken for authoritative financial, investment,招商, or policy advice. <br>
-Mitigation: Review cited sources, assumptions, and scoring before using the report for investment,招商, planning, or policy decisions. <br>
+**Output Format:** [Markdown report in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/daviddatamining/high-growth-track-miner) <br>
+**Other Properties Related to Output:** [Long-form report with public-source research, scoring matrices, segmentation, and recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown report with tables, scoring matrices, source citations, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web research; report content depends on industry_chain, target_region, analysis_depth, and time_range inputs.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

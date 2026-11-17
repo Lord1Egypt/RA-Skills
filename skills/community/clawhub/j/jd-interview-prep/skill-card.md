@@ -1,41 +1,59 @@
-## Description: <br>
-上传岗位描述和个人简历后，AI 会预测常见、针对性和追问类面试题，提供 STAR 答题框架，分析简历与 JD 的匹配度，并导出备考手册。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上传岗位描述（JD）和个人简历后，该技能会生成面试题预测、STAR 答题框架、简历与 JD 匹配度分析以及 Markdown 备考手册。
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Job candidates, career coaches, and agents preparing for interviews use this skill to compare a resume against a job description, identify gaps, and generate a Markdown interview-prep handbook with likely questions and STAR guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume and job-description content can be sent to the configured LLM provider, which defaults to DeepSeek unless changed. <br>
-Mitigation: Redact contact details and confidential employer information first, then confirm the API key, endpoint, and provider are approved for the user's data. <br>
-Risk: Exported interview-prep reports can contain sensitive career, employer, and personal details. <br>
-Mitigation: Write exported Markdown reports only to private locations and review them before sharing. <br>
+## Use Case:
 
+Job seekers and career coaches use this skill to turn a job description and resume into targeted interview preparation material, including likely questions, STAR response guidance, gap analysis, and a reusable preparation handout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antonia-sz/jd-interview-prep) <br>
-- [Default DeepSeek API endpoint](https://api.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with match analysis, interview questions, STAR guidance, and optional exported .md file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a timestamped interview preparation handbook when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Résumé and job-description content may be sent to the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content you are comfortable sharing with that provider, obtain appropriate consent, and redact contact details or other unnecessary personal data before use.
+
+Risk: A misconfigured API base could route sensitive interview-preparation content to an untrusted service.
+
+Mitigation: Verify that OPENAI_API_BASE points to a trusted HTTPS endpoint before running the skill.
+
+Risk: Optional document parsing dependencies expand the local execution environment.
+
+Mitigation: Install parsing dependencies in a dedicated virtual environment and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antonia-sz/skills/jd-interview-prep)
+- [ClawHub publisher profile](https://clawhub.ai/user/antonia-sz)
+- [Default LLM API endpoint](https://api.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with match analysis, predicted interview questions, STAR answer guidance, and preparation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print the report to standard output or save it to a user-provided Markdown file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

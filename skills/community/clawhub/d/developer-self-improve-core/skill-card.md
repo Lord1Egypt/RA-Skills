@@ -1,44 +1,61 @@
-## Description: <br>
-Developer Self Improve Core helps a developer-facing agent prevent repeated mistakes, run post-response self-checks, draft memory rules for human approval, clean proposal memory, and send optional DingTalk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer Self Improve Core helps an agent perform pre-response error prevention, post-response self-checks, rule proposal generation, memory cleanup review, and optional daily reminder workflows.
 
-## Publisher: <br>
-[joelee09](https://clawhub.ai/user/joelee09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[joelee09](https://clawhub.ai/user/joelee09)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to manage agent self-improvement workflows, including pre-response checks, post-response reflection, human-reviewed memory rule proposals, cleanup scans, and optional daily reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Free-form auto-confirm paths can persistently change future agent behavior. <br>
-Mitigation: Do not wire chat or DingTalk replies directly to confirmation unless a stricter approval step is added; review proposal files manually before confirming rules. <br>
-Risk: Automated cleanup can remove proposal files or change memory state after it is enabled. <br>
-Mitigation: Back up the memory directory and keep automatic cleanup disabled until manual tests and generated files have been reviewed. <br>
-Risk: Optional DingTalk reminders can send proposed rule summaries outside the local environment. <br>
-Mitigation: Keep reminders disabled until the DingTalk target and OpenClaw configuration are verified and the user accepts that summaries will be sent. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain human-reviewed agent behavior rules, generate proposed memory updates from recurring mistakes, and review cleanup suggestions before they affect long-term memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joelee09/developer-self-improve-core) <br>
-- [Publisher profile](https://clawhub.ai/user/joelee09) <br>
-- [Project repository from metadata](https://github.com/lijiujiu/developer-self-improve-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated rule proposal files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local memory proposal, rule, cleanup, and log files when scripts are run; DingTalk reminders are optional and disabled by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9 (source: server evidence, frontmatter, .clawhub metadata) <br>
+Risk: Persistent local memory rules may shape future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed rule before confirmation, keep human approval in the loop, and audit generated memory and log files regularly.
+
+Risk: Automatic proposal cleanup can remove pending rule drafts.
+
+Mitigation: Leave automatic cleanup disabled until tested, tune retention settings, and back up the memory directory before enabling scheduled automation.
+
+Risk: Optional DingTalk reminders can share rule summaries outside the local workspace.
+
+Mitigation: Enable reminders only after reviewing proposal contents and verifying the OpenClaw and DingTalk target configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joelee09/skills/developer-self-improve-core)
+- [Publisher Profile](https://clawhub.ai/user/joelee09)
+- [Project Repository](https://github.com/lijiujiu/developer-self-improve-core)
+- [README](README.md)
+- [Security Information](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and shell output with generated local memory files and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create proposal, rule, cleanup, and log files under the skill memory directory when commands are run.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

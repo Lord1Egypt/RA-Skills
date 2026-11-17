@@ -1,0 +1,52 @@
+{
+  "skill": "trend-tools",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "这个价格跌到前期低点附近了，是不是支撑位可以买？",
+      "expected_behavior": "激活 trend-tools，讲解支撑阻挡及角色互换、前低有效性",
+      "notes": "支撑位判断"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "价格跌破上升趋势线了，是不是趋势坏了？",
+      "expected_behavior": "激活 trend-tools，提示用 3%/2天过滤伪突破、趋势线突破是早期信号",
+      "notes": "趋势线突破"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "上涨中回调，大概回撤到多少可以加仓？",
+      "expected_behavior": "激活 trend-tools，给出 1/3、50%、2/3 回撤区作为加仓参考",
+      "notes": "百分比回撤"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "现在是主要上升趋势还是只是短暂反弹？",
+      "expected_behavior": "不应激活本 skill（趋势层级判断），应激活 dow-theory-framework",
+      "notes": "跨 skill 混淆：应触发 dow-theory-framework"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这个头肩顶颈线跌破了，是不是可以做空？",
+      "expected_behavior": "不应激活本 skill（形态识别），应激活 reversal-patterns",
+      "notes": "诱饵：形态"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "今天一根大阴线创了新高又跌回来，这是不是关键反转日、趋势要转了？",
+      "expected_behavior": "激活本 skill 并提示这是'顶部反转日'预警，但需收市确认与后续信号，不单独判趋势终结",
+      "notes": "边界：反转日 vs 确凿反转"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 dow-theory-framework；should-not-trigger-02 指向 reversal-patterns。"
+}

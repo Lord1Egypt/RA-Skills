@@ -1,41 +1,58 @@
-## Description: <br>
-Periodically reviews conversation history and writes memory files to maintain agent continuity across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Memory Save periodically reviews conversation history and writes daily and long-term memory files to maintain agent continuity across sessions.
 
-## Publisher: <br>
-[madebydia](https://clawhub.ai/user/madebydia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madebydia](https://clawhub.ai/user/madebydia)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve useful conversational context across sessions by saving selective daily notes and curated long-term memory in workspace files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation summaries may persist sensitive or unwanted information in local workspace memory files. <br>
-Mitigation: Install only in trusted workspaces, review memory/ and MEMORY.md periodically, and delete entries that should not be retained. <br>
-Risk: Silent memory updates may be unsuitable when users need visible confirmation of what was saved. <br>
-Mitigation: Use the documented notification mode when silent updates are not acceptable. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to give an agent persistent local memory across sessions by saving selected conversation context into daily notes and curated long-term memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/madebydia/daily-memory-save) <br>
-- [Project homepage](https://github.com/madebydia/daily-memory-save) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and cron-style scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local memory notes to memory/YYYY-MM-DD.md and curated long-term context to MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Conversation summaries may persist sensitive or private details in workspace memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in private workspaces, add explicit redaction rules for credentials and sensitive data, and review or delete saved memory files regularly.
+
+Risk: Silent memory saving can reduce user awareness of what was retained.
+
+Mitigation: Enable the documented notification mode when visibility is needed and periodically audit MEMORY.md and memory/ notes.
+
+Risk: Repeated runs may duplicate or over-retain conversation context.
+
+Mitigation: Read existing memory files before writing, deduplicate similar notes, and keep only genuinely new or long-term useful details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/madebydia/skills/daily-memory-save)
+- [Project Homepage](https://github.com/madebydia/daily-memory-save)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown files and cron-style configuration text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local memory/YYYY-MM-DD.md and MEMORY.md files when notable conversation context exists.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

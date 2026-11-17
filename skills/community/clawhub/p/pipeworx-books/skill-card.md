@@ -1,43 +1,55 @@
-## Description: <br>
-Search and look up books via Open Library — titles, authors, ISBNs, and cover images from the world's largest open book catalog <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and look up books via Open Library, including titles, authors, ISBNs, and cover image URLs from the world's largest open book catalog.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to search book records, look up ISBN metadata, retrieve author details, and enrich reading or recommendation workflows with Open Library data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Book search terms, ISBNs, and author lookup requests are sent to the Pipeworx gateway. <br>
-Mitigation: Avoid entering sensitive personal data in searches unless sending it to the Pipeworx/Open Library gateway is acceptable. <br>
-Risk: The optional MCP configuration runs mcp-remote@latest from npm through npx. <br>
-Mitigation: Review and pin the MCP dependency or approve the latest-package behavior before using the optional MCP setup in controlled environments. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to search for books, retrieve ISBN-based book metadata, and fetch author details for reading lists, catalog enrichment, and recommendation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucegutman/pipeworx-books) <br>
-- [Pipeworx Books Homepage](https://pipeworx.io/packs/books) <br>
-- [Pipeworx Books MCP Gateway](https://gateway.pipeworx.io/books/mcp) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON MCP configuration; runtime calls return structured book metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search requests, ISBNs, and author lookup inputs are sent to the Pipeworx/Open Library gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and SKILL.md frontmatter) <br>
+Risk: The MCP configuration runs mcp-remote from the latest npm tag, so the installed bridge code can change between installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version and install it through a controlled package process before enabling the skill.
+
+Risk: The skill depends on a remote Pipeworx books service for MCP tool execution.
+
+Mitigation: Use it only where that remote service is acceptable and run the MCP server with limited filesystem and environment access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-books)
+- [Pipeworx Books Pack](https://pipeworx.io/packs/books)
+- [Pipeworx Books MCP Endpoint](https://gateway.pipeworx.io/books/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON MCP configuration, bash examples, and structured JSON book or author results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the documented example and uses a remote Pipeworx MCP service through an npm-based bridge.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

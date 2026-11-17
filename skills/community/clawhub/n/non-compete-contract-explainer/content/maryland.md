@@ -2,20 +2,22 @@
 jurisdiction: "Maryland"
 slug: maryland
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/maryland
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/maryland
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/maryland · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/maryland · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Maryland[^about]
 
@@ -35,7 +37,7 @@ Maryland enforces non-competes only when the restraint is reasonable under commo
 | **Restriction extended during a breach?** | Unsettled |
 | **Maximum length set by law** | No fixed cap for ordinary employees; 1 year for covered health-care |
 
-## Are employee non-compete agreements enforceable in Maryland? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Maryland? {#employee-non-compete-enforceability}
 
 **Short answer.** Yes, sometimes. Maryland is a reasonableness state, not a general ban state, so an ordinary employee non-compete is enforceable only if the employer has a legally protected interest, the restraint is no wider in scope and duration than reasonably necessary, it does not impose undue hardship on the employee, and it does not violate public policy [^seneca-four-part-test][^becker-general-rule].
 
@@ -74,7 +76,12 @@ There is also a patient-notice duty. On a patient's request, the employer must t
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not copy a longer term or wider radius into a Maryland high-earner clinician covenant. Anything beyond one year or ten miles from the primary practice site exceeds the statutory cap, and pair the covenant with the required patient-notice process [^statute-cap-duration][^statute-patient-notice].
+> A Maryland high-earner clinician covenant that runs beyond one year or reaches more than ten miles from the primary practice site sits outside the ceiling § 3-716(b) sets, so a term or radius carried over from a longer general-purpose covenant is unenforceable to the extent it exceeds the cap. The statutory cap also carries a patient-notice process the covenant depends on [^statute-cap-duration][^statute-patient-notice].
+
+> [!CAUTION]
+> **Drafting note.**
+>
+> For a covered high-earner clinician, § 3-716(b) makes patient notice of the departing clinician's new practice location a statutory duty owed on a patient's request, and it runs as a duty of the employer under the statute rather than a term the covenant creates [^statute-patient-notice]. A covenant drafted to block or delay that notice, or to bar the clinician from telling patients where care continues, collides with the statute; one that leaves the notice and the patient's continuity of care unobstructed keeps clear of it.
 
 ## What legitimate business interests can support a Maryland non-compete? {#protectable-interests}
 
@@ -87,9 +94,19 @@ Section 3-716 reinforces that focus. Section 3-716(a)'s void rule carves out pro
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not use a Maryland non-compete to block ordinary competition unconnected to a protectable interest. Tie the restraint to specific unique services, trade secrets, customer lists, or goodwill, and handle confidential-information protection through separate confidentiality and trade-secret terms [^becker-protectable-interests][^statute-client-list-carveout].
+> A Maryland non-compete reaches only a genuine protectable interest — unique services, trade secrets, customer lists, or goodwill — so a restraint aimed at ordinary competition unconnected to any of those protects nothing the law recognizes and fails on the interest requirement. Confidential-information protection carried on separate confidentiality and trade-secret terms survives even where the non-compete does not [^becker-protectable-interests][^statute-client-list-carveout].
 
-## What duration and geographic scope are reasonable for a Maryland non-compete? {#duration-geography}
+> [!CAUTION]
+> **Drafting note.**
+>
+> A no-business or non-dealing covenant reaches a Covered Customer even when the customer initiates the contact, which pushes past the solicitation and client-relationship interests Maryland recognizes and toward blocking ordinary competition — the reach Maryland will not enforce. A covenant of that breadth holds only where a genuine client-relationship or trade-secret interest actually supports it and it stays no wider than that interest needs [^becker-protectable-interests][^statute-client-list-carveout].
+
+> [!CAUTION]
+> **Drafting note.**
+>
+> A covenant that binds the employee only as to the employer's actual, named competitors gives a Maryland court the most concrete evidence that the restraint is tailored to what is reasonably necessary rather than a blanket bar on the field, and even a covenant serving a legitimate interest can be no broader than necessary to effectuate it [^fowler-no-broader-than-necessary]. An open-ended competitive-business definition left unnarrowed carries the overbreadth a named list would have cured.
+
+## What duration and geographic scope are reasonable for a Maryland non-compete? {#duration-limits}
 
 **Short answer.** Outside the § 3-716 categories there is no fixed cap for ordinary employees. Maryland courts judge time and territory case by case, asking whether the restraint is reasonable on the specific facts [^ruhl-no-yardstick][^seneca-overbroad].
 
@@ -100,7 +117,7 @@ Scope of the prohibited activity matters as much as miles and months. In *Medisp
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not copy a duration or radius from another Maryland form without matching the worker's role and customer exposure. A broad activity ban that sweeps in work unrelated to the employee's actual job is the kind of facial overbreadth that sinks a Maryland covenant [^medispec-facially-overbroad][^seneca-overbroad].
+> A duration or radius carried from another Maryland agreement is measured against the worker's actual role and customer exposure, not against the source it was copied from. A broad activity ban that sweeps in work unrelated to the employee's real job is the facial overbreadth that renders a Maryland covenant unenforceable on its face, before any fact-specific balancing [^medispec-facially-overbroad][^seneca-overbroad].
 
 ## Is continued at-will employment enough consideration for a Maryland non-compete? {#continued-employment-consideration}
 
@@ -119,12 +136,12 @@ Scope of the prohibited activity matters as much as miles and months. In *Medisp
 
 *Holloway* describes the typical Maryland response to an invalid portion of a covenant: blue-pencil the violative words and, if what is excised is severable, enforce the rest; otherwise the entire agreement is void [^holloway-blue-pencil]. The traditional, strict version of that rule is mechanical — a court strikes words and enforces what is left only if the remainder still stands as a complete, valid contract [^holloway-mechanical-rule]. Maryland's focus is therefore on severability: the *Holloway* litigation, affirmed in part by the Maryland Supreme Court, turned on whether the covenant could be severed (there, on a client-by-client basis) rather than on a court rewriting the bargain.
 
-*Hebb v. Stump, Harvey & Cook* shows the partial-enforcement side in practice. Where an overbroad restriction is not so interwoven as to be logically inseparable from the rest of the contract, a Maryland court will sever it and enforce the lawful remainder when partial enforcement works no injury to the public and no injustice to the parties [^hebb-severable-partial-enforcement].
+*Hebb v. Stump, Harvey & Cook* shows the partial-enforcement side in practice. Where an overbroad restriction is not so interwoven as to be logically inseparable from the rest of the contract, a Maryland court will sever it and enforce the lawful remainder when partial enforcement works no injury to the public and no injustice to the parties [^hebb-severable-partial-enforcement]. For a clause-by-clause pass over a specific agreement against these drafting rules, the [Maryland non-compete reviewer checklist](/checklists/non-compete/us/maryland) walks the full covenant suite item by item with each requirement's force level.
 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Draft severable, tiered restrictions rather than relying on a savings clause that asks a court to invent a narrower Maryland radius or duration. Whether a court applies a strict blue pencil or a more granular severance, an indivisible overbroad term gives it nothing to enforce [^holloway-blue-pencil][^holloway-mechanical-rule].
+> A Maryland savings clause that asks a court to invent a narrower radius or duration runs into a court that blue-pencils but does not rewrite. Whether a court applies a strict blue pencil or a more granular severance, an indivisible overbroad term gives it nothing to strike and leaves the whole covenant void, while restrictions written as severable, independent tiers let a court excise an excessive tier and enforce the lawful remainder [^holloway-blue-pencil][^holloway-mechanical-rule].
 
 ## How does the Maryland Uniform Trade Secrets Act protect employers when a covenant is void? {#trade-secrets-mutsa}
 
@@ -139,7 +156,18 @@ Trade-secret remedies can also outrun a contract's damages cap. In *Ingram v. Ca
 >
 > Where § 3-716 voids the covenant, build the protection plan around confidentiality and the trade-secret statute instead. Identify the actual trade secrets, document reasonable secrecy measures, and preserve the statutory injunction and damages remedies that do not depend on an enforceable non-compete [^mutsa-trade-secret-definition][^mutsa-injunction].
 
-## Does a Maryland non-compete toll or extend during breach or litigation? {#tolling-extension}
+> [!CAUTION]
+> **Drafting note.**
+>
+> Maryland's recent trade-secret litigation turned on customer lists and pricing data leaving with departing employees, so a covenant that omits a return-and-deletion obligation and a signed certification loses the cleanest contemporaneous record of what left and when if that material later surfaces at a competitor [^ingram-trade-secret-finding]. Return and certification terms sit outside the § 3-716 void, so they hold even where a non-compete does not.
+
+## How does Maryland treat employee non-solicitation covenants? {#employee-non-solicitation}
+
+**Short answer.** With no Maryland appellate decision squarely on employee anti-raiding in our review, such a covenant would be judged under Maryland's general reasonableness test — enforceable only if no broader than reasonably necessary to protect a legitimate interest, without undue hardship or harm to the public [^md-ens-becker][^md-ens-seneca].
+
+The statutory void in Section 3-716 does not reach an anti-raiding covenant, because it is textually keyed to a restraint on the signer's own ability to take new employment or become self-employed [^md-ens-3716].
+
+## Does a Maryland non-compete toll or extend during breach or litigation? {#extended-for-breach}
 
 **Short answer.** This is an open Maryland question. No staged Maryland statute or appellate decision squarely endorses automatic judicial tolling or enforcement of an extension-on-breach clause after the stated restricted period expires [^ruhl-reasonableness-backdrop][^becker-reasonableness-backdrop].
 
@@ -160,18 +188,31 @@ In *Ryan LLC v. FTC*, the court held the rule unlawful and set it aside, stating
 
 ## What recent Maryland non-compete changes should employers watch? {#recent-amendments}
 
-**Short answer.** The most recent enacted change is House Bill 1016 (2026), now Chapter 301. It is enacted but not yet effective: beginning October 1, 2026, it extends § 3-716's void rule to a new, narrow category — employees of a licensed architect whose employer, after employing more than 30 workers based mainly in Maryland, relocates the majority of that workforce out of state or no longer has its principal place of business in Maryland [^hb1016-architect-out-of-state].
+**Short answer.** The most recent enacted change is House Bill 1016 (2026), now Chapter 301. It is enacted but not yet effective, and the category it adds is narrower than the bill that was introduced. Beginning October 1, 2026, § 3-716's void rule extends to a **licensed architect** who is employed by an employer that, on the first day of that architect's employment, employed more than 30 people a majority of whom reported to a Maryland work site or worked remotely from within Maryland, and that, **on the enforcement date**, no longer has that Maryland majority or no longer has its principal place of business in Maryland [^hb1016-architect-out-of-state][^hb1016-enforcement-date]. Two things about that sentence are easy to get wrong, because the enrolled chapter shows them struck out. The protected worker is the architect, not an architect's staff: the Act deletes *employees of* and substitutes *licensed architects employed by*. And there is no relocation requirement: the Act deletes *relocates, reorganizes, or otherwise ceases to* and substitutes a status test measured on the enforcement date, which the Act defines as the earliest date the employer sues, starts arbitration, or demands written compliance [^hb1016-enforcement-date]. An employer that simply never had a Maryland majority on the day it moved to enforce is inside the category without having relocated anything.
 
-This is the fourth wave of § 3-716 amendments, after the 2019 low-wage ban, the 2023 amendment altering the application of the prohibition (Senate Bill 591, Chapter 266, effective October 1, 2023 — the change that keyed the low-wage threshold to the State minimum wage), and the 2024 veterinary and health care expansion [^sb591-2023-threshold]. Mechanically, the new law inserts the architect category as a new § 3-716(a)(1)(i)3 and renumbers the existing veterinary category to (a)(1)(i)4, effective October 1, 2026 — so the subsection numbers used throughout this note reflect the statute as it reads before that date. The provision is narrow and prospective: it applies only to agreements executed on or after the effective date [^hb1016-architect-out-of-state].
+This is the fourth wave of § 3-716 amendments, after the 2019 low-wage ban, the 2023 amendment altering the application of the prohibition (Senate Bill 591, Chapter 266, effective October 1, 2023 — the change that keyed the low-wage threshold to the State minimum wage), and the 2024 veterinary and health care expansion [^sb591-2023-threshold]. Mechanically, the new law inserts a definitions paragraph as a new § 3-716(a)(1), which pushes the whole applies-to paragraph from (a)(1) down to (a)(2). The architect category therefore lands at § 3-716(a)(2)(i)3 and the veterinary category is renumbered from (a)(1)(i)3 to (a)(2)(i)4, effective October 1, 2026 — so the subsection numbers used throughout this note reflect the statute as it reads before that date. The Act's own execution-date section does not match that renumbering: it names § 3-716(a)(1)(i)3 as enacted by Section 1 of this Act, and Section 1 enacts no such paragraph, because (a)(1)(i) is the definitions chapeau and carries no numbered items. Read against the Act's evident purpose the reference is to the architect category at (a)(2)(i)3; read literally it names nothing. That is unresolved on the face of the chapter, and until the Code is republished on October 1, 2026 there is no codified text to settle it. The provision is prospective on its own terms: the execution-date section applies it only to agreements executed on or after the effective date [^hb1016-architect-out-of-state]. As of today the codified § 3-716 published by the General Assembly carries none of this — no architect category, no definitions paragraph, and the veterinary category still at (a)(1)(i)3 — because the Act does not begin until October 1, 2026.
 
 A broader 2025 effort to clarify that § 3-716 reaches only post-separation restrictions died in committee, so the active-employment reach of the statute's conflict-of-interest language remains unsettled.
 
 > [!NOTE]
 > **Practice note.**
 >
-> Treat the § 3-716 categories as a moving target. Re-check the worker's wage band and occupation against the current statute each session, and remember the architect provision is enacted but does not begin until agreements executed on or after October 1, 2026 [^hb1016-architect-out-of-state].
+> Treat the § 3-716 categories as a moving target. Re-check the worker's wage band and occupation against the current statute each session, and remember the architect provision is enacted but does not begin until agreements executed on or after October 1, 2026 [^hb1016-architect-out-of-state]. Do not describe the category from a summary of House Bill 1016 as introduced: the enrolled chapter struck the words *employees of* and *relocates*, and a description built on either of them protects the wrong worker or imposes a trigger the enacted law does not require [^hb1016-enforcement-date].
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Maryland. This article synthesizes Maryland primary law and is not legal advice from a Maryland-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+## Are sale-of-business non-competes judged differently in Maryland? {#sale-of-business}
+
+**Short answer.** Yes — though on old authority. Maryland has no non-compete statute, and a covenant a seller gives when selling a business and its goodwill is enforced under common-law reasonableness far more readily than an employee covenant. The leading Maryland decisions are old and lightly litigated, so treat this as well-settled but dated.
+
+In *Anderson v. Truitt*, the Court of Appeals stated that where a seller's covenant rests on consideration and is confined to a reasonably limited area, the purchasers of the business are entitled to injunctive enforcement almost as a matter of course [^anderson-matter-of-course].
+
+"purchasers of the business are, as a general rule, and almost as a matter of course, entitled to the aid of a court of equity by injunction to secure them in their contract rights."[^anderson-matter-of-course]
+
+> [!NOTE]
+> **Practice note.**
+>
+> *Anderson* (1930) and the earlier *Guerand v. Dandelet* are the on-point Maryland seller authorities; the modern Maryland non-compete cases (Becker, Deuerling) are all employment covenants. *Anderson* stated the rule in a suit it ultimately dismissed on other grounds, so treat it as persuasive rather than a square holding, and confirm it still holds before relying on it in a close case [^anderson-matter-of-course].
+
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Maryland. This article synthesizes Maryland primary law and is not legal advice from a Maryland-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Maryland*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/maryland.
 
 [^seneca-four-part-test]: **Seneca One Finance, Inc. v. Bloshuk** — "In Maryland, a restrictive employment covenant will only be enforced if it meets four requirements: ‘(1) the employer must have a legally protected interest, (2) the restrictive covenant must be no wider in scope and duration than is reasonably necessary to protect the employer’s interest, (3) the covenant cannot impose an undue hardship on the employee, and (4) the covenant cannot violate public policy.’" *Seneca One Fin., Inc. v. Bloshuk, 214 F. Supp. 3d 457 (D. Md. 2016).* <https://www.courtlistener.com/opinion/7322313/seneca-one-finance-inc-v-bloshuk/#:~:text=In%20Maryland%2C%20a%20restrictive%20employment,covenant%20cannot%20violate%20public%20policy.%E2%80%9D>
 
@@ -233,6 +274,12 @@ A broader 2025 effort to clarify that § 3-716 reaches only post-separation rest
 
 [^ingram-trade-secret-finding]: **Ingram v. Cantwell-Cleary Co.** — "We also hold that the court did not err in finding that Cantwell-Cleary’s confidential customer lists and pricing information constituted trade secrets and that Appellants had misappropriated that information." *Ingram v. Cantwell-Cleary Co., 259 Md. App. 102 (2023).* <https://www.courtlistener.com/opinion/9454756/ingram-v-cantwell-cleary-co/#:~:text=We%20also%20hold%20that%20the,Appellants%20had%20misappropriated%20that%20information.>
 
+[^md-ens-becker]: **Becker v. Bailey** — "The general rule in Maryland is that if a restrictive covenant in an employment contract is supported by adequate consideration and is ancillary to the employment contract, an employee’s agreement not to compete with his employer upon leaving the employment will be upheld ‘if the restraint is confined within limits which are no wider as to area and duration than are reasonably necessary for the protection of the business of the employer and do not impose undue hardship on the employee or disregard the interests of the public.’" *Becker v. Bailey, 268 Md. 93 (1973).* <https://www.courtlistener.com/opinion/2322561/becker-v-bailey/#:~:text=The%20general%20rule%20in%20Maryland,the%20interests%20of%20the%20public.%E2%80%9D>
+
+[^md-ens-seneca]: **Seneca One Finance, Inc. v. Bloshuk** — "In Maryland, a restrictive employment covenant will only be enforced if it meets four requirements: ‘(1) the employer must have a legally protected interest, (2) the restrictive covenant must be no wider in scope and duration than is reasonably necessary to protect the employer’s interest, (3) the covenant cannot impose an undue hardship on the employee, and (4) the covenant cannot violate public policy.’" *Seneca One Fin., Inc. v. Bloshuk, 214 F. Supp. 3d 457 (D. Md. 2016).* <https://www.courtlistener.com/opinion/7322313/seneca-one-finance-inc-v-bloshuk/#:~:text=In%20Maryland%2C%20a%20restrictive%20employment,covenant%20cannot%20violate%20public%20policy.%E2%80%9D>
+
+[^md-ens-3716]: **Md. Code, Lab. & Empl. § 3-716** — "A noncompete or conflict of interest provision in an employment contract or a similar document or agreement that restricts the ability of an employee to enter into employment with a new employer or to become self–employed in the same or similar business or trade shall be null and void as being against the public policy of the State." *Md. Code, Lab. & Empl. § 3-716(a)(3).* <https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&section=3-716>
+
 [^ruhl-reasonableness-backdrop]: **Ruhl v. F. A. Bartlett Tree Expert Co.** — "Covenants of this nature are in restraint of trade; the test is whether the particular restraint is reasonable on the specific facts." *Ruhl v. F. A. Bartlett Tree Expert Co., 245 Md. 118 (1967).* <https://www.courtlistener.com/opinion/2292892/ruhl-v-f-a-bartlett-tree-expert-co/#:~:text=Covenants%20of%20this%20nature%20are,reasonable%20on%20the%20specific%20facts.>
 
 [^becker-reasonableness-backdrop]: **Becker v. Bailey** — "The general rule in Maryland is that if a restrictive covenant in an employment contract is supported by adequate consideration and is ancillary to the employment contract, an employee’s agreement not to compete with his employer upon leaving the employment will be upheld ‘if the restraint is confined within limits which are no wider as to area and duration than are reasonably necessary for the protection of the business of the employer and do not impose undue hardship on the employee or disregard the interests of the public.’" *Becker v. Bailey, 268 Md. 93 (1973).* <https://www.courtlistener.com/opinion/2322561/becker-v-bailey/#:~:text=The%20general%20rule%20in%20Maryland,the%20interests%20of%20the%20public.%E2%80%9D>
@@ -241,4 +288,8 @@ A broader 2025 effort to clarify that § 3-716 reaches only post-separation rest
 
 [^hb1016-architect-out-of-state]: **2026 Md. Laws ch. 301 (H.B. 1016)** — "That § 3–716(a)(1)(i)3 of the Labor and Employment Article, as enacted by Section 1 of this Act, shall be construed to apply only to employment contracts or similar documents or agreements for employment executed on or after the effective date of this Act." *2026 Md. Laws ch. 301, § 2 (H.B. 1016).* <https://mgaleg.maryland.gov/2026rs/Chapters_noln/CH_301_hb1016e.pdf>
 
+[^hb1016-enforcement-date]: **2026 Md. Laws ch. 301 (H.B. 1016) — new § 3-716(a)(1)(ii)** — "‘ENFORCEMENT DATE’ MEANS THE EARLIEST DATE ON WHICH AN EMPLOYER SEEKING TO ENFORCE A NONCOMPETE OR CONFLICT OF INTEREST PROVISION IN AN EMPLOYMENT CONTRACT OR A SIMILAR DOCUMENT OR AGREEMENT CONCERNING AN EMPLOYEE: 1. FILES AN ACTION OR OTHERWISE SEEKS JUDICIAL ENFORCEMENT OF THE PROVISION; 2. INITIATES ARBITRATION OR ANOTHER FORM OF FORMAL DISPUTE RESOLUTION TO ENFORCE THE PROVISION; OR 3. DEMANDS IN WRITING THAT THE EMPLOYEE COMPLY WITH THE PROVISION." *2026 Md. Laws ch. 301, § 1 (H.B. 1016) (enacting Md. Code Ann., Lab. & Empl. § 3–716(a)(1)(ii)).* <https://mgaleg.maryland.gov/2026rs/Chapters_noln/CH_301_hb1016e.pdf>
+
 [^sb591-2023-threshold]: **2023 Md. Laws ch. 266 (S.B. 591)** — "FOR the purpose of altering the application of the prohibition on including a noncompete or conflict of interest provision in an employment contract or similar document or agreement" *2023 Md. Laws ch. 266 (S.B. 591).* <https://mgaleg.maryland.gov/2023rs/Chapters_noln/CH_266_sb0591t.pdf>
+
+[^anderson-matter-of-course]: **Anderson v. Truitt** — "purchasers of the business are, as a general rule, and almost as a matter of course, entitled to the aid of a court of equity by injunction to secure them in their contract rights." *Anderson v. Truitt, 158 Md. 193, 148 A. 223 (1930).* <https://www.courtlistener.com/opinion/3485410/anderson-v-truitt/#:~:text=purchasers%20of%20the%20business%20are%2C,them%20in%20their%20contract%20rights.>

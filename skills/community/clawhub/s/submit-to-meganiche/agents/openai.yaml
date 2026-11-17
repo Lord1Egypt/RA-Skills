@@ -1,0 +1,4 @@
+interface:
+  display_name: "Submit to MEGA(niche)"
+  short_description: "Submit software and channel intent safely"
+  default_prompt: "Use $submit-to-meganiche to submit this product or distribution opportunity for moderated review."

@@ -1,38 +1,56 @@
-## Description: <br>
-Interact with a self-hosted Mealie recipe manager through its REST API to manage recipes, meal plans, and shopping lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a self-hosted Mealie instance via its REST API for recipe management, meal planning, and shopping-list retrieval.
 
-## Publisher: <br>
-[g1mb01d](https://clawhub.ai/user/g1mb01d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[g1mb01d](https://clawhub.ai/user/g1mb01d)
 
-## Use Case: <br>
-Developers and Mealie users can use this skill to automate recipe import, recipe lookup, meal-plan creation, and shopping-list retrieval against a self-hosted Mealie instance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper can upload local JSON files and create or modify persistent Mealie resources. <br>
-Mitigation: Inspect the payload file and target URL before running write commands, and require explicit confirmation for add-recipe or create-plan operations. <br>
-Risk: The Mealie API token grants account access and could be exposed through chat logs or shared shell history. <br>
-Mitigation: Keep MEALIE_TOKEN out of prompts and shared logs, store it only in the execution environment, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to work with their own Mealie server from an agent session, including importing recipes, retrieving recipes, creating meal plans, and fetching shopping lists.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEALIE_URL and MEALIE_TOKEN environment variables and may perform write operations against the configured Mealie account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured API actions can write recipes and meal plans to the user's Mealie account.
+
+Mitigation: Confirm the target Mealie URL and intended account-changing operation before running add-recipe or create-plan.
+
+Risk: A broad or exposed Mealie token could allow unintended account access.
+
+Mitigation: Use HTTPS, prefer the least-privileged token available, keep MEALIE_TOKEN out of files and logs, and rotate it when needed.
+
+Risk: The artifact only contains markdown instructions even though it describes a helper script.
+
+Mitigation: Review or create any helper script locally before executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g1mb01d/skills/mealie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment-variable configuration, and JSON-oriented API payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided MEALIE_URL and MEALIE_TOKEN before account-specific API actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

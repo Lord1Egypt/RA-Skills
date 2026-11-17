@@ -1,43 +1,59 @@
-## Description: <br>
-Uses the grsai nano-banana model to generate images from text prompts or reference-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with the grsai nano-banana model from text prompts or reference-image workflows.
 
-## Publisher: <br>
-[Ruiww](https://clawhub.ai/user/Ruiww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ruiww](https://clawhub.ai/user/ruiww)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent generate or transform images with grsai and save the resulting image file locally. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and reference image URLs to the grsai provider. <br>
-Mitigation: Use the skill only when the provider is trusted for the intended content and avoid sending sensitive prompts or private image URLs. <br>
-Risk: The skill requires a paid grsai API key. <br>
-Mitigation: Use a dedicated, revocable API key with spending limits where possible, and avoid passing real keys directly in shell command history. <br>
-Risk: Changing the base URL redirects requests to a different service. <br>
-Mitigation: Keep the default base URL unless the replacement endpoint is explicitly trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ruiww/grsai-nano-banana) <br>
-- [grsai homepage](https://grsai.ai/) <br>
-- [grsai nano-banana documentation](https://grsai.ai/zh/dashboard/documents/nano-banana) <br>
+## Use Case:
 
+Developers and agent users use this skill to create text-to-image or image-to-image requests through grsai, poll for completion, and save generated images to a local output directory.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated images are saved as PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, curl, Python 3.10+, requests, and a grsai API key; supports async polling and custom output directories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, reference image URLs, and the grsai API key are sent to the configured endpoint.
+
+Mitigation: Use trusted grsai accounts and endpoints, avoid sensitive prompts or internal image URLs, and avoid placing real API keys in command-line history.
+
+Risk: A custom base URL can redirect API requests and credentials to a different destination.
+
+Mitigation: Use the default service endpoint unless the replacement endpoint is fully trusted.
+
+Risk: Generated image files are downloaded and saved to a local directory where existing files could be overwritten.
+
+Mitigation: Save outputs only to a controlled directory where overwrites are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiww/skills/grsai-nano-banana)
+- [grsai homepage](https://grsai.ai/)
+- [grsai nano-banana documentation](https://grsai.ai/zh/dashboard/documents/nano-banana)
+- [grsai dashboard](https://grsai.ai/zh/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv, curl, and a grsai API key; supports prompt, model, resolution, aspect ratio, input image URL, polling, filename, output directory, and base URL options.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

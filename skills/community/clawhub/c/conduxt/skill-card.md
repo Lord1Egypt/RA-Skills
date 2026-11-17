@@ -1,44 +1,62 @@
-## Description: <br>
-conduxt orchestrates coding-agent sessions through ACPX or tmux so developers can delegate coding tasks such as requirements work, bug fixes, refactoring, and investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+conduxt orchestrates full-duplex coding agent sessions via ACPX or tmux, composing OpenClaw tools and community skills for implementation, bug fixes, refactoring, and investigations.
 
-## Publisher: <br>
-[xuezhouyang](https://clawhub.ai/user/xuezhouyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuezhouyang](https://clawhub.ai/user/xuezhouyang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate autonomous coding-agent sessions, manage worktrees and branches, monitor progress, and route completed work through review and pull request workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can orchestrate unattended coding agents with broad repository permissions. <br>
-Mitigation: Install only for trusted repositories and tasks, prefer explicit session commands, avoid --approve-all unless the repository and task are trusted, and review generated changes before pushing or merging. <br>
-Risk: Prompts, issue text, and session traffic may be passed to coding agents or terminal sessions. <br>
-Mitigation: Keep secrets, API keys, and sensitive operational details out of prompts, issue descriptions, and session messages. <br>
-Risk: Agent workflows may create branches, worktrees, commits, pushes, and pull requests. <br>
-Mitigation: Use isolated worktrees, independently run tests, inspect diffs, and require human review before merging. <br>
+## Use Case:
 
+Developers and engineers use conduxt to coordinate coding-agent sessions for feature implementation, bug fixes, refactoring, investigations, progress checks, cleanup, and PR-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuezhouyang/conduxt) <br>
-- [Publisher profile](https://clawhub.ai/user/xuezhouyang) <br>
-- [Project homepage](https://github.com/xuezhouyang/conduxt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON callback examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead an agent to create or update repository files, branches, worktrees, memory files, and callback JSON during an orchestration workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Unattended broad approvals can allow downstream coding agents to change repository files and run shell workflows without interactive review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before using --approve-all and before allowing git push or gh pr create in sensitive repositories.
+
+Risk: The skill can create worktrees, branches, agent sessions, and persistent task-state files.
+
+Mitigation: Use isolated worktrees and review generated state files before relying on them for project status or cleanup.
+
+Risk: Adapter or agent behavior may change if ACP adapter versions are not pinned.
+
+Mitigation: Pin ACP adapter versions and validate the workflow in a disposable repository before normal use.
+
+Risk: Server security guidance calls out setup.sh Python fallback and Markdown escaping issues for sensitive repositories.
+
+Mitigation: Fix those script issues or disable the helper scripts before installing the skill in repositories with sensitive code or credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuezhouyang/skills/conduxt)
+- [conduxt Homepage](https://github.com/xuezhouyang/conduxt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON callback examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update worktrees, branches, task-state files, agent sessions, commits, pushes, and pull requests when the downstream environment permits those actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

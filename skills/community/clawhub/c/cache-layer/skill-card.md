@@ -1,40 +1,48 @@
-## Description: <br>
-Cache layers, TTLs, invalidation, and consistency. Use when speeding reads or debugging stale data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cache layers, TTLs, invalidation, and consistency. Use when speeding reads or debugging stale data.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to structure cache design, rollout, and debugging work around TTL rationale, invalidation patterns, consistency checks, and operational follow-through.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cache recommendations can be misapplied and lead to stale reads, inconsistent state, or thundering-herd load during invalidation.
+
+Mitigation: Confirm system constraints, TTL rationale, invalidation triggers, validation checks, monitoring, and rollback points before applying recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to structure cache-layer discussions, including TTL rationale, invalidation patterns, consistency checks, rollout validation, and operational follow-through. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cache-layer recommendations can be incomplete if environment, scale, consistency needs, or failure modes are not clarified. <br>
-Mitigation: Use the skill's clarification stage to capture goals, constraints, success criteria, and what must not break before choosing TTLs or invalidation patterns. <br>
-Risk: Poorly validated cache changes can create stale data, thundering herds, or operational regressions. <br>
-Mitigation: Tie implementation guidance to tests, canaries, rollback points, hit-rate monitoring, and staleness monitoring. <br>
+**Output Format:** [Markdown guidance with staged workflow steps, checklists, and concrete recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Cache Layer on ClawHub](https://clawhub.ai/clawkk/cache-layer) <br>
+**Other Properties Related to Output:** [No executable output; guidance should be adapted to the user's system constraints]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or conversational text with structured checklists and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no code execution, credentials, persistence, or system access.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

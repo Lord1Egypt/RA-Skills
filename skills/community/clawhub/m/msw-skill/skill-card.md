@@ -1,47 +1,61 @@
-## Description: <br>
-MSW (Mock Service Worker) v2 best practices, patterns, and API guidance for API mocking in JavaScript/TypeScript tests and development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MSW (Mock Service Worker) v2 best practices, patterns, and API guidance for API mocking in JavaScript/TypeScript tests and development.
 
-## Publisher: <br>
-[anivar](https://clawhub.ai/user/anivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anivar](https://clawhub.ai/user/anivar)
 
-## Use Case: <br>
-Developers and engineers use this skill to write, review, and debug MSW v2 handlers, server setup, response construction, GraphQL mocks, and JavaScript/TypeScript test patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested changes to test setup, service-worker startup, or pass-through mocking could alter whether tests make real network requests. <br>
-Mitigation: Review proposed changes before applying them, especially lifecycle hooks, worker startup, and passthrough or bypass behavior. <br>
-Risk: Incorrect MSW guidance can cause tests to compile incorrectly or silently fail to intercept requests. <br>
-Mitigation: Compare generated handlers and setup code against the skill's MSW v2 rules and the target project's installed MSW version. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to write, review, and debug MSW v2 HTTP and GraphQL mocks for JavaScript/TypeScript tests, Storybook, and local development.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anivar/msw-skill) <br>
-- [Source Repository](https://github.com/anivar/msw-skill) <br>
-- [Handler API Reference](references/handler-api.md) <br>
-- [Response API Reference](references/response-api.md) <br>
-- [Server API Reference](references/server-api.md) <br>
-- [Test Patterns Reference](references/test-patterns.md) <br>
-- [MSW v1 to v2 Migration Reference](references/migration-v1-to-v2.md) <br>
-- [Anti-Patterns Reference](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript and JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; produces guidance and proposed code or configuration changes for agent review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unpinned or global installation can make the skill available more broadly than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned installer version and an immutable skill source such as a tag or commit, and avoid global installation unless broad availability is intended.
+
+Risk: Copied passthrough or bypass examples may allow requests to reach real services.
+
+Mitigation: Review mocks before use and scope passthrough or bypass behavior to tests or development environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anivar/skills/msw-skill)
+- [Source URL from skill metadata](https://github.com/anivar/msw-skill)
+- [Author URL from skill metadata](https://anivar.net)
+- [Handler API reference](references/handler-api.md)
+- [Response API reference](references/response-api.md)
+- [Server API reference](references/server-api.md)
+- [Test patterns reference](references/test-patterns.md)
+- [MSW v1 to v2 migration reference](references/migration-v1-to-v2.md)
+- [MSW anti-patterns reference](references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript/TypeScript code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on MSW v2 patterns for TypeScript/JavaScript projects using msw ^2.0.0.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

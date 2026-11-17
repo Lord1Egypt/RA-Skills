@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn74rtzgppe3cks2zefqymy4cx80cxsd",
   "slug": "skill-upgrade-checker",
   "version": "0.1.0",
-  "publishedAt": 1773624528621
+  "description": "检查已安装技能的可用升级，解读版本差异与变更日志，提供风险评估与一键升级建议 | Check installed skills for available upgrades, interpret version differences and changelogs, provide risk assessment and one-click upgrade suggestions.",
+  "author": "VinceZ.辉",
+  "author_url": "https://x.com/zhaowh3613",
+  "requires": {
+    "binaries": ["clawhub"],
+    "auth": "Run 'clawhub login' before use. Credentials are stored by the clawhub CLI in its default config path. No environment variables are required by this skill.",
+    "permissions": [
+      "read installed skill list and versions via 'clawhub list'",
+      "search registry for latest versions via 'clawhub search'",
+      "update skills via 'clawhub update' (only with explicit user confirmation)"
+    ]
+  },
+  "tags": [
+    "upgrade",
+    "version-check",
+    "skill-management",
+    "clawhub",
+    "maintenance",
+    "changelog",
+    "risk-assessment",
+    "技能升级",
+    "版本检查",
+    "技能管理",
+    "变更日志",
+    "风险评估",
+    "维护"
+  ]
 }

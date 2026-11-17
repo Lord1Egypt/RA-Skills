@@ -1,38 +1,49 @@
-## Description: <br>
-Sort lines of text files alphabetically or numerically for data preparation, list organization, and output formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sort lines of text files alphabetically or numerically.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to sort local text input from a file or standard input when preparing data, organizing lists, or formatting command output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation lists column sorting, separator options, month-name sorting, and large-file handling that are not implemented by the script. <br>
-Mitigation: Use only the implemented local sorting options unless the skill is updated and re-scanned. <br>
+## Use Case:
 
+Developers and operators use this skill to sort text-file lines for data preparation, list organization, and output formatting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/sort-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text sorted line output and concise Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads one file or standard input and writes sorted lines to standard output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Sorting a sensitive file can disclose its contents in the generated output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on files whose contents are intended to be shown in the agent response or captured logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/sort-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print sorted file contents to standard output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

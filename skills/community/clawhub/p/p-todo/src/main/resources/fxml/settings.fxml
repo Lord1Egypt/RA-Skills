@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.teamtodo.controller.SettingsController"
+      spacing="16" style="-fx-padding:20;">
+    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+
+    <Label fx:id="titleLabel" text="设置" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+    <Separator/>
+
+    <!-- 语言设置 -->
+    <Label fx:id="langTitleLabel" text="语言" style="-fx-font-size:14px; -fx-font-weight:bold;"/>
+    <ComboBox fx:id="langCombo" maxWidth="Infinity" promptText="选择语言" onAction="#onLangChanged"/>
+    <Label fx:id="langHint" text="切换语言后立即生效" style="-fx-font-size:11px; -fx-text-fill:#6B7280;"/>
+
+    <Separator/>
+
+    <!-- 团队成员 -->
+    <Label fx:id="teamTitleLabel" text="团队成员" style="-fx-font-size:14px; -fx-font-weight:bold;"/>
+    <Label fx:id="userCountLabel" text="共 0 名成员" style="-fx-font-size:11px; -fx-text-fill:#6B7280;"/>
+
+    <ComboBox fx:id="userCombo" maxWidth="Infinity" promptText="选择要管理（更新/删除）的成员" onAction="#onUserSelected"/>
+
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="newNameField" HBox.hgrow="ALWAYS" promptText="输入新成员名称" onAction="#saveUser"/>
+        <Button fx:id="btnSaveUser" text="添加" styleClass="btn-primary" onAction="#saveUser" maxWidth="64" wrapText="true" textAlignment="CENTER" ellipsisString="…"/>
+        <Button fx:id="btnAddUser" text="新增" styleClass="btn" onAction="#addNewUser" maxWidth="Infinity" HBox.hgrow="ALWAYS" wrapText="true" textAlignment="CENTER" ellipsisString="…"/>
+        <Button fx:id="btnDeleteUser" text="删除选中成员" styleClass="btn-secondary" onAction="#deleteUser" maxWidth="Infinity" HBox.hgrow="ALWAYS" wrapText="true" textAlignment="CENTER" ellipsisString="…"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- 通知设置 -->
+    <Label fx:id="notifTitleLabel" text="通知音效" style="-fx-font-size:14px; -fx-font-weight:bold;"/>
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="soundPathField" HBox.hgrow="ALWAYS" promptText="默认系统提示音" editable="false"/>
+        <Button fx:id="btnBrowseSound" text="浏览..." styleClass="btn-secondary" onAction="#browseSound"/>
+        <Button fx:id="btnTestSound" text="测试" styleClass="btn-secondary" onAction="#testSound"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- 数据 -->
+    <Label fx:id="dataTitleLabel" text="数据" style="-fx-font-size:14px; -fx-font-weight:bold;"/>
+    <Label fx:id="dataPathLabel" text="数据库路径: -" style="-fx-font-size:11px; -fx-text-fill:#6B7280;"/>
+
+    <HBox spacing="8">
+        <Button fx:id="btnExportJson" text="导出 JSON" styleClass="btn-secondary" onAction="#exportJson"/>
+        <Button fx:id="btnExportCsv" text="导出 CSV" styleClass="btn-secondary" onAction="#exportCsv"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- API 设置 -->
+    <Label fx:id="apiTitleLabel" text="API 服务" style="-fx-font-size:14px; -fx-font-weight:bold;"/>
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label fx:id="portLabelLabel" text="监听端口:" style="-fx-font-size:12px; -fx-text-fill:#374151;"/>
+        <TextField fx:id="apiPortField" prefWidth="80" promptText="9527"/>
+        <Button fx:id="btnSavePort" text="保存" styleClass="btn-primary" onAction="#saveApiPort"/>
+    </HBox>
+    <Label fx:id="apiPortHint" text="修改后需重启应用生效，默认 9527" style="-fx-font-size:11px; -fx-text-fill:#6B7280;"/>
+</VBox>

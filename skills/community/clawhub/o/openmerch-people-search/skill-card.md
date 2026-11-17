@@ -1,47 +1,58 @@
-## Description: <br>
-Searches for people at a company by domain and role keywords and returns obfuscated profiles with first name, last-name initial, title, and company, without email addresses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for people at a company by domain and role keywords and returns obfuscated profile results with first name, last-name initial, title, company, cost, and job id.
 
-## Publisher: <br>
-[kernel-gd](https://clawhub.ai/user/kernel-gd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernel-gd](https://clawhub.ai/user/kernel-gd)
 
-## Use Case: <br>
-Developers, operators, and business users can use this skill to find people at a company by domain and role keywords through OpenMerch while receiving only obfuscated search results. Use the separate enrichment skill when full profiles are required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches send company-domain and role-keyword queries to OpenMerch and consume OpenMerch account credits. <br>
-Mitigation: Run only when that data sharing and paid API usage are acceptable; the skill plans the job first and uses the quoted price as max_cost before execution. <br>
-Risk: OPENMERCH_API_KEY is a paid API credential. <br>
-Mitigation: Keep OPENMERCH_API_KEY private and avoid exposing it in logs, prompts, screenshots, or shared configuration. <br>
-Risk: Changing OPENMERCH_BASE_URL can redirect requests, including the API key, to another endpoint. <br>
-Mitigation: Leave OPENMERCH_BASE_URL at the default unless using a trusted OpenMerch staging or testing endpoint. <br>
-Risk: Returned people data can still be sensitive even though last names are obfuscated and emails are not returned. <br>
-Mitigation: Handle returned names, titles, organizations, IDs, job IDs, and costs as sensitive business data and apply normal access controls. <br>
+## Use Case:
 
+External users and developers use this skill to find people at a target company for a role keyword search. The returned person ids can be used with a companion enrichment skill when full profiles are needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kernel-gd/skills/openmerch-people-search) <br>
-- [Kernel Studio publisher profile](https://clawhub.ai/user/kernel-gd) <br>
-- [OpenMerch documentation](https://docs.openmerch.dev) <br>
-- [OpenMerch API base URL](https://api.openmerch.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and normalized JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reference script prints count, optional total_entries, obfuscated people records, cost_usd, and job_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.1) <br>
+Risk: A configurable API base URL can receive the OpenMerch API key and paid search requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep OPENMERCH_BASE_URL unset for normal use; set it only to a trusted HTTPS OpenMerch staging endpoint with non-production credentials.
+
+Risk: People-search queries and the OpenMerch API key are sent to OpenMerch.
+
+Mitigation: Install and run the skill only when sending company and role search queries to OpenMerch is acceptable for the intended use.
+
+Risk: Each successful execution can consume paid OpenMerch account credits.
+
+Mitigation: Review the /v1/plan result before execution and report the final cost_usd and job_id after completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kernel-gd/skills/openmerch-people-search)
+- [OpenMerch documentation](https://docs.openmerch.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets; the reference script prints normalized JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results obfuscate last names, omit email addresses, include cost_usd and job_id, and represent one page of one OpenMerch job.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

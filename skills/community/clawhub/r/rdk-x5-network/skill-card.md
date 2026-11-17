@@ -1,38 +1,54 @@
-## Description: <br>
-Helps configure and troubleshoot RDK X5 networking, including WiFi connections, wired static IPs, Bluetooth pairing, WiFi hotspots, SSH access, and VNC connectivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rdk X5 Network helps agents guide RDK X5 users through WiFi, wired static IP, Bluetooth pairing, hotspot, SSH, and VNC network troubleshooting tasks.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-Developers, operators, and RDK X5 users use this skill to generate command guidance for network setup and connectivity troubleshooting on RDK X5 devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes sudo, nmcli, systemctl, SSH, VNC, and srpi-config steps that can change device network access or remote-access exposure. <br>
-Mitigation: Review each command before running it, replace sample SSIDs, passwords, and IP addresses, and enable SSH or VNC only on trusted networks with strong access controls. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and troubleshoot RDK X5 network connectivity, Bluetooth pairing, hotspot setup, and remote access. It is intended for agents assisting with normal device administration and network recovery workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/katherineedwards2475/rdk-x5-network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; commands require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Privileged network administration commands can disrupt connectivity or modify the active remote session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid changing the connection that keeps the current session alive, and keep a recovery access path available.
+
+Risk: Hotspot, SSH, and VNC setup can expose remote access or weak credentials on untrusted networks.
+
+Mitigation: Replace sample hotspot passwords with strong unique values, enable SSH or VNC only when needed, and restrict remote access to trusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-network)
+- [Publisher profile](https://clawhub.ai/user/katherineedwards2475)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires nmcli; several commands may require sudo privileges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

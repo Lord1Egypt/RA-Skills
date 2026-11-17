@@ -1,0 +1,4 @@
+interface:
+  display_name: "Long Run Hybrid Coach"
+  short_description: "Adaptive run and strength plan"
+  default_prompt: "Use $garmin-coach-loop to read my latest evidence and current state, reconcile completed work, then reassess my 28-day direction and this week's running-plus-strength plan."

@@ -1,43 +1,56 @@
-## Description: <br>
-Medical Genetics 8edition is a 131-skill medical genetics pack for genetics Q&A, clinical decision support, and educational case design across chromosome analysis, inheritance, mitochondrial disease, prenatal diagnosis, gene therapy, and epigenetic regulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A clinical genetics skill pack based on Medical Genetics 8th Edition with 131 core skills covering chromosome analysis, Mendelian inheritance, mitochondrial disease, prenatal diagnosis, gene therapy, and epigenetic regulation.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Clinical geneticists, medical students, genetic counselors, precision medicine researchers, and prenatal diagnosis teams use this skill pack for educational genetics Q&A, clinician-reviewed case analysis, risk reasoning, and teaching-case design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate high-impact clinical, reproductive, forensic, or gene-therapy guidance that may be unsafe if treated as standalone professional advice. <br>
-Mitigation: Use outputs only as educational or clinician-reviewed reference material, and require qualified medical, genetics, or legal oversight before diagnosis, treatment, pregnancy, forensic, paternity, genetic-testing, or gene-therapy decisions. <br>
-Risk: Genetics case analysis can involve sensitive personal or family health information. <br>
-Mitigation: Apply appropriate consent, privacy, and local protocol controls before sharing or processing identifiable genetic, reproductive, or family-history information. <br>
+## Use Case:
 
+External clinicians, genetic counselors, medical students, and precision medicine researchers use this skill pack to produce educational genetics explanations, case analyses, recurrence-risk calculations, and clinician-reviewed decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/medical-genetics-8edition) <br>
-- [Skill index](index.md) <br>
-- [English README](README_EN.md) <br>
-- [OpenClaw homepage metadata](https://github.com/yourusername/Medical-Genetics-8edition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text educational and clinician-review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include genetics explanations, structured risk reasoning, decision-support checklists, and educational case-design material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat genetics, prenatal, reproductive, treatment, or gene-therapy guidance as standalone medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as educational or clinician-reviewed reference material, and verify recommendations against current official guidelines, local protocols, and qualified genetics specialists.
+
+Risk: Patient or genomic data used with the skill may involve privacy, consent, or jurisdiction-specific compliance obligations.
+
+Mitigation: Apply appropriate privacy and consent controls before use, and route treatment, forensic, reproductive, prenatal, and gene-therapy decisions through qualified professional and legal review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/medical-genetics-8edition)
+- [OpenClaw metadata homepage](https://github.com/yourusername/Medical-Genetics-8edition)
+- [Complete skill index](index.md)
+- [English README](README_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted clinical genetics explanations, risk assessments, and educational case guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included; outputs should be reviewed before medical, reproductive, forensic, or gene-therapy use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

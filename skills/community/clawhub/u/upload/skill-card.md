@@ -1,40 +1,53 @@
-## Description: <br>
-Guides an agent through uploading local files to GitHub with Git commands, including repository setup, branch workflows, large-file handling, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through uploading local files to GitHub with Git command-line workflows, including repository setup, commits, branch management, Git LFS, and common troubleshooting.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare a local project for Git version control and publish changes to a GitHub remote with clear, traceable commits. It is most useful when an agent needs procedural guidance for initialization, staging, committing, pulling, pushing, branch management, Git LFS, and common upload errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may run Git commands from the wrong project folder or push to the wrong GitHub remote. <br>
-Mitigation: Confirm the current directory, inspect `git status`, and verify the remote URL before adding, committing, pulling, or pushing. <br>
-Risk: The upload workflow may publish secrets, private data, generated files, or other content that should not be stored in GitHub history. <br>
-Mitigation: Review `.gitignore`, repository visibility, and staged files before committing; remove unintended files from tracking before pushing. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare, commit, and push local project files to GitHub while following basic version-control hygiene. It is most useful for routine repository setup, branch workflows, large-file handling, and troubleshooting rejected pushes or messy history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; review commands and repository targets before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to publish broad local changes to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the repository visibility and review staged files with git status and git diff --cached before pushing.
+
+Risk: Accidentally pushed secrets or private data may remain exposed even after removal from the working tree.
+
+Mitigation: Scan for secrets before pushing; if a secret is pushed, rotate it and clean repository history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language procedural guidance for Git and GitHub upload workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

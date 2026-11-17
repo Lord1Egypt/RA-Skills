@@ -1,42 +1,53 @@
-## Description: <br>
-Unified customer CRM management for cross-border ecommerce workflows, including customer profiles, status tracking, cloud/local sync, segmentation, reporting, and data maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SZZG007 Customer CRM helps agents manage cross-border e-commerce customer records, customer status tracking, cloud and local synchronization, segmentation, data cleanup, and CRM reporting.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-External business users and ecommerce operators use this skill to maintain customer records, classify customer priority, track funnel status, synchronize CRM data, and generate customer reports. It is aimed at cross-border ecommerce customer management workflows rather than general-purpose CRM administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive customer records and contact details across local and cloud storage. <br>
-Mitigation: Use explicit user approval, narrow service-account permissions, protected credential storage, and access controls before reading, syncing, or modifying CRM data. <br>
-Risk: Automated sync, cleanup, conflict resolution, and message-derived status updates can alter or remove commercially important CRM data. <br>
-Mitigation: Use backups, dry-run previews, audit logs, and confirmation steps for cleanup, conflict resolution, and customer-field updates. <br>
-Risk: Cloud sync to Feishu Bitable or Google Sheets can expose personal, regulated, or commercially sensitive data if configured too broadly. <br>
-Mitigation: Limit which sources, tables, fields, and customer records the agent may access or change, and review configurations before enabling scheduled sync. <br>
+## Use Case:
 
+Cross-border e-commerce teams use this skill to maintain customer profiles, prioritize follow-up, synchronize CRM records, and generate customer status reports across local and cloud-backed workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szzg007/szzg007-customer-crm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, examples, configuration snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer profile cards, CRM status updates, sync instructions, cleanup guidance, and report templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can sync sensitive customer records across local and cloud systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with customer data you are authorized to process, configure cloud sync deliberately, and limit synced fields where possible.
+
+Risk: The skill describes automatic deduplication, conflict resolution, correction, cleanup, and status updates that may alter CRM records.
+
+Mitigation: Require manual review or backups before applying deduplication, conflict resolution, correction, cleanup, or other record-changing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzg007/skills/szzg007-customer-crm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown customer profile cards, CRM reports, tables, reminders, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer identifiers, contact details, CRM status fields, sync settings, follow-up reminders, and report metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact states version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

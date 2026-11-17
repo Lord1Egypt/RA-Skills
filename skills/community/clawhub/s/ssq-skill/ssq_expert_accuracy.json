@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "note": "专家战绩自算 vs 随机基线; 不采信平台自报命中率",
+    "scored_rule": "每期开奖后用系统自身抓到的专家推荐 vs 实际开奖独立打分",
+    "last_updated": "2026-08-23 14:41"
+  },
+  "records": [
+    {
+      "period": 2026094,
+      "actual_front": [
+        6,
+        13,
+        15,
+        17,
+        24,
+        25
+      ],
+      "actual_back": [
+        1
+      ],
+      "experts": {},
+      "baseline": {
+        "front_hits": 1.076,
+        "back_hits": 0.166
+      },
+      "expert_count": 0
+    },
+    {
+      "period": 2026096,
+      "actual_front": [
+        1,
+        4,
+        16,
+        22,
+        26,
+        31
+      ],
+      "actual_back": [
+        4
+      ],
+      "experts": {},
+      "baseline": {
+        "front_hits": 1.01,
+        "back_hits": 0.16
+      },
+      "expert_count": 0
+    }
+  ]
+}

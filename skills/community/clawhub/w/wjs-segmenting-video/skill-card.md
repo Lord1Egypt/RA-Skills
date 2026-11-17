@@ -1,45 +1,59 @@
-## Description: <br>
-Segments a long-form video and matching SRT into 3-6 stand-alone topical short clips, producing raw clips and per-clip SRT files for downstream post-production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Segments long-form videos with an SRT transcript into 3-6 self-contained short clips and per-clip subtitles for downstream post-production.
 
-## Publisher: <br>
-[jianshuo](https://clawhub.ai/user/jianshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianshuo](https://clawhub.ai/user/jianshuo)
 
-## Use Case: <br>
-Developers and video producers use this skill to choose semantic topic boundaries from an SRT, cut source footage with ffmpeg, slice per-clip subtitles, and prepare raw clips for a separate overlay or post-production workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes helper scripts beyond the core video-cutting workflow, including post-production helpers that are not required for the declared segmentation handoff. <br>
-Mitigation: Use the core segment.py workflow and burn_subs.py with --no-burn for SRT slicing; review helper scripts before running make_cover.py, prepend_intro.py, or other post-production helpers. <br>
-Risk: The security scan notes an unsafe local ffmpeg lookup path that could run an unexpected binary. <br>
-Mitigation: Set FFMPEG to a trusted binary or ensure PATH resolves to trusted ffmpeg and ffprobe executables before running the scripts. <br>
-Risk: Cover-generation helpers may share frames or prompts with external image-generation tooling if run. <br>
-Mitigation: Do not run make_cover.py unless external frame sharing and AI cover generation are approved for the source material. <br>
+## Use Case:
 
+Video producers and agent operators use this skill to select transcript-aligned topic boundaries, create segments.json, cut clips, extract frames, and slice per-clip subtitles for short-video publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jianshuo/wjs-segmenting-video) <br>
-- [Segments JSON schema](references/segments_schema.json) <br>
-- [Example segments JSON](references/example_segments.json) <br>
-- [Platform cover dimensions](references/platform_sizes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with JSON configuration and bash commands; generated artifacts are MP4 clips, SRT files, extracted frames, and segments.json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a source video, matching SRT, ffmpeg/ffprobe, and user confirmation before orientation conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Packaged post-production behavior extends beyond the stated cut-and-crop segmentation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when cover generation, subtitle burn-in, and intro-prepending are expected; otherwise review or remove those scripts before use.
+
+Risk: External image-provider use may send video frames, titles, or prompts outside the local environment.
+
+Mitigation: Require explicit user approval before invoking image generation and avoid sending sensitive media or transcript content to external providers.
+
+Risk: ffmpeg and dependency trust assumptions can affect execution safety and output integrity.
+
+Mitigation: Run in isolated project directories, use trusted pinned dependencies, and avoid shared temporary ffmpeg binaries.
+
+## Reference(s):
+
+- [segments_schema.json](artifact/references/segments_schema.json)
+- [example_segments.json](artifact/references/example_segments.json)
+- [platform_sizes.md](artifact/references/platform_sizes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown instructions with JSON configuration and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the workflow produces segments.json plus per-segment clip, subtitle, and frame files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

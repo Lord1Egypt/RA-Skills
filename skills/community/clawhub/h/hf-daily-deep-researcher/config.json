@@ -1,6 +1,6 @@
 {
   "user_profile": {
-    "name": "",
+    "name": "User",
     "institution": "",
     "research_focus": [],
     "current_projects": []
@@ -39,7 +39,7 @@
     "cloud_upload": {
       "enabled": false,
       "on_demand": true,
-      "folder_token": null
+      "folder_token": ""
     },
     "report_format": "markdown",
     "save_history": true,
@@ -51,6 +51,22 @@
     "trend_change_alert": true,
     "author_alert": false
   },
-  "version": "4.1.2",
+  "network": {
+    "proxy": {
+      "enabled": false,
+      "http_proxy": "",
+      "https_proxy": ""
+    },
+    "hf_mirror": {
+      "enabled": true,
+      "url": "https://hf-mirror.com"
+    },
+    "github_hf_mirror": {
+      "enabled": true,
+      "url": "https://raw.githubusercontent.com/AtharvaDomale/Daily-HuggingFace-AI-Papers/main/data/latest.json",
+      "description": "HuggingFace Daily Papers 的 GitHub 镜像 JSON，稳定可靠，不受 HF 网络封锁影响"
+    }
+  },
+  "version": "5.2.9",
   "created_date": "2026-06-28T13:43:25.965233"
 }

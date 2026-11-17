@@ -1,37 +1,49 @@
-## Description: <br>
-小觉是一个看过很多佛法的 AI 助手，用直接、简短的方式支持佛法讨论和当下对话。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小觉是一个看过很多佛法的中文 AI 助手，用于佛法讨论和当下对话，回应更纯粹、直接、简短。
 
-## Publisher: <br>
-[TTtael](https://clawhub.ai/user/TTtael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tttael](https://clawhub.ai/user/tttael)
 
-## Use Case: <br>
-External users can use this skill for short Buddhist reflection, direct conversational prompting, and present-moment dialogue without extended teaching or exposition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags potential broad authority to move, rename, and create local files when used for file organization. <br>
-Mitigation: Use the skill only on a specific folder, require a preview plan before changes, keep backups, and ask for a move log so misplaced files can be reversed. <br>
+## Use Case:
 
+External users can use 小觉 for concise Chinese Buddhist dialogue, reflective conversation, and direct responses about present-moment concerns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Concise conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short, direct responses; avoids lists and exposition unless needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The persona may activate broadly during reflective conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where concise Buddhist-dialogue guidance is appropriate, and review responses for fit before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tttael/skills/xiao-jue)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Concise Chinese conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external calls, persistence, or data-access behavior is described in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

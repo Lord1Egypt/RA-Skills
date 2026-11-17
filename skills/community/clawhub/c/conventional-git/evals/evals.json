@@ -21,16 +21,16 @@
     },
     {
       "id": 2,
-      "prompt": "I'm working on GitHub issue #87 to fix the login race condition. Give me the branch name.",
-      "trap": "Without the skill, the model omits the issue number and outputs fix/login-race-condition. The skill requires prefixing with the issue number when one exists.",
-      "expected_output": "fix/87-login-race-condition — issue number comes BEFORE the description, not after.",
+      "prompt": "I wrote this entire feature with Claude Code — it basically authored the auth module. Should I add 'Co-authored-by: Claude Code' or a similar AI attribution trailer to my commits?",
+      "trap": "Without the skill, the model often says 'yes, good practice to be transparent about AI assistance' or notes that 'Claude Code may add it automatically'. The skill explicitly prohibits any AI agent attribution or signature in commit messages.",
+      "expected_output": "No — do NOT add Co-authored-by, AI signature, or any attribution trailer for Claude or any AI agent. Commit authorship should reflect human contributors only.",
       "files": [],
       "assertions": [
-        { "id": "2.1", "description": "branch name includes the issue number '87'" },
-        { "id": "2.2", "description": "issue number '87' appears BEFORE the description (e.g., fix/87-login, not fix/login-87)" },
-        { "id": "2.3", "description": "branch name starts with 'fix/'" },
-        { "id": "2.4", "description": "branch name is entirely lowercase and uses hyphens only" },
-        { "id": "2.5", "description": "branch name description part (after the issue number) is 50 characters or fewer" }
+        { "id": "2.1", "description": "response says NOT to add any AI attribution trailer ('Co-authored-by: Claude', 'Co-authored-by: Claude Code', etc.)" },
+        { "id": "2.2", "description": "response does NOT frame it as 'depends on team preference' or 'both options are valid'" },
+        { "id": "2.3", "description": "response does NOT say it is good practice to be transparent about AI assistance via commit trailers" },
+        { "id": "2.4", "description": "response cites a clear rule: AI agent attribution is never added to commits" },
+        { "id": "2.5", "description": "response does NOT say Claude Code adds attribution automatically as expected or acceptable behavior" }
       ]
     },
     {
@@ -132,16 +132,16 @@
     },
     {
       "id": 10,
-      "prompt": "My commit in the 'backend' repo fixes an issue in the 'frontend' repo (issue #99, owned by GitHub org 'acme'). Write the commit footer to automatically close it on GitHub.",
-      "trap": "Without the skill, the model outputs wrong cross-repo formats: 'Closes frontend#99' (missing owner) or 'Closes acme#99' (missing repo) or plain '#99' (closes in current repo). The skill documents the correct GitHub format: owner/repo#number.",
-      "expected_output": "Footer contains 'Closes acme/frontend#99' — the full owner/repo#number cross-repo format.",
+      "prompt": "My commit fixes two separate bugs: issue #101 (null pointer crash) and issue #102 (infinite loop). Write the correct commit footer to automatically close both on GitHub.",
+      "trap": "Without the skill, the model often writes 'Closes #101 and #102' (single keyword for both) or 'Closes #101, #102' (missing second keyword). The skill documents the correct format: each issue needs its own closing keyword.",
+      "expected_output": "Footer uses two separate closing references: 'Closes #101\\nCloses #102' or 'Closes #101, closes #102' — each with its own keyword. NOT 'Closes #101 and #102' or 'Closes #101, #102'.",
       "files": [],
       "assertions": [
-        { "id": "10.1", "description": "footer uses 'Closes', 'Fixes', 'Resolves', or equivalent keyword (case-insensitive)" },
-        { "id": "10.2", "description": "issue reference uses the full 'owner/repo#number' format (e.g., 'acme/frontend#99')" },
-        { "id": "10.3", "description": "does NOT use just '#99' (ambiguous — would close an issue in the current repo, not the frontend repo)" },
-        { "id": "10.4", "description": "does NOT use just 'frontend#99' (missing owner — not a valid GitHub cross-repo reference)" },
-        { "id": "10.5", "description": "the closing reference is placed in the footer, not the subject line" }
+        { "id": "10.1", "description": "closing keyword appears TWICE — one per issue (e.g., 'Closes #101' and 'Closes #102' each with their own keyword)" },
+        { "id": "10.2", "description": "does NOT write 'Closes #101 and #102' with a single closing keyword for both issues" },
+        { "id": "10.3", "description": "does NOT write 'Closes #101, #102' without a second closing keyword" },
+        { "id": "10.4", "description": "closing references are in the footer, separated from the subject by a blank line" },
+        { "id": "10.5", "description": "uses a valid closing keyword (closes/fixes/resolves — case-insensitive) before EACH issue number" }
       ]
     }
   ]

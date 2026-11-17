@@ -1,43 +1,58 @@
-## Description: <br>
-减肥项目管理与数据分析（升级版 v2.0）。支持通用用户名格式 U{用户 ID}-{用户名}-YYYY-MM.md，修复口头归档问题，增加数据完整性自动检查，热量识别与估算，趋势分析与建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weight Management 体重管理 helps users record weight, meals, steps, and sleep in local Markdown files, estimate calories, calculate TDEE, check data completeness, and summarize weight-management trends.
 
-## Publisher: <br>
-[hadais](https://clawhub.ai/user/hadais) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hadais](https://clawhub.ai/user/hadais)
 
-## Use Case: <br>
-External users use this skill to track weight-management records, meals, calories, steps, sleep, and progress in local Markdown files. It can estimate calories from manual food descriptions or optional food-recognition APIs, calculate TDEE, check record completeness, and produce trend analysis and suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive health tracking data, including weight, meals, steps, sleep, and possibly chat-history context. <br>
-Mitigation: Use a dedicated local storage folder, limit access to user-authorized paths, and confirm before allowing the skill to write health records. <br>
-Risk: Optional food-recognition/API features may send food images or descriptions to a provider selected outside the skill. <br>
-Mitigation: Keep optional API features disabled unless the provider is trusted, or use manual food entry instead. <br>
-Risk: Weight-management suggestions and calorie estimates may be inaccurate or inappropriate for a user's medical condition. <br>
-Mitigation: Treat outputs as informational tracking support and consult a qualified clinician or nutrition professional for health decisions. <br>
+## Use Case:
 
+External users use this skill to maintain a local weight-management journal, estimate meal calories, calculate TDEE, and receive completeness checks, trend summaries, and habit suggestions. The skill is for informational weight tracking and includes a medical disclaimer rather than medical diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hadais/weight-management) <br>
-- [Food calorie reference](references/food-calories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and text responses with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update user-authorized local Markdown health records and may return TDEE calculations, calorie estimates, completeness checks, trend analysis, and weight-management suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server-resolved release evidence) <br>
+Risk: The skill may request broad chat-history access for importing health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant chat-history access only when historical import is needed, and prefer manual entry when minimizing data exposure is more important.
+
+Risk: The skill stores sensitive weight, meal, step, and sleep records in local files with under-specified path controls.
+
+Mitigation: Use a dedicated storage folder, limit file permissions, and review the target path before allowing the agent to read or write records.
+
+Risk: The documented filename pattern can include a real user name in health-record filenames.
+
+Mitigation: Use a pseudonym or non-identifying handle in filenames until privacy and path-validation rules are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hadais/skills/weight-management)
+- [Food calorie reference](artifact/references/food-calories.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write user-authorized local Markdown health records and may run the bundled TDEE calculator.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

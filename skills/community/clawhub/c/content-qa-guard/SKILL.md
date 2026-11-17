@@ -1,0 +1,277 @@
+---
+name: content-qa-guard
+description: "内容合规审核守卫(v25.0合并content-compliance-checker)，三级审核(敏感词→AI语义→平台规则)+U19管道合规步骤(委托risk-detector 10类风险检测)。触发:内容审核/合规检查/敏感词检测/发布前审核/文案审核/U19/风控检查 不触发:内容发布/内容生成/价格调整"
+version: 2.0.0
+user-invocable: true
+tools: [read, exec]
+dependencies: [sensitive-word, risk-detector]
+metadata:
+  openclaw:
+    os: ["win32", "linux", "darwin"]
+    requires:
+      bins: ["python"]
+      env: ["QA_TEST_CHAT_ID", "NINEROUTER_URL"]
+      config: ["mcp.servers.sensitive-word-mcp"]
+---
+
+> **核心功能**: 本技能提供/价格调整等能力。
+
+
+# content-qa-guard — 内容合规审核守卫
+
+> **v25.0合并**: content-compliance-checker已合并到本Skill(R75.5 Skill去重)。U19管道合规步骤由check_compliance.py执行,委托risk-detector进行10类风险检测。原content-compliance-checker目录已删除。
+
+## 使用场景
+
+- 发布前内容合规检测（闲鱼/小红书/抖音/B站/微博等平台）
+- 算命类商品文案合规检查（严格度>=4时自动启用算命合规）
+- 多租户场景下按租户审核标准执行差异化审核
+- Cron定时审核已发布内容的合规性
+- **管道U19合规步骤**: content-orchestrator管道"合规风控(U19)"步骤,委托risk-detector执行10类风险检测
+
+## 工作流
+
+1. **接收审核请求**
+   - 输入: text(待审文本), platform(目标平台), context(上下文,可选)
+   - 验证: platform有效(xianyu/xiaohongshu/douyin/bilibili/weibo/default), text非空
+   - 异常: 参数无效→返回`{success:false, error:"...", code:"INVALID_INPUT"}`
+
+2. **一级审核: 敏感词库扫描**
+   - 调用sensitive-word-mcp `check_sensitive_words(text, platform, context)`
+   - 白名单自动豁免: AI前缀("AI代写"/"AI代做"/"AI代答"), AI展示声明("AI全自动"/"AI辅助"), 发货上下文(context="delivery"时导流词允许)
+   - 词库过期检查: >=14天blocked→直接拦截, >=7天warning→继续但标记
+   - 来源: 02手册§八8.3
+
+3. **二级审核: AI语义级检测**
+   - 严格度>=3时: 调用LLM语义分析(9Router优先+SiliconFlow降级)
+   - 严格度>=4时: 额外调用`check_fortune_words`执行算命合规检测
+   - 严格度<=2: 跳过LLM语义分析
+   - 平台严格度: 5星(小红书/微信公众号) > 4星(抖音/闲鱼/快手/知乎/视频号) > 3星(B站/微博/百家号/头条) > 2星(CSDN)
+   - 来源: 02手册§八8.2
+
+4. **三级审核: 平台规则合规检查**
+   - 对照PLATFORM_RULES检查平台特有规则
+   - 闲鱼: 禁止导流/虚假宣传/虚拟商品违禁/金融风险/侵权
+   - 小红书: 严格禁止导流和营销/种草套路词/医疗美容/减肥瘦身/代购违规
+   - 抖音: 禁止导流/直播间特有违规/短视频引流词/金融风险/低俗
+   - 微博: 禁止导流和营销/热搜操控/政治敏感/虚假宣传
+   - 来源: 02手册§八8.1
+
+5. **生成审核报告**
+   - 结果: pass/warning/blocked
+   - 风险等级: SAFE/LOW/MEDIUM/HIGH/CRITICAL
+   - 修改建议: 调用`replace_sensitive_words`生成自动替换版本
+   - 每日限额: 50条(来源: 01手册§十10.1)
+
+6. **发布后端到端验证(可选)**
+   - pass/warning时: 调用xianyu-agent-mcp send_message发测试消息
+   - chat_id: QA_TEST_CHAT_ID环境变量
+   - 失败→降级为warning, 记录data/qa_verification_log/
+
+## U19管道合规检查(v25.0合并)
+
+管道步骤"合规风控(U19)"由check_compliance.py执行,委托risk-detector进行10类风险检测:
+
+1. 接收管道步骤参数(content, platform)
+   - 执行: `python scripts/check_compliance.py --content "<content>" --platform "<platform>"`
+   - 检查点: 参数非空验证
+2. 委托risk-detector执行合规检测
+   - 执行: 调用risk-detector的check_content action
+   - 检查点: risk-detector返回有效结果
+3. 返回合规检查结果
+   - 输出: JSON {success, data: {risk_level, score, passed, block, details}, error, code}
+   - CRITICAL级别返回block=True阻断管道执行
+   - risk-detector不可用时降级为基础模式检查(标注downgraded=True)
+
+## 输入格式
+
+### 三级审核模式(qa_guard)
+
+```json
+{
+  "text": "待审核的文案内容",
+  "platform": "xianyu",
+  "context": "publish"
+}
+```
+
+### U19管道合规模式(check_compliance)
+
+```json
+{
+  "content": "待检查的内容文本",
+  "platform": "juejin",
+  "content_type": "article"
+}
+```
+
+## 输出格式
+
+### 三级审核模式(qa_guard)
+
+```json
+{
+  "success": true,
+  "data": {
+    "result": "pass|warning|blocked",
+    "risk_level": "SAFE|LOW|MEDIUM|HIGH|CRITICAL",
+    "level1": {"found": [], "count": 0, "library_status": "ok"},
+    "level2": {"enabled": true, "llm_findings": []},
+    "level3": {"platform_violations": []},
+    "suggestion": "修改建议或自动替换版本",
+    "daily_count": 12,
+    "daily_limit": 50
+  },
+  "error": null,
+  "code": null
+}
+```
+
+### U19管道合规模式(check_compliance)
+
+```json
+{
+  "success": true,
+  "data": {
+    "risk_level": "SAFE",
+    "score": 95,
+    "passed": true,
+    "block": false,
+    "details": {
+      "R01_sensitive_words": "pass",
+      "R02_violation_tactics": "pass",
+      "overall_compliance": "pass"
+    }
+  },
+  "error": null,
+  "code": null
+}
+```
+
+## 异常处理
+
+| 异常 | 处理 | code |
+|:-----|:-----|:-----|
+| text为空 | 返回success:false | INVALID_INPUT |
+| platform无效 | 返回success:false | INVALID_PLATFORM |
+| 词库过期>=14天 | 直接blocked | LIBRARY_EXPIRED_BLOCKED |
+| 词库过期>=7天 | 继续但标记warning | LIBRARY_WARNING |
+| LLM调用失败 | 跳过二级审核，降级为warning | LLM_UNAVAILABLE |
+| 每日限额超限 | 返回blocked | DAILY_LIMIT_EXCEEDED |
+| MCP调用超时 | 返回success:false | MCP_TIMEOUT |
+
+## 示例
+
+### 示例1: 闲鱼商品文案审核
+
+输入: `{"text": "AI代写文案，加微信xxx获取", "platform": "xianyu"}`
+输出:
+```json
+{
+  "success": true,
+  "data": {
+    "result": "blocked",
+    "risk_level": "HIGH",
+    "level1": {"found": ["微信"], "count": 1, "library_status": "ok"},
+    "level2": {"enabled": true, "llm_findings": ["导流行为"]},
+    "level3": {"platform_violations": ["闲鱼禁止导流"]},
+    "suggestion": "AI代写文案，联系客服获取",
+    "daily_count": 3,
+    "daily_limit": 50
+  }
+}
+```
+
+### 示例2: AI商品白名单豁免
+
+输入: `{"text": "AI代写文案，专业润色", "platform": "xianyu"}`
+输出:
+```json
+{
+  "success": true,
+  "data": {
+    "result": "pass",
+    "risk_level": "SAFE",
+    "level1": {"found": [], "count": 0, "library_status": "ok"},
+    "level2": {"enabled": true, "llm_findings": []},
+    "level3": {"platform_violations": []},
+    "suggestion": null,
+    "daily_count": 4,
+    "daily_limit": 50
+  }
+}
+```
+
+## 历史记录
+
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260622 | optimized | 2026-06-22T06:52:35.883544+00:00 | 自生长周期优化触发(metrics_based) |
+| v2.0.0 | merged | 2026-07-22 | v25.0: 合并content-compliance-checker(R75.5 Skill去重),新增U19管道合规步骤+risk-detector依赖 |
+
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260725 | optimized | 2026-07-25T12:20:31.274115+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260726 | optimized | 2026-07-25T23:25:32.375220+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260729 | optimized | 2026-07-28T19:18:46.277609+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260729 | optimized | 2026-07-28T19:19:36.160768+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260730 | optimized | 2026-07-29T22:09:36.602431+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260801 | optimized | 2026-07-31T19:36:51.680883+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260802 | optimized | 2026-08-01T18:34:53.200000+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260803 | optimized | 2026-08-03T01:00:42.388844+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260804 | optimized | 2026-08-03T18:34:23.224315+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260804 | optimized | 2026-08-03T18:34:35.792222+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260804 | optimized | 2026-08-03T18:34:50.188486+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260805 | optimized | 2026-08-04T18:36:23.594326+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260805 | optimized | 2026-08-04T18:36:38.721684+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260806 | optimized | 2026-08-05T18:34:49.986465+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260806 | optimized | 2026-08-05T18:35:02.280946+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260807 | optimized | 2026-08-06T18:35:53.318737+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260810 | optimized | 2026-08-09T19:18:59.289336+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260811 | optimized | 2026-08-10T18:36:35.462776+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260811 | optimized | 2026-08-10T18:36:50.553991+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260812 | optimized | 2026-08-12T02:37:48.152188+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260813 | optimized | 2026-08-12T23:33:44.219732+00:00 | 自生长周期优化触发(metrics_based) |
+| 版本 | 操作 | 时间 | 原因 |
+|------|------|------|------|
+| cycle_20260814 | optimized | 2026-08-13T18:35:35.390503+00:00 | 自生长周期优化触发(metrics_based) |

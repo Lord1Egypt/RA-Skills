@@ -1,0 +1,32 @@
+{
+"roles": {
+    "admin":{
+        "name":"超级管理员",
+        "rights":{
+            "config":"*",
+            "grp":"*",
+            "member":"*",
+            
+            "pool":"*",
+            "resource":"*",
+            "employee":"*",
+            "wfemployee":"*",
+            "event":"*",
+            "resume":"*",
+            "salary":"*"
+        }
+    },
+    "hr":{
+        "name":"人事",
+        "rights": {
+            "pool":"*",
+            "resource":"*",
+            "employee":"*",
+            "wfemployee":"*",
+            "event":"*",
+            "resume":"*",
+            "salary":"*"
+        }
+    }
+}
+}

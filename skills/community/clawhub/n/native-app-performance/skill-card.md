@@ -1,38 +1,51 @@
-## Description: <br>
-Native macOS/iOS app performance profiling via xctrace/Time Profiler and CLI-only analysis of Instruments traces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Native macOS/iOS app performance profiling via xctrace Time Profiler and CLI-only analysis of Instruments traces for recording, extracting samples, symbolication, hotspot finding, and performance optimization.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-Developers and engineers use this skill to record Time Profiler sessions, export and symbolicate samples, and rank native macOS/iOS app hotspots without opening Instruments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Profiling the wrong PID, binary, duration, or trace path can collect irrelevant or sensitive local performance data. <br>
-Mitigation: Confirm the target PID or binary path, capture duration, and output trace path before running profiling commands. <br>
-Risk: Generated trace, XML, and symbol output can reveal internal function names and app behavior. <br>
-Mitigation: Treat generated profiling artifacts as sensitive local files and review them before sharing or publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineers use this skill to profile native macOS and iOS apps with xctrace Time Profiler, extract sample data, symbolicate stacks, and identify performance hotspots from the command line.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Profiling traces and symbolication output may expose app internals, file paths, and performance details.
+
+Mitigation: Use the skill only on apps, binaries, and processes the operator is authorized to inspect, and avoid sharing trace or symbolication output outside approved contexts.
+
+Risk: Using the wrong binary, symbols, process, or runtime load address can produce misleading hotspot analysis.
+
+Mitigation: Confirm the profiled process and binary path, collect the runtime __TEXT load address with vmmap, and ensure symbols match the traced build before relying on hotspot rankings.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and script-oriented analysis output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts can produce time-sample XML exports and CSV-like hotspot tables.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands, script references, and performance hotspot analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local profiling commands and hotspot rankings from Instruments Time Profiler traces.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

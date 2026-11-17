@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Pull Request"
+  short_description: "Review a PR, reconcile prior feedback, and watch for the author's fix"
+  default_prompt: "Use $review-pr to review the given PR, post one consolidated comment, and monitor for the author's response."

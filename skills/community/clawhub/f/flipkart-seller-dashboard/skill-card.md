@@ -1,45 +1,60 @@
-## Description: <br>
-Daily e-commerce intelligence for Indian Flipkart and Amazon India sellers that tracks orders, returns, inventory levels, competitor pricing, Buy Box status, and sends WhatsApp morning summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily e-commerce intelligence for Indian Flipkart and Amazon India sellers that tracks orders, returns, inventory levels, competitor pricing, Buy Box status, and WhatsApp morning summaries.
 
-## Publisher: <br>
-[utsavs](https://clawhub.ai/user/utsavs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[utsavs](https://clawhub.ai/user/utsavs)
 
-## Use Case: <br>
-External Indian marketplace sellers use this skill to monitor Flipkart seller operations, receive daily WhatsApp summaries, review inventory and pricing alerts, and act on order, shipment, return, and revenue questions. The skill can optionally include Amazon India seller visibility when Amazon SP-API credentials are configured. <br>
-
-### Deployment Geography for Use: <br>
-India <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live marketplace changes such as price updates or order cancellation. <br>
-Mitigation: Use least-privilege seller API credentials and require explicit seller approval before any order, inventory, or pricing change is executed. <br>
-Risk: The skill can send seller performance and operations data through WhatsApp or other external channels. <br>
-Mitigation: Limit notification fields to necessary business metrics, control recipients, and avoid sending sensitive seller or customer data. <br>
-Risk: Optional Amazon India integration expands the account and data surface area. <br>
-Mitigation: Enable only the marketplaces needed and configure Amazon SP-API credentials separately with the narrowest permissions available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utsavs/flipkart-seller-dashboard) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/utsavs) <br>
-- [Flipkart Marketplace Seller API base URL](https://api.flipkart.net/sellers/) <br>
-- [Flipkart Seller OAuth token endpoint](https://api.flipkart.net/sellers/oauth-service/oauth/token) <br>
-- [Amazon India Selling Partner API endpoint](https://sellingpartnerapi-fe.amazon.com) <br>
+## Use Case:
 
+External marketplace sellers use this skill to monitor Flipkart seller operations from WhatsApp, including orders, returns, inventory, competitor prices, Buy Box status, and scheduled business summaries. Sellers may optionally connect Amazon India data for cross-market visibility.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown messages with API examples, cron entries, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FLIPKART_APP_ID and FLIPKART_APP_SECRET; AMAZON_SP_API_REFRESH_TOKEN is optional for Amazon India summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+India
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make live marketplace account changes, including listing price updates and order cancellations.
+
+Mitigation: Use restricted API credentials where possible and require explicit approval before production price changes or cancellations.
+
+Risk: WhatsApp commands could expose operational controls to an unintended sender.
+
+Mitigation: Confirm which users are authorized to send commands before connecting the skill to a real seller account.
+
+Risk: The price-update flow lacks explicit guardrails in the reviewed security evidence.
+
+Mitigation: Set account-level limits or an approval workflow for price changes before allowing automated updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utsavs/skills/flipkart-seller-dashboard)
+- [Publisher profile](https://clawhub.ai/user/utsavs)
+- [Flipkart Marketplace Seller API](https://api.flipkart.net/sellers/)
+- [Flipkart Seller OAuth token endpoint](https://api.flipkart.net/sellers/oauth-service/oauth/token)
+- [Amazon India Selling Partner API endpoint](https://sellingpartnerapi-fe.amazon.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown-style WhatsApp summaries, alerts, command responses, JSON configuration, and cron command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Flipkart API credentials; Amazon India support is optional when SP-API credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

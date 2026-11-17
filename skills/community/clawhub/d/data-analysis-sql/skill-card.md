@@ -1,54 +1,64 @@
-## Description: <br>
-A data engineering skill for multi-engine SQL writing, migration, optimization, warehouse modeling, ETL planning, data-quality analysis, metric design, and Markdown knowledge-base documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analysis SQL helps agents draft, revise, optimize, and migrate SQL across common data engines while supporting data warehouse modeling, ETL planning, data quality checks, and Markdown knowledge-base generation.
 
-## Publisher: <br>
-[whiskeyforsun](https://clawhub.ai/user/whiskeyforsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whiskeyforsun](https://clawhub.ai/user/whiskeyforsun)
 
-## Use Case: <br>
-Data engineers, analysts, and developers use this skill to design and revise SQL, model warehouse layers, define business metrics, troubleshoot data-quality issues, and generate Markdown documentation for schemas, migrations, and knowledge bases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad SQL and documentation triggers may activate the skill for ambiguous or generic document requests. <br>
-Mitigation: Review ambiguous activations before allowing the skill to act on general documentation tasks. <br>
-Risk: Documentation generation can write to user-specified output paths and may replace existing Markdown content. <br>
-Mitigation: Confirm output filenames and paths before generating documentation, and review generated files before relying on them. <br>
-Risk: Generated SQL and data-modeling guidance may encode incorrect assumptions about schemas, metrics, tenants, or deletion flags. <br>
-Mitigation: Validate generated SQL against the target schema, metric definitions, and sample query results before production use. <br>
+## Use Case:
 
+Developers, data engineers, and analytics engineers use this skill to produce SQL, review and migrate SQL dialects, design warehouse layers, plan ETL flows, check data quality, and generate Markdown documentation for schemas, metrics, relations, and enums.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whiskeyforsun/data-analysis-sql) <br>
-- [README](README.md) <br>
-- [SQL guide](references/sql-guide.md) <br>
-- [Join rules](references/join-rules.md) <br>
-- [SQL pitfalls](references/sql-pitfalls.md) <br>
-- [Business metrics](references/business-metrics.md) <br>
-- [Schema guide](references/schema-guide.md) <br>
-- [Multi-engine SQL](references/multi-engine.md) <br>
-- [Pipeline patterns](references/pipeline-patterns.md) <br>
-- [Data quality](references/data-quality.md) <br>
-- [Data analysis patterns](references/data-analysis-patterns.md) <br>
-- [Knowledge base](references/knowledge-base.md) <br>
-- [Documentation guide](references/doc-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL snippets, generated Markdown files, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or update local Markdown documentation when the user supplies output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Generated SQL for multi-tenant data can mix tenant data if JOINs or filters omit tenant constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL before use, especially every JOIN, and require tenant filters wherever tenant-bearing tables are involved.
+
+Risk: Broad document-generation triggers can summarize or write private spreadsheets, schemas, or metric SQL too readily.
+
+Mitigation: Use document-generation behavior only when the user explicitly asks to summarize or write those materials to a chosen path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whiskeyforsun/skills/data-analysis-sql)
+- [SQL Guide](references/sql-guide.md)
+- [Join Rules](references/join-rules.md)
+- [SQL Pitfalls](references/sql-pitfalls.md)
+- [Business Metrics](references/business-metrics.md)
+- [Schema Guide](references/schema-guide.md)
+- [Multi-Engine Dialect Reference](references/multi-engine.md)
+- [Pipeline Patterns](references/pipeline-patterns.md)
+- [Data Quality](references/data-quality.md)
+- [Data Analysis Patterns](references/data-analysis-patterns.md)
+- [Knowledge Base](references/knowledge-base.md)
+- [Documentation Guide](references/doc-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, SQL, Python snippets, shell commands, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate Markdown documentation files when the user explicitly requests a chosen output path.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

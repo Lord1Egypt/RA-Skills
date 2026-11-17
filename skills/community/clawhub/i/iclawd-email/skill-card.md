@@ -1,45 +1,60 @@
-## Description: <br>
-Get a real email address for your AI agent. Create an inbox, send and receive email, with optional PGP encryption and DID verified identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a real email address for your AI agent. Create an inbox, send and receive email, with optional PGP encryption and DID verified identity.
 
-## Publisher: <br>
-[karimibadr](https://clawhub.ai/user/karimibadr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karimibadr](https://clawhub.ai/user/karimibadr)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to give an AI agent an email inbox, send and receive messages through the iClawd HTTP API, manage webhooks, and optionally use PGP encryption or DID identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provisions long-lived email credentials and the security evidence notes that it can instruct agents to expose those credentials through chat or full config sharing. <br>
-Mitigation: Store API keys, config files, and PGP private keys locally with restrictive permissions or in a secret manager, and do not allow the agent to paste them into chat or external channels. <br>
-Risk: An agent-controlled external email account can send messages, sign up for services, and contact recipients outside the local environment. <br>
-Mitigation: Require explicit owner approval before external sends, service signups, or sharing content that may include personal information, credentials, or sensitive data. <br>
-Risk: Webhook setup and inbox deletion can expose metadata externally or cause irreversible data loss. <br>
-Mitigation: Require approval before webhook configuration or inbox deletion, verify webhook destinations, and prefer the reviewed ClawHub package over live remote instructions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an AI agent a managed email inbox for sending, receiving, searching, and replying to email through the iClawd HTTP API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/karimibadr/iclawd-email) <br>
-- [iClawd Email website](https://iclawd.email) <br>
-- [Skill and API documentation](https://iclawd.email/skill) <br>
-- [MCP server endpoint](https://iclawd.email/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential handling guidance, JSON-RPC request examples, and local configuration instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and _meta.json) <br>
+Risk: The skill gives an agent an authenticated mailbox with authority to send external email, sign up for services, manage webhooks, and delete the inbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for new recipients, service sign-ups, webhook changes, forwarding sensitive content, and inbox deletion.
+
+Risk: Mailbox credentials and private PGP keys could be exposed if direct-chat credential sharing is treated as routine.
+
+Mitigation: Override the credential instructions before use so the agent does not reveal ~/.iclawd/config.md, API keys, or private PGP keys in ordinary chat.
+
+Risk: Mutable remote fetch instructions can change after review.
+
+Mitigation: Install from a pinned, reviewed artifact instead of fetching the live remote skill at runtime.
+
+## Reference(s):
+
+- [iClawd Email ClawHub Page](https://clawhub.ai/karimibadr/skills/iclawd-email)
+- [iClawd Website](https://iclawd.email)
+- [iClawd Skill and API Documentation](https://iclawd.email/skill)
+- [iClawd MCP Endpoint](https://iclawd.email/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON-RPC and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces email setup guidance, API call patterns, mailbox handling instructions, and credential storage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

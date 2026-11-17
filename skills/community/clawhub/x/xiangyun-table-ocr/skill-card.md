@@ -1,44 +1,58 @@
-## Description: <br>
-Recognizes text, tables, and document layout in images, PDFs, and scans using the Xiangyun/netocr.com OCR service, then previews results or exports them as Excel, Word, Markdown, PDF, TXT, or OFD files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This agent sends images, PDFs, and scanned documents to Xiangyun NetOCR for OCR, table extraction, layout recognition, and optional exports to Excel, Word, Markdown, PDF, TXT, or OFD.
 
-## Publisher: <br>
-[liudengkui](https://clawhub.ai/user/liudengkui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liudengkui](https://clawhub.ai/user/liudengkui)
 
-## Use Case: <br>
-External users and developers use this skill to process selected documents through the Xiangyun OCR service for table extraction, multilingual OCR, and document conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents selected for recognition and OCR credentials are sent to netocr.com for cloud processing. <br>
-Mitigation: Install only if you trust netocr.com with those documents; avoid processing unrelated sensitive folders. <br>
-Risk: OCR keys and secrets can be exposed if stored in plaintext config files. <br>
-Mitigation: Prefer NETOCR_KEY and NETOCR_SECRET environment variables or a protected secret store; restrict access to config.json and keep it out of version control. <br>
-Risk: OCR credentials may remain valid after accidental exposure. <br>
-Mitigation: Rotate the OCR key if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to recognize text, tables, and document layout from local images, PDFs, and scans through the Xiangyun NetOCR cloud service. It can preview recognition results and export processed documents in common office and text formats.
 
-## Reference(s): <br>
-- [翔云 OCR API reference](references/api_docs.md) <br>
-- [Xiangyun table OCR product page](https://www.netocr.com/table.html) <br>
-- [ClawHub skill page](https://clawhub.ai/liudengkui/xiangyun-table-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance, shell commands, OCR result previews, and exported document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Xiangyun/netocr.com OCR credentials and sends selected documents to the cloud OCR service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Documents and OCR credentials are sent to the NetOCR cloud service during recognition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for NetOCR processing, and avoid sending sensitive or regulated content unless the service is authorized for that data.
+
+Risk: OCR credentials can be stored in plaintext config.json.
+
+Mitigation: Prefer NETOCR_KEY and NETOCR_SECRET environment variables or a managed secret store, and keep config.json out of shared repositories and sync folders.
+
+Risk: Recognition results and exports can persist sensitive document contents locally.
+
+Mitigation: Review or delete .table_result.json files and exported documents after processing sensitive inputs.
+
+## Reference(s):
+
+- [Xiangyun OCR API Reference](references/api_docs.md)
+- [Xiangyun NetOCR Table Recognition Product Page](https://www.netocr.com/table.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown status output, JSON recognition results, and exported document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create .table_result.json files beside processed inputs and exported xls, docx, md, pdf, txt, or ofd files when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

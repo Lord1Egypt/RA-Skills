@@ -1,41 +1,57 @@
-## Description: <br>
-RPA Caller helps an agent prepare, confirm, and call HTTP endpoints for RPA automation tasks such as file downloads, form filling, screenshots, status checks, and task stops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RPA Caller helps an agent trigger and monitor RPA automation through HTTP requests.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Operators and developers use this skill to translate user requests into documented RPA HTTP calls, collect required parameters, confirm the request before execution, and explain task status or errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RPA calls can trigger sensitive automation against external systems or files. <br>
-Mitigation: Install only when the RPA server and exposed workflows are trusted, review endpoint and parameters before confirming execution, and use a limited-scope API key. <br>
-Risk: Stopping or forcing a task can leave work incomplete. <br>
-Mitigation: Review the task ID and stop settings before confirmation, and check the RPA system status or logs after cancellation. <br>
+## Use Case:
 
+Developers and operations teams use this skill to map user requests to approved RPA HTTP endpoints, collect required parameters, show the request for confirmation, submit automation tasks, and report task status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/rpa-caller) <br>
-- [RPA API map](references/rpa-api-map.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured HTTP request details and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before sending RPA requests; may include endpoint, parameter, task ID, and status-response details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: The skill can trigger broad RPA actions against configurable HTTP endpoints using bearer tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled RPA servers over HTTPS, restrict calls to approved hosts and endpoints, and issue least-privilege short-lived tokens.
+
+Risk: Request previews may expose sensitive parameters or high-privilege tokens in the conversation.
+
+Mitigation: Redact secrets and sensitive form values before displaying requests, and avoid pasting high-privilege API keys into chat context.
+
+Risk: Screenshots, form submission, file downloads, and stop or force-stop actions can affect systems or expose data.
+
+Mitigation: Require explicit user confirmation for these actions and ensure RPA-side logging, authorization checks, and rollback procedures are in place.
+
+## Reference(s):
+
+- [RPA API Map](references/rpa-api-map.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured HTTP request details, JSON request bodies, and status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bearer-token authenticated HTTP request plans and task identifiers; sensitive values should be redacted before display.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Advanced Git operations as tools: interactive rebase with autosquash, worktree management, reflog recovery, subtree and submodule handling, cherry-pick across forks, PR automation with human-written intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Git operations as tools: interactive rebase with autosquash, worktree management, reflog recovery, subtree/submodule handling, cherry-pick across forks, PR automation with human-written intent.
 
-## Publisher: <br>
-[neroagent](https://clawhub.ai/user/neroagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[neroagent](https://clawhub.ai/user/neroagent)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run advanced Git workflows through agent tools, including rebase planning, worktree setup, reflog recovery, subtree imports, pull request creation, and changelog generation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Tool inputs can be turned into arbitrary shell commands.
+
+Mitigation: Do not install this version in environments that may receive untrusted branch names, paths, tags, URLs, PR text, or other tool inputs; revise subprocess calls to pass argument arrays and validate refs and paths.
+
+Risk: Git operations can make repository changes without strong safeguards.
+
+Mitigation: Constrain worktree destinations and require explicit confirmation or dry-run previews for force-updates, subtree imports, and pull request creation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run advanced Git workflows, including rebase planning, worktree setup, reflog recovery, subtree imports, pull request creation, and changelog generation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad repository and GitHub authority through unsafe shell command construction and weak safeguards. <br>
-Mitigation: Use only in repositories where branch rewrites, worktree creation, subtree imports, and GitHub PR creation are acceptable; avoid untrusted branch names, paths, URLs, tags, titles, and PR bodies until shell command handling is fixed. <br>
-Risk: Some workflows can rewrite branches or alter repository structure. <br>
-Mitigation: Review the target repository state and command intent before execution, and keep recoverable backups or remote refs for important work. <br>
+**Output Format:** [JSON tool responses with markdown changelogs and human-facing Git guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/neroagent/git-workflows-advanced) <br>
+**Other Properties Related to Output:** [May execute Git and GitHub CLI operations that change repositories or create pull requests.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON tool responses with commit lists, command guidance, pull request URLs, or markdown changelog content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some operations require Git, and pull request creation requires an authenticated GitHub CLI.] <br>
+1.0.0 (source: server release metadata and target metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

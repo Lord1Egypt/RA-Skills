@@ -10,15 +10,17 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
+from geometry_primitives import SUPPORTED_GEOMETRY, validate_geometry  # noqa: E402
 GENERATOR = ROOT / "scripts" / "generate_worksheet.py"
-REVIEWED_STATUSES = {"model_reviewed", "human_review_needed", "approved"}
+REVIEWED_STATUSES = {"model_reviewed", "human_review_needed", "approved", "template_verified"}
 COMPLEX_TYPES = {
     "multi_step_word_problem",
     "condition_filtering_problem",
     "compare_after_intermediate_problem",
     "geometry_problem",
 }
-SUPPORTED_GEOMETRY = {"rectangle", "composite_rect"}
 
 
 def load_generator():
@@ -31,12 +33,20 @@ def load_generator():
 
 
 def iter_items(spec: dict):
+    if spec.get("render_mode") == "model_html":
+        for index, question in enumerate(spec.get("questions", []), 1):
+            yield 1, index, question
+        return
     for section_index, section in enumerate(spec.get("sections", []), start=1):
         for item_index, item in enumerate(section.get("items", []), start=1):
             yield section_index, item_index, item
 
 
 def validate_semantics(spec: dict, allow_draft: bool = False) -> None:
+    if spec.get("render_mode") == "model_html":
+        from model_worksheet import validate_model_spec
+        validate_model_spec(spec)
+        return
     if not spec.get("title"):
         raise ValueError("spec missing title")
     if not spec.get("sections"):
@@ -53,9 +63,18 @@ def validate_semantics(spec: dict, allow_draft: bool = False) -> None:
                     f"{location}: {item_type} requires review_status in "
                     f"{sorted(REVIEWED_STATUSES)} before printing"
                 )
+        status = item.get("review_status") or spec.get("review_status")
+        if status == "template_verified":
+            from generate_visual_practice import question_from_geometry
+            if item_type != "geometry_problem":
+                raise ValueError("template_verified is only valid for built-in visual templates")
+            expected = question_from_geometry(item.get("geometry_spec", {}))
+            if any(item.get(key) != value for key, value in expected.items()) or item.get("answer_suffix"):
+                raise ValueError(f"{location}: template question/answer does not match the diagram data")
 
         if item_type == "geometry_problem":
             geometry_spec = item.get("geometry_spec", {})
+            validate_geometry(geometry_spec)
             geometry_type = geometry_spec.get("type")
             if geometry_type not in SUPPORTED_GEOMETRY:
                 raise ValueError(

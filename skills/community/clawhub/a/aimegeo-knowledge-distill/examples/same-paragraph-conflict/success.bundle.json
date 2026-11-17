@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "questions": [
+    {
+      "id": "Q001",
+      "question": "是否支持 CSV 导入？",
+      "status": "answered",
+      "claims": [
+        {
+          "text": "支持 CSV 导入。",
+          "refs": [{"locator": "S-c207c210d3c6:P001", "quote": "支持 CSV 导入。"}]
+        }
+      ],
+      "issue_ids": []
+    },
+    {
+      "id": "Q002",
+      "question": "下载链接保留多久？",
+      "status": "conflict",
+      "claims": [
+        {
+          "text": "说明写明下载链接保留 7 天。",
+          "refs": [{"locator": "S-c207c210d3c6:P001", "quote": "下载链接保留 7 天。"}]
+        },
+        {
+          "text": "期限资料写明下载链接保留 30 天。",
+          "refs": [{"locator": "S-4728f8cc2a0d:P001", "quote": "下载链接保留 30 天。"}]
+        }
+      ],
+      "issue_ids": ["C001"]
+    }
+  ],
+  "issues": [
+    {
+      "id": "C001",
+      "kind": "conflict",
+      "topic": "下载链接有效期",
+      "detail": "说明写 7 天，期限资料写 30 天，尚无适用范围或替代声明。",
+      "needed": "确认当前适用期限及对应依据。",
+      "question_ids": ["Q002"],
+      "refs": [
+        {"locator": "S-c207c210d3c6:P001", "quote": "下载链接保留 7 天。"},
+        {"locator": "S-4728f8cc2a0d:P001", "quote": "下载链接保留 30 天。"}
+      ]
+    }
+  ]
+}

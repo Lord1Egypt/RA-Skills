@@ -130,7 +130,7 @@ cat > "$config_file" << EOF
     "partnerId": "$partner_id",
     "clientId": "$client_id",
     "credentials": {
-      "privateKey": "-----BEGIN RSA PRIVATE KEY-----\\nYOUR_PRIVATE_KEY_HERE\\n-----END RSA PRIVATE KEY-----",
+      "privateKey": "REDACTED-SECRET",
       "alipayPlusPublicKey": "-----BEGIN PUBLIC KEY-----\\nALIPAY_PLUS_PUBLIC_KEY_HERE\\n-----END PUBLIC KEY-----"
     },
     "endpoints": {

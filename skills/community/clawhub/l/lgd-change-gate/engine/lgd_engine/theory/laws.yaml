@@ -1,0 +1,35 @@
+# LGD Three Laws — declarative, machine-readable.
+# Every gate action must be traceable back to one of these laws.
+# Schema: id / name / definition / trigger_predicate / gate_action / level
+#
+# level: critical = one-vote veto; major = escalate to hold; minor = log only.
+
+laws:
+  - id: L1-RECORDED
+    name: 有籍律 (Record Law)
+    definition: >
+      Every gate decision MUST be persisted as a DecisionRecord before or at
+      the moment the gate emits a verdict. No in-memory-only verdicts.
+    trigger_predicate: "after_verdict_emitted"
+    gate_action: "write_decision_record"
+    level: critical
+
+  - id: L2-EVIDENCED
+    name: 有证律 (Evidence Law)
+    definition: >
+      Every verdict MUST carry at least one evidence reference (FDA / NMPA
+      record, verification report, predicate k-number). A verdict with an
+      empty evidence array is invalid and must be downgraded to hold.
+    trigger_predicate: "verdict_has_no_evidence"
+    gate_action: "downgrade_to_hold"
+    level: critical
+
+  - id: L3-GATED
+    name: 门禁律 (Gate Law / 一票否决)
+    definition: >
+      A critical-level rule firing on a domain judge output overrides the
+      aggregate verdict to `reject` regardless of any other signal. No
+      party may bypass a critical gate by self-certification.
+    trigger_predicate: "any_critical_rule_fires"
+    gate_action: "force_reject"
+    level: critical

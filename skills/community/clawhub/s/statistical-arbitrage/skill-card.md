@@ -1,43 +1,61 @@
-## Description: <br>
-Analyzes pairs-trading statistical arbitrage requests by running local Python backtests for selected stock pairs and summarizing cointegration, hedge ratio, Z-score signals, and performance outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Statistical Arbitrage 統計套利 helps agents analyze stock pairs with cointegration tests, hedge-ratio calculations, backtesting metrics, and report generation.
 
-## Publisher: <br>
-[loi214](https://clawhub.ai/user/loi214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loi214](https://clawhub.ai/user/loi214)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate stock-pair statistical arbitrage ideas across supported markets. It helps an agent prepare and run a local backtest, then report cointegration status, hedge ratio, current signal, performance metrics, and generated report files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The executable analysis script is obfuscated and may not match the documented configurable CLI behavior. <br>
-Mitigation: Review or replace the script before use, and confirm that requested tickers, dates, thresholds, capital, and output path are actually honored. <br>
-Risk: The skill installs Python dependencies and downloads market data during analysis. <br>
-Mitigation: Run it in an isolated Python environment with network access controls appropriate for the deployment, and verify dependency sources before installing. <br>
-Risk: Backtest results and trading signals can be misleading or unsuitable for live trading. <br>
-Mitigation: Treat results as informational only, validate data quality and assumptions independently, and require qualified human review before any investment decision. <br>
+## Use Case:
 
+External users and developers use this skill to request statistical-arbitrage or pairs-trading analysis for listed equities across markets. It is suitable for exploratory analysis and report generation, not automated trading or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loi214/statistical-arbitrage) <br>
-- [Publisher profile](https://clawhub.ai/user/loi214) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown narrative with inline shell commands and references to generated PNG, HTML, and CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational finance analysis and backtest artifacts; results depend on market data availability and script behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Documented controls may not match executable behavior, which can produce misleading financial analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source before installing, run only in an isolated virtual environment, and require fixes for argument parsing, hard-coded securities and dates, readable source, reporting claims, and pinned dependencies before relying on results.
+
+Risk: Outputs may be mistaken for investment advice or reliable trading signals.
+
+Mitigation: Use results only for exploratory analysis, disclose that backtests do not predict future performance, and require qualified review before any trading or investment decision.
+
+Risk: The skill downloads market data and installs Python packages at runtime.
+
+Mitigation: Run with least privilege in a disposable environment, review dependency sources, and avoid using sensitive portfolios or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loi214/skills/statistical-arbitrage)
+- [Publisher profile](https://clawhub.ai/user/loi214)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [requirements.txt](artifact/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown text with shell commands and generated local report artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PNG charts, HTML reports, CSV exports, and console metrics when executed.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

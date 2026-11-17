@@ -1,0 +1,4 @@
+interface:
+  display_name: "PTMail 邮箱聚合助手 · Email Management MCP"
+  short_description: "PTMail 邮箱聚合与邮件助手：多邮箱、读信、同步、附件和授权发送"
+  default_prompt: "使用 $ptmail-mcp 检查已连接邮箱并读取指定邮件；发送前先向我展示草稿。"

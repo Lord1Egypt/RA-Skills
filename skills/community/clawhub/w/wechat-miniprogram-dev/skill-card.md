@@ -1,38 +1,52 @@
-## Description: <br>
-微信小程序云开发完整指南。包含项目结构、云函数开发、miniprogram-ci 部署命令、常见问题处理。适用于需要开发、部署微信小程序的场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信小程序云开发完整指南。包含项目结构、云函数开发、miniprogram-ci 部署命令、常见问题处理。适用于需要开发、部署微信小程序的场景。
 
-## Publisher: <br>
-[jasondu](https://clawhub.ai/user/jasondu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jasondu](https://clawhub.ai/user/jasondu)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure, configure, preview, upload, and deploy WeChat Mini Program cloud functions and front-end releases with miniprogram-ci. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private key paths and deployment identifiers appear in the skill guidance, so careless use could expose signing material or deploy to the wrong WeChat environment. <br>
-Mitigation: Replace sample project identifiers, keep private keys out of source control, restrict key file permissions, prefer secret storage or protected CI variables, and manually confirm AppID, cloud environment, function name, version, and upload description before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WeChat Mini Program development environment information](artifact/references/config.md) <br>
-- [ClawHub package page](https://clawhub.ai/jasondu/wechat-miniprogram-dev) <br>
+## Use Case:
 
+Developers and engineers use this skill to create, configure, preview, upload, and troubleshoot WeChat mini-program cloud development projects. It provides project structure guidance, cloud function examples, miniprogram-ci commands, and common operational fixes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code blocks and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WeChat Mini Program project structure, miniprogram-ci commands, cloud function snippets, configuration examples, and deployment script guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes deployment commands that dynamically run an unpinned miniprogram-ci package with access to a private-key path.
+
+Mitigation: Review the skill before installing or running scripts, keep private keys outside the repository where possible, and use a pinned or lockfile-controlled miniprogram-ci dependency.
+
+Risk: The artifact includes project-specific operational identifiers and paths that may not match the user's environment.
+
+Mitigation: Replace AppID, cloud environment ID, project paths, and private-key paths with the user's own values or placeholders before use.
+
+## Reference(s):
+
+- [WeChat Mini-Program Development Environment Information](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON, JavaScript, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment command examples that should be adapted to the user's own AppID, cloud environment ID, and private-key path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Generates personalized blockchain development career roadmaps based on user experience, skills, and professional goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized blockchain development career roadmaps based on user experience, skills, and professional goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, educational platforms, career counselors, recruiters, and individual learners use this skill to request structured blockchain developer learning roadmaps from career assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career assessment payloads may include personal profile details, session identifiers, or sensitive career information sent to an external API provider. <br>
-Mitigation: Use pseudonymous session IDs, omit userId unless needed, and avoid submitting employer-confidential, regulated, or highly personal information. <br>
+## Use Case:
 
+Developers, education platforms, career counselors, and recruiting teams use this skill to request structured blockchain developer learning roadmaps from profile, skill, and goal assessment data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/blockchain-developer) <br>
-- [Blockchain Developer Roadmap API Docs](https://api.mkkpro.com:8066/docs) <br>
-- [Blockchain Developer Roadmap API Route](https://api.mkkpro.com/career/blockchain-developer) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown or JSON guidance describing a personalized blockchain developer learning roadmap.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include phased learning plans, curated resources, milestones, recommendations, and estimated completion timing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Assessment submissions may include career, skills, or employment profile details sent to ToolWeb/api.mkkpro.com infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the profile details needed to generate the roadmap, and avoid unnecessary personal identifiers or sensitive employment information.
+
+Risk: Generated career roadmaps may be incomplete or may not match a user's local job market, background, or constraints.
+
+Mitigation: Review recommendations before acting on them and adapt milestones, timelines, and resources to the user's context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/blockchain-developer)
+- [Blockchain Developer Roadmap API docs](https://api.mkkpro.com:8066/docs)
+- [Blockchain Developer Roadmap API route](https://api.mkkpro.com/career/blockchain-developer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses containing phased learning plans, resources, milestones, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires structured assessment data with session and timestamp fields; optional profile details can include experience, skills, and career goals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

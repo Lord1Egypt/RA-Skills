@@ -1,44 +1,62 @@
-## Description: <br>
-Google Chat: Manage Chat spaces and messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Chat: Manage Chat spaces and messages.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent inspect and compose Google Chat CLI commands for managing spaces, messages, media, custom emojis, and related Chat resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward powerful Google Chat operations, including deleting spaces, changing memberships, uploading media, or using administrator-access options. <br>
-Mitigation: Confirm the active Google account and scopes before use, and require explicit user approval before destructive, membership-changing, media-upload, or admin-access actions. <br>
-Risk: The artifact depends on shared GWS authentication and security instructions that may be absent from the installed skill set. <br>
-Mitigation: Review the shared GWS auth/security instructions before use; if they are missing, generate or install the shared GWS skill materials before executing Chat commands. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to inspect and run Google Chat CLI operations for spaces, messages, custom emojis, media, and user-related Chat resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-chat) <br>
-- [Upload media as a file attachment](https://developers.google.com/workspace/chat/upload-media-attachments) <br>
-- [Create a space](https://developers.google.com/workspace/chat/create-spaces) <br>
-- [Delete a space](https://developers.google.com/workspace/chat/delete-spaces) <br>
-- [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Google Workspace Chat operations through the gws CLI; user confirmation is appropriate for destructive or administrative actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Mutating Google Chat operations can delete spaces, delete emojis, update spaces, upload media, or make administrative changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before destructive or admin-access operations and review target resources, parameters, and schemas before execution.
+
+Risk: Incorrect parameters can affect the wrong Google Chat space, message, emoji, media item, or user-related resource.
+
+Mitigation: Inspect the method schema with gws schema chat.<resource>.<method> and verify identifiers before building --params or --json flags.
+
+## Reference(s):
+
+- [ClawHub Gws Chat Skill](https://clawhub.ai/googleworkspace-bot/skills/gws-chat)
+- [Learn about custom emojis in Google Chat](https://support.google.com/chat/answer/12800149)
+- [Manage custom emoji permissions](https://support.google.com/a/answer/12850085)
+- [Upload media as a file attachment](https://developers.google.com/workspace/chat/upload-media-attachments)
+- [Import data into Google Chat](https://developers.google.com/workspace/chat/import-data)
+- [Create a space](https://developers.google.com/workspace/chat/create-spaces)
+- [Delete a space](https://developers.google.com/workspace/chat/delete-spaces)
+- [Update a space](https://developers.google.com/workspace/chat/update-spaces)
+- [Search for and manage spaces](https://developers.google.com/workspace/chat/search-manage-admin)
+- [Google Chat app authentication and authorization](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI. The skill directs agents to inspect commands with gws chat --help and schemas with gws schema chat.<resource>.<method> before building parameters.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

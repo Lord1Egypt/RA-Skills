@@ -1,45 +1,60 @@
-## Description: <br>
-Local speech-to-text transcription with Qwen ASR, routed across a local Apple Silicon fleet for meetings, voice notes, podcasts, and recordings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Transcription helps agents guide users through local speech-to-text transcription with Qwen ASR routed across an Apple Silicon fleet.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and teams use this skill to have an agent install, configure, call, and monitor local speech-to-text transcription for sensitive audio while keeping processing on trusted devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the PyPI package and model server introduces third-party package and model supply-chain risk. <br>
-Mitigation: Verify the ollama-herd package and model installer sources before installing, and use trusted package indexes or pinned versions where possible. <br>
-Risk: The local router may expose transcription and other AI endpoints if it binds outside localhost or a trusted network. <br>
-Mitigation: Check how the router binds on the network before use, and only join devices you control or trust. <br>
-Risk: Fleet Manager logs may contain sensitive usage metadata. <br>
-Mitigation: Treat ~/.fleet-manager logs as sensitive and review them before sharing or retaining them outside trusted storage. <br>
+## Use Case:
 
+Developers and technical users use this skill to set up and operate local transcription for meetings, voice notes, podcasts, and other audio while keeping audio on their own devices.
 
-## Reference(s): <br>
-- [Local Transcription on ClawHub](https://clawhub.ai/twinsgeeks/local-transcription) <br>
-- [ollama-herd package](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, curl, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume a local router at localhost:11435 and local audio processing; users should verify package and model sources and check network binding before installing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The setup uses unpinned package installs and starts local services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, pin package versions where possible, and use the skill only when the package sources are trusted.
+
+Risk: The documented router also exposes LLM, image, and embeddings endpoints beyond transcription.
+
+Mitigation: Keep the service localhost-only or otherwise intentionally scoped, and enable only the endpoints needed for the deployment.
+
+Risk: Transcription inputs may contain sensitive audio.
+
+Mitigation: Keep audio local as described by the skill, avoid external upload paths, and review local logs and configuration paths for sensitive data handling.
+
+## Reference(s):
+
+- [Local Transcription on ClawHub](https://clawhub.ai/twinsgeeks/skills/local-transcription)
+- [ollama-herd package](https://pypi.org/project/ollama-herd/)
+- [ollama-herd repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, curl/API examples, and JSON response shapes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may reference local HTTP endpoints and local configuration or log paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

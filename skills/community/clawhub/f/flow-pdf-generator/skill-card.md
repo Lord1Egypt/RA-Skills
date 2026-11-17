@@ -1,41 +1,59 @@
-## Description: <br>
-Generates styled PDF documents from structured JSON data, including titles, tables, lists, highlights, images, and page breaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional PDF documents from structured JSON data, including styled titles, tables, lists, highlights, images, and page breaks.
 
-## Publisher: <br>
-[flexrox](https://clawhub.ai/user/flexrox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flexrox](https://clawhub.ai/user/flexrox)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured JSON content into styled PDF reports or exports, including documents with text, headings, tables, lists, highlights, images, and page breaks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted JSON or image paths may cause the local helper to read unexpected local files or fail during PDF generation. <br>
-Mitigation: Use trusted input files, review image paths before execution, and run the helper in a virtual environment. <br>
-Risk: A caller-controlled output path can overwrite an unintended local PDF file. <br>
-Mitigation: Check the output path before generation and write into a project-specific directory. <br>
+## Use Case:
 
+Developers and agents use this skill to turn structured JSON content into styled PDF reports or exported documents. It is suited for workflows that need repeatable PDF generation with text, tables, lists, highlights, local images, and page breaks.
 
-## Reference(s): <br>
-- [PDF Generator Schema Reference](references/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/flexrox/flow-pdf-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands; generated artifact is a PDF file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads JSON data and optional local image paths, then writes a PDF to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The helper script writes a PDF to the output path supplied by the user or JSON input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected output path before running generation, especially in shared or automated workspaces.
+
+Risk: JSON input may reference local image paths that are embedded into the generated PDF.
+
+Mitigation: Use only intended local images and review generated PDFs before sharing them.
+
+Risk: Generated PDF metadata labels may include German terms.
+
+Mitigation: Review generated PDFs for language labels when non-German metadata text is required.
+
+## Reference(s):
+
+- [PDF Generator Schema Reference](references/schema.md)
+- [ClawHub skill page](https://clawhub.ai/flexrox/skills/flow-pdf-generator)
+- [Publisher profile](https://clawhub.ai/user/flexrox)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code, Guidance]
+
+**Output Format:** [PDF file generated from JSON input, with Markdown and bash guidance for agent use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes to the requested output path or data.output, defaulting to output.pdf; supports styled sections, tables, lists, highlights, local images, and page breaks.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

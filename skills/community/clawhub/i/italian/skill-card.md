@@ -1,38 +1,52 @@
-## Description: <br>
-Write Italian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Italian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to draft or revise Italian text so it sounds warmer, more conversational, and less textbook-like while accounting for register, regional consistency, punctuation, and common expressions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Italian may be technically fluent but still unsuitable for the intended tone, region, audience, or public context. <br>
-Mitigation: Review generated Italian for correctness, tone, regional fit, and appropriateness before using it in important or public communications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/italian) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent write or revise Italian so it reads as warmer, more conversational, and less textbook-like while preserving appropriate register and regional consistency.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Italian writing guidance and revised phrasing; no code execution, data access, networking, or persistence is evidenced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may default to casual Italian when a formal or professional register is expected.
+
+Mitigation: Ask for formal wording, Lei usage, or a specific audience when the context requires it.
+
+Risk: Regional expressions can sound inconsistent or inappropriate if mixed without context.
+
+Mitigation: Specify the target region or ask for standard Italian when regional flavor is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/italian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, network access, persistence, or sensitive data handling is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

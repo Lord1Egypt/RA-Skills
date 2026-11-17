@@ -1,40 +1,49 @@
-## Description: <br>
-Production development workflow with TODO tracking, Graphite PRs, GitHub issues, Vercel deploy checks, and SMS notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production development workflow with TODO tracking, Graphite PRs, GitHub issues, Vercel deploy checks, and SMS notifications.
 
-## Publisher: <br>
-[michaelmonetized](https://clawhub.ai/user/michaelmonetized) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michaelmonetized](https://clawhub.ai/user/michaelmonetized)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run production development tasks with tracked TODOs, changelog updates, staged-diff review, Graphite pull requests, GitHub issues, deployment checks, and concise completion reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can affect source repositories and developer services through staging, pull request, issue, and deployment commands. <br>
-Mitigation: Confirm the target repository and accounts, inspect staged diffs before submission, and review issue and PR text before publishing. <br>
-Risk: Local command aliases or tools used by the workflow could resolve to unexpected executables. <br>
-Mitigation: Verify that gt, gh, vl, and vercel resolve to trusted local tools before using the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Graphite](https://graphite.dev) <br>
-- [GitHub CLI](https://cli.github.com) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to follow an opinionated production workflow for implementation tasks, bug fixes, PR creation, review follow-up, deployment checks, and completion reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and task templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow steps, branch naming conventions, issue and PR command examples, deployment-check guidance, and SMS-ready reporting text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can stage broad repository changes and publish PRs, issues, and deployment logs without enough scoping or user confirmation.
+
+Mitigation: Narrow when it activates, require confirmation before git, Graphite, GitHub, or deployment actions, stage only task-specific files, and redact logs before creating issues.
+
+## Reference(s):
+
+- [Graphite CLI](https://graphite.dev)
+- [GitHub CLI](https://cli.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository file updates, branch names, PR or issue commands, deployment checks, and completion summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

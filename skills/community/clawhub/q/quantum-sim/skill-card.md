@@ -1,38 +1,48 @@
-## Description: <br>
-Simulate quantum circuits up to 20 qubits with common gates, built-in presets, QASM-style input, statevector output, and measurement probabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulate quantum circuits with a local statevector engine that supports common quantum gates, built-in algorithms, QASM-like input, and text or JSON results.
 
-## Publisher: <br>
-[MichaelZhangty](https://clawhub.ai/user/MichaelZhangty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[michaelzhangty](https://clawhub.ai/user/michaelzhangty)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and learners use this skill to run local quantum circuit simulations, inspect statevectors and measurement probabilities, and demonstrate algorithms such as Bell, GHZ, QFT, Grover search, and quantum teleportation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documented simulation inputs can consume high memory or CPU when qubit counts or shot counts are large.
+
+Mitigation: Review before installation and run simulations with memory and CPU limits when using high qubit counts or large shot counts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, educators, and technical users use this skill to run local statevector simulations, explore quantum gates and algorithms, and inspect probabilities or sampled measurements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Large qubit counts or high shot counts can increase CPU and memory use during local simulation. <br>
-Mitigation: Use clear simulation requests and avoid very large qubit or shot counts unless the local environment has sufficient resources. <br>
+**Output Format:** [Markdown guidance with shell commands and optional plain-text or JSON simulation output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MichaelZhangty/quantum-sim) <br>
+**Other Properties Related to Output:** [May emit circuit summaries, statevectors, measurement probabilities, histograms, shot counts, and JSON records.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; simulator output can be plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python execution; simulations support 1-20 qubits and default to 1024 measurement shots.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

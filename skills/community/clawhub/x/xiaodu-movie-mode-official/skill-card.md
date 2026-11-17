@@ -1,44 +1,63 @@
-## Description: <br>
-Orchestrates a Xiaodu smart-home movie mode by using the installed xiaodu-control-official skill to prepare scenes, lights, curtains, display devices, volume, inputs, and brief smart-screen confirmations without choosing content unless the user asks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a XiaoDu movie-mode scene by using the installed xiaodu-control-official skill to prepare lights, curtains, display or playback devices, volume, signal source, and smart-screen confirmation before entering content playback only when the user explicitly requests it.
 
-## Publisher: <br>
-[dueros-mcp](https://clawhub.ai/user/dueros-mcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dueros-mcp](https://clawhub.ai/user/dueros-mcp)
 
-## Use Case: <br>
-Household users and agents use this skill to turn natural movie-night requests into a serial smart-home preparation flow. It prepares the room and playback devices first, asks only minimal confirmations when needed, and enters content playback only when the user specifies a title, platform, input, or device. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change real smart-home device states, including lights, curtains, TVs, projectors, signal sources, volume, and smart-screen speech. <br>
-Mitigation: Use it only in trusted Xiaodu environments, confirm ambiguous device or room targets, and route device actions through the separate xiaodu-control-official skill. <br>
-Risk: Natural phrases such as wanting to watch a movie can be interpreted as control intent in this setup. <br>
-Mitigation: Treat trigger phrases as smart-home commands and ask one minimal confirmation when the target device, room, or signal source is ambiguous. <br>
-Risk: Saved movie-mode preferences can become stale or inappropriate when household defaults change. <br>
-Mitigation: Persist preferences only when the user explicitly asks and review or clear XIAODU_CONTEXT.md or MEMORY.md when defaults change. <br>
+## Use Case:
 
+External users and home-automation agents use this skill when a user asks to start movie mode or prepare a room for watching a movie. The skill plans a scene-first XiaoDu flow, falls back to supported device-level actions, and avoids choosing or playing content unless the user explicitly names a platform, signal source, or movie.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dueros-mcp/xiaodu-movie-mode-official) <br>
-- [Usage notes](references/usage-notes.md) <br>
-- [Test cases](references/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and natural-language status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be executed serially; content playback is entered only when the user explicitly specifies content or a platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Broad phrases such as 'I want to watch a movie' can unexpectedly change lights, curtains, TV or projector state, volume, or signal source in shared spaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where XiaoDu movie-mode automation is desired, review saved movie preferences periodically, and ask a minimal confirmation question when target devices or signal sources are ambiguous.
+
+Risk: Physical home-device actions may affect the wrong room or device if the current environment has multiple reasonable targets.
+
+Mitigation: Use only devices discovered from the current xiaodu-control-official environment, prefer matching scenes when available, and confirm between targets such as TV versus projector when the user has not specified one.
+
+Risk: Persisted movie preferences can cause future automations to repeat settings the user no longer wants.
+
+Mitigation: Write preferences only when the user explicitly asks to remember them, prefer short- or medium-term XiaoDu context for home preferences, and avoid claiming a preference was saved unless a file was actually updated.
+
+Risk: Automatically entering a content or playback layer could select the wrong platform or media.
+
+Mitigation: Prepare the room and playback devices by default, and continue to platform, signal-source, search, or playback actions only when the user explicitly requests them.
+
+## Reference(s):
+
+- [Usage Notes](references/usage-notes.md)
+- [Test Cases](references/test-cases.md)
+- [ClawHub Skill Page](https://clawhub.ai/dueros-mcp/skills/xiaodu-movie-mode-official)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands and natural-language response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands for one movie-mode flow should execute serially; persistent preference writes require explicit user intent.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

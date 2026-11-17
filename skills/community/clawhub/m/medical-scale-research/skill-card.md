@@ -1,52 +1,60 @@
-## Description: <br>
-医学量表信息检索与标准化报告生成。通过浏览器自动化检索量表背景、版权、CDISC 映射、统计方法等信息，生成飞书云文档并保存到量表知识库。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves medical scale information and generates standardized reports covering background, copyright, CDISC mapping, statistical methods, Feishu document creation, and knowledge-base archiving.
 
-## Publisher: <br>
-[kevinget-svg](https://clawhub.ai/user/kevinget-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinget-svg](https://clawhub.ai/user/kevinget-svg)
 
-## Use Case: <br>
-Clinical researchers, biostatisticians, medical research staff, and OpenClaw users use this skill to research medical scales, collect background and licensing information, recommend CDISC SDTM/ADaM mappings, and generate standardized Feishu reports for a knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retrieve, store, or publish copyrighted medical scale instruments without enough user control. <br>
-Mitigation: Require confirmation before downloads, screenshots, uploads, or Feishu publication, and verify each scale license permits local storage and cloud sharing. <br>
-Risk: Feishu document and wiki permissions can expose generated reports or copied scale materials beyond the intended audience. <br>
-Mitigation: Restrict Feishu destinations, sharing settings, and wiki locations before use. <br>
-Risk: The artifact contains a hard-coded local download path for scale PDFs. <br>
-Mitigation: Change the download path to an approved workspace location before running the skill. <br>
-Risk: CDISC mappings and statistical recommendations may be incomplete or inappropriate for a specific protocol. <br>
-Mitigation: Treat generated mappings and analysis code as draft guidance and have qualified clinical data standards and biostatistics reviewers confirm them. <br>
+## Use Case:
 
+Clinical researchers, biostatisticians, medical research teams, and pharmaceutical developers use this skill to retrieve public medical-scale information, organize evidence, recommend CDISC SDTM/ADaM mappings, and produce standardized research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kevinget-svg/medical-scale-research) <br>
-- [Publisher profile](https://clawhub.ai/user/kevinget-svg) <br>
-- [README](artifact/README.md) <br>
-- [Scale report template](artifact/templates/scale-report.md) <br>
-- [CDISC mapping rules](artifact/rules/cdisc-mapping.json) <br>
-- [SGRQ example report](artifact/examples/SGRQ-example.md) <br>
-- [CDISC](https://www.cdisc.org/) <br>
-- [Mapi Research Trust](https://eprovide.mapi-trust.org/) <br>
-- [PubMed](https://pubmed.ncbi.nlm.nih.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown report, Feishu document link, knowledge-base archival confirmation, and inline SAS/R code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download or screenshot official scale materials, create Feishu cloud documents, archive reports to a knowledge base, and provide CDISC mapping recommendations that require human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and target metadata) <br>
+Risk: The skill can download or upload full medical scale materials, which may be copyrighted or access-restricted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only materials the user is authorized to download or upload, confirm copyright and licensing terms, and restrict Feishu permissions and knowledge-base destinations.
+
+Risk: The skill describes unsafe shell downloading with curl and a hard-coded local save path.
+
+Mitigation: Replace ad hoc shell downloads with a safer download method and change the save path to a user-approved workspace location before use.
+
+Risk: Generated CDISC mappings, statistical methods, and medical-scale summaries may be incomplete or inaccurate.
+
+Mitigation: Require qualified clinical, statistical, and data-standards review before using outputs in regulated research or submissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kevinget-svg/skills/medical-scale-research)
+- [Scale Report Template](artifact/templates/scale-report.md)
+- [CDISC Mapping Rules](artifact/rules/cdisc-mapping.json)
+- [SGRQ Example Report](artifact/examples/SGRQ-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report text with Feishu document links and inline SAS/R or shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download official scale PDFs or capture screenshots and publish report content to Feishu and a knowledge base when the user has authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

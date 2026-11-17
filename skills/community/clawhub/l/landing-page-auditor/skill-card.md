@@ -1,37 +1,49 @@
-## Description: <br>
-Audit landing pages for paid traffic quality from Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and Shopify Ads funnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit landing pages for paid traffic quality from Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and Shopify Ads funnels.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-External marketing, growth, and media operations teams use this skill to audit paid-traffic landing pages and funnels for reachability, friction, conversion blockers, tracking or policy risk, and owner-ready mitigation steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce budget, billing, containment, or escalation recommendations for paid advertising workflows. <br>
-Mitigation: Treat recommendations as draft advisory output and require human approval before account changes, spend controls, or escalation actions are taken. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/danyangliu-sandwichlab/landing-page-auditor) <br>
+## Use Case:
 
+Marketing operators, growth teams, and agents use this skill to audit paid-traffic landing pages, identify reachability or conversion blockers, rank spend-related risks, and prepare owner-ready mitigation and escalation outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with structured audit sections, action lists, escalation ticket payloads, and monitoring checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires campaign or account identifiers, audit scope, and time window; recommendations are advisory and require human approval for budget, billing, containment, or escalation actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recommendations may influence budget, bidding, containment, or escalation decisions without live ad account verification.
+
+Mitigation: Review the skill's recommendations against current account data, tracking status, and accountable owner approval before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/landing-page-auditor)
+- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured audit sections and ticket payload snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational status, severity-ranked findings, mitigation actions, escalation ticket payload, and monitoring checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Master Agent Workflow Global helps OpenClaw users run a global, migratable master-agent workflow for parallel task dispatch, configuration migration, templates, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Agent Workflow Global helps OpenClaw users run parallel agent workflows with configurable worker limits, templates, error handling, and migration tools.
 
-## Publisher: <br>
-[shujianming](https://clawhub.ai/user/shujianming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shujianming](https://clawhub.ai/user/shujianming)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to route work through a configurable master and worker agent workflow, tune concurrency and timeouts, and move reusable configurations and templates across installations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation can make persistent shell and OpenClaw configuration changes. <br>
-Mitigation: Review the installer before use, back up existing OpenClaw and shell configuration files, and accept the persistent changes only in trusted environments. <br>
-Risk: Configuration imports and template handling may write files using weak path controls. <br>
-Mitigation: Import only trusted migration files and templates, avoid crafted config or template names, and inspect generated paths before applying changes. <br>
-Risk: Backups, logs, reports, and migration exports can contain sensitive workflow or environment information. <br>
-Mitigation: Store generated artifacts in access-controlled locations and review or redact them before sharing. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install a global master-agent workflow, coordinate batch tasks across worker agents, and manage reusable templates, configuration, backups, and migrations across environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shujianming/master-agent-workflow-global) <br>
-- [README](artifact/README.md) <br>
-- [Usage examples](artifact/references/examples.md) <br>
-- [Migration guide](artifact/migration-guide.md) <br>
-- [OpenClaw hook integration guide](artifact/hooks/openclaw/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update OpenClaw configuration, templates, backups, logs, and migration exports when its installer, hook, or migration commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Installer and activation scripts can make persistent local changes to OpenClaw configuration, shell startup files, aliases, MAW_HOME, and PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, run it first in a test environment, back up existing OpenClaw and shell configuration files, and inspect startup files after installation.
+
+Risk: Migration and import flows can write configuration and template files from supplied archives or JSON files.
+
+Mitigation: Import only trusted migration files, inspect imported configuration and templates before applying them, and keep a backup of the target configuration directory.
+
+Risk: Documentation includes a curl-to-bash migration path.
+
+Mitigation: Avoid piping remote scripts directly to a shell; download the installer, verify its source and contents, then execute the reviewed local copy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shujianming/skills/master-agent-workflow-global)
+- [Publisher Profile](https://clawhub.ai/user/shujianming)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+- [Usage Examples](artifact/references/examples.md)
+- [Migration Guide](artifact/migration-guide.md)
+- [OpenClaw Hook Guide](artifact/hooks/openclaw/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain-text agent responses with JSON configuration and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated execution instructions, configuration/template summaries, migration guidance, and local file paths.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

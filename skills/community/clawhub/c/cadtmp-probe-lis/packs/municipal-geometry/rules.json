@@ -1,0 +1,1316 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "road_plan",
+      "patterns": [
+        "道路平面图",
+        "路线平面图",
+        "道路工程平面图",
+        "路网平面图",
+        "道路总平面图",
+        "ROAD PLAN",
+        "ALIGNMENT PLAN"
+      ]
+    },
+    {
+      "type": "road_profile",
+      "patterns": [
+        "道路纵断面图",
+        "纵断面图",
+        "纵剖图",
+        "路线纵断面",
+        "PROFILE"
+      ]
+    },
+    {
+      "type": "cross_section",
+      "patterns": [
+        "道路横断面图",
+        "标准横断面",
+        "横断面图",
+        "路基横断面",
+        "CROSS SECTION"
+      ]
+    },
+    {
+      "type": "pavement_structure",
+      "patterns": [
+        "路面结构图",
+        "路面结构",
+        "路面做法",
+        "路面结构层",
+        "PAVEMENT STRUCTURE"
+      ]
+    },
+    {
+      "type": "intersection",
+      "patterns": [
+        "交叉口",
+        "平交口",
+        "路口",
+        "渠化",
+        "INTERSECTION"
+      ]
+    },
+    {
+      "type": "drainage_plan",
+      "patterns": [
+        "排水管网平面图",
+        "雨污水管网平面图",
+        "雨水管网",
+        "污水管网",
+        "排水总平面图",
+        "管网平面图",
+        "DRAINAGE PLAN"
+      ]
+    },
+    {
+      "type": "pipe_profile",
+      "patterns": [
+        "管道纵断面图",
+        "排水纵断面",
+        "管网纵断面",
+        "管纵断面",
+        "PIPE PROFILE"
+      ]
+    },
+    {
+      "type": "manhole_detail",
+      "patterns": [
+        "检查井",
+        "雨水口",
+        "跌水井",
+        "井盖",
+        "井筒",
+        "MANHOLE"
+      ]
+    },
+    {
+      "type": "bridge_layout",
+      "patterns": [
+        "桥梁布置图",
+        "桥型布置图",
+        "桥位平面图",
+        "桥梁总图",
+        "BRIDGE LAYOUT"
+      ]
+    },
+    {
+      "type": "bridge_detail",
+      "patterns": [
+        "桥墩",
+        "桥台",
+        "承台",
+        "桩基",
+        "盖梁",
+        "箱梁",
+        "梁体构造",
+        "桥梁构造",
+        "支座",
+        "伸缩缝",
+        "BRIDGE DETAIL"
+      ]
+    },
+    {
+      "type": "culvert",
+      "patterns": [
+        "涵洞",
+        "箱涵",
+        "圆管涵",
+        "盖板涵",
+        "CULVERT"
+      ]
+    },
+    {
+      "type": "retaining_wall",
+      "patterns": [
+        "挡土墙",
+        "护坡",
+        "护岸",
+        "边坡防护",
+        "RETAINING WALL"
+      ]
+    },
+    {
+      "type": "tunnel",
+      "patterns": [
+        "隧道",
+        "洞门",
+        "明洞",
+        "衬砌",
+        "TUNNEL"
+      ]
+    },
+    {
+      "type": "traffic_facilities",
+      "patterns": [
+        "交通设施",
+        "交通标志",
+        "标线",
+        "护栏",
+        "信号灯",
+        "监控",
+        "TRAFFIC"
+      ]
+    },
+    {
+      "type": "street_lighting",
+      "patterns": [
+        "道路照明",
+        "路灯",
+        "灯杆",
+        "照明布置",
+        "STREET LIGHTING"
+      ]
+    },
+    {
+      "type": "pipeline",
+      "patterns": [
+        "给水管道",
+        "再生水管道",
+        "热力管道",
+        "燃气管道",
+        "电力排管",
+        "通信管道",
+        "综合管廊",
+        "市政管线",
+        "PIPE NETWORK"
+      ]
+    },
+    {
+      "type": "sponge_city",
+      "patterns": [
+        "海绵城市",
+        "海绵城市平面图",
+        "雨水花园",
+        "下沉式绿地",
+        "生物滞留",
+        "透水铺装",
+        "蓄水模块",
+        "溢流设施",
+        "SPONGE CITY",
+        "LID"
+      ]
+    },
+    {
+      "type": "schedule",
+      "patterns": [
+        "工程数量表",
+        "材料表",
+        "管件表",
+        "钢筋表",
+        "构件表",
+        "SCHEDULE",
+        "BOM"
+      ]
+    },
+    {
+      "type": "general_notes",
+      "patterns": [
+        "设计总说明",
+        "施工图说明",
+        "市政工程设计说明",
+        "道路设计说明",
+        "排水设计说明",
+        "GENERAL NOTES"
+      ]
+    },
+    {
+      "type": "grid_layout",
+      "patterns": [
+        "线位图",
+        "桩号",
+        "坐标图",
+        "平面控制",
+        "GRID"
+      ]
+    },
+    {
+      "type": "detail",
+      "patterns": [
+        "节点详图",
+        "大样图",
+        "构造详图",
+        "DETAIL",
+        "NODE"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "road",
+      "patterns": [
+        "道路工程",
+        "道路",
+        "路线",
+        "路基",
+        "路面",
+        "车行道",
+        "ROAD"
+      ]
+    },
+    {
+      "system": "pavement",
+      "patterns": [
+        "路面",
+        "面层",
+        "基层",
+        "底基层",
+        "PAVEMENT"
+      ]
+    },
+    {
+      "system": "earthwork",
+      "patterns": [
+        "土方",
+        "路基",
+        "填方",
+        "挖方",
+        "压实",
+        "EARTHWORK"
+      ]
+    },
+    {
+      "system": "drainage",
+      "patterns": [
+        "排水",
+        "雨污水",
+        "管网",
+        "DRAINAGE"
+      ]
+    },
+    {
+      "system": "rainwater",
+      "patterns": [
+        "雨水",
+        "雨水管",
+        "雨水口",
+        "RAINWATER",
+        "STORM"
+      ]
+    },
+    {
+      "system": "sewage",
+      "patterns": [
+        "污水",
+        "污水管",
+        "SEWAGE",
+        "SANITARY"
+      ]
+    },
+    {
+      "system": "water_supply",
+      "patterns": [
+        "给水",
+        "给水管",
+        "供水",
+        "WATER SUPPLY"
+      ]
+    },
+    {
+      "system": "reclaimed_water",
+      "patterns": [
+        "再生水",
+        "中水",
+        "RECLAIMED WATER",
+        "中水管",
+        "中水管道",
+        "再生水管线"
+      ]
+    },
+    {
+      "system": "heating",
+      "patterns": [
+        "热力",
+        "供热",
+        "热网",
+        "HEATING",
+        "HEATER",
+        "暖通管线",
+        "采暖管线",
+        "供热管线",
+        "暖通"
+      ]
+    },
+    {
+      "system": "gas",
+      "patterns": [
+        "燃气",
+        "天然气",
+        "煤气",
+        "GAS"
+      ]
+    },
+    {
+      "system": "power",
+      "patterns": [
+        "电力",
+        "电缆",
+        "排管",
+        "POWER",
+        "强电",
+        "弱电",
+        "室外强电",
+        "电缆排管",
+        "电力排管",
+        "电缆沟",
+        "动照管线",
+        "供电管线",
+        "电力管线",
+        "照明管线",
+        "动力管线"
+      ]
+    },
+    {
+      "system": "telecom",
+      "patterns": [
+        "通信",
+        "通讯",
+        "电信",
+        "TELECOM"
+      ]
+    },
+    {
+      "system": "street_lighting",
+      "patterns": [
+        "道路照明",
+        "路灯",
+        "照明",
+        "STREET LIGHTING",
+        "景观照明",
+        "庭院灯",
+        "草坪灯",
+        "照树灯"
+      ]
+    },
+    {
+      "system": "traffic",
+      "patterns": [
+        "交通设施",
+        "交通标志",
+        "交通标线",
+        "信号灯",
+        "护栏",
+        "监控",
+        "TRAFFIC"
+      ],
+      "negative_patterns": [
+        "人行垂直交通",
+        "垂直交通",
+        "交通枢纽",
+        "公共交通",
+        "交通组织",
+        "人行交通",
+        "楼电梯"
+      ]
+    },
+    {
+      "system": "bridge",
+      "patterns": [
+        "桥梁",
+        "桥",
+        "BRIDGE"
+      ]
+    },
+    {
+      "system": "culvert",
+      "patterns": [
+        "涵洞",
+        "箱涵",
+        "管涵",
+        "CULVERT"
+      ]
+    },
+    {
+      "system": "tunnel",
+      "patterns": [
+        "隧道",
+        "洞门",
+        "明洞",
+        "衬砌",
+        "TUNNEL"
+      ]
+    },
+    {
+      "system": "retaining_wall",
+      "patterns": [
+        "挡土墙",
+        "挡墙",
+        "RETAINING WALL"
+      ]
+    },
+    {
+      "system": "slope_protection",
+      "patterns": [
+        "边坡",
+        "护坡",
+        "护岸",
+        "支护",
+        "SLOPE"
+      ]
+    },
+    {
+      "system": "utility_tunnel",
+      "patterns": [
+        "综合管廊",
+        "管廊",
+        "UTILITY TUNNEL"
+      ]
+    },
+    {
+      "system": "landscape",
+      "patterns": [
+        "绿化",
+        "景观",
+        "种植",
+        "LANDSCAPE"
+      ]
+    },
+    {
+      "system": "general_municipal",
+      "patterns": [
+        "市政",
+        "市政工程",
+        "MUNICIPAL"
+      ]
+    },
+    {
+      "system": "fire_protection",
+      "patterns": [
+        "消防管",
+        "消防管线",
+        "自动喷淋管",
+        "喷淋管",
+        "消防喷淋",
+        "FIRE PROTECTION",
+        "FIRE"
+      ]
+    },
+    {
+      "system": "sponge_city",
+      "patterns": [
+        "海绵城市",
+        "雨水花园",
+        "下沉式绿地",
+        "生物滞留",
+        "透水铺装",
+        "蓄水模块",
+        "溢流设施"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "road_edge",
+      "system": "road",
+      "patterns": [
+        "道路边线",
+        "车行道边线",
+        "路缘线",
+        "EDGE LINE",
+        "SITE_ROAD_DOTE",
+        "ROAD_DOTE"
+      ]
+    },
+    {
+      "category": "kerb",
+      "system": "road",
+      "patterns": [
+        "路缘石",
+        "侧石",
+        "平石",
+        "缘石",
+        "KERB",
+        "CURB",
+        "ROAD-KERB",
+        "ROAD-KERB-",
+        "KERB-LINE"
+      ]
+    },
+    {
+      "category": "road_centerline",
+      "system": "road",
+      "patterns": [
+        "道路中线",
+        "路线中线",
+        "中线",
+        "CENTERLINE",
+        "CL",
+        "SITE_ROAD",
+        "DL道路线",
+        "TY-道路及园路中心线",
+        "道路及园路中心线",
+        "道路中心线",
+        "车辆段道路",
+        "13-S1-道路线",
+        "道路线",
+        "ROAD",
+        "d11-总平面-道路",
+        "D11-总平面-道路"
+      ]
+    },
+    {
+      "category": "sidewalk",
+      "system": "road",
+      "patterns": [
+        "人行道",
+        "步道",
+        "SIDEWALK"
+      ]
+    },
+    {
+      "category": "pavement_layer",
+      "system": "pavement",
+      "patterns": [
+        "路面结构层",
+        "面层",
+        "基层",
+        "底基层",
+        "垫层",
+        "沥青面层",
+        "水泥稳定碎石",
+        "级配碎石",
+        "PAVEMENT"
+      ]
+    },
+    {
+      "category": "subgrade",
+      "system": "earthwork",
+      "patterns": [
+        "路基",
+        "路床",
+        "填方",
+        "挖方",
+        "压实度",
+        "SUBGRADE"
+      ]
+    },
+    {
+      "category": "ditch",
+      "system": "drainage",
+      "patterns": [
+        "边沟",
+        "排水沟",
+        "截水沟",
+        "急流槽",
+        "DITCH"
+      ]
+    },
+    {
+      "category": "slope",
+      "system": "slope_protection",
+      "patterns": [
+        "边坡",
+        "护坡",
+        "放坡",
+        "SLOPE"
+      ]
+    },
+    {
+      "category": "retaining_wall",
+      "system": "retaining_wall",
+      "patterns": [
+        "挡土墙",
+        "挡墙",
+        "RETAINING WALL"
+      ]
+    },
+    {
+      "category": "bridge_pier",
+      "system": "bridge",
+      "patterns": [
+        "桥墩",
+        "墩柱",
+        "盖梁",
+        "PIER"
+      ]
+    },
+    {
+      "category": "abutment",
+      "system": "bridge",
+      "patterns": [
+        "桥台",
+        "台帽",
+        "ABUTMENT"
+      ]
+    },
+    {
+      "category": "pile",
+      "system": "bridge",
+      "patterns": [
+        "桩基",
+        "灌注桩",
+        "钻孔桩",
+        "PHC",
+        "PILE"
+      ]
+    },
+    {
+      "category": "pile_cap",
+      "system": "bridge",
+      "patterns": [
+        "承台",
+        "系梁",
+        "PILE CAP"
+      ]
+    },
+    {
+      "category": "girder",
+      "system": "bridge",
+      "patterns": [
+        "箱梁",
+        "T梁",
+        "空心板梁",
+        "钢箱梁",
+        "主梁",
+        "GIRDER"
+      ]
+    },
+    {
+      "category": "bearing",
+      "system": "bridge",
+      "patterns": [
+        "支座",
+        "BEARING"
+      ]
+    },
+    {
+      "category": "expansion_joint",
+      "system": "bridge",
+      "patterns": [
+        "伸缩缝",
+        "EXPANSION JOINT"
+      ]
+    },
+    {
+      "category": "culvert",
+      "system": "culvert",
+      "patterns": [
+        "涵洞",
+        "箱涵",
+        "圆管涵",
+        "盖板涵",
+        "CULVERT"
+      ]
+    },
+    {
+      "category": "tunnel_portal",
+      "system": "tunnel",
+      "patterns": [
+        "洞门",
+        "明洞",
+        "TUNNEL PORTAL"
+      ]
+    },
+    {
+      "category": "tunnel_lining",
+      "system": "tunnel",
+      "patterns": [
+        "衬砌",
+        "初支",
+        "二衬",
+        "仰拱",
+        "LINING"
+      ]
+    },
+    {
+      "category": "manhole",
+      "system": "drainage",
+      "patterns": [
+        "检查井",
+        "雨水井",
+        "污水井",
+        "跌水井",
+        "MANHOLE",
+        "雨水口",
+        "集水井",
+        "井盖"
+      ]
+    },
+    {
+      "category": "inlet",
+      "system": "drainage",
+      "patterns": [
+        "雨水口",
+        "集水井",
+        "进水口",
+        "INLET",
+        "EQUIP_雨水斗",
+        "雨水斗"
+      ]
+    },
+    {
+      "category": "road_grade",
+      "system": "road",
+      "patterns": [
+        "道路中心标高",
+        "道路标高",
+        "纵坡",
+        "横坡",
+        "道路坡度"
+      ]
+    },
+    {
+      "category": "water_equipment",
+      "system": "water_supply",
+      "patterns": [
+        "给排水设备",
+        "给水设备",
+        "EQUIP_给水"
+      ]
+    },
+    {
+      "category": "water_equipment",
+      "system": "sewage",
+      "patterns": [
+        "EQUIP_污水",
+        "污水设备",
+        "污水提升设备"
+      ]
+    },
+    {
+      "category": "sponge_facility",
+      "system": "sponge_city",
+      "patterns": [
+        "蓄水模块",
+        "雨水花园",
+        "下沉式绿地",
+        "生物滞留",
+        "溢流设施",
+        "海绵设施"
+      ]
+    },
+    {
+      "category": "permeable_pavement",
+      "system": "sponge_city",
+      "patterns": [
+        "透水铺装",
+        "透水砖",
+        "透水混凝土"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "sewage",
+      "patterns": [
+        "DIM_污水",
+        "废水管",
+        "废水管线",
+        "污水管线",
+        "PIPE-污水",
+        "PIPE-废水",
+        "管线-废水管"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "rainwater",
+      "patterns": [
+        "DIM_雨水",
+        "雨水管",
+        "雨水管线",
+        "PIPE-雨水"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "water_supply",
+      "patterns": [
+        "给水管",
+        "给水管道",
+        "给水管道",
+        "PIPE-给水",
+        "DIM_给水"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "reclaimed_water",
+      "patterns": [
+        "中水管",
+        "中水管道",
+        "再生水管线",
+        "PIPE-中水",
+        "管线-中水管"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "power",
+      "patterns": [
+        "动照管线",
+        "供电管线",
+        "电力管线",
+        "照明管线",
+        "动力管线",
+        "PIPE-动照",
+        "PIPE-供电"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "fire_protection",
+      "patterns": [
+        "消防管",
+        "消防管线",
+        "自动喷淋管",
+        "喷淋管",
+        "PIPE-消防",
+        "PIPE-喷淋"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "heating",
+      "patterns": [
+        "HEATER",
+        "HEATING",
+        "暖通管线",
+        "采暖管线",
+        "供热管线",
+        "PIPE-暖供水",
+        "PIPE-暖回水",
+        "暖供水",
+        "暖回水"
+      ]
+    },
+    {
+      "category": "pipe",
+      "system": "drainage",
+      "patterns": [
+        "管道",
+        "管涵",
+        "排水管",
+        "给水管",
+        "燃气管",
+        "热力管",
+        "PIPE",
+        "雨水管",
+        "污水管",
+        "再生水管",
+        "通信管",
+        "电力管",
+        "管综",
+        "综合管网",
+        "室外管网",
+        "管网",
+        "管线-综合",
+        "管线-给排水",
+        "DIM_管线",
+        "EQUIP_管线",
+        "管线-"
+      ]
+    },
+    {
+      "category": "valve",
+      "system": "water_supply",
+      "patterns": [
+        "阀门",
+        "闸阀",
+        "蝶阀",
+        "止回阀",
+        "VALVE"
+      ]
+    },
+    {
+      "category": "pump_station",
+      "system": "drainage",
+      "patterns": [
+        "泵站",
+        "提升泵站",
+        "雨水泵站",
+        "污水泵站",
+        "PUMP STATION"
+      ]
+    },
+    {
+      "category": "street_light",
+      "system": "street_lighting",
+      "patterns": [
+        "路灯",
+        "灯杆",
+        "照明灯具",
+        "STREET LIGHT",
+        "照明",
+        "景观照明",
+        "庭院灯",
+        "草坪灯",
+        "照树灯",
+        "WIRE-照明",
+        "景观电气"
+      ]
+    },
+    {
+      "category": "traffic_signal",
+      "system": "traffic",
+      "patterns": [
+        "信号灯",
+        "交通信号",
+        "SIGNAL"
+      ]
+    },
+    {
+      "category": "sign",
+      "system": "traffic",
+      "patterns": [
+        "交通标志",
+        "标志牌",
+        "SIGN"
+      ]
+    },
+    {
+      "category": "marking",
+      "system": "traffic",
+      "patterns": [
+        "标线",
+        "车道线",
+        "斑马线",
+        "MARKING"
+      ]
+    },
+    {
+      "category": "guardrail",
+      "system": "traffic",
+      "patterns": [
+        "护栏",
+        "防撞护栏",
+        "波形梁",
+        "GUARDRAIL"
+      ]
+    },
+    {
+      "category": "utility_tunnel",
+      "system": "utility_tunnel",
+      "patterns": [
+        "综合管廊",
+        "管廊",
+        "UTILITY TUNNEL"
+      ]
+    },
+    {
+      "category": "support",
+      "system": "general_municipal",
+      "patterns": [
+        "支墩",
+        "支架",
+        "吊架",
+        "管道基础",
+        "SUPPORT"
+      ]
+    },
+    {
+      "category": "cable_duct",
+      "system": "power",
+      "patterns": [
+        "电缆排管",
+        "电力排管",
+        "电缆沟",
+        "电缆隧道",
+        "强电排管",
+        "弱电排管",
+        "强电",
+        "弱电",
+        "室外强电",
+        "电缆"
+      ]
+    }
+  ],
+  "pipe_rules": [
+    {
+      "system": "rainwater",
+      "patterns": [
+        "雨水管",
+        "雨水管道",
+        "雨水管线",
+        "雨水涵",
+        "STORM",
+        "DIM_雨水",
+        "雨水斗"
+      ]
+    },
+    {
+      "system": "sewage",
+      "patterns": [
+        "污水管",
+        "污水管道",
+        "污水管线",
+        "SANITARY",
+        "DIM_污水",
+        "废水管",
+        "管线-废水管"
+      ]
+    },
+    {
+      "system": "water_supply",
+      "patterns": [
+        "给水管",
+        "给水管道",
+        "供水管",
+        "WATER SUPPLY",
+        "DIM_给水",
+        "EQUIP_给水",
+        "给排水设备",
+        "管线-给水"
+      ]
+    },
+    {
+      "system": "reclaimed_water",
+      "patterns": [
+        "再生水管",
+        "中水管",
+        "RECLAIMED WATER",
+        "管线-中水管",
+        "中水管道"
+      ]
+    },
+    {
+      "system": "heating",
+      "patterns": [
+        "热力管",
+        "供热管",
+        "热网",
+        "HEATING",
+        "HEATER",
+        "管线-暖通管线",
+        "暖通管线"
+      ]
+    },
+    {
+      "system": "gas",
+      "patterns": [
+        "燃气管",
+        "天然气管道",
+        "煤气管道",
+        "GAS"
+      ]
+    },
+    {
+      "system": "power",
+      "patterns": [
+        "电力排管",
+        "电缆管",
+        "电力管",
+        "POWER",
+        "管线-动照管线",
+        "管线-供电管线",
+        "动照管线",
+        "供电管线"
+      ]
+    },
+    {
+      "system": "telecom",
+      "patterns": [
+        "通信管",
+        "通信管道",
+        "电信管",
+        "TELECOM"
+      ]
+    },
+    {
+      "system": "drainage",
+      "patterns": [
+        "排水管",
+        "排水管道",
+        "排水管线",
+        "DRAINAGE"
+      ]
+    },
+    {
+      "system": "fire_protection",
+      "patterns": [
+        "管线-消防管",
+        "管线-自动喷淋管",
+        "自动喷淋管",
+        "消防管线"
+      ]
+    },
+    {
+      "system": "sponge_city",
+      "patterns": [
+        "雨水斗",
+        "蓄水模块",
+        "溢流设施"
+      ]
+    }
+  ],
+  "material_patterns": {
+    "concrete": [
+      "(?<![A-Z0-9])C\\s*\\d{2}(?![A-Z0-9])"
+    ],
+    "mortar": [
+      "(?<![A-Z0-9])M\\s*\\d{1,2}(?![A-Z0-9])"
+    ],
+    "brick": [
+      "(?<![A-Z0-9])MU\\s*\\d{1,3}(?![A-Z0-9])"
+    ],
+    "steel": [
+      "(?<![A-Z0-9])(?:HRB|HPB)\\s*\\d{3}(?![A-Z0-9])",
+      "(?<![A-Z0-9])Q\\s*235(?:[A-Z])?(?![A-Z0-9])",
+      "(?<![A-Z0-9])Q\\s*355(?:[A-Z])?(?![A-Z0-9])"
+    ],
+    "asphalt": [
+      "(?<![A-Z0-9])(?:AC|SMA)\\s*[-_]?\\s*\\d{1,2}(?![A-Z0-9])",
+      "沥青混凝土",
+      "改性沥青",
+      "沥青玛蹄脂"
+    ],
+    "cement_stabilized": [
+      "水泥稳定碎石",
+      "水泥稳定砂砾",
+      "水稳碎石"
+    ],
+    "graded_crushed": [
+      "级配碎石",
+      "级配砂砾",
+      "级配砾石"
+    ],
+    "pipe_material": [
+      "HDPE",
+      "PVC-U",
+      "PVC",
+      "PE管",
+      "球墨铸铁",
+      "钢筋混凝土管",
+      "混凝土管",
+      "钢管"
+    ],
+    "soil": [
+      "素土",
+      "灰土",
+      "3:7灰土",
+      "2:8灰土",
+      "水泥土"
+    ],
+    "geotextile": [
+      "土工布",
+      "土工格栅",
+      "土工膜"
+    ],
+    "waterproof": [
+      "SBS",
+      "APP",
+      "防水卷材",
+      "防水涂料"
+    ],
+    "backfill": [
+      "回填土",
+      "中粗砂",
+      "砂砾回填",
+      "碎石回填"
+    ],
+    "paint": [
+      "防腐",
+      "涂塑",
+      "环氧",
+      "镀锌"
+    ]
+  },
+  "reference_patterns": [
+    "(?<![A-Z0-9])GB\\s*\\d{4,5}(?![A-Z0-9])",
+    "(?<![A-Z0-9])CJJ\\s*\\d{1,3}(?![A-Z0-9])",
+    "(?<![A-Z0-9])JTG\\s*[A-Z]?\\s*\\d{1,3}(?![A-Z0-9])",
+    "(?<![A-Z0-9])DB\\s*\\d{2,4}(?![A-Z0-9])"
+  ],
+  "station_pattern": "(?<![A-Z0-9])K\\s*\\d{1,4}\\s*\\+\\s*\\d{1,3}(?:\\.\\d+)?",
+  "elevation_pattern": "(?:标高|H\\s*=|EL|高程)\\s*[-+]?\\d+(?:\\.\\d+)?",
+  "coordinate_pattern": "(?:X|Y)\\s*=\\s*[-+]?\\d+(?:\\.\\d+)?",
+  "dimension_pattern": "(?:宽|厚|高|长|半径|坡度|i)\\s*[=：]?\\s*[-+]?\\d+(?:\\.\\d+)?",
+  "pipe_size_pattern": "(?:DN|De|D|d|Φ|φ)\\s*\\d{2,4}",
+  "slope_pattern": "(?:i|坡度)\\s*[=：]?\\s*[-+]?\\d+(?:\\.\\d+)?\\s*[%‰]?",
+  "scale_pattern": "(?:1\\s*[:：]\\s*\\d{1,4})",
+  "unit_patterns": {
+    "mm": [
+      "毫米",
+      "MM",
+      "mm"
+    ],
+    "m": [
+      "米",
+      "M",
+      "m"
+    ]
+  },
+  "municipal_layer_patterns": [
+    "MUNICIPAL",
+    "ROAD",
+    "PAVEMENT",
+    "DRAIN",
+    "STORM",
+    "SEWAGE",
+    "WATER",
+    "GAS",
+    "HEAT",
+    "POWER",
+    "TELECOM",
+    "BRIDGE",
+    "CULVERT",
+    "TUNNEL",
+    "RETAIN",
+    "SLOPE",
+    "KERB",
+    "CURB",
+    "SIDEWALK",
+    "MANHOLE",
+    "PIPE",
+    "市政",
+    "道路",
+    "路面",
+    "排水",
+    "雨水",
+    "污水",
+    "给水",
+    "燃气",
+    "热力",
+    "电力",
+    "通信",
+    "桥梁",
+    "涵洞",
+    "隧道",
+    "挡土墙",
+    "边坡",
+    "路缘石",
+    "人行道",
+    "检查井",
+    "管线",
+    "SITE_ROAD",
+    "ROAD_DOTE",
+    "DL道路线",
+    "TY-道路及园路中心线",
+    "强电",
+    "弱电",
+    "照明",
+    "电缆",
+    "SITE_ROAD_DOTE",
+    "室外强电",
+    "电缆排管",
+    "景观照明",
+    "庭院灯",
+    "草坪灯",
+    "HEATER",
+    "HEATING",
+    "EQUIP_",
+    "DIM_污水",
+    "DIM_雨水",
+    "DIM_给水",
+    "管线-",
+    "道路中心标高",
+    "d11-总平面-道路",
+    "给排水设备",
+    "海绵城市",
+    "蓄水模块",
+    "透水铺装",
+    "雨水花园",
+    "下沉式绿地",
+    "生物滞留",
+    "海绵设施",
+    "海绵",
+    "透水"
+  ]
+}

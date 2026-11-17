@@ -64,7 +64,7 @@ python3 scripts/run.py --input input.json --output output.json --appkey YOUR_KEY
 ## 模型配置
 
 - endpoint：`https://maas-api.hivoice.cn/v1/chat/completions`
-- model：`u1-insuremed`
+- model：`u2-med`
 - 鉴权：`Bearer {appkey}`
 
 ## 医疗与合规边界

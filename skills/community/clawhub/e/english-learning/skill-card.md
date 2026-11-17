@@ -1,39 +1,50 @@
-## Description: <br>
-Provides primary, TEM-4, and TEM-8 English listening materials and helps agents fetch material lists and detailed listening-text segments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English-Learning helps agents provide primary-school, TEM-4, and TEM-8 English listening materials, including material lists and detailed listening text segments.
 
-## Publisher: <br>
-[leiwonginchaozhou-netizen](https://clawhub.ai/user/leiwonginchaozhou-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leiwonginchaozhou-netizen](https://clawhub.ai/user/leiwonginchaozhou-netizen)
 
-## Use Case: <br>
-Learners and educators use this skill to browse English listening-practice materials by level and retrieve ordered text segments and audio links for a selected lesson. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Supabase environment variables, and an overly broad anon role could expose or modify data beyond intended public listening-material tables. <br>
-Mitigation: Use your own Supabase project values, rotate any example anon key that was ever real, and confirm the anon role can only read intended public listening-material tables. <br>
+## Use Case:
 
+External users and language-learning assistants use this skill to select an English listening training category, retrieve active listening materials, and present ordered transcript segments or audio links for practice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leiwonginchaozhou-netizen/english-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/leiwonginchaozhou-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown text with Supabase REST API request details and formatted listening-material lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_ANON_KEY environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill artifact publishes a real-looking Supabase endpoint and anon key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use project-specific Supabase credentials where appropriate, rotate any exposed key, and verify Row Level Security limits the anon role to intended read-only listening materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leiwonginchaozhou-netizen/skills/english-learning)
+- [Publisher profile](https://clawhub.ai/user/leiwonginchaozhou-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text responses with retrieved listening material lists and ordered segment details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_ANON_KEY environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

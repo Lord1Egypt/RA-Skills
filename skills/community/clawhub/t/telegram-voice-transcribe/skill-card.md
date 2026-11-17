@@ -1,40 +1,59 @@
-## Description: <br>
-Transcribe Telegram voice messages and audio notes into text using the OpenAI Whisper API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes Telegram voice messages and audio notes into plain-text transcripts using OpenAI Whisper API or local Whisper.
 
-## Publisher: <br>
-[dreadterror](https://clawhub.ai/user/dreadterror) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreadterror](https://clawhub.ai/user/dreadterror)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to convert Telegram voice messages, Telegram audio notes, local audio files, or direct audio URLs into transcript text before responding to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default API workflow or hook can fetch Telegram audio with a bot token and upload private audio to OpenAI, while the documentation also describes local-private operation. <br>
-Mitigation: Use --local when voice notes must remain on the server; otherwise inform users that Telegram audio may be fetched and sent to OpenAI before enabling automatic transcription. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent read Telegram voice notes, transcribe them, and respond to the spoken content as if it had been typed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreadterror/telegram-voice-transcribe) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Telegram Bot API](https://api.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON transcript output with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The transcript output may include language and duration fields, or an error field when transcription fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Voice recordings may contain sensitive content and can be sent to OpenAI by default when local mode is not explicitly used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local Whisper mode for sensitive audio or disclose and approve external transcription before processing recordings.
+
+Risk: URL mode can fetch arbitrary audio URLs without strong scoping.
+
+Mitigation: Avoid URL mode unless the URL source is trusted, or run the skill in a network-restricted sandbox.
+
+Risk: A persistent Telegram hook can automatically process user audio.
+
+Mitigation: Make Telegram users aware that voice notes may be transcribed automatically and limit hook deployment to intended chats.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Telegram Bot API](https://api.telegram.org)
+- [ClawHub skill page](https://clawhub.ai/dreadterror/skills/telegram-voice-transcribe)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON transcript object and human-readable guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces transcript, language, and duration fields on success, or an error field on failure.]
+
+## Skill Version(s):
+
+1.3.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1,
+    "title": "Sequential Tocilizumab and Tofacitinib Treatment for Systemic Juvenile Idiopathic Arthritis: a Case Report",
+    "pmid": "36443570",
+    "source": "Rheumatology and Therapy",
+    "year": 2023,
+    "claim": "托珠单抗-托法替布序贯治疗难治性全身型幼年特发性关节炎的病例系列",
+    "semantic": "supports",
+    "found_via": "pubmed#1",
+    "_demo_note": "PMID-only 条目：无 url/doi，验证器自动解析为 PubMed 页面"
+  },
+  {
+    "id": 2,
+    "title": "Tocilizumab in Systemic Juvenile Idiopathic Arthritis: Response Differs by Disease Subtype",
+    "doi": "10.3389/fped.2021.735846",
+    "source": "Frontiers in Pediatrics",
+    "year": 2021,
+    "claim": "不同疾病亚型对托珠单抗的应答存在差异",
+    "semantic": "supports",
+    "found_via": "pubmed#2",
+    "_demo_note": "DOI-only 条目：验证器经 doi.org 解析"
+  },
+  {
+    "id": 3,
+    "title": "Effective therapy of tocilizumab on systemic juvenile idiopathic arthritis-associated lung disease",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34971386/",
+    "pmid": "34971386",
+    "source": "Modern Rheumatology",
+    "year": 2022,
+    "claim": "托珠单抗治疗 sJIA 相关肺病变有效",
+    "semantic": "supports",
+    "found_via": "pubmed#3",
+    "_demo_note": "标准 url 条目：url 与 pmid 一致"
+  },
+  {
+    "id": 4,
+    "title": "Sequential Tocilizumab and Tofacitinib Treatment for Systemic Juvenile Idiopathic Arthritis: a Case Report",
+    "pmid": "36443570",
+    "source": "Rheumatology and Therapy",
+    "year": 2023,
+    "claim": "同 #1",
+    "semantic": "supports",
+    "found_via": "pubmed#1",
+    "_demo_note": "故意重复：与 #1 同 PMID（不同标题），应被 PMID/URL 去重降级"
+  },
+  {
+    "id": 5,
+    "title": "Tocilizumab efficacy in sJIA: a landmark trial（AI编造PMID演示）",
+    "pmid": "99999999",
+    "source": "Journal of Hallucinated Results",
+    "year": 2026,
+    "claim": "AI幻觉引用：PMID 指向不存在的论文",
+    "semantic": "not_in_source",
+    "found_via": "planted",
+    "_demo_note": "故意埋雷：格式合法但 PubMed 返回 404 → unreachable/invalid，进人工复核，永不进参考文献"
+  },
+  {
+    "id": 6,
+    "title": "托珠单抗30天根治sJIA（社区传言演示）",
+    "url": "https://zhuanlan.zhihu.com/p/000000000",
+    "source": "知乎",
+    "year": 2026,
+    "claim": "社区层不可支撑医学结论",
+    "semantic": "not_in_source",
+    "found_via": "planted",
+    "_demo_note": "故意埋雷：社区层来源 + 医学模式下自动标注不得支撑医学结论，且为死链"
+  }
+]

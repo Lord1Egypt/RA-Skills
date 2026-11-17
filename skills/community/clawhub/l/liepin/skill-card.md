@@ -1,42 +1,59 @@
-## Description: <br>
-Summarizes public Liepin job listings and company pages, including salary, requirements, industry, scale, and financing details, without login or application automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public Liepin job and company pages, including salary, requirements, industry, and related details, without supporting job applications or login automation.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, recruiters, and analysts use this skill to manually summarize public Liepin job search results, job details, and company information for lightweight comparison and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misused for login automation, job applications, private API calls, or bulk collection beyond the stated scope. <br>
-Mitigation: Use it manually and narrowly on public pages only; do not log in, submit applications, bypass checks, call private APIs, or collect data in bulk. <br>
-Risk: Public job and company information can change after collection. <br>
-Mitigation: Include collection time in outputs and treat summaries as lightweight analysis rather than authoritative records. <br>
+## Use Case:
 
+Agents and users can use this skill to review public Liepin job listings and company pages for lightweight market, hiring, and opportunity analysis. It supports keyword and city based summaries, job detail extraction, and company overviews while avoiding account actions and application workflows.
 
-## Reference(s): <br>
-- [ClawHub Liepin skill page](https://clawhub.ai/codenova58/liepin) <br>
-- [Liepin homepage](https://www.liepin.com/) <br>
-- [Liepin job search](https://www.liepin.com/zhaopin/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include salary ranges, location, experience, education, role type, responsibilities, requirements, skill tags, benefits, company industry, company scale, financing stage, links, and collection time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may be misused for bulk collection of public Liepin listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lightweight page analysis, apply frequency limits, and avoid scraping at scale.
+
+Risk: The skill could be directed toward account-based actions such as login or job applications.
+
+Mitigation: Keep usage limited to public pages and do not automate login, application submission, or other account actions.
+
+Risk: Summaries of public job or company pages may become stale or omit context visible on the page.
+
+Mitigation: Include source links and collection time, and review the original public page before acting on the summary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codenova58/skills/liepin)
+- [Liepin Homepage](https://www.liepin.com/)
+- [Liepin Job Search](https://www.liepin.com/zhaopin/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include visible source links and collection time when summarizing public pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

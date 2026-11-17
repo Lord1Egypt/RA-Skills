@@ -1,40 +1,53 @@
-## Description: <br>
-Australian mortgage calculator for LVR, stamp duty, LMI, repayments, and First Home Buyer concessions by state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Australian mortgage calculator for LVR, stamp duty, LMI, repayments, and First Home Buyer concessions by state.
 
-## Publisher: <br>
-[tianshizhimao-sudo](https://clawhub.ai/user/tianshizhimao-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tianshizhimao-sudo](https://clawhub.ai/user/tianshizhimao-sudo)
 
-## Use Case: <br>
-Australian property buyers, brokers, and agents use this skill to estimate LVR, stamp duty, LMI, repayments, borrowing power, and first-home-buyer concessions in AUD before validating current figures. <br>
-
-### Deployment Geography for Use: <br>
-Australia <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mortgage rates, stamp duty thresholds, grants, concessions, and lending rules can change after release. <br>
-Mitigation: Verify current figures with official state revenue offices, lender calculators, or a qualified mortgage or financial advisor before making property decisions. <br>
-Risk: Users may treat educational estimates as definitive financial advice. <br>
-Mitigation: Use the outputs as planning estimates only and seek professional advice for borrowing, eligibility, and purchase decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianshizhimao-sudo/aussie-mortgage-calc) <br>
-- [Oney & Co](https://oneyco.com.au) <br>
+## Use Case:
 
+External users and agents use this skill to estimate Australian property purchase and mortgage costs, including LVR, stamp duty, LMI, repayments, borrowing power, and first-home-buyer concessions. Results are educational estimates that should be checked against official revenue sources or a qualified mortgage or financial adviser.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with formulas, examples, tables, and concise advisory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces estimates in AUD; rates, grants, concessions, and lending assumptions require current official verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Australia
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mortgage, stamp duty, concession, and grant figures may be outdated, approximate, or inapplicable to a user's circumstances.
+
+Mitigation: Verify estimates with official state revenue sources, lender calculators, or a qualified mortgage or financial adviser before making financial decisions.
+
+Risk: Users may mistake the skill's educational estimates for personalized financial advice.
+
+Mitigation: Present outputs as estimates and retain the artifact's disclaimer to consult a qualified mortgage broker or financial adviser.
+
+## Reference(s):
+
+- [Aussie Mortgage Calc on ClawHub](https://clawhub.ai/tianshizhimao-sudo/skills/aussie-mortgage-calc)
+- [Oney & Co](https://oneyco.com.au)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference guidance with formulas and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All monetary estimates are in AUD; rates, duties, grants, concessions, and eligibility rules require external verification before financial decisions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Analyzes and styles phylogenetic tree data using a reproducible workflow with validation and structured, review-ready outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze data with `phylogenetic-tree-styler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and bioinformatics analysts use this skill to render Newick phylogenetic trees with taxonomy color blocks, bootstrap labels, and optional timelines. It helps produce reproducible image outputs for review and interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Input or output paths could accidentally read from or write outside the intended project workspace. <br>
-Mitigation: Run the skill in a virtual environment or container and provide input and output paths inside the project workspace. <br>
-Risk: Unpinned dependencies can make rendered outputs harder to reproduce across environments. <br>
-Mitigation: Pin dependency versions for reproducible use before running analysis for review or release. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to style Newick phylogenetic trees with taxonomy color blocks, bootstrap labels, and optional timeline context for review-ready analysis outputs.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/aipoch-ai/phylogenetic-tree-styler) <br>
-- [Runtime Checklist](references/runtime_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the packaged script writes PNG, PDF, or SVG tree images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Newick tree input file and may use an optional taxonomy CSV, bootstrap threshold, timeline setting, and image sizing parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency versions are not pinned, which can affect reproducibility or introduce dependency risk over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in an isolated Python environment and review or pin ete3, matplotlib, numpy, and pandas before use.
+
+Risk: The script reads user-provided input paths and writes user-provided output paths without enforcing workspace restrictions itself.
+
+Mitigation: Run it in a sandboxed workspace and pass only trusted, explicit input and output paths.
+
+Risk: The skill executes local Python code to generate visualization files.
+
+Mitigation: Run a non-destructive smoke check such as `python -m py_compile scripts/main.py` before executing file-dependent commands.
+
+## Reference(s):
+
+- [Runtime Checklist](references/runtime_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated image files such as PNG, PDF, or SVG]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit input and output paths; optional taxonomy CSV, bootstrap threshold, timeline, size, color, and DPI parameters control the rendered tree.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

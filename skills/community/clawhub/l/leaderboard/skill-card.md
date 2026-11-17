@@ -1,42 +1,55 @@
-## Description: <br>
-Record scores, rank players, and analyze game stats with terminal leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record scores, rank players, and analyze game stats with terminal leaderboards.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and agents use this skill to record game scores, rank competitors, inspect recent leaderboard activity, search entries, and export local score data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Leaderboard entries are saved locally and can later be searched or exported. <br>
-Mitigation: Use the skill for non-sensitive game data and avoid entering passwords, API keys, private notes, or other sensitive personal data. <br>
-Risk: Exported JSON, CSV, or TXT files may expose locally stored leaderboard entries if shared. <br>
-Mitigation: Review exported files before sharing them and remove sensitive or unintended entries from the local data directory. <br>
+## Use Case:
 
+External users and agents use this skill to record game or challenge scores, inspect recent activity, search logged entries, view summary statistics, and export leaderboard data from a local terminal workflow.
 
-## Reference(s): <br>
-- [ClawHub Leaderboard skill page](https://clawhub.ai/xueyetianya/leaderboard) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Terminal text with optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs and exports under ~/.local/share/leaderboard/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: ClawHub release metadata) <br>
+Risk: Leaderboard entries are stored as local plaintext files under ~/.local/share/leaderboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not record passwords, tokens, private prompts, or sensitive personal data in leaderboard entries.
+
+Risk: Exported CSV and JSON files may contain values that are not safely escaped.
+
+Mitigation: Review exported files before sharing or importing them into other tools, especially when entries contain commas, quotes, formulas, or untrusted text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/leaderboard)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text terminal output with optional JSON, CSV, or text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores leaderboard entries locally under ~/.local/share/leaderboard and can export accumulated logs.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

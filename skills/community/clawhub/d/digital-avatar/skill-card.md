@@ -1,45 +1,64 @@
-## Description: <br>
-Creates digital avatars, optional cloned voices, and talking-head video outputs using providers such as Kling, Jimeng, HeyGen, D-ID, and Synthesia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates digital avatar assets and talking-head video clips from a text description or authorized person photo using supported avatar-video backends.
 
-## Publisher: <br>
-[OliviaPp8](https://clawhub.ai/user/OliviaPp8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oliviapp8](https://clawhub.ai/user/oliviapp8)
 
-## Use Case: <br>
-Developers and content teams use this skill to guide an agent through creating digital avatar assets and rendered talking-head videos from authorized photos, descriptions, scripts, audio, or cloned voices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Avatar generation may send selected photos, voice samples, scripts, and related metadata to third-party avatar providers. <br>
-Mitigation: Use only media you are authorized to use, review each provider's privacy and commercial terms, and avoid submitting sensitive material unless the provider is approved for that use. <br>
-Risk: Provider API keys and avatar credentials can expose paid accounts or generated assets if committed to project files. <br>
-Mitigation: Store credentials in local secret handling or managed secret stores, rotate keys if exposed, and keep generated avatar IDs scoped to the intended provider. <br>
+## Use Case:
 
+Creators, developers, and video teams use this skill to create avatar IDs, optional cloned voice IDs, and talking-head video clips for narration workflows. It is intended for workflows where source photos, voice samples, scripts, and provider terms have been reviewed before upload.
 
-## Reference(s): <br>
-- [Backend Setup Guide](references/backend-setup.md) <br>
-- [Kling AI](https://klingai.kuaishou.com/) <br>
-- [Jimeng Documentation](https://www.volcengine.com/docs/jimeng/) <br>
-- [HeyGen API Reference](https://docs.heygen.com/reference/) <br>
-- [D-ID API Reference](https://docs.d-id.com/reference/) <br>
-- [Synthesia API Reference](https://docs.synthesia.io/reference/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs describe avatar IDs, preview URLs, optional voice IDs, video URLs, duration, and render status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be used with real-person photos or voice samples, creating consent and impersonation risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media the operator owns or has explicit permission to use, and document consent before creating avatars or cloned voices.
+
+Risk: Provider API credentials may be exposed if copied into shared or checked-in configuration files.
+
+Mitigation: Store credentials in a secret manager or environment-specific secure configuration and avoid committing provider keys.
+
+Risk: Backend providers may apply different privacy, retention, and commercial-use terms to uploaded personal media.
+
+Mitigation: Review each selected provider's privacy, retention, and commercial-use terms before uploading personal photos, voice samples, or scripts.
+
+## Reference(s):
+
+- [Backend Setup Guide](references/backend-setup.md)
+- [Kling AI](https://klingai.kuaishou.com/)
+- [Kling API Documentation](https://docs.qingque.cn/)
+- [Jimeng](https://jimeng.jianying.com/ai-tool/home)
+- [Jimeng API Documentation](https://www.volcengine.com/docs/jimeng/)
+- [HeyGen API Documentation](https://docs.heygen.com/reference/)
+- [D-ID API Documentation](https://docs.d-id.com/reference/)
+- [Synthesia API Documentation](https://docs.synthesia.io/reference/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured YAML-style result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider-specific avatar IDs, voice IDs, preview URLs, rendered video URLs, and backend configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

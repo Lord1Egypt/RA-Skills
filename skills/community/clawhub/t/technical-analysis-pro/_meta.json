@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "technical-analysis-pro",
+  "name": "technical-analysis",
+  "displayName": "股票技术分析工具",
   "version": "1.0.0",
-  "publishedAt": 1775207147157
+  "slug": "technical-analysis-pro",
+  "description": "技术分析大师，结合经典理论与现代量化验证，支持 K 线、指标、形态识别",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["stock", "technical-analysis", "trading", "chart", "indicator", "finance"],
+  "pricing": {
+    "type": "paid",
+    "amount": 35,
+    "currency": "CNY"
+  },
+  "requirements": ["pandas", "ta-lib"],
+  "category": "finance"
 }

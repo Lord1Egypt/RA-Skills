@@ -1,45 +1,60 @@
-## Description: <br>
-Provides document and text translation through the Xdoc Translation API, including supported file formats, glossaries, and translation memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document and text translation API skill powered by Xdoc for translating files and text across many languages with glossary and translation-memory support.
 
-## Publisher: <br>
-[yangsongbai1](https://clawhub.ai/user/yangsongbai1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangsongbai1](https://clawhub.ai/user/yangsongbai1)
 
-## Use Case: <br>
-Developers and operators use this skill to translate documents or text with Xdoc, manage glossaries and translation memory, and guide API-based upload, polling, and download workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or text are sent to Xdoc for translation. <br>
-Mitigation: Use the skill only when Xdoc's terms meet the user's requirements, and avoid confidential or regulated material unless approved. <br>
-Risk: An Xdoc API key is required and could be exposed through sharing or logs. <br>
-Mitigation: Use a revocable API key, provide it through XDOC_API_KEY or the x-api-key header, and avoid storing it in public files or logs. <br>
-Risk: Glossary and translation-memory operations can create, edit, or delete Xdoc resources. <br>
-Mitigation: Review requested resource changes before performing create, edit, or delete operations. <br>
+## Use Case:
 
+Developers and agents use this skill to guide Xdoc document and text translation workflows, including file upload, translation submission, status polling, result download, glossary management, and translation-memory operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangsongbai1/xdoc-translation) <br>
-- [Xdoc](https://x-doc.ai) <br>
-- [Xdoc translation console](https://translation.x-doc.ai/) <br>
-- [Xdoc privacy policy](https://x-doc.ai/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Text, Configuration] <br>
-**Output Format:** [Markdown guidance with HTTP and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XDOC_API_KEY; may return translated text, translation status, or download URLs from Xdoc.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Documents and text may be sent to Xdoc's cloud service for translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content approved for Xdoc processing, and avoid confidential files unless the account, policy, and retention expectations are acceptable.
+
+Risk: The required Xdoc API key is tied to an account and quota.
+
+Mitigation: Keep XDOC_API_KEY out of logs and shared files, rotate or revoke exposed keys, and monitor usage against the account quota.
+
+Risk: File deletion, glossary, and translation-memory changes can affect user-managed resources.
+
+Mitigation: Keep delete and library modification operations explicitly user-directed and confirm target IDs before issuing API calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangsongbai1/skills/xdoc-translation)
+- [Xdoc translation service](https://translation.x-doc.ai/)
+- [Xdoc provider site](https://x-doc.ai)
+- [Xdoc privacy policy](https://x-doc.ai/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint parameters, polling steps, request examples, and user-directed file, glossary, or translation-memory operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

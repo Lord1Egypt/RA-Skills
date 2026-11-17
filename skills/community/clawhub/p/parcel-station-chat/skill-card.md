@@ -1,42 +1,60 @@
-## Description: <br>
-Build a courier station AI chat system with Express, GPT-5.5, local JSON DB, OCR, and WeChat-style frontend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a courier station AI chat system with Express, GPT-5.5, local JSON DB, OCR, and WeChat-style frontend.
 
-## Publisher: <br>
-[jeremycooper2077](https://clawhub.ai/user/jeremycooper2077) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jeremycooper2077](https://clawhub.ai/user/jeremycooper2077)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and parcel-station operators use this skill to build a chat-based package lookup and OCR intake application for pickup-code, tracking-tail, and phone-tail workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive shipment data and OCR uploads may expose personal information if deployed without privacy controls.
+
+Mitigation: Define consent, provider choice, logging, retention, and deletion rules before enabling OCR on real waybills.
+
+Risk: Package-management pages and APIs could allow unauthorized access or changes if left open.
+
+Mitigation: Require authenticated admin access for management pages and package APIs.
+
+Risk: Public lookup responses may reveal more shipment detail than a customer needs.
+
+Mitigation: Restrict lookup responses to the minimum information required to complete pickup support.
+
+Risk: The local JSON database can contain sensitive parcel and recipient data.
+
+Mitigation: Protect the local database with appropriate filesystem permissions, backups, and operational controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and station operators use this skill to generate a courier-station chatbot template for package lookup, OCR-assisted waybill recognition, chat responses, and package management workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated template handles shipment personal data and chat history. <br>
-Mitigation: Minimize personal data sent to the AI provider, document consent and privacy handling, and define retention and deletion rules before real station use. <br>
-Risk: Package management and listing features may be exposed without documented access controls. <br>
-Mitigation: Add authentication and authorization for admin and package APIs, and avoid exposing management endpoints publicly. <br>
-Risk: The skill requires a sensitive API credential for AI calls. <br>
-Mitigation: Store SU2_API_KEY outside source-controlled files and restrict runtime access to the deployment environment that needs it. <br>
+**Output Format:** [Markdown with inline code blocks and API/interface specifications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Parcel Station Chat on ClawHub](https://clawhub.ai/jeremycooper2077/parcel-station-chat) <br>
+**Other Properties Related to Output:** [Includes implementation guidance for an Express service, local JSON storage, OCR handling, and a WeChat-style frontend.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes guidance for Express routes, local JSON storage, OCR handling, chat behavior, and frontend setup.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

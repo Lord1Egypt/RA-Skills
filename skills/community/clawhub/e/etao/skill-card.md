@@ -1,38 +1,49 @@
-## Description: <br>
-一淘返利导购工具，阿里巴巴旗下官方返利平台，专注淘宝天猫购物返利和比价服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一淘返利导购工具，阿里巴巴旗下官方返利平台，专注淘宝天猫购物返利和比价服务。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers use this skill to format 一淘 rebate lookups with item name, Taobao price, estimated 集分宝 rebate, coupon details, and final price. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cashback eligibility, coupon availability, final prices, and platform affiliation claims may be incorrect or stale. <br>
-Mitigation: Verify cashback eligibility, coupons, final prices, and official affiliation claims directly on 一淘, 淘宝, or 天猫 before relying on them. <br>
+## Use Case:
 
+External shoppers use this agent skill to query Taobao/Tmall rebate estimates, compare prices, and summarize available coupons before purchasing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/etao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown shopping rebate summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden behaviors are present in the provided artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Rebate rates, coupons, login flows, or payment details may be inaccurate or may not come from an officially verified Etao publisher.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm rebate rates, coupons, account access, and payment actions through official Alibaba, Etao, Taobao, or Tmall channels before purchasing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/etao)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown shopping rebate summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes product name, Taobao price, estimated Jifenbao rebate, coupons, and final price when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

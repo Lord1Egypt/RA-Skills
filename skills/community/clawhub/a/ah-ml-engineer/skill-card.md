@@ -1,42 +1,50 @@
-## Description: <br>
-Expert ML engineer specializing in machine learning model lifecycle, production deployment, and ML system optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert ML engineer specializing in machine learning model lifecycle, production deployment, and scalable ML system optimization from training to serving.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to design, train, validate, deploy, monitor, and optimize production machine learning systems. It helps structure work across ML pipelines, feature engineering, model evaluation, rollout strategies, drift monitoring, retraining, and reliability practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ML deployment, retraining, or infrastructure recommendations could affect production reliability if applied without review. <br>
-Mitigation: Require explicit approval before applying deployment, retraining, or infrastructure changes, and keep work scoped to the intended project boundaries. <br>
-Risk: ML guidance can be incomplete without current project data, model metrics, and operational constraints. <br>
-Mitigation: Validate recommendations against existing models, pipelines, datasets, performance targets, monitoring signals, and rollback requirements before implementation. <br>
-Risk: Generated code, commands, or configuration may need adaptation for the target ML stack. <br>
-Mitigation: Review generated artifacts before execution and test changes in a controlled environment before production rollout. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to plan, implement, deploy, monitor, and optimize production machine learning systems across the model lifecycle.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-ml-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only agent guidance; no artifact-backed executable code or install hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Concrete changes proposed for ML infrastructure, deployment, monitoring, or retraining can affect production reliability if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes and test them in the relevant ML environment before applying them to production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-ml-engineer)
+- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files are included in the skill package; review proposed infrastructure, deployment, monitoring, or retraining changes before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

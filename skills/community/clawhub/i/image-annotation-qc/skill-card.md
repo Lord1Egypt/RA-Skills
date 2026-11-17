@@ -1,40 +1,57 @@
-## Description: <br>
-Image Annotation QC detects quality issues in bounding box and polygon segmentation annotations, supports COCO, YOLO, VOC, and LabelMe inputs, and generates local quality reports with optional visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Annotation QC detects quality issues in bounding box and polygon segmentation annotations and generates reports and visualizations for COCO, YOLO, VOC, and LabelMe datasets.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers and data quality engineers use this skill to run local quality checks on image annotation datasets, identify labeling issues, and generate TXT, JSON, Excel, and visualization reports for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads selected local dataset folders and writes generated reports and visualizations to local paths. <br>
-Mitigation: Run it only on intended dataset folders and use --output to keep generated reports separate from source annotations. <br>
-Risk: The workflow depends on local Python packages such as Pillow and openpyxl. <br>
-Mitigation: Install dependencies in a trusted Python environment before running the QC commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Annotation standards reference](references/standards.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Mingo-318/image-annotation-qc) <br>
+## Use Case:
 
+Developers and data quality teams use this skill to inspect image annotation datasets, detect bounding-box and polygon quality issues, and generate QC reports for AI training data workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced tool writes local TXT, JSON, optional Excel, and PNG visualization report files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted annotation files can make the tool read images outside the selected image folder.
+
+Mitigation: Run the skill in a dedicated project directory or sandbox, and keep visualization disabled for untrusted datasets until image-path containment is fixed.
+
+Risk: Generated Excel reports can contain unsafe values from untrusted labels.
+
+Mitigation: Avoid opening generated XLSX files from untrusted annotation sources; prefer TXT or JSON reports when reviewing untrusted datasets.
+
+Risk: Unpinned Python dependencies can introduce environment drift or unexpected package changes.
+
+Mitigation: Install Pillow and openpyxl in an isolated Python environment with reviewed, pinned versions.
+
+## Reference(s):
+
+- [Image Annotation QC ClawHub listing](https://clawhub.ai/mingo-318/skills/image-annotation-qc)
+- [Image annotation standards reference](references/standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples; generated QC artifacts may include TXT, JSON, XLSX, and PNG visualization files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; optional report and visualization features use Pillow and openpyxl.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

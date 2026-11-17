@@ -1,40 +1,55 @@
-## Description: <br>
-Provides a Chinese-language overview of OpenClaw architecture, core concepts, tools, configuration, directory layout, security model, automation features, CLI commands, and documentation locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw overview helps agents quickly understand OpenClaw architecture, core concepts, tool systems, configuration structure, directory layout, and common operations.
 
-## Publisher: <br>
-[tryxin](https://clawhub.ai/user/tryxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tryxin](https://clawhub.ai/user/tryxin)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to quickly understand OpenClaw's runtime architecture, workspace and session model, tool system, configuration files, CLI commands, automation options, and security model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents powerful OpenClaw capabilities, including shell, filesystem, messaging, credential, and gateway configuration access. <br>
-Mitigation: Keep agent tool profiles, filesystem scope, messaging permissions, and credential access limited to the capabilities the deployment actually requires. <br>
-Risk: Reference guidance and command examples may become outdated as OpenClaw changes. <br>
-Mitigation: Review proposed commands and configuration changes against the current OpenClaw documentation before execution. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill as a concise OpenClaw reference for architecture, sessions, models, tools, automation, security controls, CLI commands, and documentation locations.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, architecture diagrams, JSON5 configuration examples, and bash command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or hidden runtime behavior was found in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Agents may propose shell commands, device pairing, cron jobs, or configuration changes after using this overview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any later agent-proposed command, device pairing, cron job, or configuration change before allowing it.
+
+Risk: The skill documents powerful runtime features, including shell execution, messaging, device nodes, cron, memory, and gateway configuration.
+
+Mitigation: Treat the skill as informational and review the resulting operational plan against the user's OpenClaw security model before deployment.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/tryxin/skills/openclaw-overview)
+- [Publisher Profile](https://clawhub.ai/user/tryxin)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language overview intended for quick agent reference.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

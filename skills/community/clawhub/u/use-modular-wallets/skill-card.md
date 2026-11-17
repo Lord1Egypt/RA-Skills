@@ -1,48 +1,67 @@
-## Description: <br>
-Build crypto wallets using Circle Modular Wallets SDK with passkey authentication, gasless transactions, and extensible module architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build crypto wallets using Circle Modular Wallets SDK with passkey authentication, gasless transactions, and extensible module architecture.
 
-## Publisher: <br>
-[mscandlen3](https://clawhub.ai/user/mscandlen3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mscandlen3](https://clawhub.ai/user/mscandlen3)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Circle Modular Wallet smart accounts with WebAuthn passkeys, sponsored user operations, batch transactions, and BIP-39-based passkey recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet code can move real assets or perform account recovery actions if used on mainnet. <br>
-Mitigation: Default to testnets and require explicit user review of destination, amount, network, token, and recovery action before execution. <br>
-Risk: Client keys, passkey credentials, and recovery phrases can expose accounts if hardcoded, logged, committed, or stored insecurely. <br>
-Mitigation: Use environment variables or a secrets manager, keep recovery phrases outside the repository, and replace localStorage examples with production-grade protected storage. <br>
-Risk: Incorrect chain support or transport URL configuration can produce failed or unintended wallet operations. <br>
-Mitigation: Use only supported EVM chains and append the required chain-specific path segment to the Circle modular transport URL. <br>
+## Use Case:
 
+Developers use this skill to build Circle Modular Wallet integrations with passkey registration and login, gas-sponsored user operations, batch transfers, mnemonic-based passkey recovery, and modular smart account patterns.
 
-## Reference(s): <br>
-- [Circle Smart Account with Passkey Authentication](references/circle-smart-account.md) <br>
-- [Passkey Recovery for Circle Smart Accounts](references/passkey-recovery.md) <br>
-- [Circle Developer Docs](https://developers.circle.com/llms.txt) <br>
-- [Circle Modular Wallet Console Setup](https://developers.circle.com/wallets/modular/console-setup) <br>
-- [Circle Wallet Account Types](https://developers.circle.com/wallets/account-types) <br>
-- [Circle Smart Account Example](https://github.com/circlefin/modularwallets-web-sdk/blob/master/examples/circle-smart-account/index.tsx) <br>
-- [Circle Passkey Recovery Example](https://github.com/circlefin/modularwallets-web-sdk/blob/master/examples/passkey-recovery/index.tsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include security warnings and explicit confirmation steps before mainnet transfers or recovery actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Example snippets persist passkey credentials in localStorage, which is not appropriate for production wallet applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a production-safe session or storage design, such as httpOnly cookies or an equivalent secure credential storage pattern, before handling real funds.
+
+Risk: Wallet transfer and recovery actions can move funds or change account control if executed without sufficient user review.
+
+Mitigation: Require explicit confirmation for destination, amount, network, token, and recovery actions; default to testnets and warn before mainnet execution.
+
+Risk: Recovery mnemonic exposure or reuse can compromise wallet recovery and account ownership.
+
+Mitigation: Store recovery backups outside the repository, never commit recovery phrases, and require a unique mnemonic for each account.
+
+Risk: Unsupported chain selection or malformed transaction inputs can lead to failed or unsafe wallet operations.
+
+Mitigation: Validate addresses, amounts, chain identifiers, token decimals, and contract targets before submitting user operations.
+
+## Reference(s):
+
+- [Circle Smart Account with Passkey Authentication](artifact/references/circle-smart-account.md)
+- [Passkey Recovery for Circle Smart Accounts](artifact/references/passkey-recovery.md)
+- [Circle Developer Docs](https://developers.circle.com/llms.txt)
+- [Circle Modular Wallet Console Setup](https://developers.circle.com/wallets/modular/console-setup)
+- [Circle Wallet Account Types](https://developers.circle.com/wallets/account-types)
+- [Circle Smart Account Example Source](https://github.com/circlefin/modularwallets-web-sdk/blob/master/examples/circle-smart-account/index.tsx)
+- [Passkey Recovery Example Source](https://github.com/circlefin/modularwallets-web-sdk/blob/master/examples/passkey-recovery/index.tsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet safety constraints for credentials, recovery phrases, transfer confirmation, testnet defaults, and supported chains.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

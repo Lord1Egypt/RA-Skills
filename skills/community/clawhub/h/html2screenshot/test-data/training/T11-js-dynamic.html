@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T11 - JS 动态渲染</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #f0f2f5; padding: 40px; }
+    h1 { text-align: center; margin-bottom: 30px; color: #333; }
+    .container { max-width: 800px; margin: 0 auto; }
+    .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .card h3 { font-size: 18px; margin-bottom: 12px; color: #1a73e8; }
+    .card p { font-size: 14px; color: #666; line-height: 1.7; }
+    .loading { text-align: center; padding: 40px; color: #999; }
+    .dynamic-list { list-style: none; }
+    .dynamic-list li { padding: 12px 16px; background: #f8f9fa; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>⚡ T11 - JS 动态渲染测试</h1>
+  <div class="container">
+    <div class="card">
+      <h3>📋 静态内容</h3>
+      <p>这部分是 HTML 中直接写好的静态内容，应该能被立即捕获。</p>
+    </div>
+
+    <div class="card">
+      <h3>🔄 动态加载内容</h3>
+      <p>下面的列表项是通过 JavaScript 动态生成的，测试截图工具是否能等待 JS 执行完成后再捕获。</p>
+      <ul class="dynamic-list" id="dynamicList">
+        <li class="loading">⏳ 加载中...</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📊 动态统计卡片</h3>
+      <div id="statsContainer" class="loading">⏳ 统计加载中...</div>
+    </div>
+
+    <div class="card">
+      <h3>🎯 测试说明</h3>
+      <p>如果动态列表和统计卡片显示为"加载中..."或空白，说明 Puppeteer 未等待 JS 执行完成。</p>
+      <p>正确行为：列表应显示 5 个动态生成的项目，统计卡片应显示 3 个统计数据。</p>
+    </div>
+  </div>
+
+  <script>
+    // 模拟异步数据加载
+    setTimeout(() => {
+      const list = document.getElementById('dynamicList');
+      list.innerHTML = '';
+      const items = ['动态项目 1 - 用户数据', '动态项目 2 - 订单统计', '动态项目 3 - 产品分析', '动态项目 4 - 销售趋势', '动态项目 5 - 市场洞察'];
+      items.forEach((item, i) => {
+        const li = document.createElement('li');
+        li.textContent = `✅ ${item} (延迟 ${i * 100 + 200}ms)`;
+        li.style.animation = `fadeIn ${0.1 * (i + 1)}s ease-out`;
+        list.appendChild(li);
+      });
+    }, 300);
+
+    // 动态生成统计卡片
+    setTimeout(() => {
+      const container = document.getElementById('statsContainer');
+      container.innerHTML = `
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:8px;padding:16px;text-align:center;">
+            <div style="font-size:24px;font-weight:bold;">1,234</div>
+            <div style="font-size:12px;opacity:0.9;">总用户</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#f093fb,#f5576c);color:white;border-radius:8px;padding:16px;text-align:center;">
+            <div style="font-size:24px;font-weight:bold;">567</div>
+            <div style="font-size:12px;opacity:0.9;">活跃用户</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#4facfe,#00f2fe);color:white;border-radius:8px;padding:16px;text-align:center;">
+            <div style="font-size:24px;font-weight:bold;">89%</div>
+            <div style="font-size:12px;opacity:0.9;">留存率</div>
+          </div>
+        </div>
+      `;
+    }, 500);
+  </script>
+</body>
+</html>

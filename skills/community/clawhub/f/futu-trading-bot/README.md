@@ -1,5 +1,13 @@
 # Futu Trading Bot Skills
 
+> **⚠️ Safety first**
+>
+> This skill can unlock a Futu brokerage account and place, modify, or cancel **real-money** orders via local OpenD.
+> - Prefer **`SIMULATE`** until you fully trust the setup.
+> - `REAL` orders, unlock/lock, and **`cancel_all_orders`** require explicit human approval and API `confirm=True`.
+> - Do not store plaintext passwords in git; prefer `trade_password_md5`.
+> - `get_account_info()` does **not** write disk by default (`persist=False`).
+
 这是一个为 AI Agent 打造的自然语言交易执行工具。它将富途 OpenAPI 的底层逻辑封装为语义能力，支持通过自然语言驱动账户解锁、下单及风控管理。系统支持（模拟/实盘）环境隔离，能够将“帮我买 200 股腾讯”或“清仓一半持仓”这类模糊意图，转化为符合金融规范的执行动作。
 
 A robust trade execution tool designed for AI Agents. It abstracts Futu OpenAPI logic into high-level semantic capabilities, enabling natural language control over account unlocking, order placement, and risk management. With native support for MD5 credential handling and environment isolation (Simulated/Real), it accurately translates vague intents—such as "buy 200 shares of Tencent" or "close half of my positions"—into execution actions that comply with financial standards.
@@ -21,11 +29,13 @@ A robust trade execution tool designed for AI Agents. It abstracts Futu OpenAPI 
 - 策略辅助：状态、交易锁、交易时段判断、回调 payload 解析
 
 ## 当前行为说明
-- `submit_order` 必须显式传入 `acc_id` 和 `trd_env`（`REAL` / `SIMULATE`）。
-- `get_account_info` 每次调用都会覆盖写入 `json/account_info.json`。
-- `unlock_trade` / `lock_trade` 支持 MD5 密码：
-  - 优先使用 `password_md5`
+- `submit_order` 必须显式传入 `acc_id` 和 `trd_env`（`REAL` / `SIMULATE`）。`REAL` 还需要 `confirm=True`。
+- `cancel_all_orders` 在任何环境下都需要 `confirm=True`。
+- `get_account_info(persist=False)` 默认只返回内存结果；仅当 `persist=True` 时写入 `json/account_info.json`。
+- `unlock_trade` / `lock_trade` 需要 `confirm=True`，支持 MD5 密码：
+  - 优先使用 `password_md5` / 配置 `trade_password_md5`
   - 若仅提供明文 `password`，会在运行时自动转 MD5 后调用富途接口
+  - **不提供** stdin 交互式输密码接口
 - 拉取型 quote 函数会在返回后自动关闭 quote context。
 - trade/account 对外函数会在返回后自动关闭各自 context。
 - 订阅/回调模式不会自动关闭 quote context，调用方结束时应显式 `close_quote_service()`。
@@ -93,8 +103,10 @@ from account_manager import get_account_info, unlock_trade, lock_trade
 from trade_service import submit_order
 
 print(run_preflight())
-print(get_account_info())
-print(unlock_trade())  # 使用配置密码（支持MD5）
+print(get_account_info())  # 默认不落盘
+# print(get_account_info(persist=True))  # 仅在用户要求缓存时
+
+print(unlock_trade(confirm=True))  # 需用户明确同意；从配置读取密码/MD5
 
 print(submit_order(
     code="HK.00700",
@@ -103,10 +115,12 @@ print(submit_order(
     price=150,
     order_type="NORMAL",
     acc_id=6017237,
-    trd_env="SIMULATE"
+    trd_env="SIMULATE",
 ))
+# REAL 示例（需用户明确批准参数后）:
+# submit_order(..., trd_env="REAL", confirm=True)
 
-print(lock_trade())  # 用完建议锁回去
+print(lock_trade(confirm=True))
 ```
 
 ## 实时行情回调示例

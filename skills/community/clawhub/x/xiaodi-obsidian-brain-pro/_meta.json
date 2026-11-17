@@ -1,6 +1,62 @@
 {
-  "ownerId": "kn7by8h785dz2hyxe3r7f3vesh81399h",
-  "slug": "xiaodi-obsidian-brain-pro",
-  "version": "1.1.4",
-  "publishedAt": 1774961726766
+  "name": "xiaodi-obsidian-brain-pro",
+  "version": "1.1.3",
+  "author": "xiaodi",
+  "homepage": "https://github.com/mx6315909/xiaodi-obsidian-brain-pro",
+  "description": "WhatsApp/Telegram → Obsidian 智能记忆增强，防幻觉纠偏，隐私脱敏，Ollama 语义检索（开车/工地语音输入友好）",
+  "emoji": "🧠",
+  "tags": ["obsidian", "memory", "note-taking", "voice-input", "privacy", "ollama", "semantic-search", "whatsapp", "telegram", "ai-notes", "anti-hallucination", "daily-notes"],
+  "requires": {
+    "tools": ["memory_search", "exec", "write", "read"],
+    "providers": ["ollama"]
+  },
+  "permissions": {
+    "file_read": true,
+    "file_write": true,
+    "exec": true,
+    "memory_search": true
+  },
+  "features": {
+    "voice_correction": {
+      "enabled": true,
+      "whitelist": {
+        "Open Crow": "OpenClaw",
+        "导课": "Docker",
+        "码云": "Git",
+        "病毒": "Docker",
+        "阿里云百炼": "Bailian"
+      }
+    },
+    "privacy_protection": {
+      "enabled": true,
+      "patterns": {
+        "api_key": "[API_KEY_PROTECTED]",
+        "password": "[PASSWORD_PROTECTED]",
+        "token": "[TOKEN_PROTECTED]",
+        "phone": "[PHONE_PROTECTED]",
+        "email": "[EMAIL_PROTECTED]"
+      }
+    }
+  },
+  "config": {
+    "obsidian_path": "~/Obsidian/Daily Notes",
+    "ollama_model": "nomic-embed-text",
+    "git_backup": {
+      "enabled": true,
+      "repo": "obsidian-vault",
+      "branch": "main"
+    }
+  },
+  "agents": {
+    "organizer": {
+      "name": "整理专家",
+      "schedule": "23:00",
+      "task": "每日笔记自动标签归类"
+    },
+    "reviewer": {
+      "name": "复盘专家",
+      "schedule": "周日 20:00",
+      "task": "生成一周摘要"
+    }
+  }
 }

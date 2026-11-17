@@ -1,49 +1,62 @@
-## Description: <br>
-Temu Fulfillment EU helps agents work with Temu EU fulfillment workflows, including buy-shipping labels, cooperative warehouse fulfillment, self-fulfilled shipment updates, tracking, scan forms, pickup reservations, and self-delivery POD upload and audit flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Temu EU fulfillment and shipping API workflows for buy-shipping labels, co-warehouse fulfillment, self-fulfilled shipments, tracking, and self-delivery POD upload and audit.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operators, and developers use this skill to automate Temu EU fulfillment and shipping tasks through documented API wrappers. It supports order-shipping workflows such as label purchase, warehouse fulfillment submit or cancel, tracking lookup, shipment confirmation, pickup reservation, and POD handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe (Temu EU fulfillment workflows) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live fulfillment actions that affect shipments, pickup reservations, warehouse fulfillment, and POD workflows. <br>
-Mitigation: Require human confirmation before shipment creation, shipment confirmation, pickup cancellation, warehouse fulfillment cancellation, or other state-changing operations. <br>
-Risk: The skill requires sensitive LinkFox and Temu credentials, and its token-store helper writes Temu access tokens to a local plaintext JSON file by default. <br>
-Mitigation: Use least-privilege and purpose-specific tokens, avoid sharing secrets in chat or shell history, restrict file permissions, and prefer a secure secret manager or protected token-store path. <br>
-Risk: Server security evidence marks the release suspicious because it changes live shipping operations and uses weak local token safeguards. <br>
-Mitigation: Install only when the publisher is trusted and the operator needs live Temu EU fulfillment automation; review requested actions and inputs before execution. <br>
+## Use Case:
 
+External Temu sellers, operations teams, and developers use this skill to run EU order-shipping fulfillment workflows, including label purchase, shipment confirmation, warehouse fulfillment, tracking lookup, and POD handling.
 
-## Reference(s): <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [API Reference](artifact/references/api.md) <br>
-- [Access Token Guide](artifact/references/access-token.md) <br>
-- [Authorization Flow](artifact/references/authorization-flow.md) <br>
-- [Partner EU Fulfillment Catalog](artifact/references/partner-eu-catalog.md) <br>
-- [API Documentation Index](artifact/references/apis/README.md) <br>
-- [Temu Partner EU Documentation](https://partner-eu.temu.com/documentation?menu_code=7289390cfd724be4a196f11ebe45a896) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-temu-fulfillment-eu) <br>
+### Deployment Geography for Use:
 
+Europe (Temu EU seller workflows)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with Python shell commands and JSON request or response examples; live API calls return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LinkFox and Temu credentials for live fulfillment operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles powerful Temu seller credentials and sensitive order or shipment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace, avoid shared machines, grant only the Temu permissions needed for the task, and treat saved tokens and response files as sensitive.
+
+Risk: Shipment confirmation, cancellation, payment-related, or POD upload actions can affect real seller operations.
+
+Mitigation: Review generated requests and confirm business-critical actions before running scripts in a real Temu seller environment.
+
+Risk: Endpoint override environment variables could redirect requests away from expected LinkFox or Temu services.
+
+Mitigation: Avoid endpoint overrides unless they are required and have been reviewed for the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-fulfillment-eu)
+- [Partner EU fulfillment catalog](artifact/references/partner-eu-catalog.md)
+- [API reference](artifact/references/api.md)
+- [Temu access token guide](artifact/references/access-token.md)
+- [Authorization flow](artifact/references/authorization-flow.md)
+- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=7289390cfd724be4a196f11ebe45a896)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API request or response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts write full API responses under the current workspace linkfox data directory and may print either complete JSON or summarized output depending on response size.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

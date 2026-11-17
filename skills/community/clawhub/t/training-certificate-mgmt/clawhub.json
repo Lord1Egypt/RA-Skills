@@ -1,0 +1,13 @@
+{
+  "name": "training-certificate-mgmt",
+  "displayName": "技能证书管理",
+  "version": "1.0.0",
+  "description": "培训证书全生命周期管理：证书模板设计、证书生成（含编号/学员信息/培训内容/成绩）、证书发放与签收确认、证书查询验证（二维码/编号）、证书续期/升级管理、证书作废与补办流程。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "certificate", "certification-management", "credential", "education"],
+  "minOpenClawVersion": "1.2.0"
+}

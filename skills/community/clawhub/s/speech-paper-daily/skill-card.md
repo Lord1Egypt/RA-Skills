@@ -1,44 +1,55 @@
-## Description: <br>
-Finds recent speech and audio arXiv preprints, reads relevant papers, summarizes methods and results in Chinese with a 10-point expert score, and creates a Tencent Docs report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech Paper Daily searches recent arXiv speech and audio preprints, reads each relevant paper from a domain-expert perspective, produces structured Chinese summaries with technical details and scores, and can write the digest to Tencent Docs.
 
-## Publisher: <br>
-[JusperLee](https://clawhub.ai/user/JusperLee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jusperlee](https://clawhub.ai/user/jusperlee)
 
-## Use Case: <br>
-External users and developers use this skill to generate daily Chinese briefings on current arXiv speech and audio papers, including paper metadata, technical analysis, source links, demo or code links when present, and expert ratings. The skill can publish the report to a configured Tencent Docs folder or return the report in chat if publishing fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Tencent Docs reports through a local account and fixed destination folder. <br>
-Mitigation: Confirm the Tencent Docs account and folder ID YUsookchBhki are the intended destination before invoking the publishing step. <br>
-Risk: Generated paper summaries, classifications, links, and ratings may be incomplete or inaccurate. <br>
-Mitigation: Review the cited arXiv pages, source paper text, and generated ratings before sharing or relying on the report. <br>
-Risk: The workflow may write temporary files and execute a helper Python script to publish the report. <br>
-Mitigation: Inspect generated files and commands, and run the skill only in an environment where local file creation and Tencent Docs side effects are acceptable. <br>
+## Use Case:
 
+External users and researchers use this skill to find recent speech and audio arXiv papers, review concise Chinese technical digests, and create a daily Tencent Docs report when document-writing tools are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JusperLee/speech-paper-daily) <br>
-- [arXiv cs.SD new submissions](https://arxiv.org/list/cs.SD/new) <br>
-- [arXiv eess.AS new submissions](https://arxiv.org/list/eess.AS/new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Chinese Markdown or MDX report with paper metadata, links, summaries, technical analysis, experiment notes, and scores.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write temporary Markdown and Python helper files, call a local Tencent Docs integration, and create smartcanvas documents in a configured folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create Tencent Docs in a fixed folder through local script execution without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where Tencent Docs writes and local helper execution are approved, and confirm the intended document creation before running the write step.
+
+Risk: Broad trigger phrases may activate document-writing behavior when a user only expects a chat summary.
+
+Mitigation: Review the skill before installation and prefer chat-only use unless Tencent Docs creation is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jusperlee/skills/speech-paper-daily)
+- [arXiv cs.SD new submissions](https://arxiv.org/list/cs.SD/new)
+- [arXiv eess.AS new submissions](https://arxiv.org/list/eess.AS/new)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown digest with paper metadata, links, technical summaries, experiment notes, scores, and optional Tencent Docs creation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May split long digests into multiple documents when content exceeds the documented length threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

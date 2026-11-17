@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn74r6chayvj4vaadx1bmjamg183kpb6",
-  "slug": "design-framework-builder",
+  "name": "design-framework-builder",
   "version": "2.0.0",
-  "publishedAt": 1776841933593
+  "description": "设计框架自动生成套件（框架生成器）：收到设计需求后自动生成完整设计框架并发送群预览，等待确认",
+  "author": "807209066",
+  "tags": ["design", "telegram", "automation", "design-framework-suite"],
+  "requirements": [],
+  "lastUpdated": "2026-04-16"
 }

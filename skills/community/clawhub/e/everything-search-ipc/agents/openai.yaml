@@ -1,0 +1,4 @@
+interface:
+  display_name: "Everything 本地搜索"
+  short_description: "通过 Everything 搜索本机路径及 Codex 会话 JSONL 日志"
+  default_prompt: "使用 $everything-search 搜索本机文件、文件夹或 Codex 历史会话日志并返回完整路径。"

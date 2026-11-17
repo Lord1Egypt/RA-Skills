@@ -1,37 +1,52 @@
-## Description: <br>
-Guides agents to produce academic writing in Markdown with formal structure, verifiable numbered citations, a References section, and academic-source discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Writing helps agents produce scholarly papers, literature reviews, research methodology, and thesis writing with formal structure, Markdown formatting, and verifiable academic citations.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, and developers can use this skill to draft or revise scholarly papers, literature reviews, methodology sections, thesis material, and other academic content while following citation and integrity constraints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Incorrect, unverifiable, or fabricated citations could undermine academic integrity.
+
+Mitigation: Verify every citation against legitimate academic sources and keep citation numbering sequential before relying on the output.
+
+Risk: The required <ama-doc> wrapper and Markdown-only output may not fit every downstream publishing workflow.
+
+Mitigation: Confirm that the consuming workflow accepts Markdown wrapped in <ama-doc> tags before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and researchers use this skill to ask an agent for research papers, literature reviews, methodology sections, thesis-style writing, tables, and diagrams that follow academic citation and formatting standards. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Academic citations or source claims may still be incorrect even though the skill instructs the agent to use verifiable academic sources. <br>
-Mitigation: Users should check important citations, links, and references before relying on the output. <br>
+**Output Format:** [Markdown wrapped in <ama-doc> tags with numbered citations and a References section]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include Markdown tables and Mermaid diagrams when useful for academic presentation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown wrapped in <ama-doc> tags with numbered citations and a References section] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Markdown tables and Mermaid diagrams when appropriate.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

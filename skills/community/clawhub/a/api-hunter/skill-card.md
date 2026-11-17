@@ -1,41 +1,59 @@
-## Description: <br>
-API Hunter searches for free API providers that match a requested capability and returns a concise report of candidate services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically searches for free API providers matching a requested capability and returns a concise report of candidate APIs.
 
-## Publisher: <br>
-[terryyehai](https://clawhub.ai/user/terryyehai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryyehai](https://clawhub.ai/user/terryyehai)
 
-## Use Case: <br>
-Developers and agents use this skill to discover API providers for a requested feature, with emphasis on free tiers and no-signup options. It is useful for early integration research before selecting and validating a provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search results and provider pages can be stale, incomplete, or inaccurate about pricing, signup requirements, and API key availability. <br>
-Mitigation: Verify shortlisted providers against their current official documentation before using them in production workflows. <br>
-Risk: The skill makes HTTP requests to a local search service and to discovered provider URLs. <br>
-Mitigation: Run it in a trusted environment, review outbound network behavior, and avoid submitting sensitive queries unless the search endpoint is approved for that data. <br>
+## Use Case:
 
+Developers and technical operators use API Hunter to find free or no-signup API providers for a capability such as weather, translation, market data, or image generation. It is best suited for initial discovery and comparison before validating provider terms and availability.
 
-## Reference(s): <br>
-- [API Hunter ClawHub page](https://clawhub.ai/terryyehai/api-hunter) <br>
-- [Publisher profile](https://clawhub.ai/user/terryyehai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with links, tables, and short code or command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the configured local search endpoint and the availability of external provider pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill performs outbound web requests and uses a localhost search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where outbound network access and localhost search use are approved, and avoid passing untrusted or internal URLs to dashboard checks.
+
+Risk: Search results may be stale, incomplete, or misleading about free tiers and no-signup availability.
+
+Mitigation: Verify provider documentation, pricing, registration requirements, and terms before relying on a recommended API.
+
+Risk: Dependency drift or unused dependencies can increase maintenance and review burden.
+
+Mitigation: Pin dependencies for deployment and remove unused beautifulsoup4 if it is not needed.
+
+## Reference(s):
+
+- [API Hunter on ClawHub](https://clawhub.ai/terryyehai/skills/api-hunter)
+- [Public APIs collection](https://github.com/public-apis/public-apis)
+- [Puter.js developer documentation](https://developer.puter.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with inline tables, terminal text, and Python string return values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live search depends on an approved localhost search service and outbound web requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

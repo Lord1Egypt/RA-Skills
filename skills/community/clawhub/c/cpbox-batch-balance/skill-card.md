@@ -1,43 +1,58 @@
-## Description: <br>
-Guide users on how to use the Batch EVM Address Balance Query API (/api/x402/batch-balance) for batch balance queries, multicall balance lookups, and calls to the x402-protected balance endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users on how to use the Batch EVM Address Balance Query API (/api/x402/batch-balance). Use when users ask about batch balance queries, multicall balance lookups, or how to call the x402-protected balance endpoint.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare batch EVM balance requests against CPBox's x402-protected endpoint and understand the request parameters, payment flow, and response shape. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-signed x402 payments may be made automatically by helper clients without clear confirmation or spending-limit instructions. <br>
-Mitigation: Use a dedicated low-balance wallet, verify payment requirements and amount before each request, and avoid using a primary private key in code or chat. <br>
-Risk: Using external payment packages with wallet credentials can expose users to package or configuration risk. <br>
-Mitigation: Pin and review the external payment package before use and keep wallet credentials outside shared prompts, logs, and examples. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare paid x402 requests for querying native or ERC-20 balances across batches of EVM addresses. It provides request structure, shell commands, and code examples for the cpbox batch-balance endpoint.
 
-## Reference(s): <br>
-- [CPBox API provider](https://www.cpbox.io) <br>
-- [Batch balance endpoint](https://www.cpbox.io/api/x402/batch-balance) <br>
-- [CPPay facilitator](https://www.cppay.finance) <br>
-- [x402-payment wallet configuration](https://github.com/springmint/x402-payment#wallet-configuration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API call examples] <br>
-**Output Format:** [Markdown with bash, TypeScript, Go, cURL, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes request and response examples plus x402 payment-flow guidance for a paid API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill can lead an agent to make automatic paid x402 API requests using wallet credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet and require confirmation of payment amount, network, and recipient before sending requests.
+
+Risk: The CLI example uses an unpinned npx package in a wallet-enabled workflow.
+
+Mitigation: Prefer a pinned, reviewed package version or a controlled local install before use in sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sprintmint/skills/cpbox-batch-balance)
+- [Publisher profile](https://clawhub.ai/user/sprintmint)
+- [Batch balance endpoint](https://www.cpbox.io/api/x402/batch-balance)
+- [API provider](https://www.cpbox.io)
+- [Payment facilitator](https://www.cppay.finance)
+- [x402-payment wallet configuration](https://github.com/springmint/x402-payment#wallet-configuration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include paid API request examples that require wallet configuration and x402 payment handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

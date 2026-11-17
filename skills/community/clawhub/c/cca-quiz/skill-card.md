@@ -1,40 +1,48 @@
-## Description: <br>
-Runs a Chinese CCA practice quiz with 12 scenario-based multiple-choice questions covering five core domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language CCA mock quiz with 12 scenario-based multiple-choice questions across five domains.
 
-## Publisher: <br>
-[sawzhang](https://clawhub.ai/user/sawzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sawzhang](https://clawhub.ai/user/sawzhang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to run an interactive CCA practice quiz, receive per-question feedback, and review domain-level performance after completion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requests shell access even though the release security summary says a static quiz does not need shell commands.
+
+Mitigation: Review before installation and prefer a version that removes Bash permission or otherwise limits tool access to the minimum needed for presenting the quiz.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External learners and developers use this skill to assess CCA readiness through an interactive Chinese mock exam. The agent asks one question at a time, explains answers, scores the full quiz, and recommends domain-specific follow-up study. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares Read and Bash permissions even though the quiz behavior does not require filesystem or shell access. <br>
-Mitigation: Install in stricter environments only after reviewing permissions, or prefer a version without Read and Bash access. <br>
-Risk: Quiz content and scoring may not reflect the current CCA exam if the exam changes. <br>
-Mitigation: Treat results as practice guidance and review answers against current exam objectives before relying on them for readiness decisions. <br>
+**Output Format:** [Markdown-style conversational quiz prompts, answer explanations, scoring summary, and study guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sawzhang/cca-quiz) <br>
+**Other Properties Related to Output:** [Presents one question at a time and summarizes score by CCA domain after all 12 questions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted interactive quiz questions, answer explanations, score summaries, and study recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one question at a time and summarizes results after all 12 questions are answered.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

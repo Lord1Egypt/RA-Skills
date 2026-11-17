@@ -1,44 +1,59 @@
-## Description: <br>
-Sets up and manages WhatsApp Business accounts including auto-response systems, client communication workflows, FAQ templates, and broadcast campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up and manages WhatsApp Business accounts including auto-response systems, client communication workflows, FAQ templates, and broadcast campaigns.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-External operators and service providers use this skill to set up and manage WhatsApp Business communication workflows for clients, including profile setup, automated replies, FAQ templates, quick replies, and broadcast campaign plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad keyword triggers can send an irrelevant canned response in a real customer conversation. <br>
-Mitigation: Test auto-response triggers with representative conversation examples and narrow broad triggers such as 'where', 'help', and '1' or require menu state before deployment. <br>
-Risk: Broadcast campaigns can create compliance or customer-trust issues if sent to the wrong audience or without opt-out handling. <br>
-Mitigation: Use opted-in contact lists, include an opt-out instruction such as 'Reply STOP to unsubscribe', and limit repeated broadcasts to the same contact. <br>
-Risk: Installing the companion npm package introduces supply-chain risk outside the Markdown artifact. <br>
-Mitigation: Review the npm package before installation and test the `cashclaw` commands in a controlled environment. <br>
+## Use Case:
 
+External service providers and business operators use this skill to configure WhatsApp Business profiles, auto-response templates, quick replies, FAQ systems, and broadcast campaign workflows for client communications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andreataide86/skills/cashclaw-whatsapp-manager) <br>
-- [Publisher Profile](https://clawhub.ai/user/andreataide86) <br>
-- [CashClaw npm package](https://www.npmjs.com/package/cashclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces client-ready WhatsApp Business setup notes, templates, campaign plans, FAQ structures, and operational recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned external npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package provenance before installation, pin a known reviewed version, and run the CLI with least-privilege access.
+
+Risk: The workflows handle customer inquiries, support tickets, audience lists, and broadcast campaign data.
+
+Mitigation: Require privacy safeguards, minimize collected customer data, and limit access to communication records and campaign audiences.
+
+Risk: Broad auto-response triggers and broadcast campaigns can send incorrect, unwanted, or non-compliant messages.
+
+Mitigation: Review response templates and trigger mappings before use, send broadcasts only to opted-in contacts, and keep opt-out language in campaign messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/cashclaw-whatsapp-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/andreataide86)
+- [npm package: cashclaw](https://www.npmjs.com/package/cashclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WhatsApp Business setup documents, response templates, campaign briefs, FAQ JSON/Markdown, metrics guidance, and example CLI commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Gets Venezuelan exchange rates, including the BCV official USD rate, Binance P2P USDT averages, and the gap between official and parallel rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get Venezuelan exchange rates - BCV official rate, Binance P2P USDT average, and the gap between them.
 
-## Publisher: <br>
-[jehg814](https://clawhub.ai/user/jehg814) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jehg814](https://clawhub.ai/user/jehg814)
 
-## Use Case: <br>
-External users and developers use this skill to answer questions about Venezuelan USD/VES rates, compare the BCV official rate with Binance P2P USDT prices, and estimate the exchange-rate gap and a 100 USD conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exchange-rate output may be stale, estimated, or based on fallback data when BCV or Binance data is unavailable. <br>
-Mitigation: Check the reported source, Fecha Valor, and any fallback, respaldo, or estimado warning before relying on the rate. <br>
-Risk: The skill contacts external public market-data services and requires local python3 and bc to run. <br>
-Mitigation: Install only in environments where those outbound requests and local command dependencies are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current Venezuelan exchange-rate information, including the BCV official rate, Binance P2P USDT averages, and the gap between official and parallel rates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jehg814/ve-exchange-rates) <br>
-- [BCV official exchange-rate source](https://www.bcv.org.ve/) <br>
-- [Binance P2P API endpoint](https://p2p.binance.com/bapi/c2c/v2/friendly/c2c/adv/search) <br>
-- [ExchangeRate API fallback endpoint](https://api.exchangerate-api.com/v4/latest/USD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text terminal output with rates, warnings, and conversion calculations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and bc; contacts BCV, Binance P2P, and a fallback exchange-rate API for public market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: The skill makes live web requests to BCV, Binance P2P, and a fallback exchange-rate API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where those external requests are acceptable and disclose that the rates come from live public sources.
+
+Risk: Exchange-rate outputs are market data that can fluctuate or become stale.
+
+Mitigation: Check the reported source and BCV date warning, rerun for current data, and independently verify rates before making financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jehg814/skills/ve-exchange-rates)
+- [BCV exchange-rate source](https://www.bcv.org.ve/)
+- [Binance P2P exchange-rate endpoint](https://p2p.binance.com/bapi/c2c/v2/friendly/c2c/adv/search)
+- [ExchangeRate API fallback endpoint](https://api.exchangerate-api.com/v4/latest/USD)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Console text that can be summarized as Markdown for user-facing replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live source labels, BCV Fecha Valor when available, date mismatch warnings, P2P buy/sell/average rates, gap percentage, and a 100 USD conversion example.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

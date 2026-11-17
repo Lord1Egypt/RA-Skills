@@ -1,38 +1,49 @@
-## Description: <br>
-Development and management of the Luban CLI for MLOps, used when building or using the CLI to manage experiment environments, training tasks, and online services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Development and management of the Luban CLI for MLOps. Use this skill when building or using the Luban CLI to manage experiment environments, training tasks, and online services.
 
-## Publisher: <br>
-[guunergooner](https://clawhub.ai/user/guunergooner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guunergooner](https://clawhub.ai/user/guunergooner)
 
-## Use Case: <br>
-Developers and MLOps engineers use this skill to build or operate a Luban CLI for managing experiment environments, training jobs, and online inference services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real Luban commands derived from the skill may delete, stop, scale, or otherwise affect running workloads and services. <br>
-Mitigation: Review the target environment, resource identifiers, and requested action before executing generated or copied commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Luban CLI MLOps Management Guide](artifact/references/mlops_guide.md) <br>
-- [Luban CLI Boilerplate](artifact/templates/cli_boilerplate.py) <br>
+## Use Case:
 
+Developers and MLOps engineers use this skill to build or operate a Luban CLI for managing experiment environments, training jobs, and online inference services.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with CLI command examples and Python boilerplate references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed Luban CLI command patterns; review target environments and resource identifiers before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Resource create, delete, update, and scale commands can affect production workloads, billing, or service availability if applied to the wrong target.
+
+Mitigation: Require clear target identifiers, confirmations or force flags, dry-run modes where practical, and documentation of billing and service availability impact before executing production-impacting commands.
+
+## Reference(s):
+
+- [Luban CLI MLOps Management Guide](references/mlops_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/guunergooner/skills/luban-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python CLI boilerplate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command patterns for env, job, and svc resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

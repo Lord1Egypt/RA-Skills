@@ -1,0 +1,25 @@
+'''
+67读取成交数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+def get_deal(c,accountid,datatype):
+	'''
+	获取成交
+	'''
+	data=pd.DataFrame()
+	deals = get_trade_detail_data(account, 'stock', 'deal')
+	print('成交数量{}'.format(len(deals)))
+	if len(deals):
+		df=pd.DataFrame()
+		for dt in deals:
+			df['股票代码']=[dt.m_strInstrumentID]
+			df['市场类型']=[dt.m_strExchangeID]
+			df['证券代码']=df['股票代码']+'.'+df['市场类型']
+			df['证券名称']=[dt.m_strInstrumentName]
+			df['买卖方向']=[dt.m_nOffsetFlag]
+			df['成交价格']=[dt.m_dPrice]
+			df['成交数量']=[dt.m_nVolume]
+			df['成交金额']=[dt.m_dTradeAmount]
+			data=pd.concat([data,df],ignore_index=True)
+	else:
+		data=pd.DataFrame()

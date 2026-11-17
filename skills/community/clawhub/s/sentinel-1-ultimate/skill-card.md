@@ -1,41 +1,48 @@
-## Description: <br>
-Portable USB AI agent with 7 guardians for offline sovereignty on Windows <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portable USB AI agent with 7 guardians for offline sovereignty on Windows.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kofna3369](https://clawhub.ai/user/kofna3369)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill as Windows-focused guidance for running a portable offline AI agent from a USB drive with local storage and launch checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The published package claims to include Windows launchers, executables, documentation, model instructions, and agent files that are not present in the artifact.
+
+Mitigation: Review the package before installing and do not run separately obtained launcher, koboldcpp, or Sentinel files unless their source and contents are independently verified.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to understand a Windows portable USB AI bundle, including its included components, quick-start flow, offline posture, and launch-time security checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed skill artifact is only a markdown description, so the separately described portable Windows bundle, batch launcher, executable files, model download flow, and encryption setup have not been reviewed in this artifact. <br>
-Mitigation: Inspect the full package separately before use, especially before processing sensitive data. <br>
-Risk: The artifact describes offline operation and launch-time security guardians, but those controls are not executable or testable from the reviewed markdown-only skill. <br>
-Mitigation: Validate the bundle behavior, encryption setup, and launch checks in a controlled Windows environment before relying on them. <br>
+**Output Format:** [Markdown guidance with Windows command and file references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/sentinel-1-ultimate) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [The published artifact is README-like and does not include the claimed launcher, executable, documentation, model instructions, or agent code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline file paths, Windows launcher names, and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reviewed artifact is a markdown skill description only; executable bundle contents are not included in the reviewed skill artifact.] <br>
+2.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

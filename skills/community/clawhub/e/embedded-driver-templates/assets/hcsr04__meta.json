@@ -1,0 +1,8 @@
+{
+  "name": "hcsr04",
+  "desc": "HC-SR04 超声波测距驱动（可移植 C99，量程过滤，错误码显式）",
+  "version": "1.0.0",
+  "verified": "C 逻辑测试 7 项断言全通过（9 款合计 107 项 0 失败，gcc 16.2.0 -Wall -Wextra -O1 逐款零警告，2026-10-27 实跑）；未做上板实测",
+  "usage": "复制 hcsr04.h/hcsr04.c/hcsr04_port.h 进工程，在 hcsr04_port.h 按注释填 4 个接口",
+  "common_pitfalls": "echo 脚是 5V 输出→3.3V MCU 建议分压；阻塞轮询版 delay_us 精度不足→测距跳动；38ms 无回波=超量程不是坏了"
+}

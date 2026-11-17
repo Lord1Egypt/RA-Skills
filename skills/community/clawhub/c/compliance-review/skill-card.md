@@ -1,42 +1,62 @@
-## Description: <br>
-Automatically reviews client claim authorization notice letters against configured insurance templates and sends review results to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically reviews compliance of client claim authorization letters using customized insurer templates and sends review results to Feishu every 30 minutes.
 
-## Publisher: <br>
-[liulong423401-coder](https://clawhub.ai/user/liulong423401-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liulong423401-coder](https://clawhub.ai/user/liulong423401-coder)
 
-## Use Case: <br>
-Insurance claim operations and compliance reviewers use this skill to check whether client claim authorization notice letters contain required authorization documents and handwritten signatures. The skill is intended to reduce manual review effort and notify reviewers through Feishu after each review cycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates decisions in a sensitive insurance claim-review workflow, including first-run auto-approval. <br>
-Mitigation: Review before installing, require explicit approval for automated approval behavior, and disable first-run auto-approval unless it is required by policy. <br>
-Risk: Runtime behavior and key controls are unclear because the submitted artifact references a runtime entry point that is not included. <br>
-Mitigation: Verify the complete runtime code before deployment and confirm that it cannot approve or mutate claim-review tasks beyond the intended scope. <br>
-Risk: Feishu notifications and audit logs may expose regulated or sensitive review information. <br>
-Mitigation: Confirm webhook destinations, message contents, log retention, and access controls against privacy and compliance requirements before use. <br>
+## Use Case:
 
+Insurance operations teams in a controlled Chinese insurance-review environment use this skill to check client claim authorization notices for handwritten signatures and required authorization documents across insurer templates, then send review status to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liulong423401-coder/compliance-review) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text or notification content, with JavaScript configuration for review rules and integrations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configured behavior includes Feishu notifications and 90-day JSONL audit logs when implemented by the runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/package.json, artifact/SKILL.md, server release evidence) <br>
+Risk: Automated first-run approval can approve review decisions without explicit human confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable first-run auto-approval and require human or administrator approval before review decisions are accepted.
+
+Risk: The configured login endpoint uses HTTP for an insurance-review workflow.
+
+Mitigation: Change the login endpoint to HTTPS before use and verify transport security for all connected systems.
+
+Risk: Feishu notifications may expose sensitive review context if recipients and message contents are not scoped.
+
+Mitigation: Limit notification content and recipients, document the Feishu integration, and confirm no customer personal information is collected or transmitted.
+
+Risk: The package is incomplete as provided because its declared runtime entry point is missing.
+
+Mitigation: Install only after the entry point is supplied, dependencies are pinned with a lockfile, and the complete package is reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liulong423401-coder/skills/compliance-review)
+- [Publisher profile](https://clawhub.ai/user/liulong423401-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain text review results, Feishu notifications, and JSONL audit log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled every 30 minutes; audit logging is configured with 90-day retention.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

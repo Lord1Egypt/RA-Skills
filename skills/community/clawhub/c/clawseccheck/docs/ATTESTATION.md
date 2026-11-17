@@ -1,5 +1,11 @@
 # Attestation Guide
 
+> Looking for pre-install attestation of a THIRD-PARTY skill (not your own
+> agent setup)? That's a separate, escalate-only mechanism - see
+> `--vet-judge-packet`/`--vet-judged` in `docs/OUTPUT_SCHEMA.md` §15/§16 and
+> SKILL.md's "Judge-panel fan-out for `--vet` targets" section. This guide
+> covers `--attest`, the whole-agent self-report described below.
+
 ## What attestation is
 
 ClawSecCheck reads your OpenClaw config and bootstrap files.  That read-only
@@ -10,33 +16,43 @@ Attestation is the agent's own self-report that fills those gaps.  You produce
 it once with `--ask` and feed it back to the audit with `--attest <file>`.
 
 Without attestation the runtime-dependent checks return `UNKNOWN` and are
-excluded from the score — the grade stays conservative but honest.  With
-attestation four checks produce real verdicts:
+excluded from the score - the grade stays conservative but honest.  With
+attestation five checks produce real verdicts:
 
 | Check | What it needs | Without attestation |
 |---|---|---|
-| B43 — capability blast-radius | `tools`, `approval_gates`, `approval_bypass_actors`, `untrusted_to_action` | UNKNOWN |
-| B44 — config/attest mismatch | `tools` | UNKNOWN |
-| B45 — per-agent privilege separation | `agents` | UNKNOWN |
-| B47 — cross-agent trifecta reassembly | `agents`, `delegation` | UNKNOWN |
+| B43 - capability blast-radius | `tools`, `approval_gates`, `approval_bypass_actors`, `untrusted_to_action` | UNKNOWN |
+| B44 - config/attest mismatch | `tools` | UNKNOWN |
+| B45 - per-agent privilege separation | `agents` | UNKNOWN |
+| B47 - cross-agent trifecta reassembly | `agents`, `delegation` | UNKNOWN |
+| B84 - declared vs. effective vs. proven tool use | `proven_tools` (prefers a trajectory-log source when available) | UNKNOWN |
 
-Two more checks are assisted (not blocked) by attestation:
+More checks are assisted (not blocked) by attestation:
 
-- **B50–B54** (host monitors): declaring a monitor the file scan cannot see
-  upgrades UNKNOWN to PASS (ATTESTED confidence).
+- **B50-B54** (host monitors): a `host_monitors` name that matches the check's
+  category makes that check report PASS (ATTESTED confidence) in place of
+  whatever it would have said without it - UNKNOWN, or WARN where the agent is
+  high-privilege - unless the host scan itself already found such a monitor.
+- **B16** (threat monitoring): any named entry under `host_monitors` turns
+  B16 from WARN to PASS (ATTESTED confidence), whatever the monitor is called -
+  unlike B50-B54 it does not match the name against a category.
+- **B75** and **B76** (MCP tools reaching agents past their per-agent filters):
+  they read the `agents` roster, and stay UNKNOWN without one.  The roster is
+  also read by B3 and A1 (a declared roster lets an unseen capability leg count
+  as answered) and shows up in the report's capability graph.
 - **B20** (bootstrap write protection) and **C5** (OpenClaw binary safety):
   `paths` fields point the engine at non-standard locations it then stat()s
-  itself — the verdict stays HIGH confidence, not ATTESTED.
+  itself - the verdict stays MEDIUM confidence, not ATTESTED.
 
 ---
 
 ## Round-trip
 
 ```text
-# 1 — emit a filled-default template
+# 1 - emit a filled-default template
 clawseccheck --ask > answers.json
 
-# 2 — fill in the fields (see below), then run:
+# 2 - fill in the fields (see below), then run:
 clawseccheck --attest answers.json
 
 # or combine with a config path:
@@ -44,13 +60,15 @@ clawseccheck --home ~/.openclaw --attest answers.json
 ```
 
 The `_questions` block the template contains is documentation; the engine
-ignores it.  Leave it or remove it — either works.
+ignores it.  Leave it or remove it - either works.
 
 ---
 
 ## Schema: clawseccheck-attest/1
 
-The file must be valid JSON with `"schema": "clawseccheck-attest/1"` at the top.
+The file must be valid JSON. `"schema": "clawseccheck-attest/1"` at the top is
+recommended and future-proofs the file, but is not required - an absent `schema`
+key is accepted as-is; only a *present but wrong* value is rejected.
 
 ### tools
 
@@ -58,7 +76,7 @@ The file must be valid JSON with `"schema": "clawseccheck-attest/1"` at the top.
 "tools": ["search_email", "create_draft", "send_email", "create_filter"]
 ```
 
-The exact verb names you can invoke — same strings you would pass to a
+The exact verb names you can invoke - same strings you would pass to a
 tool-call API.  Include MCP-server verbs and built-ins.  The engine strips
 provider namespacing before classifying, so `mcp__Gmail__send_email` and
 `send_email` both resolve to `send_email`.
@@ -67,13 +85,47 @@ The engine classifies each verb into a blast-radius class:
 
 | Class | Hints matched | Risk |
 |---|---|---|
-| EXEC | `bash`, `shell`, `exec`, `run_command`, `run_code`, `terminal` | Arbitrary code — broadest blast |
+| EXEC | `bash`, `shell`, `exec`, `run_command`, `run_code`, `terminal` | Arbitrary code - broadest blast |
 | MAILBOX_CONFIG | `create_filter`, `auto_forward`, `delegate`, `set_signature`, `vacation` | Persistent silent channel |
 | DESTRUCTIVE | `delete_forever`, `permanently_delete`, `empty_trash`, `purge`, `expunge` | Irreversible data loss |
 | EGRESS | `send`, `reply`, `forward`, `post`, `publish`, `upload`, `export` | Outbound data |
 | REVERSIBLE | `search`, `list`, `get`, `read`, `fetch`, `create_draft`, `archive` | Low blast |
 
 A verb not matching any hint is classified UNKNOWN (treated as low-blast).
+
+### proven_tools
+
+```json
+"proven_tools": ["send_email"]
+```
+
+Verbs you have LOG or TRACE evidence you *actually invoked* - not just hold.
+Stronger than `tools` (which is only what you *could* invoke): a proven
+high-blast verb that fired with no approval gate is "the agent did, ungated,"
+not just "the agent could." Leave as `[]` if you have no execution log to
+cite. Feeds **B84** (declared vs. effective vs. proven tool use), which
+prefers an OpenClaw trajectory-log source over this field when one is
+present, and otherwise falls back to it. B84 is WARN when a proven
+high-blast verb fired AND it is attested as ungated: `untrusted_to_action` is
+`"ungated"`, or a recognised bypass actor is reported, or the `approval_gates`
+entry for that verb's own action class is `"auto"` (a send is judged by the
+`send` gate, an exec by the `exec` gate, never by another class's). B84 is
+also WARN when `proven_tools` holds a verb of a class that no tool in the same
+attestation's `tools` list falls in (for example a send while `tools` holds
+only read verbs): the self-report contradicts itself. Verbs are compared by the
+class the engine gives them, not by spelling, so `shell` against `bash` or
+`read` against `read_file` is no contradiction, and a verb the engine cannot
+classify is never one. The comparison only runs when `tools` is given, only
+against the attestation's own list, and a verb that `tools.allow` grants is
+left to B44. B84 is UNKNOWN when there's no proven-tool evidence at all (most
+setups, since this needs runtime/log evidence). When none of that applies it
+reads PASS, and the PASS says only what the attestation establishes: the
+sentence "no proven high-blast verb fired without an approval gate" appears
+only when every proven high-blast verb's own gate class is reported
+`"required"` and no bypass actor is declared. Otherwise the status is the
+same but the sentence says which part is not established (no gate reported for
+that class, no gate setting exists for that class, or a bypass actor is
+declared).
 
 ### approval_gates
 
@@ -82,11 +134,16 @@ A verb not matching any hint is classified UNKNOWN (treated as low-blast).
 ```
 
 For each action class: `"required"` (human confirms first), `"auto"` (agent
-acts without asking), or `"unknown"` (the default; treated as worst-case).
-Keys are fixed: `exec`, `send`, `write`.
+acts without asking), or `"unknown"` (the default). Only an explicit `"auto"`
+value marks a class as ungated for B43's wording - `"unknown"` is treated the
+same as `"required"` (not escalated), so leaving a class at its default reads
+as gated, not worst-case. Keys are fixed: `exec`, `send`, `write`.
 
-B43 uses this to distinguish WARN (high-blast verb + gate reported) from FAIL
-(high-blast verb + no gate or bypass actor).
+B43 uses this to distinguish a milder WARN (high-blast verb + gate reported) from a
+stronger WARN (high-blast verb + no gate or bypass actor). B43 is `ATTESTED`
+confidence and `scored=False` - the verdict is the audited agent's own self-report,
+so it never escalates to FAIL (a grade cap the subject can talk itself into would be
+unsound); WARN is its ceiling.
 
 ### approval_bypass_actors
 
@@ -96,10 +153,16 @@ B43 uses this to distinguish WARN (high-blast verb + gate reported) from FAIL
 
 Actors that can fire tool calls without human confirmation based on runtime
 logs or execution traces.  Common values: `heartbeat`, `cron`, `scheduled`,
-`sleeper`.  Leave as `[]` if none.
+`sleeper`.  A declared actor counts whatever it is called, but only those four
+and a few spellings of them (`cronjob`, `scheduler`, `periodic`, `alarm`,
+`clock`) are printed by name; any other actor is counted ("N other declared
+actor(s)") and never quoted.  A non-string or blank entry is not an actor.
+Leave as `[]` if none.
 
-B43 raises to FAIL when a bypass actor is present alongside a high-blast verb
-even if `approval_gates` says `"required"`.
+B43 escalates its WARN wording when a bypass actor is present alongside a
+high-blast verb even if `approval_gates` says `"required"`: it says how many
+actors are declared, names the recognised ones, and says the listed gates do
+not cover calls they start.  It never reaches FAIL (see above).
 
 ### untrusted_to_action
 
@@ -110,9 +173,11 @@ even if `approval_gates` says `"required"`.
 When the agent acts on untrusted content (incoming email, fetched web page,
 tool result), can a side-effect fire without human approval?
 
-- `"gated"` — no: human must confirm.
-- `"ungated"` — yes: side-effect can fire automatically.
-- `"unknown"` — not sure (default; treated as worst-case by B43).
+- `"gated"` - no: human must confirm.
+- `"ungated"` - yes: side-effect can fire automatically.
+- `"unknown"` - not sure (default). B43 only escalates on the explicit,
+  evidenced `"ungated"` value - a config shorthand or an unanswered/default
+  field is not treated as worst-case, it reads the same as `"gated"`.
 
 ### host_monitors
 
@@ -123,8 +188,9 @@ tool result), can a side-effect fire without human approval?
 Defensive monitors running on the agent's host that the read-only file scan
 cannot detect.  Use plain descriptive names; the engine keyword-matches them
 to the five host-watch categories (network IDS, host audit, file integrity,
-EDR/AV, firewall) and upgrades the matching B50–B54 result from UNKNOWN to
-PASS with ATTESTED confidence.  Leave as `[]` if unsure.
+EDR/AV, firewall) and turns the matching B50-B54 result into PASS with
+ATTESTED confidence (see the list above).  B16 counts any named entry.  Leave
+as `[]` if unsure.
 
 ### paths
 
@@ -135,13 +201,13 @@ PASS with ATTESTED confidence.  Leave as `[]` if unsure.
 }
 ```
 
-**`paths.bootstrap`** — absolute paths to identity and memory files
-(SOUL.md, AGENTS.md, TOOLS.md, MEMORY.md, …) if they live outside the
+**`paths.bootstrap`** - absolute paths to identity and memory files
+(SOUL.md, AGENTS.md, TOOLS.md, MEMORY.md, ...) if they live outside the
 default workspace locations the audit already scans.  The engine `stat()`s
-each path itself — you are only pointing it at where to look.  Enables B20
+each path itself - you are only pointing it at where to look.  Enables B20
 to check permissions on non-standard bootstrap locations.
 
-**`paths.openclaw_install`** — the directory OpenClaw is installed in when
+**`paths.openclaw_install`** - the directory OpenClaw is installed in when
 the `openclaw` binary is not on `PATH`.  The engine stats the directory
 itself.  Enables C5 to check binary-dir and ancestor permissions.
 
@@ -165,6 +231,34 @@ sensitive data + outbound/exec).
 
 Leave as `[]` for a single-agent setup.
 
+An entry must be an object with a non-blank `name` and a `tools` list whose
+members are all non-blank strings.  `"tools": []` is valid: an agent that
+declares it holds no tools is a legitimate self-report.
+
+The roster is all or nothing.  If `agents` is not a list, or any one entry
+fails the rule above, the whole roster is ignored - exactly as if the key
+were missing - and B45, B47, B75, B76, B3 and A1 read it that way.  Nothing
+is repaired or trimmed: a nameless agent, or one whose `tools` is not a list
+of names, would read as an agent that holds nothing, and dropping only the bad
+entry could drop the one that declared the risk.  The rest of the attestation
+is read as written.  The run prints one warning on stderr with the count and
+the reason (never the entry itself).
+
+A name is blank when nothing is left after removing whitespace and the Unicode
+control, format and separator characters (categories Cc, Cf, Zs, Zl, Zp), so a
+name made only of a zero-width space, a byte-order mark or a control byte is
+blank too.
+
+The same all-or-nothing rule applies to the name lists `tools`, `proven_tools`
+and `host_monitors`: a list with any member that is not a non-blank string is
+ignored whole, with the same kind of warning, as if the key were absent.  A
+valid list means what it always did - for example any named `host_monitors`
+entry still counts for B16.
+
+An attestation that cannot be parsed at all (not JSON, not an object, an
+unknown `schema`, or nested deeper than 200 levels) is ignored whole, with its
+own warning.
+
 ### delegation
 
 ```json
@@ -176,12 +270,12 @@ Leave as `[]` for a single-agent setup.
 
 Delegation edges between agents.  Each edge carries:
 
-- `"from"` / `"to"` — names matching entries in `agents`.
-- `"returns"` — how the **caller** handles the callee's output:
-  - `"schema"` — typed/structured value (a wall; blocks injected instructions).
-  - `"filtered"` — sanitized text (sieve; better than raw, not a wall).
-  - `"raw"` — verbatim passthrough (highest risk).
-  - `"unknown"` — not sure.
+- `"from"` / `"to"` - names matching entries in `agents`.
+- `"returns"` - how the **caller** handles the callee's output:
+  - `"schema"` - typed/structured value (a wall; blocks injected instructions).
+  - `"filtered"` - sanitized text (sieve; better than raw, not a wall).
+  - `"raw"` - verbatim passthrough (highest risk).
+  - `"unknown"` - not sure.
 
 B47 uses this graph to check whether an untrusted-input agent can reach the
 full trifecta by driving other agents.  A `"raw"` edge on any path from an
@@ -192,6 +286,25 @@ Leave as `[]` when there is no delegation.
 ### notes
 
 Free-text field for context.  The engine ignores it.
+
+### What counts as an answer
+
+Under `--full` the attestation is the audit's "agent self-report" layer, and the
+layer counts as submitted only when the attestation answers at least one
+question the checks read: a non-empty `tools`, `proven_tools` or `host_monitors`
+list; an `approval_gates` entry for `exec`, `send` or `write` set to
+`"required"` or `"auto"`; `untrusted_to_action` set to `"gated"` or
+`"ungated"`; a recognised `approval_bypass_actors` name; a non-empty
+`paths.bootstrap` or a `paths.openclaw_install`; a valid `agents` roster; or a
+`delegation` edge.  A declared `approval_bypass_actors` entry counts whatever
+it is called.  A string counts only when it has a visible character: a
+zero-width space, a control byte or a path of only whitespace is as empty as
+`""`.  A bare `schema`, a `notes` string, the unfilled template that `--ask`
+prints (its defaults are `"unknown"`, empty lists and empty paths) and a name
+list with a blank member are not answers.  Such a file - and a file whose
+content was all ignored with the stderr warning about unusable parts - is
+reported as not submitted, with a line saying the attestation carried no
+answers: it does not count as the self-report layer having run.
 
 ---
 
@@ -208,19 +321,21 @@ Free-text field for context.  The engine ignores it.
   "paths": {"bootstrap": [], "openclaw_install": ""},
   "agents": [],
   "delegation": [],
-  "notes": "Email assistant — approval required before any send or filter creation."
+  "notes": "Email assistant - approval required before any send or filter creation."
 }
 ```
 
 With this file the audit produces:
 
-- **B43 WARN** — agent holds MAILBOX_CONFIG and EGRESS verbs; approval gate
+- **B43 WARN** - agent holds MAILBOX_CONFIG and EGRESS verbs; approval gate
   prevents escalation to FAIL.
-- **B44 PASS or WARN** — depends on whether `tools.allow` in config lists a
-  high-blast verb absent from the attest `tools` array.
-- **B45 UNKNOWN** — no agent roster (single-agent setup).
-- **B47 UNKNOWN** — no delegation edges.
-- **B53 PASS (ATTESTED)** — CrowdStrike Falcon matches the EDR/AV category.
+- **B44 PASS or WARN, or UNKNOWN** - when the config has an explicit
+  `tools.allow` or `tools.alsoAllow` list, PASS or WARN depending on whether it
+  lists a high-blast verb absent from the attest `tools` array; when the config
+  has no such list there is nothing to compare, so B44 is UNKNOWN.
+- **B45 UNKNOWN** - no agent roster (single-agent setup).
+- **B47 UNKNOWN** - no delegation edges.
+- **B53 PASS (ATTESTED)** - CrowdStrike Falcon matches the EDR/AV category.
 
 ---
 

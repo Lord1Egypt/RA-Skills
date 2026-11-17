@@ -1,45 +1,60 @@
-## Description: <br>
-Executes Gemini Deep Research through the gemini-deep-research MCP extension for Gemini CLI, polls in the background, and saves completed reports locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute Gemini Deep Research using the gemini-deep-research MCP extension for the Gemini CLI for comprehensive research on market, industry, geopolitical, investment, or other complex multi-source topics.
 
-## Publisher: <br>
-[skywalker-lili](https://clawhub.ai/user/skywalker-lili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skywalker-lili](https://clawhub.ai/user/skywalker-lili)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to start long-running Gemini Deep Research tasks for market, industry, geopolitical, investment, or technical research and save the resulting report as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends research prompts to Gemini and may use paid API quota. <br>
-Mitigation: Avoid sensitive topics unless approved for Gemini use, confirm billing expectations, and ensure the paid Google AI API key is intentionally configured. <br>
-Risk: The setup guide installs a third-party Gemini Deep Research extension with auto-update behavior. <br>
-Mitigation: Review or pin the extension before use instead of relying on automatic updates. <br>
-Risk: Reports and logs are written locally and the polling process runs detached in the background. <br>
-Mitigation: Choose the output path explicitly, track the background process, and stop or clean it up when the task is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to start, monitor, and save Gemini Deep Research reports from an agent session. It is intended for deep, multi-source research workflows where the user confirms topic, report format, output path, and polling duration before execution.
 
-## Reference(s): <br>
-- [Gemini Deep Research setup guide](references/setup-guide.md) <br>
-- [gemini-cli-deep-research extension](https://github.com/allenhutchison/gemini-cli-deep-research) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/apikey) <br>
-- [NotebookLM](https://notebooklm.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON status objects, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-selected report format, output path, polling interval, and maximum polling duration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill relies on third-party Gemini extension code that may auto-update and execute locally with the user's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the extension version before use, and disable auto-update where possible.
+
+Risk: Detached background polling jobs can continue running after the agent exits and can access local files and Google research data.
+
+Mitigation: Run only on trusted machines, monitor the task directory, and avoid sensitive research topics on shared systems.
+
+Risk: Task files and report output paths have limited containment.
+
+Mitigation: Use a dedicated report directory and review task.json and output paths before starting research.
+
+## Reference(s):
+
+- [Gemini Deep Research Setup Guide](references/setup-guide.md)
+- [Gemini CLI Deep Research Extension](https://github.com/allenhutchison/gemini-cli-deep-research)
+- [Google AI Studio API Keys](https://aistudio.google.com/apikey)
+- [NotebookLM](https://notebooklm.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON status messages, shell commands, and task configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Comprehensive Research Report, Executive Brief, and Technical Deep Dive formats; background polling defaults to eight five-minute polling attempts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

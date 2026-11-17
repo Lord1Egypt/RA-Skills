@@ -1,44 +1,56 @@
-## Description: <br>
-Helps users choose statistical tests for psychology research data, run Python or SPSS-oriented analyses, and interpret statistics, effect sizes, confidence intervals, and APA-style results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+心理学数据分析决策与执行助手，帮助用户收集研究设计信息、选择统计检验、运行 Python 分析或提供 SPSS 步骤，并解读结果。
 
-## Publisher: <br>
-[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to plan and execute common psychology data analyses, including t tests, ANOVA, correlations, regression, mediation, moderation, assumption checks, effect-size reporting, and result interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a broad trigger for data analysis requests and may be applied to non-psychology, business, financial, or unrelated datasets. <br>
-Mitigation: Confirm the dataset and research question are psychology-focused before using the skill's statistical recommendations. <br>
-Risk: The included Python script analyzes local files selected by the user. <br>
-Mitigation: Run the script only on files intentionally chosen for analysis and review generated statistical outputs before using them in reports. <br>
+## Use Case:
 
+心理学研究人员、学生和数据分析者使用此技能来选择合适的统计检验、执行本地数据分析、获得 SPSS 操作指导，并生成包含统计量、效应量、置信区间和 APA 风格表述的结果解读。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/psychology-data-analysis) <br>
-- [Statistical test decision tree](references/stat_decision_tree.md) <br>
-- [Python data analysis guide](references/python_guide.md) <br>
-- [SPSS operation guide](references/spss_guide.md) <br>
-- [Effect size reference table](references/effect_size.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline code and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include statistical decision guidance, Python or SPSS steps, APA-style result text, and interpretation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Some documented or selectable analysis modes may be incomplete or unreliable, especially mediation, moderation, and chi-square workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify statistical recommendations and script output against trusted statistical software or expert review before relying on results in formal research.
+
+Risk: Psychology research datasets may contain sensitive participant data.
+
+Mitigation: Use only user-selected datasets, run the script in an isolated virtual environment with pinned dependencies, and avoid sharing confidential data in prompts or logs.
+
+## Reference(s):
+
+- [统计检验决策树](references/stat_decision_tree.md)
+- [Python 数据分析指南](references/python_guide.md)
+- [SPSS 操作指南](references/spss_guide.md)
+- [效应量参考表](references/effect_size.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and local script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include statistical recommendations, command examples, SPSS syntax, Python snippets, and APA-style result text.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

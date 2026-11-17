@@ -2,6 +2,18 @@
 
 查詢中華職棒 CPBL 即時比分 已完賽結果 賽程 戰績 球員數據 新聞與歷史資料
 
+## v2.0.0 重點
+
+- **官方進階數據整合（stats.cpbl.com.tw）**：新增 `cpbl_advanced.py`，接入 CPBL 官方 Statcast 級資料
+  - 擊球初速 × 仰角排行（EvAvg/EvMax/HardHit%/Barrels）
+  - 擊球彈道分布（滾地/飛球/平飛/內飛/高飛）
+  - 球種球速轉速（fastball/breakingball/細分球種，均速/極速/rpm）
+  - wOBA/AVG/SLG PR 百分位
+  - 聯盟年度總覽、單一球員逐球 Trackman 紀錄、球員基本資料
+  - 支援過濾：月份 / 球隊 / 守位 / 球種
+- **官方進階數據站免登入免 token**：全部經 `/api/proxy/v1/...` GET 即可，不需 CSRF token
+- **驗證**：2026-09-04 實測 7 大功能全通（example: 曾子祐平均擊球初速 133.4 km/h 居首）
+
 ## v1.5.2 重點
 
 - **Scrapling StealthyFetcher 正式取代 Camoufox**：維基館爬蟲全面改用 Scrapling 原生 API

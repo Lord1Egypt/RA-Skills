@@ -25,25 +25,25 @@ Evidence coverage: 12 signals across 3 source families.
 Scoring rationale:
 
 - Evidence count: 12; required minimum: 3.
-- Distinct source families: 3; sources: csdn, github, hacker-news.
+- Distinct source families: 3; sources: github, hacker-news, segmentfault.
 - Demand score: 70/70 based on corroboration, source diversity, and professional/community signal.
 - Local feasibility score: 30/30.
 - Implementation is a documentation, workflow, code, or analysis skill that can run on ordinary CPU hardware.
 
 ## Evidence
 
-- hacker-news-search (2026-06-19T08:21:09+00:00): [Trillions of dollars spent just to work on customer services?](https://news.ycombinator.com/item?id=48596176)
-- hacker-news-search (2026-06-15T11:59:10+00:00): [Tell HN: Forget selectors and screenshots. The agentic web lives in your shell](https://news.ycombinator.com/item?id=48540019)
-- hacker-news-search (2026-06-11T23:38:08+00:00): [Policy on the AI Exponential](https://news.ycombinator.com/item?id=48497908)
-- hacker-news-search (2026-06-10T18:29:43+00:00): [I'm Eric Ries, author of "The Lean Startup" and new book "Incorruptible" – AMA](https://news.ycombinator.com/item?id=48480617)
-- hacker-news-search (2026-06-11T16:06:17+00:00): [Workers are spending over 6 hours a week botsitting AI, fueling job frustration](https://news.ycombinator.com/item?id=48492245)
-- github-issues (2026-06-12T22:23:12+00:00): [Define Product Requirements and Business Rules](https://github.com/lenixeduardo/promptLabz/issues/21)
-- github-issues (2026-06-12T03:11:18+00:00): [validation: the organic-catch gate — the product idea is unvalidated until a real catch on unstaged work (or its absence is confronted)](https://github.com/autumngarage/cortex/issues/576)
-- github-issues (2026-06-11T11:17:51+00:00): [Custom Extensions showcase — guide + demo products + CI validation starter](https://github.com/Schema-Smith/SchemaSmith/issues/268)
-- csdn-search (2026-06-20T13:11:45.901982+00:00): [24 Idea Validation - Save Yourself Time and Money](https://wenku.csdn.net/doc/7fnjuwdtp5?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-1-7fnjuwdtp5-null-null.142^v102^control&utm_term=product%20idea%20validation)
-- csdn-search (2026-06-20T13:11:45.901982+00:00): [debugging-and- validation](https://wenku.csdn.net/doc/62or4vx1j7?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-2-62or4vx1j7-null-null.142^v102^control&utm_term=product%20idea%20validation)
-- csdn-search (2026-06-20T13:11:45.901982+00:00): [springboot在线商城系统源码 idea 开发mysql数据库源码和论文 不包含答疑 和调试服务](https://wenku.csdn.net/doc/7sosvvskan?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-3-7sosvvskan-null-null.142^v102^control&utm_term=product%20idea%20validation)
-- csdn-search (2026-06-20T00:00:00+00:00): [【AI应用实战-claude】claudecode使用Superpower开发智能问数 1 （十五）](https://blog.csdn.net/forest_long/article/details/162149466?ops_request_misc=elastic_search_misc&request_id=f675dd0817a7433d865c080e85c96dee&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~ElasticSearch~search_v2-6-162149466-null-null.142^v102^control&utm_term=product%20idea%20validation)
+- hacker-news-ask-hn (2026-11-16T08:48:41+00:00): [Ask HN: Startups are spamming helpdesk chats now?](https://news.ycombinator.com/item?id=50515458)
+- github-issues (2026-11-08T23:36:22+00:00): [Shared group goals with a progress bar](https://github.com/fraval13/wow-status-discord-updates/issues/157)
+- segmentfault-search (2026-11-17T04:05:33.190961+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-17T04:05:33.190961+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-17T04:05:33.190961+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-17T04:05:33.190961+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-17T04:05:33.191506+00:00): [问： 属性或方法“$v”未使用 Vuelidate 定义](https://segmentfault.com/q/1010000042816440)
+- segmentfault-search (2026-11-17T04:05:33.191506+00:00): [问： 从JDK 1.8切换到JDK 21时遇到NoProviderFoundException如何解决？](https://segmentfault.com/q/1010000047230462)
+- segmentfault-search (2026-11-17T04:05:33.191506+00:00): [问： laravel validator验证不通过返回The given data was invalid，而不是返回定义的提示信息](https://segmentfault.com/q/1010000018250396)
+- hacker-news-search (2026-11-13T16:38:39+00:00): [Eli Lilly CEO pushes back on Dario Amodei's medical claims](https://news.ycombinator.com/item?id=50486013)
+- hacker-news-search (2026-11-14T08:47:57+00:00): [Jonathan Blow – If AI solved coding, why is my software still the same? [video]](https://news.ycombinator.com/item?id=50495285)
+- hacker-news-search (2026-11-12T13:22:41+00:00): [Anthropic IPO](https://news.ycombinator.com/item?id=50466721)
 
 ## How The Skill Meets The Requirement
 

@@ -1,41 +1,58 @@
-## Description: <br>
-Manage VoIP calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage VoIP calls.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators use this skill to manage VoIP calls, automate voice-related tasks, and support communication operations through a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: VoIP API keys may grant access to call management actions or provider account data. <br>
-Mitigation: Use a dedicated least-privilege VOIP_API_KEY and keep it out of prompts, logs, and shared output. <br>
-Risk: Call-changing actions such as placing, ending, forwarding, or recording calls can affect real users. <br>
-Mitigation: Require explicit confirmation before performing call-changing operations. <br>
-Risk: The artifact describes command-line use but does not include the referenced VoIP manager script. <br>
-Mitigation: Install only when the intended VoIP provider and script implementation are known and reviewed. <br>
+## Use Case:
 
+Developers and operators use this skill to manage VoIP calls, automate voice-related tasks, and handle communication operations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOIP_API_KEY and returns JSON-formatted results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks for VoIP communication authority and a VOIP_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the API key only through protected secret handling and require explicit confirmation before placing, ending, or modifying calls.
+
+Risk: The documented command references a VoIP manager script that is absent from the artifact.
+
+Mitigation: Confirm the trusted VoIP service and script before installing or running the skill.
+
+Risk: Broad voice and communication triggers may lead to ambiguous VoIP actions.
+
+Mitigation: Constrain when the skill is invoked and confirm the intended action with the user before performing call operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-voip-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance, JSON]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOIP_API_KEY and a trusted VoIP manager script; documented results use a JSON success/data object.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

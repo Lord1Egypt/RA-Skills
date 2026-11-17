@@ -1,44 +1,56 @@
-## Description: <br>
-Guides developers and commerce teams in building agent-discoverable storefronts, API-first product feeds, payment flows, and marketplace integrations for AI shopping agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A guide for retrofitting commerce APIs and storefront data so AI buying agents can discover products, evaluate structured feeds, and complete checkout through UCP, ACP, x402, and GreenHelix payment flows.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers, commerce platform teams, and merchants use this guide to retrofit product catalogs, storefront manifests, API endpoints, and checkout flows for AI shopping agents. It focuses on structured product data, GreenHelix marketplace registration, UCP/ACP/x402 payment patterns, escrow, subscriptions, and agent discoverability testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide references sensitive payment, wallet, and signing credentials. <br>
-Mitigation: Use sandbox or test credentials, keep secrets out of source code, and avoid providing production Stripe keys, signing keys, or funded wallet access just to read or evaluate the guide. <br>
-Risk: Copied payment examples can move or automatically release funds if run against live services. <br>
-Mitigation: Add explicit approval steps, spending caps, and test wallets before running payment, escrow, subscription, or deposit examples. <br>
-Risk: Automatic top-up, subscription, or escrow-release patterns can create unintended financial actions in production. <br>
-Mitigation: Review and gate these flows before production use, with least-privilege credentials and operational monitoring. <br>
+## Use Case:
 
+Developers, API teams, and commerce operators use this skill to plan agent-discoverable storefronts, structured product feeds, marketplace listings, and payment workflows for AI buyers. It is a non-executable Markdown guide with illustrative production-style examples that should be adapted with credential and payment safeguards.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-agent-ready-commerce) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API Endpoint](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guide with code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable educational guide; examples reference sensitive commerce credentials and payment flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence release metadata and artifact frontmatter) <br>
+Risk: The guide asks users to configure high-value commerce credentials, including GreenHelix, wallet, signing, and Stripe-related values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or test credentials by default, avoid supplying Stripe keys or agent signing private keys unless required, and scope any credentials to the minimum needed workflow.
+
+Risk: Production-style payment examples could become live, state-changing payment flows when adapted directly.
+
+Mitigation: Add endpoint allowlisting, dry-run modes, spending caps, and human confirmation before using adapted examples in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-ready-commerce)
+- [GreenHelix sandbox endpoint](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+- [Schema.org structured data reference](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with inline Python, JSON, YAML, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable educational guide; examples reference GreenHelix, wallet, signing, and Stripe credentials supplied by the user.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

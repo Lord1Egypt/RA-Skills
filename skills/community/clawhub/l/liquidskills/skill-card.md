@@ -1,46 +1,62 @@
-## Description: <br>
-Liquidskills is a Hyperliquid development knowledge base for agents building production dApps, covering HyperCore, HyperEVM, APIs, wallets, gas, security, testing, deployment, and review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liquidskills is a Hyperliquid development knowledge base for AI agents covering architecture, APIs, wallets, security, testing, deployment, frontend UX, contract addresses, and production review workflows.
 
-## Publisher: <br>
-[cloudzombie](https://clawhub.ai/user/cloudzombie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cloudzombie](https://clawhub.ai/user/cloudzombie)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to plan, implement, secure, test, deploy, and review Hyperliquid dApps and integrations. It helps route work across HyperCore and HyperEVM topics such as APIs, asset IDs, nonces, signing, wallet setup, frontend UX, indexing, and audit checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples involving orders, transfers, withdrawals, bridge actions, deployments, or forge and cast broadcasts can affect real funds if copied or automated. <br>
-Mitigation: Use testnet first, require explicit human approval before mainnet actions, and treat transaction examples as proposals until reviewed. <br>
-Risk: Main wallet keys or broad signing authority could expose funds if delegated to an agent. <br>
-Mitigation: Use limited API wallets, never provide a main wallet private key to an agent, and scope permissions to the smallest practical account or wallet. <br>
-Risk: Incorrect bridge direction, asset IDs, token decimals, or contract addresses can route actions to the wrong place or cause permanent loss. <br>
-Mitigation: Verify bridge direction, asset metadata, decimals, and contract addresses against official sources and block explorers before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cloudzombie/liquidskills) <br>
-- [Hyperliquid Docs](https://hyperliquid.gitbook.io/hyperliquid-docs/) <br>
-- [Hyperliquid Python SDK](https://github.com/hyperliquid-dex/hyperliquid-python-sdk) <br>
-- [Hyperliquid TypeScript SDK](https://github.com/nktkas/hyperliquid) <br>
-- [HyperEVM Explorer](https://explorer.hyperliquid.xyz) <br>
-- [Liquidskills Root Guide](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to plan, build, test, review, and deploy Hyperliquid dApps and HyperCore/HyperEVM integrations. It routes agents to topic-specific guidance for architecture, APIs, wallets, tooling, security, QA, and audits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, command examples, configuration snippets, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Topic-specific guidance is split across standalone SKILL.md files and should be applied with human review before transactions, deployments, or security decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conflicting HYPE bridge guidance could lead to incorrect wallet, bridge, contract, or UI flows.
+
+Mitigation: Review and correct bridge instructions against current official Hyperliquid documentation before using them.
+
+Risk: Remote installers and package installs can expose a development environment to supply-chain or credential risk.
+
+Mitigation: Run installers only in a clean development environment without production wallet keys or sensitive credentials.
+
+Risk: Transaction and fund-transfer examples may affect real assets if used directly on mainnet.
+
+Mitigation: Test all transaction flows on testnet before using mainnet.
+
+## Reference(s):
+
+- [ClawHub Liquidskills Release](https://clawhub.ai/cloudzombie/skills/liquidskills)
+- [Hyperliquid Documentation](https://hyperliquid.gitbook.io/hyperliquid-docs/)
+- [Hyperliquid Python SDK](https://github.com/hyperliquid-dex/hyperliquid-python-sdk)
+- [Hyperliquid TypeScript SDK](https://github.com/nktkas/hyperliquid)
+- [HyperEVM Explorer](https://explorer.hyperliquid.xyz)
+- [Hyperliquid Mainnet API](https://api.hyperliquid.xyz)
+- [Hyperliquid Testnet API](https://api.hyperliquid-testnet.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Topic-organized guidance across multiple skill files]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

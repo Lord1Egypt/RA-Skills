@@ -1,40 +1,53 @@
-## Description: <br>
-A 3-tier decision framework that defines when your AI agent should act independently, report with detail, or ask before proceeding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A 3-tier decision framework that defines when your AI agent should act independently, report with detail, or ask before proceeding.
 
-## Publisher: <br>
-[joeytbuilds](https://clawhub.ai/user/joeytbuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeytbuilds](https://clawhub.ai/user/joeytbuilds)
 
-## Use Case: <br>
-Developers and operators use this skill to define practical autonomy boundaries for agents, especially when deciding whether an agent should act immediately, report in detail, or wait for approval. It provides copy-ready guidance for MEMORY.md, SOUL.md, and HEARTBEAT.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default autonomy examples include sensitive actions such as credential rotation, production deployment, refunds, pull request merges, infrastructure scaling, and customer-facing communication. <br>
-Mitigation: Customize the ladder before installation and keep sensitive actions approval-gated until explicit limits, runbooks, health checks, rollback procedures, cost caps, and audit logging are in place. <br>
-Risk: A stale or overly broad ladder can grant more autonomy than the user currently intends. <br>
-Mitigation: Review the ladder regularly, demote actions that cause issues, and default unclear actions to the more cautious tier. <br>
+## Use Case:
 
+Developers and teams use this skill to define agent autonomy tiers for routine, auditable, and approval-gated actions in operational workflows.
 
-## Reference(s): <br>
-- [Autonomy Ladder on ClawHub](https://clawhub.ai/joeytbuilds/autonomy-ladder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with copy-ready configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No runtime tool calls or external services are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad autonomy tiers could let an agent act without prior approval on production, financial, credential, infrastructure, repository-write, or customer-facing work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the tiers to the deployment environment and keep those high-impact action categories approval-gated unless explicitly reviewed and approved.
+
+Risk: Persistent MEMORY.md, SOUL.md, or HEARTBEAT.md changes could make agent behavior more autonomous than intended.
+
+Mitigation: Approve the exact policy text before persistence and keep a rollback path for reverting autonomy policy changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeytbuilds/skills/autonomy-ladder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with reusable policy snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes suggested MEMORY.md, SOUL.md, and HEARTBEAT.md text for agent autonomy policy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

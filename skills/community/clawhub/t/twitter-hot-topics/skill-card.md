@@ -1,44 +1,59 @@
-## Description: <br>
-每小时监控 Twitter/X 上中国、加密货币、国际、美国和特朗普相关热点，提取 TOP 10 话题并生成中文推文草稿和发布建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Twitter/X hot topics across China, cryptocurrency, international news, U.S. news, and Trump-related topics, ranks the top 10, and drafts Chinese algorithm-oriented and creator-style tweets or threads for each topic.
 
-## Publisher: <br>
-[yanghui-88](https://clawhub.ai/user/yanghui-88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanghui-88](https://clawhub.ai/user/yanghui-88)
 
-## Use Case: <br>
-Social media operators, creators, and marketing teams use this skill to monitor current Twitter/X topics and draft Chinese posts or threads with publishing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring Twitter/X monitoring can run broad automatic trend searches without clear user control. <br>
-Mitigation: Configure any hourly schedule explicitly before use and confirm how to stop or disable recurring execution. <br>
-Risk: Generated trend claims and draft posts may be inaccurate, outdated, or misleading. <br>
-Mitigation: Fact-check all trend claims against current sources before publishing, especially for political and market-sensitive topics. <br>
-Risk: Style-imitation drafts may imply affiliation with named creators if published without care. <br>
-Mitigation: Use the style guidance as inspiration only and avoid presenting drafts as written, approved, or endorsed by the referenced creators. <br>
+## Use Case:
 
+External creators, analysts, and social-media operators use this skill to monitor Twitter/X trend areas and generate Chinese tweet drafts, threads, and publishing guidance for selected topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanghui-88/twitter-hot-topics) <br>
-- [X algorithm rules reference](artifact/references/algorithm-rules.md) <br>
-- [Chinese creator style guide](artifact/references/kol-style-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with a ranked topic table, tweet drafts, and a publishing checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates TOP 10 hotspot rankings and two Chinese draft variants per topic; users should fact-check before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may expand ordinary tweet-drafting requests into recurring trend monitoring and engagement-growth guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants the full monitoring workflow before execution and keep any scheduled execution or social-account actions under separate user-controlled settings.
+
+Risk: The skill imitates named creators' styles and produces Chinese-only drafts.
+
+Mitigation: Review drafts for voice, attribution, and audience fit before publishing, and avoid presenting generated text as written by the referenced creators.
+
+Risk: Trend summaries and algorithm claims can become inaccurate or misleading.
+
+Mitigation: Verify current facts and source claims before publication, especially for political, financial, or breaking-news topics.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yanghui-88/skills/twitter-hot-topics)
+- [X Algorithm Rules Reference](references/algorithm-rules.md)
+- [Chinese Creator Style Guide](references/kol-style-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with ranked topics, tweet drafts, thread drafts, and publishing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language tweet drafts; two draft variants per ranked topic; includes posting and engagement suggestions]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

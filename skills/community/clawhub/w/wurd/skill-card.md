@@ -1,41 +1,58 @@
-## Description: <br>
-Compile markdown documents with plugin tags into editorial-quality HTML pages using Wurd. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compile markdown documents with plugin tags into editorial-quality HTML pages using Wurd.
 
-## Publisher: <br>
-[vreff](https://clawhub.ai/user/vreff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vreff](https://clawhub.ai/user/vreff)
 
-## Use Case: <br>
-Developers and content authors use this skill to create Wurd documents, configure layout and theme frontmatter, add built-in plugin tags, and debug compilation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LLM-powered plugins may send document or prompt content to the configured LLM provider and cache responses locally. <br>
-Mitigation: Use an approved provider for sensitive work, avoid sensitive or proprietary documents when approval is unclear, and use --no-cache or clear .cache/llm/ when cached outputs should not persist. <br>
-Risk: External plugin loading can execute behavior from local plugin directories. <br>
-Mitigation: Load plugins only from trusted directories and review custom plugin code before using it in production document builds. <br>
+## Use Case:
 
+Developers and technical authors use this skill to create Wurd markdown documents, configure layouts and themes, compile them into self-contained HTML pages, and add or debug deterministic and LLM-powered plugins.
 
-## Reference(s): <br>
-- [Wurd project](https://github.com/vreff/Wurd) <br>
-- [ClawHub Wurd skill page](https://clawhub.ai/vreff/wurd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agent responses for Wurd document compilation, plugin use, LLM setup, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Running commands through unpinned npx can introduce supply-chain uncertainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin tsx or use a lockfile-backed project install before running Wurd commands.
+
+Risk: LLM-powered plugins may send document content to a configured model provider.
+
+Mitigation: Avoid LLM plugins for confidential documents unless the provider terms and data handling are acceptable.
+
+Risk: Cached LLM-generated content can remain on disk after compilation.
+
+Mitigation: Clear .cache/llm/ when cached generated content should not remain on disk.
+
+## Reference(s):
+
+- [Wurd GitHub repository](https://github.com/vreff/Wurd)
+- [Wurd skill page](https://clawhub.ai/vreff/skills/wurd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides creation and compilation of Wurd documents; generated HTML output is produced by the Wurd tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

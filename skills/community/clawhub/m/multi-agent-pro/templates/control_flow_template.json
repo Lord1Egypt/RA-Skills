@@ -1,0 +1,113 @@
+{
+  "pipeline_name": "动态控制流示例流水线",
+  "version": "4.0",
+  "description": "v4.0 动态工作流完整示例：condition 条件分支 + switch 多路分支 + for-each 动态节点 + while-loop 循环重试",
+  "agents": [
+    {
+      "id": "scan",
+      "name": "扫描待处理文件",
+      "role": "扫描目录，产出待处理文件列表 file_list",
+      "type": "task",
+      "outputs": ["file_list"],
+      "depends_on": [],
+      "comment": "首节点。complete 时输出应形如 {\"file_list\":[\"a.txt\",\"b.txt\"],\"priority\":\"urgent\"}"
+    },
+
+    {
+      "id": "route_priority",
+      "name": "按优先级路由",
+      "type": "switch",
+      "switch": "nodes.scan.output_data.priority",
+      "cases": {
+        "urgent": ["fast_track"],
+        "normal": ["standard_track"]
+      },
+      "default": ["standard_track"],
+      "depends_on": ["scan"],
+      "comment": "switch 多路分支：读取 scan 输出的 priority 字段，命中 case 走对应分支，未命中走 default"
+    },
+    {
+      "id": "fast_track",
+      "name": "加急处理通道",
+      "role": "对加急任务快速处理",
+      "type": "task",
+      "depends_on": ["route_priority"]
+    },
+    {
+      "id": "standard_track",
+      "name": "标准处理通道",
+      "role": "对普通任务标准处理",
+      "type": "task",
+      "depends_on": ["route_priority"]
+    },
+
+    {
+      "id": "process_files",
+      "name": "逐文件处理",
+      "type": "for-each",
+      "items": "nodes.scan.output_data.file_list",
+      "template": {
+        "role": "处理单个文件（清洗/转换/校验）",
+        "timeout": 60,
+        "retry": 2
+      },
+      "join": ["quality_check"],
+      "depends_on": ["fast_track", "standard_track"],
+      "comment": "for-each 动态节点：按 file_list 长度展开 process_files__0/1/2...，汇合节点 quality_check 自动改依赖所有子节点"
+    },
+
+    {
+      "id": "generate",
+      "name": "生成结果",
+      "role": "基于处理后的数据生成结果草稿",
+      "type": "task",
+      "depends_on": ["process_files"]
+    },
+    {
+      "id": "quality_check",
+      "name": "质量检查",
+      "role": "检查生成结果质量，输出 {\"passed\": true/false, \"score\": 数字}",
+      "type": "task",
+      "depends_on": ["generate"]
+    },
+    {
+      "id": "loop_guard",
+      "name": "质量循环守卫",
+      "type": "while-loop",
+      "condition": "nodes.quality_check.output_data.passed == False",
+      "loop_body": ["generate", "quality_check"],
+      "max_iterations": 3,
+      "depends_on": ["quality_check"],
+      "comment": "while-loop 循环重试：质量未通过则重跑 generate+quality_check，最多 3 轮"
+    },
+
+    {
+      "id": "decide_publish",
+      "name": "是否发布判定",
+      "type": "condition",
+      "condition": "nodes.quality_check.output_data.score >= 60",
+      "on_true": ["publish"],
+      "on_false": ["archive"],
+      "depends_on": ["loop_guard"],
+      "comment": "condition 条件分支：分数达标走 publish，否则走 archive"
+    },
+    {
+      "id": "publish",
+      "name": "发布结果",
+      "role": "将合格结果对外发布",
+      "type": "task",
+      "depends_on": ["decide_publish"]
+    },
+    {
+      "id": "archive",
+      "name": "归档待改进",
+      "role": "将不合格结果归档，待后续改进",
+      "type": "task",
+      "depends_on": ["decide_publish"]
+    }
+  ],
+  "state_store": {
+    "type": "json",
+    "path": "./control_flow_state.json"
+  }
+}

@@ -1,38 +1,52 @@
-## Description: <br>
-Conduct web research on a topic, summarize findings, and create structured reports for comparisons, market research, technology research, competitive analysis, and news tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct web research on any topic, summarize findings, and create structured reports.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and developers use this skill to gather online information, compare alternatives, summarize sources, and produce structured research reports with citations and next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages external web search and URL fetching, which may expose sensitive or private research topics to online services.
+
+Mitigation: Avoid using the skill with sensitive private documents or topics unless online research is intended.
+
+Risk: Research reports may contain incorrect, outdated, or misleading source material.
+
+Mitigation: Check cited sources, publication dates, and credibility before relying on generated findings.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to research topics online, synthesize source-backed findings, compare alternatives, and produce concise reports with citations and next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and fetched URLs may expose confidential project names, private documents, regulated data, or sensitive competitive targets to external web services. <br>
-Mitigation: Avoid using the skill with confidential, regulated, or sensitive competitive information unless external search and page-fetch services are approved for that data. <br>
+**Output Format:** [Markdown reports with summaries, findings, source links, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/director-research-assistant) <br>
+**Other Properties Related to Output:** [Reports should cite sources, include dates, distinguish facts from opinions, and flag gaps when evidence is limited.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research reports with summaries, findings, details, sources, and optional next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Source links, publication dates, conflicting information, and evidence gaps are included when available.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

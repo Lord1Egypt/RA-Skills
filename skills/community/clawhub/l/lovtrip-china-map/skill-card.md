@@ -1,43 +1,61 @@
-## Description: <br>
-Provides Amap-based geocoding, reverse geocoding, nearby place search, route planning, venue details, and map link generation for mainland China travel and location workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高德地图助手 / Amap Map Tools for China — 地理编码、周边搜索、路线规划、地图链接生成。当用户需要中国大陆范围的地理编码、地点搜索、路线规划时使用。
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-External users, developers, and travel-planning agents use this skill to resolve mainland China addresses, search nearby points of interest, plan routes, inspect venue details, and generate navigation links through LovTrip and Amap services. <br>
-
-### Deployment Geography for Use: <br>
-Mainland China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The fallback shell script can run unintended local code when crafted address, city, or keyword text is passed to it. <br>
-Mitigation: Prefer the MCP path from a pinned, trusted LovTrip package version and avoid scripts/amap.sh with untrusted address, city, or keyword text until its quoting is fixed. <br>
-Risk: The skill sends location, route, and venue queries to external map services. <br>
-Mitigation: Use a restricted Amap API key and avoid submitting highly sensitive home, work, or travel locations unless that disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lizhijun/lovtrip-china-map) <br>
-- [LovTrip](https://lovtrip.app) <br>
-- [LovTrip Developer Documentation](https://lovtrip.app/developer) <br>
-- [LovTrip Planner](https://lovtrip.app/planner) <br>
-- [Amap Tool Parameter Reference](artifact/reference.md) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent geocode Chinese addresses, reverse-geocode coordinates, search nearby POIs, plan routes, retrieve venue details, and generate map or navigation links for mainland China travel workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON API results and map links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AMAP_API_KEY for Amap requests; generated results may include location data, route details, venue metadata, and navigation URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Mainland China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path can execute unpinned package code through automatic npx usage.
+
+Mitigation: Pin the LovTrip npm package to a reviewed exact version and avoid automatic npx -y execution where possible.
+
+Risk: The fallback amap.sh script should not be used with untrusted addresses or keywords until its Python argument handling is fixed.
+
+Mitigation: Prefer the reviewed MCP server path, or restrict fallback script inputs to trusted values until the argument handling is corrected.
+
+Risk: Precise location data and map queries may be sent to external map services.
+
+Mitigation: Run the MCP server with minimal filesystem and environment access and avoid sending sensitive location data unless approved.
+
+## Reference(s):
+
+- [LovTrip China Map skill page](https://clawhub.ai/lizhijun/skills/lovtrip-china-map)
+- [LovTrip](https://lovtrip.app)
+- [LovTrip developer documentation](https://lovtrip.app/developer)
+- [LovTrip planner](https://lovtrip.app/planner)
+- [Amap REST API base endpoint](https://restapi.amap.com/v3)
+- [Amap tool parameter reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-formatted tool results with map and navigation links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AMAP_API_KEY for live Amap requests; generated links may target Amap, Tencent, Baidu, and Apple Maps.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

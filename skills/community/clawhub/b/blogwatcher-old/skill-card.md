@@ -1,40 +1,53 @@
-## Description: <br>
-Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
 
-## Publisher: <br>
-[huangfeng1995](https://clawhub.ai/user/huangfeng1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangfeng1995](https://clawhub.ai/user/huangfeng1995)
 
-## Use Case: <br>
-Developers and agent users can use this skill to track blog and RSS/Atom feed updates, scan feeds for new articles, list tracked blogs and articles, mark articles read, and remove tracked blogs through the blogwatcher CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-suggested CLI commands can change local blogwatcher state, including removing tracked blogs or marking articles read. <br>
-Mitigation: Review the exact blogwatcher command and target before execution, especially remove and read-all operations. <br>
+## Use Case:
 
+Developers, operators, and external users can use this skill to install and run blogwatcher commands for tracking RSS/Atom feeds, scanning for updates, listing articles, and marking feed items as read.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangfeng1995/blogwatcher-old) <br>
-- [blogwatcher project homepage](https://github.com/Hyaxia/blogwatcher) <br>
-- [Publisher profile](https://clawhub.ai/user/huangfeng1995) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume the blogwatcher binary is installed and available on PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install path fetches a mutable third-party Go CLI using @latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the upstream project; prefer a pinned, reviewed module version or commit for reproducible deployments.
+
+Risk: The skill depends on an external blogwatcher binary being present before commands can run.
+
+Mitigation: Confirm the blogwatcher binary is installed and available on PATH before using the skill's common commands.
+
+## Reference(s):
+
+- [blogwatcher upstream project](https://github.com/Hyaxia/blogwatcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

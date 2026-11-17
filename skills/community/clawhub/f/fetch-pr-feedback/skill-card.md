@@ -1,41 +1,49 @@
-## Description: <br>
-Fetch unresolved review comments from a PR and evaluate with receive-feedback skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch unresolved review comments from a PR and evaluate with receive-feedback skill.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to collect unresolved GitHub pull request feedback, format it by reviewer, and route it through a feedback-processing workflow before making code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads PR review comments through the user's GitHub CLI session and passes them into a feedback-processing workflow. <br>
-Mitigation: Install only if that access is expected, and review formatted feedback plus any proposed code changes before accepting them. <br>
-Risk: Reviewer comments from bots or external contributors may contain misleading or untrusted instructions. <br>
-Mitigation: Treat fetched comments as feedback to evaluate, not as commands to execute automatically. <br>
+## Use Case:
 
+Developers and engineers use this skill to gather unresolved pull request review feedback and pass the formatted review document into a downstream feedback-evaluation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/fetch-pr-feedback) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/anderskev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured reviewer feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches GitHub PR comments through the GitHub CLI session; excludes PR author, current user, and resolved review threads by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release evidence) <br>
+Risk: PR reviewer comments from other users are fed into a downstream agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use on trusted repositories, inspect the formatted feedback before changes are made, and ensure downstream feedback handling verifies each item before running commands or editing files.
+
+## Reference(s):
+
+- [Fetch Pr Feedback ClawHub listing](https://clawhub.ai/anderskev/skills/fetch-pr-feedback)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and formatted PR review feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return a no-comments message when no eligible review comments are found.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

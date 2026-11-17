@@ -1,0 +1,133 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:52.697609+00:00",
+  "input": {
+    "bytes": 6002,
+    "path": "examples/showcase-typescript-monorepo-case-study.json",
+    "sha256": "aacdb26cee76ee64d364dc28527acae26f50d2eb253684538ab9890f06a4193b"
+  },
+  "mode": "architecture",
+  "output": {
+    "bytes": 19605,
+    "path": "examples/showcase-typescript-monorepo-case-study.svg",
+    "sha256": "ea1ed4f4a2a25f886ada5df03bef5833e0046178fad69a8d3fbc9d62f7f7d2b8"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 12,
+      "evidenceItems": 9,
+      "mode": "architecture",
+      "nodeKinds": [
+        "agent",
+        "llm",
+        "memory",
+        "service"
+      ],
+      "nodes": 9,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 9,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "showcase"
+    },
+    "ok": true,
+    "warnings": [
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=300 will snap to 240.",
+        "subject": "edges[0].via[1]"
+      },
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=300 will snap to 240.",
+        "subject": "edges[0].via[2]"
+      },
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=300 will snap to 240.",
+        "subject": "edges[2].via[1]"
+      },
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=300 will snap to 240.",
+        "subject": "edges[2].via[2]"
+      },
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=660 will snap to 720.",
+        "subject": "edges[5].via[0]"
+      },
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=660 will snap to 720.",
+        "subject": "edges[5].via[1]"
+      },
+      {
+        "code": "edge.via.x.snapped",
+        "message": "x=1020 will snap to 960.",
+        "subject": "edges[9].via[0]"
+      },
+      {
+        "code": "edge.route.crosses-node",
+        "message": "Route crosses unrelated node backend. Add via points or move nodes.",
+        "subject": "edges[5]",
+        "supportedFixes": [
+          {
+            "field": "via",
+            "message": "Route around the unrelated node with grid-snapped orthogonal turn points."
+          }
+        ]
+      },
+      {
+        "code": "edge.route.crosses-node",
+        "message": "Route crosses unrelated node database. Add via points or move nodes.",
+        "subject": "edges[7]",
+        "supportedFixes": [
+          {
+            "field": "via",
+            "message": "Route around the unrelated node with grid-snapped orthogonal turn points."
+          }
+        ]
+      },
+      {
+        "code": "edge.route.crosses-node",
+        "message": "Route crosses unrelated node packages. Add via points or move nodes.",
+        "subject": "edges[9]",
+        "supportedFixes": [
+          {
+            "field": "via",
+            "message": "Route around the unrelated node with grid-snapped orthogonal turn points."
+          }
+        ]
+      },
+      {
+        "code": "edge.route.crosses-node",
+        "message": "Route crosses unrelated node database. Add via points or move nodes.",
+        "subject": "edges[11]",
+        "supportedFixes": [
+          {
+            "field": "via",
+            "message": "Route around the unrelated node with grid-snapped orthogonal turn points."
+          }
+        ]
+      }
+    ]
+  },
+  "version": "1.8.0"
+}

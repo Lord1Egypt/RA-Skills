@@ -2,7 +2,7 @@
 name: version-updates
 description: |
   Bumps versions, updates changelogs, and coordinates version changes across files for releases
-version: 1.9.8
+version: 1.10.3
 triggers:
   - version
   - release
@@ -10,12 +10,12 @@ triggers:
   - semver
   - bump
   - preparing a release or bumping the project version
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:shared", "night-market.sanctum:git-workspace-review"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:git-workspace-review"]}}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Version Update Workflow
@@ -29,7 +29,7 @@ Run `Skill(sanctum:git-workspace-review)` first to capture current changes.
 - Just documentation updates - use doc-updates
 - Full PR preparation - use pr-prep
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `version-update:context-collected`
 2. `version-update:target-files`
 3. `version-update:version-set`
@@ -45,7 +45,7 @@ Run `Skill(sanctum:git-workspace-review)` first to capture current changes.
 - Find ALL configuration files that store versions using recursive search:
   - Root level: `Cargo.toml`, `package.json`, `pyproject.toml`
   - **Nested directories**: Use glob to find `*/pyproject.toml`, `*/Cargo.toml`, `*/package.json`
-  - **Example**: `plugins/memory-palace/hooks/pyproject.toml` must be included
+  - **Example**: `plugins/memory-palace/pyproject.toml` must be included
   - Exclude virtual environments (`.venv`, `node_modules`, `target/`) using grep -v
 - Include changelog and README references that mention the version.
 - Use: `find plugins -name "pyproject.toml" -o -name "Cargo.toml" | grep -v ".venv"`
@@ -54,7 +54,7 @@ Run `Skill(sanctum:git-workspace-review)` first to capture current changes.
 - **Automated approach**: Use `plugins/sanctum/scripts/update_versions.py <version>` to update all version files
   - Supports pyproject.toml, Cargo.toml, package.json
   - Automatically excludes virtual environments
-  - Finds nested version files (e.g., `plugins/memory-palace/hooks/pyproject.toml`)
+  - Finds nested version files (e.g., `plugins/memory-palace/pyproject.toml`)
   - Use `--dry-run` flag first to preview changes
 - **Manual approach**: Update each target file with the new version
   - For semantic versions, follow `MAJOR.MINOR.PATCH` or the specified format
@@ -100,3 +100,18 @@ grep -r "1\.2\.6" docs/ book/ --include="*.md" | grep -v node_modules
 ## Output Instructions
 - Summarize the files changed and the new version number.
 - Mention follow-up steps, such as publishing or tagging, if applicable.
+
+## Exit Criteria
+
+- [ ] All 5 progress items (`version-update:context-collected`
+      through `version-update:verification`) are created before any
+      file is modified and marked complete in order
+- [ ] `update_versions.py --dry-run <version>` run first and its
+      output reviewed before any version file is written
+- [ ] Version bumped consistently across all found config files
+      (`pyproject.toml`, `Cargo.toml`, `package.json`, `plugin.json`)
+      with no target file missing the update
+- [ ] `CHANGELOG.md` updated with a new version section dated today
+- [ ] `git diff` output confirms version changes in all identified
+      target files; a summary of files changed and new version number
+      is reported to the user

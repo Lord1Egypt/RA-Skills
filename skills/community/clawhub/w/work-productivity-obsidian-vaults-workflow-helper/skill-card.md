@@ -1,47 +1,51 @@
-## Description: <br>
-Work with Obsidian-style Markdown vaults and local knowledge bases to organize notes, add frontmatter, repair links, design vault workflows, create templates, migrate Markdown, and automate safe local note maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize Obsidian-style Markdown vaults by auditing structure, managing frontmatter, repairing links, creating templates, and planning safe local maintenance.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Agent users, skill authors, maintainers, and teams use this skill to plan safe organization, metadata cleanup, link repair, template creation, and migration workflows for local Obsidian-style Markdown vaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger metadata may activate the skill for unrelated work or general note-management requests. <br>
-Mitigation: Invoke the skill explicitly by name and use it only for Obsidian or Markdown-vault tasks. <br>
-Risk: Bulk edits to local notes can damage frontmatter, links, embeds, attachments, or existing formatting. <br>
-Mitigation: Require a dry-run, patch plan, backup, or rollback path before any bulk vault changes. <br>
-Risk: Personal notes may contain sensitive content. <br>
-Mitigation: Limit the skill to a specific vault path, define folders it must not edit, and summarize structure without exposing private note text unnecessarily. <br>
-Risk: Generated scripts or shell commands may change local files. <br>
-Mitigation: Review commands before execution and validate changed notes by checking unresolved wiki links, duplicate tags, malformed frontmatter, and attachment references. <br>
+## Use Case:
 
+External users and developers use this skill to plan safe maintenance for local Obsidian or Markdown vaults, including vault audits, metadata cleanup, link repair, templates, migration planning, and index-building workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/work-productivity-obsidian-vaults-workflow-helper) <br>
-- [Requirement Plan](artifact/references/requirement-plan.md) <br>
-- [Popular ClawHub Skill Demand: Obsidian](https://clawhub.ai/skills/obsidian) <br>
-- [Markdown Workflow Demand Signal](https://news.ycombinator.com/item?id=48601134) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional templates, checklists, patch plans, scripts, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should separate read-only analysis from file-changing steps and prefer dry-run or reversible plans for bulk vault changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may be invoked for work beyond explicit Obsidian or Markdown-vault maintenance and could affect private note files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit vault-maintenance requests, require confirmation and a dry run before bulk edits, and avoid exposing sensitive note content unnecessarily.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/work-productivity-obsidian-vaults-workflow-helper)
+- [Requirement Plan](references/requirement-plan.md)
+- [Popular ClawHub Obsidian Skill Demand](https://clawhub.ai/skills/obsidian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, checklists, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run plans, rollback guidance, validation checklists, and locally scoped file-maintenance scripts.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

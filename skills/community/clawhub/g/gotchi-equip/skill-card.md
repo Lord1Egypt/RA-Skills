@@ -1,41 +1,60 @@
-## Description: <br>
-Equip, unequip, and inspect Aavegotchi wearables on Base via Bankr submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Equip, unequip, and inspect Aavegotchi wearables on Base via Bankr submissions.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-External users and developers use this skill to inspect and modify Aavegotchi wearable loadouts on Base mainnet through Bankr-backed transaction submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Equip and unequip commands can change on-chain Aavegotchi wearable state through Bankr-backed transactions. <br>
-Mitigation: Review the gotchi ID, slot names, wearable IDs, and unequip-all intent before submitting a transaction. <br>
-Risk: The skill requires access to a Bankr API key. <br>
-Mitigation: Install only when comfortable allowing the skill to use BANKR_API_KEY for transaction submission, and keep the key scoped and stored according to local credential practices. <br>
+## Use Case:
 
+External Aavegotchi users and agent operators use this skill to inspect current wearable loadouts and submit equip or unequip transactions for Gotchi NFTs on Base.
 
-## Reference(s): <br>
-- [Gotchi Equip on ClawHub](https://clawhub.ai/aaigotchi/gotchi-equip) <br>
-- [Gotchi Equip publisher profile](https://clawhub.ai/user/aaigotchi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Shell commands and JSON transaction submission responses with concise terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, jq, curl, and BANKR_API_KEY; equip and unequip operations can submit on-chain wearable state changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill uses a Bankr API key to submit transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or rotatable Bankr key and avoid exposing it in logs, prompts, or shared environments.
+
+Risk: Equip and unequip commands can change on-chain wearable state for a Gotchi.
+
+Mitigation: Verify the Gotchi ID, slot names, wearable IDs, and unequip-all intent before running transaction-submitting commands.
+
+Risk: The skill depends on external Goldsky and Bankr services.
+
+Mitigation: Check command output and transaction responses before relying on results or repeating submissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaigotchi/skills/gotchi-equip)
+- [Publisher profile](https://clawhub.ai/user/aaigotchi)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Terminal output, shell command usage, and JSON transaction responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, jq, curl, and a Bankr API key; queries a Goldsky subgraph and submits wearable transactions through Bankr.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

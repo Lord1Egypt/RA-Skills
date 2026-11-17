@@ -1,47 +1,63 @@
-## Description: <br>
-Use Model Context Protocol servers to let agents discover and execute tools from configured external services such as legal databases, APIs, database connectors, and weather services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP Adapter helps agents discover and execute tools from configured Model Context Protocol servers to access external tools and data sources such as legal databases, APIs, database connectors, and weather services.
 
-## Publisher: <br>
-[lunarpulse](https://clawhub.ai/user/lunarpulse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lunarpulse](https://clawhub.ai/user/lunarpulse)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect OpenClaw agents to configured MCP servers, inspect available tools, validate tool parameters, and call external services through a single interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configured MCP tools may access or change sensitive systems. <br>
-Mitigation: Use only trusted MCP servers, prefer HTTPS, apply read-only or least-privilege credentials, and restrict the mcp tool to trusted agents. <br>
-Risk: Some MCP tools may write, delete, publish, or query sensitive records. <br>
-Mitigation: Require separate approval before enabling or calling tools with write, delete, publish, or sensitive-query capabilities. <br>
-Risk: Diagnostic reports or tool outputs may contain sensitive information from connected systems. <br>
-Mitigation: Review diagnostic reports and returned tool data before sharing them outside the trusted operating context. <br>
+## Use Case:
 
+Developers and operators use this skill to let agents list and call tools exposed by configured MCP servers, then synthesize the returned data for user-facing workflows. It is most relevant when an agent needs controlled access to external services such as legal search, databases, APIs, or weather tools.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/lunarpulse/mcp-adapter) <br>
-- [API Reference](docs/API.md) <br>
-- [Configuration Guide](docs/CONFIGURATION.md) <br>
-- [Usage Examples](docs/EXAMPLES.md) <br>
-- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) <br>
-- [Real Working Example: kr-legal-search](docs/REAL_EXAMPLE_KR_LEGAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, configuration, guidance] <br>
-**Output Format:** [JSON or text returned through the mcp tool, with Markdown guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the configured MCP servers and each server's advertised tool schemas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version and package.json) <br>
+Risk: Agents receive broad access to tools exposed by configured external MCP servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted MCP servers, restrict which agents can access the mcp tool, and require explicit confirmation before writes, deletes, purchases, messages, or other consequential actions.
+
+Risk: Configured MCP servers may expose production data sources or administrative actions through generic query/action interfaces.
+
+Mitigation: Use read-only or least-privilege service accounts and avoid exposing production databases or administrative tools unless the deployment has appropriate controls.
+
+Risk: Transport and dependency posture may be unsuitable for production if endpoints or dependencies are not maintained.
+
+Mitigation: Prefer HTTPS endpoints for production deployments and update flagged dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lunarpulse/skills/mcp-adapter)
+- [README](README.md)
+- [API Reference](docs/API.md)
+- [Configuration Guide](docs/CONFIGURATION.md)
+- [Usage Examples](docs/EXAMPLES.md)
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+- [Real Working Example: kr-legal-search](docs/REAL_EXAMPLE_KR_LEGAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and shell or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured MCP tool calls and JSON responses depending on the configured servers.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata, package.json, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

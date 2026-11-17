@@ -1,39 +1,53 @@
-## Description: <br>
-Extract clean markdown content from web pages using Defuddle CLI, removing clutter and navigation to save tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract clean markdown content from web pages using Defuddle CLI, removing clutter and navigation to save tokens. Use instead of WebFetch when the user provides a URL to read or analyze, for online documentation, articles, blog posts, or any standard web page.
 
-## Publisher: <br>
-[hoyaryyj](https://clawhub.ai/user/hoyaryyj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoyaryyj](https://clawhub.ai/user/hoyaryyj)
 
-## Use Case: <br>
-Developers and agents use this skill to convert user-provided web pages, documentation, articles, and blog posts into cleaner markdown before reading or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill suggests installing the Defuddle CLI as a global npm package. <br>
-Mitigation: Verify the defuddle npm package and publisher before installation, or preinstall a vetted version for agents to use. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch standard web pages, extract readable Markdown, and reduce page clutter before analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoyaryyj/kepano-defuddle) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hoyaryyj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers markdown output from Defuddle; can also request title, description, or domain metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: A global latest-version npm install can change over time and may introduce unexpected package behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or local Defuddle installation before relying on the skill in a managed environment.
+
+Risk: Fetching private-network, localhost, credential-bearing, or sensitive internal URLs can expose content through the extraction workflow.
+
+Mitigation: Use the skill only for web pages that are intentionally selected for fetching and summarization, preferably public pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hoyaryyj/skills/kepano-defuddle)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers Defuddle markdown output with --md; can save extracted page content to a file or extract title, description, and domain metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Deterministic rule-based system for classifying clarified input into a single primary task category and assigning execution complexity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic rule-based system for classifying clarified input into a single primary task category and assigning execution complexity.
 
-## Publisher: <br>
-[omprasad122007-rgb](https://clawhub.ai/user/omprasad122007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[omprasad122007-rgb](https://clawhub.ai/user/omprasad122007-rgb)
 
-## Use Case: <br>
-Developers and agent builders use this skill to classify clarified user requests before task decomposition, route them to suitable handlers, and assign complexity, risk, and confidence signals for downstream planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Classification and audit logging can expose sensitive request content if the surrounding agent platform records raw inputs without suitable controls. <br>
-Mitigation: Confirm platform logging, human-review queues, encryption, access controls, and retention policy before using the skill with sensitive requests. <br>
-Risk: Incorrect classification can route a request to the wrong downstream workflow or hide uncertainty. <br>
-Mitigation: Use the skill's low-confidence, high-risk, and ambiguity escalation paths for clarification or human review before execution planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/omprasad122007-rgb/input-classification-v1) <br>
-- [Classification Models](references/classification-models.md) <br>
-- [System Integration](references/system-integration.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill after clarification to classify user requests, assess complexity and risk, assign confidence, and route the request to decomposition, clarification, or human review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured ClassificationResult fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single primary category, up to three secondary tags, complexity level, risk level, confidence score, and routing state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Classification audit logs may capture sensitive user intent or operational metadata.
+
+Mitigation: Before deployment, confirm log retention, access controls, audit-log encryption, and privacy policy alignment for the surrounding platform.
+
+Risk: Low-confidence or high-risk classifications can route work incorrectly if used without review.
+
+Mitigation: Use the documented clarification and human-review paths for low-confidence, high-risk, or critical-risk classifications.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omprasad122007-rgb/skills/input-classification-v1)
+- [Classification Models](references/classification-models.md)
+- [System Integration](references/system-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single primary category, up to three secondary tags, complexity level, risk level, confidence score, and routing state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

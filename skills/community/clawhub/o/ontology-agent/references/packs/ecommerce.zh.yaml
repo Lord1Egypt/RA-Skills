@@ -1,0 +1,111 @@
+# packs/ecommerce.yaml — 电商行业包 (E-commerce)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 与 opc.yaml 同范式；行业特有实体（店铺/商品/订单/库存/售后/推广）在此定义，基础语义层由 semantic.yaml 提供。
+
+meta:
+  pack_id: ecommerce
+  display_name: 电商 (E-commerce)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [电商, 淘宝, 抖音, 拼多多, 网店, 直播带货, 独立站, 天猫, 京东, 带货, 微店]
+  description: >
+    适用于在平台或独立站从事商品销售的企业。实体与一人公司差异最大（多出店铺/商品/订单/库存），
+    用于验证「行业实体差异大」时模板能否横向适配。
+
+# ── 一、行业特有实体 ──
+entities_extra:
+  - type: Shop
+    extends: Account
+    properties:
+      - { name: platform, type: enum, enum: [淘宝, 抖音, 拼多多, 天猫, 京东, 独立站], required: true }
+      - { name: shop_name, type: string, required: true }
+    relations:
+      - { to: Organization, type: operated_by, cardinality: many_to_one }
+  - type: Product
+    extends: Document
+    properties:
+      - { name: sku, type: string, required: true }
+      - { name: price, type: number }
+      - { name: stock, type: integer }
+    relations:
+      - { to: Shop, type: listed_in, cardinality: many_to_one }
+  - type: Order
+    extends: Task
+    properties:
+      - { name: order_no, type: string, required: true }
+      - { name: amount, type: number, required: true }
+      - { name: status, type: enum, enum: [待付款, 已付款, 已发货, 已完成, 退款中], required: true }
+    relations:
+      - { to: Customer, type: placed_by, cardinality: many_to_one }
+      - { to: Product, type: contains, cardinality: many_to_many }
+  - type: Inventory
+    extends: Account
+    properties:
+      - { name: warehouse, type: string }
+      - { name: quantity, type: integer }
+    relations:
+      - { to: Product, type: tracks, cardinality: one_to_one }
+  - type: Aftersale
+    extends: Event
+    properties:
+      - { name: reason, type: string }
+    relations:
+      - { to: Order, type: for_order, cardinality: many_to_one }
+  - type: Promotion
+    extends: Goal
+    properties:
+      - { name: channel, type: string }
+      - { name: budget, type: number }
+
+# ── 二、推荐部门（沿用 12 部门框架，电商重销售/渠道/内容/数据）──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+
+# ── 三、默认工作流 ──
+default_workflow: ecommerce_ops
+workflow_bindings:
+  ecommerce_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [上架, 接单, 发货, 评价, 复购, 复盘]
+
+# ── 四、本地化政策钩子 ──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.ecommerce_law     # 公示执照/许可、禁虚假宣传、交易留存
+    - compliance_redlines.tax               # 开票/报税合规
+  local_services: []
+
+# ── 五、B 层风味（注入到人设的「行业红线」，按部门名 key，default 兜底）──
+flavor:
+  default: >-
+    你服务的是电商企业，交易合规与平台规则是生命线；公示营业执照与必要行政许可、禁虚假宣传 /
+    刷单炒信 / 诱导好评；交易与发票依规留存；平台规则变动频繁，大促前须核对最新平台政策。
+  legal: 电商法要求公示执照与行政许可；禁虚假宣传、禁刷单炒信；7 天无理由退货；用户个人信息依规保护。
+  mkt_content: 内容须真实可核验，禁绝对化用语与虚假折扣；直播带货须明示主体与价格。
+  mkt_dist: 推广投放合规，禁向用户隐瞒主体与费用；大促价保与售后规则须前置告知。
+  sales: 价格标注清晰、不藏隐费；售后口径与平台规则一致。
+  finance: 平台结算流水须逐笔对账、按平台规则开票；刷单流水不得入账；涉税合规。
+  data: 用户隐私（手机号 / 地址）依规存储、不明文落库；订单数据用于复购分析须脱敏。
+  hr: 仓储 / 客服等岗位用工合规，临时用工签协议。
+  strategy: 多平台矩阵运营，避免单平台政策风险集中。
+
+# ── 六、实例化提示 ──
+instance_prompts:
+  - "请描述你经营的平台（淘宝/抖音/拼多多/独立站等）与店铺"
+  - "请介绍企业情况（主体公司、地区、是否雇人）"
+  - "想搭建哪些部门（默认 12 部门，电商可加重客服/仓储视角）"
+  - "核心业务逻辑（如上架 → 接单 → 发货 → 评价 → 复购）"

@@ -1,44 +1,58 @@
-## Description: <br>
-Rich Lottery provides paid API calls that return lottery number recommendations for Shuangseqiu and Dlt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides paid API-style lottery number recommendations for Shuangseqiu and Daletou, described by the skill as historical-data analysis.
 
-## Publisher: <br>
-[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog)
 
-## Use Case: <br>
-External agents use this skill to request entertainment-only lottery number picks for Shuangseqiu or Dlt through paid API endpoints. Users should confirm each 0.01 USDC charge and should not treat the output as reliable lottery analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill appears to present random or hardcoded picks as historical-data analysis. <br>
-Mitigation: Treat outputs as entertainment-only suggestions, not evidence-based lottery analysis or financial advice. <br>
-Risk: The endpoints require a 0.01 USDC payment per call. <br>
-Mitigation: Confirm the charge before each paid request and monitor wallet approvals. <br>
+## Use Case:
 
+External users or agents can request Shuangseqiu or Daletou number suggestions for entertainment and comparison, with payment information disclosed by the skill. Recommendations should not be treated as financial or gambling advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinboh68-prog/rich-lottery) <br>
-- [Publisher profile](https://clawhub.ai/user/jinboh68-prog) <br>
-- [Rich Lottery API](https://rich-lottery.vercel.app) <br>
-- [Shuangseqiu endpoint](https://rich-lottery.vercel.app/ssq) <br>
-- [Dlt endpoint](https://rich-lottery.vercel.app/dlt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with lottery type, draw date, and recommendation arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid x402-gated endpoints return Shuangseqiu or Dlt recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The paid service is described as historical-data lottery analysis, while the reviewed behavior appears to return simulated random picks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present recommendations as entertainment-only suggestions and avoid claims that they improve lottery outcomes unless supported by verifiable analysis.
+
+Risk: The payment flow description may not prove that payment is enforced correctly.
+
+Mitigation: Review payment enforcement before paying for or deploying the service.
+
+Risk: Unpinned dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin dependency versions and review updates before release or installation.
+
+## Reference(s):
+
+- [Rich Lottery ClawHub Skill Page](https://clawhub.ai/jinboh68-prog/skills/rich-lottery)
+- [Rich Lottery API Endpoint](https://rich-lottery.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Guidance]
+
+**Output Format:** [JSON responses with lottery type, draw date, and recommendation arrays]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are generated per request for either the ssq or dlt endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

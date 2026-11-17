@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn79yxn30t12ejhnpkv0dgch3d80mj2j",
-  "slug": "gitai-skill",
-  "version": "1.0.2",
-  "publishedAt": 1770374204782
+    "name": "gitai-skill",
+    "version": "1.0.0",
+    "description": "Boost developer productivity with Gitai: An AI-powered Git automation tool that analyzes code changes and generates semantic Conventional Commits instantly. Supports Node.js, Python, Java, Go, PHP, and more. Compatible with OpenAI, Anthropic, and Groq.",
+    "author": {
+        "name": "Leandro Zuck",
+        "github": "leandrosilvaferreira",
+        "email": "leandrosilvaferreira@gmail.com"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/leandrosilvaferreira/gitai-skill",
+    "repository": "https://github.com/leandrosilvaferreira/gitai-skill",
+    "keywords": [
+        "git",
+        "automation",
+        "ai",
+        "commit",
+        "conventional-commits",
+        "workflow",
+        "productivity",
+        "dev-tools",
+        "openai",
+        "anthropic",
+        "groq",
+        "llm"
+    ],
+    "pricing": {
+        "model": "free",
+        "free_tier": true,
+        "premium_price": 0,
+        "currency": "USD"
+    },
+    "compatibility": {
+        "platforms": [
+            "windows",
+            "macos",
+            "linux"
+        ]
+    },
+    "created": "2026-02-06",
+    "updated": "2026-02-06"
 }

@@ -1,42 +1,63 @@
-## Description: <br>
-Make AI phone calls using ElevenLabs Conversational AI and Twilio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make AI phone calls using ElevenLabs Conversational AI and Twilio.
 
-## Publisher: <br>
-[luke-deltadesk](https://clawhub.ai/user/luke-deltadesk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luke-deltadesk](https://clawhub.ai/user/luke-deltadesk)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and run ElevenLabs Conversational AI phone-call workflows through shell commands. It lists agents and phone numbers, places outbound calls, and retrieves conversation transcripts or audio. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound AI phone calls through an ElevenLabs account. <br>
-Mitigation: Use a dedicated or revocable API key, verify the recipient number and call purpose before execution, and confirm consent and legal requirements for the call. <br>
-Risk: Conversation transcripts and audio recordings may contain sensitive data and can appear in terminal output, logs, or saved files. <br>
-Mitigation: Treat transcripts and audio as sensitive data, restrict where outputs are stored or logged, and follow applicable call-recording and privacy requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luke-deltadesk/elevenlabs-calls) <br>
-- [ElevenLabs Agents Platform Overview](https://elevenlabs.io/docs/agents-platform/overview) <br>
-- [ElevenLabs Agents](https://elevenlabs.io/app/agents) <br>
-- [ElevenLabs Phone Numbers](https://elevenlabs.io/app/agents/phone-numbers) <br>
+## Use Case:
 
+Developers and operators use this skill to configure ElevenLabs Conversational AI agents, place outbound Twilio-backed phone calls, and retrieve conversation transcripts or audio for review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance, JSON, Audio files] <br>
-**Output Format:** [Markdown instructions with bash command examples; scripts return terminal text, JSON, or audio bytes depending on the command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ELEVENLABS_API_KEY plus curl and jq. Some commands can initiate paid outbound calls or expose transcripts and recordings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can let an agent place outbound calls through the user's ElevenLabs and Twilio setup.
+
+Mitigation: Require explicit approval before each outbound call and confirm the destination number, agent ID, and phone number ID.
+
+Risk: Dynamic variables, transcripts, and recordings may contain personal or sensitive information.
+
+Mitigation: Pass only necessary context, avoid unnecessary sensitive data, and handle retrieved conversation records according to applicable privacy requirements.
+
+Risk: Calling and recording obligations vary by recipient location and use case.
+
+Mitigation: Confirm consent and comply with applicable telecom and call-recording rules before use.
+
+Risk: Outbound calls and conversation time can incur ElevenLabs and Twilio costs.
+
+Mitigation: Use account limits, review call duration, and monitor provider billing during operation.
+
+## Reference(s):
+
+- [ElevenLabs Agents Platform Overview](https://elevenlabs.io/docs/agents-platform/overview)
+- [ElevenLabs Agents Console](https://elevenlabs.io/app/agents)
+- [ElevenLabs Phone Numbers Console](https://elevenlabs.io/app/agents/phone-numbers)
+- [ClawHub Skill Page](https://clawhub.ai/luke-deltadesk/skills/elevenlabs-calls)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and script output from ElevenLabs API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may return JSON-derived summaries, transcripts, or audio bytes depending on the command used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

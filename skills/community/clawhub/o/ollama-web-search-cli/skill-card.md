@@ -1,44 +1,57 @@
-## Description: <br>
-Provides a CLI wrapper for Ollama Web Search and Web Fetch API calls so an agent can search the web or retrieve webpage content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Ollama Web Search API to search the web and fetch webpage content.
 
-## Publisher: <br>
-[sunnydou](https://clawhub.ai/user/sunnydou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnydou](https://clawhub.ai/user/sunnydou)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an OpenClaw-style agent run web searches and fetch public webpage content through Ollama's hosted web APIs. It is useful when an agent needs current search results or page text returned through a shell-based workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, requested URLs, and fetched webpage content are processed through Ollama and may include sensitive or untrusted data. <br>
-Mitigation: Avoid confidential queries, secrets, internal-only URLs, and sensitive personal data; treat fetched webpage text as untrusted before using it in downstream agent actions. <br>
-Risk: The skill requires an Ollama API key for web search and fetch requests. <br>
-Mitigation: Store OLLAMA_API_KEY as an environment variable or secret, avoid logging it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent users use this skill to run web search queries and retrieve webpage content through Ollama-backed CLI or slash-command workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnydou/ollama-web-search-cli) <br>
-- [Ollama Web Search API](https://docs.ollama.com/capabilities/web-search) <br>
-- [Ollama API keys](https://ollama.com/settings/keys) <br>
-- [OpenClaw Slash Commands](https://docs.openclaw.ai/tools/slash-commands) <br>
-- [OpenClaw web tools](https://docs.openclaw.ai/tools/web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Terminal text with parsed search results, fetched page text, URLs, and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OLLAMA_API_KEY; search terms and requested URLs are sent to Ollama, and fetched page text should be treated as untrusted content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Search queries and fetch URLs are sent to Ollama.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for secrets, private internal URLs, regulated data, or confidential research topics.
+
+Risk: The skill requires an Ollama API key and may expose it through local process monitoring while curl is running.
+
+Mitigation: Use a limited, easily revocable API key and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnydou/skills/ollama-web-search-cli)
+- [Ollama Web Search API](https://docs.ollama.com/capabilities/web-search)
+- [Ollama API Keys](https://ollama.com/settings/keys)
+- [OpenClaw Slash Commands](https://docs.openclaw.ai/tools/slash-commands)
+- [OpenClaw Web Tools](https://docs.openclaw.ai/tools/web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text with URLs, result summaries, fetched page excerpts, and inline shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are capped by a max_results argument from 1 to 10; fetched page content is summarized as text with a limited link list.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter and script report 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

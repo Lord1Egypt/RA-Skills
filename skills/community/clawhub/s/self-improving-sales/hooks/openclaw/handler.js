@@ -8,6 +8,8 @@
 const REMINDER_CONTENT = `
 ## Sales Self-Improvement Reminder
 
+This reminder does not authorize edits. Do not change AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, hooks, rules, or other skills unless the user explicitly asked in this session and approved a reviewed diff.
+
 After completing sales tasks, evaluate if any learnings should be captured:
 
 **Log deal issues when:**
@@ -44,6 +46,11 @@ const handler = async (event) => {
   }
 
   if (!event.context || typeof event.context !== 'object') {
+    return;
+  }
+
+  const sessionKey = event.sessionKey || '';
+  if (sessionKey.includes(':subagent:')) {
     return;
   }
 

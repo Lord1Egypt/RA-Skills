@@ -1,44 +1,59 @@
-## Description: <br>
-Generates images through the ModelScope API with selectable models and optional LoRA configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images from text prompts through ModelScope, with supported model selection and optional LoRA settings.
 
-## Publisher: <br>
-[focus883](https://clawhub.ai/user/focus883) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[focus883](https://clawhub.ai/user/focus883)
 
-## Use Case: <br>
-Developers and external users use this skill to generate images from text prompts through ModelScope models, optionally choosing Qwen or Tongyi models and LoRA settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ModelScope API keys can be exposed when saved on shared machines or passed in command history. <br>
-Mitigation: Prefer MODELSCOPE_API_KEY on shared machines, and review or delete ~/.modelscope/api_key when stored credentials are no longer needed. <br>
-Risk: Prompts are sent to ModelScope and may contain sensitive information. <br>
-Mitigation: Avoid private information in prompts and treat prompt text as data sent to an external service. <br>
-Risk: The skill makes network calls and writes generated image files locally. <br>
-Mitigation: Use it only when ModelScope image generation is intended, choose output paths deliberately, and review generated files before reuse. <br>
+## Use Case:
 
+Agents assisting developers and creators use this skill to generate image files from text prompts through ModelScope models, including Qwen Image and Tongyi Z-Image, with optional LoRA configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/focus883/modelscope-img) <br>
-- [ModelScope access token page](https://modelscope.cn/my/myaccesstoken) <br>
-- [ModelScope API inference endpoint](https://api-inference.modelscope.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts save generated images to local files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ModelScope API key and writes image outputs such as result_image.jpg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: API keys may be persisted in a local plaintext configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MODELSCOPE_API_KEY from a protected environment variable or a key manager, and avoid --api-key or --save-key on shared systems.
+
+Risk: Prompts, model settings, and the ModelScope token are sent to an external ModelScope API.
+
+Mitigation: Use only when external processing is acceptable, and avoid prompts containing private, proprietary, or regulated information.
+
+Risk: The security verdict recommends review before installation.
+
+Mitigation: Run the skill in a dedicated virtual environment and review the scripts before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/focus883/skills/modelscope-img)
+- [ModelScope access token page](https://modelscope.cn/my/myaccesstoken)
+- [ModelScope inference API endpoint](https://api-inference.modelscope.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated images are saved as local image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output path is result_image.jpg unless the user provides another path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

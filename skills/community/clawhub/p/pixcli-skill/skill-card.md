@@ -1,50 +1,64 @@
-## Description: <br>
-Creative toolkit for AI agents to generate images, videos, voiceover, music, and sound effects, then assemble polished output via Remotion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative toolkit for AI agents to generate images, videos, voiceover, music, and sound effects, then assemble polished output via Remotion.
 
-## Publisher: <br>
-[cohnen](https://clawhub.ai/user/cohnen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cohnen](https://clawhub.ai/user/cohnen)
 
-## Use Case: <br>
-Developers, marketers, and creative teams use this skill to plan and run AI media generation workflows, create production assets with pixcli, and assemble finished videos with Remotion templates and rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and media may be sent to a remote AI media service. <br>
-Mitigation: Use only approved content and avoid secrets, regulated data, private customer content, or unreleased media unless the use is authorized. <br>
-Risk: API keys can be exposed if passed directly on the command line. <br>
-Mitigation: Prefer PIXCLI_API_KEY in the environment rather than the --key option. <br>
-Risk: Rendering and ffmpeg commands may overwrite local output files. <br>
-Mitigation: Review output paths before running render or ffmpeg commands. <br>
+## Use Case:
 
+Developers, creative teams, and external agents use this skill to generate visual and audio assets with pixcli, then assemble product videos, social ads, explainers, and marketing content with Remotion templates and guidance.
 
-## Reference(s): <br>
-- [Pixcli homepage](https://pixcli.shellbot.sh) <br>
-- [ClawHub release page](https://clawhub.ai/cohnen/pixcli-skill) <br>
-- [Command reference](references/command-reference.md) <br>
-- [Creative guidelines](references/creative-guidelines.md) <br>
-- [Workflow recipes](references/workflow-recipes.md) <br>
-- [Prompt cookbook](references/prompt-cookbook.md) <br>
-- [Remotion playbook](references/remotion-playbook.md) <br>
-- [Template showcase](references/template-showcase.md) <br>
-- [Remotion rules index](references/remotion-rules-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Remotion code snippets, configuration steps, and generated media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a remote AI media service through pixcli and may create or overwrite local image, audio, video, and Remotion project files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: SKILL.md frontmatter, server release metadata, target metadata) <br>
+Risk: Broad command and file permissions can modify project files and run local media tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a sandboxed project, review generated commands before execution, and limit exposed environment variables to those required for the workflow.
+
+Risk: Unpinned npm and npx execution can install or run unexpected package versions.
+
+Mitigation: Pin package versions where possible, inspect package manifests, and avoid unreviewed npx commands.
+
+Risk: Generated media prompts or source assets may be sent to third-party processing services.
+
+Mitigation: Do not submit confidential, regulated, or private media unless third-party processing is approved.
+
+## Reference(s):
+
+- [Pixcli homepage](https://pixcli.shellbot.sh)
+- [ClawHub skill page](https://clawhub.ai/cohnen/skills/pixcli-skill)
+- [Command Reference](references/command-reference.md)
+- [Creative Guidelines](references/creative-guidelines.md)
+- [Workflow Recipes](references/workflow-recipes.md)
+- [Remotion Product Video Playbook](references/remotion-playbook.md)
+- [Template Showcase](references/template-showcase.md)
+- [Remotion Rules Index](references/remotion-rules-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands, TypeScript/Remotion code references, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed by an agent, workflows may create image, video, audio, and Remotion project files in the working directory.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Navigate legal strategy with contracts, compliance, IP protection, and corporate governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate legal strategy with contracts, compliance, IP protection, and corporate governance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external users, and operators use this skill for general legal leadership guidance across contracts, compliance, intellectual property, and corporate governance. It provides checklists, escalation prompts, and decision frameworks for business legal workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general legal strategy guidance as licensed legal advice. <br>
-Mitigation: Use the skill as reference material and involve qualified counsel for jurisdiction-specific, high-stakes, or binding legal decisions. <br>
-Risk: Contract, compliance, IP, governance, litigation, M&A, and regulatory decisions can require current law and human judgment. <br>
-Mitigation: Escalate material negotiations, regulatory disclosures, board-level governance changes, litigation choices, and M&A structuring to appropriate legal professionals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/clo) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill homepage](https://clawic.com/skills/clo) <br>
+## Use Case:
 
+Employees, external users, founders, and operators use this skill for CLO-level guidance on contracts, compliance, intellectual property, and corporate governance decisions. It supports legal strategy, risk triage, negotiation preparation, audit readiness, and escalation decisions that require qualified counsel.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only legal strategy guidance; no code execution, hidden data access, or autonomous account actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat general legal-strategy guidance as jurisdiction-specific legal advice.
+
+Mitigation: Confirm governing law and consult qualified counsel for jurisdiction-specific obligations, regulatory disclosures, litigation, M&A, board actions, and material contract negotiations.
+
+Risk: Guidance may be applied to high-impact legal decisions without appropriate human review.
+
+Mitigation: Use the skill for preparation, triage, and checklists, and require human legal review before acting on settlement, disclosure, governance, M&A, or material contract decisions.
+
+## Reference(s):
+
+- [CLO skill page](https://clawhub.ai/ivangdavila/skills/clo)
+- [Skill homepage](https://clawic.com/skills/clo)
+- [Contracts and Negotiations](contracts.md)
+- [Compliance and Regulatory](compliance.md)
+- [Intellectual Property](ip.md)
+- [Corporate Governance](governance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static legal-strategy guidance; no executable code, credential handling, persistence, or automatic high-impact actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

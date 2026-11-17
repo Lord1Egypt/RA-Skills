@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "geneId": "gene-jiedan-platform-suite",
+  "pluginId": "bagbot.jiedan-platform-suite",
+  "mode": "jiedan_platform_suite",
+  "runtimeTemplate": {
+    "mode": "jiedan_platform_suite"
+  }
+}

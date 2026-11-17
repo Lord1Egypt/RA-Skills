@@ -1,37 +1,48 @@
-## Description: <br>
-Write Indonesian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Indonesian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writers use this skill to make Indonesian text sound more natural, casual, and human, especially for online, social, and everyday contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to make AI-written Indonesian sound more human, which may conflict with disclosure rules in school, workplace, platform, or legal contexts. <br>
-Mitigation: Follow any applicable disclosure, authorship, and acceptable-use rules before using the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/indonesian) <br>
+## Use Case:
 
+External users and writing agents use this skill to produce casual Indonesian text that reads naturally rather than overly formal. It is most useful for daily-life, social, and online writing where informal register is appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance for Indonesian wording, register, slang, particles, fillers, and reactions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only style guidance; no code execution, data access, or hidden system behavior according to the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults toward casual, Jakarta-influenced Indonesian that may be unsuitable for official, academic, regional, or brand-sensitive writing.
+
+Mitigation: Specify the desired register, audience, region, and brand constraints before using the skill for sensitive or formal content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/indonesian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Indonesian text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Casual Indonesian defaults; users should specify formal, academic, brand-sensitive, or regional requirements when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -68,7 +68,7 @@ agents:
 # Global settings
 settings:
   # FLAW AC-006 (CRITICAL): Hardcoded API key — should use $ANTHROPIC_API_KEY
-  anthropic_api_key: sk-ant-api03-abc123def456-this-is-a-fake-but-realistic-looking-key
+  anthropic_api_key: REDACTED-SECRET
   log_level: INFO
   timeout: 300
 

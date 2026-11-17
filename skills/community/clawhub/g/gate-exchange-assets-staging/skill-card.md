@@ -1,43 +1,59 @@
-## Description: <br>
-Gate Exchange Assets lets an agent check total assets, account balances, and specific coin holdings across Gate accounts in read-only mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate multi-account asset and balance query skill for checking total assets, account balances, and specific coin holdings across all accounts.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-Gate users and their agents use this skill to read and summarize total, per-account, and per-coin balances across configured Gate accounts through a local MCP session. It is intended for asset visibility and account-status questions, not trading or transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive financial account balances and holdings from the configured Gate MCP session. <br>
-Mitigation: Use least-privilege read-only Gate API keys, avoid write permissions, and ask for Gate account data only when that account context is intended. <br>
-Risk: Missing MCP configuration, authentication failures, or account-module timeouts can lead to incomplete balance reports. <br>
-Mitigation: Keep the Gate MCP session configured with the required read permissions and treat degraded or partial responses as incomplete snapshots. <br>
+## Use Case:
 
+External Gate users use this skill to query read-only asset overviews, per-coin holdings, and account-specific balances through a configured local Gate MCP session. It helps summarize spot, margin, futures, options, unified, finance, and TradFi balances without placing trades or transfers.
 
-## Reference(s): <br>
-- [Gate Skills Homepage](https://github.com/gate/gate-skills) <br>
-- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage) <br>
-- [Gate Exchange Assets Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Gate Assets MCP Specification](references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown asset summaries with account distributions and degraded-state notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only responses based on configured Gate MCP account data; no code, files, transfers, or orders are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2026.4.8-1) <br>
+Risk: Configured Gate credentials allow the agent to retrieve sensitive financial account balances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for users who want balance lookups through the local Gate MCP session, and limit responses to values returned by documented read-only tools.
+
+Risk: Gate API keys with trading or transfer permissions could expand impact beyond the skill's read-only behavior.
+
+Mitigation: Use read-only Gate API keys with only the listed read permissions, and avoid enabling trading or transfer permissions for this skill.
+
+Risk: Broad balance requests may trigger account lookups that reveal more financial data than the user intended.
+
+Mitigation: Clarify account or currency scope when ambiguous, and mark partial or degraded results when an account module is unavailable.
+
+## Reference(s):
+
+- [Gate Exchange Assets Runtime Rules](references/gate-runtime-rules.md)
+- [Gate Assets MCP Specification](references/mcp.md)
+- [Gate Skills Homepage](https://github.com/gate/gate-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown balance summaries with account distributions, valuation notes, and degraded-result markers when account modules are unavailable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only responses based on Gate MCP data; TradFi and payment balances are separated from CEX total valuation when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); bundled skill frontmatter version 2026.4.8-1
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

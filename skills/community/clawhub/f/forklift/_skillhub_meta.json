@@ -1,0 +1,13 @@
+{
+  "slug": "forklift",
+  "name": "Forklift expert",
+  "version": "2.0.10",
+  "installedAt": 1791363958534,
+  "source": "skillhub",
+  "namespace": "user_bc886e82",
+  "canonicalName": "@user_bc886e82/forklift",
+  "iconSource": "https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/629242/e0cee1a7f0d743f7a37ce9cf1c836e9b.jpg",
+  "iconLocalPath": "C:\\Users\\ypf\\.workbuddy\\skills\\forklift__skillhub\\_icon.jpg",
+  "iconDownloadedFrom": "https://skillhub-1388575217.cos.accelerate.myqcloud.com/skill-icons/uploads/629242/e0cee1a7f0d743f7a37ce9cf1c836e9b.jpg",
+  "installedContentHash": "sha256:959bd31ce5e548327301eb1130a932348e4e73bc480f7b957edbe8f0a915431e"
+}

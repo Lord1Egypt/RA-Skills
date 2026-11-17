@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProjectHub — Microsoft Fluent</title>
+<style>
+  /* ========================================
+     Microsoft Fluent — Project Management Dashboard
+     Font: Segoe UI
+     Grid: 4px
+     Color: Brand Blue #0078D4
+     Principles: Light, Depth, Motion, Material, Scale
+     ======================================== */
+
+  :root {
+    --brand: #0078D4;
+    --brand-hover: #006CBE;
+    --brand-pressed: #005BA1;
+    --nf1: #242424;
+    --nf2: #424242;
+    --nf3: #616161;
+    --nf4: #707070;
+    --nf-disabled: #BDBDBD;
+    --nb1: #FFFFFF;
+    --nb2: #FAFAFA;
+    --nb3: #F5F5F5;
+    --nb4: #F0F0F0;
+    --ns1: #D1D1D1;
+    --ns2: #E0E0E0;
+    --ns-acc: #616161;
+    --success: #107C10;
+    --success-bg: #DFF6DD;
+    --warning: #FFC107;
+    --warning-bg: #FFF4CE;
+    --error: #D13438;
+    --error-bg: #FDE7E9;
+    --info: #0099BC;
+    --info-bg: #CCECF5;
+    --shadow2: 0 1px 2px rgba(0,0,0,0.14);
+    --shadow4: 0 2px 4px rgba(0,0,0,0.14);
+    --shadow8: 0 4px 8px rgba(0,0,0,0.14);
+    --shadow16: 0 8px 16px rgba(0,0,0,0.14);
+    --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --space-xs: 4px; --space-sm: 8px; --space-md: 12px; --space-lg: 16px; --space-xl: 20px; --space-xxl: 24px; --space-xxxl: 32px; --space-huge: 48px;
+    --r-sm: 2px; --r-md: 4px; --r-lg: 6px; --r-xl: 8px; --r-circ: 9999px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    font-size: 14px; line-height: 20px;
+    color: var(--nf1); background: var(--nb2);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden; height: 100vh;
+  }
+
+  /* ========================================
+     App Shell — Vertical layout + sidebar
+     ======================================== */
+  .app-shell { display: flex; height: 100vh; }
+
+  /* ========================================
+     Sidebar (Fluent NavigationView)
+     ======================================== */
+  .sidebar {
+    width: 260px; background: var(--nb1);
+    border-right: 1px solid var(--ns2);
+    display: flex; flex-direction: column; flex-shrink: 0;
+  }
+  .sidebar-header {
+    padding: var(--space-lg) var(--space-lg) var(--space-sm);
+    border-bottom: 1px solid var(--ns2);
+  }
+  .sidebar-header .logo {
+    display: flex; align-items: center; gap: var(--space-sm);
+    font-size: 18px; font-weight: 600;
+  }
+  .sidebar-header .logo-icon {
+    width: 20px; height: 20px; background: var(--brand);
+    border-radius: var(--r-md); display: inline-block;
+  }
+
+  .sidebar-nav {
+    flex: 1; overflow-y: auto;
+    padding: var(--space-sm);
+  }
+  .sidebar-section {
+    font-size: 12px; font-weight: 600; color: var(--nf2);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    padding: var(--space-md) var(--space-md) var(--space-xs);
+  }
+  .sidebar-item {
+    display: flex; align-items: center;
+    padding: 0 var(--space-md); height: 36px;
+    border-radius: var(--r-md); gap: var(--space-sm);
+    cursor: pointer; font-size: 14px; font-weight: 400;
+    color: var(--nf1); transition: background 100ms;
+    position: relative;
+  }
+  .sidebar-item:hover { background: var(--nb2); }
+  .sidebar-item.active { background: rgba(0,120,212,0.1); color: var(--brand); }
+  .sidebar-item.active::before {
+    content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 3px; background: var(--brand); border-radius: 0 2px 2px 0;
+  }
+  .sidebar-item-icon {
+    width: 20px; height: 20px; border-radius: var(--r-md);
+    flex-shrink: 0;
+  }
+  .sidebar-item-badge {
+    margin-left: auto; background: var(--brand); color: #fff;
+    font-size: 10px; font-weight: 600;
+    min-width: 16px; height: 16px; padding: 0 4px;
+    border-radius: var(--r-circ);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sidebar-item-badge.error { background: var(--error); }
+
+  .sidebar-footer {
+    padding: var(--space-sm); border-top: 1px solid var(--ns2);
+  }
+  .sidebar-user {
+    display: flex; align-items: center; gap: var(--space-sm);
+    padding: var(--space-sm); border-radius: var(--r-md); cursor: pointer;
+  }
+  .sidebar-user:hover { background: var(--nb2); }
+  .sidebar-user-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--brand); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; flex-shrink: 0;
+  }
+  .sidebar-user-info { flex: 1; min-width: 0; }
+  .sidebar-user-name { font-size: 14px; font-weight: 600; }
+  .sidebar-user-role { font-size: 12px; color: var(--nf2); }
+
+  /* ========================================
+     Main Area
+     ======================================== */
+  .main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  /* ========================================
+     Toolbar (Command Bar)
+     ======================================== */
+  .toolbar {
+    height: 48px; background: var(--nb1);
+    border-bottom: 1px solid var(--ns2);
+    display: flex; align-items: center;
+    padding: 0 var(--space-lg); gap: var(--space-sm);
+    flex-shrink: 0;
+  }
+  .toolbar-title { font-size: 16px; font-weight: 600; flex: 1; }
+  .toolbar-btn {
+    height: 32px; padding: 0 var(--space-md);
+    border: 1px solid var(--ns1); background: var(--nb1);
+    border-radius: var(--r-md); cursor: pointer;
+    display: inline-flex; align-items: center; gap: var(--space-xs);
+    font: 600 14px/20px var(--font); color: var(--nf1);
+    transition: background 100ms;
+  }
+  .toolbar-btn:hover { background: var(--nb2); }
+  .toolbar-btn:active { background: var(--nb3); }
+  .toolbar-btn-primary {
+    background: var(--brand); color: #fff; border-color: var(--brand);
+  }
+  .toolbar-btn-primary:hover { background: var(--brand-hover); border-color: var(--brand-hover); }
+
+  /* ========================================
+     Breadcrumb
+     ======================================== */
+  .breadcrumb {
+    display: flex; align-items: center; gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--nb1); border-bottom: 1px solid var(--ns2);
+    font-size: 14px;
+  }
+  .breadcrumb a { color: var(--brand); text-decoration: none; cursor: pointer; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { color: var(--nf1); }
+  .breadcrumb-sep { color: var(--ns-acc); }
+
+  /* ========================================
+     Content
+     ======================================== */
+  .content { flex: 1; overflow-y: auto; padding: var(--space-xxl) var(--space-xxxl); }
+
+  /* ========================================
+     Page Header
+     ======================================== */
+  .page-header { margin-bottom: var(--space-xxl); }
+  .page-header h1 { font-size: 28px; font-weight: 600; line-height: 36px; margin-bottom: var(--space-xs); }
+  .page-header p { font-size: 14px; color: var(--nf2); }
+
+  /* ========================================
+     Stat Cards
+     ======================================== */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xxl);
+  }
+  .stat-card {
+    background: var(--nb1); border: 1px solid var(--ns2);
+    border-radius: var(--r-xl); padding: var(--space-lg);
+    transition: box-shadow 200ms;
+  }
+  .stat-card:hover { box-shadow: var(--shadow4); }
+  .stat-card-label { font-size: 12px; color: var(--nf2); margin-bottom: var(--space-xs); }
+  .stat-card-value { font-size: 28px; font-weight: 600; line-height: 36px; }
+  .stat-card-change { font-size: 12px; margin-top: var(--space-xs); }
+  .stat-card-change.up { color: var(--success); }
+  .stat-card-change.down { color: var(--error); }
+  .stat-card-bar {
+    margin-top: var(--space-sm);
+    height: 2px; background: var(--nb3); border-radius: 1px; overflow: hidden;
+  }
+  .stat-card-bar-fill { height: 100%; border-radius: 1px; }
+
+  /* ========================================
+     Section
+     ======================================== */
+  .section-block { margin-bottom: var(--space-xxl); }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--space-lg);
+  }
+  .section-header h2 { font-size: 20px; font-weight: 600; line-height: 28px; }
+
+  /* ========================================
+     Tabs (Fluent Pivot)
+     ======================================== */
+  .pivot {
+    display: flex; gap: 0; border-bottom: 1px solid var(--ns2);
+    margin-bottom: var(--space-lg);
+  }
+  .pivot-item {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 14px; font-weight: 600;
+    border: none; background: transparent; cursor: pointer;
+    font-family: var(--font); color: var(--nf2);
+    position: relative; transition: color 100ms;
+  }
+  .pivot-item.active { color: var(--brand); }
+  .pivot-item.active::after {
+    content: ''; position: absolute; bottom: -1px;
+    left: var(--space-lg); right: var(--space-lg);
+    height: 2px; background: var(--brand);
+  }
+  .pivot-item:hover:not(.active) { background: var(--nb2); color: var(--nf1); }
+
+  /* ========================================
+     List (Fluent List)
+     ======================================== */
+  .fl-list {
+    background: var(--nb1); border: 1px solid var(--ns2);
+    border-radius: var(--r-xl); overflow: hidden;
+  }
+  .fl-list-item {
+    display: flex; align-items: center;
+    padding: var(--space-sm) var(--space-lg);
+    min-height: 44px; gap: var(--space-sm);
+    cursor: pointer; transition: background 100ms;
+  }
+  .fl-list-item:hover { background: var(--nb2); }
+  .fl-list-item + .fl-list-item { border-top: 1px solid var(--ns2); }
+
+  .fl-li-avatar {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 13px; font-weight: 600;
+  }
+  .fl-li-content { flex: 1; min-width: 0; }
+  .fl-li-title { font-size: 14px; font-weight: 400; line-height: 20px; }
+  .fl-li-sub { font-size: 12px; color: var(--nf2); line-height: 16px; }
+  .fl-li-trailing { text-align: right; flex-shrink: 0; }
+  .fl-li-tag {
+    font-size: 12px; font-weight: 600; padding: 0 var(--space-sm);
+    height: 20px; line-height: 20px; border-radius: var(--r-md);
+    display: inline-block;
+  }
+  .fl-li-tag.active { background: var(--success-bg); color: var(--success); }
+  .fl-li-tag.pending { background: var(--warning-bg); color: #9A7500; }
+  .fl-li-tag.muted { background: var(--nb3); color: var(--nf3); }
+  .fl-li-date { font-size: 12px; color: var(--nf3); margin-top: 2px; }
+
+  /* ========================================
+     Card Grid
+     ======================================== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+  .fl-card {
+    background: var(--nb1); border: 1px solid var(--ns2);
+    border-radius: var(--r-xl); padding: var(--space-lg);
+    transition: box-shadow 200ms, background 200ms;
+  }
+  .fl-card:hover { box-shadow: var(--shadow4); background: var(--nb2); }
+  .fl-card-title { font-size: 16px; font-weight: 600; line-height: 22px; margin-bottom: var(--space-sm); }
+  .fl-card-body { font-size: 14px; line-height: 20px; color: var(--nf2); margin-bottom: var(--space-sm); }
+  .fl-card-meta { font-size: 12px; color: var(--nf3); margin-bottom: var(--space-sm); }
+  .fl-card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: var(--space-sm); border-top: 1px solid var(--ns2);
+  }
+  .fl-card-avatars { display: flex; }
+  .fl-card-avatars span {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid var(--nb1); margin-left: -6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 10px; font-weight: 600;
+  }
+  .fl-card-avatars span:first-child { margin-left: 0; }
+
+  /* ========================================
+     Data Grid (Fluent Data Grid)
+     ======================================== */
+  .data-grid-wrap {
+    background: var(--nb1); border: 1px solid var(--ns2);
+    border-radius: var(--r-xl); overflow: hidden;
+  }
+  .data-grid {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px; line-height: 20px;
+  }
+  .data-grid th {
+    background: var(--nb2); text-align: left;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 14px; font-weight: 600; color: var(--nf1);
+    border-bottom: 1px solid var(--ns2);
+  }
+  .data-grid td {
+    padding: var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--ns2); color: var(--nf1);
+  }
+  .data-grid tr:last-child td { border-bottom: none; }
+  .data-grid tr:hover td { background: var(--nb2); }
+  .data-grid .grid-status {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    padding: 0 var(--space-sm); height: 20px; line-height: 20px;
+    border-radius: var(--r-md);
+  }
+  .data-grid .grid-status.active { background: var(--success-bg); color: var(--success); }
+  .data-grid .grid-status.busy { background: var(--warning-bg); color: #9A7500; }
+  .data-grid .grid-status.away { background: var(--nb3); color: var(--nf3); }
+
+  /* ========================================
+     Status Banners
+     ======================================== */
+  .status-banner {
+    display: flex; align-items: center; gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--r-md); font-size: 14px;
+    margin-bottom: var(--space-lg);
+  }
+  .status-banner.info { background: var(--info-bg); color: var(--info); }
+  .status-banner.success { background: var(--success-bg); color: var(--success); }
+  .status-banner.warning { background: var(--warning-bg); color: #9A7500; }
+  .status-banner.error { background: var(--error-bg); color: var(--error); }
+
+  /* ========================================
+     Dialog
+     ======================================== */
+  .dialog-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 200ms;
+  }
+  .dialog-overlay.open { opacity: 1; pointer-events: auto; }
+  .dialog {
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-xl); padding: var(--space-xxl);
+    min-width: 400px; max-width: 520px; width: 90%;
+    box-shadow: var(--shadow16);
+  }
+  .dialog-title { font-size: 16px; font-weight: 600; margin-bottom: var(--space-md); }
+  .dialog-field { margin-bottom: var(--space-lg); }
+  .dialog-field label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--nf2); margin-bottom: var(--space-xs);
+  }
+  .dialog-field input, .dialog-field select, .dialog-field textarea {
+    width: 100%; height: 32px;
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-md); padding: 0 var(--space-md);
+    font: 400 14px/20px var(--font); color: var(--nf1);
+    outline: none;
+  }
+  .dialog-field input:focus, .dialog-field select:focus, .dialog-field textarea:focus {
+    border-color: var(--brand);
+  }
+  .dialog-field textarea { height: 72px; padding: var(--space-sm) var(--space-md); resize: vertical; }
+  .dialog-actions { display: flex; gap: var(--space-sm); justify-content: flex-end; margin-top: var(--space-xxl); }
+
+  /* ========================================
+     Toast
+     ======================================== */
+  .toast {
+    position: fixed; bottom: var(--space-xxl); left: 50%;
+    transform: translateX(-50%);
+    background: var(--nf1); color: #fff;
+    font-size: 14px; padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--r-md); z-index: 200;
+    opacity: 0; pointer-events: none;
+    transition: opacity 200ms;
+    display: flex; align-items: center; gap: var(--space-sm);
+  }
+  .toast.show { opacity: 1; pointer-events: auto; }
+  .toast button {
+    background: none; border: none; color: var(--brand);
+    font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font);
+  }
+
+  /* ========================================
+     Select Component
+     ======================================== */
+  .fl-select {
+    position: relative; width: 100%; height: 32px;
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-md); padding: 0 var(--space-md);
+    font: 400 14px/20px var(--font); color: var(--nf1);
+    cursor: pointer; user-select: none;
+    display: flex; align-items: center;
+  }
+  .fl-select:hover { border-color: var(--ns-acc); }
+  .fl-select:focus, .fl-select.open { border-color: var(--brand); outline: none; }
+  .fl-select-trigger {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; height: 100%;
+  }
+  .fl-select-value { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fl-select-arrow {
+    transition: transform 150ms ease;
+  }
+  .fl-select.open .fl-select-arrow { transform: rotate(180deg); }
+  .fl-select-options {
+    position: absolute; top: calc(100% + 2px); left: 0; right: 0;
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-md); padding: var(--space-xs) 0;
+    box-shadow: var(--shadow8);
+    z-index: 110; display: none;
+  }
+  .fl-select.open .fl-select-options { display: block; }
+  .fl-select-option {
+    height: 32px; padding: 0 var(--space-md);
+    display: flex; align-items: center;
+    font: 400 14px/20px var(--font); color: var(--nf1);
+    cursor: pointer;
+  }
+  .fl-select-option:hover { background: var(--nb2); }
+  .fl-select-option.selected { background: var(--brand); color: #fff; opacity: 0.9; }
+
+  /* ========================================
+     Scrollbar
+     ======================================== */
+  .content::-webkit-scrollbar, .sidebar-nav::-webkit-scrollbar { width: 6px; }
+  .content::-webkit-scrollbar-track, .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+  .content::-webkit-scrollbar-thumb, .sidebar-nav::-webkit-scrollbar-thumb { background: var(--ns1); border-radius: 3px; }
+
+  /* ========================================
+     Responsive
+     ======================================== */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .content { padding: var(--space-lg); }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ========================================
+     Component Demos — section header
+     ======================================== */
+  .comp-section { margin-bottom: var(--space-xxxl); }
+  .comp-section-title {
+    font-size: 18px; font-weight: 600;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--ns2);
+  }
+  .comp-demo {
+    background: var(--nb1); border: 1px solid var(--ns2);
+    border-radius: var(--r-xl); padding: var(--space-xl);
+  }
+  .comp-row { display: flex; gap: var(--space-lg); align-items: center; flex-wrap: wrap; }
+  .comp-col { display: flex; flex-direction: column; gap: var(--space-md); }
+
+  /* ========================================
+     1. Autocomplete
+     ======================================== */
+  .ac-wrap { position: relative; width: 300px; }
+  .ac-wrap input {
+    width: 100%; height: 32px;
+    border: 1px solid var(--ns1); border-radius: var(--r-md);
+    padding: 0 var(--space-md); font: 400 14px/20px var(--font);
+    color: var(--nf1); background: var(--nb1); outline: none;
+  }
+  .ac-wrap input:focus { border-color: var(--brand); }
+  .ac-dropdown {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-md); box-shadow: var(--shadow8);
+    max-height: 200px; overflow-y: auto; z-index: 50;
+    display: none;
+  }
+  .ac-dropdown.open { display: block; }
+  .ac-option {
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer; font-size: 14px;
+    transition: background 100ms;
+  }
+  .ac-option:hover, .ac-option.highlight { background: var(--nb2); }
+
+  /* ========================================
+     2. NumberInput
+     ======================================== */
+  .ni-wrap { display: inline-flex; align-items: stretch; }
+  .ni-btn {
+    width: 32px; height: 32px; border: 1px solid var(--ns1);
+    background: var(--nb2); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font: 600 16px var(--font); color: var(--nf1);
+    transition: background 100ms;
+  }
+  .ni-btn:first-child { border-radius: var(--r-md) 0 0 var(--r-md); border-right: none; }
+  .ni-btn:last-child { border-radius: 0 var(--r-md) var(--r-md) 0; border-left: none; }
+  .ni-btn:hover { background: var(--nb3); }
+  .ni-btn:active { background: var(--nb4); }
+  .ni-input {
+    width: 64px; height: 32px; text-align: center;
+    border: 1px solid var(--ns1); font: 400 14px/20px var(--font);
+    color: var(--nf1); background: var(--nb1); outline: none;
+  }
+  .ni-input:focus { border-color: var(--brand); }
+
+  /* ========================================
+     3. Upload
+     ======================================== */
+  .upload-area {
+    border: 2px dashed var(--ns1); border-radius: var(--r-lg);
+    padding: var(--space-xxl); text-align: center;
+    cursor: pointer; transition: border-color 200ms, background 200ms;
+  }
+  .upload-area:hover { border-color: var(--brand); background: var(--nb2); }
+  .upload-area p { color: var(--nf2); font-size: 14px; margin-top: var(--space-sm); }
+  .upload-list { margin-top: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); }
+  .upload-file {
+    display: flex; align-items: center; gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md); background: var(--nb2);
+    border-radius: var(--r-md); font-size: 14px;
+  }
+  .upload-file-name { flex: 1; }
+  .upload-file-del {
+    background: none; border: none; color: var(--error);
+    cursor: pointer; font-size: 14px; font-weight: 600;
+  }
+
+  /* ========================================
+     4. Notification Panel
+     ======================================== */
+  .notif-panel {
+    position: fixed; top: 48px; right: var(--space-lg);
+    width: 360px; max-height: 480px; overflow-y: auto;
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-xl); box-shadow: var(--shadow16);
+    z-index: 90; display: none;
+  }
+  .notif-panel.open { display: block; }
+  .notif-header {
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--ns2);
+    font-size: 14px; font-weight: 600;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .notif-header button {
+    background: none; border: none; color: var(--brand);
+    font-size: 12px; cursor: pointer; font-family: var(--font);
+  }
+  .notif-item {
+    display: flex; gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--ns2); cursor: pointer;
+    transition: background 100ms;
+  }
+  .notif-item:hover { background: var(--nb2); }
+  .notif-item.unread { border-left: 3px solid var(--brand); }
+  .notif-item-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--brand);
+    flex-shrink: 0; margin-top: 6px;
+  }
+  .notif-item-content { flex: 1; }
+  .notif-item-title { font-size: 14px; font-weight: 600; }
+  .notif-item-body { font-size: 12px; color: var(--nf2); margin-top: 2px; }
+  .notif-item-time { font-size: 11px; color: var(--nf3); margin-top: 4px; }
+
+  /* ========================================
+     5. Skeleton
+     ======================================== */
+  .sk-card {
+    background: var(--nb1); border: 1px solid var(--ns2);
+    border-radius: var(--r-xl); padding: var(--space-lg);
+    width: 280px;
+  }
+  .sk-block {
+    background: var(--nb3); border-radius: var(--r-md);
+    animation: sk-shimmer 1.5s ease-in-out infinite;
+  }
+  .sk-title { height: 16px; width: 60%; margin-bottom: var(--space-md); }
+  .sk-line { height: 12px; margin-bottom: var(--space-sm); }
+  .sk-line:last-child { width: 80%; }
+  .sk-avatar-row { display: flex; gap: var(--space-xs); margin-top: var(--space-lg); }
+  .sk-avatar { width: 28px; height: 28px; border-radius: 50%; }
+  @keyframes sk-shimmer {
+    0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; }
+  }
+
+  /* ========================================
+     6. Pagination
+     ======================================== */
+  .pag-wrap { display: inline-flex; align-items: center; gap: var(--space-xs); }
+  .pag-btn {
+    min-width: 32px; height: 32px; padding: 0 var(--space-sm);
+    border: 1px solid var(--ns1); background: var(--nb1);
+    border-radius: var(--r-md); cursor: pointer;
+    font: 400 14px/20px var(--font); color: var(--nf1);
+    transition: background 100ms;
+  }
+  .pag-btn:hover { background: var(--nb2); }
+  .pag-btn.active {
+    background: var(--brand); color: #fff; border-color: var(--brand);
+  }
+  .pag-btn:disabled { color: var(--nf-disabled); cursor: default; }
+  .pag-btn:disabled:hover { background: var(--nb1); }
+
+  /* ========================================
+     7. Stepper
+     ======================================== */
+  .stepper { display: flex; align-items: flex-start; gap: 0; }
+  .step-item {
+    display: flex; align-items: center; gap: var(--space-sm);
+    flex: 1; position: relative;
+  }
+  .step-circle {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0;
+    border: 2px solid var(--ns1); background: var(--nb1);
+    color: var(--nf2); transition: all 200ms;
+  }
+  .step-item.done .step-circle { background: var(--success); border-color: var(--success); color: #fff; }
+  .step-item.current .step-circle { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .step-content { flex: 1; }
+  .step-label { font-size: 14px; font-weight: 600; }
+  .step-desc { font-size: 12px; color: var(--nf2); }
+  .step-line {
+    flex: 1; height: 2px; background: var(--ns1);
+    margin: 13px var(--space-sm) 0;
+    transition: background 200ms;
+  }
+  .step-item.done .step-line { background: var(--success); }
+
+  /* ========================================
+     8. Sheet (ActionSheet / Bottom Sheet)
+     ======================================== */
+  .sheet-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 110; opacity: 0; pointer-events: none;
+    transition: opacity 200ms;
+  }
+  .sheet-overlay.open { opacity: 1; pointer-events: auto; }
+  .sheet {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(100%);
+    width: 100%; max-width: 520px; background: var(--nb1);
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+    box-shadow: var(--shadow16); z-index: 111;
+    transition: transform 300ms cubic-bezier(0.33,1,0.68,1);
+    padding-bottom: var(--space-xxl);
+  }
+  .sheet-overlay.open .sheet { transform: translateX(-50%) translateY(0); }
+  .sheet-handle {
+    width: 40px; height: 4px; background: var(--ns1);
+    border-radius: 2px; margin: var(--space-md) auto var(--space-lg);
+  }
+  .sheet-item {
+    padding: var(--space-md) var(--space-xl); cursor: pointer;
+    font-size: 16px; transition: background 100ms;
+  }
+  .sheet-item:hover { background: var(--nb2); }
+  .sheet-item.danger { color: var(--error); }
+
+  /* ========================================
+     9. Accordion
+     ======================================== */
+  .accordion { border: 1px solid var(--ns2); border-radius: var(--r-lg); overflow: hidden; }
+  .accordion-item { border-bottom: 1px solid var(--ns2); }
+  .accordion-item:last-child { border-bottom: none; }
+  .accordion-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--space-md) var(--space-lg); cursor: pointer;
+    font-size: 14px; font-weight: 600; background: var(--nb1);
+    transition: background 100ms;
+  }
+  .accordion-header:hover { background: var(--nb2); }
+  .accordion-arrow {
+    font-size: 12px; color: var(--nf2);
+    transition: transform 200ms;
+  }
+  .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+  .accordion-body {
+    padding: 0 var(--space-lg); max-height: 0; overflow: hidden;
+    transition: max-height 300ms ease, padding 300ms ease;
+    font-size: 14px; color: var(--nf2); line-height: 20px;
+  }
+  .accordion-item.open .accordion-body {
+    max-height: 200px; padding: 0 var(--space-lg) var(--space-lg);
+  }
+
+  /* ========================================
+     10. Carousel
+     ======================================== */
+  .carousel { position: relative; overflow: hidden; border-radius: var(--r-lg); }
+  .carousel-track { display: flex; transition: transform 400ms ease; }
+  .carousel-slide {
+    min-width: 100%; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 600; color: #fff;
+  }
+  .carousel-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px; border: none; background: rgba(0,0,0,0.3);
+    color: #fff; border-radius: 50%; cursor: pointer;
+    font-size: 18px; display: flex; align-items: center; justify-content: center;
+    transition: background 200ms; z-index: 2;
+  }
+  .carousel-arrow:hover { background: rgba(0,0,0,0.5); }
+  .carousel-prev { left: var(--space-md); }
+  .carousel-next { right: var(--space-md); }
+  .carousel-dots {
+    position: absolute; bottom: var(--space-md); left: 50%; transform: translateX(-50%);
+    display: flex; gap: var(--space-sm); z-index: 2;
+  }
+  .carousel-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.5); border: none; cursor: pointer;
+    transition: background 200ms;
+  }
+  .carousel-dot.active { background: #fff; }
+
+  /* ========================================
+     11. Timeline
+     ======================================== */
+  .timeline { position: relative; padding-left: var(--space-xxl); }
+  .timeline::before {
+    content: ''; position: absolute; left: 11px; top: 4px; bottom: 4px;
+    width: 2px; background: var(--ns2);
+  }
+  .tl-item { position: relative; padding-bottom: var(--space-xl); }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: calc(-1 * var(--space-xxl) + 7px); top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2px solid var(--brand); background: var(--nb1);
+  }
+  .tl-item.active .tl-dot { background: var(--brand); }
+  .tl-item.done .tl-dot { background: var(--success); border-color: var(--success); }
+  .tl-time { font-size: 12px; color: var(--nf3); margin-bottom: 2px; }
+  .tl-title { font-size: 14px; font-weight: 600; }
+  .tl-desc { font-size: 12px; color: var(--nf2); margin-top: 2px; }
+
+  /* ========================================
+     12. Tree
+     ======================================== */
+  .tree { font-size: 14px; }
+  .tree-node { padding-left: var(--space-xl); }
+  .tree-node-header {
+    display: flex; align-items: center; gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm); cursor: pointer;
+    border-radius: var(--r-md); transition: background 100ms;
+  }
+  .tree-node-header:hover { background: var(--nb2); }
+  .tree-toggle {
+    width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--nf2); transition: transform 200ms;
+    flex-shrink: 0;
+  }
+  .tree-node.expanded > .tree-node-header .tree-toggle { transform: rotate(90deg); }
+  .tree-children { display: none; }
+  .tree-node.expanded > .tree-children { display: block; }
+  .tree-icon {
+    width: 16px; height: 16px; border-radius: var(--r-sm);
+    flex-shrink: 0;
+  }
+  .tree-label { font-size: 14px; }
+
+  /* ========================================
+     13. Divider
+     ======================================== */
+  .fluent-divider {
+    border: none; border-top: 1px solid var(--ns1);
+    margin: var(--space-xxl) 0;
+  }
+  .fluent-divider.thick { border-top-width: 2px; }
+  .fluent-divider.subtle { border-top-color: var(--ns2); }
+
+  /* ========================================
+     14. Space / Stack
+     ======================================== */
+  .fstack-h { display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap; }
+  .fstack-v { display: flex; flex-direction: column; gap: var(--space-md); }
+  .fstack-gap-xs { gap: var(--space-xs); }
+  .fstack-gap-sm { gap: var(--space-sm); }
+  .fstack-gap-lg { gap: var(--space-lg); }
+  .fstack-gap-xl { gap: var(--space-xl); }
+  .fstack-gap-xxl { gap: var(--space-xxl); }
+  .fstack-demo-box {
+    padding: var(--space-md); background: var(--nb2);
+    border: 1px solid var(--ns2); border-radius: var(--r-md);
+    font-size: 12px; text-align: center;
+  }
+
+  /* ========================================
+     15. AspectRatio
+     ======================================== */
+  .aspect-wrap {
+    position: relative; width: 100%; overflow: hidden;
+    border-radius: var(--r-lg); border: 1px solid var(--ns2);
+  }
+  .aspect-wrap.ar-16-9 { padding-top: 56.25%; }
+  .aspect-wrap.ar-4-3 { padding-top: 75%; }
+  .aspect-wrap.ar-1-1 { padding-top: 100%; }
+  .aspect-inner {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--nb2); color: var(--nf2); font-size: 14px;
+  }
+
+  /* ========================================
+     16. Popover
+     ======================================== */
+  .popover-wrap { position: relative; display: inline-block; }
+  .popover {
+    position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: var(--nb1); border: 1px solid var(--ns1);
+    border-radius: var(--r-lg); box-shadow: var(--shadow8);
+    padding: var(--space-md); z-index: 50;
+    min-width: 200px; display: none;
+  }
+  .popover.open { display: block; }
+  .popover-item {
+    padding: var(--space-sm) var(--space-md); cursor: pointer;
+    border-radius: var(--r-md); font-size: 14px;
+    transition: background 100ms;
+  }
+  .popover-item:hover { background: var(--nb2); }
+
+  /* ========================================
+     17. FAB (Floating Action Button)
+     ======================================== */
+  .fab {
+    position: fixed; bottom: var(--space-xxl); right: var(--space-xxl);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--brand); color: #fff; border: none;
+    font-size: 24px; cursor: pointer; z-index: 80;
+    box-shadow: var(--shadow8);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 100ms, box-shadow 200ms, transform 200ms;
+  }
+  .fab:hover { background: var(--brand-hover); box-shadow: var(--shadow16); transform: scale(1.05); }
+  .fab:active { background: var(--brand-pressed); transform: scale(0.95); }
+
+  /* ========================================
+     18. SearchBar
+     ======================================== */
+  .searchbar {
+    display: flex; align-items: center; gap: 0;
+    border: 1px solid var(--ns1); border-radius: var(--r-md);
+    background: var(--nb1); overflow: hidden; width: 300px;
+    transition: border-color 200ms;
+  }
+  .searchbar:focus-within { border-color: var(--brand); }
+  .searchbar-icon {
+    padding: 0 var(--space-sm); color: var(--nf3);
+    font-size: 14px; display: flex; align-items: center;
+  }
+  .searchbar input {
+    flex: 1; height: 32px; border: none; outline: none;
+    background: transparent; font: 400 14px/20px var(--font);
+    color: var(--nf1); padding: 0 var(--space-sm) 0 0;
+  }
+
+  /* ========================================
+     19. Rating
+     ======================================== */
+  .rating { display: inline-flex; gap: var(--space-xs); }
+  .rating-star {
+    font-size: 24px; cursor: pointer; color: var(--ns1);
+    transition: color 100ms, transform 100ms; user-select: none;
+  }
+  .rating-star.filled { color: var(--warning); }
+  .rating-star:hover { transform: scale(1.15); }
+
+  /* ========================================
+     20. ColorPicker
+     ======================================== */
+  .cp-wrap { display: flex; flex-direction: column; gap: var(--space-md); width: 260px; }
+  .cp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-sm); }
+  .cp-swatch {
+    width: 100%; padding-top: 100%; border-radius: var(--r-md);
+    cursor: pointer; border: 2px solid transparent;
+    transition: border-color 100ms; position: relative;
+  }
+  .cp-swatch.selected { border-color: var(--nf1); }
+  .cp-swatch:hover { border-color: var(--ns-acc); }
+  .cp-hex-input {
+    width: 100%; height: 32px; border: 1px solid var(--ns1);
+    border-radius: var(--r-md); padding: 0 var(--space-md);
+    font: 400 14px/20px var(--font); color: var(--nf1);
+    outline: none;
+  }
+  .cp-hex-input:focus { border-color: var(--brand); }
+  .cp-preview {
+    display: flex; align-items: center; gap: var(--space-sm);
+    font-size: 14px; color: var(--nf2);
+  }
+  .cp-preview-swatch {
+    width: 28px; height: 28px; border-radius: var(--r-md);
+    border: 1px solid var(--ns1);
+  }
+
+  /* ========================================
+     21. Calendar
+     ======================================== */
+  .calendar {
+    width: 300px; background: var(--nb1);
+    border: 1px solid var(--ns2); border-radius: var(--r-lg);
+    padding: var(--space-lg);
+  }
+  .cal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+  .cal-title { font-size: 14px; font-weight: 600; }
+  .cal-nav {
+    background: none; border: 1px solid var(--ns1); border-radius: var(--r-md);
+    width: 28px; height: 28px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--nf1);
+    transition: background 100ms;
+  }
+  .cal-nav:hover { background: var(--nb2); }
+  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+  .cal-weekday { font-size: 12px; font-weight: 600; color: var(--nf3); padding: var(--space-xs) 0; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-day {
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; cursor: pointer; border-radius: var(--r-md);
+    transition: background 100ms;
+  }
+  .cal-day:hover { background: var(--nb2); }
+  .cal-day.today { background: var(--brand); color: #fff; }
+  .cal-day.other-month { color: var(--nf-disabled); }
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo"><span class="logo-icon"></span> ProjectHub</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Navigation</div>
+        <div class="sidebar-item active">
+          <div class="sidebar-item-icon" style="background:var(--brand)"></div>
+          Overview
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-icon" style="background:var(--warning)"></div>
+          My Tasks
+          <span class="sidebar-item-badge">5</span>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-icon" style="background:var(--info)"></div>
+          Projects
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-icon" style="background:var(--success)"></div>
+          Team
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-item-icon" style="background:var(--nf3)"></div>
+          Calendar
+        </div>
+
+        <div class="sidebar-section">Projects</div>
+        <div class="sidebar-item"><div class="sidebar-item-icon" style="background:var(--ns1)"></div>Design System</div>
+        <div class="sidebar-item"><div class="sidebar-item-icon" style="background:var(--ns1)"></div>Mobile App</div>
+        <div class="sidebar-item"><div class="sidebar-item-icon" style="background:var(--ns1)"></div>Backend Refactor</div>
+
+        <div class="sidebar-section">Favorites</div>
+        <div class="sidebar-item"><div class="sidebar-item-icon" style="background:var(--warning)"></div>Docs</div>
+        <div class="sidebar-item"><div class="sidebar-item-icon" style="background:var(--warning)"></div>Designs</div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">Z</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Zhang San</div>
+            <div class="sidebar-user-role">Product Designer</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main-area">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="#">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="#">Projects</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Dashboard</span>
+      </div>
+
+      <!-- Toolbar -->
+      <header class="toolbar">
+        <span class="toolbar-title">Dashboard</span>
+        <button class="toolbar-btn">&#128276; Notifications</button>
+        <button class="toolbar-btn">&#9881; Settings</button>
+        <button class="toolbar-btn toolbar-btn-primary" onclick="openDialog()">+ New Task</button>
+      </header>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1>Dashboard</h1>
+          <p>Welcome back, Zhang San. Here is your project overview.</p>
+        </div>
+
+        <!-- Status Banner -->
+        <div class="status-banner info">
+          &#8505; System maintenance scheduled for 2:00-4:00 AM on June 15.
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-card-label">Active Projects</div>
+            <div class="stat-card-value">12</div>
+            <div class="stat-card-change up">&#9650; +2 vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Ongoing Tasks</div>
+            <div class="stat-card-value">48</div>
+            <div class="stat-card-change down">&#9660; -3 vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Completed This Week</div>
+            <div class="stat-card-value">23</div>
+            <div class="stat-card-change up">&#9650; +8 vs last week</div>
+            <div class="stat-card-bar">
+              <div class="stat-card-bar-fill" style="width:65%;background:var(--success)"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-label">Team Efficiency</div>
+            <div class="stat-card-value">87%</div>
+            <div class="stat-card-change up">&#9650; +5% vs last month</div>
+            <div class="stat-card-bar">
+              <div class="stat-card-bar-fill" style="width:87%;background:var(--brand)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pivot Tabs + Recent Tasks -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2>Recent Tasks</h2>
+            <button class="toolbar-btn" style="height:28px;font-size:12px;padding:0 var(--space-md)" onclick="openDialog()">+ New</button>
+          </div>
+          <div class="pivot">
+            <button class="pivot-item active">All</button>
+            <button class="pivot-item">To Do</button>
+            <button class="pivot-item">In Progress</button>
+            <button class="pivot-item">Done</button>
+          </div>
+          <div class="fl-list">
+            <div class="fl-list-item">
+              <div class="fl-li-avatar" style="background:var(--brand)">D</div>
+              <div class="fl-li-content">
+                <div class="fl-li-title">Design System Component Docs</div>
+                <div class="fl-li-sub">Due 2026-06-15 · High Priority</div>
+              </div>
+              <div class="fl-li-trailing">
+                <div class="fl-li-tag active">In Progress</div>
+                <div class="fl-li-date">75%</div>
+              </div>
+            </div>
+            <div class="fl-list-item">
+              <div class="fl-li-avatar" style="background:var(--warning)">M</div>
+              <div class="fl-li-content">
+                <div class="fl-li-title">Mobile Login Flow Refactor</div>
+                <div class="fl-li-sub">Due 2026-06-20 · Medium Priority</div>
+              </div>
+              <div class="fl-li-trailing">
+                <div class="fl-li-tag active">In Progress</div>
+                <div class="fl-li-date">40%</div>
+              </div>
+            </div>
+            <div class="fl-list-item">
+              <div class="fl-li-avatar" style="background:var(--success)">A</div>
+              <div class="fl-li-content">
+                <div class="fl-li-title">API Performance Optimization</div>
+                <div class="fl-li-sub">Due 2026-06-10 · High Priority</div>
+              </div>
+              <div class="fl-li-trailing">
+                <div class="fl-li-tag muted">To Do</div>
+              </div>
+            </div>
+            <div class="fl-list-item">
+              <div class="fl-li-avatar" style="background:var(--info)">S</div>
+              <div class="fl-li-content">
+                <div class="fl-li-title">User Feedback Analysis</div>
+                <div class="fl-li-sub">Due 2026-06-08</div>
+              </div>
+              <div class="fl-li-trailing">
+                <div class="fl-li-tag" style="background:var(--success-bg);color:var(--success)">Done</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Cards -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2>Ongoing Projects</h2>
+            <button class="toolbar-btn" style="height:28px;font-size:12px;padding:0 var(--space-md)">+ New Project</button>
+          </div>
+          <div class="card-grid">
+            <div class="fl-card">
+              <div class="fl-card-title">Design System 2.0</div>
+              <div class="fl-card-body">Unify component library, design tokens, and documentation site for web and mobile.</div>
+              <div class="fl-card-meta">Due 2026-07-01</div>
+              <div class="fl-card-footer">
+                <div class="fl-card-avatars">
+                  <span style="background:var(--brand)">Z</span>
+                  <span style="background:var(--warning)">L</span>
+                  <span style="background:var(--success)">W</span>
+                </div>
+                <span class="fl-li-tag active">65%</span>
+              </div>
+            </div>
+            <div class="fl-card">
+              <div class="fl-card-title">Mobile App v3</div>
+              <div class="fl-card-body">New UI architecture, offline mode, and performance optimization.</div>
+              <div class="fl-card-meta">Due 2026-08-15</div>
+              <div class="fl-card-footer">
+                <div class="fl-card-avatars">
+                  <span style="background:var(--error)">C</span>
+                  <span style="background:var(--info)">X</span>
+                </div>
+                <span class="fl-li-tag active">40%</span>
+              </div>
+            </div>
+            <div class="fl-card">
+              <div class="fl-card-title">Admin System Refactor</div>
+              <div class="fl-card-body">Migrate to new framework, optimize data loading and permission management.</div>
+              <div class="fl-card-meta">Due 2026-09-01</div>
+              <div class="fl-card-footer">
+                <div class="fl-card-avatars">
+                  <span style="background:var(--warning)">M</span>
+                  <span style="background:var(--brand)">Z</span>
+                  <span style="background:var(--nf3)">F</span>
+                </div>
+                <span class="fl-li-tag muted">25%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Grid -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2>Team Members</h2>
+          </div>
+          <div class="data-grid-wrap">
+            <table class="data-grid">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Ongoing Tasks</th>
+                  <th>Completion Rate</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Zhang San</td>
+                  <td>Product Designer</td>
+                  <td>4</td>
+                  <td>87%</td>
+                  <td><span class="grid-status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Li Si</td>
+                  <td>Frontend Engineer</td>
+                  <td>3</td>
+                  <td>72%</td>
+                  <td><span class="grid-status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Wang Wu</td>
+                  <td>Backend Engineer</td>
+                  <td>5</td>
+                  <td>60%</td>
+                  <td><span class="grid-status busy">Busy</span></td>
+                </tr>
+                <tr>
+                  <td>Chen Liu</td>
+                  <td>UI Designer</td>
+                  <td>2</td>
+                  <td>95%</td>
+                  <td><span class="grid-status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>Zhao Qi</td>
+                  <td>Test Engineer</td>
+                  <td>1</td>
+                  <td>0%</td>
+                  <td><span class="grid-status away">On Leave</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ========================================
+             Component Demos
+             ======================================== -->
+
+        <!-- 1. Autocomplete -->
+        <div class="comp-section">
+          <div class="comp-section-title">1. Autocomplete</div>
+          <div class="comp-demo">
+            <div class="ac-wrap" id="ac-wrap">
+              <input type="text" placeholder="Search cities..." id="ac-input" autocomplete="off">
+              <div class="ac-dropdown" id="ac-dropdown"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. NumberInput -->
+        <div class="comp-section">
+          <div class="comp-section-title">2. NumberInput</div>
+          <div class="comp-demo">
+            <div class="comp-row">
+              <div class="ni-wrap" id="ni-wrap">
+                <button class="ni-btn" onclick="niStep(-1)">&#8722;</button>
+                <input class="ni-input" type="text" id="ni-input" value="0">
+                <button class="ni-btn" onclick="niStep(1)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Upload -->
+        <div class="comp-section">
+          <div class="comp-section-title">3. Upload</div>
+          <div class="comp-demo">
+            <div class="upload-area" id="upload-area">
+              <div style="font-size:32px">&#128194;</div>
+              <p>Click or drag files here to upload</p>
+            </div>
+            <div class="upload-list" id="upload-list"></div>
+          </div>
+        </div>
+
+        <!-- 4. Notification Panel -->
+        <div class="comp-section">
+          <div class="comp-section-title">4. Notification Panel</div>
+          <div class="comp-demo">
+            <p style="color:var(--nf2);margin-bottom:var(--space-md)">Click the &#128276; toolbar button to open the notification panel</p>
+            <div class="notif-panel" id="notif-panel" style="position:static;width:100%;max-height:none;box-shadow:none;display:block">
+              <div class="notif-header">
+                Notifications
+                <button>Mark all as read</button>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-item-dot"></div>
+                <div class="notif-item-content">
+                  <div class="notif-item-title">Task Assigned</div>
+                  <div class="notif-item-body">Li Si assigned "Design System Component Docs" to you</div>
+                  <div class="notif-item-time">5 minutes ago</div>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-item-dot"></div>
+                <div class="notif-item-content">
+                  <div class="notif-item-title">Comment Mention</div>
+                  <div class="notif-item-body">Wang Wu mentioned you in "Mobile App v3"</div>
+                  <div class="notif-item-time">30 minutes ago</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-item-content" style="padding-left:14px">
+                  <div class="notif-item-title">System Notification</div>
+                  <div class="notif-item-body">Server maintenance scheduled for June 15</div>
+                  <div class="notif-item-time">1 hour ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Skeleton -->
+        <div class="comp-section">
+          <div class="comp-section-title">5. Skeleton</div>
+          <div class="comp-demo">
+            <div class="sk-card">
+              <div class="sk-block sk-title"></div>
+              <div class="sk-block sk-line"></div>
+              <div class="sk-block sk-line"></div>
+              <div class="sk-block sk-line"></div>
+              <div class="sk-avatar-row">
+                <div class="sk-block sk-avatar"></div>
+                <div class="sk-block sk-avatar"></div>
+                <div class="sk-block sk-avatar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Pagination -->
+        <div class="comp-section">
+          <div class="comp-section-title">6. Pagination</div>
+          <div class="comp-demo">
+            <div class="pag-wrap" id="pag-wrap">
+              <button class="pag-btn" onclick="pagGo('prev')" id="pag-prev">&lt;</button>
+              <button class="pag-btn active" onclick="pagGo(1)">1</button>
+              <button class="pag-btn" onclick="pagGo(2)">2</button>
+              <button class="pag-btn" onclick="pagGo(3)">3</button>
+              <button class="pag-btn" onclick="pagGo(4)">4</button>
+              <button class="pag-btn" onclick="pagGo(5)">5</button>
+              <button class="pag-btn" onclick="pagGo('next')" id="pag-next">&gt;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Stepper -->
+        <div class="comp-section">
+          <div class="comp-section-title">7. Stepper</div>
+          <div class="comp-demo">
+            <div class="stepper">
+              <div class="step-item done">
+                <div class="step-circle">&#10003;</div>
+                <div class="step-content">
+                  <div class="step-label">Requirements</div>
+                  <div class="step-desc">Done</div>
+                </div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-item current">
+                <div class="step-circle">2</div>
+                <div class="step-content">
+                  <div class="step-label">UI Design</div>
+                  <div class="step-desc">In Progress</div>
+                </div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-item">
+                <div class="step-circle">3</div>
+                <div class="step-content">
+                  <div class="step-label">Development</div>
+                  <div class="step-desc">Pending</div>
+                </div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-item">
+                <div class="step-circle">4</div>
+                <div class="step-content">
+                  <div class="step-label">Testing & Launch</div>
+                  <div class="step-desc">Pending</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Sheet / ActionSheet -->
+        <div class="comp-section">
+          <div class="comp-section-title">8. Sheet</div>
+          <div class="comp-demo">
+            <button class="toolbar-btn" onclick="openSheet()">Open Bottom Sheet</button>
+          </div>
+        </div>
+
+        <!-- 9. Accordion -->
+        <div class="comp-section">
+          <div class="comp-section-title">9. Accordion</div>
+          <div class="comp-demo">
+            <div class="accordion">
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  Design System 2.0 Project Details
+                  <span class="accordion-arrow">&#9660;</span>
+                </div>
+                <div class="accordion-body">
+                  Unify component library, design tokens, and documentation site for web and mobile. Expected delivery July 1, current progress 65%.
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  Mobile App v3 Iteration Plan
+                  <span class="accordion-arrow">&#9660;</span>
+                </div>
+                <div class="accordion-body">
+                  New UI architecture, offline mode, and performance optimization. Supports iOS and Android, expected release August 15.
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  Admin System Refactor
+                  <span class="accordion-arrow">&#9660;</span>
+                </div>
+                <div class="accordion-body">
+                  Migrate to new framework, optimize data loading and permission management. Involves 32 modules, expected completion September 1.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Carousel -->
+        <div class="comp-section">
+          <div class="comp-section-title">10. Carousel</div>
+          <div class="comp-demo">
+            <div class="carousel" id="carousel">
+              <div class="carousel-track" id="carousel-track">
+                <div class="carousel-slide" style="background:var(--brand)">Design System 2.0</div>
+                <div class="carousel-slide" style="background:var(--success)">Mobile App v3</div>
+                <div class="carousel-slide" style="background:var(--info)">Backend Refactor</div>
+              </div>
+              <button class="carousel-arrow carousel-prev" onclick="carouselMove(-1)">&#8249;</button>
+              <button class="carousel-arrow carousel-next" onclick="carouselMove(1)">&#8250;</button>
+              <div class="carousel-dots" id="carousel-dots"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Timeline -->
+        <div class="comp-section">
+          <div class="comp-section-title">11. Timeline</div>
+          <div class="comp-demo">
+            <div class="timeline">
+              <div class="tl-item done">
+                <div class="tl-dot"></div>
+                <div class="tl-time">2026-05-20</div>
+                <div class="tl-title">Project Kickoff</div>
+                <div class="tl-desc">Requirements analysis and team formation completed</div>
+              </div>
+              <div class="tl-item done">
+                <div class="tl-dot"></div>
+                <div class="tl-time">2026-05-28</div>
+                <div class="tl-title">UI Design Review</div>
+                <div class="tl-desc">Initial design review completed</div>
+              </div>
+              <div class="tl-item active">
+                <div class="tl-dot"></div>
+                <div class="tl-time">2026-06-05</div>
+                <div class="tl-title">Frontend Development</div>
+                <div class="tl-desc">Currently in progress</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-time">2026-06-20</div>
+                <div class="tl-title">Internal Testing</div>
+                <div class="tl-desc">Planned milestone</div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-time">2026-07-01</div>
+                <div class="tl-title">Official Release</div>
+                <div class="tl-desc">Final delivery date</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Tree -->
+        <div class="comp-section">
+          <div class="comp-section-title">12. Tree</div>
+          <div class="comp-demo">
+            <div class="tree">
+              <div class="tree-node expanded">
+                <div class="tree-node-header" onclick="toggleTreeNode(this)">
+                  <span class="tree-toggle">&#9654;</span>
+                  <div class="tree-icon" style="background:var(--brand)"></div>
+                  <span class="tree-label">Design System</span>
+                </div>
+                <div class="tree-children">
+                  <div class="tree-node">
+                    <div class="tree-node-header" onclick="toggleTreeNode(this)">
+                      <span class="tree-toggle">&#9654;</span>
+                      <div class="tree-icon" style="background:var(--warning)"></div>
+                      <span class="tree-label">Component Library</span>
+                    </div>
+                    <div class="tree-children">
+                      <div class="tree-node">
+                        <div class="tree-node-header">
+                          <span class="tree-toggle" style="visibility:hidden">&#9654;</span>
+                          <div class="tree-icon" style="background:var(--ns2)"></div>
+                          <span class="tree-label">Button</span>
+                        </div>
+                      </div>
+                      <div class="tree-node">
+                        <div class="tree-node-header">
+                          <span class="tree-toggle" style="visibility:hidden">&#9654;</span>
+                          <div class="tree-icon" style="background:var(--ns2)"></div>
+                          <span class="tree-label">Card</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tree-node">
+                    <div class="tree-node-header">
+                      <span class="tree-toggle" style="visibility:hidden">&#9654;</span>
+                      <div class="tree-icon" style="background:var(--info)"></div>
+                      <span class="tree-label">Docs Site</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="tree-node-header" onclick="toggleTreeNode(this)">
+                  <span class="tree-toggle">&#9654;</span>
+                  <div class="tree-icon" style="background:var(--success)"></div>
+                  <span class="tree-label">Mobile App</span>
+                </div>
+                <div class="tree-children">
+                  <div class="tree-node">
+                    <div class="tree-node-header">
+                      <span class="tree-toggle" style="visibility:hidden">&#9654;</span>
+                      <span class="tree-label">iOS</span>
+                    </div>
+                  </div>
+                  <div class="tree-node">
+                    <div class="tree-node-header">
+                      <span class="tree-toggle" style="visibility:hidden">&#9654;</span>
+                      <span class="tree-label">Android</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13. Divider -->
+        <div class="comp-section">
+          <div class="comp-section-title">13. Divider</div>
+          <div class="comp-demo">
+            <p style="font-size:14px;color:var(--nf2)">Default divider</p>
+            <hr class="fluent-divider">
+            <p style="font-size:14px;color:var(--nf2)">Thick divider (thick)</p>
+            <hr class="fluent-divider thick">
+            <p style="font-size:14px;color:var(--nf2)">Subtle divider (subtle)</p>
+            <hr class="fluent-divider subtle">
+            <p style="font-size:14px;color:var(--nf2)">End</p>
+          </div>
+        </div>
+
+        <!-- 14. Space / Stack -->
+        <div class="comp-section">
+          <div class="comp-section-title">14. Space / Stack</div>
+          <div class="comp-demo">
+            <p style="font-size:12px;color:var(--nf3);margin-bottom:var(--space-sm)">Horizontal layout (fstack-h)</p>
+            <div class="fstack-h">
+              <div class="fstack-demo-box">Project A</div>
+              <div class="fstack-demo-box">Project B</div>
+              <div class="fstack-demo-box">Project C</div>
+            </div>
+            <hr class="fluent-divider subtle" style="margin:var(--space-lg) 0">
+            <p style="font-size:12px;color:var(--nf3);margin-bottom:var(--space-sm)">Vertical layout (fstack-v)</p>
+            <div class="fstack-v" style="width:200px">
+              <div class="fstack-demo-box">Item 1</div>
+              <div class="fstack-demo-box">Item 2</div>
+              <div class="fstack-demo-box">Item 3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 15. AspectRatio -->
+        <div class="comp-section">
+          <div class="comp-section-title">15. AspectRatio</div>
+          <div class="comp-demo">
+            <div class="comp-row">
+              <div style="width:240px">
+                <p style="font-size:12px;color:var(--nf3);margin-bottom:var(--space-sm)">16:9</p>
+                <div class="aspect-wrap ar-16-9">
+                  <div class="aspect-inner">16:9 Container</div>
+                </div>
+              </div>
+              <div style="width:180px">
+                <p style="font-size:12px;color:var(--nf3);margin-bottom:var(--space-sm)">4:3</p>
+                <div class="aspect-wrap ar-4-3">
+                  <div class="aspect-inner">4:3 Container</div>
+                </div>
+              </div>
+              <div style="width:140px">
+                <p style="font-size:12px;color:var(--nf3);margin-bottom:var(--space-sm)">1:1</p>
+                <div class="aspect-wrap ar-1-1">
+                  <div class="aspect-inner">1:1 Container</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16. Popover -->
+        <div class="comp-section">
+          <div class="comp-section-title">16. Popover</div>
+          <div class="comp-demo">
+            <div class="popover-wrap" id="popover-wrap">
+              <button class="toolbar-btn" id="popover-trigger">Click to Open Popover</button>
+              <div class="popover" id="popover">
+                <div class="popover-item" onclick="document.getElementById('popover').classList.remove('open')">Edit</div>
+                <div class="popover-item" onclick="document.getElementById('popover').classList.remove('open')">Copy</div>
+                <div class="popover-item" onclick="document.getElementById('popover').classList.remove('open')">Delete</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 17. FAB -->
+        <div class="comp-section">
+          <div class="comp-section-title">17. FAB</div>
+          <div class="comp-demo">
+            <p style="color:var(--nf2);font-size:14px;margin-bottom:var(--space-md)">Floating action button (demo placed within this area)</p>
+            <div style="position:relative;height:80px;background:var(--nb2);border-radius:var(--r-md)">
+              <button class="fab" style="position:absolute;bottom:16px;right:16px" onclick="showToastFab()">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 18. SearchBar -->
+        <div class="comp-section">
+          <div class="comp-section-title">18. SearchBar</div>
+          <div class="comp-demo">
+            <div class="searchbar">
+              <span class="searchbar-icon">&#128269;</span>
+              <input type="text" placeholder="Search tasks, projects, or members...">
+            </div>
+          </div>
+        </div>
+
+        <!-- 19. Rating -->
+        <div class="comp-section">
+          <div class="comp-section-title">19. Rating</div>
+          <div class="comp-demo">
+            <div class="rating" id="rating">
+              <span class="rating-star" data-idx="1">&#9733;</span>
+              <span class="rating-star" data-idx="2">&#9733;</span>
+              <span class="rating-star" data-idx="3">&#9733;</span>
+              <span class="rating-star" data-idx="4">&#9733;</span>
+              <span class="rating-star" data-idx="5">&#9733;</span>
+            </div>
+            <span style="margin-left:var(--space-md);font-size:14px;color:var(--nf2)" id="rating-text">Rating: 0/5</span>
+          </div>
+        </div>
+
+        <!-- 20. ColorPicker -->
+        <div class="comp-section">
+          <div class="comp-section-title">20. ColorPicker</div>
+          <div class="comp-demo">
+            <div class="cp-wrap">
+              <div class="cp-grid" id="cp-grid">
+                <div class="cp-swatch" style="background:#0078D4" data-color="#0078D4"></div>
+                <div class="cp-swatch" style="background:#107C10" data-color="#107C10"></div>
+                <div class="cp-swatch" style="background:#D13438" data-color="#D13438"></div>
+                <div class="cp-swatch" style="background:#FFC107" data-color="#FFC107"></div>
+                <div class="cp-swatch" style="background:#0099BC" data-color="#0099BC"></div>
+                <div class="cp-swatch" style="background:#242424" data-color="#242424"></div>
+                <div class="cp-swatch" style="background:#616161" data-color="#616161"></div>
+                <div class="cp-swatch" style="background:#E0E0E0" data-color="#E0E0E0"></div>
+              </div>
+              <input class="cp-hex-input" id="cp-hex" type="text" value="#0078D4" placeholder="#000000">
+              <div class="cp-preview" id="cp-preview">
+                <div class="cp-preview-swatch" style="background:#0078D4"></div>
+                <span id="cp-label">Brand Blue #0078D4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 21. Calendar -->
+        <div class="comp-section">
+          <div class="comp-section-title">21. Calendar</div>
+          <div class="comp-demo">
+            <div class="calendar" id="calendar">
+              <div class="cal-header">
+                <button class="cal-nav" onclick="calPrevMonth()">&#8249;</button>
+                <span class="cal-title" id="cal-title">June 2026</span>
+                <button class="cal-nav" onclick="calNextMonth()">&#8250;</button>
+              </div>
+              <div class="cal-weekdays">
+                <div class="cal-weekday">Sun</div>
+                <div class="cal-weekday">Mon</div>
+                <div class="cal-weekday">Tue</div>
+                <div class="cal-weekday">Wed</div>
+                <div class="cal-weekday">Thu</div>
+                <div class="cal-weekday">Fri</div>
+                <div class="cal-weekday">Sat</div>
+              </div>
+              <div class="cal-grid" id="cal-grid"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog -->
+  <div class="dialog-overlay" id="dialog" onclick="if(event.target===this)closeDialog()">
+    <div class="dialog">
+      <div class="dialog-title">New Task</div>
+      <div class="dialog-field">
+        <label>Task Name</label>
+        <input type="text" placeholder="Enter task name">
+      </div>
+      <div class="dialog-field">
+        <label>Project</label>
+        <div class="fl-select" id="dialog-select" onclick="toggleFlSelect(this)">
+          <div class="fl-select-trigger">
+            <span class="fl-select-value">Design System 2.0</span>
+            <svg class="fl-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 12px; height: 12px; color: var(--fg2); transition: transform 150ms ease;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="fl-select-options">
+            <div class="fl-select-option selected" data-value="Design System 2.0" onclick="selectFlOption(this, 'dialog-select')">Design System 2.0</div>
+            <div class="fl-select-option" data-value="Mobile App v3" onclick="selectFlOption(this, 'dialog-select')">Mobile App v3</div>
+            <div class="fl-select-option" data-value="Admin System Refactor" onclick="selectFlOption(this, 'dialog-select')">Admin System Refactor</div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-field">
+        <label>Due Date</label>
+        <input type="date" value="2026-06-15">
+      </div>
+      <div class="dialog-field">
+        <label>Description</label>
+        <textarea placeholder="Enter task description..."></textarea>
+      </div>
+      <div class="dialog-actions">
+        <button class="toolbar-btn" onclick="closeDialog()">Cancel</button>
+        <button class="toolbar-btn toolbar-btn-primary" onclick="closeDialog();showToast()">Create Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    Task created
+    <button onclick="hideToast()">Undo</button>
+  </div>
+
+  <script>
+    // ---- Fluent Select Component ----
+    function toggleFlSelect(el) {
+      const options = el.querySelector('.fl-select-options');
+      const isOpen = options.classList.toggle('open');
+      el.classList.toggle('open', isOpen);
+      if (isOpen) {
+        document.querySelectorAll('.fl-select.open').forEach(s => {
+          if (s !== el) { s.classList.remove('open'); s.querySelector('.fl-select-options').classList.remove('open'); }
+        });
+      }
+    }
+    function selectFlOption(optEl, selectId) {
+      const select = document.getElementById(selectId);
+      select.querySelectorAll('.fl-select-option').forEach(o => o.classList.remove('selected'));
+      optEl.classList.add('selected');
+      select.querySelector('.fl-select-value').textContent = optEl.dataset.value;
+      select.classList.remove('open');
+      select.querySelector('.fl-select-options').classList.remove('open');
+    }
+    document.addEventListener('click', e => {
+      document.querySelectorAll('.fl-select.open').forEach(s => {
+        if (!s.contains(e.target)) {
+          s.classList.remove('open');
+          s.querySelector('.fl-select-options').classList.remove('open');
+        }
+      });
+    });
+
+    function openDialog() { document.getElementById('dialog').classList.add('open'); }
+    function closeDialog() { document.getElementById('dialog').classList.remove('open'); }
+    function showToast() {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }
+    function hideToast() { document.getElementById('toast').classList.remove('show'); }
+
+    /* ========================================
+       Component Demo JavaScript
+       ======================================== */
+
+    // 1. Autocomplete
+    (function() {
+      const cities = ['Beijing', 'Shanghai', 'Guangzhou', 'Shenzhen', 'Hangzhou', 'Chengdu', 'Wuhan', 'Nanjing', 'Xi\'an', 'Chongqing', 'Suzhou', 'Tianjin', 'Changsha', 'Zhengzhou', 'Dongguan'];
+      const input = document.getElementById('ac-input');
+      const dropdown = document.getElementById('ac-dropdown');
+      let highlightIdx = -1;
+
+      function filter(query) {
+        return cities.filter(c => c.includes(query));
+      }
+
+      function render(items) {
+        dropdown.innerHTML = items.map((c, i) =>
+          `<div class="ac-option${i === highlightIdx ? ' highlight' : ''}" data-val="${c}">${c}</div>`
+        ).join('');
+        if (items.length > 0) dropdown.classList.add('open');
+        else dropdown.classList.remove('open');
+      }
+
+      input.addEventListener('input', function() {
+        highlightIdx = -1;
+        const val = this.value.trim();
+        if (!val) { dropdown.classList.remove('open'); return; }
+        render(filter(val));
+      });
+
+      input.addEventListener('keydown', function(e) {
+        const items = dropdown.querySelectorAll('.ac-option');
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (highlightIdx < items.length - 1) highlightIdx++;
+          render(filter(input.value.trim()));
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (highlightIdx > 0) highlightIdx--;
+          render(filter(input.value.trim()));
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (highlightIdx >= 0 && items[highlightIdx]) {
+            input.value = items[highlightIdx].dataset.val;
+            dropdown.classList.remove('open');
+          }
+        } else if (e.key === 'Escape') {
+          dropdown.classList.remove('open');
+        }
+      });
+
+      dropdown.addEventListener('click', function(e) {
+        const opt = e.target.closest('.ac-option');
+        if (opt) {
+          input.value = opt.dataset.val;
+          dropdown.classList.remove('open');
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!document.getElementById('ac-wrap').contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
+    })();
+
+    // 2. NumberInput
+    function niStep(delta) {
+      const inp = document.getElementById('ni-input');
+      let v = parseInt(inp.value) || 0;
+      v = Math.max(0, v + delta);
+      inp.value = v;
+    }
+
+    // 3. Upload
+    (function() {
+      const area = document.getElementById('upload-area');
+      const list = document.getElementById('upload-list');
+      let files = [];
+
+      function addFile(name) {
+        if (files.length >= 5) { alert('Maximum 5 files allowed'); return; }
+        files.push(name);
+        renderFiles();
+      }
+
+      function renderFiles() {
+        list.innerHTML = files.map((f, i) =>
+          `<div class="upload-file">
+            <span class="upload-file-name">${f}</span>
+            <button class="upload-file-del" onclick="removeUpload(${i})">&times;</button>
+          </div>`
+        ).join('');
+      }
+
+      window.removeUpload = function(idx) {
+        files.splice(idx, 1);
+        renderFiles();
+      };
+
+      area.addEventListener('click', function() {
+        const name = 'file_' + (files.length + 1) + '.pdf';
+        addFile(name);
+      });
+    })();
+
+    // 4. Notification Panel toggle
+    (function() {
+      const bell = document.querySelector('.toolbar-btn');
+      const panel = document.getElementById('notif-panel');
+      // Create a floating panel for the real toggle
+      const floatPanel = document.createElement('div');
+      floatPanel.className = 'notif-panel';
+      floatPanel.id = 'notif-float';
+      floatPanel.innerHTML = document.getElementById('notif-panel').innerHTML;
+      document.body.appendChild(floatPanel);
+
+      bell.addEventListener('click', function(e) {
+        e.stopPropagation();
+        floatPanel.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!floatPanel.contains(e.target) && e.target !== bell) {
+          floatPanel.classList.remove('open');
+        }
+      });
+    })();
+
+    // 6. Pagination
+    let pagCurrent = 1;
+    function pagGo(n) {
+      const btns = document.querySelectorAll('#pag-wrap .pag-btn');
+      if (n === 'prev') {
+        if (pagCurrent <= 1) return;
+        pagCurrent--;
+      } else if (n === 'next') {
+        if (pagCurrent >= 5) return;
+        pagCurrent++;
+      } else {
+        pagCurrent = n;
+      }
+      btns.forEach(b => {
+        b.classList.remove('active');
+        const t = b.textContent.trim();
+        if (t === String(pagCurrent)) b.classList.add('active');
+      });
+      document.getElementById('pag-prev').disabled = pagCurrent <= 1;
+      document.getElementById('pag-next').disabled = pagCurrent >= 5;
+    }
+
+    // 8. Sheet
+    (function() {
+      const overlay = document.createElement('div');
+      overlay.className = 'sheet-overlay';
+      overlay.id = 'sheet-overlay';
+      overlay.innerHTML = `
+        <div class="sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-item" onclick="closeSheet()">Edit</div>
+          <div class="sheet-item" onclick="closeSheet()">Share</div>
+          <div class="sheet-item" onclick="closeSheet()">Copy Link</div>
+          <div class="sheet-item" onclick="closeSheet()">Export</div>
+          <div class="sheet-item danger" onclick="closeSheet()">Delete</div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeSheet();
+      });
+    })();
+    function openSheet() { document.getElementById('sheet-overlay').classList.add('open'); }
+    function closeSheet() { document.getElementById('sheet-overlay').classList.remove('open'); }
+
+    // 9. Accordion
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // 10. Carousel
+    (function() {
+      let carIdx = 0;
+      const total = 3;
+      const track = document.getElementById('carousel-track');
+      const dotsContainer = document.getElementById('carousel-dots');
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => { carIdx = i; updateCar(); };
+        dotsContainer.appendChild(dot);
+      }
+      window.carouselMove = function(dir) {
+        carIdx = (carIdx + dir + total) % total;
+        updateCar();
+      };
+      function updateCar() {
+        track.style.transform = `translateX(-${carIdx * 100}%)`;
+        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === carIdx);
+        });
+      }
+    })();
+
+    // 12. Tree
+    function toggleTreeNode(header) {
+      const node = header.parentElement;
+      node.classList.toggle('expanded');
+    }
+
+    // 16. Popover
+    (function() {
+      const trigger = document.getElementById('popover-trigger');
+      const popover = document.getElementById('popover');
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        popover.classList.toggle('open');
+      });
+      document.addEventListener('click', function(e) {
+        if (!document.getElementById('popover-wrap').contains(e.target)) {
+          popover.classList.remove('open');
+        }
+      });
+    })();
+
+    // 17. FAB Toast
+    function showToastFab() {
+      const t = document.getElementById('toast');
+      t.textContent = 'New project created';
+      t.querySelector('button') && t.querySelector('button').remove();
+      const btn = document.createElement('button');
+      btn.textContent = 'Undo';
+      btn.onclick = hideToast;
+      t.appendChild(btn);
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    // 19. Rating
+    (function() {
+      const stars = document.querySelectorAll('#rating .rating-star');
+      const text = document.getElementById('rating-text');
+      let ratingVal = 0;
+      stars.forEach(s => {
+        s.addEventListener('click', function() {
+          ratingVal = parseInt(this.dataset.idx);
+          updateStars();
+        });
+        s.addEventListener('mouseenter', function() {
+          const idx = parseInt(this.dataset.idx);
+          stars.forEach((ss, i) => ss.classList.toggle('filled', i < idx));
+        });
+        s.addEventListener('mouseleave', function() {
+          updateStars();
+        });
+      });
+      function updateStars() {
+        stars.forEach((s, i) => s.classList.toggle('filled', i < ratingVal));
+        text.textContent = 'Rating: ' + ratingVal + '/5';
+      }
+    })();
+
+    // 20. ColorPicker
+    (function() {
+      const swatches = document.querySelectorAll('#cp-grid .cp-swatch');
+      const hexInput = document.getElementById('cp-hex');
+      const preview = document.querySelector('#cp-preview .cp-preview-swatch');
+      const label = document.getElementById('cp-label');
+      const colorNames = {
+        '#0078D4': 'Brand Blue', '#107C10': 'Success Green', '#D13438': 'Error Red',
+        '#FFC107': 'Warning Yellow', '#0099BC': 'Info Cyan', '#242424': 'Foreground Black',
+        '#616161': 'Neutral Gray', '#E0E0E0': 'Light Gray'
+      };
+      function selectColor(color) {
+        swatches.forEach(s => s.classList.toggle('selected', s.dataset.color === color));
+        hexInput.value = color;
+        preview.style.background = color;
+        label.textContent = (colorNames[color] || 'Custom') + ' ' + color;
+      }
+      swatches.forEach(s => {
+        s.addEventListener('click', function() {
+          selectColor(this.dataset.color);
+        });
+      });
+      hexInput.addEventListener('input', function() {
+        const v = this.value.trim();
+        if (/^#[0-9A-Fa-f]{6}$/.test(v)) {
+          preview.style.background = v;
+          label.textContent = 'Custom ' + v;
+          swatches.forEach(s => s.classList.remove('selected'));
+        }
+      });
+      // initial
+      selectColor('#0078D4');
+    })();
+
+    // 21. Calendar
+    (function() {
+      let calYear = 2026, calMonth = 6; // June 2026
+      const grid = document.getElementById('cal-grid');
+      const title = document.getElementById('cal-title');
+      const today = new Date();
+      const todayStr = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+
+      function renderCal() {
+        const firstDay = new Date(calYear, calMonth - 1, 1);
+        const startDay = firstDay.getDay();
+        const daysInMonth = new Date(calYear, calMonth, 0).getDate();
+        const daysInPrev = new Date(calYear, calMonth - 1, 0).getDate();
+        title.textContent = `${calYear} ${calMonth}`;
+
+        let html = '';
+        // prev month days
+        for (let i = startDay - 1; i >= 0; i--) {
+          html += `<div class="cal-day other-month">${daysInPrev - i}</div>`;
+        }
+        // current month days
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dateStr = `${calYear}-${calMonth}-${d}`;
+          const cls = dateStr === todayStr ? 'cal-day today' : 'cal-day';
+          html += `<div class="${cls}">${d}</div>`;
+        }
+        // next month days to fill
+        const remaining = 42 - (startDay + daysInMonth);
+        for (let d = 1; d <= remaining; d++) {
+          html += `<div class="cal-day other-month">${d}</div>`;
+        }
+        grid.innerHTML = html;
+      }
+
+      window.calPrevMonth = function() {
+        if (calMonth === 1) { calMonth = 12; calYear--; }
+        else calMonth--;
+        renderCal();
+      };
+      window.calNextMonth = function() {
+        if (calMonth === 12) { calMonth = 1; calYear++; }
+        else calMonth++;
+        renderCal();
+      };
+
+      renderCal();
+    })();
+  </script>
+</body>
+</html>

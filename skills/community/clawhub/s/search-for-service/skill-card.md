@@ -1,39 +1,48 @@
-## Description: <br>
-Search and browse the x402 bazaar marketplace for paid API services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and browse the x402 bazaar marketplace for paid API services.
 
-## Publisher: <br>
-[0xRAG](https://clawhub.ai/user/0xRAG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrag](https://clawhub.ai/user/0xrag)
 
-## Use Case: <br>
-Developers and agents use this skill to search, browse, and inspect paid API services in the x402 bazaar marketplace before deciding whether to call an external service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an unpinned npm CLI that contacts external x402 marketplace services. <br>
-Mitigation: Install and use it only when external marketplace access and execution of the current npm CLI package are acceptable for the environment. <br>
-Risk: Endpoint inspection may send POST, PUT, DELETE, or PATCH requests while checking payment requirements for arbitrary URLs. <br>
-Mitigation: Inspect only trusted x402 endpoint URLs and review the target endpoint before running details commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRAG/search-for-service) <br>
+## Use Case:
 
+Developers, agents, and external users use this skill to find paid API services, browse available x402 bazaar resources, and inspect endpoint payment requirements before deciding whether another skill should call a service.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may be cached locally by the underlying CLI and can be refreshed with the documented force-refresh option.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an unpinned npm package and can inspect arbitrary endpoint URLs, including with mutating HTTP methods.
+
+Mitigation: Review before installing, pin the npm package to a reviewed version, and restrict endpoint inspection to trusted public HTTPS URLs under explicit user control.
+
+## Reference(s):
+
+- [Search For Service on ClawHub](https://clawhub.ai/0xrag/skills/search-for-service)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search, list, and details commands may use locally cached marketplace data and can emit JSON when requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

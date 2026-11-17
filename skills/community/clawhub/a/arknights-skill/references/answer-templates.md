@@ -1,6 +1,6 @@
 # Answer Templates
 
-Choose the template closest to the user's question when useful. Do not copy it mechanically.
+Choose the template closest to the user's question when useful. Do not copy it mechanically. Adapt each template to the specific operator, stage, or term — never output a fill-in-the-blank skeleton verbatim.
 
 ## 1. Operator Review
 
@@ -14,21 +14,21 @@ Role:
 - Common usage:
 
 Strengths:
-- 
-- 
+-
+-
 
 Weaknesses:
-- 
-- 
+-
+-
 
 Best use cases:
-- 
-- 
+-
+-
 
 Investment advice:
 - Recommended level:
 - Elite 2 priority:
-- Mastery priority:
+- Mastery priority (M1 → M3 value):
 
 One-line advice:
 []
@@ -41,12 +41,12 @@ Recommendation:
 Prioritize Skill [X].
 
 Why:
-- 
-- 
+-
+-
 
 When Skill [Y] is better:
-- 
-- 
+-
+-
 
 Mastery advice:
 - M1 value:
@@ -65,17 +65,17 @@ Conclusion:
 [Build / depends on roster / skip]
 
 Why:
-- 
-- 
+-
+-
 
 Who benefits most:
 - New players / veteran accounts / high-difficulty accounts / accounts missing a specific role
 
 Most efficient stopping point:
-- 
+- [E1 Lv.50 S7] / [E2 Lv.40 S7 M1] / etc.
 
 Same-role substitutes:
-- 
+-
 ```
 
 ## 4. Lore / Story
@@ -85,12 +85,12 @@ No-spoiler introduction:
 []
 
 Core premise:
-- 
-- 
+-
+-
 
 Relationship with other characters / factions:
-- 
-- 
+-
+-
 
 Character theme:
 []
@@ -102,12 +102,12 @@ If you want to go deeper, I can expand into files, event story, and full-spoiler
 
 ```text
 Core stage pressure:
-- 
-- 
+-
+-
 
 Recommended approach:
-- 
-- 
+-
+-
 
 Recommended role composition:
 - DP generation:
@@ -118,17 +118,16 @@ Recommended role composition:
 - Utility:
 
 Execution notes:
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 Common failure points:
-- 
-- 
+-
+-
 
 Lower-investment substitute plan:
-- 
-- 
+-
 ```
 
 ## 6. Terminology
@@ -154,18 +153,26 @@ Conclusion:
 [Choose A / choose B / depends on scenario]
 
 [Operator A] strengths:
-- 
-- 
+-
+-
+
+[Operator A] weaknesses:
+-
+-
 
 [Operator B] strengths:
-- 
-- 
+-
+-
+
+[Operator B] weaknesses:
+-
+-
 
 Scenario comparison:
-- Main story / events: 
-- High-difficulty content: 
-- New player accounts: 
+- Main story / events:
+- High-difficulty content:
+- New player accounts:
 
 Investment advice:
-- 
+-
 ```

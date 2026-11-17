@@ -1,40 +1,57 @@
-## Description: <br>
-WPS PowerPoint helps agents create, read, extract, and edit .pptx presentations, including slide generation, content extraction, layout updates, and page changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports creating, reading, and editing .pptx presentation files, including generating slides, extracting content, modifying layouts, and applying templates.
 
-## Publisher: <br>
-[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to read an existing PowerPoint file, create a new deck, or edit presentation content, layout, and pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or edited decks can overwrite or change important presentation files. <br>
-Mitigation: Keep backups of important PPTX files and review generated or edited decks before sharing them. <br>
-Risk: The skill relies on referenced local PPTX guide files for detailed workflows. <br>
-Mitigation: Verify that referenced local guide files are legitimate before using the skill for PPTX tasks. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to inspect existing PowerPoint files, create new presentations, or edit slide content and layouts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xixihaha123123123123/wps-pptx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Markdown guidance and .pptx presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, create, edit, or overwrite presentation files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The artifact references workflow guide files that are not included, so reading, creation, or editing flows may fail or behave inconsistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supply and review the referenced PPTX guide files before deployment, then test the read, create, and edit workflows with representative presentations.
+
+Risk: The skill reads and writes presentation files, which can expose document content or overwrite outputs if filenames and paths are not checked.
+
+Mitigation: Run it in a controlled workspace, review input and output paths before execution, and inspect generated files before sharing them.
+
+Risk: The workflow is written in Chinese, which may make behavior harder to review for teams that do not read Chinese.
+
+Mitigation: Have a Chinese-capable reviewer confirm the workflow and operational guidance before enabling it for broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihaha123123123123/skills/wps-pptx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, code snippets, shell commands, configuration notes, and .pptx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presentation-file workflows may require referenced guide files that are not present in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

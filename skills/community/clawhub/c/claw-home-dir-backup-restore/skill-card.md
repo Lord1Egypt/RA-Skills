@@ -1,41 +1,58 @@
-## Description: <br>
-Backup or restore a complete OpenClaw installation, including configuration, agents, skills, credentials, memory, workspace, and Telegram bots, as a portable .tar.gz archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up or restores a complete OpenClaw installation, including configuration, agents, flows, skills, credentials, memory, workspace, and Telegram bots, as a portable archive.
 
-## Publisher: <br>
-[brunovu20](https://clawhub.ai/user/brunovu20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brunovu20](https://clawhub.ai/user/brunovu20)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create, list, verify, encrypt, and restore full OpenClaw home-directory backups for migration or recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives may contain credentials, identity tokens, secrets, and other sensitive OpenClaw state. <br>
-Mitigation: Treat archives as highly sensitive, store them in trusted locations, and use GPG encryption before moving backups through cloud storage, shared drives, or removable media. <br>
-Risk: Restore handling is broad for full-environment archives. <br>
-Mitigation: Restore only archives that the operator created or explicitly trusts, and verify archive integrity before restoring. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create portable backups, migrate OpenClaw installations, list backups, verify archives, and restore configurations on another machine.
 
-## Reference(s): <br>
-- [OpenClaw Backup Path Policy](references/paths.md) <br>
-- [GnuPG Downloads](https://gnupg.org/download/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include archive paths, backup sizes, verification status, restore summaries, and security handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Backups can contain credentials, secrets, identity files, and other sensitive OpenClaw state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store backups in secure locations, use encrypted backups for transfer or shared storage, and avoid plaintext backups in cloud-synced or multi-user locations.
+
+Risk: Restore behavior can write files outside the intended OpenClaw directory if archive path validation is insufficient.
+
+Mitigation: Only restore archives you created or fully trust, verify archives before restore, and review archive paths until restore path validation is fixed.
+
+Risk: Backing up or restoring while OpenClaw is running can capture or apply inconsistent runtime state.
+
+Mitigation: Stop OpenClaw before backup or restore, especially when SQLite databases or other mutable state may be active.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brunovu20/skills/claw-home-dir-backup-restore)
+- [OpenClaw Backup Path Policy](references/paths.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and archive file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create, list, verify, or restore .tar.gz and .tar.gz.gpg backup archives through bundled shell scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

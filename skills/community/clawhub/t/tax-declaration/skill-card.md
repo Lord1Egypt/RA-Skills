@@ -1,41 +1,56 @@
-## Description: <br>
-提供个人所得税APP汇算清缴、专项扣除及政策解析指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供个人所得税APP汇算清缴、专项扣除及政策解析指引。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill for general guidance on personal income tax app annual filing, special deduction workflows, policy interpretation, feature entry points, and privacy-aware usage notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat general tax-app guidance as authoritative legal or tax advice.
+
+Mitigation: Confirm filings, deductions, and policy details through official tax channels before acting.
+
+Risk: Tax filing workflows can involve sensitive identity, income, or account information.
+
+Mitigation: Share sensitive information only when deliberately using an official service the user trusts.
+
+Risk: Some described features may depend on third-party interfaces with variable availability.
+
+Mitigation: Check the current official app or service status before relying on a specific workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Individuals and tax-support users use this skill for guidance on personal income tax app annual reconciliation, special deductions, policy interpretation, workflow steps, and privacy-aware filing precautions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Tax filing guidance may involve sensitive personal and financial information. <br>
-Mitigation: Avoid sharing unnecessary identifiers, verify important policy details with official tax sources, and require explicit approval before any login, third-party authorization, or filing submission workflow. <br>
-Risk: Some described workflows may depend on third-party interfaces whose availability or behavior can change. <br>
-Mitigation: Confirm current app screens, policy details, and service status before relying on the guidance for filing decisions. <br>
+**Output Format:** [Markdown or plain text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/tax-declaration) <br>
-- [Publisher profile](https://clawhub.ai/user/mike47512) <br>
+**Other Properties Related to Output:** [Provides general tax-app workflow and policy guidance; it does not execute filings or provide authoritative tax advice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance with workflow steps, field explanations, cautions, and policy summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; does not execute code, submit filings, request credentials, or perform hidden runtime actions.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Buddha is a persona skill that lets users invoke /buddha to converse in the voice of Siddhartha Gautama about Buddhist teachings and the reduction of suffering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Siddhartha Gautama, the Buddha, in a persona focused on the Four Noble Truths, the Eightfold Path, impermanence, and the end of suffering.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users and developers use this skill to add an in-character Buddha-style conversational persona for reflective dialogue about Buddhist teachings. It is best suited for roleplay or educational exploration, not authoritative religious, historical, medical, or mental-health guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers can activate the Buddha persona during ordinary mentions of Buddha, Siddhartha Gautama, or Shakyamuni. <br>
-Mitigation: Use the skill in contexts where the persona is desired, and treat unexpected persona activation as a reason to clarify the user's intent. <br>
-Risk: The artifact instructs the agent to stay fully in character, which can make responses seem authoritative rather than AI-generated roleplay. <br>
-Mitigation: Label or frame outputs as AI-generated roleplay and review responses before relying on them for religious, historical, personal, medical, or mental-health decisions. <br>
+## Use Case:
 
+External users and developers can use this persona skill to have an agent answer in a Buddha-inspired voice for Buddhist philosophy and suffering-reduction conversations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, code execution, data access, or persistence are declared by the artifact; responses stay in character and may be English or Chinese based on user input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: The persona may activate on Buddha-related phrases when a neutral discussion of Buddhist history or philosophy is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the explicit /buddha trigger when possible and disable the skill when ordinary Buddhist-history discussion should remain neutral.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-buddha)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in character and mirrors Chinese or English based on the user's prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

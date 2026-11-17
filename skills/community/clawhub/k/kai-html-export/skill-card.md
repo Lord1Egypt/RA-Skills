@@ -1,44 +1,62 @@
-## Description: <br>
-Exports HTML files to PPTX or PNG, or publishes HTML to a public share URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export HTML files to PPTX or PNG, or publish HTML to a public share URL.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-Developers and content creators use this skill to convert HTML presentations or reports into PowerPoint or PNG outputs, or to share HTML through public hosting when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local HTML files and copied assets can be uploaded to public hosting. <br>
-Mitigation: Review files for secrets or private data before sharing and prefer manual or isolated deployments for sensitive content. <br>
-Risk: Publishing flows can use Cloudflare or Vercel credentials and may affect hosting protection settings. <br>
-Mitigation: Use a dedicated account or project where possible and verify protection settings before and after deployment. <br>
-Risk: Untrusted HTML is processed by a headless browser and export scripts. <br>
-Mitigation: Avoid untrusted HTML or run exports in an isolated environment with minimal local file and credential access. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert HTML presentations or reports into PPTX or PNG outputs, and optionally publish HTML as a public URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaisersong/kai-html-export) <br>
-- [README](artifact/README.md) <br>
-- [PPTX Export Strategy](artifact/PPTX_EXPORT_STRATEGY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated PPTX, PNG, or public URL outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can operate on local HTML files or folders and may use optional Cloudflare or Vercel publishing flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: HTML sharing can publish local files or folders more broadly than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running share-html.py, review the target folder and remove secrets, hidden files, backups, source maps, and confidential material.
+
+Risk: Rendering or native export of untrusted HTML can expose users to unsafe or unexpected local content handling.
+
+Mitigation: Use local export on trusted HTML when possible and avoid native export on untrusted HTML.
+
+Risk: Vercel sharing may make a linked project public.
+
+Mitigation: Prefer the Cloudflare default or trusted preinstalled CLIs, and verify project visibility before using the Vercel helper.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaisersong/skills/kai-html-export)
+- [Publisher Profile](https://clawhub.ai/user/kaisersong)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [PPTX Export Strategy](artifact/PPTX_EXPORT_STRATEGY.md)
+- [Cloudflare HTML Share Specification](artifact/docs/superpowers/specs/2026-04-04-share-html-cloudflare.md)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated PPTX or PNG files, and optional public share URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PPTX export can be image-based or editable native PPTX; HTML sharing may require authenticated Cloudflare or Vercel CLI setup.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

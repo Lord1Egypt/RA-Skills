@@ -1,49 +1,68 @@
-## Description: <br>
-Browser automation CLI for AI agents that helps navigate pages, fill forms, click buttons, take screenshots, extract data, test web apps, and automate browser tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task.
 
-## Publisher: <br>
-[Equalearning](https://clawhub.ai/user/Equalearning) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[equalearning](https://clawhub.ai/user/equalearning)
 
-## Use Case: <br>
-Developers, engineers, and AI-agent operators use this skill to control Chrome or Chromium through agent-browser for web navigation, form automation, authenticated sessions, page capture, data extraction, and web app testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over real websites and logged-in browser sessions. <br>
-Mitigation: Use test accounts or dedicated browser profiles, enable domain allowlists and an action policy before sensitive work, and require explicit confirmation for logins, submissions, uploads, purchases, account changes, deletion, or public posting. <br>
-Risk: Authentication state files, sessions, or imported browser profiles can expose session tokens or credentials. <br>
-Mitigation: Avoid importing a personal Chrome session unless necessary, use the encrypted auth vault or AGENT_BROWSER_ENCRYPTION_KEY where available, keep state files out of source control, and delete auth state when it is no longer needed. <br>
-Risk: Page content returned to an agent can include untrusted instructions or excessive output. <br>
-Mitigation: Enable content boundaries for page-sourced output and set output limits before browsing untrusted or large pages. <br>
+## Use Case:
 
+Developers and agents use this skill to control Chrome or Chromium for web navigation, form automation, authenticated browsing, content extraction, screenshots, PDFs, video recording, profiling, and web app testing.
 
-## Reference(s): <br>
-- [Agent Browser ClawHub Listing](https://clawhub.ai/Equalearning/agent-browser-5) <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Profiling](references/profiling.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot and Refs](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, command examples, and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser screenshots, PDFs, text extracts, JSON command output, saved session state, video recordings, and profiling traces when the referenced CLI commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can control browser sessions broadly, including navigation, clicks, JavaScript evaluation, downloads, clipboard access, and authenticated workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile, enable domain allowlists, and configure an action policy that denies destructive actions unless explicitly allowed.
+
+Risk: Saved state files and reused profiles can contain session tokens or other credentials.
+
+Mitigation: Treat state files as credentials, keep them out of shared logs and repositories, delete them when no longer needed, and set AGENT_BROWSER_ENCRYPTION_KEY for encryption at rest.
+
+Risk: Screenshots, PDFs, recordings, traces, and extracted page text can contain sensitive page content.
+
+Mitigation: Store captures in controlled locations, avoid committing or sharing them by default, and review artifacts before exposing them outside the trusted environment.
+
+Risk: Page-sourced output can influence an agent's next actions.
+
+Mitigation: Enable content boundaries, limit output size, and review page-derived instructions before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/equalearning/skills/agent-browser-5)
+- [Command Reference](references/commands.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Session Management](references/session-management.md)
+- [Authentication Patterns](references/authentication.md)
+- [Video Recording](references/video-recording.md)
+- [Profiling](references/profiling.md)
+- [Proxy Support](references/proxy-support.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, reusable shell templates, and browser-captured files such as screenshots, PDFs, videos, traces, profiles, and extracted page text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent browser state, authentication files, downloaded files, clipboard interactions, screenshots, PDFs, WebM recordings, and Chrome DevTools trace/profile JSON depending on the workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

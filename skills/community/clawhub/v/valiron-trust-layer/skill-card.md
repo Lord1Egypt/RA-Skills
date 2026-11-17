@@ -1,47 +1,58 @@
-## Description: <br>
-Valiron intercepts and authorizes outgoing machine-to-machine payments using @valiron/sdk trust decisions before payment execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Valiron helps developers intercept outgoing machine-to-machine payments and apply @valiron/sdk trust decisions, policy routing, spend controls, fallback behavior, and audit logging before payment execution.
 
-## Publisher: <br>
-[vatsashah45](https://clawhub.ai/user/vatsashah45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vatsashah45](https://clawhub.ai/user/vatsashah45)
 
-## Use Case: <br>
-Developers and engineers use Valiron to add a trust gate before outgoing agent payment flows, including x402-style purchases, wallet spend guards, policy engines, and auditable allow, deny, throttle, or fallback decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A compromised or unexpected @valiron/sdk package could affect payment authorization behavior. <br>
-Mitigation: Review @valiron/sdk provenance before installation and pin approved dependency versions in the host application. <br>
-Risk: Payment credentials or API keys could be exposed through configuration or logs. <br>
-Mitigation: Store VALIRON_API_KEY in a secrets manager, avoid hardcoded credentials, and redact secrets from audit events. <br>
-Risk: Incorrect route policy or spend limits could allow payments outside the intended risk posture. <br>
-Mitigation: Validate the decision policy, test representative routes before deployment, and use fail-closed defaults for production or high-value flows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vatsashah45/valiron-trust-layer) <br>
-- [Runtime Requirements](references/runtime-requirements.md) <br>
-- [Decision Policy](references/decision-policy.md) <br>
-- [Spend Controls](references/spend-controls.md) <br>
-- [Fallback Modes](references/fallback-modes.md) <br>
-- [Audit Event Schema](references/audit-events.md) <br>
-- [Error Handling](references/error-handling.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to add a trust gate before outgoing agent payments, including x402-style flows, wallet-based fallback identity lookup, route-to-action policy decisions, spend caps, fallback behavior, and audit events.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with TypeScript and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment policy validation, spend controls, fallback behavior, and audit logging guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled interceptor is a starter template rather than production-ready payment authorization code, with important spend and approval controls still unenforced.
+
+Mitigation: Before using it on real payment rails, add runtime schema validation, positive finite money handling, hourly and daily spend accounting, human approval enforcement, idempotency and replay protection, audit logging, and fail-closed behavior backed by durable storage.
+
+Risk: Payment authorization may behave unsafely if policy or configuration inputs are missing, invalid, or unavailable.
+
+Mitigation: Validate policy and configuration at startup, default invalid policy to deny, require explicit fallback modes per endpoint class, and fail closed for high-risk payment actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vatsashah45/skills/valiron-trust-layer)
+- [Runtime Requirements](references/runtime-requirements.md)
+- [Decision Policy](references/decision-policy.md)
+- [Spend Controls](references/spend-controls.md)
+- [Fallback Modes](references/fallback-modes.md)
+- [Audit Event Schema](references/audit-events.md)
+- [Error Handling](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and JSON code/configuration snippets plus shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include starter code, policy JSON, validation commands, and operational guidance; payment authorization controls must be reviewed before use on real payment rails.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

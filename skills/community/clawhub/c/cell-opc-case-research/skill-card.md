@@ -1,46 +1,62 @@
-## Description: <br>
-Guides agents through public-source research on OPC, creator IP, super-individual, and one-person business cases, producing Chinese case briefs or structured reports with evidence-aware analysis of positioning, content, channels, business models, timelines, and replicable lessons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports systematic public-information research on OPC, super-individual, creator IP, and one-person business cases, producing Chinese case briefs or structured reports focused on content strategy, IP positioning, channels, business models, timelines, and replicable lessons.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External users and analysts use this skill to research a named person, creator brand, or one-person business case from public sources. It helps produce a concise case brief or structured Chinese report that maps evidence, separates facts from inferences, and analyzes content strategy, IP positioning, channels, business model, timeline, and replicable lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce misleading business conclusions if public evidence is thin or indirect. <br>
-Mitigation: Require a visible evidence slice, source quality labels, and explicit separation of facts, inferences, and unknowns before presenting conclusions. <br>
-Risk: Users may overstate private details such as income, team size, deals, or operating scale. <br>
-Mitigation: Limit research to public information, avoid invented details, and downgrade unsupported claims to inference or unknown. <br>
-Risk: Marketplace capability tags mention crypto or purchases even though the reviewed artifacts describe a research workflow. <br>
-Mitigation: Do not treat those tags as permission to transact or provide financial guidance; keep use limited to public case research unless separately reviewed. <br>
+## Use Case:
 
+Researchers, creators, operators, and strategy teams use this skill to analyze a named person, creator brand, or one-person company from public sources. It helps produce evidence-aware Chinese case briefs, structured reports, timelines, source maps, business-model breakdowns, and replicability lessons.
 
-## Reference(s): <br>
-- [Skill homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/opc-case-research) <br>
-- [Research Standard](references/research-standard.md) <br>
-- [Search Playbook](references/search-playbook.md) <br>
-- [Evidence Schema](references/evidence-schema.md) <br>
-- [Report Template Guide](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown case briefs, structured reports, and optional table-style appendices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize public-source evidence, timelines, source maps, and clear labels for facts, inferences, and unknowns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Research about people or brands can overstate private, financial, team, or deal details when public evidence is thin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the work limited to public sources, label important claims as fact, inference, or unknown, and avoid invented revenue, team, partnership, or operational details.
+
+Risk: Lower-quality reposts, forums, summaries, or comments can distort conclusions if used as the only basis for important claims.
+
+Mitigation: Use C-level sources only as leads, prioritize first-party and official sources, and cross-check important facts with different source types.
+
+Risk: The skill defaults to Chinese output, which may not match every user's expected language.
+
+Mitigation: Request a different output language when Chinese is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cellinlab/skills/cell-opc-case-research)
+- [OpenClaw Homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/opc-case-research)
+- [OPC Case Research Standard](references/research-standard.md)
+- [Search Playbook](references/search-playbook.md)
+- [Evidence Schema](references/evidence-schema.md)
+- [Report Template Guide](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Chinese Markdown reports with optional CSV-style evidence, timeline, content sample, and business model tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public-source research only; separates facts, inferences, and unknowns.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Guides identifying, prioritizing, selecting platforms, and architecting scalable business automations using ROI, ICE-R scoring, and workflow design principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through business automation audits, prioritization, platform selection, workflow architecture, integration planning, testing, monitoring, scaling, governance, and AI-in-workflow patterns.
 
-## Publisher: <br>
-[kangrl-claw](https://clawhub.ai/user/kangrl-claw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kangrl-claw](https://clawhub.ai/user/kangrl-claw)
 
-## Use Case: <br>
-Business operators, consultants, and developers use this skill to audit processes, prioritize automation opportunities, choose automation platforms, and design reliable workflows with testing, monitoring, and governance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share secrets, customer data, or confidential process details while requesting automation recommendations. <br>
-Mitigation: Minimize sensitive inputs, redact credentials and customer data when possible, and follow internal data-handling policies before sharing process details. <br>
-Risk: Automation plans can affect payments, customer-facing responses, legal, HR, security, or production workflows. <br>
-Mitigation: Require human review and approval before implementing high-impact workflow changes or deploying recommendations to production. <br>
-Risk: Platform, ROI, and workflow recommendations may not match local systems, controls, or operational constraints. <br>
-Mitigation: Validate recommendations in a sandbox or pilot, test failure paths, and monitor reliability before scaling. <br>
+## Use Case:
 
+Developers, operators, and business automation teams use this skill to audit processes, estimate ROI, prioritize opportunities, choose automation platforms, and draft reliable workflow blueprints before implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kangrl-claw/yingzhao-afrexai-automation-strategy) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with YAML templates, decision matrices, checklists, and scoring formulas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only consulting-style playbook; no executable code or hidden system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated workflow plans may be applied to payments, customer communications, HR, legal, compliance, or security-sensitive tasks without adequate human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed automation before implementation and add approval gates for high-impact or regulated decisions.
+
+Risk: Integration plans may involve credentials or private business data.
+
+Mitigation: Use sandbox testing, least-privilege access, secure secret handling, and data-flow review before connecting production systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kangrl-claw/skills/yingzhao-afrexai-automation-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with YAML templates, scoring rubrics, checklists, and workflow blueprints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only planning guidance; generated plans should be reviewed before implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-合并发票文件。PDF 按两两上下排版，图片按四宫格排版，统一裁剪线与安全边距，输出到 YYYYMMDD--已合并 目录，重复执行会自动跳过历史合并文件并按编号继续生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges invoice PDFs and images into printable PDF sheets with consistent crop lines, safe margins, dated output folders, and automatic skipping of previously generated merged files.
 
-## Publisher: <br>
-[cdk1025](https://clawhub.ai/user/cdk1025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdk1025](https://clawhub.ai/user/cdk1025)
 
-## Use Case: <br>
-External users and developers use this skill to merge invoice PDFs and images from a selected local folder into printable PDF layouts with cut lines and safe margins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads PDFs and images from a user-selected local folder and writes merged PDFs nearby. <br>
-Mitigation: Use a dedicated folder containing only files intended for merging before running the skill. <br>
-Risk: The skill may open generated PDFs in the system default viewer after creating them. <br>
-Mitigation: Run it only in environments where opening local preview files is acceptable, or review this behavior before deployment. <br>
-Risk: The skill depends on pypdf and Pillow at runtime. <br>
-Mitigation: Install dependencies in a Python virtual environment when possible. <br>
+## Use Case:
 
+External users and developers use this skill in OpenClaw or from the command line to batch-layout invoice PDFs and JPG/JPEG/PNG images into printable PDF output. It is intended for directories the user explicitly selects and produces merged invoice or bill PDFs in a dated output folder.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cdk1025/invoice-merger) <br>
-- [Publisher profile](https://clawhub.ai/user/cdk1025) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates merged PDF files in a dated local output directory and may open them in the default system viewer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Dependency installation uses mutable remote package resolution for pypdf and Pillow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a reviewed or pinned release, preferably inside a virtual environment or sandbox.
+
+Risk: The skill reads files from a user-provided directory and writes generated PDFs into that directory tree.
+
+Mitigation: Run it only on directories the user explicitly chooses and review outputs before sharing or uploading them.
+
+Risk: Generated PDFs are automatically opened with the system default application.
+
+Mitigation: Use in an environment where opening local PDFs is acceptable, or review/disable auto-open behavior before deployment in sensitive accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cdk1025/skills/invoice-merger)
+- [CLAWHUB.md](artifact/CLAWHUB.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PDF files plus Markdown and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a dated output directory, writes merged PDF files, prints progress messages, and may open generated PDFs with the system default application.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

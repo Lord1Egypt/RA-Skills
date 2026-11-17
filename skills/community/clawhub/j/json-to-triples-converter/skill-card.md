@@ -1,42 +1,56 @@
-## Description: <br>
-Convert JSON documents into RDF triples or graph-ready subject-predicate-object statements for knowledge graphs and semantic databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert JSON documents into RDF triples or graph-ready subject-predicate-object statements for knowledge graphs and semantic databases.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data engineers use this skill to convert hierarchical JSON documents and API payloads into RDF triples, JSON-LD, N-Triples, Turtle, or graph JSON for semantic web, linked data, and knowledge graph ingestion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated triples can preserve private or sensitive values from the source JSON. <br>
-Mitigation: Review, redact, or transform sensitive input fields before conversion and avoid sharing generated outputs that contain private data. <br>
+## Use Case:
 
+Developers and data engineers use this skill to convert JSON datasets and API payloads into RDF triples, JSON-LD, or graph-ready node and edge structures for semantic web, linked data, and knowledge graph ingestion.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/fisa712/json-to-triples-converter) <br>
-- [Publisher profile](https://clawhub.ai/user/fisa712) <br>
-- [ClawHub metadata homepage](https://clawhub.com) <br>
-- [Conversion patterns](references/conversion-patterns.md) <br>
-- [Example conversions](examples/example-conversions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, Turtle, N-Triples, JSON-LD, graph JSON, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated triples, semantic metadata, URI mappings, namespace configuration, and conversion instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Generated Turtle or N-Triples from crafted or untrusted JSON can be unsafe for a production RDF store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add standards-compliant literal escaping, URI encoding, datatype and language validation, and parser validation before RDF ingestion.
+
+Risk: The bundled converter is suitable only as a prototype or internal-data utility until reviewed.
+
+Mitigation: Review converter behavior before production deployment and limit use to trusted or internal JSON data until hardening is complete.
+
+## Reference(s):
+
+- [Conversion Patterns](artifact/references/conversion-patterns.md)
+- [Example Conversions](artifact/examples/example-conversions.md)
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/json-to-triples-converter)
+- [ClawHub Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with RDF Turtle, N-Triples, JSON-LD, Graph JSON, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces graph-ready subject-predicate-object outputs; parser validation is recommended before RDF store ingestion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

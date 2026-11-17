@@ -1,43 +1,54 @@
-## Description: <br>
-This skill helps agents query hourly weather forecasts from the Shuzhi Weather API using HMAC-SHA256 authentication and user-provided API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill queries hourly weather forecasts from the Shuzhi Weather API for latitude and longitude coordinates using HMAC-SHA256 authentication.
 
-## Publisher: <br>
-[alex098929](https://clawhub.ai/user/alex098929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex098929](https://clawhub.ai/user/alex098929)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to answer weather questions for named locations or coordinates. The agent checks local Shuzhi API configuration, runs the weather helper script, and presents forecast results in a readable form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Shuzhi API credentials in a local config file. <br>
-Mitigation: Restrict the config file to user-only permissions and avoid sharing captured errors or logs. <br>
-Risk: Weather requests send the queried coordinates to the Shuzhi Weather API. <br>
-Mitigation: Only query locations the user intends to share with that external API. <br>
-Risk: The server security review warns that an error path may print the full config if required credential fields are missing. <br>
-Mitigation: Fix that error path before adding real credentials, or avoid sharing error output from failed configuration checks. <br>
+## Use Case:
 
+External users and agents use this skill to answer weather questions for cities or coordinates by making authenticated Shuzhi API calls and presenting readable hourly forecast summaries.
 
-## Reference(s): <br>
-- [Shuzhi Weather API Documentation](references/api_response_format.md) <br>
-- [ClawHub skill page](https://clawhub.ai/alex098929/shuzhi-weather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown or plain text, with optional JSON weather data from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Shuzhi app_key and app_secret configuration; weather requests send longitude and latitude to the Shuzhi Weather API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores Shuzhi API credentials in a local config file and the security evidence reports that malformed config errors can expose sensitive config contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Shuzhi API key, restrict permissions on ~/.openclaw/skills/shuzhi-weather/config.json, and avoid capturing stderr until config values are redacted from errors.
+
+Risk: The security evidence recommends review before installation because credential handling has not been fixed.
+
+Mitigation: Review the credential-handling behavior before installing and use the skill only in environments where the configured Shuzhi API account and outbound API access are appropriate.
+
+## Reference(s):
+
+- [Shuzhi Weather API Documentation](artifact/references/api_response_format.md)
+- [Shuzhi Weather API endpoint](https://test-apisix-gateway.shuzhi.shuqinkeji.cn/2033738771717074945)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON weather data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Shuzhi app_key and app_secret in a local config file before API calls can succeed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

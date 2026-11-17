@@ -1,40 +1,59 @@
-## Description: <br>
-A data visualization designer that transforms complex data into clear charts and visualizations through data exploration, chart selection, layout design, detail tuning, and optional interaction design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A data visualization designer that transforms complex data into clear, intuitive charts and visualizations, covering data exploration and analysis, chart type selection, layout and style design, detail tuning, and interactive feature addition.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, analysts, and other users use this skill to explore datasets, choose appropriate chart types, and generate browser-ready visualization code or requested SVG/PNG chart outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive data may be exposed if users paste private datasets into the agent or embed them in generated chart code. <br>
-Mitigation: Avoid using sensitive datasets unless that use is approved, and redact or aggregate data before generating visualization code. <br>
-Risk: Generated HTML or JavaScript may be unsafe to run without review when source data or requested behavior comes from an untrusted source. <br>
-Mitigation: Review generated HTML/JavaScript before executing it, especially when using untrusted inputs. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to turn raw datasets into clear charts, infographics, and browser-ready visualizations. It helps select appropriate chart types, tune visual design, and add useful interactions such as filters, zooming, and hover tooltips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/data-viz-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance] <br>
-**Output Format:** [HTML/CSS/JavaScript code, or SVG/PNG image output when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Complete browser-ready chart code with embedded data, configuration, and rendering logic; no extra explanatory text unless requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser-ready chart files may embed sensitive or private datasets directly in generated output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before sharing and remove or anonymize sensitive data that should not be distributed.
+
+Risk: Generated HTML may load third-party chart libraries from a CDN.
+
+Mitigation: Review external script URLs and replace them with approved local or pinned dependencies when required by deployment policy.
+
+Risk: Visualization choices can make trends, proportions, or comparisons misleading if chart type, scaling, or labels are poorly matched to the data.
+
+Mitigation: Validate chart type, axes, labels, annotations, and color choices against the source data before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/data-viz-designer)
+- [Publisher profile](https://clawhub.ai/user/openlark)
+- [ECharts CDN example dependency](https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or complete HTML/CSS/JavaScript code, with SVG or PNG output when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include embedded datasets, chart configuration, rendering logic, and optional browser-based interactivity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

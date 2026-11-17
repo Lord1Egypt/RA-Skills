@@ -1,39 +1,53 @@
-## Description: <br>
-Complete reference for the BFF aggregation layer in Teamgram Server with all 27 RPC modules and 268 handlers implementing Telegram-compatible API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete reference for the BFF aggregation layer in Teamgram Server with all 27 RPC modules and 268 handlers implementing Telegram-compatible API endpoints.
 
-## Publisher: <br>
-[zhihang9978](https://clawhub.ai/user/zhihang9978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihang9978](https://clawhub.ai/user/zhihang9978)
 
-## Use Case: <br>
-Developers and engineers use this skill as reference documentation for Teamgram Server's BFF aggregation layer, including RPC module coverage, handler names, typical request flow, and key source paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill as a verified operational control surface for a Teamgram deployment. <br>
-Mitigation: Use it as reference documentation and verify operational decisions against authoritative Teamgram Server source and deployment documentation. <br>
+## Use Case:
 
+Developers and engineers use this documentation skill to understand Teamgram Server's BFF aggregation layer, its Telegram-compatible RPC module coverage, handler names, and key code paths.
 
-## Reference(s): <br>
-- [Teamgram Server repository](https://github.com/teamgram/teamgram-server) <br>
-- [ClawHub skill page](https://clawhub.ai/zhihang9978/teamgram-bff-aggregation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference material] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code, credential access, network calls, or user-data changes are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may mistake listed Telegram/Teamgram handler names for actions the skill can perform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as reference documentation only and verify behavior against the Teamgram Server source before making implementation changes.
+
+Risk: Most artifact content is in Chinese, which may cause terminology mistakes for readers who rely on translation.
+
+Mitigation: Cross-check translated module descriptions and handler names against the Teamgram Server repository and Telegram TL schema before using them in technical decisions.
+
+## Reference(s):
+
+- [Teamgram Server repository](https://github.com/teamgram/teamgram-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference material with handler lists, module summaries, and code path guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable code, API calls, credential handling, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-电商用户行为分析 - 活跃度趋势追踪与可视化图表生成 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商用户行为分析 - 活跃度趋势追踪与可视化图表生成
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-E-commerce operations, growth, and product teams use this skill to analyze shopping behavior data, track DAU/MAU and activity trends, generate charts, identify high-activity or churn-risk users, and produce action-oriented insight reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive customer, transaction, payment, or confidential business data during e-commerce behavior analysis. <br>
-Mitigation: Anonymize or minimize user IDs and transaction details before use, and provide only the data needed for the requested analysis. <br>
+## Use Case:
 
+E-commerce operations, growth, analytics, and product teams use this skill to analyze user behavior data, track activity trends, generate visual reports, identify churn or high-value segments, and produce actionable optimization recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown reports with chart descriptions, behavioral insights, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use user, transaction, and activity data supplied by the agent user; no external tools or installation requirements are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Uploaded e-commerce behavior data may include sensitive or unauthorized user information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm data authorization before use and anonymize user behavior data where possible.
+
+Risk: Activity trends and recommendations may be misleading when the input data is incomplete, too short, or missing required fields.
+
+Mitigation: Check that the dataset includes required fields and a sufficient time span before relying on the generated report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/user-behavior-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown reports with narrative insights, chart descriptions, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference tabular e-commerce behavior inputs such as CSV, Excel, or JSON data and expected fields including user_id, date, action, and platform.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

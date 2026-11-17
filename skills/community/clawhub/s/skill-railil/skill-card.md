@@ -1,38 +1,53 @@
-## Description: <br>
-Search for Israel Rail train schedules using the railil CLI, including route lookup by station, date, time, and output format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for Israel Rail train schedules using the railil CLI. Find routes between stations with fuzzy search, filter by date/time, and output in various formats (JSON, Markdown, Table).
 
-## Publisher: <br>
-[lirantal](https://clawhub.ai/user/lirantal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lirantal](https://clawhub.ai/user/lirantal)
 
-## Use Case: <br>
-Developers and agents use this skill to look up Israel Rail train schedules with fuzzy station matching, date and time filters, result limits, and text, JSON, table, or Markdown output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing and running the third-party railil npm CLI globally. <br>
-Mitigation: Install only in environments where the railil package is approved, and review generated commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Railil CLI repository](https://github.com/lirantal/railil) <br>
-- [ClawHub Railil skill page](https://clawhub.ai/lirantal/skill-railil) <br>
+## Use Case:
 
+External users and developers use this skill to install and run the railil CLI for Israel Rail route searches, including fuzzy station matching and date/time filtering.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with railil CLI commands and optional text, JSON, table, or Markdown command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports station, date, time, limit, and output-format options through the railil CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the railil npm package globally changes the agent environment by adding the railil executable.
+
+Mitigation: Confirm the package source and install only in an environment where a global railil binary is acceptable.
+
+Risk: Travel results depend on train-schedule data returned through the CLI and may change after retrieval.
+
+Mitigation: Use the results as planning assistance and verify critical travel details before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lirantal/skills/skill-railil)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/lirantal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and CLI output-format guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying railil CLI can emit text, JSON, table, or Markdown output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

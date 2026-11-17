@@ -1,50 +1,65 @@
-## Description: <br>
-Helps agents clarify ambiguous decisions by exposing assumptions, reducing problems to facts and constraints, simplifying options, and ending with a recommendation or next step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve decision quality by clarifying the real problem, exposing hidden assumptions, reasoning from fundamental facts, reducing unnecessary complexity, and ending with a cleaner recommendation or next step.
 
-## Publisher: <br>
-[shanezzzz](https://clawhub.ai/user/shanezzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanezzzz](https://clawhub.ai/user/shanezzzz)
 
-## Use Case: <br>
-External users and developers can use this skill to guide agents through ambiguous startup, product, content, operations, strategy, personal, or reasoning-audit decisions and convert them into clearer recommendations, decision rules, or tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision-support outputs may be misleading when the user's facts, constraints, or evidence are incomplete. <br>
-Mitigation: Treat recommendations as structured decision support and verify important facts, legal limits, financial assumptions, and operational constraints before acting. <br>
-Risk: Simplification can remove necessary complexity if adequacy is not defined first. <br>
-Mitigation: Use the skill's adequacy, hard-constraint, and anti-pattern checks before accepting a simpler option. <br>
-Risk: The security guidance recommends trusted environments and review before running helper commands. <br>
-Mitigation: Install only in trusted ClawHub or compatible agent environments and review any commands proposed by surrounding workflows before execution. <br>
+## Use Case:
 
+External users and developers use this skill to improve decisions in ambiguous, high-value, or complexity-prone situations by clarifying the real question, exposing assumptions, simplifying options, and ending with a practical recommendation or next step.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shanezzzz/decision-clarity-skill) <br>
-- [Business Reference](references/business.md) <br>
-- [Product Reference](references/product.md) <br>
-- [Content Reference](references/content.md) <br>
-- [Operations Reference](references/operations.md) <br>
-- [Trigger Questions](references/trigger-questions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision analysis with concise recommendations, decision rules, tests, or next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the lightest useful structure for the user's decision problem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may reframe or challenge assumptions when the user only wants a simple factual answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for ambiguous, high-value, or complexity-prone decisions; avoid it for simple factual lookup or purely mechanical execution tasks.
+
+Risk: Decision guidance can be misleading if missing evidence or key assumptions are not made explicit.
+
+Mitigation: Name the key ambiguity, state the minimum assumptions being used, and identify what fact would most change the recommendation.
+
+Risk: Simplification can become overconfident if it removes real constraints.
+
+Mitigation: Separate hard constraints from soft constraints and preserve adequacy before recommending the simplest sufficient option.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shanezzzz/skills/decision-clarity-skill)
+- [Anti-Patterns](references/anti-patterns.md)
+- [Business](references/business.md)
+- [Content](references/content.md)
+- [Examples](references/examples.md)
+- [Operations](references/operations.md)
+- [Output Patterns](references/output-patterns.md)
+- [Product](references/product.md)
+- [Trigger Questions](references/trigger-questions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with structured decision analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reframed questions, assumptions, constraints, option comparisons, recommendations, decision rules, next steps, or validation tests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

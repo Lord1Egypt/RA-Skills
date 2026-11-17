@@ -1,41 +1,59 @@
-## Description: <br>
-Generates an operational resume card before Claude context compaction so the next session knows where it left off, what mode it was in, and what to do next. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an operational resume card before Claude context compaction so the next session can recover the prior branch, commit, recent intent, work mode, and next step.
 
-## Publisher: <br>
-[nadalpiantini](https://clawhub.ai/user/nadalpiantini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nadalpiantini](https://clawhub.ai/user/nadalpiantini)
 
-## Use Case: <br>
-Developers and engineers use this skill to install Claude PreCompact and SessionStart hooks that save a local resume card before context compaction and reload it at the next session start. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local transcript backups and resume cards may contain sensitive prompt or project context. <br>
-Mitigation: Use the skill only in workspaces where local context retention is acceptable, avoid secrets in prompts, and add thinking/session-logs/ plus .claude/session-resume-card.md to .gitignore when needed. <br>
-Risk: SessionStart automatically reloads the saved resume card into future sessions. <br>
-Mitigation: Remove or disable the hooks when automatic context reloads are not desired. <br>
+## Use Case:
 
+Developers using Claude Code use this skill to preserve operational context across compaction events and automatically restore a compact resume card when a new session starts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nadalpiantini/pre-compact-resume-card) <br>
-- [settings-example.json](references/settings-example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown resume card and shell hook output with JSON hook configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local .claude/session-resume-card.md file and keeps recent transcript backups under thinking/session-logs/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores transcript backups and a resume card that may contain sensitive chat or project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in projects where transcript retention is acceptable, keep thinking/session-logs/ and .claude/session-resume-card.md out of version control, and avoid placing secrets in chats or memory files.
+
+Risk: SessionStart reloads prior context automatically, which may reintroduce stale, overly broad, or unsanitized information.
+
+Mitigation: Review restored resume-card content, narrow hook matchers where practical, and add sanitization or confirmation before restored text is treated as active context.
+
+Risk: Shell hooks run inside the project and perform file reads and writes.
+
+Mitigation: Review scripts before installing and prefer a pinned or manual install path so the executed hook code is known.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nadalpiantini/skills/pre-compact-resume-card)
+- [Publisher profile](https://clawhub.ai/user/nadalpiantini)
+- [Hook settings example](artifact/references/settings-example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown resume card and hook configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .claude/session-resume-card.md and retains up to 30 transcript backups in thinking/session-logs/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

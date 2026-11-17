@@ -1,39 +1,52 @@
-## Description: <br>
-Wake-on-LAN functionality for macOS - wake devices remotely by MAC address or name <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wake-on-LAN functionality for macOS - wake devices remotely by MAC address or name.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[ppopen](https://clawhub.ai/user/ppopen)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers use this skill to wake, list, add, remove, and check saved Wake-on-LAN devices on a local macOS network.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: An agent can send Wake-on-LAN packets to local network devices, including all saved devices when broadcast is used.
+
+Mitigation: Install only when this behavior is intended, review saved devices before broadcast, and use explicit Wake-on-LAN phrasing for wake requests.
+
+Risk: The skill maintains a saved device list with MAC addresses, broadcast addresses, and optional ping IPs under ~/.config/openclaw/wol-devices.json.
+
+Mitigation: Review the device list regularly, remove stale entries, and protect the local config file according to workstation policy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, IT operators, and local-network users use this skill to wake, list, add, remove, and check Wake-on-LAN devices from an agent workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Wake-on-LAN packets and ping traffic on the local network, which may wake or probe unintended devices if names, MAC addresses, or broadcast addresses are wrong. <br>
-Mitigation: Review the target device details and broadcast address before use, and run bulk wake commands only on device lists you trust. <br>
-Risk: Saved device configuration can contain device names, MAC addresses, broadcast addresses, and optional IP addresses. <br>
-Mitigation: Review or delete ~/.config/openclaw/wol-devices.json when saved devices are no longer needed. <br>
+**Output Format:** [Markdown guidance with shell command examples and plain-text command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses a local JSON device list at ~/.config/openclaw/wol-devices.json and the wakeonlan command.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Wake-on-LAN and ping commands and maintain device configuration at ~/.config/openclaw/wol-devices.json.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

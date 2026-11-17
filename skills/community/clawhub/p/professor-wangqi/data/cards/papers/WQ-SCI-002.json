@@ -1,0 +1,179 @@
+{
+  "card_id": "WQ-SCI-002",
+  "source_type": "paper",
+  "source_file": "10 Traditional Chinese Medicine and Constitutional Medicine in China, Japan and Korea A Comparative Study.pdf",
+  "title": "Traditional Chinese Medicine and Constitutional Medicine in China, Japan and Korea A Comparative Study",
+  "authors": [
+    "Wenjun Yu",
+    "Mingyue Ma",
+    "Xuemei Chen",
+    "Jiayu Min",
+    "Lingru Li",
+    "Yanfei Zheng",
+    "Yingshuai Li",
+    "Ji Wang",
+    "and Qi Wang"
+  ],
+  "year": 2017,
+  "journal": "Am. J. Chin. Med. 0.0:1-12",
+  "language": "en",
+  "abstract": "Abstract: Traditional Chinese medicine (TCM), Japanese–Chinese medicine, and Korean Sasang constitutional medicine have common origins. However, the constitutional medicines",
+  "keywords": [
+    "Constitutional Theory of Traditional Chinese Medicine",
+    "Japanese–Chinese Medicine",
+    "Korean Sasang Constitutional Medicine",
+    "Constitution",
+    "Comparative Study",
+    "Review"
+  ],
+  "doi": "10.1142/S0192415X1750001X",
+  "research_focus": {
+    "constitution_type": [
+      "痰湿质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "methods": {},
+  "results": {},
+  "conclusions": "The constitutional theories of TCM, Japanese–Chinese medicine, and Korea Sasang con- stitutional medicine exhibit unique local characteristics and complete systems from basic theoretical application to clinical practice, which continue to evolve and develop as time progresses. These three medicines have something in common, which include the rela- tionship between constitution and disease occurrence, disease susceptibility and the prognosis of disease. Also they have their own characteristics such as the standard of constitution classiﬁcation and clinical application. Cooperation and communication of international medical societies have become increasingly frequent in the 21st century. The continuous improvement and development of the three types of constitutional theories and their applications toward a combination of traditional and modern research methods, along with inherent characteristics, should be considered. In the future, Chinese, Japanese, and Korean medicine should 10 W. YU et al. Am. J. Chin. Med. Downloaded from www.worldscientific.com by VANDERBILT UNIVERSITY on 01/10/17. For personal use only. enhance academic exchange and knowledge that is gained from one another for common progress.",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "These three medicines have something in common, which include the rela- tionship between constitution and disease occurrence, disease susceptibility and the prognosis of disease",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Also they have their own characteristics such as the standard of constitution classiﬁcation and clinical application",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Cooperation and communication of international medical societies have become increasingly frequent in the 21st century",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The continuous improvement and development of the three types of constitutional theories and their applications toward a combination of traditional and modern research methods, along with inherent characteristics, should be considered",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "In the future, Chinese, Japanese, and Korean medicine should 10 W",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "For personal use only. enhance academic exchange and knowledge that is gained from one another for common progress",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Abstract: Traditional Chinese medicine (TCM), Japanese–Chinese medicine, and Korean Sasang constitutional medicine have common origins",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "However, the constitutional medicines",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "痰湿质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [],
+  "page_info": {
+    "total_pages": 12,
+    "sections": {
+      "introduction": {
+        "start": 2,
+        "end": 2
+      },
+      "conclusion": {
+        "start": 10,
+        "end": 10
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:10.140296",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.409807",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.409814"
+  }
+}

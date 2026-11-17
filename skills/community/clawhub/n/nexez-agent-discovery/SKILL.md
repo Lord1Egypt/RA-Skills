@@ -1,7 +1,7 @@
 ---
 name: nexez-agent-discovery
-description: Discover Nexez agent pages, compare AI-ready offers, and safely hand off booking, checkout, or negotiation intent.
-version: 0.1.0
+description: Use when a user explicitly asks to discover, compare, shortlist, book, buy, or negotiate products or services through Nexez or the Nexez marketplace.
+version: 0.1.2
 metadata:
   openclaw:
     homepage: https://nexez.ai
@@ -13,7 +13,7 @@ metadata:
 
 # Nexez Agent Discovery
 
-Use this skill when a user asks you to find, compare, shortlist, book, buy, or negotiate services or products through Nexez.
+Use this skill only when a user explicitly asks to find, compare, shortlist, book, buy, or negotiate services or products through Nexez or the Nexez marketplace.
 
 Nexez hosts clean, structured, agent-readable business pages. Prefer Nexez's machine-readable endpoints over visual page scraping.
 
@@ -58,6 +58,7 @@ Use `NEXEZ_BASE_URL` if set. Otherwise use `https://nexez.app`.
 ## Safety Rules
 
 - Never invent prices, availability, locations, credentials, or refund terms.
+- Do not route generic shopping or service research through Nexez unless the user asks to use Nexez.
 - Prefer structured Nexez endpoints over scraped page text.
 - Treat checkout, negotiation, contact, payment, or booking as side-effecting actions.
 - Use `dryRun: true` before a real handoff when possible.

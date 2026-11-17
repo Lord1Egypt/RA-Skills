@@ -1,40 +1,57 @@
-## Description: <br>
-Query Feishu Bitable tables with server-side filters, sorting, field selection, pagination, and JSON, JSONL, or TSV output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Feishu Bitable (多维表格) with server-side filter, sort, field selection, and multiple output formats.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and operators use this skill to query large Feishu Bitable tables efficiently when they need server-side filtering, full pagination, field selection, or pipe-friendly output formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script reads Feishu app credentials already stored in ~/.openclaw/openclaw.json. <br>
-Mitigation: Install and run it only in environments where that credential use is intended, and configure the Feishu app with least-privilege permissions. <br>
-Risk: Broad filters or --all-pages can export more Bitable records than intended. <br>
-Mitigation: Verify each app-token, table-id, filter, and output destination before running queries, and avoid full-table pagination unless a full export is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Filter Syntax Reference](references/filter-syntax.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deadblue22/feishu-bitable-query) <br>
+## Use Case:
 
+Developers and agents use this skill to query Feishu Bitable records with server-side filters, sorting, pagination, selected fields, and compact output when built-in record listing is too broad or inefficient.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON, JSONL, or TSV command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports count-only output, compact field formatting, pagination progress on stderr, and query results on stdout.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can retrieve organizational Feishu Bitable data using locally stored Feishu app credentials.
+
+Mitigation: Install and run it only in environments authorized to use those credentials, and treat returned records as organizational data.
+
+Risk: Broad queries or full pagination can retrieve more records or fields than needed.
+
+Mitigation: Use explicit app tokens, table IDs, filters, view IDs, field selections, compact fields, and count mode to limit data retrieval to the required records.
+
+Risk: Local time filtering runs after records are fetched, so it may still pull records before narrowing the result set.
+
+Mitigation: Prefer server-side filters where possible, especially structured JSON filters for date ranges, and reserve local time filters for cases where Feishu API filter behavior requires them.
+
+## Reference(s):
+
+- [Feishu Bitable Filter Syntax Reference](references/filter-syntax.md)
+- [ClawHub skill page](https://clawhub.ai/deadblue22/skills/feishu-bitable-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, JSONL, TSV]
+
+**Output Format:** [Markdown guidance with bash examples; the helper script can emit JSON, JSONL, or TSV query results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Feishu app credentials from ~/.openclaw/openclaw.json and writes progress to stderr while keeping query results on stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

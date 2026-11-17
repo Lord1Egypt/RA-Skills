@@ -1,44 +1,63 @@
-## Description: <br>
-Screen and evaluate resumes against criteria using the ZhiPu GLM-V multimodal model, reading resume files and returning pass/fail analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screen and evaluate resumes against criteria using ZhiPu GLM-V multimodal model, reading multiple resume files, comparing them against user-defined screening criteria, and returning pass/fail analysis.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-Recruiters, hiring teams, and agents assisting them use this skill to batch-screen candidate resumes against role-specific criteria and compare pass/fail reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume contents, screening criteria, and local PDF page images are sent to Zhipu's external GLM-V API. <br>
-Mitigation: Use the skill only when policy permits sending candidate data to Zhipu, minimize unnecessary personal data in inputs, and review provider data-handling terms for the use case. <br>
-Risk: The skill requires a ZHIPU_API_KEY credential. <br>
-Mitigation: Use a dedicated API key where possible, store it in approved environment or OpenClaw configuration, and rotate or revoke it if exposed. <br>
-Risk: Saved Markdown or JSON outputs can contain candidate evaluation details. <br>
-Mitigation: Save outputs only to locations approved for candidate data and apply normal access controls and retention rules. <br>
+## Use Case:
 
+Recruiters, hiring teams, and agents assisting hiring workflows use this skill to batch-screen resumes against stated criteria and compare candidate fit. It is intended for resume filtering, candidate comparison, and job-application evaluation workflows where sending resume contents to Zhipu's API is acceptable.
 
-## Reference(s): <br>
-- [GLM-V Resume Screen skill homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-resume-screen) <br>
-- [Zhipu chat completions API documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E5%AF%B9%E8%AF%9D%E8%A1%A5%E5%85%A8) <br>
-- [Zhipu API key management](https://bigmodel.cn/usercenter/proj-mgmt/apikeys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, files, guidance] <br>
-**Output Format:** [Markdown table by default; optional Markdown or JSON file when an output path is provided.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes success status, model result, usage metadata, screening criteria, and file count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Resume contents and screening criteria are sent to Zhipu's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when organizational policy allows that transfer, and avoid uploading unnecessary personal data.
+
+Risk: Saved Markdown or JSON outputs may contain sensitive applicant information.
+
+Mitigation: Store outputs in approved locations, limit access, and delete them when they are no longer needed.
+
+Risk: The ZHIPU_API_KEY is required for operation.
+
+Mitigation: Store the key securely through the agent or shell environment and avoid committing it to files.
+
+Risk: Local PDF processing depends on PyMuPDF.
+
+Mitigation: Use an isolated environment with pinned dependencies when enabling local PDF processing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaredforreal/skills/glmv-resume-screen)
+- [GLM-V Resume Screen Homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-resume-screen)
+- [Zhipu Chat Completions API Documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E5%AF%B9%E8%AF%9D%E8%A1%A5%E5%85%A8)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown table by default, with optional Markdown or JSON file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; supports up to 50 remote resume files or up to 50 pages of local PDF input, and saved outputs may contain sensitive applicant information.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

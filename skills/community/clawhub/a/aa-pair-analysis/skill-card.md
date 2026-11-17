@@ -1,42 +1,60 @@
-## Description: <br>
-Analyzes functional amino-acid adjacent-pair frequencies across protein-family sequences by running MSA, extracting consensus sequences, computing Top 5 pair types and phi values, and generating formulation outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aa Pair Analysis analyzes amino-acid functional-category adjacent-pair frequencies across protein-family sequences using MSA, consensus extraction, pair statistics, phi-value calculation, and formulation table generation.
 
-## Publisher: <br>
-[wuhen9nine](https://clawhub.ai/user/wuhen9nine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhen9nine](https://clawhub.ai/user/wuhen9nine)
 
-## Use Case: <br>
-Bioinformatics developers and protein-analysis users use this skill to run amino-acid pair-frequency workflows on protein families, compare pair composition across species or groups, and generate CSV and Word formulation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can fetch a ClustalOmega executable over plain HTTP and make persistent shell changes. <br>
-Mitigation: Review scripts/setup.sh before installation, prefer installing ClustalOmega from a trusted package manager or verified release, and confirm whether shell startup files were modified. <br>
-Risk: Some helper scripts include hard-coded /home/lenovo/.openclaw paths that may not match the target runtime. <br>
-Mitigation: Confirm and adjust local paths before running PDF or report-update helpers. <br>
+## Use Case:
 
+External researchers and developers use this skill to run protein-family amino-acid adjacent-pair analyses from FASTA inputs, compare species or groups, and generate Top 5 pair and phi-value summaries. The skill can also help produce monomer formulation tables from integrated analysis results.
 
-## Reference(s): <br>
-- [Complete Analysis Method](references/method.md) <br>
-- [Amino Acid Functional Classification](references/classification.md) <br>
-- [Clustal Omega](http://www.clustal.org/omega/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python workflow scripts, CSV outputs, JSON intermediate data, and Word document reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces species-level formulation CSV files, Top 5 pair detail CSV files, summary CSV files, integrated reports, and optional monomer formulation tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata and skill.json) <br>
+Risk: The installer can fetch and enable an executable insecurely and modify the user's shell environment without enough control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; install dependencies manually from trusted package managers or an isolated virtual environment, avoid the HTTP binary fallback, and do not allow automatic shell profile edits.
+
+Risk: Generated CSV files can be unsafe to open directly in spreadsheet software if task or output data is not trusted.
+
+Mitigation: Use simple task names without slashes or '..' and inspect generated CSV files before opening them in spreadsheets.
+
+Risk: Laboratory formulation tables may contain incorrect or incomplete values for real-world use.
+
+Mitigation: Independently validate any laboratory formulation tables before use.
+
+## Reference(s):
+
+- [Complete analysis method](references/method.md)
+- [Amino-acid functional classification](references/classification.md)
+- [Clustal Omega](http://www.clustal.org/omega/)
+- [ClawHub skill page](https://clawhub.ai/wuhen9nine/skills/aa-pair-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands; generated CSV, JSON, and Word document outputs from scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary analysis outputs include species_formulations.csv, top_5_pairs_details.csv, formulation_summary.csv, integrated result reports, and monomer formulation tables.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

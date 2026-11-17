@@ -1,44 +1,55 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[erdmannsilva](https://clawhub.ai/user/erdmannsilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erdmannsilva](https://clawhub.ai/user/erdmannsilva)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run the gog CLI for Google Workspace tasks across Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Google Workspace OAuth access and can access or change account data. <br>
-Mitigation: Authorize only the needed Google services and account, review requested OAuth scopes, and revoke the grant when the skill is no longer needed. <br>
-Risk: Commands may send email, create calendar events, or modify Sheets and Drive data. <br>
-Mitigation: Review commands before execution, especially write operations, and prefer JSON or no-input modes for scripted workflows. <br>
-Risk: The workflow depends on the external gog CLI distributed through a Homebrew tap. <br>
-Mitigation: Install only if the gog CLI and tap are trusted in the target environment. <br>
+## Use Case:
 
+Developers and automation users use this skill to operate Google Workspace services from an agent through the gog CLI, including account setup, Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows.
 
-## Reference(s): <br>
-- [gog homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/erdmannsilva/erdmannsilva-gog) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/erdmannsilva) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that read or modify Google Workspace data through the gog CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on a third-party gog executable installed through an unpinned Homebrew formula.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the gog CLI source and Homebrew tap before installing, and prefer a pinned or otherwise trusted release.
+
+Risk: The skill can guide commands that send email, create calendar items, modify Sheets, or export Drive and Docs data.
+
+Mitigation: Grant only the Google service scopes needed for the intended task and review commands before executing data-changing or data-exporting operations.
+
+## Reference(s):
+
+- [Gog homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/erdmannsilva/skills/erdmannsilva-gog)
+- [ClawHub publisher profile](https://clawhub.ai/user/erdmannsilva)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of an external gog executable and may produce commands that access or modify Google Workspace data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

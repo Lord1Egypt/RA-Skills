@@ -1,45 +1,64 @@
-## Description: <br>
-Set up and maintain a structured OpenClaw workspace with project boundaries, role-based file taxonomy, and memory budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and maintain a structured OpenClaw workspace with project boundaries, role-based file taxonomy, memory budgets, and maintenance tooling.
 
-## Publisher: <br>
-[marcus-daemon](https://clawhub.ai/user/marcus-daemon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcus-daemon](https://clawhub.ai/user/marcus-daemon)
 
-## Use Case: <br>
-Developers and agent users use this skill to bootstrap, organize, audit, and maintain OpenClaw workspaces with consistent project boundaries, role-based markdown files, memory budgets, and maintenance routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace maintenance guidance can lead to broad git commits, pushes, or cleanup commands if followed without review. <br>
-Mitigation: Inspect git status and git diff first, avoid automatic git push, and preview cleanup with git clean -fdn before any destructive cleanup. <br>
-Risk: Generated memory and entity files may contain sensitive workspace details. <br>
-Mitigation: Review generated files before committing or sharing them and keep secrets out of memory, entity, and project reference files. <br>
-Risk: The skill may reorganize workspace knowledge in ways that affect agent behavior and file lookup habits. <br>
-Mitigation: Run the audit first, review proposed migrations before moving files, and make changes in reversible git commits. <br>
+## Use Case:
 
+Developers and agent users use this skill to bootstrap, organize, audit, and maintain markdown-based OpenClaw workspaces so files have clear project boundaries, roles, freshness signals, and memory budgets.
 
-## Reference(s): <br>
-- [Workspace Standard ClawHub page](https://clawhub.ai/marcus-daemon/workspace-standard) <br>
-- [The Seven Roles - Detailed Guide](references/roles-guide.md) <br>
-- [Workspace Maintenance Checklist](references/maintenance-checklist.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes shell scripts that create workspace files and audit existing workspace structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The init workflow creates persistent workspace directories and template files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a git-tracked workspace, review the target path first, and inspect git changes before committing.
+
+Risk: The README includes a curl-based script download path.
+
+Mitigation: Prefer the bundled scripts from the installed skill, or inspect downloaded scripts before executing them.
+
+Risk: Using --force may overwrite existing generated files.
+
+Mitigation: Avoid --force unless the destination has been reviewed and existing files are backed up or version controlled.
+
+Risk: Unsanitized project names could create confusing paths.
+
+Mitigation: Use simple project names without slashes, parent-directory segments, or shell metacharacters.
+
+## Reference(s):
+
+- [Workspace Standard ClawHub Page](https://clawhub.ai/marcus-daemon/skills/workspace-standard)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Roles Guide](references/roles-guide.md)
+- [Maintenance Checklist](references/maintenance-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or audit workspace files when the bundled scripts are run by the agent or user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

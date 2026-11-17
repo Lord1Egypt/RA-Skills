@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>validator 违规阳性测试</title>
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+  .slide-container{position:relative;width:1920px;height:1080px;overflow:hidden;background:#FAFAF7;font-family:"Noto Sans SC","Inter",sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide-container">
+  <!-- 违规 1:data-object 嵌套 → layout-checks ERROR -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:100px;width:400px;height:200px;background:#FFFFFF;border:1px solid #000000;">
+    <div data-object="true" data-object-type="textbox">
+      <div style="font-size:20px;line-height:24px;color:#1A1A1A;">嵌套内层文本</div>
+    </div>
+  </div>
+
+  <!-- 违规 2:flex 容器的可见子级未标记 → layout-checks ERROR(不重复触发 dom-checks 规则1) -->
+  <div style="position:absolute;left:100px;top:400px;width:600px;display:flex;gap:20px;">
+    <div style="width:200px;height:100px;background:#EEEEEE;font-size:18px;line-height:24px;color:#1A1A1A;">未标记的 flex 子级</div>
+  </div>
+
+  <!-- 违规 3:未标记的流式可见文字 → dom-checks 规则1 ERROR(Phase 2 扩展) -->
+  <div style="position:relative;margin-top:700px;margin-left:100px;width:400px;font-size:18px;line-height:24px;color:#1A1A1A;">流式未标记文字</div>
+</div>
+</body>
+</html>

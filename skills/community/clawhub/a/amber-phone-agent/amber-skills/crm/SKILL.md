@@ -13,8 +13,8 @@ Stores local, operator-reviewed caller context and interaction history for phone
 
 ### On Every Inbound Call
 
-1. **Lookup** — Call `crm` with `lookup_contact` using the caller's phone number (from Twilio caller ID).
-2. **If known** — Greet by name and use `context_notes` to personalize (ask about their dog, remember their preference, etc.)
+1. **Lookup** — Call `crm` with `lookup_contact` using the caller's phone number (from Twilio caller ID) only under the operator's caller notice/consent and retention policy.
+2. **If known** — Greet by name and use `context_notes` only when relevant to the call purpose. Avoid surprising rapport-building from intimate or unnecessary details.
 3. **If unknown** — Proceed normally, listen for their name.
 
 ### During the Call
@@ -59,8 +59,8 @@ Same exact flow: lookup at start, upsert + log_interaction at end.
 
 **Greeting a known caller:**
 ```
-Amber: "Hi Sarah, good to hear from you again. How's Max doing?" 
-[context_notes remembered: "Has a Golden Retriever named Max. Prefers afternoon calls."]
+Amber: "Hi Sarah, good to hear from you again. I have you down as preferring afternoon callbacks."
+[context_notes remembered: "Prefers afternoon callbacks for appointment changes."]
 ```
 
 **Capturing relevant follow-up context:**

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7f49sq03r108wd9vvmrzma9s80pb8j",
-  "slug": "wechat-mp-publish-skill",
-  "version": "1.0.2",
-  "publishedAt": 1773318828383
+  "version": "1.0.0",
+  "author": "豌豆侠",
+  "created": "2026-03-09",
+  "tags": ["wechat", "publish", "automation", "browser"]
 }

@@ -1,40 +1,54 @@
-## Description: <br>
-Feishu Suite helps an agent manage Feishu messages, documents, calendars, tasks, and bitable records from a single workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Suite helps agents manage Feishu messages, documents, calendars, tasks, and bitable records for workplace collaboration and workflow automation.
 
-## Publisher: <br>
-[a85012712](https://clawhub.ai/user/a85012712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a85012712](https://clawhub.ai/user/a85012712)
 
-## Use Case: <br>
-Employees and teams use this skill to coordinate Feishu workspace activity, including sending messages, editing documents, managing calendar events, tracking tasks, and updating bitable records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate across messages, documents, calendars, tasks, and bitable records in a Feishu workspace. <br>
-Mitigation: Install it only for workflows that need broad Feishu authority and configure the least-privileged Feishu app scopes that still support the intended tasks. <br>
-Risk: Write actions could affect recipients, documents, calendar events, tasks, or table records if the agent targets the wrong object. <br>
-Mitigation: Use explicit Feishu-specific requests and confirm recipients, target documents, calendars, tasks, and tables before write operations. <br>
+## Use Case:
 
+Employees, operators, and developers use this skill to ask an agent to send Feishu messages, create or update documents, manage calendar events and tasks, and work with bitable records after user authorization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a85012712/jw-feishu-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with Feishu operation examples and permission-scope details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or request Feishu messages, document updates, calendar entries, task changes, and bitable record changes after user authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requests broad workplace permissions across Feishu messages, documents, calendars, tasks, and bitables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those Feishu scopes are intended, and review Feishu authorization prompts carefully before approving access.
+
+Risk: State-changing actions such as message sends, document updates, task changes, calendar updates, and bitable writes can affect shared workplace resources.
+
+Mitigation: Prefer explicit Feishu-prefixed requests for state-changing actions and review confirmation prompts before approving writes or sends.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a85012712/skills/jw-feishu-suite)
+- [ClawHub publisher profile](https://clawhub.ai/user/a85012712)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration]
+
+**Output Format:** [Natural-language guidance and structured Feishu operation requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user authorization for Feishu operations; sensitive operations may require explicit confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

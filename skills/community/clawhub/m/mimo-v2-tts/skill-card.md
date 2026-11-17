@@ -1,44 +1,59 @@
-## Description: <br>
-Converts text to speech using Xiaomi MiMo-V2-TTS with emotional style control, Chinese dialect support, role voices, and singing synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text to speech using Xiaomi MiMo-V2-TTS with emotional style control, Chinese dialect support, role voices, and singing synthesis.
 
-## Publisher: <br>
-[ddpie](https://clawhub.ai/user/ddpie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ddpie](https://clawhub.ai/user/ddpie)
 
-## Use Case: <br>
-Developers and agents use this skill to synthesize text into audio through Xiaomi's MiMo-V2-TTS API, including styled speech, Chinese dialects, role voices, and singing-style output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can automatically install the Python requests package at runtime. <br>
-Mitigation: Use an environment where runtime pip installation is acceptable, or preinstall and pin requests before running the skill. <br>
-Risk: Synthesis text is sent to Xiaomi's cloud API. <br>
-Mitigation: Avoid synthesizing confidential or regulated text unless Xiaomi's data handling is acceptable for the use case. <br>
-Risk: API keys can be exposed when passed as command-line arguments. <br>
-Mitigation: Use a dedicated MiMo API key and prefer the MIMO_API_KEY environment variable over the --api-key argument. <br>
+## Use Case:
 
+Developers and agent users use this skill to synthesize spoken audio from supplied text through Xiaomi MiMo-V2-TTS, including style, emotion, dialect, and singing controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ddpie/mimo-v2-tts) <br>
-- [Xiaomi MiMo Platform](https://platform.xiaomimimo.com) <br>
-- [Xiaomi MiMo API base URL](https://api.xiaomimimo.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Audio files] <br>
-**Output Format:** [Markdown usage guidance with bash command examples; the helper script writes an audio file such as MP3, WAV, PCM, OPUS, or FLAC.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiMo API key through MIMO_API_KEY or an explicit API-key argument; sends synthesis text to Xiaomi's cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can install an unpinned Python dependency at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install dependencies through a trusted dependency process before use, and run the script in an environment where it cannot auto-install packages.
+
+Risk: Input text and style instructions are sent to the Xiaomi MiMo API, and generated audio is stored locally.
+
+Mitigation: Do not submit confidential, regulated, or secret text unless the user accepts that sharing and storage, and protect or remove generated audio files as appropriate.
+
+Risk: Passing the API key with --api-key can expose credentials through shell history or process listings.
+
+Mitigation: Prefer the MIMO_API_KEY environment variable and manage the key through normal secret-handling practices.
+
+## Reference(s):
+
+- [Xiaomi MiMo Platform](https://platform.xiaomimimo.com)
+- [Xiaomi MiMo API Base](https://api.xiaomimimo.com/v1)
+- [ClawHub Skill Page](https://clawhub.ai/ddpie/skills/mimo-v2-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local audio file output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local audio files in mp3, wav, pcm, opus, or flac format; requires a Xiaomi MiMo API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

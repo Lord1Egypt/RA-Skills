@@ -1,42 +1,56 @@
-## Description: <br>
-Qimen Dunjia helps agents produce Chinese-language Qimen Dunjia divination-style readings with a nine-palace chart, use-spirit analysis, pattern judgment, timing, and direct advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese Qimen Dunjia-style divination readings for user questions, producing a time-based nine-palace chart, use-symbol analysis, pattern judgment, timing estimates, and direct advice.
 
-## Publisher: <br>
-[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it)
 
-## Use Case: <br>
-External users invoke this skill when they want an agent to answer a question using Qimen Dunjia-style divination, including chart layout, topic classification, judgment, suggested timing, and action guidance. It is suitable for intentional entertainment or cultural-reference use, not for high-stakes decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's divination-style answers can sound overly definite for real-life decisions. <br>
-Mitigation: Invoke it deliberately and treat outputs as entertainment or cultural-reference guidance, not as a basis for medical, legal, financial, safety, or major career decisions. <br>
-Risk: The documentation describes a CLI helper that is not included in this package. <br>
-Mitigation: Use the conversational skill behavior supplied in the artifact, and verify any CLI helper separately before relying on it. <br>
+## Use Case:
 
+External users invoke this skill for cultural or entertainment-style Qimen Dunjia readings about decisions such as career, business, travel, relationships, or timing. It should not be treated as medical, legal, investment, or other professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/qimen-dunjia-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/leslietong2046-ship-it) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with tables and monospaced nine-palace chart blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses; no bundled executable code or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may over-rely on divination-style outputs for medical, legal, financial, investment, or other consequential decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as entertainment or cultural reference and direct users to qualified professionals for consequential advice.
+
+Risk: The skill's broad trigger phrases could cause accidental use on ordinary advice questions.
+
+Mitigation: Invoke it explicitly by name or with clear Qimen Dunjia intent when routing user requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/skills/qimen-dunjia-skill)
+- [Publisher profile](https://clawhub.ai/user/leslietong2046-ship-it)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with structured tables, nine-palace chart blocks, direct-answer prose, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language outputs; requires python3 only when using the optional CLI helper described by the artifact.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

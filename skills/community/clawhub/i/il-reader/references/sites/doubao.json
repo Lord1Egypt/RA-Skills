@@ -1,0 +1,1141 @@
+{
+  "version": "2.4.0",
+  "source_id": "doubao",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:02:31.637Z",
+  "entry": {
+    "url": "https://www.doubao.com/chat/",
+    "final_url": "https://www.doubao.com/chat/",
+    "title": "豆包 - 字节跳动旗下 AI 智能助手",
+    "status": "accessible",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:02:31.637Z",
+    "identity": {
+      "declared_name": "豆包",
+      "hostname": "www.doubao.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "豆包",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "豆包",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "后退",
+      "label": "",
+      "aria_label": "后退",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "后退",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "前进",
+      "label": "",
+      "aria_label": "前进",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "前进",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "新工作任务\nCtrl J",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "新对话\nCtrl Shift K",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "API 服务",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "更多",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "最近",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "收起侧栏",
+      "label": "",
+      "aria_label": "收起侧栏",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "收起侧栏",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "下载电脑版 领30天订阅",
+      "label": "",
+      "aria_label": "下载电脑版 领30天订阅",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "下载电脑版 领30天订阅",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "登录",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "对话",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "对话",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "工作",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "工作",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "人的一生有多少天？",
+      "label": "",
+      "aria_label": "人的一生有多少天？",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "人的一生有多少天？",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "帮我设计一个 5 分钟就能玩的快速互动小游戏",
+      "label": "",
+      "aria_label": "帮我设计一个 5 分钟就能玩的快速互动小游戏",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "帮我设计一个 5 分钟就能玩的快速互动小游戏",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "黄金现在多少钱一克？",
+      "label": "",
+      "aria_label": "黄金现在多少钱一克？",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "黄金现在多少钱一克？",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "设计一个简单的人机对战小程序",
+      "label": "",
+      "aria_label": "设计一个简单的人机对战小程序",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "设计一个简单的人机对战小程序",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "对话",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "对话",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "PPT 生成",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "PPT 生成",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "图像生成",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "图像生成",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "帮我写作",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "帮我写作",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "视频生成",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "视频生成",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "录音转写",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "录音转写",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "音乐生成",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "音乐生成",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "更多",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "更多",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "豆包 快速",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "豆包 快速",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "立即下载",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "立即下载",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "关闭",
+      "label": "",
+      "aria_label": "关闭",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "关闭",
+        "exact": true
+      },
+      "observed_url": "https://www.doubao.com/chat/",
+      "observed_at": "2026-10-09T09:02:30.811Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "doubao:product-capability",
+      "source_id": "doubao",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.doubao.com/chat/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "豆包",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "豆包",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "后退",
+          "label": "",
+          "aria_label": "后退",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "后退",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "前进",
+          "label": "",
+          "aria_label": "前进",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "前进",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "收起侧栏",
+          "label": "",
+          "aria_label": "收起侧栏",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "收起侧栏",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "下载电脑版 领30天订阅",
+          "label": "",
+          "aria_label": "下载电脑版 领30天订阅",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "下载电脑版 领30天订阅",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "登录",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "登录",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "对话",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "对话",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "工作",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "工作",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "人的一生有多少天？",
+          "label": "",
+          "aria_label": "人的一生有多少天？",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "人的一生有多少天？",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "帮我设计一个 5 分钟就能玩的快速互动小游戏",
+          "label": "",
+          "aria_label": "帮我设计一个 5 分钟就能玩的快速互动小游戏",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "帮我设计一个 5 分钟就能玩的快速互动小游戏",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "黄金现在多少钱一克？",
+          "label": "",
+          "aria_label": "黄金现在多少钱一克？",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "黄金现在多少钱一克？",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "设计一个简单的人机对战小程序",
+          "label": "",
+          "aria_label": "设计一个简单的人机对战小程序",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "设计一个简单的人机对战小程序",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "对话",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "对话",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "PPT 生成",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "PPT 生成",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "图像生成",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "图像生成",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "帮我写作",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "帮我写作",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "视频生成",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "视频生成",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "录音转写",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "录音转写",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "音乐生成",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "音乐生成",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "更多",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "更多",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "豆包 快速",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "豆包 快速",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "立即下载",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "立即下载",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "关闭",
+          "label": "",
+          "aria_label": "关闭",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "关闭",
+            "exact": true
+          },
+          "observed_url": "https://www.doubao.com/chat/",
+          "observed_at": "2026-10-09T09:02:30.811Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Navigation to \"https://www.doubao.com/chat/\" is interrupted by another navigation to \"https://chat.deepseek.com/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.doubao.com/chat/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 2,
+      "detail": "page.goto: Navigation to \"https://www.doubao.com/chat/\" is interrupted by another navigation to \"https://www.doubao.com/chat/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.doubao.com/chat/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 3,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.doubao.com/chat/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "doubao",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M04-Q1",
+      "2025-M06-Q1",
+      "2026-M04-Q1",
+      "2026-M06-Q1",
+      "PT1-Q33"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:02:31.637Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/doubao-partial.json",
+      "original_entry_snapshot": "validation/site-audit-v24/doubao-partial.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

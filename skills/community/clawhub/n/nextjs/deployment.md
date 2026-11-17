@@ -1,79 +1,41 @@
 # Deployment — NextJS
 
-## Build & Output
+## Pick the Output Mode
 
-```bash
-# Production build
-npm run build
+| Situation | Mode |
+|-----------|------|
+| Vercel | Default output; zero config |
+| Docker / any Node host | `output: 'standalone'` |
+| No server features needed (pure static site) | `output: 'export'` → any static host |
+| **Default when unsure** | `standalone` — keeps every feature, runs anywhere Node runs |
 
-# Output modes in next.config.js
-module.exports = {
-  output: 'standalone',  // Self-contained Node.js server
-  // output: 'export',   // Static HTML export (no server features)
-}
-```
-
-## Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Production deploy
-vercel --prod
-```
-
-**vercel.json:**
-```json
-{
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "regions": ["iad1"],
-  "env": {
-    "DATABASE_URL": "@database-url"
-  }
-}
-```
-
-## Standalone Output
+## Standalone (the fragile part — copy exactly)
 
 ```javascript
 // next.config.js
-module.exports = {
-  output: 'standalone',
-}
+module.exports = { output: 'standalone' }
 ```
 
 ```bash
-# Build
 npm run build
-
-# Copy static files (REQUIRED)
+# REQUIRED: standalone does NOT include static assets
 cp -r .next/static .next/standalone/.next/static
 cp -r public .next/standalone/public
-
-# Run
-node .next/standalone/server.js
-# Listens on port 3000
+node .next/standalone/server.js   # port 3000; set HOSTNAME=0.0.0.0 in containers
 ```
+
+Skipping the two `cp` lines is the #1 standalone failure: the app boots, pages render, but all JS/CSS 404s.
 
 ## Docker
 
-**Dockerfile:**
 ```dockerfile
 FROM node:20-alpine AS base
 
-# Dependencies
 FROM base AS deps
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-# Build
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -81,273 +43,105 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-# Production
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
 USER nextjs
 EXPOSE 3000
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
-
+ENV PORT=3000 HOSTNAME="0.0.0.0"
 CMD ["node", "server.js"]
 ```
 
-**.dockerignore:**
-```
-node_modules
-.next
-.git
-*.md
-```
+`.dockerignore`: `node_modules`, `.next`, `.git`.
 
-```bash
-# Build
-docker build -t nextjs-app .
-
-# Run
-docker run -p 3000:3000 nextjs-app
-```
-
-## Docker Compose
-
-```yaml
-# docker-compose.yml
-services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/mydb
-    depends_on:
-      - db
-    restart: unless-stopped
-  
-  db:
-    image: postgres:16-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=pass
-      - POSTGRES_DB=mydb
-
-volumes:
-  postgres_data:
-```
+**Build-time trap:** `next build` pre-renders static pages, so any page touching the database at build needs a reachable `DATABASE_URL` *inside the builder stage* — or mark those routes `dynamic = 'force-dynamic'` so they render at request time. A build that "works locally, fails in CI" with connection errors is this.
 
 ## Environment Variables
 
-```bash
-# .env.local (development, gitignored)
-DATABASE_URL=postgresql://localhost:5432/mydb
-NEXTAUTH_SECRET=your-secret
-
-# .env.production (production defaults, committed)
-NEXT_PUBLIC_SITE_URL=https://example.com
-
-# Runtime env (override at deploy)
-DATABASE_URL=postgresql://prod:5432/mydb
+```
+Loading order (first wins):
+1. .env.local            (gitignored; not loaded in test)
+2. .env.[environment].local
+3. .env.[environment]
+4. .env
 ```
 
-**Loading order:**
-1. `.env.local` (not in test)
-2. `.env.[environment].local`
-3. `.env.[environment]`
-4. `.env`
+- No prefix → server only. `NEXT_PUBLIC_` → **inlined into the client bundle at build time** (SKILL.md Rule 8).
+- Consequence for Docker: if any `NEXT_PUBLIC_` var differs between staging and prod, one image cannot serve both — either build per environment, or keep runtime config server-side and pass it via a Server Component.
+- Server-side `process.env` reads are runtime on dynamic routes — those you can override at deploy.
 
-**Access:**
-```typescript
-// Server only (no prefix)
-process.env.DATABASE_URL
+## Self-Hosted ISR and Caching
 
-// Client + Server (with prefix)
-process.env.NEXT_PUBLIC_SITE_URL
+- ISR state lives in `.next/cache` — persist it across deploys or every deploy cold-starts all ISR pages.
+- **Multiple instances = divergent caches**: each pod regenerates independently, so two users can see different "latest" pages, and `revalidateTag` only purges the instance that ran it. Fix: shared cache via a custom `cacheHandler` in `next.config` (Redis is the usual backend) — or accept the drift for low-write content.
+- Image optimization: `next >=15` bundles sharp automatically; on 14 self-hosted, install `sharp` explicitly or optimization falls back to a much slower path.
+
+## Reverse Proxy (nginx)
+
+Standard proxy directives work; the Next.js-specific mistake is buffering:
+
+```nginx
+location / {
+    proxy_pass http://localhost:3000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_buffering off;   # buffering holds the response until complete — kills streaming/Suspense
+}
 ```
+
+If streaming works locally but pages "hang then appear all at once" behind the proxy, buffering (nginx, or a CDN in front) is the cause.
 
 ## Static Export
 
 ```javascript
-// next.config.js
-module.exports = {
-  output: 'export',
-  // Optional: custom output directory
-  distDir: 'dist',
-  // Optional: trailing slashes
-  trailingSlash: true,
+module.exports = { output: 'export' }   // output in /out
+```
+
+Loses: route handlers, Server Actions, ISR/revalidation, middleware, image optimization (needs a custom loader), dynamic routes without `generateStaticParams`. If the site needs any of these, it isn't a static-export project — use standalone.
+
+## Health Check
+
+```typescript
+// app/api/health/route.ts
+export async function GET() {
+  try {
+    await db.$queryRaw`SELECT 1`
+    return Response.json({ status: 'healthy' })
+  } catch (e) {
+    return Response.json({ status: 'unhealthy' }, { status: 503 })
+  }
 }
 ```
 
-**Limitations:**
-- No Server Components (all become static)
-- No API Routes
-- No ISR/Revalidation
-- No Middleware
-- No Image Optimization (use external loader)
+Point container orchestration/load balancer probes here, not at `/` — the home page being cached can mask a dead database.
 
-```bash
-npm run build
-# Output in /out folder
-# Deploy to any static host (Netlify, GitHub Pages, S3)
-```
-
-## Nginx Reverse Proxy
-
-```nginx
-# /etc/nginx/sites-available/nextjs
-server {
-    listen 80;
-    server_name example.com;
-    
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_cache_bypass $http_upgrade;
-    }
-}
-```
-
-## PM2 Process Manager
+## Process Manager (bare metal)
 
 ```javascript
-// ecosystem.config.js
+// ecosystem.config.js — PM2 cluster across cores
 module.exports = {
   apps: [{
     name: 'nextjs-app',
     script: '.next/standalone/server.js',
     instances: 'max',
     exec_mode: 'cluster',
-    env: {
-      NODE_ENV: 'production',
-      PORT: 3000,
-    },
+    env: { NODE_ENV: 'production', PORT: 3000 },
   }],
 }
 ```
 
-```bash
-pm2 start ecosystem.config.js
-pm2 save
-pm2 startup
-```
+Cluster mode multiplies the ISR cache-divergence problem above — same fix (shared cacheHandler) applies.
 
-## Health Checks
+## Pre-Deploy Checklist
 
-```typescript
-// app/api/health/route.ts
-export async function GET() {
-  try {
-    // Check database
-    await db.$queryRaw`SELECT 1`
-    
-    return Response.json({
-      status: 'healthy',
-      timestamp: new Date().toISOString(),
-    })
-  } catch (error) {
-    return Response.json(
-      { status: 'unhealthy', error: error.message },
-      { status: 503 }
-    )
-  }
-}
-```
-
-## Performance
-
-```javascript
-// next.config.js
-module.exports = {
-  // Compress responses
-  compress: true,
-  
-  // Optimize images
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
-  },
-  
-  // Bundle analyzer
-  webpack: (config, { isServer }) => {
-    if (process.env.ANALYZE === 'true') {
-      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          reportFilename: isServer ? 'server.html' : 'client.html',
-        })
-      )
-    }
-    return config
-  },
-}
-```
-
-## Monitoring
-
-```typescript
-// instrumentation.ts (Next.js 15)
-export async function register() {
-  if (process.env.NEXT_RUNTIME === 'nodejs') {
-    // OpenTelemetry, Sentry, etc.
-    await import('./sentry.server.config')
-  }
-}
-
-// sentry.server.config.ts
-import * as Sentry from '@sentry/nextjs'
-
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-  tracesSampleRate: 1.0,
-})
-```
-
-## CI/CD Example (GitHub Actions)
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-      
-      - uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: '--prod'
-```
+- [ ] `next build` clean locally — build errors never get better in CI
+- [ ] Build output symbols match intent: `○`/`●` for content pages, `ƒ` only where expected (`caching.md`, Debugging)
+- [ ] Cache behavior verified with `next build && next start`, not dev
+- [ ] Secrets have no `NEXT_PUBLIC_` prefix; grep the client bundle if unsure
+- [ ] Standalone: static + public copied; container sets `HOSTNAME=0.0.0.0`
+- [ ] Multi-instance: ISR cache strategy decided (shared handler vs accepted drift)

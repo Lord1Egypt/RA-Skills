@@ -1,42 +1,61 @@
-## Description: <br>
-Controls Carrera HYBRID RC cars by Sturmkind over Bluetooth Low Energy, including drive, steering, light control, Telegram remote control, protocol sniffing, and text-drawing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Carrera HYBRID RC cars by Sturmkind via BLE for driving, steering, light control, protocol exploration, Telegram remote control, MITM protocol sniffing, and text-drawing driving paths.
 
-## Publisher: <br>
-[marcel030](https://clawhub.ai/user/marcel030) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcel030](https://clawhub.ai/user/marcel030)
 
-## Use Case: <br>
-External users, developers, and BLE hobbyists use this skill to control their own Carrera HYBRID/Sturmkind RC cars and to understand the BLE packet protocol for authorized analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: BLE drive commands can cause physical movement of a Carrera HYBRID RC car. <br>
-Mitigation: Verify the BLE address, supervise the car while commands run, operate in a clear area, and stop or idle the car after motion commands. <br>
-Risk: Telegram remote control can expose vehicle commands to unintended users if the bot is broadly accessible. <br>
-Mitigation: Restrict any Telegram bot to trusted chat IDs and avoid sharing bot credentials or control links. <br>
-Risk: Protocol sniffing and MITM capture can be misused against devices or traffic the user does not own. <br>
-Mitigation: Use MITM and protocol-analysis steps only on devices and BLE traffic the user owns or is explicitly authorized to analyze. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Carrera HYBRID BLE Protocol - Reverse Engineering Notes](references/protocol.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/marcel030/carrera-hybrid) <br>
+## Use Case:
 
+Developers, engineers, and hobbyists use this skill to control an authorized Carrera HYBRID RC car from a Linux BLE environment and to understand or document the BLE protocol. It is also useful for controlled protocol analysis and remote-control workflows where physical safety limits are reviewed before use.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include BLE control commands, packet formats, calibration notes, and safety guidance for authorized devices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill controls a physical RC car and the security evidence says the script lacks basic safety limits.
+
+Mitigation: Use only with an owned or authorized car in a controlled physical space, set conservative gas and duration values, and add a best-effort stop or finally handler before operation.
+
+Risk: Remote Telegram control can expose physical movement to indirect or unintended commands.
+
+Mitigation: Limit remote access to trusted operators and test commands locally before exposing the car through Telegram or another remote interface.
+
+Risk: MITM protocol sniffing may capture or manipulate BLE traffic outside the intended target.
+
+Mitigation: Perform protocol analysis only on authorized devices in a controlled environment and keep the real car powered off when using the documented fake-peripheral method.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Install dependencies in a virtual environment and pin package versions before operational use.
+
+## Reference(s):
+
+- [Carrera HYBRID BLE Protocol](references/protocol.md)
+- [ClawHub skill page](https://clawhub.ai/marcel030/skills/carrera-hybrid)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Linux host with BlueZ, a BLE adapter, Python 3.10+, bleak, and a configured car BLE address.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

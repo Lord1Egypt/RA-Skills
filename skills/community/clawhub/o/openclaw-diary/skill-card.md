@@ -1,42 +1,53 @@
-## Description: <br>
-Set up and manage an OpenClaw automatic learning diary by guiding users through forking the diary repository, connecting it to OpenClaw, scheduling daily updates, and publishing with GitHub Pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and manage an OpenClaw auto learning diary by guiding users through forking the diary repository, connecting it to OpenClaw, scheduling daily diary generation, and deploying it with GitHub Pages.
 
-## Publisher: <br>
-[Trae1ounG](https://clawhub.ai/user/Trae1ounG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trae1oung](https://clawhub.ai/user/trae1oung)
 
-## Use Case: <br>
-External users and developers use this skill to configure an automated public learning diary workflow backed by a forked GitHub repository, scheduled OpenClaw tasks, and GitHub Pages publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sets up an automatic public diary publisher using GitHub repository access. <br>
-Mitigation: Use a fine-grained GitHub token limited to the diary fork, keep the token out of chat and logs, and review content before public pushes. <br>
-Risk: Scheduled cron or heartbeat tasks may continue publishing after the user no longer wants automation. <br>
-Mitigation: Confirm the user knows how to stop the cron or heartbeat task and revoke the GitHub token. <br>
-Risk: Generated diary entries could expose private personal information or conversation content. <br>
-Mitigation: Require user consent before publishing and avoid real names, IDs, phone numbers, passwords, API keys, tokens, and private conversation content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw-Diary GitHub repository](https://github.com/YAI-Lab/OpenClaw-Diary) <br>
-- [Openclaw Diary ClawHub listing](https://clawhub.ai/Trae1ounG/openclaw-diary) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up a personalized public learning diary, configure recurring diary generation, and publish updates through a forked GitHub Pages repository.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, HTML snippets, configuration steps, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and proposes commands and public publishing steps that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to configure GitHub access for repository updates.
+
+Mitigation: Use a fine-grained token limited to the diary repository, avoid pasting secrets into chat, and provide revocation instructions before collecting token-related setup details.
+
+Risk: The skill configures recurring public publishing, which could post unwanted or sensitive content without review.
+
+Mitigation: Confirm where content will be pushed, require user consent for public updates, and add a clear way to review, pause, or remove the cron or HEARTBEAT task.
+
+## Reference(s):
+
+- [OpenClaw-Diary GitHub Repository](https://github.com/YAI-Lab/OpenClaw-Diary)
+- [Openclaw Diary ClawHub Page](https://clawhub.ai/trae1oung/skills/openclaw-diary)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-specific repository URLs, diary content templates, cron or heartbeat instructions, and GitHub Pages setup guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

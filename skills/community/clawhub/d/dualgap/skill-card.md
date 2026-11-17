@@ -1,47 +1,61 @@
-## Description: <br>
-Use DualGap for dual-domain research gap analysis: turn two paper collections, PDF folders, arXiv downloads, or research directions into reviewer-checked literature notes, direction-level syntheses, cross-domain comparison, research-gap analysis, and ranked improvement ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DualGap turns two research-paper PDF collections, arXiv downloads, or research directions into reviewer-checked literature notes, direction-level syntheses, cross-domain comparison, research-gap analysis, and ranked improvement ideas.
 
-## Publisher: <br>
-[zza234s](https://clawhub.ai/user/zza234s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zza234s](https://clawhub.ai/user/zza234s)
 
-## Use Case: <br>
-Developers and researchers use this skill to compare two research-paper collections, generate evidence-grounded literature notes and reviews, synthesize each direction, compare domains, identify research gaps, and rank follow-up ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF text and generated research notes may be sent to the configured LLM provider. <br>
-Mitigation: Confirm provider acceptability before running and avoid using sensitive paper collections unless the provider and configuration are approved. <br>
-Risk: The workflow requires API credentials. <br>
-Mitigation: Keep API keys in a local env or config file outside generated outputs, and do not paste real keys into notes, logs, examples, or committed files. <br>
-Risk: Large corpus runs may increase cost or expose more data than intended. <br>
-Mitigation: Start with the documented smoke-test limits and review the audit report before scaling to larger batches. <br>
+## Use Case:
 
+Developers, researchers, and research-planning teams use this skill to compare two research directions from PDF folders and produce evidence-grounded literature notes, syntheses, research gaps, and ranked follow-up ideas.
 
-## Reference(s): <br>
-- [ClawHub Release: Dualgap](https://clawhub.ai/zza234s/dualgap) <br>
-- [Server-resolved GitHub source](https://github.com/zza234s/DualGap) <br>
-- [How To Use DualGap](artifact/HOW_TO_USE.md) <br>
-- [Paper Note And Review Schema](artifact/references/note_schema.md) <br>
-- [Validation Protocol](artifact/references/validation_protocol.md) <br>
-- [Configuration Example](artifact/references/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes and syntheses, JSON manifests and reviews, text extracts, audit reports, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires two PDF input directories, research direction names, an output directory, a research agenda, and OpenAI-compatible LLM API configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The workflow sends extracted PDF content and API credentials to a configurable OpenAI-compatible endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS endpoint, confirm the PDFs may be shared with that provider, and use a restricted API key stored outside generated outputs.
+
+Risk: Generated output directories may contain extracted paper text, raw model responses, notes, reviews, and audit artifacts.
+
+Mitigation: Keep output directories private and review artifacts before sharing or committing them.
+
+Risk: The self-validation path can invoke a sibling skill-creator validator when present.
+
+Mitigation: Run self-validation in a workspace where sibling tooling is trusted, or inspect the sibling validator before executing it.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/zza234s/DualGap)
+- [ClawHub skill page](https://clawhub.ai/zza234s/skills/dualgap)
+- [Note schema](references/note_schema.md)
+- [Validation protocol](references/validation_protocol.md)
+- [Configuration example](references/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, JSONL, plain text, and command-line instructions written to an output directory]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces extracted texts, per-paper notes, review records, synthesis documents, ranked improvement ideas, workflow manifests, and audit reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Sistema de memória hierárquica em 3 camadas para agentes IA: curto prazo (contexto), médio prazo (diário), longo prazo (conhecimento). Tudo em português. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sistema de memoria hierarquica em 3 camadas para agentes IA: curto prazo (contexto), medio prazo (diario), longo prazo (conhecimento). Tudo em portugues.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and agent users use this Portuguese-language skill to preserve important agent memories across sessions using short-term context, daily logs, and long-term structured knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory files can retain sensitive personal details, credentials, regulated data, or stale preferences across sessions. <br>
-Mitigation: Avoid saving sensitive data and periodically review or delete stored .memory files before relying on future agent behavior. <br>
+## Use Case:
 
+Developers and external agent users use this skill to help agents preserve selected memories across sessions using short-term context, daily logs, and structured long-term knowledge. It is especially oriented toward Portuguese-speaking and Brazilian users who want durable agent memory workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/memoria-persistente) <br>
-- [Project homepage](https://github.com/eve-agent/memoria-persistente) <br>
-- [Project support](https://github.com/eve-agent/memoria-persistente/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples and local memory file structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and retrieves durable local memory entries under .memory-style storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill is intended to preserve selected memories across sessions, which can retain sensitive or private information if users store it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not save passwords, tokens, private documents, or sensitive personal details unless stored memory files can be inspected and deleted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/memoria-persistente)
+- [Publisher profile](https://clawhub.ai/user/engsathiago)
+- [Homepage](https://github.com/eve-agent/memoria-persistente)
+- [Support](https://github.com/eve-agent/memoria-persistente/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and file path conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to guide persistent memory storage in .memory/ context, daily, and knowledge files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

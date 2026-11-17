@@ -1,43 +1,60 @@
-## Description: <br>
-Answers tax-related questions using a configured private corporate tax knowledge base through RAGFlow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taxragflow answers Chinese tax questions by querying a configured private RAGFlow knowledge base.
 
-## Publisher: <br>
-[zhaoxin139](https://clawhub.ai/user/zhaoxin139) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoxin139](https://clawhub.ai/user/zhaoxin139)
 
-## Use Case: <br>
-Employees, external users, developers, and tax operations teams can use this skill to route VAT, corporate income tax, personal income tax, tax benefits, and filing-process questions to a configured RAGFlow-backed enterprise knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends tax questions to the configured RAGFlow service, which may receive sensitive tax or business details. <br>
-Mitigation: Use only a trusted RAGFlow server with privacy controls appropriate for the data being queried, and avoid submitting highly sensitive details unless that service is approved. <br>
-Risk: The skill requires a RAGFlow API key and endpoint configuration. <br>
-Mitigation: Provide a limited-scope API key, protect the environment file, and review the API URL carefully before use. <br>
-Risk: Runtime dependencies are specified with minimum versions rather than pinned versions. <br>
-Mitigation: Pin and review dependency versions in controlled or production deployments. <br>
+## Use Case:
 
+Developers, tax teams, and finance users use this skill to route questions about tax policies, VAT, corporate income tax, personal income tax, tax benefits, and tax filing processes to an enterprise RAGFlow knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoxin139/taxragflow) <br>
-- [Publisher profile](https://clawhub.ai/user/zhaoxin139) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text answers and error messages, with setup guidance in Markdown and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAGFLOW_API_URL, RAGFLOW_API_KEY, and RAGFLOW_CHAT_ID to be configured before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Sensitive tax, payroll, customer, or enterprise finance questions may be sent to a configurable external RAGFlow service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only a trusted HTTPS RAGFlow endpoint and avoid submitting personal or confidential details unless the deployment has approval to process that data.
+
+Risk: The RAGFlow API key is sent as a bearer token to the configured service.
+
+Mitigation: Use a least-privilege API key, store it only in environment configuration, rotate it regularly, and restrict it to the approved RAGFlow endpoint.
+
+Risk: Dependency versions are not fully pinned, which can introduce package-version drift during installation.
+
+Mitigation: Install from a reviewed lockfile or pin dependency versions before deploying in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoxin139/skills/taxragflow)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Skill metadata](skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text answer or concise error message returned from the configured RAGFlow service.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAGFLOW_API_URL, RAGFLOW_API_KEY, and RAGFLOW_CHAT_ID environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: plugin.json, skill.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

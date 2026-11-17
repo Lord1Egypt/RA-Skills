@@ -1,42 +1,58 @@
-## Description: <br>
-Lockfile security and integrity auditor for JavaScript, Python, Go, and Rust projects that detects phantom dependencies, lockfile drift, integrity hash anomalies, conflicting version pins, and yanked or unpublished package versions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits common JavaScript, Python, Go, and Rust lockfiles for drift, phantom dependencies, integrity hash anomalies, conflicting pins, and CI freshness checks using local project files.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit dependency lockfiles for supply-chain integrity issues before merging, releasing, or refreshing dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some audit findings can be advisory or imprecise, especially Cargo phantom dependency and Poetry drift results. <br>
-Mitigation: Review reported findings against the relevant manifest and lockfile before treating them as security issues. <br>
-Risk: Suggested fixes such as regenerating lockfiles or adding CI and pre-commit hooks can change dependency state or project workflow behavior. <br>
-Mitigation: Inspect generated commands and review resulting diffs before applying, committing, or deploying changes. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to inspect project lockfiles for dependency drift, unexpected packages, weak or malformed integrity data, and duplicate version pins. It can also draft CI freshness checks and remediation guidance for review before use.
 
-## Reference(s): <br>
-- [Phy Lock File Auditor on ClawHub](https://clawhub.ai/PHY041/phy-lock-file-auditor) <br>
-- [PHY041 publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with audit findings, inline code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local advisory analysis; no external API is required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may overstate supply-chain coverage and give users false confidence in lockfile audit results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as a limited local review aid and keep established dependency, vulnerability, and release controls in place.
+
+Risk: Suggested lockfile regeneration, npm install, or CI gate changes may alter dependency resolution or workflow behavior.
+
+Mitigation: Manually review generated commands and dependency diffs before applying or committing them.
+
+Risk: Coverage for non-npm ecosystems may be less complete than the skill description implies.
+
+Mitigation: Use ecosystem-native verification tools and manual review before relying on findings for non-npm projects.
+
+## Reference(s):
+
+- [Phy Lock File Auditor on ClawHub](https://clawhub.ai/phy041/skills/phy-lock-file-auditor)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CI freshness gate snippets and remediation guidance; no external API calls are described.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

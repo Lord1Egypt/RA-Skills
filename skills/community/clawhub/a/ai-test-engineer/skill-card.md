@@ -1,49 +1,63 @@
-## Description: <br>
-AI测试工程师全生命周期技能集合，覆盖需求分析、测试设计、AI协作、自动化、执行监控、质量度量和专项测试等7大阶段共48个专家级测试技能模块，帮助测试人员生成测试用例、策略、报告和相关测试工件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI测试工程师全生命周期技能集合，覆盖需求分析、测试设计、AI协作、自动化、执行监控、质量度量和专项测试7大阶段共48个测试技能模块，帮助测试人员生成和评审专家级测试用例、策略、报告和质量度量产物。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-QA engineers, test leads, and developers use this skill to analyze requirements, design test strategies, generate structured test cases, plan automation, monitor execution, and produce quality metrics across a software testing lifecycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated testing guidance or automation may be applied to production systems, sensitive data, or overly broad environments. <br>
-Mitigation: Keep automation pointed at test or staging environments, use disposable or least-privilege data access, and review generated plans or commands before execution. <br>
-Risk: Testing artifacts such as screenshots, DOM captures, video, logs, or defect reports may contain sensitive product or user information. <br>
-Mitigation: Redact sensitive data from captured artifacts and reports before sharing, storing, or sending them to external systems. <br>
-Risk: The skill may activate from broad testing-related prompts and produce plans that need local project validation. <br>
-Mitigation: Use it for deliberate test-engineering work and require human review of generated test scope, data assumptions, and quality conclusions. <br>
+## Use Case:
 
+QA engineers, test leads, developers, and delivery teams use this skill to analyze requirements, design test strategies and test cases, plan automation, monitor execution, manage defects, and summarize quality metrics. It is especially suited to Chinese-language testing workflows that need structured templates and method-driven guidance.
 
-## Reference(s): <br>
-- [Phase 1: Requirements Analysis and Test Strategy](references/phase1-requirements.md) <br>
-- [Phase 2: Test Design Methods](references/phase2-design-methods.md) <br>
-- [Phase 3: Test Case Engineering](references/phase3-testcase-engineering.md) <br>
-- [Phase 4: AI Collaboration Testing](references/phase4-ai-collaboration.md) <br>
-- [Phase 5: Automation Testing](references/phase5-automation.md) <br>
-- [Phase 6: Test Execution and Monitoring](references/phase6-execution.md) <br>
-- [Phase 7: Quality Metrics and Analysis](references/phase7-quality-metrics.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/ai-test-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, code snippets, CSV-style templates, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce test cases, test strategies, automation plans, defect analysis, quality dashboards, and generated template files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Testing outputs may be incomplete or misleading if used as final quality artifacts without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated test cases, strategies, scripts, and reports as templates and require qualified human review before relying on them.
+
+Risk: Project requirements, defects, logs, or quality metrics may contain confidential data.
+
+Mitigation: Avoid pasting confidential project data unless the deployment context and data handling controls are appropriate.
+
+Risk: The dashboard template should be hardened before connecting it to live systems or imported data.
+
+Mitigation: Render dynamic dashboard values as text or sanitize them before insertion, and review any data-source integration before production use.
+
+## Reference(s):
+
+- [Phase 1: 需求分析与测试策略](references/phase1-requirements.md)
+- [Phase 2: 测试设计方法](references/phase2-design-methods.md)
+- [Phase 3: 测试用例工程](references/phase3-testcase-engineering.md)
+- [Phase 4: AI协作测试](references/phase4-ai-collaboration.md)
+- [Phase 5: 自动化测试](references/phase5-automation.md)
+- [Phase 6: 测试执行与监控](references/phase6-execution.md)
+- [Phase 7: 质量度量与分析](references/phase7-quality-metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, structured tables, templates, code snippets, shell commands, CSV, and HTML template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as reviewable templates; generated testing recommendations, scripts, and dashboards require human validation before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

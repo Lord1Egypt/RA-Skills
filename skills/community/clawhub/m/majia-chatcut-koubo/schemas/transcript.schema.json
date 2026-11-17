@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/transcript.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "projectId",
+    "transcriptId",
+    "revision",
+    "sourceAssetId",
+    "sourceRevision",
+    "language",
+    "words"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "transcriptId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "revision": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "sourceAssetId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "sourceRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$"
+    },
+    "words": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "wordId",
+          "range",
+          "sourceText",
+          "confidence",
+          "riskFlags",
+          "evidenceRefs"
+        ],
+        "properties": {
+          "wordId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "range": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          },
+          "sourceText": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\r\\n]+$"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "riskFlags": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "number",
+                "money",
+                "date",
+                "negation",
+                "proper-noun",
+                "none"
+              ]
+            }
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          }
+        }
+      }
+    }
+  }
+}

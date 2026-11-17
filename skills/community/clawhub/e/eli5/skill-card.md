@@ -1,37 +1,56 @@
-## Description: <br>
-Explain complex topics in the simplest possible words -- like talking to a 5-year-old, using analogies, no jargon, and everyday language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains complex topics in simple words with analogies, concrete examples, no jargon, and freshness notes.
 
-## Publisher: <br>
-[coghost](https://clawhub.ai/user/coghost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[coghost](https://clawhub.ai/user/coghost)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use ELI5 to turn complex concepts into approachable explanations for non-experts. It is also useful as a self-check for whether the explainer understands a topic well enough to explain it with familiar analogies and concrete examples.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Simplified explanations can omit important details or make an analogy feel more complete than the underlying understanding.
+
+Mitigation: Use ELI5 for orientation and self-checking, then verify precise, technical, mathematical, or high-stakes content against authoritative sources.
+
+Risk: Optional web fetching can disclose the requested topic to web search or external retrieval systems.
+
+Mitigation: Enable fetch only for topics appropriate to send to web search; leave fetch off for sensitive or private topics.
+
+Risk: Fast-moving topics and real-time news can be stale or unsuitable for simplified judgment.
+
+Mitigation: Use the freshness indicator as a prompt to fetch current information, and treat real-time or exact-answer use cases as requiring independent validation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn complex concepts into short, accessible explanations for non-experts. It is most useful for learning, self-checking understanding, and explaining topics with familiar analogies. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Optional web lookup may send private topics, internal document names, or sensitive personal questions to external search or documentation sources. <br>
-Mitigation: Leave fetch off for confidential or sensitive topics unless the user is comfortable with the query leaving the local context. <br>
+**Output Format:** [Markdown explanations with short command responses and freshness indicators]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Optional web fetching depends on host capability; language and step count can be adjusted by command or environment setting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown natural-language explanation with short steps, an analogy, a concrete example, and a freshness indicator] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional web fetch can be enabled by the user for fresher information.] <br>
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

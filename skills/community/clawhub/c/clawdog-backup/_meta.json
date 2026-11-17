@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn768xa00djhxtf94rjnsmhbz181eqrb",
-  "slug": "clawdog-backup",
+  "name": "clawdog-backup",
+  "displayName": "ClawDog Backup",
   "version": "1.0.1",
-  "publishedAt": 1771514129487
+  "description": "狗蛋备份恢复技能",
+  "author": "Michael",
+  "tags": ["backup", "onedrive", "restore", "goudan"]
 }

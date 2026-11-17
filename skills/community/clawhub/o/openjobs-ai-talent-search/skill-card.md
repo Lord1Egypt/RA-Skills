@@ -1,43 +1,60 @@
-## Description: <br>
-Search and discover academic scholars using OpenJobs AI by name, affiliation, research areas, citations, h-index, publications, and other structured filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and discover academic scholars using OpenJobs AI with filters for name, affiliation, research areas, citations, h-index, publications, education, and location.
 
-## Publisher: <br>
-[OpenJobsAI](https://clawhub.ai/user/OpenJobsAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openjobsai](https://clawhub.ai/user/openjobsai)
 
-## Use Case: <br>
-Researchers, recruiters, and analysts use this skill to search the OpenJobs AI scholar database for academic talent by institution, field, publication record, citations, h-index, education, and location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guidance can expose a live Mira API key if the key is pasted into chat, echoed, or shared in terminal output. <br>
-Mitigation: Configure MIRA_KEY through a secure environment or secret manager, avoid printing it, and review the skill before installation. <br>
-Risk: Scholar searches send query criteria to OpenJobs AI. <br>
-Mitigation: Use the skill only for searches you are comfortable sending to OpenJobs AI and present returned data as OpenJobs AI data. <br>
+## Use Case:
 
+External users and agents use this skill to search the OpenJobs AI scholar database, discover academic researchers, and present concise researcher summaries from structured API results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OpenJobsAI/openjobs-ai-talent-search) <br>
-- [OpenJobs AI publisher profile](https://clawhub.ai/user/OpenJobsAI) <br>
-- [OpenJobs AI](https://www.openjobs-ai.com/?utm_source=scholar_search_skill) <br>
-- [OpenJobs AI platform](https://platform.openjobs-ai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise scholar result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results should be attributed to OpenJobs AI and kept compact; raw JSON and large tables are discouraged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Credential handling can expose the MIRA_KEY if the agent prints or repeats the environment variable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-disclosing presence check for MIRA_KEY and avoid echoing, logging, or repeating the key in conversation.
+
+Risk: Search criteria are sent to OpenJobs AI.
+
+Mitigation: Submit only search criteria appropriate for the OpenJobs AI service and avoid adding unrelated sensitive information to queries.
+
+Risk: The skill's response rules try to suppress extra warnings after results.
+
+Mitigation: Preserve concise result formatting while still allowing necessary security, privacy, or correctness warnings.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/openjobsai/skills/openjobs-ai-talent-search)
+- [OpenJobs AI](https://www.openjobs-ai.com/?utm_source=scholar_search_skill)
+- [OpenJobs AI platform](https://platform.openjobs-ai.com/)
+- [OpenJobs AI scholar search API endpoint](https://mira-api.openjobs-ai.com/v1/scholar-fast-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MIRA_KEY; scholar-fast-search requires at least one filter and returns up to 20 results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

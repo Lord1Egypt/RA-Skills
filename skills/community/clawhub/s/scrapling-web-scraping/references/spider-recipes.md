@@ -1,244 +1,261 @@
-# Spider Recipes
+# Spider recipes (Scrapling 0.5)
 
-## Recipe 1: E-commerce Product Crawler
+Adapt domains and selectors before running these independent examples. Use
+`Spider.start()` from synchronous code; inside an event loop consume
+`spider.stream()` for asynchronous item processing. Examples enable
+robots.txt handling. Session retries and spider `max_blocked_retries` are distinct;
+Scrapy's `custom_settings` is not a Scrapling configuration interface.
+
+## Product extraction and pagination
 
 ```python
+from datetime import datetime, timezone
+from urllib.parse import urljoin
 from scrapling.spiders import Spider, Response
+
 
 class ProductSpider(Spider):
     name = "products"
     start_urls = ["https://shop.example.com/products"]
     concurrent_requests = 5
     download_delay = 2.0
-    
-    custom_settings = {
-        "RETRY_TIMES": 3,
-        "RETRY_DELAY": 5,
-    }
-    
+    robots_txt_obey = True
+    max_blocked_retries = 3
+
     async def parse(self, response: Response):
-        # Extract products
-        for product in response.css('.product-card'):
+        for product in response.css(".product-card"):
+            href = product.css("a::attr(href)").get()
             yield {
-                "name": product.css('.product-name::text').get(),
-                "price": product.css('.price::text').get(),
-                "rating": product.css('.rating::attr(data-score)').get(),
-                "url": product.css('a::attr(href)').get(),
-                "extracted_at": datetime.now().isoformat(),
+                "name": product.css(".product-name::text").get(),
+                "price": product.css(".price::text").get(),
+                "rating": product.css(".rating::attr(data-score)").get(),
+                "url": urljoin(response.url, href) if href else None,
+                "extracted_at": datetime.now(timezone.utc).isoformat(),
             }
-        
-        # Follow pagination
-        next_page = response.css('.pagination .next::attr(href)').get()
+        next_page = response.css(".pagination .next::attr(href)").get()
         if next_page:
             yield response.follow(next_page)
 
-# Run with resume
-result = ProductSpider(crawldir="./crawl_products").start()
-result.items.to_jsonl("products.jsonl")
+
+if __name__ == "__main__":
+    ProductSpider(crawldir="./crawl_products").start().items.to_jsonl("products.jsonl")
 ```
 
-## Recipe 2: Sitemap Crawler
+## Sitemap crawl
+
+The built-in template handles sitemap indexes, XML namespaces and gzip. With no
+rules, sitemap page URLs go to the overridden `parse()` method.
 
 ```python
-from scrapling.spiders import Spider
-import xml.etree.ElementTree as ET
+from scrapling.spiders import SitemapSpider, Response
 
-class SitemapSpider(Spider):
-    name = "sitemap"
-    
-    def start_requests(self):
-        # Fetch sitemap
-        sitemap = Fetcher.get('https://example.com/sitemap.xml')
-        root = ET.fromstring(sitemap.body)
-        
-        for url in root.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc'):
-            yield Request(url.text, callback=self.parse_page)
-    
-    async def parse_page(self, response):
-        yield {
-            "url": response.url,
-            "title": response.css('h1::text').get(),
-            "word_count": len(response.css('p::text').getall()),
-        }
+
+class PageSitemapSpider(SitemapSpider):
+    name = "sitemap_pages"
+    sitemap_urls = ["https://example.com/sitemap.xml"]
+    robots_txt_obey = True
+
+    async def parse(self, response: Response):
+        yield {"url": response.url, "title": response.css("h1::text").get()}
+
+
+if __name__ == "__main__":
+    PageSitemapSpider().start().items.to_jsonl("pages.jsonl")
 ```
 
-## Recipe 3: API-First Spider
+## API-first pagination
+
+Schedule the next page only after receiving nonempty results. Returning from
+an async generator stops that branch; raising `StopIteration` is an error.
+Configure authorized API credentials through the existing secret mechanism.
 
 ```python
+from scrapling.spiders import Spider, Request, Response
+
+
 class APISpider(Spider):
-    """Scrape via API endpoints instead of HTML."""
-    
     name = "api_products"
     api_base = "https://api.example.com/v1"
-    
-    def start_requests(self):
-        for page in range(1, 100):
-            yield Request(
-                f"{self.api_base}/products?page={page}",
-                headers={"Authorization": "Bearer TOKEN"},
-            )
-    
-    async def parse(self, response):
-        data = response.json()
-        for product in data['products']:
+    max_pages = 100
+    robots_txt_obey = True
+
+    async def start_requests(self):
+        yield Request(f"{self.api_base}/products?page=1", meta={"page": 1})
+
+    async def parse(self, response: Response):
+        products = response.json()["products"]
+        if not products:
+            return
+        for product in products:
             yield product
-        
-        # Stop when no more results
-        if not data['products']:
-            raise StopIteration
+        page = response.meta["page"]
+        if page < self.max_pages:
+            yield response.follow(
+                f"{self.api_base}/products?page={page + 1}",
+                meta={"page": page + 1},
+            )
 ```
 
-## Recipe 4: Multi-Domain Crawl with Different Handlers
+## Multiple domains and handlers
 
 ```python
+from urllib.parse import urlparse
+from scrapling.spiders import Spider, Response
+
+
 class MultiDomainSpider(Spider):
     name = "multi"
-    
-    domain_handlers = {
-        "shop.example.com": "parse_shop",
-        "blog.example.com": "parse_blog",
-    }
-    
-    async def parse(self, response):
-        domain = urlparse(response.url).netloc
-        handler = getattr(self, self.domain_handlers.get(domain, "parse_default"))
-        async for item in handler(response):
+    start_urls = ["https://shop.example.com/", "https://blog.example.com/"]
+    robots_txt_obey = True
+    domain_handlers = {"shop.example.com": "parse_shop", "blog.example.com": "parse_blog"}
+
+    async def parse(self, response: Response):
+        handler_name = self.domain_handlers.get(urlparse(response.url).hostname)
+        if handler_name is None:
+            self.logger.warning("No handler for %s", response.url)
+            return
+        async for item in getattr(self, handler_name)(response):
             yield item
-    
+
     async def parse_shop(self, response):
-        for product in response.css('.product'):
-            yield {"type": "product", "data": product.css('h2::text').get()}
-    
+        for product in response.css(".product"):
+            yield {"type": "product", "title": product.css("h2::text").get()}
+
     async def parse_blog(self, response):
-        for article in response.css('article'):
-            yield {"type": "article", "data": article.css('h1::text').get()}
+        for article in response.css("article"):
+            yield {"type": "article", "title": article.css("h1::text").get()}
 ```
 
-## Recipe 5: Streaming with Real-time Processing
+## Stream items
 
 ```python
+import asyncio
+from scrapling.spiders import Spider, Response
+
+
 class StreamingSpider(Spider):
     name = "streaming"
     start_urls = ["https://example.com/items"]
-    
-    async def parse(self, response):
-        for item in response.css('.item'):
-            yield {
-                "id": item.css('::attr(data-id)').get(),
-                "content": item.css('.content::text').get(),
-            }
+    robots_txt_obey = True
 
-# Consume as stream
-spider = StreamingSpider()
-async for item in spider.stream():
-    print(f"Got item: {item['id']}")
-    # Send to database, queue, etc.
+    async def parse(self, response: Response):
+        for item in response.css(".item"):
+            yield {"id": item.attrib.get("data-id"),
+                   "content": item.css(".content::text").get()}
+
+
+async def main():
+    async for item in StreamingSpider().stream():
+        print(item)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-## Recipe 6: Deep Crawl with Depth Limit
+## Bounded link crawl
+
+Depth is explicit request metadata in this plain Spider example. Restrict hosts;
+a depth limit alone does not bound the number of URLs. Add a project-specific
+URL/page budget before running a large crawl.
 
 ```python
+from urllib.parse import urljoin, urlparse
+from scrapling.spiders import Spider, Response
+
+
 class DeepCrawlSpider(Spider):
     name = "deep_crawl"
-    start_urls = ["https://example.com"]
-    max_depth = 3
-    
-    async def parse(self, response):
-        depth = response.meta.get('depth', 0)
-        
-        yield {
-            "url": response.url,
-            "depth": depth,
-            "title": response.css('title::text').get(),
-        }
-        
-        if depth < self.max_depth:
-            for link in response.css('a::attr(href)').getall():
-                yield response.follow(link, meta={'depth': depth + 1})
+    start_urls = ["https://example.com/"]
+    depth_limit = 3
+    robots_txt_obey = True
+
+    async def parse(self, response: Response):
+        depth = response.meta.get("depth", 0)
+        yield {"url": response.url, "depth": depth,
+               "title": response.css("title::text").get()}
+        if depth >= self.depth_limit:
+            return
+        for href in response.css("a::attr(href)").getall():
+            url = urljoin(response.url, href)
+            if (urlparse(url).scheme in {"http", "https"}
+                    and urlparse(url).hostname == "example.com"):
+                yield response.follow(url, meta={"depth": depth + 1})
 ```
 
-## Recipe 7: Form Submission Spider
+## Form submission
+
+Use `Request(method="POST", data=...)`; Scrapling has no `FormRequest` class.
+Fetch and parse CSRF fields first when the authorized form requires them.
 
 ```python
-from scrapling.spiders import Spider, FormRequest
+from scrapling.spiders import Spider, Request, Response
+
 
 class FormSpider(Spider):
     name = "form_search"
-    
-    def start_requests(self):
-        for keyword in ['python', 'scraping', 'data']:
-            yield FormRequest(
-                url="https://example.com/search",
-                formdata={"q": keyword, "category": "all"},
-                callback=self.parse_results,
-                meta={"keyword": keyword}
-            )
-    
-    async def parse_results(self, response):
-        keyword = response.meta['keyword']
-        for result in response.css('.search-result'):
-            yield {
-                "keyword": keyword,
-                "title": result.css('h3::text').get(),
-                "snippet": result.css('.snippet::text').get(),
-            }
+    robots_txt_obey = True
+
+    async def start_requests(self):
+        for keyword in ["python", "scraping", "data"]:
+            yield Request("https://example.com/search", method="POST",
+                          data={"q": keyword, "category": "all"}, meta={"keyword": keyword})
+
+    async def parse(self, response: Response):
+        for result in response.css(".search-result"):
+            yield {"keyword": response.meta["keyword"],
+                   "title": result.css("h3::text").get(),
+                   "snippet": result.css(".snippet::text").get()}
 ```
 
-## Recipe 8: Image/Media Downloader
+## Image/media download
+
+Create the output directory and derive filenames locally rather than trusting
+remote paths. This example accepts only HTTP(S) images on the starting host.
 
 ```python
-import os
-from urllib.parse import urlparse
+import hashlib
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
+from scrapling.spiders import Spider, Response
+
 
 class MediaSpider(Spider):
     name = "media"
-    download_dir = "./downloads"
-    
-    async def parse(self, response):
-        for img in response.css('img::attr(src)').getall():
-            ext = os.path.splitext(urlparse(img).path)[1] or '.jpg'
-            filename = f"{hash(img)}{ext}"
-            yield response.follow(img, callback=self.save_image, meta={'filename': filename})
-    
-    async def save_image(self, response):
-        path = os.path.join(self.download_dir, response.meta['filename'])
-        with open(path, 'wb') as f:
-            f.write(response.body)
-        yield {"downloaded": path}
+    start_urls = ["https://example.com/gallery"]
+    download_dir = Path("./downloads")
+    robots_txt_obey = True
+
+    async def parse(self, response: Response):
+        for src in response.css("img::attr(src)").getall():
+            url = urljoin(response.url, src)
+            if (urlparse(url).scheme not in {"http", "https"}
+                    or urlparse(url).hostname != "example.com"):
+                continue
+            suffix = Path(urlparse(url).path).suffix.lower()
+            if suffix not in {".jpg", ".jpeg", ".png", ".webp", ".gif"}:
+                suffix = ".bin"
+            filename = hashlib.sha256(url.encode()).hexdigest() + suffix
+            yield response.follow(url, callback=self.save_image, meta={"filename": filename})
+
+    async def save_image(self, response: Response):
+        if response.status != 200:
+            self.logger.warning("Download failed: %s (%s)", response.url, response.status)
+            return
+        self.download_dir.mkdir(parents=True, exist_ok=True)
+        path = self.download_dir / response.meta["filename"]
+        path.write_bytes(response.body)
+        yield {"downloaded": str(path)}
 ```
 
-## Pause/Resume Best Practices
+## Pause/resume and failures
 
-```python
-# Start with checkpoint directory
-spider = MySpider(crawldir="./crawl_checkpoint")
-result = spider.start()
+Pass the same `crawldir` to a new instance of the same spider after a graceful
+Ctrl+C pause. Use a new checkpoint directory for a fresh crawl instead of
+deleting unknown state. Do not mix checkpoints across changed request identity,
+spider scope or incompatible versions.
 
-# If interrupted, restart with same crawldir
-# Spider automatically resumes from last checkpoint
-
-# To reset and start fresh:
-import shutil
-shutil.rmtree("./crawl_checkpoint")
-spider.start()
-```
-
-## Error Handling Patterns
-
-```python
-class RobustSpider(Spider):
-    name = "robust"
-    
-    async def parse(self, response):
-        try:
-            title = response.css('h1::text').get()
-            if not title:
-                self.logger.warning(f"No title found: {response.url}")
-                return
-            
-            yield {"title": title, "url": response.url}
-            
-        except Exception as e:
-            self.logger.error(f"Error parsing {response.url}: {e}")
-            # Spider continues with other requests
-```
+Log and skip a missing optional field when appropriate. Let unexpected
+exceptions surface through the spider's error reporting rather than swallowing
+every exception and treating partial output as a successful full crawl. Check
+result statistics and failed requests against the crawl's acceptance criteria.

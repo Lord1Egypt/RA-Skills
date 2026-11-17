@@ -1,41 +1,52 @@
-## Description: <br>
-Provides commercial pension insurance analysis, pension account simulation, retirement income estimates, and portfolio suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides commercial pension insurance analysis, pension account simulation, retirement income estimates, and financial portfolio guidance.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill for personal pension planning, including pension insurance analysis, pension account simulation, retirement income estimates, and asset-allocation guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can produce sensitive finance-oriented outputs involving statements, tax details, holdings, and retirement planning assumptions.
+
+Mitigation: Only provide transaction, statement, tax, billing, or holdings data when the user intentionally asks for account-specific analysis, and review outputs before relying on them for financial decisions.
+
+Risk: Users may mistake the skill for an authorized account-management tool.
+
+Mitigation: Do not allow the skill to initiate transfers or account changes without separate trusted controls, and require independent confirmation for high-value actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and financial-planning assistants use this skill to compare pension-related asset categories, simulate pension account outcomes, estimate retirement income, and draft asset allocation suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes access to sensitive pension, insurance, banking, billing, and account data. <br>
-Mitigation: Use it only where the provider clearly states the data scopes, retention policy, export permissions, and account-connection behavior before any account is connected. <br>
-Risk: The skill describes sub-hourly syncing with market data and personal bill changes without clear user controls. <br>
-Mitigation: Confirm refresh behavior and disable or limit account syncing unless ongoing updates are explicitly required and approved. <br>
-Risk: Financial planning output can be incomplete, outdated, or unsuitable for a user's risk profile. <br>
-Mitigation: Treat outputs as planning support only, review investment decisions with a qualified human advisor, and require strong confirmation such as two-factor authentication for large transfers. <br>
+**Output Format:** [Markdown or plain text financial-planning analysis and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May discuss account balances, statements, taxes, holdings, risk status, and allocation suggestions when the user intentionally supplies that context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text financial-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include asset totals, daily profit and loss, annualized yield references, transaction and statement export details, tax details, risk assessment status, holdings analysis, and asset allocation suggestions.] <br>
+0.1.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

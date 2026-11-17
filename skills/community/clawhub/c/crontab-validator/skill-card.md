@@ -1,40 +1,52 @@
-## Description: <br>
-Validate, explain, lint, and calculate next run times for cron expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, explain, lint, and calculate next run times for cron expressions.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and other external users use this skill to check cron syntax, explain schedules, calculate upcoming run times, and lint common cron mistakes before using crontab entries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill includes a local executable helper script for cron syntax and schedule analysis.
+
+Mitigation: Review release changes and scan the script before upgrading or deploying it in managed environments.
+
+Risk: Cron linting and next-run calculations can miss operational context such as job side effects, host timezone policy, or production load.
+
+Mitigation: Treat validation results as schedule analysis and separately review the actual job behavior, timezone, and execution environment before production use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to check cron syntax, explain schedules, identify common scheduling mistakes, and calculate upcoming run times before relying on a crontab entry. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled local Python helper for cron analysis. <br>
-Mitigation: Install it only in environments where local helper scripts are permitted and review the artifact and security summary before use. <br>
-Risk: Cron guidance may be copied into production schedules without confirming operational impact. <br>
-Mitigation: Treat cron expressions as data, review the explanation and lint findings, and test schedules before deployment. <br>
+**Output Format:** [Text, JSON, or Markdown command output with cron explanations, validation results, lint findings, and next-run schedules.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/crontab-validator) <br>
+**Other Properties Related to Output:** [Local command-line helper; supports validate, explain, next, and lint modes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text, JSON, or Markdown produced by cron validation, explanation, lint, and next-run commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can process one or more cron expressions and include lint findings, field-level explanations, or next run times.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

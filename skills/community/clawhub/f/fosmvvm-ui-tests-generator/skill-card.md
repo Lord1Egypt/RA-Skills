@@ -1,41 +1,54 @@
-## Description: <br>
-Generate UI tests for FOSMVVM SwiftUI views using XCTest and FOSTestingUI. Covers accessibility identifiers, ViewModelOperations, and test data transport. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate UI tests for FOSMVVM SwiftUI views using XCTest and FOSTestingUI. Covers accessibility identifiers, ViewModelOperations, and test data transport.
 
-## Publisher: <br>
-[foscomputerservices](https://clawhub.ai/user/foscomputerservices) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foscomputerservices](https://clawhub.ai/user/foscomputerservices)
 
-## Use Case: <br>
-Developers use this skill to create XCTest UI test scaffolding and per-view test patterns for FOSMVVM SwiftUI ViewModelViews, including accessibility identifiers, ViewModelOperations verification, and test data transport. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Swift test scaffolding or ViewModelOperations templates may not match the target app's view, operations type, bundle identifier, or business logic. <br>
-Mitigation: Review generated diffs before committing and make the target view, operations type, and bundle identifier explicit before generation. <br>
-Risk: Broad templates may include placeholders or assumptions that are unsuitable for a specific FOSMVVM project. <br>
-Mitigation: Replace placeholders with project-specific values and verify generated tests against the app's actual UI flows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FOSUtilities repository](https://github.com/foscomputerservices/FOSUtilities) <br>
-- [ClawHub skill page](https://clawhub.ai/foscomputerservices/fosmvvm-ui-tests-generator) <br>
-- [Reference templates](artifact/reference.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate XCTest/FOSTestingUI scaffolding for FOSMVVM SwiftUI ViewModelViews, including UI state tests, operation-verification tests, helper extensions, and test support for interactive or display-only views.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with Swift code templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces XCTest and FOSTestingUI scaffolding patterns for SwiftUI ViewModelViews.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.6 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated SwiftUI view and operations templates may be adopted as production architecture without sufficient review.
+
+Mitigation: Review generated UI tests, SwiftUI view changes, operations protocols, and any real API or data-loading implementation before integrating them.
+
+Risk: Sensitive values may be exposed if secrets are included in conversation or loaded code context used to generate tests.
+
+Mitigation: Avoid providing secrets in prompts or source context, and scrub generated test data before committing generated files.
+
+## Reference(s):
+
+- [FOSMVVM UI Tests Generator on ClawHub](https://clawhub.ai/foscomputerservices/skills/fosmvvm-ui-tests-generator)
+- [FOSUtilities homepage](https://github.com/foscomputerservices/FOSUtilities)
+- [Reference Templates](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Swift code templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project setup, per-view UI test, ViewModelOperations, and SwiftUI test-support patterns that should be reviewed before adoption.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

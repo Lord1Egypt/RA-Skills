@@ -1,42 +1,55 @@
-## Description: <br>
-Reviews Go test code for proper table-driven tests, assertions, and coverage patterns. Use when reviewing *_test.go files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Go test code for proper table-driven tests, assertions, and coverage patterns. Use when reviewing *_test.go files.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review Go test changes for sound test structure, useful assertions, coverage of edge cases, and safe use of table-driven tests, mocks, benchmarks, fuzz tests, HTTP tests, and golden files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references a separate review-verification-protocol skill for pre-report checks; if that skill is absent or untrusted, a reviewer may not apply the intended verification gate. <br>
-Mitigation: Confirm the referenced review-verification-protocol skill is installed and trusted before relying on this skill's review workflow. <br>
-Risk: Golden-file update patterns can overwrite expected-output files when a developer intentionally runs tests with an update flag. <br>
-Mitigation: Review any suggested golden-file update workflow before execution and require intentional use of update flags. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to review Go test changes for table-driven structure, clear assertions, coverage gaps, parallel-safety, mocks, benchmarks, fuzz tests, HTTP handlers, and golden-file practices.
 
-## Reference(s): <br>
-- [Test Structure](references/structure.md) <br>
-- [Mocking](references/mocking.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/go-testing-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown review findings with file and line references, severity labels, and concise explanations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are gated by a required review sequence and pre-report verification checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server-resolved release evidence) <br>
+Risk: Golden-file update workflows can rewrite expected-output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run update commands only for intentional fixture changes and review resulting golden-file diffs before accepting them.
+
+Risk: The skill references a sibling review-verification protocol that may be absent in some installations.
+
+Mitigation: Confirm the verification skill is installed or apply an equivalent pre-report verification checklist before reporting review findings.
+
+## Reference(s):
+
+- [Test Structure](artifact/references/structure.md)
+- [Mocking](artifact/references/mocking.md)
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/go-testing-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown review findings with file-line references and severity labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Go test commands for benchmark, fuzz, and golden-file update workflows when relevant.]
+
+## Skill Version(s):
+
+2.3.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

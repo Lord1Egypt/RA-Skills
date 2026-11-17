@@ -1,39 +1,54 @@
-## Description: <br>
-Triggers on any task that modifies code. Provides instructions to surgically stage and commit only the modified code files to save progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers on any task that modifies code. Provides instructions to surgically stage and commit only the modified code files to save progress.
 
-## Publisher: <br>
-[shangter666](https://clawhub.ai/user/shangter666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shangter666](https://clawhub.ai/user/shangter666)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to preserve completed code changes as local Git commits after file modifications. It is intended for workflows where automatic commit creation is acceptable after the agent has verified the staged files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local Git commits automatically after code changes, which may snapshot work before human review in sensitive repositories. <br>
-Mitigation: Use it only where automatic commits are desired, keep secrets and unfinished work out of the working tree, and explicitly say not to commit when changes should be inspected first. <br>
+## Use Case:
 
+Developers and coding agents use this skill to save completed code changes by staging only explicitly modified source or documentation files and creating a concise git commit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shangter666/auto-commit) <br>
-- [Auto-Commit Ignore List](references/ignore_list.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Git staging and commit actions when a repository has eligible changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can cause agents to create git commits automatically, which may persist partial, experimental, or sensitive changes in repository history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where automatic commits are desired, explicitly opt out for sensitive or unfinished work, and review staged files and recent history after the agent runs.
+
+Risk: Sensitive files or generated artifacts could be committed if file selection is not reviewed carefully.
+
+Mitigation: Follow the skill's surgical staging and ignore-list guidance, verify `git status` before committing, and keep credentials, binaries, and build outputs out of staged changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shangter666/skills/auto-commit)
+- [Auto-Commit Ignore List](references/ignore_list.txt)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may result in persistent repository history changes when followed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

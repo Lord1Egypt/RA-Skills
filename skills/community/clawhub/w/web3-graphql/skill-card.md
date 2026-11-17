@@ -1,45 +1,55 @@
-## Description: <br>
-Use Ask GraphQL MCP to handle Web3 and on-chain questions through GraphQL endpoints, especially SubQuery and SubGraph endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Ask GraphQL MCP to handle Web3 and on-chain questions through GraphQL endpoints, especially SubQuery and SubGraph endpoints, by routing natural-language tasks through the graphql_agent MCP tool or HTTP JSON-RPC fallback.
 
-## Publisher: <br>
-[subquery-network](https://clawhub.ai/user/subquery-network) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subquery-network](https://clawhub.ai/user/subquery-network)
 
-## Use Case: <br>
-Developers and analysts use this skill to answer Web3 and on-chain questions against user-provided GraphQL endpoints. It routes endpoint analysis, schema debugging, and setup guidance through Ask GraphQL MCP and returns concise results with configuration help when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can forward GraphQL endpoint URLs, prompts, and optional authorization headers to the Hermes Ask GraphQL MCP gateway. <br>
-Mitigation: Use public endpoints where possible, and only provide scoped temporary endpoint credentials that can be rotated. <br>
-Risk: Paid mode asks users to provide an Ask API key in chat after free quota or rate limits are reached. <br>
-Mitigation: Avoid long-lived production API keys; use scoped temporary credentials and rotate or revoke them after use. <br>
+## Use Case:
 
+Developers and analysts use this skill to answer Web3 and on-chain questions, debug GraphQL queries, and produce endpoint-specific analysis through Ask GraphQL MCP. It is intended for workflows involving public or authorized SubQuery, SubGraph, and similar GraphQL endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/subquery-network/web3-graphql) <br>
-- [Ask GraphQL MCP Templates](references/config-templates.md) <br>
-- [Ask GraphQL MCP Tools And Prompts](references/tools-and-prompts.md) <br>
-- [Ask GraphQL MCP Free Gateway](https://ask-api.hermes-subnet.ai/mcp/graphql-agent) <br>
-- [Ask API Key Creation](https://ask.hermes-subnet.ai/billing/api-keys/) <br>
-- [Ask Usage And Quota](https://ask.hermes-subnet.ai/billing/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with concise analysis sections and JSON configuration blocks when setup guidance is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, MCP answer summaries, query details supplied by MCP, retry guidance, and free-to-paid quota handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Web3 GraphQL requests and optional private endpoint authorization may be routed through the Hermes Ask GraphQL MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with endpoints and prompts approved for that external service, and confirm third-party gateway use is acceptable before sending private endpoint authorization.
+
+Risk: API keys or bearer tokens could be exposed if pasted directly into chat.
+
+Mitigation: Use a protected secret store or short-lived, read-only credentials, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [Ask GraphQL MCP ClawHub skill page](https://clawhub.ai/subquery-network/skills/web3-graphql)
+- [Ask GraphQL MCP templates](artifact/references/config-templates.md)
+- [Ask GraphQL MCP tools and prompts](artifact/references/tools-and-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional JSON configuration blocks and MCP call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, MCP answer summaries, query details returned by MCP, endpoint checks, and next-step guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

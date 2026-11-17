@@ -1,43 +1,58 @@
-## Description: <br>
-【针对飞书优化】定时任务创建指引，专门针对飞书、尤其是多 Agent 场景进行优化，解决定时任务不稳定问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Feishu-optimized OpenClaw scheduling skill that guides agents to create reliable one-time and recurring tasks with the `openclaw cron add` CLI.
 
-## Publisher: <br>
-[jhc888007](https://clawhub.ai/user/jhc888007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhc888007](https://clawhub.ai/user/jhc888007)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to turn natural-language reminder requests into OpenClaw cron creation commands. It is optimized for Feishu private chats, group chats, and multi-Agent deployments where timezone, account, and recipient routing need to be explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A reminder may run at the wrong time if timezone assumptions are wrong. <br>
-Mitigation: Confirm the resolved timezone and recurrence before relying on the scheduled job, and specify a timezone explicitly when not operating in Asia/Shanghai. <br>
-Risk: A reminder may be sent to the wrong Feishu user, chat, or Agent account if routing context is incomplete. <br>
-Mitigation: Confirm the recipient or chat ID, account, message, and delivery channel before creating each scheduled job. <br>
-Risk: A generated cron command may not match the user's intended schedule or message. <br>
-Mitigation: Review the proposed OpenClaw command and list the current cron configuration after creation to verify time, channel, timezone, and message. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to translate natural-language scheduling requests into correctly parameterized OpenClaw cron commands for Feishu private chats, Feishu group chats, multi-agent deployments, and terminal-triggered tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhc888007/cron-creator-feishu) <br>
-- [OpenClaw cron troubleshooting guide](https://mp.weixin.qq.com/s/iQtW-SKRcvngzbpJXMSSxg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw cron command guidance that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Risk: The skill creates persistent scheduled tasks using shell-formatted commands with user-controlled message text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact schedule, recipient or channel, account, timezone, and structured command arguments before creating a task.
+
+Risk: Incorrect Feishu routing or account selection can send scheduled messages to the wrong private chat, group chat, or agent account.
+
+Mitigation: Confirm the `user_id` or `chat_id`, Feishu account, and single-agent or multi-agent mode before running the generated OpenClaw command.
+
+Risk: The README suggests adding a persistent `TOOLS.md` routing rule for future scheduling requests.
+
+Mitigation: Only add that persistent rule when the installer explicitly wants future scheduling requests routed to this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhc888007/skills/cron-creator-feishu)
+- [OpenClaw cron troubleshooting guide](https://mp.weixin.qq.com/s/iQtW-SKRcvngzbpJXMSSxg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI argument guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands include schedule, timezone, recipient/channel, account, isolated session, wake, stagger, and delete-after-run parameters where applicable.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

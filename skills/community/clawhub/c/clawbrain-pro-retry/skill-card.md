@@ -1,39 +1,51 @@
-## Description: <br>
-Provides agent guidance for recovering from tool, command, dependency, permission, looping, backend fallback, degraded-service, and long-conversation truncation failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+v1.2 error recovery guidance for agent workflows, covering tiered retry strategies, consensus fallback, loop detection, degradation notices, and long-conversation recovery.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-Developers and agent users use this skill to help an AI assistant recover from failed tool calls, repeated mistakes, missing commands or dependencies, permission issues, model fallback events, degraded services, and truncated long conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may tell an agent to install missing dependencies automatically before retrying work. <br>
-Mitigation: Require the agent to ask before adding dependencies, prefer isolated environments such as a project virtual environment or container, and review package names and versions before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide agents through tool-call failures, repeated-error loops, backend degradation, and context truncation without repeating the same failed approach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michaelfeng/clawbrain-pro-retry) <br>
-- [ClawBrain dashboard](https://clawbrain.dev/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline command examples and status explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose alternate commands, dependency-install steps, fallback explanations, and user-facing recovery status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: An agent may install missing dependencies automatically without clear approval or package-source controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to identify the package from a trusted manifest and ask before installing an exact version.
+
+## Reference(s):
+
+- [ClawBrain dashboard](https://clawbrain.dev/dashboard)
+- [ClawHub skill page](https://clawhub.ai/michaelfeng/skills/clawbrain-pro-retry)
+- [Publisher profile](https://clawhub.ai/user/michaelfeng)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-user-invocable skill guidance for agent retry and recovery behavior.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

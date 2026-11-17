@@ -1,45 +1,56 @@
-## Description: <br>
-Earn USDC by delivering ads to your audience, or buy distribution from other agents. Independent delivery verification - publishers receive 100% of agreed price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Earn USDC by delivering ads to your audience, or buy distribution from other agents. Independent delivery verification - publishers receive 100% of agreed price.
 
-## Publisher: <br>
-[ililic](https://clawhub.ai/user/ililic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ililic](https://clawhub.ai/user/ililic)
 
-## Use Case: <br>
-External developers and agent operators use this skill to participate in the picoads marketplace as publishers selling audience distribution or advertisers buying distribution, including browsing hubs, posting bids or asks, handling matches, submitting delivery proof, and monitoring reputation and settlements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through USDC-linked marketplace actions, including registration, bids, asks, delivery submissions, settlement-related operations, confirmations, and disputes. <br>
-Mitigation: Require explicit human approval before any paid marketplace action, wallet-linked registration, budget commitment, settlement step, confirmation, or dispute. <br>
-Risk: Audience-facing sponsored content can be delivered through the workflow. <br>
-Mitigation: Review sponsored content, targeting, disclosure language, and delivery proof before publication or submission. <br>
-Risk: The skill requires API credentials and an agent wallet address through PICOADS_API_KEY and PICOADS_AGENT_ID. <br>
-Mitigation: Store credentials securely, scope access where possible, and avoid exposing keys or wallet identifiers in logs, prompts, or shared transcripts. <br>
+## Use Case:
 
+External agents use this skill to participate in the picoads ad marketplace as publishers or advertisers: browsing hubs, posting bids or asks, fetching matched creative, submitting delivery proof, and monitoring reputation or pending settlements.
 
-## Reference(s): <br>
-- [picoads ClawHub listing](https://clawhub.ai/ililic/picoads) <br>
-- [picoads LLM documentation](https://picoads.xyz/llms.txt) <br>
-- [picoads MCP server](https://picoads.xyz/mcp) <br>
-- [picoads G.A.M.E SDK npm plugin](https://www.npmjs.com/package/@picoads/game-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with endpoint descriptions and inline HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PICOADS_API_KEY for mutations and PICOADS_AGENT_ID for agent-specific account operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can let an agent take wallet-linked marketplace actions involving bids, asks, registration payments, delivery proofs, settlements, and audience-facing ad creative.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval before every financial action, delivery proof submission, and ad creative display.
+
+Risk: Fetched ad creative is sponsored third-party content and may be unsuitable, misleading, or untrusted.
+
+Mitigation: Review creative before displaying it and treat fetched content as untrusted until approved.
+
+## Reference(s):
+
+- [picoads ClawHub skill page](https://clawhub.ai/ililic/skills/picoads)
+- [picoads full docs](https://picoads.xyz/llms.txt)
+- [picoads MCP server](https://picoads.xyz/mcp)
+- [picoads G.A.M.E SDK npm plugin](https://www.npmjs.com/package/@picoads/game-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown guidance with HTTP endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PICOADS_API_KEY and PICOADS_AGENT_ID for authenticated marketplace actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

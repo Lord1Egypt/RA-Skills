@@ -1,44 +1,60 @@
-## Description: <br>
-Complete toolkit for publishing content to Xiaohongshu (小红书), including automated browser control, image generation, content formatting, and a publishing pipeline for OpenClaw browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete toolkit for publishing content to Xiaohongshu (小红书), including automated browser control, image generation, content formatting, and a publishing pipeline for OpenClaw browser automation.
 
-## Publisher: <br>
-[siaslfs](https://clawhub.ai/user/siaslfs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siaslfs](https://clawhub.ai/user/siaslfs)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare Xiaohongshu posts, generate cover images, maintain an OpenClaw browser login session, and publish image-text notes through the Xiaohongshu creator platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content automatically to a real Xiaohongshu account. <br>
-Mitigation: Add a manual preview or confirmation step before any post goes live, and use a test or low-risk account when evaluating the workflow. <br>
-Risk: The skill preserves and refreshes browser login sessions for unattended operation. <br>
-Mitigation: Use a dedicated OpenClaw browser profile and avoid cron or daemon keepalive unless unattended operation is explicitly required. <br>
-Risk: The security evidence notes unsafe shell-built commands when titles, content, or paths are passed into scripts. <br>
-Mitigation: Do not pass untrusted titles, content, or file paths into the scripts without validation and quoting controls. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to prepare and publish Xiaohongshu image-text posts through OpenClaw, including browser navigation, cover generation, uploads, title and body entry, and login-session checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/siaslfs/xiaohongshu-publish-kit) <br>
-- [Xiaohongshu Creator Platform](https://creator.xiaohongshu.com) <br>
-- [Xiaohongshu publish page](https://creator.xiaohongshu.com/publish/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces publishing commands, Python automation examples, browser setup guidance, and configuration steps for OpenClaw-managed Xiaohongshu workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can publish content through a live Xiaohongshu account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or test account where possible and review all titles, body text, images, and target account state before allowing publication.
+
+Risk: The security summary identifies unsafe shell execution and warns against untrusted titles, content, and filenames.
+
+Mitigation: Do not pass untrusted input to the scripts; quote, validate, or sanitize titles, content, image paths, and filenames before execution.
+
+Risk: The skill can maintain recurring browser access through cron, daemon mode, and browser-session backup or restore behavior.
+
+Mitigation: Enable keepalive only when recurring access to the logged-in browser is acceptable, and clear the OpenClaw browser profile and session backup when the skill is no longer used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/siaslfs/skills/xiaohongshu-publish-kit)
+- [Xiaohongshu creator platform](https://creator.xiaohongshu.com)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces browser automation instructions and helper script usage for Xiaohongshu publishing workflows.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

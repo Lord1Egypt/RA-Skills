@@ -1,41 +1,54 @@
-## Description: <br>
-AI-powered English grammar, spelling, and style checker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered English grammar, spelling, and style checker.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Employees, external users, and writers use this skill to proofread English text and receive conservative grammar, spelling, punctuation, style, and clarity corrections with brief explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes user-supplied text that may contain sensitive or private content. <br>
-Mitigation: Avoid submitting sensitive text unless the user is comfortable having the agent process it. <br>
-Risk: Proofreading suggestions can change tone or meaning if applied without review. <br>
-Mitigation: Keep corrections conservative, preserve the author's voice and meaning, and review the corrected version before use. <br>
+## Use Case:
 
+Writers, employees, students, and other English-language users use this skill to proofread and improve emails, essays, blog posts, business documents, and pasted text while preserving the author's meaning.
 
-## Reference(s): <br>
-- [Grammar Check Categories Reference](references/check_categories.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/grammar-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown grammar check report with issue categories, explanations, corrections, a fully corrected version, and a summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [For very long texts over 1000 words, the skill summarizes key patterns and may provide a partial corrected version with overall feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Proofreading prompts may contain confidential, proprietary, or personal text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an approved environment for the sensitivity of the text being reviewed.
+
+Risk: Suggested grammar, style, or clarity edits may change tone or meaning if accepted without review.
+
+Mitigation: Review corrections before use and prefer conservative edits that preserve the author's voice and intent.
+
+## Reference(s):
+
+- [Grammar Check Categories Reference](references/check_categories.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/grammar-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown grammar check report with quoted originals, explanations, corrections, a full corrected version, and an issue summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For very long texts over 1000 words, the skill summarizes key patterns and may provide a partial corrected version with overall feedback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

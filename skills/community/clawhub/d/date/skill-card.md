@@ -1,43 +1,60 @@
-## Description: <br>
-Dating intelligence co-pilot that helps users remember details, preferences, important dates, and reflections about people they are dating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Date.skill is a dating memory co-pilot that helps users record local notes, build profiles, refresh important details, and generate thoughtful date or gift ideas from manually entered observations.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users use this skill as a private dating memory assistant to record their own observations after dates, refresh themselves before future dates, and generate thoughtful ideas based on details they manually entered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create sensitive plain-text notes about people the user dates. <br>
-Mitigation: Keep notes local, protect the device or account where they are stored, and avoid recording unnecessary sensitive details. <br>
-Risk: Retaining dating profiles after a relationship ends can create unnecessary privacy exposure. <br>
-Mitigation: Delete profiles that are no longer needed, as recommended by the artifact and security guidance. <br>
-Risk: Using remembered details to monitor, manipulate, or pressure another person would violate the skill's stated posture. <br>
-Mitigation: Use only information shared appropriately in normal conversation and decline surveillance, stalking, or manipulation requests. <br>
+## Use Case:
 
+External users can use Date.skill as a local dating-memory assistant to organize details they personally remember from dates, prepare for future conversations, and reflect on relationship patterns without scraping or transmitting another person's private data.
 
-## Reference(s): <br>
-- [Date.skill ClawHub page](https://clawhub.ai/realteamprinz/date) <br>
-- [Date profile template](templates/DATE-PROFILE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text guidance with local profile and date-log file structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Markdown and JSONL notes under ~/.date-skill/people/ when the agent follows the documented storage pattern.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive dating and relationship details may be stored in local plain-text files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the storage directory private, avoid shared devices and broad backup sync, and record only information you would be comfortable protecting locally.
+
+Risk: Profiles may retain personal information after the relationship context has ended.
+
+Mitigation: Delete the person's profile folder when the relationship ends or the notes are no longer needed.
+
+Risk: The skill could be misused to support surveillance or manipulative dating behavior.
+
+Mitigation: Use only manually provided memories from normal conversation, do not add data from private accounts or monitoring, and decline requests for stalking, manipulation, or coercion.
+
+## Reference(s):
+
+- [ClawHub Date.skill listing](https://clawhub.ai/realteamprinz/skills/date)
+- [Publisher profile](https://clawhub.ai/user/realteamprinz)
+- [README](artifact/README.md)
+- [Date profile template](artifact/templates/DATE-PROFILE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown profiles, JSONL date logs, and concise plain-text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores relationship notes locally under ~/.date-skill/people/ as plain-text Markdown and JSONL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

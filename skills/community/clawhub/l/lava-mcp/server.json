@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.dustinliang666-blip/lava-mcp",
+  "title": "熔岩 Lava · A股机构/大V消息面热度监测",
+  "description": "查A股个股/概念最近被多少机构/大V提及、热度高不高。只读数据，机构/大V用匿名ID。量化交易必备。",
+  "version": "1.0.0",
+  "websiteUrl": "https://lava.ai-dolphin.com/subscribe/docs",
+  "repository": {
+    "url": "https://github.com/dustinliang666-blip/lava-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://lava.ai-dolphin.com/subscribe/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "填 Bearer 加空格再加你的 API Key（API Key=使用密钥，在 https://lava.ai-dolphin.com/subscribe 免费开通领取）",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,49 +1,64 @@
-## Description: <br>
-Trades Polymarket prediction markets focused on Scandinavian and Nordic events, including Swedish politics, Nordic business milestones, local weather extremes, and regional sports outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets focused on Scandinavian and Nordic events, including politics, regional business milestones, local weather extremes, and sports outcomes.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading-agent developers use this skill to discover Nordic-focused Polymarket markets, evaluate threshold-based trading signals, and place simulated or explicitly enabled live orders through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades with a provided API key. <br>
-Mitigation: Run in simulated mode first, avoid --live until behavior is reviewed, and use a least-privilege or sandbox trading key where available. <br>
-Risk: Automated trading may exceed the user's intended exposure if external controls are not configured. <br>
-Mitigation: Set explicit position, loss, and open-position limits outside the skill before enabling live execution or scheduled runs. <br>
-Risk: The required SIMMER_API_KEY is sensitive and may authorize trading actions. <br>
-Mitigation: Keep the key private and do not place a live-capable key in environments where automated code can run with --live unintentionally. <br>
+## Use Case:
 
+External developers and trading-agent operators use this skill to find Nordic and Scandinavian Polymarket markets, produce conviction-based trade decisions, and run paper trades by default or live trades when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-nordic-trader) <br>
-- [SMHI weather data](https://www.smhi.se/) <br>
-- [Riksdagen open data](https://data.riksdagen.se/) <br>
-- [Statistics Sweden](https://www.scb.se/) <br>
-- [SVT Nyheter](https://www.svt.se/nyheter/) <br>
-- [Dagens industri](https://www.di.se/) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk source](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Console status text and trading API requests configured by environment variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to simulated trading; live Polymarket orders require an explicit --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: The skill can submit real Polymarket orders when run with --live.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, require an explicit operator decision before live mode, and use a dedicated least-privilege Simmer/Polymarket credential.
+
+Risk: Server security evidence reports gaps in live-trading safeguards, including a missing volume gate and max-position sizing issue.
+
+Mitigation: Fix or account for those controls before risking funds, and keep live-capable credentials out of unattended automation until reviewed.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Pin and review simmer-sdk before providing live credentials or deploying the skill in an environment with trading authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-nordic-trader)
+- [SMHI weather data](https://www.smhi.se/)
+- [Riksdagen open data](https://data.riksdagen.se/)
+- [Statistics Sweden](https://www.scb.se/)
+- [SVT Nyheter](https://www.svt.se/nyheter/)
+- [Di.se](https://www.di.se/)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and Python execution output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and produces paper trading behavior by default; live Polymarket orders require an explicit --live flag.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

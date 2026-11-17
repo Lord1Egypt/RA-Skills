@@ -55,10 +55,10 @@ def test_extras(project_root: Path) -> set[str]:
         return set()
     data = tomllib.loads(pyproject.read_text(encoding="utf-8"))
     project = data.get("project", {})
-    deps = project.get("dependencies", []) + project.get(
-        "optional-dependencies", {}
-    ).get("dev", []) + project.get("optional-dependencies", {}).get(
-        "test", []
+    deps = (
+        project.get("dependencies", [])
+        + project.get("optional-dependencies", {}).get("dev", [])
+        + project.get("optional-dependencies", {}).get("test", [])
     )
     return {dep.split(">=")[0].split("==")[0].strip() for dep in deps}
 ```
@@ -170,8 +170,8 @@ shows reasons for skipped, expected-fail, and error tests.
    request a function-scoped one. The fixture module documents
    the scope hierarchy.
 3. **Using `unittest.mock` blindly**: `unittest.mock.patch`
-   requires the import path of the function as it is used, not
-   where it is defined. Mistakes here produce mocks that never
+   requires the import path of the function as it is used,
+   rather than where it is defined. Mistakes here produce mocks that never
    fire.
 4. **Skipping `--strict-markers`**: A typo in
    `@pytest.mark.skipif` becomes a silent no-op without strict

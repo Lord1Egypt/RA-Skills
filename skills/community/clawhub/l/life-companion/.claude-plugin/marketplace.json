@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "life-companion",
+  "owner": {
+    "name": "Leo-Lyu",
+    "url": "https://github.com/dong845"
+  },
+  "metadata": {
+    "description": "life-companion skill — 命理 charts, daily reading + journal, career fit and relationship reflection, computed honestly and read back as a mirror. Local-first, consent-enforced, offline.",
+    "version": "2.0.0"
+  },
+  "plugins": [
+    {
+      "name": "life-companion",
+      "source": "./",
+      "description": "A private, local-first companion that gets to know one person over time and reads their life through four lenses: real 八字 BaZi / Western natal / 紫微斗数 charts and 合婚, a daily reading woven with their own journal, RIASEC career fit scored against real O*NET occupation data, and relationship reflection grounded in what actually happened rather than in memory. The computation is reproducible fact; every interpretation is labeled a mirror and never a forecast — and that line is enforced by an honesty gate in code, not merely asked for. Consent is per category and enforced at the write, everything stays on the machine, deletion shows what it will remove and then really deletes, and a crisis drops the fortune-telling for real, localized help. On your machine it: writes only under COMPANION_HOME (default ~/.companion, chmod 700) — profile, journal, consent ledger and per-module caches; may start a localhost-only HTTP server on 127.0.0.1 for the optional onboarding/career form, which stops itself on submit or after a timeout; and on FIRST run may pip install four dependencies (PyYAML, lunar-python, pyswisseph, sxtwl) — a package download, not your data leaving, and forbidden by setting LIFE_COMPANION_NO_AUTOINSTALL=1. It runs python3 subprocesses of its own scripts. It makes no other network calls, uses no API keys, and sends nothing anywhere. It never runs the two maintainer tools in tools/: build_occupations.py rebuilds the occupation data from O*NET database folders already on disk, and run_agent_evals.py runs the eval scenarios through the codex CLI, which needs network access and a signed-in codex.",
+      "version": "2.0.0",
+      "author": {
+        "name": "Leo-Lyu",
+        "url": "https://github.com/dong845"
+      },
+      "homepage": "https://github.com/dong845/life-companions",
+      "repository": "https://github.com/dong845/life-companions",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "agent-skill",
+        "bazi",
+        "八字",
+        "紫微斗数",
+        "astrology",
+        "natal-chart",
+        "journaling",
+        "daily-reflection",
+        "career-fit",
+        "riasec",
+        "onet",
+        "relationships",
+        "local-first",
+        "privacy",
+        "offline",
+        "honesty-gate"
+      ]
+    }
+  ]
+}

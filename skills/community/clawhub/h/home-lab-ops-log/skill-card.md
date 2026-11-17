@@ -1,43 +1,57 @@
-## Description: <br>
-Helps agents turn home-lab or personal server change notes into structured, reviewable ops logs with summary, prior state, actions, observations, rollback plan, and follow-up tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Home Lab Ops Log helps users turn homelab or personal server change notes into structured, reviewable Markdown ops logs with rollback plans, observations, and follow-up tasks.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and home-lab operators use this skill to convert change notes, machine context, results, and risks into audit-friendly Markdown drafts for review, rollback planning, and follow-up tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python helper can read user-selected local inputs and write to a user-selected output path. <br>
-Mitigation: Use intended change-log inputs, review the output path before writing, and use dry-run or stdout output when file writes are not needed. <br>
-Risk: Home-lab logs can contain sensitive hostnames, tokens, passwords, or private infrastructure details. <br>
-Mitigation: Redact sensitive infrastructure and credential details before providing inputs or sharing generated logs. <br>
-Risk: Generated operations logs may omit missing facts or present draft follow-up actions that still require human review. <br>
-Mitigation: Review the draft, resolve listed confirmation items, and verify rollback details before using the output as an operational record. <br>
+## Use Case:
 
+Homelab operators and self-hosting developers use this skill to convert change notes, machine context, observed results, and risks into reviewable Markdown operations logs with rollback plans and follow-up tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/home-lab-ops-log) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown drafts, optional JSON reports, and local shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a chosen local output file when the bundled Python helper is run with --output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Homelab change notes can contain sensitive host inventories, credentials, or private infrastructure details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and sensitive host details before giving content to the skill or its local script.
+
+Risk: Changing the bundled spec from the default structured logging mode to audit modes can cause the script to inspect local files or directories.
+
+Mitigation: Keep the released default mode unless local inspection is intentional, and pass only the intended input paths.
+
+Risk: Sparse input can produce an incomplete operations record.
+
+Mitigation: Review the generated draft and resolve pending confirmation items before treating it as an operational log.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/home-lab-ops-log)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, shell commands]
+
+**Output Format:** [Markdown or JSON report; Markdown is the default.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write an output file when the local script is invoked with --output; otherwise prints to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

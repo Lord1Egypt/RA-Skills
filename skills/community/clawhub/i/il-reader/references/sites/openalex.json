@@ -1,0 +1,58 @@
+{
+  "version": "2.9.0",
+  "source_id": "openalex",
+  "status": "query_verified",
+  "checked_at": "2026-10-16T12:24:47.986Z",
+  "entry": {
+    "url": "https://api.openalex.org/works",
+    "title": "OpenAlex Works API",
+    "status": "accessible",
+    "note": "免 key；实测多条题名查询均 200。"
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "openalex:citation-count",
+      "source_id": "openalex",
+      "title": "按题名取引文数",
+      "task_kind": "citation-count",
+      "status": "query_verified",
+      "parameters": [
+        "title"
+      ],
+      "steps": [
+        "GET https://api.openalex.org/works?per-page=3&select=id,display_name,publication_year,cited_by_count,doi,type&search=<title>",
+        "按 display_name 与 publication_year 核对命中条目，读取 cited_by_count。"
+      ],
+      "notes": [
+        "实测（2026-10-16）：四条题名查询均 200；同题引文数与 Connected Papers（Semantic Scholar 口径）相差约一成，排序一致、绝对值不同。",
+        "题目指定其他工具时，本接口数值只用于交叉印证结论方向，不替换该工具的数字。",
+        "批量题名注意礼貌间隔（约 1 秒），避免被限流。"
+      ],
+      "retrieval_channels": [
+        {
+          "kind": "api",
+          "name": "OpenAlex Works API",
+          "documentation": "https://docs.openalex.org/api-entities/works",
+          "endpoint": "https://api.openalex.org/works",
+          "auth": "none",
+          "tested_at": "2026-10-16",
+          "tested_result": "4 条题名查询均 HTTP 200，返回 display_name / publication_year / cited_by_count",
+          "covers": "按题名取引文数、年份、DOI；也可用 filter 做字段精确查询",
+          "does_not_cover": "该库自身的“引文数”不等于题目指定工具（如 Connected Papers / Web of Science）的口径；不代替指定库的统计与排名",
+          "notes": [
+            "select 参数可把响应裁到所需字段，例如 select=id,display_name,publication_year,cited_by_count,doi,type。",
+            "题名含中文或特殊字符时必须 URL 编码。",
+            "批量查询保持约 1 秒间隔；429 时按指数退避。"
+          ],
+          "blocker": null
+        }
+      ]
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "observed_at": "2026-10-16T12:24:47.986Z",
+    "evidence": "实测 works 端点：四条题名查询均 200 并返回 cited_by_count。"
+  }
+}

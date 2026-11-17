@@ -1,43 +1,58 @@
-## Description: <br>
-Guides an agent to perceive and operate a connected phone through MCP tools for screen reading, app launching, control tapping, text input, and phone automation troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawPhone Phone Control guides agents to inspect and operate a connected phone UI through screen-state checks, app launch, control clicks, text entry, and failure recovery.
 
-## Publisher: <br>
-[Be1Human](https://clawhub.ai/user/Be1Human) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[be1human](https://clawhub.ai/user/be1human)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide phone UI automation with a perception-first workflow, current-screen verification, and fallback handling for fragile mobile app flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad phone control, including actions inside logged-in apps. <br>
-Mitigation: Require explicit user approval before sending messages, making purchases, deleting data, changing settings, or acting inside logged-in apps. <br>
-Risk: Clipboard-based input can expose secrets or place sensitive content where other apps may read it. <br>
-Mitigation: Avoid clipboard-based input for passwords, tokens, payment data, and other secrets. <br>
-Risk: Fragile mobile flows can lead to unintended taps or sends when the visible screen changes. <br>
-Mitigation: Use the skill's perception-first workflow: inspect the current screen, prefer text or node-based controls, and re-check the interface after each action. <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent through cautious, user-directed phone UI automation, especially when reading current phone state, launching apps, handling popups, clicking controls, entering text, and troubleshooting failed automation steps.
 
-## Reference(s): <br>
-- [MCP Tool Reference](tools-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Be1Human/clawphone-phone-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, configuration] <br>
-**Output Format:** [Markdown guidance with inline MCP tool names and stepwise operating rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes current-screen verification before and after sensitive phone actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to inspect and operate visible phone screens, which may expose sensitive messages, passwords, or one-time codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended phone-control sessions and avoid sensitive screens unless the user explicitly accepts visible-screen processing.
+
+Risk: Text entry may rely on clipboard-based fallback behavior.
+
+Mitigation: Avoid entering passwords, one-time codes, or sensitive messages through this workflow unless clipboard exposure is acceptable.
+
+Risk: Coordinates can become invalid when the device, page, keyboard, or toolbar state changes.
+
+Mitigation: Base coordinate actions on the current screenshot only and recheck the screen after each fragile UI operation.
+
+## Reference(s):
+
+- [MCP Tool Reference](artifact/tools-reference.md)
+- [ClawHub skill page](https://clawhub.ai/be1human/skills/clawphone-phone-control)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown guidance with inline tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes checking current screen state before actions and revalidating after fragile UI operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

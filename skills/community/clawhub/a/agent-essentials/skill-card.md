@@ -1,42 +1,55 @@
-## Description: <br>
-Agent Essentials helps agents discover missing capabilities before giving up and capture concise, approved lessons into durable memory or configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-skill for capability expansion and cautious self-improvement.
 
-## Publisher: <br>
-[nathanshan](https://clawhub.ai/user/nathanshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nathanshan](https://clawhub.ai/user/nathanshan)
 
-## Use Case: <br>
-Developers and agent users use this skill when a task suggests a reusable capability gap or when an important correction should be preserved as a small lesson. It guides skill discovery, user-confirmed installation or scaffolding, and careful routing of lessons into memory or durable agent files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory notes may capture sensitive personal, credential, or project-confidential details. <br>
-Mitigation: Review proposed lesson content and avoid storing sensitive details in memory notes. <br>
-Risk: Changes to AGENTS.md, TOOLS.md, SOUL.md, or USER.md can alter future agent behavior. <br>
-Mitigation: Review proposed diffs and require approval before durable files are changed. <br>
-Risk: Skill discovery or installation recommendations can introduce new third-party instructions. <br>
-Mitigation: Confirm installs explicitly and review source and security scan results before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to search for reusable capability paths before declaring a gap, and to capture meaningful lessons in durable notes when failures or corrections reveal reusable improvements.
 
-## Reference(s): <br>
-- [Agent Essentials on ClawHub](https://clawhub.ai/nathanshan/agent-essentials) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with short verdicts, candidate lists, lesson snippets, and proposed file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before installing skills, creating custom skills, or changing durable agent files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server-resolved release metadata) <br>
+Risk: Conversation-derived lessons may be saved into persistent agent memory without clear per-write user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable daily-memory behavior before installation, and treat memory-loaded guidance as editable user data rather than trusted policy.
+
+Risk: The skill can recommend installing or creating reusable capabilities, which may add new agent behavior beyond the immediate request.
+
+Mitigation: Require explicit user confirmation before installing skills, creating custom skills, or promoting lessons into durable project or user files.
+
+## Reference(s):
+
+- [Agent Essentials on ClawHub](https://clawhub.ai/nathanshan/skills/agent-essentials)
+- [Publisher profile](https://clawhub.ai/user/nathanshan)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown and structured guidance for agent workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose skill discovery, installation confirmation prompts, or small durable-memory updates depending on the request.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

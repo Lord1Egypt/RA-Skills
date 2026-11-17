@@ -1,7 +1,7 @@
 ---
 name: kotter-change
 description: "Activate when: user says 'our change initiative is stalling', 'people aren't adopting the new way', 'we launched the transformation but nothing changed', 'how do we overcome resistance to change', 'why do transformation efforts fail', or asks how to sequence or diagnose a planned organizational change.
-  Do NOT activate when: the change is a small process improvement in a stable team (use PDCA instead), or the situation is a crisis requiring immediate command-and-control response."
+  Do NOT activate when: the change is a small process improvement in a stable team (use PDCA instead), or the situation is a crisis requiring immediate command-and-control response. More: deciqai.com/c/kotter-change"
 ---
 
 # Kotter's 8-Step Change Model
@@ -10,7 +10,7 @@ description: "Activate when: user says 'our change initiative is stalling', 'peo
 
 John Kotter built this model from studying one hundred corporate transformations — most failed. Core finding: failures stem from eight predictable leadership errors, each defeated by one of the eight steps. Skipping steps creates only the illusion of speed. The 2014 *Accelerate* update introduced a Dual Operating System for parallel execution in high-velocity environments.
 
-Composes with: [`okr-goal-setting`](../okr-goal-setting/SKILL.md) inside Steps 3 and 6; [`feedback-loops`](../feedback-loops/SKILL.md) throughout Steps 6–7; [`situational-leadership`](../situational-leadership/SKILL.md) for individual-level management at each step.
+Composes with: `okr-goal-setting` inside Steps 3 and 6; `feedback-loops` throughout Steps 6–7; `situational-leadership` for individual-level management at each step.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with: [`okr-goal-setting`](../okr-goal-setting/SKILL.md) inside Steps 3
 - Transformation is stalling — diagnose which step was skipped
 - Resistance is significant and needs a structured approach
 - Someone says "nobody's buying in", "we went back to old ways", "the rollout failed"
+- AI adoption is stalling — copilots/AI tools bought but under-used, pilots not scaling, ROI on AI capex unclear, or middle managers quietly resisting AI-native ways of working against AI-native competition
 
 **When NOT to use:** small process improvement; org under 30–50 people; change needed in weeks; crisis requiring immediate action.
 
@@ -67,6 +68,7 @@ Scores 4–5 require pre-treatment before the corresponding step.
 **Output:** `# Change Readiness: <initiative> / Failure mode scores (table) / 8-Step Roadmap (one line per step) / Timeline (24-month milestones)`
 
 *→ Method in Action: [IBM's Turnaround under Lou Gerstner (1993–1996)](examples/ibm-turnaround-lou-gerstner-1993-1996.md)*
+*→ 2026 lens: [Driving Enterprise AI Adoption (2024–2026)](examples/enterprise-ai-adoption-2024-2026.md)*
 
 ## Change-Type Packs
 
@@ -112,4 +114,6 @@ Scores 4–5 require pre-treatment before the corresponding step.
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/kotter-change** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/kotter-change.json*

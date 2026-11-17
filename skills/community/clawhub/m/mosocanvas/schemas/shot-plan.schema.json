@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/shot-plan-0.1.json",
+  "title": "MoSoCanvas Shot Plan 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "spec_ref", "carrier", "candidates", "selection"],
+  "properties": {
+    "schema": { "const": "moso.shot-plan/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "spec_ref": { "type": "string", "minLength": 1 },
+    "carrier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "unit", "aspect_ratio", "thumbnail_width_px"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "enum": ["px", "mm", "cm", "in"] },
+        "aspect_ratio": { "type": "string", "pattern": "^[1-9][0-9]*:[1-9][0-9]*$" },
+        "thumbnail_width_px": { "type": "integer", "minimum": 64 }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/shot" }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "proof_type"],
+      "properties": {
+        "status": { "enum": ["pending", "selected", "rejected"] },
+        "selected_shot_id": { "type": "string", "minLength": 1 },
+        "proof_type": { "enum": ["three-value-thumbnail", "mass-map", "approved-layout", "not-required"] },
+        "proof_ref": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 },
+        "user_confirmed_at": { "type": "string", "format": "date-time" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "selected" } } },
+          "then": { "required": ["selected_shot_id", "proof_ref", "reason"] }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x_pct", "y_pct"],
+      "properties": {
+        "x_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "y_pct": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "shot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shot_id", "narrative_verb", "viewer_position", "camera", "masses", "vectors", "depth_layers", "value_plan", "failure_signs"],
+      "properties": {
+        "shot_id": { "type": "string", "minLength": 1 },
+        "narrative_verb": { "type": "string", "minLength": 1 },
+        "viewer_position": { "type": "string", "minLength": 1 },
+        "camera": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["height", "angle", "distance", "lens_behavior"],
+          "properties": {
+            "height": { "enum": ["ground", "low", "eye", "high", "overhead"] },
+            "angle": { "type": "string", "minLength": 1 },
+            "distance": { "enum": ["extreme-close", "close", "medium", "full", "wide", "extreme-wide"] },
+            "lens_behavior": { "enum": ["compressed", "neutral", "wide", "distorted"] }
+          }
+        },
+        "masses": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["dominant", "counter", "negative_space_owner", "subject_envelope"],
+          "properties": {
+            "dominant": { "type": "string", "minLength": 1 },
+            "counter": { "type": "string", "minLength": 1 },
+            "negative_space_owner": { "type": "string", "minLength": 1 },
+            "subject_envelope": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["x_pct", "y_pct", "width_pct", "height_pct"],
+              "properties": {
+                "x_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+                "y_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+                "width_pct": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 },
+                "height_pct": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 }
+              }
+            }
+          }
+        },
+        "vectors": { "$ref": "#/$defs/stringArray" },
+        "depth_layers": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+        "first_fixation": { "$ref": "#/$defs/point" },
+        "horizon_y_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "value_plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["dark_mass", "middle_field", "light_mass", "contrast_locus"],
+          "properties": {
+            "dark_mass": { "type": "string", "minLength": 1 },
+            "middle_field": { "type": "string", "minLength": 1 },
+            "light_mass": { "type": "string", "minLength": 1 },
+            "contrast_locus": { "type": "string", "minLength": 1 }
+          }
+        },
+        "safe_zones": { "$ref": "#/$defs/stringArray" },
+        "failure_signs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    }
+  }
+}

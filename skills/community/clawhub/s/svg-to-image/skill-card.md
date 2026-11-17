@@ -1,40 +1,54 @@
-## Description: <br>
-Convert SVG to PNG or JPG for quick sharing (e.g. Telegram) or print. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert SVG to PNG or JPG for quick sharing (e.g. Telegram) or print.
 
-## Publisher: <br>
-[QROST](https://clawhub.ai/user/QROST) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qrost](https://clawhub.ai/user/qrost)
 
-## Use Case: <br>
-Developers, designers, and external OpenClaw users can use this skill to rasterize SVG diagrams, maps, or vector graphics into PNG or JPG files for chat, documents, or print. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local SVG conversion runs a Python renderer on user-selected files, so untrusted SVG content or stale dependencies can increase execution and parsing risk. <br>
-Mitigation: Use trusted SVG files and keep cairosvg, Pillow, and the system Cairo library current or pinned according to the deployment environment. <br>
-Risk: Ambiguous input or output paths can write files to an unexpected location or prevent media delivery. <br>
-Mitigation: Use explicit input paths and write shareable outputs to allowed media locations such as /tmp or ~/.openclaw/media. <br>
+## Use Case:
 
+Developers and agents use this skill to rasterize SVG assets into PNG or JPG files for sharing in chat, use in documents, or print, with optional width, height, and DPI controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QROST/svg-to-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG or JPG image files with concise terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional output path, image format, width, height, and DPI settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter, clawhub.json, server release) <br>
+Risk: Converting untrusted SVG files may allow the renderer to access local or network resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run conversions for untrusted SVGs in a sandbox with limited filesystem and network access.
+
+Risk: Unpinned image-rendering dependencies can change behavior across installs.
+
+Mitigation: Pin dependency versions before broad or repeated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qrost/skills/svg-to-image)
+- [Publisher GitHub profile](https://github.com/QROST)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG or JPG image files with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional output width, height, and DPI controls.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter, clawhub.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

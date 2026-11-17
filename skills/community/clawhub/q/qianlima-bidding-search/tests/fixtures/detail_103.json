@@ -1,0 +1,29 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "id": 103,
+    "title": "北京学校实验室设备采购中标通知",
+    "areaName": "北京市-北京市-海淀区",
+    "purchasingUnit": "北京市示范学校",
+    "publishTime": "2026-04-12",
+    "infoType": "结果-中标通知",
+    "registrationEndTime": "",
+    "biddingEndTime": "2026-04-08 10:00:00",
+    "budgetAmount": "1500000.00",
+    "purchasingUnitLinkName": "赵老师",
+    "purchasingUnitLinkPhone": "010-33333333",
+    "winningBidderUnit": "北京实验设备有限公司",
+    "winningBidderUnitLinkName": "刘经理",
+    "winningBidderUnitLinkPhone": "010-44444444",
+    "winningBidderAmount": "1380000.00",
+    "agencyUnit": "北京采购代理有限公司",
+    "agencyUnitLinkName": "王工",
+    "agencyUnitLinkPhone": "010-22222222",
+    "url": "https://www.qianlima.com/bid-103.html",
+    "targetKeywords": [
+      "实验室设备",
+      "学校"
+    ]
+  }
+}

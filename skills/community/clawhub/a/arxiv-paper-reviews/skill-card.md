@@ -1,36 +1,54 @@
-## Description: <br>
-Interact with the arXiv Crawler API to fetch paper lists, view paper details and comments, submit reviews, search by title, and import papers from arXiv URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the arXiv Crawler API to fetch papers, read reviews, submit comments, search papers, and import papers from arXiv URLs.
 
-## Publisher: <br>
-[zxrys](https://clawhub.ai/user/zxrys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zxrys](https://clawhub.ai/user/zxrys)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to browse arXiv paper records, inspect comments and reviews, add review comments, search titles, and import arXiv URLs through the configured API service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends paper queries, URLs, comments, and optional API credentials to a third-party service over plain HTTP. <br>
-Mitigation: Use only non-sensitive paper queries and review text, avoid API keys and private research details, and wait for documented service ownership, retention practices, and HTTPS before sensitive use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill for non-sensitive arXiv paper discovery and review workflows: listing papers, viewing details and comments, searching by title, submitting comments, and importing arXiv URLs through the configured API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI text or JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, the requests library, and a configured API base URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default API endpoint uses unencrypted HTTP, which can expose API keys and submitted review content in transit.
+
+Mitigation: Use the skill only for non-sensitive paper searches and comments until the API base URL is changed to HTTPS and API keys are protected.
+
+Risk: Any API key already used with the default HTTP endpoint may have been exposed.
+
+Mitigation: Rotate any key previously used through that endpoint before continuing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxrys/skills/arxiv-paper-reviews)
+- [Configured arXiv Crawler API endpoint](http://weakaccept.top:8000/)
+- [arXiv paper URL example](https://arxiv.org/abs/2602.09012)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-line client output may include paper metadata, abstracts, comments, import status, and HTTP error text.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

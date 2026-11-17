@@ -1,41 +1,57 @@
-## Description: <br>
-Analyze Facebook workflows with JustOneAPI, including post Search, get Profile ID, and get Profile Posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Facebook workflows with JustOneAPI, including post Search, get Profile ID, and get Profile Posts.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to search public Facebook posts, resolve profile IDs from Facebook profile paths, and retrieve public profile posts through JustOneAPI when a task needs API-backed Facebook data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token and Facebook search or profile inputs are sent to JustOneAPI, and the token can be exposed if shared through chat, screenshots, logs, or command history. <br>
-Mitigation: Use a scoped or disposable token if available, pass it through JUST_ONE_API_TOKEN, avoid sharing logs or command lines that contain it, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve Facebook profile IDs, fetch public profile posts, and search public Facebook posts through JustOneAPI-backed requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-facebook) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook&utm_content=project_link) <br>
-- [Just One API dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown answer with selected fields and optional raw JSON from JustOneAPI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; operations are GET requests with query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill sends Facebook lookup or search inputs and a JustOneAPI token to JustOneAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable for the intended use case.
+
+Risk: The JustOneAPI token is handled in command arguments and URL query parameters, which can expose it in logs or process listings.
+
+Mitigation: Use a token with limited scope and quota, avoid logging full command lines or request URLs, and rotate the token if exposed.
+
+## Reference(s):
+
+- [Facebook operations](artifact/generated/operations.md)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_facebook&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-facebook)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Plain-language answers with selected JSON fields and optional raw JSON excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and Node.js; API responses come from JustOneAPI Facebook endpoints.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

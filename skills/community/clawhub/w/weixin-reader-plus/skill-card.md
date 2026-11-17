@@ -1,41 +1,53 @@
-## Description: <br>
-Reads mp.weixin.qq.com WeChat Official Account article links and extracts the article title, account name, and body text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads WeChat Official Account article links and extracts the article title, account name, and body text.
 
-## Publisher: <br>
-[cnwarden](https://clawhub.ai/user/cnwarden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnwarden](https://clawhub.ai/user/cnwarden)
 
-## Use Case: <br>
-Agent users use this skill when they provide a WeChat Official Account article URL and ask the agent to read or inspect the article content. It returns the article metadata and body text so the agent can work from the retrieved text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided article URLs may be inaccessible, require verification, or fail parsing. <br>
-Mitigation: Treat access and parsing failures as expected outcomes and ask the user for alternate accessible content when needed. <br>
-Risk: The skill fetches external web content from a user-provided URL. <br>
-Mitigation: Confirm the target is an mp.weixin.qq.com article link before execution and avoid using private or credential-bearing URLs. <br>
+## Use Case:
 
+Agents and users use this skill to fetch readable text from trusted mp.weixin.qq.com articles for summarization, review, or translation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnwarden/weixin-reader-plus) <br>
-- [Publisher profile](https://clawhub.ai/user/cnwarden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output with article title, account name, and body text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return an error message when an article requires verification or cannot be parsed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can fetch arbitrary URLs and follow redirects, which could expose local or private network services if misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted WeChat article URLs, and prefer a version that enforces an HTTPS mp.weixin.qq.com allowlist and validates redirect destinations.
+
+Risk: Some WeChat articles may require verification or may not parse successfully.
+
+Mitigation: Treat verification and parsing failures as expected errors, and do not attempt to bypass access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnwarden/skills/weixin-reader-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text with title, account name, article body, or an error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return an error when an article requires verification or parsing fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

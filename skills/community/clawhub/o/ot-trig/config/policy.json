@@ -1,0 +1,5 @@
+{
+  "manifest": "platform",
+  "min_expected": 60,
+  "policies": ["pol-001.txt"]
+}

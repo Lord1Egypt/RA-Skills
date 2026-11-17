@@ -1,47 +1,67 @@
-## Description: <br>
-Run consumer research surveys with PickFu to get real human feedback in minutes, including survey design, audience targeting, survey publishing, result monitoring, and structured analysis reports with quotes and demographic breakdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs PickFu consumer research surveys, helps design and publish tests, monitors responses, and produces structured analysis reports with respondent quotes and demographic breakdowns.
 
-## Publisher: <br>
-[justinchen](https://clawhub.ai/user/justinchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justinchen](https://clawhub.ai/user/justinchen)
 
-## Use Case: <br>
-External users and developers use this skill to run PickFu market research from an agent session, from research brief and survey setup through publishing, monitoring, and final report generation. Common tasks include A/B tests, product naming, pricing research, Amazon listing comparisons, concept validation, and creative iteration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing or adding respondents can charge the user's PickFu account. <br>
-Mitigation: Review the survey design, audience, sample size, uploaded media, and cost before approving publish or respondent-add actions. <br>
-Risk: Survey content and uploaded assets may be shared with PickFu and survey respondents. <br>
-Mitigation: Avoid submitting secrets, credentials, regulated personal data, customer data, or confidential unreleased assets unless sharing them is acceptable. <br>
-Risk: The skill requires account credentials or OAuth access for PickFu workflows. <br>
-Mitigation: Install and use it only when the agent is intended to operate the user's PickFu account for survey workflows. <br>
+## Use Case:
 
+External users and developers use this skill to run consumer research workflows in PickFu, including survey design, audience targeting, publishing with confirmation, result monitoring, and analysis for product, pricing, brand, listing, and creative decisions.
 
-## Reference(s): <br>
-- [PickFu website](https://www.pickfu.com) <br>
-- [PickFu CLI and Agents](https://agents.pickfu.com) <br>
-- [PickFu Docs](https://www.pickfu.com/docs) <br>
-- [PickFu Help](https://www.pickfu.com/help) <br>
-- [PickFu Pricing](https://www.pickfu.com/pricing) <br>
-- [ClawHub skill page](https://clawhub.ai/justinchen/pickfu-market-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown reports with JSON survey payloads and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include survey URLs, respondent counts, verbatim feedback quotes, demographic breakdown tables, and follow-up recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can publish surveys, add respondents, and otherwise trigger billable PickFu account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before publishing or committing respondent additions, and use preview modes when available.
+
+Risk: The CLI fallback runs @pickfu/cli@latest with account credentials, so CLI behavior can change between runs.
+
+Mitigation: Prefer MCP or a pinned, preinstalled PickFu CLI version for controlled deployments.
+
+Risk: Survey creation and media upload may send confidential product concepts, images, or regulated information to PickFu.
+
+Mitigation: Use a tightly scoped PickFu API key and avoid uploading confidential or regulated material unless authorized.
+
+Risk: Survey updates can unintentionally replace tags or alter questions if payloads include unintended fields.
+
+Mitigation: Send only fields meant to change, include the full desired tag set for tag updates, and avoid including questions unless intentionally modifying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justinchen/skills/pickfu-market-research)
+- [PickFu Homepage](https://www.pickfu.com)
+- [PickFu CLI and Agents](https://agents.pickfu.com)
+- [PickFu Docs](https://www.pickfu.com/docs)
+- [PickFu Help](https://www.pickfu.com/help)
+- [PickFu Pricing](https://www.pickfu.com/pricing)
+- [PickFu API Keys](https://app.pickfu.com/settings/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSON survey payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use PickFu MCP tools or the PickFu CLI and requires PICKFU_API_KEY or OAuth when not already authenticated.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-整理东方航空公开航班信息、值机须知及公告新闻，提供班期时刻和影响范围摘要，不涉及购票操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public China Eastern Airlines flight, check-in, announcement, and news information without supporting booking or account actions.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Users and analysts use this skill to summarize public China Eastern Airlines flight schedules, check-in guidance, announcements, and news for internal analysis or reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries of flight, check-in, baggage, or disruption information may be incomplete or outdated. <br>
-Mitigation: Verify important travel details directly with China Eastern Airlines before acting on them. <br>
-Risk: The skill is scoped to public airline pages and should not handle account, booking, or permission-restricted workflows. <br>
-Mitigation: Keep use limited to public information summaries and avoid login, purchase, or access-control bypass requests. <br>
+## Use Case:
 
+External users and analysts use this skill to collect concise summaries of public China Eastern Airlines routes, schedules, check-in requirements, announcements, and news items for internal analysis and reminders.
 
-## Reference(s): <br>
-- [China Eastern Airlines homepage](https://www.ceair.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/eastern) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source links and concise summaries of public airline information when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Use beyond public website summarization could expose account, booking, payment, or private travel data workflows that were not reviewed for this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict use to public China Eastern Airlines pages unless a separate authorization and security review covers private or transactional workflows.
+
+Risk: Dynamic public pages and schedule notices can change, making extracted summaries stale or incomplete.
+
+Mitigation: Wait for page loading to complete, preserve source links in summaries, and have users verify time-sensitive flight or policy information against the source page.
+
+## Reference(s):
+
+- [China Eastern Airlines website](https://www.ceair.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/eastern)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public website information only; excludes account login, booking, payment, and private travel data handling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

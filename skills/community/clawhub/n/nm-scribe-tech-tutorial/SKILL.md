@@ -1,7 +1,7 @@
 ---
 name: tech-tutorial
 description: Plans, drafts, and refines technical tutorials for developers
-version: 1.9.8
+version: 1.10.3
 triggers:
   - tutorial
   - technical-writing
@@ -9,12 +9,12 @@ triggers:
   - developer-docs
   - getting-started
   - writing step-by-step guides or getting-started walkthroughs backed by working code
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.scribe:shared", "night-market.scribe:slop-detector"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.scribe:slop-detector"]}}}
 source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Tech Tutorial
@@ -46,11 +46,13 @@ tutorial that meets that standard.
 
 Before writing a single line, answer these questions:
 
-- Who is this for? (experience level, assumed prior knowledge)
+- Who is this for? Declare a tier: `newcomer`, `practitioner`,
+  `expert`, or a one-line `persona`. A tutorial defaults to
+  `newcomer`; if it does not, say what it assumes instead
 - How many readers? How often will each one read it?
 - What will they build or accomplish by the end?
 - **What is the one sentence they must walk away with?**
-  (the thesis — not the topic)
+  (the thesis, not the topic)
 - What is the single prerequisite the reader must have installed?
 - What is explicitly out of scope?
 
@@ -62,7 +64,20 @@ the thesis in one sentence, the tutorial is not ready to draft.
 The audience size and read frequency feed the reader-time
 budget (see `scribe:slop-detector` module `document-economy.md`).
 A tutorial that 500 developers will read once is a 40-hour
-reader-budget asset; spend the writing time accordingly.
+reader-budget asset. Spend the writing time accordingly.
+
+The tier decides what the draft may contain. When the request
+names no reader, **ask, do not guess**: `scribe:slop-detector`
+module `audience-targeting.md` carries the tier table and the
+Socratic set.
+
+A `newcomer` tutorial keeps the one path that works, end to
+end. Alternatives, internals, and the reasons the obvious
+approach fails are `expert` material. They go to
+`docs/<topic>.md`, linked from the lead in one line
+that names who the deep dive is for. Never delete them to hit
+the tier. A tutorial that pauses to compare three approaches
+has stopped moving the reader from cannot to can.
 
 ### Step 2: Outline
 
@@ -92,7 +107,7 @@ Follow these rules:
 - One paragraph per step: what to run, what it does, what to expect
 - State the expected output after each command block
 - Use second person ("you") consistently throughout
-- Do not narrate what the reader will do next; just present the next step
+- Do not narrate what the reader will do next. Just present the next step
 
 ### Step 5: Build Complexity Gradually
 
@@ -140,7 +155,12 @@ Document-level (document-economy module):
 - [ ] No "in summary" section that re-lists what just happened
 - [ ] No section opens by restating its heading
 
-## Required TodoWrite Items
+Audience (audience-targeting module):
+- [ ] Tier declared in Step 1, asked for when it was unstated
+- [ ] Every section serves that tier
+- [ ] Off-tier detail extracted to a linked deep dive, not deleted
+
+## Required Progress Items
 
 1. `tech-tutorial:scope-defined` - Audience, goal, and out-of-scope noted
 2. `tech-tutorial:outline-approved` - Section outline confirmed
@@ -166,8 +186,11 @@ Document-level (document-economy module):
 
 ## Exit Criteria
 
-- Tutorial outline confirmed before drafting begins
-- All code snippets tested in a real environment
-- Slop score below 1.5 (clean)
-- Quality gate checklist passed
-- User approval received
+- [ ] Tutorial outline confirmed before drafting begins
+- [ ] Audience tier declared before drafting, not after
+- [ ] All code snippets tested in a real environment
+- [ ] Slop score below 1.5 (clean)
+- [ ] Off-tier content was moved to a linked deep dive rather than
+  left in the reader's path or deleted
+- [ ] Quality gate checklist passed
+- [ ] User approval received

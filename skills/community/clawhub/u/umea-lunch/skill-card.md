@@ -1,40 +1,49 @@
-## Description: <br>
-Fetches live lunch menus from Umeå restaurants via umealunchguide.se. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets today's lunch menus from restaurants in Umeå by fetching live data from umealunchguide.se.
 
-## Publisher: <br>
-[Simskii](https://clawhub.ai/user/Simskii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simskii](https://clawhub.ai/user/simskii)
 
-## Use Case: <br>
-External users and agents use this skill to look up current lunch menus, prices, dietary tags, and restaurant details for Umeå restaurants. <br>
-
-### Deployment Geography for Use: <br>
-Global; content is focused on Umeå, Sweden. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts umealunchguide.se and displays data from that external site. <br>
-Mitigation: Install it only when live Umeå lunch menu lookup is desired, and treat returned restaurant and menu details as third-party public website data. <br>
-Risk: External provenance metadata is unavailable for this release. <br>
-Mitigation: Review the small included artifact files and the ClawHub security summary before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Umeå Lunch Guide](https://umealunchguide.se/) <br>
-- [ClawHub skill page](https://clawhub.ai/Simskii/umea-lunch) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current or date-specific Umeå restaurant lunch menus, filter by restaurant, and present dishes, prices, dietary tags, and location details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [JSON from the script, typically summarized as Markdown or plain text by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports date, restaurant-name, and restaurant-list filters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global; menu coverage is specific to Umeå, Sweden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes a live request to umealunchguide.se when asked for lunch data, so availability and returned menu content depend on that external public site.
+
+Mitigation: Use the skill when live Umeå lunch data is needed, and treat unavailable or malformed responses as an external data-source failure rather than an agent decision.
+
+## Reference(s):
+
+- [Umeå Lunch Guide](https://umealunchguide.se/)
+- [ClawHub Skill Page](https://clawhub.ai/simskii/skills/umea-lunch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [JSON from the helper script, typically summarized as Markdown or plain text by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional date, restaurant-name filter, and restaurant listing parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

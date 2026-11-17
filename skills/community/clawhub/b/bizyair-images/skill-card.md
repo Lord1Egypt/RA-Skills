@@ -1,43 +1,58 @@
-## Description: <br>
-基于 BizyAir 异步 API 的模块化图片生成助手，支持多工作流模板（web_app_id）动态切换与自定义传参。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 BizyAir 异步 API 的模块化图片生成助手，支持多工作流模板（web_app_id）动态切换与自定义传参。
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-Developers, creators, and external users use this skill to submit BizyAir image-generation jobs from text prompts, choose workflow templates, set dimensions and batch size, and retrieve generated image URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and generation settings are sent to BizyAir. <br>
-Mitigation: Do not include confidential or regulated information in prompts unless the user trusts BizyAir's handling of that data. <br>
-Risk: The skill relies on BIZYAIR_API_KEY for authenticated network calls. <br>
-Mitigation: Keep BIZYAIR_API_KEY out of chat messages, logs, and generated output. <br>
-Risk: Generated images may be downloaded to local storage. <br>
-Mitigation: Save images only to intended folders after checking the final path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bozoyan/bizyair-images) <br>
-- [BizyAir create task API endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create) <br>
-- [BizyAir output query API endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/outputs?requestId=) <br>
+## Use Case:
 
+External users and developers use this skill to create BizyAir image-generation tasks from text prompts, choose workflow templates and dimensions, and retrieve generated image URLs when a request completes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and image-result tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BIZYAIR_API_KEY, submits asynchronous BizyAir tasks, returns request IDs, status guidance, and generated image URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-controlled prompts, custom parameters, or request IDs may be assembled into shell curl commands, creating local command-execution or malformed-request risk.
+
+Mitigation: Run the skill in a sandbox, validate and quote shell inputs, and avoid accepting custom parameters or request IDs from untrusted users.
+
+Risk: Prompts and generated-image requests are sent to the BizyAir API with a bearer token.
+
+Mitigation: Use only non-sensitive prompts and a minimally scoped BizyAir API key.
+
+Risk: Optional local downloads can create path traversal or overwrite risk if arbitrary save paths are accepted.
+
+Mitigation: Allow downloads only when the runner enforces safe path validation and overwrite controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/bizyair-images)
+- [BizyAir create task API](https://api.bizyair.cn/w/v1/webapp/task/openapi/create)
+- [BizyAir task outputs API](https://api.bizyair.cn/w/v1/webapp/task/openapi/outputs?requestId=)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and image-result tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BIZYAIR_API_KEY and curl; generated images are returned as remote object URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

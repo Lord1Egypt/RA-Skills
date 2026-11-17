@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "company": "Harborline Logistics",
+    "website": "harborline-logistics.example",
+    "prepared_for": "Alex Rivera",
+    "prepared_on": "2026-09-29",
+    "contact": {"name": "Dana Whitfield", "title": "VP of Operations"},
+    "deal_type": "New-logo discovery call",
+    "our_solution": "RouteIQ dispatch optimization platform (fictional)",
+    "sample": true,
+    "practice_note": "Practice it: load this battle card into your role-play tool of choice and run the five objections out loud before the call."
+  },
+  "snapshot": {
+    "takeaways": [
+      "Leadership said on the **Q2 call** that late-delivery penalties are their biggest margin drag. Lead with dispatch accuracy, not cost savings.",
+      "Dana Whitfield inherited a **two-region consolidation** in July. Expect her to care about one standard process over feature depth.",
+      "Likely blocker: **IT security review** (a new CISO was hired in August). Ask early who signs off on data access.",
+      "Competitor **FleetWise** is probably the incumbent shortlist. Their weak spot is multi-depot balancing."
+    ]
+  },
+  "s1_account_brief": {
+    "summary": [
+      "Harborline is a regional third-party logistics provider running about 40 depots across the U.S. Southeast and Midwest, moving mid-market retail and building-products freight. Revenue is reported near $1.8B with a private-equity-backed growth strategy that leans on acquisitions.",
+      "In the last two quarters the company closed two regional acquisitions and began consolidating dispatch operations onto a single team. Management has repeatedly framed on-time performance as the metric that decides contract renewals."
+    ],
+    "business": "Asset-light 3PL: truckload brokerage plus dedicated fleet contracts and regional last-mile.",
+    "customers": "Mid-market retailers, building-products distributors, and two national grocery co-packers.",
+    "priorities": [
+      "Cut late-delivery penalties on dedicated-fleet contracts",
+      "Integrate the two acquired regional operations onto one dispatch process",
+      "Grow dedicated-fleet share of revenue"
+    ],
+    "recent_changes": [
+      {"date": "Aug 2026", "item": "Hired a new Chief Information Security Officer.", "src": ["S3"], "tag": "sourced"},
+      {"date": "Jul 2026", "item": "Closed acquisition of a Midwest regional carrier; dispatch teams merging.", "src": ["S2"], "tag": "sourced"},
+      {"date": "Jun 2026", "item": "Opened 6 roles for dispatch planners and one for a Director of Network Planning.", "src": ["S4"], "tag": "sourced"}
+    ]
+  },
+  "s2_pain_points": [
+    {
+      "challenge": "Late-delivery penalties are eroding margin on dedicated-fleet contracts.",
+      "quote": "Service failures cost us more than fuel this quarter.",
+      "speaker": "CFO",
+      "call_date": "Q2 2026 earnings call",
+      "how_we_help": "RouteIQ re-plans dispatch continuously against live ETAs, which targets the late-arrival root cause.",
+      "src": ["S1"], "tag": "sourced"
+    },
+    {
+      "challenge": "Integrating acquired operations onto a single dispatch process is slower than planned.",
+      "quote": "We are still running three dispatch playbooks across the network.",
+      "speaker": "COO",
+      "call_date": "Q2 2026 earnings call",
+      "how_we_help": "One optimization layer across depots without forcing each team to change TMS first.",
+      "src": ["S1"], "tag": "sourced"
+    },
+    {
+      "challenge": "Driver capacity is tight, and empty miles are climbing.",
+      "quote": "Empty-mile percentage rose again as we absorbed the new lanes.",
+      "speaker": "CEO",
+      "call_date": "Q2 2026 earnings call",
+      "how_we_help": "Backhaul matching and load balancing reduce deadhead. Confirm current empty-mile baseline in discovery.",
+      "src": ["S1"], "tag": "inferred"
+    }
+  ],
+  "s3_contact": {
+    "cares_about": [
+      "Getting three dispatch teams onto one repeatable process",
+      "On-time performance she can report upward each week",
+      "Hiring and retaining dispatch planners (six open roles)"
+    ],
+    "evidence": [
+      {"signal": "Company announcement names her as lead for the dispatch consolidation.", "src": ["S2"], "tag": "sourced"},
+      {"signal": "Six open dispatch-planner roles on her team suggest capacity strain.", "src": ["S4"], "tag": "inferred"}
+    ],
+    "note": "LinkedIn profile is gated. Paste her recent posts if you want the opener personalized further."
+  },
+  "s4_discovery": [
+    {"question": "Walk me through what happens today when a load is going to miss its window.", "follow_up": "Who finds out first, and how long until a decision is made?", "why": "Surfaces the penalty pain named on the Q2 call."},
+    {"question": "How are the merged regions dispatching differently right now?", "follow_up": "Which of those differences would you keep if you could?", "why": "Tests the integration-slower-than-planned admission."},
+    {"question": "What does a great week look like for your dispatch team, and what usually gets in the way?", "follow_up": "How do you measure that today?", "why": "Reveals success metrics and reporting pressure."},
+    {"question": "Tell me about the last time you evaluated a tool for planning or dispatch.", "follow_up": "What made it stall or succeed?", "why": "Finds buying history, blockers, and the incumbent."},
+    {"question": "Who else would need to be comfortable before a change to dispatch tooling goes live?", "follow_up": "What would their first question be?", "why": "Maps the committee and the likely security review."}
+  ],
+  "s5_opener": {
+    "text": "Dana, I saw Harborline closed the Midwest carrier deal in July and is folding dispatch onto one team. That usually makes late-window recovery the first thing to crack, and it is exactly where we help ops leaders get a single view.",
+    "anchor": "Acquisition announcement and dispatch consolidation",
+    "src": ["S2"]
+  },
+  "s6_committee": [
+    {"role": "Economic buyer", "person": "CFO (name on Q2 call)", "type": "Decision-maker", "judges_us_on": "Penalty reduction and payback period in under 12 months.", "verified": true},
+    {"role": "Operations lead", "person": "Dana Whitfield, VP Operations", "type": "Champion candidate", "judges_us_on": "Adoption by dispatchers and one standard process.", "verified": true},
+    {"role": "Security", "person": "New CISO (hired Aug 2026)", "type": "Blocker risk", "judges_us_on": "Data access, SOC 2, and integration footprint.", "verified": false},
+    {"role": "IT / TMS owner", "person": "Not identified", "type": "Influencer", "judges_us_on": "Integration effort with the current TMS.", "verified": false}
+  ],
+  "s7_objections": [
+    {"objection": "We are mid-integration and cannot absorb another project.", "response": "Position a two-depot pilot that runs beside existing dispatch and gives the consolidation team live data rather than another workstream.", "basis": "Integration timing from S2.", "tag": "inferred"},
+    {"objection": "We already have a TMS with routing.", "response": "Agree, then ask where late-window recovery happens today. RouteIQ layers on top and does not replace the TMS.", "basis": "Typical 3PL stack. Confirm TMS vendor in discovery.", "tag": "inferred"},
+    {"objection": "Security review will take months.", "response": "Offer the security pack up front and ask to include the CISO in call two.", "basis": "New CISO hire (S3).", "tag": "sourced"}
+  ],
+  "s8_competitors": [
+    {"name": "FleetWise", "positioning": "Broad fleet management suite with a routing module, sold to mid-market carriers.", "pricing": "Per-vehicle subscription; exact numbers not public.", "gaps": "Weaker multi-depot balancing; routing is batch, not live re-planning.", "src": ["S5"], "tag": "sourced"},
+    {"name": "Status quo (spreadsheets plus TMS)", "positioning": "Dispatchers re-plan manually in the TMS.", "pricing": "No license cost; hidden cost in planner hours.", "gaps": "Three playbooks across regions, which is the pain named on the Q2 call.", "src": ["S1"], "tag": "inferred"}
+  ],
+  "s9_battlecard": [
+    {"objection": "Your price is higher than what we pay today.", "real_concern": "Fear of a cost line that cannot be tied to penalties saved.", "response": "Frame against penalty dollars, not license cost, then size the penalty base together.", "proof_point": "Fictional case: a 30-depot 3PL cut late penalties 22% in two quarters.", "question_back": "What did late penalties cost you last quarter?"},
+    {"objection": "We do not have time for a rollout right now.", "real_concern": "Integration fatigue after two acquisitions.", "response": "Pilot on two depots, no TMS change, 30-day read-out.", "proof_point": "Fictional case: pilot live in 12 business days.", "question_back": "Which two depots are the noisiest today?"},
+    {"objection": "We need IT and security to look at this first.", "real_concern": "New CISO wants control of vendor access.", "response": "Send the security pack today and invite them to the next call.", "proof_point": "SOC 2 Type II report available (confirm status before saying this).", "question_back": "Who owns vendor security review, and what does their process look like?"},
+    {"objection": "How is this different from FleetWise?", "real_concern": "Wants to avoid a second evaluation cycle.", "response": "Live re-planning across depots versus batch routing per vehicle.", "proof_point": "Side-by-side on a real lane set in the pilot.", "question_back": "Which capabilities in that evaluation mattered most?"},
+    {"objection": "Our dispatchers will not adopt it.", "real_concern": "Six open planner roles, change fatigue.", "response": "Recommendations, not auto-dispatch; planners approve every change.", "proof_point": "Fictional: 85% planner acceptance rate in pilot.", "question_back": "What would make a planner trust a recommendation on day one?"}
+  ],
+  "s10_followup": {
+    "email": {
+      "subject": "Late-window recovery across your merged depots",
+      "body": "Hi Dana,\n\nThanks for the time today. You described three dispatch playbooks running side by side, and the Q2 call put late-delivery penalties at the top of the margin story.\n\nAs discussed, I will send the two-depot pilot outline and our security pack by Friday so your security team can review in parallel.\n\nWould a 20-minute call next week with whoever owns vendor security work?\n\nBest,\nAlex"
+    },
+    "touches": [
+      {"timing": "Day 2", "channel": "Email", "touch": "Two-page pilot outline sized to two depots, plus the security pack.", "tied_to": "Integration fatigue"},
+      {"timing": "Day 7", "channel": "LinkedIn", "touch": "Share a short piece on late-window recovery benchmarks for 3PLs.", "tied_to": "Penalty pain"},
+      {"timing": "Day 14", "channel": "Call", "touch": "Invite the CISO to a 20-minute security walkthrough.", "tied_to": "Security review"}
+    ]
+  },
+  "gaps": [
+    {"stage": 3, "missing": "LinkedIn profile for Dana Whitfield is login-gated.", "ask": "Paste her last 3 posts or headline."},
+    {"stage": 6, "missing": "CISO name and TMS owner not publicly verified.", "ask": "Confirm names from your CRM."},
+    {"stage": 8, "missing": "FleetWise pricing is not public.", "ask": "Paste any lost-deal notes with competitor pricing."},
+    {"stage": 9, "missing": "Real customer proof points and SOC 2 status.", "ask": "Paste approved case studies and security status."}
+  ],
+  "sources": [
+    {"id": "S1", "title": "Harborline Logistics Q2 2026 earnings call transcript (fictional)", "url": "https://investors.harborline-logistics.example/q2-2026", "accessed": "2026-09-29"},
+    {"id": "S2", "title": "Press release: Harborline completes Midwest carrier acquisition (fictional)", "url": "https://harborline-logistics.example/news/acquisition", "accessed": "2026-09-29"},
+    {"id": "S3", "title": "Press release: Harborline names Chief Information Security Officer (fictional)", "url": "https://harborline-logistics.example/news/ciso", "accessed": "2026-09-29"},
+    {"id": "S4", "title": "Harborline careers page, dispatch roles (fictional)", "url": "https://harborline-logistics.example/careers", "accessed": "2026-09-29"},
+    {"id": "S5", "title": "FleetWise product page (fictional)", "url": "https://fleetwise.example/routing", "accessed": "2026-09-29"}
+  ]
+}

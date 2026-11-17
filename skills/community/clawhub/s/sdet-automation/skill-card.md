@@ -1,43 +1,53 @@
-## Description: <br>
-Professional test automation career roadmap platform that generates personalized learning paths for SDET and automation engineers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional test automation career roadmap platform that generates personalized learning paths for SDET and automation engineers.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-SDET professionals, QA teams, hiring managers, and education programs use this skill to generate personalized test automation career roadmaps from assessment data about experience, skills, goals, sessions, and timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career assessment requests may send personal career, employer, project, customer, session, or user identifier data to the provider API. <br>
-Mitigation: Send only the minimum assessment details required for roadmap generation, use pseudonymous session identifiers, leave userId unset unless needed, and avoid sensitive employer, project, customer, or personal details. <br>
+## Use Case:
 
+SDET professionals, QA automation teams, hiring managers, and training providers use this skill to generate personalized test automation career roadmaps from experience, skills, goals, and session context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/sdet-automation) <br>
-- [Kong Route](https://api.mkkpro.com/career/sdet-automation) <br>
-- [API Docs](https://api.mkkpro.com:8059/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [JSON responses and human-facing roadmap guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns career roadmap phases, skill gaps, recommended certifications, milestones, session identifiers, timestamps, and success status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Career assessment details, session identifiers, timestamps, and optional user identifiers are sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, employer-confidential material, and unnecessary personal data in assessment fields; review the provider's privacy terms before use when retention or sharing matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/sdet-automation)
+- [Kong Route](https://api.mkkpro.com/career/sdet-automation)
+- [API Docs](https://api.mkkpro.com:8059/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, guidance]
+
+**Output Format:** [Markdown and JSON-style roadmap guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces personalized roadmap phases, skill gaps, recommended certifications, milestones, and status fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

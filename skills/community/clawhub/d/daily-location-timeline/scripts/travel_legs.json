@@ -1,0 +1,111 @@
+{
+  "_说明": "出行腿示例模板。这是「最硬的地理位置证据」的结构化格式，供 rebuild_final.py 消费。使用时把示例替换为你自己的票务记录；字段定义见 references/travel_legs_schema.md。城市统一用 region/city 两级短格式（国内如 浙江/杭州，海外如 Thailand/Bangkok）。",
+  "flights": [
+    {
+      "type": "flight",
+      "dep_date": "2024-07-18",
+      "arr_date": "2024-07-18",
+      "dep_min": 630,
+      "arr_min": 815,
+      "from": "浙江/杭州",
+      "to": "甘肃/兰州",
+      "no": "9C7088",
+      "status": "未上传凭证",
+      "raw": "2024-07-18 10:30 杭州→兰州 9C7088 (示例)"
+    },
+    {
+      "type": "flight",
+      "dep_date": "2024-04-05",
+      "arr_date": "2024-04-06",
+      "dep_min": 1420,
+      "arr_min": 140,
+      "from": "海南/海口",
+      "to": "浙江/杭州",
+      "no": "JD5969",
+      "status": "已使用",
+      "raw": "2024-04-05 23:40 海口→杭州 JD5969 (跨夜红眼,示例)"
+    },
+    {
+      "type": "flight",
+      "dep_date": "2025-03-05",
+      "arr_date": "2025-03-05",
+      "dep_min": 540,
+      "arr_min": 595,
+      "from": "Japan/Tokyo",
+      "to": "Thailand/Bangkok",
+      "no": "TG643",
+      "status": "已使用",
+      "raw": "2025-03-05 09:00 Tokyo(NRT)→Bangkok(BKK) TG643 (海外示例;dep/arr均用当地时间)"
+    }
+  ],
+  "trains": [
+    {
+      "type": "train",
+      "dep_date": "2024-07-24",
+      "arr_date": "2024-07-25",
+      "dep_min": 1250,
+      "arr_min": 1040,
+      "from": "青海/西宁",
+      "to": "西藏/拉萨",
+      "no": "Y839",
+      "seat": "硬卧",
+      "status": "有效",
+      "stops": [
+        "青海/格尔木",
+        "西藏/那曲"
+      ],
+      "raw": "2024-07-24 20:50 西宁→拉萨 Y839 (青藏铁路跨夜,经停格尔木02:50/那曲,17:20抵拉萨,示例)"
+    },
+    {
+      "type": "train",
+      "dep_date": "2024-07-18",
+      "arr_date": "2024-07-19",
+      "dep_min": 1000,
+      "arr_min": null,
+      "from": "甘肃/兰州",
+      "to": "青海/西宁",
+      "no": "(口述)",
+      "status": "用户口述",
+      "raw": "2024-07-18 兰州→西宁 (火车,订单缺失,用户口述补腿,示例)"
+    },
+    {
+      "type": "train",
+      "dep_date": "2023-10-01",
+      "arr_date": "2023-10-03",
+      "dep_min": 540,
+      "arr_min": 1200,
+      "from": "广东/深圳",
+      "to": "湖南/长沙",
+      "no": "自驾",
+      "seat": "",
+      "status": "用户口述",
+      "raw": "2023-10-01~10-03 深圳→长沙 自驾 (无票,靠导航App每日打卡定城市,示例)"
+    },
+    {
+      "type": "train",
+      "dep_date": "2025-03-09",
+      "arr_date": "2025-03-09",
+      "dep_min": 480,
+      "arr_min": 550,
+      "from": "Thailand/Bangkok",
+      "to": "Thailand/Chiang Mai",
+      "no": "NOK DD8302",
+      "seat": "",
+      "status": "已使用",
+      "raw": "2025-03-09 08:00 Bangkok(DMK)→Chiang Mai 廉航 (海外国内段示例)"
+    },
+    {
+      "type": "train",
+      "dep_date": "2025-03-03",
+      "arr_date": "2025-03-03",
+      "dep_min": 420,
+      "arr_min": 555,
+      "from": "Japan/Tokyo",
+      "to": "Japan/Kyoto",
+      "no": "Shinkansen Nozomi",
+      "seat": "指定席",
+      "status": "已使用",
+      "raw": "2025-03-03 07:00 Tokyo→Kyoto 新干线 (海外铁路示例,无统一票号可用乘車券记录)"
+    }
+  ]
+}

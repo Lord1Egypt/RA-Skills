@@ -6,30 +6,92 @@ import { writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { klingPost, klingGet, makeKlingHeaders } from './client.mjs';
 
+const TASKS_QUERY_PATH = '/tasks';
+
+function isTasksQueryPath(apiPath) {
+  return apiPath === TASKS_QUERY_PATH || String(apiPath || '').startsWith(`${TASKS_QUERY_PATH}?`);
+}
+
+function asTaskList(data) {
+  if (Array.isArray(data)) return data;
+  if (data && typeof data === 'object') return [data];
+  return [];
+}
+
+/** New video APIs: data.id / data.status=succeeded; /v1 image+element: data.task_id / task_status=succeed */
+export function taskIdOf(data) {
+  return data?.id || data?.task_id || '';
+}
+
+export function taskStatusOf(data) {
+  return data?.status || data?.task_status || '';
+}
+
+export function taskMessageOf(data) {
+  return data?.message || data?.task_status_msg || '';
+}
+
+export function isTaskSucceeded(status) {
+  return status === 'succeeded' || status === 'succeed';
+}
+
+export function isTaskFailed(status) {
+  return status === 'failed';
+}
+
+export function resultUrlOf(data, urlField = 'url') {
+  const outputs = data?.outputs;
+  if (Array.isArray(outputs)) {
+    const video = outputs.find((item) => item?.type === 'video' && item?.[urlField]);
+    if (video?.[urlField]) return video[urlField];
+    const any = outputs.find((item) => item?.[urlField]);
+    if (any?.[urlField]) return any[urlField];
+  }
+  const output = data?.task_result || {};
+  return output[urlField]
+    || output?.videos?.[0]?.[urlField]
+    || output?.images?.[0]?.url
+    || (typeof output === 'string' ? output : null);
+}
+
 /**
  * 提交任务
- * @param {string} apiPath  如 /v1/videos/image2video
+ * @param {string} apiPath  如 /text-to-video/kling-3.0 或 /v1/images/generations
  * @param {object} payload  请求体
  * @param {string} [token]
  * @returns {Promise<{taskId: string, status: string, data: object}>}
  */
 export async function submitTask(apiPath, payload, token) {
   const data = await klingPost(apiPath, payload, token);
-  const taskId = data?.task_id;
-  if (!taskId) throw new Error('API did not return task_id / API 未返回 task_id');
+  const taskId = taskIdOf(data);
+  if (!taskId) throw new Error('API did not return task id / API 未返回任务 ID');
+  const status = taskStatusOf(data) || 'submitted';
   console.log(`Task submitted / 任务已提交: ${taskId}`);
-  console.log(`Status / 状态: ${data.task_status || 'submitted'}`);
-  return { taskId, status: data.task_status || 'submitted', data };
+  console.log(`Status / 状态: ${status}`);
+  return { taskId, status, data };
 }
 
 /**
  * 查询任务状态
- * @param {string} apiPath  如 /v1/videos/image2video
+ * 新视频接口：GET /tasks?task_ids=
+ * 图片/主体 /v1：GET {apiPath}/{taskId}
+ * @param {string} apiPath
  * @param {string} taskId
  * @param {string} [token]
  * @returns {Promise<object>} task data
  */
 export async function queryTask(apiPath, taskId, token) {
+  if (isTasksQueryPath(apiPath)) {
+    const data = await klingGet(
+      `${TASKS_QUERY_PATH}?task_ids=${encodeURIComponent(taskId)}`,
+      token,
+      { contentType: 'application/json' },
+    );
+    const list = asTaskList(data);
+    const hit = list.find((item) => String(taskIdOf(item)) === String(taskId)) || list[0];
+    if (!hit) throw new Error(`Task not found / 未找到任务: ${taskId}`);
+    return hit;
+  }
   return klingGet(`${apiPath}/${taskId}`, token);
 }
 
@@ -48,11 +110,11 @@ export async function pollTask(apiPath, taskId, opts = {}) {
   console.log('Waiting for task... / 等待任务完成...');
   while (true) {
     const data = await queryTask(apiPath, taskId, token);
-    const status = data?.task_status;
+    const status = taskStatusOf(data);
     console.log(`Status / 状态: ${status}`);
-    if (status === 'succeed') return data;
-    if (status === 'failed') {
-      throw new Error(`Task failed / 任务失败: ${data?.task_status_msg || 'Unknown error'}`);
+    if (isTaskSucceeded(status)) return data;
+    if (isTaskFailed(status)) {
+      throw new Error(`Task failed / 任务失败: ${taskMessageOf(data) || 'Unknown error'}`);
     }
     await new Promise(r => setTimeout(r, interval));
   }
@@ -89,12 +151,7 @@ export async function pollAndDownload(apiPath, taskId, outputDir, opts = {}) {
   const data = await pollTask(apiPath, taskId, opts);
   const urlField = opts.urlField || 'url';
   const ext = opts.ext || '.mp4';
-  const output = data?.task_result || {};
-  // 支持多种输出结构
-  const url = output[urlField]
-    || output?.videos?.[0]?.[urlField]
-    || output?.images?.[0]?.url
-    || (typeof output === 'string' ? output : null);
+  const url = resultUrlOf(data, urlField);
   if (!url) throw new Error(`Task succeeded but missing ${urlField} / 任务成功但未返回 ${urlField}`);
   await mkdir(outputDir, { recursive: true });
   const outPath = join(outputDir, `${taskId}${ext}`);

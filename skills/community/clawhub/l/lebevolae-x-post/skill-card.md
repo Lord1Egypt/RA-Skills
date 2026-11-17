@@ -1,41 +1,50 @@
-## Description: <br>
-Automatically posts text or a single local image to X/Twitter using provided developer credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically post text or a single local image tweet to X/Twitter using provided developer credentials.
 
-## Publisher: <br>
-[lebevolae](https://clawhub.ai/user/lebevolae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lebevolae](https://clawhub.ai/user/lebevolae)
 
-## Use Case: <br>
-Developers and social media operators use this skill to let an agent publish text posts or single-image posts to X/Twitter with configured OAuth credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using this skill can publish text or a local image through the user's X/Twitter account. <br>
-Mitigation: Review the exact text and image before posting, avoid private media, and use revocable, least-privilege developer credentials. <br>
-Risk: Configured X/Twitter credentials could grant account write access beyond a single post. <br>
-Mitigation: Use dedicated developer credentials with only the permissions needed for posting and rotate or revoke them when no longer needed. <br>
+## Use Case:
 
+Developers and social-media operators can use this skill to let an agent prepare and publish X/Twitter posts containing text or one local image from a configured account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lebevolae/lebevolae-x-post) <br>
-- [X Developer Platform](https://developer.twitter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with requested post content, local image path details, and credential setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish text and one local image through the user's X/Twitter account when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can publish content to X/Twitter using account write credentials without defined confirmation, account scoping, or rollback safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, keep secrets out of shared configuration, and manually confirm the exact text, image, and target account before allowing a post.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lebevolae/skills/lebevolae-x-post)
+- [X Developer Platform](https://developer.twitter.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown guidance with posting examples and credential requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish a public X/Twitter post from the configured account; supports text or one local image.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

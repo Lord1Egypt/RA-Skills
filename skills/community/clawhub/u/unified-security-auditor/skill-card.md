@@ -1,41 +1,57 @@
-## Description: <br>
-Unified application security skill for Coding Agent systems like OpenCode, used when reviewing or writing code that touches authentication, authorization, user input, payments, database access, secrets, deployment, dependencies, or AI/agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified application security skill for Coding Agent systems like OpenCode, used when reviewing or writing code that touches authentication, authorization, user input, payments, database access, secrets, deployment, dependencies, or AI/agent workflows.
 
-## Publisher: <br>
-[selimerunkut](https://clawhub.ai/user/selimerunkut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-SA-4.0 <br>
+## Publisher:
 
+[selimerunkut](https://clawhub.ai/user/selimerunkut)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit codebases, review security-sensitive changes, and produce prioritized remediation guidance for application, dependency, deployment, and agentic AI risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to save a dated security audit report into the current project. <br>
-Mitigation: Confirm whether the report should remain in chat or be written to disk, and confirm the destination path before creating a file. <br>
+## Use Case:
 
+Developers and engineers use this skill to review codebases and implementation plans for application security issues, especially in authentication, authorization, secrets handling, dependency risk, deployment hardening, CI/CD automation, and AI/agent workflows. It supports both proactive secure coding guidance and structured audit reports organized by severity.
 
-## Reference(s): <br>
-- [claude-code-owasp](https://github.com/agamm/claude-code-owasp) <br>
-- [trailofbits/skills](https://github.com/trailofbits/skills) <br>
-- [vibe-security-skill](https://github.com/raroque/vibe-security-skill) <br>
-- [VibeSec-Skill](https://github.com/BehiSecc/VibeSec-Skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with structured findings, prioritized recommendations, and optional diff snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a dated markdown audit report when the user requests a file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can generate audit reports as Markdown files in the active repository, which may surprise users if the destination is not agreed in advance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly and confirm the target folder or report path before asking it to write an audit report.
+
+Risk: Security findings and remediation advice may be incomplete or context-sensitive even when the skill reports no embedded execution or hidden data movement.
+
+Mitigation: Review findings, proposed fixes, and severity ratings before relying on them for production security decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/selimerunkut/skills/unified-security-auditor)
+- [claude-code-owasp](https://github.com/agamm/claude-code-owasp)
+- [trailofbits/skills](https://github.com/trailofbits/skills)
+- [vibe-security-skill](https://github.com/raroque/vibe-security-skill)
+- [VibeSec-Skill](https://github.com/BehiSecc/VibeSec-Skill)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown findings, prioritized summaries, remediation guidance, code diffs, and secure implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate dated Markdown audit reports when explicitly requested; findings are organized by severity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

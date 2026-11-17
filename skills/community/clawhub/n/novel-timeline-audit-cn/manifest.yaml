@@ -1,0 +1,26 @@
+name: novel-timeline-audit-cn
+slug: novel-timeline-audit-cn
+display_name: 小说时间线约束核对
+description: 输入带章节或场景编号的事件、明确日期或相对时间、行程时长及允许闪回说明，交付故事时间排序表、时序、年龄和行程冲突证据及最小修订选项。适用于小说修订前核对；缺少时间或顺序依据时明确列为缺项，不能计算的区间标为未定，绝不以章节号虚构日期。
+version: 1.0.0
+repository: https://github.com/xxjrq/novel-timeline-audit-cn
+icon: icon-512.png
+license: MIT-0
+tags:
+  - 小说创作
+  - 时间线
+  - 连续性核对
+  - 编辑工具
+trigger_words:
+  - 小说时间线
+  - 时间冲突核对
+  - 行程时长矛盾
+interface:
+  display_name: "小说时间线约束核对"
+  short_description: "核对小说事件时间、年龄与行程约束并给出最小修订选项"
+  default_prompt: "使用 $novel-timeline-audit-cn 根据我提供的章节或场景事件核对故事时间线约束；保留明确闪回，并列出缺项与未定区间。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true
+self_test: python3 scripts/self_test.py

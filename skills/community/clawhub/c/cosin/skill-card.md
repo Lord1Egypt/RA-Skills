@@ -1,41 +1,61 @@
-## Description: <br>
-Use this skill when an agent needs to operate the `cosin` CLI from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an agent needs to operate the `cosin` CLI from the terminal to list available skills, call COS API paths, and call `/cos/...` skills through x402 pay-and-call requests.
 
-## Publisher: <br>
-[0xcipher0](https://clawhub.ai/user/0xcipher0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcipher0](https://clawhub.ai/user/0xcipher0)
 
-## Use Case: <br>
-Developers and agents use this skill to operate the `cosin` CLI for COS API calls, skill catalog discovery, and `/cos/...` skill requests from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: COS bearer tokens can be exposed through shell history, logs, or CI output when passed directly as `--key <token>`. <br>
-Mitigation: Use a protected environment variable, stdin prompt, or secret manager for tokens where possible, and rotate any token that may have been exposed. <br>
-Risk: `/cos/...` paths are converted into x402 pay-and-call requests to the COS backend. <br>
-Mitigation: Confirm the request path, method, and user intent before running commands that invoke `/cos/...` skill paths. <br>
+## Use Case:
 
+Developers and agents use this skill to run authenticated `cosin` CLI commands, validate relative COS paths, inspect available COS-backed skills, and submit direct COS API or `/cos/...` skill requests from the terminal.
 
-## Reference(s): <br>
-- [Cosin on ClawHub](https://clawhub.ai/0xcipher0/cosin) <br>
-- [COS Skills Catalog](https://skills.bankofuniverse.org/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI command shapes, input validation guidance, and response-reading guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: COS bearer tokens may grant broad authenticated and payment-backed API access if exposed or reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privileged tokens; do not print, commit, or hardcode tokens; review commands before execution.
+
+Risk: The `--base-url` override can send authenticated requests to an unintended endpoint.
+
+Mitigation: Use `--base-url` only with a known trusted HTTPS COS endpoint.
+
+Risk: Running an unpinned CLI package with a live token increases supply-chain and credential exposure risk.
+
+Mitigation: Prefer a pinned or locally verified `cosin` CLI before using live credentials.
+
+Risk: `/cos/...` requests are routed as x402 pay-and-call operations and may trigger paid actions.
+
+Mitigation: Confirm the target path, method, and request body before submitting payment-backed calls.
+
+## Reference(s):
+
+- [COS skills catalog endpoint](https://skills.bankofuniverse.org/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a sensitive COS bearer token supplied at runtime.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

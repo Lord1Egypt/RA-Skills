@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920" role="img" aria-labelledby="title desc">
+<title id="title">海盐青 9:16 口播视频底图</title>
+<desc id="desc">1080×1920 可编辑矢量背景，不含文字与人物。</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F7FFFD"/><stop offset="0.6" stop-color="#E6F4F1"/><stop offset="1" stop-color="#D8F5EF"/></linearGradient>
+<radialGradient id="mint" cx="0.9" cy="0.08" r="0.5"><stop stop-color="#5EEAD4" stop-opacity="0.34"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient>
+<pattern id="grain" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="4" cy="5" r="1" fill="#0F766E" fill-opacity="0.024"/><circle cx="16" cy="13" r="1" fill="#14B8A6" fill-opacity="0.026"/></pattern>
+</defs>
+
+<rect width="1080" height="1920" fill="url(#bg)"/>
+<rect width="1080" height="1920" fill="url(#mint)"/>
+<rect width="1080" height="1920" fill="url(#grain)"/>
+<path d="M700-40C880-40 1080 60 1080 250S900 480 730 390 570 30 700-40Z" fill="#5EEAD4" fill-opacity="0.18"/>
+<path d="M-90 1400C60 1280 260 1350 320 1540S180 1900-40 1850Z" fill="#14B8A6" fill-opacity="0.12"/>
+<path d="M780 1480C930 1400 1080 1510 1080 1680S920 1920 760 1850 640 1560 780 1480Z" fill="#5EEAD4" fill-opacity="0.10"/>
+<path d="M0 1250C220 1160 380 1200 540 1300S850 1470 1080 1370" fill="none" stroke="#14B8A6" stroke-opacity="0.16" stroke-width="3"/>
+<path d="M80 110H410" stroke="#14B8A6" stroke-opacity="0.28" stroke-width="4"/>
+
+</svg>

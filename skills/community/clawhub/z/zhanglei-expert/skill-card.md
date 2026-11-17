@@ -1,40 +1,53 @@
-## Description: <br>
-Provides decision-support guidance based on Zhang Lei-style long-term value investing frameworks for evaluating companies, industries, founders, embodied AI, and overseas expansion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language decision support for long-term value evaluation, industry restructuring, barbell theory, embodied intelligence, and globalization strategy using Zhang Lei-inspired investment mental models.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Investors, founders, and strategy teams use this skill to frame long-term value questions, assess industry and company durability, evaluate founders, and stress-test opportunities in China, AI, embodied intelligence, and overseas expansion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment outputs may be incomplete, outdated, or unsuitable as financial advice. <br>
-Mitigation: Treat outputs as informational, verify factual and market claims independently, and seek qualified advice before making financial decisions. <br>
-Risk: Users may include private financial account details or sensitive personal data in prompts. <br>
-Mitigation: Avoid sharing private account information, credentials, or sensitive personal data when using the skill. <br>
+## Use Case:
 
+External users and agents use this skill to frame investment and strategy questions through Zhang Lei-style long-term value, founder assessment, China opportunity, AI, and globalization mental models. It is intended for analytical guidance and should be paired with independent market verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/zhanglei-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text responses with structured analysis and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational investment framing; no code execution, network use, credential access, or persistence indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Finance-oriented framing may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as general analysis, verify market facts independently, and avoid treating outputs as personalized financial advice.
+
+Risk: The Zhang Lei-inspired perspective may emphasize long-term China, hard technology, embodied intelligence, and outbound-growth assumptions.
+
+Mitigation: Compare outputs with independent research and alternative investment frameworks before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/zhanglei-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured analytical checklists and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language finance-oriented mental-model analysis; no executable code.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

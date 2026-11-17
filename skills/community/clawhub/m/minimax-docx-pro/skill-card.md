@@ -1,43 +1,59 @@
-## Description: <br>
-Enterprise-grade Word document generation. Creates validated .docx files with professional formatting, visual hierarchy, and cross-application compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade Word document generation. Creates validated .docx files with professional formatting, visual hierarchy, and cross-application compatibility.
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-Developers and document authors use this skill to create polished Word documents from scratch or apply updates to user-provided DOCX/DOC templates while preserving structure and validating the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically download and run a .NET installer and modify the user's home-directory .NET installation. <br>
-Mitigation: Install .NET 9 manually first, review setup/build/audit commands before running them, and do not permit removal of ~/.dotnet unless that directory is disposable. <br>
+## Use Case:
 
+Developers and document-producing agents use this skill to create, rebuild, inspect, and validate professional Word documents, including template-based updates and from-scratch document generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luaqnyin/minimax-docx-pro) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Create workflow](artifact/guides/create-workflow.md) <br>
-- [Template apply workflow](artifact/guides/template-apply-workflow.md) <br>
-- [DOC input normalization protocol](artifact/guides/doc-input-normalization.md) <br>
-- [C# OpenXML coding guide](artifact/guides/development.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance, Text] <br>
-**Output Format:** [DOCX files with text previews, validation reports, Markdown guidance, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and .NET 9.0 SDK for core workflows; LibreOffice, Pandoc, matplotlib, Playwright, and Pillow are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can automatically download and run a .NET installer and write persistent files under ~/.dotnet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall the required .NET runtime or remove the auto-provisioning path before deployment in environments where network installation or persistent home-directory writes are not acceptable.
+
+Risk: Audit and template-apply workflows inspect or extract user-supplied DOCX archives.
+
+Mitigation: Run DOCX processing in a sandbox with archive extraction limits, especially for untrusted documents or shared worker environments.
+
+## Reference(s):
+
+- [MiniMax DOCX Pro on ClawHub](https://clawhub.ai/luaqnyin/skills/minimax-docx-pro)
+- [Create Workflow](guides/create-workflow.md)
+- [Template Apply Workflow](guides/template-apply-workflow.md)
+- [Document Input Normalization Protocol](guides/doc-input-normalization.md)
+- [Document Visual System](guides/styling.md)
+- [Troubleshooting Guide](guides/troubleshooting.md)
+- [Mapping Schema](schemas/mapping.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands and generated DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces validated Word documents and may emit mapping JSON, previews, diagnostics, and audit results during document generation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "stranger-approach-warning-analysis"
 description: "Detects the appearance of strangers near minors and actively issues safety reminder alerts to protect minor safety, suitable for homes, schools, childcare centers, and other scenarios. | 陌生人靠近预警技能，检测未成年人身边出现陌生人员，主动发出安全提醒预警，守护未成年人安全，适用于家庭、学校、托管场所等场景"
-version: "1.0.7"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

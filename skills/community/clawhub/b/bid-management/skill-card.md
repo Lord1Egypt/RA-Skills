@@ -1,41 +1,53 @@
-## Description: <br>
-Helps teams manage tender and bid preparation by turning solicitation documents into bid checklists, overall plans, file directory structures, and single-source procurement explanations when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages bid-preparation workflows from tender documents, producing bid checklists, overall bid plans, document directory structures, and single-source procurement explanations when needed.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Sales, procurement, and proposal teams use this skill to parse tender documents, identify requirements and disqualification risks, plan milestones, organize bid files, and draft single-source procurement rationale when applicable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tender files and generated bid materials may contain confidential business information. <br>
-Mitigation: Keep files local by default, limit sharing to authorized stakeholders, and review generated outputs before distribution. <br>
-Risk: Optional WeCom delivery could send sensitive attachments to the wrong recipient or channel. <br>
-Mitigation: Explicitly verify each WeCom recipient, channel, and attachment before sending. <br>
+## Use Case:
 
+Sales, proposal, and procurement teams use this skill to turn tender documents into actionable bid preparation materials, including requirement checklists, risk items, schedules, file structures, and single-source procurement drafts. It supports structured bid planning while leaving final compliance, facts, redactions, and recipient decisions to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/bid-management) <br>
-- [Publisher profile](https://clawhub.ai/user/andyrenxu7255) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown tables, Markdown directory trees, and optional spreadsheet or document files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May package checklist and bid plan content as multi-sheet Excel output or single-source rationale as a Word-style document when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: Tender documents and generated bid files may contain confidential business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat uploaded tender documents and generated bid files as confidential, and confirm recipients, channel, and redactions before packaging or sending files.
+
+Risk: Generated bid checklists, plans, and procurement explanations may affect proposal compliance if they omit requirements or include unsupported claims.
+
+Mitigation: Review generated materials against the tender document, verify facts before submission, and use the skill only for explicit bid-preparation tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andyrenxu7255/skills/bid-management)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown tables, directory trees, and document/file preparation guidance; may include Excel or Word document outputs when requested by the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cover all tender requirements, highlight disqualification risks, provide executable timelines, and avoid unsupported or unrelated generic content.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

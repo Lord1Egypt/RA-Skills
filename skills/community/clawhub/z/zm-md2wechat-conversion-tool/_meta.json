@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-md2wechat-conversion-tool",
+  "displayName": "ZM Markdown 转公众号格式工具",
   "version": "0.1.0",
-  "publishedAt": 1782241907934
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "将 Markdown 转为微信公众号 HTML，检查主题、图片、样式和草稿创建能力；正式发布需配合草稿核验流程。"
 }

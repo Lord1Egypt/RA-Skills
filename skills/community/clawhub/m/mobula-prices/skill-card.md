@@ -1,42 +1,56 @@
-## Description: <br>
-Real-time token prices, market caps, volume, and analytics across 88+ blockchains. Free tier, no credit card required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time token prices, market caps, volume, and analytics across 88+ blockchains. Free tier, no credit card required.
 
-## Publisher: <br>
-[flotapponnier](https://clawhub.ai/user/flotapponnier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flotapponnier](https://clawhub.ai/user/flotapponnier)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for public crypto prices, token market data, historical price trends, recent pool trades, and token metadata from Mobula. It is intended for market-data lookup and analysis, not trading execution or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Mobula API key, which could be exposed if printed in logs or saved carelessly. <br>
-Mitigation: Use a dedicated Mobula API key, pass it through temporary environment configuration when practical, and avoid logging or committing the key. <br>
-Risk: Crypto market data can be misread as trading or investment advice. <br>
-Mitigation: Treat returned prices, volume, and analytics as informational only and avoid using the skill to execute trades or make investment decisions without independent review. <br>
+## Use Case:
 
+External users and developers use this skill with OpenClaw agents to retrieve current and historical crypto market data, compare tokens, inspect token metadata, and review recent pool trades. The skill is read-only and does not execute trades, access wallets, sign transactions, or manage private keys.
 
-## Reference(s): <br>
-- [Mobula](https://mobula.io) <br>
-- [Mobula API documentation](https://docs.mobula.io) <br>
-- [ClawHub skill page](https://clawhub.ai/flotapponnier/mobula-prices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with market data summaries and occasional inline shell commands for API key setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOBULA_API_KEY for Mobula API access; market data should be treated as informational.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Mobula receives token lookup queries and the Mobula API key used for requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, store the API key in a protected environment or secret manager, and rotate the key if it is exposed.
+
+Risk: Recent-trades queries can be incorrect when a token address is supplied where the Mobula endpoint expects a liquidity pool address.
+
+Mitigation: Verify that recent-trades requests use a pool or pair address, and use token metadata or other supported endpoints when the pool address is not known.
+
+## Reference(s):
+
+- [Mobula Homepage](https://mobula.io)
+- [Mobula API Documentation](https://docs.mobula.io)
+- [Mobula Supported Blockchains](https://docs.mobula.io/blockchains)
+- [ClawHub Skill Page](https://clawhub.ai/flotapponnier/skills/mobula-prices)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown market-data summaries with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOBULA_API_KEY; recent trades queries require a liquidity pool address rather than a token address.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

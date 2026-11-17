@@ -1,0 +1,30 @@
+{
+  "name": "douyin-news-brief",
+  "version": "1.4.2",
+  "description": "抖音新闻简报，一个关键词搜索最新/综合/高赞视频，根据获得的实时数据进行信息聚合后生成智能摘要、热点聚类、舆情分析和深度解读报告，包含详细信息源列表，适用于AI agent进行抖音社媒资讯分析。当用户需要新闻搜索、舆情分析、需求洞察、热点追踪、情报获取、资讯聚合、新闻解读、抖音搜索、事件追踪、行业情报等场景时。",
+  "keywords": [
+    "douyin",
+    "search",
+    "hot",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node src/douyin/search-cli.js",
+    "post": "node src/douyin/post-cli.js",
+    "comment": "node src/douyin/comment-cli.js",
+    "detail": "node src/douyin/detail-cli.js",
+    "hot": "node src/douyin/hot-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/douyin-search-openclaw.git"
+  }
+}

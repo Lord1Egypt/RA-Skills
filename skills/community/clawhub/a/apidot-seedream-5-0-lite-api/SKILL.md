@@ -20,6 +20,15 @@ This skill is for routing Seedream 5.0 Lite questions to the right APIDot docs, 
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Seedream 5.0 Lite model page: https://apidot.ai/models/seedream-5-0-lite
+- Read Seedream 5.0 Lite API docs: https://apidot.ai/docs/seedream-5-0-lite
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

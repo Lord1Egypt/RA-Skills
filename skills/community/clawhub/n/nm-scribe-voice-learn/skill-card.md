@@ -1,45 +1,58 @@
-## Description: <br>
-Improves a voice profile by learning from manual edits after generated text is edited, refining registers and reducing voice drift over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improves a voice profile by learning from manual edits. Use after editing generated text to refine registers and close voice drift over time
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and writers use this skill after manual edits to generated text to identify recurring voice patterns, maintain a local learning accumulator, and propose updates to voice-profile rules for user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Writing samples and edit history may be stored locally in the voice-profile learning directory. <br>
-Mitigation: Use the skill only on material appropriate for local retention, manage local access to the profile directory, and delete or archive snapshots when they are no longer needed. <br>
-Risk: Broad trigger terms may cause the skill to be invoked when the user did not intend to run the learning workflow. <br>
-Mitigation: Invoke the skill deliberately and review its proposed changes before allowing any profile updates. <br>
-Risk: Weak or one-off edit patterns could overfit the voice profile and reduce future output quality. <br>
-Mitigation: Keep the documented evidence thresholds and user-approval step before modifying register or craft rules. <br>
+## Use Case:
 
+Writers and developers use this skill after manually editing generated text to identify recurring changes and propose focused updates to a voice profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-voice-learn) <br>
-- [Plugin homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
-- [Pattern analysis module](modules/pattern-analysis.md) <br>
-- [Snapshot management module](modules/snapshot-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed profile-rule edits and accumulator updates for user review; may read and write local snapshot and profile files when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence; artifact frontmatter reports 1.9.8) <br>
+Risk: The security review was partial because two local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those references before installation if they are important to the skill's use.
+
+Risk: A one-off edit or contradictory edits could lead to an unsuitable voice-profile rule.
+
+Mitigation: Apply the documented recurrence threshold, check for contradictions, and get user approval before changing the profile.
+
+Risk: Learning snapshots contain generated, reviewed, and manually edited text.
+
+Mitigation: Keep the voice-profile snapshot directory private and archive or remove completed snapshots when they are no longer needed.
+
+## Reference(s):
+
+- [Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-scribe-voice-learn)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Configuration instructions]
+
+**Output Format:** [Structured pattern analysis and proposed voice profile edits in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses recurring-edit evidence thresholds; profile changes require user approval.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

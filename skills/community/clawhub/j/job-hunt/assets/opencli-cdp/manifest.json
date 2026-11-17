@@ -1,0 +1,30 @@
+{
+  "package": "@jackwener/opencli",
+  "version": "1.8.7",
+  "description": "Local CDP-only routing and daily-Chrome owned-tab support",
+  "files": [
+    {
+      "path": "dist/src/runtime.js",
+      "original": "6193d60f5a5a28ae52d51c6baa80e4047325a6b6cf3f7adfb7fe4ecf62aa3598",
+      "patched": "8968c8dbd643fdf959f08274595fe9d823b8fd3a2b36655c4ef6aa577b531c73"
+    },
+    {
+      "path": "dist/src/browser/cdp.js",
+      "original": "d740bf357327a9ffcedb06aca3ac7384f9f56aa96bb72c8f42716e14b347d4b6",
+      "patched": "6e84eec068defdc764d244ce8f350ac20f4cdc596965f12d94edc6f3028a2110",
+      "previous_patched": [
+        "ba21bb84eb8a8fd6bb2e9f1bac035fa0a09fb1145d4f78f5c85f64405ec59624"
+      ]
+    },
+    {
+      "path": "dist/src/doctor.js",
+      "original": "6f39caa1e84197f8f9d4a509e646e564d58e6d504affa12209bdc70d0fe213df",
+      "patched": "94293d14020526ee87def20550dcf714cfddc85e9192c8baeeab1b2e840d88a6"
+    },
+    {
+      "path": "dist/src/update-check.js",
+      "original": "2a187e20ecb9f94d66cc037b950405a7457a654321eb8640cc388fbe7338f0dd",
+      "patched": "466710d2d1b1313c1d380e9be6b317d5aefb78d5e63a79aa58cbe0793aa53bc8"
+    }
+  ]
+}

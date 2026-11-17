@@ -1,48 +1,61 @@
-## Description: <br>
-Art Critique helps artists discuss work in any medium through dialogue-based critique, outside perspective, open questions, session notes, and curated art-theory or art-history references when they fit the work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Art Critique helps artists get dialogue-based critique for work in image, text, audio, video, installation, performance, or mixed media, using close observation, open questions, session notes, and selected art-theory or art-history references to deepen the conversation.
 
-## Publisher: <br>
-[iiiantower](https://clawhub.ai/user/iiiantower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iiiantower](https://clawhub.ai/user/iiiantower)
 
-## Use Case: <br>
-Artists and creative practitioners use this skill to receive reflective critique on works in progress or finished works across image, text, audio, video, installation, performance, and mixed media. The agent guides multi-round discussion, records Markdown session notes, and introduces art references only when they are grounded in the work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local critique folders containing notes, copied artwork files, transcripts, or summaries. <br>
-Mitigation: Use it in a private working directory and manage or delete session files when the artwork or media is sensitive. <br>
+## Use Case:
 
+External users, especially artists and creative practitioners, use this skill to receive reflective critique on in-progress or finished artwork without grading or prescriptive correction. The skill supports multi-round dialogue, medium-specific intake, local session notes, and concise contextual associations from a curated art reference library.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iiiantower/art-critique-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/iiiantower) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Association Engine](references/association-engine.md) <br>
-- [Note Frameworks](references/note-frameworks/README.md) <br>
-- [Four Steps Framework](references/note-frameworks/four-steps.md) <br>
-- [Time-Based Media Framework](references/note-frameworks/time-based-media.md) <br>
-- [Demo Walkthrough Framework](references/note-frameworks/demo-walkthrough.md) <br>
-- [Reference Library Index](references/library/index.md) <br>
-- [Agent Skills Overview](https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Conversational text with Markdown session notes and local file-operation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local art-critique session folders, copies submitted work files when needed, and maintains one notes.md file per critique session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Submitted artwork and critique history may be stored locally in art-critique-sessions folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where local storage of the artwork and critique notes is acceptable, confirm the write location before starting in shared or sensitive environments, and delete session folders when they are no longer needed.
+
+Risk: The skill may copy submitted artwork files into the local session folder.
+
+Mitigation: Avoid submitting confidential or rights-restricted artwork unless local copies are permitted, and remove copied files after the critique if retention is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iiiantower/skills/art-critique-skill)
+- [Agent Skills overview](https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview)
+- [Association engine](references/association-engine.md)
+- [Session notes template](references/session-notes-template.md)
+- [Note frameworks](references/note-frameworks/README.md)
+- [Four steps critique framework](references/note-frameworks/four-steps.md)
+- [Time-based media critique framework](references/note-frameworks/time-based-media.md)
+- [Demo walkthrough critique framework](references/note-frameworks/demo-walkthrough.md)
+- [Curated art reference library](references/library/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Conversational text and Markdown session notes in local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a unique local art-critique-sessions folder for each new critique session and may copy submitted artwork into that folder.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

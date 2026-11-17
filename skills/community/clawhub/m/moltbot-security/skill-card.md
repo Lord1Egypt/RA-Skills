@@ -1,43 +1,56 @@
-## Description: <br>
-Security hardening for AI agents - Moltbot, OpenClaw, Cursor, Claude. Lock down gateway, fix permissions, auth, firewalls. Essential for vibe-coding setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security hardening for AI agents - Moltbot, OpenClaw, Cursor, Claude. Lock down gateway, fix permissions, auth, firewalls. Essential for vibe-coding setups.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-Developers and operators use this skill to review and harden Moltbot, OpenClaw, and related AI-agent gateway deployments. It provides security checklist guidance, audit commands, configuration examples, and operational safeguards for authentication, permissions, firewalling, SSH, and remote access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that can change firewall, SSH, package, and permission settings. <br>
-Mitigation: Run audits without --fix first when possible, confirm console or recovery access before firewall or SSH changes, and avoid sudo commands on production or remote systems unless the effect is understood. <br>
-Risk: The skill references remote installer scripts and package update commands. <br>
-Mitigation: Inspect remote installer scripts before execution and prefer trusted operating-system or vendor documentation when applying system package changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit and harden Moltbot, OpenClaw, and related AI-agent gateway setups. It provides guidance for loopback binding, authentication, file permissions, Node.js updates, Tailscale remote access, firewall rules, and SSH hardening.
 
-## Reference(s): <br>
-- [Moltbot Security ClawHub Listing](https://clawhub.ai/NextFrontierBuilds/moltbot-security) <br>
-- [Original exposed gateway research](https://x.com/nickspisak_/status/2016195582180700592) <br>
-- [Node.js downloads](https://nodejs.org/) <br>
-- [Tailscale installer](https://tailscale.com/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command snippets and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only security hardening guidance; users decide which commands or configuration changes to apply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The skill includes copy-paste commands that execute remote installer scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer sources first, prefer vendor package-manager instructions with signed repositories, and verify downloaded installers before execution.
+
+Risk: Some guidance applies privileged system changes such as audit fixes, firewall rules, and SSH configuration edits.
+
+Mitigation: Run non-mutating audit commands before using --fix, confirm each privileged change, and keep console recovery access before applying firewall or SSH changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nextfrontierbuilds/skills/moltbot-security)
+- [Node.js downloads](https://nodejs.org/)
+- [Tailscale installer](https://tailscale.com/install.sh)
+- [Referenced gateway exposure research](https://x.com/nickspisak_/status/2016195582180700592)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Security checklist and configuration templates]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

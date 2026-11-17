@@ -1,0 +1,4 @@
+interface:
+  display_name: "E-commerce Gmail Customer Service"
+  short_description: "Discover store data and draft safer ecommerce Gmail replies"
+  default_prompt: "Use $ecommerce-gmail-customer-service to discover public storefront sources, classify new customer emails, retrieve matching authorized commerce context, and create policy-compliant Gmail drafts."

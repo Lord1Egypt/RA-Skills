@@ -1,39 +1,54 @@
-## Description: <br>
-Search and discover trending products from ProductHunt with structured analysis data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and discover trending products from ProductHunt with structured analysis data.
 
-## Publisher: <br>
-[xiazhefengzhi](https://clawhub.ai/user/xiazhefengzhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiazhefengzhi](https://clawhub.ai/user/xiazhefengzhi)
 
-## Use Case: <br>
-External users and agents use this skill to find, compare, and summarize products, tools, trending apps, and alternatives by querying ProductHunt-derived data through trend-hunt.com. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to trend-hunt.com. <br>
-Mitigation: Avoid confidential project names, customer data, private business plans, and strategic research queries when using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiazhefengzhi/find-products) <br>
-- [Publisher profile](https://clawhub.ai/user/xiazhefengzhi) <br>
-- [trend-hunt.com search API](https://trend-hunt.com/api/search) <br>
+## Use Case:
 
+External users and agents use this skill to find, compare, and summarize trending products, apps, and alternatives from ProductHunt-related search results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell command examples and JSON-backed product fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search requests accept query, locale, result limit, and category filters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User product-search text may become unsafe if substituted directly into the documented curl command.
+
+Mitigation: URL-encode query parameters or use a structured HTTP client before executing requests.
+
+Risk: Product-search queries are sent to trend-hunt.com.
+
+Mitigation: Avoid sending sensitive or private search terms unless the user accepts that external service interaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiazhefengzhi/skills/find-products)
+- [Trend Hunt search API](https://trend-hunt.com/api/search?q=QUERY&locale=LOCALE&limit=LIMIT&category=CATEGORY)
+- [ProductHunt post URL format](https://www.producthunt.com/posts/product-slug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and product summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product names, categories, upvote counts, hype and utility scores, review summaries, ProductHunt links, and website links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

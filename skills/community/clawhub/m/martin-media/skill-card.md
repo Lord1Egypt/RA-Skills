@@ -1,45 +1,54 @@
-## Description: <br>
-Use the SkillBoss API Hub to plan and implement multimodal media workflows for image, video, speech, and audio generation and understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the SkillBoss API Hub for image generation, video generation, TTS speech, and audio understanding workflows with reusable code templates.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and builders use this skill to choose SkillBoss media capabilities and adapt Node.js or REST templates for generating, editing, analyzing, transcribing, and narrating media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, audio, and video selected by the user are sent to SkillBoss for processing. <br>
-Mitigation: Avoid sensitive, regulated, confidential, or copyrighted media unless the user has permission and has reviewed the provider terms. <br>
-Risk: The required SKILLBOSS_API_KEY is a paid-service secret. <br>
-Mitigation: Store the key in a secret manager or local environment variable, avoid committing it, and avoid logging request headers. <br>
-Risk: Generated media and analysis can be inaccurate, misleading, or unsuitable for publication. <br>
-Mitigation: Review generated outputs before release and apply human checks for rights, safety, and factual claims. <br>
-Risk: Video and media generation may take longer than expected or fail intermittently. <br>
-Mitigation: Use timeouts, retries, and fallback handling before relying on generated media in production workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to build multimodal media workflows for generating and understanding images, video, speech, and audio through SkillBoss API Hub. It provides Node.js and REST examples for composing generation, analysis, transcription, and TTS tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godferylindsay/martin-media) <br>
-- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and curl code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request templates, environment variable setup, response parsing notes, and operational cautions for media workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Media inputs may contain sensitive, confidential, regulated, or third-party content that should not be sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media that is approved for SkillBoss processing, avoid secrets and regulated content unless explicitly authorized, and perform human review before production use.
+
+Risk: Publicly hosted media URLs can expose content longer or more broadly than intended.
+
+Mitigation: Prefer private short-lived signed URLs, and delete or revoke hosted media after processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/martin-media)
+- [SkillBoss API Hub pilot endpoint](https://api.skillbossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and curl code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request templates, media URL handling guidance, retry patterns, and environment variable setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

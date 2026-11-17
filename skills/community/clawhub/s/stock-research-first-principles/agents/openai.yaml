@@ -1,0 +1,6 @@
+interface:
+  display_name: "Evidence-First Stock Research"
+  short_description: "Evidence-led stock research with valuation and safety"
+  default_prompt: "Use $stock-research to analyze a stock with dated sources, valuation, risks, and no trade execution."
+policy:
+  allow_implicit_invocation: true

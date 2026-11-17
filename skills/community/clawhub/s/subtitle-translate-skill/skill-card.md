@@ -1,39 +1,52 @@
-## Description: <br>
-Translate SRT subtitle files using LLM APIs with OpenAI-compatible format, supporting single-language and bilingual output while preserving timestamps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates SRT subtitle files with OpenAI-compatible LLM APIs while preserving timestamps and supporting single-language or bilingual output.
 
-## Publisher: <br>
-[Thetail001](https://clawhub.ai/user/Thetail001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thetail001](https://clawhub.ai/user/thetail001)
 
-## Use Case: <br>
-Developers, localization teams, and content operators use this skill to translate SRT subtitle files through an OpenAI-compatible LLM API while preserving subtitle timing. It can produce translated-only subtitles or bilingual subtitles with the translation above the original text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Subtitle text is sent to the configured LLM API provider. <br>
-Mitigation: Use trusted HTTPS API endpoints and do not process confidential subtitles unless the API service is controlled or trusted. <br>
-Risk: API keys may be exposed through plaintext configuration files, command-line arguments, or untrusted proxy settings. <br>
-Mitigation: Prefer environment variables or secure secret managers, avoid plaintext key files on shared systems, and use trusted network and proxy settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SRT Subtitle Format Specification](references/srt_format.md) <br>
+## Use Case:
 
+Developers and subtitle localization workflows use this skill to validate SRT files, list available OpenAI-compatible models, and translate subtitle text to another language while preserving timing. It can produce translated-only subtitles or bilingual subtitles with translated text above the original.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated SRT subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-language or bilingual SRT output, configurable batch size, model selection, API endpoint, and progress logging.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Subtitle content is sent to the configured API provider.
+
+Mitigation: Use the skill only with subtitle content you are allowed to transmit, and choose a trusted provider and endpoint for the data sensitivity involved.
+
+Risk: Bearer API keys may be exposed through command-line history, plaintext configuration, logs, or untrusted proxy settings.
+
+Mitigation: Prefer environment variables or a secret manager, use trusted HTTPS endpoints, avoid untrusted proxies, restrict key scope when possible, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [SRT Subtitle Format Specification](references/srt_format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; executed scripts produce SRT subtitle files and console status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Translation runs in configurable batches, defaults to 50 subtitle entries per batch, and can generate single-language or bilingual SRT output.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

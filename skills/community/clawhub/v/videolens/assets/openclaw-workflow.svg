@@ -1,1 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-label="OpenClaw VideoLens workflow"><rect width="1400" height="800" fill="url(#bg)"/><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#07111f"/><stop offset="55%" stop-color="#101a3d"/><stop offset="100%" stop-color="#241044"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00E5FF"/><stop offset="100%" stop-color="#A855F7"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><style>.title{font:800 54px Inter,Arial,sans-serif;fill:#f8fbff}.sub{font:500 24px Inter,Arial,sans-serif;fill:#b9c7e6}.tiny{font:600 17px Inter,Arial,sans-serif;fill:#8fa7d8}.mono{font:600 18px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#d9e7ff}.card{fill:#0d1730;stroke:#233a74;stroke-width:2}.accent{fill:url(#a)}.good{fill:#39ffb6}.warn{fill:#ffd166}.bad{fill:#ff6b8a}</style></defs><defs><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7dd3fc"/></marker></defs><text x="70" y="100" class="title">OpenClaw video review lane</text><text x="70" y="142" class="sub">Generate video → analyze it → fix upstream → publish with confidence</text><g transform="translate(75 240)"><rect width="235" height="150" rx="26" class="card"/><text x="34" y="65" class="sub">1. Create</text><text x="34" y="105" class="tiny">script, voice, clips</text></g><g transform="translate(360 240)"><rect width="235" height="150" rx="26" class="card"/><text x="34" y="65" class="sub">2. Render</text><text x="34" y="105" class="tiny">mp4 or YouTube draft</text></g><g transform="translate(645 240)"><rect width="235" height="150" rx="26" fill="#101e3f" stroke="#00e5ff" stroke-width="3"/><text x="34" y="65" class="sub">3. VideoLens</text><text x="34" y="105" class="tiny">timestamped QA</text></g><g transform="translate(930 240)"><rect width="235" height="150" rx="26" class="card"/><text x="34" y="65" class="sub">4. Fix</text><text x="34" y="105" class="tiny">template + gates</text></g><g transform="translate(1090 490)"><rect width="235" height="150" rx="26" class="card"/><text x="34" y="65" class="sub">5. Publish</text><text x="34" y="105" class="tiny">approval-gated</text></g><path d="M310 315 H360" stroke="#7dd3fc" stroke-width="5" marker-end="url(#m)"/><path d="M595 315 H645" stroke="#7dd3fc" stroke-width="5" marker-end="url(#m)"/><path d="M880 315 H930" stroke="#7dd3fc" stroke-width="5" marker-end="url(#m)"/><path d="M1048 390 C1050 455 1125 455 1160 490" stroke="#7dd3fc" stroke-width="5" fill="none" marker-end="url(#m)"/><rect x="75" y="590" width="850" height="90" rx="24" fill="#071426" stroke="#334155"/><text x="115" y="642" class="mono">preflight → bootstrap → analyze (requires allow_credit_spend: true)</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">OpenClaw VideoLens workflow</title>
+  <desc id="desc">OpenClaw moves through preflight, pinned bootstrap, approved analysis, and local report artifacts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#112c42"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#60a5fa"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#020617" flood-opacity=".5"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1120" cy="-10" r="260" fill="#06b6d4" opacity=".10"/>
+  <circle cx="70" cy="690" r="280" fill="#3b82f6" opacity=".10"/>
+
+  <text x="600" y="78" text-anchor="middle" fill="#67e8f9" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="800" letter-spacing="2">OPENCLAW × VIDEOLENS</text>
+  <text x="600" y="116" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">From a video request to evidence-ready artifacts</text>
+  <text x="600" y="144" text-anchor="middle" fill="#94a3b8" font-family="Arial, Helvetica, sans-serif" font-size="14">Portable runner · tested revision · explicit spend approval · local reports</text>
+
+  <g transform="translate(70 205)">
+    <g filter="url(#shadow)">
+      <rect width="225" height="250" rx="20" fill="#ffffff"/>
+      <circle cx="42" cy="42" r="21" fill="#ecfeff"/>
+      <text x="42" y="48" text-anchor="middle" fill="#0891b2" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="900">1</text>
+      <text x="24" y="91" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800">Preflight</text>
+      <text x="24" y="119" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">Check git, ffmpeg, runtime,</text>
+      <text x="24" y="138" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">Python, and BYOK readiness.</text>
+      <rect x="24" y="169" width="177" height="48" rx="11" fill="#f1f5f9"/>
+      <circle cx="43" cy="193" r="6" fill="#34d399"/>
+      <text x="57" y="197" fill="#334155" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700">No model credits spent</text>
+    </g>
+    <path d="M236 125h46" stroke="#67e8f9" stroke-width="3" stroke-linecap="round"/>
+    <path d="M275 116l12 9-12 9" fill="none" stroke="#67e8f9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(295)" filter="url(#shadow)">
+      <rect width="225" height="250" rx="20" fill="#ffffff"/>
+      <circle cx="42" cy="42" r="21" fill="#eff6ff"/>
+      <text x="42" y="48" text-anchor="middle" fill="#2563eb" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="900">2</text>
+      <text x="24" y="91" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800">Bootstrap</text>
+      <text x="24" y="119" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">Fetch the tested VideoLens</text>
+      <text x="24" y="138" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">revision and prepare .venv.</text>
+      <rect x="24" y="169" width="177" height="48" rx="11" fill="#f1f5f9"/>
+      <path d="M41 185v15m-7-7l7 7 7-7" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="57" y="197" fill="#334155" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700">Pinned and reproducible</text>
+    </g>
+    <path d="M531 125h46" stroke="#67e8f9" stroke-width="3" stroke-linecap="round"/>
+    <path d="M570 116l12 9-12 9" fill="none" stroke="#67e8f9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(590)" filter="url(#shadow)">
+      <rect width="225" height="250" rx="20" fill="#ffffff"/>
+      <circle cx="42" cy="42" r="21" fill="#f0fdf4"/>
+      <text x="42" y="48" text-anchor="middle" fill="#16a34a" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="900">3</text>
+      <text x="24" y="91" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800">Analyze</text>
+      <text x="24" y="119" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">Transcript + frames + OCR +</text>
+      <text x="24" y="138" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">mode-directed synthesis.</text>
+      <rect x="24" y="169" width="177" height="48" rx="11" fill="#f0fdf4"/>
+      <rect x="36" y="185" width="13" height="16" rx="3" fill="none" stroke="#16a34a" stroke-width="2"/>
+      <path d="M39 185v-3a4 4 0 018 0v3" fill="none" stroke="#16a34a" stroke-width="2"/>
+      <text x="57" y="197" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700">Spend approval required</text>
+    </g>
+    <path d="M826 125h46" stroke="#67e8f9" stroke-width="3" stroke-linecap="round"/>
+    <path d="M865 116l12 9-12 9" fill="none" stroke="#67e8f9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(885)" filter="url(#shadow)">
+      <rect width="225" height="250" rx="20" fill="#ffffff"/>
+      <circle cx="42" cy="42" r="21" fill="url(#cyan)"/>
+      <text x="42" y="48" text-anchor="middle" fill="#07111f" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="900">4</text>
+      <text x="24" y="91" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800">Artifacts</text>
+      <text x="24" y="119" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">Return auditable paths for the</text>
+      <text x="24" y="138" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="12">professional report and data.</text>
+      <rect x="24" y="169" width="52" height="34" rx="8" fill="#0f172a"/>
+      <rect x="84" y="169" width="52" height="34" rx="8" fill="#e0f2fe"/>
+      <rect x="144" y="169" width="57" height="34" rx="8" fill="#dbeafe"/>
+      <text x="36" y="191" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="800">HTML</text>
+      <text x="96" y="191" fill="#0369a1" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="800">MD</text>
+      <text x="156" y="191" fill="#1d4ed8" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="800">JSON</text>
+    </g>
+  </g>
+
+  <g transform="translate(242 518)">
+    <rect width="716" height="76" rx="18" fill="#ffffff" opacity=".08" stroke="#67e8f9" stroke-opacity=".25"/>
+    <text x="28" y="31" fill="#67e8f9" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="800" letter-spacing="1.3">NINE ANALYSIS MODES</text>
+    <text x="28" y="54" fill="#e2e8f0" font-family="Arial, Helvetica, sans-serif" font-size="13">General · Tutorial · Meeting · Bug · UX · Product Demo · Content · Privacy · Production Recipe</text>
+  </g>
+</svg>

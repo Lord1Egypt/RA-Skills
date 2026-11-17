@@ -1,43 +1,57 @@
-## Description: <br>
-Helps an agent interact with a Crafty Controller REST API to manage Minecraft servers, files, backups, users, roles, schedules, logs, and console commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crafty Controller helps agents manage Minecraft servers through a Crafty Controller REST API, including server actions, console commands, stats, backups, schedules, files, users, and roles.
 
-## Publisher: <br>
-[zdstudios](https://clawhub.ai/user/zdstudios) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zdstudios](https://clawhub.ai/user/zdstudios)
 
-## Use Case: <br>
-Developers and Minecraft server administrators use this skill to operate Crafty Controller instances through API-backed guidance, Python helper code, and command patterns for server administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control live Crafty Controller servers, including stop, kill, delete, restore, file write, permission, user, role, and configuration changes. <br>
-Mitigation: Require manual confirmation before destructive or privilege-changing operations and limit the API key to only the permissions needed for the requested task. <br>
-Risk: The skill requires a Crafty Controller API key and may expose broad server administration access if the token is shared or stored insecurely. <br>
-Mitigation: Keep the token out of shared files and chats, rotate it if exposed, and avoid superuser tokens unless they are required. <br>
-Risk: The helper examples disable TLS certificate verification for self-signed local Crafty installs. <br>
-Mitigation: Enable certificate verification for non-local use and provide a trusted certificate path when connecting to remote Crafty Controller instances. <br>
+## Use Case:
 
+Developers and server operators use this skill to generate guidance, Python helper code, shell setup commands, and API call patterns for administering Crafty Controller Minecraft server panels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zdstudios/crafty-controller) <br>
-- [Publisher profile](https://clawhub.ai/user/zdstudios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided Crafty Controller host, port, and API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The examples disable TLS certificate verification while using bearer API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable certificate verification with a trusted CA bundle before using the generated helpers against real Crafty Controller instances.
+
+Risk: The skill covers destructive and account-changing administrative actions such as deleting servers, deleting backups, changing users, and assigning roles.
+
+Mitigation: Use a dedicated least-privilege API key and require explicit operator confirmation before destructive, permission-changing, or account-changing calls.
+
+Risk: API keys can be exposed if copied into shared source or chat transcripts.
+
+Mitigation: Store Crafty Controller API keys in a secrets manager or local environment variables, and avoid committing credentials with generated helper code.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/zdstudios/skills/crafty-controller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST API helper functions and operational recommendations for Crafty Controller instances.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

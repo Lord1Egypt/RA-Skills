@@ -1,44 +1,61 @@
-## Description: <br>
-This skill guides agents through image editing with Google Nano Banana 2 Edit on RunComfy, including model selection, prompt patterns, endpoint schema, and RunComfy CLI invocation examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit images with Google Nano Banana 2 through RunComfy, covering subject-preserving image-to-image edits, batch edits, schema guidance, invocation examples, and routing guidance for related image-generation skills.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers, creative operators, and agent users can use this skill to prepare and run image-to-image edits through RunComfy, especially for subject-preserving background swaps, localized edits, batch SKU updates, and ad-creative variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RunComfy account token or local login state to invoke the hosted model API. <br>
-Mitigation: Use RUNCOMFY_TOKEN in automation or RunComfy's local login flow for interactive use, keep tokens out of prompts and source control, and rotate credentials if exposed. <br>
-Risk: Input image URLs are processed by an external model service, and generated files may reflect prompt or source-image mistakes. <br>
-Mitigation: Use only URLs appropriate for third-party processing, review outputs before publication, and keep edits narrow when preserving identity, brand, or product details matters. <br>
+## Use Case:
 
+Developers and creative operators use this skill to prepare RunComfy CLI invocations for Nano Banana 2 image edits, including background swaps, localized object edits, batch SKU edits, and ad-creative variations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kalvinrv/nano-banana-edit) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=nano-banana-edit) <br>
-- [Nano Banana 2 Edit endpoint](https://www.runcomfy.com/models/google/nano-banana-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=nano-banana-edit) <br>
-- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=nano-banana-edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces RunComfy CLI command guidance and endpoint parameter recommendations; generated image files are produced by the external RunComfy model call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill asks users to install an unpinned global third-party CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or otherwise verify `@runcomfy/cli` before installation, especially in shared, CI, or production environments.
+
+Risk: RunComfy tokens and generated files may be exposed if run in an overly broad environment.
+
+Mitigation: Use the least-privileged environment practical for `RUNCOMFY_TOKEN`, local RunComfy configuration, and generated output directories.
+
+Risk: Prompts and image URLs are sent to RunComfy's cloud service.
+
+Mitigation: Avoid submitting sensitive prompts or private image URLs unless the user has approved that disclosure path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/permew/skills/nano-banana-edit)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI Documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=nano-banana-edit)
+- [Nano Banana 2 Edit Endpoint](https://www.runcomfy.com/models/google/nano-banana-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=nano-banana-edit)
+- [RunComfy CLI Troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=nano-banana-edit)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON input snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use the RunComfy CLI and may download generated image files to a caller-specified output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

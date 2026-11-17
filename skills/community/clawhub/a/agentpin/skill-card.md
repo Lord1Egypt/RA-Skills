@@ -1,43 +1,54 @@
-## Description: <br>
-Provides domain-anchored cryptographic identity verification for AI agents using ES256 JWTs, TOFU key pinning, revocation, and delegation chain checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentPin helps AI assistants use domain-anchored cryptographic identity verification with ES256 JWTs, TOFU key pinning, revocation checks, and delegation chain validation.
 
-## Publisher: <br>
-[jaschadub](https://clawhub.ai/user/jaschadub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaschadub](https://clawhub.ai/user/jaschadub)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement and verify cryptographic identity for AI agents, including credential issuance, discovery documents, revocation checks, TOFU key pinning, delegation chains, and mutual authentication across Rust, JavaScript, and Python. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External AgentPin packages may not come from the intended maintainer or may drift over time. <br>
-Mitigation: Verify package provenance before installation and pin dependency versions. <br>
-Risk: Generated private keys or credentials could be exposed if copied into source control or logs. <br>
-Mitigation: Keep private keys out of source control, protect generated credentials, and use short-lived least-privilege credentials. <br>
-Risk: TOFU pins, trust bundles, or delegated trust chains may preserve outdated or unintended trust decisions. <br>
-Mitigation: Review, rotate, and reset TOFU pins or trust bundles through an explicit operational process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentPin on ClawHub](https://clawhub.ai/jaschadub/agentpin) <br>
-- [AgentPin README](https://github.com/ThirdKeyAI/agentpin/blob/main/README.md) <br>
-- [AgentPin Technical Specification](https://github.com/ThirdKeyAI/agentpin/blob/main/AGENTPIN_TECHNICAL_SPECIFICATION.md) <br>
+## Use Case:
 
+Developers and engineers use AgentPin to add and verify cryptographic identity for AI agents across Rust, JavaScript, and Python implementations, including discovery, credential issuance, revocation, delegation, and offline trust bundles.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, code examples, JSON snippets, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may involve package installation, key generation, credential issuance, endpoint configuration, and verification workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides use of external npm and PyPI SDK packages.
+
+Mitigation: Verify package identity, pin dependency versions for production or sensitive projects, and review packages through the normal supply-chain process before deployment.
+
+Risk: Agent credentials and private keys are security-sensitive materials.
+
+Mitigation: Store private keys and issued credentials only in appropriately protected project locations and rotate or revoke credentials when exposure is suspected.
+
+## Reference(s):
+
+- [AgentPin ClawHub skill page](https://clawhub.ai/jaschadub/skills/agentpin)
+- [AgentPin README](https://github.com/ThirdKeyAI/agentpin/blob/main/README.md)
+- [AgentPin Technical Specification](https://github.com/ThirdKeyAI/agentpin/blob/main/AGENTPIN_TECHNICAL_SPECIFICATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, API examples, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

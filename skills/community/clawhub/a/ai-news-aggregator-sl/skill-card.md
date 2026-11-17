@@ -1,43 +1,68 @@
-## Description: <br>
-Fetches AI and technology news, or a custom topic, from RSS feeds and optional search, social, and video sources, then writes an English editorial digest with the selected AI provider and can post it to Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches AI and technology news or custom-topic updates from RSS feeds, Tavily, Twitter/X, and YouTube, summarizes them with OpenAI, DeepSeek, or Claude, and posts an English editorial digest to Discord.
 
-## Publisher: <br>
-[ScottLL](https://clawhub.ai/user/ScottLL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottll](https://clawhub.ai/user/scottll)
 
-## Use Case: <br>
-External users and developers use this skill to collect recent news or trending items on AI, technology, or a custom topic, generate a concise editorial digest, and deliver it to a Discord channel or preview it locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A digest may be posted to the configured Discord webhook when the user expected only a preview. <br>
-Mitigation: Start with dry-run or a test Discord channel, verify the webhook target, and use test-discord mode before enabling routine posting. <br>
-Risk: External news, social, or video source text can influence the generated summary. <br>
-Mitigation: Review important posts before relying on them and avoid sensitive custom topics when using untrusted external sources. <br>
-Risk: The skill uses multiple service credentials for AI providers, search, social, video, and Discord posting. <br>
-Mitigation: Use limited-scope API keys, provide only the keys needed for the selected sources, and rotate credentials if a webhook or key is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent news and trending content for a topic, generate an editorial digest, and publish it to a configured Discord channel.
 
-## Reference(s): <br>
-- [AI News Aggregator on ClawHub](https://clawhub.ai/ScottLL/ai-news-aggregator-sl) <br>
-- [ScottLL Publisher Profile](https://clawhub.ai/user/ScottLL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown digest text, Discord webhook message, and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May post to Discord unless run with dry-run or test-discord mode; output depends on configured API keys and selected provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.8 (source: release metadata) <br>
+Risk: Requested topics and gathered article, tweet, and video metadata may be sent to third-party search, social, video, and AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the API keys needed for the chosen mode and avoid running the skill on sensitive topics.
+
+Risk: AI-generated summaries from untrusted web and social content can be inaccurate or misleading before being posted to Discord.
+
+Mitigation: Use dry-run first and review the generated digest before enabling Discord posting.
+
+Risk: Discord posts may include generated links or mentions derived from gathered content.
+
+Mitigation: Review Discord mention and link handling before deployment and post only to an appropriate channel.
+
+Risk: Runtime dependencies are installed by uv from inline script metadata rather than pinned hashes.
+
+Mitigation: Prefer a version with pinned dependencies before using the skill in a higher-trust workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottll/skills/ai-news-aggregator-sl)
+- [Publisher profile](https://clawhub.ai/user/scottll)
+- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/)
+- [OpenAI API keys](https://platform.openai.com/api-keys)
+- [DeepSeek API keys](https://platform.deepseek.com/api_keys)
+- [Anthropic Console](https://console.anthropic.com)
+- [Tavily](https://app.tavily.com)
+- [Google Cloud Console](https://console.cloud.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown digest, terminal status text, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print a dry-run preview or post chunked Markdown messages to Discord.]
+
+## Skill Version(s):
+
+1.2.8 (source: server release metadata; artifact frontmatter says 1.5.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

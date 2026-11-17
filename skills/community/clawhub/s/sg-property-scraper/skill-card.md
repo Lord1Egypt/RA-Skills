@@ -1,44 +1,58 @@
-## Description: <br>
-Searches Singapore property rental and sale listings with flexible filters for listing type, property type, bedrooms, bathrooms, price, size, TOP year, MRT proximity, room details, availability, and optional commute time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Singapore property rental and sale listings with filters for listing type, property type, bedrooms, bathrooms, price, size, MRT proximity, availability, and optional commute time.
 
-## Publisher: <br>
-[5kbpers](https://clawhub.ai/user/5kbpers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[5kbpers](https://clawhub.ai/user/5kbpers)
 
-## Use Case: <br>
-External users and agents use this skill to search and compare Singapore rental or sale listings with filters for property type, price, size, MRT proximity, room details, and optional commute time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commute calculation can send destination and listing-address data to Google Routes API when GOOGLE_MAPS_API_KEY is configured. <br>
-Mitigation: Use a restricted Google Maps API key with quotas, and avoid entering sensitive home or workplace addresses unless that disclosure is acceptable. <br>
-Risk: The scraper depends on external listing pages and may return empty, stale, or failed results when the site layout, network access, or anti-bot controls change. <br>
-Mitigation: Review results before relying on them, use dry-run mode to inspect generated URLs, and treat scraper failures or empty responses as operational signals rather than authoritative market conclusions. <br>
-Risk: Python dependencies and external scraping behavior expand the runtime surface for this skill. <br>
-Mitigation: Install dependencies in a virtual environment and run the skill with only the credentials and network access needed for the requested search. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PropertyGuru Parameter Reference](references/params.md) <br>
-- [PropertyGuru Singapore](https://www.propertyguru.com.sg) <br>
-- [ClawHub skill page](https://clawhub.ai/5kbpers/sg-property-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/5kbpers) <br>
+## Use Case:
 
+External users and agents use this skill to search Singapore rental or sale listings, compare listing details against user-provided filters, and optionally add commute estimates when a Google Maps API key is available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON array on stdout by default, with optional text output and dry-run URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Python dependencies; optional commute calculations require GOOGLE_MAPS_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Commute calculations send the destination address and scraped property addresses to Google Routes API.
+
+Mitigation: Use --commute-to only when address sharing with Google is acceptable, or omit the option to scrape listings without commute lookup.
+
+Risk: Python dependencies are documented without pinned versions.
+
+Mitigation: Install the scraper in a virtual environment and pin dependency versions before operational deployment.
+
+Risk: --no-validate and --raw-param can bypass the documented parameter guardrails.
+
+Mitigation: Keep validation enabled for normal use and reserve raw parameters for intentional testing of unsupported PropertyGuru query parameters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/5kbpers/skills/sg-property-scraper)
+- [PropertyGuru Parameter Reference](references/params.md)
+- [PropertyGuru Singapore](https://www.propertyguru.com.sg)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Configuration]
+
+**Output Format:** [JSON array or plain text from the scraper CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include listing details, links, and optional driving and transit commute estimates when GOOGLE_MAPS_API_KEY is set.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

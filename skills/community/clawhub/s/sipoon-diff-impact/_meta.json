@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-diff-impact",
+  "name": "diff-impact",
   "version": "0.1.0",
-  "publishedAt": 1779984935472
+  "description": "基于知识图谱预测代码变更的连锁影响范围",
+  "ownerId": "local-workspace-agent",
+  "trigger": "变更影响分析 / 影响范围预测 / PR审查",
+  "skills": []
 }

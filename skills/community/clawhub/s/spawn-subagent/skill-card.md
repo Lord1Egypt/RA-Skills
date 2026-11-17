@@ -1,40 +1,54 @@
-## Description: <br>
-Spawn isolated subagents to handle long-running, complex, or blocking tasks without stalling the main session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn isolated subagents to handle long-running, complex, or blocking tasks without stalling the main session.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when to delegate slow, multi-step, or blocking work to a subagent and how to provide clear task boundaries, timeouts, completion criteria, and failure handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated subagents may access private email, calendar data, credentials, external accounts, or private output files if examples are copied into real workflows without scoping. <br>
-Mitigation: Require explicit user approval before a subagent touches private accounts or credentials, and include narrow input paths, account scopes, output locations, and retention expectations in each task. <br>
-Risk: Long-running background tasks can fail, time out, or produce incomplete results without immediate user visibility. <br>
-Mitigation: Set a timeout for each subagent task, require a clear completion signal, review generated output before use, and fall back to the main session when retries fail. <br>
+## Use Case:
 
+Developers and agent operators use this skill to decide when to delegate long-running, multi-step, blocking, or parallelizable work to a subagent and how to describe the delegated task clearly.
 
-## Reference(s): <br>
-- [Spawn Subagent release page](https://clawhub.ai/netanel-abergel/spawn-subagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown guidance with Python-style delegation examples and task templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended as instructions for an agent to spawn and monitor delegated background work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Delegated tasks involving email, calendar, or sending examples may expose or reuse sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm account authorization, limit retrieved data, avoid unnecessary retention, and review sensitive summaries before they are sent or reused.
+
+Risk: Long-running or vague delegated tasks can fail, time out, or produce unusable results.
+
+Mitigation: Use explicit task descriptions with inputs, outputs, completion criteria, and timeouts; retry with a simpler task or fall back to the main session after failure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/spawn-subagent)
+- [ClawHub publisher profile](https://clawhub.ai/user/netanel-abergel)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides task-description patterns, timeout guidance, completion handling, failure handling, and cost guidance for subagent delegation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

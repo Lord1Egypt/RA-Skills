@@ -1,0 +1,4 @@
+interface:
+  display_name: "SurgeonEdit"
+  short_description: "对既有文本做最小化局部修改，保持语气与篇幅，不展开、不强调、不标注改动。Surgeon-precise, tone-preserving edits to existing text."
+  default_prompt: "Revise the text below with the smallest necessary change; keep its language, tone and length, and do not expand, emphasize or mark the change. 修改下面这段文字，只做最小必要改动，保持原语言、语气与篇幅，不要展开、不要强调、不要标注改动。"

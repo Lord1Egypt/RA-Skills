@@ -1,46 +1,64 @@
-## Description: <br>
-Analyzes tender and bid documents to extract key terms, identify risks, estimate win probability, and produce structured bidding recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes tender and bidding documents to extract key terms, identify risks, estimate win probability, and generate structured analysis reports.
 
-## Publisher: <br>
-[ylbwjf](https://clawhub.ai/user/ylbwjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylbwjf](https://clawhub.ai/user/ylbwjf)
 
-## Use Case: <br>
-Procurement, sales, legal, and bid teams use this skill to review tender materials, compare requirements, surface contractual and commercial risks, and draft bid-analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tender and bid materials may contain confidential commercial or procurement information. <br>
-Mitigation: Use redacted excerpts or approved non-confidential materials, and provide private document URLs only when authorized. <br>
-Risk: Bidding strategy guidance can create procurement compliance concerns, especially when based on relationships or preferential treatment. <br>
-Mitigation: Treat relationship-based advice as a compliance red flag and route sensitive recommendations through legal, procurement, or compliance review. <br>
-Risk: Generated risk ratings, estimates, and win-probability assessments may be incomplete or inaccurate. <br>
-Mitigation: Verify outputs against the original tender documents, current rules, and qualified domain review before making bid decisions. <br>
+## Use Case:
 
+Bid teams, procurement specialists, and proposal managers use this skill to review tender materials, surface qualification, pricing, contractual, and compliance risks, and prepare structured bid recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ylbwjf/tender-analyzer-agent) <br>
-- [README](README.md) <br>
-- [Analyzer prompt template](analyzer-prompt.md) <br>
-- [Tender analysis checklist](checklist.md) <br>
-- [Sample report](examples/sample-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, checklists, risk ratings, and numbered recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tender risk ratings, cost estimates, win-probability assessment, and bid/no-bid recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive bid materials, including confidential pricing, personal data, trade secrets, and non-public procurement details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents the user is authorized to share and redact sensitive or non-public information before analysis.
+
+Risk: Automatic learning and competitive-intelligence guidance may rely on sources that are under-scoped, non-public, or not auditable.
+
+Mitigation: Use only lawful, public, reviewed, and auditable sources for competitive intelligence and learning updates.
+
+Risk: Tender analysis and bid strategy recommendations may be incomplete or incorrect.
+
+Mitigation: Have qualified procurement, legal, and commercial reviewers validate risk findings and bid recommendations before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylbwjf/skills/tender-analyzer-agent)
+- [README](artifact/README.md)
+- [Analyzer prompt template](artifact/analyzer-prompt.md)
+- [Tender analysis checklist](artifact/checklist.md)
+- [Government procurement knowledge](artifact/knowledge/industry-government.md)
+- [Competitor analysis knowledge](artifact/knowledge/dimension-11-competitor.md)
+- [Historical award analysis knowledge](artifact/knowledge/dimension-12-history.md)
+- [Continuous learning framework](artifact/learning-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis reports, checklists, risk ratings, tables, and bidding strategy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qualitative risk levels, estimated costs, win probability assessments, and recommended bid/no-bid posture.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

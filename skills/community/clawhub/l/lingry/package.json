@@ -1,0 +1,12 @@
+{
+  "name": "@svetlyoh/lingry",
+  "version": "2.1.0",
+  "type": "module",
+  "bin": {
+    "lingry-agent": "bin/lingry-agent.mjs"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}

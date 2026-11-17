@@ -1,51 +1,63 @@
-## Description: <br>
-Manage AI agent personas, called Souls, for OpenClaw by helping users install, switch, list, restore, create, validate, publish, and synchronize persona packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage workspace personas, discover and publish Soul packages, and optionally sync encrypted agent memory on explicit request.
 
-## Publisher: <br>
-[TomLeeLive](https://clawhub.ai/user/TomLeeLive) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[tomleelive](https://clawhub.ai/user/tomleelive)
 
-## Use Case: <br>
-Developers and external OpenClaw users use this skill to manage persona packages that change an agent's identity, behavior, style, and workspace configuration. It supports installing and activating existing personas, restoring prior personas, creating new persona packages, validating them, publishing them, and synchronizing encrypted memory when the ClawSouls CLI is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote memory sync may synchronize sensitive prompts, memory, or client data. <br>
-Mitigation: Review exactly which files will be synchronized before running sync or swarm commands, and avoid using them in workspaces containing sensitive data unless the user has approved the scope. <br>
-Risk: Publishing or synchronization can upload local persona or memory content outside the workspace. <br>
-Mitigation: Run publish or sync only after confirming the destination, selected files, and user intent. <br>
-Risk: CLAWSOULS_TOKEN can be exposed through shell history, logs, or commits. <br>
-Mitigation: Keep the token out of committed files and persistent shell history, and prefer secure environment management. <br>
-Risk: The skill relies on an external ClawSouls npm CLI that may change behavior across versions. <br>
-Mitigation: Prefer trusted or pinned CLI versions and review commands before execution. <br>
-Risk: Activating a Soul persistently changes agent identity and behavior files. <br>
-Mitigation: Use the built-in backup and restore flow, restart the gateway only after an intentional switch, and start a new chat session to avoid mixed persona context. <br>
+## Use Case:
 
+Agent users and developers use this skill to install, switch, restore, create, validate, and publish AI personas across compatible agent workspaces, with optional encrypted memory sync.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TomLeeLive/clawsouls) <br>
-- [ClawSouls Registry](https://clawsouls.ai) <br>
-- [ClawSouls npm Package](https://www.npmjs.com/package/clawsouls) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Soul-Driven Interaction Design](https://doi.org/10.5281/zenodo.18772585) <br>
-- [Soul Spec MCP](https://github.com/clawsouls/soul-spec-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workspace-changing CLI instructions for persona files, backups, publishing, validation, and encrypted memory synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release metadata and package.json) <br>
+Risk: Activating a Soul changes agent persona files and may introduce untrusted instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each Soul before activation, confirm persona changes with the user, and retain workspace backups.
+
+Risk: Publishing a Soul can expose its contents publicly.
+
+Mitigation: List and review the files to be published and obtain user confirmation first.
+
+Risk: Memory sync moves encrypted agent memory to a configured remote.
+
+Mitigation: Run sync or swarm only on explicit request and confirm the remote destination beforehand.
+
+Risk: Installing or executing a persona tool from an untrusted source can alter workspace behavior.
+
+Mitigation: Prefer trusted, pinned sources and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/tomleelive/skills/clawsouls)
+- [ClawSouls registry](https://clawsouls.ai)
+- [Soul-Driven Interaction Design](https://doi.org/10.5281/zenodo.18772585)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Text and Markdown with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local persona files; publishing and memory sync require explicit user approval.]
+
+## Skill Version(s):
+
+0.6.8 (source: release evidence, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

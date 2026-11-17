@@ -1,44 +1,65 @@
-## Description: <br>
-Tator Trader helps agents prepare natural-language crypto trading requests for Tator's AI trading API and review unsigned transaction responses before a user signs or broadcasts them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tator Trader builds unsigned crypto trade transactions from natural-language prompts via Tator's AI trading API across supported chains.
 
-## Publisher: <br>
-[azep-ninja](https://clawhub.ai/user/azep-ninja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azep-ninja](https://clawhub.ai/user/azep-ninja)
 
-## Use Case: <br>
-External users and agent developers use this skill to construct crypto trade, swap, bridge, transfer, yield, prediction market, token launch, and name-registration requests through Tator, then inspect unsigned transactions before signing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary says wallet broadcast examples could execute irreversible transactions without a clear required user approval step. <br>
-Mitigation: Require explicit user approval before every signature or broadcast, and verify recipient, spender, chain, value, approvals, calldata, slippage, fees, and expected outcome before signing. <br>
-Risk: The skill connects to a paid external crypto transaction builder. <br>
-Mitigation: Use a small dedicated wallet, prefer managed wallet integrations, never provide private keys or seed phrases, and confirm payment and trade details before each request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tator Trader ClawHub Page](https://clawhub.ai/azep-ninja/tator-trader) <br>
-- [Publisher Profile](https://clawhub.ai/user/azep-ninja) <br>
-- [Tator Docs](https://docs.quickintel.io/tator) <br>
-- [x402 Protocol](https://www.x402.org) <br>
-- [Tator x402 Payment & Integration Reference](references/REFERENCE.md) <br>
-- [Supported Chains Reference](references/chains.md) <br>
+## Use Case:
 
+External users and developers use this skill to prepare natural-language crypto trading, swapping, bridging, transfer, perpetuals, prediction-market, token-launch, naming, and yield requests. The skill returns unsigned transactions or guidance that users must review before signing and broadcasting.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces unsigned transaction-handling guidance; users must review, sign, and broadcast transactions outside the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote-built transaction payloads may be unsafe if signed without independent review.
+
+Mitigation: Require explicit user approval, decode and simulate each transaction, and verify chainId, to, value, calldata, spender approvals, and description before signing or broadcasting.
+
+Risk: Wallet misuse or key exposure can lead to loss of funds.
+
+Mitigation: Use a dedicated low-balance wallet, never paste seed phrases or private keys, prefer managed wallet integrations, and enforce spending limits.
+
+Risk: One AgentWallet example can broadcast transactions returned by a remote builder.
+
+Mitigation: Do not use the broadcast sample as-is; add a verification gate and user approval before any send-transaction call.
+
+Risk: Unknown or newly launched tokens may be malicious or impossible to sell.
+
+Mitigation: Scan unknown tokens before buying and treat scan results as point-in-time evidence that should be refreshed.
+
+## Reference(s):
+
+- [Tator x402 Payment & Integration Reference](references/REFERENCE.md)
+- [Supported Chains Reference](references/chains.md)
+- [Tator Docs](https://docs.quickintel.io/tator)
+- [x402 Protocol](https://www.x402.org)
+- [Tator Accepted Payments Discovery Endpoint](https://x402.quickintel.io/accepted)
+- [ClawHub Skill Page](https://clawhub.ai/azep-ninja/skills/tator-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces unsigned transaction details and wallet-integration guidance; x402 API requests cost $0.20 USDC or USDM.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

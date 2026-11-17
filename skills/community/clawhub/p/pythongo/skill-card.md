@@ -1,45 +1,66 @@
-## Description: <br>
-PythonGO helps agents answer questions about PythonGO code, documentation, callbacks, errors, modules, functions, installation, and strategy examples using the bundled codebase and docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PythonGO answers questions about PythonGO implementation, APIs, callbacks, errors, modules, installation, debugging, and strategy examples using the bundled codebase and documentation.
 
-## Publisher: <br>
-[aruelius](https://clawhub.ai/user/aruelius) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aruelius](https://clawhub.ai/user/aruelius)
 
-## Use Case: <br>
-External developers and PythonGO users use this skill to answer implementation, API, installation, debugging, and strategy-example questions grounded in the bundled PythonGO codebase, indexed documentation, normalized docs, and type references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategy or API guidance may affect trading behavior if run without review. <br>
-Mitigation: Review generated strategy code before running it and test in simulation or paper mode first. <br>
-Risk: Installer and dependency examples reference downloadable executables or packages. <br>
-Mitigation: Use trusted PythonGO or InfiniTrader sources, avoid untrusted downloads, and do not bypass security warnings unless the source is verified. <br>
-Risk: Credentials or account access may be involved when applying examples. <br>
-Mitigation: Do not hardcode real credentials, and keep secrets outside generated code. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer PythonGO implementation, interface, installation, debugging, and trading strategy questions. It helps generate grounded explanations and complete PythonGO examples from local source, type-reference, and documentation evidence.
 
-## Reference(s): <br>
-- [PythonGO online documentation](https://infinitrader.quantdo.com.cn/pythongo_v2) <br>
-- [PythonGO local documentation index](docs_normalized/index.md) <br>
-- [PythonGO core type reference](references/core-pyi.md) <br>
-- [PythonGO extension type reference](references/ext-pyi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with code blocks and file/path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded in bundled PythonGO code, documentation indexes, normalized docs, and type reference files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated strategy examples can include order placement or cancellation logic that may cause real financial action if run unchanged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code first, test in simulation, and do not run order-related examples against live accounts until the behavior is verified.
+
+Risk: Incorrect exchange or contract fields can lead to misleading trading guidance or unintended strategy behavior.
+
+Mitigation: Verify exchange and contract values against the InfiniTrader real-time market or option quote fields before using generated examples.
+
+Risk: Backtesting workflows may process remote files or downloaded archives.
+
+Mitigation: Use trusted data sources, check file integrity before import, and avoid untrusted archive inputs unless the ZIP extraction issue identified in security evidence is fixed.
+
+Risk: Backtesting setup can involve access keys or account credentials.
+
+Mitigation: Keep credentials out of prompts, examples, logs, and shared code; use simulation credentials when testing.
+
+## Reference(s):
+
+- [PythonGO Online Documentation](https://infinitrader.quantdo.com.cn/pythongo_v2)
+- [core-pyi.md](references/core-pyi.md)
+- [ext-pyi.md](references/ext-pyi.md)
+- [PythonGO Documentation Index](docs_normalized/index.md)
+- [PythonGO Quick Start](docs_normalized/tutorial/quick_start.md)
+- [QuantFair](https://quantfair.quantdo.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with Python code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers are grounded in bundled PythonGO code, type references, indexed documentation, normalized documentation, and examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

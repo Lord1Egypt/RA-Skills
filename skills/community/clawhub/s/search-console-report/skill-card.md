@@ -1,42 +1,64 @@
-## Description: <br>
-Generate comprehensive SEO analysis reports from Google Search Console data with PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive SEO analysis reports from Google Search Console data with PDF export.
 
-## Publisher: <br>
-[lgx-00](https://clawhub.ai/user/lgx-00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgx-00](https://clawhub.ai/user/lgx-00)
 
-## Use Case: <br>
-Developers, SEO operators, and site owners use this skill to collect Google Search Console data, analyze traffic trends, pages, queries, countries, and devices, and generate a PDF SEO report with recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Search Console service account credentials and potentially sensitive analytics data. <br>
-Mitigation: Use a dedicated read-only service account, keep the JSON key out of chat and source control, and delete raw JSON and chart files after use if the data is sensitive. <br>
-Risk: The bundled script includes fixed site URLs and hard-coded local input, chart, and PDF output paths. <br>
-Mitigation: Inspect and edit the script before running it so the sites, input file, chart directory, and report output path match the current workspace. <br>
+## Use Case:
 
+Developers, SEO analysts, and site operators use this skill to fetch Google Search Console data, analyze search performance across one or more sites, and generate chart-rich PDF reports with recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgx-00/search-console-report) <br>
-- [Google Search Console API Library](https://console.cloud.google.com/apis/library/searchconsole.googleapis.com) <br>
-- [Google Search Console API OAuth scope](https://www.googleapis.com/auth/webmasters.readonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands; generated artifacts include JSON data, PNG charts, and a PDF report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Google Cloud service account key with Search Console read access and Python packages including pyjwt, cryptography, requests, matplotlib, pandas, and reportlab.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill handles Google service-account credentials for Search Console access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a Google-generated service-account key with restricted Search Console permissions and review credential handling before running.
+
+Risk: The artifact writes local report data, charts, screenshots, scripts, and PDF outputs.
+
+Mitigation: Run it in a private per-run working directory and choose an output directory that does not expose sensitive search analytics data.
+
+Risk: Dependencies are installed and executed locally.
+
+Mitigation: Install dependencies from reviewed, pinned versions in an isolated virtual environment.
+
+Risk: OAuth token requests depend on the service-account token URI.
+
+Mitigation: Prefer code that pins the OAuth token endpoint to Google's official URL.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lgx-00/skills/search-console-report)
+- [Google OAuth Token Endpoint](https://oauth2.googleapis.com/token)
+- [Google Search Console API Scope](https://www.googleapis.com/auth/webmasters.readonly)
+- [Google Search Console API Library](https://console.cloud.google.com/apis/library/searchconsole.googleapis.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated artifacts include PDF, JSON, and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Google service-account JSON key with restricted Search Console access and writes local report artifacts.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

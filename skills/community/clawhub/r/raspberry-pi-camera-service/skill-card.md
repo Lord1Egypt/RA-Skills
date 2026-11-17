@@ -1,45 +1,64 @@
-## Description: <br>
-Provides Raspberry Pi camera photo capture, video recording, and GIF generation through an HTTP service and Python client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent with guidance and code for controlling a Raspberry Pi CSI or USB camera over an HTTP service to capture photos, record H264 or MP4 video, and generate GIFs.
 
-## Publisher: <br>
-[CLD1994](https://clawhub.ai/user/CLD1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cld1994](https://clawhub.ai/user/cld1994)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy and operate a Raspberry Pi HTTP camera service for capturing photos, recording H264/MP4/GIF video, and managing media files from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service exposes camera and media controls over a network API without built-in authentication. <br>
-Mitigation: Run it only on a trusted network, bind it to localhost or firewall it, and add authentication or another access control before broader use. <br>
-Risk: Remote download and delete endpoints can expose or remove captured media if the service is reachable by unintended clients. <br>
-Mitigation: Restrict those endpoints, limit network reachability, and protect stored output files according to the deployment environment. <br>
-Risk: The installer creates a persistent system service and performs privileged installation steps. <br>
-Mitigation: Review the sudo installer behavior before deployment and avoid running the service process as root. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and operate a Raspberry Pi camera service, then control recording, photo capture, heartbeat-managed sessions, conversion, download, listing, and deletion through a Python client or HTTP API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/CLD1994/raspberry-pi-camera-service) <br>
-- [Client usage guide](references/client_usage.md) <br>
-- [Deployment guide](references/deploy_service.md) <br>
-- [Service design document](references/design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes deployment steps, client API usage, and service configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The deployed camera service is unauthenticated and listens on all interfaces by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to localhost or a protected interface, add authentication, and avoid public network exposure.
+
+Risk: The service may run with elevated privileges or as root during deployment.
+
+Mitigation: Use a dedicated non-root service account and review the generated systemd service permissions before enabling it.
+
+Risk: Captured photos and videos are retained on the device and may contain sensitive data.
+
+Mitigation: Restrict filesystem and network access, set retention expectations, and delete media files when they are no longer needed.
+
+Risk: The installer creates a Python environment and installs dependencies on the target system.
+
+Mitigation: Review the dependency installation behavior and run deployment only on a trusted Raspberry Pi.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cld1994/skills/raspberry-pi-camera-service)
+- [CameraClient usage guide](references/client_usage.md)
+- [Camera service deployment guide](references/deploy_service.md)
+- [Raspberry Pi camera HTTP service design](references/design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or manage camera media files through the deployed service, including JPEG, H264, MP4, and GIF outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

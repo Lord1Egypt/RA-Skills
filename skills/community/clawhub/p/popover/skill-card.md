@@ -1,43 +1,58 @@
-## Description: <br>
-Generate popover UI elements and design assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate popover UI elements and design assets for interfaces, visual components, and web page styling.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and designers may use this skill when they want agent guidance for building interface popovers and related visual components. Security evidence indicates the included script behaves as a local text-entry manager rather than a popover UI generator, so users should review behavior before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a popover UI generator, but security evidence reports that the included script stores, deletes, searches, and exports user-provided text. <br>
-Mitigation: Review the script behavior before use and install only if a simple local text-entry manager is intended. <br>
-Risk: Local entries may retain sensitive notes in the default data directory or a custom POPOVER_DIR. <br>
-Mitigation: Avoid storing secrets or sensitive notes and inspect the configured data directory before and after use. <br>
-Risk: Export writes files into the current working directory. <br>
-Mitigation: Run export only from a directory where creating popover export files is expected. <br>
+## Use Case:
 
+Developers and agents can use this skill when they need guidance or commands related to popover-style frontend work. Review the implementation carefully because the shipped script behaves as a local text-entry CLI rather than a popover UI generator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/popover) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May manage local text entries in a user-selected data directory and export data files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The release is labeled as a popover UI generator, but the shipped artifact behaves as a local text-entry data-store CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill behavior before installation and do not rely on it for frontend asset generation unless the artifact is corrected.
+
+Risk: The script performs persistent local writes, deletion, export, and configuration updates under the configured data directory.
+
+Mitigation: Run it only in a controlled workspace, avoid storing sensitive data, and inspect file changes before using exported output.
+
+Risk: The security guidance identifies an unsafe configuration update path for untrusted keys or values.
+
+Mitigation: Do not pass untrusted configuration keys or values until input handling is fixed and re-reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/popover)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact includes a Bash CLI that writes local JSONL data, exports files, and updates local configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

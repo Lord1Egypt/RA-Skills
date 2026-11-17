@@ -1,43 +1,55 @@
-## Description: <br>
-数据分析师skill automates a local data analysis workflow for loading CSV, Excel, JSON, and SQLite datasets, auditing data quality, cleaning data, running EDA, creating visualizations, and generating an interactive HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a data-analysis pipeline from CSV, Excel, JSON, or SQLite ingestion through quality audit, cleaning, exploratory analysis, visualization, and HTML report generation.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to run a repeatable local data-analysis pipeline over tabular datasets and produce quality checks, summaries, charts, and an HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected datasets and generated reports, charts, summary JSON, and terminal output may contain sensitive data. <br>
-Mitigation: Run it only on datasets you are authorized to analyze, write outputs to approved locations, and review reports before sharing. <br>
-Risk: Report text and HTML content are built from dataset-derived names and values, so untrusted datasets can influence generated output. <br>
-Mitigation: Avoid untrusted datasets or sanitize and review dataset names, columns, and values before opening or distributing generated reports. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to run a repeatable local data-analysis workflow that loads tabular data, audits quality, cleans data, performs EDA, creates charts, and builds a shareable HTML report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/data-analyst-pipeline) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Business rules configuration](config/business_rules.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and Python snippets; generated artifacts include HTML reports, PNG charts, JSON summaries, and terminal output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports and summaries may include dataset-derived names, values, statistics, and charts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML reports can render untrusted dataset text as active browser content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted datasets, or sanitize and HTML-escape dataset values before opening generated reports in a browser.
+
+Risk: Local report, chart, and summary files may retain sensitive dataset contents after analysis.
+
+Mitigation: Write outputs only to approved local directories and delete or protect generated files according to the dataset's sensitivity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/data-analyst-pipeline)
+- [README](README.md)
+- [Business Rules Configuration](config/business_rules.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python and shell commands; generated artifacts include HTML reports, PNG charts, and JSON summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local report, chart, and summary files; large datasets may be sampled when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

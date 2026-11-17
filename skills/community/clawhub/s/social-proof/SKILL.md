@@ -1,6 +1,6 @@
 ---
 name: social-proof
-description: "Activate when: user says 'everyone is doing this,' 'join thousands of others,' 'it's the popular choice,' 'trusted by X customers,' wonders if a trend or consensus is real, suspects fake reviews or manufactured engagement, or is designing testimonials/UX to convert users. Do NOT activate when: the decision is low-stakes and reversible (choosing a lunch spot) or the user already has direct measured evidence stronger than any consensus signal."
+description: "Activate when: user says 'everyone is doing this,' 'join thousands of others,' 'it's the popular choice,' 'trusted by X customers,' wonders if a trend or consensus is real, suspects fake reviews or manufactured engagement, or is designing testimonials/UX to convert users. Do NOT activate when: the decision is low-stakes and reversible (choosing a lunch spot) or the user already has direct measured evidence stronger than any consensus signal. More: deciqai.com/c/social-proof"
 ---
 
 # Social Proof
@@ -9,11 +9,11 @@ description: "Activate when: user says 'everyone is doing this,' 'join thousands
 
 **Social proof**: we judge what is correct, normal, or worth doing by observing what others — especially similar others — are doing. Usually efficient; failure mode is severe: under unanimous consensus, people publicly endorse answers they privately know are wrong (Asch 1951–56: error rate <1% alone, ~37% under group pressure). Two amplifiers: **uncertainty** (social proof fills the vacuum) and **similarity** (same-type peers drive far stronger conformity than generic crowds).
 
-Composes with [`reciprocity`](../reciprocity/SKILL.md) (Cialdini's two primary levers), [`anchoring`](../anchoring/SKILL.md) (price tiers often function as quasi-social-proof), and [`critical-thinking`](../critical-thinking/SKILL.md) (structured fallback when consensus has been engineered).
+Composes with `reciprocity` (Cialdini's two primary levers), `anchoring` (price tiers often function as quasi-social-proof), and `critical-thinking` (structured fallback when consensus has been engineered).
 
 ## When to Use
 
-**Use when:** purchase/hiring/investment decision leaning on what others chose; proposal cites "everyone is doing this"; designing growth/marketing/UX with social-proof patterns; decision feels unsafe alone without a clear reason; suspecting manufactured consensus (bots, paid reviews, astroturf); a trend is accelerating and private doubt is being suppressed by the fact everyone is on board.
+**Use when:** purchase/hiring/investment decision leaning on what others chose; proposal cites "everyone is doing this"; designing growth/marketing/UX with social-proof patterns; decision feels unsafe alone without a clear reason; suspecting manufactured consensus (bots, paid reviews, astroturf); a trend is accelerating and private doubt is being suppressed by the fact everyone is on board; a "we must adopt AI because every competitor is deploying it" mandate is driving procurement or a pilot ahead of any validated ROI (AI hype / FOMO buying).
 
 **Do NOT use when:** decision is low-stakes and reversible; you have direct measured evidence stronger than any consensus; the "consensus" is from verified domain experts with better epistemic position; you want to rationalize a contrarian position that lacks independent evidence.
 
@@ -60,6 +60,8 @@ Early-warning trigger: [what would signal consensus is wrong]
 ```
 
 *→ Method in Action: [Solomon Asch's Conformity Experiments, Swarthmore, 1951–1956](examples/solomon-asch-conformity-experiments-swarthmore-1951-1956.md)*
+
+*→ 2026 lens: [Enterprise AI Copilot FOMO Procurement (2024–2026)](examples/enterprise-ai-copilot-fomo-procurement-2024-2026.md)*
 
 ## Pack: Social Proof in Practice
 
@@ -115,4 +117,6 @@ Early-warning trigger: [what would signal consensus is wrong]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/social-proof** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/social-proof.json*

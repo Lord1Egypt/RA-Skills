@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bjqgah2pz7wkacjvkqssb3s82n42f",
-  "slug": "pv-inspection",
+  "name": "PV Inspection",
+  "description": "光伏电站巡检报告生成技能，支持创建标准化巡检报告、记录缺陷问题、统计汇总数据、导出 Word/PDF 格式",
   "version": "1.0.0",
-  "publishedAt": 1775862776821
+  "author": "Alex",
+  "tags": ["pv", "inspection", "report", "solar", "word", "pdf"]
 }

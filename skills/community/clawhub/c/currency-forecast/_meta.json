@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7e0me20waa3xwn6x5wv7hv7n82w2e6",
-  "slug": "currency-forecast",
+  "name": "currency-forecast",
   "version": "1.0.0",
-  "publishedAt": 1773895845620
+  "description": "Professional currency exchange rate analysis and forecasting tool",
+  "author": "clawclaw",
+  "tags": ["finance", "currency", "forecast", "exchange-rate", "trading"]
 }

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7104ppk6cvtv24c6yvdeg1nn82yfcs",
-  "slug": "xhs-mcp-installer",
+  "name": "xhs-mcp-installer",
   "version": "1.0.0",
-  "publishedAt": 1776347221247
+  "description": "一键安装小红书 MCP 服务（xiaohongshu-mcp），支持 macOS/Linux，自动配置开机自启和看门狗。",
+  "author": "alexduming",
+  "homepage": "https://github.com/xpzouying/xiaohongshu-mcp",
+  "tags": ["xiaohongshu", "mcp", "小红书", "安装"]
 }

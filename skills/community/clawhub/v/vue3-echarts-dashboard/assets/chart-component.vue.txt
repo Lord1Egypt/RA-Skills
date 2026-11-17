@@ -1,0 +1,63 @@
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+import { use{{PASCAL}}Chart } from '@/hooks/charts/use{{PASCAL}}Chart'
+import type {
+  {{PASCAL}}ChartData,
+  {{PASCAL}}ChartConfig,
+} from '@/hooks/charts/use{{PASCAL}}Chart'
+
+const props = withDefaults(
+  defineProps<{
+    /** 图表数据，具体结构由对应 builder 定义 */
+    data: {{PASCAL}}ChartData
+    /** 图表配置项（颜色、堆叠、平滑等），可选 */
+    config?: {{PASCAL}}ChartConfig
+    /** 容器高度，默认 {{DEFAULT_HEIGHT}}（ECharts 必须显式高度，否则不显示） */
+    height?: string
+    /** 容器宽度，默认 100% */
+    width?: string
+    /** 渲染器，默认 canvas */
+    renderer?: 'canvas' | 'svg'
+    /** 主题：传已注册的主题名（需先 echarts.registerTheme）或直接传主题对象，init 时生效 */
+    theme?: string | object
+  }>(),
+  {
+    height: '{{DEFAULT_HEIGHT}}',
+    width: '100%',
+    renderer: 'canvas',
+  },
+)
+
+const elRef = ref<HTMLElement | null>(null)
+const { render, resize } = use{{PASCAL}}Chart(elRef, props.data, props.config, {
+  renderer: props.renderer,
+  theme: props.theme,
+})
+
+watch(
+  () => props.data,
+  (val) => render(val),
+  { deep: true },
+)
+watch(
+  () => props.config,
+  () => render(props.data),
+  { deep: true },
+)
+
+defineExpose({ resize, render })
+</script>
+
+<template>
+  <div
+    ref="elRef"
+    class="echart-container"
+    :style="{ width, height }"
+  />
+</template>
+
+<style scoped>
+.echart-container {
+  min-height: 120px;
+}
+</style>

@@ -1,41 +1,57 @@
-## Description: <br>
-Applies data-grid architecture for high-traffic stateful workloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies data-grid architecture for high-traffic stateful workloads.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and architects use this skill to decide when to apply space-based architecture and to plan data-grid partitioning, persistence, failover, testing, and operational runbooks for high-traffic stateful systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may surface this skill during generic architecture or scalability discussions. <br>
-Mitigation: Confirm the workload has high traffic, substantial state volume, and an in-memory partitioning need before applying the recommendations. <br>
-Risk: Space-based architecture can introduce eventual consistency, operational complexity, and higher infrastructure cost. <br>
-Mitigation: Review consistency requirements, automation maturity, failover procedures, and cost controls before adopting the pattern. <br>
+## Use Case:
 
+Developers and architects use this skill to assess and plan data-grid architectures for high-traffic stateful applications. It guides workload partitioning, persistence, failover, and scalability decisions, including when a space-based design is unsuitable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-space-based) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown guidance with bullet lists and architecture recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no tools, executable code, data access, or persistence per security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Replicated in-memory data can be temporarily inconsistent across processing units.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Document data-freshness service levels, choose replication behavior deliberately, and provide compensation logic for data that is not immediately consistent.
+
+Risk: Operating a distributed data grid adds automation and recovery complexity, including split-brain scenarios.
+
+Mitigation: Invest in production-grade automation and maintain runbooks for scaling and recovery; exercise recovery procedures outside production.
+
+Risk: In-memory grids can consume substantial resources and increase operating costs.
+
+Mitigation: Monitor resource utilization and use autoscaling policies to manage capacity and cost.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-space-based)
+
+## Skill Output:
+
+**Output Type(s):** [Architecture guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes architecture decisions and operational deliverables; does not provide implementation code.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Guides an agent through a four-role adversarial review process for diagnosing API failures and selecting a practical resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze API failures by using a four-role adversarial discussion pattern to diagnose issues, compare remedies, and converge on a recommended solution.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-Developers and support engineers use this skill to structure API troubleshooting, compare candidate fixes, and converge on a recommended action when failures involve keys, endpoints, network behavior, or fallback handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API credentials or private endpoint details could be exposed while troubleshooting. <br>
-Mitigation: Redact API keys, secrets, and private identifiers before providing configuration details to the agent. <br>
-Risk: The workflow can recommend diagnostic or configuration changes that may not match the live environment. <br>
-Mitigation: Review the proposed fix and test changes in a controlled environment before applying them to production systems. <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot API call failures, compare candidate fixes, and produce a concise final recommendation for degraded or failing API integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timo2026/auto-skill-20260404-063632) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with code examples and diagnostic checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured troubleshooting recommendations; users should redact API keys and private credentials before sharing configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Debugging examples may cache model responses that contain API keys, request payloads, or other sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and sensitive payloads before using the workflow, and review, delete, or secure any agent cache or debug output after troubleshooting.
+
+Risk: The release is a workflow description rather than a complete runnable API-debugging engine.
+
+Mitigation: Treat generated commands, code, and recommendations as implementation guidance, then review and test them in the target environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/auto-skill-20260404-063632)
+- [Publisher profile](https://clawhub.ai/user/timo2026)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with diagnostic steps and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retry, fallback, network, and configuration checks for API debugging workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

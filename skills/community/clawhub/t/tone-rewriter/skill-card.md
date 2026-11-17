@@ -1,40 +1,57 @@
-## Description: <br>
-Rewrites text into one of 10 supported tones while preserving the original meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites text into one of 10 requested tones while preserving meaning through a paid x402 tone-rewriting service.
 
-## Publisher: <br>
-[Daisuke134](https://clawhub.ai/user/Daisuke134) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daisuke134](https://clawhub.ai/user/daisuke134)
 
-## Use Case: <br>
-Developers and AI agents use this skill to rewrite user-provided text for tone adjustment in messages, drafts, and other short-form content through a paid x402 service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided text to an external tone-rewriting endpoint. <br>
-Mitigation: Avoid sending confidential, regulated, proprietary, or credential-like text unless the external service and its data handling are trusted. <br>
-Risk: Using the skill requires a paid x402 flow that can spend USDC. <br>
-Mitigation: Install only if the awal CLI and payment flow are trusted, and monitor usage and spend. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Daisuke134/tone-rewriter) <br>
-- [Tone rewriter x402 endpoint](https://anicca-proxy-production.up.railway.app/api/x402/tone-rewriter) <br>
+## Use Case:
 
+Developers and AI agents use this skill to rewrite user-provided text for professional, casual, friendly, formal, empathetic, persuasive, academic, simple, witty, or urgent communication while preserving the original meaning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON response with rewritten text and tone metadata, plus Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Input text is capped at 2000 characters; requests are paid at $0.01 USDC via x402.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User text is sent to an external paid endpoint.
+
+Mitigation: Confirm the text is appropriate to send to the endpoint before invocation, especially when it may contain sensitive or regulated content.
+
+Risk: Each request is charged through x402 payment flow.
+
+Mitigation: Use a low-risk payment setup and verify the exact request and cost before sending.
+
+Risk: The skill asks users to install and authenticate a global payment CLI.
+
+Mitigation: Install the CLI only from the expected package source and authenticate only in an environment approved for paid external service calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daisuke134/skills/tone-rewriter)
+- [tone-rewriter x402 Endpoint](https://anicca-proxy-production.up.railway.app/api/x402/tone-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON response containing rewritten text and tone metadata, with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input text is documented with a 2000 character maximum; each request is a paid x402 call.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

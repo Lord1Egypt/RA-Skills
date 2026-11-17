@@ -1,41 +1,57 @@
-## Description: <br>
-Knot Agent Editor helps authorized users inspect, regenerate, modify, and publish Knot platform agent draft configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users view and manage Knot platform agent draft configurations, including listing editable agents and models, regenerating drafts, editing draft fields, and publishing drafts.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers or administrators with Knot agent management access use this skill to inspect agent drafts, list manageable agents and models, regenerate drafts, edit draft metadata, system prompts, and default models, and publish approved changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles JWT and API credentials while normal HTTPS certificate checks are disabled. <br>
-Mitigation: Install only if the publisher is trusted, run it only in authorized environments, and prefer a version that enables TLS certificate validation or uses a trusted CA bundle before using real credentials. <br>
-Risk: Regenerate, modify, and publish commands can make real remote changes to Knot agent drafts or production agent behavior. <br>
-Mitigation: Confirm the target agent, review draft staleness and permissions, and require explicit user approval before running commands that overwrite drafts or publish changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect Knot agent draft settings, update names, descriptions, welcome messages, system prompts, and default models, then publish reviewed draft changes when appropriate.
 
-## Reference(s): <br>
-- [Knot Agent Editor API Reference](artifact/references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yinwuzhe/editor1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live API calls require KNOT_JWT_TOKEN and KNOT_USERNAME.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+Risk: The skill disables TLS certificate verification while sending credentials to the Knot service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Knot service and network path are trusted, treat environment credentials as sensitive, and prefer use only after TLS verification is fixed or a trusted CA bundle is configured.
+
+Risk: Draft regeneration, modification, and publishing can overwrite or expose production agent behavior.
+
+Mitigation: Require explicit user confirmation before regeneration or publishing, inspect stale-draft warnings, and review all draft changes before making them live.
+
+Risk: The modify workflow can read prompt content from @file arguments.
+
+Mitigation: Inspect referenced files before execution and avoid passing files that contain unrelated secrets or unintended instructions.
+
+## Reference(s):
+
+- [Knot Agent Editor API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses environment credentials for Knot API access and may display complete draft configuration fields, including full system prompts.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

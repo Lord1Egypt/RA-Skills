@@ -1,39 +1,54 @@
-## Description: <br>
-Wutrix connects an OpenClaw agent to a film pre-production workspace to save ideas and query projects, scenes, characters, and story materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wutrix connects an OpenClaw agent to a wutrix film-preproduction workspace so it can capture ideas and query projects, scenes, characters, and story-world material.
 
-## Publisher: <br>
-[kwneox](https://clawhub.ai/user/kwneox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwneox](https://clawhub.ai/user/kwneox)
 
-## Use Case: <br>
-External users and creative teams use this skill to let an OpenClaw agent record Wutrix inbox ideas and retrieve project, scene, character, and worldbuilding information through the configured Wutrix backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses INSPIRESTUDIO_API_KEY to read Wutrix project data and add inbox ideas. <br>
-Mitigation: Install only against a Wutrix backend you operate or trust, use the narrowest scoped key available, and avoid pointing the skill at untrusted services. <br>
+## Use Case:
 
+External creators and developers use this skill to connect an agent to a configured wutrix server for screenplay development workflows, including saving inspiration and retrieving project, scene, character, and vault search results.
 
-## Reference(s): <br>
-- [Wutrix ClawHub skill page](https://clawhub.ai/kwneox/wutrix) <br>
-- [Wutrix project homepage](https://github.com/kwneox/inspirestudio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON from helper scripts and concise Chinese text or Markdown summaries from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INSPIRESTUDIO_URL and INSPIRESTUDIO_API_KEY; query results should be summarized for the user rather than dumped as raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad trigger phrases may cause the agent to send matched user text to the configured wutrix server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in contexts where wutrix capture and search are expected, and avoid enabling it for unrelated private conversations.
+
+Risk: The skill depends on a configured server URL and API key for all save and query operations.
+
+Mitigation: Use a trusted HTTPS wutrix URL and a narrowly scoped, revocable API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kwneox/skills/wutrix)
+- [wutrix project homepage](https://github.com/kwneox/inspirestudio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [JSON from helper scripts and concise Chinese text or Markdown summaries from the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires INSPIRESTUDIO_URL and INSPIRESTUDIO_API_KEY; helper scripts make HTTP requests to the configured wutrix server with 10 second timeouts.]
+
+## Skill Version(s):
+
+1.5.2 (source: server release, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

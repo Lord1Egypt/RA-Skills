@@ -1,40 +1,60 @@
-## Description: <br>
-Monitors user check-ins, sends daily Feishu reminders, and contacts an emergency phone contact after seven consecutive missed check-ins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safety Check-In Reminder sends daily Feishu check-in prompts and escalates to an emergency contact after seven missed days.
 
-## Publisher: <br>
-[jayhe](https://clawhub.ai/user/jayhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayhe](https://clawhub.ai/user/jayhe)
 
-## Use Case: <br>
-Individuals or teams use this skill to set up a safety check-in workflow that sends daily Feishu reminders, records check-ins, and escalates to an emergency contact after seven missed days. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sets up ongoing automation and can automatically contact an emergency contact without enough visible user controls. <br>
-Mitigation: Before installing, confirm how Feishu messages and phone calls are sent, who can check in, and how scheduled tasks can be stopped or deleted. <br>
-Risk: The workflow stores emergency contact and check-in information and may call a third party after missed check-ins. <br>
-Mitigation: Protect and periodically remove stored contact data as appropriate, and confirm the emergency contact has consented to automated calls. <br>
+## Use Case:
 
+External users or operators use this skill to configure daily safety check-ins through a Feishu group and emergency-contact escalation after prolonged inactivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jayhe/dead-or-alive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration, and plain-text check-in and alert records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May set up recurring reminders and maintain check-in and alert history after user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill stores an emergency phone number and Feishu chat ID in local project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user and emergency contact consent to storing this data, restrict file access, and delete stored configuration when the workflow is no longer needed.
+
+Risk: The skill creates recurring automation that may continue after the user stops intending to use it.
+
+Mitigation: Provide and verify a way to list, disable, delete, and expire scheduled reminder and check tasks.
+
+Risk: The skill may contact a third party after missed check-ins.
+
+Mitigation: Verify the Feishu destination and emergency phone number before activation, and confirm escalation behavior with the emergency contact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayhe/skills/dead-or-alive)
+- [Publisher profile](https://clawhub.ai/user/jayhe)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Files, Shell commands, API Calls]
+
+**Output Format:** [Markdown guidance with configuration updates, local log files, scheduled automation, Feishu reminders, and emergency-contact notifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local configuration and log files for check-ins and alerts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

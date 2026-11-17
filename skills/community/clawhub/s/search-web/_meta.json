@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7c79rjmhvqrsmj9br4qrxys182epxf",
-  "slug": "search-web",
+  "name": "search_web",
   "version": "1.0.0",
-  "publishedAt": 1772870438656
+  "description": "Search the internet using SearXNG",
+  "author": "local"
 }

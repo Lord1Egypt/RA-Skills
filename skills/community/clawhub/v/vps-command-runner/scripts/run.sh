@@ -1,18 +1,14 @@
 #!/bin/bash
-# Run command on specific VPS
-# EDIT THIS: Add your username and password
+# Run command on a specific VPS
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib.sh"
 
-USER="YOUR_USERNAME"
-PASS="YOUR_PASSWORD"
+[[ $# -lt 2 ]] && { echo "Usage: run.sh <host> <command>"; exit 1; }
 
-if [ -z "$2" ]; then
-    echo "Usage: run.sh <ip> <command>"
-    echo "Example: run.sh 1.2.3.4 'docker ps'"
-    exit 1
-fi
+HOST="$1"
+shift
+COMMAND="$*"
 
-VPS="$1"
-COMMAND="$2"
-
-echo "=== $VPS ==="
-sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 "$USER@$VPS" "$COMMAND" 2>&1
+echo "=== $HOST ==="
+ssh "${SSH_OPTS[@]}" "$HOST" "$COMMAND"

@@ -1,44 +1,63 @@
-## Description: <br>
-Use this skill to test, compare, promote, replace, or clean up local Ollama models with repeatable two-round benchmarks, no-think verification, and local-only safety boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ModelPilot helps agents test, compare, promote, replace, and clean up local Ollama models using repeatable two-round benchmarks, no-think checks, and local-only safety boundaries.
 
-## Publisher: <br>
-[patmenciu](https://clawhub.ai/user/patmenciu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patmenciu](https://clawhub.ai/user/patmenciu)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate installed local Ollama models against fixed fictional prompt sets before changing workflow model choices. It helps compare speed, format stability, no-think leakage, repeatability, and rollback readiness without relying on cloud APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark reports may store prompts and model responses locally. <br>
-Mitigation: Use fictional or explicitly approved prompt files and review output paths before running benchmarks. <br>
-Risk: Replacing or deleting a local model after weak evidence can disrupt an existing workflow. <br>
-Mitigation: Require two benchmark rounds for replacement decisions, keep the previous model available for rollback, and approve any model download or deletion separately. <br>
-Risk: No-think model names or settings may still produce reasoning traces or polluted structured output. <br>
-Mitigation: Check generated output for thinking markers and avoid promotion into automated workflows when no-think or structured-output behavior is unstable. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate installed local Ollama models on repeatable task prompts, no-think behavior, structured output stability, and replacement readiness. It supports local workflow decisions without cloud APIs, uploads, model downloads, or automatic model deletion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patmenciu/modelpilot) <br>
-- [README](README.md) <br>
-- [Example benchmark report](outputs/example_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, optional JSON benchmark inputs, and Markdown benchmark reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only Ollama workflow; benchmark reports may include prompts and model responses stored on the user's machine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: Benchmark reports can overstate replacement readiness because mechanical checks do not prove semantic quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human semantic review and two clean benchmark rounds before replacing a workflow model; keep the previous model and configuration available for rollback.
+
+Risk: Prompts, logs, or benchmark outputs may contain sensitive local data if real files are used.
+
+Mitigation: Use fictional prompt sets by default, only use user-named files for the task, and keep benchmark outputs local.
+
+Risk: No-think model names or instructions may not guarantee clean output.
+
+Mitigation: Check outputs for thinking traces and avoid promoting a model into automation when leakage appears.
+
+Risk: Untrusted or edited benchmark JSON can produce misleading reports.
+
+Mitigation: Review benchmark inputs and reports manually, and rerun benchmarks from trusted model and prompt configurations when results affect replacement decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/patmenciu/skills/modelpilot)
+- [README](README.md)
+- [Example Benchmark Report](outputs/example_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands, JSON benchmark results, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only Ollama workflow; benchmark scripts use installed models and fictional or explicitly selected prompt files.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "TaoHtml"
+  short_description: "Create or revise polished 16:9 offline HTML reports"
+  default_prompt: "Use $taohtml to create or revise a polished 16:9 offline HTML report: confirm the report design, use an appropriate visual system and Runtime, enable lightweight text/image editing, run browser QA, and list any creative supplements for verification at delivery."
+policy:
+  allow_implicit_invocation: false

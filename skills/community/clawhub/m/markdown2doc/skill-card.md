@@ -1,42 +1,59 @@
-## Description: <br>
-Markdown2Doc converts Markdown files into PDF or DOCX documents with support for template themes, document structure preservation, heading hierarchy, and embedded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight document utility designed to convert Markdown files to PDF or DOCX format, with support for template themes and embedded images.
 
-## Publisher: <br>
-[haoyt27](https://clawhub.ai/user/haoyt27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoyt27](https://clawhub.ai/user/haoyt27)
 
-## Use Case: <br>
-Developers and agents use Markdown2Doc to convert local Markdown files into shareable PDF or DOCX documents, optionally applying DOCX themes and embedding referenced local images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown content and locally referenced image files are sent to lab.hjcloud.com for conversion. <br>
-Mitigation: Use only documents appropriate for cloud processing; do not convert confidential documents, secrets, proprietary notes, private screenshots, or sensitive diagrams. <br>
-Risk: Referenced local images may include files the user did not intend to send with the Markdown document. <br>
-Mitigation: Review image references before converting and keep the Markdown source folder limited to files intended for upload. <br>
+## Use Case:
 
+Developers, technical writers, and other document authors use this skill to convert Markdown files into shareable PDF or DOCX documents and to list or apply DOCX template themes.
 
-## Reference(s): <br>
-- [Markdown2Doc ClawHub page](https://clawhub.ai/haoyt27/markdown2doc) <br>
-- [Markdown2Doc conversion service](https://lab.hjcloud.com/llmdoc) <br>
-- [Docchain skills support](https://github.com/wct-lab/docchain-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PDF or DOCX files generated from Markdown, with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves the converted file beside the source Markdown file; DOCX output supports optional themes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: Markdown content and referenced local images are sent to a remote conversion service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents and image files that are acceptable to send to lab.hjcloud.com; avoid confidential, proprietary, or sensitive content.
+
+Risk: Untrusted Markdown directories or symlinked image paths could expose unintended local files.
+
+Mitigation: Run the skill only on trusted document directories, review local image references before conversion, and avoid directories that may contain symlinks.
+
+Risk: Converted output may overwrite files or be written outside the expected output path if server-supplied filenames are not strictly controlled.
+
+Mitigation: Run conversions in a disposable or reviewed working directory and inspect the final output path before relying on the result.
+
+## Reference(s):
+
+- [Markdown2Doc Skill Page](https://clawhub.ai/haoyt27/skills/markdown2doc)
+- [Markdown2Doc Service Endpoint](https://lab.hjcloud.com/llmdoc)
+- [Support Repository](https://github.com/wct-lab/docchain-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Markdown, Guidance]
+
+**Output Format:** [PDF or DOCX files, with text status messages from the command-line tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converted files are written to the source Markdown file's parent directory; DOCX conversion can use a named theme.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

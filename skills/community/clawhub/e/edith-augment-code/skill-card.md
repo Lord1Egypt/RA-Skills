@@ -1,42 +1,53 @@
-## Description: <br>
-Use Augment Code (Auggie CLI) to analyze, generate, and modify code through Edith smart glasses or OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edith Augment Code uses Augment Code's Auggie CLI to help agents build, analyze, debug, and prototype code through OpenClaw and Edith smart glasses.
 
-## Publisher: <br>
-[samdickson22](https://clawhub.ai/user/samdickson22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samdickson22](https://clawhub.ai/user/samdickson22)
 
-## Use Case: <br>
-Developers and engineers use this skill to call Augment Code's Auggie CLI from Edith smart glasses or OpenClaw for code generation, project analysis, debugging, prototyping, and code guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A coding-agent CLI may access repository contents, including secrets or sensitive proprietary code. <br>
-Mitigation: Run the skill only in scoped repositories under version control and avoid projects containing secrets or sensitive proprietary code unless that exposure is acceptable. <br>
-Risk: Generated code, debugging advice, or project analysis may be incorrect or unsuitable for the target codebase. <br>
-Mitigation: Review generated changes and recommendations before applying or deploying them. <br>
-Risk: Installing Auggie from an untrusted source could introduce supply-chain risk. <br>
-Mitigation: Install Auggie only from the official Augment Code source. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate code generation, codebase analysis, debugging, reviews, and prototyping tasks to Auggie from Edith smart glasses or OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samdickson22/edith-augment-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and concise natural-language summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should summarize generated code, analysis findings, debugging causes and fixes, or setup errors for voice-friendly delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and shipables.json) <br>
+Risk: Broad coding, debugging, and codebase-analysis requests may route project context to the third-party Auggie CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm repository or file scope before use, especially for private or sensitive code.
+
+Risk: Installing or running the Auggie CLI without review may introduce supply-chain or permission risk.
+
+Mitigation: Pin and review the CLI version, avoid elevated installation privileges, and install only when Auggie is intentionally desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samdickson22/skills/edith-augment-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown text with inline shell commands and code-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be summarized concisely for Edith glasses voice use, with key findings, created files, root causes, or fixes called out.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, shipables.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

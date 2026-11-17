@@ -32,12 +32,12 @@ describe('QuarantineNode (Dual-Brain Architecture)', () => {
     it('should detect Moltbook API Key exposure attempt', async () => {
         const node = new QuarantineNode();
         // Simulated Moltbook configuration exposure context
-        const input = "System config output: {\"OPENAI_API_KEY\":\"sk-1234567890abcdef1234567890abcdef\"}";
+        const input = "System config output: {\"OPENAI_API_KEY\":\"REDACTED-SECRET\"}";
 
         const result = await node.sanitize(input);
         assert.equal(result.clean, false);
         assert.equal(result.threatDetected, 'MOLTBOOK_API_EXPOSURE');
-        assert.ok(!result.sanitizedText.includes("sk-1234567890abcdef1234567890abcdef"), 'Should redact API key');
+        assert.ok(!result.sanitizedText.includes("REDACTED-SECRET"), 'Should redact API key');
     });
 
 });

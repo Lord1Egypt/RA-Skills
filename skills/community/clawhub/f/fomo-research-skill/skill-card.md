@@ -1,37 +1,53 @@
-## Description: <br>
-Deprecated placeholder that directs users to install the replacement fomo-research skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated skill tells agents to use the replacement fomo-research skill and provides its install command.
 
-## Publisher: <br>
-[pooowell](https://clawhub.ai/user/pooowell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pooowell](https://clawhub.ai/user/pooowell)
 
-## Use Case: <br>
-Developers and external users see that this deprecated skill should not be used and are pointed to the maintained replacement skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this deprecated placeholder contains the original research workflow. <br>
-Mitigation: Treat it only as a redirect and review the replacement fomo-research skill separately before installing or using it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pooowell/fomo-research-skill) <br>
+## Use Case:
 
+External users and developers use this deprecated skill only to learn that fomo-research-skill is no longer maintained and to find the replacement fomo-research install command.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated redirect only; it does not provide the original research workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deprecated skill points to a replacement install command that could be mistaken or unpinned.
+
+Mitigation: Confirm that clawhub and fomo-research are the intended packages and prefer a pinned or otherwise verified installation path before running the command.
+
+Risk: The skill is no longer maintained.
+
+Mitigation: Use the replacement fomo-research skill instead of relying on this deprecated skill for current behavior.
+
+## Reference(s):
+
+- [Fomo Research (DEPRECATED) on ClawHub](https://clawhub.ai/pooowell/skills/fomo-research-skill)
+- [pooowell ClawHub profile](https://clawhub.ai/user/pooowell)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecation notice only; users should verify the replacement install command before execution.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Guides an agent through preparing CSV time-series data, using Plonky.ai MCP tools to analyze datasets, create forecasts and backtests, and explain forecast reliability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Plonky.ai to upload, analyze, and forecast recurring time-series data for planning and budgeting, with guidance on data quality and model suitability.
 
-## Publisher: <br>
-[addysmoke](https://clawhub.ai/user/addysmoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[addysmoke](https://clawhub.ai/user/addysmoke)
 
-## Use Case: <br>
-Developers and analysts use this skill to decide whether recurring time-series data is suitable for forecasting, upload approved CSV data to Plonky.ai, run forecasts and backtests, and present planning guidance with uncertainty and accuracy caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected CSV time-series data to Plonky.ai for analysis and forecasting. <br>
-Mitigation: Confirm permission to upload the data and avoid confidential, regulated, or personally identifiable data unless Plonky.ai terms and internal policies allow it. <br>
-Risk: Forecasts and backtests may consume Plonky.ai credits. <br>
-Mitigation: Check credits before running forecasts, keep batch dimensions limited to useful segments, and stop rather than retrying when credits are insufficient. <br>
-Risk: Forecast results can be misleading when the data is sparse, stale, monthly, event-driven, or fails backtesting. <br>
-Mitigation: Run dataset analysis and at least one backtest, disclose confidence intervals and error metrics, and present weak forecasts only as directional estimates. <br>
+## Use Case:
 
+Developers, analysts, and planning teams use this skill to decide whether time-series forecasting is appropriate, prepare suitable datasets, call Plonky.ai forecasting tools, and present forecast results with reliability caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/addysmoke/plonky-time-series-forecasting) <br>
-- [Plonky.ai MCP server source](https://github.com/addysmoke/plonkyai_mcp) <br>
-- [Plonky.ai agent API docs](https://plonky.ai/agents) <br>
-- [Plonky.ai billing](https://plonky.ai/billing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, markdown] <br>
-**Output Format:** [Markdown guidance with MCP tool-call instructions and forecast interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce recommendations, data quality warnings, forecast summaries, backtest interpretation, and links to Plonky.ai forecast views.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Forecasting datasets may be uploaded to Plonky.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading confidential, regulated, or customer-identifiable data unless organizational policy permits that use.
+
+Risk: Forecasts and backtests can consume Plonky.ai API credits.
+
+Mitigation: Check available credits before forecasting and avoid unnecessary batch or repeated forecast runs.
+
+Risk: Weak, sparse, monthly, irregular, or event-driven data can produce unreliable forecasts.
+
+Mitigation: Analyze the dataset before forecasting, run a backtest, and present poor-accuracy results as directional estimates only.
+
+## Reference(s):
+
+- [Plonky.ai API Docs](https://plonky.ai/agents)
+- [Plonky.ai MCP Server](https://github.com/addysmoke/plonkyai_mcp)
+- [ClawHub Skill Page](https://clawhub.ai/addysmoke/skills/plonky-time-series-forecasting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance and forecast summaries with tool calls, metrics, caveats, and relevant Plonky.ai links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecasting workflow may upload user datasets to Plonky.ai and consume API credits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>原型样张 · 大数字带</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">06 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      试点三个月:检索时间降四成
+    </div>
+  </div>
+
+  <!-- 原型 17:大数字带(columns,细线分隔无卡片)
+       2026-08-06 第四轮 P5:整页色面原为 0%(纯白底+黑字+细线)。
+       给"主指标"一列加深色底(结构色面 + 焦点),另两列保持裸排细线分隔 ——
+       既满足结构色面下限,又不破坏原型 17"无卡片"的身份。 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:340px;width:600px;height:480px;background:var(--deep-navy);z-index:1;"></div>
+  <div data-layout="columns" data-layout-gap="40" style="position:absolute;left:100px;top:380px;width:1720px;height:400px;">
+    <div data-object="true" data-layout-w="1fr" style="padding-left:40px;">
+      <div class="num" style="font-size:88px;font-weight:800;line-height:1;color:var(--accent-orange);">-42<span style="font-size:40px;">%</span></div>
+      <div style="font-size:22px;line-height:1.4;color:var(--on-navy-text);margin-top:20px;">平均检索耗时,从 11 分钟降至 6.4 分钟</div>
+      <div style="font-size:18px;line-height:1.4;color:var(--signal-green);margin-top:12px;">↓ 目标 -30%,超额达成</div>
+    </div>
+    <div data-object="true" data-layout-w="1fr" style="border-left:1px solid var(--border-light);padding-left:40px;">
+      <div class="num" style="font-size:88px;font-weight:800;line-height:1;color:var(--charcoal);">78<span style="font-size:40px;">%</span></div>
+      <div style="font-size:22px;line-height:1.4;color:var(--text-secondary);margin-top:20px;">文档带"保质期"标注的比例,试点前为 0</div>
+      <div style="font-size:18px;line-height:1.4;color:var(--text-secondary);margin-top:12px;">口径:抽检 500 份活跃文档</div>
+    </div>
+    <div data-object="true" data-layout-w="1fr" style="border-left:1px solid var(--border-light);padding-left:40px;">
+      <div class="num" style="font-size:88px;font-weight:800;line-height:1;color:var(--charcoal);">2.4<span style="font-size:40px;">倍</span></div>
+      <div style="font-size:22px;line-height:1.4;color:var(--text-secondary);margin-top:20px;">过期文档月清理率,流转 owner 制的直接效果</div>
+      <div style="font-size:18px;line-height:1.4;color:var(--text-secondary);margin-top:12px;">对比基线:试点前季度清理</div>
+    </div>
+  </div>
+
+  <!-- 口径注(grid 演示) -->
+  <div data-layout="grid" data-layout-cols="3" data-layout-gap="40" style="position:absolute;left:100px;top:860px;width:1720px;">
+    <div data-object="true" data-layout-h="60" style="border-top:1px solid var(--border-light);padding-top:16px;">
+      <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">样本:两家试点部门,共 214 人</div>
+    </div>
+    <div data-object="true" data-layout-h="60" style="border-top:1px solid var(--border-light);padding-top:16px;">
+      <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">区间:2026-05 至 2026-07</div>
+    </div>
+    <div data-object="true" data-layout-h="60" style="border-top:1px solid var(--border-light);padding-top:16px;">
+      <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">来源:内部工单系统日志</div>
+    </div>
+  </div>
+
+</div>
+
+<template data-slide-notes>
+【核心逻辑】三个数字分别对应三机制的效果,为规模化推广铺路。
+</template>
+</body>
+</html>

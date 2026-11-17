@@ -1,45 +1,60 @@
-## Description: <br>
-Automates Linux forensic collection and archival by generating system reports covering users, network, logs, processes, packages, and disk usage, then helping upload reports to Google Drive or email results for incident response, audits, and security workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Linux forensic data collection, generates detailed reports, and uploads them to Google Drive or emails results for fast incident response and audits.
 
-## Publisher: <br>
-[peachhfuzz](https://clawhub.ai/user/peachhfuzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peachhfuzz](https://clawhub.ai/user/peachhfuzz)
 
-## Use Case: <br>
-Security operators, incident responders, auditors, and Linux administrators use this skill to collect system forensic snapshots and prepare archival or notification workflows through Google Drive and Gmail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forensic reports can contain sensitive Linux host details, including users, network state, processes, logs, packages, cron jobs, and recently modified files. <br>
-Mitigation: Review the target system and report contents before sharing, and collect only with explicit authorization for the host and incident scope. <br>
-Risk: The documented Drive upload and Gmail workflows can share forensic material outside the local system. <br>
-Mitigation: Confirm recipients, Drive folder permissions, and shareable-link settings before upload or email delivery. <br>
-Risk: OAuth tokens used by the documented Google workflows enable continued access if exposed. <br>
-Mitigation: Store tokens with restrictive file permissions, rotate or revoke them after incidents, and reinstall only when the displayed version matches the reviewed files. <br>
+## Use Case:
 
+Security operations, incident response, audit, and engineering teams use this skill to collect Linux system forensic data and prepare commands or workflow guidance for archiving reports to Google Drive or sending status by email.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/peachhfuzz/linux-forensics-automation) <br>
-- [Google Drive API Documentation](https://developers.google.com/drive/api) <br>
-- [OAuth 2.0 for Desktop Apps](https://developers.google.com/identity/protocols/oauth2/native-app) <br>
-- [Linux Manual Pages](https://www.man7.org/linux/man-pages/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe generated forensic report files and external sharing steps when the user authorizes collection and upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Forensic reports may contain sensitive system, user, network, process, log, package, cron, file, and disk usage data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized incident response or audit work, redact or encrypt reports before sharing, and review collected fields against local policy.
+
+Risk: Reports can be uploaded to Google Drive or referenced in email workflows, which can expose sensitive data if permissions are too broad.
+
+Mitigation: Confirm Drive folder permissions, avoid public or broadly shared links, restrict OAuth scopes, and review token storage before use.
+
+Risk: Long-lived OAuth refresh tokens can enable continued access beyond a single forensic task.
+
+Mitigation: Store tokens with restrictive permissions, rotate or revoke them when no longer needed, and require local review of any referenced scripts before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peachhfuzz/skills/linux-forensics-automation)
+- [Google Drive API Documentation](https://developers.google.com/drive/api)
+- [OAuth 2.0 for Desktop Apps](https://developers.google.com/identity/protocols/oauth2/native-app)
+- [Linux man-pages project](https://www.man7.org/linux/man-pages/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe collection, upload, and email workflows that handle sensitive forensic reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

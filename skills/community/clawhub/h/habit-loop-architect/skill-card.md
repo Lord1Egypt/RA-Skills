@@ -1,40 +1,54 @@
-## Description: <br>
-Habit Loop Architect helps agents design, modify, and recover habits using habit-loop analysis, habit stacking, the two-minute rule, and BJ Fogg's behavior model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit Loop Architect helps agents turn habit-loop and behavior-model concepts into simple plans for building, changing, and recovering habits.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-External users and personal productivity coaches use the skill to turn a target habit into a practical trigger-behavior-reward loop, including a two-minute starting version, habit stacking plan, simple tracking, and recovery protocol. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal routines or clinical concerns while seeking habit help. <br>
-Mitigation: Ask only for necessary context, avoid retaining unnecessary personal details, and direct addiction-level or clinical mental health concerns to qualified professionals. <br>
-Risk: Habit guidance can become discouraging or overly prescriptive if it treats interruptions as failure. <br>
-Mitigation: Keep recommendations low-pressure, respect the user's pace, and frame interruptions as recoverable events with a concrete recovery plan. <br>
+## Use Case:
 
+Individuals, coaches, and productivity-focused users can use this skill through an agent to break goals into trigger-behavior-reward loops, two-minute starter actions, habit stacking plans, simple tracking, and recovery steps after interruptions.
 
-## Reference(s): <br>
-- [Habit Loop Architect ClawHub listing](https://clawhub.ai/kingofzhao/habit-loop-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style coaching guidance with short action plans and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include habit-loop breakdowns, habit-stacking formulas, two-minute habit versions, tracking suggestions, and recovery plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may try to apply general habit-coaching guidance to addiction-level problems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as general habit coaching only and direct addiction-level concerns to professional help.
+
+Risk: Users who prefer another language may receive responses that need localization.
+
+Mitigation: Ask the agent to respond in the user's preferred language when language fit matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/habit-loop-architect)
+- [ClawHub publisher profile](https://clawhub.ai/user/kingofzhao)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or conversational text with structured habit-loop steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only; no code, tool access, persistence, or data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

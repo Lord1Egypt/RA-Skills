@@ -1,42 +1,58 @@
-## Description: <br>
-Creates hourly Douyin livestream performance reports and sends them to DingTalk using either Douyin Open Platform APIs or webpage crawling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hourly Report helps agents set up scheduled Douyin livestream reports that collect live metrics each hour and post Markdown summaries to a DingTalk group.
 
-## Publisher: <br>
-[yangfan158](https://clawhub.ai/user/yangfan158) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangfan158](https://clawhub.ai/user/yangfan158)
 
-## Use Case: <br>
-External operators and developers use this skill to set up automated hourly and end-of-day Douyin livestream reports for a DingTalk group. It supports API mode with Douyin Open Platform credentials and crawl mode with a live room URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction API failures can lead to fabricated order, GMV, and conversion metrics being sent as live business reports. <br>
-Mitigation: Use API mode only after changing the code to fail closed or clearly mark missing transaction data instead of substituting simulated values. <br>
-Risk: Crawl mode uses simulated transaction metrics and should not be treated as an operational or financial data source. <br>
-Mitigation: Use crawl mode only for temporary testing or non-financial reporting, and label its transaction values as simulated in downstream use. <br>
-Risk: Client secrets and DingTalk webhooks passed as shell arguments may be exposed through shell history or process listings. <br>
-Mitigation: Provide credentials through environment variables or a protected configuration file and rotate any secret that may have been exposed. <br>
+## Use Case:
 
+Developers and operations teams use this skill to configure and run hourly Douyin livestream performance reports, including API-based reporting for regular use and crawl-based reporting for temporary tests.
 
-## Reference(s): <br>
-- [Douyin Open Platform](https://open.douyin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates DingTalk-ready hourly and daily livestream report text; requires Douyin credentials or a live URL plus a DingTalk webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Crawl mode can produce incomplete or unstable report data and may simulate transaction metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use API mode for production reporting and label or exclude simulated financial metrics from real business reports.
+
+Risk: The script accepts live URLs and webhook endpoints that can cause unintended browser or network activity if misconfigured.
+
+Mitigation: Restrict liveUrl values to Douyin live pages and DingTalk webhook values to approved DingTalk robot endpoints.
+
+Risk: Browser automation with reduced sandboxing and command-line secrets can increase operational exposure.
+
+Mitigation: Keep Chromium sandboxing enabled where possible, store credentials outside command-line arguments, and pin dependencies with a lockfile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangfan158/skills/hourly-report)
+- [Douyin Open Platform](https://open.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Node.js configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduled hourly and daily summary reports for DingTalk; crawl mode may use simulated transaction metrics.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

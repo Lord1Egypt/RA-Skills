@@ -1,41 +1,54 @@
-## Description: <br>
-Data trimming reference - whitespace trimming, string cleanup, data truncation, outlier trimming, and signal processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data trimming reference for whitespace trimming, string cleanup, data truncation, outlier trimming, and signal processing.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, data engineers, and analysts use this skill as a quick reference for trimming whitespace, cleaning text, handling outliers, truncating data, and preparing datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trimming can remove intentional whitespace or exact bytes from sensitive fields such as passwords, source code, binary data, or cryptographic material. <br>
-Mitigation: Apply trimming only to fields where cleanup is intended, and avoid automatic trimming for exact-value data. <br>
-Risk: Outlier trimming and truncation can remove valid data or lose information when criteria are chosen without domain context. <br>
-Mitigation: Document trimming thresholds, compare results before and after trimming, and review edge cases before applying changes to production datasets. <br>
+## Use Case:
 
+Developers, analysts, and data practitioners use this skill as a quick reference for selecting trimming techniques for text, numeric, database, and signal data cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/trim) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown-style reference text with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output selected by command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Displayed SQL and sed examples may modify data if copied into a shell or database console.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review examples on sample data first, use backups or transactions, and adapt commands before applying them to real files or databases.
+
+Risk: Trimming, truncation, and outlier-removal guidance can cause data loss or change analytical results when applied without criteria.
+
+Mitigation: Document trimming criteria, preserve source data, and compare results before and after trimming.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Trim on ClawHub](https://clawhub.ai/bytesagain-lab/skills/trim)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands, code]
+
+**Output Format:** [Plain text reference guidance with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled shell script prints static guidance and does not modify files or databases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

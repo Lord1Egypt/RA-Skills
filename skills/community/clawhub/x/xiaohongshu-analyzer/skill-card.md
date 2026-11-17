@@ -1,41 +1,53 @@
-## Description: <br>
-小红书笔记分析、爆文拆解、关键词挖掘、竞品监控。适合内容创作者、品牌运营、电商卖家。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu Analyzer helps analyze Xiaohongshu notes, deconstruct high-performing posts, discover keywords, and monitor competitors for content creators, brand operators, and ecommerce sellers.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-Content creators, brand operators, ecommerce sellers, MCN teams, and ad agencies use this skill to analyze Xiaohongshu notes, extract viral-content patterns, research keywords, monitor competitors, and identify topic trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate from broad requests about Xiaohongshu content or keyword analysis. <br>
-Mitigation: Be explicit when invoking the skill and review proposed scraping or analysis actions before running them against third-party content. <br>
-Risk: Analysis may rely on public platform data that can be incomplete, delayed, or governed by third-party platform policies. <br>
-Mitigation: Treat outputs as advisory, verify important metrics independently, and follow Xiaohongshu platform rules before collecting or using data. <br>
+## Use Case:
 
+External content creators, brand operators, ecommerce sellers, MCN teams, and advertising teams use this skill to analyze public Xiaohongshu content, extract post patterns, identify keyword opportunities, and compare account performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/xiaohongshu-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured analysis summaries and optional shell commands for dependencies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference public Xiaohongshu URLs and requires python3, curl, requests, and beautifulsoup4 for supported data-gathering workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may fetch public Xiaohongshu pages, including note or account/profile URLs, for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on public content and confirm before analyzing account or profile URLs.
+
+Risk: The skill declares unpinned Python scraping dependencies from pip.
+
+Mitigation: Use a controlled Python environment and pin dependencies when stricter supply-chain hygiene is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/xiaohongshu-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown analysis with metrics, keyword lists, trend summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include engagement-rate estimates, post-structure summaries, keyword scores, competitor observations, and optimization suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

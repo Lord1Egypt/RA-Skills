@@ -2,7 +2,7 @@
 import os
 import requests
 
-api_key = 'sk-cp-xUTR3jpZvNlV77wV2Q80AckTfoATR3DmSe_WyEzbrLRkr7cE1nEybwDk4HKfZNKmThXRuLVxTh-NRgL-JBk5V57ohBD73NFUXHvRfyql_HCFuxsU_cAIaP8'
+api_key = 'REDACTED-SECRET'
 
 url = 'https://api.minimax.chat/v1/text/chatcompletion_v2'
 headers = {

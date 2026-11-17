@@ -1,42 +1,57 @@
-## Description: <br>
-Bucket List helps users record, view, update, complete, cancel, review, import, and export a personal bucket list through a local JSON-backed CLI and localhost GUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to record, view, update, complete, cancel, or review a personal bucket list / wish list.
 
-## Publisher: <br>
-[yanguangzhe-collab](https://clawhub.ai/user/yanguangzhe-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanguangzhe-collab](https://clawhub.ai/user/yanguangzhe-collab)
 
-## Use Case: <br>
-External users and agent operators use this skill to maintain a local personal bucket list, including adding wishes, changing their status, reviewing achievements, and managing JSON data through CLI or browser workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal bucket-list entries are stored in local JSON files and may contain sensitive goals or notes. <br>
-Mitigation: Avoid entering secrets or highly sensitive information, and review the local data file before sharing, backing up, or publishing the workspace. <br>
-Risk: Imported JSON or a linked file can replace or persist the current bucket-list data. <br>
-Mitigation: Review JSON before importing it and link files deliberately because future saves can write the current list to the selected file. <br>
-Risk: The optional life-progress widget stores birth year and life expectancy in the browser profile. <br>
-Mitigation: Use the widget only if local browser-profile persistence of those values is acceptable. <br>
+## Use Case:
 
+External users and agent operators use this skill to maintain a local personal bucket list: adding wishes, viewing pending, completed, and cancelled items, marking outcomes, reviewing achievements, and using a localhost GUI over the same JSON data file.
 
-## Reference(s): <br>
-- [Bucket List ClawHub page](https://clawhub.ai/yanguangzhe-collab/bucket-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands and JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local bucket-list JSON data; the localhost GUI can import, export, and link a JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter, _meta.json, release evidence) <br>
+Risk: The authoritative security summary reports an import-related script injection risk in the browser GUI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Import bucket-list JSON only from trusted sources, and review imported entries before continued use.
+
+Risk: The authoritative security summary reports under-disclosed local persistence of personal fields and a browser file handle.
+
+Mitigation: Avoid entering sensitive birth-year or life-progress values on shared browsers, and unlink the retained file handle when it is no longer needed.
+
+Risk: The authoritative security guidance notes that the GUI can retain life-progress values locally across sessions.
+
+Mitigation: Clear the browser's local site data after use on shared or temporary machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yanguangzhe-collab/skills/bucket-list)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-backed local records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates a local bucket-list JSON file; the GUI can export and import JSON.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

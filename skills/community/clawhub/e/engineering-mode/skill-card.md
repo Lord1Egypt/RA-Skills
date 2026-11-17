@@ -1,41 +1,57 @@
-## Description: <br>
-Engineering Mode guides an agent through a six-stage coding workflow for understanding, decomposing, isolating, editing, verifying, and recovering code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Engineering Mode guides coding agents through a six-stage workflow for understanding, decomposing, isolating, executing, verifying, and recovering from code changes.
 
-## Publisher: <br>
-[zzzxiaoqiang520](https://clawhub.ai/user/zzzxiaoqiang520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzzxiaoqiang520](https://clawhub.ai/user/zzzxiaoqiang520)
 
-## Use Case: <br>
-Developers and coding agents use this skill to structure code-writing, code-modification, and refactoring tasks into staged analysis, planning, safety isolation, implementation, validation, and recovery steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to create branches, checkpoint commits, and perform hard Git rollbacks that can discard local work. <br>
-Mitigation: Before any hard rollback or branch deletion, require the agent to show git status, identify the exact branch or checkpoint, summarize what would be lost, and get explicit user confirmation. <br>
+## Use Case:
 
+Developers and coding agents use this skill to structure code-writing, refactoring, and recovery work into explicit stages with local verification gates.
 
-## Reference(s): <br>
-- [Pre-Edit Checklist](references/pre-edit-checklist.md) <br>
-- [Validate Strategies](references/validate-strategies.md) <br>
-- [Error Recovery](references/error-recovery.md) <br>
-- [Commit Discipline](references/commit-discipline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses conditional reference loading for pre-edit checks, validation strategy, error recovery, and commit discipline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Recovery guidance can discard unrelated work through reset, checkout, or branch deletion commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before destructive Git operations and verify the exact branch or checkpoint target before running them.
+
+Risk: Wildcard branch cleanup and unpinned lint or test invocations can affect more than the intended worktree or toolchain.
+
+Mitigation: Use exact branch names for cleanup and prefer locally pinned project validation commands.
+
+## Reference(s):
+
+- [Engineering Mode Skill Page](https://clawhub.ai/zzzxiaoqiang520/skills/engineering-mode)
+- [Commit Discipline](references/commit-discipline.md)
+- [Error Recovery](references/error-recovery.md)
+- [Pre-Edit Checklist](references/pre-edit-checklist.md)
+- [Validate Strategies](references/validate-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and staged checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to read files, edit code, run validation commands, and report recovery outcomes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

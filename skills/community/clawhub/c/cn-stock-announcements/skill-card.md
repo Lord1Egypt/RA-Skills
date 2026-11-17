@@ -1,42 +1,56 @@
-## Description: <br>
-A tool to query Chinese listed company announcements from SZSE (Shenzhen Stock Exchange) and SSE (Shanghai Stock Exchange), with support for single or batch stock queries, keyword searches, and time-range filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A tool to query Chinese listed company announcements from SZSE (Shenzhen Stock Exchange) and SSE (Shanghai Stock Exchange), including single or batch stock queries, keyword searches, and date-range filtering.
 
-## Publisher: <br>
-[NoahStepheno](https://clawhub.ai/user/NoahStepheno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noahstepheno](https://clawhub.ai/user/noahstepheno)
 
-## Use Case: <br>
-Investors, analysts, and agent workflows use this skill to retrieve official A-share company announcements by stock code, keyword, and date range, then present exchange-specific results and disclosure links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external stock-market data services, so query terms and stock codes are sent outside the local environment. <br>
-Mitigation: Avoid sensitive or proprietary keywords and confirm that external market-data lookups are acceptable for the user's workflow. <br>
-Risk: One market-data request uses unencrypted HTTP, which could allow results or links to be intercepted or altered in transit. <br>
-Mitigation: Verify important announcements independently against official exchange pages before relying on them for decisions. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to retrieve A-share listed-company announcements from SZSE and SSE by stock code, keyword, and date range. It can be used directly as a Python script or integrated into an OpenClaw workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NoahStepheno/cn-stock-announcements) <br>
-- [SZSE announcement API](http://www.szse.cn/api/disc/announcement/annList?random=) <br>
-- [SSE bulletin query endpoint](http://query.sse.com.cn/infodisplay/queryLatestBulletinNew.do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Guidance] <br>
-**Output Format:** [Python dictionary of exchange-specific announcement strings, commonly summarized as Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include stock identifiers, announcement titles, publication dates when available, and official disclosure links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Announcement searches are sent over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where outbound requests to SZSE and SSE are acceptable, avoid sensitive search terms, and independently verify announcements before relying on them for financial decisions.
+
+Risk: Dependencies are loosely constrained.
+
+Mitigation: Pin dependencies and remove the unused openclaw requirement before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noahstepheno/skills/cn-stock-announcements)
+- [Publisher profile](https://clawhub.ai/user/noahstepheno)
+- [SZSE announcement API endpoint](http://www.szse.cn/api/disc/announcement/annList?random=)
+- [SSE latest bulletin API endpoint](http://query.sse.com.cn/infodisplay/queryLatestBulletinNew.do)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-formatted announcement results with inline links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns separate SZSE and SSE result lists; each item includes stock identifiers, announcement title, publication date or time when available, and a source link.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

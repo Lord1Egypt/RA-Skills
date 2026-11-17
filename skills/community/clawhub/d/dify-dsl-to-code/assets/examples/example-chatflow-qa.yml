@@ -1,0 +1,486 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 招投标外部法律法规问答
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.12@721cf03c692aad2ab58c7c138c66be7c59819bd3d2a073e1c1b3c9ff83c0c0e8
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/xinference:0.0.3@2f59f67f45ca4f626aaeef0d9c656cc0e38ab9fbf2c9b4673e3e20162eed9e4f
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: llm-source-1739938966052-target
+      source: llm
+      sourceHandle: source
+      target: '1739938966052'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1739938966052-source-1739938724217-target
+      source: '1739938966052'
+      sourceHandle: source
+      target: '1739938724217'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1739936647382-source-llm-target
+      source: '1739936647382'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1739938724217-source-1740635946386-target
+      source: '1739938724217'
+      sourceHandle: source
+      target: '1740635946386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: code
+      id: 1740635946386-source-1740636252574-target
+      source: '1740635946386'
+      sourceHandle: source
+      target: '1740636252574'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1740636252574-source-1740638682230-target
+      source: '1740636252574'
+      sourceHandle: source
+      target: '1740638682230'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1740638682230-source-1740635977806-target
+      source: '1740638682230'
+      sourceHandle: source
+      target: '1740635977806'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1739938724217'
+        sourceType: iteration-start
+        targetType: knowledge-retrieval
+      id: 1739938724217start-source-1745225236216-target
+      source: 1739938724217start
+      sourceHandle: source
+      target: '1745225236216'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1739936647382'
+      position:
+        x: 30
+        y: 373
+      positionAbsolute:
+        x: 30
+        y: 373
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: C:\Qwen\QwQ-32B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 903c778a-dd71-4ab6-a41f-7843a59e954e
+          role: system
+          text: 你是一位专业的招投标行业法律法规专家，为了保证能够更好地理解用户的提问意图从而做出更加精准的解答，请结合你的知识与用户对话的上下文{{#context#}}给出最多不超过10个与用户问题关系密切的问题以便于从专业知识库里找到更多可能的线索，并以字符串列表请使用以下JSON格式输出：[{"content":"示例问题"},{"content":"示例问题"}]。
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: llm
+      position:
+        x: 336.05622765331213
+        y: 373
+      positionAbsolute:
+        x: 336.05622765331213
+        y: 373
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 264
+        is_parallel: false
+        iterator_selector:
+        - '1739938966052'
+        - result
+        output_selector:
+        - '1745225236216'
+        - result
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1739938724217start
+        title: 迭代
+        type: iteration
+        width: 424
+      height: 264
+      id: '1739938724217'
+      position:
+        x: 1150.065599371097
+        y: 379.4397902840444
+      positionAbsolute:
+        x: 1150.065599371097
+        y: 379.4397902840444
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 424
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1739938724217start
+      parentId: '1739938724217'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1174.065599371097
+        y: 447.4397902840444
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        code: "\ndef main(arg1: str) -> list:\n  index = arg1.find('</think>')\n \
+          \ if index >= 0:\n    arg1 = arg1[index+8:]\n  # 移除开头的换行符\n  text = arg1\n\
+          \  text = text.replace('\\n\\n', '')\n    \n  # 将所有问题部分拆分出来\n  parts = text.split('{\\\
+          \"content\\\":\\\"')\n    \n  # 第一部分是\"[\"，移除它\n  parts = parts[1:]\n  \
+          \  \n  # 从每个部分提取出问题内容\n  questions = []\n  for part in parts:\n      # 找到问题结束的位置\n\
+          \      end_pos = part.find('\\\"}')\n      if end_pos != -1:\n         \
+          \ # 提取问题内容\n          question = part[:end_pos]\n          questions.append(question)\n\
+          \  return {\n    \"result\": questions\n  }\n\n  "
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - llm
+          - text
+          variable: arg1
+      height: 54
+      id: '1739938966052'
+      position:
+        x: 815.8770212088186
+        y: 461.7824271742244
+      positionAbsolute:
+        x: 815.8770212088186
+        y: 461.7824271742244
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ arg1 }}'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1739938724217'
+          - output
+          variable: arg1
+      height: 54
+      id: '1740635946386'
+      position:
+        x: 1621
+        y: 373
+      positionAbsolute:
+        x: 1621
+        y: 373
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1740638682230.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 105
+      id: '1740635977806'
+      position:
+        x: 2569.199561918363
+        y: 367.50157803001827
+      positionAbsolute:
+        x: 2569.199561918363
+        y: 367.50157803001827
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef main(arg1: str) -> dict:\n  dfg=\"\"\n  try:\n \
+          \   data=arg1.replace(\"'\", '\"')\n    json_data = json.loads(data)\n \
+          \   for item in json_data:\n      for itemd in item:\n        dfg+=item['content']\n\
+          \  except json.JSONDecodeError as e:\n    pass\n  finally:\n      dfg +=\
+          \ \"\"\n  return {\n    \"result\": dfg\n  }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1740635946386'
+          - output
+          variable: arg1
+      height: 54
+      id: '1740636252574'
+      position:
+        x: 1940.1768880707618
+        y: 367.50157803001827
+      positionAbsolute:
+        x: 1940.1768880707618
+        y: 367.50157803001827
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1740636252574'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.1
+          mode: chat
+          name: C:\Qwen\QwQ-32B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: f745cc9c-6d8e-46f9-aa05-efb9cebf2739
+          role: system
+          text: ''
+        - id: e2d2d96c-1f6a-4dfd-bc8a-9cca208e078c
+          role: user
+          text: 你是一位专业的招投标行业法律法规专家，请根据你的专业知识与逻辑并结合以下信息：{{#context#}}回答用户的问题：{{#sys.query#}}，如果用户提问中涉及到省市等行政区域范围的，可以给与国家等上级行政区域与本行政区域的法律法规信息。提供的信息如果与答案关联不大的内容，不需要引用
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1740638682230'
+      position:
+        x: 2254.4997080107273
+        y: 373
+      positionAbsolute:
+        x: 2254.4997080107273
+        y: 373
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: root
+        desc: ''
+        height: 331
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"
+          ","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 735
+      height: 331
+      id: '1745220271027'
+      position:
+        x: 821.4364064500683
+        y: -50.9931371662567
+      positionAbsolute:
+        x: 821.4364064500683
+        y: -50.9931371662567
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 735
+    - data:
+        dataset_ids:
+        - YoeljQRcSoXNXQiRx6rsJmj+k8ao7RbJ83TH2Cr1Rg18U177R1KtdCpESffACYx9
+        - oVI2GyeK060P7xvZy/MhNvpAafA2/2CanDm16WqKPQkBSkYqArbmzfrHHj6XfvNW
+        - haN99RBvZE/0V4pAo+qPCyCjXNigq8IDmmfgUhxnk5nD8B3SxnixNfpvXJWAFwRT
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1739938724217'
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: bce-reranker-base_v1
+            provider: langgenius/xinference/xinference
+          score_threshold: 0.4
+          top_k: 4
+        query_variable_selector:
+        - '1739938724217'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 148
+      id: '1745225236216'
+      parentId: '1739938724217'
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 1278.065599371097
+        y: 447.4397902840444
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    viewport:
+      x: -11.004394563695314
+      y: -232.79436654685094
+      zoom: 1.2125012992357755

@@ -1,42 +1,54 @@
-## Description: <br>
-Advanced reputation analytics and trend visualization for Pilot Protocol agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced reputation analytics and trend visualization for Pilot Protocol agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to record Pilot Protocol reputation snapshots, inspect recent peer score history, and calculate reputation trends for trust decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local reputation snapshots can retain peer history that may be sensitive. <br>
-Mitigation: Periodically rotate or delete ~/.pilot/reputation/data when the history is no longer needed. <br>
-Risk: The continuous collection example keeps running and records snapshots on a schedule. <br>
-Mitigation: Run the loop only deliberately, monitor it while active, and stop it when collection is finished. <br>
-Risk: The skill provides Bash snippets that write local files and call pilotctl. <br>
-Mitigation: Review the commands before running them and confirm pilotctl, jq, bc, and the Pilot daemon are available. <br>
+## Use Case:
 
+Developers and operators use this skill to record Pilot Protocol peer reputation snapshots, query recent score history, and calculate trend changes for trust decisions.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can create local JSON snapshot files under ~/.pilot/reputation/data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local snapshots may contain sensitive Pilot Protocol peer lists or reputation scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.pilot/reputation and remove or rotate old snapshot files.
+
+Risk: The example continuous collection loop can run indefinitely even though the skill is not intended for real-time monitoring.
+
+Mitigation: Prefer manual or bounded snapshot collection and stop long-running collection when the analysis window is complete.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-reputation)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses pilotctl, jq, and bc; writes local reputation snapshot JSON under ~/.pilot/reputation/data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

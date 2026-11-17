@@ -81,7 +81,7 @@
 | [scarlet-fever-antibiotic-treatment](scarlet-fever-antibiotic-treatment/SKILL.md) | 提供猩红热标准化抗菌治疗方案 | 当患儿出现发热、咽峡炎、典型皮疹及草莓舌时 |
 | [chuan-qi-bing-diagnosis-workflow](chuan-qi-bing-diagnosis-workflow/SKILL.md) | 判断是否符合完全性或不完全性川崎病诊断标准 | 当5岁以下持续发热≥5天且抗生素治疗无效的儿童提供相关临床或检查信息时 |
 | [henoch-schonlein-purpura-diagnosis](henoch-schonlein-purpura-diagnosis/SKILL.md) | 对疑似过敏性紫癜患儿进行确诊 | 当出现典型对称性压之不褪色紫癜并伴腹痛、关节炎、肾损害或IgA沉积中任一表现时 |
-| [新生儿黄疸风险评估与生理性黄疸诊断](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md) | 使用Bhutani曲线进行黄疸风险分层并判断是否为生理性黄疸 | 当新生儿出现皮肤黄染且已测定TSB、明确小时龄及胎龄、完成高危因素评估时 |
+| [新生儿黄疸风险评估与生理性黄疸诊断](neonatal-jaundice-riREDACTED-SECRET/SKILL.md) | 使用Bhutani曲线进行黄疸风险分层并判断是否为生理性黄疸 | 当新生儿出现皮肤黄染且已测定TSB、明确小时龄及胎龄、完成高危因素评估时 |
 | [暴发型流脑休克型抢救流程](fulminant-meningitis-shock-rescue/SKILL.md) | 执行标准化综合抢救流程 | 当流脑患儿数小时内出现血压下降、意识障碍、皮肤瘀点瘀斑迅速融合时 |
 | [measles-complication-identification-and-response](measles-complication-identification-and-response/SKILL.md) | 系统识别麻疹并发症类型并启动针对性检查与治疗 | 当麻疹确诊患儿出现高热不退、呼吸困难、意识改变或原有结核病史时 |
 | [pediatric-tuberculosis-comprehensive-diagnosis](pediatric-tuberculosis-comprehensive-diagnosis/SKILL.md) | 执行结核病综合评估流程以判断活动性、潜伏感染或排除结核 | 当儿童出现长期低热、盗汗、消瘦、结核接触史或PPD阳性等表现时 |

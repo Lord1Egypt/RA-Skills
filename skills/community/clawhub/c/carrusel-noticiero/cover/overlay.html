@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Overlay TRANSPARENTE para superponer sobre el video animado del cover.
+     Renderiza con export.js (misma carpeta) → PNG con alpha. NO pongas la foto aquí. */
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+  html,body{background:transparent;}
+  .slide{ position:relative; width:1080px; height:1350px; background:transparent; overflow:hidden; }
+  .grad-top{ position:absolute; top:0; left:0; width:100%; height:300px;
+    background:linear-gradient(to bottom, rgba(11,10,16,0.62) 0%, rgba(11,10,16,0) 100%); }
+  .grad-bottom{ position:absolute; bottom:0; left:0; width:100%; height:720px;
+    background:linear-gradient(to bottom, rgba(11,10,16,0) 0%, rgba(11,10,16,0.5) 42%, rgba(11,10,16,0.86) 72%, rgba(8,7,12,0.95) 100%); }
+  .tape{ position:absolute; top:38px; left:70px; width:150px; height:34px;
+    background:rgba(244,199,91,0.6); transform:rotate(-8deg); box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+  .tape.r{ left:auto; right:80px; transform:rotate(10deg); background:rgba(216,90,78,0.55); }
+  .breaking{ position:absolute; top:66px; left:50%; transform:translateX(-50%);
+    background:#D8352B; color:#fff; padding:14px 34px; font-family:'Poppins'; font-weight:800;
+    font-size:30px; letter-spacing:4px; box-shadow:0 8px 22px rgba(0,0,0,0.45); }
+  .headline{ position:absolute; bottom:250px; left:60px; width:970px; font-family:'Anton'; font-weight:400;
+    text-transform:uppercase; letter-spacing:1px; font-size:118px; line-height:0.96; color:#fff;
+    text-shadow:0 6px 26px rgba(0,0,0,0.72), 0 2px 6px rgba(0,0,0,0.6); }
+  .headline .amber{ color:#F7C948; }
+  .swipe{ position:absolute; bottom:150px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .swipe .txt{ font-family:'Poppins'; font-weight:700; font-size:24px; letter-spacing:3px; color:rgba(255,255,255,0.92); text-shadow:0 2px 10px rgba(0,0,0,0.5); }
+  .swipe .dots{ display:flex; gap:12px; }
+  .swipe .dots i{ width:11px; height:11px; border-radius:50%; background:rgba(255,255,255,0.45); }
+  .swipe .dots i.on{ background:#F4C75B; }
+  .handle{ position:absolute; bottom:44px; left:44px; font-family:'Poppins'; font-size:22px; font-weight:600; color:rgba(255,255,255,0.82); letter-spacing:0.5px; text-shadow:0 2px 8px rgba(0,0,0,0.5); }
+  .num{ position:absolute; bottom:40px; right:48px; font-family:'Caveat'; font-size:34px; color:rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="grad-top"></div>
+  <div class="grad-bottom"></div>
+  <div class="tape"></div>
+  <div class="tape r"></div>
+  <div class="breaking">🔴 ÚLTIMA HORA · IA</div>
+  <!-- Mismo titular que cover-news.html -->
+  <div class="headline">‹Titular impacto<br>línea 2…<br><span class="amber">y el giro›</span></div>
+  <div class="swipe">
+    <div class="txt">DESLIZA PARA ENTENDER →</div>
+    <div class="dots"><i class="on"></i><i></i><i></i></div>
+  </div>
+  <div class="handle">@tuhandle</div>
+  <div class="num">1 / 8</div>
+</section>
+</body>
+</html>

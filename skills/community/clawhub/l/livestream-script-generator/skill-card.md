@@ -1,39 +1,53 @@
-## Description: <br>
-Generates livestream commerce scripts with sales wording, pacing, audience interaction segments, and promotional prompts for streamers, ecommerce operators, and MCN teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates livestream commerce scripts with sales wording, pacing plans, audience interaction segments, promotion tactics, and common viewer Q&A support.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-Streamers, ecommerce operators, and MCN teams use this skill to draft livestream sales scripts, plan timing, prepare audience interactions, and shape promotional talking points for product-focused live sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated livestream copy may contain inaccurate prices, stock limits, giveaway terms, product suitability statements, or claims about effects and guarantees. <br>
-Mitigation: Verify product facts, promotion terms, and advertising claims before using generated copy in a live sales session. <br>
+## Use Case:
 
+External creators, livestream sellers, ecommerce operators, and MCN teams use this skill to draft livestream sales scripts, product pitches, promotion language, interaction plans, and common answer snippets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/livestream-script-generator) <br>
-- [Homepage from skill metadata](https://github.com/openclaw/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style scripted copy with structured sections and sample talking points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing, inventory, giveaway, Q&A, pacing, and promotional language that should be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated livestream sales copy may include unverified inventory, pricing, promotion, giveaway, or product-performance claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all commercial claims against current business records, product evidence, and applicable advertising or platform rules before public use.
+
+Risk: Script effectiveness may vary by presenter execution, audience traffic, and product context.
+
+Mitigation: Treat generated scripts as editable drafts and review them against the livestream team's operating plan before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/livestream-script-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style livestream script text with structured sections and sample wording]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires users to verify inventory, prices, promotions, giveaways, product-performance claims, and applicable advertising or platform rules before public use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

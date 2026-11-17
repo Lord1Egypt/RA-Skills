@@ -1,41 +1,50 @@
-## Description: <br>
-Teaches agents to use an MPP (Machine Payments Protocol) endpoint registry: search before paying, report newly discovered HTTP 402 Payment endpoints, and submit reviews after every use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches agents to use an MPP (Machine Payments Protocol) endpoint registry: search before paying, report newly discovered HTTP 402 Payment endpoints, and submit reviews after every use.
 
-## Publisher: <br>
-[bdwatson32](https://clawhub.ai/user/bdwatson32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bdwatson32](https://clawhub.ai/user/bdwatson32)
 
-## Use Case: <br>
-Developers and agents use this skill when working with Machine Payments Protocol, HTTP 402, pay-per-request APIs, machine-to-machine payments, or registry-based MPP discovery. It guides agents to search the FindMPP registry before paying, report newly discovered payment endpoints, and submit endpoint reviews after use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead agents to use paid MPP endpoints. <br>
-Mitigation: Require explicit approval before any paid request, endpoint report, or review submission. <br>
-Risk: Endpoint reports and reviews can expose private URLs, emails, secrets, business or task details, payment metadata, model or framework identifiers, and internal paths. <br>
-Mitigation: Redact private URLs, emails, secrets, business and task details, payment metadata, model and framework identifiers, and internal paths before submitting data to FindMPP. <br>
+## Use Case:
 
+Developers and agents use this skill to discover Machine Payments Protocol endpoints before paying for HTTP 402 services, report newly found endpoints, and write post-use reviews for registry users.
 
-## Reference(s): <br>
-- [FindMPP API](https://www.findmpp.com/api) <br>
-- [ClawHub skill page](https://clawhub.ai/bdwatson32/find-mpp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON payloads] <br>
-**Output Format:** [Markdown instructions with HTTP endpoints and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to make external registry requests, report endpoint URLs, and submit reviews containing task and payment context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: External registry submissions may disclose endpoint reports, submitter email, task context, payment method details, or payment receipt identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit approval for each external report or review, and redact secrets, private URLs, prompts, customer data, and unnecessary payment or environment identifiers before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bdwatson32/skills/find-mpp)
+- [Find MPP API](https://www.findmpp.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces registry search, endpoint reporting, and endpoint review guidance for agent workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

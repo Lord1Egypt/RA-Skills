@@ -1,40 +1,68 @@
-## Description: <br>
-AI News Briefing monitors public AI news sources, extracts AI-related items, and helps an agent generate Chinese briefing summaries with source attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI News Briefing monitors ten public AI news sources, extracts AI-related content with OpenClaw browser-execution, and generates Chinese AI industry briefings with summarization support.
 
-## Publisher: <br>
-[Sharkwind](https://clawhub.ai/user/Sharkwind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sharkwind](https://clawhub.ai/user/sharkwind)
 
-## Use Case: <br>
-External users, developers, and AI-industry analysts use this skill to check recent AI news and produce structured Chinese briefings from public news sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill visits listed public news sites and may send extracted snippets through configured summarization or model tools. <br>
-Mitigation: Review or limit the source list and run the skill only where those network and data-handling controls are acceptable. <br>
-Risk: Briefings can reflect incomplete, stale, or unavailable source pages. <br>
-Mitigation: Review generated summaries and source attribution before relying on them for decisions. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to generate time-filtered AI news briefings, monitor public AI industry updates, and summarize key developments from multiple public sources.
 
-## Reference(s): <br>
-- [AI News Briefing on ClawHub](https://clawhub.ai/Sharkwind/ai-news-briefing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style Chinese news briefing text with source-by-source summaries and attribution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web pages and configured summarization/model tools; source access may fail or change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; package.json reports 1.0.0) <br>
+Risk: The workflow browses ten public AI news sources and sends extracted public article text through the summarization/model workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound browsing and model-based summarization of public article text are allowed.
+
+Risk: Briefing quality depends on public website availability, source filtering, and model summarization accuracy.
+
+Mitigation: Verify important claims against the linked source publications before making business or operational decisions.
+
+Risk: The documented output is optimized for Chinese-language briefings.
+
+Mitigation: Ask for a different output language when Chinese briefings are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sharkwind/skills/ai-news-briefing)
+- [Publisher profile](https://clawhub.ai/user/sharkwind)
+- [TechCrunch AI](https://techcrunch.com/tag/artificial-intelligence/)
+- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/)
+- [VentureBeat AI](https://venturebeat.com/category/ai/)
+- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence/)
+- [Forbes AI](https://www.forbes.com/ai/)
+- [Reuters AI](https://www.reuters.com/technology/artificial-intelligence/)
+- [MarkTechPost](https://www.marktechpost.com/)
+- [OpenAI Blog](https://openai.com/blog)
+- [DeepMind Blog](https://deepmind.google/discover/blog/)
+- [The Rundown AI](https://www.therundown.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown/text news briefing with shell-command workflow snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browses public AI news sources, filters AI-related text, and summarizes findings into source-by-source briefing sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Interactive guide for integrating MobTech MobPush into Android projects with a confirmation-driven workflow for Gradle setup, vendor push channels, message handling, and privacy-compliance callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through an interactive MobTech MobPush integration for Android projects, covering Gradle setup, vendor push channels, privacy authorization, message handling, aliases, and tags.
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Developers and engineers use this skill to add MobTech MobPush to Android applications, including SDK configuration, vendor channel setup, privacy authorization callbacks, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MobPush appKey, appSecret, and vendor-channel credentials may be written to generated configuration or documentation files and displayed in chat output. <br>
-Mitigation: Keep generated files containing credentials out of version control, move secrets to ignored local properties or a secret manager, and avoid pasting sensitive values into shared logs or transcripts. <br>
-Risk: The skill can propose Android project file edits and Gradle dependency commands that affect builds and dependency resolution. <br>
-Mitigation: Run it on a disposable branch, review each proposed file change before approval, and require explicit confirmation before Gradle commands are executed. <br>
+## Use Case:
 
+Developers and mobile engineers use this skill to add MobTech MobPush capabilities to Android apps. It helps configure project and app Gradle files, vendor push channels, privacy-consent callbacks, message receivers, aliases, tags, and integration documentation.
 
-## Reference(s): <br>
-- [Android Mobpush Integration on ClawHub](https://clawhub.ai/mobsupport/android-mobpush-integration) <br>
-- [Mob Documentation Center](https://www.mob.com/wiki/list) <br>
-- [MobPush Integration Guide](https://www.mob.com/wiki/detailed?wiki=498&id=136) <br>
-- [MobPush Vendor Channel Configuration](https://www.mob.com/wiki/detailed?wiki=517&id=136) <br>
-- [Mob SDK Compliance Guide](https://www.mob.com/wiki/detailed?wiki=421&id=717) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Gradle, Java, XML, properties, and shell code blocks; may also create Excel and Markdown project files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests user confirmation before project file edits and Gradle commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The workflow handles MobPush appSecret and vendor credentials and may write them into Gradle files or documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secrets out of README files and version-controlled Gradle files, and confirm any file write before applying it.
+
+Risk: The workflow can add an unpinned FlySDK Gradle plugin dependency.
+
+Mitigation: Pin and verify the FlySDK version instead of using '+'.
+
+Risk: The workflow can run Gradle commands after changing project configuration.
+
+Mitigation: Require explicit confirmation before every Gradle command and avoid --refresh-dependencies unless it is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mobsupport/skills/android-mobpush-integration)
+- [Mob documentation center](https://www.mob.com/wiki/list)
+- [MobPush integration guide](https://www.mob.com/wiki/detailed?wiki=498&id=136)
+- [Vendor channel configuration](https://www.mob.com/wiki/detailed?wiki=517&id=136)
+- [Mob SDK compliance guide](https://www.mob.com/wiki/detailed?wiki=421&id=717)
+- [Mob Maven repository](https://mvn.zztfly.com/android)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, Gradle configuration, Java snippets, XML snippets, and generated project documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate an Excel configuration template and project README during an interactive Android integration workflow.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

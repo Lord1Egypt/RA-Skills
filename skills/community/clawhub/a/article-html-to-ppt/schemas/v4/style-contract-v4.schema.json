@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/SkillMelody/PPT-Smith/main/schemas/v4/style-contract-v4.schema.json",
+  "title": "Style Contract v4 (visual-system data pack)",
+  "description": "A user-authorable visual system. Layer L1 (tokens) is free creative space within hard floors; layer L2 (skins) parameterizes components and may only reference L1 token names, never raw values; layout geometry (grids, safe zones, density limits) is engine-owned and intentionally absent — styles influence geometry only through the bounded layout_knobs. Hard floors (minimum font sizes, shadow/overlay opacity caps, knob ranges) are encoded in this schema so structural violations fail at authoring time; perceptual checks (contrast ratios, font availability) run in the style validator. Distribution metadata under `pack` supports open and commercial packs through the same engine loading path.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "pack", "tokens"],
+  "properties": {
+    "schema_version": { "const": "4.0.0" },
+    "pack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pack_id", "version", "display_name", "license", "engine_compat"],
+      "properties": {
+        "pack_id": { "$ref": "#/$defs/idSlug" },
+        "version": { "$ref": "#/$defs/semver" },
+        "display_name": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 500 },
+        "publisher": { "type": "string", "maxLength": 120 },
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": {
+            "type": { "type": "string", "enum": ["open", "commercial"] },
+            "spdx": { "type": "string", "maxLength": 40, "description": "SPDX identifier for open packs, e.g. Apache-2.0." },
+            "terms_url": { "type": "string", "maxLength": 500 }
+          }
+        },
+        "engine_compat": { "type": "string", "maxLength": 40, "description": "Semver range of compatible engine versions, e.g. >=4.0 <5." },
+        "signature": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["algo", "value"],
+          "properties": {
+            "algo": { "type": "string", "enum": ["ed25519"] },
+            "value": { "type": "string", "maxLength": 200 }
+          },
+          "description": "Optional publisher signature over the canonical pack body. Absence never blocks loading; presence enables provenance display."
+        },
+        "compatibility_aliases": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/idSlug" },
+          "description": "v3 style_id values this pack supersedes."
+        }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["colors", "typography", "shape"],
+      "description": "L1: the creative surface. Free choice within hard floors.",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["primary", "accent", "background", "surface_1", "surface_2", "text_primary", "text_secondary", "border", "positive", "warning", "negative", "data_series"],
+          "properties": {
+            "primary": { "$ref": "#/$defs/hexColor" },
+            "accent": { "$ref": "#/$defs/hexColor" },
+            "background": { "$ref": "#/$defs/hexColor" },
+            "surface_1": { "$ref": "#/$defs/hexColor" },
+            "surface_2": { "$ref": "#/$defs/hexColor" },
+            "surface_3": { "$ref": "#/$defs/hexColor" },
+            "text_primary": { "$ref": "#/$defs/hexColor" },
+            "text_secondary": { "$ref": "#/$defs/hexColor" },
+            "text_muted": { "$ref": "#/$defs/hexColor" },
+            "border": { "$ref": "#/$defs/hexColor" },
+            "positive": { "$ref": "#/$defs/hexColor" },
+            "warning": { "$ref": "#/$defs/hexColor" },
+            "negative": { "$ref": "#/$defs/hexColor" },
+            "data_series": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 8,
+              "items": { "$ref": "#/$defs/hexColor" }
+            },
+            "allowed_opacity": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+            }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["font_primary", "title_sizes_pt", "body_sizes_pt"],
+          "properties": {
+            "font_primary": { "$ref": "#/$defs/fontStack" },
+            "font_editorial": { "$ref": "#/$defs/fontStack" },
+            "font_mono": { "$ref": "#/$defs/fontStack" },
+            "title_sizes_pt": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["cover", "section", "slide"],
+              "properties": {
+                "cover": { "type": "number", "minimum": 24, "maximum": 60 },
+                "section": { "type": "number", "minimum": 20, "maximum": 48 },
+                "slide": { "type": "number", "minimum": 16, "maximum": 36 }
+              }
+            },
+            "body_sizes_pt": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["large", "normal", "small", "footnote"],
+              "properties": {
+                "large": { "type": "number", "minimum": 13, "maximum": 24 },
+                "normal": { "type": "number", "minimum": 11, "maximum": 18 },
+                "small": { "type": "number", "minimum": 9.5, "maximum": 14 },
+                "footnote": { "type": "number", "minimum": 8, "maximum": 11 }
+              },
+              "description": "Hard floors are the schema minimums; the engine may auto-step down within these levels but never below the floor of the smallest level."
+            },
+            "metric_sizes_pt": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["hero", "normal"],
+              "properties": {
+                "hero": { "type": "number", "minimum": 22, "maximum": 64 },
+                "normal": { "type": "number", "minimum": 16, "maximum": 40 }
+              }
+            },
+            "line_height": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "title": { "type": "number", "minimum": 0.95, "maximum": 1.4 },
+                "body": { "type": "number", "minimum": 1.15, "maximum": 1.8 },
+                "caption": { "type": "number", "minimum": 1.1, "maximum": 1.6 }
+              }
+            },
+            "weights": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "regular": { "$ref": "#/$defs/fontWeight" },
+                "medium": { "$ref": "#/$defs/fontWeight" },
+                "semibold": { "$ref": "#/$defs/fontWeight" },
+                "bold": { "$ref": "#/$defs/fontWeight" }
+              }
+            },
+            "letter_spacing_pt": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "title": { "type": "number", "minimum": -1, "maximum": 2 },
+                "uppercase_label": { "type": "number", "minimum": 0, "maximum": 3 }
+              }
+            }
+          }
+        },
+        "shape": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["card_radius_pt", "border_width_pt"],
+          "properties": {
+            "card_radius_pt": { "type": "number", "minimum": 0, "maximum": 24 },
+            "small_radius_pt": { "type": "number", "minimum": 0, "maximum": 16 },
+            "pill_radius_pt": { "type": "number", "minimum": 0, "maximum": 999 },
+            "border_width_pt": { "type": "number", "minimum": 0.25, "maximum": 3 },
+            "emphasis_border_width_pt": { "type": "number", "minimum": 0.5, "maximum": 4 },
+            "divider_width_pt": { "type": "number", "minimum": 0.25, "maximum": 2 },
+            "connector_width_pt": { "type": "number", "minimum": 0.75, "maximum": 3 }
+          }
+        },
+        "shadow": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "levels": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["blur_pt", "opacity"],
+                "properties": {
+                  "blur_pt": { "type": "number", "minimum": 0, "maximum": 24 },
+                  "offset_pt": { "type": "number", "minimum": 0, "maximum": 12 },
+                  "opacity": { "type": "number", "minimum": 0, "maximum": 0.35 }
+                }
+              }
+            }
+          }
+        },
+        "chart": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "palette_mode": { "type": "string", "enum": ["categorical", "sequential", "monochrome_accent"] },
+            "gridline_width_pt": { "type": "number", "minimum": 0.25, "maximum": 1.5 },
+            "label_size_pt": { "type": "number", "minimum": 8, "maximum": 14 }
+          }
+        },
+        "image": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "treatment": { "type": "string", "enum": ["none", "frame", "dim", "duotone"] },
+            "overlay_opacity": { "type": "number", "minimum": 0, "maximum": 0.6 }
+          }
+        },
+        "icon": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "style": { "type": "string", "enum": ["line", "filled", "duotone"] },
+            "stroke_width_pt": { "type": "number", "minimum": 0.75, "maximum": 2.5 }
+          }
+        }
+      }
+    },
+    "skins": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "L2: parameterized component appearance. Colors are token NAMES (palette references), never raw values — the schema rejects hex here, which is what keeps every skin on-palette.",
+      "properties": {
+        "card": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "variant": { "type": "string", "enum": ["flat", "outlined", "elevated", "tinted"] },
+            "fill": { "$ref": "#/$defs/tokenRef" },
+            "text_color": { "$ref": "#/$defs/tokenRef" },
+            "border_color": { "$ref": "#/$defs/tokenRef" },
+            "accent_edge": { "type": "string", "enum": ["none", "left", "top"] }
+          }
+        },
+        "kpi": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "variant": { "type": "string", "enum": ["plain", "card", "banded"] },
+            "value_color": { "$ref": "#/$defs/tokenRef" },
+            "label_case": { "type": "string", "enum": ["as_is", "uppercase"] },
+            "delta_coloring": { "type": "string", "enum": ["semantic", "neutral"] }
+          }
+        },
+        "table": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "header_style": { "type": "string", "enum": ["filled", "underlined", "minimal"] },
+            "header_fill": { "$ref": "#/$defs/tokenRef" },
+            "zebra": { "type": "boolean" },
+            "rule_weight": { "type": "string", "enum": ["hairline", "regular"] }
+          }
+        },
+        "divider": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "style": { "type": "string", "enum": ["line", "space", "accent_bar"] }
+          }
+        },
+        "footer": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "show_source": { "type": "boolean" },
+            "show_page_number": { "type": "boolean" },
+            "text_color": { "$ref": "#/$defs/tokenRef" }
+          }
+        }
+      }
+    },
+    "layout_knobs": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The ONLY influence a style has on engine geometry: declared, bounded knobs. Grids, safe zones, and density limits are engine constants.",
+      "properties": {
+        "density": { "type": "string", "enum": ["airy", "regular", "compact"] },
+        "margin_scale": { "type": "number", "minimum": 0.85, "maximum": 1.3 },
+        "alignment": { "type": "string", "enum": ["left", "centered"] }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Open slot for forward-compatible additions. Engine ignores unknown keys."
+    }
+  },
+  "$defs": {
+    "idSlug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
+    "semver": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" },
+    "hexColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "fontStack": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": { "type": "string", "minLength": 1, "maxLength": 60 }
+    },
+    "fontWeight": { "type": "integer", "minimum": 100, "maximum": 900, "multipleOf": 100 },
+    "tokenRef": {
+      "type": "string",
+      "enum": ["primary", "accent", "background", "surface_1", "surface_2", "surface_3", "text_primary", "text_secondary", "text_muted", "border", "positive", "warning", "negative"],
+      "description": "A reference into tokens.colors by name. Raw color values are rejected in skins by design."
+    }
+  }
+}

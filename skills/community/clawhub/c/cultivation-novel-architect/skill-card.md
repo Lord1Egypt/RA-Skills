@@ -1,38 +1,53 @@
-## Description: <br>
-Helps agents generate cultivation-fiction worldbuilding, realm systems, characters, resources, conflicts, combat scenes, and genre-aware prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language assistance for designing cultivation novel worlds, progression systems, characters, resources, conflicts, and scenes.
 
-## Publisher: <br>
-[steventian97](https://clawhub.ai/user/steventian97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steventian97](https://clawhub.ai/user/steventian97)
 
-## Use Case: <br>
-Writers and agents use this skill to turn cultivation novel ideas into structured worlds, realm progressions, characters, resources, conflicts, combat scenes, and prose while keeping power scaling and terminology consistent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad cultivation-fiction trigger wording may activate the full workflow when a user only wants casual discussion or analysis. <br>
-Mitigation: Use explicit wording to request or avoid full cultivation-fiction writing guidance. <br>
+## Use Case:
 
+External writers and creative agents use this skill to turn cultivation-fiction ideas into structured Chinese-language worldbuilding, progression systems, plot conflicts, combat scenes, artifacts, techniques, and character material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steventian97/cultivation-novel-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and structured creative-writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include realm progressions, resource descriptions, combat scenes, conflict outlines, karma events, and stat-panel style text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The skill may activate on broad cultivation-fiction genre terms during analytical or editorial discussion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify whether the user wants creative generation, critique, or neutral analysis before producing story content.
+
+Risk: Generated cultivation-fiction scenes can include violent, dark, or sexually suggestive genre material if the prompt asks for it.
+
+Mitigation: Follow the artifact guardrails by avoiding excessive gore and explicit sexual detail, keeping sensitive material implicit and story-focused.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steventian97/skills/cultivation-novel-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text creative-writing guidance and generated prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language narrative passages, structured lists, progression systems, resource descriptions, and RPG-style stat panels.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

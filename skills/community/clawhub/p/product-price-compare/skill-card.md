@@ -1,46 +1,60 @@
-## Description: <br>
-商品比价 helps agents compare product prices across major e-commerce platforms by collecting prices, parsing promotions, normalizing final costs, and producing purchase recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+商品比价 compares products across major e-commerce platforms by collecting prices, parsing promotions, normalizing final prices, and producing purchase recommendations.
 
-## Publisher: <br>
-[zhang3feng](https://clawhub.ai/user/zhang3feng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhang3feng](https://clawhub.ai/user/zhang3feng)
 
-## Use Case: <br>
-External users, employees, and procurement teams use this skill to compare the same product across platforms such as JD, Tmall, Taobao, Pinduoduo, and Suning. It is intended for price comparison reports that include current price, historical low, promotion details, delivery timing, and purchase guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated browsing of e-commerce sites can expose shopping-session data such as addresses, order history, payment methods, or coupons. <br>
-Mitigation: Prefer unauthenticated browsing or a dedicated test account, and avoid using real shopping sessions for price checks. <br>
-Risk: Target platforms may restrict scraping or automated access. <br>
-Mitigation: Confirm that automated browsing is allowed for the target platform and use case before running the skill. <br>
-Risk: Prices, discounts, inventory, and coupons can change between report generation and checkout. <br>
-Mitigation: Treat the report as decision support, verify the final checkout price manually, and act promptly when price freshness matters. <br>
+## Use Case:
 
+External users, procurement teams, and shopping researchers use this skill to compare the same product across e-commerce platforms, normalize discounts and shipping, and receive a concise price comparison report. It is intended for product selection, bulk purchase checks, sale-period comparisons, and advisory purchase recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhang3feng/product-price-compare) <br>
-- [Platform DOM reference](references/platform-dom.md) <br>
-- [Promotion rules reference](references/promotion-rules.md) <br>
-- [Price normalization reference](references/normalization.md) <br>
-- [Usage examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown price comparison report with tables and concise recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform names, current prices, historical lows, promotion details, delivery timing, and purchase recommendation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may automate visits to third-party shopping sites and includes anti-bot evasion guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where site terms, consent, and rate limits permit; avoid logged-in shopping sessions or sensitive purchasing accounts until the release defines compliant automation behavior.
+
+Risk: The scanner describes the release as incomplete, so price, discount, and history outputs may be unreliable.
+
+Mitigation: Treat results as advisory and verify prices, coupons, stock, shipping, and historical lows on the platform checkout or other trusted sources before purchasing.
+
+Risk: Report storage and sensitive account handling are not defined in the evidence.
+
+Mitigation: Run in an isolated environment, avoid collecting credentials or account-specific coupons, and define retention and cleanup behavior before deployment.
+
+## Reference(s):
+
+- [Platform DOM Reference](artifact/references/platform-dom.md)
+- [Promotion Rules](artifact/references/promotion-rules.md)
+- [Price Normalization Algorithm](artifact/references/normalization.md)
+- [Usage Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown comparison reports with tables and purchase recommendations; helper scripts may emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include platform, current price, historical low, promotion details, delivery timing, normalized final price, and recommendation status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README changelog, released 2026-03-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,62 @@
-## Description: <br>
-Publish articles to Toutiao (Today's Headlines). Handles persistent authentication (login once) and session management. Opens browser for interactive publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish articles to Toutiao (Today's Headlines). Handles persistent authentication (login once) and session management. Opens browser for interactive publishing.
 
-## Publisher: <br>
-[guanyang](https://clawhub.ai/user/guanyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guanyang](https://clawhub.ai/user/guanyang)
 
-## Use Case: <br>
-External users and developers use this skill to manage Toutiao login state and publish articles through the Toutiao publisher portal, including Markdown content and optional cover images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved browser sessions can allow reuse of a logged-in Toutiao publisher account. <br>
-Mitigation: Review where browser state is stored, clear it when work is complete, and only install the skill when account reuse is intended. <br>
-Risk: Automated publishing may post content without sufficiently clear final confirmation. <br>
-Mitigation: Require the agent to show the title, content, cover image, and final publish action for explicit approval before any live publish. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guanyang/toutiao-publisher) <br>
+## Use Case:
 
+Developers and content operators use this skill to manage Toutiao login state and publish Markdown or text articles, optionally with a local cover image, through an interactive or automated browser workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and browser publishing actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use saved browser session state and can publish to a live Toutiao account when directed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish content to a live Toutiao account using stored login sessions.
+
+Mitigation: Review article content before execution, prefer visible non-headless runs, and use --dry-run until the intended publication flow is confirmed.
+
+Risk: Browser session data is persisted locally under data/browser_state.
+
+Mitigation: Keep the browser state private, avoid sharing generated state files, and clear saved sessions when publishing is complete.
+
+Risk: Setup installs Python dependencies and Chrome for browser automation.
+
+Mitigation: Run the skill in an isolated environment and review dependency installation before first use.
+
+Risk: The skill can upload specified local files as article content or cover images.
+
+Mitigation: Verify file paths and file contents before running automated publishing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guanyang/skills/toutiao-publisher)
+- [Toutiao publisher portal](https://mp.toutiao.com/)
+- [Toutiao article publish page](https://mp.toutiao.com/profile_v4/graphic/publish)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Files, Guidance]
+
+**Output Format:** [Terminal status output and browser-mediated publishing workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent browser session files and debug screenshots; successful runs can publish externally to a live Toutiao account.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

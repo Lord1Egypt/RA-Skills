@@ -1,38 +1,54 @@
-## Description: <br>
-A quick start guide for building an AI agent storefront with the GreenHelix API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Commerce Quick Start Guide for building a first AI agent storefront.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent builders use this guide to set up agent identity, configure payment flows, and prepare marketplace listings for a GreenHelix-based storefront. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide discusses live commerce actions, including payment processing, crypto transfers, API keys, and marketplace listings. <br>
-Mitigation: Verify GreenHelix independently, use sandbox or test payment settings first, keep API keys scoped and private, and require explicit review before live payments, crypto transfers, or marketplace publication. <br>
+## Use Case:
 
+External developers and agent builders use this guide to plan GreenHelix agent commerce setup, including identity, payment processing, reputation, and marketplace listing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-test-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guide] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable documentation covering API-key, payment, crypto, and marketplace setup considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The guide discusses API keys, payment setup, crypto rails, and marketplace publishing, which may involve sensitive credentials or financial configuration if followed operationally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before using credentials, configuring payment rails, enabling crypto payment paths, or publishing marketplace listings.
+
+Risk: The artifact references a longer guide file, but no separate guide file was present in the inspected package.
+
+Mitigation: Base use and review only on the included SKILL.md and server-resolved evidence; do not assume omitted instructions or claims are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-test-debug)
+- [GreenHelix API](https://api.greenhelix.net)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown guide with setup steps and prerequisite notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; advises user-approved GreenHelix API key and payment configuration setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

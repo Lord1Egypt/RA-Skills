@@ -1,41 +1,57 @@
-## Description: <br>
-Screens A-share stocks using capital-flow, technical, trend, fundamental, and shareholder concentration signals, then formats ranked candidates with risk notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens A-share stock opportunities using fund-flow, price-volume, trend-strength, fundamental, and shareholding-concentration signals, then provides ranked analysis with risk notes.
 
-## Publisher: <br>
-[xiaobao666666666](https://clawhub.ai/user/xiaobao666666666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaobao666666666](https://clawhub.ai/user/xiaobao666666666)
 
-## Use Case: <br>
-Investors, analysts, and agents use this skill to produce informational A-share stock-screening research from quantitative signals. It helps structure candidate rankings, debate-style review, and risk-control notes, but outputs should not be treated as personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-screening outputs may be mistaken for personalized investment advice or guaranteed trading results. <br>
-Mitigation: Treat the output as informational research only and make investment decisions with independent review or qualified financial advice. <br>
-Risk: Market data, capital-flow signals, and technical indicators may be delayed, inaccurate, or ineffective under changing market conditions. <br>
-Mitigation: Verify market data independently before acting and reassess recommendations against current conditions and risk limits. <br>
+## Use Case:
 
+External users and analysts use this skill to ask an agent for structured A-share stock screening, debate-style review, tiered recommendations, and risk-control guidance. Outputs should be treated as informational market analysis, not as standalone trading advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaobao666666666/a-stock-quantitative-screener) <br>
-- [Detailed quantitative screening criteria](QUANT_DETAIL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and ranked recommendation lists with risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces stock candidate cards, tiered recommendations, and risk-control guidance; users should verify market data independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market data may be stale or incomplete, which can make screening results unreliable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current prices, fund-flow data, and corporate information against independent market data sources before acting.
+
+Risk: The skill may produce stock rankings or investment suggestions that users could mistake for financial advice.
+
+Mitigation: Treat outputs as educational analysis and combine them with independent research, suitability review, and professional judgment.
+
+Risk: Quantitative indicators and technical signals can fail when market conditions change.
+
+Mitigation: Apply position limits, stop-loss rules, diversification, and ongoing human review before making trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaobao666666666/skills/a-stock-quantitative-screener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and ranked recommendation lists with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes screening rationale, debate-style critique, prioritized stock lists, and risk-control notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

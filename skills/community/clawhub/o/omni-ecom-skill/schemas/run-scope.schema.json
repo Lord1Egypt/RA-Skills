@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/run-scope-2.0.json",
+  "title": "Omni E-commerce Source-bound Run Scope Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "status", "allowed_roots", "input_paths", "files", "scanned_files", "errors"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "run_scope_receipt" },
+    "contract_name": { "const": "omni-ecom.run-scope" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["read_only_import", "current_read_authority"],
+      "properties": {
+        "read_only_import": { "const": ["omni-ecom.run-scope@1.0"] },
+        "current_read_authority": { "const": false }
+      }
+    },
+    "run_id": { "type": "string", "minLength": 3 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["scope_verified", "scope_blocked"] },
+    "allowed_roots": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "input_paths": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "files": {
+      "type": "array", "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["file", "sha256", "size_bytes"],
+        "properties": {
+          "file": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "size_bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "scanned_files": { "type": "integer", "minimum": 0 },
+    "errors": { "type": "array", "items": { "type": "string" } }
+  }
+}

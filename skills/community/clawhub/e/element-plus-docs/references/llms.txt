@@ -1,0 +1,121 @@
+# Element Plus
+> Element Plus，基于 Vue 3，面向设计师和开发者的组件库。包含 78 个组件和 13 篇开发指南。
+
+## 开发指南
+- [安装](guides/installation.md): npm/CDN 安装方式、浏览器兼容性、Sass 版本
+- [快速上手](guides/quickstart.md): 完整引入 vs 按需引入、Vite/Webpack 配置
+- [设计原则](guides/design.md): 一致性、反馈、效率、可控四大原则
+- [暗黑模式](guides/dark-mode.md): CSS Vars 切换、自定义主题变量
+- [主题定制](guides/theming.md): CSS 变量覆盖、自定义主题
+- [国际化](guides/i18n.md): 多语言配置
+- [迁移指南](guides/migration.md): Element UI (Vue 2) → Element Plus (Vue 3)
+- [SSR](guides/ssr.md): Nuxt 等服务端渲染配置
+- [命名空间](guides/namespace.md): 自定义 CSS 前缀
+- [过渡动画](guides/transitions.md): 内置过渡动画效果
+- [导航指南](guides/nav.md): 侧边/顶部导航设计规范
+- [自定义默认值](guides/custom-defaults.md): 全局配置默认值
+- [设计资源](guides/resource.md): Figma/Sketch/Axure 设计资源
+
+## 基础组件 (Basic)
+- [Layout 布局](components/layout.md): 通过 row/col 创建栅格布局
+- [Container 布局容器](components/container.md): 页面整体布局容器
+- [Color 色彩](components/color.md): 主题色、辅助色、中性色规范
+- [Icon 图标](components/icon.md): @element-plus/icons-vue 图标库
+- [Button 按钮](components/button.md): 按钮样式、尺寸、状态、加载态
+- [Link 文字链接](components/link.md): 文字超链接组件
+- [Text 文本](components/text.md): 文本样式组件
+- [Scrollbar 滚动条](components/scrollbar.md): 自定义滚动条
+- [Space 间距](components/space.md): 组件间距控制
+- [Splitter 分割面板](components/splitter.md): 面板分割拖拽
+- [Border 边框](components/border.md): 边框样式规范
+- [Typography 排版](components/typography.md): 字号、行高、字体规范
+
+## 配置组件 (Config)
+- [Config Provider 全局配置](components/config-provider.md): 全局配置组件
+
+## 表单组件 (Form)
+- [Autocomplete 自动补全](components/autocomplete.md): 输入框自动补全
+- [Cascader 级联选择器](components/cascader.md): 多级联动选择
+- [Checkbox 多选框](components/checkbox.md): 多选按钮组
+- [ColorPicker 颜色选择器](components/color-picker.md): 颜色拾取器
+- [ColorPickerPanel 颜色选择面板](components/color-picker-panel.md)
+- [DatePicker 日期选择器](components/date-picker.md): 日期选择
+- [DatePickerPanel 日期选择面板](components/date-picker-panel.md)
+- [DateTimePicker 日期时间选择器](components/datetime-picker.md)
+- [Form 表单](components/form.md): 表单验证规则、校验、布局
+- [Input 输入框](components/input.md): 文本输入、文本域
+- [InputNumber 数字输入框](components/input-number.md): 数字输入控件
+- [InputTag 标签输入框](components/input-tag.md): 标签式输入
+- [InputOTP OTP 输入框](components/input-otp.md): 一次性密码输入
+- [Mention 提及](components/mention.md): @提及输入
+- [Radio 单选框](components/radio.md): 单选按钮组
+- [Rate 评分](components/rate.md): 星级评分
+- [Select 选择器](components/select.md): 下拉选择，远程搜索、多选
+- [SelectV2 虚拟化选择器](components/select-v2.md): 大数据量下拉选择
+- [Slider 滑块](components/slider.md): 范围值拖动选择
+- [Switch 开关](components/switch.md): 布尔值切换
+- [TimePicker 时间选择器](components/time-picker.md): 时间点选择
+- [TimeSelect 时间选择](components/time-select.md): 固定时间选项
+- [Transfer 穿梭框](components/transfer.md): 双列数据转移
+- [TreeSelect 树形选择](components/tree-select.md): 树形下拉选择
+- [Upload 上传](components/upload.md): 文件上传，拖拽、多文件
+
+## 数据展示 (Data)
+- [Avatar 头像](components/avatar.md): 头像展示
+- [Badge 标记](components/badge.md): 角标/徽标
+- [Calendar 日历](components/calendar.md): 日历组件
+- [Card 卡片](components/card.md): 卡片容器
+- [Carousel 走马灯](components/carousel.md): 轮播组件
+- [Collapse 折叠面板](components/collapse.md): 手风琴效果
+- [Empty 空状态](components/empty.md): 空数据占位
+- [Image 图片](components/image.md): 图片展示，懒加载、预览
+- [InfiniteScroll 无限滚动](components/infinite-scroll.md): 滚动加载指令
+- [Pagination 分页](components/pagination.md): 分页导航
+- [Progress 进度条](components/progress.md): 进度指示
+- [Result 结果](components/result.md): 操作结果反馈
+- [Skeleton 骨架屏](components/skeleton.md): 加载占位图
+- [Table 表格](components/table.md): 数据表格，排序、筛选、多选
+- [TableV2 虚拟化表格](components/table-v2.md): 大数据量表格
+- [Tag 标签](components/tag.md): 标记和分类
+- [Timeline 时间线](components/timeline.md): 时间线组件
+- [Tour 漫游式引导](components/tour.md): 分步引导
+- [Tree 树形控件](components/tree.md): 树形展示，懒加载、拖拽
+- [TreeV2 虚拟化树](components/tree-v2.md): 大数据量树形控件
+- [Statistic 统计数值](components/statistic.md): 统计数值展示
+- [Segmented 分段控制器](components/segmented.md): 分段选择
+- [Descriptions 描述列表](components/descriptions.md): 描述信息展示
+
+## 导航 (Navigation)
+- [Affix 固钉](components/affix.md): 元素固定定位
+- [Anchor 锚点](components/anchor.md): 页面内锚点导航
+- [Backtop 回到顶部](components/backtop.md): 一键返回页面顶部
+- [Breadcrumb 面包屑](components/breadcrumb.md): 路径导航
+- [Dropdown 下拉菜单](components/dropdown.md): 下拉操作菜单
+- [Menu 导航菜单](components/menu.md): 侧边/顶部导航菜单
+- [PageHeader 页头](components/page-header.md): 页面头部
+- [Steps 步骤条](components/steps.md): 分步骤引导
+- [Tabs 标签页](components/tabs.md): 选项卡切换
+
+## 反馈 (Feedback)
+- [Alert 提示](components/alert.md): 警告提示
+- [Dialog 对话框](components/dialog.md): 模态对话框
+- [Drawer 抽屉](components/drawer.md): 侧边栏抽屉
+- [Loading 加载](components/loading.md): 加载指令与服务
+- [Message 消息提示](components/message.md): 全局消息 ElMessage
+- [MessageBox 消息弹窗](components/message-box.md): 确认框 ElMessageBox
+- [Notification 通知](components/notification.md): 通知提醒 ElNotification
+- [Popconfirm 气泡确认框](components/popconfirm.md): 确认操作气泡
+- [Popover 气泡卡片](components/popover.md): 悬浮卡片
+- [Tooltip 文字提示](components/tooltip.md): 悬浮文字提示
+
+## 其他 (Others)
+- [Watermark 水印](components/watermark.md): 页面水印
+- [Divider 分割线](components/divider.md): 内容分隔
+- [Overview 组件总览](components/overview.md): 全部组件概览
+
+## 补充文档
+- [更新日志](extra-guides/changelog.md): 完整版本历史
+- [Git 提交示例](extra-guides/commit-examples.md)
+- [开发者指南](extra-guides/dev-guide.md)
+- [翻译指南](extra-guides/translation.md)
+- [开发常见问题](extra-guides/dev-faq.md)

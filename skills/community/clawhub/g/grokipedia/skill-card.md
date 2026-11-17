@@ -1,43 +1,60 @@
-## Description: <br>
-Search and fetch articles from Grokipedia.com - xAI's AI-generated encyclopedia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and fetches articles from Grokipedia.com, xAI's AI-generated encyclopedia, for topics that may have a Grokipedia article.
 
-## Publisher: <br>
-[kirillleventcov](https://clawhub.ai/user/kirillleventcov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kirillleventcov](https://clawhub.ai/user/kirillleventcov)
 
-## Use Case: <br>
-Developers and agent users use this skill to search Grokipedia and fetch public article content for topic research. It returns structured search results and article text that an agent can cite, summarize, or use as context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and article requests are sent to grokipedia.com. <br>
-Mitigation: Use the skill for public lookup topics and avoid sensitive search queries. <br>
-Risk: The optional raw HTML output can contain untrusted content. <br>
-Mitigation: Treat raw HTML as untrusted and avoid rendering it without sanitization. <br>
-Risk: Dependency installation may not be reproducible without a reviewed lockfile. <br>
-Mitigation: Use a lockfile or reviewed dependency install process for deployments that require reproducible supply-chain behavior. <br>
+## Use Case:
 
+External users and developers use this skill to search Grokipedia for likely article matches and fetch selected article content for agent-readable review.
 
-## Reference(s): <br>
-- [Grokipedia](https://grokipedia.com) <br>
-- [Grokipedia Skill Page](https://clawhub.ai/kirillleventcov/grokipedia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON search results, Markdown article content, optional raw HTML, and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search accepts a query and optional limit from 1 to 50; fetch accepts a case-sensitive article slug and optional raw HTML mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: package.json and server release metadata) <br>
+Risk: Search terms and article slugs are sent to grokipedia.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when those queries and slugs are appropriate to share with Grokipedia.
+
+Risk: Fetched article content is external, AI-generated text.
+
+Mitigation: Treat returned content as untrusted reference material and verify important claims before relying on them.
+
+Risk: Dependency installation uses package versions without a bundled lockfile.
+
+Mitigation: Prefer pinned dependency versions or add a lockfile for reproducible installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kirillleventcov/skills/grokipedia)
+- [Publisher profile](https://clawhub.ai/user/kirillleventcov)
+- [Grokipedia](https://grokipedia.com)
+- [Grokipedia typeahead API](https://grokipedia.com/api/typeahead)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [JSON search results and Markdown article content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search accepts a query and 1-50 result limit; fetch accepts a case-sensitive article slug and can optionally return raw HTML.]
+
+## Skill Version(s):
+
+1.2.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

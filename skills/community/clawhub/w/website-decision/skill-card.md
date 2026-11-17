@@ -1,43 +1,54 @@
-## Description: <br>
-输入产品类型和名称，分析竞品、市场、流量、用户、商业模式、成本和推广策略，生成多维度网站可行性 HTML 报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+网站开发辅助决策系统会根据产品类型和名称，分析竞品、市场、流量、用户、商业模式、成本和推广策略，并生成多维度可行性评估 HTML 报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate whether a website idea is worth building by combining public web research with a weighted feasibility score and local HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include content copied or summarized from untrusted public web pages. <br>
-Mitigation: Review the generated HTML report and its source material before relying on it or sharing it. <br>
-Risk: The report generator writes to a user-selected local output path. <br>
-Mitigation: Use a clear, unique output filename and avoid paths that could overwrite existing work. <br>
-Risk: Market and search data gathered from public web research may be incomplete or time-sensitive. <br>
-Mitigation: Treat the report as decision support and confirm key market, cost, and competitive claims before committing resources. <br>
+## Use Case:
 
+Developers, founders, and product teams use this skill to evaluate whether a proposed website is worth building and to produce a feasibility report with scoring, cost, promotion, risk, and technical recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/website-decision) <br>
-- [Project homepage](https://github.com/bettermen/website-decision) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [HTML report file with supporting agent guidance, structured text, and shell or Python invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local HTML feasibility report from user-provided product details and researched analysis inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports may include untrusted content that can execute as active HTML or JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid opening reports made from untrusted inputs, do not host generated reports under an authenticated site, and require HTML escaping for all dynamic fields before treating the skill as low risk.
+
+Risk: The skill relies on web search results and public estimates that may be incomplete or stale.
+
+Mitigation: Review cited market, traffic, and competitor assumptions before using the report for investment or launch decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/website-decision)
+- [Project homepage from ClawHub metadata](https://github.com/bettermen/website-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash and Python examples, plus generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a local HTML feasibility report from structured analysis inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

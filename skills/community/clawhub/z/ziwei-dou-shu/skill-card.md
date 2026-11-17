@@ -1,44 +1,58 @@
-## Description: <br>
-Calculates and formats Northern School Zi Wei Dou Shu astrology charts with true solar time correction, 12-palace placement, four-transformations flying-star analysis, and fortune-cycle interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+北派紫微斗数排盘与解盘技能，支持真太阳时校正、12 宫排盘、四化飞星和运势分析。
 
-## Publisher: <br>
-[tigerleon529](https://clawhub.ai/user/tigerleon529) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tigerleon529](https://clawhub.ai/user/tigerleon529)
 
-## Use Case: <br>
-External users and agents use this skill to generate Zi Wei Dou Shu chart readings from birth date, birth time, birthplace, gender, and optional questions about career, wealth, relationships, or health. It supports local text or Markdown-style reports that summarize chart structure, life palace, cause palace, decadal fortune, annual fortune, and focused question analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses exact birth details, birthplace, and gender, which can be sensitive personal information. <br>
-Mitigation: Share only the birth details needed for the intended astrology reading, prefer local text output, and use document or screenshot workflows only when intentionally copying the report into those tools. <br>
-Risk: Astrology interpretations may be mistaken for factual, medical, legal, financial, or life-planning advice. <br>
-Mitigation: Present readings as interpretive astrology guidance and avoid treating outputs as professional advice or deterministic predictions. <br>
+## Use Case:
 
+External users and agents use this skill to collect birth details, calculate a Zi Wei Dou Shu chart, and produce Northern School flying-star style interpretations for topics such as career, finances, relationships, health, and annual fortune. Outputs should be treated as astrology-style guidance or entertainment rather than a basis for consequential decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tigerleon529/ziwei-dou-shu) <br>
-- [北派四化飞星理论](references/beipai-sihua.md) <br>
-- [紫微斗数 12 宫位详解](references/palaces.md) <br>
-- [紫微斗数星曜含义](references/stars.md) <br>
-- [大限流年分析](references/yunxian.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown reports with optional JSON from local Node.js scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses birth details supplied by the user; chart calculations are intended for astrology analysis and entertainment-style guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill asks for exact birth date, time, location, and gender, which can be sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the birth details needed for the requested chart, prefer local text output, and avoid sharing documents or screenshots unless the user explicitly asks.
+
+Risk: Astrology-style readings may include health, finance, relationship, or life guidance that could be mistaken for professional advice.
+
+Mitigation: Present interpretations as entertainment or reflective guidance and direct users to qualified professionals for consequential health, legal, financial, or relationship decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tigerleon529/skills/ziwei-dou-shu)
+- [Publisher profile](https://clawhub.ai/user/tigerleon529)
+- [北派四化飞星理论](references/beipai-sihua.md)
+- [紫微斗数星曜含义](references/stars.md)
+- [紫微斗数 12 宫位详解](references/palaces.md)
+- [大限流年分析](references/yunxian.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text chart reports with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include birth-chart details, palace and star summaries, flying-star interpretation, and fortune-period analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

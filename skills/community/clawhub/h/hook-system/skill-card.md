@@ -1,39 +1,53 @@
-## Description: <br>
-Hook System lets agents run configurable PreToolUse and PostToolUse hooks to validate inputs, log activity, block execution, and process tool outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hook System lets agents run configured PreToolUse and PostToolUse hooks to validate inputs, log activity, block selected tool calls, or process tool outputs.
 
-## Publisher: <br>
-[xhmqq616](https://clawhub.ai/user/xhmqq616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhmqq616](https://clawhub.ai/user/xhmqq616)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add custom logic before and after tool execution, such as validation, logging, output filtering, and execution blocking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured hooks can read tool inputs, outputs, and environment data. <br>
-Mitigation: Use hooks only from trusted sources, review logging behavior, and avoid enabling hooks around tools that handle secrets unless redaction and isolation are in place. <br>
-Risk: Hook commands run local shell commands before or after tool execution. <br>
-Mitigation: Treat hook commands as trusted code and review each command before installation or configuration. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add hook-based pre-processing and post-processing around tool execution, including validation, logging, denial decisions, and output handling.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or newer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured hooks can execute shell commands with access to the agent environment and tool data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local hook execution is intentional, and allow only reviewed hook commands from trusted sources.
+
+Risk: Hook commands can observe tool inputs, outputs, private files, command output, and environment secrets.
+
+Mitigation: Avoid sensitive contexts unless strict allowlists, redaction, sandboxing, and review controls are in place.
+
+## Reference(s):
+
+- [Hook System on ClawHub](https://clawhub.ai/xhmqq616/skills/hook-system)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or newer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Helps users turn product-help requests into a practical brief, workflow, artifact, checklist, analysis, code change, or decision-support response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users clarify product-help requests, produce practical artifacts or decision support, and validate outputs against explicit success criteria.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Creators, communicators, founders, and product teams use this skill to clarify product goals, constraints, and success criteria, then produce an actionable deliverable such as a brief, workflow, checklist, analysis, artifact, code change, or next-step plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to run on vague prompts about products, quality, SaaS readiness, or asking for help. <br>
-Mitigation: Prefer explicit invocation where supported, and confirm the user wants product-validation planning before relying on the skill's workflow. <br>
+## Use Case:
 
+External creators and communicators use this skill to turn a broad product-help request into a clear brief, actionable artifact, checklist, analysis, code change, or decision support.
 
-## Reference(s): <br>
-- [Product Validation Planner requirement plan](references/requirement-plan.md) <br>
-- [Ask HN: I Need Help for a Product](https://news.ycombinator.com/item?id=48505805) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with prose, checklists, verification notes, and optional code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, limits, success criteria checks, and follow-up risks when helpful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad product or help-related prompts because implicit invocation is enabled and trigger words are generic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation keywords and review when the skill is selected unexpectedly.
+
+Risk: Planning or decision-support outputs may contain incorrect assumptions or misleading product guidance.
+
+Mitigation: Review assumptions, constraints, and verification notes before acting on the generated output.
+
+## Reference(s):
+
+- [Requirement Plan](artifact/references/requirement-plan.md)
+- [Ask HN: I Need Help for a Product](https://news.ycombinator.com/item?id=48505805)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with concise assumptions, artifacts, checklists, analysis, verification notes, and next steps when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is bundled; outputs are generated conversationally by the agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

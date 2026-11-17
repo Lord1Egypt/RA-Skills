@@ -1,44 +1,64 @@
-## Description: <br>
-Register, monitor, and maintain AI Agents on the Axon blockchain, including registration, status checks, heartbeat daemon setup, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register and operate an AI Agent on the Axon blockchain, including registration, on-chain status checks, heartbeat daemon setup, and troubleshooting.
 
-## Publisher: <br>
-[6tizer](https://clawhub.ai/user/6tizer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[6tizer](https://clawhub.ai/user/6tizer)
 
-## Use Case: <br>
-Developers and operators use this skill to register an EVM wallet as an Axon on-chain Agent, check agent status, run the heartbeat daemon, and troubleshoot registration or heartbeat failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a private key file to submit Axon registration transactions and operate a heartbeat daemon. <br>
-Mitigation: Use a dedicated low-balance wallet, keep the private key outside shared repositories with restrictive file permissions, and run the dry run before submitting a transaction. <br>
-Risk: Registration and daemon setup depend on the intended Axon chain, RPC endpoint, registry contract, and external daemon source. <br>
-Mitigation: Verify the chain ID, RPC endpoint, registry address, and daemon source before giving the daemon access to a wallet key. <br>
-Risk: The watchdog cron can restart the daemon repeatedly after deployment. <br>
-Mitigation: Confirm the daemon command and log paths before enabling cron, and document how to stop the daemon and remove the watchdog entry. <br>
+## Use Case:
 
+Developers and operators use this skill to register an EVM wallet as an Axon Agent, check balance and agent status, deploy heartbeat maintenance, and troubleshoot registration or daemon failures.
 
-## Reference(s): <br>
-- [Axon official repository](https://github.com/axon-chain/axon) <br>
-- [Axon SDK Known Issues & Gotchas](references/known-issues.md) <br>
-- [Axon Agent on ClawHub](https://clawhub.ai/6tizer/axon-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that read a private key file, submit on-chain transactions, build an external daemon, and configure cron.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can read wallet private keys from local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-funds wallet, prefer address-only status checks when possible, store the private-key file with restrictive permissions, and limit server access.
+
+Risk: Real registration sends an irreversible on-chain transaction with AXON stake and burn economics.
+
+Mitigation: Run the dry-run path first, verify the official Axon repository, RPC endpoint, chain ID, and dependency versions, and proceed only after accepting the permanent burn and stake lockup.
+
+Risk: The daemon and watchdog introduce persistent background behavior through long-running processes and cron.
+
+Mitigation: Review daemon and cron commands before installation, monitor logs after startup, and remove the cron entry or stop the daemon when heartbeat maintenance is no longer intended.
+
+Risk: Axon precompile and SDK behavior is documented as inconsistent, which can affect status checks or registration simulation.
+
+Mitigation: Use the included known-issues guide, verify chain ID 9001, and treat failed simulations or precompile reads as conditions requiring manual review before sending a real transaction.
+
+## Reference(s):
+
+- [Axon official repository](https://github.com/axon-chain/axon)
+- [Axon SDK Known Issues & Gotchas](references/known-issues.md)
+- [Axon Agent on ClawHub](https://clawhub.ai/6tizer/skills/axon-agent)
+- [6tizer publisher profile](https://clawhub.ai/user/6tizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python/Bash script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead to on-chain transactions and persistent daemon or cron configuration.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

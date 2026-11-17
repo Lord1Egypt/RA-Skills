@@ -1,45 +1,60 @@
-## Description: <br>
-Apple Music integration via AppleScript on macOS or the MusicKit API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Music integration via AppleScript (macOS) or MusicKit API
 
-## Publisher: <br>
-[epheterson](https://clawhub.ai/user/epheterson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[epheterson](https://clawhub.ai/user/epheterson)
 
-## Use Case: <br>
-Developers and agent users use this skill to guide Apple Music playlist management, playback control, library search, catalog search, ratings, recommendations, and MCP server setup. It emphasizes the required library-first workflow for adding catalog songs to playlists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes persistent Apple Music library edits, including playlist changes and deletion. <br>
-Mitigation: Require explicit confirmation before write or delete operations and verify the target playlist or track before execution. <br>
-Risk: MusicKit developer tokens, user music tokens, and .p8 keys are sensitive credentials. <br>
-Mitigation: Treat tokens and keys as secrets; avoid logging them, hardcoding them, or storing them in shared files. <br>
-Risk: The artifact recommends installing an external MCP server from an unpinned GitHub clone. <br>
-Mitigation: Review the upstream MCP server code and pin the intended version before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Apple Music skill page](https://clawhub.ai/epheterson/mcp-applemusic) <br>
-- [mcp-applemusic repository](https://github.com/epheterson/mcp-applemusic) <br>
-- [Apple Developer Auth Keys](https://developer.apple.com/account/resources/authkeys/list) <br>
-- [Apple Music Authorization Endpoint](https://authorize.music.apple.com/woa) <br>
-- [Apple Music API](https://api.music.apple.com/v1) <br>
+## Use Case:
 
+Developers and agents use this skill to integrate Apple Music workflows, including playlist management, playback control on macOS, catalog and library search, library additions, listening history, and recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with AppleScript, Python, Bash, JSON, and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes macOS AppleScript workflows and MusicKit API examples; token-bearing values should be treated as secrets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata; artifact frontmatter states 0.6.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes destructive music-library actions such as deleting playlists, removing tracks, and changing library data.
+
+Mitigation: Require explicit user confirmation before deleting playlists, removing tracks, changing ratings, or altering library metadata.
+
+Risk: The skill recommends installing an unpinned third-party MCP server that would run local code.
+
+Mitigation: Avoid the optional MCP install unless a specific trusted commit is pinned and inspected before installation.
+
+Risk: MusicKit workflows require developer and user music tokens, which may expose account or library access if mishandled.
+
+Mitigation: Limit token exposure, store tokens outside shared prompts and logs, and prefer direct AppleScript or official MusicKit examples for clearly user-requested actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/epheterson/skills/mcp-applemusic)
+- [mcp-applemusic GitHub Repository](https://github.com/epheterson/mcp-applemusic)
+- [Apple Developer MusicKit Keys](https://developer.apple.com/account/resources/authkeys/list)
+- [Apple MusicKit Authorization](https://authorize.music.apple.com/woa)
+- [Apple Music API](https://api.music.apple.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with AppleScript, Python, bash, JSON, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes macOS AppleScript guidance, MusicKit API request examples, and MCP server setup guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence; artifact frontmatter says 0.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

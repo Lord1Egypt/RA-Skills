@@ -1,45 +1,62 @@
-## Description: <br>
-Installs and starts the Xiaohongshu MCP service on macOS or Linux by selecting a platform binary, configuring autostart, running health checks, and guiding login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and starts the Xiaohongshu MCP service on macOS or Linux by detecting the platform, downloading the service binary, configuring autostart, and validating service health.
 
-## Publisher: <br>
-[alexduming](https://clawhub.ai/user/alexduming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexduming](https://clawhub.ai/user/alexduming)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to install and manage a local Xiaohongshu MCP service on macOS or Linux, including service startup, health checks, and login guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer makes persistent local service changes through launchd, systemd, and watchdog setup. <br>
-Mitigation: Review the installer before execution and prefer user-level, low-privilege service configuration where possible. <br>
-Risk: The installer can kill processes using port 18060, which may affect unrelated local services. <br>
-Mitigation: Confirm what is listening on port 18060 before allowing restart or kill commands to run. <br>
-Risk: The skill includes a cookie-import login path that can expose account access if cookies are pasted or stored carelessly. <br>
-Mitigation: Prefer QR-code login and avoid cookie import unless the user understands the account-access implications. <br>
-Risk: The skill downloads and runs an upstream binary as a local background service. <br>
-Mitigation: Install only when the upstream project is trusted and the downloaded binary source is acceptable for the environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up a local Xiaohongshu MCP service, keep it running in the background, and check login status before connecting an MCP client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexduming/xhs-mcp-installer) <br>
-- [Xiaohongshu MCP upstream project](https://github.com/xpzouying/xiaohongshu-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON-RPC request examples, and service configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can guide creation of launchd, systemd, crontab/watchdog, log, and cookie files when a user follows its commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The installer configures persistent background service behavior through launchd or systemd and may add watchdog recovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service configuration before installation, run the service as an unprivileged user where possible, and disable autostart or watchdog behavior if persistence is not intended.
+
+Risk: The installer downloads and runs release binaries from GitHub, including latest-release paths that may change over time.
+
+Mitigation: Use a pinned, verified release and inspect the installer and downloaded artifact before execution.
+
+Risk: The cookie import path can store browser cookies that may function as account credentials.
+
+Mitigation: Prefer QR-code login when possible; avoid importing cookies unless necessary, and protect any generated cookies.json with restrictive local file permissions.
+
+Risk: Process cleanup, port handling, cron edits, and service setup could affect unrelated local processes or scheduled jobs.
+
+Mitigation: Review the commands for port 18060, process termination, crontab filtering, and service paths before allowing the skill to run them.
+
+## Reference(s):
+
+- [Xiaohongshu MCP GitHub repository](https://github.com/xpzouying/xiaohongshu-mcp)
+- [ClawHub skill page](https://clawhub.ai/alexduming/skills/xhs-mcp-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The guidance may create local service files, watchdog scripts, logs, QR-code image output, and cookies.json during setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,44 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "ortho-expo-contacts",
+  "version": "1.1.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-09-04T01:42:33.570801+00:00",
+  "timestamp_local": "2026-09-04T09:42:33.570816",
+  "package_fingerprint_sha256": "4a4b80c6d38dc59260074013c2a43ef651df61205a4ad3faa1b98caf0422b815",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "0aa1796281d60ab02e8e621f0d737ff03ff31d9becf6eccd149d0de5924d7253"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "0b5777a83883f6cbad0228c91e7118eb2a5b7ef32d1051133bf360c3d95d4d86"
+    },
+    {
+      "path": "TRAC-E自查报告.md",
+      "sha256": "d7da5df9413a2bc4bc67b3d7595c8b5c2c2ee92c059480964d19c06e250b56a3"
+    },
+    {
+      "path": "references/DATA_SOURCES.md",
+      "sha256": "4ce1063e0bbac8091af78e165474cbba5c4b3bbf234703f2e51da33fc6af6fd3"
+    },
+    {
+      "path": "scripts/build_index.py",
+      "sha256": "51b521a326436bdd8341e9eed333dbcce329b4895dac917c85b3b9c958d607df"
+    },
+    {
+      "path": "scripts/gate.py",
+      "sha256": "7abdd543d10821d4d6a2fb614905f8000edb3bcbab6370fc48de95558b808891"
+    },
+    {
+      "path": "scripts/query.py",
+      "sha256": "03703d310bdaf7aa15b160fb87be784c4763c82e90c59e56eb240262f0ae8ac4"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "61e0dd09bdf11be7ebd58afc4bde8b16b07088ce688789c493a0115ba3285651"
+    }
+  ]
+}

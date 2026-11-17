@@ -1,41 +1,59 @@
-## Description: <br>
-This Chinese-language skill searches and reads the Yaxie yoga studio operations knowledge base to help answer questions about sales scripts, event planning, team management, member operations, package design, and related business topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+亚协体育瑜伽馆经营知识库读取技能，用于搜索、读取和总结瑜伽馆经营知识，包括销售话术、活动策划、团队管理、股权合伙、抖音运营、私教成交、会员运营和卡项设计等内容。
 
-## Publisher: <br>
-[design84086505-maker](https://clawhub.ai/user/design84086505-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[design84086505-maker](https://clawhub.ai/user/design84086505-maker)
 
-## Use Case: <br>
-External operators, consultants, and agents supporting yoga studio owners use this skill to find relevant Yaxie knowledge-base files, read accessible document content, and draft answers or summaries for operating questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes reusable Feishu credentials and broad wiki access scripts that could expose a private business knowledge base. <br>
-Mitigation: Install only if you trust the publisher and are authorized to access the linked Feishu tenant; rotate and remove the exposed app secret before use. <br>
-Risk: The skill can list wiki metadata, reveal document object tokens, download documents, run local Python parsing, and write extracted content to a chosen file. <br>
-Mitigation: Review requested commands and output paths before running scripts, and avoid sharing downloaded or extracted content outside authorized channels. <br>
+## Use Case:
 
+External operators, consultants, and agent users can use this skill to query a Feishu-hosted yoga studio operations knowledge base and produce concise answers or summaries for sales, campaigns, staffing, partnerships, legal-contract topics, and member operations.
 
-## Reference(s): <br>
-- [亚协知识库文件索引](artifact/references/file_index.md) <br>
-- [ClawHub skill page](https://clawhub.ai/design84086505-maker/yaxie-yoga-studio-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries with inline shell commands and optional extracted content files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May list Feishu wiki metadata, return document object tokens, download document content, run local parsing, and write extracted text to a chosen output file when scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Published Feishu app credentials could allow unauthorized access to tenant knowledge-base resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and rotate the secret, remove it from all published files and history, and require protected runtime secret injection before use.
+
+Risk: Over-broad Feishu access could expose documents beyond the intended knowledge-base space.
+
+Mitigation: Confirm the app has read-only least-privilege access limited to the intended knowledge-base space.
+
+Risk: Object-token exposure and user-selected output paths can increase data leakage or file-write risk.
+
+Mitigation: Restrict or remove object-token exposure and constrain output paths before deployment.
+
+## Reference(s):
+
+- [亚协知识库文件索引](artifact/references/file_index.md)
+- [ClawHub Skill Page](https://clawhub.ai/design84086505-maker/skills/yaxie-yoga-studio-consultant)
+- [Publisher Profile](https://clawhub.ai/user/design84086505-maker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with optional inline shell commands and extracted knowledge-base text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file names, object tokens, extracted document excerpts, and summarized operating guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

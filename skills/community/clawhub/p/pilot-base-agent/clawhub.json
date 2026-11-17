@@ -1,0 +1,13 @@
+{
+  "name": "pilot-base-agent",
+  "displayName": "中试基地Agent",
+  "version": "1.0.0",
+  "description": "统筹8位专业角色，帮助技术项目跑通中试全流程。覆盖工艺放大、测试验证、质量合规、安全环保、设备排期、技术转移与行业咨询，交付可量产可合规可商业化的完整方案。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["pilot-run", "manufacturing", "scale-up", "stage-gate", "quality-compliance"],
+  "minOpenClawVersion": "1.2.0"
+}

@@ -25,24 +25,24 @@ run_snapshot_command() {
 }
 
 run_snapshot_command "$OUTPUT_DIR/insights.txt" \
-  npx --yes @agent-analytics/cli@0.5.31 insights "$PROJECT_SLUG" --period 7d
+  npx --yes @agent-analytics/cli@0.5.37 insights "$PROJECT_SLUG" --period 7d
 run_snapshot_command "$OUTPUT_DIR/pages.txt" \
-  npx --yes @agent-analytics/cli@0.5.31 pages "$PROJECT_SLUG" --since 7d
+  npx --yes @agent-analytics/cli@0.5.37 pages "$PROJECT_SLUG" --since 7d
 run_snapshot_command "$OUTPUT_DIR/funnel.txt" \
-  npx --yes @agent-analytics/cli@0.5.31 funnel "$PROJECT_SLUG" \
+  npx --yes @agent-analytics/cli@0.5.37 funnel "$PROJECT_SLUG" \
   --steps "page_view,$PROXY_EVENT,$PRIMARY_EVENT" \
   --since 7d
 run_snapshot_command "$OUTPUT_DIR/${PROXY_EVENT}-events.txt" \
-  npx --yes @agent-analytics/cli@0.5.31 events "$PROJECT_SLUG" \
+  npx --yes @agent-analytics/cli@0.5.37 events "$PROJECT_SLUG" \
   --event "$PROXY_EVENT" \
   --days 7 \
   --limit 50
 run_snapshot_command "$OUTPUT_DIR/${PRIMARY_EVENT}-events.txt" \
-  npx --yes @agent-analytics/cli@0.5.31 events "$PROJECT_SLUG" \
+  npx --yes @agent-analytics/cli@0.5.37 events "$PROJECT_SLUG" \
   --event "$PRIMARY_EVENT" \
   --days 7 \
   --limit 50
 run_snapshot_command "$OUTPUT_DIR/experiments.txt" \
-  npx --yes @agent-analytics/cli@0.5.31 experiments list "$PROJECT_SLUG"
+  npx --yes @agent-analytics/cli@0.5.37 experiments list "$PROJECT_SLUG"
 
 printf 'Saved Agent Analytics snapshot to %s\n' "$OUTPUT_DIR"

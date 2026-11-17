@@ -1,41 +1,57 @@
-## Description: <br>
-派出四位性格迥异的虚拟体验官，基于高德路径规划、天气和 POI 数据，用不同性格视角评价路线或旅行方案，帮助用户比较选择。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+派出四位性格迥异的虚拟体验官，帮你提前"走完"路线方案。基于高德路径规划、天气、POI真实数据，用热血、毒舌、碎碎念、高冷四种性格视角给出路线评价，帮助选择困难症患者、情侣分歧、旅行纠结党快速做出决策。
 
-## Publisher: <br>
-[qhvssonic](https://clawhub.ai/user/qhvssonic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qhvssonic](https://clawhub.ai/user/qhvssonic)
 
-## Use Case: <br>
-External users and travel planners use this skill to compare commuting routes, trip itineraries, or competing travel preferences through data-grounded persona reviews. The agent generates candidate plans, asks users to assign reviewer personas, and returns concise plain-text group-chat evaluations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route and travel recommendations can be misleading if source map, weather, POI, or traffic data is unavailable, outdated, or incomplete. <br>
-Mitigation: Review important routes against current AMap data and local conditions before relying on the recommendation. <br>
-Risk: The skill depends on `amap-lbs-skill` and the `AMAP_WEBSERVICE_KEY` environment variable for route and place data. <br>
-Mitigation: Confirm the dependency is installed and the environment variable is configured before use. <br>
+## Use Case:
 
+External users use this skill to compare commuting routes or travel plans with personality-driven reviews grounded in map, route, weather, POI, cost, and facility data. It helps users choose among route options by showing tradeoffs in concise group-chat style text.
 
-## Reference(s): <br>
-- [Route Scouts ClawHub release](https://clawhub.ai/qhvssonic/amap-route-reviewer) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text group-chat style route and itinerary evaluations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route summaries, persona-specific reviews, ratings, practical cautions, and an overall recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Useful route reviews require sharing origin, destination, timing, preferences, and related travel context with the dependent map-service skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing unnecessary personal details and limit route inputs to the information needed for the comparison.
+
+Risk: Results depend on disclosed map, route, POI, and weather data from amap-lbs-skill.
+
+Mitigation: Install and configure amap-lbs-skill with AMAP_WEBSERVICE_KEY before use, and review generated recommendations before acting on travel or safety-sensitive guidance.
+
+Risk: The skill content and examples are primarily in Chinese, which may affect users expecting another language.
+
+Mitigation: Ask the agent to respond in the desired language when Chinese output is not appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qhvssonic/skills/amap-route-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown group-chat style route and travel reviews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires amap-lbs-skill and AMAP_WEBSERVICE_KEY for map-service data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

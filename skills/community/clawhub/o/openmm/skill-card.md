@@ -1,46 +1,56 @@
-## Description: <br>
-Open-source market making for AI agents. Multi-exchange trading, grid strategies, and real-time market data. CLI + MCP + Skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open-source market making for AI agents. Multi-exchange trading, grid strategies, and real-time market data. CLI + MCP + Skills.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-Developers and external agent users use this skill to configure OpenMM, query multi-exchange market data, manage orders, and run grid trading workflows through CLI, MCP, and agent skill instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect agents or chat commands to live exchange accounts with authority to place and cancel real orders. <br>
-Mitigation: Use testnet or small, separate API keys first, disable withdrawals and transfers, apply IP allowlists where possible, and require human confirmation before live trading actions. <br>
-Risk: Grid trading and cancel-all commands can materially change account positions or cancel active orders. <br>
-Mitigation: Dry-run grid strategies before execution, review the trade plan, and enable mutating tools only when they are needed for the workflow. <br>
-Risk: Exchange credentials are required for account and trading operations. <br>
-Mitigation: Store credentials in environment variables, use least-privilege exchange permissions, and avoid sharing or committing secrets. <br>
+## Use Case:
 
+Developers and external agents use OpenMM to retrieve exchange market and account data, configure exchange credentials, and support multi-exchange market-making and grid-trading workflows through CLI commands, MCP tools, and portable skills.
 
-## Reference(s): <br>
-- [OpenMM ClawHub listing](https://clawhub.ai/adacapo21/openmm) <br>
-- [OpenMM homepage](https://github.com/3rd-Eye-Labs/OpenMM) <br>
-- [OpenMM documentation](https://deepwiki.com/3rd-Eye-Labs/OpenMM) <br>
-- [OpenMM npm package](https://www.npmjs.com/package/@3rd-eye-labs/openmm) <br>
-- [OpenMM MCP server](https://github.com/QBT-Labs/OpenMM-MCP) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-formatted CLI output guidance for agent parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: The skill can access exchange account data and, when enabled, place or cancel real trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated exchange API keys with withdrawals disabled, narrow read and trade permissions, IP allowlisting, pinned package versions, small limits, and human confirmation before non-dry-run actions.
+
+Risk: Automated grid strategies and bulk cancellation authority can affect live orders without strong built-in confirmation controls.
+
+Mitigation: Keep destructive tools disabled unless needed, dry-run strategies first, require confirmation outside the model, and apply max-position and safety-reserve limits.
+
+## Reference(s):
+
+- [OpenMM GitHub Repository](https://github.com/3rd-Eye-Labs/OpenMM)
+- [OpenMM Documentation](https://deepwiki.com/3rd-Eye-Labs/OpenMM)
+- [OpenMM MCP Server](https://github.com/QBT-Labs/OpenMM-MCP)
+- [OpenMM npm Package](https://www.npmjs.com/package/@3rd-eye-labs/openmm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with CLI commands, JSON examples, TypeScript snippets, and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON command output when users request machine-readable CLI or MCP results.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

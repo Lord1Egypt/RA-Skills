@@ -1,6 +1,6 @@
 {
   "id": "fec-security-review",
-  "name": "前端安全审查",
+  "name": "Front-end security review",
   "category": "review-quality",
   "tags": [
     "xss",
@@ -10,8 +10,8 @@
     "owasp",
     "dompurify"
   ],
-  "summary": "Frontend Craft skill for 前端安全审查.",
-  "version": "2.6.0",
+  "summary": "Review browser-side XSS, CSRF, token exposure, unsafe DOM usage, and third-party risks.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -34,7 +34,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include 安全审查, 安全检查.",
+  "description": "Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include security review, security check.",
   "source": "skills/fec-security-review",
   "references": [
     "references/report-template.md",

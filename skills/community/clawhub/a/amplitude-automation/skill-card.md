@@ -1,43 +1,52 @@
-## Description: <br>
-Automate Amplitude tasks via Rube MCP (Composio): events, user activity, cohorts, user identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Amplitude tasks via Rube MCP (Composio): events, user activity, cohorts, user identification. Always search tools first for current schemas.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and analytics operators use this skill to guide an agent through Amplitude workflows, including sending events, retrieving user activity, identifying users, and managing cohorts through a connected Rube MCP Amplitude account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent using this skill can read or change analytics data through a connected Amplitude account. <br>
-Mitigation: Install it only for intended Amplitude automation and verify the workspace, user IDs, cohort IDs, and payloads before execution. <br>
-Risk: User activity and analytics payloads may expose sensitive product or user behavior data. <br>
-Mitigation: Avoid retrieving or sharing raw user activity unless necessary, and revoke the Rube/Amplitude connection when it is no longer needed. <br>
-Risk: Incorrect identifiers or timestamps can send events to the wrong user, cohort, or time period. <br>
-Mitigation: Resolve Amplitude internal user IDs before activity lookups, confirm cohort IDs before membership updates, and use millisecond epoch timestamps for events. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rube MCP endpoint](https://rube.app/mcp) <br>
-- [ClawHub release page](https://clawhub.ai/sohamganatra/amplitude-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/sohamganatra) <br>
+## Use Case:
 
+Developers and analytics operators use this skill to guide agents through Amplitude workflows via Rube MCP, including sending events, finding users, retrieving activity, managing cohorts, and updating user properties.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with tool sequences, parameter notes, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Rube MCP and an active Amplitude connection before the agent can act on Amplitude data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent access to Amplitude through Rube can expose user activity and make production analytics changes such as sending events, updating user properties, or modifying cohorts.
+
+Mitigation: Use least-privilege Amplitude credentials, confirm the target project and environment, avoid unnecessary user activity queries, and require explicit review before production writes or cohort changes.
+
+Risk: Stale schemas, Amplitude internal ID requirements, rate limits, and asynchronous cohort updates can cause failed or incorrect operations.
+
+Mitigation: Search Rube tools for current schemas first, resolve Amplitude internal user IDs before activity queries, batch or chunk large operations, and check asynchronous cohort operation status.
+
+## Reference(s):
+
+- [Rube MCP endpoint](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tool sequences, parameter notes, tables, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires active Rube MCP and an authenticated Amplitude connection; runtime tool schemas should be searched before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

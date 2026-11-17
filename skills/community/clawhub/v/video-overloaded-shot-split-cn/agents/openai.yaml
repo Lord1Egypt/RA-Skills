@@ -1,0 +1,8 @@
+interface:
+  display_name: "复杂镜头拆分计划"
+  short_description: "把动作过载的既有镜头拆成可执行镜头表与连续衔接要求"
+  default_prompt: "使用 $video-overloaded-shot-split-cn。请提供已有镜头描述、情节必留点和总时长预算，我会仅拆分动作过载镜头并给出可拍镜头表与衔接要求。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

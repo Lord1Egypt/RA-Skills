@@ -1,3 +1,5 @@
+The following template uses English example copy. Set the `lang` attribute to match the user’s requested output language.
+
 # HTML Output Structure
 
 The output is a single self-contained HTML file. All CSS and JS must be inline. No external dependencies.

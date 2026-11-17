@@ -1,47 +1,63 @@
-## Description: <br>
-Use only when explicitly invoked to run a read-only project-truth audit that checks project claims against reachable runtime behavior, configuration, deployment reality, tests, executable proof, installation, packaging, upgrade, and release paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Go Get Uncle Matt's HAMMERRR is a read-only project-truth audit skill that reconciles project claims with reachable runtime behavior, configuration, deployment reality, tests, executable proof, and release paths.
 
-## Publisher: <br>
-[uncmatteth](https://clawhub.ai/user/uncmatteth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncmatteth](https://clawhub.ai/user/uncmatteth)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill when they explicitly want a read-only claim-vs-reality audit of a project. It produces evidence-grounded findings about stale claims, contract drift, proof gaps, runtime wiring, installation, packaging, upgrade, and release behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit commands or follow-up checks could write files, touch external systems, or expose sensitive values if run without review. <br>
-Mitigation: Use the skill's read-only default, set the audit root and output path clearly, and review any command that could write files, touch external systems, or reveal credentials before execution. <br>
-Risk: The bundled quick validator currently checks for a removed skill-card.md file. <br>
-Mitigation: Treat that validator result as a known package validation gap and rely on server evidence plus targeted artifact review for this release. <br>
+## Use Case:
 
+Developers and maintainers use this skill when they need an explicit, evidence-heavy audit of whether project documentation, configuration, tests, runtime behavior, packaging, and release paths match reality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/go-get-uncle-matts-hammerrr) <br>
-- [README](README.md) <br>
-- [Claim Model](references/claim-model.md) <br>
-- [Evidence Rules](references/evidence-rules.md) <br>
-- [Command Safety](references/command-safety.md) <br>
-- [Reality Gap Checklist](references/reality-gap-checklist.md) <br>
-- [Report Rules](references/report-rules.md) <br>
-- [Project Truth Audit JSON Schema](schemas/project-truth-audit.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown audit report, with optional JSON and remediation-plan output when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; commands that may mutate files, external systems, or secrets are reported for review instead of executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill is designed to inspect broad project files and run read-only local checks during an audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit, evidence-heavy project audits and review any proposed live probe or command before allowing execution.
+
+Risk: The bundled validator currently fails because it expects a packaging file that is not present in this release.
+
+Mitigation: Treat validator failure as a packaging issue for the maintainer to resolve by adding the missing file or updating the validator.
+
+Risk: Audit output may include proposed commands or next proof steps that require human judgment before execution.
+
+Mitigation: Keep the default audit flow read-only and require reviewer approval before dependency installation, publishing, deployment, credential access, or other mutating operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/go-get-uncle-matts-hammerrr)
+- [Claim Model](references/claim-model.md)
+- [Evidence Rules](references/evidence-rules.md)
+- [Command Safety](references/command-safety.md)
+- [Reality Gap Checklist](references/reality-gap-checklist.md)
+- [Report Rules](references/report-rules.md)
+- [Project Truth Audit Schema](schemas/project-truth-audit.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown audit report, with optional JSON report and optional Markdown remediation plan when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; includes evidence, proof status, confidence, findings, rejected suspicions, blockers, and next proof steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

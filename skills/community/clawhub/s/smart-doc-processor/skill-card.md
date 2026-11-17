@@ -1,41 +1,58 @@
-## Description: <br>
-智能文档处理助手 - 一站式文档处理工具，支持 PDF 转换、智能摘要、多语言翻译、格式转换等功能。自动提取关键信息，生成结构化报告，提升文档处理效率10倍。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能文档处理助手 - 一站式文档处理工具，支持 PDF 转换、智能摘要、多语言翻译、格式转换等功能。自动提取关键信息，生成结构化报告，提升文档处理效率10倍。
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Employees, developers, and document-processing agents use this skill to extract text from local documents, summarize document content, translate extracted text, and produce Markdown or structured extraction reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says PDF path handling can let a crafted filename run unintended shell commands. <br>
-Mitigation: Use only trusted local files, avoid unusual or untrusted filenames, and replace shell interpolation with an argument-array API before broader deployment. <br>
-Risk: Generated outputs may contain sensitive copies or excerpts of the original document. <br>
-Mitigation: Treat outputs as sensitive document derivatives and review storage, sharing, and retention practices before use. <br>
+## Use Case:
 
+External users and developers use this skill to extract text from PDFs and text-like documents, generate markdown summaries, and extract common entities such as dates, amounts, emails, and phone numbers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/smart-doc-processor) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands] <br>
-**Output Format:** [Markdown, plain text, or JSON-style structured data generated from local document inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and pdftotext for the documented PDF processing path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A maliciously named PDF can trigger command injection through the pdftotext invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not process PDFs or filenames from untrusted sources until the command execution is changed to a non-shell API such as execFileSync or spawnSync with argument arrays.
+
+Risk: Processed document contents may be written to console output or to a user-selected file.
+
+Mitigation: Review inputs and output paths before running the skill, especially for confidential documents.
+
+Risk: Some advertised capabilities, including translation and several document formats, are limited or not fully implemented.
+
+Mitigation: Treat unsupported actions and formats as best-effort behavior and verify outputs before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/skills/smart-doc-processor)
+- [Source homepage](https://github.com/openclaw/smart-doc-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, plain text, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write processed document content to a chosen output file or print it to the console.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

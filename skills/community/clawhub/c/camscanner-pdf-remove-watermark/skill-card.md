@@ -1,42 +1,55 @@
-## Description: <br>
-Use CamScanner to remove watermarks from PDF documents while preserving the underlying text, images, and original layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CamScanner to remove watermarks, stamps, and translucent logos from PDF documents while preserving the underlying text, images, and original layout.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-External users and developers use this skill to upload a PDF to CamScanner, remove visible watermarks, stamps, or translucent logos, and save a cleaned PDF while preserving document layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads user-selected PDFs to CamScanner's cloud service for processing. <br>
-Mitigation: Use it only for documents that can be shared with CamScanner and avoid confidential, regulated, licensed, or third-party documents unless permission and privacy implications are clear. <br>
-Risk: Removing watermarks, stamps, or logos can be unauthorized for some documents. <br>
-Mitigation: Confirm that the user has the right to remove the visible mark before processing or sharing the cleaned PDF. <br>
+## Use Case:
 
+External users and developers use this skill to guide PDF watermark removal through CamScanner's hosted API when they need a clean local output PDF for sharing, printing, OCR, or further processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/camscanner-ai/camscanner-pdf-remove-watermark) <br>
-- [CamScanner homepage](https://www.camscanner.com) <br>
-- [CamScanner AI tools API endpoint](https://ai-tools.camscanner.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and local PDF file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a cleaned PDF file through CamScanner cloud processing; raw mode can stream the processed PDF directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected PDF files are sent to CamScanner's servers for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when users are comfortable with the service handling the selected PDFs.
+
+Risk: Confidential, regulated, or third-party-owned documents may carry privacy, compliance, or permission concerns.
+
+Mitigation: Avoid using the skill for those documents unless the user has permission and accepts CamScanner's data handling claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-pdf-remove-watermark)
+- [CamScanner homepage](https://www.camscanner.com)
+- [CamScanner AI tools API base](https://ai-tools.camscanner.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown with bash and JSON examples; the processed output is a PDF file or raw PDF byte stream.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; sends the selected PDF to CamScanner servers for processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version: 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

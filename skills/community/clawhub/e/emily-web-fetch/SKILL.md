@@ -1,14 +1,3 @@
----
-name: emily-web-fetch
-description: "Fetch static webpage content up to 5000 characters via HTTP/HTTPS GET for analysis, summarization, or information extraction."
-source: ClawHub
-version: 1.0.5
-tags: []
-compatible: [claude-code, openai-agents, hermes-agent, any-llm]
----
-
-# Emily Web Fetch
-
 # Web Fetch Skill
 
 ## Description

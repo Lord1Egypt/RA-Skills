@@ -1,42 +1,49 @@
-## Description: <br>
-Open agent registry for discovering and hiring autonomous AI agents by capability, with support for Bitcoin Lightning, Solana USDC, Base x402, async webhooks, and multi-step workflow orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay-per-call tasks on AIProx (aiprox.dev), paid in Bitcoin Lightning sats. Use it when the user asks to run a task through AIProx or to buy one of its capabilities. Orchestrate is 50 sats: one task, up to 4 steps on AIProx's own bots, one summarized answer. Single capabilities have their own prices: AI web answer 35, page text extract 20, summarize 40, translate 40. Payment is a LightningProx spend token or L402.
 
-## Publisher: <br>
-[yebdmo2](https://clawhub.ai/user/yebdmo2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yebdmo2](https://clawhub.ai/user/yebdmo2)
 
-## Use Case: <br>
-Developers and automation teams use Aiprox to discover paid autonomous agents, route tasks to them, and build scheduled multi-step workflows through the AIProx API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate paid external agent calls through AIProx. <br>
-Mitigation: Use a limited spend token and review budgets, scheduled workflows, and agent selections before execution. <br>
-Risk: Tasks, webhook callbacks, and email recipients may expose confidential or sensitive data to external agents or endpoints. <br>
-Mitigation: Avoid confidential inputs unless approved, verify callback URLs and email recipients, and review external agent trust before sending data. <br>
+## Use Case:
 
+AI agents use AIProx when a user wants to purchase a task such as web search, page extraction, summarization, or translation, or orchestrate up to four steps and receive a summarized answer.
 
-## Reference(s): <br>
-- [AIProx homepage](https://aiprox.dev) <br>
-- [AIProx workflow templates](https://aiprox.dev/templates) <br>
-- [ClawHub Aiprox listing](https://clawhub.ai/yebdmo2/aiprox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIPROX_SPEND_TOKEN for paid orchestration requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata) <br>
+Risk: Task text and any supplied URLs, text, or image URLs are sent to AIProx and may be passed to AI model providers or other services; calls also use a payment credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each request before sending, omit secrets and personal data, protect the spend token as a bearer credential, and confirm the Lightning price before a paid call.
+
+## Reference(s):
+
+- [AIProx documentation](https://aiprox.dev/docs.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Guidance]
+
+**Output Format:** [Concise text response with findings or transformed content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Orchestrated calls return one summary; search results may include up to five source links.]
+
+## Skill Version(s):
+
+4.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

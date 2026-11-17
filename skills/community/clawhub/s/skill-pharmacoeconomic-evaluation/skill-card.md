@@ -1,44 +1,62 @@
-## Description: <br>
-This skill provides comprehensive guidance and tools for conducting pharmacoeconomic evaluations including cost-effectiveness analysis (CEA), cost-utility analysis (CUA), cost-benefit analysis (CBA), sensitivity analysis, and decision-analytic model construction (Markov, decision tree, DES, PSM). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides comprehensive guidance and tools for conducting pharmacoeconomic evaluations including cost-effectiveness analysis (CEA), cost-utility analysis (CUA), cost-benefit analysis (CBA), sensitivity analysis, and decision-analytic model construction (Markov, decision tree, DES, PSM). Follows ISPOR Good Practices for Outcomes Research Reports. Use this skill for HTA projects, drug pricing, reimbursement decisions, and health economic research.
 
-## Publisher: <br>
-[tlb1201](https://clawhub.ai/user/tlb1201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlb1201](https://clawhub.ai/user/tlb1201)
 
-## Use Case: <br>
-External users and developers use this skill to plan pharmacoeconomic evaluations, calculate ICERs and QALYs, run deterministic or probabilistic sensitivity analyses, and structure decision-analytic models for HTA, reimbursement, pricing, or health economics research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; outputs include China-specific defaults and should be adapted to the target jurisdiction and payer context. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: China-specific defaults or thresholds may be misapplied to another jurisdiction, payer, or policy context. <br>
-Mitigation: Confirm the target jurisdiction, payer perspective, thresholds, discount rates, and utility sources with qualified health economics experts before relying on results. <br>
-Risk: Local pharmacoeconomic calculations can produce misleading decision support when assumptions, parameter sources, or model structure are incomplete. <br>
-Mitigation: Document all input sources, validate model assumptions, run sensitivity analyses, and review conclusions with qualified health economics experts. <br>
-Risk: The release evidence includes purchase and crypto capability tags that are not needed for the documented local analysis workflow. <br>
-Mitigation: Run the skill in an isolated Python environment and do not grant purchase, payment, wallet, or crypto capabilities. <br>
+## Use Case:
 
+External agents, developers, and health economics analysts can use this skill to plan pharmacoeconomic evaluations, calculate ICERs and QALYs, run sensitivity analyses, and structure decision-analytic models for HTA, pricing, reimbursement, and health economic research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tlb1201/skill-pharmacoeconomic-evaluation) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with Python code examples and local calculation results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on user-supplied clinical, cost, utility, threshold, and jurisdiction assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata) <br>
+Risk: Install instructions include an unpinned placeholder npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer manual installation from this reviewed package or a pinned, verified release.
+
+Risk: The skill may overstate analytical capabilities or produce misleading pharmacoeconomic guidance if used without expert review.
+
+Mitigation: Treat calculators as basic aids and independently verify methods, assumptions, parameter sources, and results.
+
+Risk: Economic conclusions depend on jurisdiction-specific thresholds, currencies, and dependency versions.
+
+Mitigation: Explicitly set the jurisdiction, willingness-to-pay threshold, currency, and dependency versions for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tlb1201/skills/skill-pharmacoeconomic-evaluation)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Cost-effectiveness analysis script](artifact/scripts/cost_effectiveness_analysis.py)
+- [Monte Carlo simulation script](artifact/scripts/monte_carlo_simulation.py)
+- [Budget impact analysis script](artifact/scripts/budget_impact_analysis.py)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python code examples and reusable script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires users to supply jurisdiction, willingness-to-pay threshold, currency, parameter sources, and dependency versions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

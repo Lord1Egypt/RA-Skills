@@ -1,42 +1,55 @@
-## Description: <br>
-Developer skill for running Hummingbot and Gateway from source, building wheel and Docker images, and testing against Hummingbot API running from source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer skill for running Hummingbot and Gateway from source, building wheel and Docker images, and testing against Hummingbot API running from source.
 
-## Publisher: <br>
-[fengtality](https://clawhub.ai/user/fengtality) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengtality](https://clawhub.ai/user/fengtality)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up, build, verify, and run a local Hummingbot, Gateway, and Hummingbot API development stack from source. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs powerful local install, build, and service scripts that can change developer environments and start Docker-backed services. <br>
-Mitigation: Review the bundled shell scripts before execution and run them only on an isolated local development machine. <br>
-Risk: Generated local defaults include insecure credentials and passphrases such as admin/admin and a default Gateway passphrase. <br>
-Mitigation: Replace default credentials and passphrases before exposing any service, and do not use real trading, exchange, wallet, or production credentials with the defaults. <br>
-Risk: The API and Gateway are intended for local development and may be unsafe if exposed beyond localhost. <br>
-Mitigation: Avoid port forwarding the API or Gateway and keep the services restricted to local development access. <br>
-Risk: The install workflow can overwrite or modify a Hummingbot API .env file. <br>
-Mitigation: Back up any existing hummingbot-api .env before running install_all.sh. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineers use this skill to build, run, verify, and smoke test a local Hummingbot, Gateway, and Hummingbot API development stack from source.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Installer scripts can download and install development dependencies, including Conda, Node.js, pnpm, Git, Docker, and Homebrew, and may make Docker-related system changes.
+
+Mitigation: Run the skill only in an isolated development environment, review scripts before execution, and use check-only or selective install options before allowing system changes.
+
+Risk: The development stack starts local API, Gateway, Postgres, and EMQX services and documents default local credentials and passphrases.
+
+Mitigation: Keep services bound to localhost, do not expose their ports externally, and replace default credentials or passphrases before using any shared or networked environment.
+
+Risk: Build and setup flows can modify local checkout state, environment files, Conda environments, Docker images, and package installations.
+
+Mitigation: Use disposable workspaces or backups for source checkouts and configuration, then verify branch, build, service, and integration status before relying on the environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local dependency installation, Docker builds, service startup, and smoke testing.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, configuration, code]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local development workflows, setup commands, build and verification steps, and smoke-test guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

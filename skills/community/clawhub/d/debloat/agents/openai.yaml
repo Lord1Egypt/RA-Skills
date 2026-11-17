@@ -1,0 +1,6 @@
+interface:
+  display_name: "Debloat"
+  short_description: "Restate the last message by cleaning it up only"
+  default_prompt: "Use $debloat to restate the last message. Clean it up only."
+policy:
+  allow_implicit_invocation: false

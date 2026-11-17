@@ -1,44 +1,61 @@
-## Description: <br>
-Discover, curate, and register for crypto conference side events via Luma and Google Sheets <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, curate, and register for crypto conference side events via Luma and Google Sheets.
 
-## Publisher: <br>
-[surlebeat](https://clawhub.ai/user/surlebeat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[surlebeat](https://clawhub.ai/user/surlebeat)
 
-## Use Case: <br>
-External users and developers use this skill with an OpenClaw agent to discover crypto conference side events, curate a ranked schedule from user preferences, monitor for new events, and register for selected Luma events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit event registrations and required consent checkboxes using stored personal information or session cookies. <br>
-Mitigation: Review curated.md and target event URLs before registration, use a conservative registration strategy when appropriate, and delete luma-session.json and custom-answers.json when they are no longer needed. <br>
-Risk: Untrusted community Google Sheets or event pages may influence the events selected for registration. <br>
-Mitigation: Use trusted event sources, review discovered events before curation and registration, and avoid untrusted Google Sheets. <br>
-Risk: Scheduled monitoring and saved Luma authentication can continue background checks against event sources. <br>
-Mitigation: Enable scheduled monitoring or Luma login only when the user accepts persistent cookies and recurring checks; disable scheduled monitoring when the conference workflow is complete. <br>
+## Use Case:
 
+External crypto conference attendees use this skill to discover side events, rank them against personal preferences, and attempt Luma registrations through an agent with browser access.
 
-## Reference(s): <br>
-- [Conference Intern on ClawHub](https://clawhub.ai/surlebeat/conference-intern) <br>
-- [OpenClaw](https://openclaw.com) <br>
-- [Luma](https://lu.ma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown schedules, JSON event and status files, shell command workflows, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-conference workspace files such as config.json, events.json, curated.md, registration-status.json, optional luma-session.json, and custom-answers.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: server release metadata) <br>
+Risk: The skill can attempt event registrations and submit personal information to third-party event pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted event sources, review curated events before registration, and verify consent terms before allowing submissions.
+
+Risk: Optional Luma login stores browser session cookies locally.
+
+Mitigation: Avoid persisted login when not needed, keep the workspace private, and delete luma-session.json after use.
+
+Risk: Security evidence reports weaknesses that could expose users to unintended registrations or phishing pages.
+
+Mitigation: Review source URLs and hostnames carefully before running registration, and prefer manual registration for unfamiliar or suspicious events.
+
+## Reference(s):
+
+- [Conference Intern on ClawHub](https://clawhub.ai/surlebeat/skills/conference-intern)
+- [Publisher profile: surlebeat](https://clawhub.ai/user/surlebeat)
+- [OpenClaw](https://openclaw.com)
+- [Luma](https://lu.ma)
+- [jq](https://jqlang.github.io/jq/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON files, local configuration files, and shell command execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-conference event data, curated schedules, registration status, and prompts for missing required RSVP fields.]
+
+## Skill Version(s):
+
+2.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

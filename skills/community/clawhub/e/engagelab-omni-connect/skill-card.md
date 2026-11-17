@@ -1,43 +1,57 @@
-## Description: <br>
-EngageLab Omnichannel communications tool (SMS, WhatsApp, Email) with template management and messaging capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EngageLab Omnichannel communications tool (SMS, WhatsApp, Email) with template management and messaging capabilities.
 
-## Publisher: <br>
-[GPTBOTS](https://clawhub.ai/user/GPTBOTS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gptbots](https://clawhub.ai/user/gptbots)
 
-## Use Case: <br>
-Developers and support teams use this skill to prepare and send EngageLab SMS, WhatsApp, and email communications, including approved-template discovery and message payload construction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing commands can upload unintended files or private material if run against the wrong folder. <br>
-Mitigation: Before publishing, confirm the target path, review included files, remove secrets or private material, and use ignore rules where supported. <br>
-Risk: The skill requires channel credentials for EngageLab SMS, WhatsApp, and Email APIs. <br>
-Mitigation: Provide credentials only through the documented environment variables and avoid placing secrets directly in prompts, skill files, or publishable artifacts. <br>
+## Use Case:
 
+Developers and support or marketing operators use this skill to prepare approved EngageLab SMS and WhatsApp templates and send SMS, WhatsApp, and email messages through EngageLab APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/GPTBOTS/engagelab-omni-connect) <br>
-- [EngageLab SMS API endpoint](https://smsapi.engagelab.com/v1/messages) <br>
-- [EngageLab WhatsApp API endpoint](https://wa.api.engagelab.cc/v1/messages) <br>
-- [EngageLab Email API endpoint](https://email.api.engagelab.cc/v1/mail/send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with API request examples and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EngageLab channel credentials supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can use real EngageLab provider credentials to send SMS, WhatsApp, and email messages or modify messaging templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in authorized messaging environments, scope credentials to the minimum required permissions, and review recipients, template IDs, and message content before execution.
+
+Risk: The package contains an unrelated ClawHub skill-management component with install, update, force-update, and publish authority.
+
+Mitigation: Install only if that package-management authority is intended; otherwise remove or exclude the bundled ClawHub component before deployment and restrict any ClawHub publishing credentials.
+
+## Reference(s):
+
+- [EngageLab Omni Connect ClawHub page](https://clawhub.ai/gptbots/skills/engagelab-omni-connect)
+- [EngageLab SMS API base URL](https://smsapi.engagelab.com)
+- [EngageLab WhatsApp API base URL](https://wa.api.engagelab.cc/v1)
+- [EngageLab Email send endpoint](https://email.api.engagelab.cc/v1/mail/send)
+- [EngageLab Email Turkey endpoint](https://emailapi-tr.engagelab.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON, Configuration]
+
+**Output Format:** [Markdown guidance with REST endpoint details and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EngageLab SMS, WhatsApp, and email credentials through environment variables.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

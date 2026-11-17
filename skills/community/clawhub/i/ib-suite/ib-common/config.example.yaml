@@ -1,0 +1,50 @@
+# skills/ib-suite/ib-common/config.example.yaml
+connection:
+  host: 127.0.0.1
+  port: 4002          # 4002 = paper, 4001 = live
+  client_id: 17
+  read_only: true     # keep true; this project never places orders
+  market_data_type: delayed  # realtime | frozen | delayed | delayed_frozen (delayed needs no live subscription)
+data:
+  freshness_hours: 24
+  base_currency: null # null => follow the IB account BASE currency
+storage:
+  root: .ib-suite/data   # keep runtime data out of the skill dir (workspace-local)
+flex:
+  token: null       # workspace-local secret; never commit a real value
+  # keys: day count or 'mtd'/'ytd' -> Flex Query ID; quote values to preserve leading zeros
+  trade_history_query_ids: {}   # queries for /ib-trade-history (Trades section)
+  dividend_query_ids: {}        # queries for /ib-dividend-income (6 dividend sections)
+options:
+  # false (default): skip all option market-data requests — no Greeks/IV, but
+  # zero snapshot-fee risk. Position, price, market value and P&L still work
+  # (IB-computed portfolio fields, free). Set true to briefly subscribe for
+  # Greeks/IV; this may incur IBKR snapshot charges for symbols without a
+  # real-time market-data subscription.
+  fetch_market_data: false
+thresholds:
+  # account_health: cash buffer (lower is riskier) and gross leverage
+  cash_ratio_warn: 0.10               # P2 when cash < 10% of net liquidation
+  cash_ratio_crit: 0.05               # P1 when cash < 5%
+  leverage_warn: 1.5                  # P2 when gross exposure > 1.5x NLV
+  leverage_crit: 2.0                  # P1 when > 2.0x
+  # concentration: single-name weight and portfolio HHI
+  single_position_weight_warn: 0.20   # P2 when one name > 20% of portfolio
+  single_position_weight_crit: 0.35   # P1 when > 35%
+  hhi_concentration_warn: 0.18
+  hhi_concentration_crit: 0.30
+  # pnl_attribution: share of gross unrealized P&L from one name
+  pnl_contrib_warn: 0.50              # P2 when one name drives > 50%
+  # trade_review: commission drag in bps of traded notional
+  commission_bps_warn: 5.0
+  commission_bps_crit: 15.0
+  # portfolio_risk: 1-day 95% historical VaR and sample max drawdown
+  var95_warn: 0.02
+  var95_crit: 0.05
+  max_drawdown_warn: 0.20
+  max_drawdown_crit: 0.30
+  # dividends: yield on cost (higher is better) and withholding-tax drag
+  yield_on_cost_warn: 0.02            # P2 when best held yield on cost < 2%
+  yield_on_cost_crit: 0.01            # P1 when < 1%
+  withholding_drag_warn: 0.10         # P2 when tax > 10% of gross dividends
+  withholding_drag_crit: 0.20         # P1 when > 20%

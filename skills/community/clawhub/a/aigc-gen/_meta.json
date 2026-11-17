@@ -2,5 +2,17 @@
   "ownerId": "kn74n8kyz3cp46gq4w3480erh182r1ya",
   "slug": "aigc-gen",
   "version": "1.1.0",
-  "publishedAt": 1776345176811
+  "publishedAt": 1776340211509,
+  "requires": {
+    "env": [
+      "AIGC_API_KEY",
+      "AIGC_BASE_URL",
+      "AIGC_CLIENT_ID",
+      "AIGC_PROVIDER",
+      "AIGC_TIMEOUT"
+    ],
+    "modules": [
+      "requests"
+    ]
+  }
 }

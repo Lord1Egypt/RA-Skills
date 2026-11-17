@@ -1,44 +1,58 @@
-## Description: <br>
-Manage and monitor a personal stock watchlist with support for adding, removing, listing stocks, and summarizing recent performance using data from 10jqka.com.cn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and monitor a personal stock watchlist with support for adding, removing, listing stocks, and summarizing their recent performance using data from 10jqka.com.cn.
 
-## Publisher: <br>
-[williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwang-wh](https://clawhub.ai/user/williamwang-wh)
 
-## Use Case: <br>
-External users and agents use this skill to maintain a local watchlist of Chinese A-share stocks, review saved symbols, and fetch concise performance summaries from 10jqka.com.cn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The watchlist is stored in plain text at ~/.clawdbot/stock_watcher/watchlist.txt. <br>
-Mitigation: Do not store sensitive notes in the watchlist file and manage local file permissions according to the user environment. <br>
-Risk: Clear and uninstall operations can remove saved watchlist entries without confirmation. <br>
-Mitigation: Back up the watchlist before running clear_watchlist.py or uninstall.sh. <br>
-Risk: Performance summaries depend on network access to 10jqka.com.cn and may fail or return delayed market data. <br>
-Mitigation: Treat summaries as informational and verify important trading decisions against authoritative market data sources. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a personal Chinese A-share watchlist, retrieve concise performance summaries, and manage stored stock entries by code.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/williamwang-wh/claw-stock-watcher-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/williamwang-wh) <br>
-- [10jqka stock page pattern](https://stockpage.10jqka.com.cn/{stock_code}/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text summaries and command-line output with stock codes, stock names, performance indicators, and source links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores watchlist entries as stock_code|stock_name in a local plain-text file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill stores a local watchlist under ~/.clawdbot/stock_watcher and clear or uninstall actions can remove watchlist data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the watchlist before using clear or uninstall operations.
+
+Risk: Performance summaries depend on network access to 10jqka.com.cn and may be unavailable or delayed.
+
+Mitigation: Treat returned market summaries as informational and verify important financial decisions against authoritative market data.
+
+Risk: Python dependencies are installed outside the skill by the user environment.
+
+Mitigation: Install requests and beautifulsoup4 in a virtual environment with pinned versions when deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamwang-wh/skills/claw-stock-watcher-pro)
+- [10jqka stock pages](https://stockpage.10jqka.com.cn/{stock_code}/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update a local watchlist file and may fetch stock pages from 10jqka.com.cn.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

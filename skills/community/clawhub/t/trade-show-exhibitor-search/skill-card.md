@@ -1,46 +1,64 @@
-## Description: <br>
-Find ICP-matching exhibitors, prospects, and partners at trade shows using the Lensmor API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lists exhibitor records for a specific trade show or searches Lensmor's wider exhibitor dataset from a company URL or target-audience phrase.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-B2B sales and marketing teams use this skill before trade shows to find exhibitors that match a company URL or target-audience description, then prioritize prospects, partners, and competitors for outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends company URLs, event interests, and target-audience descriptions to the Lensmor API. <br>
-Mitigation: Verify trust in Lensmor before use and avoid submitting sensitive internal strategy or personal data. <br>
-Risk: The Lensmor API key could be exposed through prompts, logs, or generated output. <br>
-Mitigation: Use a revocable API key, never print LENSMOR_API_KEY, and rotate the key if exposure is suspected. <br>
-Risk: Returned exhibitor matches or ICP rationale may be incomplete or inaccurate for outreach decisions. <br>
-Mitigation: Ground rationale only in returned fields and review suggested prospects before taking action. <br>
+## Use Case:
 
+Sales, marketing, and event teams use this skill to find Lensmor exhibitor records for named trade shows or discover exhibitor companies across the Lensmor dataset. It helps preserve boundaries between event-scoped records and cross-event discovery while reporting preview, access, and ranking evidence accurately.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weilun88313/trade-show-exhibitor-search) <br>
-- [Publisher profile](https://clawhub.ai/user/weilun88313) <br>
-- [Lensmor API documentation](https://api.lensmor.com/) <br>
-- [Lensmor platform base URL](https://platform.lensmor.com) <br>
-- [Example: SaaS Vendor Prospecting at Dreamforce 2026](examples/saas-vendor-at-dreamforce.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, guidance] <br>
-**Output Format:** [Markdown table with result summary, ICP match notes, error messages, and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; output must not expose API keys, raw endpoint paths, raw curl commands, or fabricated exhibitor entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Company URLs, target-audience phrases, event names, and filters are sent to Lensmor when the skill calls Lensmor API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended Lensmor exhibitor research and avoid submitting information that should not be shared with Lensmor.
+
+Risk: Unlocking additional event-scoped exhibitor records can consume credits.
+
+Mitigation: Confirm the unlock action type and exact credit cost with the user before any unlock action.
+
+Risk: Cross-event discovery results can be mistaken for evidence that a company exhibits at a named event.
+
+Mitigation: Keep event-specific and cross-event modes separate and only claim event association when returned fields such as matched_event_ids support it.
+
+Risk: API credentials could be exposed if echoed in output or logs.
+
+Mitigation: Check only that LENSMOR_API_KEY is configured and never print the key value or raw authorization headers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weilun88313/skills/trade-show-exhibitor-search)
+- [Lensmor API Docs](https://api.lensmor.com/)
+- [Lensmor Platform](https://platform.lensmor.com)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown tables with links, counts, access notes, and inline shell or JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; reports preview/full access semantics and asks before any credit-consuming unlock action.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

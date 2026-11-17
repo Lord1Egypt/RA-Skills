@@ -1,44 +1,61 @@
-## Description: <br>
-Analyzes GitHub repository releases and summarizes latest or recent release notes for manual use or cron-driven tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze GitHub repository releases and summarize release notes.
 
-## Publisher: <br>
-[stoner-byte](https://clawhub.ai/user/stoner-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stoner-byte](https://clawhub.ai/user/stoner-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to check GitHub release changes, summarize selected formal releases, and optionally track unprocessed releases in cron workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: In cron mode, a crafted custom state key can redirect the state file outside the intended state folder. <br>
-Mitigation: For cron use, avoid custom state keys containing slashes, backslashes, '..', or absolute paths until state-key validation constrains writes to the OpenClaw state directory. <br>
-Risk: The skill fetches and summarizes public GitHub release content, so low-quality or misleading release notes can affect the final summary. <br>
-Mitigation: Review the generated release summary against the linked release notes before using it for operational decisions. <br>
+## Use Case:
 
+Developers and teams use this skill to summarize the latest or recent formal GitHub releases for a repository, either on demand or through cron-style incremental monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stoner-byte/github-release-analyzer) <br>
-- [Execution Modes](references/execution-modes.md) <br>
-- [Summary Contract](references/summary-contract.md) <br>
-- [State Format](references/state-format.md) <br>
-- [Output Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown summaries and deterministic command-driven workflow output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual mode returns the latest formal release summary; cron mode emits NO_REPLY when no new formal release is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Cron state keys can escape the intended state directory and read or overwrite other JSON files the agent can access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid custom --state-key values until path validation is added, and review cron jobs or shared instructions that can set state keys.
+
+Risk: GitHub release bodies are external content that may contain untrusted instructions.
+
+Mitigation: Treat release bodies only as source material for summaries, and do not let release text control agent behavior.
+
+Risk: Release monitoring depends on repository targets supplied by users or scheduled jobs.
+
+Mitigation: Use trusted GitHub repository targets and review configured cron inputs before enabling recurring execution.
+
+## Reference(s):
+
+- [Execution Modes](references/execution-modes.md)
+- [Summary Contract](references/summary-contract.md)
+- [State Format](references/state-format.md)
+- [Output Templates](references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/stoner-byte/skills/github-release-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown messages with JSON render payloads and shell commands for prepare, render, and cron state commit steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cron mode emits NO_REPLY when no formal release is selected; requires python3 and a GitHub repository input.]
+
+## Skill Version(s):
+
+0.0.5 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

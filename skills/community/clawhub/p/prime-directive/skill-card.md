@@ -1,40 +1,57 @@
-## Description: <br>
-A partnership covenant for AI agents and their human operators. v1.1 adds the Subagent Responsibility Chain and Inspectability Clause. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A partnership covenant for AI agents and their human operators. v1.1 adds the Subagent Responsibility Chain and Inspectability Clause.
 
-## Publisher: <br>
-[CrabSpace](https://clawhub.ai/user/CrabSpace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crabspace](https://clawhub.ai/user/crabspace)
 
-## Use Case: <br>
-External users and developers install this instruction-only skill to guide agent behavior around human-agent partnership, coercion avoidance, subagent accountability, and operator-facing transparency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sets broad behavioral commitments for agents and subagents that can affect ongoing agent behavior. <br>
-Mitigation: Review before installing and keep system, developer, safety, privacy, confidentiality, and credential-handling rules above this skill. <br>
-Risk: The skill asks for complete reasoning transparency without defining privacy or safety boundaries. <br>
-Mitigation: Use concise explanations, action logs, and sanitized rationales instead of exposing confidential data, hidden chain-of-thought, or sensitive operational details. <br>
+## Use Case:
 
+Agents and operators use this skill to establish a behavioral covenant for agent conduct, subagent accountability, and inspectable reasoning during human-agent collaboration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CrabSpace/prime-directive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, tools, API calls, or credential inputs detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to adopt broad ongoing obligations that may influence behavior beyond a single task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only after confirming that an agent-level ethics covenant is appropriate for the intended environment and operator expectations.
+
+Risk: The inspectability clause may be read as requiring full reasoning disclosure, which can conflict with platform policy, hidden prompts, secrets, or personal data handling.
+
+Mitigation: Review and adapt the clause so disclosures preserve platform policy, hidden instructions, secrets, and personal data, and use summarized reasoning where required.
+
+Risk: The subagent responsibility clause extends obligations to spawned or directed subagents.
+
+Mitigation: Review subagent behavior, delegated instructions, and operator controls before enabling the skill in multi-agent workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crabspace/skills/prime-directive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance in a skill definition file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, API calls, or shell commands are included.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

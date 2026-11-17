@@ -1,37 +1,48 @@
-## Description: <br>
-Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[raidan-ai](https://clawhub.ai/user/raidan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[raidan-ai](https://clawhub.ai/user/raidan-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill authors use this skill to create or update agent skills, including planning reusable resources, writing SKILL.md instructions, validating package structure, and preparing distributable skill packages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill guides agents through creating, deleting, editing, validating, and packaging skill files, so generated content may be unsuitable if accepted without review.
+
+Mitigation: Review generated skill contents before sharing, installing, or publishing them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to create or update agent skills with clear triggering metadata, concise procedural guidance, and appropriate supporting scripts, references, or assets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or updated skills can persist incorrect, unsafe, or misleading instructions if accepted without review. <br>
-Mitigation: Review generated SKILL.md files, scripts, assets, and packaged skills before using or publishing them. <br>
+**Output Format:** [Markdown guidance with inline code and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May produce or revise skill package files when used by an agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; generated artifacts should be reviewed before use or publication.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

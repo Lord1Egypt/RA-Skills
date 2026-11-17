@@ -1,39 +1,57 @@
-## Description: <br>
-Generate a comprehensive influencer vetting report from a creator profile URL or video URLs, including brand safety and content quality analysis powered by Memories.ai video intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates influencer vetting reports from creator profile or video URLs with Memories.ai video analysis, brand safety checks, content quality scoring, and engagement metadata.
 
-## Publisher: <br>
-[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shawnshenopeninterx](https://clawhub.ai/user/shawnshenopeninterx)
 
-## Use Case: <br>
-Marketing, partnership, and creator operations teams use this skill to vet influencers before brand collaborations. The skill can analyze recent videos from a profile URL or direct video URLs and produce a concise markdown report with engagement context, content quality scoring, and brand-safety notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Profile-based reports can analyze unrelated videos if the scraped or searched library content does not match the intended creator. <br>
-Mitigation: Prefer direct video URLs for high-stakes brand-safety decisions and verify that every analyzed video belongs to the intended creator before relying on the report. <br>
-Risk: The skill submits creator profile URLs, video URLs, transcripts, and metadata requests to Memories.ai services. <br>
-Mitigation: Use scoped Memories.ai API keys and avoid submitting private or sensitive targets unless Memories.ai processing is acceptable for the use case. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Influencer Vetting Report Format](references/report-format.md) <br>
+## Use Case:
 
+Developers, marketing teams, and creator partnership reviewers use this skill to vet influencers by analyzing recent or supplied videos and producing a concise brand safety and content quality report.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, scores, recommendations, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Memories.ai V1 and V2 API keys; reports may be written to a file when an output path is provided.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Profile mode can include unrelated videos from the Memories.ai account library.
+
+Mitigation: Prefer direct video URLs or use a dedicated Memories.ai library/account for one creator at a time, then verify every report video belongs to the intended influencer.
+
+Risk: Creator profile or video URLs and derived transcript or metadata content are sent to Memories.ai services.
+
+Mitigation: Use the skill only when that data sharing is acceptable for the creator, brand, and account policy.
+
+Risk: Automated brand safety and approval scores can affect business decisions.
+
+Mitigation: Treat the report as review support and require human verification before approving, rejecting, or acting on an influencer.
+
+## Reference(s):
+
+- [Influencer Vetting Report Format](references/report-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/shawnshenopeninterx/skills/memories-influencer-report)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown influencer vetting report with terminal status text and optional report file output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMORIES_V1_API_KEY and MEMORIES_API_KEY; profile mode may include videos retrieved from the Memories.ai account library.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

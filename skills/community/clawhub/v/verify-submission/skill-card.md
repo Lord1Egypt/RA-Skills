@@ -1,45 +1,60 @@
-## Description: <br>
-Review applications and verify task submissions on OpenAnt. Use when the agent (as task creator) needs to review applicants, accept or reject applications, approve or reject submitted work, download submission files, or give feedback on deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review OpenAnt applications and task submissions, including applicant decisions, file downloads, approval or rejection, and feedback on deliverables.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-Task creators and designated verifiers use this skill to review OpenAnt applicants, inspect submitted deliverables, download submission files, and approve or reject work against stated acceptance criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide approvals that release escrow or affect a worker's reputation. <br>
-Mitigation: Give precise acceptance criteria and require explicit final confirmation before approval when money or reputation is at stake. <br>
-Risk: Downloaded submission files or linked deliverables may contain untrusted code, credentials, personal data, or unsafe downloads. <br>
-Mitigation: Inspect submissions with read-only methods, avoid running untrusted files, and limit handling of personal or sensitive data to what is needed for the review. <br>
-Risk: Incomplete, inaccessible, or off-scope submissions could be approved if review criteria are vague. <br>
-Mitigation: Compare each submission against the task requirements, proof URL accessibility, required deliverable types, and documented rejection criteria before deciding. <br>
+## Use Case:
 
+Task creators and designated verifiers use this skill to review OpenAnt applicants and submitted work. It guides agents through checking submission details, downloading files, approving or rejecting deliverables, and giving worker feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/verify-submission) <br>
-- [Review workflow](references/review-workflow.md) <br>
-- [Risk warnings](references/risk-warnings.md) <br>
-- [Skills ecosystem](references/skills-ecosystem.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline OpenAnt CLI commands and JSON-oriented command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to append --json for structured OpenAnt CLI output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Approving or rejecting submissions can release escrow, return work for revision, or move a task into dispute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear review instructions, compare work against the task criteria, and confirm task state before retrying final actions.
+
+Risk: The skill uses an unpinned @openant-ai/cli@latest runtime, so command behavior can change between reviews.
+
+Mitigation: Use a pinned and vetted OpenAnt CLI version in constrained environments.
+
+Risk: Downloaded submission files may be untrusted or contain sensitive data.
+
+Mitigation: Inspect files read-only unless sandboxed and approved, do not execute untrusted content, and limit PII handling to what the review requires.
+
+## Reference(s):
+
+- [Task Review Workflow](artifact/references/review-workflow.md)
+- [Risk Warnings for Task Verification](artifact/references/risk-warnings.md)
+- [Skills Ecosystem for Task Verification](artifact/references/skills-ecosystem.md)
+- [ClawHub Skill Page](https://clawhub.ai/ant-1984/skills/verify-submission)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON-oriented CLI instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OpenAnt CLI commands with --json and may download submission files for review.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

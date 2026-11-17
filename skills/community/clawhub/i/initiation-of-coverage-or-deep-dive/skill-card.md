@@ -1,43 +1,62 @@
-## Description: <br>
-Generates initiation-of-coverage or deep-dive research reports for listed companies in A-share, Hong Kong, U.S., and Beijing Stock Exchange markets using EastMoney data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates initiation-of-coverage or deep-dive equity research reports for supported A-share, Hong Kong, U.S., and Beijing Stock Exchange listed companies using Eastmoney data.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External financial analysts and agents use this skill to generate full initiation-of-coverage or deep-dive company research reports for supported listed-company markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an EastMoney API key. <br>
-Mitigation: Install only when the publisher is trusted and provide the key through the required EM_API_KEY environment variable. <br>
-Risk: The original report query is sent to EastMoney. <br>
-Mitigation: Avoid including confidential or non-public information in report prompts. <br>
-Risk: Generated PDF and DOCX report files are saved locally. <br>
-Mitigation: Choose an output directory where generated report attachments can be stored safely. <br>
+## Use Case:
 
+External users and financial analysts use this skill to request comprehensive first-coverage or deep-dive research reports for supported listed companies. The skill returns a structured report response with generated content, attachment paths, and a share link when available.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/financial-ai-analyst/initiation-of-coverage-or-deep-dive) <br>
-- [EastMoney initial coverage API endpoint](https://ai-saas.eastmoney.com/proxy/app-robo-advisor-api/assistant/write/initial-coverage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown response with generated report text, local PDF and Word file paths, and a share link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY and may save PDF and DOCX report attachments to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill sends the user's original prompt to Eastmoney's report-generation API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid prompts that contain confidential, personal, or restricted information, and disclose the external data transfer to users before operation.
+
+Risk: The skill depends on EM_API_KEY for external service access.
+
+Mitigation: Provide the key only through a controlled environment variable, restrict access to trusted runtimes, and rotate the key if exposure is suspected.
+
+Risk: The skill saves generated PDF and Word report files locally.
+
+Mitigation: Use a scoped output directory, review generated files before sharing, and remove files when they are no longer needed.
+
+Risk: The security guidance flags unsafe redirects, unpinned dependencies, and under-scoped permissions as review concerns.
+
+Mitigation: Prefer a reviewed release that disables unnecessary redirects, pins dependencies, and explicitly scopes network, environment-variable, and file-write permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/initiation-of-coverage-or-deep-dive)
+- [Eastmoney initial coverage API endpoint](https://ai-saas.eastmoney.com/proxy/app-robo-advisor-api/assistant/write/initial-coverage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown response with report text, local PDF/DOCX attachment paths, and a share URL; the helper script emits JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY and may save generated report attachments under a local output directory.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

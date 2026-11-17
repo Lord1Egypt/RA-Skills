@@ -1,39 +1,54 @@
-## Description: <br>
-Analyze any task and recommend the most cost-effective LLM with pricing data from 30+ models, tier analysis, token estimation, and projected cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze any task and recommend the most cost-effective LLM — with live pricing data from 30+ models, tier analysis, token estimation, and projected cost.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare LLM options for a planned task, estimate token usage, and choose a cost-effective model tier before spending API budget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing recommendations may be stale or estimated because the release evidence does not include an executable pricing-data implementation. <br>
-Mitigation: Verify current provider pricing and expected token usage before making budget or model-selection decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to estimate LLM token usage, compare model pricing tiers, and choose cost-effective models for a task. It is intended for API cost planning and budget-aware model selection.
 
-## Reference(s): <br>
-- [HermesMade](https://github.com/minirr890112-byte/HermesMade) <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/model-cost-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, shell commands] <br>
-**Output Format:** [Markdown with inline shell command examples and cost comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pricing recommendations are estimates and should be checked against current provider pricing before budget decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill claims live model pricing, but the artifact contains no bundled code or data-source implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify model prices against official provider documentation before relying on cost recommendations.
+
+Risk: Cost recommendations may become outdated as model providers change pricing or available tiers.
+
+Mitigation: Refresh pricing assumptions and review generated comparisons before using them for budget or purchasing decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/minirr890112-byte/skills/model-cost-advisor)
+- [HermesMade Repository](https://github.com/minirr890112-byte/HermesMade)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with model recommendations, tiered cost comparisons, token estimates, projected costs, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pricing-sensitive guidance should be checked against current provider documentation before financial decisions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

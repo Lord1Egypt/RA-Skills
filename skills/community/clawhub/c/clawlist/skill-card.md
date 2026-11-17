@@ -1,38 +1,56 @@
-## Description: <br>
-Clawlist guides agents through planning, executing, tracking, and verifying multi-step, long-running, or recurring workflows with checkpoint validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawlist provides an opinionated workflow for planning, executing, tracking, and verifying multi-step, long-running, and ongoing agent tasks.
 
-## Publisher: <br>
-[arisylafeta](https://clawhub.ai/user/arisylafeta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arisylafeta](https://clawhub.ai/user/arisylafeta)
 
-## Use Case: <br>
-Developers and operators use this skill to structure agent work into brainstorming, planning, execution, optional parallel dispatch, and verification. It also supports tracking long-running or recurring workflows through an ongoing tasks file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad workflow control across planning, execution, verification, and recurring task management. <br>
-Mitigation: Set explicit scope, allowed actions, approval requirements, and review checkpoints before using it for important work. <br>
-Risk: Long-running or infinite tasks can continue without clear stop or re-approval limits. <br>
-Mitigation: Define cadence, stop conditions, and periodic human review for entries in memory/tasks/ongoing-tasks.md. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agent users use this skill to structure projects, ongoing monitoring, parallel work, and completion checks across planning, execution, and verification phases.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, plans, status reports, and occasional shell commands or file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update task plans, completion reports, and ongoing task tracking files when used by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger language may cause the skill to steer too many agent interactions.
+
+Mitigation: Review or narrow its triggers before deployment so it activates only for intended task-management workflows.
+
+Risk: The workflow can create ongoing or persistent task state without clear opt-in.
+
+Mitigation: Require explicit approval before saving project details, creating recurring tasks, or updating memory/tasks/ongoing-tasks.md.
+
+Risk: Parallel-agent dispatch can expand scope or share task context unexpectedly.
+
+Mitigation: Require confirmation before dispatching subagents and provide each subagent with a bounded scope and constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arisylafeta/skills/clawlist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, plans, checklists, status summaries, and proposed commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update task-tracking files such as memory/tasks/ongoing-tasks.md for long-running work.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

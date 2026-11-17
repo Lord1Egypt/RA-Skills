@@ -1,39 +1,57 @@
-## Description: <br>
-Automates email marketing tasks including template management, contact list handling, bulk campaign sending, analytics, and A/B testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates email templates, contact lists, bulk sends, campaign tracking, and A/B testing for email marketing workflows.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Marketing and growth teams use this skill to prepare email campaigns, manage recipient lists, test variants, and review campaign performance across supported email services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email campaign actions can affect recipient privacy, consent compliance, suppression handling, and anti-spam obligations. <br>
-Mitigation: Before importing contacts, segmenting lists, scheduling sends, or launching campaigns, verify recipient consent, unsubscribe handling, target list, subject, content, and applicable privacy or anti-spam requirements. <br>
+## Use Case:
 
+Marketing operators and developers use this skill to manage recipient lists, create email templates, send campaigns, run A/B tests, and summarize engagement metrics.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bingze00000/email-marketing-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/bingze00000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and campaign report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign settings, recipient list operations, template variables, A/B test parameters, and analytics metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk sending can be misused with improperly obtained recipient lists or unclear sender identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only properly obtained recipient lists, configure clear sender identity, and include legally required notices before sending campaigns.
+
+Risk: Open, click, and conversion tracking can create privacy and consent concerns.
+
+Mitigation: Confirm consent and disclosure requirements for tracking, and configure unsubscribe handling before enabling campaign analytics.
+
+Risk: Scheduled sends and automatic follow-ups can trigger unwanted campaign actions if misconfigured.
+
+Mitigation: Require explicit campaign configuration, review scheduled actions, and keep cancellation controls available before launch.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/bingze00000/skills/email-marketing-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and campaign report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe campaign statistics such as sends, open rates, click rates, unsubscribe rates, and conversion tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

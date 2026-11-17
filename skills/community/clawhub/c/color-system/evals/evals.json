@@ -1,0 +1,33 @@
+{
+  "skill_name": "color-system",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate a complete color tokens.css for a developer SaaS tool using Linear Dark palette.",
+      "expected_output": "Complete production-ready :root and dark mode CSS block with semantic tokens and WCAG AA contrast validation.",
+      "files": [],
+      "expectations": [
+        "Emits complete CSS block starting with :root for light mode default",
+        "Includes @media (prefers-color-scheme: dark) override block",
+        "Includes .dark and [data-theme=\"dark\"] override block for manual toggle",
+        "Uses semantic token naming convention (--bg, --surface, --fg, --accent, --border, --muted)",
+        "Passes WCAG AA contrast ratio threshold (text >= 4.5:1, UI components >= 3:1)",
+        "Adheres to dark mode rules: no pure black #000 or pure white #fff, preserves accent hue"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "为一款高端护肤品礼盒包装设计一套平面与印刷色彩规范，主色为墨玉绿。",
+      "expected_output": "Physical print and packaging color specification adhering to CMYK and Pantone standards with prepress rules.",
+      "files": [],
+      "expectations": [
+        "Applies 60-30-10 golden ratio allocation for physical packaging",
+        "Specifies CMYK values (FOGRA39 standard) and corresponding Pantone Spot Colors",
+        "Strictly enforces Standard Black (K:100) for small text/barcodes",
+        "Specifies Rich Black with Total Ink Coverage (TIC) strictly <= 300% for solid backgrounds",
+        "Includes substrate compensation guidance for coated vs uncoated vs specialty paper"
+      ]
+    }
+  ]
+}
+

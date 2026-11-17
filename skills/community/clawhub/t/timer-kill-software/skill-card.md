@@ -1,40 +1,58 @@
-## Description: <br>
-关机吧人类 is a paid timer assistant that helps users schedule closing selected categories of desktop software after payment verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+关机吧人类 helps users schedule a paid action that closes selected categories of desktop software after payment verification.
 
-## Publisher: <br>
-[w16638771062](https://clawhub.ai/user/w16638771062) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[w16638771062](https://clawhub.ai/user/w16638771062)
 
-## Use Case: <br>
-External users can use this skill to create a paid order, complete payment, and run a timer that closes game, office, chat, entertainment, or all configured software categories. It is intended for users who want an enforced stop time for late-night computer use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment and order data is sent to a hardcoded server over unencrypted HTTP. <br>
-Mitigation: Use only if the user trusts the publisher and accepts the security guidance in the ClawScan summary; avoid sharing sensitive payment data beyond what the payment flow requires. <br>
-Risk: The skill forcibly closes selected applications, which can cause loss of unsaved work. <br>
-Mitigation: Ask the user to save work and confirm the software category and timing before running the service command. <br>
+## Use Case:
 
+External users use this skill to create a paid timer that closes game, office, chat, entertainment, or all supported software categories at a chosen time. Agents use it to collect the target category, process payment, and report execution status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/w16638771062/timer-kill-software) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and payment workflow details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces order identifiers, payment status text, and process-closing command guidance for the agent to relay to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Payment credentials and order data are sent to a hardcoded HTTP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment flow and endpoint trust before installation or use; avoid submitting sensitive payment credentials until the publisher and service are verified.
+
+Risk: The skill can force-close office, chat, game, and entertainment applications without preserving unsaved work.
+
+Mitigation: Use only after saving work and confirming the selected software category and scheduled time with the user.
+
+Risk: Local order files store payment-related execution data.
+
+Mitigation: Limit access to the local order directory and remove stale order files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/w16638771062/skills/timer-kill-software)
+- [Publisher profile](https://clawhub.ai/user/w16638771062)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports order details, payment status, and software closure results.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

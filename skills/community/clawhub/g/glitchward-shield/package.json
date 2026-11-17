@@ -1,7 +1,7 @@
 {
   "name": "glitchward-llm-shield",
-  "version": "1.0.0",
-  "description": "Prompt injection detection API for AI agents. Scan prompts through 1,000+ patterns, 6-layer detection pipeline, 25+ attack categories, and 10+ language support.",
+  "version": "1.0.1",
+  "description": "Prompt injection detection API for AI agents. Scans prompts via external API (https://glitchward.com) through 1,000+ patterns, 6-layer detection pipeline, 26 attack categories, and 20+ language support. Requires exec tool for curl HTTP requests.",
   "author": "Glitchward <lubos@glitchward.com>",
   "license": "MIT",
   "homepage": "https://glitchward.com/llm-shield",

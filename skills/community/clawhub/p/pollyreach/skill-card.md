@@ -1,43 +1,59 @@
-## Description: <br>
-PollyReach gives every AI agent a phone number and the ability to get things done over the phone, including finding contacts, making calls, and completing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PollyReach gives every AI agent a phone number and the ability to get things done over the phone, including finding contacts, making calls, and completing tasks.
 
-## Publisher: <br>
-[pollyreach](https://clawhub.ai/user/pollyreach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pollyreach](https://clawhub.ai/user/pollyreach)
 
-## Use Case: <br>
-External users and their agents use PollyReach to place outbound calls for bookings, inquiries, complaints, confirmations, and similar phone tasks, and to retrieve or manage incoming call summaries. The skill is also used to activate a PollyReach phone number, check account balance, and update how incoming calls are answered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent real-world calling and call-answering authority. <br>
-Mitigation: Require explicit user approval before each outbound call, scheduled polling setup, or inbound answering prompt change. <br>
-Risk: Phone tasks can expose phone numbers, caller details, transcripts, recordings, and inbound messages. <br>
-Mitigation: Use the skill only when the user trusts PollyReach with this data, and avoid regulated or sensitive conversations unless consent and recording requirements are understood. <br>
-Risk: Stored credentials allow access to the user's PollyReach account and phone capabilities. <br>
-Mitigation: Store the token only in the configured credentials file with restricted permissions, remove it when access should be revoked, and know how to disable the phone number. <br>
+## Use Case:
 
+External users and agents use PollyReach to make outbound phone calls, manage incoming call summaries, update answering behavior, and check activation or account balance through PollyReach.
 
-## Reference(s): <br>
-- [ClawHub PollyReach skill page](https://clawhub.ai/pollyreach/pollyreach) <br>
-- [PollyReach homepage](https://pollyreach.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PollyReach API calls and a local credentials file to activate service, send call tasks, poll call results, check balance, retrieve inbound messages, and update inbound prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: Call instructions, caller information, transcripts, and recording links may be processed by PollyReach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with user consent for third-party processing, and keep shared call details limited to what the task requires.
+
+Risk: Outbound calls and scheduled inbound-call polling can affect people outside the agent session.
+
+Mitigation: Require explicit user confirmation before placing calls or enabling recurring polling.
+
+Risk: Broad activation, full transcript disclosure, and promotional account messages can expose more information than necessary.
+
+Mitigation: Avoid publicizing the assigned number or full transcripts unless necessary, and omit promotional account content unless it is directly relevant.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pollyreach/skills/pollyreach)
+- [PollyReach Homepage](https://pollyreach.ai)
+- [PollyReach Publisher Profile](https://clawhub.ai/user/pollyreach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell-command invocations and JSON or text command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include call summaries, transcripts, balance status, activation status, and recording or detail links returned by PollyReach.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

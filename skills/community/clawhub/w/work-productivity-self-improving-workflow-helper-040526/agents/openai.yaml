@@ -1,0 +1,7 @@
+interface:
+  display_name: "Self-Improving Workflow Helper"
+  short_description: "Create self-improving agent or team workflows that capture failures, extract lessons, update instructions,..."
+  default_prompt: "Use $work-productivity-self-improving-workflow-helper to turn this failed run into a durable skill update."
+
+policy:
+  allow_implicit_invocation: true

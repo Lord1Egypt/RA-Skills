@@ -13,9 +13,11 @@ Environment variables:
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import uuid
+from urllib.parse import unquote, urlparse
 from typing import Optional
 
 try:
@@ -25,9 +27,82 @@ except ImportError:
     sys.exit(1)
 
 DEFAULT_BASE_URL = "https://api.miaoda.cn"
-VERSION = "1.0.12"
-CLIENT = "bcebos"
+VERSION = "1.1.3"
+CLIENT = "clawhub"
 _MIAODA_RECHARGE_URL = "https://www.miaoda.cn"
+
+# qianfan-desk can provide a session-bound proxy instead of exposing a Miaoda
+# API key to the skill process. An explicit environment or CLI key always wins.
+API_SERVER_HOST = os.environ.get("DUMATE_API_SERVER_HOST", "qianfan.baidubce.com")
+MIAODA_PROXY_PATH = os.environ.get("DUMATE_MIAODA_PROXY_PATH", "/v2/tools/miaoda_proxy")
+
+
+def _has_cli_api_key() -> bool:
+    """Return whether the command line explicitly supplies --api-key."""
+    return any(arg == "--api-key" or arg.startswith("--api-key=") for arg in sys.argv[1:])
+
+
+def _account_id() -> Optional[str]:
+    account_id = os.environ.get("DUMATE_ACCOUNT_ID")
+    if account_id:
+        return account_id
+    xdg_data_home = os.environ.get("XDG_DATA_HOME", "")
+    match = re.search(r"qianfan_desk_xdg[/\\]([^/\\]+)[/\\]data", xdg_data_home)
+    if match and match.group(1) != "global":
+        return match.group(1)
+    return None
+
+
+def _install_sandbox_auth_hooks() -> None:
+    """Use qianfan-desk's session proxy when no Miaoda key is available."""
+    if os.environ.get("MIAODA_API_KEY") or _has_cli_api_key():
+        return
+
+    session_id = os.environ.get("DUMATE_SESSION_ID")
+    gateway_url = os.environ.get("DUMATE_GATEWAY_URL")
+    scheduler_url = os.environ.get("DUMATE_SCHEDULER_URL")
+    proxy_url = gateway_url or scheduler_url
+    if not session_id or not proxy_url:
+        return
+
+    account_id = _account_id()
+    if not account_id:
+        return
+
+    if gateway_url:
+        proxy_prefix = gateway_url.rstrip("/")
+    else:
+        proxy_prefix = f"{scheduler_url.rstrip('/')}/api/qianfanproxy"
+
+    os.environ.setdefault(
+        "MIAODA_BASE_URL", f"https://{API_SERVER_HOST}{MIAODA_PROXY_PATH}"
+    )
+    # Satisfy the CLI's required-key check; the proxy authenticates by session.
+    os.environ["MIAODA_API_KEY"] = "api-server-managed"
+
+    extra_headers = {
+        "X-Dumate-Session-Id": session_id,
+        "X-Appbuilder-Dumate-Account-Id": account_id,
+    }
+    dtoken = os.environ.get("DUMATE_DTOKEN")
+    if dtoken:
+        extra_headers["Authorization"] = f"Bearer {dtoken}"
+
+    direct_prefix = f"https://{API_SERVER_HOST}"
+    original_request = requests.Session.request
+
+    def patched_request(self, method, url, **kwargs):
+        if isinstance(url, str) and url.startswith(direct_prefix):
+            url = proxy_prefix + url[len(direct_prefix):]
+        headers = dict(kwargs.get("headers") or {})
+        headers.update(extra_headers)
+        kwargs["headers"] = headers
+        return original_request(self, method, url, **kwargs)
+
+    requests.Session.request = patched_request
+
+
+_install_sandbox_auth_hooks()
 
 
 # ---------------------------------------------------------------------------
@@ -69,12 +144,72 @@ def _raise_if_insufficient_credits(message: str) -> None:
         )
 
 
+def _safe_filename(name: str, default: str) -> str:
+    """Return a local filename without directory traversal or unsafe characters."""
+    name = unquote((name or "").strip()).replace("\\", "/")
+    name = os.path.basename(name.rstrip("/"))
+    name = re.sub(r"[^A-Za-z0-9._ -]", "_", name).strip(" .")
+    return name or default
+
+
+def _filename_from_content_disposition(value: str) -> Optional[str]:
+    """Extract filename from a Content-Disposition header when present."""
+    if not value:
+        return None
+    match = re.search(r"filename\*=UTF-8''([^;]+)", value, flags=re.IGNORECASE)
+    if match:
+        return unquote(match.group(1).strip().strip('"'))
+    match = re.search(r'filename="?([^";]+)"?', value, flags=re.IGNORECASE)
+    if match:
+        return match.group(1).strip()
+    return None
+
+
+def _infer_output_path(url: str, response: "requests.Response", output: Optional[str], default: str) -> str:
+    """Choose the final local output path from explicit output, response headers, or URL."""
+    if output:
+        return output
+    filename = _filename_from_content_disposition(response.headers.get("Content-Disposition", ""))
+    if not filename:
+        filename = os.path.basename(urlparse(url).path)
+    return _safe_filename(filename, default)
+
+
+def _download_url_to_file(url: str, output: Optional[str] = None, default_name: str = "download.bin") -> str:
+    """Download a presigned URL atomically and return the final local path."""
+    with requests.get(url, stream=True, timeout=300) as resp:
+        resp.raise_for_status()
+        local_path = os.path.abspath(_infer_output_path(url, resp, output, default_name))
+        parent_dir = os.path.dirname(local_path)
+        if parent_dir:
+            os.makedirs(parent_dir, exist_ok=True)
+
+        tmp_path = f"{local_path}.tmp"
+        try:
+            with open(tmp_path, "wb") as fh:
+                for chunk in resp.iter_content(chunk_size=1024 * 1024):
+                    if chunk:
+                        fh.write(chunk)
+                fh.flush()
+                os.fsync(fh.fileno())
+            os.replace(tmp_path, local_path)
+        except Exception:
+            try:
+                if os.path.exists(tmp_path):
+                    os.remove(tmp_path)
+            except OSError:
+                pass
+            raise
+    return local_path
+
+
 # ---------------------------------------------------------------------------
 # 1. List Apps (应用基本信息)
 # ---------------------------------------------------------------------------
 
 _LIST_APPS_STRIP = {"avatar", "mobileCover", "hasAppHost", "hasBackend"}
 _LIST_APPS_BRIEF_KEEP = {"appId", "name", "type", "appFocus", "host", "updatedAt"}
+
 
 def list_apps(
     base_url: str,
@@ -144,6 +279,7 @@ def _build_chat_payload(
     input_field_type: str = "web",
     lang: str = "zh",
     user_confirmation: Optional[dict] = None,
+    node: Optional[dict] = None,
 ) -> dict:
     """Build a JSON-RPC 2.0 ``message/send`` payload for the chat endpoint.
 
@@ -151,6 +287,18 @@ def _build_chat_payload(
     request metadata, which is used to send confirmation actions such as
     ``{"type": "generateApp"}``.  Leave ``context_id`` empty to create a new app;
     pass the existing ``conversationId`` to continue an existing conversation.
+
+    When ``node`` is provided, an additional ``kind: "data"`` part is appended to
+    ``message.parts``, carrying structured UI-node context (file path, line
+    range, tag, current styles, etc.).  This is the LGUI (Live-GUI) mode: the
+    Agent can pinpoint the exact DOM/JSX node the user has selected in the
+    editor and skip searching the codebase to locate it.
+
+    ``node`` may be either:
+      * the inner node object directly — the function will wrap it as
+        ``{"type": "node", "node": <node>}``, or
+      * a pre-wrapped ``{"type": "node", "node": {...}}`` dict — passed through
+        unchanged.
     """
     params_metadata: dict = {
         "defaultAgent": "AdaPro",
@@ -163,13 +311,22 @@ def _build_chat_payload(
     else:
         params_metadata["inputFieldType"] = input_field_type
 
+    parts: list = [{"kind": "text", "text": text}]
+    if node is not None:
+        # Accept either the raw node object or a pre-wrapped {type, node} dict.
+        if isinstance(node, dict) and node.get("type") == "node" and "node" in node:
+            node_data = node
+        else:
+            node_data = {"type": "node", "node": node}
+        parts.append({"kind": "data", "data": node_data})
+
     payload = {
         "jsonrpc": "2.0",
         "method": "message/send",
         "id": str(uuid.uuid4()),
         "params": {
             "message": {
-                "parts": [{"kind": "text", "text": text}],
+                "parts": parts,
                 "kind": "message",
                 "messageId": str(uuid.uuid4()),
                 "role": "user",
@@ -253,12 +410,14 @@ def chat_no_stream(
     query_mode: str = "deep_mode",
     input_field_type: str = "web",
     user_confirmation: Optional[dict] = None,
+    node: Optional[dict] = None,
 ) -> dict:
     """POST /api/v1/conversation/chat — returns raw JSON-RPC response without streaming."""
     url = f"{base_url.rstrip('/')}/api/v1/conversation/chat"
     payload = _build_chat_payload(
         text, context_id, app_id, query_mode, input_field_type,
         user_confirmation=user_confirmation,
+        node=node,
     )
     resp = requests.post(url, json=payload, headers=auth_headers(api_key), timeout=60)
     resp.raise_for_status()
@@ -278,6 +437,7 @@ def chat_stream(
     prompt_generate: bool = False,
     poll_interval: float = 2.0,
     fetch_timeout: int = 10,
+    node: Optional[dict] = None,
 ):
     """
     Two-step chat flow:
@@ -306,7 +466,7 @@ def chat_stream(
 
     # Step 1: submit chat
     chat_url = f"{base_url.rstrip('/')}/api/v1/conversation/chat"
-    payload = _build_chat_payload(text, context_id, app_id, query_mode, input_field_type)
+    payload = _build_chat_payload(text, context_id, app_id, query_mode, input_field_type, node=node)
 
     resp = requests.post(chat_url, json=payload, headers=auth_headers(api_key), timeout=60)
     resp.raise_for_status()
@@ -398,6 +558,12 @@ def generate_app_confirmation(
     block until the generation reaches a terminal state.  For long-running
     generations prefer leaving ``watch=False`` and checking status separately
     with ``fetch_trajectory_once`` (or the ``fetch-trajectory`` CLI command).
+
+    After the confirmation (and after polling when ``watch=True``, so the name
+    reflects the finished app) the app name is fetched and printed as a JSON
+    line (under ``appName``) and attached to the returned dict.  The lookup is
+    best-effort: a failure is reported on stderr without aborting the
+    confirmation.
     """
     _INVALID_CONTEXT = {"", "null", "undefined", "none"}
     if app_id and context_id.strip().lower() in _INVALID_CONTEXT:
@@ -422,13 +588,6 @@ def generate_app_confirmation(
     _check_chat_response_for_error(result)
 
     resolved_app_id, resolved_conversation_id = _extract_ids_from_chat_response(result, app_id)
-    print(
-        json.dumps(
-            {"appId": resolved_app_id, "conversationId": resolved_conversation_id},
-            ensure_ascii=False,
-        ),
-        flush=True,
-    )
 
     if watch and resolved_app_id:
         poll_trajectory(
@@ -437,6 +596,27 @@ def generate_app_confirmation(
             fetch_timeout=fetch_timeout,
         )
 
+    output = {
+        "appId": resolved_app_id,
+        "conversationId": resolved_conversation_id,
+    }
+
+    if resolved_app_id:
+        try:
+            detail = get_app_detail(base_url, api_key, resolved_app_id)
+            detail_data = detail.get("data") or {}
+            if resolved_conversation_id:
+                detail_data.setdefault("conversationId", resolved_conversation_id)
+            if "name" in detail_data:
+                output["appName"] = detail_data["name"]
+                result["appName"] = detail_data["name"]
+        except Exception as exc:
+            print(f"[generate-app] app-detail lookup failed: {exc}", file=sys.stderr)
+
+    print(
+        json.dumps(output, ensure_ascii=False),
+        flush=True,
+    )
     return result
 
 
@@ -856,6 +1036,132 @@ def publish_and_wait(
         time.sleep(poll_interval)
 
 
+def _find_public_url(value: object) -> Optional[str]:
+    """Find a public app URL from the response's explicit data fields.
+
+    Do not recurse through arbitrary business objects: fields such as API or
+    editor URLs can otherwise be mistaken for the app delivery URL.
+    """
+    preferred_keys = ("appHost", "publicUrl", "publishUrl", "appUrl", "webUrl", "url")
+    ignored_hosts = {"api.miaoda.cn", "www.miaoda.cn", "miaoda.cn"}
+
+    def valid(candidate: object, allow_host: bool = False) -> Optional[str]:
+        if not isinstance(candidate, str) or not candidate.strip():
+            return None
+        candidate = candidate.strip()
+        if allow_host and "://" not in candidate:
+            candidate = f"https://{candidate.lstrip('/')}"
+        if not candidate.startswith(("http://", "https://")):
+            return None
+        parsed = urlparse(candidate)
+        if not parsed.hostname or parsed.hostname.lower() in ignored_hosts or "/projects/" in parsed.path:
+            return None
+        return candidate
+
+    if not isinstance(value, dict):
+        return None
+    data = value.get("data")
+    if not isinstance(data, dict):
+        data = value
+    for key in preferred_keys:
+        found = valid(data.get(key), allow_host=key == "appHost")
+        if found:
+            return found
+    return None
+
+
+def _editor_base_url(public_url: str) -> str:
+    """Choose the Miaoda editor host matching the published environment."""
+    hostname = (urlparse(public_url).hostname or "").lower().rstrip(".")
+    if hostname == "miaoda-dev.baidu-int.com" or hostname.endswith(
+        ".miaoda-dev.baidu-int.com"
+    ):
+        return "http://console-miaoda-dev.baidu-int.com"
+    return "https://www.miaoda.cn"
+
+
+def emit_mcp_app_marker(
+    base_url: str,
+    api_key: str,
+    app_id: str,
+    publish_result: dict,
+    fetch_detail: bool = True,
+) -> None:
+    """Print an mcp-app marker only after a real public URL is confirmed."""
+    detail = None
+    public_url = _find_public_url(publish_result)
+    if fetch_detail:
+        try:
+            detail = get_app_detail(base_url, api_key, app_id)
+            public_url = public_url or _find_public_url(detail)
+        except Exception as exc:
+            print(f"[mcp-app] app-detail lookup failed: {exc}", file=sys.stderr)
+    if not public_url:
+        print("[mcp-app] no public URL returned; marker omitted", file=sys.stderr)
+        return
+
+    name = ""
+    for source in (publish_result, detail or {}):
+        data = source.get("data", source) if isinstance(source, dict) else {}
+        if isinstance(data, dict) and isinstance(data.get("name"), str) and data["name"]:
+            name = data["name"]
+            break
+    marker = {
+        "name": name or app_id,
+        "url": public_url,
+        "source": "miaoda",
+        "editUrl": f"{_editor_base_url(public_url)}/projects/{app_id}",
+    }
+    # Keep the marker protocol platform-independent: Windows stdout otherwise
+    # translates each newline to CRLF, while consumers expect LF-delimited fences.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(newline="\n")
+    print("```mcp-app", flush=True)
+    print(json.dumps(marker, ensure_ascii=False, separators=(",", ":")), flush=True)
+    print("```", flush=True)
+
+
+# ---------------------------------------------------------------------------
+# 6. Download Generated Artifacts
+# ---------------------------------------------------------------------------
+
+def _app_context_headers(api_key: str, app_id: str, app_env: str = "DEV") -> dict:
+    """Build auth headers with app context for endpoints using ResourceContext."""
+    headers = auth_headers(api_key)
+    headers["x-app-id"] = app_id
+    headers["x-app-env"] = app_env
+    return headers
+
+
+def download_source(base_url: str, api_key: str, app_id: str, app_env: str = "DEV") -> dict:
+    """POST /api/v1/app/operation/download — return full source ZIP download info."""
+    url = f"{base_url.rstrip('/')}/api/v1/app/operation/download"
+    payload = {"appId": app_id, "env": app_env}
+    resp = requests.post(url, json=payload, headers=_app_context_headers(api_key, app_id, app_env), timeout=60)
+    return raise_for_api_error(resp)
+
+
+def list_task_files(
+    base_url: str,
+    api_key: str,
+    app_id: str,
+    include_docs_dir: bool = False,
+) -> dict:
+    """GET /api/v1/app/agent_workspace/task_directory — list Agent task files."""
+    url = f"{base_url.rstrip('/')}/api/v1/app/agent_workspace/task_directory"
+    params = {"appId": app_id, "includeDocsDir": str(include_docs_dir).lower()}
+    resp = requests.get(url, params=params, headers=auth_headers(api_key), timeout=30)
+    return raise_for_api_error(resp)
+
+
+def reveal_task_file(base_url: str, api_key: str, app_id: str, filename: str) -> dict:
+    """GET /api/v1/app/agent_workspace/task_directory/reveal — return original and thumbnail URLs."""
+    url = f"{base_url.rstrip('/')}/api/v1/app/agent_workspace/task_directory/reveal"
+    params = {"appId": app_id, "filename": filename}
+    resp = requests.get(url, params=params, headers=auth_headers(api_key), timeout=30)
+    return raise_for_api_error(resp)
+
+
 # ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
@@ -940,11 +1246,23 @@ def build_parser() -> argparse.ArgumentParser:
         default=10,
         help="Per-request timeout in seconds for each trajectory fetch (default: 10)",
     )
+    p.add_argument(
+        "--node-json",
+        default=None,
+        help=(
+            "LGUI mode: JSON string describing the currently-selected UI node "
+            "(file path, line range, tag, styles, etc.). When set, an extra "
+            "kind:'data' part is appended to message.parts so the Agent can "
+            "pinpoint the exact node instead of searching the codebase. "
+            "Accepts either the raw node object or a pre-wrapped "
+            "'{\"type\":\"node\",\"node\":{...}}'."
+        ),
+    )
 
     # generate-app
     p = sub.add_parser(
         "generate-app",
-        help="Submit app generation confirmation and return immediately with appId/conversationId",
+        help="Submit app generation confirmation and return immediately with appId/conversationId/appName",
     )
     p.add_argument("--context-id", default="", help="conversationId of the app to generate")
     p.add_argument("--app-id", default=None, help="App ID (optional)")
@@ -1067,6 +1385,25 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("publish-status", help="Get publish status by release ID")
     p.add_argument("--release-id", required=True, help="Release record ID from publish command")
 
+    # download-source
+    p = sub.add_parser("download-source", help="Download the full generated app source ZIP")
+    p.add_argument("--app-id", required=True, help="Application ID")
+    p.add_argument("--env", default="DEV", help="Source environment (default: DEV)")
+    p.add_argument("--output", default=None, help="Local output path")
+    p.add_argument("--print-url", action="store_true", help="Print download URL without saving file")
+
+    # list-task-files
+    p = sub.add_parser("list-task-files", help="List Agent workspace task files")
+    p.add_argument("--app-id", required=True, help="Application ID")
+    p.add_argument("--include-docs-dir", action="store_true", help="Include docs directory files")
+
+    # download-task-file
+    p = sub.add_parser("download-task-file", help="Download one Agent workspace task file")
+    p.add_argument("--app-id", required=True, help="Application ID")
+    p.add_argument("--filename", required=True, help="Task filename or /workspace/{appId}/tasks/... path")
+    p.add_argument("--output", default=None, help="Local output path")
+    p.add_argument("--print-url", action="store_true", help="Print download URL without saving file")
+
     return parser
 
 
@@ -1100,13 +1437,34 @@ def main():
                 except Exception:
                     pass  # non-fatal: app may have no conversation history yet
             print(json.dumps(result, ensure_ascii=False, indent=2))
+            emit_mcp_app_marker(
+                args.base_url, args.api_key, args.app_id, result, fetch_detail=False,
+            )
 
         elif args.command == "chat":
+            node = None
+            if args.node_json:
+                try:
+                    node = json.loads(args.node_json)
+                except json.JSONDecodeError as exc:
+                    print(
+                        f"Error: --node-json is not valid JSON: {exc}",
+                        file=sys.stderr,
+                    )
+                    sys.exit(1)
+                if not isinstance(node, dict):
+                    print(
+                        "Error: --node-json must be a JSON object, "
+                        f"got {type(node).__name__}.",
+                        file=sys.stderr,
+                    )
+                    sys.exit(1)
             if args.no_stream:
                 result = chat_no_stream(
                     args.base_url, args.api_key, args.text,
                     args.context_id, args.app_id,
                     args.query_mode, args.input_field_type,
+                    node=node,
                 )
                 print(json.dumps(result, ensure_ascii=False, indent=2))
             else:
@@ -1117,6 +1475,7 @@ def main():
                     prompt_generate=args.prompt_generate,
                     poll_interval=args.poll_interval,
                     fetch_timeout=args.fetch_timeout,
+                    node=node,
                 )
 
         elif args.command == "generate-app":
@@ -1186,17 +1545,61 @@ def main():
                     args.base_url, args.api_key, args.app_id, args.env,
                 )
                 print(json.dumps(result, ensure_ascii=False, indent=2))
+                emit_mcp_app_marker(args.base_url, args.api_key, args.app_id, result)
             else:
                 result = publish_app(
                     args.base_url, args.api_key, args.app_id, args.env,
                 )
                 print(json.dumps(result, ensure_ascii=False, indent=2))
+                emit_mcp_app_marker(
+                    args.base_url, args.api_key, args.app_id, result, fetch_detail=False,
+                )
 
         elif args.command == "publish-status":
             result = get_publish_status(
                 args.base_url, args.api_key, args.release_id,
             )
             print(json.dumps(result, ensure_ascii=False, indent=2))
+
+        elif args.command == "download-source":
+            result = download_source(args.base_url, args.api_key, args.app_id, args.env)
+            data = result.get("data") or {}
+            download_url = data.get("downloadUrl")
+            if not download_url:
+                raise RuntimeError("downloadUrl missing in response")
+            if args.print_url:
+                print(json.dumps(result, ensure_ascii=False, indent=2))
+            else:
+                local_path = _download_url_to_file(
+                    download_url,
+                    args.output,
+                    default_name=f"{args.app_id}-source.zip",
+                )
+                data["localPath"] = local_path
+                print(json.dumps(data, ensure_ascii=False, indent=2))
+
+        elif args.command == "list-task-files":
+            result = list_task_files(
+                args.base_url, args.api_key, args.app_id, args.include_docs_dir,
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+
+        elif args.command == "download-task-file":
+            result = reveal_task_file(args.base_url, args.api_key, args.app_id, args.filename)
+            data = result.get("data") or {}
+            download_url = data.get("url") or data.get("downloadUrl")
+            if not download_url:
+                raise RuntimeError("download url missing in response")
+            if args.print_url:
+                print(json.dumps(result, ensure_ascii=False, indent=2))
+            else:
+                default_name = _safe_filename(args.filename, f"{args.app_id}-task-file")
+                local_path = _download_url_to_file(download_url, args.output, default_name=default_name)
+                data["appId"] = args.app_id
+                data["filename"] = args.filename
+                data["downloadUrl"] = download_url
+                data["localPath"] = local_path
+                print(json.dumps(data, ensure_ascii=False, indent=2))
 
     except KeyboardInterrupt:
         sys.exit(0)

@@ -1,40 +1,54 @@
-## Description: <br>
-UX QA Gate guides agents through functional completeness checks, Nielsen Norman usability heuristics, state and edge-case sweeps, responsiveness checks, and severity-based remediation before delivering user-facing UI work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-review gate for UI/UX work before delivering user-facing changes, covering functional completeness, usability heuristics, state handling, interaction quality, responsiveness, and severity classification.
 
-## Publisher: <br>
-[michellebolander](https://clawhub.ai/user/michellebolander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michellebolander](https://clawhub.ai/user/michellebolander)
 
-## Use Case: <br>
-Developers and agents use this skill as a pre-delivery QA gate after building or changing user-facing pages, components, features, or flows. It helps catch broken interactions, missing states, accessibility and responsiveness gaps, and usability issues before work is presented to a user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QA proof artifacts, screenshots, or reports may contain information from the UI under review if they are created locally or published when explicitly requested. <br>
-Mitigation: Review the target UI and publication destination before running or sharing proof artifacts, and avoid publishing screenshots or reports unless that disclosure is intended. <br>
+## Use Case:
 
+Developers and agents use this skill after frontend or user-facing work to check that UI flows work end-to-end, common states are handled, and usability issues are classified before delivery.
 
-## Reference(s): <br>
-- [UX QA Gate skill page](https://clawhub.ai/michellebolander/ux-qa-gate) <br>
-- [Nielsen Norman Group: 10 Usability Heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) <br>
-- [Heuristics checklist](references/heuristics-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Brief Markdown status summary with issue notes and remediation guidance when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-check output is intentionally concise unless the user asks for a full heuristic report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The gate can add extra review steps after UI work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it before delivery and keep the report brief unless a fuller UX review is requested.
+
+Risk: Locale-related checklist findings may not match the product's intended audience.
+
+Mitigation: Apply locale checks according to explicit product requirements or user preferences.
+
+## Reference(s):
+
+- [Nielsen's 10 Usability Heuristics - QA Checklist](references/heuristics-checklist.md)
+- [Nielsen Norman Group: 10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown status summary with issue severity notes when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks the agent to keep the QA result brief unless the user requests a full heuristic report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

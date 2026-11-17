@@ -1,39 +1,52 @@
-## Description: <br>
-Provides TypeScript expertise for advanced type systems, large-scale application architecture, strict type safety, and error handling patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides TypeScript coding guidance for advanced type systems, large-scale application architecture, strict type safety, and error handling patterns.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to get TypeScript guidance for advanced type modeling, architecture patterns, strict compiler configuration, framework integration, error handling, testing, and maintainable implementation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated TypeScript code or configuration could be incorrect for the target project even though the skill artifact has no executable behavior.
+
+Mitigation: Review generated code, run TypeScript checks and tests, and adapt examples to the project's framework, dependencies, and runtime constraints.
+
+Risk: Framework integration or environment-configuration examples could affect validation, request handling, or application behavior if copied without review.
+
+Mitigation: Validate configuration changes and integration examples in a development environment before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and implement type-safe TypeScript code, application architecture, build configuration, tests, and error-handling patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested TypeScript code, compiler settings, tests, or architecture advice may be incorrect or unsuitable for important projects. <br>
-Mitigation: Review generated changes before applying them, then validate with the project TypeScript compiler, linting, and test suite. <br>
-Risk: The skill provides guidance only and does not independently verify project-specific runtime behavior. <br>
-Mitigation: Treat outputs as proposals and require human engineering review for production changes. <br>
+**Output Format:** [Markdown with TypeScript and JSON code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include type definitions, architecture examples, strict TypeScript configuration, tests, and code review guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, credentials, or network access are required by the skill itself.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

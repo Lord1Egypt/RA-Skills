@@ -1,0 +1,16 @@
+{
+  "mode": "architecture",
+  "title": "Checkout Platform Head",
+  "summary": "Head architecture adds fraud scoring before order persistence.",
+  "nodes": [
+    { "id": "web", "label": "Web", "kind": "service", "x": 120, "y": 160 },
+    { "id": "api", "label": "Checkout API", "kind": "service", "x": 360, "y": 160 },
+    { "id": "fraud", "label": "Fraud Service", "kind": "service", "x": 600, "y": 160, "evidence": { "source": "services/fraud/client.ts", "line": 42, "commit": "example", "confidence": "medium" } },
+    { "id": "db", "label": "Orders DB", "kind": "memory", "x": 840, "y": 160 }
+  ],
+  "edges": [
+    { "from": "web", "to": "api", "kind": "primary-data", "label": "submit" },
+    { "from": "api", "to": "fraud", "kind": "control", "label": "score" },
+    { "from": "fraud", "to": "db", "kind": "memory-write", "label": "approved" }
+  ]
+}

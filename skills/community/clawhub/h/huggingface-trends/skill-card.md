@@ -1,43 +1,62 @@
-## Description: <br>
-Monitor and fetch trending models from Hugging Face with support for filtering by task, library, and popularity metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and fetch Hugging Face model trends with filters for task, library, and popularity metrics, plus structured output and optional JSON export.
 
-## Publisher: <br>
-[tianxingleo](https://clawhub.ai/user/tianxingleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tianxingleo](https://clawhub.ai/user/tianxingleo)
 
-## Use Case: <br>
-Developers, engineers, and AI practitioners use this skill to discover, compare, and monitor popular Hugging Face models by task, library, likes, downloads, or creation date. It supports command-line use, formatted summaries, and optional JSON export for follow-on analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Hugging Face for public model metadata and may use an HTTP proxy. <br>
-Mitigation: Use a trusted proxy or omit the proxy when direct network access works. <br>
-Risk: Optional JSON export writes to a user-selected path and may overwrite an existing file. <br>
-Mitigation: Choose output paths deliberately and review them before running exports. <br>
-Risk: The cron example creates recurring background network requests and log files. <br>
-Mitigation: Install scheduled jobs only when daily monitoring is intended and logs are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hugging Face model metadata documentation](https://huggingface.co/docs/huggingface_hub/guides/models) <br>
-- [Hugging Face models API](https://huggingface.co/api) <br>
-- [ClawHub skill page](https://clawhub.ai/tianxingleo/huggingface-trends) <br>
+## Use Case:
 
+Developers, researchers, and model evaluators use this skill to discover popular Hugging Face models, compare model popularity by task or library, and export model listings for follow-up analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, JSON] <br>
-**Output Format:** [Formatted terminal text with optional JSON files and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include model identifiers, likes, downloads, task, library, and date metadata when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make network requests to Hugging Face, optionally through a proxy.
+
+Mitigation: Use only proxy settings you trust and run the skill only when external Hugging Face API access is intended.
+
+Risk: The skill can write JSON exports to paths supplied by the user.
+
+Mitigation: Choose explicit output paths and review generated files before using them in downstream workflows.
+
+Risk: The optional cron example creates recurring network access and log output.
+
+Mitigation: Add scheduled execution only when recurring daily monitoring is desired.
+
+Risk: The artifact notes that trending results are approximated from recent models sorted by popularity metrics.
+
+Mitigation: Treat results as model-discovery signals rather than an authoritative Hugging Face trending ranking.
+
+## Reference(s):
+
+- [Hugging Face Hub model metadata documentation](https://huggingface.co/docs/huggingface_hub/guides/models)
+- [ClawHub skill page](https://clawhub.ai/tianxingleo/skills/huggingface-trends)
+- [Publisher profile](https://clawhub.ai/user/tianxingleo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, formatted terminal output, and optional JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can make Hugging Face API requests through a user-provided HTTP proxy and can write JSON exports to user-specified paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

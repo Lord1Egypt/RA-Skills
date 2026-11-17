@@ -1,44 +1,60 @@
-## Description: <br>
-Feishu-integrated wrapper for the capability-evolver that manages the evolution loop lifecycle, sends Feishu card reports, exports history, and provides dashboard visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu-integrated wrapper for the capability-evolver that manages the evolution loop lifecycle, sends Feishu card reports, and provides dashboard visualization.
 
-## Publisher: <br>
-[foras910521-lab](https://clawhub.ai/user/foras910521-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[foras910521-lab](https://clawhub.ai/user/foras910521-lab)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to run and supervise a capability-evolver loop with Feishu reporting, dashboard output, lifecycle controls, and watchdog restart support.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Long-running autonomous execution and watchdog restart behavior can persist beyond a single task.
+
+Mitigation: Enable it only in an intended evolver workspace, review lifecycle and watchdog settings, and disable auto-restart paths when continuous operation is not required.
+
+Risk: Git sync behavior can commit, pull, rebase, and push workspace state.
+
+Mitigation: Use a repository with least-privilege credentials, review generated commits before publication, or disable Git sync in sensitive workspaces.
+
+Risk: Feishu reporting and raw history export can send local logs or memory-derived content outside the workspace.
+
+Mitigation: Configure Feishu targets deliberately, review report and export paths, and avoid running the skill in workspaces containing secrets or private memory.
+
+Risk: Auto-heal and dependency installation behavior can modify sibling skills or install packages.
+
+Mitigation: Review auto-heal settings and dependency installation paths before use, and restrict filesystem permissions when evaluating the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run and supervise a capability-evolver loop with Feishu reporting, lifecycle controls, dashboard summaries, and history export. It is intended for dedicated workspaces where unattended evolution, reporting, and repository synchronization are acceptable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unattended agent and shell-command workflows through lifecycle management and watchdog behavior. <br>
-Mitigation: Install it only in a dedicated OpenClaw workspace and review or disable watchdog, cron, and daemon paths before enabling continuous operation. <br>
-Risk: The skill can modify repository state and push changes as part of its synchronization flow. <br>
-Mitigation: Use a controlled repository or branch, require review before trusting pushed changes, and disable git sync where automatic commits or pushes are not acceptable. <br>
-Risk: The skill can export local operational data and reports to Feishu targets. <br>
-Mitigation: Configure Feishu targets explicitly, restrict credentials and document tokens, and review exported history or report content for sensitive data. <br>
-Risk: The skill includes auto-heal and repair behavior for other skills and workspace state. <br>
-Mitigation: Avoid running it against untrusted skill directories and disable auto-heal or self-repair behavior unless workspace-level modification is intended. <br>
+**Output Format:** [Markdown, Feishu card payloads, shell commands, and local JSON/log files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/foras910521-lab/feishu-evolver-wrapper-ganyu) <br>
+**Other Properties Related to Output:** [May run long-lived lifecycle processes and write workspace logs, reports, PID files, and Feishu document or message updates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Console output, Markdown dashboards and reports, Feishu cards or document updates, lifecycle state files, and git operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw workspace, a capability-evolver installation, and explicit Feishu configuration for remote reporting.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

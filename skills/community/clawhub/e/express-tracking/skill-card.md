@@ -1,43 +1,58 @@
-## Description: <br>
-查询快递物流状态，支持顺丰、中通、圆通、韵达、申通、极兔、京东、EMS等主流快递公司，并可自动识别快递公司。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries parcel logistics status for major Chinese couriers, including SF Express, ZTO, YTO, Yunda, STO, J&T, JD Logistics, EMS, and others, with automatic courier detection.
 
-## Publisher: <br>
-[yokiy0828](https://clawhub.ai/user/yokiy0828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yokiy0828](https://clawhub.ai/user/yokiy0828)
 
-## Use Case: <br>
-External users and agent operators use this skill to query domestic courier shipment status from a tracking number, with optional courier-code and phone-suffix inputs for carriers that require them. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tracking numbers and any required phone suffix are sent to Kuaidi100 during lookup. <br>
-Mitigation: Use the tracking script only for shipments whose data may be shared with Kuaidi100, and avoid entering unnecessary personal information. <br>
-Risk: The package includes bundled API and default_phone configuration values. <br>
-Mitigation: Replace bundled config values before use and remove or clear default_phone unless that phone suffix is intentionally required. <br>
-Risk: The package includes publishing code that can use a local EvoMap credential. <br>
-Mitigation: Do not run publish_evomap.py unless you specifically intend to publish to EvoMap with the local EvoMap identity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yokiy0828/express-tracking) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yokiy0828) <br>
-- [Kuaidi100](https://www.kuaidi100.com) <br>
+## Use Case:
 
+External users and agents use this skill to query Chinese domestic parcel shipment status from a tracking number, optionally specifying the courier code and phone suffix when required. It returns a concise timeline of the shipment state and recent logistics events.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text courier tracking results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Kuaidi100 API credentials in config.json; some carriers may require a phone-number suffix.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact includes plaintext Kuaidi100 credentials in config.json.
+
+Mitigation: Rotate the exposed credentials before use and distribute a non-secret template or environment-based configuration instead of live keys.
+
+Risk: The artifact includes publish_evomap.py, an unrelated publisher script that can read a home-directory EvoMap secret.
+
+Mitigation: Remove publish_evomap.py from the distributed skill unless EvoMap publication tooling is intentionally required and reviewed.
+
+Risk: Shipment numbers and phone suffixes may be sent to Kuaidi100 during tracking queries.
+
+Mitigation: Give users clear notice before sending tracking identifiers or phone suffixes to Kuaidi100 and collect only the values required for the selected courier.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yokiy0828/skills/express-tracking)
+- [Kuaidi100](https://www.kuaidi100.com)
+- [Kuaidi100 polling API endpoint](https://poll.kuaidi100.com/poll/query.do)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Formatted plain text or Markdown-like command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tracking output includes courier name, tracking number, delivery state, and up to 15 recent logistics events.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

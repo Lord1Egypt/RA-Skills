@@ -1,42 +1,53 @@
-## Description: <br>
-Execute terminal commands safely with preflight checks and risk gating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute terminal commands safely with preflight checks and risk gating.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to run tests, builds, linters, migrations, and repository inspection commands with preflight risk checks and auditable command results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Terminal commands can modify files, affect global state, or perform destructive, installer, network, or remote-script actions. <br>
-Mitigation: Review each command, working directory, expected side effects, and high-risk action before allowing execution; prefer dry-run or scoped commands when available. <br>
-Risk: The RedHat-style publisher naming is not verified by server evidence. <br>
-Mitigation: Treat the publisher as the server-resolved ClawHub user mzfshark and rely on independent trust in that publisher before installation. <br>
-Risk: The security summary notes malformed activation metadata. <br>
-Mitigation: Review and fix activation metadata before depending on automatic invocation behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to run repository inspections, tests, builds, migrations, and other terminal commands with preflight risk classification, confirmation gates, captured outputs, and follow-up diagnostics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-command-execution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, guidance] <br>
-**Output Format:** [YAML-style structured text with command result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command, purpose, result, exit code, key output lines, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Malformed trigger metadata could cause the skill to activate differently than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct trigger metadata before publishing or installing the skill.
+
+Risk: Broad command-running capability can affect files, network resources, or system state.
+
+Mitigation: Keep confirmations enabled for destructive, installer, network, and system-level commands; prefer dry-run and scoped commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-command-execution)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [YAML-style structured command result with highlights and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command purpose, result status, exit code, key output lines, and diagnostic next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.yml, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Audit existing Google Analytics implementation. Checks for common issues, missing configurations, and optimization opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit existing Google Analytics implementation. Checks for common issues, missing configurations, and optimization opportunities.
 
-## Publisher: <br>
-[jeftekhari](https://clawhub.ai/user/jeftekhari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeftekhari](https://clawhub.ai/user/jeftekhari)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a project for Google Analytics and related analytics implementations, identify tracking and privacy issues, and produce a prioritized audit report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects repository files for analytics snippets and identifiers. <br>
-Mitigation: Use it only in projects where code inspection for analytics configuration is acceptable, and review the generated audit before acting on recommendations. <br>
-Risk: Analytics measurement IDs may appear in project code. <br>
-Mitigation: Redact sensitive portions of measurement IDs in reports as directed by the artifact. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Check Analytics on ClawHub](https://clawhub.ai/jeftekhari/check-analytics) <br>
+## Use Case:
+
+Developers and site maintainers use this skill to audit analytics implementations, identify tracking and configuration issues, and receive prioritized recommendations for improving measurement accuracy, privacy posture, and maintainability.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requires reading project files to locate analytics code and identifiers.
+
+Mitigation: Review the files accessed during the audit and keep reported measurement IDs partially redacted.
+
+Risk: Analytics recommendations can affect measurement accuracy, consent behavior, or reporting quality if applied without review.
+
+Mitigation: Have a qualified maintainer review the generated audit findings and proposed next steps before changing production analytics code.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redacts the last six characters of measurement IDs when reporting findings.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown audit report with summary, current implementation, prioritized issues, event coverage table, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Measurement IDs should be partially redacted in reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Scan and audit installed skills for security risks, suspicious patterns, and permission overreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan and audit installed skills for security risks, suspicious patterns, and permission overreach.
 
-## Publisher: <br>
-[klemenska](https://clawhub.ai/user/klemenska) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klemenska](https://clawhub.ai/user/klemenska)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan OpenClaw skill directories before installation or during periodic reviews, generate audit reports, compare skills, and identify permission overreach or suspicious patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include source-line snippets from scanned skills. <br>
-Mitigation: Review generated reports before sharing them, especially when scanned skills may contain sensitive local code or configuration. <br>
-Risk: Broad scans may read more local skill files than intended. <br>
-Mitigation: Run audits against specific skill directories and avoid broad or sensitive filesystem paths. <br>
-Risk: A clean scan result is advisory and may miss issues. <br>
-Mitigation: Use the output as one input to review, not as a replacement for manual code review or a complete security assessment. <br>
+## Use Case:
 
+Developers and engineers use this skill to triage installed or candidate skills for permission overreach, suspicious patterns, risky code behavior, and security review findings before installation or continued use.
 
-## Reference(s): <br>
-- [Permissions Reference Guide](references/permissions.md) <br>
-- [Security Audit Rules](references/rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/klemenska/klemenska-security-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Terminal text and Markdown reports with risk levels, issue lists, permissions, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a Markdown report when report output is requested; detailed scans can return nonzero exit status for medium, high, or critical findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Audit results may miss malicious instructions or payloads and may incorrectly report low risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as triage, run the skill in a constrained workspace, and verify important findings with an independent review process.
+
+Risk: The skill examines local skill files and permissions, so its output can affect install or trust decisions.
+
+Mitigation: Review the generated findings before acting on them and do not use the report as the sole approval signal for sensitive environments.
+
+## Reference(s):
+
+- [Permissions Reference Guide](references/permissions.md)
+- [Security Audit Rules](references/rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text audit summaries and optional Markdown reports with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include risk levels, flagged patterns, detected permissions, warnings, and review recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1009 @@
+[
+  {
+    "method": "POST",
+    "path": "/rms/base/v1/auth/resources/get",
+    "request_params": [
+      {
+        "name": "devId",
+        "type": "int",
+        "required": false,
+        "description": "开发者"
+      },
+      {
+        "name": "idbizAccId",
+        "type": "string",
+        "required": false,
+        "description": "商家账号"
+      },
+      {
+        "name": "idbizId",
+        "type": "int",
+        "required": false,
+        "description": "业务id"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "resources",
+        "type": "array<AuthorizedResourceInfoTo>",
+        "description": "授权的机构信息"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"resources\": [\n      {\n        \"orgId\": 1,\n        \"orgType\": 1,\n        \"rootOrgId\": 1,\n        \"orgName\": \"example\",\n        \"poiStatus\": 1,\n        \"openStatus\": 1,\n        \"merchantNo\": \"example\",\n        \"brandId\": 1\n      }\n    ]\n  }\n}",
+    "title": "查询授权资源ID列表-美团技术服务合作中心",
+    "api_path": "/rms/base/v1/auth/resources/get",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-base-v1-auth-resources-get"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/base/v1/auth/resources/poi/get",
+    "request_params": [
+      {
+        "name": "rootOrgId",
+        "type": "int",
+        "required": false,
+        "description": "总部组织机构ID"
+      },
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": false,
+        "description": "门店组织机构ID"
+      },
+      {
+        "name": "brandId",
+        "type": "int",
+        "required": false,
+        "description": "品牌ID"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": false,
+        "description": "页索引"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": false,
+        "description": "页大小，不能超过"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "items",
+        "type": "array<AuthPoiInfo>",
+        "description": "门店信息列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"pageNo\": 1,\n    \"pageSize\": 1,\n    \"totalCount\": 1000,\n    \"items\": [\n      {\n        \"orgId\": 1,\n        \"orgCode\": \"example\",\n        \"poiName\": \"example\",\n        \"poiStatus\": 1,\n        \"openStatus\": 1,\n        \"modifiedTime\": 1000,\n        \"longitude\": 100.01,\n        \"latitude\": 100.01,\n        \"address\": \"example\",\n        \"provinceId\": 1,\n        \"provinceName\": \"example\",\n        \"cityLocationId\": 1,\n        \"cityLocationName\": \"example\",\n        \"locationId\": 1,\n        \"locationName\": \"example\",\n        \"phone\": \"example\",\n        \"merchantNo\": \"example\",\n        \"brandId\": 1,\n        \"brandName\": \"example\",\n        \"rootOrgId\": 1,\n        \"rootOrgName\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "查询授权门店列表-美团技术服务合作中心",
+    "api_path": "/rms/base/v1/auth/resources/poi/get",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-base-v1-auth-resources-poi-get"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/brands/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "总部的"
+      },
+      {
+        "name": "orgIdreq",
+        "type": "object",
+        "required": true,
+        "description": "业务参数"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "page",
+        "type": "object",
+        "description": "分页返回值brandListarray品牌列表"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"brandList\": [\n    {\n      \"modifiedTime\": 1000,\n      \"brandName\": \"露华浓\",\n      \"brandId\": 12,\n      \"brandStatus\": 1\n    }\n  ],\n  \"page\": {\n    \"pageNo\": 1,\n    \"pageSize\": 20,\n    \"totalPageSize\": 5,\n    \"totalCount\": 100\n  }\n}",
+    "title": "总部-查询品牌列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/brands/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-brands-query"
+  },
+  {
+    "method": "POST",
+    "path": "",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "连锁总部"
+      }
+    ],
+    "response_params": [],
+    "response_example": "",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/combo/query",
+    "request_params": [],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"comboId\": 1000,\n    \"name\": \"example\",\n    \"aliasName\": \"example\",\n    \"brandId\": 1000,\n    \"categoryName\": \"example\",\n    \"numMnemonicCode\": \"example\",\n    \"letterMnemonicCode\": \"example\",\n    \"box\": {\n      \"boxConfigType\": 1\n    },\n    \"salePrice\": 1000,\n    \"memberPrice\": 1000,\n    \"saleStatus\": 1,\n    \"priceChangeSupport\": 1,\n    \"minAmount\": 1,\n    \"deltaAmount\": 1,\n    \"sideSpuPriceContain\": 1,\n    \"methodPriceContain\": 1,\n    \"comboGroupTOS\": {\n      \"comboGroupId\": 1000,\n      \"name\": \"example\",\n      \"amount\": 1,\n      \"skus\": {\n        \"spuId\": 1000,\n        \"skuId\": 1000,\n        \"minAmount\": 100.01,\n        \"maxAmount\": 100.01,\n        \"defaultSku\": 1,\n        \"requiredSku\": 1\n      },\n      \"choiceType\": 1,\n      \"lowerCount\": 1,\n      \"upperCount\": 1,\n      \"type\": 1\n    },\n    \"remarks\": {\n      \"code\": \"example\",\n      \"value\": \"example\"\n    },\n    \"barcodeList\": [\n      1\n    ],\n    \"categoryId\": 1000,\n    \"spuId\": 1000,\n    \"memo\": \"example\",\n    \"detailMemo\": \"example\",\n    \"multimedias\": [\n      {\n        \"fileType\": 1,\n        \"contentType\": 1,\n        \"fileUrl\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "总部-获取套餐（分页）-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/combo/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-combo-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/configs/payments/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构id"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"payments\": {\n      \"paymentId\": 13828,\n      \"firstLevelName\": \"扫码支付\",\n      \"firstLevelCode\": \"03\",\n      \"realSecondLevelName\": \"微信\",\n      \"name\": \"现金\",\n      \"typeNo\": \"0101\",\n      \"paymentForm\": 0,\n      \"status\": 1,\n      \"modifiedTime\": 1582469571000,\n      \"type\": 7,\n      \"incomeRule\": {\n        \"incomeFlag\": 1,\n        \"storeIncomeFlag\": 1,\n        \"givenIncomeFlag\": 1,\n        \"integralIncomeFlag\": 1,\n        \"couponDiscountIncomeFlag\": 1,\n        \"wmRealIncomeExpecteFlag\": 1,\n        \"wmPlatformServiceFeeFlag\": 1,\n        \"wmPartRefundFlag\": 1,\n        \"wmOtherPayFlag\": 1,\n        \"incomeCanInvoiceFlag\": 1,\n        \"poundage\": 3\n      }\n    }\n  }\n}",
+    "title": "总部-查询结账方式列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/configs/payments/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-configs-payments-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/goods/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "需设置"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "methods",
+        "type": "array<Methods>",
+        "description": "做法"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"id\": 11585193,\n    \"name\": \"鱼香茄子\",\n    \"type\": 10,\n    \"categoryId\": 11221227,\n    \"brandId\": 103036,\n    \"unitName\": 1000,\n    \"letterMnemonicCode\": \"CSCP\",\n    \"modifiedTime\": \"1582796372000\",\n    \"poiSpuPriceTOs\": [\n      {\n        \"specName\": \"标准\",\n        \"price\": \"价格\",\n        \"memberPrice\": \"会员价\",\n        \"thirdPartySkuId\": \"example\"\n      }\n    ],\n    \"methods\": [\n      {\n        \"name\": \"特辣\",\n        \"changePriceType\": 10,\n        \"changePrice\": 100,\n        \"groupName\": \"辣度\"\n      }\n    ]\n  }\n}",
+    "title": "总部-获取菜品（分页）-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/goods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-goods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/method/group/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "连锁总部orgId"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "methodGroupId",
+        "type": "long",
+        "description": "做法分组Id123methodGroupNamestring做法分组名称辣度"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"methodGroupId\": 123,\n    \"methodGroupName\": \"辣度\"\n  }\n}",
+    "title": "总部-查询做法分组列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/method/group/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-method-group-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/method/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "连锁总部"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "methodGroupName",
+        "type": "string",
+        "description": "做法分组名称辣度methodIdlong做法id13905211methodNamestring做法名称特辣flexiblePriceTypeint加价类型：0.不加价；10.固定加价；30.按重量加价10flexiblePriceValuelong加价，单位分100modifiedTimelong最后修改时间"
+      }
+    ],
+    "response_example": "{\n\t\"code\": \"OP_SUCCESS\",\n\t\"msg\": \"成功\",\n\t\"traceId\": \"7193042047393781477\",\n\t\"data\": {\n\t\t\"page\": 1,\n\t\t\"totalPage\": 1,\n\t\t\"categoryList\": [{\n\t\t\t\"methodGroupName\": \"辣度\",\n\t\t\t\"methodId\": 23926669,\n\t\t\t\"methodName\": \"不辣\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"辣度\",\n\t\t\t\"methodId\": 23926670,\n\t\t\t\"methodName\": \"微辣\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"辣度\",\n\t\t\t\"methodId\": 23936740,\n\t\t\t\"methodName\": \"中辣\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"辣度\",\n\t\t\t\"methodId\": 23936741,\n\t\t\t\"methodName\": \"重辣\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"温度\",\n\t\t\t\"methodId\": 23926672,\n\t\t\t\"methodName\": \"去冰\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"温度\",\n\t\t\t\"methodId\": 23936742,\n\t\t\t\"methodName\": \"少冰\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"温度\",\n\t\t\t\"methodId\": 23926673,\n\t\t\t\"methodName\": \"正常冰\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"温度\",\n\t\t\t\"methodId\": 23926674,\n\t\t\t\"methodName\": \"常温\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"温度\",\n\t\t\t\"methodId\": 23936743,\n\t\t\t\"methodName\": \"热\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"甜度\",\n\t\t\t\"methodId\": 23936745,\n\t\t\t\"methodName\": \"无糖\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"甜度\",\n\t\t\t\"methodId\": 23926675,\n\t\t\t\"methodName\": \"少糖\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"甜度\",\n\t\t\t\"methodId\": 23926676,\n\t\t\t\"methodName\": \"半糖\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"甜度\",\n\t\t\t\"methodId\": 23926677,\n\t\t\t\"methodName\": \"正常糖\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"做法分组1\",\n\t\t\t\"methodId\": 24639744,\n\t\t\t\"methodName\": \"标签1\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1576566948000\n\t\t}, {\n\t\t\t\"methodGroupName\": \"做法删除\"\n\t\t}, {\n\t\t\t\"methodGroupName\": \"自动化做法分组V\",\n\t\t\t\"methodId\": 24639772,\n\t\t\t\"methodName\": \"自动化做法标签\",\n\t\t\t\"flexiblePriceType\": 0,\n\t\t\t\"flexiblePriceValue\": 0,\n\t\t\t\"modifiedTime\": 1576575413000\n\t\t}]\n\t}\n}",
+    "title": "总部-查询做法列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/method/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-method-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/org/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构id（总部orgId、配送中心orgId）"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "description": "总部的组织机构ID，全局唯一10389orgNamestring组织机构节点名总部orgCodestring组织机构编码GP0001orgStatusint组织机构状态 1-启用 2-停用1parentIdint上级组织机构ID，如果是总部此处为010389rootOrgIdint总部组织机构ID10389modifiedTimelong修改时间，从格林威治时间1970年01月01日00时00分00秒起至现在的总毫秒数"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orgId\": 10389,\n    \"orgName\": \"总部\",\n    \"orgCode\": \"GP0001\",\n    \"orgStatus\": 1,\n    \"parentId\": 10389,\n    \"rootOrgId\": 10389,\n    \"modifiedTime\": 1577808000000\n  }\n}",
+    "title": "总部-查询当前组织机构详情-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/org/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-org-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/specs/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "连锁总部"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "specId",
+        "type": "long",
+        "description": "规格id15622884namestring规格名称标准modifiedTimelong最后修改时间"
+      }
+    ],
+    "response_example": "{\n\t\"code\": \"OP_SUCCESS\",\n\t\"msg\": \"成功\",\n\t\"traceId\": \"-483003102600768902\",\n\t\"data\": {\n\t\t\"page\": 1,\n\t\t\"totalPage\": 1,\n\t\t\"categoryList\": [{\n\t\t\t\"specId\": 23926678,\n\t\t\t\"name\": \"标准\",\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"specId\": 23926679,\n\t\t\t\"name\": \"大份\",\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"specId\": 23936746,\n\t\t\t\"name\": \"中份\",\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"specId\": 23926680,\n\t\t\t\"name\": \"小份\",\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"specId\": 23926681,\n\t\t\t\"name\": \"大杯\",\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"specId\": 23926682,\n\t\t\t\"name\": \"中杯\",\n\t\t\t\"modifiedTime\": 1572934576000\n\t\t}, {\n\t\t\t\"specId\": 25677308,\n\t\t\t\"name\": \"hello\",\n\t\t\t\"modifiedTime\": 1579577691000\n\t\t}]\n\t}\n}",
+    "title": "总部-查询菜品规格列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/specs/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-specs-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/staffs/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "string",
+        "required": true,
+        "description": "组织机构"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "staffId",
+        "type": "long",
+        "description": "员工id12345orgIdint员工所属机构id12345poiIdint员工所属门店id12345staffNoint员工编号1234staffNamestring员工姓名员工姓名positionIdstring岗位id12345536statusint(byte)员工状态 1-启用 2-禁用1acctIdint员工帐号id12345createdTimelong创建时间1579427285000modifiedTimelong修改时间"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{\n  \"modifiedTime\": 1579427285000,\n  \"staffNo\": 1234,\n  \"positionId\": \"12345536\",\n  \"staffName\": \"员工姓名\",\n  \"acctId\": 12345,\n  \"createdTime\": 1579427285000,\n  \"poiId\": 12345,\n  \"staffId\": 12345,\n  \"orgId\": 12345,\n  \"status\": 1\n}",
+    "title": "总部-获取员工列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/staffs/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-staffs-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/wm/category/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "连锁总部"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "items",
+        "type": "array<Items>",
+        "description": "外卖菜品分类数据"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 2,\n      \"totalPageCount\": 33\n    },\n    \"items\": [\n      {\n        \"categoryId\": 1000,\n        \"name\": \"example\",\n        \"relSpuCount\": 1000,\n        \"wmSource\": 1,\n        \"modifiedTime\": 1000,\n        \"departmentOrgId\": 1000,\n        \"departmentuInherit\": 1,\n        \"departmentName\": \"example\",\n        \"taxrateId\": 1000,\n        \"taxrateInherit\": 1,\n        \"taxRateValue\": 1\n      }\n    ]\n  }\n}",
+    "title": "总部-查询外卖菜品分类列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/wm/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-wm-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/wm/goods/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "需设置"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"id\": 11585193,\n    \"name\": \"鱼香茄子\",\n    \"type\": 10,\n    \"categoryId\": 11221227,\n    \"categoryName\": \"凉菜\",\n    \"brandId\": 103036,\n    \"modifiedTime\": \"1582796372000\",\n    \"skus\": [\n      {\n        \"specName\": \"标准\",\n        \"id\": 11585194,\n        \"price\": 300,\n        \"costPrice\": 200,\n        \"unitName\": \"份\",\n        \"boxNum\": 1,\n        \"boxPrice\": 100,\n        \"weight\": 1,\n        \"weightUnitName\": \"克\"\n      }\n    ],\n    \"spuAttrs\": [\n      {\n        \"name\": \"辣度\",\n        \"mode\": 10,\n        \"price\": 100,\n        \"no\": 1\n      }\n    ],\n    \"taxRateUuid\": \"1387342394730487823\",\n    \"taxRateValue\": 500,\n    \"taxRateInherit\": 2,\n    \"departmentTemplateId\": 274,\n    \"departmentName\": \"1313123zb\",\n    \"departmentInherit\": 2,\n    \"remarks\": {\n      \"code\": \"301\",\n      \"value\": \"\\\"\\\"\"\n    }\n  }\n}",
+    "title": "总部-查询外卖菜品列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/wm/goods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-wm-goods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/wm/goods/rel/query",
+    "request_params": [],
+    "response_params": [
+      {
+        "name": "skuId",
+        "type": "long",
+        "description": "堂食菜品skuid或堂食套餐comboId11585193wmSkuIdlong外卖菜skuId或外卖套餐comboId11585194bindboolean是否绑定true"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"skuId\": 11585193,\n    \"wmSkuId\": 11585194,\n    \"bind\": true\n  }\n}",
+    "title": "总部-查询菜品关系列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/wm/goods/rel/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-wm-goods-rel-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/chain/wm/specs/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "r"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "specId",
+        "type": "long",
+        "description": "规格Idnamestring规格名称标准modifiedTimestring最后修改时间"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123456789\",\n\"data\":{\n  \"specId\": 1000,\n  \"modifiedTime\": \"example\",\n  \"name\": \"标准\"\n}",
+    "title": "总部-外卖菜品规格-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/chain/wm/specs/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-chain-wm-specs-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/areas/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店orgId"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "id",
+        "type": "int",
+        "description": "区域id185400namestring区域名称大厅modifyTimeint最后修改时间"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"modifyTime\": \"1579408049000\",\n  \"name\": \"大厅\",\n  \"id\": 185400\n}",
+    "title": "门店-查询区域列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/areas/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-areas-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/category/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "r"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "categoryId",
+        "type": "long",
+        "description": "分类id15622884namestring分类名二级分类\tparentIdlong上级id15555762\tpublishTypeint下发类型：0，自建；1，总部下发；2，外卖1modifiedTimelong最后修改时间"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"modifiedTime\": 1582796372000,\n  \"publishType\": 1,\n  \"name\": \"二级分类\\t\",\n  \"categoryId\": 15622884,\n  \"parentId\": \"15555762\\t\"\n}",
+    "title": "门店-获取菜品分类（分页）-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/combo/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"comboId\": 554688445,\n    \"spuId\": 1004288866,\n    \"name\": \"套餐测试 1\",\n    \"aliasName\": \"\\\"\\\"\",\n    \"categoryName\": \"南方凉菜\",\n    \"numMnemonicCode\": \"112\",\n    \"letterMnemonicCode\": \"TCCS1\",\n    \"box\": {\n      \"boxConfigType\": 1\n    },\n    \"salePrice\": 2000,\n    \"memberPrice\": 1800,\n    \"saleStatus\": 0,\n    \"priceChangeSupport\": 0,\n    \"minAmount\": 1,\n    \"deltaAmount\": 1,\n    \"sideSpuPriceContain\": 2,\n    \"methodPriceContain\": 2,\n    \"comboGroupTOS\": {\n      \"comboGroupId\": 1000,\n      \"name\": \"凉菜\",\n      \"type\": 1,\n      \"amount\": 1,\n      \"skus\": {\n        \"spuId\": 254841047,\n        \"skuId\": 581611008,\n        \"maxAmount\": 1.0,\n        \"minAmount\": 1.0,\n        \"requiredSku\": 1,\n        \"defaultSku\": 1\n      },\n      \"choiceType\": 1,\n      \"lowerCount\": 1,\n      \"upperCount\": 1\n    },\n    \"publishType\": 0,\n    \"remarks\": {\n      \"code\": \"example\",\n      \"value\": \"example\"\n    },\n    \"barcodeList\": [\n      1\n    ],\n    \"categoryId\": 1000,\n    \"memo\": \"example\",\n    \"detailMemo\": \"example\",\n    \"multimedias\": [\n      {\n        \"fileType\": 1,\n        \"contentType\": 1,\n        \"fileUrl\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "门店-获取套餐（分页）-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/combo/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-combo-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/configs/business/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构id"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"shiftInfos\": {\n      \"shiftName\": \"早班\",\n      \"startTime\": \"10:00:00\",\n      \"endTime\": \"19:00:00\"\n    },\n    \"mealInfos\": {\n      \"mealName\": \"午餐\",\n      \"startTime\": \"11:00:00\",\n      \"endTime\": \"16:00:00\"\n    },\n    \"clearingTime\": \"00:00:00\",\n    \"manualDailyClearingSetting\": {\n      \"manualDailyClearing\": 2\n    }\n  }\n}",
+    "title": "门店-查询配置信息-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/configs/business/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-configs-business-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/configs/cleartime/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "iddate",
+        "type": "long",
+        "required": false,
+        "description": "营业日期（精确到毫秒）"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "clearingTime",
+        "type": "int",
+        "description": "零点开始的毫秒数(结算时间0-11)3600000businessBeginTimelong营业日开始时间(整点毫秒数)1583600400000businessEndTimelong营业日结束时间(整点毫秒数)1583686800000clearingStatusint日结状态，1-未日结；2-已日结；1orgIdint组织机构id729084datelong营业日期（精确到毫秒）"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"clearingTime\": 3600000,\n    \"businessBeginTime\": 1583600400000,\n    \"businessEndTime\": 1583686800000,\n    \"clearingStatus\": 1,\n    \"orgId\": 729084,\n    \"date\": 1657009888000\n  }\n}",
+    "title": "门店-查询营业日起止时间-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/configs/cleartime/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-configs-cleartime-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/configs/cleartime/querybydate",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "iddateString",
+        "type": "string",
+        "required": false,
+        "description": "当前日期自然日日期2020-03-"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "clearingTime",
+        "type": "long",
+        "description": "结算时间戳3600000businessBeginTimelong结算日开始时间戳1586113200000businessEndTimelong结算日开始时间戳"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"clearingTime\": 3600000,\n  \"businessBeginTime\": 1586113200000,\n  \"businessEndTime\": 1586199600000\n}",
+    "title": "门店-根据日期获取结算时间 -美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/configs/cleartime/querybydate",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-configs-cleartime-querybydate"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/configs/payments/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构id"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"payments\": {\n      \"paymentId\": 13828,\n      \"firstLevelName\": \"扫码支付\",\n      \"firstLevelCode\": \"03\",\n      \"realSecondLevelName\": \"微信\",\n      \"name\": \"现金\",\n      \"typeNo\": \"0101\",\n      \"paymentForm\": 0,\n      \"status\": 1,\n      \"modifiedTime\": 1582469571000,\n      \"type\": 7,\n      \"incomeRule\": {\n        \"incomeFlag\": 1\n      },\n      \"custom\": 1,\n      \"orgId\": 1\n    }\n  }\n}",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/configs/payments/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-configs-payments-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/configs/setting/comments",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织ID"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{\n  \"operationComments\": [\n    {\n      \"comments\": [],\n      \"name\": \"example\",\n      \"type\": 1,\n      \"status\": 1\n    }\n  ]\n}",
+    "title": "门店-获取经营设置常用备注-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/configs/setting/comments",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-configs-setting-comments"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/depart/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店的"
+      },
+      {
+        "name": "orgIdreq",
+        "type": "object",
+        "required": true,
+        "description": "筛选条件"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "page",
+        "type": "object",
+        "description": "分页返回值departListarray部门列表"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123456789\",\n\"data\":{\n  \"page\": {\n    \"pageNo\": 1,\n    \"pageSize\": 20,\n    \"totalPageSize\": 5,\n    \"totalCount\": 100\n  },\n  \"departList\": [\n    {\n      \"deleted\": 0,\n      \"departCode\": \"BM0001\",\n      \"departStatus\": 1,\n      \"businessType\": \"1\",\n      \"orgId\": 123456,\n      \"departName\": \"研发一部\"\n    }\n  ]\n}",
+    "title": "门店-查询出品部门列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/depart/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-depart-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/goods/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "需设置"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "skumethods",
+        "type": "array<Methods>",
+        "description": "做法"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"id\": 11585193,\n    \"name\": \"鱼香茄子\",\n    \"type\": 10,\n    \"categoryId\": 11221227,\n    \"unitName\": \"份\",\n    \"letterMnemonicCode\": \"CSCP\",\n    \"publishType\": 1,\n    \"modifiedTime\": 1582796372000,\n    \"poiSpuPriceTOs\": [\n      {\n        \"specName\": \"标准\",\n        \"price\": 1000,\n        \"memberPrice\": 1000\n      }\n    ],\n    \"methods\": [\n      {\n        \"name\": \"特辣\",\n        \"changePriceType\": 10,\n        \"changePrice\": 100,\n        \"groupName\": \"辣度\"\n      }\n    ]\n  }\n}",
+    "title": "门店-查询堂食菜品列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/goods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-goods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/goods/wmgoods/category/query",
+    "request_params": [],
+    "response_params": [
+      {
+        "name": "cates",
+        "type": "array<Cates>",
+        "description": "外卖菜品分类数据"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 2,\n      \"totalPageCount\": 33\n    },\n    \"cates\": [\n      {\n        \"categoryId\": 1000,\n        \"categoryName\": \"example\",\n        \"spuCount\": 1,\n        \"wmSource\": 1,\n        \"modifiedTime\": 1000\n      }\n    ]\n  }\n}",
+    "title": "门店-查询外卖菜品分类列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/goods/wmgoods/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-goods-wmgoods-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/goods/wmgoods/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "goods",
+        "type": "array<Goods>",
+        "description": "外卖菜品信息列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 2,\n      \"totalPageCount\": 33\n    },\n    \"goods\": [\n      {\n        \"categoryId\": \"example\",\n        \"categoryName\": \"example\",\n        \"wmSpuId\": 1000,\n        \"spuName\": \"宫保鸡丁\",\n        \"wmExt\": \"example\",\n        \"wmSource\": 1,\n        \"modifiedTime\": 345652005,\n        \"skus\": [\n          {\n            \"wmSkuId\": \"2324\",\n            \"wmExt\": \"example\",\n            \"price\": 2200,\n            \"costPrice\": 2100,\n            \"spec\": \"大份\",\n            \"modifiedTime\": 6536572,\n            \"wmSkuAttrs\": [\n              {\n                \"skuAttrId\": 45246,\n                \"name\": \"大份\"\n              }\n            ]\n          }\n        ],\n        \"type\": 1\n      }\n    ]\n  }\n}",
+    "title": "门店-查询外卖菜品列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/goods/wmgoods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-goods-wmgoods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/method/group/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店orgId"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "methodGroupId",
+        "type": "long",
+        "description": "做法分组Id123methodGroupNamestring做法分组名称辣度"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"methodGroupList\":[\n      {\n        \"methodGroupId\": 123,\n        \"methodGroupName\": \"辣度\"\n      }\n    ]\n  }\n}",
+    "title": "门店-查询做法分组列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/method/group/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-method-group-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/method/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "methodGroupName",
+        "type": "string",
+        "description": "做法分组名称辣度methodIdlong做法id13905211methodNamestring做法名称特辣flexiblePriceTypeint加价类型：0.不加价；10.固定加价；30.按重量加价10flexiblePriceValuelong加价，单位分100modifiedTimelong最后修改时间1582796372000publishTypeint下发类型：0，自建；1，总部下发；2，外卖"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"methodGroupName\": \"辣度\",\n    \"methodId\": 13905211,\n    \"methodName\": \"特辣\",\n    \"flexiblePriceType\": 10,\n    \"flexiblePriceValue\": 100,\n    \"modifiedTime\": 1582796372000,\n    \"publishType\": 1\n  }\n}",
+    "title": "门店-查询做法列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/method/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-method-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/onaccount/subjects/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "p"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "subjects",
+        "type": "array<PoiSubjectTo>",
+        "description": "挂账人信息"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"subjects\": [\n      {\n        \"id\": 1000,\n        \"no\": 1,\n        \"name\": \"客户名字\",\n        \"type\": 1,\n        \"poiId\": 1,\n        \"modifyTime\": 1000,\n        \"publishType\": 1\n      }\n    ]\n  }\n}",
+    "title": "门店-获取挂帐客户信息-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/onaccount/subjects/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-onaccount-subjects-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/operation/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店的组织机构id"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "cooperationMode",
+        "type": "int",
+        "description": "门店合作方式：1品牌加盟 2供货加盟 3合营加盟 4财务投资 5直营连锁"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123456789\",\n\"data\":{\n  \"cooperationMode\": 1\n}",
+    "title": "门店-获取门店合作方式-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/operation/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-operation-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/org/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店的组织机构ID"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "description": "门店的组织机构ID，全局唯一123456orgNamestring组织机构节点名老李家常菜orgCodestring组织机构编码GP0001orgStatusint组织机构状态 1-启用 2-停用1parentIdint上级组织机构ID，如门店的上级机构是华北分公司，那此处就代表华北分公司的orgId10389rootOrgIdint总部的组织机构ID10389modifiedTimelong修改时间，从格林威治时间1970年01月01日00时00分00秒起至现在的总毫秒数"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"orgStatus\": 1,\n  \"modifiedTime\": 1577808000000,\n  \"orgName\": \"总部\",\n  \"orgCode\": \"GP0001\",\n  \"rootOrgId\": 10389,\n  \"orgId\": 10389,\n  \"parentId\": 10389\n}",
+    "title": "门店-获取组织机构信息-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/org/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-org-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店的组织机构ID"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "poiGroupIds",
+        "type": "array<int>",
+        "description": "所属门店分组id"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"orgId\": 12356,\n    \"orgCode\": \"MD1001\",\n    \"poiName\": \"老李家常菜\",\n    \"brandId\": 12,\n    \"cateHiearchy\": [\n      {\n        \"cate\": {\n          \"categoryId\": 12,\n          \"categoryName\": \"小吃快餐\",\n          \"parentId\": 1,\n          \"categoryLevel\": 1\n        }\n      }\n    ],\n    \"poiStatus\": 0,\n    \"openStatus\": 0,\n    \"modifiedTime\": 1577808000000,\n    \"longitude\": 117.192681,\n    \"latitude\": 39.113169,\n    \"address\": \"北京市朝阳区望京东路48号\",\n    \"provinceId\": 120000,\n    \"provinceName\": \"天津市\",\n    \"cityLocationId\": 120100,\n    \"cityLocationName\": \"天津市\",\n    \"locationId\": 120101,\n    \"locationName\": \"和平区\",\n    \"phone\": \"138966666666\",\n    \"merchantNo\": \"51111803\",\n    \"poiId\": 600066618,\n    \"companyId\": 24384,\n    \"fixedPhone\": \"500066618\",\n    \"houseNumber\": \"example\",\n    \"cateId\": 1233,\n    \"businessFormat\": 2301,\n    \"contactName\": \"example\",\n    \"openingTime\": 12321313123,\n    \"operationInfo\": {\n      \"cooperationMode\": 1,\n      \"avgCost\": 1,\n      \"businessArea\": 12,\n      \"kitchenArea\": 3,\n      \"employeeNum\": 1,\n      \"rent\": 8000,\n      \"characteristic\": \"example\",\n      \"slogan\": \"鸡你太美\",\n      \"introduction\": \"example\",\n      \"mealInfos\": [\n        {\n          \"mealNo\": 123,\n          \"mealName\": \"example\",\n          \"startTime\": \"14:30:00\",\n          \"endTime\": \"14:30:00\"\n        }\n      ],\n      \"shiftInfos\": [\n        {\n          \"shiftNo\": 1,\n          \"shiftName\": \"example\",\n          \"startTime\": \"09:00:00\",\n          \"endTime\": \"14:00:00\"\n        }\n      ],\n      \"clearingTimeString\": \"example\",\n      \"openingHours\": {\n        \"openingHoursModel\": 1,\n        \"openingHours\": {},\n        \"segmentOpeningHours\": [\n          {\n            \"weekList\": [\n              1\n            ],\n            \"openingHoursList\": [\n              {\n                \"startTime\": \"example\",\n                \"endTime\": \"example\"\n              }\n            ]\n          }\n        ]\n      },\n      \"poiResources\": [\n        {\n          \"resourceType\": 1,\n          \"urls\": [\n            \"example\"\n          ]\n        }\n      ],\n      \"poiCredentials\": [\n        {\n          \"type\": 1,\n          \"credentialPairs\": [\n            {\n              \"fieldName\": \"example\",\n              \"fieldValue\": \"example\"\n            }\n          ]\n        }\n      ],\n      \"closeTime\": 1000\n    },\n    \"extendedFields\": [\n      {\n        \"fieldName\": \"\\\"fieldName\\\": \\\"jdeCode\\\"\",\n        \"fieldValue\": \"\\\"fieldValue\\\": \\\"001\\\"\"\n      }\n    ],\n    \"poiGroupIds\": [\n      1\n    ]\n  }\n}",
+    "title": "门店-查询门店详情-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/specs/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "specId",
+        "type": "long",
+        "description": "规格id15622884\tnamestring规格名称标准publishTypeint下发类型：0，自建；1，总部下发；1modifiedTimelong最后修改时间"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"specId\": \"15622884\\t\",\n  \"modifiedTime\": 1582796372000,\n  \"publishType\": 1,\n  \"name\": \"标准\"\n}",
+    "title": "门店-查询菜品规格列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/specs/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-specs-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/staffs/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "staffId",
+        "type": "long",
+        "description": "员工id12345orgIdint组织机构id12345poiIdint门店id12345staffNoint员工编号1234staffNamestring员工姓名员工姓名positionIdlong岗位id12345666statusint(byte)员工状态 1-启用 2-禁用1acctIdint员工帐号id1234createdTimelong创建时间1579427285000modifiedTimelong修改时间"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{\n  \"modifiedTime\": 1579427285000,\n  \"staffNo\": 1234,\n  \"positionId\": 12345666,\n  \"staffName\": \"员工姓名\",\n  \"acctId\": 1234,\n  \"createdTime\": 1579427285000,\n  \"poiId\": 12345,\n  \"staffId\": 12345,\n  \"orgId\": 12345,\n  \"status\": 1\n}",
+    "title": "门店-获取员工列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/staffs/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-staffs-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/tables/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店orgId"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "tables",
+        "type": "array<Table>",
+        "description": "桌台信息列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"tables\": [\n      {\n        \"id\": 10099736,\n        \"name\": \"大桌子\",\n        \"poiId\": 600002049,\n        \"areaId\": 180211,\n        \"seats\": 8,\n        \"modifyTime\": 1580705950000\n      }\n    ]\n  }\n}",
+    "title": "门店-查询桌台列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/tables/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-tables-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v1/poi/wm/goods/rel/query",
+    "request_params": [],
+    "response_params": [
+      {
+        "name": "skuId",
+        "type": "long",
+        "description": "堂食菜品skuid或堂食套餐comboId11585193wmSkuIdlong外卖菜skuId或外卖套餐comboId11585194bindboolean是否绑定True"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"skuId\": 11585193,\n    \"wmSkuId\": 11585194,\n    \"bind\": true\n  }\n}",
+    "title": "门店-查询菜品关系列表-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v1/poi/wm/goods/rel/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v1-poi-wm-goods-rel-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/chain/category/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "连锁总部"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "taxRateValue",
+        "type": "int",
+        "description": "税率值，整数，例如360，表示 3.6%"
+      }
+    ],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{\n  \"departmentName\": \"sasa\",\n  \"modifiedTime\": \"1582796372000\",\n  \"taxRateValue\": 52,\n  \"departmentTemplateId\": 111111,\n  \"brandId\": 104032,\n  \"name\": \"二级分类\",\n  \"taxRateUuid\": 22222,\n  \"departmentInherit\": 10,\n  \"taxRateInherit\": 10,\n  \"categoryId\": 15622884,\n  \"parentId\": 15555762\n}",
+    "title": "总部-查询堂食菜品分类列表v2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/chain/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-chain-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/chain/goods/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "需设置"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"id\": 11585193,\n    \"name\": \"鱼香茄子\",\n    \"type\": 10,\n    \"categoryId\": 11221227,\n    \"brandId\": 103036,\n    \"unitId\": 1000,\n    \"unitName\": 1000,\n    \"letterMnemonicCode\": \"CSCP\",\n    \"modifiedTime\": \"1582796372000\",\n    \"poiSpuPriceTOs\": [\n      {\n        \"skuId\": 1000,\n        \"specName\": \"标准\",\n        \"price\": \"200\",\n        \"memberPrice\": \"200\",\n        \"costPrice\": 1000,\n        \"barcodeList\": [\n          \"\\\"1111\\\"\"\n        ],\n        \"id\": 1000,\n        \"specId\": 1000,\n        \"basePrice\": 1000,\n        \"thirdPartySkuId\": \"example\",\n        \"goodsPriceList\": {\n          \"code\": 1,\n          \"price\": 1000,\n          \"priceCategoryCodes\": [\n            1\n          ],\n          \"priceType\": 1\n        }\n      }\n    ],\n    \"methods\": [\n      {\n        \"name\": \"特辣\",\n        \"changePriceType\": 10,\n        \"changePrice\": 100,\n        \"groupName\": \"辣度\",\n        \"id\": 1000,\n        \"groupId\": 1000,\n        \"rank\": 1000\n      }\n    ],\n    \"taxRateUuid\": \"example\",\n    \"taxRateValue\": 1,\n    \"taxRateInherit\": 1,\n    \"departmentTemplateId\": 1000,\n    \"departmentName\": \"example\",\n    \"departmentInherit\": 1,\n    \"remarks\": {\n      \"code\": \"example\",\n      \"value\": \"example\"\n    },\n    \"spicyDegree\": 1,\n    \"memo\": \"example\",\n    \"detailMemo\": \"example\",\n    \"canWeight\": 1,\n    \"tags\": [\n      {\n        \"id\": 1000,\n        \"name\": \"example\"\n      }\n    ],\n    \"descTags\": [\n      {\n        \"id\": 1000,\n        \"name\": \"example\"\n      }\n    ],\n    \"filterTags\": [\n      {\n        \"id\": 1000,\n        \"name\": \"example\"\n      }\n    ],\n    \"channelCategories\": [\n      {\n        \"salesChannel\": 1000,\n        \"channelName\": \"example\",\n        \"categoryId\": 1000,\n        \"categoryName\": \"example\",\n        \"firstCategoryId\": 1000,\n        \"firstCategoryName\": \"example\",\n        \"secondCategoryId\": 1000,\n        \"secondCategoryName\": \"example\",\n        \"channelCategoryName\": \"example\",\n        \"brandId\": 1,\n        \"rank\": 1000\n      }\n    ],\n    \"sideSpus\": [\n      {\n        \"id\": 1000,\n        \"skuId\": 1000,\n        \"groupName\": \"example\",\n        \"groupId\": 1000,\n        \"name\": \"example\",\n        \"price\": 1000,\n        \"defaultOpt\": 1,\n        \"rank\": 1000\n      }\n    ],\n    \"spuChannelProperties\": {\n      \"salesChannel\": 1\n    },\n    \"publishType\": 1,\n    \"saleStatus\": 1,\n    \"skuTOs\": [\n      {\n        \"skuProperties\": [\n          {\n            \"code\": \"example\",\n            \"value\": \"example\"\n          }\n        ]\n      }\n    ],\n    \"statisticTags\": [\n      {\n        \"id\": 1000,\n        \"name\": \"example\"\n      }\n    ],\n    \"spuProperties\": [\n      {\n        \"code\": \"example\",\n        \"value\": \"example\"\n      }\n    ]\n  }\n}",
+    "title": "总部-获取菜品v2（税率）-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/chain/goods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-chain-goods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/category/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "multimedias",
+        "type": "array<ApiMultimediaTO>",
+        "description": "文件资源列表departmentNamestring部门名称1parentNamestring父分类名称"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"categoryId\": 15622884,\n    \"name\": \"二级分类\",\n    \"parentId\": 15555762,\n    \"publishType\": 1,\n    \"modifiedTime\": 1582796372000,\n    \"departmentOrgId\": 1111,\n    \"departmentInherit\": 10,\n    \"taxRateUuid\": 22222,\n    \"taxRateInherit\": 10,\n    \"taxRateValue\": 234,\n    \"rank\": 1231,\n    \"multimedias\": [\n      {\n        \"fileType\": 1,\n        \"contentType\": 60,\n        \"fileUrl\": \"example\"\n      }\n    ],\n    \"departmentName\": \"1\",\n    \"parentName\": \"example\"\n  }\n}",
+    "title": "门店-查询堂食菜品分类列表V2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/goods/query",
+    "request_params": [
+      {
+        "name": "idreq",
+        "type": "object<Req>",
+        "required": true,
+        "description": "10"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "poiSimpleSpuTOs",
+        "type": "array<PoiSimpleSpuTO>",
+        "description": "菜品规格orgCodestring三方门店id"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"totalPage\": 1,\n    \"poiSimpleSpuTOs\": [\n      {\n        \"id\": 48925194,\n        \"name\": \"鱼香茄子\",\n        \"type\": 10,\n        \"categoryId\": 11221227,\n        \"unitName\": \"份\",\n        \"letterMnemonicCode\": \"CSCP\",\n        \"publishType\": 1,\n        \"modifiedTime\": 1582796372000,\n        \"poiSpuPriceTOs\": [\n          {\n            \"specName\": \"标准\",\n            \"price\": 1000,\n            \"memberPrice\": 800,\n            \"specId\": 15852826,\n            \"barcodeList\": [\n              \"16061,16062\"\n            ],\n            \"thirdPartySkuId\": \"\\\"123\\\"\",\n            \"id\": 1000,\n            \"skuId\": 1000,\n            \"costPrice\": 1000,\n            \"basePrice\": 1000,\n            \"goodsPriceList\": {\n              \"code\": 1,\n              \"price\": 1000,\n              \"priceCategoryCodes\": [\n                1\n              ],\n              \"priceType\": 1\n            }\n          }\n        ],\n        \"methods\": [\n          {\n            \"name\": \"特辣\",\n            \"changePriceType\": 10,\n            \"changePrice\": 100,\n            \"groupName\": \"辣度\",\n            \"id\": 1000,\n            \"groupId\": 1000,\n            \"defaultOpt\": 1,\n            \"rank\": 1000\n          }\n        ],\n        \"sideSpus\": [\n          {\n            \"id\": 1000,\n            \"skuId\": 1000,\n            \"groupName\": \"example\",\n            \"groupId\": 1000,\n            \"name\": \"example\",\n            \"price\": 1000,\n            \"defaultOpt\": 1,\n            \"rank\": 1000\n          }\n        ],\n        \"taxRateUuid\": \"example\",\n        \"taxRateValue\": 6,\n        \"taxRateInherit\": 1,\n        \"departmentId\": 1000,\n        \"departmentInherit\": 1,\n        \"departmentName\": \"example\",\n        \"remarks\": [\n          {\n            \"code\": \"301\",\n            \"value\": \"example\"\n          }\n        ],\n        \"multimedias\": [\n          {\n            \"fileType\": 1,\n            \"contentType\": 1,\n            \"fileUrl\": \"example\"\n          }\n        ],\n        \"spuStatus\": 1,\n        \"orgCode\": \"example\",\n        \"methodGroupConfigs\": [\n          {\n            \"groupId\": 1000,\n            \"requiredCount\": 1,\n            \"upperCount\": 1\n          }\n        ],\n        \"spicyDegree\": 1,\n        \"memo\": \"example\",\n        \"detailMemo\": \"example\",\n        \"canWeight\": 1,\n        \"rank\": 1000,\n        \"firstCategoryId\": 1000,\n        \"secondCategoryId\": 1000,\n        \"deltaAmount\": 100.01,\n        \"minAmount\": 100.01,\n        \"onlyCombo\": 1,\n        \"effectiveTime\": 1000,\n        \"diancanDisplay\": 1,\n        \"methodGroupMode\": 1,\n        \"sideSpuGroupMode\": 1,\n        \"poiSkuTOs\": [\n          {\n            \"id\": 1000,\n            \"specId\": 1000,\n            \"specName\": \"example\",\n            \"boxId\": 1000,\n            \"boxName\": \"example\",\n            \"boxCount\": 1,\n            \"skuId\": 1000,\n            \"price\": 1000,\n            \"memberPrice\": 1000,\n            \"costPrice\": 1000,\n            \"defaultSku\": 1,\n            \"name\": \"",
+    "title": "门店-获取菜品v2（税率）-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/goods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-goods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/goods/wmgoods/category/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "cates",
+        "type": "array<Cates>",
+        "description": "外卖菜品分类数据"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 2,\n      \"totalPageCount\": 33\n    },\n    \"cates\": [\n      {\n        \"categoryId\": 1000,\n        \"categoryName\": \"example\",\n        \"spuCount\": 1,\n        \"wmSource\": 1,\n        \"modifiedTime\": 1000,\n        \"departmentOrgId\": 1000,\n        \"departmentuInherit\": 1,\n        \"departmentName\": \"example\",\n        \"taxrateId\": 1000,\n        \"taxrateInherit\": 1,\n        \"taxRateValue\": 1\n      }\n    ]\n  }\n}",
+    "title": "门店-查询外卖菜品分类列表V2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/goods/wmgoods/category/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-goods-wmgoods-category-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/pos/api/v2/poi/goods/wmgoods/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织结构"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "goods",
+        "type": "array<Goods>",
+        "description": "外卖菜品信息列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 2,\n      \"totalPageCount\": 33\n    },\n    \"goods\": [\n      {\n        \"categoryId\": \"39363942\",\n        \"categoryName\": \"22\",\n        \"wmSpuId\": 939878665,\n        \"spuName\": \"宫保鸡丁\",\n        \"wmExt\": \"{wmId:939878665,source:1}\",\n        \"wmSource\": 1,\n        \"modifiedTime\": 1629368511000,\n        \"skus\": [\n          {\n            \"wmSkuId\": \"939878666\",\n            \"wmExt\": \"{\\\\\\\"wmId\\\\\\\":939878666,\\\\\\\"source\\\\\\\":1}\",\n            \"price\": 2200,\n            \"costPrice\": 2100,\n            \"spec\": \"大份\",\n            \"modifiedTime\": 1629368511000,\n            \"wmSkuAttrs\": [\n              {\n                \"skuAttrId\": 36468136,\n                \"name\": \"标准\"\n              }\n            ]\n          }\n        ],\n        \"departmentOrgId\": 34315314,\n        \"departmentuInherit\": 10,\n        \"departmentName\": \"部门1\",\n        \"taxRateUuid\": 1282968763431387158,\n        \"taxRateInherit\": 2,\n        \"taxRateValue\": 300,\n        \"type\": 1,\n        \"mtSkuExtend\": [\n          {\n            \"saleSkuId\": 1000,\n            \"wmSkuId\": 1000,\n            \"skuId\": 1000,\n            \"saleAttrName\": \"example\",\n            \"price\": 1\n          }\n        ]\n      }\n    ]\n  }\n}",
+    "title": "门店-查询外卖菜品列表V2-美团技术服务合作中心",
+    "api_path": "/rms/pos/api/v2/poi/goods/wmgoods/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-pos-api-v2-poi-goods-wmgoods-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/solution/api/v1/poi/manage/qrcode/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "需要查询二维码信息的门店"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"dcQrCodeTO\": {\n      \"qrCodeUrl\": \"example\",\n      \"active\": true\n    }\n  }\n}",
+    "title": "门店-查询门店点餐码信息-美团技术服务合作中心",
+    "api_path": "/rms/solution/api/v1/poi/manage/qrcode/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-solution-api-v1-poi-manage-qrcode-query"
+  }
+]

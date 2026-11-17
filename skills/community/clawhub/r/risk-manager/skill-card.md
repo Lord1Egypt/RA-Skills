@@ -1,42 +1,60 @@
-## Description: <br>
-Compute portfolio risk metrics including VaR, Sharpe ratio, and Kelly criterion using historical and real-time data from the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compute portfolio risk metrics including VaR, Sharpe ratio, and Kelly criterion using historical and real-time data from the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and developers use this skill to analyze portfolio risk, estimate VaR and drawdown, assess correlations and beta, and produce position sizing or hedging guidance from Finskills market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes portfolio-related inputs and uses a Finskills API key for market-data lookups. <br>
-Mitigation: Use a dedicated Finskills API key where possible, avoid sharing portfolio or account-size details the agent should not process, and treat outputs as analytical support rather than investment advice. <br>
+## Use Case:
 
+Developers, analysts, and portfolio managers use this skill to estimate portfolio risk, position sizing, and hedging considerations from portfolio holdings and market data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/risk-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/finskills) <br>
-- [Project homepage](https://github.com/finskills/risk-manager) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills registration](https://finskills.net/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, analysis, guidance] <br>
-**Output Format:** [Markdown risk dashboard with tabular metrics, risk flags, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY for Finskills API-backed market-data lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The README install command points at a mutable repository URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned version or commit when deploying the skill.
+
+Risk: Portfolio holdings and related questions may be sent to an external market-data provider.
+
+Mitigation: Use a dedicated Finskills API key and avoid submitting portfolio details that should not be analyzed through third-party API queries.
+
+Risk: Risk metrics and hedging suggestions can be wrong or incomplete because they rely on historical data and simplified assumptions.
+
+Mitigation: Treat outputs as decision support and review calculations, assumptions, and recommendations before taking financial action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/risk-manager)
+- [Project homepage](https://github.com/finskills/risk-manager)
+- [Finskills API](https://finskills.net)
+- [Finskills API registration](https://finskills.net/register)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown risk dashboard with metrics, tables, risk flags, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY; some historical market data may require a Finskills Pro plan.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter declares 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

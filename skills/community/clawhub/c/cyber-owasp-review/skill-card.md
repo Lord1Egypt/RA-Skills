@@ -1,40 +1,53 @@
-## Description: <br>
-Maps application security findings to OWASP Top 10 categories and generates remediation checklists for normalized AppSec review outputs and category-level prioritization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map application security findings to OWASP Top 10 categories and generate remediation checklists.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Developers, security engineers, and AppSec reviewers use this skill to normalize raw security findings into OWASP Top 10 categories, aggregate them by severity, and produce remediation checklist output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local mapper writes report output to the path provided by the user, which can overwrite or create files in that location. <br>
-Mitigation: Use a new, non-critical output path and review the destination before running the script. <br>
-Risk: The current --dry-run option is recorded in output details but does not prevent the report file from being written. <br>
-Mitigation: Do not rely on --dry-run to avoid writes; run only with an output path where file creation is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OWASP Mapping Guide](references/owasp-mapping-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/0x-Professor/cyber-owasp-review) <br>
+## Use Case:
 
+Developers and application security reviewers use this skill to normalize scanner, test, or review findings into OWASP Top 10 categories and produce prioritized remediation checklist output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, or CSV report content with normalized finding rows, category counts, and remediation checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled mapper reads a local findings JSON file and writes a report to a user-selected output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes local scanner findings and writes report artifacts to a user-provided output path.
+
+Mitigation: Provide only intended scanner findings as input and choose a safe output path before execution.
+
+Risk: Server security evidence identifies a limited dry-run file-write bug.
+
+Mitigation: Do not rely on --dry-run to avoid filesystem changes until that behavior is fixed.
+
+## Reference(s):
+
+- [OWASP Mapping Guide](references/owasp-mapping-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/0x-professor/skills/cyber-owasp-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional JSON, CSV, or Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces category counts, normalized finding rows, remediation checklists, and local output artifacts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

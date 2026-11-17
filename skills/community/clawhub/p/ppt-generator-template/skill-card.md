@@ -1,41 +1,50 @@
-## Description: <br>
-Creates a local HTML slide deck from user-provided presentation content by splitting text into slides and applying a minimalist presentation style. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Generates browser-ready HTML presentation files by splitting supplied speech or presentation content into logical slides with a minimalist Jobs-style layout.
 
-## Publisher: <br>
-[qidong](https://clawhub.ai/user/qidong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qidong](https://clawhub.ai/user/qidong)
 
-## Use Case: <br>
-Developers and skill authors use this template to prototype PPT-to-HTML generation and create browser-ready slide decks from supplied speech or presentation content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML files can preserve user-provided presentation content on local disk. <br>
-Mitigation: Use the skill only with content appropriate for local storage and manage generated files according to the user's retention requirements. <br>
-Risk: Untrusted HTML or JavaScript in slide text may be rendered because the skill does not sanitize slide content before writing the presentation. <br>
-Mitigation: Avoid untrusted markup and review generated HTML before opening, presenting, or sharing it. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn presentation text or speech content into a navigable HTML slide deck that can be opened in a browser.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qidong/ppt-generator-template) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [Browser-ready HTML file and generated file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates presentation-<timestamp>.html in the agent's current working directory; slide text is not sanitized before rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated presentations can execute injected browser script when untrusted content is included in slide text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before use, avoid hosting it on a sensitive origin, and prefer escaping slide text and validating color options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qidong/skills/ppt-generator-template)
+- [Publisher profile](https://clawhub.ai/user/qidong)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and generated HTML presentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML should be treated as active browser content when sourced from untrusted input.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

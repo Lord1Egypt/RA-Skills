@@ -1,0 +1,190 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-letpub-com-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:07:22.435Z",
+  "entry": {
+    "url": "https://www.letpub.com.cn",
+    "final_url": "https://www.letpub.com.cn/",
+    "title": "LetPub官网-SCI论文润色公司、论文修改机构、SCI投稿协助辅导机构",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:07:22.435Z",
+    "identity": {
+      "declared_name": "LetPub 期刊查询",
+      "hostname": "www.letpub.com.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "智库资源",
+        "href": "https://www.letpub.com.cn/index.php?page=resources",
+        "target": ""
+      },
+      {
+        "text": "SCI论文专业翻译服务",
+        "href": "https://www.letpub.com.cn/index.php?page=sci_translation",
+        "target": "_blank"
+      },
+      {
+        "text": "SCI论文全程专业指导服务（发表率超75%）",
+        "href": "https://www.letpub.com.cn/index.php?page=sci_all_support",
+        "target": "_blank"
+      },
+      {
+        "text": "医学SCI论文全程专业指导服务（发表率超75%）",
+        "href": "https://www.letpub.com.cn/index.php?page=sci_all_support",
+        "target": "_blank"
+      },
+      {
+        "text": "医学科研基金申报课程",
+        "href": "https://www.letpub.com.cn/index.php?page=grant_courses&grant_field=medicine",
+        "target": "_blank"
+      },
+      {
+        "text": "学术专业制图及动画制作服务",
+        "href": "https://www.letpub.com.cn/index.php?page=journal_cover",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入SCI期刊名搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入SCI期刊名搜索",
+      "name": "searchname",
+      "id": "searchnamebottom",
+      "css": "#searchnamebottom",
+      "role": null,
+      "form_action": "https://www.letpub.com.cn/index.php?page=journalapp&searchsort=relevance&view=search",
+      "locator": {
+        "css": "#searchnamebottom"
+      },
+      "observed_url": "https://www.letpub.com.cn/",
+      "observed_at": "2026-10-09T09:07:22.067Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.letpub.com.cn/index.php?page=journalapp&searchsort=relevance&view=search",
+      "locator": null,
+      "observed_url": "https://www.letpub.com.cn/",
+      "observed_at": "2026-10-09T09:07:22.067Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-letpub-com-cn:record-lookup",
+      "source_id": "quiz-letpub-com-cn",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.letpub.com.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入SCI期刊名搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入SCI期刊名搜索",
+          "name": "searchname",
+          "id": "searchnamebottom",
+          "css": "#searchnamebottom",
+          "role": null,
+          "form_action": "https://www.letpub.com.cn/index.php?page=journalapp&searchsort=relevance&view=search",
+          "locator": {
+            "css": "#searchnamebottom"
+          },
+          "observed_url": "https://www.letpub.com.cn/",
+          "observed_at": "2026-10-09T09:07:22.067Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-144"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:07:22.435Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-letpub-com-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-letpub-com-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,41 +1,57 @@
-## Description: <br>
-Generates a Chinese-language Apple App Store China ICP exemption request PDF from user-provided Team ID, legal account holder name, App ID, and application date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese-language PDF attachment for Apple App Store China ICP exemption requests after collecting the user's Team ID, legal account holder name, App ID, and application date.
 
-## Publisher: <br>
-[extrastu](https://clawhub.ai/user/extrastu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[extrastu](https://clawhub.ai/user/extrastu)
 
-## Use Case: <br>
-Developers and App Store Connect account holders use this skill to prepare the PDF attachment for an Apple China ICP exemption request. The skill asks for account and app identifiers, generates the attachment, and reminds the user to sign and submit it through App Store Connect. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PDF generator may attempt a host-level font package installation when a CJK font is unavailable. <br>
-Mitigation: Review the script before installation and run it only in an environment where installing fonts-wqy-zenhei is acceptable, or remove the apt-get fallback. <br>
-Risk: The workflow asks for account-identifying details such as Team ID, legal account holder name, and App ID. <br>
-Mitigation: Provide real account details only in trusted chat and execution environments, and invoke the skill only when intentionally generating the Apple ICP exemption attachment. <br>
+## Use Case:
 
+Developers and App Store account holders use this skill to prepare the PDF attachment needed when requesting an ICP exemption for an app distributed through Apple's China storefront.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/extrastu/icp-exemption-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/extrastu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with a generated PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one ICP exemption PDF per App ID and instructs the user to hand-sign it before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The PDF generator can silently attempt to install a system font package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the package-install fallback or move font installation to an explicit setup step reviewed before deployment.
+
+Risk: The workflow collects account-linked Team ID, legal name, App ID, and date values.
+
+Mitigation: Confirm the user wants to generate the PDF before collecting these details and run the skill in an isolated, unprivileged environment.
+
+Risk: Weak input controls may mishandle crafted markup-like characters in document fields.
+
+Mitigation: Validate and escape user-provided fields before rendering them into the generated PDF.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/extrastu/skills/icp-exemption-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with a Python command and a generated PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects Team ID, legal account holder name, App ID, and application date before generating the PDF.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

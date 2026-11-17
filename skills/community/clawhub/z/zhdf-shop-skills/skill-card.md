@@ -1,44 +1,57 @@
-## Description: <br>
-OPC商城 helps agents query available OPC e-commerce products, reserve orders with recipient details, and read published product stories through documented public APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OPC商城 helps agents query OPC/众合鼎富 products, place reservation orders through fixed public APIs, and read published product stories with curl.
 
-## Publisher: <br>
-[legendaryfly](https://clawhub.ai/user/legendaryfly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[legendaryfly](https://clawhub.ai/user/legendaryfly)
 
-## Use Case: <br>
-External users and commerce agents use this skill to browse in-stock OPC products, place reservation orders after confirming recipient details, and read published product story content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Order flows send recipient name, phone number, address, and order items to the documented OPC ordering service. <br>
-Mitigation: Collect only the details needed for fulfillment, confirm them with the user before ordering, and use the skill only when the user trusts the service's privacy practices. <br>
-Risk: Product availability, stock, order success, and story publication status can change at the service. <br>
-Mitigation: Use the live API response as the source of truth and do not claim order success or story availability unless the service returns it. <br>
+## Use Case:
 
+External users and shopping agents use this skill to browse in-stock OPC/众合鼎富 products, collect required order details, submit reservation orders, and retrieve published product story content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/legendaryfly/zhdf-shop-skills) <br>
-- [Product search API](https://tools.gangzheng.tech/public/products/search) <br>
-- [Order reservation API](https://tools.gangzheng.tech/public/orders/reserve) <br>
-- [Published product stories list API](https://tools.gangzheng.tech/public/chronicles/list) <br>
-- [Published product story detail API](https://tools.gangzheng.tech/public/chronicles/detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline curl commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; API responses are treated as authoritative for product availability, order status, and published story content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Placing an order sends phone number, recipient name, address, and selected item details to the OPC/众合鼎富 merchant endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect and confirm those details only when the user wants to order, disclose that they will be sent to the merchant service, and avoid ordering if the user is uncomfortable with that data sharing.
+
+Risk: The skill depends on fixed external merchant APIs for product availability, story content, and order status.
+
+Mitigation: Use only the returned API data, do not claim an order succeeded until the API confirms success, and surface stock or disambiguation errors to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/legendaryfly/skills/zhdf-shop-skills)
+- [OPC product search endpoint](https://tools.gangzheng.tech/public/products/search)
+- [OPC order reservation endpoint](https://tools.gangzheng.tech/public/orders/reserve)
+- [OPC published stories list endpoint](https://tools.gangzheng.tech/public/chronicles/list)
+- [OPC published story detail endpoint](https://tools.gangzheng.tech/public/chronicles/detail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Order flows may include phone number, recipient name, address, and selected item details in merchant API request bodies.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

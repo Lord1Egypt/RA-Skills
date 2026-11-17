@@ -1,41 +1,53 @@
-## Description: <br>
-Enhanced Search helps agents optimize web search queries, integrate multiple results, and produce concise summaries using an existing web_search tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Search improves web search queries, consolidates multi-source results, and produces concise summaries using the existing OpenClaw web_search tool.
 
-## Publisher: <br>
-[yifeiwang1981](https://clawhub.ai/user/yifeiwang1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yifeiwang1981](https://clawhub.ai/user/yifeiwang1981)
 
-## Use Case: <br>
-Developers and external users use this skill to improve web-search workflows with query optimization, context-aware search strategy, result integration, and concise summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Context-aware search, memory sources, caching, or self-improvement logging may expose sensitive query context. <br>
-Mitigation: Avoid private, proprietary, credential-like, or otherwise sensitive information in searches when those features are enabled. <br>
-Risk: The release evidence includes only SKILL.md; referenced Python implementation files are not present in the artifact. <br>
-Mitigation: Review any additional implementation files separately before deployment if they are obtained outside this artifact. <br>
+## Use Case:
 
+Developers and agent users use this skill to perform context-aware web searches, refine queries, combine multiple search results, and receive structured summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yifeiwang1981/enhanced-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/yifeiwang1981) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured summaries and inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search quality depends on the underlying web_search tool and any enabled context, cache, or memory sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Context-aware web searches may expose sensitive query context to web search systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with information suitable for web search and avoid including sensitive prior-chat details in optimized queries.
+
+Risk: Future search-pattern tracking integrations could record user search behavior.
+
+Mitigation: Review or disable self-improving-agent integrations that store search patterns before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yifeiwang1981/skills/enhanced-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with search summaries, configuration examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may be optimized, deduplicated, cached, and summarized before presentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+{
+  "version": "1.4.0",
+  "skill": "1.4.0",
+  "scrapers_api": "1",
+  "extension_recommended": "1.2.2",
+  "extension_install_url": "https://monsterget.com/install",
+  "changelog": "v1.4.0: Pre-task reminder 单源重构 — 英文（规范版）合并为一段完整块，删除中文附录重复模版；AI 将整段翻译成用户语言（中文/日文/英文等），不再多源冲突。措辞改为 extension required + 安装指引链接始终保留。"
+}

@@ -1,41 +1,59 @@
-## Description: <br>
-Daily briefing that connects your recent reading to your long-term archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily briefing that connects your recent reading to your long-term archive.
 
-## Publisher: <br>
-[sameerbajaj](https://clawhub.ai/user/sameerbajaj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sameerbajaj](https://clawhub.ai/user/sameerbajaj)
 
-## Use Case: <br>
-External users use this skill to turn recent Readwise Reader saves into a WhatsApp briefing that connects current reading themes with older archive items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Readwise reading history, summaries, URLs, and inferred interests may be processed by the configured LLM and sent through WhatsApp. <br>
-Mitigation: Install only if that data flow is acceptable; verify the WhatsApp recipient, token storage, and included fields before enabling automation. <br>
-Risk: Scheduled runs can repeatedly process new saves and send briefings without per-run review. <br>
-Mitigation: Test the script manually before adding cron, review the generated briefing path, and disable or update the schedule when recipient or model routing changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reader Deep Dive on ClawHub](https://clawhub.ai/sameerbajaj/reader-deep-dive) <br>
-- [Readwise Access Token](https://readwise.io/access_token) <br>
-- [Readwise Reader list API endpoint](https://readwise.io/api/v3/list/) <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily or on-demand briefing that connects recent Readwise Reader saves with related items from their long-term archive and delivers the result through WhatsApp.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [WhatsApp-friendly text with lightweight Markdown-style emphasis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires READWISE_TOKEN and TARGET_NUMBER; uses curl, jq, gemini, and clawdbot to fetch Readwise data, synthesize a briefing, and send it to WhatsApp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Readwise reading metadata and generated summaries are shared with Gemini and delivered through WhatsApp.
+
+Mitigation: Use the skill only when that data sharing is acceptable for the account and reading content involved.
+
+Risk: A misconfigured TARGET_NUMBER could send the briefing to an unintended recipient.
+
+Mitigation: Set TARGET_NUMBER deliberately and run a manual test before enabling the scheduled cron job.
+
+Risk: Malicious or misleading article metadata could influence the generated briefing.
+
+Mitigation: Review briefings before relying on their conclusions, especially when recent saves or archive items come from untrusted sources.
+
+## Reference(s):
+
+- [Reader Deep Dive on ClawHub](https://clawhub.ai/sameerbajaj/skills/reader-deep-dive)
+- [sameerbajaj ClawHub profile](https://clawhub.ai/user/sameerbajaj)
+- [Readwise access token](https://readwise.io/access_token)
+- [Readwise Reader API list endpoint](https://readwise.io/api/v3/list/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [WhatsApp-friendly Markdown-style text with setup and scheduling shell commands in the documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires READWISE_TOKEN and TARGET_NUMBER at runtime; generated briefings may include Readwise item URLs and are delivered through WhatsApp.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

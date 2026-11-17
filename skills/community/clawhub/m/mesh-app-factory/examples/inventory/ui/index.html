@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>进销存系统</title>
+</head>
+<body><div id="app" v-cloak><router-view></router-view></div></body>
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script src="/assets/v3/echarts.js"></script>
+<script type="module">
+import Language from "./language.js"
+import Home from "./home.js"
+import Products from "./products.js"
+import Suppliers from "./suppliers.js"
+import Customers from "./customers.js"
+import Purchase from "./purchase.js"
+import Sales from "./sales.js"
+import Reports from "./reports.js"
+import Categories from "./categories.js"
+
+import DateInput from "/assets/v3/components/date_input.js"
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+  {path: '/home', component:Home},
+  {path: '/products', component:Products},
+  {path: '/suppliers', component:Suppliers},
+  {path: '/customers', component:Customers},
+  {path: '/categories', component:Categories},
+  {path: '/purchase', component:Purchase},
+  {path: '/sales', component:Sales},
+  {path: '/reports', component:Reports}
+]});
+
+const service = {name:"inventory",PAGE_SIZE:10,SMPG_SIZE:5,
+go_back() {
+    router.back();
+},
+jumpTo(url) {
+    router.push(url)
+}
+};
+
+const app = Vue.createApp({
+provide:{tags:tags, service:service},
+created(){
+    this.$router.push('/home').catch(err => {err})
+},
+mounted() {
+    window.sys_go_back = this.sysGoBack;
+},
+methods:{
+sysGoBack() {
+    if(this.$router.currentRoute.value.path==="/home") {
+        return false;
+    }
+    this.$router.back();
+    return true;
+}
+}
+});
+
+app.use(Quasar);
+app.use(router);
+app.component('component-alert-dialog', AlertDialog);
+app.component('component-date-input', DateInput);
+app.mount('#app');
+</script>
+</html>

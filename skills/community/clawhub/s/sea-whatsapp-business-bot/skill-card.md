@@ -1,43 +1,54 @@
-## Description: <br>
-AI-powered WhatsApp auto-responder for MY/SG SMEs. Bilingual BM/EN or CN/EN. Handles appointments, FAQ, orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered WhatsApp auto-responder for MY/SG SMEs. Bilingual BM/EN or CN/EN. Handles appointments, FAQ, orders.
 
-## Publisher: <br>
-[wms2537](https://clawhub.ai/user/wms2537) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wms2537](https://clawhub.ai/user/wms2537)
 
-## Use Case: <br>
-External customer-support and operations teams at Malaysia and Singapore SMEs use this skill to draft concise WhatsApp replies, classify customer intent, identify language, and suggest follow-up actions for appointments, FAQs, order status, escalation, and general messages. <br>
-
-### Deployment Geography for Use: <br>
-Malaysia and Singapore <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the runnable endpoint appears to charge by user ID before clear consent or WhatsApp bot work is shown. <br>
-Mitigation: Require explicit user consent before each charge, log consent and billing events, and document dispute handling before deployment. <br>
-Risk: The security evidence advises verifying who controls the hosted Worker before installing. <br>
-Mitigation: Confirm publisher and endpoint control through trusted release channels before routing production traffic or billing calls to the Worker. <br>
-Risk: The security evidence treats repeated or automated calls as risky until authentication and consent controls are documented. <br>
-Mitigation: Use authentication, rate limits, and automation safeguards for any integration that may trigger repeated calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wms2537/sea-whatsapp-business-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/wms2537) <br>
-- [Hosted respond endpoint](https://sea-whatsapp-business-bot.swmengappdev.workers.dev/respond) <br>
+## Use Case:
 
+External users and small businesses in Malaysia and Singapore use this skill to generate concise WhatsApp auto-responder replies, classify customer intent, detect language, and suggest next actions such as booking appointments, checking orders, or transferring to a human.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object with reply, intent, action, and language fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies should be concise and preferably under 160 characters when possible.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Malaysia and Singapore
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Per-call SkillPay billing may charge a supplied user identifier through an external Worker.
+
+Mitigation: Before installation, verify caller authentication, duplicate-charge prevention, and authorization controls for the billing endpoint.
+
+Risk: The billing flow sends a user identifier to an external endpoint.
+
+Mitigation: Use only a billing-scoped identifier and avoid personal or reusable account data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wms2537/skills/sea-whatsapp-business-bot)
+- [Publisher profile](https://clawhub.ai/user/wms2537)
+- [Skill billing endpoint](https://sea-whatsapp-business-bot.swmengappdev.workers.dev/respond)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, guidance]
+
+**Output Format:** [JSON object with reply, intent, action, and language fields; billing calls return JSON status data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are intended to be concise WhatsApp responses, preferably under 160 characters when possible.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

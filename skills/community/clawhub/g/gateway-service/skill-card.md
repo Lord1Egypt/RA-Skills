@@ -1,39 +1,52 @@
-## Description: <br>
-Installs OpenClaw Gateway as a Windows scheduled task so it starts on boot and restarts after crashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs OpenClaw Gateway as a Windows Scheduled Task so it can start automatically and restart after exits or crashes.
 
-## Publisher: <br>
-[suncxw-creator](https://clawhub.ai/user/suncxw-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[suncxw-creator](https://clawhub.ai/user/suncxw-creator)
 
-## Use Case: <br>
-Developers and operators on Windows use this skill to keep OpenClaw Gateway running unattended, restart it after crashes, and manage it with install, start, stop, restart, and status commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup creates a persistent Windows scheduled task that starts OpenClaw Gateway on boot and restarts it after exits. <br>
-Mitigation: Install it only when you want always-on background operation, review the scheduled task after installation, and use the documented stop or status commands when you no longer want it running. <br>
-Risk: Installation requires administrator privileges. <br>
-Mitigation: Run the install command only from a trusted OpenClaw environment and confirm the task name and behavior before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suncxw-creator/gateway-service) <br>
+## Use Case:
 
+Developers and operators use this skill to keep OpenClaw Gateway running on Windows without manually restarting it after crashes or reboots.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a command table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents Windows Scheduled Task management for OpenClaw Gateway; installation requires administrator privileges.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the gateway service creates persistent local execution through a Windows Scheduled Task that starts at boot and restarts after process exit.
+
+Mitigation: Install only when persistent gateway operation is intended, and confirm how to inspect, stop, and fully remove the OpenClaw Gateway scheduled task before use.
+
+Risk: The install command requires administrator privileges.
+
+Mitigation: Run the install command only from a trusted OpenClaw environment and verify the scheduled task status after installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suncxw-creator/skills/gateway-service)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Windows scheduled-task service management commands and troubleshooting paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

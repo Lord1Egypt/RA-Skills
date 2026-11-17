@@ -107,6 +107,34 @@ def load_trusted() -> set:
     return out
 
 
+def load_incoming_trusted_action() -> str:
+    """Read incoming_trusted_action from paired.conf; fail-closed to 'notify'.
+
+    Values:
+      notify           (default) - do not touch the call; just alert via Telegram
+      hangup           - hang up the call, no SMS
+      hangup_and_sms   - hang up and send the auto-reply SMS
+      answer_and_speak - not implemented in this handler; treated as notify
+    Unknown/missing values fail closed to 'notify' so no injected or mis-typed
+    value can cause an automatic hangup or outbound SMS.
+    """
+    cfg = Path.home() / ".config" / "paired" / "paired.conf"
+    if not cfg.exists():
+        return "notify"
+    try:
+        for line in cfg.read_text().splitlines():
+            line = line.split("#", 1)[0].strip()
+            if not line or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            if k.strip() == "incoming_trusted_action":
+                val = v.strip().strip('"').strip("'").lower()
+                return val if val in ("hangup", "hangup_and_sms") else "notify"
+    except OSError as e:
+        log.warning(f"paired.conf read failed: {e}")
+    return "notify"
+
+
 def check_and_set_cooldown(sender_norm: str) -> tuple[bool, float]:
     """Returns (allowed, seconds_remaining)."""
     COOLDOWN_DB.parent.mkdir(parents=True, exist_ok=True)
@@ -261,43 +289,61 @@ def main() -> int:
         log.info(f"Caller {normalized} NOT trusted — letting it ring (no action)")
         return 1
 
-    log.info(f"TRUSTED caller {normalized}: hangup + auto-SMS")
+    action = load_incoming_trusted_action()
+    log.info(f"TRUSTED caller {normalized}: incoming_trusted_action={action}")
 
-    # Cooldown — don't fire repeatedly for the same caller within 60s
+    # notify (DEFAULT / fail-closed): do NOT touch the call. Just alert the owner
+    # and let the phone keep ringing. No hangup, no outbound SMS.
+    if action == "notify":
+        token, chat_id = load_telegram_env()
+        if token and chat_id:
+            safe_caller = md_escape(name or raw)
+            safe_raw = md_escape(raw)
+            msg = (
+                f"📞 *Trusted caller* (notify-only)\n"
+                f"From: {safe_caller} ({safe_raw})\n\n"
+                f"_No action taken — incoming_trusted_action=notify. "
+                f"Set it to hangup or hangup_and_sms in paired.conf to auto-handle._"
+            )
+            log.info(f"Telegram notify-only alert: ok={telegram_send(token, chat_id, msg)}")
+        return 1
+
+    # Acting paths (hangup / hangup_and_sms) — cooldown against retry storms.
     allowed, wait = check_and_set_cooldown(normalized)
     if not allowed:
         log.warning(f"COOLDOWN: {normalized} hit again within {CALL_COOLDOWN_SECONDS}s "
                     f"({wait:.1f}s remaining) — ignoring this ring")
         return 1
 
-    # Step 1: hang up the call
+    # Hang up (both acting actions hang up).
     hung, hangup_info = hangup_call()
     log.info(f"Hangup: ok={hung} info={hangup_info}")
 
-    # Step 2: send SMS reply
-    reply_body = build_auto_reply()
-    sms_ok, sms_info = send_sms(raw, reply_body)
-    log.info(f"SMS reply: ok={sms_ok} info={sms_info}")
+    # Send the auto-reply SMS ONLY for hangup_and_sms.
+    sms_ok = False
+    sms_info = "not sent (action=hangup)"
+    reply_body = ""
+    if action == "hangup_and_sms":
+        reply_body = build_auto_reply()
+        sms_ok, sms_info = send_sms(raw, reply_body)
+        log.info(f"SMS reply: ok={sms_ok} info={sms_info}")
 
-    # Step 3: Telegram notification (transparency)
+    # Telegram notification (transparency)
     token, chat_id = load_telegram_env()
     if token and chat_id:
         safe_caller = md_escape(name or raw)
         safe_raw = md_escape(raw)
-        safe_reply = md_escape(reply_body)
-        safe_hangup = md_escape(hangup_info)
-        safe_sms = md_escape(sms_info)
-
-        status_emoji = "✅" if (hung and sms_ok) else "⚠️"
-        msg = (
-            f"📞 *Trusted caller — auto-handled* {status_emoji}\n"
-            f"From: {safe_caller} ({safe_raw})\n\n"
-            f"*Action:*\n"
-            f"• Hangup: {'✅' if hung else '❌'} {safe_hangup}\n"
-            f"• SMS reply: {'✅' if sms_ok else '❌'} {safe_sms}\n\n"
-            f"*Reply sent:*\n{safe_reply}"
-        )
-        sent = telegram_send(token, chat_id, msg)
+        lines = [
+            f"📞 *Trusted caller — auto-handled* ({md_escape(action)})",
+            f"From: {safe_caller} ({safe_raw})",
+            "",
+            f"• Hangup: {'✅' if hung else '❌'} {md_escape(hangup_info)}",
+        ]
+        if action == "hangup_and_sms":
+            lines.append(f"• SMS reply: {'✅' if sms_ok else '❌'} {md_escape(sms_info)}")
+            lines.append("")
+            lines.append(f"*Reply sent:*\n{md_escape(reply_body)}")
+        sent = telegram_send(token, chat_id, "\n".join(lines))
         log.info(f"Telegram alert: ok={sent}")
 
     # Always return 1 — we already hung up programmatically (or chose not to act)

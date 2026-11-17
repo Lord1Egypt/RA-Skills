@@ -1,43 +1,58 @@
-## Description: <br>
-Create Jira tickets with web-researched content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Jira tickets with web-researched content for Jira issues, tickets, stories, bugs, and tasks.
 
-## Publisher: <br>
-[cehd5170](https://clawhub.ai/user/cehd5170) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cehd5170](https://clawhub.ai/user/cehd5170)
 
-## Use Case: <br>
-Developers and project teams use this skill to create Jira tasks, bugs, stories, or epics from user requests, optionally enriching ticket descriptions with web research and structured acceptance or reproduction details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Jira issues through the user's Jira account. <br>
-Mitigation: Use a limited-scope Jira token or account where possible and review the target project, issue type, summary, labels, assignee, and description before creation. <br>
-Risk: Ticket content and web-researched context may be shared with the configured Jira workspace. <br>
-Mitigation: Review all generated and researched content before submission and avoid including secrets, private data, or unverified claims. <br>
-Risk: Jira credentials are required for API access. <br>
-Mitigation: Keep JIRA_API_TOKEN private, store it only in the agent environment, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and project teams use this skill to create Jira tickets from user requests, optionally enriching the description with web research, acceptance criteria, reproduction steps, labels, priority, assignee, and components.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cehd5170/jira-ticket) <br>
-- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown result summary with Jira issue details, research-source notes, and Jira API command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a Jira issue through the user's configured Jira account and returns the issue key, direct URL, summary, and whether research was included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Jira credentials can create or modify work items within the configured tenant and project permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Jira API token with the minimum project permissions needed for ticket creation and rotate it according to local credential policy.
+
+Risk: Ticket descriptions may include confidential user input, internal details, or external research content.
+
+Mitigation: Review the generated ticket content before creation, especially when the request includes sensitive context or web-researched material.
+
+Risk: A misconfigured Jira base URL could send requests to the wrong Atlassian tenant.
+
+Mitigation: Set JIRA_BASE_URL to the exact expected HTTPS Atlassian tenant before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cehd5170/skills/jira-ticket)
+- [Atlassian API token setup](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown response with Jira issue key, direct URL, summary, research status, and cited sources when research is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Jira issues through Jira REST API v3 using Atlassian Document Format descriptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

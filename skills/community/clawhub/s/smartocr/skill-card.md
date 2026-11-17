@@ -1,44 +1,55 @@
-## Description: <br>
-Recognizes vehicle registration documents and receipts or invoices from image URLs, local image files, or recent OpenClaw session images, returning structured JSON through the SmartOCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes vehicle license documents and receipt or invoice images from URLs, local files, or selected OpenClaw session images and returns structured JSON data.
 
-## Publisher: <br>
-[leeee0923](https://clawhub.ai/user/leeee0923) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeee0923](https://clawhub.ai/user/leeee0923)
 
-## Use Case: <br>
-External users and agents use this skill to extract structured fields from vehicle registration pages, receipts, and invoices supplied as image URLs, local files, or recent conversation uploads. It is useful when an agent needs machine-readable OCR output from supported document images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle documents, receipts, invoices, and recent chat-uploaded images may contain sensitive information and are uploaded to the configured SmartOCR API. <br>
-Mitigation: Use the skill only with a trusted SmartOCR endpoint, confirm the intended image before processing, and prefer explicit file paths unless session-image extraction is necessary. <br>
-Risk: The session helper may process the most recent OpenClaw session image rather than the document the user intended. <br>
-Mitigation: Use the --session, --agent, or --count options deliberately and verify that the selected session image is appropriate before sending it for OCR. <br>
-Risk: The skill requires an API key for SmartOCR access. <br>
-Mitigation: Store SMARTOCR_API_KEY in OpenClaw environment configuration and avoid placing the key in prompts, command history examples, or shared files. <br>
+## Use Case:
 
+Developers and agents use this skill to send vehicle registration, receipt, or invoice images to a configured SmartOCR service and receive extracted fields as structured JSON. It also supports extracting recently uploaded images from OpenClaw session files when direct image access is unavailable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leeee0923/smartocr) <br>
-- [Publisher profile](https://clawhub.ai/user/leeee0923) <br>
-- [SmartOCR API endpoint](https://smartocr.yunlizhi.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON or pretty-printed JSON text emitted by command-line scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SMARTOCR_API_KEY and optionally SMARTOCR_API_URL; local files and session images are uploaded to the configured SmartOCR endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill can upload local or session-derived images to a configured OCR endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for documents approved for transfer to the configured service, prefer the default HTTPS endpoint or a trusted HTTPS host, and use a limited API key.
+
+Risk: The session helper reads OpenClaw session history and may select recent uploaded images without strong scoping or confirmation.
+
+Mitigation: Avoid the session helper unless the target session and image can be verified, or pass an explicit session path and count after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leeee0923/skills/smartocr)
+- [Publisher profile](https://clawhub.ai/user/leeee0923)
+- [SmartOCR service endpoint](https://smartocr.yunlizhi.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON OCR results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, SMARTOCR_API_KEY, and optionally SMARTOCR_API_URL or OPENCLAW_HOME.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

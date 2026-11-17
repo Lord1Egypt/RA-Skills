@@ -1,40 +1,57 @@
-## Description: <br>
-Diagnose and fix OpenClaw cron job delivery failures using scripts that reduce manual configuration errors around silent delivery failures, missing delivery parameters, and invalid session or payload combinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix OpenClaw cron job delivery failures with scripted checks for silent delivery failures, missing delivery parameters, and invalid session or payload combinations.
 
-## Publisher: <br>
-[shimonxin](https://clawhub.ai/user/shimonxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shimonxin](https://clawhub.ai/user/shimonxin)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw cron jobs that appear to run but do not deliver scheduled messages. It helps repair delivery configuration for individual jobs or batches after the operator reviews the intended channel, recipient, and account values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk repair scripts can persistently rewrite scheduled message delivery targets. <br>
-Mitigation: Run diagnose.sh first, back up or export existing cron configuration, replace hard-coded channel, recipient, and account values with intended values, and prefer single-job repair where possible. <br>
-Risk: Using fix-all.sh before review can apply incorrect delivery settings across multiple cron jobs. <br>
-Mitigation: Review exactly which jobs will be changed before bulk repair and rerun diagnose.sh after any fix to confirm the resulting configuration. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw cron jobs that report delivery success without reaching recipients, fail delivery, or have invalid delivery configuration. It guides agents toward scripted diagnosis, scoped fixes, restoration, and verification of cron delivery settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shimonxin/cron-delivery-fix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to run diagnostic, single-job repair, bulk repair, or restore scripts after reviewing cron delivery targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Fix scripts can broadly overwrite cron delivery settings with hard-coded channel, recipient, and account values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review destination values, make a backup, and prefer manually scoped edits or patched scripts that require explicit channel, recipient, and account inputs.
+
+Risk: Running fix-all.sh in production or multi-user cron environments can unintentionally redirect scheduled delivery behavior.
+
+Mitigation: Avoid fix-all.sh in shared or production cron environments unless each affected job and destination has been reviewed first.
+
+Risk: The security scan reports an input-handling flaw in the bundled scripts.
+
+Mitigation: Review script arguments and OpenClaw command output handling before execution, and run diagnosis again after any change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shimonxin/skills/cron-delivery-fix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and cron configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose OpenClaw cron diagnostic and edit commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

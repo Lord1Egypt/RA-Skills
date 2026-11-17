@@ -1,44 +1,64 @@
-## Description: <br>
-Manage Google Workspace users, groups, domains, devices, and admin directory data via the Google Admin SDK API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Workspace users, groups, domains, devices, and admin directory data through Google Admin SDK API workflows.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Workspace administrators and operators use this skill to inspect and manage Google Workspace users, groups, domains, devices, organization units, and directory resources through ClawLink-mediated Google Admin SDK tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth-mediated Google Workspace admin access can inspect, create, update, or delete organization resources. <br>
-Mitigation: Use a connected admin account with the minimum permissions needed for the task and install only when ClawLink-mediated Google Admin access is intended. <br>
-Risk: Write or destructive actions can affect users, groups, devices, domains, or organization units. <br>
-Mitigation: Preview write operations, confirm the target resource and intended effect with the user, and execute only after explicit approval. <br>
+## Use Case:
 
+Workspace administrators and IT operators use this skill to inspect and manage Google Workspace directory resources, including users, groups, organization units, domains, and devices. The skill supports read workflows and confirmed write workflows through a connected Google Workspace admin account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/google-admin-workspace) <br>
-- [Google Admin SDK Documentation](https://developers.google.com/admin-sdk) <br>
-- [Directory API Reference](https://developers.google.com/admin-sdk/directory/reference/rest) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawLink OAuth connection to a Google Workspace admin account; write operations require preview and explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: A third-party plugin and hosted service can use administrator OAuth access for high-impact Google Workspace directory changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production installation, use a dedicated least-privilege admin account, verify the ClawLink plugin and service provenance, and confirm requested OAuth scopes during connection.
+
+Risk: Administrative write or destructive actions could affect users, groups, organization units, or devices.
+
+Mitigation: Preview and explicitly confirm the target resource and intended effect before create, update, delete, group-membership, 2-step-verification, or organization-unit move operations.
+
+Risk: Compromised or overbroad access may be difficult to notice without monitoring.
+
+Mitigation: Monitor Google Workspace audit logs after deployment and revoke the connected OAuth token if activity looks wrong.
+
+Risk: Sensitive credentials or passwords could be exposed through chat or command-line examples.
+
+Mitigation: Avoid putting real passwords directly into chat or command-line examples; prefer secure account provisioning and rotation processes.
+
+## Reference(s):
+
+- [Google Admin SDK Documentation](https://developers.google.com/admin-sdk)
+- [Directory API Reference](https://developers.google.com/admin-sdk/directory/reference/rest)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation-oriented guidance for write and destructive Google Workspace admin operations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

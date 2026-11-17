@@ -1,0 +1,8 @@
+# Frontend-Backend Consistency review dimension
+name: "前后端一致性"
+name_en: "Frontend-Backend Consistency"
+priority: high
+focus: |
+  API/RPC definitions implemented on both client and server.
+  Data field parity, error propagation, event stream coverage.
+  Serialization/deserialization mismatches.

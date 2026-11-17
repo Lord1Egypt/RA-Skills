@@ -1,38 +1,52 @@
-## Description: <br>
-Deep localization workflow covering locale strategy, string extraction, ICU placeholders, locale formatting, RTL and layout checks, translation QA, and continuous delivery with feature flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep localization workflow: locale strategy, string extraction, ICU and placeholders, formatting, RTL and layout, translation QA, and continuous delivery with feature flags.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, product teams, and localization leads use this skill to plan multilingual launches, fix i18n defects, and prepare translation, formatting, RTL, QA, and release workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Later implementation work or third-party translation service setup proposed from this guidance could introduce privacy, security, or operational obligations.
+
+Mitigation: Review proposed implementation changes, CI checks, and third-party service configuration before use.
+
+Risk: Localized legal or jurisdiction-sensitive copy may require specialist review before release.
+
+Mitigation: Route legal copy and market-specific requirements through the appropriate legal or localization reviewers before launch.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, product teams, and localization reviewers use this skill to plan multilingual releases, structure translatable strings, handle locale-specific formatting, prepare RTL and long-string layouts, and run translation QA before launch. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown guidance with staged workflow steps and checklists]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/localization) <br>
-- [Publisher profile](https://clawhub.ai/user/clawkk) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Documentation-only workflow guidance; no executable code or tool calls are included in the release artifact.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown workflow guidance with staged checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code or hidden access is identified by the security evidence.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.0 (source: server release metadata)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

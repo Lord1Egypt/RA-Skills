@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄金白银行情日报</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --gold:#e8c547; --navy:#1a1a2e; --red:#c0392b; --green:#27ae60;
+    --bg:#f5f6fa; --card:#ffffff; --line:#e6e8ef; --txt:#23263a; --sub:#6b7088;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:24px 12px 60px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{background:linear-gradient(135deg,var(--navy),#2d2d52);color:#fff;border-radius:14px;padding:28px 30px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(26,26,46,.18)}
+  header:before{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:radial-gradient(circle,var(--gold),transparent 70%);opacity:.25}
+  header h1{font-size:26px;letter-spacing:1px;display:flex;align-items:center;gap:10px}
+  header h1 .dot{width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+  header .meta{margin-top:10px;font-size:13px;color:#c5c8e0}
+  header .tag{display:inline-block;background:rgba(232,197,71,.18);color:var(--gold);border:1px solid rgba(232,197,71,.4);padding:2px 10px;border-radius:20px;font-size:12px;margin-top:8px}
+  section{background:var(--card);border-radius:12px;padding:22px 24px;margin-top:18px;box-shadow:0 2px 10px rgba(26,26,46,.06);border:1px solid var(--line)}
+  section h2{font-size:18px;color:var(--navy);border-left:4px solid var(--gold);padding-left:12px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  section h2 .num{background:var(--navy);color:var(--gold);font-size:13px;width:26px;height:26px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line)}
+  th{background:#f0f1f8;color:var(--sub);font-weight:600;font-size:13px}
+  td:first-child,th:first-child{text-align:left}
+  tr:hover td{background:#fafbff}
+  .up{color:var(--red);font-weight:600}
+  .down{color:var(--green);font-weight:600}
+  .flat{color:var(--sub)}
+  .gsr-big{font-size:46px;font-weight:800;color:var(--navy);text-align:center;letter-spacing:1px}
+  .gsr-big span{color:var(--gold)}
+  .gsr-stats{display:flex;justify-content:space-around;margin:14px 0 6px;flex-wrap:wrap;gap:10px}
+  .gsr-stats div{text-align:center;flex:1;min-width:110px}
+  .gsr-stats .v{font-size:20px;font-weight:700;color:var(--navy)}
+  .gsr-stats .l{font-size:12px;color:var(--sub)}
+  #gsrChart{width:100%;height:300px;margin-top:8px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card-sub{background:#fafbff;border:1px solid var(--line);border-radius:10px;padding:16px}
+  .card-sub h3{font-size:15px;color:var(--navy);margin-bottom:8px}
+  .card-sub p{font-size:13.5px;color:#3a3f5c;margin-bottom:6px}
+  .bull,.bear{padding:14px 16px;border-radius:10px}
+  .bull{background:#fdecea;border:1px solid #f5c6c0}
+  .bear{background:#e9f7ef;border:1px solid #bfe6cf}
+  .bull h3,.bear h3{font-size:14px;margin-bottom:8px}
+  .bull h3{color:var(--red)} .bear h3{color:var(--green)}
+  .bull li,.bear li{font-size:13.5px;margin:5px 0 5px 18px;color:#3a3f5c}
+  .note{font-size:12.5px;color:var(--sub);margin-top:10px;line-height:1.7}
+  .risk{list-style:none;counter-reset:r}
+  .risk li{counter-increment:r;font-size:13.5px;padding:10px 12px 10px 44px;position:relative;background:#fafbff;border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+  .risk li:before{content:counter(r);position:absolute;left:12px;top:10px;width:22px;height:22px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .disclaimer{font-size:12px;color:var(--sub);border-top:1px dashed var(--line);margin-top:14px;padding-top:12px}
+  .hl{background:rgba(232,197,71,.25);padding:1px 5px;border-radius:4px;font-weight:600;color:var(--navy)}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}header h1{font-size:21px}th,td{padding:8px 7px;font-size:12.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1><span class="dot"></span>黄金白银行情日报</h1>
+  <div class="meta">{{REPORT_DATE}}　|　数据截止：{{DATA_ASOF}}</div>
+  <div class="tag">{{HEADER_TAG}}</div>
+</header>
+
+<!-- 速览：结论与风险提示（置顶） -->
+<section style="border:2px solid var(--gold);box-shadow:0 4px 16px rgba(232,197,71,.18)">
+  <h2>简明结论与风险提示（速览）</h2>
+  <p style="font-size:14px;color:#3a3f5c;margin-bottom:14px"><b>结论：</b>{{CONCLUSION_TEXT}}</p>
+  <ul class="risk">{{RISK_ITEMS}}</ul>
+  <p class="disclaimer">{{DISCLAIMER}}</p>
+</section>
+
+<!-- 核心图表仪表盘 -->
+<section>
+  <h2>核心图表仪表盘</h2>
+  <p class="note">{{DASHBOARD_NOTE}}</p>
+  <div class="grid2">
+    <div class="card-sub"><h3 style="font-size:15px;color:var(--navy);margin:0 0 4px">① 黄金人民币单价（沪金主力连续，元/克）</h3><div id="goldRmbChart" style="width:100%;height:300px"></div></div>
+    <div class="card-sub"><h3 style="font-size:15px;color:var(--navy);margin:0 0 4px">② 黄金美元单价（COMEX 黄金，USD/oz）</h3><div id="goldUsdChart" style="width:100%;height:300px"></div></div>
+  </div>
+  <div class="card-sub" style="margin-top:16px">
+    <h3 style="font-size:15px;color:var(--navy);margin:0 0 6px">③ 金银比（近半年，GSR）</h3>
+    <div class="gsr-big">{{GSR_BIG}}</div>
+    <div class="gsr-stats">
+      <div><div class="v">{{GSR_MIN}}</div><div class="l">半年最低（{{GSR_MIN_LABEL}}）</div></div>
+      <div><div class="v">{{GSR_MEAN}}</div><div class="l">半年均值</div></div>
+      <div><div class="v">{{GSR_MAX}}</div><div class="l">半年最高（{{GSR_MAX_LABEL}}）</div></div>
+    </div>
+    <div id="gsrChart" style="width:100%;height:330px"></div>
+    <p class="note">{{GSR_NOTE}}</p>
+  </div>
+</section>
+
+<!-- 一、核心数据一览 -->
+<section>
+  <h2><span class="num">一</span>核心数据一览（国际现货）</h2>
+  <table>
+    <thead><tr><th>品种</th><th>最新价<br>(USD/oz)</th><th>折合<br>(元/克)</th><th>涨跌幅</th><th>昨收<br>(USD/oz)</th><th>日内高</th><th>日内低</th><th>盘面</th></tr></thead>
+    <tbody>{{SEC1_ROWS}}</tbody>
+  </table>
+  <p class="note">{{SEC1_NOTE}}</p>
+</section>
+
+<!-- 二、国内 T+D 与期货 -->
+<section>
+  <h2><span class="num">二</span>国内 T+D 与期货价格</h2>
+  <table>
+    <thead><tr><th>品种</th><th>最新价</th><th>涨跌</th><th>涨跌幅</th><th>最高</th><th>最低</th><th>昨收</th></tr></thead>
+    <tbody>{{SEC2_ROWS}}</tbody>
+  </table>
+  <p class="note">{{SEC2_NOTE}}</p>
+</section>
+
+<!-- 三、关键比率与宏观指标 -->
+<section>
+  <h2><span class="num">三</span>关键比率与宏观指标</h2>
+  <table>
+    <thead><tr><th>指标</th><th>最新值</th><th>变动</th><th>说明</th></tr></thead>
+    <tbody>{{SEC3_ROWS}}</tbody>
+  </table>
+  <p class="note">{{SEC3_NOTE}}</p>
+</section>
+
+<!-- 四、金银比 -->
+<section>
+  <h2><span class="num">四</span>金银比（Gold/Silver Ratio）</h2>
+  <p class="note">{{SEC4_NOTE}}</p>
+</section>
+
+<!-- 五、黄金驱动因素 -->
+<section>
+  <h2><span class="num">五</span>黄金走势关键驱动因素</h2>
+  <div class="grid2">{{SEC5_CARDS}}</div>
+</section>
+
+<!-- 六、白银特征 -->
+<section>
+  <h2><span class="num">六</span>白银走势特征</h2>
+  <div class="grid2">{{SEC6_CARDS}}</div>
+</section>
+
+<!-- 七、多空矛盾 -->
+<section>
+  <h2><span class="num">七</span>近期核心矛盾（利多 vs 利空）</h2>
+  <div class="grid2">
+    <div class="bull"><h3>利多因素</h3><ul>{{SEC7_BULL}}</ul></div>
+    <div class="bear"><h3>利空因素</h3><ul>{{SEC7_BEAR}}</ul></div>
+  </div>
+</section>
+
+<!-- 八、机构目标价 -->
+<section>
+  <h2><span class="num">八</span>主流机构最新目标价</h2>
+  <table>
+    <thead><tr><th>机构</th><th>最新目标价</th><th>是否已下调</th><th>下调幅度 / 备注</th></tr></thead>
+    <tbody>{{SEC8_ROWS}}</tbody>
+  </table>
+  <p class="note">{{SEC8_NOTE}}</p>
+</section>
+
+<!-- 九、关键指标与价位 -->
+<section>
+  <h2><span class="num">九</span>后续关键指标与价位</h2>
+  <div class="grid2">
+    <div class="card-sub"><h3>事件日历</h3>{{SEC9_CAL}}</div>
+    <div class="card-sub"><h3>关键技术价位</h3>{{SEC9_LEVELS}}</div>
+  </div>
+</section>
+
+</div>
+
+<script>
+{{GSR_SCRIPT}}
+(function(){
+  var chart = echarts.init(document.getElementById('gsrChart'));
+  chart.setOption({
+    grid:{left:48,right:20,top:30,bottom:36},
+    tooltip:{trigger:'axis',valueFormatter:function(v){return v.toFixed(2)}},
+    xAxis:{type:'category',data:dates,axisLine:{lineStyle:{color:'#cfd3e6'}},axisLabel:{color:'#6b7088'}},
+    yAxis:{type:'value',min:44,max:74,splitLine:{lineStyle:{color:'#eef0f7'}},axisLabel:{color:'#6b7088'}},
+    series:[
+      {name:'金银比',type:'line',data:values,smooth:true,symbolSize:7,
+       lineStyle:{width:3,color:'#e8c547'},itemStyle:{color:'#e8c547'},
+       areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(232,197,71,.28)'},{offset:1,color:'rgba(232,197,71,.02)'}])},
+       markLine:{symbol:'none',data:[
+         {yAxis:gsrMean,lineStyle:{color:'#1a1a2e',type:'dashed',width:1.5},label:{formatter:'均值 '+gsrMean,color:'#1a1a2e',position:'insideEndTop'}},
+         {yAxis:values[values.length-1],lineStyle:{color:'#c0392b',type:'dotted',width:1.5},label:{formatter:'当前 '+values[values.length-1],color:'#c0392b',position:'insideEndBottom'}}
+       ]}
+      }
+    ]
+  });
+  window.addEventListener('resize',function(){chart.resize();});
+})();
+</script>
+
+<script>
+(function(){
+  var gold90 = {{GOLD90_JSON}};
+  function mkChart(id, cfg){
+    var c = echarts.init(document.getElementById(id));
+    c.setOption({
+      grid:{left:58,right:20,top:26,bottom:58},
+      tooltip:{trigger:'axis', valueFormatter:function(v){return v.toFixed(2);}},
+      xAxis:{type:'category', data:cfg.dates, boundaryGap:false,
+        axisLabel:{color:'#6b7088', fontSize:11, hideOverlap:true},
+        axisLine:{lineStyle:{color:'#cfd3e6'}}},
+      yAxis:{type:'value', scale:true, name:cfg.unit, nameTextStyle:{color:'#6b7088', fontSize:11},
+        splitLine:{lineStyle:{color:'#eef0f7'}}, axisLabel:{color:'#6b7088'}},
+      dataZoom:[{type:'inside'},{type:'slider', height:14, bottom:20, borderColor:'#e6e8ef'}],
+      series:[{name:cfg.name, type:'line', data:cfg.values, smooth:true, symbol:'none',
+        lineStyle:{width:2.4, color:cfg.color}, itemStyle:{color:cfg.color},
+        areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:cfg.area},{offset:1,color:'rgba(255,255,255,0)'}])},
+        markPoint:{symbolSize:1, label:{fontSize:11, color:'#6b7088'}, data:[{type:'max',name:'最高'},{type:'min',name:'最低'}]}
+      }]
+    });
+    return c;
+  }
+  var rmb = mkChart('goldRmbChart', {dates:gold90.rmb.dates, values:gold90.rmb.values, name:'人民币单价', unit:'元/克', color:'#e8c547', area:'rgba(232,197,71,.32)'});
+  var usd = mkChart('goldUsdChart', {dates:gold90.usd.dates, values:gold90.usd.values, name:'美元单价', unit:'USD/oz', color:'#1a1a2e', area:'rgba(26,26,46,.18)'});
+  window.addEventListener('resize', function(){ rmb.resize(); usd.resize(); });
+})();
+</script>
+
+</body>
+</html>

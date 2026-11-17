@@ -1,41 +1,60 @@
-## Description: <br>
-Your personal AI assistant platform - multi-agent orchestration, task management, and autonomous workflow execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal AI assistant platform - multi-agent orchestration, task management, and autonomous workflow execution.
 
-## Publisher: <br>
-[shiyanhui](https://clawhub.ai/user/shiyanhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiyanhui](https://clawhub.ai/user/shiyanhui)
 
-## Use Case: <br>
-Developers and external users can use this skill to connect an agent to the 1Person service for multi-agent orchestration, task management, reusable workflows, and persistent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to an external service that requires ONEPERSON_API_KEY. <br>
-Mitigation: Use a dedicated or least-privileged API key where available and keep it out of shared environments. <br>
-Risk: Autonomous workflows, connected-tool permissions, and persistent memory can affect sensitive data or high-impact accounts. <br>
-Mitigation: Review 1Person workflow approval, connected-tool permissions, and memory retention settings before using the skill with sensitive data or high-impact accounts. <br>
+## Use Case:
 
+Developers use OnePerson to connect an agent to the 1Person service for multi-agent orchestration, autonomous task management, reusable workflows, and persistent context across sessions.
 
-## Reference(s): <br>
-- [1Person homepage](https://1person.pro) <br>
-- [1Person documentation](https://docs.1person.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown or plain text guidance with configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ONEPERSON_API_KEY to use the external 1Person service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: ONEPERSON_API_KEY is a secret credential and could enable unauthorized access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key in a secret manager or protected environment variable, avoid committing it to source control, and rotate it if exposure is suspected.
+
+Risk: Tasks and context sent to 1Person may include sensitive information, and the service description includes persistent memory.
+
+Mitigation: Review 1Person's data handling behavior before sensitive use and limit submitted context to information approved for that service.
+
+Risk: Autonomous workflows can act on delegated tasks beyond the user's immediate view.
+
+Mitigation: Review planned workflows, permissions, and outputs before relying on them for important work.
+
+## Reference(s):
+
+- [1Person Homepage](https://1person.pro)
+- [1Person Documentation](https://docs.1person.pro)
+- [ClawHub Skill Page](https://clawhub.ai/shiyanhui/skills/oneperson)
+- [Publisher Profile](https://clawhub.ai/user/shiyanhui)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration]
+
+**Output Format:** [Markdown guidance with environment variable setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ONEPERSON_API_KEY.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

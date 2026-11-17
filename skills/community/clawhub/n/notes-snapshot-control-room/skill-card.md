@@ -1,48 +1,57 @@
-## Description: <br>
-Helps agents connect Apple Notes Snapshot to local hosts by proving notesctl preflight state, wiring notesctl mcp, and keeping AI Diagnose, Local Web API, MCP, and attach proof boundaries distinct. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents connect Apple Notes Snapshot to local hosts, run notesctl MCP, diagnose attach failures, separate AI Diagnose from MCP, and verify the control-room proof path.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers, operators, and local-agent users use this skill to guide Apple Notes Snapshot setup, local proof checks, host MCP configuration, and troubleshooting without overstating hosted-service or universal attach claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can direct a local agent to run an external Apple Notes tool. <br>
-Mitigation: Review the referenced notesctl repository and require the agent to show exact commands before execution. <br>
-Risk: The install/load path can create a recurring local backup job. <br>
-Mitigation: Allow the install/load step only after confirming the user wants a recurring backup job and understands how to disable or remove it. <br>
+## Use Case:
 
+Developers and operators use this skill to prove Apple Notes Snapshot's local macOS control room, wire the read-only-first MCP lane into a local host, and distinguish local preflight issues from host attach issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojiou176/notes-snapshot-control-room) <br>
-- [Install And Attach](references/install-and-attach.md) <br>
-- [Usage And Proof](references/usage-and-proof.md) <br>
-- [Apple Notes Snapshot landing page](https://xiaojiou176-open.github.io/apple-notes-snapshot/) <br>
-- [Apple Notes Snapshot quickstart](https://xiaojiou176-open.github.io/apple-notes-snapshot/quickstart/) <br>
-- [Apple Notes Snapshot proof page](https://xiaojiou176-open.github.io/apple-notes-snapshot/proof/) <br>
-- [Apple Notes Snapshot MCP guide](https://xiaojiou176-open.github.io/apple-notes-snapshot/mcp/) <br>
-- [Apple Notes Snapshot for agents](https://xiaojiou176-open.github.io/apple-notes-snapshot/for-agents/) <br>
-- [Public skills pack docs](https://xiaojiou176-open.github.io/apple-notes-snapshot/for-agents/public-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local preflight steps, MCP host wiring guidance, capability-boundary explanations, and troubleshooting recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The normal setup path can run unverified code from GitHub and install a recurring local job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced apple-notes-snapshot repository before running notesctl, prefer a specific audited commit with checksum or signature verification, run one-time proof commands first, and enable the recurring install only after understanding how to inspect and remove the scheduled job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaojiou176/skills/notes-snapshot-control-room)
+- [Install And Attach](references/install-and-attach.md)
+- [Usage And Proof](references/usage-and-proof.md)
+- [Apple Notes Snapshot landing](https://xiaojiou176-open.github.io/apple-notes-snapshot/)
+- [Quickstart](https://xiaojiou176-open.github.io/apple-notes-snapshot/quickstart/)
+- [Proof page](https://xiaojiou176-open.github.io/apple-notes-snapshot/proof/)
+- [MCP provider guide](https://xiaojiou176-open.github.io/apple-notes-snapshot/mcp/)
+- [For Agents overview](https://xiaojiou176-open.github.io/apple-notes-snapshot/for-agents/)
+- [Public skills pack docs](https://xiaojiou176-open.github.io/apple-notes-snapshot/for-agents/public-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on local proof, MCP attach boundaries, and host configuration guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

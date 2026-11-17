@@ -1,43 +1,57 @@
-## Description: <br>
-职业规划未来镜像系统：收集用户信息，生成3条差异化职业路径的Awwwards级HTML报告，构建'3年后的自己'进行镜像对话，生成《来自未来的信》沉浸式HTML页面。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yq Career Future Mirror helps users plan career transitions or development paths by collecting background details, producing three differentiated career-path reports, supporting future-self dialogue, and generating a future-letter HTML page.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users use this skill for Chinese-language career planning when they are exploring early-career choices, career transitions, bottlenecks, or returning to work. It gathers career background and preferences, proposes three differentiated career paths, supports a future-self dialogue, and generates HTML career-report and future-letter files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for resume-like details, income expectations, and personal career doubts. <br>
-Mitigation: Use only with information the user is comfortable sharing, and avoid including unnecessary sensitive personal details. <br>
-Risk: The skill silently saves future-self dialogue to output/data/conversation_log.json. <br>
-Mitigation: Tell the agent not to silently save conversation logs, review the generated file, and delete it after use when retention is not needed. <br>
-Risk: Generated HTML reports may contact third-party CDN and font services when opened online. <br>
-Mitigation: Review the generated HTML before opening or sharing it, and remove or self-host external font, Tailwind, Chart.js, and Alpine.js resources where appropriate. <br>
+## Use Case:
 
+External users and agents use this skill to structure career-planning conversations, compare three career paths, create HTML career reports, conduct future-self reflection, and generate a future-letter artifact.
 
-## Reference(s): <br>
-- [Career survey data](reference/career_survey_data.json) <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-career-future-mirror) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese-language Markdown responses with inline shell commands, JSON snippets, and generated HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates output/reports/career_report.html, output/reports/future_letter.html, and output/data/conversation_log.json during the guided workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Career and resume-like details may be saved locally in generated conversation logs and reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get user consent before logging, avoid storing raw sensitive text where possible, and delete output/data/conversation_log.json after use.
+
+Risk: Generated HTML reports load unpinned third-party scripts from public CDNs.
+
+Mitigation: Prefer self-contained or locally bundled report assets, or review the generated HTML before opening it with network access.
+
+## Reference(s):
+
+- [Career survey data schema](reference/career_survey_data.json)
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-career-future-mirror)
+- [Tailwind CSS CDN](https://cdn.tailwindcss.com)
+- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js)
+- [Alpine.js CDN](https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese conversational text plus generated HTML, JSON conversation logs, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local report files under output/reports and conversation data under output/data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

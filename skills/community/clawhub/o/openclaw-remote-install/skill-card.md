@@ -1,39 +1,59 @@
-## Description: <br>
-Installs and configures OpenClaw on remote servers over SSH, with automatic selection among installer, Docker, Podman, npm, and pnpm methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click remote OpenClaw deployment via SSH that auto-detects the target environment and selects Docker, Podman, npm, pnpm, or installer-based setup.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-Developers and system administrators use this skill to deploy OpenClaw to VPS, cloud, or multi-machine environments and to configure model credentials, channels, and gateway settings after installation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run commands and change configuration on remote hosts. <br>
-Mitigation: Use it only against servers you control and review the planned remote installation or configuration action before execution. <br>
-Risk: SSH credentials and model provider API keys can be exposed through command-line arguments, host verification choices, logs, or plaintext configuration. <br>
-Mitigation: Prefer SSH keys, verify host fingerprints, use environment-variable references for secrets, avoid command-line passwords or API keys, and protect or delete generated logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/openclaw-remote-install) <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure OpenClaw on VPS, cloud, or other remote servers over SSH. It supports automated multi-machine deployment, async progress logging, and post-install model, channel, and gateway configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local installation logs under ~/.openclaw/remote-install-logs/ when the bundled scripts run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release security summary says the skill performs remote OpenClaw installation but uses risky SSH and installer practices.
+
+Mitigation: Review before use on production hosts, prefer key-based SSH with verified known_hosts, and avoid password-based SSH mode.
+
+Risk: The release security guidance warns about curl-to-bash installer paths and live upstream deployment channels.
+
+Mitigation: Run those installer paths only when the upstream scripts and deployment channel are trusted, and pin package versions or container image digests where possible.
+
+Risk: The release security guidance warns against inline API keys and recommends secret references.
+
+Mitigation: Use environment-variable or secret-reference modes for provider credentials, and avoid passing API keys inline in command arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/skills/openclaw-remote-install)
+- [OpenClaw installer endpoint](https://openclaw.ai/install.sh)
+- [OpenClaw CLI installer endpoint](https://openclaw.ai/install-cli.sh)
+- [Docker convenience installer endpoint](https://get.docker.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and configuration options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SSH, package-manager, container, and API-key configuration commands for remote execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

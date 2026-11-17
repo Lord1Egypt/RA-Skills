@@ -1,40 +1,54 @@
-## Description: <br>
-Launch verification and watchdog discipline for delegated, backgrounded, browser-driven, and long-running tasks that prevents false "running" claims, clarifies failed_to_start vs failed_after_work_started, and treats heartbeat as a watchdog rather than the main progress loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides launch verification and watchdog discipline for delegated, backgrounded, browser-driven, and long-running tasks, preventing false "running" claims, clarifying failed_to_start vs failed_after_work_started, and treating heartbeat as a watchdog rather than the main progress loop.
 
-## Publisher: <br>
-[mike-alford](https://clawhub.ai/user/mike-alford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike-alford](https://clawhub.ai/user/mike-alford)
 
-## Use Case: <br>
-Developers and operators use this skill to verify that delegated, backgrounded, browser-driven, or long-running agent work has actually started before reporting it as running. It helps distinguish startup failures from later execution failures and encourages concise, truthful progress updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add unnecessary reporting overhead when applied to tiny direct tasks. <br>
-Mitigation: Apply it only to delegated, backgrounded, browser-driven, or long-running work where startup verification matters. <br>
-Risk: An agent could still report work as running based only on a handle rather than verified startup evidence. <br>
-Mitigation: Require direct checks that the process, child session, or browser workflow exists and reached a usable state before using the running status. <br>
+## Use Case:
 
+Developers and agents use this skill to manage delegated, backgrounded, browser-driven, or long-running work with verified startup, truthful status reporting, and clear failure classification.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mike-alford/subagent-sheepdog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with status labels and concise progress messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or data collection; the skill guides launch verification, status classification, retry posture, and user-facing communication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Agents may incorrectly report delegated or backgrounded work as running before startup is verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require startup health checks before using the running state, and classify startup failures as failed_to_start.
+
+Risk: Long-running or delegated tasks may stall or fail after meaningful work begins.
+
+Mitigation: Use heartbeat as a watchdog for overdue or stalled work and report failed_after_work_started when execution began before failure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike-alford/skills/subagent-sheepdog)
+- [Publisher profile](https://clawhub.ai/user/mike-alford)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and concise status language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

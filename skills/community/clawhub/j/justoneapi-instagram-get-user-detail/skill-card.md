@@ -1,42 +1,52 @@
-## Description: <br>
-Call GET /api/instagram/get-user-detail/v1 for Instagram User Profile through JustOneAPI with username. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/instagram/get-user-detail/v1 for Instagram User Profile through JustOneAPI with username.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to retrieve basic Instagram profile metadata for a provided username through JustOneAPI, including follower, following, and post counts. It is suited for legitimate account metadata workflows where the user has a reason to query a specific handle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves Instagram profile metadata and can be misused for unauthorized monitoring or profiling. <br>
-Mitigation: Use it only for legitimate lookups of specific usernames and avoid broad surveillance or profiling workflows. <br>
-Risk: The JustOneAPI token is sensitive and this API sends it as a request query parameter. <br>
-Mitigation: Provide the token through JUST_ONE_API_TOKEN or the helper's token argument, and avoid exposing token values in chat, logs, screenshots, or shared command history. <br>
+## Use Case:
 
+External users and developers use this skill to look up public Instagram profile metadata, including follower, following, and post counts, by username through JustOneAPI.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_user_detail&utm_content=project_link) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_user_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown summary followed by raw JSON when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a username; backend errors should include the operation ID and response payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through command-line arguments, full URLs, logs, shell history, process telemetry, proxy logs, or error reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-scope token where possible, avoid environments that log command lines or full URLs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_user_detail&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_get_user_detail&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-instagram-get-user-detail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and an Instagram username; responses should identify the operation ID and endpoint path used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,53 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:52.529151+00:00",
+  "input": {
+    "bytes": 2885,
+    "path": "examples/showcase-repo-evidence.json",
+    "sha256": "c8c582af993116134a0d193750272ce0e2fb06f6c4dd13b2681e1474fc245f6e"
+  },
+  "mode": "architecture",
+  "output": {
+    "bytes": 10912,
+    "path": "examples/showcase-repo-evidence.svg",
+    "sha256": "2a93bdb1aa109e563255941d5550bdbb4ca5132ec245994bf3c52835ca988570"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 3,
+      "mode": "architecture",
+      "nodeKinds": [
+        "agent",
+        "llm",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 2,
+        "low": 0,
+        "medium": 1,
+        "unspecified": 0
+      },
+      "theme": "showcase"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

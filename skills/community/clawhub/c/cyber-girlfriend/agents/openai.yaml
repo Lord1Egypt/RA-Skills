@@ -4,4 +4,4 @@ interface:
   default_prompt: "Use $cyber-girlfriend to build or customize an owner-only proactive companion with Markdown private-life context, guardrails, and OpenClaw cron delivery."
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

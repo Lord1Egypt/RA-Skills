@@ -1,48 +1,58 @@
-## Description: <br>
-CodeQL security audit pipeline for static scanning, SARIF triage, and QL query optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeQL security audit pipeline for static scanning, SARIF triage, and QL query optimization.
 
-## Publisher: <br>
-[k2-l](https://clawhub.ai/user/k2-l) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[k2-l](https://clawhub.ai/user/k2-l)
 
-## Use Case: <br>
-Developers and security engineers use this skill to run CodeQL scans, triage SARIF findings into reviewable Markdown reports, and tune custom QL queries across Java, JavaScript, Python, and C/C++ projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SCAN mode can run local repository scans and project build commands. <br>
-Mitigation: Run scans only on trusted repositories or inside a sandbox or container, and confirm the target path and language before execution. <br>
-Risk: Broad trigger phrases may activate scan behavior before the intended mode is clear. <br>
-Mitigation: Confirm whether the user wants SCAN, AUDIT, or TUNE mode before running scripts or suggesting commands. <br>
-Risk: SARIF findings without complete data flow can be suspicious rather than confirmed vulnerabilities. <br>
-Mitigation: Require manual review of source-to-sink evidence before treating findings as exploitable or requesting proof-of-concept details. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run CodeQL scans, triage SARIF findings into audit reports, and tune QL queries for supported Java, JavaScript, Python, and C/C++ repositories.
 
-## Reference(s): <br>
-- [CodeQL language guides](https://codeql.github.com/docs/codeql-language-guides/) <br>
-- [Debugging Guide](references/debugging.md) <br>
-- [Java / Kotlin Reference](references/lang-java.md) <br>
-- [JavaScript / TypeScript Reference](references/lang-javascript.md) <br>
-- [Python Reference](references/lang-python.md) <br>
-- [C / C++ Reference](references/lang-cpp.md) <br>
-- [ClawHub release page](https://clawhub.ai/k2-l/codeql-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, code, guidance] <br>
-**Output Format:** [Markdown reports, SARIF files, terminal output, and QL tuning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SCAN mode can create a local CodeQL database and SARIF output; AUDIT mode can write an exp.md report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scan mode can execute repository build commands and includes an unsafe command-construction issue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scan mode only on trusted repositories or in a disposable sandbox without secrets, and avoid repository paths containing shell metacharacters.
+
+Risk: Generated Markdown reports are based on SARIF evidence that may contain untrusted or misleading content.
+
+Mitigation: Treat generated reports as evidence for review rather than as instructions, and manually validate suspicious findings before acting on them.
+
+## Reference(s):
+
+- [CodeQL language guides](https://codeql.github.com/docs/codeql-language-guides/)
+- [CodeQL Debugging Guide](references/debugging.md)
+- [CodeQL Reference: C / C++](references/lang-cpp.md)
+- [CodeQL Reference: Java / Kotlin](references/lang-java.md)
+- [CodeQL Reference: JavaScript / TypeScript](references/lang-javascript.md)
+- [CodeQL Reference: Python](references/lang-python.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, SARIF-derived audit reports, and QL tuning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create CodeQL databases, SARIF files, and Markdown audit or tuning reports when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

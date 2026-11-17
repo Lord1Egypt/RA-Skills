@@ -1,45 +1,62 @@
-## Description: <br>
-Navigate tax obligations for multi-country ecommerce including VAT, GST, sales tax thresholds, and marketplace facilitator rules by region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate tax obligations for multi-country ecommerce including VAT, GST, sales tax thresholds, and marketplace facilitator rules by region.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers and operators use this skill to map country and state tax obligations, distinguish marketplace-facilitated coverage from direct sales exposure, and build prioritized next steps for professional verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax thresholds, marketplace facilitator policies, and filing obligations can change or depend on seller-specific facts. <br>
-Mitigation: Treat outputs as educational guidance and verify current rules with official sources or a qualified tax professional before acting. <br>
-Risk: Users may provide unnecessary sensitive financial or account-access information. <br>
-Mitigation: Do not provide tax portal logins, bank details, API keys, or account access; the skill does not need them. <br>
-Risk: The release includes crypto and purchase capability tags that server security evidence says are unrelated to the artifact's purpose. <br>
-Mitigation: Do not grant purchase, payment, crypto, or account-access permissions for normal use. <br>
+## Use Case:
 
+External ecommerce sellers and advisors use this skill to turn multi-country selling details into an educational tax compliance map covering thresholds, marketplace facilitator coverage, product-rate issues, and next steps.
 
-## Reference(s): <br>
-- [Output Template - Global Tax Guide](references/output-template.md) <br>
-- [Jurisdiction Reference - Ecommerce Tax Thresholds](references/jurisdiction-reference.md) <br>
-- [Marketplace Facilitator Guide - Platform-by-Platform Reference](references/marketplace-facilitator-guide.md) <br>
-- [Global Tax Guide - Compliance Quality Checklist](assets/compliance-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with market summary tables, obligation narratives, risk flags, and recommended next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational assessment only; users should verify tax obligations with current official sources or a qualified tax professional before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Tax thresholds, rates, marketplace facilitator coverage, and registration links may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rules with official tax authorities or a qualified tax professional before registering, filing, collecting tax, or changing business operations.
+
+Risk: The skill produces educational ecommerce tax triage, not professional tax or legal advice.
+
+Mitigation: Keep the educational disclaimer in outputs and use the generated assessment as a starting point for professional review.
+
+Risk: Marketplace facilitator assumptions can shift responsibility between the platform and the seller.
+
+Mitigation: Confirm facilitator status from the platform's current policy page or seller support in writing and record the verification date.
+
+## Reference(s):
+
+- [Global Tax Guide Skill Page](https://clawhub.ai/leooooooow/skills/global-tax-guide)
+- [Publisher Profile](https://clawhub.ai/user/leooooooow)
+- [Output Template](references/output-template.md)
+- [Jurisdiction Reference](references/jurisdiction-reference.md)
+- [Marketplace Facilitator Guide](references/marketplace-facilitator-guide.md)
+- [Compliance Quality Checklist](assets/compliance-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with summary tables, narratives, risk flags, recommended next steps, and an educational disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as educational triage and verified with official tax authorities or a qualified tax professional before action.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

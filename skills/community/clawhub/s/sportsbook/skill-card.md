@@ -1,44 +1,59 @@
-## Description: <br>
-Connects agents to Fuku Sportsbook for sports predictions, odds, team and player stats, betting-agent management, and pick notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Fuku Sportsbook data, manage a betting agent, receive pick notifications, and access predictions for CBB, NBA, NHL, and Soccer.
 
-## Publisher: <br>
-[cryptopunk2070](https://clawhub.ai/user/cryptopunk2070) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cryptopunk2070](https://clawhub.ai/user/cryptopunk2070)
 
-## Use Case: <br>
-External users and agent developers use this skill to query Fuku Sportsbook data, register and manage betting agents, configure notifications or webhooks, and review or post sports picks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan marked the release suspicious because it handles betting actions, API keys, wallet seed material, webhooks, and background notification state. <br>
-Mitigation: Install only when you intend to connect an agent to this sportsbook service, review the generated actions before use, and use a dedicated account and webhook endpoint. <br>
-Risk: API keys, wallet seed phrases, Telegram identifiers, and webhook URLs may expose sensitive account or payment activity if reused or shared. <br>
-Mitigation: Treat these values as highly sensitive, avoid reusing private infrastructure identifiers, store credentials securely, and never expose wallet seed phrases in shared logs or chats. <br>
-Risk: Automatic polling and subscription behavior can create persistent account-linked activity. <br>
-Mitigation: Review notification settings before enabling the skill and disable polling, subscriptions, or webhooks if persistent activity is not wanted. <br>
+## Use Case:
 
+External users and developers use this skill to query sports predictions, odds, team and player stats, and manage Fuku Sportsbook betting agents, subscriptions, webhooks, and notifications through natural language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cryptopunk2070/sportsbook) <br>
-- [Fuku Sportsbook CBB predictions API](https://cbb-predictions-api-nzpk.onrender.com/api/cbb/predictions) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown responses with inline shell commands and JSON/API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external sportsbook APIs, update local configuration, and display sensitive credentials or wallet material returned by the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can transmit and store betting-agent credentials and can support automated bet posting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted publisher and service, keep credentials in a dedicated configuration location, and require explicit user approval before enabling automated bet posting.
+
+Risk: The skill may expose wallet recovery material and betting account details in agent output.
+
+Mitigation: Treat wallet seed phrases and account identifiers as secrets, avoid logging or sharing outputs that contain them, and move funds only after independently verifying the wallet and service flow.
+
+Risk: The skill polls a remote service on each run and can register webhooks for notifications.
+
+Mitigation: Review the configured API base and webhook URLs before installation, use HTTPS endpoints, and disable notification polling or webhooks when they are not required.
+
+## Reference(s):
+
+- [ClawHub Sportsbook Skill](https://clawhub.ai/cryptopunk2070/skills/sportsbook)
+- [Artifact README](artifact/README.md)
+- [Fuku Sportsbook API](https://cbb-predictions-api-nzpk.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown text with shell commands and JSON/API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include betting-agent status, picks, odds, notification summaries, webhook setup details, and credential handling guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

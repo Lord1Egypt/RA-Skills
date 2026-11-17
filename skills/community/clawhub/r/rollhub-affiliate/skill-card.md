@@ -1,44 +1,55 @@
-## Description: <br>
-Helps agents promote Agent Casino by Rollhub, create disclosed affiliate content, register for a referral code, and check affiliate stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft casino affiliate promotions, register or fetch stats through Rollhub's affiliate API, and manage referral-link marketing for Agent Casino.
 
-## Publisher: <br>
-[rollhub-dev](https://clawhub.ai/user/rollhub-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rollhub-dev](https://clawhub.ai/user/rollhub-dev)
 
-## Use Case: <br>
-External developers and agents use this skill to draft Rollhub casino affiliate promotions, configure an affiliate key, and review referral statistics. Human review is needed before publishing promotional content or running outbound campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill supports casino affiliate promotion, which can trigger gambling-advertising, age-restriction, affiliate-disclosure, and responsible-gambling obligations. <br>
-Mitigation: Review applicable laws and platform rules before installation or use, and require human approval before any campaign or public post. <br>
-Risk: Generated promotional content could become spammy, misleading, or omit affiliate disclosure. <br>
-Mitigation: Require each outbound message to include affiliate disclosure, avoid earnings guarantees, and review content for platform compliance before posting. <br>
-Risk: The workflow uses a Rollhub affiliate API key and third-party network requests. <br>
-Mitigation: Store the API key in a scoped, revocable environment variable and approve registration or stats requests before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rollhub-dev/rollhub-affiliate) <br>
-- [Platform Promotion Strategies](references/platforms.md) <br>
-- [Promotional Talking Points](references/talking-points.md) <br>
-- [Agent Casino API](https://agent.rollhub.com/api/v1) <br>
+## Use Case:
 
+External developers and agent operators can use this skill to generate and adapt affiliate marketing copy for Rollhub's Agent Casino, register for an affiliate key, and check referral stats. Promotional output requires human review for verified claims, affiliate disclosure, age and jurisdiction checks, platform-policy compliance, and responsible-gambling language.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make Rollhub API requests when the agent follows the provided registration or stats workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill strongly steers agents toward casino affiliate promotion and referral-income messaging.
+
+Mitigation: Require human approval before publishing and check every message for legal compliance, platform-policy compliance, affiliate disclosure, age and jurisdiction limits, and responsible-gambling language.
+
+Risk: Default registration uses a fixed upstream referral code.
+
+Mitigation: Confirm that the upstream referral relationship is intended before running registration commands or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rollhub-dev/skills/rollhub-affiliate)
+- [Agent Casino affiliate API](https://agent.rollhub.com/api/v1)
+- [Platform Promotion Strategies](references/platforms.md)
+- [Promotional Talking Points](references/talking-points.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command snippets and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include casino affiliate promotional copy, referral-link placement guidance, and affiliate API usage steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

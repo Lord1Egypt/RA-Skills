@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "seller-action-plan",
+  "workflow": "audit",
+  "focus": "action",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

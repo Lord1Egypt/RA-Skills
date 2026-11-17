@@ -1,43 +1,53 @@
-## Description: <br>
-Help users prepare for therapy or counseling sessions by organizing thoughts, clarifying goals, identifying patterns, and structuring what to bring up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users prepare for therapy or counseling sessions by organizing thoughts, clarifying goals, identifying patterns, and structuring what to bring up.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to prepare for therapy or counseling sessions by organizing recent experiences, emotional patterns, goals, and priority topics into notes they can bring to a licensed professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on therapy-preparation guidance for crisis support, diagnosis, urgent treatment decisions, or as a substitute for a licensed mental health professional. <br>
-Mitigation: Use the skill only to organize notes for therapy or counseling sessions; direct crisis, diagnosis, and urgent treatment needs to licensed professionals or appropriate crisis resources. <br>
-Risk: Therapy-preparation notes may include sensitive personal or mental health information. <br>
-Mitigation: Share only information needed for session preparation and review outputs before storing or forwarding them. <br>
+## Use Case:
 
+External users use this skill to prepare for therapy or counseling sessions by organizing recent concerns, emotional patterns, goals, and priority discussion topics into concise notes. It supports preparation and reflection, but does not provide diagnosis, treatment, or crisis care.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/therapy-prep) <br>
-- [Publisher Profile](https://clawhub.ai/user/harrylabsj) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown therapy-preparation notes, checklists, prompts, and prioritized discussion topics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no shell commands, API calls, file writes, or system access are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: Users may mistake preparation prompts for clinical care, diagnosis, or treatment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill only helps organize notes for a therapist and does not replace professional mental-health care.
+
+Risk: Users in crisis or severe distress may rely on the skill instead of urgent support.
+
+Mitigation: Direct crisis or severe-distress situations to appropriate local emergency or mental-health services and prioritize discussion with a qualified professional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/therapy-prep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown session-preparation notes and reflective prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, installs, persistence, network access, or hidden authority; outputs are general preparation support and should not be treated as clinical care.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

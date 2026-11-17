@@ -1,42 +1,50 @@
-## Description: <br>
-README Auto Generator analyzes a project's structure, source code, dependencies, and configuration files to generate or refresh a comprehensive README.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generate comprehensive, well-structured README.md files by analyzing your project's codebase, dependencies, configuration, and structure.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers, maintainers, and teams use this skill to create a new README.md, regenerate outdated project documentation, or standardize README structure across repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation could expose secrets, internal endpoints, proprietary implementation details, or sensitive configuration values from a private project. <br>
-Mitigation: Review the generated README diff before committing or publishing it, especially for private repositories. <br>
-Risk: Generated documentation may be inaccurate if project structure, entry points, dependencies, or configuration are misdetected. <br>
-Mitigation: Check generated installation, usage, API, and configuration sections against the project before release. <br>
+## Use Case:
 
+Developers, maintainers, and teams use this skill to create or refresh README.md documentation from project structure, configuration, dependencies, source code, and existing documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/readme-auto-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/ericlooi504) <br>
-- [Standard README specification](https://github.com/RichardLitt/standard-readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown README content, usually written as README.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve custom sections when updating an existing README.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Generated README content may disclose configuration details, environment-variable names, endpoints, or internal project information if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated configuration, environment-variable, endpoint, and internal-project sections before publishing or committing the README.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericlooi504/skills/readme-auto-gen)
+- [Standard README specification](https://github.com/RichardLitt/standard-readme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown README content with project-specific sections and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation, usage, API, configuration, testing, Docker, contributing, license, and changelog sections when supported by project evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

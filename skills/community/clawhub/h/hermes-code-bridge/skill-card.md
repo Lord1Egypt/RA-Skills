@@ -1,40 +1,53 @@
-## Description: <br>
-Use when connecting Hermes Agent to local coding CLIs such as Codex, Kimi Code, Claude Code, OpenCode, Gemini CLI, or other terminal-based coding assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects Hermes Agent to local terminal-based coding assistants such as Codex, Kimi Code, Claude Code, OpenCode, and Gemini CLI for agent dispatch, session reuse, monitoring, evidence collection, and reporting.
 
-## Publisher: <br>
-[xuyang-liu16](https://clawhub.ai/user/xuyang-liu16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyang-liu16](https://clawhub.ai/user/xuyang-liu16)
 
-## Use Case: <br>
-Developers and engineers use this skill to let Hermes coordinate installed terminal coding agents for implementation, review, debugging, documentation, and repository maintenance while preserving session ownership and evidence-based reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may inspect local coding-agent session or history files. <br>
-Mitigation: Confirm the backend, working directory, session, and prompt before use, and avoid exposing private session data in shareable output. <br>
-Risk: Dispatched coding CLIs can edit code, run long jobs, or perform other side effects. <br>
-Mitigation: Require confirmation before side-effectful runs and report the exact command, workspace, artifacts, verification results, and remaining uncertainty. <br>
+## Use Case:
 
+Developers and engineers use this skill to let Hermes coordinate installed local coding CLIs for implementation, review, debugging, documentation, repository maintenance, and experiment work while preserving session context and reporting evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuyang-liu16/hermes-code-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured dispatch prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces coordination guidance, prompt templates, command recipes, evidence checklists, and concise run reports rather than executing a coding agent by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: The skill can guide Hermes to drive local coding CLIs that may edit files, run commands, spend resources, or otherwise affect the local workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep approval prompts enabled by default and review the selected backend, working directory, session, and prompt before any side-effectful run.
+
+Risk: Raw shell or tmux prompt interpolation can behave unexpectedly with untrusted or multiline text.
+
+Mitigation: Avoid raw interpolation for untrusted input; pass arguments or prompt content through safer channels before dispatch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuyang-liu16/skills/hermes-code-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, prompt templates, command recipes, and evidence-based report templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local CLI dispatch that changes files or runs commands; outputs should include the backend used, working directory, command evidence, verification results, and unresolved risks.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

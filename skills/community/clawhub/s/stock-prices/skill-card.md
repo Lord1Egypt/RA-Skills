@@ -1,41 +1,53 @@
-## Description: <br>
-Query real-time stock prices and market data using the Stock Prices API, with responses returned in TOON format for decoding by @toon-format/toon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time stock prices and market data using the Stock Prices API, with responses returned in TOON format for decoding with @toon-format/toon.
 
-## Publisher: <br>
-[anthonylee1994](https://clawhub.ai/user/anthonylee1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anthonylee1994](https://clawhub.ai/user/anthonylee1994)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch current quote data for one or more stock symbols, then decode the TOON response for price monitoring, portfolio tracking, or market summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols are sent to the disclosed stock-prices.on99.app service. <br>
-Mitigation: Use the skill only when sharing requested symbols with that service is acceptable. <br>
-Risk: The optional TOON decoder adds a project dependency. <br>
-Mitigation: Install @toon-format/toon deliberately and prefer a pinned package version. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stock Prices on ClawHub](https://clawhub.ai/anthonylee1994/stock-prices) <br>
-- [anthonylee1994 publisher profile](https://clawhub.ai/user/anthonylee1994) <br>
-- [Stock Prices API endpoint](https://stock-prices.on99.app) <br>
+## Use Case:
 
+Developers and external users use this skill to fetch current stock quotes, monitor prices, summarize portfolios, and analyze common market fields for ticker symbols.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses from the disclosed API are TOON text and should be decoded before structured use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ticker and portfolio symbol lists are sent to stock-prices.on99.app.
+
+Mitigation: Send only the ticker symbols required for the quote lookup and avoid placing unrelated sensitive information in the symbols parameter.
+
+Risk: The skill depends on the third-party @toon-format/toon decoder to parse API responses.
+
+Mitigation: Verify the package source and pin a specific reviewed package version before use.
+
+## Reference(s):
+
+- [Stock Prices API](https://stock-prices.on99.app)
+- [Stock Prices ClawHub skill page](https://clawhub.ai/anthonylee1994/skills/stock-prices)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses are TOON text and should be decoded with @toon-format/toon before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

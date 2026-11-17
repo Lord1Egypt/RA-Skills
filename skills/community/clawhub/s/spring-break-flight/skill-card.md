@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents search and present spring break travel options through the flyai CLI, including flights and related travel bookings powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book spring break flights for student vacations and spring holiday travel, with related travel support for hotels, trains, attraction tickets, itineraries, visa information, insurance, and car rental powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users use this skill to have an agent collect route and date details, run flyai travel search commands, and return real-time flight options with booking links for spring break travel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt an agent to install and run a global third-party flyai CLI. <br>
-Mitigation: Approve the CLI installation manually and check the package source and version before use. <br>
-Risk: Flight search details are sent to flyai/Fliggy when the CLI is used. <br>
-Mitigation: Avoid sensitive travel plans unless you trust the provider and are comfortable sharing the search details. <br>
+## Use Case:
 
+External users can use this skill to have an agent collect travel parameters, run the flyai CLI for spring break flight searches, and summarize bookable options in Markdown. It is intended for travel booking assistance where live CLI output is required before presenting results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/spring-break-flight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output for travel data and avoids raw JSON in user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks agents to globally install and run an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed, pinned CLI version manually and run it in a restricted environment before allowing the skill to execute flight searches.
+
+Risk: The skill directs agents to execute user-filled shell commands without clear consent or input-safety guidance.
+
+Mitigation: Require explicit approval before command execution and validate origin, destination, date, and sort parameters against the documented parameter list.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/spring-break-flight)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links when flight options are shown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Design and implement Oban background job workers for Elixir, including queues, retry strategies, uniqueness constraints, cron scheduling, error handling, worker code, queue configuration, and test setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement Oban background job workers for Elixir, including queues, retry strategies, uniqueness constraints, cron scheduling, error handling, worker code, queue configuration, and test setups.
 
-## Publisher: <br>
-[gchapim](https://clawhub.ai/user/gchapim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gchapim](https://clawhub.ai/user/gchapim)
 
-## Use Case: <br>
-Developers and engineers use this skill to add background jobs, asynchronous processing, scheduled tasks, recurring cron jobs, and related tests to Elixir applications that use Oban. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated webhook worker patterns can send payloads to externally supplied destinations. <br>
-Mitigation: Validate webhook destinations, sign payloads, enforce timeouts, and avoid sending sensitive payload fields. <br>
-Risk: Cleanup and pruning workers can perform destructive or broad database writes. <br>
-Mitigation: Scope cleanup queries carefully and test destructive or bulk-write jobs with rollback or dry-run plans before production use. <br>
-Risk: Import and ETL worker examples can read from file paths supplied in job arguments. <br>
-Mitigation: Prefer server-controlled import paths or upload IDs, and validate inputs before processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Worker Patterns Reference](references/worker-patterns.md) <br>
-- [Testing Oban Workers Reference](references/testing-oban.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to add background jobs, asynchronous processing, scheduled tasks, recurring cron jobs, and Oban test coverage to Elixir applications.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Elixir and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Oban worker modules, queue and plugin configuration, migration commands, cron examples, testing patterns, and monitoring guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated webhook workers may post data to arbitrary URLs.
+
+Mitigation: Require authorized endpoint allowlists, tenant ownership checks, request signing, timeouts, bounded retries, and tests before production use.
+
+Risk: Generated notification workers may send email or SMS to unintended recipients.
+
+Mitigation: Validate recipient authorization, user preferences, tenant scoping, unsubscribe or consent rules, and avoid logging sensitive message contents.
+
+Risk: Generated import or cleanup workers may read arbitrary file paths or perform broad database writes and deletes.
+
+Mitigation: Scope file access to approved storage, validate tenant identifiers, review retention rules, bound batch sizes, and test destructive jobs with representative fixtures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gchapim/skills/oban)
+- [Worker Patterns Reference](artifact/references/worker-patterns.md)
+- [Testing Oban Workers Reference](artifact/references/testing-oban.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Elixir code blocks, bash commands, configuration examples, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Oban worker modules, queue configuration, migration commands, cron schedules, retry and uniqueness settings, test patterns, and monitoring guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

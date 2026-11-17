@@ -31,39 +31,39 @@ done
 
 if [[ -z "$VIDEO_INPUT" ]]; then
   echo "Usage: analyze-video.sh <video_url_or_file> [--prompt \"...\"] [--model gemini]"
-  echo "Models: gemini, gemini-large, claude, openai (video-capable models)"
+  echo "Models: gemini (default, paid), gemini-large (needs a model with video input)"
   echo "Formats: MP4, MOV, AVI"
   exit 1
 fi
 
 # Build JSON body using temp files to avoid ARG_MAX limits with large base64 data
-BODY_FILE=$(mktemp /tmp/video_body_XXXXXX.json)
+BODY_FILE=$(mktemp "${TMPDIR:-/tmp}/video_body_XXXXXX")
 trap "rm -f '$BODY_FILE'" EXIT
 
 if [[ -f "$VIDEO_INPUT" ]]; then
-  # Local file: encode to base64 and build JSON via temp files
-  FORMAT="mp4"
+  # Local file: send as a data URI in a video_url part (input_video is ignored by the API)
   case "$VIDEO_INPUT" in
-    *.mov) FORMAT="mov" ;;
-    *.avi) FORMAT="avi" ;;
+    *.mov|*.MOV) MIME="video/quicktime" ;;
+    *.avi|*.AVI) MIME="video/x-msvideo" ;;
+    *.webm|*.WEBM) MIME="video/webm" ;;
+    *) MIME="video/mp4" ;;
   esac
 
-  BASE64_FILE=$(mktemp /tmp/video_b64_XXXXXX)
-  base64 -w0 "$VIDEO_INPUT" > "$BASE64_FILE"
+  BASE64_FILE=$(mktemp "${TMPDIR:-/tmp}/video_b64_XXXXXX")
   trap "rm -f '$BODY_FILE' '$BASE64_FILE'" EXIT
+  { printf 'data:%s;base64,' "$MIME"; base64 < "$VIDEO_INPUT" | tr -d '\n'; } > "$BASE64_FILE"
 
-  # Build JSON using jq with file input to avoid shell arg limits
-  jq -n -c --rawfile b64data "$BASE64_FILE" \
+  # Build JSON from a file to avoid shell arg limits
+  jq -n -c --rawfile data "$BASE64_FILE" \
     --arg model "$MODEL" \
     --arg prompt "$PROMPT" \
-    --arg format "$FORMAT" \
     '{
       model: $model,
       messages: [{
         role: "user",
         content: [
           {type: "text", text: $prompt},
-          {type: "input_video", input_video: {data: ($b64data | rtrimstr("\n")), format: $format}}
+          {type: "video_url", video_url: {url: $data}}
         ]
       }]
     }' > "$BODY_FILE"

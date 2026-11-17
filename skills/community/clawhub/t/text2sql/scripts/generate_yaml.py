@@ -83,8 +83,7 @@ def generate_topic_yaml(
         # Build standard configuration content
         config = {
             "version": "0.0.1",
-            "semantic_model": 
-                {
+            "semantic_model": {
                     "name": topic_name,
                     "description": topic_name,
                     "ai_context": {
@@ -92,7 +91,6 @@ def generate_topic_yaml(
                     },
                     "datasets": []
                 }
-            
         }
         
         # Add dataset information

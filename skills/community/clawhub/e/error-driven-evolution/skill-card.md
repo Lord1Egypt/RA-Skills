@@ -1,43 +1,54 @@
-## Description: <br>
-Structured error-to-rule learning system for AI agents that converts corrections and mistakes into reusable rules, stores them in lessons.md, and prompts pre-decision scanning to avoid repeated mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured error-to-rule learning system for AI agents that converts mistakes and user corrections into executable rules in lessons.md, scans those rules before future decisions, and supports anonymized community sharing.
 
-## Publisher: <br>
-[MarsNavi](https://clawhub.ai/user/MarsNavi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marsnavi](https://clawhub.ai/user/marsnavi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help AI agents turn user corrections, repeated mistakes, and near misses into durable workspace rules. Agents can then scan those rules before related decisions and optionally prepare anonymized lessons for community sharing after review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent workspace lessons can influence future agent behavior with stale, duplicate, or incorrect rules. <br>
-Mitigation: Review lessons.md periodically, remove duplicates, and mark obsolete rules before relying on them. <br>
-Risk: Stored or shared lessons may contain secrets, personal data, URLs, file paths, or other identifiers. <br>
-Mitigation: Redact sensitive details before saving or sharing lessons, and manually review anonymized content before publication. <br>
-Risk: Optional community-sharing workflows may publish lesson content externally. <br>
-Mitigation: Do not run external submission scripts, open pull requests, or publish lessons without explicit manual approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quick Reference - Error-Driven Evolution](references/quick-ref.md) <br>
-- [Community Sharing - How to contribute lessons](references/community-sharing.md) <br>
-- [Agent Lessons Community Repository](https://github.com/anthropic-ai/agent-lessons) <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn corrections and repeated mistakes into durable behavioral rules that agents scan before future decisions. It is intended for workspace-level agent behavior improvement and optional anonymized sharing of reusable lessons.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown lesson entries and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append rules to lessons.md and suggest anonymized community submissions after manual review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent workspace-level rules can influence later agent decisions and may capture sensitive or project-specific details if saved without review.
+
+Mitigation: Review every new lesson before saving it, avoid secrets and sensitive project details, and periodically retire obsolete or overly broad rules.
+
+Risk: Community rule files can introduce unvalidated or unsuitable guidance into an agent workflow.
+
+Mitigation: Pin or manually review community rule files before use, and treat imported lessons as guidance that must be checked against the current task context.
+
+## Reference(s):
+
+- [Community Sharing](references/community-sharing.md)
+- [Quick Reference](references/quick-ref.md)
+- [Agent Lessons Community Repository](https://github.com/anthropic-ai/agent-lessons)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent workspace-level lesson rules and optional anonymized community submissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

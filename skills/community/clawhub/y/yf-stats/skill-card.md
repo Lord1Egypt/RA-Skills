@@ -1,41 +1,57 @@
-## Description: <br>
-Fetches stock data and generates price charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches stock data and generates price charts.
 
-## Publisher: <br>
-[grayson85](https://clawhub.ai/user/grayson85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grayson85](https://clawhub.ai/user/grayson85)
 
-## Use Case: <br>
-Agents use this skill to look up public stock ticker data and create simple price-trend charts when a user asks for market snapshots, charts, graphs, or trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Yahoo Finance through yfinance for public ticker data. <br>
-Mitigation: Use it only in environments where outbound market-data requests are allowed. <br>
-Risk: When charting is requested, the skill writes a PNG chart file in the working directory. <br>
-Mitigation: Review and clean generated chart files according to the agent workspace retention policy. <br>
-Risk: Python dependencies are specified with version ranges rather than pinned versions. <br>
-Mitigation: Use pinned dependency versions or a lockfile in stricter environments. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Yahoo Finance ticker data and optionally generate a six-month price chart for a requested symbol.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text from stdout and optional PNG chart file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a ticker symbol and optional --chart flag; chart output is saved as <TICKER>_chart.png.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-controlled ticker and chart flag values may be passed through the command template unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate ticker symbols, restrict chart flag values to the documented option, and pass arguments without shell interpolation.
+
+Risk: Chart generation writes an output file based on the requested ticker symbol.
+
+Mitigation: Write generated charts only to a dedicated safe directory after ticker validation.
+
+Risk: Runtime dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Pin and review dependencies before broad or sensitive use.
+
+## Reference(s):
+
+- [yf-stats ClawHub skill page](https://clawhub.ai/grayson85/skills/yf-stats)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands]
+
+**Output Format:** [Console text with optional PNG chart file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When chart output is requested, the artifact behavior writes a ticker-named PNG chart in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

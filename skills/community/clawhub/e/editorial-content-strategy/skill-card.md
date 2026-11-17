@@ -1,41 +1,55 @@
-## Description: <br>
-Loads reusable audience and channel strategy for writing, rewriting, or optimizing editorial content for a specified reader and publication channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load reusable editorial audience and channel strategy for content production.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Content creators and editorial agents use this skill to adapt writing or rewriting work to a specified target audience and publication channel. It supports audience positioning, channel-fit strategy, depth control, tone, structure, and packaging guidance for workplace-learning content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill influences tone, structure, and publication packaging, which can produce content that is off-brand, inaccurate, or not publication-ready. <br>
-Mitigation: Review generated content for brand fit, factual accuracy, and publication readiness before publishing. <br>
+## Use Case:
 
+Content creators and editorial agents use this skill to load audience positioning and channel-fit strategy before writing, rewriting, or optimizing content. It is especially aimed at OpenClaw content for light-technical workplace learners on WeChat public accounts or Xiaohongshu.
 
-## Reference(s): <br>
-- [Editorial Content Strategy on ClawHub](https://clawhub.ai/chaoyang78/editorial-content-strategy) <br>
-- [Audience Strategy: Light-Technical Workplace Learners](references/audiences/light-technical-workplace-learners.md) <br>
-- [Channel Strategy: WeChat Public Account](references/channels/wechat-public-account.md) <br>
-- [Channel Strategy: Xiaohongshu](references/channels/xiaohongshu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or prose guidance for writing, rewriting, and content optimization] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires both target audience and publication channel before producing channel-fit content guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The agent may apply the wrong editorial strategy if the target audience or publication channel is missing or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit audience and channel selection before using the reference guidance.
+
+Risk: Platform-specific advice may be applied to the wrong publishing context.
+
+Mitigation: Confirm whether the content is for WeChat Public Account or Xiaohongshu before drafting or optimizing.
+
+## Reference(s):
+
+- [Audience Strategy: Light-Technical Workplace Learners](references/audiences/light-technical-workplace-learners.md)
+- [Channel Strategy: WeChat Public Account](references/channels/wechat-public-account.md)
+- [Channel Strategy: Xiaohongshu](references/channels/xiaohongshu.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text editorial guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the user or agent to specify both target audience and publication channel before applying the guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Generate product requirement documents (PRDs) with a complete structure for product design and requirement writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate product requirement documents (PRD) with a complete structure for product design and requirement writing.
 
-## Publisher: <br>
-[zhao202404](https://clawhub.ai/user/zhao202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhao202404](https://clawhub.ai/user/zhao202404)
 
-## Use Case: <br>
-Product managers and product teams use this skill to draft complete Chinese PRDs from a product idea, partial requirements, or an existing feature brief. The skill helps structure goals, scope, functional and non-functional requirements, analytics, acceptance criteria, milestones, dependencies, and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential product, customer, legal, or strategy details while asking the agent to draft a PRD. <br>
-Mitigation: Avoid pasting sensitive information unless it is approved for the agent environment; redact or generalize confidential details before use. <br>
-Risk: Generated PRDs may contain assumptions, incomplete requirements, or unvalidated acceptance criteria when user input is sparse. <br>
-Mitigation: Review the assumptions, open questions, KPI mappings, and acceptance criteria with product, engineering, design, data, and compliance stakeholders before relying on the PRD. <br>
+## Use Case:
 
+Product managers, product teams, and builders use this skill to turn ideas or partial requirements into complete Chinese PRDs with goals, scoped requirements, acceptance criteria, milestones, risks, and open questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhao202404/prd-skill2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown PRD document in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions, explicit assumptions, requirement tables, acceptance criteria, milestones, and follow-up suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users expecting English or multilingual output may receive Chinese PRD content by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the desired language in the prompt or adapt the skill instructions before use.
+
+Risk: When input details are missing, the generated PRD may include assumptions or fields marked for confirmation.
+
+Mitigation: Review all assumptions, open questions, KPIs, and acceptance criteria with product and engineering stakeholders before treating the PRD as final.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhao202404/skills/prd-skill2026)
+- [Usage examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown PRD document in Chinese, with tables where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include requirement IDs, assumptions, acceptance criteria, analytics events, milestones, risks, and follow-up suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

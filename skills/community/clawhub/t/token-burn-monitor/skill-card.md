@@ -1,46 +1,64 @@
-## Description: <br>
-Token Burn Monitor provides a local OpenClaw dashboard for tracking per-agent token usage, model cost breakdowns, cache hit rates, cron health, and 30-day trends, with prompts redacted by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time token consumption monitoring dashboard for OpenClaw agents that tracks per-agent token usage, model cost breakdowns, cache hit rates, cron job status, and 30-day historical trends with prompts redacted by default.
 
-## Publisher: <br>
-[KasparChen](https://clawhub.ai/user/KasparChen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasparchen](https://clawhub.ai/user/kasparchen)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to monitor daily token burn, model cost, cache efficiency, per-call details, and cron job health from local session and cron data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard reads local OpenClaw session logs and cron data. <br>
-Mitigation: Install it only on machines where the dashboard is permitted to read those files. <br>
-Risk: Prompt text can become visible when prompt display is explicitly enabled. <br>
-Mitigation: Keep showPrompts and SHOW_PROMPTS disabled unless every dashboard viewer is trusted to see prompt text. <br>
-Risk: Custom themes can display any data returned by the local API. <br>
-Mitigation: Review custom or third-party themes before enabling them. <br>
-Risk: Exposing the service beyond localhost could reveal local usage and cost data. <br>
-Mitigation: Keep the server bound to localhost unless a separate access-control layer is reviewed and approved. <br>
+## Use Case:
 
+Developers and operators running OpenClaw agents use this skill to monitor token spend, model cost drivers, cache efficiency, prompt-cost outliers, and cron job health from a local dashboard.
 
-## Reference(s): <br>
-- [Token Burn Monitor API Reference](API.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub listing](https://clawhub.ai/KasparChen/token-burn-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown setup guidance, shell commands, JSON API responses, and local dashboard views] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a localhost Node.js service and reads OpenClaw session and cron files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.3.1 (source: server release evidence) <br>
+Risk: Sensitive agent activity can be exposed through the local dashboard, especially if localhost services are proxied or bound beyond loopback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to 127.0.0.1, do not set BIND_HOST to a non-loopback address without authentication, and review deployment on shared machines.
+
+Risk: Prompt excerpts may be visible when prompt display is explicitly enabled.
+
+Mitigation: Keep showPrompts disabled unless debugging on a trusted single-user machine; treat session data as sensitive.
+
+Risk: Custom themes and session or cron data can introduce unsafe browser rendering paths.
+
+Mitigation: Use trusted themes, review custom theme HTML before enabling it, and avoid loading untrusted session or cron data into the dashboard.
+
+Risk: Unverified installation sources can change the code that reads local agent data.
+
+Mitigation: Prefer pinned or verified ClawHub installation sources and review the release before installing on shared or sensitive systems.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/kasparchen/skills/token-burn-monitor)
+- [OpenClaw](https://openclaw.ai)
+- [API Reference](API.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown setup guidance, shell commands, JSON configuration examples, JSON API responses, and a local HTML dashboard.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a zero-dependency Node.js localhost service on port 3847 by default; prompt excerpts remain redacted unless showPrompts is explicitly enabled.]
+
+## Skill Version(s):
+
+5.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

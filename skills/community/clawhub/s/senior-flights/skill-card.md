@@ -1,46 +1,61 @@
-## Description: <br>
-Find senior flight deals, 60+ discount tickets, elderly travel options, accessible boarding, and comfortable seating recommendations for senior travelers using flyai-powered travel search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find senior flight deals, 60+ discount tickets and elderly travel options with accessible boarding and comfortable seating for senior travelers, plus related travel services powered by Fliggy.
 
-## Publisher: <br>
-[ivan97](https://clawhub.ai/user/ivan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivan97](https://clawhub.ai/user/ivan97)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search senior-friendly flights, prioritize comfortable daytime or direct itineraries, and format real-time flyai results with booking links and travel tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install a global flyai CLI and may escalate to sudo. <br>
-Mitigation: Require explicit user approval for installation, avoid automatic sudo or global installs, and proceed only when the user trusts the flyai CLI. <br>
-Risk: The skill may quietly log raw travel queries. <br>
-Mitigation: Disable or remove execution-log behavior before use when travel details should not be retained. <br>
-Risk: Flight prices, dates, discounts, accessibility accommodations, and booking details may be incorrect or change before purchase. <br>
-Mitigation: Confirm changed dates, senior discounts, accessibility accommodations, and booking details directly before purchasing. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to find senior-friendly flights, compare comfort-oriented options, and present booking links from flyai CLI results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivan97/senior-flights) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for flight data; user-facing results should include booking links, comfort tips, and a flyai brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires installing and running the third-party flyai CLI, which may have broad local effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, install flyai only when that provider is intended, and avoid running sudo npm install for it.
+
+Risk: The runbook asks agents to keep local logs of raw travel queries and command history.
+
+Mitigation: Disable or constrain local logging when travel queries contain sensitive personal, itinerary, or accessibility information.
+
+Risk: The skill can produce misleading travel results if an agent bypasses the CLI or invents fares, discounts, booking links, or accessibility details.
+
+Mitigation: Require every travel result to come from flyai CLI output and include a detailUrl-backed booking link before presenting it to a user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivan97/skills/senior-flights)
+- [Fallbacks - Flight Category (Senior)](references/fallbacks.md)
+- [Playbooks - senior-flights](references/playbooks.md)
+- [Runbook - Execution Log Schema (Universal)](references/runbook.md)
+- [Templates - senior-flights](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, comfort tips, and inline shell commands when troubleshooting is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires results from the flyai CLI and should not output raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

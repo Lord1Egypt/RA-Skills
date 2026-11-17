@@ -1,39 +1,53 @@
-## Description: <br>
-Find B2B leads and write outreach messages for manufacturing/OEM agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find B2B leads and write outreach messages for manufacturing/OEM agents.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-External sales, manufacturing, OEM, and B2B service agents use this skill to research public lead sources, prioritize target companies, and draft personalized outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated lead lists or outreach may include inaccurate, outdated, or non-public information. <br>
-Mitigation: Review all lead data and use only public or permissioned sources before relying on or sending outreach. <br>
-Risk: Cold outreach can create privacy, anti-spam, or do-not-contact compliance issues. <br>
-Mitigation: Follow applicable privacy and anti-spam rules, keep claims truthful, honor opt-outs, and avoid automated sending without review. <br>
+## Use Case:
 
+External sales and business development users can use this skill to research public B2B prospects and draft personalized outreach for manufacturing, OEM, import/export, SaaS, or marketplace partner acquisition.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown lead lists, research notes, and outreach email templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided target profile plus web search and web fetch tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Public business and founder information may be inaccurate or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify lead details against current public sources before relying on them.
+
+Risk: Cold outreach may implicate email, privacy, and platform rules.
+
+Mitigation: Review messages for accuracy and compliance with applicable rules before sending.
+
+## Reference(s):
+
+- [Lead Gen Seller ClawHub listing](https://clawhub.ai/yongtaop1-sys/skills/lead-gen-seller)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown lead lists and cold outreach templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a target company description and web search or web fetch tools for public lead research.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

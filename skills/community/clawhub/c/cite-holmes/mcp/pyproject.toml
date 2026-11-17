@@ -1,0 +1,27 @@
+[project]
+name = "cite-holmes-mcp"
+version = "2.8.0"
+description = "cite-holmes MCP server — mechanical citation verification (DOI/PMID/arXiv/URL) with three MCP primitives (tools/resources/prompts); zero keys, zero telemetry"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "SorSor" }]
+keywords = ["mcp", "citation", "verification", "hallucination", "fact-check"]
+dependencies = ["fastmcp>=2.0"]
+
+[project.scripts]
+cite-holmes-mcp = "server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# 单模块布局:server.py 与嵌入式引擎(壳 verify_refs.py+七层 ch_*.py,ADR-0010)
+# 都在 mcp/ 根,作为顶级模块安装(无包目录)。
+# v6.2.0 F54 实锤修复:wheel include 漏七层模块=独立安装(uvx/pip)后壳动态
+# 加载 ch_* 全部 FileNotFound,MCP 无法启动——清单与 mcp/*.py 的⊇一致性由
+# tests 锁与 sync_engine.sh 双闸看护,新增模块必须同步本清单。
+include = ["server.py", "verify_refs.py",
+           "ch_text.py", "ch_netio.py", "ch_registry.py", "ch_semantic.py",
+           "ch_verify.py", "ch_reports.py", "ch_cli.py"]

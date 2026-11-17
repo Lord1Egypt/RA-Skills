@@ -1,44 +1,57 @@
-## Description: <br>
-Manage a Talkspresso business using the Talkspresso REST API for services, appointments, products, clients, earnings, calendar settings, profile updates, scheduling, and related account tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Talkspresso business (services, appointments, products, clients, earnings, calendar) using the Talkspresso REST API.
 
-## Publisher: <br>
-[baron-talkspresso](https://clawhub.ai/user/baron-talkspresso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[baron-talkspresso](https://clawhub.ai/user/baron-talkspresso)
 
-## Use Case: <br>
-Talkspresso account owners and operators use this skill to manage bookings, services, products, client records, earnings, profile settings, availability, files, and customer communications through authenticated Talkspresso API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad account-changing Talkspresso API actions, including booking, cancellation, profile, calendar, service, product, pricing, messaging, and deletion changes. <br>
-Mitigation: Require explicit user confirmation before any mutating action and show the exact target record, payload, recipient, message text, price, or schedule change before execution. <br>
-Risk: The skill can upload local files to Talkspresso endpoints. <br>
-Mitigation: Confirm the exact local file path, upload endpoint, intended destination, and attachment target before uploading. <br>
-Risk: The skill depends on a Talkspresso API key with access to client, transaction, scheduling, and account data. <br>
-Mitigation: Use the least-privileged API key available, avoid exposing it in logs or shared output, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Talkspresso API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/baron-talkspresso/talkspresso) <br>
-- [Talkspresso API Key Settings](https://app.talkspresso.com/settings/api-keys) <br>
-- [Talkspresso Signup](https://talkspresso.com/signup) <br>
+## Use Case:
 
+External Talkspresso business users use this skill to manage business operations such as profiles, services, digital products, appointments, clients, earnings, calendar availability, files, messaging, and related account workflows through the Talkspresso REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TALKSPRESSO_API_KEY and jq .data for Talkspresso REST API responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide broad Talkspresso account changes, including services, products, appointments, profile, calendar availability, files, messaging, and pricing.
+
+Mitigation: Use a limited-scope API key if available and review account-changing commands before execution.
+
+Risk: Destructive or outward-facing actions may delete content, cancel bookings, approve bookings, send messages or email invitations, upload files, or change public business information.
+
+Mitigation: Require explicit user confirmation before delete, cancel, approve, send-message, send-email, file-upload, pricing, profile, or availability changes.
+
+Risk: The skill requires a Talkspresso API key that can authorize business account operations.
+
+Mitigation: Store the key in the TALKSPRESSO_API_KEY environment variable, avoid exposing it in prompts or logs, and rotate it if it is disclosed.
+
+## Reference(s):
+
+- [Talkspresso API Reference](references/api.md)
+- [Talkspresso Skill Page](https://clawhub.ai/baron-talkspresso/skills/talkspresso)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TALKSPRESSO_API_KEY and expects Talkspresso API responses wrapped in a data field.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

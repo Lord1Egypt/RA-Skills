@@ -1,0 +1,13 @@
+{
+  "name": "opc-community-manager",
+  "displayName": "OPC社区运营官",
+  "version": "1.0.0",
+  "description": "多角色协作的虚拟孵化器运营团队。五大角色（招商官、客服官、活动官、内容官、增长官）基于五位一体运营模型，系统解决AI孵化器五大核心痛点，覆盖创业者全生命周期。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["community", "operations", "AI-incubator", "OPC", "entrepreneurship"],
+  "minOpenClawVersion": "1.2.0"
+}

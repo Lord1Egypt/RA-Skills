@@ -1,46 +1,63 @@
-## Description: <br>
-Doorstep helps agents arrange real-world pickups, deliveries, errands, and gifts through a human tasker in San Francisco. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get things done in the real world - pickups, deliveries, errands, and gifts handled by a human tasker in San Francisco.
 
-## Publisher: <br>
-[jjmaxwell4](https://clawhub.ai/user/jjmaxwell4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjmaxwell4](https://clawhub.ai/user/jjmaxwell4)
 
-## Use Case: <br>
-External users and their agents use Doorstep to request San Francisco-only physical-world errands, review quotes, approve payment, and track tasker progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-San Francisco, CA <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Doorstep handles sensitive account, location, task, and payment-related details. <br>
-Mitigation: Share only the minimum necessary address, timing, item, phone, and message details, and protect the Doorstep API key. <br>
-Risk: Physical errands can involve charges, dispatch, and no-refund cancellation after a tasker has actively started. <br>
-Mitigation: Review the final task, quote, address, timing, and any auto-approval limits before approving payment or dispatch. <br>
-Risk: Requests outside San Francisco are unsupported. <br>
-Mitigation: Decline or caveat tasks outside San Francisco before creating a Doorstep task. <br>
+## Use Case:
 
+External users and agents use Doorstep to request real-world pickups, deliveries, errands, purchases, and gifts performed by a human tasker. The skill is limited to tasks in San Francisco and supports quote review, approval, tracking, messaging, cancellation, receipts, and account setup.
 
-## Reference(s): <br>
-- [Doorstep homepage](https://trydoorstep.app) <br>
-- [Doorstep API key dashboard](https://trydoorstep.app/dashboard/api-keys) <br>
-- [Doorstep MCP endpoint](https://trydoorstep.app/mcp) <br>
-- [Doorstep auth MCP endpoint](https://trydoorstep.app/mcp/auth) <br>
-- [ClawHub Doorstep release page](https://clawhub.ai/jjmaxwell4/doorstep) <br>
+### Deployment Geography for Use:
 
+San Francisco, CA
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task status, quote, receipt, account, and message details returned by the Doorstep MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The default npx bridge setup may execute an unpinned local npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the HTTP/OAuth connection when supported, or pin and verify the npm bridge package before using npx.
+
+Risk: Doorstep requests can include sensitive addresses, contact details, preferences, and notes shared with the service operator and human taskers.
+
+Mitigation: Provide only the details needed for the task and avoid unnecessary sensitive information.
+
+Risk: Real-world tasks can create charges or non-refundable work after approval.
+
+Mitigation: Keep manual quote approval enabled unless the user sets an explicit budget limit, and present plan and pricing before calling approve_task.
+
+Risk: The service only supports San Francisco tasks.
+
+Mitigation: Decline or clearly caveat requests for locations outside San Francisco.
+
+## Reference(s):
+
+- [Doorstep website](https://trydoorstep.app)
+- [Doorstep API keys](https://trydoorstep.app/dashboard/api-keys)
+- [Doorstep ClawHub listing](https://clawhub.ai/jjmaxwell4/skills/doorstep)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown]
+
+**Output Format:** [Markdown guidance with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce task descriptions, quotes, status updates, tasker messages, receipts, account setup instructions, and MCP configuration.]
+
+## Skill Version(s):
+
+1.0.6 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

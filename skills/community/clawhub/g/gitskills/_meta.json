@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn75zj7vzdyvap84adxa8heyyd82f5eh",
-  "slug": "gitskills",
-  "version": "1.0.0",
-  "publishedAt": 1774940070059
-}
+{"name": "github-operations", "description": "GitHub仓库管理技能，支持仓库/分支/PR/Issue的CRUD操作。Do NOT use for repository cloning.", "author": "EdwardWason", "version": "1.5.0", "trigger_words": ["github仓库管理", "github操作", "创建github仓库", "删除github仓库", "github pr", "github issue", "github分支"], "dependencies": ["PyGithub", "python-dotenv"], "script_path": "scripts/main.py", "env_vars": [{"name": "GITHUB_TOKEN", "description": "GitHub API token"}], "permissions": ["github_repo_read", "github_repo_write", "github_pr_read", "github_pr_write", "github_issue_read", "github_issue_write", "network_external"]}

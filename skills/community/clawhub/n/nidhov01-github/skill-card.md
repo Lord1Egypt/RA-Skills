@@ -1,38 +1,49 @@
-## Description: <br>
-Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers and maintainers use this skill to ask an agent for GitHub CLI command guidance for issues, pull requests, CI runs, and GitHub API queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated GitHub CLI guidance can act with the user's authenticated GitHub permissions if the user executes it. <br>
-Mitigation: Confirm the authenticated `gh` account, target repository, and intended side effects before running write, merge, comment, workflow, secret, or broad `gh api` commands. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent produce GitHub CLI guidance for inspecting issues, pull requests, CI workflow runs, logs, and GitHub API data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nidhov01/nidhov01-github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed before execution, especially for write-capable GitHub operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may lead an agent to use existing GitHub CLI authentication for repository actions that create, modify, delete, or post content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any state-changing gh command before approval, and use explicit --repo owner/repo values or URLs to avoid acting on the wrong repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nidhov01/skills/nidhov01-github)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

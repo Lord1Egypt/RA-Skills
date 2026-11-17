@@ -1,42 +1,58 @@
-## Description: <br>
-Security Defense Line 安全防线 helps agents provide digital-asset security guidance across smart contract review, wallet checks, transaction risk review, phishing detection, multisig planning, and incident response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Defense Line 安全防线 provides digital asset security assistance for smart contract auditing, wallet checks, transaction risk review, phishing detection, multisig management, and incident response.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers, security reviewers, and digital-asset operators use this skill to request structured guidance for contract auditing, wallet hygiene, transaction review, phishing checks, multisig operations, and incident response. It should be treated as an assistant for security review workflows rather than a source of final asset-safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious because the skill presents mock or random digital-asset safety checks as usable protection. <br>
-Mitigation: Do not rely on its risk scores, audit reports, transaction simulations, or multisig state changes for real asset decisions; require independent review and trusted security tooling before acting. <br>
-Risk: The skill includes a paid billing flow that sends a user identifier to skillpay.me. <br>
-Mitigation: Use the billing flow only when users understand the payment requirement and are comfortable sharing the required user identifier with the billing provider. <br>
+## Use Case:
 
+External users and developers use this skill to generate security checklists, triage guidance, and command examples for digital asset security workflows. Its outputs cover contract, wallet, transaction, phishing, multisig, and incident-response tasks, but should not be treated as authoritative security findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-defense-line) <br>
-- [Publisher profile](https://clawhub.ai/user/shenmeng) <br>
-- [Contract auditing reference](artifact/references/contract-auditing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, command examples, configuration snippets, and structured review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include security checklists, risk summaries, audit-style findings, remediation suggestions, and incident-response steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The skill advertises wallet, contract, transaction, phishing, and incident-response judgments while the security evidence says much of the analysis is simulated or hard-coded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as demonstration or triage content only, and require independent professional review plus replacement of mock or random decision logic before any real asset-affecting use.
+
+Risk: The security evidence identifies automatic charging behavior and a hard-coded billing API key.
+
+Mitigation: Remove and rotate embedded billing credentials, store secrets outside the artifact, and require explicit user consent before every charge.
+
+Risk: The artifact describes workflows that could affect digital assets, including approval revocation, multisig execution, and emergency freeze operations.
+
+Mitigation: Gate any asset-affecting workflow behind dry runs, explicit human confirmation, clear warnings, and verified external tooling.
+
+## Reference(s):
+
+- [Contract Auditing Reference](references/contract-auditing.md)
+- [ClawHub Skill Page](https://clawhub.ai/shenmeng/skills/shenmeng-defense-line)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference bundled Python scripts and safety checklists; no structured machine-readable guarantee.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

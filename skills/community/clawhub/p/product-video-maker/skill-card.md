@@ -1,45 +1,64 @@
-## Description: <br>
-Turns product photos or a store URL into a polished product video by relaying media and the user's brief to Pexo's hosted video service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn product photos or a store URL into a polished product video with Pexo by uploading media, submitting the user's request, polling the hosted service, and returning the final asset URL.
 
-## Publisher: <br>
-[pexo](https://clawhub.ai/user/pexo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pexo](https://clawhub.ai/user/pexo)
 
-## Use Case: <br>
-Developers and agents use this skill to create e-commerce product videos from product media or store URLs, monitor rendering progress, handle revisions, and return finished video asset links to users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends product photos, downloaded URL content, prompts, and project metadata to Pexo's hosted service. <br>
-Mitigation: Use the skill only when sharing that media with Pexo is allowed by the user's confidentiality, privacy, and data-handling policies. <br>
-Risk: The skill requires a Pexo API key and stores configuration in the user's Pexo config file. <br>
-Mitigation: Treat the API key as a secret, restrict config-file permissions, and rotate the key if it is exposed. <br>
-Risk: Video generation can consume Pexo credits or require credit purchases. <br>
-Mitigation: Confirm the user is comfortable using credits before submitting jobs or retrying after credit-related errors. <br>
+## Use Case:
 
+External users and agents use this skill to create product videos for e-commerce listings, ads, or social channels. The agent handles Pexo setup, media upload, request relay, polling, preview selection, revision requests, and final delivery.
 
-## Reference(s): <br>
-- [Pexo](https://pexo.ai) <br>
-- [Product Video Maker on ClawHub](https://clawhub.ai/pexo/product-video-maker) <br>
-- [Setup Checklist](references/SETUP-CHECKLIST.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON script responses, project links, and plain text asset URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses asynchronous project polling and may return signed media URLs, local cached asset paths, status updates, and revision guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: API credentials can be exposed if the Pexo config file or environment is mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect PEXO_API_KEY, restrict permissions on ~/.pexo/config, and rotate the key if exposure is suspected.
+
+Risk: The shared shell helper sources ~/.pexo/config, so unsafe shell content in that file can execute locally.
+
+Mitigation: Keep ~/.pexo/config limited to simple PEXO_BASE_URL and PEXO_API_KEY assignments from a trusted source.
+
+Risk: Product prompts and uploaded media are sent to Pexo's hosted backend.
+
+Mitigation: Use only a trusted Pexo endpoint and avoid uploading confidential product images or sensitive prompts unless that transfer is acceptable.
+
+Risk: Fetched result assets may be downloaded into a local ~/.pexo/tmp cache.
+
+Mitigation: Use restrictive local permissions, set PEXO_TMP_DIR to an appropriate writable location when needed, and remove cached assets that should not remain on disk.
+
+## Reference(s):
+
+- [Product Video Maker on ClawHub](https://clawhub.ai/pexo/skills/product-video-maker)
+- [Pexo](https://pexo.ai)
+- [Setup Checklist](references/SETUP-CHECKLIST.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with shell command snippets, project links, JSON status details, and final asset URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PEXO_API_KEY, PEXO_BASE_URL, curl, jq, and file; video generation is asynchronous and normally requires polling before delivery.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

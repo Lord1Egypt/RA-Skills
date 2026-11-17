@@ -1,50 +1,66 @@
-## Description: <br>
-Program and interact with embedded development boards through MicroPython REPL workflows for sensor reads, actuator control, firmware flashing, diagnostics, and algorithm deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MicroPython Skills helps agents program and interact with embedded development boards through REPL workflows for sensor reads, actuator control, firmware flashing, device diagnostics, and on-device algorithms.
 
-## Publisher: <br>
-[0x1abin](https://clawhub.ai/user/0x1abin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x1abin](https://clawhub.ai/user/0x1abin)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to generate, deploy, and troubleshoot MicroPython code on connected microcontroller boards for local prototyping, diagnostics, networking, and device control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently modify connected microcontroller devices, including boot.py/main.py changes and firmware flashing. <br>
-Mitigation: Require explicit user confirmation for dangerous operations, explain data-loss consequences, and back up boot.py/main.py before changing persistent device files. <br>
-Risk: WebREPL and WiFi setup can expose remote device access or credentials if used on untrusted networks. <br>
-Mitigation: Prefer USB, avoid WebREPL on untrusted networks, use a strong non-default WebREPL password, and keep WiFi credentials out of logs and shell history. <br>
-Risk: Broad serial-port permission changes can weaken local host access controls. <br>
-Mitigation: Do not use chmod 666 for serial ports; use group membership, udev rules, or a user-scoped ACL instead. <br>
-Risk: GPIO, motor, relay, and other actuator control can damage hardware or create unsafe physical states. <br>
-Mitigation: Confirm wiring before high-current control, use appropriate driver circuits and current limiting, bound loops with timeouts, and provide reset or power-off recovery steps. <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent discover, diagnose, program, and recover MicroPython-capable microcontroller boards. It supports local USB workflows and optional WebREPL workflows for sensor reading, actuator control, networking, firmware flashing, and algorithm deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0x1abin/micropython-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/0x1abin) <br>
-- [Project homepage](https://github.com/0x1abin/agents-workspace) <br>
-- [Connection reference](references/connections.md) <br>
-- [ESP32 reference](references/esp32.md) <br>
-- [Safety constraints and recovery](references/safety.md) <br>
-- [MicroPython firmware downloads](https://micropython.org/download/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline MicroPython, Python, and shell command examples; generated device output uses tagged text and JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bounded hardware-control instructions and code snippets for local USB serial or WebREPL workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can enable wireless device access through WebREPL and may handle WiFi or WebREPL credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer USB workflows, avoid default WebREPL passwords, and review boot.py or main.py changes before enabling persistent wireless access.
+
+Risk: Serial-port guidance could broaden host device access if users apply overly permissive permissions.
+
+Mitigation: Do not use chmod 666 for serial access; use the least-permissive OS-specific group or device permission change that allows the intended connection.
+
+Risk: Firmware flashing can erase or permanently change connected microcontroller devices.
+
+Mitigation: Flash only after explicit user confirmation, verify firmware sources before use, and make backups before destructive operations.
+
+Risk: Agent-generated GPIO, PWM, relay, motor, or persistence actions can affect attached hardware or make a board hard to recover.
+
+Mitigation: Confirm wiring and device intent before control actions, bound loops with timeouts or iteration limits, and back up boot.py and main.py before modifying autostart files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0x1abin/skills/micropython-skills)
+- [Project homepage](https://github.com/0x1abin/agents-workspace)
+- [Connection Reference](references/connections.md)
+- [ESP32 Platform Reference](references/esp32.md)
+- [Safety Constraints & Recovery](references/safety.md)
+- [MicroPython firmware downloads](https://micropython.org/download/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with MicroPython and shell command snippets, plus tagged device output such as RESULT, ERROR, STATUS, and LOG lines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local device interaction through mpremote or optional WebREPL, with JSON used inside tagged result lines when device data is returned.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

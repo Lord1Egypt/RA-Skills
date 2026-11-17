@@ -1,0 +1,33 @@
+{
+  "schema": "cad-crane-layout/v1",
+  "source_file": "synthetic-site.dxf",
+  "units": {
+    "drawing_unit": "mm",
+    "basis": "explicit",
+    "mm_per_unit": 1.0
+  },
+  "contract": {
+    "schema": "cad-file-reader/v0",
+    "contract_version": "cad-contract/v1",
+    "contract_id": "CONTRACT-SYNTH-CRANE-001",
+    "source_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "reader_version": "0.41.0"
+  },
+  "crane_layout": [
+    {
+      "crane_id": "TC-01",
+      "model": "QTZ80",
+      "jib_length_m": 35.0,
+      "jib_length_source": "text",
+      "center_xy_m": [50.0, 30.0],
+      "center_status": "insert_point",
+      "transform_status": "insert_affine",
+      "rotation_deg": 0.0,
+      "scale": [1.0, 1.0, 1.0],
+      "layer": "塔吊",
+      "block_name": "塔吊",
+      "evidence": [{"kind": "insert", "layer": "塔吊", "block": "塔吊"}]
+    }
+  ],
+  "review": []
+}

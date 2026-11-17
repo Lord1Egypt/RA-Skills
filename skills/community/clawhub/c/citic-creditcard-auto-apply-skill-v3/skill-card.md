@@ -1,44 +1,61 @@
-## Description: <br>
-Recommends CITIC Bank credit cards from official CITIC pages and helps an agent prefill official application forms with confirmed user data, stopping before final submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends CITIC Bank credit cards from official CITIC credit-card pages and helps an agent prefill official application forms while stopping before final submission for applicant confirmation.
 
-## Publisher: <br>
-[lgmsmile](https://clawhub.ai/user/lgmsmile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgmsmile](https://clawhub.ai/user/lgmsmile)
 
-## Use Case: <br>
-External users use this skill to compare CITIC credit-card options and guide an agent through official-site prefill after they confirm each field. It is intended to keep recommendation, candidate-data review, and final human submission separate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and save sensitive applicant details locally. <br>
-Mitigation: Use a dedicated workspace, avoid adding unnecessary personal data to memory files, and delete candidate or application-plan outputs after use. <br>
-Risk: Generated prefill data may include stale, incorrect, or unconfirmed applicant details. <br>
-Mitigation: Inspect generated JSON before browser prefill and confirm each field with the applicant before it is used. <br>
-Risk: Credit-card application steps can include OTP, authorization, agreement, and final-submission actions that require the applicant's direct control. <br>
-Mitigation: Have the applicant personally handle OTP, authorization, agreement checkboxes, and final submission. <br>
+## Use Case:
 
+External users and agents use this skill to compare CITIC Bank credit cards against a customer profile, generate top-card recommendations, extract user-authorized applicant fields from the workspace, and prepare a browser-assisted official form prefill workflow.
 
-## Reference(s): <br>
-- [CITIC Credit Card Homepage](https://creditcard.ecitic.com/) <br>
-- [Browser Prefill Workflow](docs/browser_workflow.md) <br>
-- [Security and Compliance Notes](docs/security_notes.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown recommendations and JSON prefill plans with inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before prefill and stops before OTP, authorization, agreement checkboxes, and final submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; artifact frontmatter lists 3.0.0) <br>
+Risk: The skill handles highly sensitive applicant and financial data, and generated output files may store raw values in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a private workspace, avoid committing or logging real ID numbers or financial details, and treat generated outputs as sensitive personal financial data.
+
+Risk: Workspace memory or profile files could be scanned before the user has intentionally authorized use of those records.
+
+Mitigation: Run the extractor or plan builder only after explicit user authorization, and present masked candidate fields with sources and confidence before any browser prefill.
+
+Risk: Browser automation in a credit-card application flow could cross into consent, identity verification, or final submission steps.
+
+Mitigation: Stop at CAPTCHA, SMS or OTP verification, face verification, signature, credit authorization, agreement consent, or final submit controls and require the applicant to complete those steps personally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lgmsmile/skills/citic-creditcard-auto-apply-skill-v3)
+- [CITIC Bank Credit Card official site](https://creditcard.ecitic.com/)
+- [Browser workflow notes](docs/browser_workflow.md)
+- [Security notes](docs/security_notes.md)
+- [Card catalog](data/card_catalog.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown recommendations, JSON recommendation and prefill-plan payloads, shell command examples, and browser-action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated candidate fields and prefill plans may contain sensitive personal financial data and should be reviewed by the applicant and kept private.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release; artifact frontmatter states 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

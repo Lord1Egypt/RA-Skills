@@ -1,42 +1,53 @@
-## Description: <br>
-Smart contract audit and DeFi security triage skill for Solidity, EVM protocols, bug bounty programs, Code4rena, Sherlock, and HackenProof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A smart contract audit and DeFi security triage skill for Solidity, EVM protocols, bug bounty programs, Code4rena, Sherlock, and HackenProof that maps attack surface, prioritizes vulnerabilities, and generates a structured audit checklist/report.
 
-## Publisher: <br>
-[n8gendegen](https://clawhub.ai/user/n8gendegen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n8gendegen](https://clawhub.ai/user/n8gendegen)
 
-## Use Case: <br>
-External smart contract auditors, DeFi security researchers, and bug bounty participants use this skill to map Solidity/EVM attack surface, prioritize vulnerability classes, and draft a first-pass audit triage report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be mistaken for a guaranteed vulnerability scanner. <br>
-Mitigation: Use it as a checklist and report-writing aid, and manually verify candidate findings before bounty submission. <br>
-Risk: Separate paid ZIP packs or concierge install offerings are linked but were not part of the reviewed artifact. <br>
-Mitigation: Review and scan any external package or installation service independently before use. <br>
+## Use Case:
 
+Developers, security reviewers, and bug bounty researchers use this skill to map Solidity/EVM protocol scope, prioritize DeFi vulnerability classes, and produce a structured first-pass smart contract audit triage report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n8gendegen/atlas-bounty-triage) <br>
-- [Atlas Agent Suite skill page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-bounty-triage) <br>
-- [Atlas concierge install](https://atlasagentsuite.com/concierge.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-bounty-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit triage report with checklists and prioritized review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated reports may include Atlas attribution and paid-product links that are not appropriate for every external audit deliverable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the Atlas footer and paid-product links before sharing reports externally unless that attribution is intentional.
+
+Risk: The workflow helps prioritize manual review but does not guarantee vulnerability discovery or finding correctness.
+
+Mitigation: Verify candidate findings with manual analysis and a proof of concept before bounty or audit submission.
+
+## Reference(s):
+
+- [Atlas Agent Suite skill page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-bounty-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown audit triage report with checklists and prioritized review sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable workflow guidance; candidate findings should be manually verified before submission.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

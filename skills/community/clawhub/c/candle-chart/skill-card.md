@@ -1,42 +1,57 @@
-## Description: <br>
-Uses akshare stock data and Steve Nison candlestick-pattern logic to generate a dark candlestick chart with signal band and volume view. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用akshare获取股票数据，按Steve Nison《日本蜡烛图技术》逻辑识别形态，生成深色盯盘风格K线图（含信号带+成交量）
 
-## Publisher: <br>
-[wtjjacobj](https://clawhub.ai/user/wtjjacobj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wtjjacobj](https://clawhub.ai/user/wtjjacobj)
 
-## Use Case: <br>
-External users, traders, and analysts use this skill to fetch public A-share daily market data, detect common candlestick patterns, and save a chart for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script fetches public market data through akshare/Tencent for the supplied stock code. <br>
-Mitigation: Run it only for stock codes you intend to query through that data source. <br>
-Risk: The script creates or overwrites a PNG chart on the user's Desktop named after the stock code. <br>
-Mitigation: Check the target filename before running and move or rename any chart you want to preserve. <br>
-Risk: Chart pattern labels may be incomplete or misleading if market data is unavailable, delayed, or malformed. <br>
-Mitigation: Review the generated chart and source data before using the analysis in downstream decisions. <br>
+## Use Case:
 
+External users and developers can run this Chinese-language OpenClaw skill to fetch A-share market data, identify common candlestick patterns, and generate a dark themed PNG chart for visual review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wtjjacobj/candle-chart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Analysis] <br>
-**Output Format:** [Python script and local PNG chart output with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public market data through akshare/Tencent and writes a Desktop PNG named after the stock code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The script contacts akshare/Tencent for market data during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound market-data requests are allowed and dependency/data-source availability is acceptable.
+
+Risk: The script writes chart PNG files to the Desktop using the stock code as the filename, so repeated runs for the same code may replace prior output.
+
+Mitigation: Check the Desktop output path before running and rename or archive existing charts when retaining earlier output matters.
+
+Risk: The skill is a Chinese-language stock charting tool and may be less usable for readers who cannot review the labels and terminal messages.
+
+Mitigation: Have a Chinese-reading reviewer confirm prompts, labels, and chart annotations before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wtjjacobj/skills/candle-chart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Python script output, terminal status text, and PNG chart file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a chart PNG to the user's Desktop using the stock code in the filename.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

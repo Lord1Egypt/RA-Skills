@@ -51,7 +51,7 @@ dist/ak-data-daily-timeout-report.bundle.tgz
 .pi/skills/ak-data-daily-timeout-report/SKILL.md
 .pi/skills/ak-data-daily-timeout-report/run.sh
 .pi/skills/ak-data-daily-timeout-report/MIGRATION.md
-.pi/skills/ak-data-task-timeout-created-report/SKILL.md
+.pi/skills/ak-data-taREDACTED-SECRET/SKILL.md
 .pi/skills/ak-data-depart-timeout-log-report/SKILL.md
 ```
 

@@ -1,43 +1,59 @@
-## Description: <br>
-WPS Office automation skill supporting document creation, Markdown conversion, and image-text layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WPS Office automation skill supporting document creation, Markdown conversion, and image-text layout.
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-Developers and office automation users use this skill to create, open, convert, and batch-process WPS Office documents, including Markdown-to-Word, Excel, and PPT workflows. It also supports image insertion and image-text layouts for Word, Excel, and PPT outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local documents and batch-process folders. <br>
-Mitigation: Run it only on trusted files, keep backups for important folders, and review target paths before batch operations. <br>
-Risk: Desktop automation can interact with the active WPS window. <br>
-Mitigation: Keep the intended WPS window focused and test workflows in a controlled environment before using them on important documents. <br>
-Risk: Optional WPS 365 features use app credentials stored in local configuration. <br>
-Mitigation: Leave WPS 365 credentials blank unless cloud features are needed and protect or rotate credentials if configured. <br>
+## Use Case:
 
+Developers and office automation users use this skill to create, open, convert, and batch-process WPS Office documents, including Word, Excel, PPT, Markdown, and image-text layouts. It also supports optional WPS 365 cloud operations when credentials are configured.
 
-## Reference(s): <br>
-- [ClawHub Wps Skill listing](https://clawhub.ai/lilei0311/wps-skill) <br>
-- [WPS Open Platform](https://open.wps.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated Office or Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, open, modify, or convert local WPS Office documents and can optionally use WPS 365 credentials for cloud features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release and skill.json) <br>
+Risk: The skill can launch WPS, simulate desktop typing, and modify local Office files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a trusted desktop session, review requested actions before execution, and keep backups or separate output paths for conversions and batch edits.
+
+Risk: Optional WPS 365 features require app_id and app_secret credentials.
+
+Mitigation: Leave cloud credentials blank unless the cloud features are needed, keep credentials out of shared project files, and rotate them if exposed.
+
+Risk: Document and Markdown conversion paths may be unsafe for untrusted input files.
+
+Mitigation: Avoid processing untrusted Markdown or Office files, and test new workflows in a sandbox or virtual machine before routine use.
+
+## Reference(s):
+
+- [WPS Open Platform](https://open.wps.cn)
+- [WPS Open Platform API Documentation](https://open.wps.cn/docs)
+- [WPS Open Platform Auth Documentation](https://open.wps.cn/docs/auth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, command-line invocations, JSON status output, and generated Office or Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, open, modify, or convert local WPS Office documents; WPS 365 functions require optional app_id and app_secret configuration.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

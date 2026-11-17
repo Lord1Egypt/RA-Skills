@@ -1,0 +1,13 @@
+interface:
+  display_name: "AgentMailer MCP"
+  short_description: "Connect MCP with human-approved OAuth"
+  default_prompt: "Use $agentmailer-mcp to connect AgentMailer, complete human approval, or diagnose MCP authentication."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentmailer"
+      description: "Connect to AgentMailer and inspect authentication"
+      transport: "streamable_http"
+      url: "https://api.agentmailer.ai/mcp"
+policy:
+  allow_implicit_invocation: true

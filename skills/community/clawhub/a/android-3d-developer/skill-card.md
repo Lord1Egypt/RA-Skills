@@ -1,38 +1,53 @@
-## Description: <br>
-Help build and optimize 3D games and interactive experiences on Android, using engines and frameworks such as Unity, Unreal, OpenGL, or Vulkan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help build and optimize 3D games and interactive experiences on Android, using engines and frameworks such as Unity, Unreal, or OpenGL/Vulkan.
 
-## Publisher: <br>
-[tippyentertainment](https://clawhub.ai/user/tippyentertainment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tippyentertainment](https://clawhub.ai/user/tippyentertainment)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, build, debug, and optimize Android 3D games or interactive experiences across engines and native graphics frameworks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested Android permissions, signing, build, or Play Store configuration changes can affect app behavior and release posture. <br>
-Mitigation: Review and test those project changes before applying them to a real app. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tippyentertainment/android-3d-developer) <br>
-- [Tasking.tech agent platform](https://tasking.tech) <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Android 3D game and interactive experience work, including engine identification, rendering and asset optimization, input handling, lifecycle management, packaging, and platform-specific build advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with concrete settings, code snippets, and command examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clarifies the Android 3D engine or framework before providing detailed advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to inspect Android project files, build configuration, and permissions.
+
+Mitigation: Use it in repositories where Android 3D project context is expected, and review proposed permission or build changes before applying them.
+
+Risk: Performance, rendering, packaging, or engine-specific recommendations may not match every target device or project constraint.
+
+Mitigation: Validate suggested settings, code snippets, and build changes with project tests, profiling tools, and target Android devices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tippyentertainment/skills/android-3d-developer)
+- [Tasking.tech](https://tasking.tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise recommendations, settings, code snippets, and command examples when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Clarifies the Android 3D engine or framework before giving detailed advice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

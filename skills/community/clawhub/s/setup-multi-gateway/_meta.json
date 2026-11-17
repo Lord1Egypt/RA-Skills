@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn70gps0ahzfkzp49twbwqw119832ahp",
-  "slug": "setup-multi-gateway",
-  "version": "1.2.0",
-  "publishedAt": 1773971110449
+  "name": "Setup Multi Gateway",
+  "description": "配置和运行多个独立的 OpenClaw 网关实例。配合 feishu-agent-send 技能实现多 Agent 自主协作：Agent-A 派发任务 → Agent-B/C 执行 → 自主调用 feishu-agent-send 汇报结果。每个 Agent 显示独立机器人身份，实现完整的任务分发与自主汇报闭环。",
+  "version": "1.1.2",
+  "author": "pikaqiuyaya",
+  "license": "MIT",
+  "tags": ["openclaw", "gateway", "multi-agent", "deployment", "zh-CN", "feishu", "collaboration"],
+  "readme": "README.md",
+  "main": "mg-wizard.cjs"
 }

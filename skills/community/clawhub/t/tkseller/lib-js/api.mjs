@@ -105,7 +105,21 @@ export function getDeviceId() {
     }
   }
 
-  _deviceIdCache = `openclaw_${createHash('md5').update(biosUuid).digest('hex').slice(0, 12)}`;
+  // 取第一个非内部网卡的 MAC 地址作为区分因子
+  let mac = '';
+  try {
+    const nets = require('os').networkInterfaces();
+    for (const iface of Object.values(nets)) {
+      for (const info of iface) {
+        if (!info.internal && info.mac && info.mac !== '00:00:00:00:00:00') {
+          mac = info.mac;
+          break;
+        }
+      }
+      if (mac) break;
+    }
+  } catch { /* */ }
+  _deviceIdCache = `openclaw_${createHash('md5').update(biosUuid + '|' + mac).digest('hex').slice(0, 12)}`;
   return _deviceIdCache;
 }
 

@@ -1,42 +1,54 @@
-## Description: <br>
-ZIP and postal code lookup for place names, states, coordinates, and country information across 60+ countries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZIP and postal code lookup - get place names, states, and coordinates for postal codes in 60+ countries.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to validate postal codes, populate city and state fields, find postal codes for a city, and retrieve geographic coordinates for postal-code based workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Postal-code results may be incomplete, stale, or unsuitable as the sole source for high-impact address decisions. <br>
-Mitigation: Verify important address and location decisions against authoritative postal or geocoding sources before acting on them. <br>
-Risk: Lookup requests are sent to an external Pipeworx gateway endpoint. <br>
-Mitigation: Review the MCP configuration before use and avoid sending sensitive or unnecessary address data. <br>
+## Use Case:
 
+Developers and agents use this skill to look up postal or ZIP code details, validate address fields, populate city and state data, and find postal codes for cities across supported countries.
 
-## Reference(s): <br>
-- [Pipeworx zippopotam package page](https://pipeworx.io/packs/zippopotam) <br>
-- [Pipeworx zippopotam ClawHub page](https://clawhub.ai/brucegutman/pipeworx-zippopotam) <br>
-- [Zippopotam MCP endpoint](https://gateway.pipeworx.io/zippopotam/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration] <br>
-**Output Format:** [JSON tool responses and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented direct API example; no hidden or destructive behavior was reported in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Lookup queries are sent to Pipeworx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending postal lookup inputs to Pipeworx is acceptable for the intended workflow.
+
+Risk: The MCP configuration runs mcp-remote from npm using a mutable latest version.
+
+Mitigation: Pin mcp-remote to a reviewed version or install it through a controlled dependency process before use.
+
+## Reference(s):
+
+- [Pipeworx Zippopotam homepage](https://pipeworx.io/packs/zippopotam)
+- [Pipeworx Zippopotam MCP endpoint](https://gateway.pipeworx.io/zippopotam/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON lookup results with Markdown examples for shell commands and MCP configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lookup requests are sent to the Pipeworx MCP endpoint; example local setup uses mcp-remote from npm.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-The Agent Insurance Playbook helps agents build agent-native insurance infrastructure for risk pools, liability bonds, automated claims processing, regulatory compliance, disputes, trust verification, ledger reconciliation, and SLA enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A markdown playbook for designing agent-native insurance infrastructure, including risk pools, liability bonds, automated claims processing, regulatory compliance, disputes, trust verification, ledger reconciliation, and SLA enforcement with detailed code examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agent operators use this guide to design GreenHelix-based insurance workflows for autonomous agent commerce, including underwriting, policy lifecycle management, claims adjudication, reinsurance patterns, and compliance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples can create or change wallets, payments, claims, disputes, settlements, ledger entries, organizations, and webhooks when adapted and run against live services. <br>
-Mitigation: Use sandbox endpoints, least-privilege test tokens, spending limits, and human approval before any wallet, payment, dispute, settlement, ledger, organization, or webhook operation. <br>
-Risk: The guide is non-executing documentation, but its examples involve high-impact financial and identity-adjacent workflows. <br>
-Mitigation: Avoid real funds, real claim data, and real identity data until the workflow has been reviewed, tested with non-production data, and approved for the relevant use case. <br>
-Risk: Credential and endpoint choices can change the examples from sandbox exploration into live financial API activity. <br>
-Mitigation: Verify every endpoint and token before running examples, default to the sandbox URL, and require explicit review before switching to production credentials. <br>
+## Use Case:
 
+Developers and operators of commercial agent systems use this guide to design insurance-style risk pools, underwriting, policy lifecycle, claims adjudication, reinsurance, and compliance workflows for autonomous commerce agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-agent-insurance-risk-pools) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix A2A Commerce API](https://api.greenhelix.net/v1) <br>
-- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guide with explanatory prose, tables, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing guide; examples should be limited to sandbox endpoints, test credentials, and reviewed financial workflows before any live use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence release and SKILL.md frontmatter) <br>
+Risk: Examples can involve live authenticated insurance and finance workflows that may send sensitive policy, identity, wallet, or claims data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox credentials and synthetic data, and do not paste real API tokens or regulated claims, identity, wallet, or policy data without approval.
+
+Risk: Webhook examples can create persistent outbound integrations for insurance events.
+
+Mitigation: Register webhooks only to approved HTTPS endpoints with signing, ownership verification, monitoring, and a revocation plan.
+
+Risk: Misconfigured hosts, amounts, identifiers, or policy parameters could affect live insurance or finance workflows.
+
+Mitigation: Lock the API host to trusted GreenHelix domains and validate all amounts, identifiers, and policy parameters before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-agent-insurance-risk-pools)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix A2A Commerce API](https://api.greenhelix.net/v1)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with inline Python code examples and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; examples should be reviewed before use with credentials, regulated data, or live financial workflows.]
+
+## Skill Version(s):
+
+1.3.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Kairos helps agents register, adopt, check status, and perform care actions for a virtual pet on animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time feeding recommendations and care actions for your evolving virtual pet at animalhouse.ai.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External developers and agent users use Kairos to manage a real-time virtual pet through documented animalhouse.ai API calls, including registration, adoption, status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external API with bearer-token authentication. <br>
-Mitigation: Install only when the external service is trusted, use a revocable least-privilege token where possible, keep tokens out of logs and shared chats, and rotate exposed tokens. <br>
+## Use Case:
 
+External users can use the skill to register an agent, adopt a virtual pet, check its live status, and submit care actions through animalhouse.ai. Registration sends the profile details entered by the user to that service.
 
-## Reference(s): <br>
-- [Kairos ClawHub release](https://clawhub.ai/obviouslynot/kairos) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated requests to an external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends the profile details entered by the user to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, consider whether you are comfortable sending those profile details to animalhouse.ai.
+
+Risk: The security scan was partial, so the benign verdict rests on incomplete evidence.
+
+Mitigation: Review the skill and its requested data sharing before use, keeping the partial-scan limitation in mind.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse Creatures](https://animalhouse.ai/creatures)
+- [Animalhouse Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

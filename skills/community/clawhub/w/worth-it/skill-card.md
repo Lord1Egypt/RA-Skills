@@ -1,39 +1,54 @@
-## Description: <br>
-Finally know if your AI is paying off. Per-project ROI tracking for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Worth It tracks per-project profitability for OpenClaw agents by logging money saved, money earned, time saved, and manual costs.
 
-## Publisher: <br>
-[storyscriptapp](https://clawhub.ai/user/storyscriptapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[storyscriptapp](https://clawhub.ai/user/storyscriptapp)
 
-## Use Case: <br>
-External users and developers use this skill to help OpenClaw agents track per-project AI return on investment by logging money saved, money earned, time saved, and manual costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Matching value commands may send project, amount, and description data to a local Worth It service. <br>
-Mitigation: Use only with a trusted localhost:3002 Worth It service and avoid confidential client or financial details unless its storage and export behavior is understood. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to recognize explicit value logging commands and send saved, earned, time, and cost entries to a local Worth It service for project-level ROI tracking.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/storyscriptapp/worth-it) <br>
-- [ClawMart listing](https://www.shopclawmart.com/listings/worth-it-agent-profitability-tracker-961a92fb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, JSON, Guidance] <br>
-**Output Format:** [Plain text confirmations and JSON POST payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends matching value log commands to a trusted local Worth It service when localhost:3002 is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Value-log descriptions may include sensitive client names, confidential project details, or private financial context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generic descriptions or omit sensitive details unless storing them in the local Worth It dashboard is acceptable.
+
+Risk: The skill sends value-log commands to a local Worth It API, so entries may fail or be incomplete if the local service or project configuration is unavailable.
+
+Mitigation: Confirm the local Worth It service and project settings before relying on logged profitability totals.
+
+## Reference(s):
+
+- [ClawHub Worth It skill page](https://clawhub.ai/storyscriptapp/skills/worth-it)
+- [ClawMart Worth It listing](https://www.shopclawmart.com/listings/worth-it-agent-profitability-tracker-961a92fb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, API Calls]
+
+**Output Format:** [Markdown guidance with inline command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends only explicit value-log commands to a local Worth It API when configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

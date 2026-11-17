@@ -1,0 +1,370 @@
+# Nature Paper Workflow - Manifest
+# 论文生产链工作流定义与子技能映射表
+# 版本: 2.0.0 | 2026-07-31
+# v2.0.0 新增: 学科识别 + Econ 分支（5 个 econ-* 子技能）
+
+version: 2.0.0
+name: nature-paper-workflow
+slug: nature-paper-workflow
+display_name: 论文生产链
+description: 多学科端到端论文工作流顶层路由 skill（STEM + Econ 双分支）
+
+# ============================================
+# 学科分支定义（v2.0.0 新增）
+# ============================================
+disciplines:
+  - id: stem
+    name: STEM（自然科学）
+    default: true
+    workflow_ref: workflow  # 指向下方 workflow 段（12 阶段）
+    sub_skills_count: 35
+    description: Nature/Science/Cell 系列期刊，12 阶段端到端工作流
+
+  - id: econ
+    name: 经济学
+    default: false
+    workflow_ref: econ_workflow  # 指向下方 econ_workflow 段（6 阶段）
+    sub_skills_count: 5
+    description: 经济学顶刊（AER/QJE/JPE/Econometrica/REStud + 中文4大顶刊），6 阶段工作流
+    requires_external_package: econ-TopJournal-writing-Skill
+    external_package_repo: https://github.com/juliaError/econ-TopJournal-writing-Skill
+    external_package_license: CC BY-NC 4.0
+
+# ============================================
+# STEM 工作流阶段定义（默认分支）
+# ============================================
+workflow:
+  - phase: 0a
+    name: 读论文
+    description: 单篇论文中英对照阅读、图文对应、来源锚点
+    primary_skill: nature-reader
+    triggers: [读论文, 精读论文, 论文翻译, 中英对照, paper reader, 读这篇 PDF]
+
+  - phase: 0b
+    name: 文献调研
+    description: 多篇文献检索、综述、下载、卡片化整理
+    primary_skill: nature-academic-search
+    secondary_skills: [academic-researcher, nature-downloader, nature-paper-card, nature-literature-pipeline]
+    triggers: [文献调研, 找文献, 综述, literature review, PubMed, Scopus, 论文下载, 论文卡片]
+
+  - phase: 1a
+    name: 项目脚手架
+    description: 论文项目目录初始化、source of truth、状态文件
+    primary_skill: paper-bootstrap
+    triggers: [项目初始化, 新论文, bootstrap, 项目目录, 论文项目结构]
+
+  - phase: 1b
+    name: 期刊定位
+    description: Nature / Nature Methods / Nature Biotechnology 选择与政策预检
+    primary_skill: nature-portfolio-playbook
+    triggers: [期刊选择, venue, 投哪本, Nature Methods, Nature Biotechnology, 期刊定位]
+
+  - phase: 2a
+    name: 章节起草
+    description: 摘要/引言/方法/结果/讨论/结论起草，含投稿包
+    primary_skill: nature-writing
+    triggers: [起草, 写摘要, 写引言, 写方法, 写讨论, 写结论, 投稿包, cover letter]
+
+  - phase: 2b
+    name: 结构优化
+    description: claim/evidence/术语/图逻辑漂移修复
+    primary_skill: manuscript-optimizer
+    triggers: [结构修复, 证据链漂移, manuscript optimizer, 论文结构, claim driven]
+
+  - phase: 2c
+    name: Results 专项修订
+    description: Results 小节叙述结构修复
+    primary_skill: results-section-revision
+    triggers: [Results 修订, results section, 结果叙述, Results 小节]
+
+  - phase: 3a
+    name: 图规划
+    description: 一图一主张、panel 角色、legend 同步
+    primary_skill: figure-planner
+    triggers: [图规划, 一图一主张, panel role, figure planner, 图逻辑]
+
+  - phase: 3b
+    name: 出图
+    description: matplotlib/seaborn/ggplot2 投稿级科研图，含 AI 示意图
+    primary_skill: nature-figure
+    triggers: [出图, 科研绘图, 论文 figure, 论文 plot, 图形摘要, 示意图]
+
+  - phase: 3c
+    name: 图检查
+    description: 出版级图形正确性与可读性清单
+    primary_skill: figure-style
+    triggers: [图检查, figure style, 图形正确性, 图形可读性]
+
+  - phase: 4a
+    name: 统计审计
+    description: n值/重复性/多重比较/图注统计审计
+    primary_skill: stats-reporting-audit
+    triggers: [统计审计, stats audit, p值, 样本量, n值, 多重比较, 重复数]
+
+  - phase: 4b
+    name: 统计分析
+    description: 数据处理与统计分析
+    primary_skill: nature-statistics
+    secondary_skills: [nature-data]
+    triggers: [统计分析, 数据分析, statistics, data analysis, 数据处理]
+
+  - phase: 5a
+    name: 引用核验
+    description: 引用准确性核验、造假检测、BibTeX 卫生
+    primary_skill: nature-ref-verifier
+    secondary_skills: [citation-verifier, reference-audit-guide]
+    triggers: [引用核验, citation verifier, 引用造假, 引用准确性, BibTeX 卫生]
+
+  - phase: 5b
+    name: 引用补充
+    description: 自动补 Nature/CNS 系列严格引用
+    primary_skill: nature-citation
+    triggers: [引用补充, 加引用, CNS 引用, Nature 引用, 找引用, 配文献]
+
+  - phase: 5c
+    name: 数据声明
+    description: 数据可用性声明、FAIR、accession
+    primary_skill: data-availability
+    triggers: [数据声明, data availability, FAIR, accession, 数据可用性]
+
+  - phase: 6a
+    name: 语言润色
+    description: Nature 风格英文学术润色 + LaTeX 排版 + 句子精修
+    primary_skill: nature-polishing
+    secondary_skills: [scientific-prose-style]
+    triggers: [润色, polishing, 学术英语, LaTeX 排版, SCI 写作, 英文润色, 句子精修]
+
+  - phase: 6b
+    name: 投稿预检
+    description: 投稿前/返修前总预检
+    primary_skill: submission-audit
+    triggers: [投稿预检, submission audit, 投前检查, 投稿前, 预检]
+
+  - phase: 7a
+    name: 审稿模拟
+    description: Nature 审稿人视角模拟，3 份 reviewer reports
+    primary_skill: nature-reviewer
+    triggers: [审稿模拟, reviewer, 预审, 审稿意见, 投稿前自审]
+
+  - phase: 7b
+    name: 返修回复
+    description: 逐点回复、cover letter、标红修改
+    primary_skill: nature-response
+    triggers: [返修, rebuttal, response, 逐点回复, cover letter, 回复审稿人, 修回信]
+
+# ============================================
+# 衍生场景（STEM 分支按需触发，不在主线上）
+# ============================================
+derived:
+  - phase: D1
+    name: 转 PPT
+    description: 论文转中文组会汇报 PPT
+    primary_skill: nature-paper2ppt
+    triggers: [转 PPT, 组会汇报, 文献汇报, 论文做PPT]
+
+  - phase: D2
+    name: 转专利
+    description: 论文转专利，含国知局公布公告检索
+    primary_skill: nature-paper-to-patent
+    triggers: [转专利, paper to patent, 国知局, 专利转化]
+
+  - phase: D3
+    name: 写基金
+    description: 基金/项目申请书撰写
+    primary_skill: nature-proposal-writer
+    triggers: [写基金, proposal, 申请书, 基金申请]
+
+  - phase: D4
+    name: 实验记录
+    description: 实验记录管理
+    primary_skill: nature-experiment-log
+    triggers: [实验记录, experiment log]
+
+  - phase: D5
+    name: 会议论文
+    description: NeurIPS/ICML/ICLR 等会议论文流程
+    primary_skill: conference-paper-writing
+    triggers: [会议论文, NeurIPS, ICML, ICLR, conference paper]
+
+# ============================================
+# Econ 分支工作流定义（v2.0.0 新增，可选分支）
+# ============================================
+econ_workflow:
+  - phase: E-0
+    name: 输入审计
+    description: 检查研究问题/结果包/变量说明完整性，标 TODO
+    primary_skill: econ-writing-workflow
+    upgrade_to: econ-writing-workflow-multiagent  # 复杂项目升级
+    triggers: [经济学论文, econ paper, 经济学写作, 写经济学论文, 输入审计]
+
+  - phase: E-1
+    name: 全文起草
+    description: 按经济学惯例顺序起草（主结果→识别→数据→引言→文献→稳健→机制→结论）
+    primary_skill: econ-write  # 英文顶刊
+    alternative_skill: cn-top-econ-writing  # 中文顶刊
+    shared_skills: [paper-bootstrap]
+    triggers: [起草, 写摘要, 写引言, 写方法, 写实证, 写讨论, 写结论, 投稿包, cover letter]
+
+  - phase: E-2
+    name: 表图设计
+    description: 四类表（主回归/稳健性/异质性/机制）+ 四类图（事件研究/趋势/地图/分布）
+    primary_skill: econ-table-figure-design
+    triggers: [表图设计, 三线表, 回归表, 事件研究图, 平行趋势图, 地图, 经济学图]
+
+  - phase: E-3
+    name: 论证逻辑审计
+    description: argument spine / draft-time clarity / regression magnitude 三维度审计
+    primary_skill: econ-writing-workflow  # 使用 argument-logic / regression-results / manuscript-voice references
+    triggers: [论证审计, argument audit, 论证逻辑, claim 检查, magnitude check]
+
+  - phase: E-4
+    name: 期刊适配
+    description: 中文4模式（ER/MW/CIE/EQ）+ 英文5期刊（AER/QJE/JPE/Econometrica/REStud）+ 4门槛审计
+    primary_skill: cn-top-econ-writing  # 中文顶刊
+    alternative_skill: econ-write  # 英文顶刊
+    shared_skills: [submission-audit]
+    triggers: [期刊适配, 投稿体例, 经济研究体例, 管理世界体例, AER 体例, submission format]
+
+  - phase: E-5
+    name: 审稿+返修
+    description: 经济学视角审稿模拟（6维度）+ 逐点回复 + 标红修改
+    primary_skill: nature-reviewer  # 共享，按经济学视角调整
+    shared_skills: [nature-response]  # 共享，逐点回复
+    triggers: [审稿模拟, 预审, 审稿意见, 返修, rebuttal, response, 逐点回复]
+
+# ============================================
+# 冲突消解与协同（统一规则）
+# ============================================
+# v2.0.0 调整：新增"学科分流"类别（最高优先级）
+# 等价冲突：择一使用（优先已安装版本）
+# 互补协同：配合使用（不同维度补足）
+# 跨学科共享：两个分支都可调用
+# ============================================
+skills_count:
+  total: 40  # 1 main router + 35 STEM + 5 econ-* (v2.0.0: 35→40)
+  primary_router: 1
+  stem_sub_skills: 34  # STEM 分支子技能（不含 router）
+  econ_sub_skills: 5   # Econ 分支子技能（可选）
+  shared_sub_skills: 5 # 跨学科共享（paper-bootstrap / nature-ref-verifier / citation-verifier / submission-audit / nature-reviewer / nature-response）
+
+conflict_resolution:
+  # 学科分流（最高优先级，v2.0.0 新增）
+  discipline_routing:
+    - function: 章节起草
+      stem: nature-writing
+      econ: econ-write  # 或 cn-top-econ-writing（按语言）
+      rule: "按学科分支路由，不混淆 IMRAD 与经济学论证逻辑"
+    - function: 表图设计
+      stem: nature-figure
+      econ: econ-table-figure-design
+      rule: "按学科分支路由，科研图 vs 三线表/回归图"
+    - function: 期刊适配
+      stem: nature-portfolio-playbook
+      econ: cn-top-econ-writing  # 或 econ-write（按语言）
+      rule: "按学科分支路由，Nature 系列 vs Econ 顶刊"
+    - function: 中文润色
+      stem: nature-polishing
+      econ: cn-top-econ-writing
+      rule: "按学科分支路由，SCI 英文 vs 中文顶刊风格"
+
+  # 跨学科共享（无冲突，两个分支都可调用，v2.0.0 新增）
+  cross_discipline_shared:
+    - function: 项目初始化
+      shared: paper-bootstrap
+    - function: 引用核验
+      shared: [nature-ref-verifier, citation-verifier, reference-audit-guide]
+    - function: 投稿预检
+      shared: submission-audit
+    - function: 审稿模拟
+      shared: nature-reviewer  # 按学科视角调整
+    - function: 返修回复
+      shared: nature-response
+
+  # 等价冲突（择一使用，仅 STEM 分支内）
+  equivalent:
+    - function: 科研绘图
+      use: nature-figure
+    - function: 审稿模拟
+      use: nature-reviewer
+    - function: 返修回复
+      use: nature-response
+    - function: 章节起草
+      use: nature-writing
+    - function: 论文深读
+      use: nature-reader
+    - function: 论文转 PPT
+      use: nature-paper2ppt
+
+  # 互补协同（配合使用，不冲突）
+  complementary:
+    - function: 引用核验
+      primary: nature-ref-verifier
+      complementary: [citation-verifier, reference-audit-guide]
+      usage: 先 nature-ref-verifier 查内容准确性，再 citation-verifier 查 BibTeX 格式
+
+    - function: 润色
+      primary: nature-polishing
+      complementary: [scientific-prose-style]
+      usage: 先 nature-polishing 做段落+排版，再 scientific-prose-style 做句子节奏
+
+    - function: 会议论文（按需）
+      primary: conference-paper-writing
+      usage: 仅在会议论文场景触发，与 nature-writing（期刊）不冲突
+
+# ============================================
+# 跨阶段 handoff 产物映射
+# ============================================
+# STEM 分支 handoff
+handoffs:
+  - from: 0a
+    to: 1a
+    artifacts: [paper.md, source_map.json, terminology_ledger]
+  - from: 1a
+    to: 2a
+    artifacts: [notes/project_truth.md, notes/result_summary.md, notes/paper_handoff.md]
+  - from: 2a
+    to: 3a
+    artifacts: [claim_list, section_structure]
+  - from: 3b
+    to: 4a
+    artifacts: [figures_with_stats, legends]
+  - from: 6b
+    to: 7a
+    artifacts: [risk_list, audit_report]
+  - from: 7a
+    to: 7b
+    artifacts: [reviewer_reports, cross_review_synthesis]
+
+# Econ 分支 handoff（v2.0.0 新增）
+econ_handoffs:
+  - from: E-0
+    to: E-1
+    artifacts: [research_question.md, results_package_checklist.md, writing_plan.md]
+  - from: E-1
+    to: E-2
+    artifacts: [draft_with_table_figure_refs]
+  - from: E-2
+    to: E-3
+    artifacts: [complete_tables, complete_figures, table_notes, figure_captions]
+  - from: E-3
+    to: E-4
+    artifacts: [audit_argument_spine.md, audit_clarity.md, audit_magnitude.md, revised_draft]
+  - from: E-4
+    to: E-5
+    artifacts: [journal_adapted_draft.md, submission_checklist.md]
+
+# ============================================
+# 可选依赖（v2.0.0 新增）
+# ============================================
+optional_dependencies:
+  - name: econ-TopJournal-writing-Skill
+    type: external_package
+    license: CC BY-NC 4.0
+    repo: https://github.com/juliaError/econ-TopJournal-writing-Skill
+    sub_skills:
+      - econ-writing-workflow
+      - econ-write
+      - cn-top-econ-writing
+      - econ-table-figure-design
+      - econ-writing-workflow-multiagent
+    description: 经济学分支扩展包，5 个子技能，CC BY-NC 4.0（非商用）

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7b944nr4v3gv0bn25f68qqyn803vh4",
-  "slug": "plan-my-day-bak-2026-01-28t18-01-27-10-30",
-  "version": "1.0.0",
-  "publishedAt": 1769585551596
+  "owner": "itsflow",
+  "slug": "plan-my-day",
+  "displayName": "Plan My Day",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1769256787005,
+    "commit": "https://github.com/clawdbot/skills/commit/7c8bb9463d8e2fac47577e47fe989f923013a7ab"
+  },
+  "history": []
 }

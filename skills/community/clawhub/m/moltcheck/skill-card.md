@@ -1,43 +1,60 @@
-## Description: <br>
-Security scanner for Moltbot skills. Scan GitHub repositories for vulnerabilities before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for Moltbot skills. Scan GitHub repositories for vulnerabilities before installation.
 
-## Publisher: <br>
-[moltcheck](https://clawhub.ai/user/moltcheck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moltcheck](https://clawhub.ai/user/moltcheck)
 
-## Use Case: <br>
-Developers and agents use this skill to scan GitHub repositories and Moltbot skills for security risks before installing or relying on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scanned GitHub repository URLs are sent to moltcheck.com for API-backed analysis. <br>
-Mitigation: Install only if sharing those repository URLs with the MoltCheck service is acceptable. <br>
-Risk: The skill can use a MoltCheck API key and setup output includes payment details. <br>
-Mitigation: Use a MoltCheck-specific API key, keep setup output private, and verify payment wallet or credit-purchase details through the official MoltCheck site before sending funds. <br>
+## Use Case:
 
+Developers and agents use Moltcheck Skill to scan GitHub repositories and Moltbot skills for security risks before installation, including risk summaries, trust scores, and permission analysis.
 
-## Reference(s): <br>
-- [MoltCheck Website](https://moltcheck.com) <br>
-- [MoltCheck API Documentation](https://moltcheck.com/api-docs.md) <br>
-- [MoltCheck OpenAPI Specification](https://moltcheck.com/openapi.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/moltcheck/moltcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, markdown, configuration, guidance] <br>
-**Output Format:** [JSON responses with scan summaries, scores, grades, risk details, credit information, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scan results may include report URLs, undeclared permissions, and remaining credit counts when returned by the MoltCheck API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Repository URLs and an optional MoltCheck API key are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this data sharing is acceptable, and avoid scanning private repositories until the service's data handling and retention policy is clear.
+
+Risk: The documented npx installation path does not pin a package version.
+
+Mitigation: Prefer a reviewed, pinned release or independently verify the npm package and version before installation.
+
+Risk: The skill depends on a third-party API and payment flow for scans beyond the free tier.
+
+Mitigation: Review pricing, credit handling, and payment instructions before relying on paid scanning.
+
+## Reference(s):
+
+- [MoltCheck Website](https://moltcheck.com)
+- [MoltCheck API Documentation](https://moltcheck.com/api-docs.md)
+- [MoltCheck OpenAPI Specification](https://moltcheck.com/openapi.json)
+- [ClawHub Skill Page](https://clawhub.ai/moltcheck/skills/moltcheck)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON responses with scan scores, grades, risk summaries, permission analysis, credit status, or setup instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan results may include report URLs, remaining credits, and payment/setup guidance returned by the MoltCheck API.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Office Productivity is an office automation skill suite for creating and processing Word, Excel, and PDF files, with advertised workflows for presentations, email, calendar tasks, reports, meeting notes, and batch file handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Productivity is an office automation skill suite for document processing, email management, scheduling, report generation, meeting notes, and batch file workflows.
 
-## Publisher: <br>
-[xiaochunz030-spec](https://clawhub.ai/user/xiaochunz030-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaochunz030-spec](https://clawhub.ai/user/xiaochunz030-spec)
 
-## Use Case: <br>
-Employees, developers, and office automation users use this skill to generate documents, spreadsheets, PDFs, reports, and meeting materials, and to plan office workflows involving email, calendar, and batch file tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises email and calendar control without clear scoping or user-confirmation safeguards. <br>
-Mitigation: Limit use to document and PDF generation unless the email or calendar implementation is supplied, reviewed, constrained, and configured to require explicit approval for sends, replies, archive actions, bulk file changes, and calendar updates. <br>
-Risk: Email, SMTP, IMAP, or calendar credentials could be exposed or used for unintended actions if provided to an unreviewed workflow. <br>
-Mitigation: Do not provide mail or calendar credentials until the workflow and safeguards are verified; use least-privilege accounts and explicit per-action approval. <br>
-Risk: Batch file processing can affect many documents at once. <br>
-Mitigation: Run the workflow on a small sample first and review output paths before full-scale execution. <br>
+## Use Case:
 
+Employees and developers use this skill to create and edit office documents, organize spreadsheet data, handle PDFs, manage email and calendar tasks, generate reports, and process files in batches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaochunz030-spec/office-productivity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated office or PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DOCX, XLSX, PDF, extracted text, and file paths depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad office automation scope may allow an agent to act on email, calendar, folders, files, or output paths without enough user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of accounts, recipients, folders, files, output paths, and overwrite behavior before execution.
+
+Risk: Batch document and PDF operations can modify or create many files at once.
+
+Mitigation: Test batch work on a small sample first and review generated file paths before running the full task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaochunz030-spec/skills/office-productivity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python script commands and generated office or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .docx, .xlsx, PDF, extracted text, email/calendar configuration guidance, and file paths for generated outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

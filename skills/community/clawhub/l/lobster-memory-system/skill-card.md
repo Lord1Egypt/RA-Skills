@@ -1,43 +1,59 @@
-## Description: <br>
-Lobster Memory System provides a modular, versioned, automatically backed-up memory structure for AI assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+龙虾记忆体系统 - 模块化、版本化、自动备份的 AI 记忆管理方案
 
-## Publisher: <br>
-[wzhqqq123](https://clawhub.ai/user/wzhqqq123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzhqqq123](https://clawhub.ai/user/wzhqqq123)
 
-## Use Case: <br>
-External users and developers use this skill to set up persistent local memory, daily backups, session-aware memory loading, and self-improvement notes for OpenClaw or Clawdbot-style assistants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory and scheduled backups can retain sensitive user, project, or credential-like data. <br>
-Mitigation: Do not store API keys, private data, or secrets in memory files; review backup encryption, retention, access controls, and deletion behavior before enabling the workflow. <br>
-Risk: The installation flow asks users to run PowerShell setup scripts with ExecutionPolicy Bypass. <br>
-Mitigation: Obtain scripts from a trusted source, inspect them before execution, and avoid ExecutionPolicy Bypass unless the need and impact are understood. <br>
-Risk: Automated backup and cleanup commands can change or remove local files if configured incorrectly. <br>
-Mitigation: Review the target directories, backup retention settings, ACL changes, and removal commands before enabling scheduled tasks. <br>
+## Use Case:
 
+Developers and AI-assistant users use this skill to set up a modular, versioned memory system with long-term and short-term memory, configuration files, daily backups, and self-improvement notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzhqqq123/lobster-memory-system) <br>
-- [Project homepage](https://github.com/openclaw/lobster-memory-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and PowerShell or bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory-structure guidance, initialization steps, scheduled-backup commands, and maintenance workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, skill.yaml, and _meta.json) <br>
+Risk: The security evidence says the skill asks users to run PowerShell setup commands with execution-policy bypass from scripts that are not included in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the actual scripts from a trusted source before running them, and prefer manual setup or narrowly scoped permissions when possible.
+
+Risk: The security evidence says automated backups may copy sensitive memory, configuration, preferences, project data, and agent behavior files.
+
+Mitigation: Treat backup archives as sensitive data, restrict access to the backup location, and review retention and encryption settings before enabling scheduled backups.
+
+Risk: The security guidance flags the recursive full-control permission repair command as potentially broad.
+
+Mitigation: Avoid recursive full-control permission changes unless the scope and impact are understood; use narrower permissions for the memory-system directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzhqqq123/skills/lobster-memory-system)
+- [Project homepage](https://github.com/openclaw/lobster-memory-system)
+- [INSTALL.md](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or update memory, configuration, backup, and audit-log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

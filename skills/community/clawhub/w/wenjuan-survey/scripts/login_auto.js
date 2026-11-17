@@ -23,6 +23,7 @@ const {
 const { ensurePrivateDir, writeSecretFile } = require("./security_utils");
 const { createSecureAxios } = require("./axios_secure");
 const { wenjuanUrl } = require("./api_config");
+const { resolveRegSource } = require("./source_params");
 
 // API 地址
 // 生产环境域名
@@ -48,6 +49,7 @@ class WenjuanLogin {
     this.session = createSecureAxios();
     this.maxPollTime =
       options.maxPollTime != null ? options.maxPollTime : DEFAULT_MAX_POLL_MS;
+    this.regSource = resolveRegSource(options.regSource);
   }
 
   /**
@@ -57,7 +59,11 @@ class WenjuanLogin {
     console.log("[1/4] 正在获取登录二维码...");
 
     try {
-      const response = await this.session.post(QRCODE_URL, {}, { timeout: 30000 });
+      const response = await this.session.post(
+        QRCODE_URL,
+        { reg_source: this.regSource },
+        { timeout: 30000 }
+      );
       const data = response.data;
 
       if (data.status_code !== 1 && data.code !== 0) {
@@ -91,7 +97,7 @@ class WenjuanLogin {
         );
         const loginFile = path.join(this.tokenDir, "last_wenjuan_login_url.txt");
         console.log(
-          `  [提示] 完整扫码链接已写入: ${loginFile}（Workerbuddy/OpenClaw/SSH 等若未弹出浏览器，请在本机打开该文件内整行链接）`
+          `  [提示] 完整扫码链接已写入: ${loginFile}（WorkBuddy/OpenClaw/SSH 等若未弹出浏览器，请在本机打开该文件内整行链接）`
         );
       } catch (e) {
         console.log(`  [提示] 写入扫码链接文件失败: ${e.message}，将依赖下方打印或自动打开浏览器`);
@@ -379,7 +385,7 @@ class WenjuanLogin {
   }
 
   /**
-   * 若本地已有可读凭证且未声明过期，则不再拉新二维码（减少 Workerbuddy/多步骤任务里重复扫码）
+   * 若本地已有可读凭证且未声明过期，则不再拉新二维码（减少 WorkBuddy/多步骤任务里重复扫码）
    * @param {boolean} force 为 true 时永远不跳过（例如服务端已返回 NEED_LOGIN）
    */
   async _shouldSkipNewQrcode(force) {
@@ -424,6 +430,7 @@ async function main() {
   let checkOnly = false;
   let maxTime = 300;
   let forceLogin = false;
+  let regSource = null;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -436,6 +443,8 @@ async function main() {
       forceLogin = true;
     } else if ((arg === "--max-time" || arg === "-m") && i + 1 < args.length) {
       maxTime = parseInt(args[++i], 10);
+    } else if (arg === "--reg-source" && i + 1 < args.length) {
+      regSource = resolveRegSource(args[++i]);
     } else if (arg === "-h" || arg === "--help") {
       showHelp();
       process.exit(0);
@@ -444,6 +453,7 @@ async function main() {
 
   const loginManager = new WenjuanLogin(tokenDir, {
     maxPollTime: maxTime * 1000,
+    regSource,
   });
   
   if (checkOnly) {
@@ -479,6 +489,7 @@ function showHelp() {
   -c, --check            检查登录状态
   --force-login          忽略本地已有凭证，强制重新拉二维码（换账号或调试时用）
   -m, --max-time <sec>   最大等待时间（秒）
+  --reg-source <source>  注册来源（优先按 SKILL.md 传入；未传则用 JS 默认值）
   -h, --help             显示帮助信息
 
 说明:

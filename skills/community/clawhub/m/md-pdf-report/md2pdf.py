@@ -62,6 +62,21 @@ def bootstrap_macos():
 if not os.environ.get('MD2PDF_NO_BOOTSTRAP'):
     bootstrap_macos()
 
+    # On macOS, cffi (used by weasyprint) cannot resolve versioned library
+    # names like "libgobject-2.0-0" via DYLD_FALLBACK_LIBRARY_PATH because of
+    # SIP. Preload the required C libraries explicitly so they are already
+    # mapped into the process when cffi tries to dlopen them.
+    if platform.system() == 'Darwin':
+        try:
+            import ctypes
+            for _lib in ('libgobject-2.0.0', 'libglib-2.0.0', 'libgmodule-2.0.0',
+                         'libpango-1.0.0', 'libpangocairo-1.0.0'):
+                _path = f'/opt/homebrew/lib/{_lib}.dylib'
+                if os.path.exists(_path):
+                    ctypes.CDLL(_path, mode=ctypes.RTLD_GLOBAL)
+        except Exception:
+            pass  # we'll let weasyprint raise the real error if this fails
+
 
 # ============ Font Configuration ============
 # macOS Chinese fonts. Use the .ttf files in Apple's font asset bundles —

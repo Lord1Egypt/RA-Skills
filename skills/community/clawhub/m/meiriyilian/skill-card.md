@@ -1,46 +1,64 @@
-## Description: <br>
-基于每日一练官网公开信息的中文 skill。适用于用户想了解每日一练、判断是否适合自己的学习目标、设计一套“AI教/AI学/AI练”的轻量学习流程，或把任意主题转成可持续的每日训练方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于每日一练官网公开信息的中文 skill，帮助用户了解每日一练、判断是否适合自己的学习目标，并把任意主题转成可持续的每日训练方案。
 
-## Publisher: <br>
-[aitobook](https://clawhub.ai/user/aitobook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aitobook](https://clawhub.ai/user/aitobook)
 
-## Use Case: <br>
-External learners and learning coaches use this skill to explain 每日一练, choose a learning mode, and turn a topic, exam goal, or study plan into a concise daily, weekly, or monthly practice workflow. It emphasizes small executable steps, self-checks, and Chinese-language guidance grounded in the public product materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may reference product access, beta contact, pricing, or availability details that can change. <br>
-Mitigation: Verify current access, pricing, and contact information on the official site before acting on it. <br>
-Risk: Learning plans can be too broad or mismatched to a learner's immediate goal. <br>
-Mitigation: Keep recommendations small, actionable, and tied to the user's stated exam, topic, or daily practice need. <br>
+## Use Case:
 
+External learners and education-focused users use this skill to understand the 每日一练 product, choose a learning mode, and turn goals such as exam prep, subject study, or daily practice into small actionable training steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aitobook/meiriyilian) <br>
-- [每日一练 official site](https://www.meiriyilian.com) <br>
-- [入口与状态](references/access.md) <br>
-- [FAQ 说明](references/faq.md) <br>
-- [学习模式选择](references/learning-modes.md) <br>
-- [产品定位](references/overview.md) <br>
-- [练习流程](references/practice-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise Chinese explanations, structured practice plans, and self-check prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credential access, or private-file access is required according to the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may provide the product's public site, login page, or WeChat contact when users ask how to access it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the official domains and contact details supplied in the artifact, and ask users to verify current access status on the official site.
+
+Risk: The skill answers in Chinese by default, which may not match every user's preferred language.
+
+Mitigation: Ask for or honor the user's preferred response language when the interaction context indicates a different language is needed.
+
+Risk: Product status, pricing, or availability can change after the public information captured in the skill.
+
+Mitigation: Avoid promising pricing or open registration, and direct users to the official site for current access details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aitobook/skills/meiriyilian)
+- [每日一练 official site](https://www.meiriyilian.com)
+- [每日一练 app](https://app.meiriyilian.com)
+- [Overview reference](references/overview.md)
+- [Learning modes reference](references/learning-modes.md)
+- [Practice flow reference](references/practice-flow.md)
+- [FAQ reference](references/faq.md)
+- [Access reference](references/access.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown guidance with concise practice plans and learning-mode recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers in Chinese by default and may include public product links or access guidance when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

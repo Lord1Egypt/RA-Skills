@@ -63,7 +63,7 @@ Response — array of payment methods:
     "expYear": 2030,
     "alias": "My Card",
     "provider": "stripe",
-    "status": "active",
+    "status": "Active",
     "allowedApiKeyIds": null
   }
 ]
@@ -190,12 +190,34 @@ Response (`X402SettleResponseDto`):
   "payer": "0xabc...",
   "transaction": "0xdef...",
   "network": "eip155:84532",
+  "billingModel": "credits",
   "creditsRedeemed": "1",
   "remainingBalance": "999"
 }
 ```
 
-`success: true` with `creditsRedeemed > 0` and a `remainingBalance` is your proof. For a plan top-up with no protected endpoint, set `resource.url` to the plan's own URL — `{API_BASE}/api/v1/protocol/plans/<PLAN_ID>`.
+**Your proof of payment depends on `billingModel`**, which is always present — read it before the credit fields:
+
+- `"credits"` — `success: true` **and** `creditsRedeemed > 0`, with `remainingBalance` as the balance left.
+- `"pay-as-you-go"` — `success: true` **and** a non-empty `orderTx` (fiat rails) or `transaction` (crypto rails). These plans hold no credit balance, so a successful charge still returns `creditsRedeemed: "0"` and `remainingBalance: "0"`:
+
+```json
+{
+  "success": true,
+  "transaction": "pi_3U6tgrBYvSRKcV421ehH4bnX",
+  "network": "stripe",
+  "billingModel": "pay-as-you-go",
+  "creditsRedeemed": "0",
+  "remainingBalance": "0",
+  "orderTx": "pi_3U6tgrBYvSRKcV421ehH4bnX"
+}
+```
+
+Checking `creditsRedeemed > 0` on such a plan reports a real charge as a decline — and on a card rail that invites a retry of a payment that already went through. Both fields are **strings**, so `"0"` is truthy while `Number("0") > 0` is false.
+
+If the response carries **no `billingModel` at all**, the deployment predates the discriminator: apply the `credits` rule, and never read a missing discriminator as pay-as-you-go.
+
+For a plan top-up with no protected endpoint, set `resource.url` to the plan's own URL — `{API_BASE}/api/v1/protocol/plans/<PLAN_ID>`.
 
 ### 4c. Dry-run (optional)
 
@@ -237,7 +259,12 @@ curl -s -H "Authorization: Bearer $NVM_API_KEY" \
 # One delegation's charges
 curl -s -H "Authorization: Bearer $NVM_API_KEY" \
   https://api.sandbox.nevermined.app/api/v1/delegation/<DELEGATION_ID>/transactions
-# → { totalResults, page, offset, transactions: [ { id, delegationId, providerTransactionId, amountCents, currency, status, createdAt } ] }
+# → { totalResults, page, offset, transactions: [ { id, delegationId, providerTransactionId,
+#        amountCents, currency, status, failureReason, feeCents, feeAtomic, feeBps, feeReleased, createdAt } ] }
+#   `amountCents` is the COMBINED cap deduction. On a Router-routed payment that is the merchant
+#   leg plus Nevermined's routing fee, broken out as `feeCents` (string) / `feeAtomic` (string) /
+#   `feeBps` (number); `feeReleased` (boolean) means the fee was credited back and `amountCents`
+#   is ALREADY net of it. All four read zero/false on a card or crypto row, which pay no routing fee.
 ```
 
 `YOUR_ADDRESS` is your account wallet: the `id`/address of your `erc4337` payment method from `GET /payment-methods` (crypto path), or the `userWallet` returned by `POST /embed/session`.

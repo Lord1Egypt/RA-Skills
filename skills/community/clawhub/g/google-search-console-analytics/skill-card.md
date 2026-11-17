@@ -1,42 +1,54 @@
-## Description: <br>
-Guides analysis of Google Search Console data, including performance metrics, indexing, sitemaps, Core Web Vitals, rich results, and Search Console API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Google Search Console analysis, including search performance, indexing, sitemaps, Core Web Vitals, enhancements, and Search Console API use.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users, SEO practitioners, developers, and site owners use this skill to interpret Google Search Console reports, investigate search performance changes, and plan follow-up actions for indexing, sitemaps, Core Web Vitals, rich results, and API exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a broad trigger for adjacent search-performance questions. <br>
-Mitigation: Confirm that the user is asking for Google Search Console or search-performance analysis before applying the skill's guidance. <br>
-Risk: Recommendations may affect a website or Google Search Console property, such as submitting a disavow file or requesting indexing. <br>
-Mitigation: Review account-impacting recommendations with the site owner or responsible team before taking action. <br>
+## Use Case:
 
+External users, SEO analysts, and developers use this skill to interpret Google Search Console reports, investigate traffic or indexing changes, and turn performance data into prioritized SEO actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/google-search-console-analytics) <br>
-- [Search Console API](https://developers.google.com/webmaster-tools/about) <br>
-- [Search Analytics API query guide](https://developers.google.com/webmaster-tools/v1/how-tos/search_analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with summaries, metrics, CTR analysis, prioritized action items, correlations, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account-impacting recommendations that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may lead an agent to analyze Google Search Console exports or API data that can include sensitive site performance details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only Search Console properties, exports, and reports that are intended for the analysis task.
+
+Risk: SEO conclusions can be misleading if they are based on incomplete date ranges, default top-row limits, or uncorrelated release events.
+
+Mitigation: Review date ranges, pagination, exported metrics, and relevant release or site-change history before acting on recommendations.
+
+## Reference(s):
+
+- [Search Console API](https://developers.google.com/webmaster-tools/about)
+- [searchanalytics.query](https://developers.google.com/webmaster-tools/v1/how-tos/search_analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with summaries, metrics, CTR findings, title and meta opportunities, action items, correlation notes, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use user-provided or user-authorized Google Search Console exports or API data; no executable files are included in the artifact.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

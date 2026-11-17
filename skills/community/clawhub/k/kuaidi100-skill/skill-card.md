@@ -1,44 +1,58 @@
-## Description: <br>
-Queries Kuaidi100 logistics APIs for shipment tracking, carrier identification, shipping cost estimates, and delivery time estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets agents query Kuaidi100 for courier tracking, carrier identification, shipping price estimates, and delivery time estimates.
 
-## Publisher: <br>
-[kuaidi100-api](https://clawhub.ai/user/kuaidi100-api) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuaidi100-api](https://clawhub.ai/user/kuaidi100-api)
 
-## Use Case: <br>
-External users and agents use this skill to answer parcel tracking, carrier lookup, shipping cost, and delivery-time questions through the Kuaidi100 API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment details are sent to the Kuaidi100 API service. <br>
-Mitigation: Use the skill only when sending shipment information to Kuaidi100 is acceptable, and confirm ambiguous logistics requests before running it. <br>
-Risk: Some tracking requests may require sensitive details such as a phone number or address information. <br>
-Mitigation: Avoid providing phone numbers or full addresses unless required for the requested carrier or estimate. <br>
-Risk: Configured API credentials could be exposed or overused if shared broadly. <br>
-Mitigation: Use a dedicated revocable Kuaidi100 API key and store it in the provided config or KUAIDI100_API_KEY environment variable. <br>
+## Use Case:
 
+External users and agents use this skill to answer package-tracking questions and estimate shipment price or delivery time through Kuaidi100.
 
-## Reference(s): <br>
-- [Kuaidi100 API Open Platform](https://api.kuaidi100.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kuaidi100-api/kuaidi100-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/kuaidi100-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown returned from API-backed command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include logistics traces, carrier identifiers, cost estimates, delivery estimates, and quota or API-key setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill can send tracking numbers, phone numbers, sender and recipient addresses, logistics history, and API-key-backed requests to Kuaidi100.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing shipment data with Kuaidi100 is acceptable, and prefer a narrowly scoped API key that can be rotated.
+
+Risk: Broad activation language may trigger courier lookups from ambiguous package-related messages.
+
+Mitigation: Confirm user intent before invoking the skill when a message is ambiguous or may contain sensitive shipment data.
+
+Risk: A configured API key may be exposed through misuse or overly broad deployment access.
+
+Mitigation: Store the key in controlled configuration or environment settings, rotate it when needed, and avoid sharing logs that may contain request details.
+
+## Reference(s):
+
+- [Kuaidi100 API Platform](https://api.kuaidi100.com)
+- [ClawHub Skill Page](https://clawhub.ai/kuaidi100-api/skills/kuaidi100-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text returned from Kuaidi100 lookups, with Node.js command invocations and configuration guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use config.json or KUAIDI100_API_KEY for an API key; some carrier lookups require a phone number.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

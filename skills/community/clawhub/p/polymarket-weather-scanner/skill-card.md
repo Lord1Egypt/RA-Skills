@@ -1,48 +1,57 @@
-## Description: <br>
-Weather forecast analysis for Polymarket prediction markets using ensemble forecasts to compare forecast probabilities with market prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weather forecast analysis for Polymarket prediction markets using multi-model ensemble forecasts to identify potentially mispriced temperature contracts.
 
-## Publisher: <br>
-[Lucasnocodo](https://clawhub.ai/user/Lucasnocodo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasnocodo](https://clawhub.ai/user/lucasnocodo)
 
-## Use Case: <br>
-External users, prediction market traders, weather enthusiasts, and quantitative analysts use this skill to scan Polymarket weather markets, inspect ensemble forecasts, and identify potential pricing edge in temperature contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecast or weather-market scan requests, IP address, and any configured scanner API key are sent to the hosted scanner service. <br>
-Mitigation: Use the skill only if that data sharing is acceptable, and use a dedicated POLYMARKET_SCANNER_API_KEY rather than unrelated credentials. <br>
-Risk: POLYMARKET_SCANNER_HOST can redirect requests to a different host when defined in the environment. <br>
-Mitigation: Check POLYMARKET_SCANNER_HOST before use and leave it unset unless intentionally using a trusted alternate endpoint. <br>
-Risk: Market edge analysis may be incorrect, stale, or unsuitable for trading decisions. <br>
-Mitigation: Treat outputs as analysis to review, not trading authority; do not provide wallet keys or allow automated trades based solely on the skill output. <br>
+## Use Case:
 
+External prediction market traders, weather enthusiasts, and analysts use this skill to scan Polymarket temperature markets, compare ensemble forecasts, and review potential positive-edge opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lucasnocodo/polymarket-weather-scanner) <br>
-- [Lucasnocodo publisher profile](https://clawhub.ai/user/Lucasnocodo) <br>
-- [Scanner weather endpoint](https://polymarket-scanner.fly.dev/scan/weather) <br>
-- [Forecast endpoint](https://polymarket-scanner.fly.dev/forecast/{city}) <br>
-- [Cities endpoint](https://polymarket-scanner.fly.dev/cities) <br>
-- [Tiers endpoint](https://polymarket-scanner.fly.dev/tiers) <br>
-- [Free key endpoint](https://polymarket-scanner.fly.dev/keys/free) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-formatted command output from shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; optional POLYMARKET_SCANNER_API_KEY enables expanded hosted API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: POLYMARKET_SCANNER_API_KEY can be sent to a host configured through POLYMARKET_SCANNER_HOST.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid setting POLYMARKET_SCANNER_HOST unless you control the endpoint, and treat POLYMARKET_SCANNER_API_KEY as a credential.
+
+Risk: Vague weather or trading questions may trigger scans or forecasts unintentionally.
+
+Mitigation: Prefer explicit /scan and /forecast requests when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucasnocodo/skills/polymarket-weather-scanner)
+- [Polymarket Weather Scanner scan endpoint](https://polymarket-scanner.fly.dev/scan/weather)
+- [Polymarket Weather Scanner forecast endpoint](https://polymarket-scanner.fly.dev/forecast/{city})
+- [Polymarket Weather Scanner cities endpoint](https://polymarket-scanner.fly.dev/cities)
+- [Polymarket Weather Scanner tiers endpoint](https://polymarket-scanner.fly.dev/tiers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from shell scripts, typically summarized as Markdown tables or concise text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; optionally uses POLYMARKET_SCANNER_API_KEY for higher-tier access.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

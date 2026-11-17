@@ -1,37 +1,48 @@
-## Description: <br>
-Deep GraphQL schema workflow-modeling types, queries and mutations, N+1 and complexity limits, errors and pagination, federation risks, and evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep GraphQL schema workflow for designing or reviewing GraphQL APIs, covering type modeling, queries and mutations, N+1 and complexity limits, errors and pagination, federation risks, and evolution.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and API engineers use this skill to design or review GraphQL APIs and federated subgraphs, with attention to schema modeling, operation design, performance, partial errors, authorization, and evolution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: GraphQL design guidance may be applied without project-specific validation of authorization, query cost, and schema evolution constraints.
+
+Mitigation: Treat recommendations as advisory and have API owners verify field-level authorization, batching, query limits, error behavior, and deprecation policy before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design or review GraphQL APIs, including domain modeling, operation shape, batching and complexity controls, error behavior, field-level authorization, and schema evolution. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: GraphQL schema recommendations could be applied without enough project-specific review, leading to weak authorization boundaries or unbounded query cost. <br>
-Mitigation: Review generated schema guidance with API owners and confirm field-level authorization, batching, and complexity controls before implementation. <br>
+**Output Format:** [Markdown guidance and review checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Documentation-only advisory output; no executable behavior or sensitive access indicated by security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and review checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

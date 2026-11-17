@@ -1,44 +1,59 @@
-## Description: <br>
-部署内容创作Agent团队（墨白主编+探风选题+锦书文案），平台无关的内容生产核心。使用 /content-creation 触发，交互式引导配置品牌信息并自动部署。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+部署内容创作 Agent 团队（墨白主编、探风选题、锦书文案），通过交互式引导收集品牌信息并自动配置 OpenClaw 工作区。
 
-## Publisher: <br>
-[Little-ke](https://clawhub.ai/user/Little-ke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-ke](https://clawhub.ai/user/little-ke)
 
-## Use Case: <br>
-Content creators and operators use this skill to deploy a three-agent OpenClaw content team for topic planning, editorial review, and article drafting. The setup collects brand, audience, style, publishing cadence, and topic constraints before creating local agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup answers and agent memory files may retain brand plans, audience details, content preferences, and other sensitive operating context locally across sessions. <br>
-Mitigation: Do not enter passwords, API keys, unpublished confidential plans, private customer data, or other sensitive information unless local retention is acceptable. <br>
-Risk: The setup registers three OpenClaw agents and writes files under the user's OpenClaw workspace. <br>
-Mitigation: Review the expected workspace path and agent registrations before installation, especially on shared machines or managed environments. <br>
-Risk: Generated content may contain factual errors or unsupported claims if agents rely on incomplete source material. <br>
-Mitigation: Review drafts before publication and verify facts, data, and citations as part of the editorial workflow. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to deploy a three-agent OpenClaw content team for topic planning, editorial review, and article drafting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Little-ke/content-creation) <br>
-- [Publisher profile](https://clawhub.ai/user/Little-ke) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and local workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local OpenClaw agent workspaces and persistent memory files under the user's OpenClaw home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup script has a local command-injection risk around shell interpretation, especially when OPENCLAW_HOME is controlled or malformed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix command execution before installation and review generated commands before running the skill.
+
+Risk: The skill makes persistent OpenClaw workspace and agent registration changes without strong consent or rollback guidance.
+
+Mitigation: Tell users exactly which files and agents will be created, request explicit confirmation before deployment, and provide removal steps for workspaces and registered agents.
+
+Risk: The skill stores brand and content strategy information in local workspace Markdown files.
+
+Mitigation: Disclose what information is stored and avoid entering sensitive brand or credential data unless the workspace is appropriately protected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-ke/skills/content-creation)
+- [Publisher profile](https://clawhub.ai/user/little-ke)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and generated OpenClaw workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent OpenClaw agent workspaces and stores user-provided brand and content preferences in workspace Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

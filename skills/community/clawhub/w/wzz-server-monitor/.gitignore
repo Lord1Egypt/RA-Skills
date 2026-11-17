@@ -1,0 +1,13 @@
+# Python 字节码缓存（SkillHub 禁止二进制文件，发布前请确认无此目录）
+__pycache__/
+*.py[cod]
+
+# 运行时数据（不随 skill 发布）
+config.yaml
+state.json
+.smtp_secret
+monitor.log
+
+# 编辑器
+.vscode/
+.idea/

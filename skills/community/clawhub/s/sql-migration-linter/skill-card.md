@@ -1,39 +1,53 @@
-## Description: <br>
-Lint .sql migration files for common mistakes - missing IF EXISTS guards, UPDATE/DELETE without WHERE, non-idempotent CREATE, missing transaction wrappers, reserved-word identifiers, destructive DDL, and Postgres-specific issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lints .sql migration files for missing idempotency guards, unsafe DML or DDL, transaction issues, reserved-word identifiers, and dialect-specific migration risks.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to lint SQL migration files before review, pre-commit checks, or CI gates. It flags unsafe, non-idempotent, destructive, and dialect-specific migration patterns so teams can review them before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The linter can block CI or pre-commit workflows when warnings or errors meet the configured threshold. <br>
-Mitigation: Choose severity thresholds deliberately and start with reporting-only or error-only gates before enforcing stricter warning gates. <br>
-Risk: The tool reads user-selected SQL migration files and reports findings based on rule-based analysis without schema knowledge. <br>
-Mitigation: Run it only on migration directories intended for inspection and review findings before changing or deploying migrations. <br>
+## Use Case:
 
+Developers and database engineers use this skill to lint SQL migration files before pull request, pre-commit, or CI release checks. It supports generic, Postgres, MySQL, and SQLite migration workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, and summary reports from command-line linting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports severity filtering, dialect selection, recursive directory linting, and CI-friendly exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The linter reads SQL files under the paths passed to it, including nested .sql files when a directory is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass explicit files or scoped migration directories, and avoid broad directories unless recursive inspection is intended.
+
+Risk: Regex-based SQL linting can miss or misclassify complex migration behavior because it is not a full SQL parser and has no schema knowledge.
+
+Mitigation: Treat findings as review aids and keep human review, database-specific validation, and migration testing in place for complex changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/sql-migration-linter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text, JSON, or summary text with CI-oriented exit codes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads .sql files from user-provided files or directories; supports generic, postgres, mysql, and sqlite dialect options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

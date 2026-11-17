@@ -1,41 +1,58 @@
-## Description: <br>
-一键知识库 - 微信内容管家 helps agents save supported WeChat, Douyin, Xiaohongshu, public-account, and local-file content into Tencent Docs knowledge spaces with an index entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent organize WeChat Channels, Douyin, Xiaohongshu, public-account articles, and local files into a Tencent Docs knowledge base by downloading or capturing content, uploading it, and adding index records.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-Users ask an agent to capture links or local files and add them to a Tencent Docs-backed knowledge base. The skill guides the agent through source recognition, local download or parsing, upload to Tencent Docs, and index-record creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad save-style triggers can cause selected links or files to be downloaded locally and uploaded to Tencent or WeChat knowledge-base services unintentionally. <br>
-Mitigation: Confirm the exact source items and destination before each upload, avoid ambiguous requests such as "save this," and review Tencent Docs authorization before use. <br>
-Risk: Temporary local copies created during download or parsing can leave sensitive material on the local machine. <br>
-Mitigation: Clean up temporary files after each run and avoid processing content that should not be transferred to the configured knowledge base. <br>
+## Use Case:
 
+External users and agents use this skill to save social-media links, articles, videos, and local documents into a Tencent Docs-backed personal knowledge base with searchable index rows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/wechat-knowledge) <br>
-- [Tencent Docs](https://docs.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and script invocation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download selected content locally and upload it to Tencent Docs after user authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.5 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Downloaded or local content may be uploaded into an unintended Tencent Docs space or index.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the Tencent Docs space, index file, and sheet IDs before use; avoid uploading private files until the destination is confirmed.
+
+Risk: Tencent Docs authorization can grant access to cloud document storage and sheet operations.
+
+Mitigation: Install the Tencent Docs dependency only from a trusted, reviewed source, check the granted authorization scopes, and know how to revoke access.
+
+Risk: The release artifact describes parser and upload scripts that are not present in the submitted artifact.
+
+Mitigation: Treat missing scripts as a blocker unless they are supplied from a verified package version before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/wechat-knowledge)
+- [Tencent Docs](https://docs.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON parser outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create downloaded or converted local files, upload content to Tencent Docs, and add knowledge-base index records.]
+
+## Skill Version(s):
+
+2.2.5 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

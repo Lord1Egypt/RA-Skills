@@ -1,48 +1,58 @@
-## Description: <br>
-Generates network toxicology and molecular docking research designs from a toxicant-disease pair, including workload tiers, workflows, validation strategy, figure planning, and publication upgrade paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete network toxicology and molecular docking research designs from a user-provided toxicant and disease or phenotype.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, toxicology writers, and computational biology teams use this skill to draft structured, hypothesis-generating study plans for environmental toxicant, endocrine disruptor, heavy metal, food contaminant, pharmaceutical residue, or consumer chemical links to disease mechanisms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated study plans, docking scores, hub genes, target overlaps, or enrichment results as proof of toxicity, causality, clinical relevance, in vivo binding, or biological activity. <br>
-Mitigation: Frame outputs as hypothesis-generating plans, require human scientific review, and preserve the skill's explicit limitations around docking, hub genes, enrichment, expression support, and causal claims. <br>
-Risk: Confidential chemical structures, unpublished targets, or proprietary study details could be entered into public databases or docking services while following the plan. <br>
-Mitigation: Check database and service terms, data-retention policies, and confidentiality requirements before using external tools with sensitive inputs. <br>
-Risk: The skill produces research planning guidance rather than executable analysis, which can lead to incomplete or misleading conclusions if treated as finished evidence. <br>
-Mitigation: Use the plan as a design scaffold and validate methods, datasets, thresholds, and claims before publication or operational use. <br>
+## Use Case:
 
+Researchers, scientific writers, and external users use this skill to plan computational toxicant-disease mechanism studies with target prediction, PPI hub-gene analysis, enrichment, docking support, validation planning, figures, and publication upgrade paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/network-tox-docking-research-planner-1) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
-- [Decision Logic](references/decision-logic.md) <br>
-- [Study Patterns](references/study-patterns.md) <br>
-- [Workload Configurations](references/configurations.md) <br>
-- [Analysis Modules & Method Library](references/modules.md) <br>
-- [Mandatory Output Structure](references/output-standard.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with tables, step-by-step workflow sections, validation notes, and deliverable lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are planning guidance only and should not be treated as proof of toxicity, causality, clinical relevance, in vivo binding, or biological activity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can produce research-planning guidance that users might mistake for clinical, regulatory, experimental, or causal proof.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as computational study plans only; require expert review and experimental validation before making causal, clinical, regulatory, or safety claims.
+
+Risk: Broad toxicant-disease prompts may steer the agent into a network toxicology and docking plan even when another study type or direct analysis tool is more appropriate.
+
+Mitigation: Confirm that the request contains a toxicant-disease or toxicant-phenotype pair and use a data-execution tool when the user needs live database queries, downloads, or analysis execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/network-tox-docking-research-planner-1)
+- [Decision Logic](references/decision-logic.md)
+- [Study Patterns](references/study-patterns.md)
+- [Workload Configurations](references/configurations.md)
+- [Analysis Modules and Method Library](references/modules.md)
+- [Mandatory Output Structure](references/output-standard.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plan with tables and structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs four workload configurations, a recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, and publication upgrade path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

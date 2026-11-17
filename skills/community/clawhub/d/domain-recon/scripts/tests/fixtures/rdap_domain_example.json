@@ -1,0 +1,50 @@
+{
+  "objectClassName": "domain",
+  "handle": "2336799_DOMAIN_COM-VRSN",
+  "ldhName": "EXAMPLE.COM",
+  "status": [
+    "client delete prohibited",
+    "client transfer prohibited",
+    "client update prohibited"
+  ],
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "handle": "376",
+      "roles": [
+        "registrar"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "eventAction": "registration",
+      "eventDate": "1995-08-14T04:00:00Z"
+    },
+    {
+      "eventAction": "expiration",
+      "eventDate": "2026-08-13T04:00:00Z"
+    },
+    {
+      "eventAction": "last changed",
+      "eventDate": "2026-01-16T18:26:50Z"
+    },
+    {
+      "eventAction": "last update of RDAP database",
+      "eventDate": "2026-07-26T16:05:12Z"
+    }
+  ],
+  "secureDNS": {
+    "delegationSigned": true
+  },
+  "nameservers": [
+    {
+      "objectClassName": "nameserver",
+      "ldhName": "ELLIOTT.NS.CLOUDFLARE.COM"
+    },
+    {
+      "objectClassName": "nameserver",
+      "ldhName": "HERA.NS.CLOUDFLARE.COM"
+    }
+  ]
+}

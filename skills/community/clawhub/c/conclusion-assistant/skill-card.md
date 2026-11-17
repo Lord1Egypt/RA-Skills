@@ -1,41 +1,54 @@
-## Description: <br>
-论文结论部分撰写助手，基于11个通用组成部分帮助用户检查、评估、改进或重写论文结论，并支持中英双语输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+论文结论部分撰写助手，基于11个通用组成部分帮助用户检查、评估、改进或重写论文结论，并支持中英双语输出。
 
-## Publisher: <br>
-[sherry-zh0u](https://clawhub.ai/user/sherry-zh0u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sherry-zh0u](https://clawhub.ai/user/sherry-zh0u)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to draft thesis conclusions, check whether an existing conclusion covers the expected components, improve academic structure, and polish or translate conclusion text in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated thesis conclusion text may contain inaccurate claims, unoriginal phrasing, or academic-integrity issues if used without review. <br>
-Mitigation: Review and revise generated text against the underlying research, citation requirements, originality standards, and institution policies before submission. <br>
-Risk: Using the skill with unpublished or confidential research details may expose sensitive information to the agent environment. <br>
-Mitigation: Avoid sharing confidential research material unless the user is comfortable processing it in that environment. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to draft, review, translate, and improve thesis or paper conclusions. It helps check coverage of conclusion components, identify weak or missing elements, and produce polished academic prose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sherry-zh0u/conclusion-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/sherry-zh0u) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing structure checks, writing suggestions, revised conclusion text, or bilingual translation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the user for accuracy, originality, and academic integrity before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may provide confidential or unpublished research text while drafting or reviewing conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing sensitive thesis, paper, or research material unless the user is comfortable having the assistant process it.
+
+Risk: Generated academic prose or structure recommendations may be incomplete, inaccurate, or misaligned with a specific institution's requirements.
+
+Mitigation: Review the final conclusion against the source research, advisor guidance, and applicable submission requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sherry-zh0u/skills/conclusion-assistant)
+- [Publisher profile](https://clawhub.ai/user/sherry-zh0u)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text academic writing guidance, reports, drafts, rewritten conclusions, and translations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on user-provided thesis or paper context and may be bilingual in Chinese and English.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

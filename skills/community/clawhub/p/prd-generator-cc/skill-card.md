@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents draft, improve, review, and explain PRDs, product requirements, feature specs, user stories, acceptance criteria, scope boundaries, MVP definitions, and stakeholder-ready product documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PRD Generator helps agents draft, improve, review, and explain product requirements documents, feature specs, user stories, acceptance criteria, MVP scope, and stakeholder-ready product documents.
 
-## Publisher: <br>
-[snippyfly](https://clawhub.ai/user/snippyfly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snippyfly](https://clawhub.ai/user/snippyfly)
 
-## Use Case: <br>
-Product teams, founders, and developers use this skill to turn rough product ideas or existing requirements into reviewable Markdown PRDs, targeted clarification questions, acceptance criteria, and review findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PRDs can include assumptions or incomplete product, legal, privacy, payment, tax, or compliance details. <br>
-Mitigation: Review the draft before use, keep assumptions and open questions visible, and require professional confirmation for regulated or high-risk requirements. <br>
-Risk: Requested document exports could depend on local tools or scripts outside the skill. <br>
-Mitigation: Use Markdown as the default output and only allow file export after explicitly requesting it and reviewing any local tooling involved. <br>
+## Use Case:
 
+Product managers, founders, and product teams use this skill to turn early ideas or existing requirement notes into structured, reviewable PRD Markdown. It also helps review PRDs for missing goals, scope boundaries, roles, acceptance criteria, data and state behavior, permissions, exceptions, and unresolved questions.
 
-## Reference(s): <br>
-- [PRD Standard Template](references/prd_template.md) <br>
-- [UX Interaction Guidelines](references/ux_guidelines.md) <br>
-- [User Journey Map Guide](assets/user_journey_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or concise in-dialogue text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Markdown files only when the user explicitly asks; does not default to shell commands or external export tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill may draft requirements for legal, tax, privacy, payment, or compliance-sensitive domains where unsupported assumptions could mislead implementation or review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mark high-risk domain content as needing professional confirmation and keep assumptions or missing details in explicit confirmation sections.
+
+Risk: Incomplete source input can lead to PRD details that are inferred rather than validated.
+
+Mitigation: Ask targeted questions when key business goals, users, scope boundaries, constraints, or success criteria are missing; when drafting directly, label inferred content clearly.
+
+Risk: The skill is Chinese-oriented and may produce the wrong language or locale conventions for some users.
+
+Mitigation: Ask the user to specify English or another desired locale before using the skill when non-Chinese output is needed.
+
+## Reference(s):
+
+- [PRD Standard Template](references/prd_template.md)
+- [UX Interaction Guidelines](references/ux_guidelines.md)
+- [User Journey Map Guide](assets/user_journey_example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include questions, PRD drafts, review findings, revision suggestions, assumptions, and items needing confirmation.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

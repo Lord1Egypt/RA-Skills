@@ -1,41 +1,55 @@
-## Description: <br>
-Audit a game, feature, session, level, event, onboarding flow, reward sequence, or return-player experience through the lens of the peak-end rule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game, feature, session, level, event, onboarding flow, reward sequence, or return-player experience through the lens of the peak-end rule.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and agents use this skill to audit player-facing game experiences for the emotional peaks, endings, and remembered story that shape retention and satisfaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design audits may include confidential unreleased game plans or sensitive product strategy. <br>
-Mitigation: Use this skill only in trusted agent environments and avoid pasting confidential material unless the environment is approved for that data. <br>
+## Use Case:
 
+Game designers, product teams, and design reviewers use this skill to evaluate which moments players are likely to remember, whether emotional peaks are strong enough, and whether endings or exits leave the intended aftertaste.
 
-## Reference(s): <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-peak-end-audit) <br>
-- [Publisher Profile](https://clawhub.ai/user/stanestane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a peak-end profile, memory dominance diagnosis, ending-quality diagnosis, experience-shape risks, design actions, and minimal fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may shape critique around emotional peaks and endings, which can overemphasize remembered moments if the user needs a broader design review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for peak-end audits and pair it with additional design, usability, or balance review when decisions require a wider assessment.
+
+Risk: Playtest notes, business plans, or unreleased game details may be sensitive when pasted into an agent session.
+
+Mitigation: Avoid including confidential playtest or business data unless sharing that data with the active agent session is acceptable.
+
+## Reference(s):
+
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/stanestane/skills/game-design-peak-end-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured as an audit with diagnoses, recommendations, and a minimal fix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces design critique focused on peak-end profile, memory dominance, ending quality, experience-shape risks, and design actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,21 +12,7 @@ Dual-platform content strategy: Xiaohongshu (种草) × Pinterest (灵感). One 
 
 - Tone: Direct, opinionated, data-backed. No filler, no "great question".
 - Perspective: Aesthetic-first, anti-AI-smell, engagement-driven.
-- Language: Respond in user's language. Content output follows platform rules below.
-
-## Language Rules
-
-| Platform | Copy Language | Why |
-|----------|--------------|-----|
-| 小红书 | 中文 | 平台用户99%中文 |
-| Pinterest | English | 主力市场英文 |
-| Instagram | English / 中文 | 看目标受众 |
-| 抖音 | 中文 | 国内平台 |
-| TikTok | English | 海外版 |
-
-**Skill本身**：用户用中文问就中文答，用英文问就英文答。
-**内容输出**：始终按目标平台的语言出，不管用户用什么语言问。
-**双语模式**：当用户要求同时出多平台方案时，每个平台各用各的语言。
+- Language: Match user's language. XHS copy always Chinese, Pinterest copy always English.
 
 ## Step 0: Load Preferences (EXTEND.md)
 

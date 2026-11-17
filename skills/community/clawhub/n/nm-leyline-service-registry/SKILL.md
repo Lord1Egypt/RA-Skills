@@ -1,40 +1,21 @@
 ---
 name: service-registry
 description: |
-  Registers external services with health checks, central config, and unified execution
-version: 1.9.8
+  Registers external services with health checks, quotas, and a usage logger for per-call cost and sessions
+version: 1.10.3
 triggers:
   - services
   - registry
   - execution
   - health-checks
   - integration
-  - integrating multiple external services needing coordination
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.quota-management", "night-market.usage-logging"]}}}
+  - adding rate-limited APIs or logging usage
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Core Concepts](#core-concepts)
-- [Service Configuration](#service-configuration)
-- [Execution Result](#execution-result)
-- [Quick Start](#quick-start)
-- [Register Services](#register-services)
-- [Execute via Service](#execute-via-service)
-- [Health Checks](#health-checks)
-- [Service Selection](#service-selection)
-- [Auto-Selection](#auto-selection)
-- [Failover Pattern](#failover-pattern)
-- [Integration Pattern](#integration-pattern)
-- [Detailed Resources](#detailed-resources)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Service Registry
@@ -88,17 +69,21 @@ class ExecutionResult:
 
 ### Register Services
 ```python
-from leyline.service_registry import ServiceRegistry
+# Sketch: implement ServiceRegistry and ServiceConfig in your plugin.
+# leyline ships no service_registry module.
 
 registry = ServiceRegistry()
 
-registry.register("gemini", ServiceConfig(
-    name="gemini",
-    command="gemini",
-    auth_method="api_key",
-    auth_env_var="GEMINI_API_KEY",
-    quota_limits={"rpm": 60, "daily": 1000}
-))
+registry.register(
+    "gemini",
+    ServiceConfig(
+        name="gemini",
+        command="gemini",
+        auth_method="api_key",
+        auth_env_var="GEMINI_API_KEY",
+        quota_limits={"rpm": 60, "daily": 1000},
+    ),
+)
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
@@ -108,7 +93,7 @@ result = registry.execute(
     service="gemini",
     prompt="Analyze this code",
     files=["src/main.py"],
-    model="gemini-2.5-pro"
+    model="gemini-3.8-flash",
 )
 
 if result.success:
@@ -134,10 +119,7 @@ for service, healthy in all_status.items():
 ```python
 # Select best service for task
 service = registry.select_service(
-    requirements={
-        "large_context": True,
-        "fast_response": False
-    }
+    requirements={"large_context": True, "fast_response": False}
 )
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
@@ -165,9 +147,15 @@ dependencies: [leyline:service-registry]
 
 - **Service Config**: See `modules/service-config.md` for configuration options.
 - **Execution Patterns**: See `modules/execution-patterns.md` for advanced usage.
+- **Quota Management**: Load `modules/quota-management.md` when a service
+  imposes rate or cost limits. It covers threshold tiers, `QuotaTracker`,
+  and degradation (`threshold-strategies`, `estimation-patterns`).
+- **Usage Logging**: Load `modules/usage-logging.md` when a skill needs an
+  audit trail, usage analytics, or per-call cost tracking. It covers
+  `UsageLogger` and JSONL sessions (`session-patterns`, `log-formats`).
 
 ## Exit Criteria
 
-- Services registered with configuration.
-- Health checks passing.
-- Execution results properly handled.
+- [ ] Services registered with configuration.
+- [ ] Health checks passing.
+- [ ] Execution results properly handled.

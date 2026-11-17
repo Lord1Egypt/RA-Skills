@@ -1,43 +1,58 @@
-## Description: <br>
-Generates professional business logo images from user descriptions using Alibaba Cloud DashScope's Qwen image model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qwen Logo Designer helps an agent collect business logo requirements, write image-generation prompts, call Alibaba Cloud DashScope Qwen Image, and save generated logo images.
 
-## Publisher: <br>
-[imnull](https://clawhub.ai/user/imnull) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imnull](https://clawhub.ai/user/imnull)
 
-## Use Case: <br>
-Developers and agents use this skill to collect logo requirements, turn them into image-generation prompts, call the bundled Python script, and return generated logo image URLs or saved file paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logo prompts are sent to Alibaba DashScope. <br>
-Mitigation: Use a dedicated DashScope API key and avoid prompts that include confidential brand strategy, unreleased product names, or other sensitive details. <br>
-Risk: The script changes saved file permissions to 644 and the containing directory to 755. <br>
-Mitigation: Use a dedicated output directory and review or remove the permission-changing behavior before running it in private or shared directories. <br>
-Risk: The script downloads API-returned image URLs without validating the URL first. <br>
-Mitigation: Run it in a constrained environment and review the returned URL or network controls before using it with sensitive systems. <br>
+## Use Case:
 
+External users, designers, developers, and agents use this skill to turn brand, industry, style, color, and logo-type requirements into commercial logo image prompts and generated logo files.
 
-## Reference(s): <br>
-- [Qwen Logo Designer ClawHub page](https://clawhub.ai/imnull/qwen-logo-designer) <br>
-- [DashScope multimodal generation API endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated image URLs or PNG file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key; generated images are saved locally with MD5-based filenames when downloaded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Passing the DashScope API key with the --api-key argument can expose it through local process listings or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected environment or secret mechanism for DASHSCOPE_API_KEY, keep the key tightly scoped, and apply quota limits.
+
+Risk: The helper may make the output directory traversable and generated files readable by other local users.
+
+Mitigation: Save generated logos only into a dedicated non-sensitive output directory and review file permissions after execution.
+
+Risk: Logo prompts and generation requests are sent to the documented DashScope API.
+
+Mitigation: Avoid including confidential brand strategy or unreleased product details in prompts unless the deployment policy permits that API use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imnull/skills/qwen-logo-designer)
+- [DashScope multimodal generation API endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated image file paths or JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved locally, normally as MD5-named PNG files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

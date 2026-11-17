@@ -1,45 +1,57 @@
-## Description: <br>
-A WebSocket-based agent-to-agent messaging server for agent registration, discovery, RPC calls, publish/subscribe messaging, heartbeats, reconnects, and offline queues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A WebSocket-based agent-to-agent communication server for registering agents, routing peer messages, handling RPC calls, publishing and subscribing to channels, discovering capabilities, and delivering offline messages.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent engineers use this skill to run a local or trusted WebSocket coordination server for multi-agent messaging, RPC calls, pub/sub notifications, capability discovery, and offline message delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server can route remote agent calls without implemented authentication, authorization, TLS, or message signing. <br>
-Mitigation: Run it only on localhost or trusted networks until those controls are added, and use allowlists for agent IDs and capabilities. <br>
-Risk: Remote or untrusted agents could receive sensitive prompts, credentials, private code, or task data passed through the messaging server. <br>
-Mitigation: Do not send secrets or sensitive payloads through agents you do not fully trust. <br>
-Risk: Offline messages are queued by the server and may contain task data while agents are disconnected. <br>
-Mitigation: Keep queue contents non-sensitive, limit retention, and clear queues when operating outside a fully trusted local environment. <br>
+## Use Case:
 
+Developers and agent engineers use this skill to run a WebSocket messaging layer for multi-agent systems. It supports local or trusted deployments where agents need registration, peer messaging, RPC-style calls, pub/sub channels, capability discovery, heartbeats, and offline message queues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/a2a-server) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [TEST-STATUS.md](TEST-STATUS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local server commands, environment variables, client code snippets, and security caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Unauthenticated WebSocket clients can spoof agent identities and route RPC or pub/sub payloads if the server is reachable from untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for local, trusted development unless authentication, authorization, server-bound agent identities, signed messages, and TLS or equivalent transport protection are added.
+
+Risk: Payloads and offline queues can carry sensitive data or grow without production-grade controls in the packaged release.
+
+Mitigation: Do not send secrets through the server as packaged; add rate limits, payload and queue size limits, dependency updates, and operational monitoring before broader deployment.
+
+## Reference(s):
+
+- [ClawHub A2a Server Skill Page](https://clawhub.ai/yuyonghao-123/skills/a2a-server)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/README.md](artifact/README.md)
+- [artifact/IMPLEMENTATION-NOTES.md](artifact/IMPLEMENTATION-NOTES.md)
+- [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Node.js server and client usage guidance, environment variable configuration, API examples, and test commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json, artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

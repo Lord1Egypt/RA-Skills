@@ -1,40 +1,57 @@
-## Description: <br>
-Query the RAG knowledge base (Qdrant kb_main) by semantic search. Returns top-k chunks with text, doc_id, source, text_type, topic_tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the RAG knowledge base (Qdrant kb_main) by semantic search. Returns top-k chunks with text, doc_id, source, text_type, topic_tags.
 
-## Publisher: <br>
-[Seal-Re](https://clawhub.ai/user/Seal-Re) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seal-re](https://clawhub.ai/user/seal-re)
 
-## Use Case: <br>
-Developers and agents use rag-query to retrieve semantically relevant chunks from a Qdrant knowledge base and inject the returned context into downstream agent work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently use unrelated API keys and send embedding requests to a default embedding provider. <br>
-Mitigation: Set EMBED_API_KEY and EMBED_BASE_URL explicitly for the intended provider, and run it without unrelated OPENAI_API_KEY or VECTORENGINE_API_KEY values in the environment. <br>
-Risk: Retrieved knowledge-base text may contain untrusted or misleading content. <br>
-Mitigation: Treat retrieved chunks as reference content rather than instructions, and review them before acting on sensitive workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page: rag-query](https://clawhub.ai/Seal-Re/rag-query) <br>
-- [Publisher profile: Seal-Re](https://clawhub.ai/user/Seal-Re) <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve semantically relevant chunks from a Qdrant RAG knowledge base and inject the returned JSON results into an agent context.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON array of retrieved chunks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each result can include text, doc_id, source, text_type, and topic_tags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User queries and embedding credentials may be sent to an external embedding service.
+
+Mitigation: Explicitly set EMBED_BASE_URL to an approved provider and use a dedicated embedding credential.
+
+Risk: The skill can fall back to OPENAI_API_KEY when a dedicated embedding credential is not provided.
+
+Mitigation: Set EMBED_API_KEY or VECTORENGINE_API_KEY for this skill and avoid relying on OPENAI_API_KEY fallback.
+
+Risk: Sensitive internal queries may leave the approved environment through the embedding provider or Qdrant endpoint.
+
+Mitigation: Do not submit sensitive queries unless both the embedding provider and Qdrant endpoint are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seal-re/skills/rag-query)
+- [Publisher profile](https://clawhub.ai/user/seal-re)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON array returned by a Node command, with setup and usage guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns top-k chunks with text, doc_id, source, text_type, and topic_tags fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

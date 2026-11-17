@@ -1,41 +1,53 @@
-## Description: <br>
-Solve complex multi-step tasks by generating a detailed plan before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan First helps agents solve complex multi-step tasks by generating, validating, and executing a detailed plan before acting.
 
-## Publisher: <br>
-[simoncatbot](https://clawhub.ai/user/simoncatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncatbot](https://clawhub.ai/user/simoncatbot)
 
-## Use Case: <br>
-Developers, writers, analysts, and other agent users use this skill to break complex multi-step tasks into ordered plans with dependencies, verification steps, risk analysis, and rollback guidance before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans can include steps that would modify files, databases, accounts, or production systems. <br>
-Mitigation: Review the plan before execution and require explicit approval for steps that affect persistent state or production resources. <br>
-Risk: Broad activation can add unnecessary planning overhead for simple tasks. <br>
-Mitigation: Invoke the skill manually or narrow activation rules if it becomes noisy. <br>
+## Use Case:
 
+Developers, writers, analysts, and project planners use this skill to break complex work into ordered steps with dependencies, verification criteria, risk analysis, and rollback guidance before execution.
 
-## Reference(s): <br>
-- [Plan First detailed examples](references/examples.md) <br>
-- [Plan First on ClawHub](https://clawhub.ai/simoncatbot/plan-first) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with ordered steps, dependencies, verification criteria, risk analysis, and rollback guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only planning output; no code execution or external tool invocation is performed by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: For sensitive work such as production migrations, user data processing, moderation systems, or deployments, planning output could be mistaken for approval to proceed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal authorization, privacy, backup, access-control, and review procedures in place before acting on the plan.
+
+Risk: Broad activation can add unnecessary planning overhead for simple, direct, or exploratory tasks.
+
+Mitigation: Apply the skill to multi-step tasks with dependencies, and skip it for single-step questions or unconstrained brainstorming.
+
+## Reference(s):
+
+- [Plan First detailed examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plan with task, ordered steps, verification, risk analysis, and rollback sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task-specific file, tool, command, and rollback notes when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

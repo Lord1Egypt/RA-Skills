@@ -1,0 +1,110 @@
+{
+  "schema": "cad-municipal-geometry/v1",
+  "source_file": "real_site_pipe.dwg",
+  "provenance": "reader",
+  "contract": {
+    "schema": "cad-file-reader/v0",
+    "provenance": "reader",
+    "contract_version": "cad-contract/v1",
+    "contract_id": "cadc1-realformfixture01",
+    "reader_version": "0.41.3"
+  },
+  "summary": {},
+  "scale_unit_audit": [
+    {
+      "file": "real_site_pipe.dwg",
+      "sheet": 1,
+      "scales": [
+        "1:3000"
+      ],
+      "units": [
+        "m",
+        "mm"
+      ],
+      "evidence": []
+    }
+  ],
+  "systems": [
+    {
+      "system": "rainwater",
+      "raw": "雨水",
+      "status": "candidate"
+    }
+  ],
+  "components": [
+    {
+      "category": "manhole",
+      "system": "rainwater",
+      "raw": "检查井",
+      "layer": "GS-SS",
+      "x": 494000.0,
+      "y": 4056000.0,
+      "status": "candidate"
+    }
+  ],
+  "pipe_network": [
+    {
+      "system": "rainwater",
+      "pipe_size": "d600",
+      "raw": "d600雨水管",
+      "layer": "GS-YS",
+      "x": 494000.0,
+      "y": 4056000.0,
+      "status": "candidate"
+    }
+  ],
+  "materials": [],
+  "references": [],
+  "labels": [
+    {
+      "label_type": "dimension",
+      "value": "i=1.2",
+      "layer": "TEXT"
+    }
+  ],
+  "municipal_geometry": [
+    {
+      "category": "unclassified_municipal",
+      "system": "rainwater",
+      "layer": "GS-YS",
+      "geometry": [
+        494000.0,
+        4056000.0,
+        494150.0,
+        4056000.0
+      ],
+      "file": "real_site_pipe.dwg",
+      "sheet": 1,
+      "status": "review",
+      "review_reason": "图层未映射"
+    },
+    {
+      "category": "road_centerline",
+      "system": "road",
+      "layer": "DL-ZX",
+      "geometry": [
+        494000.0,
+        4056000.0,
+        494000.0,
+        4056400.0
+      ],
+      "file": "real_site_pipe.dwg",
+      "sheet": 1,
+      "status": "candidate"
+    }
+  ],
+  "entities": [],
+  "connectivity": {
+    "summary": {
+      "open_endpoints": 2,
+      "junction_candidates": 1
+    }
+  },
+  "review": [
+    {
+      "type": "pipe_size",
+      "reason": "识别到市政管道但未提取到管径"
+    }
+  ],
+  "boundary": "只输出识图候选"
+}

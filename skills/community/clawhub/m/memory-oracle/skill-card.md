@@ -1,44 +1,61 @@
-## Description: <br>
-Persistent structured memory system for OpenClaw agents with SQLite storage, hybrid search, rule-based capture, optional LLM-powered reflection, and adaptive trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent structured memory system for OpenClaw agents with SQLite storage, hybrid search, rule-based capture, LLM-powered daily reflection, and adaptive weekly trend analysis.
 
-## Publisher: <br>
-[oleglegegg](https://clawhub.ai/user/oleglegegg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oleglegegg](https://clawhub.ai/user/oleglegegg)
 
-## Use Case: <br>
-Developers and agent operators use Memory Oracle when an OpenClaw agent needs persistent cross-session memory, relevant context recall before responses, and structured preservation of critical instructions across compaction and restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain and reuse conversation or session data across agent runs. <br>
-Mitigation: Use it only when persistent cross-session memory is intended, avoid storing secrets or regulated data, and periodically inspect and prune the SQLite database, MEMORY.md, and logs. <br>
-Risk: Heavy-mode consolidation and reflection can send retained memory or daily logs to Anthropic. <br>
-Mitigation: Leave ANTHROPIC_API_KEY unset and skip cron jobs unless external LLM processing is acceptable for the deployment. <br>
-Risk: Reflected memories and guardrails can influence future agent behavior. <br>
-Mitigation: Review reflected memories before allowing them to become durable guardrails or high-priority context. <br>
+## Use Case:
 
+Developers and agent operators use Memory Oracle to give OpenClaw agents persistent cross-session memory, retrieval, and memory hygiene for long-running workflows. It is suited for private or carefully scoped agent contexts where users want structured recall, guardrails, and continuity after compaction or restarts.
 
-## Reference(s): <br>
-- [Memory Oracle ClawHub page](https://clawhub.ai/oleglegegg/memory-oracle) <br>
-- [README](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON memory/reflection artifacts, and text recall output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SQLite-backed local memory; optional Anthropic API use for consolidation and reflection when ANTHROPIC_API_KEY is configured] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Persistent memory can store and reuse conversation content across sessions with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use private contexts, avoid shared or group contexts until isolation is enforced, and inspect stored memory before enabling automated workflows.
+
+Risk: The HEAVY process can send daily logs and memory state to an external or configurable endpoint.
+
+Mitigation: Use LIGHT-only mode by leaving ANTHROPIC_API_KEY unset unless external processing is acceptable, and do not point api.base_url at another endpoint while using ANTHROPIC_API_KEY.
+
+Risk: Ordinary text can be promoted into always-active rules or guardrails.
+
+Mitigation: Review captured guardrails and reflection output, keep the confidence gate enabled, and manually remove or archive incorrect persistent rules.
+
+Risk: Uninstall and maintenance paths can delete memory data or reflection files.
+
+Mitigation: Avoid --force uninstall, export or back up memory data first, and inspect stats before enabling cron or deletion paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/oleglegegg/skills/memory-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text and Markdown with optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recall output is budgeted by configuration; default recall budget is about 2000 tokens.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

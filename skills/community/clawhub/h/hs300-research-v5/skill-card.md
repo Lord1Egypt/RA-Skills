@@ -1,43 +1,58 @@
-## Description: <br>
-HS300 Research V5 helps agents run multi-factor A-share and CSI 300 research workflows, collect market data from several sources, score stocks, assess risk, and produce investment research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research HS300 index constituents for stock analysis and portfolio construction.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to analyze A-share and CSI 300 equities, run multi-factor scoring, inspect technical and fundamental signals, and generate research reports for review. The generated research should be treated as decision support, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes live third-party credentials and enabled credentialed data access. <br>
-Mitigation: Rotate or remove bundled credentials, replace them with environment-managed credentials, and disable unwanted external data sources before installation. <br>
-Risk: The skill can send market queries to external data providers and create local caches, logs, reports, and downloaded files. <br>
-Mitigation: Review provider terms and local data-handling requirements, and run it only in environments where those queries and artifacts are approved. <br>
+## Use Case:
 
+External users and developers use this skill to run HS300/CSI 300 stock research, multi-factor scoring, technical and fundamental analysis, and portfolio-construction research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/hs300-research-v5) <br>
-- [README.md](artifact/README.md) <br>
-- [DATA_SOURCES.md](artifact/DATA_SOURCES.md) <br>
-- [Tushare Pro](https://tushare.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown research reports, Excel workbooks, CSV factor data, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use live third-party market data sources and local caches; generated research is not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.2.1 (source: server release evidence; artifact frontmatter lists 5.2.0) <br>
+Risk: Plaintext financial-data service credentials are present in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate embedded credentials before use; require user-supplied environment secrets for provider authentication.
+
+Risk: Authenticated provider access behavior conflicts with documentation that says JQData is disabled or user-configured.
+
+Mitigation: Align documentation and configuration, disable default authentication, and require explicit user setup before enabling provider access.
+
+Risk: Pickle-based caches may be unsafe in shared or sensitive environments.
+
+Mitigation: Replace pickle caches with a safer serialization format and avoid loading cache files from untrusted locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/hs300-research-v5)
+- [Tushare Pro](https://tushare.pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated research reports may be Markdown or Excel files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to financial data providers and user-supplied provider credentials; outputs are research references and not investment advice.]
+
+## Skill Version(s):
+
+5.2.2 (source: server release metadata; artifact frontmatter 5.2.0, package.json 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

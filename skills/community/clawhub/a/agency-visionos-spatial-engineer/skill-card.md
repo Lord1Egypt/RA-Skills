@@ -1,48 +1,59 @@
-## Description: <br>
-Helps developers build native visionOS spatial interfaces with SwiftUI, RealityKit, Liquid Glass, volumetric layouts, and multi-window architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in visionos spatial engineer.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on native visionOS applications that use SwiftUI, RealityKit, spatial widgets, volumetric presentations, Liquid Glass interface patterns, and accessible spatial navigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may rely on visionOS 26 beta or release APIs and may not apply to earlier visionOS versions. <br>
-Mitigation: Confirm the target SDK, deployment version, and Apple release notes before implementation. <br>
-Risk: Instruction-only guidance can still suggest incorrect SwiftUI, RealityKit, performance, or accessibility patterns. <br>
-Mitigation: Review recommendations against Apple documentation and test changes in simulator or on device before shipping. <br>
-Risk: Future updates could add install steps, commands, network access, credentials, or broader autonomous behavior. <br>
-Mitigation: Review release diffs and security scan results before deploying updated versions. <br>
+## Use Case:
 
+Developers and engineers use this skill for visionOS spatial computing work, including SwiftUI volumetric interfaces, RealityKit integration, Liquid Glass design, spatial widgets, multi-window architecture, accessibility, and performance guidance.
 
-## Reference(s): <br>
-- [visionOS Documentation](https://developer.apple.com/documentation/visionos/) <br>
-- [What's new in visionOS 26 - WWDC25](https://developer.apple.com/videos/play/wwdc2025/317/) <br>
-- [Set the scene with SwiftUI in visionOS - WWDC25](https://developer.apple.com/videos/play/wwdc2025/290/) <br>
-- [visionOS 26 Release Notes](https://developer.apple.com/documentation/visionos-release-notes/visionos-26-release-notes) <br>
-- [visionOS Developer Documentation](https://developer.apple.com/visionos/whats-new/) <br>
-- [What's new in SwiftUI - WWDC25](https://developer.apple.com/videos/play/wwdc2025/256/) <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-visionos-spatial-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown text with optional Swift and SwiftUI code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no install steps, credentials, network actions, or privileged behavior in the reviewed release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generic activation wording may lead users to apply the skill outside visionOS spatial engineering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill for visionOS-related tasks and use a more suitable specialist for unrelated development work.
+
+Risk: The artifact focuses on visionOS 26 features and does not claim backward compatibility with earlier visionOS versions.
+
+Mitigation: Confirm the target visionOS version and current Apple documentation before applying version-specific recommendations.
+
+## Reference(s):
+
+- [visionOS Documentation](https://developer.apple.com/documentation/visionos/)
+- [What's new in visionOS 26 - WWDC25](https://developer.apple.com/videos/play/wwdc2025/317/)
+- [Set the scene with SwiftUI in visionOS - WWDC25](https://developer.apple.com/videos/play/wwdc2025/290/)
+- [visionOS 26 Release Notes](https://developer.apple.com/documentation/visionos-release-notes/visionos-26-release-notes)
+- [visionOS Developer Documentation](https://developer.apple.com/visionos/whats-new/)
+- [What's new in SwiftUI - WWDC25](https://developer.apple.com/videos/play/wwdc2025/256/)
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-visionos-spatial-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown or plain text with Swift and SwiftUI code snippets when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No install steps, executables, persistence, credential use, or hidden high-impact behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

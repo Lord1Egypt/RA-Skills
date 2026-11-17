@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "publication": "2026-01-15T00:00:00Z",
+  "description": "RDAP bootstrap for DNS registrations (trimmed sample; mirrors reality: .io is intentionally absent — IANA does not list it)",
+  "services": [
+    [
+      ["com", "net"],
+      ["https://rdap.verisign.com/com/v1/"]
+    ],
+    [
+      ["ai"],
+      ["https://rdap.identitydigital.services/rdap/"]
+    ],
+    [
+      ["org"],
+      ["https://rdap.publicinterestregistry.org/rdap/"]
+    ]
+  ]
+}

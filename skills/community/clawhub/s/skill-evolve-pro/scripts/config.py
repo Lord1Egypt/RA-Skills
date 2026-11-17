@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 
 # ── DeepSeek API 配置 ──────────────────────────────────────────────────────
-DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-bcf804f871284c66a1ecef3dffe665f3")
+DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY", "REDACTED-SECRET")
 
 DEEPSEEK_BASE_URL = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 MODEL = os.environ.get("DEEPSEEK_MODEL", "deepseek-chat")

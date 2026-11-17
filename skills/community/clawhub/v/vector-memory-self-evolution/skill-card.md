@@ -1,45 +1,59 @@
-## Description: <br>
-This skill helps an agent capture user-derived errors, corrections, best practices, and events into a local BGE and Chroma-backed vector memory system for later semantic retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+向量记忆自我进化系统 - 结合 BGE 向量模型、Chroma 向量库、四层记忆架构，实现自动错误捕获、用户纠正学习、最佳实践积累、语义检索的自我进化能力。
 
-## Publisher: <br>
-[lxbl79](https://clawhub.ai/user/lxbl79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxbl79](https://clawhub.ai/user/lxbl79)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent local memory capture, semantic search, conflict checks, and pre-execution reminders to an OpenClaw-style workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses user-derived data persistently in local files and vector databases. <br>
-Mitigation: Treat memory files and vectors as sensitive data, avoid storing secrets, and review retention and backup behavior before enabling broad capture. <br>
-Risk: Auto-capture, cron jobs, and rule promotion can preserve or reuse incorrect or sensitive guidance without enough review. <br>
-Mitigation: Keep autoCapture and scheduled jobs disabled until reviewed, and require manual approval before writing durable rules to SOUL.md or reusing memory as future agent guidance. <br>
-Risk: Vectorization depends on a localhost service on port 11434. <br>
-Mitigation: Verify which service owns localhost:11434 before sending memory content for embeddings. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local, vector-searchable memory for command errors, user corrections, best practices, and recurring events. It supports pre-execution checks, semantic memory search, conflict detection, and redaction-oriented handling of stored memories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxbl79/vector-memory-self-evolution) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lxbl79) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation, Python APIs, shell commands, local markdown memory files, and Chroma vector search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files under ~/.openclaw/workspace and a localhost embedding service on port 11434 when vectorizing memories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill persistently stores and reuses user and agent content, including conversation-derived memories, command errors, corrections, and vectorized text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local long-term memory storage is acceptable, and add review, deletion, and retention controls before enabling automatic capture for sensitive work.
+
+Risk: The security evidence says the skill overstates its safety and implemented features.
+
+Mitigation: Review the artifact behavior and test the claimed redaction, scan, and memory workflows before deployment.
+
+Risk: The included examples mention privileged or forceful commands such as sudo, --break-system-packages, and kill -9.
+
+Mitigation: Treat generated command guidance as advisory and require manual verification before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxbl79/skills/vector-memory-self-evolution)
+- [Publisher profile](https://clawhub.ai/user/lxbl79)
+- [Local embedding endpoint](http://localhost:11434/api/embeddings)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reference local memory files, Chroma vector data, and suggested command checks under the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

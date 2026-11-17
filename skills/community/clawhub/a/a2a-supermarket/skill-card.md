@@ -1,42 +1,59 @@
-## Description: <br>
-Unified entry skill for RealMarket A2A commerce workflows. Supports seller product publish and buyer product discovery through UCP market connectivity, plus end-to-end order orchestration modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified entry skill for RealMarket A2A commerce workflows. Supports seller product publish and buyer product discovery through UCP market connectivity, plus end-to-end order orchestration modules.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
 
-## Use Case: <br>
-Developers and commerce workflow operators use this skill to orchestrate A2A marketplace flows, including seller product publication and buyer product discovery against a UCP-connected market endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts a user-specified marketplace domain and follows UCP discovery to a REST endpoint, so an untrusted or unexpected endpoint could receive product data or return misleading listings. <br>
-Mitigation: Use trusted domains, prefer HTTPS, and review the discovered endpoint when possible before running buyer or seller actions. <br>
-Risk: Seller mode publishes products and should be treated as a real marketplace write action. <br>
-Mitigation: Confirm the target domain, product name, price, currency, category, and stock setting before running seller publish. <br>
-Risk: The broader end-to-end commerce flow depends on separate authentication, payment, ledger, order-state, and realtime modules. <br>
-Mitigation: Review those related skills and their security posture before relying on the full commerce workflow. <br>
+## Use Case:
 
+External users and agents use this skill as an A2A commerce entrypoint to publish seller products, discover buyer products, and coordinate marketplace workflow contracts. It can route related identity, negotiation, staking, payment, order lifecycle, and realtime event tasks to module-level skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/a2a-supermarket) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the CLI, with Markdown usage examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Seller output reports publish results with mode=seller_publish; buyer output reports discovery results with mode=buyer_discover.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: Networked marketplace actions may target untrusted or unintended domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted marketplace domains and prefer explicit HTTPS URLs until domain allowlisting, endpoint validation, and HTTPS-only behavior are in place.
+
+Risk: Seller publish mode can create product listings with supplied name, price, category, and stock details.
+
+Mitigation: Require human confirmation of seller publish actions and review product details before execution.
+
+Risk: Running against privileged or internal-network environments could broaden the impact of discovered endpoint calls.
+
+Mitigation: Run with least privilege and avoid internal-network environments unless the marketplace domain and endpoint are explicitly approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/skills/a2a-supermarket)
+- [Skill documentation](SKILL.md)
+- [CLI entrypoint](src/cli/index.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json]
+
+**Output Format:** [JSON CLI responses with concise text or markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Seller mode returns seller_publish results; buyer mode returns buyer_discover product listings. The executable path performs networked marketplace requests against discovered UCP REST endpoints.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

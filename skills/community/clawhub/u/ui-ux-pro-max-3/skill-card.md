@@ -1,41 +1,53 @@
-## Description: <br>
-UI/UX design intelligence for planning, building, reviewing, and improving web and mobile interfaces across common stacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI/UX design intelligence for web and mobile, covering style selection, color systems, typography, accessibility, interaction patterns, responsive layout, charts, and stack-specific guidance across common frontend technologies.
 
-## Publisher: <br>
-[hayasam](https://clawhub.ai/user/hayasam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hayasam](https://clawhub.ai/user/hayasam)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to plan, implement, review, and refine UI/UX decisions for websites, dashboards, SaaS, ecommerce, portfolios, blogs, and mobile apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references an external search.py script and OS-level Python install commands that are not included in this artifact. <br>
-Mitigation: Verify the script, package source, and install command separately before executing them. <br>
-Risk: Design guidance may be applied without enough product, accessibility, or platform context. <br>
-Mitigation: Review generated recommendations against the target product requirements, accessibility standards, and platform conventions before release. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to plan, build, review, and improve web or mobile interfaces. It helps choose design systems, UI styles, palettes, typography, layouts, accessibility checks, interaction patterns, and implementation guidance for frontend projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hayasam/ui-ux-pro-max-3) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hayasam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled executable code; referenced external scripts and OS-level install commands should be verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may encourage broad UI/UX usage and optional project-local design-system files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated design-system files and UI recommendations before adopting them in a project.
+
+Risk: The skill includes optional Python and OS package installation commands.
+
+Mitigation: Do not let an agent automatically run installation commands with admin privileges; review commands and perform OS package setup manually for the target platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hayasam/skills/ui-ux-pro-max-3)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and text with optional shell command examples and generated design-system files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose project-local design-system files such as design-system/MASTER.md and page-specific markdown overrides.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,4 +8,4 @@ Compatibility index for older references. New work should load the smaller mode 
 - Paid-action boundaries: `paid-actions.md`
 - External/latest/source-backed research boundary: `search-strategy.md` plus web guidance when the user explicitly asks.
 
-Mentor advice never authorizes unlock, contact search, or email send.
+Mentor advice never authorizes unlock or email send. Cross-company contact search is retired.

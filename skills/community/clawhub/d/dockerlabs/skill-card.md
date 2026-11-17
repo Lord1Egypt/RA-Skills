@@ -1,39 +1,53 @@
-## Description: <br>
-Dockerlabs records Docker-related workflow activity locally and provides commands for viewing, searching, and exporting that history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Docker hands-on with tutorials on containers and orchestration.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use Dockerlabs to log Docker-related checks, lint notes, troubleshooting, and generated artifacts locally, then search or export that activity history for reporting or audit trails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake Dockerlabs for a real Docker tutorial, validator, linter, or fixer rather than a local activity logger. <br>
-Mitigation: Independently verify Docker guidance and validation results; treat Dockerlabs entries as records, not authoritative checks. <br>
-Risk: Inputs are stored in plain text under ~/.local/share/dockerlabs and can be exported. <br>
-Mitigation: Do not enter registry tokens, passwords, internal hostnames, proprietary configs, or other sensitive details. <br>
+## Use Case:
 
+Developers and engineers use Dockerlabs to record, review, search, and export Docker-related checks, validation notes, lint findings, generation notes, fixes, and troubleshooting history.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI output as plain text with optional JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local activity logs under ~/.local/share/dockerlabs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill presents Docker validation, generation, linting, and fixing commands, but the artifact behavior records user-supplied notes rather than performing real Docker analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a local note and audit log; independently validate Dockerfiles, compose files, and deployment changes with trusted Docker tooling before using them.
+
+Risk: User input is stored in plaintext under ~/.local/share/dockerlabs and can later be searched or exported.
+
+Mitigation: Do not enter secrets, registry tokens, private keys, production compose files, or sensitive incident details unless plaintext local storage is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/dockerlabs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local text or JSON/CSV/TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local plaintext logs and exports under ~/.local/share/dockerlabs.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

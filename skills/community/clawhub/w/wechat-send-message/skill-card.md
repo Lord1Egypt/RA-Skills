@@ -1,40 +1,57 @@
-## Description: <br>
-在微信 Mac 版发送消息，适用于用户提到"微信发消息"、"发微信"或"给 XXX 发微信"的场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在微信 Mac 版发送消息。当用户提到"微信发消息"、"发微信"、"给 XXX 发微信"时触发。
 
-## Publisher: <br>
-[calvin-dean](https://clawhub.ai/user/calvin-dean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[calvin-dean](https://clawhub.ai/user/calvin-dean)
 
-## Use Case: <br>
-Users who automate messaging on macOS use this skill to search for a WeChat contact and send a message through the WeChat Mac interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send a real WeChat message from the user's account without confirming the exact recipient or message first. <br>
-Mitigation: Preview the recipient and message, handle ambiguous contact matches, and require explicit approval before pressing Enter to send. <br>
-Risk: The skill controls the Mac WeChat UI, so unintended focus or contact selection could affect the message target. <br>
-Mitigation: Run only when the WeChat window state is visible and expected, and verify the selected conversation before entering message content. <br>
+## Use Case:
 
+External users and developers can use this skill to guide an agent through WeChat for Mac UI automation that searches for a contact and sends a message from the logged-in account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvin-dean/wechat-send-message) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell and AppleScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces UI automation steps that can send messages from the user's WeChat account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may send a WeChat message immediately to the first matched search result, including an unintended recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require visible confirmation of the exact resolved contact and message before sending, and avoid partial-name top-result selection.
+
+Risk: User-provided contact or message text may be interpolated into shell or AppleScript automation commands.
+
+Mitigation: Pass contact and message text as data, escape inputs correctly, and avoid constructing executable script source from raw user text.
+
+Risk: The skill controls the logged-in user's WeChat Mac UI and can send messages through that account.
+
+Mitigation: Install and run only when the user accepts agent control of WeChat, and keep local UI automation permissions limited to the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvin-dean/skills/wechat-send-message)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with shell, AppleScript, and UI automation command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local WeChat for Mac session and UI automation permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

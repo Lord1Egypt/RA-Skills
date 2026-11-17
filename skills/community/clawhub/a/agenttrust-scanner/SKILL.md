@@ -10,14 +10,14 @@ Unique features:
 - JWS-signed receipts — verifiable ACT/HALT per IETF draft-krausz-verification-state-01
 - Endpoint reputation — on-chain trust score before your agent pays
 - Trust badge — SVG badge for x402 providers
-- MCP server — install via npx @poteshniy/agenttrust-mcp for Claude Desktop, Cursor, Windsurf
+- MCP server — install via npx @poteshniy/agenttrust-mcp@1.0.1 (pinned) for Claude Desktop, Cursor, Windsurf
 
-**Privacy notice:** Submitted content is sent to agenttrust.uk for analysis. Only submit content you are comfortable sharing.
+**Privacy notice:** Submitted content is transmitted to the external host agenttrust.uk for analysis. This applies to ALL endpoints including free ones. The agent MUST obtain explicit per-request user consent before any submission and MUST exclude secrets (credentials, keys, tokens, internal URLs) by default. Submitting content is an opt-in action, not a default.
 
 **Payment notice:** Full scan endpoints require x402 USDC payments on Base. Free tiers require no wallet.
 
 ## Instructions
-Always try free endpoints first. Before using any paid endpoint, ask the user for explicit confirmation and disclose the exact price.
+Before sending ANY content to agenttrust.uk — free or paid — ask the user for explicit confirmation and show that the submitted content will leave the local machine and go to the host agenttrust.uk. Do NOT submit content containing credentials, API keys, authorization headers, private keys, tokens, or internal URLs; redact them first or skip submission. Prefer local summarization when content is sensitive. Free endpoints require no wallet; paid endpoints additionally require x402 confirmation with the exact price disclosed.
 
 ### Free SKILL.md scan (no payment required)
 POST https://agenttrust.uk/v1/scan/free
@@ -96,10 +96,12 @@ Returns: full report with per-finding remediation guidance
 
 ### MCP Server (Claude Desktop / Cursor / Windsurf)
 Install once and use all tools directly in your AI client:
-npx @poteshniy/agenttrust-mcp
+npx @poteshniy/agenttrust-mcp@1.0.1
 
 Config:
-{"mcpServers":{"agenttrust":{"command":"npx","args":["-y","@poteshniy/agenttrust-mcp"]}}}
+{"mcpServers":{"agenttrust":{"command":"npx","args":["@poteshniy/agenttrust-mcp@1.0.1"]}}}
+
+The package version is pinned intentionally. Verify the package (version, publisher, integrity) before changing the pin. Do not add `-y` — package acquisition should not be silently approved.
 
 ### JWS Receipt Verification
 All scan responses include a signed receipt field. Verify with:

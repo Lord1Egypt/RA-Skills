@@ -1,48 +1,58 @@
-## Description: <br>
-Expert guidance on PagerKit, a SwiftUI library for advanced, customizable page-based navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance on PagerKit, a SwiftUI library for advanced, customizable page-based navigation.
 
-## Publisher: <br>
-[SzpakKamil](https://clawhub.ai/user/SzpakKamil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[szpakkamil](https://clawhub.ai/user/szpakkamil)
 
-## Use Case: <br>
-Developers use this skill for guidance on building SwiftUI page-based navigation with PagerKit, including PKPagesView, PKPage, dynamic pages, page indicators, event handling, and platform-specific behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Guidance may point developers to a third-party Swift package whose upstream source and version must be trusted before production use. <br>
-Mitigation: Confirm the intended PagerKit upstream project and pin a trusted package version before integrating it into a production app. <br>
-Risk: Platform-specific PagerKit APIs can differ across Apple operating systems and Swift versions. <br>
-Mitigation: Verify project deployment targets and Swift 5.9+ compatibility before applying platform-specific modifiers or examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PagerKit Reference](references/PagerKit.md) <br>
-- [PKPagesView Reference](references/PKPagesView.md) <br>
-- [PKPage Reference](references/PKPage.md) <br>
-- [ForEach Reference](references/ForEach.md) <br>
-- [PKPageBuilder Reference](references/PKPageBuilder.md) <br>
-- [PKPageControlIndicatorBackgroundStyle Reference](references/PKPageControlBackgroundStyle.md) <br>
-- [PKPageControlIndicatorDirection Reference](references/PKPageControlDirection.md) <br>
-- [PKPageDirection Reference](references/PKPageDirection.md) <br>
-- [PagerKit Documentation](https://documentation.kamilszpak.com/documentation/pagerkit/) <br>
-- [PagerKit Project Website](https://kamilszpak.com/pl/pagerkit) <br>
+## Use Case:
 
+Developers use this skill to get implementation guidance for PagerKit-based SwiftUI paging, including setup, page construction, indicator customization, event handling, and platform-specific usage.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with Swift code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific SwiftUI guidance for Apple deployment targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Suggested PagerKit API usage may not match a developer's selected PagerKit version, Swift version, or Apple platform target.
+
+Mitigation: Confirm the project's PagerKit version, Swift 5.9+ requirement, and deployment targets before applying code examples.
+
+Risk: The skill references a third-party Swift Package Manager dependency that may have separate security, licensing, or maintenance considerations.
+
+Mitigation: Review the linked PagerKit repository and selected package version before using the dependency in production.
+
+## Reference(s):
+
+- [PagerKit reference](references/PagerKit.md)
+- [PKPagesView reference](references/PKPagesView.md)
+- [PKPage reference](references/PKPage.md)
+- [ForEach in PagerKit](references/ForEach.md)
+- [PKPageBuilder reference](references/PKPageBuilder.md)
+- [PagerKit documentation](https://documentation.kamilszpak.com/documentation/pagerkit/)
+- [PagerKit project website](https://kamilszpak.com/pl/pagerkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with Swift code examples and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable skill code is included.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

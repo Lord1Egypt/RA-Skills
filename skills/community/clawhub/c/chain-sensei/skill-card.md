@@ -1,41 +1,54 @@
-## Description: <br>
-On-chain intelligence for AI agents that analyzes wallets, detects risks, traces transactions, and provides insights on Ethereum addresses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chain Sensei provides on-chain intelligence for AI agents by analyzing wallets, detecting risks, tracing transactions, and returning insights for Ethereum addresses.
 
-## Publisher: <br>
-[agustinastie2](https://clawhub.ai/user/agustinastie2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agustinastie2](https://clawhub.ai/user/agustinastie2)
 
-## Use Case: <br>
-External agents and developers use this skill to inspect public EVM wallet, token, and transaction data before trading, security, DeFi, or research decisions. Premium workflows add deeper risk scoring, batch analysis, and alerts through paid x402 requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid x402 features could spend wallet funds without clear per-request consent controls. <br>
-Mitigation: Keep premium mode disabled unless needed, use a dedicated low-balance wallet, and require the agent to show the exact price and receive approval before every paid request or alert setup. <br>
-Risk: Blockchain analysis can be incomplete or misleading if public API data, wallet labels, or risk heuristics are stale or wrong. <br>
-Mitigation: Treat results as decision support, verify high-impact findings against independent sources, and avoid using the skill as the sole basis for financial or security decisions. <br>
+## Use Case:
 
+External developers and AI-agent operators use this skill to request wallet snapshots, token information, transaction traces, risk scoring, batch analysis, and event alerts across supported EVM chains.
 
-## Reference(s): <br>
-- [Chain Sensei ClawHub Page](https://clawhub.ai/agustinastie2/chain-sensei) <br>
-- [agustinastie2 Publisher Profile](https://clawhub.ai/user/agustinastie2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Natural-language analysis with structured blockchain fields, risk indicators, and optional pricing details for premium x402 requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe balances, token metadata, transaction traces, wallet risk scores, batch results, and alert setup details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Premium x402 features and alerts can cause paid requests or recurring paid triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable x402 only with explicit spending limits, per-request approval, and a way to disable alerts or recurring triggers.
+
+Risk: The install command uses an unpinned remote installer, so installation behavior can change over time.
+
+Mitigation: Use a pinned, trusted installer version where possible and review the skill before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agustinastie2/skills/chain-sensei)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Natural-language summaries and structured JSON for wallet, token, transaction, and risk-analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a local file cache; premium features can involve x402 payments when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

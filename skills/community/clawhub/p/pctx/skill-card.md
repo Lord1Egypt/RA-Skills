@@ -1,41 +1,58 @@
-## Description: <br>
-MCP aggregation and Code Mode execution layer for token-efficient agent workflows that connects agents to Linear, GitHub, and other MCP servers through a single local endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pctx provides an MCP aggregation and Code Mode execution layer that connects agents to Linear, GitHub, and other MCP servers through one local endpoint for token-efficient tool workflows.
 
-## Publisher: <br>
-[cianbyrne1010](https://clawhub.ai/user/cianbyrne1010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cianbyrne1010](https://clawhub.ai/user/cianbyrne1010)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage a local pctx MCP gateway, connect upstream Linear, GitHub, or other MCP servers, and batch MCP tool workflows through Code Mode TypeScript execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local MCP gateway can provide persistent agent access to connected tools and sensitive GitHub or Linear credentials. <br>
-Mitigation: Use narrowly scoped tokens, connect only trusted upstream MCP servers, review the gateway configuration, and stop or remove the daemon when it is not needed. <br>
-Risk: Adding untrusted npm, npx, or remote MCP endpoints can expand the agent's execution and data-access surface. <br>
-Mitigation: Avoid untrusted packages and remote endpoints, review each MCP before adding it, and keep config backups so unsafe changes can be reverted. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, check, and operate a local pctx layer for aggregating MCP servers and batching Linear, GitHub, or other MCP tool calls through Code Mode.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/cianbyrne1010/pctx) <br>
-- [pctx upstream project](https://github.com/portofcontext/pctx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, TypeScript examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call local MCP tools and produce JSON-RPC responses through the pctx endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill installs and starts high-impact local tooling with persistent access to GitHub, Linear, or similar configured credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and only run it when you trust the pctx, Homebrew, npm, GitHub MCP, and Linear MCP supply chain.
+
+Risk: The local pctx service can use configured API tokens through connected MCP servers.
+
+Mitigation: Keep pctx configuration private, use least-privilege tokens, and back up pctx config before rollback or MCP mutation commands.
+
+Risk: Helper commands can start persistent localhost services and execute selected MCP tool calls through Code Mode.
+
+Mitigation: Inspect or recreate the LaunchAgent before starting it, avoid passing untrusted names into the test command, and review generated tool-call code before execution.
+
+## Reference(s):
+
+- [pctx GitHub repository](https://github.com/portofcontext/pctx)
+- [ClawHub skill listing](https://clawhub.ai/cianbyrne1010/skills/pctx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, curl, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide local pctx service setup, MCP configuration changes, daemon management, and Code Mode tool-call testing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,157 @@
+# Agent Configuration Reference
+
+Per-agent config location, format, persistence, and integration specifics.
+
+## Persistence Patterns
+
+| Pattern | Agents | Why |
+|---------|--------|-----|
+| **Template-level** | OpenCode, Hermes, KimiCode, DeepSeek Harness | `start.sh` recreates config from scratch, wiping additions |
+| **Sandbox file (preserved)** | CodeArts | `start.sh` uses `json.load()` → modify → `json.dump()`, preserves extra keys |
+| **Sandbox file (first-copy)** | WorkSwarm | `start.sh` only copies config on first start, never overwrites |
+| **Sandbox (bwrap, ephemeral)** | OpenClaw | Plugin re-installed on every gateway start (idempotent) |
+
+---
+
+## Per-Agent Details
+
+### 1. CodeArts CLI
+- **Config**: `<sandbox>/.codeartsdoer/codearts_cli.json` (JSON, OpenCode-compatible)
+- **Integration**: Register `@openviking/opencode-plugin` in `plugin` array + deploy to `.codeartsdoer/node_modules/` + create `openviking-config.json`
+- **Key fields**: `plugin: ["@openviking/opencode-plugin"]`
+
+### 2. OpenCode
+- **Config**: `<sandbox>/.config/opencode/opencode.json` (JSON)
+- **Integration**: `@openviking/opencode-plugin` + `@opencode-ai/plugin` SDK + `openviking-config.json`
+- **Key config fields** (`openviking-config.json`): `enabled`, `timeoutMs: 30000`, `autoRecall.enabled: true`, `recallLimit: 15`, `recallMaxContentChars: 20000`, `commitTokenThreshold: 20000`, `resumeContextBudget: 32000`
+- **Note**: Plugin ignores `recall.quotas` — use `recallLimit`/`recallMaxContentChars` to scale recall budget. Too-small budget → recall returns only 1 preference.
+
+### 3. OpenClaw
+- **Config**: Template `start.sh` injection; live config at `/tmp/.openclaw/openclaw.json` inside bwrap (ephemeral)
+- **Integration**: `clawhub:@openviking/openclaw-plugin` + `openviking setup --json` contract + `contextEngine` slot
+- **Recovery (3-tier cache-first)**:
+
+| Tier | Condition | Action | Speed |
+|------|-----------|--------|-------|
+| Cache hit | `plugins list` contains `openviking` | Skip | Instant |
+| Tier-0 | `openviking-plugin-built/dist/` exists | `plugins install <pre-built-dir>` | ~2s |
+| Tier-1 | Source cache exists | `cp → npm install → tsc → plugins install` | ~15s |
+| Tier-2 | All caches missing | `plugins install clawhub:@openviking/...` | ~30s+ |
+
+- **Post-install verification**: `plugins list | grep openviking` — logs ERROR if missing.
+- **Version requirements**: Node.js >= 22, OpenClaw >= 2026.5.27
+
+### 4. Hermes
+- **Config**: `<sandbox>/.hermes/config.yaml` (YAML)
+- **Integration**: Add `memory.provider: openviking` via template injection
+- **Protocol**: HTTP REST (not MCP) — built-in OpenViking memory provider
+
+Template injection adds:
+```yaml
+memory:
+  provider: openviking
+  openviking:
+    endpoint: http://127.0.0.1:1933
+```
+
+### 5. WorkSwarm
+- **Config**: `<sandbox>/.jiuwenswarm/config/config.yaml` (YAML with env var defaults)
+- **Integration**: Dual-channel — native provider (`memory.engine: external` + `external.provider: openviking`) + MCP server (`streamable-http`, 15 tools on v0.4.19; refresh from `verify_mcp.sh` output — the tool list is server-side) + `auto_memory_enabled: true` + code-mode `ExternalMemoryRail` patch
+- **Key config**: `memory.external.openviking.endpoint`, `mcp.servers[name=openviking].url: http://127.0.0.1:1933/mcp`, `modes.{agent.fast,agent.plan,code}.memory.is_proactive: true`, `modes.team.jiuwen_team.memory.enabled: true`
+- **Runtime patches**: (1) `interface_code.py` — enables proactive recall in code mode; (2) `openviking_memory_provider.py` — fixes `top_k`→`limit` API mismatch. Both idempotent, re-applied via `start.sh`.
+- **Account scope**: Dev-mode stores under account `default` (not `root`). Override with `OPENVIKING_ACCOUNT` env var.
+- **Status detection**: Reports `native + MCP (template + live)`, `native only`, `MCP only`, `partial`, or `not_integrated`. Also verifies patches: `iface✓/✗`, `prov✓/✗`.
+
+### 6. KimiCode
+- **Config**: `/root/runtime/kimicode/data/config.toml` (TOML, regenerated every boot) + `/root/runtime/kimicode/data/mcp.json`
+- **Integration**: **dual-channel (path ③: hooks + MCP)** —
+  - MCP: `[mcp_servers.openviking]` in `mcp.json` (via `ov-kimicode-init.sh` + `kimi mcp` register)
+  - Session lifecycle hooks: `config.toml [[hooks]]` dispatch to `$OV_SHARED_DIR/ov-kimi-hook.sh`
+- **Deployed artifacts** (OV-owned, removed by `unbind-hooks`):
+  - `$OV_SHARED_DIR/ov-kimi-hook.sh` — hook dispatcher (copied from `scripts/lib/ov_kimi_hook.sh`)
+  - `$OV_RUNTIME_DIR/py/{ov_kimi_hook,ov_redact,ov_common}.py` — dispatcher helpers (dispatcher resolves `../py`)
+  - `$OV_SHARED_DIR/ov-kimicode-init.sh` — boot-time init (writes `mcp.json` + append `[[hooks]]` to `config.toml`)
+- **Hook events** (auto-recall / auto-capture / auto-commit):
+
+| Event | command | Purpose |
+|-------|---------|---------|
+| `SessionStart` | `ov-kimi-hook.sh session-start` | inject workspace context, crash-recovery sweep |
+| `UserPromptSubmit` | `ov-kimi-hook.sh user-prompt` | recall per prompt (dedup) |
+| `Stop` | `ov-kimi-hook.sh stop` | capture turn → OpenViking session, token-threshold commit |
+| `SessionEnd` | `ov-kimi-hook.sh session-end` | commit session (detached) |
+| `PreCompact` | `ov-kimi-hook.sh pre-compact` | commit before context compression |
+
+- **PII/secret redaction**: `ov_redact.py` strips secrets before text reaches OpenViking (`OV_REDACT_SECRETS=false` disables).
+- **Bypass**: `OPENVIKING_BYPASS_SESSION=1` or `OPENVIKING_BYPASS_SESSION_PATTERNS=<comma,separated,cwdPatterns>` disables hooks for matching sessions.
+- **Note**: `config.toml` is regenerated every boot → `ov-kimicode-init.sh` re-appends `[[hooks]]` idempotently (template-level persistence).
+
+### 7. DeepSeek Harness (dsh)
+- **Config**: `<sandbox>/.dsh` (generated by `start.sh` on boot); profiles: `web` (port 13079) and `dsh-tui`
+- **Integration**: `@openviking/dsh-memory-plugin` (not on npm; from `volcengine/OpenViking`, byte-verified) with self-contained peer deps. Installed as real package in each profile's `node_modules/` + registered in `dsh.profile.bundles`.
+- **Plugin behavior**: `session-start` → startup profile, `pre-step` → recall context. Tools: `viking_search/read/browse/remember/forget/add_resource/archive_expand`. Auto-capture 24000 chars, recall/profile budgets 2000/10000.
+- **No pnpm needed**: direct dir copy + `dsh.profile.bundles` registration.
+
+---
+
+## Unified File Locations
+
+| Agent | Template start.sh | Live config | Persistent? |
+|-------|-------------------|-------------|-------------|
+| CodeArts | `/root/template/codearts/start.sh` | `<sandbox>/.codeartsdoer/codearts_cli.json` | ✅ (preserves extra keys) |
+| OpenCode | `/root/template/opencode/start.sh` | `<sandbox>/.config/opencode/opencode.json` | ❌ Overwritten on start |
+| OpenClaw | `/root/template/openclaw/start.sh` | `$OPENCLAW_STATE_DIR/openclaw.json` | ❌ Ephemeral (re-installed) |
+| Hermes | `/root/template/hermes/start.sh` | `<sandbox>/.hermes/config.yaml` | ❌ Ephemeral |
+| WorkSwarm | `/root/template/jiuwenswarm/start.sh` | `<sandbox>/.jiuwenswarm/config/config.yaml` | ✅ (first-copy only) |
+| KimiCode | `/root/template/kimicode/start.sh` | `/root/runtime/kimicode/data/config.toml` | ❌ Overwritten on start |
+| DeepSeek Harness | `/root/template/deepseek-harness/start.sh` | `<sandbox>/.dsh/profiles/{web,dsh-tui}/` | ❌ Recreated on boot |
+| Prime Agent | `/root/template/prime-agent/start.sh` | `<sandbox>/extensions/openviking/` | ❌ Recreated on boot |
+
+**Runtime caches** (persistent): OpenClaw plugin `/root/runtime/openclaw/openviking-plugin-{built,source}/`, DeepSeek plugin `/root/runtime/deepseek-harness/plugins/@openviking/dsh-memory-plugin/`, Prime Agent `/root/runtime/prime-agent/openviking-extension/`.
+
+---
+
+## Available MCP Tools (13)
+
+| Tool | Description |
+|------|-------------|
+| `find` | Fast semantic retrieval without session context |
+| `search` | Deep semantic retrieval with session context |
+| `recall` | Type-quota memory recall (events, entities, preferences, experiences) |
+| `read` | Read content from viking:// URIs |
+| `list` | List files under viking:// directory |
+| `remember` | Store information to long-term memory |
+| `add_resource` | Add local file or URL as resource |
+| `list_watches` | List auto-refresh subscriptions |
+| `cancel_watch` | Cancel a watch task by URI |
+| `grep` | Regex content search in viking:// files |
+| `glob` | Glob pattern file matching |
+| `forget` | Permanently delete a viking:// URI |
+| `health` | Check OpenViking server health |
+
+---
+
+## OpenViking Server
+
+- **Endpoint**: `http://127.0.0.1:1933` (MCP: `/mcp`), auth mode: `dev` (no key for localhost)
+- **Version**: 0.4.19 (server), 1.29.0 (MCP), protocol: Streamable HTTP (JSON-RPC 2.0 over SSE)
+- **Embedding**: Local bge-small-zh-v1.5 via llama-server on port 18200
+
+---
+
+## Shared Infrastructure (base.sh) Constants
+
+All constants env-overridable, defined once in `lib/base.sh`:
+
+| Constant | Default | Used by |
+|---|---|---|
+| `OV_PY` | `python3.12` or `python3` (auto-detected) | All agents |
+| `OV_ENDPOINT` | `http://127.0.0.1:1933` | All agents |
+| `OV_MCP_URL` | `${OV_ENDPOINT}/mcp` | WorkSwarm, KimiCode |
+| `OV_OPENCODE_PLUGIN_VER` | `latest` (probe host install first) | CodeArts, OpenCode |
+| `OV_PLUGIN_SDK_VER` | `latest` (probe host install first) | CodeArts, OpenCode |
+| `OV_DSH_PLUGIN_VER` | `latest` (not used for installs; dsh deps synced from host runtime) | DeepSeek Harness |
+| `OV_NPM_REGISTRY_DEFAULT` | `https://mirrors.huaweicloud.com/repository/npm/` | CodeArts |
+| `OV_VERIFY_QUERY` | `华为云 ECS 创建 项目配置 区域` | verify_mcp.sh |
+| `OV_BACKUP_KEEP` | `5` | backup_file rotation |
+
+Runtime patch framework (WorkSwarm): `ov_find_runtime_file`, `ov_patch_apply` (idempotent), `ov_patch_revert`, `ov_patch_present`, `ov_patch_mark`.

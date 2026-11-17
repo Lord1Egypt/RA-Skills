@@ -1,46 +1,57 @@
-## Description: <br>
-域名价值分析专家。评估域名的投资价值、商业潜力、SEO 友好度。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+域名价值分析专家。评估域名的投资价值、商业潜力、SEO 友好度。
 
-## Publisher: <br>
-[weisong82](https://clawhub.ai/user/weisong82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weisong82](https://clawhub.ai/user/weisong82)
 
-## Use Case: <br>
-External users and domain investors use this skill to evaluate domain names for investment value, business potential, SEO friendliness, and registration decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain value estimates are heuristic and may not match actual resale price, demand, or registrar pricing. <br>
-Mitigation: Use the report as rough guidance and verify availability, comparable sales, renewal cost, and market demand before purchasing. <br>
-Risk: The skill does not provide legal advice or guarantee that a domain avoids trademark or regulatory issues. <br>
-Mitigation: Perform trademark and compliance checks separately, and consult qualified counsel for legal questions. <br>
-Risk: Tool use could fetch web pages or run the local helper script during domain analysis. <br>
-Mitigation: Allow WebFetch or Bash use only for requested domain-analysis tasks and review commands before relying on their output. <br>
+## Use Case:
 
+External users and developers use this Chinese-language skill to evaluate domain names for investment value, commercial potential, SEO friendliness, and registration decisions. It applies a six-factor scoring model and produces a concise recommendation with strengths, risks, score, and rough value range.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weisong82/domain-analyzer) <br>
-- [Alibaba Cloud domain search](https://wanwang.aliyun.com/domain) <br>
-- [Tencent Cloud domain service](https://dnspod.cloud.tencent.com/domain) <br>
-- [Sedo domain marketplace](https://sedo.com) <br>
-- [Dan.com domain marketplace](https://dan.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with scoring tables, risk notes, value estimate, and recommendation; CLI text output when the helper script is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Heuristic domain valuation only; no credential requirements are declared in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill may activate on broad domain-related phrasing and declares WebFetch and Bash capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before allowing web checks or command execution.
+
+Risk: Domain valuation output can be mistaken for financial, legal, or trademark advice.
+
+Mitigation: Treat valuations as rough guidance, verify availability and market data through registrars or marketplaces, and consult qualified professionals for legal or trademark questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weisong82/skills/domain-analyzer)
+- [Aliyun domain lookup](https://wanwang.aliyun.com/domain)
+- [Tencent Cloud domain service](https://dnspod.cloud.tencent.com/domain)
+- [Sedo domain marketplace](https://sedo.com)
+- [Dan.com domain marketplace](https://dan.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown domain value analysis report with scored dimensions, strengths, risks, valuation range, and final recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; valuations are rough guidance and not financial or legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

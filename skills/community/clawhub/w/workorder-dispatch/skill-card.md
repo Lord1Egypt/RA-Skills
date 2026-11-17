@@ -1,44 +1,58 @@
-## Description: <br>
-工单分派与SLA监控技能，基于 Excel 台账自动分派报修工单、跟踪处理进度，并对 SLA 超时工单进行升级提醒。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+工单分派与SLA监控技能。基于真实Excel台账（美兰中心C+服务.xlsx）自动分派报修工单，跟踪处理进度，超时自动升级。
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Operations and facilities teams use this skill to create, dispatch, monitor, update, and escalate maintenance work orders from an Excel-based service ledger. It supports WeCom-triggered intake, hourly SLA checks, status summaries, completion confirmation, and feedback capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to read and modify a live local Excel work-order ledger. <br>
-Mitigation: Run it only where the agent is authorized to access the named workbook, move the workbook path into controlled configuration, and add backups and audit logging before enabling writes. <br>
-Risk: Work-order details may include personal, location, cost, or incident information that is broadcast through WeCom notifications. <br>
-Mitigation: Restrict notification recipients, redact sensitive details where possible, and control who can create, query, or update work orders. <br>
-Risk: The feedback flow writes rating and comment fields beyond the documented 13-column workbook schema. <br>
-Mitigation: Fix and validate the workbook feedback schema before enabling feedback writes. <br>
-Risk: Webhook and workbook settings are shown as inline configuration values. <br>
-Mitigation: Store webhook URLs and workbook paths in controlled configuration or secret storage rather than hard-coding them in skill text. <br>
+## Use Case:
 
+Facilities-management teams use this skill to create and dispatch repair work orders from a business Excel ledger, monitor pending items against SLA thresholds, and escalate overdue work through WeCom notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/workorder-dispatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON examples, Python code snippets, and notification text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include work-order summaries, dispatch decisions, SLA timeout lists, WeCom notification payload text, configuration examples, and workbook update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read and update a real facilities-management workbook containing repair and requester details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an authorized facilities-management environment, validate the workbook schema before writes, and review proposed workbook updates before execution.
+
+Risk: Broad WeCom escalation messages could expose repair details or notify more recipients than necessary.
+
+Mitigation: Replace @all escalation with scoped recipient groups and require confirmation or policy checks before sending broad notifications.
+
+Risk: The artifact contains a hardcoded local workbook path and an example WeCom webhook URL.
+
+Mitigation: Configure workbook paths and webhook endpoints per deployment, and manage real webhook secrets outside the skill text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/workorder-dispatch)
+- [Reference Documentation for Workorder Dispatch](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces work-order records, SLA status summaries, escalation message templates, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

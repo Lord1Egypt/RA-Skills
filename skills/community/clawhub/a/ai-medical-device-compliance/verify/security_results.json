@@ -1,0 +1,416 @@
+{
+  "skill": "ai-medical-device-compliance",
+  "version": "1.0.0",
+  "note": "本地闭环验证：零网络、零数据采集、可重复",
+  "dimensions": [
+    {
+      "key": "regulatory_timeliness",
+      "label": "法规时效性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "FDA QMSR 2026-02 生效",
+          "pass": true
+        },
+        {
+          "name": "FDA PCCP 预定变更控制",
+          "pass": true
+        },
+        {
+          "name": "FDA 510(k) 平均 142 天",
+          "pass": true
+        },
+        {
+          "name": "FDA 网络安全 SBOM 强制",
+          "pass": true
+        },
+        {
+          "name": "EU MDR Rule 11 分类",
+          "pass": true
+        },
+        {
+          "name": "EU AI Act 高风险 2028-08-02",
+          "pass": true
+        },
+        {
+          "name": "EU 公告机构排期提示",
+          "pass": true
+        },
+        {
+          "name": "EU CER/PMCF",
+          "pass": true
+        },
+        {
+          "name": "NMPA 2026 分类界定更新",
+          "pass": true
+        },
+        {
+          "name": "NMPA 1000 例数据本地化",
+          "pass": true
+        },
+        {
+          "name": "NMPA 变更注册触发",
+          "pass": true
+        },
+        {
+          "name": "NMPA 创新通道",
+          "pass": true
+        },
+        {
+          "name": "核对基准日标注",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=8（实际 8）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-AI医械全景与定义.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-美国FDA注册路径.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-欧盟MDR与AIAct.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-中国NMPA注册路径.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-临床证据与数据要求.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-变更管理与全生命周期.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-三地对比与出海策略.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 08-术语表与FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "FAQ 专节存在",
+          "pass": true
+        },
+        {
+          "name": "快速上手三步存在",
+          "pass": true
+        },
+        {
+          "name": "能力边界如实说明",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "template_usability",
+      "label": "工具可用性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "classify 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "classify 输出含「美国 FDA」",
+          "pass": true
+        },
+        {
+          "name": "classify 输出含「欧盟 MDR」",
+          "pass": true
+        },
+        {
+          "name": "classify 输出含「中国 NMPA」",
+          "pass": true
+        },
+        {
+          "name": "classify 输出含「数据本地化」",
+          "pass": true
+        },
+        {
+          "name": "path 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "path us 含「510(k)」",
+          "pass": true
+        },
+        {
+          "name": "path us 含「Q-Sub」",
+          "pass": true
+        },
+        {
+          "name": "path us 含「SBOM」",
+          "pass": true
+        },
+        {
+          "name": "estimate 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "estimate 含「费用」",
+          "pass": true
+        },
+        {
+          "name": "estimate 含「周期」",
+          "pass": true
+        },
+        {
+          "name": "estimate 含「Class III」",
+          "pass": true
+        },
+        {
+          "name": "compare 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "compare 含「PCCP」",
+          "pass": true
+        },
+        {
+          "name": "compare 含「FDA」",
+          "pass": true
+        },
+        {
+          "name": "compare 含「NMPA」",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "risk_accuracy",
+      "label": "判定准确性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "「CT肺结节AI辅助诊断软件，…」判定含 Class III/数据本地化",
+          "pass": true
+        },
+        {
+          "name": "「恶性肿瘤AI辅助诊断系统…」判定含 Class III/PMA",
+          "pass": true
+        },
+        {
+          "name": "「ICU生命支持决策AI…」判定含 Class III/PMA",
+          "pass": true
+        },
+        {
+          "name": "「健康数据存储显示软件…」判定含 提示",
+          "pass": true
+        },
+        {
+          "name": "「胰岛素自动给药系统…」判定含 Class III",
+          "pass": true
+        },
+        {
+          "name": "变更判定「模型权重重新训练，训练数据扩至3…」=重大变更",
+          "pass": true
+        },
+        {
+          "name": "变更判定「修复一个不影响核心临床功能的Bu…」=轻微变更",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构规范性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 含 name:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 slug:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 display_name:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 displayName:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 title:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 version:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 category:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 platforms:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 author:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 license:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 description:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 description_en:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 tags:",
+          "pass": true
+        },
+        {
+          "name": "版权与许可段存在",
+          "pass": true
+        },
+        {
+          "name": "MIT 声明",
+          "pass": true
+        },
+        {
+          "name": "知识版权声明存在",
+          "pass": true
+        },
+        {
+          "name": "免责声明（AS IS）存在",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md 存在且含 MIT",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 classify",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 path",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 estimate",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 change",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 compare",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 --help",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --product",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --region",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --class",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --desc",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "敏感模式「真实邮箱」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「手机号」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「本地路径(Win)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「本地路径(Unix)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「密钥前缀」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「token 字样(代码语境)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「私钥头」0 命中",
+          "pass": true
+        },
+        {
+          "name": "全包无任何命中",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "regulatory_timeliness": 5.0,
+    "coverage_completeness": 5.0,
+    "template_usability": 5.0,
+    "risk_accuracy": 5.0,
+    "structure_compliance": 5.0,
+    "security_cleanliness": 5.0,
+    "average": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "regulatory_timeliness": 2.5,
+      "coverage_completeness": 3.0,
+      "template_usability": 2.0,
+      "risk_accuracy": 2.5,
+      "structure_compliance": 3.0,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "regulatory_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "template_usability": 4.0,
+      "risk_accuracy": 4.5,
+      "structure_compliance": 5.0,
+      "security_cleanliness": 5.0
+    }
+  }
+}

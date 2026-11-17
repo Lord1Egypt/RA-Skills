@@ -1,45 +1,64 @@
-## Description: <br>
-股票持仓分析系统，用于管理股票投资组合，实时更新价格，分析盈亏，生成报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+股票持仓分析系统，用于管理股票投资组合，实时更新价格，分析盈亏，生成报告。
 
-## Publisher: <br>
-[jcsoftear](https://clawhub.ai/user/jcsoftear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcsoftear](https://clawhub.ai/user/jcsoftear)
 
-## Use Case: <br>
-External users and developers can use this skill to run a local stock portfolio dashboard for recording holdings, refreshing prices, analyzing gains and losses, and exporting portfolio reports. The skill also supports optional LLM-assisted portfolio analysis when the user configures a provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The portfolio web app exposes sensitive portfolio and LLM-key controls too broadly for safe default installation. <br>
-Mitigation: Run it locally, bind the server to 127.0.0.1, restrict CORS, and add authentication before exposing it to any network. <br>
-Risk: Portfolio data, logs, reports, and configured LLM API keys may contain sensitive financial or credential information. <br>
-Mitigation: Protect portfolio.db, logs, and reports with local file permissions, back them up carefully, and avoid entering valuable API keys until key handling is hardened. <br>
-Risk: AI analysis may send portfolio details to the configured model provider. <br>
-Mitigation: Use only trusted providers, review provider privacy terms, and avoid sending confidential portfolio details unless that data sharing is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to manage stock holdings, refresh market prices, analyze portfolio profit and loss, and generate downloadable portfolio reports through a local Python and Flask application.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcsoftear/portfolio-analysis-pro) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [项目介绍文档.md](artifact/项目介绍文档.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON API responses, Python snippets, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local SQLite data, operation logs, and report files when the portfolio system is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unauthenticated network access can expose private holdings and LLM configuration through the Flask APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run on localhost only until authentication and access controls are added; avoid LAN exposure for real portfolio data.
+
+Risk: LLM API keys and provider endpoints may be stored or served through configuration APIs.
+
+Mitigation: Do not enter valuable API keys until secret storage and configuration APIs are fixed; allow only trusted LLM providers and endpoints.
+
+Risk: Portfolio edit and delete functions can modify or remove local holdings data.
+
+Mitigation: Back up portfolio.db before using edit or delete functions, especially with real holdings.
+
+Risk: Portfolio details may be sent to external LLM or market-data services.
+
+Mitigation: Review external data flows and disclose them to users before enabling LLM analysis or live price updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcsoftear/skills/portfolio-analysis-pro)
+- [README.md](artifact/README.md)
+- [项目介绍文档.md](artifact/项目介绍文档.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON API responses, Python code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate Markdown portfolio reports and local Flask API responses backed by SQLite portfolio data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

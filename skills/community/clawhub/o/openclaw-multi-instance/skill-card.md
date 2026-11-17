@@ -1,43 +1,62 @@
-## Description: <br>
-Helps OpenClaw users connect multiple OpenClaw instances for API communication, SSH file transfer, and scheduled memory synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw multi-instance guidance for connecting multiple OpenClaw machines so they can communicate, transfer files, and share memory.
 
-## Publisher: <br>
-[milkteawithsoybeanmilktast](https://clawhub.ai/user/milkteawithsoybeanmilktast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[milkteawithsoybeanmilktast](https://clawhub.ai/user/milkteawithsoybeanmilktast)
 
-## Use Case: <br>
-Developers and operators use this skill to set up communication, file transfer, and memory sharing across trusted OpenClaw instances running on different machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-machine OpenClaw control can expose powerful API tokens, SSH keys, hosts, and remote execution paths. <br>
-Mitigation: Use only instances you control and trust; prefer private networking, scoped credentials, protected SSH keys, and explicit review of hosts and tokens before setup. <br>
-Risk: Memory and tool-file synchronization can copy sensitive identity, memory, or secret-bearing files between machines. <br>
-Mitigation: Review every file selected for sync, avoid syncing TOOLS.md or other secret-bearing files unless manually checked, and keep backups before synchronization. <br>
-Risk: Scheduled synchronization can repeatedly propagate mistakes or unwanted changes across instances. <br>
-Mitigation: Require explicit confirmation before enabling cron jobs, restrict sync paths, and inspect synchronization reports after each run. <br>
+## Use Case:
 
+Developers and operators use this skill to configure trusted OpenClaw instances across machines for remote API handoff, SSH file transfer, and additive memory synchronization.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/milkteawithsoybeanmilktast/openclaw-multi-instance) <br>
-- [Peer configuration template](references/peer-config.json5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash, JSON5, cron, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to configure remote API access, SSH transfer, cron jobs, and memory synchronization files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill establishes broad persistent trust between OpenClaw instances through API tokens and SSH access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only between machines you own and trust, verify SSH host keys and public-key fingerprints out of band, and keep gateway tokens confidential.
+
+Risk: Exposing a gateway over plaintext HTTP or the public internet can allow token interception or unauthorized control.
+
+Mitigation: Prefer private networking such as Tailscale, avoid plaintext exposure, and restrict network access to trusted peers.
+
+Risk: Memory, identity, tools, and configuration files may contain sensitive data and are shared between machines.
+
+Mitigation: Review synchronization actions manually, avoid syncing secret-bearing files unless required, and keep backups before automated merge or transfer operations.
+
+Risk: The bundled synchronization script is not hardened for filename validation, safe argument handling, allowlists, backups, or disable and removal procedures.
+
+Mitigation: Run synchronization manually or under review until those safeguards are added and tested.
+
+## Reference(s):
+
+- [peer-config.json5](references/peer-config.json5)
+- [OpenClaw Multi-Instance ClawHub page](https://clawhub.ai/milkteawithsoybeanmilktast/skills/openclaw-multi-instance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON5 configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead an agent to propose API endpoint settings, SSH trust setup, SCP file transfer, cron scheduling, and memory synchronization steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Forces OpenClaw replies into classical Chinese prose for general Q&A, writing, coding help, and daily work, with six selectable Wenyan registers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forces OpenClaw replies into classical Chinese prose for general Q&A, writing, coding help, and daily work, with switching across six Wenyan registers.
 
-## Publisher: <br>
-[zihuzhye](https://clawhub.ai/user/zihuzhye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zihuzhye](https://clawhub.ai/user/zihuzhye)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent answer in classical Chinese across general Q&A, writing, coding help, and routine work while preserving exact code, commands, paths, URLs, and identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Classical Chinese responses can reduce clarity when instructions are safety-sensitive, legal, medical, financial, technical, or operational. <br>
-Mitigation: Disable the skill or ask for plain language when clarity matters; keep exact code, commands, paths, URLs, and identifiers unchanged. <br>
+## Use Case:
 
+External users and developers use this skill to make OpenClaw answer in classical Chinese prose while preserving exact code, commands, paths, identifiers, URLs, and other technical text when precision matters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zihuzhye/iwenyan) <br>
-- [iwenyan homepage](https://iwenyan.com) <br>
-- [iwenyan style reference](references/styles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text, with machine-readable blocks preserved exactly when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses default to classical Chinese prose and can switch among six Wenyan registers until changed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Classical Chinese prose may make high-stakes, legal, medical, financial, coding, or operational guidance harder to understand.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for a plain-language explanation when clarity is more important than style.
+
+Risk: The style layer may conflict with tasks that require exact machine-readable output.
+
+Mitigation: Preserve requested formats and keep code, commands, JSON, YAML, SQL, paths, identifiers, and terminal output exact.
+
+## Reference(s):
+
+- [iwenyan homepage](https://iwenyan.com)
+- [ClawHub skill page](https://clawhub.ai/zihuzhye/skills/iwenyan)
+- [iwenyan style reference](references/styles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with machine-readable content preserved exactly when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Natural-language prose defaults to classical Chinese; exact technical tokens and requested machine-readable formats are preserved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

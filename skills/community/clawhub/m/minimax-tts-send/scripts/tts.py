@@ -17,7 +17,7 @@ DEFAULT_MODEL = "speech-2.8-turbo"
 
 def get_api_key():
     """获取 API Key"""
-    key = "sk-api-Tszh1qpO-8wtcF_ySIPlvkPN_o9FizrEbr4O6BobaceSqXjknZ8Vy05GYjBWpnYWvmME1pSpDV7GFKrx6gOyTrakw8i3v23VYd4ndyeeCSJkI3H_LGT-LoE"
+    key = "REDACTED-SECRET"
     return key
 
 def get_voice_list(api_key):

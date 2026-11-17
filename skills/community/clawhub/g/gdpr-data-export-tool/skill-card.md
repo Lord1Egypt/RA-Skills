@@ -1,42 +1,53 @@
-## Description: <br>
-Build, audit, and operate Article 15 right-of-access and Article 20 data-portability export pipelines for GDPR, with related CCPA/CPRA right-to-know and UK DPA 2018 SAR workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, audits, and operates GDPR Article 15 and Article 20 DSAR data export pipelines, with guidance for CCPA/CPRA right-to-know requests and UK subject access requests.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, privacy engineers, and compliance teams use this skill to design, audit, and operate DSAR data export pipelines across internal stores and SaaS subprocessors. It helps produce data inventories, authentication flows, export architecture, packaging specifications, audit logging, vendor coordination plans, and SLA tracking guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill concerns sensitive DSAR and privacy export systems where real personal data or export bundles could be mishandled. <br>
-Mitigation: Use sanitized schemas where possible and keep actual personal data and export bundles in approved secure systems. <br>
-Risk: Vendor or subprocessors may expose subject data through overly broad access during export work. <br>
-Mitigation: Use least-privilege vendor access and coordinate requests only through authorized privacy or DSAR workflows. <br>
-Risk: A real export or erasure action could be performed for the wrong requester. <br>
-Mitigation: Require appropriate identity verification before any real export or erasure action. <br>
+## Use Case:
 
+Privacy, legal, and engineering teams use this skill to design or audit DSAR export workflows, including data inventory, identity verification, export packaging, secure delivery, audit logging, SLA tracking, shared-record handling, and vendor coordination.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/gdpr-data-export-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, structured checklists, JSON examples, and architecture guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include data inventory worksheets, authentication tiers, export packaging specifications, audit log schemas, vendor coordination plans, and SLA trackers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review found that the skill includes erasure and deletion guidance that is broader than its stated data export purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep deletion and erasure actions behind separate legal authorization, identity verification, retention checks, and human approval.
+
+Risk: DSAR export workflows can expose sensitive personal data or data about other subjects if identity checks, redaction, or delivery controls are weak.
+
+Mitigation: Require sensitivity-appropriate subject verification, minimize third-party data, use documented redaction reason codes, encrypt exports, expire delivery links, and keep audit logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/gdpr-data-export-tool)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, code]
+
+**Output Format:** [Markdown guidance with tables, workflow steps, schemas, architecture notes, and implementation-oriented examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

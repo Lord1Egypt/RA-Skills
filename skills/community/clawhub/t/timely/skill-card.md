@@ -1,40 +1,53 @@
-## Description: <br>
-Manage Apple Reminders from the command line with geofencing support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Reminders from the command line with geofencing, due dates, time-based alerts, and iCloud-synced reminder lists.
 
-## Publisher: <br>
-[halbotley](https://clawhub.ai/user/halbotley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[halbotley](https://clawhub.ai/user/halbotley)
 
-## Use Case: <br>
-Developers and macOS users use this skill to manage Apple Reminders from a terminal, including creating time-based reminders and location-based reminders with arrive or depart triggers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party Homebrew tap and binary. <br>
-Mitigation: Verify that the halbotley Homebrew tap and the timely binary are trusted before installation. <br>
-Risk: The tool can read or create reminders after macOS Reminders access is granted. <br>
-Mitigation: Grant Reminders access only when the user is comfortable with the tool handling reminder contents, shared iCloud lists, and location-based reminder details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/halbotley/timely) <br>
-- [Publisher profile](https://clawhub.ai/user/halbotley) <br>
+## Use Case:
 
+Mac users and agents use this skill to create timely CLI commands for listing and creating Apple Reminders with due dates, natural-language times, or location-based arrive/depart triggers.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS and the timely command-line binary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a third-party Homebrew tap and CLI that run locally.
+
+Mitigation: Verify that the halbotley Homebrew tap and timely CLI are trusted before installation.
+
+Risk: The timely CLI can access Apple Reminders data after macOS permission is granted.
+
+Mitigation: Grant Reminders access only when needed and revoke it later in macOS privacy settings if the tool is no longer used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halbotley/skills/timely)
+- [Publisher profile](https://clawhub.ai/user/halbotley)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS and the timely CLI installed from the halbotley Homebrew tap.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

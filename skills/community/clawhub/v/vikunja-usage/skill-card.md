@@ -1,41 +1,58 @@
-## Description: <br>
-A Vikunja task-management helper that uses REST API v1 with curl and a runtime bearer token to manage projects, tasks, labels, comments, search, filters, and completion state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Vikunja projects, tasks, labels, comments, assignees, searches, filters, and completion status through Vikunja REST API v1 using curl and a bearer token.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Agents and developers use this skill to operate a local Vikunja task manager through REST API v1, including project and task creation, updates, deletion, labels, comments, search, filtering, and assignee lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a Vikunja bearer token that can grant access to task-management data. <br>
-Mitigation: Provide the token at runtime through VIKUNJA_TOKEN or a permission-restricted token file, avoid logging token values, and rotate the token after suspected exposure. <br>
-Risk: The included update and delete examples can modify or remove Vikunja projects and tasks. <br>
-Mitigation: Review project and task IDs and request payloads before execution, and test destructive operations in a non-production Vikunja instance when possible. <br>
+## Use Case:
 
+Developers and agents use this skill to operate a Vikunja task-management instance through REST API calls, including creating and updating projects, tasks, labels, comments, and assignees. It is useful when an agent needs task-management guidance with token-based authentication and curl examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/vikunja-usage) <br>
-- [Vikunja local API base](http://localhost:3456/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a Vikunja bearer token supplied through VIKUNJA_TOKEN or an agent-local token file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can guide delete operations and assignment changes with broad Vikunja account authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged token and require explicit user confirmation before any delete or account-impacting operation.
+
+Risk: Long-lived bearer tokens may be stored locally or exposed in command output.
+
+Mitigation: Prefer runtime environment injection or a chmod 600 token file, avoid printing token values, and rotate the token if exposure is suspected.
+
+Risk: API calls target a local Vikunja endpoint that may not be protected in every deployment.
+
+Mitigation: Use HTTPS or another trusted local endpoint before allowing the agent to perform authenticated operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/vikunja-usage)
+- [Publisher profile](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl commands, token setup guidance, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a Vikunja bearer token supplied through VIKUNJA_TOKEN or an agent-local token file.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

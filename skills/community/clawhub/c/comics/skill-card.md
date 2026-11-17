@@ -1,41 +1,54 @@
-## Description: <br>
-提供全彩韩漫日漫阅读、条漫垂直社交、互动同人创作及正版周边选购。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users navigate licensed full-color Korean and Japanese comics, vertical comic communities, fan creation workflows, and official merchandise.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users can ask for comics and anime-related browsing guidance, filtering options, playback or reading status fields, social creation features, and licensed merchandise shopping support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Comics-facing metadata and anime streaming-style instructions may confuse routing or user expectations. <br>
-Mitigation: Before installing or relying on the skill, confirm that the name, description, and instructions describe the same product scope: comics, anime streaming, or both. <br>
-Risk: Some content or usage contexts may be unsuitable for minors or extended viewing sessions. <br>
-Mitigation: Use the skill's content rating, youth mode, and online-time guidance when handling teen or family use cases. <br>
+## Use Case:
 
+External users can use this skill to ask for Chinese-language comics and licensed anime/media browsing guidance, including filters for content rating, quality, genre, progress, offline availability, and paid access status. Reviewers should note that the public comics purpose and the artifact's anime/video streaming instructions are not fully aligned.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/comics) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise natural-language or Markdown responses with filtering options, status fields, and usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference content rating, quality, genre, playback or reading state, download availability, membership status, and recommendation precision when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The public purpose says comics while the artifact body describes Chinese-language anime/video streaming features, which may mislead users about the skill's intended behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a Chinese-language anime/video streaming helper is intended, and align the name, description, examples, and feature list before normal use.
+
+Risk: The artifact references content ratings, teen mode, paid episodes, membership status, and licensed content availability.
+
+Mitigation: Confirm age controls, access rights, payment handling, and content licensing expectations before using the skill in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/comics)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Concise natural-language or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include filtering criteria, media status fields, membership or paid-access status, recommendations, and youth-mode or eye-health reminders.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

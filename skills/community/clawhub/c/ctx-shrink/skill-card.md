@@ -1,44 +1,59 @@
-## Description: <br>
-ctx-shrink is a codebase analyzer that generates smart context maps for AI agents and catches packaging mistakes before they leak. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ctx-shrink is a codebase analyzer that generates compact context maps for AI agents and checks for packaging and repository safety issues before release.
 
-## Publisher: <br>
-[etherman-os](https://clawhub.ai/user/etherman-os) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etherman-os](https://clawhub.ai/user/etherman-os)
 
-## Use Case: <br>
-Developers and engineers use this skill to run ctx-shrink on a project, read its AI-CONTEXT.md or JSON output, and summarize architecture, endpoints, models, dependencies, and publish-safety findings with actionable fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running a local project scanner can surface sensitive file names or contents in generated reports if users share the output without review. <br>
-Mitigation: Keep real secrets out of test repositories, review generated reports before sharing them, and confirm file contents are not uploaded unless explicitly intended. <br>
-Risk: Optional PATH setup or symlink commands can change which ctx-shrink executable an agent runs later. <br>
-Mitigation: Read the README before installation and only add the helper to a user-controlled PATH location when global access is desired. <br>
-Risk: Agent-proposed fixes based on ctx-shrink findings may be incomplete or incorrect for a specific project. <br>
-Mitigation: Review proposed fixes and rerun the scanner before publishing or deploying the project. <br>
+## Use Case:
 
+Developers and engineers use this skill to run ctx-shrink on a project, read the generated analysis, and summarize architecture, endpoints, models, dependencies, and safety findings. It is also used before publishing to identify missing gitignore protections, source maps, private files, keys, or certificates that could leak.
 
-## Reference(s): <br>
-- [ClawHub ctx-shrink listing](https://clawhub.ai/etherman-os/ctx-shrink) <br>
-- [ctx-shrink install instructions](https://github.com/etherman-os/ctx-shrink#install) <br>
-- [ctx-shrink releases](https://github.com/etherman-os/ctx-shrink/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; ctx-shrink output may be Markdown or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ctx-shrink to already be available on PATH and reads the generated AI-CONTEXT.md or custom output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks agents to run an externally installed, unpinned code-scanning tool over local projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the upstream ctx-shrink source or use a pinned release with checksums, and confirm the executable on PATH is the intended tool before running it.
+
+Risk: Generated context maps may expose sensitive filenames, endpoints, commit metadata, architecture details, or other project information.
+
+Mitigation: Review AI-CONTEXT.md or any custom output before sharing it with an AI service or external recipient.
+
+Risk: Running scans over repositories that contain live credentials can increase exposure if the resulting report is copied or transmitted.
+
+Mitigation: Run ctx-shrink with least privilege on the intended project only, and avoid scanning repositories containing live credentials unless the work is isolated.
+
+## Reference(s):
+
+- [ClawHub ctx-shrink skill page](https://clawhub.ai/etherman-os/skills/ctx-shrink)
+- [ctx-shrink install documentation](https://github.com/etherman-os/ctx-shrink#install)
+- [ctx-shrink releases](https://github.com/etherman-os/ctx-shrink/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON analysis with shell command snippets and concise remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires reading the generated ctx-shrink output file before summarizing findings; may include security and publish-safety recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

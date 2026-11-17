@@ -1,43 +1,60 @@
-## Description: <br>
-Post to social media platforms using the multi-provider social posting API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts text, media, and scheduled content to supported social media platforms through a multi-provider social posting API.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent prepare, check, schedule, and publish posts across connected social media accounts through a local social-posting API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward live posting workflows using social media provider API keys. <br>
-Mitigation: Verify the separate local social-posting-api code and keep only required provider keys in its .env file before use. <br>
-Risk: Post content, media, platforms, connected accounts, or schedule could be wrong or unintended. <br>
-Mitigation: Require manual final review of the post text, media, platforms, connected accounts, and schedule before running any posting command. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to check connected social accounts, prepare platform-appropriate content, and publish or schedule posts across supported social channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-social-post) <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [PostForMe dashboard](https://postforme.dev/dashboard) <br>
-- [LATE dashboard](https://getlate.dev/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include post text, media URL guidance, platform selections, schedule values, and account-check commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The workflow can publish or schedule content to connected public social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview and explicit confirmation before executing posting commands, and verify the selected platforms and accounts first.
+
+Risk: The documented inline python -c pattern can execute injected content if user-supplied post text is pasted into the command.
+
+Mitigation: Use a fixed script, stdin, JSON, or argument-array execution so post content is handled as data rather than executable code.
+
+Risk: The skill depends on API keys for third-party posting providers.
+
+Mitigation: Keep provider keys in the environment or a local .env file, limit their account permissions where possible, and rotate them if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-social-post)
+- [Canlah AI](https://canlah.ai)
+- [PostForMe dashboard](https://postforme.dev/dashboard)
+- [LATE dashboard](https://getlate.dev/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in API calls that publish or schedule content when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

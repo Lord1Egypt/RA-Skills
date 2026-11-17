@@ -1,37 +1,53 @@
-## Description: <br>
-Extract summaries from all documents in a Feishu folder by recursively scanning wiki or drive folders, reading documents and sub-documents, and generating a comprehensive Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and summarizes documents from a Feishu wiki space or drive folder into a structured Markdown report.
 
-## Publisher: <br>
-[henryjing96](https://clawhub.ai/user/henryjing96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[henryjing96](https://clawhub.ai/user/henryjing96)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to summarize accessible Feishu wiki spaces or drive folders into one structured report with a directory tree, per-document summaries, status counts, and source links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the selected Feishu folder and reachable subdocuments, which may combine sensitive, confidential, or mixed-permission content into a single summary. <br>
-Mitigation: Run it only on Feishu folders the user intends to summarize together, and review folder permissions and report contents before sharing the generated Markdown. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu API Reference](references/feishu_api.md) <br>
+## Use Case:
 
+External users and developers use this skill to recursively inspect Feishu wiki or drive folders they can access and produce a readable summary report with document links, status, statistics, and a directory tree.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source URL, generation timestamp, document counts, directory structure, hierarchical summaries, status statistics, and links to original documents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can recursively read and summarize many Feishu documents, including confidential or regulated workspace content.
+
+Mitigation: Confirm the exact folder URL, expected document count, recursion depth, and output destination before document reads begin.
+
+Risk: Generated Markdown may include document titles or content supplied by other Feishu users.
+
+Mitigation: Treat the report as untrusted content and review it before sharing, publishing, or using links and titles operationally.
+
+## Reference(s):
+
+- [Feishu API Reference](references/feishu_api.md)
+- [ClawHub skill page](https://clawhub.ai/henryjing96/skills/feishu-folder-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, API Calls]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a directory tree, hierarchical summaries, document status counts, statistics, generation metadata, and source document links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

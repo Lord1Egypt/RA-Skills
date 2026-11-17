@@ -1,46 +1,66 @@
-## Description: <br>
-Researches the last 30 days across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, GitHub, and grounded web search, returning a ranked and clustered brief with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research the last 30 days across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, GitHub, and grounded web search, returning a ranked, clustered brief with citations.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to scan recent public social, market, developer, and web evidence about a topic, company, product, person, or comparison. It is suited for trend scans, competitor comparisons, launch reactions, community sentiment checks, and structured research briefs for downstream agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, generated subqueries, and source lookups are sent to AIsa and public platform APIs. <br>
-Mitigation: Avoid secrets, unreleased product names, sensitive personal data, and confidential investigations in prompts; restrict sources with --search when needed. <br>
-Risk: Optional GitHub retrieval can use a user-provided token. <br>
-Mitigation: Use a least-privilege token and omit GH_TOKEN or GITHUB_TOKEN when GitHub results are not needed. <br>
-Risk: Optional account-backed or local integrations may use sources tied to an authenticated account. <br>
-Mitigation: Enable those integrations only when the account-backed source is intentionally in scope. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to scan recent public social, market, code, and web evidence for products, companies, people, launches, trends, and competitor comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baofeng-tech/last30days-aisa-api) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa API Reference](https://aisa.one/docs/api-reference) <br>
-- [AIsa model guide](https://aisa.one/docs/guides/models) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [Markdown brief by default; JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output can include the query plan, ranked candidates, clusters, items by source, provider runtime, and source-level errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Research topics and retrieved snippets may be sent to AISA and selected external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those topics and snippets with the configured services is acceptable.
+
+Risk: Local project configuration can steer some network behavior, including optional custom endpoints.
+
+Mitigation: Run the skill from trusted workspaces, keep credentials in trusted process environment variables, and enable Xiaohongshu or custom endpoints only when you control and trust the endpoint.
+
+Risk: Untrusted search and social snippets can influence planning and ranking.
+
+Mitigation: Review cited sources and ranked findings before relying on the brief for decisions or downstream automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baofeng-tech/skills/last30days-aisa-api)
+- [AIsa homepage](https://aisa.one)
+- [AIsa models guide](https://aisa.one/docs/guides/models)
+- [AIsa API reference](https://aisa.one/docs/api-reference)
+- [AIsa chat completion API](https://aisa.one/docs/api-reference/chat/createchatcompletion)
+- [AIsa Twitter advanced search API](https://aisa.one/docs/api-reference/twitter/get_twitter-tweet-advanced-search)
+- [AIsa YouTube search API](https://aisa.one/docs/api-reference/search/get_youtube-search)
+- [AIsa Tavily search API](https://aisa.one/docs/api-reference/search/post_tavily-search)
+- [AIsa Polymarket markets API](https://aisa.one/docs/api-reference/prediction-market/get_polymarket-markets)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown brief by default, with optional JSON or compact/context text output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include a query plan, ranked candidates, clusters, items by source, provider runtime, source-level errors, dates, engagement, and URLs.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Data visualization, report generation, SQL queries, and spreadsheet automation. Transform your AI agent into a data-savvy analyst that turns raw data into actionable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data visualization, report generation, SQL queries, and spreadsheet automation for agents that turn raw data into actionable insights.
 
-## Publisher: <br>
-[tihuaqin-commits](https://clawhub.ai/user/tihuaqin-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tihuaqin-commits](https://clawhub.ai/user/tihuaqin-commits)
 
-## Use Case: <br>
-Developers, analysts, and business users can use this skill to query databases, analyze spreadsheets, create visualizations, and generate Markdown reports with statistical summaries and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run SQL against configured databases, including statements that may change live data. <br>
-Mitigation: Use read-only or least-privilege credentials by default, inspect generated SQL before execution, and require explicit approval plus backups for UPDATE, DELETE, INSERT, DROP, ALTER, or similar commands. <br>
-Risk: Database credentials or connection strings could be exposed if placed in shared prompts or configuration files. <br>
-Mitigation: Keep secrets out of shared prompt and config files; provide credentials through local environment variables or approved secret-management workflows. <br>
-Risk: Reports and visualizations can be misleading if source data is incomplete, stale, or poorly cleaned. <br>
-Mitigation: Run data quality checks, document source data and cleaning steps, and review generated findings before using them for decisions. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to guide database querying, spreadsheet analysis, data cleaning, visualization, and report generation from configured data sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tihuaqin-commits/fox-data-analyst) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/tihuaqin-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL, Python, and shell code blocks; generated workspace files, CSV exports, charts, and reports when scripts are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the user's configured data sources, database permissions, and local analysis environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can execute arbitrary SQL against configured databases, including statements that may alter data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only database credentials whenever possible and review SQL statements before execution.
+
+Risk: Configured data sources may expose production, regulated, or otherwise sensitive data to the agent.
+
+Mitigation: Connect only data sources that are appropriate for the intended use case and avoid production or regulated data unless explicitly approved.
+
+Risk: Rerunning the workspace initializer can overwrite its generated template files.
+
+Mitigation: Review the target data-analysis workspace before rerunning initialization and preserve any customized templates first.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tihuaqin-commits/skills/fox-data-analyst)
+- [Publisher Profile](https://clawhub.ai/user/tihuaqin-commits)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with SQL, Python, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local workspace templates under the configured data-analysis directory when the initializer script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

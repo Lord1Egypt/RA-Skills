@@ -1,41 +1,54 @@
-## Description: <br>
-Generates harmonic echo audio and structured profiles from Truth x Light metrics computed from images, LYGO profile JSON, or manual values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates harmonic echo sequences from Truth x Light metrics by computing or ingesting image, profile, or manual inputs and mapping them to recursive harmonic audio parameters.
 
-## Publisher: <br>
-[deepseekoracle](https://clawhub.ai/user/deepseekoracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to convert images, LYGO creative profiles, or manual Truth x Light values into harmonic echo WAV audio and JSON profiles for creative sound workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local 3-Brain memory integration may persist a summary of generated work when a compatible local lyra_brain.py is present. <br>
-Mitigation: Run in a trusted project folder, review the local lyra_brain.py before use, and avoid sensitive filenames or profile contents if persistence is not desired. <br>
-Risk: The skill generates local audio and profile files from user-provided image, JSON, or manual inputs. <br>
-Mitigation: Use a dedicated working directory and review generated WAV and JSON outputs before sharing or importing them into other workflows. <br>
+## Use Case:
 
+External users and creative developers use this skill to sonify images, LYGO creative profiles, or manual Truth x Light scores into harmonic echo WAV files and structured JSON profiles for creative audio workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/deepseekoracle/lygo-truthlightecho) <br>
-- [LYGO RESONANCE companion site](https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the skill runtime produces WAV audio and JSON profile files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports image, JSON profile, and manual metric inputs; can generate reproducible outputs when a seed is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and truthlightecho.py __version__) <br>
+Risk: The skill loads local integration modules and can persist generated run summaries into local agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated folder and virtual environment, inspect local resonance_engine.py and lyra_brain.py before running, and disable the 3-Brain growth block unless persistent memory writes are intended.
+
+Risk: Daemon, queue, catalog, or publishing workflows may create side effects beyond local audio generation.
+
+Mitigation: Avoid those workflows unless they are explicitly intended, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deepseekoracle/skills/lygo-truthlightecho)
+- [LYGO RESONANCE Companion Site](https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime outputs include WAV audio files and JSON echo profiles.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports image inputs, JSON profile inputs, manual Truth x Light scores, presets, duration, and seed-controlled reproducibility.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and truthlightecho.py __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

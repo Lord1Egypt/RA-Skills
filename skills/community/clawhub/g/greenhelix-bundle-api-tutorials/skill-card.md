@@ -1,41 +1,50 @@
-## Description: <br>
-A bundle of 22 API-heavy tutorials for the GreenHelix A2A Commerce Gateway covering agent commerce, verification, incident response, migration, compliance, trading infrastructure, and security hardening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bundle of 22 GreenHelix A2A Commerce Gateway tutorials covering API integration, verification, incident response, migration, compliance, trading infrastructure, and security hardening.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this bundle as tutorial guidance for building, securing, operating, and monetizing agent commerce workflows against the GreenHelix production API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle requests powerful production-style credentials, including Stripe, signing, wallet, and GreenHelix API values, without explaining why each credential is needed. <br>
-Mitigation: Review the relevant guide before use and provide only sandbox or tightly scoped test credentials until the credential purpose and handling requirements are verified. <br>
-Risk: Credential values could be exposed through shared chats, logs, or broad agent context while following API tutorials. <br>
-Mitigation: Keep secrets out of shared prompts and logs, scope them to the current task, and rotate any value that may have been exposed. <br>
+## Use Case:
 
+Developers and agent builders use this bundle to learn GreenHelix production API patterns for A2A commerce, compliance, security hardening, incident response, migration, and trading-related workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-bundle-api-tutorials) <br>
-- [Publisher profile](https://clawhub.ai/user/mirni) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tutorials with API code examples and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GREENHELIX_API_KEY as the primary environment variable and may reference AGENT_SIGNING_KEY, STRIPE_API_KEY, and WALLET_ADDRESS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and skill frontmatter) <br>
+Risk: The package is a tutorial catalog but requests sensitive GreenHelix, signing, Stripe, and wallet-linked credentials without visible evidence that all are necessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and provide only narrowly scoped non-production credentials when a specific tutorial or component clearly needs them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-bundle-api-tutorials)
+- [ClawHub publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown tutorial guidance with code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference GreenHelix, signing, Stripe, and wallet environment variables documented in release metadata.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

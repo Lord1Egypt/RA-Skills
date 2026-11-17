@@ -1,42 +1,55 @@
-## Description: <br>
-Ai Video Prompt helps agents plan Chinese AI video prompts using a keyframe-plus-video workflow for stitching 5-second segments into longer videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Video Prompt helps agents build Chinese AI video prompts using a first-and-last keyframe workflow for multi-segment five-second video sequences.
 
-## Publisher: <br>
-[atmosphere16happy](https://clawhub.ai/user/atmosphere16happy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atmosphere16happy](https://clawhub.ai/user/atmosphere16happy)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to draft Chinese keyframe image prompts, 5-second video prompts, and continuity checks for AI video platforms such as Jimeng/Seedance, Kling, Runway, and Sora. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may include real photos, private scenes, or confidential story details that are uploaded to external AI video platforms. <br>
-Mitigation: Review the privacy and retention terms of the target video platform before using real or confidential inputs. <br>
-Risk: The included helper script may not run as packaged because the security guidance indicates it appears truncated. <br>
-Mitigation: Use the skill primarily as a prompt-building aid and review or repair the helper script before relying on it in an automated workflow. <br>
+## Use Case:
 
+External creators and developers use this skill to plan long-form AI video prompts, keyframe image prompts, five-second segment prompts, and continuity checks for video-generation platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/atmosphere16happy/ai-video-prompt) <br>
-- [Keyframe Workflow Examples](examples/keyframe_examples.md) <br>
-- [AI Video Prompt Examples](examples/prompt_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Chinese Markdown prompt plans with keyframe image prompts, 5-second segment prompts, continuity checks, negative constraints, and optional Python helper output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize character, clothing, prop, lighting, and transition consistency across adjacent keyframes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated prompts may be unsuitable for a target video platform or project if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts, negative constraints, and continuity checks before submitting them to external video platforms.
+
+Risk: The bundled helper script appears incomplete, so automated prompt generation may fail or produce partial output.
+
+Mitigation: Use the Markdown workflow as the primary guidance and test the helper script before relying on it in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atmosphere16happy/skills/ai-video-prompt)
+- [Keyframe workflow examples](examples/keyframe_examples.md)
+- [Prompt examples](examples/prompt_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text prompts with structured keyframe, segment, and review sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are optimized for Chinese prompt-writing workflows and should be reviewed before use on external video platforms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

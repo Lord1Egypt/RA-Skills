@@ -1,45 +1,56 @@
-## Description: <br>
-Monitor OpenAnt task activity, notifications, platform statistics, task details, escrow status, watched tasks, and wallet balance through the OpenAnt CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor task activity, check notifications, and view platform stats on OpenAnt.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ant-1984](https://clawhub.ai/user/ant-1984)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to check OpenAnt notifications, monitor task status, inspect escrow and wallet state, watch tasks, and view platform statistics through the OpenAnt CLI.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill runs an unpinned remote OpenAnt CLI in an authenticated account.
+
+Mitigation: Install only after accepting that account access, and prefer a release that pins the CLI package.
+
+Risk: The skill can change notification or account state, including marking notifications read and creating task subscriptions.
+
+Mitigation: Prefer narrower command permissions and require confirmation before state-changing notification or watch actions.
+
+Risk: Wallet and notification permissions are broad for a monitoring workflow.
+
+Mitigation: Limit permissions to exact commands needed for monitoring before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External OpenAnt users and their agents use this skill as an account dashboard for checking notifications, task status, pending reviews, arbitration, escrow state, platform activity, and wallet balance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad monitoring prompts can trigger authenticated OpenAnt account commands, exposing account dashboard details to the agent session. <br>
-Mitigation: Invoke the skill with explicit OpenAnt wording and install it only when agent access to the OpenAnt dashboard is intended. <br>
-Risk: The notifications read-all command changes notification read state. <br>
-Mitigation: Require user confirmation before running read-all, even though most monitoring commands are read-only. <br>
-Risk: Wallet-related commands can expose sensitive account or balance information, and future wallet CLI behavior may exceed simple balance checks. <br>
-Mitigation: Limit wallet usage to balance checks unless the user explicitly confirms the exact wallet action. <br>
-Risk: Using @latest for the OpenAnt CLI can change behavior as new package versions are released. <br>
-Mitigation: Use a pinned or pre-vetted CLI version when supply-chain stability matters. <br>
+**Output Format:** [Markdown with inline bash code blocks and JSON command output examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page: monitor-tasks](https://clawhub.ai/ant-1984/monitor-tasks) <br>
-- [Publisher profile: ant-1984](https://clawhub.ai/user/ant-1984) <br>
+**Other Properties Related to Output:** [Commands are expected to append --json for structured OpenAnt CLI output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to append --json; includes a status reference table and dashboard workflow.] <br>
+0.1.1 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

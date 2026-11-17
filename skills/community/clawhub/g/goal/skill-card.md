@@ -1,39 +1,55 @@
-## Description: <br>
-Goal setting reference for SMART goals, OKRs, habit formation, accountability systems, and related personal or professional planning workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides goal-setting reference guidance for SMART goals, OKRs, habit formation, accountability systems, planning, motivation, reviews, and common pitfalls.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve concise goal-setting guidance, including SMART goals, OKRs, habit systems, planning, motivation, reviews, and common pitfalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a shell script, so users may need to review commands before execution even though the reviewed script only prints goal-setting content. <br>
-Mitigation: Run the script from the published artifact and review the command text before use; the security evidence reports no credential, network, or file-access behavior. <br>
+## Use Case:
 
+External users and agents use this skill as a concise reference for setting personal or professional goals, designing habit systems, implementing OKRs, and reviewing progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/goal) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style command output from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill prints reference guidance only; no API keys, network access, or file access are required by the reviewed script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Goal-setting advice may be incorrect, unsuitable, or over-generalized for a user's personal circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance for fit before relying on it, and do not treat it as professional medical, financial, or legal advice.
+
+Risk: The artifact includes a local shell script.
+
+Mitigation: Review and scan the script before deployment; server security evidence reports a clean verdict and says the script prints educational guidance only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/goal)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-oriented plain text with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled shell script prints educational goal-setting guidance for named commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

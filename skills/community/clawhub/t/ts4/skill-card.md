@@ -1,41 +1,55 @@
-## Description: <br>
-TS4 namespace for Netsnek e.U. TypeScript testing framework. Unit testing, snapshot testing, coverage reporting, and mutation testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TS4 namespace for Netsnek e.U. TypeScript testing framework. Unit testing, snapshot testing, coverage reporting, and mutation testing.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and engineers use TS4 to run TypeScript unit, snapshot, coverage, and mutation testing workflows from a CLI-oriented skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests local command execution permission. <br>
-Mitigation: Install only when local command execution is acceptable, and review the included script before deployment. <br>
-Risk: The release has no server-resolved provenance and appears limited in scope. <br>
-Mitigation: Treat it as a lightweight placeholder unless the publisher supplies additional provenance or implementation evidence. <br>
+## Use Case:
 
+Developers and engineers use TS4 to run TypeScript unit, snapshot, coverage, and mutation-testing workflows through a single CLI helper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/ts4) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included runner prints fixed status messages for --run, --coverage, and --status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and claw.json) <br>
+Risk: The skill grants execution permission for its bundled CLI helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the helper script before installation and run it only where executing skill-provided shell commands is acceptable.
+
+Risk: The artifact appears more like a placeholder than a full testing framework implementation.
+
+Mitigation: Verify the behavior meets functional needs before relying on TS4 for test execution, coverage, or mutation-testing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page for ts4](https://clawhub.ai/kleberbaum/skills/ts4)
+- [ClawHub publisher profile for kleberbaum](https://clawhub.ai/user/kleberbaum)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and concise text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux execution permission for the bundled CLI helper.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

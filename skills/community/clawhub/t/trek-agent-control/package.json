@@ -1,0 +1,40 @@
+{
+  "name": "@trek-cn/cli",
+  "version": "0.3.7",
+  "description": "Trek MCP CLI and Agent Skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/super21-bat/trek-agent-control.git"
+  },
+  "homepage": "https://github.com/super21-bat/trek-agent-control",
+  "bugs": {
+    "url": "https://github.com/super21-bat/trek-agent-control/issues"
+  },
+  "type": "module",
+  "bin": {
+    "trek": "scripts/trek-mcp.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "agents",
+    "assets",
+    "references",
+    "scripts"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "prepack": "node scripts/trek-mcp.mjs skill check"
+  },
+  "keywords": [
+    "trek",
+    "mcp",
+    "agent",
+    "travel",
+    "wechat",
+    "mini-program"
+  ],
+  "license": "AGPL-3.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

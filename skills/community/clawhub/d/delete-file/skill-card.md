@@ -1,41 +1,51 @@
-## Description: <br>
-Delete a file from cloud storage by URL. Only the API key that uploaded the file can delete it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delete a file from cloud storage by URL. Only the API key that uploaded the file can delete it.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-External users and developers use this skill to delete PDF API Hub files they previously uploaded, especially for privacy compliance, storage cleanup, workflow cleanup, and sensitive document handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs a destructive delete operation against a cloud file URL. <br>
-Mitigation: Confirm the exact uploaded-file URL before execution and avoid automatic use from ambiguous cleanup requests. <br>
-Risk: The skill requires a sensitive PDF API Hub API key. <br>
-Mitigation: Treat the API key as sensitive and install the skill only if you trust pdfapihub.com and need agents to delete files from that service. <br>
+## Use Case:
 
+Developers and workflow operators use this skill to delete PDF API Hub cloud files by URL for privacy compliance, storage cleanup, and sensitive document handling.
 
-## Reference(s): <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl command examples and JSON request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PDF API Hub API key in the CLIENT-API-KEY header and a file URL previously returned by the upload endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill deletes PDF API Hub cloud files and does not include an explicit confirmation or recovery step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, verify the exact file URL and confirm the API key context matches the account that uploaded the file.
+
+## Reference(s):
+
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+- [PDF API Hub](https://pdfapihub.com)
+- [Delete File on ClawHub](https://clawhub.ai/rishabhdugar/skills/delete-file)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a file URL and the API key associated with the original upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

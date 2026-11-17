@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multi-Agent Governor Run Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "objective",
+    "status",
+    "created_at",
+    "limits",
+    "sources",
+    "lanes",
+    "agents",
+    "sessions",
+    "build"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["planning", "running", "qa", "complete", "blocked"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": ["string", "null"], "format": "date-time" },
+    "main_thread_id": { "type": ["string", "null"] },
+    "limits": {
+      "type": "object",
+      "required": ["wave1_agents", "qa_agents", "total_agents", "max_concurrent", "qa_rounds"],
+      "properties": {
+        "wave1_agents": { "type": "integer", "maximum": 3 },
+        "qa_agents": { "type": "integer", "maximum": 2 },
+        "total_agents": { "type": "integer", "maximum": 5 },
+        "max_concurrent": { "type": "integer", "maximum": 4 },
+        "qa_rounds": { "type": "integer", "maximum": 2 }
+      }
+    },
+    "sources": { "type": "array" },
+    "lanes": { "type": "array" },
+    "agents": { "type": "array" },
+    "sessions": { "type": "array" },
+    "build": { "type": "object" },
+    "metrics": { "type": "object" }
+  },
+  "additionalProperties": true
+}

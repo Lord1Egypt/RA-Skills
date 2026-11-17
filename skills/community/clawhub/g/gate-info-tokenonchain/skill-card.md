@@ -1,44 +1,58 @@
-## Description: <br>
-Provides token-level on-chain analysis through Gate-Info for holder distribution, on-chain activity, and large or unusual transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token on-chain analysis via Gate-Info MCP for holder distribution, on-chain activity, and large or unusual transfers, with Smart Money explicitly unavailable in this version.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-Developers and analysts use this skill to answer token-level on-chain questions with structured markdown reports covering holders, activity, and large transfers. It is intended for informational analysis only, not trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: On-chain and market outputs may be mistaken for investment advice. <br>
-Mitigation: Present results as informational analysis only and avoid buy, sell, or price-prediction guidance. <br>
-Risk: Gate-Info MCP tools or individual data scopes may be unavailable or return incomplete data. <br>
-Mitigation: Label missing dimensions clearly, degrade gracefully with available data, and avoid fabricating values. <br>
-Risk: Single-address tracking, Smart Money analysis, and broader risk checks are outside this skill's supported scope. <br>
-Mitigation: Route those requests to the appropriate reviewed skill or state the limitation before continuing with supported holder, activity, and transfer scopes. <br>
+## Use Case:
 
+External users and developers use this skill to request token-level on-chain analysis for holder distribution, activity trends, and large transfer summaries using read-only Gate-Info MCP data. The skill is informational and routes unsupported Smart Money or single-address requests to more appropriate capabilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-info-tokenonchain) <br>
-- [Gate runtime rules](references/gate-runtime-rules.md) <br>
-- [Info and news common runtime rules](references/info-news-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Structured markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Gate-Info MCP results when available and degrades gracefully when a data dimension is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill depends on an external Gate-Info MCP integration for token on-chain data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the MCP server source is trusted and available before use; if tools are missing or fail, provide setup guidance or partial output instead of fabricating data.
+
+Risk: On-chain data, exchange labels, and indexing may be delayed, incomplete, or mislabeled.
+
+Mitigation: Report only MCP-returned data, label unavailable dimensions clearly, note data lag where relevant, and avoid overstating address or exchange attribution.
+
+Risk: Users may treat on-chain analysis as trading advice.
+
+Mitigation: Keep outputs neutral and informational, avoid buy or sell recommendations, and include the skill's non-advisory limitation in reports.
+
+## Reference(s):
+
+- [Gate Info Token Onchain Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables, metrics, and concise data-driven insights]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses only returned Gate-Info MCP data; notes unavailable scopes, unsupported chains, data lag, and non-advisory limitations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

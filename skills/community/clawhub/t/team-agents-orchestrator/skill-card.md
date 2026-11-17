@@ -1,40 +1,50 @@
-## Description: <br>
-Run complex tasks with explicit role separation (operator, researcher, builder, editor), structured handoff contracts, and memory hygiene to prevent context pollution and role blur. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run complex tasks with explicit role separation (operator, researcher, builder, editor), structured handoff contracts, and memory hygiene to prevent context pollution and role blur.
 
-## Publisher: <br>
-[cwheeler67](https://clawhub.ai/user/cwheeler67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwheeler67](https://clawhub.ai/user/cwheeler67)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-step work across research, implementation, and communication roles while keeping decisions, handoffs, and memory updates explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used in environments with local repository access, credentials, or moderation capabilities. <br>
-Mitigation: Install only where that access is appropriate, keep confirmation prompts for moderation or deletion actions, and avoid full-access autoreview mode for untrusted code. <br>
-Risk: Role handoffs can still produce overreach, verbose output, or memory pollution if reviewers skip the stated discipline. <br>
-Mitigation: Require each handoff to state objective, constraints, done criteria, open questions, and receiver restatement before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate complex, multi-step tasks through defined researcher, builder, editor, and operator roles. It is intended for tasks where explicit handoff contracts and memory hygiene reduce role blur and context pollution.
 
-## Reference(s): <br>
-- [Handoff Contract Template](references/handoff-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with role-scoped handoff details and concise final-result sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include what changed, unresolved risks or questions, and the next best action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Memory logging could preserve temporary discussion, external content, or sensitive context longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show proposed daily or long-term memory entries to the user before saving them, especially when they come from external content or transient task discussion.
+
+## Reference(s):
+
+- [Handoff Contract Template](references/handoff-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/cwheeler67/skills/team-agents-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured handoff contracts, role-scoped task summaries, concise final results, unresolved risks, and next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

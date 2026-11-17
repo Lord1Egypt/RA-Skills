@@ -1,41 +1,58 @@
-## Description: <br>
-Extracts clean plain-text or JSON transcripts from existing YouTube captions using native Node.js and a local yt-dlp binary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts clean plain-text or JSON transcripts from existing YouTube captions using native Node.js and a local yt-dlp binary.
 
-## Publisher: <br>
-[jwestburg](https://clawhub.ai/user/jwestburg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwestburg](https://clawhub.ai/user/jwestburg)
 
-## Use Case: <br>
-Developers and agents use this skill when a user provides a YouTube URL and needs existing captions extracted for summarization, quoting, research triage, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-directed external queries may disclose sensitive information to a third-party service. <br>
-Mitigation: Do not use the skill for secrets, private incident details, internal hostnames, client identifiers, or confidential research unless that disclosure is intentionally approved. <br>
-Risk: The artifact invokes a local external binary and accesses YouTube through yt-dlp. <br>
-Mitigation: Use only with a trusted yt-dlp installation on PATH and avoid privacy-sensitive videos or contexts when external access is inappropriate. <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch existing captions from a supported single-video YouTube URL and hand clean transcript text to summarization, quote extraction, research triage, or downstream tools.
 
-## Reference(s): <br>
-- [YouTube Transcript Contract](artifact/references/youtube-transcript-contract.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jwestburg/youtube-transcript-native-node) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript, timestamped plain text, or JSON with URL, title, language, auto-caption status, timestamp setting, and transcript.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and yt-dlp on PATH; extracts captions only and does not transcribe audio or download audio/video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: evidence.json release.version and SKILL.md frontmatter) <br>
+Risk: Full YouTube URLs may contain tracking, tokens, or other sensitive query parameters and are sent to YouTube through yt-dlp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or client-sensitive videos and strip tracking, token, or other sensitive query parameters before use or downstream logging.
+
+Risk: Normal operation depends on a trusted local yt-dlp binary that contacts YouTube for the supplied video.
+
+Mitigation: Use a trusted yt-dlp binary on PATH, keep the wrapper's YouTube-only single-video allowlist, and do not install or update yt-dlp through the skill without explicit approval.
+
+Risk: Video titles and transcript text are untrusted third-party content and may be inaccurate, auto-generated, copyrighted, or adversarial to downstream agents.
+
+Mitigation: Treat captions as data rather than instructions, summarize before quoting large passages, and republish long transcripts only when rights or permission are clear.
+
+## Reference(s):
+
+- [YouTube Transcript Contract](artifact/references/youtube-transcript-contract.md)
+- [ClawHub skill page](https://clawhub.ai/jwestburg/skills/youtube-transcript-native-node)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON transcript output, with compact Markdown status and caveats from the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source URL, requested language, timestamp mode, auto-caption status, transcript status, caveats, next safe step, and saved path when file output is explicitly approved.]
+
+## Skill Version(s):
+
+1.1.27 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

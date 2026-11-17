@@ -1,39 +1,53 @@
-## Description: <br>
-Daily Workflow Manager helps English-speaking developers start work, check in before breaks, and end sessions by maintaining local project documentation for AI-to-AI handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Workflow Manager helps English-speaking developers run start-of-day, mid-day, and end-of-day checkpoints by maintaining workspace Docs/ handoff files and customizable trigger configuration.
 
-## Publisher: <br>
-[englandtong](https://clawhub.ai/user/englandtong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[englandtong](https://clawhub.ai/user/englandtong)
 
-## Use Case: <br>
-Developers and engineers use this skill to preserve local project state across work sessions by creating, reading, and updating handoff documentation and workflow configuration files at session boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project handoff notes may capture secrets, credentials, private personal data, or confidential project details if the user includes them. <br>
-Mitigation: Review Docs/ and .workbuddy/ changes before sharing or committing them, and avoid storing tokens, credentials, private personal data, or confidential details in handoff notes. <br>
-Risk: Generic trigger phrases can cause the agent to update workflow files at unintended times. <br>
-Mitigation: Choose low-collision custom trigger phrases in .workbuddy/daily-workflow-config.json and review changed workflow files after each session boundary. <br>
+## Use Case:
 
+Developers use this skill to capture start-of-day, mid-day, and end-of-day project state so future AI sessions can resume work with current goals, status, completed work, pending tasks, and next steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation updates, JSON configuration, and concise session summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local Docs/ handoff files and .workbuddy/daily-workflow-config.json; no network or credential use is evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: The skill writes persistent project notes and configuration into the workspace, which may expose sensitive context to future AI sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Docs/ and .workbuddy files periodically, and do not store secrets, credentials, private personal details, or other sensitive content in those files.
+
+Risk: Session summaries and next steps can become inaccurate or stale if they are accepted without review.
+
+Mitigation: Review proposed documentation updates at each start, mid-day, and end-of-day checkpoint and correct completed work, pending items, blockers, and next steps before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/englandtong/skills/daily-workflow-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries and workspace documentation updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates Docs/*.md files and .workbuddy/daily-workflow-config.json in the workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

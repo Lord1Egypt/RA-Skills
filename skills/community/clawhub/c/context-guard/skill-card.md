@@ -1,36 +1,47 @@
-## Description: <br>
-防遗忘防卡顿的context管理协议。自动监控水位、分区管理、压缩前存档、压缩后恢复。适用于所有OpenClaw agent和sub-agent。在heartbeat或session启动时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Guard is a context-management protocol for OpenClaw agents that monitors context budget, partitions working memory, checkpoints state before compaction, and restores context after compaction or session restart.
 
-## Publisher: <br>
-[unicornnoway](https://clawhub.ai/user/unicornnoway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unicornnoway](https://clawhub.ai/user/unicornnoway)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage OpenClaw session context, checkpoint local progress, recover after compression, and coordinate sub-agent work without losing task state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local checkpoint files may capture secrets, private keys, personal data, financial details, or other sensitive information. <br>
-Mitigation: Review STATUS.md, MEMORY.md, memory logs, and HEARTBEAT.md periodically, and avoid writing sensitive data into those files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+OpenClaw users and agent developers use Context Guard to help agents and sub-agents manage limited context, persist task state, and recover working context after compaction or a new session.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to read conversation and memory data and persist sensitive task details in local checkpoint and memory files.
+
+Mitigation: Use it in a dedicated workspace, review generated files before committing or sharing them, and avoid storing secrets, wallet details, personal profile data, or unrelated conversation history.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and checkpoint file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local checkpointing and recovery procedures for STATUS.md, MEMORY.md, memory logs, and HEARTBEAT.md.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update local checkpoint, memory, status, and heartbeat files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

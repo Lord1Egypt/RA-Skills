@@ -1,51 +1,66 @@
-## Description: <br>
-Lista Lending assistant — position report, market overview, yield scan, liquidation risk check, daily digest, and loop strategy on BSC and Ethereum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lista Lending assistant for position reports, market overviews, vault yield scans, liquidation risk checks, daily digests, and loop strategy analysis on BSC and Ethereum.
 
-## Publisher: <br>
-[lawson-ccy](https://clawhub.ai/user/lawson-ccy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lawson-ccy](https://clawhub.ai/user/lawson-ccy)
 
-## Use Case: <br>
-External users and DeFi analysts use this skill to generate read-only Lista Lending reports for positions, market rates, vault yield, liquidation risk, daily status, and loop strategies on BSC and Ethereum. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save wallet addresses and preferences under ~/.lista and send wallet/report queries to Lista MCP or API services. <br>
-Mitigation: Use only public wallet addresses, do not provide private keys or signing credentials, and review or clear saved ~/.lista files when local persistence is not desired. <br>
-Risk: Telegram, Discord, alert, and digest subscription flows are under-specified in the security evidence. <br>
-Mitigation: Treat subscription confirmations as unverified unless a separate notification system is configured and tested; do not rely on this skill alone for liquidation monitoring. <br>
-Risk: Generated lending and loop reports may be incomplete, stale, or affected by unavailable data sources. <br>
-Mitigation: Use the reports as read-only analysis, verify important figures against Lista or chain data, and do not use the skill for deposit, withdrawal, borrow, repay, signing, or other execution flows. <br>
+## Use Case:
 
+External users and agents use Lista to generate read-only Lista Lending analytics reports for wallet positions, market rates, vault yields, liquidation risk, daily summaries, and loop strategies. The skill is intended for report-style analysis, not lending execution, wallet signing, or transaction flows.
 
-## Reference(s): <br>
-- [Lista Skill Definition](artifact/SKILL.md) <br>
-- [Shared Domain Logic](artifact/references/domain.md) <br>
-- [Position Report](artifact/references/position.md) <br>
-- [Market Lending Rates](artifact/references/market.md) <br>
-- [Vault Yield](artifact/references/yield.md) <br>
-- [Risk Check](artifact/references/risk.md) <br>
-- [Daily Digest](artifact/references/digest.md) <br>
-- [Loop Strategy](artifact/references/loop.md) <br>
-- [Lista MCP Endpoint](https://mcp.lista.org/mcp) <br>
-- [Lista API](https://api.lista.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text reports with optional shell commands and JSON data retrieval] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English, Simplified Chinese, Traditional Chinese, or a custom language; report data may come from Lista MCP tools, moolah.js, or Lista REST APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can persist wallet addresses and preferences locally under ~/.lista.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and clear local preference files when needed, and avoid using shared environments for wallet-linked reports.
+
+Risk: Unsafe shell-write instructions could execute untrusted wallet or custom language text.
+
+Mitigation: Validate wallet addresses and language values before use, and change file writes to avoid shell interpolation for user-provided text.
+
+Risk: Reports depend on live Lista MCP or API data, so rates, APY, and liquidation metrics can become stale quickly.
+
+Mitigation: Refresh data before acting on a report and treat output as analytics rather than execution advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lawson-ccy/skills/lista)
+- [Lista MCP endpoint](https://mcp.lista.org/mcp)
+- [Lista API base](https://api.lista.org)
+- [Shared domain logic](artifact/references/domain.md)
+- [Position report reference](artifact/references/position.md)
+- [Market lending rates reference](artifact/references/market.md)
+- [Vault yield reference](artifact/references/yield.md)
+- [Risk check reference](artifact/references/risk.md)
+- [Daily digest reference](artifact/references/digest.md)
+- [Loop strategy reference](artifact/references/loop.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports with fixed templates; helper commands return JSON for agent use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report values are rounded to two decimals; the skill can persist local language, wallet, and threshold preferences under ~/.lista.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

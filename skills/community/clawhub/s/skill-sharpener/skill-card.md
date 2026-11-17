@@ -1,42 +1,59 @@
-## Description: <br>
-Skill Sharpener evaluates existing Agent Skill directories, reviews metadata, structure, content, examples, and scripts, and produces optimization recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Sharpener evaluates existing Agent Skill packages and produces quality scores, issue findings, and optimization recommendations for skill metadata, structure, content, examples, and scripts.
 
-## Publisher: <br>
-[liuxxxu](https://clawhub.ai/user/liuxxxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxxxu](https://clawhub.ai/user/liuxxxu)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit Agent Skill quality, identify high-priority issues, and draft improvements before publishing or updating a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed fixes or rewrites could introduce incorrect or misleading skill guidance. <br>
-Mitigation: Inspect the generated report and proposed changes before accepting edits or publishing the revised skill. <br>
-Risk: The skill can be used to inspect local skill directories and may optionally modify files after approval. <br>
-Mitigation: Point it only at the intended skill directory and keep backups until the edited skill has been verified. <br>
+## Use Case:
 
+Developers and skill authors use this skill to audit and improve Agent Skills before release or refactoring. It reviews SKILL.md, references, and scripts, then reports quality scores, priority issues, strengths, and description improvements.
 
-## Reference(s): <br>
-- [Skill Quality Evaluation Checklist](references/checklist.md) <br>
-- [Claude Agent Skills Best Practices](https://platform.claude.com/docs/zh-CN/agents-and-tools/agent-skills/best-practices) <br>
-- [TRAE CN Skill Best Practices](https://docs.trae.cn/ide/best-practice-for-how-to-write-a-good-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code review findings, Guidance] <br>
-**Output Format:** [Markdown report with optional shell commands and proposed edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose user-approved edits to skill files; review changes before accepting them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads target skill directories and runs a local Python analyzer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted skill folders and avoid directories containing secrets.
+
+Risk: The skill can modify skill files after confirmation.
+
+Mitigation: Review proposed changes before allowing rewrites or refactors, and keep backups for edited files.
+
+Risk: The file-tree scanner can escape intended boundaries through symlinks.
+
+Mitigation: Avoid running it on folders that contain symlinks to private or unrelated locations.
+
+## Reference(s):
+
+- [Skill quality checklist](references/checklist.md)
+- [Claude Agent Skills best practices](https://platform.claude.com/docs/zh-CN/agents-and-tools/agent-skills/best-practices)
+- [TRAE skill writing best practices](https://docs.trae.cn/ide/best-practice-for-how-to-write-a-good-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables, issue lists, suggested description text, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to skill files after review and user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

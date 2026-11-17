@@ -1,44 +1,59 @@
-## Description: <br>
-Monitor brand sentiment, crypto opinions, and product perception across social media with automated tracking, alerts, and multi-entity dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor brand sentiment, crypto opinions, and product perception across social media with automated tracking, alerts, and multi-entity dashboards.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to analyze public sentiment around brands, products, competitors, crypto assets, and topics, then optionally track changes over time with local reports and alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tracked entities, alert thresholds, report preferences, historical sentiment data, and monitoring settings can be retained locally for future sessions. <br>
-Mitigation: Review and remove data under ~/sentiment-analysis/ when monitoring needs change, and avoid tracking topics that should not be retained in local or agent memory. <br>
-Risk: Scheduled monitoring can continue after setup if cron jobs or similar schedules remain active. <br>
-Mitigation: Review active cron jobs and disable schedules when monitoring should pause or stop. <br>
-Risk: Public web searches and URL fetches send query text or URL requests outside the local machine. <br>
-Mitigation: Use non-sensitive search terms and avoid tracking topics whose query text should not be sent to public search or public content services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/sentiment-tracker) <br>
-- [Skill homepage](https://clawic.com/skills/sentiment-tracker) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
+## Use Case:
 
+External users and developers use this skill to analyze public sentiment about brands, products, competitors, crypto assets, or topics across public web and social sources. It supports one-time sentiment checks, scheduled monitoring, alerting on meaningful negative shifts, and comparison reports across multiple entities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, local markdown tracking files, alert summaries, and optional scheduling instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web search and fetched public URLs; stores tracking state, reports, and alerts locally under ~/sentiment-analysis/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ongoing monitoring may continue to influence future sessions beyond a one-time sentiment check.
+
+Mitigation: Require explicit user consent for scheduled monitoring, define clear schedule limits, and keep tracking records in the local sentiment-analysis folder.
+
+Risk: Activation preferences may be saved into shared main memory while tracking data is described as local.
+
+Mitigation: Confirm before writing cross-session preferences and distinguish shared activation preferences from local sentiment reports and alert history.
+
+Risk: Search queries and public-post URL requests leave the user's machine.
+
+Mitigation: Avoid private or personal terms in queries unless the user explicitly asks, and disclose that public web lookups are needed for fresh sentiment analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/sentiment-tracker)
+- [Skill homepage](https://clawic.com/skills/sentiment-tracker)
+- [Setup guide](artifact/setup.md)
+- [Memory template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional shell commands and local Markdown configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local files under ~/sentiment-analysis/ for memory, tracked entities, reports, and alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

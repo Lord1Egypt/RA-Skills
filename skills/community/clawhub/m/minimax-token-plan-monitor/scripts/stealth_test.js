@@ -28,7 +28,7 @@ async function scrapeTokenPlan() {
   
   console.error('Filling login form...');
   await page.waitForSelector('input[placeholder*="手机号"], input[placeholder*="邮箱"]', { timeout: 10000 });
-  await page.fill('input[placeholder*="手机号"], input[placeholder*="邮箱"]', 'your_account_here');
+  await page.fill('input[placeholder*="手机号"], input[placeholder*="邮箱"]', '15605428773');
   await page.fill('input[type="password"]', 'sym,1998');
   
   const checkbox = await page.$('input[type="checkbox"]');

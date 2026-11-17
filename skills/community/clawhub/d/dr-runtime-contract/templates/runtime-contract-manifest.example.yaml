@@ -1,0 +1,29 @@
+# Runtime Contract Manifest (non-secret example)
+
+employee: example-employee
+environment: dev
+owner: platform-team
+keyGroups:
+  - name: ikara-api-auth
+    canonicalSource:
+      type: secret-ref
+      reference: IKARA_API_TOKEN
+    precedence:
+      - openclaw-managed-secret-ref
+      - protected-service-env-fragment
+    consumers:
+      - gateway
+      - fresh-direct-session
+      - isolated-child
+      - scheduled-job:example
+      - gateway-exec
+    reload:
+      mode: restart-required
+      approvalRequiredWhenLive: true
+    capabilityProbe:
+      name: authenticated-read-only-health
+      mutation: none
+    expectedRevision: source-revision-identifier
+legacyLocations:
+  - path: legacy-path-placeholder
+    disposition: inspect-and-classify

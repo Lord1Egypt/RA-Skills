@@ -1,0 +1,5 @@
+interface:
+  display_name: "Codebase Audit"
+  short_description: "Stack-aware audit, verified, ticketed, untangled"
+policy:
+  allow_implicit_invocation: false

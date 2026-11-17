@@ -1,0 +1,49 @@
+# gold-tracker 技能元数据（平台无关）
+name: gold-tracker
+version: 2.0.0
+description: "黄金价格追踪与分析技能：配置驱动的数据抓取、反幻觉分析闸门、多基准动态阈值提醒、单一通知管线、本地状态闭环。平台无关、零第三方依赖、零凭证。"
+author: gold-tracker
+license: MIT-0
+tags:
+  - gold
+  - finance
+  - tracking
+  - analysis
+  - commodity
+  - alerting
+language: zh-CN
+entrypoint: SKILL.md
+runtime:
+  requires_python: ">=3.8"
+  third_party_dependencies: []
+  platforms:
+    - macos
+    - linux
+    - windows
+directories:
+  scripts: scripts/
+  common: scripts/common/
+  notifiers: notifiers/
+  examples: examples/
+  logs: logs/
+  archive: archive/
+  alerts: alerts/
+  cache: cache/
+files:
+  config: config.yaml
+  config_example: config.example.yaml
+  state: state.json
+commands:
+  verify: python3 scripts/verify.py [init|check]
+  fetch: python3 scripts/fetch.py
+  analyze_check: python3 scripts/analyze_check.py [target.yaml] [--strict]
+  log_fetch: python3 scripts/log_fetch.py <url> [title] | list | clear
+  news_collect: python3 scripts/news_collect.py
+  scaffold: python3 scripts/analyze_scaffold.py
+  analyze_prep: sh examples/analyze_prep.sh
+  analyze_finish: sh examples/analyze_finish.sh
+  alert: python3 scripts/alert_manager.py [detect|list|pending|status|auto_resolve|cleanup|threshold]
+  notify: python3 scripts/notify.py [send|retry|status|test] [--dry-run]
+  archive: python3 scripts/archive.py [archive|find|history|cleanup|rebuild|summary|normalize]
+  summary: python3 scripts/summary.py [brief|full]
+  cycle: sh examples/run_cycle.sh

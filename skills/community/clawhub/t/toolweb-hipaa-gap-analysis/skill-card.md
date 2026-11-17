@@ -1,45 +1,56 @@
-## Description: <br>
-Assesses an organization's HIPAA compliance posture across administrative, physical, technical, privacy, and breach notification rule areas and produces a scored gap report with prioritized remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses HIPAA compliance across administrative, physical, technical, privacy, and breach notification rule areas and produces a gap report with scoring, deficiencies, and remediation guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Compliance, security, and healthcare operations teams use this skill to evaluate HIPAA readiness for covered entities, business associates, or hybrid entities. It identifies control gaps, summarizes regulatory exposure, and prioritizes remediation actions for audit preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted organization and compliance details may be sensitive, especially when they describe PHI handling or security controls. <br>
-Mitigation: Use the minimum detail needed, avoid patient-identifiable PHI unless approved, and confirm ToolWeb's privacy, retention, and HIPAA business-associate posture before submitting real organization data. <br>
-Risk: HIPAA gap analysis output may be mistaken for legal advice or a final compliance determination. <br>
-Mitigation: Treat the report as compliance planning guidance and have qualified legal, privacy, or compliance personnel review findings before relying on them. <br>
+## Use Case:
 
+Compliance practitioners at covered entities, business associates, and related healthcare organizations use this skill to evaluate HIPAA control coverage, identify gaps, and prioritize remediation before audit or compliance review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-hipaa-gap-analysis) <br>
-- [HIPAA Gap Analysis API](https://portal.toolweb.in/apis/compliance/hipaa-gap-analysis) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [ToolWeb MCP Server](https://hub.toolweb.in) <br>
-- [ToolWeb on RapidAPI](https://rapidapi.com/user/mkrishna477) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON report with compliance scores, gap lists, regulatory exposure summary, and prioritized remediation actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires organization profile details and HIPAA control status inputs; outputs should be reviewed as compliance planning guidance, not legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends sensitive compliance and PHI-handling details to a third-party API without enough privacy or handling disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use with regulated health data, confirm the provider's privacy, retention, logging, encryption, jurisdiction, and BAA terms, and avoid submitting patient identifiers or unnecessary PHI.
+
+Risk: The HIPAA assessment output may be incomplete or unsuitable as the sole basis for compliance decisions.
+
+Mitigation: Treat the report as advisory and have qualified legal, compliance, or security reviewers validate findings before audit preparation or remediation commitments.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-hipaa-gap-analysis)
+- [ToolWeb HIPAA gap analysis API](https://portal.toolweb.in/apis/compliance/hipaa-gap-analysis)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb MCP server](https://hub.toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON report with compliance scores, rule-by-rule gaps, deficiencies, remediation actions, regulatory exposure, and audit readiness rating]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires organization profile, PHI handling details, and HIPAA control-status inputs; output is advisory and should be reviewed by qualified compliance or legal staff.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

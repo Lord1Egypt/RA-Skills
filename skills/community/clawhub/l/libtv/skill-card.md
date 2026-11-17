@@ -1,40 +1,57 @@
-## Description: <br>
-将《寻秦记》小说文本转换为 web-toon 风格漫画页面，并返回每页 PNG 路径和文字说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts UTF-8 story text into web-toon style PNG comic pages with text descriptions using the libtv backend.
 
-## Publisher: <br>
-[treelounge](https://clawhub.ai/user/treelounge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[treelounge](https://clawhub.ai/user/treelounge)
 
-## Use Case: <br>
-Agents can use this skill to turn a UTF-8 story or chapter text file into a small set of comic-style PNG pages with accompanying text descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on pinned Python packages, including libtv, that execute locally when installed. <br>
-Mitigation: Install and run it in an isolated environment where those dependencies are trusted. <br>
-Risk: Generated files are written to a caller-provided output directory. <br>
-Mitigation: Choose an output directory that does not contain important files and review generated paths before relying on them. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn a supplied novel or chapter text file into generated comic page assets and accompanying page descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/treelounge/libtv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [JSON result containing generated PNG image paths and text descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a UTF-8 story file and uses panel count, font, and output directory parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security scan reports vulnerable or under-verified Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated OpenClaw virtual environment or container, verify the libtv package source, and update or audit pinned dependencies before use.
+
+Risk: The entrypoint appears malformed and may not run as packaged.
+
+Mitigation: Review and correct the entrypoint packaging before installation or execution.
+
+Risk: Story files may be processed by the libtv backend.
+
+Mitigation: Do not provide private or sensitive story files unless that processing is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/treelounge/skills/libtv)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime entrypoint returns JSON containing PNG image paths and text descriptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

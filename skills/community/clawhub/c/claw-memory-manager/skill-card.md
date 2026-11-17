@@ -1,44 +1,59 @@
-## Description: <br>
-Manage OpenClaw Agent memory features by enabling, disabling, checking, and tuning Dreaming memory consolidation and Active Memory injection with dry-run previews, backups, and optional gateway restarts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw Agent's built-in memory features: Dreaming memory consolidation and Active Memory injection, with safe configuration updates, dry-run previews, backups, and optional gateway restarts.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw use this skill to configure built-in memory behavior without manually editing nested JSON. It helps preview, apply, verify, and roll out Dreaming or Active Memory settings across local and managed deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent OpenClaw memory configuration changes and restart the gateway. <br>
-Mitigation: Use --dry-run first, review the planned JSON changes, and pass --no-restart when restart timing must be controlled. <br>
-Risk: Active Memory can surface prior stored memories in future direct chats. <br>
-Mitigation: Review memory contents before enabling Active Memory and use the conservative preset for sensitive work. <br>
-Risk: Managed deployments may require synchronized config mirrors to survive restarts. <br>
-Mitigation: Let the skill auto-detect mirror paths and verify the resulting runtime config after changes. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inspect, enable, disable, and tune OpenClaw memory features without manually editing nested configuration files. It is intended for environments where changing persistent memory configuration and restarting the OpenClaw gateway are acceptable operational actions.
 
-## Reference(s): <br>
-- [Feature Catalog - OpenClaw Agent Memory Features](references/features.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/songhonglei/claw-memory-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May apply persistent OpenClaw configuration changes and restart the gateway unless dry-run or no-restart flags are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact documentation) <br>
+Risk: The skill can change persistent OpenClaw memory configuration and restart the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run before applying changes, and use --no-restart when automatic restarts are not appropriate for the environment.
+
+Risk: Active Memory and Dreaming may expose or promote sensitive memory content.
+
+Mitigation: Review and limit sensitive memories before enabling these features, and apply the conservative Active Memory preset when minimizing context injection is important.
+
+Risk: Managed-environment mirror writes can overwrite shared configuration files.
+
+Mitigation: Run with appropriate file permissions, avoid elevated privileges when possible, and review writable mirror directories before applying changes.
+
+## Reference(s):
+
+- [Feature Catalog](references/features.md)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/songhonglei/skills/claw-memory-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that modify OpenClaw configuration files, create backups, synchronize managed-environment mirrors, and restart the OpenClaw gateway.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and artifact changelog, released 2026-07-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

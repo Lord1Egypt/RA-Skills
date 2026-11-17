@@ -1,41 +1,59 @@
-## Description: <br>
-Image-to-image skill that uses a reference image and text prompt to generate a new image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates new images from a reference image and text prompt using supported image-generation models.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-Developers and external users can invoke this skill when they need an agent to call supported image-generation models with a prompt and optional reference media. The skill requires a TEAM_API_KEY and sends prompts and uploaded media to a third-party remote API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads prompts and reference media to a third-party remote API using a bearer token. <br>
-Mitigation: Use a dedicated low-privilege TEAM_API_KEY, avoid sensitive prompts or media, and install only if the dlazy.com service is trusted for the intended data. <br>
-Risk: The skill asks the agent to run a Python script directly instead of using the normal OpenClaw runner. <br>
-Mitigation: Review the exact command and script behavior before execution, and avoid setting TEAM_BASE_URL unless the endpoint is controlled and trusted. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to generate or transform images by sending a prompt plus optional reference media to a configured image-generation API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrshu/lrshuai-image-to-image) <br>
-- [Remote API endpoint](https://dlazy.com/api/ai/tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Console text with JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a Python script that submits generation requests, polls for completion when needed, and prints the final response or error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can send prompts, selected local media, and TEAM_API_KEY-authenticated requests to a configurable remote API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with media intended for that provider, scope TEAM_API_KEY appropriately, and confirm TEAM_BASE_URL before execution.
+
+Risk: The release evidence reports that the skill bypasses the normal OpenClaw runner.
+
+Mitigation: Review the script before use and prefer a release that uses the standard runner or an approved execution wrapper.
+
+Risk: The security guidance notes missing disclosure or enforcement for allowed models, media types, file sizes, and request timeouts.
+
+Mitigation: Run in a controlled environment and prefer a version that validates media inputs, limits model choices, and adds bounded request timeouts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrshu/skills/lrshuai-image-to-image)
+- [Publisher profile](https://clawhub.ai/user/lrshu)
+- [Configured API endpoint](https://dlazy.com/api/ai/tool)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, text, configuration]
+
+**Output Format:** [Command-line output containing request status, errors, or API response JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEAM_API_KEY and Python; may read selected local media paths and send encoded media to the configured API host.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

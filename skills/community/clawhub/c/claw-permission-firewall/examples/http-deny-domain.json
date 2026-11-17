@@ -4,7 +4,7 @@
     "method": "GET",
     "url": "https://raw.githubusercontent.com/some/repo/main/install.sh",
     "headers": {
-      "x-api-key": "AKIAAAAAAAAAAAAAAAAA"
+      "x-api-key": "REDACTED-SECRET"
     }
   },
   "context": {

@@ -1,38 +1,58 @@
-## Description: <br>
-期末试卷分析仪表盘 analyzes exam score data, generates interactive visual dashboards and statistical reports, and prepares WeChat-ready article HTML for publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+期末试卷分析仪表盘融合成绩数据可视化、统计分析和微信公众号推文排版，帮助用户从 Excel 或 CSV 试卷数据生成交互式图表、分析报告和 HTML 发布稿。
 
-## Publisher: <br>
-[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123)
 
-## Use Case: <br>
-Educators and academic staff use this skill to turn CSV or Excel exam score files into local score-distribution charts, item statistics, reliability indicators, teaching suggestions, and shareable report assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports, charts, and HTML may contain student identifiers and class performance data. <br>
-Mitigation: Process exam data locally, remove student identifiers before sharing outputs, confirm permission to share class information, and delete generated output folders when no longer needed. <br>
+## Use Case:
 
+Educators, academic staff, and education analysts use this skill to analyze exam result spreadsheets, visualize score and item-level patterns, and prepare shareable reports or WeChat-ready HTML summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuwenqi123123/exam-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts include HTML, Markdown, PNG charts, and local report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on CSV or Excel score data and creates a timestamped output directory containing charts, an analysis report, and WeChat article HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes student names, IDs, and exam scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted spreadsheets only and remove or pseudonymize student identifiers before creating reports that may be shared.
+
+Risk: Generated HTML may be published or copied into a public channel.
+
+Mitigation: Inspect generated HTML and charts before publication to confirm that private student data and unintended content are not exposed.
+
+Risk: The skill depends on multiple Python packages for spreadsheet parsing, statistics, plotting, and document generation.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions where possible and review the environment before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuwenqi123123/skills/exam-dashboard)
+- [Publisher profile](https://clawhub.ai/user/liuwenqi123123)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python-based report, chart, and HTML file generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts may include PNG charts, interactive HTML chart files, a Markdown analysis report, and a WeChat-ready HTML article.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

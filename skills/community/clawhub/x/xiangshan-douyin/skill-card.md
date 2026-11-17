@@ -1,48 +1,65 @@
-## Description: <br>
-Xiangshan Douyin helps agents search Douyin users and videos and retrieve user profiles, video details, comments, and playback statistics through the XSData API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+向善数据抖音 API 工具集。搜索抖音用户/视频，获取用户资料、视频详情、评论、播放量统计数据。
 
-## Publisher: <br>
-[jesuslove](https://clawhub.ai/user/jesuslove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jesuslove](https://clawhub.ai/user/jesuslove)
 
-## Use Case: <br>
-External users and developers use this skill to query Douyin account, video, comment, and engagement data from user-provided links, IDs, or search terms. It guides the agent to select the relevant XSData endpoint, supply the required API key, parse the response, and present the requested fields clearly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided Douyin links, IDs, search terms, and an XSData API key to api.xsdata.top. <br>
-Mitigation: Use the skill only if the XSData service is trusted, store XS_API_KEY in an environment variable when possible, and avoid pasting secrets into chat. <br>
-Risk: API calls may consume paid XSData credits. <br>
-Mitigation: Confirm the intended query before calling an endpoint and remind users when an operation may spend credits. <br>
+## Use Case:
 
+External users and developers use this skill to search Douyin users or videos, fetch profile and video details, retrieve comments, and summarize video statistics through the XSData API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jesuslove/xiangshan-douyin) <br>
-- [XSData API base URL](https://api.xsdata.top) <br>
-- [Search Douyin users](reference/search-user.md) <br>
-- [Search Douyin videos](reference/search-video.md) <br>
-- [Fetch Douyin user data](reference/user-data.md) <br>
-- [Fetch Douyin user video list](reference/user-video-list.md) <br>
-- [Fetch Douyin video comments](reference/video-comment.md) <br>
-- [Fetch Douyin video details](reference/video-detail.md) <br>
-- [Fetch Douyin video statistics](reference/video-statistics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional curl commands and parsed API response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paginated result summaries, tables of selected Douyin fields, and reminders that API calls consume XSData credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Raw curl templates may combine user-supplied Douyin links, IDs, or keywords with shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Encode or serialize all user-controlled values before execution, avoid shell interpolation, and review generated commands before running them.
+
+Risk: The XS_API_KEY credential is sent to api.xsdata.top and could be exposed if pasted into chat or logs.
+
+Mitigation: Store the key in a secure environment variable, avoid pasting secrets into conversations, and install only when the API provider is trusted.
+
+Risk: Douyin identifiers, links, and search terms are transmitted to a third-party API service.
+
+Mitigation: Use the skill only for data you are comfortable sending to api.xsdata.top and limit requests to necessary inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jesuslove/skills/xiangshan-douyin)
+- [XSData API base URL](https://api.xsdata.top)
+- [Search users reference](reference/search-user.md)
+- [Search videos reference](reference/search-video.md)
+- [User data reference](reference/user-data.md)
+- [User video list reference](reference/user-video-list.md)
+- [Video comment reference](reference/video-comment.md)
+- [Video detail reference](reference/video-detail.md)
+- [Video statistics reference](reference/video-statistics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown summaries with curl examples and JSON parsing notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Douyin share links, user IDs, video IDs, keywords, and an XS_API_KEY credential to call api.xsdata.top.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

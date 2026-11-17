@@ -1,42 +1,57 @@
-## Description: <br>
-Coordinates calculus homework assignment, multimodal grading, learning analytics, and error analysis for higher-education math workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供高等数学作业的智能布置、批改、学情分析及错题深度分析，支持多模态输入和个性化教学优化。
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Educators and teaching teams use this skill to coordinate calculus homework generation, submission grading, class-level learning reports, and student error analysis. It is intended for classroom workflows where human instructors review outputs before grades or interventions are finalized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processing identifiable student submissions, learning profiles, grades, or analytics can create privacy and governance exposure. <br>
-Mitigation: Use documented consent, retention and deletion rules, access controls, and data-minimization settings before processing student data. <br>
-Risk: External AI and OCR services may receive classroom data or require sensitive credentials. <br>
-Mitigation: Use only institution-approved providers, verify dependent skills separately, and configure scoped API keys. <br>
-Risk: Automated grading, feedback, or learning recommendations may be incorrect or misleading. <br>
-Mitigation: Require instructor review before finalizing grades, feedback, interventions, or learning-path recommendations. <br>
+## Use Case:
 
+Calculus instructors, education teams, and agent developers use this skill to manage the homework lifecycle: assignment generation, multimodal grading support, learning analytics, and error analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/calculus-homework-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe workflows that process student submissions, grading data, learning profiles, and external AI/OCR service configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact package.json) <br>
+Risk: The skill handles student work, images, grades, profiles, and analytics without enough privacy or data-retention safeguards in the evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before classroom or institutional use, confirm storage locations, consent, retention, deletion, access controls, and audit logging for all student data.
+
+Risk: The skill can rely on external LLM, OCR, speech, and visualization providers.
+
+Mitigation: Review provider data handling, pin or verify external components, and avoid placing real API keys directly in command-line arguments.
+
+Risk: Automated grading, analytics, and intervention recommendations may affect student-facing decisions.
+
+Mitigation: Keep human review in the workflow for grading outcomes, learning analytics, and personalized intervention guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daigxok/skills/calculus-homework-suite)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands, YAML configuration, JSON snippets, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external LLM, OCR, speech, database, cache, and visualization services that require separate configuration and review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

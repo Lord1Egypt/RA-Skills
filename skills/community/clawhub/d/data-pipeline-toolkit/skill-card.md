@@ -1,39 +1,50 @@
-## Description: <br>
-Create, schedule, and monitor ETL pipelines that extract from APIs, databases, files, and streams, then transform and load data to warehouses, databases, and APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, schedule, and monitor ETL pipelines extracting from APIs, databases, files, and streams, with transform and load support to warehouses and APIs.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and data engineers use this skill to outline CLI-driven ETL workflows for extracting, transforming, loading, scheduling, and monitoring data pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Quick-start commands invoke ./pipeline.sh, but no pipeline.sh file is included in the artifact. <br>
-Mitigation: Confirm the exact script path and source before running any quick-start command, and test in an isolated workspace first. <br>
-Risk: ETL workflows may touch databases, APIs, cloud storage, scheduled jobs, and credentials. <br>
-Mitigation: Use non-production test data, narrowly scoped credentials, and verify how any schedules can be found and removed. <br>
+## Use Case:
 
+Developers and data engineers use this skill to draft ETL pipeline workflows that extract from common sources, transform data, load to target systems, and include scheduling or failure-monitoring steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only ETL workflow guidance; no executable pipeline script is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Pipeline guidance can involve moving private or regulated data between systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended source and destination systems, use least-privilege credentials, test first on non-sensitive data, and validate that no private or regulated data is copied to unintended locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/data-pipeline-toolkit)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

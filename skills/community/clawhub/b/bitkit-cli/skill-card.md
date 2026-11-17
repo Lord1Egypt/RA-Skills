@@ -1,45 +1,58 @@
-## Description: <br>
-Bitcoin Lightning payment CLI for agents. Lowest LSP fees. Self-custody wallet with LNURL, typed exit codes, JSON envelope output, encrypted messaging, and daemon mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bitcoin Lightning payment CLI for agents. Lowest LSP fees. Self-custody wallet with LNURL, typed exit codes, JSON envelope output, encrypted messaging, and daemon mode.
 
-## Publisher: <br>
-[ovitrif](https://clawhub.ai/user/ovitrif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ovitrif](https://clawhub.ai/user/ovitrif)
 
-## Use Case: <br>
-Developers and external agents use this skill to operate a self-custodial Bitcoin and Lightning wallet from shell commands, including wallet setup, balances, invoices, payments, liquidity orders, webhooks, and encrypted messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-accessible wallet commands can move real Bitcoin funds and manage Lightning channels with weak default guardrails. <br>
-Mitigation: Require human approval for every pay, send, fee bump, and channel action, and enforce strict amount and fee limits before execution. <br>
-Risk: Plaintext seed storage through --no-password can expose wallet funds if the agent environment is compromised. <br>
-Mitigation: Use a small isolated wallet and prefer encrypted seed storage with BITKIT_PASSWORD instead of plaintext automation. <br>
-Risk: Webhook destinations and installer/release downloads introduce external trust and data exposure concerns. <br>
-Mitigation: Review webhook destinations and secrets, and verify the installer or release before running it. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to operate the Bitkit CLI for Bitcoin and Lightning wallet actions, invoices, payments, liquidity, webhooks, and encrypted messaging.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ovitrif/bitkit-cli) <br>
-- [Bitkit CLI Homepage](https://github.com/synonymdev/bitkit-cli) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Reference](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and JSON envelope examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should use --json for parseable envelopes; payment and wallet actions can affect real Bitcoin funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Installer and agent workflows can expose users to code execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the installer or build from trusted source before installation.
+
+Risk: Bitcoin and Lightning payments can cause irreversible fund loss.
+
+Mitigation: Use small isolated wallets, set explicit fee and spending limits, and require approval before send, pay, channel, or LSP funding actions.
+
+Risk: Wallet seed phrases can be exposed through plaintext storage, transcripts, or logs.
+
+Mitigation: Do not use --no-password for wallets holding real funds, and keep seed phrases out of agent transcripts and logs.
+
+## Reference(s):
+
+- [Bitkit CLI project homepage](https://github.com/synonymdev/bitkit-cli)
+- [Lightning Rapid Gossip Sync documentation](https://docs.rs/lightning-rapid-gossip-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash command snippets and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use --json for parseable output; the skill requires the bitkit binary.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

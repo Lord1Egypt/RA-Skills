@@ -1,52 +1,55 @@
-## Description: <br>
-Helps agents safely inspect and change AtomGit repositories, pull requests, issues, branches, releases, tags, permissions, organizations, enterprises, kanban boards, webhooks, and AIHub features through the AtomGit MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through inspecting and managing AtomGit repositories, collaboration workflows, CI, organizations, and AIHub features using a preconfigured AtomGit MCP server.
 
-## Publisher: <br>
-[kylezhang](https://clawhub.ai/user/kylezhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylezhang](https://clawhub.ai/user/kylezhang)
 
-## Use Case: <br>
-Developers and agents use this skill to work with AtomGit resources through a preconfigured AtomGit MCP server. It supports repository, pull request, issue, organization, enterprise, webhook, and AIHub workflows while applying token and confirmation safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AtomGit access requires an ATOMGIT_TOKEN, which can expose repository or account permissions if mishandled. <br>
-Mitigation: Store the token in the MCP client environment or a secret store, never paste it into chat or repository files, and start with the smallest token scope needed. <br>
-Risk: Repository writes, membership or permission changes, enterprise administration, webhook changes, and dangerous-tool use can have broad or irreversible effects. <br>
-Mitigation: Require explicit user confirmation before these operations and prefer read operations before mutations. <br>
-Risk: The skill depends on an external AtomGit MCP server and its exposed runtime tool set. <br>
-Mitigation: Review the referenced MCP server before installation, configure it manually at the client level, and match the exact tool names exposed by the runtime. <br>
+## Use Case:
 
+Developers and teams use this skill to inspect or change AtomGit repositories, pull requests, issues, CI workflows, and related account or organization resources when they have an AtomGit MCP server configured.
 
-## Reference(s): <br>
-- [AtomGit Skill Source](https://atomgit.com/zkxw2008/AtomGit-Skills) <br>
-- [AtomGit MCP Server](https://atomgit.com/zkxw2008/AtomGit-MCP-Server) <br>
-- [AtomGit MCP Server npm Package](https://www.npmjs.com/package/@atomgit.com/atomgit-mcp-server) <br>
-- [Setup And Safety](references/setup-and-safety.md) <br>
-- [Repositories](references/repositories.md) <br>
-- [Pull Requests](references/pull-requests.md) <br>
-- [Issues](references/issues.md) <br>
-- [Organizations](references/organizations.md) <br>
-- [Enterprises](references/enterprises.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [AIHub](references/aihub.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with AtomGit MCP method names and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a preconfigured AtomGit MCP server and ATOMGIT_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A token with broad privileges could expose or change sensitive AtomGit resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure ATOMGIT_TOKEN outside chat and use the smallest scope needed for the task.
+
+Risk: Write or destructive operations may alter repositories, CI runs, webhooks, or account and organization settings.
+
+Mitigation: Require explicit confirmation before write, destructive, organization, enterprise, webhook, runner, or account-profile changes.
+
+## Reference(s):
+
+- [AtomGit skill homepage](https://atomgit.com/zkxw2008/AtomGit-Skills)
+- [AtomGit MCP server](https://atomgit.com/zkxw2008/AtomGit-MCP-Server)
+- [Setup and safety guidance](artifact/references/setup-and-safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown and plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a separately configured AtomGit MCP server and ATOMGIT_TOKEN for live operations.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-专业的中文写作润色工具，优化表达、修正语法、提升文采，支持多种文体：文章、简历、邮件、社交媒体文案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业的中文写作润色工具，优化表达、修正语法、提升文采，支持多种文体：文章、简历、邮件、社交媒体文案。
 
-## Publisher: <br>
-[xiatian5](https://clawhub.ai/user/xiatian5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiatian5](https://clawhub.ai/user/xiatian5)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, and content creators use this skill to polish Chinese text for articles, resumes, email, social posts, and academic or formal writing while preserving the original meaning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad resume, email, or writing-polish requests may invoke this skill and default the interaction toward Chinese-language editing.
+
+Mitigation: Confirm the requested language and editing goal when the user's intent is ambiguous.
+
+Risk: Polishing can unintentionally change tone, emphasis, or meaning if edits go beyond the user's intent.
+
+Mitigation: Preserve the original meaning, avoid adding unsupported facts, and summarize the major changes for user review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and content creators use this skill to polish Chinese writing while preserving the original meaning. It supports grammar correction, expression refinement, style adaptation, and revision notes for articles, resumes, emails, academic writing, and social media copy. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad writing-edit triggers may route general grammar, essay, resume, or email requests to this skill when another writing workflow was intended. <br>
-Mitigation: Use explicit prompts when selecting a different writing skill or when no skill routing is desired. <br>
+**Output Format:** [Markdown with revised Chinese text and brief change notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiatian5/chinese-writing-polish) <br>
-- [Related skill: copywriting](https://clawhub.ai/skills/copywriting) <br>
-- [Related skill: xiaohongshu-content-automation](https://clawhub.ai/skills/xiaohongshu-content-automation) <br>
+**Other Properties Related to Output:** [May include the original text, polished text, major edits, and improvement rationale.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with original text, polished text, main changes, and improvement notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool use, or external dependencies are required; output quality depends on the host language model.] <br>
+1.0.0 (source: SKILL.md frontmatter, package.json, evidence release)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

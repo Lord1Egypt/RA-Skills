@@ -1,42 +1,51 @@
-## Description: <br>
-Evaluate whether a service qualifies as agent-native using the five hard criteria from the awesome-agent-native-services standard and the bonus URL Onboarding signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate whether a service qualifies as agent-native using the five hard criteria from the awesome-agent-native-services standard, including the URL Onboarding bonus signal.
 
-## Publisher: <br>
-[haoruilee](https://clawhub.ai/user/haoruilee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC0-1.0 <br>
+## Publisher:
 
+[haoruilee](https://clawhub.ai/user/haoruilee)
 
-## Use Case: <br>
-External users, developers, and maintainers use this skill to evaluate whether a service qualifies as agent-native, agent-adapted, or agent-builder. It guides evidence collection for the five hard criteria, URL Onboarding, bonus signals, classification, recommendation, confidence, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL onboarding checks may expose an agent to third-party service instructions that request registration, posting, claiming tasks, publishing data, or other actions. <br>
-Mitigation: Keep onboarding checks to inspection and summary by default, and require explicit approval before the agent performs account, content, task, or publishing actions. <br>
-Risk: The skill can produce an incorrect or misleading service classification if source evidence is incomplete or weak. <br>
-Mitigation: Require source-backed evidence for each criterion and review the final recommendation before using it to publish or reject a service. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate whether services meet agent-native criteria before adding them to a catalog or comparing agent-native and agent-adapted services.
 
-## Reference(s): <br>
-- [awesome-agent-native-services repository](https://github.com/haoruilee/awesome-agent-native-services) <br>
-- [Moltbook URL Onboarding example](https://www.moltbook.com/skill.md) <br>
-- [Ensue / autoresearch@home URL Onboarding example](https://raw.githubusercontent.com/mutable-state-inc/autoresearch-at-home/master/collab.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown evaluation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes URL Onboarding status, criterion-by-criterion results, bonus signals, classification, recommendation, confidence, reasoning, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The skill may prompt an agent to inspect and potentially follow untrusted third-party onboarding documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a constrained environment and require explicit approval before creating accounts, sending data, posting content, installing tools, or executing instructions found at external URLs.
+
+## Reference(s):
+
+- [awesome-agent-native-services](https://github.com/haoruilee/awesome-agent-native-services)
+- [Moltbook URL Onboarding example](https://www.moltbook.com/skill.md)
+- [autoresearch@home collaboration protocol example](https://raw.githubusercontent.com/mutable-state-inc/autoresearch-at-home/master/collab.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown evaluation report with criterion-level findings and recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sourced evidence, URL Onboarding status, classification, confidence, and next steps.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

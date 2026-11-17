@@ -1,42 +1,53 @@
-## Description: <br>
-更新飞书云文档，支持追加、覆盖、定位替换、全文替换、前后插入和删除等 7 种更新模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+更新飞书云文档，支持追加、覆盖、定位替换、全文替换、前后插入和删除等 7 种更新模式。
 
-## Publisher: <br>
-[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent update Feishu cloud documents by appending, replacing, inserting, deleting, or renaming document content with precise text- or heading-based targeting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify or delete content in Feishu cloud documents. <br>
-Mitigation: Confirm the account, workspace, document, mode, and target range before use, especially for overwrite, replace_all, and delete_range. <br>
-Risk: Broad overwrite or replacement operations can remove content that may be difficult to reconstruct, such as images, comments, or embedded objects. <br>
-Mitigation: Prefer small, precise local updates with replace_range, append, insert_before, or insert_after, and avoid overwrite unless the document is intentionally being rebuilt. <br>
-Risk: Repeated or ambiguous target text can cause edits to affect the wrong location. <br>
-Mitigation: Use unique text ranges or heading-based selection with enough context to identify the intended section. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent update existing Feishu cloud documents by appending, replacing, inserting, deleting, or retitling content with precise selectors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3152557994-ship-it/feishu-doc-update) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown document content and JSON operation status or error responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include warnings, request log identifiers, replacement counts, or asynchronous task identifiers for large document updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Destructive modes such as overwrite, delete_range, replace_all, or empty-content replacements can remove document content or hard-to-rebuild embedded material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the doc_id and selector carefully, prefer narrow unique selections, and use preview or explicit confirmation before applying destructive edits.
+
+Risk: Broad or ambiguous selectors can modify the wrong section or multiple unintended matches.
+
+Mitigation: Use precise text ranges or title-based selections and keep replacement scopes as small as possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3152557994-ship-it/skills/feishu-doc-update)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, API Calls, Guidance]
+
+**Output Format:** [JSON responses and Markdown document content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return success details, warnings, log_id, asynchronous task_id status, or structured error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

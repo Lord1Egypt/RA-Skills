@@ -1,40 +1,58 @@
-## Description: <br>
-This skill helps agents design end-to-end testing strategies, automation frameworks, and implementation examples for cross-browser, API, visual regression, accessibility, mobile, CI, and test data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design end-to-end test automation strategies and produce examples for modern web, API, visual, accessibility, mobile, performance, and CI testing workflows.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, QA engineers, and automation specialists use this skill to plan, generate, and document end-to-end test suites and supporting test infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or copied test code can target the wrong application environment or API if endpoint variables are not checked. <br>
-Mitigation: Confirm BASE_URL, API_BASE_URL, API tokens, and related environment variables point only to local, staging, or disposable test systems before execution. <br>
-Risk: Database setup, seeding, cleanup, or reset examples can affect production-like data if reused without review. <br>
-Mitigation: Run DB_* examples only against dedicated test databases and review cleanup or delete steps before using generated code. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to plan E2E coverage and generate test automation scaffolds, configurations, examples, and CI patterns for application testing.
 
-## Reference(s): <br>
-- [E2E Test Specialist Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include test strategy notes, framework configuration, CI examples, and test data guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copyable examples can wipe database tables without strong safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the examples only in isolated test environments and add explicit guards before any database reset.
+
+Risk: Test examples may expose or reuse production or shared credentials if copied without review.
+
+Mitigation: Avoid production and shared credentials; use isolated test secrets and review configuration before reuse.
+
+Risk: Example Cypress and CI settings can weaken browser security or supply-chain controls if copied directly.
+
+Mitigation: Keep Cypress browser security enabled unless narrowly justified and pin CI actions, npx tools, and container images.
+
+## Reference(s):
+
+- [E2e Test Specialist examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-e2e-test-specialist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complete test automation frameworks, cross-browser/device configurations, CI examples, reporting setup, performance checks, and accessibility testing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

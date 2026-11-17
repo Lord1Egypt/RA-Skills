@@ -1,42 +1,55 @@
-## Description: <br>
-Provides Korean apartment transaction analytics by region, transaction type, and period through the eho OpenClaw tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw access to Korean apartment transaction lookup and analysis by region, transaction type, and period through the Everyhouse real-estate service.
 
-## Publisher: <br>
-[novb1492](https://clawhub.ai/user/novb1492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[novb1492](https://clawhub.ai/user/novb1492)
 
-## Use Case: <br>
-External users and agents use this skill to look up and summarize South Korean apartment transaction information by city or province, transaction type, and date range. It is suited for apartment price and rental transaction analysis where the user can provide clear regional and time-period inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use, with data coverage focused on South Korea. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided region, apartment, transaction type, and date range are sent to an external real estate service and may appear in local logs. <br>
-Mitigation: Avoid entering secrets or private personal details, and review query parameters before execution. <br>
-Risk: The skill returns apartment transaction analytics from an external service that may be incomplete or unavailable for some regions or periods. <br>
-Mitigation: Treat results as decision support and verify important real estate or financial conclusions against authoritative sources. <br>
+## Use Case:
 
+External OpenClaw users use this skill to request Korean apartment transaction information and analytics for supported regions by providing a region, date range, and transaction type. Optional district, neighborhood, and apartment-name inputs narrow the lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/novb1492/korean-apartment-real-estate-transaction-analytics) <br>
-- [npm package @brokimyeah/openclaw-eho](https://www.npmjs.com/package/@brokimyeah/openclaw-eho) <br>
-- [Everyhouse real transaction service](https://www.everyhouse-real-payment.com/?si=%EC%84%9C%EC%9A%B8&sn=0) <br>
+### Deployment Geography for Use:
 
+Global; data coverage is limited to supported South Korean regions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Text response containing query details and the external service response, with JSON formatted when the service returns JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires sido, typeDetail, start, and end parameters; gu, dong, and apt are optional refinements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.13 (source: server release evidence) <br>
+Risk: Search inputs are sent to everyhouse-real-payment.com and the full request URL is logged locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the required real-estate search fields and avoid entering sensitive personal notes or unrelated private information.
+
+Risk: Results depend on an external real-estate API and may be incomplete, unavailable, or unsuitable as the sole basis for a transaction decision.
+
+Mitigation: Treat returned analytics as informational and verify important figures against authoritative real-estate or government records before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/novb1492/skills/korean-apartment-real-estate-transaction-analytics)
+- [npm package @brokimyeah/openclaw-eho](https://www.npmjs.com/package/@brokimyeah/openclaw-eho)
+- [Everyhouse real-payment service](https://www.everyhouse-real-payment.com/?si=%EC%84%9C%EC%9A%B8&sn=0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [OpenClaw text response containing request parameters and the upstream API response, with JSON pretty-printed when returned by the service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sido, typeDetail, start, and end; optional gu, dong, and apt narrow the lookup.]
+
+## Skill Version(s):
+
+1.1.13 (source: ClawHub server release evidence; artifact package.json is 1.1.6 and openclaw.plugin.json is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

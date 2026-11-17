@@ -1,40 +1,59 @@
-## Description: <br>
-Track smoking and nicotine use, reduce consumption, or quit with neutral logs, trigger mapping, and adaptive plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track smoking and nicotine use, reduce consumption, or quit with neutral logs, trigger mapping, and adaptive plans.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to keep neutral local records of smoking or nicotine use, identify triggers, and choose logger, reduction, or quit-mode next steps. It provides coaching and tracking support, not medical diagnosis or emergency care. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update sensitive local notes about smoking, nicotine use, triggers, and plans under ~/smoking/. <br>
-Mitigation: Review each proposed file write before confirming, keep the files only on trusted devices, and delete or pause the local files when that history should no longer be retained. <br>
-Risk: Users may treat coaching content as medical advice during health-sensitive situations. <br>
-Mitigation: Use the skill for tracking and behavior-change support only, and seek immediate professional care for chest pain, severe breathing issues, pregnancy-related concerns, self-harm thoughts, dangerous medication interactions, or other urgent medical concerns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/smoking) <br>
-- [Skill homepage](https://clawic.com/skills/smoking) <br>
+## Use Case:
 
+External users use this agent skill to log smoking or nicotine use, identify trigger patterns, and follow user-selected logger, reduction, or quit plans without judgment. It supports local tracking, structured check-ins, craving responses, and escalation to licensed care for safety-sensitive situations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text coaching, local note templates, tracking prompts, and plan updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no declared external network requests; proposed writes are local notes under ~/smoking/ and require user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Smoking, nicotine-use, trigger, and plan notes may be retained in local files under ~/smoking/.
+
+Mitigation: Present planned writes for user confirmation, store only behavior-change-relevant data, and review or delete local notes when history is no longer wanted.
+
+Risk: Health-related coaching can be mistaken for medical diagnosis, prescribing, or emergency support.
+
+Mitigation: Keep recommendations within tracking and coaching scope, avoid medication dosing, and direct urgent symptoms, pregnancy concerns, severe withdrawal, medication questions, or self-harm thoughts to licensed professional or emergency care.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/smoking)
+- [Skill homepage](https://clawic.com/skills/smoking)
+- [Setup - Smoking](artifact/setup.md)
+- [Goal Modes - Smoking](artifact/goal-modes.md)
+- [Logging Template and Metrics](artifact/log-template.md)
+- [Reduction Methods](artifact/reduction-methods.md)
+- [Quit Playbook](artifact/quit-playbook.md)
+- [Craving Playbook](artifact/craving-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with structured local note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose user-approved local notes under ~/smoking/; no credentials, external services, or network endpoints are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

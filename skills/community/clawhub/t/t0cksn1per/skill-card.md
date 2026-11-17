@@ -1,41 +1,54 @@
-## Description: <br>
-t0cksn1per helps an agent prepare and run Tock reservation sniper commands for timed releases or cancellation watches on a local Mac or remote node. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to run the Tock reservation sniper for a timed release or cancellation watch, locally on their Mac or on a remote node.
 
-## Publisher: <br>
-[murphykobe](https://clawhub.ai/user/murphykobe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[murphykobe](https://clawhub.ai/user/murphykobe)
 
-## Use Case: <br>
-External users use this skill to collect restaurant, party size, date, time, and execution preferences, then have an agent prepare and run a single t0cksn1per CLI command for a timed release or cancellation watch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external t0cksn1per CLI package that was not included for review. <br>
-Mitigation: Install only if you trust the package, review the exact command before execution, and prefer a visible local browser for first use. <br>
-Risk: Remote, headless, or CDP-based polling can continue beyond the intended reservation watch. <br>
-Mitigation: Use CDP only with a temporary Chrome profile, and stop any remote or headless polling job when finished. <br>
+## Use Case:
 
+External users use this skill to gather reservation preferences, choose a local or remote execution target, and run a concrete t0cksn1per command for timed Tock releases or cancellation watches.
 
-## Reference(s): <br>
-- [Command Examples](references/commands.md) <br>
-- [CDP Mode](references/cdp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one concrete t0cksn1per command and may include CDP setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill tells the agent to execute an unpinned third-party package that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed t0cksn1per version and run it in a constrained user environment.
+
+Risk: Unattended node use or CDP browser automation can act with the user's local permissions and browser context.
+
+Mitigation: Use CDP only when explicitly requested, keep Playwright-managed launch as the default fallback, and review the command before unattended execution.
+
+## Reference(s):
+
+- [Command Examples](references/commands.md)
+- [CDP Mode](references/cdp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one concrete t0cksn1per command and may run it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

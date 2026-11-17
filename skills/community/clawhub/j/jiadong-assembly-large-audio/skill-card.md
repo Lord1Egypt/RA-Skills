@@ -1,44 +1,59 @@
-## Description: <br>
-Transcribe large audio files (100MB+, up to 1GB/12 hours) with speaker diarization using AssemblyAI API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe large audio files (100MB+, up to 1GB/12 hours) with speaker diarization using AssemblyAI API direct HTTP calls and no SDK dependency.
 
-## Publisher: <br>
-[jiadong0723](https://clawhub.ai/user/jiadong0723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiadong0723](https://clawhub.ai/user/jiadong0723)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use this skill to transcribe large meeting, interview, or media audio with speaker labels and timestamps through AssemblyAI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio is sent to AssemblyAI for processing and may contain confidential, regulated, or privileged content. <br>
-Mitigation: Use only recordings approved for third-party processing, and confirm organizational retention and privacy requirements before running the skill. <br>
-Risk: The skill requires an AssemblyAI API key. <br>
-Mitigation: Configure ASSEMBLYAI_API_KEY through environment variables or a secrets mechanism, and do not paste API keys into chat. <br>
-Risk: Transcript outputs may be stored locally and can contain sensitive information. <br>
-Mitigation: Store generated Markdown or JSON transcripts only in approved locations and apply appropriate access controls and cleanup policies. <br>
+## Use Case:
 
+Developers and operators use this skill to transcribe large local or URL-accessible audio recordings through AssemblyAI, returning speaker-labelled transcripts with timestamps and optional archived transcript data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiadong0723/jiadong-assembly-large-audio) <br>
-- [AssemblyAI upload API endpoint](https://api.assemblyai.com/v2/upload) <br>
-- [AssemblyAI transcript API endpoint](https://api.assemblyai.com/v2/transcript) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or JSON transcript content with speaker labels, timestamps, and status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May archive transcript JSON beside the input audio file or write formatted transcript notes to a configured workspace path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Audio files sent for transcription may contain private, regulated, or business-sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending the selected audio to AssemblyAI is acceptable, and delete or protect generated transcript files when recordings contain sensitive content.
+
+Risk: The skill asks for ASSEMBLYAI_API_KEY and the artifact text suggests sharing the key in chat.
+
+Mitigation: Configure ASSEMBLYAI_API_KEY through a secure environment or secret mechanism and do not paste the API key into chat.
+
+Risk: The script writes transcript JSON files locally next to the source audio.
+
+Mitigation: Review local storage location and access controls before processing sensitive recordings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiadong0723/skills/jiadong-assembly-large-audio)
+- [AssemblyAI upload API endpoint](https://api.assemblyai.com/v2/upload)
+- [AssemblyAI transcript API endpoint](https://api.assemblyai.com/v2/transcript)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text, Markdown, JSON transcript data, and Python or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ASSEMBLYAI_API_KEY and may create local transcript JSON files alongside the source audio.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

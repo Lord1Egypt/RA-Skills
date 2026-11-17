@@ -1,0 +1,3 @@
+﻿timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-07-27T14:50	baseline	wangyin-zhongnian-self-media	-	92.9	baseline	-	初始评估：dim7 含「值得注意的是/综上所述」字面触发词(dim7 -2)、dim5 缺具体标题样例(-1)、dim8 无输出骨架(-3)	full_test
+2026-07-27T14:52	a1b2c3d	wangyin-zhongnian-self-media	92.9	98.0	keep	dim5/dim7/dim8	重写去AI味黑话清单(去字面触发词)、补教程类合规标题样例、补强制大纲骨架	partial_test

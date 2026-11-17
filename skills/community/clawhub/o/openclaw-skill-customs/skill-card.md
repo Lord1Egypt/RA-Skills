@@ -1,50 +1,69 @@
-## Description: <br>
-A customs declaration assistant that helps users upload trade documents, classify document types, extract structured customs data, generate customs Excel output, and run compliance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes customs declaration documents by uploading invoices, packing lists, bills of lading, and related files to Leap, classifying document types, extracting structured declaration data, and generating a customs Excel result.
 
-## Publisher: <br>
-[axlemax](https://clawhub.ai/user/axlemax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axlemax](https://clawhub.ai/user/axlemax)
 
-## Use Case: <br>
-External trade and customs operations users use this skill to process user-selected invoices, packing lists, bills of lading, and related customs documents through the DaoFei/Leap platform. It supports document upload, classification review, declaration data extraction, Excel result download, and non-blocking compliance guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; customs guidance is tailored to China customs declaration workflows. <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends selected customs documents to the DaoFei/Leap platform, and those files may contain commercially sensitive trade data. <br>
-Mitigation: Use the skill only when authorized to transmit the selected documents, confirm the file list before upload, and delete local task folders when they are no longer needed. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Configure LEAP_API_KEY through the platform environment settings and do not paste the key into chat or commit it to files. <br>
-Risk: Task-management commands such as list, cancel, and retry can affect platform tasks. <br>
-Mitigation: Use list, cancel, and retry only for tasks that belong to the current user and workflow. <br>
+## Use Case:
 
+Trade operations users and customs-document agents use this skill to collect user-provided declaration documents, submit them to Leap for classification and extraction, review compliance guidance, and produce a standard customs Excel output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axlemax/openclaw-skill-customs) <br>
-- [DaoFei/Leap service homepage](https://platform.daofeiai.com) <br>
-- [API_REFERENCE.md](artifact/references/API_REFERENCE.md) <br>
-- [COMPLIANCE_RULES.md](artifact/references/COMPLIANCE_RULES.md) <br>
-- [FIELD_GUIDE.md](artifact/references/FIELD_GUIDE.md) <br>
-- [FILE_TYPES.md](artifact/references/FILE_TYPES.md) <br>
-- [INDUSTRY_RULES.md](artifact/references/INDUSTRY_RULES.md) <br>
-- [INTERACTION.md](artifact/references/INTERACTION.md) <br>
-- [MODIFICATION.md](artifact/references/MODIFICATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown with JSON snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local task files such as classification results, customs payloads, downloaded Excel outputs, and compliance notes during user-approved workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: Customs documents and generated declaration data may include sensitive commercial information and are sent to an external Leap service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts DaoFei AI/Leap, confirm the exact files before upload, and restrict the agent runtime to the active task directory.
+
+Risk: The LEAP_API_KEY credential authorizes access to the external service.
+
+Mitigation: Configure the key through the platform's secure environment settings, avoid storing it in shell startup files, and rotate it if exposure is suspected.
+
+Risk: List, cancel, and retry task controls may affect backend tasks beyond the immediate workflow if the service does not scope them to the current user.
+
+Mitigation: Treat these task controls as privileged operations and use them only after confirming the target result_id and backend scoping behavior.
+
+Risk: Excel modification in the final workflow depends on openpyxl, which may be installed dynamically.
+
+Mitigation: Prefer a pinned or preinstalled openpyxl dependency before editing generated Excel files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axlemax/skills/openclaw-skill-customs)
+- [Leap service homepage](https://platform.daofeiai.com)
+- [Leap Customs API Reference](artifact/references/API_REFERENCE.md)
+- [File Types Reference](artifact/references/FILE_TYPES.md)
+- [Compliance Rules](artifact/references/COMPLIANCE_RULES.md)
+- [Field Guide](artifact/references/FIELD_GUIDE.md)
+- [Industry Rules](artifact/references/INDUSTRY_RULES.md)
+- [Interaction Guide](artifact/references/INTERACTION.md)
+- [Modification Workflow](artifact/references/MODIFICATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command blocks, JSON task responses, and generated Excel files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LEAP_API_KEY and network access to https://platform.daofeiai.com; Step 6 Excel edits may require openpyxl.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

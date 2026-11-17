@@ -1,4 +1,4 @@
 interface:
   display_name: "Dataify Booking Hotel Info"
-  short_description: "Collect Booking hotel information through Dataify."
-  default_prompt: "Use $dataify-booking-hotellist to collect Booking hotel information by Booking URL."
+  short_description: "Collect Booking Hotel Info data and return results"
+  default_prompt: "Use $dataify-booking-hotellist to complete the requested Dataify collection, wait for the asynchronous task, and return the final collected result. Stop at task submission only when I explicitly request no-wait behavior."

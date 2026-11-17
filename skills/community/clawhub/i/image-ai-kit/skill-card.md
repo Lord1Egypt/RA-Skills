@@ -1,41 +1,57 @@
-## Description: <br>
-AI Image Kit provides intelligent image processing and enhancement, including image enhancement, smart cropping, format conversion, and OCR text extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image AI Kit provides local image processing and enhancement utilities for resizing, cropping, filtering, OCR text extraction, and format-oriented image workflows.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and agents use this skill to process local images, enhance quality, crop images for composition or thumbnails, and extract text from images with OCR. It is suited for workflows that need Python-based image manipulation and local file outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts read local image files and write to caller-provided output paths, which can overwrite existing files. <br>
-Mitigation: Use a virtual environment, review dependencies before installation, and choose input and output paths deliberately. <br>
-Risk: OCR output can be incomplete or inaccurate depending on image quality, language packs, and Tesseract configuration. <br>
-Mitigation: Review extracted text before relying on it and confirm the required Tesseract languages are installed. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate code and command guidance for local image enhancement, OCR extraction, smart or center cropping, and image format handling workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/image-ai-kit) <br>
-- [Project Homepage](https://github.com/openclaw/image-ai-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, and generated image or OCR output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes user-provided local image paths and writes results to user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Unpinned Python dependencies can change over time and affect reproducibility or dependency assurance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment and use pinned, hash-verified dependencies for higher-assurance deployments.
+
+Risk: OCR can turn confidential image content into easily copied text.
+
+Mitigation: Run OCR only on approved images and handle extracted text under the same confidentiality controls as the source image.
+
+Risk: The smart subject crop behavior is simpler than the feature description may imply.
+
+Mitigation: Review crop outputs before use in production workflows, especially when composition or subject placement matters.
+
+## Reference(s):
+
+- [Image AI Kit Homepage](https://github.com/openclaw/image-ai-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local file paths and OCR text outputs depending on the image-processing workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

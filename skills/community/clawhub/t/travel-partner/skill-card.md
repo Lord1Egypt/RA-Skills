@@ -1,45 +1,60 @@
-## Description: <br>
-This skill provides AI-powered virtual travel companion services for international trips, including personalized itineraries, travel narratives, photo prompts, optional AI-generated travel images, and social media content with a companion persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Partner provides AI-powered virtual travel companion services for international trips, generating personalized itineraries, travel narratives, image prompts, social media content, and optional AI-generated travel photos with a companion persona.
 
-## Publisher: <br>
-[wolf-leo](https://clawhub.ai/user/wolf-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wolf-leo](https://clawhub.ai/user/wolf-leo)
 
-## Use Case: <br>
-External users and content creators use this skill to plan international travel experiences and generate itinerary, journal, image-prompt, optional image, vlog, and social-post content for virtual companion scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional OpenAI image generation can incur paid API usage. <br>
-Mitigation: Use a budget-limited OpenAI API key and review generation settings before running batch image creation. <br>
-Risk: Travel prompts may include sensitive personal itinerary or relationship details. <br>
-Mitigation: Avoid sensitive personal details in prompts and prefer general city, landmark, and activity descriptions. <br>
-Risk: The skill installs dependencies and writes local output files. <br>
-Mitigation: Install dependencies in a virtual environment and use ordinary city or landmark names rather than path-like input when generating files. <br>
+## Use Case:
 
+External users and content creators use this skill to plan and produce virtual international travel experiences, including itineraries, companion-style journals, travel guides, photo prompts, and social media captions. It can also help agents run bundled scripts that generate local itinerary, manifest, journal, guide, story, and optional image files.
 
-## Reference(s): <br>
-- [Travel Partner ClawHub release](https://clawhub.ai/wolf-leo/travel-partner) <br>
-- [Destination Content Templates](references/destination_templates.md) <br>
-- [Cultural Etiquette Guide](references/cultural_etiquette.md) <br>
-- [OpenAI Platform](https://platform.openai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, image files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON itinerary files, Markdown travel journals and guides, image prompts, and optional downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional OpenAI image generation requires OPENAI_API_KEY and writes local output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image generation can send user prompt data outside the local environment through optional OpenAI API use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive personal details in prompts and use a scoped API key when enabling image generation.
+
+Risk: The skill can create local files and has reported path-handling and remote-download weaknesses.
+
+Mitigation: Run it in a dedicated working directory and review generated file paths and downloaded images before using or sharing them.
+
+Risk: The release depends on install-time Python packages without fully pinned versions.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned dependency versions before production use.
+
+## Reference(s):
+
+- [Travel Partner ClawHub listing](https://clawhub.ai/wolf-leo/skills/travel-partner)
+- [Cultural Etiquette Guide](artifact/references/cultural_etiquette.md)
+- [Destination Content Templates](artifact/references/destination_templates.md)
+- [OpenAI Platform](https://platform.openai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown, JSON files, plain-text image prompts, and optional PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local itinerary, manifest, journal, guide, story, and image files; image generation requires OPENAI_API_KEY and remote API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

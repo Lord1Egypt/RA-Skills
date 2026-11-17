@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes recent news, macro conditions, market sentiment, fund holdings, management factors, and industry policy to explain fund movements and provide forward-looking fund research guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes recent news, macroeconomic signals, market sentiment, fund holdings, and industry policy to explain fund movement and produce cautious fund research guidance.
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-External investors, analysts, and agent users can use this skill to structure fund research from current news, market data, fund attributes, and risk preference inputs. It is intended for general research workflows and should not be treated as personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fund names, holdings, account context, or investment hypotheses may be sent to public search engines during research. <br>
-Mitigation: Avoid entering brokerage credentials, account numbers, client-confidential information, or proprietary investment hypotheses; use only information suitable for public search. <br>
-Risk: The skill can produce buy, sell, or position-size guidance that may be incorrect, incomplete, stale, or unsuitable for the user. <br>
-Mitigation: Treat outputs as general research, verify cited facts and market data independently, and consult a qualified financial professional before trading. <br>
-Risk: News-driven analysis can overstate short-term signals or miss risk factors not present in retrieved search results. <br>
-Mitigation: Cross-check multiple sources, review fund disclosures and holdings directly, and require explicit risk notes and uncertainty before acting on conclusions. <br>
+## Use Case:
 
+External users can use this skill to generate fund diagnosis, price-movement explanations, portfolio-adjustment suggestions, and policy-impact analysis. The skill asks for fund details, holding status, investment horizon, and risk preference before producing a structured report with forecasts, risk notes, and a disclaimer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nidhov01/news-fund-analyzer) <br>
-- [International search guide](artifact/multi-search-engine-2.0.1/references/international-search.md) <br>
-- [Multi Search Engine changelog](artifact/multi-search-engine-2.0.1/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style fund analysis report with news summary, factor analysis, forecast scenarios, recommendation, risk notes, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include fund names, fund codes, dates, scenario probabilities, position guidance, and risk-control notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce model-generated investment actions that may be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research support, require user review before acting, and preserve the disclaimer that fund investing carries risk.
+
+Risk: Fund, market, portfolio, or risk-preference queries may be sent to external search engines through the bundled search helper.
+
+Mitigation: Avoid submitting sensitive personal or account-level data, and review search queries before execution.
+
+Risk: The bundled general search helper has broader scope than the fund-analysis task.
+
+Mitigation: Use the search helper only for fund, market, macroeconomic, policy, and holdings research needed by this skill.
+
+## Reference(s):
+
+- [News Fund Analyzer ClawHub Listing](https://clawhub.ai/nidhov01/skills/news-fund-analyzer)
+- [International Search Guide](artifact/multi-search-engine-2.0.1/references/international-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown fund analysis report with structured sections, probability estimates, action guidance, risk notes, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market and fund analysis, forecast scenarios, suggested position sizing, watch items, and risk warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

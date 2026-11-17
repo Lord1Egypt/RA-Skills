@@ -1,41 +1,58 @@
-## Description: <br>
-Art Deco Generator helps agents create 1920s-inspired art deco images such as posters, invitations, branding concepts, geometric patterns, and vintage glamour illustrations through the Neta/TalesOfAI image API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Art Deco Generator creates 1920s-inspired Gatsby-style art deco posters, prints, wedding invitations, luxury branding, and illustrations from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users, designers, and developers use this skill to generate art deco image concepts from text prompts, with optional size selection and reference-image style inheritance. It is useful for visual ideation around posters, invitations, wall art, branding, and 1920s-inspired design assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image IDs, and the API token are sent to api.talesofai.com. <br>
-Mitigation: Avoid confidential prompts and sensitive internal asset IDs, and use the service only when sharing this data with the external provider is acceptable. <br>
-Risk: Passing the API token on the command line can expose it through shell history or process metadata. <br>
-Mitigation: Use a low-privilege or temporary token and rotate it if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to generate art deco images such as posters, invitations, branding concepts, wallpapers, and geometric vintage illustrations from text prompts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/blammectrappora/art-deco-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text image URL returned by a command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta/TalesOfAI API token; supports portrait, landscape, square, and tall image sizes plus optional reference image UUIDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Image prompts, optional reference image UUIDs, and the Neta API token are sent to the TalesOfAI/Neta service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sharing those inputs with the external image service is acceptable, and avoid including sensitive or private data in prompts or reference identifiers.
+
+Risk: The token is passed on the command line and could be exposed in shared terminals, shell history, CI logs, or recordings.
+
+Mitigation: Avoid using real tokens in shared or recorded environments, and rotate the token if it may have been exposed.
+
+Risk: The skill depends on an external image generation API and installation source integrity.
+
+Mitigation: Prefer a pinned or verified install path when available and review generated image outputs before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/art-deco-generator)
+- [Neta API token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; optional size and reference image UUID parameters affect the generated image.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

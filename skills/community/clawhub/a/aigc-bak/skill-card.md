@@ -1,42 +1,57 @@
-## Description: <br>
-Aigc.Bak helps agents generate AI images from text prompts with negative prompts, aspect ratio selection, batch generation, and Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIGC image generation assistant that creates images from text prompts and supports negative prompts, aspect ratios, and batch generation.
 
-## Publisher: <br>
-[gushenjie](https://clawhub.ai/user/gushenjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gushenjie](https://clawhub.ai/user/gushenjie)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to trigger text-to-image generation from chat requests, tune negative prompts, aspect ratios, and batch size, and deliver generated images through OSS and Feishu workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use bundled or environment credentials when uploading generated images. <br>
-Mitigation: Remove and rotate the bundled OSS token, and require each user to provide a scoped credential before installation or execution. <br>
-Risk: Generated images can be uploaded to OSS and forwarded to Feishu, which may expose private prompts or images. <br>
-Mitigation: Make OSS upload and Feishu forwarding explicit opt-in actions, and verify the destination before using the skill with private content. <br>
-Risk: The Feishu sender component is referenced as an external local dependency. <br>
-Mitigation: Verify or package the Feishu sender component before deployment so users know which code handles image delivery. <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to submit text-to-image requests, poll for generated image results, and deliver generated images through configured channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gushenjie/aigc-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, configuration] <br>
-**Output Format:** [Plain text status messages with generated image URLs or Feishu send results; image files may be downloaded and forwarded by the script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports prompt, negative prompt, aspect ratio, batch size, and timeout options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated images may be transferred to Feishu and an external OSS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose and control transfer destinations, and require explicit user approval before sending private prompts or generated images externally.
+
+Risk: The release includes a plaintext bearer token that should be considered compromised.
+
+Mitigation: Remove the token from the artifact, rotate it, and load credentials only from a secure environment or secret store.
+
+Risk: Server-supplied image URLs are fetched without validation.
+
+Mitigation: Validate allowed URL schemes and hosts before downloading or forwarding generated images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gushenjie/skills/aigc-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Console text with image URLs, delivery status, and optional local image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload generated images to OSS and send them through Feishu when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

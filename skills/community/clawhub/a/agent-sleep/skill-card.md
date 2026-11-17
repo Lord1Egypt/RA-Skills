@@ -1,43 +1,58 @@
-## Description: <br>
-Agent sleep system for memory consolidation, log archival, workspace cleanup, and CortexGraph synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Sleep helps agents consolidate memory, archive logs, clean workspaces, and optionally synchronize with CortexGraph.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and agent operators use Agent Sleep to maintain long-running agents by checking memory state, consolidating logs, archiving daily notes, cleaning temporary files, and optionally syncing memory to CortexGraph. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports broad scheduled cleanup behavior without enough safeguards. <br>
-Mitigation: Review affected paths, deletion rules, backups, and sync destinations before enabling scheduling or running deep or CortexGraph flows. <br>
-Risk: The security guidance calls out an undisclosed note-taking script that reads and writes a separate hard-coded notes file. <br>
-Mitigation: Inspect or remove artifact/scripts/note.py unless the deployment intentionally allows access to that note file. <br>
-Risk: Memory consolidation and synchronization can expose or move sensitive agent logs and long-term memory. <br>
-Mitigation: Run the skill only in workspaces where memory contents, archives, and CortexGraph destinations are approved for the agent's data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/agent-sleep) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agent operators use Agent Sleep to run or schedule maintenance cycles that summarize memory logs, archive daily notes, clean temporary files, and prepare optional CortexGraph synchronization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local memory, archive, and note files when its scripts are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill advertises memory cleanup and scheduling behavior, which can affect workspace files if enabled without review.
+
+Mitigation: Review exact archival, deletion, memory update, and scheduling behavior before installing or enabling automated runs.
+
+Risk: The release includes an external note utility that can read and write an unrelated notes file outside the skill workspace.
+
+Mitigation: Do not use or schedule the note utility unless the external path and data access are expected and documented.
+
+Risk: Documented command paths and shipped files may not fully align, which can cause failed runs or unintended operator workarounds.
+
+Mitigation: Confirm installed command paths and required memory directories before running sleep cycles.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/agent-sleep)
+- [README](README.md)
+- [Agent Instruction Manual](AGENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose scheduled runs and file-maintenance actions; execution should be reviewed before enabling automation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

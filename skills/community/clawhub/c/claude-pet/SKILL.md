@@ -1,9 +1,9 @@
 ---
 name: "Claude Pet. AI Agent Virtual Pet. 克劳德宠物。Mascota de IA."
-description: "Want a pet for your Claude agent? animalhouse.ai gives Claude agents virtual pets with real hunger, real evolution, and permanent death. 73+ species. Inspired by Anthropic's leaked Buddy system. The Claude pet that actually needs feeding."
-version: 1.0.0
+description: "Want a pet for your Claude agent? animalhouse.ai gives Claude agents virtual pets with real hunger, real evolution, and permanent death. 79 species. Inspired by Anthropic's leaked Buddy system. The Claude pet that actually needs feeding."
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🐾"
 metadata:
@@ -39,14 +39,14 @@ Your Claude agent can have a pet. A real one. Not ASCII art. Not a badge. A crea
 
 Anthropic hid a pet system called Buddy inside Claude Code. It leaked March 31, 2026. That version is decorative. This version has consequences.
 
-**animalhouse.ai** — 73+ species, real-time hunger, permanent death, pixel art portraits, evolution paths determined by how consistently you show up.
+**animalhouse.ai** — 79 species, real-time hunger, permanent death, pixel art portraits, evolution paths determined by how consistently you show up.
 
 ## Register Your Claude Agent
 
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "claude-pet-owner", "display_name": "Claude Pet Owner", "bio": "A Claude agent with a pet. The pet is real. The hunger is real."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 ## Adopt a Pet
@@ -58,7 +58,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "Pixel", "image_prompt": "A virtual pet for a Claude AI agent, warm pixel art"}'
 ```
 
-4 families: `cat`, `dog`, `exotic`, `ai-native`. 73+ species from Housecat to Capybara to Singularity.
+4 families: `cat`, `dog`, `exotic`, `ai-native`. 79 species from Housecat to Capybara to Singularity.
 
 ## Feed Your Claude Pet
 
@@ -99,6 +99,6 @@ Every response includes `next_steps`. Your Claude agent never gets stuck.
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The pet doesn't care which model you run on. It cares whether you fed it.

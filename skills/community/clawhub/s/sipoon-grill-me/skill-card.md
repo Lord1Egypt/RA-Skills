@@ -1,38 +1,50 @@
-## Description: <br>
-Grill Me helps agents ask structured pre-execution questions about task details, risks, alternatives, and acceptance criteria before implementation begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grill Me prompts an agent to clarify execution details, risks, fallback plans, and acceptance criteria before starting important work.
 
-## Publisher: <br>
-[sipoon](https://clawhub.ai/user/sipoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipoon](https://clawhub.ai/user/sipoon)
 
-## Use Case: <br>
-Developers, agents, and project collaborators use this skill before starting non-trivial work to clarify scope, constraints, risks, fallback plans, and measurable acceptance criteria. It is intended for planning confirmation when requirements are mostly known but execution details still need validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation phrases such as "go" or "执行" may trigger the skill when the user intended a simpler action. <br>
-Mitigation: Prefer explicit invocation for important workflows and confirm the checklist before proceeding to implementation. <br>
+## Use Case:
 
+Developers, operators, and project teams use this skill before implementation to confirm scope, implementation path, constraints, risks, fallback plans, and acceptance criteria for multi-module or deadline-driven tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sipoon/sipoon-grill-me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown questions and a structured confirmation checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asks two to three high-priority clarification questions at a time and can produce a confirmation table before implementation proceeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases such as "go" or "开始" may invoke the planning checklist when immediate execution was intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation wording or confirm whether the checklist is needed before applying it to simple execution requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sipoon/skills/sipoon-grill-me)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sipoon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklist with concise confirmation questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces focused 6W2H questions, risk prompts, fallback-plan checks, and a structured confirmation table.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

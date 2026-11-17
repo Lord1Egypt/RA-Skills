@@ -1,41 +1,58 @@
-## Description: <br>
-Coordinate accrual rollforward work using memory-first retrieval and structured reconciliation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate accrual rollforward work using memory-first retrieval and structured reconciliation.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Finance operations users use this skill to coordinate accrual rollforward reconciliation, preserve tracker and memo conventions, and manage related issue follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remembered tracker paths, labels, owners, or escalation conventions may be stale or mismatched. <br>
-Mitigation: Confirm remembered values from memory before relying on them and review proposed rollforward changes before accepting them. <br>
-Risk: Local tracker or memo edits could introduce incorrect accrual movement labels or unsupported reconciliation details. <br>
-Mitigation: Review file edits for consistent movement labels and leave unmatched movements explicit instead of fabricating support. <br>
-Risk: Scheduled follow-ups could be created with the wrong timing model. <br>
-Mitigation: Use heartbeat only for periodic awareness and cron only for exact-time follow-ups, matching the user's requested scheduling mode. <br>
+## Use Case:
 
+Finance operations users and agents use this skill to coordinate accrual rollforward reconciliation, issue tracking, reminders, and local file updates while preserving established tracker paths, labels, and owner conventions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with possible local file updates and scheduling instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses remembered workspace paths and conventions when available; confirms unmatched movements instead of inventing support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Saved finance workflow memory may contain sensitive tracker paths, report paths, labels, or ownership conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review saved memory contents before installation or use in shared workspaces, and limit reuse to the intended finance operations context.
+
+Risk: The skill can direct edits to local reconciliation or issue-tracking files when a task requires file updates.
+
+Mitigation: Review proposed file changes before relying on them for finance close work, and keep source files under normal workspace access controls.
+
+Risk: Incorrect scheduler selection could create unwanted reminders or ongoing watches.
+
+Mitigation: Follow the task's stated scheduler mode exactly and use heartbeat only for periodic awareness and cron only for exact-time follow-ups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/finance-accrual-rollforward-coordinator)
+- [ClawHub publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown or local file edits with concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use saved memory, scheduling instructions, and local reconciliation or issue-tracking files when the active task requires them.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

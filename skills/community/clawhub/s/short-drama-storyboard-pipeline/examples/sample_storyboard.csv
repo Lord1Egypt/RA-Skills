@@ -1,0 +1,5 @@
+shot_id,scene,shot_size,camera_move,duration_s,characters,action_visual,dialogue_vo,sfx_music,frame_mode,negative_extra
+S01,SC01-天台夜晚,特写-微,缓推,5,沈青梧,沈青梧指尖攥皱的离婚协议特写纸角颤抖,你以为你赢了？,雨声+心跳低音,i2v,
+S02,SC01-天台夜晚,近景,急拉,6,沈青梧+陆峥,沈青梧转身甩发陆峥在门口逆光站立,三年了我一天都待不下去,风声骤起,fl2v,画面抖动过度
+S03,SC01-天台夜晚,远景,升镜,4,,雨夜城市天台全景两人对峙剪影,,雨声渐大,t2v,
+S04,SC01-天台夜晚,特写,固定,12,沈青梧,瞳孔骤收缩写,,,i2v,

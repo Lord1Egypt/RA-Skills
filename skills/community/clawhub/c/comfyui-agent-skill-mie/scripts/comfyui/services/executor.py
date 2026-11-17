@@ -12,7 +12,7 @@ import sys
 import uuid
 from collections.abc import Callable
 from datetime import datetime
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 
 import websockets
@@ -28,9 +28,41 @@ except ImportError:
     )
     sys.exit(1)
 
-from comfyui.config import get_comfyui_url
+from comfyui.config import get_comfyui_url, get_http_timeout
 from comfyui.models.result import GenerationResult
 from comfyui.services.workflow_config import WorkflowConfig
+
+
+class UnsafeOutputName(ValueError):
+    """Server-supplied output name would write outside the results directory."""
+
+
+def output_path_within(results_dir: Path, filename: str) -> Path:
+    """Join a ComfyUI filename under results_dir, or raise UnsafeOutputName.
+
+    The filename may include a relative subfolder. Classification uses Windows
+    path rules on every operating system, so backslash separators, drive-letter
+    paths (including ``C:name``), and any ``..`` segment are rejected on Linux
+    as well as Windows. The resolved path must stay inside results_dir.
+    """
+    if not isinstance(filename, str) or filename.strip() == "" or "\x00" in filename:
+        raise UnsafeOutputName("empty or invalid output filename")
+    # PureWindowsPath, not Path: on POSIX a backslash is a filename character
+    # and "C:" is not a drive, so those escapes would otherwise be kept.
+    raw = PureWindowsPath(filename)
+    if raw.is_absolute() or raw.drive or raw.root:
+        raise UnsafeOutputName(f"output filename escapes results dir: {filename}")
+    if any(part in {".", ".."} for part in raw.parts):
+        raise UnsafeOutputName(f"output filename escapes results dir: {filename}")
+    root = Path(results_dir).resolve()
+    candidate = root.joinpath(*raw.parts).resolve()
+    try:
+        candidate.relative_to(root)
+    except ValueError as exc:
+        raise UnsafeOutputName(f"output filename escapes results dir: {filename}") from exc
+    if candidate == root:
+        raise UnsafeOutputName(f"output filename escapes results dir: {filename}")
+    return candidate
 
 
 def _connection_hint(url: str) -> str:
@@ -134,10 +166,13 @@ def _err(code: str, message: str) -> dict[str, str]:
 
 
 def node_output_media_list(node_output: dict[str, Any], output_kind: str) -> list[Any]:
-    """Resolve ComfyUI history ``outputs[node_id]`` media entries for image / audio / video."""
+    """Resolve ComfyUI history ``outputs[node_id]`` media entries for image / audio / video / 3D."""
     kind = (output_kind or "image").strip()
     if kind == "audio":
         return list(node_output.get("audio") or [])
+    if kind == "3d":
+        # SaveGLB, Save3DAdvanced and Preview3DAdvanced all report under "3d" (UI.Saved3DModels).
+        return list(node_output.get("3d") or [])
     if kind == "video":
         for key in ("images", "gifs", "videos"):
             lst = node_output.get(key)
@@ -151,12 +186,33 @@ def _entry_is_string_input(entry: dict[str, Any]) -> bool:
     vt = entry.get("value_type")
     if vt == "string":
         return True
-    if vt in ("integer", "image"):
+    # image / video / audio are upload-bound, not string params written verbatim.
+    if vt in ("integer", "image", "video", "audio"):
         return False
     # Legacy JSON configs may omit value_type for CLIP-style text bindings
     if vt is None and entry.get("param") == "text":
         return True
     return False
+
+
+# Error-code dispatch for upload-required inputs. image keeps the historical
+# codes (so existing image tests/docs stay valid); video/audio get their own.
+def _missing_media_code(value_type: str) -> str:
+    if value_type == "image":
+        return "NO_INPUT_IMAGE"
+    return "NO_INPUT_MEDIA"
+
+
+def _media_not_found_code(value_type: str) -> str:
+    if value_type == "image":
+        return "INPUT_IMAGE_NOT_FOUND"
+    return "INPUT_MEDIA_NOT_FOUND"
+
+
+def _media_upload_failed_code(value_type: str) -> str:
+    if value_type == "image":
+        return "IMAGE_UPLOAD_FAILED"
+    return "MEDIA_UPLOAD_FAILED"
 
 
 def merge_text_inputs(
@@ -271,14 +327,21 @@ def execute_workflow(
     has_string_mapping = any(
         _entry_is_string_input(entry) for entry in config.node_mapping.values()
     )
-    if not has_string_mapping:
+    has_media_mapping = any(
+        entry.get("value_type") in ("image", "video", "audio")
+        for entry in config.node_mapping.values()
+    )
+    # A workflow needs at least one bindable input — a string prompt OR an
+    # upload role. Pure-upload workflows (e.g. liveportrait: image + video,
+    # no text prompt) are valid and must not be rejected here.
+    if not has_string_mapping and not has_media_mapping:
         return GenerationResult(
             success=False,
             workflow_id=config.workflow_id,
             status="failed",
             error=_err(
                 "MAPPING_NOT_FOUND",
-                "Workflow config has no string inputs (prompt/speech_text/etc.).",
+                "Workflow config has no bindable inputs (prompt/speech_text or image/video/audio).",
             ),
         )
 
@@ -320,7 +383,8 @@ def execute_workflow(
 
     # Create API instance early (needed for upload)
     try:
-        api = ComfyApiWrapper(url)
+        connect_t, read_t = get_http_timeout()
+        api = ComfyApiWrapper(url, connect_timeout=connect_t, read_timeout=read_t)
     except Exception as e:
         msg = _enrich_error(str(e), url)
         return GenerationResult(
@@ -330,10 +394,13 @@ def execute_workflow(
             error=_err("SERVER_UNAVAILABLE", f"Cannot connect to ComfyUI: {msg}"),
         )
 
-    # Upload input images and bind to nodes
+    # Upload input media (image / video / audio) and bind to nodes.
+    # input_images carries role->local-path for ALL upload-required roles
+    # despite the legacy name; value_type decides the upload method + error code.
     input_images = input_images or {}
     for role, entry in config.node_mapping.items():
-        if entry.get("value_type") != "image":
+        value_type = entry.get("value_type")
+        if value_type not in ("image", "video", "audio"):
             continue
         if role not in input_images:
             if entry.get("required"):
@@ -341,28 +408,37 @@ def execute_workflow(
                     success=False,
                     workflow_id=config.workflow_id,
                     status="failed",
-                    error=_err("NO_INPUT_IMAGE", f"Required image input '{role}' not provided."),
+                    error=_err(
+                        _missing_media_code(value_type),
+                        f"Required {value_type} input '{role}' not provided.",
+                    ),
                 )
             continue
-        image_path = Path(input_images[role])
-        if not image_path.exists():
+        media_path = Path(input_images[role])
+        if not media_path.exists():
             return GenerationResult(
                 success=False,
                 workflow_id=config.workflow_id,
                 status="failed",
-                error=_err("INPUT_IMAGE_NOT_FOUND", f"Image file not found: {image_path}"),
+                error=_err(
+                    _media_not_found_code(value_type),
+                    f"{value_type.capitalize()} file not found: {media_path}",
+                ),
             )
         try:
-            meta = api.upload_image(str(image_path))
+            meta = api.upload_image(str(media_path)) if value_type == "image" else api.upload_media(str(media_path))
         except Exception as e:
             return GenerationResult(
                 success=False,
                 workflow_id=config.workflow_id,
                 status="failed",
-                error=_err("IMAGE_UPLOAD_FAILED", f"Failed to upload image '{role}': {e}"),
+                error=_err(
+                    _media_upload_failed_code(value_type),
+                    f"Failed to upload {value_type} '{role}': {e}",
+                ),
             )
-        img_param = f"{meta['subfolder']}/{meta['name']}" if meta.get("subfolder") else meta["name"]
-        wf.set_node_param(entry["node_title"], entry["param"], img_param)
+        media_param = f"{meta['subfolder']}/{meta['name']}" if meta.get("subfolder") else meta["name"]
+        wf.set_node_param(entry["node_title"], entry["param"], media_param)
 
     # Apply node_mapping: all string inputs (prompt, speech_text, instruct, negative_prompt, ...)
     for key, entry in config.node_mapping.items():
@@ -424,6 +500,8 @@ def execute_workflow(
     if not media_info:
         if output_kind == "audio":
             msg = "Workflow completed but produced no audio."
+        elif output_kind == "3d":
+            msg = "Workflow completed but produced no 3D output."
         elif output_kind == "video":
             msg = "Workflow completed but produced no video output."
         else:
@@ -455,7 +533,7 @@ def execute_workflow(
         folder_type = item.get("type", "output")
         try:
             data = api.get_image(filename, subfolder, folder_type)
-            out_path = out_dir / filename
+            out_path = output_path_within(out_dir, filename)
             out_path.parent.mkdir(parents=True, exist_ok=True)
             out_path.write_bytes(data)
             outputs.append({
@@ -466,6 +544,8 @@ def execute_workflow(
         except Exception as e:
             if output_kind == "audio":
                 label = "audio"
+            elif output_kind == "3d":
+                label = "3D model"
             elif output_kind == "video":
                 label = "video"
             else:

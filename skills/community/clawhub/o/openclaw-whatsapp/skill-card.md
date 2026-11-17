@@ -1,44 +1,57 @@
-## Description: <br>
-WhatsApp bridge for OpenClaw that sends and receives messages, runs auto-reply agents, supports QR pairing, searches message history, and syncs contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WhatsApp bridge for OpenClaw - send/receive messages, auto-reply agents, QR pairing, message search, contact sync.
 
-## Publisher: <br>
-[0xs4m1337](https://clawhub.ai/user/0xs4m1337) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xs4m1337](https://clawhub.ai/user/0xs4m1337)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw agents to a local WhatsApp bridge for sending messages, handling QR pairing, replying to direct messages, searching history, and syncing contacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bridge can read WhatsApp chats and contacts and send messages through the linked account. <br>
-Mitigation: Link only an account approved for this use, protect the local data directory and logs, and know how to stop the service and unlink the WhatsApp device. <br>
-Risk: The setup runs a persistent local auto-reply agent that can respond automatically. <br>
-Mitigation: Start with auto-reply disabled or tightly allowlisted, review prompts and command behavior, and monitor worker logs before broader use. <br>
-Risk: Installation depends on a remote shell installer referenced by the skill. <br>
-Mitigation: Review the installer before running it and prefer a pinned or verified release. <br>
-Risk: Configured webhooks can expose incoming message payloads to external services. <br>
-Mitigation: Avoid untrusted webhook URLs and restrict webhook receivers to services approved for the message data handled by the bridge. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw WhatsApp on ClawHub](https://clawhub.ai/0xs4m1337/openclaw-whatsapp) <br>
-- [API reference](references/api-reference.md) <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw agents to WhatsApp for message sending, incoming DM auto-replies, chat history search, and contact synchronization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, YAML, JSON, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local service commands and configuration values for a persistent WhatsApp bridge.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release security summary says setup installs unverified remote code and binary artifacts.
+
+Mitigation: Review and verify the upstream installer and binary before installation.
+
+Risk: The release security summary says the skill runs persistently and allows private WhatsApp messages to drive a capable agent.
+
+Mitigation: Use a dedicated least-privileged OpenClaw agent, restrict replies with an allowlist, and confirm service removal steps before linking a real WhatsApp account.
+
+Risk: The release security guidance warns against shared temporary storage for queues and logs.
+
+Mitigation: Place queue and log data in a private directory and tighten file permissions.
+
+## Reference(s):
+
+- [OpenClaw WhatsApp API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/0xs4m1337/skills/openclaw-whatsapp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, YAML configuration, API examples, and operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating instructions for a local WhatsApp bridge and OpenClaw auto-reply workflow.]
+
+## Skill Version(s):
+
+0.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Continuum Memory System for OpenClaw agents that replaces flat memory loading with a brain-inspired architecture using semantic schemas, a topic router, a LanceDB vector store, and NREM/REM consolidation scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brain CMS sets up a neuroscience-inspired memory system for OpenClaw agents with semantic schemas, a topic router, a LanceDB vector store, and local sleep-cycle scripts for memory consolidation.
 
-## Publisher: <br>
-[harrey401](https://clawhub.ai/user/harrey401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harrey401](https://clawhub.ai/user/harrey401)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a persistent local memory layer that routes topics to semantic schemas, supports vector search over memory files, and runs consolidation scripts to reduce routine context loading. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently changes local agent instructions and memory files, which can affect future agent behavior. <br>
-Mitigation: Back up AGENTS.md and the memory folder before installation, then review all generated memory instructions before relying on them. <br>
-Risk: Daily logs, semantic schemas, and anchors may store private or sensitive user information. <br>
-Mitigation: Avoid storing secrets or sensitive data in memory files, and periodically audit the memory directory before indexing or consolidation. <br>
-Risk: NREM and REM scripts mutate memory files and can consolidate incorrect or unwanted information. <br>
-Mitigation: Run sleep-cycle scripts manually until trusted, inspect their changes, and revert or edit memory updates before using them in later sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrey401/brain-cms) <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to install and operate persistent agent memory that can load relevant schemas, search semantic memory, and consolidate daily logs into long-term memory.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local memory/configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs local Python scripts, memory index files, and vector-store configuration for an OpenClaw workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify long-term OpenClaw memory and AGENTS.md.
+
+Mitigation: Install only in workspaces where persistent memory changes are acceptable, keep backups or rollback options, and review generated REM updates before relying on them.
+
+Risk: The installer uses unpinned Python dependencies and shell execution.
+
+Mitigation: Review the installer before running it, pin dependencies in controlled environments, and install from trusted package indexes.
+
+Risk: Daily logs and schemas may contain sensitive information that later becomes searchable or consolidated.
+
+Mitigation: Avoid storing secrets in logs, schemas, or anchors, and review memory files before sharing or publishing a workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrey401/skills/brain-cms)
+- [Publisher profile](https://clawhub.ai/user/harrey401)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs local memory files and scripts, writes vector-store metadata, and may append consolidated facts to memory schemas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

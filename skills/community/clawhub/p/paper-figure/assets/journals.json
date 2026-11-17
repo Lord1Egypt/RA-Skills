@@ -1,0 +1,375 @@
+{
+  "_meta": {
+    "purpose": "期刊/学位论文的成图规格预置。render/chart 按栏宽排版，check 按最小字号与 DPI 判合规。",
+    "units": "宽度/高度一律毫米（mm），字号一律 pt，DPI 为导出建议值。",
+    "verified_field": "verified：已核实写核实日期（YYYY-MM-DD），未核实写 \"待核\"；unverified_fields 列出「该预置里还没核实、check 不应据此判死」的字段名。",
+    "checked_on": "2026-11-03",
+    "caution": "各刊每年会改作者指南；投稿前以当期官网为准。本文件是排版默认值，不构成法律意义上的合规承诺。",
+    "revision": "2026-11-03 · content-docs 对照官方页修正 nature 高度/格式/来源、ACM 单栏宽、PLOS 格式",
+    "dpi_field": "dpi 为 null 表示「该刊按矢量收稿，DPI 不适用」；位图导出再临时指定。"
+  },
+  "default": "nature",
+  "journals": [
+    {
+      "id": "nature",
+      "label": "Nature",
+      "aliases": [
+        "nature research",
+        "自然"
+      ],
+      "single_mm": 89,
+      "onehalf_mm": 120,
+      "double_mm": 183,
+      "max_height_mm": 170,
+      "min_font_pt": 5,
+      "dpi": null,
+      "formats": [
+        "pdf",
+        "eps",
+        "svg",
+        "ai"
+      ],
+      "fonts": [
+        "Arial",
+        "Helvetica"
+      ],
+      "color_mode": "rgb",
+      "notes": "单栏 89mm、双栏 183mm；图高 ≤170mm（官方：留给图注）。图内字号 5–7pt（最终尺寸），线条 ≥0.25pt。主图只收矢量：首选 .ai/.eps/.pdf，也收分层 PSD、PPT 转 PDF、plain SVG、.ps；不接受 jpeg/tiff/png（位图仅 Extended Data，≤300dpi）。字体 Arial/Helvetica 且必须嵌入，文字不要转曲。面板按字母顺序 (a)(b)(c)；尽量减少空白；避免红绿搭配与彩虹色阶；彩色文字对比度要 >4.5:1，能用黑字就别用彩字；不要装饰性图标；主图单文件 ≤50MB，组件要嵌入不要链接。官方色盲友好色板就是 Okabe-Ito。",
+      "source": "https://research-figure-guide.nature.com/figures/building-and-exporting-figure-panels/",
+      "verified": "2026-11-03",
+      "verified_note": "2026-11-03 对照 Nature research figure guide 核实：最大高度 170mm、主图矢量格式清单、不接受位图、字号 5–7pt、字体嵌入、单文件 ≤50MB。",
+      "max_font_pt": 7,
+      "raster_note": "主图不接受位图，DPI 不适用；Extended Data 位图上限 300dpi（RGB，jpeg/tiff/eps）。",
+      "extended_data_formats": [
+        "jpg",
+        "tif",
+        "eps"
+      ],
+      "font_embedding": "字体需嵌入（TrueType type 2 或 42），不要转曲/outline 文字",
+      "unverified_fields": []
+    },
+    {
+      "id": "science",
+      "label": "Science",
+      "aliases": [
+        "aaas"
+      ],
+      "single_mm": 55,
+      "onehalf_mm": 121,
+      "double_mm": 183,
+      "max_height_mm": 229,
+      "min_font_pt": 5,
+      "dpi": 600,
+      "formats": [
+        "eps",
+        "pdf",
+        "tif"
+      ],
+      "fonts": [
+        "Arial",
+        "Helvetica"
+      ],
+      "color_mode": "rgb",
+      "notes": "1 栏 55mm、2 栏 121mm、通栏 183mm；图内最小字号 5pt，推荐 6–7pt；线稿导出 600dpi 以上。",
+      "source": "https://www.science.org/content/page/science-information-authors",
+      "verified": "待核",
+      "verified_note": "待核：栏宽常被引用为 5.5cm/12cm/18.3cm，具体分栏以当期 Guide to Preparing Figures 为准。 以上数值均为公开指南常见值，尚未逐条对照官方页，check 不要拿它们判死。",
+      "unverified_fields": [
+        "single_mm",
+        "onehalf_mm",
+        "double_mm",
+        "max_height_mm",
+        "min_font_pt",
+        "dpi",
+        "formats"
+      ]
+    },
+    {
+      "id": "cell",
+      "label": "Cell / Cell Press",
+      "aliases": [
+        "cell press",
+        "current biology",
+        "molecular cell"
+      ],
+      "single_mm": 85,
+      "onehalf_mm": 114,
+      "double_mm": 178,
+      "max_height_mm": 234,
+      "min_font_pt": 6,
+      "dpi": 600,
+      "formats": [
+        "pdf",
+        "eps",
+        "tif"
+      ],
+      "fonts": [
+        "Arial",
+        "Helvetica"
+      ],
+      "color_mode": "rgb",
+      "notes": "单栏 85mm、1.5 栏 114mm、双栏 178mm；图内字号 6–8pt；建议用 Arial 并统一字号层级。",
+      "source": "https://www.cell.com/cell/authors",
+      "verified": "待核",
+      "verified_note": "待核：Cell Press 多刊共用 artwork 指南，需按目标子刊复核。 以上数值均为公开指南常见值，尚未逐条对照官方页，check 不要拿它们判死。",
+      "unverified_fields": [
+        "single_mm",
+        "onehalf_mm",
+        "double_mm",
+        "max_height_mm",
+        "min_font_pt",
+        "dpi",
+        "formats"
+      ]
+    },
+    {
+      "id": "ieee",
+      "label": "IEEE Transactions / Journals",
+      "aliases": [
+        "ieee trans",
+        "ieee"
+      ],
+      "single_mm": 88.9,
+      "onehalf_mm": 130,
+      "double_mm": 181.9,
+      "max_height_mm": 234,
+      "min_font_pt": 8,
+      "dpi": 600,
+      "formats": [
+        "pdf",
+        "eps",
+        "ps"
+      ],
+      "fonts": [
+        "Times New Roman",
+        "Arial",
+        "Helvetica"
+      ],
+      "color_mode": "rgb",
+      "notes": "栏宽 3.5in(88.9mm) / 7.16in(181.9mm)；IEEE 要求图内文字 8–10pt，黑白打印必须可读；位图 300dpi、线稿 600dpi 起。",
+      "source": "https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/create-graphics-for-your-article/",
+      "verified": "待核",
+      "verified_note": "待核：8pt 下限为 IEEE 作者中心常见要求，须按目标刊最新说明复核。 以上数值均为公开指南常见值，尚未逐条对照官方页，check 不要拿它们判死。",
+      "unverified_fields": [
+        "single_mm",
+        "onehalf_mm",
+        "double_mm",
+        "max_height_mm",
+        "min_font_pt",
+        "dpi",
+        "formats"
+      ]
+    },
+    {
+      "id": "elsevier",
+      "label": "Elsevier",
+      "aliases": [
+        "sciencedirect"
+      ],
+      "single_mm": 90,
+      "onehalf_mm": 140,
+      "double_mm": 190,
+      "max_height_mm": 240,
+      "min_font_pt": 7,
+      "dpi": 600,
+      "formats": [
+        "eps",
+        "pdf",
+        "tif"
+      ],
+      "fonts": [
+        "Arial",
+        "Helvetica",
+        "Times New Roman"
+      ],
+      "color_mode": "rgb",
+      "notes": "单栏 90mm、1.5 栏 140mm、双栏 190mm；字号 ≥7pt；线稿建议 1000dpi、半调 300dpi、组合图 500dpi。",
+      "source": "https://www.elsevier.com/researcher/author/policies-and-guidelines/artwork-and-media-instructions",
+      "verified": "待核",
+      "verified_note": "待核：DPI 分类与栏宽为 artwork 指南常用值，投稿前对照当期版本。 以上数值均为公开指南常见值，尚未逐条对照官方页，check 不要拿它们判死。",
+      "unverified_fields": [
+        "single_mm",
+        "onehalf_mm",
+        "double_mm",
+        "max_height_mm",
+        "min_font_pt",
+        "dpi",
+        "formats"
+      ]
+    },
+    {
+      "id": "springer",
+      "label": "Springer",
+      "aliases": [
+        "springer nature",
+        "lncs"
+      ],
+      "single_mm": 84,
+      "onehalf_mm": 129,
+      "double_mm": 174,
+      "max_height_mm": 234,
+      "min_font_pt": 6,
+      "dpi": 600,
+      "formats": [
+        "eps",
+        "pdf",
+        "tif"
+      ],
+      "fonts": [
+        "Arial",
+        "Helvetica"
+      ],
+      "color_mode": "rgb",
+      "notes": "单栏 84mm、1.5 栏 129mm、双栏 174mm；图内字号 6–8pt；LNCS 单栏更窄（约 61mm），投稿前按模板核。",
+      "source": "https://www.springer.com/gp/authors-editors/book-authors-editors/your-publication-journey/manuscript-preparation",
+      "verified": "待核",
+      "verified_note": "待核：LNCS 与期刊模板栏宽不同，需按目标模板复核。 以上数值均为公开指南常见值，尚未逐条对照官方页，check 不要拿它们判死。",
+      "unverified_fields": [
+        "single_mm",
+        "onehalf_mm",
+        "double_mm",
+        "max_height_mm",
+        "min_font_pt",
+        "dpi",
+        "formats"
+      ]
+    },
+    {
+      "id": "acm",
+      "label": "ACM (sigconf)",
+      "aliases": [
+        "acm sigconf",
+        "chi",
+        "cscw"
+      ],
+      "single_mm": 86.9,
+      "onehalf_mm": 130,
+      "double_mm": 177.8,
+      "max_height_mm": 234,
+      "min_font_pt": 8,
+      "dpi": 600,
+      "formats": [
+        "pdf",
+        "eps"
+      ],
+      "fonts": [
+        "Arial",
+        "Helvetica",
+        "Times New Roman"
+      ],
+      "color_mode": "rgb",
+      "notes": "sigconf 栏宽 3.33in(84.7mm)、通栏 7in(177.8mm)；图内文字 ≥8pt；优先矢量和 PDF。",
+      "source": "https://www.acm.org/publications/taps/word-template-workflow",
+      "verified": "2026-11-03",
+      "verified_note": "2026-11-03 核实：sigconf 单栏 3.42in=86.9mm、通栏 7in=177.8mm。",
+      "unverified_fields": [
+        "min_font_pt",
+        "max_height_mm",
+        "dpi"
+      ]
+    },
+    {
+      "id": "plos",
+      "label": "PLOS ONE / PLOS 系列",
+      "aliases": [
+        "plos one",
+        "plos biology"
+      ],
+      "single_mm": 66.8,
+      "onehalf_mm": 130,
+      "double_mm": 190.5,
+      "max_height_mm": 233,
+      "min_font_pt": 8,
+      "dpi": 300,
+      "formats": [
+        "tif",
+        "eps"
+      ],
+      "fonts": [
+        "Arial",
+        "Times New Roman",
+        "Symbol"
+      ],
+      "color_mode": "rgb",
+      "notes": "图宽 2.63in(66.8mm)–7.5in(190.5mm)，按 300dpi 换算即 789–2250px；图内字号 ≥8pt；推荐 TIFF/EPS，避免 PNG 压缩损失。",
+      "source": "https://journals.plos.org/plosone/s/figures",
+      "verified": "2026-11-03",
+      "verified_note": "2026-11-03 核实：官方只收 TIFF/EPS（png 仅作草稿，不进终稿）；宽度 2.63–7.5in。",
+      "unverified_fields": [
+        "min_font_pt",
+        "max_height_mm",
+        "dpi"
+      ]
+    },
+    {
+      "id": "thesis-cn",
+      "label": "中文学位论文（通用）",
+      "aliases": [
+        "学位论文",
+        "毕业论文",
+        "硕士论文",
+        "博士论文"
+      ],
+      "single_mm": 80,
+      "onehalf_mm": 125,
+      "double_mm": 170,
+      "max_height_mm": 200,
+      "min_font_pt": 9,
+      "dpi": 600,
+      "formats": [
+        "pdf",
+        "png",
+        "tif"
+      ],
+      "fonts": [
+        "宋体",
+        "黑体",
+        "Times New Roman"
+      ],
+      "color_mode": "rgb",
+      "notes": "多数院校要求图宽不超过版心 150–160mm、图内字号不小于小五(9pt)、600dpi 以上；中文标签用宋体、英文与数字用 Times New Roman 是常见组合。各校规范差异大，务必先对本校《学位论文撰写规范》。",
+      "source": "待核：以目标院校研究生院《学位论文撰写规范》为准（各校不同，本机无统一标准）",
+      "verified": "待核",
+      "verified_note": "待核：这是「多数院校常见值」，不是任何一所学校的规定；投稿/送审前请按本校模板核对。 以上数值均为公开指南常见值，尚未逐条对照官方页，check 不要拿它们判死。",
+      "unverified_fields": [
+        "single_mm",
+        "onehalf_mm",
+        "double_mm",
+        "max_height_mm",
+        "min_font_pt",
+        "dpi",
+        "formats"
+      ]
+    },
+    {
+      "id": "custom",
+      "label": "自定义（兜底）",
+      "aliases": [
+        "none",
+        "default",
+        "自定义"
+      ],
+      "single_mm": 89,
+      "onehalf_mm": 120,
+      "double_mm": 183,
+      "max_height_mm": 247,
+      "min_font_pt": 6,
+      "dpi": 600,
+      "formats": [
+        "svg",
+        "pdf",
+        "png",
+        "tif"
+      ],
+      "fonts": [
+        "Arial"
+      ],
+      "color_mode": "rgb",
+      "notes": "不认识期刊时用它：只按 figure.json 里的 width/height/font_size_pt 走，不做额外期刊约束。",
+      "source": "内置兜底值（来源：本文件 default 字段）",
+      "verified": "2026-11-03",
+      "verified_note": "自定义预设，无需核实。",
+      "unverified_fields": []
+    }
+  ]
+}

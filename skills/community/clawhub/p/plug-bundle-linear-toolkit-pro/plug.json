@@ -1,0 +1,74 @@
+{
+  "plug_slug": "plug-bundle-linear-toolkit-pro",
+  "bundle_slug": "bundle-linear-toolkit-pro",
+  "bundle_name": "Operations Bundle: linear-toolkit-pro",
+  "members": [
+    {
+      "slug": "linear-toolkit-pro",
+      "name": "linear-toolkit-pro",
+      "category": "Operations",
+      "role": "primary"
+    },
+    {
+      "slug": "aws",
+      "name": "aws",
+      "category": "Operations",
+      "role": "complementary"
+    },
+    {
+      "slug": "aws-wechat-article-writing",
+      "name": "aws-wechat-article-writing",
+      "category": "Operations",
+      "role": "complementary"
+    },
+    {
+      "slug": "ping-monitor",
+      "name": "ping-monitor",
+      "category": "Operations",
+      "role": "complementary"
+    }
+  ],
+  "pain_points": [
+    "运维操作繁琐易出错",
+    "aws: 存在易出错问题 (风险)",
+    "ping-monitor: 存在易出错问题 (风险)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "linear-toolkit-pro",
+        "name": "linear-toolkit-pro",
+        "price": 1.9,
+        "tier": "standard"
+      },
+      {
+        "slug": "aws",
+        "name": "aws",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "aws-wechat-article-writing",
+        "name": "aws-wechat-article-writing",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "ping-monitor",
+        "name": "ping-monitor",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 1.9,
+    "bundle_price": 1.52,
+    "savings": 0.38,
+    "savings_percent": 20.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill单买总价1.9元，Plug捆绑价1.5元，节省0.4元 (20.0% off)"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- linear-toolkit-pro (Operations): 提供 read、exec、write\n- aws (Operations): 提供 read、exec、write\n- aws-wechat-article-writing (Operations): 提供 read、exec、write\n- ping-monitor (Operations): 提供 read、exec\n\n组合工具集: read, exec, write\n\n典型工作流:\n  1. 使用 linear-toolkit-pro 的 read、exec、write 完成相关任务\n  2. 使用 aws 的 read、exec、write 完成相关任务\n  3. 使用 aws-wechat-article-writing 的 read、exec、write 完成相关任务\n  4. 使用 ping-monitor 的 read、exec 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.3,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 3个互补 | 整体评分81.3/100",
+  "generated_at": "2026-07-31T20:07:54.035838"
+}

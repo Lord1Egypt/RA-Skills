@@ -1,43 +1,62 @@
-## Description: <br>
-SkillForge generates and audits OpenClaw agent skills from natural language, with template-based generation and optional AI-powered quality assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and audit OpenClaw agent skills from natural language for template-based or AI-assisted skill development.
 
-## Publisher: <br>
-[shadoprizm](https://clawhub.ai/user/shadoprizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadoprizm](https://clawhub.ai/user/shadoprizm)
 
-## Use Case: <br>
-Developers and skill maintainers use SkillForge to scaffold OpenClaw skills from descriptions, audit existing skill directories, and optionally publish approved skills to ClawHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys may be stored locally in plaintext. <br>
-Mitigation: Treat stored keys as sensitive credentials, avoid sharing the local configuration directory, and rotate keys if exposure is suspected. <br>
-Risk: Pro mode can send audited skill contents to the selected AI provider. <br>
-Mitigation: Audit only intended skill directories and exclude secrets, .env files, private keys, credentials, and unrelated private source material. <br>
-Risk: The skill can publish generated or existing skills to ClawHub. <br>
-Mitigation: Require explicit operator approval before any publish command and review generated skill files before release. <br>
+## Use Case:
 
+Developers and skill maintainers use SkillForge to generate publish-ready OpenClaw skills, audit existing skill directories, and prepare skills for optional ClawHub publication.
 
-## Reference(s): <br>
-- [SkillForge ClawHub listing](https://clawhub.ai/shadoprizm/skillforge-cli) <br>
-- [SkillForge repository declared in artifact metadata](https://github.com/shadoprizm/skillforge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, tables, generated skill files, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pro mode may send skill contents to the operator-selected AI provider; publishing commands require explicit operator approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact skill.json lists 1.0.3) <br>
+Risk: The skill relies on installing and running an external npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the SkillForge package, and prefer a pinned package version.
+
+Risk: Pro audit and generation modes may send skill contents to the operator's selected AI provider.
+
+Mitigation: Do not run Pro mode against directories containing secrets, private keys, credentials, or sensitive unpublished code.
+
+Risk: Provider API keys can be stored locally for Pro features.
+
+Mitigation: Avoid storing provider keys unless necessary and protect local SkillForge configuration like other credential files.
+
+Risk: Publishing commands can release generated or existing skills to ClawHub.
+
+Mitigation: Require explicit operator approval before any ClawHub publication step.
+
+## Reference(s):
+
+- [ClawHub SkillForge listing](https://clawhub.ai/shadoprizm/skills/skillforge-cli)
+- [SkillForge repository](https://github.com/shadoprizm/skillforge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional table, JSON, or Markdown audit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate skill files on disk and can publish to ClawHub only after operator approval.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

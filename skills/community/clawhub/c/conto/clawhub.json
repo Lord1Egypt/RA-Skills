@@ -1,12 +1,12 @@
 {
   "name": "conto",
-  "version": "1.6.1",
-  "description": "Enforce fine-grained spending policies on AI agent payments. 20+ rule types: spend limits, category restrictions, counterparty blocklists, time windows, velocity controls, approval workflows, and more.",
+  "version": "1.10.0",
+  "description": "Enforce fine-grained spending policies on AI agent payments. 40+ rule types: spend limits, category restrictions, counterparty blocklists, time windows, velocity controls, approval workflows, and more.",
   "author": "Conto Finance",
   "license": "MIT",
   "homepage": "https://conto.finance",
   "repository": "https://github.com/kwattana/conto",
-  "documentation": "https://docs.conto.finance/sdk/openclaw",
+  "documentation": "https://conto.finance/docs/sdk/skills",
   "keywords": [
     "payments",
     "spending-policy",
@@ -20,13 +20,16 @@
     "base",
     "solana",
     "usdc",
-    "privy",
-    "sponge"
+    "managed-wallets",
+    "external-wallets"
   ],
   "categories": ["finance", "security", "blockchain"],
   "requires": {
     "env": ["CONTO_SDK_KEY"],
-    "bins": ["curl", "jq"]
+    "bins": ["curl", "jq", "python3"]
+  },
+  "postinstall": {
+    "message": "Run 'bash conto-check.sh setup <agent_name> <wallet_address>' to connect your agent to Conto."
   },
   "files": ["SKILL.md", "conto-check.sh", "README.md", "clawhub.json"],
   "entry": "SKILL.md"

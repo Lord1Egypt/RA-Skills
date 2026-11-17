@@ -1,37 +1,56 @@
-## Description: <br>
-Complete DEX architecture guide including project structure, provider hierarchy, network configuration, TradingView setup, and provider configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete DEX architecture guide including project structure, provider hierarchy, network configuration, TradingView setup, and provider configuration.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold and review an Orderly Network DEX architecture, including provider hierarchy, runtime configuration, wallet connector setup, network selection, and TradingView chart integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using the guide's snippets in a live DEX without review can lead to incorrect Orderly SDK, wallet connector, broker ID, network, or TradingView configuration. <br>
-Mitigation: Review the Orderly SDK behavior, wallet connector setup, broker ID, network defaults, and TradingView files or dependencies before deploying changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TradingView Charting Library](https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/) <br>
+## Use Case:
 
+Developers building an Orderly Network DEX use this skill to plan project structure, provider setup, network configuration, chart integration, and runtime configuration for a React and TypeScript application.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no automatic execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect broker ID, network selection, or wallet connector configuration could point a DEX at the wrong trading environment.
+
+Mitigation: Review broker ID, mainnet versus testnet defaults, chain handling, and wallet connector behavior before production deployment.
+
+Risk: Manually downloaded TradingView files or npm packages may introduce supply-chain or versioning risk.
+
+Mitigation: Download TradingView assets from the official source, review package provenance, and scan dependencies before deployment.
+
+Risk: Financial applications can be harmed by otherwise normal example configuration when copied directly into production.
+
+Mitigation: Treat generated configuration as implementation guidance and validate it against production security, compliance, and operational requirements.
+
+## Reference(s):
+
+- [TradingView Advanced Charts](https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JavaScript, CSS, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

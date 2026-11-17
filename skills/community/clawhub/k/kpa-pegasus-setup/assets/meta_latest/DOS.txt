@@ -1,0 +1,65 @@
+collection: DOS
+sort-by: 10
+shortname: dos
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/dosbox_pure_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 仙剑奇侠传
+file: 仙剑奇侠传.dosz
+assets.box_front: Imgs/仙剑奇侠传.png
+description: 《仙剑奇侠传》，DOS 平台。
+game: 大唐英雄传
+file: 大唐英雄传.dosz
+assets.box_front: Imgs/大唐英雄传.png
+description: 《大唐英雄传》，DOS 平台。
+game: 明星志愿
+file: 明星志愿.dosz
+assets.box_front: Imgs/明星志愿.png
+description: 《明星志愿》，DOS 平台。
+game: 毁灭战士2
+file: 毁灭战士2.dosz
+assets.box_front: Imgs/毁灭战士2.png
+description: 《毁灭战士2》，DOS 平台。
+game: 炎龙骑士团
+file: 炎龙骑士团.dosz
+assets.box_front: Imgs/炎龙骑士团.png
+description: 《炎龙骑士团》，DOS 平台。
+game: 炎龙骑士团2
+file: 炎龙骑士团2.dosz
+assets.box_front: Imgs/炎龙骑士团2.png
+description: 《炎龙骑士团2》，DOS 平台。
+game: 英雄传说3-白发魔女
+file: 英雄传说3-白发魔女.dosz
+assets.box_front: Imgs/英雄传说3-白发魔女.png
+description: 《英雄传说3-白发魔女》，DOS 平台。
+game: 轩辕剑外传-枫之舞
+file: 轩辕剑外传-枫之舞.dosz
+assets.box_front: Imgs/轩辕剑外传-枫之舞.png
+description: 《轩辕剑外传-枫之舞》，DOS 平台。
+game: 金庸群侠传
+file: 金庸群侠传.dosz
+assets.box_front: Imgs/金庸群侠传.png
+description: 《金庸群侠传》，DOS 平台。
+game: 高校魔影
+file: 高校魔影.dosz
+assets.box_front: Imgs/高校魔影.png
+description: 《高校魔影》，DOS 平台。
+game: 魔影哈雷
+file: 魔影哈雷.dosz
+assets.box_front: Imgs/魔影哈雷.png
+description: 《魔影哈雷》，DOS 平台。
+game: 魔神战纪2
+file: 魔神战纪2.dosz
+assets.box_front: Imgs/魔神战纪2.png
+description: 《魔神战纪2》，DOS 平台。
+game: 魔胎
+file: 魔胎.dosz
+assets.box_front: Imgs/魔胎.png
+description: 《魔胎》，DOS 平台。
+game: 鹿鼎记
+file: 鹿鼎记.dosz
+assets.box_front: Imgs/鹿鼎记.png
+description: 《鹿鼎记》，DOS 平台。
+game: 龙骑士4
+file: 龙骑士4.dosz
+assets.box_front: Imgs/龙骑士4.png
+description: 《龙骑士4》，DOS 平台。

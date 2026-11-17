@@ -1,49 +1,61 @@
-## Description: <br>
-Persistent agent memory and versioned markdown documents over the Mark Protocol (mark://). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent agent memory and versioned markdown documents over the Mark Protocol (mark://).
 
-## Publisher: <br>
-[ontehfritz](https://clawhub.ai/user/ontehfritz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-only <br>
+## Publisher:
 
+[ontehfritz](https://clawhub.ai/user/ontehfritz)
 
-## Use Case: <br>
-Developers and agent users use this skill to install or connect to Demarkus, then fetch, publish, append, list, and version markdown documents that persist across agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-only
 
-## Known Risks and Mitigations: <br>
-Risk: The default local setup installs a long-running network-facing service. <br>
-Mitigation: Prefer client-only or remote mode unless a local server is required, and know how to stop or uninstall the daemon before installation. <br>
-Risk: The local server can expose UDP 6309. <br>
-Mitigation: Restrict UDP 6309 to trusted interfaces and networks. <br>
-Risk: Persistent agent memory can retain sensitive personal or project data across sessions. <br>
-Mitigation: Avoid storing secrets or sensitive data in Demarkus documents. <br>
-Risk: The installer is fetched from a remote script URL. <br>
-Mitigation: Inspect and pin the installer before running it. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure persistent memory, fetch and publish mark:// markdown documents, keep journals, and preserve useful context across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ontehfritz/demarkus) <br>
-- [Publisher profile](https://clawhub.ai/user/ontehfritz) <br>
-- [Demarkus homepage](https://demarkus.io) <br>
-- [Demarkus installer](https://raw.githubusercontent.com/latebit-io/demarkus/main/install.sh) <br>
-- [mcporter call syntax](https://github.com/steipete/mcporter/raw/refs/heads/main/docs/call-syntax.md) <br>
-- [mcporter CLI reference](https://github.com/steipete/mcporter/raw/refs/heads/main/docs/cli-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides setup for local or remote Demarkus servers and emits commands for mcporter-based MCP registration and Mark document operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The setup flow runs a remote installer that is not pinned or checksum-verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it, or use a pinned, checksum-verified installer.
+
+Risk: A local memory server may be exposed on the network.
+
+Mitigation: Bind the server to localhost and avoid opening firewall access unless network exposure is explicitly required.
+
+Risk: Persistent journals or remote servers can store sensitive context.
+
+Mitigation: Use remote mode only with trusted servers and avoid storing secrets or private user data in journals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ontehfritz/skills/demarkus)
+- [Demarkus homepage](https://demarkus.io)
+- [Demarkus installer](https://raw.githubusercontent.com/latebit-io/demarkus/main/install.sh)
+- [mcporter call syntax](https://github.com/steipete/mcporter/raw/refs/heads/main/docs/call-syntax.md)
+- [mcporter CLI reference](https://github.com/steipete/mcporter/raw/refs/heads/main/docs/cli-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Mark Protocol document operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent-memory setup guidance and document operation instructions for local or user-provided remote Mark servers.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

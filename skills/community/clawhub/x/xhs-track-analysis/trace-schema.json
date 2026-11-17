@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "skill": "xhs-track-analysis",
+  "description": "小红书赛道深度分析执行轨迹契约。用于记录一次分析运行中各步骤的完成状态，供过程评测与改进。",
+  "steps": [
+    { "step_id": 0, "name": "定义问题", "gates": ["three_questions_complete"], "output": "three_questions" },
+    { "step_id": 1, "name": "关键词四分组与意图标注", "gates": ["four_groups_complete", "intent_stages_annotated"], "output": "keyword_table" },
+    { "step_id": 2, "name": "多排序采集与长尾检查", "gates": ["four_sorts_covered", "longtail_checked"], "output": "collection_records" },
+    { "step_id": 3, "name": "多轮合并去重", "gates": ["dedup_with_origins"], "output": "deduped_notes" },
+    { "step_id": 4, "name": "内容与达人分析", "gates": ["creator_niche_judged", "self_vs_third_party"], "output": "creator_analysis" },
+    { "step_id": 5, "name": "评论分析", "gates": ["four_behaviors", "commenter_type", "organic_referral", "purchase_intent_layer"], "output": "comments_analysis" },
+    { "step_id": 6, "name": "品牌建议与决策收敛", "gates": ["four_questions", "supply_structure", "risk_scan", "decision_conclusion"], "output": "decision" },
+    { "step_id": 7, "name": "交付决策简报", "gates": ["finalize_report_ok"], "output": "brief" }
+  ],
+  "fields": {
+    "step_id": { "type": "int", "required": true },
+    "status": { "type": "enum", "values": ["done", "failed", "skipped"], "required": true },
+    "tokens": { "type": "int", "required": false },
+    "output_ref": { "type": "string", "required": false },
+    "note": { "type": "string", "required": false }
+  }
+}

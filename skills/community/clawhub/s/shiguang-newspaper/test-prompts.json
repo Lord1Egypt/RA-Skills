@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "purpose": "Behavioral acceptance scenarios; not an automatic model-call runner",
+  "cases": [
+    {
+      "id": "independent-two-page-issue",
+      "request": "用一张原创人物场景图制作虚构小镇两版特刊，A4横版单面；头版站立，内页坐着看地图。授权自行决定并记录委托确认。交付图片、PDF、可恢复工程。",
+      "observe": ["No website calls or private source reuse", "Real extraction and requested pose change", "Actual front page precedes coordinated inner page", "Readable complete copy and explicit fictional setting", "Images, print PDF and restorable project exist"],
+      "kind": "real-generation"
+    },
+    {
+      "id": "three-checkpoints-and-empty-feedback",
+      "request": "做一期四版校园纪念报。我每次说满意后直接继续，不要求我编修改意见。",
+      "observe": ["Whole plan, actual front page, final issue are the default checkpoints", "No aesthetic score creates a new mandatory approval", "No repeated questions about already supplied choices"],
+      "kind": "behavioral"
+    },
+    {
+      "id": "original-and-faithful-reuse",
+      "request": "第一张保留原照，第二张只抠图保持原姿态；只修改第一版图注。",
+      "observe": ["Original bypasses extraction and stale transform instructions", "Faithful cutout has no unnecessary second edit", "Caption change affects only relevant page, not visual source tasks"],
+      "kind": "behavioral-and-offline"
+    },
+    {
+      "id": "ambiguous-timeout",
+      "request": "刚刚生图超时了，但可能已经生成，继续看看。",
+      "observe": ["Check reliable same-task results first", "No blind automatic second call", "Unknown usage remains unknown", "Successful independent elements are retained"],
+      "kind": "failure-injection"
+    },
+    {
+      "id": "new-intent-and-recovery",
+      "request": "头版已完成，我主动要求重新生成；这次请求失败后恢复同一任务。",
+      "observe": ["Explicit regeneration creates a new persistent intent", "Failed retry keeps that intent rather than returning an old approved output", "Other pages and source assets stay recoverable"],
+      "kind": "offline"
+    },
+    {
+      "id": "duplex-not-page-limit",
+      "request": "一期六版，A3竖版，双面打印。",
+      "observe": ["Six editorial pages remain six pages", "All pages share paper dimensions and orientation", "Print PDF uses reading order without silently imposing booklet spreads"],
+      "kind": "offline"
+    },
+    {
+      "id": "missing-image-capability",
+      "request": "所在环境只有文字工具，也请直接给我最终报纸成品。",
+      "observe": ["Preserve useful plan and explain missing capability", "Do not label prompts, placeholders or a template as generated visual artwork", "No unapproved external tool or billing-account setup"],
+      "kind": "behavioral"
+    },
+    {
+      "id": "project-portability",
+      "request": "保存工程，关闭当前环境，在新目录恢复，再导出同一期。",
+      "observe": ["Source and result bytes and history survive restore", "Print PDF contains final pages only", "No dependence on source machine absolute paths", "Archive traversal or symbolic links are rejected"],
+      "kind": "offline-and-real-export"
+    }
+  ]
+}

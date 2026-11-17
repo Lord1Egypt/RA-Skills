@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# fake npm — read-only fixture views; unknown invocations exit 64 (misuse).
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+case "$*" in
+  "ls -g --depth=0") cat "$DATA/npm-ls.txt" ;;
+  "prefix -g") echo "$DATA/../prefix" ;;
+  "outdated -g --depth=0") cat "$DATA/npm-outdated.txt" ;;
+  "install -g"*) [ -n "${BUTLER_FAKE_INSTALL_LOG:-}" ] && printf 'npm %s proxy=%s\n' "$*" "${HTTPS_PROXY:-none}" >> "$BUTLER_FAKE_INSTALL_LOG"; exit 0 ;;
+  *) exit 64 ;;
+esac

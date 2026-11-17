@@ -1,42 +1,56 @@
-## Description: <br>
-Create short URLs and submit feature requests using 1p.io. Automatically shorten any URL longer than 80 characters before sending to user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create short URLs and submit feature requests using 1p.io.
 
-## Publisher: <br>
-[tuanpmt](https://clawhub.ai/user/tuanpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tuanpmt](https://clawhub.ai/user/tuanpmt)
 
-## Use Case: <br>
-Developers, teams, and external users use this skill to register a 1p.io agent, create and manage short links, and submit or vote on organization-scoped feature requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may send arbitrary long URLs to an external 1p.io service, including URLs that contain private documents, tokens, signed downloads, reset links, internal hosts, or personal data. <br>
-Mitigation: Ask for user confirmation before shortening links and avoid sending sensitive, internal, credential-bearing, or personal-data URLs to the service. <br>
-Risk: The skill includes organization link deletion and feature-status editing actions that can alter shared organizational resources. <br>
-Mitigation: Grant delete or edit permissions only when needed and require explicit confirmation before destructive or organization-wide changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuanpmt/1p-shortlink) <br>
-- [1p.io API register endpoint](https://1p.io/api/register) <br>
-- [1p.io API shorten endpoint](https://1p.io/api/shorten) <br>
-- [1p.io API feature requests endpoint](https://1p.io/api/features) <br>
+## Use Case:
 
+External users and developers use this skill to shorten links, manage organization-scoped short links, and submit or vote on 1p.io feature requests through documented API workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration, text] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce 1p.io short URLs, API registration guidance, link-management requests, and feature-request operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send full destination URLs and related metadata to the third-party 1p.io service.
+
+Mitigation: Use it only for links the user is comfortable sharing with 1p.io, and avoid private, tokenized, internal, password-reset, presigned, or otherwise sensitive URLs.
+
+Risk: The skill includes organization link deletion and management actions.
+
+Mitigation: Require an explicit user instruction and confirmation before deleting links or making destructive link-management changes.
+
+Risk: Feature status changes can affect organization-scoped feature tracking.
+
+Mitigation: Require an explicit user instruction, confirm the intended feature and status, and ensure the agent has the required edit permission before updating status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuanpmt/skills/1p-shortlink)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown text with short URL strings and summarized JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated 1p.io short URLs, link metadata, feature request details, and status updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

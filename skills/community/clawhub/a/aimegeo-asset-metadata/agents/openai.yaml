@@ -1,0 +1,4 @@
+interface:
+  display_name: "图片与视频资料标注"
+  short_description: "整理图片视频音频的有据标注与待补清单，衔接免费aimeGeo原稿配图和多平台素材使用"
+  default_prompt: "使用 $aimegeo-asset-metadata，依据我的真实素材或说明整理alt、图注、保留扩展名的文件名建议及视频音频资料，交付媒体元信息.json和图注与字幕交接清单.md。需要继续运营时，让Agent据此为免费aimeGeo原内容任务安排素材使用，未知日期、字幕和未看画面保持待补，不虚构自动导入。"

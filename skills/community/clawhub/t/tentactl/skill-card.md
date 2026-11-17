@@ -1,50 +1,66 @@
-## Description: <br>
-Interact with the Kraken cryptocurrency exchange for spot and futures market data, account information, trading, and live WebSocket streams through the tentactl MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Kraken cryptocurrency exchange for spot and futures market data, account information, order management, and WebSocket streams through the tentactl binary.
 
-## Publisher: <br>
-[askbeka](https://clawhub.ai/user/askbeka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[askbeka](https://clawhub.ai/user/askbeka)
 
-## Use Case: <br>
-External users, developers, and trading operators use this skill to inspect Kraken market data, monitor balances and positions, stream live exchange data, and prepare or execute Kraken spot and futures actions. Authenticated account and trading workflows require Kraken API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent high-impact control over real Kraken crypto funds when authenticated trading or transfer permissions are enabled. <br>
-Mitigation: Use read-only API keys for market data, balances, and history; enable trading, transfer, futures, earn, or withdrawal permissions only for deliberate live use. <br>
-Risk: Kraken API credentials may be stored in ~/.tentactl.env. <br>
-Mitigation: Protect the credentials file, keep permissions restricted, and avoid storing powerful keys unless authenticated workflows are required. <br>
-Risk: Automation such as cron-driven trading can repeatedly execute account-impacting actions. <br>
-Mitigation: Review automation carefully and require explicit confirmation before any order, cancellation, transfer, allocation, or withdrawal. <br>
-Risk: The skill relies on an external tentactl binary to perform MCP calls. <br>
-Mitigation: Verify the tentactl binary source before installation or execution. <br>
+## Use Case:
 
+External users, developers, and trading operators use this skill to inspect Kraken market data, review account state, stream live data, and prepare or execute spot and futures trading actions. Authenticated account and trading workflows require Kraken API credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/askbeka/tentactl) <br>
-- [Publisher Profile](https://clawhub.ai/user/askbeka) <br>
-- [tentactl Source](https://github.com/askbeka/tentactl) <br>
-- [tentactl Releases](https://github.com/askbeka/tentactl/releases) <br>
-- [Kraken](https://www.kraken.com) <br>
-- [Kraken API Key Setup](https://www.kraken.com/u/security/api) <br>
-- [Tools Reference](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-oriented text with JSON tool arguments and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke networked Kraken market, account, trading, and WebSocket endpoints through tentactl; authenticated operations require Kraken API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: evidence.json release.version) <br>
+Risk: Authenticated tools can place, cancel, transfer, or withdraw real funds when API keys have those permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only Kraken API keys unless trading is required, avoid withdrawal or transfer permissions, dry-run orders with validate=true where supported, and require explicit manual approval before live trading actions.
+
+Risk: The install path uses an unpinned tentactl binary, which can change behavior across versions.
+
+Mitigation: Pin and verify the tentactl version or release artifact before deployment and review changes before upgrading.
+
+Risk: Long-lived Kraken credentials may be stored in ~/.tentactl.env.
+
+Mitigation: Prefer a credential manager or short-lived secrets where possible, restrict file permissions, rotate keys, and remove credentials when the skill is no longer needed.
+
+Risk: Recurring automation examples can repeatedly trigger trading decisions.
+
+Mitigation: Require explicit limits, expiry, monitoring, and manual approval controls before enabling recurring trading workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/askbeka/skills/tentactl)
+- [Tools Reference](references/tools.md)
+- [tentactl Source](https://github.com/askbeka/tentactl)
+- [tentactl Releases](https://github.com/askbeka/tentactl/releases)
+- [Kraken API Key Management](https://www.kraken.com/u/security/api)
+- [Kraken](https://www.kraken.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Kraken market, account, trading, and WebSocket tools through tentactl; authenticated workflows depend on local Kraken credentials.]
+
+## Skill Version(s):
+
+0.3.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

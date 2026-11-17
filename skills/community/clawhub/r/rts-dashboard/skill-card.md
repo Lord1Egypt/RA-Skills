@@ -1,44 +1,58 @@
-## Description: <br>
-RTS Dashboard provides a browser-based tactical command center for monitoring OpenClaw agents, skills, sessions, cron jobs, system vitals, and Gateway chat interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RTS Dashboard provides a browser-based Real-Time Strategy style command center for monitoring OpenClaw agents, skills, sessions, cron jobs, system vitals, and Gateway chat messaging.
 
-## Publisher: <br>
-[282059559donghui-prog](https://clawhub.ai/user/282059559donghui-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[282059559donghui-prog](https://clawhub.ai/user/282059559donghui-prog)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to start and operate a local tactical dashboard for visual monitoring of agents, skills, sessions, cron jobs, system health, and Gateway chat activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The localhost dashboard can read OpenClaw configuration, session transcripts, and the Gateway token. <br>
-Mitigation: Install only in a trusted local environment, keep port 4320 private to localhost, and avoid exposing the dashboard through tunnels or shared browsers. <br>
-Risk: The dashboard can send chat messages to agents and stop or restart Gateway-related local controls. <br>
-Mitigation: Use it only with trusted OpenClaw instances and review the intended agent or Gateway action before launching or operating the dashboard. <br>
-Risk: The dashboard creates a persistent device key file for Gateway authentication. <br>
-Mitigation: Delete or rotate .device-keys.json when you stop using the dashboard or if the local workspace may have been exposed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to launch and operate a local RTS-style monitoring dashboard for agents, skills, sessions, cron jobs, system vitals, and Gateway chat actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/282059559donghui-prog/rts-dashboard) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and a localhost dashboard URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local Node.js dashboard on port 4320 and provide Gateway configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The local dashboard may expose OpenClaw conversation content and Gateway controls to anyone who can reach the dashboard port.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted local environment and restrict network access to the dashboard port; add authentication and strict origin checks before broader deployment.
+
+Risk: Gateway actions and chat messaging can affect connected agents if access is not tightly scoped.
+
+Mitigation: Validate inputs, review Gateway actions before deployment, and require transcript opt-in or redaction when sensitive conversations may be displayed.
+
+Risk: The security evidence recommends reviewing the WebSocket dependency before installation.
+
+Mitigation: Update and scan the ws dependency before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/282059559donghui-prog/skills/rts-dashboard)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local URL guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start a local Node.js dashboard on localhost and provide Gateway configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

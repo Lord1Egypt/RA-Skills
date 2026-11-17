@@ -1,7 +1,7 @@
 ---
 name: "autism-analysis"
 description: "Performs special video analysis on behavioral characteristics of children with autism, identifies core symptom features, provides structured analysis reports and intervention recommendations. | 孤独症谱系障碍行为分析工具，针对儿童孤独症行为特征进行专项视频分析，识别核心症状特征，提供结构化分析报告和干预建议"
-version: "1.0.5"
+version: "1.0.14"
 license: "MIT-0"
 ---
 

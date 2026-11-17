@@ -1,43 +1,53 @@
-## Description: <br>
-Daily triage of Wilma school notifications for Finnish parents. Fetches exams, messages, news, schedules, homework, and lesson notes, filters for actionable items, syncs exams to Google Calendar, and reports via chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Finnish parents review Wilma school updates, identify actionable items, and optionally sync exams and events to a family calendar.
 
-## Publisher: <br>
-[aikarjal](https://clawhub.ai/user/aikarjal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aikarjal](https://clawhub.ai/user/aikarjal)
 
-## Use Case: <br>
-Parents and caregivers use this skill to review Wilma school records, surface actionable school notices, and keep selected school events synchronized with Google Calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive Wilma school records, including lesson notes, absences, messages, schedules, grades, and homework. <br>
-Mitigation: Install it only where that access is appropriate, confirm local Wilma credentials are trusted, and review MEMORY.md periodically for stored preferences or sensitive context. <br>
-Risk: The skill can add or remove school-related events in Google Calendar through the gog CLI. <br>
-Mitigation: Use a dedicated school calendar when possible, require duplicate checks before adding events, and review calendar changes when cancelled or modified events are detected. <br>
-Risk: The skill depends on separate wilma and gog tools with their own credentials and behavior. <br>
-Mitigation: Set up both tools interactively, verify their credentials and permissions before use, and keep their configuration paths limited to the intended local account. <br>
+## Use Case:
 
+Parents and caregivers use this skill to review their children's Wilma messages, schedules, homework, exams, bulletins, and lesson notes for timely actions, with optional family-calendar updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aikarjal/wilma-triage) <br>
-- [Publisher profile](https://clawhub.ai/user/aikarjal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown report with optional shell commands and calendar sync notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update MEMORY.md and TOOLS.md preferences and calendar configuration when the user approves or provides setup details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: School messages and attachments can contain sensitive student information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to trusted agents, review attachment save locations, and remove sensitive downloads when no longer needed.
+
+Risk: Optional calendar changes or scheduled daily runs could affect the wrong family calendar.
+
+Mitigation: Confirm the selected calendar before scheduling, and check existing events before adding or removing entries.
+
+## Reference(s):
+
+- [Wilma Triage on ClawHub](https://clawhub.ai/aikarjal/skills/wilma-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Calendar events]
+
+**Output Format:** [Brief chat summary grouped by child, with optional calendar updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May remain silent when there are no actionable updates; requires Wilma access, and calendar sync is optional.]
+
+## Skill Version(s):
+
+2.0.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

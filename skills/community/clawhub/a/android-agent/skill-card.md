@@ -1,48 +1,64 @@
-## Description: <br>
-Controls a real Android phone through ADB and DroidRun so an AI agent can inspect the screen, tap, type, swipe, run tasks, and capture screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered Android phone control for opening apps, tapping, typing, taking screenshots, and running phone tasks through ADB and DroidRun.
 
-## Publisher: <br>
-[harshilmathur](https://clawhub.ai/user/harshilmathur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[harshilmathur](https://clawhub.ai/user/harshilmathur)
 
-## Use Case: <br>
-Developers and automation operators use this skill to connect an Android test device over USB or TCP/WiFi, verify device status, and run natural-language mobile tasks through a vision-enabled AI agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an AI agent broad control over an unlocked Android device and sensitive apps. <br>
-Mitigation: Install it only for a spare or test Android device, avoid personal banking, MFA, medical, email, and private messaging accounts, and disable ADB debugging plus DroidRun Accessibility permissions when finished. <br>
-Risk: The agent may initiate purchases, messages, calls, or account changes while completing a task. <br>
-Mitigation: Manually confirm purchases, messages, calls, and account changes before allowing them to proceed. <br>
-Risk: Using a real phone PIN in the environment can expose credentials to the host environment. <br>
-Mitigation: Do not use a real phone PIN in the environment; prefer a disposable test-device PIN or manual unlock. <br>
-Risk: WiFi ADB can expose device control over the network. <br>
-Mitigation: Prefer USB or an SSH tunnel over WiFi ADB, especially on untrusted networks. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent control a dedicated Android test device over USB or TCP/WiFi for mobile app interaction, screenshots, setup tasks, and scripted phone workflows.
 
-## Reference(s): <br>
-- [ClawHub android-agent release page](https://clawhub.ai/harshilmathur/android-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/harshilmathur) <br>
-- [DroidRun project](https://github.com/droidrun/droidrun) <br>
-- [DroidRun releases](https://github.com/droidrun/droidrun/releases) <br>
-- [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; scripts emit terminal status text and can save PNG screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ADB, Python dependencies, an OpenAI API key, and a connected Android device with appropriate debugging and accessibility permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata and artifact/skill.json) <br>
+Risk: The skill can give an agent broad control over an Android device, including apps, messages, purchases, account changes, and other sensitive actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated device that you own, keep personal accounts and sensitive apps off the device, and require explicit human review before purchases, messages, rides, banking, or account changes.
+
+Risk: Screenshots and visible screen text may be sent to the configured vision model provider during task execution.
+
+Mitigation: Run the skill only on a test device with no private messages, medical data, 2FA codes, banking screens, saved secrets, or other sensitive content visible.
+
+Risk: ANDROID_PIN handling is called out by security guidance as under-disclosed and not yet safe for routine use.
+
+Mitigation: Do not set ANDROID_PIN until PIN redaction is fixed; unlock the device manually or use the no-unlock path when practical.
+
+Risk: ADB over TCP/WiFi can expose device-control access on the network.
+
+Mitigation: Prefer USB for routine use, or use an SSH tunnel on untrusted networks.
+
+## Reference(s):
+
+- [Android Agent on ClawHub](https://clawhub.ai/harshilmathur/skills/android-agent)
+- [DroidRun](https://github.com/droidrun/droidrun)
+- [DroidRun releases](https://github.com/droidrun/droidrun/releases)
+- [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with command-line examples and runtime text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ADB, DroidRun, an OpenAI API key, and an authorized Android device.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

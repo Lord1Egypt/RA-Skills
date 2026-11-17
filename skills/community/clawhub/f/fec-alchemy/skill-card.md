@@ -1,45 +1,56 @@
-## Description: <br>
-Use when absorbing ideas, capabilities, workflows, architecture, quality systems, ecosystem extensions, or engineering practices from any reference system into the current project through original, project-native redesign rather than copying. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in adapting ideas and practices from reference systems into original, project-native improvements.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze reference systems, identify useful capabilities and practices, and redesign them as original improvements that fit the target project's architecture, licensing boundaries, and validation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger wording could cause the skill to activate for adjacent analysis or redesign tasks that are outside the intended reference-system absorption workflow. <br>
-Mitigation: Narrow activation wording during publisher review and confirm that users explicitly need project-level absorption, adaptation, or originality guidance. <br>
-Risk: Reference-system analysis can lead to accidental reuse of protected code, text, prompts, configuration, or naming from another project. <br>
-Mitigation: Use the included originality and licensing workflow to summarize ideas neutrally, design a target-native implementation, preserve required attribution, and record licensing uncertainty as a risk. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess reference projects, select useful capabilities, and plan or implement original changes that fit their own project's architecture and conventions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bovinphang/fec-alchemy) <br>
-- [Methodology](references/methodology.md) <br>
-- [Originality and licensing](references/originality-and-licensing.md) <br>
-- [Absorption plan template](assets/absorption-plan-template.md) <br>
-- [Intake template](assets/intake-template.md) <br>
-- [Review checklist](assets/review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown summaries, implementation plans, risk notes, validation checklists, and project file updates when supported by the host agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill emphasizes original, project-native redesign and records rejected or deferred candidates for larger absorption tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release evidence and package metadata) <br>
+Risk: Reference material may include private content or third-party work without clear reuse rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm source access, provenance, and licensing; independently redesign rather than copy protected text or code.
+
+Risk: An adaptation may affect files or behavior outside the intended project scope.
+
+Mitigation: Agree on the repositories and files in scope, then review the plan and proposed edits before applying them.
+
+## Reference(s):
+
+- [Project absorption methodology](references/methodology.md)
+- [Originality and licensing guidance](references/originality-and-licensing.md)
+- [ClawHub release](https://clawhub.ai/bovinphang/skills/fec-alchemy)
+- [Project homepage listed in package metadata](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Code, Documentation]
+
+**Output Format:** [Markdown guidance and, when requested, project-native source or documentation edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an adaptation plan, licensing considerations, and verification results.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release metadata, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Automates browser-based video uploads, cover setup, metadata entry, and publishing for Kuaishou, Bilibili, and Douyin creator platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates video uploads, cover selection, titles, keywords, and publishing to Kuaishou, Bilibili, and Douyin through Chrome browser automation.
 
-## Publisher: <br>
-[xiaohei2022](https://clawhub.ai/user/xiaohei2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohei2022](https://clawhub.ai/user/xiaohei2022)
 
-## Use Case: <br>
-Developers and content operators use this skill to publish videos from a TXT configuration file to Kuaishou, Bilibili, and Douyin through an authenticated Chrome browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload and publish to live social accounts. <br>
-Mitigation: Start with --no-publish and test accounts, then review the content and target account before enabling live publish-all. <br>
-Risk: The skill uses stealth-style browser fingerprint changes that may violate platform rules. <br>
-Mitigation: Confirm the target platforms' automation rules before use and avoid running debug scripts on sensitive browser sessions. <br>
-Risk: Unpinned dependencies can change the runtime behavior over time. <br>
-Mitigation: Pin dependencies before operational use and review updates before applying them. <br>
+## Use Case:
 
+Creators and content operators use this skill to prepare and publish the same video package across Kuaishou, Bilibili, and Douyin from a text configuration file. It supports per-platform publishing, a multi-platform publish-all flow, and a no-publish preview mode for review before final submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohei2022/kuaishou-bilibili-publish) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Test report](artifact/TEST_REPORT.md) <br>
-- [Kuaishou Creator Platform](https://cp.kuaishou.com/) <br>
-- [Bilibili video upload page](https://member.bilibili.com/platform/upload/video/frame) <br>
-- [Douyin creator upload page](https://creator.douyin.com/creator-micro/content/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, TXT configuration examples, and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Chrome session authenticated to the target creator platforms; --no-publish can fill forms without clicking publish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill controls a logged-in Chrome profile for live creator accounts and can publish content to social media platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --no-publish first, verify the account and content in the browser, and avoid publish-all until every destination has been reviewed.
+
+Risk: Proxy environment variables can affect where browser traffic is routed.
+
+Mitigation: Clear KBS_PROXY, HTTPS_PROXY, and HTTP_PROXY unless a trusted proxy is intentionally required.
+
+Risk: Debug and analysis scripts can save page HTML that may contain account or page data.
+
+Mitigation: Avoid debug scripts on sensitive accounts, or protect and delete saved HTML output after troubleshooting.
+
+Risk: Platform page structure changes can make selectors stale and cause failed or incomplete uploads.
+
+Mitigation: Use preview mode after platform changes and update selectors before enabling final publish actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaohei2022/skills/kuaishou-bilibili-publish)
+- [Kuaishou Creator Center](https://cp.kuaishou.com/)
+- [Bilibili Creator Upload](https://member.bilibili.com/platform/upload/video/frame)
+- [Douyin Creator Upload](https://creator.douyin.com/creator-micro/content/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Chrome profile; supports no-publish preview mode, per-platform commands, and a publish-all command.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; pyproject.toml reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

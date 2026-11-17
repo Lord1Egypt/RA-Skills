@@ -1,46 +1,61 @@
-## Description: <br>
-Ghostty monitors communication channels, builds a writing-style profile, drafts replies in the user's voice, and routes responses for approval or escalation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ghostty helps an agent monitor communication channels, build a voice profile from sent messages, draft replies in the user's style, and route responses through approval or escalation flows.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Employees, external users, and developers use Ghostty to configure an always-on communication proxy that monitors selected channels, drafts personal replies, escalates urgent items, and queues responses for review. It is intended for users who want agent-assisted management of email, calendar, Slack, WhatsApp, Signal, or Telegram workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent channel monitoring can expose private communications and account data. <br>
-Mitigation: Grant access only to selected accounts and senders, prefer narrow OAuth scopes over broad IMAP access, protect stored secrets, and regularly review or delete generated profiles and logs. <br>
-Risk: The skill can send messages or accept calendar invites as the user with weak safeguards. <br>
-Mitigation: Disable direct sending and calendar auto-accept by default, and require approval for every outbound message or calendar change unless the user has explicitly configured a trusted exception. <br>
-Risk: Nondisclosure behavior may mislead recipients about whether AI drafted or sent a response. <br>
-Mitigation: Do not use nondisclosure behavior in contexts where recipients should know an AI assisted with the response. <br>
+## Use Case:
 
+External users and developers use Ghostty to configure an always-on communication assistant that monitors email, calendar, Slack, WhatsApp, Signal, and Telegram, then drafts and routes replies in the user's voice. The skill is intended for personal communication management workflows that require strong approval, credential, and privacy controls.
 
-## Reference(s): <br>
-- [Ghostty ClawHub release](https://clawhub.ai/fuzzyb33s/ghostty) <br>
-- [Channel Monitors](references/channel-monitors.md) <br>
-- [Delivery Router](references/delivery-router.md) <br>
-- [Draft Engine](references/draft-engine.md) <br>
-- [Voice Profile](references/voice-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands, configuration examples, and drafted communication text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local profile, configuration, pending draft, availability, and sent-log files when followed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad, persistent access to private communications across multiple channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit each channel integration to the minimum required scopes, keep credentials in a secret manager or OS keychain, and review access before enabling continuous monitors.
+
+Risk: The skill can send messages or accept calendar invitations as the user when direct-send or priority-sender rules are enabled.
+
+Mitigation: Require explicit approval for every outbound message and calendar change unless the user has intentionally enabled a narrow, audited exception.
+
+Risk: The voice profile is derived from private message exports and may become persistent communication-derived data.
+
+Mitigation: Use only message samples the user is comfortable processing, store generated profiles outside shared workspaces, and delete or rotate profiles when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/ghostty)
+- [Voice Profile](references/voice-profile.md)
+- [Channel Monitors](references/channel-monitors.md)
+- [Draft Engine](references/draft-engine.md)
+- [Delivery Router](references/delivery-router.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated voice-profile markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local configuration, draft queues, sent logs, and voice-profile files when followed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

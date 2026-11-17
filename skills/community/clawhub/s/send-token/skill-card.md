@@ -1,40 +1,57 @@
-## Description: <br>
-Transfer tokens from an OpenAnt wallet on Solana or Base using the OpenAnt CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfer tokens from an OpenAnt wallet on Solana or Base, supporting SOL, ETH, USDC, and token addresses.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to prepare and run OpenAnt wallet transfer commands for SOL, ETH, USDC, or token addresses on Solana or Base. It is intended for wallet operation workflows that require checking authentication, balance, chain, token, amount, and recipient before transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token transfers can move real funds and are usually irreversible. <br>
-Mitigation: Require explicit user confirmation and independently verify the chain, token, amount, and full recipient address before executing a transfer. <br>
-Risk: The skill runs the external OpenAnt CLI at runtime. <br>
-Mitigation: Use only the documented OpenAnt wallet commands and check authentication and balance before any transfer. <br>
+## Use Case:
 
+External users and agents use this skill to prepare and execute OpenAnt wallet token transfers after confirming the chain, token, amount, destination address, wallet balance, and required gas or fees.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/send-token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with OpenAnt CLI shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should append --json and require explicit user confirmation before token transfers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill uses a dynamically resolved OpenAnt CLI for wallet operations involving irreversible crypto transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a version-pinned, reviewed OpenAnt CLI and independently verify the final recipient, chain, token, amount, and signer prompt before approving any transfer.
+
+Risk: A mistaken chain, token, amount, or destination address can result in an irreversible transfer.
+
+Mitigation: Require explicit user confirmation of the full destination address, chain, token, and amount, and stop when the address format does not match the selected chain.
+
+Risk: Insufficient balance or missing gas reserves can cause transfer failure.
+
+Mitigation: Check wallet balance before execution and leave the required SOL or ETH reserve for transaction fees.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ant-1984/skills/send-token)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands append --json and require explicit user confirmation before transfer execution.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

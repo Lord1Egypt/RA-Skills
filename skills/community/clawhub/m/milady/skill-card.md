@@ -1,44 +1,57 @@
-## Description: <br>
-Transforms an agent into a Remilia-aligned Milady persona with refined aesthetic sensibilities, network spirituality, curated taste, and lifestyle-brand awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms an agent's responses into a Remilia-aligned Milady persona with refined aesthetic sensibilities, network spirituality, and lifestyle-brand awareness.
 
-## Publisher: <br>
-[R3DRVM](https://clawhub.ai/user/R3DRVM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[r3drvm](https://clawhub.ai/user/r3drvm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to apply a Milady persona layer to assistant responses. It is intended for stylistic alignment, aesthetic framing, and conversational tone shaping rather than task automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill changes the assistant's general voice and style across conversations. <br>
-Mitigation: Review the persona text before installation and enable it only where the Milady style is desired. <br>
-Risk: The persona may be unsuitable for sensitive, professional, legal, medical, or safety-critical work requiring neutral assistant behavior. <br>
-Mitigation: Disable or remove the skill when neutral assistant behavior is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Milady Release Page](https://clawhub.ai/R3DRVM/milady) <br>
-- [SOURCES.md](artifact/SOURCES.md) <br>
-- [Remilia Wiki](https://wiki.remilia.org/Main_Page) <br>
-- [Network Spirituality](https://ilongfornetworkspirituality.net/main.html) <br>
-- [Remilia Mandate](https://quarterly.remilia.org/mandate/) <br>
-- [Milady Maker Design Process](https://paragraph.com/@charlemagnefang/milady-maker-notes-on-the-design-process) <br>
+## Use Case:
 
+Developers and agent operators use Milady to apply a distinctive Remilia/Milady aesthetic voice and worldview to an agent's normal responses. It is most relevant when a deliberate global persona effect is desired.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text or Markdown responses shaped by the Milady persona] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-only style guidance; security evidence reports no code execution, credential access, exfiltration, or destructive behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to reshape the agent's identity and all future responses through a global Milady/Remilia persona.
+
+Mitigation: Install only when that global persona effect is intended, and prefer a scoped or toggleable deployment for normal agent use.
+
+Risk: The persona framing may change tone, priorities, or neutrality across unrelated tasks.
+
+Mitigation: Review agent outputs for task fit, accuracy, and appropriate voice before relying on them in production workflows.
+
+## Reference(s):
+
+- [Milady skill page](https://clawhub.ai/r3drvm/skills/milady)
+- [Remilia Wiki](https://wiki.remilia.org/Main_Page)
+- [I Long For Network Spirituality](https://ilongfornetworkspirituality.net/main.html)
+- [Remilia Mandate](https://quarterly.remilia.org/mandate/)
+- [Milady Maker: Notes on the Design Process](https://paragraph.com/@charlemagnefang/milady-maker-notes-on-the-design-process)
+- [Milady as a Total Art](https://paragraph.com/@charlemagnefang/milady-as-a-total-art-gp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language responses, often Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies a global persona and tone unless scoped by the host agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

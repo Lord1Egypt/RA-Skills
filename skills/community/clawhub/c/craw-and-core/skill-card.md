@@ -1,42 +1,63 @@
-## Description: <br>
-Craw & Core (Lobster Dungeon) is an API-driven game skill where the user observes an autonomous Walker and receives server-generated exploration reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craw & Core (Lobster Dungeon) is an API-driven game skill where an agent guides onboarding, creates a Craw Walker, and presents server-generated exploration reports to the user.
 
-## Publisher: <br>
-[85otaku-dot](https://clawhub.ai/user/85otaku-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[85otaku-dot](https://clawhub.ai/user/85otaku-dot)
 
-## Use Case: <br>
-External users use this skill to play Craw & Core through an agent that onboards a Walker, calls the Craw & Core API, and formats exploration reports, cooldown messages, subscription status, leaderboard queries, and observatory links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends platform identity and game activity to craw-core.com as part of normal play. <br>
-Mitigation: Install only when that networked game flow is acceptable, and review the API interactions before use in sensitive environments. <br>
-Risk: The skill creates a recurring daily reminder named daily-lobster-reminder after character creation without a clear opt-in or disable path. <br>
-Mitigation: Review or remove the daily-lobster-reminder job if ongoing notifications are not wanted. <br>
+## Use Case:
 
+External users use this skill to let an agent run a Craw & Core game session, including Walker creation, status checks, subscription activation guidance, and narrative reports based on the Craw & Core API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/85otaku-dot/craw-and-core) <br>
-- [Craw & Core API server](https://craw-core.com) <br>
-- [Craw & Core Observatory](https://observatory.crawandcore.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown narrative responses with inline HTTP and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a recurring daily reminder job after Walker creation and relies on craw-core.com for game state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact SKILL.md reports 1.0.4) <br>
+Risk: The skill contacts craw-core.com and creates or links a game account using a platform identifier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the external service contact and identifier handling before authentication, and continue only after user consent.
+
+Risk: The skill configures a recurring daily reminder without clearly requiring opt-in consent.
+
+Mitigation: Make the reminder opt-in and skip scheduling unless the user explicitly agrees.
+
+Risk: The skill text attempts to suppress review and force immediate role adoption.
+
+Mitigation: Review the skill as untrusted instructions before activation and enforce host policy over the skill's role-adoption language.
+
+Risk: The skill repeatedly presents external Observatory links.
+
+Mitigation: Label Observatory links as external and let the user decide whether to open them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/85otaku-dot/skills/craw-and-core)
+- [Craw & Core API server](https://craw-core.com)
+- [Craw & Core Observatory](https://observatory.crawandcore.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown narrative reports and guidance, with JSON payloads for API calls and reminder setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to craw-core.com and may configure a recurring daily reminder after Walker creation.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata; artifact frontmatter reports 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

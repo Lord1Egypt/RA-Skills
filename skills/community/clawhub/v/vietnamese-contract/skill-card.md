@@ -1,47 +1,58 @@
-## Description: <br>
-Helps agents draft Vietnamese legal contracts and related agreements, verify legal bases, format professional .docx files, run Vietnamese spell checks, and optionally extract ID-card details with OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Vietnamese legal contracts, agreements, commitments, and related legal documents with legal-basis lookup, structured drafting, Vietnamese spell checks, optional CCCD/CMND OCR, and professional .docx output.
 
-## Publisher: <br>
-[trustydev212](https://clawhub.ai/user/trustydev212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trustydev212](https://clawhub.ai/user/trustydev212)
 
-## Use Case: <br>
-Vietnamese-speaking users and document-preparation agents use this skill to collect contract details, draft Vietnamese legal documents, generate .docx outputs, and validate formatting and spelling before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global (focused on Vietnamese legal-document workflows) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional CCCD/CMND OCR workflow can process sensitive identity data. <br>
-Mitigation: Use OCR only when needed, avoid real ID images where possible, confirm before sending extracted text to an AI model, and delete temporary identity data after contract generation. <br>
-Risk: Generated Vietnamese legal documents may contain outdated legal bases or terms that are not appropriate for the user's situation. <br>
-Mitigation: Verify current Vietnamese legal sources before relying on the draft and have important or complex contracts reviewed by a qualified lawyer. <br>
-Risk: OCR output may misread names, dates, addresses, or ID numbers. <br>
-Mitigation: Show extracted fields to the user for confirmation and mark uncertain values for manual correction before inserting them into a contract. <br>
+## Use Case:
 
+External users and developers use this skill to draft Vietnamese legal documents and generate formatted .docx files. It supports common contract categories and can optionally extract identity data from Vietnamese CCCD/CMND images for user-confirmed document prefill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trustydev212/vietnamese-contract) <br>
-- [OpenClaw Viet Nam community](https://zalo.me/g/lajsqc334jqc5fezevvo) <br>
-- [CCCD OCR guide](references/cccd-ocr-guide.md) <br>
-- [Contract structures](references/contract-structures.md) <br>
-- [DOCX formatting](references/docx-formatting.md) <br>
-- [Legal bases](references/legal-bases.md) <br>
+### Deployment Geography for Use:
 
+Vietnam
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell, Python, and JavaScript snippets plus generated .docx documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and pandoc for the core workflow; optional CCCD OCR uses EasyOCR and OpenCV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can process Vietnamese CCCD/CMND national ID data and pass extracted identity text to an active AI model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OCR only with explicit ID-holder consent, avoid remote AI verification unless provider and retention terms are acceptable, and delete uploaded ID images and OCR outputs after use.
+
+Risk: The OCR workflow installs and runs additional image-processing dependencies.
+
+Mitigation: Install dependencies in an isolated, pinned environment and review the skill before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trustydev212/skills/vietnamese-contract)
+- [OpenClaw Viet Nam community](https://zalo.me/g/lajsqc334jqc5fezevvo)
+- [CCCD OCR guide](references/cccd-ocr-guide.md)
+- [Contract structures](references/contract-structures.md)
+- [DOCX formatting and Vietnamese spell checks](references/docx-formatting.md)
+- [Vietnamese legal bases](references/legal-bases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with code blocks and generated .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and pandoc; optional OCR workflow requires EasyOCR and OpenCV dependencies.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

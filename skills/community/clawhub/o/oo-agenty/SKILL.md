@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Agenty"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["agenty"]
   icon: "https://static.oomol.com/logo/third-party/Agenty.svg"
 ---
@@ -65,7 +65,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_job_files` — List the files generated for one Agenty job.
 - `list_jobs` — List Agenty jobs with optional pagination, sorting, and agent filtering parameters.
 - `start_job` — Start one Agenty job for an existing agent. [write]
-- `stop_job` — Stop one running Agenty job by job identifier. [write]
+- `stop_job` — Stop one running Agenty job by job identifier. [destructive]
 - `update_agent` — Update one Agenty agent by agent identifier. [write]
 - `update_agent_inputs` — Update the Agenty input configuration for one agent. [write]
 
@@ -98,11 +98,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Agenty is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=agenty
+  https://console.oomol.com/connections/agenty
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Agenty homepage: https://agenty.com
+- API documentation: https://agenty.com/docs/api

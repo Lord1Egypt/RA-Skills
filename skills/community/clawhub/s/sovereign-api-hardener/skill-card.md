@@ -1,40 +1,50 @@
-## Description: <br>
-Hardens API endpoints against common attacks, covering rate limiting, input validation, authentication, CORS, headers, injection prevention, error handling, and monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hardens API endpoints against common attacks. Covers rate limiting, input validation, auth, CORS, headers, injection prevention, error handling, and monitoring.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and security engineers use this skill to review API routes, middleware, and configuration against a practical hardening checklist and receive actionable recommendations with code examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides security review guidance that can affect production API behavior, including rate limits, CORS rules, authentication checks, and logging. <br>
-Mitigation: Test recommended changes in a staging environment, review access-control impact, and verify logs do not expose sensitive data before deployment. <br>
-Risk: Generated hardening advice may be incomplete or mismatched to a specific framework, threat model, or production architecture. <br>
-Mitigation: Use the recommendations as review guidance and confirm final controls through code review, security testing, and environment-specific validation. <br>
+## Use Case:
 
+Developers and engineers use this skill to review API routes, middleware, and configuration for practical hardening gaps. It produces prioritized recommendations and before/after implementation examples for common web API frameworks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-api-hardener) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with checklists and before/after code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution or destructive behavior was reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Code snippets and logging examples may be copied without adapting redaction or deployment-specific middleware settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact or hash identifiers, avoid arbitrary object logging, and verify recommended middleware settings against the target framework and deployment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/ryudi84/skills/sovereign-api-hardener)
+- [ClawHub publisher profile](https://clawhub.ai/user/ryudi84)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown hardening report with tables, findings, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prioritized findings, before/after examples, and quick wins for API code reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

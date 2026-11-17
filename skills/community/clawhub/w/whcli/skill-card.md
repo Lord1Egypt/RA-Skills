@@ -1,42 +1,55 @@
-## Description: <br>
-Willhaben CLI for searching Austria's largest classifieds marketplace. Search listings, view details, check seller profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Willhaben CLI for searching Austria's largest classifieds marketplace. Search listings, view details, check seller profiles.
 
-## Publisher: <br>
-[pasogott](https://clawhub.ai/user/pasogott) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pasogott](https://clawhub.ai/user/pasogott)
 
-## Use Case: <br>
-Developers and command-line users use this skill to install and run whcli for searching willhaben.at listings, viewing listing details, and checking seller profiles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an external whcli package from a Homebrew tap or source repository. <br>
-Mitigation: Review the package source or formula before installing in sensitive environments, and install only when you trust the publisher. <br>
-Risk: The artifact notes known CLI limitations, including a bug in the show command and location filters that may include nearby regions. <br>
-Mitigation: Validate important listing details in willhaben.at directly before relying on CLI output for decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Willhaben](https://willhaben.at) <br>
-- [whcli repository](https://github.com/pasogott/whcli) <br>
-- [whcli issues](https://github.com/pasogott/whcli/issues) <br>
-- [Homebrew tap](https://github.com/pasogott/homebrew-tap) <br>
+## Use Case:
 
+External users and developers use this skill to search Willhaben listings, inspect listing details, and check seller profiles from an agent-assisted command-line workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce table, JSON, or CSV output when run through whcli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and invokes a third-party CLI from the pasogott distribution channel.
+
+Mitigation: Install only if you trust the publisher and channel; review or pin the upstream repository or release before source installation, and avoid elevated privileges unless necessary.
+
+Risk: The artifact documents that the show command has a bug and that location filtering may include nearby regions.
+
+Mitigation: Verify important listing details and location-sensitive results on willhaben.at before acting on them.
+
+## Reference(s):
+
+- [Willhaben CLI Repository](https://github.com/pasogott/whcli)
+- [Willhaben CLI Issues](https://github.com/pasogott/whcli/issues)
+- [Willhaben Homebrew Tap](https://github.com/pasogott/homebrew-tap)
+- [willhaben.at](https://willhaben.at)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may request table, JSON, or CSV output from whcli.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

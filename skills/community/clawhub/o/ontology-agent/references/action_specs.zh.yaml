@@ -1,0 +1,2464 @@
+meta:
+  generated_by: gen_action_specs.py
+  total: 159
+  opb_real_covered: 75
+  note: 2026-08-15 新增 24 部门扩展原创动作 18 条（WSHU，procurement/investor/csm/international/risk/it_security 各 3），141→159。
+actions:
+  strategic-startup-mentor:
+    name: 创业指导师
+    source: OPB
+    desc: 当用户需要创业指导、商业模式咨询、融资建议、团队组建建议、产品战略规划或创业过程中遇到的各种挑战和问题时使用此技能。适用场景包括：(1) 商业模式设计和盈利模式咨询，(2)
+      融资准备和投资人沟通指导，(3) 产品迭代和用户留存优化，(4) 团队管理和合伙人关系处理，(5) 市场定位和增长策略，(6) 一人企业方法论指导。触发关键词：创业指导、商业模式、融资、团队管理、产品策略、用户留存、一人企业。
+    inputs:
+    - 创业现状
+    - 困惑点
+    - 资源清单
+    outputs:
+    - 战略建议
+    - 行动清单
+    - 风险提示
+    uses_entities:
+    - Organization
+    - Goal
+    skill_ref: OPB/skills/strategic-planning-startup-mentor
+  strategic-startup-simulator:
+    name: 创业模拟器
+    source: OPB
+    desc: 当用户想要模拟创业场景、练习商业决策、评估创业想法、或需要创业相关的场景演练和反馈时使用此技能。适用场景包括：(1) 用户提出创业想法寻求可行性分析，(2)
+      用户在创业过程中面临战略决策选择，(3) 用户需要对商业模式进行压力测试，(4) 用户开发技术产品但需要先从商业角度评估市场定位。触发关键词：创业、商业模式、可行性分析、市场验证、MVP、创业决策、商业分析。
+    inputs:
+    - 经营假设
+    - 市场参数
+    outputs:
+    - 情景推演
+    - 敏感性分析
+    uses_entities:
+    - Organization
+    - Project
+    skill_ref: OPB/skills/strategic-planning-startup-simulator
+  personal-review:
+    name: 周期性复盘
+    source: OPB
+    desc: 复盘助手 - 专业的周期性复盘与反思指导专家。适用场景：(1) 周期性复盘（日复盘/周复盘/月复盘/年度总结），(2) 项目复盘与经验提炼，(3)
+      成就总结与亮点提取，(4) 问题反思与根因分析，(5) 经验沉淀与知识管理，(6) 改进行动计划制定，(7) 失败分析与教训提炼，(8) 成长轨迹记录与回顾
+    inputs:
+    - 周期目标
+    - 实际结果
+    outputs:
+    - 复盘报告
+    - 改进项
+    uses_entities:
+    - Goal
+    - Task
+    skill_ref: OPB/skills/personal-growth-review-assistant
+  personal-planning:
+    name: 规划助手
+    source: OPB
+    desc: 规划助手 - 专业的个人目标规划与计划制定专家。适用场景：(1) 长期规划制定（年度/3年/5年/10年愿景），(2) 短期计划制定（季度/月度/周计划），(3)
+      目标分解与执行路径设计，(4) 优先级排序与资源分配，(5) 计划调整与灵活应对，(6) OKR/目标管理体系设计，(7) 项目规划与里程碑设定，(8)
+      个人发展计划（IDP）制定
+    inputs:
+    - 目标描述
+    outputs:
+    - 计划
+    - 里程碑
+    uses_entities:
+    - Goal
+    - Task
+    skill_ref: OPB/skills/personal-growth-planning-assistant
+  personal-talent-discovery:
+    name: 天赋发现顾问
+    source: OPB
+    desc: 天赋与特长发现顾问，通过10个精心设计的深度问题，一次一个地引导用户探索隐藏的天赋和特长，收集具体案例，区分真正热爱与勉强学会的技能，最终给出精准的擅长领域分析和变现建议。适用场景包括
+      (1) 用户想要发现自己的隐藏天赋和特长，(2) 需要明确职业发展方向和优势领域，(3) 寻找个人特长的变现路径，(4) 区分兴趣爱好与真正擅长的领域。触发关键词为天赋发现、特长挖掘、优势分析、能力评估、职业定位、变现建议。
+    inputs:
+    - 兴趣
+    - 过往经历
+    outputs:
+    - 天赋画像
+    - 角色建议
+    uses_entities:
+    - Person
+    skill_ref: OPB/skills/personal-growth-talent-discovery
+  personal-goal-manager:
+    name: 目标管理
+    source: OPB
+    desc: 目标管理助手 - 专业的目标设定与达成追踪专家。适用场景：(1) SMART目标设定与优化，(2) 大目标分解为可执行的小目标，(3) 目标进度追踪与可视化，(4)
+      目标达成率分析与差距诊断，(5) 目标调整与重新规划建议，(6) 目标激励机制与奖惩设计，(7) 多目标优先级排序与平衡，(8) 目标复盘与经验提炼
+    inputs:
+    - 目标
+    outputs:
+    - 目标树
+    - 进度
+    uses_entities:
+    - Goal
+    skill_ref: OPB/skills/personal-growth-goal-manager
+  personal-habit-builder:
+    name: 习惯养成
+    source: OPB
+    desc: 习惯养成助手 - 专业的行为习惯设计与养成专家。适用场景：(1) 新习惯设计与触发机制建立，(2) 习惯追踪系统与打卡方案，(3) 习惯养成策略与动机维持，(4)
+      习惯中断后的恢复方案，(5) 坏习惯戒除与替代行为设计，(6) 习惯堆叠与习惯链建设，(7) 习惯效果评估与优化，(8) 21/66天习惯养成计划
+    inputs:
+    - 想养成的习惯
+    outputs:
+    - 习惯方案
+    - 提示卡
+    uses_entities:
+    - Person
+    skill_ref: OPB/skills/personal-growth-habit-builder
+  personal-career-planner:
+    name: 职业规划
+    source: OPB
+    desc: 职业规划助手 - 专业的职业发展规划与转型指导专家。适用场景：(1) 职业路径规划与发展方向选择，(2) 职业能力评估与差距分析，(3) 行业/岗位机会分析与趋势洞察，(4)
+      职业转型策略与过渡规划，(5) 简历优化与亮点提炼，(6) 面试准备与模拟演练，(7) 薪资谈判策略，(8) 个人品牌建设与职场影响力
+    inputs:
+    - 当前职业
+    - 志向
+    outputs:
+    - 路径图
+    - 能力缺口
+    uses_entities:
+    - Person
+    - Goal
+    skill_ref: OPB/skills/personal-growth-career-planner
+  personal-time-manager:
+    name: 时间管理
+    source: OPB
+    desc: 时间管理助手 - 专业的时间管理与效率提升专家。适用场景：(1) 时间日志分析与时间去向诊断，(2) 优先级管理与任务排序，(3) 时间块规划与日程设计，(4)
+      时间浪费识别与改进，(5) 效率提升策略与工具推荐，(6) 番茄工作法等时间管理方法指导，(7) 拖延症应对策略，(8) 工作生活平衡优化
+    inputs:
+    - 任务清单
+    - 时间预算
+    outputs:
+    - 日程
+    - 优先级
+    uses_entities:
+    - Task
+    skill_ref: OPB/skills/personal-growth-time-manager
+  personal-health-manager:
+    name: 健康管理
+    source: OPB
+    desc: 健康管理助手 - 专业的身心健康管理与生活方式优化专家。适用场景：(1) 健康目标设定与行动计划，(2) 运动计划制定（减脂/增肌/体能），(3)
+      饮食方案与营养建议，(4) 睡眠质量优化，(5) 压力管理与情绪调节，(6) 健康数据追踪与分析，(7) 久坐办公健康改善，(8) 精力管理与能量优化
+    inputs:
+    - 健康数据
+    outputs:
+    - 健康计划
+    uses_entities:
+    - Person
+    skill_ref: OPB/skills/personal-growth-health-manager
+  personal-human3:
+    name: HUMAN3.0评估
+    source: OPB
+    desc: 评估个人在 AI 时代的人机协作能力层级。
+    inputs:
+    - 能力自述
+    outputs:
+    - HUMAN3.0 报告
+    uses_entities:
+    - Person
+    skill_ref: OPB/skills/personal-human3-evaluation
+  learning-planner:
+    name: 学习规划
+    source: OPB
+    desc: 学习规划助手 - 专业的个人学习与技能发展规划专家。适用场景：(1) 学习新技能或知识领域的路径规划，(2) 制定周/月/季度学习计划，(3)
+      知识点梳理与思维导图生成，(4) 练习题与自测题设计，(5) 学习进度追踪与效果评估，(6) 学习资源推荐与筛选，(7) 考试/认证备考规划，(8) 碎片化学习方案设计
+    inputs:
+    - 学习目标
+    outputs:
+    - 学习路径
+    uses_entities:
+    - Goal
+    skill_ref: OPB/skills/learning-development-learning-planner
+  knowledge-manager:
+    name: 知识管理
+    source: OPB
+    desc: 知识管理助手 - 专业的个人与团队知识资产管理专家。适用场景：(1) 知识库/Wiki体系搭建与组织，(2) 知识图谱设计与可视化，(3) 笔记系统优化（Notion/Obsidian/语雀等），(4)
+      知识检索与标签体系设计，(5) 知识沉淀与复用流程，(6) 团队知识分享机制，(7) 第二大脑构建，(8) 信息过载管理与筛选
+    inputs:
+    - 资料流
+    outputs:
+    - 知识库结构
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/learning-development-knowledge-manager
+  company-values:
+    name: 公司价值观
+    source: slav
+    desc: 从创始人信念提炼公司价值观与行为准则。
+    inputs:
+    - 创始人信念
+    outputs:
+    - 价值观声明
+    uses_entities:
+    - Organization
+    skill_ref: slavingia/skills/company-values
+  user-operations:
+    name: 用户运营
+    source: OPB
+    desc: 用户运营助手 - 专业的用户全生命周期运营与增长专家。适用场景：(1) 用户增长策略制定（拉新渠道/裂变活动），(2) 用户激活方案设计（新手引导/首单转化），(3)
+      用户留存策略优化（会员体系/积分系统），(4) 流失用户召回方案，(5) 社区运营策略与UGC激励，(6) 用户分层与精细化运营，(7) 用户生命周期价值（LTV）提升，(8)
+      私域流量运营与转化
+    inputs:
+    - 用户数据
+    outputs:
+    - 运营策略
+    - 分层
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/operations-user-operations
+  event-planner:
+    name: 活动策划
+    source: OPB
+    desc: 活动策划助手 - 专业的线上线下活动策划与执行专家。适用场景：(1) 活动方案设计（发布会/沙龙/展会/年会），(2) 活动流程规划与时间表制定，(3)
+      活动文案撰写（邀请函/主持稿/宣传文案），(4) 活动预算编制与成本控制，(5) 活动效果预测与KPI设定，(6) 线上活动策划（直播/Webinar/线上发布会），(7)
+      活动复盘分析与改进建议，(8) 供应商选择与协调管理
+    inputs:
+    - 活动目标
+    - 预算
+    outputs:
+    - 活动方案
+    - 执行表
+    uses_entities:
+    - Event
+    - Project
+    skill_ref: OPB/skills/operations-event-planner
+  hr-recruiter:
+    name: 招聘助手
+    source: OPB
+    desc: JD 撰写、简历筛选与面试评估。
+    inputs:
+    - 岗位需求
+    outputs:
+    - JD
+    - 候选人评估
+    uses_entities:
+    - Person
+    - Department
+    skill_ref: OPB/skills/hr-recruiter
+  hr-performance:
+    name: 绩效管理
+    source: OPB
+    desc: 设计绩效指标与考核周期。
+    inputs:
+    - 岗位职责
+    outputs:
+    - 绩效方案
+    uses_entities:
+    - Department
+    - Person
+    skill_ref: OPB/skills/hr-performance
+  hr-compensation:
+    name: 薪酬设计
+    source: OPB
+    desc: 薪酬结构与激励方案设计。
+    inputs:
+    - 岗位价值
+    - 预算
+    outputs:
+    - 薪酬带宽
+    - 激励方案
+    uses_entities:
+    - Department
+    skill_ref: OPB/skills/hr-compensation
+  finance-planner:
+    name: 财务规划
+    source: OPB
+    desc: '财务规划助手 - 专业的财务规划与预算管理专家。适用场景：
+
+      (1) 年度财务预算编制与管理
+
+      (2) 现金流预测与资金计划
+
+      (3) 财务目标设定与分解
+
+      (4) 财务报表分析与解读
+
+      (5) 财务预警与风险控制
+
+      (6) 融资方案与资本规划
+
+      (7) 财务计划执行与复盘
+
+      触发关键词：财务规划、预算管理、现金流、财务预测、财务分析、资金计划、财务目标、财务报表、财务风险、融资规划
+
+      '
+    inputs:
+    - 历史收支
+    - 业务计划
+    - 税务状态
+    outputs:
+    - 预算表
+    - 现金流预测
+    - 财务指标
+    uses_entities:
+    - Organization
+    - Account
+    - Task
+    skill_ref: OPB/skills/finance-financial-planner
+  finance-cost-analyst:
+    name: 成本分析
+    source: OPB
+    desc: '成本分析助手 - 专业的成本管控与效益优化专家。适用场景：
+
+      (1) 成本结构分析与拆解
+
+      (2) 成本动因分析与归因
+
+      (3) 成本优化方案设计
+
+      (4) 成本预测与预算编制
+
+      (5) 成本效益分析（CBA）
+
+      (6) 定价成本分析
+
+      (7) 降本增效项目评估
+
+      触发关键词：成本分析、成本优化、降本增效、成本结构、成本控制、成本预算、成本效益、定价分析、毛利分析、费用分析
+
+      '
+    inputs:
+    - 成本数据
+    - 产量
+    outputs:
+    - 成本结构
+    - 盈亏平衡
+    uses_entities:
+    - Account
+    - Project
+    skill_ref: OPB/skills/finance-cost-analyst
+  finance-investment-analyst:
+    name: 投资分析
+    source: OPB
+    desc: '投资分析助手 - 专业的投资评估与财务建模专家。适用场景：
+
+      (1) 投资机会评估与尽职调查
+
+      (2) 财务模型构建与估值分析
+
+      (3) ROI/IRR投资回报分析
+
+      (4) 投资风险评估与管理
+
+      (5) 投资组合分析与优化
+
+      (6) 并购估值与交易分析
+
+      (7) 投资决策报告撰写
+
+      触发关键词：投资分析、财务建模、估值、ROI、IRR、尽职调查、投资回报、并购分析、投资组合、投资决策、DCF、PE、投资报告
+
+      '
+    inputs:
+    - 投资方案
+    - 现金流
+    outputs:
+    - NPV/IRR
+    - 风险评级
+    uses_entities:
+    - Project
+    - Account
+    skill_ref: OPB/skills/finance-investment-analyst
+  legal-contract-reviewer:
+    name: 合同审查
+    source: OPB
+    desc: 合同审查助手 - 专业的商业合同审查与风险控制专家。适用场景：(1) 合同条款逐条分析与风险识别，(2) 合同修改建议与条款优化，(3) 常用合同模板生成（NDA/服务协议/采购合同等），(4)
+      合同合规性检查与法规对照，(5) 合同谈判策略与让步底线建议，(6) 不利条款标注与替代方案，(7) 合同对比分析（版本差异/条款对比），(8) 违约责任与争议解决条款设计
+    inputs:
+    - 合同文本
+    outputs:
+    - 风险清单
+    - 修改建议
+    uses_entities:
+    - Document
+    - Organization
+    skill_ref: OPB/skills/legal-compliance-contract-reviewer
+  legal-compliance-checker:
+    name: 合规检查
+    source: OPB
+    desc: 合规检查助手 - 专业的企业合规与法规遵从专家。适用场景：(1) 法规符合性检查（GDPR/个保法/网络安全法等），(2) 合规风险评估与差距分析，(3)
+      合规报告与审计材料准备，(4) 合规培训材料设计，(5) 合规流程与制度设计，(6) 合规监控体系建设，(7) 数据隐私合规（隐私政策/用户协议），(8)
+      行业特定合规（金融/医疗/教育）
+    inputs:
+    - 业务描述
+    outputs:
+    - 合规差距
+    - 整改清单
+    uses_entities:
+    - Organization
+    - Policy
+    skill_ref: OPB/skills/legal-compliance-compliance-checker
+  legal-ip-manager:
+    name: 知识产权管理
+    source: OPB
+    desc: 知识产权助手 - 专业的知识产权保护与管理专家。适用场景：(1) 专利检索与分析（技术方案可专利性评估），(2) 商标注册策略与近似商标风险分析，(3)
+      著作权保护与登记建议，(4) IP保护策略制定（专利布局/商业秘密），(5) 知识产权风险评估与侵权分析，(6) IP申请流程指导与材料准备，(7) 开源协议选择与合规，(8)
+      IP组合管理与价值评估
+    inputs:
+    - 创新成果
+    outputs:
+    - IP 布局
+    - 申请清单
+    uses_entities:
+    - Document
+    - Organization
+    skill_ref: OPB/skills/legal-compliance-ip-manager
+  legal-overview:
+    name: 法律总览
+    source: Frog
+    desc: 一人公司法律结构与风险总览。
+    inputs:
+    - 公司形态
+    outputs:
+    - 法律结构图
+    - 风险点
+    uses_entities:
+    - Organization
+    skill_ref: Frog1205/skills/legal
+  legal-agreement:
+    name: 协议起草
+    source: Frog
+    desc: 起草合作/服务/股权等协议。
+    inputs:
+    - 合作要点
+    outputs:
+    - 协议草案
+    uses_entities:
+    - Document
+    - Person
+    skill_ref: Frog1205/skills/legal
+  legal-compare:
+    name: 条款比对
+    source: Frog
+    desc: 对比多版合同差异。
+    inputs:
+    - 多版合同
+    outputs:
+    - 差异表
+    uses_entities:
+    - Document
+    skill_ref: Frog1205/skills/legal
+  legal-freelancer:
+    name: 自由职业法务
+    source: Frog
+    desc: 面向自由职业者的轻量法务支持。
+    inputs:
+    - 业务场景
+    outputs:
+    - 法务要点
+    uses_entities:
+    - Person
+    skill_ref: Frog1205/skills/legal
+  legal-missing:
+    name: 缺失条款
+    source: Frog
+    desc: 检查合同缺失的关键条款。
+    inputs:
+    - 合同文本
+    outputs:
+    - 缺失清单
+    uses_entities:
+    - Document
+    skill_ref: Frog1205/skills/legal
+  legal-nda:
+    name: 保密协议
+    source: Frog
+    desc: 起草保密/竞业协议。
+    inputs:
+    - 保密范围
+    outputs:
+    - NDA 草案
+    uses_entities:
+    - Document
+    - Person
+    skill_ref: Frog1205/skills/legal
+  legal-negotiate:
+    name: 法务谈判
+    source: Frog
+    desc: 谈判策略与条款博弈。
+    inputs:
+    - 谈判议题
+    outputs:
+    - 谈判脚本
+    uses_entities:
+    - Person
+    skill_ref: Frog1205/skills/legal
+  legal-plain:
+    name: 白话法律
+    source: Frog
+    desc: 把法律语言转成大白话。
+    inputs:
+    - 法律文本
+    outputs:
+    - 白话解释
+    uses_entities:
+    - Document
+    skill_ref: Frog1205/skills/legal
+  legal-privacy:
+    name: 隐私合规
+    source: Frog
+    desc: 个人信息处理合规设计。
+    inputs:
+    - 数据处理流
+    outputs:
+    - 合规方案
+    uses_entities:
+    - Policy
+    - Person
+    skill_ref: Frog1205/skills/legal
+  legal-report-pdf:
+    name: 法律报告
+    source: Frog
+    desc: 生成结构化法律报告 PDF。
+    inputs:
+    - 分析结论
+    outputs:
+    - PDF 报告
+    uses_entities:
+    - Document
+    skill_ref: Frog1205/skills/legal
+  legal-review:
+    name: 法律审查
+    source: Frog
+    desc: 综合法律审查与意见。
+    inputs:
+    - 待审材料
+    outputs:
+    - 法律意见
+    uses_entities:
+    - Document
+    - Organization
+    skill_ref: Frog1205/skills/legal
+  legal-risks:
+    name: 法律风险
+    source: Frog
+    desc: 识别与评级法律风险。
+    inputs:
+    - 业务模式
+    outputs:
+    - 风险图谱
+    uses_entities:
+    - Organization
+    skill_ref: Frog1205/skills/legal
+  legal-terms:
+    name: 条款生成
+    source: Frog
+    desc: 按场景生成标准条款。
+    inputs:
+    - 条款类型
+    outputs:
+    - 条款文本
+    uses_entities:
+    - Document
+    skill_ref: Frog1205/skills/legal
+  opc-compliance-diagnosis:
+    name: OPC合规诊断
+    source: sober
+    desc: 一对一公司主体选型、新公司法合规、财税规划诊断。
+    inputs:
+    - 主体信息
+    - 业务模式
+    outputs:
+    - 合规诊断报告
+    - 整改项
+    uses_entities:
+    - Organization
+    - Policy
+    skill_ref: sober568/docs/skill-reference
+  product-industry-analyst:
+    name: 行业分析
+    source: OPB
+    desc: '行业分析助手 - 快速深入了解行业情况。帮助用户在进入新领域前建立行业认知，为产品决策提供市场依据。
+
+
+      触发场景：
+
+      (1) 用户想了解某个行业的整体情况和市场规模
+
+      (2) 用户需要分析行业内的主要玩家和竞争格局
+
+      (3) 用户探索新赛道，需要评估行业机会和风险
+
+      (4) 用户做产品规划，需要行业背景支撑决策
+
+      (5) 用户准备创业或投资，需要行业尽调
+
+      (6) 被其他 Skill（如 product-ideation-pm）调用进行行业调研
+
+
+      触发关键词：行业分析、市场规模、行业趋势、竞争格局、行业报告、市场调研、赛道分析、行业玩家、市场机会
+
+      '
+    inputs:
+    - 行业
+    outputs:
+    - 行业报告
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/product-industry-analyst
+  product-researcher:
+    name: 产品调研
+    source: OPB
+    desc: 市场调研助手 - 专业的市场洞察与机会分析专家。适用场景：(1) 目标用户画像构建与细分，(2) 用户需求调研与痛点挖掘，(3) 市场规模测算与增长预测（TAM/SAM/SOM），(4)
+      市场机会识别与蓝海分析，(5) 市场进入策略与GTM规划，(6) 行业趋势分析与预测，(7) 市场细分与定位策略，(8) 用户访谈问卷设计
+    inputs:
+    - 调研目标
+    outputs:
+    - 调研报告
+    uses_entities:
+    - Customer
+    - Goal
+    skill_ref: OPB/skills/product-market-researcher
+  product-market-researcher:
+    name: 市场调研
+    source: OPB
+    desc: 市场调研助手 - 专业的市场洞察与机会分析专家。适用场景：(1) 目标用户画像构建与细分，(2) 用户需求调研与痛点挖掘，(3) 市场规模测算与增长预测（TAM/SAM/SOM），(4)
+      市场机会识别与蓝海分析，(5) 市场进入策略与GTM规划，(6) 行业趋势分析与预测，(7) 市场细分与定位策略，(8) 用户访谈问卷设计
+    inputs:
+    - 品类
+    outputs:
+    - 市场地图
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/product-market-researcher
+  product-ideation-pm:
+    name: 产品创意PM
+    source: OPB
+    desc: '产品创意探讨与头脑风暴专家。扮演资深产品经理角色，帮助用户进行产品创意发散、需求定义、商业模式探索。
+
+
+      触发场景：
+
+      (1) 用户想要探讨新产品创意或功能点子
+
+      (2) 用户需要对产品方向进行头脑风暴
+
+      (3) 用户想要验证或完善产品想法
+
+      (4) 用户需要从0到1定义产品
+
+      (5) 用户探索商业模式或盈利方式
+
+      (6) 用户进行竞品分析和差异化定位
+
+
+      触发关键词：产品创意、头脑风暴、产品定义、功能设计、商业模式、产品想法、创意讨论、需求探索、产品方向、差异化、用户痛点、MVP定义
+
+      '
+    inputs:
+    - 问题域
+    outputs:
+    - 创意清单
+    - PRD
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/product-ideation-pm
+  product-ai-remake:
+    name: AI产品重做
+    source: OPB
+    desc: AI 产品重做探索器 - 基于已验证产品的 AI 重做方法论。核心理念：AI 时代所有产品都值得用 AI 重做一遍。适用场景：(1) 寻找可 AI
+      化重做的成熟产品，(2) 评估产品的 AI 重做可行性和差异化机会，(3) 设计 AI 版本的产品方案，(4) 制定 AI 产品的推广策略。触发词：AI重做、产品重做、AI化、找产品、产品创意、产品机会、remake、重新定义。区别于从零开始的产品创意，本技能聚焦于站在巨人肩膀上的
+      AI 创新。
+    inputs:
+    - 现有产品
+    outputs:
+    - AI 改造方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/product-ai-remake
+  rnd-frontend-review:
+    name: 前端审查
+    source: OPB
+    desc: Trigger when the user requests a review of frontend files (e.g., `.tsx`,
+      `.ts`, `.js`). Support both pending-change reviews and focused file reviews
+      while applying the checklist rules.
+    inputs:
+    - 代码/页面
+    outputs:
+    - 审查意见
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-frontend-code-review
+  rnd-code-simplify:
+    name: 代码简化
+    source: OPB
+    desc: Expert code simplification and refactoring specialist that autonomously
+      enhances code clarity, consistency, and maintainability while preserving exact
+      functionality. Use when (1) Code has been recently written or modified in the
+      current session, (2) After completing any coding task to proactively improve
+      code quality, (3) When applying project-specific coding standards from CLAUDE.md,
+      (4) To eliminate unnecessary complexity and improve readability without changing
+      behavior. Operates autonomously
+    inputs:
+    - 代码
+    outputs:
+    - 简化方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-code-simplify
+  rnd-requirements-writer:
+    name: 需求编写
+    source: OPB
+    desc: 需求编写助手 - 编写软件需求文档。适用场景：(1) 将模糊想法转化为结构化功能需求，(2) 编写用户故事(User Story)和验收标准，(3)
+      创建技术规格说明书(Tech Spec)，(4) 需求优先级评估和排序，(5) 需求变更影响分析，(6) PRD/MRD/BRD等产品文档编写，(7)
+      API接口需求定义。触发词：需求、PRD、用户故事、功能规格、技术规格、验收标准、需求文档。
+    inputs:
+    - 需求要点
+    outputs:
+    - 需求文档
+    uses_entities:
+    - Task
+    - Project
+    skill_ref: OPB/skills/rnd-requirements-writer
+  rnd-fullstack-architect:
+    name: 全栈架构
+    source: OPB
+    desc: 全栈架构设计专家 - 精通前后端架构设计、微服务架构、云原生架构、移动端架构。适用场景：(1) SaaS 产品架构设计，(2) 微服务拆分与治理，(3)
+      前端工程架构，(4) 移动端架构（iOS/Android/跨平台），(5) API 设计与网关架构，(6) 数据库选型与设计，(7) DevOps 与部署架构，(8)
+      高可用与容灾设计，(9) 性能优化与扩展策略
+    inputs:
+    - 业务需求
+    outputs:
+    - 架构方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-fullstack-architect
+  rnd-api-design:
+    name: API设计
+    source: OPB
+    desc: Master REST and GraphQL API design principles to build intuitive, scalable,
+      and maintainable APIs that delight developers. Use when designing new APIs,
+      reviewing API specifications, or establishing API design standards.
+    inputs:
+    - 领域模型
+    outputs:
+    - API 规范
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-api-design-principles
+  rnd-db-table-design:
+    name: 数据库表设计
+    source: OPB
+    desc: Design a PostgreSQL-specific schema. Covers best-practices, data types,
+      indexing, constraints, performance patterns, and advanced features
+    inputs:
+    - 实体关系
+    outputs:
+    - DDL
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-postgresql-table-design
+  rnd-technical-writer:
+    name: 技术写作
+    source: OPB
+    desc: 技术文档撰写。
+    inputs:
+    - 技术内容
+    outputs:
+    - 技术文档
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/rnd-technical-writer
+  rnd-blog-planner:
+    name: 博客系列规划
+    source: OPB
+    desc: 技术博客内容矩阵规划。
+    inputs:
+    - 主题
+    outputs:
+    - 选题矩阵
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/rnd-blog-planner
+  rnd-arch-diagrammer:
+    name: 架构图绘制
+    source: OPB
+    desc: 用图表达系统架构。
+    inputs:
+    - 架构描述
+    outputs:
+    - 架构图
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-arch-diagrammer
+  rnd-frontend-design:
+    name: 前端设计
+    source: OPB
+    desc: Create distinctive, production-grade frontend interfaces with high design
+      quality. Use this skill when the user asks to build web components, pages, or
+      applications. Generates creative, polished code that avoids generic AI aesthetics.
+    inputs:
+    - 需求
+    outputs:
+    - 设计稿
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-frontend-design
+  rnd-cockpit-architect:
+    name: 座舱架构
+    source: OPB
+    desc: 智能座舱架构设计专家 - 精通车载软件架构、SOA 服务化架构、跨域融合、车机系统开发。适用场景：(1) 座舱域控架构设计，(2) SOA 服务化架构，(3)
+      HMI 人机交互架构，(4) 多屏互联方案，(5) 车云一体架构，(6) AUTOSAR AP/CP 架构，(7) 功能安全设计 (ISO 26262)，(8)
+      信息安全设计，(9) 车载中间件选型 (SOME/IP, DDS)
+    inputs:
+    - 车机需求
+    outputs:
+    - 座舱架构
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-cockpit-architect
+    industry_specific: true
+  rnd-android-architect:
+    name: Android架构
+    source: OPB
+    desc: Android 系统架构设计专家 - 精通 Android 系统底层架构、Framework 层设计、HAL 开发、系统定制与优化。适用场景：(1)
+      Android 系统定制开发与 AOSP 源码修改，(2) Framework 层模块设计与系统服务开发，(3) HAL 硬件抽象层开发（HIDL/AIDL），(4)
+      系统性能优化（启动/内存/功耗），(5) Binder/AIDL/HIDL 接口设计与 IPC 架构，(6) SELinux 策略设计与安全架构，(7)
+      多进程通信架构与进程管理，(8) Android 架构评审与决策分析
+    inputs:
+    - 端侧需求
+    outputs:
+    - Android 架构
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-android-system-architect
+    industry_specific: true
+  rnd-android-perf:
+    name: Android性能
+    source: OPB
+    desc: Android 性能分析专家 - 专业的 Android 系统性能问题诊断与优化。适用场景：(1) 系统性能问题诊断（卡顿/运行缓慢/ANR），(2)
+      性能数据分析（logcat/systrace/traceview/dumpsys/perfetto），(3) CPU 性能分析（占用峰值/主线程阻塞/死循环/低效算法），(4)
+      内存性能分析（内存泄漏/GC频率/OOM风险），(5) IO 性能分析（磁盘读写/数据库操作/网络IO），(6) 应用响应性分析（ANR/消息队列阻塞/UI渲染/启动时间），(7)
+      性能优化方案设计（代码级优化/架构改进），(8) 性能监控与预防方案
+    inputs:
+    - 性能基线
+    outputs:
+    - 优化方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-android-performance-analyzer
+    industry_specific: true
+  rnd-anr-analyzer:
+    name: ANR分析
+    source: OPB
+    desc: Android ANR 分析专家 - 专业的 ANR 问题诊断与根因定位。适用场景：(1) 分析 traces.txt/tombstone 等
+      ANR 日志文件，(2) 诊断应用卡顿、无响应或 ANR 弹窗问题，(3) 排查主线程阻塞的具体原因和调用栈，(4) 识别代码中可能导致 ANR 的风险模式，(5)
+      设计 ANR 问题的优化和修复方案，(6) 死锁/锁竞争/Binder 超时等复杂问题分析，(7) 系统级连锁 ANR 问题诊断，(8) ANR 预防监控方案设计
+    inputs:
+    - trace
+    outputs:
+    - 根因
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-anr-analyzer
+    industry_specific: true
+  rnd-auto-issue:
+    name: 座舱问题分析
+    source: OPB
+    desc: 智能座舱系统问题分析专家 - Android车载系统问题诊断与根因定位。适用场景：(1) 显示异常问题（黑屏/白屏/闪屏/花屏/触控失效），(2)
+      系统稳定性问题（死机/重启/Watchdog/ANR/JE/NE），(3) 性能问题（卡顿/响应慢/内存泄漏/OOM/功耗异常），(4) 功能异常（功能不工作/状态错误/跨域通信失败），(5)
+      多系统协同问题（Android-QNX-MCU交互异常），(6) 多源日志分析与时间线构建，(7) 跨系统根因定位与证据链分析，(8) 车载场景解决方案设计
+    inputs:
+    - 日志
+    outputs:
+    - 归因报告
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-automotive-issue-analyzer
+    industry_specific: true
+  rnd-aspice-sys2swe:
+    name: ASPICE需求拆解
+    source: OPB
+    desc: 'ASPICE需求评审专家 - 支持SYS.1/SYS.2/SWE.1三种需求类型的全面评审，确保需求质量符合ASPICE标准和公司规范要求。适用场景：
+
+      (1) SYS.1客户需求评审：评审客户/利益相关方需求文档，确保可作为系统需求分析的有效输入
+
+      (2) SYS.2系统需求评审：评审系统需求规格书(SRS/SRD)，验证需求完整性、正确性、可追溯性
+
+      (3) SWE.1软件需求评审：评审软件需求规格书(SWRS)，确保软件需求可供开发团队直接使用
+
+      (4) ASPICE合规性检查：验证需求文档是否符合ASPICE过程要求
+
+      (5) 需求质量检查：检查完整性、正确性、清晰性、一致性、可追溯性、可测试性
+
+      (6) 智能座舱领域专业评审：从车载软件专业角度评估需求合理性和可行性
+
+      (7) 评审报告输出：生成结构化的评审报告，包含问题清单和改进建议
+
+      触发关键词：需求评审、ASPICE、SYS.1、SYS.2、SWE.1、客户需求、系统需求、软件需求、SWRS、SRD、需求分析、评审报告、需求质量、智能座舱、车载软件
+
+      '
+    inputs:
+    - 系统需求
+    outputs:
+    - 软件需求
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-aspice-requirements-reviewer
+    industry_specific: true
+  rnd-aspice-reviewer:
+    name: ASPICE需求评审
+    source: OPB
+    desc: 'ASPICE需求评审专家 - 支持SYS.1/SYS.2/SWE.1三种需求类型的全面评审，确保需求质量符合ASPICE标准和公司规范要求。适用场景：
+
+      (1) SYS.1客户需求评审：评审客户/利益相关方需求文档，确保可作为系统需求分析的有效输入
+
+      (2) SYS.2系统需求评审：评审系统需求规格书(SRS/SRD)，验证需求完整性、正确性、可追溯性
+
+      (3) SWE.1软件需求评审：评审软件需求规格书(SWRS)，确保软件需求可供开发团队直接使用
+
+      (4) ASPICE合规性检查：验证需求文档是否符合ASPICE过程要求
+
+      (5) 需求质量检查：检查完整性、正确性、清晰性、一致性、可追溯性、可测试性
+
+      (6) 智能座舱领域专业评审：从车载软件专业角度评估需求合理性和可行性
+
+      (7) 评审报告输出：生成结构化的评审报告，包含问题清单和改进建议
+
+      触发关键词：需求评审、ASPICE、SYS.1、SYS.2、SWE.1、客户需求、系统需求、软件需求、SWRS、SRD、需求分析、评审报告、需求质量、智能座舱、车载软件
+
+      '
+    inputs:
+    - 需求
+    outputs:
+    - 评审结论
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/rnd-aspice-requirements-reviewer
+    industry_specific: true
+  design-ui-ux:
+    name: UI/UX设计
+    source: OPB
+    desc: 'UI/UX design intelligence. 50 styles, 21 palettes, 50 font pairings, 20
+      charts, 9 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter,
+      Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review,
+      fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website,
+      landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile
+      app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card,
+      table, form, chart. Styles: g'
+    inputs:
+    - 需求
+    outputs:
+    - UI/UX 方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/design-ui-ux-pro-max
+  design-visual:
+    name: 视觉设计
+    source: OPB
+    desc: '视觉设计助手 - 专业的品牌视觉与平面设计专家。适用场景：
+
+      (1) 品牌视觉识别系统设计（VI）
+
+      (2) 配色方案设计与色彩理论
+
+      (3) 字体选择与排版设计
+
+      (4) 图标与插画风格指导
+
+      (5) 营销物料视觉设计
+
+      (6) 设计规范与风格指南
+
+      (7) 设计趋势分析与创意方向
+
+      触发关键词：视觉设计、VI设计、配色方案、字体排版、图标设计、品牌视觉、设计规范、风格指南、平面设计、视觉风格、色彩搭配
+
+      '
+    inputs:
+    - 品牌
+    outputs:
+    - 视觉稿
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/design-visual-designer
+  design-remotion:
+    name: 视频生成
+    source: OPB
+    desc: Best practices for Remotion - Video creation in React
+    inputs:
+    - 脚本
+    outputs:
+    - 视频
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/design-remotion-generator
+  test-case-writer:
+    name: 测试用例
+    source: OPB
+    desc: '测试用例编写助手 - 专业的测试用例设计与编写专家。适用场景：
+
+      (1) 测试用例设计（等价类/边界值/决策表/状态迁移）
+
+      (2) 测试场景分析与用例拆解
+
+      (3) 边界值与异常场景测试用例
+
+      (4) 功能测试用例编写（正向/反向/异常）
+
+      (5) API接口测试用例设计
+
+      (6) 测试用例评审与优化
+
+      (7) 用例模板设计与规范制定
+
+      (8) 测试数据设计与准备
+
+      触发关键词：测试用例、用例设计、边界值、等价类、测试场景、测试数据、用例评审、测试步骤
+
+      '
+    inputs:
+    - 需求
+    outputs:
+    - 用例集
+    uses_entities:
+    - Task
+    skill_ref: OPB/skills/testing-test-case-writer
+  test-automation:
+    name: 自动化测试
+    source: OPB
+    desc: '自动化测试助手 - 专业的测试自动化设计与实现专家。适用场景：
+
+      (1) 自动化测试框架选型与搭建（Selenium/Cypress/Playwright/Appium）
+
+      (2) 自动化测试脚本编写（Web/API/Mobile）
+
+      (3) 测试数据管理与Mock设计
+
+      (4) CI/CD测试集成（Jenkins/GitLab CI/GitHub Actions）
+
+      (5) Page Object模式与测试架构设计
+
+      (6) 测试报告生成与可视化
+
+      (7) 自动化测试维护与优化
+
+      (8) 并行测试与分布式执行
+
+      触发关键词：自动化测试、测试框架、Selenium、Cypress、Playwright、CI/CD、测试脚本、Page Object、Mock、测试报告
+
+      '
+    inputs:
+    - 待测系统
+    outputs:
+    - 测试脚本
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/testing-test-automation-engineer
+  test-performance:
+    name: 性能测试
+    source: OPB
+    desc: 压测与性能评估。
+    inputs:
+    - 系统
+    - 目标
+    outputs:
+    - 性能报告
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/test-performance
+  test-security:
+    name: 安全测试
+    source: OPB
+    desc: 漏洞扫描与渗透。
+    inputs:
+    - 目标
+    outputs:
+    - 漏洞报告
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/test-security
+  test-manager:
+    name: 测试管理
+    source: OPB
+    desc: '测试管理助手 - 专业的软件测试管理与协调专家。适用场景：
+
+      (1) 测试计划制定与评审（测试范围/策略/资源/时间）
+
+      (2) 测试进度跟踪与状态报告
+
+      (3) 缺陷管理与跟踪（Defect Triage/优先级/状态流转）
+
+      (4) 测试覆盖率分析与改进
+
+      (5) 测试报告生成与质量评估
+
+      (6) 测试团队协调与资源分配
+
+      (7) 测试风险识别与缓解
+
+      (8) 测试过程改进与度量
+
+      触发关键词：测试计划、测试进度、缺陷管理、测试报告、测试覆盖率、测试协调、测试风险、质量门禁
+
+      '
+    inputs:
+    - 发布计划
+    outputs:
+    - 测试计划
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/testing-test-manager
+  quality-system-builder:
+    name: 质量体系建设
+    source: OPB
+    desc: 质量体系建设助手 - 专业的质量管理体系设计与构建专家。适用场景：(1) ISO 9001等质量管理体系搭建，(2) 质量管理流程设计与优化，(3)
+      质量体系文件编写（手册/程序/作业指导），(4) 质量检查清单与表单设计，(5) 质量标准制定与宣贯，(6) 质量培训体系与材料开发，(7) 质量体系认证准备与辅导，(8)
+      质量体系有效性评估与改进
+    inputs:
+    - 组织现状
+    outputs:
+    - 质量体系
+    uses_entities:
+    - Organization
+    skill_ref: OPB/skills/quality-quality-system-builder
+  quality-monitor:
+    name: 质量监控
+    source: OPB
+    desc: 质量监控助手 - 专业的质量指标监控与数据分析专家。适用场景：(1) 质量KPI指标体系设计与定义，(2) 质量数据采集方案与自动化，(3) SPC统计过程控制与分析，(4)
+      质量趋势监控与异常预警，(5) 质量仪表板/看板设计，(6) 质量状态报告生成与解读，(7) 质量目标设定与分解，(8) 质量数据可视化与呈现
+    inputs:
+    - 指标
+    outputs:
+    - 监控看板
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/quality-quality-monitor
+  quality-auditor:
+    name: 质量审计
+    source: OPB
+    desc: 质量审计助手 - 专业的质量审计与合规检查专家。适用场景：(1) 质量审计计划与检查表制定，(2) 流程合规性审查与差距分析，(3) 产品/服务质量符合性审核，(4)
+      ISO/行业标准合规性检查，(5) 供应商质量审核评估，(6) 质量审计报告撰写与发布，(7) 不符合项整改跟踪验证，(8) 内审员培训与审计技巧指导
+    inputs:
+    - 审计范围
+    outputs:
+    - 审计报告
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/quality-quality-auditor
+  quality-improvement:
+    name: 质量改进
+    source: OPB
+    desc: 质量改进助手 - 专业的质量持续改进与问题解决专家。适用场景：(1) 质量问题根因分析（5Why/鱼骨图/故障树），(2) PDCA/DMAIC改进项目策划与执行，(3)
+      改进方案设计与效果预测，(4) 质量改进效果验证与固化，(5) 最佳实践提炼与标准化，(6) 质量成本分析与降本增效，(7) 质量文化建设与全员参与，(8)
+      持续改进机制设计与运营
+    inputs:
+    - 质量问题
+    outputs:
+    - 改进方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/quality-quality-improvement
+  quality-risk-manager:
+    name: 质量风险
+    source: OPB
+    desc: 质量风险管理助手 - 专业的质量风险识别与控制专家。适用场景：(1) 质量风险识别与登记（FMEA/HACCP），(2) 风险评估与优先级排序（RPN计算），(3)
+      风险应对策略制定与实施，(4) 风险监控与预警机制建立，(5) 质量风险报告与沟通，(6) 应急预案设计与演练，(7) 新产品/新工艺风险评审，(8)
+      供应链质量风险管理
+    inputs:
+    - 流程
+    outputs:
+    - 风险登记
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/quality-quality-risk-manager
+  devops-system-ops:
+    name: 系统运维
+    source: OPB
+    desc: 系统运维助手 - 专业的生产环境运维与稳定性保障专家。适用场景：(1) 系统监控方案设计与告警策略制定，(2) 生产故障诊断与排查（宕机、性能下降、服务不可用），(3)
+      系统性能优化与瓶颈分析，(4) 容量规划与资源扩容评估，(5) 运维自动化脚本与流程设计，(6) 运维报告与SLA分析，(7) 日志分析与问题定位，(8)
+      备份恢复策略与灾备方案
+    inputs:
+    - 系统
+    outputs:
+    - 运维方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/infrastructure-devops-system-operations
+  devops-engineer:
+    name: DevOps
+    source: OPB
+    desc: 'DevOps助手 - 专业的DevOps实践与自动化专家。适用场景：
+
+      (1) CI/CD流水线设计与实现
+
+      (2) 部署策略与发布管理
+
+      (3) 基础设施即代码（IaC）
+
+      (4) 容器化与Kubernetes部署
+
+      (5) 监控告警与可观测性
+
+      (6) DevOps工具链选型
+
+      (7) DevOps文化与实践推广
+
+      触发关键词：DevOps、CI/CD、持续集成、持续部署、Jenkins、GitLab CI、GitHub Actions、Docker、Kubernetes、Terraform、自动化部署
+
+      '
+    inputs:
+    - 代码库
+    outputs:
+    - 流水线
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/infrastructure-devops-devops-engineer
+  devops-cloud-arch:
+    name: 云架构
+    source: OPB
+    desc: '云架构助手 - 专业的云计算架构设计与优化专家。适用场景：
+
+      (1) 云架构设计与方案规划
+
+      (2) 云资源选型与容量规划
+
+      (3) 云成本优化与FinOps实践
+
+      (4) 多云/混合云策略设计
+
+      (5) 云迁移方案与实施
+
+      (6) 云安全架构设计
+
+      (7) 云原生架构转型
+
+      触发关键词：云架构、AWS、阿里云、Azure、GCP、云迁移、云成本、多云、混合云、云安全、云原生、Kubernetes、容器
+
+      '
+    inputs:
+    - 业务
+    outputs:
+    - 云架构
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/infrastructure-devops-cloud-architect
+  sec-strategist:
+    name: 安全策略
+    source: OPB
+    desc: 安全战略与治理。
+    inputs:
+    - 资产
+    outputs:
+    - 安全战略
+    uses_entities:
+    - Organization
+    skill_ref: OPB/skills/sec-strategist
+  sec-data-security:
+    name: 数据安全
+    source: OPB
+    desc: '数据安全助手 - 专业的数据保护与隐私合规专家。适用场景：
+
+      (1) 数据分类分级与标识
+
+      (2) 数据安全策略制定
+
+      (3) 数据加密与脱敏方案
+
+      (4) 数据泄露防护（DLP）
+
+      (5) 隐私合规（GDPR/个保法）
+
+      (6) 数据安全审计与评估
+
+      (7) 数据生命周期管理
+
+      触发关键词：数据安全、数据保护、数据分类、数据加密、脱敏、DLP、隐私合规、GDPR、个保法、数据泄露、数据审计
+
+      '
+    inputs:
+    - 数据流
+    outputs:
+    - 防护方案
+    uses_entities:
+    - Policy
+    - Document
+    skill_ref: OPB/skills/information-security-data-security
+  sec-incident-response:
+    name: 安全响应
+    source: OPB
+    desc: '安全事件响应助手 - 专业的安全事件处置与应急响应专家。适用场景：
+
+      (1) 安全事件识别与分类
+
+      (2) 应急响应计划制定
+
+      (3) 事件调查与取证分析
+
+      (4) 遏制与根除方案设计
+
+      (5) 系统恢复与业务连续性
+
+      (6) 事件复盘与改进建议
+
+      (7) 安全事件报告撰写
+
+      触发关键词：安全事件、应急响应、事件处置、入侵检测、安全告警、取证分析、恢复计划、事件复盘、安全报告、勒索软件、数据泄露
+
+      '
+    inputs:
+    - 事件
+    outputs:
+    - 处置报告
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/information-security-security-incident-response
+  meta-skill-creator:
+    name: 技能创建器
+    source: OPB
+    desc: Guide for creating effective skills. This skill should be used when users
+      want to create a new skill (or update an existing skill) that extends Claude's
+      capabilities with specialized knowledge, workflows, or tool integrations.
+    inputs:
+    - 技能需求
+    outputs:
+    - SKILL.md
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/god-skill-creator
+  opc-template-engine:
+    name: OPC模板引擎
+    source: ReS
+    desc: 生成 OPC 标准化技能模板。
+    inputs:
+    - 技能定义
+    outputs:
+    - 模板
+    uses_entities:
+    - Project
+    skill_ref: ReScienceLab/skills
+  opc-add-skill-engine:
+    name: 新增OPC技能
+    source: ReS
+    desc: 向 OPC 体系新增技能。
+    inputs:
+    - 新技能需求
+    outputs:
+    - 技能文件
+    uses_entities:
+    - Project
+    skill_ref: ReScienceLab/skills
+  content-app-namer:
+    name: 应用起名
+    source: OPB
+    desc: Generate creative, memorable, and appropriate names for software applications,
+      products, and services. Use when users need to name their app, software, product,
+      or service. Considers functionality, target audience, brand positioning, cultural
+      factors, and language requirements. Supports naming in any language specified
+      by the user.
+    inputs:
+    - 定位
+    outputs:
+    - 名称候选
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/content-app-namer
+  content-creator:
+    name: 内容创作
+    source: OPB
+    desc: '内容创作助手 - 专业的多形式内容创作与优化专家。适用场景：
+
+      (1) 文章写作（博客/公众号/专栏/新闻稿）
+
+      (2) 内容策划与大纲设计
+
+      (3) 标题优化与开头撰写
+
+      (4) 内容改写与润色优化
+
+      (5) SEO内容优化与关键词布局
+
+      (6) 社交媒体文案创作
+
+      (7) 内容系列规划与选题策划
+
+      触发关键词：写文章、内容创作、博客、公众号、文案、标题、大纲、内容优化、改写、润色、SEO文章、选题策划、内容规划
+
+      '
+    inputs:
+    - 主题
+    outputs:
+    - 内容
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-content-creator
+  content-audio:
+    name: 音频生成
+    source: OPB
+    desc: 音频生成助手 - 根据文本生成音频
+    inputs:
+    - 脚本
+    outputs:
+    - 音频
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-audio-generator
+  content-video-script:
+    name: 视频脚本
+    source: OPB
+    desc: '视频脚本助手 - 专业的视频内容策划与脚本创作专家。适用场景：
+
+      (1) 短视频脚本创作（抖音/快手/视频号）
+
+      (2) 中长视频脚本（B站/YouTube）
+
+      (3) 分镜头脚本设计
+
+      (4) 口播文案撰写
+
+      (5) 视频大纲与结构设计
+
+      (6) 视频标题与封面文案
+
+      (7) 视频SEO优化（标题/描述/标签）
+
+      触发关键词：视频脚本、短视频文案、分镜头、口播稿、视频大纲、抖音脚本、B站脚本、YouTube脚本、视频策划、拍摄脚本
+
+      '
+    inputs:
+    - 选题
+    outputs:
+    - 脚本
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-video-script-writer
+  content-altay:
+    name: 散文写作
+    source: OPB
+    desc: 阿勒泰写作法 - 基于李娟散文风格的写作指导方法,包含48条具体写作心法。用于:(1) 创作或改进散文、日记、博客等个人写作;(2) 提升写作的真实感、细节感和感官体验;(3)
+      审查和优化文章的具体性和生动性;(4) 学习如何观察生活、捕捉细节、克制表达。触发词:阿勒泰、李娟风格、写作心法、真实记录、生活细节、感官写作、散文创作、文章改进、写作指导
+    inputs:
+    - 主题
+    outputs:
+    - 文章
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-altay-writing
+  content-oss-article:
+    name: 开源文章
+    source: OPB
+    desc: 生成"一天一个开源项目"系列的技术文章。当用户需要创建或生成关于开源项目的技术文章时使用此技能，包括项目介绍、背景、功能分析、详细剖析等内容。适用于内容创作、技术博客写作、开源项目推广等场景。
+    inputs:
+    - 主题
+    outputs:
+    - 文章
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-opensource-project-article-writer
+  content-notebooklm:
+    name: 研究助手
+    source: OPB
+    desc: Use this skill to query your Google NotebookLM notebooks directly from Claude
+      Code for source-grounded, citation-backed answers from Gemini. Browser automation,
+      library management, persistent auth. Drastically reduced hallucinations through
+      document-only responses.
+    inputs:
+    - 文献
+    outputs:
+    - 综述
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-notebooklm
+  mkt-ad-copywriter:
+    name: 广告文案
+    source: OPB
+    desc: 创作产品广告和品牌 Slogan，提供专业的营销文案创意服务。适用场景包括：(1) 品牌 Slogan 和核心广告语创作，(2) 产品广告文案撰写，(3)
+      营销文案优化和改进，(4) 多平台适配文案（社交媒体、电商、户外广告等），(5) A/B测试文案变体生成，(6) 节日活动和促销文案。触发关键词：Slogan、广告语、广告文案、营销文案、品牌传播、文案创意、宣传语。
+    inputs:
+    - 产品
+    - 受众
+    outputs:
+    - 文案
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/marketing-ad-copywriter
+  brand-manager:
+    name: 品牌管理
+    source: OPB
+    desc: '品牌管理助手 - 专业的品牌战略规划与管理专家。适用场景：
+
+      (1) 品牌定位与差异化策略制定
+
+      (2) 品牌架构设计（主品牌/子品牌/背书品牌）
+
+      (3) 品牌资产盘点与价值评估
+
+      (4) 品牌一致性审计与规范检查
+
+      (5) 品牌故事与核心叙事构建
+
+      (6) 品牌触点体验设计
+
+      (7) 品牌健康度诊断与提升建议
+
+      触发关键词：品牌定位、品牌策略、品牌架构、品牌故事、品牌资产、品牌审计、品牌一致性、品牌形象、品牌价值、品牌管理
+
+      '
+    inputs:
+    - 品牌现状
+    outputs:
+    - 品牌策略
+    uses_entities:
+    - Organization
+    skill_ref: OPB/skills/brand-pr-brand-manager
+  brand-pr-strategist:
+    name: 公关策略
+    source: OPB
+    desc: '公关策略助手 - 专业的企业公关与媒体传播策略专家。适用场景：
+
+      (1) PR传播策略制定与规划
+
+      (2) 媒体关系建立与维护
+
+      (3) 危机公关预案与应对
+
+      (4) 新闻稿/通稿撰写与优化
+
+      (5) 公关活动策划与执行
+
+      (6) KOL/媒体合作方案
+
+      (7) PR效果评估与复盘
+
+      触发关键词：公关策略、PR策划、媒体关系、危机公关、新闻稿、通稿、媒体传播、舆情应对、公关活动、KOL合作、媒体投放
+
+      '
+    inputs:
+    - 传播目标
+    outputs:
+    - 公关方案
+    uses_entities:
+    - Event
+    skill_ref: OPB/skills/brand-pr-pr-strategist
+  brand-reputation:
+    name: 舆情监控
+    source: OPB
+    desc: '舆情监控助手 - 专业的品牌舆情监测与声誉管理专家。适用场景：
+
+      (1) 舆情监测体系搭建与优化
+
+      (2) 舆情事件分析与研判
+
+      (3) 危机预警机制设计
+
+      (4) 舆情报告撰写与解读
+
+      (5) 负面舆情应对策略
+
+      (6) 声誉修复方案制定
+
+      (7) 竞品舆情对比分析
+
+      触发关键词：舆情监控、舆情分析、声誉监测、危机预警、负面舆情、舆情报告、品牌声誉、网络口碑、舆论分析、声誉修复、舆情应对
+
+      '
+    inputs:
+    - 品牌
+    outputs:
+    - 舆情报告
+    uses_entities:
+    - Organization
+    skill_ref: OPB/skills/brand-pr-reputation-monitor
+  design-banner:
+    name: 横幅创作
+    source: ReS
+    desc: 营销横幅设计。
+    inputs:
+    - 主题
+    outputs:
+    - 横幅
+    uses_entities:
+    - Document
+    skill_ref: ReScienceLab/skills/banner-creator
+  design-logo:
+    name: Logo创作
+    source: ReS
+    desc: Logo 设计。
+    inputs:
+    - 品牌
+    outputs:
+    - Logo
+    uses_entities:
+    - Document
+    skill_ref: ReScienceLab/skills/logo-creator
+  design-image-ai:
+    name: AI图像
+    source: ReS
+    desc: AI 生成营销图像。
+    inputs:
+    - 描述
+    outputs:
+    - 图像
+    uses_entities:
+    - Document
+    skill_ref: ReScienceLab/skills/image-ai
+  bd-partnership:
+    name: 合作伙伴管理
+    source: OPB
+    desc: 伙伴筛选与关系管理。
+    inputs:
+    - 伙伴需求
+    outputs:
+    - 合作方案
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/business-development-partnership
+  bd-negotiator:
+    name: 商务谈判
+    source: OPB
+    desc: 商务条款谈判。
+    inputs:
+    - 谈判议题
+    outputs:
+    - 谈判结果
+    uses_entities:
+    - Person
+    skill_ref: OPB/skills/business-development-negotiator
+  bd-channel-dev:
+    name: 渠道拓展
+    source: OPB
+    desc: 渠道招募与管理。
+    inputs:
+    - 渠道策略
+    outputs:
+    - 渠道计划
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/business-development-channel-developer
+  dist-reddit:
+    name: Reddit分发
+    source: ReS
+    desc: 在 Reddit 做内容分发获客。
+    inputs:
+    - 内容
+    outputs:
+    - 分发计划
+    uses_entities:
+    - Document
+    skill_ref: ReScienceLab/skills/reddit-distributor
+  dist-twitter:
+    name: Twitter分发
+    source: ReS
+    desc: Twitter/X 内容分发。
+    inputs:
+    - 内容
+    outputs:
+    - 分发计划
+    uses_entities:
+    - Document
+    skill_ref: ReScienceLab/skills/twitter-distributor
+  dist-producthunt:
+    name: ProductHunt
+    source: ReS
+    desc: ProductHunt 发布策划。
+    inputs:
+    - 产品
+    outputs:
+    - 发布方案
+    uses_entities:
+    - Project
+    skill_ref: ReScienceLab/skills/producthunt-launcher
+  dist-requesthunt:
+    name: 需求猎手
+    source: ReS
+    desc: 挖掘与提交产品需求。
+    inputs:
+    - 需求线索
+    outputs:
+    - 需求报告
+    uses_entities:
+    - Project
+    skill_ref: ReScienceLab/skills/requesthunt
+  seo-optimizer:
+    name: SEO优化
+    source: OPB
+    desc: 'SEO优化助手 - 专业的搜索引擎优化与流量增长专家。适用场景：
+
+      (1) 关键词研究与竞争分析
+
+      (2) 页面SEO优化（标题/描述/内容）
+
+      (3) 技术SEO诊断与修复
+
+      (4) 站内结构与内链优化
+
+      (5) 外链建设策略
+
+      (6) SEO数据分析与报告
+
+      (7) 竞品SEO策略分析
+
+      触发关键词：SEO优化、关键词、搜索排名、收录、外链、内链、技术SEO、页面优化、搜索引擎、流量优化、百度优化、Google优化
+
+      '
+    inputs:
+    - 站点
+    outputs:
+    - SEO 方案
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/content-seo-optimizer
+  seo-geo:
+    name: 地理SEO
+    source: ReS
+    desc: 本地地理 SEO 优化。
+    inputs:
+    - 区域
+    outputs:
+    - 本地方案
+    uses_entities:
+    - Document
+    skill_ref: ReScienceLab/skills/geo-seo
+  seo-domain-hunter:
+    name: 域名猎手
+    source: ReS
+    desc: 域名挖掘与评估。
+    inputs:
+    - 关键词
+    outputs:
+    - 域名候选
+    uses_entities:
+    - Project
+    skill_ref: ReScienceLab/skills/domain-hunter
+  growth-user-ops:
+    name: 用户增长
+    source: OPB
+    desc: 增长漏斗与实验。
+    inputs:
+    - 增长目标
+    outputs:
+    - 增长方案
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/growth-user-ops
+  growth-sustainably:
+    name: 可持续增长
+    source: slav
+    desc: 低成本可持续增长策略。
+    inputs:
+    - 业务
+    outputs:
+    - 增长路径
+    uses_entities:
+    - Organization
+    skill_ref: slavingia/skills/grow-sustainably
+  growth-first-customers:
+    name: 首批客户
+    source: slav
+    desc: 获取首批付费客户。
+    inputs:
+    - 产品
+    outputs:
+    - 获客方案
+    uses_entities:
+    - Customer
+    skill_ref: slavingia/skills/first-customers
+  growth-pricing:
+    name: 定价策略
+    source: slav
+    desc: 定价模型设计。
+    inputs:
+    - 成本
+    - 价值
+    outputs:
+    - 定价方案
+    uses_entities:
+    - Product
+    skill_ref: slavingia/skills/pricing
+  sales-strategist:
+    name: 销售策略
+    source: OPB
+    desc: '销售策略助手 - 专业的销售战略规划与执行优化专家。适用场景：
+
+      (1) 销售战略规划与目标设定（年度/季度销售计划）
+
+      (2) 客户画像与市场细分分析
+
+      (3) 销售渠道策略（直销/分销/电商/代理）
+
+      (4) 定价策略与促销方案设计
+
+      (5) 销售团队架构与激励机制设计
+
+      (6) 竞争策略与差异化定位
+
+      (7) 大客户/KA销售策略
+
+      (8) 销售流程优化与漏斗管理
+
+      触发关键词：销售策略、销售计划、客户画像、销售渠道、定价策略、销售目标、市场细分、销售团队、竞争分析、KA策略
+
+      '
+    inputs:
+    - 产品
+    - 市场
+    outputs:
+    - 销售策略
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/sales-sales-strategist
+  sales-crm:
+    name: CRM管理
+    source: OPB
+    desc: '客户关系管理助手 - 专业的客户关系管理与客户价值最大化专家。适用场景：
+
+      (1) CRM战略规划与体系设计
+
+      (2) 客户分类分级管理（RFM模型/客户分层）
+
+      (3) 客户生命周期管理（获取/激活/留存/变现/推荐）
+
+      (4) 客户价值分析（LTV/CLV/客户健康度）
+
+      (5) 客户流失预警与挽回策略
+
+      (6) 客户满意度与忠诚度管理（NPS/CSAT）
+
+      (7) CRM流程优化与自动化
+
+      (8) 会员体系与积分体系设计
+
+      触发关键词：CRM、客户管理、客户关系、RFM、客户分层、客户生命周期、LTV、客户价值、流失预警、客户挽回、NPS、客户满意度、会员体系、积分体系、客户画像
+
+      '
+    inputs:
+    - 客户数据
+    outputs:
+    - CRM 方案
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/sales-crm-manager
+  sales-forecaster:
+    name: 销售预测
+    source: OPB
+    desc: '销售预测助手 - 专业的销售预测与业绩分析专家。适用场景：
+
+      (1) 销售预测建模（时间序列/回归/加权概率）
+
+      (2) 销售目标分解与配额设定
+
+      (3) 业绩分析与复盘（达成率/差异分析）
+
+      (4) 销售趋势分析与洞察
+
+      (5) 销售预警与风险识别
+
+      (6) 销售报告与仪表盘设计
+
+      (7) 季度/年度业绩预测
+
+      (8) 管道健康度评估
+
+      触发关键词：销售预测、业绩分析、目标分解、销售趋势、预警、销售报告、配额、达成率、漏斗分析、管道预测
+
+      '
+    inputs:
+    - 历史
+    - 目标
+    outputs:
+    - 预测
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/sales-sales-forecaster
+  support-customer-service:
+    name: 客服助手
+    source: OPB
+    desc: '客服助手 - 专业的客户服务与支持体系专家。适用场景：
+
+      (1) 客服话术设计与优化
+
+      (2) FAQ知识库构建与维护
+
+      (3) 客户问题分类与处理流程
+
+      (4) 投诉处理与升级机制
+
+      (5) 客户满意度分析与改进
+
+      (6) 客服培训材料编写
+
+      (7) 自动回复与机器人话术
+
+      触发关键词：客服话术、FAQ、客户投诉、客户满意度、知识库、客服培训、自动回复、工单处理、客户咨询、售后服务
+
+      '
+    inputs:
+    - 客户问题
+    outputs:
+    - 应答
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/customer-support-customer-service
+  support-technical:
+    name: 技术支持
+    source: OPB
+    desc: '技术支持助手 - 专业的技术问题诊断与解决方案专家。适用场景：
+
+      (1) 技术问题诊断与分析
+
+      (2) 故障排查与解决方案
+
+      (3) 技术文档编写（FAQ/手册/指南）
+
+      (4) 用户操作指导与培训
+
+      (5) 技术工单处理与升级
+
+      (6) 产品使用问题解答
+
+      (7) 系统/软件问题处理
+
+      触发关键词：技术支持、故障排查、技术问题、报错、Bug、系统问题、软件问题、操作指导、技术文档、解决方案
+
+      '
+    inputs:
+    - 故障
+    outputs:
+    - 解决方案
+    uses_entities:
+    - Project
+    skill_ref: OPB/skills/customer-support-technical-support
+  data-analyst:
+    name: 数据分析
+    source: OPB
+    desc: '数据分析助手 - 专业的数据分析与业务洞察专家。适用场景：
+
+      (1) 数据可视化与报表设计
+
+      (2) 业务指标体系构建
+
+      (3) 趋势分析与预测建模
+
+      (4) 异常检测与根因分析
+
+      (5) A/B测试设计与分析
+
+      (6) 数据报告撰写与汇报
+
+      (7) SQL/数据提取指导
+
+      触发关键词：数据分析、数据可视化、指标体系、趋势分析、异常检测、AB测试、数据报告、SQL、数据洞察、Dashboard、数据驱动
+
+      '
+    inputs:
+    - 数据集
+    outputs:
+    - 分析报告
+    uses_entities:
+    - Document
+    skill_ref: OPB/skills/data-analytics-data-analyst
+  data-user-behavior:
+    name: 用户行为分析
+    source: OPB
+    desc: '用户行为分析助手 - 专业的用户行为洞察与增长分析专家。适用场景：
+
+      (1) 用户行为路径分析与优化
+
+      (2) 转化漏斗分析与瓶颈诊断
+
+      (3) 用户留存分析与流失预警
+
+      (4) 用户分群与画像构建
+
+      (5) 用户生命周期价值分析
+
+      (6) 行为事件埋点设计
+
+      (7) 增长实验设计与分析
+
+      触发关键词：用户行为、路径分析、漏斗分析、留存分析、用户分群、用户画像、LTV、埋点设计、行为洞察、转化率、流失分析
+
+      '
+    inputs:
+    - 行为数据
+    outputs:
+    - 行为洞察
+    uses_entities:
+    - Customer
+    skill_ref: OPB/skills/data-analytics-user-behavior-analyst
+  data-bi:
+    name: 商业智能
+    source: OPB
+    desc: 指标体系统与看板。
+    inputs:
+    - 业务指标
+    outputs:
+    - BI 看板
+    uses_entities:
+    - Organization
+    skill_ref: OPB/skills/data-bi
+  strategy-validate-idea:
+    name: 创意验证
+    source: slav
+    desc: 用最小成本验证创意真伪。
+    inputs:
+    - 创意
+    outputs:
+    - 验证结论
+    uses_entities:
+    - Goal
+    skill_ref: slavingia/skills/validate-idea
+  strategy-mvp:
+    name: MVP设计
+    source: slav
+    desc: 设计最小可行产品。
+    inputs:
+    - 核心假设
+    outputs:
+    - MVP 方案
+    uses_entities:
+    - Project
+    skill_ref: slavingia/skills/mvp
+  strategy-marketing-plan:
+    name: 营销计划
+    source: slav
+    desc: 营销组合与节奏。
+    inputs:
+    - 产品
+    - 受众
+    outputs:
+    - 营销计划
+    uses_entities:
+    - Project
+    skill_ref: slavingia/skills/marketing-plan
+  strategy-find-community:
+    name: 社群发现
+    source: slav
+    desc: 找到目标社群与种子用户。
+    inputs:
+    - 画像
+    outputs:
+    - 社群列表
+    uses_entities:
+    - Customer
+    skill_ref: slavingia/skills/find-community
+  strategy-processize:
+    name: 流程化
+    source: slav
+    desc: 把重复工作 SOP 化。
+    inputs:
+    - 流程描述
+    outputs:
+    - SOP
+    uses_entities:
+    - Task
+    skill_ref: slavingia/skills/processize
+  strategy-minimalist-review:
+    name: 极简复盘
+    source: slav
+    desc: 一页纸极简复盘。
+    inputs:
+    - 周期
+    outputs:
+    - 复盘页
+    uses_entities:
+    - Goal
+    skill_ref: slavingia/skills/minimalist-review
+  diagnosis-idea-feasibility:
+    name: 创意可行性
+    source: sober
+    desc: 需求真伪校验、个人匹配度测评、竞品分析、可行性等级。
+    inputs:
+    - projectInfo
+    - demandDescription
+    - personalSkills
+    - budget
+    - availableTime
+    outputs:
+    - demandValidation
+    - personalMatch
+    - feasibilityLevel
+    - nextStep
+    uses_entities:
+    - Goal
+    - Project
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-mvp-design:
+    name: 诊断MVP设计
+    source: sober
+    desc: MVP 裁剪、三层产品体系、交付成本测算。
+    inputs:
+    - 产品构想
+    outputs:
+    - MVP 方案
+    - 成本测算
+    uses_entities:
+    - Project
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-seed-coldstart:
+    name: 种子冷启动
+    source: sober
+    desc: 低成本获客、招募策略、商业闭环验证。
+    inputs:
+    - 产品
+    - 受众
+    outputs:
+    - 冷启动方案
+    uses_entities:
+    - Customer
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-scale-growth:
+    name: 规模增长
+    source: sober
+    desc: 业务自动化、产品升级、渠道规模化。
+    inputs:
+    - 业务现状
+    outputs:
+    - 增长方案
+    uses_entities:
+    - Organization
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-feasibility-score:
+    name: 可行性打分
+    source: sober
+    desc: 对可行性等级量化打分。
+    inputs:
+    - 诊断结论
+    outputs:
+    - 评分
+    uses_entities:
+    - Goal
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-report-export:
+    name: 诊断报告导出
+    source: sober
+    desc: 导出结构化诊断报告。
+    inputs:
+    - 诊断数据
+    outputs:
+    - 报告
+    uses_entities:
+    - Document
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-user-feedback:
+    name: 用户反馈
+    source: sober
+    desc: 采集并分析用户反馈。
+    inputs:
+    - 反馈
+    outputs:
+    - 反馈洞察
+    uses_entities:
+    - Customer
+    skill_ref: sober568/docs/skill-reference
+  wf-opc-orchestrator:
+    name: OPC编排器
+    source: easy
+    desc: 一人公司阶段编排器：跨阶段状态机与交接。
+    inputs:
+    - 公司状态
+    outputs:
+    - 阶段计划
+    - 交接单
+    uses_entities:
+    - Organization
+    - Project
+    - Task
+    skill_ref: easychen/skills/opc-orchestrator
+    derived: true
+  wf-conversion-loop:
+    name: 转化循环
+    source: easy
+    desc: 获客-转化-留存-复购的闭环工作流。
+    inputs:
+    - 流量
+    outputs:
+    - 转化漏斗
+    uses_entities:
+    - Customer
+    - Goal
+    skill_ref: easychen/skills/opc-conversion-loop
+    derived: true
+  wf-asset-ops:
+    name: 资产运营
+    source: easy
+    desc: 数字资产运营与增殖工作流。
+    inputs:
+    - 资产清单
+    outputs:
+    - 运营计划
+    uses_entities:
+    - Document
+    - Account
+    skill_ref: easychen/skills/opc-asset-ops
+    derived: true
+  wf-business-model:
+    name: 商业模式设计
+    source: easy
+    desc: 商业模式画布设计与验证。
+    inputs:
+    - 价值假设
+    outputs:
+    - 商业模式画布
+    uses_entities:
+    - Organization
+    - Goal
+    skill_ref: easychen/skills/opc-business-model
+    derived: true
+  wf-value-proposition:
+    name: 价值主张
+    source: easy
+    desc: 价值主张设计与验证。
+    inputs:
+    - 客户痛点
+    outputs:
+    - 价值主张
+    uses_entities:
+    - Customer
+    - Goal
+    skill_ref: easychen/skills/opc-value-proposition
+    derived: true
+  wf-niche-positioning:
+    name: 细分定位
+    source: easy
+    desc: 细分市场定位。
+    inputs:
+    - 市场
+    outputs:
+    - 定位
+    uses_entities:
+    - Goal
+    skill_ref: easychen/skills/opc-niche-positioning
+    derived: true
+  wf-dashboard-review:
+    name: 仪表盘复盘
+    source: easy
+    desc: 经营仪表盘定期复盘。
+    inputs:
+    - 经营数据
+    outputs:
+    - 复盘
+    uses_entities:
+    - Organization
+    skill_ref: easychen/skills/opc-dashboard-review
+    derived: true
+  wf-resource-audit:
+    name: 资源审计
+    source: easy
+    desc: 资源盘点与配置审计。
+    inputs:
+    - 资源
+    outputs:
+    - 审计报告
+    uses_entities:
+    - Organization
+    skill_ref: easychen/skills/opc-resource-audit
+    derived: true
+  wf-mvp-designer:
+    name: MVP设计器
+    source: easy
+    desc: MVP 范围设计与验证计划。
+    inputs:
+    - 核心假设
+    outputs:
+    - MVP 范围
+    uses_entities:
+    - Project
+    skill_ref: easychen/skills/opc-mvp-designer
+    derived: true
+
+  # ── 24 部门扩展原创动作（WSHU = 天津市微数人工智能科技有限责任公司自创；登记 IP 扩展增量）──
+  procurement-sourcing:
+    name: 供应商寻源
+    source: WSHU
+    desc: 供应商寻源与评估：构建候选池、资质审查、能力评分与分级入库。
+    inputs:
+    - 采购需求
+    outputs:
+    - 候选供应商清单
+    uses_entities:
+    - Organization
+    - Contract
+    skill_ref: WSHU/ext/procurement
+  procurement-negotiation:
+    name: 采购议价
+    source: WSHU
+    desc: 采购议价与合同条款谈判：比价、总价拥有成本（TCO）分析与降价路径。
+    inputs:
+    - 报价单
+    outputs:
+    - 议价结论
+    uses_entities:
+    - Organization
+    - Contract
+    skill_ref: WSHU/ext/procurement
+  procurement-inventory:
+    name: 库存策略
+    source: WSHU
+    desc: 库存策略与补货：安全库存、周转天数、缺料预警与履约协同。
+    inputs:
+    - 库存数据
+    outputs:
+    - 补货建议
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/procurement
+  investor-bp:
+    name: 融资BP
+    source: WSHU
+    desc: 融资商业计划书（BP）撰写：故事线、财务模型、里程碑与资金用途。
+    inputs:
+    - 业务现状
+    outputs:
+    - 融资BP
+    uses_entities:
+    - Organization
+    - Project
+    skill_ref: WSHU/ext/investor
+  investor-relations:
+    name: 投资人关系
+    source: WSHU
+    desc: 投资人关系维护：触达、路演、尽调配合与沟通节奏管理。
+    inputs:
+    - 投资人清单
+    outputs:
+    - 沟通计划
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/investor
+  investor-valuation:
+    name: 估值与条款
+    source: WSHU
+    desc: 估值与条款判断：估值区间、Term Sheet 关键条款与风险点提示。
+    inputs:
+    - 财务预测
+    outputs:
+    - 估值与条款建议
+    uses_entities:
+    - Organization
+    - Contract
+    skill_ref: WSHU/ext/investor
+  csm-health:
+    name: 健康度监测
+    source: WSHU
+    desc: 客户健康度监测：活跃、采用、满意度与流失风险评分。
+    inputs:
+    - 客户行为数据
+    outputs:
+    - 健康度评分
+    uses_entities:
+    - Customer
+    skill_ref: WSHU/ext/csm
+  csm-renewal:
+    name: 续费推进
+    source: WSHU
+    desc: 续费推进：续费窗口管理、价值回顾与续约谈判。
+    inputs:
+    - 合同到期
+    outputs:
+    - 续费方案
+    uses_entities:
+    - Customer
+    - Contract
+    skill_ref: WSHU/ext/csm
+  csm-upsell:
+    name: 增购挖掘
+    source: WSHU
+    desc: 增购与扩展销售挖掘：用量趋势、增购时机与案例沉淀。
+    inputs:
+    - 使用数据
+    outputs:
+    - 增购机会
+    uses_entities:
+    - Customer
+    skill_ref: WSHU/ext/csm
+  intl-localization:
+    name: 本地化
+    source: WSHU
+    desc: 海外市场本地化：多语言、文化适配、支付与物流本地方案。
+    inputs:
+    - 目标市场
+    outputs:
+    - 本地化方案
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/international
+  intl-compliance:
+    name: 海外合规
+    source: WSHU
+    desc: 海外合规与平台规则：目标国监管、数据跨境与税务登记。
+    inputs:
+    - 目标国
+    outputs:
+    - 合规清单
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/international
+  intl-growth:
+    name: 跨境增长
+    source: WSHU
+    desc: 跨境增长与履约协同：渠道、投放与海外履约链路优化。
+    inputs:
+    - 增长目标
+    outputs:
+    - 增长计划
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/international
+  risk-map:
+    name: 风险地图
+    source: WSHU
+    desc: 风险地图与预警：识别业务/资金/合规风险并分级预警。
+    inputs:
+    - 经营数据
+    outputs:
+    - 风险地图
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/risk
+  risk-control:
+    name: 内控流程
+    source: WSHU
+    desc: 内控流程与权限分离：关键流程节点控制与职责分离设计。
+    inputs:
+    - 流程定义
+    outputs:
+    - 内控矩阵
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/risk
+  risk-audit:
+    name: 审计反舞弊
+    source: WSHU
+    desc: 审计与反舞弊：抽样审计、异常交易识别与整改闭环。
+    inputs:
+    - 审计范围
+    outputs:
+    - 审计报告
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/risk
+  it-asset:
+    name: 资产与权限
+    source: WSHU
+    desc: IT 资产与账号权限：资产清点、最小授权与权限定期复核。
+    inputs:
+    - 资产清单
+    outputs:
+    - 权限矩阵
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/it_security
+  it-network:
+    name: 网络安全
+    source: WSHU
+    desc: 网络安全与漏洞防护：边界防护、漏洞扫描与入侵监测。
+    inputs:
+    - 网络拓扑
+    outputs:
+    - 加固建议
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/it_security
+  it-backup:
+    name: 备份容灾
+    source: WSHU
+    desc: 数据备份与容灾：备份策略、恢复演练与业务连续性。
+    inputs:
+    - 系统清单
+    outputs:
+    - 容灾方案
+    uses_entities:
+    - Organization
+    skill_ref: WSHU/ext/it_security

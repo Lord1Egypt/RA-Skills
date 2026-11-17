@@ -1,43 +1,53 @@
-## Description: <br>
-Executes structured adversarial thinking to stress-test high-stakes decisions, identify systemic risks, and prevent groupthink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute structured adversarial thinking to stress-test high-stakes decisions, identify systemic risks, and prevent groupthink.
 
-## Publisher: <br>
-[midnightstudioai](https://clawhub.ai/user/midnightstudioai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[midnightstudioai](https://clawhub.ai/user/midnightstudioai)
 
-## Use Case: <br>
-Decision makers, product leaders, strategy reviewers, and developers use this skill to challenge assumptions, run pre-mortems, stress-test PR/FAQ narratives, apply dialectical inquiry, and resolve business trade-offs with TRIZ-style prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during broad high-stakes planning discussions because its trigger language is intentionally proactive. <br>
-Mitigation: Use narrower trigger wording or explicit invocation when users want adversarial review only on request. <br>
-Risk: Adversarial critiques can over-weight negative scenarios if treated as final decision guidance. <br>
-Mitigation: Use the output as structured decision-review input and verify assumptions, evidence, and mitigations with accountable stakeholders. <br>
-Risk: The local helper scripts process user-supplied failure scenarios and contradiction terms. <br>
-Mitigation: Run the helpers locally with approved inputs and avoid including sensitive details unless the execution environment is appropriate. <br>
+## Use Case:
 
+Teams, developers, and decision-makers use this skill to run structured strategy reviews, pre-mortems, PR/FAQ stress tests, dialectical inquiry, and TRIZ-style contradiction analysis before high-stakes decisions.
 
-## Reference(s): <br>
-- [Technical Summary: Adversarial Methodologies](references/methodology_summary.md) <br>
-- [ClawHub release page](https://clawhub.ai/midnightstudioai/devils-advocate-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown decision-review reports with optional local Python command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk matrices, adversarial questions, assumption critiques, intervention plans, and TRIZ principle recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Decision-review outputs could be mistaken for expert legal, financial, safety, or operational approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a facilitation checklist and require qualified reviewers to approve high-stakes decisions.
+
+Risk: The pre-mortem aggregator reads JSON from standard input, so hostile or oversized input could produce excessive terminal output or misleading display.
+
+Mitigation: Provide small, trusted JSON arrays with 1-5 likelihood and impact values.
+
+## Reference(s):
+
+- [Methodology Summary](references/methodology_summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command snippets and JSON risk-matrix output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local helper scripts for pre-mortem aggregation and TRIZ contradiction suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

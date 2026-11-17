@@ -23,7 +23,7 @@ github-collab/
 │   │   ├── task-manager.js          # 任务管理
 │   │   ├── task-dependency-manager.js # 任务依赖管理
 │   │   ├── task-priority-manager.js # 任务优先级管理
-│   │   ├── task-distribution-manager.js # 任务分发管理
+│   │   ├── taREDACTED-SECRET.js # 任务分发管理
 │   │   ├── project-manager.js       # 项目管理
 │   │   ├── session-validator.js     # 会话验证
 │   │   ├── performance-monitor.js   # 性能监控
@@ -171,7 +171,7 @@ github-collab/
 ## 🗂️ 功能模块划分
 
 ### 1. 任务管理模块
-- **文件**: `task-manager.js`, `task-dependency-manager.js`, `task-priority-manager.js`, `task-distribution-manager.js`
+- **文件**: `task-manager.js`, `task-dependency-manager.js`, `task-priority-manager.js`, `taREDACTED-SECRET.js`
 - **功能**: 任务 CRUD、依赖管理、优先级管理、自动分配
 - **测试**: 60 个测试用例
 

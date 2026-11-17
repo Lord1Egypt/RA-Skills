@@ -1,41 +1,57 @@
-## Description: <br>
-Plans rigorous A/B tests from hypothesis definition and sample-size calculation through execution monitoring, result interpretation, and rollout decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language A/B testing planner that helps agents design experiments, define hypotheses and metrics, estimate sample size, plan traffic allocation, monitor execution, and interpret results.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Product managers, growth teams, analysts, and engineers use this skill to design controlled experiments, estimate required sample sizes, define guardrail metrics, monitor experiment health, and turn statistical results into rollout decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated experiment plans or statistical interpretations can be misleading if the user's baseline rate, MDE, traffic assumptions, or business constraints are inaccurate. <br>
-Mitigation: Review the generated plan with the responsible product, analytics, or experimentation owner before launch, and verify sample-size calculations, metrics, guardrails, and decision rules against trusted data. <br>
-Risk: The skill is designed to answer in Chinese by default, which may not fit every user's review workflow. <br>
-Mitigation: Ask the agent to respond in the preferred language when needed, and review statistical terms and recommendations before sharing them with stakeholders. <br>
+## Use Case:
 
+Product managers, growth teams, analysts, and developers use this skill to plan controlled experiments when comparing two or more product variants and making rollout decisions. It is suited for experiment design guidance, not for replacing validated analytics systems or human review of business-critical statistical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/a-b-test-planner) <br>
-- [Detailed A/B test planner reference](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown plans, checklists, decision trees, formulas, and optional Python or R analysis snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese output by default; statistical abbreviations may remain in English.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release metadata) <br>
+Risk: Statistical plans or rollout recommendations may be unsuitable for business-critical decisions if assumptions, tracking, or baseline metrics are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review hypotheses, metric definitions, sample-size assumptions, and decision thresholds with an analyst or experiment owner before launch or rollout.
+
+Risk: The skill provides guidance rather than a validated analytics engine.
+
+Mitigation: Use validated experimentation and analytics systems for final calculations, data collection, significance checks, and production decisions.
+
+Risk: Outputs are primarily Chinese-language and may be inappropriate for teams that require another review language.
+
+Mitigation: Confirm that stakeholders can review the generated plan or request translation before using it operationally.
+
+## Reference(s):
+
+- [A/B test planner detailed reference](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown with tables, formulas, checklists, decision rules, and optional Python or R code blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include experiment plans, sample-size calculations, monitoring checklists, decision trees, and rollout recommendations.]
+
+## Skill Version(s):
+
+1.6.1 (source: server-resolved release metadata; artifact frontmatter lists 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

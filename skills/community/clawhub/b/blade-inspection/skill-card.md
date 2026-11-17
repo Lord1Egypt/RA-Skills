@@ -1,41 +1,52 @@
-## Description: <br>
-Assesses wind turbine blade condition from visual inspection data. Classifies damage type and severity (1-5) across seven failure modes and recommends repair or operational actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses wind turbine blade condition from visual inspection data. Classifies damage type and severity (1-5) across seven failure modes and recommends repair or operational actions.
 
-## Publisher: <br>
-[Sertug17](https://clawhub.ai/user/Sertug17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[sertug17](https://clawhub.ai/user/sertug17)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External wind operations, maintenance, and inspection teams use this skill to turn drone or ground-based blade inspection findings into structured damage classifications, severity ratings, and repair or monitoring recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Incorrect inspection severity or repair timing could affect consequential operational decisions for wind turbine equipment.
+
+Mitigation: Confirm shutdown, repair, and operating decisions with qualified inspectors, OEM guidance, and site safety procedures.
+
+Risk: Visual inspection inputs may miss hidden internal damage or misclassify findings when images are low resolution or incomplete.
+
+Mitigation: Request close-up, zone-specific evidence and compare results with on-site assessment, SCADA alarms, and prior inspection reports before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Wind energy operators, maintenance teams, and inspection analysts use this skill to turn drone or ground-based blade findings into structured severity assessments, repair priorities, monitoring guidance, and shutdown recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Inspection recommendations may affect safety-critical wind turbine operations. <br>
-Mitigation: Use the skill as advisory support only and confirm shutdown, lightning, debonding, fiber exposure, active ice, and other critical decisions with qualified blade specialists, OEM guidance, and site safety rules. <br>
-Risk: Low-resolution or incomplete visual evidence can lead to incorrect blade damage classification. <br>
-Mitigation: Request close-up, zone-specific photos and correlate findings with inspector assessment, SCADA alarms, and previous inspection reports before acting. <br>
+**Output Format:** [Structured Markdown inspection report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Sertug17/blade-inspection) <br>
-- [Sertug17 Publisher Profile](https://clawhub.ai/user/Sertug17) <br>
+**Other Properties Related to Output:** [Includes blade, zone, surface, damage type, severity, shutdown recommendation, repair priority, monitoring strategy, and escalation triggers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Structured Markdown inspection report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes blade-level and turbine-level severity, shutdown recommendation, repair priority, monitoring strategy, and escalation triggers.] <br>
+1.0.0 (source: release metadata and frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

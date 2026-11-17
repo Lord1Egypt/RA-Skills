@@ -1,0 +1,13 @@
+{
+  "name": "evolver-hub-sync",
+  "version": "0.1.0",
+  "description": "Sync local Evolver genes/capsules with Evomap Hub using correct A2A API endpoints",
+  "main": "index.js",
+  "scripts": {
+    "sync": "node scripts/sync.js",
+    "publish": "node scripts/publish.js",
+    "node-info": "node scripts/node-info.js"
+  },
+  "keywords": ["evomap", "evolver", "hub", "sync", "a2a"],
+  "license": "MIT"
+}

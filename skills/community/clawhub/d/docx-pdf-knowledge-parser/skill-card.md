@@ -1,43 +1,58 @@
-## Description: <br>
-Parses local DOCX and PDF files into report-first knowledge artifacts, including ingest reports, JSONL extraction records, failure logs, and memory candidate drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses local DOCX and PDF files into structured, reviewable knowledge artifacts, including ingest reports, JSONL item files, and memory candidate Markdown without directly writing memory.
 
-## Publisher: <br>
-[kaiasdobi](https://clawhub.ai/user/kaiasdobi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiasdobi](https://clawhub.ai/user/kaiasdobi)
 
-## Use Case: <br>
-Developers and agents use this skill to process locally available DOCX and PDF documents into reviewable knowledge ingestion outputs without directly writing persistent memory. It is suited for batch extraction workflows where failed files, confidence notes, and source references must remain visible for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local summaries, filenames, file paths, and parse-error details are written to generated output files. <br>
-Mitigation: Run the skill only on documents you are authorized to process, use a narrow input folder, and review or delete generated outputs after use. <br>
-Risk: DOCX and PDF parsing dependencies process local document content and may need updates before handling untrusted files. <br>
-Mitigation: Pin and update safe versions of python-docx and pypdf, and process untrusted documents in a constrained environment. <br>
-Risk: Scanned PDFs or unsupported file types may produce empty extraction results or failure records. <br>
-Mitigation: Review failed-items.jsonl and ingest-report.md, then retry with OCR or inspect the file manually when needed. <br>
+## Use Case:
 
+Developers and agents use this skill to process locally available DOCX and PDF documents into reviewable knowledge-ingestion outputs. It is suited for report-first workflows that require extracted summaries, parse failures, and memory candidates to be inspected before anything is added to persistent memory.
 
-## Reference(s): <br>
-- [Output examples](artifact/references/output_examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kaiasdobi/docx-pdf-knowledge-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSONL files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSONL files, with a small JSON command summary from the local runner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ingest-report.md, kb-items.jsonl, failed-items.jsonl, and MEMORY.candidate.md; does not write MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Local document summaries and parse errors are written to the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose an appropriate output location and review generated files before sharing or importing them into other systems.
+
+Risk: Untrusted or very large DOCX/PDF files can expose parser hardening gaps such as missing size limits, page-count limits, timeouts, and dependency locking.
+
+Mitigation: Run only on trusted, reasonably sized files unless additional size, page-count, timeout, and dependency-locking controls are added.
+
+Risk: Extracted summaries may contain sensitive information from source documents.
+
+Mitigation: Review MEMORY.candidate.md manually and keep sensitive data out of persistent memory unless the workflow explicitly permits it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiasdobi/skills/docx-pdf-knowledge-parser)
+- [Output examples](artifact/references/output_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSONL records, and command-line status JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ingest-report.md, kb-items.jsonl, failed-items.jsonl, and MEMORY.candidate.md in the selected output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

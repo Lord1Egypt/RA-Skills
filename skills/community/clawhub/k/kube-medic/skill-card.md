@@ -1,43 +1,60 @@
-## Description: <br>
-Kubernetes Cluster Triage & Diagnostics - instant AI-powered incident triage via kubectl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kubernetes Cluster Triage & Diagnostics - instant AI-powered incident triage via kubectl.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-SREs, platform engineers, and on-call responders use kube-medic to inspect Kubernetes cluster health, investigate failing pods or deployments, and produce triage reports with recommended remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect Kubernetes state and pod logs through the active kubeconfig, which may expose operational or sensitive application data. <br>
-Mitigation: Use a read-only or namespace-scoped RBAC role, verify the active kubectl context before running diagnostics, and restrict pod log access where logs may contain sensitive data. <br>
-Risk: Optional confirm-write commands can change cluster state and affect workload availability. <br>
-Mitigation: Approve confirm-write commands only after checking the exact cluster, namespace, resource, command, and expected availability impact. <br>
+## Use Case:
 
+Developers, SREs, and on-call engineers use this skill to triage Kubernetes cluster health, investigate failing pods and deployments, review resource pressure, and turn kubectl diagnostics into concise incident guidance.
 
-## Reference(s): <br>
-- [ClawHub kube-medic release](https://clawhub.ai/tkuehnl/kube-medic) <br>
-- [Kubernetes kubectl tools documentation](https://kubernetes.io/docs/tasks/tools/) <br>
-- [Kubernetes Metrics Server release manifest](https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml) <br>
-- [kube-medic security policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured JSON from the tool, presented by the agent as Markdown triage reports with tables, timelines, and command blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires kubectl, jq, kubeconfig access, and metrics-server for resource metrics; diagnostic output can include pod logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill can expose Kubernetes cluster state and pod logs to the agent, including operationally sensitive or regulated data if RBAC is broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with read-only, namespace-scoped kubeconfig access where possible and restrict pods/log permissions for namespaces whose logs may contain sensitive data.
+
+Risk: The optional --confirm-write path can make cluster changes such as rollbacks, restarts, scaling, pod deletion, cordon, or uncordon operations.
+
+Mitigation: Avoid write RBAC in production unless remediation through the agent is explicitly desired, and approve write commands only after checking the exact context, namespace, target, and flags.
+
+Risk: Cluster-wide sweeps and resource checks may touch all namespaces and can create audit noise or return excessive data in large environments.
+
+Mitigation: Use the --namespace and --context options to scope diagnostics to the intended cluster and workload before running broad triage commands.
+
+## Reference(s):
+
+- [kube-medic on ClawHub](https://clawhub.ai/tkuehnl/skills/kube-medic)
+- [Kubernetes kubectl installation documentation](https://kubernetes.io/docs/tasks/tools/)
+- [Kubernetes Metrics Server components](https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml)
+- [kind Kubernetes testing documentation](https://kind.sigs.k8s.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and structured diagnostic findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool output is structured JSON that the agent parses into human-facing triage reports, tables, timelines, diagnoses, and recommended actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,22 @@
+{
+  "chapters": [
+    {
+      "number": 1,
+      "file": "0001_初入寒山.md",
+      "title": "初入寒山",
+      "status": "drafting",
+      "wordCount": 1200,
+      "createdAt": "2025-06-01T00:00:00Z",
+      "updatedAt": "2025-06-01T00:00:00Z"
+    },
+    {
+      "number": 2,
+      "file": "0002_初遇.md",
+      "title": "初遇",
+      "status": "drafting",
+      "wordCount": 1000,
+      "createdAt": "2025-06-02T00:00:00Z",
+      "updatedAt": "2025-06-02T00:00:00Z"
+    }
+  ]
+}

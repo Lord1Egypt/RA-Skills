@@ -1,0 +1,38 @@
+# 注意1，mkt，smb，hml使用动态分组，需要静态分组的，mv和bm保留特定日期数据，再向后填充nan
+# 注意2. bm计算时，默认的bm = d['净资产'] / d['总市值']或bm = d['每股净资产'] / d['close']没考虑复权更新财报，有些许区别
+ac = d['close'] * d['adj_factor']
+ret = ac / ac.shift(1) - 1
+bench = get_stock_index('000001', 'close', 'serie')   # 沪深300收盘价 Series
+mkt = bench / bench.shift(1) - 1
+mv = d['总市值']
+bm = 1 / d['市净率']
+# 数据筛选
+year_ago = pd.Timestamp.now() - pd.DateOffset(years=1)
+row_mask = col_attrs['上市日期'] < year_ago  # 剔除上市不满 12 个月 的新股
+# row_mask = row_mask & (col_attrs['ST股'])  # 当前默认数据库没保存ST股信息
+# 要屏蔽的数据整列变成nan
+mv.loc[:, row_mask] = np.nan
+bm.loc[:, row_mask] = np.nan
+ret.loc[:, row_mask] = np.nan
+
+rank_mv = row_rank(mv)      # 市值排名，0~1
+rank_bm = row_rank(bm)      # 账面市值比排名，0~1
+
+S = rank_mv <= 0.5
+B = rank_mv > 0.5
+L = rank_bm <= 0.3
+N = (rank_bm > 0.3) & (rank_bm <= 0.7)
+H = rank_bm > 0.7
+r_SL = row_mean(ret.where(S & L, np.nan))
+r_SN = row_mean(ret.where(S & N, np.nan))
+r_SH = row_mean(ret.where(S & H, np.nan))
+r_BL = row_mean(ret.where(B & L, np.nan))
+r_BN = row_mean(ret.where(B & N, np.nan))
+r_BH = row_mean(ret.where(B & H, np.nan))
+smb = (r_SL + r_SN + r_SH) / 3 - (r_BL + r_BN + r_BH) / 3
+hml = (r_SH + r_BH) / 2 - (r_SL + r_BL) / 2
+# 避免分组导致的某行全nan
+smb.fillna(0,inplace=True)
+hml.fillna(0,inplace=True)
+resid = rolling_regresi(ret, [mkt, smb, hml], 60)
+out = rolling_decay_linear(resid ** 2, 20)

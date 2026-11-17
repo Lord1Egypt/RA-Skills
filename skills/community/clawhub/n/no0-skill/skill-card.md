@@ -1,45 +1,66 @@
-## Description: <br>
-No.0 monitors AI agent cognitive files and sensitive local data access, detecting tampering while supporting rollback, classification, authorization, and audit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors and protects AI agent identity and sensitive data by detecting tampering and enforcing access control with rollback and audit capabilities.
 
-## Publisher: <br>
-[wanghaoyu-xiaolu](https://clawhub.ai/user/wanghaoyu-xiaolu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanghaoyu-xiaolu](https://clawhub.ai/user/wanghaoyu-xiaolu)
 
-## Use Case: <br>
-Developers and teams running OpenClaw agents use this skill to watch cognitive identity files, review unauthorized changes, and roll back tampering. Teams handling sensitive local data can optionally add the DLC layer for classification, authorization prompts, MFA, and audit logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change agent control files and runtime state on the local machine. <br>
-Mitigation: Review the code and test installation, monitoring, rollback, and uninstall behavior in a disposable workspace before using it with production agent memory. <br>
-Risk: The DLC access-control layer is weaker than advertised and should not be treated as non-bypassable access control or strong MFA by default. <br>
-Mitigation: Use it as a supplemental control unless fail-open paths, notification escaping, logging minimization, and install packaging have been hardened and reviewed. <br>
-Risk: Examples and classification flows may involve sensitive credentials or private-key paths. <br>
-Mitigation: Do not run examples against real private keys, wallet material, or production credentials. <br>
+## Use Case:
 
+Developers and operators use No.0-skill to monitor AI agent cognitive files, review or roll back tampering, and optionally add local data access controls, authorization, MFA, and audit logging for sensitive environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wanghaoyu-xiaolu/no0-skill) <br>
-- [No.0 Quickstart](artifact/QUICKSTART.md) <br>
-- [No.0 Installation Guide](artifact/INSTALL.md) <br>
-- [No.0 Event Schema](artifact/docs/event_schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local installation, monitoring, rollback, classification, authorization, and audit guidance for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Approval controls are weak according to the security summary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in test or isolated environments until the approval service, MFA flow, and interceptor fail-open behavior are fixed.
+
+Risk: Testing code can alter protected cognitive files.
+
+Mitigation: Do not run the tamper simulator against real cognitive files; test only with disposable files or isolated workspaces.
+
+Risk: Backup and cleanup behavior can affect local No.0 runtime state.
+
+Mitigation: Back up ~/.openclaw/no0 before running cleanup or uninstall commands.
+
+Risk: DLC dependencies are not pinned to exact versions.
+
+Mitigation: Review and pin dependency versions in a controlled environment before deployment.
+
+## Reference(s):
+
+- [No.0-skill ClawHub page](https://clawhub.ai/wanghaoyu-xiaolu/skills/no0-skill)
+- [Publisher profile](https://clawhub.ai/user/wanghaoyu-xiaolu)
+- [Project site](https://skill.lawgenesis.cn)
+- [Installation Guide](INSTALL.md)
+- [Quickstart](QUICKSTART.md)
+- [No.0 Event Schema](docs/event_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, CLI examples, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local operational guidance for installing, running, auditing, and rolling back No.0 Core and optional DLC controls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

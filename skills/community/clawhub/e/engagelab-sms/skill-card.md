@@ -1,45 +1,56 @@
-## Description: <br>
-Call EngageLab SMS REST APIs to send SMS messages and manage SMS templates and signatures (sender IDs). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call EngageLab SMS REST APIs to send SMS messages and manage SMS templates and signatures.
 
-## Publisher: <br>
-[devengagelab](https://clawhub.ai/user/devengagelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devengagelab](https://clawhub.ai/user/devengagelab)
 
-## Use Case: <br>
-Developers and operators use this skill to generate requests, code, and guidance for sending EngageLab SMS messages and managing SMS templates and sender ID signatures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help send real SMS messages, including scheduled sends. <br>
-Mitigation: Require the agent to show recipients, template parameters, schedule time, and template ID before any live send. <br>
-Risk: The skill can help create, update, or delete SMS templates and sender ID signatures. <br>
-Mitigation: Require explicit review of the operation, target IDs, and requested changes before modifying or deleting messaging resources. <br>
-Risk: EngageLab credentials may be exposed through shared logs, prompts, or shell history. <br>
-Mitigation: Use limited-scope credentials where available and keep dev_key and dev_secret out of shared logs and command history. <br>
+## Use Case:
 
+Developers and operators use this skill to generate EngageLab SMS API calls, helper code, and configuration guidance for sending SMS messages and managing approved templates and sender ID signatures.
 
-## Reference(s): <br>
-- [Template & Signature API Reference](references/template-and-signature-api.md) <br>
-- [EngageLab SMS API Error Codes](references/error-codes.md) <br>
-- [EngageLab SMS API Base URL](https://smsapi.engagelab.com) <br>
-- [EngageLab SMS Messages Endpoint](https://smsapi.engagelab.com/v1/messages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, API request examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholder credentials and resource IDs when live values are not supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can produce actions that send SMS messages or delete EngageLab messaging configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review of recipient lists, template IDs, signature IDs, and deletion targets before running generated commands or helper code.
+
+Risk: Credentials could be exposed or sent outside the intended EngageLab SMS API host.
+
+Mitigation: Use least-privilege EngageLab credentials, avoid placing production secrets in retained prompts, and keep requests restricted to smsapi.engagelab.com.
+
+## Reference(s):
+
+- [Template & Signature API Reference](references/template-and-signature-api.md)
+- [EngageLab SMS API Error Codes](references/error-codes.md)
+- [EngageLab SMS API Endpoint](https://smsapi.engagelab.com)
+- [ClawHub EngageLab SMS Skill Page](https://clawhub.ai/devengagelab/skills/engagelab-sms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated curl commands, Python or other language examples, request payloads, and API response handling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

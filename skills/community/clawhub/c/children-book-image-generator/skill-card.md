@@ -1,53 +1,66 @@
-## Description: <br>
-Generate children's book illustrations, storybook images, picture-book scenes, and bedtime story art for kid-friendly storytelling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate children's book illustrations, storybook images, picture-book scenes, and bedtime story art.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Developers and creative agents use this skill to clarify a children's story moment, build an age-appropriate image prompt, choose a WeryAI image model, and generate storybook or picture-book artwork. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to WeryAI during generation. <br>
-Mitigation: Install and use the skill only when that data transfer is acceptable; avoid passing sensitive prompts or reference images. <br>
-Risk: API key persistence and setup actions can write local configuration files. <br>
-Mitigation: Prefer providing IMAGE_GEN_API_KEY through the runtime environment, and review setup actions before allowing persisted secrets or dependency installs. <br>
-Risk: Web search and webhook callbacks can send data to additional destinations when enabled. <br>
-Mitigation: Leave web search and webhook options disabled unless the destination and data flow are understood. <br>
-Risk: Local reference-image paths may be uploaded by artifact behavior when used for image-to-image requests. <br>
-Mitigation: Provide only reference images intended for upload and review paths before generation. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through creating age-appropriate children's book visuals. It clarifies the story moment, style, age range, and text-space needs, then prepares prompts and generation commands for WeryAI image output.
 
-## Reference(s): <br>
-- [Skill listing](https://clawhub.ai/632657122/children-book-image-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/632657122) <br>
-- [WeryAI API introduction](https://docs.weryai.com/en) <br>
-- [WeryAI text-to-image API](https://docs.weryai.com/api-reference/children-book-image-generator/submit-text-to-image-task) <br>
-- [WeryAI image-to-image API](https://docs.weryai.com/api-reference/children-book-image-generator/submit-image-to-image-task) <br>
-- [First-time setup](references/config/first-time-setup.md) <br>
-- [Model registry schema](references/config/model-registry-schema.md) <br>
-- [Preferences schema](references/config/preferences-schema.md) <br>
-- [Style presets](references/style-presets.md) <br>
-- [WeryAI platform notes](references/weryai-platform.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated image file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMAGE_GEN_API_KEY, Node/npm with bun or npx, WeryAI HTTPS calls, and local project or user configuration under .image-skills/children-book-image-generator/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter reports 0.5.0) <br>
+Risk: API keys may be persisted in local project or home configuration if setup is run with persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer IMAGE_GEN_API_KEY from the environment, and review permissions on any .image-skills/children-book-image-generator/.env file before use.
+
+Risk: Untrusted batch files, local reference paths, or webhook URLs can expand what data the skill sends to the image gateway.
+
+Mitigation: Use the skill only in trusted projects, avoid untrusted batch inputs and arbitrary webhook URLs, and review reference-image behavior before enabling image-to-image workflows.
+
+Risk: Generated image downloads may require fetching result URLs from the gateway or CDN, including credentialed retry behavior.
+
+Mitigation: Validate result-download origins before sending credentials and inspect failed downloads through the gateway task details instead of resubmitting generation requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/632657122/skills/children-book-image-generator)
+- [First-Time Setup](references/config/first-time-setup.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Model Registry Schema](references/config/model-registry-schema.md)
+- [Style Presets](references/style-presets.md)
+- [WeryAI Gateway Alignment Notes](references/weryai-platform.md)
+- [WeryAI API Introduction](https://docs.weryai.com/en)
+- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/children-book-image-generator/submit-text-to-image-task)
+- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/children-book-image-generator/submit-image-to-image-task)
+- [WeryAI Task Status API](https://docs.weryai.com/api-reference/tasks/query-task-details)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, image files, image URLs]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, generated image files, and image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses IMAGE_GEN_API_KEY, WeryAI gateway requests, optional reference images, and project or home configuration under .image-skills/children-book-image-generator/.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter declares 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Send AgentMailer Email"
+  short_description: "Draft and deliver agent email with control"
+  default_prompt: "Use $agentmailer-send-email to prepare this message, preserve my exact recipient intent, and send only when authorized."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentmailer"
+      description: "Draft, send, reply to, forward, label, schedule, and delete AgentMailer email"
+      transport: "streamable_http"
+      url: "https://api.agentmailer.ai/mcp"
+policy:
+  allow_implicit_invocation: true

@@ -1,41 +1,50 @@
-## Description: <br>
-Assesses trading decisions for cognitive biases, risk management adherence, and emotional reasoning using behavioral finance stress tests and metacognitive coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses trading decisions for cognitive biases, risk management adherence, and emotional reasoning using behavioral finance stress tests and a structured risk report.
 
-## Publisher: <br>
-[fretelli](https://clawhub.ai/user/fretelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fretelli](https://clawhub.ai/user/fretelli)
 
-## Use Case: <br>
-Traders, trading-system evaluators, and agent developers use this skill to test whether trading rationales stay disciplined under simulated market stress. It produces a behavioral finance risk report that identifies likely biases and risk-management failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Simulated stress-test prompts include urgent trading language that could be mistaken for live trade instructions. <br>
-Mitigation: Use the skill only for assessment or coaching, and keep it disconnected from systems that can place real trades unless independent safeguards ensure prompts are treated as test scenarios. <br>
-Risk: Behavioral finance feedback could be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as bias and risk-discipline analysis, and require qualified human review before making real trading decisions. <br>
+## Use Case:
 
+Trading agents, evaluators, and human users use this skill to stress-test trading rationale, identify behavioral finance biases, and produce a concise risk report before acting on a trade decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fretelli/trading-behaviour) <br>
-- [Publisher profile](https://clawhub.ai/user/fretelli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown behavioral finance risk report with scored rubric and coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are assessment and coaching text; they should not be treated as trade execution instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses high-risk trading prompts and trade-blocking language that could be unsafe in live trading contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as an advisory or test-only checklist, and disable or sandbox live trading, wallet, brokerage, and order-placement permissions with separate human approval for real trades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fretelli/skills/trading-behaviour)
+- [Publisher profile](https://clawhub.ai/user/fretelli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown risk report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes detected bias, irrationality score, and risk assessment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

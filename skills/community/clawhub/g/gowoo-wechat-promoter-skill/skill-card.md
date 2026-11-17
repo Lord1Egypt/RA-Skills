@@ -1,42 +1,55 @@
-## Description: <br>
-Provides guidance about Gewu WeChat promoter services, including the WeChat promoter model, registration options, and consultation paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Gewu-branded WeChat promoter information, registration guidance, and consultation prompts for users exploring WeChat Store promotion and traffic monetization.
 
-## Publisher: <br>
-[charles-lee-mz](https://clawhub.ai/user/charles-lee-mz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charles-lee-mz](https://clawhub.ai/user/charles-lee-mz)
 
-## Use Case: <br>
-External users interested in WeChat Store promoter programs use this skill to learn the promoter model, review Gewu registration paths, and identify questions to ask before sharing products for commission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat income, zero-cost startup, or monetization claims as guaranteed outcomes. <br>
-Mitigation: Treat those claims as marketing claims and verify current commission rules, platform policies, and expected effort before acting. <br>
-Risk: Users may contact unofficial accounts, scan unverified QR codes, or use unofficial mini-program links. <br>
-Mitigation: Independently verify the Gewu repository, QR code, WeChat account, and mini-program before registering or sharing personal information. <br>
-Risk: Promoter registration or consultation could lead users to disclose sensitive personal, account, payment, or business information. <br>
-Mitigation: Do not share passwords, payment details, private account data, or sensitive business information with third-party contacts unless independently verified. <br>
+## Use Case:
 
+External users can use this skill to ask an assistant about the WeChat promoter model, Gewu promoter services, registration paths, and monetization concepts. It is best suited for informational guidance and should not be treated as a guarantee of income, commission rates, or current platform policy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charles-lee-mz/gowoo-wechat-promoter-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and WeChat contact references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; responses may include installation commands, mini-program references, and contact guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: Income, cost, commission, and support claims may be promotional or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current terms with official WeChat and Gewu sources before acting on monetization guidance.
+
+Risk: The skill directs users to external QR code, assistant account, public account, and mini-program contact paths.
+
+Mitigation: Avoid sharing personal or contact information until the external channel and current registration process have been verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charles-lee-mz/skills/gowoo-wechat-promoter-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/charles-lee-mz)
+- [Gewu assistant QR image](https://oss.bilinl.com/files/OSS_1599646494653542400/2026/04/24/757639919335014438cd03b5cc.png)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Conversational text or Markdown with optional installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Promotional claims and registration/contact details should be verified against current official WeChat and Gewu sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

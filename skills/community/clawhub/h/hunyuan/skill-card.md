@@ -1,40 +1,54 @@
-## Description: <br>
-Organizes and summarizes public Tencent Hunyuan product and documentation pages, including model capabilities, pricing, quotas, documentation indexes, and example links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize and summarize public Tencent Hunyuan model product pages and documentation, including model capabilities, pricing, quotas, documentation directories, and example links.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, researchers, and product evaluators use this skill to collect and summarize public Tencent Hunyuan model capabilities, pricing, quotas, and documentation links. It is suited for lightweight public-page research, not account operations or API automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public product information such as pricing, quotas, model details, and service status can change. <br>
-Mitigation: Verify important details against Tencent's official pages before relying on the summarized output. <br>
-Risk: Automated collection from public pages can become inappropriate if it ignores platform rules or access limits. <br>
-Mitigation: Use conservative frequency controls, follow platform rules, and avoid account actions or API automation. <br>
+## Use Case:
 
+Developers and external users can use this skill to gather concise summaries of public Tencent Hunyuan model capabilities, pricing or quota information, documentation structure, and example links. The skill is limited to public-page information organization and does not perform account actions or API calls.
 
-## Reference(s): <br>
-- [Tencent Hunyuan product page](https://ai.qq.com/hunyuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public-page information only and does not perform API calls, account actions, or sensitive data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Public Tencent Hunyuan pages may change, load dynamically, or present time-sensitive model, pricing, quota, and service-status details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Re-check current public product, documentation, pricing, and announcement pages before relying on summarized details.
+
+Risk: The skill may browse public Tencent Hunyuan pages while collecting information.
+
+Mitigation: Limit browsing to public product and documentation pages, avoid credentials or account actions, and follow the platform's access rules.
+
+## Reference(s):
+
+- [Tencent Hunyuan Product Page](https://ai.qq.com/hunyuan)
+- [ClawHub Skill Page](https://clawhub.ai/codenova58/skills/hunyuan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public-page information only; no account actions, API calls, code execution, persistence, or sensitive data handling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

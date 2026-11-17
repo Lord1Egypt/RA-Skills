@@ -1,42 +1,54 @@
-## Description: <br>
-Personalized news briefings that learn your interests, formats, and timing preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalized news briefings that learn your interests, formats, and timing preferences.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to build a local news profile, deliver personalized briefings, and adapt coverage based on stated interests and engagement history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local preference and engagement files may preserve sensitive interests or reading patterns. <br>
-Mitigation: Review or edit ~/news/memory.md, ~/news/history.md, and ~/news/sources.md when interests change or should not be reused. <br>
-Risk: News briefings can be misleading if stale, uncertain, or unsupported events are presented as current facts. <br>
-Mitigation: Lead with what happened, include when news broke, cite sources by name, and state uncertainty instead of fabricating events. <br>
-Risk: Contested topics can be distorted by single-source coverage. <br>
-Mitigation: Use at least two sources, note disagreements, and identify editorial leanings when relevant. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/news) <br>
-- [Project homepage](https://clawic.com/skills/news) <br>
+## Use Case:
 
+External users use this skill to receive personalized news briefings that reflect their interests, preferred format, timing, and engagement history. Agents use it to build a local news profile, cite sources by name, and handle contested topics with multi-source coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown news briefings with source names, timestamps, and local preference notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local profile, source, and engagement history files under ~/news/ when present.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores news preferences and engagement history locally under ~/news/.
+
+Mitigation: Review or delete the local ~/news/ files if ongoing personalization is not desired.
+
+Risk: News briefings can become stale or misleading if current events are not verified.
+
+Mitigation: Check source freshness, include when news broke, cite sources by name, and use multiple sources for contested topics.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/news)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Skill Homepage](https://clawic.com/skills/news)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown briefings and preference prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local preference and engagement files under ~/news/.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

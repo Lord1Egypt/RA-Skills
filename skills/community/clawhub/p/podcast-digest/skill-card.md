@@ -1,43 +1,57 @@
-## Description: <br>
-Podcast Digest analyzes podcast audio, transcripts, titles, or links and turns them into structured summaries, visual study materials, cross-episode comparisons, and research notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podcast Digest helps agents turn podcast audio, transcripts, titles, links, or pasted content into structured podcast notes, analytic summaries, Mermaid diagrams, web reports, slide decks, knowledge cards, and cross-episode research.
 
-## Publisher: <br>
-[blackgoldenticked](https://clawhub.ai/user/blackgoldenticked) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blackgoldenticked](https://clawhub.ai/user/blackgoldenticked)
 
-## Use Case: <br>
-External users, researchers, students, and content teams use this skill to extract podcast claims, evidence, quotes, concepts, disagreements, and learning paths from single episodes or multi-episode sets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private transcripts or unpublished podcast details may be exposed if the user asks the agent to use supplemental web search. <br>
-Mitigation: Avoid providing private or unpublished podcast material unless external lookup and analysis are acceptable for that content. <br>
-Risk: Broad activation wording may invoke the skill for many podcast-related prompts. <br>
-Mitigation: Use explicit prompts for the desired analysis scope, output language, and whether single-episode or multi-episode analysis is intended. <br>
+## Use Case:
 
+External users and agents use this skill to analyze single podcast episodes or compare multiple episodes for learning, sharing, and research. It is oriented toward Chinese-language podcast digestion and produces structured notes, diagrams, visual reports, and study assets.
 
-## Reference(s): <br>
-- [Mermaid podcast visualization templates](references/mermaid-templates.md) <br>
-- [Multi-episode podcast research schema](references/multi-episode-schema.md) <br>
-- [Podcast web report template specification](references/web-report-template.md.md) <br>
-- [Podcast web PPT template specification](references/webppt-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown, Mermaid diagrams, and HTML artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web reports, web PPT slides, knowledge graphs, action lists, question-answer cards, and cross-episode comparison matrices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML reports or Web PPT decks can include untrusted podcast-derived text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated HTML as untrusted and escape or sanitize podcast-derived fields before publishing on authenticated or shared websites.
+
+Risk: Podcast summaries and cross-episode analyses may misstate speaker positions if source audio or transcripts are incomplete.
+
+Mitigation: Prefer complete transcripts when available and review speaker attribution, quotes, and timestamps before sharing the output.
+
+## Reference(s):
+
+- [Podcast Digest skill page](https://clawhub.ai/blackgoldenticked/skills/podcast-digest)
+- [Mermaid podcast visualization templates](references/mermaid-templates.md)
+- [Multi-episode podcast research schema](references/multi-episode-schema.md)
+- [Web report template specification](references/web-report-template.md.md)
+- [Web PPT template specification](references/webppt-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese-language Markdown notes, Mermaid diagrams, and HTML web reports or slide decks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-episode deep analysis and multi-episode comparative research.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

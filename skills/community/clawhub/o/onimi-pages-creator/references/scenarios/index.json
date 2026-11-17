@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "1.0.0",
+  "scenarios": [
+    {
+      "sceneKey": "work-review",
+      "version": "1.0.0",
+      "file": "work-review.json"
+    },
+    {
+      "sceneKey": "option-comparison",
+      "version": "1.0.0",
+      "file": "option-comparison.json"
+    },
+    {
+      "sceneKey": "onboarding-guide",
+      "version": "1.0.0",
+      "file": "onboarding-guide.json"
+    },
+    {
+      "sceneKey": "topic-study-pack",
+      "version": "1.0.0",
+      "file": "topic-study-pack.json"
+    },
+    {
+      "sceneKey": "self-test-practice",
+      "version": "1.0.0",
+      "file": "self-test-practice.json"
+    },
+    {
+      "sceneKey": "learning-roadmap",
+      "version": "1.0.0",
+      "file": "learning-roadmap.json"
+    },
+    {
+      "sceneKey": "portfolio",
+      "version": "1.0.0",
+      "file": "portfolio.json"
+    },
+    {
+      "sceneKey": "travel-handbook",
+      "version": "1.0.0",
+      "file": "travel-handbook.json"
+    }
+  ]
+}

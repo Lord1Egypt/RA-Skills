@@ -1,8 +1,25 @@
 ---
 name: dlazy-claude-opus-4.7
-version: 1.1.1
-description: Anthropic's flagship multimodal model. Strong at long-context reasoning, code generation, and complex tool orchestration. Supports text, image, and video inputs.
-metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.0.9","installAlternative":"npx @dlazy/cli@1.0.9","homepage":"https://github.com/dlazyai/cli","source":"https://github.com/dlazyai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"When invoking this skill, use dlazy claude-opus-4.7 -h for help."}}
+version: 1.1.2
+description: Anthropic's flagship multimodal model. Strong at long-context reasoning, code generation, and complex tool orchestration. Supports text, image, and video inputs. Anthropic 旗舰多模态模型，擅长长上下文推理、代码生成与复杂工具编排。支持文本、图片与视频输入。
+metadata:
+  {
+    'clawdbot':
+      {
+        'emoji': '🤖',
+        'requires': { 'bins': ['npm', 'npx'] },
+        'install': 'npm install -g @dlazy/cli@1.2.0',
+        'installAlternative': 'npx @dlazy/cli@1.2.0',
+        'homepage': 'https://github.com/dlazyai/cli',
+        'source': 'https://github.com/dlazyai/cli',
+        'author': 'dlazyai',
+        'license': 'see-repo',
+        'npm': 'https://www.npmjs.com/package/@dlazy/cli',
+        'configLocation': '~/.dlazy/config.json',
+        'apiEndpoints': ['api.dlazy.com', 'files.dlazy.com'],
+      },
+    'openclaw': { 'systemPrompt': 'When invoking this skill, use dlazy claude-opus-4.7 -h for help.' },
+  }
 ---
 
 # dlazy-claude-opus-4.7
@@ -53,10 +70,10 @@ Each key is scoped to your dLazy organization and can be **rotated or revoked at
 You can install on demand without persisting a global binary by running:
 
 ```bash
-npx @dlazy/cli@1.0.9 <command>
+npx @dlazy/cli@1.2.0 <command>
 ```
 
-Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.0.9`). Review the GitHub source before installing.
+Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.0`). Review the GitHub source before installing.
 
 ## How It Works
 
@@ -119,14 +136,15 @@ dlazy claude-opus-4.7 --prompt 'prompt content'
 
 | Code | Error Type                         | Example Message                                                                                                          |
 | ---- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                                              |
-| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                              |
-| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                          |
-| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"` |
-| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                             |
+| 401  | Unauthorized (No API Key)          | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                              |
+| 501  | Missing required parameter         | `error: required option '--prompt <prompt>' not specified`                                                               |
+| 502  | Local file read error              | `Error: Image file/Video file not found: C:\path\to\your\file`                                                           |
+| 503  | API request failed (no balance)    | `ok: false, code: "insufficient_balance"`                                                                                |
+| 503  | API request failed (server error)  | `HTTP status code error (500 server crash)`                                                                              |
 | 504  | Asynchronous task execution failed | `=== Generation Failed ===` / `{Specific error reason returned by backend, for example "Prompt violates safety policy"}` |
 
-> **AGENT CRITICAL INSTRUCTION**: 
+> **AGENT CRITICAL INSTRUCTION**:
+>
 > 1. If the execution result returns `code: "insufficient_balance"`, you MUST explicitly inform the user that their credits are insufficient and guide them to recharge: [https://dlazy.com/dashboard/organization/settings?tab=credits](https://dlazy.com/dashboard/organization/settings?tab=credits)
 > 2. If the execution result returns `code: "unauthorized"` or indicates missing API key, you MUST inform the user to get their API key from [https://dlazy.com/dashboard/organization/api-key](https://dlazy.com/dashboard/organization/api-key) and save it using `dlazy auth set <key>` and resume the task.
 

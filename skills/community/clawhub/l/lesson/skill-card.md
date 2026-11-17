@@ -1,42 +1,56 @@
-## Description: <br>
-Generates personalized daily menu recommendations from available ingredients, taste preferences, diner count, and cooking time, using bundled ingredient and recipe references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language daily menu recommendations from available ingredients, taste preferences, party size, and cooking time, using bundled ingredient and recipe references to produce menus and step-by-step cooking guidance.
 
-## Publisher: <br>
-[yequanzheng](https://clawhub.ai/user/yequanzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yequanzheng](https://clawhub.ai/user/yequanzheng)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn available foods and preferences into practical meal plans, prep lists, cooking steps, and cooking timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food and menu prompts can include dietary restrictions, allergies, or sensitive health details. <br>
-Mitigation: Ask only for details needed for meal planning and avoid collecting unnecessary sensitive personal health information. <br>
-Risk: Cooking guidance may be unsuitable when users have allergies, medical diets, or food-safety constraints. <br>
-Mitigation: Encourage users to state allergies or restrictions and review recipe suitability before cooking. <br>
+## Use Case:
 
+External users can use this skill as a Chinese-language meal planner to choose dishes from ingredients they already have, account for preferences and time limits, and receive a practical menu, prep list, cooking steps, and timeline.
 
-## Reference(s): <br>
-- [Ingredient Database](references/ingredients.md) <br>
-- [Recipe Database](references/recipes.md) <br>
-- [Evaluation Scenarios](evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown meal plan with menu recommendations, ingredient prep tables, step-by-step cooking guidance, and timeline suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled ingredient and recipe data and user-provided meal preferences; no hidden access, persistence, or unsafe behavior was identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Generated cooking recommendations may be incomplete or unsuitable for a user's allergy, food-safety, dietary, or equipment constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to state allergies and restrictions, and review meal plans before cooking, especially for raw or high-risk ingredients.
+
+Risk: The helper script can overwrite a file when a user explicitly supplies an output path.
+
+Mitigation: Use stdout by default or choose a deliberate non-sensitive output path before running the script with --output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yequanzheng/skills/lesson)
+- [Ingredient database](references/ingredients.md)
+- [Recipe database](references/recipes.md)
+- [Evaluation prompts](evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown menu guidance for agent responses; optional JSON from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include dish recommendations, ingredient prep lists, cooking steps, estimated timing, calorie notes for lighter styles, and follow-up suggestions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

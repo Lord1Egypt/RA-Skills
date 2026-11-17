@@ -1,43 +1,58 @@
-## Description: <br>
-Generate complete Amazon listing drafts with title, bullets, image plan, prompts, and video script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate complete Amazon listing drafts with title, bullets, image plan, prompts, and video script.
 
-## Publisher: <br>
-[lenger666](https://clawhub.ai/user/lenger666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lenger666](https://clawhub.ai/user/lenger666)
 
-## Use Case: <br>
-External sellers, marketers, and ecommerce operators use this skill to draft Amazon listing content from product inputs, including titles, bullet points, image plans, image prompts, and video scripts. When configured, it can call external services to generate images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports API-backed listing and image generation with under-disclosed external image generation. <br>
-Mitigation: Use dedicated low-privilege API keys, review LISTING_BASE_URL and COZE_API_URL before running, and avoid sensitive product data unless third-party processing is acceptable. <br>
-Risk: The security review reports Feishu routing and tmux recipient detection. <br>
-Mitigation: Audit or disable Feishu sending and tmux recipient detection before use, especially in shared or multi-user runtime environments. <br>
-Risk: The security review reports debug route output and local runtime.log retention. <br>
-Mitigation: Review debug output before enabling it and restrict, rotate, or delete retained runtime logs after runs. <br>
+## Use Case:
 
+E-commerce operators, marketers, and agent users use this skill to draft Amazon listing copy, image plans, image prompts, and a product video script from supplied product details and market direction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lenger666/amazon-listing-factory) <br>
-- [Feishu usage tutorial](https://my.feishu.cn/docx/DzpHdBjJdosX6Nx7CAMc9OY5nZf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [JSON object containing a Markdown answer with listing copy tables and optional image result links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated image URLs when image environment variables are configured; otherwise includes image prompts and an image plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Product details, prompts, image URLs, and configured API credentials may be sent to external model or image services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped keys, avoid sensitive product data unless the external services are approved, and review service configuration before enabling the skill.
+
+Risk: Optional image generation includes recipient-routing and outbound Feishu image messaging behavior.
+
+Mitigation: Review Feishu recipient settings and routing behavior before enabling image generation or outbound messaging.
+
+Risk: The server security summary flags under-disclosed credential, logging, recipient-discovery, and outbound messaging behavior.
+
+Mitigation: Avoid shared or writable skill directories, do not put untrusted content in .env, and rotate image workflow keys if this version has already run with logging enabled.
+
+## Reference(s):
+
+- [Amazon Listing Factory ClawHub release](https://clawhub.ai/lenger666/skills/amazon-listing-factory)
+- [Complete tutorial](https://my.feishu.cn/docx/DzpHdBjJdosX6Nx7CAMc9OY5nZf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON containing Markdown-formatted listing content, image prompts, video script fields, and optional image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional image generation can call external model and image workflow services when configured.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

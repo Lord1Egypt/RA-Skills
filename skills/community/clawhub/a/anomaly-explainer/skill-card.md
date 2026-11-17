@@ -1,40 +1,53 @@
-## Description: <br>
-Diagnose AWS cost anomalies and explain root cause in plain English when spend spikes unexpectedly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose AWS cost anomalies and explain root cause in plain English when spend spikes unexpectedly.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Developers, cloud engineers, and FinOps responders use this skill to turn AWS cost anomaly alerts, billing diffs, and optional CloudTrail context into a concise incident explanation with likely root cause, evidence, impact, containment, and prevention guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS billing, anomaly, or CloudTrail inputs may contain sensitive account, spend, or operational details. <br>
-Mitigation: Provide only the details needed for cost-incident analysis and avoid unnecessary secrets or unrelated logs. <br>
-Risk: The artifact declares bash access even though the security guidance says the skill does not appear to need shell commands. <br>
-Mitigation: Restrict or monitor shell access when installing or running the skill in environments that support tool controls. <br>
-Risk: Root-cause and impact estimates can be incomplete or wrong when the supplied billing or CloudTrail context is partial. <br>
-Mitigation: Review recommendations against authoritative AWS billing, Cost Explorer, and CloudTrail records before taking containment action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Cloud and FinOps teams use this skill to triage AWS spend spikes by identifying the affected service, account, region, time window, likely root cause, and practical containment or prevention steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown incident analysis with a Slack-ready summary and Jira ticket body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confidence level, root cause, evidence, estimated impact, containment action, prevention recommendation, and incident ticket text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The user may need to share AWS cost, billing, and incident details for diagnosis.
+
+Mitigation: Install and use the skill only when sharing those AWS cost and incident details is acceptable.
+
+Risk: Generated containment or prevention actions may be incorrect or unsuitable for the user's AWS environment.
+
+Mitigation: Review recommendations before applying changes in AWS.
+
+## Reference(s):
+
+- [Anomaly Explainer on ClawHub](https://clawhub.ai/anmolnagpal/skills/anomaly-explainer)
+- [Publisher profile: anmolnagpal](https://clawhub.ai/user/anmolnagpal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown incident response summary with a Slack-ready one-liner and Jira ticket body]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence level, probable root cause, supporting evidence, estimated impact, containment action, and prevention recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

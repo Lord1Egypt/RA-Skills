@@ -1,44 +1,63 @@
-## Description: <br>
-Read and send email via IMAP/SMTP, including checking unread messages, fetching content, searching mailboxes, marking messages read or unread, and sending emails with attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, and other standard email providers.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales and operations agents use this skill to read, search, archive, and send customer email through standard IMAP and SMTP servers. It can also support sales follow-up workflows that draft replies, attach documents, and optionally sync activity to external review or CRM systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email, archive mail, and write sales or CRM records. <br>
-Mitigation: Use dedicated mailbox credentials and review generated messages, attachments, and CRM sync behavior before allowing the skill to act on real customer email. <br>
-Risk: Optional integrations can send email data to OpenRouter, Discord, OKKI, or other configured services. <br>
-Mitigation: Keep optional integrations disabled unless they are required, and use separate scoped API tokens for each enabled service. <br>
-Risk: Local command construction and file access can increase impact when processing untrusted inbound email. <br>
-Mitigation: Restrict local read and write directories, disable automatic capture or cron execution by default, and fix shell-command construction before production use. <br>
+## Use Case:
 
+Sales teams and agents use this skill to monitor sales mailboxes, search and fetch messages, prepare personalized replies, and send complete customer emails with attachments through configured IMAP/SMTP providers. Optional workflows can sync customer context to OKKI CRM and route generated drafts to Discord for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cjboy007/sales-email-automation) <br>
-- [Publisher Profile](https://clawhub.ai/user/cjboy007) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and generated email text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local email artifacts, send SMTP messages, and call configured external services when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Unsafe shell command execution can create command injection risk when mailbox or customer data reaches shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace execSync-style shell construction with argument-safe APIs before using the skill on production mailboxes.
+
+Risk: Live workflows can process real email and send data to CRM, Discord, and external AI services.
+
+Mitigation: Require explicit opt-in for each external integration and make dry-run behavior the default for tests and review workflows.
+
+Risk: Local archives, drafts, and logs may contain sensitive customer communications or credentials.
+
+Mitigation: Store generated files with restrictive permissions, define retention limits, and rotate mail, Discord, OpenRouter, and CRM credentials after suspected exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/sales-email-automation)
+- [Publisher profile](https://clawhub.ai/user/cjboy007)
+- [Skill instructions](artifact/SKILL.md)
+- [Integration guide](artifact/INTEGRATION.md)
+- [Workflow checklist](artifact/WORKFLOW_CHECKLIST.md)
+- [Workflow test report](artifact/WORKFLOW_TEST_REPORT.md)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local mail archives, downloaded attachments, reply drafts, and review records when connected to configured services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Semantic Hub lets AI agents collaborate with human teams on shared project boards by listing boards, creating and updating tasks, adding comments, uploading and attaching files, filtering work items, and viewing activity history with a scoped API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collaborative task and project management for Human + AI Agent teamwork, with scoped REST API access for listing boards, creating and updating cards, adding comments, uploading and attaching files, filtering work items, and viewing activity history.
 
-## Publisher: <br>
-[simplysemantics](https://clawhub.ai/user/simplysemantics) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[simplysemantics](https://clawhub.ai/user/simplysemantics)
 
-## Use Case: <br>
-External teams, project managers, developers, and AI agents use this skill to coordinate work on Semantic Hub boards by creating and updating cards, adding comments, attaching files or URLs, filtering work items, and reviewing board activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update shared board data, post comments, upload files, attach URLs, and view member emails on authorized boards. <br>
-Mitigation: Use a scoped Semantic Hub API key limited to required boards, rotate or revoke it when access changes, and require review before important board changes or uploads. <br>
-Risk: Security review notes that the privacy disclosures understate that uploaded file contents and member email data can be handled by Semantic Hub. <br>
-Mitigation: Treat uploaded files, card text, comments, assignees, member emails, and attachment metadata as data shared with Semantic Hub. <br>
+## Use Case:
 
+External teams, project managers, small businesses, and agent-enabled workflows use Semantic Hub to coordinate work on shared boards where agents can create, update, comment on, and summarize tasks within granted board access.
 
-## Reference(s): <br>
-- [Semantic Hub homepage](https://www.simplysemantics.com/semantic-hub.html) <br>
-- [ClawHub listing](https://clawhub.ai/simplysemantics/semantic-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown summaries with REST API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEMANTIC_HUB_API_KEY scoped to authorized Semantic Hub boards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and CHANGELOG, released 2026-03-06) <br>
+Risk: Privacy disclosures conflict with file upload behavior and email-bearing member or assignee data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with boards, files, member emails, and assignee data that are approved for transmission to Semantic Hub, and correct the privacy disclosure before broad deployment.
+
+Risk: Agents can upload local files or attach external URLs to cards and comments.
+
+Mitigation: Require explicit user approval before uploading local files or attaching external URLs, and confirm the target board or comment before sending the request.
+
+Risk: The skill depends on a scoped API key for access to Semantic Hub boards.
+
+Mitigation: Provision least-privilege SEMANTIC_HUB_API_KEY credentials per agent and rotate or revoke keys when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/simplysemantics/skills/semantic-hub)
+- [Semantic Hub Homepage](https://www.simplysemantics.com/semantic-hub.html)
+- [Semantic Hub Dashboard](https://dashboard.simplysemantics.com/hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown and structured text summaries of board, card, comment, attachment, and history operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SEMANTIC_HUB_API_KEY and scoped board access; file uploads and agent counts are subject to plan limits.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact clawhub.json; changelog released 2026-03-06; SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

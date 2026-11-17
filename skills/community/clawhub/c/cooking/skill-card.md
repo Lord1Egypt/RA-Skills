@@ -1,38 +1,55 @@
-## Description: <br>
-Help users cook better - recipe adaptation, substitutions, troubleshooting, and skill building. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent diagnose, rescue, and execute cooking tasks with practical guidance on heat control, seasoning, doneness, timing, substitutions, equipment, and food safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Home cooks and meal planners use this skill for recipe adaptation, ingredient substitutions, troubleshooting, skill progression, meal planning, and kitchen-efficiency guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cooking or nutrition advice may not account for allergies, medical dietary needs, or severe ingredient sensitivities. <br>
-Mitigation: Ask about dietary restrictions and allergy severity before giving recommendations, and direct users with medical nutrition needs to qualified professionals. <br>
-Risk: Recipe guidance can be unsafe if it omits food-safety judgment for handling, cooking, or storage. <br>
-Mitigation: Encourage users to apply food-safety practices, verify doneness and storage guidance, and use personal judgment before serving food. <br>
+## Use Case:
 
+External users and agents use this skill for real-time cooking assistance: rescuing dishes, choosing technique adjustments, answering temperature, timing, and safety questions, adapting substitutions, and sequencing a meal.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice should account for user skill level, equipment, dietary restrictions, time, and available ingredients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill may maintain local long-term memory about the user's kitchen, meals, guests, allergies, intolerances, and food constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable with that local memory behavior and review the configured Clawic data folders.
+
+Risk: The skill may read and edit shared health and contacts notes used by other skills.
+
+Mitigation: Prefer explicit confirmation before saving or deleting health or contact records, and review ~/Clawic/data/health/ and ~/Clawic/data/contacts/ after installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/cooking)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Clawic Cooking skill page](https://clawic.com/skills/cooking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational Markdown with optional local note updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or update local Clawic cooking, health, and contacts notes when installed and invoked.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

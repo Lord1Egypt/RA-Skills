@@ -1,41 +1,55 @@
-## Description: <br>
-Provides advisory-board style business perspectives from named thinkers for strategic decisions, business counsel, scaling evaluation, culture issues, and mental-model analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conselho de 12 pensadores lendários para decisões estratégicas, conselhos de negócio, mental models, avaliação de scaling e cultura.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-External founders, operators, and business teams use this skill to convene advisory-board style perspectives for strategic decisions, business counsel, scaling evaluation, investment questions, culture issues, and strategic triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advisory output may be mistaken for authoritative investment, legal, hiring, financial, or business guidance. <br>
-Mitigation: Use the skill as structured brainstorming support and have a responsible human review assumptions, tradeoffs, and decisions before acting. <br>
-Risk: Broad advisory triggers may produce board-style analysis when a narrower response is needed. <br>
-Mitigation: Invoke the skill deliberately for strategic advisory work and state the decision context, desired perspectives, and review scope. <br>
+## Use Case:
 
+External users and business operators use this skill to convene a Portuguese-language advisory board for strategic decisions, founder counsel, investment guidance, scaling evaluation, culture issues, diagnosis, and review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/xquads-advisory-board) <br>
-- [Project homepage](https://github.com/synkra/xquads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or conversational text with structured advisory perspectives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or system changes; advisory outputs require human review before business, financial, legal, investment, hiring, or culture decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and release evidence) <br>
+Risk: Broad task names such as diagnose or review may cause the skill to appear for generic requests outside its strategic business-advisory scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for strategic, founder, investment, scaling, or culture guidance before using the skill.
+
+Risk: The package does not document multilingual support beyond its Portuguese-language advisory behavior.
+
+Mitigation: Use it primarily for Portuguese-language advisory workflows, or confirm the target language with the user before proceeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/xquads-advisory-board)
+- [Publisher profile](https://clawhub.ai/user/engsathiago)
+- [Project homepage](https://github.com/synkra/xquads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text advisory responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language strategic and business-advisory output modeled as a panel of named thinkers.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

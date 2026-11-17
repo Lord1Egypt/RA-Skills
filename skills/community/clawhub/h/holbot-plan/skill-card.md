@@ -1,45 +1,52 @@
-## Description: <br>
-HolBot Plan helps agents create structured plans for multi-step tasks and deepen existing plans through review-oriented sub-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create structured plans for multi-step tasks, including features, research, automations, events, or other goals that benefit from breakdown, and deepen existing plans with interactive sub-agent review.
 
-## Publisher: <br>
-[jcbuer](https://clawhub.ai/user/jcbuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcbuer](https://clawhub.ai/user/jcbuer)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to convert multi-step goals into scoped plans with context, file maps, implementation steps, acceptance criteria, risks, and test scenarios. It also supports deepening an existing plan when more implementation detail is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning output could be followed without enough review, leading to incorrect scope, file paths, or test coverage. <br>
-Mitigation: Review the generated plan against current project context before execution, including scope, file maps, acceptance criteria, risks, and test scenarios. <br>
-Risk: Export requests may save plans outside the intended workspace if the destination is not explicit. <br>
-Mitigation: Ask the agent to save under the current workspace or another explicit path before export. <br>
-Risk: Broad natural-language routing can invoke planning when brainstorming or deepening would be more appropriate. <br>
-Mitigation: Use explicit commands such as /plan, /brainstorm, or 'deepen the plan' to select the intended workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to convert multi-step goals into structured implementation plans with scope, file maps, ordered steps, acceptance criteria, risks, and test scenarios. They can also use the deepen flow to expand an existing plan with implementation details, edge cases, and tests.
 
-## Reference(s): <br>
-- [HolBot Plan on ClawHub](https://clawhub.ai/jcbuer/holbot-plan) <br>
-- [Brainstorm Skill](references/brainstorm.md) <br>
-- [Deepening Workflow](references/deepening-workflow.md) <br>
-- [Plan Sections Reference](references/plan-sections.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown plan with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans may include scoped steps, repo-relative file maps, acceptance criteria, risk mitigations, and test scenarios; export should use an explicit destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may consult persistent MEMORY.md context during planning without explicit scope or approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where prior memory is appropriate; avoid shared or sensitive environments unless memory access is clearly scoped and user-approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcbuer/skills/holbot-plan)
+- [Brainstorm Skill](artifact/references/brainstorm.md)
+- [Deepening Workflow](artifact/references/deepening-workflow.md)
+- [Plan Sections Reference](artifact/references/plan-sections.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown structured plan with section headings, numbered implementation steps, acceptance criteria, risk notes, and test scenarios]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repo-relative file paths, implementation sequencing, time estimates, and optional saved plan paths when requested by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Agentizer-zh rewrites Chinese text and ongoing replies into intentionally exaggerated AI-style prose for parody and critique, using commands for one-off rewrites or persistent style mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentizer-zh rewrites Chinese text or ongoing assistant replies into an exaggerated AI-generated style for satire and critique, using /agentizer, /agentizer-on, and /agentizer-off modes.
 
-## Publisher: <br>
-[ispacekid](https://clawhub.ai/user/ispacekid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ispacekid](https://clawhub.ai/user/ispacekid)
 
-## Use Case: <br>
-External users and developers use this skill to transform Chinese text or assistant replies into intentionally formulaic AI-style language for humor, critique, or style experimentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent style mode can unintentionally continue exaggerated AI-style responses beyond a single rewrite. <br>
-Mitigation: Prefer /agentizer for one-off rewrites and use /agentizer-off to restore normal replies after persistent mode. <br>
-Risk: The parody style may be unsuitable for serious, sensitive, or audience-facing communication if the intent is not clear. <br>
-Mitigation: Use the skill only when intentionally exaggerated Chinese AI-style rewriting is desired, and keep normal safety and content policies ahead of style rules. <br>
+## Use Case:
 
+External users and developers use this skill to parody or critique AI-generated Chinese prose by transforming supplied text or ongoing replies into an intentionally over-structured, jargon-heavy style.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ispacekid/agentizer-zh) <br>
-- [AI phrases reference](references/ai-phrases.md) <br>
-- [AI style rules](references/ai-style-rules.md) <br>
-- [AI vocabulary reference](references/ai-vocabulary.md) <br>
-- [Examples](references/examples.md) <br>
-- [humanizer](https://github.com/blader/humanizer) <br>
-- [Humanizer-zh](https://github.com/op7418/Humanizer-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text responses and rewritten Chinese prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports one-off rewrites with /agentizer and persistent style changes with /agentizer-on until /agentizer-off is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill requests Write/Edit permissions even though its primary purpose is Chinese-language style rewriting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or tightly scope file-writing tools unless generated output must be saved to files.
+
+Risk: The exaggerated parody style can make serious answers less clear or inappropriately informal outside satire and critique use cases.
+
+Mitigation: Use the skill only for intentional parody or style transformation, and keep safety and content policies higher priority than style rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ispacekid/skills/agentizer-zh)
+- [AI 词汇弹药库](artifact/references/ai-vocabulary.md)
+- [AI 八股套话库](artifact/references/ai-phrases.md)
+- [AI 风格规则](artifact/references/ai-style-rules.md)
+- [Before & After 范例集](artifact/references/examples.md)
+- [humanizer](https://github.com/blader/humanizer)
+- [Humanizer-zh](https://github.com/op7418/Humanizer-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese text or Markdown-formatted rewritten prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can operate as a single-turn rewrite or as a persistent style mode until disabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,66 @@
-## Description: <br>
-Manage ATX on BSC with wallet creation, price and balance queries, PancakeSwap V3 swaps, liquidity operations, LP positions and holdings, and BNB/ERC20 transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ATX on BSC with wallet creation, price and balance queries, PancakeSwap V3 swaps, liquidity operations, LP positions and holdings, and BNB/ERC20 transfers.
 
-## Publisher: <br>
-[agentswapx](https://clawhub.ai/user/agentswapx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentswapx](https://clawhub.ai/user/agentswapx)
 
-## Use Case: <br>
-External users and developers use ATXSwap to manage ATX wallets and perform BSC workflows, including live balance queries, ATX/USDT swaps, PancakeSwap V3 liquidity operations, and token transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move real funds through wallet, swap, transfer, and liquidity commands. <br>
-Mitigation: Use a low-balance dedicated wallet, run live previews first, and require explicit confirmation before any write action. <br>
-Risk: Passing wallet passwords on the command line can expose sensitive credentials through shell history or process listings. <br>
-Mitigation: Prefer interactive or secure local workflows and never print passwords, private keys, or decrypted wallet material in chat. <br>
-Risk: Registry bypass instructions can lead users to ignore meaningful security warnings. <br>
-Mitigation: Review the source and dependency trust path before installation, and do not treat the package's force-install path as proof that warnings are harmless. <br>
-Risk: Repeated or ambiguous transfer submissions can duplicate a real asset transfer. <br>
-Mitigation: Treat each asset/from/to/amount tuple as a single transfer intent, check chain or wallet state after ambiguous submissions, and do not retry blindly. <br>
+## Use Case:
 
+External users and agents use this skill to manage an ATX wallet on BSC, refresh current balances and LP positions, preview ATX/USDT swaps or liquidity changes, and execute confirmed transfers or DeFi transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentswapx/atxswap) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/agentswapx) <br>
-- [Project homepage](https://github.com/agentswapx/skills/tree/main/atxswap) <br>
-- [ATXSwap SDK on npm](https://www.npmjs.com/package/atxswap-sdk) <br>
-- [ATXSwap SDK source](https://github.com/agentswapx/atxswap-sdk) <br>
-- [ATXSwap team documentation](https://docs.atxswap.com/guide/team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read commands and write commands are separated by preview and confirmation flows; wallet, swap, liquidity, and transfer scripts emit JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.31 (source: frontmatter, package.json, changelog, release evidence) <br>
+Risk: The skill can manage a BSC wallet with real assets and submit swaps, transfers, and liquidity transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep wallet balances limited, inspect each preview, and require explicit user confirmation before any write transaction.
+
+Risk: Wallet credentials and encrypted keystore backups are sensitive even when the raw private key is not exposed.
+
+Mitigation: Use a strong unique wallet password, prefer writing protected keystore exports to local files, and avoid sharing keystore material through uncontrolled channels.
+
+Risk: Passing wallet passwords through non-interactive command-line arguments can expose them through shell history or process listings.
+
+Mitigation: Use interactive password entry or protected local secret storage when available, and avoid placing wallet passwords in command-line arguments.
+
+Risk: Network or RPC ambiguity during transfer submission could lead to duplicate sends if retried blindly.
+
+Mitigation: After a transaction hash or ambiguous submission, inspect chain or wallet state before retrying and confirm whether the user intends a new transfer.
+
+## Reference(s):
+
+- [ATXSwap skill source](https://github.com/agentswapx/skills/tree/main/atxswap)
+- [ATXSwap SDK on npm](https://www.npmjs.com/package/atxswap-sdk)
+- [ATXSwap SDK source and docs](https://github.com/agentswapx/atxswap-sdk)
+- [ATXSwap team introduction](https://docs.atxswap.com/guide/team)
+- [ATXSwap team introduction (ZH)](https://docs.atxswap.com/zh/guide/team)
+- [ClawHub skill page](https://clawhub.ai/agentswapx/skills/atxswap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live on-chain query summaries, transaction hashes, wallet metadata, and encrypted keystore backup material when explicitly requested by the user.]
+
+## Skill Version(s):
+
+0.0.31 (source: frontmatter, package.json, CHANGELOG, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

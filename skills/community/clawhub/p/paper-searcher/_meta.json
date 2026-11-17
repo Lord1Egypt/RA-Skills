@@ -1,6 +1,66 @@
 {
-  "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
-  "slug": "paper-searcher",
   "version": "1.0.2",
-  "publishedAt": 1777525339029
+  "license": "MIT-0",
+  "tags": [
+    "literature-search",
+    "papers",
+    "zotero",
+    "research",
+    "academic"
+  ],
+  "changelog": [
+    {
+      "version": "1.0.2",
+      "changes": [
+        "Shorten the bilingual summary and add bilingual section headings for better ClawHub preview and readability.",
+        "缩短双语简介，并补充核心章节的中英文标题，提升 ClawHub 预览与阅读体验。"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "changes": [
+        "Fix display name publishing guidance and clarify optional external tool and Zotero credential requirements.",
+        "修复双语展示名发布说明，并明确外部检索工具与 Zotero 凭据均为可选配置。"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release: structured multi-source literature search, evidence-based shortlist review, and user-confirmed Zotero import workflow.",
+        "首版：支持多源文献检索、证据化候选清单评审，以及用户确认后的 Zotero 导入流程。"
+      ]
+    }
+  ],
+  "displayName": "Paper Searcher | 文献搜索器",
+  "slug": "paper-searcher",
+  "requirements": {
+    "externalTools": [
+      {
+        "name": "paper-search",
+        "package": "paper-search-mcp",
+        "required": false,
+        "purpose": "Automated public-database literature search; browser/manual search can be used if unavailable."
+      },
+      {
+        "name": "zotero-mcp",
+        "required": false,
+        "purpose": "Optional Zotero operations when configured by the user."
+      }
+    ],
+    "optionalEnv": [
+      {
+        "name": "ZOTERO_API_KEY",
+        "purpose": "Optional Zotero import only; never hardcode."
+      },
+      {
+        "name": "ZOTERO_LIBRARY_ID",
+        "purpose": "Optional Zotero target library ID."
+      },
+      {
+        "name": "ZOTERO_LIBRARY_TYPE",
+        "purpose": "Optional Zotero library type: user or group."
+      }
+    ],
+    "notes": "Search and review workflows do not require credentials. Zotero import requires user-confirmed selected items and securely configured credentials."
+  }
 }

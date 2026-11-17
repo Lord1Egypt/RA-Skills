@@ -1,45 +1,60 @@
-## Description: <br>
-币安撸毛助手 displays current Binance earning and promotional activity information, including financial products, activity rewards, and airdrop previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language assistant that summarizes current Binance earning promotions, reward activities, and Alpha airdrop previews from public sources.
 
-## Publisher: <br>
-[luckylion68](https://clawhub.ai/user/luckylion68) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckylion68](https://clawhub.ai/user/luckylion68)
 
-## Use Case: <br>
-External users and agents use this skill to fetch and summarize Binance promotional earning activities, rewards, financial products, and airdrop previews. It is oriented toward Chinese-region activity filtering and deadline-aware summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotional, airdrop, and earning activity details can change quickly or be incomplete. <br>
-Mitigation: Treat the output as informational and verify offers, eligibility, and deadlines on official Binance pages before acting. <br>
-Risk: The skill contacts Binance and alpha123.uk and saves Markdown reports under the OpenClaw workspace. <br>
-Mitigation: Install only if this network access and local report persistence are acceptable, and configure OPENCLAW_WORKSPACE or HTTP_PROXY when needed. <br>
-Risk: Default filtering favors Chinese-region activities and UTC+8 timing. <br>
-Mitigation: Review region eligibility and deadline times against source pages for the user's locale. <br>
+## Use Case:
 
+External users and agent operators use this skill to review Binance promotional earning opportunities, reward campaigns, deadlines, and Alpha airdrop previews in Chinese. It is intended as an informational assistant; users should verify opportunities on official pages before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckylion68/binance-earning-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/luckylion68) <br>
-- [Binance announcements](https://www.binance.com/zh-CN/support/announcement) <br>
-- [alpha123.uk](https://alpha123.uk/zh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown activity summaries with links, dates, reward or APR fields, and optional local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Binance and alpha123.uk data; supports optional HTTP_PROXY and OPENCLAW_WORKSPACE environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata; artifact metadata reports 2.0.1) <br>
+Risk: Promotional and financial opportunity information may change quickly or be incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify deadlines, eligibility, and participation terms on official Binance or project pages before acting.
+
+Risk: The skill makes external network requests to Binance and alpha123.uk and may use the configured HTTP proxy.
+
+Mitigation: Install only when this network behavior is acceptable, and configure HTTP_PROXY deliberately if a proxy is needed.
+
+Risk: The skill can write Markdown reports under the configured OpenClaw workspace.
+
+Mitigation: Set OPENCLAW_WORKSPACE to an expected location and review generated exports before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luckylion68/skills/binance-earning-assistant)
+- [Publisher profile](https://clawhub.ai/user/luckylion68)
+- [Binance support announcement example](https://www.binance.com/zh-CN/support/announcement/65317d61d1c445f99f73a04c05233dd2)
+- [Alpha123 Chinese page](https://alpha123.uk/zh/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language Markdown and console-style activity summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May export Markdown reports under the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata; artifact metadata reports 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

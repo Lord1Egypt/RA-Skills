@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>Lenormand · 社交卡片</title>
+<style>
+
+  :root {
+    --bg: #faf8f3;
+    --text: #1a1a1a;
+    --brand: #1B365D;
+    --border: #e0ddd3;
+    --serif: "Chiron Sung HK", "Chiron Sung HK WS", "Source Han Serif SC", "Noto Serif CJK SC", serif;
+    --sans: "Chiron Hei HK", "Chiron Hei HK WS", -apple-system, "PingFang SC", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e8e6dc;
+    font-family: var(--serif);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    gap: 40px;
+  }
+
+  /* === Poster boards (1080×1440) === */
+  .poster.xhs {
+    width: 1080px;
+    height: 1440px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* === Cover (Page 1) === */
+  .cover-page {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 80px 70px;
+  }
+  .cover-page .spread-badge {
+    font-family: var(--sans);
+    font-size: 26px;
+    letter-spacing: 6px;
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .cover-page h1 {
+    font-family: var(--serif);
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .cover-page .subtitle {
+    font-family: var(--serif);
+    font-size: 36px;
+    color: var(--brand);
+    margin-bottom: 44px;
+  }
+  .cover-page .date {
+    font-size: 26px;
+    color: #aaa;
+    margin-bottom: 50px;
+  }
+  .cover-cards-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 36px;
+  }
+  .cover-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .cover-card-svg {
+    border-radius: 8px;
+  }
+  .cover-card-name {
+    font-family: var(--serif);
+    font-size: 26px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .cover-card-pos {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: #bbb;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+
+  /* === Content pages (Page 2+) === */
+  .content-page {
+    padding: 100px 90px;
+    justify-content: flex-start;
+  }
+  .content-page h2 {
+    font-family: var(--serif);
+    font-size: 46px;
+    font-weight: 500;
+    color: var(--brand);
+    margin-bottom: 44px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 18px;
+  }
+  .content-page .body-text {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.7;
+    color: var(--text);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 1100px;
+    overflow: hidden;
+  }
+  .content-page .body-text p { margin: 0; }
+  .content-page .combo-block {
+    background: #f3f1e9;
+    border-left: 5px solid var(--brand);
+    padding: 20px 28px;
+    margin: 8px 0;
+    border-radius: 0 10px 10px 0;
+  }
+  .content-page .combo-block .pair-name {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--brand);
+    margin-bottom: 14px;
+    font-family: var(--serif);
+  }
+  .content-page .combo-block .pair-text {
+    font-size: 28px;
+    color: var(--text);
+    font-family: var(--serif);
+    line-height: 1.7;
+  }
+  .content-page .insight-box {
+    background: var(--brand);
+    color: #f5f4ed;
+    padding: 28px 32px;
+    border-radius: 12px;
+    margin-top: 12px;
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.6;
+  }
+  .footer-band {
+    position: absolute;
+    bottom: 50px;
+    left: 90px;
+    right: 90px;
+    font-family: var(--sans);
+    font-size: 20px;
+    color: #c5c2b7;
+    text-align: center;
+  }
+  .page-break { width: 100%; height: 40px; }
+</style>
+<!-- Fonts: Google Fonts primary, CN mirror fallback -->
+<link id="font-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&display=swap">
+<script>
+(function(){var t=setTimeout(function(){var l=document.getElementById('font-css');if(l)l.href=l.href.replace('fonts.googleapis.com','fonts.loli.net');},2500);document.fonts.ready.then(function(){clearTimeout(t);});})();
+</script>
+</head>
+<body>
+
+<!--
+  ============================================================
+  SEED: Social Card (1080×1440) — In the Cards v3
+
+  Usage:
+    1. Copy this file to output/lenormand-xhs-{topic}-{date}.html
+    2. For Page 1 (cover): replace {{SPREAD_BADGE}}, {{TITLE}},
+       {{SUBTITLE}}, {{DATE}}, and the {{CARD_N_SVG}} placeholders
+    3. For Pages 2+: duplicate the content-page template for each
+       interpretation chapter, fill in {{CHAPTER_TITLE}} and body.
+       Content limit per page: max 2-3 paragraphs + 1-2 combos or takeaway.
+       If content overflows, split into additional page or trim.
+    4. Rendering: node scripts/render-social-cards.js output/<html>
+    4. Rendering: node scripts/render-social-cards.js output/<html>
+  ============================================================
+-->
+
+<!-- Page 1: Cover -->
+<section class="poster xhs cover-page">
+  <!-- Global SVG defs for all inline cards -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <pattern id="g" width="72" height="72" patternUnits="userSpaceOnUse">
+        <path d="M72 0L72 72M0 72L72 72" fill="none" stroke="#7A8B7A" stroke-width="0.3" opacity=".12"/>
+      </pattern>
+      <pattern id="sg" width="18" height="18" patternUnits="userSpaceOnUse">
+        <path d="M18 0L18 18M0 18L18 18" fill="none" stroke="#7A8B7A" stroke-width="0.2" opacity=".06"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <div class="spread-badge">{{SPREAD_BADGE}}</div>
+  <h1>{{TITLE}}</h1>
+  <div class="subtitle">{{SUBTITLE}}</div>
+  <div class="date">{{DATE}}</div>
+
+  <div class="cover-cards-row">
+    <!-- Repeat for each card: read SVG from cards/card-NN-slug.svg, strip <defs>, inline here -->
+    <div class="cover-card-wrap">
+      <svg class="cover-card-svg" viewBox="0 0 1024 1536" width="240" height="360">
+        {{CARD_1_SVG}}
+      </svg>
+      <span class="cover-card-name">{{CARD_1_NAME}}</span>
+      <span class="cover-card-pos">{{CARD_1_POS}}</span>
+    </div>
+    <div class="cover-card-wrap">
+      <svg class="cover-card-svg" viewBox="0 0 1024 1536" width="240" height="360">
+        {{CARD_2_SVG}}
+      </svg>
+      <span class="cover-card-name">{{CARD_2_NAME}}</span>
+      <span class="cover-card-pos">{{CARD_2_POS}}</span>
+    </div>
+    <div class="cover-card-wrap">
+      <svg class="cover-card-svg" viewBox="0 0 1024 1536" width="240" height="360">
+        {{CARD_3_SVG}}
+      </svg>
+      <span class="cover-card-name">{{CARD_3_NAME}}</span>
+      <span class="cover-card-pos">{{CARD_3_POS}}</span>
+    </div>
+    <!-- For spreads != 3, adjust card count and SVG width/height:
+         1 card: 260×390, 2 cards: 240×360, 5 cards: 150×225, 9 cards: 100×150 -->
+  </div>
+
+  <div class="footer-band">Lenormand Reading · In the Cards</div>
+</section>
+
+<div class="page-break"></div>
+
+<!-- Page 2+: Content (one per interpretation chapter) -->
+<!-- CHAPTER_LOOP_START -->
+<section class="poster xhs content-page">
+  <h2>{{CHAPTER_TITLE}}</h2>
+  <div class="body-text">
+    <!-- Fill with paragraphs (<p>), combo-blocks, and insight-boxes from the reading JSON -->
+    {{CHAPTER_CONTENT}}
+  </div>
+  <div class="footer-band">{{PAGE_N}} / {{TOTAL_PAGES}}</div>
+</section>
+<!-- CHAPTER_LOOP_END -->
+
+</body>
+</html>

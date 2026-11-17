@@ -13,7 +13,6 @@ import base64
 import json
 import os
 import sys
-import types
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -41,12 +40,12 @@ MINIMAL_CONFIG = {
     },
     "family": {
         "members": [
-            {"name": "Harsh", "phone": "+11111111111"},
-            {"name": "Sushmita", "phone": "+12222222222"}
+            {"name": "Alex", "phone": "+11111111111"},
+            {"name": "Sam", "phone": "+12222222222"}
         ],
         "kids": [
             {
-                "name": "Amyra",
+                "name": "Ana",
                 "emoji": "girl",
                 "age_years": 3,
                 "age_desc": "3 yrs",
@@ -64,7 +63,7 @@ MINIMAL_CONFIG = {
                 }
             },
             {
-                "name": "Reyansh",
+                "name": "Ben",
                 "emoji": "boy",
                 "age_months": 20,
                 "age_desc": "20 mos",
@@ -113,24 +112,57 @@ MINIMAL_CONFIG = {
     }
 }
 
+# ── Pin config_loader to this fixture, not the machine's real config ─────────
+#
+# `core.config_loader.config` is an import-time singleton reading the skill
+# root's config.json. Without this, every test that resolves a child, a store
+# or a calendar id asserts against the maintainer's real household — which is
+# how real children's names ended up hardcoded in ~200 assertions. Set before
+# any test module imports config_loader; conftest runs first, so this holds.
+
+import atexit as _atexit
+import tempfile as _tempfile
+
+_fd, _TEST_CONFIG_PATH = _tempfile.mkstemp(prefix="homebase-test-config-", suffix=".json")
+with os.fdopen(_fd, "w") as _f:
+    json.dump(MINIMAL_CONFIG, _f)
+os.environ["HOMEBASE_CONFIG"] = _TEST_CONFIG_PATH
+_atexit.register(lambda: os.path.exists(_TEST_CONFIG_PATH) and os.unlink(_TEST_CONFIG_PATH))
+
+
+
+
+# `patch_keychain` lived here until 2026-09-07. It stubbed load_google_secrets
+# and the `keyring` module so no test read the real OS keychain at import time.
+# Both are gone: homebase holds no Google credentials, and the only thing that
+# still must not reach real Google is guarded by `block_real_gog` below.
+
 
 @pytest.fixture(scope="session", autouse=True)
-def patch_keychain():
+def block_real_gog():
+    """No test may reach real Google — calendar or mail.
+
+    Since 2026-09-07 both go through `gog` subprocesses (core/gcal.py,
+    core/gmail.py), and a test that forgets to patch one would otherwise run it
+    for real: read the live family calendar or the family's mail, or worse,
+    write. The convention of "every test patches what it needs" is not a
+    safeguard — Club Studio had the identical gap and a test fixture created a
+    real event on the family calendar during this migration.
+
+    Pointing GOG_BIN at a path that cannot exist turns any unpatched call into
+    a loud GogError instead of a network round trip. It also keeps the suite
+    honest about speed: real subprocesses took it from ~5s to ~18s when only
+    calendar was covered, and to ~30s once mail was added — each jump was the
+    tell that something was escaping.
+
+    EVERY module with its own GOG_BIN must be listed here. A new one that is
+    not is silently unguarded, which is exactly the failure this exists to stop.
     """
-    Prevent any real Keychain reads during the entire test session.
-    load_google_secrets() is called at module import time; stub it out so
-    it simply sets dummy env vars instead of touching the OS keychain.
-    """
-    env_patch = {
-        "GOOGLE_CLIENT_ID":     "test-client-id",
-        "GOOGLE_CLIENT_SECRET": "test-client-secret",
-        "GOOGLE_REFRESH_TOKEN": "test-refresh-token",
-    }
-    with patch.dict(os.environ, env_patch, clear=False):
-        # Also make _try_keyring a no-op so keychain_secrets.py doesn't call keyring
-        keyring_mock = MagicMock()
-        keyring_mock.get_password.return_value = None
-        sys.modules["keyring"] = keyring_mock
+    import core.gcal as _gcal
+    import core.gmail as _gmail
+    blocked = "/nonexistent/gog-blocked-in-tests"
+    with patch.object(_gcal, "GOG_BIN", blocked), \
+         patch.object(_gmail, "GOG_BIN", blocked):
         yield
 
 
@@ -156,7 +188,7 @@ def tmp_skill_dir(tmp_path):
 
 SAMPLE_EVENTS = [
     {"title": "Doctor appointment", "time": "10:00", "date": "2026-03-27"},
-    {"title": "Drop off Amyra", "time": "08:30", "date": "2026-03-27"},
+    {"title": "Drop off Ana", "time": "08:30", "date": "2026-03-27"},
     {"title": "School pickup", "time": "15:00", "date": "2026-03-27"},
 ]
 
@@ -178,17 +210,17 @@ def sample_events_no_dropoff():
 # ── Meal suggestions fixture ──────────────────────────────────────────────────
 
 SAMPLE_MEAL_SUGGESTIONS = {
-    "amyra": {
+    "ana": {
         "breakfast": "Scrambled eggs",
         "lunch":     "Cheese sandwich",
         "side":      "Fruit",
         "note":      "⚠️ No eggs at lunch — eggs were suggested for breakfast"
     },
-    "reyansh": {
+    "ben": {
         "breakfast": "Soft oats porridge",
         "lunch":     "Rice khichdi with veggies",
         "side":      "Soft banana",
-        "note":      "Ensure everything is soft/gooey for Reyansh"
+        "note":      "Ensure everything is soft/gooey for Ben"
     }
 }
 
@@ -282,8 +314,8 @@ SAMPLE_RESTAURANTS_DATA = {
             "total": 45.00,
             "rating": 4.5,
             "individual_ratings": {
-                "Harsh": {"rating": 4, "notes": ""},
-                "Sushmita": {"rating": 5, "notes": "loved it"}
+                "Alex": {"rating": 4, "notes": ""},
+                "Sam": {"rating": 5, "notes": "loved it"}
             },
             "notes": "",
             "source": "receipt_photo",
@@ -303,8 +335,8 @@ def sample_restaurants_data():
 
 SAMPLE_WEEKLY_PLAN = {
     day: {
-        "amyra":   {"breakfast": "Oats", "lunch": "Cheese sandwich", "side": "Fruit", "dinner": "Dal rice", "note": ""},
-        "reyansh": {"breakfast": "Soft oats porridge", "lunch": "Rice khichdi with veggies", "side": "Soft banana", "dinner": "Soft mashed dal rice", "note": "All foods must be soft/gooey"}
+        "ana":   {"breakfast": "Oats", "lunch": "Cheese sandwich", "side": "Fruit", "dinner": "Dal rice", "note": ""},
+        "ben": {"breakfast": "Soft oats porridge", "lunch": "Rice khichdi with veggies", "side": "Soft banana", "dinner": "Soft mashed dal rice", "note": "All foods must be soft/gooey"}
     }
     for day in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 }

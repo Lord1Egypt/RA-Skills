@@ -1,43 +1,58 @@
-## Description: <br>
-Generate investor-ready memos, executive summaries, and pitch narrative documents from raw financial data, cap tables, and startup metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate investor-ready memos, executive summaries, and pitch narrative documents from raw financial data, cap tables, and startup metrics.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Founders, CFOs, fund managers, and startup operators use this skill to turn financial models, cap-table context, startup metrics, and fundraising details into polished investor memos, board updates, LP letters, SAFE summaries, and use-of-funds narratives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investor memos may contain sensitive financials, cap-table details, SAFE terms, projections, or founder information. <br>
-Mitigation: Treat those inputs and outputs as confidential and share drafts only with intended reviewers. <br>
-Risk: Incorrect metrics, assumptions, or projections could mislead investors or internal stakeholders. <br>
-Mitigation: Verify all numbers and clearly label assumptions before sharing any generated document. <br>
-Risk: SAFE, term sheet, fundraising, or securities-related summaries may have legal implications. <br>
-Mitigation: Use attorney review for legal or securities-related documents and include the appropriate disclaimer when fundraising terms are present. <br>
+## Use Case:
 
+External founders, CFOs, and fund managers use this skill to turn financial data, fundraising terms, and operating metrics into investor one-pagers, board updates, LP letters, SAFE or note summaries, and executive summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/investor-memo-generator) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown, plain text, or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholders for missing inputs, financial assumptions, legal disclaimers, and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata; artifact frontmatter version is 1.0.0) <br>
+Risk: Users may provide confidential financial, fundraising, or investor materials to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sensitive details before sharing them and avoid including information the agent does not need to draft the memo.
+
+Risk: Investor memos, SAFE summaries, and fundraising narratives may touch securities or legal obligations.
+
+Mitigation: Treat outputs as drafting aids and have qualified counsel review legal or securities-related content before use.
+
+Risk: The skill can produce persuasive investor-facing narratives from user-provided metrics, which may become misleading if inputs are incomplete or unsupported.
+
+Mitigation: Verify all numbers, assumptions, projections, use-of-funds allocations, and runway calculations against source financial data before sharing externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/investor-memo-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown by default, with plain text or structured JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placeholders for missing business inputs and legal disclaimers for securities-related drafts.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

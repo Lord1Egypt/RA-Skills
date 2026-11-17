@@ -1,0 +1,25 @@
+{
+  "required": [
+    "所有表均为ENGINE=InnoDB",
+    "数据库与表使用utf8mb4与统一COLLATE",
+    "每表必须存在主键并为首列",
+    "时间列默认值与ON UPDATE策略一致",
+    "NOT NULL与DEFAULT显式声明",
+    "金额列使用DECIMAL，避免FLOAT/DOUBLE",
+    "外键列已建立索引（或有应用侧约束说明）",
+    "索引命名/约束命名符合规范",
+    "复合索引遵循最左前缀并覆盖主要查询",
+    "软删除与多租户列索引完备",
+    "分区键包含于主键/唯一键前缀",
+    "审计列(created_at,updated_at,created_by,updated_by)齐全",
+    "COMMENT 注释完整、用词一致",
+    "ROW_FORMAT=DYNAMIC 指定"
+  ],
+  "optional": [
+    "UUID使用BINARY(16)并配套函数示例",
+    "JSON字段采用生成列+函数索引",
+    "触发器数量受控并有注释",
+    "大表避免过多二级索引",
+    "冷热数据分离/分区策略说明"
+  ]
+}

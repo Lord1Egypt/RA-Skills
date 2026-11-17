@@ -1,45 +1,61 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections so agents can log failures, user feedback, missing capabilities, and better recurring approaches for future work.
 
-## Publisher: <br>
-[shendingyi](https://clawhub.ai/user/shendingyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shendingyi](https://clawhub.ai/user/shendingyi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrections, command failures, knowledge gaps, feature requests, and reusable patterns as structured learning notes. It helps agents review prior learnings, promote durable knowledge into shared memory files, and optionally configure hooks that remind agents to log useful discoveries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning notes could capture secrets, private transcripts, sensitive command output, or customer data. <br>
-Mitigation: Keep .learnings local unless team sharing is intentional, and redact API keys, tokens, passwords, customer data, private transcripts, and sensitive command output before saving entries. <br>
-Risk: Promoted learnings may place incorrect, stale, or overly broad guidance into shared memory or agent instruction files. <br>
-Mitigation: Review each promoted learning for accuracy, scope, and sensitivity before adding it to shared memory or agent instruction files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture conversation-derived learnings, command errors, corrections, and feature requests in markdown files. They can review those entries and promote broadly useful patterns into persistent agent guidance after human review.
 
-## Reference(s): <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [Skill Release Page](https://clawhub.ai/shendingyi/alex-self-improving-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/shendingyi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and structured log-entry templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local markdown learning files and optional agent hook configuration when the user chooses to install or enable those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation-derived content may be persisted into future agent memory or instruction files without sufficient review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every entry before saving or promotion, and do not promote entries into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions without human approval.
+
+Risk: Learning logs can capture secrets, personal data, or sensitive project details.
+
+Mitigation: Keep .learnings local and out of git unless deliberately approved, and redact secrets and personal data before writing entries.
+
+Risk: Global hooks or empty matchers can add reminders to every prompt and make persistent logging feel automatic.
+
+Mitigation: Use opt-in hook configuration, avoid global hooks or empty matchers unless desired, and prefer narrower activation when reminders should be limited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shendingyi/skills/alex-self-improving-agent)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local markdown learning logs and persistent agent instruction files when the user applies the guidance or enables the optional hooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

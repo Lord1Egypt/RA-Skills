@@ -1,0 +1,868 @@
+{
+  "current_date": "2026-04-15",
+  "cases": [
+    {
+      "id": "search_01_chaoyang_property",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "看一下今天北京朝阳区 500 万以上的物业项目，不要保安和保洁，只看招标",
+      "understanding": "今天；北京市朝阳区精确查询；关键词“物业”；排除“保安、保洁”；金额 500 万以上；“只看招标”按招标公告一级类型查询。",
+      "expected_query": {
+        "areaIds": [
+          3316
+        ],
+        "beginTime": "2026-04-15",
+        "endTime": "2026-04-15",
+        "excludeWords": [
+          "保安",
+          "保洁"
+        ],
+        "beginAmount": 5000000,
+        "infoTypes": {
+          "0": []
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "物业"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "北京",
+        "物业",
+        "保安",
+        "保洁",
+        "500 万",
+        "招标"
+      ]
+    },
+    {
+      "id": "search_02_haidian_canteen_win",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "帮我找下近一周海淀学校里跟食堂有关的，中标的就行，金额别太小，50 万以上",
+      "understanding": "最近 7 天；北京市海淀区精确查询；学校；关键词“食堂”；“中标的”按中标公告一级类型查询；金额 50 万以上。",
+      "expected_query": {
+        "areaIds": [
+          3320
+        ],
+        "beginTime": "2026-04-09",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          3
+        ],
+        "infoTypes": {
+          "3": []
+        },
+        "beginAmount": 500000,
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "食堂"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "北京",
+        "学校",
+        "食堂",
+        "中标",
+        "50 万"
+      ]
+    },
+    {
+      "id": "search_03_pudong_hospital_device",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "上海浦东最近有没有医院买设备的结果，预算或者中标金额 100 万到 1000 万",
+      "understanding": "最近一个月；上海市浦东新区精确查询；医疗机构；关键词“设备”；“结果”按中标公告一级类型查询；金额 100 万到 1000 万。",
+      "expected_query": {
+        "areaIds": [
+          3411
+        ],
+        "beginTime": "2026-03-15",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          1
+        ],
+        "infoTypes": {
+          "3": []
+        },
+        "beginAmount": 1000000,
+        "endAmount": 10000000,
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "设备"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "notes": [
+        "“最近有没有”默认按近一个月处理。"
+      ],
+      "expected_user_condition_text": [
+        "上海",
+        "医疗",
+        "设备",
+        "中标",
+        "100 万",
+        "1000 万"
+      ]
+    },
+    {
+      "id": "search_04_tianhe_gov_intention",
+      "type": "purchase_intention",
+      "expected_command": "search-purchase",
+      "expected_capability": "search-purchase-intentions",
+      "expected_api_path": "/api/search/purchase",
+      "expected_result_type": "purchase_intention",
+      "natural_language": "广州天河政府未来三个月的数字化采购意向，别带运维",
+      "understanding": "广州市天河区精确查询；政府机构；关键词“数字化”；排除“运维”；预计采购时间为未来三个月；走采购意向独立能力。",
+      "expected_query": {
+        "areaIds": [
+          2791
+        ],
+        "keywords": [
+          "数字化"
+        ],
+        "excludeWords": [
+          "运维"
+        ],
+        "purchasingUnitTypes": [
+          2
+        ],
+        "startPlanPurchaseDate": "2026-05",
+        "endPlanPurchaseDate": "2026-07",
+        "numPerPage": 10
+      },
+      "expected_user_condition_text": [
+        "广州",
+        "政府",
+        "数字化",
+        "运维",
+        "采购意向",
+        "2026-05",
+        "2026-07"
+      ]
+    },
+    {
+      "id": "search_05_nanshan_5g_rebid",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "深圳南山通信公司最近一个月 5G 基站重新招的，别要监理",
+      "understanding": "最近一个月；深圳市南山区精确查询；通信运营商；关键词“5G基站”；排除“监理”；重新招标。",
+      "expected_query": {
+        "areaIds": [
+          2807
+        ],
+        "beginTime": "2026-03-15",
+        "endTime": "2026-04-15",
+        "excludeWords": [
+          "监理"
+        ],
+        "purchasingUnitTypes": [
+          7
+        ],
+        "infoTypes": {
+          "0": [
+            4
+          ]
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "5G基站"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "深圳",
+        "通信运营商",
+        "5G基站",
+        "监理",
+        "重新招标"
+      ]
+    },
+    {
+      "id": "search_06_xihu_imaging_preview",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "杭州西湖医院影像设备有没有近期预告，预算 200 万以内",
+      "understanding": "最近一个月；杭州市西湖区精确查询；医疗机构；关键词“影像设备”；招标预告；金额 200 万以下。",
+      "expected_query": {
+        "areaIds": [
+          2949
+        ],
+        "beginTime": "2026-03-15",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          1
+        ],
+        "infoTypes": {
+          "1": [
+            2
+          ]
+        },
+        "endAmount": 2000000,
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "影像设备"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "杭州",
+        "医疗",
+        "影像设备",
+        "预告",
+        "200 万"
+      ]
+    },
+    {
+      "id": "search_07_xuanwu_security_change",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "南京玄武公安最近一个月安防监控有变动或者答疑的吗",
+      "understanding": "最近一个月；南京市玄武区精确查询；公安；关键词“安防监控”；信息变更或答疑公告。",
+      "expected_query": {
+        "areaIds": [
+          2724
+        ],
+        "beginTime": "2026-03-15",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          4
+        ],
+        "infoTypes": {
+          "2": [
+            5,
+            6
+          ]
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "安防监控"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "南京",
+        "公安",
+        "安防监控",
+        "变更",
+        "答疑"
+      ]
+    },
+    {
+      "id": "search_08_hongshan_air_contract",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "武汉洪山学校空调合同，金额 100 到 1000 万之间",
+      "understanding": "武汉市洪山区精确查询；学校；关键词“空调”；合同公告；金额 100 万到 1000 万；未说明时间，beginTime/endTime 不传，由后端默认查近一个月。",
+      "expected_query": {
+        "areaIds": [
+          3232
+        ],
+        "purchasingUnitTypes": [
+          3
+        ],
+        "infoTypes": {
+          "3": [
+            12
+          ]
+        },
+        "beginAmount": 1000000,
+        "endAmount": 10000000,
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "空调"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "武汉",
+        "学校",
+        "空调",
+        "合同",
+        "100 万",
+        "1000 万"
+      ]
+    },
+    {
+      "id": "search_09_yanta_landscape_failed",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "西安雁塔政府园林绿化最近三个月有没有废了或者流了的项目",
+      "understanding": "最近三个月；西安市雁塔区精确查询；政府机构；关键词“园林绿化”；废标或流标。",
+      "expected_query": {
+        "areaIds": [
+          3126
+        ],
+        "beginTime": "2026-01-15",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          2
+        ],
+        "infoTypes": {
+          "3": [
+            7,
+            8
+          ]
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "园林绿化"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "西安",
+        "政府",
+        "园林绿化",
+        "废标",
+        "流标"
+      ]
+    },
+    {
+      "id": "search_10_wuhou_army_canteen",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "成都武侯部队食堂服务招标，30 万以上，不要装修",
+      "understanding": "成都市武侯区精确查询；部队；关键词“食堂服务”；排除“装修”；“招标”按招标公告一级类型查询；金额 30 万以上；未说明时间，beginTime/endTime 不传，由后端默认查近一个月。",
+      "expected_query": {
+        "areaIds": [
+          3502
+        ],
+        "excludeWords": [
+          "装修"
+        ],
+        "purchasingUnitTypes": [
+          6
+        ],
+        "infoTypes": {
+          "0": []
+        },
+        "beginAmount": 300000,
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "食堂服务"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "成都",
+        "部队",
+        "食堂服务",
+        "装修",
+        "招标"
+      ]
+    },
+    {
+      "id": "search_11_lixia_finance_security",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "济南历下银行或者保险那类网络安全项目，看看候选人或者中标",
+      "understanding": "济南市历下区精确查询；金融企业；关键词“网络安全”；“候选人或者中标”按中标公告一级类型查询；未说明时间，beginTime/endTime 不传，由后端默认查近一个月。",
+      "expected_query": {
+        "areaIds": [
+          2996
+        ],
+        "purchasingUnitTypes": [
+          5
+        ],
+        "infoTypes": {
+          "3": []
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "网络安全"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "济南",
+        "金融企业",
+        "网络安全",
+        "候选人",
+        "中标"
+      ]
+    },
+    {
+      "id": "search_12_huadong_hospital_device",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "华东这边最近一个月医院设备采购，100 万以上，先看公告",
+      "understanding": "华东区域；最近一个月；医疗机构；关键词“设备”；金额 100 万以上；“公告”按招标公告一级类型查询。",
+      "area_phrase": "华东",
+      "expected_area_names": [
+        "上海市",
+        "江苏省",
+        "浙江省",
+        "安徽省",
+        "福建省",
+        "江西省",
+        "山东省"
+      ],
+      "expected_query": {
+        "areaIds": [
+          24,
+          15,
+          30,
+          1,
+          3,
+          16,
+          21
+        ],
+        "beginTime": "2026-03-15",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          1
+        ],
+        "infoTypes": {
+          "0": []
+        },
+        "beginAmount": 1000000,
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "设备"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "华东",
+        "医疗",
+        "设备",
+        "100 万",
+        "公告"
+      ]
+    },
+    {
+      "id": "search_13_gba_school_air",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "大湾区学校空调最近有没有中标的",
+      "understanding": "大湾区内地九市；最近一个月；学校；关键词“空调”；“中标的”按中标公告一级类型查询。",
+      "area_phrase": "大湾区",
+      "expected_area_names": [
+        "广州市",
+        "深圳市",
+        "珠海市",
+        "佛山市",
+        "惠州市",
+        "东莞市",
+        "中山市",
+        "江门市",
+        "肇庆市"
+      ],
+      "expected_query": {
+        "areaIds": [
+          305,
+          316,
+          322,
+          304,
+          307,
+          303,
+          321,
+          308,
+          320
+        ],
+        "beginTime": "2026-03-15",
+        "endTime": "2026-04-15",
+        "purchasingUnitTypes": [
+          3
+        ],
+        "infoTypes": {
+          "3": []
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "空调"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "大湾区",
+        "学校",
+        "空调",
+        "中标"
+      ]
+    },
+    {
+      "id": "search_13b_keyword_or",
+      "type": "search",
+      "expected_command": "search",
+      "expected_capability": "search-projects",
+      "expected_api_path": "/api/search",
+      "expected_result_type": "project",
+      "natural_language": "北京学校空调或者新风项目，看公告",
+      "understanding": "北京市级范围；学校；关键词“空调、新风”任一命中；“公告”按招标公告一级类型查询；未说明时间，beginTime/endTime 不传，由后端默认查近一个月。",
+      "expected_query": {
+        "areaIds": [
+          2
+        ],
+        "purchasingUnitTypes": [
+          3
+        ],
+        "infoTypes": {
+          "0": []
+        },
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "空调",
+              "新风"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_user_condition_text": [
+        "北京",
+        "学校",
+        "空调",
+        "新风",
+        "任一",
+        "公告"
+      ]
+    },
+    {
+      "id": "search_13c_keyword_and",
+      "type": "purchase_intention",
+      "expected_command": "search-purchase",
+      "expected_capability": "search-purchase-intentions",
+      "expected_api_path": "/api/search/purchase",
+      "expected_result_type": "purchase_intention",
+      "natural_language": "广州政府项目同时包含数字化和平台，别带运维，看看采购意向",
+      "understanding": "广州市级范围；政府机构；关键词“数字化、平台”同时命中；排除“运维”；走采购意向独立能力；未指定预计采购时间，由采购意向接口使用默认范围。",
+      "expected_query": {
+        "areaIds": [
+          305
+        ],
+        "keywords": [
+          "数字化",
+          "平台"
+        ],
+        "keywordsSearchType": 2,
+        "excludeWords": [
+          "运维"
+        ],
+        "purchasingUnitTypes": [
+          2
+        ],
+        "numPerPage": 10
+      },
+      "expected_user_condition_text": [
+        "广州",
+        "政府",
+        "数字化",
+        "平台",
+        "同时",
+        "运维",
+        "采购意向"
+      ]
+    },
+    {
+      "id": "search_13d_nanshan_expiring_property",
+      "type": "expiring_project",
+      "expected_command": "search-expiring",
+      "expected_capability": "search-expiring-projects",
+      "expected_api_path": "/api/search/expiring",
+      "expected_result_type": "expiring_project",
+      "natural_language": "深圳南山未来半年到期的物业服务合同，合同金额 200 万以上",
+      "understanding": "深圳市南山区精确查询；关键词“物业服务”；服务到期时间为未来半年；合同金额 200 万以上；走临期项目独立能力。",
+      "expected_query": {
+        "areaIds": [
+          2807
+        ],
+        "keywords": [
+          "物业服务"
+        ],
+        "beginServiceExpireTime": "2026-04-15",
+        "endServiceExpireTime": "2026-10-15",
+        "beginContractAmount": 2000000,
+        "numPerPage": 10
+      },
+      "expected_user_condition_text": [
+        "深圳",
+        "物业服务",
+        "到期",
+        "200 万",
+        "临期项目"
+      ]
+    },
+    {
+      "id": "enterprise_13e_business_info",
+      "type": "enterprise",
+      "expected_command": "enterprise",
+      "expected_capability": "enterprise-intel",
+      "expected_api_path": "/api/enterprise/businessInfo",
+      "expected_result_type": "enterprise_business_info",
+      "enterprise_kind": "business-info",
+      "natural_language": "查一下腾讯科技（深圳）有限公司的工商信息",
+      "understanding": "企业名称明确；调用企业情报的工商信息独立接口。",
+      "expected_query": {
+        "companyName": "腾讯科技（深圳）有限公司"
+      },
+      "expected_user_condition_text": [
+        "腾讯科技（深圳）有限公司",
+        "工商信息"
+      ]
+    },
+    {
+      "id": "area_14_ambiguous_xinqu",
+      "type": "ambiguous_area",
+      "natural_language": "新区最近的物业招标看看",
+      "understanding": "地区“新区”有歧义，不直接搜索；先返回候选地区和提醒，请您确认。",
+      "area_phrase": "新区",
+      "expected_behavior": "不调用搜索接口，不硬猜。"
+    },
+    {
+      "id": "follow_15_next",
+      "type": "next_success",
+      "natural_language": "继续看下一批",
+      "understanding": "沿用上一条成功搜索条件，只把页码加 1。",
+      "expected_behavior": "沿用上一条成功搜索条件，只把页码加 1。"
+    },
+    {
+      "id": "follow_16_next_no_current",
+      "type": "next_no_current",
+      "natural_language": "还没查项目时就说继续",
+      "understanding": "当前没有任何搜索结果，不能翻下一批。",
+      "expected_behavior": "返回失败提示，让用户先查一批项目；不调用搜索接口。"
+    },
+    {
+      "id": "follow_17_next_after_failed_search",
+      "type": "next_after_failed_search",
+      "natural_language": "上一批查询接口失败后继续",
+      "understanding": "上一轮查询没有成功，不能伪造下一批。",
+      "failed_query": {
+        "areaIds": [
+          2
+        ],
+        "beginTime": "2026-04-99",
+        "endTime": "2026-04-15",
+        "numPerPage": 10,
+        "keywordGroups": [
+          {
+            "keywords": [
+              "物业"
+            ],
+            "matchScopes": [
+              2,
+              8
+            ]
+          }
+        ]
+      },
+      "expected_behavior": "不得沿用失败查询生成下一页；返回失败提示。"
+    },
+    {
+      "id": "follow_18_ordinal_detail",
+      "type": "detail",
+      "natural_language": "第 2 条的报名截止时间和联系人是谁",
+      "understanding": "当前结果集第 2 条；查报名截止时间、采购单位联系人、采购单位联系方式。",
+      "project_ref": "第2条",
+      "fields": [
+        "registrationEndTime",
+        "purchasingUnitLinkName",
+        "purchasingUnitLinkPhone"
+      ],
+      "expected_behavior": "先在当前结果定位第 2 条，再调用详情。"
+    },
+    {
+      "id": "follow_19_property_source",
+      "type": "source_url",
+      "natural_language": "刚才那个物业项目原文给我",
+      "understanding": "当前结果集中标题或语义含“物业”的项目；唯一命中时查原文链接，多候选时不硬猜。",
+      "project_ref": "物业",
+      "fields": [
+        "sourceUrl"
+      ],
+      "expected_behavior": "如果唯一命中，查原文链接；如果多条命中，返回候选让用户选，不硬猜。"
+    },
+    {
+      "id": "follow_19b_ordinal_source",
+      "type": "source_url",
+      "natural_language": "第 1 条原文链接给我",
+      "understanding": "当前结果集第 1 条；查原文链接。",
+      "project_ref": "第1条",
+      "fields": [
+        "sourceUrl"
+      ],
+      "expected_behavior": "先在当前结果定位第 1 条，再调用原文链接。"
+    },
+    {
+      "id": "follow_20_chaoyang_budget",
+      "type": "detail_safe",
+      "natural_language": "朝阳那个项目预算多少",
+      "understanding": "当前结果集中地区或标题含“朝阳”的项目；唯一命中时查预算，多候选时不硬猜。",
+      "project_ref": "朝阳",
+      "fields": [
+        "budgetAmount"
+      ],
+      "expected_behavior": "如果多候选，不硬猜；如果唯一命中，查详情预算。"
+    },
+    {
+      "id": "follow_21_ordinal_out_of_range",
+      "type": "detail_failure",
+      "natural_language": "第 99 条的联系人是谁",
+      "understanding": "当前结果集中不存在第 99 条，不能查详情。",
+      "project_ref": "第99条",
+      "fields": [
+        "purchasingUnitLinkName",
+        "purchasingUnitLinkPhone"
+      ],
+      "expected_behavior": "返回失败提示；不调用详情接口。"
+    },
+    {
+      "id": "follow_22_ambiguous_project",
+      "type": "detail_failure",
+      "natural_language": "那个项目多少钱",
+      "understanding": "用户没有给出可定位的项目指代，当前结果无法唯一命中。",
+      "project_ref": "北京",
+      "fields": [
+        "budgetAmount"
+      ],
+      "expected_behavior": "返回候选或补充条件提示；不硬猜。"
+    },
+    {
+      "id": "follow_23_detail_no_current",
+      "type": "detail_no_current",
+      "natural_language": "当前没有结果时追问详情",
+      "understanding": "当前没有任何搜索结果，不能回答第 1 条项目详情。",
+      "project_ref": "第1条",
+      "fields": [
+        "budgetAmount"
+      ],
+      "expected_behavior": "返回失败提示，让用户先查一批项目。"
+    },
+    {
+      "id": "zero_28_too_narrow",
+      "type": "zero_result_reflection",
+      "natural_language": "近一周 5G 基站重新招，300 万以上，不要监理",
+      "understanding": "0 结果时应基于时间、金额、排除词、阶段等实际参数给出反思。",
+      "expected_behavior": "返回 zero_result_reflection，且不建议增加未使用的金额条件。"
+    }
+  ]
+}

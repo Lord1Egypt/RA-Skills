@@ -1,43 +1,66 @@
-## Description: <br>
-门诊病历内涵质控：体格检查缺少与诊断相关的体征。给定门诊病历文本，调用内部医疗大模型，输出无缺陷或有缺陷及原因。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+门诊病历内涵质控：体格检查缺少与诊断相关的体征。给定门诊病历文本，调用内部医疗大模型，输出无缺陷或有缺陷及原因。
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical quality-control staff and developers use this skill to review de-identified outpatient EMR text for whether the physical examination includes signs relevant to the diagnosis. It returns either “无缺陷” or “有缺陷” with a reason. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical-record content is sent to an external HiVoice MaaS model endpoint. <br>
-Mitigation: Use only de-identified records and only after the endpoint and appkey handling are approved for the organization. <br>
-Risk: The skill can save extracted records or results as plaintext files. <br>
-Mitigation: Use controlled output directories with retention, access-control, and deletion procedures; avoid --save-prepared unless storage is deliberate. <br>
-Risk: The output is medical quality-control assistance and may be incomplete or incorrect. <br>
-Mitigation: Require review by qualified clinical staff before using results for care, audit, or operational decisions. <br>
+## Use Case:
 
+Clinical quality-control teams and healthcare workflow developers use this skill to check whether outpatient medical records include physical-exam findings relevant to the diagnosis. It produces a clinician-review-required defect status and reason for a specific physical-exam completeness rule.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-pe-missing-negative) <br>
-- [HiVoice MaaS OpenAI-compatible endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [UTF-8 text containing a no-defect or defect-present result, optionally written to a text file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process txt, json, csv, xls, xlsx, doc, docx, and pdf inputs through the multi-format entry point.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles sensitive clinical record text and sends it to an LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified records and run the skill only with an approved HTTPS LLM service.
+
+Risk: The LLM base URL is externally configurable.
+
+Mitigation: Pin the base URL to an approved service before deployment and review configuration changes.
+
+Risk: The app key is required for API access.
+
+Mitigation: Provide the app key through a protected runtime secret path and do not commit it to the skill or logs.
+
+Risk: The multi-format entry point can save prepared plaintext input when requested.
+
+Mitigation: Avoid --save-prepared in clinical workflows unless retaining a plaintext copy is intentional and governed.
+
+Risk: Outputs are medical quality-control assistance rather than authoritative clinical conclusions.
+
+Mitigation: Require clinician review before using the result in a real clinical workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-pe-missing-negative)
+- [HiVoice MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Files]
+
+**Output Format:** [UTF-8 text status with an optional reason line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns either 无缺陷 or 有缺陷 followed by a reason; the CLI also writes the result to an output text file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

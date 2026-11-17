@@ -1,36 +1,56 @@
-## Description: <br>
-Work with S3-compatible object storage with proper security, lifecycle policies, and access patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with S3-compatible object storage with proper security, lifecycle policies, and access patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and review S3-compatible object storage decisions, including public access, presigned URLs, lifecycle rules, versioning, CORS, key naming, cost controls, replication, and provider differences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Object storage changes based on this guidance can expose data, delete objects, affect availability, or increase cost if applied without account-specific review. <br>
-Mitigation: Review bucket policies, account and bucket public access settings, lifecycle deletion rules, CORS rules, and presigned URL expirations before making changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill for concise operational guidance when configuring S3-compatible object storage access, lifecycle behavior, versioning, CORS, multipart uploads, replication, and provider-specific differences.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, or configuration files are produced by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Presigned URLs and S3 credentials can grant object access if exposed.
+
+Mitigation: Treat presigned URLs and credentials as sensitive secrets, use the shortest practical URL expiration, and generate signed URLs server-side.
+
+Risk: Incorrect public access settings can expose bucket contents.
+
+Mitigation: Default to private access, review both account-level and bucket-level block settings, and prefer a CDN in front of public web assets.
+
+Risk: Versioning, lifecycle, and multipart upload settings can create unexpected retention or cost.
+
+Mitigation: Configure lifecycle rules for temporary objects, old versions, and incomplete multipart uploads, and check storage-tier minimum duration and transition costs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/s3)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; the skill provides reference guidance for S3-compatible storage operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Manages 1Panel app-store workflows so an agent can search, inspect, install, uninstall, and list installed applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets OpenClaw users search, inspect, install, uninstall, and list 1Panel app-store applications through natural-language requests.
 
-## Publisher: <br>
-[rainsunsun](https://clawhub.ai/user/rainsunsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rainsunsun](https://clawhub.ai/user/rainsunsun)
 
-## Use Case: <br>
-OpenClaw users and 1Panel administrators use this skill to manage app-store applications through natural-language requests. It supports searching the store, reviewing app details and versions, listing installed apps, and performing install or uninstall actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or uninstall 1Panel applications, including batch removals, without built-in confirmation or preview safeguards. <br>
-Mitigation: Require explicit human confirmation in the agent workflow before install, uninstall, or batch uninstall actions. <br>
-Risk: The skill requires a 1Panel API key and can administer the configured server. <br>
-Mitigation: Use a least-privilege API key where possible and verify how the host stores saved credentials before use. <br>
-Risk: Running the skill against production 1Panel systems could cause service changes or removals. <br>
-Mitigation: Use it on production systems only when the workflow requires review and approval for changes. <br>
+## Use Case:
 
+External OpenClaw users and server administrators use this skill to manage 1Panel app-store applications from chat, including search, install, uninstall, and installed-app inventory workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/rainsunsun/c2a) <br>
-- [Publisher profile](https://clawhub.ai/user/rainsunsun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger authenticated 1Panel API operations when the host agent executes the requested tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill can install or remove server applications using a saved 1Panel API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped API key, review install and uninstall prompts before execution, and avoid unattended batch uninstall workflows.
+
+Risk: HTTP endpoint examples can expose credentials or administrative traffic.
+
+Mitigation: Configure only HTTPS 1Panel endpoints and rotate any API key that may have been used over HTTP.
+
+Risk: Uninstall and batch uninstall flows may remove server applications without a built-in confirmation step.
+
+Mitigation: Confirm the target application and install ID before removal, and add an operator approval step in deployments that manage shared or production servers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rainsunsun/skills/c2a)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with app lists, status messages, configuration examples, and inline shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include application names, versions, install IDs, operation status, and configuration requirements for the configured 1Panel server.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

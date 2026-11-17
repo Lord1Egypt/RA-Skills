@@ -1,43 +1,61 @@
-## Description: <br>
-Financial Loan Amortization Calculator supports loan and mortgage calculations, including payment estimates, amortization schedules, loan comparisons, affordability analysis, refinance break-even checks, payoff acceleration modeling, and interest calculations through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial Loan Amortization Calculator helps agents calculate loan payments, principal, payoff terms, interest, amortization schedules, loan comparisons, affordability, refinance break-even points, payoff acceleration, and rate conversions through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users and agents use this skill to calculate loan payments, generate amortization schedules, compare lending scenarios, estimate affordability, evaluate refinancing, and model early payoff strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Loan and affordability inputs may include sensitive financial data sent to AgentPMT. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and avoid including unnecessary personal identifiers. <br>
-Risk: CSV amortization exports are stored in cloud storage and exposed through a signed URL until expiration. <br>
-Mitigation: Leave store_schedule_file disabled unless a downloadable schedule is required, and use the shortest practical expiration. <br>
+## Use Case:
 
+External agents and developers use this skill to run AgentPMT loan and mortgage calculations, including amortization schedules, affordability checks, refinance analysis, payoff acceleration, and rate conversion. It is suited for financial planning workflows that need structured calculation results rather than financial advice.
 
-## Reference(s): <br>
-- [Financial Loan Amortization Calculator on ClawHub](https://clawhub.ai/agentpmt/skills/financial-loan-amortization-calculator) <br>
-- [AgentPMT Financial Loan Calculator](https://www.agentpmt.com/marketplace/financial-loan-calculator) <br>
-- [Generated action schema](schema.md) <br>
-- [AgentPMT account and API setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and structured tool response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can describe CSV schedule export metadata when store_schedule_file is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Loan, income, debt, refinance, and affordability details are sent to AgentPMT-hosted services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum financial details needed for the calculation and avoid identifiers such as names, addresses, account numbers, and government IDs.
+
+Risk: Amortization schedule export can upload CSV files to cloud storage and return signed URLs.
+
+Mitigation: Use schedule upload only when a downloadable file is needed, treat signed URLs as sensitive, and choose the shortest supported expiration.
+
+Risk: The security verdict is suspicious because consent and retention details for sensitive financial inputs and uploaded schedules are not fully described.
+
+Mitigation: Install only after accepting AgentPMT data handling for these inputs and prefer pinned or ClawHub-managed install paths over unpinned npx commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/financial-loan-amortization-calculator)
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/financial-loan-calculator)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+- [Local action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON request examples and structured JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some actions can return large amortization schedules, optional CSV file metadata, signed URLs, and expiration dates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

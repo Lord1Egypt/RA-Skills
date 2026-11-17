@@ -1,42 +1,53 @@
-## Description: <br>
-中文防AI味写作助手 — 让AI生成的文字读起来像人写的。基于taste-skill(52K⭐)改造，针对中文表达习惯优化：去模板化、口语化、情绪化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文防AI味写作助手帮助代理检测、润色和改写中文内容，使 AI 生成文字更自然、口语化并减少模板感。
 
-## Publisher: <br>
-[guo123dong](https://clawhub.ai/user/guo123dong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guo123dong](https://clawhub.ai/user/guo123dong)
 
-## Use Case: <br>
-Chinese writers, content creators, and developers use this skill to detect text that feels AI-generated, rewrite Chinese prose into a more colloquial human voice, and draft content for social, article, commerce, or technical-documentation contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause the skill's informal Chinese style to be applied to writing requests where that tone is not intended. <br>
-Mitigation: Enable or invoke the skill only for Chinese text that should be rewritten in a more colloquial, less AI-like voice, and review the final tone before use. <br>
-Risk: Colloquial rewrites can change nuance, formality, or factual precision, especially in formal, technical, or multilingual contexts. <br>
-Mitigation: Compare rewritten text against the source for accuracy and suitability, and ask for a formal or conservative pass when the audience requires it. <br>
-Risk: The artifact includes slang-oriented examples that may be too casual for brand, workplace, legal, or customer-facing copy. <br>
-Mitigation: Apply audience and brand review before publication, replacing slang or emotionally loaded phrasing where a neutral style is required. <br>
+## Use Case:
 
+External users and content creators use this skill to rewrite, polish, score, or draft Chinese text for a more human, conversational style across social posts, marketing copy, ecommerce copy, and technical documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guo123dong/skills/human-writing-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese prose or Markdown with optional scores, rewrite examples, and editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable scripts or automatic data access are included in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Broad activation phrases such as rewrite, polish, and content creation may invoke the skill for general Chinese writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text for tone, accuracy, audience fit, and appropriateness before publishing or sharing it.
+
+Risk: Style-focused rewriting can change nuance, factual precision, or professional tone.
+
+Mitigation: Compare revised text against the source content and preserve required facts, claims, terminology, and compliance language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guo123dong/skills/human-writing-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose, scoring guidance, and Markdown examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, network use, persistence, or hidden behavior is reported in the provided security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

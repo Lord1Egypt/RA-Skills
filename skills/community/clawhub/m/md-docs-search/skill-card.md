@@ -1,37 +1,53 @@
-## Description: <br>
-Full-text search across structured Markdown documentation archives using SQLite FTS5 with BM25-ranked results and source URL extraction for citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-text search across structured Markdown documentation archives using SQLite FTS5 with BM25 ranking and source URL extraction for citations.
 
-## Publisher: <br>
-[carev01](https://clawhub.ai/user/carev01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[carev01](https://clawhub.ai/user/carev01)
 
-## Use Case: <br>
-Developers, researchers, and documentation-focused agents use this skill to index Markdown documentation archives and search them for technical facts, limitations, and source URLs for citations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local search index can store and display the Markdown documents selected for indexing, including sensitive material if the wrong directory is indexed. <br>
-Mitigation: Index only intended documentation directories, avoid secrets and mixed-sensitivity content, and use a dedicated database path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Documentation Search Patterns](references/search-patterns.md) <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to index structured Markdown documentation archives, run full-text queries, retrieve matching articles, and cite source URLs during documentation research.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and text, JSON, or Markdown search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results can include titles, source URLs, relevance scores, context snippets, and optional full content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search results can expose snippets, file paths, source URLs, and optional full article content from indexed Markdown.
+
+Mitigation: Index only documentation intended for agent access; avoid directories containing secrets or private notes, and use full-content output only when complete articles are needed.
+
+Risk: Regex mode can behave poorly with untrusted or expensive patterns.
+
+Mitigation: Prefer the indexed SQLite FTS5 search path for routine queries, and avoid regex mode with untrusted patterns.
+
+## Reference(s):
+
+- [Documentation Search Patterns](references/search-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/carev01/skills/md-docs-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI search results can be emitted as text, JSON, or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires indexing documentation before search; optional full-content output may return complete article text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

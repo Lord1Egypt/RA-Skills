@@ -1,37 +1,50 @@
-## Description: <br>
-Generate blog posts, social media content, marketing emails, product descriptions, and SEO-optimized copy using AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate blog posts, social media content, marketing emails, product descriptions, and SEO-optimized copy using AI.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and content creators can use this skill to generate draft blog posts, social media posts, marketing emails, product descriptions, and SEO-oriented copy from a content type and topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact declares an OpenAI API key requirement, but the included script is a placeholder and does not document provider calls or credential handling. <br>
-Mitigation: Inspect future versions before use, and do not provide API keys or sensitive prompt content unless the skill clearly documents what data is sent and how credentials are supplied. <br>
+## Use Case:
 
+External users and content teams can use this skill to draft blog posts, social posts, marketing emails, product descriptions, and SEO-oriented copy from a requested topic or product.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Command-line text and Markdown-style draft content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included shell script emits placeholder content locally and does not show implemented provider calls in this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: If the placeholder generator is expanded to call an external AI provider, prompts and generated content may leave the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using secrets, regulated data, or confidential business material unless that external-provider use is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/ai-content-generator)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text emitted by a shell-based CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The packaged script currently emits placeholder content and requires a topic argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

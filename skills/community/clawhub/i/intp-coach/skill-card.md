@@ -1,40 +1,55 @@
-## Description: <br>
-Provides INTP-focused coaching and advisory guidance for growth, career, learning, analysis paralysis, and focus challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides INTP-focused coaching and advisor-style guidance for growth, career, learning, analysis paralysis, and focus challenges.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as INTP use this skill for structured coaching conversations and concrete action plans around growth, career, learning, analysis paralysis, and focus. The skill switches between reflective coaching and direct advisory modes based on the user's needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may record personal growth goals, problems, insights, and follow-through without clear consent, retention, or deletion controls. <br>
-Mitigation: Use it only in environments that clearly allow users to disable, inspect, edit, and delete saved records, and avoid entering highly sensitive mental-health, medical, financial, or private relationship information. <br>
+## Use Case:
 
+External users who identify as INTP use this skill for structured coaching conversations, practical action plans, and follow-up prompts around growth, career, learning, analysis paralysis, and focus.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/intp-coach) <br>
-- [INTP traits and cognitive functions](references/intp-traits.md) <br>
-- [INTP insights](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with questions, action steps, and concise plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coaching responses are limited to short conversational turns; advisory responses include concise options and first actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and clawhub.json) <br>
+Risk: The skill asks the agent to keep a coaching profile across sessions, which may include sensitive personal development, career, or emotional context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make memory opt-in, tell users what will be retained, and provide a way to review, edit, or delete saved coaching notes.
+
+Risk: Personality-type coaching can be overgeneralized or mistaken for professional mental health advice.
+
+Mitigation: Keep guidance framed as reflective coaching, preserve the existing disclaimer, and direct users with serious mental health concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/intp-coach)
+- [INTP traits reference](references/intp-traits.md)
+- [INTP insights reference](references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation responses with questions, action steps, and brief plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach mode replies are intended to be concise; advisor mode may include short structured action plans.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

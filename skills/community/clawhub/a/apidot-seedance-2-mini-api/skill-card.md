@@ -1,48 +1,63 @@
-## Description: <br>
-Use APIDot for Seedance 2.0 Mini API workflows, including low-cost short video generation, text-to-video, first and last frame image-to-video, reference image/video/audio workflows, 480p, 720p, task_id, polling, webhooks, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Seedance 2.0 Mini API workflows, including low-cost short video generation, text-to-video, first and last frame image-to-video, reference image/video/audio workflows, 480p, 720p, task_id, polling, webhooks, and APIDot docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and external builders use this documentation-only skill to route Seedance 2.0 Mini integration questions to APIDot model pages, docs, request-planning notes, polling guidance, and webhook guidance. It supports planning text-to-video, first/last-frame, and reference-guided short video workflows without making API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys, private prompts, media URLs, callback URLs, generated video URLs, and task IDs may be exposed if included in client code, logs, screenshots, repositories, or chat output. <br>
-Mitigation: Keep APIDOT_API_KEY server-side, store secrets in a backend secret manager or environment variable, and avoid logging sensitive prompts, media URLs, callback URLs, generated URLs, or task IDs. <br>
-Risk: Model-specific request fields, availability, limits, and commercial terms can change outside this documentation-only skill. <br>
-Mitigation: Use the live APIDot docs and Seedance 2.0 Mini model page as the source of truth before preparing payloads or making product commitments. <br>
-Risk: Live API calls from an unsafe environment can leak credentials or sensitive media data. <br>
-Mitigation: Make live APIDot requests only when explicitly requested by the user and only from a safe server-side environment. <br>
+## Use Case:
 
+Developers and external builders use this skill to route APIDot Seedance 2.0 Mini integration work to the right docs, model pages, async task flow, polling, webhook, and credential-handling guidance.
 
-## Reference(s): <br>
-- [APIDot Seedance 2.0 Mini Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Seedance 2.0 Mini Model Page](https://apidot.ai/models/seedance-2-mini) <br>
-- [APIDot Seedance 2.0 Mini Docs](https://apidot.ai/docs/seedance-2-mini) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with documentation links and integration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable scripts, bundled API client, automatic network calls, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: APIDot API keys, prompts, media URLs, generated video URLs, callback URLs, task IDs, and customer data can expose sensitive information if handled in client code, logs, screenshots, public repositories, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep API keys in server-side environment variables or a backend secret manager, avoid logging sensitive values, and treat prompts, media URLs, callback URLs, generated video URLs, and task IDs as sensitive unless the user explicitly says they can be shared.
+
+Risk: Live APIDot calls may submit sensitive prompts or media to an external API when a user expected documentation-only guidance.
+
+Mitigation: Use the skill as documentation guidance by default and make live APIDot calls only when the user intentionally requests them in a safe server-side environment.
+
+Risk: Model request fields, limits, availability, and commercial terms may change over time.
+
+Mitigation: Use the current APIDot docs and model pages as the source of truth before preparing payloads or making product claims.
+
+## Reference(s):
+
+- [Local API reference](references/api.md)
+- [APIDot documentation](https://apidot.ai/docs)
+- [APIDot Seedance 2.0 Mini model page](https://apidot.ai/models/seedance-2-mini)
+- [APIDot Seedance 2.0 Mini API docs](https://apidot.ai/docs/seedance-2-mini)
+- [APIDot quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with documentation links and integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; live API calls require an explicitly requested server-side environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

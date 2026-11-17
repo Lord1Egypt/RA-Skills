@@ -1,45 +1,66 @@
-## Description: <br>
-Unified GPU kernel operator generation and optimization skill that detects FlagGems, vLLM, or general Python/Triton repositories and routes generation, optimization, specialization, MCP setup, and feedback workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified GPU kernel operator generation and optimization skill that detects FlagGems, vLLM, or general Python/Triton repositories and routes generation, optimization, platform specialization, MCP setup, and feedback workflows.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and GPU kernel engineers use this skill to generate, optimize, specialize, test, and integrate Triton operators for FlagGems, vLLM, or general Python/Triton repositories. It requires careful review because the release evidence says it can store a KernelGen MCP token, install packages, execute shell commands, edit project code, and optionally publish or share results externally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill can store a KernelGen MCP token in project configuration. <br>
-Mitigation: Keep tokens out of committed files, restrict repository access, and rotate or remove the token when it is no longer needed. <br>
-Risk: The security evidence says the skill can install packages, execute shell commands, and edit project code. <br>
-Mitigation: Run it in a controlled branch or disposable workspace, review diffs, and run the relevant tests before accepting changes. <br>
-Risk: The security evidence and artifact behavior show optional PR, chat, issue, or email sharing paths. <br>
-Mitigation: Decline external sharing for sensitive repositories and review all generated content before submitting it outside the workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate, optimize, test, benchmark, and specialize GPU/Triton kernel operators for FlagGems, vLLM, or general Python/Triton repositories. It can also guide KernelGen MCP setup and collect feedback for issue or email submission.
 
-## Reference(s): <br>
-- [KernelGen Skills User Guide](https://docs.flagos.io/projects/kernelgen/en/latest/skills_user_guide/skills-user-guide.html#) <br>
-- [FlagGems Installation Guide](https://docs.flagos.io/projects/FlagGems/en/latest/getting_started/install.html#) <br>
-- [vLLM Installation Guide](https://docs.vllm.ai/en/latest/getting_started/installation/) <br>
-- [FlagGems Repository](https://github.com/FlagOpen/FlagGems) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated source files, tests, benchmarks, configuration snippets, and integration reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated or modified project files should be reviewed and tested before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; skill frontmatter lists 1.0.0) <br>
+Risk: Kernel source and repository details may be sent to the external KernelGen MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only repositories that are appropriate for external processing, remove secrets before use, and review what context will be submitted.
+
+Risk: The workflow may store a bearer token in a project-local MCP configuration file.
+
+Mitigation: Keep .mcp.json and related agent configuration files out of version control, scope tokens narrowly, and rotate tokens if exposed.
+
+Risk: The agent may edit repository files and execute generated code, tests, or benchmarks.
+
+Mitigation: Run the skill on a clean branch or disposable workspace, inspect diffs, and review generated code before execution.
+
+Risk: Optional pull request, issue, email, or chat publishing can disclose generated files or project details.
+
+Mitigation: Decline publishing steps until the destination, files, and message contents have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wbavon/skills/kernelgen-flagos)
+- [KernelGen Skills User Guide](https://docs.flagos.io/projects/kernelgen/en/latest/skills_user_guide/skills-user-guide.html#)
+- [FlagGems installation guide](https://docs.flagos.io/projects/FlagGems/en/latest/getting_started/install.html#)
+- [vLLM installation guide](https://docs.vllm.ai/en/latest/getting_started/installation/)
+- [FlagGems reference repository](https://github.com/FlagOpen/FlagGems)
+- [Ascend Triton development documentation](https://www.hiascend.com/document)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated or modified source files, tests, benchmarks, reports, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Triton kernels, PyTorch baselines, tests, benchmark files, integration reports, MCP configuration guidance, pull request links, or feedback drafts depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

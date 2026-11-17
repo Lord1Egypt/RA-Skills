@@ -1,0 +1,44 @@
+part: STM32G0
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ST STM32G0 \u2014 entry-level Cortex-M0+ MCU"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32g0-series.html
+datasheet_path_expected: ../../embedded_dev/st/datasheet/STM32G0_datasheet.pdf
+datasheet_source_url: https://www.mouser.com/datasheet/2/389/stm32g070cb-1851175.pdf
+datasheet_source_note: Mouser mirror of st.com STM32G070 datasheet (DS13106, 94 pages). st.com is Cloudflare-gated as of 2026-06;
+  Mouser pdfDocs serves the same PDF without gating. G070CB/KB/RB is used as the family-level representative.
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores:
+  - Arm Cortex-M0+ @ up to 64 MHz
+  wireless: none
+  ram: 36 KB
+  flash: 128 KB
+  voltage_v_min: 2.0
+  voltage_v_max: 3.6
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 extracted from DS13106 (STM32G070CB/KB/RB Mouser mirror). 6\
+  \ spec fields: cores (Cortex-M0+ @ 64 MHz), flash (128 KB), RAM (36 KB), voltage (2.0-3.6V), wireless (none, G0 has no radio).\
+  \ Family-level representative; G030/G031/G050/G051/G0B0/G0B1 variants share the same 64 MHz Cortex-M0+ core but vary in\
+  \ flash (16-512 KB) and feature set (FDCAN, crypto)."
+- "STM32G0 \u2014 ST entry-level Cortex-M0+ MCU. Replaces STM32F0/F1 in modern designs."
+- 'Use case: cost-sensitive consumer, IoT endpoint, simple control.'
+- 'Family differentiator vs STM32G4: lower performance, lower power, lower cost.'
+- 'Family differentiator vs STM32WL55: no wireless (use STM32WB55 for BLE).'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 5/6 spec fields matched
+  (83%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:16:18+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

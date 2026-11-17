@@ -1,210 +1,80 @@
 # Formulas and SQL Reference
 
-## Contents
-
-1. When to use this
-2. Formula endpoints
-3. SQL result-table flow
-4. SQL authoring rules
-5. Common workflows
-
-## 1. When to use this
-
-Read this document when the task involves writing formulas, recalculating formulas, building SQL pivots or result tables, or verifying result sheets.
-
-## 2. Formula endpoints
-
-```text
-POST /api/v3/excel/formula/batch_set
-POST /api/v3/excel/formula/set
-POST /api/v1/excel/calc-formula
-POST /api/v1/excel/calc_formulas
-POST /api/v3/excel/formula/recalculate
-```
-
-Guidance:
-
-- Use `formula/batch_set` when you need to persist a report block or many formulas in one workbook
-- Use `formula/set` when you want to persist one cell or a sparse one-off fix
-- Use `calc-formula` or `calc_formulas` for temporary preview or debugging
-- Use `formula/recalculate` when you need a broader refresh after data changes
-- `formula/set` calculates the target formula as part of that request
-- For batch report builds, prefer `formula/batch_set` with rectangular `operations[]` and one final `recalculate_mode`
-- Phase 1 `formula/batch_set` is for ordinary workbook formulas only; do not use it for `=SQL(...)` or pivot formulas
-- If you explicitly pass `skip_recalculation=true`, or you also need to refresh downstream formulas or report logic, call `formula/recalculate` afterwards
-
-CLI:
+## 1. Discover the supported operation at runtime
 
 ```bash
-maybeai-sheet sheet formula-set --doc-id <DOC_ID> --worksheet-name <SHEET> --cell E2 --formula '=SUM(B2:D2)'
-maybeai-sheet sheet formula-batch-set --doc-id <DOC_ID> --operations ops.json --recalculate-mode worksheet
-maybeai-sheet sheet recalculate --doc-id <DOC_ID> --worksheet-name <SHEET>
-maybeai-sheet sheet formulas --doc-id <DOC_ID> --worksheet-name <SHEET> --range A1:E20
+mbs formula --help
+mbs formula set --help
+mbs sql --help
 ```
 
-For SQL compile/write and calc preview endpoints, use `maybeai-sheet raw post`. See `references/cli-commands.md`.
+Generate only commands listed by their parent help. Formula syntax and target
+identity differ between Sheet and Base; do not translate expressions between
+engines.
 
-## 3. SQL result-table flow
+## 2. Sheet formulas
 
-Default flow:
-
-1. `workbook manifest`
-2. `list_worksheets`
-3. `read_headers`
-4. Optionally `read_sheet` for a sample
-5. `sql/compile`
-6. `sql/write_result`
-7. `read_sheet` to verify the result sheet
-
-Core endpoints:
-
-```text
-POST /api/v1/excel/sql/compile
-POST /api/v1/excel/sql/write_result
+```bash
+mbs formula validate --target "$SHEET" --cell E2 --expression '=SUM(B2:D2)'
+mbs formula set --target "$SHEET" --cell E2 --expression '=SUM(B2:D2)' --verify
+mbs formula set --target "$SHEET" --range E2:E100 --expression '=SUM(B2:D2)' --verify
+mbs formula calculate --target "$SHEET" --cell E2 --save-result --verify
+mbs formula recalculate --target "$SHEET" --verify
+mbs formula lineage --target "$SHEET" --cell E2 --format tree --output yaml
 ```
 
-Do not skip `compile`.
+Use `formula set` for public formula writes. Use `formula calculate` for a
+selected expression/cell calculation and `formula recalculate` for worksheet or
+workbook recalculation when the runtime help supports the chosen target.
 
-## 4. SQL authoring rules
+## 3. Base Formula fields
 
-Prefer PostgreSQL-compatible worksheet SQL, but stay within a conservative subset.
-
-Recommended default subset:
-
-- `select`
-- `with`
-- `where`
-- `group by`
-- `having`
-- `order by`
-- `limit`
-- `left join`
-- `inner join`
-- `coalesce`
-- `round`
-- `cast`
-- `case when`
-- `nullif`
-- `count` / `sum` / `avg` / `min` / `max`
-
-Practical assumption for this skill:
-
-- The online SQL path is PostgreSQL-backed
-- Agents should still prefer worksheet SQL that is easy to compile, portable, and easy to rewrite
-
-Hard boundaries:
-
-- only `SELECT` or `WITH ... SELECT`
-- no multiple statements
-- no `INSERT` / `UPDATE` / `DELETE` / DDL
-- no `SELECT INTO`
-- no row-locking clauses such as `FOR UPDATE`
-- do not reference `pg_catalog`, `information_schema`, `public`, or internal worksheet metadata tables
-
-Not recommended:
-
-- MySQL backticks
-- SQL Server `TOP`
-- BigQuery-only structures
-- heavy PostgreSQL-specific features that have not been validated with `sql/compile`
-
-Notes:
-
-- `ILIKE` is no longer treated as automatically forbidden
-- whether it works in practice still depends on `sql/compile`
-- in many cases, `lower(...) like ...` is a safer default than depending on a more specific dialect feature
-
-Table naming rules:
-
-- Prefer worksheet names directly
-- If a worksheet name contains spaces, wrap it in double quotes, for example `"Sales Data"`
-- If a historical workflow already uses `gid_*`, that is still acceptable, but new examples should prefer worksheet names
-
-Extra rules for `=SQL("...")`:
-
-- the SQL text lives inside an Excel string literal
-- internal double quotes must be doubled as `""`
-- for example, raw SQL `"Revenue"` becomes `""Revenue""` inside the formula
-
-If `WITH` is rejected by the backend, rewrite it as an inline subquery and compile again.
-
-## 5. Common workflows
-
-### Build a regional revenue result table
-
-1. `read_headers`
-2. Write PostgreSQL-compatible worksheet SQL:
-
-```sql
-select "Region", sum("Revenue") as "Revenue"
-from "Orders"
-group by "Region"
-order by "Revenue" desc
+```bash
+mbs formula validate --target "$BASE_TABLE" --field gross_margin --expression 'revenue - cost'
+mbs formula set --target "$BASE_TABLE" --field gross_margin --expression 'revenue - cost' --verify
+mbs formula recalculate --target "$BASE_TABLE" --field gross_margin --verify
+mbs formula lineage --target "$BASE_TABLE" --field gross_margin --format tree --output yaml
 ```
 
-3. `sql/compile`
-4. `sql/write_result`
-5. `read_sheet` to verify `Pivot_RegionRevenue`
+A Base Formula uses a field selector and the Base expression language. If the
+public CLI cannot expose the requested normalization, compilation evidence, or
+schema behavior, report the capability gap rather than invoking a hidden
+compatibility command.
 
-### Recalculate after syncing business data
+## 4. Worksheet SQL Config and materialization
 
-1. `update_range_by_lookup`
-2. `recalculate_formulas`
-3. `read_sheet`
-
-### Write formulas into a new report worksheet
-
-1. `write_new_worksheet`
-2. Group derived cells into rectangular blocks
-3. Use `formula/batch_set`
-4. Prefer `recalculate_mode=workbook` if downstream sheets reference these blocks
-5. `read_sheet`
-
-Example payload:
-
-```json
-{
-  "uri": "https://www.maybe.ai/docs/spreadsheets/d/<doc_id>",
-  "skip_recalculation": true,
-  "recalculate_mode": "workbook",
-  "operations": [
-    {
-      "worksheet_name": "利润分析",
-      "range_address": "B2:F3",
-      "formulas": [
-        ["='利润表-2025Q1'!D4/10000", "='利润表-2025Q2'!D4/10000", "='利润表-2025Q3'!D4/10000", "='利润表-2025Q4'!D4/10000", "=SUM(B2:E2)"],
-        ["='利润表-2025Q1'!D5/10000", "='利润表-2025Q2'!D5/10000", "='利润表-2025Q3'!D5/10000", "='利润表-2025Q4'!D5/10000", "=SUM(B3:E3)"]
-      ]
-    }
-  ]
-}
+```bash
+mbs sql preview --target "$WORKBOOK?table=Sheet6" --sql-file result.sql --output table
+mbs sql query --target "$WORKBOOK?table=Sheet6" --sql-file result.sql --limit 100 --output table
+mbs sql materialize \
+  --target "$WORKBOOK?table=S_orders" \
+  --sql-file result.sql \
+  --mode create \
+  --schema schema.json \
+  --verify
 ```
 
-### Write a live SQL formula into a report worksheet
+`sql materialize` is the public workflow for writing a SQL result into a Base
+table. Its `--mode` changes semantics: use `create` for a new target and review
+replacement behavior explicitly before any replacement mode. Use `--dry-run`,
+`--verify`, and a readback of the materialized result.
 
-1. `write_new_worksheet`
-2. Write the raw SQL and validate it with `sql/compile`
-3. Use `formula/set` to write `=SQL("...")`
+For SQL query and preview, `?table=<WORKSHEET_NAME>` is a worksheet selector on
+the workbook target. The CLI resolves it before making the workbook SQL
+request; a Base-table `tid` target is not valid for these operations.
 
-Raw SQL for `sql/compile`:
+All public table-creation sources return the canonical operation
+`table.create`. This includes creation from a local frame, SQL query, or
+worksheet range; do not branch on source-specific operation names.
 
-```sql
-select "Region", sum("Revenue") as "Revenue"
-from "Orders"
-group by "Region"
-order by "Revenue" desc
-```
+Use `sql config` and `sql overwrite` only for a Worksheet SQL Config target
+when the installed command help supports the requested flow. Raw SQL remains a
+separate computation model from Sheet and Base Formula expressions.
 
-Formula text for `formula/set`:
+## 5. Formula and SQL safety
 
-```text
-=SQL("select ""Region"", sum(""Revenue"") as ""Revenue"" from ""Orders"" group by ""Region"" order by ""Revenue"" desc")
-```
-
-4. By default, that request calculates and writes the target formula result
-5. If you explicitly skipped recalculation, or if other formulas depend on this result block, call `recalculate_formulas`
-6. `read_sheet`
-
-Reference:
-
-- `references/sql-formula-showcase.md`
+- Validate before persisting an unfamiliar formula.
+- Keep Sheet formulas in Excel syntax and Base fields in the Base expression
+  language.
+- Preserve explicit revision/idempotency controls on writes.
+- Do not generate removed nested cell-note commands or hidden formula aliases.

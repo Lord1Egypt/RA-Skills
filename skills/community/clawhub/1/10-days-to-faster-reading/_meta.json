@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "10-days-to-faster-reading",
+  "name": "10-days-to-faster-reading",
+  "title": "10 Days to Faster Reading",
+  "author": "Abby Marks Beale and The Princeton Language Institute",
   "version": "1.0.0",
-  "publishedAt": 1780962417865
+  "license": "MIT",
+  "tags": ["reading", "speed-reading", "self-improvement", "education", "productivity"],
+  "description": "Abby Marks Beale's \"10 Days to Faster Reading\" — a self-paced 10-day program to double reading speed while maintaining comprehension. Covers pacing techniques, reducing subvocalization/regression/mind-wandering, widening eye span, previewing, skimming, and flexible reading rates. Trigger when users say: \"speed reading\" \"faster reading\" \"how to read faster\" \"improve reading speed\" \"slow reader.\"",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/10-days-to-faster-reading",
+  "clawhub": {
+    "slug": "10-days-to-faster-reading",
+    "owner": "jaysonmeng"
+  }
 }

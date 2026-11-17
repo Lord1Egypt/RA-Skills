@@ -1,0 +1,123 @@
+{
+  "delta": {
+    "addedEdges": [
+      [
+        "api",
+        "fraud",
+        "control",
+        "score"
+      ],
+      [
+        "fraud",
+        "db",
+        "memory-write",
+        "approved"
+      ]
+    ],
+    "addedNodes": [
+      "fraud"
+    ],
+    "removedEdges": [
+      [
+        "api",
+        "db",
+        "memory-write",
+        "order"
+      ]
+    ],
+    "removedNodes": []
+  },
+  "edges": [
+    {
+      "from": "base",
+      "kind": "control",
+      "label": "compare",
+      "label_offset": [
+        0,
+        -28
+      ],
+      "to": "added"
+    },
+    {
+      "from": "head",
+      "kind": "control",
+      "label": "compare",
+      "label_offset": [
+        0,
+        28
+      ],
+      "to": "removed"
+    },
+    {
+      "from": "added",
+      "kind": "primary-data",
+      "label": "new facts",
+      "to": "routes"
+    },
+    {
+      "from": "removed",
+      "kind": "control",
+      "label": "removed facts",
+      "to": "routes"
+    },
+    {
+      "from": "routes",
+      "kind": "memory-write",
+      "label": "receipt",
+      "to": "review"
+    }
+  ],
+  "mode": "pr-delta",
+  "nodes": [
+    {
+      "id": "base",
+      "kind": "memory",
+      "label": "Base",
+      "subtitle": "3 nodes",
+      "x": 120,
+      "y": 160
+    },
+    {
+      "id": "head",
+      "kind": "memory",
+      "label": "Head",
+      "subtitle": "4 nodes",
+      "x": 120,
+      "y": 320
+    },
+    {
+      "id": "added",
+      "kind": "service",
+      "label": "Added",
+      "subtitle": "fraud",
+      "x": 360,
+      "y": 160
+    },
+    {
+      "id": "removed",
+      "kind": "service",
+      "label": "Removed",
+      "subtitle": "none",
+      "x": 360,
+      "y": 320
+    },
+    {
+      "id": "routes",
+      "kind": "agent",
+      "label": "Route Delta",
+      "subtitle": "+2 / -1",
+      "x": 600,
+      "y": 240
+    },
+    {
+      "id": "review",
+      "kind": "memory",
+      "label": "Review Receipt",
+      "subtitle": "PR-ready",
+      "x": 840,
+      "y": 240
+    }
+  ],
+  "summary": "1 nodes added, 0 removed, 2 edges added, 1 removed.",
+  "title": "PR Delta Architecture Review"
+}

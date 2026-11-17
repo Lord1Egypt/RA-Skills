@@ -156,7 +156,7 @@ def main():
     parser = argparse.ArgumentParser(description="YumFu unified save script")
     parser.add_argument("--user-id", required=True, help="User ID (Telegram/Platform)")
     parser.add_argument("--universe", required=True, 
-                       choices=["xiaoao", "harry-potter", "warrior-cats", "lotr", "game-of-thrones", "yitian", "sengoku", "journey-to-west"],
+                       choices=["xiaoao", "harry-potter", "warrior-cats", "lotr", "game-of-thrones", "yitian", "sengoku", "journey-to-west", "ramayana", "xuanzang"],
                        help="Game world/universe")
     parser.add_argument("--data", help="JSON data as string (optional if using stdin)")
     parser.add_argument("--no-backup", action="store_true", help="Skip backup of existing save")

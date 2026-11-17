@@ -1,47 +1,62 @@
-## Description: <br>
-Virtual Mastercards for AI agents: crypto payments, USDC wallet setup, and autonomous virtual payment card management through x402 on Stellar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual MasterCards for AI agents with crypto payments, a USDC wallet, and autonomous card creation and management through the x402 protocol on Stellar.
 
-## Publisher: <br>
-[ASGCompute](https://clawhub.ai/user/ASGCompute) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asgcompute](https://clawhub.ai/user/asgcompute)
 
-## Use Case: <br>
-External developers and agent operators use ASG Card to let MCP-capable agents create, fund, inspect, freeze, and unfreeze virtual Mastercard cards paid with USDC on Stellar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent real spending power through wallet-backed card creation and funding. <br>
-Mitigation: Install only when that behavior is intended, use a dedicated Stellar wallet, and keep only limited USDC available. <br>
-Risk: Virtual card details, including PAN and CVV, can be exposed by tool output. <br>
-Mitigation: Require approval before sensitive card tools run and prevent card details from being logged, remembered, or sent through Telegram unless that exposure is accepted. <br>
-Risk: Plaintext wallet secrets or high-value keys could be exposed through local configuration. <br>
-Mitigation: Avoid storing high-value private keys in plaintext configs and use a purpose-limited wallet for agent activity. <br>
+## Use Case:
 
+External developers and agent builders use this skill to let AI agents create, fund, inspect, freeze, and unfreeze virtual MasterCard cards using USDC payments on Stellar. Typical uses include paying for API credits, cloud infrastructure, domains, SaaS subscriptions, and developer tooling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ASGCompute/agentcard) <br>
-- [ASG Card Documentation](https://asgcard.dev/docs) <br>
-- [ASG Card Website](https://asgcard.dev) <br>
-- [ASG Card SDK on npm](https://npmjs.com/package/@asgcard/sdk) <br>
-- [Technical Overview](TECHNICAL_OVERVIEW.md) <br>
-- [Security Policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions with inline shell commands and MCP tool responses as JSON-like text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can expose wallet status, payment actions, and sensitive virtual card details when tools are invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.8) <br>
+Risk: Agents receive autonomous payment-card authority and may spend funds or access sensitive card details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance dedicated Stellar wallet and enforce strict spending and tool-use approvals in the client.
+
+Risk: Wallet secrets and PAN/CVV data can be exposed through command-line use, configuration files, logs, or agent messages.
+
+Mitigation: Avoid exposing wallet secrets in commands or config files where possible, restrict logging, and prevent agents from forwarding card details.
+
+Risk: Unversioned npx onboarding can install package changes that have not been reviewed.
+
+Mitigation: Use a pinned, reviewed package version for installation and upgrades.
+
+## Reference(s):
+
+- [ASG Card documentation](https://asgcard.dev/docs)
+- [ASG Card homepage](https://asgcard.dev)
+- [ASG Card OpenAPI specification](https://asgcard.dev/openapi.json)
+- [ASG Card SDK on npm](https://npmjs.com/package/@asgcard/sdk)
+- [ASG Card public repository](https://github.com/ASGCompute/asgcard-public)
+- [x402 payment protocol](https://www.x402.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Stellar wallet secret or local wallet configuration; ClawHub metadata lists macOS, Linux, and Windows support.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

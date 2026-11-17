@@ -1,43 +1,56 @@
-## Description: <br>
-DocuSeal helps agents read document templates and create DocuSeal signature submissions through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use DocuSeal to list and retrieve templates or create signature requests through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect DocuSeal action schemas, list or retrieve templates, and create signature submissions after confirming write payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through the connected DocuSeal account. <br>
-Mitigation: Use the existing OOMOL credential flow and avoid exposing raw tokens in prompts, command output, or files. <br>
-Risk: The create_submission action changes DocuSeal state and may send signature requests. <br>
-Mitigation: Inspect the live action schema and confirm the exact payload, recipients, and intended effect with the user before running write actions. <br>
+## Use Case:
 
+People who manage DocuSeal workflows can use this skill to list templates, retrieve a template, and create signature requests from existing templates. It is intended for use with an OOMOL account connected to DocuSeal.
 
-## Reference(s): <br>
-- [DocuSeal homepage](https://www.docuseal.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-docuseal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, PowerShell, and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector action responses are JSON objects with data and meta.executionId when commands run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md metadata) <br>
+Risk: An ordinary request may trigger remote software installation without a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified oo release before enabling the skill, and check automatic agent-skill installation and synchronization settings.
+
+Risk: The skill can access connected DocuSeal data and create signature requests.
+
+Mitigation: Keep signature requests confirmation-gated and review the action schema and payload before creating a request.
+
+## Reference(s):
+
+- [DocuSeal skill release](https://clawhub.ai/oomol/skills/oo-docuseal)
+- [DocuSeal](https://www.docuseal.com)
+- [DocuSeal API documentation](https://www.docuseal.com/docs/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON data, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports read actions and signature-request creation; signature requests should remain confirmation-gated.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

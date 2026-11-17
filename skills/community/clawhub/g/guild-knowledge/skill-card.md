@@ -1,44 +1,50 @@
-## Description: <br>
-Guild Knowledge helps OpenClaw agents consult local Guild experience documents, search for current information, compare older guidance with newer options, and propose document updates for user approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guild Knowledge helps OpenClaw agents manage experience documents by reading Guild docs, searching current information, and comparing stored guidance with newer alternatives.
 
-## Publisher: <br>
-[pipiy416](https://clawhub.ai/user/pipiy416) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pipiy416](https://clawhub.ai/user/pipiy416)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to make agents consult project experience documents before tasks, check newer technical information, compare recommendations, and propose updates to Guild knowledge files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill during ordinary tasks and cause the agent to consult local Guild documents or search the web. <br>
-Mitigation: Review and narrow broad triggers if accidental activation would be disruptive. <br>
-Risk: Guild and .learnings files may contain sensitive information that the agent could consult while preparing guidance. <br>
-Mitigation: Keep Guild and .learnings files free of secrets and confidential data. <br>
-Risk: Proposed document or index updates could preserve outdated or incorrect advice. <br>
-Mitigation: Review proposed updates before approval and keep the skill's compare-against-current-information workflow enabled. <br>
+## Use Case:
 
+Developers and external users use this skill to keep project experience documents useful while making technical decisions. It prompts agents to consult relevant Guild documents, search for current information, compare older guidance with newer options, and propose document updates that require user approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pipiy416/guild-knowledge) <br>
-- [Publisher profile](https://clawhub.ai/user/pipiy416) <br>
-- [Project homepage](https://github.com/Pipiy416/guild-knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, comparison notes, review reports, and update proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guild document and index changes are proposed for user approval before application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can activate automatically on broad phrases and may read local Guild documents or send task-related search queries externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow or disable auto-triggers, use explicit /guild commands where possible, and require confirmation before web searches or changes to Guild documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pipiy416/skills/guild-knowledge)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bilingual Chinese and English guidance, comparisons, command examples, and update recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guild document changes require user approval; web searches and auto-triggered workflows should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release, frontmatter, and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

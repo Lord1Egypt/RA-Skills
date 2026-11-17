@@ -70,7 +70,7 @@ def show_status() -> None:
     for i, item in enumerate(pending, 1):
         event_id = item.get("event_id", "unknown")
         summary = item.get("summary", "")
-        start = item.get("time", "")
+        start = item.get("start", item.get("time", ""))
         building = item.get("building", "")
         attempts = item.get("attempts", 0)
         print(f"  {i}. {summary}")

@@ -6,14 +6,15 @@ TTS语音合成工具（多人配音）。
 需要安装：pip install edge-tts
 
 用法:
-  python generate_tts_audio.py --text "王太平" --output speech.mp3
-  python generate_tts_audio.py --text "王太平" --voice zh-CN-YunxiNeural --output speech.mp3
-  python generate_tts_audio.py --text "王太平" --voices zh-CN-YunxiNeural,zh-CN-YunyangNeural --output speech.mp3 --mix
+  python generate_tts_audio.py --text "你好，欢迎使用语音合成" --output speech.mp3
+  python generate_tts_audio.py --text "你好，欢迎使用语音合成" --voice zh-CN-YunxiNeural --output speech.mp3
+  python generate_tts_audio.py --text "你好，欢迎使用语音合成" --voices zh-CN-YunxiNeural,zh-CN-YunyangNeural --output speech.mp3 --mix
 """
 
 import argparse
 import asyncio
 import os
+import shutil
 import sys
 import subprocess
 import tempfile
@@ -59,7 +60,7 @@ async def generate_multiple_speeches(text, voices, output_file, mix=False):
         temp_files.append(temp_file)
     
     # 使用ffmpeg混合音频（如果可用）
-    ffmpeg_path = subprocess.run(["which", "ffmpeg"], capture_output=True, text=True).stdout.strip()
+    ffmpeg_path = shutil.which("ffmpeg")
     
     if ffmpeg_path and len(temp_files) > 1:
         # 使用ffmpeg混合
@@ -76,10 +77,10 @@ async def generate_multiple_speeches(text, voices, output_file, mix=False):
         except subprocess.CalledProcessError as e:
             print(f"ffmpeg混合失败: {e}", file=sys.stderr)
             # 回退：只使用第一个声音
-            os.rename(temp_files[0], output_file)
+            os.replace(temp_files[0], output_file)
     else:
         # 没有ffmpeg，只使用第一个声音
-        os.rename(temp_files[0], output_file)
+        os.replace(temp_files[0], output_file)
         print(f"警告: 没有ffmpeg，只使用第一个声音", file=sys.stderr)
     
     # 清理临时文件

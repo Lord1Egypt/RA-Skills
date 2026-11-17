@@ -1,39 +1,52 @@
-## Description: <br>
-飞书知识库查询工具，用于在用户需要查询已有知识、确认操作步骤、查找历史记录或参考之前工作时，搜索知识库文档、获取具体文档内容并引用知识库中的操作指南。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书知识库查询 helps an agent search and retrieve documents from the openclaw Feishu knowledge base so it can reuse existing guides, best practices, and historical records.
 
-## Publisher: <br>
-[subwukong](https://clawhub.ai/user/subwukong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[subwukong](https://clawhub.ai/user/subwukong)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to consult an existing Feishu knowledge base before acting, especially when confirming procedures, retrieving prior operating guidance, or reusing documented best practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause the agent to consult the Feishu knowledge base when the user intended only the current conversation or local context. <br>
-Mitigation: Clarify whether a Feishu knowledge-base lookup is desired before searching when the user's request is ambiguous. <br>
-Risk: Knowledge-base material can become stale or incomplete for the current task. <br>
-Mitigation: Treat retrieved guidance as reference material and confirm time-sensitive procedures before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subwukong/feishu-knowledge-query) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill when they need an agent to consult the openclaw Feishu knowledge base for prior operating procedures, installation guides, security practices, and related historical references before acting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with knowledge-base search and retrieval guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu document search terms, selected document identifiers, summarized document content, and cited operating guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Knowledge-base documents may influence the agent's work even when contents are stale, overly broad, or outside the user's intent.
+
+Mitigation: Review the Feishu knowledge-base permissions and contents, and keep trigger wording scoped to tasks that explicitly call for prior knowledge or procedure lookup.
+
+Risk: Retrieved operating guidance can become outdated.
+
+Mitigation: Confirm time-sensitive procedures before execution and update the knowledge base when stale content is found.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subwukong/skills/feishu-knowledge-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summarized or cited content retrieved from the configured Feishu knowledge base.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Automates weekly competitor monitoring by collecting competitor updates, analyzing trends, generating structured reports, and distributing them to team channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically collects weekly competitor activity, analyzes trends, generates structured reports, and distributes them to configured team channels.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Product, marketing, and competitive intelligence teams use this skill to collect public competitor activity each week, summarize important updates and trends, and distribute Markdown reports to configured team channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor monitoring can collect public or business intelligence from sources that may not be approved for monitoring. <br>
-Mitigation: Limit monitoring to authorized sources and review the dependent skills before installation. <br>
-Risk: Reports and alerts can disclose collected intelligence to configured recipients, webhooks, or n8n routes. <br>
-Mitigation: Store webhook values as secrets and verify every recipient, route, and delivery channel before enabling distribution. <br>
-Risk: Automatic weekly delivery, instant alerts, and 90-day report retention may conflict with an organization's data policy. <br>
-Mitigation: Confirm scheduling, alerting, and retention settings against the organization's data policy before deployment. <br>
+## Use Case:
 
+Product, marketing, and strategy teams use this skill to monitor competitor activity across configured platforms and receive weekly Markdown reports with trends, highlights, and suggested actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/competitor-monitor-weekly) <br>
-- [Workflow definition](artifact/workflow.json) <br>
-- [Configuration example](artifact/config.yaml) <br>
-- [Weekly report template](artifact/templates/weekly-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown weekly reports, JSON data files, and configured delivery actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be sent through configured Feishu, email, DingTalk, or n8n channels and retained locally when history is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; workflow.json also declares 1.0.0) <br>
+Risk: Mutable installers and dependent skills may change behavior after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the installer and dependent skill versions before installing.
+
+Risk: Scheduled report forwarding may send competitor intelligence to unapproved channels.
+
+Mitigation: Confirm Feishu, DingTalk, email, and n8n destinations are approved before enabling automated distribution.
+
+Risk: Automatically generated reports may contain misleading or sensitive findings.
+
+Mitigation: Add a human review step before scheduled reports are sent automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/competitor-monitor-weekly)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON workflow data, YAML configuration, and installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can be scheduled weekly or triggered manually and may be sent to Feishu, email, DingTalk, or n8n workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

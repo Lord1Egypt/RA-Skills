@@ -1,44 +1,58 @@
-## Description: <br>
-Manages Supabase migrations, types generation, RLS policies, and edge functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Supabase migrations, type generation, RLS policies, and edge functions for Supabase-backed Next.js projects.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guifav](https://clawhub.ai/user/guifav)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, create, apply, and verify Supabase database migrations, RLS policies, generated TypeScript types, and edge functions for Next.js projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide database schema and deployment changes that may affect live Supabase projects. <br>
-Mitigation: Use development credentials by default, verify the target Supabase project before running commands, and manually approve production migrations or deployments after reviewing dry-run output. <br>
-Risk: Service-role credentials used for admin operations could be exposed or misused. <br>
-Mitigation: Protect the service-role key, keep it out of client-side code, and rotate it if exposure is suspected. <br>
-Risk: Destructive migrations can cause data loss. <br>
-Mitigation: Require dry-runs, backup migrations, and explicit confirmation before applying destructive production changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, create, apply, and verify Supabase database migrations, RLS policies, generated types, and edge functions in Next.js projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guifav/supabase-ops) <br>
-- [Deno HTTP server module](https://deno.land/std@0.177.0/http/server.ts) <br>
-- [Supabase JavaScript client v2 module](https://esm.sh/@supabase/supabase-js@2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL, TypeScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create migration files, update generated TypeScript types, and propose Supabase CLI commands when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill directs agents to run Supabase CLI database and deployment commands that may use powerful credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this only where agents are allowed to change Supabase resources, keep service-role credentials server-side, limit production credentials, and require explicit approval for production pushes or deployments.
+
+Risk: The skill uses unpinned `npx supabase` commands, which can execute a changed CLI version.
+
+Mitigation: Pin the Supabase CLI in the project lockfile and prefer a verified local binary or `npx --no-install`.
+
+Risk: Schema changes can cause data loss when destructive migrations are applied.
+
+Mitigation: Run production dry-runs, prepare backups for destructive changes, and review generated SQL and RLS policies before applying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guifav/skills/supabase-ops)
+- [Publisher profile](https://clawhub.ai/user/guifav)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL, TypeScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce migration files, generated types, edge function code, and verification summaries when applied by an agent.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

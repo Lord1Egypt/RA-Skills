@@ -1,52 +1,57 @@
-## Description: <br>
-A comprehensive maintenance guide for installing, configuring, operating, securing, and troubleshooting OpenClaw, a self-hosted multi-channel AI agent gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive guide for installing, configuring, operating, and troubleshooting OpenClaw, a self-hosted multi-channel AI agent gateway.
 
-## Publisher: <br>
-[forgottener](https://clawhub.ai/user/forgottener) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forgottener](https://clawhub.ai/user/forgottener)
 
-## Use Case: <br>
-Developers, operators, and administrators use this skill to maintain local OpenClaw installations, including channel setup, gateway operations, model provider configuration, security hardening, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides privileged OpenClaw administration and automation guidance. <br>
-Mitigation: Use it only when administering OpenClaw, and review installer scripts, shell commands, and configuration changes before execution. <br>
-Risk: Gateway exposure can increase control-plane access risk. <br>
-Mitigation: Keep the gateway loopback-only or tailnet-only, and require strong authentication for remote access. <br>
-Risk: Approve-all or elevated full modes can allow broad system changes. <br>
-Mitigation: Avoid those modes except in controlled break-glass cases, and prefer scoped allowlists and explicit approval flows. <br>
-Risk: Optional third-party data flows can expose sensitive data. <br>
-Mitigation: Disable or explicitly scope Firecrawl, cloud transcription, cloud embeddings, broad memory indexing, heartbeat delivery, and standing orders for sensitive deployments. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain local OpenClaw installations, including setup, configuration, channel management, model provider setup, gateway operations, security hardening, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forgottener/openclaw-guide-maintenance) <br>
-- [OpenClaw maintenance skill source](artifact/SKILL.md) <br>
-- [OpenClaw security guide](artifact/security.md) <br>
-- [OpenClaw installation guide](artifact/install.md) <br>
-- [OpenClaw channel setup guide](artifact/channels.md) <br>
-- [OpenClaw configuration reference](artifact/config_reference.md) <br>
-- [OpenClaw gateway operations guide](artifact/gateway_ops.md) <br>
-- [OpenClaw architecture documentation](https://docs.openclaw.ai/concepts/architecture) <br>
-- [OpenClaw agent loop documentation](https://docs.openclaw.ai/concepts/agent-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for an agent; examples should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.24 (source: server release metadata) <br>
+Risk: Install and update examples include commands that fetch remote installer content or install packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before use, prefer pinned packages or checksum/signature verification, and keep installation or update actions under explicit user control.
+
+Risk: Troubleshooting and configuration guidance can involve credential files, gateway tokens, plugin setup, browser automation, cron, daemon, or remote-access settings.
+
+Mitigation: Do not print or paste credential files, use OpenClaw secret references where possible, and treat daemon, cron, plugin, browser, and remote-access changes as privileged administrative actions.
+
+## Reference(s):
+
+- [OpenClaw Architecture](https://docs.openclaw.ai/concepts/architecture)
+- [OpenClaw Agent](https://docs.openclaw.ai/concepts/agent)
+- [OpenClaw Agent Loop](https://docs.openclaw.ai/concepts/agent-loop)
+- [OpenClaw Agent Workspace](https://docs.openclaw.ai/concepts/agent-workspace)
+- [OpenClaw Guide Maintenance on ClawHub](https://clawhub.ai/forgottener/skills/openclaw-guide-maintenance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational checklists, troubleshooting steps, security guidance, and configuration examples.]
+
+## Skill Version(s):
+
+2026.3.24 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-爬取抖音爆款视频和文案数据，使用 Playwright 自动化浏览器操作，支持搜索关键词、获取热榜、提取视频信息和文案等功能。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+爬取抖音爆款视频和文案数据，使用 Playwright 自动化浏览器操作，支持搜索关键词、获取热榜、提取视频信息和文案等功能。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and analysts use this skill to search Douyin by keyword or hot-list category and collect public video metadata into terminal output or local JSON/CSV files for learning and research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated collection from Douyin may raise platform-terms, legal, copyright, privacy, or retention issues. <br>
-Mitigation: Review the applicable obligations before collecting or sharing results, and use the skill only for allowed purposes. <br>
-Risk: Browser automation with high request volume or logged-in sessions can trigger account or IP enforcement. <br>
-Mitigation: Keep limits and delays conservative, avoid logging into Douyin in the automated browser, and stop if the site blocks or challenges requests. <br>
-Risk: Saved output files may contain collected metadata and links from Douyin. <br>
-Mitigation: Choose output paths deliberately and apply appropriate access controls and retention rules. <br>
+## Use Case:
 
+Developers and operators use this skill to search Douyin keywords, retrieve trending-video data, and export parsed video metadata for downstream review or analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/douyin-search-scraper) <br>
-- [Skill README](artifact/README.md) <br>
-- [Playwright Documentation](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Terminal text plus optional JSON or CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include video metadata such as title, author, engagement counts, URL, tags, and publish time; result count is controlled by the command limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: Browser scraping and file-writing commands may run against live Douyin pages with limited user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before scraping or writing output files, and run the skill only for approved keywords and destinations.
+
+Risk: Installation and runtime behavior download browser automation components and launch Chromium.
+
+Mitigation: Use an isolated, unprivileged environment with no sensitive files mounted and pin reviewed dependency versions.
+
+Risk: The release uses unsafe browser and installation defaults according to the security summary.
+
+Mitigation: Avoid running as root and review the installation and browser launch settings before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-search-scraper)
+- [Playwright documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Terminal text with optional JSON or CSV output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on live Douyin pages, browser automation behavior, rate limits, and requested keyword, limit, category, and output format.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

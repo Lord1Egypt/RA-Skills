@@ -1,7 +1,7 @@
 skill:
-  name: Memo
-  description: 私人工作记录助理，支持添加记录、统计分析、待办管理，数据本地持久化存储
-  version: 2.0.0
+  name: 记事本
+  description: 私人工作记录助理，支持添加记录、统计分析、待办管理，数据本地持久化存储（v2.0.1：修复ID重复Bug增加毫秒精度；v2.0.0：回复展示内容+事件ID，并发写入重试，查询优先filter_by_date）
+  version: 2.0.1
   author: WorkBuddy
   type: 工具
   platform: WorkBuddy
@@ -22,7 +22,7 @@ skill:
     - name: 添加记录
       description: 添加工作记录，支持口语化输入，自动识别时间、类型、人员等信息
       examples:
-        - "帮我记一下今天和贾辉沟通了ERP权限的问题"
+        - "帮我记一下今天和王佳星沟通了ERP权限的问题"
         - "2月26号完成了干部系统flash插件问题处理"
         - "记录：下周需要协调张光辉门禁录入"
 
@@ -43,7 +43,7 @@ skill:
       description: 按关键词搜索历史工作记录
       examples:
         - "找找关于ERP的记录"
-        - "贾辉相关的记录有哪些"
+        - "王佳星相关的记录有哪些"
 
     - name: 导出报告
       description: 将统计报告导出为 Markdown 文件
@@ -54,7 +54,7 @@ skill:
     - name: 标记完成
       description: 将待办事项标记为已完成
       examples:
-        - "贾辉ERP权限已处理完了"
+        - "王佳星ERP权限已处理完了"
         - "门禁录入的事搞定了"
 
   dependencies:

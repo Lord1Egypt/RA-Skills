@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "kb": {"id": "project-split-demo", "name": "跨项目事实拆分演示"},
+  "as_of": "2026-10-21",
+  "records": [
+    {
+      "id": "a-current", "entity_id": "product-a", "category": "product", "key": "delivery_formats",
+      "value": "Markdown+JSON+CSV", "text": "资料负责人确认项目 A 交付 Markdown 正文、JSON 索引与 CSV 事实表。",
+      "status": "supported", "project_ids": ["project-a"],
+      "sources": [{"source_id": "split-v2", "locator": "正文第2段，项目 A", "quote": "项目 A 改为交付 Markdown 正文、JSON 索引与 CSV 事实表"}],
+      "supersedes": ["shared-v1", "a-update"]
+    },
+    {
+      "id": "b-current", "entity_id": "product-a", "category": "product", "key": "delivery_formats",
+      "value": "Markdown+JSON", "text": "资料负责人确认项目 B 继续交付 Markdown 正文与 JSON 索引。",
+      "status": "supported", "project_ids": ["project-b"],
+      "sources": [{"source_id": "split-v2", "locator": "正文第2段，项目 B", "quote": "项目 B 继续交付 Markdown 正文与 JSON 索引。"}],
+      "supersedes": ["shared-v1"]
+    }
+  ]
+}

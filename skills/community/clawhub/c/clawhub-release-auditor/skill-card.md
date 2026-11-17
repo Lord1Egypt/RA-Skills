@@ -1,46 +1,56 @@
-## Description: <br>
-Validate, package, and verify ClawHub skills before and after publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate, package, and verify ClawHub skills before and after publishing.
 
-## Publisher: <br>
-[daowuu](https://clawhub.ai/user/daowuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daowuu](https://clawhub.ai/user/daowuu)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to audit ClawHub skill releases before and after publishing, including frontmatter checks, packaging validation, dependency declaration review, version verification, and repeated publish failure diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read the user-selected skill directory and propose or run local Python, OpenClaw, and ClawHub CLI commands. <br>
-Mitigation: Install and use it only when comfortable with local directory inspection and command execution; review command targets before proceeding. <br>
-Risk: Publishing checks can affect an intended ClawHub release if the active account, skill path, slug, or version is wrong. <br>
-Mitigation: Confirm the active ClawHub account, target skill path, slug, and intended version before approving any publish step. <br>
-Risk: Post-publish state can be confusing when latest version, scan status, or page visibility lags behind the publish attempt. <br>
-Mitigation: Use post-publish verification and distinguish publish failure, latest tag mismatch, pending scan, and metadata or code mismatch before republishing. <br>
+## Use Case:
 
+Developers and skill maintainers use this agent skill to preflight ClawHub skill releases, diagnose repeated publish failures, compare local and published versions, and verify post-publish state before relying on a release.
 
-## Reference(s): <br>
-- [ClawHub Release Auditor skill page](https://clawhub.ai/daowuu/clawhub-release-auditor) <br>
-- [daowuu publisher profile](https://clawhub.ai/user/daowuu) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
-- [ClawHub Publisher Checklist](references/checklist.md) <br>
-- [ClawHub Publishing Research Notes](references/research-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and optional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local Python, OpenClaw, and ClawHub CLI commands for the user to review and run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The skill can inspect local skill folders and run ClawHub or OpenClaw release commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only for intended release-audit work, and review the target skill path and command output before acting.
+
+Risk: Publishing changes public release state.
+
+Mitigation: Require explicit user confirmation for the exact version, warnings, and publish command before publishing.
+
+## Reference(s):
+
+- [ClawHub Publisher Checklist](references/checklist.md)
+- [ClawHub Publishing Research Notes](references/research-notes.md)
+- [ClawHub Homepage](https://clawhub.ai)
+- [Clawhub Release Auditor Skill Page](https://clawhub.ai/daowuu/skills/clawhub-release-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with command output summaries and optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local ClawHub and OpenClaw command-line tools for full release verification.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

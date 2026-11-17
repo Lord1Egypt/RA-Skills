@@ -1,0 +1,29 @@
+{
+  "name": "ava",
+  "displayName": "Ava",
+  "description": "Accountability layer for agent-managed capital. Live money is ava_lend_execute on Base (Morpho, two-phase previewHash). Copilot is testnet-only. Fail closed.",
+  "provider": "Ava",
+  "homepage": "https://getava.xyz",
+  "install": {
+    "kind": "openclaw-skill",
+    "command": "openclaw skills install @kamalbuilds/ava",
+    "skillFile": "SKILL.md",
+    "cli": "node scripts/ava.mjs"
+  },
+  "requires": {
+    "env": ["AVA_API_BASE"],
+    "optionalEnv": ["AVA_USER_ID", "AVA_TOKEN", "AVA_PORTAL", "AVA_ENABLE_LIVE"]
+  },
+  "tools": [
+    "ava_session",
+    "ava_create_mandate",
+    "ava_list_mandates",
+    "ava_lend_execute",
+    "ava_get_receipt",
+    "ava_copilot_turn",
+    "ava_approve_execute",
+    "ava_portfolio"
+  ],
+  "defaultMode": "testnet",
+  "chains": ["base", "monad", "bnb", "avalanche", "arb"]
+}

@@ -1,48 +1,60 @@
-## Description: <br>
-Binary To/From File Converter converts data between base64, hexadecimal, and binary representations, and supports file-to-base64 and base64-to-file workflows through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts data between base64, hexadecimal, and binary representations, and converts files to and from base64 through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to convert payloads among base64, hex, binary strings, and temporary cloud-backed files for API transmission, attachment decoding, file reconstruction, and binary inspection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs and generated files are processed by AgentPMT-hosted remote conversion services and may be exposed through temporary cloud file links. <br>
-Mitigation: Use the skill only for content that can be sent to AgentPMT; avoid passwords, keys, regulated records, private business documents, and malware samples unless that exposure is acceptable. <br>
-Risk: Temporary signed URLs returned by base64-to-file can provide access to converted files until they expire. <br>
-Mitigation: Choose the shortest practical expiration period, share URLs only with intended recipients, and avoid storing sensitive content through base64-to-file. <br>
-Risk: File-to-base64 returns inline content only up to the documented 10 MB limit. <br>
-Mitigation: Check file size before requesting inline base64 output and use another transfer path for larger files. <br>
+## Use Case:
 
+Developers and agents use this skill to encode or decode payloads, inspect binary content, and create temporary downloadable files from base64 data in AgentPMT workflows.
 
-## Reference(s): <br>
-- [Artifact action schema](artifact/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/binary-to-from-file-converter) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/binary-to-from-file-converter) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [AgentPMT overview](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [AgentPMT main MCP server](https://api.agentpmt.com/mcp/) <br>
-- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces action schemas, example request bodies, remote tool invocation guidance, and guidance for handling JSON responses and temporary signed file URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: File contents may be sent to the AgentPMT remote service for conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content intended for AgentPMT processing, and avoid private documents, credentials, customer data, or proprietary files unless that transfer is approved.
+
+Risk: Decoded files may be stored in cloud storage and returned through signed URLs.
+
+Mitigation: Use the shortest practical expiration period and treat signed URLs as temporary secrets.
+
+Risk: The setup path may include unpinned npx commands.
+
+Mitigation: Review or pin the install source before using npx-based setup in production environments.
+
+## Reference(s):
+
+- [Generated action schema](artifact/schema.md)
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/binary-to-from-file-converter)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/binary-to-from-file-converter)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Files, Configuration]
+
+**Output Format:** [Markdown guidance for tool calls and JSON responses from the hosted converter]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote results can include converted strings, byte counts, file IDs, MIME types, and signed download URLs; inline file-to-base64 output is limited to 10 MB.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

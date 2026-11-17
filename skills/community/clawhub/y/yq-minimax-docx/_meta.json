@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-minimax-docx",
-  "version": "1.0.0",
-  "publishedAt": 1780189407858
+  "id": 380332020064802,
+  "name": "yq-minimax-docx",
+  "platform": "minimax",
+  "skill_id": 1893,
+  "updated_at": 1774407535046,
+  "version": "1.0.0"
 }

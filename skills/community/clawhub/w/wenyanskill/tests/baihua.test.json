@@ -1,0 +1,27 @@
+{
+  "style": "baihua",
+  "cases": [
+    {
+      "name": "白话风-日常问候",
+      "input": "你好",
+      "style": "baihua",
+      "intensity": 2,
+      "expected_output": "却说这厢有礼了。列位，今日得遇，幸甚幸甚。",
+      "expect_contains": ["却说", "列位", "有礼"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 20,
+      "min_score": 70
+    },
+    {
+      "name": "白话风-说书口吻",
+      "input": "讲个故事",
+      "style": "baihua",
+      "intensity": 2,
+      "expected_output": "话说回来——列位有所不知，这事儿说来话长。",
+      "expect_contains": ["话说", "列位"],
+      "expect_not_contains": ["互联网", "AI", "好的"],
+      "max_length_per_sentence": 20,
+      "min_score": 70
+    }
+  ]
+}

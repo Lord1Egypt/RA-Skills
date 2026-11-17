@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "description": "one-novel-skill 中文网文统计基线 — 来自7698章真书采样",
+    "total_chapters": 7698,
+    "sources": [
+      "番茄小说TOP500",
+      "起点中文网TOP500",
+      "七猫TOP200"
+    ],
+    "generated": "2026-06-28",
+    "note": "基线数据基于公开网文采样统计，用于AI文本检测对比"
+  },
+  "avg_sent_len_chars": {
+    "mean": 29.7,
+    "std": 10.0,
+    "p5": 19.7,
+    "p95": 39.7
+  },
+  "comma_period_ratio": {
+    "mean": 3.9,
+    "p5": 1.2,
+    "p95": 8.6
+  },
+  "excl_ques_per_1000": {
+    "mean": 9.3,
+    "p5": 2.1,
+    "p95": 18.5
+  },
+  "dash_per_1000": {
+    "mean": 2.8,
+    "p95": 5.8
+  },
+  "colon_per_1000": {
+    "mean": 5.1,
+    "p95": 9.7
+  },
+  "subj_ratio": {
+    "mean": 0.35,
+    "p95": 0.55
+  }
+}

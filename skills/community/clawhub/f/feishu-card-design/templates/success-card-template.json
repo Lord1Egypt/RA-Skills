@@ -1,0 +1,150 @@
+{
+  "_template_meta": {
+    "name": "success-card-template",
+    "type": "success",
+    "description": "成功类卡片模板（任务完成 + 检查通过 + 分享/存档）",
+    "header_template": "green",
+    "color_scheme": "green 系邻近色环（green-50 + yellow-50 + grey-50）",
+    "usage": "适合任务完成通知、检查通过、CI/CD 成功、部署成功"
+  },
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "{{YYYYMMDD}}-成功通知-{{任务名}}-{{完成状态}}"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "{{YYYY-MM-DD}} · 任务完成"
+    },
+    "template": "green"
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "green-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "green-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### ✅ 任务完成\n\n**{{任务名}}**\n\n📅 开始时间：{{YYYY-MM-DD HH:MM}}\n📅 完成时间：{{YYYY-MM-DD HH:MM}}\n⏱️ 总耗时：{{X 分钟 / X 小时}}\n\n{{任务摘要：1-2 句话描述完成情况}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "green-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "green-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### ✅ 检查通过\n\n- [x] {{检查项1}}：通过\n- [x] {{检查项2}}：通过\n- [x] {{检查项3}}：通过\n- [x] {{检查项4}}：通过\n\n**{{N}}/{{M}} 项检查全部通过**"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 📊 产出统计\n\n- {{产出1}}：{{数量1}}\n- {{产出2}}：{{数量2}}\n- {{产出3}}：{{数量3}}\n\n**{{关键数字}}**：{{说明}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📤 分享到群"
+        },
+        "type": "default",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/share"
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📦 存档到知识库"
+        },
+        "type": "default",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/wiki-add"
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整报告"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "{{文档URL}}"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 {{来源标识}} · {{触发时间}} 自动通知 · ✅ 全部检查通过"
+      }
+    ]
+  }
+}

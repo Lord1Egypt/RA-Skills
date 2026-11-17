@@ -1,39 +1,62 @@
-## Description: <br>
-OpenClaw Cost Guard audits OpenClaw configuration for budget gaps, costly model defaults, large token ceilings, recurring automation, and other denial-of-wallet risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Cost Guard audits an OpenClaw config for token-spend and denial-of-wallet risk signals such as missing budgets, premium default models, oversized token ceilings, browser workflows, and cron jobs.
 
-## Publisher: <br>
-[X-RayLuan](https://clawhub.ai/user/X-RayLuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and operators use this skill to review OpenClaw agent configurations before scaling usage. It helps identify missing budgets, expensive defaults, large token limits, recurring automation, and browser workflow patterns that can increase spend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The static audit may not match actual provider billing or live usage patterns. <br>
-Mitigation: Confirm the config path before running the audit, then compare the JSON output with real provider invoices and usage telemetry. <br>
+## Use Case:
 
+Developers and operators use this skill to review OpenClaw configurations for budget gaps, expensive routine model defaults, oversized token ceilings, and recurring automation risks before scaling agent usage.
 
-## Reference(s): <br>
-- [Cost Guard Playbook](references/cost-playbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/X-RayLuan/openclaw-agent-cost-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON audit output from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script reports score, verdict, summary, findings, recommendations, guardrails, and evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and package.json) <br>
+Risk: The audit reads the OpenClaw config path provided by the user, or the default ~/.openclaw/openclaw.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on config files you are comfortable letting the local skill inspect.
+
+Risk: The JSON output can reveal model choices, budget settings, and workflow patterns.
+
+Mitigation: Review and redact the generated JSON before sharing it outside the intended review context.
+
+Risk: A lightweight static review can miss spend that appears only in provider invoices, usage telemetry, or downstream automations.
+
+Mitigation: Verify cost posture against real provider billing data and usage telemetry before relying on a low-risk verdict.
+
+Risk: A missing or invalid config prevents a trustworthy cost assessment.
+
+Mitigation: Point the script at the real OpenClaw config path and repair invalid JSON before using the verdict for rollout decisions.
+
+## Reference(s):
+
+- [Cost Guard Playbook](references/cost-playbook.md)
+- [OpenClaw Cost Guard on ClawHub](https://clawhub.ai/x-rayluan/skills/openclaw-agent-cost-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON audit report with score, verdict, summary, findings, recommendations, guardrails, and evidence; accompanying agent guidance may be Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads the selected OpenClaw config path and reports findings without modifying files or sending data elsewhere.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

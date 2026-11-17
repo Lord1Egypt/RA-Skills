@@ -1,0 +1,11 @@
+name: influencer-audience-fit-scoring
+version: 1.0.3
+description: Pre-campaign audience quality and follower authenticity (fake-follower detection) analysis across TikTok, Instagram, and YouTube: geography, language, age, gender, interests; compare creators. Audience analysis, fake followers, creator vetting.
+category: research
+requires_api_key: false
+triggers:
+  - audience fit
+  - audience analysis
+  - follower authenticity
+  - audience demographics
+  - creator comparison

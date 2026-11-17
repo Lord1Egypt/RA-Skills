@@ -1,43 +1,55 @@
-## Description: <br>
-Guides agents to install and use emq-cli for authentication, market data queries, portfolio creation and order commands, quota checks, raw command passthrough, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use the emq-cli command line for installation, authentication, market queries, portfolio creation and orders, quota checks, raw command pass-through, and common troubleshooting.
 
-## Publisher: <br>
-[Greapi](https://clawhub.ai/user/Greapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greapi](https://clawhub.ai/user/greapi)
 
-## Use Case: <br>
-Developers and external users use this skill to have an agent produce exact emq-cli commands for setup, authentication, market data lookup, portfolio operations, quota checks, raw command passthrough, and common troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated portfolio and order commands can change account or financial state. <br>
-Mitigation: Use demo or least-privilege credentials where possible, start with read-only market and quota commands, and require explicit approval before executing portfolio or order commands. <br>
-Risk: Raw passthrough commands can send unintended EMQ parameters. <br>
-Mitigation: Require the agent to show the exact raw command and parameters before execution, and approve only commands that match the intended account, portfolio, symbol, date, and action. <br>
-Risk: The skill depends on the external emq-cli package and authenticated EMQ access. <br>
-Mitigation: Install only when the package and EMQ account are trusted for the target environment. <br>
+## Use Case:
 
+Developers and external users use this skill to produce concrete emq-cli commands for environment setup, login, market data retrieval, portfolio operations, quota checks, raw SDK-style calls, and troubleshooting.
 
-## Reference(s): <br>
-- [EMQ CLI Command Recipes](references/command-recipes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Greapi/choice-emquantcli-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may include authentication, portfolio, order, quota, market data, and raw passthrough operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: Credentialed portfolio, order, and raw commands can affect real accounts or expose sensitive account data if run in the wrong environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment or container, keep EMQ credentials out of shared shells and logs, verify authentication status first, and run account-changing commands only against approved accounts or sandboxes.
+
+Risk: Installing or invoking emq-cli without package review can introduce dependency or command behavior risk.
+
+Mitigation: Pin and verify the emq-cli package before installation, review command help for required flags, and inspect generated commands before execution.
+
+## Reference(s):
+
+- [EMQ CLI Command Recipes](references/command-recipes.md)
+- [ClawHub skill page](https://clawhub.ai/greapi/skills/choice-emquantcli-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/greapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance should verify authentication before credentialed market, portfolio, quota, or raw commands.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

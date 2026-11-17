@@ -1,38 +1,49 @@
-## Description: <br>
-Trailer Director helps users turn scene ideas into cinematic image-generation prompt templates with a four-part structure for framing, lens style, scene description, and lighting/color treatment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language prompt-writing skill that turns a user's visual idea into a cinematic image-generation prompt template with a four-part structure, fixed 2.35:1 framing, 85mm T1.8 lens language, ARRI Master Primes styling, film texture, and halo effects.
 
-## Publisher: <br>
-[chang9852](https://clawhub.ai/user/chang9852) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chang9852](https://clawhub.ai/user/chang9852)
 
-## Use Case: <br>
-Creators, storyboard artists, and prompt writers use this skill to clarify a desired visual scene and draft trailer-style cinematic image prompts for image-generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly in conversations that mention trailer style, cinematic prompts, or image prompt templates. <br>
-Mitigation: Disable the skill or narrow its trigger behavior if that activation scope is too broad for the agent environment. <br>
+## Use Case:
 
+External users and creators use this skill to clarify a desired trailer-like visual scene and receive a structured cinematic prompt for image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chang9852/trailer-director) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt template with a follow-up confirmation question] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese-language cinematic prompt guidance and asks clarifying questions before drafting the final prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chang9852/skills/trailer-director)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text prompt template with clarifying questions and follow-up confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a four-part cinematic image prompt structure with fixed lens, aspect-ratio, lighting, color, and texture guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

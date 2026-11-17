@@ -1,43 +1,54 @@
-## Description: <br>
-Insight Finder analyzes CSV, JSON, Excel, and pasted tabular data to produce structured statistical insight reports with confidence ratings, limitations, and recommended actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insight Finder helps agents analyze CSV, JSON, Excel, or pasted table data to produce confidence-scored statistical findings and actionable insight reports.
 
-## Publisher: <br>
-[softboypatrick](https://clawhub.ai/user/softboypatrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softboypatrick](https://clawhub.ai/user/softboypatrick)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to explore datasets, assess data quality, discover statistical relationships, identify anomalies, and turn findings into decision-oriented reports. It is most useful when an agent is given tabular data or a data file path and asked to find patterns or produce an analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential, regulated, or production data when users paste datasets or provide file paths. <br>
-Mitigation: Use only data that is appropriate for the agent environment, redact sensitive fields before analysis, and confirm organizational approval before processing regulated data. <br>
-Risk: Statistical findings may be hypotheses rather than proven causes. <br>
-Mitigation: Review the generated report, check stated limitations, and validate high-impact recommendations with additional analysis or controlled experiments before acting on them. <br>
-Risk: The skill may activate on broad data-analysis requests or pasted tabular content. <br>
-Mitigation: Confirm the intended dataset and scope before running the analysis when the user request is ambiguous. <br>
+## Use Case:
 
+External users and data analysts use this skill to inspect datasets, identify data quality issues, surface statistical relationships and anomalies, and generate concise recommendations for decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/softboypatrick/insight-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/softboypatrick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with statistics, findings, confidence ratings, limitations, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include data quality scores, statistical test results, effect sizes, anomaly notes, chart descriptions, and explicit limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is designed to analyze pasted tables and file paths that may contain sensitive business or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, minimize, or redact datasets before sharing them with the agent.
+
+Risk: Statistical patterns, anomaly findings, and correlations may be mistaken for causal conclusions or business certainty.
+
+Mitigation: Use the skill's confidence ratings, stated limitations, and recommended validation steps before acting on findings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/softboypatrick/skills/insight-finder)
+- [Publisher profile](https://clawhub.ai/user/softboypatrick)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes data quality scoring, descriptive statistics, pattern findings, confidence ratings, limitations, and recommended actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

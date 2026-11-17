@@ -1,0 +1,84 @@
+{
+  "profile_type": "style",
+  "id": "oil-impasto",
+  "version": "1.0.0",
+  "reference_status": "approved-bundled",
+  "references": [
+    {
+      "id": "met-manet-brioche-1870",
+      "image": "assets/style-packs/oil-impasto/reference.webp",
+      "source_metadata": "assets/style-packs/oil-impasto/source.json",
+      "technique_roles": [
+        "impasto oil build with palette knife and bristle brush",
+        "thick-to-thin paint transition and broken color",
+        "warm underpainting with selective dark anchors",
+        "visible brush direction preserving form"
+      ],
+      "subject_exclusions": [
+        "brioche",
+        "peaches",
+        "plums",
+        "knife",
+        "napkin",
+        "reference composition",
+        "table still life arrangement"
+      ]
+    }
+  ],
+  "positive_prompt": "Oil painting broken color impressionist with vibrant directional strokes, warm-cool contrast, visible brushwork following cup form, selective impasto on lid and ice highlights, warm underpainting with gentle dark anchors; translate only the photographed cup through the reference's oil handling, preserve exact silhouette.",
+  "negative_prompt": "Do not copy brioche, fruit, knife, napkin, or reference composition. No invented table, no Starbucks logo text, no hand, no watercolor wash, no flat vector edge, no text, no decorative frame, no watermark.",
+  "line": {
+    "weight": "none - mass constructed",
+    "character": "brush-mass with impasto ridge",
+    "color": "warm umber underpainting"
+  },
+  "color": {
+    "saturation": "medium-high",
+    "transparency": "opaque",
+    "temperature": "warm-neutral"
+  },
+  "edges": {
+    "subject": "impasto edge with broken color and visible stroke",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "use reference only for impasto behavior and brush direction",
+    "preserve cup silhouette and lid proportion, no logo text",
+    "keep background simple, paper-white or warm tint, no invented props"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "impasto ridges and directional brushwork",
+      "broken color with thick-to-thin transitions"
+    ],
+    "negative_space_rules": [
+      "keep background open, no table or props",
+      "preserve cup as sole subject"
+    ],
+    "fill_tonal_rules": [
+      "warm underpainting with selective darks",
+      "opaque mass, not transparent wash"
+    ],
+    "background_cleanliness": [
+      "empty areas match shared paper master",
+      "no speckle field or backing patch"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "selective oil simplification that preserves source identity and imports no reference subject",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 10,
+    "alpha_feather_distance": 30,
+    "preserve_luminance_below": 225,
+    "preserve_saturation_above": 24,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.004,
+    "max_corner_alpha_mean": 10
+  }
+}

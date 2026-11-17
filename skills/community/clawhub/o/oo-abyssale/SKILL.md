@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Abyssale"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["abyssale"]
   icon: "https://static.oomol.com/logo/third-party/abyssale.svg"
 ---
@@ -39,7 +39,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `create_dynamic_image_url` — Create or retrieve the dynamic image URL for an Abyssale design. [write]
 - `create_project` — Create an Abyssale project to organize templates and generated images. [write]
-- `generate_banner` — Generate one Abyssale image from a design using JSON element overrides and return the generated file metadata.
+- `generate_banner` — Generate one Abyssale image from a design using JSON element overrides and return the generated file metadata. [write]
 - `get_banner` — Retrieve metadata for an Abyssale generated file.
 - `get_design` — Retrieve Abyssale design details including formats, elements, and variables.
 - `get_design_format` — Retrieve detailed information for one Abyssale design format.
@@ -76,11 +76,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Abyssale is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=abyssale
+  https://console.oomol.com/connections/abyssale
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Abyssale homepage: https://www.abyssale.com/
+- API documentation: https://api-reference.abyssale.com/

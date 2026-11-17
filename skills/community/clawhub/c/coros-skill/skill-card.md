@@ -1,43 +1,55 @@
-## Description: <br>
-Retrieves and summarizes COROS running data, including training dashboards, activity details, training load analysis, and training schedule summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves and summarizes COROS running account data, including dashboard status, activity history, activity details, training load, schedules, and goals.
 
-## Publisher: <br>
-[doaspx](https://clawhub.ai/user/doaspx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doaspx](https://clawhub.ai/user/doaspx)
 
-## Use Case: <br>
-External users connect a COROS account to review running history, training load, recent activity details, training schedules, and goals through an agent conversation or command-line run. The skill can also preview training schedule changes and apply them when explicitly configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store reusable COROS session data and account context that may grant access to private fitness history. <br>
-Mitigation: Keep config.json private, do not commit or share cookies, tokens, p1, or p2 values, and publish only sanitized example configuration. <br>
-Risk: When schedule_write.auto_apply is enabled, the skill can modify or delete COROS training schedule entries. <br>
-Mitigation: Leave demo_mode enabled or schedule_write.auto_apply=false unless schedule changes are intentional, and review the generated preview and target selectors before enabling writes. <br>
-Risk: The skill retrieves private COROS activity and training data through account-authenticated API calls. <br>
-Mitigation: Install only when the publisher and artifact are trusted with COROS account data and private fitness history. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a configured COROS account for running-data review, training recap, schedule and goal inspection, and optional schedule changes.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/doaspx/coros-skill) <br>
-- [COROS web app](https://t.coros.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Analysis, Configuration, Guidance] <br>
-**Output Format:** [Plain text console-style summaries with configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Chinese summaries and tables; live account mode requires COROS credentials or cookie context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can access sensitive COROS fitness account data and stores session secrets in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep demo mode enabled until configuration is intentional, protect config.json as a secret, and do not commit or share local account, token, or cookie values.
+
+Risk: Training schedule write features can update or delete COROS training schedules.
+
+Mitigation: Leave schedule_write.auto_apply set to false unless the exact schedule action and target have been reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doaspx/skills/coros-skill)
+- [COROS web app](https://t.coros.com/)
+- [COROS API base](https://teamcnapi.coros.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with command-line output and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make authenticated COROS API calls and may write session tokens or cookies to local config; schedule writes remain preview-only unless auto_apply is enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

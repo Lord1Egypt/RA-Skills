@@ -8,7 +8,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-PRIVATE_NAME_TOKENS = {"李宁", "李寧", "lining", "william"}
+PRIVATE_NAME_TOKENS = {"张三", "張三", "johndoe", "johnsmith"}
 STOPWORDS = set("客户 我们 对方 竞品 虽然 但是 因为 所以 一个 这个 那个 阶段 有限 表现 更好 倾向 重新 评估".split())
 
 

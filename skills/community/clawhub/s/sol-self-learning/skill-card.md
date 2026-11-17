@@ -1,40 +1,58 @@
-## Description: <br>
-Persistent memory and self-improvement for AI agents that writes and refines local memory files over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory and self-improvement for AI agents - writes and refines its own memory files over time.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a file-based learning loop to OpenClaw or similar agents: capture failures, extract patterns, record fixes, and review memory files that guide future work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write long-lived failure logs and memory files that may capture sensitive prompts, secrets, tokens, or private file content. <br>
-Mitigation: Avoid logging sensitive content, review the generated learning files, and periodically delete or redact the JSON and memory files. <br>
-Risk: The wrapper can run supplied commands and the automated fix flow can mark similar failures as fixed, which may exceed what users expect from simple file read/write permissions. <br>
-Mitigation: Run only commands you understand, review command strings before execution, and avoid the command wrapper or scheduled fix-all flow unless it has been checked for the target environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give OpenClaw agents local failure logging, pattern analysis, and reusable prevention rules after task failures or user corrections.
 
-## Reference(s): <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; runtime helpers produce JSON learning logs and text reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local learning files under ~/.openclaw/learning/ and memory files under ~/.openclaw/workspace/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and SKILL.md frontmatter) <br>
+Risk: Persistent learning logs can retain failure details, command context, stack traces, user corrections, and preference changes across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and protect ~/.openclaw learning files, avoid logging secrets or tokens, and periodically remove stale or sensitive entries.
+
+Risk: The wrapper can execute local commands supplied through its command argument and record their output when failures occur.
+
+Mitigation: Run only trusted commands, keep command execution under normal workspace permissions, and review command strings before invoking the wrapper.
+
+Risk: Automatic learning, cron, or auto-fix workflows may mark similar failures as fixed or add prevention rules without enough human review.
+
+Mitigation: Use learn and auto-fix modes only after reviewing the generated pattern analysis and require human approval before enabling scheduled fix-all workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amrree/skills/sol-self-learning)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and local JSON memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local learning records under ~/.openclaw and may emit command output, failure IDs, analysis reports, and fix summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

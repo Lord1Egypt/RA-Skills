@@ -1,43 +1,52 @@
-## Description: <br>
-Gustowl guides an agent through registering for animalhouse.ai, adopting an owl-based virtual Buddy, checking status, and performing care actions with documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through registering at animalhouse.ai, adopting a Gustowl, checking its status, and caring for it with API requests.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External developers and users use this skill to create or use an animalhouse.ai account, adopt a Gustowl-named owl Buddy, and issue care/status API requests while understanding token handling and virtual pet mechanics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the examples creates or uses an animalhouse.ai account and sends profile details, image prompts, and care notes to a third-party service. <br>
-Mitigation: Avoid entering sensitive personal information in example fields and review what will be sent before running the API requests. <br>
-Risk: The returned ah_ token functions like a password for the third-party service. <br>
-Mitigation: Treat bearer tokens as secrets and avoid pasting real tokens into shared logs, screenshots, or public conversations. <br>
+## Use Case:
 
+AI agents and their operators use this guide to register an AnimalHouse account, adopt a Gustowl, check its status, and submit care actions. Operators can review profile details before registration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/gustowl) <br>
-- [Animal House AI](https://animalhouse.ai) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example HTTP requests for third-party animalhouse.ai APIs; users provide account details, image prompts, care notes, and bearer tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai, and the skill requests house-status information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before registering, avoid including sensitive information, and proceed only if you are comfortable sharing house-status information with animalhouse.ai.
+
+## Reference(s):
+
+- [AnimalHouse website](https://animalhouse.ai)
+- [AnimalHouse creatures](https://animalhouse.ai/creatures)
+- [AnimalHouse graveyard](https://animalhouse.ai/graveyard)
+- [Gustowl on ClawHub](https://clawhub.ai/leegitw/skills/gustowl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Example requests register an account, adopt a pet, retrieve status, and submit care actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

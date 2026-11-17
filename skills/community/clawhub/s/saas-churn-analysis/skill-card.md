@@ -1,41 +1,53 @@
-## Description: <br>
-SaaS churn and retention analysis for cohort-based churn rates, retention curves, revenue churn versus logo churn, at-risk customer identification, expansion versus contraction MRR, churn recovery playbooks, and NRR benchmarking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SaaS Churn Analysis helps agents build cohort retention tables, calculate churn, NRR, and GRR metrics, identify at-risk accounts, and draft retention summaries and recovery playbooks for SaaS businesses.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-External SaaS operators, finance teams, customer success teams, and founders use this skill to diagnose churn, build cohort retention tables, calculate NRR/GRR, identify at-risk accounts, and prepare retention summaries for investors or board discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer and revenue datasets may include sensitive customer or personal information. <br>
-Mitigation: Use only data the user is authorized to analyze and minimize unnecessary personal details. <br>
-Risk: Recovery recommendations could be mistaken for authorization to contact customers or change billing. <br>
-Mitigation: Keep outreach, cancellation, refund, and billing changes in separate user-controlled CRM or billing tools. <br>
-Risk: Metric calculations and churn risk scores depend on the quality and completeness of user-provided subscription, billing, and usage data. <br>
-Mitigation: Review input data definitions and validate key retention metrics before using the analysis in investor, board, CRM, or billing workflows. <br>
+## Use Case:
 
+External operators, founders, customer success teams, and analysts use this skill to diagnose SaaS churn, calculate retention metrics, prioritize at-risk accounts, and prepare investor-facing retention reporting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown analysis with formulas, Python snippets, JSON summaries, and CSV table templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces retention metrics, cohort tables, MRR bridge summaries, at-risk customer scoring, and recovery playbooks from user-provided SaaS customer and revenue data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Imported customer, usage, billing, and revenue data may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep analysis outputs internal, minimize customer identifiers, and avoid exposing raw account-level data unless the user explicitly needs it.
+
+Risk: Recovery playbooks could be mistaken for authorization to execute CRM, email, or billing actions.
+
+Mitigation: Use the skill for analysis and recommendations only; route outreach, cancellation, refund, and billing changes through approved CRM, email, or billing systems.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/samledger67-dotcom/skills/saas-churn-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, JSON, and CSV examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cohort tables, retention metric summaries, MRR bridge calculations, at-risk account scoring, and churn recovery playbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

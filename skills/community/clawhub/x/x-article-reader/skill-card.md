@@ -1,41 +1,58 @@
-## Description: <br>
-Read X (Twitter) Articles aloud using macOS text-to-speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads X (Twitter) Articles aloud using macOS text-to-speech, accepting X Article URLs and automatically selecting Chinese or English voices.
 
-## Publisher: <br>
-[ewangchong](https://clawhub.ai/user/ewangchong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ewangchong](https://clawhub.ai/user/ewangchong)
 
-## Use Case: <br>
-External users use this skill to extract text from X Articles and have it read aloud on macOS, with automatic Chinese or English voice selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a reusable X login session inside the skill directory. <br>
-Mitigation: Use only on a trusted local machine, restrict access to data/browser_state, and delete the stored browser state when access is no longer needed. <br>
-Risk: The article reader opens user-supplied URLs in a logged-in browser session without tight URL safeguards. <br>
-Mitigation: Use only intended x.com article URLs and avoid arbitrary or untrusted links. <br>
+## Use Case:
 
+External users and agents use this skill to fetch accessible X Article content from a supplied URL, read it aloud with macOS text-to-speech, and optionally save the spoken output as an audio file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ewangchong/x-article-reader) <br>
-- [Homepage](https://github.com/ewangchong/x-article-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal output and optional AIFF audio file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads extracted article text aloud with macOS say; can save audio when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill stores reusable X session data under the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, avoid sharing or backing up the browser_state directory, and remove the saved session when the skill is no longer needed.
+
+Risk: The browser launch disables sandboxing and uses weak scoping for authenticated browsing.
+
+Mitigation: Prefer a revised release that removes --no-sandbox, validates x.com article URLs before navigation, and narrows authenticated browser use to trusted article pages.
+
+Risk: Dependencies are installed without pinned versions.
+
+Mitigation: Pin and review dependency versions before deploying the skill in a managed environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ewangchong/skills/x-article-reader)
+- [Project homepage](https://github.com/ewangchong/x-article-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and command-line output, with optional AIFF audio file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS text-to-speech, patchright/Chromium, and a saved X browser session for authenticated article access.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

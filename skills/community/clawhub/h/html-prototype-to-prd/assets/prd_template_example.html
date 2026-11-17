@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亚马逊运营工作课表 · 产品需求文档（PRD）</title>
+<style>
+  :root{
+    --blue:#1457A6;
+    --blue-soft:#EDF3FB;
+    --ink:#1F2329;
+    --ink-2:#4A5058;
+    --ink-3:#8A9099;
+    --line:#E4E8EF;
+    --bg:#FFFFFF;
+    --shell:#F6F7F9;
+    --red:#D66A70;
+    --amber:#D6A13F;
+    --label:#6D9BC7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--shell);color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14.5px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  .layout{display:flex;gap:28px;max-width:1440px;margin:0 auto;padding:32px 28px 100px;align-items:flex-start;}
+  /* ---------- 目录 ---------- */
+  .toc{
+    position:sticky;top:32px;width:212px;flex:0 0 212px;
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 16px;
+    font-size:13px;max-height:calc(100vh - 64px);overflow:auto;
+  }
+  .toc h2{font-size:12px;letter-spacing:.08em;color:var(--ink-3);margin:0 0 10px;font-weight:600;}
+  .toc a{display:block;color:var(--ink-2);text-decoration:none;padding:4px 8px;border-radius:6px;line-height:1.5;}
+  .toc a:hover{background:var(--blue-soft);color:var(--blue);}
+  .toc a.sub{padding-left:20px;font-size:12.5px;color:var(--ink-3);}
+  .toc hr{border:0;border-top:1px solid var(--line);margin:12px 0;}
+  /* ---------- 正文 ---------- */
+  .doc{flex:1;min-width:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:52px 56px 72px;}
+  .cover{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:34px;}
+  .cover .kicker{display:inline-block;background:var(--blue-soft);color:var(--blue);font-size:12px;font-weight:600;padding:3px 11px;border-radius:999px;}
+  .cover h1{font-size:27px;line-height:1.35;margin:14px 0 12px;font-weight:700;letter-spacing:-.2px;}
+  .cover .meta{display:flex;flex-wrap:wrap;gap:10px 26px;color:var(--ink-3);font-size:13px;}
+  .cover .meta b{color:var(--ink-2);font-weight:600;}
+  h2{font-size:19px;margin:48px 0 14px;padding-left:12px;border-left:3px solid var(--blue);font-weight:650;line-height:1.5;}
+  h3{font-size:16px;margin:34px 0 10px;font-weight:650;}
+  h4{font-size:14px;margin:26px 0 10px;color:var(--ink-2);font-weight:650;}
+  p{margin:10px 0;color:var(--ink-2);}
+  ul,ol{margin:10px 0;padding-left:22px;color:var(--ink-2);}
+  li{margin:5px 0;}
+  b,strong{color:var(--ink);font-weight:650;}
+  code{background:#F2F4F7;border-radius:4px;padding:1px 5px;font-size:12.5px;font-family:Consolas,Menlo,monospace;color:#3D4757;}
+  /* ---------- 表格 ---------- */
+  table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;font-size:13.5px;line-height:1.65;
+        border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  thead th{background:#F7F9FC;color:var(--ink-2);font-weight:650;text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  tbody td{padding:10px 13px;border-bottom:1px solid #F0F2F5;vertical-align:top;color:var(--ink-2);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+  td code{font-size:12px;}
+  /* ---------- 页面块 ---------- */
+  .page-block{margin:44px 0 0;padding-top:6px;}
+  .pb-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .pb-num{background:var(--blue);color:#fff;font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:6px;letter-spacing:.02em;}
+  .pb-head h3{margin:0;font-size:17px;}
+  .pb-tag{font-size:11.5px;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:1px 9px;}
+  .pb-desc{margin:10px 0 0;}
+  figure{margin:18px 0 6px;}
+  figure img{width:100%;display:block;border:1px solid var(--line);border-radius:10px;background:#fff;}
+  figcaption{font-size:12.5px;color:var(--ink-3);margin-top:9px;text-align:center;}
+  /* ---------- 提示块 ---------- */
+  .callout{border:1px solid #DCE6F4;background:#F6FAFF;border-radius:10px;padding:13px 16px;margin:16px 0;font-size:13.5px;color:var(--ink-2);}
+  .callout .ct{font-weight:650;color:var(--blue);display:block;margin-bottom:4px;font-size:13px;}
+  .rule-list{margin:12px 0;padding:0;list-style:none;}
+  .rule-list li{position:relative;padding-left:16px;margin:7px 0;}
+  .rule-list li:before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--label);}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;}
+  .tag-p0{background:#FBE9EA;color:#B4454B;border-radius:5px;padding:1px 7px;font-size:12px;font-weight:600;}
+  .tag-p1{background:#FFF3D8;color:#9A6E15;border-radius:5px;padding:1px 7px;font-size:12px;font-weight:600;}
+  .tag-p2{background:#EAF3FB;color:#3F6E96;border-radius:5px;padding:1px 7px;font-size:12px;font-weight:600;}
+  .footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12.5px;}
+  @media (max-width:1080px){
+    .layout{padding:18px 12px 60px;gap:0;}
+    .toc{display:none;}
+    .doc{padding:30px 22px 48px;border-radius:10px;}
+    .cover h1{font-size:22px;}
+    table{font-size:12.5px;}
+    thead th,tbody td{padding:8px 9px;}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <nav class="toc">
+    <h2>目录</h2>
+    <a href="#s1">1. 文档说明</a>
+    <a href="#s2">2. 信息架构</a>
+    <a href="#s3">3. 页面详情</a>
+    <a class="sub" href="#p31">3.1 我的本周</a>
+    <a class="sub" href="#p32">3.2 单日工作</a>
+    <a class="sub" href="#p33">3.3 月度总览</a>
+    <a class="sub" href="#p34">3.4 任务库</a>
+    <a class="sub" href="#p35">3.5 任务详情抽屉</a>
+    <a class="sub" href="#p36">3.6 新增临时事项</a>
+    <a class="sub" href="#p37">3.7 身份与查看范围</a>
+    <a class="sub" href="#p38">3.8 任务库检索</a>
+    <a href="#s4">4. 全局规则</a>
+    <a href="#s5">5. 待确认事项</a>
+    <hr>
+    <a href="#s6">附：任务数据规模</a>
+  </nav>
+
+  <main class="doc">
+
+    <header class="cover">
+      <span class="kicker">产品需求文档</span>
+      <h1>亚马逊运营工作课表<br>产品需求文档（PRD）</h1>
+      <div class="meta">
+        <span><b>版本</b> v1.0</span>
+        <span><b>日期</b> 2026-09-28</span>
+        <span><b>形态</b> 单页交互原型（HTML）</span>
+        <span><b>状态</b> 待评审</span>
+      </div>
+    </header>
+
+    <section id="s1">
+      <h2>1. 文档说明</h2>
+      <p>本文档说明「亚马逊运营工作课表」交互原型的功能构成、页面规则与交互逻辑，供评审、开发和验收对照使用。原型已实现四个视图、任务详情、临时事项录入与身份范围切换，数据为演示数据。</p>
+
+      <h4>产品目标</h4>
+      <ul class="rule-list">
+        <li>把运营团队的日、周、月固定动作收在一张课表里，先看时间、再看任务。</li>
+        <li>每个任务带明确的完成要求和复查节点，避免只勾完成不写结论。</li>
+        <li>按身份区分可见范围，成员看自己、组长看本组、负责人看全部。</li>
+        <li>异常事项（平台通知、断货风险、广告异常）可随时插入当天，不脱离课表另开记录。</li>
+      </ul>
+
+      <h4>阅读约定</h4>
+      <table>
+        <thead><tr><th>用语</th><th>含义</th></tr></thead>
+        <tbody>
+          <tr><td>任务模板</td><td>任务库里的固定规则条目，如「核查重点商品可售库存与断货风险」，不含日期与人员。</td></tr>
+          <tr><td>任务实例</td><td>模板在某个日期、某个人身上生成的具体任务，唯一标识为 <code>任务ID:人员ID:日期</code>。</td></tr>
+          <tr><td>周期</td><td>任务的重现频率，分日度、周度、月度、临时（触发型）四类。</td></tr>
+          <tr><td>时间段</td><td>一天内的建议执行窗口，共 5 段，不构成硬性截止。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="s2">
+      <h2>2. 信息架构</h2>
+      <p>顶部为全局导航与身份选择，主体区按四个视图切换，右滑抽屉承载单个任务的详情与记录。</p>
+
+      <table>
+        <thead><tr><th>层级</th><th>名称</th><th>作用</th></tr></thead>
+        <tbody>
+          <tr><td>全局导航</td><td>我的本周 / 单日工作 / 月度总览 / 任务库</td><td>四个视图互斥切换，切换后主体区整体重绘</td></tr>
+          <tr><td>全局导航</td><td>身份下拉</td><td>切换演示身份，影响可见范围与可操作项</td></tr>
+          <tr><td>视图级</td><td>周期切换（←、今天、→）</td><td>周视图按周前后翻，日视图按天，月视图按月</td></tr>
+          <tr><td>视图级</td><td>查看范围</td><td>按身份提供「我的任务 / 本组 / 全部人员 / 指定成员」</td></tr>
+          <tr><td>视图级</td><td>＋临时事项</td><td>录入当天新出现的异常事项</td></tr>
+          <tr><td>抽屉</td><td>任务详情与记录</td><td>查看完成要求、填写执行状态与检查结论</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <span class="ct">页面关系</span>
+        周视图点击某一天进入单日视图；单日、月度、任务库中的任务项均可打开同一个详情抽屉；任务库打开的是只读模板详情，不产生记录。
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2>3. 页面详情</h2>
+      <p>以下每个页面给出界面截图与对应的功能点、交互规则。截图取自原型真实运行状态。</p>
+
+      <!-- 3.1 -->
+      <article class="page-block" id="p31">
+        <div class="pb-head"><span class="pb-num">3.1</span><h3>我的本周</h3><span class="pb-tag">周视图 · 默认页</span></div>
+        <p class="pb-desc">一周的工作总览。横向是周一至周日，纵向是五个时间段，任务卡按优先级着色，一眼看出哪天紧、哪个时段该先做什么。</p>
+        <figure>
+          <img src="__IMG_01__" alt="我的本周视图">
+          <figcaption>图 1｜我的本周：9 月 28 日至 10 月 4 日，个人周课表</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>区域</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>KPI 卡片</td><td>四张卡，分别显示：本视图任务总数、尚待完成数、周／月到期数、待跟进与待核验数。数值随查看范围实时变化。</td></tr>
+            <tr><td>优先级图例</td><td>三条色标说明：<span class="tag-p0">P0 先查先办</span> <span class="tag-p1">P1 优先推进</span> <span class="tag-p2">P2 按计划推进</span>，并注明时间段只是建议窗口。</td></tr>
+            <tr><td>日期表头</td><td>显示星期与日期，当天高亮为「今天」，并显示当天任务数；周末显示「按值班表」。</td></tr>
+            <tr><td>时间段行</td><td>开工必检（固定风险检查）、上午重点、下午推进、弹性／全天（响应和触发事项）、下班收尾（仅在有未结时生成）。</td></tr>
+            <tr><td>任务卡</td><td>两行结构：第一行是周期与模块标签，第二行是任务标题。卡片左侧有优先级色条。</td></tr>
+            <tr><td>溢出折叠</td><td>同一格超过 3 项时显示「＋另有 N 项，展开当天」，点击进入该日详情。</td></tr>
+            <tr><td>底部说明</td><td>提示点击日期进入当日工作页；月度任务按到期日落入对应周，同一任务只保存一次。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>点击日期表头或任务卡中的「展开当天」，跳转到该日单日视图。</li>
+          <li>点击任务卡任意位置，从右侧滑出任务详情抽屉。</li>
+          <li>切换身份或查看范围后，KPI 与网格按新范围重算，页面不刷新。</li>
+          <li>周视图只统计所在周的任务实例，跨周任务按到期日归属。</li>
+        </ul>
+      </article>
+
+      <!-- 3.2 -->
+      <article class="page-block" id="p32">
+        <div class="pb-head"><span class="pb-num">3.2</span><h3>单日工作</h3><span class="pb-tag">日视图</span></div>
+        <p class="pb-desc">一天的执行页面。左栏按时间段排出当天任务，右栏放当天到期、临时插入与填写指引，形成「照着做 + 照着记」的闭环。</p>
+        <figure>
+          <img src="__IMG_02__" alt="单日工作视图">
+          <figcaption>图 2｜单日工作：9 月 28 日 周一，按五个时间段分组</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>区域</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>任务分行</td><td>每行包含优先级色条、任务标题、副信息（周期 · 模块 · 触发或截止条件 · 是否已有输出物）、右侧状态标签。</td></tr>
+            <tr><td>状态标签</td><td>五种：待办、已完成、待跟进、待核验、不适用。已完成的任务整行置灰。</td></tr>
+            <tr><td>当日到期卡</td><td>列出当天到期的周度与月度任务，并标注周期与触发条件。</td></tr>
+            <tr><td>紧急插入卡</td><td>列出当天新增的临时事项；无内容时提示可从右上角添加。</td></tr>
+            <tr><td>填写指引卡</td><td>固定文案，说明检查无异常与发现问题两种记录写法，以及数据缺失时选「待核验」。</td></tr>
+            <tr><td>空状态</td><td>时间段内无任务时给出说明，例如下班收尾「没有未结事项时，无需额外勾选收尾任务」。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>点击任意任务行打开详情抽屉填写记录。</li>
+          <li>在非单日视图点击「＋临时事项」，先自动切到单日视图再弹表单。</li>
+          <li>已标记完成、待跟进、待核验的任务会使当天生成「下班收尾」任务，保证有结论可查。</li>
+        </ul>
+      </article>
+
+      <!-- 3.3 -->
+      <article class="page-block" id="p33">
+        <div class="pb-head"><span class="pb-num">3.3</span><h3>月度总览</h3><span class="pb-tag">月视图</span></div>
+        <p class="pb-desc">月度任务按「几号前完成」投影到日历上，下方另附一整月清单，用于检查月度动作有没有落在具体日子上。</p>
+        <figure>
+          <img src="__IMG_03__" alt="月度总览视图">
+          <figcaption>图 3｜月度总览：2026 年 9 月，日历投影 + 本月任务清单</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>区域</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>月历网格</td><td>周一开头排列，只显示月度任务，不混入日度与周度任务。</td></tr>
+            <tr><td>非本月日期</td><td>填充上月与下月的日期格，置灰区分。</td></tr>
+            <tr><td>单格溢出</td><td>每格最多显示 3 项，超出显示「＋N 项」。</td></tr>
+            <tr><td>月度任务清单</td><td>按日期升序列出本月全部月度任务，每条显示日期、标题、模块、触发条件与当前状态。</td></tr>
+            <tr><td>底部说明</td><td>提示只展示本月月度任务；点日期可看该日全部任务；遇周末自动提前到上一个工作日。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>点击日期格，跳转到该日的单日视图，可看到日、周、月三类任务的合集。</li>
+          <li>月度任务的到期日遇周六、周日自动前移到最近的周五。</li>
+          <li>周期切换按钮在月视图下按整月前后翻页。</li>
+        </ul>
+      </article>
+
+      <!-- 3.4 -->
+      <article class="page-block" id="p34">
+        <div class="pb-head"><span class="pb-num">3.4</span><h3>任务库</h3><span class="pb-tag">规则页</span></div>
+        <p class="pb-desc">全部任务模板的索引，按业务模块分组。它回答的是「这件事归谁做、什么周期、做到什么程度算完成」，不产生执行记录。</p>
+        <figure>
+          <img src="__IMG_04__" alt="任务库视图">
+          <figcaption>图 4｜任务库：按十二个业务模块分组呈现任务模板</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>区域</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>页头统计</td><td>显示日度候选、周度、月度三类模板数量，并注明触发项不每天生成。</td></tr>
+            <tr><td>分组表格</td><td>按模块分节，每节标题显示该模块的模板数量。</td></tr>
+            <tr><td>表格列</td><td>周期／期限（含触发条件）、事项、主责、完成要求。</td></tr>
+            <tr><td>主责口径</td><td>显示岗位角色（如产品运营、广告运营、客服），不是具体人名，便于人员变动时规则不失效。</td></tr>
+            <tr><td>优先级圆点</td><td>事项名称前的色点表示 P0 / P1 / P2。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>点击事项名称打开只读详情，展示完成要求与触发条件，并提示「任务库仅供查看，请在课表中打开当天的任务实例填写记录」。</li>
+          <li>任务库不显示日期与状态，状态只在课表实例上存在。</li>
+        </ul>
+      </article>
+
+      <!-- 3.5 -->
+      <article class="page-block" id="p35">
+        <div class="pb-head"><span class="pb-num">3.5</span><h3>任务详情抽屉</h3><span class="pb-tag">全局组件</span></div>
+        <p class="pb-desc">从右侧滑出的抽屉，上半部分是任务的固定规则（只读），下半部分是本次执行的记录区。所有视图的任务项都打开这同一个抽屉。</p>
+        <figure>
+          <img src="__IMG_05__" alt="任务详情抽屉">
+          <figcaption>图 5｜任务详情抽屉：上方为只读规则，下方为可填写的执行记录</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>区域</th><th>字段</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>头部</td><td>周期与日期 · 执行人</td><td>例如「每日 · 2026-09-28 · 林珊」，明确这条任务属于谁、哪一天。</td></tr>
+            <tr><td>只读区</td><td>业务模块 / 优先级与时间段 / 触发或截止条件 / 具体完成要求</td><td>来自任务模板，执行人不可改。</td></tr>
+            <tr><td>可填区</td><td>执行状态</td><td>下拉选择：待办、已完成、待跟进、待核验、不适用。</td></tr>
+            <tr><td>可填区</td><td>检查结论／处理结果</td><td>文本，提示语为「无异常、发现的问题或已做的操作」。</td></tr>
+            <tr><td>可填区</td><td>备注／协作说明</td><td>可写站点、ASIN、活动 ID、卡点与责任人。</td></tr>
+            <tr><td>可填区</td><td>输出物／证据链接</td><td>报告链接、Case 编号、材料位置等。</td></tr>
+            <tr><td>可填区</td><td>下次复查日期</td><td>日期选择器，为待跟进事项提供复查节点。</td></tr>
+            <tr><td>底部</td><td>保存记录</td><td>提交后关闭抽屉并刷新当前视图。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>校验规则</h4>
+        <table>
+          <thead><tr><th>触发条件</th><th>校验</th><th>提示文案</th></tr></thead>
+          <tbody>
+            <tr><td>状态选择「已完成」</td><td>检查结论必填</td><td>完成时请写一句检查或处理结论</td></tr>
+            <tr><td>状态选择「待跟进」</td><td>下次复查日期必填</td><td>待跟进事项需要填写复查日期</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <span class="ct">设计意图</span>
+          把「完成」定义成必须留下结论，把「待跟进」定义成必须留下复查日期，避免任务被随手勾掉后无人接续。
+        </div>
+      </article>
+
+      <!-- 3.6 -->
+      <article class="page-block" id="p36">
+        <div class="pb-head"><span class="pb-num">3.6</span><h3>新增临时事项</h3><span class="pb-tag">弹层表单</span></div>
+        <p class="pb-desc">当天下班前才出现的异常，比如平台通知、突然断货、投诉集中爆发，通过这个表单插进当天课表。</p>
+        <figure>
+          <img src="__IMG_06__" alt="新增临时事项表单">
+          <figcaption>图 6｜新增临时事项：填写名称、模块、优先级与完成判断</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>字段</th><th>控件</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>事项名称</td><td>输入框</td><td>示例文案：「US 站点某 ASIN 被抑制，核查并恢复」。</td></tr>
+            <tr><td>业务模块</td><td>下拉</td><td>十二个业务模块，用于归类与统计。</td></tr>
+            <tr><td>优先级</td><td>下拉</td><td>P0 / P1 / P2，默认 P1。</td></tr>
+            <tr><td>处理要求／完成判断</td><td>多行文本</td><td>写清要处理的对象和预期结果。</td></tr>
+            <tr><td>备注</td><td>多行文本</td><td>选填。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>事项名称与处理要求均为必填，缺失时在底部提示，不关闭表单。</li>
+          <li>保存后自动落到当天的「紧急插入」卡，并按优先级着色显示。</li>
+          <li>临时事项归创建人所有，不进入任务库，不参与月度统计。</li>
+          <li>抽屉支持点击遮罩或按 Esc 关闭。</li>
+        </ul>
+      </article>
+
+      <!-- 3.7 -->
+      <article class="page-block" id="p37">
+        <div class="pb-head"><span class="pb-num">3.7</span><h3>身份与查看范围</h3><span class="pb-tag">权限演示</span></div>
+        <p class="pb-desc">原型用身份下拉模拟权限差异：成员只看自己，小组长可看本组，运营负责人可看全部人员并逐个查看。切换到他人范围时，任务标题前会带上姓名前缀。</p>
+        <figure>
+          <img src="__IMG_07__" alt="负责人视角与全部人员范围">
+          <figcaption>图 7｜运营负责人身份 + 全部人员范围：任务前显示「姓名 ·」以区分归属</figcaption>
+        </figure>
+
+        <h4>范围规则</h4>
+        <table>
+          <thead><tr><th>身份</th><th>可选查看范围</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>普通成员</td><td>我的任务</td><td>范围下拉隐藏，只能看分配给自己的任务。</td></tr>
+            <tr><td>小组长</td><td>我的任务 / 本组全组 / 组内成员</td><td>范围限制在本小组内，不出现其他组成员。</td></tr>
+            <tr><td>运营负责人</td><td>我的任务 / 全部人员 / 任意成员</td><td>可查看所有成员，任务标题前显示姓名前缀。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>切换身份时查看范围自动重置为「我的任务」，避免越权残留。</li>
+          <li>KPI 卡片的所有数值按当前查看范围重新计算。</li>
+          <li>范围下拉只有一个选项时自动隐藏。</li>
+        </ul>
+
+        <div class="callout">
+          <span class="ct">重要边界</span>
+          原型中的身份切换仅用于演示。正式系统的可见范围必须由登录身份与服务端权限共同判定，前端隐藏入口不构成权限控制。
+        </div>
+      </article>
+
+      <!-- 3.8 -->
+      <article class="page-block" id="p38">
+        <div class="pb-head"><span class="pb-num">3.8</span><h3>任务库检索</h3><span class="pb-tag">页内组件</span></div>
+        <p class="pb-desc">任务库提供关键词搜索与频率筛选，用于快速定位某条规则，或按周期类型清点任务量。</p>
+        <figure>
+          <img src="__IMG_08__" alt="任务库检索">
+          <figcaption>图 8｜任务库检索：关键词过滤与频率筛选叠加生效</figcaption>
+        </figure>
+
+        <h4>功能点</h4>
+        <table>
+          <thead><tr><th>控件</th><th>行为</th></tr></thead>
+          <tbody>
+            <tr><td>搜索框</td><td>同时匹配任务名称、业务模块、完成要求三个字段，输入即过滤。</td></tr>
+            <tr><td>频率筛选</td><td>下拉切换：全部频率 / 日度 / 周度 / 月度。</td></tr>
+            <tr><td>组合过滤</td><td>搜索词与频率条件同时生效，过滤后空模块整节隐藏。</td></tr>
+          </tbody>
+        </table>
+
+        <h4>交互规则</h4>
+        <ul class="rule-list">
+          <li>过滤后输入框保持焦点与光标位置，支持连续输入不被中断。</li>
+          <li>过滤只影响展示，不改变任务模板本身。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="s4">
+      <h2>4. 全局规则</h2>
+
+      <h3>4.1 优先级体系</h3>
+      <table>
+        <thead><tr><th>级别</th><th>含义</th><th>呈现</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag-p0">P0</span></td><td>先查先办，高风险与异常优先</td><td>红色系卡片与色条</td></tr>
+          <tr><td><span class="tag-p1">P1</span></td><td>优先推进，当天应处理的重点</td><td>琥珀色系卡片与色条</td></tr>
+          <tr><td><span class="tag-p2">P2</span></td><td>按计划推进，有变化才记录</td><td>蓝色系卡片与色条</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4.2 执行状态</h3>
+      <table>
+        <thead><tr><th>状态</th><th>含义</th><th>进入条件</th></tr></thead>
+        <tbody>
+          <tr><td>待办</td><td>已生成，尚未处理</td><td>默认状态</td></tr>
+          <tr><td>已完成</td><td>已处理且有结论</td><td>必须填写检查结论</td></tr>
+          <tr><td>待跟进</td><td>已开工但未结束</td><td>必须填写下次复查日期</td></tr>
+          <tr><td>待核验</td><td>数据缺失或结果待确认</td><td>由执行人判断</td></tr>
+          <tr><td>不适用</td><td>当天确实无需执行</td><td>由执行人判断，不计入待完成</td></tr>
+        </tbody>
+      </table>
+      <p>已完成与不适用的任务不计入「尚待完成」统计，但仍保留在列表中以备追溯。</p>
+
+      <h3>4.3 任务生成规则</h3>
+      <table>
+        <thead><tr><th>周期</th><th>生成条件</th><th>到期口径</th></tr></thead>
+        <tbody>
+          <tr><td>日度</td><td>仅工作日生成，周末不生成</td><td>当天</td></tr>
+          <tr><td>周度</td><td>按设定的星期几生成</td><td>「每周 X 前」</td></tr>
+          <tr><td>月度</td><td>按设置日投影到当月，遇周末前移到上一个工作日</td><td>「每月 N 日前」或「每月最后一个工作日前」</td></tr>
+          <tr><td>触发型</td><td>满足触发条件才生成，如「有活动或临近节点」「发现链接异常」</td><td>随触发事件</td></tr>
+          <tr><td>临时</td><td>人工添加，仅存在于创建当天</td><td>当天</td></tr>
+          <tr><td>下班收尾</td><td>当天存在临时事项，或有待跟进／待核验任务时才生成</td><td>当天</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4.4 任务实例唯一性</h3>
+      <ul class="rule-list">
+        <li>任务实例用 <code>任务ID:人员ID:日期</code> 作为唯一标识，同一人在同一天的同一任务只保存一条记录。</li>
+        <li>月度任务按到期日投影到对应周与当天，在周视图与月视图中看到的是同一条实例，记录不重复。</li>
+        <li>同一模板派发给多人时，各自生成独立实例，互不覆盖。</li>
+      </ul>
+
+      <h3>4.5 数据与权限边界</h3>
+      <table>
+        <thead><tr><th>项</th><th>原型现状</th><th>正式系统要求</th></tr></thead>
+        <tbody>
+          <tr><td>数据来源</td><td>内置演示数据，保存在浏览器本地</td><td>接入组织架构与排班，服务端存储</td></tr>
+          <tr><td>权限判定</td><td>前端按身份模拟</td><td>登录身份 + 服务端校验，前后端共同拒绝</td></tr>
+          <tr><td>节假日</td><td>只处理周末前移</td><td>接入公司日历，含法定节假日与调休</td></tr>
+          <tr><td>周末值班</td><td>固定文案提示</td><td>由实际排班表生成值班清单</td></tr>
+          <tr><td>任务完成要求</td><td>已内置到每条模板</td><td>由业务侧确认后锁定</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="s5">
+      <h2>5. 待确认事项</h2>
+      <table>
+        <thead><tr><th>#</th><th>待确认</th><th>影响</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>日度、周度、月度固定任务的完整清单是否已锁定</td><td>决定任务库最终条目与课表生成密度</td></tr>
+          <tr><td>2</td><td>十二个业务模块的划分与公司实际岗位是否一致</td><td>决定主责分配与统计口径</td></tr>
+          <tr><td>3</td><td>角色与人员的对应关系（谁属于哪个组、谁是组长）</td><td>决定权限范围与可见数据</td></tr>
+          <tr><td>4</td><td>是否需要写入正式系统，还是先以当前形态上线试用</td><td>决定本期是演示交付还是接入后端</td></tr>
+          <tr><td>5</td><td>节假日与调休规则是否接入公司日历</td><td>决定月度任务到期日的准确性</td></tr>
+          <tr><td>6</td><td>完成记录是否需要导出或对接复盘报表</td><td>决定是否新增导出与统计能力</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="s6">
+      <h2>附：任务数据规模</h2>
+      <table>
+        <thead><tr><th>周期</th><th>模板数</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>日度</td><td>28 项</td><td>含 5 个时间段分布，部分为触发型条件任务</td></tr>
+          <tr><td>周度</td><td>38 项</td><td>按周一至周五分别排布</td></tr>
+          <tr><td>月度</td><td>34 项</td><td>按每月 3、5、8、10、15、20、25、28 日及最后工作日到期</td></tr>
+          <tr><td>临时触发</td><td>3 项</td><td>演示用异常事项，正式环境由实际事件产生</td></tr>
+        </tbody>
+      </table>
+      <p>业务模块共十二类：绩效与后台通知、前台可售与页面、客服与客户体验、经营数据、广告投放、价格与促销、库存与物流、市场与竞品、内容与上新、站外合作、财务与费用、协作与复查。</p>
+      <p>时间段共五类：开工必检、上午重点、下午推进、弹性／全天、下班收尾。</p>
+    </section>
+
+    <div class="footer">
+      本文档基于「亚马逊运营工作课表」交互原型（单文件 HTML）整理，截图取自原型真实运行状态。<br>
+      文档版本 v1.0 ｜ 2026-09-28 ｜ 待评审
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

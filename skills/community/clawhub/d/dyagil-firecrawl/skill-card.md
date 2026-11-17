@@ -1,47 +1,58 @@
-## Description: <br>
-Scrape, search, map, and crawl the web for AI agents via the Firecrawl API when an agent needs clean markdown from JavaScript-heavy sites, search results with full page content, site URL mapping, or deep documentation crawls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape, search, map, and crawl the web for AI agents via the Firecrawl API when basic HTTP fetching is not enough.
 
-## Publisher: <br>
-[dyagil](https://clawhub.ai/user/dyagil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyagil](https://clawhub.ai/user/dyagil)
 
-## Use Case: <br>
-Developers and agents use this skill to decide when to use Firecrawl instead of basic fetching, then run Firecrawl scrape, search, map, crawl, status, and REST API commands for web-data collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Firecrawl API key and can interact with authenticated or sensitive web pages. <br>
-Mitigation: Store the API key only in the documented credentials file, avoid sending personal data unless necessary, and require explicit approval before scraping authenticated content or form fields. <br>
-Risk: Large map and crawl commands can consume paid Firecrawl credits. <br>
-Mitigation: Set a crawl or map limit before execution and ask the user to confirm expected credit use for large jobs. <br>
-Risk: Login-page automation and anti-bot bypass prompts can cross access-control or site-policy boundaries. <br>
-Mitigation: Require user approval before login-page interaction, form filling, or attempting to bypass anti-bot or access controls. <br>
-Risk: Scraped or searched content can be incomplete, stale, or misleading. <br>
-Mitigation: Review important extracted content against source pages before relying on it for decisions or publication. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve clean web content, search results with page content, URL maps, and documentation crawls through Firecrawl. It is most useful for JavaScript-heavy pages, SPA sites, and documentation sets where basic fetch tools return empty or noisy content.
 
-## Reference(s): <br>
-- [Firecrawl website](https://firecrawl.dev) <br>
-- [Firecrawl documentation](https://docs.firecrawl.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/dyagil/dyagil-firecrawl) <br>
-- [dyagil publisher profile](https://clawhub.ai/user/dyagil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON REST examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Firecrawl CLI commands, API request examples, credential setup guidance, and cost-aware crawl limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Using the skill on private, authenticated, login, or form pages can expose sensitive data to a third-party scraping provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer public pages and documentation crawls; do not automate passwords, MFA codes, tokens, payment details, or other secrets unless the provider security and privacy posture has been reviewed and accepted.
+
+Risk: Large crawls and maps can consume Firecrawl credits quickly.
+
+Mitigation: Set explicit crawl or map limits, start with small test runs, and warn users about credit cost before broad crawls.
+
+Risk: The skill relies on a Firecrawl API key stored on the local machine.
+
+Mitigation: Store the API key with restrictive file permissions and keep it out of source control, logs, and generated artifacts.
+
+## Reference(s):
+
+- [Firecrawl documentation](https://docs.firecrawl.dev)
+- [Firecrawl website](https://firecrawl.dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce file paths for saved markdown, HTML, JSON, URL lists, or crawled documentation output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

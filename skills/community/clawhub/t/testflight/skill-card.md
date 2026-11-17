@@ -1,43 +1,55 @@
-## Description: <br>
-Distribute iOS and macOS beta builds with TestFlight, tester management, and CI/CD automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distribute iOS and macOS beta builds with TestFlight, tester management, and CI/CD automation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and release engineers use this skill to prepare and automate TestFlight distribution for iOS and macOS beta builds, including App Store Connect setup, tester groups, build uploads, CI/CD examples, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apple release credentials, certificates, and API keys may be exposed or over-privileged during CI/CD automation. <br>
-Mitigation: Use least-privilege App Store Connect credentials, store secrets in CI secret storage or Keychain, and prefer ephemeral macOS runners. <br>
-Risk: External TestFlight distribution or beta review submission may happen before the release is ready. <br>
-Mitigation: Require explicit approval before enabling external distribution or submitting a build for beta review. <br>
-Risk: Generated keychains, provisioning profiles, or credential files may remain on runners after upload. <br>
-Mitigation: Add cleanup steps for generated keychains, provisioning profiles, and temporary credential files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TestFlight skill page](https://clawhub.ai/ivangdavila/testflight) <br>
-- [Skill homepage](https://clawic.com/skills/testflight) <br>
-- [App Store Connect](https://appstoreconnect.apple.com) <br>
+## Use Case:
 
+Developers and release engineers use this skill to prepare TestFlight beta distribution, manage tester groups, upload iOS or macOS builds, and integrate Fastlane or CI/CD release workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash, YAML, JSON, Ruby, and XML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers macOS-based TestFlight release workflows and Apple credential handling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CI snippets may expose Apple signing credentials through weak temporary files or an empty-password keychain.
+
+Mitigation: Use isolated ephemeral runners, generate a non-empty temporary keychain password, restrict file permissions, and delete temporary credential files and keychains in an always-run cleanup step.
+
+Risk: Release automation may use broader App Store Connect access than necessary.
+
+Mitigation: Use the least-privileged App Store Connect role that supports the release process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/testflight)
+- [Skill homepage](https://clawic.com/skills/testflight)
+- [App Store Connect](https://appstoreconnect.apple.com)
+- [CI/CD automation](artifact/ci-cd.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, JSON, Ruby, XML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides macOS-focused TestFlight release guidance; metadata lists Darwin support and no required local binaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

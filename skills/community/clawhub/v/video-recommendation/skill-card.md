@@ -1,47 +1,58 @@
-## Description: <br>
-Recommend videos with precision, not addiction. Use when a user asks what to watch, wants video recommendations, wants a curated watchlist, wants direct video links, or wants suggestions based on recent chat instead of generic platform algorithms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend precise, context-aware videos with direct links and curated watchlists based on the user's current mood, project, or recent chat topics.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External users use this skill to get concise, context-aware video recommendations, curated watchlists, and direct video links for a mood, project, current topic, or recent conversation context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use recent conversation context and durable preferences to personalize recommendations, which can expose private interests or sensitive context in the recommendation process. <br>
-Mitigation: Avoid sharing private details unless they should influence recommendations, and ask the skill to ignore prior context when neutral recommendations are desired. <br>
-Risk: Direct video links can route users to third-party platforms whose content, availability, recommendations, and data practices are outside the skill's control. <br>
-Mitigation: Review linked videos before relying on them, prefer official or high-signal sources, and avoid treating third-party platform behavior as part of the skill's assurance boundary. <br>
+## Use Case:
 
+External users use this skill to get concise, context-aware video recommendations for immediate watching, discovery, project inspiration, research, or mood-based viewing. The skill favors exact video links, focused shortlists, and one-line rationale over generic platform-style feeds.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/fischerlam/video-recommendation) <br>
-- [Source Strategy](artifact/references/source-strategy.md) <br>
-- [Personalization](artifact/references/personalization.md) <br>
-- [Output Patterns](artifact/references/output-patterns.md) <br>
-- [Scoring Rubric](artifact/references/scoring-rubric.md) <br>
-- [Testing](artifact/references/testing.md) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [Taste Profiles](artifact/references/taste-profiles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown lists with video titles, direct links, and concise rationale when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce links-only output, grouped recommendations, shortlists, or project-aligned watchlists depending on the user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release evidence) <br>
+Risk: The skill may use recent chat context to personalize recommendations, which can expose sensitive private details if the user includes them in a recommendation request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive private details in recommendation requests and keep recommendation profiles limited to the context needed for the current request.
+
+Risk: Refinement notes mention recording user requests, which could preserve raw personal context if copied into the skill directory.
+
+Mitigation: Do not store raw user requests unless they are explicitly approved and sanitized.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fischerlam/skills/video-recommendation)
+- [Output Patterns](references/output-patterns.md)
+- [Personalization](references/personalization.md)
+- [Source Strategy](references/source-strategy.md)
+- [Scoring Rubric](references/scoring-rubric.md)
+- [Testing](references/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown lists with titles, direct video links, short rationale, and optional grouped headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use recent chat context, user mood, project context, and web browsing to select and rank recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

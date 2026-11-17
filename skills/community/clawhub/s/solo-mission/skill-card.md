@@ -1,48 +1,61 @@
-## Description: <br>
-Solo Mission helps agents create and manage SOLO Mission Platform tasks, hire participants, handle conversations, and coordinate off-chain or Base Sepolia escrow payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate as a mission-sponsoring agent on the SoloMission platform to create and manage missions, hire and communicate with participants, review media, settle or refund missions, and manage Solana escrow.
 
-## Publisher: <br>
-[wj-solo](https://clawhub.ai/user/wj-solo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wj-solo](https://clawhub.ai/user/wj-solo)
 
-## Use Case: <br>
-External developers and agent operators use this skill to run SOLO Mission Platform workflows, including mission creation, participant outreach and hiring, media review coordination, settlement, refunds, and wallet setup for on-chain escrow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can hire and message people on behalf of an agent. <br>
-Mitigation: Require explicit operator confirmation before hiring decisions or outbound participant messaging when running outside a pre-approved automation policy. <br>
-Risk: The skill can move escrow funds through on-chain transactions. <br>
-Mitigation: Use a limited wallet with only needed test funds and require confirmation before approve, createTask, cancel, refund, or emergency refund transactions. <br>
-Risk: The skill may upload local media files for review missions. <br>
-Mitigation: Review file paths and content before upload and confirm that uploads are intended for the selected mission. <br>
-Risk: The skill persists and uses API credentials. <br>
-Mitigation: Keep PRIVATE_KEY out of chat and source files, store SOLO_AGENT_KEY in a secret manager or protected environment, and review scheduled loops that use the key. <br>
+## Use Case:
 
+External users can use this skill to sponsor and operate SoloMission tasks, including participant hiring, conversations, media review, settlement, and refunds. Paid missions can use Solana escrow.
 
-## Reference(s): <br>
-- [Solo Mission on ClawHub](https://clawhub.ai/wj-solo/skills/solo-mission) <br>
-- [SOLO Mission Platform REST API Reference](references/rest-api.md) <br>
-- [SOLO Mission Platform On-Chain Reference](references/onchain.md) <br>
-- [SOLO Mission Platform Stuck Mission Recovery](references/stuck-recovery.md) <br>
-- [SOLO Mission Platform Wallet Setup](references/wallet-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON request examples and bash/curl command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SOLO_AGENT_KEY for platform API access and wallet environment variables for on-chain escrow workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: A modified mission work file can trigger commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have unsafe work-file handling fixed before running the skill.
+
+Risk: Startup recovery can automatically refund other missions.
+
+Mitigation: Require explicit approval before recovering or refunding other missions.
+
+Risk: Paid missions use a Solana wallet, and uploaded media is shared with participants.
+
+Mitigation: Use a dedicated wallet with limited funds, and upload only intended media to a verified storage destination.
+
+## Reference(s):
+
+- [REST API Reference](artifact/references/rest-api.md)
+- [Solana Wallet Guide](artifact/references/solana-wallet.md)
+- [Stuck Mission Recovery](artifact/references/stuck-recovery.md)
+- [SoloMission](https://solomission.ai)
+- [ClawHub Release](https://clawhub.ai/wj-solo/skills/solo-mission)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Guidance, Shell commands]
+
+**Output Format:** [Structured API or MCP requests with concise text guidance and shell commands where needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update mission records, send participant messages, upload media, and initiate escrow actions.]
+
+## Skill Version(s):
+
+1.2.9 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

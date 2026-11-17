@@ -1,43 +1,64 @@
-## Description: <br>
-High-performance audio library for Apple Silicon with text-to-speech (TTS) and speech-to-text (STT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance audio library for Apple Silicon with text-to-speech (TTS) and speech-to-text (STT).
 
-## Publisher: <br>
-[DarkNoah](https://clawhub.ai/user/DarkNoah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darknoah](https://clawhub.ai/user/darknoah)
 
-## Use Case: <br>
-Developers and audio workflow builders use this skill on Apple Silicon Macs to run Qwen3-based text-to-speech, speech-to-text, voice cloning, voice profile management, and subtitle generation tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install external prerelease code during normal use. <br>
-Mitigation: Review before installing; create the uv environment yourself and preinstall a pinned mlx-audio version instead of relying on the automatic install path. <br>
-Risk: Voice profiles, transcripts, subtitles, and generated audio can contain sensitive local data. <br>
-Mitigation: Only clone voices you are authorized to use and treat saved voices/, transcript, subtitle, and audio files as sensitive local files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DarkNoah/qwen3-audio) <br>
-- [Environment checklist](references/env-check-list.md) <br>
-- [Hugging Face](https://huggingface.co) <br>
-- [Qwen3 ASR sample audio](https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen3-ASR-Repo/asr_en.wav) <br>
-- [Hugging Face mirror endpoint](https://hf-mirror.com) <br>
+## Use Case:
 
+Developers and engineers use this skill on Apple Silicon Macs to run local Qwen3 audio workflows, including text-to-speech, speech-to-text, voice cloning, style-controlled voice generation, and reusable voice profile management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown usage guidance with shell commands and JSON-producing CLI workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can generate WAV audio files, text transcripts, SRT subtitles, ASS subtitles, and reusable local voice profiles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install unpinned code at runtime.
+
+Mitigation: Use a pre-provisioned, locked dependency environment before running the skill.
+
+Risk: The skill uses a third-party Hugging Face mirror by default.
+
+Mitigation: Opt out of the mirror unless it is explicitly trusted, and prefer a reviewed model endpoint.
+
+Risk: Custom voice IDs can create unsafe voice-profile paths.
+
+Mitigation: Use only trusted voice IDs without path components and review stored profile paths before use.
+
+Risk: Created voice profiles retain reference audio, transcript text, and style descriptions.
+
+Mitigation: Treat voice profiles as sensitive data, restrict access to the skill directory, and remove profiles when they are no longer needed.
+
+## Reference(s):
+
+- [Qwen3 Audio skill page](https://clawhub.ai/darknoah/skills/qwen3-audio)
+- [Environment checklist](references/env-check-list.md)
+- [Hugging Face](https://huggingface.co)
+- [Hugging Face mirror](https://hf-mirror.com)
+- [Qwen3 ASR sample audio](https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen3-ASR-Repo/asr_en.wav)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime commands return JSON and audio, transcript, or subtitle files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice profiles may persist reference audio, transcript text, and voice style descriptions under the skill's voices directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

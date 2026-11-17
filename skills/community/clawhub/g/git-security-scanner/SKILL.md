@@ -198,7 +198,7 @@ Terminal output:
   🔴 [CRITICAL] aws-access-key-id (gitleaks)
      config/settings.py:42
      AWS access key ID detected
-     > AKIAIOSFODNN7EXAMPLE
+     > REDACTED-SECRET
      Fix: Rotate this credential immediately. Remove from git history.
 
   🟠 [HIGH] SEC-003 (shipguard)

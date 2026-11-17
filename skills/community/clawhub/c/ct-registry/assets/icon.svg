@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 104" width="100%">
+  <defs>
+    <!-- ct-* 系列通用：圆弧角方框柔和投影（B 档主色 #1C6DD0） -->
+    <filter id="logoShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#1C6DD0" flood-opacity="0.30"/>
+    </filter>
+  </defs>
+
+  <!-- ② 整体圆弧角方框（含柔和投影） -->
+  <rect x="-52" y="-52" width="104" height="104" rx="20" fill="#EAF2FB" stroke="#C9DCEE" stroke-width="0.5" transform="translate(52,52)" filter="url(#logoShadow)"/>
+
+  <!-- ① 左上角统一文字（ct-* 系列通用，B 档主色 #1C6DD0） -->
+  <g transform="translate(7,13)">
+    <text font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Clinical</text>
+    <text y="12" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1C6DD0" stroke="#1C6DD0" stroke-width="0.25" paint-order="stroke" stroke-linejoin="round">Trial</text>
+  </g>
+
+  <!-- 中央主体图形：放大镜内含地球仪（表达「全球注册库检索 / 跨源聚合」） -->
+  <g>
+    <!-- 放大镜手柄（右下，作为主体视觉的延伸） -->
+    <line x1="67.7" y1="77.7" x2="78.5" y2="88.5" stroke="#1C6DD0" stroke-width="7.5" stroke-linecap="round"/>
+    <circle cx="78.5" cy="88.5" r="4" fill="#1C6DD0"/>
+
+    <!-- 放大镜镜框（r=25，镜环加粗至 4.5，轮廓主导） -->
+    <circle cx="50" cy="60" r="25" fill="#EAF2FB" stroke="#1C6DD0" stroke-width="4.5"/>
+
+    <!-- 镜内地球仪（r=18，留出清晰镜环） -->
+    <circle cx="50" cy="60" r="18" fill="#C9DCEE" opacity="0.50"/>
+    <!-- 中央经线（垂直） -->
+    <line x1="50" y1="42" x2="50" y2="78" stroke="#1C6DD0" stroke-width="1.8"/>
+    <!-- 赤道（水平） -->
+    <line x1="32" y1="60" x2="68" y2="60" stroke="#1C6DD0" stroke-width="1.8"/>
+    <!-- 上下回归线（弧形纬线） -->
+    <path d="M33.4 53 A18 18 0 0 1 66.6 53" fill="none" stroke="#1C6DD0" stroke-width="1.6"/>
+    <path d="M33.4 67 A18 18 0 0 0 66.6 67" fill="none" stroke="#1C6DD0" stroke-width="1.6"/>
+    <!-- 左右经线（弧形，强化球体感） -->
+    <path d="M50 42 A9 18 0 0 0 50 78" fill="none" stroke="#1C6DD0" stroke-width="1.6"/>
+    <path d="M50 42 A9 18 0 0 1 50 78" fill="none" stroke="#1C6DD0" stroke-width="1.6"/>
+  </g>
+
+  <!-- 右上角医学标记（白底红十字徽，B 档家族识别，呼应 ct-advisor） -->
+  <g transform="translate(83,40)">
+    <circle r="8" fill="#FFFFFF" stroke="#1C6DD0" stroke-width="1.2"/>
+    <rect x="-1.6" y="-5" width="3.2" height="10" rx="0.8" fill="#E2342E"/>
+    <rect x="-5" y="-1.6" width="10" height="3.2" rx="0.8" fill="#E2342E"/>
+  </g>
+</svg>

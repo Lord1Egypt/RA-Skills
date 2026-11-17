@@ -1,42 +1,58 @@
-## Description: <br>
-Volume profile analysis detecting accumulation or distribution patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns volume profile analysis detecting accumulation or distribution patterns.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill to request real-time APEX Runner volume-profile signals for confirming breakouts, identifying accumulation or distribution, and informing momentum entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an EVM wallet private key for automatically paid x402 requests without clear per-call consent or spending limits. <br>
-Mitigation: Use a dedicated low-balance wallet and only fund it with the amount you are willing to spend on calls. <br>
-Risk: Each invocation may authorize a paid request. <br>
-Mitigation: Review expected pricing before use and monitor wallet activity while the skill is enabled. <br>
+## Use Case:
 
+Developers and trading agents use the paid endpoint to request volume profile signals that can help assess breakouts, accumulation, distribution, and momentum setups.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/volume-analysis) <br>
-- [APEX Runner Volume Analysis](https://apexrunner.ai/signals/volume-analysis) <br>
-- [APEX Runner Pricing Tiers](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, JSON, Guidance] <br>
-**Output Format:** [JSON response with signal fields and concise agent-facing analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402-authorized paid requests; each invocation may spend wallet funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paid calls spend USDC from a wallet on Base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the current price and set an explicit payment cap before authorizing calls.
+
+Risk: The example reads an EVM private key from EVM_PRIVATE_KEY to authorize payment.
+
+Mitigation: Use a dedicated wallet with limited funds and keep the key in a secure secret store.
+
+Risk: Volume signals may be incomplete or misleading when used to make trading decisions.
+
+Mitigation: Treat the response as one analytical input and apply independent validation and trading controls.
+
+## Reference(s):
+
+- [Volume Analysis endpoint](https://apexrunner.ai/signals/volume-analysis)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/volume-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, JSON]
+
+**Output Format:** [JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Example fields: signal, volume_ratio, and above_average.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

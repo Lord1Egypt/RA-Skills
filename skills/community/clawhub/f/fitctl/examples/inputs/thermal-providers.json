@@ -1,0 +1,26 @@
+{
+  "schema_id": "fitctl.thermal-provider-config.v1",
+  "schema_version": 1,
+  "providers": [
+    {
+      "provider_id": "local-sensors",
+      "provider_kind": "lm_sensors_json",
+      "command": ["sensors", "-j"],
+      "timeout_seconds": 5,
+      "evidence_target": {
+        "target_kind": "current_host",
+        "collection_path": "local_process"
+      }
+    },
+    {
+      "provider_id": "local-gpu-temperature",
+      "provider_kind": "nvidia_smi_query",
+      "command": ["nvidia-smi", "--query-gpu=uuid,name,temperature.gpu", "--format=csv,noheader,nounits"],
+      "timeout_seconds": 5,
+      "evidence_target": {
+        "target_kind": "current_host",
+        "collection_path": "local_process"
+      }
+    }
+  ]
+}

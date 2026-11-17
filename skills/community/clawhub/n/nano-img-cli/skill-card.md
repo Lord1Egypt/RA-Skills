@@ -1,49 +1,55 @@
-## Description: <br>
-Drives the local nano-img Gemini image CLI for image generation, model selection, saved defaults, reference-image workflows, and output sizing or format conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drives the local nano-img Gemini image CLI for image generation, model selection, saved defaults, reference-image workflows, and output sizing or format conversion.
 
-## Publisher: <br>
-[dishant0406](https://clawhub.ai/user/dishant0406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dishant0406](https://clawhub.ai/user/dishant0406)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate images with the local nano-img or nano-image CLI, inspect and configure saved defaults, manage reference images, and troubleshoot CLI behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide local command execution for the nano-img CLI, which may create files or change saved defaults. <br>
-Mitigation: Review proposed commands before running them and prefer the CLI's inspection commands, such as nano-img config --json and nano-img refs --json, to confirm state changes. <br>
-Risk: Using the CLI may consume Gemini API quota or billing through NANO_IMAGE_API_KEY. <br>
-Mitigation: Verify the API key, quota, and billing expectations before image generation. <br>
-Risk: Saved defaults and reference images under ~/.nano-img can affect later generations and may include sensitive content. <br>
-Mitigation: Review ~/.nano-img/config.json, ~/.nano-img/INSTRUCTION.md, ~/.nano-img/STYLE.md, and ~/.nano-img/assets before sensitive generations or persistent configuration changes. <br>
-Risk: The skill depends on the local nanobana/nano-img binary being trustworthy. <br>
-Mitigation: Install or run the binary only from a trusted source and validate the command surface with nano-img help before relying on flags. <br>
+## Use Case:
 
+Developers and agents use this skill to operate the local nano-img or nano-image CLI, generate Gemini images, inspect or update saved defaults, manage reference assets, and troubleshoot local generation workflows.
 
-## Reference(s): <br>
-- [Nano Img CLI Skill](SKILL.md) <br>
-- [Command Reference](references/command-reference.md) <br>
-- [Defaults And Files](references/defaults-and-files.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dishant0406/nano-img-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/dishant0406) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated file paths, saved model names, output directory settings, or JSON inspection results when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill may run the local CLI and change persistent nano-img defaults, including model, save directory, style files, instructions, or reference assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented nano-img commands for changes, inspect `nano-img config --json` or `nano-img refs --json` before and after changes, and report the exact resulting model, output directory, or generated path.
+
+Risk: Image generation can fail or produce no output when credentials, quota, model selection, references, or output directories are invalid.
+
+Mitigation: Verify `NANO_IMAGE_API_KEY`, inspect the saved configuration, check readable references and writable output paths, and validate with one concrete CLI command.
+
+## Reference(s):
+
+- [Command Reference](references/command-reference.md)
+- [Defaults And Files](references/defaults-and-files.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exact saved model, output directory, generated file path, or JSON-inspection command results when relevant.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

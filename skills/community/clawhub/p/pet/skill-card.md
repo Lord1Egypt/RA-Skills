@@ -1,42 +1,53 @@
-## Description: <br>
-Simple command-line snippet manager. Use it to save and reuse complex commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple command-line snippet manager. Use it to save and reuse complex commands.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and technical users use this skill to let an agent save, search, execute, and optionally sync reusable command-line snippets with the local pet CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved snippets may contain sensitive commands or secrets. <br>
-Mitigation: Review snippets before saving, executing, or syncing them, and avoid storing tokens, passwords, or other credentials in pet snippets. <br>
-Risk: Executing a saved snippet can run an unintended or stale shell command. <br>
-Mitigation: Inspect the selected snippet before using pet exec, especially for commands that modify files, credentials, infrastructure, or remote services. <br>
-Risk: Optional Gist sync can upload local snippets to GitHub. <br>
-Mitigation: Use pet sync only when GitHub Gist upload is intended and the snippet contents are safe to share with the configured account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gumadeiras/pet) <br>
-- [Publisher profile](https://clawhub.ai/user/gumadeiras) <br>
+## Use Case:
 
+Developers and command-line users use this skill to save, search, execute, and optionally sync reusable pet command snippets.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and TOML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local pet CLI; snippets are stored in ~/.config/pet/snippet.toml and optional Gist sync can upload snippets to GitHub.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved snippets can execute powerful shell commands if selected without review.
+
+Mitigation: Review each snippet before execution and avoid running snippets from untrusted sources.
+
+Risk: Optional Gist sync may expose sensitive paths, tokens, or operational details stored in snippets.
+
+Mitigation: Do not store secrets in snippets and verify Gist visibility and contents before syncing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gumadeiras/skills/pet)
+- [Publisher Profile](https://clawhub.ai/user/gumadeiras)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the pet command-line binary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

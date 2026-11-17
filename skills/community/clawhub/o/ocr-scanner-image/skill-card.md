@@ -1,43 +1,58 @@
-## Description: <br>
-Perform OCR on image files (jpg, png, bmp, gif, tiff) using the system's `tesseract` binary and return extracted plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from raster images and PDFs locally with Tesseract, producing plain text, confidence TSV, or searchable PDFs.
 
-## Publisher: <br>
-[kaarl92](https://clawhub.ai/user/kaarl92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaarl92](https://clawhub.ai/user/kaarl92)
 
-## Use Case: <br>
-Developers and agents use this skill to extract plain text from local image files through Tesseract OCR. The package also contains an optional OCR.space API helper, which should be treated separately from the local workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package presents local Tesseract OCR as the main behavior while also shipping a cloud OCR helper that can send selected images or URLs to OCR.space. <br>
-Mitigation: Use scripts/ocr.sh for local processing, and do not run scripts/example.py unless cloud OCR data transfer is acceptable for the input. <br>
-Risk: Sensitive documents could be exposed if the OCR.space helper is used without clear opt-in consent. <br>
-Mitigation: Avoid the cloud helper for sensitive documents unless the package is updated to clearly disclose the data flow and require explicit opt-in. <br>
+## Use Case:
 
+People and agents processing user-selected image or PDF files use this skill to extract local, searchable text, particularly from German-language documents.
 
-## Reference(s): <br>
-- [Reference Documentation for Ocr](references/api_reference.md) <br>
-- [OCR.space API endpoint](https://api.ocr.space/parse/image) <br>
-- [OCR.space API documentation](https://ocr.space/ocrapi) <br>
-- [ClawHub skill page](https://clawhub.ai/kaarl92/ocr-scanner-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text from OCR commands, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local OCR uses the system Tesseract binary and writes recognized text to STDOUT; the optional OCR.space helper returns extracted text or error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; SKILL.md frontmatter says 1.0.0) <br>
+Risk: Optional installation can download dependencies and change system packages when started as root.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the installer only on explicit request; review it before using root or --allow-pip.
+
+Risk: OCR text may contain instructions embedded in untrusted documents.
+
+Mitigation: Treat extracted text as data, not as commands or instructions to the agent.
+
+Risk: The default German and English language models may misread documents in other languages.
+
+Mitigation: Select the document language with -l or OCR_LANG when needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kaarl92/skills/sm-ocr-scanner)
+- [Local OCR tools reference](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text, TSV with confidence values, or searchable PDF]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German and English OCR by default; language and output destination are configurable.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

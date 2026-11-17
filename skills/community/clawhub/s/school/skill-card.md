@@ -1,45 +1,63 @@
-## Description: <br>
-AI-powered education for K-12 students with parental controls, adaptive learning by age, homework help, exam prep, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered education for K-12 students with parental controls, adaptive learning by age, homework help, exam prep, and progress tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Parents and guardians use this skill to configure age-adapted K-12 tutoring, homework support, exam preparation, curriculum alignment, progress tracking, and safety controls for children ages 3-18. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores child learning progress, session history, and preferences under ~/school/, which can be sensitive even when used for education. <br>
-Mitigation: Use minimal child identifiers, avoid full names, school names, addresses, photos, phone numbers, and location details, and periodically review or delete stored records. <br>
-Risk: Parents or agents may over-collect or over-share child information while configuring tutoring, progress reports, or curriculum alignment. <br>
-Mitigation: Follow the security guidance to keep parent verification private, use the least data needed for the educational task, and confirm platform encryption, access control, and deletion behavior before use. <br>
-Risk: K-12 tutoring can produce age-inappropriate or overly direct homework answers if the agent does not follow the skill's safety and tutoring constraints. <br>
-Mitigation: Apply the age-specific safety protocols, redirect inappropriate questions, avoid direct answers, and keep parent review focused on progress and safety alerts rather than private conversation text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/school) <br>
-- [Child Safety Protocols](artifact/safety.md) <br>
-- [Parent Dashboard & Controls](artifact/parents.md) <br>
-- [Homework Help & Tutoring](artifact/tutoring.md) <br>
-- [Curriculum Integration](artifact/curriculum.md) <br>
+## Use Case:
 
+Parents and students use this skill to organize K-12 learning support, age-adapted tutoring, homework help, exam preparation, curriculum alignment, progress tracking, and parent-visible controls.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance and structured workspace notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external binaries or API keys are required by the release metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may retain sensitive child learning records locally while claiming protections that the artifacts do not implement.
+
+Mitigation: Review before installing, minimize retained child data, and rely only on security controls provided by the hosting application.
+
+Risk: School names, detailed session history, emotional disclosures, or other sensitive child data could be stored by default.
+
+Mitigation: Avoid storing these data types unless explicitly needed, consented to, and protected by the deployment environment.
+
+Risk: Parent-only access and encryption are described in the artifacts but are not implemented by the skill files themselves.
+
+Mitigation: Confirm that the host app enforces access control, deletion, and encryption before using the skill with real children.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/school)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Age-specific approaches](by-age.md)
+- [Homework help and tutoring](tutoring.md)
+- [Exams and assessment](exams.md)
+- [Parent dashboard and controls](parents.md)
+- [Child safety protocols](safety.md)
+- [Curriculum integration](curriculum.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured learning plans, reports, practice content, and local workspace configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces age-adapted educational guidance and may propose local files under ~/school/ for child profiles, progress, calendars, resources, exams, and settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

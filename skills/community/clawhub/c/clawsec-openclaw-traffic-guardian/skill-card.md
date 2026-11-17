@@ -1,43 +1,65 @@
-## Description: <br>
-OpenClaw runtime traffic monitoring baseline for opt-in HTTP/HTTPS proxy inspection, egress detection, inbound injection detection, and social-account policy review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw runtime traffic monitoring baseline for opt-in HTTP/HTTPS proxy inspection, egress detection, inbound injection detection, and social-account policy review.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-OpenClaw builders and operators use this skill as a baseline for opt-in runtime traffic monitoring. It helps plan process-scoped proxy inspection, exfiltration and injection detection, social-account policy review, and redacted local findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: Future proxy inspection could expose sensitive traffic if enabled too broadly. <br>
-Mitigation: Keep monitoring opt-in and process-scoped, avoid global proxy or CA changes, and redact snippets before logging or alerting. <br>
-Risk: This release does not include active proxy or runtime code. <br>
-Mitigation: Treat it as an implementation baseline, verify release artifacts before standalone installs, and review any future runtime implementation before deployment. <br>
-Risk: Social-account mutation triggers could activate in workflows that only need observation or research. <br>
-Mitigation: Review trigger wording for the target environment and keep POLICY_REVIEW findings operator-reviewed without auto-blocking, auto-approving, or rewriting requests. <br>
+## Use Case:
 
+Developers and security engineers use this skill as a specification scaffold for opt-in OpenClaw runtime traffic monitoring, including HTTP/HTTPS proxy inspection, exfiltration detection, injection detection, and review records for approval-sensitive social-account mutations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-openclaw-traffic-guardian) <br>
-- [Project homepage](https://clawsec.prompt.security/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command snippets and JSONL schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and python3; this release is a specification-only scaffold with no active proxy or runtime code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta5 (source: evidence.release.version; artifact SKILL.md and CHANGELOG.md agree) <br>
+Risk: The documented Skills CLI install command is unpinned and auto-confirming.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed Skills CLI version or use the signed standalone release-verification path before installation.
+
+Risk: A future traffic-monitoring implementation could expose sensitive request or response content if logging is too broad.
+
+Mitigation: Keep monitoring opt-in and process-scoped, bound scan sizes, and redact secrets before writing logs or sending alerts.
+
+Risk: Optional HTTPS inspection could become invasive if trust is installed globally.
+
+Mitigation: Require explicit operator action and per-process CA trust; do not install system-wide CA trust automatically.
+
+Risk: Traffic enforcement could block, mutate, or approve actions without operator intent.
+
+Mitigation: Keep the first implementation detect-and-log only and create operator-review records without auto-blocking, auto-approving, or rewriting requests.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/davida-ps/skills/clawsec-openclaw-traffic-guardian)
+- [ClawSec homepage](https://clawsec.prompt.security/)
+- [OpenClaw Traffic Guardian specification](artifact/SPEC.md)
+- [OpenClaw Traffic Guardian README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current release is a specification scaffold and does not ship an active proxy or runtime implementation.]
+
+## Skill Version(s):
+
+0.0.1-beta5 (source: frontmatter, skill.json, changelog, released 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

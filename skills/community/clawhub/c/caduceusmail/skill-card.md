@@ -1,44 +1,65 @@
-## Description: <br>
-☤CaduceusMail lets your OpenClaw automate an enterprise-level communications stack with one domain/mailbox combo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+☤CaduceusMail lets your OpenClaw automate an enterprise-level communications stack with one domain/mailbox combo.
 
-## Publisher: <br>
-[lmtlssss](https://clawhub.ai/user/lmtlssss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lmtlssss](https://clawhub.ai/user/lmtlssss)
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate Microsoft 365, Exchange, and Cloudflare mail/DNS setup for controlled mailbox, alias, lane, and deliverability workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package is missing the core CaduceusMail tarball that the wrapper expects to verify and run. <br>
-Mitigation: Do not provide production Microsoft 365, Exchange, or Cloudflare credentials until the tarball is included and scanned. <br>
-Risk: The skill performs high-privilege Microsoft Graph, Exchange, and Cloudflare DNS operations. <br>
-Mitigation: Use a dedicated least-privilege Entra service principal and a Cloudflare token scoped only to the target zone's DNS permissions. <br>
-Risk: Runtime configuration requires sensitive tenant, mailbox, and DNS credentials. <br>
-Mitigation: Inject secrets through the OpenClaw skill environment, keep runtime state owner-readable, and test first on a non-production domain. <br>
+## Use Case:
 
+Developers and operations teams use this skill to automate Microsoft 365 mailbox, alias, Exchange, and Cloudflare DNS setup for enterprise outreach or support mail flows. It helps bootstrap, verify, provision, and retire mail lanes while preserving reply continuity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lmtlssss/caduceusmail) <br>
-- [CaduceusMail homepage](https://github.com/lmtlssss/caduceusmail) <br>
-- [OpenClaw configuration example](examples/openclaw.config.json5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate machine-readable state artifacts through the wrapped CaduceusMail tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.7 (source: server release metadata and package.json) <br>
+Risk: The skill uses high-value Microsoft 365, Exchange, and Cloudflare credentials for mail and DNS automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Entra service principal and a Cloudflare token limited to the target zone's DNS permissions.
+
+Risk: The security scan notes that installation depends on the exact vendored CaduceusMail CLI being present and audited against the manifest.
+
+Mitigation: Install only when the vendored release artifact is included and its integrity matches artifact/vendor/caduceusmail-release.json.
+
+Risk: Environment forwarding can expose secrets placed under OPENCLAW_*, CADUCEUSMAIL_*, or EMAIL_ALIAS_FABRIC_* variables.
+
+Mitigation: Keep unrelated secrets out of those environment variable namespaces and prefer explicit OpenClaw skill environment injection.
+
+Risk: The wrapped operations can mutate Exchange accepted domains, service-principal roles, and Cloudflare DNS records.
+
+Mitigation: Review planned bootstrap, provision, verify, and retire commands before execution and test against a non-critical domain or lane first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lmtlssss/skills/caduceusmail)
+- [Declared CaduceusMail homepage](https://github.com/lmtlssss/caduceusmail)
+- [Declared skill adapter repository](https://github.com/lmtlssss/caduceusmail-skill)
+- [Vendored release manifest](artifact/vendor/caduceusmail-release.json)
+- [OpenClaw configuration example](artifact/examples/openclaw.config.json5)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The wrapped tool may generate machine-readable state artifacts under its configured CaduceusMail state directory.]
+
+## Skill Version(s):
+
+3.6.7 (source: release evidence, package.json, vendored release manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,20 +1,20 @@
 ---
 name: architecture-paradigm-modular-monolith
-description: Applies modular monolith with enforced internal boundaries
-version: 1.9.8
+description: |
+  Modular monolith with enforced internal boundaries. Use for service-level autonomy without a distributed system
+version: 1.10.3
 triggers:
   - architecture
   - modular-monolith
   - monolith
   - internal-boundaries
   - team-autonomy
-  - teams want service-level autonomy without distributed system overhead
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Modular Monolith Paradigm
@@ -67,13 +67,20 @@ Verify module paths in SKILL.md are correct
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``dependency-analyzer`` -- module dependency graph builder for spotting forbidden edges
-- ``module-boundary-enforcer`` -- fails the build when a module imports across a boundary
-- ``refactoring-planner`` -- ranks modules by extraction-readiness for a future split
+- ``dependency-analyzer``: module dependency graph builder for spotting forbidden edges
+- ``module-boundary-enforcer``: fails the build when a module imports across a boundary
+- ``refactoring-planner``: ranks modules by extraction-readiness for a future split
+
+## Exit Criteria
+
+- [ ] An ADR maps module boundaries to business capabilities, defines rules for shared code, and
+  states the conditions under which a module would be extracted into a separate service.
+- [ ] Each module exposes functionality only through documented facades, APIs, or events. Direct
+  database table access between modules is absent (verified by schema ownership review).
+- [ ] Automated dependency checks fail the CI build on any forbidden cross-module import, and at
+  least one such violation test case is documented.
+- [ ] Change-coupling metrics (modules that always change together) are tracked and any module
+  pair with > 50% coupling is flagged as a candidate for boundary review.

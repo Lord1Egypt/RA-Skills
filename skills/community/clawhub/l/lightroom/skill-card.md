@@ -1,41 +1,55 @@
-## Description: <br>
-The Lightroom skill organizes public Adobe Lightroom information about templates, editing features, export options, pricing, copyright, and help resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers the Lightroom skill for organizing public Adobe Lightroom pages, template capabilities, feature descriptions, and help documentation.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agents use this skill to gather and summarize public Adobe Lightroom information such as templates, editing capabilities, export specifications, pricing, help links, and copyright or commercial-use boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, licensing, copyright, and commercial-use details may change or be misread from public pages. <br>
-Mitigation: Verify these details against Adobe's official pages and retain source links before relying on the summary. <br>
-Risk: The skill is scoped to public information and should not be used for private Lightroom assets or account operations. <br>
-Mitigation: Use only public Adobe pages and avoid requests involving private projects, non-public asset libraries, paid-resource downloads, or account actions. <br>
+## Use Case:
 
+External users and agents use this skill to collect, summarize, and structure public Adobe Lightroom information such as templates, editing features, export specifications, pricing, help resources, copyright notes, and commercial-use boundaries.
 
-## Reference(s): <br>
-- [Adobe Lightroom product page](https://www.adobe.com/products/photoshop-lightroom.html) <br>
-- [ClawHub Lightroom skill page](https://clawhub.ai/codenova58/lightroom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, link lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Adobe Lightroom pages; does not perform account operations, paid-resource downloads, or private project access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be misused for account operations, private assets, paid downloads, or non-public content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public Lightroom information and exclude account actions, private projects, paid resource downloads, and non-public assets.
+
+Risk: Pricing, copyright, commercial-use, or feature summaries may become outdated or misleading.
+
+Mitigation: Prefer official Adobe pages and retain source links when summarizing restrictions, plan details, and rights-related information.
+
+## Reference(s):
+
+- [Adobe Lightroom homepage](https://www.adobe.com/products/photoshop-lightroom.html)
+- [ClawHub Lightroom skill page](https://clawhub.ai/codenova58/skills/lightroom)
+- [ClawHub publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, link lists, and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Should preserve official source links for copyright, pricing, commercial-use, and help information.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

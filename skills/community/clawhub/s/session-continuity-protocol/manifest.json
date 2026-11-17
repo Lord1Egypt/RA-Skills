@@ -1,0 +1,20 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "未命名包",
+  "version": "0.0.0",
+  "author": "注册老炮 (SynomosAI)",
+  "year": "2026",
+  "timestamp_utc": "2026-09-07T06:42:01.777307+00:00",
+  "timestamp_local": "2026-09-07T14:42:01.777314",
+  "package_fingerprint_sha256": "ac9935c3d436b26137e664cff2bc678c1f02b4613a734a73783b538025ac1933",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "68a508d644d18c3f9bdd7b555119111d19a75c4b63d51237d595139e2b927e80"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "de366f239a909b24c7d0638c06769e04d2932e9f020f39a7c489935fd408ad9e"
+    }
+  ]
+}

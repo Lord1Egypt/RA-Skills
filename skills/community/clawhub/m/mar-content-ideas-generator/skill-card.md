@@ -1,42 +1,54 @@
-## Description: <br>
-Generates structured post outlines from reference materials for wisdom-style social posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured post outlines from reference materials for wisdom-style social posts.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External creators, marketers, and content strategists use this skill to turn newsletters, scripts, notes, journal entries, raw ideas, or fetched URL content into five distinct social post outlines. The outlines emphasize paradoxes, transformation arcs, objections, action steps, and memorable closing insights rather than complete posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URLs may expose private, tokenized, or access-controlled content to the external scraping workflow. <br>
-Mitigation: Prefer pasting sensitive material directly and only provide URLs that are safe to fetch through SkillBoss API Hub. <br>
-Risk: Generated social post outlines may contain exaggerated, unsupported, or overly absolute claims. <br>
-Mitigation: Review each outline against the source material before publishing or expanding it into a complete post. <br>
-Risk: Generated outlines are saved under content-ideas, which may persist sensitive source-derived material locally. <br>
-Mitigation: Avoid using sensitive source material unless local persistence is acceptable, and review stored files according to the user's retention needs. <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to turn newsletters, scripts, notes, journal entries, raw ideas, or URLs into five structured post outlines with distinct themes, paradoxes, objections, action steps, and closing insights.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-content-ideas-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown file containing five structured post outlines and analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves generated outlines to content-ideas/ideas-{timestamp}.md and may fetch user-provided URLs through SkillBoss API Hub when SKILLBOSS_API_KEY is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: URL inputs are processed through an external SkillBoss scraping service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public URLs or non-sensitive excerpts, and avoid private links, signed URLs, access tokens, internal documents, or authenticated pages.
+
+Risk: Generated outlines may use forceful metaphors or absolute language that is unsuitable for some brands or audiences.
+
+Mitigation: Review and edit outlines before publication to align tone, factual claims, and audience expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-content-ideas-generator)
+- [SkillBoss API Hub scraper endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown post-outline file with analysis notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves generated outlines to content-ideas/ideas-{timestamp}.md when file writing is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

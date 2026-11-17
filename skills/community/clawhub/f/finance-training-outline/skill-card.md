@@ -1,40 +1,49 @@
-## Description: <br>
-Generates a structured three-day finance training course outline for mid-level finance professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a three-day finance training course outline for mid-level finance professionals covering treasury management, financing planning, operational analysis, and finance value creation.
 
-## Publisher: <br>
-[7679457979](https://clawhub.ai/user/7679457979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[7679457979](https://clawhub.ai/user/7679457979)
 
-## Use Case: <br>
-Finance learning and development teams or finance managers use this skill to draft a three-day training outline for mid-level finance professionals, covering cash management, financing planning, business analysis, and assessment structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated training content may be inaccurate or poorly matched to the organization's finance context. <br>
-Mitigation: Review and adapt the outline for business accuracy, learner needs, internal policies, and training objectives before use. <br>
-Risk: Broad learning-related trigger terms could activate the skill for non-finance training requests. <br>
-Mitigation: Confirm the requested audience and finance scope before applying the generated outline. <br>
+## Use Case:
 
+Learning and development, finance, and enterprise training teams use this skill to draft structured finance training outlines for experienced finance staff. The output helps plan objectives, daily modules, interactive activities, assessment methods, and instructor recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/7679457979/finance-training-outline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured course outline with objectives, daily modules, interactive methods, case-study expectations, assessment approach, and instructor suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger terms such as course design or talent development may activate the skill for general training requests outside finance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke or configure the skill with finance-specific context and review the generated outline for relevance before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/7679457979/skills/finance-training-outline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown course outline]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes course objectives, daily modules, interactive methods, assessment suggestions, and instructor recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact basic information)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

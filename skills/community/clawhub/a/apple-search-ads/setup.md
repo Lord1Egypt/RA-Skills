@@ -1,49 +1,37 @@
 # Setup — Apple Search Ads
 
-Read this when `~/apple-search-ads/` doesn't exist. Guide the user through setup.
+Read this on first use to load user preferences. Do not interview the user.
 
 ## Your Attitude
 
-You're helping someone grow their iOS app with paid acquisition. Be strategic, data-driven, and focused on ROI.
+Paid acquisition burns real money by the hour. Be data-driven, compute bids from the user's numbers (never from vibes), and flag waste the moment the spend gate trips.
 
-## Priority Order
+## How To Load Preferences
 
-### 1. Understand Their Situation
+1. Read `~/Clawic/data/apple-search-ads/config.yaml` if it exists. Apply its values.
+2. For anything absent, use the defaults in the Configuration table of `SKILL.md` — do not ask.
+   - `currency: USD`, `report_timezone: UTC`, `ltv_divisor: 4`, `mmp: none`, `confirm_before_push: true`, `naming_pattern: App - Country - Intent`.
+3. Read `~/Clawic/data/apple-search-ads/memory.md` for prior context (apps, targets, active campaigns, learnings). Absence is fine; proceed without comment.
 
-Ask open questions about their app and goals:
+Work from defaults immediately. Never open with a questionnaire about apps, budgets, or goals — those surface naturally in the first task. The one genuinely blocking value is LTV (all bid math derives from it, SKILL.md Rule 1): if no estimate exists in memory and the task needs bids, ask for that single number or build it from the funnel (`measurement.md` → LTV Estimation).
 
-**For new advertisers:**
-- "What's your app? What category?"
-- "What's your budget to start? Daily or monthly?"
-- "Do you have any idea what a user is worth to you (LTV)?"
-- "Is your App Store listing optimized?"
+## API Access vs Strategy-Only
 
-**For existing advertisers:**
-- "How are your current campaigns performing?"
-- "What's your CPA target vs actual?"
-- "Any keywords that are working well?"
-- "Are you tracking attribution in your app?"
+- User wants API automation or asks you to change campaigns directly → they need OAuth credentials from https://app.searchads.apple.com/cm/app/settings/apicertificates, exposed as the environment variables listed in the frontmatter. `credentials.md` (template in `memory-template.md`) documents which and where — secrets themselves never leave environment variables.
+- User wants planning, structure, or bid advice only → skip credentials entirely; every play in `strategy.md`, `troubleshooting.md`, and `measurement.md` works from dashboard exports.
 
-### 2. Technical Setup (if they want API access)
+Do not push API setup on users who haven't asked for automation.
 
-If they want to use the API or scripts:
-- Walk them through OAuth credentials setup at https://app.searchads.apple.com/cm/app/settings/apicertificates
-- Help them set environment variables (ASA_CLIENT_ID, ASA_TEAM_ID, etc.)
-- Set up reporting automation
+## Recording Preferences (only when the user declares one)
 
-If they just want strategy:
-- Skip API setup entirely
-- Focus on structure, keywords, and optimization
+Write to config or memory **only** when the user states a preference in the course of the work — never as a preflight questionnaire.
 
-## What Gets Saved
+- User names a currency, timezone, MMP, payback stance, or naming convention → update the matching key in `~/Clawic/data/apple-search-ads/config.yaml`.
+- User expresses a habit or stance (dashboard vs API, market priorities, reporting format, scaling aggressiveness) → record it under the relevant preference area (tooling, conventions, markets, risk posture, reporting) in `~/Clawic/data/apple-search-ads/memory.md`.
+- User corrects earlier guidance → update the stored value so you don't repeat it.
 
-In `~/apple-search-ads/memory.md`:
-- Their apps (adam IDs)
-- Target CPA/ROAS
-- Current campaign structure
-- What's working, what's not
-- Preferred reporting cadence
+If the user has said nothing, store nothing.
 
-## When "Done"
+## What Memory Holds
 
-Once you know their app(s), goals, and whether they want API access or just strategy, you're ready to help. Everything else builds over time through optimization cycles.
+See `memory-template.md` for the file format. Track their apps (Adam IDs, target CPA, LTV), active campaign structure, optimization log, and learnings — but only from what they actually reveal or what the work produces.

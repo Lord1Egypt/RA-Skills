@@ -1,47 +1,59 @@
-## Description: <br>
-Generates China Sports Lottery DLT number suggestions using historical-draw analysis, weighted number pools, strategy fusion, constraints, and backtesting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DLT大乐透预测 v4.0 generates Chinese Sports Lottery DLT number recommendations using historical draw data, weighted number pools, strategy fusion, constraints, backtesting, and compound bet generation.
 
-## Publisher: <br>
-[lovensr](https://clawhub.ai/user/lovensr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovensr](https://clawhub.ai/user/lovensr)
 
-## Use Case: <br>
-External users can generate recreational DLT lottery number combinations, compound bet sets, and backtest summaries from historical draw data. Outputs should be treated as entertainment and analysis, not as financial advice or a reliable way to improve lottery odds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lottery recommendations can be mistaken for financial advice or a way to improve odds despite random lottery outcomes. <br>
-Mitigation: Present outputs as entertainment only, avoid return or guarantee language, and encourage strict spending limits. <br>
-Risk: Users may violate local gambling rules or spend more than intended when acting on generated bet combinations. <br>
-Mitigation: Tell users to follow local gambling laws and set clear budget limits before using any generated combinations. <br>
-Risk: The skill relies on configured local spreadsheet paths for historical data, so missing or stale data can make outputs misleading or fail at runtime. <br>
-Mitigation: Verify the spreadsheet path and data freshness before prediction or backtesting. <br>
-Risk: Artifact behavior includes joblib or pickle model persistence, which is unsafe with untrusted model files. <br>
-Mitigation: Load only model files created by a trusted run of this skill and never load untrusted joblib or pickle files. <br>
+## Use Case:
 
+External users and developers can use the skill to generate and inspect DLT lottery number recommendations, compound betting options, validation results, training workflows, and backtesting outputs. Treat the results as entertainment rather than financial guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lovensr/dlt-lottery-prediction) <br>
-- [Publisher profile](https://clawhub.ai/user/lovensr) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Strategy fusion design](artifact/STRATEGY_FUSION_DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style explanatory text and Python dictionary outputs containing single-bet numbers, compound-bet numbers, validation results, scores, and backtest summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the configured DLT spreadsheet path and may include confidence-like scores or strategy labels that should not be interpreted as guaranteed outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata) <br>
+Risk: The skill may influence gambling spend through lottery predictions and betting recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present predictions as entertainment only and avoid using them as financial advice or as a basis for high-stakes decisions.
+
+Risk: The skill reads a local DLT Excel file and may fail or expose unintended local data if configured to an unexpected path.
+
+Mitigation: Run it in a trusted workspace with an explicit, reviewed data file path and avoid sharing sensitive local files with the skill.
+
+Risk: The skill may load local Python model artifacts with unsafe loading patterns.
+
+Mitigation: Use only trusted model artifacts and review or isolate the workspace before enabling model loading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovensr/skills/dlt-lottery-prediction)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Strategy fusion design report](artifact/STRATEGY_FUSION_DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured Python dictionaries containing predicted number sets, compound bet options, scores, validation results, and backtest summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read a local DLT Excel file and load or write local model artifacts depending on the workflow invoked.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

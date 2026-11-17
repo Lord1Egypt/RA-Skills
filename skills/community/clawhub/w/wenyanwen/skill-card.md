@@ -1,38 +1,50 @@
-## Description: <br>
-Wenyanwen steers agents toward concise final answers in the user's language while using a classical-Chinese-style internal planning structure for compression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use compact classical-Chinese-style internal task framing while keeping final responses concise and in the user's language.
 
-## Publisher: <br>
-[jovial-liu](https://clawhub.ai/user/jovial-liu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jovial-liu](https://clawhub.ai/user/jovial-liu)
 
-## Use Case: <br>
-External users and developers use this skill when they want high-density, direct answers for routine Q&A, planning, summarization, debugging, and code review while preserving the user's language in final responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation can make responses too terse for teaching, emotional support, creative prose, or other situations that need fuller explanation. <br>
-Mitigation: Disable or avoid the skill for those interaction types, as recommended by the security guidance. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent answer routine Q&A, code review, planning, summarization, and execution tasks with concise final responses while compressing internal task framing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jovial-liu/wenyanwen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise natural-language responses, often in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final answers follow the user's language; the skill does not add code execution, data access, persistence, or external behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill broadly changes the agent's default response style, which may be too terse for teaching, emotional support, or tasks requiring detailed explanation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for routine high-density information tasks and disable or override it when users ask for step-by-step teaching, softer tone, creative classical Chinese output, or fuller reasoning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jovial-liu/skills/wenyanwen)
+- [Publisher profile](https://clawhub.ai/user/jovial-liu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, matching the user's language and requested task format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final responses are intentionally concise; internal framing is style-guided rather than a guaranteed model capability.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

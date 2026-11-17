@@ -1,39 +1,51 @@
-## Description: <br>
-Search for, research, and verify non-tech founders on LinkedIn to identify high-value prospects for technology services (Web Dev, ERP, CRM, App Dev, SEO, AI). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for, research, and verify non-tech founders on LinkedIn to identify high-value prospects for technology services (Web Dev, ERP, CRM, App Dev, SEO, AI). Generates professional PDF reports. Use when asked to find potential clients or leads.
 
-## Publisher: <br>
-[harshhmaniya](https://clawhub.ai/user/harshhmaniya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harshhmaniya](https://clawhub.ai/user/harshhmaniya)
 
-## Use Case: <br>
-Sales, business development, and agency teams use this skill to find non-technical founders, research their company websites, identify digital service gaps, and prepare concise lead reports with tailored pitch ideas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs an agent to browse LinkedIn and company websites for B2B prospect research, which can raise platform-policy, scraping, and personal profiling concerns. <br>
-Mitigation: Use it only for explicit B2B prospect research, avoid mass scraping or sensitive personal profiling, and confirm lawful basis and platform-policy compliance before use. <br>
-Risk: Generated HTML report fields are not escaped, so untrusted prospect data could affect the rendered report. <br>
-Mitigation: Sanitize or review generated HTML and PDF reports before opening, distributing, or relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harshhmaniya/linkedin-lead-generation) <br>
+## Use Case:
+
+Sales, marketing, and business development users can use this skill to identify non-tech founder prospects, assess website or operational gaps, and prepare personalized outreach ideas for technology services.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted profile, company, and website data can be inserted directly into generated HTML reports.
+
+Mitigation: Escape all displayed prospect fields and allow only safe URL schemes before rendering or sharing reports.
+
+Risk: Lead reports may contain personal or business contact details gathered during prospecting.
+
+Mitigation: Use the skill only for lawful, user-directed B2B prospecting, collect only necessary details, and treat generated reports as sensitive.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and HTML-based report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prospect research summaries and report-ready HTML for PDF generation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-style lead research and HTML report content suitable for PDF rendering]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically covers 10 qualified prospects with LinkedIn URLs, company details, gap analysis, specific needs, and pitch ideas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

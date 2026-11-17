@@ -1,41 +1,55 @@
-## Description: <br>
-Track tasks with priorities, owners, and statuses for operations teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track tasks with priorities, owners, and statuses for operations teams.
 
-## Publisher: <br>
-[AdmiralKittysDad](https://clawhub.ai/user/AdmiralKittysDad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admiralkittysdad](https://clawhub.ai/user/admiralkittysdad)
 
-## Use Case: <br>
-Operations managers and team members use this skill to maintain a local task board, track owners and due dates, and surface blockers, overdue work, and unassigned critical tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task titles, owners, due dates, and notes are saved locally in ~/.ops-commander/tasks.json. <br>
-Mitigation: Avoid storing secrets or sensitive data in task notes, and review local file handling expectations before installation. <br>
-Risk: Delete operations and bulk status changes can alter multiple task records. <br>
-Mitigation: Confirm destructive or broad changes before writing updates to the local task file. <br>
+## Use Case:
 
+Operations managers and teams use this skill to maintain a concise local task board with priorities, owners, statuses, due dates, and notes. It helps surface overdue tasks, blockers, and critical unassigned P0 work.
 
-## Reference(s): <br>
-- [Ops Tasks on ClawHub](https://clawhub.ai/AdmiralKittysDad/ops-tasks) <br>
-- [SkillNexus](https://skillnexus.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local JSON task file at ~/.ops-commander/tasks.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Task titles, owners, due dates, statuses, and notes are stored locally and may contain operationally sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines with appropriate local storage and backup controls, and avoid putting highly sensitive details in task notes.
+
+Risk: Task-board updates modify a local JSON file.
+
+Mitigation: Follow the skill rule to read the JSON file before writing, and keep backups when the task board is operationally important.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/admiralkittysdad/skills/ops-tasks)
+- [Publisher Profile](https://clawhub.ai/user/admiralkittysdad)
+- [SkillNexus Homepage](https://skillnexus.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and concise task-management guidance backed by a local JSON task file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local task file at ~/.ops-commander/tasks.json and reads it before writing to reduce data-loss risk.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn78h5m9h75htkhpg1wb63xbmd8240e6",
-  "slug": "ai-company-starter",
-  "version": "1.0.2",
-  "publishedAt": 1772556385001
+  "name": "ai-company-starter",
+  "version": "1.0.0",
+  "description": "一键搭建 AI 公司。创建老板、HR、技术、销售等多个协作 AI 角色，配置 Telegram/Discord 绑定，建立 AI 间沟通机制。",
+  "author": "BossAI",
+  "tags": ["ai-company", "multi-agent", "collaboration", "telegram", "openclaw"]
 }

@@ -1,40 +1,58 @@
-## Description: <br>
-Fetches a complete month of Flomo notes and evaluates note quality, using week-to-day fallback to avoid the 50-note search limit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flomo Archive retrieves a specified month of Flomo notes with a week-to-day fallback strategy and evaluates note quality with built-in rules.
 
-## Publisher: <br>
-[JayShna](https://clawhub.ai/user/JayShna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayshna](https://clawhub.ai/user/jayshna)
 
-## Use Case: <br>
-Developers and Flomo users use this skill to export all notes for a requested month through a configured local mcporter Flomo MCP server, review summary statistics, and identify low-quality or fragmentary notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The exported /tmp/flomo_YYYY_MM.json file can contain full private note content and metadata. <br>
-Mitigation: Review, move, or delete the export after use, especially on shared machines. <br>
-Risk: The skill accesses the Flomo account configured in the local mcporter setup. <br>
-Mitigation: Install and run it only when the agent is expected to access that Flomo account for the requested monthly export. <br>
+## Use Case:
 
+Developers and external users use this skill to fetch a complete monthly archive of their Flomo notes and review basic quality signals such as tags, length, links, images, and short or routine entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JayShna/flomo-archive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Analysis] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime scripts output console summaries and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports notes to /tmp/flomo_YYYY_MM.json; --json returns structured JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill retrieves personal Flomo notes through the local mcporter Flomo configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when access to that local Flomo configuration is intended, and avoid shared or privileged environments.
+
+Risk: The skill saves note exports to a predictable /tmp path.
+
+Mitigation: Review or modify the export location before use so note data is written to a private user-controlled directory with restrictive permissions.
+
+Risk: The security scan notes a shell-built command used to call the local MCP tool.
+
+Mitigation: Review the command invocation before deployment and run the skill with the least privileges needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayshna/skills/flomo-archive)
+- [Declared package repository](https://github.com/uena/flomo-archive)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, console summaries, quality reports, and optional JSON output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save retrieved notes as /tmp/flomo_YYYY_MM.json and can evaluate an existing JSON export.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

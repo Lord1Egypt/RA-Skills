@@ -1,43 +1,60 @@
-## Description: <br>
-A continuously adaptive skill suite that empowers Clawdbot to act as a versatile coder, business analyst, project manager, web developer, data analyst, and NAS metadata scraper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A continuously adaptive skill suite that empowers Clawdbot to act as a versatile coder, business analyst, project manager, web developer, data analyst, and NAS metadata scraper.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and external users use Adaptive-Suite for coding help, business analysis, project management, web and data development, resource discovery, and read-only NAS metadata-scraping support adapted to project context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a third-party SkillBoss API key and routes work through an external AI hub. <br>
-Mitigation: Use a limited SkillBoss API key and require explicit approval before sending prompts, project files, filenames, directory structure, or user-context data to external services. <br>
-Risk: The skill can collect NAS file names, metadata, and directory structure. <br>
-Mitigation: Keep NAS scans read-only, avoid broad scans, and confirm scan scope before collecting or sharing metadata. <br>
+## Use Case:
 
+Developers, analysts, and project teams use this skill to get adaptive coding, business analysis, project management, web development, data workflow, and read-only NAS metadata guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-adaptive-suite) <br>
-- [MOLT skills documentation](https://docs.molt.bot/tools/skills) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss API Hub endpoint](https://api.skillboss.co/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API-backed recommendations and read-only NAS metadata scanning workflows; review outputs before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may use third-party SkillBoss-backed services and a SKILLBOSS_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup steps manually, avoid pasting secrets into unverified commands, and use a pinned reviewed release.
+
+Risk: NAS or project directory scans may expose file names, metadata, and structure.
+
+Mitigation: Run scans only on directories approved for metadata review and confirm what data may be collected or sent before use.
+
+Risk: The skill is broad and may provide recommendations across several domains with limited scoping.
+
+Mitigation: Review outputs before acting on them, especially generated commands, project plans, data workflows, and library recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-adaptive-suite)
+- [Moltbot Skills Documentation](https://docs.molt.bot/tools/skills)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+- [SkillBoss API Hub](https://api.skillboss.co/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on SkillBoss-backed services and SKILLBOSS_API_KEY for resource discovery.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

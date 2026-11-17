@@ -1,43 +1,58 @@
-## Description: <br>
-批量生成多平台电商产品标题、卖点和详情描述，支持中文英文及 CSV 导入，提升跨境及本土化文案效率。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates multi-platform ecommerce product titles, bullet points, and detail descriptions for Amazon, Taobao, Pinduoduo, TikTok Shop, and Shopify from product inputs or CSV files.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Ecommerce sellers and operations teams use this skill to generate platform-tailored product titles, bullet points, and product descriptions for Amazon, Taobao, Pinduoduo, TikTok Shop, and Shopify, including batch CSV workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CSV input may include unintended product data or the wrong file. <br>
-Mitigation: Point the CSV option only at files intended for product-copy generation. <br>
-Risk: A selected output path may overwrite an existing file. <br>
-Mitigation: Choose output paths deliberately and keep backups for important generated content. <br>
-Risk: Running the optional test suite in shared or CI environments may use an unpinned pytest version. <br>
-Mitigation: Pin or update pytest before running tests in shared automation. <br>
+## Use Case:
 
+Ecommerce sellers and teams use this skill to draft localized product listings for cross-border and domestic commerce platforms. It supports single-product generation, CSV batch input, and Markdown, TXT, or CSV output for listing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/ecommerce-product-desc-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, CSV, Files] <br>
-**Output Format:** [Markdown, plain text, or CSV product-description content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read product rows from CSV and can write generated output to a user-selected file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated listing copy may include unsupported certifications, safety claims, material claims, guarantees, shipping terms, or return-policy statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated listing against product records, compliance requirements, and store policies before publishing.
+
+Risk: CSV exports opened in spreadsheet software can preserve unsafe formula-like cells from untrusted product data.
+
+Mitigation: Neutralize formula-leading cells and review CSV inputs and outputs before opening them in spreadsheet tools.
+
+Risk: Product CSV files may contain confidential catalog or pricing information.
+
+Mitigation: Run the tool in an approved local environment and limit input files to data intended for listing-draft generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/ecommerce-product-desc-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/shenghoo123-png)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, TXT, CSV, and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated copy is produced locally from templates and randomized word pools; seed support allows reproducible outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and generator.py __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

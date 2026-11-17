@@ -2,8 +2,9 @@
 name: clearml-metrics-logging-pattern
 description: Standardized ClearML metrics logging patterns for PDEBench experiment scripts — train loss, validation metrics, competition scores, PDE residual, and TensorBoardX integration. Includes patterns for dist/expflow compatibility.
 category: mlops
+tags: [clearml, metrics, logging, experiment-tracking, pdebench]
 author: Li Shen
-version: 1.0.0
+version: 0.7.2
 metadata:
   hermes:
     tags: [mlops, pde, clearml, metrics, logging, experiment, competition]
@@ -12,6 +13,12 @@ metadata:
 ---
 
 # ClearML Metrics Logging Pattern
+
+> **Part of the Exo suite** — literature (`hfpclawer`) → experiments (`expflow-pde`) → proofs
+> (`omega-architect`). Three independent CLIs that meet through **files and CLI calls**, never imports.
+> Entry skill: `exo-suite-linkage` (wiring, cost tiers **low → medium → high**, degradation ladder).
+> Install: `uv tool install hfpclawer` · `uv tool install expflow-pde` ·
+> `uv tool install "omega-architect @ git+https://github.com/diamond2nv/omega-architect@v0.2.3"`
 
 ## When to Use
 
@@ -22,9 +29,26 @@ metadata:
 
 ## Installation
 
+
+
 ```bash
 pip install "expflow-pde[clearml]"
 ```
+
+**Version floor**: install `expflow-pde>=0.7.0` (public/PyPI line). The development line is ahead
+(0.7.3): anything marked "development line" below is not in the PyPI 0.7.0 artifact.
+
+```bash
+uv tool install expflow-pde                  # 1) isolated CLI, `expflow` on PATH (recommended)
+# pin the version — `uvx`/`uv tool run` reuse an installed tool env (may run an older
+# release), and an unpinned launch is a supply-chain (rug-pull) risk
+uvx --from "expflow-pde==0.7.0" expflow --help        # 2) run it without installing anything
+uv pip install expflow-pde                   # 3) inside an existing project / venv
+pip install expflow-pde                      # 4) no uv — pip and pipx both work
+pipx install expflow-pde                     #    (pipx needs a recent version; 1.0.0 cannot parse specs)
+# extras ride along with any form, e.g.: uv tool install "expflow-pde[clearml]"
+```
+*All five forms above were run and verified (uv tool install / uvx --from / uv pip / pip / pipx).*
 
 ## Standardized Metric Naming Convention
 
@@ -137,6 +161,28 @@ class DoubleLogger:
 - Metric names match `STANDARD_METRICS` keys (via underscore)
 - `iteration` must increment monotonically (clearml x-axis requirement)
 - Single-value eval metrics use `iteration=1`
+
+
+## Hermes Agent Environment
+
+- **MCP server** — `expflow mcp` starts a FastMCP server (18+ tools) for agent integration:
+
+  ```yaml
+  # ~/.hermes/config.yaml
+  mcp:
+    servers:
+      expflow:
+        command: "expflow"
+        args: ["mcp"]
+  ```
+
+- **Config** — `expflow init` writes the toolkit config; real credentials (ClearML API, Langfuse
+  keys, dataset paths) belong in `.env` / a local `config.yaml`, never in tracked files.
+- **Environment overrides** — `EXPFLOW_HOME`, `EXPFLOW_PIN_HASH`, `EXPFLOW_COMPETITION_DEADLINE`,
+  `EXPFLOW_SEMANTIC_URL`.
+- **Cost profile (not zero-cost)** — the orchestration layer itself makes no LLM call, but runs cost
+  real money and hardware: ClearML workers/queue time, GPU hours for the submitted experiments, and
+  storage for artifacts. Quote costs from recorded runs, never an estimate.
 
 ## Known Pitfalls
 

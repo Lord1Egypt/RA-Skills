@@ -1,42 +1,56 @@
-## Description: <br>
-A Go development guidance skill that covers logging conventions, API and MCP flow analysis, Mermaid flow diagrams, and reusable Go implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang 开发 SKILL 集合，指导代理在 Golang 项目中编写日志、分析 API/MCP 运行流程，并生成代码示例、Mermaid 流程图和 Markdown 报告。
 
-## Publisher: <br>
-[l2yf](https://clawhub.ai/user/l2yf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l2yf](https://clawhub.ai/user/l2yf)
 
-## Use Case: <br>
-Developers use this skill while working on Go MCP clients, backend services, data processing, and scheduled jobs to add consistent logging and understand API execution flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logging examples may be copied in ways that record raw parameters, full response bodies, tokens, personal data, or oversized payloads. <br>
-Mitigation: Before applying logging examples, redact sensitive fields, log only allowlisted values, and truncate large request or response content. <br>
-Risk: MCP examples depend on service URLs from mcp-config.json, so an untrusted endpoint could receive project data. <br>
-Mitigation: Verify that each configured MCP endpoint is trusted before running generated client code or API examples. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Golang work that needs consistent logging, MCP client patterns, API flow analysis, error handling, and concise implementation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/l2yf/golang-code-writer-custom) <br>
-- [Golang logging guidance](SKILL-logging.md) <br>
-- [Golang flow analysis guidance](SKILL-flow-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Go code examples and Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples should be reviewed before use in production code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Logging examples could encourage raw MCP request, response, token, or personal data logging in production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require redacted or allowlisted fields, avoid raw body dumps, truncate large responses, and review generated logging before production use.
+
+Risk: MCP endpoint examples depend on local configuration and could target incorrect or untrusted services if copied without review.
+
+Mitigation: Validate configured MCP endpoints, keep service URLs in configuration, and apply response-size limits plus explicit error handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l2yf/skills/golang-code-writer-custom)
+- [Publisher profile](https://clawhub.ai/user/l2yf)
+- [SKILL-logging.md](artifact/SKILL-logging.md)
+- [SKILL-flow-analysis.md](artifact/SKILL-flow-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Go code examples, Mermaid diagrams, configuration guidance, and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP request patterns, logging statements, API flow summaries, and risk-aware production guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

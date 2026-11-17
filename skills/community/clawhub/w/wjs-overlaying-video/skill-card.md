@@ -1,46 +1,64 @@
-## Description: <br>
-Adds post-production overlays to existing video clips, including AI cover frames, HTML/CSS captions, timed illustrations, chapter chips, and CTA scenes, then guides HyperFrames rendering to an upload-ready MP4. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds post-production overlays to existing video clips, including AI-generated cover frames, HTML/CSS captions synced to SRT, kinetic illustrations, chapter chips, end-card CTAs, and HyperFrames render scaffolding for upload-ready MP4s.
 
-## Publisher: <br>
-[jianshuo](https://clawhub.ai/user/jianshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianshuo](https://clawhub.ai/user/jianshuo)
 
-## Use Case: <br>
-Developers and video-production agents use this skill after clipping or segmenting a source video to add covers, captions, timed motion graphics, illustration overlays, and closing CTA scenes. It is most useful when the desired output is a polished MP4 rendered through a single HyperFrames composition rather than a cascade of re-encodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Custom overlay fragments are treated as high-trust code execution because they can inline HTML, CSS, and JavaScript into the generated composition. <br>
-Mitigation: Use custom fragments only from trusted sources, review generated overlay code before rendering, and run the renderer in a sandbox without access to sensitive files, credentials, or private network resources. <br>
-Risk: Generated projects may execute local render and package commands while producing video outputs. <br>
-Mitigation: Review the generated project files and commands, run HyperFrames lint/validate/inspect before render, and execute the workflow in a controlled working directory. <br>
+## Use Case:
 
+Developers and video production agents use this skill to turn segmented or finished clips into composed HyperFrames projects with captions, covers, motion graphics, and render commands. It is oriented toward WJS/Wang Jianshuo Chinese video production workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jianshuo/wjs-overlaying-video) <br>
-- [custom_overlay_recipes.md](references/custom_overlay_recipes.md) <br>
-- [illustration_patterns.md](references/illustration_patterns.md) <br>
-- [build_hf_clips.py](references/build_hf_clips.py) <br>
-- [illustrations.py](references/illustrations.py) <br>
-- [example_spec.json](references/example_spec.json) <br>
-- [GSAP distribution used by generated compositions](https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON specs, HTML/CSS/JavaScript fragments, Python commands, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces HyperFrames project scaffolding and render commands; the final media artifact is an upload-ready MP4 generated outside the agent response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can force fixed WJS/Wang Jianshuo CTA branding into rendered video outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated cover, CTA, and overlay text before rendering or publication, and remove or replace branding when it is not intended.
+
+Risk: Untrusted spec.json files or custom overlay fragments can influence generated HTML, CSS, JavaScript, file paths, and render behavior.
+
+Mitigation: Use only trusted specs and fragments, inspect custom overlay content before scaffolding, and avoid processing untrusted project inputs.
+
+Risk: The workflow invokes local tools and package execution during scaffolding and rendering.
+
+Mitigation: Run rendering in a sandbox with limited filesystem and network access, pinned dependencies, and manual review before using destructive options such as --force.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jianshuo/skills/wjs-overlaying-video)
+- [SKILL.md](artifact/SKILL.md)
+- [build_hf_clips.py](artifact/references/build_hf_clips.py)
+- [custom_overlay_recipes.md](artifact/references/custom_overlay_recipes.md)
+- [example_spec.json](artifact/references/example_spec.json)
+- [illustration_patterns.md](artifact/references/illustration_patterns.md)
+- [illustrations.py](artifact/references/illustrations.py)
+- [scaffold.py](artifact/scripts/scaffold.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON specs, Python scaffolding, HTML/CSS/JavaScript snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to create HyperFrames project files and render workflows for final MP4 production.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

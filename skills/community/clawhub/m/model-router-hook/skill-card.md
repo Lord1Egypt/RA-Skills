@@ -1,39 +1,58 @@
-## Description: <br>
-Routes OpenClaw tasks between fast and thinking models based on task complexity, cost budget, and learned user preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model Router Hook routes OpenClaw interactions between fast and thinking Kimi models based on task complexity, intent signals, budget, and learned user preferences.
 
-## Publisher: <br>
-[kevinZhj](https://clawhub.ai/user/kevinZhj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevinzhj](https://clawhub.ai/user/kevinzhj)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local model-routing logic that chooses between lower-cost fast responses and deeper thinking responses for OpenClaw workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can store user profile, session memory, and cost records locally. <br>
-Mitigation: Use it only where local storage is acceptable, and review or periodically delete files under ~/.openclaw/workspace/memory/model-router/. <br>
-Risk: Automatic model switching can affect response cost and behavior. <br>
-Mitigation: Set an appropriate daily budget and verify the expected OpenClaw CLI or API model-switching behavior in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model router implementation](scripts/model_router.py) <br>
+## Use Case:
 
+Developers and agent builders use this skill to choose between lower-cost fast responses and deeper thinking-model responses for coding, analysis, support, and other task-routing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Python module guidance with JSON-like routing results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local routing memory and cost records under ~/.openclaw/workspace/memory/model-router/ when used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata and __init__.py) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change the active OpenClaw model session.
+
+Mitigation: Review the routing policy and test model switching in a controlled session before enabling it for normal use.
+
+Risk: The skill persists user profiles, session memory, and cost records under the user's home directory.
+
+Mitigation: Use only with trusted publishers and confirm that local cross-session memory storage is acceptable for the deployment.
+
+Risk: The artifact depends on an unbundled model_router_v3 module.
+
+Mitigation: Verify and install the missing dependency from a trusted source before relying on the router.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevinzhj/skills/model-router-hook)
+- [Artifact source: SKILL.md](artifact/SKILL.md)
+- [Artifact source: scripts/model_router.py](artifact/scripts/model_router.py)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Python API results and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns routing metadata such as selected mode, model, decision log, switch status, cost records, dashboard data, and health status.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata and artifact __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

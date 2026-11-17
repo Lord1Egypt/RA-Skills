@@ -1,47 +1,62 @@
-## Description: <br>
-SendGrid API integration with managed OAuth for sending emails and managing contacts, templates, suppressions, statistics, sender identities, unsubscribe groups, and SendGrid API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents send SendGrid emails and manage contacts, templates, suppressions, statistics, sender identities, and API keys through a user-authorized Maton connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operators use this skill to work with SendGrid accounts from an agent session, including sending transactional or marketing email, managing audience and suppression resources, and reviewing delivery statistics. It requires a Maton API key and a connected SendGrid account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email to real recipients and change SendGrid resources. <br>
-Mitigation: Confirm the target account, recipients, sender, content, and intended resource changes before any write operation. <br>
-Risk: API key management can create or modify long-lived SendGrid credentials. <br>
-Mitigation: Use API-key endpoints only when the user explicitly requests credential management, and do not expose created key values in output. <br>
-Risk: Access depends on trusting Maton as the OAuth and API proxy and on handling a sensitive MATON_API_KEY. <br>
-Mitigation: Install only if the publisher and Maton proxy are trusted, and provide only a Maton API key intended for SendGrid access. <br>
+## Use Case:
 
+Teams and developers use this skill to send transactional or marketing emails, maintain mailing lists and templates, manage suppressions, and review delivery performance in their authorized SendGrid account. It also provides guidance for user-approved SendGrid automations.
 
-## Reference(s): <br>
-- [ClawHub SendGrid skill](https://clawhub.ai/byungkyu/sendgrid) <br>
-- [SendGrid API Documentation](https://www.twilio.com/docs/sendgrid/api-reference) <br>
-- [SendGrid Mail Send API](https://www.twilio.com/docs/sendgrid/api-reference/mail-send) <br>
-- [SendGrid Marketing Contacts API](https://www.twilio.com/docs/sendgrid/api-reference/contacts) <br>
-- [SendGrid Suppressions Overview](https://www.twilio.com/docs/sendgrid/api-reference/suppressions) <br>
-- [Maton](https://maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with JSON examples and inline shell, Python, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute SendGrid API requests through Maton when the user provides MATON_API_KEY and explicitly approves write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Email actions can deliver messages to real recipients or alter contact and suppression lists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before approving writes, confirm the recipient list, sender identity, message content, and intended list changes.
+
+Risk: API keys can grant persistent access to the SendGrid account.
+
+Mitigation: Create keys only on explicit request, verify the required scopes, and delete unused keys when the task is complete.
+
+Risk: Connections, hosted functions, and triggers can continue accessing the account or deliver data to automation destinations.
+
+Mitigation: Confirm the exact connection and each destination before approval; delete unused connections, functions, and triggers afterward.
+
+## Reference(s):
+
+- [ClawHub SendGrid skill](https://clawhub.ai/byungkyu/skills/sendgrid)
+- [Maton](https://maton.ai)
+- [SendGrid API documentation](https://www.twilio.com/docs/sendgrid/api-reference)
+- [SendGrid Mail Send API](https://www.twilio.com/docs/sendgrid/api-reference/mail-send)
+- [SendGrid Marketing Contacts API](https://www.twilio.com/docs/sendgrid/api-reference/contacts)
+- [Scheduled trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with command, API, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and an authorized Maton connection; writes require explicit user approval.]
+
+## Skill Version(s):
+
+1.2.7 (source: server-resolved ClawHub release; skill metadata states 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

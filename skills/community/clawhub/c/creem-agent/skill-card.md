@@ -1,44 +1,60 @@
-## Description: <br>
-Creem Agent is an autonomous SaaS operations manager for Creem.io stores that monitors heartbeats, handles failed payments and churn, prepares revenue digests, and answers natural language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous full-time SaaS operations manager for Creem.io stores. Monitors heartbeat, handles failed payments, churn, revenue digests, and answers natural language queries.
 
-## Publisher: <br>
-[vayospot](https://clawhub.ai/user/vayospot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vayospot](https://clawhub.ai/user/vayospot)
 
-## Use Case: <br>
-External developers and SaaS founders using Creem as their Merchant of Record use this skill to monitor store health, summarize revenue and subscriber metrics, respond to failed payments, and prepare churn recovery actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent recurring live Creem billing access and automatic account-changing authority. <br>
-Mitigation: Use a narrowly scoped Creem API key if available, review Discord and webhook destinations, and require human approval outside the skill before creating discounts, sending customer-facing recovery links, or changing pricing-related store state. <br>
-Risk: The security verdict is suspicious because recurring billing automation lacks enough user control. <br>
-Mitigation: Install only when the operator is comfortable granting live billing access and has reviewed the configured automation paths. <br>
+## Use Case:
 
+SaaS founders and developers who use Creem as their payment processor use this skill to monitor store health, summarize revenue and subscriber status, detect failed payments or churn, and prepare operational follow-up.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vayospot/creem-agent) <br>
-- [Creem Skill Instructions](https://creem.io/SKILL.md) <br>
-- [Creem Heartbeat Instructions](https://creem.io/HEARTBEAT.md) <br>
-- [Creem LLM Documentation](https://docs.creem.io/llms-full.txt) <br>
-- [Creem Discounts API Endpoint](https://api.creem.io/v1/discounts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands, JSON heartbeat output, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the creem, curl, and python3 binaries plus CREEM_API_KEY; heartbeat automation may emit HEARTBEAT_OK or JSON alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: The skill can create winback discounts and generate billing links as part of payment-account workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before billing links, discounts, customer outreach, or any live store mutation.
+
+Risk: The skill may post revenue, subscriber, and milestone updates to Discord.
+
+Mitigation: Enable Discord posting only after destinations, group allowlists, and approval rules are configured.
+
+Risk: The skill requires access to a Creem API key for store monitoring and operations.
+
+Mitigation: Use a narrowly scoped read-only Creem key for monitoring whenever possible.
+
+## Reference(s):
+
+- [Creem Agent ClawHub listing](https://clawhub.ai/vayospot/skills/creem-agent)
+- [Creem skill reference](https://creem.io/SKILL.md)
+- [Creem heartbeat reference](https://creem.io/HEARTBEAT.md)
+- [Creem documentation for agents](https://docs.creem.io/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and occasional JSON heartbeat output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May output HEARTBEAT_OK when no store changes need attention.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

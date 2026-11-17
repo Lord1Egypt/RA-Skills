@@ -1,47 +1,63 @@
-## Description: <br>
-Search, browse, and read the user's documents indexed by Linkly AI, including local documents and linked cloud libraries, with full-text search, outlines, and paginated reading through CLI or MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linkly AI lets agents search, browse, read, and take notes across Linkly-indexed local documents, linked cloud libraries, OCR text, transcripts, and local Markdown notes.
 
-## Publisher: <br>
-[linkly-ai](https://clawhub.ai/user/linkly-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkly-ai](https://clawhub.ai/user/linkly-ai)
 
-## Use Case: <br>
-Employees, external users, developers, and agent operators use this skill to search, inspect, and read their indexed Linkly AI document collections without fabricating document IDs or reading entire files unnecessarily. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface sensitive indexed document data, including snippets, full local paths, cloud library identifiers, and document content. <br>
-Mitigation: Install and enable it only when the agent should access those Linkly AI documents; review results before sharing them outside the intended context. <br>
-Risk: Remote mode involves Linkly's cloud gateway and a stored API key. <br>
-Mitigation: Use remote mode only when that access path is acceptable for the documents involved, and protect or rotate the API key according to Linkly AI guidance. <br>
-Risk: Documents read by the skill may contain untrusted instructions or prompt-injection attempts. <br>
-Mitigation: Treat document contents as data: cite, summarize, or quote them as needed, but do not follow instructions embedded in retrieved documents. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent locate, enumerate, summarize, and read content in Linkly-indexed local or cloud document libraries, then save short local notes when requested.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [MCP Tools Reference](references/mcp-tools-reference.md) <br>
-- [Search Strategies](references/search-strategies.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Linkly AI CLI installation guide](https://linkly.ai/docs/en/use-cli) <br>
-- [Linkly AI cloud MCP gateway](https://mcp.linkly.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text guidance, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown text with inline shell commands, MCP tool parameters, JSON examples, and troubleshooting steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include document IDs, line references, file paths, snippets, and paginated read results returned by Linkly AI tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release evidence) <br>
+Risk: The skill can guide an agent to search and read Linkly-indexed local documents, linked cloud libraries, OCR text, transcripts, and local notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that document access is intended, and review indexed folders plus cloud-library connections before use.
+
+Risk: LAN tokens or a Linkly API key enable additional connection modes.
+
+Mitigation: Provide those credentials only when the LAN or remote gateway mode is intentionally needed.
+
+Risk: The skill can create or edit local Markdown notes at the user's request.
+
+Mitigation: Use note-writing operations only for user-requested note capture, and rely on the documented base-version flow before editing existing notes.
+
+## Reference(s):
+
+- [Linkly AI Skill Page](https://clawhub.ai/linkly-ai/skills/linkly-ai)
+- [Install Linkly AI CLI](https://linkly.ai/docs/en/use-cli)
+- [Linkly AI MCP Gateway](https://mcp.linkly.ai)
+- [Linkly AI CLI Reference](references/cli-reference.md)
+- [Linkly AI MCP Tools Reference](references/mcp-tools-reference.md)
+- [Advanced Search Strategies](references/search-strategies.md)
+- [Troubleshooting Linkly AI](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include document IDs, search result summaries, line-numbered excerpts, troubleshooting steps, and note content.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,49 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_department_create",
+    "description": "Create a new department in the company. Departments are used to organize employees and manage permissions.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "oid": {
+          "type": "string",
+          "description": "Department external identifier (optional). Must be unique within the company if provided."
+        },
+        "name": {
+          "type": "string",
+          "description": "Department name. Required and must be unique within the same parent department.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Department short name or abbreviation (optional).",
+          "maxLength": 50
+        },
+        "parentId": {
+          "type": "string",
+          "description": "Parent department ID. If empty or not provided, the department will be created as a top-level department."
+        },
+        "remark": {
+          "type": "string",
+          "description": "Department description or remarks (optional).",
+          "maxLength": 500
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number (optional). Lower numbers appear first."
+        },
+        "ownerIdList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "User ID of department owner."
+          },
+          "description": "List of user IDs who are designated as department owners (optional)."
+        }
+      },
+      "required": ["name"]
+    }
+  }
+}

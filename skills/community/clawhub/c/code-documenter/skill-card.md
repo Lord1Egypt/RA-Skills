@@ -1,48 +1,60 @@
-## Description: <br>
-Use when adding docstrings, creating API documentation, or building documentation sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when adding docstrings, creating API documentation, or building documentation sites.
 
-## Publisher: <br>
-[lhwa8685](https://clawhub.ai/user/lhwa8685) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lhwa8685](https://clawhub.ai/user/lhwa8685)
 
-## Use Case: <br>
-Developers and engineers use this skill to add maintainable code documentation, API specifications, documentation sites, tutorials, user guides, and documentation coverage reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commands for npm, pip, tests, or documentation tooling may change the local project or environment if run without review. <br>
-Mitigation: Review proposed commands before execution and run them only in the intended project context. <br>
-Risk: Interactive API documentation can expose real cookies, tokens, or production credentials if examples or portals are published carelessly. <br>
-Mitigation: Use sanitized examples and avoid publishing interactive API docs that send real credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to add maintainable docstrings, API documentation, documentation-site assets, tutorials, and coverage reports for software projects.
 
-## Reference(s): <br>
-- [API Documentation: FastAPI & Django](references/api-docs-fastapi-django.md) <br>
-- [API Documentation: NestJS & Express](references/api-docs-nestjs-express.md) <br>
-- [Coverage Reports](references/coverage-reports.md) <br>
-- [Documentation Systems & Infrastructure](references/documentation-systems.md) <br>
-- [Interactive API Documentation](references/interactive-api-docs.md) <br>
-- [Python Docstrings](references/python-docstrings.md) <br>
-- [TypeScript JSDoc](references/typescript-jsdoc.md) <br>
-- [User Guides & Tutorials](references/user-guides-tutorials.md) <br>
-- [Code Documenter on ClawHub](https://clawhub.ai/lhwa8685/code-documenter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, configuration snippets, documentation files, API specifications, and coverage summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose generated documentation, documentation-site configuration, API-doc portal setup, and commands for linting or validating documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated documentation-site and interactive API portal configurations may normalize persisted API authorization, credentialed browser requests, mutable remote scripts, or unpinned package execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated portal and site configuration before use, pin package and CDN versions, disable persisted API authorization unless controlled, and avoid sending browser credentials from try-it consoles by default.
+
+Risk: Generated documentation may be inaccurate or misleading if code examples, API schemas, or error behavior are not verified against the target project.
+
+Mitigation: Validate examples, rendered API docs, and coverage reports against the project before publishing or deploying the documentation.
+
+## Reference(s):
+
+- [Python Docstrings](references/python-docstrings.md)
+- [TypeScript JSDoc](references/typescript-jsdoc.md)
+- [API Documentation: FastAPI & Django](references/api-docs-fastapi-django.md)
+- [API Documentation: NestJS & Express](references/api-docs-nestjs-express.md)
+- [Coverage Reports](references/coverage-reports.md)
+- [Documentation Systems & Infrastructure](references/documentation-systems.md)
+- [Interactive API Documentation](references/interactive-api-docs.md)
+- [User Guides & Tutorials](references/user-guides-tutorials.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks, configuration snippets, documentation text, and coverage summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for accuracy and tested where examples, generated specs, or documentation-site configuration are produced.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

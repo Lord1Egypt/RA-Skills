@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "conversion-copy",
+  "workflow": "listing",
+  "focus": "conversion",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

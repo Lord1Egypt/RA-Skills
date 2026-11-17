@@ -1,49 +1,62 @@
-## Description: <br>
-Reads Meta Ads campaigns, ad sets, ads, and creatives to support diagnostics, reports, and operational recommendations through the brijr/meta-mcp MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads Meta Ads campaigns, ad sets, ads, and creatives for diagnostics, reports, and operational recommendations using only the brijr/meta-mcp MCP.
 
-## Publisher: <br>
-[moskoweb](https://clawhub.ai/user/moskoweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moskoweb](https://clawhub.ai/user/moskoweb)
 
-## Use Case: <br>
-Marketing analysts, operators, and agent users use this skill to analyze Meta Ads performance, locate funnel bottlenecks, separate facts from hypotheses, and prepare daily, weekly, executive, tactical, or post-test reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and export Meta Ads performance data, including spend, campaign structure, creative details, and performance metrics. <br>
-Mitigation: Install it only where brijr/meta-mcp is trusted, scope access to the intended Meta Ads accounts, and review exported insights before sharing. <br>
-Risk: Recommendations may be misleading when Meta Ads data diverges from landing page, CRM, or financial data. <br>
-Mitigation: Treat tracking confidence as part of the diagnosis and clearly separate facts, hypotheses, and recommended next steps. <br>
+## Use Case:
 
+External operators, marketers, and analysts use this skill to inspect Meta Ads performance across account, campaign, ad set, ad, and creative levels, identify funnel bottlenecks, and produce concise diagnostics with next steps.
 
-## Reference(s): <br>
-- [Metrics Glossary](references/metrics-glossary.md) <br>
-- [Diagnostic Frameworks](references/diagnostic-frameworks.md) <br>
-- [Report Templates](references/report-templates.md) <br>
-- [Funnel Analysis](references/funnel-analysis.md) <br>
-- [Anomaly Playbooks](references/anomaly-playbooks.md) <br>
-- [Official Meta Measurement Notes](references/official-meta-measurement-notes.md) <br>
-- [Meta Performance Marketing](https://www.facebook.com/business/ads/performance-marketing) <br>
-- [Meta Advantage+ Placements](https://www.facebook.com/business/ads/meta-advantage-plus/placements) <br>
-- [Meta Help: Learning Phase](https://www.facebook.com/help/447278887528796) <br>
-- [ClawHub Skill Page](https://clawhub.ai/moskoweb/meta-ads-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text diagnostics and reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should distinguish facts, hypotheses, and recommendations, and should reduce confidence when tracking, CRM, or page data is suspect.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configured brijr/meta-mcp integration may access relevant Meta Ads account performance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is intended, review the MCP permissions, and limit account/data access to the needed analysis scope.
+
+Risk: Performance recommendations can be misleading when tracking, CRM, landing page, or financial data is incomplete or inconsistent.
+
+Mitigation: State confidence clearly, distinguish facts from hypotheses, and validate conclusions against Meta, page, CRM, and business outcome data before acting.
+
+## Reference(s):
+
+- [Meta MCP](https://github.com/brijr/meta-mcp)
+- [Meta Ads Performance Marketing](https://www.facebook.com/business/ads/performance-marketing)
+- [Meta Advantage+ Placements](https://www.facebook.com/business/ads/meta-advantage-plus/placements)
+- [Meta Business Help](https://www.facebook.com/help/447278887528796)
+- [Metrics Glossary](references/metrics-glossary.md)
+- [Diagnostic Frameworks](references/diagnostic-frameworks.md)
+- [Report Templates](references/report-templates.md)
+- [Funnel Analysis](references/funnel-analysis.md)
+- [Anomaly Playbooks](references/anomaly-playbooks.md)
+- [Official Meta Measurement Notes](references/official-meta-measurement-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text diagnostics and reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates facts, hypotheses, and recommendations; reduces confidence when tracking, CRM, or landing page data is suspect.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

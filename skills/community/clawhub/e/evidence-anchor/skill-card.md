@@ -1,43 +1,53 @@
-## Description: <br>
-Standardizes evidence anchors so agents can record, verify, trace, and reuse project memory evidence with explicit confidence levels and review criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evidence Anchor guides agents to record verifiable evidence anchors for project memory so conclusions are traceable, reusable, and reviewable.
 
-## Publisher: <br>
-[jiangwill2023](https://clawhub.ai/user/jiangwill2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangwill2023](https://clawhub.ai/user/jiangwill2023)
 
-## Use Case: <br>
-Developers, maintainers, and agents use this skill to classify project evidence as direct, indirect, or referenced evidence, then write evidence anchors that support memory records, handoffs, reviews, and project status claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evidence anchors can include sensitive paths, URLs, logs, financial records, or signed documents. <br>
-Mitigation: Keep access-controlled evidence private, redact unnecessary sensitive details, and preserve only the minimum path or reference needed for verification. <br>
-Risk: Stale evidence can cause project memory to overstate current status. <br>
-Mitigation: Use the skill's periodic review workflow to re-check URLs, files, configuration, and logs every one to three months. <br>
-Risk: Weak referenced evidence can be mistaken for completion proof. <br>
-Mitigation: Require Level 1 direct evidence for DONE claims and downgrade unsupported claims to PARTIAL or BLOCKED until stronger evidence exists. <br>
+## Use Case:
 
+Developers and agent operators use this skill to standardize how project memory cites evidence, grades source strength, and maps evidence to DONE, PARTIAL, or BLOCKED statuses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangwill2023/evidence-anchor) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangwill2023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Templates] <br>
-**Output Format:** [Markdown guidance with structured evidence-anchor templates and review criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are concise evidence classifications, acceptance checks, status mappings, and reusable Markdown snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Operators may apply the skill to sensitive records such as contracts, financial statements, or private project documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when access is explicitly authorized and record the minimum evidence needed to support the memory entry.
+
+Risk: The skill instructions are written primarily in Chinese, which can lead to misuse by operators who cannot reliably read them.
+
+Mitigation: Install it only for agents or operators who can understand the Chinese instructions or have an approved translation.
+
+## Reference(s):
+
+- [Evidence Anchor on ClawHub](https://clawhub.ai/jiangwill2023/skills/evidence-anchor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown templates and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no execution behavior found in the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence; artifact metadata and SKILL.md mention 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

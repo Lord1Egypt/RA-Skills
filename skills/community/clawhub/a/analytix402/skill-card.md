@@ -1,40 +1,54 @@
-## Description: <br>
-Analytix402 helps OpenClaw agents monitor API and LLM usage with spend tracking, budget limits, duplicate purchase detection, and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analytix402 monitors and controls an OpenClaw agent's API spend and LLM costs with real-time tracking, budget limits, duplicate purchase detection, and alerts.
 
-## Publisher: <br>
-[Analytix402](https://clawhub.ai/user/Analytix402) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[analytix402](https://clawhub.ai/user/analytix402)
 
-## Use Case: <br>
-Developers and operators use this skill to add cost observability and budget guardrails to OpenClaw agents that make API calls, LLM requests, or x402 payments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes broad automatic telemetry to a third-party dashboard without clear data boundaries. <br>
-Mitigation: Verify what API, LLM, payment, prompt, and request metadata is transmitted before enabling the API key. <br>
-Risk: Usage and payment metadata may be sensitive. <br>
-Mitigation: Confirm retention, dashboard access controls, and operational procedures for disabling LLM tracking or heartbeats. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Analytix402/analytix402) <br>
-- [Analytix402 Dashboard](https://analytix402.com) <br>
+## Use Case:
 
+Developers and operators use this skill to add spend observability and budget guardrails to OpenClaw agents that make API calls, LLM requests, or x402 payments.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with configuration examples and tool-oriented responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include spend summaries, budget status, duplicate-purchase flags, and alert guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill describes broad automatic tracking of API calls, LLM usage, payment-related events, and health heartbeats to Analytix402 or a configured base URL.
+
+Mitigation: Confirm what telemetry fields are collected, whether prompts or request payloads are included, who can access dashboard data, and how tracking can be disabled before enabling the skill.
+
+Risk: The server security verdict is suspicious because user control over external spend telemetry is not clearly defined.
+
+Mitigation: Use a reviewed configuration, restrict the base URL to a trusted endpoint, and validate privacy and retention expectations before deployment.
+
+## Reference(s):
+
+- [Analytix402 Skill Page](https://clawhub.ai/analytix402/skills/analytix402)
+- [Analytix402 Publisher Profile](https://clawhub.ai/user/analytix402)
+- [Analytix402 Dashboard](https://analytix402.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Markdown]
+
+**Output Format:** [Markdown with YAML configuration examples and tool usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe spend reports, budget settings, budget checks, and purchase review flags.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

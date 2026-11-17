@@ -1,43 +1,61 @@
-## Description: <br>
-Competitive Intel Agent helps agents monitor competitors, benchmark pricing, analyze market positioning, and generate structured competitive intelligence reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitive Intel Agent helps agents monitor public competitor activity, benchmark pricing, analyze market positioning, and generate structured competitive intelligence reports.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Business, strategy, product, marketing, and sales teams use this skill to gather public competitive signals and turn them into pricing benchmarks, SWOT analyses, positioning maps, reports, and monitoring digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive research may exceed acceptable public-source use if an agent scrapes behind login walls, ignores site limits, or monitors sources outside the user's approved scope. <br>
-Mitigation: Define allowed sources, date ranges, citation requirements, scraping limits, and prohibited private or login-gated sources before use. <br>
-Risk: Public competitive signals can be stale, incomplete, or misinterpreted, especially for opaque pricing and professional services markets. <br>
-Mitigation: Require dated citations, note unavailable data, use proxy benchmarks only when labeled, and have a human review strategy or pricing recommendations before acting on them. <br>
-Risk: Recurring monitoring digests can expose sensitive business analysis if posted to broad Slack or Discord channels. <br>
-Mitigation: Approve monitoring cadence, destination channels, and audience before enabling recurring posts. <br>
+## Use Case:
 
+Business, strategy, product, and sales teams use this skill to structure public-source competitive research, including competitor profiles, pricing benchmarks, SWOT analyses, positioning matrices, news monitoring, and executive briefings.
 
-## Reference(s): <br>
-- [Competitive Intel Agent on ClawHub](https://clawhub.ai/samledger67-dotcom/competitive-intel-agent) <br>
-- [Dogfood Test Results](artifact/TEST-RESULT-2026-03-17.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, tables, SWOT matrices, positioning matrices, recommendation memos, bullet briefings, and digest messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public sources only; recurring monitoring may produce Slack/Discord-ready digest content when permitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill is intended for public competitive research and could be misused against private, login-restricted, or unethical data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep collection limited to public sources and reject requests to scrape behind login walls or use private data.
+
+Risk: Competitive findings, pricing benchmarks, and strategic recommendations can be incomplete or stale when public information is opaque.
+
+Mitigation: Verify important claims against cited public sources and require human review before pricing, sales, or strategy decisions.
+
+Risk: Scheduled monitoring or Slack/Discord digest workflows may publish unreviewed competitor claims.
+
+Mitigation: Confirm monitoring schedules, destination channels, and review requirements before enabling recurring publication.
+
+Risk: The skill is not designed for legal research, financial forecasting, or real-time market data.
+
+Mitigation: Route legal, forecasting, stock, crypto, SEC filing, and other real-time market data tasks to dedicated tools.
+
+## Reference(s):
+
+- [Competitive Intel Agent on ClawHub](https://clawhub.ai/samledger67-dotcom/skills/competitive-intel-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown reports, tables, matrices, briefing notes, recommendations, and monitoring setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on public sources and reviewed before business decisions or automated publication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

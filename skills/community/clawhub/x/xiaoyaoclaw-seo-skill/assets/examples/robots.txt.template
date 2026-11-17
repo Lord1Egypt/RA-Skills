@@ -1,0 +1,51 @@
+# robots.txt 通用模板（AI bot 显式放行版）
+# General robots.txt template (explicit AI-bot allow-list)
+# 用法 / Usage：替换 <canonical-host> 为站点规范域名后放到站点根目录
+#   Replace <canonical-host> with your canonical domain and place at the site root.
+# 注意 / Note：静态托管/SPA 需确认部署平台不把 robots.txt rewrite 到 404/HTML 页
+#   On static hosting/SPAs, make sure the platform does not rewrite robots.txt to a 404/HTML page.
+# 注释语言可按团队习惯改为英文或其他语言 / Comments may be written in any language.
+
+User-agent: *
+Allow: /
+# 屏蔽后台管理路径（示例，按实际调整）
+# ⚠️ 这些 Disallow 必须写在**每一个**你希望生效的 UA 组里：robots.txt 的规则
+#    只对「最近一个 User-agent 行」生效，写在最后一个组之后的 Disallow 只约束
+#    那个组（这里原本会变成只约束 Bytespider）。
+#    真正的访问控制靠应用层鉴权，robots.txt 只是君子协定。
+Disallow: /console
+Disallow: /admin
+
+# AI 搜索/训练 bot 显式放行（内容站默认策略；如不想被爬可删对应行）
+# 放行的同时重复一遍后台屏蔽规则，保证这些 bot 也不会去抓后台路径
+User-agent: GPTBot
+Allow: /
+Disallow: /console
+Disallow: /admin
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /console
+Disallow: /admin
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /console
+Disallow: /admin
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /console
+Disallow: /admin
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /console
+Disallow: /admin
+
+User-agent: Bytespider
+Allow: /
+Disallow: /console
+Disallow: /admin
+
+Sitemap: https://<canonical-host>/sitemap.xml

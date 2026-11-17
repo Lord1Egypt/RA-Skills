@@ -1,40 +1,53 @@
-## Description: <br>
-根据数据处理需求生成可运行的 Python 或 Excel 公式代码，用于报表自动化、数据汇总和格式转换。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates runnable Python scripts or Excel formulas from Chinese data-processing requests to automate reporting, aggregation, and format conversion.
 
-## Publisher: <br>
-[jessabuivolova-sketch](https://clawhub.ai/user/jessabuivolova-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessabuivolova-sketch](https://clawhub.ai/user/jessabuivolova-sketch)
 
-## Use Case: <br>
-Business users and developers can use this skill to ask an agent for Python/pandas or Excel formula automation for financial summaries, recurring reports, data format conversion, attendance, or payroll-style spreadsheet work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated spreadsheet automation can overwrite or alter files if paths, formulas, or write operations are wrong. <br>
-Mitigation: Inspect generated code and file paths before running it, then test on copies or backups of spreadsheets first. <br>
-Risk: Financial, payroll, attendance, or business data used with generated automation may be sensitive. <br>
-Mitigation: Use sanitized sample data where possible and follow the organization's data handling rules before processing real records. <br>
+## Use Case:
 
+Developers and business analysts use this skill to turn Chinese descriptions of Excel or CSV reporting needs into Python pandas code, Excel formulas, operating steps, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessabuivolova-sketch/excel-zidonghua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing generated Python/pandas code, Excel formulas, operating steps, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated automation should be reviewed before execution, especially for spreadsheet paths and write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact lists v1.0) <br>
+Risk: Generated code or formulas may be incorrect or unsuitable for sensitive Excel or CSV records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code, test it on sample files, and back up source data before running it on business, finance, attendance, or payroll records.
+
+Risk: The artifact states that use requires a Python environment and Windows, so generated automation may not run as-is in other environments.
+
+Mitigation: Confirm the target environment and adapt generated scripts or formulas before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jessabuivolova-sketch/skills/excel-zidonghua)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with Python code blocks, Excel formulas, and step-by-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated output should be reviewed, tested on sample files, and backed up before use with business, finance, attendance, or payroll records.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

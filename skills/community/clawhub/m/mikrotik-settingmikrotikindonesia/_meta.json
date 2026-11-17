@@ -1,0 +1,31 @@
+{
+  "name": "settingmikrotikindonesia-routeros",
+  "description": "Standar kerja settingmikrotikindonesia.com untuk konfigurasi MikroTik RouterOS: 25 playbook lapangan — multi-WAN, hotspot/PPPoE, bandwidth (PCQ/CAKE/FQ_CODEL), OSPF/BGP + filter granular, VLAN/QinQ/switch chip, VPN site-to-site & L2TP/IPsec, CAPsMAN, DNS/DoH/adlist, monitoring/backup, hardening, IPv6 dual-stack & layer akses, WireGuard remote access, proxy cache, scheduler otomasi, Telegram integration, User Manager RADIUS, prioritas game, VRRP HA.",
+  "version": "4.0.0",
+  "files": [
+    "SKILL.md",
+    "references/pbr-batch-balancer.md",
+    "references/hotspot-pppoe-playbook.md",
+    "references/vpn-antar-cabang-playbook.md",
+    "references/bandwidth-management-playbook.md",
+    "references/ospf-multi-area-playbook.md",
+    "references/bgp-upstream-playbook.md",
+    "references/cake-fqcodel-playbook.md",
+    "references/vlan-segmentasi-playbook.md",
+    "references/monitoring-backup-playbook.md",
+    "references/vlan-qinq-playbook.md",
+    "references/switchchip-vlan-playbook.md",
+    "references/capsman-wifi-playbook.md",
+    "references/dns-doh-adlist-playbook.md",
+    "references/ipv6-playbook.md",
+    "references/proxy-cache-mikrotik-playbook.md",
+    "references/scheduler-otomasi-playbook.md",
+    "references/telegram-integration-playbook.md",
+    "references/bgp-filter-granular-playbook.md",
+    "references/user-manager-playbook.md",
+    "references/queue-tree-game-playbook.md",
+    "references/l2tp-ipsec-site-to-site-playbook.md",
+    "references/ipv6-hotspot-pppoe-playbook.md",
+    "references/vrrp-ha-playbook.md"
+  ]
+}

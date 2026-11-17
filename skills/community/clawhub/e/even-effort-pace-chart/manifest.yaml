@@ -1,0 +1,27 @@
+name: even-effort-pace-chart
+displayName: 体感一致配速表
+slug: even-effort-pace-chart
+version: 1.0.3
+description: "基于耐力学社体感一致配速思路的独立实现。把 GPX/KML 路线或 FIT 轨迹转换成按检查点分段的体感一致越野配速表，或把 FIT 活动与 checkpoint 方案对照，查看累计差距、分段耗时与地形差异。仓库地址：https://github.com/yihouzenmeban/trail-running-pace"
+summary: "赛前生成多目标 SVG 配速表；赛后对照实际与方案，输出比较图与分段差值。"
+author: yihouzenmeban
+category: development
+tags:
+  - 越野跑
+  - 配速表
+  - GPX
+  - KML
+  - FIT
+  - 耐力运动
+triggers:
+  - 生成配速表
+  - 体感一致配速表
+  - pace chart
+  - 赛后对照
+  - 活动对比
+license: MIT
+homepage: https://github.com/yihouzenmeban/trail-running-pace
+icon: icon.png
+permissions:
+  - FIT 输入与活动对比需要安装 Python 可选依赖（scripts/requirements-comparison.txt）
+  - compare_activity.py 的 list/fetch 子命令会按需访问 Garmin Connect

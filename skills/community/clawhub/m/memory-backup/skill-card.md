@@ -1,42 +1,64 @@
-## Description: <br>
-Inspect OpenClaw memory configuration and on-disk memory artifacts, confirm which enabled memory systems should be backed up, prepare a deterministic local memory backup bundle, and optionally hand that bundle off to mnemospark or other storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect OpenClaw memory configuration and on-disk memory artifacts, confirm which enabled memory systems should be backed up, prepare a deterministic local memory backup bundle, and optionally hand that bundle off to mnemospark or other storage.
 
-## Publisher: <br>
-[pawlsclick](https://clawhub.ai/user/pawlsclick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pawlsclick](https://clawhub.ai/user/pawlsclick)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to audit enabled memory systems, review the exact memory artifacts proposed for backup, and create a restorable memory-only archive. It is also used when an explicit mnemospark handoff is requested after local backup preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent memory can contain private or sensitive context. <br>
-Mitigation: Review the proposed included paths before approving a backup and keep config files as discovery inputs rather than backup payloads. <br>
-Risk: Optional mnemospark storage can move the backup archive outside local control. <br>
-Mitigation: Prefer local backup unless mnemospark and the storage destination are trusted, and approve cloud upload only after the archive contents and handoff are clear. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to audit enabled memory systems, confirm durable memory files on disk, and create a restorable memory-only backup archive. When requested, it can prepare a local archive for a separate mnemospark cloud-storage handoff.
 
-## Reference(s): <br>
-- [Scope and paths](references/scope-and-paths.md) <br>
-- [Manifest schema](references/manifest-schema.md) <br>
-- [mnemospark](https://mnemospark.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with optional shell commands, JSON discovery data, and a deterministic tar.gz backup archive] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local archive with manifest metadata after user confirmation; cloud handoff remains a separate optional step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Backup discovery and packaging could include unintended local files if paths are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every proposed canonical path before approving archive creation, and use only discovery JSON generated and inspected in the current session.
+
+Risk: Cloud handoff could export memory artifacts that should remain local.
+
+Mitigation: Keep archives local unless cloud storage is explicitly requested and the exact archive selected for upload has been shown to the user.
+
+Risk: The documented mnemospark install command uses an unsafe force-install flag.
+
+Mitigation: Avoid the unsafe install path unless the user accepts that risk after reviewing the plugin source and operational need.
+
+Risk: Running on an untrusted workspace or stale discovery input can make backup contents unreliable.
+
+Mitigation: Do not use the skill on untrusted workspaces or with discovery JSON that was not freshly generated from the target workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pawlsclick/skills/memory-backup)
+- [mnemospark](https://mnemospark.ai)
+- [Scope and paths](references/scope-and-paths.md)
+- [Manifest schema](references/manifest-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated archive files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing backup proposals, local tar.gz backup bundles, and manifest JSON when backup creation is confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

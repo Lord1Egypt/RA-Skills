@@ -1,0 +1,105 @@
+# 分片：与 references/api-*.md 主题一致；路径项由 references/openapi.yaml 引用。
+OpenV1Health:
+    get:
+      operationId: health_check
+      summary: 健康检查 + 能力探测
+      description: |
+        检查服务是否正常并探测服务端能力。无需鉴权，新老版本服务端都可调用。
+        - authLoginSupported=true 才表示支持免 API Key 的手机号验证码登录领钥。
+        - 字段缺失说明服务端版本过旧：此时 /open/v1/auth/* 会返回 10411，
+          那是旧版鉴权拦截器拦下不存在路由的假象，不要据此去补密钥。
+        - apiBase 为服务端实际生效的路径前缀，生产环境一般为 /mobile-api。
+      security: []
+      responses:
+        '200':
+          description: 服务正常
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                            example: ok
+                          authLoginSupported:
+                            type: boolean
+                            description: 是否支持免密钥登录领钥；老版本无此字段
+                          skillName:
+                            type: string
+                            description: 服务端配置的技能包名，与本地不一致说明部署的是另一套品牌配置
+                          skillVersion:
+                            type: string
+                          apiBase:
+                            type: string
+                            description: 服务端实际路径前缀，生产环境为 /mobile-api
+
+
+OpenV1SkillVersion:
+    get:
+      operationId: check_skill_version
+      summary: Skill 版本检查
+      description: |
+        检查当前 skill 是否需要更新。无需鉴权。
+        - 传入 clientVersion 后与服务端最新版做 semver 比较。
+        - 若 updateAvailable=true，向用户展示升级步骤。
+        - 未传 clientVersion 时 updateAvailable 始终为 false。
+      security: []
+      parameters:
+        - name: clientVersion
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 当前 skill 版本，如 "1.1.0"
+      responses:
+        '200':
+          description: 版本信息
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/SkillVersionInfo'
+
+
+OpenV1SkillUpgrade:
+    get:
+      operationId: get_skill_upgrade
+      summary: Skill 升级指引
+      description: 获取 ClawHub 与自托管 zip 的分步升级说明。无需鉴权。
+      security: []
+      responses:
+        '200':
+          description: 升级步骤
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          latestVersion:
+                            type: string
+                          clawhubSteps:
+                            type: array
+                            items:
+                              type: string
+                          selfHostedSteps:
+                            type: array
+                            items:
+                              type: string
+
+  # ── 需要鉴权的接口（Authorization + X-Trading-Env） ──────────────────────
+
+

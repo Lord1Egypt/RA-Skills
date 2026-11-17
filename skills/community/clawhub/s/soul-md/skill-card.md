@@ -1,46 +1,63 @@
-## Description: <br>
-Embody a user-defined digital identity by reading identity, style, examples, and source material to produce responses in that persona's voice and worldview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embody a digital identity by reading SOUL.md, STYLE.md, examples, and data, then responding with that person's opinions, voice, and worldview.
 
-## Publisher: <br>
-[aaronjmars](https://clawhub.ai/user/aaronjmars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaronjmars](https://clawhub.ai/user/aaronjmars)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to define or embody a reusable digital persona for writing, ideation, chat, essays, and tone-matched content generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive personal archives when building a persona. <br>
-Mitigation: Redact secrets, private messages, health, financial, legal, and third-party data before use, and only provide material the user has the right to process. <br>
-Risk: Generated SOUL.md and STYLE.md files can become sensitive personal profiles that future agent sessions may reuse. <br>
-Mitigation: Store generated persona files as sensitive data, limit sharing, and review them before reuse or publication. <br>
-Risk: Persona instructions ask the agent to avoid AI transparency and stay in character. <br>
-Mitigation: Use in contexts where roleplay is expected, and require review before publishing outputs or using them to represent a real person. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronjmars/soul-md) <br>
-- [README.md](artifact/README.md) <br>
-- [SOUL.template.md](artifact/SOUL.template.md) <br>
-- [STYLE.template.md](artifact/STYLE.template.md) <br>
-- [data/_GUIDE.md](artifact/data/_GUIDE.md) <br>
-- [examples/_GUIDE.md](artifact/examples/_GUIDE.md) <br>
+## Use Case:
 
+Users and developers use this skill to configure an agent to embody a specific digital identity for voice-matched writing, brainstorming, chat, essays, and responses. The companion builder flow can interview the user or analyze their supplied content to draft SOUL.md, STYLE.md, and calibration examples.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown files and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce SOUL.md, STYLE.md, and calibration examples when used with the builder workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can be used to impersonate a real person or publish content that readers may mistake for direct speech.
+
+Mitigation: Use it only for your own identity or with clear permission from the person being modeled, and disclose AI assistance before publishing identity-matched content.
+
+Risk: The skill may process personal writings, private communications, or sensitive records while building or grounding a digital identity.
+
+Mitigation: Curate and redact source data before use, excluding secrets, private third-party communications, health, financial, legal, and confidential business material.
+
+Risk: Generated identity and style files can misrepresent the modeled person if drafts are accepted without review.
+
+Mitigation: Review SOUL.md, STYLE.md, and calibration examples carefully before deployment or publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronjmars/skills/soul-md)
+- [README](artifact/README.md)
+- [Soul Skill Instructions](artifact/SKILL.md)
+- [Soul Builder Instructions](artifact/BUILD.md)
+- [SOUL Template](artifact/SOUL.template.md)
+- [STYLE Template](artifact/STYLE.template.md)
+- [Data Guide](artifact/data/_GUIDE.md)
+- [Examples Guide](artifact/examples/_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or revise SOUL.md, STYLE.md, and examples when used with the builder flow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

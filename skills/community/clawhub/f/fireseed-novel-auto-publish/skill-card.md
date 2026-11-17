@@ -1,45 +1,56 @@
-## Description: <br>
-Generates and publishes novels to fireseed.online by authenticating, creating a novel, posting chapters, and optionally uploading a cover through HTTP APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes novels to the fireseed.online platform by helping an agent authenticate, create a novel, generate chapters, publish chapters, and optionally upload a cover through HTTP APIs.
 
-## Publisher: <br>
-[sanzhishuyuan](https://clawhub.ai/user/sanzhishuyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanzhishuyuan](https://clawhub.ai/user/sanzhishuyuan)
 
-## Use Case: <br>
-External creators and agent users use this skill to generate multi-chapter novels and publish them to the FireSeed platform through API calls, including account authentication, chapter publishing, and optional cover upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect FireSeed credentials or tokens and store a token locally. <br>
-Mitigation: Use a pre-created limited token where possible, avoid entering raw account passwords in chat, and remove stored tokens when the skill is no longer needed. <br>
-Risk: Trigger phrases can cause automatic publishing actions on an external platform with limited user control. <br>
-Mitigation: Install only in agent profiles where automatic FireSeed publishing is intended, and review or disable auto-invocation triggers before deployment. <br>
-Risk: Generated chapters may be published publicly before human review. <br>
-Mitigation: Review generated chapter text and cover content before allowing publication in workflows that require editorial or compliance approval. <br>
+## Use Case:
 
+External users and content creators use this skill to have an agent draft serialized fiction and publish it to FireSeed. It is intended for workflows that create or update public-facing novel content through the FireSeed API.
 
-## Reference(s): <br>
-- [FireSeed platform](https://fireseed.online) <br>
-- [API reference](references/api-guide.md) <br>
-- [Novel template](resources/novel-template.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/sanzhishuyuan/fireseed-novel-auto-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown and JSON HTTP request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish generated novel content to an external public platform and may store an authentication token locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.1 (source: evidence.release.version, SKILL.md frontmatter, _meta.json) <br>
+Risk: The skill can publish generated content externally to fireseed.online.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation and content review before publication, deletion, or cover upload actions.
+
+Risk: The skill can create or use a FireSeed account and store a reusable token.
+
+Mitigation: Avoid saving credentials unless necessary, protect the token from logs or chat output, and rotate it when it is no longer needed.
+
+## Reference(s):
+
+- [FireSeed Platform](https://fireseed.online)
+- [ClawHub Skill Page](https://clawhub.ai/sanzhishuyuan/skills/fireseed-novel-auto-publish)
+- [FireSeed API Guide](references/api-guide.md)
+- [Novel Template](resources/novel-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown narrative content, HTTP request guidance, configuration commands, and publication status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary Markdown files, store a reusable FireSeed token, and publish generated content to fireseed.online.]
+
+## Skill Version(s):
+
+3.5.1 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

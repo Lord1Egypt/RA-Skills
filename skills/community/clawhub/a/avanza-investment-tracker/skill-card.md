@@ -1,44 +1,62 @@
-## Description: <br>
-Process Avanza CSV exports, calculate TWRR/Modified Dietz returns, and track portfolio performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process Avanza CSV exports, calculate TWRR/Modified Dietz returns, and track portfolio performance.
 
-## Publisher: <br>
-[patello](https://clawhub.ai/user/patello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[patello](https://clawhub.ai/user/patello)
 
-## Use Case: <br>
-External users and developers use this skill to import Avanza transaction CSVs, maintain local portfolio data, calculate account-level performance, and generate TWRR or Modified Dietz investment statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio data is stored in a local SQLite database. <br>
-Mitigation: Keep the database in a private workspace, control file permissions, and back it up before reset or import operations. <br>
-Risk: Automatic price updates can send held asset names to Avanza. <br>
-Mitigation: Use --update-prices never for offline operation or when asset-name disclosure is not acceptable. <br>
-Risk: Reset operations can clear local database state. <br>
-Mitigation: Review reset commands before execution and keep database backups. <br>
+## Use Case:
 
+External users and developers use this skill to import Avanza transaction CSVs, maintain a local SQLite portfolio database, calculate investment performance, inspect holdings, and generate portfolio reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patello/avanza-investment-tracker) <br>
-- [Workflows](references/workflows.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and tabular CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local CSV, JSON special-case, and SQLite database files; optional price updates can make network requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata) <br>
+Risk: Declared file access is narrower than the code behavior, and portfolio databases or backup files may contain sensitive financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private data directory, review import and export paths before running commands, and protect or delete generated backup files when they are no longer needed.
+
+Risk: Portfolio asset names may be sent to Avanza by default when live prices are updated, and benchmark/date information may be sent to Riksbanken or Yahoo Finance for risk metrics.
+
+Mitigation: Use --update-prices never for offline operation and run --risk or --beta only when those external requests are acceptable.
+
+Risk: Destructive commands can permanently remove transactions or account data.
+
+Mitigation: Back up the database first, prefer dry-run previews where available, and avoid --yes unless the intended deletion scope has been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/patello/skills/avanza-investment-tracker)
+- [Workflows](references/workflows.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Avanza Public API](https://www.avanza.se)
+- [Riksbanken API](https://api.riksbank.se)
+- [Yahoo Finance Query API](https://query1.finance.yahoo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented guidance with inline shell commands and optional JSON/table CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide commands that read and write a user-specified SQLite database and optionally call external market-data APIs.]
+
+## Skill Version(s):
+
+2.14.1 (source: ClawHub release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

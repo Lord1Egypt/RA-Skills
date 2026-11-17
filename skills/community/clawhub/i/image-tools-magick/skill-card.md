@@ -1,38 +1,54 @@
-## Description: <br>
-Comprehensive ImageMagick toolkit for resizing, cropping, compositing, padding, annotating, adjusting, removing solid backgrounds, converting formats, and inspecting images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive image editing toolkit using ImageMagick for resizing, cropping, compositing, padding, annotating, adjusting, background removal, format conversion, and image info, with operations writing to new files.
 
-## Publisher: <br>
-[pratiknarola](https://clawhub.ai/user/pratiknarola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratiknarola](https://clawhub.ai/user/pratiknarola)
 
-## Use Case: <br>
-Developers and agents use this skill to perform local pixel-level image operations through ImageMagick shell helpers while writing results to new files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted image-editing parameters may trigger unintended shell commands in helpers that build commands through eval. <br>
-Mitigation: Review before installing, use only trusted inputs, and avoid untrusted annotation text, paths, colors, offsets, rotation, blur, sharpen, and border values until helpers use safely quoted argument arrays and basic option validation. <br>
+## Use Case:
 
+Developers and agents use this skill to perform local, script-driven image manipulation with ImageMagick, including resize, crop, overlay, padding, annotation, adjustment, background removal, conversion, and image metadata inspection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pratiknarola/image-tools-magick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for non-destructive image transformations that write outputs to new files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted image text, filenames, or option values may become local shell commands in adjust.sh and annotate.sh.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local filenames, captions, and option values until those scripts avoid eval and call ImageMagick with argument arrays.
+
+Risk: Temporary-file handling in composite.sh may be unsafe for sensitive images in shared multi-user environments.
+
+Mitigation: Avoid processing sensitive images in shared environments until composite.sh uses mktemp with trapped cleanup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pratiknarola/skills/image-tools-magick)
+- [Publisher Profile](https://clawhub.ai/user/pratiknarola)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and local file outputs from shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local ImageMagick on Linux or macOS; scripts write modified images to new files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

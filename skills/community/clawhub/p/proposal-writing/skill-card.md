@@ -1,37 +1,52 @@
-## Description: <br>
-Write proposals that confirm verbal agreements using the SCR framework to clearly outline problems, solutions, ROI, pricing, timeline, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write proposals that confirm verbal agreements using the SCR framework to outline the client problem, proposed solution, expected ROI, investment, timeline, and next steps.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-External service providers, consultants, and agents use this skill to draft or improve client proposals after discovery, including Upwork micro-proposals and structured bids that confirm scope, value, price, timeline, and next steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated proposals may contain incorrect client details, pricing, timelines, scope boundaries, ROI claims, or legal and contractual commitments. <br>
-Mitigation: Review each proposal before sending, with special attention to confidential client information, commercial terms, scope, expected outcomes, and commitments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/staybased/proposal-writing) <br>
+## Use Case:
 
+Freelancers, consultants, and proposal writers use this skill after discovery or a strong buying signal to draft or improve client proposals, Upwork cover letters, RFP responses, and service agreements.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown proposal drafts, templates, checklists, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes proposal artifacts to workspace/artifacts/ when used as directed by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated proposals may include incorrect financial claims, ROI projections, pricing, or client-specific details.
+
+Mitigation: Review every proposal before sending and verify all claims against user-provided discovery notes, pricing terms, and supporting data.
+
+Risk: Persuasive proposal language may overstate scope, outcomes, or readiness when the user has not completed adequate discovery.
+
+Mitigation: Use the skill after discovery or a strong buying signal, and clearly define exclusions, timeline, and next steps in the proposal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staybased/skills/proposal-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown proposal drafts, outlines, templates, checklists, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposal content should be reviewed before sending, especially financial claims, ROI projections, pricing, and client-specific details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

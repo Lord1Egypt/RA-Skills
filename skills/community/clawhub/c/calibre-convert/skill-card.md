@@ -1,40 +1,58 @@
-## Description: <br>
-Use this skill when the user wants to convert ebook or document files between formats with Calibre, including EPUB to PDF, Markdown to EPUB, MOBI to EPUB, AZW3 to EPUB, HTML to EPUB, DOCX to EPUB, and similar source/target format pairs supported by ebook-convert. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to convert ebook or document files between formats with Calibre, including EPUB to PDF, Markdown to EPUB, MOBI to EPUB, AZW3 to EPUB, HTML to EPUB, DOCX to EPUB, and similar source/target format pairs supported by ebook-convert.
 
-## Publisher: <br>
-[shake](https://clawhub.ai/user/shake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shake](https://clawhub.ai/user/shake)
 
-## Use Case: <br>
-Developers and agents use this skill to convert supported ebook and document files with a local Calibre ebook-convert installation, including common EPUB, PDF, Markdown, MOBI, AZW3, HTML, and DOCX workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The conversion reads the selected source file and writes the selected output path through Calibre, which can overwrite existing files. <br>
-Mitigation: Confirm the source file, destination path, and any extra Calibre options before execution. <br>
-Risk: A missing Calibre ebook-convert binary or unsupported format pair can cause conversion failure. <br>
-Mitigation: Check ebook-convert availability and verify the output file exists before reporting success. <br>
+## Use Case:
 
+Developers, engineers, and content teams use this skill to convert ebook and document files through Calibre's local ebook-convert command. It is suited to direct file-to-file conversions and simple format-specific tuning when users provide the source, output path, and any needed Calibre options.
 
-## Reference(s): <br>
-- [Calibre Convert Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or overwrite a user-selected output file through Calibre.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill runs Calibre's local ebook-convert command on files the user selects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only for intended conversions, and confirm the input and output paths before execution.
+
+Risk: A conversion can create or replace a file at the requested output path.
+
+Mitigation: Avoid sensitive directories and ask the agent to check before overwriting an existing output file.
+
+Risk: Conversion output quality can vary by source structure, target format, and installed Calibre version.
+
+Mitigation: Verify that the output file was created, review meaningful Calibre warnings, and inspect the converted result before relying on it.
+
+## Reference(s):
+
+- [Calibre Convert Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/shake/skills/calibre-convert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown with inline bash commands and conversion result paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create converted files at user-specified output paths when Calibre succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

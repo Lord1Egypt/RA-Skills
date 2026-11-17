@@ -1,41 +1,57 @@
-## Description: <br>
-Converts an HTML file, report, or webpage snapshot to PDF using headless Chrome through Puppeteer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts an HTML file, report, or webpage snapshot to PDF using headless Chrome through Puppeteer.
 
-## Publisher: <br>
-[owenrao](https://clawhub.ai/user/owenrao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[owenrao](https://clawhub.ai/user/owenrao)
 
-## Use Case: <br>
-Developers and agents use this skill to turn local HTML reports or webpage snapshots into single-page poster-style PDFs or paginated A4/Letter documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering untrusted HTML in Chromium can execute page JavaScript and load remote resources during conversion. <br>
-Mitigation: Use a low-privilege isolated environment, block network access for sensitive documents, and review HTML inputs before conversion. <br>
-Risk: The bundled Chromium launch configuration disables sandboxing for Docker and CI compatibility. <br>
-Mitigation: Prefer container or VM isolation, avoid privileged execution, and enable Chromium sandboxing where the runtime supports it. <br>
+## Use Case:
 
+Developers and agents use this skill to export local HTML reports or documents as single-page poster-style PDFs or paginated A4/Letter PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/owenrao/html2pdf) <br>
-- [Publisher profile](https://clawhub.ai/user/owenrao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with command-line examples and bundled JavaScript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a PDF file from an HTML input when the bundled Node.js script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: The skill runs supplied HTML in a headless browser with sandboxing disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run conversions for untrusted or sensitive documents in an isolated, low-privilege environment and avoid the default no-sandbox mode when the environment supports browser sandboxing.
+
+Risk: HTML conversion can contact external services while loading fonts, images, scripts, or other page resources.
+
+Mitigation: Block network access for sensitive inputs and package all required assets locally before conversion.
+
+Risk: Puppeteer and transitive npm dependencies affect the browser execution surface.
+
+Mitigation: Install from the bundled lockfile with npm ci or otherwise pin, review, and update Puppeteer and transitive dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/owenrao/skills/html2pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifact is a PDF file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-page and paginated PDF modes with optional page format, viewport width, wait time, and header/footer settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

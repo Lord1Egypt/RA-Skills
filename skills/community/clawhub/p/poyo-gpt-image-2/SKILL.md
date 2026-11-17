@@ -1,10 +1,16 @@
 ---
 name: poyo-gpt-image-2
 description: GPT Image 2 generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `gpt-image-2`, `gpt-image-2-edit`, text-to-image, multi-image editing with `image_urls`, single-image output, `auto` or aspect-ratio sizes, custom `WIDTHxHEIGHT`, and 1K/2K/4K resolution control.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/image-series/gpt-image-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/gpt-image-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo GPT Image 2 Generation and Editing
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gpt-image-2>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/gpt-image-2>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for GPT Image 2 jobs on PoYo. It covers text-to-image generation, reference-image-guided generation, and multi-image editing payloads for `gpt-image-2` and `gpt-image-2-edit`.
 

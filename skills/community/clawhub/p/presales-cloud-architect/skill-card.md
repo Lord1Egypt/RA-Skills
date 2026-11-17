@@ -1,42 +1,52 @@
-## Description: <br>
-Helps sales teams draft Chinese-language cloud architecture proposal briefs from customer context, public research, and inferred business value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise Chinese cloud architecture proposal briefs for presales teams using customer inputs and public web research.
 
-## Publisher: <br>
-[892577738-bot](https://clawhub.ai/user/892577738-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[892577738-bot](https://clawhub.ai/user/892577738-bot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Presales and solution architecture teams use this skill to turn customer profile, pain points, architecture state, and product focus into an initial digital transformation proposal covering target architecture, migration path, financial model, and POC next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Confidential customer architecture, nonpublic pain points, or sensitive commercial details could be included in prompts or research queries.
+
+Mitigation: Use sanitized customer inputs unless the user is comfortable with the agent using those details while preparing the proposal.
+
+Risk: Public research and inferred TCO, ROI, or SLA claims may be incomplete or misleading if used without review.
+
+Mitigation: Review cited public facts and keep inferred estimates clearly labeled before sharing the proposal with decision makers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales and presales teams use this skill to turn customer inputs into a concise Chinese-language cloud transformation proposal, including industry comparison, target architecture, migration path, economics, and POC next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Customer or confidential information may be entered into a proposal drafting workflow. <br>
-Mitigation: Use only in approved agent environments and avoid confidential customer data unless authorized. <br>
-Risk: Public research, benchmarks, and financial estimates may be inaccurate or outdated. <br>
-Mitigation: Verify web-derived facts, industry comparisons, TCO, and ROI estimates before sharing externally. <br>
-Risk: The template is designed for Chinese-language executive-style output and may not fit every audience. <br>
-Mitigation: Review language, tone, and framing for the target customer before use. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/892577738-bot/presales-cloud-architect) <br>
+**Other Properties Related to Output:** [Requires user-provided customer context; asks the agent to distinguish inferred claims from public facts in the generated proposal.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown proposal brief in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires customer context; marks inferred claims with [推演] and public facts with [公开事实].] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

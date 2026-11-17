@@ -1,40 +1,50 @@
-## Description: <br>
-Validates data quality in pipelines by checking completeness, consistency, freshness, accuracy, and distribution anomalies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates data quality in pipelines by checking completeness, consistency, freshness, accuracy, schema drift, and distribution anomalies, then generates quality reports and expectations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and data engineers use this skill to audit pipeline data, profile datasets, define validation expectations, identify anomalies or schema drift, and generate quality reports for operational review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Data quality reports can expose sensitive values, internal schemas, or business metrics from inspected datasets. <br>
-Mitigation: Point the skill only at approved projects or datasets, prefer masked or sampled data, and review reports before sharing. <br>
-Risk: Generated checks, expectations, or monitoring rules may not match the organization's business rules or freshness SLAs. <br>
-Mitigation: Review generated expectations with data owners and validate thresholds against approved baselines before deployment. <br>
+## Use Case:
 
+Developers, data engineers, and analytics teams use this skill to audit pipeline data, profile datasets, detect anomalies, define data quality expectations, and produce actionable quality reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/data-quality-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline SQL, Python, shell commands, and monitoring configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include data quality scores, dimension scores, data profiles, schema drift reports, freshness dashboards, expectation definitions, monitoring rules, and trend analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Data quality audits may expose sensitive records, identifiers, secrets, customer data, or proprietary fields if raw datasets are provided unredacted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the datasets and paths needed for the audit; redact or mask PII, secrets, tokens, customer identifiers, and proprietary fields where possible, and prefer aggregate summaries or safe sample fields in generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/data-quality-validator)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline code blocks, SQL or Python expectations, monitoring rules, scorecards, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quality scores, dimension scores, critical issues, data profiles, schema drift findings, freshness dashboards, distribution analysis, trend analysis, and recommended next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

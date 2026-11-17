@@ -1,41 +1,49 @@
-## Description: <br>
-Fetches a target webpage and writes a Markdown scraping report with HTTP status, content length, page title, and link count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates web tasks such as form filling, data scraping, testing, scheduling, and monitoring with Selenium or Puppeteer-style browser automation.
 
-## Publisher: <br>
-[larry-at](https://clawhub.ai/user/larry-at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larry-at](https://clawhub.ai/user/larry-at)
 
-## Use Case: <br>
-Developers and operators can use this skill to collect basic status and metadata from webpages they are authorized to access. The implemented artifact is best suited for simple scraping reports rather than full browser automation, scheduling, proxy-pool operation, or notification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises form filling, scheduling, proxy pools, Selenium/Puppeteer, testing, and notifications that are not present in the artifact implementation. <br>
-Mitigation: Treat the release as a basic webpage scraper until the publisher adds matching implementation and safety guidance. <br>
-Risk: Scraping arbitrary URLs can violate site terms, privacy expectations, or authorization boundaries. <br>
-Mitigation: Verify target URLs before use and scrape only sites the operator is authorized to access. <br>
+## Use Case:
 
+Developers and operators use this skill to automate authorized web workflows, including scraping public pages, filling forms, running tests, scheduling checks, and monitoring websites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/larry-at/ai-web-automation-local) <br>
-- [Publisher profile](https://clawhub.ai/user/larry-at) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report written to a local output file, with a console message containing the saved path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided action and URL; the implemented action is scrape.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, _meta.json, and SKILL.md) <br>
+Risk: The skill can fetch arbitrary user-supplied URLs from the agent environment without network safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on authorized public targets, and constrain runtime access with URL allowlists and network egress controls before allowing access to private networks or sensitive endpoints.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/larry-at/skills/ai-web-automation-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown reports and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated web scraping reports to an output directory during local execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

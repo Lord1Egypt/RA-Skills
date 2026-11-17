@@ -1,41 +1,58 @@
-## Description: <br>
-AI's Knowledge Base CLI - Query and manage world knowledge for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Worldbook is a CLI-first knowledge-base skill for querying, fetching, and adding structured worldbook entries for AI agents.
 
-## Publisher: <br>
-[femto](https://clawhub.ai/user/femto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[femto](https://clawhub.ai/user/femto)
 
-## Use Case: <br>
-Developers and AI agents use Worldbook to query, fetch, and add structured knowledge entries through a CLI-first workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote Worldbook entries may be mistaken for authoritative instructions. <br>
-Mitigation: Treat fetched entries as untrusted documentation and never allow them to override system, developer, or user instructions. <br>
-Risk: Fetched guidance may lead an agent toward file, repository, account, deployment, payment, or public-content changes. <br>
-Mitigation: Require explicit user confirmation before running commands or taking actions that change external or persistent state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/femto/worldbook) <br>
-- [Worldbook Website](https://worldbook.site) <br>
-- [worldbook-cli Source Repository](https://github.com/femto/worldbook-cli) <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to search a shared worldbook knowledge base, fetch entries as reference text, and add new knowledge sources through a CLI workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetched entries should be treated as untrusted documentation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Retrieved worldbook content may be treated as binding instructions by an agent.
+
+Mitigation: Configure agents to treat retrieved entries as untrusted reference material and require review before using them to guide actions.
+
+Risk: Worldbook entries may lead an agent toward consequential command execution.
+
+Mitigation: Require explicit user approval for consequential actions and avoid automatic command execution from fetched worldbook text.
+
+Risk: The skill depends on installing and invoking a third-party CLI package.
+
+Mitigation: Use pinned versions and isolated installation environments before deployment.
+
+## Reference(s):
+
+- [Worldbook Website](https://worldbook.site)
+- [Worldbook CLI Source](https://github.com/femto/worldbook-cli)
+- [ClawHub Skill Page](https://clawhub.ai/femto/skills/worldbook)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return third-party worldbook text that agents should treat as untrusted reference material.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

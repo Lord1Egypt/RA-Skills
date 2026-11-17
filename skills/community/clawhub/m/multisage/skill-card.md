@@ -1,43 +1,58 @@
-## Description: <br>
-Query Multisage for synthesized multi-expert answers from Claude, GPT, and Gemini. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Multisage for multi-expert AI answers from Claude, GPT, and Gemini.
 
-## Publisher: <br>
-[waleedkadous](https://clawhub.ai/user/waleedkadous) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[waleedkadous](https://clawhub.ai/user/waleedkadous)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an agent to consult Multisage for multiple AI perspectives, synthesized answers, or deeper research on a prompt. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be sent to Multisage and downstream AI providers. <br>
-Mitigation: Use the skill only with content intended for external processing; avoid secrets, private code, regulated data, or other sensitive material. <br>
-Risk: API key setup may look through local environment files for MULTISAGE_API_KEY. <br>
-Mitigation: Configure the key through deliberate secret handling and avoid printing, copying, or sharing .env file contents. <br>
-Risk: Deep research mode can spend additional credits and run for several minutes. <br>
-Mitigation: Use deep research only when the user explicitly wants a higher-cost, longer-running query, and check or cancel outstanding threads when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Multisage page](https://clawhub.ai/waleedkadous/multisage) <br>
-- [Multisage API key settings](https://multisage.ai/settings) <br>
-- [Multisage pricing](https://multisage.ai/pricing) <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to ask Multisage for synthesized answers from multiple AI providers, including standard consultations and deeper research-style analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional CLI JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Standard queries consume 1 credit; deep research consumes 5 credits, may take 5-25 minutes, and prompts are documented as truncated to 1000 characters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to Multisage and downstream AI providers.
+
+Mitigation: Use the skill only for content that is acceptable to share with those services, and avoid sending secrets, regulated data, or confidential material.
+
+Risk: API key handling examples can expose credentials if an agent searches or prints environment files.
+
+Mitigation: Configure MULTISAGE_API_KEY through a trusted environment mechanism and prevent agents from reading or echoing .env files.
+
+Risk: Global package installation and shell command templates can introduce supply-chain or command-construction risk.
+
+Mitigation: Prefer a pinned local CLI installation and pass untrusted text with safe argument handling.
+
+## Reference(s):
+
+- [Multisage ClawHub Skill Page](https://clawhub.ai/waleedkadous/skills/multisage)
+- [Multisage API Key Settings](https://multisage.ai/settings)
+- [Multisage Pricing](https://multisage.ai/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI can return synthesized answers, expert details, credits used, stage breakdowns, and thread IDs for asynchronous deep research.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

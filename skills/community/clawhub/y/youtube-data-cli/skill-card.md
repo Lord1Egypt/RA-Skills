@@ -1,43 +1,61 @@
-## Description: <br>
-Full YouTube Data API v3 CLI covering search, channels, videos, playlists, comments, subscriptions, captions, thumbnails, activities, channel sections, channel banners, members, memberships levels, watermarks, and related YouTube resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full YouTube Data API v3 CLI covering all 20 resources, including search, channels, videos, playlists, comments, subscriptions, captions, thumbnails, activities, channel sections, banners, members, membership levels, watermarks, and related management workflows.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Developers, creators, and automation agents use this skill to search YouTube data and manage channels, videos, playlists, comments, captions, thumbnails, subscriptions, and related account workflows through the YouTube Data API v3 CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth credentials can allow live YouTube account changes, including uploads, updates, deletes, comments, ratings, subscriptions, moderation, and channel branding changes. <br>
-Mitigation: Prefer read-only API-key use for public searches, use the narrowest OAuth scopes that work, and require explicit confirmation before any write or moderation command. <br>
-Risk: OAuth refresh tokens and API credentials are sensitive and can grant access to private account data or write operations. <br>
-Mitigation: Protect credential files and environment variables, avoid logging secrets, and rotate or revoke tokens if they may have been exposed. <br>
-Risk: A global npm installation could install an unexpected package version. <br>
-Mitigation: Verify and pin the npm package version before global installation. <br>
+## Use Case:
 
+Developers, operators, and creator-support agents use this skill to search YouTube and manage YouTube channels, videos, playlists, comments, subscriptions, captions, thumbnails, banners, and channel settings through the YouTube Data API v3 CLI.
 
-## Reference(s): <br>
-- [youtube-data-cli documentation](https://github.com/Bin-Huang/youtube-data-cli) <br>
-- [YouTube Data API v3](https://developers.google.com/youtube/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may perform live YouTube account reads or writes when OAuth credentials are supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill directs users to install and use an unpinned CLI that handles YouTube API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, inspected, local or isolated install before connecting a real YouTube account.
+
+Risk: OAuth credentials and refresh tokens can grant access to private YouTube data and account-changing operations.
+
+Mitigation: Grant the narrowest OAuth scope needed and protect API keys, client secrets, and refresh tokens in secure storage.
+
+Risk: The documented commands can upload, update, delete, moderate, subscribe, and change channel configuration.
+
+Mitigation: Require explicit confirmation before executing uploads, deletes, moderation changes, subscription changes, or channel configuration changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bin-huang/skills/youtube-data-cli)
+- [youtube-data-cli documentation](https://github.com/Bin-Huang/youtube-data-cli)
+- [YouTube Data API v3](https://developers.google.com/youtube/v3)
+- [YouTube OAuth full-access scope](https://www.googleapis.com/auth/youtube)
+- [YouTube upload OAuth scope](https://www.googleapis.com/auth/youtube.upload)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read public data or change YouTube account resources depending on credentials and OAuth scope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

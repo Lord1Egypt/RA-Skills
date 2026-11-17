@@ -14,6 +14,7 @@ description: UIFlow2 MicroPython coding assistant. Use when writing, debugging, 
 - 如果目录下存在 `_overview.md`，先读 `_overview.md` 了解该模块整体规则，再读具体 API 文件。
 - 不确定路径时先查 `file_tree.txt`，再用 `scripts/find_doc.ps1` 或 `scripts/find_doc.sh` 搜索。
 - 生成代码前检查官方示例里的 import、初始化顺序、主循环和返回值用法。
+- 请求涉及 UI、显示、图形、动画、Canvas、触摸、按钮状态、状态机、传感器数据显示、网络仪表盘、天气或图表时，先用下方的客观条件表判断是否值得读取例程；只有满足一行的全部条件才加载对应示例，不满足时不要为形式消耗上下文。用户点名或要求改造某个例程时直接读取它。
 - 给出代码后附上最小验证方法；不能硬件验证时说明需要在哪块板或哪个 Unit 上验证。
 
 ## 文档定位
@@ -22,43 +23,71 @@ description: UIFlow2 MicroPython coding assistant. Use when writing, debugging, 
 
 不确定时搜索：PowerShell `./scripts/find_doc.ps1 env temperature`；bash `./scripts/find_doc.sh env temperature`。
 
+## 精选 UIFlow2 示例
+
+`assets/examples/` 保存人工精选的例程镜像，入口清单见 `references/complex-examples.md`。每一行是客观的屏幕/UI 体系与功能组合条件，需全部满足才读取；同一功能条件中的多个关键词按“或”理解。未满足条件时跳过示例，避免无效上下文。
+
+- 示例用于复用程序架构、事件组织、刷新策略和资源管理，不替代 `docs/` 的 API 约束。
+- 先按 UI 体系、屏幕分辨率和功能选择示例，再确认目标板卡具备示例使用的 IMU、按键或触摸等硬件；不要无关地复制整个示例。
+- 示例与需求冲突时以用户需求和当前官方文档为准，并明确需要重新硬件验证的部分。
+- 只有经开发者确认适合作为标准参考的示例才会进入该目录；硬件验证状态以清单为准，未标明时不得声称已经过真机测试。
+
+<!-- BEGIN_EXAMPLE_ROUTING -->
+## 示例选择判定
+
+只有当请求满足下表一行的全部客观条件时，才读取对应例程作为结构参考；不满足时不要为了形式加载示例，命中多行时可读取多个。
+每一行的屏幕/UI 体系条件与功能条件需同时满足；同一功能条件中的多个关键词按“或”理解。
+例程用于复用结构、刷新策略、状态管理和资源策略，API 签名与兼容性仍以 `docs/` 为准。
+
+| 客观组合条件（全部满足才读取） | 参考例程 | 例程结构精华 |
+| --- | --- | --- |
+| 目标屏幕为 135 x 240<br>请求包含持续动画、IMU/重力/倾斜、粒子/物理模拟、按钮暂停或重置、离屏 Canvas | [assets/examples/widgets/hourglass_135x240.py](assets/examples/widgets/hourglass_135x240.py) | 固定 4 x 4 网格和 bytearray mask，限制粒子数量与内存<br>IMU 滤波、dead zone 和方向映射，避免画面抖动<br>time.ticks_ms/ticks_diff 帧间隔控制，M5.update 持续运行<br>M5.Lcd.newCanvas 复用整帧后一次 push，按钮回调只置位状态 |
+| 目标屏幕为 135 x 240<br>请求包含天气/网络仪表盘、Wi-Fi、HTTP/HTTPS、周期刷新、缓存或 offline/stale 状态 | [assets/examples/widgets/weather_135x240.py](assets/examples/widgets/weather_135x240.py) | 暗色 token 调色板和 135 x 240 紧凑信息层级<br>M5.Lcd.newCanvas 复用离屏画布，天气图标由基础图元组合<br>先复用 UIFlow2 已联网状态，Wi-Fi/HTTP 有限超时和异常降级<br>15 分钟刷新、Button A 手动刷新、缓存数据标记 offline |
+| 目标屏幕为 320 x 240 且使用 m5ui/LVGL<br>请求包含网络仪表盘、天气、HTTPS、缓存、offline/stale 或触控刷新 | [assets/examples/m5ui/weather_320x240.py](assets/examples/m5ui/weather_320x240.py) | M5Page + M5Canvas + M5Label/M5Button 的 parent=page 组合<br>M5Canvas 使用 RGB565 和 begin_draw/end_draw 批量提交<br>lv.text_get_size 计算数字、单位和右对齐文本位置<br>网络刷新显示 UPDATING/ONLINE/OFFLINE，保留缓存并回收内存 |
+| 目标屏幕为 320 x 240 且使用 m5ui/LVGL<br>请求包含自定义 Canvas 动画、IMU/重力/倾斜、粒子/物理模拟、双 Canvas、触摸暂停或补充 | [assets/examples/m5ui/hourglass_320x240.py](assets/examples/m5ui/hourglass_320x240.py) | M5UI page 下只占中间区域的 RGB565 LVGL Canvas，保留左右触控按钮<br>复用 lv.draw_* descriptor 和 layer，避免每帧创建对象<br>前后两个 Canvas 完整绘制后通过 HIDDEN 切换，避免空白帧<br>物理步数与渲染帧解耦，IMU 滤波后驱动固定网格粒子 |
+
+以下请求通常可以跳过例程：只查一个 API、静态单控件页面，且不涉及交互事件、状态转换、刷新循环、Canvas 或资源策略。
+用户点名某个例程、要求复用/改造已有例程时，直接读取该例程；其余请求按上表客观条件决定。
+<!-- END_EXAMPLE_ROUTING -->
+
 ## 文档文件树
 
 以下文件树随文档同步自动更新；先根据这里定位文件，再读取对应 `docs/...` 原文。
 
 <!-- BEGIN_DOC_TREE -->
 ```text
-docs/  (335 Markdown files, 21 directories; .md suffix omitted)
+docs/  (356 Markdown files, 22 directories; .md suffix omitted)
 Rule: an entry like unit/env means docs/unit/env.md; entries ending in / are directories.
 - root: COPYRIGHT
+  - addon/: display_in, display_out
   - advanced/: camera, code_scanner, dl, image, jpg
     - usb/: _overview
       - device/: keyboard, mouse
   - base/: atom_can, atom_gps, atom_socket, audio35, display, dtu_lorawan, dtu_lorawan_rui3, dtu_nbiot, dtu_nbiot2
            dtu_nbiot2v11, echo, echo_pyramid, gpsv2, hdriver, motion, pwm, qrcode, qrcode2, rs232, rs485, speaker
            stepmotor, tfcard
-  - cap/: lora1262, lora868
-  - chain/: angle, chainbus, encoder, joystick, key, mono, rgb, tof, unit_bus
-  - contribute/: template
-  - controllers/: airq, atoms3-lite, atoms3r_cam, cardputer, coreink, dinmeter, dualkey, nesso-n1, paper, stackchan
-                  stamplc, sticks3, stopwatch
+  - cap/: cc1101, lora1262, lora868
+  - chain/: angle, buzzer, chainbus, encoder, joystick, key, mic, mono, pir, rgb, switch, tof, unit_bus
+  - controllers/: airq, atoms3-lite, atoms3r_cam, cardputer, coreink, corematrix, dinmeter, dualkey, nesso-n1, paper
+                  stackchan, stamplc, sticks3, stopwatch, tab5x, toughc5
   - get-started/: _overview
-  - hardware/: adc, als, button, can, display, imu, ir, lora, mic, pin, pwr485, pwrcan, rotary, scd40, sen55, sht30
-               speaker, touch, uart, wdt
-  - hat/: adc, cardkb, dac, dac2, dlight, env, finger, heart, joyc, joystick, mini_encoder, mini_joy, ncir, neoflash
-          pir, servo, servo8, speaker, speaker2, thermal, tof, vibrator
+  - hardware/: adc, als, button, can, display, i2c, imu, ir, lora, mic, nfc, pin, pwr485, pwrcan, rotary, scd40, sen55
+               sht30, sht4x, speaker, touch, uart, wdt
+  - hat/: adc, cardkb, dac, dac2, dlight, env, finger, hat18650c, heart, joyc, joystick, mini_encoder, mini_joy, ncir
+          neoflash, pir, servo, servo8, speaker, speaker2, thermal, tof, vibrator
   - iot-devices/: _overview, switchc6
   - m5ui/: _overview, arc, bar, button, buttonmatrix, calendar, canvas, chart, checkbox, dropdown, image, keyboard
            label, led, line, list, menu, msgbox, page, roller, scale, slider, spinbox, spinner, switch, table, tabview
            textarea, win
-  - module/: 4in8out, ain4, asr, audio, bala2, cc1101, commu, dc_motor, display, dmx, dualkmeter, ecg, encoder4_motor
-             fan, gateway_h2, gnss, goplus2, gps, gpsv2, grbl, hmi, lan, llm, lora, lora868_v12, lorawan868
-             lorawan_rui3, lte, nbiot, odrive, plus, pm25, pps, pwrcan, qrcode, rca, relay_2, rs232, servo2
-             step_motor_driver, usb, zigbee
+  - module/: 4in8out, ain4, asr, audio, bala2, basex, cc1101, commu, dc_motor, display, dmx, dualkmeter, ecg
+             encoder4_motor, faces_calculator3, faces_gamepad3, faces_keyboard3, fan, gateway_h2, gnss, goplus2, gps
+             gpsv2, grbl, hmi, lan, llm, lora, lora868_v12, lorawan868, lorawan_rui3, lte, module16340, nbiot, odrive
+             plus, pm25, pps, pwrcan, qrcode, rca, relay_2, rs232, servo2, step_motor_driver, usb, zigbee
   - quick-reference/: get-started, usb-mode
   - software/: easysocket, modbus, modbus.rtu.master, modbus.rtu.slave, modbus.tcp.client, modbus.tcp.server
                requests2, tcp.client, tcp.server, udp.client, udp.server, umqtt.default, umqtt
-  - stamplc/: ac, poe
+  - stamp/: uwb
+  - stamplc/: ac, io, poe
   - system/: audio, audio.player, audio.recorder, bleuart.client, bleuart, bleuart.server, m5ble, m5espnow, power
              time, wlan.ap, wlan.sta
   - tab5/: keyboard
@@ -68,7 +97,7 @@ Rule: an entry like unit/env means docs/unit/env.md; entries ending in / are dir
            fader, finger, fingerprint2, flash_light, gateway_h2, glass, glass2, gps_v11, grove2grove, hall_effect
            hbridge, heart, id, imu, imupro, ina226, ir, joystick, joystick2, key, kmeter, kmeter_iso, laser_rx
            laser_tx, lcd, light, limit, lora_e220, lora_e220_433, lorawan_rui3, midi, minioled, miniscale, mq, mqtt
-           mqttpoe, nbiot, nbiot2, ncir, ncir2, neco, nfc, oled, op180, op90, pdm, pir, puzzle, qrcode, rca
+           mqttpoe, nbiot, nbiot2, ncir, ncir2, neco, nfc, oled, op180, op90, pahub, pdm, pir, puzzle, qrcode, rca
            reflective_ir, relay, relay2, relay4, rf433r, rf433t, rfid, rgb, roller485, rollercan, rtc, scales, scroll
            servo180, servo360, servos8, ssr, step16, synth, thermal, timerpwr, tmos, tof, tof4m, tof90, tube_pressure
            tvoc, uhf_rfid, ultrasonic, ultrasonic_io, uwb, vibrator, watering, weight, weight_i2c, zigbee
@@ -81,9 +110,10 @@ Rule: an entry like unit/env means docs/unit/env.md; entries ending in / are dir
 1. 提取需求里的目标板卡、Unit/Module/Base/HAT、UI 组件、通信总线和约束。
 2. 用 `file_tree.txt` 或搜索脚本定位文档；若有 `_overview.md`，先读 overview。
 3. 读取具体 API 文档，确认构造函数、参数、返回值、示例 import 和必要初始化。
-4. 生成代码；优先保持结构简单，避免无用封装。
-5. 自查主循环、资源占用、显示刷新、错误处理和硬件兼容。
-6. 给出验证步骤，例如串口运行、按钮/触摸操作、I2C 地址扫描或屏幕现象。
+4. 请求涉及显示、UI、图形、动画、Canvas、触摸、状态机、传感器数据显示、网络仪表盘、天气或图表时，先用本节的示例选择判定表评估；只有满足一行全部客观条件，或用户点名某个例程时，才读取 `references/complex-examples.md` 和对应示例文件。
+5. 生成代码；优先保持结构简单，避免无用封装。
+6. 自查主循环、资源占用、显示刷新、错误处理和硬件兼容。
+7. 给出验证步骤，例如串口运行、按钮/触摸操作、I2C 地址扫描或屏幕现象。
 
 ## UIFlow2 基础模板
 
@@ -125,6 +155,14 @@ if __name__ == "__main__":
 - Unit/HAT/Module/Base 外设按对应目录文档创建对象，不要把内置硬件当外接 I2C/SPI 设备重新初始化。
 - 遇到 `I2C.scan()` 为空、SDIO 报错、`ETIMEDOUT` 或总线异常时，先判断是否误用了系统占用的总线或目标设备类型。
 - 需要摄像头时先确认目标板支持；不要给非摄像头设备生成 camera 示例。
+
+## 网络连接策略
+
+- UIFlow2 设备通常已由系统使用保存的网络配置完成联网。网络应用先获取 STA 接口并检查 `isconnected()`，已连接时直接复用，不要重复设置 Wi-Fi。
+- 不要在普通网络示例中无条件执行 `disconnect()`、重置网络接口、覆盖系统配置，也不要嵌入或编造 SSID 和密码。
+- 只有确认 `isconnected()` 为假且任务必须联网时，才进入备用连接流程；凭据必须来自用户明确提供的配置。没有凭据时保留离线状态并给出可理解的提示。
+- 备用连接使用有限超时，等待期间继续调用 `M5.update()`；失败后允许重试，但不要在主循环中持续高频重连。
+- 网络请求失败不等于 Wi-Fi 未连接。分别处理未联网、DNS/超时、HTTP 状态错误和响应解析错误；有缓存数据时优先保留并标记为离线数据。
 
 ## m5ui 和 Widgets 规则
 

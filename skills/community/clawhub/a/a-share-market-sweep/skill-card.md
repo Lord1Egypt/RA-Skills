@@ -1,41 +1,54 @@
-## Description: <br>
-Rebuilds the current A-share market session from fresh data by reviewing indices, breadth, turnover, sectors, sentiment, and leading stocks to create a session-scoped market work package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从零抓取 A 股当日盘面，按指数、广度、成交、板块、情绪、领涨股顺序重建临时全市场工作包。
 
-## Publisher: <br>
-[minguncle](https://clawhub.ai/user/minguncle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minguncle](https://clawhub.ai/user/minguncle)
 
-## Use Case: <br>
-External users and market analysts use this skill to reconstruct the current A-share trading session, identify market breadth and sector leadership, and prepare a session-scoped watchlist or trading framework. It is analysis support and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market analysis may be mistaken for financial advice or acted on without independent review. <br>
-Mitigation: Treat outputs as analysis support, verify current data and assumptions, and apply the user's own investment policy before trading. <br>
-Risk: Current-market conclusions can become stale quickly during an active trading session. <br>
-Mitigation: Refresh source data when the user asks about today, now, or just-finished market conditions, and note the timestamp or session phase used. <br>
+## Use Case:
 
+Traders, analysts, and market-review agents use this skill to reconstruct the current A-share session from live market evidence, including indices, breadth, sector strength, leading stocks, risks, and watchlists. It supports intraday review, closing summaries, theme scanning, and preparation for later stock-selection work.
 
-## Reference(s): <br>
-- [Sweep Order](references/sweep-order.md) <br>
-- [ClawHub skill page](https://clawhub.ai/minguncle/a-share-market-sweep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown sections covering conclusion, evidence, temporary market database, trading framework, risk list, and watchlist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on current web or stock-data retrieval when invoked; outputs should be checked against current market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market and trading-framework outputs can become stale or reflect incomplete live data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify timestamps, source data, and current market conditions independently before acting on the output.
+
+Risk: Trading-oriented summaries may be mistaken for personalized financial advice.
+
+Mitigation: Treat the output as informational market analysis and apply independent suitability, risk, and compliance review before making trades.
+
+## Reference(s):
+
+- [Sweep Order](references/sweep-order.md)
+- [ClawHub Skill Page](https://clawhub.ai/minguncle/skills/a-share-market-sweep)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sections covering the market conclusion, key evidence, temporary market database, trading framework, risk list, and watchlist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Time-sensitive market analysis; outputs are informational and require independent verification before trading.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

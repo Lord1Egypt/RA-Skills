@@ -1,47 +1,79 @@
-## Description: <br>
-PSN Assistant helps agents look up PlayStation Store deals, PS Plus games, cross-region prices, game ratings, trophy guides, new releases, PSN service status, and deal reminders from public sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PSN Assistant helps agents answer PlayStation Store deal, PS Plus, cross-region pricing, game rating, trophy guide, release calendar, and PSN status questions using public web sources across 10+ regions.
 
-## Publisher: <br>
-[jundongGit](https://clawhub.ai/user/jundongGit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jundonggit](https://clawhub.ai/user/jundonggit)
 
-## Use Case: <br>
-External PlayStation users and shopping-focused agents use this skill to find current discounts, PS Plus catalog information, regional price comparisons, game ratings, trophy guidance, release calendars, PSN status, and optional deal reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prices, discounts, PS Plus availability, release dates, ratings, and PSN status can change after the skill retrieves public web data. <br>
-Mitigation: Show source links and remind users to verify current details on the official PlayStation Store or status page before purchasing or acting. <br>
-Risk: Cross-region price comparisons may omit account, payment, language, tax, or entitlement constraints. <br>
-Mitigation: State that cross-region purchases require a regional account and advise users to confirm language support, payment requirements, and local terms before buying. <br>
-Risk: Deal reminders may retain selected game and sale metadata in a local watchlist. <br>
-Mitigation: Do not request or store PSN passwords, payment details, or private account data, and remove watchlist entries when reminders are no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to find current PlayStation deals, PS Plus offerings, regional price comparisons, ratings, trophy guidance, release timing, and service status. It is useful for purchase decisions and deal reminders where users understand prices and availability may change.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jundongGit/psn-deals) <br>
-- [PlayStation Blog](https://blog.playstation.com/) <br>
-- [PSDeals](https://psdeals.net/us-store) <br>
-- [PlatPrices](https://platprices.com/) <br>
-- [PSN Service Status](https://status.playstation.com/) <br>
-- [PSNProfiles Trophy Guides](https://psnprofiles.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown tables and concise text responses with links and optional JSON watchlist entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include time-sensitive price, region, sale-end, rating, and status data from public web pages; deal reminders can use a local watchlist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill checks public third-party gaming sites, so returned prices, ratings, availability, and service status can be stale or differ from official checkout pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show source links and remind users to verify final prices, regional availability, and claim windows on PlayStation or the cited source before acting.
+
+Risk: Generic trigger words such as "trophy" or "new release" may activate the skill unexpectedly.
+
+Mitigation: Confirm the user's PlayStation intent before running broader deal, release, trophy, or status workflows when the request is ambiguous.
+
+Risk: User-requested deal reminders can save watched deal details in memory/psn-watchlist.json.
+
+Mitigation: Save watchlist entries only after an explicit reminder request and tell users they can review or delete the watchlist when they no longer want saved reminders.
+
+Risk: Cross-region purchase advice can omit account, language, payment, tax, or policy constraints for a user's situation.
+
+Mitigation: Include regional account caveats and treat converted prices as approximate, with final terms checked against the relevant regional store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jundonggit/skills/psn-deals)
+- [PlayStation Blog](https://blog.playstation.com/)
+- [Push Square PS Plus games](https://www.pushsquare.com/guides/all-ps-plus-games)
+- [PSDeals monthly games](https://psdeals.net/us-store/collection/monthly-games)
+- [PSDeals US store](https://psdeals.net/us-store)
+- [PSDeals Hong Kong store](https://psdeals.net/hk-store)
+- [PSDeals Japan store](https://psdeals.net/jp-store)
+- [PSDeals China store](https://psdeals.net/cn-store)
+- [PlatPrices](https://platprices.com/)
+- [PSNDeals](https://psndeals.com/)
+- [Metacritic games](https://www.metacritic.com/game/)
+- [OpenCritic games](https://opencritic.com/game/)
+- [PlayStation Plus US](https://www.playstation.com/en-us/ps-plus/)
+- [Push Square PS Plus Extra games](https://www.pushsquare.com/guides/all-ps-plus-extra-games)
+- [Push Square PS Plus Premium games](https://www.pushsquare.com/guides/all-ps-plus-premium-games)
+- [Push Square PS5 release dates](https://www.pushsquare.com/games/ps5/release-dates)
+- [PSNProfiles guides](https://psnprofiles.com/guide/)
+- [PlayStationTrophies guides](https://www.playstationtrophies.org/)
+- [PlayStation Network status](https://status.playstation.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with lists, tables, source links, and concise recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include time-sensitive prices, availability windows, regional caveats, and user-requested watchlist reminder details.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

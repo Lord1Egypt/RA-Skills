@@ -1,48 +1,60 @@
-## Description: <br>
-Generates Ezviz camera live and playback streaming links for PC and mobile viewers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates PC and mobile preview links for Ezviz camera live streams and playback recordings.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-External users and developers use this skill to generate live-view and playback URLs for Ezviz cameras when they need remote camera monitoring or quick preview links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private Ezviz camera credentials and can generate camera stream access links. <br>
-Mitigation: Use dedicated minimal-permission Ezviz credentials, avoid master account credentials, and rotate credentials if they are exposed. <br>
-Risk: Secrets or access tokens may be exposed through command history, logs, copied terminal output, or generated preview URLs. <br>
-Mitigation: Prefer environment variables over command-line arguments, avoid sharing run output, and treat generated URLs as sensitive. <br>
-Risk: Token caching may persist access tokens in a shared temporary directory across skill runs. <br>
-Mitigation: Disable caching with EZVIZ_TOKEN_CACHE=0 for sensitive cameras or run the skill in an isolated environment with controlled cache access. <br>
-Risk: Fallback credential lookup may read OpenClaw configuration files that contain unrelated secrets. <br>
-Mitigation: Set explicit Ezviz environment variables and keep Ezviz credentials in dedicated configuration files. <br>
+## Use Case:
 
+External users and developers with Ezviz Open Platform credentials use this skill to generate live and playback preview links for authorized cameras.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Ezviz-Open/ezviz-open-camera-video) <br>
-- [Ezviz Agent API Reference](references/ezviz-agent-api.md) <br>
-- [Ezviz Open Platform](https://open.ys7.com/) <br>
-- [Ezviz API Documentation](https://openai.ys7.com/doc/) <br>
-- [Token API Documentation](https://openai.ys7.com/help/81) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style terminal guidance with generated PC and mobile live/playback URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EZVIZ_APP_KEY and EZVIZ_APP_SECRET; EZVIZ_DEVICE_SERIAL and EZVIZ_CHANNEL_NO are optional inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated preview URLs and debug output can expose reusable camera access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated preview URLs as secrets, remove or gate token debug printing before use, and avoid sharing logs that contain links.
+
+Risk: The default token cache is stored in a shared temp directory and can persist camera access tokens.
+
+Mitigation: Disable caching with EZVIZ_TOKEN_CACHE=0 or run the skill under an isolated user or container when camera privacy matters.
+
+Risk: Credentials may be supplied through command-line arguments or fallback config files, increasing accidental exposure.
+
+Mitigation: Prefer environment variables, keep Ezviz credentials in isolated config files, remove hardcoded example credentials, and rotate any credentials that may have been real.
+
+## Reference(s):
+
+- [Ezviz Agent API Reference](artifact/references/ezviz-agent-api.md)
+- [Ezviz Open Platform API Documentation](https://openai.ys7.com/doc/)
+- [Ezviz Token API Documentation](https://openai.ys7.com/help/81)
+- [ClawHub Skill Page](https://clawhub.ai/ezviz-open/skills/ezviz-open-camera-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal text with shell commands, configuration snippets, and generated preview URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ezviz credentials and an authorized device serial; generated preview URLs contain bearer tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL.md lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

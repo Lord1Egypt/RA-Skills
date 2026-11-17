@@ -15,11 +15,9 @@
     }
   ],
   "controls": {
-    "tiktokPrivacy": "PUBLIC",
     "tiktokAllowComments": true,
     "tiktokAllowDuet": false,
     "tiktokAllowStitch": false,
-    "tiktokBrandContent": false,
-    "tiktokAutoAddMusic": true
+    "tiktokBrandContent": false
   }
 }

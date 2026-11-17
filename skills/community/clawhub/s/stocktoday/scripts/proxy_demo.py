@@ -21,11 +21,68 @@ import sys
 import tushare as ts
 import pandas as pd
 
-# === 4 个 fallback gateway (主站挂了自动切) ===
+# === 网关地址 ===
 DEFAULT_GATEWAY = "https://tushare.citydata.club/"
-BACKUP_GATEWAY_1 = "http://111.229.164.2:8083/"
-BACKUP_GATEWAY_2 = "http://124.223.112.152:6331/"
-BACKUP_GATEWAY_3 = "http://110.42.211.9:9900/"
+
+# 允许的自定义网关主机 (防止 token 被导向任意第三方服务器)
+ALLOWED_GATEWAY_HOSTS = ("tushare.citydata.club",)
+
+# 备用直连地址**不随本包分发**: 需要时由使用者通过 TUSHARE_GATEWAY_BACKUP2 自备,
+# 并显式设置 TUSHARE_GATEWAY_ALLOW_INSECURE=1 放行明文 HTTP (token 与数据不加密, 仅应急).
+# 之所以不内置明文地址: 明文 HTTP 会让 API token 与金融数据在链路上裸奔
+# (被动窃听 / 中间人篡改), 属于高危配置, 不应由技能包默认分发.
+
+
+def _validate_gateway(gateway: str) -> str:
+    """
+    校验自定义网关地址.
+
+    规则:
+      1. 必须是 https:// (明文 HTTP 会泄露 API token 与金融数据)
+         —— 唯一例外: 本地调试 (127.0.0.1 / localhost), 以及使用者显式设置
+         TUSHARE_GATEWAY_ALLOW_INSECURE=1 后的自备明文备用地址
+      2. 主机名必须在 ALLOWED_GATEWAY_HOSTS 白名单内 (防止 token 被导向攻击者服务器)
+    """
+    from urllib.parse import urlparse
+    g = (gateway or "").strip()
+    if not g:
+        raise ValueError("gateway 不能为空")
+    p = urlparse(g)
+    host = (p.hostname or "").lower()
+    if p.scheme == "http" and host in ("127.0.0.1", "localhost"):
+        return g
+    if p.scheme == "http":
+        allow = os.getenv("TUSHARE_GATEWAY_ALLOW_INSECURE", "").strip().lower()
+        if allow in ("1", "true", "yes"):
+            # 使用者显式承担风险的明文备用地址
+            return g
+        raise ValueError(
+            "gateway 必须是 https:// (明文 HTTP 会泄露 API token); "
+            "如确需自备明文备用地址, 请显式设置 TUSHARE_GATEWAY_ALLOW_INSECURE=1")
+    if host not in ALLOWED_GATEWAY_HOSTS:
+        raise ValueError(
+            "gateway 主机不在白名单 %s 内; 当前收到: %r" % (ALLOWED_GATEWAY_HOSTS, host))
+    return g
+
+
+def enable_utf8_stdout() -> None:
+    """
+    强制 stdout 用 UTF-8 输出.
+
+    Windows 默认控制台编码是 GBK (cp936), 打印 emoji (✅/📊/⚠️) 会抛
+    UnicodeEncodeError 直接崩掉整个 demo. 这里统一兜底.
+
+    对已经被设置为 UTF-8 的终端 (PYTHONIOENCODING=utf-8 / Windows Terminal)
+    以及不支持 reconfigure 的流 (被重定向到 StringIO 等) 都安全.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass
 
 
 def get_client(token: str = None, gateway: str = None) -> "ts.pro_api":
@@ -33,9 +90,11 @@ def get_client(token: str = None, gateway: str = None) -> "ts.pro_api":
     获取走 StockToday gateway 的 tushare pro client
 
     优先顺序: 参数 > TUSHARE_TOKEN env > TUSHARE_GATEWAY env > 默认 gateway
+    自定义 gateway 会被 _validate_gateway 校验 (仅 https + 主机白名单)
     """
     token = token or os.getenv("TUSHARE_TOKEN") or "your_token_here"
-    gateway = gateway or os.getenv("TUSHARE_GATEWAY") or DEFAULT_GATEWAY
+    gateway = _validate_gateway(
+        gateway or os.getenv("TUSHARE_GATEWAY") or DEFAULT_GATEWAY)
 
     pro = ts.pro_api(token)
     # 指向 stocktoday gateway
@@ -88,8 +147,10 @@ def demo_moneyflow(pro: "ts.pro_api") -> None:
 
 def demo_sector(pro: "ts.pro_api") -> None:
     """Demo 5: 板块行情 (同花顺概念)"""
-    df = pro.ths_index(ts_code="881101", exchange="A", type="N")  # 半导体
-    print_section("Demo 5: 半导体板块 ths_index 列表", df.head(10))
+    # 参数取值见 references/数据接口.md 的 ths_index:
+    #   exchange = "A" (a股) / "HK" (港股) / "US" (美股), type = "N" 概念指数
+    df = pro.ths_index(exchange="A", type="N")
+    print_section("Demo 5: 同花顺概念指数列表 (exchange=A, type=N)", df.head(10))
 
 
 # ============================================================
@@ -97,9 +158,11 @@ def demo_sector(pro: "ts.pro_api") -> None:
 # ============================================================
 
 if __name__ == "__main__":
+    enable_utf8_stdout()
     pro = get_client()
     print(f"✅ StockToday client 已初始化, gateway: {pro._DataApi__http_url}")
-    print(f"   token: {pro._DataApi__token[:6]}***")
+    # 不打印 token 的任何片段 (避免 token 前缀进日志/agent 上下文)
+    print("   token: 已从 TUSHARE_TOKEN 环境变量读取 (不打印内容)")
 
     try:
         demo_quote(pro)

@@ -1,40 +1,52 @@
-## Description: <br>
-A Chinese-language learning workflow that helps users understand a new concept through five concise perspectives: prior-knowledge crossover, depth scoping, knowledge mapping, minimal prototyping, and Feynman-style checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Deep helps users understand a new concept through five concise perspectives: prior-knowledge crossover, depth scoping, knowledge mapping, minimal prototyping, and Feynman-style self-checks.
 
-## Publisher: <br>
-[li-evan](https://clawhub.ai/user/li-evan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[li-evan](https://clawhub.ai/user/li-evan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and learners use this skill as a default deep-learning entry point when they want to understand a new concept, technology, or theory. It asks for confirmed background knowledge, gives a compact multi-perspective explanation, and recommends one or two follow-up directions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to handle many Chinese concept-learning prompts, which may be too broad when a user wants only one learning angle.
+
+Mitigation: Install or invoke it when the multi-perspective default is desired; route explicit single-angle requests to the corresponding learn-crossover, learn-occam, learn-graph, learn-prototype, or learn-feynman skill.
+
+Risk: Concept explanations can become misleading if they assume prior knowledge the user has not confirmed.
+
+Mitigation: Ask the user about relevant background first and only use knowledge the user has explicitly confirmed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and employees use this skill as a structured entry point for learning unfamiliar concepts, technologies, or theories in Chinese. It gathers confirmed prior knowledge, gives a concise five-part learning pass, then recommends one or two follow-up learning directions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The broad routing may activate for simple concept questions where the user expected a concise direct answer. <br>
-Mitigation: Use narrower routing or an explicit language and depth policy when deploying the skill. <br>
-Risk: The workflow depends on the user's confirmed background and can produce weak analogies if prior knowledge is assumed. <br>
-Mitigation: Require the agent to ask for clarification when the user's background is unknown and to use only confirmed prior knowledge. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/li-evan/learn-deep) <br>
+**Other Properties Related to Output:** [Structured concept-learning guidance with five perspectives and recommended follow-up directions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured sections and follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language instructional output; may ask for the user's background before giving the learning pass.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

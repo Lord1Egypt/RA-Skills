@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 
 
-MIN_PYTHON = (3, 9)
+MIN_PYTHON = (3, 11)
 HTTP_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"

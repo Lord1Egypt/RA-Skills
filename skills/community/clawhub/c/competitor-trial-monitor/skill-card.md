@@ -1,43 +1,54 @@
-## Description: <br>
-Monitor competitor clinical trial progress and alert on market risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor competitor clinical trial progress and alert on market risks.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Pharma, competitive intelligence, and clinical development users use this skill to maintain a local watchlist of competitor clinical trials, scan ClinicalTrials.gov for updates, and generate risk reports for events such as completion, result publication, or approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script saves monitored trial IDs, company and drug labels, snapshots, and alert history in the user's home directory. <br>
-Mitigation: Review the local ~/.openclaw/competitor-trial-monitor data before use and avoid adding confidential or restricted trial intelligence unless local storage is acceptable. <br>
-Risk: Scan and add operations send NCT IDs to ClinicalTrials.gov. <br>
-Mitigation: Use only NCT IDs that can be shared with the external registry service and run scans from an approved network environment. <br>
-Risk: The artifact lists an extra pip install command even though the prerequisites section says no additional Python packages are required. <br>
-Mitigation: Review the dependency command before installation and install only packages required for the chosen execution path. <br>
+## Use Case:
 
+External developers and pharma competitive intelligence teams use this skill to maintain a watchlist of clinical trials, scan for status changes, and generate risk reports about competitor trial milestones.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/competitor-trial-monitor) <br>
-- [ClinicalTrials.gov API v2 studies endpoint](https://clinicaltrials.gov/api/v2/studies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script stores watchlist, snapshot, alert, and configuration files under ~/.openclaw/competitor-trial-monitor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The release security summary flags contradictory dependency guidance and unnecessary unpinned pip install instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use; avoid installing the documented packages unless the publisher pins real dependencies or confirms no external packages are required.
+
+Risk: The skill sends queried NCT IDs to ClinicalTrials.gov and stores watchlists and alert history in the user's home directory.
+
+Mitigation: Use only trial identifiers appropriate for external registry queries and review local files under ~/.openclaw/competitor-trial-monitor before sharing or retaining outputs.
+
+## Reference(s):
+
+- [Competitor Trial Monitor on ClawHub](https://clawhub.ai/aipoch-ai/skills/competitor-trial-monitor)
+- [ClinicalTrials.gov API](https://clinicaltrials.gov/api/v2/studies)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output, JSON files, and Markdown-style reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores watchlists, historical snapshots, alerts, and configuration under ~/.openclaw/competitor-trial-monitor.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

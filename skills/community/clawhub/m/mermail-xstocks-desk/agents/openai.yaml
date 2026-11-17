@@ -1,0 +1,11 @@
+interface:
+  display_name: "Mermail xStocks Desk"
+  short_description: "Recommend or buy verified xStocks through Mermail"
+  default_prompt: "Use $mermail-xstocks-desk to recommend evidence-backed products from the fixed published catalog or resolve one user-selected product. Keep recommendation-only requests read-only. For an explicit exact-product purchase, prepare one USDC-to-xStock swap with the standard Mermail Agent Wallet, let PayBox handle review and signing, and reconcile only the same provider request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

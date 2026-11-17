@@ -1,43 +1,58 @@
-## Description: <br>
-Safe, intelligent Docker container management for fleet status, lifecycle operations, cleanup, Compose stacks, troubleshooting, and security hardening with READ, RISKY, and DESTRUCTIVE command gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe, intelligent Docker container management for fleet status, lifecycle operations, cleanup, compose stacks, troubleshooting, and security hardening with risk-level classification.
 
-## Publisher: <br>
-[wahajahmed010](https://clawhub.ai/user/wahajahmed010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahajahmed010](https://clawhub.ai/user/wahajahmed010)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Docker fleets, plan container lifecycle actions, manage cleanup and Compose workflows, and troubleshoot Docker issues while preserving explicit approval gates for risky or destructive commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad persistent changes to containers or host Docker configuration may affect more services than intended. <br>
-Mitigation: Require the agent to list affected containers and obtain explicit approval before package installs, restart-policy changes, cleanup, daemon.json edits, Compose down actions, or monitoring jobs. <br>
-Risk: Cleanup and volume operations can remove data or disrupt running services. <br>
-Mitigation: Audit current Docker state first, show the exact impact, inspect volumes before removal, and require explicit confirmation before destructive commands. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Docker fleets, plan container lifecycle changes, manage cleanup, compose stacks, logs, health checks, and troubleshoot Docker runtime issues while classifying proposed commands by operational risk.
 
-## Reference(s): <br>
-- [Docker Pilot on ClawHub](https://clawhub.ai/wahajahmed010/docker-pilot) <br>
-- [Publisher Profile](https://clawhub.ai/user/wahajahmed010) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [services.yaml](artifact/services.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Docker actions are classified as READ, RISKY, or DESTRUCTIVE and should include impact summaries and confirmations before state-changing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Unsafe Docker daemon exposure could occur if the tcp://0.0.0.0:2375 daemon advice is followed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use that daemon configuration; keep Docker access on protected local sockets or explicitly secured endpoints.
+
+Risk: First-run setup items may install packages, change daemon.json, alter restart policies, prune Docker resources, or add monitoring jobs.
+
+Mitigation: Treat each first-run item as a separate proposal and require explicit approval before making any host-level or persistent change.
+
+Risk: Cleanup and volume-prune guidance can remove containers, images, networks, or data.
+
+Mitigation: Show the exact affected resources and expected impact before cleanup, and require confirmation for risky or destructive Docker commands.
+
+## Reference(s):
+
+- [Docker Pilot ClawHub Skill Page](https://clawhub.ai/wahajahmed010/skills/docker-pilot)
+- [wahajahmed010 ClawHub Publisher Profile](https://clawhub.ai/user/wahajahmed010)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and YAML or JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker CLI access; outputs should present Docker host changes as proposals requiring explicit user approval for risky or destructive operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

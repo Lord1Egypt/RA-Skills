@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  HR-XML 3 elements as used by the Europass Candidate document (namespace http://www.hr-xml.org/3).
+
+  This is NOT the HR Open Standards schema: it is the subset of element names the Europass
+  editor writes and reads, with the content observed in real exports. See docs/format.md.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:hr="http://www.hr-xml.org/3"
+           targetNamespace="http://www.hr-xml.org/3"
+           elementFormDefault="qualified">
+
+  <xs:simpleType name="FormattedDateType">
+    <xs:annotation><xs:documentation>YYYY, YYYY-MM or YYYY-MM-DD. The editor keeps the precision (year, month, day).</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{4}(-\d{2}(-\d{2})?)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="IdentifierType">
+    <xs:annotation><xs:documentation>Scheme-qualified identifier. The editor writes schemeAgencyName="EUROPASS"; the value may be empty.</xs:documentation></xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="schemeID" type="xs:string"/>
+        <xs:attribute name="schemeName" type="xs:string"/>
+        <xs:attribute name="schemeAgencyName" type="xs:string"/>
+        <xs:attribute name="schemeVersionID" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:element name="DocumentID" type="hr:IdentifierType"/>
+  <xs:element name="PartyID" type="hr:IdentifierType"/>
+  <xs:element name="ID" type="hr:IdentifierType"/>
+
+  <xs:element name="PartyName" type="xs:string"/>
+  <xs:element name="PrecedenceCode" type="xs:string"/>
+  <xs:element name="FamilyName" type="xs:string"/>
+  <xs:element name="BirthDate" type="hr:FormattedDateType"/>
+  <xs:element name="ExecutiveSummary" type="xs:string">
+    <xs:annotation><xs:documentation>The "about me" text. HTML (p, strong, ul, li, br) stored escaped inside the text node.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="OrganizationName" type="xs:string"/>
+  <xs:element name="IndustryCode" type="xs:string">
+    <xs:annotation><xs:documentation>NACE top-level section letter (A to U). See docs/codifications.md.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="FormattedDateTime" type="hr:FormattedDateType"/>
+  <xs:element name="CurrentIndicator" type="xs:boolean"/>
+  <xs:element name="DegreeName" type="xs:string"/>
+  <xs:element name="ScoreText" type="xs:string">
+    <xs:annotation><xs:documentation>A CEFR level (A1 to C2) under eures:Score; free text under FinalGrade.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="TaxonomyID" type="xs:string">
+    <xs:annotation><xs:documentation>"language" for language competencies, "Digital_Skill" for digital skills.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="CompetencyDimensionTypeCode" type="xs:string">
+    <xs:annotation><xs:documentation>CEF-Understanding-Listening, CEF-Understanding-Reading, CEF-Speaking-Interaction, CEF-Speaking-Production, CEF-Writing-Production.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="CompetencyName" type="xs:string"/>
+  <xs:element name="LicenseTypeCode" type="xs:string">
+    <xs:annotation><xs:documentation>Driving licence category: AM, A1, A2, A, B1, B, BE, C1, C1E, C, CE, D1, D1E, D, DE. Other text imports but the editor expects a category.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="Instructions" type="xs:string">
+    <xs:annotation><xs:documentation>"ProfilePicture" on the photo attachment.</xs:documentation></xs:annotation>
+  </xs:element>
+  <xs:element name="FormattedPublicationDescription" type="xs:string"/>
+</xs:schema>

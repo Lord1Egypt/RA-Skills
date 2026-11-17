@@ -1,41 +1,53 @@
-## Description: <br>
-Provides infant growth chart logging, early education interactions, daycare policy lookup, and vaccine reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides infant growth tracking, early-education activity, daycare policy query, and vaccination reminder guidance.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users may use this skill to ask an agent for childcare-related tracking, early education, daycare policy, and vaccine reminder guidance. The artifact should be reviewed before use because its body also describes education and exam-course workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advertised for childcare, but its body mostly describes education and exam-course workflows. <br>
-Mitigation: Review and align the skill body with the childcare scope before installation or user-facing use. <br>
-Risk: Parenting, vaccine reminder, daycare policy, and infant-growth guidance can affect health, safety, or compliance decisions. <br>
-Mitigation: Require human review and authoritative local medical or policy sources before acting on outputs. <br>
+## Use Case:
 
+External users can ask an agent for childcare-related tracking, reminder, and policy-query guidance. Review responses before relying on them because the artifact body also contains course-selection and exam-prep behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/childcare) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no executable code or credential access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release is labeled as childcare while the artifact instructions include course-shopping and exam-prep behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the skill description or instructions before users rely on it for childcare tasks.
+
+Risk: The scanner verdict is suspicious because of the listing-to-behavior mismatch, though it did not identify malicious execution behavior.
+
+Mitigation: Install only after confirming the intended use and keep agent responses scoped to verified childcare content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/childcare)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

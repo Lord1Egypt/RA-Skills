@@ -1,0 +1,13 @@
+{
+  "_comment": "招商助手 IMA 知识库配置示例。复制到 ~/.workbuddy/config/industrial-park-investment-assistant/ima_kb_config.json 并填入真实 kb_id。真实 kb_id 仅存本机，不写入 skill 包。",
+  "primary_kb": {
+    "name": "主知识库",
+    "kb_id": "YOUR_PRIMARY_KB_ID",
+    "maintainer": ""
+  },
+  "secondary_kb": {
+    "name": "补充知识库",
+    "kb_id": "YOUR_SECONDARY_KB_ID",
+    "maintainer": ""
+  }
+}

@@ -1,42 +1,60 @@
-## Description: <br>
-Recommends curated image-generation prompts from a 10,000+ prompt library for multiple text-to-image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends curated, model-agnostic image generation prompts with sample images from a 10,000+ prompt library.
 
-## Publisher: <br>
-[DophinL](https://clawhub.ai/user/DophinL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-Developers, creators, and marketing teams use this skill to find relevant image-prompt templates with sample images and to remix selected prompts for content illustration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically updates local reference files from unpinned remote GitHub data. <br>
-Mitigation: Install only after trusting the publisher and repository, and prefer a pinned or admin-approved update flow. <br>
-Risk: The skill may process user-provided articles, scripts, or notes and download sample media from external sources. <br>
-Mitigation: Avoid pasting confidential content until privacy handling is documented and external downloads are constrained. <br>
+## Use Case:
 
+External users, content creators, and developers use this skill to find image prompt templates for portraits, product imagery, social media, posters, articles, videos, podcasts, and marketing content. The skill can recommend existing prompt examples and help customize a selected template for the user's content.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/DophinL/ai-image-prompts) <br>
-- [YouMind prompt gallery](https://youmind.com/nano-banana-pro-prompts?utm_source=ai-image-prompts) <br>
-- [Prompt reference data](https://github.com/YouMind-OpenLab/ai-image-prompts-skill/tree/main/references) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with prompt previews, image links or attachments, and optional shell commands for reference setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are limited to at most three prompts and should include sample images when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata and package.json) <br>
+Risk: The skill can contact GitHub and YouMind, update local reference files, and download preview images from remote URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where those network calls and local reference updates are acceptable; stricter deployments should review or disable auto-update and media-download behavior.
+
+Risk: Reference prompt data is mutable and may change after installation.
+
+Mitigation: Pin or verify the reference data source before use in controlled environments, and refresh only through reviewed update procedures.
+
+Risk: Prompt recommendations may be incorrect, stale, or unsuitable for a user's image generation policy requirements.
+
+Mitigation: Review generated recommendations and sample-image links before use, especially for brand, safety, legal, or regulated content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dophinl/skills/ai-image-prompts)
+- [Prompt Gallery](https://youmind.com/nano-banana-pro-prompts)
+- [Reference Data Source](https://github.com/YouMind-OpenLab/ai-image-prompts-skill/tree/main/references)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with prompt previews, links, sample image references, and inline shell commands when setup or media download steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are normally limited to up to three prompt templates, with English prompt content and user-language explanations.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

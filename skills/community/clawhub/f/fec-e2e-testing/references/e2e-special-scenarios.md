@@ -1,11 +1,11 @@
-# E2E 特殊场景
+#E2E Special Scenario
 
-## Web3 / 钱包注入（Playwright）
+## Web3/Wallet Injection (Playwright)
 
-在 **`page.goto` 之前**通过 `context.addInitScript` 注入 mock，避免依赖真实插件：
+Inject mock through `context.addInitScript` before **`page.goto` to avoid relying on real plugins:
 
 ```typescript
-test("连接钱包", async ({ page, context }) => {
+test("Connect wallet", async ({ page, context }) => {
   await context.addInitScript(() => {
     (window as unknown as { ethereum?: unknown }).ethereum = {
       isMetaMask: true,
@@ -24,16 +24,16 @@ test("连接钱包", async ({ page, context }) => {
 });
 ```
 
-链 ID、账户列表与业务契约保持一致即可。
+Just keep the chain ID, account list and business contract consistent.
 
-## 金融或高风险操作
+## Financial or high-risk operations
 
-- **禁止**在真实生产环境执行真实资金操作；使用 **staging、mock 或 `test.skip`**。
-- 断言**预览金额、成功态**与**关键接口 200** 后再结束用例，超时给足（如链上确认场景）。
+- **It is prohibited** to perform real fund operations in a real production environment; use **staging, mock or `test.skip`**.
+- Assert **preview amount**, success status** and **key interface 200** before ending the use case, with sufficient timeout (such as on-chain confirmation scenario).
 
 ```typescript
-test("下单预览与成功态", async ({ page }) => {
-  test.skip(process.env.NODE_ENV === "production", "生产环境跳过真实交易");
+test("Order preview and success status", async ({ page }) => {
+  test.skip(process.env.NODE_ENV === "production", "The production environment skips real transactions");
 
   await page.goto("/markets/demo");
   await page.getByTestId("position-yes").click();

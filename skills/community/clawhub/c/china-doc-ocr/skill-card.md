@@ -1,46 +1,61 @@
-## Description: <br>
-Recognizes complex documents, PDFs, scanned images, photos, invoices, receipts, ID cards, tables, and charts, then converts the extracted content to text, Markdown, or structured output using SiliconFlow OCR-capable models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Doc OCR helps agents recognize and structure content from documents, PDFs, scanned images, photos, invoices, receipts, ID cards, tables, and charts using SiliconFlow-hosted OCR models.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, operators, and document-processing users use this skill to OCR Chinese and bilingual business documents, invoices, certificates, tables, charts, screenshots, and PDFs into readable Markdown or structured fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents, URLs, and prompts are sent to SiliconFlow for OCR processing. <br>
-Mitigation: Use the skill only with documents allowed by the user's data policy and avoid highly confidential, regulated, or third-party documents unless SiliconFlow is approved for that use. <br>
-Risk: OCR outputs and temporary files may persist in the workspace after processing. <br>
-Mitigation: Delete saved OCR outputs and temporary workspace files after handling sensitive documents. <br>
-Risk: The skill requires a SiliconFlow API key and may consume quota or incur billing. <br>
-Mitigation: Use a limited API key where possible and monitor quota, billing, and request volume. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to convert Chinese and mixed-language document images, PDFs, invoices, IDs, tables, and charts into editable text, Markdown, or structured extraction results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/china-doc-ocr) <br>
-- [Model selection reference](references/models.md) <br>
-- [OCR prompt templates](references/prompts.md) <br>
-- [SiliconFlow API endpoint](https://api.siliconflow.cn/v1/chat/completions) <br>
-- [SiliconFlow API key portal](https://cloud.siliconflow.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, plain text, structured field summaries, or CSV-friendly tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save OCR results in the workspace; the OCR script defaults to high-detail image input and a 4096 token response cap unless changed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends documents to a third-party OCR API, which can expose sensitive personal, financial, legal, or regulated business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for documents the user is permitted to upload, and redact or avoid IDs, bank statements, contracts, invoices, and regulated records unless upload is approved.
+
+Risk: OCR results and temporary outputs may remain in the workspace after processing.
+
+Mitigation: Delete retained workspace outputs and temporary files when the task is finished, especially after handling private documents.
+
+Risk: The skill requires a SiliconFlow API key for network calls.
+
+Mitigation: Keep the API key in the environment, avoid pasting it into prompts or files, and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-doc-ocr)
+- [Model selection reference](references/models.md)
+- [OCR prompt templates](references/prompts.md)
+- [SiliconFlow API endpoint](https://api.siliconflow.cn/v1/chat/completions)
+- [SiliconFlow console](https://cloud.siliconflow.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, structured text, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save OCR results in the workspace; the helper supports image, PDF, or URL input and defaults to 4096 response tokens.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Safely install, uninstall, reinstall, or upgrade the Bamdra OpenClaw memory suite when stale config, existing plugin directories, or partial installs block normal OpenClaw plugin installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely install, uninstall, reinstall, or upgrade the Bamdra OpenClaw memory suite when stale config, existing plugin directories, or partial installs break normal `openclaw plugins install` flows.
 
-## Publisher: <br>
-[bamdra](https://clawhub.ai/user/bamdra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bamdra](https://clawhub.ai/user/bamdra)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to safely install, repair, upgrade, or uninstall the Bamdra memory suite when normal plugin installation is blocked by stale configuration, existing plugin directories, or partial installs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can change OpenClaw plugin configuration and move existing Bamdra plugin or skill directories.
+
+Mitigation: Install only when that lifecycle operation is intended, and review the backup path printed by the script after execution.
+
+Risk: Custom `--package` or `--openclaw-home` values control which package is installed and which OpenClaw home is modified.
+
+Mitigation: Confirm those flag values before execution, especially when targeting a non-default OpenClaw home or a specific package version.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to repair blocked Bamdra memory suite installs, perform upgrades or uninstalls, and preserve OpenClaw configuration integrity through backups. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes OpenClaw configuration and moves Bamdra plugin or skill directories during lifecycle operations. <br>
-Mitigation: Confirm the OpenClaw home path and package spec before execution, then keep the generated backup directory until OpenClaw starts and the memory suite works. <br>
-Risk: Using the wrong package version or target path can repair or uninstall the wrong Bamdra memory suite installation. <br>
-Mitigation: Use the default package only when appropriate, pass an explicit package spec for pinned upgrades, and verify any custom OpenClaw home before running the script. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bamdra/bamdra-memory-upgrade-operator) <br>
-- [Publisher profile](https://clawhub.ai/user/bamdra) <br>
+**Other Properties Related to Output:** [Includes backup-location reporting and restart guidance after install or upgrade operations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports backup locations and restart guidance after install, upgrade, or uninstall operations.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

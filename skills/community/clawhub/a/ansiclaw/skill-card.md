@@ -1,43 +1,59 @@
-## Description: <br>
-Draws BBS compatible ANSI art via the Clawbius API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draws BBS compatible ANSI art via the Clawbius API.
 
-## Publisher: <br>
-[n2tr0n](https://clawhub.ai/user/n2tr0n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[n2tr0n](https://clawhub.ai/user/n2tr0n)
 
-## Use Case: <br>
-Artists, developers, and agent operators use ANSIClaw to generate BBS-compatible ANSI art through a local Clawbius canvas API, including image-inspired renditions and scripted ANSI scenes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify the active Clawbius canvas and save generated ANSI or PNG files. <br>
-Mitigation: Confirm the intended canvas and output path before running drawing scripts, and use versioned filenames to avoid overwriting existing work. <br>
-Risk: Reference art or private input images may be processed by the agent during ANSI rendition work. <br>
-Mitigation: Use only images and reference files that are appropriate for local agent processing, especially when handling private or regulated content. <br>
-Risk: Opening reference ANSI files in Clawbius makes them the active canvas. <br>
-Mitigation: Analyze reference files read-only, then create a fresh canvas before drawing so reference material is not modified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawbius API Reference](references/api.md) <br>
-- [Clawbius Project](https://github.com/n2tr0n/clawbius) <br>
-- [ANSIClaw ClawHub Page](https://clawhub.ai/n2tr0n/ansiclaw) <br>
+## Use Case:
 
+Developers, artists, and external users use ANSIClaw to create BBS-compatible ANSI artwork by scripting against a local Clawbius API, including image-inspired ANSI renditions when explicitly requested.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and local API call instructions; generated art is saved as ANS and PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Clawbius API on 127.0.0.1:7777 and writes versioned ANSI art output files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled scripts can write fixed output filenames under Desktop or Documents, which may overwrite prior ANSI or PNG files.
+
+Mitigation: Confirm output paths before running and change scripts to save into the skill output folder with versioned filenames.
+
+Risk: Opening reference ANSI files in Clawbius makes them the active canvas, so subsequent draw calls could alter source material.
+
+Mitigation: Analyze reference files read-only and immediately create a new canvas before drawing.
+
+Risk: The skill depends on a local Clawbius API, and stale endpoint assumptions can cause failed or unintended operations.
+
+Mitigation: Confirm the local service is running and refresh the OpenAPI document at session start.
+
+## Reference(s):
+
+- [ClawHub ANSIClaw skill page](https://clawhub.ai/n2tr0n/skills/ansiclaw)
+- [n2tr0n publisher profile](https://clawhub.ai/user/n2tr0n)
+- [Clawbius API Reference](references/api.md)
+- [Clawbius dependency](https://github.com/n2tr0n/clawbius)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; generated ANSI and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local Clawbius service on 127.0.0.1:7777; generated example scripts may save fixed filenames unless changed.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

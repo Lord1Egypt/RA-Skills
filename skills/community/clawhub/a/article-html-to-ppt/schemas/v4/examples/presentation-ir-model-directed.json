@@ -1,0 +1,106 @@
+{
+  "schema_version": "4.1.0",
+  "deck": {
+    "title": "自动化采用率：从试点走向规模化",
+    "language": "zh-CN",
+    "purpose": "用一页量化结论支持管理层资源决策",
+    "audience": "业务与技术管理层",
+    "narrative_intent": "research"
+  },
+  "sources": [
+    {
+      "source_id": "report",
+      "type": "pdf",
+      "title": "自动化采用率研究",
+      "path": "input/report.pdf"
+    }
+  ],
+  "slides": [
+    {
+      "id": "adoption",
+      "title": "规模化阶段的采用率将翻倍",
+      "message": "自动化采用率由当前 34% 提升至目标 72%，扩展能力而非试点数量成为关键约束。",
+      "slide_role": "content",
+      "blocks": [
+        {
+          "id": "current",
+          "role": "metric",
+          "label": "当前采用率",
+          "value": "34",
+          "unit": "%",
+          "source_ref": { "source_id": "report", "loc": "table_1" }
+        },
+        {
+          "id": "target",
+          "role": "metric",
+          "label": "规模化目标",
+          "value": "72",
+          "unit": "%",
+          "delta": "+38pct",
+          "source_ref": { "source_id": "report", "loc": "table_1" }
+        },
+        {
+          "id": "implication",
+          "role": "insight",
+          "text": "资源应从新增试点转向可复用流程、治理和变更管理。",
+          "source_refs": [
+            { "source_id": "report", "loc": "para_18" }
+          ]
+        }
+      ],
+      "chart": {
+        "type": "bar",
+        "data": {
+          "categories": ["当前", "目标"],
+          "series": [
+            { "name": "采用率", "values": [34, 72] }
+          ]
+        },
+        "source_ref": { "source_id": "report", "loc": "table_1" }
+      },
+      "speaker_notes": {
+        "narrative": "这一页不只是展示采用率增长，而是说明组织已经从验证技术可行性进入规模化阶段。当前值与目标值之间的差距意味着后续投入重点应转向流程复用、治理机制和员工变更管理；图表负责传达幅度，详细的执行含义由讲者在此展开。",
+        "talking_points": [
+          "先解释 34% 到 72% 的量级变化。",
+          "再强调规模化约束来自组织能力，而不是缺少试点。"
+        ],
+        "evidence_ids": ["report:table_1", "report:para_18"],
+        "source_refs": [
+          { "source_id": "report", "loc": "table_1" },
+          { "source_id": "report", "loc": "para_18" }
+        ]
+      },
+      "component_intent": {
+        "mode": "template_composition",
+        "semantic_use": "quantified adoption gap",
+        "element_count": 2,
+        "archetype": "data",
+        "composition_role": "primary",
+        "text_requirements": {
+          "title": 14,
+          "detail": 30
+        },
+        "data_shape": {
+          "kind": "chart",
+          "chart_type": "bar",
+          "series_count": 1,
+          "category_count": 2
+        },
+        "topology": "comparison",
+        "required_slots": ["title", "detail", "chart"],
+        "candidate_component_ids": [
+          "template.kpi-pair",
+          "template.bar-with-commentary"
+        ],
+        "selected_component_ids": [
+          "template.kpi-pair",
+          "template.bar-with-commentary"
+        ],
+        "rejected_candidates": []
+      },
+      "x_semantics": {
+        "visual_thesis": "一个原生对比图承担主证据，两张 KPI 只做数值锚点，右侧结论说明决策含义。"
+      }
+    }
+  ]
+}

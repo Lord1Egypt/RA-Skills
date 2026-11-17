@@ -1,40 +1,48 @@
-## Description: <br>
-Generates a 9-panel cinematic storyboard structure from a script or story outline, including consistent global style guidance and image prompts for each panel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Storyboard 9Grid turns a script, story outline, or narration into director-level nine-panel storyboard structures with a consistent global visual prompt and detailed Nano Banana Pro image prompts for each panel.
 
-## Publisher: <br>
-[chang9852](https://clawhub.ai/user/chang9852) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chang9852](https://clawhub.ai/user/chang9852)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and creative professionals use this skill to break scripts or story outlines into consistent nine-panel cinematic storyboard prompts for visual planning and AI image generation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad Chinese trigger terms such as "九宫格" may activate the skill in unrelated contexts.
+
+Mitigation: Confirm that the user intends to generate a nine-panel storyboard before applying the skill when activation is ambiguous.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creative professionals and agents use this skill to turn scripts, story outlines, or narration into a structured nine-panel storyboard with consistent visual direction and per-panel image-generation prompts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on short storyboard-related phrases when the user intended a different workflow. <br>
-Mitigation: Clarify the desired workflow before using the generated storyboard if the request is ambiguous. <br>
-Risk: Generated storyboard prompts may not match a user's visual intent without additional context or references. <br>
-Mitigation: Review and refine the global prompt, character details, and per-panel prompts before using them for production image generation. <br>
+**Output Format:** [Markdown with structured storyboard sections and image prompt text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chang9852/storyboard-9grid) <br>
+**Other Properties Related to Output:** [Includes a GLOBAL PROMPT plus nine panel-level prompts for each storyboard node.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown storyboard outline with a global prompt and per-panel image prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for creative drafting and Nano Banana Pro-style image prompt preparation.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

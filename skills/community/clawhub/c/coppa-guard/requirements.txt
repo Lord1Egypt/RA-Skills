@@ -1,0 +1,1 @@
+# coppa-guard 无需第三方依赖，仅使用 Python 标准库（sys / json / argparse）。

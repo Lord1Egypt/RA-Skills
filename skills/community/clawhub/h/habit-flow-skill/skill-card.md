@@ -1,51 +1,68 @@
-## Description: <br>
-AI-powered atomic habit tracker with natural language logging, streak tracking, smart reminders, and coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered atomic habit tracker with natural language logging, streak tracking, smart reminders, and coaching.
 
-## Publisher: <br>
-[tralves](https://clawhub.ai/user/tralves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tralves](https://clawhub.ai/user/tralves)
 
-## Use Case: <br>
-External users use this skill to create and track habits, log completions in natural language, review streaks and progress, configure reminders, and receive coaching based on habit patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent scheduled reminder or coaching messages to external or last-used chat channels. <br>
-Mitigation: Before enabling reminders or coaching, inspect the cron jobs and bind delivery to an explicit recipient or channel. <br>
-Risk: Habit data is stored locally under ~/clawd/habit-flow-data. <br>
-Mitigation: Install only when local storage of habit names, logs, reminders, and coaching configuration is acceptable. <br>
-Risk: Reminder syncing has a reported shell-command injection risk when untrusted habit names or custom messages are synced. <br>
-Mitigation: Avoid syncing reminders from untrusted habit names or custom messages until the shell-command construction is fixed. <br>
+## Use Case:
 
+External users and developers use Habit Flow to create and manage habits, log completions in natural language, review progress, configure reminders, and receive habit-coaching guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/tralves/habit-flow-skill) <br>
-- [Project Homepage](https://github.com/tralves/habit-flow-skill) <br>
-- [Commands Reference](references/COMMANDS.md) <br>
-- [Reminders Reference](references/REMINDERS.md) <br>
-- [Data Storage Reference](references/DATA.md) <br>
-- [Data Schema](references/data-schema.md) <br>
-- [Personas Reference](references/personas.md) <br>
-- [Coaching Techniques](references/atomic-habits-coaching.md) <br>
-- [Proactive Coaching Reference](references/proactive-coaching.md) <br>
-- [Proactive Coaching Setup](docs/PROACTIVE_COACHING_SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown responses with inline shell commands, generated JSON from helper scripts, and optional image files for habit visualizations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local habit data under ~/clawd/habit-flow-data and configure scheduled reminder or coaching jobs when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.4 (source: frontmatter, package.json, CHANGELOG, released 2026-02-09) <br>
+Risk: Reminder and coaching features can create persistent scheduled agent jobs, and the security evidence flags unsafe shell command strings with user-controlled reminder content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and audit created cron jobs before use, keep proactive coaching opt-in, and remove jobs that are not expected.
+
+Risk: Untrusted habit names, reminder messages, recipients, channels, or timezone values may affect reminder command construction.
+
+Mitigation: Use trusted values only until command construction is fixed with argument-array execution and strict validation.
+
+Risk: Dependencies are not pinned by a lockfile in the release artifact.
+
+Mitigation: Pin dependencies with a lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tralves/skills/habit-flow-skill)
+- [Project Homepage](https://github.com/tralves/habit-flow-skill)
+- [README](README.md)
+- [Installation Guide](INSTALL.md)
+- [Commands Reference](references/COMMANDS.md)
+- [Data Storage Reference](references/DATA.md)
+- [Data Schema](references/data-schema.md)
+- [Reminder Technical Reference](references/REMINDERS.md)
+- [Atomic Habits Coaching Reference](references/atomic-habits-coaching.md)
+- [Persona Reference](references/personas.md)
+- [Proactive Coaching Reference](references/proactive-coaching.md)
+- [Proactive Coaching Setup Guide](docs/PROACTIVE_COACHING_SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, JSON script output, and optional generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, npm, and a clawdbot environment for reminder delivery.]
+
+## Skill Version(s):
+
+1.5.4 (source: SKILL.md frontmatter metadata, CHANGELOG, package.json, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

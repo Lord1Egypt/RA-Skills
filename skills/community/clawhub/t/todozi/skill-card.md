@@ -1,43 +1,55 @@
-## Description: <br>
-Todozi Eisenhower matrix API client and LangChain tools for creating, listing, searching, updating, completing, and deleting matrices, tasks, goals, notes, bulk operations, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Todozi provides an async API client and LangChain tools for managing Eisenhower matrices, tasks, goals, notes, bulk operations, and webhooks.
 
-## Publisher: <br>
-[bgengs](https://clawhub.ai/user/bgengs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bgengs](https://clawhub.ai/user/bgengs)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect agents to a Todozi account for managing Eisenhower-matrix tasks, goals, notes, matrices, bulk operations, and webhooks through an async SDK or LangChain tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and modify a user's Todozi account, including creating, updating, completing, and deleting tasks, goals, notes, matrices, and webhooks. <br>
-Mitigation: Install only when account access is intended, use a Todozi API key appropriate for this skill, and require clear approval for deletes, bulk changes, completions, and webhook changes. <br>
-Risk: A custom TODOZI_BASE endpoint could direct API-key-authenticated requests to an untrusted service. <br>
-Mitigation: Leave TODOZI_BASE at the default Todozi API unless the replacement endpoint is trusted. <br>
-Risk: Webhook configuration can send Todozi event data to external URLs. <br>
-Mitigation: Configure webhooks only for HTTPS URLs that the user controls or trusts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Todozi API Reference](references/api_reference.md) <br>
-- [Todozi API](https://todozi.com/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bgengs/todozi) <br>
+## Use Case:
 
+Developers and agents use this skill to connect Todozi task-management workflows to an async Python SDK or LangChain tools. It supports creating, listing, searching, updating, completing, and deleting matrices, tasks, goals, notes, webhooks, and user preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Configuration instructions, Text] <br>
-**Output Format:** [Python SDK objects, LangChain tool results, JSON-compatible API responses, and Markdown guidance with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Todozi API key. Treat deletes, bulk changes, completions, webhook configuration, and custom TODOZI_BASE endpoints as user-approved actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API credentials and task data can be sent to a configurable Todozi endpoint.
+
+Mitigation: Use only a Todozi API key approved for this integration, leave TODOZI_BASE at the trusted default unless the alternate endpoint is verified, and avoid entering sensitive task content unless it is appropriate for the configured service.
+
+Risk: Delete, bulk, webhook, and preference operations can modify or remove user data or change outbound event delivery.
+
+Mitigation: Require explicit user confirmation before executing destructive, bulk, webhook, preference, or learned_context operations, and show the target IDs or webhook URL before the call.
+
+## Reference(s):
+
+- [Todozi API Reference](artifact/references/api_reference.md)
+- [Todozi API](https://todozi.com/api)
+- [ClawHub Skill Page](https://clawhub.ai/bgengs/skills/todozi)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/bgengs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell examples plus LangChain tool string responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Todozi API key and may call the configured Todozi API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

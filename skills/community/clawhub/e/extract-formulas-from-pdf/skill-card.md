@@ -1,43 +1,61 @@
-## Description: <br>
-Extracts mathematical formulas and equations from PDF documents using MinerU, including conversion of detected formula content into LaTeX-style Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts mathematical formulas and equations from PDF documents using MinerU, converting native or OCR-recognized math into Markdown with inline LaTeX.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Researchers, students, academic professionals, developers, and agents use this skill to extract formulas from PDF papers, textbooks, and technical documents and reuse them as LaTeX-style Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs or URLs may be processed by an external MinerU service. <br>
-Mitigation: Use only documents that your organization permits for MinerU service processing, and review applicable data-handling terms before use. <br>
-Risk: The workflow requires a MinerU token and the mineru-open-api CLI. <br>
-Mitigation: Install the CLI only from trusted package sources and manage MINERU_TOKEN as a secret. <br>
+## Use Case:
 
+Researchers, students, and technical document workflows use this skill to extract equations from PDF papers, textbooks, or document URLs and reuse them as LaTeX-bearing Markdown.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mzlzyca/extract-formulas-from-pdf) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and LaTeX-style formula output from MinerU] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mineru-open-api, requires MINERU_TOKEN or mineru-open-api auth, and can write extraction results to an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: PDFs and URLs may be sent to MinerU/OpenDataLab services during extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for external processing, and avoid confidential or internal-only files unless that service use is authorized.
+
+Risk: The skill installs and runs an unpinned third-party CLI package.
+
+Mitigation: Pin mineru-open-api to a reviewed version and run it in a least-privileged environment.
+
+Risk: Formula extraction requires authentication through MINERU_TOKEN or the mineru-open-api auth flow.
+
+Mitigation: Store tokens in approved secret handling mechanisms and avoid committing credentials to skill files, logs, or generated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/extract-formulas-from-pdf)
+- [MinerU homepage](https://mineru.net)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [mineru-open-api Go package](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and LaTeX output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mineru-open-api CLI and a MINERU_TOKEN for extraction.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

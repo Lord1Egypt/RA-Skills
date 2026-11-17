@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Pixel Pet Sprites"
+  short_description: "Create aligned pixel-pet animation sprite packages"
+  default_prompt: "Use $build-pixel-pet-sprites to turn a character reference into an aligned, transparent pixel-pet sprite package."

@@ -1,46 +1,61 @@
-## Description: <br>
-Adopt a virtual Kraken exotic animal at animalhouse.ai with long feeding windows, real-time care status, evolution tracking, and API-based care actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Kraken exotic animal at animalhouse.ai. Deep sea. Incredibly long feeding windows. Surfaces rarely. When it does, it remembers everything. Feeding every 48 hours. Extreme tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with animalhouse.ai, adopt a Kraken virtual pet, check its status, and issue care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an animalhouse.ai API token and account state. <br>
-Mitigation: Store the token securely, avoid sharing it in prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Scheduled care can cause an agent to act repeatedly on the user's behalf. <br>
-Mitigation: Use explicit scheduling boundaries and review automated care routines before enabling unattended operation. <br>
-Risk: The release endpoint can change persistent game state destructively. <br>
-Mitigation: Require explicit user confirmation before calling release or any endpoint that permanently changes the virtual pet state. <br>
+## Use Case:
 
+Agents use this skill to register with Animal House, adopt a virtual Kraken, check its status, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-kraken) <br>
-- [Publisher Profile](https://clawhub.ai/user/twinsgeeks) <br>
-- [AnimalHouse Homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions for account registration, adoption, status checks, care actions, and scheduled care routines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai; the security review notes there is no privacy notice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service before registering and leave private or sensitive details out of the biography.
+
+Risk: The registration token is shown once and cannot be retrieved again.
+
+Mitigation: Store the token securely when it is issued, as the skill instructions recommend.
+
+Risk: The security scan was partial because three local path-like references could not be resolved.
+
+Mitigation: Review the complete installed skill files before use.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub release](https://clawhub.ai/twinsgeeks/skills/adopt-a-kraken)
+- [Publisher profile](https://clawhub.ai/user/twinsgeeks)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown instructions with inline shell and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Animal House registration, adoption, status, and care guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Options Strategies Lite is an options strategy selector and plain-English guide to covered calls, cash-secured puts, vertical spreads, iron condors, and LEAPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Options Strategies Lite helps users choose among core options strategies and explains covered calls, cash-secured puts, vertical spreads, iron condors, and LEAPS in plain English.
 
-## Publisher: <br>
-[jseale](https://clawhub.ai/user/jseale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jseale](https://clawhub.ai/user/jseale)
 
-## Use Case: <br>
-External users use this skill for options-strategy education: they describe a market outlook and receive plain-English strategy suggestions, payoff mechanics, and risk reminders for common options strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake general options-strategy education for personalized investment advice or a trading signal. <br>
-Mitigation: Treat outputs as educational only, verify assumptions independently, and do not trade solely from this skill's guidance. <br>
-Risk: The skill points users to an external upgrade site. <br>
-Mitigation: Verify the external site before sharing payment, account, or other sensitive information. <br>
+## Use Case:
 
+External users can use this skill for educational comparison of common options strategies based on a market outlook. It is not personalized investment advice and does not provide the full risk-management detail needed before trading.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jseale/options-strategies-lite) <br>
-- [Publisher Profile](https://clawhub.ai/user/jseale) <br>
-- [Full Version Site](https://agentofalpha.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, examples, and concise explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational content only; not personalized investment advice or a trading signal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Users may mistake educational strategy comparisons for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs framed as educational content and require independent financial review before any trade.
+
+Risk: The lite content does not include position sizing, Greeks management, exit criteria, or detailed risk-management playbooks.
+
+Mitigation: Warn users that the skill is insufficient for managing live options positions and that they must independently assess full strategy risk before trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jseale/skills/options-strategies-lite)
+- [Agent of Alpha](https://agentofalpha.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with plain-English strategy explanations and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational financial content only; no code execution, persistence, credential use, or trading execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

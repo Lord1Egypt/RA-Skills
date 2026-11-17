@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents advise on SaaS pricing decisions, packaging, pricing tiers, value metrics, price increases, willingness-to-pay research, and monetization strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents advise on SaaS pricing decisions, packaging, monetization strategy, value metrics, pricing research, tier design, price changes, and pricing page strategy.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Employees, external consultants, founders, product leaders, and go-to-market teams use this skill to structure SaaS pricing, evaluate value metrics, plan tier packaging, and reason about pricing research or price changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local product marketing context that is private or outdated when forming pricing recommendations. <br>
-Mitigation: Review any product marketing context file before use and remove stale or confidential information before sharing outputs externally. <br>
-Risk: Pricing recommendations can be misleading when business metrics, competitive positioning, or customer willingness-to-pay data are incomplete. <br>
-Mitigation: Treat outputs as advisory and validate recommendations with current business data, customer research, and human review before changing prices. <br>
+## Use Case:
 
+Product, marketing, growth, and founder teams use this skill to structure SaaS pricing, choose value metrics, design tiers, plan pricing research, evaluate price changes, and improve pricing page strategy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-pricing-strategy) <br>
-- [Pricing Research Methods](references/research-methods.md) <br>
-- [Tier Structure and Packaging](references/tier-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured advisory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing frameworks, checklists, research plans, tier recommendations, and suggested customer questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; SKILL.md frontmatter metadata reports 1.1.0) <br>
+Risk: Pricing work may involve sensitive business metrics, customer segments, or product marketing context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any project marketing context before use and avoid sharing confidential pricing, revenue, churn, or customer details unless they are necessary for the task.
+
+Risk: Pricing recommendations can affect revenue, conversion, churn, and customer trust if applied without validation.
+
+Mitigation: Validate recommendations with customer research, competitive review, controlled experiments, and human business review before rollout.
+
+## Reference(s):
+
+- [Pricing Research Methods](references/research-methods.md)
+- [Tier Structure and Packaging](references/tier-structure.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-pricing-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with questions, checklists, tables, and pricing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for product, market, performance, and pricing-goal context before recommending pricing changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

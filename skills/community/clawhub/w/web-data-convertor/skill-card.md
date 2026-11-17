@@ -1,41 +1,57 @@
-## Description: <br>
-Web Data Convertor converts JSON, CSV, XML, YAML, Markdown, HTML, query strings, and Unix timestamps through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts data between JSON, CSV, XML, YAML, Markdown, HTML, query strings, and Unix timestamps through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to convert API, configuration, content, URL, and timestamp data between common web formats through AgentPMT-hosted calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversion inputs are sent to AgentPMT-hosted processing. <br>
-Mitigation: Do not submit secrets, credentials, private configuration, regulated data, or sensitive personal data unless external processing by AgentPMT is approved. <br>
-Risk: Converted Markdown or HTML may contain unsafe links or content if it is later rendered or published. <br>
-Mitigation: Treat converted Markdown and HTML as untrusted content, and sanitize or validate links before publishing or rendering it. <br>
+## Use Case:
 
+Developers and agents use this skill to convert web and application data between API, configuration, documentation, URL, and timestamp formats through AgentPMT.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/web-data-convertor) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/web-data-convertor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [JSON, CSV, XML, YAML, HTML, Markdown, query-string data, or date/time text returned from remote tool calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Inputs are submitted as string parameters to AgentPMT-hosted conversion actions; malformed input may return validation errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Converted input data is sent to AgentPMT-hosted processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, credentials, private keys, regulated data, or confidential business documents unless that processing has been approved.
+
+Risk: Related setup steps may affect account, credential, or payment handling.
+
+Mitigation: Use reviewed ClawHub setup skills or pinned setup commands and keep credentials out of prompts and logs.
+
+## Reference(s):
+
+- [Web Data Convertor schema](./schema.md)
+- [Web Data Convertor ClawHub page](https://clawhub.ai/agentpmt/skills/web-data-convertor)
+- [Web Data Convertor marketplace page](https://www.agentpmt.com/marketplace/web-data-convertor)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON responses containing converted data, errors, or status fields; converted content may be JSON, CSV, XML, YAML, HTML, Markdown, query strings, or date strings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inputs are submitted as action-specific text parameters; schema.md lists 11 supported actions and required fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-AI-powered healthcare knowledge management. Search clinical notes, care plans, lab results, prescriptions, and patient pathways with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered healthcare knowledge management. Search clinical notes, care plans, lab results, prescriptions, and patient pathways with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Healthcare clinicians, administrators, quality teams, and compliance staff use this skill to search organizational healthcare knowledge, retrieve clinical protocol context, prepare for regulatory surveys, and identify knowledge gaps. It is intended to ground responses in organizational reference materials while respecting access tiers and protected healthcare information boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Artifacts conflict on whether patient-level health data is in scope, which could create protected health information exposure risk. <br>
-Mitigation: Confirm exactly what the UPLO instance indexes before installation and ensure the skill is connected only to approved organizational reference material or appropriately governed healthcare data. <br>
-Risk: Broad search and export capabilities can expose sensitive healthcare context to users or workflows beyond their authorization. <br>
-Mitigation: Use a least-privilege API token, restrict export_org_context to authorized administrators, enforce access tiers, and require audit logging for sensitive materials. <br>
-Risk: The MCP server package and configured endpoint determine what the agent can access and perform. <br>
-Mitigation: Verify the MCP package, version, endpoint, and token permissions before deployment. <br>
+## Use Case:
 
+Healthcare employees and administrators use this skill to search organizational healthcare knowledge for clinical protocols, care pathways, formulary decisions, quality metrics, credentialing criteria, and compliance documentation. It supports grounded summaries and workflow guidance from an authorized UPLO knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-healthcare) <br>
-- [UPLO website](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
-- [Related skill: UPLO Clinical](https://clawhub.com/skills/uplo-clinical) <br>
-- [Related skill: UPLO Knowledge Management](https://clawhub.com/skills/uplo-knowledge-management) <br>
-- [Related skill: UPLO Accounting](https://clawhub.com/skills/uplo-accounting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline tool calls, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external MCP server configured with a UPLO instance URL, API key, and healthcare pack selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Sensitive healthcare and organizational knowledge access can cross PHI, credentialing, peer-review, or incident-investigation boundaries if access tiers are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only to an authorized UPLO instance, enforce least-privilege healthcare access, and document PHI and privileged-record boundaries before production use.
+
+Risk: Bulk organizational context export can disclose more information than a single protocol lookup requires.
+
+Mitigation: Restrict or disable full context export unless the workflow requires it, and review export access separately from ordinary search access.
+
+Risk: Runtime execution of an unpinned npm MCP package can introduce supply-chain drift.
+
+Mitigation: Pin and review the MCP server version before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-healthcare)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline tool commands or configuration snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite the source protocol, revision date, and approving authority when healthcare knowledge is surfaced.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

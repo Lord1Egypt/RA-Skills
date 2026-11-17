@@ -1,37 +1,47 @@
-## Description: <br>
-Set up VR headsets, troubleshoot common issues, optimize comfort, and recommend experiences by use case. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up VR headsets, troubleshoot common issues, optimize comfort, and recommend experiences by use case.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to choose VR hardware, set up and troubleshoot headsets, improve comfort, and find VR experiences for gaming, fitness, social use, productivity, or development. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: VR hardware, comfort, and purchasing guidance can become outdated or may not fit a user's health, device, budget, or regional constraints. <br>
-Mitigation: Treat the skill's guidance as general information and verify expensive or safety-sensitive decisions against current manufacturer and health sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/vr) <br>
+## Use Case:
+
+External users and developers use this skill to choose VR hardware, set up and troubleshoot headsets, improve comfort, and find VR experiences for gaming, fitness, social, productivity, and development workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: VR headset, app, pricing, availability, and platform compatibility recommendations may become outdated.
+
+Mitigation: Verify current pricing, regional availability, device support, and platform compatibility before purchasing hardware or paid software.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational VR setup, troubleshooting, comfort, and recommendation guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with checklists, comparison tables, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations may require current market and compatibility verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

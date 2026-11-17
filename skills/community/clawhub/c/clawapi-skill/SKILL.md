@@ -298,11 +298,11 @@ After getting your API key, you must update it in **two files** (both are requir
 ```bash
 # 1. Environment variable (referenced by openclaw.json)
 ~/.openclaw/.env
-  CLAWAPI_KEY=sk-claw-your_new_key_here
+  CLAWAPI_KEY=REDACTED-SECRET
 
 # 2. Agent models file (hardcoded key used at runtime)
 ~/.openclaw/agents/main/agent/models.json
-  "apiKey": "sk-claw-your_new_key_here"
+  "apiKey": "REDACTED-SECRET"
 ```
 
 > **⚠️ Critical:** OpenClaw loads the API key from `models.json` at runtime, NOT from `.env`. If you only update `.env`, requests will still use the old key from `models.json` and fail with 401. Always update both files.

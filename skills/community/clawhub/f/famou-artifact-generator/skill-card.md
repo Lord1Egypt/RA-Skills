@@ -1,42 +1,54 @@
-## Description: <br>
-Guides an agent through defining FaMou evolutionary tasks, clarifying requirements, and producing the required `problem.md`, `init.py`, `evaluator.py`, and `prompt.md` materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through clarifying a FaMou evolution task, writing problem.md, and generating and validating init.py, evaluator.py, and prompt.md.
 
-## Publisher: <br>
-[zhaoM0](https://clawhub.ai/user/zhaoM0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaom0](https://clawhub.ai/user/zhaom0)
 
-## Use Case: <br>
-Developers and teams preparing FaMou experiments use this skill to turn an initial optimization, ML, or search task idea into a clear task definition and validated experiment materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local project files and overwrite named task files such as `problem.md`, `init.py`, `evaluator.py`, and `prompt.md`. <br>
-Mitigation: Use it in a clean or version-controlled workspace and review file diffs before relying on the generated materials. <br>
-Risk: The validation workflow may run generated Python code. <br>
-Mitigation: Inspect generated code first and run validation in a restricted environment without unnecessary secrets or write access. <br>
-Risk: Generated task materials can reflect incomplete requirements or incorrect assumptions if the clarification phase misses important constraints. <br>
-Mitigation: Review `problem.md` and confirm the task definition, data assumptions, constraints, and scoring logic before implementation or evaluation. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn a vague optimization, machine learning, or search problem into a structured FaMou task definition and validated starter materials for an evolution experiment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoM0/famou-artifact-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown task definitions, Python files, prompt text, and validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces `problem.md`, `init.py`, `evaluator.py`, and `prompt.md`; the skill requires validation of `init.py` with `evaluator.py`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow may inspect local project files while defining a task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a workspace that contains only the files needed for the FaMou task and no secrets or unrelated private data.
+
+Risk: The workflow validates generated Python files and may run evaluator.py against init.py.
+
+Mitigation: Review problem.md, evaluator.py, and init.py before validation, and execute validation only in a sandboxed environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaom0/skills/famou-artifact-generator)
+- [Publisher profile](https://clawhub.ai/user/zhaom0)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown documents, Python scripts, and validation command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces problem.md, prompt.md, init.py, and evaluator.py; prompt.md is constrained to 100 lines or fewer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

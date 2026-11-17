@@ -1,47 +1,60 @@
-## Description: <br>
-Academic data search and analysis using AMiner Open Platform APIs for scholars, papers, institutions, journals, patents, composite workflows, and individual API routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic data search and analysis using AMiner Open Platform APIs for scholars, papers, institutions, journals, patents, and composite research workflows.
 
-## Publisher: <br>
-[ye4wzp](https://clawhub.ai/user/ye4wzp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ye4wzp](https://clawhub.ai/user/ye4wzp)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to plan AMiner Open Platform queries for academic profiles, paper discovery, citation analysis, institution analysis, venue monitoring, patent lookup, and natural-language paper Q&A. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic queries, names, identifiers, and token-authenticated requests may be sent to AMiner. <br>
-Mitigation: Use the skill only for data you are comfortable sharing with AMiner and follow the AMiner Open Platform terms for submitted queries. <br>
-Risk: The skill requires an AMiner API token. <br>
-Mitigation: Store the token in a secret or environment variable and avoid pasting it into shared prompts, logs, or committed files. <br>
-Risk: Several documented endpoints have per-call costs, so repeated or bulk use can create charges. <br>
-Mitigation: Review endpoint costs before high-volume workflows and prefer free or lower-cost routes when they satisfy the task. <br>
-Risk: Example commands reference an external aminer_client.py helper that is not packaged with this release. <br>
-Mitigation: Inspect and trust any external client script before running it, and treat generated commands as proposals to review. <br>
+## Use Case:
 
+Developers and research analysts use this skill to query AMiner academic data, assemble scholar and paper profiles, analyze institutions and venues, answer natural-language paper questions, and search patents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ye4wzp/aminer-academic-search) <br>
-- [AMiner Open Platform Documentation](https://open.aminer.cn/open/doc) <br>
-- [AMiner Token Console](https://open.aminer.cn/open/board?tab=control) <br>
-- [AMiner Platform](https://aminer.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API-routing notes and example shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include AMiner API paths, token setup guidance, endpoint-cost notes, and workflow-specific command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Command-line examples can expose an AMiner API token in shell history or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set the token through AMINER_TOKEN or a secret store instead of typing it into commands.
+
+Risk: Academic queries may include confidential or regulated research topics.
+
+Mitigation: Avoid submitting sensitive topics unless AMiner's data handling is acceptable for the use case.
+
+Risk: The security review notes a missing client implementation could affect workflow reliability.
+
+Mitigation: Confirm the client implementation and API behavior before relying on the workflows.
+
+## Reference(s):
+
+- [AMiner Open Platform API Documentation](https://open.aminer.cn/open/doc)
+- [AMiner Console](https://open.aminer.cn/open/board?tab=control)
+- [ClawHub Skill Page](https://clawhub.ai/ye4wzp/skills/aminer-academic-search)
+- [Publisher Profile](https://clawhub.ai/user/ye4wzp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and API workflow descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose AMiner API calls and workflows that require an AMINER_TOKEN and may incur AMiner API costs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

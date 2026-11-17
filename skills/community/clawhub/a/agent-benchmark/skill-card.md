@@ -1,43 +1,57 @@
-## Description: <br>
-Agent Benchmark evaluates AI agents with standardized tasks across file operations, data processing, system operations, robustness, and code quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Benchmark evaluates AI agent task completion across file operations, data processing, system operations, robustness, and code quality using standardized benchmark tasks and Markdown reports.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent evaluators use this skill to run lightweight benchmark tasks, score task completion, and generate Markdown reports for comparing or diagnosing AI agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task files are executed as local code with broad access to files and environment variables. <br>
-Mitigation: Use only trusted task sets, run in a disposable or sandboxed workspace, and clear sensitive environment variables before execution. <br>
-Risk: Benchmark output can be written outside the skill directory through the memory-report behavior. <br>
-Mitigation: Review or disable memory-report writing before running on machines with secrets or important files. <br>
-Risk: Task path handling and generated report files can affect local workspace contents. <br>
-Mitigation: Run from a controlled workspace and review task file paths and output paths before use. <br>
+## Use Case:
 
+Developers and teams use this skill to run lightweight AI agent benchmark tasks, compare behavior before releases, diagnose capability gaps, and generate evaluation reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/agent-benchmark) <br>
-- [Publisher Profile](https://clawhub.ai/user/yuyonghao-123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown benchmark reports, task result summaries, and executable task definitions/scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can execute local task code and write benchmark report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, target metadata, package.json, and SKILL.md) <br>
+Risk: The skill can run custom local code with inherited environment access, which may expose secrets or affect the host workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated sandbox with trusted task files, a scrubbed environment, and no valuable workspace or credentials available.
+
+Risk: Server security evidence reports unsafe file and persistence behavior that should be reviewed before installation.
+
+Mitigation: Validate task IDs and paths, disclose executable custom tasks, avoid writes to agent memory, and use a real container or restricted account before normal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/agent-benchmark)
+- [Publisher profile](https://clawhub.ai/user/yuyonghao-123)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Default benchmark tasks](artifact/tasks/default-tasks.json)
+- [First-run test summary](artifact/TEST_SUMMARY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown reports, console text, task definitions, and executable command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scored benchmark results by task and category; custom task files can change executed behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, target metadata, artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

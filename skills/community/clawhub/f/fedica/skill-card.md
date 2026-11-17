@@ -1,44 +1,67 @@
-## Description: <br>
-Compose and schedule cross-platform social posts on Fedica (X, LinkedIn, Threads, Mastodon, Bluesky) via agent-browser, including login, image upload, scheduling, character limits, and Fedica's UTC-only time display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compose and schedule cross-platform social posts on Fedica (X, LinkedIn, Threads, Mastodon, Bluesky) via agent-browser.
 
-## Publisher: <br>
-[jkobject](https://clawhub.ai/user/jkobject) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkobject](https://clawhub.ai/user/jkobject)
 
-## Use Case: <br>
-External users and social media operators use this skill to guide an agent through Fedica's browser UI for composing, scheduling, verifying, editing, and rescheduling posts across connected social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Fedica account that publishes or schedules public social media posts. <br>
-Mitigation: Review the exact post text, media, target platforms, and local scheduled time with the user before any publish, schedule, or update action. <br>
-Risk: Fedica displays and accepts scheduled times in GMT+00, which can cause posts to be scheduled at the wrong local time. <br>
-Mitigation: Convert the user's local time to UTC before scheduling, then re-verify the displayed scheduled time and restate the local time to the user. <br>
-Risk: Using the browser workflow may require access to Fedica credentials or existing authenticated sessions. <br>
-Mitigation: Use only the credential source the user explicitly chooses and avoid exposing broad local secret stores. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through composing, scheduling, verifying, editing, and troubleshooting public social posts in Fedica across connected social platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jkobject/fedica) <br>
-- [Fedica](https://fedica.com) <br>
-- [agent-browser](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires agent-browser, a Fedica account with connected platforms, and explicit user confirmation before publishing or scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The skill automates an authenticated Fedica session that can publish public social posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of final post text, target platforms, and local scheduled time before any post, schedule, or update action.
+
+Risk: The documented server workflow may launch the browser with no sandbox.
+
+Mitigation: Prefer running the browser with sandboxing enabled where possible, and use an isolated environment when no-sandbox mode is required.
+
+Risk: The prerequisite installation uses an unpinned global agent-browser package.
+
+Mitigation: Prefer a pinned, local, or isolated agent-browser installation before using the skill.
+
+Risk: Fedica displays scheduling times in GMT+00, which can cause posts to be scheduled at the wrong local time.
+
+Mitigation: Convert the user's local scheduled time to UTC before entry, then re-verify the displayed scheduled time after saving.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkobject/skills/fedica)
+- [Publisher profile](https://clawhub.ai/user/jkobject)
+- [Fedica](https://fedica.com)
+- [Fedica dashboard](https://fedica.com/dash/)
+- [Fedica composer](https://fedica.com/publish/)
+- [Fedica scheduled queue](https://fedica.com/schedule/)
+- [agent-browser](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and browser automation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Fedica session, agent-browser, and explicit user confirmation before posting, scheduling, or updating public content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

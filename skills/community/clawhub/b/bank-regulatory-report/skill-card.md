@@ -1,44 +1,54 @@
-## Description: <br>
-Assists Chinese commercial bank teams with drafting NFRA, PBOC, SAFE, 1104, Basel III, AML, and related regulatory reporting materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists Chinese commercial bank teams with drafting NFRA, PBOC, SAFE, 1104, Basel III capital, AML, and related regulatory reporting materials.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank compliance officers, data analysts, IT systems teams, and regulatory affairs staff use this skill to prepare draft regulatory report narratives, tables, checklists, and data quality checks for Chinese commercial banking filings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include customer identifiers, transaction-level records, suspicious activity details, or supervisory materials in prompts. <br>
-Mitigation: Minimize or redact sensitive inputs and use this workflow only when the organization has approved AI-assisted handling of the relevant banking data. <br>
-Risk: Draft regulatory reports may contain inaccurate calculations, incomplete data, or statements that are not ready for supervisory filing. <br>
-Mitigation: Have authorized compliance staff verify all data, calculations, narratives, and filing requirements before any submission. <br>
-Risk: The skill provides report drafting guidance for a specialized regulatory domain but does not replace official filing systems or legal compliance judgment. <br>
-Mitigation: Treat outputs as drafts and align final submissions with current regulator instructions, internal controls, and bank approval processes. <br>
+## Use Case:
 
+Bank compliance officers, regulatory affairs teams, data analysts, and IT reporting teams use this skill to prepare draft regulatory reports, data collection checklists, quality checks, and reporting templates for Chinese commercial bank submissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bank-regulatory-report) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report drafts, tables, checklists, and compliance guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bank-supplied data and authorized compliance review before filing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may be used with regulated customer, transaction, AML, or confidential financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an approved environment and prefer redacted or aggregated inputs unless organizational policy permits production data.
+
+Risk: Draft regulatory reports may contain errors, omissions, or outdated interpretations.
+
+Mitigation: Require authorized compliance staff to review, verify, and approve all generated content before any filing or submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gechengling/skills/bank-regulatory-report)
+- [Publisher Profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report drafts, checklists, tables, and narrative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversation-only drafting workflow; outputs require authorized compliance review before filing.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

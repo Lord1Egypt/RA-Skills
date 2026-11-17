@@ -1,41 +1,50 @@
-## Description: <br>
-Persistent conversation export and replay for AI agent sessions across Claude Code, Caveman, OpenClaw, Hermes, MCP agents, and multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent conversation export and replay for AI agents system for Claude Code, Caveman, OpenClaw, Hermes, MCP agents, and multi-agent workflows.
 
-## Publisher: <br>
-[laohu-aiskills](https://clawhub.ai/user/laohu-aiskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laohu-aiskills](https://clawhub.ai/user/laohu-aiskills)
 
-## Use Case: <br>
-Developers and agent operators use this skill to export, save, archive, snapshot, serialize, or back up AI agent conversations. It supports human-readable review, RAG ingestion, JSONL dataset creation, observability, and replay-oriented debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported archives may contain secrets, personal data, local file paths, proprietary code, or tool outputs from the original agent session. <br>
-Mitigation: Review and redact exported files before sharing, committing, backing up, indexing, or using them for datasets; choose the narrowest export mode that fits the task. <br>
-Risk: Full and replay-oriented exports can preserve detailed tool results and workflow history that may be sensitive. <br>
-Mitigation: Use compact or manually redacted exports for sensitive sessions and restrict archive storage to locations appropriate for the data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to export, archive, and replay AI agent conversations for human review, RAG ingestion, JSONL datasets, observability, and workflow debugging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laohu-aiskills/agent-archive) <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, JSONL, Guidance] <br>
-**Output Format:** [Markdown or JSONL archive files with session metadata, tool-call details, chunks, and replay structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports compact, full, rag, replay, and jsonl export modes; long sessions may include a table of contents, summaries, and chunks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Exported conversation archives may contain sensitive prompts, file paths, tool outputs, credentials pasted into chat, or project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exported files before sharing or syncing them, prefer compact exports for routine use, and store full, replay, or JSONL exports in a controlled location.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Agent Archive ClawHub Skill Page](https://clawhub.ai/laohu-aiskills/skills/agent-archive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSONL, RAG-ready chunks, and replay-friendly session records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exports can include session metadata, table of contents, tool call records, summaries, chunk indexes, and truncated large tool outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

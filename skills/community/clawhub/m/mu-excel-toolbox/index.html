@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mu-excel-toolbox — Excel All-in-One Toolkit Skill</title>
+  <meta name="description" content="One skill for the entire Excel lifecycle — read & write, merge & split, clean & validate, pivot & chart, template fill, encrypt & protect. 22 features, 7 chart types, 8 cleaning rules. Free & Open Source.">
+  <meta property="og:title" content="mu-excel-toolbox — Excel All-in-One Toolkit Skill">
+  <meta property="og:description" content="No code, no plugins — just tell your agent what you need and get Excel done.">
+  <meta property="og:url" content="https://muippt.github.io/mu-excel-toolbox/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+      --border:#e8e2db;--border-light:#f0ebe5;
+      --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+      --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+      --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;
+      --radius:12px;--radius-sm:8px;
+      --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;
+      --font-serif:'Georgia','Noto Serif SC',serif;
+      --font-mono:'SF Mono','Fira Code',monospace;
+    }
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none;transition:color .25s}a:hover{color:var(--accent-light)}
+    .container{max-width:1100px;margin:0 auto;padding:0 24px}
+    /* Nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-light);transition:background .25s}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-logo{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+    .nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{color:var(--text-secondary);font-size:.875rem;font-weight:500;transition:color .25s}.nav-links a:hover{color:var(--accent)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .lang-switch{display:inline-flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;font-size:.8rem;cursor:pointer;user-select:none}
+    .lang-switch span{padding:6px 12px;transition:all .25s;color:var(--text-muted)}
+    .lang-switch span.active{background:var(--accent);color:#fff}
+    .lang-switch span:hover:not(.active){color:var(--text);background:var(--bg-warm)}
+    .nav-cta{padding:8px 20px;border-radius:var(--radius-sm);font-size:.875rem;font-weight:600;background:var(--accent);color:#fff;transition:all .25s}
+    .nav-cta:hover{background:var(--accent-light);color:#fff;transform:translateY(-1px)}
+    /* Hero */
+    .hero{position:relative;padding:160px 0 120px;text-align:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:24px;background:var(--accent-bg);border:1px solid var(--border);font-size:.8rem;color:var(--accent);font-weight:500;margin-bottom:32px}
+    .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .hero h1{font-family:var(--font-serif);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:24px;color:var(--text)}
+    .hero h1 .accent-text{color:var(--accent)}
+    .hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:var(--text-secondary);max-width:640px;margin:0 auto 48px;line-height:1.7}
+    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--radius);font-size:1rem;font-weight:600;transition:all .25s;cursor:pointer;border:none}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-light);transform:translateY(-2px);color:#fff;box-shadow:0 4px 16px rgba(201,100,66,0.15)}
+    .btn-secondary{background:var(--bg-card);color:var(--text);border:1px solid var(--border)}
+    .btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px);color:var(--accent);box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin:80px auto 0;max-width:960px;border:1px solid var(--border)}
+    .stat{background:var(--bg-card);padding:32px 16px;text-align:center;transition:background .25s}.stat:hover{background:var(--bg-warm)}
+    .stat-num{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;color:var(--accent);line-height:1.2}
+    .stat-label{font-size:.75rem;color:var(--text-muted);margin-top:6px;letter-spacing:.08em}
+    /* Sections */
+    section{padding:100px 0}
+    .section-label{display:inline-block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:16px}
+    .section-title{font-family:var(--font-serif);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px;color:var(--text)}
+    .section-desc{font-size:1.1rem;color:var(--text-secondary);max-width:600px;line-height:1.7}
+    .section-header{margin-bottom:64px}.section-header.center{text-align:center}.section-header.center .section-desc{margin:0 auto}
+    /* Feature Cards */
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .feature-card{padding:36px 28px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border);transition:all .25s}
+    .feature-card:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+    .feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:20px;background:var(--bg-warm)}
+    .feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+    .feature-card p{font-size:.88rem;color:var(--text-secondary);line-height:1.6}
+    /* Feature Table */
+    .feature-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+    .feature-table th,.feature-table td{padding:12px 16px;text-align:left;font-size:.85rem;border-bottom:1px solid var(--border-light)}
+    .feature-table thead th{background:var(--bg-card);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary)}
+    .feature-table tbody tr{background:var(--bg-card);transition:background .25s}.feature-table tbody tr:hover{background:var(--bg-warm)}
+    .feature-table tbody tr:last-child td{border-bottom:none}
+    .feature-table td:first-child{font-weight:600;color:var(--text)}
+    .feature-table-wrapper{overflow-x:auto}
+    /* Comparison Table */
+    .comparison-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+    .comparison-table th,.comparison-table td{padding:14px 16px;text-align:left;font-size:.85rem;border-bottom:1px solid var(--border-light)}
+    .comparison-table thead th{background:var(--bg-card);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary)}
+    .comparison-table thead th:nth-child(2){color:var(--accent)}
+    .comparison-table tbody tr{background:var(--bg-card);transition:background .25s}.comparison-table tbody tr:hover{background:var(--bg-warm)}
+    .comparison-table tbody tr:last-child td{border-bottom:none}
+    .comparison-table td:first-child{font-weight:600;color:var(--text)}.comparison-table td:nth-child(2){color:var(--accent);font-weight:600}
+    .check{color:var(--green);font-weight:700}.cross{color:var(--text-muted)}
+    .comparison-wrapper{overflow-x:auto}
+    /* CTA */
+    .cta-section{text-align:center;padding:120px 0}
+    .cta-section h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:16px;letter-spacing:-.02em;color:var(--text);line-height:1.3}
+    .cta-section h2 .accent-text{color:var(--accent)}
+    .cta-section p{color:var(--text-secondary);font-size:1.1rem;margin-bottom:40px}
+    .cta-section .hero-actions{justify-content:center}
+    /* Footer */
+    footer{border-top:1px solid var(--border);padding:48px 0;text-align:center;background:var(--bg-warm)}
+
+    /* Responsive */
+    @media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.features-grid{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}}
+    @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.features-grid{grid-template-columns:1fr}.hero{padding:120px 0 80px}section{padding:64px 0}}
+    /* Scroll Animation */
+    .fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}.fade-up.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">📊 <span>mu-excel-toolbox</span></div>
+    <ul class="nav-links">
+      <li><a href="#features" data-en="Features" data-zh="核心能力">Features</a></li>
+      <li><a href="#all-features" data-en="All 22" data-zh="全部功能">All 22</a></li>
+      <li><a href="#comparison" data-en="Compare" data-zh="竞品对比">Compare</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch" id="langSwitch">
+        <span data-lang="en" class="active">EN</span>
+        <span data-lang="zh">中文</span>
+      </div>
+      <a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta" target="_blank" data-en="Skill Hub →" data-zh="Skill合集 →">Skill合集 →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span> <span data-en="✨ Open Source · MIT License · Free Forever" data-zh="✨ 开源 · MIT 协议 · 永久免费">✨ Open Source · MIT License · Free Forever</span></div>
+    <h1 data-en="One Skill for the<br><span class='accent-text'>Entire Excel Lifecycle</span> 📊" data-zh="一个 Skill 搞定<br><span class='accent-text'>Excel 全生命周期</span> 📊">One Skill for the<br><span class="accent-text">Entire Excel Lifecycle</span> 📊</h1>
+    <p class="hero-sub" data-en="Read & write, merge & split, clean & validate, pivot & chart, template fill, encrypt & protect — just describe what you need in natural language. Local execution, zero subscription." data-zh="读写创建、合并拆分、清洗校验、透视图表、模板填充、加密保护——对 Agent 说人话就行。本地执行，零订阅。">Read & write, merge & split, clean & validate, pivot & chart, template fill, encrypt & protect — just describe what you need in natural language. Local execution, zero subscription.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/muippt/mu-excel-toolbox" class="btn btn-primary" target="_blank"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> <span data-en="Get Started" data-zh="立即使用">Get Started</span></a>
+      <a href="https://github.com/muippt/mu-excel-toolbox/archive/refs/heads/main.zip" class="btn btn-secondary" target="_blank"><span data-en="⬇️ Download ZIP" data-zh="⬇️ 下载ZIP">⬇️ Download ZIP</span></a>
+    </div>
+    <div class="stats fade-up">
+      <div class="stat"><div class="stat-num">22</div><div class="stat-label" data-en="🛠️ Features" data-zh="🛠️ 功能">🛠️ Features</div></div>
+      <div class="stat"><div class="stat-num">7</div><div class="stat-label" data-en="📊 Chart Types" data-zh="📊 图表类型">📊 Chart Types</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label" data-en="🧹 Cleaning Rules" data-zh="🧹 清洗规则">🧹 Cleaning Rules</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label" data-en="📐 Output Formats" data-zh="📐 输出格式">📐 Output Formats</div></div>
+      <div class="stat"><div class="stat-num">100K+</div><div class="stat-label" data-en="⚡ Rows Streaming" data-zh="⚡ 流式处理">⚡ Rows Streaming</div></div>
+      <div class="stat"><div class="stat-num">5,636</div><div class="stat-label" data-en="💻 Lines of Code" data-zh="💻 代码行数">💻 Lines of Code</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Features -->
+<section id="features">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-label" data-en="⚡ Core Capabilities" data-zh="⚡ 核心能力">⚡ Core Capabilities</span>
+      <h2 class="section-title" data-en="Everything Excel, One Command 💪" data-zh="Excel 一切操作，一条命令 💪">Everything Excel, One Command 💪</h2>
+      <p class="section-desc" data-en="From quick preview to encrypted delivery — 22 tools covering every step of your Excel workflow." data-zh="从快速预览到加密交付——22 个工具覆盖 Excel 工作流的每一步。">From quick preview to encrypted delivery — 22 tools covering every step of your Excel workflow.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📋</div>
+        <h3 data-en="Smart Preview" data-zh="智能预览">Smart Preview</h3>
+        <p data-en="Auto-detect sheet structure, column names, data types, row counts. Know your file before you act." data-zh="自动识别 Sheet 结构、列名、数据类型、行数。操作前先了解文件。">Auto-detect sheet structure, column names, data types, row counts. Know your file before you act.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📎</div>
+        <h3 data-en="Merge & Split" data-zh="合并与拆分">Merge & Split</h3>
+        <p data-en="Combine multiple files into one, or split by sheet or column value. 5 monthly reports → 1 annual summary in seconds." data-zh="多文件合并为一个，或按 Sheet / 列值拆分。5 个月报 → 1 份年度汇总，秒级完成。">Combine multiple files into one, or split by sheet or column value. 5 monthly reports → 1 annual summary in seconds.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🔗</div>
+        <h3 data-en="VLOOKUP & Dedup" data-zh="关联与去重">VLOOKUP & Dedup</h3>
+        <p data-en="Cross-table join by any key. Smart dedup keeping the latest record. No more formula errors." data-zh="按任意键跨表关联。智能去重保留最新记录。告别公式错误。">Cross-table join by any key. Smart dedup keeping the latest record. No more formula errors.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📊</div>
+        <h3 data-en="Charts & Pivots" data-zh="图表与透视">Charts & Pivots</h3>
+        <p data-en="Bar, line, pie, combo charts. Cross-tabulation pivot tables. Statistical summaries. All from natural language." data-zh="柱状图、折线图、饼图、组合图。交叉透视表。统计摘要。全部自然语言驱动。">Bar, line, pie, combo charts. Cross-tabulation pivot tables. Statistical summaries. All from natural language.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📄</div>
+        <h3 data-en="Template Fill" data-zh="模板填充">Template Fill</h3>
+        <p data-en="Batch-generate offer letters, notifications, certificates from data + template. 100 letters in one command." data-zh="数据 + 模板批量生成 offer、通知、证书。一条命令生成 100 份。">Batch-generate offer letters, notifications, certificates from data + template. 100 letters in one command.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🔒</div>
+        <h3 data-en="Encrypt & Protect" data-zh="加密保护">Encrypt & Protect</h3>
+        <p data-en="File-level password protection for sensitive data. Set, modify, or remove passwords. Compatible with Office/WPS/LibreOffice." data-zh="敏感文件级密码保护。设置、修改、移除密码。兼容 Office/WPS/LibreOffice。">File-level password protection for sensitive data. Set, modify, or remove passwords. Compatible with Office/WPS/LibreOffice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- All 22 Features -->
+<section id="all-features" style="background:var(--bg-warm);">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-label" data-en="🚀 All 22 Features" data-zh="🚀 全部22项功能">🚀 All 22 Features</span>
+      <h2 class="section-title" data-en="Complete Feature List 📋" data-zh="完整功能清单 📋">Complete Feature List 📋</h2>
+      <p class="section-desc" data-en="Every tool you need, organized by category. Just describe what you want — the skill auto-routes." data-zh="你需要的每个工具，按类别组织。只需描述需求——Skill 自动路由。">Every tool you need, organized by category. Just describe what you want — the skill auto-routes.</p>
+    </div>
+    <div class="feature-table-wrapper fade-up">
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-en="Feature" data-zh="功能">Feature</th>
+            <th data-en="Description" data-zh="说明">Description</th>
+            <th data-en="Trigger Example" data-zh="触发示例">Trigger Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>📋 <span data-en="Smart Preview" data-zh="智能预览">Smart Preview</span></td><td data-en="Sheets, columns, rows, data types" data-zh="Sheet、列名、行数、数据类型">Sheets, columns, rows, data types</td><td data-en='"Show me this Excel"' data-zh='"看看这个Excel"'>"Show me this Excel"</td></tr>
+          <tr><td>2</td><td>📖 <span data-en="Read" data-zh="读取">Read</span></td><td data-en="Precise read by sheet/column/range" data-zh="按Sheet/列/行范围精确读取">Precise read by sheet/column/range</td><td data-en='"Read columns A-D from Sheet2"' data-zh='"读取Sheet2的A~D列"'>"Read columns A-D from Sheet2"</td></tr>
+          <tr><td>3</td><td>✏️ <span data-en="Write & Create" data-zh="写入/创建">Write & Create</span></td><td data-en="Write data to new Excel file" data-zh="数据写入新Excel">Write data to new Excel file</td><td data-en='"Generate an Excel from this data"' data-zh='"把这份数据生成Excel"'>"Generate an Excel from this data"</td></tr>
+          <tr><td>4</td><td>🔄 <span data-en="Format Convert" data-zh="格式互转">Format Convert</span></td><td data-en="xlsx ↔ csv ↔ json ↔ tsv" data-zh="xlsx ↔ csv ↔ json ↔ tsv">xlsx ↔ csv ↔ json ↔ tsv</td><td data-en='"Convert CSV to xlsx"' data-zh='"把CSV转成xlsx"'>"Convert CSV to xlsx"</td></tr>
+          <tr><td>5</td><td>📎 <span data-en="Merge" data-zh="合并">Merge</span></td><td data-en="Combine multiple files/sheets" data-zh="多文件/多Sheet合并">Combine multiple files/sheets</td><td data-en='"Merge these 5 monthly reports"' data-zh='"合并这5个月报"'>"Merge these 5 monthly reports"</td></tr>
+          <tr><td>6</td><td>✂️ <span data-en="Split" data-zh="拆分">Split</span></td><td data-en="Split by sheet into separate files" data-zh="按Sheet拆分为独立文件">Split by sheet into separate files</td><td data-en='"Split by sheet"' data-zh='"按Sheet拆分"'>"Split by sheet"</td></tr>
+          <tr><td>7</td><td>✂️ <span data-en="Split by Column" data-zh="按列值拆分">Split by Column</span></td><td data-en="Split by a column's values" data-zh="按指定列的值分组拆分">Split by a column's values</td><td data-en='"Split by department"' data-zh='"按部门拆分"'>"Split by department"</td></tr>
+          <tr><td>8</td><td>🔗 <span data-en="VLOOKUP" data-zh="VLOOKUP">VLOOKUP</span></td><td data-en="Cross-table join" data-zh="跨表关联匹配">Cross-table join</td><td data-en='"Join by employee ID"' data-zh='"按工号关联"'>"Join by employee ID"</td></tr>
+          <tr><td>9</td><td>🧹 <span data-en="Dedup" data-zh="去重">Dedup</span></td><td data-en="Deduplicate by specified columns" data-zh="按指定列去重">Deduplicate by specified columns</td><td data-en='"Dedup by name + phone"' data-zh='"按姓名+手机号去重"'>"Dedup by name + phone"</td></tr>
+          <tr><td>10</td><td>🧽 <span data-en="Data Cleaning" data-zh="数据清洗">Data Cleaning</span></td><td data-en="Empty rows, format standardization" data-zh="空行清理、格式统一">Empty rows, format standardization</td><td data-en='"Clean dirty data"' data-zh='"清洗脏数据"'>"Clean dirty data"</td></tr>
+          <tr><td>11</td><td>📄 <span data-en="Template Fill" data-zh="模板填充">Template Fill</span></td><td data-en="Batch generate from template" data-zh="数据+模板批量生成">Batch generate from template</td><td data-en='"Batch generate offer letters"' data-zh='"批量生成offer"'>"Batch generate offer letters"</td></tr>
+          <tr><td>12</td><td>✅ <span data-en="Validation" data-zh="数据校验">Validation</span></td><td data-en="Email/ID/phone format check" data-zh="邮箱/工号/身份证格式校验">Email/ID/phone format check</td><td data-en='"Check which emails are invalid"' data-zh='"检查哪些邮箱无效"'>"Check which emails are invalid"</td></tr>
+          <tr><td>13</td><td>🎨 <span data-en="Conditional Format" data-zh="条件格式">Conditional Format</span></td><td data-en="Auto-color by rules" data-zh="按规则自动标色">Auto-color by rules</td><td data-en='"Red below 60, green above 90"' data-zh='"低于60标红，高于90标绿"'>"Red below 60, green above 90"</td></tr>
+          <tr><td>14</td><td>💅 <span data-en="Styling" data-zh="样式排版">Styling</span></td><td data-en="Header beautification, auto width" data-zh="表头美化、列宽自适应">Header beautification, auto width</td><td data-en='"Bold header with background"' data-zh='"表头加粗加背景色"'>"Bold header with background"</td></tr>
+          <tr><td>15</td><td>📐 <span data-en="Formulas" data-zh="函数公式">Formulas</span></td><td data-en="Auto-insert Excel formulas" data-zh="自动插入Excel公式">Auto-insert Excel formulas</td><td data-en='"Add SUM in column E"' data-zh='"在E列加SUM公式"'>"Add SUM in column E"</td></tr>
+          <tr><td>16</td><td>📊 <span data-en="Charts" data-zh="图表">Charts</span></td><td data-en="Bar/line/pie/combo charts" data-zh="柱状图/折线图/饼图/组合图">Bar/line/pie/combo charts</td><td data-en='"Generate a sales bar chart"' data-zh='"生成销售柱状图"'>"Generate a sales bar chart"</td></tr>
+          <tr><td>17</td><td>📈 <span data-en="Pivot Table" data-zh="数据透视表">Pivot Table</span></td><td data-en="Cross-tabulation analysis" data-zh="交叉汇总分析">Cross-tabulation analysis</td><td data-en='"Summarize sales by dept and month"' data-zh='"按部门和月份汇总销售额"'>"Summarize sales by dept and month"</td></tr>
+          <tr><td>18</td><td>🔬 <span data-en="Data Analysis" data-zh="数据分析">Data Analysis</span></td><td data-en="Statistical summary: mean/median" data-zh="统计摘要：均值/中位数">Statistical summary: mean/median</td><td data-en='"Give me a statistical summary"' data-zh='"给我统计摘要"'>"Give me a statistical summary"</td></tr>
+          <tr><td>19</td><td>🔍 <span data-en="Diff" data-zh="差异对比">Diff</span></td><td data-en="Row-by-row file comparison" data-zh="两版文件逐行比对">Row-by-row file comparison</td><td data-en='"Compare two versions of the roster"' data-zh='"对比两版花名册"'>"Compare two versions of the roster"</td></tr>
+          <tr><td>20</td><td>🖼️ <span data-en="Image Insert" data-zh="图片插入">Image Insert</span></td><td data-en="Batch insert images to rows" data-zh="批量插入图片到对应行">Batch insert images to rows</td><td data-en='"Insert employee photos"' data-zh='"插入员工照片"'>"Insert employee photos"</td></tr>
+          <tr><td>21</td><td>🔒 <span data-en="Password Protect" data-zh="密码保护">Password Protect</span></td><td data-en="File encrypt/decrypt" data-zh="文件加密/解密">File encrypt/decrypt</td><td data-en='"Password-protect the salary table"' data-zh='"给薪酬表加密码"'>"Password-protect the salary table"</td></tr>
+          <tr><td>22</td><td>⚡ <span data-en="Large File" data-zh="大文件">Large File</span></td><td data-en="100K+ rows auto-streaming" data-zh="10万+行自动流式处理">100K+ rows auto-streaming</td><td data-en="Auto-triggered" data-zh="自动触发">Auto-triggered</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section id="comparison">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <span class="section-label" data-en="📌 Comparison" data-zh="📌 竞品对比">📌 Comparison</span>
+      <h2 class="section-title" data-en="Why mu-excel-toolbox? 🤔" data-zh="为什么选 mu-excel-toolbox？🤔">Why mu-excel-toolbox? 🤔</h2>
+    </div>
+    <div class="comparison-wrapper fade-up">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th data-en="Dimension" data-zh="维度">Dimension</th>
+            <th>mu-excel-toolbox</th>
+            <th data-en="Manual Excel" data-zh="手动操作">Manual Excel</th>
+            <th data-en="DIY Python" data-zh="自己写脚本">DIY Python</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-en="Merge 10 reports" data-zh="合并10个报表">Merge 10 reports</td><td class="check" data-en="✅ 1 command, seconds" data-zh="✅ 1条命令，秒级">✅ 1 command, seconds</td><td data-en="10-30 min copy-paste" data-zh="10-30分钟复制粘贴">10-30 min copy-paste</td><td data-en="Write script each time" data-zh="每次写脚本">Write script each time</td></tr>
+          <tr><td data-en="Split by column" data-zh="按列拆分">Split by column</td><td class="check" data-en="✅ Auto-split" data-zh="✅ 自动拆分">✅ Auto-split</td><td data-en="Filter→Copy→Paste×N" data-zh="筛选→复制→粘贴×N">Filter→Copy→Paste×N</td><td data-en="Implement yourself" data-zh="自己实现">Implement yourself</td></tr>
+          <tr><td data-en="Data cleaning" data-zh="数据清洗">Data cleaning</td><td class="check" data-en="✅ 8 rules, one click" data-zh="✅ 8种规则一键">✅ 8 rules, one click</td><td data-en="Manual find-replace" data-zh="手动查找替换">Manual find-replace</td><td data-en="Debug each rule" data-zh="逐个调试">Debug each rule</td></tr>
+          <tr><td data-en="Large file (100K+)" data-zh="大文件(10万+)">Large file (100K+)</td><td class="check" data-en="✅ Auto-streaming" data-zh="✅ 自动流式">✅ Auto-streaming</td><td class="cross" data-en="❌ Excel freezes" data-zh="❌ Excel卡死">❌ Excel freezes</td><td data-en="Implement streaming" data-zh="自己实现流式">Implement streaming</td></tr>
+          <tr><td data-en="Encoding issues" data-zh="编码问题">Encoding issues</td><td class="check" data-en="✅ Auto-detect" data-zh="✅ 自动识别">✅ Auto-detect</td><td class="cross" data-en="❌ Manual import" data-zh="❌ 手动导入">❌ Manual import</td><td class="cross" data-en="❌ UnicodeDecodeError" data-zh="❌ 编码噩梦">❌ UnicodeDecodeError</td></tr>
+          <tr><td data-en="Safety backup" data-zh="安全备份">Safety backup</td><td class="check" data-en="✅ Auto-backup" data-zh="✅ 自动备份">✅ Auto-backup</td><td class="cross" data-en="❌ Overwrite risk" data-zh="❌ 覆盖风险">❌ Overwrite risk</td><td class="cross" data-en="❌ Overwrite = gone" data-zh="❌ 覆盖=丢失">❌ Overwrite = gone</td></tr>
+          <tr><td data-en="Barrier to entry" data-zh="上手门槛">Barrier to entry</td><td class="check" data-en="✅ Natural language" data-zh="✅ 自然语言">✅ Natural language</td><td data-en="Excel skills needed" data-zh="需要Excel技能">Excel skills needed</td><td data-en="Python + libs needed" data-zh="需要Python+库">Python + libs needed</td></tr>
+          <tr><td data-en="Open Source" data-zh="开源">Open Source</td><td class="check" data-en="✅ MIT" data-zh="✅ MIT">✅ MIT</td><td class="cross" data-en="❌ N/A" data-zh="❌ 不适用">❌ N/A</td><td class="check" data-en="✅ Your code" data-zh="✅ 自己的代码">✅ Your code</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-up" data-en="No code. No plugins.<br><span class='accent-text'>Just talk to your agent.</span> ⚡" data-zh="不用写代码。不用装插件。<br><span class='accent-text'>对 Agent 说人话就行。</span> ⚡">No code. No plugins.<br><span class="accent-text">Just talk to your agent.</span> ⚡</h2>
+    <p class="fade-up" data-en="Local execution · Zero subscription · MIT License · 5,636 lines of code · 22 features" data-zh="本地执行 · 零订阅 · MIT 协议 · 5,636 行代码 · 22 项功能">Local execution · Zero subscription · MIT License · 5,636 lines of code · 22 features</p>
+    <div class="hero-actions fade-up">
+      <a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-primary"><span data-en="mu-skillhub" data-zh="mu-skill集合">mu-skill集合</span></a>
+      <a href="https://github.com/muippt/mu-excel-toolbox/archive/refs/heads/main.zip" class="btn btn-secondary" target="_blank"><span data-en="⬇️ Download ZIP" data-zh="⬇️ 下载ZIP">⬇️ Download ZIP</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+<div class="footer-badges" style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div>
+</footer>
+
+<script>
+  // Language switch
+  const langSwitch=document.getElementById('langSwitch');
+  let currentLang='en';
+  function setLang(lang){
+    currentLang=lang;
+document.querySelectorAll('[data-en]').forEach(el=>{
+const text=el.getAttribute('data-'+lang);
+if(text){
+if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.value=text}
+else{
+if(text.includes('<')){el.innerHTML=text}
+else{el.textContent=text}
+}
+}
+});
+document.querySelectorAll('img[data-'+lang+'-src]').forEach(img=>{
+const s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;
+});
+document.querySelectorAll('.lang-switch span').forEach(s=>s.classList.toggle('active',s.dataset.lang===lang));
+    document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+    localStorage.setItem('excel-lang',lang);
+  }
+  langSwitch.addEventListener('click',e=>{
+    if(e.target.dataset.lang){setLang(e.target.dataset.lang)}
+  });
+  // Always default to Chinese on fresh page load; no restore from localStorage/browser language.
+  setLang('zh');
+
+  // Scroll animation
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible')}
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

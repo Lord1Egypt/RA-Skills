@@ -1,44 +1,54 @@
-## Description: <br>
-Discovers Azure-hosted AI agent and MCP-relevant assets from the operator's environment, emits canonical agent-bom inventory JSON, and scans it only when requested without giving agent-bom long-lived Azure credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers Azure-hosted AI and MCP-relevant assets and produces canonical agent-bom inventory JSON for optional scanning.
 
-## Publisher: <br>
-[msaad00](https://clawhub.ai/user/msaad00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[msaad00](https://clawhub.ai/user/msaad00)
 
-## Use Case: <br>
-Developers and security or operations engineers use this skill to inventory Azure OpenAI, Container Apps, AKS, Functions, ML, and agentic Azure infrastructure as canonical agent-bom inventory, then optionally run an agent-bom scan for findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Azure inventory can reveal resource names, architecture, permissions, and service metadata even when credentials are redacted. <br>
-Mitigation: Review generated inventory before sharing it, store it only in operator-approved locations, and limit access to teams that need the cloud asset details. <br>
-Risk: Azure credential material or secrets could be exposed if an operator pastes, logs, or exports raw identity values. <br>
-Mitigation: Use least-privilege read-only Azure identities, prefer Azure CLI, workload identity, managed identity, or short-lived service principals, and do not print or request raw secrets or tokens. <br>
-Risk: Running discovery against the wrong subscription could capture unintended cloud inventory. <br>
-Mitigation: Require operator-approved subscriptions and an explicit output path, and keep the workflow discovery-only with no Azure resource modification. <br>
+## Use Case:
 
+Developers and cloud security engineers use this skill to inventory Azure AI and agentic workloads through approved, read-only Azure access, then optionally scan the resulting inventory with agent-bom.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/msaad00/skills/agent-bom-discover-azure) <br>
-- [agent-bom project homepage](https://github.com/msaad00/agent-bom) <br>
-- [agent-bom PyPI package](https://pypi.org/project/agent-bom/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and local JSON file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operator-selected Azure inventory JSON and optional agent-bom findings JSON; credentials remain in the operator environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.91.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Azure discovery uses the operator's Azure identity, and the security review has medium confidence with incomplete analysis because a referenced local path could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved subscriptions with read-only access, and review the unresolved local-path issue before running.
+
+Risk: The workflow writes Azure inventory to a path chosen by the operator.
+
+Mitigation: Choose a protected operator-controlled path and review the inventory before sharing it.
+
+## Reference(s):
+
+- [agent-bom project homepage](https://github.com/koda-ai-studio/agent-bom)
+- [agent-bom on PyPI](https://pypi.org/project/agent-bom/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Canonical inventory JSON file and Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes to an operator-selected path; scanning is optional and requires an explicit request.]
+
+## Skill Version(s):
+
+0.115.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

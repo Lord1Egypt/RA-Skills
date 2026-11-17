@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">design-guide mark</title>
+  <desc id="desc">Three nested interface rails represent the Level 0, Level 1, and Level 2 design depths while forming an F.</desc>
+  <path d="M10 12H118V32H30V116H10Z" fill="#2F43D3"/>
+  <path d="M38 44H118V64H58V116H38Z" fill="#161A22"/>
+  <path d="M66 76H118V96H66Z" fill="#FFC53D"/>
+</svg>

@@ -1,14 +1,15 @@
 # LYGO Kernel Eggs — book-brain reference stub
-# generated 2026-07-02T18:25:05.928748+00:00
+# generated 2026-07-03T23:45:09.205980+00:00
 tamper_verdict: ALIGNED
-registry_merkle_root: ee79ae47c6150c557035fd4bf81b88f4126f2d263b5c6643b62b8e5c5edbba99
-git_head: 9d35cd95ccde
+registry_merkle_root: 5ddb340ba4f6f544da3f8994d2e89d1fe55145f18bd42e06938cae2c48c8f464
+git_head: 990b5bbf9a88
 retrieval: https://deepseekoracle.github.io/lygo-protocol-stack/KernelEggRetrieval.html
 cli: python tools/retrieve_kernel_egg.py --list
 
-egg:p0-nano-kernel sha256:606fe61ffe972721… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/606fe61ffe972721fe89cd7ff710270c237ec92ef533fd59b3e355285380443a.json
-egg:stack-anchor-hook sha256:584aed9fcfe54e60… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/584aed9fcfe54e602ad96b5829b839daf1389b4f8fe2050767467e4bb35bf39f.json
-egg:stack-orchestrator-slim sha256:091dd76165d85084… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/091dd76165d85084104e8eb6d5b8206e4fa7eeb89d791ea848dfeb2bd0f6bbdf.json
-egg:lattice-soa-index sha256:64d64a148699f829… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/64d64a148699f8293ce9336ca9a19a6d4010b19994afd19f07c0ae7c226db5c1.json
-egg:firmware-p04-drivers sha256:1d2a746ae99c7452… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/1d2a746ae99c74526cdd391ddb67cfa724d4e47a0e6f04e3de11c141dfae4c95.json
-egg:protocol-drivers-p2-p5 sha256:ba99cff475bc5c34… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/ba99cff475bc5c34b8e746e43b7c10847c8efbaaef861a5dd3c22d1907b07e25.json
+egg:p0-nano-kernel sha256:962a22b21e943759… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/962a22b21e943759e21a6daf73b5daf698e4d4bc3b8fb304f87b7c1bc9181b9d.json
+egg:stack-anchor-hook sha256:e8227c0971e23ee2… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/e8227c0971e23ee2e0fa171261967dcf62230c52cbe872631d63c0ab00e5d531.json
+egg:stack-orchestrator-slim sha256:e8b9c8e1c28b5edf… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/e8b9c8e1c28b5edfa5145dc04fa2df3097b43aaa52aa9a9c22de710e7ecf128c.json
+egg:lattice-soa-index sha256:b69298d5488ae579… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/b69298d5488ae57934046e7632085912225354e44b46578023d73f5f2ca219b6.json
+egg:firmware-p04-drivers sha256:4dcad550521fa64c… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/4dcad550521fa64c4e431204ebe3dee80aed71d60f6f97c2f341fd6a2121f1e3.json
+egg:protocol-drivers-p2-p5 sha256:c933a77538e3333b… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/c933a77538e3333b74b7ff174d243c34fe5ea2324c59019fb06d9038a0ebc9b5.json
+egg:joy-loop-protocol-v21 sha256:ebd04d108bc5eb73… url:file:///I:/E%20Drive/lygo-protocol-stack/data/anchors/ebd04d108bc5eb7330b1462e14c932aba16db00a5d16f17a42f53513f2ed59e4.json

@@ -1,44 +1,54 @@
-## Description: <br>
-Collects historical A-share and Hong Kong stock data for specified securities, supports single-stock and batch collection across multiple documented periods, and exports results as CSV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects historical A-share and Hong Kong stock data for one or more specified stocks, supports daily, weekly, monthly, and documented minute-level periods, and exports results as CSV files.
 
-## Publisher: <br>
-[wang-junjian](https://clawhub.ai/user/wang-junjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang-junjian](https://clawhub.ai/user/wang-junjian)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to collect historical Chinese A-share and Hong Kong equity data for individual stocks or watchlists and save it as CSV for downstream analysis in spreadsheets or data tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documented data sources and minute-level support may not match the skill's actual behavior. <br>
-Mitigation: Verify the provider, market, interval, and fallback behavior on known symbols before relying on outputs for financial analysis or trading decisions. <br>
-Risk: The skill depends on external market-data services whose coverage and returned fields can vary. <br>
-Mitigation: Validate generated CSV files for expected date ranges, columns, and record counts before using them in downstream analysis. <br>
-Risk: The security verdict flags the release as suspicious and recommends review before installation. <br>
-Mitigation: Review the skill carefully, install dependencies in an isolated environment, and use the skill only if the external data-service behavior is acceptable. <br>
+## Use Case:
 
+External users, developers, and analysts can use this skill to collect historical A-share and Hong Kong stock market data for individual tickers or watchlists. It is suited for creating CSV datasets for spreadsheet review, pandas workflows, or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wang-junjian/stock-data-collector) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Quickstart guide](artifact/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with Python CLI commands; runtime scripts write UTF-8 CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to market-data providers and Python dependencies including akshare, yfinance, and pandas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill depends on external Python packages and market data services, so dependency or API changes can affect collection reliability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a dedicated virtual environment, consider pinning package versions, and review failed downloads before using generated data.
+
+Risk: Minute-level period options are documented but the security guidance reports they are not implemented correctly.
+
+Mitigation: Use daily, weekly, or monthly periods unless the minute-level behavior is fixed and retested.
+
+## Reference(s):
+
+- [Quickstart Guide](artifact/QUICKSTART.md)
+- [ClawHub Skill Page](https://clawhub.ai/wang-junjian/skills/stock-data-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and CSV files produced by the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated CSV files are written to a configurable output directory and named with stock name, code, market, and period.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

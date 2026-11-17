@@ -1,44 +1,52 @@
-## Description: <br>
-Chinese personal income tax calculator for salary, bonus, freelance income, deductions, annual settlement, tax refund estimates, tax optimization, and offer comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese personal income tax calculator for salary, annual bonus, freelance income, deductions, tax refund estimates, tax optimization, and offer comparison.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to calculate and compare Chinese personal income tax outcomes for salary, annual bonus, freelance income, annual settlement, deductions, tax optimization, and job offers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package includes a financial-tracking script that persistently logs user-provided financial text in local plaintext files.
+
+Mitigation: Review commands before use, avoid entering sensitive transaction descriptions, and remove or restrict the tracking script if only tax calculations are expected.
+
+Risk: Tax calculations and optimization guidance may become outdated or may not fit an individual user's tax situation.
+
+Mitigation: Verify results against current State Taxation Administration guidance and consult a qualified tax professional for filing decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to calculate Chinese personal income tax scenarios, including monthly salary, year-end bonus, freelance income, annual settlement, deductions, refund estimates, tax optimization, and offer comparisons. Results should be treated as estimates and checked against current tax policy or a qualified tax professional for decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious because it bundles an unrelated financial-tracking script that is under-disclosed and writes local history. <br>
-Mitigation: Review before installing, verify that the installed command uses scripts/tax.sh for tax calculations, and avoid entering transaction details into scripts/script.sh unless local history writing is acceptable. <br>
-Risk: Tax calculations and optimization guidance may become inaccurate as Chinese tax policy changes. <br>
-Mitigation: Treat outputs as estimates and confirm material tax decisions against current official guidance or a qualified tax professional. <br>
+**Output Format:** [Plain text and Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/tax-calculator-cn) <br>
-- [Tax optimization guide](artifact/tips.md) <br>
-- [Declared project homepage](https://bytesagain.com) <br>
-- [Declared source repository](https://github.com/bytesagain/ai-skills) <br>
-- [Feedback and feature requests](https://bytesagain.com/feedback) <br>
+**Other Properties Related to Output:** [Local command output; tax guidance should be checked against current official policy and professional advice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces tax estimates and optimization guidance; bundled scripts may also write local history under the user's data directory.] <br>
+2.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

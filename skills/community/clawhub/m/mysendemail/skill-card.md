@@ -1,43 +1,54 @@
-## Description: <br>
-Send an email by specifying the receiver's address, subject, and content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send an email by specifying the recipient address, subject, and message content.
 
-## Publisher: <br>
-[ZhaoYaofeng168](https://clawhub.ai/user/ZhaoYaofeng168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoyaofeng168](https://clawhub.ai/user/zhaoyaofeng168)
 
-## Use Case: <br>
-Developers and agents use this skill to send a single SMTP email notification when a recipient, subject, and message body are supplied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds a reusable corporate SMTP password. <br>
-Mitigation: Rotate the exposed password before use and replace hardcoded credentials with a user-managed secret. <br>
-Risk: The skill can send arbitrary outbound email without clear confirmation controls. <br>
-Mitigation: Require explicit confirmation of the recipient, subject, and body before sending any email. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review carefully before installing or deploying the skill. <br>
+## Use Case:
 
+Users can invoke this skill when they need an agent to send a simple SMTP email notification to a specified recipient. It is intended for direct email delivery tasks, not bulk email or spam.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhaoYaofeng168/mysendemail) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ZhaoYaofeng168) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends outbound email through SMTP using receiver, subject, and content parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send email outside the user's environment without explicit confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before sending and validate recipients before external delivery.
+
+Risk: The artifact includes an embedded SMTP account password.
+
+Mitigation: Rotate the exposed password and move credentials to protected runtime configuration before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoyaofeng168/skills/mysendemail)
+- [Publisher profile](https://clawhub.ai/user/zhaoyaofeng168)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text status message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires recipient, subject, and content inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

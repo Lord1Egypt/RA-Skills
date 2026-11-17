@@ -1,41 +1,56 @@
-## Description: <br>
-Generate retro 1990s anime and OVA-style illustrations from text prompts through the Neta AI image generation API, with optional output size and reference-image controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate retro 1990s anime and OVA-style illustrations from text prompts, with optional size selection and reference-image style inheritance through the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate retro anime portraits, scenes, profile images, and related 1990s Japanese animation-style artwork from natural-language prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Neta API token and its documented usage passes that token on the command line. <br>
-Mitigation: Use a trusted environment, avoid shared terminals, logs, screenshots, and CI output, and adapt usage to read the token from a protected secret source where possible. <br>
-Risk: Prompts and reference identifiers are sent to the external Neta/TalesOfAI image generation service. <br>
-Mitigation: Avoid submitting confidential, regulated, or sensitive prompt content unless that external service is approved for the intended use. <br>
+## Use Case:
 
+External users and developers use this skill to turn text prompts into retro Japanese animation style image URLs, with options for portrait, landscape, square, or tall output and reference-image style inheritance.
 
-## Reference(s): <br>
-- [90s Anime Art Generator on ClawHub](https://clawhub.ai/omactiengartelle/90s-anime-art-generator) <br>
-- [Neta AI Open](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls] <br>
-**Output Format:** [Plain text image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall output sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json) <br>
+Risk: Prompts, reference image UUIDs, and API tokens are sent to an external Neta/TalesOfAI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive or confidential prompts or reference identifiers unless sharing them with that service is acceptable.
+
+Risk: The documented command-line token flow can expose long-lived API tokens in shell history or process listings.
+
+Mitigation: Prefer short-lived or scoped tokens where available, avoid pasting long-lived secrets directly into reusable commands, and rotate tokens if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/90s-anime-art-generator)
+- [Neta AI token page](https://www.neta.art/open/)
+- [Neta/TalesOfAI image creation endpoint](https://api.talesofai.com/v3/make_image)
+- [Neta/TalesOfAI task polling endpoint](https://api.talesofai.com/v1/artifact/task/${taskUuid})
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Text, Guidance]
+
+**Output Format:** [Plain text image URL with command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; prompt text and optional reference image UUID are sent to the external Neta/TalesOfAI service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,15 @@
 ---
 name: xiaozhi-recycle-order
-description: 小智回收自助下单。用于通过小智回收开放平台 API 创建回收订单。当用户需要提交设备回收订单、小智回收下单、回收估价下单时触发此 skill。支持自定义填写回收设备信息（品牌、型号、品类）、联系人、上门地址等。支持设备品类和衣服品类。
+version: "1.0.1"
+display_name: 小智回收自助下单
+display_name_en: Xiaozhi Recycle Order
+description: 小智回收自助下单。用于通过小智回收开放平台 API 创建回收订单。当用户需要提交设备回收订单、小智回收下单、回收估价下单时触发此
+  skill。支持自定义填写回收设备信息（品牌、型号、品类）、联系人、上门地址等。支持设备品类和衣服品类。支持上传设备铭牌/合格证图片进行 OCR 识别，
+  自动提取设备名称、型号、SN 码并推断品牌/品类/型号后下单。
+description_zh: 小智回收自助下单。用于通过小智回收开放平台 API 创建回收订单。当用户需要提交设备回收订单、小智回收下单、回收估价下单时触发此
+  skill。支持自定义填写回收设备信息（品牌、型号、品类）、联系人、上门地址等。支持设备品类和衣服品类。支持上传设备铭牌/合格证图片进行 OCR 识别，
+  自动提取设备名称、型号、SN 码并推断品牌/品类/型号后下单。
+description_en: Create recycling orders via the Xiaozhi Recycle open platform API. Trigger when the user needs to submit a device recycling order, place a Xiaozhi recycle order, or request a recycle price quote. Supports custom device info (brand, model, category), contact, and pickup address, for both device and clothing categories. Supports uploading device nameplate/certificate images for OCR recognition to auto-extract name, model, and SN code and infer brand/category/model.
 agent_created: true
 ---
 
@@ -16,12 +25,17 @@ agent_created: true
 设备下单和衣服下单均需微信登录授权（`jr_sso_token`）。
 衣服询价接口无需授权，可直接调用。
 
+此外支持**设备铭牌 OCR 识别**：用户上传设备铭牌/合格证图片，调用熊洞 OCR 接口
+（`https://ai.bearhome.cn/xd-ocr`）自动提取设备名称、型号、SN 码，并推断品牌/品类/型号，
+用于快速填写设备下单信息。
+
 ## 触发场景
 
 - 用户说「帮我提交一个回收订单」
 - 用户提供设备/衣物信息要求「小智回收下单」
 - 用户需要「获取回收报价并下单」
 - 用户询问「怎么自助回收XX」
+- 用户上传设备铭牌/合格证图片，要求「识别这个设备信息并下单」或「拍一下铭牌帮我回收」
 
 ## 下单流程
 
@@ -50,6 +64,38 @@ agent_created: true
 - `price`: 固定 `0.01`（不展示给用户）
 - `source`: 固定 `172`
 - `sale_item_name`: 自动取 `item_cates` 的值
+
+#### A1. 设备铭牌识别（可选，替代手动填写品牌/品类/型号）
+
+若用户上传了设备铭牌/合格证图片，或提供了图片 URL，可先调用 OCR 识别自动提取
+`item_brand`、`item_cates`、`item_model`，免去手动填写。识别后仍需向用户确认。
+
+```bash
+# 本地图片（用户直接上传的铭牌照片，先保存到本地再传入）
+python3 scripts/ocr_recognize.py --image /path/to/nameplate.jpg
+
+# 图片 URL
+python3 scripts/ocr_recognize.py --image-url "https://example.com/plate.jpg"
+```
+
+脚本返回结构化结果，关键字段：
+
+| 字段 | 说明 | 映射到下单字段 |
+|------|------|----------------|
+| `name` | 识别出的设备名称 | — |
+| `model` | 识别出的型号 | `item_model` |
+| `sn` | SN 码 | 可选写入 `remark` |
+| `suggested_brand` | 推断的品牌 | `item_brand` |
+| `suggested_cates` | 推断的品类 | `item_cates` |
+| `suggested_model` | 推断的型号（优先取 `model`，缺省取 `name`） | `item_model` |
+
+**使用规则：**
+
+1. 识别/推断结果（品牌、品类、型号）**必须展示给用户确认**，用户确认后才进入下单；识别不可靠时允许用户手动修正。
+2. 若脚本推断的品牌或品类为空（未命中关键词库），根据 `name`、`model`、`ocr_text` 中的描述自行推断，或直接询问用户。
+3. **型号择优**：OCR 的 `型号` 字段可能是铭牌编号（如 `MFB2AM`）或含 CMIIT 无线电核准码（如 `2017DP5526`），而 `名称` 字段往往才是完整产品型号（如「米家智能微压IH电饭煲3L」）。选择 `item_model` 时优先取能完整描述产品的字段——若 `名称` 含品类词（电饭煲/空气净化器等）说明是完整产品名，优先取 `名称`；否则取 `型号`。CMIIT ID、铭牌编号、SN 码等写入 `remark` 备注。
+4. SN 码不单独作为下单必填项，可写入 `remark` 备注（如「SN:33844」）以便追溯。
+5. 识别完成后继续走「Step 2 确认订单摘要 → Step 4 授权下单」流程，无需改变后续步骤。
 
 ---
 
@@ -96,17 +142,19 @@ python3 scripts/create_order.py \
 
 将返回的单价展示给用户，确认总价（单价 × 重量），用户确认后进入下单步骤。
 
-### Step 4: 生成小程序码 + 微信扫码授权 + 自动下单
+### Step 4: 生成授权页面 + 微信扫码授权 + 自动下单
 
-用户确认后，先生成小程序码图片：
+用户确认后，生成自带小程序码的 HTML 授权页面（适配网页聊天等各类终端）：
 
 ```bash
-python3 scripts/create_order.py --login-url-only
+python3 scripts/create_order.py --login-url-only --code-html
 ```
 
-输出 `code_image` 字段中包含小程序码图片的本地路径。使用 Read 工具读取该图片展示给用户，用户用微信扫描小程序码即可跳转到小智回收小程序完成授权登录。
+输出 `code_html` 字段中包含 HTML 页面的本地路径。使用 `preview_url` 打开该页面，**直接呈现给用户**，页面内嵌小程序码图片，用户用微信扫码即可跳转小智回收小程序完成授权。
 
-> 如需网页二维码模式（向后兼容），可加 `--code-type qrcode`。
+> 其他模式（向后兼容）：
+> - `--login-url-only`（无 `--code-html`）：生成小程序码图片文件
+> - `--login-url-only --code-type qrcode`：生成网页二维码链接
 
 然后**在前台执行**轮询下单脚本（不要用后台/异步方式）：
 
@@ -154,15 +202,24 @@ python3 scripts/create_order.py \
 
 1. 信息收集完成后向用户展示订单摘要，确认后再提交
 2. 衣服品类需先询价，用户确认价格后再下单
-3. 微信扫码授权：默认使用小程序码（miniprogram），生成图片后展示给用户扫描；如需网页二维码可用 `--code-type qrcode`
+3. 微信扫码授权：默认生成 HTML 授权页面（`--login-url-only --code-html`），内嵌小程序码，用 `preview_url` 展示即可适配所有终端
 4. sendCode 每次请求动态生成，不可重复使用
 5. 轮询超时（120s）后需重新生成 sendCode 发起授权
 6. 若返回「该询价信息已下单，请勿重复使用」，说明该询价对应的订单已存在，需要新的询价记录
+7. OCR 识别的品牌/品类/型号为推断值，**必须经用户确认后方可下单**；识别结果模糊或推断为空时询问用户手动补充
+8. OCR token 有效期约 1 小时，401 时脚本会自动重新生成 token 重试一次
 
 ## Resources
 
 ### scripts/create_order.py
 下单核心脚本，可直接执行，也可被 import 使用。支持设备/衣服双品类、微信扫码授权、询价和下单。
 
+### scripts/ocr_recognize.py
+设备铭牌 OCR 识别脚本，调用熊洞 OCR 接口（`https://ai.bearhome.cn/xd-ocr`）识别设备名称/型号/SN 码，
+并推断品牌/品类/型号供设备下单使用。支持本地图片（`--image`）与图片 URL（`--image-url`）。
+
 ### references/api.md
 API 接口参考文档，包含参数说明和请求示例。
+
+### references/ocr.md
+OCR 铭牌识别接口参考文档，包含鉴权算法、请求/响应格式与字段说明。

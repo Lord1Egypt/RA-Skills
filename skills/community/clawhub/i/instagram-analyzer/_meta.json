@@ -1,6 +1,57 @@
 {
-  "ownerId": "kn7ezrcd9v8y95095h1vk7dwzx80zhzc",
-  "slug": "instagram-analyzer",
+  "name": "instagram-analyzer",
   "version": "1.0.0",
-  "publishedAt": 1770843342933
+  "description": "Instagram profile and post analytics with Reels focus (DEFAULT: Reels Only!)",
+  "author": "Sencer",
+  "tags": ["instagram", "analytics", "engagement", "reels"],
+  "commands": [
+    {
+      "name": "analyze-profile",
+      "description": "Analyze Instagram profile (DEFAULT: Reels Only!)",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Instagram username (without @)"
+          },
+          "posts": {
+            "type": "integer",
+            "description": "Number of posts to analyze",
+            "default": 60
+          },
+          "include_posts": {
+            "type": "boolean",
+            "description": "Include regular posts (default: Reels only)",
+            "default": false
+          },
+          "output": {
+            "type": "string",
+            "enum": ["json", "csv"],
+            "default": "json"
+          }
+        },
+        "required": ["username"]
+      }
+    },
+    {
+      "name": "analyze-post",
+      "description": "Analyze a single Instagram post/Reel",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Instagram post or Reel URL"
+          },
+          "output": {
+            "type": "string",
+            "enum": ["json", "csv"],
+            "default": "json"
+          }
+        },
+        "required": ["url"]
+      }
+    }
+  ]
 }

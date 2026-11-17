@@ -1,42 +1,54 @@
-## Description: <br>
-Break game design creative block with oblique prompts, sideways reframing, and deliberately non-linear workflow moves for game features, mechanics, live-ops ideas, UX flows, FTUE, economy layers, and prototypes that feel stale or overworked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break game design creative block with oblique prompts, sideways reframing, and deliberately non-linear workflow moves for stale features, mechanics, live-ops ideas, UX flows, FTUE, economy layers, and prototypes.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and developers use this skill to unblock stale game design discussions by drawing oblique prompts, interpreting them in context, and turning them into testable design directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The prompt deck uses playful, provocative framing that may not fit every team's tone or facilitation style. <br>
-Mitigation: Review the prompt deck and usage notes before adoption, and use only prompts that fit the team's working context. <br>
-Risk: Creative detours can become randomness or decision avoidance if the session does not converge. <br>
-Mitigation: Limit each run to 1 to 3 prompts and end with one salvageable next step, such as a prototype, cut, rewrite, or player question. <br>
+## Use Case:
 
+External game designers, developers, and creative teams use this skill when a mechanic, feature, UX flow, FTUE, economy layer, live-ops idea, or prototype feels stale or overworked. It produces oblique prompts, interpretations, sideways design directions, and one salvageable next step to test or discuss.
 
-## Reference(s): <br>
-- [Oblique Prompts for Game Design](references/oblique-prompts.md) <br>
-- [Usage Notes](references/usage-notes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-creative-unblocker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured as stuck point, oblique prompts, interpretations, sideways directions, and one salvageable next step] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1 to 3 selected prompts plus concise interpretations and practical next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad creative-block trigger wording may activate when a user expected a more general brainstorming response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly for game design creative unblocking, or tighten trigger wording in deployments that require only explicit activation.
+
+Risk: Playful provocation can be counterproductive when precise production planning, auditing, or prioritization is needed.
+
+Mitigation: Use this skill for ideation and stuck creative discussions, then switch to a planning or prioritization workflow before making production commitments.
+
+## Reference(s):
+
+- [Oblique Prompts for Game Design](references/oblique-prompts.md)
+- [Usage Notes](references/usage-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured response with stuck point, 1 to 3 oblique prompts, interpretations, sideways directions, and one salvageable next step.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+{
+  "name": "lygo-sovereign-super-skill",
+  "version": "1.1.0",
+  "description": "LYGO Sovereign Super Skill — kernel eggs, planters, ClawHub skill chain map including continuum-integrator, PDW 1.3, mint-verifier 1.1, automation-workflows, continuity-advisor. Advisor + stack commands; no auto publish.",
+  "publisher": "deepseekoracle",
+  "license": "MIT",
+  "tags": ["lygo", "lattice", "kernel", "super-skill", "consent"]
+}

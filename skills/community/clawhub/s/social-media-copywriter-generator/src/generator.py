@@ -269,7 +269,7 @@ class CopywriterGenerator:
             import json
             
             # 百炼 API 配置
-            api_key = "sk-sp-1f1d92cdff7d4cbd8dcbe1cd08711606"
+            api_key = "REDACTED-SECRET"
             url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
             
             # 构建请求

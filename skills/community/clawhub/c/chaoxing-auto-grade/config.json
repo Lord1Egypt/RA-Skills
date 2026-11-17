@@ -1,10 +1,38 @@
 {
-  "username": "你的学习通账号",
-  "password": "你的学习通密码",
-  "courseName": "",
-  "apiKey": "你的通义千问 API Key",
-  "model": "qwen-plus",
-  "minScore": 60,
-  "maxScore": 99,
-  "chromePath": ""
+  "api": {
+    "provider": "你的AI提供商（如 sensenova、openai）",
+    "base_url": "https://token.sensenova.cn/v1/chat/completions",
+    "key": "YOUR_API_KEY_HERE",
+    "model": "sensenova-6.7-flash-lite",
+    "temperature": 0,
+    "max_tokens": 500
+  },
+  "login": {
+    "chrome_port": 9222,
+    "script_base": "https://mooc2-ans.chaoxing.com",
+    "passport_url": "https://passport2.chaoxing.com/login?fid=&newversion=true&refer=https://mooc2-ans.chaoxing.com",
+    "account": "YOUR_PHONE_NUMBER",
+    "password": "YOUR_PASSWORD",
+    "cpi": "YOUR_CPI_FROM_URL"
+  },
+  "download": {
+    "target_students": ["学生A", "学生B"],
+    "courses": [
+      {"name": "课程名", "courseid": 123456789, "classes": [
+        {"name": "班级名", "clazzid": 987654321},
+        {"name": "班级名2", "clazzid": 987654322}
+      ]}
+    ],
+    "output_dir": "下载HTML存放路径（如 F:\\学生作业\\带客观题）"
+  },
+  "paths": {
+    "input_dir": "原始HTML目录，通常与 download.output_dir 相同",
+    "output_dir": "清理后HTML输出目录（如 F:\\学生作业\\已清理）",
+    "work_dir": "工作目录，存放subj_questions.json等中间文件"
+  },
+  "grading": {
+    "rate_limit_seconds": 0.15,
+    "save_every": 20,
+    "max_retries": 2
+  }
 }

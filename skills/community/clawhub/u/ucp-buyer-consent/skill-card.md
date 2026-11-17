@@ -1,45 +1,51 @@
-## Description: <br>
-Implement the UCP Buyer Consent extension for GDPR/CCPA consent collection, checkout-session consent fields, and privacy-compliant consent management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers implement the UCP Buyer Consent extension for GDPR/CCPA consent collection, checkout-session consent fields, and privacy-compliant consent management.
 
-## Publisher: <br>
-[ichiorca](https://clawhub.ai/user/ichiorca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichiorca](https://clawhub.ai/user/ichiorca)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add human-in-the-loop buyer consent flows to UCP checkout sessions for analytics, preferences, marketing, and sale-of-data choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation guidance may rely on stale UCP details. <br>
-Mitigation: Confirm the live UCP Buyer Consent specification before implementing fields or schemas. <br>
-Risk: Consent decisions could be applied without the buyer's explicit approval. <br>
-Mitigation: Keep consent choices human-approved and avoid auto-granting consent through the agent. <br>
-Risk: Stored consent records contain privacy-relevant user data. <br>
-Mitigation: Protect consent records, include timestamps for auditability, and support withdrawal workflows where required. <br>
-Risk: Third-party examples may be copied without review. <br>
-Mitigation: Review external samples against the live UCP specification and local compliance requirements before use. <br>
+## Use Case:
 
+Developers and commerce platform teams use this skill when adding human-in-the-loop buyer consent handling to UCP checkout sessions, including analytics, preferences, marketing, and sale-of-data consent fields.
 
-## Reference(s): <br>
-- [UCP Buyer Consent specification](https://ucp.dev/specification/buyer-consent/) <br>
-- [UCP specification overview](https://ucp.dev/specification/overview/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with implementation notes and code/configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no bundled executable code or hidden install behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Implementation guidance may rely on UCP consent details that change or may be worded inconsistently in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the canonical UCP Buyer Consent specification during implementation, especially consent field names and whether any enumerations exist.
+
+## Reference(s):
+
+- [UCP Buyer Consent Specification](https://ucp.dev/specification/buyer-consent/)
+- [UCP Specification Overview](https://ucp.dev/specification/overview/)
+- [ClawHub Skill Page](https://clawhub.ai/ichiorca/skills/ucp-buyer-consent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with implementation notes and possible code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only helper; no hidden execution authority was identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

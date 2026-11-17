@@ -31,7 +31,16 @@ Git post-commit hook 自动写入 commit 元数据（hash、author、branch、re
 
 ## 安装
 
-### 方法一：通过 Claude Code Marketplace
+### 方法一：通过 Codex Marketplace
+
+```powershell
+codex plugin marketplace add https://github.com/KinemaClawWorkspace/kinema-skills-marketplace.git
+codex plugin add git-log-tracker@kinema-skills-marketplace
+```
+
+安装后新开一个 Codex 对话。
+
+### 方法二：通过 Claude Code Marketplace
 
 1. 添加 Marketplace：
 
@@ -51,7 +60,7 @@ Git post-commit hook 自动写入 commit 元数据（hash、author、branch、re
 /plugin list
 ```
 
-### 方法二：通过 ClawHub OpenClaw
+### 方法三：通过 ClawHub OpenClaw
 
 ```bash
 openclaw skills install git-log-tracker
@@ -69,7 +78,7 @@ openclaw skills install git-log-tracker
 
 ## 触发方式
 
-本 skill 为 OpenClaw/Claude Code 技能，安装后可通过对话触发：
+本 skill 支持 Codex、Claude Code 和 OpenClaw，安装后可通过对话触发：
 
 ```
 安装 git hook 到这个仓库
@@ -79,7 +88,7 @@ openclaw skills install git-log-tracker
 git-log-tracker setup
 ```
 
-首次使用需完成 [ONBOARDING.md](ONBOARDING.md) 环境配置（安装 CLI 工具）。
+首次使用需完成 [references/ONBOARDING.md](references/ONBOARDING.md) 环境配置（安装 CLI 工具）。
 
 ## 命令列表
 
@@ -104,8 +113,11 @@ git-log-tracker setup
 
 ```
 git-log-tracker/
+├── .claude-plugin/plugin.json
+├── .codex-plugin/plugin.json
+├── skills/git-log-tracker/SKILL.md
 ├── SKILL.md              # Skill 定义文件
-├── ONBOARDING.md         # 首次配置引导
+├── references/ONBOARDING.md
 ├── README.md             # 本文档
 ├── src/
 │   ├── cli.py            # CLI 入口

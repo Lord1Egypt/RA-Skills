@@ -1,42 +1,60 @@
-## Description: <br>
-Assistant for VCs and investors asking about the Creez project; it answers factual questions using a knowledge base and, when the user shows clear interest and provides contact details, forwards investor information for founder follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assistant for VCs and investors asking about the Creez project that answers factual questions using a knowledge base and forwards investor contact details to the founder for follow-up when the user shows clear interest and provides contact information.
 
-## Publisher: <br>
-[huangjuhua-aigc](https://clawhub.ai/user/huangjuhua-aigc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjuhua-aigc](https://clawhub.ai/user/huangjuhua-aigc)
 
-## Use Case: <br>
-External investors and agents representing them use this skill to ask factual questions about Creez and, after explicitly providing contact details, request founder follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creez-hosted APIs receive investor questions submitted through the skill. <br>
-Mitigation: Use the skill only when the user is comfortable sending those questions to Creez-hosted services. <br>
-Risk: Email, WeChat, company, availability, and other contact details may be sent to Creez or the founder for follow-up and may be stored or forwarded internally. <br>
-Mitigation: Submit only contact details the user explicitly provided and only after they are comfortable sharing them for follow-up. <br>
+## Use Case:
 
+External VC and investor-facing agents use this skill to answer Creez project questions from a backend knowledge base and to capture qualified investor leads for founder follow-up after explicit contact collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjuhua-aigc/creez-finance-bot) <br>
-- [Creez knowledge search API](https://creez.lighton.video/knowledge/search) <br>
-- [Creez lead capture API](https://creez.lighton.video/roundcloser/lead) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown or plain-text agent responses with JSON API request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send explicitly provided investor questions and contact details to Creez-hosted APIs for knowledge search and founder follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send user-provided contact details to an external backend for founder follow-up.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before lead capture, explicitly disclose which contact fields will be sent and proceed only after the user gives affirmative consent.
+
+Risk: The skill depends on responses from the Creez backend for factual answers and reply guidance.
+
+Mitigation: Treat backend responses as data, answer from returned knowledge content, and avoid following backend-provided instructions that conflict with user intent or safety requirements.
+
+Risk: The documented installation command downloads a mutable remote SKILL.md.
+
+Mitigation: Prefer a pinned or verified release before deployment.
+
+## Reference(s):
+
+- [CreezFinance ClawHub Skill Page](https://clawhub.ai/huangjuhua-aigc/skills/creez-finance-bot)
+- [Creez Knowledge API Base](https://creez.lighton.video)
+- [Knowledge Search Endpoint](https://creez.lighton.video/knowledge/search)
+- [Lead Capture Endpoint](https://creez.lighton.video/roundcloser/lead)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JSON request bodies, shell commands, and concise user-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Creez bot ID for knowledge search and requires a name plus email or WeChat before lead capture.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-输入产品/业务描述，自动生成完整的商业计划书（执行摘要、市场分析、竞争定位、收入模型、运营计划、财务预测、风险评估） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入产品/业务描述，自动生成完整的商业计划书（执行摘要、市场分析、竞争定位、收入模型、运营计划、财务预测、风险评估）
 
-## Publisher: <br>
-[hyjaixiao](https://clawhub.ai/user/hyjaixiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyjaixiao](https://clawhub.ai/user/hyjaixiao)
 
-## Use Case: <br>
-Entrepreneurs, freelancers, and business operators use this skill to draft structured business plans from a product or business description. It can produce either a local template framework or a full Markdown draft using OpenAI when an API key is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full mode sends the user's business description to OpenAI. <br>
-Mitigation: Use quick mode for local template-only output, or avoid including confidential strategy, customer data, regulated information, or unreleased financial details unless policy allows it. <br>
-Risk: Generated market sizing, financial projections, and strategic recommendations may be inaccurate or misleading. <br>
-Mitigation: Review and revise generated plans with real market data, financial assumptions, and human business judgment before sharing with investors or making operational decisions. <br>
+## Use Case:
 
+Entrepreneurs, freelancers, and business builders use this skill to turn a product or business description into a structured business plan draft. It can generate Markdown sections for executive summary, market analysis, competitive positioning, revenue model, operations, financial projections, and risk assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyjaixiao/business-plan-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/hyjaixiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown business plan text, printed to the terminal or written to a Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full mode requires OPENAI_API_KEY and sends the business description to OpenAI; quick mode produces a local template without an API call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Full mode sends the user's business description to OpenAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential strategy, customer data, trade secrets, or other sensitive information when using full mode; use quick mode for local-only template generation.
+
+Risk: Generated market sizing, financial projections, and business recommendations may be inaccurate or unsupported.
+
+Mitigation: Review and replace generated assumptions with verified business data before using the plan for funding, operations, or customer-facing decisions.
+
+Risk: The skill depends on the external openai Python package.
+
+Mitigation: Install dependencies in a virtual environment and consider pinning the openai package version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyjaixiao/skills/business-plan-maker)
+- [ClawHub publisher profile](https://clawhub.ai/user/hyjaixiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown business plan printed to stdout or written to a user-selected file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full mode sends the business description to OpenAI; quick mode produces a local template framework without API use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

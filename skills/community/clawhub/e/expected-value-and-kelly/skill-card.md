@@ -1,43 +1,56 @@
-## Description: <br>
-Helps an agent evaluate repeated sizing decisions by mapping probabilities and payoffs, computing expected value, applying the Kelly criterion or fractional Kelly, and naming stop triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides repeated betting and capital-allocation decisions with expected-value analysis, Kelly sizing, and fractional-Kelly adjustments.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and developers use this skill to guide agents through repeated capital-allocation, position-sizing, ad-spend, A/B-test ramp, or similar decisions where probabilities and payoffs can be estimated. The skill produces an EV-Kelly sizing analysis with uncertainty, fractional-Kelly, correlation, and stop-trigger checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational EV-Kelly output as professional financial advice or apply it to one-shot decisions. <br>
-Mitigation: Present outputs as educational analysis, require a repeatable decision with estimable probabilities and payoffs, and redirect one-shot or unestimable decisions away from Kelly sizing. <br>
-Risk: Incorrect probabilities, payoffs, or correlation assumptions can lead to oversized recommendations. <br>
-Mitigation: Require explicit input uncertainty, fractional-Kelly sizing, correlation checks, and concrete stop-and-reestimate triggers. <br>
+## Use Case:
 
+Analysts, investors, and operators use this skill to evaluate repeated decisions with estimated probabilities and payoffs, then reason about whether an edge exists and how much to allocate. It structures the analysis around uncertainty, fractional sizing, stop triggers, and correlation checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/expected-value-and-kelly) <br>
-- [Sources - expected-value-and-kelly](references/sources.md) <br>
-- [A New Interpretation of Information Rate](https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf) <br>
-- [The Kelly Criterion in Blackjack, Sports Betting, and the Stock Market](https://www.eecs.harvard.edu/cs286r/courses/fall12/papers/Thorpe_KellyCriterion2007.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown EV-Kelly sizing worksheet with calculations and decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational calculation guidance; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Suggested allocations may be misleading when probability or payoff assumptions are uncertain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as decision support and verify assumptions before acting on a suggested allocation.
+
+Risk: Recorded failure examples may expose sensitive financial details.
+
+Mitigation: Avoid including sensitive financial details in recorded failure examples.
+
+## Reference(s):
+
+- [Skill release on ClawHub](https://clawhub.ai/deciqai/skills/expected-value-and-kelly)
+- [Kelly, A New Interpretation of Information Rate (1956)](https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf)
+- [Thorp, The Kelly Criterion in Blackjack, Sports Betting, and the Stock Market](https://www.eecs.harvard.edu/cs286r/courses/fall12/papers/Thorpe_KellyCriterion2007.pdf)
+- [Primary sources and further references](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown EV-Kelly sizing analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision support covering repeatability, expected value, edge uncertainty, Kelly and fractional-Kelly sizing, stop triggers, and correlation checks.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

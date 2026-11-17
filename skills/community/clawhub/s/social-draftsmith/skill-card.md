@@ -1,45 +1,57 @@
-## Description: <br>
-Draft, rewrite, adapt, and publish social media posts with an approval-first workflow across Facebook, X, and Reddit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Draftsmith drafts, rewrites, adapts, and publishes approval-first social media posts across Facebook, X, Reddit, and manual LinkedIn-ready packages from ideas, links, announcements, images, long-form text, or sourced context.
 
-## Publisher: <br>
-[normandmickey](https://clawhub.ai/user/normandmickey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[normandmickey](https://clawhub.ai/user/normandmickey)
 
-## Use Case: <br>
-External users and social media operators use this skill to turn ideas, links, announcements, product updates, images, or sourced context into platform-specific drafts and approval-ready publishing packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured platform credentials can be used to publish public posts from the user's accounts. <br>
-Mitigation: Keep credentials least-privileged and private, run dry-runs first, and require explicit approval of the account, platform, text, image, and destination before live publishing. <br>
-Risk: Reddit publishing outside the user's own subreddit can create moderation or account risk. <br>
-Mitigation: Limit Reddit posting to the user's own subreddit unless the user explicitly chooses another destination and confirms they understand the moderation risk. <br>
-Risk: Social posts about factual, current, financial, legal, policy, or technical topics can become misleading if drafted from thin context. <br>
-Mitigation: Ground drafts in source context, keep claims aligned with evidence, and avoid confident explanations when sourcing is insufficient. <br>
+## Use Case:
 
+External users and social-media operators use this skill to turn rough ideas, sourced context, links, announcements, and images into platform-specific social post drafts, approval packages, and optional credential-backed publishing actions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/normandmickey/social-draftsmith) <br>
-- [Facebook Graph API v23.0](https://graph.facebook.com/v23.0) <br>
-- [X API v2](https://api.twitter.com/2) <br>
-- [Reddit OAuth API](https://oauth.reddit.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown social post drafts, approval packages, and optional shell commands for dry-run or approved publishing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Approval-first; live publishing requires configured platform credentials and explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill can use social-media credentials for live posting workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide credentials in environments intended for publishing, use dry-run first, and review the selected platform account or subreddit before approving a live post.
+
+Risk: A draft or image package could be published publicly before the user has verified the exact copy and asset.
+
+Mitigation: Require explicit approval after the final platform, text, image plan, and concrete image path are locked.
+
+Risk: Thin source material can lead to misleading, overly confident, or legally risky public copy.
+
+Mitigation: Ground factual or sensitive posts in reputable source context and flag defamatory, misleading, aggressive, or deceptive wording before publication.
+
+## Reference(s):
+
+- [ClawHub skill listing: Social Draftsmith](https://clawhub.ai/normandmickey/skills/social-draftsmith)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafting packages with optional shell commands and JSON dry-run or publish results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Approval-first workflow; live publishing requires platform credentials and explicit approval.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

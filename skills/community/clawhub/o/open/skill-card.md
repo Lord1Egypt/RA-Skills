@@ -1,41 +1,48 @@
-## Description: <br>
-General helper for opening things from the command line (files, folders, URLs, repositories, docs). Use when the user wants to quickly open something they mentioned, and choose the right OS-specific command to launch it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General helper that suggests OS-specific command-line actions for opening files, folders, URLs, repositories, and docs.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and end users use this skill when they need an agent to translate an intent to open a local resource or URL into the appropriate Windows, macOS, or Linux command.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Suggested open commands can launch local files or URLs with the system default application.
+
+Mitigation: Run the suggested command only for paths and links the user intended to open, quote paths and URLs, and clarify ambiguous targets before suggesting a command.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to turn requests to open files, folders, repositories, logs, docs, or URLs into the right OS-specific command. It helps choose non-destructive Windows, macOS, or Linux open commands and prompts for clarification when the target is ambiguous. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A suggested command could open the wrong local path or an untrusted URL if the user's target is ambiguous or unsafe. <br>
-Mitigation: Confirm the intended file, folder, or link before running the command, and only open targets the user trusts. <br>
-Risk: OS-specific open commands may be incorrect if the user's operating system or shell is unclear. <br>
-Mitigation: Clarify the operating system or shell when needed and quote paths or URLs that may contain spaces or special characters. <br>
+**Output Format:** [Markdown with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/open) <br>
-- [Publisher profile](https://clawhub.ai/user/openlang-cn) <br>
+**Other Properties Related to Output:** [Provides command suggestions only; it does not execute the commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Suggests commands only; it does not execute them.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

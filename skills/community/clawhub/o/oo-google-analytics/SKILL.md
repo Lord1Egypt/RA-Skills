@@ -1,11 +1,11 @@
 ---
 name: oo-google-analytics
-description: "Google Analytics (analytics.google.com). Use this skill for ANY Google Analytics request — reading, creating, and updating data. Whenever a task involves Google Analytics, use this skill instead of calling the API directly."
+description: "Google Analytics (analytics.google.com). Use this skill for ANY Google Analytics request — reading, creating, updating, and deleting data. Whenever a task involves Google Analytics, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google Analytics"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["google_analytics"]
   icon: "https://static.oomol.com/logo/third-party/google_analytics.svg"
 ---
@@ -37,10 +37,10 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `archive_custom_dimension` — Archive a Google Analytics custom dimension that should no longer be available for reporting configuration. [write]
-- `archive_custom_metric` — Archive a Google Analytics custom metric that should no longer be available for reporting configuration. [write]
-- `batch_run_pivot_reports` — Run up to five Google Analytics Data API pivot reports in one batch request for a single property.
-- `batch_run_reports` — Run up to five Google Analytics Data API reports in one batch request for a single property.
+- `archive_custom_dimension` — Archive a Google Analytics custom dimension that should no longer be available for reporting configuration. [destructive]
+- `archive_custom_metric` — Archive a Google Analytics custom metric that should no longer be available for reporting configuration. [destructive]
+- `batch_run_pivot_reports` — Run up to five Google Analytics Data API pivot reports in one batch request for a single property. [write]
+- `batch_run_reports` — Run up to five Google Analytics Data API reports in one batch request for a single property. [write]
 - `check_compatibility` — Check whether selected Google Analytics dimensions and metrics can be queried together.
 - `create_custom_dimension` — Create a Google Analytics custom dimension so reporting can use a business-specific event, user, or item attribute. [write]
 - `create_custom_metric` — Create a Google Analytics custom metric so reports can measure business-specific event values. [write]
@@ -54,15 +54,15 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_properties` — List Google Analytics properties visible to the connected account as user-selectable options. Use this first when the user does not know their GA4 propertyId.
 - `list_properties_filtered` — List Google Analytics properties matching a known Admin API filter such as parent:accounts/123. Use list_properties first when the account or propertyId is unknown.
 - `run_acquisition_report` — Run a Google Analytics acquisition report showing where sessions and users came from.
-- `run_engagement_report` — Run a Google Analytics engagement trend report for users, sessions, and engagement quality.
-- `run_events_report` — Run a Google Analytics events report for event volume, users, key events, and value.
-- `run_geography_report` — Run a Google Analytics geography report for users, sessions, and key events by location.
-- `run_key_events_report` — Run a Google Analytics key events report for key event volume and conversion rates.
-- `run_pages_report` — Run a Google Analytics pages report for page views, users, sessions, and engagement.
-- `run_pivot_report` — Run a Google Analytics Data API pivot report for cross-tabbed reporting views.
-- `run_realtime_report` — Run a Google Analytics realtime report for currently active users and events.
+- `run_engagement_report` — Run a Google Analytics engagement trend report for users, sessions, and engagement quality. [write]
+- `run_events_report` — Run a Google Analytics events report for event volume, users, key events, and value. [write]
+- `run_geography_report` — Run a Google Analytics geography report for users, sessions, and key events by location. [write]
+- `run_key_events_report` — Run a Google Analytics key events report for key event volume and conversion rates. [write]
+- `run_pages_report` — Run a Google Analytics pages report for page views, users, sessions, and engagement. [write]
+- `run_pivot_report` — Run a Google Analytics Data API pivot report for cross-tabbed reporting views. [write]
+- `run_realtime_report` — Run a Google Analytics realtime report for currently active users and events. [write]
 - `run_report` — Run a Google Analytics Data API report for selected dimensions, metrics, and date ranges.
-- `run_technology_report` — Run a Google Analytics technology report for device, browser, and operating system performance.
+- `run_technology_report` — Run a Google Analytics technology report for device, browser, and operating system performance. [write]
 - `update_data_retention_settings` — Update Google Analytics property data retention settings for event data and user activity reset behavior. [write]
 - `update_property` — Update Google Analytics property settings such as display name, industry category, time zone, or currency. [write]
 
@@ -95,11 +95,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google Analytics is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=google_analytics
+  https://console.oomol.com/connections/google_analytics
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google Analytics homepage: https://analytics.google.com
+- API documentation: https://developers.google.com/analytics/devguides/reporting/data/v1

@@ -1,48 +1,56 @@
-## Description: <br>
-Web reading and searching via Jina AI APIs, including clean markdown extraction from URLs, web search, and deep multi-step research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web reading and searching via Jina AI APIs. Fetch clean markdown from URLs (r.jina.ai), web search (s.jina.ai), or deep multi-step research (DeepSearch).
 
-## Publisher: <br>
-[adhishthite](https://clawhub.ai/user/adhishthite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adhishthite](https://clawhub.ai/user/adhishthite)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch web pages or PDFs as markdown, run web searches, and perform multi-step research through Jina AI APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URLs, search terms, research prompts, and JINA_API_KEY-authenticated requests are sent to Jina AI. <br>
-Mitigation: Use the skill only with data approved for Jina AI, and avoid secrets, private internal URLs, or confidential research unless Jina is approved for that data. <br>
-Risk: The JINA_API_KEY can be exposed if it is committed, shared, or logged. <br>
-Mitigation: Store JINA_API_KEY in an environment variable or secret manager, and do not commit or share it. <br>
-Risk: Reader, search, and DeepSearch outputs can reflect incomplete, stale, or third-party web content. <br>
-Mitigation: Review important results against authoritative sources before relying on them for decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch web pages as markdown, run Jina-powered web search, and perform multi-step research through Jina AI APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/adhishthite/jina-ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/adhishthite) <br>
-- [Jina AI](https://jina.ai/) <br>
-- [Jina Reader](https://jina.ai/reader) <br>
-- [Jina Search Documentation](https://s.jina.ai/docs) <br>
-- [Reader OpenAPI Specification](https://r.jina.ai/openapi.json) <br>
-- [Search OpenAPI Specification](https://s.jina.ai/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON returned to stdout, with shell command examples and guidance for configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JINA_API_KEY and sends user-provided URLs, search queries, or research prompts to Jina AI endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Requested URLs, search terms, research prompts, and the Jina API key are sent to Jina AI endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data you intend to share with Jina AI, and avoid secrets, private documents, internal-only URLs, or authenticated content unless external processing is intended.
+
+Risk: Web reading, search, and deep research outputs can include incomplete, outdated, or misleading third-party content.
+
+Mitigation: Review the returned content and sources before relying on the output for decisions or publishing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adhishthite/skills/jina-ai)
+- [Jina AI](https://jina.ai/)
+- [Jina Reader](https://jina.ai/reader)
+- [Jina Search API docs](https://s.jina.ai/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON from Jina APIs, with shell command and configuration guidance for agent use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JINA_API_KEY; sends user-provided URLs, search queries, and research prompts to Jina AI endpoints.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,58 @@
-## Description: <br>
-A Chinese-language business playbook that guides property value-added-service operators through product selection, supplier negotiation, service listing, private-domain operations, launch planning, and sales conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能为物业多种经营（增值服务）提供从选品、供应商洽谈、上架推广、私域运营到发售成交的中文全流程实战方法论。
 
-## Publisher: <br>
-[river-1992](https://clawhub.ai/user/river-1992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[river-1992](https://clawhub.ai/user/river-1992)
 
-## Use Case: <br>
-Property value-added-service managers, community-commerce operators, and property teams use this skill to design and run end-to-end community retail and home-service workflows, including product scoring, supplier terms, pilot community selection, private-domain marketing, and launch follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sales campaigns, private-group operations, resident follow-up, and purchase-screenshot sharing may expose personal information or create advertising and consumer-protection issues. <br>
-Mitigation: Review campaign copy, group workflows, screenshots, and follow-up practices with local privacy, advertising, consumer-protection, and community-management requirements before use. <br>
-Risk: Supplier negotiation, purchasing, settlement, returns, and stock-handling guidance can create financial or contractual exposure if applied without local controls. <br>
-Mitigation: Require qualified supplier checks, documented contract terms, approval thresholds, return policies, and finance review before committing funds, inventory, or resident-facing offers. <br>
-Risk: The playbook offers business guidance that may not fit every property portfolio, resident base, or local market. <br>
-Mitigation: Pilot in one or two suitable communities, review results with accountable business owners, and adapt SOPs before scaling. <br>
+## Use Case:
 
+External property value-added-service and community-commerce operators use this skill to get Chinese-language operating guidance for product selection, supplier negotiation, launch planning, private-domain operations, and pilot community rollout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/river-1992/property-vas) <br>
-- [Core framework](references/core-framework.md) <br>
-- [Launch methodology](references/launch-methodology.md) <br>
-- [Pilot community selection](references/pilot-community.md) <br>
-- [Product scoring](references/product-scoring.md) <br>
-- [Supplier negotiation](references/supplier-negotiation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, scoring tables, SOPs, and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language business guidance; no code execution, credential use, hidden installation behavior, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may activate on broad property-management or community-commerce topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for property-company value-added-service or community-commerce operating guidance before relying on the output.
+
+Risk: Supplier, pricing, and customer outreach recommendations can affect real business operations.
+
+Mitigation: Have a qualified operator review commercial terms, fulfillment obligations, and customer-facing messages before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/river-1992/skills/property-vas)
+- [核心框架：物业公司增值服务方法论体系](references/core-framework.md)
+- [高客单发售方法论](references/launch-methodology.md)
+- [试点小区选择标准](references/pilot-community.md)
+- [四维选品评审工具](references/product-scoring.md)
+- [供应商洽谈 SOP](references/supplier-negotiation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, checklists]
+
+**Output Format:** [Chinese-language Markdown guidance with SOPs, scoring tables, launch plans, negotiation prompts, and operational checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or tool invocation behavior is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

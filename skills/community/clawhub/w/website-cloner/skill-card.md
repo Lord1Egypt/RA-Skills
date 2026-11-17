@@ -1,42 +1,62 @@
-## Description: <br>
-Guides agents through cloning an online website for local research, authorized reuse, or offline browsing while preserving visual structure, interactions, and asset dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through making a local copy of a website for offline study or authorized reuse while preserving page structure, visual assets, and basic interactions.
 
-## Publisher: <br>
-[alps9999](https://clawhub.ai/user/alps9999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alps9999](https://clawhub.ai/user/alps9999)
 
-## Use Case: <br>
-External users and developers use this skill to plan and execute local website mirrors for sites they own or are authorized to copy, including site reconnaissance, asset discovery, local adaptation, and visual verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to clone websites without authorization or to copy private/internal URLs. <br>
-Mitigation: Confirm permission before cloning, limit use to owned or authorized sites, and avoid private or internal URLs. <br>
-Risk: Attribution replacement and substitute asset guidance could enable deceptive reuse or unlicensed content substitution. <br>
-Mitigation: Preserve attribution and licensing unless you own the content, and avoid unlicensed substitute assets. <br>
-Risk: The workflow suggests installing browser tooling with npx, which may execute third-party package code. <br>
-Mitigation: Review browser tooling before execution and run downloads and validation in an isolated environment. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect a target site's resources, download HTML, CSS, JavaScript, images, fonts, and data files, adapt them for local serving, and verify visual fidelity. It is most appropriate for sites the user owns or has permission to copy.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/alps9999/website-cloner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checklists and troubleshooting guidance for static and SPA website mirroring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can be used to copy websites or replace attribution without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for sites you own or have permission to copy, and preserve attribution unless you are authorized to change it.
+
+Risk: Shell examples that interpolate target URLs can behave unexpectedly when given malformed or untrusted input.
+
+Mitigation: Validate and quote target URLs before running commands, and run the workflow in a limited workspace.
+
+Risk: The artifact demonstrates unpinned remote package execution through browser automation commands.
+
+Mitigation: Pin or preinstall browser automation dependencies before use instead of running an @latest package directly.
+
+Risk: Website downloads and local serving can expose local files or credentials if run from a sensitive directory.
+
+Mitigation: Run the workflow in a clean workspace that does not contain secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alps9999/skills/website-cloner)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local validation and troubleshooting checklists for static website copies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

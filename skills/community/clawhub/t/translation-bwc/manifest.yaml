@@ -1,0 +1,25 @@
+name: translation-bwc
+display_name: BWC 产品翻译
+version: 1.0.0
+slug: translation-bwc
+description: >-
+  BWC 产品（Body Camera / 执法记录仪）技术文档与 API 文档中英双向翻译专用技能。
+  内置术语库（采集站、采集、BWC 等锁定译法）与技术规范，确保代码/标识符不译、
+  术语一致、动词按时态变化、BWC 按目标语言渲染为执法记录仪或 Body Camera。
+category: translation
+triggers:
+  - BWC
+  - 翻译
+  - translate
+  - 执法记录仪
+  - Docking Station
+  - offload
+tags:
+  - 翻译
+  - BWC
+  - 本地化
+  - API文档
+  - 术语库
+author: Guu
+homepage: ""
+license: MIT

@@ -1,52 +1,56 @@
 ---
 name: fec-tdd-workflow
-description: Use when implementing new frontend behavior, fixing bugs, or refactoring logic where tests can describe the expected behavior first. Apply to components, hooks/composables, utilities, API clients, route guards, or user workflows; Chinese triggers include TDD, 测试驱动, 先写测试, 红绿重构, 回归测试.
+description: Use when implementing new observable frontend behavior or fixing a behavior-changing bug where a failing test can describe the missing or incorrect behavior first. Apply to components, hooks/composables, utilities, API clients, route guards, or user workflows; pure behavior-preserving refactoring uses an already-green contract instead.
 ---
 
-# 前端 TDD 工作流
+# Front-end TDD workflow
 
 ## Purpose
 
-用“先写失败测试，再实现最小代码，再重构”的节奏交付前端功能，避免只在实现后补覆盖率。
+Use the rhythm of "write failing tests first, then implement the minimum code, and then refactor" to deliver front-end functions to avoid supplementing coverage only after implementation.
 
 ## Procedure
 
-1. 识别可观察行为：用户能看到的 UI、组件契约、hook/composable 返回值、路由守卫结果、API client 输出或错误状态。
-2. 先写一个最小失败测试：
-   - 纯逻辑优先单元测试。
-   - 组件交互优先 Testing Library / Vue Test Utils。
-   - 跨页关键流程优先 Playwright / Cypress。
-3. 运行该测试并确认失败原因正确，失败应来自行为尚未实现，而不是语法、导入或测试环境错误。
-4. 写刚好能通过测试的最小实现，不顺手扩大范围。
-5. 重新运行测试，确认变绿。
-6. 在测试保持通过的前提下重构命名、边界和重复逻辑。
-7. 对 bug 修复，保留能复现问题的回归测试。
-8. 每轮只扩大一个可观察行为；新需求、新边界和新异常路径各自进入下一轮。
+1. Identify observable behaviors: UI, component contracts, hook/composable return values, route guard results, API client output or error status that users can see.
+2. First write a minimum failure test:
+   - Pure logic first unit testing.
+   - Prioritize component interaction Testing Library / Vue Test Utils.
+   - Prioritize critical processes across pages Playwright/Cypress.
+3. Run the test and confirm that the failure reason is correct and should come from behavior that has not yet been implemented, rather than a syntax, import, or test environment error.
+4. Write the minimum implementation that can just pass the test, and do not expand the scope easily.
+5. Rerun the test and confirm it turns green.
+6. Refactor naming, boundaries and duplication logic while keeping tests passing.
+7. Fix bugs and retain regression tests that can reproduce the problem.
+8. Only one observable behavior is expanded in each round; new requirements, new boundaries and new abnormal paths enter the next round respectively.
+
+## Pure Refactoring Boundary
+
+Pure behavior-preserving refactoring does not manufacture a failing test. If existing behavior is already correct and the goal is structural only, establish or add characterization coverage that passes for the current behavior, then keep it green through each refactoring step. Use RED → GREEN → REFACTOR for new behavior or a behavior-changing defect fix; use GREEN → REFACTOR → GREEN for pure refactoring.
 
 ## Prove-It Pattern
 
-修复缺陷时先让测试失败，再让它通过。若无法先失败，说明测试没有覆盖原始问题，需要收窄输入、断言或测试层级。
+When fixing a defect, make the test fail first, then make it pass. If it cannot fail first, it means that the test does not cover the original problem, and the input, assertion or test level needs to be narrowed.
 
 ## Frontend Test Selection
 
 | Risk | Preferred Test |
 | ---- | -------------- |
-| utils、schema、状态计算 | 单元测试 |
-| hooks / composables | 单元或轻量集成测试 |
-| 组件 props、emits、交互、状态 | 组件测试 |
-| Router、Provider、Store 协作 | 轻量集成测试 |
-| 登录、支付、权限、关键 CRUD | E2E 测试 |
+| utils, schema, status calculation | unit testing |
+| hooks / composables | unit or lightweight integration testing |
+| Component props, emits, interactions, status | Component testing |
+| Router, Provider, Store collaboration | Lightweight integration testing |
+| Login, payment, permissions, key CRUD | E2E testing |
 
 ## Constraints
 
-- 不为了 TDD 引入项目没有使用且收益不清晰的新测试框架。
-- 不测试实现细节、私有状态或脆弱 DOM 结构。
-- 不把 E2E 当作所有风险的默认答案；优先选择离风险最近的测试层。
-- 如果现有仓库没有测试基础设施，先输出最小测试落地建议，再请求用户确认是否引入。
-- 不在红灯阶段同时重构；先证明问题，再最小修复，再整理结构。
+- Do not introduce new testing frameworks for the sake of TDD that are not used by the project and whose benefits are not clear.
+- Does not test implementation details, private state, or fragile DOM structures.
+- Don’t treat E2E as the default answer for all risks; prioritize the test layer closest to the risk.
+- If the existing warehouse does not have testing infrastructure, output the minimum test implementation suggestions first, and then ask the user to confirm whether to introduce it.
+- Do not refactor at the same time during the red light stage; prove the problem first, then make minimal repairs, and then organize the structure.
 
 ## Expected Output
 
-- 至少一个先失败后通过的测试覆盖新增或修复行为。
-- 实现保持最小范围，重构只在测试通过后进行。
-- 总结运行过的测试命令、覆盖的行为和未覆盖风险。
+- At least one fail-then-pass test covering the new or fixed behavior.
+- Implementation is kept to a minimum scope and refactoring is done only after the tests pass.
+- Summarize the test commands run, behaviors covered, and risks not covered.

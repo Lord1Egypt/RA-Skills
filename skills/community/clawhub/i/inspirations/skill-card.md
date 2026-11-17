@@ -1,38 +1,48 @@
-## Description: <br>
-Captures inspiration-like messages, classifies them as inspirations, ideas, todos, or reflections, and saves structured Markdown notes under workspace/inspirations/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspirations captures user inspirations, ideas, hypotheses, and reflections as structured Markdown notes with type labels, tags, summaries, and monthly indexes.
 
-## Publisher: <br>
-[rock-ma-ai](https://clawhub.ai/user/rock-ma-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rock-ma-ai](https://clawhub.ai/user/rock-ma-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent operators use this skill to automatically preserve idea-like messages as organized Markdown records for later review and follow-up.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill retains captured ideas and reflections as local Markdown notes, which may expose sensitive plans or personal information if users provide it.
+
+Mitigation: Do not use it for secrets, credentials, regulated personal data, or confidential plans unless retention in workspace/inspirations/ and the monthly index is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Individuals and teams use this skill to quietly capture fleeting ideas, reflections, and tentative follow-up items without interrupting the conversation. The skill organizes records into dated Markdown files and monthly indexes for later review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Captured ideas may include secrets or sensitive personal or business details because original user input is preserved in local Markdown notes. <br>
-Mitigation: Avoid recording sensitive content unless local retention is acceptable, and review or delete notes in workspace/inspirations/ when needed. <br>
+**Output Format:** [Structured Markdown files plus a short confirmation message]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rock-ma-ai/inspirations) <br>
+**Other Properties Related to Output:** [Creates dated note files and monthly index entries under workspace/inspirations/.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, monthly Markdown indexes, and brief confirmation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves captured notes locally under workspace/inspirations/ and preserves the original user input in each note.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Generates structured U.S. stock holding analysis and trade guidance from text or screenshots using current market, macro, sector, social, insider-flow, technical, and risk-control signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured U.S. stock holding analysis and trade guidance using current market, macro, sector, social, insider-flow, technical, and risk-control signals.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-Investors, analysts, and developers use this skill to turn U.S. equity holdings or ticker questions into structured portfolio analysis, risk checks, and trade-action guidance. It supports text input and portfolio screenshots, with a confirmation step when image extraction is incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores portfolio information locally at ~/.openclaw/memory/portfolio.json without clear opt-in, retention, or deletion controls. <br>
-Mitigation: Install only if local portfolio retention is acceptable; remove account identifiers from screenshots and delete or block ~/.openclaw/memory/portfolio.json if holdings should not persist. <br>
-Risk: Trade advice can be incorrect or misleading if market data, extracted holdings, or model reasoning is wrong. <br>
-Mitigation: Independently verify all trade advice and confirm extracted portfolio data before acting on recommendations. <br>
+## Use Case:
 
+Investors and portfolio-review agents use this skill to structure U.S. equity portfolio reviews from text or screenshots, compare holdings against current market conditions, and produce risk-aware allocation and trade-action tables for user review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-stock-analysis-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured tables and concise trade-action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use user-provided holdings text or screenshots and may store a portfolio snapshot locally at ~/.openclaw/memory/portfolio.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill may store holdings, cost basis, total capital, and other portfolio details in a local portfolio snapshot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with portfolio data you are comfortable storing locally, protect or remove ~/.openclaw/memory/portfolio.json after use, and avoid sharing account identifiers or unnecessary personal data.
+
+Risk: Trade actions and allocation tables can be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as analysis for review, validate market data and assumptions independently, and consult a qualified financial professional before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-stock-analysis-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and narrative analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request missing portfolio fields, cite data sources in outputs, and save a local portfolio snapshot for later analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

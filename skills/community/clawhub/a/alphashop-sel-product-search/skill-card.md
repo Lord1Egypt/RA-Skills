@@ -1,45 +1,62 @@
-## Description: <br>
-Searches Amazon and TikTok product listings through the AlphaShop REST API by keyword, with filters for price, sales, rating, listing age, platform, and region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Amazon and TikTok products by keyword through the AlphaShop REST API, with filters for price, sales, rating, listing age, and region.
 
-## Publisher: <br>
-[1688AiInfra](https://clawhub.ai/user/1688AiInfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-E-commerce operators, market researchers, and agent builders use this skill to search and compare products across supported Amazon and TikTok regions. It helps collect product, supplier, price, rating, sales, listing age, and logistics details for selection and market analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends product-search terms and request parameters to the external AlphaShop API and uses API-key based authentication. <br>
-Mitigation: Use it only when AlphaShop is approved for the intended product-search workflow, keep API keys in the skill environment, and avoid exposing secrets in command lines or shared files. <br>
-Risk: The security evidence flags inconsistent scope because bundled image-search documentation does not match the advertised keyword product-search skill. <br>
-Mitigation: Treat the image-search reference material as out of scope until the publisher clarifies it, and review the installed artifact before deployment. <br>
-Risk: Search queries may reveal confidential market research or product strategy to an external service. <br>
-Mitigation: Do not submit confidential keywords or market terms unless external transmission to AlphaShop is acceptable. <br>
+## Use Case:
 
+Developers and commerce operators use this skill to search Amazon and TikTok product listings by keyword, market, and filters for product discovery, selection analysis, market research, and price comparison.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1688AiInfra/alphashop-sel-product-search) <br>
-- [Product Search API Reference](artifact/references/api.md) <br>
-- [Skill README](artifact/README.md) <br>
-- [AlphaShop API Key Management](https://www.alphashop.cn/seller-center/apikey-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and optional JSON response files, with Markdown guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires keyword, platform, and region before execution; optional filters include price, sales, rating, listing age, result count, and user id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: The security evidence reports a suspicious verdict because credential and network behavior are under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, restrict network access as appropriate, and provide AlphaShop credentials only through protected environment configuration.
+
+Risk: Product-search queries, user identifiers, and credentials may be sent to AlphaShop/1688 services.
+
+Mitigation: Use this skill only if the deployment trusts AlphaShop/1688 with those queries and credentials, and avoid command-line secrets.
+
+Risk: Bundled image-search documentation broadens the apparent scope beyond the released keyword product-search client.
+
+Mitigation: Treat image-search capabilities as out of scope until the publisher clarifies or removes the conflicting documentation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/1688aiinfra/skills/alphashop-sel-product-search)
+- [Product Search API Reference](artifact/references/api.md)
+- [AlphaShop API Credential Management](https://www.alphashop.cn/seller-center/apikey-management)
+- [Bundled Image Product Recall API Reference](artifact/references/图片商品召回接口文档.md)
+- [Bundled Image Product Recall Technical Design](artifact/references/图片商品召回接口技术设计文档.md)
+- [Bundled Image Product Recall Test Plan](artifact/references/图片商品召回接口测试方案.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and optional JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AlphaShop credentials via ALPHASHOP_ACCESS_KEY and ALPHASHOP_SECRET_KEY for authenticated API calls; product results are returned as text and can optionally be written as JSON with --output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

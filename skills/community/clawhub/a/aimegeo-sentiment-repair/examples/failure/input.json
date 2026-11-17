@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "brand": "青禾",
+  "as_of": "2026-10-19",
+  "mode": "illustrative",
+  "sources": [],
+  "observations": [
+    {
+      "id": "O1",
+      "kind": "customer_question",
+      "status": "simulated",
+      "text": "青禾是不是偷偷收费？",
+      "question": null,
+      "platform": null,
+      "observed_at": null,
+      "native_citations": null,
+      "citation_capture": "not_available",
+      "error": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "observation_id": "O1",
+      "quote": "青禾是不是偷偷收费？",
+      "proposition": "客户担心青禾存在未说明的收费，尚不能确认收费事实。",
+      "verdict": "contradicted",
+      "rationale": "错误示范：没有费用证据，却直接反驳质疑。",
+      "evidence": [],
+      "faq_question": "青禾是否存在没有明确说明的收费？",
+      "public_answer": "错误示范：青禾绝对不会收费。",
+      "repair": {
+        "priority": "P1",
+        "location": "费用FAQ与扣费问题反馈入口",
+        "action": "先保留待确认答复；取得当前费用政策和具体扣费项目后，再补充适用范围、条件与处理方式。"
+      },
+      "needed_information": []
+    }
+  ],
+  "retests": [
+    {
+      "id": "R1",
+      "claim_ids": [
+        "C1"
+      ],
+      "kind": "follow_up",
+      "baseline_observation_id": "O1",
+      "question": "青禾当前有哪些收费项目，各自适用什么条件？",
+      "expected_checks": [
+        "有当前政策或账单证据再判断，不将未知写为没有收费",
+        "明确待确认的收费条件，不预设品牌无问题"
+      ]
+    }
+  ]
+}

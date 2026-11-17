@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bh2rt7ccj6br85c8e29pf6n81b8bf",
-  "slug": "supervisorclaw",
+  "name": "supervisor",
+  "description": "Superviseur de ressources et de santé des services avec auto-guérison.",
   "version": "1.0.0",
-  "publishedAt": 1771897336482
+  "author": "Jack",
+  "entrypoint": "SKILL.md"
 }

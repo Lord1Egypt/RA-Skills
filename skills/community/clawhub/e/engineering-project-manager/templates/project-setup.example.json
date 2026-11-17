@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "project": {
+    "title": "Example Controller",
+    "slug": "example-controller",
+    "path": "./projects/example-controller",
+    "archetype": "embedded",
+    "add_domains": [],
+    "objective": "Develop a verifiable controller prototype.",
+    "in_scope": ["Controller firmware", "Hardware interfaces", "Verification evidence"],
+    "out_of_scope": ["Production certification"],
+    "owners": ["project-owner", "system-lead"],
+    "constraints": ["Document resource limits before implementation"],
+    "milestones": ["M1: reviewed requirements", "M2: verified prototype"]
+  },
+  "infrastructure": {
+    "git_backend": "gitlab",
+    "repository": "example-team/example-controller",
+    "host": "gitlab.example.test",
+    "scheme": "https",
+    "protocol": "ssh",
+    "ssh_host": "example-git",
+    "ssh_port": null,
+    "visibility": "private",
+    "default_branch": "main",
+    "drive_url": null,
+    "credential_refs": ["env:PROJECT_GIT_TOKEN"],
+    "ci_runner_tags": [],
+    "test_commands": ["python3 -m unittest discover"]
+  },
+  "delegation": {
+    "enabled": true,
+    "agents": [
+      {"label": "software-worker", "role": "implementation", "worker": "worker-a", "capabilities": ["SWE", "Python"]},
+      {"label": "quality-worker", "role": "verification", "worker": "worker-b", "capabilities": ["test", "review"]}
+    ],
+    "max_parallel": 2,
+    "max_attempts": 2,
+    "writable_paths": ["03-development/software", "05-verification/software"],
+    "approval_policy": "review-before-integration"
+  }
+}

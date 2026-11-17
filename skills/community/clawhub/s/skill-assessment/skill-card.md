@@ -1,43 +1,57 @@
-## Description: <br>
-Agent skill quality checker. Input a skill directory or skill files; output trigger clarity, metadata issues, examples, safety boundaries, installability, portability risks, and prioritized fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent skill quality checker. Input a skill directory or skill files; output trigger clarity, metadata issues, examples, safety boundaries, installability, portability risks, and prioritized fixes.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to statically review OpenClaw skill directories for documentation quality, code and configuration issues, safety boundaries, installability, portability risks, and prioritized fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The checker reads local skill directories and writes reports or configuration files in its own directory. <br>
-Mitigation: Run it only against intended skill paths and review generated files before using them for release or governance decisions. <br>
-Risk: Static-analysis results are advisory and may miss issues or produce misleading findings. <br>
-Mitigation: Treat reports as triage input and perform human review plus normal security scanning before deployment. <br>
-Risk: Broad triggers could cause accidental activation in agent workflows. <br>
-Mitigation: Invoke the skill explicitly for assessment tasks or narrow triggers when integrating it into automated workflows. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to inspect skill directories for documentation completeness, code quality, configuration friendliness, maintenance signals, and prioritized fixes before publishing, installing, or comparing skills.
 
-## Reference(s): <br>
-- [Skill Quality Checker on ClawHub](https://clawhub.ai/harrylabsj/skill-assessment) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, or plain-text static-analysis reports with prioritized findings and suggested fixes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected skill directories and can save reports under the skill's reports directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and clawhub.json) <br>
+Risk: Assessment output can present fixed favorable scores or summaries even when checker results do not support them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores and pass/fail summaries as advisory; inspect generated findings and raw checker outputs before using results for security, quality, or release decisions.
+
+Risk: Installation changes local file permissions and may create a symlink under ~/.openclaw/skills.
+
+Mitigation: Review install.sh before running it, run it from the intended skill directory, and avoid elevated privileges unless explicitly needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/skill-assessment)
+- [Example assessment report](examples/sample_report.md)
+- [Example configuration](examples/config.example.yaml)
+- [Project homepage listed in artifact metadata](https://github.com/harrylabs0913/skill-assessment)
+- [Project repository listed in artifact metadata](https://github.com/harrylabs0913/skill-assessment.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or text assessment reports with console summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be saved under reports/; assessment weights, thresholds, and checks are configurable.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release metadata and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

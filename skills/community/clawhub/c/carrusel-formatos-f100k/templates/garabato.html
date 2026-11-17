@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>garabato · carrusel-formatos-f100k</title>
+<!-- El tamaño va en --px y NO en style.fontSize: el autofit de _comun.js borra style.fontSize para medir la base
+     y, si el tamaño vivía ahí, la letra caía a 16 px. -->
+<!-- Ficha F13 (dibujado sobre tu foto). Foto a sangre + letra manuscrita + flechas, círculos y subrayados que SEÑALAN algo de la foto.
+     Las coordenadas van en px sobre el lienzo 1080×1350: mira la foto antes de ponerlas. -->
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=block" rel="stylesheet">
+<style>
+  :root { --trazo: #FFD60A; --mano: 'Caveat', 'Comic Sans MS', cursive, sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #111; }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; background: #222; margin: 0 0 24px; }
+  .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .velo { position: absolute; inset: 0; pointer-events: none; }
+  svg.dibujo { position: absolute; inset: 0; width: 1080px; height: 1350px; overflow: visible; }
+  svg.dibujo path, svg.dibujo ellipse { fill: none; stroke-linecap: round; stroke-linejoin: round;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,.45)); }
+  .nota { position: absolute; font-size: var(--px, 72px); font-family: var(--mano); font-weight: 700; line-height: 1.02; color: var(--trazo);
+    text-shadow: 0 2px 6px rgba(0,0,0,.55), 0 0 2px rgba(0,0,0,.4); overflow: hidden; }
+  .swipe { position: absolute; right: 56px; top: 52px; font: 700 96px/1 var(--mano); color: var(--trazo);
+    text-shadow: 0 2px 6px rgba(0,0,0,.55); }
+  .firma { position: absolute; left: 0; right: 0; bottom: 40px; text-align: center; font: 600 30px var(--mano); color: #fff; opacity: .75;
+    text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+</style>
+</head>
+<body>
+<div id="carrusel"></div>
+<script>
+window.SPEC = /*__SPEC__*/null;
+/*__COMUN__*/
+
+// Trazo "a mano": pseudoaleatorio con semilla (el mismo spec da el mismo dibujo en cada corrida)
+let semilla = 7;
+const azar = () => (semilla = (semilla * 16807) % 2147483647) / 2147483647;
+const temblor = a => (azar() - .5) * 2 * a;
+
+// Flecha curva de [x1,y1] a [x2,y2] con punta abierta. curva: cuánto se arquea (+ derecha / − izquierda).
+function flecha([x1, y1], [x2, y2], curva = 0.25, grosor = 7) {
+  const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;
+  const cx = mx - dy * curva + temblor(10), cy = my + dx * curva + temblor(10);
+  const ang = Math.atan2(y2 - cy, x2 - cx), L = 34 + grosor * 2;
+  const p1 = [x2 - L * Math.cos(ang - .45), y2 - L * Math.sin(ang - .45)];
+  const p2 = [x2 - L * Math.cos(ang + .45), y2 - L * Math.sin(ang + .45)];
+  return `<path d="M${x1},${y1} Q${cx},${cy} ${x2},${y2}" stroke-width="${grosor}"/>
+    <path d="M${p1[0]},${p1[1]} L${x2 + temblor(2)},${y2 + temblor(2)} L${p2[0]},${p2[1]}" stroke-width="${grosor}"/>`;
+}
+// Círculo imperfecto: dos vueltas que no cierran igual, como hecho con marcador
+function circulo({ x, y, rx, ry = rx, rot = -8 }, grosor = 7) {
+  const vuelta = k => {
+    const pts = [];
+    for (let a = 0; a <= Math.PI * 2 * (k ? 1.08 : 1); a += Math.PI / 10) {
+      const r = 1 + temblor(.05) + (k ? .06 : 0);
+      pts.push([x + Math.cos(a) * rx * r, y + Math.sin(a) * ry * r]);
+    }
+    return `M${pts.map(p => p.join(',')).join(' L')}`;
+  };
+  return `<path d="${vuelta(0)} ${vuelta(1)}" stroke-width="${grosor}" transform="rotate(${rot} ${x} ${y})"/>`;
+}
+function subrayado({ x, y, w, doble = false }, grosor = 7) {
+  const linea = dy => `M${x},${y + dy + temblor(3)} Q${x + w / 2},${y + dy + temblor(9)} ${x + w},${y + dy + temblor(3)}`;
+  return `<path d="${linea(0)}${doble ? ' ' + linea(20) : ''}" stroke-width="${grosor}"/>`;
+}
+// Contorno suelto alrededor de la silueta: una elipse larga abierta arriba (sin recortar a la persona)
+function contorno({ x, y, w, h }, grosor = 8) {
+  const pts = [];
+  for (let a = -Math.PI * .42; a <= Math.PI * 1.42; a += Math.PI / 14) {
+    pts.push([x + w / 2 + Math.cos(a) * (w / 2) * (1 + temblor(.04)), y + h / 2 + Math.sin(a) * (h / 2) * (1 + temblor(.03))]);
+  }
+  return `<path d="M${pts.map(p => p.join(',')).join(' L')}" stroke-width="${grosor}"/>`;
+}
+
+function pintar(spec, cont) {
+  cont.innerHTML = spec.slides.map((s, i) => {
+    semilla = 7 + i * 101;
+    const color = s.color || spec.color || '#FFD60A';
+    const g = s.grosor || spec.grosor || 7;
+    const dib = [
+      ...(s.contorno ? [contorno(s.contorno, g + 1)] : []),
+      ...(s.circulos || []).map(c => circulo(c, g)),
+      ...(s.subrayados || []).map(u => subrayado(u, g)),
+      ...(s.notas || []).filter(n => n.flecha).map(n => flecha(n.flecha.desde, n.flecha.hasta, n.flecha.curva, g)),
+    ].join('');
+    const notas = (s.notas || []).map(n =>
+      `<div class="nota" data-fit style="left:${n.x}px;top:${n.y}px;width:${n.w || 460}px;height:${n.h || 200}px;--px:${n.px || 72}px;transform:rotate(${n.rot ?? -3}deg);text-align:${n.alinear || 'left'}">${md(n.texto)}</div>`
+    ).join('');
+    // Velo opcional para que el trazo se lea sobre cielos muy claros
+    const velo = s.velo ? `<div class="velo" style="background:linear-gradient(${s.velo === 'abajo' ? 'to top' : 'to bottom'}, rgba(0,0,0,.45), rgba(0,0,0,0) 45%)"></div>` : '';
+    return `<section class="slide" style="--trazo:${esc(color)}">
+      ${foto(s.foto)}${velo}
+      <svg class="dibujo" viewBox="0 0 1080 1350" style="stroke:${esc(color)}">${dib}</svg>
+      ${notas}
+      ${s.swipe ? '<div class="swipe">→</div>' : ''}
+      ${spec.handle && s.firma !== false ? `<div class="firma">${esc(spec.handle)}</div>` : ''}
+    </section>`;
+  }).join('');
+}
+
+// Una nota que tapa la cara no se lee y arruina la foto: si el spec marca dónde está la cara, se avisa.
+function despues(spec, cont, reporte) {
+  document.querySelectorAll('.slide').forEach((sl, i) => {
+    const cara = spec.slides[i].cara;
+    if (!cara) return;
+    const r0 = sl.getBoundingClientRect();
+    sl.querySelectorAll('.nota').forEach(n => {
+      const q = n.getBoundingClientRect();
+      const x = q.left - r0.left, y = q.top - r0.top;
+      if (x < cara.x + cara.w && x + q.width > cara.x && y < cara.y + cara.h && y + q.height > cara.y)
+        reporte.push({ tipo: 'no-cabe', slide: i + 1, detalle: `la nota tapa la cara: ${n.textContent.slice(0, 40)}` });
+    });
+  });
+}
+
+arrancar({ pintar, familias: ['Caveat'], despues });
+</script>
+</body>
+</html>

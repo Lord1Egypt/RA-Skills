@@ -1,46 +1,57 @@
-## Description: <br>
-Smart Updater helps OpenClaw users inventory installed skills, extensions, and core components, check available updates, assess changelog risk, and apply approved upgrades with backup and rollback gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Updater helps OpenClaw users inventory installed skills, extensions, and core packages, scan for updates, review changelogs and risk, and execute only user-approved upgrades.
 
-## Publisher: <br>
-[yuanhui](https://clawhub.ai/user/yuanhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanhui](https://clawhub.ai/user/yuanhui)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect installed OpenClaw assets, compare them with remote sources, summarize changelogs and risk, and execute only user-approved upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace installed OpenClaw skills, extensions, and core components from remote sources, including a SkillHub mirror fallback path. <br>
-Mitigation: Use explicit manual invocations, review each proposed asset and changelog before approval, and keep the skill's backup and rollback gates enabled. <br>
-Risk: Forced or unattended upgrades could introduce code changes without enough human review. <br>
-Mitigation: Avoid cron or auto-upgrade modes unless the environment accepts unattended code changes; require explicit user selection before running upgrades. <br>
-Risk: Incomplete changelog evidence can lead to incorrect risk classification for an update. <br>
-Mitigation: Treat missing changelogs as manual-review items and do not generate an upgrade report until every candidate has a changelog source or an explicit unavailable note. <br>
+## Use Case:
 
+Developers and OpenClaw users use Smart Updater to check installed assets, identify available updates across npm, ClawHub, and GitHub sources, review changelog-driven risk summaries, and apply only explicitly approved upgrades.
 
-## Reference(s): <br>
-- [Smart Updater ClawHub Page](https://clawhub.ai/yuanhui/smart-updater) <br>
-- [Product Requirements](docs/PRD.md) <br>
-- [Three Gates](references/three-gates.md) <br>
-- [Report Format](references/report-format.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell command execution and JSON inventory or scan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes local inventory and scan-result JSON files under the user's OpenClaw directory and may run update commands after explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Unsigned remote package downloads or tampered local metadata could overwrite OpenClaw assets during installation or upgrade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require signature or digest verification before replacing installed assets, and canonicalize install paths under approved OpenClaw roots before deletion or copy operations.
+
+Risk: Upgrade scripts can modify local skills, extensions, and core assets.
+
+Mitigation: Keep upgrade execution behind explicit user confirmation, review generated inventory and scan results, and retain rollback backups before applying changes.
+
+## Reference(s):
+
+- [Smart Updater ClawHub Page](https://clawhub.ai/yuanhui/skills/smart-updater)
+- [OpenClaw](https://openclaw.ai)
+- [Three Gates Reference](references/three-gates.md)
+- [Report Format](references/report-format.md)
+- [Product Requirements](docs/PRD.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with JSON inventory and scan files plus shell command execution output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires inventory and scan results before final reporting; upgrade execution waits for explicit user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata; changelog dated 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

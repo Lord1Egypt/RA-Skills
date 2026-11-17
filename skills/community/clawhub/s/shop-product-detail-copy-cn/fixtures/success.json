@@ -1,0 +1,51 @@
+{
+  "product_name": "云岚手冲咖啡滤杯",
+  "specifications": {
+    "材质": "高硼硅玻璃",
+    "容量": "1-2杯",
+    "滤纸规格": "V60 01号"
+  },
+  "image_notes": [
+    "图片1展示透明滤杯与螺旋导流肋",
+    "图片2展示滤杯、底座和包装盒"
+  ],
+  "target_audience": "在家手冲咖啡、重视器具清洁便利性的初学者",
+  "known_facts": [
+    "商家提供滤杯材质为高硼硅玻璃",
+    "商家提供适配V60 01号滤纸"
+  ],
+  "suggestions": [
+    "首屏可强调透明器具便于观察注水过程"
+  ],
+  "expected_behavior": {
+    "required_modules": [
+      "模块 1：首屏价值主张",
+      "模块 2：核心卖点与证据",
+      "模块 3：规格与选购信息",
+      "模块 4：图片搭配文案",
+      "模块 5：适用场景与温和提醒",
+      "FAQ",
+      "事实与建议边界"
+    ],
+    "selling_points": {
+      "count_range": [
+        3,
+        5
+      ],
+      "each_requires": "每个卖点都含“证据：”，且证据只能对应 specifications、image_notes 或 known_facts 中的原值。"
+    },
+    "faq": "仅回答输入可确认的问题；资料不足时写“请向商家确认”并说明待确认信息。",
+    "fact_suggestion_boundary": {
+      "known_facts_must_preserve": [
+        "高硼硅玻璃",
+        "适配V60 01号滤纸"
+      ],
+      "suggestions_must_be_labeled": [
+        "首屏可强调透明器具便于观察注水过程"
+      ],
+      "must_not_claim": [
+        "目标客群“重视器具清洁便利性”不等于滤杯易清洁；不得写成商品具备易清洁、易冲洗或不易残留等特性。"
+      ]
+    }
+  }
+}

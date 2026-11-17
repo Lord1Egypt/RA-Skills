@@ -1,43 +1,60 @@
-## Description: <br>
-Skillsmith-JOJO is a local toolkit that helps developers create, test, security-check, analyze, package, and publish OpenClaw skills from reusable templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skillsmith-JOJO helps developers create, test, review, optimize, package, and publish AI agent skills using templates, validation scripts, security checks, and token analysis guidance.
 
-## Publisher: <br>
-[skillforge-jojo](https://clawhub.ai/user/skillforge-jojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skillforge-jojo](https://clawhub.ai/user/skillforge-jojo)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to scaffold OpenClaw skills, apply development best practices, run local quality and security checks, analyze token footprint, and prepare releases for ClawHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git helper and publishing workflows can change repository state or release content. <br>
-Mitigation: Review the target repository and require explicit confirmation before commit, branch, file move, file delete, rename, or publish workflows. <br>
-Risk: API-oriented templates and local checks may involve credentials or scans over an unintended target path. <br>
-Mitigation: Use environment variables for tokens, avoid hardcoded secrets, and verify the target directory before running tests or security scans. <br>
+## Use Case:
 
+Developers and skill authors use this skill to scaffold new ClawHub/OpenClaw skills, improve existing SKILL.md files, run structure and syntax checks, perform advisory security review, analyze token footprint, and prepare releases.
 
-## Reference(s): <br>
-- [Skill Design Best Practices](references/best-practices.md) <br>
-- [ClawHub Publishing Guide](references/publishing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/skillforge-jojo/skillsmith-jojo) <br>
-- [Publisher Profile](https://clawhub.ai/user/skillforge-jojo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python scripts, and template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workflow guidance, reusable skill templates, test reports, security scan output, token analysis, and Git helper command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Advertised safety and validation checks may not enforce every safeguard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat validation and security-check results as advisory, and manually review generated skills, scripts, and release artifacts before deployment.
+
+Risk: Git automation can stage and commit broad changes when broad staging is requested.
+
+Mitigation: Inspect repository status and diffs before running the Git helper, and avoid broad staging unless it is intentional.
+
+Risk: Setup examples can lead to unpinned or broad dependency installation.
+
+Mitigation: Use isolated environments and pinned dependencies when following setup examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skillforge-jojo/skills/skillsmith-jojo)
+- [Publisher profile](https://clawhub.ai/user/skillforge-jojo)
+- [Skill design best practices](references/best-practices.md)
+- [ClawHub publishing guide](references/publishing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets; helper scripts may emit terminal text or JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 for the bundled validation and analysis scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

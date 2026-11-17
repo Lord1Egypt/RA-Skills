@@ -1,43 +1,53 @@
-## Description: <br>
-feishu-im helps agents use Feishu/Lark IM APIs for message sending, chat creation, pinning, urgent notifications, recalls, group menus, tabs, announcements, and related group-management tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu IM helps an agent prepare Feishu OpenAPI calls for sending messages, creating and managing chats, updating chat surfaces, and handling IM-related operational tasks.
 
-## Publisher: <br>
-[sunnyyao2222-eng](https://clawhub.ai/user/sunnyyao2222-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunnyyao2222-eng](https://clawhub.ai/user/sunnyyao2222-eng)
 
-## Use Case: <br>
-Developers and operators use this skill to guide Feishu/Lark bot integrations that send messages, manage group chats, update announcements, configure chat UI surfaces, and handle common IM API errors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill covers powerful Feishu/Lark messaging and group-management actions that can affect users and chat spaces. <br>
-Mitigation: Install only for agents that should operate a Feishu/Lark bot with messaging and group-management authority. <br>
-Risk: Overbroad app permissions could allow message recall, group creation, member changes, announcements, urgent/system messages, or chat UI changes outside the intended workflow. <br>
-Mitigation: Configure the Feishu app with the narrowest permissions needed and require explicit user approval for high-impact chat actions. <br>
-Risk: Misuse or exposure of a tenant access token could enable unauthorized Feishu API calls. <br>
-Mitigation: Store tenant access tokens in the agent runtime's secret manager and avoid placing tokens in prompts, logs, or generated artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu IM Open API](https://open.feishu.cn/open-apis/im/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyyao2222-eng/feishu-im) <br>
-- [Publisher profile](https://clawhub.ai/user/sunnyyao2222-eng) <br>
+## Use Case:
 
+Developers and workplace automation operators use this skill to construct Feishu IM requests for messaging, group creation, membership updates, message recall, urgent notifications, announcements, tabs, widgets, feed cards, and related chat configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, JSON] <br>
-**Output Format:** [Markdown reference with HTTP endpoints, permission notes, and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers Feishu/Lark messaging, group-management, chat UI configuration, and error-handling guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can enable broad workplace messaging and group-management actions, including private messages, bulk sends, recalls, membership changes, and persistent chat configuration updates.
+
+Mitigation: Require explicit human approval before executing private messages, bulk sends, message recalls, membership changes, urgent notifications, or chat configuration changes.
+
+Risk: A deployed agent may receive Feishu permissions that allow it to message users, create or modify chats, add members, and update chat surfaces.
+
+Mitigation: Scope Feishu app permissions and accessible users or chats to the minimum required for the intended workflow.
+
+## Reference(s):
+
+- [Feishu IM OpenAPI Base](https://open.feishu.cn/open-apis/im/v1)
+- [ClawHub Skill Page](https://clawhub.ai/sunnyyao2222-eng/skills/feishu-im)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON, configuration]
+
+**Output Format:** [Markdown guidance with Feishu endpoint examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu tenant access tokens and appropriate IM permissions before API calls can succeed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

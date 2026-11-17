@@ -1,47 +1,61 @@
-## Description: <br>
-Natural-language read-only querying for MySQL, Redis, and MongoDB with explicit connection configuration, guarded query planning, and deterministic script executors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural-language read-only querying for MySQL, Redis, and MongoDB with explicit connection configuration, guarded query planning, and deterministic script executors.
 
-## Publisher: <br>
-[gakkiismywife](https://clawhub.ai/user/gakkiismywife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gakkiismywife](https://clawhub.ai/user/gakkiismywife)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn natural-language requests into guarded read-only queries against configured MySQL, Redis, and MongoDB profiles, then inspect sanitized previews and short interpretations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unclear natural-language requests may trigger broad database reads, including the noted users-table fallback. <br>
-Mitigation: Review generated plans before execution, require explicit datasource/profile intent, and fix or disable broad default fallbacks before broad use. <br>
-Risk: Prompts and schema context may be sent to OpenAI when OPENAI_API_KEY is configured. <br>
-Mitigation: Unset OPENAI_API_KEY or use the rule-based router when prompts or schema context must remain local. <br>
-Risk: Connection profiles contain database credentials and generated plan files may reveal sensitive query details. <br>
-Mitigation: Use least-privileged read-only accounts, protect connections.json, and delete retained plan files after review. <br>
+## Use Case:
 
+Developers and engineers use this skill to query local MySQL, Redis, and MongoDB data sources in natural language while routing requests through read-only query plans and guarded executors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gakkiismywife/middleware-query) <br>
-- [Configuration reference](artifact/references/config.md) <br>
-- [Safety policy](artifact/references/safety-policy.md) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [Middleware Query Plan schema](artifact/references/plan-schema.json) <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON query/result previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs identify the datasource and profile, sanitized executed operation, count, truncated preview, and a short Chinese interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles database credentials and can access sensitive database contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged read-only database accounts, keep real credentials outside the skill directory unless protected and gitignored, and require TLS for remote database hosts.
+
+Risk: Natural-language query text may be sent to an external LLM when OPENAI_API_KEY is configured.
+
+Mitigation: Disable OPENAI_API_KEY unless sending query text and schema hints to the external LLM provider is acceptable.
+
+Risk: Database reads may expose regulated or personal data in previews.
+
+Mitigation: Prefer local or private test databases, enforce result limits, and review outputs before sharing them.
+
+## Reference(s):
+
+- [Configuration](references/config.md)
+- [Examples](references/examples.md)
+- [Plan Schema](references/plan-schema.json)
+- [Safety Policy](references/safety-policy.md)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON query results and concise Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include datasource/profile used, sanitized operation, count, truncated preview, and a short interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

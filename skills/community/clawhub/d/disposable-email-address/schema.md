@@ -10,7 +10,7 @@ x402 availability: not enabled for this product.
 
 Action slug: `check`
 
-Price: `15` credits
+Price: `3` credits
 
 Check the inbox of a previously created email address and retrieve all messages with full content including sender, subject, body, and received timestamp.
 
@@ -78,7 +78,7 @@ Generated JSON parameter schema:
 
 Action slug: `fetch`
 
-Price: `15` credits
+Price: `3` credits
 
 List all active (non-expired) email addresses belonging to the current user, along with creation time, expiration time, and hours remaining for each.
 

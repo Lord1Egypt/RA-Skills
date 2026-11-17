@@ -1,44 +1,60 @@
-## Description: <br>
-AI agent fleet memory system for installing, configuring, managing, searching, routing, compacting, and upgrading a Qdrant, Mem0, Neo4j/Graphiti, REST API, and MCP-based memory service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent fleet memory system for installing, configuring, managing, searching, routing, compacting, and upgrading memory across Qdrant, Mem0, Neo4j/Graphiti, REST, federation, and MCP interfaces.
 
-## Publisher: <br>
-[yoniassia](https://clawhub.ai/user/yoniassia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoniassia](https://clawhub.ai/user/yoniassia)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate a shared long-term memory layer for agent fleets, including memory search, storage, compaction, reflection, federation, and MCP access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent memory services that can collect and retain sensitive agent or user memories. <br>
-Mitigation: Review requirements and service files before installation, protect API keys and .env files, restrict stored memory content, and confirm how to stop services and delete stored memories. <br>
-Risk: Federation can share memories across nodes with controls that the security evidence describes as weakly scoped. <br>
-Mitigation: Keep federation disabled unless it is required, use HTTPS and strong per-node credentials, and explicitly restrict which memories can be shared. <br>
-Risk: Installation may download or run service components and dependencies that persist beyond the agent session. <br>
-Mitigation: Pin and verify downloaded components where possible, inspect generated service units, and document uninstall and inspection steps before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to deploy and operate a shared memory layer for OpenClaw-style agent fleets, including vector search, typed memory management, temporal graph lookup, compaction, reflection, federation, and MCP access.
 
-## Reference(s): <br>
-- [MemClawz ClawHub Release](https://clawhub.ai/yoniassia/memclawz) <br>
-- [API Reference](artifact/references/api-reference.md) <br>
-- [Architecture](artifact/references/architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may affect persistent services, API credentials, local vector and graph databases, and shared memory federation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.1 (source: server release metadata) <br>
+Risk: The installer and examples enable persistent user services and pull remote dependencies or artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run installation in an isolated account or test environment, pin the Git repository and Qdrant artifacts to reviewed versions, and inspect service files before enabling them.
+
+Risk: Configuration examples use API keys and service credentials that could be exposed if stored or shared carelessly.
+
+Mitigation: Protect secrets, avoid plaintext API keys where possible, and review environment files before committing, sharing, or deploying them.
+
+Risk: Federation paths can share memory data over HTTP and may broaden data exposure.
+
+Mitigation: Disable federation unless it is explicitly required, and do not use the public HTTP federation example with real memories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yoniassia/skills/memclawz)
+- [Publisher Profile](https://clawhub.ai/user/yoniassia)
+- [API Reference](artifact/references/api-reference.md)
+- [Architecture](artifact/references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration snippets, API examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation and operation guidance for services that depend on Python, pip, Qdrant, optional Neo4j/Graphiti, API keys, REST endpoints, and MCP configuration.]
+
+## Skill Version(s):
+
+6.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

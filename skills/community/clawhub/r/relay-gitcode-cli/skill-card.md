@@ -1,48 +1,66 @@
-## Description: <br>
-Use gd, the relay-gitcode-cli GitCode command line client, for GitCode API v5 workflows including authentication, repositories, pull requests, issues, search, SSH keys, labels, releases, GitCode Pipeline operations, raw API calls, JSON automation, version checks, and shell completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relay GitCode CLI guides agents to use the local `gd` command line client for GitCode API v5 workflows, including authentication, repositories, pull requests, issues, search, SSH keys, labels, releases, pipelines, raw API calls, JSON automation, version checks, and shell completion.
 
-## Publisher: <br>
-[stevetdp](https://clawhub.ai/user/stevetdp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevetdp](https://clawhub.ai/user/stevetdp)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to manage GitCode repositories, issues, pull requests, releases, raw API calls, and pipeline workflows through the local gd CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make authenticated changes to GitCode repositories, pull requests, releases, and pipelines. <br>
-Mitigation: Use least-privilege tokens, start with read-only commands, and require explicit approval before write operations. <br>
-Risk: Repository moves, recreate syncs, raw API writes, release publishing, and pipeline changes can have broad or difficult-to-reverse effects. <br>
-Mitigation: Require explicit user approval for these operations and prefer disposable repositories for end-to-end checks. <br>
-Risk: The workflow handles sensitive credentials such as GitCode, OpenLibing, and GitHub tokens. <br>
-Mitigation: Keep tokens in environment variables or keyring-backed login, avoid printing or committing credentials, and avoid storing private API responses in files. <br>
-Risk: TLS verification is disabled by default for GitCode API calls in the documented gd behavior. <br>
-Mitigation: Enable TLS verification with GD_SSL_VERIFY, GITCODE_SSL_VERIFY, or SSL_VERIFY when the environment supports it. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs to inspect or change GitCode resources through `gd` commands instead of GitHub-only tooling. It supports repository, pull request, issue, release, label, SSH key, pipeline, workflow YAML, and raw API automation.
 
-## Reference(s): <br>
-- [Relay GitCode CLI Workflows](references/cli-workflows.md) <br>
-- [GitCode Workflow YAML Examples](references/gitcode-workflow-yml.md) <br>
-- [Project homepage](https://github.com/coolplayagent/relay-gitcode-cli) <br>
-- [GitCode Pipeline documentation](https://docs.gitcode.com/en/docs/help/home/org_project/pipeline/pipeline-intro1/) <br>
-- [ClawHub skill page](https://clawhub.ai/stevetdp/relay-gitcode-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON-oriented CLI examples, and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Skill guidance favors explicit repositories, bounded JSON output, and least-privilege credential use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: evidence release and skill frontmatter) <br>
+Risk: The skill handles GitCode credentials and private API responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow, revocable tokens through environment variables or keyring-backed login, and do not print, commit, or persist tokens or private API responses.
+
+Risk: The documented CLI behavior disables TLS certificate verification by default.
+
+Mitigation: Enable verification with `GD_SSL_VERIFY`, `GITCODE_SSL_VERIFY`, or `SSL_VERIFY` set to `true`, and avoid setting `GIT_SSL_NO_VERIFY`.
+
+Risk: The skill can guide powerful repository and API changes, including moves, delete/recreate syncs, SSH-key deletion, label deletion, pipeline cancellation, and raw API mutations.
+
+Mitigation: Require explicit user confirmation before high-impact operations, prefer disposable repositories for tests, and use dry-run or skip modes where available.
+
+Risk: Online installation fallbacks may fetch unpinned binaries or packages.
+
+Mitigation: Prefer bundled or already installed released `gd` binaries, verify the selected version before use, and avoid online installs unless no usable local binary exists.
+
+## Reference(s):
+
+- [Relay GitCode CLI ClawHub page](https://clawhub.ai/stevetdp/skills/relay-gitcode-cli)
+- [Relay GitCode CLI homepage](https://github.com/coolplayagent/relay-gitcode-cli)
+- [Relay GitCode CLI Workflows](references/cli-workflows.md)
+- [GitCode Workflow YAML Examples](references/gitcode-workflow-yml.md)
+- [GitCode Pipeline documentation](https://docs.gitcode.com/en/docs/help/home/org_project/pipeline/pipeline-intro1/)
+- [GitCode Pipeline documentation (Chinese)](https://docs.gitcode.com/docs/help/home/org_project/pipeline/pipeline-intro1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON-oriented command patterns, and GitCode workflow YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers explicit repositories, bounded result sizes, and `--json` output for agent-readable automation.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

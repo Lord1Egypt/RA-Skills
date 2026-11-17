@@ -1,43 +1,51 @@
-## Description: <br>
-Execute 13 CRM AI agents on demand for business intelligence across revenue, supply chain, deals, risk, compliance, and related CRM domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute 13 CRM AI agents on demand -- oracle, spider, watchdog, diplomat, strategist and more.
 
-## Publisher: <br>
-[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max)
 
-## Use Case: <br>
-External users and CRM or revenue operations teams use this skill to discover and invoke third-party CRM analysis agents for revenue, supply chain, deal, risk, compliance, and client-value tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task text is sent to the disclosed third-party API at sputnikx.xyz. <br>
-Mitigation: Do not submit customer records, secrets, regulated data, or confidential CRM details unless approved and the provider's data handling is trusted. <br>
-Risk: Running an agent can require a paid x402 USDC execution. <br>
-Mitigation: Confirm the payment request and selected agent before executing paid API calls. <br>
+## Use Case:
 
+Developers and business teams use this skill to discover, run, or auto-route requests to SputnikX CRM agents for revenue, supply chain, deal, risk, compliance, and cross-domain business analysis.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/drivenbymyai-max/crm-agents) <br>
-- [Publisher profile](https://clawhub.ai/user/drivenbymyai-max) <br>
-- [Provider homepage](https://sputnikx.xyz) <br>
-- [CRM agent API](https://sputnikx.xyz/api/v1/agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent execution may involve third-party API processing and x402 USDC payment confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Task text is sent to a third-party CRM agent API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, customer PII, regulated records, or confidential business data unless SputnikX use has been approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenbymyai-max/skills/crm-agents)
+- [SputnikX homepage](https://sputnikx.xyz)
+- [SputnikX CRM agent API](https://sputnikx.xyz/api/v1/agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and agent endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sending user-provided task text to SputnikX remote CRM agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

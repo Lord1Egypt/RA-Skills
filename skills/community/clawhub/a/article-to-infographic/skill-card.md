@@ -1,41 +1,56 @@
-## Description: <br>
-Transforms articles, blog posts, reports, URLs, files, or pasted text into self-contained HTML infographics, with optional PNG export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform articles, blog posts, reports, or any text content into self-contained HTML infographics with multiple layout styles and optional PNG export.
 
-## Publisher: <br>
-[Fengsh0923](https://clawhub.ai/user/Fengsh0923) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengsh0923](https://clawhub.ai/user/fengsh0923)
 
-## Use Case: <br>
-External users, content teams, and developers use this skill to turn long-form text into visual summaries, choosing an outline, layout, style, illustration posture, and output format before generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PNG export may download and install Playwright and Chromium and may modify the local Python environment. <br>
-Mitigation: Use the PNG export helper only in a sandbox or pre-provision the browser dependencies manually before running it. <br>
-Risk: The skill may process article text, URLs, or local files through browser-based rendering for infographic output. <br>
-Mitigation: Avoid providing sensitive local files or private text unless the execution and rendering environment is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Fengsh0923/article-to-infographic) <br>
-- [Style presets reference](references/style-presets.md) <br>
-- [Illustration integration guide](references/illustrations-guide.md) <br>
+## Use Case:
 
+External users and developers use this skill to turn URLs, files, or pasted article text into visual summaries, data dashboards, timelines, comparisons, process flows, or editorial-style infographics. The skill guides the agent through outline, layout, style, illustration, and output-format confirmations before generating the final asset.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with generated self-contained HTML and optional PNG export commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is intended to be self-contained; PNG export may invoke a local browser rendering helper.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional PNG export may install browser tooling and render active HTML with network access.
+
+Mitigation: Use HTML-only mode or run PNG export in an isolated environment with preinstalled, pinned Playwright and Chromium unless export is specifically needed.
+
+Risk: Rendering untrusted article content or generated HTML can expose sensitive content or external font and network requests during export.
+
+Mitigation: Avoid rendering sensitive or untrusted content with external fonts or network access enabled; review generated HTML before export.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengsh0923/skills/article-to-infographic)
+- [Style Presets](artifact/references/style-presets.md)
+- [Illustration Integration Guide](artifact/references/illustrations-guide.md)
+- [Open Peeps](https://www.openpeeps.com/)
+- [unDraw](https://undraw.co/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance plus self-contained HTML and optional PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML is intended to include inline CSS and JavaScript, print-ready styling, responsive layouts, and optional browser-rendered PNG export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

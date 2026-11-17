@@ -1,45 +1,59 @@
-## Description: <br>
-Automatically detect, backup, and update OpenClaw skills using caching, retry logic, dry-run mode, and detailed upgrade reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically detects, backs up, and updates installed OpenClaw skills with caching, retry logic, dry-run previews, and upgrade reporting.
 
-## Publisher: <br>
-[thunder1743](https://clawhub.ai/user/thunder1743) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thunder1743](https://clawhub.ai/user/thunder1743)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to scan installed skills, compare local versions with ClawHub releases, preview updates, apply upgrades, and keep rollback backups and upgrade reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic updates can change installed skills and affect future agent behavior. <br>
-Mitigation: Run with --dry-run before --auto, review the ClawHub source and detected version changes, and keep backups until the updated skills are verified. <br>
-Risk: The skill writes backups to Desktop and upgrade reports to OpenClaw memory, which may retain update history or local path information. <br>
-Mitigation: Review, retain, or delete backup folders and memory reports according to local privacy and retention needs. <br>
-Risk: Version checks and downloads depend on network access to ClawHub and can fail because of connectivity, rate limits, or unavailable releases. <br>
-Mitigation: Use --cache-only when working offline, review warnings and errors, and retry later if registry calls are rate-limited or unavailable. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain local OpenClaw skill installations, preview available updates, apply selected upgrades, and preserve backups for rollback.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/thunder1743/skills-updater) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [check-skill-updates.py](scripts/check-skill-updates.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown instructions with shell commands and generated upgrade reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in cache-only, dry-run, interactive, or auto-update modes; real updates create timestamped backups before replacing skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can automatically replace installed local skills with downloaded packages that are not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, avoid automatic updates for untrusted or important environments, and install only when the publisher is trusted.
+
+Risk: An update may break an existing local skill or introduce unwanted behavior.
+
+Mitigation: Review the backup under ~/Desktop/skill-backups/ before and after updating, and restore from the backup if the update is not acceptable.
+
+Risk: HTTPS transport alone does not prove a downloaded package is the intended publisher's signed release.
+
+Mitigation: Treat registry downloads as unsigned unless separate provenance or signature evidence is provided.
+
+## Reference(s):
+
+- [ClawHub Skills Updater listing](https://clawhub.ai/thunder1743/skills/skills-updater)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text, shell commands, and Markdown upgrade reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write timestamped backups and an upgrade report when updates are performed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

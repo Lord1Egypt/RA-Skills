@@ -1,41 +1,53 @@
-## Description: <br>
-Analyze Clawdbot logs and diagnostics. Use when the user asks about bot performance, response times, errors, session stats, token usage, API costs, or wants to debug slow responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Clawdbot logs and diagnostics. Use when the user asks about bot performance, response times, errors, session stats, token usage, API costs, or wants to debug slow responses.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local Clawdbot journal logs, session statistics, token usage, API costs, gateway status, and common error patterns while diagnosing slow or failing bot responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Clawdbot logs and session JSONL files can contain private conversation text, token usage, cost data, model details, and operational errors. <br>
-Mitigation: Review and redact diagnostic output before sharing it, and avoid extracting recent message content unless it is specifically needed for troubleshooting. <br>
-Risk: Commands that inspect user services and session files can expose machine-specific operational state. <br>
-Mitigation: Run the commands only in trusted local environments and limit outputs to the minimum detail needed to diagnose the issue. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Clawdbot response times, session statistics, token usage, API costs, gateway status, and recent errors when diagnosing slow or failing bot sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/clawdbot-logs-litiao) <br>
-- [Publisher profile](https://clawhub.ai/user/litiao1224) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and summarized diagnostic output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only diagnostics may include sensitive local log and session details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes a command pattern that can print raw user conversation history from local session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the response-time and session-metadata scripts first, and only parse raw transcripts when a specific session is intentionally selected and its contents are acceptable to expose.
+
+Risk: Clawdbot sessions may contain private, credential, business, or personal content.
+
+Mitigation: Review the local data sensitivity before installing or running the skill, and redact diagnostic output before sharing it outside the trusted workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/clawdbot-logs-litiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise diagnostic summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize local log, session, token, cost, and service-status data when the user requests Clawdbot diagnostics.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

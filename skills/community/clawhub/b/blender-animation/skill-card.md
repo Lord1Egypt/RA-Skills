@@ -1,42 +1,54 @@
-## Description: <br>
-Generate and render 3D animations using Blender headless mode, including scene setup, object and camera animation, lighting, and MP4 output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and render 3D animations using Blender headless mode, including scene setup, object and camera animation, lighting, and output to MP4 video.
 
-## Publisher: <br>
-[vignesh8164](https://clawhub.ai/user/vignesh8164) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vignesh8164](https://clawhub.ai/user/vignesh8164)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate Blender Python scenes, run Blender in headless mode, and collect rendered MP4 output plus execution logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Blender Python runs locally and may be unsafe in sensitive or high-privilege environments. <br>
-Mitigation: Use a sandbox or low-privilege environment for untrusted prompts and review generated scripts before rendering sensitive projects. <br>
-Risk: The skill depends on the local Blender executable used for headless rendering. <br>
-Mitigation: Ensure the Blender executable on PATH is from a trusted source before running the generated script. <br>
-Risk: Rendering animations can consume significant local CPU, GPU, memory, or disk resources. <br>
-Mitigation: Keep renders within the skill's stated constraints, including short animation duration and output limited to /tmp. <br>
+## Use Case:
 
+Developers and technical artists use this skill to generate Blender Python scenes, run Blender headlessly, and return rendered MP4 animations, scripts, and logs for controlled 3D animation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vignesh8164/blender-animation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, files] <br>
-**Output Format:** [Markdown with Blender Python code, shell command guidance, output file path, and logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a generated Blender Python script with Blender headless mode and writes rendered video output to /tmp/output.mp4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md Version; skill.json lists 1.0.0) <br>
+Risk: The runner can execute a caller-supplied Blender Python script with Blender process permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a contained runtime with limited filesystem access, no sensitive credentials, resource limits, and a fixed validated script path when handling untrusted prompts or files.
+
+Risk: The documentation claims stronger execution limits than the runner enforces.
+
+Mitigation: Review generated Blender scripts before execution and enforce filesystem, network, and duration constraints through the surrounding sandbox or container.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vignesh8164/skills/blender-animation)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Blender Python code, file paths, and execution logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce /tmp/blender_script.py and /tmp/output.mp4 when executed in a configured Blender environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact/SKILL.md version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

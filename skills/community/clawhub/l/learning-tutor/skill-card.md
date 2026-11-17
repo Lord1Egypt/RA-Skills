@@ -1,39 +1,52 @@
-## Description: <br>
-A general-purpose learning tutor skill for any domain that uses Socratic teaching to guide concept learning, track the user's evolving knowledge map, suggest timely prerequisite learning, and retrieve high-quality sources relevant to the subject. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A general-purpose learning tutor skill for any domain that uses Socratic teaching to guide concept learning, track the user's evolving knowledge map, suggest prerequisite learning, and retrieve up-to-date, high-quality sources relevant to the subject.
 
-## Publisher: <br>
-[vaintwyt](https://clawhub.ai/user/vaintwyt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[vaintwyt](https://clawhub.ai/user/vaintwyt)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external learners, and developers use this skill to get tutoring-oriented explanations, study guidance, paper or report walkthroughs, comparisons, and structured learning support across fields.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad tutoring and research requests may produce incorrect, outdated, or misleading explanations or citations.
+
+Mitigation: Review important learning, research, and paper-summary outputs against primary sources before relying on them.
+
+Risk: The skill asks the agent to track a user's knowledge and interests within the conversation, which can surface sensitive learning context.
+
+Mitigation: Avoid sharing sensitive personal, academic, or workplace details unless they are necessary for the learning task.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and learners use this skill for concept explanations, study guidance, paper or report walkthroughs, comparisons, and structured learning support across fields. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad tutoring across domains can produce incomplete or inappropriate guidance for medical, legal, financial, or other high-stakes topics. <br>
-Mitigation: Prefer specialized expertise for high-stakes subjects and ask for careful source-based caveats before relying on the output. <br>
-Risk: Personalized tutoring adapts to demonstrated knowledge and interests, which can involve personal learning signals. <br>
-Mitigation: Avoid sharing unnecessary personal details and review whether personalization is appropriate for the learning context. <br>
+**Output Format:** [Markdown or plain text with citations and structured summaries when appropriate]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include Socratic questions, concept explanations, study recommendations, source citations, and paper or report summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses, structured summaries, questions, explanations, and learning suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cited source links when current research or high-quality external information is requested.] <br>
+0.1.0 (source: release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

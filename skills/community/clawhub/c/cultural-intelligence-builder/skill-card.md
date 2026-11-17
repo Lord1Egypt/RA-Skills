@@ -1,42 +1,57 @@
-## Description: <br>
-Develops cultural awareness, cross-cultural communication skills, and global mindset adaptability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develops cultural awareness, cross-cultural communication skills, and global mindset adaptability.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Employees, external users, and team leaders use this skill to reflect on cultural assumptions, prepare for cross-cultural conversations, and receive structured communication guidance. It is intended for educational self-reflection, not professional legal, medical, psychological, or formal diversity advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says the executable output is lightweight and mostly templated, so it may not provide the full cultural-intelligence coaching implied by the documentation. <br>
-Mitigation: Treat the response as a starting point for reflection and review recommendations before relying on them for sensitive workplace, family, or travel decisions. <br>
-Risk: The release evidence notes that some documentation and examples are in Chinese while the manifest declares English. <br>
-Mitigation: Review language fit before deployment, especially for English-only catalogs or users who may not understand the included examples. <br>
-Risk: The artifact states that the skill is for self-reflection and educational use, not professional advice. <br>
-Mitigation: Direct users to qualified professionals for legal, health, mental-health, employment, or formal organizational policy concerns. <br>
+## Use Case:
 
+External users and workplace teams use this skill to build cultural awareness, prepare for cross-cultural interactions, and generate reflective communication strategies. It supports educational self-reflection and personal development rather than legal, medical, psychological, HR, or other professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cultural-intelligence-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON string with input analysis, recommendations, next steps, frameworks, and a disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs are required; output is descriptive guidance and should be reviewed for cultural nuance and user context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat educational cultural guidance as professional legal, medical, psychological, or HR advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as self-reflection and educational support, and direct users to qualified professionals for health, mental health, legal, employment, or high-stakes organizational concerns.
+
+Risk: Cultural frameworks can be over-applied as stereotypes or fixed assumptions about individuals.
+
+Mitigation: Present cultural dimensions as hypotheses for inquiry, encourage curiosity and direct clarification, and remind users that individuals vary within every cultural group.
+
+Risk: Broad activation phrases and mixed English/Chinese documentation may create unexpected activation or audience mismatch.
+
+Mitigation: Use clear invocation context and preserve bilingual examples only where they match the user's language and cultural communication scenario.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cultural-intelligence-builder)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, guidance]
+
+**Output Format:** [Structured JSON with input analysis, recommendations, next steps, frameworks, and a disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs or code execution are required by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

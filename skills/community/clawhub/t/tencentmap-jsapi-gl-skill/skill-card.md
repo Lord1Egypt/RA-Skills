@@ -1,43 +1,58 @@
-## Description: <br>
-This skill helps agents answer questions and generate code for Tencent Map JavaScript GL applications using bundled API documentation and examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Tencent Map JavaScript GL guidance, API references, demos, and setup help for building map and visualization features.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers use this skill when building, reviewing, or debugging Tencent Map JSAPI GL map applications, including map setup, overlays, layers, events, controls, visualization, search, routing, geocoding, administrative regions, IP location, geometry calculations, 3D models, and performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated examples may include live Tencent Map API calls, remote scripts, or browser-side API key use. <br>
-Mitigation: Use your own restricted Tencent Map key, avoid exposing signing secrets in client code, and review generated code before production use. <br>
-Risk: Bundled demos include patterns such as JSONP and IP-based location that may be inappropriate for production or privacy-sensitive contexts. <br>
-Mitigation: Prefer safer CORS or backend-proxied requests, and add notice and consent before adapting IP-location features. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, review, or debug Tencent Map JSAPI GL code for map initialization, overlays, layers, events, controls, search, routing, geocoding, administrative areas, IP location, geometry, 3D models, and visualization layers.
 
-## Reference(s): <br>
-- [Tencent Map JavaScript GL Guide](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview) <br>
-- [JSAPI GL overview](artifact/tencentmap-jsapi-gl-skill/references/jsapigl/docs/概述.md) <br>
-- [Visualization reference manual](artifact/tencentmap-jsapi-gl-skill/references/visualization/docs/参考手册.md) <br>
-- [Browser environment checks](artifact/tencentmap-jsapi-gl-skill/references/jsapigl/docs/环境检测.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown, configuration] <br>
-**Output Format:** [Markdown with JavaScript, HTML, and shell snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference TMAP_JSAPI_KEY and Tencent Map JSAPI library URLs when generating examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The temporary-key flow can send a phone number and SMS verification code to Tencent LBS endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the temporary-key flow only after reviewing the Tencent terms and privacy notices; prefer setting TMAP_JSAPI_KEY manually when possible.
+
+Risk: The temporary-key flow stores the resulting API key locally in plaintext.
+
+Mitigation: Secure or delete ~/.tencentmap/tempkey.json after use, and avoid the flow on shared or untrusted machines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tencent-adm/skills/tencentmap-jsapi-gl-skill)
+- [Tencent Map JSAPI GL overview](https://lbs.qq.com/webApi/javascriptGL/glGuide/glOverview)
+- [API reference](tencentmap-jsapi-gl-skill/references/api_reference.md)
+- [Temporary key guide](tencentmap-jsapi-gl-skill/tempkey-guide.md)
+- [JSAPI GL documentation](tencentmap-jsapi-gl-skill/references/jsapigl/docs/)
+- [Visualization documentation](tencentmap-jsapi-gl-skill/references/visualization/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, command examples, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tencent Map JSAPI key through TMAP_JSAPI_KEY or the local temporary-key configuration flow.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; skill frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

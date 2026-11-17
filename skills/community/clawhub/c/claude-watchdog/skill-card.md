@@ -1,41 +1,59 @@
-## Description: <br>
-Monitor the Claude API for outages and latency spikes with rich Telegram alerts. Status monitoring, latency probes, and automatic recovery notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor the Claude API for outages and latency spikes with Telegram alerts, status checks, latency probes, and recovery notifications.
 
-## Publisher: <br>
-[chapati23](https://clawhub.ai/user/chapati23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chapati23](https://clawhub.ai/user/chapati23)
 
-## Use Case: <br>
-Developers and operators use Claude Watchdog to monitor Anthropic Claude API status and latency, receive Telegram alerts, and track recovery without manually checking service health. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Telegram and OpenClaw gateway tokens in a local environment file. <br>
-Mitigation: Keep the env file owner-only, use a dedicated Telegram bot or chat where possible, and avoid exposing gateway token command output. <br>
-Risk: The setup installs cron checks that run every 15 minutes and send outbound status and alert requests. <br>
-Mitigation: Review the installed crontab after setup and run the uninstall option when monitoring is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chapati23/claude-watchdog) <br>
-- [Claude status page](https://status.claude.com) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+## Use Case:
 
+Developers and operators use this skill to configure local Claude API monitoring, send Telegram alerts, and track status incidents and latency spikes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup instructions, cron-based monitoring behavior, Telegram alert text, and status or latency logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation creates persistent cron jobs and unsafe crontab handling may affect unrelated scheduled tasks.
+
+Mitigation: Review and back up crontab before installing, and verify any uninstall or update touches only the intended watchdog entries.
+
+Risk: Telegram and OpenClaw gateway tokens are stored in a local environment file.
+
+Mitigation: Install only on a trusted machine, keep the env file permission-restricted, and rotate tokens if exposure is suspected.
+
+Risk: The skill runs background checks every 15 minutes and sends outbound Telegram and status/probe requests.
+
+Mitigation: Confirm the scheduled monitoring cadence and outbound notification behavior are appropriate for the deployment environment before enabling cron jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chapati23/skills/claude-watchdog)
+- [ClawHub publisher profile](https://clawhub.ai/user/chapati23)
+- [Anthropic status page](https://status.claude.com)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive setup writes local configuration, installs scheduled checks, and sends Telegram status or latency alerts.]
+
+## Skill Version(s):
+
+1.2.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

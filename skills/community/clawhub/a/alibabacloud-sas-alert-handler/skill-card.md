@@ -1,47 +1,67 @@
-## Description: <br>
-Alibaba Cloud Security Center (SAS) CWPP host security alert handling skill for querying, analyzing, and handling alerts from Cloud Security Center. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Security Center (SAS) CWPP host security alert handling skill for querying, analyzing, and handling Cloud Security Center alerts.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Security operators and cloud engineers use this skill to inspect Alibaba Cloud Security Center host alerts, review available handling operations, execute approved remediation or suppression actions, and verify handling status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through Alibaba Cloud Security Center actions such as blocking, quarantining, ignoring, or whitelisting alerts. <br>
-Mitigation: Use a dedicated least-privilege RAM identity, start with read-only permissions when possible, and manually review any block, quarantine, kill, ignore, or whitelist action before approval. <br>
-Risk: The skill requires Alibaba Cloud credentials and operates in a cloud security account context. <br>
-Mitigation: Check credential status without exposing secrets, avoid pasting long-lived AccessKeys into prompts, commands, or logs, and use scoped credentials appropriate to the intended alert workflow. <br>
+## Use Case:
 
+Security operators and cloud engineers use this skill to review Alibaba Cloud Security Center CWPP alerts, inspect available handling operations, choose remediation actions, and verify handling status.
 
-## Reference(s): <br>
-- [Workflow Details](references/workflow-details.md) <br>
-- [Operation Codes](references/operation-codes.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Alibaba Cloud SAS alert summaries, recommended handling actions, command examples, polling results, and final remediation status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can guide production-impacting remediation such as blocking IPs, quarantining files, killing processes, ignoring alerts, whitelisting future matches, or disabling defenses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator approval before remediation, query available operations per alert, execute only operations where UserCanOperate is true, and prefer read-only or least-privilege RAM permissions until handling is approved.
+
+Risk: Setup guidance includes curl-to-bash, latest binary downloads, and plugin update paths that can introduce unverified dependencies.
+
+Mitigation: Install Aliyun CLI from independently verified sources, pin or verify CLI and plugin versions, and avoid automatic installer paths in sensitive environments.
+
+Risk: The workflow requires Alibaba Cloud credentials and may expose high-impact cloud access if long-lived or privileged credentials are used.
+
+Mitigation: Use temporary credentials or RAM roles where possible, avoid root or administrator credentials, do not paste long-lived access keys into shell commands, and follow least-privilege RAM policies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-sas-alert-handler)
+- [Workflow Details](artifact/references/workflow-details.md)
+- [Related APIs](artifact/references/related-apis.md)
+- [Operation Codes Reference](artifact/references/operation-codes.md)
+- [RAM Policies](artifact/references/ram-policies.md)
+- [Error Handling Guide](artifact/references/error-handling.md)
+- [Verification Method](artifact/references/verification-method.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+- [Aliyun CLI Installation Guide](artifact/references/cli-installation-guide.md)
+- [Aliyun CLI Official Documentation](https://help.aliyun.com/zh/cli/)
+- [Aliyun CLI Repository](https://github.com/aliyun/aliyun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommendations, CLI command patterns, remediation status summaries, and operator-facing error guidance.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

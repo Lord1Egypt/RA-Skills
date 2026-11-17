@@ -1,40 +1,54 @@
-## Description: <br>
-Provides structured financial goal progress analysis, savings gap calculations, prioritization frameworks, and review checklists for personal finance planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured analysis, actionable recommendations, and next-step checklists to help track and manage progress toward financial goals.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agent operators use this skill to evaluate progress toward savings, debt payoff, down-payment, emergency-fund, and investment targets. It helps turn user-provided amounts, timelines, and priorities into structured analysis, recommendations, and next-step checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat informational financial planning output as professional investment, tax, legal, or transaction advice. <br>
-Mitigation: Present outputs as planning aids, verify calculations against the user's own records, and consult qualified professionals before acting on high-impact financial decisions. <br>
+## Use Case:
 
+External users and agents assisting them use this skill to evaluate savings progress, prioritize competing financial goals, and create recurring review checklists. Its outputs are informational planning aids, not professional financial advice or transaction instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/financial-goal-progress-tracker) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON response with input analysis, recommendations, next steps, templates, and an informational disclaimer; documentation examples also describe structured prose outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, financial transactions, credential use, persistence, or destructive behavior are identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat informational personal-finance output as professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the disclaimer visible and require users to consult qualified financial professionals before acting on significant decisions.
+
+Risk: Mixed English and Chinese documentation may create inconsistent expectations about supported language and locale assumptions.
+
+Mitigation: Present outputs as general planning frameworks and ask users to confirm currency, timeframe, and local financial context before relying on calculations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/financial-goal-progress-tracker)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON with structured analysis, recommendations, next steps, templates, and disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local response generation only; no external API calls, persistence, network use, or financial transactions were identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata; artifact files list 1.1.0 and 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,126 @@
+{
+  "case": "R02",
+  "variant": "onyx",
+  "query_sequence": [
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"causal transportability gradient workflows\" --kind all --match auto --limit 12 --pretty",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"causal transportability\" --kind all --match auto --limit 8",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"gradient workflows\" --kind all --match auto --limit 8",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.19306514\" --kind paper --match auto --limit 1 --full --pretty",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.19994795\" --kind paper --match auto --limit 1 --full --pretty",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.17518572\" --kind paper --match auto --limit 1 --full --pretty"
+  ],
+  "response": {
+    "match_policy": [
+      {
+        "query": "causal transportability gradient workflows",
+        "requested": "auto",
+        "effective": "any",
+        "auto_fallback_to_any": true
+      },
+      {
+        "query": "causal transportability",
+        "requested": "auto",
+        "effective": "all",
+        "auto_fallback_to_any": false
+      },
+      {
+        "query": "gradient workflows",
+        "requested": "auto",
+        "effective": "any",
+        "auto_fallback_to_any": true
+      }
+    ],
+    "retained_sources": [
+      {
+        "doi": "10.5281/zenodo.19306514",
+        "use": "causal transportability candidate; the exact two-term query matched one record in keywords",
+        "retained_labels": [
+          {
+            "group": "method_terms",
+            "label": "causal_inference",
+            "matched_field": "keywords",
+            "matched_span": [
+              284,
+              300
+            ],
+            "matched_text": "causal inference",
+            "rule_id": "method.causal.v1"
+          },
+          {
+            "group": "phase_dimensions",
+            "label": "causal_formation",
+            "matched_field": "keywords",
+            "matched_span": [
+              284,
+              300
+            ],
+            "matched_text": "causal inference",
+            "rule_id": "dimension.causal.v1"
+          }
+        ],
+        "not_retained": "optimal_transport_and_gradient_flows"
+      },
+      {
+        "doi": "10.5281/zenodo.19994795",
+        "use": "AI workflow source; not a mathematical gradient-flow source",
+        "retained_labels": [
+          {
+            "group": "themes",
+            "label": "ai_systems_and_operations",
+            "matched_field": "keywords",
+            "matched_span": [
+              81,
+              89
+            ],
+            "matched_text": "workflow",
+            "rule_id": "theme.ai-operations.v1"
+          },
+          {
+            "group": "method_terms",
+            "label": "optimization_and_scaling_analysis",
+            "matched_field": "keywords",
+            "matched_span": [
+              90,
+              102
+            ],
+            "matched_text": "optimization",
+            "rule_id": "method.optimization-scaling.v1"
+          }
+        ],
+        "not_retained": "optimal_transport_and_gradient_flows"
+      },
+      {
+        "doi": "10.5281/zenodo.17518572",
+        "use": "mathematical gradient-flow source; not an AI workflow source",
+        "retained_labels": [
+          {
+            "group": "method_terms",
+            "label": "optimal_transport_and_gradient_flows",
+            "matched_field": "keywords",
+            "matched_span": [
+              89,
+              102
+            ],
+            "matched_text": "gradient flow",
+            "rule_id": "method.gradient-flow.v1"
+          }
+        ]
+      }
+    ],
+    "disambiguation": {
+      "causal_transportability_is_not_optimal_transport": true,
+      "workflow_is_not_gradient_flow": true,
+      "explanation": "The causal record is retained under causal evidence only. The workflow record is retained under workflow and optimization evidence only. A separate mathematical record carries the gradient-flow label because its stored keyword span says gradient flow."
+    }
+  },
+  "assertions": {
+    "requested_match_policy_reported": true,
+    "effective_match_policy_reported": true,
+    "auto_fallback_reported": true,
+    "causal_transportability_not_conflated_with_optimal_transport": true,
+    "workflow_not_conflated_with_gradient_flow": true,
+    "retained_labels_have_field_span_rule_evidence": true,
+    "auditable_ambiguity_resolution_supported": true,
+    "pass": true
+  }
+}

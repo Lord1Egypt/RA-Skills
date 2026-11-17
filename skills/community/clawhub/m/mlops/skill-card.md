@@ -1,39 +1,53 @@
-## Description: <br>
-Deploy ML models to production with pipelines, monitoring, serving, and reproducibility best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy ML models to production with pipelines, monitoring, serving, and reproducibility best practices.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and ML engineers use this skill as a concise operational reference for production MLOps work, including model pipelines, serving, monitoring, reproducibility, and GPU infrastructure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Production deployment, rollback, monitoring, and GPU infrastructure examples may be unsuitable if copied into live ML systems without review. <br>
-Mitigation: Review, test, and route changes through normal change-control before applying the guidance to production systems. <br>
-Risk: The skill does not include executable automation, so agents may need to adapt recommendations to local infrastructure and model requirements. <br>
-Mitigation: Validate generated plans against environment-specific dependencies, capacity limits, observability requirements, and rollback procedures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/mlops) <br>
+## Use Case:
 
+Developers and MLOps engineers use this skill for practical guidance on production ML pipelines, model serving, monitoring, reproducibility, and GPU infrastructure decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no executable components are included in the skill artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: MLOps guidance may be incomplete or unsuitable if applied directly to production infrastructure without review.
+
+Mitigation: Have engineers review infrastructure changes, deployment automation, rollback plans, and monitoring thresholds before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/mlops)
+- [CI/CD and DAG Pipelines](artifact/pipelines.md)
+- [Model Serving at Scale](artifact/serving.md)
+- [Drift Detection and Monitoring](artifact/monitoring.md)
+- [Reproducibility and Versioning](artifact/reproducibility.md)
+- [GPU Infrastructure](artifact/gpu.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no executable code, install hooks, credential handling, or hidden authority identified by server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

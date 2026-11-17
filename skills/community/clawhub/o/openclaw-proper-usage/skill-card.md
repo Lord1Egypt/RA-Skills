@@ -1,39 +1,50 @@
-## Description: <br>
-Operate OpenClaw reliably with right skill/tool selection, scoped execution, and verification-first completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate OpenClaw reliably with right skill/tool selection, scoped execution, and verification-first completion.
 
-## Publisher: <br>
-[mcdoolz](https://clawhub.ai/user/mcdoolz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcdoolz](https://clawhub.ai/user/mcdoolz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route OpenClaw work to the right tool, split broad tasks into scoped execution streams, and close each task with evidence-backed verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use named external model backends and scoped subagent sessions, which can affect quota, cost, and delegation behavior. <br>
-Mitigation: Confirm the intended OpenClaw environment, model access, and delegation scope before installation or use. <br>
-Risk: Routing guidance may lead an agent to choose an unsuitable tool for ambiguous, broad, or risky tasks. <br>
-Mitigation: Follow the skill's clarify, scope, verify, and report workflow before making edits or accepting delegated outputs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route OpenClaw tasks to the right tool or subagent, keep execution scoped, and report evidence-backed completion results.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational routing and completion guidance; it does not generate executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may direct an agent to delegate planning, search, review, or implementation to tools and subagents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tool permissions scoped to the task, monitor delegated outputs, and require evidence-backed verification before accepting results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcdoolz/skills/openclaw-proper-usage)
+- [ClawHub publisher profile](https://clawhub.ai/user/mcdoolz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow recommendations, routing guidance, verification expectations, and session-management command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

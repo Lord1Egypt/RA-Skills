@@ -1,46 +1,55 @@
-## Description: <br>
-AI-native ERP system with self-extending OS for accounting, invoicing, inventory, purchasing, tax, billing, HR, payroll, advanced accounting, financial reporting, module generation, schema migration, and audit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ERP Claw is an AI-native ERP agent skill for local accounting, invoicing, inventory, purchasing, tax, billing, HR, payroll, advanced accounting, financial reporting, and module management.
 
-## Publisher: <br>
-[mailnike](https://clawhub.ai/user/mailnike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mailnike](https://clawhub.ai/user/mailnike)
 
-## Use Case: <br>
-Business operators, finance teams, HR/payroll administrators, and developers use this skill to manage local ERP records, run accounting and payroll workflows, generate financial reports, install industry or regional modules, and scaffold or validate ERP extensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can mutate business, payroll, inventory, and accounting records, including submit, cancel, approve, restore, cleanup, and scheduled recurring actions. <br>
-Mitigation: Use it only with reviewed permissions, backups, and human approval for high-impact financial or personnel workflows. <br>
-Risk: The skill can install or update modules and deploy modules from downloaded code. <br>
-Mitigation: Review module sources and restrict installation, update, schema apply, schema rollback, and deploy actions to trusted operators. <br>
-Risk: The web dashboard setup can clone a web project and change host-level nginx, systemd, and TLS configuration. <br>
-Mitigation: Avoid production dashboard setup until the cloned project and host configuration changes have been reviewed and approved. <br>
+## Use Case:
 
+Business operators, finance teams, HR/payroll staff, and developers use this skill to manage a local ERP database, run accounting and operational workflows, generate reports, and configure industry or regional modules through agent-invoked commands.
 
-## Reference(s): <br>
-- [ERP Claw on ClawHub](https://clawhub.ai/mailnike/erp-claw) <br>
-- [OpenClaw](https://openclaw.org) <br>
-- [ERPClaw website](https://www.erpclaw.ai) <br>
-- [ERPClaw Web dashboard](https://github.com/avansaber/erpclaw-web) <br>
-- [WebClaw dashboard](https://github.com/avansaber/webclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with command examples, JSON-like action results, generated code, configuration instructions, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local Python scripts that read or mutate a SQLite ERP database and may initiate confirmed module installation or dashboard setup actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill has broad authority over local ERP, accounting, payroll, HR, and related business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that level of local data access is acceptable, restrict filesystem and database access, and review high-impact accounting, payroll, HR, restore, schema, cron, and deployment actions before execution.
+
+Risk: Module and dashboard setup can run mutable remote code without strong integrity controls.
+
+Mitigation: Avoid production module updates and dashboard setup until the remote repositories have been reviewed and pinned, and keep verified backups before enabling those workflows.
+
+## Reference(s):
+
+- [ERP Claw ClawHub listing](https://clawhub.ai/mailnike/skills/erp-claw)
+- [OpenClaw](https://openclaw.org)
+- [ERPClaw website](https://www.erpclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operates on a local SQLite ERP database and may create business records, reports, backups, schedules, or installed modules.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

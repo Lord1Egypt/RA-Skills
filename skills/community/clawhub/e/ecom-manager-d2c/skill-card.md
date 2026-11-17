@@ -1,43 +1,61 @@
-## Description: <br>
-AI ecommerce operations manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI ecommerce operations manager.
 
-## Publisher: <br>
-[Abhishekj9621](https://clawhub.ai/user/Abhishekj9621) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhishekj9621](https://clawhub.ai/user/abhishekj9621)
 
-## Use Case: <br>
-External ecommerce operators and store teams use this skill to monitor inventory, pricing, campaigns, analytics, competitor activity, content, and chat-driven store operations across supported commerce and advertising platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect live inventory, pricing, discounts, product content, ad budgets, campaign status, and customer messaging. <br>
-Mitigation: Start in read-only or report-only mode, use least-privilege API tokens, and require explicit human approval for all material store, advertising, publishing, and messaging changes. <br>
-Risk: Chat-driven execution can convert natural-language messages into operational actions. <br>
-Mitigation: Allow commands only from verified authorized users, keep audit logs, and enforce spend, price-change, inventory-change, and message-sending limits. <br>
-Risk: Competitor monitoring and analytics workflows may rely on external or regulated data sources. <br>
-Mitigation: Use compliant data-source rules and review connected accounts before enabling live integrations. <br>
+## Use Case:
 
+External ecommerce operators and developers use this skill to automate store operations across inventory, pricing, content, ads, analytics, competitor monitoring, and chat-driven task execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abhishekj9621/ecom-manager-d2c) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Abhishekj9621) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text summaries, recommendations, and action confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request authentication and human approval before sensitive store, pricing, advertising, publishing, or customer-message actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can change live store, advertising, messaging, and content systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit store-owner approval before every price, inventory, content, discount, messaging, and ad-spend change.
+
+Risk: Connected ecommerce and messaging integrations may expose sensitive credentials or customer and store data.
+
+Mitigation: Use least-privilege API tokens, store tokens securely, connect only trusted messaging channels with verified identities, and rotate credentials according to store policy.
+
+Risk: Advertising automation and competitor monitoring can create spend, compliance, or terms-of-service risk.
+
+Mitigation: Set budget and rate limits outside the agent and confirm competitor monitoring complies with applicable terms and laws.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhishekj9621/skills/ecom-manager-d2c)
+- [Integrations](artifact/integrations.md)
+- [Available Tools](artifact/tools.md)
+- [Workflows](artifact/workflows.md)
+- [Chat Commands](artifact/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown or structured text with proposed ecommerce actions, reports, and execution summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Critical store, advertising, messaging, and content changes require explicit owner approval.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter says 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

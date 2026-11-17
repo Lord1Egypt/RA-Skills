@@ -1,8 +1,10 @@
 # Example — `inspect_calendar`
 
-A READ operation. Report calendar state and **flag** high-risk patterns. In v1
-the skill never changes the calendar — flagging is read-only; fixing is a MUTATE
-op reserved for v2.
+A READ operation. Report calendar state and **flag** high-risk patterns.
+`inspect_calendar` itself never changes the calendar — it is read-only, flag only.
+*Changing* the calendar (block/open dates, price) is a separate, approval-gated
+MUTATE-CAL operation (see SKILL.md → "Approved calendar mutations"); it is never a
+side effect of an inspection.
 
 ## Procedure
 1. Tier 1: call the Airbnb calendar role for the requested range (default: next
@@ -44,13 +46,16 @@ GET /tools/airbnb/calendar?from=2026-06-03&to=2026-08-02     # tier 1
 ## When a flag is serious
 If a flag implies guest-visible risk (e.g., an actual double-booking), escalate
 to a human immediately with the specifics. Do NOT attempt to resolve it by
-changing the calendar — that's a MUTATE op and is out of scope in v1.
+changing the calendar during an inspection — that is a separate MUTATE-CAL
+operation that requires its own explicit per-operation operator approval.
 
 ## Degradation
 - Tier-1 calendar role missing/hard-down twice → agent-browser read of the
   calendar page → DevTools DOM read → escalate.
 
 ## Anti-patterns
-- ❌ "Fixing" a double-booking by blocking dates. Flag + escalate only in v1.
+- ❌ "Fixing" a double-booking by blocking dates *during an inspection*.
+  `inspect_calendar` only flags + escalates; blocking is a separate approval-gated
+  MUTATE-CAL op, never an automatic response to a flag.
 - ❌ Reporting calendar state from a stale cache without noting it; if the read
   path is ambiguous, say so.

@@ -16,6 +16,13 @@ v10.2 改进:
   - Git 集成: --auto-commit 每次迭代前自动创建 Git 提交和 tag
   - rollback 命令: 支持回滚到指定迭代 (--to N / --prev / --initial)
 
+v11.4 改进 (Backpressure 门控):
+  - gates 子命令: 三层门控（编译/测试/质量）
+  - 自动检测测试框架（pytest/npm test）
+  - 自动检测 lint 工具（ruff/eslint）
+  - 自动检测 typecheck 工具（mypy/tsc）
+  - 门控失败时输出修复提示
+
 子命令:
   init     - 初始化新的迭代循环
   check    - 检查是否应继续迭代
@@ -23,6 +30,7 @@ v10.2 改进:
   complete - 标记循环完成
   cleanup  - 清理残留状态（v10.1 新增）
   rollback - 回滚到指定迭代（v10.2 新增）
+  gates    - 运行三层门控检查（v11.4 新增）
 
 用法:
   python loop-controller.py init --name "task" --mode max --max 10
@@ -34,6 +42,7 @@ v10.2 改进:
   python loop-controller.py rollback --name "task" --to 3
   python loop-controller.py rollback --name "task" --prev
   python loop-controller.py rollback --name "task" --initial
+  python loop-controller.py gates --files "src/main.py" --complexity medium
 """
 
 import argparse
@@ -705,6 +714,459 @@ def evaluate_condition(check: dict, state: dict) -> bool:
     return False
 
 
+# ─── Backpressure 门控（v11.4 新增）────────────────────────────────────────────
+
+def detect_test_framework(files: list) -> dict:
+    """检测项目中的测试框架。"""
+    # Python: pytest
+    if Path("pytest.ini").exists() or Path("pyproject.toml").exists():
+        # 检查 pyproject.toml 是否有 pytest 配置
+        pyproject = Path("pyproject.toml")
+        if pyproject.exists():
+            content = pyproject.read_text(encoding="utf-8", errors="ignore")
+            if "[tool.pytest" in content or "pytest" in content:
+                return {"framework": "pytest", "command": "pytest", "detected": True}
+        # 检查 conftest.py
+        if Path("conftest.py").exists():
+            return {"framework": "pytest", "command": "pytest", "detected": True}
+        # 检查 tests/ 目录
+        if Path("tests").is_dir():
+            return {"framework": "pytest", "command": "pytest", "detected": True}
+
+    # Python: unittest
+    for f in files:
+        if "test_" in str(f) or "_test.py" in str(f):
+            return {"framework": "unittest", "command": "python -m unittest", "detected": True}
+
+    # JavaScript/TypeScript: npm test
+    package_json = Path("package.json")
+    if package_json.exists():
+        try:
+            content = package_json.read_text(encoding="utf-8")
+            pkg = json.loads(content)
+            scripts = pkg.get("scripts", {})
+            if "test" in scripts:
+                return {"framework": "npm-test", "command": "npm test", "detected": True}
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    return {"framework": None, "command": None, "detected": False}
+
+
+def detect_lint_tool(files: list) -> dict:
+    """检测项目中的 lint 工具。"""
+    # Python: ruff
+    if Path("ruff.toml").exists() or Path(".ruff.toml").exists():
+        return {"tool": "ruff", "check": "ruff check", "fix": "ruff check --fix", "detected": True}
+    pyproject = Path("pyproject.toml")
+    if pyproject.exists():
+        content = pyproject.read_text(encoding="utf-8", errors="ignore")
+        if "[tool.ruff" in content:
+            return {"tool": "ruff", "check": "ruff check", "fix": "ruff check --fix", "detected": True}
+
+    # Python: flake8
+    if Path(".flake8").exists() or Path("setup.cfg").exists():
+        return {"tool": "flake8", "check": "flake8", "fix": None, "detected": True}
+
+    # JavaScript/TypeScript: eslint
+    for eslint_cfg in [".eslintrc", ".eslintrc.js", ".eslintrc.json", ".eslintrc.yml", "eslint.config.js", "eslint.config.mjs"]:
+        if Path(eslint_cfg).exists():
+            return {"tool": "eslint", "check": "npx eslint", "fix": "npx eslint --fix", "detected": True}
+    package_json = Path("package.json")
+    if package_json.exists():
+        try:
+            content = package_json.read_text(encoding="utf-8")
+            pkg = json.loads(content)
+            if "eslint" in pkg.get("devDependencies", {}) or "eslint" in pkg.get("dependencies", {}):
+                return {"tool": "eslint", "check": "npx eslint", "fix": "npx eslint --fix", "detected": True}
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    return {"tool": None, "check": None, "fix": None, "detected": False}
+
+
+def detect_typecheck_tool(files: list) -> dict:
+    """检测项目中的类型检查工具。"""
+    # Python: mypy
+    if Path("mypy.ini").exists() or Path(".mypy.ini").exists():
+        return {"tool": "mypy", "command": "mypy", "detected": True}
+    pyproject = Path("pyproject.toml")
+    if pyproject.exists():
+        content = pyproject.read_text(encoding="utf-8", errors="ignore")
+        if "[tool.mypy" in content:
+            return {"tool": "mypy", "command": "mypy", "detected": True}
+
+    # TypeScript: tsc
+    if Path("tsconfig.json").exists():
+        return {"tool": "tsc", "command": "npx tsc --noEmit", "detected": True}
+
+    return {"tool": None, "command": None, "detected": False}
+
+
+def run_gate(name: str, command: str, files: list, timeout: int = 60) -> dict:
+    """运行单个门控检查。"""
+    # 构建命令（附加文件参数）
+    full_cmd = command
+    if files:
+        # 对于 pytest/npm test，不直接附加文件名（它们自动发现）
+        if name in ("pytest", "unittest", "npm-test"):
+            pass  # 不附加文件
+        else:
+            full_cmd = f"{command} {' '.join(str(f) for f in files)}"
+
+    try:
+        result = subprocess.run(
+            full_cmd, shell=True, capture_output=True, text=True,
+            timeout=timeout, encoding="utf-8", errors="replace"
+        )
+        passed = result.returncode == 0
+        return {
+            "gate": name,
+            "status": "pass" if passed else "fail",
+            "command": full_cmd,
+            "exit_code": result.returncode,
+            "stdout": result.stdout[-2000:] if result.stdout else "",  # 截断过长输出
+            "stderr": result.stderr[-2000:] if result.stderr else "",
+        }
+    except subprocess.TimeoutExpired:
+        return {
+            "gate": name,
+            "status": "timeout",
+            "command": full_cmd,
+            "error": f"超时 ({timeout}s)",
+        }
+    except FileNotFoundError:
+        return {
+            "gate": name,
+            "status": "skip",
+            "command": full_cmd,
+            "reason": "命令不存在",
+        }
+
+
+def find_related_tests(files: list) -> list:
+    """根据修改的文件查找相关测试文件。"""
+    test_files = []
+    for f in files:
+        f_str = str(f)
+        # Python: src/main.py → tests/test_main.py
+        if f_str.endswith(".py"):
+            base = Path(f_str).stem
+            candidates = [
+                Path(f"tests/test_{base}.py"),
+                Path(f"test/test_{base}.py"),
+                Path(f"test_{base}.py"),
+            ]
+            for c in candidates:
+                if c.exists() and c not in test_files:
+                    test_files.append(c)
+        # JS/TS: src/main.ts → tests/main.test.ts
+        elif f_str.endswith((".ts", ".js", ".tsx", ".jsx")):
+            base = Path(f_str).stem
+            candidates = [
+                Path(f"tests/{base}.test.ts"),
+                Path(f"tests/{base}.test.js"),
+                Path(f"tests/{base}.spec.ts"),
+                Path(f"tests/{base}.spec.js"),
+                Path(f"__tests__/{base}.test.ts"),
+                Path(f"__tests__/{base}.test.js"),
+            ]
+            for c in candidates:
+                if c.exists() and c not in test_files:
+                    test_files.append(c)
+    return [str(t) for t in test_files]
+
+
+def cmd_gates(args: argparse.Namespace) -> None:
+    """运行三层门控检查（v11.4 新增）。
+
+    Gate 1: 编译门控（必须通过）
+    Gate 2: 测试门控（复杂度 >= medium 时运行）
+    Gate 3: 质量门控（lint + typecheck，仅在项目已配置时运行）
+    """
+    files = [f.strip() for f in args.files.split(",") if f.strip()] if args.files else []
+    complexity = args.complexity or "medium"
+    skip_gates = getattr(args, 'skip_gates', False)
+
+    if skip_gates:
+        output_result({
+            "action": "gates",
+            "overall": "skip",
+            "reason": "用户指定 --skip-gates",
+            "gates": {},
+        })
+        return
+
+    gates = {}
+    overall = "pass"
+
+    # ─── Gate 1: 编译门控 ───
+    compile_commands = []
+    for f in files:
+        if f.endswith(".py"):
+            compile_commands.append(("compile-py", f"python -m py_compile {f}"))
+        elif f.endswith((".js", ".jsx")):
+            compile_commands.append(("compile-js", f"node --check {f}"))
+        elif f.endswith((".ts", ".tsx")):
+            compile_commands.append(("compile-ts", f"npx tsc --noEmit {f}"))
+        elif f.endswith(".sh"):
+            compile_commands.append(("compile-sh", f"bash -n {f}"))
+
+    if compile_commands:
+        for gate_name, cmd in compile_commands:
+            result = run_gate(gate_name, cmd, [], timeout=30)
+            gates[gate_name] = result
+            if result["status"] != "pass":
+                overall = "fail"
+    else:
+        gates["compile"] = {"status": "skip", "reason": "无可编译文件"}
+
+    # ─── Gate 2: 测试门控（复杂度 >= medium）───
+    if complexity in ("medium", "large", "critical"):
+        test_fw = detect_test_framework(files)
+        if test_fw["detected"]:
+            # 查找相关测试文件
+            related_tests = find_related_tests(files)
+            if related_tests and test_fw["framework"] == "pytest":
+                # 只运行相关测试
+                test_cmd = f"pytest {' '.join(related_tests)} -x --tb=short"
+            else:
+                test_cmd = test_fw["command"]
+            gates["test"] = run_gate("test", test_cmd, files, timeout=120)
+            if gates["test"]["status"] != "pass":
+                overall = "fail"
+        else:
+            gates["test"] = {"status": "skip", "reason": "未检测到测试框架"}
+    else:
+        gates["test"] = {"status": "skip", "reason": f"复杂度 {complexity} < medium，跳过测试"}
+
+    # ─── Gate 3: 质量门控 ───
+    # Lint
+    lint = detect_lint_tool(files)
+    if lint["detected"]:
+        gates["lint"] = run_gate("lint", lint["check"], files, timeout=60)
+        if gates["lint"]["status"] != "pass":
+            # lint 失败不阻止整体通过（仅 warning），但记录
+            gates["lint"]["fix_command"] = lint.get("fix")
+    else:
+        gates["lint"] = {"status": "skip", "reason": "未配置 lint 工具"}
+
+    # Typecheck
+    tc = detect_typecheck_tool(files)
+    if tc["detected"]:
+        gates["typecheck"] = run_gate("typecheck", tc["command"], files, timeout=60)
+        if gates["typecheck"]["status"] != "pass":
+            overall = "fail"
+    else:
+        gates["typecheck"] = {"status": "skip", "reason": "未配置 typecheck 工具"}
+
+    # ─── 构建修复提示 ───
+    fix_prompt_parts = []
+    if overall == "fail":
+        for gate_name, gate_result in gates.items():
+            if gate_result["status"] == "fail":
+                errors = gate_result.get("stderr", "") or gate_result.get("stdout", "")
+                if errors:
+                    fix_prompt_parts.append(f"[{gate_name}] {errors[:500]}")
+
+    # ─── 输出 ───
+    result_data = {
+        "action": "gates",
+        "overall": overall,
+        "complexity": complexity,
+        "files": files,
+        "gates": gates,
+    }
+
+    if overall == "fail":
+        result_data["action_needed"] = "fix_and_recheck"
+        result_data["fix_prompt"] = "Fix the following gate failures:\n" + "\n---\n".join(fix_prompt_parts)
+        # 自动修复提示
+        lint_gate = gates.get("lint", {})
+        if lint_gate.get("status") == "fail" and lint_gate.get("fix_command"):
+            result_data["auto_fix_hint"] = f"Run: {lint_gate['fix_command']}"
+    elif overall == "pass":
+        result_data["action_needed"] = "proceed"
+        result_data["message"] = "所有门控通过"
+
+    output_result(result_data)
+
+
+def cmd_report(args: argparse.Namespace) -> None:
+    """生成迭代过程静态 HTML 报告（v11.4 新增）。"""
+    state_path = args.state or DEFAULT_STATE_FILE
+    state = load_state(state_path)
+
+    fmt = getattr(args, 'format', 'html')
+    output_path = args.output or f"iteration-report-{state.get('name', 'unknown')}.html"
+
+    name = state.get("name", "unknown")
+    status = state.get("status", "unknown")
+    mode = state.get("mode", "unknown")
+    max_iter = state.get("max_iterations", 0)
+    current = state.get("current_iteration", 0)
+    history = state.get("history", [])
+    created_at = state.get("created_at", "")
+    completed_at = state.get("completed_at", "")
+
+    # 统计
+    passes = sum(1 for h in history if h.get("result") == "pass")
+    fails = sum(1 for h in history if h.get("result") == "fail")
+    partials = sum(1 for h in history if h.get("result") == "partial")
+
+    if fmt == "json":
+        output_result({
+            "action": "report",
+            "format": "json",
+            "name": name,
+            "status": status,
+            "iterations": {
+                "total": current,
+                "max": max_iter,
+                "passes": passes,
+                "fails": fails,
+                "partials": partials,
+            },
+            "history": history,
+            "output_file": output_path,
+        })
+        return
+
+    # HTML 报告
+    rows = ""
+    for i, h in enumerate(history):
+        result = h.get("result", "unknown")
+        icon = "✅" if result == "pass" else "❌" if result == "fail" else "⚠️"
+        summary = h.get("summary", "")[:100]
+        ts = h.get("timestamp", "")[:19]
+        metrics = h.get("metrics", {})
+        metrics_str = ", ".join(f"{k}: {v}" for k, v in metrics.items()) if metrics else "-"
+        rows += f"""
+        <tr>
+            <td>{i + 1}</td>
+            <td>{icon} {result}</td>
+            <td>{ts}</td>
+            <td>{summary}</td>
+            <td>{metrics_str}</td>
+        </tr>"""
+
+    # 门控结果（如果有 gates 数据）
+    gates_section = ""
+    gates_data = state.get("gates", {})
+    if gates_data:
+        gates_rows = ""
+        for gate_name, gate_result in gates_data.items():
+            g_status = gate_result.get("status", "unknown")
+            g_icon = "✅" if g_status == "pass" else "❌" if g_status == "fail" else "⏭️"
+            g_cmd = gate_result.get("command", "-")
+            gates_rows += f"<tr><td>{gate_name}</td><td>{g_icon} {g_status}</td><td><code>{g_cmd}</code></td></tr>"
+        gates_section = f"""
+        <h2>🚧 Backpressure 门控</h2>
+        <table>
+            <tr><th>门控</th><th>状态</th><th>命令</th></tr>
+            {gates_rows}
+        </table>
+        """
+
+    progress_pct = int((current / max_iter) * 100) if max_iter > 0 else 0
+    status_color = "#22c55e" if status == "completed" else "#ef4444" if status == "failed" else "#3b82f6"
+
+    html = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代报告: {name}</title>
+    <style>
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }}
+        .container {{ max-width: 960px; margin: 0 auto; }}
+        h1 {{ font-size: 1.5rem; margin-bottom: 0.5rem; color: #f8fafc; }}
+        h2 {{ font-size: 1.2rem; margin: 1.5rem 0 0.75rem; color: #94a3b8; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }}
+        .meta {{ color: #64748b; font-size: 0.875rem; margin-bottom: 1.5rem; }}
+        .stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }}
+        .stat {{ background: #1e293b; border-radius: 8px; padding: 1rem; text-align: center; }}
+        .stat-value {{ font-size: 1.5rem; font-weight: 700; }}
+        .stat-label {{ font-size: 0.75rem; color: #64748b; margin-top: 0.25rem; }}
+        .progress {{ background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }}
+        .progress-bar {{ height: 8px; background: #334155; border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }}
+        .progress-fill {{ height: 100%; background: {status_color}; border-radius: 4px; transition: width 0.3s; }}
+        table {{ width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }}
+        th {{ text-align: left; padding: 0.5rem; background: #1e293b; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }}
+        td {{ padding: 0.5rem; border-bottom: 1px solid #1e293b; font-size: 0.875rem; }}
+        code {{ background: #1e293b; padding: 0.125rem 0.375rem; border-radius: 4px; font-size: 0.8rem; color: #7dd3fc; }}
+        .footer {{ text-align: center; color: #475569; font-size: 0.75rem; margin-top: 2rem; }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 迭代报告: {name}</h1>
+        <div class="meta">
+            模式: {mode} | 状态: <span style="color:{status_color}">{status}</span> | 
+            创建: {created_at[:19]} | 完成: {completed_at[:19] if completed_at else '-'}
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">{current}/{max_iter}</div>
+                <div class="stat-label">迭代次数</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" style="color:#22c55e">{passes}</div>
+                <div class="stat-label">通过</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" style="color:#ef4444">{fails}</div>
+                <div class="stat-label">失败</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" style="color:#f59e0b">{partials}</div>
+                <div class="stat-label">部分</div>
+            </div>
+        </div>
+
+        <div class="progress">
+            <div style="display:flex;justify-content:space-between;font-size:0.875rem;">
+                <span>进度</span><span>{progress_pct}%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:{progress_pct}%"></div>
+            </div>
+        </div>
+
+        {gates_section}
+
+        <h2>📝 迭代历史</h2>
+        <table>
+            <tr><th>#</th><th>结果</th><th>时间</th><th>摘要</th><th>指标</th></tr>
+            {rows}
+        </table>
+
+        <div class="footer">
+            Generated by loop-controller.py v11.4 | {datetime.now(timezone.utc).isoformat()[:19]}Z
+        </div>
+    </div>
+</body>
+</html>"""
+
+    # 写入文件
+    try:
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(html)
+        output_result({
+            "action": "report",
+            "format": fmt,
+            "output_file": output_path,
+            "name": name,
+            "iterations": current,
+            "passes": passes,
+            "fails": fails,
+            "message": f"报告已生成: {output_path}",
+        })
+    except OSError as e:
+        error_exit(f"写入报告失败: {e}")
+
+
 # ─── 参数解析 ────────────────────────────────────────────────────────────────
 
 def build_parser() -> argparse.ArgumentParser:
@@ -760,6 +1222,19 @@ def build_parser() -> argparse.ArgumentParser:
     p_rollback.add_argument("--initial", action="store_true", help="回滚到循环开始前 (iter/0)")
     p_rollback.add_argument("--state", help="状态文件路径 (默认: loop-state.json)")
 
+    # v11.4: gates 子命令（Backpressure 门控）
+    p_gates = subparsers.add_parser("gates", help="运行三层门控检查 (v11.4 新增)")
+    p_gates.add_argument("--files", help="要检查的文件列表（逗号分隔）")
+    p_gates.add_argument("--complexity", choices=["trivial", "small", "medium", "large", "critical"],
+                         default="medium", help="任务复杂度（影响门控严格程度）")
+    p_gates.add_argument("--skip-gates", action="store_true", help="跳过所有门控")
+
+    # v11.4: report 子命令（迭代报告）
+    p_report = subparsers.add_parser("report", help="生成迭代过程报告 (v11.4 新增)")
+    p_report.add_argument("--state", help="状态文件路径 (默认: loop-state.json)")
+    p_report.add_argument("--format", choices=["html", "json"], default="html", help="输出格式")
+    p_report.add_argument("--output", help="输出文件路径 (默认: iteration-report-<name>.html)")
+
     return parser
 
 
@@ -780,6 +1255,8 @@ def main() -> None:
         "complete": cmd_complete,
         "cleanup": cmd_cleanup,      # v10.1 新增
         "rollback": cmd_rollback,    # v10.2 新增
+        "gates": cmd_gates,          # v11.4 新增
+        "report": cmd_report,        # v11.4 新增
     }
 
     handler = commands.get(args.command)

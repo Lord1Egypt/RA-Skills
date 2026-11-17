@@ -1,38 +1,53 @@
-## Description: <br>
-Generates a Markdown system operations report with local system, CPU, memory, disk, network, process, and service status details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Markdown system operations reports that capture operating system, CPU, memory, disk, network, process, and service status information.
 
-## Publisher: <br>
-[viztazeng](https://clawhub.ai/user/viztazeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[viztazeng](https://clawhub.ai/user/viztazeng)
 
-## Use Case: <br>
-Developers, system administrators, and operations engineers use this skill to collect local diagnostic information for troubleshooting, environment inventory, and routine system health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain sensitive local machine details such as hostnames, usernames, IP addresses, disk layout, running processes, and active services. <br>
-Mitigation: Review and redact generated reports before sharing them outside the intended operational context. <br>
+## Use Case:
 
+Developers, operators, and system administrators use this skill to collect a local snapshot of host health and environment details for diagnostics, troubleshooting, and routine operations checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/viztazeng/my-system-info-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report file with collapsible detail sections and a timestamped filename] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports to the system-tool-results directory and prints the generated report path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Generated reports may include sensitive host details such as hostnames, usernames, IP addresses, mounted filesystems, running processes, and services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate reports in a trusted working directory and review or redact the Markdown output before sharing it.
+
+Risk: The skill writes local report files and may be run in directories where generated diagnostics are easy to expose accidentally.
+
+Mitigation: Confirm the output location is appropriate and avoid unnecessary privileged execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viztazeng/skills/my-system-info-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown report file with terminal text identifying the generated file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped .md report files to system-tool-results by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

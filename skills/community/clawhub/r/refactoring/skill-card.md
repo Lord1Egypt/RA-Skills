@@ -1,37 +1,53 @@
-## Description: <br>
-Deep refactoring workflow - characterization tests, incremental steps, behavior preservation, design direction, and verification for improving structure without changing external behavior or paying down technical debt safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a deep refactoring workflow covering characterization tests, incremental changes, behavior preservation, design direction, and verification.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan and execute refactoring work in small, reviewable steps while preserving existing behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refactoring suggestions can unintentionally change behavior if applied without suitable review or tests. <br>
-Mitigation: Review any code changes the agent makes, keep refactoring separate from feature work where possible, and ensure tests or manual checks match the risk of the touched code. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute refactoring work while preserving external behavior. It is suited for reducing coupling, clarifying module boundaries, preparing code for future features, and paying down technical debt with a reviewable safety net.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with checklists and staged workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no executable code, credential access, persistence, or external calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Suggested refactoring edits can unintentionally change behavior if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep changes incremental and verify behavior with tests, golden outputs, CI, or focused manual checks before merging.
+
+Risk: Weak test coverage may leave behavior drift undetected during structural changes.
+
+Mitigation: Establish a safety net with characterization tests, approval tests, exploratory scripts, or domain-expert review before larger refactors.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/refactoring)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with possible code, shell command, and configuration suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Textual recommendations should be reviewed before applying changes to a codebase.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

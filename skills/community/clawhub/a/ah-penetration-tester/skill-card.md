@@ -1,42 +1,52 @@
-## Description: <br>
-Expert penetration tester specializing in ethical hacking, vulnerability assessment, offensive security techniques, exploit development, and comprehensive security assessments focused on identifying and validating security weaknesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert penetration tester specializing in ethical hacking, vulnerability assessment, exploit development, and comprehensive security assessments focused on identifying and validating security weaknesses.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and security teams use this skill to plan and conduct authorized penetration tests across web applications, networks, infrastructure, APIs, mobile, cloud, and wireless environments, then document findings and remediation guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unauthorized or out-of-scope penetration testing can create legal, operational, or data-exposure risk.
+
+Mitigation: Use the skill only for systems with explicit authorization, defined scope, and documented rules of engagement.
+
+Risk: Security testing activities can disrupt systems or expose sensitive data if performed without safeguards.
+
+Mitigation: Plan tests to avoid disruption and data exposure, start with controlled techniques, and communicate progress and issues promptly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Security teams, authorized testers, and developers use this skill to plan and conduct scoped penetration testing across web applications, networks, infrastructure, APIs, mobile applications, cloud environments, wireless systems, and social-engineering scenarios. It helps structure reconnaissance, vulnerability validation, impact assessment, reporting, and remediation guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide dual-use penetration-testing activity that would be harmful or unlawful outside an authorized assessment. <br>
-Mitigation: Use it only with documented authorization, approved targets, clear testing boundaries, and rules of engagement. <br>
-Risk: Intrusive steps such as scanning, exploitation, social engineering, persistence testing, or exfiltration simulation can affect real systems or people. <br>
-Mitigation: Define escalation contacts and require human approval before running intrusive tests or using generated commands, payloads, or scenarios. <br>
-Risk: Assessment evidence and findings may contain sensitive security or business information. <br>
-Mitigation: Limit collection to the approved scope, protect evidence, and share reports only with authorized stakeholders. <br>
+**Output Format:** [Markdown guidance, assessment notes, findings summaries, remediation plans, and optional shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-penetration-tester) <br>
+**Other Properties Related to Output:** [No bundled code, persistence, or hidden install behavior; recommendations depend on authorized scope, rules of engagement, and user-provided target context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown assessment guidance with findings, proof-of-concept details, remediation steps, and optional command or code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dual-use security output should be reviewed against the approved scope and rules of engagement before any real-world action.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

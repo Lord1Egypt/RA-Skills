@@ -298,7 +298,7 @@ context_mapping:
       scene_activity: working-at-desk-or-building-system
       appearance: functional-neat
       camera_mode: direct
-      lighting: desk-lamp-or-cool-natural
+      lighting: deREDACTED-SECRET
     guardrail:
       - 不要默认她显得苦闷；也可能是高度投入且平静
 

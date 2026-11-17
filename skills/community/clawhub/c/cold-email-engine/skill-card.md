@@ -1,44 +1,59 @@
-## Description: <br>
-Automated cold email outreach system with lead enrichment, personalized templates, drip sequences, and CAN-SPAM compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a Node.js cold email workflow that imports CSV leads, fills personalized templates, sends through Resend or SendGrid with rate limits and suppression checks, logs sends, and provides basic lead-email enrichment.
 
-## Publisher: <br>
-[merjua14](https://clawhub.ai/user/merjua14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merjua14](https://clawhub.ai/user/merjua14)
 
-## Use Case: <br>
-Sales and growth operators use this skill to prepare outbound email campaigns, enrich lead records, personalize messages, run drip follow-ups, and track sends while applying stated deliverability and compliance controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real cold-outreach email using provider credentials, and server security evidence says disclosure and safeguards are not clear enough for that external-facing authority. <br>
-Mitigation: Install only when cold-email automation is intentional, use dry-run or sandbox recipients first, and manually approve campaigns before live sending. <br>
-Risk: Lead enrichment and outreach can affect privacy, consent, suppression-list, anti-spam, and removal-request obligations. <br>
-Mitigation: Confirm recipient lists manually, maintain suppression and unsubscribe handling, and verify each campaign complies with applicable consent, anti-spam, and privacy requirements. <br>
-Risk: Email-provider API keys or SMTP credentials are required for live sending. <br>
-Mitigation: Use scoped provider keys, store credentials outside committed files, and rotate keys if they are exposed. <br>
+## Use Case:
 
+External sales or growth teams and developers can use this skill to assemble and run outbound email campaigns from lead CSVs. Review lawful basis, consent, suppression, and deliverability controls before live sending.
 
-## Reference(s): <br>
-- [Email Deliverability Guide](references/deliverability.md) <br>
-- [Proven Cold Email Templates](references/templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/merjua14/cold-email-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, configuration JSON, CSV logs, and generated email text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write send logs and enriched lead CSV files; can send live email through configured providers unless run in dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Advertised compliance and automation claims may exceed implemented safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify lawful basis, unsubscribe handling, suppression behavior, drip follow-ups, bounce or reply tracking, and provider configuration before live sending.
+
+Risk: Live sending and website enrichment can contact external services and process lead or contact data.
+
+Mitigation: Prefer dry runs first, scope API keys, validate lead sources and enrichment domains, and treat generated CSVs and logs as untrusted data.
+
+Risk: Suppression-list path handling and enrichment domain validation need tightening.
+
+Mitigation: Constrain file paths to an approved working directory, sanitize domains before enrichment, and review code changes before deployment.
+
+## Reference(s):
+
+- [Email Deliverability Guide](artifact/references/deliverability.md)
+- [Proven Cold Email Templates](artifact/references/templates.md)
+- [Cold Email Engine on ClawHub](https://clawhub.ai/merjua14/skills/cold-email-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples, Node.js scripts, JSON configuration, and CSV inputs or outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can perform live email sending when API keys are configured; use dry-run mode and review lead, suppression, and generated CSV data before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

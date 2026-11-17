@@ -1,39 +1,53 @@
-## Description: <br>
-Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and agents use this skill to test REST services, run health checks, and interact with HTTP APIs programmatically without relying on curl. It supports custom headers, JSON request bodies, timeout handling, and structured response data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send arbitrary outbound HTTP or HTTPS requests with headers and payloads supplied by the agent. <br>
-Mitigation: Use it only with trusted endpoints and avoid sending real tokens or sensitive data unless the endpoint and authorization context are approved. <br>
-Risk: Direct execution includes hardcoded network smoke checks against google.com and example.com. <br>
-Mitigation: Review or disable the direct-execution smoke test path in environments where unapproved outbound network calls are restricted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/api-tester) <br>
+## Use Case:
 
+Developers and agents use this skill to make structured HTTP and HTTPS requests for API testing, health checks, and REST service interactions without relying on curl.
 
-## Skill Output: <br>
-**Output Type(s):** [API responses, JSON, Text] <br>
-**Output Format:** [JSON-compatible object with status, headers, parsed data, raw body, and error message fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parses JSON responses when the response Content-Type is application/json; otherwise returns raw response text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Requests may include tokens or sensitive payloads.
+
+Mitigation: Use trusted endpoints, prefer test tokens over production credentials, and avoid sending unnecessary sensitive data.
+
+Risk: HTTP URLs can transmit headers and payloads without transport encryption.
+
+Mitigation: Prefer HTTPS endpoints when sending credentials, headers, or private payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/api-tester)
+- [Publisher profile](https://clawhub.ai/user/wanng-ide)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [Structured JavaScript object with status, headers, parsed data, raw response body, and error message when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js built-in http and https modules, supports JSON request bodies and responses, and defaults to a 10000 ms timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

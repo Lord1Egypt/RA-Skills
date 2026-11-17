@@ -1,41 +1,54 @@
-## Description: <br>
-Provides QQ Mail summaries and reminders for visible mailbox metadata, label unread counts, and public share-page content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes visible QQ Mail mailbox lists, unread counts, labels, and public share pages without automating login, sending, receiving, or permission bypass.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and personal mailbox operators use this skill to summarize visible QQ Mail list metadata, unread label counts, and public share links without automating login, sending, receiving, or permission bypass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox metadata can include private information such as subjects, senders, folders, timestamps, and unread status. <br>
-Mitigation: Only ask the agent to inspect folders, labels, and share links you are comfortable exposing; do not provide QQ credentials directly to the agent. <br>
-Risk: Using the skill beyond its documented scope could create unsafe account interactions such as login automation, sending, receiving, or bypass attempts. <br>
-Mitigation: Use normal QQ Mail login flows and keep the agent limited to visible summary, unread-count, and public share-page tasks. <br>
+## Use Case:
 
+External users and agents use this skill to summarize non-sensitive QQ Mail metadata from visible mailbox pages or public share links, including subjects, senders, timestamps, unread status, labels, titles, and public attachment names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/qq-mail) <br>
-- [QQ Mail homepage](https://mail.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes visible metadata and public share-page information only; no executable code or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can expose visible QQ Mail metadata such as subjects, senders, timestamps, labels, and unread status to the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with mailboxes and public share links whose metadata may be shared with the agent, and avoid storing or outputting sensitive private details.
+
+Risk: Mailbox pages may require login and human verification.
+
+Mitigation: Keep interaction human-controlled; the skill should not automate login, send mail, receive mail, or bypass account security controls.
+
+## Reference(s):
+
+- [QQ Mail](https://mail.qq.com/)
+- [ClawHub Skill Page](https://clawhub.ai/codenova58/skills/qq-mail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries and reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not produce executable code, persistent storage, credential automation, or email send/receive actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

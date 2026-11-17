@@ -1,40 +1,59 @@
-## Description: <br>
-Use this skill when the user asks to search the web, look up recent information, check current events, gather online sources, or research a topic using Tavily search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Tavily Search API to run web search and lightweight research for recent information, current events, online sources, or topic research.
 
-## Publisher: <br>
-[liuxindavid](https://clawhub.ai/user/liuxindavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxindavid](https://clawhub.ai/user/liuxindavid)
 
-## Use Case: <br>
-Developers and agent users use this skill to run lightweight Tavily web searches for current information, news, source gathering, and research without installing Python packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and API credentials are sent to Tavily as part of normal operation. <br>
-Mitigation: Use a dedicated Tavily API key, keep the .secrets key file private, and avoid submitting secrets, confidential business data, or sensitive personal information in queries. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent Tavily-backed web and news search without installing the Tavily Python SDK.
 
-## Reference(s): <br>
-- [Cliby Tavily Search on ClawHub](https://clawhub.ai/liuxindavid/cliby-tavily-search) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include answer summaries, ranked result snippets, URLs, scores, images, and raw JSON when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: A crafted search query could become shell command execution if the command template is followed literally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the script through an argument-array or subprocess path where the query is passed as one argument, and do not interpolate the query into a shell command.
+
+Risk: Tavily API keys can be exposed through command-line arguments or weak secret-file handling.
+
+Mitigation: Prefer TAVILY_API_KEY or a protected .secrets/tavily.key file, and keep the secret file readable only by the user or service that runs the skill.
+
+Risk: Search queries are sent to Tavily.
+
+Mitigation: Avoid submitting sensitive, confidential, or regulated information in search queries unless that disclosure is approved for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuxindavid/skills/cliby-tavily-search)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Human-readable search results or raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include answer summaries, ranked result links, snippets, image URLs, response time, and Tavily credit usage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

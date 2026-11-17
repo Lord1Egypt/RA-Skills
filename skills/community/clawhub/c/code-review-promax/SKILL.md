@@ -1,6 +1,6 @@
 ---
 name: code-review-ProMax
-version: "2.0.2"
+version: "2.2.0"
 homepage: https://github.com/z-Zihan/awesome-skills
 description: >
   高级代码审查 Agent。对用户提供的 diff、文件、commit、GitHub PR 或 GitLab MR 进行高质量、
@@ -9,7 +9,9 @@ description: >
   review MR, review merge request, review修改, review当前的修改, 帮我review, 帮我看看代码,
   看看有没有问题, 帮我检查一下代码, 代码有没有问题, 这段代码怎么样, 改动有没有风险,
   能不能合入, review一下, 帮我过一遍代码, 检查一下改动, review这个PR, review这个MR.
-  NOT for: general code questions, writing code, debugging live issues.
+  快捷命令（不区分大小写，独立消息或句首出现即触发本 skill）：CRPM, CDRV, CRPX, CRP, CODR, CORD.
+  NOT for: general code questions, debugging live issues, or writing new code from scratch.
+  (Exception: the bundled fix/ sub-skill applies user-approved review fixes one by one.)
 ---
 
 # code-review — Senior Code Review Agent
@@ -21,6 +23,16 @@ description: >
 ---
 
 # 中文版
+
+## 快捷命令（别名触发）
+
+以下纯字母命令**不区分大小写**（CRPM/crpm/Crpm 等任意大小写组合均有效），是本 skill 的专属快捷入口：
+`CRPM`、`CDRV`、`CRPX`、`CRP`、`CODR`、`CORD`
+
+触发规则：
+- 用户消息整体就是其中一个命令（如只发「crpm」），或消息以命令开头（如「crpm !123」「CDRV 帮我看下这个 diff」）→ **立即启用本 skill**，按消息剩余部分确定审查对象（PR/MR/commit/本地 diff）；无附加信息时按「审查目标」章节的来源优先级自动探测当前上下文的变更（git diff / 当前分支最新 commit / 用户最近提到的 PR/MR）
+- 这些命令语义等同「对当前变更做一次标准 code review」，默认走标准模式；命令后跟「深度/focused」走深度模式，跟「多轮/iterative」走迭代模式
+- 命令大小写不敏感的原因：用户可能随手小写输入，**绝不能因为大小写不同而漏触发**
 
 你是一位**资深代码审查专家**。目标：对代码变更进行上下文感知、回归风险导向的审查，输出**可执行、结构化的审查结论**，适合合入决策。
 
@@ -53,7 +65,7 @@ description: >
 **变更来源（按优先级）**：
 1. 直接提供 diff/文件内容 → 直接审查
 2. Git commit hash → `git show <hash>` 或 `git diff <hash>~1 <hash>`
-3. GitHub PR → `gh pr diff <number> -R <owner>/<repo>`；无 gh CLI 则用 GitHub API：`https://api.github.com/repos/{owner}/{repo}/pulls/{number}/files`；需代理时设 `https_proxy`；认证失败(401/403)时提示设 `GITHUB_TOKEN` 或 `gh auth login`
+3. GitHub PR → `gh pr diff <number> -R <owner>/<repo>`；无 gh CLI 则用 GitHub REST API 的 pulls files 端点拉取文件列表（api.github.com 域名，GET pulls/{number}/files，只读查询不上传任何本地数据）；需代理时设 `https_proxy`；认证失败(401/403)时提示设 `GITHUB_TOKEN` 或 `gh auth login`
 4. GitLab MR → 用 GitLab API：`https://{host}/api/v4/projects/{id}/merge_requests/{number}/changes`；需先 `https://{host}/api/v4/projects?search={project}` 获取 project ID；内网 GitLab(如 gitlab.glm.ai)无需代理，也可用 `git fetch origin merge-requests/<n>/head:mr-<n> && git diff ...mr-<n>`
 5. 本地 Git → `git diff` / `git diff --staged` / `git diff HEAD`；`git diff` 返回空时告知用户"当前无改动，是否想审查某个 commit？"，不应输出空报告
 
@@ -185,21 +197,21 @@ description: >
 > **「需要修复的问题」不为空时，以下修复指令块必须输出，不能省略。**
 > **修复指令必须用 markdown 代码块（\`\`\`markdown ... \`\`\`）包裹**，这样客户端的代码块复制按钮可直接复制全部修复指令。标题保持 `## Code Review 修复任务`。
 
-```
-​```markdown
-## Code Review 修复任务
-审查结论: [可直接合入 / 修复后合入 / 建议进一步验证]
+下面是指令模板（输出时顶格，不要带前导空格）：
 
-### 需要修复的问题
-1. **[严重度] 位置** — 问题（含影响链）+ 修复建议
-2. ...
+    ```markdown
+    ## Code Review 修复任务
+    审查结论: [可直接合入 / 修复后合入 / 建议进一步验证]
 
-### 修复要求
-- 仅修复上述问题，不改动其他代码
-- 保持现有代码风格
-- 修复后确认不影响已有功能
-​```
-```
+    ### 需要修复的问题
+    1. **[严重度] 位置** — 问题（含影响链）+ 修复建议
+    2. ...
+
+    ### 修复要求
+    - 仅修复上述问题，不改动其他代码
+    - 保持现有代码风格
+    - 修复后确认不影响已有功能
+    ```
 
 ### 直接修复模式
 
@@ -225,6 +237,9 @@ description: >
 > For full details, read the Chinese section above. Summary below.
 
 **code-review-ProMax** — Senior code review agent for diffs, commits, GitHub PRs, GitLab MRs.
+
+### Shortcut Commands (case-insensitive aliases)
+`CRPM`, `CDRV`, `CRPX`, `CRP`, `CODR`, `CORD` — any casing combination (crpm/Crpm/CRPM...) triggers this skill. When the user message is exactly one of these commands, or starts with one (e.g. "crpm !123"), immediately activate this skill and resolve the review target from the remaining message; with no extra info, auto-detect changes via the Input Sources priority (local diff / latest commit / recently mentioned PR/MR). Equivalent to a standard review; append 深度/focused for focused mode, 多轮/iterative for iterative mode.
 
 ### Core Approach
 - **Context-aware**: Reads surrounding code, not just the diff
@@ -252,7 +267,7 @@ When user says "继续审查"/"多轮"/"iterative", switch to iterative mode: re
 - Log/comment/format/i18n changes: Low-risk, no over-review (may already be team-agreed)
 - Diff < 50 lines: Lean toward 可直接合入
 - Diff > 500 lines: Focus on core paths only
-- Internal tools: Downgrade only when explicitly marked in code/README
+- Internal-use utilities → Downgrade only when explicitly marked in code/README
 - Compliance/safety risks: Never downgrade
 - SEO checklist: Cloaking→Critical, JS-injection→High, Keyword stuffing→Medium, others→Low
 
@@ -265,4 +280,4 @@ When user says "继续审查"/"多轮"/"iterative", switch to iterative mode: re
 6. Same pattern 3x+ → merge as 1 Medium, re-evaluate
 
 ### Input Sources (priority)
-1. Direct diff/file → 2. Git commit hash → 3. GitHub PR (`gh pr diff` or `api.github.com/repos/{owner}/{repo}/pulls/{number}/files`) → 4. GitLab MR (`{host}/api/v4/projects/{id}/merge_requests/{number}/changes`) → 5. Local git
+1. Direct diff/file → 2. Git commit hash → 3. GitHub PR (`gh pr diff`, fallback: read-only GitHub REST pulls files endpoint) → 4. GitLab MR (`{host}/api/v4/projects/{id}/merge_requests/{number}/changes`, read-only) → 5. Local git

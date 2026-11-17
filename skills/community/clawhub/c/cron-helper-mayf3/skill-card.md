@@ -1,44 +1,63 @@
-## Description: <br>
-Configure, diagnose, and fix OpenClaw cron jobs for scheduled tasks, periodic jobs, timing issues, and time-based automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure, diagnose, and fix OpenClaw cron jobs for scheduled tasks, periodic jobs, timing issues, heartbeat-versus-cron decisions, and time-based automation.
 
-## Publisher: <br>
-[mayf3](https://clawhub.ai/user/mayf3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayf3](https://clawhub.ai/user/mayf3)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create, validate, troubleshoot, and repair cron job configurations for recurring agent tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cron repair scripts can modify OpenClaw scheduled job configuration and change recurring task behavior. <br>
-Mitigation: Confirm the intended job scope before applying fixes, prefer the safe or validation-backed repair scripts, keep the generated backup, and validate the result before restarting the gateway. <br>
-Risk: Timezone defaults may not match the user's intended schedule. <br>
-Mitigation: Confirm the desired timezone before creating or fixing jobs and replace Asia/Shanghai when another timezone is intended. <br>
-Risk: Stateless cron prompts can repeat work, lose context, or produce non-actionable output. <br>
-Mitigation: Require each cron prompt to define state persistence through a cursor, checkpoint, append-only log, idempotent comparison, or similar file-backed mechanism. <br>
+## Use Case:
 
+Developers and operators use this skill to create, inspect, validate, troubleshoot, and repair OpenClaw cron job configuration. It is most useful when scheduled jobs need self-contained prompts, durable state, appropriate timeouts, valid delivery settings, and timezone-aware schedules.
 
-## Reference(s): <br>
-- [Cron Job Syntax Guide](references/syntax-guide.md) <br>
-- [Cron Job Troubleshooting Guide](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mayf3/cron-helper-mayf3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend bundled validation and repair scripts for OpenClaw cron job changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Repair tools can modify persistent OpenClaw cron job configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run validators in read-only mode first, keep backups, review diffs, and confirm the target jobs before replacing jobs.json.
+
+Risk: Bulk repair scripts may be unsafe for important configurations until temporary-file and validation issues are resolved.
+
+Mitigation: Avoid bulk repair scripts on important cron configurations until the temporary-file handling and validation concerns identified by security evidence are fixed.
+
+Risk: Incorrect timezone or delivery targets can cause jobs to run at the wrong time or notify the wrong destination.
+
+Mitigation: Confirm schedule timezones, delivery channels, and delivery targets before enabling or updating jobs.
+
+Risk: Stateless cron prompts can repeat work or lose progress when no durable state is written.
+
+Mitigation: Require each cron prompt to specify checkpoint, cursor, log, or state files that the next run can read.
+
+## Reference(s):
+
+- [Cron Job Syntax Guide](artifact/references/syntax-guide.md)
+- [Cron Job Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/mayf3/skills/cron-helper-mayf3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation steps, jq filters, cron expressions, OpenClaw commands, and jobs.json configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

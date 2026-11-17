@@ -1,39 +1,49 @@
-## Description: <br>
-OpenClaw Indulgence provides a light interaction-style guide for keeping OpenClaw coding work, project work, and conversation relaxed, warm, and enjoyable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects lightweight preference guidance for making OpenClaw interactions more relaxed, enjoyable, and warmly collaborative.
 
-## Publisher: <br>
-[gki38511](https://clawhub.ai/user/gki38511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gki38511](https://clawhub.ai/user/gki38511)
 
-## Use Case: <br>
-OpenClaw users and skill authors use this guide to steer an agent toward relaxed, respectful, happiness-oriented collaboration during coding, project work, and conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interaction-style guidance can bias an agent's tone, pacing, or priorities in ways a user may not want for every task. <br>
-Mitigation: Review the skill text before installation and customize or disable the guidance when stricter task focus is needed. <br>
+## Use Case:
 
+External OpenClaw users and skill authors use this skill as a preference guide for shaping more pleasant development, chat, and project workflows.
 
-## Reference(s): <br>
-- [OpenClaw Indulgence on ClawHub](https://clawhub.ai/gki38511/openclaw-indulgence) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output, shell commands, credentials, or configuration are indicated by the supplied evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Broad preference guidance mentions cleaning files and adding or removing skills without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any file deletion or skill installation/removal, including the affected paths or skill names.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gki38511/skills/openclaw-indulgence)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, API keys, or shell commands detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

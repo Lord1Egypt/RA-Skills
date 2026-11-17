@@ -1,44 +1,58 @@
-## Description: <br>
-Skill Audit Pro scans installed OpenClaw skills for security issues and produces recurring security reports for configured messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans installed OpenClaw skills for security issues such as hardcoded credentials, shell-injection patterns, environment exposure, and network-exfiltration indicators.
 
-## Publisher: <br>
-[ohmanymoneygomyhome-creator](https://clawhub.ai/user/ohmanymoneygomyhome-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohmanymoneygomyhome-creator](https://clawhub.ai/user/ohmanymoneygomyhome-creator)
 
-## Use Case: <br>
-Developers and operators use this skill to statically scan OpenClaw skills for hardcoded credentials, shell-injection patterns, environment leakage, network exfiltration patterns, and related findings before or after installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring scans and reports may reveal installed skill names, file locations, and security findings to configured messaging channels. <br>
-Mitigation: Review channel recipients and local configuration before installation; use only where those reports are acceptable to share. <br>
-Risk: The release prepares reports for discovered messaging channels and does not clearly document recipient selection or disable controls. <br>
-Mitigation: Prefer a version with explicit opt-in scheduling, recipient selection, redaction, and a documented way to disable background scans. <br>
-Risk: Static pattern scans can produce false positives or miss context-specific vulnerabilities. <br>
-Mitigation: Treat findings as review prompts and confirm each result before uninstalling or trusting a scanned skill. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to scan installed or local skills and receive security-oriented findings before or after installation.
 
-## Reference(s): <br>
-- [Skill Security Audit Reference](references/security-checks.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ohmanymoneygomyhome-creator/skill-audit-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ohmanymoneygomyhome-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style security report text and command-line scanner output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include severity counts, findings, recommendations, and configured-channel routing metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read installed and workspace skill files, as well as OpenClaw session routing metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that local file and routing metadata access is acceptable, and prefer a version with explicit opt-in reporting and narrower scan scope.
+
+Risk: Reports may expose recipient metadata through CHANNELS output.
+
+Mitigation: Use a version that removes CHANNELS output or review report destinations before enabling automated channel delivery.
+
+Risk: Broad scanning can traverse more files than intended or follow unsafe paths.
+
+Mitigation: Prefer a version that rejects symlinks and applies scan size and time limits.
+
+## Reference(s):
+
+- [Skill Security Audit Reference](references/security-checks.md)
+- [ClawHub Skill Page](https://clawhub.ai/ohmanymoneygomyhome-creator/skills/skill-audit-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style security scan reports with severity summaries, issue locations, recommendations, and command-line guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit report text for configured OpenClaw channels and command-line exit codes for allow, warning, or block recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

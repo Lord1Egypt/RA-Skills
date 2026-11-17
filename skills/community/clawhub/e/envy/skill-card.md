@@ -1,46 +1,61 @@
-## Description: <br>
-Envy Trading System helps agents analyze crypto perpetual futures data, score and backtest trading signals, assemble strategies, monitor live signals, and route positions to paper or Hyperliquid executors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Envy is a non-custodial crypto perpetual futures trading agent that provides indicator data, signal scoring, backtesting, strategy assembly, portfolio optimization, live monitoring, position management, and paper or Hyperliquid trade routing.
 
-## Publisher: <br>
-[manolovni](https://clawhub.ai/user/manolovni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manolovni](https://clawhub.ai/user/manolovni)
 
-## Use Case: <br>
-External users and developers use this skill to explore crypto market indicators, generate and score trading signals, assemble strategies, monitor live conditions, and manage paper or live perpetual futures positions with configurable risk rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route from paper trading to live crypto perpetual futures trading, which can create real financial loss. <br>
-Mitigation: Use paper mode unless live trading is explicitly intended, inspect controller.yaml before starting the controller, and confirm any switch to Hyperliquid live execution. <br>
-Risk: wallet.json and config.json may contain reusable wallet or API secrets in plaintext. <br>
-Mitigation: Keep the skill workspace private, do not expose wallet or config files in chat or logs, and run wallet export commands only in the user's own terminal. <br>
-Risk: Security evidence marks the release suspicious because it stores wallet secrets in plaintext and can use them for live trading with limited runtime safeguards. <br>
-Mitigation: Review carefully before installing, fund the generated wallet only with amounts the user can afford to lose, and validate risk rules before running the controller. <br>
+## Use Case:
 
+External users and developers use this skill to analyze crypto market indicators, build and backtest signal strategies, manage paper trading, and optionally route live perpetual futures trades through Hyperliquid.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/manolovni/envy) <br>
-- [OpenClaw Installation Documentation](https://docs.openclaw.ai/install) <br>
-- [Envy API Discovery Endpoint](https://arena.nvprotocol.com/api/claw/discover) <br>
-- [Envy API Pricing Endpoint](https://arena.nvprotocol.com/api/claw/pricing) <br>
-- [Hyperliquid Application](https://app.hyperliquid.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON event examples, and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local signal, strategy, archive, wallet, and controller configuration files when the documented commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Wallet secrets may be stored unencrypted in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat wallet.json and config.json as sensitive secret files, restrict access to the skill workspace, and avoid exposing wallet export output in chat or logs.
+
+Risk: The skill can automatically sign payments or place live trades with weak safeguards.
+
+Mitigation: Use paper mode unless live-trading risk is deliberately accepted, review controller risk settings before use, and require explicit user confirmation before switching to Hyperliquid.
+
+Risk: The Hyperliquid integration may pass a raw private key to another local skill process.
+
+Mitigation: Review the installed Hyperliquid skill before live trading, isolate the wallet used for this workflow, and avoid funding it with more than the user can lose.
+
+## Reference(s):
+
+- [ClawHub Envy skill page](https://clawhub.ai/manolovni/skills/envy)
+- [OpenClaw install documentation](https://docs.openclaw.ai/install)
+- [Envy API discovery endpoint](https://arena.nvprotocol.com/api/claw/discover)
+- [Envy API pricing endpoint](https://arena.nvprotocol.com/api/claw/pricing)
+- [Hyperliquid application](https://app.hyperliquid.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON event lines, YAML configuration, and generated signal or strategy files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local wallet, signal, strategy, controller, state, and trade-log files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

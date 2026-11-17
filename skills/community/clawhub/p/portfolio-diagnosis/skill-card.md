@@ -1,45 +1,62 @@
-## Description: <br>
-持仓诊断 uses Tushare-backed market data to analyze A-share portfolio holdings and produce a diagnostic report with quantitative risk metrics, charts, risk prompts, and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+持仓诊断 is a Prana-hosted portfolio diagnosis skill for A-share investors that analyzes submitted holdings and returns a report with quantitative risk metrics, charts, warnings, and optimization suggestions.
 
-## Publisher: <br>
-[luokeer52](https://clawhub.ai/user/luokeer52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luokeer52](https://clawhub.ai/user/luokeer52)
 
-## Use Case: <br>
-External A-share investors use this skill to submit portfolio holdings in text or JSON and receive a portfolio diagnosis covering position overview, volatility, beta, Sharpe ratio, maximum drawdown, risk prompts, and optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio holdings and prompts are sent to the configured Prana/Claw endpoint. <br>
-Mitigation: Use the skill only with a trusted endpoint and avoid submitting portfolio data that should not be shared with that service. <br>
-Risk: API credentials may be stored in config/api_key.txt. <br>
-Mitigation: Treat config/api_key.txt as a secret, do not commit it, and prefer PRANA_SKILL_SKIP_WRITE_API_KEY=1 or environment-provided credentials when appropriate. <br>
-Risk: The package is a remote-wrapper, so results depend on the remote service and market data available there. <br>
-Mitigation: Review diagnostic output before making investment decisions and confirm material findings against trusted financial data sources. <br>
+## Use Case:
 
+External users and developers can use this skill to submit A-share portfolio holdings for remote diagnosis of position balance, volatility, beta, Sharpe ratio, maximum drawdown, risk warnings, and optimization suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luokeer52/portfolio-diagnosis) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [skill.yaml](skill.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with portfolio metrics, tables, chart-ready summaries, and client setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The packaged clients forward holdings and prompts to a configured Prana/Claw endpoint and may require an x-api-key credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; packaged skill.yaml lists 5.0.0) <br>
+Risk: Portfolio details entered into the skill are sent to an off-host Prana service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data appropriate for remote processing and confirm the configured Prana endpoint and data-handling expectations before use.
+
+Risk: API credentials can be stored locally in config/api_key.txt.
+
+Mitigation: Prefer environment variables or PRANA_SKILL_SKIP_WRITE_API_KEY=1, and do not commit local credential files to public repositories.
+
+Risk: Supplying an untrusted base URL could forward prompts and credentials to the wrong service.
+
+Mitigation: Use only trusted HTTPS Prana endpoints and avoid overriding --base-url unless the endpoint is verified.
+
+Risk: Portfolio diagnosis and optimization suggestions may be inaccurate or misleading if used as financial advice.
+
+Mitigation: Treat outputs as informational analysis and review decisions with appropriate financial judgment before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luokeer52/skills/portfolio-diagnosis)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or text portfolio diagnosis report returned by the remote Prana workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quantitative risk metrics, charts, warnings, and optimization suggestions derived from submitted holdings.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

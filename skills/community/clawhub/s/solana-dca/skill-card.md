@@ -1,42 +1,57 @@
-## Description: <br>
-Creates and manages simulated dollar-cost averaging strategies for Solana tokens, including setup, listing, pausing, and resuming strategy records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages simulated Solana token dollar-cost averaging strategies with guided setup and commands to list, pause, and resume strategies.
 
-## Publisher: <br>
-[liji3597](https://clawhub.ai/user/liji3597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liji3597](https://clawhub.ai/user/liji3597)
 
-## Use Case: <br>
-External users and agent operators use this skill to guide creation and management of simulated Solana token DCA strategies. It helps collect token, amount, frequency, and strategy ID inputs before running the matching command-line workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the workflow for live on-chain trading. <br>
-Mitigation: State before first use that the DCA feature is simulated and records strategies without executing on-chain swaps. <br>
-Risk: Incorrect token, amount, frequency, or strategy ID can create, pause, or resume the wrong simulated strategy record. <br>
-Mitigation: Confirm token, amount, frequency, and strategy ID with the user before running create, pause, or resume commands. <br>
-Risk: Actions can be attributed to the wrong account if the runtime supplies an incorrect user ID. <br>
-Mitigation: Ensure the runtime supplies the authenticated user ID automatically before approving create, pause, or resume actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liji3597/solana-dca) <br>
-- [Publisher profile](https://clawhub.ai/user/liji3597) <br>
+## Use Case:
 
+External users and agents use this skill to guide creation and management of simulated Solana DCA strategies, collecting token, USDC amount, and schedule details before running Node command-line helpers. It also supports listing, pausing, and resuming existing strategies.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text, configuration] <br>
-**Output Format:** [Markdown-style guidance with inline shell commands and command-line text or JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and SOLANA_NETWORK; scripts manage simulated strategy records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release security summary says the skill delegates strategy actions to unaudited shared code outside the package, so simulation-only behavior cannot be verified from the artifact alone.
+
+Mitigation: Install only after reviewing the shared runtime, including strategy storage, scheduler behavior, and any Solana transaction path.
+
+Risk: Strategy actions depend on Telegram user IDs and external shared services.
+
+Mitigation: Verify how Telegram user IDs are authorized and isolated before allowing users to create, pause, resume, or list strategies.
+
+Risk: Users may mistake DCA setup flows for investment advice or live trading capability.
+
+Mitigation: Preserve the simulation disclosure, require confirmation before creating a strategy, and avoid recommending investment frequency or amount.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liji3597/skills/solana-dca)
+- [Publisher profile](https://clawhub.ai/user/liji3597)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and SOLANA_NETWORK; command helpers accept user, token, amount, schedule, and strategy identifiers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

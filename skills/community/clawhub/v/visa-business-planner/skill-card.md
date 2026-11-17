@@ -1,43 +1,58 @@
-## Description: <br>
-Helps create Japanese Business Manager Visa business plans with templates, revenue projection scripts, market analysis, legal information, and example plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft Japanese Business Manager Visa business plans with templates, example plan language, resource links, and a simple financial projection script.
 
-## Publisher: <br>
-[calbabyjr](https://clawhub.ai/user/calbabyjr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[calbabyjr](https://clawhub.ai/user/calbabyjr)
 
-## Use Case: <br>
-External users and agents use this skill to draft Japan Business Manager Visa business plans, adapt a structured plan template, generate simple financial projections, and gather reference links for visa, market, and business planning research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Visa, legal, and market claims may be incomplete or outdated. <br>
-Mitigation: Verify application requirements, legal guidance, and market data against official or professional sources before relying on them in a visa application. <br>
-Risk: The financial projection script produces simplified calculations based on user-provided inputs. <br>
-Mitigation: Run the calculator only from the skill directory with numbers the user chooses, and review projections before including them in application materials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calbabyjr/visa-business-planner) <br>
-- [Immigration Services Agency of Japan](https://www.immi-moj.go.jp/english/index.html) <br>
-- [Business Manager Visa Guidelines](https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00041.html) <br>
-- [Japan External Trade Organization](https://www.jetro.go.jp/en/) <br>
-- [Ministry of Economy, Trade and Industry](https://www.meti.go.jp/english/) <br>
+## Use Case:
 
+External users and agents use this skill to draft Japan Business Manager Visa business plans, organize market and legal sections, and generate simple revenue, expense, and profit projections. Outputs should be treated as drafting support and checked against current immigration requirements and professional advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes business-plan templates, resource links, examples, and a local financial projection script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Visa, legal, and market information may be outdated or incomplete.
+
+Mitigation: Verify current requirements against official Japanese immigration sources and qualified legal advice before relying on outputs.
+
+Risk: Financial projections are simplified and depend entirely on user-provided assumptions.
+
+Mitigation: Treat projection output as drafting support and review assumptions, taxes, staffing, and cash flow with a qualified professional.
+
+## Reference(s):
+
+- [Visa Business Planner ClawHub Page](https://clawhub.ai/calbabyjr/skills/visa-business-planner)
+- [Immigration Services Agency of Japan](https://www.immi-moj.go.jp/english/index.html)
+- [Business Manager Visa Guidelines](https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00041.html)
+- [Japan External Trade Organization](https://www.jetro.go.jp/en/)
+- [Ministry of Economy, Trade and Industry](https://www.meti.go.jp/english/)
+- [Resources for Japanese Business Manager Visa Business Plans](artifact/resources.md)
+- [Business Plan Template for Japanese Business Manager Visa](artifact/business_plan_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown drafting guidance with optional Python command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included projection script prints a simple revenue, expense, and profit table from user-supplied assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

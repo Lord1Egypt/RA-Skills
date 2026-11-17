@@ -1,37 +1,53 @@
-## Description: <br>
-Helps users plan AI-assisted data analysis, batch processing, and multi-format data visualization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-assisted data analysis, automated visualization processing, multi-format output, and batch handling for data visualization workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Business users, freelancers, developers, and operations teams use this skill as a lightweight prompt aid for AI-assisted data visualization, automated analysis, and batch output planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, efficiency, cost-savings, and ROI claims are presented as claims in the artifact and are not independently verified by the server evidence. <br>
-Mitigation: Treat those claims as marketing information and validate expected value against your own data and workflow before relying on them. <br>
+## Use Case:
 
+Enterprise users, freelancers, developers, and operations teams can use this skill to describe and support AI-assisted data visualization tasks, including automated analysis, multi-format outputs, and batch processing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not request code execution, credentials, files, or privileged access according to server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: server release evidence) <br>
+Risk: The artifact is a short Chinese-language product and pricing description rather than detailed operating instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill for intended workflow, input expectations, and output quality requirements before using it in an agent.
+
+Risk: The security evidence found no code execution, sensitive data handling, persistence, or privilege use, but the artifact does not define detailed data-handling controls.
+
+Mitigation: Apply local data governance and review generated visualizations before sharing or using them for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-data-visualization)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Skill content describes a service offering and expected capabilities rather than providing executable code.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release evidence, created 2026-03-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-Track and recommend TV shows and movies using Trakt.tv for users who ask for recommendations, watch history, watchlists, search, trending content, or personalized suggestions based on viewing history; full functionality requires a Trakt.tv account with a Pro subscription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and recommend TV shows and movies using Trakt.tv, including watch history, watchlists, search, trending content, and personalized suggestions based on viewing history.
 
-## Publisher: <br>
-[fr3nch13](https://clawhub.ai/user/fr3nch13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fr3nch13](https://clawhub.ai/user/fr3nch13)
 
-## Use Case: <br>
-External users use this skill to connect an assistant to their Trakt.tv account for viewing recommendations, watch history summaries, watchlist checks, search, and trending content discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to handle and persist sensitive Trakt credentials and OAuth tokens. <br>
-Mitigation: Enter secrets locally rather than in chat and protect ~/.openclaw/trakt_config.json with owner-only permissions. <br>
-Risk: The skill can give the assistant ongoing access to Trakt account data and viewing history. <br>
-Mitigation: Use the narrowest Trakt application permissions possible and review account access periodically. <br>
-Risk: Commands may change Trakt account state, including watchlist or history-related actions. <br>
-Mitigation: Require explicit user confirmation before running commands that modify watch history, watchlists, or account data. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an agent to a Trakt.tv account so it can answer viewing-history questions, suggest shows or movies, search titles, inspect watchlists, and surface trending content.
 
-## Reference(s): <br>
-- [Trakt API Reference](references/api.md) <br>
-- [Trakt API Documentation](https://trakt.docs.apiary.io/) <br>
-- [Trakt Application Settings](https://trakt.tv/oauth/applications) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fr3nch13/openclaw-trakt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide OAuth PIN setup and local credential storage for Trakt.tv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Setup stores sensitive Trakt client credentials and OAuth tokens in ~/.openclaw/trakt_config.json with weak storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Trakt application, restrict permissions to what the skill needs, and store the configuration file with owner-only permissions.
+
+Risk: Installation guidance includes pip usage with --break-system-packages.
+
+Mitigation: Install dependencies in a virtual environment and avoid modifying system Python packages.
+
+Risk: The PIN authentication command can be unsafe if an agent builds a shell command from untrusted input.
+
+Mitigation: Enter the PIN only into the intended authentication script invocation after reviewing the exact command.
+
+Risk: Authenticated commands can access personal viewing data and may update Trakt watch history.
+
+Mitigation: Confirm write actions before execution and avoid granting broad Trakt permissions unless they are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fr3nch13/skills/openclaw-trakt)
+- [Trakt API documentation](https://trakt.docs.apiary.io/)
+- [Trakt OAuth applications](https://trakt.tv/oauth/applications)
+- [Trakt API reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API/client output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Trakt configuration and token data during setup; runtime commands call Trakt API endpoints for account-specific media data.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

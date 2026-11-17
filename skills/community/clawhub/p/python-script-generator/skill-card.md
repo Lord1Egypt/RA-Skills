@@ -1,38 +1,58 @@
-## Description: <br>
-Generates Python scripts and application templates for CLI tools, Flask APIs, FastAPI services, Django commands, scrapers, and bots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Python script and application templates for CLI tools, Flask APIs, FastAPI services, Django commands, scrapers, and bots.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate starter Python project code and usage guidance for common script and application patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release as suspicious and notes behavior that can bypass sandbox and approval controls in related maintainer workflows. <br>
-Mitigation: Install only if the publisher is trusted and review any generated command, publishing action, deployment action, or moderation workflow before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold Python scripts and application templates for automation, API services, data collection, bots, and project starter structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/python-script-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code blocks; generated Python project files when the shell helper is executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Python files and starter project content for the selected template type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and artifact metadata) <br>
+Risk: The generator may overwrite existing Python files such as main.py or a selected NAME.py in the working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable project directory and check for existing target files before execution.
+
+Risk: The release evidence describes the generator as overstated and broken, with advertised Flask, Django, scraper, and bot support that should not be relied on as-is.
+
+Mitigation: Review and fix the generator before use, and manually verify generated projects before adopting them.
+
+Risk: Dependency guidance may lead users to install unpinned third-party packages.
+
+Mitigation: Use a virtual environment and pin dependency versions before running generated applications.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunshine-del-ux/skills/python-script-generator)
+- [Publisher Profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [code, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and generated Python files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files may include Python entrypoints, requirements, setup files, tests, and README content depending on template support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

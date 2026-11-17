@@ -1,47 +1,56 @@
-## Description: <br>
-Guides agents using wjx-mcp-server MCP tools to create, manage, analyze, and administer Wenjuanxing surveys, forms, polls, exams, contacts, SSO links, and response data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for using wjx-mcp-server tools to create or update AI homepages, posters, PPTs, and surveys, query responses, and analyze data.
 
-## Publisher: <br>
-[orzwq](https://clawhub.ai/user/orzwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orzwq](https://clawhub.ai/user/orzwq)
 
-## Use Case: <br>
-Developers and operators use this skill to guide an agent through Wenjuanxing survey administration workflows, including creating surveys, querying and exporting responses, analyzing metrics, managing contacts, and generating SSO or survey links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent operating a real Wenjuanxing account with sensitive credentials. <br>
-Mitigation: Install only for intended account administration, use least-privileged credentials, and avoid sharing API keys or passwords in chat. <br>
-Risk: The documented workflows include deletion, exports, admin changes, response clearing, and SSO link generation. <br>
-Mitigation: Require explicit user confirmation with the exact target before irreversible or account-affecting actions. <br>
-Risk: Survey responses and participant data may contain sensitive information. <br>
-Mitigation: Avoid exposing participant data or SSO URLs in chat and limit exports to authorized users and necessary fields. <br>
+## Use Case:
 
+Developers and survey operators use this skill to create or update AI homepages, posters, presentations, and surveys, query responses, and analyze survey data through the WJX MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orzwq/wjx-mcp-use) <br>
-- [DSL and question types](references/dsl-and-types.md) <br>
-- [Survey tools](references/tools-survey.md) <br>
-- [Response tools](references/tools-response.md) <br>
-- [Other tools](references/tools-other.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline commands and structured tool-use recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include natural-language instructions, survey JSON guidance, configuration steps, and safety confirmations for account-affecting actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.3 (source: server release evidence) <br>
+Risk: The release is rated suspicious because scanners report administrator and response-deletion capabilities beyond the stated survey work; the evidence does not establish malicious intent and scanning was incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when these capabilities are needed and the publisher is trusted; review the requested capabilities, noting that only 6 of 7 components were scanned and one static analysis was degraded.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orzwq/skills/wjx-mcp-use)
+- [WJX MCP HTTP endpoint](https://alifc.wjx.cn/mcp/latest)
+- [Host routing guide](artifact/references/host-routing.md)
+- [Survey tools reference](artifact/references/tools-survey.md)
+- [Response tools reference](artifact/references/tools-response.md)
+- [Survey logic and question types](artifact/references/dsl-and-types.md)
+- [Other tools reference](artifact/references/tools-other.md)
+- [Troubleshooting guide](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, JSON, HTML, Analysis]
+
+**Output Format:** [Natural-language guidance with JSONL survey examples, HTML page content, and analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on the requested survey, page, or analysis task.]
+
+## Skill Version(s):
+
+0.4.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

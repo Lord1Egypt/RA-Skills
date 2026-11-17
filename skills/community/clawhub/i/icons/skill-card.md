@@ -1,35 +1,52 @@
-## Description: <br>
-Helps an agent work with icons for user-facing projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement accessible icons with proper sizing, color inheritance, and performance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agents use this skill when they need concise guidance or assets related to selecting, creating, or applying icons in software projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata) <br>
+Developers and designers use this skill to implement SVG icons that are accessible, consistently sized, theme-aware, and efficient in user interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Icon implementation guidance may not match a team's design system or accessibility requirements.
+
+Mitigation: Review the guidance against the target design system and accessibility standards before applying it.
+
+Risk: Copied icon examples can introduce accessibility defects if labels, hidden text, or SVG IDs are not adapted to the actual interface.
+
+Mitigation: Validate icon-only controls, decorative icons, accessible names, and inline SVG IDs during UI review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/icons)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and SVG examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no tools, credentials, or automatic actions are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

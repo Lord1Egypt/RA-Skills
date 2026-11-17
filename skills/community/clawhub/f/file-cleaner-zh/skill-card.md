@@ -1,38 +1,50 @@
-## Description: <br>
-File Cleaner ZH is a Chinese-language file organizer that sorts files into type-based folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Cleaner ZH organizes files into type-based folders from Chinese-language prompts.
 
-## Publisher: <br>
-[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub)
 
-## Use Case: <br>
-External users and developers can ask the agent in Chinese to inspect a target folder, show file-type statistics, or move files into category folders such as images, documents, code, videos, audio, archives, and others. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can immediately move many files in Desktop, Downloads, Documents, or an explicit Windows path after broad Chinese trigger phrases, without preview, confirmation, or undo behavior. <br>
-Mitigation: Use it first on a test or backed-up folder, and avoid invoking it on important directories until preview, confirmation, and undo behavior are available. <br>
+## Use Case:
 
+External users and agents use this skill to scan a target folder, summarize file types, and organize files into category folders such as images, documents, code, videos, audio, archives, and others.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dnaxxx-hub/file-cleaner-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Chinese plain-text status messages with file-system changes when organization is executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create category folders and move files into them; no preview, confirmation, or undo behavior is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, frontmatter, package.json) <br>
+Risk: The skill can immediately move many user files without a preview, confirmation, or rollback plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on test folders first, keep backups, and prefer review or confirmation before pointing it at Desktop, Downloads, Documents, or other important folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dnaxxx-hub/skills/file-cleaner-zh)
+- [ClawHub publisher profile](https://clawhub.ai/user/dnaxxx-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Files]
+
+**Output Format:** [Plain text status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create category folders and move files in the selected directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

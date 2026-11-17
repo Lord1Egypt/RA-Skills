@@ -1,54 +1,69 @@
-## Description: <br>
-Safe Linux firewall hardening with backend detection, idempotent atomic rules, rollback protection, and AI-executable state-machine workflows. Covers ufw, firewalld, nftables, iptables, Docker, Kubernetes CNI awareness, and fail2ban with compliance mapping to CIS/PCI-DSS/SOC2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Linux firewall hardening with backend detection, idempotent atomic rules, rollback protection, and AI-executable state-machine workflows.
 
-## Publisher: <br>
-[discovery219](https://clawhub.ai/user/discovery219) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[discovery219](https://clawhub.ai/user/discovery219)
 
-## Use Case: <br>
-Developers, security engineers, and operations teams use this skill to audit, plan, apply, and verify Linux host firewall hardening across common backends. It is intended for controlled server administration workflows that require dry-run planning, rollback preparation, and post-change verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification can have side effects, including canceling scheduled rollback or unrelated jobs. <br>
-Mitigation: Treat firewall-verify.sh as a mutating finalize step; run it only with console access, a tested second SSH session, backups, and a known rollback timer. <br>
-Risk: Firewall changes can lock out SSH or disrupt host networking if applied to the wrong environment or port. <br>
-Mitigation: Run the audit and dry-run plan first, confirm the real SSH port, require the approval token before apply, and keep rollback and recovery access available. <br>
-Risk: Manual host firewall changes can conflict with Kubernetes, container, cloud firewall, or infrastructure-as-code ownership. <br>
-Mitigation: Use audit-only behavior or the documented alternative control plane when the environment is Kubernetes-managed, containerized, cloud-firewall-only, or IaC-managed. <br>
+## Use Case:
 
+Developers, system administrators, and security engineers use this skill to audit Linux firewall posture, plan safe rule changes, and produce confirmed firewall hardening steps for supported Linux firewall backends.
 
-## Reference(s): <br>
-- [Backend: UFW](references/backend-ufw.md) <br>
-- [Backend: firewalld](references/backend-firewalld.md) <br>
-- [Backend: nftables](references/backend-nftables.md) <br>
-- [Backend: iptables](references/backend-iptables.md) <br>
-- [Security Profiles](references/security-profiles.md) <br>
-- [Declarative Firewall Policy](references/declarative-policy.md) <br>
-- [Declarative Policy JSON Schema](references/policy-schema.json) <br>
-- [Docker Firewall Hardening](references/docker-hardening.md) <br>
-- [Kubernetes Node Firewall Policy](references/k8s-policy.md) <br>
-- [Special Environments](references/special-environments.md) <br>
-- [Recovery Procedures](references/recovery.md) <br>
-- [Observability and Performance](references/observability.md) <br>
-- [Compliance Mapping](references/compliance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Bash commands and JSON/YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes machine-readable audit and plan JSON, policy YAML schema, approval tokens, exit code handling, and rollback/verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Rollback and verification scripts can make broad privileged firewall changes that are not safely scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a Review install, inspect scripts before running them, use a maintenance window, and avoid apply/verify automation on production hosts until rollback cancellation and plan-state handling are tightened.
+
+Risk: Firewall changes can lock out remote SSH access.
+
+Mitigation: Use only systems with console access, keep a second tested SSH session open, require explicit plan-token confirmation before apply, and complete verification before cancelling rollback protection.
+
+Risk: Emergency fallback commands can expose the host by accepting all input traffic and flushing firewall rules.
+
+Mitigation: Do not let an agent execute the emergency rollback fallback automatically; reserve it for a human operator using serial console access and re-harden immediately afterward.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/discovery219/skills/linux-firewall-hardening)
+- [UFW Backend Guide](references/backend-ufw.md)
+- [firewalld Backend Guide](references/backend-firewalld.md)
+- [nftables Backend Guide](references/backend-nftables.md)
+- [iptables Backend Guide](references/backend-iptables.md)
+- [Declarative Firewall Policy](references/declarative-policy.md)
+- [Docker Firewall Hardening](references/docker-hardening.md)
+- [Kubernetes Node Firewall Policy](references/k8s-policy.md)
+- [firewall-apply.sh](references/firewall-apply.md)
+- [Recovery Procedures](references/recovery.md)
+- [Security Profiles](references/security-profiles.md)
+- [Special Environments](references/special-environments.md)
+- [Compliance Mapping](references/compliance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON/YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human confirmation before firewall changes and separate verification before committing changes.]
+
+## Skill Version(s):
+
+2.7.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

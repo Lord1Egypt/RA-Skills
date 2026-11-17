@@ -1,45 +1,62 @@
-## Description: <br>
-Gmail triage assistant using Haiku LLM for classification, label application, and draft replies (uses gog CLI; never auto-sends). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail triage assistant using Haiku LLM for classification, label application, and draft replies (uses gog CLI; never auto-sends).
 
-## Publisher: <br>
-[OfficialDelta](https://clawhub.ai/user/OfficialDelta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[officialdelta](https://clawhub.ai/user/officialdelta)
 
-## Use Case: <br>
-Email users with a configured Gmail account use this skill to triage recent inbox messages, apply organizational labels, and prepare concise draft replies without sending email automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses the configured Gmail account through gog. <br>
-Mitigation: Install only for an account you intend the skill to access and set GOG_ACCOUNT explicitly. <br>
-Risk: The scripts include hardcoded Gmail and keyring defaults. <br>
-Mitigation: Set your own GOG_ACCOUNT and GOG_KEYRING_PASSWORD values before use and avoid relying on the default keyring password. <br>
-Risk: Inbox summaries, draft queues, label files, and voice-reference content may retain private email-derived data locally. <br>
-Mitigation: Delete or restrict the generated cache and voice-reference files when local retention is not desired. <br>
-Risk: Generated label classifications could apply labels to the wrong Gmail threads. <br>
-Mitigation: Review the generated label JSON before running the label-application script. <br>
+## Use Case:
 
+Gmail users can use this skill to summarize recent inbox messages, classify them into practical labels, and prepare short reply drafts for human review. It is intended for mailbox triage workflows where drafts and labels are useful but automatic sending is not acceptable.
 
-## Reference(s): <br>
-- [Gmail Secretary on ClawHub](https://clawhub.ai/OfficialDelta/gmail-secretary) <br>
-- [Voice reference](references/voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digests and draft queues, JSON classification files, and shell command workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Never auto-sends email; label application requires generated label data and an explicit script run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.27 (source: server release metadata) <br>
+Risk: Default account and keyring password handling can expose or misdirect mailbox access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace hardcoded defaults with explicit local configuration and require the user to supply their own Gmail account and secure credential handling before use.
+
+Risk: Mailbox-derived summaries, drafts, labels, and voice-reference content may contain sensitive personal information.
+
+Mitigation: Delete the packaged personal voice reference, store generated cache files with restrictive permissions, and define cleanup steps for inbox summaries, triage labels, triage digests, and draft queues.
+
+Risk: Email summaries are processed by an LLM classification step.
+
+Mitigation: Obtain clear consent for LLM processing of mailbox content and limit summaries to the minimum content needed for triage.
+
+Risk: Incorrect labels could be applied to Gmail threads.
+
+Mitigation: Review the generated classification JSON before running label application and keep the no-auto-send rule in place for all replies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/officialdelta/skills/gmail-secretary)
+- [Voice reference](references/voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown triage digests and draft queues, JSON label classifications, and shell-command workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local cache files for inbox summaries, triage labels, triage digests, and draft queues; labels may be applied to Gmail threads after review.]
+
+## Skill Version(s):
+
+1.0.27 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

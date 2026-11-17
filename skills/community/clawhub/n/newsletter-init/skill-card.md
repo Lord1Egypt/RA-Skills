@@ -1,41 +1,52 @@
-## Description: <br>
-个性化信息简报生成技能。支持按需生成一次性简报或定期推送，涵盖信息搜索、筛选、整理与输出全流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+newsletter-init helps agents generate personalized one-off or recurring newsletters by searching, filtering, organizing, and formatting source information.
 
-## Publisher: <br>
-[winsaney](https://clawhub.ai/user/winsaney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winsaney](https://clawhub.ai/user/winsaney)
 
-## Use Case: <br>
-Users use this skill to configure topics, source preferences, cadence, and templates for one-off or recurring personalized newsletters. Agents use it to search, filter, summarize, organize, and deliver newsletter content with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated newsletters may include inaccurate, outdated, or weakly sourced information. <br>
-Mitigation: Review generated issues before relying on them, prefer high-quality sources, and keep source links with each item for verification. <br>
-Risk: Recurring newsletters or push delivery can access unintended sources or integrations if configured too broadly. <br>
-Mitigation: Confirm allowed sources before enabling recurring use and only provide credentials to specific trusted integrations intentionally configured by the user. <br>
+## Use Case:
 
+External users and agents use this skill to configure topics, sources, cadence, and templates for personalized newsletters. It supports immediate one-off briefs and recurring newsletter workflows that collect, filter, summarize, and organize source material.
 
-## Reference(s): <br>
-- [Basic newsletter template](assets/template-basic.md) <br>
-- [Advanced newsletter template](assets/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text newsletter content, source lists, reusable templates, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports one-off newsletters and recurring newsletter setup with customizable topics, sources, depth, item count, format, and section structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring newsletter mode may involve stored schedules, source lists, interests, or delivery details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm storage and delivery handling before enabling recurring scans or push delivery, and require explicit review of recurring configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/winsaney/skills/newsletter-init)
+- [Publisher profile](https://clawhub.ai/user/winsaney)
+- [Basic newsletter template](artifact/assets/template-basic.md)
+- [Advanced newsletter template](artifact/assets/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text newsletter content with source links and configurable sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reusable source lists, section plans, newsletter templates, summaries, and recurring workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

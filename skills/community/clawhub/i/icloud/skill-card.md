@@ -1,43 +1,61 @@
-## Description: <br>
-Let agents operate your iCloud Drive, Photos, and Find My safely with local 2FA authentication and explicit confirmation gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let agents operate your iCloud Drive, Photos, and Find My safely with local 2FA authentication and explicit confirmation gates.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to let an agent perform user-directed iCloud Drive, Photos, and Find My workflows against their own iCloud account. It is intended for read-first account operations with local authentication and explicit confirmation before risky actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apple credentials or 2FA codes could be exposed if entered into chat. <br>
-Mitigation: Use only local terminal or secure local prompts for authentication, and never paste passwords, codes, tokens, or recovery keys into the conversation. <br>
-Risk: Risky iCloud actions could affect the wrong device or path. <br>
-Mitigation: Require explicit confirmation of the exact device ID or iCloud Drive path, take a read-only snapshot first, and verify the resulting state with a second read. <br>
-Risk: The pyicloud dependency operates against the user's iCloud account. <br>
-Mitigation: Review the dependency before installation and use the skill only when comfortable allowing local agent-directed iCloud operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub iCloud release](https://clawhub.ai/ivangdavila/icloud) <br>
-- [iCloud skill homepage](https://clawic.com/skills/icloud) <br>
-- [PyPI package index](https://pypi.org) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect and operate their own iCloud Drive, Photos, and Find My account through local authentication, read-first workflows, and confirmation gates for risky actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local prompts for authentication and confirmation-gated operational steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill grants sensitive Apple account and iCloud data access through the pyicloud dependency.
+
+Mitigation: Install only if comfortable with that dependency and iCloud access; prefer session-only mode unless local notes are needed.
+
+Risk: Find My actions, uploads, renames, deletes, and bulk downloads can affect devices or cloud data.
+
+Mitigation: Require explicit confirmation before those actions and verify state with a read-back check after execution.
+
+Risk: Family-device discovery can expose additional device information.
+
+Mitigation: Do not use family-device discovery unless it is required for the task and explicitly approved.
+
+## Reference(s):
+
+- [ClawHub iCloud skill page](https://clawhub.ai/ivangdavila/skills/icloud)
+- [iCloud skill homepage](https://clawic.com/skills/icloud)
+- [Setup guidance](setup.md)
+- [Authentication and session handling](auth-session.md)
+- [Safety boundaries](safety-boundaries.md)
+- [PyPI package index](https://pypi.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local operational notes under ~/icloud/ when the user approves persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

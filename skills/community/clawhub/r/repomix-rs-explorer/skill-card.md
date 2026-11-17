@@ -1,42 +1,54 @@
-## Description: <br>
-Pack a local or remote codebase with repomix-rs and analyze the generated output for high-level exploration, structure summaries, or pattern discovery when targeted edits are not needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pack a local or remote codebase with repomix-rs and analyze the generated output. Invoke for high-level exploration, structure summaries, or pattern discovery when targeted edits are not needed.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-Developers and engineers use this skill to package local or remote repositories with repomix-rs, then inspect the generated output for structure, metrics, and cross-file patterns before choosing targeted files to read or edit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Packing private repositories or enabling git diffs/logs can expose sensitive source code or history in generated output. <br>
-Mitigation: Confirm the repository and flags are appropriate before packing, keep generated output in a temporary path when possible, and review the output before sharing it with an agent. <br>
-Risk: The skill relies on the external repomix-rs CLI and its installed command behavior. <br>
-Mitigation: Confirm the installed package is repomix-rs, use explicit npx commands when needed, and review command output before relying on the generated pack. <br>
+## Use Case:
 
+Developers and engineers use this skill to pack unfamiliar local or remote repositories with repomix-rs, inspect structure and metrics, search broad patterns, and summarize findings before deciding whether targeted file reads or edits are needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sopaco/repomix-rs-explorer) <br>
-- [repomix-rs repository](https://github.com/sopaco/repomix-rs) <br>
-- [repomix-rs npm package](https://www.npmjs.com/package/repomix-rs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to create and inspect repomix output files in XML, Markdown, JSON, or text formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: Unpinned npm or npx execution, including auto-confirmed MCP startup, can introduce supply-chain and local-access risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the repomix-rs package version before installing or running it, avoid npx -y until package provenance is trusted, and do not run the commands with elevated privileges.
+
+Risk: Repository packing can collect secrets or unrelated private data from the selected directory.
+
+Mitigation: Pack only intended directories, use include and ignore filters for narrow scope, and avoid packing repositories that contain secrets or unrelated private data.
+
+## Reference(s):
+
+- [repomix-rs repository](https://github.com/sopaco/repomix-rs)
+- [repomix-rs npm package](https://www.npmjs.com/package/repomix-rs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples and concise analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create temporary repomix output files and summarize repository metrics, structure, and discovered patterns.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

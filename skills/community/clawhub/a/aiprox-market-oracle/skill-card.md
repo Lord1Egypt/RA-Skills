@@ -1,42 +1,57 @@
-## Description: <br>
-Get trading signals for single or batch Polymarket markets. Supports timeframe framing ranked by edge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get an AI signal for one Polymarket market (by its slug) or the current trending markets, through AIProx (aiprox.dev): one POST /api/orchestrate with capability market-data, 50 sats, paid in Bitcoin Lightning (L402 or a LightningProx spend token). Informational only, not financial advice. Use it when the user asks about a specific Polymarket market or trending markets and agrees to pay.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-External prediction-market researchers and Polymarket users use this skill to request single-market or batch market analysis, compare ranked edge estimates, and frame recommendations over short, medium, or long timeframes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-query details and an AIPROX spend token are sent to aiprox.dev. <br>
-Mitigation: Install only if that network use is acceptable, keep the spend token private, and monitor paid usage. <br>
-Risk: Generated trading signals may be wrong or misleading. <br>
-Mitigation: Treat signals as research support rather than financial advice and verify decisions independently. <br>
+## Use Case:
 
+People who ask an agent about a specific Polymarket market or currently trending markets can use this skill to request an AI-generated signal and analysis after approving the per-call charge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unixlamadev-spec/aiprox-market-oracle) <br>
-- [AIProx homepage](https://aiprox.dev) <br>
-- [AIProx orchestration endpoint](https://aiprox.dev/api/orchestrate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-market output includes signal, edge, confidence, reasoning, and timeframe; batch output ranks up to five markets by opportunity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A call costs 50 sats and sends the market query and payment credential to AIProx; its retention practices were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get the user's approval before the call, send only market queries, and use a limited-balance spend token or a per-call Lightning invoice. Do not send secrets or personal data.
+
+Risk: An AI-generated market signal could be mistaken for investment or financial advice.
+
+Mitigation: Present the result as informational only, state that it is not financial advice, and do not place trades or bets on the user's behalf.
+
+## Reference(s):
+
+- [AIProx homepage](https://aiprox.dev)
+- [AIProx API endpoint](https://aiprox.dev/api/orchestrate)
+- [AIProx documentation](https://aiprox.dev/docs.html)
+- [LightningProx top-up](https://lightningprox.com/topup)
+- [AIProx trial](https://aiprox.dev/start)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON]
+
+**Output Format:** [JSON response with a market signal and supporting analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One market or trending-markets request per call; the output is informational and not financial advice.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

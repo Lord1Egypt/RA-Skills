@@ -1,41 +1,58 @@
-## Description: <br>
-Rename or auto-generate a friendly label for an OpenClaw-style session by editing sessions.json directly, with support for listing sessions, random labels, multi-agent detection, retry verification, and XDG-compliant history storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rename or auto-generate a friendly label for an OpenClaw-style session by editing sessions.json directly, with random zh/en labels, locale detection, multi-agent detection, listing, retry verification, and XDG-compliant history storage.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to list local sessions and rename session labels without using a UI. It is useful when maintaining readable names for OpenClaw-style agent session metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool edits local OpenClaw session metadata and can update the wrong sessions.json if the agents root is misconfigured. <br>
-Mitigation: Use --root or RENAME_SESSION_ROOT deliberately, run --list first to confirm the target sessions, and specify --agent when multiple agents are present. <br>
-Risk: Local writes may fail or be overwritten when permissions, disk state, or concurrent session writers interfere. <br>
-Mitigation: Confirm write access before renaming important sessions, avoid concurrent edits to sessions.json, and rely on the tool's retry verification output to confirm the label was changed. <br>
+## Use Case:
 
+Developers and agent users use this skill to list, rename, or auto-label OpenClaw-compatible local sessions without using a client UI. It is intended for local session metadata management where direct edits to sessions.json are acceptable.
 
-## Reference(s): <br>
-- [Testing Plan](references/TESTING.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/songhonglei/rename-session) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI emits plain text status and errors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local script can update sessions.json and store recent random labels in an XDG-compliant history file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md) <br>
+Risk: The skill edits local OpenClaw-compatible session metadata directly, so an incorrect root, agent, session key, or label can change the wrong session record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --root and --agent deliberately, list sessions first when uncertain, and back up sessions.json when labels are important.
+
+Risk: Optional installation through an unpinned npx command can fetch changing third-party code.
+
+Mitigation: Prefer a reviewed or pinned install path for environments where reproducibility or supply-chain review matters.
+
+Risk: Concurrent writers, filesystem permission issues, read-only disks, or full disks can prevent reliable label updates.
+
+Mitigation: Run the command when other tools are not actively changing sessions.json and review the command's verification and error output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/songhonglei/skills/rename-session)
+- [Testing Plan](references/TESTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Command-line text output and markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local sessions.json labels and a local XDG history.json file when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

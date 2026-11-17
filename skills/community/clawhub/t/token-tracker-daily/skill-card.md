@@ -1,44 +1,58 @@
-## Description: <br>
-Token Tracker Daily records API token usage, generates daily and weekly usage reports, analyzes trends, and supports optional scheduled reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks locally logged API token counts and generates daily or weekly Markdown reports with usage totals, trend indicators, and simple estimates.
 
-## Publisher: <br>
-[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo)
 
-## Use Case: <br>
-Developers and teams use this skill to log input and output token counts locally, generate daily and weekly Markdown reports, and monitor token usage trends for budgeting and optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local token usage logs may expose usage metadata if the workspace or generated data file is shared. <br>
-Mitigation: Protect or delete the local usage log when token-usage metadata is sensitive. <br>
-Risk: The scripts write token usage data to a local path that may differ after installation. <br>
-Mitigation: Confirm where the Python files are installed and where token_log.json will be written before relying on the reports. <br>
-Risk: Optional cron jobs can create recurring report execution. <br>
-Mitigation: Add scheduled jobs only when recurring reports are intended and document how to remove them. <br>
+## Use Case:
 
+Developers and teams use this skill to log token counts locally and generate daily or weekly usage summaries for budget awareness and trend review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/token-tracker-daily) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, trend summaries, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local token usage data; optional cron examples can schedule recurring reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README) <br>
+Risk: Local token-count history is persisted and may be written outside the documented skill folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and, if needed, fix the data path before running scripts; store logs only in an approved local location.
+
+Risk: Recurring reports can be enabled through cron and may run commands automatically after installation.
+
+Mitigation: Inspect any cron job before enabling scheduled reports, including the command path, schedule, and execution environment.
+
+Risk: The skill describes automatic token recording, but the provided logger requires token counts to be supplied.
+
+Mitigation: Wire reliable token-count collection into the logger or treat generated reports as manually maintained estimates rather than authoritative usage accounting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/skills/token-tracker-daily)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local token-count history; reports depend on token counts supplied to the logger.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 ---
 name: dlazy-chat
-version: 1.2.0
-description: Chat with the dlazy sandbox agent — a project-scoped assistant that runs skills end-to-end over multiple turns. Discover skills and projects with dlazy skills list / dlazy projects list.
-metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.0.9","installAlternative":"npx @dlazy/cli@1.0.9","homepage":"https://github.com/dlazyai/cli","source":"https://github.com/dlazyai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"When this skill is called, use `dlazy chat`; discover ids via `dlazy skills list` and `dlazy projects list`."}}
+version: 1.2.8
+description: "Chat with the dlazy sandbox agent — a project-scoped assistant that runs skills end-to-end over multiple turns. Discover skills and projects with dlazy skills list / dlazy projects list. 与 dlazy 沙箱 agent 对话 —— 一个以项目为单位、可端到端运行技能的多轮助手。用 dlazy skills list / dlazy projects list 发现可用技能与项目。"
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.2.3","installAlternative":"npx @dlazy/cli@1.2.3","homepage":"https://github.com/dlazy-ai/cli","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"When this skill is called, use `dlazy chat`; discover ids via `dlazy skills list` and `dlazy projects list`."}}
 ---
 
-# dlazy-chat
+# 沙箱智能体对话 Chat
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
 
@@ -20,11 +20,11 @@ Chat with the dlazy sandbox agent — a project-scoped assistant that runs skill
 
 ## Authentication
 
-All requests require a dLazy API key. The recommended way to authenticate is:
-
-
+All requests require a dLazy API key. The recommended way to authenticate is `dlazy login`:
 
 ```bash
+dlazy login
+```
 
 This runs a device-code flow (also works in remote shells) and **automatically saves your API key** to the local CLI config — no manual copy/paste required.
 
@@ -50,18 +50,18 @@ Each key is scoped to your dLazy organization and can be **rotated or revoked at
 
 ## About & Provenance
 
-- **CLI source code**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI source code**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **Maintainer**: dlazyai
-- **npm package**: `@dlazy/cli` (pinned to `1.0.9` in this skill's install spec)
+- **npm package**: `@dlazy/cli` (pinned to `1.2.3` in this skill's install spec)
 - **Homepage**: [dlazy.com](https://dlazy.com)
 
 You can install on demand without persisting a global binary by running:
 
 ```bash
-npx @dlazy/cli@1.0.9 <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.0.9`). Review the GitHub source before installing.
+Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.3`). Review the GitHub source before installing.
 
 ## How It Works
 
@@ -103,8 +103,10 @@ dlazy chat --project <project_id> --prompt "..."
 dlazy chat --project <project_id> --prompt "Use this reference" --files ref.png
 
 # Session control
-dlazy chat --project <project_id> --clear      # drop the saved session, start fresh
-dlazy chat --project <project_id> --compact    # compact the current session's context
+dlazy chat --project <project_id> --clear          # drop the saved session, start fresh
+dlazy chat --project <project_id> --compact        # compact the current session's context
+dlazy chat --project <project_id> --list-sessions  # list this project's chat sessions
+dlazy chat --project <project_id> --get-status     # check this project's sandbox & session status
 ```
 
 On a TTY, `dlazy chat` stays interactive after the first turn — type follow-up messages, or `exit` to leave.

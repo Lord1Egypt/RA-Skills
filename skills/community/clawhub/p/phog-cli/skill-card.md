@@ -1,42 +1,55 @@
-## Description: <br>
-Manage PostHog product analytics from the terminal for analytics, feature flags, experiments, surveys, dashboards, insights, logs, queries, and product health metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage PostHog product analytics from the terminal for analytics, feature flags, experiments, surveys, dashboards, insights, error tracking, logs, HogQL queries, and product health checks.
 
-## Publisher: <br>
-[nelsongallardo](https://clawhub.ai/user/nelsongallardo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nelsongallardo](https://clawhub.ai/user/nelsongallardo)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent run or suggest PostHog CLI workflows for product analytics reporting, HogQL queries, and administration of feature flags, experiments, surveys, dashboards, insights, logs, and related resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to change or delete PostHog resources, skip confirmations, and use raw API write or delete calls. <br>
-Mitigation: Use a least-privilege PostHog token, prefer test or read-only credentials where possible, and require explicit review before any --yes command, delete, rollout change, experiment launch or end, or raw API POST, PATCH, or DELETE call. <br>
-Risk: PostHog credentials and project configuration can expose product analytics data or administrative access. <br>
-Mitigation: Scope credentials to the needed project and task, keep tokens out of shared logs and prompts, and store local CLI configuration with restrictive permissions. <br>
+## Use Case:
 
+Developers and product teams use this skill to have an agent operate phog-cli for PostHog analytics workflows, including product health checks, HogQL queries, and management of flags, experiments, surveys, dashboards, insights, errors, logs, and API endpoints.
 
-## Reference(s): <br>
-- [Complete Command Reference](references/commands.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/nelsongallardo/phog-cli) <br>
-- [Repository Metadata](https://github.com/nelsongallardo/posthog-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-reference text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend JSON output for programmatic parsing of PostHog CLI responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide agents through CLI operations that create, update, or delete PostHog analytics resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped PostHog credentials, prefer read-only access unless changes are intended, require explicit approval before write or delete commands, and avoid destructive commands with --yes in automated workflows.
+
+Risk: Authentication against an incorrect self-hosted PostHog host could expose credentials.
+
+Mitigation: Verify the PostHog hostname before login and prefer least-privilege API keys supplied through environment variables or an existing authenticated session.
+
+## Reference(s):
+
+- [Complete Command Reference](artifact/references/commands.md)
+- [Project Repository](https://github.com/nelsongallardo/posthog-cli)
+- [ClawHub Skill Page](https://clawhub.ai/nelsongallardo/skills/phog-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON-producing CLI flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call PostHog APIs and can create, update, or delete analytics resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

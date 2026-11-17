@@ -1,40 +1,48 @@
-## Description: <br>
-Guide for running the Video Generator CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for running the Video Generator CLI commands.
 
-## Publisher: <br>
-[itspremkumar](https://clawhub.ai/user/itspremkumar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[itspremkumar](https://clawhub.ai/user/itspremkumar)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to choose the right Video Generator CLI command for fresh generation, recovery, segment assembly, local debugging, and JSON script configuration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Fresh generation commands delete prior cache, video, and audio files in documented project folders.
+
+Mitigation: Review the cleanup behavior before running npm run generate or npm run build, and use npm run resume when prior output should be preserved.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation agents use this skill to choose the appropriate Video Generator CLI command for fresh generation, recovery, segment assembly, debugging, and JSON script configuration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Fresh-start commands remove prior generated cache, video, and audio outputs. <br>
-Mitigation: Use resume or segment commands when preserving existing work matters, and back up generated outputs before running npm run generate or npm run build. <br>
-Risk: External stock-footage or voiceover services may receive script content during generation workflows. <br>
-Mitigation: Avoid confidential scripts unless those services are approved for the content being processed. <br>
+**Output Format:** [Markdown with inline shell commands and configuration tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itspremkumar/video-gen-cli) <br>
+**Other Properties Related to Output:** [Requires node, npm, ffmpeg, python, and PEXELS_API_KEY.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References CLI prerequisites: node, npm, ffmpeg, python, and PEXELS_API_KEY.] <br>
+5.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-5.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

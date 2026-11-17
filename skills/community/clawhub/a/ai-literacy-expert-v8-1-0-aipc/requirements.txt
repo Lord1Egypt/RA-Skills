@@ -1,0 +1,4 @@
+openvino==2024.4.0
+openvino-genai==2024.4.0
+modelscope==1.39.1
+jsonschema==4.23.0

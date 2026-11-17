@@ -1,48 +1,58 @@
-## Description: <br>
-A Stock Analyst.Bak is an A-share market research assistant for stock quotes, fundamentals, screening, watchlist management, news monitoring, and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Analyst.Bak helps agents analyze China A-share market quotes, fundamentals, stock screening criteria, watchlists, news, and monitoring alerts.
 
-## Publisher: <br>
-[zhaohaixin](https://clawhub.ai/user/zhaohaixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaohaixin](https://clawhub.ai/user/zhaohaixin)
 
-## Use Case: <br>
-External users and agents use this skill to analyze China A-share equities, screen stocks by financial or technical criteria, inspect watchlists, and prepare stock research summaries. The skill can call Eastmoney data services and related dependent skills to gather market, fundamental, news, and alert information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Eastmoney/Miaoxiang credentials. <br>
-Mitigation: Use a dedicated API key where possible and avoid sharing credentials outside the intended agent environment. <br>
-Risk: Stock queries and watchlist operations may be sent to Eastmoney services and can involve account-linked data. <br>
-Mitigation: Assume market queries and watchlist actions are transmitted to Eastmoney, and review account or portfolio-sensitive prompts before use. <br>
-Risk: The skill can manage watchlists and monitoring rules. <br>
-Mitigation: Confirm additions, removals, and monitoring changes before execution. <br>
-Risk: The skill auto-installs dependent skills from the publisher ecosystem. <br>
-Mitigation: Install only when the publisher and dependent skills are trusted for the intended workflow. <br>
-Risk: Market data may be delayed or limited, and generated analysis is not investment advice. <br>
-Mitigation: Validate time-sensitive market information against authoritative trading sources and treat outputs as informational. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for A-share market research, stock screening, portfolio watchlist review, news lookup, and alert setup using Eastmoney/DFCF data. Outputs should be treated as informational analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaohaixin/a-stock-analyst-bak) <br>
-- [Publisher profile](https://clawhub.ai/user/zhaohaixin) <br>
-- [Eastmoney Miaoxiang API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown analysis summaries with structured API responses when tools are called] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an Eastmoney/Miaoxiang API key and auto-installed dependent skills for live data, watchlist, screening, search, and monitoring workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security verdict is suspicious because the skill auto-installs unpinned dependent skills by name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependent skills before installation and pin or approve dependency versions where the deployment process allows it.
+
+Risk: Stock queries, screening criteria, news searches, watchlist data, and monitoring commands may be sent to the external Eastmoney/DFCF API using the user's API key.
+
+Mitigation: Use the skill only when that data sharing is acceptable, avoid submitting sensitive portfolio details unless needed, and confirm state-changing watchlist or alert actions manually.
+
+Risk: The skill can provide market analysis and investment ranges that may be incorrect, delayed, or unsuitable for a user's circumstances.
+
+Mitigation: Treat outputs as informational research, verify time-sensitive market data against authoritative trading sources, and avoid relying on the skill as personalized financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaohaixin/skills/a-stock-analyst-bak)
+- [Eastmoney/DFCF Claw API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional Python code, shell commands, and API-backed analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Eastmoney/DFCF API key through MX_API_KEY or MX_SEARCH_API_KEY and depends on related ClawHub skills for data, search, screening, watchlist, and monitoring actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

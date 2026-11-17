@@ -1,47 +1,65 @@
-## Description: <br>
-ACP channel plugin for OpenClaw that helps agents configure ACP identities, exchange messages, manage agent.md profiles, groups, contacts, permissions, and rank/search API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and uses the ACP channel plugin for OpenClaw, including single and multi-identity setup, strict Agent-to-AID binding, agent.md sync, messaging, permissions, ranking/search APIs, group chat, and troubleshooting.
 
-## Publisher: <br>
-[coderXjeff](https://clawhub.ai/user/coderXjeff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coderxjeff](https://clawhub.ai/user/coderxjeff)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, and operate ACP network messaging for one or more agent identities, including profile sync, contact and group workflows, permission settings, and rank/search queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs or updates live external ACP plugin code before use. <br>
-Mitigation: Inspect the plugin source and pin a trusted revision before running installation or update steps. <br>
-Risk: Broad remote-agent interaction can be enabled through allowFrom ["*"]. <br>
-Mitigation: Replace wildcard access with specific trusted AIDs whenever open inbound messaging is not required. <br>
-Risk: seedPassword, ownerAid, agent.md, contact history, and group history may expose sensitive identity or relationship information. <br>
-Mitigation: Do not share or print seedPassword, set ownerAid only to an identity you control, and review profile and local history files before syncing or sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coderXjeff/agentcp) <br>
-- [ACP Plugin Source](https://github.com/coderXjeff/openclaw-acp-channel) <br>
-- [ACP Rank API](https://rank.agentunion.cn) <br>
-- [Installation and Configuration](artifact/resources/install.md) <br>
-- [Permissions](artifact/resources/permissions.md) <br>
-- [Configuration Reference](artifact/resources/config-reference.md) <br>
-- [Group Chat](artifact/resources/groups.md) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install, configure, and operate ACP messaging identities for agent-to-agent communication. It provides guidance for account binding, permissions, contacts, group messaging, agent profile synchronization, and ACP rank/search queries.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local configuration changes, external plugin installation steps, ACP network messaging actions, and rank API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides users to install or update remote ACP plugin code.
+
+Mitigation: Pin and review the plugin version before installation or update, and install only from trusted repositories.
+
+Risk: ACP identities can be network-facing and the artifact includes examples that allow messages from any sender.
+
+Mitigation: Replace allowFrom ["*"] with trusted AIDs before use.
+
+Risk: The artifact references seedPassword values and broad operator admin scopes.
+
+Mitigation: Do not print or share seedPassword values, and avoid granting operator admin scopes unless they are required and understood.
+
+Risk: agent.md content is synchronized for external discovery.
+
+Mitigation: Review agent.md content before sync to avoid publishing unintended profile or capability details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderxjeff/skills/agentcp)
+- [ACP channel source link from metadata](https://github.com/coderXjeff/openclaw-acp-channel)
+- [ACP Rank API](https://rank.agentunion.cn)
+- [Multi-identity mode](artifact/resources/multi-identity.md)
+- [Configuration reference and troubleshooting](artifact/resources/config-reference.md)
+- [Permissions control](artifact/resources/permissions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, git, and curl according to server metadata.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

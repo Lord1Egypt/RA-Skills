@@ -1,44 +1,62 @@
-## Description: <br>
-ZenStudio CLI helps agents use zencli to generate images and videos, manage projects, upload and download assets, manage materials and canvases, and interact with the ZenStudio platform from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZenStudio CLI helps agents use the ZenStudio platform through the zencli command line tool for AI image and video generation, project management, asset and material workflows, canvas operations, and file upload or download.
 
-## Publisher: <br>
-[zhaoda](https://clawhub.ai/user/zhaoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoda](https://clawhub.ai/user/zhaoda)
 
-## Use Case: <br>
-External creators, developers, and agent operators use this skill to manage ZenStudio content workflows through zencli, including AI image and video generation, project operations, asset handling, and canvas updates. The artifact states that ZenStudio CLI has been upgraded to WorkRally and that new features will be released there. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad ZenStudio account-changing authority, including project, upload, download, canvas delete or overwrite, and generic tool passthrough operations. <br>
-Mitigation: Install only when the operator intends to delegate ZenStudio content management, prefer named commands, and confirm before uploads, downloads, canvas delete or overwrite actions, or tools call usage. <br>
-Risk: The CLI uses sensitive ZenStudio credentials that may be stored in ~/.zencli/config.json or a directory selected with ZENCLI_CONFIG_DIR. <br>
-Mitigation: Protect the saved credential file, use scoped API keys where available, and avoid exposing ZENSTUDIO_API_KEY or the config directory to untrusted processes. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to install and operate ZenStudio CLI for AI content creation workflows, including generation, media management, project work, and canvas updates.
 
-## Reference(s): <br>
-- [ZenStudio CLI Skill Page](https://clawhub.ai/zhaoda/zenstudio) <br>
-- [ZenStudio Homepage](https://ai.tvi.v.qq.com/zenstudio) <br>
-- [ZenStudio Open API Key Setup](https://ai.tvi.v.qq.com/zenstudio/open-api) <br>
-- [WorkRally Migration Skill](https://clawhub.ai/tencent-adm/workrally) <br>
-- [WorkRally npm Package](https://www.npmjs.com/package/workrally) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent guidance should prefer named zencli commands and JSON output where available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses a ZenStudio API key and can persist credentials in a local config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use interactive login or protected secret handling, keep the config file private, and set ZENCLI_CONFIG_DIR deliberately in non-persistent or shared environments.
+
+Risk: ZenStudio commands can write, delete, overwrite, upload, download, or call generic platform tools.
+
+Mitigation: Confirm project, asset, material, canvas, and task identifiers before executing commands that change remote content.
+
+Risk: The release notes and skill text state that ZenStudio CLI has migrated to WorkRally and future features will be published there.
+
+Mitigation: Prefer the WorkRally package and skill for new workflows, and use this legacy skill only when the ZenStudio CLI integration is specifically needed.
+
+## Reference(s):
+
+- [ZenStudio skill page](https://clawhub.ai/zhaoda/skills/zenstudio)
+- [Publisher profile](https://clawhub.ai/user/zhaoda)
+- [ZenStudio homepage](https://ai.tvi.v.qq.com/zenstudio)
+- [ZenStudio API key configuration](https://ai.tvi.v.qq.com/zenstudio/open-api)
+- [WorkRally migration skill](https://clawhub.ai/tencent-adm/workrally)
+- [WorkRally npm package](https://www.npmjs.com/package/workrally)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON-oriented CLI command guidance when the user needs agent-readable ZenStudio responses.]
+
+## Skill Version(s):
+
+1.3.7 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

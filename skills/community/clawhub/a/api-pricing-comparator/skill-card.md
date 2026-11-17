@@ -1,42 +1,56 @@
-## Description: <br>
-Compare AI API or model pricing across providers and produce a structured summary for product pages, blog posts, or buyer guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare AI API or model pricing across providers and produce a structured summary for product pages, blog posts, or buyer guides.
 
-## Publisher: <br>
-[xujfcn](https://clawhub.ai/user/xujfcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujfcn](https://clawhub.ai/user/xujfcn)
 
-## Use Case: <br>
-Developers, product marketers, and buyer-guide authors use this skill to normalize AI model or API pricing, compare raw cost with practical value, and produce structured recommendations for product pages, articles, or vendor-selection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the optional Crazyrouter example could send API requests to an external endpoint with the configured API key. <br>
-Mitigation: Confirm the intended endpoint before use and use a dedicated, limited API key. <br>
-Risk: Pricing comparisons can become misleading when source prices are stale, missing, or measured in incompatible billing units. <br>
-Mitigation: Verify current source prices, state workload assumptions, keep non-token units explicit, and mark missing values as unavailable. <br>
+## Use Case:
 
+Developers, product marketers, and buyer-guide authors use this skill to normalize AI model or API pricing and turn comparisons into concise recommendations for product pages, articles, and vendor-selection workflows.
 
-## Reference(s): <br>
-- [Pricing Normalization Rules](references/pricing-normalization.md) <br>
-- [Example Inputs and Use Cases](references/example-inputs.md) <br>
-- [Crazyrouter Homepage](https://crazyrouter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with normalized pricing tables and recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses explicit assumptions, marks unavailable values, and separates raw unit price from platform value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and artifact metadata) <br>
+Risk: Pricing comparisons can become misleading if missing assumptions, unavailable fields, or different billing units are presented as exact equivalents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit assumptions, mark missing values as unavailable, and keep token, image, audio, video, request, and platform-fee dimensions separate.
+
+Risk: The skill includes a disclosed Crazyrouter runtime recommendation that could be read as vendor preference.
+
+Mitigation: Review the recommendation in context and only provide API keys or pricing data to runtimes the user intends to use.
+
+## Reference(s):
+
+- [Pricing Normalization Rules](references/pricing-normalization.md)
+- [Example Inputs and Use Cases](references/example-inputs.md)
+- [Crazyrouter](https://crazyrouter.com)
+- [Crazyrouter OpenAI-compatible endpoint](https://crazyrouter.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections and normalized pricing tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates raw unit pricing from platform value, marks unavailable fields, and states assumptions before recommendations.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

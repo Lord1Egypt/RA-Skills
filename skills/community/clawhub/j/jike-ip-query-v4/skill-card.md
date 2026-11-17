@@ -1,42 +1,55 @@
-## Description: <br>
-输入 IPv4 地址，实时查询国家、省份、城市、运营商和 long_ip 数值。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries a supplied IPv4 address through Jike API and returns country, province, city, ISP, and long_ip values.
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-Developers, AI clients, and end users use this skill to look up IPv4 geolocation and carrier information from a Jike API response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried IPv4 addresses and the configured Jike API key are sent to Jike's API service. <br>
-Mitigation: Use the skill only when sharing that lookup data with Jike is acceptable, and keep API keys in environment variables rather than public repositories or shared skill packages. <br>
-Risk: Changing JIKE_API_BASE_URL can redirect lookups and credentials to an alternate endpoint. <br>
-Mitigation: Set JIKE_API_BASE_URL only when the alternate endpoint is intentionally trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to answer IPv4 geolocation and carrier questions by validating an IPv4 address, calling the Jike data API, and returning the lookup result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-ip-query-v4) <br>
-- [即刻数据 homepage](https://www.jikeapi.cn/) <br>
-- [即刻数据 IPv4 query API](https://api.jikeapi.cn/v1/ip/query/v4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON returned by a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JIKE_IP_QUERY_V4_KEY or JIKE_APPKEY credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Queried IPv4 addresses and the Jike AppKey are sent to the provider during lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for lookups appropriate to share with Jike API, and configure the AppKey through a protected environment variable.
+
+Risk: An altered JIKE_API_BASE_URL environment variable could redirect the queried IP and AppKey to another server.
+
+Mitigation: Run the skill in a trusted environment where untrusted users cannot set JIKE_API_BASE_URL, and leave the variable unset for normal use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jikeapi-cn/skills/jike-ip-query-v4)
+- [Jike API Homepage](https://www.jikeapi.cn/)
+- [Jike IPv4 Query API Endpoint](https://api.jikeapi.cn/v1/ip/query/v4)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON from a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Jike AppKey and one IPv4 address per lookup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-这是一个面向中文创作者的 OpenClaw Skill，输入主题与人物气质后，会输出可直接用于生图模型的高质量提示词与创意说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-language creators draft image-generation prompts and art direction briefs for Douyin cover images.
 
-## Publisher: <br>
-[0x00000003](https://clawhub.ai/user/0x00000003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x00000003](https://clawhub.ai/user/0x00000003)
 
-## Use Case: <br>
-Chinese creators use this skill to turn a Douyin video topic, optional key points, portrait pose guidance, and aspect ratio into an image-generation prompt and art direction brief for a cover thumbnail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using personal portraits or third-party likenesses in image prompts can create privacy, consent, or retention concerns. <br>
-Mitigation: Use portraits only with clear permission, avoid sensitive likenesses, and review the selected image model provider's privacy and retention terms before uploading photos. <br>
+## Use Case:
 
+Chinese-language content creators use this skill to plan consistent Douyin covers and prepare prompts for an image-generation model, using a topic, optional key points, a subject's pose, and a preferred aspect ratio.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0x00000003/douyin-cover-builder) <br>
-- [Examples and Comparisons](https://github.com/0x00000003/douyin-cover-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt and art direction brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a final image-generation prompt plus a concise brief covering cover type, visual metaphor, color palette, keyword highlighting, and subtle arc typography.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.2 (source: server release metadata) <br>
+Risk: A portrait supplied for consistent likeness may be uploaded to an image-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide photos you are comfortable sharing with the chosen service.
+
+Risk: An image model may return a cover with the wrong aspect ratio or dimensions.
+
+Mitigation: Check the final image's pixel dimensions against the requested ratio and exact size; correct any mismatch before delivery.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/0x00000003/skills/douyin-cover-builder)
+- [Examples and comparison images linked in skill documentation](https://github.com/0x00000003/douyin-cover-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown prompt and art direction brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Specifies target aspect ratio and dimensions; if an image is generated, its actual dimensions must be checked before delivery.]
+
+## Skill Version(s):
+
+3.1.3 (source: ClawHub release metadata and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

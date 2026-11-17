@@ -1,41 +1,58 @@
-## Description: <br>
-OpenClaw Cleaner helps an agent inspect, snapshot, diff, checkpoint, back up, restore, and optimize an OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Cleaner provides project directory maintenance helpers for snapshots, diffs, checkpoints, task progress tracking, health checks, skill matching, backups, and markdown optimization.
 
-## Publisher: <br>
-[computersniper](https://clawhub.ai/user/computersniper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[computersniper](https://clawhub.ai/user/computersniper)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to let an agent manage workspace housekeeping tasks such as snapshots, diffs, checkpoints, backups, health checks, and optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and copy broad workspace contents into .cleaner-backups, which may include private code, prompts, or secrets. <br>
-Mitigation: Use it first on non-sensitive projects and inspect or delete generated backups after use. <br>
-Risk: The skill can change and restore OpenClaw state files without confirmation. <br>
-Mitigation: Require manual review before optimize or restore actions. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and maintain OpenClaw workspaces, create local snapshots and backups, compare changes, track batch task progress, and optimize selected markdown files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/computersniper/openclaw-cleaner) <br>
-- [Publisher profile](https://clawhub.ai/user/computersniper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured JavaScript return objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace backup, snapshot, checkpoint, and progress files under .cleaner-backups when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.2) <br>
+Risk: The skill can broadly copy and rewrite sensitive workspace and agent-state files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where copying full file contents into .cleaner-backups is acceptable, and avoid running it around secrets or private agent memory.
+
+Risk: Restore and optimization actions can overwrite local files or reduce markdown content without clear confirmation.
+
+Mitigation: Require manual review before backup.restore, optimize.soul, or optimize.full, and inspect diffs or backups before accepting changes.
+
+Risk: The local read/write authority is broad and path containment is under-controlled.
+
+Mitigation: Run the skill in a bounded workspace with least-privilege file access and review the artifact before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/computersniper/skills/openclaw-cleaner)
+- [Publisher profile](https://clawhub.ai/user/computersniper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Files]
+
+**Output Format:** [JSON objects and markdown/text reports from exported helper calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local backup, snapshot, checkpoint, progress, and optimized markdown files in the active workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

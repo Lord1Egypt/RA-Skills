@@ -1,37 +1,49 @@
-## Description: <br>
-Perform broader source-backed catalog enrichment for new EVM ecosystems, protocols, providers, standards, or deprecated, renamed, and sunsetting coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform broader source-backed catalog enrichment for new EVM ecosystems, protocols, providers, standards, or deprecated/renamed/sunsetting coverage.
 
-## Publisher: <br>
-[mrtdlgc](https://clawhub.ai/user/mrtdlgc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrtdlgc](https://clawhub.ai/user/mrtdlgc)
 
-## Use Case: <br>
-Developers and catalog maintainers use this skill to research and update revert.wtf catalog coverage for EVM ecosystems, protocols, providers, standards, and lifecycle changes. It emphasizes primary-source research, generated catalog synchronization, validation, and review before committing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrtdlgc/revertwtf-catalog-research) <br>
+Developers and maintainers use this skill to research and update revert.wtf catalog coverage for EVM ecosystems, protocols, providers, standards, and lifecycle changes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline commands and catalog-editing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before commit; do not provide wallet keys, seed phrases, or sensitive credentials because the security evidence says the skill does not require them.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server-resolved release) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may lead an agent to browse external sources and modify project catalog files.
+
+Mitigation: Review source citations and generated diffs before accepting catalog changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrtdlgc/skills/revertwtf-catalog-research)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and proposed catalog or configuration file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source citations and generated diffs for human review]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,7 +3,7 @@ name: maverick-linear-mcp
 description: Read and write Linear workspace data via Linear's hosted MCP server. Thin pass-through to the official Linear MCP; the live tool catalog is whatever that server advertises. Use whenever the user asks about Linear work or wants to read or write Linear data.
 metadata:
   openclaw:
-    emoji: "📐"
+    emoji: '📐'
     homepage: https://linear.app/docs/mcp
     primaryEnv: MAVERICK_LINEAR_MCP_REFRESH_TOKEN
     requires:

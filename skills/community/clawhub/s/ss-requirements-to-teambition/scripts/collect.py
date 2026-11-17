@@ -21,10 +21,14 @@ except AttributeError:
 
 SCRIPT_DIR = Path(__file__).parent
 CONFIG_PATH = SCRIPT_DIR / "config.json"
+WORKSPACE_CONFIG = Path.home() / ".openclaw" / "workspace" / "ss_config.json"
 
-if not CONFIG_PATH.exists():
+if WORKSPACE_CONFIG.exists():
+    CONFIG_PATH = WORKSPACE_CONFIG
+elif not CONFIG_PATH.exists():
     print("❌ 未找到 config.json，请先复制 config.example.json 并填入配置")
     print(f"   cp {SCRIPT_DIR / 'config.example.json'} {CONFIG_PATH}")
+    print(f"   或放到工作区根目录: {WORKSPACE_CONFIG}")
     sys.exit(1)
 
 CONFIG = json.loads(CONFIG_PATH.read_text())
@@ -136,8 +140,8 @@ def filter_by_tags(sessions: list, tag_names: set) -> list:
 MAX_MESSAGE_PAGES = 5  # 最多拉 5 页（500 条），防止群聊会话消息爆炸
 
 
-def fetch_messages(client: SSClient, session_id: str, start_ts: int, end_ts: int) -> list:
-    """拉取会话消息，限制最大页数 + 客户端时间过滤"""
+def fetch_messages(client: SSClient, session_id: str) -> list:
+    """拉取会话消息，限制最大页数。会话已被筛选，消息拿全量不丢上下文。"""
     resp = client._get("/api/v2/get-message-list", {
         "session_id": session_id,
         "page_size": "100",
@@ -161,18 +165,8 @@ def fetch_messages(client: SSClient, session_id: str, start_ts: int, end_ts: int
     if total > MAX_MESSAGE_PAGES * 100:
         print(f"   ⚠️ 消息过多（{total}条），仅拉取前 {MAX_MESSAGE_PAGES * 100} 条")
 
-    # 客户端时间过滤：只保留时间窗口内的消息
     parsed = []
-    filtered_out = 0
     for m in messages:
-        send_time = m.get("send_time", 0)
-        # send_time 可能是秒级或毫秒级时间戳，统一转秒
-        if send_time > 1e12:
-            send_time = send_time / 1000
-        if send_time < start_ts or send_time > end_ts:
-            filtered_out += 1
-            continue
-
         content_raw = m.get("content", "")
         try:
             content_obj = json.loads(content_raw)
@@ -187,9 +181,6 @@ def fetch_messages(client: SSClient, session_id: str, start_ts: int, end_ts: int
             "send_time": m.get("send_time"),
             "mid": m.get("mid"),
         })
-
-    if filtered_out:
-        print(f"   🔍 过滤 {filtered_out} 条时间窗口外消息，保留 {len(parsed)} 条")
 
     return parsed
 
@@ -262,7 +253,7 @@ def main():
         customer = fetch_customer(client, cuid, cf_key)
         print(f"   客户: {customer['name']} | SS项目ID: {customer['ss_project_id']}")
 
-        messages = fetch_messages(client, sid, start_ts, end_ts)
+        messages = fetch_messages(client, sid)
         print(f"   消息: {len(messages)} 条（时间窗口内）")
 
         results.append({

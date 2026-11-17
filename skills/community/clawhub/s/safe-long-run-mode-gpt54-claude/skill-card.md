@@ -1,40 +1,62 @@
-## Description: <br>
-Operate long-running AI tasks safely across GPT-5.4 and Claude by using model selection rules, phased execution, checkpoints, resumable workflows, API throttling discipline, and subagent isolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate long-running AI tasks safely across GPT-5.4 and Claude by using model selection rules, phased execution, checkpoints, resumable workflows, API throttling discipline, and subagent isolation.
 
-## Publisher: <br>
-[bwiley1989](https://clawhub.ai/user/bwiley1989) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bwiley1989](https://clawhub.ai/user/bwiley1989)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to manage long-running tasks that may touch multiple files, systems, external APIs, browser automation, Azure, Orgo, or subagents. It helps the agent plan work in phases, preserve resumable checkpoints, choose between GPT-5.4 and Claude, and control API usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkpoint notes, local artifacts, or screenshots created during long tasks may accidentally capture sensitive information. <br>
-Mitigation: Tell the agent where checkpoint files may be saved, avoid storing secrets in notes or screenshots, and review saved artifacts before sharing them. <br>
-Risk: Subagents or external-system actions can make changes that are hard to inspect during a long autonomous run. <br>
-Mitigation: Review subagent plans and external-system actions before they make changes, serialize risky writes, and keep each phase resumable. <br>
+## Use Case:
 
+Developers and operators use this skill to keep long-running agent work organized and resumable across coding, documentation, research, browser automation, cloud, and external API tasks.
 
-## Reference(s): <br>
-- [Safe Long-Run Checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists and routing matrices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for phased execution, checkpointing, model routing, subagent isolation, API throttling, and resume handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may add process overhead for short tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for longer or riskier work where phased execution, checkpoints, and handoff notes are worth the extra structure.
+
+Risk: The skill encourages local checkpoint artifacts that may contain task details.
+
+Mitigation: Review checkpoint locations and contents before using it with sensitive projects or shared workspaces.
+
+Risk: The model-routing preferences may not match every organization, task, or trust boundary.
+
+Mitigation: Confirm whether the GPT-5.4 and Claude routing guidance fits the task before applying it.
+
+Risk: Long-running cloud, browser, GUI, or external API tasks can throttle or fail mid-run.
+
+Mitigation: Use the skill's batching, retry, checkpoint, and stop-condition guidance before starting those workflows.
+
+## Reference(s):
+
+- [Safe Long-Run Checklist](references/checklist.md)
+- [ClawHub skill page](https://clawhub.ai/bwiley1989/skills/safe-long-run-mode-gpt54-claude)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose, checklists, and inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include checkpoint files, phase summaries, resume notes, and model-routing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

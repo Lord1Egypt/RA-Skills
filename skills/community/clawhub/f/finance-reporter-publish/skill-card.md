@@ -1,43 +1,58 @@
-## Description: <br>
-Finance Reporter Publish fetches public market prices from Yahoo Finance for major indexes, forex pairs, commodities, and Bitcoin, then prints a concise finance report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finance Reporter Publish fetches real-time Yahoo Finance market data for major stock indices, foreign exchange, commodities, and cryptocurrency, then formats the results for manual or scheduled delivery.
 
-## Publisher: <br>
-[jfstylejf](https://clawhub.ai/user/jfstylejf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jfstylejf](https://clawhub.ai/user/jfstylejf)
 
-## Use Case: <br>
-External users and developers use this skill to generate market snapshot reports for tracked equity indexes, forex pairs, commodities, and Bitcoin using Yahoo Finance data. It can be run manually or scheduled after the user accepts outbound finance-data requests and separately configures any desired messaging integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Yahoo Finance for market data. <br>
-Mitigation: Install and schedule it only in environments where outbound Yahoo Finance access is acceptable. <br>
-Risk: Recurring cron execution can keep sending or generating reports after they are no longer needed. <br>
-Mitigation: Add the cron job only for intended recurring use and remove it when the report is no longer required. <br>
-Risk: DingTalk or WeChat delivery is described by the artifact but not fully implemented in the scanned behavior. <br>
-Mitigation: Configure and verify any messaging integration separately before relying on pushed reports. <br>
+## Use Case:
 
+Developers and operators use this skill to generate current finance reports for monitored market symbols and to configure scheduled delivery to DingTalk or WeChat channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jfstylejf/finance-reporter-publish) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown report with optional shell commands for manual or scheduled execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and outbound access to Yahoo Finance; the artifact prints reports locally and messaging delivery requires separate configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Dependency metadata may cause unsafe or unintended package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running npm install for this package as written; define and pin the Python requests dependency in a Python-native dependency file before deployment.
+
+Risk: Scheduled delivery can send finance reports to an unintended DingTalk or WeChat destination.
+
+Mitigation: Confirm the destination, binding, and cron schedule before enabling automated delivery.
+
+Risk: Live market data depends on Yahoo Finance availability and response quality at runtime.
+
+Mitigation: Review generated reports before acting on them and monitor failures or retries during scheduled runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jfstylejf/skills/finance-reporter-publish)
+- [Yahoo Finance](https://finance.yahoo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain-text finance report with command examples in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include symbols, currencies, current prices, prior close or 24-hour reference prices, and percentage changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

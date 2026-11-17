@@ -1,47 +1,53 @@
-## Description: <br>
-Grant Proposal Assistant helps draft and review NIH, NSF, and other mainstream grant proposal sections, including specific aims, research strategy, and budget justification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grant proposal writing assistant for NIH (R01/R21), NSF, and other mainstream funding applications.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, grant writers, and developers use this skill to generate proposal templates, budget justifications, review checklists, and critique reports for NIH, NSF, and similar funding applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposal guidance can be incomplete, incorrect, or out of date for a specific solicitation. <br>
-Mitigation: Verify generated sections against the current sponsor instructions and institutional review requirements before submission. <br>
-Risk: The local script reads user-supplied input paths in review mode and may process sensitive or unrelated proposal files. <br>
-Mitigation: Review only intended proposal files and avoid passing unrelated sensitive documents as input. <br>
-Risk: The local script writes to the user-supplied output path and can overwrite existing files. <br>
-Mitigation: Use deliberate workspace-scoped output paths and check for existing files before running generation or review commands. <br>
+## Use Case:
 
+Researchers, grant writers, and proposal teams use this skill to draft NIH, NSF, and other mainstream grant proposal sections, budget justifications, and review checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/grant-proposal-assistant) <br>
-- [NIH R01 Grant Proposal Template](references/NIH_R01_template.md) <br>
-- [NSF Standard Grant Template](references/NSF_template.md) <br>
-- [Budget Templates by Category](references/budget_templates.md) <br>
-- [Grant Proposal Review Checklist](references/review_checklist.md) <br>
-- [Specific Aims Examples](references/specific_aims_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown templates and review reports, with optional command-line and Python usage snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write generated sections or review reports to a user-supplied output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The script can read or overwrite local files through user-supplied input and output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed workspace, pass only proposal paths you control, avoid absolute or traversal paths, and do not target existing important files for output.
+
+## Reference(s):
+
+- [NIH R01 Grant Proposal Template](references/NIH_R01_template.md)
+- [NSF Standard Grant Template](references/NSF_template.md)
+- [Budget Templates by Category](references/budget_templates.md)
+- [Grant Proposal Review Checklist](references/review_checklist.md)
+- [Specific Aims Examples](references/specific_aims_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown templates and review guidance, with optional command-line output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates proposal sections, full proposal templates, budget justifications, and checklist-style reviews.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

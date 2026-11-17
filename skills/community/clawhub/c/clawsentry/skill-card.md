@@ -1,42 +1,55 @@
-## Description: <br>
-ClawSentry installs and configures the security-related OpenClaw plugins, including claw-sentry, through a two-phase activation and configuration flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the security-related plugins required by OpenClaw, including the `claw-sentry` plugins.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install the claw-sentry security plugin, generate an activation link, and finalize plugin configuration after platform authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enrolls the OpenClaw host with an external authorization service and sends a device fingerprint. <br>
-Mitigation: Install only when the ClawSentry/Volcengine service is trusted, and run setup first in a controlled environment. <br>
-Risk: Activation state, login tokens, device fingerprint data, and logs are persisted locally under .state during setup. <br>
-Mitigation: Inspect and remove local login state files and logs after activation if they are no longer needed. <br>
-Risk: The installer can install or replace the claw-sentry plugin, write API-key configuration, allow plugin conversation access, and restart the OpenClaw gateway. <br>
-Mitigation: Review the configuration changes and run the installer with appropriate operational approval on a non-critical host first. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install the ClawSentry plugin, complete activation, and configure security protections for an OpenClaw environment.
 
-## Reference(s): <br>
-- [ClawSentry ClawHub page](https://clawhub.ai/volcengine-skills/clawsentry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal output with shell commands and activation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a bundled Node.js installer that writes local activation state and OpenClaw plugin configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: The installer runs a bundled local script, installs a remote plugin package, contacts Volcengine/ClawSentry authorization services, stores login state, enables conversation access for the plugin, and restarts the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and run it only on machines where those installation, authorization, storage, access, and restart actions are acceptable.
+
+Risk: Evidence security guidance flags credential logging, unpinned install, and cleanup-path risks.
+
+Mitigation: Avoid shared or sensitive machines unless those risks are accepted, monitor execution, and rotate any ClawSentry API key if the installer has already produced poll_login.log.
+
+## Reference(s):
+
+- [ClawSentry skill page](https://clawhub.ai/volcengine-skills/skills/clawsentry)
+- [ClawSentry README](artifact/README.md)
+- [Volcengine](https://www.volcengine.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and activation-link text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a two-phase install and activation flow that can write local login state and update OpenClaw plugin configuration.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

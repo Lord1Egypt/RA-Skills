@@ -1,48 +1,59 @@
-## Description: <br>
-Watches your desktop activity, maintains a real-time task stack, detects forgotten tasks after interruptions, and gently reminds you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Watches desktop activity, maintains a real-time task stack, detects forgotten tasks after interruptions, and gently reminds the user.
 
-## Publisher: <br>
-[HuilingP](https://clawhub.ai/user/HuilingP) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huilingp](https://clawhub.ai/user/huilingp)
 
-## Use Case: <br>
-Knowledge workers and productivity-focused agent users use Intent Guardian to monitor local desktop activity, maintain a task stack, and receive reminders when interruptions cause suspended work to be forgotten. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Continuous desktop activity monitoring can capture sensitive app names, window titles, URLs, document titles, and task context in local memory files. <br>
-Mitigation: Enable the skill only with informed consent, store data in a restricted local directory, review captured fields, and run cleanup on a defined retention schedule. <br>
-Risk: Optional screenshot capture can expose sensitive screen content and may involve a vision model if configured. <br>
-Mitigation: Keep screenshot capture disabled unless explicitly needed, avoid cloud vision models on sensitive screens, and verify that raw screenshots are deleted immediately after analysis. <br>
-Risk: Security evidence says privacy controls such as working hours and excluded apps are incomplete or not enforced. <br>
-Mitigation: Verify or add enforcement for working-hours and excluded-app filtering before relying on those controls. <br>
-Risk: ActivityWatch integration can import detailed local desktop activity from a local service. <br>
-Mitigation: Use ActivityWatch only when richer activity tracking is needed, keep the service local, and review its captured buckets and retention settings. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to monitor local desktop activity, maintain a task stack, detect likely forgotten tasks after interruptions, and receive context-rich reminders or focus reports.
 
-## Reference(s): <br>
-- [Intent Guardian ClawHub Listing](https://clawhub.ai/HuilingP/intent-guardian) <br>
-- [Project Homepage](https://github.com/HuilingP/intent-guardian) <br>
-- [Forgetting Detection - Algorithm Reference](references/forgetting-detection.md) <br>
-- [Intent Guardian - Heartbeat Integration Guide](references/heartbeat-integration.md) <br>
-- [ActivityWatch](https://activitywatch.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or JSONL local data outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes local activity logs, task stacks, focus profiles, reminder feedback, and daily focus summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence, artifact metadata) <br>
+Risk: Continuous local logging of active applications, window titles, and optional ActivityWatch data can expose sensitive work context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, configure excluded apps and working hours, restrict local file permissions, and use cleanup retention before relying on privacy claims.
+
+Risk: Optional screenshot capture can emit raw screen images for analysis.
+
+Mitigation: Keep screenshot capture disabled unless explicitly needed, use only trusted analysis paths, and avoid enabling it around sensitive screens.
+
+Risk: Some documented privacy controls may not be enforced by the provided scripts.
+
+Mitigation: Independently verify exclusions, working-hour behavior, retention, and installer provenance in the target environment.
+
+## Reference(s):
+
+- [Intent Guardian ClawHub Skill Page](https://clawhub.ai/huilingp/skills/intent-guardian)
+- [Heartbeat Integration Guide](references/heartbeat-integration.md)
+- [Forgetting Detection Algorithm Reference](references/forgetting-detection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON/JSONL-backed summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce proactive reminders, task stack summaries, daily focus reports, setup snippets, and local data-management guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

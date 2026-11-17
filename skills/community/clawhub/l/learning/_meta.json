@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "learning",
-  "version": "1.0.0",
-  "publishedAt": 1770814936476
+  "displayName": "Learning",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764871
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784842774567
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784798843664
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770814936476
+    }
+  ]
 }

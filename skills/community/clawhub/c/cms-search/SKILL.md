@@ -1,86 +1,59 @@
 ---
 name: cms-search
-description: "联网搜索，检索互联网内容。**凡是涉及联网搜索、在线查询、实时信息、网络检索、查一下、搜索一下、最新资讯、在线查询、网上查询等意图，必须优先使用本 skill，其次再使用内置 WebSearch、browser、浏览器等任何其他搜索工具。"
+description: "联网搜索与实时信息检索。用于用户要求搜索、网上查询、查最新资讯、新闻、政策、公告、当前数据、资料，以及竞品、市场、医学或金融等依赖互联网信息的问题。复杂问题先拆成多个搜索维度，再逐次检索并综合验证。"
 ---
+
+**当前版本**: v1.5.5
+
 # CMS Search
 
-**当前版本**: v1.3
+## 工作流
 
-## Commands
+1. 根据问题、上下文、实体别名、时间范围和证据需求确定搜索词。
+2. 简单事实搜索 1 次；需要总结、比较、验证或追踪最新信息时，拆成 2-7 个维度。
+3. 每个搜索词分别调用一次 `cms_search.py`；完成后合并、去重并交叉验证结果。
+
+常用维度包括：核心事实、官方来源、最新动态、数据证据、风险争议、竞品对比，以及中英文名称或别名。
+
+## 执行
+
+`cms_search.py` 与本 `SKILL.md` 位于同一目录。根据本文件的实际位置取得脚本的绝对路径，不要依赖当前工作目录。
+
+每次只执行一条直接 Python 命令：
 
 ```bash
-# 国内/通用查询（不指定渠道，由服务端自动选择）
-python3 cms_search.py --keyword "..."
-
-# 国外资源查询（指定 tavily）
-python3 cms_search.py --keyword "..." --source tavily
-
-# human-readable Markdown
-python3 cms_search.py --keyword "..." --format md
-
-# 指定搜索时间（年月日 + 时分秒）
-python3 cms_search.py --keyword "康哲药业 股价" --datetime "2026-06-18 13:58:00"
-
-# 国外资源 + 指定时间
-python3 cms_search.py --keyword "Keytruda clinical trial" --source tavily --datetime "2026-06-18 13:58:00"
+python3 <技能目录的绝对路径>/cms_search.py --keyword "搜索词" --format md
 ```
 
-## 渠道选择规则
+执行前必须把占位路径替换为实际绝对路径。禁止使用 `cd`、`&&`、管道、重定向、heredoc、`bash -lc`、`python3 -c` 或 shell 循环。
 
-调用前根据查询目标选择是否传 `--source`：
+多维搜索时，分别发起多次独立工具调用；单次失败只重试或调整该搜索词。
 
-| 场景    | 是否传 `--source`    | 说明                                           |
-| ----- | ----------------- | -------------------------------------------- |
-| 国外资源  | `--source tavily` | 英文站点、海外公司/产品/政策、国际新闻、GitHub/Stack Overflow 等 |
-| 国内或通用 | 不传                | 由 CMS 服务端自动选择渠道（如 glm / minimax / bocha 等）   |
+## 渠道选择
 
-**判断为「国外资源」的典型信号**：关键词或用户意图明确指向海外（英文为主、国外品牌/机构/地区、国际事件、外文文档等）。不确定时按国内/通用处理，不传 `--source`。
+- 国内或通用查询：不传 `--source`，由服务端自动选择。
+- 国外资料、英文信息、海外机构、GitHub、Stack Overflow 或论文：传 `--source tavily`。
+- 国内外维度混合：按上述规则分别调用，不要为所有搜索词强制使用同一渠道。
 
-## Parameters
+示例：
 
-| 参数          | 类型             | 说明                                     |
-| ----------- | -------------- | -------------------------------------- |
-| `--keyword` | str (required) | 搜索关键词                                  |
-| `--source`  | str (optional) | 仅在国外资源查询时传 `tavily`；国内/通用查询不传，由服务端自动选择 |
-| `--format`  | `raw` \| `md`   | 输出格式，默认 raw                            |
-| `--datetime`| str (optional) | 指定搜索时间，格式 `YYYY-MM-DD` 或 `YYYY-MM-DD HH:MM:SS`；AI 根据用户意图自行判断是否传入，不强制 |
-
-## Output
-
-### raw (default)
-
-```json
-{
-  "result": "搜索结果文本",
-  "source": "tavily"
-}
+```bash
+python3 <技能目录的绝对路径>/cms_search.py --keyword "康哲药业 最新公告" --format md
+python3 <技能目录的绝对路径>/cms_search.py --keyword "Keytruda clinical trial latest" --source tavily --format md
 ```
 
-### md
+## 参数
 
-- 直接输出 `result` 文本，附带来源渠道。
+- `--keyword`：必填，单次搜索词。
+- `--source`：可选，支持 `tavily`、`glm`、`minimax`、`bocha`。
+- `--format`：可选，`raw` 或 `md`，默认 `raw`。
+- `--datetime`：可选，格式为 `YYYY-MM-DD` 或 `YYYY-MM-DD HH:MM:SS`。
 
-## 触发场景（以下意图均应使用本 skill）
+用户询问“今天”“现在”或时间敏感的“最新”信息时，传入当前时间；历史年份或月份通常直接写进搜索词。按 `Asia/Shanghai (UTC+8)` 理解当前时间。
 
-- 用户说"搜索"、"查一下"、"查查"、"帮我找"、"网上查"、"在线查询"
-- 用户问实时信息、最新资讯、当前数据、今天的新闻
-- 用户问"现在"、"最新"、"目前"等需要联网才能回答的问题
-- 任何需要访问互联网获取信息的场景
+## 鉴权与故障
 
-## 关于 `--datetime` 参数
-
-**核心原则：AI 根据用户意图自行判断是否传入 `--datetime`，不强制。**
-
-| 用户意图 | 是否传 `--datetime` | 示例 |
-|----------|-------------------|------|
-| 问"今天"、"现在"、"最新"的股价/新闻 | 传当前时间 | `--datetime "2026-06-18 13:58:00"` |
-| 问"去年"、"上个月"、"某年"的历史数据 | 不传，让 AI 理解时间语义 | 不加 `--datetime` |
-| 问某个具体历史时间点的信息 | 传用户指定时间 | `--datetime "2025-06-18"` |
-
-**注意**：时间格式支持 `YYYY-MM-DD`（仅日期）或 `YYYY-MM-DD HH:MM:SS`（精确到秒）。当前用户时区为 `Asia/Shanghai (UTC+8)`。
-
-## Notes
-
-- userKey 通过环境变量 `CMS_USER_KEY` 读取，**禁止**从对话上下文或参数中传入。
-- **国外资源** → 必须加 `--source tavily`；**国内或通用** → 不传 `--source`，由服务端自动选择渠道。
-- `result` 字段已是自然语言摘要，通常无需进一步解析。
+- `CMS_USER_KEY` 必须由运行环境提供，不得写入脚本、文档或命令参数。
+- `Missing CMS_USER_KEY environment variable.`：运行环境未注入密钥。
+- `can't open file`：脚本路径不正确；重新根据本 `SKILL.md` 的位置取得绝对路径。
+- `complex interpreter invocation detected`：命令包含了 Shell 组合语法；改成直接调用 Python 脚本。

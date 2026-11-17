@@ -1,40 +1,53 @@
-## Description: <br>
-下载抖音视频到本地（无水印），以mp4格式默认保存在桌面目录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+下载抖音视频到本地（无水印），以mp4格式默认保存在桌面目录。
 
-## Publisher: <br>
-[lvleiai123](https://clawhub.ai/user/lvleiai123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvleiai123](https://clawhub.ai/user/lvleiai123)
 
-## Use Case: <br>
-External users and developers use this skill to download a public Douyin share link or share text as a local no-watermark MP4 file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Douyin share links are sent to the lvhomeproxy2.dpdns.org resolver before the video is downloaded. <br>
-Mitigation: Use only public links with user consent, and prefer a version that clearly documents the resolver before any network request is made. <br>
-Risk: The workflow saves files returned through the resolver-backed download path to the user's Desktop. <br>
-Mitigation: Validate returned download URLs, check file type and size before writing, and allow the user to choose the output folder. <br>
+## Use Case:
 
+External users and developers can use this skill to extract a Douyin share URL from user-provided text and download the resolved no-watermark video as an MP4 file.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/lvleiai123/douyin-no-watermark-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Terminal text with a downloaded MP4 file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads the first resolved video URL to the user's Desktop as an .mp4 file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: release evidence and frontmatter metadata) <br>
+Risk: Submitted Douyin links are sent to an undeclared third-party resolver service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the resolver service to users and ask for confirmation before sending links externally.
+
+Risk: The script trusts the resolver response when selecting a download URL and saving a file to the Desktop.
+
+Mitigation: Validate returned domains, file size, and content type before downloading, and prompt before writing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvleiai123/skills/douyin-no-watermark-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, files, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and a downloaded MP4 file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are saved to the user's Desktop by default with a timestamped .mp4 filename.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence; artifact frontmatter reports 1.0.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

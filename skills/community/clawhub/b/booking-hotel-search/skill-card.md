@@ -1,43 +1,58 @@
-## Description: <br>
-Search Booking.com for real-time hotel availability, prices, and room details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Booking.com for real-time hotel availability, prices, and room details.
 
-## Publisher: <br>
-[mtnrabi](https://clawhub.ai/user/mtnrabi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtnrabi](https://clawhub.ai/user/mtnrabi)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search hotel availability, compare prices and amenities, check room details, and return Booking.com links for selected destinations and dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel search details are sent to RapidAPI and the Booking Live API. <br>
-Mitigation: Use the skill only for searches you are comfortable sharing with that API provider. <br>
-Risk: RapidAPI key misuse could cause unauthorized usage or billing exposure. <br>
-Mitigation: Use a dedicated RapidAPI key with quota or billing limits and monitor usage. <br>
-Risk: Broad travel prompts may trigger external hotel-search API calls automatically. <br>
-Mitigation: Disable the skill or narrow invocation when automatic travel-related API calls are not desired. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search destinations, check hotel availability, compare prices and room details, and return Booking.com links based on dates, guests, filters, and budget.
 
-## Reference(s): <br>
-- [Booking Live API on RapidAPI](https://rapidapi.com/mtnrabi/api/booking-live-api) <br>
-- [ClawHub skill page](https://clawhub.ai/mtnrabi/booking-hotel-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with inline curl commands and JSON-derived hotel fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAPIDAPI_KEY and sends hotel search details to the Booking Live API through RapidAPI; bulk comparison is limited to five hotels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, clawhub.json) <br>
+Risk: User-provided travel search details are sent to the Booking Live API on RapidAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing destination, dates, guest count, filters, and hotel names with RapidAPI is acceptable.
+
+Risk: Broad natural-language triggers may activate hotel-search behavior in more conversations than intended.
+
+Mitigation: Review and narrow triggers if the agent runtime supports trigger editing.
+
+Risk: The skill requires a RapidAPI key for authenticated requests.
+
+Mitigation: Store the key in the configured secret or environment variable and scope the subscription to this service where possible.
+
+## Reference(s):
+
+- [Booking Live API on RapidAPI](https://rapidapi.com/mtnrabi/api/booking-live-api)
+- [ClawHub Skill Page](https://clawhub.ai/mtnrabi/skills/booking-hotel-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with hotel result tables, direct booking links, curl commands, and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAPIDAPI_KEY and outbound HTTPS access to booking-live-api.p.rapidapi.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

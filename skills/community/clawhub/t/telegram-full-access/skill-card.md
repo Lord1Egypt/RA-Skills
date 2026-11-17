@@ -1,47 +1,63 @@
-## Description: <br>
-Give OpenClaw full access to Telegram through a user-owned local Telegram session, with options for Chiho.ai Cloud or a self-hosted tgchats runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give OpenClaw full access to Telegram through a user-owned session, with options for a hosted Chiho.ai CRM flow or a self-hosted local tgchats runtime.
 
-## Publisher: <br>
-[seichris](https://clawhub.ai/user/seichris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seichris](https://clawhub.ai/user/seichris)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Telegram through an explicit user-owned account login when bot access is too limited. It supports hosted CRM workflows through Chiho.ai Cloud or self-hosted local operation through tgchats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad account-level Telegram access, including sensitive chats, contacts, metadata, and write-capable workflows. <br>
-Mitigation: Use a dedicated Telegram account when possible, connect only an account controlled by the user, and require explicit user approval before sending messages or enabling write-capable automation. <br>
-Risk: The hosted Chiho.ai Cloud path may process or store Telegram session data and CRM metadata outside the user's local environment. <br>
-Mitigation: Review Chiho.ai data handling before using the cloud path, and choose the self-hosted tgchats runtime when tighter control over messages, contacts, metadata, or session storage is required. <br>
-Risk: Agent access tokens and self-hosted Telegram credentials can expose the connected Telegram account if mishandled. <br>
-Mitigation: Store tokens and environment variables securely, avoid sharing them in chat or logs, and revoke or rotate credentials when access is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to connect OpenClaw or compatible agents to Telegram through an explicit user-owned login, enabling account-level chat automation and CRM-style chat management. It is intended for workflows where bot-only Telegram access is too limited.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seichris/telegram-full-access) <br>
-- [telegram-for-ai-agents homepage](https://github.com/chihoai/telegram-for-ai-agents) <br>
-- [Local tgchats runtime skill](https://github.com/chihoai/telegram-for-ai-agents/blob/main/skills/tgchats-local/SKILL.md) <br>
-- [Telegram workflow catalog](https://github.com/chihoai/telegram-for-ai-agents/blob/main/docs/SKILL_CATALOG.md) <br>
-- [Chiho.ai signup](https://chiho.ai/signup) <br>
-- [Telegram API application credentials](https://my.telegram.org/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with setup steps and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-authorized Telegram access; self-hosted setup may use TELEGRAM_API_ID, TELEGRAM_API_HASH, and DATABASE_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: The connected Telegram account grants broad read/write access to chats available to that account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram account with limited chat membership where possible, and require explicit user approval before enabling write-capable message workflows.
+
+Risk: Chiho Agent Access tokens can expose the connected Telegram session if leaked.
+
+Mitigation: Protect and rotate the token, send it only as a bearer header, and do not paste it into URLs or OAuth credential fields.
+
+Risk: The self-hosted setup asks users to run external code that handles sensitive Telegram API credentials and local session data.
+
+Mitigation: Pin the GitHub repository to a reviewed commit and use locked dependency installation before running npm scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seichris/skills/telegram-full-access)
+- [telegram-for-ai-agents on GitHub](https://github.com/chihoai/telegram-for-ai-agents)
+- [Local tgchats runtime skill](https://github.com/chihoai/telegram-for-ai-agents/blob/main/skills/tgchats-local/SKILL.md)
+- [Telegram workflow catalog](https://github.com/chihoai/telegram-for-ai-agents/blob/main/docs/SKILL_CATALOG.md)
+- [Chiho.ai signup](https://chiho.ai/signup)
+- [Chiho Agent Access](https://chiho.ai/profile/agent-access)
+- [Telegram API app credentials](https://my.telegram.org/apps)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hosted bearer-token setup guidance, local environment variable guidance, and runtime selection guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

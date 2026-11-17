@@ -1,0 +1,8 @@
+{
+  "id": "yixiaoer-bootstrap",
+  "name": "yixiaoer-bootstrap",
+  "displayName": "蚁小二CLI安装助手",
+  "version": "1.0.0",
+  "description": "用于安装蚁小二 CLI、同步正式技能并完成基础配置与环境自检",
+  "skills": "./"
+}

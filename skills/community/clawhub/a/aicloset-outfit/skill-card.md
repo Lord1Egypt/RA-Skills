@@ -1,43 +1,59 @@
-## Description: <br>
-AI 衣橱搭配 generates outfit recommendation images from date, city, province, and style preferences by calling the AI Closet API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI-assisted outfit recommendations from date, city, province, and style preferences by calling the AI Closet API and composing returned items into shareable outfit images.
 
-## Publisher: <br>
-[houdamiao](https://clawhub.ai/user/houdamiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houdamiao](https://clawhub.ai/user/houdamiao)
 
-## Use Case: <br>
-External users and assistants use this skill to request outfit recommendations for a given date, city, province, and style. The skill returns terminal text and a generated outfit overview image from the AI Closet service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a dedicated API key and outfit context such as city, date, and style to the AI Closet endpoint. <br>
-Mitigation: Install only if the AI Closet endpoint is trusted, use a dedicated API key, and avoid submitting sensitive outfit context. <br>
-Risk: The skill runs a local Python script that invokes ImageMagick, writes generated images to a temp folder, and may auto-open the result on desktop systems. <br>
-Mitigation: Review and scan the skill before deployment, confirm ImageMagick is installed from a trusted source, and account for local preview and temp-file behavior. <br>
-Risk: Supported chat channels may upload the generated outfit image when processing the MEDIA output line. <br>
-Mitigation: Use the skill only in channels where sharing generated outfit images is acceptable, and preserve the MEDIA line so the intended delivery pipeline can handle it. <br>
+## Use Case:
 
+External users use this skill to request outfit ideas such as casual, business, sport, or date looks. The agent extracts available context, runs the bundled script, and returns the generated outfit overview image with the script output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/houdamiao/aicloset-outfit) <br>
-- [AI Closet API base URL](https://aicloset-dev-h5.wxbjq.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, image files] <br>
-**Output Format:** [Terminal text with a MEDIA file path for a generated PNG overview image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AICLOSET_API_KEY and ImageMagick; sends date, city, province, and style to the AI Closet endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: server release metadata) <br>
+Risk: The skill sends outfit context and an API key to a third-party AI Closet API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted API operator, limit the key to this service, and avoid sharing sensitive personal context in prompts.
+
+Risk: The remote API influences which images are downloaded, processed, and opened on the local machine.
+
+Mitigation: Run the skill in a constrained environment without sensitive local files or internal network access, and review generated files before broader use.
+
+Risk: The script writes temporary image files and automatically previews the generated overview image.
+
+Mitigation: Avoid shared multi-user systems and consider disabling or reviewing preview behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/houdamiao/skills/aicloset-outfit)
+- [AI Closet API base URL](https://aicloset-dev-h5.wxbjq.top)
+- [AI Closet outfit generation endpoint](https://aicloset-dev-h5.wxbjq.top/algorithm/open/system_outfit/create_task)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, image files, configuration, guidance]
+
+**Output Format:** [Plain text terminal output with a MEDIA file path and generated PNG outfit overview.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AICLOSET_API_KEY and ImageMagick; writes generated outfit images to a temporary local directory.]
+
+## Skill Version(s):
+
+0.9.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

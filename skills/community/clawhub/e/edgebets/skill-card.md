@@ -1,45 +1,63 @@
-## Description: <br>
-AI-powered sports betting simulations with Monte Carlo analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered sports betting simulations with Monte Carlo analysis.
 
-## Publisher: <br>
-[cannedoxygen](https://clawhub.ai/user/cannedoxygen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cannedoxygen](https://clawhub.ai/user/cannedoxygen)
 
-## Use Case: <br>
-External users, developers, and agents use EdgeBets to fetch sports matchups, request Monte Carlo betting simulations, review daily picks, and check historical pick performance for NBA, NFL, MLB, and MLS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid simulations can automatically transfer real USDC from the configured Solana wallet. <br>
-Mitigation: Use a dedicated low-balance wallet and verify the $1.00 USDC charge and treasury address before each paid simulation. <br>
-Risk: The skill asks agents to use a Solana private key through environment configuration. <br>
-Mitigation: Avoid using a primary wallet private key in agent environment variables. <br>
+## Use Case:
 
+External users, developers, and agent operators use EdgeBets to browse sports games, request daily picks or track records, and run paid Monte Carlo simulations for NBA, NFL, MLB, and MLS betting analysis.
 
-## Reference(s): <br>
-- [EdgeBets ClawHub listing](https://clawhub.ai/cannedoxygen/edgebets) <br>
-- [EdgeBets website](https://edgebets.fun) <br>
-- [EdgeBets API documentation](https://api.edgebets.fun/api/v1/x402) <br>
-- [EdgeBets OpenAPI specification](https://api.edgebets.fun/api/v1/x402/openapi.json) <br>
-- [x402 protocol](https://x402.org) <br>
-- [edgebets-sdk npm package](https://www.npmjs.com/package/edgebets-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with TypeScript or JavaScript snippets, shell setup commands, sports analysis text, and SDK/API guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and SOLANA_PRIVATE_KEY for wallet-backed use; paid simulations can spend $1.00 USDC on Solana mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Paid simulations can spend real USDC from a Solana mainnet wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a small, dedicated wallet and require manual confirmation of the exact amount, recipient, network, and quote before each payment.
+
+Risk: A long-lived private key in SOLANA_PRIVATE_KEY can expose wallet funds if mishandled.
+
+Mitigation: Avoid connecting a main wallet, rotate credentials when needed, and keep only the funds required for intended simulations in the configured wallet.
+
+Risk: Price information is inconsistent across the artifact, which may confuse payment expectations.
+
+Mitigation: Confirm the current quote, simulation price, and charged amount before approving any Solana transaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cannedoxygen/skills/edgebets)
+- [Publisher Profile](https://clawhub.ai/user/cannedoxygen)
+- [EdgeBets Website](https://edgebets.fun)
+- [EdgeBets API Documentation](https://api.edgebets.fun/api/v1/x402)
+- [EdgeBets OpenAPI Spec](https://api.edgebets.fun/api/v1/x402/openapi.json)
+- [npm Package](https://www.npmjs.com/package/edgebets-sdk)
+- [x402 Protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript and TypeScript code examples, shell commands, and structured simulation summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sports game lists, win probabilities, projected scores, edge analysis, daily pick summaries, track records, balance checks, and wallet setup guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+@startuml
+title 博客系统 · 用例图
+actor 访客 as G
+actor 作者 as A
+usecase "浏览文章" as UC1
+usecase "发布文章" as UC2
+usecase "评论" as UC3
+rectangle "博客平台" {
+  G --> UC1
+  G --> UC3
+  A --> UC2
+}
+UC2 ..> UC1 : <<include>>
+@enduml

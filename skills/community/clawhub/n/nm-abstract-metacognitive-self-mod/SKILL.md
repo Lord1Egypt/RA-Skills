@@ -2,16 +2,18 @@
 name: metacognitive-self-mod
 description: |
   Analyze and improve the improvement process. Use for detecting regressions and meta-optimization
-version: 1.9.8
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udd9e"}}
+version: 1.10.3
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udde0"}}
 source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Metacognitive Self-Modification
+
+## Overview
 
 Analyze the effectiveness of past skill improvements and
 refine the improvement process itself. This is the core
@@ -25,7 +27,7 @@ This skill should be invoked automatically when:
 1. **Regression detected**: The homeostatic monitor finds
    a skill's evaluation window ended in
    `pending_rollback_review` status. The improvement
-   made things worse -- we need to understand why.
+   made things worse, and we need to understand why.
 
 2. **Low effectiveness rate**: When
    `ImprovementMemory.get_effective_strategies()` vs
@@ -51,9 +53,7 @@ warranted:
 from abstract.improvement_memory import ImprovementMemory
 from pathlib import Path
 
-memory = ImprovementMemory(
-    Path.home() / ".claude/skills/improvement_memory.json"
-)
+memory = ImprovementMemory(Path.home() / ".claude/skills/improvement_memory.json")
 
 # Check if metacognitive analysis is warranted
 effective = memory.get_effective_strategies()
@@ -164,7 +164,7 @@ memory.record_insight(
     skill_ref="_meta",  # Special ref for meta-insights
     category="causal_hypothesis",
     insight="Error handling improvements have 85% success rate",
-    evidence=["skill-A v1.1.0: +0.3", "skill-B v2.1.0: +0.15"]
+    evidence=["skill-A v1.1.0: +0.3", "skill-B v2.1.0: +0.15"],
 )
 ```
 
@@ -219,7 +219,7 @@ memory.record_insight(
     skill_ref="_meta",
     category="strategy_success",
     insight="Recommendation: Prioritize error handling and examples over restructuring",
-    evidence=[f"Success rate: error_handling={eh_rate:.0%}, restructure={rs_rate:.0%}"]
+    evidence=[f"Success rate: error_handling={eh_rate:.0%}, restructure={rs_rate:.0%}"],
 )
 ```
 
@@ -278,3 +278,15 @@ Meta-insights stored: 5 new entries in improvement memory
   criteria could be refined by meta-insights
 - `abstract:aggregate-logs` - Data source for improvement
   metrics
+
+## Exit Criteria
+
+- [ ] The metacognitive report lists total outcomes analyzed (effective / regression / neutral
+  counts) sourced from `~/.claude/skills/improvement_memory.json`.
+- [ ] At least one causal hypothesis is recorded under `skill_ref: "_meta"` in
+  `improvement_memory.json` with cited evidence (skill refs and score deltas).
+- [ ] Any Tier 3 strategy recommendation (modify skill-improver priority weights, add avoidance
+  rules, adjust thresholds) is presented as a proposal requiring explicit user approval before
+  any change is applied.
+- [ ] If effectiveness rate is below 50% across 5+ outcomes, this condition is surfaced as the
+  primary trigger reason in the report output.

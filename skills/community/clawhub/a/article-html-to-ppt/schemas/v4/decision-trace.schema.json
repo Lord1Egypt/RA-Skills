@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/SkillMelody/PPT-Smith/main/schemas/v4/decision-trace.schema.json",
+  "title": "Decision Trace v4",
+  "description": "Engine-produced log of every design decision in a compile run: the evidence considered, candidates weighed, choice made, and who made it (rule, LLM advisor, LLM proposal, user override, or fallback). Content-free by construction — evidence is expressed as structural features (counts, types, flags), never as source or slide text — so traces are locally storable, DIY-platform explainable, and contribution-exportable without redaction. This is also the substrate for local learning: proposals that pass QA and gain user approval can be hardened into local archetypes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run", "decisions"],
+  "properties": {
+    "schema_version": { "const": "4.0.0" },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "engine_version", "ir_sha256", "style_pack", "autonomy_tier"],
+      "properties": {
+        "run_id": { "$ref": "#/$defs/idSlug" },
+        "engine_version": { "type": "string", "maxLength": 40 },
+        "ir_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "style_pack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pack_id", "version"],
+          "properties": {
+            "pack_id": { "$ref": "#/$defs/idSlug" },
+            "version": { "type": "string", "maxLength": 40 }
+          }
+        },
+        "profile": { "type": "string", "enum": ["fast", "standard", "premium"] },
+        "autonomy_tier": {
+          "type": "string",
+          "enum": ["L0", "L1", "L2"],
+          "description": "Granted by the behavioral capability probe, never by model self-identification."
+        },
+        "probe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["result"],
+          "properties": {
+            "result": { "type": "string", "enum": ["pass", "marginal", "fail", "skipped"] },
+            "ir_roundtrip_valid": { "type": "boolean" },
+            "repair_rounds_used": { "type": "integer", "minimum": 0, "maximum": 10 }
+          },
+          "description": "Behavioral probe evidence backing the tier grant."
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2000,
+      "items": { "$ref": "#/$defs/decision" }
+    },
+    "outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "qa_error_count": { "type": "integer", "minimum": 0 },
+        "repair_rounds": { "type": "integer", "minimum": 0 },
+        "degradations": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind"],
+            "properties": {
+              "kind": { "type": "string", "enum": ["extractive_ir_fallback", "fallback_archetype", "font_step_down", "content_truncation", "proposal_rejected", "builder_downgrade"] },
+              "slide_id": { "$ref": "#/$defs/idSlug" },
+              "detail_code": { "type": "string", "maxLength": 80 }
+            }
+          },
+          "description": "Every degradation taken to guarantee delivery. Honest reporting surface for the final handoff summary."
+        },
+        "user_feedback": {
+          "type": "string",
+          "enum": ["approved", "revised", "rejected", "none"],
+          "description": "Post-delivery signal that gates local-archetype hardening."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "idSlug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
+    "feature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["feature", "value"],
+      "properties": {
+        "feature": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.]{0,63}$",
+          "description": "Structural feature key, e.g. metric_count, has_time_sequence, list_semantics, relation_types, table_cols. Values must be content-free."
+        },
+        "value": {
+          "oneOf": [
+            { "type": "number" },
+            { "type": "boolean" },
+            { "type": "string", "maxLength": 60, "pattern": "^[A-Za-z0-9_.,+\\-|]*$" }
+          ],
+          "description": "Numbers, booleans, or short symbolic strings only. The pattern forbids free text so no slide/source content can leak into a trace."
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["choice", "confidence"],
+      "properties": {
+        "choice": { "$ref": "#/$defs/idSlug" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rule_id": { "$ref": "#/$defs/idSlug" }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "stage", "chosen", "chosen_by"],
+      "properties": {
+        "decision_id": { "$ref": "#/$defs/idSlug" },
+        "slide_id": { "$ref": "#/$defs/idSlug" },
+        "stage": {
+          "type": "string",
+          "enum": ["narrative", "archetype", "component", "layout_variant", "style_mapping", "text_fitting", "repair", "fallback"]
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "structural": {
+              "type": "array",
+              "maxItems": 32,
+              "items": { "$ref": "#/$defs/feature" },
+              "description": "Evidence A: deterministic features from the parsed source / IR shape."
+            },
+            "semantic": {
+              "type": "array",
+              "maxItems": 32,
+              "items": { "$ref": "#/$defs/feature" },
+              "description": "Evidence B: features derived from LLM-supplied labels (roles, relations, hints)."
+            }
+          },
+          "description": "Dual-evidence record backing the decision."
+        },
+        "candidates": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/candidate" }
+        },
+        "chosen": { "$ref": "#/$defs/idSlug" },
+        "chosen_by": {
+          "type": "string",
+          "enum": ["rule", "llm_advisor", "llm_proposal", "user_override", "fallback"],
+          "description": "rule: deterministic policy. llm_advisor: L1 pick from the candidate menu. llm_proposal: L2 constrained composition that passed QA. user_override: explicit user choice. fallback: below-threshold degradation."
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "proposal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["proposal_sha256", "qa_verdict"],
+          "properties": {
+            "proposal_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            "qa_verdict": { "type": "string", "enum": ["passed", "rejected"] },
+            "hardened_as": { "$ref": "#/$defs/idSlug", "description": "Local archetype id this proposal was saved as, when QA passed and the user approved." }
+          },
+          "description": "Present only for chosen_by=llm_proposal. The composition body lives beside the trace, addressed by hash."
+        }
+      }
+    }
+  }
+}

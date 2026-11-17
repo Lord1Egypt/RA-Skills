@@ -1,7 +1,8 @@
 ---
 name: windows-shell
-version: 4.1.0
-description: "Windows 命令行编码与兼容性规范。覆盖 GBK/UTF-8 编码、PowerShell/pwsh 互操作、Python/Node.js、Git 配置、代码生成规则。适用于 Windows 10/11 + MSYS2/Git Bash 环境下的所有命令行操作。"
+version: 5.3.0
+description: "Windows 命令行工作规范：先选对 shell（默认 Git Bash），再避开编码与 MSYS2 参数改写两类陷阱。覆盖 GBK/UTF-8、BOM、MSYS2 路径转换、PowerShell/pwsh、WSL 判定、Python/Node.js、Git 配置与代码生成规则。适用于 Windows 10/11 + MSYS2/Git Bash 环境下的所有命令行操作。细节按需读 references/。"
+license: MIT
 metadata:
   openclaw:
     emoji: "🪟"
@@ -9,204 +10,183 @@ metadata:
     homepage: "https://github.com/Chenmo0414/win-encoding-fix"
 ---
 
-# Windows 命令行编码规范
+# Windows 命令行工作规范
 
-用户系统：Windows 10/11（代码页 GBK/936），终端：MSYS2/Git Bash。以下规则均在真实 GBK 环境逐条实测验证。
+用户系统：Windows 10/11（代码页 GBK/936），终端：MSYS2/Git Bash。
 
-## 为什么会乱码（一句话原理）
+**本文件是速查与路由表。** 每条规则下面标了「细读」，只在真正遇到那类问题时再去读对应的
+`references/` 文件——不要一次性全部读完。
 
-终端按 **UTF-8** 解码字节流，但 Windows 原生程序（PowerShell 5.1、CMD 工具、默认 Python）按 **GBK/936** 输出中文。字节被错误解码 → 乱码（如 `涓枃`、`M-DM-c`）。修复 = 让源头输出 UTF-8。
+## 一、先分清是哪一类问题
 
-## 快速参考
+在 Git Bash 里执行命令出问题，绝大多数是这两类之一。**先判类，再套解法**，两类的解法完全不通用：
 
-| 场景 | 做法 |
+| 症状 | 类别 | 第一反应 |
+|------|------|------|
+| 输出乱码（`涓枃`、`M-DM-c`、方块字） | **编码** | 让源头输出 UTF-8 |
+| 没报错但**结果就是不对**（参数变了值、行数少一行） | **静默失败** | 见第 1、3 条，必须交叉验证 |
+| 报「无效语法 / invalid / 找不到文件」，或参数悄悄变了值 | **MSYS2 参数改写** | `MSYS_NO_PATHCONV=1` |
+
+拿编码的解法去治参数改写，怎么加前缀都不好使——这是最常见的误诊。
+
+## 二、选对 shell（默认 Git Bash）
+
+| 你要做的事 | 用哪个 |
 |------|------|
-| 执行 PowerShell 命令 | `powershell -Command '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; ...'` |
-| PowerShell 中有 `$_`/`$null` | 外层用**单引号**，防止 bash 展开 |
-| PowerShell 读文件 | 加 `-Encoding UTF8`（pwsh 7 默认即 UTF-8，可省） |
-| 执行系统查询 | 用 `Get-CimInstance` 替代 `wmic` |
-| 执行 Python 单行命令 | 加 `-X utf8`：`python -X utf8 -c "..."`（**不要假设** `PYTHONUTF8` 已生效） |
-| 生成 Python 代码 | `open()` 必须带 `encoding='utf-8'` |
-| Node.js 调系统命令 | execSync 中用 PowerShell 包装 |
-| Git 中文文件名乱码 | 确认 `core.quotepath=false` |
-| 传统 CMD 工具 | **禁止直接使用**，全部走 PowerShell |
+| npm / node / npx / tsc / vitest / python / pip / pytest / git / ssh | **Git Bash** |
+| Windows 服务、注册表、事件日志、计划任务、证书、.NET/COM、对象管道 | **PowerShell**（单条命令切过去，主线不搬家） |
+| 跑 Makefile、需要 gcc/rsync，或重 I/O 构建且项目能整个搬进 ext4 | **WSL** |
+| 需要管理员权限 | **交给人做**——UAC 弹窗 agent 点不了，命令会一直挂着 |
 
-## 环境自检（开工前可选执行）
+项目文件在 `C:\`/`D:\` 上时，**不要用 WSL 去操作它**：跨 `/mnt/*` 比纯 Windows 还慢 4–6 倍，
+且惩罚随项目规模线性放大。
 
-判断当前 shell 的编码是否已正确配置：
+> 细读：判断依据与完整决策表 → [shell-routing.md](references/shell-routing.md)；
+> WSL 值不值得上 → [wsl.md](references/wsl.md)
+
+## 三、必须知道的六条
+
+下面六条是实测中真正拉开差距的。其余规则都在 `references/`。
+
+### 1. 以 `/` 开头的参数会被静默改写
+
+Git Bash 把它当 Unix 路径转成 Windows 路径再传给原生程序。**不报错、退出码 0、参数已经变了**：
 
 ```bash
-python -c "import sys; print('utf8_mode=', sys.flags.utf8_mode)"   # 期望 1；为 0 说明 Python 默认 GBK
-echo "PYTHONUTF8=$PYTHONUTF8"                                       # 期望 1；为空说明环境变量未加载
+node app.js /api/v1/users          # 程序实收 D:/Program Files/Git/api/v1/users
+docker run -v /app:/app ...        # -v 后面被吃掉
+reg query "HKCU\Environment"       # 错误: 无效语法。
 ```
 
-**关键认知**：`PYTHONUTF8` 等变量若只写在 `~/.bash_profile`，**非登录 / 非交互 shell 不会加载它**（AI 助手与脚本通常正是这种 shell）。因此：
-
-- 持久生效请配置 **Windows 用户级环境变量**（被所有进程继承，重启终端后生效）；
-- 当前会话内最可靠的做法是**每条命令显式带编码参数**（见下方各规则）。
-
-## 环境前置条件（持久配置，建议一次性执行）
-
 ```bash
-# 1) Windows 用户级环境变量 —— 最可靠，所有进程继承（重启终端后生效）
-powershell -Command '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
-  [Environment]::SetEnvironmentVariable("PYTHONUTF8", "1", "User");
-  [Environment]::SetEnvironmentVariable("PYTHONIOENCODING", "utf-8", "User")'
-
-# 2) bash 显示相关变量（登录 shell 用），并让 .bashrc 也加载，覆盖非登录交互 shell
-cat >> ~/.bash_profile <<'EOF'
-export PYTHONUTF8=1
-export PYTHONIOENCODING=utf-8
-export LANG=en_US.UTF-8
-export LESSCHARSET=utf-8
-EOF
-grep -q 'bash_profile' ~/.bashrc 2>/dev/null || echo '[ -f ~/.bash_profile ] && . ~/.bash_profile' >> ~/.bashrc
-
-# 3) Git 全局配置
-git config --global core.quotepath false        # 中文文件名正常显示
-git config --global core.autocrlf input         # 提交 LF，检出保持原样
-git config --global i18n.commitEncoding utf-8    # commit 消息 UTF-8
-git config --global i18n.logOutputEncoding utf-8
-git config --global core.pager "less -R"
+MSYS_NO_PATHCONV=1 node app.js /api/v1/users    # 单条前置，不要全局导出
 ```
 
-> 一键配置：`npx win-encoding-fix install --setup-env`
+全局导出会让 `/c/Users/...` 这类本该转换的参数也不转。
 
-## Shell 命令规则
+> 细读：另两种绕法、符号链接退化 → [msys2.md](references/msys2.md)
 
-### 规则 1：PowerShell 命令必须加 UTF-8 前缀 + 外层单引号
+### 2. PowerShell 5.1 输出中文必须加前缀
 
 ```bash
-# 标准模板（外层单引号 + UTF-8 前缀）
 powershell -Command '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; 你的命令'
 ```
 
-**两个要点必须同时满足：**
-- `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8` — 不加则中文输出乱码
-- 外层**单引号** — 防止 bash 把 `$_`、`$null` 当作 bash 变量展开
+外层用**单引号**（防 bash 展开 `$_`、`$null`）。pwsh 7 不需要这个前缀，加了也无害。
+外部程序（node/python）自己写的 UTF-8 穿过 PowerShell 不会被改。
 
-仅当命令中不含 `$` 变量时才可用外层双引号。
+### 3. 读遗留文件前先验编码，别硬套 UTF-8
 
-**关于 pwsh（PowerShell 7）**：若系统装有 `pwsh`（`which pwsh` 可检测），它读写文件默认即 UTF-8，但**输出到管道仍可能因控制台代码页而乱码**（实测不稳定）。因此 pwsh 同样建议带上述前缀——前缀对 pwsh 无害、对 5.1 必需，统一加最省心。
-
-### 规则 2：PowerShell 读文件必须指定 UTF-8
+对一个真正的 GBK/936 文件强加 `-Encoding UTF8` 会读出乱码。先看字节再决定：
 
 ```bash
-powershell -Command '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Content "path\file.txt" -Encoding UTF8'
+od -c legacy.txt | head -2        # 或 xxd；Git Bash 没有 hexdump
 ```
 
-PowerShell 5.1 不加 `-Encoding UTF8` 会用 GBK 读取 UTF-8 文件（实测 `中文` → `涓枃`）。写文件同理用 `Set-Content -Encoding UTF8`。pwsh 7 默认 UTF-8 可省此参数，但加上无害。
+| 文件真实编码 | PS 5.1 | pwsh 7 |
+|------|------|------|
+| UTF-8 | `-Encoding UTF8`（**必须显式写**） | 默认即可 |
+| GBK/936 | `-Encoding Default` | `[System.Text.Encoding]::GetEncoding(936)` |
 
-### 规则 3：禁止直接使用传统 CMD 工具和 cmd /c
+**PS 5.1 读无 BOM 的 UTF-8 不加 `-Encoding UTF8` 会静默出错**——不是乱码那么显眼，
+而是行数直接算错、退出码仍为 0。实测：一个 3 行的 UTF-8 文件，某行末尾字节是
+`a1 8c 0a`，PS 按 GBK 把 `8c` 当双字节前导、吞掉紧随的换行，`Get-Content` 返回
+**2 行**且 `$?` 为 `True`。性质与上面第 1 条的参数改写相同：**结果错、不报错**。
+所以 **PS 5.1 读任何文本文件都显式指定 `-Encoding`**，别赌默认值。
 
-传统 CMD 工具输出 GBK 或 UTF-16，在 UTF-8 终端中全部乱码。`cmd /c` 同样不可用——`chcp 65001` 无法修复子进程编码（实测 `cmd /c "chcp 65001 & echo 你好"` 仍乱码）。
+**含中文的 `.ps1` 脚本文件必须存成 UTF-8 with BOM**。PS 5.1 读脚本时没有 BOM 就按
+ANSI/GBK 解析，中文字面量被拆错——而且多数情况**不报错**：
 
-**必须使用 PowerShell 替代：**
+```
+同一段 $s = "腾讯"，只差 BOM：
+  PS 5.1 无 BOM  →  $s.Length = 3   ✗   字符串在内存里是 3 个错字符
+  PS 5.1 有 BOM  →  $s.Length = 2   ✓
+```
 
-| 禁止 | 替代 |
-|------|------|
-| `wmic` | `Get-CimInstance` |
-| `systeminfo` | `Get-ComputerInfo` 或 PS 包装 `systeminfo` |
-| `ipconfig` | `Get-NetIPAddress` / `Get-NetIPConfiguration` |
-| `netstat` | `Get-NetTCPConnection` |
-| `tasklist` | `Get-Process` |
-| `sc query` | `Get-Service` |
-| `reg query` | `Get-ItemProperty 'HKLM:\...'` |
-| `net user` | `Get-LocalUser` |
-| `schtasks` | `Get-ScheduledTask` |
-| `findstr` | `Select-String` |
-| `cmd /c` | **永远不用** |
+最阴险的是 `Write-Output $s` **打印出来是对的**——脚本按 GBK 误读、输出时又按 GBK 编码，
+两次错误相互抵消。但凡是取长度、截取、正则、比较、哈希的地方全是错的。
+（历史会话里这条也会以 `Unexpected token '鑵捐'` 的语法错形式爆出来，那只是误读的字节
+恰好构成非法 token 的少数情况。）pwsh 7 默认按 UTF-8 读脚本，无此问题。
 
-在 PowerShell 中包装传统命令也可正确转码：
+**只影响脚本文件，不影响命令行参数。** 中文直接写在 `-Command '...'` 里是安全的：
+
 ```bash
-powershell -Command '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; systeminfo | Select-Object -First 5'
+powershell -NoProfile -Command '$s="中文测试"; Write-Output $s.Length'   # → 4，正确
 ```
 
-### 规则 4：Python 命令行执行 —— 优先 `-X utf8`，不要假设环境
+这条容易被反向误判——实测有 agent 因为担心参数被 ANSI 吃掉，绕道去写带 BOM 的 `.ps1`，
+白花两条命令。**要 BOM 的是脚本文件，`-Command` 参数不用。**
 
-实测：AI 助手与脚本运行在**非交互 shell**，`~/.bash_profile` 中的 `PYTHONUTF8` 不会被加载，`sys.flags.utf8_mode` 仍为 0，`python -c "print('你好')"` 直接乱码。
+**写出去也有坑**：PS 5.1 的 `-Encoding UTF8` 会带 BOM，`>` 重定向默认写 UTF-16。要无 BOM 的 UTF-8：
 
-**最可靠做法 —— 单行命令显式带 `-X utf8`：**
+```powershell
+[System.IO.File]::WriteAllText("out.txt", $s, (New-Object System.Text.UTF8Encoding($false)))
+```
+
+> 细读：更多 BOM/重定向陷阱、`$OutputEncoding`、传统 CMD 工具替代表
+> → [encoding.md](references/encoding.md)
+
+### 4. Git Bash 少几个你以为有的工具
+
+`iconv`、`jq`、`make`、`gcc`、`rsync`、`hexdump` **都没有**。转码不要指望 `iconv`，
+验字节用 `od -c`，其余场景改用 Python 或 Node 顶上；真需要完整 GNU 工具链就上 WSL。
+
 ```bash
-python -X utf8 -c "print('你好世界')"
-# 或临时设环境变量
-PYTHONUTF8=1 python script.py
+python -c "import io;io.open('out.txt','w',encoding='utf-8').write(io.open('in.txt',encoding='gbk').read())"
 ```
 
-`-X utf8` 同时让 `print()` 输出与 `open()` 默认读写都走 UTF-8，幂等无副作用，已是 UTF-8 环境时加它也不会出错。**生成代码时**仍应显式写 `encoding='utf-8'`（见规则 6），不依赖运行时标志。
-
-### 规则 5：Node.js 子进程调用系统命令
-
-Node.js 自身输出 UTF-8 没问题，但 `execSync`/`exec`/`spawn` 调用传统 CMD 工具时，输出是 GBK，`toString('utf-8')` 会乱码。
-
-**修复**：让子进程通过 PowerShell 输出 UTF-8：
-```javascript
-execSync('powershell -Command "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; systeminfo"').toString('utf-8')
-```
-
-## 代码生成规则
-
-AI 生成代码时必须遵循以下规则，确保产出的代码在 Windows 上编码正确。
-
-### 规则 6：Python 文件 I/O 必须指定编码
+### 5. 生成代码时显式写编码，不依赖环境
 
 ```python
-# 正确 — 显式指定 encoding
-with open('data.txt', 'r', encoding='utf-8') as f:
-    content = f.read()
-
-with open('output.txt', 'w', encoding='utf-8') as f:
-    f.write(content)
-
-# 错误 — 裸 open() 在 Windows 上默认 GBK（实测 locale.getpreferredencoding() = cp936）
-with open('data.txt', 'r') as f:  # 不要这样写
-    content = f.read()
+open('data.txt', encoding='utf-8')          # 裸 open() 在 Windows 上默认 cp936
 ```
 
-同样适用于 `json.load`/`json.dump`、`csv.reader`、`pathlib.Path.read_text()` 等需要文件对象的场景。
-
-Python subprocess 调用系统命令时也需注意编码：
-```python
-import subprocess
-result = subprocess.run(
-    ['powershell', '-Command', '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Process'],
-    capture_output=True, text=True, encoding='utf-8'
-)
-```
-
-### 规则 7：Node.js 文件操作和子进程编码
-
-```javascript
-// 文件读写 — 显式指定 utf-8
-fs.readFileSync('data.txt', 'utf-8')
-fs.writeFileSync('output.txt', content, 'utf-8')
-
-// 子进程调用 Windows 原生命令 — 通过 PowerShell 包装
-const { execSync } = require('child_process')
-const output = execSync(
-  'powershell -Command "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Service"'
-).toString('utf-8')
-```
-
-### 规则 8：Git 中文支持
-
-环境已配置 `core.quotepath=false`，中文文件名在 `git status`/`git diff` 中正常显示。
-
-如果发现中文文件名仍显示为 `\346\265\213\350\257\225` 形式，执行：
 ```bash
+python -X utf8 -c "..."                      # 单行命令，不假设 PYTHONUTF8 已生效
+```
+
+环境变量会失效，代码里的显式声明不会。
+
+### 6. venv 直接调解释器，绕开 activate
+
+```bash
+./.venv/Scripts/python.exe -m pytest         # source activate 会拼出正反斜杠混拼的畸形路径
+```
+
+同理，管道会吞掉上游退出码，要用 `set -o pipefail` 或 `${PIPESTATUS[0]}`。
+**但 `PIPESTATUS` 会被下一条命令重置——包括赋值语句本身**：
+
+```bash
+cmd | tail -1; a=${PIPESTATUS[0]}; b=${PIPESTATUS[1]}   # ✗ b 恒为 0，赋值 a 就把数组冲了
+cmd | tail -1; st=("${PIPESTATUS[@]}")                  # ✓ 紧邻、一次取完
+echo "上游=${st[0]} 下游=${st[1]}"
+```
+
+实测：`(exit 7) | tail -1` 后紧邻读得 7；中间隔一条命令再读得 0。
+
+> 细读：venv、工具集不全、SSH 密钥、符号链接 → [gitbash-pitfalls.md](references/gitbash-pitfalls.md)
+
+## 四、一次性环境配置
+
+```bash
+powershell -Command '[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;
+  [Environment]::SetEnvironmentVariable("PYTHONUTF8", "1", "User");
+  [Environment]::SetEnvironmentVariable("PYTHONIOENCODING", "utf-8", "User")'
 git config --global core.quotepath false
+git config --global core.autocrlf input
 ```
 
-## 格式化技巧
+写进 `~/.bash_profile` 的变量**非登录 shell 不会加载**（agent 正是这种 shell），
+所以要设成 Windows 用户级环境变量。
 
-- 宽表格加 `| Out-String -Width 200` 防截断
-- `Format-Table -AutoSize` 自适应列宽
-- `Format-List` 展示详细单条记录
-- `Select-Object` 控制返回字段数量
+> 细读：完整配置与每条的理由 → [encoding.md](references/encoding.md) 的「环境前置条件」
 
-## 不需要包装的工具
+## 五、按需索引
 
-以下工具本身输出 UTF-8，可直接使用：
-- `git`、`node`、`npm`、`pnpm`、`bun`、`cargo`、`go`
-- bash 内置：`echo`、`cat`、`ls`、`grep` 等
-- `python`：加 `-X utf8` 后可直接使用（见规则 4）
+| 遇到什么 | 读哪个 |
+|------|------|
+| 乱码、BOM、UTF-16、GBK 遗留文件、CMD 工具替代 | [encoding.md](references/encoding.md) |
+| 参数被改写、符号链接变成副本 | [msys2.md](references/msys2.md) |
+| 不确定该用哪个 shell、想看实测依据 | [shell-routing.md](references/shell-routing.md) |
+| venv、工具缺失、SSH 密钥、管道退出码 | [gitbash-pitfalls.md](references/gitbash-pitfalls.md) |
+| 要不要上 WSL、`wsl.exe` 变量吞噬 | [wsl.md](references/wsl.md) |

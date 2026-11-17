@@ -16,6 +16,7 @@ Use this reference for troubleshooting devices, gateways, scenes, and automation
 - Use `panel.list` when the user asks which panels are in the home.
 - Use `panel.get` when the user asks for one panel's detail, button layout, visible buttons, or current button bindings.
 - Use `panel.button.type.get` when the user asks for one panel's buttons of a specific panel button type value. If the user says "单击", "长按", "K1", or another button-event word, call `panel.get` first and use the returned button row `type` for this intent; use returned `buttonEventId` for button event update/reset.
+- `panel.click` is a runtime-supported hardware-click simulation/test capability. It is not a normal production user UI action; generated apps should prefer direct scene execution, device control, or panel button configuration surfaces.
 - Use `panel.button.configure` only when the user explicitly asks to change one panel's button configuration. Runtime must validate and execute the Runtime request directly and later verify with panel detail reads.
 - Use `panel.button_event.update` when the user explicitly asks to change one existing panel button event, and pass only `buttonEventId`, optional `alias`, and sanitized button actions.
 - Use `panel.button_event.batch_update` only when the user gives multiple explicit button events for the same panel. Keep the batch small; Runtime caps the request and verifies the result when supported.

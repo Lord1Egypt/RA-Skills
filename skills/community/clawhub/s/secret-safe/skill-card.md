@@ -1,41 +1,53 @@
-## Description: <br>
-Secure API key and secrets management guidance for agent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure API key and secrets management guidance for agent skills, covering environment injection, secrets managers, setup flows, and credential leak audits.
 
-## Publisher: <br>
-[brycexbt](https://clawhub.ai/user/brycexbt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brycexbt](https://clawhub.ai/user/brycexbt)
 
-## Use Case: <br>
-Developers and skill reviewers use this skill to configure API keys safely, avoid placing credentials in model context or logs, and audit other skills for credential handling mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may accidentally expose credentials by pasting API keys into chat, logs, prompts, or generated artifacts. <br>
-Mitigation: Use OpenClaw environment injection or a secrets manager, and do not ask users to paste secrets into chat or print them in agent output. <br>
-Risk: Credential-handling examples can be copied into other skills without preserving the required secret gates and output filtering. <br>
-Mitigation: Review derived skills with the included audit checklist and require environment declarations for real secrets before publishing or installing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Security Audit Checklist](references/audit-checklist.md) <br>
-- [Env Injection Examples: Common API Integrations](references/env-injection-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/brycexbt/secret-safe) <br>
+## Use Case:
 
+Developers and skill reviewers use this skill to design, audit, and document agent skills that handle API keys, tokens, passwords, or other credentials without exposing secrets in prompts, logs, outputs, or generated files.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline YAML, JSON, Bash, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no bundled execution behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Example credential-handling commands may be copied into environments where host-level process, shell history, or tool logging protections differ from the documented pattern.
+
+Mitigation: Treat examples as guidance for avoiding LLM and artifact exposure; prefer official CLIs or client libraries that read credentials directly from environment variables and use narrowly scoped, short-lived keys.
+
+Risk: Incorrectly adapting the guidance could still place secrets in prompts, logs, generated files, or user-visible error messages.
+
+Mitigation: Use environment injection gates, subprocess-level secrets manager access, and the bundled audit checklist before enabling or publishing a skill.
+
+## Reference(s):
+
+- [Env Injection Examples](references/env-injection-examples.md)
+- [Skill Security Audit Checklist](references/audit-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline YAML, JSON, shell, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should avoid including secret values and should frame command snippets as credential-handling patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Provides tax planning and compliance guidance for companies and individuals, including policy matching, risk review, filing assistance, and estimated tax-saving analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Code No.7 Tax Butler provides China-focused tax planning and compliance-review guidance for business and individual tax scenarios.
 
-## Publisher: <br>
-[monarchmio](https://clawhub.ai/user/monarchmio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[monarchmio](https://clawhub.ai/user/monarchmio)
 
-## Use Case: <br>
-Businesses, individuals, and their advisors use this skill to draft China-focused tax planning and compliance review reports, including tax burden comparisons, preferential-policy matches, planning suggestions, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax recommendations may be incomplete, outdated, or unsuitable for a specific filing position. <br>
-Mitigation: Confirm calculations, policy eligibility, and filing positions with a qualified tax advisor before acting. <br>
-Risk: Tax records can include sensitive personal, business, and identifier data. <br>
-Mitigation: Share only the minimum necessary details and avoid unnecessary confidential records or identifiers. <br>
+## Use Case:
 
+Business owners, finance teams, tax professionals, and individuals use this skill to draft China-focused tax analysis reports, compare tax burdens, identify potential tax incentives, and surface compliance risks before consulting a qualified tax professional.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/monarchmio/agent-code-no7-tax-butler) <br>
+### Deployment Geography for Use:
 
+China-focused tax domain; available for global use where Chinese tax planning and compliance guidance is relevant.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tax analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, policy references, effective-period notes, quantified estimates, risk prompts, and a reminder to consult a tax professional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tax guidance may become outdated or cite policies whose effective dates have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all cited policy references, effective dates, and filing requirements against current authoritative sources before relying on the output.
+
+Risk: Users may disclose unnecessary company identifiers, personal taxpayer data, or confidential financial details while requesting analysis.
+
+Mitigation: Provide only the minimum tax context needed for the task and avoid entering unnecessary confidential or personally identifying information.
+
+Risk: The skill's output is informational and may not account for all facts of a specific filing or transaction.
+
+Mitigation: Treat recommendations as drafting support and review them with a qualified tax professional before implementation or filing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/monarchmio/skills/agent-code-no7-tax-butler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tax analysis report with policy citations, assumptions, tax-risk notes, and consultation disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided tax context; outputs should be verified against current Chinese tax rules and professional advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

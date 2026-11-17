@@ -1,41 +1,58 @@
-## Description: <br>
-GPG AES-256 encrypted credential management for storing, retrieving, and managing passwords, API tokens, and secrets through init/add/get/list/remove operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GPG AES-256 encrypted credential management for storing, retrieving, listing, and removing passwords, API tokens, and secrets.
 
-## Publisher: <br>
-[king6381](https://clawhub.ai/user/king6381) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[king6381](https://clawhub.ai/user/king6381)
 
-## Use Case: <br>
-Developers and engineers use this skill to initialize and operate a local encrypted credential vault for passwords, API tokens, and service secrets, then retrieve values through Python, shell, or CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext secret material is briefly written to local disk during encryption or saving. <br>
-Mitigation: Use a RAM-backed temporary directory, a dedicated secrets manager, or another workflow that avoids plaintext-on-disk exposure for highly sensitive secrets. <br>
-Risk: The CRED_MASTER_PASS environment variable can be exposed to same-user processes on some Linux systems. <br>
-Mitigation: Prefer interactive entry, gpg-agent or pinentry, or session-scoped runtime injection, and avoid persisting the master password in shell startup files. <br>
+## Use Case:
 
+Developers and automation authors use this skill to add encrypted local credential storage and retrieval to scripts or agent workflows without hardcoding passwords, API tokens, or other secrets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/king6381/mjolnir-credential-vault) <br>
-- [Gpg4win](https://gpg4win.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python snippets, plus command-line text or JSON from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local GPG, Python 3, and CRED_MASTER_PASS for non-interactive retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The shell helper has a code-injection risk when handling untrusted service or field names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the Python CLI or API path, and do not pass untrusted service or field names to the Bash helper until it passes arguments as data rather than interpolating them into Python source.
+
+Risk: A long-lived CRED_MASTER_PASS environment variable can expose the master password to same-user processes on some systems.
+
+Mitigation: Use interactive entry, gpg-agent, a secrets manager, or session-scoped runtime injection instead of storing the master password in persistent shell configuration.
+
+Risk: Retrieved secrets are printed in plaintext.
+
+Mitigation: Limit command output exposure, avoid logging get command results, and handle returned values only in the consuming process that needs them.
+
+## Reference(s):
+
+- [Credential Vault ClawHub release page](https://clawhub.ai/king6381/skills/mjolnir-credential-vault)
+- [Gpg4win](https://gpg4win.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print retrieved secrets in plaintext when the get operations are used.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

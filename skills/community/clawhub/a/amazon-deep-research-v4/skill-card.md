@@ -1,48 +1,67 @@
-## Description: <br>
-Amazon Deep Research V4 guides agents through Amazon product research with multi-platform validation, 1688 image-based sourcing, live USD/CNY margin analysis, WIPO IP checks, and HTML report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Amazon product research with live multi-platform validation, 1688 image-based sourcing, USD/CNY conversion, margin screening, WIPO IP checks, and an HTML report.
 
-## Publisher: <br>
-[zachary2024](https://clawhub.ai/user/zachary2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zachary2024](https://clawhub.ai/user/zachary2024)
 
-## Use Case: <br>
-Marketplace researchers and ecommerce operators use this skill to evaluate Amazon product opportunities, source matching 1688 suppliers from Amazon images, calculate gross margin, filter IP and high-risk products, and generate a sourced HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to extract and reuse live SellerSprite session cookies and tokens, which can expose account access. <br>
-Mitigation: Prefer an official API key or OAuth flow, never paste or display cookies or tokens in chat, and clear copied session material after use. <br>
-Risk: Generated marketplace and margin analysis can be misleading when live exchange rates, paid platform data, or IP checks are incomplete or stale. <br>
-Mitigation: Treat reports as advisory and verify source data, current USD/CNY exchange rates, IP audit results, and margin assumptions before making commercial decisions. <br>
+## Use Case:
 
+External marketplace researchers, sourcing teams, and agent operators use this skill to compare Amazon demand signals, supplier matches, gross margin, and IP risk before deciding which products merit further review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zachary2024/amazon-deep-research-v4) <br>
-- [1688 image search strategy](references/1688-image-search.md) <br>
-- [Multi-platform data collection strategy](references/multi-platform.md) <br>
-- [Gross margin calculation](references/margin.md) <br>
-- [WIPO IP compliance audit](references/wipo-ip.md) <br>
-- [HTML report template](references/html-template.md) <br>
-- [SellerSprite API notes](references/sellersprite-api.md) <br>
-- [WIPO Global Brand Database](https://branddb.wipo.int/) <br>
-- [AMZScout Product Database](https://amzscout.net/product-database) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline Python, JavaScript, browser workflow steps, JSON data files, and an HTML report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sourced marketplace research artifacts such as multi-platform data, 1688 matches, qualified product lists, IP audit data, and an HTML report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-beta.1 (source: server release metadata and package.json) <br>
+Risk: The workflow asks the agent to copy and reuse SellerSprite session cookies or tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep authenticated SellerSprite actions inside the browser session or use an official API key; do not place cookies or tokens in prompts, logs, files, or generated reports.
+
+Risk: The generated HTML report is built from untrusted marketplace data.
+
+Mitigation: Review the report content before sharing or opening it broadly, and treat embedded marketplace values and links as untrusted.
+
+Risk: Product decisions depend on live marketplace, exchange-rate, supplier, and IP-compliance data that can change.
+
+Mitigation: Re-run live checks and manually verify source-labeled values, supplier matches, and HIGH or MEDIUM IP-risk findings before commercial sourcing decisions.
+
+## Reference(s):
+
+- [Amazon Deep Research V4 Skill](https://clawhub.ai/zachary2024/skills/amazon-deep-research-v4)
+- [1688 Image Search Strategy](references/1688-image-search.md)
+- [Filtering Rules](references/filters.md)
+- [HTML Report Template](references/html-template.md)
+- [Margin Calculation](references/margin.md)
+- [Multi-Platform Data Collection](references/multi-platform.md)
+- [SellerSprite API](references/sellersprite-api.md)
+- [WIPO IP Compliance Audit](references/wipo-ip.md)
+- [AMZScout Product Database](https://amzscout.net/product-database)
+- [WIPO Global Brand Database](https://branddb.wipo.int/)
+- [SellerSprite Product Research API](https://www.sellersprite.com/v3/api/product-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with code snippets and generated HTML report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces source-labeled marketplace research artifacts and an HTML report; live data and authenticated marketplace access may be required.]
+
+## Skill Version(s):
+
+1.0.0-beta.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

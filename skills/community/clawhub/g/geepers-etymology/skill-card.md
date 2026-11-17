@@ -1,40 +1,56 @@
-## Description: <br>
-Look up word etymology, historical sound changes, language family trees, and word evolution through the dr.eamer.dev etymology and diachronic linguistics API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up word etymology, historical sound changes, language family trees, and word evolution through the dr.eamer.dev etymology and diachronic linguistics API.
 
-## Publisher: <br>
-[lukeslp](https://clawhub.ai/user/lukeslp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukeslp](https://clawhub.ai/user/lukeslp)
 
-## Use Case: <br>
-External users, writers, researchers, and developers use this skill to query etymology and diachronic linguistics data for word origins, historical forms, cognates, sound changes, and language-family context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lukeslp/geepers-etymology) <br>
-- [dr.eamer.dev API base](https://api.dr.eamer.dev) <br>
-- [Word etymology endpoint example](https://api.dr.eamer.dev/v1/etymology/word?word=serendipity) <br>
-- [Word history endpoint example](https://api.dr.eamer.dev/v1/etymology/explore?word=knight&lang=en) <br>
-- [Sound changes endpoint example](https://api.dr.eamer.dev/v1/etymology/sound-changes?from=proto-indo-european&to=english) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMER_API_KEY and sends lookup terms to api.dr.eamer.dev; avoid secrets and sensitive research topics in queries.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Developers, writers, and language researchers use this skill to query word origins, historical forms, etymology chains, cognates, language family context, and documented sound changes through the dr.eamer.dev API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Lookup terms, language parameters, and any configured DREAMER_API_KEY are shared with api.dr.eamer.dev.
+
+Mitigation: Avoid submitting sensitive private text as lookup terms and handle the API key as a secret.
+
+Risk: The skill depends on a third-party external API for results.
+
+Mitigation: Confirm that using api.dr.eamer.dev is acceptable for the intended workflow before deployment.
+
+## Reference(s):
+
+- [Geepers Etymology ClawHub Page](https://clawhub.ai/lukeslp/skills/geepers-etymology)
+- [dr.eamer.dev Etymology API](https://api.dr.eamer.dev)
+- [Word Etymology Endpoint Example](https://api.dr.eamer.dev/v1/etymology/word?word=serendipity)
+- [Explore Word History Endpoint Example](https://api.dr.eamer.dev/v1/etymology/explore?word=knight&lang=en)
+- [Sound Change Rules Endpoint Example](https://api.dr.eamer.dev/v1/etymology/sound-changes?from=proto-indo-european&to=english)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown with inline HTTP request examples and bash environment configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DREAMER_API_KEY for authenticated API access; lookup terms and language parameters are sent to api.dr.eamer.dev.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

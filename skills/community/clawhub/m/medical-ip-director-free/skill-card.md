@@ -1,42 +1,60 @@
-## Description: <br>
-Chinese-language medical and aesthetic marketing assistant that extracts points from doctor interview material, filters prohibited advertising terms, and drafts 30-second short-video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates medical-aesthetic short-video content by extracting key points from doctor interview material, filtering prohibited advertising language, and drafting 30-second scripts for review.
 
-## Publisher: <br>
-[yuan3249](https://clawhub.ai/user/yuan3249) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuan3249](https://clawhub.ai/user/yuan3249)
 
-## Use Case: <br>
-Doctors, medical aesthetic clinics, and marketing operators use this Chinese-language skill to turn doctor interview material into short-video scripts, basic content analysis, and compliance-oriented review notes for social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage collection of facial photos, consultation details, or other sensitive health-related lead information. <br>
-Mitigation: Do not submit identifiable patient data, facial photos, or health details unless a separate privacy, consent, retention, and deletion process is in place. <br>
-Risk: Generated marketing content may overstate medical advertising compliance or include unsupported medical claims. <br>
-Mitigation: Have qualified medical and legal reviewers check all claims and compliance statements before publication. <br>
-Risk: Artifact content includes promotional contact and upsell text that may be unsuitable for an agent response. <br>
-Mitigation: Remove unwanted promotional contact text before using or publishing generated outputs. <br>
+## Use Case:
 
+Medical-aesthetic doctors and content operators use this skill to analyze raw interview transcripts, identify technical talking points, filter medical-advertising prohibited terms, and draft short-video scripts for human compliance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuan3249/medical-ip-director-free) <br>
+### Deployment Geography for Use:
 
+China-oriented; review before adapting to other jurisdictions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown scripts, analysis notes, and compliance checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include promotional contact text and medical advertising compliance claims that require qualified review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: server release evidence) <br>
+Risk: Generated content may include mandatory promotional contact text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or override promotional footers and contact prompts unless they are explicitly intended and approved for the deployment.
+
+Risk: The workflow may encourage collection of sensitive facial or medical-aesthetic photos through unspecified channels.
+
+Mitigation: Use only a compliant privacy workflow with clear consent, data minimization, access controls, and deletion practices before requesting or processing such materials.
+
+Risk: Medical advertising and platform compliance claims may not be sufficient for every publication context.
+
+Mitigation: Require qualified human review before publishing generated medical or medical-aesthetic content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuan3249/skills/medical-ip-director-free)
+- [Publisher profile](https://clawhub.ai/user/yuan3249)
+- [README.md](artifact/README.md)
+- [30-second short-video example](artifact/examples/short-video-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese analysis notes and short-video scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append promotional contact text in generated content; final medical and advertising compliance review is required.]
+
+## Skill Version(s):
+
+2.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Draft IACUC protocol applications with focus on the 3Rs principles justification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft IACUC protocol applications with focus on the 3Rs principles justification.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, compliance staff, and developers use this skill to draft local IACUC protocol text from structured JSON input, with emphasis on Replacement, Reduction, and Refinement justification sections. Generated text is a draft that requires institution-specific and factual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script reads an input path and can write an output path supplied by the user. <br>
-Mitigation: Run it in an intended workspace and avoid pointing input or output arguments at sensitive files. <br>
-Risk: Generated IACUC protocol language may be incomplete, inaccurate, or mismatched to local institutional requirements. <br>
-Mitigation: Treat output as a draft and have qualified institutional, regulatory, and scientific reviewers verify the protocol before use. <br>
+## Use Case:
 
+External researchers, compliance staff, and agent operators can use this skill to draft local IACUC protocol application text, especially sections explaining Replacement, Reduction, and Refinement principles. Generated drafts should be reviewed by institutional IACUC or compliance staff before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/iacuc-protocol-drafter) <br>
-- [Publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text protocol draft from JSON input, written to stdout or a local output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports sample JSON generation, stdin input, local file input, and local file output using Python 3.8+ standard library.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated protocol content may be incomplete, institution-specific, or unsuitable for submission without expert review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have institutional IACUC or compliance staff review and adapt the draft before use.
+
+Risk: Protocol inputs and generated outputs may contain sensitive research details stored in local files.
+
+Mitigation: Provide only protocol details suitable for local storage and choose input and output paths deliberately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/iacuc-protocol-drafter)
+- [AIPOCH publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language plain text protocol draft generated from JSON input, with optional shell commands for local execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated draft text to stdout or to a selected local output file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

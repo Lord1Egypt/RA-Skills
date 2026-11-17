@@ -1,39 +1,56 @@
-## Description: <br>
-This skill helps an AI agent retrieve data from websites that require user sign-in through a JavaScript MCP browser helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill enables an AI Agent to signin and retrieve data from websites via JS script.
 
-## Publisher: <br>
-[faisalive](https://clawhub.ai/user/faisalive) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[faisalive](https://clawhub.ai/user/faisalive)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent call browser-related MCP tools, hand off manual website sign-in to the user, and resume data retrieval after authentication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an AI agent and an external MCP server to a real browser session through a broad CDP handoff. <br>
-Mitigation: Install only when the publisher and SERVER_URL MCP server are trusted, and require explicit user approval before CDP browsing or authenticated data access. <br>
-Risk: Authenticated browser sessions can expose sensitive account, payment, password, MFA, or account-settings data. <br>
-Mitigation: Use an isolated browser profile with no sensitive sessions and avoid banking, payments, password, MFA, and account-settings pages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/faisalive/browser-ability) <br>
+## Use Case:
 
+Developers and agents use this skill to list and call MCP browser tools for websites that may require user sign-in. It supports a manual sign-in handoff, then resumes the requested data retrieval with a signin_id.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sign-in URLs and signin_id values for human-in-the-loop authentication flows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives a configured MCP server raw browser-control access through a CDP endpoint.
+
+Mitigation: Only install it when the MCP server is trusted and CDP is bound to a protected local interface.
+
+Risk: Transport and configuration details are weakly disclosed, including SERVER_URL expectations.
+
+Mitigation: Document SERVER_URL, enforce trusted HTTPS destinations, and avoid sending raw CDP endpoints to remote services.
+
+Risk: The sign-in guidance is conflicting for sensitive accounts.
+
+Mitigation: Resolve the sign-in instructions before using the skill with sensitive accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/faisalive/skills/browser-ability)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sign-in URLs, signin_id values, and JSON returned by MCP tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

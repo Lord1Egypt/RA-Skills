@@ -1,42 +1,57 @@
-## Description: <br>
-Automatically handles Playwright download events and saves downloaded files with the original filename reported by Playwright instead of a temporary UUID filename. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Playwright workflows preserve intended download filenames by listening for download events and saving files with Playwright's suggested original filename.
 
-## Publisher: <br>
-[Squall0925](https://clawhub.ai/user/Squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to add a Playwright download helper to scripts, configure a download directory, and preserve suggested filenames when files are downloaded. It is most useful for browser automation workflows that need predictable downloaded file paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package promotes browser automation settings such as CSP bypass, stealth-style configuration, and a site-specific resume workflow that may exceed a simple download filename fix. <br>
-Mitigation: Review the skill before installation, prefer integrating only download-helper.js into an existing Playwright script, and use an explicit download directory. <br>
-Risk: Automating recruitment or resume downloads may involve privacy-sensitive data and site terms that require authorization. <br>
-Mitigation: Use the recruitment workflow only when authorized to automate that site and when privacy requirements for downloaded files are understood. <br>
-Risk: The referenced pw-start alias depends on a workspace script that is not included in the artifact evidence. <br>
-Mitigation: Avoid the pw-start alias unless the referenced pw-start.js has been reviewed in the target environment. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to add a Playwright DownloadHelper or standalone browser workflow that saves downloaded files with readable filenames instead of temporary UUID-style names.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Squall0925/playwright-download-fix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and helper code for Playwright scripts; downloaded files are written by the user's runtime environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The provided browser context examples weaken browser protections with settings such as bypassCSP and stealth-style configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the helper in a controlled Playwright workflow and remove bypassCSP or stealth-style settings unless a specific test requires them.
+
+Risk: Downloaded filenames are treated as filesystem paths without safe path checks, which can allow path escape or overwriting existing files.
+
+Mitigation: Sanitize suggested download filenames, enforce that saved files remain inside the chosen download directory, and avoid overwriting existing files without confirmation.
+
+Risk: The standalone script opens a logged-in browsing workflow and may interact with sensitive account data.
+
+Mitigation: Avoid using the standalone script for sensitive logged-in browsing unless the environment, account, and downloaded data are controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/playwright-download-fix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may involve local browser automation settings and filesystem download paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

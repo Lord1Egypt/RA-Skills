@@ -1,42 +1,57 @@
-## Description: <br>
-Detects image duplication and possible tampering in manuscript figures using computer vision algorithms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect image duplication and tampering in manuscript figures using computer vision algorithms.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, editors, and publication integrity reviewers use this skill to scan manuscript PDFs or image folders for repeated figures and possible local tampering. It supports manual review by producing similarity and suspicious-region reports; it does not determine misconduct on its own. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency hygiene issues can make installation unreliable or pull unintended packages. <br>
-Mitigation: Install in an isolated virtual environment and replace requirements.txt with pinned canonical packages such as opencv-python and Pillow before relying on the tool. <br>
-Risk: Manuscripts, extracted page images, and generated reports may contain confidential publication data. <br>
-Mitigation: Use dedicated output and temporary directories, keep processing local, and delete generated reports or extracted page images when they are no longer needed. <br>
-Risk: Similarity and tampering signals can produce false positives or miss subtle edits. <br>
-Mitigation: Treat results as review cues and have a qualified reviewer inspect the source figures before making publication-integrity decisions. <br>
+## Use Case:
 
+Developers, research integrity reviewers, and editorial teams use this skill to scan manuscript PDFs or image folders for visually similar figures and possible local tampering. Results are advisory and should be manually reviewed before drawing conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/image-duplication-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Files] <br>
-**Output Format:** [JSON report with optional PNG visualization file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include summary counts, duplicate groups, similarity scores, and suspicious tampering regions when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The dependency list includes ambiguous or unpinned package names, which can cause unreliable installs or unexpected packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a clean virtual environment, replace cv2 with opencv-python and pil with Pillow, and pin audited dependency versions before use.
+
+Risk: Reports and temporary images are written locally and may contain sensitive manuscript content or derived paths.
+
+Mitigation: Run only on approved manuscripts, choose controlled output and temporary directories, and remove generated files after review.
+
+Risk: Tampering and PDF workflows are advisory and may be unreliable according to the security evidence.
+
+Mitigation: Validate the workflow on known examples and manually review duplicate or tampering findings before relying on them.
+
+## Reference(s):
+
+- [Image Duplication Detector on ClawHub](https://clawhub.ai/aipoch-ai/skills/image-duplication-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [JSON report with a terminal summary and optional PNG visualization]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report summarizes image counts, duplicate groups, tampering findings, processing time, and related image paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

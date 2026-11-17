@@ -1,46 +1,54 @@
-## Description: <br>
-Connects OpenClaw AI agents to WeCom so they can receive and send enterprise chat messages, with message encryption, token management, and access-control settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw WeCom Channel lets an OpenClaw agent receive and send WeCom/WxWork text messages through a self-hosted enterprise application, with message encryption, token management, and access policy configuration.
 
-## Publisher: <br>
-[darrryZ](https://clawhub.ai/user/darrryZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darrryz](https://clawhub.ai/user/darrryz)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to add a WeCom channel for enterprise messaging, including inbound text callbacks and outbound plain-text replies or pushes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Enterprise chat content may appear in OpenClaw or gateway logs. <br>
-Mitigation: Restrict access to OpenClaw and gateway logs, and avoid sending regulated or confidential data unless logs are controlled or redacted. <br>
-Risk: WeCom credentials and callback secrets are required for operation. <br>
-Mitigation: Store the WeCom corpId, agent secret, callback token, and EncodingAESKey in a secrets manager or tightly permissioned configuration. <br>
-Risk: Pairing access control is advertised but was not clearly enforced in the inspected message handler. <br>
-Mitigation: Use allowlist mode or verify pairing enforcement before installing the skill in a business WeCom workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw WeCom Channel on ClawHub](https://clawhub.ai/darrryZ/openclaw-wecom-channel) <br>
-- [OpenClaw WeCom Channel project homepage](https://github.com/darrryZ/openclaw-wecom-channel) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [WeCom Developer Documentation](https://developer.work.weixin.qq.com/document/) <br>
-- [WeCom callback encryption documentation](https://developer.work.weixin.qq.com/document/path/90968) <br>
-- [WeCom message send API documentation](https://developer.work.weixin.qq.com/document/path/90236) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to connect agents to WeCom/WxWork for direct text conversations and outbound notifications through a WeCom custom application. It is suited for teams that can provide WeCom administrator credentials, a public HTTPS callback endpoint, and OpenClaw gateway operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command snippets; runtime channel output is plain-text WeCom messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node, network access, OpenClaw, and WeCom application credentials; the channel supports direct plain-text messages only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Documented pairing access control is not enforced before messages are authorized to the agent.
+
+Mitigation: Use allowlist mode rather than pairing mode until pairing enforcement is fixed, and avoid routing privileged agents or sensitive tools through this channel.
+
+Risk: The WeCom callback endpoint must be reachable from the public internet.
+
+Mitigation: Expose only the intended callback endpoint and place it behind rate limits and request body-size limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/darrryz/skills/openclaw-wecom-channel)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [WeCom Developer Documentation](https://developer.work.weixin.qq.com/document/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plain-text WeCom message guidance and channel configuration for OpenClaw; media, reactions, threads, polls, native commands, and block streaming are not supported.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

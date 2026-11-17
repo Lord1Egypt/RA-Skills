@@ -1,0 +1,9 @@
+{
+  "unit": "万元",
+  "items": [
+    { "name": "产品A", "value": 1560 },
+    { "name": "产品B", "value": 1100 },
+    { "name": "产品C", "value": 900 },
+    { "name": "产品D", "value": 530 }
+  ]
+}

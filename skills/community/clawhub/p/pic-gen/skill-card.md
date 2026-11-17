@@ -1,50 +1,67 @@
-## Description: <br>
-pic-gen helps users turn plain-language image ideas into optimized prompts, choose among Qwen Wanxiang, Banana/Flux, and DALL-E 3, and optionally call configured image-generation APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pic-gen helps agents turn plain-language image requests into optimized, model-specific prompts and optional image generation calls for Qwen Wanxiang, Banana/Flux, DALL-E 3, Midjourney, and Stable Diffusion formats.
 
-## Publisher: <br>
-[aoturlab](https://clawhub.ai/user/aoturlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aoturlab](https://clawhub.ai/user/aoturlab)
 
-## Use Case: <br>
-External users, developers, and creative teams use this skill to optimize image prompts, manage model configuration, and generate images through configured Qwen Wanxiang, Banana/Flux, or DALL-E 3 providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys can be exposed if real credentials are saved in config/models.yaml or shared with the skill artifact. <br>
-Mitigation: Prefer DASHSCOPE_API_KEY, BANANA_API_KEY, OPENAI_API_KEY, and BANANA_MODEL_KEY environment variables; avoid sharing config/models.yaml after adding real keys. <br>
-Risk: Unpinned Python dependencies can change behavior between installations. <br>
-Mitigation: Install the skill in an isolated environment and pin reviewed dependency versions before regular use. <br>
-Risk: Image generation sends prompts and credentials to configured external providers. <br>
-Mitigation: Use only approved provider accounts and review prompt content before sending requests to Qwen Wanxiang, Banana/Flux, or DALL-E 3 APIs. <br>
+## Use Case:
 
+External users, developers, and creative teams use pic-gen to refine simple image ideas into model-specific prompts, manage provider configuration, and optionally generate or download images through configured provider APIs.
 
-## Reference(s): <br>
-- [DALL-E 3 prompt format reference](artifact/references/dalle.md) <br>
-- [Flux prompt format reference](artifact/references/flux.md) <br>
-- [Midjourney prompt format reference](artifact/references/midjourney.md) <br>
-- [Stable Diffusion / ComfyUI prompt format reference](artifact/references/stable-diffusion.md) <br>
-- [OpenAI Images guide](https://platform.openai.com/docs/guides/images) <br>
-- [OpenAI Images API reference](https://platform.openai.com/docs/api-reference/images-create) <br>
-- [Black Forest Labs Flux](https://blackforestlabs.ai/flux/) <br>
-- [Banana documentation](https://docs.banana.dev/banana-docs) <br>
-- [Midjourney parameter documentation](https://docs.midjourney.com/docs/parameter-simplified) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown and command-line output containing optimized prompts, configuration guidance, API result JSON, image URLs, and optional downloaded image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied provider credentials for image API calls; prompt optimization can run without generating images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Image prompts can be sent to selected external providers and may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts before generation and avoid submitting confidential, regulated, or customer-sensitive content unless the chosen provider and account are approved for that use.
+
+Risk: API keys may be exposed if pasted into chat, stored directly in config/models.yaml, committed, or left in shell history.
+
+Mitigation: Prefer environment variables, avoid pasting secrets into chat or command history, and do not commit config/models.yaml after adding keys.
+
+Risk: Downloaded image files are written to a user-selected output directory.
+
+Mitigation: Use --download only with a trusted output directory and review generated files before sharing or deploying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aoturlab/skills/pic-gen)
+- [DALL-E 3 prompt format reference](references/dalle.md)
+- [Flux prompt format reference](references/flux.md)
+- [Midjourney prompt format reference](references/midjourney.md)
+- [Stable Diffusion / ComfyUI prompt format reference](references/stable-diffusion.md)
+- [OpenAI image generation guide](https://platform.openai.com/docs/guides/images)
+- [OpenAI image generation API reference](https://platform.openai.com/docs/api-reference/images-create)
+- [Black Forest Labs Flux](https://blackforestlabs.ai/flux/)
+- [Banana documentation](https://docs.banana.dev/banana-docs)
+- [Midjourney parameter documentation](https://docs.midjourney.com/docs/parameter-simplified)
+- [Stable Diffusion prompt guide](https://stable-diffusion-art.com/prompts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands plus text, JSON, or YAML script outputs; optional downloaded image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on configured provider credentials and may include provider-hosted image URLs, local image files, optimized prompts, or configuration summaries with API keys masked.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Use preclinical PK/PD analyst for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes preclinical pharmacokinetic/pharmacodynamic concentration-time data and reports PK parameters with explicit assumptions and reviewable outputs.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, pharmacology teams, and developers use this skill to run bounded preclinical pharmacokinetic/pharmacodynamic analysis, including non-compartmental PK parameter reporting for concentration-time datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency or environment drift can change analytical behavior. <br>
-Mitigation: Install the skill in a virtual environment and pin and audit numpy and scipy versions when reproducibility matters. <br>
-Risk: Untrusted or unconfirmed PK/PD input paths can lead to inappropriate local data processing. <br>
-Mitigation: Run the script only on trusted datasets with user-confirmed input paths. <br>
-Risk: PK/PD outputs may be used in scientific, regulatory, or dosing decisions without adequate review. <br>
-Mitigation: Treat generated outputs as analytical support and require scientific review before regulatory or dosing use. <br>
+## Use Case:
 
+External developers and preclinical research teams use this skill to calculate and report PK parameters from concentration-time data for workflows such as IND-enabling studies, dose selection, and drug candidate ranking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/preclinical-pkpd-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured analysis sections and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PK parameters such as AUC, Cmax, Tmax, half-life, clearance, and volume, with assumptions and validation needs called out.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Python dependencies are declared without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a virtual environment or container, and pin reviewed versions of numpy and scipy before regulated or decision-critical use.
+
+Risk: Input CSV files may contain unintended, malformed, or unsupported PK/PD data.
+
+Mitigation: Provide only intended concentration-time CSV files and review assumptions, units, and fit quality before using the output.
+
+Risk: Generated PK/PD results are computational assistance, not validated clinical or regulatory conclusions.
+
+Mitigation: Have qualified domain reviewers verify outputs before using them for clinical, regulatory, or program decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/preclinical-pkpd-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown response with optional shell commands and text PK parameter reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports assumptions, constraints, risks, unresolved items, and validation needs when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

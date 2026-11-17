@@ -1,44 +1,53 @@
-## Description: <br>
-Where is this token moving and why? Large transfers, flow trends over time, and breakdown by wallet label. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Where is this token moving and why? Large transfers, flow trends over time, and breakdown by wallet label.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and developers use this skill to investigate token movement, large transfers, flow trends, and wallet-label breakdowns through Nansen CLI research commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Nansen API key. <br>
-Mitigation: Install and use it only where the agent is allowed to access NANSEN_API_KEY, and avoid exposing the key in prompts, logs, or shared output. <br>
-Risk: The skill depends on the nansen-cli package and permits Nansen CLI commands. <br>
-Mitigation: Use it only if you trust the nansen-cli package source, keep usage to the documented token research commands, and review commands before execution. <br>
-Risk: Token flow analysis can fail for stablecoins. <br>
-Mitigation: Use non-stablecoin token addresses for token flows, and skip the flow command for stablecoin tokens as documented by the skill. <br>
+## Use Case:
 
+Developers, analysts, and token researchers use this skill to inspect a token's large transfers, flow trends, and activity grouped by wallet labels. It helps summarize movement across supported chains and highlight possible patterns such as exchange inflows or fresh-wallet activity.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nansen-devops/nansen-token-transfer-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/nansen-devops) <br>
-- [nansen-cli package](https://www.npmjs.com/package/nansen-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise analytical guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI; token flow analysis excludes stablecoins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Supported x402 research calls can spend funds from the configured wallet, and repeated calls or loops can multiply charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicitly selected authenticated key or browser session, review wallet authorization and spending limits, and avoid unattended repeated calls. Stop if authentication or renewal fails.
+
+Risk: Transfer and wallet-label patterns can be misread as evidence of market intent; the skill describes exchange inflows as potential sell pressure and fresh-wallet inflows as possible interest or wash trading.
+
+Mitigation: Treat these patterns as signals for further research, not proof of intent or a standalone investment decision.
+
+## Reference(s):
+
+- [Nansen browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown analysis with token transfer and flow summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected token, chain, time range, available account entitlements, and wallet labels. Token flows does not support stablecoins.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

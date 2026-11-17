@@ -1,43 +1,59 @@
-## Description: <br>
-Builds Aloudata semantic metrics query API requests by first looking up metric and dimension metadata from the Gateway API, then producing metrics query JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Aloudata CAN semantic-layer metric query requests by first retrieving metric and dimension metadata from the Aloudata Gateway, then producing query bodies for metric data analysis.
 
-## Publisher: <br>
-[jackyujun](https://clawhub.ai/user/jackyujun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackyujun](https://clawhub.ai/user/jackyujun)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to convert natural-language metric questions into Aloudata CAN Gateway metric metadata lookups and metrics query request bodies. It is intended for workflows that need metric selection, dimension filtering, time constraints, temporary metric definitions, comparisons, proportions, rankings, or related semantic-layer query JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a CAN_API_KEY and outbound requests to the Aloudata CAN Gateway. <br>
-Mitigation: Use a scoped key where available, keep the key in the configured environment variable, and review generated commands before execution. <br>
-Risk: Metric filters, dimensions, or query bodies may contain sensitive business data sent to gateway.can.aloudata.com. <br>
-Mitigation: Review generated request JSON before execution and avoid sending sensitive filters unless that data is appropriate for the Aloudata gateway. <br>
-Risk: Incorrect metric or dimension names can produce misleading query results. <br>
-Mitigation: Follow the skill behavior of querying Gateway metadata first and returning an empty JSON object when metric coverage or dimension compatibility is insufficient. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to translate natural-language metric questions into Aloudata CAN Gateway searches and metric query JSON. It is intended for workflows that need metric selection, compatible dimensions, filters, time constraints, comparisons, proportions, rankings, or temporary metric definitions.
 
-## Reference(s): <br>
-- [Aloudata homepage](https://aloudata.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/jackyujun/metric-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAN_API_KEY and outbound access to gateway.can.aloudata.com; Gateway metadata responses are described as plain text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Metric names, dimension values, filters, and query bodies are sent to the Aloudata Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data intended for that gateway and avoid prompts containing unrelated secrets or highly sensitive business identifiers.
+
+Risk: The skill requires a user-provided CAN_API_KEY for Gateway access.
+
+Mitigation: Configure CAN_API_KEY as a dedicated, least-privilege credential and prefer the X-API-Key request header.
+
+Risk: Incorrect metric or dimension selection can produce misleading analytics results.
+
+Mitigation: Follow the skill's requirement to retrieve metric and dimension metadata before constructing queries and return an empty JSON object when required context is missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackyujun/skills/metric-query)
+- [Aloudata homepage](https://aloudata.com/)
+- [Aloudata Gateway metrics query API](https://gateway.can.aloudata.com/api/metrics/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON request bodies and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return an empty JSON object when metric or dimension evidence is insufficient for a valid query.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

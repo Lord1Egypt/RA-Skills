@@ -1,43 +1,62 @@
-## Description: <br>
-Revenue infrastructure for autonomous AI agents on Base. Deploy ERC20 tokens with Uniswap V4 liquidity, with trading fees to the creator, locked liquidity, and direct blockchain calls through CLI, MCP, or smart contract workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revenue infrastructure for autonomous AI agents on Base that helps deploy ERC20 tokens with Uniswap V4 liquidity, creator fee sharing, locked liquidity, and direct blockchain calls.
 
-## Publisher: <br>
-[clawd800](https://clawhub.ai/user/clawd800) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawd800](https://clawhub.ai/user/clawd800)
 
-## Use Case: <br>
-External developers and agent operators use Pumpclaw to create, inspect, trade, and manage Base ERC20 tokens with Uniswap V4 liquidity and creator fee flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign irreversible Base transactions using BASE_PRIVATE_KEY. <br>
-Mitigation: Use a fresh wallet with minimal funds and require manual confirmation before create, claim, buy, sell, metadata update, or swap operations. <br>
-Risk: Private keys can be exposed through shared shells, logs, or unsafe environment handling. <br>
-Mitigation: Avoid shared terminals and logs for BASE_PRIVATE_KEY, and clear the environment after use. <br>
-Risk: Runtime contract and ABI dependencies are referenced outside the artifact and were not fully reviewed in the release evidence. <br>
-Mitigation: Review the shared contract and ABI files before allowing an agent to execute transaction-signing commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawd800/token-launcher) <br>
-- [Pumpclaw website](https://pumpclaw.com) <br>
-- [pumpclaw-cli npm package](https://www.npmjs.com/package/pumpclaw-cli) <br>
+## Use Case:
 
+External developers and agent builders use this skill to launch and manage Base ERC20 tokens, inspect token information, and claim creator trading fees through command-line workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and transaction-result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce blockchain transaction hashes, token addresses, token metadata, balances, and fee information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and evidence.json release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to provide a wallet private key and can run financial blockchain transactions.
+
+Mitigation: Use a dedicated low-balance wallet and avoid exporting valuable private keys into a broad shell environment.
+
+Risk: The documented npx commands are unpinned and execute external tooling.
+
+Mitigation: Pin and review package versions before execution instead of running unpinned npx commands as written.
+
+Risk: The release evidence flags under-scoped and partly unaudited tooling, including missing shared contract and ABI files.
+
+Mitigation: Verify the shared contract and ABI files, contract addresses, and every transaction target before signing.
+
+Risk: Token swap behavior can create financial exposure if transaction parameters are not reviewed.
+
+Mitigation: Review swap amounts, recipient addresses, and slippage expectations before signing any transaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawd800/skills/token-launcher)
+- [PumpClaw website](https://pumpclaw.com)
+- [pumpclaw-cli npm package](https://www.npmjs.com/package/pumpclaw-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and TypeScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may initiate Base blockchain reads, token deployment transactions, fee claims, and token swaps when run with wallet credentials.]
+
+## Skill Version(s):
+
+2.1.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

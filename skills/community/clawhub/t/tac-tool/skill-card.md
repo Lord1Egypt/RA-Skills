@@ -1,40 +1,53 @@
-## Description: <br>
-Concatenate and display files in reverse line order (last line first). Use for viewing log files from newest entries and reversing file content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Displays local file contents in reverse line order so recent log entries or reversed file content appear first.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to view local text files in reverse line order, especially logs where recent entries are most useful first. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can display local file contents to the agent. <br>
-Mitigation: Use it only with files the user is comfortable allowing the agent to read and display. <br>
-Risk: The implementation appears more limited than the examples and may handle only one filename or fail without an argument. <br>
-Mitigation: Prefer a single explicit filename and review behavior before relying on multi-file or stdin workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local files in reverse line order, especially when viewing log files from newest entries first.
 
-## Reference(s): <br>
-- [Tac Tool on ClawHub](https://clawhub.ai/dinghaibin/tac-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain text file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Displays local file lines in reverse order; implementation evidence indicates it handles one filename and may not behave correctly with no argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local files selected by the user or agent, which can expose unintended file contents if paths are chosen carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review file paths before execution and use the tool only on files intended for inspection.
+
+Risk: The documented multi-file example is broader than the bundled script behavior.
+
+Mitigation: Test expected command behavior on sample files before relying on multi-file workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/tac-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local files selected by the user or agent and emits reversed line order.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

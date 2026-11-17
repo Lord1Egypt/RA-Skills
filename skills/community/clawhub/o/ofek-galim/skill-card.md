@@ -1,48 +1,65 @@
-## Description: <br>
-Check, monitor, and summarize student homework/tasks from Webtop (SmartSchool), Galim Pro, and Ofek. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check, monitor, and summarize student homework and tasks from Webtop (SmartSchool), Galim Pro, and Ofek across pending work, submission status, due items, and daily school updates.
 
-## Publisher: <br>
-[shaike1](https://clawhub.ai/user/shaike1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaike1](https://clawhub.ai/user/shaike1)
 
-## Use Case: <br>
-Parents or authorized caretakers use this skill to fetch, review, and summarize children's school tasks from Webtop, Galim Pro, and Ofek. It can also support local reminders by syncing Galim due dates into a configured Google Calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Israel <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles children's school account credentials and task details. <br>
-Mitigation: Install and run it only when authorized, keep credentials in a local restricted env file, and avoid exposing raw command output or env values. <br>
-Risk: Calendar sync can write homework details to Google Calendar, including the default primary calendar if left unchanged. <br>
-Mitigation: Use a dedicated restricted calendar, set OFEK_GALIM_CALENDAR_ID explicitly, and run sync with --dry-run before enabling writes. <br>
-Risk: Combined Webtop reporting depends on an external local Webtop helper. <br>
-Mitigation: Review that helper before relying on combined reports and treat Webtop failures separately from Galim or Ofek results. <br>
-Risk: Automated WhatsApp or daily report flows may send children's task information to a group. <br>
-Mitigation: Enable automation only after confirming the destination group and reviewing exactly what data is sent. <br>
+## Use Case:
 
+External users and developers use this skill to inspect student homework status, summarize urgent or overdue work in Hebrew, and maintain local automation for family school-task updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaike1/ofek-galim) <br>
-- [Environment credentials format](references/env-example.md) <br>
-- [Ofek students portal](https://students.myofek.cet.ac.il/he) <br>
-- [Galim Pro task portal](https://lms.galim.org.il/personal?lang=he) <br>
-- [Google Calendar API](https://www.googleapis.com/calendar/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Hebrew plain text or Markdown summaries, optional JSON reports, and calendar sync result JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Google Calendar events when the sync command is used; otherwise outputs task reports and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill handles children's school credentials and student task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege school and calendar credentials, keep environment files private with chmod 600, and avoid broadly shared target calendars.
+
+Risk: Calendar sync can write student task details to an external calendar.
+
+Mitigation: Preview sync with --dry-run and confirm the target calendar before allowing writes.
+
+Risk: Credential loading can be unsafe if WEBTOP_GALIM_ENV points to an untrusted file.
+
+Mitigation: Only use trusted local env files and review the selected file before sourcing or executing the wrapper.
+
+Risk: The Webtop path relies on an external pywebtop script boundary.
+
+Mitigation: Audit or remove the external pywebtop dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaike1/skills/ofek-galim)
+- [Environment credentials format](references/env-example.md)
+- [Ofek student portal](https://students.myofek.cet.ac.il/he)
+- [Galim Pro tasks page](https://lms.galim.org.il/personal?lang=he)
+- [Google Calendar API endpoint](https://www.googleapis.com/calendar/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Hebrew text or Markdown summaries, JSON task reports, shell commands, and calendar-sync status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Google Calendar events during calendar sync; otherwise prints task reports and setup guidance to stdout.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

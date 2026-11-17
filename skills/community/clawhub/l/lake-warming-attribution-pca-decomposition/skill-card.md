@@ -1,39 +1,53 @@
-## Description: <br>
-Reduce dimensionality of multivariate data using PCA with varimax rotation. Use when you have many correlated variables and need to identify underlying factors or reduce collinearity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce dimensionality of multivariate data using PCA with varimax rotation for correlated variables, factor discovery, and collinearity reduction.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, analysts, and data scientists use this skill to structure PCA and varimax workflows for reducing correlated variables, identifying factor groups, and preparing factor scores for attribution or regression analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example analysis code may process sensitive datasets supplied by the user. <br>
-Mitigation: Use approved datasets, remove unnecessary sensitive fields, and follow organizational data-handling rules before running the examples. <br>
-Risk: Running the examples requires third-party Python dependencies. <br>
-Mitigation: Install dependencies only from trusted package sources and review dependency versions before use. <br>
+## Use Case:
 
+Developers, data scientists, and analysts use this skill to guide PCA with varimax rotation for dimensionality reduction, exploratory analysis, and attribution workflows with correlated variables.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides PCA workflow guidance and example snippets; it does not directly create files, run commands, or access credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: PCA results can be misleading if the data is unsuitable, variables are not standardized, or the number of factors is chosen poorly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review correlations, standardize inputs, inspect factor loadings, and validate the factor count with domain knowledge or eigenvalue checks.
+
+Risk: Running the included examples requires local Python packages and user-provided datasets.
+
+Mitigation: Install dependencies deliberately in a controlled environment and review datasets before executing example code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/lake-warming-attribution-pca-decomposition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides PCA workflow guidance and examples; does not execute analysis automatically.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

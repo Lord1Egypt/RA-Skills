@@ -1,37 +1,53 @@
-## Description: <br>
-Generates blog post ideas, social media topics, content themes, and content calendar suggestions based on a user's niche. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free content brainstorming tool that generates blog post ideas, social media topics, content themes, and content calendar suggestions based on a user-provided niche or topic.
 
-## Publisher: <br>
-[kambrosgroup](https://clawhub.ai/user/kambrosgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kambrosgroup](https://clawhub.ai/user/kambrosgroup)
 
-## Use Case: <br>
-External users, marketers, and creators use this skill to brainstorm blog posts, social media topics, content themes, and editorial calendar ideas for a niche or topic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes promotional upgrade language for a Content Creator Suite. <br>
-Mitigation: Treat upgrade references as marketing and evaluate any paid-product recommendation separately before acting on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kambrosgroup/content-ideas-free) <br>
+## Use Case:
 
+Content creators, marketers, small-business owners, and editorial planners use this skill to brainstorm blog topics, social media posts, content themes, and timely angles when planning a publishing calendar.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with example prompts, numbered idea lists, and short planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from a user-provided niche, industry, or topic; no files, credentials, accounts, or system tools are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated ideas may include time-sensitive or trending angles that become outdated or inaccurate.
+
+Mitigation: Verify timely claims and trend relevance before publishing.
+
+Risk: The skill includes an upsell mention for a separate Content Creator Suite.
+
+Mitigation: Review the output for promotional language before using it in customer-facing workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kambrosgroup/skills/content-ideas-free)
+- [Publisher Profile](https://clawhub.ai/user/kambrosgroup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with lists, example prompts, and topic suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated ideas are drafts and may need editorial review before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

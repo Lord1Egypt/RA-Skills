@@ -1,42 +1,53 @@
-## Description: <br>
-Searches Qingbo Open Platform for online articles by keyword, date range, media type, and sentiment, then returns article links, publication details, or counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Qingbo Open Platform article and public-opinion data by keyword, time range, media type, and sentiment, then returns matching article details or count summaries.
 
-## Publisher: <br>
-[zhangqiang327](https://clawhub.ai/user/zhangqiang327) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhangqiang327](https://clawhub.ai/user/zhangqiang327)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use this skill to query Qingbo Open Platform for article search and media monitoring workflows. It helps retrieve matching article titles, URLs, publication times, media sources, sentiment labels, and aggregate counts from natural-language search requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and related parameters are sent to Qingbo's external API. <br>
-Mitigation: Use the skill only for queries appropriate to Qingbo Open Platform and avoid sensitive queries on untrusted networks. <br>
-Risk: Qingbo API credentials are required in config.json. <br>
-Mitigation: Use only your own Qingbo credentials, keep config.json out of source control and shared archives, and rotate credentials if exposed. <br>
-Risk: Searches may consume Qingbo account quota or points. <br>
-Mitigation: Set expectations for query volume and monitor Qingbo account usage when deploying the skill. <br>
+## Use Case:
 
+Developers and users with Qingbo Open Platform credentials use this skill to search web article and public-opinion content by natural-language query, filter results by time, media source, or sentiment, and summarize either article listings or result counts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangqiang327/qingbo-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text search summaries and article lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article title, URL, publication time, media type, sentiment, or total result count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends Qingbo API credentials and user search terms to Qingbo over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive searches until the publisher switches the API request to HTTPS if supported and documents exactly what data is sent externally.
+
+Risk: Sensitive or ambiguous searches could expose user intent to an external service.
+
+Mitigation: Confirm sensitive searches before execution and avoid submitting confidential terms through the skill.
+
+## Reference(s):
+
+- [Qingbo Search on ClawHub](https://clawhub.ai/zhangqiang327/skills/qingbo-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text search results or summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns article titles, URLs, publication times, media labels, sentiment labels, or aggregate counts depending on the query.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

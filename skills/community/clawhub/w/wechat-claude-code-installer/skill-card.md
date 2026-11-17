@@ -1,44 +1,63 @@
-## Description: <br>
-Installs and configures a WeChat-to-Claude Code bridge on macOS, with health checks and repair scripts for common setup issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures a WeChat-to-Claude Code bridge, then guides users through health checks and macOS-focused fixes for common setup issues.
 
-## Publisher: <br>
-[heavenchenggong](https://clawhub.ai/user/heavenchenggong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heavenchenggong](https://clawhub.ai/user/heavenchenggong)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to install, diagnose, and maintain a local WeChat bridge for interacting with Claude Code from WeChat. It is primarily documented for macOS and includes guidance for account choice, API endpoint routing, and daemon management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent WeChat bridge can cause local Claude Code to read files, write files, and run commands. <br>
-Mitigation: Install only when that behavior is intended, bind a trusted or test WeChat account, and do not share the bound account. <br>
-Risk: Private WeChat conversations may be routed through a company or local proxy via ANTHROPIC_BASE_URL. <br>
-Mitigation: Review the API endpoint before use and avoid routing private chats through a company proxy. <br>
-Risk: Long-lived API tokens stored in LaunchAgent plists may be exposed locally. <br>
-Mitigation: Avoid storing long-lived tokens in plist files unless the local exposure risk is understood and acceptable. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to install a local WeChat bridge, run pre-install checks, bind a WeChat account, and apply configuration fixes for working directory, prompt, daemon, endpoint, and upstream drift issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heavenchenggong/skills/wechat-claude-code-installer) <br>
-- [Publisher profile](https://clawhub.ai/user/heavenchenggong) <br>
-- [Upstream bridge project referenced by the artifact](https://github.com/Wechat-ggGitHub/wechat-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces macOS-focused installation, health-check, repair, daemon-management, and uninstall guidance for a local WeChat bridge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server-resolved release evidence) <br>
+Risk: The installer runs remote upstream code and npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit or pin the upstream repository and dependencies before running install.sh, then use check-upstream.sh to review later changes before upgrading.
+
+Risk: The local daemon can access WeChat messages, files, commands, and credentials with the user's account permissions.
+
+Mitigation: Use a disposable or non-work WeChat account, avoid sensitive chats and files, and treat the daemon as a local user-level automation process.
+
+Risk: A configured ANTHROPIC_BASE_URL may route WeChat conversations through a company or third-party proxy.
+
+Mitigation: Run doctor.sh before installation and verify the endpoint and logging policy before sending private or sensitive messages.
+
+Risk: Persisting an Anthropic key in a LaunchAgent plist can expose credentials on the local machine.
+
+Mitigation: Avoid storing a real Anthropic key in the plist where possible and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heavenchenggong/skills/wechat-claude-code-installer)
+- [Upstream wechat-claude-code project](https://github.com/Wechat-ggGitHub/wechat-claude-code)
+- [Tencent iLink AI](https://ilinkai.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS is the tested platform; Linux support is documented through the upstream project only.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

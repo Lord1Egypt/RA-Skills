@@ -1,51 +1,67 @@
-## Description: <br>
-Assess the current PHI Readiness Stage (PRS) of a workload, repository, system, or environment; determine HIPAA applicability and role; identify evidence gaps; and recommend next actions using official HHS/OCR and NIST sources with conservative evidence caps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess the current PHI Readiness Stage (PRS) of a workload, repository, system, or environment; determine HIPAA applicability and role; identify evidence gaps; and recommend next actions using official HHS/OCR and NIST sources with conservative evidence caps.
 
-## Publisher: <br>
-[nickzren](https://clawhub.ai/user/nickzren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickzren](https://clawhub.ai/user/nickzren)
 
-## Use Case: <br>
-Developers, security reviewers, compliance teams, and product teams use this skill to assess a workload's PRS stage, identify PHI-readiness evidence gaps, and recommend next actions without treating PRS as a legal determination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment evidence may contain PHI or sensitive operational details. <br>
-Mitigation: Use redacted evidence, record pointers, and approved storage paths; avoid placing raw PHI into prompts, tickets, reports, or public documentation. <br>
-Risk: HIPAA guidance or enforcement posture may change after the packaged baseline was curated. <br>
-Mitigation: Verify official HHS/OCR, eCFR, and NIST sources live before making current regulatory statements and record the access date. <br>
-Risk: A PRS assessment can be overstated as legal approval or certification. <br>
-Mitigation: Use the skill's required caveats and safe public wording; do not label a workload as HIPAA compliant, HIPAA certified, or HIPAA secure. <br>
-Risk: Missing or stale evidence can lead to an unsupported stage assignment. <br>
-Mitigation: Apply conservative evidence caps, identify blockers explicitly, and recommend the next evidence artifacts needed for the next stage. <br>
+## Use Case:
 
+Developers, security reviewers, compliance reviewers, and product teams use this skill to assess a workload's PHI readiness stage, identify evidence gaps, and prioritize next actions without overstating legal status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickzren/phi-readiness-stages) <br>
-- [Project homepage](https://github.com/nickzren/phi-readiness-stages) <br>
-- [Official Source Registry](references/source-registry.md) <br>
-- [Current Baseline](references/current-baseline.md) <br>
-- [Assessment Evidence Handling](framework/assessment-evidence-handling.md) <br>
-- [Output Contract](framework/output-contract.md) <br>
-- [HIPAA Security Rule Crosswalk](mappings/hipaa-security-rule-crosswalk.md) <br>
-- [NIST SP 800-66 Rev. 2 Mapping](mappings/nist-800-66-r2.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown assessment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scoped evidence review, official-source verification records, PRS stage assignment, blockers, ordered recommendations, caveats, and safe public wording.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: Assessment evidence may include PHI or confidential compliance records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted screenshots, evidence pointers, and approved internal storage instead of pasting raw PHI or confidential records into chat.
+
+Risk: PRS findings could be mistaken for a legal determination or compliance certification.
+
+Mitigation: Keep conclusions scoped to the workload and use the skill's required caveats against saying HIPAA compliant, HIPAA certified, or HIPAA secure.
+
+Risk: Stale, indirect, or repo-only evidence can overstate readiness.
+
+Mitigation: Apply the evidence freshness rules and conservative stage caps, and record missing approval or live operational evidence as blockers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickzren/skills/phi-readiness-stages)
+- [Project homepage](https://github.com/nickzren/phi-readiness-stages)
+- [PHI Readiness Stages README](README.md)
+- [PRS assessment workflow](skills/phi-readiness-review/SKILL.md)
+- [Assessment evidence handling](framework/assessment-evidence-handling.md)
+- [Stage rubric](framework/stage-rubric.md)
+- [Output contract](framework/output-contract.md)
+- [Official source registry](references/source-registry.md)
+- [HHS HIPAA Security Rule overview](https://www.hhs.gov/hipaa/for-professionals/security/index.html)
+- [45 CFR Part 164 regulation text](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164)
+- [NIST SP 800-66 Rev. 2](https://csrc.nist.gov/pubs/sp/800/66/r2/final)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown assessment report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scoped summary, applicability and role analysis, evidence review, source verification, PRS stage assignment, domain findings, recommended actions, caveats, and regulatory boundary notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

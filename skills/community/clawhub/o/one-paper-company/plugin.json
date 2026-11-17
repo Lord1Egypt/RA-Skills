@@ -1,0 +1,71 @@
+{
+  "name": "one-paper-company",
+  "displayName": "一个公司一张纸",
+  "description": "把任意公司做成一张可分享、可离线、可打印的深度研究 HTML 单页。10 步滚动联动 + 15 类数据可视化 + ECharts 内联 + 像素风品牌动画。",
+  "version": "2.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/EdwardWason/one-paper-company",
+  "author": {
+    "name": "EdwardWason"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EdwardWason/one-paper-company.git"
+  },
+  "keywords": [
+    "scrollytelling",
+    "html",
+    "echarts",
+    "research",
+    "single-page",
+    "company-analysis",
+    "visualization"
+  ],
+  "category": "content-generation",
+  "tags": [
+    "内容生成",
+    "公司研究",
+    "数据可视化",
+    "HTML"
+  ],
+  "triggers": [
+    "一个公司一张纸",
+    "一公司一纸",
+    "公司一张纸",
+    "公司周期复盘",
+    "公司速览卡",
+    "公司估值地图",
+    "公司竞争格局"
+  ],
+  "capabilities": {
+    "offline": true,
+    "crossPlatform": true,
+    "requiresNetwork": false
+  },
+  "requirements": {
+    "bins": ["python"],
+    "env": []
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "plugin.json",
+    "template/template.html",
+    "template/pixel-font.js",
+    "scripts/build_html.py",
+    "scripts/validate.py",
+    "scripts/extract_nvidia_data.py",
+    "references/product-forms.md",
+    "references/data-contract.md",
+    "references/responsive-spec.md",
+    "references/exception-handling.md"
+  ],
+  "size": {
+    "skill": "~50KB",
+    "references": "~5MB",
+    "note": "references/ 包含大文件（nvidia_regression.html 2.27MB, echarts 1MB），通过 .gitignore 和 .clawhubignore 排除"
+  }
+}

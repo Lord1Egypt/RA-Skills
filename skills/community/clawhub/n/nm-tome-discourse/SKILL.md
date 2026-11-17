@@ -1,7 +1,7 @@
 ---
 name: discourse
 description: Scans HN, Lobsters, Reddit, and tech blogs for community experience reports
-version: 1.9.8
+version: 1.10.3
 triggers:
   - hackernews
   - reddit
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: tome
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/tome](https://github.com/athola/claude-night-market/tree/master/plugins/tome). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/tome](https://github.com/athola/claude-night-market/tree/master/plugins/tome). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Discourse Search
@@ -26,8 +26,8 @@ source_plugin: tome
 
 ## When NOT To Use
 
-- Academic research (use `/tome:papers`)
-- Code examples (use `/tome:code-search`)
+- Academic research (use `Skill(tome:papers)`)
+- Code examples (use `Skill(tome:code-search)`)
 
 Scan community channels for discussions on a topic.
 
@@ -45,3 +45,16 @@ Scan community channels for discussions on a topic.
 2. Execute via WebFetch (APIs) or WebSearch (fallback)
 3. Parse responses into Finding objects
 4. Merge across sources with source attribution
+
+## Exit Criteria
+
+- [ ] At least two community channels (HN, Lobsters, Reddit, or
+      tech blogs) queried per invocation
+- [ ] HN results fetched via Algolia API at `hn.algolia.com`
+      (WebFetch); WebSearch used as fallback if the API is
+      unreachable
+- [ ] Each Finding object includes a `source` field identifying
+      which channel (HN, Lobsters, Reddit, or blog) it came from
+- [ ] If all WebFetch and WebSearch calls fail for every channel,
+      the failure is reported explicitly rather than returning
+      fabricated or empty findings

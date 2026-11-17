@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71h18yq7ayrcsa39r02ht4dd82pyc9",
-  "slug": "bom-compare-tool",
+  "name": "bom-compare-tool",
   "version": "1.0.0",
-  "publishedAt": 1774377333968
+  "description": "BOM物料清单对比工具 - 对比两个版本的BOM差异，自动识别新增、删除、变更的物料项",
+  "tags": ["BOM", "物料清单", "对比", "设计变更", "采购"],
+  "author": "永杰团队",
+  "license": "MIT",
+  "language": "中文"
 }

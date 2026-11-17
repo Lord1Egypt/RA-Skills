@@ -1,40 +1,57 @@
-## Description: <br>
-Image Prompt Engineer helps agents generate, refine, critique, and package production-ready prompts for Midjourney and other image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate production-ready image prompts for Midjourney and other image models.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-External users and creators use this skill to turn image concepts into paste-ready prompts, prompt variants, and refinements for Midjourney or another named image model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may default to Midjourney when the user did not specify a model, which can produce model-specific parameters that do not fit another generator. <br>
-Mitigation: Confirm the target image model for model-specific work and omit Midjourney-only parameters when another model is named. <br>
-Risk: Midjourney model defaults and parameter compatibility can change over time. <br>
-Mitigation: Verify current official model and parameter details before relying on version-specific or time-sensitive prompt guidance. <br>
+## Use Case:
 
+External users and creators use this skill to create, refine, critique, translate, and vary image-generation prompts for Midjourney and other image models.
 
-## Reference(s): <br>
-- [Midjourney Prompt Guide](references/midjourney-prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown containing paste-ready image prompts, compact variants, and short rationale or change notes when useful.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Midjourney when no model is specified; Midjourney parameters are placed at the end of the prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release and skill metadata) <br>
+Risk: The skill defaults to Midjourney and English prompt text when the request is underspecified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target image model and prompt language when those choices matter.
+
+Risk: Built-in examples and defaults may influence the generated aesthetic.
+
+Mitigation: Provide brand constraints, prohibited content, and desired style direction for production prompts.
+
+Risk: Midjourney model defaults and parameter compatibility can change over time.
+
+Mitigation: Check official Midjourney documentation before relying on time-sensitive default-version or feature-compatibility claims.
+
+## Reference(s):
+
+- [Midjourney Prompt Guide](references/midjourney-prompt-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt text with optional numbered variants and short change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Midjourney when no target model is specified; final prompt text defaults to English unless the user requests another language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

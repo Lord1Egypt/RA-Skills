@@ -1,38 +1,51 @@
-## Description: <br>
-Control WiiM audio devices (play, pause, stop, next, prev, volume, mute, play URLs, presets). Use when the user wants to control music playback, adjust volume, discover WiiM/LinkPlay speakers on the network, or play audio from a URL on a WiiM device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control WiiM audio devices (play, pause, stop, next, prev, volume, mute, play URLs, presets). Use when the user wants to control music playback, adjust volume, discover WiiM/LinkPlay speakers on the network, or play audio from a URL on a WiiM device.
 
-## Publisher: <br>
-[geodeterra](https://clawhub.ai/user/geodeterra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geodeterra](https://clawhub.ai/user/geodeterra)
 
-## Use Case: <br>
-Developers and audio-device users use this skill to discover and control WiiM or LinkPlay speakers on a local network through the wiim-cli command-line tool. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the external wiim-cli package for device control. <br>
-Mitigation: Install the package only from a source the user trusts before following the generated commands. <br>
-Risk: On networks with more than one WiiM or LinkPlay device, commands may target an unintended speaker if discovery chooses the wrong device. <br>
-Mitigation: Use the --host option when the user wants to control a specific speaker. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill to discover and control WiiM or LinkPlay audio devices on a local network, including playback, volume, presets, and direct audio URLs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to install or run the third-party wiim-cli package without pinning a version.
+
+Mitigation: Verify that wiim-cli is the package intended for use, pin a trusted version in managed environments, and grant only the local network and account access needed to control WiiM devices.
+
+Risk: Device discovery and control operate on the local network and can affect available WiiM or LinkPlay speakers.
+
+Mitigation: Use --host when targeting a specific device and run commands only on trusted local networks.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is oriented around local-network device control using the external wiim-cli package.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Manage Joplin notes via REST API for creating, reading, updating, deleting, and searching notes programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Joplin notes via REST API. Use for creating, reading, updating, deleting, or searching Joplin notes programmatically.
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage Joplin notes, notebooks, and tags through the Joplin Data API. It supports note retrieval, search, creation, updates, deletion, import, export, and organization workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, modify, move, and permanently delete Joplin notes, notebooks, and tags. <br>
-Mitigation: Review destructive commands before execution, avoid permanent deletes unless backups exist, and test changes on non-critical notes first. <br>
-Risk: The Joplin API token gives broad access to the user's Joplin data. <br>
-Mitigation: Keep JOPLIN_TOKEN private, scope the runtime environment tightly, and rotate the token if it may have been exposed. <br>
-Risk: The export safety boundary is misleading because out-of-scope export paths are warned about rather than rejected. <br>
-Mitigation: Set JOPLIN_EXPORT_DIR to an intended workspace path and manually confirm export destinations until the script enforces the boundary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Joplin REST API documentation](https://joplinapp.org/help/api/references/rest_api/) <br>
-- [Joplin search documentation](https://joplinapp.org/help/apps/search) <br>
-- [Joplin API reference](references/API.md) <br>
-- [Joplin configuration guide](references/CONFIGURATION.md) <br>
-- [ClawHub skill page](https://clawhub.ai/killgfat/joplin-api) <br>
+## Use Case:
 
+Developers and operators use this skill to manage Joplin notes, notebooks, and tags from an agent workflow through the Joplin Data API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Joplin API command guidance and may create, update, delete, import, or export Joplin note data when invoked through its scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary reports that export behavior can write outside the documented workspace boundary.
+
+Mitigation: Do not rely on the export-directory restriction until the export code fails closed for paths outside JOPLIN_EXPORT_DIR; keep exports in a reviewed workspace path.
+
+Risk: The skill supports destructive note, folder, and tag operations, including permanent deletion options.
+
+Mitigation: Confirm target IDs and maintain backups before delete operations; reserve permanent deletion for explicitly approved workflows.
+
+Risk: The skill connects to a Joplin Web Clipper endpoint using an API token.
+
+Mitigation: Use a trusted local endpoint or an HTTPS remote endpoint, avoid remote plaintext HTTP, and protect JOPLIN_TOKEN as a credential.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/killgfat/skills/joplin-api)
+- [Joplin REST API](https://joplinapp.org/help/api/references/rest_api/)
+- [Joplin Search Syntax](https://joplinapp.org/help/apps/search)
+- [Joplin Plugin API](https://joplinapp.org/help/api/)
+- [API Reference](references/API.md)
+- [Configuration Guide](references/CONFIGURATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with command examples and API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, requests, python-dotenv, and a configured JOPLIN_TOKEN for the target Joplin Web Clipper API.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

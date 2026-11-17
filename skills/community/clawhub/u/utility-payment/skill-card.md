@@ -1,42 +1,53 @@
-## Description: <br>
-Provides guidance for household utility bill payments, automatic debit setup, and bill checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for household utility payment summaries, automatic deductions, and bill checks.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users can use this skill to ask an agent for concise guidance on household utility payment workflows, bill status checks, reminders, and safety considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose banking credentials, one-time codes, utility account passwords, or other sensitive account details while discussing bill payment workflows. <br>
-Mitigation: Do not share credentials or verification codes with an agent; only use verified provider channels for account access and authorization. <br>
-Risk: Payment or auto-debit guidance could be mistaken for authorization to complete a real transaction. <br>
-Mitigation: Require explicit user confirmation and final approval through the verified utility provider or payment platform before any real payment or auto-debit change. <br>
-Risk: Third-party utility or payment interfaces may change or become unavailable, making guidance stale. <br>
-Mitigation: Confirm current steps, fees, deadlines, and account status directly with the provider before relying on the guidance. <br>
+## Use Case:
 
+External users can use this skill to get agent guidance for household water, electricity, gas, and related utility-payment workflows, including bill review, automatic-deduction considerations, reminders, and privacy precautions.
 
-## Reference(s): <br>
-- [ClawHub Utility Payment release page](https://clawhub.ai/mike47512/utility-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown text with summaries, workflow steps, highlights, safety tips, and example queries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; does not execute payments, access credentials, or call utility provider systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Utility bills, autopay, and third-party account access can involve sensitive personal and financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm account permissions and avoid sharing unnecessary personal data before authorizing payment-related actions.
+
+Risk: Provider portals, payment options, discounts, and third-party interfaces may change or become unavailable.
+
+Mitigation: Verify current provider instructions, balances, due dates, and payment status directly with the utility service before relying on guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/utility-payment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with concise summaries and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or persistence; users should verify real payment details with the utility provider before acting.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

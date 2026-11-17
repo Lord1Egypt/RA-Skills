@@ -1,44 +1,55 @@
-## Description: <br>
-Creates OpenClaw agents and binds them to Feishu group chats by collecting requirements, confirming an Agent Card, generating configuration files, and providing binding and testing commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates new OpenClaw agents and binds them to Feishu group chats by collecting requirements, confirming an agent card, generating configuration files, and providing setup commands.
 
-## Publisher: <br>
-[xuanyizhi](https://clawhub.ai/user/xuanyizhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuanyizhi](https://clawhub.ai/user/xuanyizhi)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to define a new OpenClaw agent, generate its local configuration files, and bind it to a Feishu group with administrator and member permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect Feishu group, administrator, allowlist, or routing settings could bind the wrong agent or expose the agent in an unintended group. <br>
-Mitigation: Confirm the Agent Card, group ID, administrator identity, allowlist entry, and binding configuration before applying changes. <br>
-Risk: Generated agent behavior may exceed the intended purpose if persona, capabilities, boundaries, or permissions are underspecified. <br>
-Mitigation: Require explicit user confirmation of the persona, allowed capabilities, red-line boundaries, and administrator versus member permissions before writing configuration files. <br>
-Risk: Setup notes written to memory could include sensitive operational details. <br>
-Mitigation: Review setup notes for secrets, private group identifiers, or unnecessary sensitive details before saving them. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to create a new agent, define its behavior and permissions, and bind it to a Feishu group chat. It supports requirement gathering, agent card confirmation, configuration file generation, group allowlist checks, binding, testing, and operational notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuanyizhi/agent-creator-feishu) <br>
-- [Agent Card Template](references/AGENT-CARD-TEMPLATE.md) <br>
-- [OpenClaw Agent Creation Guide](references/AGENT-CREATION-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with generated file templates, JSON configuration snippets, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local OpenClaw agent workspace files, allowlist or routing configuration, and setup notes after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill gives high-impact OpenClaw and Feishu configuration instructions without enough validation or containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted administrator context, strictly validate agent names and group IDs, and review exact OpenClaw and Feishu configuration changes before execution.
+
+Risk: Generated behavior text or free-form prompts may be written into shared operational memory.
+
+Mitigation: Avoid writing free-form user prompts or generated behavior text into shared MEMORY.md unless an administrator has reviewed and approved the content.
+
+## Reference(s):
+
+- [Agent Card Template](references/AGENT-CARD-TEMPLATE.md)
+- [OpenClaw Agent Creation Guide](references/AGENT-CREATION-GUIDE.md)
+- [ClawHub Skill Page](https://clawhub.ai/xuanyizhi/skills/agent-creator-feishu)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON snippets, and configuration file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OpenClaw workspace files, Feishu group binding instructions, allowlist checks, and testing guidance for administrator review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

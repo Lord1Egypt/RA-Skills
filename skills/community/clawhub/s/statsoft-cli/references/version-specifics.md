@@ -215,14 +215,14 @@ SAVEDATA: FILE IS results.dat;
 | 2.4+ | Latest, Rj module support |
 | 2.3+ | Improved syntax export |
 
-### jamovi CLI Usage
+### jamovi Execution
 
-```bash
-# Rj mode (execute R syntax from command line)
-jamovi --Rj "summary(mtcars)"
+> ⚠️ jamovi has **no pure CLI mode** and cannot run silently/batch. This skill provides detection and manual GUI-launch guidance only (GUI-only).
 
-# Or run Rj script file
-jamovi "script.Rj"
+**Alternative (R script, no GUI)**: Use the `jmv` R package to run jamovi modules in the background:
+```r
+library(jmv)
+descriptives <- jmv::descriptives(data = mydata, vars = c("var1", "var2"))
 ```
 
 ---
@@ -231,15 +231,14 @@ jamovi "script.Rj"
 
 | Version | Notes | CLI Status |
 |---------|-------|-----------|
-| 0.18+ | Latest | ⚠️ `jasp --console` (Beta) |
+| 0.18+ | Latest | ⚠️ No stable CLI (GUI-only) |
 | 0.16+ | Improved modules | ⚠️ Limited CLI |
 
-### JASP CLI Usage
+### JASP Execution
 
-```bash
-# Experimental — may not support all features in headless mode
-jasp --console data.csv
-```
+> ⚠️ JASP has **no pure CLI mode** and cannot run silently/batch. This skill provides detection and manual GUI-launch guidance only (GUI-only).
+
+> This skill does NOT automate JASP via R/jaspTools in the background — JASP is GUI-only; detection + manual-launch guidance only.
 
 ---
 
@@ -270,15 +269,11 @@ pspp < analysis.sps
 | 28.0 | Improved multi-group |
 | 27.0 | Baseline |
 
-### AMOS Batch Usage
+### AMOS Execution
 
-> ⚠️ AMOS CLI is limited. Use Python extension to control AMOS:
+> ⚠️ AMOS has **no CLI mode** and cannot run silently/batch. This skill provides detection and manual GUI-launch guidance only (GUI-only).
 
-```python
-# Requires IBM SPSS Amos Python extension
-import amos
-amos.RunAnalysis("model.amw", "output.out")
-```
+> AMOS is GUI-only; this skill provides NO background automation (including any script shown in reference docs). For automation, the user must write it themselves outside this skill's scope.
 
 ---
 
@@ -634,9 +629,9 @@ microfit commands.txt
 
 ### Platform Support
 
-| 平台 / Platform | 支持 | CLI 支持 | 闪屏 |
-|----------------|------|----------|------|
-| Windows | ✅ | ✅（/B 参数） | ❌ |
+| Platform | Supported | CLI Support | Splash |
+|----------|-----------|-------------|--------|
+| Windows | ✅ | ✅ (/B parameter) | ❌ |
 | macOS | ❌ | ❌ | — |
 | Linux | ❌ | ❌ | — |
 
@@ -647,12 +642,10 @@ microfit commands.txt
 | 2024 | Latest, batch mode support |
 | 2023 | Baseline |
 
-### NCSS CLI Usage
+### NCSS Invocation
 
-```batch
-REM Run NCSS batch analysis
-"NCSS.exe" /B "analysis.ncss"
-```
+> ⚠️ Reference only — this skill provides detection + manual-launch guidance for NCSS and does NOT auto-execute its CLI. To run batch analysis manually:
+> `"NCSS.exe" /B "analysis.ncss"`
 
 ---
 
@@ -660,10 +653,10 @@ REM Run NCSS batch analysis
 
 ### Platform Support
 
-| 平台 / Platform | 支持 | CLI 支持 | 闪屏 |
-|----------------|------|----------|------|
-| Windows | ✅ | ✅（-h 参数） | ❌ |
-| macOS | ✅ | ⚠️ 有限 / Limited | ⚠️ 可能有 / May have |
+| Platform | Supported | CLI Support | Splash |
+|----------|-----------|-------------|--------|
+| Windows | ✅ | ✅ (-h parameter) | ❌ |
+| macOS | ✅ | ⚠️ Limited | ⚠️ May have |
 | Linux | ❌ | ❌ | — |
 
 ### Version Differences
@@ -674,9 +667,7 @@ REM Run NCSS batch analysis
 | 2024 | Baseline |
 | 2023 | Older versions may have limited CLI support |
 
-### Origin CLI Usage
+### Origin Invocation
 
-```batch
-REM Run LabTalk script in batch mode
-origin97 -h script.ogs
-```
+> ⚠️ Reference only — this skill provides detection + manual-launch guidance for Origin and does NOT auto-execute its CLI. To run a LabTalk script manually:
+> `origin97 -h script.ogs`

@@ -1,43 +1,53 @@
-## Description: <br>
-Produces an investment-banker-grade research memo and data provenance table from CN raw-data JSON snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces an investment-banker-grade research memo and data provenance table from Chinese company raw-data JSON snapshots.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Analysts and agents use this skill to turn populated CN company raw-data snapshots into an eight-section banker-style memo for credit review and investment analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated credit or investment recommendations may be incomplete or unsuitable for real decisions. <br>
-Mitigation: Review the memo and recommendations independently before relying on them. <br>
-Risk: The skill reads local raw-data JSON files and writes memo outputs to a chosen directory. <br>
-Mitigation: Confirm the raw-data directory contains only intended inputs and choose an output directory the agent may write to. <br>
-Risk: Financial figures in the memo can lose traceability if provenance rows are missing or inconsistent. <br>
-Mitigation: Review data-provenance.md and resolve any data flags or missing source rows before handoff. <br>
+## Use Case:
 
+Developers and financial analysts use this skill to convert populated CN raw-data snapshots into an 8-section banker memo for credit review and equity investment workflows. It is intended to produce a Markdown memo and a hard-number provenance table before handoff to a separate slide-generation step.
 
-## Reference(s): <br>
-- [Banker Memo MD prompt template](references/banker_memo_md_prompt.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jackdark425/banker-memo-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files and prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis.md and data-provenance.md from local raw-data JSON snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.7 (source: server release evidence) <br>
+Risk: Untrusted raw-data snapshots, filenames, or path values could influence the generated memo or where outputs are written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a scoped project workspace with trusted raw-data JSON snapshots and a dedicated output directory.
+
+Risk: The generated financial memo can contain incorrect or misleading analysis if source data is incomplete, inconsistent, or adversarial.
+
+Mitigation: Review the generated memo and provenance table before using them for credit, investment, or client-facing decisions.
+
+## Reference(s):
+
+- [Banker Memo MD Canonical Prompt Template](artifact/references/banker_memo_md_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and plain-text prompt output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes analysis.md and data-provenance.md only to the selected output directory.]
+
+## Skill Version(s):
+
+0.9.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

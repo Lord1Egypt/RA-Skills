@@ -1,0 +1,28 @@
+{
+ "content": [
+  {
+   "text": "Is there more water in the sky or in every river on Earth? The sky, about 6 times more, as water vapor.\n\nData: USGS Water Science School. Made with our own animation. Follow for the planet in numbers.\n\n#watercycle #atmosphere #rivers #earthscience",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for air-short.mp4>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "<id from social_accounts_list>",
+   "postType": "REEL",
+   "cover": {
+    "type": "MEDIA_LIBRARY",
+    "mediaId": "<mediaId for the cover>"
+   }
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-18T17:30:00Z"
+ }
+}

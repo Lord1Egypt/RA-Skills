@@ -1,117 +1,47 @@
-# openclaw-verified-upgrade
+# OpenClaw Verified Upgrade
 
-A reliability-first OpenClaw upgrade skill.
+Version **2.0.0**. This skill directory is separately licensed under [MIT-0](LICENSE.md).
 
-This skill helps an agent upgrade OpenClaw through an ordinary-user wizard while keeping the internal guardrails strict enough for real gateway operations. It treats upgrade as a verified state transition, not as “run an update command and hope.”
+An OpenClaw upgrade workflow built around official durable update transactions, complete recovery coverage and fresh runtime evidence.
 
-## When to use
+## Naming
 
-Use this skill when you want to:
+- ClawHub install identifier: upgrade-openclaw-safely
+- Local Skill key: openclaw-verified-upgrade
+- Display name: OpenClaw Verified Upgrade
 
-- Upgrade OpenClaw safely.
-- Choose between latest, a specific version, or a recommended stable version.
-- Check release notes before upgrading.
-- Avoid breaking a running Gateway, channel, plugin, model, or agent route.
-- Recover from a partial or failed OpenClaw upgrade.
+The different public slug is intentional; it does not create a second local skill.
 
-## Core idea
+## Workflow
 
-**An OpenClaw upgrade is not complete until the running Gateway is verified healthy.**
+Resolve an exact target, inspect the installed and target contracts, inventory recovery sources, verify backup coverage, select one lifecycle owner, execute approved phases and follow the original operation to verified completion. Standard upgrade authorization is carried forward; new destructive or unrelated scope still needs its own authority.
 
-The skill explicitly distinguishes:
+Prefer the official managed updater. Where an old driver cannot safely complete a documented operation, a verified external operator may use the official exact-package procedure under an approved recovery/runtime plan. Do not install a custom coordinator, fabricate RPC parameters or detach a shell and claim restart survival.
 
-- CLI/package version
-- Running Gateway/runtime version
-- Service manager path, such as LaunchAgent/systemd/manual process
-- Config validity
-- Plugin/channel/agent availability
-- User-critical workflows
+Core replacement and same-version official plugin maintenance are distinct. Private Node preparation may be a separately approved phase. Stability uses the agreed window and retains failures across that entire interval. Cleanup follows the authorized retention policy and removes only proved-redundant objects owned by this run.
 
-This matters because the CLI can be upgraded while an existing Gateway process continues running an older version.
+## Completion evidence
 
-## Ordinary-user flow
+- CLI/package and real Gateway build/path/runtime agree with the target.
+- Plugin contracts and critical runtime loads pass; independently versioned plugins retain their own compatibility rules.
+- Configuration, required databases, semantic automation changes, routes and authorized workflows are checked against baseline.
+- The intended model path is tested when authorized; connection status alone does not prove external delivery.
+- The full stability window passes and recovery material remains complete.
+- Any authorized cleanup is recorded and followed by another runtime/health check.
 
-The user should only need to choose:
+A successful updater response, port, ready line or CLI version alone is insufficient. Missing critical verification means acceptance is incomplete. A package rollback does not reverse database migration.
 
-```text
-1. Recommended stable version (default)
-2. Latest version
-3. Specific version
-```
+## Local maintenance and distribution
 
-The agent then handles the operational detail internally:
+Maintain one reviewed source and deploy only validated bundles to local callers. Verify the resolved skill path; shared, Workshop and plugin copies can differ. Do not edit a generated plugin cache as the source of truth. For Codex, supported user skill discovery and per-skill configuration can select the reviewed local copy without changing the whole plugin.
 
-1. Detect the current environment.
-2. Discover current OpenClaw commands and semantics.
-3. Pick or verify a target version.
-4. Review release notes and upgrade risks.
-5. Build a checklist of user-critical paths.
-6. Check pre-upgrade health.
-7. Create a verified local backup.
-8. Ask for final confirmation before mutation.
-9. Upgrade using the current supported path.
-10. Restart/reload the correct Gateway manager if needed.
-11. Verify CLI, running Gateway, config, logs, channels, plugins, agents, and critical paths.
-12. Report evidence or stop safely with a recovery plan.
-
-## Key safeguards
-
-- Latest is not automatically best.
-- OpenClaw commands and flags are version-sensitive.
-- Command discovery must happen before command execution.
-- Command existence is not enough; command semantics must be confirmed.
-- Release notes and migration risks must be reviewed before upgrade.
-- Backup must be created and read-back verified before mutation.
-- One approval does not authorize every recovery action.
-- Retry logic must be failure-classified and capped.
-- Rollback requires prior explicit authorization unless already granted.
-- Success requires evidence, not just exit code 0.
-- Destructive cleanup, config overwrite, daemon edits, reinstall, downgrade, `sudo`, and stop+start each require separate explicit approval.
-
-## Backup requirements
-
-Before changing anything, the agent should create a timestamped local backup manifest containing at least:
-
-- OpenClaw config file.
-- Current CLI version/path.
-- Gateway/service status.
-- Service command/path and running process path when available.
-- Config validation result.
-- Install/package metadata.
-- Critical path baseline.
-- Target version and release-risk summary.
-
-If backup creation or read-back verification fails, the upgrade must stop.
-
-## Verification requirements
-
-After upgrade, the agent must verify:
-
-- CLI/package version equals the target.
-- Running Gateway/runtime version equals the target, or provide equivalent runtime evidence.
-- Running process path matches the upgraded installation.
-- Gateway status/connectivity is healthy.
-- Config validation or doctor-equivalent check passes.
-- Logs show no fresh fatal startup errors.
-- Important plugins/channels/agents/routes still work.
-- A minimal end-to-end check passes when safe and supported.
-
-## Failure behavior
-
-If something fails, the skill requires the agent to:
-
-- Stop mutation immediately.
-- Classify the failure.
-- Refresh current state before retrying.
-- Retry only safe, bounded, recoverable steps.
-- Preserve logs and evidence.
-- Ask before rollback, config overwrite, daemon edits, reinstall, cleanup, sudo, or downgrade unless pre-authorized.
+Public releases are built from a verified GitHub commit and checked separately on each marketplace. An upload receipt does not establish public availability or review approval. Skill changes are validated offline, never by upgrading or restarting the host.
 
 ## Files
 
-- [`SKILL.md`](./SKILL.md) — the actual OpenClaw skill document.
-- [`test-prompts.json`](./test-prompts.json) — pressure prompts for dry-run or full-test evaluation.
-
-## Publishing note
-
-This skill is intended to be reusable and GitHub-friendly. It should not contain local secrets, user-specific credentials, or hard-coded commands that imply universal compatibility across OpenClaw versions.
+- [SKILL.md](SKILL.md): current workflow.
+- [Native updater](references/native-updater.md): transport, exact targets, run results and plugin intent.
+- [Migration and runtime](references/migration-and-runtime.md): complete backup inventory, case identity, private Node, external fallback and budgets.
+- [Verification and retention](references/verification-and-retention.md): semantic checks, observation, cleanup and privacy.
+- [Acceptance scenarios](examples/acceptance-scenarios.md): offline behavioral review.
+- The older record-only guard and contracts remain solely for historical compatibility. They are not the current execution path; their old action counters/sample retention are not valid completion gates for a new upgrade.

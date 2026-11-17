@@ -1,45 +1,64 @@
-## Description: <br>
-ApplyTop is a CLI and Node client for the ApplyTop public API that helps users search jobs and access alerts, matches, saved jobs, and CVs, including AI ATS scoring, CV tailoring, and cover-letter generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ApplyTop is a CLI and Node client for the ApplyTop public API that lets agents search jobs and work with alerts, matches, saved jobs, CVs, ATS scoring, CV tailoring, and cover-letter generation.
 
-## Publisher: <br>
-[shman2000](https://clawhub.ai/user/shman2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shman2000](https://clawhub.ai/user/shman2000)
 
-## Use Case: <br>
-Developers, automation builders, and ApplyTop users use this skill to install and operate the ApplyTop CLI or Node client for job search workflows, account data access, CV management, and AI-assisted resume or cover-letter tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ApplyTop CLI can access ApplyTop account data and CVs when used with an API key. <br>
-Mitigation: Install and run it only if you trust the ApplyTop service and npm package, and prefer APPLYTOP_API_KEY or logout when credentials should not remain in the saved credentials file. <br>
-Risk: AI CV tailoring, cover-letter generation, and ATS scoring consume ApplyTop credits charged to the key owner. <br>
-Mitigation: Check the credit balance before running credit-consuming commands and confirm the intended account owns the active API key. <br>
-Risk: Using the development-only insecure TLS option could weaken transport security. <br>
-Mitigation: Avoid the insecure option for production API calls and use the default ApplyTop HTTPS endpoint. <br>
+## Use Case:
 
+External users and developers use this skill to instruct an agent on ApplyTop CLI and Node client workflows for job search, alerts, matches, saved jobs, CV management, and paid AI resume actions.
 
-## Reference(s): <br>
-- [ApplyTop](https://applytop.com) <br>
-- [ApplyTop API keys](https://applytop.com/dashboard/api-keys) <br>
-- [Source repository](https://github.com/shman2000/applytop-agent) <br>
-- [ClawHub skill listing](https://clawhub.ai/shman2000/applytop-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and examples produce JSON responses from the ApplyTop CLI or Node client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill directs users to run an external npm CLI that may not be pinned to a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the ApplyTop npm package and publisher, and prefer a pinned version that has been reviewed.
+
+Risk: API keys, CV data, and account details may be handled by the CLI or saved on the local machine.
+
+Mitigation: Use environment variables or saved credentials carefully, avoid passing real API keys on shared command lines, and clear or rotate saved credentials on shared machines.
+
+Risk: Some commands consume paid ApplyTop AI credits and charge the key owner.
+
+Mitigation: Check the account credit balance before running AI commands, and review commands that invoke CV tailoring, cover-letter generation, or ATS scoring.
+
+Risk: Custom API URLs or insecure TLS options can send credentials or CV data to unintended endpoints.
+
+Mitigation: Use the default ApplyTop production API unless you control the endpoint, and do not use --insecure outside controlled development environments.
+
+## Reference(s):
+
+- [ApplyTop website](https://applytop.com)
+- [ApplyTop API key dashboard](https://applytop.com/dashboard/api-keys)
+- [Server-resolved source repository](https://github.com/shman2000/applytop-agent)
+- [ClawHub skill page](https://clawhub.ai/shman2000/skills/applytop-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on ApplyTop CLI and Node client usage; CLI commands described by the skill emit JSON.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

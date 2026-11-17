@@ -1,45 +1,55 @@
-## Description: <br>
-Diting Admin Expert helps with administrative process optimization, office environment management, vendor management, event planning, employee services, budget planning, and AI-enabled administration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diting Admin Expert provides Chinese-language administrative operations guidance for process optimization, workplace planning, supplier management, event planning, employee services, budgeting, and AI-enabled administration.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Employees and administrative operations teams use this skill to plan and review administrative workflows, office space, vendors, events, budgets, employee services, procurement, travel policy, and intelligent administration initiatives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Administrative planning may involve employee personal data, vendor contract amounts, internal budgets, or other sensitive business details. <br>
-Mitigation: Avoid sharing unnecessary sensitive information and redact vendor, employee, budget, and contract details where possible. <br>
-Risk: Recommendations about legal, privacy, financial, vendor, or procurement decisions may be incomplete or context-dependent. <br>
-Mitigation: Independently verify legal, privacy, financial, vendor, and procurement recommendations before acting. <br>
-Risk: AI-enabled administrative workflows can produce incorrect answers or overconfident automation decisions. <br>
-Mitigation: Use confidence thresholds, human review for low-confidence cases, and gradual rollout with manual fallback. <br>
+## Use Case:
 
+Administrators, operations teams, and coordinating agents use this skill to produce structured Chinese-language analyses and recommendations for administrative processes, office planning, supplier assessment, event planning, budgeting, employee services, and AI administration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/diting-admin-expert) <br>
-- [Administrative Expert Classic Books Reference](references/classic-books.md) <br>
-- [Administrative Expert Output Templates](references/output-templates.md) <br>
-- [Administrative Expert Tools Reference](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured analyses, tables, templates, recommendations, and implementation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are expected to include cost, efficiency, and satisfaction assessments; low-confidence recommendations should state missing information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Administrative recommendations may affect supplier, budget, workplace, or employee-service decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs with responsible administrative, finance, legal, or people teams before acting on recommendations.
+
+Risk: Prompts may include real contract amounts, costs, supplier details, or employee data.
+
+Mitigation: Redact sensitive details where possible and verify privacy, authorization, and disclosure requirements before sharing inputs.
+
+## Reference(s):
+
+- [Classic Books Reference](artifact/references/classic-books.md)
+- [Output Templates](artifact/references/output-templates.md)
+- [Tools Reference](artifact/references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, phased plans, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language administrative consulting output; no code, shell commands, persistence, credential handling, or hidden data movement.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact frontmatter is 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

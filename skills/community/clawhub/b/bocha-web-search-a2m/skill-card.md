@@ -1,45 +1,60 @@
-## Description: <br>
-Bocha Web Search A2M provides paid Bocha web search through an A2M HTTP 402 flow, returning web links and summaries after Alipay payment is completed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bocha Web Search A2M gives agents a paid A2M workflow for requesting web search results, summaries, and links from Bocha's marketplace API after user-approved payment.
 
-## Publisher: <br>
-[iuriak](https://clawhub.ai/user/iuriak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iuriak](https://clawhub.ai/user/iuriak)
 
-## Use Case: <br>
-External users and agents use this skill to perform web searches, retrieve source links, and receive concise summaries that can be processed by an AI agent. It is intended for requests where the user accepts a disclosed paid Bocha search flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Bocha and may contain sensitive user intent or private terms. <br>
-Mitigation: Use this skill only when the user wants Bocha as the provider, and avoid submitting sensitive search terms. <br>
-Risk: The skill can initiate a paid HTTP 402 flow that requires Alipay payment before results are returned. <br>
-Mitigation: Tell the user the resource is paid before making the request, and proceed with payment only after the user agrees. <br>
-Risk: Payment handling depends on a separate Alipay 402 payment skill. <br>
-Mitigation: Use the official Alipay payment skill referenced by the release and avoid substituting untrusted payment handlers. <br>
+## Use Case:
 
+External users and agents use this skill when they need current web search results with source links and summaries, and are willing to complete the disclosed paid A2M payment flow.
 
-## Reference(s): <br>
-- [Bocha Web Search A2M on ClawHub](https://clawhub.ai/iuriak/bocha-web-search-a2m) <br>
-- [Bocha A2M Web Search API endpoint](https://api.bocha.cn/v1/marketplace/alipay/bochawebsearch) <br>
-- [Alipay 402 Payment Skill on ClawHub](https://clawhub.ai/alipay/alipay-pay-for-402-service) <br>
-- [Alipay 402 Payment Skill GitHub repository](https://github.com/alipay/payment-skills/tree/main/alipay-pay-for-402-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown search results with source links and summaries, plus inline shell command examples for API requests.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a paid A2M HTTP 402 flow and may require Alipay payment before search results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill invokes a disclosed paid web-search flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm cost and payment prompts with the user before requesting the paid resource.
+
+Risk: Search queries may contain sensitive or private information.
+
+Mitigation: Avoid putting secrets, credentials, personal data, or confidential business details into search queries.
+
+Risk: The artifact includes a shell-style curl example for making the HTTP request.
+
+Mitigation: Prefer a runtime that sends requests through a structured HTTP/JSON API instead of direct shell-string substitution.
+
+## Reference(s):
+
+- [Bocha Web Search A2M skill page](https://clawhub.ai/iuriak/skills/bocha-web-search-a2m)
+- [Bocha marketplace web search API](https://api.bocha.cn/v1/marketplace/alipay/bochawebsearch)
+- [Alipay 402 payment skill on ClawHub](https://clawhub.ai/alipay/alipay-pay-for-402-service)
+- [Alipay 402 payment skill source](https://github.com/alipay/payment-skills/tree/main/alipay-pay-for-402-service)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown search results with source links, summaries, timestamps, and inline HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-approved payment for paid search results; default result count is 10 and documented maximum is 50.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

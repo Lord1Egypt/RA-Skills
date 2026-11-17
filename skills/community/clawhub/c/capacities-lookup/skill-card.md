@@ -1,45 +1,59 @@
-## Description: <br>
-Search Capacities for likely object matches and return direct capacities:// links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Capacities for likely object matches and return direct capacities:// links.
 
-## Publisher: <br>
-[GrantGochnauer](https://clawhub.ai/user/GrantGochnauer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grantgochnauer](https://clawhub.ai/user/grantgochnauer)
 
-## Use Case: <br>
-Employees, developers, and other Capacities users use this skill to find notes, meetings, projects, people, references, pages, or other Capacities objects by title or search term and return direct links to likely matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses CAPACITIES_API_TOKEN to search a user's Capacities workspace. <br>
-Mitigation: Install and enable it only in workspaces where agent access to Capacities lookup is intended, and prefer explicit lookup requests. <br>
-Risk: Lookup terms and result metadata may remain in the local data/capacities cache. <br>
-Mitigation: Treat the workspace cache as sensitive and clear it when lookup history or metadata should not persist. <br>
-Risk: A configurable API base URL could send requests to an unintended endpoint. <br>
-Mitigation: Use the default Capacities endpoint or another trusted CAPACITIES_API_BASE_URL. <br>
-Risk: Sourcing ~/.zshrc before running commands can execute local shell configuration. <br>
-Mitigation: Source shell startup files only when they are trusted, or export the required token directly for the command. <br>
+## Use Case:
 
+Developers and agent users use this skill to find Capacities notes, meetings, projects, people, references, pages, and other objects by title or natural-language search, then return direct deep links and concise match context.
 
-## Reference(s): <br>
-- [OpenClaw-Capacities homepage](https://github.com/GrantGochnauer/OpenClaw-Capacities) <br>
-- [Capacities Lookup on ClawHub](https://clawhub.ai/GrantGochnauer/capacities-lookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with direct capacities:// links and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lookup results may include titles, object types, match quality, matched terms, and fallback suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A configured custom Capacities API base URL can receive the user's bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the official Capacities API endpoint unless the custom endpoint is fully trusted; prefer setting only CAPACITIES_API_TOKEN and CAPACITIES_SPACE_ID.
+
+Risk: The skill makes live API calls using CAPACITIES_API_TOKEN.
+
+Mitigation: Review the skill before installation, keep the token out of chat and logs, and rotate the token if exposure is suspected.
+
+Risk: Lookup and structure metadata are cached under data/capacities/.
+
+Mitigation: Treat the workspace cache as potentially sensitive metadata and remove cache files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grantgochnauer/skills/capacities-lookup)
+- [OpenClaw Capacities homepage](https://github.com/GrantGochnauer/OpenClaw-Capacities)
+- [Capacities API endpoint](https://api.capacities.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with Capacities deep links and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAPACITIES_API_TOKEN and a target Capacities space id; writes lightweight cache files under data/capacities/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

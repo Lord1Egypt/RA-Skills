@@ -1,44 +1,67 @@
-## Description: <br>
-Generates Chinese daily research literature reports by collecting recent PubMed, bioRxiv, and arXiv papers, categorizing life-science and AI topics, summarizing papers, and syncing results to Zotero and a knowledge graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and manages Chinese daily research literature reports by collecting recent PubMed, bioRxiv, and arXiv articles, filtering life-science and AI topics, summarizing articles, and preparing structured Markdown output.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Researchers and research-support agents use this skill to collect recent life-science and AI literature, create a curated Chinese Markdown daily report, and update connected research repositories such as Zotero or a knowledge graph. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can load Zotero credentials from the shell environment and update shared Zotero data. <br>
-Mitigation: Use a limited Zotero API key, verify the group ID, and confirm helper scripts before running. <br>
-Risk: Generated reports and literature facts may be persisted to workspace directories and OpenClaw memory. <br>
-Mitigation: Run only when those persistent destinations are intended and review output paths and knowledge graph entity targets first. <br>
-Risk: The report may be sent to Matrix as an outbound side effect. <br>
-Mitigation: Confirm the Matrix destination and avoid scheduled runs unless outbound sharing is expected. <br>
+## Use Case:
 
+Researchers and research engineers use this skill to monitor recent literature across life sciences and AI, prioritize relevant papers, and produce a Chinese Markdown daily report with summaries, article metadata, links, and trend notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/biociao/biociao-literature-daily-report) <br>
-- [Category Standards](references/categories.md) <br>
-- [Workflow Guide](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional Python code edits, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes report files and may sync results to Zotero, OpenClaw knowledge graph memory, ClawLib, and Matrix when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can automatically write reports locally and sync content to ClawLib, Zotero, a knowledge graph, and Matrix.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and gate each sync target before routine use, especially Matrix sending and scheduled runs.
+
+Risk: The skill loads broad shell credentials from ~/.zshrc.
+
+Mitigation: Use a narrow secrets file or environment injection for only the required values instead of sourcing a full shell startup file.
+
+Risk: Zotero integration can write to the configured library or group.
+
+Mitigation: Use minimum-scope Zotero credentials and test with a low-privilege group or collection before enabling regular sync.
+
+Risk: The arXiv API calls are documented and implemented with HTTP endpoints.
+
+Mitigation: Switch arXiv requests to HTTPS before regular use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biociao/skills/biociao-literature-daily-report)
+- [Publisher profile](https://clawhub.ai/user/biociao)
+- [Category standards](artifact/references/categories.md)
+- [Workflow guide](artifact/references/workflows.md)
+- [bioRxiv API endpoint](https://api.biorxiv.org/details/biorxiv/{date_from}/{date_to}/0/json)
+- [arXiv Export API endpoint](http://export.arxiv.org/api/query?search_query={query}&max_results={max_results})
+- [Zotero API key settings](https://www.zotero.org/settings/keys/new)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese Markdown reports with structured summaries, article metadata, DOI or URL links, and optional configuration or code snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local report files and sync report content to ClawLib, Zotero, a knowledge graph, and Matrix when configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; changelog notes v3.3 workflow updates)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

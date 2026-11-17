@@ -1,0 +1,24 @@
+{
+  "skill_id": "wm-report-extract",
+  "operations": [
+    {
+      "id": "resolve",
+      "layer": "L2",
+      "summary": "按需字段：L1 pass 表 → records → 正文 locate，确定性 value 填充 + quote 回验；可选 --write-fields 落盘 FieldRecord。",
+      "cli": "wm_report.py resolve <cache_id> --need <label> [--result <result-...>] [--period <token>] [--column <token>] [--write-fields]"
+    },
+    {
+      "id": "extract-needs",
+      "layer": "L2",
+      "summary": "批量 resolve：从 request json 的 fields[]/needs[] 读取需求清单，逐条写入 fields/*.json，并生成 fields/_batch.json。",
+      "cli": "wm_report.py extract-needs <cache_id> --file <request-specific.json> [--result <result-...>]"
+    },
+    {
+      "id": "materialize-tables",
+      "layer": "L1",
+      "summary": "全量分表：records.json + meta.json → result-{ts} typed 表产物与 manifest/catalog 索引。",
+      "cli": "wm_report.py materialize-tables <cache_id> [--force] [--out <result-...>]"
+    }
+  ]
+}
+

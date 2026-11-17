@@ -1,0 +1,47 @@
+# 豆瓣高分监控运行配置
+
+# 最终提醒阈值
+min_rating = 8.0
+min_rating_count = 3000
+
+# 入库阈值
+admission_min_rating = 7.5
+admission_min_rating_count = 1000
+
+# 冷却与观察窗口
+realert_cooldown_days = 7
+post_alert_watch_days = 21
+high_watch_days = 30
+medium_watch_days = 14
+low_watch_days = 7
+
+# 二次提醒阈值
+rating_delta_for_realert = 0.3
+rating_count_delta_for_realert = 5000
+milestone_counts = [10000, 30000, 100000]
+
+# 豆瓣候选源（综艺已停用：TMDB 封面命中率低）
+douban_collection_urls = [
+  "https://m.douban.com/subject_collection/movie_hot_gaia",
+  "https://m.douban.com/subject_collection/movie_real_time_hotest",
+  "https://m.douban.com/subject_collection/movie_weekly_best",
+  "https://m.douban.com/subject_collection/tv_hot",
+  "https://m.douban.com/subject_collection/tv_real_time_hotest",
+  "https://m.douban.com/subject_collection/tv_chinese_best_weekly",
+  "https://m.douban.com/subject_collection/tv_global_best_weekly",
+]
+
+# TMDB 设置
+tmdb_language = "zh-CN"
+tmdb_region = "CN"
+tmdb_movie_pages = 1
+tmdb_tv_pages = 1
+
+# 请求设置
+request_timeout_seconds = 20
+
+# 运行模式
+# 模式 A（纯本地）：设为 false，跑完只写本地文件，跳过 git 推送
+# 模式 B（托管 GitHub）：设为 true，跑完自动提交并推送数据
+# 也可用环境变量 DOUBAN_MONITOR_NO_PUSH=1 临时强制关闭
+auto_git_push = true

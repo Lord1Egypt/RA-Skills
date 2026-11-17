@@ -1,40 +1,53 @@
-## Description: <br>
-Fixes browser automation failures with a snapshot-first workflow and API discovery behind website UIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fixes browser automation failures. Snapshot-first workflow + API discovery behind any website UI. Use when: 'browser not working', 'can't click', 'flaky UI', 'DOM not exposed', 'scrape website', 'browser keeps failing', 'automate this website', 'web scraping', 'element not found'.
 
-## Publisher: <br>
-[whooshinglander](https://clawhub.ai/user/whooshinglander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whooshinglander](https://clawhub.ai/user/whooshinglander)
 
-## Use Case: <br>
-Developers and automation agents use this skill to troubleshoot flaky browser interactions, inspect page state before acting, and prefer direct API discovery when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logged-in browser profiles or cookie-backed requests can expose session tokens, cookies, or authenticated data beyond the requested task. <br>
-Mitigation: Require explicit approval before using logged-in profiles or cookies, keep access scoped to the requested task, and do not store or output passwords, session tokens, or cookies. <br>
-Risk: Direct API discovery can query internal or authenticated endpoints without the context and safeguards of the website UI. <br>
-Mitigation: Check whether endpoints require authentication, get explicit approval before querying internal or authenticated APIs, respect automation blocks, and stop when access boundaries are unclear. <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot browser automation failures, inspect pages before acting, and find underlying API endpoints when UI automation is brittle.
 
-## Reference(s): <br>
-- [API Discovery Procedure](references/api-discovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend snapshot settings, browser actions, API calls, or curl commands depending on the task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Authenticated API-discovery workflows can expose browser session cookies or tokens if live credentials are copied into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer unauthenticated or least-privilege requests, confirm the destination origin, and avoid copying live cookies or tokens into shell commands.
+
+Risk: Direct API calls can bypass visible UI safeguards and perform authenticated or state-changing actions.
+
+Mitigation: Require explicit user approval before any authenticated, state-changing, purchase, payment, or irreversible request.
+
+## Reference(s):
+
+- [API Discovery Procedure](references/api-discovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes browser workflow guidance, API discovery steps, and safeguards for browser sessions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, released 2026-03-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

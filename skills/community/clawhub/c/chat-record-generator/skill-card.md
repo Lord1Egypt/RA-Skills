@@ -1,44 +1,60 @@
-## Description: <br>
-Generates simulated WeChat group chat Excel (.xlsx) files with group_info, active_members, and message_stream sheets for training data, FAQ tests, workflow demos, and themed chat samples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat Record Generator creates simulated group chat Excel (.xlsx) files with group_info, active_members, and message_stream sheets for Pai-compatible group chat training data.
 
-## Publisher: <br>
-[mellooc](https://clawhub.ai/user/mellooc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mellooc](https://clawhub.ai/user/mellooc)
 
-## Use Case: <br>
-Developers, data builders, and AI workflow testers use this skill to define synthetic group chats, coordinate multi-role message generation, and write the result to Pai-compatible Excel workbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes or overwrites output files at paths provided by the user. <br>
-Mitigation: Run it in a controlled workspace and review output paths before execution. <br>
-Risk: Generated synthetic chat records may be inaccurate or unsuitable for a downstream training or evaluation task. <br>
-Mitigation: Review the generated workbook contents and validate the data format before using it in downstream systems. <br>
-Risk: The workflow may install or use the xlsx npm dependency under /tmp. <br>
-Mitigation: Install dependencies from trusted package sources and use an isolated environment when generating workbooks. <br>
+## Use Case:
 
+Developers, data teams, and test teams use this skill to generate synthetic WeChat-style group chat records for AI assistant training data, FAQ or knowledge base testing, multi-role workflow demonstrations, and themed chat samples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mellooc/chat-record-generator) <br>
-- [Group schema reference](references/group-schema.md) <br>
-- [XLSX format specification](references/xlsx-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with JSON, JavaScript, and shell command snippets; generated Excel (.xlsx) files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes group definition JSON and Excel workbook outputs; generated data should be reviewed before downstream use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper scripts depend on a local xlsx package path under /tmp, which could load unexpected code if that path is not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and pin the xlsx dependency in a project-owned directory and update the scripts to import that controlled dependency.
+
+Risk: The scripts write caller-specified output files and could overwrite unintended paths.
+
+Mitigation: Run the skill in a restricted workspace, review output paths before execution, and avoid elevated privileges.
+
+Risk: The group definition helper has an output argument handling issue identified by security guidance.
+
+Mitigation: Fix and test the output argument parsing before normal use.
+
+## Reference(s):
+
+- [Group Schema Reference](references/group-schema.md)
+- [XLSX Format Specification](references/xlsx-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/mellooc/skills/chat-record-generator)
+- [Publisher Profile](https://clawhub.ai/user/mellooc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON message structures, JavaScript configuration, shell commands, and generated .xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Pai-compatible Excel workbooks with group_info, active_members, and message_stream sheets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

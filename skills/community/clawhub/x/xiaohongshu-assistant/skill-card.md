@@ -1,42 +1,54 @@
-## Description: <br>
-Xiaohongshu Assistant helps generate Xiaohongshu-style copy, optimize titles, recommend hashtags, suggest emojis, and advise posting times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Xiaohongshu content operations assistant that generates copy, optimizes titles, recommends hashtags, and suggests posting times.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-External users and content operators use this skill to draft Xiaohongshu posts, generate title options, choose hashtags, and plan manual publication. Generated content should be reviewed and edited before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a safe copywriting helper, but the security evidence reports bundled callable code for account login, publishing, comments, likes, bookmarks, and local account or draft storage. <br>
-Mitigation: Prefer a cleaned release that removes account and publisher automation files, or require explicit user confirmation for every account, publish, comment, like, or bookmark action. <br>
-Risk: Generated copy may be inaccurate, overly promotional, or unsuitable for the platform without review. <br>
-Mitigation: Review and edit generated titles, body copy, tags, and claims before publication; avoid prohibited claims and follow platform rules. <br>
+## Use Case:
 
+External content creators and operators use this skill to draft Xiaohongshu-style posts, improve titles, select hashtags, and receive posting-time guidance before manual review and publication.
 
-## Reference(s): <br>
-- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cp3d1455926-svg/xiaohongshu-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/cp3d1455926-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with titles, body copy, hashtags, emoji suggestions, and posting-time guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for manual review and manual posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Security evidence marks the release suspicious because it ships callable account login, publishing, commenting, like/bookmark, and local account-storage code that is not clearly disclosed as active code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing; use only the content-generation workflow unless account and publishing modules are removed or disabled and every public action requires manual confirmation.
+
+Risk: Generated marketing copy, hashtags, and posting advice may lead to misleading promotional content or platform-rule issues if published without review.
+
+Mitigation: Require human review and editing before publication, avoid prohibited claims, and follow the documented manual publishing and frequency controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/xiaohongshu-assistant)
+- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted Chinese content suggestions and short operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save local draft records when asked to create or save notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

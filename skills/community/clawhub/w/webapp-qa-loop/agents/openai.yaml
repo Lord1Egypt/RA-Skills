@@ -1,0 +1,6 @@
+interface:
+  display_name: "Webapp QA Loop / 网页测试修复闭环"
+  short_description: "Real-browser QA, repair, release, and regression"
+  default_prompt: "Use $webapp-qa-loop to test the current web app in a real browser, stay within explicit authority, and respond in my language."
+policy:
+  allow_implicit_invocation: true

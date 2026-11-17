@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7c8kq3vma64hymr633jztpn980k9mf",
+  "owner": "elfpuck",
   "slug": "stock-roundtable",
+  "name": "stock-roundtable",
+  "displayName": "股票圆桌 Stock Roundtable",
+  "description": "股票投资研究型圆桌 skill，适用于个股、ETF、财报、估值、风险与持仓决策讨论，强调多空辩论与实时查证。",
   "version": "1.0.0",
-  "publishedAt": 1775206285321
+  "author": "elfpuck",
+  "license": "MIT",
+  "homepage": "https://github.com/yujintang/skills/tree/main/stock-roundtable",
+  "repository": "https://github.com/yujintang/skills.git"
 }

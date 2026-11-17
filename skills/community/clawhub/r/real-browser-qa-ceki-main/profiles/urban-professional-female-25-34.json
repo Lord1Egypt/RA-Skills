@@ -1,0 +1,41 @@
+{
+  "id": "urban-professional-female-25-34",
+  "label": "Urban Professional Female 25-34",
+  "emoji": "👩‍💼",
+  "demographics": {
+    "gender": "female",
+    "age_range": [25, 34],
+    "tier": "millennial"
+  },
+  "active_hours": {
+    "description": "Work day core hours, brief evening social",
+    "peak": [8, 12, 14, 18, 21, 23],
+    "off_peak_min": 6
+  },
+  "typing": {
+    "description": "Professional speed, careful, pauses to formulate",
+    "wpm": { "min": 75, "max": 105 },
+    "profile": "careful",
+    "think_prob": 0.015,
+    "think_ms": [400, 1500],
+    "backspace_freq": 0.04
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Measured scroll, reads before interacting",
+    "speed_px_per_ms": { "min": 20, "max": 50 },
+    "pause_between_passes_ms": { "min": 500, "max": 2000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1000, "max": 3500 },
+    "pre_click_pause_ms": { "min": 250, "max": 700 },
+    "inter_action_pause_ms": { "min": 300, "max": 1200 }
+  },
+  "mouse": {
+    "speed": 0.9,
+    "curvature": 0.18,
+    "jitter": 0.3,
+    "description": "Moderate, smooth, deliberate"
+  }
+}

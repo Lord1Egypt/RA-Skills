@@ -1,0 +1,35 @@
+{
+  "skill_name": "automate-this",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Automate this: every Friday Sophie downloads a supplier Excel file, checks anomalies, asks owners for corrections, updates the master sheet, then emails Finance.",
+      "expected_output": "A compiled process design separating deterministic validation/query/update, agentic anomaly interpretation if needed, human approval/correction gates, notifications, failure handling, and completion criteria.",
+      "assertions": [
+        "Each step has a concrete implementation mode",
+        "The design does not default all steps to AI agents",
+        "Exceptions/failure behavior are present",
+        "Human gates have explicit reasons",
+        "Completion criteria are observable"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Build a multi-agent system to copy values from one CSV to another based on exact IDs.",
+      "expected_output": "The skill challenges unnecessary agentic complexity and recommends deterministic data logic unless hidden ambiguity exists.",
+      "assertions": [
+        "Deterministic logic is preferred for exact ID mapping",
+        "Agent topology is not selected before work classification"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Automate contract approval. The policy for non-standard liability is unclear.",
+      "expected_output": "The design refuses to invent the rule and keeps an explicit human/knowledge-resolution gate until policy is established.",
+      "assertions": [
+        "Ambiguous policy is not automated as if known",
+        "A concrete gate or knowledge-resolution step is present"
+      ]
+    }
+  ]
+}

@@ -1,44 +1,51 @@
-## Description: <br>
-China Vision analyzes images with Qwen2.5-VL-72B via SiliconFlow for scene analysis, object recognition, chart interpretation, food identification, and detailed descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes, describes, and interprets images with the Qwen2.5-VL-72B vision-language model through SiliconFlow.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to submit local images or image URLs with prompts for multimodal image understanding, including descriptions, scene analysis, chart interpretation, product recognition, and food identification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, image URLs, and prompts are sent to SiliconFlow/Qwen for processing. <br>
-Mitigation: Use only images and prompts that are acceptable under SiliconFlow data handling terms; avoid sensitive personal, business, medical, financial, or regulated content unless those terms are acceptable. <br>
-Risk: The model is billed by token usage and can consume paid API credits. <br>
-Mitigation: Use a limited API key, spending controls, or other account-level limits for routine use. <br>
-Risk: The skill requires a sensitive SiliconFlow API credential. <br>
-Mitigation: Store SILICONFLOW_API_KEY in the agent environment and avoid pasting or committing the key in prompts, scripts, or logs. <br>
+## Use Case:
 
+Developers and external users use this skill to analyze local images or image URLs for scene description, object recognition, chart interpretation, product identification, food identification, and other visual understanding tasks.
 
-## Reference(s): <br>
-- [ClawHub release page for china-vision](https://clawhub.ai/tobewin/china-vision) <br>
-- [SiliconFlow API endpoint used by the skill](https://api.siliconflow.cn/v1/chat/completions) <br>
-- [SiliconFlow console for API keys](https://cloud.siliconflow.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text or Markdown guidance with bash command examples and image-analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SILICONFLOW_API_KEY; may consume paid SiliconFlow tokens] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Selected images, image URLs, and prompts are sent to SiliconFlow using the user's API key, which can create privacy exposure and token charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images the user is authorized to share, avoid confidential, regulated, biometric, or proprietary content unless approved, and confirm the provider's data-handling terms and expected cost before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-vision)
+- [SiliconFlow chat completions API endpoint](https://api.siliconflow.cn/v1/chat/completions)
+- [SiliconFlow API key console](https://cloud.siliconflow.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with shell command examples and model-generated image analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and SILICONFLOW_API_KEY; the helper script defaults to a 2048-token maximum response.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

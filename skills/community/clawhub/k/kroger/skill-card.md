@@ -1,43 +1,58 @@
-## Description: <br>
-Searches Kroger products, finds nearby stores, and helps add selected items to a Kroger cart through the Kroger API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Kroger products and add items to a Kroger cart via the Kroger API.
 
-## Publisher: <br>
-[tongyanli-hash](https://clawhub.ai/user/tongyanli-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tongyanli-hash](https://clawhub.ai/user/tongyanli-hash)
 
-## Use Case: <br>
-External users and agents use this skill to search for grocery products, look up Kroger store locations, and prepare cart additions after confirming product selections with the user. <br>
-
-### Deployment Geography for Use: <br>
-United States, where Kroger API and store services are available. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release security summary reports an unsafe input-handling bug that could allow a crafted search term to run local code. <br>
-Mitigation: Review scripts/kroger.sh before installation and avoid untrusted pasted grocery lists or unusual search strings until the input handling is fixed. <br>
-Risk: The skill can add items to a Kroger cart after OAuth authentication. <br>
-Mitigation: Confirm every selected product and quantity with the user before running cart-add commands. <br>
-Risk: The skill stores Kroger OAuth tokens locally. <br>
-Mitigation: Protect the configured token file and revoke or remove the token when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tongyanli-hash/kroger) <br>
-- [Kroger Developer Portal](https://developer.kroger.com) <br>
-- [Kroger API base endpoint](https://api.kroger.com/v1) <br>
+## Use Case:
 
+External users and agents use this skill to search Kroger grocery products, find nearby Kroger store locations, authenticate with Kroger, and add confirmed products to a Kroger cart.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Kroger API credentials and OAuth authentication; cart additions should be confirmed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe local code execution paths may be reachable through skill-provided shell and Python command construction.
+
+Mitigation: Review the script before use, run it only in a trusted environment, and avoid passing untrusted search text or command arguments.
+
+Risk: OAuth tokens are stored locally and may be exposed if the token file is readable by other users or processes.
+
+Mitigation: Store the token file at a private path with restrictive permissions and avoid shared or untrusted hosts.
+
+Risk: The skill can authenticate with Kroger and add items to a cart.
+
+Mitigation: Require explicit user confirmation before starting authentication flows or performing any add-to-cart action.
+
+## Reference(s):
+
+- [Kroger Developer Portal](https://developer.kroger.com)
+- [Kroger API Base URL](https://api.kroger.com/v1)
+- [ClawHub skill page](https://clawhub.ai/tongyanli-hash/skills/kroger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform Kroger API requests for product search, store lookup, OAuth token exchange, token refresh, and add-to-cart actions when invoked through the bundled shell script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

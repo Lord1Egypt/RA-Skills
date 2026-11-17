@@ -1,40 +1,51 @@
-## Description: <br>
-Prompt Engineer helps users craft, optimize, and evaluate prompts for LLM applications, including system prompts, safety patterns, RAG prompts, and production prompt workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert prompt engineer specializing in advanced prompting techniques, LLM optimization, and AI system design.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers, AI builders, and prompt authors use this skill to design complete prompts, tune them for target models, document implementation notes, and define testing or evaluation criteria. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts may accidentally include credentials, private system prompts, hidden chain-of-thought, or confidential customer data if the user provides or requests them. <br>
-Mitigation: Review generated prompt text before use and avoid placing secrets, private instructions, or confidential data into prompts. <br>
-Risk: The skill references an implementation playbook that is not present in the artifact, so detailed examples may be unavailable. <br>
-Mitigation: Treat the skill as a general prompt-authoring helper and verify detailed implementation guidance against available project documentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-prompt-engineer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mupengi-bot) <br>
+## Use Case:
+
+Developers, AI builders, and prompt authors use this skill to design, refine, document, and evaluate prompts for LLM applications and AI agent workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can activate for a broad range of prompt or AI-system design requests.
+
+Mitigation: Confirm the task is actually prompt-engineering related before relying on the skill's recommendations.
+
+Risk: Generated prompts may include full operational instructions supplied by the user.
+
+Mitigation: Review prompts before reuse and avoid including secrets, credentials, or private operational details in prompt requests.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with complete prompt blocks, implementation notes, testing guidance, and usage guidelines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model-specific parameter recommendations and evaluation criteria.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with complete prompt text, implementation notes, testing guidance, and usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may output full prompt text intended for review and reuse.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

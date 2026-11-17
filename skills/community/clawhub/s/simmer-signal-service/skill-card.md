@@ -1,44 +1,67 @@
-## Description: <br>
-Professional trading-signal service powered by Simmer and Binance that returns BUY, SELL, or HOLD recommendations with confidence scores for BTC, ETH, and SOL fast markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Polymarket trading signals powered by Simmer and Binance, producing BUY/SELL/HOLD recommendations with confidence scores for BTC, ETH, and SOL fast markets.
 
-## Publisher: <br>
-[NickQi688](https://clawhub.ai/user/NickQi688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickqi688](https://clawhub.ai/user/nickqi688)
 
-## Use Case: <br>
-External users and developers use this skill to request paid crypto prediction-market signals, check billing balance, and configure recurring signal checks for BTC, ETH, or SOL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The advertised per-signal price conflicts with the actual charge observed in the evidence. <br>
-Mitigation: Review billing details before installation and assume real non-demo signal calls may charge 0.01 USDT unless the publisher verifies otherwise. <br>
-Risk: Recurring cron examples can trigger repeated paid calls. <br>
-Mitigation: Enable scheduled execution only intentionally, and use spending limits or monitoring before running recurring paid signal checks. <br>
-Risk: The skill depends on paid trading signals that may influence financial decisions. <br>
-Mitigation: Treat outputs as informational signals, verify market context independently, and avoid automated trading without separate risk controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/NickQi688/simmer-signal-service) <br>
-- [SkillPay](https://skillpay.me) <br>
-- [Simmer Markets](https://simmer.markets) <br>
-- [ClawHub](https://clawhub.ai) <br>
+## Use Case:
 
+External users can run the skill to request crypto prediction-market signals for BTC, ETH, and SOL fast markets. The skill checks billing, fetches market data, and returns a signal, confidence score, reasoning, and balance information.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [JSON trading-signal responses and Markdown instructions with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SkillPay and Simmer credentials; supports BTC, ETH, and SOL with a configurable minimum confidence threshold.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Billing disclosures and safeguards are inconsistent across the evidence.
+
+Mitigation: Review the skill before installing, confirm the actual per-call price, and use a spend cap before enabling recurring use.
+
+Risk: Recurring cron examples can generate repeated paid calls.
+
+Mitigation: Do not enable recurring schedules unless pricing, limits, and account balance behavior have been verified.
+
+Risk: The skill requires SkillPay and Simmer API keys.
+
+Mitigation: Provide credentials only if the publisher and connected services are trusted, and scope or rotate keys where possible.
+
+Risk: Security evidence says billing errors should fail closed and demo payment behavior should be removed from production.
+
+Mitigation: Prefer a version that fails closed on billing failures and avoids demo fallback charging behavior in production paths.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before deployment in managed or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickqi688/skills/simmer-signal-service)
+- [Publisher profile](https://clawhub.ai/user/nickqi688)
+- [SkillPay](https://skillpay.me)
+- [Simmer](https://simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown documentation with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime responses can include charged amount, remaining balance, asset, signal, confidence score, reasoning, timestamp, and data-source availability.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

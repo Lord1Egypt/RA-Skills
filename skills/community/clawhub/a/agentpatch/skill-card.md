@@ -1,38 +1,58 @@
-## Description: <br>
-AgentPatch is a tool marketplace for AI agents that provides external capabilities such as web search, image generation, email, maps, transcripts, stock data, weather, and other API-backed tools through one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentPatch is a tool marketplace for AI agents that provides access to external capabilities such as web search, image generation, email, maps, YouTube transcripts, stock data, and more through one API key.
 
-## Publisher: <br>
-[fullthom](https://clawhub.ai/user/fullthom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fullthom](https://clawhub.ai/user/fullthom)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover, configure, and invoke AgentPatch marketplace tools from an agent workflow or CLI. It is intended for tasks that need external services such as search, email, maps, image generation, scraping, market data, or weather. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad external and paid-action capability, including email, scraping, sensitive data sharing, paid calls, inbox/profile access, and newly added tools. <br>
-Mitigation: Use a dedicated AgentPatch API key, monitor credits or spending limits, and require explicit approval before sensitive, paid, email, scraping, inbox/profile, or unfamiliar tool actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentPatch homepage](https://agentpatch.ai) <br>
-- [ClawHub skill listing](https://clawhub.ai/fullthom/agentpatch) <br>
+## Use Case:
 
+Developers and agents use this skill to discover, configure, and run AgentPatch tools for external tasks such as search, image generation, email, maps, market data, web scraping, and profile lookup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AgentPatch API key for live tool access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill routes agents toward a dynamic third-party tool marketplace that includes email, inbox, scraping, profile, and other externally visible capabilities.
+
+Mitigation: Review the selected AgentPatch tool before execution, use only a scoped API key, and require confirmation before email or other externally visible actions.
+
+Risk: Prompts, account data, or other sensitive information may be sent to external AgentPatch tools.
+
+Mitigation: Avoid sending sensitive prompts or private account data unless necessary for the task and approved by the user.
+
+Risk: Installing or invoking the AgentPatch CLI introduces third-party package and runtime behavior into the agent environment.
+
+Mitigation: Install the CLI in an isolated environment with a pinned, reviewed version when possible.
+
+## Reference(s):
+
+- [AgentPatch homepage](https://agentpatch.ai)
+- [AgentPatch ClawHub listing](https://clawhub.ai/fullthom/skills/agentpatch)
+- [AgentPatch MCP endpoint](https://agentpatch.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AgentPatch CLI commands, MCP server configuration, environment variable setup, and operational guidance for tool use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

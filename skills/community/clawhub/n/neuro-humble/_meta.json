@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn74n4pt49hctkwyzn8fx7vznx8472ha",
   "slug": "neuro-humble",
-  "version": "1.0.1",
-  "publishedAt": 1775774974896
+  "version": "0.1.0",
+  "name": "Neuro-Humble (Disability Justice Formation for AI Agents)",
+  "description": "Formation, not information. Teaches your agent to hold a neuro-humble posture rooted in Disability Justice, Mad Studies, and clinical formation pedagogy.",
+  "author": "sparrowpanton",
+  "license": "MIT-0",
+  "homepage": "https://github.com/sparrowpanton/Disability-Justice-LLM",
+  "tags": ["disability-justice", "neurodiversity", "mental-health", "formation", "mad-studies"]
 }

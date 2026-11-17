@@ -1,0 +1,876 @@
+# 模型注册表（国产大模型统一路由）
+
+# 说明：
+
+# - 价格为示例（元 / 每 1M tokens），请以各厂商官方最新定价为准。
+
+# - 新增厂商：只需在此加一段 provider + 一个 adapter（见 scripts/adapters），不动路由逻辑。
+
+# - 字段含义：
+
+#     display       中文名
+
+#     adapter       适配器类型：openai_compat / ernie / spark
+
+#     base_url      API 基址（openai_compat / ernie 用）
+
+#     base_url_openai  文心 Qianfan OpenAI 兼容端点（可选）
+
+#     env_hint      所需环境变量名（仅提示，密钥不进包）
+
+#     default_model 默认模型
+
+#     models[]      name / ctx(上下文窗口 token) / price_in / price_out / reasoner(可选)
+
+#     能力画像（0-10，越大越强，纯本地静态经验值，供 auto 策略打分）：
+
+#       reason_score  推理能力   code_score  代码能力   long_score  长文能力
+
+# - v2.6 新增：embed_models[] 和 reranks 配置块（embedding 与 rerank 统一接口）
+
+# - v2.7.0 新增：priced_at（采集日期 YYYY-MM-DD）+ price_source（来源说明）
+
+# - 本文件纯数据，不含任何密钥。
+
+
+
+providers:
+
+  deepseek:
+
+    display: DeepSeek
+
+    adapter: openai_compat
+
+    base_url: https://api.deepseek.com
+
+    env_hint: DEEPSEEK_API_KEY
+
+    default_model: deepseek-chat
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: deepseek-chat
+
+        ctx: 64000
+
+        price_in: 1
+
+        price_out: 2
+
+        reason_score: 8
+
+        code_score: 9
+
+        long_score: 6
+
+      -
+
+        name: deepseek-reasoner
+
+        ctx: 64000
+
+        price_in: 4
+
+        price_out: 16
+
+        reasoner: true
+
+        reason_score: 10
+
+        code_score: 9
+
+        long_score: 6
+
+  qwen:
+
+    display: 阿里通义千问
+
+    adapter: openai_compat
+
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+
+    env_hint: DASHSCOPE_API_KEY
+
+    default_model: qwen-plus
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: qwen-turbo
+
+        ctx: 32000
+
+        price_in: 0.8
+
+        price_out: 2
+
+        reason_score: 6
+
+        code_score: 7
+
+        long_score: 6
+
+      -
+
+        name: qwen-plus
+
+        ctx: 128000
+
+        price_in: 0.8
+
+        price_out: 2
+
+        reason_score: 7
+
+        code_score: 8
+
+        long_score: 8
+
+      -
+
+        name: qwen-max
+
+        ctx: 32000
+
+        price_in: 2.4
+
+        price_out: 9.6
+
+        reason_score: 9
+
+        code_score: 8
+
+        long_score: 6
+
+      -
+
+        name: qwen-long
+
+        ctx: 1000000
+
+        price_in: 0.5
+
+        price_out: 2
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 10
+
+  glm:
+
+    display: 智谱 GLM
+
+    adapter: openai_compat
+
+    base_url: https://open.bigmodel.cn/api/paas/v4
+
+    env_hint: ZHIPU_API_KEY
+
+    default_model: glm-4-flash
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: glm-4-flash
+
+        ctx: 128000
+
+        price_in: 0.1
+
+        price_out: 0.1
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 8
+
+      -
+
+        name: glm-4-air
+
+        ctx: 128000
+
+        price_in: 1
+
+        price_out: 1
+
+        reason_score: 7
+
+        code_score: 7
+
+        long_score: 8
+
+      -
+
+        name: glm-4-plus
+
+        ctx: 128000
+
+        price_in: 10
+
+        price_out: 10
+
+        reason_score: 9
+
+        code_score: 8
+
+        long_score: 8
+
+  kimi:
+
+    display: 月之暗面 Kimi
+
+    adapter: openai_compat
+
+    base_url: https://api.moonshot.cn/v1
+
+    env_hint: MOONSHOT_API_KEY
+
+    default_model: moonshot-v1-8k
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: moonshot-v1-8k
+
+        ctx: 8000
+
+        price_in: 1
+
+        price_out: 1
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 5
+
+      -
+
+        name: moonshot-v1-32k
+
+        ctx: 32000
+
+        price_in: 2.4
+
+        price_out: 2.4
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 7
+
+      -
+
+        name: moonshot-v1-128k
+
+        ctx: 128000
+
+        price_in: 10
+
+        price_out: 10
+
+        reason_score: 7
+
+        code_score: 6
+
+        long_score: 9
+
+  hunyuan:
+
+    display: 腾讯混元
+
+    adapter: openai_compat
+
+    base_url: https://api.hunyuan.cloud.tencent.com/v1
+
+    env_hint: HUNYUAN_API_KEY
+
+    default_model: hunyuan-lite
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: hunyuan-lite
+
+        ctx: 32000
+
+        price_in: 0.6
+
+        price_out: 0.6
+
+        reason_score: 5
+
+        code_score: 5
+
+        long_score: 6
+
+      -
+
+        name: hunyuan-standard
+
+        ctx: 32000
+
+        price_in: 1.2
+
+        price_out: 1.2
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 6
+
+      -
+
+        name: hunyuan-pro
+
+        ctx: 128000
+
+        price_in: 3
+
+        price_out: 3
+
+        reason_score: 8
+
+        code_score: 7
+
+        long_score: 8
+
+      -
+
+        name: hunyuan-long
+
+        ctx: 256000
+
+        price_in: 3
+
+        price_out: 3
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 10
+
+  doubao:
+
+    display: 字节豆包
+
+    adapter: openai_compat
+
+    base_url: https://ark.cn-beijing.volces.com/api/v3
+
+    env_hint: ARK_API_KEY
+
+    default_model: doubao-pro-32k
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: doubao-pro-32k
+
+        ctx: 32000
+
+        price_in: 0.8
+
+        price_out: 2
+
+        reason_score: 7
+
+        code_score: 7
+
+        long_score: 6
+
+      -
+
+        name: doubao-lite-32k
+
+        ctx: 32000
+
+        price_in: 0.3
+
+        price_out: 0.6
+
+        reason_score: 5
+
+        code_score: 5
+
+        long_score: 6
+
+  ernie:
+
+    display: 百度文心
+
+    adapter: ernie
+
+    base_url: https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro
+
+    base_url_openai: https://qianfan.baidubce.com/v2
+
+    env_hint: ERNIE_OPENAI_KEY
+
+    default_model: ernie-4.0-8k
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: ernie-4.0-8k
+
+        ctx: 8000
+
+        price_in: 8
+
+        price_out: 8
+
+        reason_score: 8
+
+        code_score: 7
+
+        long_score: 5
+
+      -
+
+        name: ernie-3.5-8k
+
+        ctx: 8000
+
+        price_in: 1.2
+
+        price_out: 1.2
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 5
+
+  spark:
+
+    display: 讯飞星火
+
+    adapter: spark
+
+    version: v3.5
+
+    domain: generalv3.5
+
+    env_hint: SPARK_APP_ID / SPARK_API_KEY / SPARK_API_SECRET
+
+    default_model: spark-v3.5
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: spark-v3.5
+
+        ctx: 32000
+
+        price_in: 1.2
+
+        price_out: 1.2
+
+        reason_score: 6
+
+        code_score: 6
+
+        long_score: 6
+
+  minimax:
+
+    display: MiniMax
+
+    adapter: openai_compat
+
+    base_url: https://api.minimax.chat/v1
+
+    env_hint: MINIMAX_API_KEY
+
+    default_model: abab6.5s-chat
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: abab6.5s-chat
+
+        ctx: 245000
+
+        price_in: 1
+
+        price_out: 1
+
+        reason_score: 7
+
+        code_score: 6
+
+        long_score: 9
+
+      -
+
+        name: abab6.5g-chat
+
+        ctx: 8000
+
+        price_in: 5
+
+        price_out: 5
+
+        reason_score: 7
+
+        code_score: 6
+
+        long_score: 5
+
+  yi:
+
+    display: 零一万物 Yi
+
+    adapter: openai_compat
+
+    base_url: https://api.lingyiwanwu.com/v1
+
+    env_hint: YI_API_KEY
+
+    default_model: yi-lightning
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: yi-lightning
+
+        ctx: 16000
+
+        price_in: 0.99
+
+        price_out: 0.99
+
+        reason_score: 8
+
+        code_score: 8
+
+        long_score: 6
+
+      -
+
+        name: yi-large
+
+        ctx: 32000
+
+        price_in: 20
+
+        price_out: 20
+
+        reason_score: 9
+
+        code_score: 8
+
+        long_score: 7
+
+      -
+
+        name: yi-large-fc
+
+        ctx: 32000
+
+        price_in: 20
+
+        price_out: 20
+
+        reason_score: 8
+
+        code_score: 8
+
+        long_score: 7
+
+  baichuan:
+
+    display: 百川智能
+
+    adapter: openai_compat
+
+    base_url: https://api.baichuan-ai.com/v1
+
+    env_hint: BAICHUAN_API_KEY
+
+    default_model: Baichuan4-Air
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: Baichuan4-Air
+
+        ctx: 32000
+
+        price_in: 0.98
+
+        price_out: 0.98
+
+        reason_score: 7
+
+        code_score: 6
+
+        long_score: 6
+
+      -
+
+        name: Baichuan4-Turbo
+
+        ctx: 32000
+
+        price_in: 15
+
+        price_out: 15
+
+        reason_score: 8
+
+        code_score: 7
+
+        long_score: 6
+
+      -
+
+        name: Baichuan4
+
+        ctx: 32000
+
+        price_in: 100
+
+        price_out: 100
+
+        reason_score: 9
+
+        code_score: 8
+
+        long_score: 6
+
+  step:
+
+    display: 阶跃星辰 Step
+
+    adapter: openai_compat
+
+    base_url: https://api.stepfun.com/v1
+
+    env_hint: STEP_API_KEY
+
+    default_model: step-2-16k
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: step-1-8k
+
+        ctx: 8000
+
+        price_in: 5
+
+        price_out: 20
+
+        reason_score: 7
+
+        code_score: 7
+
+        long_score: 5
+
+      -
+
+        name: step-2-16k
+
+        ctx: 16000
+
+        price_in: 38
+
+        price_out: 120
+
+        reason_score: 9
+
+        code_score: 8
+
+        long_score: 7
+
+      -
+
+        name: step-1-256k
+
+        ctx: 256000
+
+        price_in: 95
+
+        price_out: 300
+
+        reason_score: 8
+
+        code_score: 7
+
+        long_score: 10
+
+
+
+  # v2.4 视觉模型（多模态）
+
+  qwen_vl:
+
+    display: 阿里通义 VL
+
+    adapter: openai_compat
+
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+
+    env_hint: DASHSCOPE_API_KEY
+
+    default_model: qwen-vl-plus
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: qwen-vl-plus
+
+        ctx: 128000
+
+        price_in: 0.8
+
+        price_out: 2
+
+        multimodal: true
+
+        reason_score: 7
+
+        code_score: 6
+
+        long_score: 8
+
+      -
+
+        name: qwen-vl-max
+
+        ctx: 128000
+
+        price_in: 2.4
+
+        price_out: 9.6
+
+        multimodal: true
+
+        reason_score: 8
+
+        code_score: 6
+
+        long_score: 8
+
+
+
+  glm_vl:
+
+    display: 智谱 GLM-4V
+
+    adapter: openai_compat
+
+    base_url: https://open.bigmodel.cn/api/paas/v4
+
+    env_hint: ZHIPU_API_KEY
+
+    default_model: glm-4v-plus
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: glm-4v-plus
+
+        ctx: 128000
+
+        price_in: 1
+
+        price_out: 1
+
+        multimodal: true
+
+        reason_score: 7
+
+        code_score: 5
+
+        long_score: 8
+
+
+
+  doubao_vl:
+
+    display: 字节豆包视觉
+
+    adapter: openai_compat
+
+    base_url: https://ark.cn-beijing.volces.com/api/v3
+
+    env_hint: ARK_API_KEY
+
+    default_model: doubao-vision-pro-32k
+    priced_at: 2026-10-09
+    price_source: manual
+
+    models:
+
+      -
+
+        name: doubao-vision-pro-32k
+
+        ctx: 32000
+
+        price_in: 0.8
+
+        price_out: 2
+
+        multimodal: true
+
+        reason_score: 6
+
+        code_score: 5
+
+        long_score: 6
+

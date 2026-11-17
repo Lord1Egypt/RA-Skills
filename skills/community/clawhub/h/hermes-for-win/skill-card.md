@@ -1,41 +1,58 @@
-## Description: <br>
-Installs, deploys, and manages Hermes Agent and hermes-webui on Windows, including startup, background operation, updates, status checks, and troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, deploys, and manages hermes Agent and hermes-webui on Windows with WSL2, auto-start, background operation, updates, and status commands.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Windows users and developers use this skill to install and manage the Hermes Agent and hermes-webui through PowerShell and WSL2 setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package describes privileged startup, background, update, and uninstall scripts that were not included in the reviewed artifact. <br>
-Mitigation: Inspect and trust the PowerShell scripts from the claimed source before running them, and confirm scheduled task, persistence, and update behavior are acceptable. <br>
-Risk: The workflow may store API keys in WSL and uses uninstall or reinstall commands that can affect local Hermes data. <br>
-Mitigation: Review where secrets are stored, secure the Windows account and WSL environment, and back up Hermes data before reinstalling or uninstalling. <br>
+## Use Case:
 
+Developers and Windows users use this skill to install, configure, start, stop, update, and inspect a local hermes Agent and hermes-webui deployment through PowerShell and WSL2.
 
-## Reference(s): <br>
-- [hermes-for-win reference documentation](references/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardwason/hermes-for-win) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with PowerShell commands and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows 10/11 with WSL2 and Ubuntu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill is intended to install Windows and WSL services using scripts that were not present for scanner inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after inspecting the PowerShell scripts from a trusted source and confirming the repositories and release artifacts they download.
+
+Risk: Automatic updates and persistent startup can change or run local services without repeated manual review.
+
+Mitigation: Review update targets before applying updates and enable auto-start only when persistent local execution is required.
+
+Risk: The documented scheduled task may run with highest privileges and WSL files may contain sensitive configuration.
+
+Mitigation: Use the least privilege that works, protect the Windows account and WSL files, and remove the scheduled task and WSL installation data during uninstall.
+
+## Reference(s):
+
+- [Hermes For Win ClawHub page](https://clawhub.ai/edwardwason/skills/hermes-for-win)
+- [Reference Documentation](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell command blocks and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows 10/11, WSL2, Ubuntu, and local PowerShell execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Control Autodesk desktop apps - 3ds Max and friends - from the shell via Flue, without an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Autodesk desktop apps - 3ds Max and friends - from the shell via Flue, without an MCP server.
 
-## Publisher: <br>
-[sfkislev](https://clawhub.ai/user/sfkislev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfkislev](https://clawhub.ai/user/sfkislev)
 
-## Use Case: <br>
-Developers, artists, and technical operators use this skill when they want an agent to inspect or make bounded, human-directed changes inside Autodesk desktop applications, currently focused on 3ds Max through Flue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to install or use Flue, a local bridge that can operate inside professional desktop applications. <br>
-Mitigation: Require explicit user approval before installing or setting up Flue, and review the Flue package or source before use. <br>
-Risk: Automation through Flue can modify scenes or documents in Autodesk and other desktop applications. <br>
-Mitigation: Use small, inspectable, user-directed steps and avoid destructive actions unless the user explicitly requests them. <br>
+## Use Case:
 
+Developers and technical artists use this skill to let an agent inspect live Autodesk 3ds Max scenes, run small scripts, and make bounded edits through Flue while the human remains the driver.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sfkislev/autodesk-flue) <br>
-- [Flue GitHub project](https://github.com/SFKislev/flue) <br>
-- [Flue PyPI package](https://pypi.org/project/flue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented bridge interaction guidance; the skill itself is documentation-only and does not generate files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on installing and setting up an unpinned external Flue package that can add files and desktop application integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and source before installing, prefer a pinned version or isolated environment, and approve setup only after understanding the added integrations.
+
+Risk: The skill can execute scripts inside professional desktop applications and may alter active scenes or documents.
+
+Mitigation: Use small, inspectable steps, inspect the live application state first, and require explicit user approval before destructive or broad edits.
+
+Risk: Operational behavior depends on local Flue documentation and adapters that may differ from the release artifact.
+
+Mitigation: Treat installed Flue documentation as operational reference only after installation is approved, and keep actions scoped to the specific app and document requested by the user.
+
+## Reference(s):
+
+- [Flue GitHub repository](https://github.com/SFKislev/flue)
+- [Flue PyPI package](https://pypi.org/project/flue)
+- [ClawHub skill page](https://clawhub.ai/sfkislev/skills/autodesk-flue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and app-specific script examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON-oriented bridge commands for inspecting or changing live desktop application state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

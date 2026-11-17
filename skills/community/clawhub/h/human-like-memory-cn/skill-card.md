@@ -1,44 +1,55 @@
-## Description: <br>
-Human Like Memory adds local memory management for OpenClaw conversations with vector retrieval, intelligent summarization, three-tier HOT/WARM/COLD storage, and on-demand context injection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human Like Memory is an intelligent context-management skill that stores, retrieves, summarizes, and injects relevant memories using vector search and HOT/WARM/COLD memory tiers.
 
-## Publisher: <br>
-[tanghailong1221](https://clawhub.ai/user/tanghailong1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanghailong1221](https://clawhub.ai/user/tanghailong1221)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to persist, retrieve, compress, review, and selectively inject conversation memories across sessions while reducing prompt context size. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically store and later reuse personal conversation details with weak consent and retention boundaries. <br>
-Mitigation: Review the skill before installing, disable automatic remembering where possible, avoid storing secrets or sensitive personal data, and regularly review or delete local memory files. <br>
-Risk: Stored memories may be injected into future prompts when they appear relevant. <br>
-Mitigation: Keep memory scope narrow, review selected memories before relying on them, and delete stale, incorrect, confidential, or sensitive records. <br>
+## Use Case:
 
+External users and developers use this skill to preserve useful conversation context, search prior memories, compress stored context, and inject only the most relevant memories into future agent responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanghailong1221/human-like-memory-cn) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
-- [package.json](package.json) <br>
-- [config.json](config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-backed memory records with chat commands and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reuses local searchable memories; can inject up to five relevant memories into prompts and export memories as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The skill can automatically remember conversation details in local plaintext memory and inject selected memories into later prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive personal, medical, financial, address, or business data; review memory files regularly and disable autoRemember or injection defaults when inappropriate.
+
+Risk: Vector search depends on external ML packages and model downloads.
+
+Mitigation: Use pinned dependencies and verified official model sources before enabling vector search in a production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanghailong1221/skills/human-like-memory-cn)
+- [@xenova/transformers](https://github.com/xenova/transformers.js)
+- [BAAI bge-m3 model card](https://huggingface.co/BAAI/bge-m3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text responses with optional JSON memory exports and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inject selected local memories into prompts and may export stored memories as JSON.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

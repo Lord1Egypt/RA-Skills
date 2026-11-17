@@ -1,0 +1,28 @@
+{
+  "name": "discussion-vocabulary-diagnosis",
+  "version": "1.0.0",
+  "description": "Diagnose vocabulary in the Discussion of an English psychology research paper. Checks (1) use of academic register and high-frequency academic expressions, (2) appropriate modal verb usage, (3) hedging variety and precision, and (4) avoidance of colloquialisms.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "vocabulary",
+    "hedging",
+    "academic-register",
+    "modal-verbs"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "📚",
+      "triggers": [
+        "check vocabulary",
+        "academic expressions",
+        "hedge check",
+        "modal verb check",
+        "Discussion 词汇",
+        "Discussion 用语"
+      ],
+      "theory_basis": "Glasman-Deal (2021) Science Research Writing Unit 4.4 (academic register) + 4.5 (modal verbs)"
+    }
+  }
+}

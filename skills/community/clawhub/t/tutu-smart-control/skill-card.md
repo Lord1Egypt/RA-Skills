@@ -1,44 +1,58 @@
-## Description: <br>
-图图智控（TUTU Smart Control） lets an agent remotely operate an Android phone through TUTU hardware for GUI automation, device status checks, communications, file management, app management, and related phone tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+图图智控（TUTU Smart Control） lets an agent remotely view and control a connected Android phone through TUTU hardware for GUI automation, device status checks, communications, file management, and app or settings tasks.
 
-## Publisher: <br>
-[zhaojiaqi](https://clawhub.ai/user/zhaojiaqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaojiaqi](https://clawhub.ai/user/zhaojiaqi)
 
-## Use Case: <br>
-External users and developers with TUTU hardware use this skill to let an agent control and automate Android phones through predefined remote-control actions. Typical tasks include screen inspection, clicking and typing, app workflows, phone status checks, communications, location and notification access, and limited user-storage file operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad remote control over an Android phone and can expose sensitive personal data or perform sensitive actions. <br>
-Mitigation: Install only for trusted publishers and trusted TUTU devices, use a non-primary or closely monitored phone where possible, and require explicit user intent before messaging, calling, notification reading, file access, app changes, settings changes, downloads, mock location, or GUI automation inside sensitive apps. <br>
-Risk: The TUTU API token grants access to the paired device if exposed. <br>
-Mitigation: Store TUTU_API_TOKEN only in the platform secret store, never paste it into conversations or logs, and revoke or rotate it immediately if exposure is suspected. <br>
-Risk: Security evidence reports inconsistent safety documentation and overly broad activation triggers. <br>
-Mitigation: Review the requested phone action before execution and keep platform confirmation enabled for sensitive operations and privacy-data reads. <br>
+## Use Case:
 
+External users and agent operators use this skill to automate and remotely assist with Android phone tasks through a connected TUTU hardware device. Typical tasks include screenshots, taps, typing, app control, SMS or call workflows, location checks, notification review, media and file operations, and basic device management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaojiaqi/tutu-smart-control) <br>
-- [TUTU Smart Control homepage](https://www.szs.chat) <br>
-- [TUTU phone action API endpoint](https://www.szs.chat/api/phone_action.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request or response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TUTU_API_TOKEN and a connected TUTU Android hardware device.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata; artifact frontmatter and claw.json list 1.3.0) <br>
+Risk: The skill can remotely view and control a connected Android phone through a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the operator expects remote phone control, and verify sensitive actions before execution.
+
+Risk: Several sensitive reads and device-changing actions are not clearly gated according to the security summary.
+
+Mitigation: Treat screenshots, notifications, files, logs, screen recordings, and setting changes as sensitive even when no platform confirmation prompt appears.
+
+Risk: Exposing the TUTU_API_TOKEN or device serial data could allow unauthorized access to the connected device.
+
+Mitigation: Configure TUTU_API_TOKEN through the platform environment settings, avoid pasting tokens or serial numbers into chat, and rotate or revoke credentials when access should end.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaojiaqi/skills/tutu-smart-control)
+- [TUTU Smart Control homepage](https://www.szs.chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell/HTTP examples and JSON response patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the TUTU_API_TOKEN environment variable and a connected, online Android phone with TUTU hardware.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release metadata; artifact files declare 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

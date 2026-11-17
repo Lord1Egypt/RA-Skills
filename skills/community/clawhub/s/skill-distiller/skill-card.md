@@ -1,45 +1,54 @@
-## Description: <br>
-Skill Distiller helps users turn repetitive problems or personal methodologies into reusable operational processes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Distiller. Triggered when users encounter repetitive problems, need to systematize a solution in a certain domain, or want to solidify someone's methodology into a reusable operational process.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and developers use this skill to define recurring problems, map them to supporting theory, structure repeatable workflows, and draft supporting tools or SKILL.md content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger language may activate the skill in generic planning conversations. <br>
-Mitigation: Narrow the trigger language or disable the skill when more specific workflow or planning skills should take precedence. <br>
-Risk: The published capability tags include crypto and purchase permissions that do not match the reviewed artifacts. <br>
-Mitigation: Do not treat those tags as necessary permissions for this skill, and review the release metadata before enabling permission-sensitive routing. <br>
-Risk: Generated process or SKILL.md drafts may encode incomplete or misleading domain guidance. <br>
-Mitigation: Review, test, and scan generated skill drafts before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to turn recurring problems, domain expertise, or personal methodologies into clear reusable agent workflows. It guides problem definition, theory selection, process design, and supporting tools so the result can be aggregated into an executable SKILL.md draft.
 
-## Reference(s): <br>
-- [Skill Distiller release page](https://clawhub.ai/openlark/skill-distiller) <br>
-- [OpenLark publisher profile](https://clawhub.ai/user/openlark) <br>
-- [Distillation Example: Complete Case Demonstration](references/distillation-examples.md) <br>
-- [Common Theory Source Reference](references/theory-sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured templates, checklists, and process sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May aggregate the completed workflow into a SKILL.md draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be invoked for broad process-design requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's target problem, domain, and desired level of detail before applying the four-step workflow.
+
+Risk: Some reference material mixes English and Chinese, which can reduce clarity for users expecting one language.
+
+Mitigation: Use the user's requested language consistently and clarify translated framework or example terms when needed.
+
+## Reference(s):
+
+- [Distillation Example: Complete Case Demonstration](references/distillation-examples.md)
+- [Common Theory Source Reference](references/theory-sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown templates, structured process sections, checklists, and SKILL.md draft guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory workflow only; no shell execution, credential access, persistence, or destructive behavior reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

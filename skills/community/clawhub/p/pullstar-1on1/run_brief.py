@@ -49,6 +49,9 @@ def main() -> None:
                         help="[Override/debug only] GitHub PAT. Never logged.")
     parser.add_argument("--api-mode",     choices=["graphql", "rest"], default="graphql",
                         help="GitHub API mode: graphql (default) or rest")
+    parser.add_argument("--prompt",       default=None,
+                        help="System prompt file for LLM (default: brief_v1.txt; "
+                             "relative paths resolve against the skill directory)")
     args = parser.parse_args()
 
     login = args.login.strip()
@@ -94,12 +97,15 @@ def main() -> None:
     # Step 3 -- Prepare LLM input artifact
     # ------------------------------------------------------------------
     prepare_mode = "pr_insights" if args.pr_insights else "default"
-    _run([
+    prepare_cmd = [
         py, str(_SCRIPTS_DIR / "agent_prepare_1on1.py"),
         "--login",     login,
         "--input-dir", str(output_dir),
         "--mode",      prepare_mode,
-    ])
+    ]
+    if args.prompt:
+        prepare_cmd += ["--prompt", args.prompt]
+    _run(prepare_cmd)
 
     # ------------------------------------------------------------------
     # Agent instruction block

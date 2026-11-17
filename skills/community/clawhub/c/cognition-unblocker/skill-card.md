@@ -1,38 +1,53 @@
-## Description: <br>
-Human+AI cognition-unblocker for real-world decisions combines the user's goals and values with structured AI analysis to break cognitive bottlenecks, compare options, and produce practical next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human+AI cognition-unblocker for real-world decisions: combine the user's goals and values with structured AI analysis to break cognitive bottlenecks and decision deadlocks.
 
-## Publisher: <br>
-[banshui](https://clawhub.ai/user/banshui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banshui](https://clawhub.ai/user/banshui)
 
-## Use Case: <br>
-External users use this skill when they are stuck on a personal, workplace, or project decision and need help clarifying the real conflict, comparing practical options, and turning their preferred path into executable steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision-support output may be over-applied to medical, legal, financial, safety, or other high-stakes choices. <br>
-Mitigation: Treat output as general structured thinking support and consult qualified expertise before acting on high-stakes decisions. <br>
+## Use Case:
 
+External users use this skill when they are stuck, indecisive, or limited in perspective and need a structured decision-support workflow. It helps clarify the surface problem, deeper causes, core tradeoffs, alternative options, and practical next steps while leaving the final choice to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banshui/cognition-unblocker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured headings, option comparisons, and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese/English decision-support workflow; no tool, file, account, or background execution access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server evidence release.version) <br>
+Risk: Users may over-rely on structured decision support for high-stakes financial, legal, medical, or business choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as decision support, preserve user choice, and recommend qualified professional review for high-stakes decisions.
+
+Risk: Subjective option scoring or success-rate estimates may be mistaken for objective certainty.
+
+Mitigation: Label estimates as subjective, state key assumptions, and invite the user to revise options or constraints before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banshui/skills/cognition-unblocker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured analysis with option comparisons and execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese/English response posture; no code execution, data access, persistence, or hidden behavior identified in security evidence]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

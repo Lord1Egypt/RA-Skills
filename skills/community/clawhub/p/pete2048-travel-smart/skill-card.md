@@ -1,45 +1,64 @@
-## Description: <br>
-TravelSmart helps drivers choose highway exits, midway hotels, and taxi pickup points by scoring distance, ratings, detour, price, and route fit with Amap data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TravelSmart helps drivers compare highway exits, hotels, and taxi pickup points using Amap location data and weighted scoring.
 
-## Publisher: <br>
-[pete2048](https://clawhub.ai/user/pete2048) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pete2048](https://clawhub.ai/user/pete2048)
 
-## Use Case: <br>
-External drivers and travel-planning agents use this skill to compare route-aware options for highway exit stops, midway lodging, and parking-to-taxi transfer points. Developers can run it through the CLI, local web API, or Feishu integration when the required map service credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The web server includes an unauthenticated Feishu message relay outside the core travel-planning use case. <br>
-Mitigation: Review server.py before running the web server, remove or protect /notify, and bind only to localhost unless intentional exposure is required. <br>
-Risk: Travel queries can include home, hotel, itinerary, or precise location details that may be sent to configured map or LLM providers. <br>
-Mitigation: Avoid entering sensitive travel details unless the configured providers and credentials are approved for that data. <br>
-Risk: A default Feishu chat identifier or over-broad Feishu permissions could route notifications to an unintended destination. <br>
-Mitigation: Set FEISHU_CHAT_ID explicitly and limit Feishu app permissions to the minimum required scope. <br>
+## Use Case:
 
+External users and developers use this skill to get ranked self-driving travel recommendations for highway exit stops, overnight lodging, and parking-to-taxi pickup points. It can run as a CLI, local web service, or Feishu-integrated assistant when required credentials are configured.
 
-## Reference(s): <br>
-- [TravelSmart PRD](references/PRD.md) <br>
-- [TravelSmart API Reference](references/api-reference.md) <br>
-- [TravelSmart Scoring Algorithm](references/scoring-algorithm.md) <br>
-- [TravelSmart ClawHub Release](https://clawhub.ai/pete2048/pete2048-travel-smart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance, CLI text, or JSON API responses with ranked travel recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMAP_KEY for map data; MiniMax and Feishu credentials are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The Feishu notification relay can be called without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the relay unless needed, or protect it with a signed secret or equivalent authorization and require an explicit FEISHU_CHAT_ID.
+
+Risk: The skill sends travel locations, destinations, addresses, and optional natural-language prompts to third-party services.
+
+Mitigation: Run the service only on a trusted local interface, restrict CORS, and notify users before sending location or prompt data to Amap, MiniMax, or Feishu.
+
+Risk: Untrusted map or API fields may be rendered into the web demo.
+
+Mitigation: Escape or sanitize all external fields before inserting them into the page.
+
+## Reference(s):
+
+- [README](README.md)
+- [TravelSmart API Reference](references/api-reference.md)
+- [TravelSmart PRD](references/PRD.md)
+- [Scoring Algorithm](references/scoring-algorithm.md)
+- [Amap Web API](https://lbs.amap.com/)
+- [Amap Key Console](https://console.amap.com/dev/key/app)
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [Feishu Open API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown-formatted recommendation text and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns top-ranked travel options with scores, distances, addresses, and recommendation rationale when upstream map data is available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

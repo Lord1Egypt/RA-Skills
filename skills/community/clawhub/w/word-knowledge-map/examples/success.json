@@ -1,0 +1,130 @@
+{
+  "word": "success",
+  "pronunciation": "/səkˈses/",
+  "audience": "小学高年级+初中",
+  "core_meanings": [
+    {
+      "meaning": "成功；成就",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "成功的人或事物",
+      "level": "P2",
+      "priority": 4
+    }
+  ],
+  "parts_of_speech": [
+    {
+      "type": "noun",
+      "meanings": [
+        "成功；成就；成功的人或事"
+      ]
+    }
+  ],
+  "collocations": [
+    {
+      "phrase": "success in",
+      "meaning": "在……方面成功",
+      "priority": 5,
+      "example": "She found success in art.",
+      "translation": "她在艺术上取得了成功。"
+    },
+    {
+      "phrase": "a great success",
+      "meaning": "巨大的成功",
+      "priority": 5,
+      "example": "The party was a great success.",
+      "translation": "派对非常成功。"
+    },
+    {
+      "phrase": "achieve success",
+      "meaning": "取得成功",
+      "priority": 4,
+      "example": "He worked hard to achieve success.",
+      "translation": "他努力工作以取得成功。"
+    }
+  ],
+  "word_forms": {},
+  "word_family": [
+    {
+      "word": "succeed",
+      "part_of_speech": "verb",
+      "meaning": "成功；做成",
+      "formation": "success → succeed",
+      "priority": 5
+    },
+    {
+      "word": "successful",
+      "part_of_speech": "adjective",
+      "meaning": "成功的",
+      "formation": "success + ful",
+      "priority": 5
+    },
+    {
+      "word": "successfully",
+      "part_of_speech": "adverb",
+      "meaning": "成功地",
+      "formation": "successful + ly",
+      "priority": 5
+    },
+    {
+      "word": "unsuccessful",
+      "part_of_speech": "adjective",
+      "meaning": "不成功的",
+      "formation": "un + successful",
+      "priority": 4
+    }
+  ],
+  "grammar_patterns": [
+    {
+      "pattern": "succeed in doing sth",
+      "meaning": "成功做成某事",
+      "example": "She succeeded in passing the exam.",
+      "translation": "她成功通过了考试。"
+    }
+  ],
+  "examples": [
+    {
+      "english": "Hard work leads to success.",
+      "chinese": "努力通向成功。",
+      "target": "success"
+    },
+    {
+      "english": "The party was a great success.",
+      "chinese": "派对非常成功。",
+      "target": "a great success"
+    },
+    {
+      "english": "She succeeded in passing the exam.",
+      "chinese": "她成功通过了考试。",
+      "target": "succeed in"
+    },
+    {
+      "english": "He is a successful student.",
+      "chinese": "他是个成功的学生。",
+      "target": "successful"
+    },
+    {
+      "english": "She finished the project successfully.",
+      "chinese": "她成功地完成了项目。",
+      "target": "successfully"
+    },
+    {
+      "english": "The plan was unsuccessful.",
+      "chinese": "这个计划没有成功。",
+      "target": "unsuccessful"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "topic": "success vs succeed",
+      "explanation": "success 是名词；succeed 是动词。不能说 I success，要说 I succeed / I have success。"
+    },
+    {
+      "topic": "succeed in doing",
+      "explanation": "succeed 后常接 in doing，不接 to do。"
+    }
+  ],
+  "memory_tip": "success 是「成功」这个结果（名词）；要「做成」用动词 succeed；successful 是「成功的」，successfully 是「成功地」。"
+}

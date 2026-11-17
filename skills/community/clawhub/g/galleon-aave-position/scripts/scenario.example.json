@@ -1,0 +1,9 @@
+{
+  "collateralBase": "10000000000",
+  "debtBase": "4000000000",
+  "extraDebtBase": "1000000000",
+  "liquidationThresholdBps": "8000",
+  "collateralFactorBps": "8000",
+  "debtFactorBps": "10500",
+  "minimumHealthFactorWad": "1300000000000000000"
+}

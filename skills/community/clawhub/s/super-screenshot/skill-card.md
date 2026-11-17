@@ -1,40 +1,54 @@
-## Description: <br>
-Capture, inspect, and compare screenshots across desktop, browser, simulator, and CI environments with guidance on tool choice, stabilization, viewport control, and output format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Screenshot helps agents capture, inspect, and compare screenshots across desktop apps, browsers, simulators, and CI runs with appropriate tools, stable viewports, wait strategies, masking, and output formats.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers, QA engineers, technical writers, and support teams use this skill to choose reliable screenshot capture workflows for debugging, visual review, documentation, bug reports, and before/after comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots can unintentionally include private URLs, tokens, notifications, personal information, or internal data. <br>
-Mitigation: Review captures before sharing them and mask or avoid sensitive regions before capture. <br>
-Risk: Screenshot comparisons can be misleading when viewport, zoom, theme, scale, or page state changes between captures. <br>
-Mitigation: Fix viewport, scale, zoom, theme, and target state before capture, especially for before/after comparisons and CI baselines. <br>
+## Use Case:
 
+Developers, QA engineers, documentation writers, and support teams use this skill to choose reliable screenshot capture workflows for debugging, visual review, bug reports, release notes, and before/after comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/super-screenshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and tool-selection tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; guidance may lead agents to use local, browser, simulator, or CI screenshot tools when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Screenshots of real desktops or logged-in browser sessions can reveal tabs, URLs, notifications, test data, or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer region, element, or window capture; mask sensitive areas; and review screenshots before sharing or saving them.
+
+Risk: Unstable viewports, animation, dynamic data, or premature capture can make screenshots misleading for visual comparison.
+
+Mitigation: Use fixed viewport, scale, zoom, and theme settings, wait for the target UI state, and remove avoidable visual noise before capture.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-screenshot)
+- [Publisher profile](https://clawhub.ai/user/subaru0573)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool-selection tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance only; it does not include executable code or credential handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

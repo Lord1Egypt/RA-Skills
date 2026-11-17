@@ -98,6 +98,7 @@ _CATALOG: dict[str, dict[str, str]] = {
     "logic.bash_check_fail":   {"zh": "无法运行 bash 语法检查: {err}", "en": "Cannot run bash syntax check: {err}"},
     "logic.bash_syntax":       {"zh": "Bash 语法错误: {line}", "en": "Bash syntax error: {line}"},
     "logic.missing_ref":       {"zh": "引用了不存在的文件: {ref}", "en": "References a non-existent file: {ref}"},
+    "logic.runtime_external_ref": {"zh": "运行时外部路径: {ref}（在用户环境中解析，非包内资源，不检查存在性）", "en": "Runtime external path: {ref} (resolved in the user's environment, not a package asset; existence not checked)"},
     "logic.import_not_found":  {"zh": "相对导入模块未找到: {module}", "en": "Relative import module not found: {module}"},
     "logic.leftover_marker":   {"zh": "遗留标记: {line}", "en": "Leftover marker: {line}"},
 
@@ -121,7 +122,8 @@ _CATALOG: dict[str, dict[str, str]] = {
     "data.hint":               {"zh": "数据/缓存/配置推荐路径（skill 目录外）: {hint}", "en": "Recommended data/cache/config path (outside the skill dir): {hint}"},
 
     # ---- module 5: deps ----
-    "deps.undeclared_env":     {"zh": "代码读取了以下环境变量但未在 frontmatter 声明: {vars}\n  ClawHub 安全审查会判为「声明与代码不一致」。请在 metadata.openclaw.requires.env / primaryEnv / envVars 中声明。", "en": "Code reads these env vars but they are not declared in frontmatter: {vars}\n  ClawHub security analysis flags this as a declaration-vs-code mismatch. Declare them under metadata.openclaw.requires.env / primaryEnv / envVars."},
+    "deps.env_finding":         {"zh": "[{code}] {variable} @ {file}:{line} ({access})\n  {reason}\n  如确认是必填配置，请在 metadata.openclaw.requires.env / primaryEnv / envVars 声明。", "en": "[{code}] {variable} @ {file}:{line} ({access})\n  {reason}\n  If this is confirmed required user config, declare it under metadata.openclaw.requires.env / primaryEnv / envVars."},
+"deps.undeclared_env":     {"zh": "代码读取了以下环境变量但未在 frontmatter 声明: {vars}\n  ClawHub 安全审查会判为「声明与代码不一致」。请在 metadata.openclaw.requires.env / primaryEnv / envVars 中声明。", "en": "Code reads these env vars but they are not declared in frontmatter: {vars}\n  ClawHub security analysis flags this as a declaration-vs-code mismatch. Declare them under metadata.openclaw.requires.env / primaryEnv / envVars."},
     "deps.install_timeout":    {"zh": "安装超时（{timeout}s）", "en": "install timed out ({timeout}s)"},
     "deps.installed":          {"zh": "已自动安装 {pip}", "en": "auto-installed {pip}"},
     "deps.unknown_error":      {"zh": "未知错误", "en": "unknown error"},

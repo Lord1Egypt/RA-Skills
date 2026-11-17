@@ -1,45 +1,57 @@
-## Description: <br>
-Automates Shanghai Library East Branch 3F seat workflows, including browser-assisted login, availability checks, seat booking, reservation listing, and cancellation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Shanghai Library East Branch third-floor seat workflows, including browser-assisted login, profile-based authentication refresh, availability checks, booking, listing, and cancellation.
 
-## Publisher: <br>
-[jenslewie](https://clawhub.ai/user/jenslewie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jenslewie](https://clawhub.ai/user/jenslewie)
 
-## Use Case: <br>
-External users with Shanghai Library reader accounts use this skill to manage East Branch 3F seat reservations from an agent-assisted command workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Shanghai Library session tokens in local profile JSON files. <br>
-Mitigation: Protect profile files, do not commit or share them, and use restrictive local file permissions. <br>
-Risk: Booking and cancellation commands directly change library reservations. <br>
-Mitigation: Double-check the selected profile, date, seat details, and reservation ID before running book or cancel commands. <br>
-Risk: Browser-assisted login requires installing Playwright and Chromium. <br>
-Mitigation: Install dependencies from trusted package sources and review the local environment before use. <br>
+## Use Case:
 
+External users with Shanghai Library reader access use this skill to manage East Branch third-floor seat reservations from an agent-guided CLI workflow. It is useful for checking common all-day availability, booking a specific or automatically assigned seat, listing active reservations, and canceling selected reservations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jenslewie/shlibrary-seat-booking) <br>
-- [Project homepage](https://github.com/jenslewie/jenslewie-skills/tree/main/shlibrary-seat-booking) <br>
-- [API reference](references/api_reference.md) <br>
-- [Shanghai Library seat reservation rules](https://yuyue.library.sh.cn/notice/seatAllNotice.html) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read or write local profile JSON files and call Shanghai Library reservation APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: The skill stores Shanghai Library authentication tokens in local profile files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep profile files private, restrict filesystem permissions, and avoid committing or sharing profile directories.
+
+Risk: Booking and cancellation commands can modify real seat reservations.
+
+Mitigation: Review command arguments, especially reservation IDs and dates, before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jenslewie/skills/shlibrary-seat-booking)
+- [OpenClaw Homepage](https://github.com/jenslewie/jenslewie-skills/tree/main/shlibrary-seat-booking)
+- [API Reference](references/api_reference.md)
+- [Shanghai Library Seat Reservation Site](https://yuyue.library.sh.cn)
+- [Shanghai Library Seat Notice](https://yuyue.library.sh.cn/notice/seatAllNotice.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-directed CLI instructions and command outcomes for authentication, availability lookup, booking, listing, and cancellation.]
+
+## Skill Version(s):
+
+0.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Complete cold email campaign suite for Mailgo: verify recipients, claim a free mailbox, generate and optimize content, create campaigns, manage lifecycle, and view reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete cold email campaign suite for Mailgo that helps an agent verify recipients, claim a mailbox, generate and optimize content, create campaigns, manage lifecycle actions, and report campaign results.
 
-## Publisher: <br>
-[leadsnavideveloper](https://clawhub.ai/user/leadsnavideveloper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leadsnavideveloper](https://clawhub.ai/user/leadsnavideveloper)
 
-## Use Case: <br>
-External users and operators use this skill to prepare, launch, monitor, and manage Mailgo cold-email campaigns from recipient verification through reporting. It is intended for authorized Mailgo accounts and recipient lists the user is permitted to process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload lead data and launch live cold-email campaigns with insufficient final user confirmation. <br>
-Mitigation: Run dry-run or draft mode first, then require final human review of recipients, content, sender, schedule, and timezone before activating a campaign. <br>
-Risk: The skill requires a Mailgo API token and can access account-level campaign, mailbox, recipient, and reporting operations. <br>
-Mitigation: Set credentials only through environment or action authentication, avoid pasting secrets into chat, and prefer a limited or disposable API token if Mailgo supports it. <br>
-Risk: The skill can process recipient lists that may contain personal or unauthorized contact data. <br>
-Mitigation: Use only recipient lists the user is authorized to process and verify deliverability before sending to larger lists. <br>
+## Use Case:
 
+External users and developers use this skill to prepare and run Mailgo cold-email campaigns, including recipient verification, sender mailbox setup, email content optimization, campaign creation, lifecycle controls, and reporting. Users should have a Mailgo account credential and confirm they have a lawful basis to contact recipients.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leadsnavideveloper/mailgo-coldmail-marketing) <br>
-- [Publisher profile](https://clawhub.ai/user/leadsnavideveloper) <br>
-- [Mailgo application](https://app.mailgo.ai) <br>
-- [Spam trigger reference](resources/spam-triggers.md) <br>
-- [Industry template reference](resources/industry-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON outputs from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Mailgo APIs through bundled scripts and may create or modify live campaign state after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill can use a Mailgo account credential that may allow mailbox, campaign, reporting, and reply-body access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable Mailgo token from protected secret storage; do not paste the token into chat, and avoid command-line token flags that may expose secrets.
+
+Risk: The skill can upload recipient lists and activate cold-email campaigns.
+
+Mitigation: Confirm legal basis, consent, and platform terms before uploading leads or sending; use dry-run mode or an explicit final confirmation before campaign activation.
+
+Risk: The skill can delete campaigns and read reply bodies.
+
+Mitigation: Require explicit user confirmation before irreversible campaign deletion and before accessing reply content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leadsnavideveloper/skills/mailgo-coldmail-marketing)
+- [Mailgo Product](https://app.mailgo.ai)
+- [LeadsNavi Publisher Website](https://www.leadsnavi.com)
+- [Mailgo OpenAPI Specification](artifact/gpt/openapi.json)
+- [Spam Trigger Word Replacements](artifact/resources/spam-triggers.md)
+- [Industry Email Templates](artifact/resources/industry-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated email content, JSON script outputs, and configuration instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Mailgo APIs through bundled scripts or OpenAPI actions using a Mailgo API key.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

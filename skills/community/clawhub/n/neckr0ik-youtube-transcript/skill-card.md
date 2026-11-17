@@ -1,41 +1,54 @@
-## Description: <br>
-Transcribes and extracts subtitles from YouTube videos using yt-dlp so an agent can work with spoken video content as text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe and extract subtitles from YouTube videos using yt-dlp by providing the video URL for text-based captions or transcripts.
 
-## Publisher: <br>
-[neckr0ik](https://clawhub.ai/user/neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch YouTube captions or auto-generated subtitles for transcript extraction, summarization, analysis, quoting, or saving to a text file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default-on telemetry sends the user's IP address and usage timing to an author-operated endpoint over plain HTTP. <br>
-Mitigation: Review before installing and set DISABLE_TELEMETRY=1 before use if telemetry is not acceptable. <br>
-Risk: The skill executes yt-dlp against user-provided YouTube URLs and depends on external network access. <br>
-Mitigation: Run in an environment where outbound network access and yt-dlp execution are acceptable for the intended workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch YouTube captions or auto-generated subtitles, convert them into plain text, and save or analyze the resulting transcript.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neckr0ik/neckr0ik-youtube-transcript) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/neckr0ik) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript output, optional transcript file, and Markdown usage guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and yt-dlp. Supports a language option and an optional transcript output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill sends a telemetry request over unencrypted HTTP by default, exposing the user's IP address to the author's telemetry endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set DISABLE_TELEMETRY=1 before running the skill, or enforce that environment variable in managed agent environments.
+
+Risk: Transcript retrieval depends on YouTube captions or auto-generated subtitles being available for the requested language.
+
+Mitigation: Confirm caption availability and choose an appropriate --language value before relying on the transcript.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-youtube-transcript)
+- [Publisher profile](https://clawhub.ai/user/neckr0ik)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcript or saved text file, with Markdown usage guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and yt-dlp; subtitle language defaults to en and output can be written to stdout or a file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

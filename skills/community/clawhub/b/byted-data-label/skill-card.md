@@ -1,47 +1,60 @@
-## Description: <br>
-Byted Data Label helps agents use Seederive to run LLM-based batch analysis and labeling for text, audio, and image data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Byted Data Label helps agents operate Seederive to run LLM-based batch analysis on text, speech, and image datasets, including sentiment analysis, tag classification, opinion extraction, translation, content scoring, and prompt optimization.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operators use this skill to preview, create, manage, and optimize Seederive data-labeling tasks for sentiment analysis, tag classification, opinion extraction, translation, content scoring, and related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user data to Seederive cloud services for labeling and analysis. <br>
-Mitigation: Install only when cloud-based Seederive processing is intended, verify the API endpoint, and require explicit confirmation before uploads. <br>
-Risk: The skill uses cloud credentials for live API calls. <br>
-Mitigation: Use least-privileged Volcengine credentials and avoid exposing access keys in prompts, logs, or shared files. <br>
-Risk: The helper script may install Python dependencies at runtime. <br>
-Mitigation: Preinstall dependencies in a controlled environment instead of allowing runtime package installation. <br>
-Risk: The skill can update, delete, backfill, optimize, and change models for remote Seederive resources. <br>
-Mitigation: Require explicit user confirmation before uploads, model changes, backfills, optimizations, updates, or deletions. <br>
+## Use Case:
 
+Developers and operations teams use this skill to preview, create, manage, and improve Seederive data-labeling workflows for CSV, Excel, or platform datasets. It guides agents through credential setup, task creation, tag-base management, result preview, model changes, and prompt optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-data-label) <br>
-- [Seederive task management guide](references/task.md) <br>
-- [Seederive tag-base management guide](references/tag-base.md) <br>
-- [Seederive optimization guide](references/optimize.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and optional JSON or CSV result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_ACCESS_KEY and VOLCENGINE_SECRET_KEY for live Seederive API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad activation rules may cause the skill to run for many data-labeling or analysis requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user intends to use Seederive before running commands or sending data.
+
+Risk: The skill sends Volcengine credentials and user data to a configurable remote endpoint.
+
+Mitigation: Use narrowly scoped credentials, keep the default endpoint unless an approved endpoint is required, and avoid processing sensitive datasets without approval.
+
+Risk: Delete, model-change, task-change, and bulk-upload commands can alter remote Seederive state.
+
+Mitigation: Require explicit manual confirmation before executing destructive or high-impact operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-data-label)
+- [Seederive task workflow reference](references/task.md)
+- [Seederive tag-base workflow reference](references/tag-base.md)
+- [Seederive optimization workflow reference](references/optimize.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, CSV]
+
+**Output Format:** [Markdown guidance with bash commands and JSON or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON or CSV files used as inputs to Seederive commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

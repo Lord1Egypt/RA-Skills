@@ -1,43 +1,60 @@
-## Description: <br>
-This skill parses uploaded resumes, searches public job sources, checks company background signals, and produces job-match assessment reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Matches uploaded resumes to job openings, investigates employer background signals, evaluates role fit, and produces structured job assessment reports.
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-Job seekers use this skill to turn a resume into matched role suggestions, company background checks, risk notes, and structured application guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China-focused, with use elsewhere dependent on available recruitment and company-information sources. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes resume content and may use job-relevant personal details during web searches. <br>
-Mitigation: Share only necessary resume details, run it in a controlled workspace, and delete generated parsed-result or report files after use. <br>
-Risk: Job listings and company background data from public sources may be incomplete, outdated, or misleading. <br>
-Mitigation: Verify application links, company records, and risk judgments against official or primary sources before applying or making decisions. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to parse resumes, search for matching openings across recruitment and employer sources, check employer and job risk signals, and produce a job assessment report with links and application guidance.
 
-## Reference(s): <br>
-- [Recruitment Sites](references/recruitment_sites.md) <br>
-- [Enterprise Inquiry Sources](references/enterprise_inquiry_sources.md) <br>
-- [Assessment Report Template](assets/assessment_report_template.md) <br>
-- [Tesseract OCR Setup](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, structured JSON extracts, and optional PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include job links, match scores, company-risk notes, and application guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Parsed resumes can contain personal contact details, employment history, education history, and other sensitive personal data; the security summary notes that full parsed resume text is saved to a predictable local plaintext file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a private working directory, avoid shared folders, redact contact details before web search or AI analysis, and delete resume_parsed_result.json after use.
+
+Risk: Optional parser and OCR dependencies are described but not pinned in the artifact.
+
+Mitigation: Verify dependency sources and pin versions before installing optional packages for resume parsing or OCR.
+
+Risk: Job listings, company registry details, and employer reputation signals may be incomplete, stale, or misleading.
+
+Mitigation: Verify recommendations against official recruitment pages, authoritative company registry sources, and current public records before acting on the report.
+
+## Reference(s):
+
+- [Recruitment sites](references/recruitment_sites.md)
+- [Enterprise inquiry sources](references/enterprise_inquiry_sources.md)
+- [Assessment report template](assets/assessment_report_template.md)
+- [Tesseract OCR installation reference](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON parsed resume data, generated search queries, and optional PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local files such as resume_parsed_result.json and PDF exports when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

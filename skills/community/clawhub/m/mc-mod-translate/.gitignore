@@ -1,0 +1,16 @@
+# SQLite databases (downloaded, not committed)
+scripts/mc_dict.db
+scripts/Dict-Sqlite.db
+scripts/*.tmp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Skill management backup
+.SKILL.md.bak

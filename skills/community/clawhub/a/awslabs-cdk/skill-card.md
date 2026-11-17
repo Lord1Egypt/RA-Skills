@@ -1,45 +1,59 @@
-## Description: <br>
-Provides AWS CDK best-practice guidance, infrastructure-as-code patterns, CDK Nag rule explanations, and related AWS application-building advice through a Xiaobenyang-hosted API wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AWS CDK MCP Server是一个提供AWS Cloud Development Kit (CDK)最佳实践、基础设施即代码模式和CDK Nag安全合规性的工具，适用于开发者在构建AWS应用程序时获取指导和建议。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers building AWS CDK applications use this skill to request CDK best-practice guidance, CDK Nag rule explanations, AWS Solutions Constructs discovery, GenAI CDK construct search, and related Lambda layer documentation pointers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an XBY_APIKEY and saves it locally for reuse. <br>
-Mitigation: Use a dedicated Xiaobenyang API key, avoid sharing AWS credentials or other secrets, and remove XBY_APIKEY from .env when the skill should no longer retain access. <br>
-Risk: CDK guidance and submitted parameters are handled through a third-party Xiaobenyang-hosted service. <br>
-Mitigation: Install only when that third-party dependency is acceptable, and review returned CDK guidance before applying it to infrastructure code. <br>
-Risk: Some advertised functions are marked deprecated in the artifact. <br>
-Mitigation: Prefer the recommended replacement service for deprecated workflows and treat deprecated-function output as advisory. <br>
+## Use Case:
 
+Developers and engineers use this skill to request AWS CDK guidance, CDK Nag rule explanations, AWS Solutions Constructs discovery, GenAI CDK construct search, Lambda layer documentation sources, and selected CDK-related code analysis or schema generation support.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cainingnk/skills/awslabs-cdk) <br>
-- [Publisher profile](https://clawhub.ai/user/cainingnk) <br>
-- [Xiaobenyang API key portal](https://xiaobenyang.com) <br>
-- [Xiaobenyang MCP API service](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown-style guidance with raw API results summarized for the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY and may send user-provided parameters or code snippets to the Xiaobenyang API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill routes CDK and code-related inputs through a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using it with private repositories or sensitive infrastructure code unless the publisher narrows the scope and validates the API endpoint.
+
+Risk: The skill stores the XiaoBenYang API key in a plaintext .env file in the working directory.
+
+Mitigation: Use a dedicated key, keep the workspace access-controlled, rotate or revoke the key after use, and prefer secure secret storage before production use.
+
+Risk: The release security summary notes mismatched gaokao template remnants.
+
+Mitigation: Review the installed files before deployment and confirm the publisher removes unrelated template remnants or explains their presence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cainingnk/skills/awslabs-cdk)
+- [XiaoBenYang API Key Site](https://xiaobenyang.com)
+- [XiaoBenYang MCP Endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown summaries with JSON-derived tool results and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied XiaoBenYang API key; responses may include raw data returned by the third-party API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

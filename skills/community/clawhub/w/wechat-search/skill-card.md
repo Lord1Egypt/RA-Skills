@@ -1,40 +1,60 @@
-## Description: <br>
-Search WeChat Official Account articles using OpenClaw's web search, Tavily API, and web fetch capabilities with compliance-focused design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search WeChat Official Account articles using OpenClaw's web search, Tavily API, and web fetch capabilities with compliance-focused design.
 
-## Publisher: <br>
-[jixsonwang](https://clawhub.ai/user/jixsonwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jixsonwang](https://clawhub.ai/user/jixsonwang)
 
-## Use Case: <br>
-Developers and agents use this skill to search public WeChat Official Account articles, return recent matching article metadata, and format results for downstream review or use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and result fetching may be sent to external search or fetch providers. <br>
-Mitigation: Install only when external provider use is acceptable for the intended queries and data handling policy. <br>
-Risk: The skill can use a configured Tavily API key and delegate work to local helper tooling. <br>
-Mitigation: Verify the local Tavily helper skill and OpenClaw CLI are trusted before deployment, and scope API keys appropriately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wechat Search ClawHub Page](https://clawhub.ai/jixsonwang/wechat-search) <br>
-- [README](artifact/README.md) <br>
+## Use Case:
 
+Developers and external users use this skill to search public WeChat Official Account articles and return recent article metadata through OpenClaw web search, Tavily, or direct web fetch fallbacks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown search results with article titles, snippets, source names, and URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to five results, supports configurable result limits, date filters, output format selection, and search strategy selection.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and fetched content may be exposed to third-party search or fetch providers.
+
+Mitigation: Run the skill only where sharing those queries with Brave, Tavily, OpenClaw web tools, and fetched sites is acceptable.
+
+Risk: The skill invokes unbundled external helper code with a broad process environment.
+
+Mitigation: Install only after review, restrict child-process environment variables, and avoid running with unrelated cloud tokens or sensitive credentials available.
+
+Risk: The documentation claims compliance controls that the security evidence says may be overstated.
+
+Mitigation: Validate URL hostname handling, robots and rate-limit behavior, and provider-specific terms before production use.
+
+Risk: Runtime dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before deploying the skill in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jixsonwang/skills/wechat-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Text, JSON, or Markdown search results with article titles, URLs, snippets, and account metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to five results, supports a maximum-results option, brief output, configuration file path, date filters in the documented interface, and search strategy selection in the documented interface.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

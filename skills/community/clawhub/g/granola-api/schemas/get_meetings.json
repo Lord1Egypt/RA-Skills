@@ -1,7 +1,7 @@
 {
   "name": "get_meetings",
   "title": "Get detailed meeting information for one or more Granola mee",
-  "description": "Get detailed meeting information for one or more Granola meetings by ID. Returns private notes, AI-generated summary, attendees, and metadata.\nUse this when you already have specific meeting IDs (e.g. from list_meetings results). For open-ended questions about meeting content, use query_granola_meetings instead.",
+  "description": "Get detailed meeting information for one or more Granola meetings by ID. Returns private notes, AI-generated summary, attendees, and metadata.\nUse this when you already have specific meeting IDs (e.g. from list_meetings results). For open-ended questions about meeting content, use query_granola_meetings instead.\n\nPRIVACY: responses contain highly sensitive meeting content — private notes, AI-generated summaries, and attendee identities. Request only the meeting IDs the task needs, confirm with the user before retrieving notes or attendee data for meetings they did not name, return only the parts that answer the question, and never copy this content anywhere the user has not asked for.",
   "inputSchema": {
     "type": "object",
     "properties": {

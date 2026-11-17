@@ -1,0 +1,14 @@
+interface:
+  display_name: Long Task Context (GPT)
+  short_description: 'GPT: сохраняй требования и продолжай задачи по источникам'
+  default_prompt: Используй $long-task-context-gpt, чтобы продолжить проект с проверкой
+    требований, исходников и незавершённых действий по одной контрольной точке.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

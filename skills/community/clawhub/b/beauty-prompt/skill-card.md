@@ -1,42 +1,57 @@
-## Description: <br>
-Interior design image helper that turns home renovation, spatial design, and commercial display requests into refined prompts and generated visual concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-speaking users from interior-design or commercial-display needs to confirmed bilingual image prompts, generated image files, and optional handoff for video creation.
 
-## Publisher: <br>
-[865116251](https://clawhub.ai/user/865116251) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[865116251](https://clawhub.ai/user/865116251)
 
-## Use Case: <br>
-External users use this skill to refine interior design, furnishing, spatial layout, and commercial display ideas into image-generation prompts, review the Chinese and English prompt text, generate an image, and optionally request a video handoff from the generated image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design prompts can expose private addresses, client-confidential layouts, personal identifiers, or sensitive business details through web search, image generation, delivery, or handoff. <br>
-Mitigation: Avoid including sensitive personal, client, location, or business information in prompts or generated-image workflows. <br>
-Risk: Generated images are saved in the workspace output directory and may be sent through Feishu. <br>
-Mitigation: Review generated images and file paths before sharing, and manage retained output files according to the workspace's data-handling policy. <br>
-Risk: Optional video creation shares the generated image path with another agent after a positive user response. <br>
-Mitigation: Only approve the video handoff when the generated image and local path are appropriate to share with that agent. <br>
+## Use Case:
 
+External users and agents use this skill to turn home decor, interior design, space planning, or commercial display requests into structured questions, bilingual image-generation prompts, generated images, and an optional video-generation handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/865116251/beauty-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown conversation text with Chinese and English prompt text, shell command examples, generated image file paths, and optional video handoff guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under the workspace output directory and may be delivered through Feishu; optional video creation shares the generated image path with another agent after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and server-provided changelog) <br>
+Risk: The security assessment flags under-disclosed external sharing through Feishu delivery and optional forwarding to another agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where external sharing is acceptable, avoid sensitive floor plans, addresses, proprietary layouts, and private business details, and revise the workflow to ask before any external transmission.
+
+Risk: The security assessment flags unsafe shell-based image generation when prompts are passed through a command line.
+
+Mitigation: Pass prompts to the image generator without shell interpolation and review generated commands before execution.
+
+Risk: The artifact workflow performs web searches for design trends, materials, and terminology.
+
+Mitigation: Review retrieved sources and avoid entering private or proprietary details into web queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/865116251/skills/beauty-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Conversational Markdown with structured options, bilingual prompt text, image file paths, and shell command invocations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create image files under the workspace output directory and optionally send the image path to another agent after user confirmation.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

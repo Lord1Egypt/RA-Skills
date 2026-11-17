@@ -1,45 +1,64 @@
-## Description: <br>
-Trade and analyse Polymarket prediction markets with a 5-minute BTC EMA crossover strategy. Browse markets, read order books, run signals, manage a live auto-trader, and view portfolio positions. Billed per-call via SkillPay.me (0.001 USDT / call, BNB Chain USDT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polymarket Edge lets agents browse Polymarket markets, inspect prices and order books, run BTC EMA crossover signals, view portfolio positions, and optionally operate a live auto-trader with per-call SkillPay billing.
 
-## Publisher: <br>
-[icloud-git](https://clawhub.ai/user/icloud-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[icloud-git](https://clawhub.ai/user/icloud-git)
 
-## Use Case: <br>
-External agents and developers use this skill to inspect Polymarket prediction markets, retrieve market data, run BTC EMA crossover signals, and optionally operate a live auto-trader with billing enforced per API call. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an embedded SkillPay billing API key. <br>
-Mitigation: Remove the embedded key, rotate it before use, and require billing credentials to come only from secure environment configuration. <br>
-Risk: Automated trading can place real-money market orders when live trading is enabled. <br>
-Mitigation: Keep auto_trade disabled unless wallet isolation, spend limits, monitoring, and a clear stop procedure are in place. <br>
-Risk: Exposing the FastAPI service to untrusted callers could allow billed requests or trading controls to be invoked by others. <br>
-Mitigation: Run the service behind trusted access controls and avoid public exposure without authentication and operational safeguards. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icloud-git/polymarket-edge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/icloud-git) <br>
-- [SkillPay billing API](https://skillpay.me/api/v1/billing) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
+## Use Case:
 
+External users and developers use this skill to give an agent access to Polymarket market data, BTC-focused trading signals, portfolio lookups, and optional automated trading workflows. It is suited for deployments where prediction-market analysis and billing controls are reviewed before use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, api responses, market analysis, trading guidance] <br>
-**Output Format:** [JSON API responses with market data, order book details, strategy signals, auto-trader status, billing balances, and portfolio summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Billed endpoints require a user_id; optional live trading requires an EVM private key and separate order-placement setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Billing and auto-trader controls are exposed without real authentication.
+
+Mitigation: Deploy only behind authenticated access, scope auto-trader controls to the owning user, and require explicit trade confirmations before enabling live trading.
+
+Risk: A hardcoded SkillPay API key fallback is present.
+
+Mitigation: Rotate and remove the embedded key, require SKILL_BILLING_API_KEY from the deployment environment, and audit logs for unexpected billing use.
+
+Risk: Live trading can use an EVM private key and place market orders when enabled.
+
+Mitigation: Use a dedicated low-balance wallet, set spending limits, verify user identity, and keep live trading disabled until operational controls are reviewed.
+
+Risk: Dependencies are declared with broad lower bounds.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/icloud-git/skills/polymarket-edge)
+- [Publisher Profile](https://clawhub.ai/user/icloud-git)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+- [SkillPay Billing API](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON API responses with market data, strategy signals, portfolio values, billing status, and top-up links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include BUY_YES, BUY_NO, HOLD, or SKIP recommendations, order-book snapshots, OHLCV history, auto-trader status, and billing outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and FastAPI app version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

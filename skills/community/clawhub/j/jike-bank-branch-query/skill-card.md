@@ -1,45 +1,64 @@
-## Description: <br>
-银行支行、联行号查询；根据银行名称、省市代码、支行关键词查询支行名称、联行号、省份和城市，也支持查询银行列表。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up bank branch names, branch routing codes, province and city details, and bank lists through JikeAPI.
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and agent developers use this skill to look up Chinese bank branch names, branch clearing numbers, province and city details, and matching bank lists through the Jike Data API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank and branch search terms are sent to the third-party Jike Data API. <br>
-Mitigation: Install only if the deployment trusts jikeapi.cn and is comfortable sharing those lookup terms with that service. <br>
-Risk: Passing the AppKey on the command line or storing unrelated secrets in the script directory .env file can expose credentials. <br>
-Mitigation: Prefer the documented JIKE_BANK_BRANCH_QUERY_KEY environment variable and keep unrelated secrets out of the skill directory. <br>
-Risk: Changing JIKE_API_BASE_URL can redirect requests to an unintended endpoint. <br>
-Mitigation: Set JIKE_API_BASE_URL only when intentionally pointing the skill at a trusted API endpoint. <br>
+## Use Case:
 
+External users and agents use this skill to query bank branch routing information and bank lists from JikeAPI using a configured AppKey.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-bank-branch-query) <br>
-- [Publisher profile](https://clawhub.ai/user/jikeapi-cn) <br>
-- [Jike Data homepage](https://www.jikeapi.cn/) <br>
-- [Jike Data bank branch query endpoint](https://api.jikeapi.cn/v1/bank/branch/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Terminal table or JSON, with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JIKE_BANK_BRANCH_QUERY_KEY environment variable; can also use the generic JIKE_APPKEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bank lookup queries and the AppKey are sent to the configured JikeAPI endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust JikeAPI with those queries and credentials.
+
+Risk: Passing the AppKey with --key can expose it through shell history, process lists, or logs.
+
+Mitigation: Prefer storing the AppKey in JIKE_BANK_BRANCH_QUERY_KEY or JIKE_APPKEY as an environment secret.
+
+Risk: Overriding JIKE_API_BASE_URL can route credentials and lookup data to an unintended endpoint.
+
+Mitigation: Do not set JIKE_API_BASE_URL unless the endpoint is fully trusted.
+
+Risk: An exposed AppKey may continue to authorize requests.
+
+Mitigation: Rotate the AppKey if it may have appeared in logs, process output, or shell history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-bank-branch-query)
+- [JikeAPI homepage](https://www.jikeapi.cn/)
+- [JikeAPI bank branch query endpoint](https://api.jikeapi.cn/v1/bank/branch/query)
+- [Publisher profile](https://clawhub.ai/user/jikeapi-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal tables or JSON, with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JIKE_BANK_BRANCH_QUERY_KEY or JIKE_APPKEY environment secret.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Provides business-writing support for industry research reports, business insights, consulting analyses, company and market research, competitive analysis, and user research with source-backed citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Writing Conflict helps agents draft business research reports, business insights, consulting analyses, company research, competitive analysis, user research, and market analysis with relevant citations and markdown formatting.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users, employees, and business analysts use this skill to draft substantial business reports, market analyses, consulting-style insights, and competitive or company research in Markdown with relevant citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business reports may include unsupported claims, fabricated data, or irrelevant citations if source quality is not checked. <br>
-Mitigation: Review cited sources and verify key facts before using outputs for business decisions. <br>
-Risk: Publisher provenance has a minor metadata mismatch and no server-resolved GitHub import provenance is available. <br>
-Mitigation: Confirm the ClawHub publisher profile and release metadata if publisher provenance is important for deployment. <br>
+## Use Case:
 
+Employees, external users, and business analysts use this skill to produce detailed business writing such as industry research, market analysis, company research, competitive analysis, consulting analysis, and user research. It emphasizes markdown output with relevant source citations, tables, and Mermaid graphs when supported by real data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/business-writing-conflict) <br>
-- [Publisher profile](https://clawhub.ai/user/litiao1224) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with tables, Mermaid diagrams when useful, clickable numbered citations, and a reference list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language unless clarified; cited data and evidence should be relevant and not fabricated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated business reports may include inaccurate citations, unsupported data, or misleading market and company analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated citations, source relevance, and data accuracy before relying on outputs for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/business-writing-conflict)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with clickable numbered references, tables, and Mermaid diagrams when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should use the user's language when unspecified and avoid fabricated data or irrelevant citations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

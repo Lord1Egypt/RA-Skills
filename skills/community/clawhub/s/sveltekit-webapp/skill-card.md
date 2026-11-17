@@ -1,50 +1,60 @@
-## Description: <br>
-Scaffold and configure a production-ready SvelteKit PWA with opinionated defaults for TypeScript, Tailwind, UI components, testing, linting, and deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold and configure a production-ready SvelteKit PWA with opinionated defaults for TypeScript, Tailwind, component libraries, testing, linting, and deployment.
 
-## Publisher: <br>
-[leo3linbeck](https://clawhub.ai/user/leo3linbeck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leo3linbeck](https://clawhub.ai/user/leo3linbeck)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, scaffold, test, and deploy SvelteKit PWAs through a guided PRD, preflight, implementation, staging, and production workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can scaffold, modify, test, commit, and potentially deploy a SvelteKit application using shell commands and external CLIs. <br>
-Mitigation: Approve use only for the intended target directory and repository, and review proposed shell commands before execution. <br>
-Risk: Staging or production workflows can depend on active GitHub, Vercel, Turso, OAuth, database, or payment credentials. <br>
-Mitigation: Confirm account identity, repository privacy, branch names, environment variables, and deployment intent before approving staging or production actions. <br>
-Risk: Generated PRD, application code, or deployment configuration may not match product, privacy, or security expectations. <br>
-Mitigation: Use the documented PRD approval, index-page checkpoint, preflight, typecheck, unit test, and E2E test gates before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill source](SKILL.md) <br>
-- [CLI Commands Reference](references/cli-commands.md) <br>
-- [Deployment Configuration](references/deployment.md) <br>
-- [PWA Configuration](references/pwa-config.md) <br>
-- [Ralph Implementation Plan](references/ralph-plan-template.md) <br>
-- [Scaffold & Configure Story Templates](references/scaffold-stories.md) <br>
-- [SvelteKit state management documentation](https://svelte.dev/docs/kit/state-management) <br>
-- [GitHub CLI](https://cli.github.com) <br>
-- [Vercel project creation](https://vercel.com/new) <br>
-- [Skeleton documentation](https://skeleton.dev/docs/get-started) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, scaffold, configure, test, and deploy SvelteKit web applications and PWAs with user review checkpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets, code blocks, and shell command sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create project files, PRD JSON, tests, commits, repository setup, and deployment instructions after user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run package managers and scaffolding tools that may fetch mutable third-party code.
+
+Mitigation: Run scaffolding in an isolated workspace and pin or approve exact tool and package versions before execution.
+
+Risk: The skill can create repositories, push generated code, and deploy applications with unclear production boundaries.
+
+Mitigation: Review diffs before commits and pushes, protect the main branch, and require a separate approval gate before production deployment.
+
+## Reference(s):
+
+- [SvelteKit State Management](https://svelte.dev/docs/kit/state-management)
+- [GitHub CLI](https://cli.github.com)
+- [Vercel Dashboard](https://vercel.com/new)
+- [CLI Commands Reference](references/cli-commands.md)
+- [Deployment Configuration](references/deployment.md)
+- [PWA Configuration](references/pwa-config.md)
+- [Ralph Implementation Plan](references/ralph-plan-template.md)
+- [Ralph Agent Prompt](references/ralph-prompt.md)
+- [Scaffold & Configure Story Templates](references/scaffold-stories.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets, shell commands, configuration files, PRD/user-story JSON, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project files, deployment guidance, admin documentation, and live URL handoff details when approved by the user.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

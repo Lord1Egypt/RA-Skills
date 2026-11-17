@@ -1,41 +1,52 @@
-## Description: <br>
-x-df helps agents use the x-cmd `x df` module to view disk usage and mount information across TSV, CSV, TUI, and raw output modes with filesystem type detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced `df` combines disk usage and mount information with CSV, TSV, TUI, raw, and numeric output modes plus filesystem type detection.
 
-## Publisher: <br>
-[edwinjhlee](https://clawhub.ai/user/edwinjhlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[edwinjhlee](https://clawhub.ai/user/edwinjhlee)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and agents use this skill to inspect local disk usage and mount information, select machine-readable or interactive output, and compose df-style data into shell workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the external x-cmd tool.
+
+Mitigation: Install only when x-cmd is already trusted for the target environment, as recommended by the security guidance.
+
+Risk: Disk and mount output can reveal local filesystem names, mount paths, capacity, and inode details.
+
+Mitigation: Use the skill in trusted sessions and avoid sharing generated output when storage layout or path information is sensitive.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to inspect local disk capacity, filesystem type, mount point, and mount attribute information through the x-cmd `x df` module. It supports interactive terminal viewing and structured TSV or CSV output for scripting and data processing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Running the underlying command may reveal local disk names, mount points, filesystem types, usage values, and mount options. <br>
-Mitigation: Use the skill only where local system metadata disclosure is acceptable, and review command output before sharing it outside the current environment. <br>
-Risk: The skill depends on the separate x-cmd tool, which must be installed before use. <br>
-Mitigation: Install x-cmd only from a trusted source and verify the installation path before asking an agent to run `x df` commands. <br>
+**Output Format:** [Markdown with inline bash code blocks and command tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edwinjhlee/x-df) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [The skill guides use of an installed x-cmd module and may surface local filesystem, mount, capacity, and inode information.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command outputs in TUI, TSV, CSV, or raw text formats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying x-cmd module may expose local filesystem names, mount points, filesystem types, usage values, and mount attributes.] <br>
+1.0.2 (source: server release metadata and skill frontmatter)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

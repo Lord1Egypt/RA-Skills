@@ -1,0 +1,35 @@
+meta:
+  sources:
+    - https://wiki.plateupgame.com/Achievements
+    - https://steamcommunity.com/sharedfiles/filedetails/?id=3267294764
+  retrieved: 2026-11-05
+  game_version: 1.5.x
+  note: "Use English name/id as canonical; guide claims some serving achievements are host-only and localized Work Smart/Please Wait text may be swapped."
+
+achievements:
+  Steaks Were Made: {condition: "Serve Steak to a customer", recipe_level: 1, host_only: guide_claim}
+  Stirring Things Up: {condition: "Serve Stir Fry to a customer", recipe_level: 15, host_only: guide_claim}
+  Piece of the Action: {condition: "Serve Pizza to a customer", recipe_level: 3, host_only: guide_claim}
+  A New Leaf: {condition: "Serve Salad to a customer", recipe_level: 2, host_only: guide_claim}
+  Soggy Bottom: {condition: "Serve Pie to a customer", recipe_level: 7, host_only: guide_claim}
+  Something Fishy: {condition: "Serve Fish to a customer", recipe_level: 9, host_only: guide_claim}
+  "Man's Best Friend?": {condition: "Serve Hot Dog to a customer", recipe_level: 11, host_only: guide_claim}
+  Least Important Meal: {condition: "Serve Breakfast to a customer", recipe_level: 13, host_only: guide_claim}
+  Burger Prince: {condition: "Serve Burger to a customer", recipe_level: 5, host_only: guide_claim}
+  This Is Fine: {condition: "Complete a day after restaurant has been on fire for more than 15 seconds", tip: "Danger Hob can ignite burnable food; then finish the day."}
+  Fireman: {condition: "Complete a day with 10 appliances on fire simultaneously", tip: "Use a large unused area to reduce service interference; appliance counting details come from player guide."}
+  Flawless Timing: {condition: "Serve a customer with less than 1 second of patience remaining"}
+  "Health Inspector?": {condition: "Complete a day with mess on at least 10 tiles", tip: "Guide says a tile may count again after it is cleaned and re-messed."}
+  "Oh No": {condition: "Set a customer on fire", tip: "Player-guide strategy: allow fire to spread to an occupied seat; high risk to the run."}
+  Charcoal Factory: {condition: "Cook something on a Danger Hob while Gas Override is active"}
+  "Safety Last": {condition: "Wear Trainers while holding a Sharp Knife"}
+  "Circle Line": {condition: "Convey an item back to where it started", tip: "A conveyor/grabber loop can do this."}
+  "Chef School": {condition: "Activate Practice Mode during preparation time", tip: "This is restaurant Practice Mode, not the Headquarters tutorial."}
+  "New Chef Plus": {condition: "Create a Franchise", host_only: false}
+  "Overtime 5": {condition: "Reach Overtime Day 5"}
+  "Overtime 10": {condition: "Reach Overtime Day 10"}
+  "Overtime 15": {condition: "Reach Overtime Day 15"}
+  "Learning By Doing": {condition: "Throw away cooked fish in the Tutorial", tip: "Must be in the tutorial, not restaurant Practice Mode."}
+  "Anti-social": {condition: "Complete a day without anyone directly serving a customer", tip: "Use Ordering Terminal and automation; guide warns some conveyor-only setups may still count as direct service."}
+  "Work Smart": {condition: "Complete a day without any player leaving their starting tile", zh_localization_note: "Guide reports possible name/description swap with Please Wait."}
+  "Please Wait": {condition: "Have the first group still waiting to order when the day ends", tip: "Do not take the first group's order; optionally advance time with Booking Desk.", zh_localization_note: "Guide reports possible name/description swap with Work Smart."}

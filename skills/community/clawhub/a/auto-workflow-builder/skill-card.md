@@ -1,40 +1,54 @@
-## Description: <br>
-Create and manage automated workflows visually with drag-and-drop triggers, actions, conditions, and integrations without coding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage automated workflows visually with drag-and-drop triggers, actions, conditions, and integrations without coding.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers, operators, and teams use this skill to design, configure, and run no-code workflows with scheduled, webhook, HTTP, database, file-change, and notification actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow automations can trigger scheduled or webhook actions that call external services or use credentials. <br>
-Mitigation: Review each workflow before enabling it, use least-privilege credentials, and confirm how to disable scheduled or webhook-triggered automations. <br>
-Risk: The skill examples refer to a workflow.sh script whose behavior is not included in the artifact evidence. <br>
-Mitigation: Verify any workflow.sh script separately before installing or running it. <br>
+## Use Case:
 
+Developers, operators, and automation builders use this skill to design no-code workflows that connect schedules, webhooks, APIs, databases, notifications, and cloud actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/auto-workflow-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and workflow configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow definitions can involve schedules, webhooks, external APIs, notifications, and credentials; review each workflow before enabling it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: Workflows may contact external services or modify remote systems through schedules, webhooks, APIs, databases, messaging tools, or AWS Lambda.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every trigger, action, destination, and credential before running or scheduling a workflow.
+
+Risk: The artifact references a workflow.sh implementation that is not included.
+
+Mitigation: Confirm the implementation source and safeguards before relying on generated or suggested workflow commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/auto-workflow-builder)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes workflow-building steps and command examples; the referenced workflow.sh implementation is not included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

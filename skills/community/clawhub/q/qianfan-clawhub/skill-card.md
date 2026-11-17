@@ -1,44 +1,55 @@
-## Description: <br>
-Search and install Baidu Qianfan ecosystem skills with fuzzy matching across slug, name, and description fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and install Baidu Qianfan ecosystem skills with fuzzy matching across slug, name, and description fields.
 
-## Publisher: <br>
-[baiduQianfanGroup](https://clawhub.ai/user/baiduQianfanGroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiduqianfangroup](https://clawhub.ai/user/baiduqianfangroup)
 
-## Use Case: <br>
-Developers and engineers use this skill to search the Baidu Qianfan skills marketplace, identify skills by slug, name, or description, and install selected skills into a local or custom workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports that install paths and ZIP extraction are not safely constrained enough for automatic trust. <br>
-Mitigation: Install only trusted Baidu Qianfan skills, review downloaded content before use, and avoid sensitive workspaces until ZIP path validation and stricter install-directory containment are added. <br>
-Risk: Using --force or a custom/shared workdir can overwrite or place files in a destination that has not been reviewed. <br>
-Mitigation: Avoid --force and custom or shared workdirs unless the destination and downloaded skill contents have been reviewed. <br>
-Risk: The skill depends on authenticated access to the Baidu Qianfan endpoint through BAIDU_API_KEY. <br>
-Mitigation: Use a scoped key where possible and avoid exposing the key in logs, shared shells, or committed configuration. <br>
+## Use Case:
 
+Developers and agents use this skill to search Baidu Qianfan ecosystem skills and install selected skills by exact slug into a Qianfan workspace or custom skills directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baiduQianfanGroup/qianfan-clawhub) <br>
-- [Publisher profile](https://clawhub.ai/user/baiduQianfanGroup) <br>
-- [Baidu AppBuilder endpoint](https://appbuilder.baidu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search requires BAIDU_API_KEY and returns marketplace skill slugs and names; install writes downloaded skill files to the configured skills directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The installer can write files from downloaded skill archives into the selected skills directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected slug and target directory before installing, use an isolated work directory for testing, and avoid force overwrite unless the existing contents have been checked.
+
+Risk: The Baidu API key can be sent to a caller-chosen endpoint when a custom endpoint is supplied.
+
+Mitigation: Use the official Baidu endpoint and a low-privilege disposable BAIDU_API_KEY when testing or reviewing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baiduqianfangroup/skills/qianfan-clawhub)
+- [Publisher profile](https://clawhub.ai/user/baiduqianfangroup)
+- [Baidu AppBuilder endpoint](https://appbuilder.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; search results list skill slugs and names, while install operations write downloaded skill files into the selected skills directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

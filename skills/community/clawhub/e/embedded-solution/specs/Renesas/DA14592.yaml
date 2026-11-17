@@ -1,0 +1,43 @@
+part: DA14592
+aliases:
+- R5F572N
+source_pdf: ../../embedded_dev/renesas/datasheet/DA14592_datasheet.pdf
+datasheet_revision: '3.2'
+datasheet_doc_id: R18DS0045EE0320
+extracted_at: '2026-07-05T23:50:00+08:00'
+extracted_from_pages:
+- 1
+extraction_method: reextract_da_ble.py (strategy=da1459x_template; page-1 Key Features
+  + General Description)
+verified_by_human: false
+product_status: Active (per renesas.com product page, longevity 2041)
+specs:
+  cores:
+  - Arm Cortex-M33F (with FPU)
+  - Arm Cortex-M0+ (BLE MAC engine)
+  max_clock_mhz: 64
+  dmips: 96
+  dmips_clock_mhz: 64
+  flash_kb: 256
+  ram_kb: 96
+  cache_kb: 8
+  rom_kb: 288
+  gpio_count_max: 32
+  sigma_delta_adc_bits: 15
+  hibernation_current_na: 100
+  packages:
+  - type: WLCSP39
+    size_mm: 2.48 × 3.32
+    pitch_mm: '0.42'
+  - type: FCQFN52
+    size_mm: 5.1 × 4.3
+    pitch_mm: null
+unverified:
+- exact_gpio_count_per_package
+- exact_peripheral_counts_per_package
+notes:
+- Re-extracted 2026-07-05 via scripts/reextract_da_ble.py (strategy=da1459x_template).
+  Prior versions had RX72N content mislabeled with part=DA14592; previous tooling
+  (update_specs.py) wrote incomplete fields. This run produces 12 spec fields sourced
+  directly from the DA BLE datasheet page-1 Key Features block.
+link_status: verified_3-2 (datasheet-pdf-extracted, dedicated page-1 extractor)

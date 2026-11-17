@@ -1,42 +1,58 @@
-## Description: <br>
-Robinhood helps agents organize public Robinhood product, fee, help, risk, and announcement information without account access, trading, or financial advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers a Robinhood skill for organizing public financial-services pages, product information, fee rules, help content, and notices.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Robinhood pages covering products, fees, account capabilities, restrictions, help resources, risk notices, and announcements. It is not for private account access, transaction execution, investment advice, lending advice, or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public financial-service information may be outdated or region-specific. <br>
-Mitigation: Verify important details on Robinhood's official pages and include page dates and applicable regions in outputs. <br>
-Risk: Summaries of Robinhood products, fees, or risks could be mistaken for investment, lending, or tax advice. <br>
-Mitigation: Keep outputs descriptive, label them as public-information summaries, and avoid recommendations or personalized financial conclusions. <br>
-Risk: Users may attempt to provide credentials, balances, identity details, bank information, or private transaction data. <br>
-Mitigation: Do not request or process private account data, login-state pages, credentials, fund-transfer requests, or trade instructions. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Robinhood product, fee, help, security, and announcement information. It is intended for public information organization only, not account access, transaction execution, investment advice, tax advice, or permission bypass.
 
-## Reference(s): <br>
-- [Robinhood homepage](https://robinhood.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite public source pages, include page dates and applicable regions when relevant, and avoid private account data or financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Public financial information may be time-sensitive, region-specific, or superseded by newer Robinhood pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify dates, regions, fees, terms, and product availability against current official Robinhood pages before relying on the summary.
+
+Risk: Summaries of public financial-services materials could be mistaken for investment, tax, lending, or legal advice.
+
+Mitigation: Present outputs as informational summaries only and avoid recommendations, predictions, transaction guidance, or personalized advice.
+
+Risk: Requests involving account access, balances, identity data, bank details, or private transactions exceed the skill scope.
+
+Mitigation: Restrict use to public pages and decline workflows that require login, private data, account actions, transfers, or trade execution.
+
+## Reference(s):
+
+- [Robinhood Homepage](https://robinhood.com/)
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/robinhood)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify page dates and applicable regions when summarizing time-sensitive financial information.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

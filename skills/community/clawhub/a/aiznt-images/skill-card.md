@@ -1,41 +1,53 @@
-## Description: <br>
-TS Images provides CLI commands for OpenAI-style image generation and Gemini generateContent image requests through configured AIZNT proxy URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TS Images provides OpenAI-style image generation and Gemini generateContent image workflows through configured AIZNT proxy endpoints.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit synchronous or asynchronous image-generation requests and query generated image tasks from configured service endpoints. It is suited for workflows that need OpenAI-style image APIs or Gemini generateContent image model calls from a command-line agent environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, request bodies, and --body-file content are sent to the configured image-generation service. <br>
-Mitigation: Review payloads before submission and avoid sending sensitive data unless the configured service and use case are approved. <br>
-Risk: The skill depends on TS_TOKEN and AIZNT_PROXY_URLS for authenticated requests to configured endpoints. <br>
-Mitigation: Install only from a trusted publisher, keep credentials in managed environment secrets, and limit token exposure in logs or shell history. <br>
+## Use Case:
 
+Developers and agent users use this skill to call synchronous or asynchronous image generation flows and Gemini generateContent image models from an environment configured with TS_TOKEN and AIZNT_PROXY_URLS.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangshengli0421/aiznt-images) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangshengli0421) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; command output is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TS_TOKEN and AIZNT_PROXY_URLS environment variables; sends user-provided JSON bodies to configured image-generation endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: Bearer tokens and prompt or image request data may be sent to unintended configured URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when TS_TOKEN and AIZNT_PROXY_URLS come from a trusted source, and verify each configured URL points to the intended HTTPS service before use.
+
+Risk: Sensitive prompts or source images may be transmitted to the configured image service.
+
+Mitigation: Avoid sending sensitive prompts or images unless required for the task and acceptable under the user's data handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangshengli0421/skills/aiznt-images)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill's scripts print JSON responses from configured image generation endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

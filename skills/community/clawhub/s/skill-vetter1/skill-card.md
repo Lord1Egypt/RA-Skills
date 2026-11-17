@@ -1,40 +1,58 @@
-## Description: <br>
-Create, edit, improve, and audit AgentSkill packages, including SKILL.md structure, bundled resources, validation, and packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, improve, or audit AgentSkills, including SKILL.md files and skill directories.
 
-## Publisher: <br>
-[sundayslove](https://clawhub.ai/user/sundayslove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sundayslove](https://clawhub.ai/user/sundayslove)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create new AgentSkills, improve existing SKILL.md files, organize bundled resources, validate skill structure, and package skills for distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security evidence flags inconsistent identity and packaging. <br>
-Mitigation: Install only after verifying the publisher identity and reviewing the artifact contents. <br>
-Risk: The skill can guide changes to SKILL.md files, scripts, and packaged .skill archives. <br>
-Mitigation: Keep target skill directories under version control, review generated files before packaging, and inspect archives before sharing or installing them. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to create, edit, validate, package, and audit agent skills and SKILL.md files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sundayslove/skill-vetter1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file changes and packaging commands for skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can guide agents to create, edit, and package skill directories, which can introduce unwanted changes to SKILL.md or bundled files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Work in a dedicated target directory and review every file diff before deploying or packaging the skill.
+
+Risk: Packaged skill archives may include unintended private or local files if those files are present in the skill folder.
+
+Mitigation: Keep secrets and local-only files out of skill folders and inspect the generated .skill archive before sharing.
+
+Risk: The artifact includes an official tag, but server evidence does not prove trusted OpenClaw provenance.
+
+Mitigation: Rely on server-resolved publisher and provenance fields, and do not treat the tag as proof of official ownership.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/sundayslove/skills/skill-vetter1)
+- [ClawHub publisher profile](https://clawhub.ai/user/sundayslove)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands; may produce or modify skill files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated file changes and packaged archives before use or sharing.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

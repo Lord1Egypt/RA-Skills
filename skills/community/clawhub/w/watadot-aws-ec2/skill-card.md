@@ -1,37 +1,49 @@
-## Description: <br>
-Elastic compute management by Watadot Studio. Deployment, scaling, and state monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elastic compute management by Watadot Studio. Deployment, scaling, and state monitoring.
 
-## Publisher: <br>
-[ordiy](https://clawhub.ai/user/ordiy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ordiy](https://clawhub.ai/user/ordiy)
 
-## Use Case: <br>
-Developers and cloud operators use this skill for AWS EC2 instance discovery, lifecycle control, security group review, and operational best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ordiy/watadot-aws-ec2) <br>
+Developers and cloud operators use this skill to have an agent propose AWS CLI commands and operational guidance for EC2 instance discovery, lifecycle control, and security group management.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the AWS CLI and an AWS profile with least-privilege EC2 permissions; verify account and region before running commands.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated EC2 commands can delete instances or change network access if run with the wrong account, region, resource IDs, or CIDR ranges.
+
+Mitigation: Before running any generated AWS command, verify the AWS account, region, instance IDs, security group IDs, and CIDR ranges, especially for termination and SSH ingress changes.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/ordiy/skills/watadot-aws-ec2)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AWS CLI availability and user validation before command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Operates Fathom Analytics through an OOMOL-connected account for reading analytics data and creating or updating sites, events, milestones, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Fathom Analytics through an OOMOL-connected account to read analytics and manage sites, events, and milestones.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect Fathom Analytics account, site, event, milestone, visitor, and aggregation data, and to make confirmed updates when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update Fathom Analytics sites, events, and milestones. <br>
-Mitigation: Require user confirmation of the exact action payload and expected effect before running any write action. <br>
-Risk: The OOMOL connection gives the agent account-level access to Fathom Analytics data available to the connected API key. <br>
-Mitigation: Install only when this access is intended, keep the OOMOL connection scoped to the intended account, and review proposed actions before approval. <br>
+## Use Case:
 
+Developers, site owners, and analysts can use this skill to inspect their Fathom account and site analytics, create or update sites, events, and milestones, and run aggregation reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-fathom) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Fathom Analytics homepage](https://usefathom.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Fathom connector JSON responses when actions are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup can run downloaded software without separate permission, and the exact installer behavior is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI release before installation, or require separate approval before running its installer.
+
+Risk: The connected account and analytics requests are handled by OOMOL, and the CLI may synchronize skills automatically.
+
+Mitigation: Review the CLI's synchronization behavior and disable automatic skill synchronization if it is not needed.
+
+## Reference(s):
+
+- [Fathom Analytics](https://usefathom.com)
+- [Fathom API documentation](https://usefathom.com/api)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use the live connector action schema; responses include data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

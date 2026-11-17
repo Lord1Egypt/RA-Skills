@@ -1,45 +1,57 @@
-## Description: <br>
-Guide for building with the Ika TypeScript SDK (@ika.xyz/sdk) on Mysten Sui v2 for dWallet creation, cross-chain transaction signing, encryption-key management, and TypeScript/JavaScript Ika network integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for building with the Ika TypeScript SDK (@ika.xyz/sdk) on Mysten Sui v2. Use when creating dWallets, signing cross-chain transactions, managing encryption keys, or integrating with the Ika network from TypeScript/JavaScript.
 
-## Publisher: <br>
-[omersadika](https://clawhub.ai/user/omersadika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omersadika](https://clawhub.ai/user/omersadika)
 
-## Use Case: <br>
-Developers and engineers use this skill to build TypeScript applications with the Ika SDK, including dWallet lifecycle flows, Sui integration, signing workflows, and curve/signature/hash validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet seeds, private keys, decryption keys, or secret shares could be exposed if copied into prompts, logs, examples, or repositories. <br>
-Mitigation: Use test keys in examples, keep real secrets out of agent context and source control, and review generated code for accidental secret handling. <br>
-Risk: Signing examples can create real financial or network effects when run against the wrong network or with production credentials. <br>
-Mitigation: Run examples on testnet first, verify the configured network, and inspect every transaction before signing or executing it. <br>
-Risk: Shared or autonomous dWallet signing can grant authority beyond the user's intended control model. <br>
-Mitigation: Use shared or autonomous signing only when that authority model is deliberate and documented for the application. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate @ika.xyz/sdk with TypeScript or JavaScript applications for dWallet creation, cross-chain signing, encryption key management, and Sui-based Ika network workflows.
 
-## Reference(s): <br>
-- [Ika](https://ika.xyz) <br>
-- [API Reference](references/api-reference.md) <br>
-- [End-to-End Flows](references/flows.md) <br>
-- [Types and Validation](references/types-and-validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include wallet-signing and transaction examples that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Wallet key-handling examples can lead to exposure if placeholder seeds, private keys, serialized key bytes, or secret shares are copied into production code or stored in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secure secret management, avoid logging sensitive values, replace placeholder seed examples, and review all generated key-management code before execution.
+
+Risk: Converting zero-trust dWallet flows to shared dWallet flows changes who must participate in signing.
+
+Mitigation: Treat zero-trust-to-shared conversion as an explicit security tradeoff and require application-level review before adopting it.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [End-to-End Flows](references/flows.md)
+- [Types and Validation](references/types-and-validation.md)
+- [Ika Homepage](https://ika.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/omersadika/skills/ika-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for agent responses; users should review key-management examples before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

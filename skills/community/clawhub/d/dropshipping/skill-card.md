@@ -1,41 +1,58 @@
-## Description: <br>
-Build and scale dropshipping businesses with product research, supplier management, order automation, and multi-channel operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and scale dropshipping businesses with product research, supplier management, order automation, and multi-channel operations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External operators and commerce teams use this skill as a practical guide for product research, supplier evaluation, order operations, customer service, compliance checks, and scaling dropshipping stores. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using the guidance with live store, marketplace, supplier, ad, payment, or customer-service accounts could affect orders, listings, refunds, supplier changes, customer data, or account settings. <br>
-Mitigation: Use least-privilege access and require manual confirmation before making orders, refunds, listings, customer-data changes, supplier changes, or account-setting changes. <br>
-Risk: Dropshipping operations can create legal, tax, consumer-protection, intellectual-property, chargeback, shipping, supplier, and quality risks. <br>
-Mitigation: Review applicable laws and platform rules, calculate full margins before scaling, test suppliers with samples, maintain backup suppliers, and keep clear customer-facing shipping and return expectations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [E-commerce Integrations Reference](integrations.md) <br>
-- [Dropshipping Risk Assessment](risks.md) <br>
-- [Supplier Management](suppliers.md) <br>
+## Use Case:
 
+External e-commerce operators and developers use this skill to plan dropshipping workflows, evaluate suppliers, model costs, automate order operations, and manage compliance-sensitive risks across store and marketplace channels.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance, checklists, templates, and operational reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational guidance only; no credentials, code execution, or account actions are performed by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Business guidance may become stale or vary by jurisdiction, platform, product category, or payment processor.
+
+Mitigation: Independently verify current tax, legal, platform, and product-safety requirements before acting on the advice.
+
+Risk: Automation around refunds, order rejection, supplier payments, or store and payment APIs can create financial or customer-impacting errors.
+
+Mitigation: Keep manual approval and review around high-impact operational actions.
+
+Risk: Dropshipping operations can trigger compliance, intellectual-property, chargeback, supplier, and product-quality issues.
+
+Mitigation: Use the included risk assessment and supplier checks before listing products or scaling sales channels.
+
+## Reference(s):
+
+- [E-commerce Integrations Reference](artifact/integrations.md)
+- [Dropshipping Risk Assessment](artifact/risks.md)
+- [Supplier Management](artifact/suppliers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown with checklists, tables, and operational templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain Markdown guidance; no executable code, tool calls, or hidden access were identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

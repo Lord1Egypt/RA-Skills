@@ -1,47 +1,59 @@
-## Description: <br>
-Generates a structured pre-market A-share market briefing from daxiapi market structure, turnover, style rotation, sector strength, limit-up/limit-down, and hot-rank data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+交易日开盘前（8:00-9:25）生成A股市场全景简报，整合市场结构、资金热度、风格轮动、板块强弱等信息，帮助把握当日投资主线。
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and market-analysis agents use this skill before A-share trading sessions to gather prior-close market data and produce a concise Markdown briefing on market structure, themes, activity, and risks. The output is informational context and is not personalized trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires a daxiapi token configured locally. <br>
-Mitigation: Install only if the daxiapi CLI/npm package is trusted, store tokens outside screenshots and synced dotfiles, and avoid exposing tokens in shell history. <br>
-Risk: Generated market briefings may be mistaken for personalized trading advice. <br>
-Mitigation: Treat the briefing as prior-close informational context only and keep the disclaimer that it does not constitute investment advice. <br>
-Risk: Premarket data can be stale, missing on non-trading days, or delayed for fields such as the fear-greed index. <br>
-Mitigation: Check data dates and apply the skill's quality checks before relying on the briefing. <br>
+## Use Case:
 
+External users and market analysts use this skill before the A-share trading session to collect DaxiAPI market data and produce a structured Markdown premarket briefing. It supports market overview, investment-theme identification, and risk review, but is not intended for non-trading days, intraday real-time analysis, or deep single-stock research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-premarket-briefing) <br>
-- [daxiapi.com](https://daxiapi.com) <br>
-- [CLI 命令参考](artifact/references/cli-commands.md) <br>
-- [Token 配置指南](artifact/references/token-setup.md) <br>
-- [字段说明和名词解释](artifact/references/field-descriptions.md) <br>
-- [API 参考文档](artifact/references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefing with inline shell commands for data retrieval and a fixed six-section report structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses prior-close market data, includes concrete metric checks and an informational financial-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill instructs agents to run daxiapi-cli with the @latest package tag, which can execute a different remote CLI version over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use a vetted, pinned daxiapi-cli version for operational use.
+
+Risk: The skill requires a DaxiAPI token and includes workflows that can expose token values through terminal commands or agent logs.
+
+Mitigation: Store the token securely, use least-privilege access, avoid printing token values, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ksky521/skills/xiapi-premarket-briefing)
+- [DaxiAPI](https://daxiapi.com)
+- [CLI 命令参考](references/cli-commands.md)
+- [Token 配置指南](references/token-setup.md)
+- [字段说明和名词解释](references/field-descriptions.md)
+- [API 参考文档](references/api-reference.md)
+- [盘前简报示例输出](assets/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured Markdown report with inline shell commands and market-data guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dated six-section A-share premarket briefing with numerical support and an investment-risk disclaimer.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

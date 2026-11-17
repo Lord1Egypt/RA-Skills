@@ -1,37 +1,53 @@
-## Description: <br>
-Defragment and reorganize agent memory files by splitting bloated files, merging duplicates, removing stale information, and restructuring the memory hierarchy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defragment and reorganize agent memory files: split bloated files, merge duplicates, remove stale information, and restructure the memory hierarchy.
 
-## Publisher: <br>
-[phernandez](https://clawhub.ai/user/phernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phernandez](https://clawhub.ai/user/phernandez)
 
-## Use Case: <br>
-Agents and developers use this skill to audit, plan, and safely reorganize memory files when memories become bloated, duplicated, stale, or poorly structured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory cleanup can remove, merge, or move information that may still be useful. <br>
-Mitigation: Review the defrag plan, keep a backup, and require explicit approval before deletions, merges, moves, pruning, or scheduled file-changing runs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit, reorganize, split, merge, and prune local agent memory files while preserving useful context and audit trails.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with example file paths, checklists, tables, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a human-reviewable plan, memory file edits, verification notes, and an activity log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Pruning or scheduled defragmentation could remove useful memory or task context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed deletions before applying them, preserve raw daily notes, and keep uncertain entries marked for review instead of deleting them.
+
+Risk: Merging or restructuring memory files can accidentally lose context or break cross-references.
+
+Mitigation: Compare before and after states, update cross-references, and log the files reviewed, split, merged, pruned, and changed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phernandez/skills/memory-defrag)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files, Shell commands]
+
+**Output Format:** [Markdown guidance with optional file edits, checklists, logs, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose splitting, merging, pruning, renaming, and logging changes to memory files.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,43 @@
+name: TinyOps Automation Integration Preflight
+description: Check a public page for bounded automation and integration-readiness evidence.
+author: TinyOps Studio LLC
+
+branding:
+  icon: shield
+  color: blue
+
+inputs:
+  url:
+    description: Public HTTP or HTTPS page to inspect.
+    required: true
+  rapidapi-key:
+    description: RapidAPI application key stored as a GitHub Actions secret.
+    required: true
+  mode:
+    description: Use analyze for evidence or acceptance-pack for evidence plus launch gates and tests.
+    required: false
+    default: analyze
+  objective:
+    description: Optional implementation objective used by acceptance-pack mode.
+    required: false
+    default: ""
+  output-file:
+    description: JSON report path relative to the GitHub workspace.
+    required: false
+    default: automation-preflight-report.json
+  fail-on-error:
+    description: Fail the workflow step when the API request fails.
+    required: false
+    default: "true"
+
+outputs:
+  readiness:
+    description: Readiness label returned by the service when available.
+  report-file:
+    description: Absolute path to the saved JSON report.
+  http-status:
+    description: HTTP status returned by the service.
+
+runs:
+  using: node24
+  main: index.js

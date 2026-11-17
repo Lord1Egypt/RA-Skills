@@ -1,0 +1,873 @@
+{
+  "项目": "合成演示项目",
+  "数据性质": "模拟",
+  "账号筛选": [
+    "内容甲",
+    "内容乙"
+  ],
+  "范围说明": "文章与AI按项目统计；账号筛选只影响发布和经营；发布为周期内创建记录的状态快照",
+  "本期": {
+    "开始": "2026-10-12",
+    "结束": "2026-10-18",
+    "天数": 7,
+    "来源": {
+      "文章": {
+        "路径": "articles.csv",
+        "数据截至": "2026-10-18",
+        "覆盖": "完整",
+        "说明": "合成文章清单",
+        "选中行数": 2,
+        "排除行数": 0
+      },
+      "发布": {
+        "路径": "publications.csv",
+        "数据截至": "2026-10-18",
+        "覆盖": "完整",
+        "说明": "合成发布记录状态快照",
+        "选中行数": 4,
+        "排除行数": 0
+      },
+      "AI回答": {
+        "路径": "answers.json",
+        "数据截至": "2026-10-18",
+        "覆盖": "完整",
+        "说明": "合成模拟、失败、未运行记录",
+        "统计口径": "演示AI；topic1-4；各一次；人工标注本项目原生引用",
+        "选中行数": 4,
+        "排除行数": 0
+      }
+    },
+    "指标": {
+      "articles": {
+        "value": 2,
+        "unit": "篇",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按项目内文章ID去重；日期为创建日"
+      },
+      "publications": {
+        "value": 4,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "周期内创建的发布记录；非文章数"
+      },
+      "published_articles": {
+        "value": 2,
+        "unit": "篇",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": ""
+      },
+      "submitted": {
+        "value": 3,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "submission_failed": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "not_submitted": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "submission_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "approved": {
+        "value": 2,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "reviewing": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "rejected": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "review_unknown": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "public": {
+        "value": 2,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "not_public": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "public_pending": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "public_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "indexed": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "not_found": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "index_unrun": {
+        "value": 2,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "index_failed": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "index_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 4,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "ai_completed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_failed": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_unrun": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_simulated": {
+        "value": 2,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_mentions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零实际完成回答样本"
+      },
+      "ai_cited": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本；未运行/失败/模拟不计入实际分母"
+      },
+      "ai_mention_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零实际完成回答样本"
+      },
+      "ai_citation_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本，引用率 N/A"
+      },
+      "sim_cited": {
+        "value": 1,
+        "unit": "条",
+        "numerator": 1,
+        "denominator": 2,
+        "status": "模拟",
+        "reason": "分子为包含本项目原生引用的回答数；每次完整回答算一个样本"
+      },
+      "sim_citation_rate": {
+        "value": 50.0,
+        "unit": "%",
+        "numerator": 1,
+        "denominator": 2,
+        "status": "模拟",
+        "reason": "分子为包含本项目原生引用的回答数；每次完整回答算一个样本"
+      },
+      "sessions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "conversions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "revenue": {
+        "value": null,
+        "unit": "货币单位未提供",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "cost": {
+        "value": null,
+        "unit": "货币单位未提供",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "cvr": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "roi": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      }
+    }
+  },
+  "上期": {
+    "开始": "2026-10-05",
+    "结束": "2026-10-11",
+    "天数": 7,
+    "来源": {
+      "文章": {
+        "路径": "previous-articles.csv",
+        "数据截至": "2026-10-11",
+        "覆盖": "完整",
+        "说明": "合成文章清单",
+        "选中行数": 1,
+        "排除行数": 0
+      },
+      "发布": {
+        "路径": "previous-publications.csv",
+        "数据截至": "2026-10-11",
+        "覆盖": "完整",
+        "说明": "合成发布记录状态快照",
+        "选中行数": 1,
+        "排除行数": 0
+      },
+      "AI回答": {
+        "路径": "previous-answers.json",
+        "数据截至": "2026-10-11",
+        "覆盖": "完整",
+        "说明": "合成模拟、失败、未运行记录",
+        "统计口径": "演示AI；topic1-4；各一次；人工标注本项目原生引用",
+        "选中行数": 4,
+        "排除行数": 0
+      }
+    },
+    "指标": {
+      "articles": {
+        "value": 1,
+        "unit": "篇",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按项目内文章ID去重；日期为创建日"
+      },
+      "publications": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "周期内创建的发布记录；非文章数"
+      },
+      "published_articles": {
+        "value": 1,
+        "unit": "篇",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": ""
+      },
+      "submitted": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "submission_failed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "not_submitted": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "submission_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取投稿字段；不从其他阶段推导"
+      },
+      "approved": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "reviewing": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "rejected": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "review_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取审核字段；不从其他阶段推导"
+      },
+      "public": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "not_public": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "public_pending": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "public_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取公开字段；不从其他阶段推导"
+      },
+      "indexed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "not_found": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "index_unrun": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "index_failed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "index_unknown": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 1,
+        "status": "模拟",
+        "reason": "独立读取收录字段；不从其他阶段推导"
+      },
+      "ai_completed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_failed": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_unrun": {
+        "value": 1,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_simulated": {
+        "value": 2,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_mentions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零实际完成回答样本"
+      },
+      "ai_cited": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本；未运行/失败/模拟不计入实际分母"
+      },
+      "ai_mention_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零实际完成回答样本"
+      },
+      "ai_citation_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本，引用率 N/A"
+      },
+      "sim_cited": {
+        "value": 1,
+        "unit": "条",
+        "numerator": 1,
+        "denominator": 2,
+        "status": "模拟",
+        "reason": "分子为包含本项目原生引用的回答数；每次完整回答算一个样本"
+      },
+      "sim_citation_rate": {
+        "value": 50.0,
+        "unit": "%",
+        "numerator": 1,
+        "denominator": 2,
+        "status": "模拟",
+        "reason": "分子为包含本项目原生引用的回答数；每次完整回答算一个样本"
+      },
+      "sessions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "conversions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "revenue": {
+        "value": null,
+        "unit": "货币单位未提供",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "cost": {
+        "value": null,
+        "unit": "货币单位未提供",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "cvr": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "roi": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      }
+    }
+  },
+  "比较": {
+    "articles": {
+      "delta": 1,
+      "percent": 100.0,
+      "reason": ""
+    },
+    "publications": {
+      "delta": 3,
+      "percent": 300.0,
+      "reason": ""
+    },
+    "published_articles": {
+      "delta": 1,
+      "percent": 100.0,
+      "reason": ""
+    },
+    "submitted": {
+      "delta": 2,
+      "percent": 200.0,
+      "reason": ""
+    },
+    "submission_failed": {
+      "delta": 1,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "not_submitted": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "submission_unknown": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "approved": {
+      "delta": 1,
+      "percent": 100.0,
+      "reason": ""
+    },
+    "reviewing": {
+      "delta": 1,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "rejected": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "review_unknown": {
+      "delta": 1,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "public": {
+      "delta": 2,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "not_public": {
+      "delta": 1,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "public_pending": {
+      "delta": 0,
+      "percent": 0.0,
+      "reason": ""
+    },
+    "public_unknown": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "indexed": {
+      "delta": 1,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "not_found": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "index_unrun": {
+      "delta": 1,
+      "percent": 100.0,
+      "reason": ""
+    },
+    "index_failed": {
+      "delta": 1,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "index_unknown": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "ai_completed": {
+      "delta": 0,
+      "percent": null,
+      "reason": "上期为0，变化率 N/A"
+    },
+    "ai_failed": {
+      "delta": 0,
+      "percent": 0.0,
+      "reason": ""
+    },
+    "ai_unrun": {
+      "delta": 0,
+      "percent": 0.0,
+      "reason": ""
+    },
+    "ai_simulated": {
+      "delta": 0,
+      "percent": 0.0,
+      "reason": ""
+    },
+    "ai_mentions": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "ai_cited": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "ai_mention_rate": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "ai_citation_rate": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "sim_cited": {
+      "delta": 0,
+      "percent": 0.0,
+      "reason": ""
+    },
+    "sim_citation_rate": {
+      "delta": 0.0,
+      "percent": 0.0,
+      "reason": ""
+    },
+    "sessions": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "conversions": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "revenue": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "cost": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "cvr": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    },
+    "roi": {
+      "delta": null,
+      "percent": null,
+      "reason": "本期或上期指标 N/A"
+    }
+  },
+  "指标名称": {
+    "articles": "新增文章数",
+    "publications": "发布记录数",
+    "published_articles": "涉及文章数",
+    "submitted": "已投稿",
+    "submission_failed": "投稿失败",
+    "not_submitted": "未投稿",
+    "submission_unknown": "投稿未知",
+    "approved": "审核通过",
+    "reviewing": "审核中",
+    "rejected": "审核拒绝",
+    "review_unknown": "审核未知",
+    "public": "公开已验证",
+    "not_public": "未公开",
+    "public_pending": "公开待核验",
+    "public_unknown": "公开未知",
+    "indexed": "收录已验证",
+    "not_found": "收录未检出",
+    "index_unrun": "收录未查询",
+    "index_failed": "收录查询失败",
+    "index_unknown": "收录未知",
+    "ai_completed": "实际完成回答",
+    "ai_failed": "AI查询失败",
+    "ai_unrun": "AI未运行",
+    "ai_simulated": "AI模拟回答",
+    "ai_mentions": "实际品牌提及回答",
+    "ai_cited": "实际原生引用回答",
+    "ai_mention_rate": "实际品牌提及率",
+    "ai_citation_rate": "实际原生引用率",
+    "sim_cited": "模拟原生引用回答",
+    "sim_citation_rate": "模拟原生引用率",
+    "sessions": "会话数",
+    "conversions": "转化会话数",
+    "revenue": "归因收入",
+    "cost": "成本",
+    "cvr": "会话转化率",
+    "roi": "ROI"
+  }
+}

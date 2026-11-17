@@ -1,46 +1,59 @@
-## Description: <br>
-Inspect containers, logs, and images via podman. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect containers, logs, and images via podman.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local containers, logs, and images through podman while preserving guardrails around command injection and sensitive container data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Container identifiers can contain shell metacharacters that may lead to command injection if interpolated unsafely. <br>
-Mitigation: Quote container names and IDs in shell commands, and refuse requests that clearly attempt command injection. <br>
-Risk: Container logs and inspect output can contain secrets or infrastructure details. <br>
-Mitigation: Display container data locally in the terminal, avoid bulk environment-variable disclosure, and do not persist output to disk unless explicitly requested. <br>
-Risk: Sending logs, inspect output, environment variables, or image metadata to network endpoints can leak sensitive data. <br>
-Mitigation: Keep container data on the local machine and refuse piping or transmitting it with tools such as curl, wget, or netcat. <br>
-Risk: The examples use docker-ctl while the declared runtime dependency is podman. <br>
-Mitigation: Confirm that docker-ctl exists on the target system or deliberately adapt commands to podman before use. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local containers, logs, images, and container metadata through podman while applying guardrails for identifiers, local-only review, and sensitive container output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/docker-ctl-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/docker-ctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides local inspection guidance; container data should stay in-terminal unless the user explicitly requests file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Container logs and inspect output can reveal environment variables, tokens, mounts, and internal network details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for local review, avoid sending output to network endpoints, and request file output only when a local artifact is intentionally needed with appropriate permissions.
+
+Risk: User-provided container names or IDs may contain shell metacharacters that could enable command injection if interpolated unsafely.
+
+Mitigation: Quote container identifiers in shell commands and refuse requests that clearly attempt to inject unrelated commands.
+
+Risk: Persisting bulk container metadata to disk can expose secrets beyond the terminal session.
+
+Mitigation: Display container data in the terminal by default and write output to files only after an explicit user request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/docker-ctl-hardened)
+- [Faberlens docker-ctl safety evaluation](https://faberlens.ai/explore/docker-ctl)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Analysis]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local terminal-oriented guidance for podman-backed docker-ctl commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

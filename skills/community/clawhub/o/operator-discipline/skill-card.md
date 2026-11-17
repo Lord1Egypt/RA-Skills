@@ -1,39 +1,48 @@
-## Description: <br>
-Applies production-grade behavioral discipline to AI agent sessions, covering response discipline, effort calibration, file and memory hygiene, tool safety, stuck detection, quality gates, skeptical review, and token cost discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies production-grade behavioral discipline to any AI agent session.
 
-## Publisher: <br>
-[CaleCorbett](https://clawhub.ai/user/CaleCorbett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[calecorbett](https://clawhub.ai/user/calecorbett)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to configure or audit AI agents for disciplined responses, safer tool use, better context hygiene, and more skeptical planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill changes agent operating behavior across sessions, including terser responses and stricter tool habits. <br>
-Mitigation: Review the behavior rules before installation and scope them to agents where stricter operating discipline is desired. <br>
-Risk: Checkpoint or note-taking behavior may capture sensitive details when host memory or file tools are available. <br>
-Mitigation: Avoid saving secrets or private data in notes and review any generated files before retaining or sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CaleCorbett/operator-discipline) <br>
+## Use Case:
 
+Developers, agent operators, and prompt authors use this skill to configure or audit AI agents for disciplined session behavior, including response calibration, file hygiene, tool safety, stuck detection, quality checks, and cost-aware context use.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not run tools or code by itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad behavioral rules may conflict with local policy, accessibility needs, or user preferences when embedded into an agent prompt.
+
+Mitigation: Review and adapt the universal wording before deployment so local policy and user requirements take precedence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/calecorbett/skills/operator-discipline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance for agent behavior and prompt configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; produces behavioral rules and review guidance for agent sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

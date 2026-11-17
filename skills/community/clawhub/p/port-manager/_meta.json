@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn77ykg8y6768p7n721pgxc7an82hq2s",
-  "slug": "port-manager",
+  "name": "port-manager",
   "version": "1.0.0",
-  "publishedAt": 1773169493356
+  "author": "damien",
+  "description": "Port Manager - Track and manage system port usage, avoid conflicts",
+  "keywords": ["port", "manager", "network", "system"],
+  "platform": ["darwin", "linux"],
+  "license": "MIT"
 }

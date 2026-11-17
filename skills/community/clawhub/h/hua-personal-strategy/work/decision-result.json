@@ -1,0 +1,229 @@
+{
+  "action": "RISK_REDUCE",
+  "allocation": {
+    "currentDrawdownPct": 16.0085,
+    "currentFundWeightsPct": {
+      "016600": 0.8553,
+      "017731": 3.2282,
+      "023299": 6.2084,
+      "270042": 1.6815,
+      "519195": 3.5209
+    },
+    "currentWeightsPct": {
+      "cash": 84.5058,
+      "equity_cn": 6.2084,
+      "equity_overseas": 4.9097,
+      "theme": 4.3761
+    },
+    "effectiveMaxDrawdownPct": 15.0,
+    "factorStates": {
+      "equity_cn": {
+        "adverseFactorCount": 0,
+        "dataComplete": false,
+        "factors": {
+          "ma20VsMa60": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "priceVsMa20": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "r20": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "r60": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          }
+        },
+        "investedValueCny": 7365.6,
+        "method": "fund_trend_consensus_v1",
+        "positiveFactorCount": 0,
+        "schemaVersion": "risk_factor_state.v1",
+        "severity": "UNKNOWN"
+      },
+      "equity_overseas": {
+        "adverseFactorCount": 0,
+        "dataComplete": false,
+        "factors": {
+          "ma20VsMa60": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "priceVsMa20": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "r20": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "r60": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          }
+        },
+        "investedValueCny": 5824.91,
+        "method": "fund_trend_consensus_v1",
+        "positiveFactorCount": 0,
+        "schemaVersion": "risk_factor_state.v1",
+        "severity": "UNKNOWN"
+      },
+      "theme": {
+        "adverseFactorCount": 0,
+        "dataComplete": false,
+        "factors": {
+          "ma20VsMa60": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "priceVsMa20": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "r20": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          },
+          "r60": {
+            "adverseWeightPct": 0.0,
+            "coveragePct": 0.0,
+            "positiveWeightPct": 0.0,
+            "state": "UNKNOWN"
+          }
+        },
+        "investedValueCny": 5191.84,
+        "method": "fund_trend_consensus_v1",
+        "positiveFactorCount": 0,
+        "schemaVersion": "risk_factor_state.v1",
+        "severity": "UNKNOWN"
+      }
+    },
+    "riskControl": {
+      "drawdownBasis": {
+        "assumption": null,
+        "assumptions": [],
+        "configuredMcpLimitPct": 15.0,
+        "effectiveDrawdownPct": 16.0085,
+        "isApproximation": false,
+        "mcpFundPortfolioValueCny": 18382.35,
+        "method": "MCP_REPORTED",
+        "nonMcpAssetsCny": 100257.65,
+        "scope": "MCP_FUND_PORTFOLIO",
+        "source": "context.portfolio.risk.currentDrawdownPct",
+        "sourceDrawdownPct": 16.0085,
+        "sourceScope": "MCP_FUND_PORTFOLIO",
+        "totalInvestableAssetsCny": 118640.0
+      },
+      "factorMethod": "fund_trend_consensus_v1",
+      "hardLimitBreached": true,
+      "softDrawdownTriggerPct": 10.0,
+      "softReductionStepPct": 0.0,
+      "softRiskSleeve": null,
+      "softTriggerCrossed": false
+    },
+    "sourceMcpDrawdownPct": 16.0085,
+    "tacticalDeltasPct": {
+      "cash": 90.0,
+      "equity_cn": -45.0,
+      "equity_overseas": -25.0,
+      "theme": -20.0
+    },
+    "targetWeightsPct": {
+      "cash": 100.0,
+      "equity_cn": 0.0,
+      "equity_overseas": 0.0,
+      "theme": 0.0
+    },
+    "totalInvestableAssetsCny": 118640.0
+  },
+  "amountCny": 5900.0,
+  "amountTrace": {
+    "activitySchemaVersion": "portfolio_activity.v2",
+    "amountStepCny": 100.0,
+    "effectiveCapCny": 5932.0,
+    "effectiveMonthlyTurnoverLimitPct": null,
+    "fundHoldingCapCny": 7365.6,
+    "grossMonthlyTurnoverUsedPct": 0.0,
+    "hardMonthlyTurnoverRemainingCapCny": 59320.0,
+    "minimumEffectiveTradeCny": 100.0,
+    "monthlyTurnoverLimitExempt": true,
+    "monthlyTurnoverRemainingCapCny": null,
+    "monthlyTurnoverUsedPct": 0.0,
+    "oneTradeCapCny": 5932.0,
+    "ordinaryMonthlyTurnoverUsedPct": 0.0,
+    "protectiveSellTurnoverPct": 0.0,
+    "rawGapCny": 7365.6,
+    "riskOffReentryEvaluated": false,
+    "riskOffReentryEvaluation": [],
+    "riskOffReentryRemainingPct": 0.0,
+    "riskOffReentryUsedPct": 0.0,
+    "turnoverBudgetType": "RISK_REDUCTION_EXEMPT",
+    "turnoverDrivers": [
+      "RISK_REDUCTION_EXEMPT_FROM_NORMAL_TURNOVER"
+    ]
+  },
+  "audit": {
+    "aiModelVersion": "mimo-v2.5/custom",
+    "aiPromptVersion": "hua-investment-research-v1",
+    "canonicalInputHash": "f7559d8f01a69ee236fcfb7f6835433187f2b230549a1cdb2960b643c9c2f199",
+    "canonicalOutputHash": "fb7ae68f03e216265300132bebc408858856e42dec1d14d2c34bfb315dd8df86",
+    "contextHash": null,
+    "engineVersion": "4.3.0",
+    "evidenceSetHash": "9fe3c75a72eefd0f10c6ac96440f85b83697b2ad54a5a8fb4840cca98b6c6511",
+    "policyVersion": 15,
+    "strategyVersion": "4.3.0"
+  },
+  "blockers": [],
+  "changeWeightPct": -4.973,
+  "confidence": "MEDIUM",
+  "currentWeightPct": 6.2084,
+  "dataAsOf": "2026-07-23",
+  "drivers": [
+    "PORTFOLIO_DRAWDOWN_ABOVE_POLICY",
+    "RISKY_SLEEVE_ABOVE_REDUCED_TARGET"
+  ],
+  "executionMode": "ACTIVE",
+  "fundCode": "023299",
+  "fundName": "汇添富中证A500指数增强C",
+  "invalidationTriggers": [
+    "LONG_TREND_BREAK",
+    "DRAWDOWN_HARD_BREACH"
+  ],
+  "nextReviewAt": null,
+  "schemaVersion": "decision_result.v1",
+  "scope": "equity_cn",
+  "shadowAmountCny": null,
+  "side": "SELL",
+  "status": "VALID",
+  "targetBandPct": [
+    0.0,
+    80.0
+  ],
+  "targetWeightPct": 0.0,
+  "validUntil": "2026-07-23T14:55:00+08:00"
+}

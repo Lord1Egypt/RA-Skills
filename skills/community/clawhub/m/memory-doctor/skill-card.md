@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents inspect and maintain existing long-term memory stores by reporting memory health issues and offering snapshot-backed index reconciliation for supported formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+memory-doctor checks and tidies existing LLM agent memory stores by reporting health issues and applying deterministic index reconciliation for supported formats.
 
-## Publisher: <br>
-[casperkwok](https://clawhub.ai/user/casperkwok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperkwok](https://clawhub.ai/user/casperkwok)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check and tidy an existing LLM-agent memory store before memory drift, stale notes, dead links, or index drift degrade agent behavior. It supports read-only reports by default and deterministic index reconciliation when explicitly run with a fix option. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a user-chosen memory directory and can expose sensitive memory content in reports or terminal output. <br>
-Mitigation: Run it only on memory directories the user intends to inspect, and review report output before sharing it. <br>
-Risk: Using the fix option rewrites the MEMORY.md index for supported auto-memory stores. <br>
-Mitigation: Run report and lint first, review the dry-run plan, and use --fix only when the user wants the index rewritten. <br>
-Risk: The bundled snapshot is not a full recursive backup of every possible memory-store file. <br>
-Mitigation: Keep an independent backup for important memory stores before applying fixes. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect existing Claude Code auto-memory or mneme stores for index drift, stale entries, dead links, duplicate candidates, oversized memories, and freshness. For auto-memory stores, they can preview or apply deterministic MEMORY.md index reconciliation when appropriate.
 
-## Reference(s): <br>
-- [memory-doctor ClawHub release](https://clawhub.ai/casperkwok/memory-doctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown health reports, terminal output, and snapshot-backed file updates when fixes are requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with no LLM dependency; report and lint are read-only unless the user applies fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Memory directories containing symlinks may allow reads or writes outside the selected directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only memory directories you control, avoid directories containing symlinks, and inspect the lint plan before running --fix.
+
+Risk: Undo should not be treated as a complete rollback for all filesystem effects.
+
+Mitigation: Keep independent backups before file-mutating commands and treat undo as a local best-effort restoration path.
+
+Risk: --fix and undo mutate local memory files.
+
+Mitigation: Run report and lint without --fix first, then apply changes only after reviewing the proposed index reconciliation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperkwok/skills/memory-doctor)
+- [ClawHub publisher profile](https://clawhub.ai/user/casperkwok)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style CLI health report with command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only reporting is available; lint --fix and undo are local file-mutating commands.]
+
+## Skill Version(s):
+
+0.1.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

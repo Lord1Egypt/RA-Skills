@@ -1,0 +1,4 @@
+interface:
+  display_name: "店铺口碑分析"
+  short_description: "跨平台核对门店评分、价格与好差评，分析口味服务并给出消费建议"
+  default_prompt: "使用 $shop-review-analysis 分析这家店的价格、口味、近期好差评和是否值得去。"

@@ -1,44 +1,56 @@
-## Description: <br>
-Operate Notion workspace content through Notion MCP using the UXC CLI, including search, fetch, users/teams lookup, page/database creation and updates, and comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Notion workspace content through Notion MCP using the UXC CLI, including search, fetch, user and team lookup, page and database creation and updates, and comments.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to a Notion workspace through Notion MCP and UXC OAuth, then search, fetch, inspect, create, update, and comment on Notion content with read-first and explicit-confirmation guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to request Notion workspace read and write access through OAuth. <br>
-Mitigation: Review the Notion OAuth consent screen carefully and approve only the intended workspace and scopes before completing the callback. <br>
-Risk: Create, update, move, delete, and comment operations can change Notion workspace content. <br>
-Mitigation: Search or fetch current state first, then require explicit user confirmation before any write or destructive action. <br>
-Risk: Duplicate endpoint bindings or stale credentials can cause authorization failures. <br>
-Mitigation: Verify the matching binding and test explicit credentials before removing stale bindings or retrying the operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Notion-specific auth notes](references/oauth-and-binding.md) <br>
-- [Invocation patterns by task](references/usage-patterns.md) <br>
-- [Notion-specific failure notes](references/error-handling.md) <br>
-- [Notion MCP endpoint](https://mcp.notion.com/mcp) <br>
+## Use Case:
 
+Developers and operators use this skill to authenticate to Notion MCP, inspect available tools, search and fetch Notion content, and perform confirmed write operations with read-first safeguards.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON envelope parsing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-first workflow with explicit confirmation before create, update, move, delete, or comment actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The OAuth callback URL may contain sensitive authorization data if pasted into persistent chat or logs.
+
+Mitigation: Prefer a direct interactive OAuth flow when available, avoid storing callback URLs in persistent logs, and complete the exchange promptly through UXC.
+
+Risk: The skill may request read and write access to a Notion workspace and leave a reusable UXC binding or linked command in place.
+
+Mitigation: Request write scope only when writes are needed, require explicit user confirmation before write operations, and review or remove the UXC binding after use when persistence is not desired.
+
+## Reference(s):
+
+- [OAuth And Binding](references/oauth-and-binding.md)
+- [Usage Patterns](references/usage-patterns.md)
+- [Error Handling](references/error-handling.md)
+- [Notion MCP endpoint](https://mcp.notion.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/notion-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JSON-envelope parsing and requires explicit confirmation before create, update, move, or delete-style Notion operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,66 @@
-## Description: <br>
-Generate character design images, original character art, OC portraits, character sheets, and hero concept art. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate character design images, original character art, OC portraits, character sheets, and hero concept art.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Developers, artists, and other external users use this skill to turn character requirements into structured prompts and generated character images, including portraits, character sheets, mascot concepts, and fantasy or sci-fi hero concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may write local .image-skills configuration files and can persist IMAGE_GEN_API_KEY in a plaintext .env file when setup is used. <br>
-Mitigation: Review local configuration before installation, use least-privilege API credentials, and persist the key only when the environment requires it. <br>
-Risk: Local reference images passed to image-to-image flows may be uploaded off-host through the WeryAI gateway. <br>
-Mitigation: Avoid sensitive local images unless off-host upload is intended and approved for the use case. <br>
-Risk: The security scan marks the release suspicious because local upload and setup behaviors are under-disclosed. <br>
-Mitigation: Review the skill's safety scope and generated commands before deployment, especially in managed or sensitive workspaces. <br>
+## Use Case:
 
+External users, artists, and developers use this skill to turn character concepts into generated images such as OC portraits, character sheets, mascot designs, and hero concept art through a WeryAI image-generation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/632657122/character-image-generator) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
-- [Model Registry Schema](references/config/model-registry-schema.md) <br>
-- [Style Presets](references/style-presets.md) <br>
-- [Gateway Alignment Notes](references/weryai-platform.md) <br>
-- [WeryAI API introduction](https://docs.weryai.com/en) <br>
-- [WeryAI text-to-image endpoint](https://docs.weryai.com/api-reference/character-image-generator/submit-text-to-image-task) <br>
-- [WeryAI image-to-image endpoint](https://docs.weryai.com/api-reference/character-image-generator/submit-image-to-image-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [images, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated image files or image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMAGE_GEN_API_KEY, may write output images and optional configuration under .image-skills/character-image-generator/ or the matching home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter reports 0.5.0) <br>
+Risk: The authoritative security summary reports that the runtime can upload arbitrary readable local files as reference images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted prompts and batch files, and pass local reference paths only when that exact file is intended for upload.
+
+Risk: The authoritative security summary flags unsafe API-key handling around downloads and persisted key storage on shared machines.
+
+Mitigation: Prefer IMAGE_GEN_API_KEY from the environment and avoid persisted key storage on shared machines.
+
+Risk: The authoritative security guidance recommends using a trusted installed Bun runtime rather than automatic npx execution where possible.
+
+Mitigation: Run the skill with a trusted local Bun installation when available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/632657122/skills/character-image-generator)
+- [WeryAI Platform Notes](references/weryai-platform.md)
+- [Style Presets](references/style-presets.md)
+- [First-Time Setup](references/config/first-time-setup.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Model Registry Schema](references/config/model-registry-schema.md)
+- [WeryAI API Introduction](https://docs.weryai.com/en)
+- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/character-image-generator/submit-text-to-image-task)
+- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/character-image-generator/submit-image-to-image-task)
+- [WeryAI Task Status API](https://docs.weryai.com/api-reference/tasks/query-task-details)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated images and optional project or user configuration under .image-skills/character-image-generator/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

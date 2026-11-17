@@ -1,0 +1,24 @@
+{
+  "schema":"mochi-content-workbench.v1",
+  "reportLanguage":"en",
+  "sources":[{"id":"notes","title":"Demo project notes — user-provided example","url":"https://example.com/project-notes","text":"MochiLab publishes free illustrated OpenClaw tutorials. The starter Skills run locally and do not publish content automatically."}],
+  "facts":[
+    {"id":"f1","text":"MochiLab publishes free illustrated OpenClaw tutorials.","evidence":[{"sourceId":"notes","quote":"MochiLab publishes free illustrated OpenClaw tutorials."}]},
+    {"id":"f2","text":"The starter Skills run locally and do not publish content automatically.","evidence":[{"sourceId":"notes","quote":"The starter Skills run locally and do not publish content automatically."}]}
+  ],
+  "channels":[
+    {"id":"website","label":"Website introduction","language":"en","maxCharacters":280},
+    {"id":"short-post","label":"中文短帖","language":"zh-CN","maxCharacters":160}
+  ],
+  "drafts":[
+    {"channelId":"website","blocks":[
+      {"kind":"fact","text":"Explore free illustrated OpenClaw tutorials from MochiLab.","factIds":["f1"]},
+      {"kind":"fact","text":"Starter Skills work locally without automatic publishing.","factIds":["f2"]},
+      {"kind":"call-to-action","text":"Choose a guide and try one small task.","factIds":[]}
+    ]},
+    {"channelId":"short-post","blocks":[
+      {"kind":"fact","text":"MochiLab 提供免费的 OpenClaw 图文教程。","factIds":["f1"]},
+      {"kind":"commentary","text":"先从一个小任务开始，再按需加功能。","factIds":[]}
+    ]}
+  ]
+}

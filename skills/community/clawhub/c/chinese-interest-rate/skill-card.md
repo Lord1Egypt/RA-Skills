@@ -1,45 +1,56 @@
-## Description: <br>
-Monitors Chinese interest-rate indicators, including LPR, government bond yields, SHIBOR, deposit benchmark rates, and mortgage-related rates, and reports detected changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors China bank deposit, LPR, government bond, SHIBOR, mortgage, and open market operation rates and alerts when tracked values change.
 
-## Publisher: <br>
-[ryanbihai](https://clawhub.ai/user/ryanbihai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanbihai](https://clawhub.ai/user/ryanbihai)
 
-## Use Case: <br>
-Financial professionals, mortgage borrowers, investors, and economic researchers use this skill to check Chinese interest-rate data and receive change alerts when tracked rates change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact Yahoo Finance, SHIBOR, and ChinaMoney endpoints when checking rates. <br>
-Mitigation: Run it only in environments where outbound access to those public financial-data endpoints is expected and allowed. <br>
-Risk: The skill saves local rate history to support change detection. <br>
-Mitigation: Review the local data path and retention expectations before scheduled or repeated execution. <br>
-Risk: Broad trigger phrases may activate it for general interest-rate questions. <br>
-Mitigation: Narrow trigger phrases or invoke the skill explicitly when general financial-rate discussion should not run the monitor. <br>
+## Use Case:
 
+Finance professionals, mortgage holders, investors, and economic researchers use this skill to monitor Chinese interest rate changes and receive concise change alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanbihai/chinese-interest-rate) <br>
-- [Yahoo Finance chart API for China 10-year yield](https://query1.finance.yahoo.com/v8/finance/chart/CN10Y=X) <br>
-- [Shanghai Interbank Offered Rate page](https://www.shibor.org/shibor/web-htmls/shibor.html) <br>
-- [ChinaMoney SHIBOR endpoint](https://www.chinamoney.com.cn/ags/ms/cm-u-bond-shibor/Shibor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notifications with optional shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local JSON rate-history file and may stay silent when no rate changes are detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata) <br>
+Risk: Outbound requests to public finance and rate websites may fail or return incomplete, delayed, or inaccurate data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify rate data against authoritative sources before using it for financial decisions.
+
+Risk: Running the skill can update its local rates.json comparison state.
+
+Mitigation: Review local state changes when auditing alerts, and narrow trigger phrases if accidental activation would be noisy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryanbihai/skills/chinese-interest-rate)
+- [Yahoo Finance Chart API](https://query1.finance.yahoo.com/v8/finance/chart/)
+- [SHIBOR](https://www.shibor.org/shibor/web-htmls/shibor.html)
+- [ChinaMoney SHIBOR Endpoint](https://www.chinamoney.com.cn/ags/ms/cm-u-bond-shibor/Shibor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text notifications with markdown-style sections and JSON-backed local state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates local rates.json after comparing fetched or agent-supplied rates; remains quiet when no tracked rates change.]
+
+## Skill Version(s):
+
+3.2.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

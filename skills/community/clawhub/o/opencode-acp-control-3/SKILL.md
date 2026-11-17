@@ -1,319 +1,239 @@
 ---
 name: opencode-acp-control
-description: Control OpenCode directly via the Agent Client Protocol (ACP). Start sessions, send prompts, resume conversations, and manage OpenCode updates.
-metadata: {"version": "1.0.2", "author": "Bastian Berrios <bastianberrios.a@gmail.com>", "license": "MIT", "github_url": "https://github.com/berriosb/Opencode-Acp-Control"}
+description: Use when an AI agent needs to start, drive, or monitor an OpenCode CLI session programmatically over the Agent Client Protocol (ACP). Triggers include requests to "spawn OpenCode", "control OpenCode from another agent", "automate OpenCode over JSON-RPC", "resume an OpenCode session", or any task that requires the agent to act as an ACP client rather than an interactive user. Provides the JSON-RPC 2.0 framing, session lifecycle, polling strategy, permission-request handling, and update detection needed to wrap OpenCode from inside another AI agent.
+metadata:
+  version: "0.3.0"
+  author: "Bastian Berrios <berriosbastian@gmail.com>"
+  license: "MIT"
+  github_url: "https://github.com/berriosb/Opencode-Acp-Control"
 ---
 
 # OpenCode ACP Skill
 
-Control OpenCode directly via the Agent Client Protocol (ACP).
+Drive an OpenCode CLI session over the Agent Client Protocol (ACP).
 
-## Metadata
+## When to use this skill
 
-- For ACP Protocol Docs (for Agents/LLMs): https://agentclientprotocol.com/llms.txt
-- GitHub Repo: https://github.com/berriosb/Opencode-Acp-Control
-- If you have issues with this skill, please open an issue ticket here: https://github.com/berriosb/Opencode-Acp-Control/issues
+Use it when the calling agent must:
+
+- Start an OpenCode process and talk to it programmatically (not as a human at
+  a terminal).
+- Drive multi-turn coding sessions, including prompt → stream → cancel loops.
+- Resume a previous OpenCode session by ID.
+- Detect and trigger OpenCode auto-updates.
+
+Do **not** use it for direct file editing, one-off shell commands, or any
+task that does not require the Agent Client Protocol.
 
 ## Quick Reference
 
-| Action | How |
-|--------|-----|
-| Start OpenCode | `bash(command: "opencode acp --cwd /path/to/project", background: true)` |
-| Send message | `process.write(sessionId, data: "<json-rpc>\n")` |
-| Read response | `process.poll(sessionId)` - repeat every 2 seconds |
-| Stop OpenCode | `process.kill(sessionId)` |
-| List sessions | `bash(command: "opencode session list", workdir: "...")` |
-| Resume session | List sessions → ask user → `session/load` |
-| Check version | `bash(command: "opencode --version")` |
+| Action | Generic tool call |
+|---|---|
+| Start OpenCode | `terminal(command: "opencode acp --cwd /path/to/project", background: true)` |
+| Send JSON-RPC frame | `process.write(processId, "<frame>\n")` |
+| Read available output | `process.poll(processId)` (repeat every ~2s) |
+| Stop OpenCode | `process.kill(processId)` |
+| List past sessions | `terminal(command: "opencode session list", workdir: "<project>")` |
+| Get current version | `terminal(command: "opencode --version")` |
+| Prompt the user | `ask_user(question, options)` |
 
-## Starting OpenCode
+The calling agent must map these generic names to its own platform (Hermes,
+Clawdbot, etc.). See `README.md` for the mapping table.
+
+## Protocol Rules
+
+- Wire format: **JSON-RPC 2.0**, **newline-delimited** (one JSON object per
+  line, each frame terminated by `\n`). Not LSP `Content-Length`.
+- Direction: requests are agent → OpenCode (stdin). Responses and server
+  notifications arrive on stdout.
+- IDs: every request carries an integer `id`; the calling agent increments
+  monotonically starting at 0. Notifications have no `id` and never produce a
+  response.
+- Sessions are opaque: the `sessionId` returned by `session/new` is the only
+  reference; treat it as a string.
+- Capabilities: declare `fs.readTextFile`, `fs.writeTextFile`, and `terminal`
+  in the `initialize` handshake.
+
+## Standard Workflow
+
+### 1. Start
 
 ```
-bash(
-  command: "opencode acp --cwd /path/to/your/project",
+terminal(
+  command: "opencode acp --cwd /path/to/project",
   background: true,
-  workdir: "/path/to/your/project"
+  workdir: "/path/to/project"
 )
 ```
 
-Save the returned `sessionId` - you'll need it for all subsequent commands.
+Save the returned `processId`. All subsequent frames go through it.
 
-## Protocol Basics
-
-- All messages are **JSON-RPC 2.0** format
-- Messages are **newline-delimited** (end each with `\n`)
-- Maintain a **message ID counter** starting at 0
-
-## Step-by-Step Workflow
-
-### Step 1: Initialize Connection
-
-Send immediately after starting OpenCode:
+### 2. Initialize
 
 ```json
-{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"protocolVersion":1,"clientCapabilities":{"fs":{"readTextFile":true,"writeTextFile":true},"terminal":true},"clientInfo":{"name":"clawdbot","title":"Clawdbot","version":"1.0.0"}}}
+{"jsonrpc":"2.0","id":0,"method":"initialize","params":{
+  "protocolVersion":1,
+  "clientCapabilities":{
+    "fs":{"readTextFile":true,"writeTextFile":true},
+    "terminal":true
+  },
+  "clientInfo":{
+    "name":"opencode-acp-control",
+    "title":"OpenCode ACP Control",
+    "version":"0.3.0"
+  }
+}}
 ```
 
-Poll for response. Expect `result.protocolVersion: 1`.
+Expect `result.protocolVersion: 1`.
 
-### Step 2: Create Session
+### 3. Create session
 
 ```json
-{"jsonrpc":"2.0","id":1,"method":"session/new","params":{"cwd":"/path/to/project","mcpServers":[]}}
+{"jsonrpc":"2.0","id":1,"method":"session/new","params":{
+  "cwd":"/path/to/project",
+  "mcpServers":[]
+}}
 ```
 
-Poll for response. Save `result.sessionId` (e.g., `"sess_abc123"`).
+Save `result.sessionId` (e.g. `"sess_abc123"`).
 
-### Step 3: Send Prompts
+### 4. Send prompt
 
 ```json
-{"jsonrpc":"2.0","id":2,"method":"session/prompt","params":{"sessionId":"sess_abc123","prompt":[{"type":"text","text":"Your question here"}]}}
+{"jsonrpc":"2.0","id":2,"method":"session/prompt","params":{
+  "sessionId":"sess_abc123",
+  "prompt":[{"type":"text","text":"List the TypeScript files in this repo."}]
+}}
 ```
 
-Poll every 2 seconds. You'll receive:
-- `session/update` notifications (streaming content)
-- Final response with `result.stopReason`
+### 5. Stream the response
 
-### Step 4: Read Responses
+Poll stdout every ~2s until a response arrives whose `id` matches your request
+and whose `result.stopReason` is set. While polling you will also receive
+notifications:
 
-Each poll may return multiple lines. Parse each line as JSON:
+```json
+{"jsonrpc":"2.0","method":"session/update","params":{...}}
+```
 
-- **Notifications**: `method: "session/update"` - collect these for the response
-- **Response**: Has `id` matching your request - stop polling when `stopReason` appears
+Collect them in order — they make up the agent's streamed output.
 
-### Step 5: Cancel (if needed)
+### 6. Cancel (when needed)
 
 ```json
 {"jsonrpc":"2.0","method":"session/cancel","params":{"sessionId":"sess_abc123"}}
 ```
 
-No response expected - this is a notification.
+No response is sent for a cancel — it is a notification.
+
+### 7. Handle permission requests
+
+OpenCode asks for confirmation before running shell commands or editing files
+by sending a server-to-client request:
+
+```json
+{"jsonrpc":"2.0","id":12,"method":"requestPermission","params":{
+  "sessionId":"sess_abc123",
+  "toolCall":{"toolCallId":"call_1","status":"pending",
+              "title":"bash","rawInput":{"command":"npm install"},"kind":"bash"}
+}}
+```
+
+Prompt the user, then respond with the matching `id`:
+
+```json
+{"jsonrpc":"2.0","id":12,"result":{"reply":"once"}}      // allow once
+{"jsonrpc":"2.0","id":12,"result":{"reply":"always"}}    // allow for the session
+{"jsonrpc":"2.0","id":12,"result":{"reply":"reject"}}    // deny
+```
 
 ## State to Track
 
-Per OpenCode instance, track:
-- `processSessionId` - from bash tool (clawdbot's process ID)
-- `opencodeSessionId` - from session/new response (OpenCode's session ID)  
-- `messageId` - increment for each request you send
+For each OpenCode instance the calling agent holds:
 
-## Polling Strategy
+| Field | Source |
+|---|---|
+| `processId` | Returned by the `terminal(background:true)` call |
+| `sessionId` | Returned by `session/new` (OpenCode-internal) |
+| `nextId` | Integer counter for the next request, starting at 0 |
+| `stopReason` | Last terminal reason observed (`end_turn`, `cancelled`, `max_tokens`) |
 
-- Poll every **2 seconds**
-- Continue until you receive a response with `stopReason`
-- Max wait: **5 minutes** (150 polls)
-- If no response, consider the operation timed out
+## Polling and Timeout Strategy
 
-## Common Stop Reasons
-
-| stopReason | Meaning |
-|------------|---------|
-| `end_turn` | Agent finished responding |
-| `cancelled` | You cancelled the prompt |
-| `max_tokens` | Token limit reached |
-
-## Error Handling
-
-| Issue | Solution |
-|-------|----------|
-| Empty poll response | Keep polling - agent is thinking |
-| Parse error | Skip malformed line, continue |
-| Process exited | Restart OpenCode |
-| No response after 5min | Kill process, start fresh |
-
-## Example: Complete Interaction
-
-```
-1. bash(command: "opencode acp --cwd /home/user/myproject", background: true, workdir: "/home/user/myproject")
-   -> processSessionId: "bg_42"
-
-2. process.write(sessionId: "bg_42", data: '{"jsonrpc":"2.0","id":0,"method":"initialize",...}\n')
-   process.poll(sessionId: "bg_42") -> initialize response
-
-3. process.write(sessionId: "bg_42", data: '{"jsonrpc":"2.0","id":1,"method":"session/new","params":{"cwd":"/home/user/myproject","mcpServers":[]}}\n')
-   process.poll(sessionId: "bg_42") -> opencodeSessionId: "sess_xyz789"
-
-4. process.write(sessionId: "bg_42", data: '{"jsonrpc":"2.0","id":2,"method":"session/prompt","params":{"sessionId":"sess_xyz789","prompt":[{"type":"text","text":"List all TypeScript files"}]}}\n')
-   
-5. process.poll(sessionId: "bg_42") every 2 sec until stopReason
-   -> Collect all session/update content
-   -> Final response: stopReason: "end_turn"
-
-6. When done: process.kill(sessionId: "bg_42")
-```
-
----
+- Interval: **2 seconds** between `process.poll` calls.
+- Maximum wait per prompt: **5 minutes** (150 polls). Treat as timeout beyond.
+- An empty poll response means the agent is still thinking — keep polling.
+- A malformed line on stdout is logged and skipped; do not abort on parse
+  errors alone.
 
 ## Resume Session
 
-Resume a previous OpenCode session by letting the user choose from available sessions.
+1. `terminal("opencode session list", workdir: "<project>")` returns a table of
+   `{id, updated, messages}`.
+2. `ask_user` to pick one.
+3. `terminal("opencode acp --cwd <project>", background:true)` to restart.
+4. `initialize` (id=0).
+5. `session/load` with the chosen id, plus `cwd` and `mcpServers`:
 
-### Step 1: List Available Sessions
-
-```
-bash(command: "opencode session list", workdir: "/path/to/project")
-```
-
-Example output:
-```
-ID                                  Updated              Messages
-ses_451cd8ae0ffegNQsh59nuM3VVy      2026-01-11 15:30     12
-ses_451a89e63ffea2TQIpnDGtJBkS      2026-01-10 09:15     5
-ses_4518e90d0ffeJIpOFI3t3Jd23Q      2026-01-09 14:22     8
-```
-
-### Step 2: Ask User to Choose
-
-Present the list to the user and ask which session to resume:
-
-```
-"Which session would you like to resume?
- 
-1. ses_451cd8ae... (12 messages, updated 2026-01-11)
-2. ses_451a89e6... (5 messages, updated 2026-01-10)
-3. ses_4518e90d... (8 messages, updated 2026-01-09)
-
-Enter session number or ID:"
-```
-
-### Step 3: Load Selected Session
-
-Once user responds (e.g., "1", "the first one", or "ses_451cd8ae..."):
-
-1. **Start OpenCode ACP**:
-   ```
-   bash(command: "opencode acp --cwd /path/to/project", background: true, workdir: "/path/to/project")
-   ```
-
-2. **Initialize**:
    ```json
-   {"jsonrpc":"2.0","id":0,"method":"initialize","params":{...}}
+   {"jsonrpc":"2.0","id":1,"method":"session/load","params":{
+     "sessionId":"sess_abc123","cwd":"/path/to/project","mcpServers":[]
+   }}
    ```
 
-3. **Load the session**:
-   ```json
-   {"jsonrpc":"2.0","id":1,"method":"session/load","params":{"sessionId":"ses_451cd8ae0ffegNQsh59nuM3VVy","cwd":"/path/to/project","mcpServers":[]}}
+OpenCode streams the full conversation history back through `session/update`
+notifications.
+
+## Failure Modes
+
+| Symptom | Likely cause | Action |
+|---|---|---|
+| Empty polls for >5 min | Long agent thinking, model stall, or network drop | Cancel + restart |
+| `parse error` on stdout | Garbled binary output or partial frame | Skip the line, continue |
+| Process exits unexpectedly | OpenCode crashed | Inspect stderr, restart |
+| `initialize` rejects `protocolVersion` | OpenCode < v1.1.0 or client drift | Upgrade OpenCode, align `clientInfo.version` |
+| `requestPermission` keeps arriving | Session is in a tool-call loop | Cancel, narrow the prompt |
+| `session/load` 404s | Stale or deleted session id | Fall back to `session/new` |
+
+## Update Procedure
+
+OpenCode auto-updates on restart. To check and trigger an update:
+
+1. `terminal("opencode --version")` → current version.
+2. `web_fetch("https://github.com/sst/opencode/releases/latest")` → latest tag
+   in the redirect URL.
+3. Compare versions. If newer:
+   - `process(action:"list")` to find every running `opencode acp` process.
+   - `process.kill(processId)` for each.
+   - Wait ~2 seconds.
+   - `terminal("opencode acp", background:true)` to restart and trigger the
+     auto-download.
+4. Verify with `opencode --version` again. If still old, fall back to a manual
+   install (review the installer script before piping `curl | bash`):
+
+   ```
+   curl -fsSL https://opencode.ai/install | bash
    ```
 
-**Note**: `session/load` requires `cwd` and `mcpServers` parameters.
+## Implementation Notes
 
-On load, OpenCode streams the full conversation history back to you.
+- `cwd` must be absolute; normalize before sending.
+- Serialize JSON deterministically (`sort_keys=True` if possible) to make log
+  diffs stable.
+- Treat stderr separately from stdout if your platform exposes it — ACP
+  frames never appear on stderr.
+- When the host agent runs in a sandbox, `cwd` must be inside the sandbox;
+  the ACP server inherits the calling agent's filesystem access.
+- Session ids are opaque strings; do not parse them.
+- The first `initialize` after a process start must complete before any
+  other request — JSON-RPC servers reject out-of-order calls.
 
-### Resume Workflow Summary
+## See also
 
-```
-function resumeSession(workdir):
-    # List available sessions
-    output = bash("opencode session list", workdir: workdir)
-    sessions = parseSessionList(output)
-    
-    if sessions.empty:
-        notify("No previous sessions found. Starting fresh.")
-        return createNewSession(workdir)
-    
-    # Ask user to choose
-    choice = askUser("Which session to resume?", sessions)
-    selectedId = matchUserChoice(choice, sessions)
-    
-    # Start OpenCode and load session
-    process = bash("opencode acp --cwd " + workdir, background: true, workdir: workdir)
-    initialize(process)
-    
-    session_load(process, selectedId, workdir, mcpServers: [])
-    
-    notify("Session resumed. Conversation history loaded.")
-    return process
-```
-
-### Important Notes
-
-- **History replay**: On load, all previous messages stream back
-- **Memory preserved**: Agent remembers the full conversation
-- **Process independent**: Sessions survive OpenCode restarts
-
----
-
-## Updating OpenCode
-
-OpenCode auto-updates when restarted. Use this workflow to check and trigger updates.
-
-### Step 1: Check Current Version
-
-```
-bash(command: "opencode --version")
-```
-
-Returns something like: `opencode version 1.1.13`
-
-Extract the version number (e.g., `1.1.13`).
-
-### Step 2: Check Latest Version
-
-```
-webfetch(url: "https://github.com/anomalyco/opencode/releases/latest", format: "text")
-```
-
-The redirect URL contains the latest version tag:
-- Redirects to: `https://github.com/anomalyco/opencode/releases/tag/v1.2.0`
-- Extract version from the URL path (e.g., `1.2.0`)
-
-### Step 3: Compare and Update
-
-If latest version > current version:
-
-1. **Stop all running OpenCode processes**:
-   ```
-   process.list()  # Find all "opencode acp" processes
-   process.kill(sessionId) # For each running instance
-   ```
-
-2. **Restart instances** (OpenCode auto-downloads new binary on start):
-   ```
-   bash(command: "opencode acp --cwd /path/to/project", background: true, workdir: "/path/to/project")
-   ```
-
-3. **Re-initialize** each instance (initialize + session/load for existing sessions)
-
-### Step 4: Verify Update
-
-```
-bash(command: "opencode --version")
-```
-
-If version still doesn't match latest:
-- Inform user: "OpenCode auto-update may have failed. Current: X.X.X, Latest: Y.Y.Y"
-- Suggest manual update: `curl -fsSL https://opencode.dev/install | bash`
-
-### Update Workflow Summary
-
-```
-function updateOpenCode():
-    current = bash("opencode --version")  # e.g., "1.1.13"
-    
-    latestPage = webfetch("https://github.com/anomalyco/opencode/releases/latest")
-    latest = extractVersionFromRedirectUrl(latestPage)  # e.g., "1.2.0"
-    
-    if semverCompare(latest, current) > 0:
-        # Stop all instances
-        for process in process.list():
-            if process.command.includes("opencode"):
-                process.kill(process.sessionId)
-        
-        # Wait briefly for processes to terminate
-        sleep(2 seconds)
-        
-        # Restart triggers auto-update
-        bash("opencode acp", background: true)
-        
-        # Verify
-        newVersion = bash("opencode --version")
-        if newVersion != latest:
-            notify("Auto-update may have failed. Manual update recommended.")
-    else:
-        notify("OpenCode is up to date: " + current)
-```
-
-### Important Notes
-
-- **Sessions persist**: `opencodeSessionId` survives restarts — use `session/load` to recover
-- **Auto-update**: OpenCode downloads new binary automatically on restart
-- **No data loss**: Conversation history is preserved server-side
+- `examples/acp_demo.py` — runnable end-to-end demo with `--dry-run` and
+  `--no-prompt` modes.
+- `README.md` — quick start and tool-platform mapping.
+- `CHANGELOG.md` — release notes.
+- ACP spec: <https://agentclientprotocol.com/llms.txt>
+- OpenCode: <https://opencode.ai>

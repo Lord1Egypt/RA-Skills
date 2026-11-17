@@ -1,6 +1,6 @@
 ---
 name: claw-mechanic
-description: Diagnose, audit, and repair OpenClaw hosts when an agent, gateway, plugin, cron, model route, memory engine, channel, approval policy, or update looks broken, expensive, slow, looping, stale, or misconfigured. Use for focused OpenClaw health checks, post-update triage, plugin update verification, model provider/API wiring audits, cron timeout/root-cause work, exec approval/reviewer problems, and rectification plans that need live proof against openclaw.ai docs instead of guesses.
+description: Diagnose, audit, and repair OpenClaw hosts when an agent, gateway, plugin, cron, model route, memory engine, channel, approval policy, or update looks broken, expensive, slow, looping, stale, or misconfigured. Use for focused OpenClaw health checks, post-update triage, plugin update verification, model provider/API wiring audits, cron timeout/root-cause work, exec approval/reviewer problems, update admission refusals or half-failed updates, gateways stuck in restart or offline-maintenance loops, keychain-backed SecretRefs unreachable over SSH, and rectification plans that need live proof against openclaw.ai docs instead of guesses.
 ---
 
 # Claw Mechanic
@@ -47,15 +47,14 @@ For broad, mixed, or post-update symptoms, skim [references/root-failure-taxonom
    - `curl -fsS http://127.0.0.1:<port>/health`
    - `openclaw config validate`
    - `openclaw plugins doctor`
-   - `openclaw status --json` or `openclaw status --deep`
+   - `openclaw status --all` (read-only; includes task counts and audit totals, security audit, plugin compatibility, and memory-vector probes) or `openclaw status --json`
    - `openclaw channels status --deep`
-   - `openclaw tasks audit`
    - `openclaw cron list --all --json` when cron/cost/looping is relevant
    - `openclaw models status --json` and `openclaw models list --provider <id>` when model routing is relevant
    - `openclaw secrets audit --json` when SecretRefs, generated model catalogs, or auth drift are relevant
 
 3. Inspect the logs before guessing.
-   - Read recent startup and failure lines from `~/.openclaw/logs/gateway.log`, `~/.openclaw/logs/gateway.err.log`, and `/tmp/openclaw/openclaw-YYYY-MM-DD.log`.
+   - Read recent startup and failure lines from the service log that `openclaw gateway status` reports (macOS LaunchAgent: `~/Library/Logs/openclaw/gateway.log`) and from `/tmp/openclaw/openclaw-YYYY-MM-DD.log`. Files under `~/.openclaw/logs/` may be legacy and months stale; check their mtime before trusting them.
    - Search for the symptom words plus `plugin`, `provider`, `fallback`, `approval`, `cron`, `timeout`, `context-engine`, `memory`, `secret`, `auth`, `stalled`, and `event loop`.
 
 4. Branch to the likely subsystem.
@@ -114,3 +113,6 @@ Use this shape when the user asks for a plan rather than immediate repair:
 - SecretRef cleanup is not complete until generated per-agent model catalogs and unresolved refs are clean.
 - Agent workspaces are default working directories, not sandboxes; verify sandbox mode before trusting filesystem isolation.
 - Silent channel failures often come from access policy, mention gating, delivery mode, or tool allowlists rather than model failure.
+- A clean `update --dry-run` does not mean the update will be admitted; before updating, list retired-format files, set `TMPDIR` to a private state-dir path, and snapshot SQLite on unusual hosts.
+- A gateway that keeps getting SIGTERM'd right after `ready` is usually being stopped by an outside job, not crashing; check launchd for submitted jobs before touching the gateway.
+- Over SSH on macOS, keychain-backed SecretRefs need a one-shot GUI-domain LaunchAgent, not token extraction and not a hand-off.

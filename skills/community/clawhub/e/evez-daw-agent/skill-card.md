@@ -1,40 +1,56 @@
-## Description: <br>
-Autonomous music generation DAW for breakcore, dubstep, phonk, and 404-style tracks that synthesizes drums, bass, FX, voice chopping, and machine voice locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous music generation DAW for breakcore, dubstep, phonk, and 404-style tracks that synthesizes drums, bass, effects, voice chops, and machine voice parts locally.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[evezart](https://clawhub.ai/user/evezart)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and music creators use this skill to run a local music-generation service that produces WAV tracks, drumkits, and chopped voice samples from code-driven presets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill exposes an unauthenticated network service that can be unsafe if port 9112 is reachable from a network.
+
+Mitigation: Run it only in a restricted local sandbox, bind or firewall the service to localhost, and do not expose port 9112 externally.
+
+Risk: The service can read and write local files without adequate path safeguards.
+
+Mitigation: Limit filesystem access to disposable input and output directories, and avoid granting access to sensitive files until fixed path validation is added.
+
+Risk: Render and request handling lack explicit request, duration, or output limits.
+
+Mitigation: Apply request size, render duration, and disk quotas before shared or unattended use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, producers, and creative agents use this skill to run a local music-generation service that creates synthetic drum patterns, bass lines, effects chains, drum kits, and chopped voice samples. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, API Calls, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local audio service can be network-accessible when run with its default server binding. <br>
-Mitigation: Run it behind localhost-only binding or a firewall and avoid exposing the port to other machines. <br>
-Risk: Filename and sample path handling may allow unsafe filesystem reads or writes when used with untrusted clients. <br>
-Mitigation: Review or patch path handling before use with untrusted clients, and restrict requests to trusted filenames and sample paths. <br>
+**Output Format:** [Markdown guidance with shell commands and JSON API responses; generated artifacts are WAV audio files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-daw-agent) <br>
+**Other Properties Related to Output:** [Local synthesis is documented with no external API calls; generated tracks, drumkits, and chopped samples are written as local WAV files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API examples; generated artifacts are WAV audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and exposes HTTP endpoints for rendering tracks, generating drum kits, chopping samples, listing presets, and checking health.] <br>
+1.3.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

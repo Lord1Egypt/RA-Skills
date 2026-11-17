@@ -1,0 +1,52 @@
+{
+  "skill": "light-meter-compensation",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "为什么我拍的雪景照片雪是灰色的？",
+      "expected_behavior": "调用 light-meter-compensation，解释18%灰陷阱和曝光补偿方法",
+      "notes": "正面场景：雪景发灰"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "逆光拍人像脸全黑了怎么办？",
+      "expected_behavior": "调用 light-meter-compensation，讲解高反差场景累积测光法",
+      "notes": "正面场景：逆光人像"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "exposure compensation怎么设？什么时候需要补偿？",
+      "expected_behavior": "调用 light-meter-compensation，系统讲解测光补偿原理和方法",
+      "notes": "正面场景：曝光补偿学习"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "光圈f/2和f/8拍出来有什么不同？",
+      "expected_behavior": "不应调用 light-meter-compensation，应调用 exposure-dual-control 或 depth-of-field-control",
+      "notes": "跨 skill 混淆诱饵：光圈效果是曝光/景深问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "18%灰卡在哪里买？",
+      "expected_behavior": "纯购买查询，不应调用方法论 skill",
+      "notes": "诱饵：商品查询"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "数码相机的测光模式（点测光/矩阵测光）有什么区别？",
+      "expected_behavior": "边界模糊——测光模式是技术知识，但与本 skill 的测光原理相关。可部分调用但重点在知识解释",
+      "notes": "边界：测光模式知识 vs 测光补偿方法"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

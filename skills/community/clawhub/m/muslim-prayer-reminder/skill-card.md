@@ -1,47 +1,69 @@
-## Description: <br>
-Gets Islamic prayer times for worldwide locations and helps configure automated Salat reminders using AlAdhan prayer-time data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Islamic prayer times for worldwide locations using AlAdhan calculation methods and helps set up optional automated Salat reminders.
 
-## Publisher: <br>
-[diepox](https://clawhub.ai/user/diepox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[diepox](https://clawhub.ai/user/diepox)
 
-## Use Case: <br>
-External OpenClaw users use this skill to query daily prayer times by city, country, coordinates, or date and to set up recurring reminders before, at, and after prayer times. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated reminder setup can create persistent background jobs that continue checking prayer times and announcing reminders. <br>
-Mitigation: Before enabling reminders, review the exact cron jobs, storage path for prayer_times.json, delivery behavior, and removal steps. <br>
-Risk: Setup guidance includes optional Cloudflare WARP commands with system-wide networking impact. <br>
-Mitigation: Run VPN or sudo networking commands only after confirming they are necessary and acceptable for the target host. <br>
-Risk: Instructions that recreate reminder jobs without asking can change an agent's startup behavior. <br>
-Mitigation: Do not add automatic job-recreation instructions to AGENTS.md unless the user explicitly approves that persistent behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diepox/muslim-prayer-reminder) <br>
-- [AlAdhan Prayer Times API](https://aladhan.com/prayer-times-api) <br>
-- [AlAdhan Calculation Methods](https://api.aladhan.com/v1/methods) <br>
-- [Reminder Setup Guide](references/setup-reminders.md) <br>
-- [Prayer Time Calculation Methods](references/methods.md) <br>
-- [Example Cron Jobs](references/example-cron-jobs.json) <br>
+## Use Case:
 
+External users and agents use this skill to answer prayer-time and next-prayer questions for a location, or to configure recurring reminders that fetch daily times and notify around each Salat.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, optional JSON prayer-time data, and reminder messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May configure persistent scheduled reminder checks when the user enables automated reminders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reminder setup may create recurring agent turns and background checks.
+
+Mitigation: Enable automated reminders only after explicit user confirmation, and document how to disable or remove the jobs.
+
+Risk: Setup guidance may recreate missing cron jobs without fresh confirmation.
+
+Mitigation: Require user approval before creating, recreating, or modifying scheduled jobs.
+
+Risk: Optional network workaround guidance includes privileged Cloudflare WARP commands.
+
+Mitigation: Run privileged network changes only when an administrator has reviewed and approved them.
+
+Risk: The artifact includes GitHub publishing guidance and a publishing script.
+
+Mitigation: Ignore or remove publishing steps unless the user explicitly requests repository publication.
+
+Risk: Prayer-time lookup sends location queries to the AlAdhan service.
+
+Mitigation: Tell users that city, country, or coordinate inputs are sent to AlAdhan before enabling lookups or reminders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diepox/skills/muslim-prayer-reminder)
+- [Reminder setup guide](references/setup-reminders.md)
+- [Prayer calculation methods](references/methods.md)
+- [Example cron jobs](references/example-cron-jobs.json)
+- [AlAdhan prayer times API](https://aladhan.com/prayer-times-api)
+- [AlAdhan calculation methods endpoint](https://api.aladhan.com/v1/methods)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, JSON examples, and optional JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query the AlAdhan API and may propose recurring cron jobs when reminders are enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,38 @@
+# 论衡流程真源 · 第二部分：节点 pre_spawn_enforcement（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: pre_spawn_enforcement
+  phase: "Phase 0 后置（spawn 前核验）"
+  phase_seq: 1
+  kind: mode_declaration
+  owner: 主控
+  blocking: true
+  input: 01-任务简报.md
+  output: status.md（Phase 0 同意记录与标准架构声明）
+  precondition: Phase 0 外发同意记录 + 目标语言 + 项目名 + 模型路由记录（01-任务简报.md §模型映射 的 phase0_route 段，且 selected_by=owner；真源 = route_tier.md §三）均已写入 01-任务简报.md；phase0_route 缺记录或 selected_by 为空 = 本节点未过，判 path_or_param_error（2026-10-08 审计 R-5：取消 route_tier「无记录走默认」fail-open 尾巴）
+  write_authority: owner
+  top_tier_liveness_gate:                 # v2.12.49 T-3：Phase 0 后置顶配档探活门（在任何 worker spawn 之前）
+    target: 顶配档（批判审计：T6 / T7 / T9 / G14）
+    attempts: 3
+    min_interval_seconds: 10
+    on_failure: pause_owner_three_choice   # 换 provider 族 / 换能力档 / 接受同源（+ 披露独立性不成立）
+    record: 01-任务简报.md §模型映射（含探活时间戳）
+    staleness_minutes: 60                  # 超 1 小时需重探
+  context_budget_gate:                  # v2.12.72 E：主控上下文预算门，防窗口压缩导致的话术复制造成漂移
+    position: Phase 0 后置（本节点内，任何 worker spawn 之前）
+    estimate_by_tier: true               # Phase 0 按字数档位预估总 token
+    estimate_model: references/_shared/真源/performance-benchmarks.md §五
+    margin_threshold_pct: 30             # 余量低于 30% ⇒ 必须给出落盘减负建议
+    overspend_alert_pct: 150             # 实测超过预算 150% ⇒ 超支预警
+    on_low_margin: emit_offload_suggestions_and_continue
+    offload_actions:
+      - 中间产物全文指针化（只留路径与结论）
+      - dispatch 只读当前要 spawn 的角色话术（不得凭记忆复制）
+      - 已完成产物按需局部 read，不全文重读
+    recheck: every_phase_boundary
+    record: status.md §4.8（预算估算、实测消耗、余量、落盘减负动作）
+    doctrine: >
+      主控窗口余量属运行期自观测，构建期无法机械校验；本门只锁协议与留痕不得从载体静默消失。
+      余量低于阈值必须写落盘减负建议；实测超过预算阈值必须写超支预警，不得静默继续或臆测精确值。
+  note: "标准架构 = 多 Agent 九角色流水线（无需勾选、不设总开关）。本节点只做 spawn 前前置核验（同意记录 / 目标语言 / 项目名 / 派发角色清单）**+ v2.12.49 T-3 顶配档探活门**（≤3 次、间隔 ≥10s；失败 ⇒ 当场与主人确认降档含换族；结果含时间戳写入简报 §模型映射，超 1 小时重探）**+ v2.12.72 E 主控上下文预算门**（按档位预估、余量低时落盘减负、运行中每个阶段边界复核）；**不再决定「是否启用多 Agent」**；worker 不可用属单节点故障，走 on_worker_failure 主控接管，不改架构、不跳质量门。"
+  next: retrieval

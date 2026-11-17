@@ -1,41 +1,60 @@
-## Description: <br>
-Query up-to-date library documentation and code examples using Context7 MCP for npm packages, Python libraries, and other programming languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query up-to-date, version-specific library documentation and code examples through Context7 MCP.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to resolve library identifiers and query current, version-specific documentation and code examples through Context7 MCP while working on implementation tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan marked the bundle suspicious because it may enable powerful workflows that should be inspected before installation. <br>
-Mitigation: Install only in a trusted environment, review the skill contents before use, and require explicit human confirmation before applying any generated commands or workflow changes. <br>
-Risk: The skill uses shell commands and a networked MCP endpoint, so queries and command setup depend on local tooling and external service availability. <br>
-Mitigation: Confirm the uxc installation, inspect the fixed context7-mcp-cli link before reuse, and review command output before relying on returned documentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Context7 usage patterns](references/usage-patterns.md) <br>
-- [Context7 MCP endpoint](https://mcp.context7.com/mcp) <br>
-- [UXC skill](https://github.com/holon-run/uxc/tree/main/skills/uxc) <br>
+## Use Case:
 
+Developers and engineers use this skill to resolve library identifiers and query current documentation or code examples for npm packages, Python libraries, and other programming ecosystems.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Context7 query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or summarize Context7 documentation query results; requires uxc and network access to the Context7 MCP endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends documentation queries to the external Context7 MCP service.
+
+Mitigation: Confirm external service use is acceptable before installation and avoid sending proprietary or sensitive query content.
+
+Risk: The skill may create or reuse a fixed context7-mcp-cli command link through the uxc skill.
+
+Mitigation: Check for command conflicts first and stop for maintainer review if the fixed command name cannot be safely reused.
+
+Risk: Documentation coverage and library matches can vary by package.
+
+Mitigation: Resolve the library ID before querying, choose the best match when multiple libraries are returned, and review results before applying guidance.
+
+## Reference(s):
+
+- [Context7 Usage Patterns](references/usage-patterns.md)
+- [UXC skill](https://github.com/holon-run/uxc/tree/main/skills/uxc)
+- [Context7 MCP endpoint](https://mcp.context7.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/uxc-context7)
+- [Publisher profile](https://clawhub.ai/user/jolestar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output may include Context7 query results and command suggestions; coverage varies by library.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

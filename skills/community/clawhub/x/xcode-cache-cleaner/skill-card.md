@@ -1,42 +1,58 @@
-## Description: <br>
-Scans project directories and global Xcode cache locations, reports reclaimable space, and guides optional cleanup of build artifacts such as DerivedData, DeviceSupport folders, simulator leftovers, package caches, and test bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xcode Cache Cleaner helps iOS/macOS developers dry-run and clean global Xcode caches and per-project build artifacts to reclaim disk space.
 
-## Publisher: <br>
-[symbolstar](https://clawhub.ai/user/symbolstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symbolstar](https://clawhub.ai/user/symbolstar)
 
-## Use Case: <br>
-Developers and engineers use this skill when they need to understand and reduce disk usage from Xcode, Swift/iOS project, and related build caches on a Mac development machine. It is intended to produce a dry-run report first, then guide confirmed cleanup actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup scripts can delete local build caches and, with `--include-archives`, signed Xcode archives. <br>
-Mitigation: Run `--dry-run` first, verify every listed path, keep archives unless they are backed up, and get explicit confirmation before deletion. <br>
-Risk: `--yes` skips the interactive confirmation prompt. <br>
-Mitigation: Use `--yes` only after the exact dry-run output has been reviewed and approved. <br>
-Risk: Project cleanup has an unsafe edge case for untrusted or oddly named directories because of command construction in the scanner loop. <br>
-Mitigation: Avoid running project cleanup on untrusted paths until the command construction is fixed; prefer trusted project directories with reviewed dry-run output. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Xcode and project build caches, run a dry-run report, and execute cleanup only after reviewing the affected paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/symbolstar/xcode-cache-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and cleanup summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for dry-run review and confirmation before destructive cleanup; may include concrete keep patterns or cleanup flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: A crafted project directory name can cause unintended shell command execution in the project cleanup script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use dry-run first, and do not run artifact/scripts/clean-cache.sh on untrusted or externally supplied directory names until the eval-based find construction is fixed.
+
+Risk: Cleanup can delete signed archive builds when archive deletion is explicitly enabled.
+
+Mitigation: Inspect dry-run output and avoid --include-archives unless the archive scope is already approved or backed up.
+
+Risk: Using --yes skips the confirmation prompt for file deletion.
+
+Mitigation: Avoid --yes unless the cleanup scope has already been reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/symbolstar/skills/xcode-cache-cleaner)
+- [Publisher Profile](https://clawhub.ai/user/symbolstar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and cleanup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes dry-run review before destructive cleanup.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

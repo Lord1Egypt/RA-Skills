@@ -1,46 +1,65 @@
-## Description: <br>
-Nostr P2P messaging gateway for AI agents. Send and receive E2E encrypted messages via the Nostr protocol. Enables your agent to be reachable from Sigil Messenger, Damus, and any Nostr client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nostr P2P messaging gateway for AI agents. Send and receive E2E encrypted messages via the Nostr protocol. Enables your agent to be reachable from Sigil Messenger, Damus, and any Nostr client.
 
-## Publisher: <br>
-[lmanchu](https://clawhub.ai/user/lmanchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmanchu](https://clawhub.ai/user/lmanchu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an AI agent a Nostr identity, receive encrypted direct messages from Nostr clients, and route replies through an agent bridge. It is intended for agent messaging workflows that need peer-to-peer client access through Sigil, Damus, Primal, or compatible Nostr clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge stores a long-lived Nostr messaging key for the agent. <br>
-Mitigation: Protect ~/.sigil key files with strict local permissions and use Sigil key encryption or passphrase protection where available. <br>
-Risk: Remote messages can be forwarded to the configured agent or tools. <br>
-Mitigation: Keep personal mode and allowlists enabled, review the access-control file before use, and avoid public service mode unless broad access is intended. <br>
-Risk: Hermes mode has broader routing and execution risk according to the security guidance. <br>
-Mitigation: Avoid Hermes mode until message routing uses safer argument-array execution and a narrower capability set. <br>
-Risk: Gateway mode shares decrypted conversations and sender metadata with the configured gateway service. <br>
-Mitigation: Use only trusted gateway endpoints and treat gateway logs and storage as sensitive conversation data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make an AI agent reachable over Nostr encrypted direct messages from Sigil Messenger, Damus, Primal, Amethyst, or another Nostr client. It provides setup guidance and a bridge script for routing messages between Nostr and OpenClaw, Hermes, or a custom agent.
 
-## Reference(s): <br>
-- [Sigil GitHub](https://github.com/lmanchu/sigil) <br>
-- [Sigil Landing Page](https://lmanchu.github.io/sigil/) <br>
-- [Agent Registry](https://github.com/lmanchu/sigil#agent-registry-kind31990) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Sigil key and access-control files when bridge commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The security evidence says the skill overstates its working bridge behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bridge behavior before deployment and use the Rust bridge recommended by the skill for live operation.
+
+Risk: The security evidence identifies under-scoped handling for private keys stored under ~/.sigil.
+
+Mitigation: Protect private key files with restrictive permissions or encryption and avoid sharing agent identities beyond the intended access model.
+
+Risk: The install instructions use a mutable Git source for the Sigil CLI.
+
+Mitigation: Install a pinned and reviewed Sigil CLI version before using the skill in a production or customer-facing environment.
+
+Risk: The security evidence flags a dormant unsafe Hermes command path when remote messages are routed into Hermes.
+
+Mitigation: Do not connect the Node Hermes route to remote messages unless shell command construction is replaced and the receiving agent tools are narrowly scoped.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lmanchu/skills/sigil-nostr)
+- [Sigil GitHub Repository](https://github.com/lmanchu/sigil)
+- [Sigil Landing Page](https://lmanchu.github.io/sigil/)
+- [Sigil Agent Registry](https://github.com/lmanchu/sigil#agent-registry-kind31990)
+- [Sigil Messenger on App Store](https://apps.apple.com/app/sigil-messenger/id6761321150)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command, JSON configuration, and JavaScript bridge examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions and local bridge behavior for agent messaging over Nostr.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

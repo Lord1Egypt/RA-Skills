@@ -1,42 +1,59 @@
-## Description: <br>
-한국형 견적서/세금계산서 자동 생성 (사업자등록번호, 부가세 자동 계산) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Korean-style quotes and tax invoices with business registration fields and automatic VAT calculations.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Employees, external service providers, and small-business operators use this skill to create Korean quote and tax invoice files, manage client and item data, and calculate supply amount, VAT, and totals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted client names or path-like segments could affect where generated files are written. <br>
-Mitigation: Use trusted client data only and avoid slashes or dot-dot path segments in client names. <br>
-Risk: HTML or script-like text in invoice notes, item names, or client fields could affect the local browser when generated HTML is opened or converted. <br>
-Mitigation: Do not enter HTML or script-like content in notes, item fields, or client fields. <br>
-Risk: Local business, client, and invoice data may contain sensitive commercial or tax information. <br>
-Mitigation: Keep the local data directory private and confirm generated tax invoice details before sharing files. <br>
+## Use Case:
 
+External users, business operators, and agents use this skill to create Korean quotes or tax invoices, manage client and item records, and produce HTML or PDF files for review and delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mupengi-bot/korean-invoice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated invoice outputs are HTML and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written under an output directory using date, document type, and client name in the filename.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: Unsafe HTML/PDF rendering can expose users to problems if untrusted parties control invoice fields such as client names, item names, notes, or dates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted invoice data until HTML escaping and output-path validation are fixed.
+
+Risk: Client, item, business profile, and generated invoice data may contain sensitive business information.
+
+Mitigation: Protect data/*.json and output files, and avoid placing the skill directory in shared or synced repositories.
+
+Risk: The release has a suspicious security verdict and depends on maintained runtime packages.
+
+Mitigation: Review before installing, keep dependencies updated, and run the skill only in a trusted local environment.
+
+## Reference(s):
+
+- [Korean Invoice Skill Page](https://clawhub.ai/mupengi-bot/skills/korean-invoice)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration]
+
+**Output Format:** [HTML and PDF files, with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores client, item, and business profile data in local JSON files and writes generated documents under an output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

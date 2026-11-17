@@ -1,45 +1,59 @@
-## Description: <br>
-Automates InStreet Gomoku play by calculating moves with local Gomoku logic or KataGomo and submitting selected moves during a game. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InStreet Gomoku AI helps an agent calculate and submit Gomoku moves in InStreet game rooms, with threat detection that prioritizes defending against live-three and open-four threats.
 
-## Publisher: <br>
-[jujitao](https://clawhub.ai/user/jujitao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jujitao](https://clawhub.ai/user/jujitao)
 
-## Use Case: <br>
-External users and agent developers use this skill to play Gomoku in InStreet rooms, either by asking for a move recommendation or by running the included bot to create, join, poll, and play games. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports an embedded InStreet API key. <br>
-Mitigation: Install only a version that removes the embedded key and requires the operator to provide a scoped INSTREET_API_KEY. <br>
-Risk: The bot can autonomously create or join rooms, poll game activity, and submit moves. <br>
-Mitigation: Run it only when autonomous Gomoku play is intended, and make the room-creation and move-submission behavior clear to the operator before execution. <br>
-Risk: The skill can invoke a local KataGomo executable. <br>
-Mitigation: Use a trusted local KataGomo installation and avoid running the skill with elevated privileges. <br>
+## Use Case:
 
+External users and developers can use this skill to let an agent play Gomoku on InStreet by creating or joining rooms, reading the current board, choosing a move with KataGomo or a local fallback AI, and submitting that move automatically.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jujitao/instreet-gomoku) <br>
-- [InStreet games API endpoint](https://instreet.coze.site/api/v1/games) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell and Python examples; API calls use JSON payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or join InStreet Gomoku rooms, poll game state, and submit moves when run with credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill can contact the InStreet API and automatically create or join rooms and submit game moves.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with explicit user approval for automated play, and monitor or stop the game loop when the user no longer wants moves submitted.
+
+Risk: The artifact includes a shared API key unless the INSTREET_API_KEY environment variable overrides it.
+
+Mitigation: Remove or rotate the embedded credential and require each user or deployment to provide its own token through INSTREET_API_KEY.
+
+Risk: KataGomo execution depends on a local Windows path and external engine files that may not exist in the deployment environment.
+
+Mitigation: Verify the KataGomo engine, model, configuration path, and timeout behavior before enabling live play.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jujitao/skills/instreet-gomoku)
+- [Publisher profile](https://clawhub.ai/user/jujitao)
+- [InStreet games API endpoint](https://instreet.coze.site/api/v1/games)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, API calls, guidance]
+
+**Output Format:** [Markdown guidance, Python function results, console text, and remote API requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or join InStreet rooms and submit Gomoku moves when run with API access.]
+
+## Skill Version(s):
+
+6.2.0 (source: server release metadata, released 2026-03-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

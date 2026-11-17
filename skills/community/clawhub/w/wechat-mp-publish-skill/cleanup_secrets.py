@@ -15,7 +15,7 @@ from typing import List, Tuple
 SENSITIVE_PATTERNS = [
     # API Keys
     (r'sk-[a-zA-Z0-9]{32,}', 'sk-your-api-key-here'),
-    (r'sk-sp-[a-f0-9]{32}', 'sk-sp-your-bailian-coding-key'),
+    (r'sk-sp-[a-f0-9]{32}', 'REDACTED-SECRET'),
     (r'sk-b3c2[a-f0-9]{28}', 'sk-your-bailian-key'),
     
     # 微信相关

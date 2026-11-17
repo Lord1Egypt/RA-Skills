@@ -1,40 +1,58 @@
-## Description: <br>
-Guides an agent through read-only, systematic exploration of a codebase, system, or topic before answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep exploration mode for systematically investigating a codebase, system, or topic in read-only mode before answering.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and engineers use this skill when they need a structured investigation of an unfamiliar codebase, implementation, or bug before deciding what to do next. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface repository paths, line numbers, implementation details, or other sensitive context from repositories or systems the user asks it to explore. <br>
-Mitigation: Use it only on workspaces whose contents may be summarized, and avoid using it on repositories or systems containing secrets that should not appear in reports. <br>
-Risk: Exploration findings may include incomplete inferences if relevant files or history are missed. <br>
-Mitigation: Cross-check multiple relevant files, distinguish observed facts from inference, and review the report before acting on recommendations. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need a structured, read-only investigation of an unfamiliar codebase, system, bug, or implementation detail before forming an answer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-explore-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with file paths, line references, findings, answers, and optional recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only exploration; may include observed facts, clearly labeled inferences, and repository path references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence; artifact frontmatter says 1.1.0) <br>
+Risk: The skill is intended to inspect code and git history during exploration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories that the installer is comfortable letting the agent read.
+
+Risk: The skill may provide investigation findings or recommendations that affect engineering decisions.
+
+Mitigation: Review cited files and line references before acting on the report.
+
+Risk: Instructions and expected output are primarily in Chinese.
+
+Mitigation: Ask the agent for another language when the report needs to be reviewed by non-Chinese readers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-explore-mode)
+- [Skill homepage](https://github.com/zhaobod1/huo15-openclaw-enhance)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown exploration report with file paths, findings, direct answers, and optional recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language instructions and output are expected unless the user requests another language.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

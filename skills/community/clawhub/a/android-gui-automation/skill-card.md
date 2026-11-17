@@ -1,47 +1,55 @@
-## Description: <br>
-Android GUI automation via MCP: MiniMax or another MCP client calls uiautomator2 tools to control Android phone screens for app control, price monitoring, social posting, screen scraping, screenshots, clicks, swipes, text entry, scheduling, and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Android apps from an agent through Termux, MCP, and uiautomator2 for clicking, swiping, typing, screenshots, UI text extraction, app control, price monitoring, scheduled tasks, and alerts.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to connect an AI agent to Android devices through Termux, MCP, and uiautomator2 so the agent can operate mobile apps, collect UI evidence, compare prices, schedule checks, and send alerts. It is intended for controlled Android automation workflows where the operator is prepared to scope and review device actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can exercise broad live control over an Android device and logged-in apps. <br>
-Mitigation: Use a dedicated phone or test accounts, keep sensitive apps such as banking, messaging, and authenticators out of scope, and gate any high-impact action before execution. <br>
-Risk: Screenshots, UI dumps, clipboard access, and file transfer can expose private or account-specific data. <br>
-Mitigation: Disable or manually approve screenshots, UI dumps, clipboard access, push and pull file operations, and shell access unless they are required for the current task. <br>
-Risk: The skill includes flows for posting content and sending outbound Telegram alerts. <br>
-Mitigation: Require human review for every public post or outbound notification before it is sent. <br>
-Risk: App clear, app install, shell, and remote ADB operations can modify device state or installed software. <br>
-Mitigation: Run only in a scoped Termux or ADB environment and manually gate shell, app install, app clear, and remote connection operations. <br>
+## Use Case:
 
+Developers and automation users use this skill to connect an agent to an Android device, inspect app screens, operate mobile apps, compare shopping prices, schedule checks, and send alerts.
 
-## Reference(s): <br>
-- [Android GUI Automation setup guide](references/setup-guide.md) <br>
-- [uiautomator2-mcp package](https://pypi.org/project/uiautomator2-mcp/) <br>
-- [uiautomator2 project](https://github.com/openatx/uiautomator2) <br>
-- [ClawHub release page](https://clawhub.ai/smseow001/android-gui-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, MCP tool calls] <br>
-**Output Format:** [Markdown with bash, JSON, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps and examples for Android device control, screenshots, UI extraction, app automation, scheduled monitoring, and outbound alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad control over a real Android device, including app control, screenshots, UI dumps, text input, file transfer, shell access, logs, clipboard access, and app data clearing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated test phone and test accounts, keep debugging disabled when not actively needed, and require explicit review before posting, clearing app data, installing apps, running shell commands, or operating sensitive screens.
+
+Risk: Screenshots, UI dumps, logs, clipboard contents, and notification tokens can expose sensitive personal data or credentials.
+
+Mitigation: Treat screenshots, UI dumps, logs, Telegram bot tokens, chat IDs, and price-history files as sensitive; avoid banking, payment, and private-message screens.
+
+## Reference(s):
+
+- [Setup Guide](references/setup-guide.md)
+- [uiautomator2-mcp](https://pypi.org/project/uiautomator2-mcp/)
+- [uiautomator2](https://github.com/openatx/uiautomator2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to produce MCP tool calls, Android UI actions, screenshots, UI dumps, price reports, and notification messages.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

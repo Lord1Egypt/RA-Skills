@@ -1,49 +1,61 @@
-## Description: <br>
-通过创蓝短信平台发送模板短信。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过创蓝短信平台发送模板短信。
 
-## Publisher: <br>
-[xiaoweige1101](https://clawhub.ai/user/xiaoweige1101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoweige1101](https://clawhub.ai/user/xiaoweige1101)
 
-## Use Case: <br>
-Developers and operators use this skill to send approved Chuanglan SMS templates to one or more phone numbers from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends real external SMS messages that may create cost, compliance, or customer-impact risk. <br>
-Mitigation: Use it only with an intended Chuanglan account, verify recipients and templates before sending, and require human review for bulk sends. <br>
-Risk: SMS API credentials are required and could be exposed if stored in plaintext. <br>
-Mitigation: Prefer OpenClaw or OS secret storage, restrict access to any credential file, and avoid committing CHANGLAN_ACCOUNT or CHANGLAN_PASSWORD. <br>
-Risk: Template variables may contain regulated or sensitive personal data. <br>
-Mitigation: Avoid putting secrets or regulated personal data in template variables unless the deployment has appropriate authorization and controls. <br>
-Risk: A changed CHANGLAN_API_URL could redirect SMS payloads or credentials to an unintended endpoint. <br>
-Mitigation: Verify CHANGLAN_API_URL before use and keep the default Chuanglan endpoint unless an approved endpoint is required. <br>
+## Use Case:
 
+Developers and operators use this skill to send approved Chuanglan template SMS messages from an agent workflow after configuring Chuanglan API credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoweige1101/send-sms) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xiaoweige1101) <br>
-- [Chuanglan website](https://www.chuanglan.com/) <br>
-- [Chuanglan registration](https://www.chuanglan.com/register) <br>
-- [SMS signature real-name documentation](https://doc.chuanglan.com/document/9OHGKZG716OXFI9O) <br>
-- [Chuanglan SMS API documentation](https://doc.chuanglan.com/document/HAQYSZKH9HT5Z50L) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Command-line output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, openssl, CHANGLAN_ACCOUNT, and CHANGLAN_PASSWORD; sends real SMS messages through the configured Chuanglan API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: release evidence, SKILL.md frontmatter, skill.json) <br>
+Risk: SMS API credentials may be exposed or mishandled in some setups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OpenClaw-managed secrets and avoid storing CHANGLAN_PASSWORD in a broadly readable .env file.
+
+Risk: Changing CHANGLAN_API_URL can send credentials and recipient data to an untrusted destination.
+
+Mitigation: Leave the default endpoint in place unless the replacement destination is fully trusted.
+
+Risk: The command can send paid SMS messages and transmit recipient phone data to the SMS provider.
+
+Mitigation: Limit who can run the skill, verify recipients and templates before sending, and monitor SMS usage or quotas.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoweige1101/skills/send-sms)
+- [Chuanglan Website](https://www.chuanglan.com/)
+- [Chuanglan Registration](https://www.chuanglan.com/register)
+- [SMS Signature Real-Name Documentation](https://doc.chuanglan.com/document/9OHGKZG716OXFI9O)
+- [Chuanglan SMS API Documentation](https://doc.chuanglan.com/document/HAQYSZKH9HT5Z50L)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Text, Configuration]
+
+**Output Format:** [Plain text command output with markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, openssl, CHANGLAN_ACCOUNT, and CHANGLAN_PASSWORD.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

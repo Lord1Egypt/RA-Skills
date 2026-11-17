@@ -1,42 +1,59 @@
-## Description: <br>
-Headless browser automation for AI agents with ARIA ref element targeting, natural-language actions, web scraping, and OpenClaw integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI for ARIA ref-based element selection, natural language actions, and OpenClaw integration.
 
-## Publisher: <br>
-[yesimagine-oss](https://clawhub.ai/user/yesimagine-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesimagine-oss](https://clawhub.ai/user/yesimagine-oss)
 
-## Use Case: <br>
-Developers and agent builders use this skill to drive browser sessions, inspect accessibility snapshots, interact with page elements, and extract page content for automation, testing, data collection, and RPA workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation and scraping can capture content from authenticated, private, or sensitive pages. <br>
-Mitigation: Run in an isolated environment and avoid authenticated or private pages unless their contents are intended to be processed and stored. <br>
-Risk: The scraper can export scraped page content to Feishu in CLI and scheduled modes without clear top-level disclosure. <br>
-Mitigation: Do not use web_scraper CLI or scheduled mode unless Feishu export is intended; disable or edit the Feishu export path for local-only automation. <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser navigation, inspect accessibility-tree snapshots, interact with page elements by stable refs, and scrape page text, images, and links.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/yesimagine-oss/clawbrowser-core) <br>
-- [agent-browser documentation](https://agent-browser.dev) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, browser action results, accessibility snapshots, and extracted page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, agent-browser, and Chrome or Chromium; browser snapshots must be refreshed for dynamic content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can scrape browser content from pages the agent can access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended public or approved targets, and avoid private, internal, or authenticated pages unless scraping is explicitly authorized.
+
+Risk: Scraped content may be persisted to local JSON and Markdown archives.
+
+Mitigation: Use a sandboxed account or container, review output directories, and clear caches or archives after use when content is sensitive.
+
+Risk: The scraper CLI can upload scraped content to Feishu.
+
+Mitigation: Do not use the web_scraper CLI or save_to_feishu option unless external upload is acceptable for the target content.
+
+## Reference(s):
+
+- [Clawbrowser Skill Release](https://clawhub.ai/yesimagine-oss/skills/clawbrowser-core)
+- [agent-browser documentation](https://agent-browser.dev)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python code examples, shell commands, and browser/scraper result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON and Markdown scrape archives when the web_scraper utility is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

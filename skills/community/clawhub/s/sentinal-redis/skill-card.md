@@ -1,43 +1,55 @@
-## Description: <br>
-Monitor Redis server health, memory, performance, and BullMQ queues. Check queue depths, inspect failed jobs, analyze slow queries, and diagnose issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Redis server health, memory, performance, and BullMQ queues. Check queue depths, inspect failed jobs, analyze slow queries, and diagnose issues.
 
-## Publisher: <br>
-[musaraf-m](https://clawhub.ai/user/musaraf-m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musaraf-m](https://clawhub.ai/user/musaraf-m)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect Redis health, memory, client activity, slow queries, and BullMQ queue state. It helps diagnose production Redis and BullMQ issues through read-only checks and concise remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Redis credentials or connection details may be exposed through REDIS_URL or diagnostic output. <br>
-Mitigation: Use a read-only or least-privilege Redis account, verify REDIS_URL targets the intended server, avoid putting passwords directly on command lines, and keep credential masking enabled. <br>
-Risk: Diagnostics may contain sensitive operational data such as slow logs, BullMQ job payloads, stack traces, keys, and connection details. <br>
-Mitigation: Redact slow logs, job payloads, stack traces, keys, and connection details before sharing output outside the trusted operations context. <br>
-Risk: Running destructive Redis commands against a production instance could modify or delete data. <br>
-Mitigation: Keep usage read-only and avoid destructive or mutating commands such as FLUSHDB, FLUSHALL, DEL, UNLINK, SET, EXPIRE, and CONFIG SET. <br>
+## Use Case:
 
+Developers and operators use this skill to run read-only diagnostics for Redis health, memory, latency, slow queries, client state, and BullMQ queue status.
 
-## Reference(s): <br>
-- [Redis Commands Quick Reference](references/redis-commands.md) <br>
-- [Sentinal Redis ClawHub Listing](https://clawhub.ai/musaraf-m/sentinal-redis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline Redis CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Redis diagnostics; may include health summaries, queue counts, warning messages, and redaction guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Redis credentials and diagnostic output may contain sensitive connection details, application data, job payloads, or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where read-only Redis diagnostics are authorized, prefer a least-privilege Redis user, mask REDIS_URL credentials, and review slow-log or BullMQ job output before sharing reports.
+
+Risk: Diagnostics run against the wrong Redis instance can inspect unintended data.
+
+Mitigation: Confirm the target REDIS_URL or localhost default before running commands, and ask for confirmation when scope is unclear.
+
+## Reference(s):
+
+- [Sentinal Redis ClawHub Skill Page](https://clawhub.ai/musaraf-m/skills/sentinal-redis)
+- [musaraf-m Publisher Profile](https://clawhub.ai/user/musaraf-m)
+- [Redis Commands Quick Reference](references/redis-commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and diagnostic summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires redis-cli and optionally REDIS_URL; diagnostic output may include sensitive Redis metadata or job data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

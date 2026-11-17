@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "notes": "语气维度（tone）与画风（style）正交：画风决定「长什么样」，语气决定「怎么说话、什么情绪」。可与任意 style_id 组合，默认 warm-healing。compile_prompt.py --tone <tone_id> 会把 prompt_fragment 拼进画面 prompt、把 negative_additions 并入 negative_prompt、把 dialogue_rules 交给对白排版参考。",
+  "default_tone_id": "warm-healing",
+  "tones": [
+    {
+      "tone_id": "warm-healing",
+      "display_name": "Warm Healing",
+      "legacy_name_zh": "温暖治愈",
+      "prompt_fragment": "warm healing atmosphere, gentle facial expressions, soft ambient daylight, comforting everyday details, no sharp conflict, cozy palette temperature",
+      "negative_additions": ["harsh shadows", "aggressive expressions", "violent action"],
+      "dialogue_rules": "口语、短句、先共情再讲事；不喊口号、不教训人；允许一个「其实」式的自我坦白",
+      "use_cases": ["日记", "成长记录", "生活切片", "轻科普"],
+      "avoid_with": ["sci-fi-future"]
+    },
+    {
+      "tone_id": "playful-snark",
+      "display_name": "Playful Snark",
+      "legacy_name_zh": "幽默吐槽",
+      "prompt_fragment": "light comedic tone, exaggerated comic reactions, expressive eyebrows, comedic staging, subtle visual gags in background",
+      "negative_additions": ["somber mood", "clinical realism"],
+      "dialogue_rules": "自嘲优先于攻击他人；笑点是「预期违背」，不是贬低；一句最多一个梗，不堆叠",
+      "use_cases": ["职场日常", "吐槽", "带观点的科普"],
+      "avoid_with": []
+    },
+    {
+      "tone_id": "calm-documentary",
+      "display_name": "Calm Documentary",
+      "legacy_name_zh": "冷静纪实",
+      "prompt_fragment": "calm documentary tone, restrained expressions, observational framing, natural diffused light, factual stillness, muted palette",
+      "negative_additions": ["cartoon exaggeration", "comedic effect", "dramatic lighting"],
+      "dialogue_rules": "先给事实再给判断，避免形容词；数字与出处优先；情绪留白，不替读者下结论",
+      "use_cases": ["原理拆解", "复盘", "研究记录"],
+      "avoid_with": []
+    },
+    {
+      "tone_id": "deadpan",
+      "display_name": "Deadpan",
+      "legacy_name_zh": "冷幽默",
+      "prompt_fragment": "deadpan expression, flat stare, absurd contrast between calm face and chaotic situation, minimal but precise comedic detail",
+      "negative_additions": ["laughing", "winking", "wacky expression"],
+      "dialogue_rules": "陈述句讲荒诞事；不解释笑点；句号收尾比感叹号有力",
+      "use_cases": ["职场观察", "系统荒诞", "自嘲"],
+      "avoid_with": ["cute-cartoon"]
+    },
+    {
+      "tone_id": "lyrical",
+      "display_name": "Lyrical",
+      "legacy_name_zh": "诗意抒情",
+      "prompt_fragment": "lyrical contemplative tone, poetic atmosphere, generous negative space, quiet melancholy, seasonal motifs, gentle light through atmosphere",
+      "negative_additions": ["busy composition", "loud colors", "comedic distortion"],
+      "dialogue_rules": "短句分行，留白多于铺陈；引用原句要与画面对得上，不做无关联的「诗意点缀」",
+      "use_cases": ["诗词条漫", "情绪记录", "节气与风景"],
+      "avoid_with": ["claymation"]
+    },
+    {
+      "tone_id": "energetic",
+      "display_name": "Energetic",
+      "legacy_name_zh": "元气热血",
+      "prompt_fragment": "high energy tone, dynamic poses, motion lines, determined expression, upward momentum, punchy composition",
+      "negative_additions": ["passive posture", "sleepy expression", "flat composition"],
+      "dialogue_rules": "短促有力，动词开头；一句一个动作；允许呐喊，但不要连续三句都喊",
+      "use_cases": ["学习打卡", "挑战记录", "产品发布"],
+      "avoid_with": ["calm-documentary"]
+    }
+  ]
+}

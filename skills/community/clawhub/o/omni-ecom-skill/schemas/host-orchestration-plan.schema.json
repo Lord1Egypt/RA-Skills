@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/host-orchestration-plan-2.0.json",
+  "title": "Omni E-commerce Host Orchestration Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "host", "bootstrap_mode", "member_launcher", "wait_tool", "message_tool", "required_roles", "observed_capabilities", "forbidden_tools", "ordered_steps", "runtime_evidence_required", "orchestration_completed", "status"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "host_orchestration_plan"},
+    "contract_name": {"const": "omni-ecom.host-orchestration-plan"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.host-orchestration-plan@1.0"], "current_analysis_authority": false}},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$"},
+    "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "minLength": 1},
+    "host": {"enum": ["workbuddy", "codex"]},
+    "bootstrap_mode": {"enum": ["teamcreate_direct", "teamcreate_deferred", "codex_native_subagents"]},
+    "member_launcher": {"type": "string", "minLength": 1},
+    "wait_tool": {"type": "string", "minLength": 1},
+    "message_tool": {"type": "string", "minLength": 1},
+    "required_roles": {"const": ["data-analyst", "platform-ops", "content-live-growth", "ad-profit-optimizer", "delivery-review"]},
+    "observed_capabilities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "forbidden_tools": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "ordered_steps": {"type": "array", "minItems": 5, "items": {"type": "string", "minLength": 1}},
+    "runtime_evidence_required": {"const": true},
+    "orchestration_completed": {"const": false},
+    "status": {"const": "planned_not_executed"}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "contract_id": "CONTRACT-SYNTH-001",
+  "project": "合成塔吊案例",
+  "note": "塔吊中心坐标与 s6 的 fleet_p4.json 一致；仅用于合成回归，不代表真实工程。",
+  "cranes": [
+    {
+      "id": "P4",
+      "model": "ZSL750",
+      "jib_m": 70,
+      "x_m": 0.0,
+      "y_m": 0.0
+    }
+  ]
+}

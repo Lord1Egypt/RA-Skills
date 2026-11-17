@@ -1,0 +1,464 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json",
+  "title": "Majia ChatCut Koubo source profile",
+  "description": "Authoring-time profile contract. A source profile may be a partial overlay and may extend one parent profile.",
+  "type": "object",
+  "additionalProperties": false,
+  "minProperties": 1,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "$comment": {
+      "type": "string"
+    },
+    "extends": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "$ref": "#/$defs/sourceSchemaVersion"
+    },
+    "policyVersion": {
+      "$ref": "#/$defs/semver"
+    },
+    "profileId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profileVersion": {
+      "$ref": "#/$defs/semver"
+    },
+    "status": {
+      "$ref": "#/$defs/sourceStatus"
+    },
+    "provenance": {
+      "description": "null is a source-only trust tombstone for legacy migration. It is never legal in resolved output.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/provenance"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timeline": {
+      "$ref": "#/$defs/timelineSource"
+    },
+    "canvas": {
+      "$ref": "#/$defs/openObject"
+    },
+    "theme": {
+      "$ref": "#/$defs/theme"
+    },
+    "captions": {
+      "$ref": "#/$defs/captionsSource"
+    },
+    "presenterWindow": {
+      "$ref": "#/$defs/openObject"
+    },
+    "presenter": {
+      "$ref": "#/$defs/openObject"
+    },
+    "screenStates": {
+      "$ref": "#/$defs/openObject"
+    },
+    "screen": {
+      "$ref": "#/$defs/openObject"
+    },
+    "stateFrame": {
+      "$ref": "#/$defs/openObject"
+    },
+    "editorialTags": {
+      "$ref": "#/$defs/openObject"
+    },
+    "knownProjectAssets": {
+      "$ref": "#/$defs/openObject"
+    },
+    "logicalTracks": {
+      "$ref": "#/$defs/openObject"
+    },
+    "audio": {
+      "$ref": "#/$defs/openObject"
+    },
+    "privacyRedaction": {
+      "$ref": "#/$defs/openObject"
+    },
+    "terminologyFile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "terminology": {
+      "description": "null is a source-only deletion tombstone that removes inherited inline terminology.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/openObject"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "releaseGates": {
+      "$ref": "#/$defs/openObject"
+    },
+    "hardInvariants": {
+      "$ref": "#/$defs/openObject"
+    },
+    "inheritanceRule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "derivedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "failureSignature": {
+      "type": [
+        "string",
+        "object",
+        "array"
+      ]
+    },
+    "supersededBy": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "sourceSchemaVersion": {
+      "description": "1.x values remain accepted only so a 2.0 leaf can migrate parameters from a historical parent. Resolved output is always 2.0.0.",
+      "enum": [
+        "1.0.0",
+        "1.1.0",
+        "2.0.0"
+      ]
+    },
+    "canonicalStatus": {
+      "enum": [
+        "untested-template",
+        "validated",
+        "deprecated"
+      ]
+    },
+    "sourceStatus": {
+      "description": "Historical parent values are source-only. A resolved leaf must use a canonical status.",
+      "enum": [
+        "untested-template",
+        "validated",
+        "deprecated",
+        "tested-starting-point",
+        "deprecated-do-not-use"
+      ]
+    },
+    "safePropertyName": {
+      "not": {
+        "enum": [
+          "__proto__",
+          "constructor",
+          "prototype"
+        ]
+      }
+    },
+    "openObject": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/safePropertyName"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectId",
+        "validatedTimelineIds"
+      ],
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "pattern": ".*\\S.*"
+        },
+        "validatedTimelineIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": ".*\\S.*"
+          }
+        },
+        "validatedTimelineRevisions": {
+          "$ref": "#/$defs/revisionMap"
+        },
+        "validatedSourceRevisions": {
+          "$ref": "#/$defs/revisionMap"
+        },
+        "captionItemPrefix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pixelEvidenceFrames": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "revisionMap": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": ".*\\S.*"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": ".*\\S.*"
+      }
+    },
+    "timelineSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "$note": {
+          "type": "string"
+        },
+        "paletteId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "paletteVersion": {
+          "$ref": "#/$defs/semver"
+        },
+        "mode": {
+          "enum": [
+            "light",
+            "dark"
+          ]
+        },
+        "outputColorSpace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primaryColor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surfaceColor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accentColor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "captionColor": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "left": {
+          "type": "number"
+        },
+        "top": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "shortCardPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "$note": {
+          "type": "string"
+        },
+        "approvedTerms": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          }
+        },
+        "approved14To23FramePatterns": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "minFrames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "hardMinFrames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "requireCompleteSemanticUnit": {
+          "type": "boolean"
+        },
+        "approvalMustBeRecorded": {
+          "type": "boolean"
+        }
+      }
+    },
+    "displayOverridePolicySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxReplacementCharacters": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "forbidSentenceOnSingleWordKey": {
+          "type": "boolean"
+        },
+        "requireWordLevelAudit": {
+          "type": "boolean"
+        },
+        "requireAdjacentPageReauditAfterHideOrMerge": {
+          "type": "boolean"
+        }
+      }
+    },
+    "captionReleaseGates": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/safePropertyName"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "integer",
+          "boolean"
+        ]
+      }
+    },
+    "captionsSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sourceVariant": {
+          "const": "original"
+        },
+        "font": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sizePx": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "lineHeight": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "color": {
+          "type": "string",
+          "minLength": 1
+        },
+        "backgroundColor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "backgroundOpacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "backgroundRadius": {
+          "type": "number",
+          "minimum": 0
+        },
+        "shadow": {
+          "type": "string"
+        },
+        "highlightUnit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "displayMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pacing": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxLines": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxCharactersPerLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "layout": {
+          "$ref": "#/$defs/layout"
+        },
+        "shortCardPolicy": {
+          "$ref": "#/$defs/shortCardPolicy"
+        },
+        "displayOverridePolicy": {
+          "$ref": "#/$defs/displayOverridePolicySource"
+        },
+        "releaseGates": {
+          "$ref": "#/$defs/captionReleaseGates"
+        }
+      }
+    }
+  }
+}

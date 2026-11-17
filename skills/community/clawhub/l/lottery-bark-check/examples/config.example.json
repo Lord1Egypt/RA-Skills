@@ -1,0 +1,14 @@
+{
+  "bark_device_key": "你的BarkKey（也可用环境变量 BARK_DEVICE_KEY）",
+  "group": "彩票",
+  "level": "timeSensitive",
+  "sound": "bell",
+  "notes": {
+    "ssq": [
+      {"red": [3, 4, 11, 12, 13, 28], "blue": [1]}
+    ],
+    "dlt": [
+      {"front": [3, 4, 11, 13, 28], "back": [1, 12]}
+    ]
+  }
+}

@@ -1,41 +1,50 @@
-## Description: <br>
-Builds a realistic evening wind-down plan with a ramp-down timeline, environment checklist, last stimulating action boundary, fallback version, and next-morning feedback prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds realistic evening wind-down plans with a ramp-down timeline, environment checklist, stimulation boundary, fallback version, and next-morning feedback prompts.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to create a realistic evening transition from stimulation to sleep, including a 30, 60, or 90 minute routine, environmental adjustments, and next-morning reflection prompts. It is descriptive wellness guidance, not clinical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may cross the stated wellness boundary by prompting sleep diagnosis or suggesting melatonin. <br>
-Mitigation: Revise examples and expected outputs to avoid diagnosis, medication, and supplement guidance; route persistent insomnia symptoms, medication questions, and health conditions to a qualified healthcare professional. <br>
-Risk: Users may mistake descriptive wind-down coaching for clinical sleep treatment. <br>
-Mitigation: Keep outputs framed as wellness planning only and preserve clear language that the skill is not treatment for insomnia or a clinical sleep disorder. <br>
+## Use Case:
 
+External users can use this skill to turn bedtime goals and late-night stimulation patterns into a practical wind-down plan with a timeline, environment checklist, fallback routine, and next-morning reflection prompts.
 
-## Reference(s): <br>
-- [Sleep Wind Down Coach README](artifact/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sleep-wind-down-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown wind-down plan with section headings and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter and _meta.json show 1.0.0) <br>
+Risk: The skill may be used for insomnia diagnosis or sleep-aid decisions because examples include diagnostic framing and melatonin recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for general sleep-hygiene routines, and direct users to qualified medical advice for persistent insomnia, severe daytime impairment, medication questions, or suspected medical issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sleep-wind-down-coach)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown wind-down plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes sleep target, current pattern, ramp-down timeline, environment checklist, fallback version, and morning feedback questions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

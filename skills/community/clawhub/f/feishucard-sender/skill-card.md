@@ -1,44 +1,55 @@
-## Description: <br>
-Sends Feishu card messages, including text and image cards, through the message tool using configured Feishu app credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends Feishu card messages with support for text and images using the message tool's card parameter.
 
-## Publisher: <br>
-[blackswan-mohu](https://clawhub.ai/user/blackswan-mohu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blackswan-mohu](https://clawhub.ai/user/blackswan-mohu)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare and send Feishu interactive card notifications to known users or group chats. It also provides a helper script to upload local images and retrieve the img_key required by Feishu image card elements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Feishu messages using the user's app identity. <br>
-Mitigation: Use a least-privileged Feishu app with only the needed message permission and review recipients and card content before sending. <br>
-Risk: Feishu App Secret exposure could allow unauthorized use of the Feishu app. <br>
-Mitigation: Prefer environment variables or a secret manager, avoid committing secrets in plaintext, and rotate the secret if exposed. <br>
-Risk: The image upload helper reads and uploads a local image path. <br>
-Mitigation: Review image paths before upload and avoid sending sensitive or unintended files. <br>
+## Use Case:
 
+Developers and operators use this skill to send Feishu notification cards, including text cards and cards with uploaded images, to configured users or chats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blackswan-mohu/feishucard-sender) <br>
-- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu image upload API endpoint](https://open.feishu.cn/open-apis/im/v1/images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Feishu card JSON examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu App ID, App Secret, im:message permission, and valid Feishu recipient targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Feishu App Secret exposure through USER.md, command-line arguments, logs, shell history, or shared agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected secret mechanism or tightly scoped environment variables, avoid placing secrets in documentation, and rotate any secret that may have been exposed.
+
+Risk: Sensitive image or message content could be uploaded to Feishu through the helper script or sent in card payloads.
+
+Mitigation: Upload or send only approved content and restrict the Feishu app to the minimum required permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blackswan-mohu/skills/feishucard-sender)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu image upload API](https://open.feishu.cn/open-apis/im/v1/images)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline JSON card payloads and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Feishu card JSON payloads and image upload commands that require Feishu app credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

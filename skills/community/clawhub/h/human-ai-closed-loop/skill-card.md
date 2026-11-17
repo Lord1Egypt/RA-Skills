@@ -1,39 +1,57 @@
-## Description: <br>
-Structures a repeated human-AI feedback loop where an agent creates checklists, humans test and enrich them, and the agent synthesizes updated outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures a recurring human-AI cognition loop where AI drafts checklists, humans test assumptions and add experiential input, and AI synthesizes updated outputs.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers, researchers, and operators use this skill to organize iterative decision-making into verified facts, falsifiable hypotheses, blind spots, human feedback, and updated checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback, facts, hypotheses, and project details may be written to local JSON logs. <br>
-Mitigation: Review the log location and deletion process before use, and avoid entering secrets or regulated data unless logging behavior is acceptable. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to run iterative planning and problem-solving workflows that separate verified facts, falsifiable hypotheses, blind spots, human feedback, and updated recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/human-ai-closed-loop) <br>
-- [Project Homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or structured text with checklist sections; optional JSON loop logs are described by the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human feedback is categorized as falsified assumptions, imagination, and new facts before the next synthesis step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Feedback logs may contain sensitive project observations or private human input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep loop_log-style records local and avoid placing sensitive data in feedback unless the runtime storage behavior is confirmed.
+
+Risk: Closed-loop work can stall or drift if human feedback is delayed, confidence falls repeatedly, or checklists lack falsifiable assumptions.
+
+Mitigation: Use heartbeat checks to identify stale sessions, falling confidence, missing assumptions, and pending feedback before continuing the loop.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/human-ai-closed-loop)
+- [Publisher Homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [artifact/README.md](artifact/README.md)
+- [artifact/VERIFICATION_PROTOCOL.md](artifact/VERIFICATION_PROTOCOL.md)
+- [artifact/HEARTBEAT.md](artifact/HEARTBEAT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with checklist items, hypotheses, feedback categories, confidence notes, and synthesis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local loop_log-style records for tracking feedback rounds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and README list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

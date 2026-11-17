@@ -1,39 +1,52 @@
-## Description: <br>
-Proactive self-monitoring of infrastructure, services, and health that tracks disk, memory, load, service health, cron job status, and recent errors, then suggests or performs remediation actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive self-monitoring of infrastructure, services, and health that tracks disk, memory, load, service health, cron job status, and recent errors.
 
-## Publisher: <br>
-[suryast](https://clawhub.ai/user/suryast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[suryast](https://clawhub.ai/user/suryast)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and infrastructure operators use this skill to generate monitoring checks, health reports, and operational guidance for disks, memory, service status, cron jobs, and recent system errors.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill proposes broad cleanup actions for old system logs, cache files, temporary files, and pip caches.
+
+Mitigation: Keep cleanup in report-only mode unless a user explicitly approves each deletion, and scope any cleanup to reviewed paths.
+
+Risk: Recurring health checks or service restarts can affect host availability if run unattended or with elevated privileges.
+
+Mitigation: Require explicit approval before restarts, avoid running scheduled checks as root, and review the exact script and log destination before scheduling.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and infrastructure maintainers use Self Monitor during heartbeats or scheduled checks to inspect system health, service status, cron activity, and recent errors and to produce a health report with recommended or automated remediation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic cleanup guidance can delete system logs or user cache files without clear approval or retention safeguards. <br>
-Mitigation: Disable or edit auto-fix cleanup before scheduling the skill, require explicit confirmation before deletion, and review log-retention and troubleshooting requirements before touching /var/log. <br>
-Risk: Automatic service restart guidance can disrupt running workloads if applied without operator review. <br>
-Mitigation: Require explicit confirmation before restarting services and scope restart commands to known services with an approved recovery plan. <br>
+**Output Format:** [Markdown with inline bash and cron code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include commands that inspect local system state and recommended remediation steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell command snippets and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local system metrics, service status, and remediation guidance based on command output.] <br>
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.1.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact SKILL.md frontmatter says 1.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

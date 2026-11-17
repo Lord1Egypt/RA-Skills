@@ -30,7 +30,7 @@ Content-Type: application/json
 ```bash
 curl --location 'https://api.vwu.ai/v1/images/generations/' \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer sk-w4YfLvoXwIEM0I3uNcOOOclfHkBDiR19Md9ixabWv1XMNPhn' \
+  --header 'Authorization: Bearer REDACTED-SECRET' \
   --data '{
     "image": ["https://s3.amazonaws.com/sihai2/v2/590789f030495b874f05755d799cf215.JPG"],
     "prompt": "背景改为在海边",

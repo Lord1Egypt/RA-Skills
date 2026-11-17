@@ -1,47 +1,54 @@
-## Description: <br>
-Maps cognitive failures across eight interconnected domains, identifies the primary bottleneck and upstream dependencies, and guides selection of a targeted intervention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to diagnose a cognitive bottleneck across eight interacting domains, trace upstream influences, and select a targeted intervention.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and agents use this skill to diagnose broad thinking, learning, decision-making, communication, or cognitive-performance problems by identifying the cognitive domain bottleneck and upstream dependencies before recommending an intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad activation language may select this skill when a more specific cognitive-domain skill is already appropriate. <br>
-Mitigation: Confirm the user's concrete case and switch to a more specific skill when the cognitive domain or problem type is already clear. <br>
-Risk: Users may treat reflective cognitive coaching as medical or mental-health advice. <br>
-Mitigation: Frame outputs as coaching guidance only, avoid diagnosis or treatment claims, and direct clinical or mental-health concerns to qualified professionals. <br>
-Risk: An unsupported domain assignment can lead to ineffective or misleading interventions. <br>
-Mitigation: Require observable behavioral evidence and map upstream dependencies before recommending domain-specific tools. <br>
+## Use Case:
 
+People, educators, team leaders, and designers use the skill to identify the cognitive domain behind a concrete difficulty, examine upstream dependencies, and plan a focused intervention.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/deciqai/skills/cognitive-science-landscape) <br>
-- [Sources - Cognitive Science Landscape](references/sources.md) <br>
-- [Method in Action: The 1956 MIT Symposium and the Birth of Cognitive Science](examples/the-1956-mit-symposium-and-the-birth-of-cognitive-science-1956.md) <br>
-- [Neisser, Cognitive Psychology](https://archive.org/details/cognitivepsychol00neis) <br>
-- [Baddeley and Hitch, Working Memory](https://doi.org/10.1016/S0079-7421(08)60452-1) <br>
-- [Miller, The Magical Number Seven, Plus or Minus Two](https://doi.org/10.1037/h0043158) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching response with a cognitive domain map] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user responses in coach mode; requires user-specific behavioral evidence before domain assignment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recorded failure-pattern notes may contain sensitive personal or workplace details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or generalize sensitive details before saving notes.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/deciqai/skills/cognitive-science-landscape)
+- [deciqAI skill overview](https://www.deciqai.com/c/cognitive-science-landscape)
+- [Skill sources](references/sources.md)
+- [Neisser, Cognitive Psychology (1967)](https://archive.org/details/cognitivepsychol00neis)
+- [Baddeley and Hitch, Working Memory (1974)](https://doi.org/10.1016/S0079-7421(08)60452-1)
+- [Miller, The Magical Number Seven, Plus or Minus Two (1956)](https://doi.org/10.1037/h0043158)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown cognitive domain map, coaching prompts, and intervention guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organizes a concrete case around an observable failure, primary domain, upstream dependencies, a targeted tool, and reassessment.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

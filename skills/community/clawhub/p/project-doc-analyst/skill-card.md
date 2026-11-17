@@ -1,41 +1,50 @@
-## Description: <br>
-Project Doc Analyst reads a software repository deeply and produces structured project documentation covering architecture, implementation details, design rationale, tradeoffs, complex topics, and diagrams for human and AI readers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes code repositories and creates evidence-based documentation for human and AI readers, covering architecture, design rationale, implementation, tradeoffs, and diagrams.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-Developers, engineering leads, architects, reviewers, and AI coding agents use this skill to analyze a target repository and generate self-contained project documentation for onboarding, architecture review, handoff, and future agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a chosen repository and may summarize sensitive source, configuration, or documentation content. <br>
-Mitigation: Use it only on repositories approved for documentation generation, and avoid projects containing secrets or sensitive material unless that content may be included in generated docs. <br>
-Risk: Generated project documentation can be incomplete or misleading if the repository evidence is incomplete or the target path is ambiguous. <br>
-Mitigation: Specify the target repository and output directory clearly, then review generated documents against the repository before relying on them for architecture or handoff decisions. <br>
+## Use Case:
 
+Developers, engineers, and technical leads use this skill to understand a codebase and create a structured documentation suite for people and AI tools. It focuses on architecture, data and control flow, design decisions, and implementation tradeoffs, with conclusions grounded in repository evidence.
 
-## Reference(s): <br>
-- [Project Doc Analyst on ClawHub](https://clawhub.ai/z-zihan/project-doc-analyst) <br>
-- [Awesome Skills repository](https://github.com/z-Zihan/awesome-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown documents with structured analysis and Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce multiple documentation files; output language follows the user request or project context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Some local references could not be resolved during the security review, which was therefore partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review referenced files in the target repository and verify important conclusions against their source evidence.
+
+## Reference(s):
+
+- [Project Doc Analyst on ClawHub](https://clawhub.ai/z-zihan/skills/project-doc-analyst)
+- [Project homepage listed in skill metadata](https://github.com/z-Zihan/awesome-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Mermaid diagrams, Code examples]
+
+**Output Format:** [Structured Markdown documentation with Mermaid diagrams and concise code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output language follows user preference or repository evidence; findings distinguish confirmed facts, reasonable inferences, and insufficient evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

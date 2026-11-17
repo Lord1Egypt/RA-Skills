@@ -1,46 +1,72 @@
-## Description: <br>
-Use when building, redesigning, or extending web-app frontends that must look production-ready, visually distinctive, and systemically designed instead of like generic AI-generated UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building, redesigning, or extending web-app frontends that must look production-ready, visually distinctive, and systemically designed instead of like generic AI-generated UI.
 
-## Publisher: <br>
-[arn0ld87](https://clawhub.ai/user/arn0ld87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arn0ld87](https://clawhub.ai/user/arn0ld87)
 
-## Use Case: <br>
-Developers and product teams use this skill to plan and implement production-quality web app frontends with a clear visual direction, design tokens, component states, responsive behavior, and accessibility checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional evaluation assets may involve prompts being sent to a user-selected third-party LLM or provider. <br>
-Mitigation: Use an approved provider and avoid sending confidential project prompts unless the relevant consent and data handling requirements are satisfied. <br>
+## Use Case:
 
+Developers and design-minded agents use this skill to plan and implement production-ready web-app frontends, including design direction, tokens, component code, responsive behavior, accessibility checks, and quality gates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arn0ld87/frontend-design-agency) <br>
-- [Assets Overview](artifact/ASSETS_OVERVIEW.md) <br>
-- [Product Requirements Checklist](artifact/references/product-requirements-checklist.md) <br>
-- [Research Workflow](artifact/references/research-workflow.md) <br>
-- [Visual Direction Canvas](artifact/references/visual-direction-canvas.md) <br>
-- [Design System Rules](artifact/references/design-system-rules.md) <br>
-- [Generic vs Distinctive Examples](artifact/references/generic-vs-distinctive-examples.md) <br>
-- [Accessibility Checklist](artifact/references/accessibility-checklist.md) <br>
-- [Quality Gate](artifact/references/quality-gate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with React/TypeScript, Tailwind, CSS variable, and configuration snippets when implementation is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include visual direction notes, design tokens, component code, information architecture, state checks, responsive notes, and concise assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill is opinionated and may steer frontend work toward React, TypeScript, Tailwind, and shadcn-style implementations even when another stack is a better project fit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target stack and existing design system before applying generated code or configuration.
+
+Risk: Design guidance and generated UI proposals can still be visually, accessibility, or product-fit incorrect for a specific application.
+
+Mitigation: Review outputs against the bundled quality gate, accessibility checklist, and project requirements before deployment.
+
+Risk: Bundled evaluator files are QA artifacts rather than required runtime behavior.
+
+Mitigation: Keep evaluator artifacts out of production paths unless they are intentionally used for review.
+
+## Reference(s):
+
+- [Research Workflow](references/research-workflow.md)
+- [Visual Direction Canvas](references/visual-direction-canvas.md)
+- [Design System Rules](references/design-system-rules.md)
+- [Quality Gate](references/quality-gate.md)
+- [Product Requirements Checklist](references/product-requirements-checklist.md)
+- [Accessibility Checklist](references/accessibility-checklist.md)
+- [Generic vs Distinctive Examples](references/generic-vs-distinctive-examples.md)
+- [Motion System Guide](references/motion-system-guide.md)
+- [Color Palette Decision Framework](references/color-palette-examples.md)
+- [Typography Scale Template](references/typography-scale-template.md)
+- [Grid System Template](references/grid-system-template.md)
+- [Layout Patterns Library](references/layout-patterns-library.md)
+- [Breakpoint Definition](references/breakpoint-definition.md)
+- [Focus States Template](references/focus-states-template.md)
+- [User Persona Template](references/user-persona-template.md)
+- [Component Template](references/component-template.tsx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with code and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include visual direction notes, design tokens, React or TypeScript component code, implementation assumptions, responsive notes, and quality checks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

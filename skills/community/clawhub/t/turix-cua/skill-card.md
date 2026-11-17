@@ -1,42 +1,56 @@
-## Description: <br>
-Computer Use Agent (CUA) for macOS automation using TuriX. Use when you need to perform visual tasks on the desktop, such as opening apps, clicking buttons, or navigating UIs that don't have a CLI or API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computer Use Agent (CUA) for macOS automation using TuriX. Use when you need to perform visual tasks on the desktop, such as opening apps, clicking buttons, or navigating UIs that don't have a CLI or API.
 
-## Publisher: <br>
-[Tongyu-Yan](https://clawhub.ai/user/Tongyu-Yan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tongyu-yan](https://clawhub.ai/user/tongyu-yan)
 
-## Use Case: <br>
-Developers and power users use this skill to delegate macOS GUI workflows to a visual computer-use agent when an application lacks a practical CLI or API. Typical tasks include opening applications, navigating websites, clicking controls, and completing multi-step desktop workflows under supervision. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill grants an agent broad visibility and control over the user's macOS desktop. <br>
-Mitigation: Use it only for intended desktop-control workflows, supervise runs, avoid sensitive personal or production accounts, and revoke Screen Recording and Accessibility permissions after use. <br>
-Risk: The core desktop automation is delegated to an external TuriX-CUA checkout and runtime. <br>
-Mitigation: Use a dedicated trusted checkout, pin or review the runtime before use, and review generated config changes before running tasks. <br>
-Risk: The agent may perform consequential GUI actions such as submissions, uploads, account changes, or deletions. <br>
-Mitigation: Require explicit user confirmation before consequential actions and prefer narrow, specific task prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Tongyu-Yan/turix-cua) <br>
-- [TuriX-CUA GitHub Repository](https://github.com/TurixAI/TuriX-CUA) <br>
+## Use Case:
 
+Developers and operators use this skill to route GUI-only macOS tasks through TuriX, including opening applications, navigating web or desktop UIs, and resuming multi-step visual workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update the TuriX examples/config.json file and produce local TuriX logs during execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for broad macOS Screen Recording and Accessibility permissions for visual desktop control.
+
+Mitigation: Use it only in a dedicated, low-sensitivity macOS session, grant the narrowest permissions, supervise sensitive workflows, and revoke permissions after use.
+
+Risk: The skill relies on external TuriX-CUA code and dependencies that are not pinned by the artifact.
+
+Mitigation: Pin and review the exact TuriX-CUA commit and dependency set before installation or execution.
+
+Risk: GUI automation can interact with accounts, messages, financial pages, admin settings, or confidential data if tasked that way.
+
+Mitigation: Avoid account sign-ups, OAuth, financial, messaging, admin, or confidential-data workflows unless each step is supervised.
+
+## Reference(s):
+
+- [TuriX-CUA setup repository](https://github.com/TurixAI/TuriX-CUA)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute macOS GUI automation after updating TuriX configuration.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

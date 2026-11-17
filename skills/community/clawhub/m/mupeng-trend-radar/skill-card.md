@@ -1,39 +1,52 @@
-## Description: <br>
-Trend Radar generates weekly technology and market trend reports from web search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tech/market trend weekly auto-report.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers, founders, and market researchers use this skill to monitor AI, SaaS, Korean startup, and OpenClaw ecosystem trends and produce weekly summary reports with highlights, category statistics, and follow-up keywords. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Web-based trend reports may include outdated, incomplete, or misleading market information. <br>
-Mitigation: Review cited sources and important claims before using a report for business, product, or investment decisions. <br>
-Risk: Optional weekly cron execution and saved report files can retain local research history longer than intended. <br>
-Mitigation: Enable the cron example only when scheduled reports are desired, and periodically review or delete saved reports and event files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-trend-radar) <br>
+## Use Case:
 
+External users and developers use this skill to monitor AI, SaaS, Korean startup, and OpenClaw ecosystem trends and generate recurring weekly trend reports with highlights, category summaries, and watchlist items.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report with optional JSON event records and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are saved under memory/research/trend-YYYY-WXX.md; optional event records use events/trend-update-YYYY-MM-DD.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create recurring report files and event records when run or scheduled.
+
+Mitigation: Review the configured output paths and enable cron scheduling only when recurring writes are intended.
+
+Risk: Generated trend reports may influence downstream automation in workspaces that react to report or event files.
+
+Mitigation: Review generated reports and event records before connecting them to automated follow-up workflows.
+
+## Reference(s):
+
+- [Trend Radar ClawHub listing](https://clawhub.ai/mupengi-bot/skills/mupeng-trend-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON event records, keyword configuration examples, and cron command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write weekly report files under memory/research and event records under events when run or scheduled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

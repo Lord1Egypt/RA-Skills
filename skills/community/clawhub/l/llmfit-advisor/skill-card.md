@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents recommend local LLM models, quantization options, and runtime choices based on hardware and use case using llmfit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to use llmfit for hardware-aware local LLM model and quantization recommendations across coding, chat, reasoning, and general use cases.
 
-## Publisher: <br>
-[bshaot](https://clawhub.ai/user/bshaot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bshaot](https://clawhub.ai/user/bshaot)
 
-## Use Case: <br>
-Developers and local LLM users use this skill to ask an agent for hardware-aware model recommendations for coding, chat, reasoning, general, multimodal, or embedding workflows, including suggested quantization and runtime options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to run llmfit commands that inspect local hardware for recommendations. <br>
-Mitigation: Review the suggested command and its output before execution, and avoid sharing hardware details outside trusted local workflows. <br>
-Risk: The skill may suggest update scripts or Docker commands that rely on external tools not bundled with the skill package. <br>
-Mitigation: Inspect scripts, Docker images, source locations, and command arguments before running them; use trusted llmfit releases and container images. <br>
+## Use Case:
 
+Developers and local LLM users use this skill to select suitable local models, quantization settings, and runtimes based on available CPU, RAM, GPU memory, context length, and task type.
 
-## Reference(s): <br>
-- [llmfit documentation](https://github.com/AlexsJones/llmfit) <br>
-- [Hugging Face model library](https://huggingface.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest llmfit commands that inspect local hardware or use external llmfit and Docker tooling; no executable code is bundled in the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide use of llmfit commands that inspect local hardware details such as CPU, RAM, and GPU information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users what hardware details will be inspected and avoid sharing the resulting system profile beyond the local recommendation task.
+
+Risk: The artifact includes Docker and update-script examples that may fetch upstream images or code.
+
+Mitigation: Use pinned, verified Docker image tags or digests and review upstream update scripts before running them.
+
+## Reference(s):
+
+- [Llmfit Documentation](https://github.com/AlexsJones/llmfit)
+- [Hugging Face Model Hub](https://huggingface.co)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples and JSON output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local hardware information and llmfit JSON recommendation output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

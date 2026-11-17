@@ -1,38 +1,50 @@
-## Description: <br>
-Guides an agent through Edward de Bono's Six Thinking Hats method, keeping facts, emotions, risks, benefits, creative options, and synthesis in separate labeled passes for a single focus question. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for Six Thinking Hats or de Bono's parallel thinking, or when a decision or idea needs facts, gut feel, risks, benefits and new options kept apart: "look at this from all sides", "full perspective check". Skip for plain factual questions or single-angle hot takes.
 
-## Publisher: <br>
-[ysskrishna](https://clawhub.ai/user/ysskrishna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysskrishna](https://clawhub.ai/user/ysskrishna)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to run structured brainstorms, decisions, and reviews with a fixed hat-by-hat sequence. It is useful when a user wants a parallel-thinking partner that separates evidence, intuition, risks, value, creative alternatives, and final synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The marketplace capability tag may not match the skill's actual Six Thinking Hats behavior. <br>
-Mitigation: Evaluate the skill by its name, description, and structured-thinking instructions rather than relying on the capability tag alone. <br>
+## Use Case:
 
+People making decisions, plans, or reviews use this skill to consider facts, reactions, risks, benefits, and new options in separate passes, then close with a synthesis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ysskrishna/six-hats-thinking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with labeled hat passes, bullet lists, and a Blue synthesis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Full, Creative, Risk, Decision, and Custom modes with Quick, Standard, or Deep Dive depth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.5.18 (source: server release metadata and artifact frontmatter) <br>
+Risk: One local reference was unresolved, leaving the security evidence incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reference-dependent guidance against trusted source material before relying on it.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ysskrishna/skills/six-hats-thinking)
+- [Worked example](references/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with role-labeled sections and a closing synthesis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hat order and length follow the selected mode; White items are tagged, and Black and Yellow items use risk/mitigation and benefit/condition fields.]
+
+## Skill Version(s):
+
+2026.11.15 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

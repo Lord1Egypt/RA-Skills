@@ -1,46 +1,60 @@
-## Description: <br>
-Skill-first Bilibili to Notion pipeline. Download a Bilibili/b23 video, transcribe audio, upload the mp4, create or update a Notion transcript page, write transcript blocks, then optionally append a Markdown summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Bilibili or b23 videos, transcribes audio, uploads mp4 files, creates or updates Notion transcript pages, writes transcript blocks, and optionally appends Markdown summaries.
 
-## Publisher: <br>
-[hiing](https://clawhub.ai/user/hiing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hiing](https://clawhub.ai/user/hiing)
 
-## Use Case: <br>
-External users and developers use this skill to convert Bilibili videos into Notion transcript pages with uploaded video links, transcript blocks, and optional Markdown summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify or archive Notion page content. <br>
-Mitigation: Confirm the target Notion page before running and avoid replace-children behavior unless replacing the page body is intended. <br>
-Risk: Uploaded videos may become available through a public download URL. <br>
-Mitigation: Use a trusted upload endpoint and verify the visibility and retention policy before uploading sensitive videos. <br>
-Risk: The pipeline can delete local intermediate files during cleanup. <br>
-Mitigation: Keep metadata and transcript files until the Notion page and uploaded video link have been verified. <br>
-Risk: The workflow uses credentials such as a limited Notion integration token, optional upload token, and optional Bilibili cookie file. <br>
-Mitigation: Use least-privilege credentials, keep tokens and cookies out of source control, and rotate them if logs or local files are exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to convert Bilibili or b23 video content into Notion transcript pages with optional structured summaries and download links.
 
-## Reference(s): <br>
-- [Workflow Notes](references/workflow.md) <br>
-- [Summary Template](references/summary-template.md) <br>
-- [CloudFlare-ImgBed](https://github.com/MarSeventh/CloudFlare-ImgBed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status from pipeline steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update Notion content, upload videos, and clean local intermediate files based on user-selected options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill can upload video files to a configured external destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upload destination, require HTTPS, and use a narrowly scoped upload token before running the pipeline.
+
+Risk: The skill can archive existing top-level Notion page blocks when replace-children behavior is enabled.
+
+Mitigation: Use replace-children only when the target Notion page can safely have existing top-level blocks archived.
+
+Risk: Cleanup modes can delete local transcript, audio, or video files.
+
+Mitigation: Inspect generated metadata paths first and use cleanup-mode none until deletion behavior is confirmed.
+
+## Reference(s):
+
+- [Workflow Notes](references/workflow.md)
+- [Summary Template](references/summary-template.md)
+- [CloudFlare-ImgBed upload backend reference](https://github.com/MarSeventh/CloudFlare-ImgBed)
+- [ClawHub skill page](https://clawhub.ai/hiing/skills/bilibili-notion-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON metadata, transcript text, and Notion block content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Notion pages, upload mp4 files to a configured destination, and delete temporary files according to cleanup mode.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

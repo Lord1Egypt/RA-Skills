@@ -1,44 +1,55 @@
-## Description: <br>
-Record, search, and analyze your wine collection and tasting notes. Use when logging tastings, searching vintages, comparing ratings, or tracking inventory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, search, and analyze wine collection entries, tasting notes, vintages, ratings, and inventory from a local command-line tool.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users use this skill to log wine-related notes, search prior entries, review recent activity, and export locally stored records. The implementation primarily behaves as a command-line plaintext logger for arbitrary input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool saves arbitrary command input in plaintext under ~/.local/share/wine. <br>
-Mitigation: Avoid entering secrets or unrelated sensitive information, and review local logs and exports before sharing or backing them up. <br>
-Risk: The advertised wine-specific functionality is underdeveloped compared with the implementation's generic logging behavior. <br>
-Mitigation: Validate that the command behavior meets the intended wine tracking workflow before relying on it for inventory or tasting records. <br>
-Risk: The executable name wine can conflict with other software named wine on a user's system. <br>
-Mitigation: Verify which wine command is on PATH before running it. <br>
+## Use Case:
 
+External users use Wine to log, search, summarize, and export wine-related notes and inventory records through local terminal commands. Users should review the publisher-noted mismatch between the wine management description and the shipped generic local logging behavior before installing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/wine) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output and local JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command input and activity history locally under ~/.local/share/wine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill presents itself as wine management but ships a generic local logging script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands and local storage behavior before installation to confirm the skill matches the intended use.
+
+Risk: Command inputs may be stored in local logs and exported files.
+
+Mitigation: Avoid entering sensitive personal, business, credential, or account information unless the publisher clarifies data handling, retention, export behavior, and deletion controls.
+
+## Reference(s):
+
+- [Wine on ClawHub](https://clawhub.ai/ckchzh/skills/wine)
+- [Publisher Profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Terminal text output and exported JSON, CSV, or plain-text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores command inputs and history in local files under ~/.local/share/wine/.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

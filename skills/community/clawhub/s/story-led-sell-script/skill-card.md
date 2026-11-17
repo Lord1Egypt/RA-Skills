@@ -1,39 +1,54 @@
-## Description: <br>
-Creates believable story-driven sales scripts that integrate product benefits through creator-native narratives for short-form video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a believable story-driven sales script that naturally integrates product benefits through emotional, creator-native narratives for short-form video.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, ecommerce teams, UGC teams, and founder-led brands use this skill to turn product details or customer scenarios into story-led scripts for short-form sales videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sales scripts may include unrealistic claims, testimonials, results, or missing advertising disclosures. <br>
-Mitigation: Review generated scripts for truthful claims, realistic proof, and required advertising, sponsorship, affiliate, or platform disclosures before publishing. <br>
+## Use Case:
 
+Creators, ecommerce brands, UGC teams, and operators use this skill to turn product details or customer, founder, or creator scenarios into story-led short-form video sales scripts with natural product placement and conversion-oriented CTAs.
 
-## Reference(s): <br>
-- [Output Template](artifact/references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/story-led-sell-script) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured script sections and variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a beat-by-beat script, opening hook, story setup, product introduction, proof cue, CTA, shorter alternate version, and testing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated sales scripts may include unsubstantiated product claims, testimonials, results, or benefits if the user provides weak or exaggerated inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts for truthful claims, available proof, and advertising compliance before publication.
+
+Risk: Story-led sales copy can sound fabricated or emotionally manipulative if the scenario, proof, or narrator perspective is not credible.
+
+Mitigation: Ground the script in a believable creator, customer, founder, or operator experience and remove forced drama or unsupported vulnerability.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/story-led-sell-script)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with beat-by-beat script sections and optional variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a story hook, setup, trigger moment, product introduction, outcome, proof cue, CTA, and shorter alternate version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

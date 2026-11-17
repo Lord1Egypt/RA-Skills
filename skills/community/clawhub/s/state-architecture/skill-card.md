@@ -1,42 +1,51 @@
-## Description: <br>
-Designs scalable state management architecture for complex frontend apps, covering store slicing, server and client state separation, optimistic updates, cross-tab sync, and state machine patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs scalable state management architecture for complex frontend apps, including store slicing, server/client state separation, optimistic updates, cross-tab sync, and state machine patterns.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Frontend developers and engineers use this skill to diagnose state-management problems and design scalable React state architecture. It helps separate server, global UI, local UI, URL, and form state while proposing patterns for Zustand slices, React Query optimistic updates, state machines, and cross-tab synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated architecture or code examples could be incorrect or poorly matched to a production codebase. <br>
-Mitigation: Review generated guidance and code before applying it to production. <br>
-Risk: Broad invocation terms could trigger the skill during general state-management discussions. <br>
-Mitigation: Narrow invocation guidance if a deployment needs the skill to activate only for explicit frontend state-architecture requests. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to diagnose complex React state-management problems and produce practical architecture guidance, store structures, update patterns, and example code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/state-architecture) <br>
-- [Project homepage from artifact metadata](https://github.com/wangzhiming1999/oliver-skill) <br>
-- [Support issues from artifact metadata](https://github.com/wangzhiming1999/oliver-skill/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with architecture tables and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include state classification tables, store structure recommendations, optimistic update patterns, and state machine examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: Architecture guidance and sample code may not fit a specific application's data flow, performance constraints, or team conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have an experienced frontend engineer review the proposed state boundaries, cache strategy, and code examples before applying them to production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/skills/state-architecture)
+- [Skill README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with TypeScript and React code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include state classification tables, store slice recommendations, optimistic update patterns, and state machine examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and ClawHub manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

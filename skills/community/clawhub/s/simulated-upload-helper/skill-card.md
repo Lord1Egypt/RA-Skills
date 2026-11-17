@@ -1,40 +1,49 @@
-## Description: <br>
-Triggers publishing for existing local skills when requested, without creating new skill files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers the publishing flow for existing local skills without creating new skill files.
 
-## Publisher: <br>
-[zhoulincom](https://clawhub.ai/user/zhoulincom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoulincom](https://clawhub.ai/user/zhoulincom)
 
-## Use Case: <br>
-Developers who maintain local ClawHub skills use this skill to trigger single-skill or batch publishing for existing skills and receive publish results or troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly publish one or many local skills, including batch publishing when no skill name is specified. <br>
-Mitigation: Before use, confirm the exact skill name, destination registry or account, changed files, version, and whether batch mode is intended. <br>
-Risk: Ambiguous upload requests may trigger live publishing rather than a dry run. <br>
-Mitigation: Avoid vague requests such as "模拟上传" unless live publishing is intended; require an explicit publish target when possible. <br>
+## Use Case:
 
+Developers and maintainers use this skill to publish one named local skill or all changed local skills through the repository publishing script. It is intended for release operations on existing skills, not for creating or editing skill content.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhoulincom/simulated-upload-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown or plain text with shell commands and publish status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish a named skill or run batch publishing when no skill name is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is presented with simulated-upload wording but can perform real publishing operations for one or multiple skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target skill name or changed-skill list, registry, credentials, and publish script before running; avoid batch publishing unless all changed skills are intended for release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoulincom/skills/simulated-upload-helper)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, text]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report publishing success, command failure details, or troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

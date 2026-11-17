@@ -16,7 +16,7 @@
 //   node create-player.mjs --guild-id "0-1" --guild-api "http://crew.oh.energy/api/" --reactor-api "https://public.testnet.structs.network"
 //   node create-player.mjs --mnemonic "word1 word2 ..." --guild-id "0-1" --guild-api "http://crew.oh.energy/api/" --reactor-api "https://public.testnet.structs.network" --username "my-agent" --pfp "ipfs://bafy..."
 //
-// As of structsd v0.16.0, the guild API forwards `username` and `pfp` to the
+// The guild API forwards `username` and `pfp` to the
 // chain via MsgGuildMembershipJoinProxy.playerName / playerPfp, so the chain
 // rejects invalid values at signup time. This script preflights the same
 // validators as `x/structs/types/ugc.go` so failures surface locally instead
@@ -45,12 +45,13 @@ function parseArgs(argv) {
     else if (argv[i] === '--reactor-api' && argv[i + 1]) args.reactorApi = argv[++i];
     else if (argv[i] === '--username' && argv[i + 1]) args.username = argv[++i];
     else if (argv[i] === '--pfp' && argv[i + 1]) args.pfp = argv[++i];
+    else if (argv[i] === '--pfp-client-render-attributes' && argv[i + 1]) args.pfpClientRenderAttributes = argv[++i];
     else if (argv[i] === '--timeout' && argv[i + 1]) args.timeout = parseInt(argv[++i], 10);
   }
   return args;
 }
 
-// --- UGC validation (mirror of x/structs/types/ugc.go in structsd v0.16.0) ---
+// --- UGC validation (mirror of x/structs/types/ugc.go) ---
 // These checks must agree with the chain validators or signup will appear to
 // succeed and then silently fail. If you change one side, change the other.
 
@@ -199,6 +200,32 @@ function validatePfp(pfp) {
   return pfp;
 }
 
+// pfpClientRenderAttributes: owner-supplied client render
+// hints. The chain stores an opaque JSON object, max 512 bytes, no schema.
+// Empty string clears it. Mirror x/structs/types/ugc.go validation.
+function validatePfpClientRenderAttributes(value) {
+  if (value === "" || value === null || value === undefined) {
+    return "";
+  }
+  if (typeof value !== "string") {
+    throw new Error("pfp-client-render-attributes must be a string");
+  }
+  const byteLen = new TextEncoder().encode(value).length;
+  if (byteLen > 512) {
+    throw new Error(`pfp-client-render-attributes must be at most 512 bytes (got ${byteLen})`);
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(value);
+  } catch (err) {
+    throw new Error(`pfp-client-render-attributes must be valid JSON: ${err.message}`);
+  }
+  if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("pfp-client-render-attributes must be a JSON object (not array or primitive)");
+  }
+  return value;
+}
+
 function fail(obj) {
   console.log(JSON.stringify({ success: false, ...obj }));
   process.exit(1);
@@ -225,7 +252,7 @@ async function main() {
   if (!args.guildId || !args.guildApi || !args.reactorApi) {
     fail({
       error: "Missing required arguments: --guild-id, --guild-api, --reactor-api",
-      usage: 'node create-player.mjs --guild-id "0-1" --guild-api "http://crew.oh.energy/api/" --reactor-api "https://public.testnet.structs.network" [--mnemonic "..."] [--username "name"] [--pfp "ipfs://..."] [--timeout 120]'
+      usage: 'node create-player.mjs --guild-id "0-1" --guild-api "http://crew.oh.energy/api/" --reactor-api "https://public.testnet.structs.network" [--mnemonic "..."] [--username "name"] [--pfp "ipfs://..."] [--pfp-client-render-attributes "{...}"] [--timeout 120]'
     });
   }
 
@@ -244,6 +271,13 @@ async function main() {
       args.pfp = validatePfp(args.pfp);
     } catch (err) {
       fail({ error: `Invalid --pfp: ${err.message}`, hint: "See knowledge/mechanics/ugc-moderation.md for the pfp rules." });
+    }
+  }
+  if (args.pfpClientRenderAttributes !== undefined && args.pfpClientRenderAttributes !== "") {
+    try {
+      args.pfpClientRenderAttributes = validatePfpClientRenderAttributes(args.pfpClientRenderAttributes);
+    } catch (err) {
+      fail({ error: `Invalid --pfp-client-render-attributes: ${err.message}`, hint: "See knowledge/mechanics/ugc-moderation.md for the pfpClientRenderAttributes rules." });
     }
   }
 
@@ -314,6 +348,7 @@ async function main() {
     fail({ error: `Default username failed validation: ${err.message}`, hint: "Pass --username with a value matching ^[\\p{L}0-9\\-_]{3,20}$" });
   }
   const pfp = args.pfp ?? null;
+  const pfpClientRenderAttributes = args.pfpClientRenderAttributes ?? null;
 
   const signupPayload = {
     primary_address: address,
@@ -323,6 +358,12 @@ async function main() {
     username,
     pfp
   };
+  // Forwarded to MsgGuildMembershipJoinProxy.playerPfpClientRenderAttributes
+  // when the guild API supports it. Older guild APIs
+  // ignore unknown fields, so this is safe to always include when provided.
+  if (pfpClientRenderAttributes !== null) {
+    signupPayload.pfp_client_render_attributes = pfpClientRenderAttributes;
+  }
 
   // Step 4: POST to guild API
   let signupResponse;
@@ -350,7 +391,15 @@ async function main() {
     signupBody = await signupResponse.text();
   }
 
-  if (!signupResponse.ok) {
+  // Signup is idempotent: re-running for an address that already joined returns
+  // `resource_already_exists`. Treat that as success and fall through to polling
+  // so we adopt the existing player rather than failing.
+  const signupBodyText = typeof signupBody === "string"
+    ? signupBody
+    : JSON.stringify(signupBody);
+  const alreadyExists = /resource_already_exists/i.test(signupBodyText);
+
+  if (!signupResponse.ok && !alreadyExists) {
     fail({
       error: `Guild API returned ${signupResponse.status}`,
       mnemonic: generated ? mnemonic : undefined,
@@ -360,6 +409,10 @@ async function main() {
       signup_response: signupBody,
       hint: "If you got HTML back, you may be hitting the wrong URL or the guild does not support programmatic signup"
     });
+  }
+
+  if (alreadyExists) {
+    process.stderr.write("Signup reported resource_already_exists — address already joined; polling for the existing player.\n");
   }
 
   // Step 5: Poll for player creation
@@ -404,6 +457,7 @@ async function main() {
     guild_id: args.guildId,
     username,
     pfp,
+    pfp_client_render_attributes: pfpClientRenderAttributes,
     created: true,
     next_step: `structsd tx structs planet-explore --from [key-name] --gas auto --gas-adjustment 1.5 -- ${playerId}`
   }));

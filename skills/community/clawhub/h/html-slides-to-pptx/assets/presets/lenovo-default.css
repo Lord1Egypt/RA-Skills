@@ -1,0 +1,150 @@
+/* ================================================================
+   html-slides 主题样式（可无损转换为 PPTX 的净化版）
+   视觉风格：联想 Lenovo 品牌视觉 · Deep Blue 中轴 + 联想红强调 + 紫黑深底
+   色板来源：Lenovo 官方品牌色板(Color scheme 页,RGB/HEX 逐字录入)
+
+   【使用契约 —— 写页面时必须遵守】
+   1. 本文件提供：CSS 变量(色板/字体) + Reset + 少量工具类。
+      CSS 变量在转换时会被解析成具体颜色,安全无损。
+   2. ❌ 不要使用伪元素(::before/::after)做装饰——转换时会被忽略。
+      装饰线/圆点/角标一律用真实 <div data-object="true" data-object-type="shape"> 表达。
+   3. ❌ 不要使用 opacity 做半透明装饰——转换时按不透明处理。
+      半透明色请预先与底色混合,直接写混合后的 hex。
+   4. ❌ 不要使用单边粗边框(border-top:4px)——按顶边宽度统一应用。
+      顶部/侧边强调条用独立的细长 shape 叠加。
+   5. 每个可见元素必须带 data-object="true" + 内联 position:absolute。
+      详见 reference/html-spec.md。
+
+   【官方色板全量(变量槽位以外的颜色,供内联使用)】
+   红族:  Deep Red 1 #64131E · Pale Red 1 #F0C7BF
+   紫族:  Deep Purple 1 #4D144A · Deep Purple 2 #7A126B · Pale Purple 1 #D9C1D8
+   蓝族:  Pale Blue 1 #C9D0F0
+   品牌渐变(Smarter & Linear Gradients):用深→中同族对做 linear-gradient,
+   如 Passion #4D144A→#64131E / Knowledge #11184F→#294E95 / Wonder #F26A52→#F0C7BF。
+   签名红 #E1251B 官方要求"elevate the brand but should not be overused",
+   且 Lenovo logo 必须使用签名红。
+
+   【浅色/深色页用色规范(官方 Colors for light/dark slides)】
+   浅色页(白/浅灰底)——只用深而浓、与白底对比足够的颜色作前景:
+     ✅ Black #1E0013 / Deep Gray #4E444E / 签名红 #E1251B / Mid Red 1 #B8252E /
+        Deep Red 1 #64131E / Deep Purple 1·2 / Deep Blue 1·2
+        (即 --text-primary/--brand-primary/--brand-primary-dark/--brand-dark 系)
+     ❌ 禁作前景: Mid Red 2 #F26A52、全部 Pale 色(#F0C7BF/#D9C1D8/#C9D0F0)、
+        Mid Gray #ABA8B1、Pale Gray #E6E2E4、白
+        (Pale 色只可作大块衬底/卡片底色,不作文字与细条)
+   深色页(Deep Blue 1 / Black 底)——只用浅而亮的颜色作前景:
+     ✅ 白、--on-navy-* 混合色、Mid Red 2 #F26A52、Pale Red/Purple/Blue、
+        Mid Gray #ABA8B1
+     ❌ 禁作前景: Black、Deep Gray、签名红 #E1251B、Mid Red 1、Deep Red 1、
+        Deep Purple 1·2、Deep Blue 1·2
+        (深色页上的红色强调/信号一律用 Mid Red 2 #F26A52,不用签名红)
+     例外: Lenovo logo 永远使用签名红(官方强制)。
+   ================================================================ */
+
+:root {
+  /* 主色：三色主结构(官方 theme colors) */
+  --brand-primary: #E1251B;              /* Red —— Lenovo 签名红(225.37.27) */
+  --lenovo-red: var(--brand-primary);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-primary-dark: #B8252E;         /* Mid Red 1(184.37.46) */
+  --lenovo-red-dark: var(--brand-primary-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark: #11184F;                 /* Deep Blue 1(17.24.79) */
+  --deep-navy: var(--brand-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark-soft: #294E95;            /* Deep Blue 2(41.78.149) */
+  --deep-navy-light: var(--brand-dark-soft);   /* 别名(向后兼容,169 处历史引用) */
+  --charcoal: #1E0013;                   /* Black(30.01.19,带紫调的官方黑) */
+  --charcoal-soft: #4E444E;              /* Deep Gray(78.68.78) */
+
+  /* 白+灰系（承载） */
+  --white: #FFFFFF;
+  --off-white: #F6F5F7;                  /* ≈ Pale Gray 10% 混白 */
+  --card-bg: #FBFAFC;                    /* ≈ Pale Gray 4% 混白 */
+  --text-primary: #1E0013;               /* Black */
+  --text-secondary: #4E444E;             /* Deep Gray */
+  --text-tertiary: #7A737A;              /* ≈ Deep Gray 75% 混白(官方禁用 Mid Gray 文字上白底) */
+  --border-light: #E6E2E4;               /* Pale Gray(230.226.228) */
+  --border-medium: #ABA8B1;              /* Mid Gray(仅作分隔线,不作文字) */
+
+  /* 深色底上的浅色文字(预算混合色,非 rgba) */
+  --on-navy-text: #FFFFFF;
+  --on-navy-sub: #DBDCE5;    /* ≈ 白 85% 混 Deep Blue 1 */
+  --on-navy-dim: #B8BACA;    /* ≈ 白 70% 混 Deep Blue 1 */
+
+  /* 代码块 */
+  --code-bg: #0F1419;
+  --code-text: #E8E8E8;
+  --code-highlight: #FFD966;
+  --code-comment: #7A8B99;
+
+  /* 信号色（类别区分时少量使用） */
+  --signal-green: #00A651;   /* 官方色板无对应,保留 */
+  --signal-yellow: #F9A825;  /* 官方色板无对应,保留 */
+  --signal-blue: #294E95;    /* Deep Blue 2 */
+  --signal-red: #E1251B;     /* 签名红(深色页禁用→深色页红色信号用 #F26A52) */
+  --signal-gray: #ABA8B1;    /* Mid Gray(深色页可用;浅色页仅作图形,不作文字) */
+
+  /* 强调暖色(Mid Red 2,官方色板无橙;深色页主打的红色强调,浅色页禁作前景) */
+  --accent-orange: #F26A52;              /* Mid Red 2(242.106.82) */
+  /* ── 色板梯级(第九轮 P1 自动生成:tools/gen-ladder.js;勿手改值)────── */
+  --brand-primary-soft: #FADAD8;      /* --brand-primary @17% · 主色浅底:徽章/高亮格/热力中档 */
+  --brand-primary-pale: #FDEEED;      /* --brand-primary @8% · 主色最浅底:提示条/斑马纹 */
+  --brand-dark-pale: #ECEDF1;         /* --brand-dark @8% · 深底浅化:卡片浅底/浅色分区 */
+  --brand-dark-tint: #CBCCD8;         /* --brand-dark @22% · 深底中浅:表头底纹/分层底 */
+  --brand-dark-mid: #7C809E;          /* --brand-dark @55% · 深底中间层:金字塔/漏斗中段 */
+  --ink-soft: #624D5A;                /* --text-primary @70% · 中性深灰:次级文字/较重分隔线 */
+  --ink-faint: #8F8089;               /* --text-primary @50% · 中性中灰:弱化文字/网格线 */
+  --surface-sunken: #F6F5F6;          /* --text-primary @4% · 下沉面:浅灰面板底(区别于画布底) */
+  --signal-green-soft: #D6F1E3;       /* --signal-green @16% · 语义浅底:达成/正向格 */
+  --signal-yellow-soft: #FEF1DC;      /* --signal-yellow @16% · 语义浅底:预警/中档格 */
+  --signal-red-soft: #FADCDB;         /* --signal-red @16% · 语义浅底:风险/未达格 */
+  --signal-blue-soft: #DDE3EE;        /* --signal-blue @16% · 语义浅底:信息/参照格 */
+  /* ── 色板梯级结束 ── */
+
+
+  /* 字体 */
+  --font-cn: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-en: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* ── 版面分区与间距(2026-08-02 设计总纲;与默认 theme.css 保持一致) ── */
+  --zone-header-top: 60px;
+  --zone-content-top: 320px;
+  --zone-content-bottom: 940px;
+  --zone-footer-top: 980px;
+  --page-margin: 100px;
+  --content-width: 1720px;
+  --space-block: 60px;
+  --space-item: 40px;
+  --space-item-tight: 24px;
+
+  /* ── 字号阶(演讲档基准;混合/阅读档按 design-principles.md 字号阶等比) ── */
+  --text-cover: 104px;
+  --text-title-page: 60px;
+  --text-title-block: 32px;
+  --text-body: 24px;
+  --text-note: 16px;
+  --text-floor: 14px;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { margin: 0; padding: 0; overflow: hidden; }
+
+body {
+  font-family: var(--font-cn);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 画布：转换器只认 1920x1080 + relative + hidden */
+.slide-container {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--off-white);
+  font-family: var(--font-cn);
+}
+
+/* 数字/西文用 Inter（表格数字、页码等,可加 class="num"） */
+.num { font-family: var(--font-en); font-feature-settings: "tnum"; }

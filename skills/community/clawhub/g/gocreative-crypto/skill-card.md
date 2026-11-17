@@ -1,42 +1,58 @@
-## Description: <br>
-GoCreative Crypto provides live crypto and DeFi market data for agents, including spot prices, DEX liquidity, protocol TVL, gas prices, sentiment, trending coins, and stablecoin data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoCreative Crypto provides paid HTTPS endpoints for live crypto and DeFi market data, including spot prices, market data, DEX liquidity, protocol TVL, gas prices, sentiment, trending coins, and stablecoin data.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-Developers and AI agents use this skill to call live crypto and DeFi data endpoints for trading research, market monitoring, treasury analysis, and Web3 workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live crypto and DeFi data may be delayed, unavailable, incomplete, or unsuitable as the only basis for financial decisions. <br>
-Mitigation: Validate important outputs against independent sources and require human or policy review before trading, treasury, or other financial actions. <br>
-Risk: Endpoint use can trigger paid x402 requests through an OpenClaw wallet. <br>
-Mitigation: Review wallet configuration, spending limits, and expected request volume before enabling automated use. <br>
+## Use Case:
 
+External developers and AI agents use this skill to retrieve live crypto and DeFi market data for trading, research, treasury, and on-chain analysis workflows.
 
-## Reference(s): <br>
-- [GoCreative Crypto on ClawHub](https://clawhub.ai/colinhughes2121/gocreative-crypto) <br>
-- [Publisher profile](https://clawhub.ai/user/colinhughes2121) <br>
-- [GoCreative API provider](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON data, Guidance] <br>
-**Output Format:** [Markdown endpoint guidance with HTTPS GET examples; endpoint responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests may require x402 payment through an OpenClaw wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Repeated polling or bundled crypto-360 calls may charge the user's x402 wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use wallet budgets or approval controls before repeated calls, polling workflows, or bundle calls.
+
+Risk: Market lookup requests are sent to GoCreative's external API.
+
+Mitigation: Avoid placing private trading strategy details or sensitive identifiers in lookup parameters.
+
+Risk: Agents may rely on live crypto market data for trading, research, or treasury decisions.
+
+Mitigation: Treat responses as decision support and require appropriate review before financial action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/colinhughes2121/skills/gocreative-crypto)
+- [GoCreative API](https://api.gocreativeai.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with HTTPS endpoint examples; API responses are JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid external API calls via x402; most endpoints are disclosed as about $0.01 per call and the crypto-360 bundle as about $0.20 per call.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

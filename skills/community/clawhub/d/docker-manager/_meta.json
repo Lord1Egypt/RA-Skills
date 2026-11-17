@@ -1,0 +1,1 @@
+{"version": "1.0.0", "openclaw": {"emoji": "🐳", "requires": {"bins": ["python3", "docker"]}, "install": []}}

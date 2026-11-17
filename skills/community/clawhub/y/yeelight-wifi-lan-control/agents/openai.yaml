@@ -1,0 +1,7 @@
+interface:
+  display_name: "Yeelight WiFi LAN Control"
+  short_description: "Local Yeelight WiFi control and home organization"
+  default_prompt: "Use $yeelight-wifi-lan-control to discover and control Yeelight WiFi lights, organize rooms and groups, and apply saved scenes on the local network."
+
+policy:
+  allow_implicit_invocation: true

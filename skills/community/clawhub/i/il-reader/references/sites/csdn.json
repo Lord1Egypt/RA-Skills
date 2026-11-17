@@ -1,0 +1,429 @@
+{
+  "version": "2.4.0",
+  "source_id": "csdn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:03:36.770Z",
+  "entry": {
+    "url": "https://www.csdn.net/",
+    "final_url": "https://www.csdn.net/",
+    "title": "CSDN_专业开发者社区",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:03:36.770Z",
+    "identity": {
+      "declared_name": "CSDN",
+      "hostname": "www.csdn.net",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "“训练AI的人不准用AI！”曝OpenAI外包人员因用AI被解雇：我只是需要一点帮助……",
+        "href": "https://blog.csdn.net/csdnnews/article/details/166834261",
+        "target": "_blank"
+      },
+      {
+        "text": "cann-recipes-train：提供食谱训练资源，助力技能提升\n\nPython\n\n查看详情",
+        "href": "https://gitcode.com/cann/cann-recipes-train?utm_source=csdn-index-opensource",
+        "target": "_blank"
+      },
+      {
+        "text": "Cannbot技能库，提供实用技能资源与开发支持\n\nMarkdown\n\n查看详情",
+        "href": "https://gitcode.com/cann/cannbot-skills?utm_source=csdn-index-opensource",
+        "target": "_blank"
+      },
+      {
+        "text": "CHATERM AI：开启云资源氛围管理新篇章！\n\n人工智能\n\n79.1K\n\n查看详情",
+        "href": "https://blog.csdn.net/coderroad/article/details/148769366",
+        "target": "_blank"
+      },
+      {
+        "text": "在数字媒体领域中，特殊视频播放器（也称为专业视频播放器或增强型视频播放器）是为满足特定需求而设计的一类软件工具，与常见的媒体播放器相比，这类播放器通常提供更多的定制功能和专业特性。这些播放器不仅可以流畅播放各种格式的视频，还可以支持高级功能，如硬件加速、颜色校正、高级解码器设置、详细的视频分析以及多屏幕同步显示等。特殊",
+        "href": "https://blog.csdn.net/weixin_33773084/article/details/150104543",
+        "target": "_blank"
+      },
+      {
+        "text": "AnythingLLM 项目下载及安装教程 【免费下载链接】anything-llm 这是一个全栈应用程序，可以将任何文档、资源（如网址链接、音频、视频）或内容片段转换为上下文，以便任何大语言模型（LLM）在聊天期间作为参考使用。此应用程序允许您选择使用哪个LLM或向量数据库，同时支持多用户管理并设置不同权限。 ...",
+        "href": "https://blog.csdn.net/gitblog_01273/article/details/143041879",
+        "target": "_blank"
+      },
+      {
+        "text": "ColorChecker24块色卡数据介绍：精准色彩管理，提升艺术品复制质量去发现同类优质开源项目:https://gitcode.com/ColorChecker24块色卡数据是艺术品复制过程中不可或缺的重要资源。项目介绍在摄影、设计、印刷以及艺术品复制等多个领域，色彩管理的精准性直接影响最终成果的质量。ColorC",
+        "href": "https://blog.csdn.net/gitblog_06726/article/details/147183238",
+        "target": "_blank"
+      },
+      {
+        "text": "【亲测免费】 高中人工智能基础课程资源：开启AI学习之旅",
+        "href": "https://blog.csdn.net/gitblog_06601/article/details/142574641",
+        "target": "_blank"
+      },
+      {
+        "text": "高中人工智能基础课程资源：开启AI学习之旅 【下载地址】高中人工智能基础课程资源下载 本仓库提供了一份名为“(高中版)人工智能基础课程.pdf”的资源文件，旨在帮助高中生系统地掌握人工智能的基本技术。该课程内容丰富，涵盖了人工智能的基础篇、应用篇和进阶篇，适合对人工智能感兴趣的高中生学习 ...",
+        "href": "https://blog.csdn.net/gitblog_06601/article/details/142574641",
+        "target": "_blank"
+      },
+      {
+        "text": "推荐文章：深入浅出Swift中的简易深度链接库 —— Simple Deep Linking in Swift在当今的移动应用开发中，深度链接已经成为了连接不同应用内页面或功能的桥梁。为了帮助开发者轻松实现这一功能，今天我们要推荐一个专为Swift打造的轻量级解决方案——Simple Deep Linking in S",
+        "href": "https://blog.csdn.net/gitblog_00733/article/details/141660836",
+        "target": "_blank"
+      },
+      {
+        "text": "微软VisualC运行库完整集合：一次下载，解决所有兼容问题 【下载地址】微软VisualC运行库完整集合 微软Visual C++运行库完整集合为您提供最新、最全面的运行库资源，覆盖2005至2017年所有版本，包括v5.1至v14.x.x，支持32位和64位系统。一次下载即可满足所有Visual C++运行库需求，",
+        "href": "https://blog.csdn.net/gitblog_06716/article/details/148108670",
+        "target": "_blank"
+      },
+      {
+        "text": "增霸卡3.5驱动是针对最新增霸卡硬件设备推出的一款高效、稳定的驱动程序，旨在提升设备性能和兼容性。本章节将简要介绍增霸卡3.5驱动的特点及优势，并对其应用价值和适用领域进行概述。通过深入分析，我们会揭示这款驱动如何在不同的工作环境下优化设备性能，为专业IT从业者提供高效的工作解决方案。",
+        "href": "https://blog.csdn.net/weixin_30798867/article/details/147542973",
+        "target": "_blank"
+      },
+      {
+        "text": "KONICA MINOLTA 423SeriesPS-8打印机驱动：高效打印的必备工具 【下载地址】KONICAMINOLTA423SeriesPS-8打印机驱动下载 本仓库提供KONICA MINOLTA 423SeriesPS-8打印机驱动的下载资源。该驱动程序适用于KONICA MINOLTA 423Series",
+        "href": "https://blog.csdn.net/gitblog_09744/article/details/142951225",
+        "target": "_blank"
+      },
+      {
+        "text": "搜词、搜义、搜万物、读文档：Jina 模型家族 × Elasticsearch 实战\n\n10/14 19:00\n直播预约",
+        "href": "https://live.csdn.net/room/UbuntuTouch/Gt7NMf06",
+        "target": ""
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://kunpeng-sc.csdnimg.cn/#/preview1/4531447?positionId=986&adBlockFlag=0&adId=1111172&queryWord=&spm=3001.10469&articleId=0",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://kunpeng-sc.csdnimg.cn/#/preview/4601145?positionId=588&adBlockFlag=0&adId=1112029&queryWord=&spm=3001.5907&articleId=0",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://kunpeng-sc.csdnimg.cn/#/preview/4600894?positionId=589&adBlockFlag=0&adId=1111988&queryWord=&spm=3001.5908&articleId=0",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://kunpeng-sc.csdnimg.cn/#/preview/4601690?positionId=590&adBlockFlag=0&adId=1112100&queryWord=&spm=3001.5909&articleId=0",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://kunpeng-sc.csdnimg.cn/#/preview/4558721?positionId=591&adBlockFlag=0&adId=1111587&queryWord=&spm=3001.5910&articleId=0",
+        "id": "",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://kunpeng-sc.csdnimg.cn/#/preview/4588571?positionId=592&adBlockFlag=0&adId=1111948&queryWord=&spm=3001.5911&articleId=0",
+        "id": "",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "搜CSDN",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "搜CSDN",
+      "name": null,
+      "id": "toolbar-search-input",
+      "css": "#toolbar-search-input",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#toolbar-search-input"
+      },
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "toolbar-search-button",
+      "css": "#toolbar-search-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#toolbar-search-button"
+      },
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.csdn.net/",
+      "observed_at": "2026-10-09T09:03:36.189Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "csdn:record-lookup",
+      "source_id": "csdn",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.csdn.net/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "搜CSDN",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "搜CSDN",
+          "name": null,
+          "id": "toolbar-search-input",
+          "css": "#toolbar-search-input",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#toolbar-search-input"
+          },
+          "observed_url": "https://www.csdn.net/",
+          "observed_at": "2026-10-09T09:03:36.189Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "toolbar-search-button",
+          "css": "#toolbar-search-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#toolbar-search-button"
+          },
+          "observed_url": "https://www.csdn.net/",
+          "observed_at": "2026-10-09T09:03:36.189Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "csdn",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:36.770Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/csdn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/csdn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

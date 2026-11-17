@@ -1,42 +1,60 @@
-## Description: <br>
-Auto-enrich Bear research notes tagged 「待整理」 with topic-matched GIFs by reading notes via grizzly, searching GIFs, appending media, and removing the tag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-enrich Bear research notes tagged 「待整理」 with topic-matched GIFs by reading notes via grizzly, searching GIFs via gifgrep or Tenor, appending media, and removing the tag.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Bear users and research-note maintainers use this skill to batch-process notes tagged 「待整理」, add relevant GIF media, and clear the organizing tag after processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can batch rewrite private Bear notes without a built-in preview or rollback. <br>
-Mitigation: Back up or export the affected Bear notes first, review the tagged notes, and use a dry-run or confirmation step before allowing writes. <br>
-Risk: Note-derived search terms may be sent to an external GIF service. <br>
-Mitigation: Run only on notes whose titles or keywords are acceptable to share externally, and review or redact search terms before lookup when notes may contain sensitive content. <br>
+## Use Case:
 
+Developers and Bear power users use this skill to batch-process research notes that are tagged for cleanup, add a relevant supporting GIF, and report notes that could not be enriched.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/research-gif-enricher) <br>
-- [grizzly Bear CLI](https://github.com/tylerwince/grizzly) <br>
-- [Tenor GIF search API](https://tenor.googleapis.com/v2/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and Markdown image snippets for Bear notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append a Supporting Media section to Bear notes and remove the target tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can batch-edit Bear notes and may overwrite note content while removing the cleanup tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up Bear notes first, review the tagged note set before execution, and prefer controlled step-by-step runs for important notes.
+
+Risk: Title-derived search terms may be sent to an external GIF search service.
+
+Mitigation: Run only when this external data flow is acceptable, and avoid processing notes whose titles or findings contain sensitive information.
+
+Risk: The release evidence flags the package as suspicious because user control and disclosure around note rewriting and external GIF search are limited.
+
+Mitigation: Review the skill before installing, use an explicitly approved grizzly dependency, and require opt-in network behavior for GIF lookup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/research-gif-enricher)
+- [grizzly Go module](https://github.com/tylerwince/grizzly)
+- [Packaged skill definition](artifact/SKILL.md)
+- [Packaged batch processing script](artifact/scripts/process_tagged.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown note additions, shell commands, and a concise processing report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update Bear note contents by appending media links and removing the cleanup tag.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

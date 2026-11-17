@@ -1,43 +1,57 @@
-## Description: <br>
-Diagnoses Chinese creator topics, drafts, or content plans to identify the main strategy bottleneck, recommend a suitable format and platform, and return one concrete next action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content-strategy diagnosis for Chinese creator work that helps an agent judge whether a topic, draft, or content plan should become a short video, post, article, or live session and return a concrete next action before writing.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Creators, content strategists, and agent users use this skill before drafting Chinese content to evaluate whether an idea, draft, or plan has a clear promise, enough material density, a suitable carrier, platform fit, and a useful goal linkage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's diagnosis could be mistaken for a finished writing deliverable or a definitive content strategy. <br>
-Mitigation: Use the report as a decision aid, then review the recommended format, platform, material gaps, and next action before creating or publishing content. <br>
-Risk: Chinese output by default may not match every user's language expectation. <br>
-Mitigation: Ask for another language or locale-specific framing when the intended audience is not Chinese-speaking. <br>
+## Use Case:
 
+Creators, content strategists, and agents use this skill to diagnose Chinese-language content ideas, plans, and drafts before writing. It identifies the main bottleneck, recommends the best-fit format and platform, checks material density and goal linkage, and ends with one concrete next move.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-content-strategy-diagnosis) <br>
-- [Project homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/content-strategy-diagnosis) <br>
-- [Workflow](references/workflow.md) <br>
-- [Diagnostic lens](references/diagnostic-lens.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diagnosis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese output by default; includes a one-line diagnosis, recommended format and platform, five-lens assessment, main bottleneck, one concrete first action, and an optional next-skill handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The packaged defaults and templates are Chinese-oriented, which may produce an unsuitable language or framing for other audiences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent explicitly to respond in the required language and adapt the diagnosis to the target audience.
+
+Risk: The skill provides strategic content guidance that may be incomplete when the user's topic, goal, platform, or source material is thin.
+
+Mitigation: Require the agent to state missing information and stop at diagnosis rather than pretending certainty.
+
+## Reference(s):
+
+- [Content Strategy Diagnosis ClawHub Page](https://clawhub.ai/cellinlab/skills/cell-content-strategy-diagnosis)
+- [ClawHub Metadata Homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/content-strategy-diagnosis)
+- [Workflow Reference](references/workflow.md)
+- [Diagnostic Lens Reference](references/diagnostic-lens.md)
+- [Diagnosis Template](assets/diagnosis-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown diagnosis report, typically in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential handling, or hidden data access according to release security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

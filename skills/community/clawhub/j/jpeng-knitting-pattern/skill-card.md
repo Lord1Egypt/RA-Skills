@@ -1,43 +1,53 @@
-## Description: <br>
-Find knitting patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find knitting patterns.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-External users and developers use this skill to find and retrieve knitting patterns for crafts, DIY workflows, and knitting-related automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references a knitting_pattern.py helper script that is not bundled. <br>
-Mitigation: Confirm the script source and review it before running any command that uses it. <br>
-Risk: Pattern searches may be sent to an external service through KNITTING_API_KEY. <br>
-Mitigation: Confirm the API provider, data handling expectations, and terms before sending user inputs. <br>
-Risk: KNITTING_API_KEY is a secret required for use. <br>
-Mitigation: Set the key through a secure environment variable or secret manager and do not commit it to source files. <br>
+## Use Case:
 
+External users and developers use this skill to find and retrieve knitting patterns for crafts, DIY workflows, and knitting task automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-knitting-pattern) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results with Markdown guidance and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KNITTING_API_KEY; artifact documentation references a knitting_pattern.py script that is not bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Knitting-pattern queries may be sent to an unspecified external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure KNITTING_API_KEY only for approved service use and avoid sending sensitive or private queries.
+
+Risk: The current package may be incomplete because the referenced knitting_pattern.py script is not present in the artifact evidence.
+
+Mitigation: Confirm the executable script is supplied and reviewed before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-knitting-pattern)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KNITTING_API_KEY; queries may be sent to an unspecified external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Check SSL certificate health, protocols, and cipher suites on domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check SSL certificate health, protocols, and cipher suites on domains.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect SSL certificate details, expiry, protocol support, cipher information, and certificate chains for domains they are authorized to test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local shell script that invokes OpenSSL against user-provided domains. <br>
-Mitigation: Install and run it only in environments where local shell execution is acceptable, and use it only for domains you own or are authorized to test. <br>
-Risk: Security evidence notes that current command examples may need fixing because the script appears to read the wrong argument position. <br>
-Mitigation: Verify command behavior in a test environment before relying on results for audits or operational decisions. <br>
-Risk: SSL checks can disclose target domains through outbound network connections. <br>
-Mitigation: Avoid using the skill for sensitive domains unless network disclosure is acceptable under the user's assessment process. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run basic OpenSSL-based checks for certificate details, expiry, protocol support, cipher output, and chain information for a supplied domain.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/ssl-checker) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OpenSSL and connects to user-provided domains; stores data under ~/.local/share/ssl-checker/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is a basic SSL-checking shell script with quality and accuracy limitations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use its output as a preliminary signal and confirm important findings with a dedicated TLS assessment tool or manual review.
+
+Risk: The documented commands appear to have broken argument handling.
+
+Mitigation: Test commands in a controlled environment and fix argument handling before relying on results.
+
+Risk: The skill makes outbound TLS connections to user-supplied domains.
+
+Mitigation: Run it only against domains you are authorized to assess and from a network where those outbound connections are acceptable.
+
+## Reference(s):
+
+- [Ssl Checker on ClawHub](https://clawhub.ai/xueyetianya/skills/ssl-checker)
+- [BytesAgain](https://bytesagain.com)
+- [Publisher Profile](https://clawhub.ai/user/xueyetianya)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill stores local data under ~/.local/share/ssl-checker and makes outbound TLS connections to domains supplied by the user.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

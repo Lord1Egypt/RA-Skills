@@ -1,45 +1,66 @@
-## Description: <br>
-PrintAssist helps an agent print and prepare PDF, Office, and image files from plain-language requests, including layout changes, page ranges, watermarks, document edits, and optional Adobe Creative Cloud photo edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PrintAssist helps agents print PDFs, Office documents, and images from plain-language requests, including layout options, page ranges, PDF transforms, and optional Adobe Creative Cloud photo editing.
 
-## Publisher: <br>
-[nilsgollub](https://clawhub.ai/user/nilsgollub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nilsgollub](https://clawhub.ai/user/nilsgollub)
 
-## Use Case: <br>
-Developers and end users use this skill on Windows systems to let an agent prepare files, configure print parameters, preview layout-heavy jobs, and send supported documents or images to configured printers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send files directly to configured printers, including sensitive or incorrectly selected documents. <br>
-Mitigation: Require explicit confirmation or preview before printing, and verify the printer, page range, copy count, color mode, and duplex settings before execution. <br>
-Risk: The skill can modify Office documents, delete slides, and remove PDF password protection. <br>
-Mitigation: Save transformed files as new copies by default and require user approval before document edits, slide deletion, or PDF decryption. <br>
-Risk: Setup and operation rely on local Windows tools with access to files and printers. <br>
-Mitigation: Install and run the skill only on trusted Windows hosts with reviewed printer configuration and approved dependency installation. <br>
+## Use Case:
 
+External users, developers, and operators use PrintAssist to turn plain-language requests into local Windows print jobs and document preparation steps for PDFs, Office files, and images.
 
-## Reference(s): <br>
-- [ClawHub PrintAssist package page](https://clawhub.ai/nilsgollub/printassist) <br>
-- [Claude Code](https://claude.ai/code) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
-- [Python](https://www.python.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline commands and Python script calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only release that requires Python, configured printers, and optional Adobe Creative Cloud authentication for photo editing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; artifact frontmatter says 0.1.0) <br>
+Risk: Sensitive or incorrect documents could be printed directly to a physical or shared printer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use preview or explicit confirmation for sensitive, layout-heavy, or shared-printer jobs before execution.
+
+Risk: The setup flow installs third-party Windows software and Python packages.
+
+Mitigation: Run setup only in a trusted Windows environment, and prefer a virtual environment or dependency review before installation.
+
+Risk: Document conversion or PDF manipulation can create modified copies with formatting or content errors.
+
+Mitigation: Review generated PDFs or PNG previews before distributing or printing important documents.
+
+Risk: PDF password removal can create unencrypted copies when a user supplies the password.
+
+Mitigation: Only decrypt documents the user is authorized to handle, and store outputs in controlled locations.
+
+## Reference(s):
+
+- [PrintAssist ClawHub listing](https://clawhub.ai/nilsgollub/skills/printassist)
+- [PrintAssist project homepage](https://github.com/nilsgollub/PrintAssist)
+- [Claude Code](https://claude.ai/code)
+- [OpenClaw](https://openclaw.ai/)
+- [SumatraPDF](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
+- [LibreOffice](https://www.libreoffice.org/download/download/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with inline code and shell commands; scripts may create PDFs, PNG previews, printer configuration files, modified documents, or physical print jobs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only execution path; printing depends on configured local printers and installed document tools.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

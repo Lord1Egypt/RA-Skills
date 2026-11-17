@@ -1,46 +1,60 @@
-## Description: <br>
-Trades ETH price markets on Kalshi using the 4% staking yield as a fundamental price floor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades ETH price markets on Kalshi using the 4% staking yield as a fundamental price floor. When markets underprice ETH relative to the yield-implied floor, buy YES. Requires SIMMER_API_KEY and simmer-sdk.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading operators use this skill to analyze ETH Kalshi markets, review staking-yield floor signals, and optionally automate position entries or exits through Simmer with configured risk limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can use real trading credentials and place financial trades. <br>
-Mitigation: Test dry-run mode first, use a dedicated low-balance Solana wallet and limited Simmer credentials, and only pass --live after reviewing the configured limits. <br>
-Risk: Trade sizing, slippage, and frequency settings can materially change financial exposure. <br>
-Mitigation: Double-check max position, max trades per run, slippage, and related tunables before enabling live trading. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review simmer-sdk before trusting it with live credentials. <br>
+## Use Case:
 
+External developers and trading agents use this skill to evaluate Kalshi ETH price markets against a staking-yield floor model, surface trade signals, and optionally execute live trades when explicitly run with the live flag.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-eth-staking-yield-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [Simmer skills homepage](https://simmer.markets/skills) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with optional JSON automaton summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode is the default; live trading requires an explicit --live flag and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Live mode can execute real-money Kalshi trades and affect ETH positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the live-trading flow before use, keep the default dry-run mode until ready, and require the explicit --live flag for real trades.
+
+Risk: SIMMER_API_KEY and SOLANA_PRIVATE_KEY are high-value credentials.
+
+Mitigation: Use narrowly limited credentials, prefer a dedicated low-balance wallet and restricted trading account, and avoid exposing SOLANA_PRIVATE_KEY for dry-run use.
+
+Risk: The trading model uses configurable assumptions such as staking yield, base ETH price, entry edge, slippage, and position size.
+
+Mitigation: Validate and tune risk parameters before live operation, including max position size, max trades per run, slippage, and liquidity settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-eth-staking-yield-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API calls, Guidance]
+
+**Output Format:** [Terminal text with an optional automaton JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to dry-run mode; live trading requires the explicit --live flag and configured credentials.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

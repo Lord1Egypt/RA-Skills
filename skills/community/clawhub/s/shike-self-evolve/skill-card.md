@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent identify user-approved opportunities to persist preferences, improve skills, and update global behavior rules through a three-layer self-evolution workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent propose user-approved persistent behavior updates across memory, skill, and global-rule layers using keyword, failure, and review triggers.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an agent capture durable user preferences, repeated failure lessons, and high-impact behavior rules after explicit review and approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose persistent changes to memory, skill instructions, global rules, Git history, and notifications to other bots. <br>
-Mitigation: Review every target file, proposed diff, commit, rollback, and notification before approval, with extra scrutiny for SKILL.md and CLAUDE.md changes. <br>
-Risk: Self-evolution can preserve sensitive information or short-term preferences as durable behavior. <br>
-Mitigation: Avoid approving secrets, credentials, personal data, temporary emotional states, or ambiguous preferences; ask for clarification when intent is unclear. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture durable user preferences and reusable lessons as approved memory, skill, or global-rule updates, with stricter review for changes that affect future agents.
 
-## Reference(s): <br>
-- [Self-Evolve Skill on ClawHub](https://clawhub.ai/sjj2026/shike-self-evolve) <br>
-- [AutoClaw self-evolution concept](https://autoglm.zhipuai.cn/autoclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown request cards with optional inline shell commands and file-change guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent memory, skill, global-rule, Git, and notification changes that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill is designed to propose and apply persistent behavior changes that can affect future sessions or other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every proposed diff before applying it, and require administrator approval for L2 or L3 changes.
+
+Risk: Global-rule writes can have broad impact on future agent behavior.
+
+Mitigation: Treat writes to CLAUDE.md or equivalent global-rule files as high-impact changes requiring double confirmation and a rollback plan.
+
+## Reference(s):
+
+- [Self-Evolve Skill on ClawHub](https://clawhub.ai/sjj2026/skills/shike-self-evolve)
+- [AutoClaw self-evolution concept](https://autoglm.zhipuai.cn/autoclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with structured request cards, file-change instructions, and optional Python helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposes persistent changes to memory, skill, and global rule files after user approval.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

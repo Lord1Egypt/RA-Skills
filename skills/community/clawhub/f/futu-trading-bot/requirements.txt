@@ -1,2 +1,2 @@
-futu-api
-pydantic>=2,<3
+futu-api==9.6.5608
+pydantic==2.12.5

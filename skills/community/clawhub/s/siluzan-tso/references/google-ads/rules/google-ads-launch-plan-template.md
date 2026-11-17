@@ -1,26 +1,27 @@
-# 广告投放计划模板
+﻿# 广告投放计划模板
 
-> 所属 skill：`siluzan-tso`。
->
-> 用途：从已确认的 `campaign-create` JSON **投影**用户可见的 Markdown 表格（勿与 JSON 矛盾）。流程与门禁见 `references/google-ads/google-ads-campaign-plan.md`。
-> 触发：用户要投放方案/确认稿；**先完成 JSON + validate，再填本模板正文**。
->
-> 字段契约：`assets/campaign-create-template.json` + `campaign-create-template.md`  
-> 关键词数量建议：`google-ads-keyword-taxonomy.md`（Agent 参考，CLI 不强制）
+> 用途：用户审查用的搜索广告计划结构；字段须与已落盘的 `campaign-create` JSON 一致。流程见 `references/google-ads/google-ads-campaign-plan.md`。
+> 触发：出方案 / 创建前确认。
+> 字段契约：`assets/campaign-create-template.json` + `campaign-create-template.md`
+> 关键词数量建议：`google-ads-keyword-taxonomy.md`
 
 ---
 
 ## 交付顺序（固定）
 
-1. **JSON 代码块**（唯一数据源）
-2. **下方模板正文**（从 JSON 填充）
-3. **待确认**（改需求只改 JSON）
+1. 落盘与模板同构的 **`campaign-create` JSON**（唯一可执行数据源；对话里勿贴整份 JSON 当主交付）。
+2. **创建阶段**跑 `ad campaign-validate`；**仅出方案**可跳过 validate。
+3. **审查稿（必做）**：Agent **写代码**（Node/Python）读取该 JSON，按下方模板投影为完整文件并交给用户审查。
+   - 默认输出 **Markdown**（`./campaign-plan.md`）。
+   - 用户要求 Excel / 表格 / 其他格式时，同一脚本改输出格式；数值与文案仍只从 JSON 读出。
+   - 审查稿须含：**全部**广告组关键词、系列否定词、每组 RSA 全部标题/描述、Extensions 全文——**禁止**只交「方案总结」条数勾选/概览表。
+4. 用户确认后改需求只改 JSON → 重跑脚本刷新审查稿 →（创建阶段）再 validate → `ad campaign-create`。
 
 ### 创意与否定词数量（关键词见 taxonomy）
 
 | 模块               | 推荐                   | 说明           |
 | ------------------ | ---------------------- | -------------- |
-| RSA Headlines      | 12–15                  | 固定📌 见 §3.5 |
+| RSA Headlines      | **15（须写满）**       | `campaign-validate` 硬门禁；固定📌 见 §3.5 |
 | RSA Descriptions   | 4                      |                |
 | Sitelink           | 6–8                    |                |
 | Callout            | 6–8                    | 12–15 字符     |
@@ -34,30 +35,31 @@
 
 ## Markdown ↔ JSON 映射（生成 JSON 时对照）
 
-| 计划正文（Markdown）   | `campaign-create` JSON 字段（**PascalCase 直通后端**）                                                                              |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| 账户 ID / 客户名       | `account`、`customerName`（外层）                                                                                                   |
-| 系列名称               | `name`（外层展示用） / `campaign.Name`（内层）                                                                                      |
-| 日预算                 | `campaign.Budget`（**元**，CLI 内部 ×100 转分）                                                                                     |
-| 出价策略 / 上限 / tCPA | `campaign.BiddingStrategyTypeV2`、`campaign.TargetSpend_BidCeilingAmount`、`campaign.TargetCpa_BidingAmount`、`campaign.TargetRoas` |
-| 投放地域               | `campaign.targetedLocations: [{ id: "<geoId>" }]`（先 `ad geo search` 取 id）、外层 `locations`（展示名，可选）                     |
-| 语言                   | `campaign.targetedLanguages: [{ id: 1000 }]`（英语 1000 / 中文 1017）                                                               |
-| 起止日期               | `campaign.StartTime`、`campaign.EndTime`（YYYY-MM-DD）                                                                              |
-| 落地页                 | 外层 `url`；广告组级 `KeywordsForBatchJob[].FinalURL`、创意级 `AdsForBatchJob[].Finalurl`                                           |
-| 关键词                 | `campaign.AdGroupsForBatchJob[].KeywordsForBatchJob`（`MatchTypeV2` + `KeywordText`）                                               |
-| 否定词                 | `campaign.NegativeKeywordsForBatchJob: [{ KeywordText: [...], MatchTypeV2: "BROAD", FinalURL: "" }]`                                |
-| 附加信息               | `campaign.ExtensionsForBatchJob`                                                                                                    |
-| 广告组                 | `campaign.AdGroupsForBatchJob[]`：`Name`、`MaxCPCAmount`、`KeywordsForBatchJob`、`AdsForBatchJob`                                   |
-| 仅保存草稿             | `draft: true` → 确认后 `ad batch publish`                                                                                           |
-| 立即创建               | `draft: false`（默认）                                                                                                              |
+| 计划正文（Markdown）   | `campaign-create` JSON 字段（**PascalCase 直通后端**）                                                                                             |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 账户 ID / 客户名       | `account`、`customerName`（外层）                                                                                                                  |
+| 系列名称               | `name`（外层展示用） / `campaign.Name`（内层）                                                                                                     |
+| 日预算                 | `campaign.Budget`（**元**，CLI 内部 ×100 转分）                                                                                                    |
+| 出价策略 / 上限 / tCPA | `campaign.BiddingStrategyTypeV2`、`campaign.TargetSpend_BidCeilingAmount`、`campaign.TargetCpa_BidingAmount`、`campaign.TargetRoas`                |
+| 投放地域               | `campaign.targetedLocations: [{ id: "<geoId>" }]`（**必须**先 `ad geo search` 取 id，禁止编造）、外层 `locations`（与 targetedLocations 同序同量） |
+| 语言                   | 搜索广告不再提交 `campaign.targetedLanguages`。`DSALanguageCode` 仍是动态搜索广告语言，与广告系列语言不是同一个字段。 |
+| 起止日期               | `campaign.StartTime`、`campaign.EndTime`（YYYY-MM-DD）                                                                                             |
+| 落地页                 | 外层 `url`；广告组级 `KeywordsForBatchJob[].FinalURL`、创意级 `AdsForBatchJob[].Finalurl`                                                          |
+| 关键词                 | `campaign.AdGroupsForBatchJob[].KeywordsForBatchJob`（`MatchTypeV2` + `KeywordText`）                                                              |
+| 否定词                 | `campaign.NegativeKeywordsForBatchJob: [{ KeywordText: [...], MatchTypeV2: "BROAD", FinalURL: "" }]`                                               |
+| 附加信息               | `campaign.ExtensionsForBatchJob`                                                                                                                   |
+| 广告组                 | `campaign.AdGroupsForBatchJob[]`：`Name`、`MaxCPCAmount`、`KeywordsForBatchJob`、`AdsForBatchJob`                                                  |
+| 仅保存草稿             | `draft: true` → 确认后 `ad batch publish`                                                                                                          |
+| 立即创建               | `draft: false`（默认）                                                                                                                             |
 
-关键词匹配（在 `KeywordsForBatchJob` 块中以 `MatchTypeV2` 区分；同一块同匹配类型）：`词`→广泛、`"词"`→词组、`[词]`→完全。
+关键词匹配（在 `KeywordsForBatchJob` 块中以 `MatchTypeV2` 区分；同一块同匹配类型）：`词`→广泛、`"词"`→词组、`[词]`→完全。  
+从 Excel/表格方案导入时须保真匹配类型与地域 id，见 `google-ads-plan-source-fidelity.md`。
 
 ---
 
 ## 模板正文（Markdown 投影，须与 JSON 一致）
 
-AI 生成计划时，**先写好 JSON，再按以下格式输出说明**。`{{占位符}}` 由 JSON 字段填充，不得手写与 JSON 矛盾的数值。
+投影脚本按以下格式写审查稿。`{{占位符}}` 只从 JSON 读取，不得手写与 JSON 矛盾的数值。
 
 ---
 
@@ -206,7 +208,7 @@ AI 生成计划时，**先写好 JSON，再按以下格式输出说明**。`{{�
 | …                   | …        | …      | …                                                      |
 | Headline 15（上限） | {{文案}} | {{N}}  | 自由轮换                                               |
 
-（Headlines **推荐 12–15 条**；主题分配仍参考 `references/google-ads/rules/google-ads-creative-optimization.md` 1.2 六类主题法。）
+（Headlines **必须 15 条**、Descriptions **必须 4 条**；先定 B2B/B2C，按 `references/google-ads/rules/google-ads-creative-optimization.md` **1.2 / 1.3** 占槽。禁止空话标题、禁止无活动硬凑促销。）
 
 | 资产类型      | 广告文案 | 字符数 | 后台设置指令               |
 | ------------- | -------- | ------ | -------------------------- |
@@ -312,7 +314,7 @@ Display URL：`{{domain}}/{{path1}}/{{path2}}`（Path1/Path2 各 ≤ 15 字符�
 
 ## 助手执行计划（内部，勿向用户展示或复述）
 
-用户确认后**仅使用确认版 JSON**；命令与 batch 轮询/diff 见 **`references/google-ads/google-ads-campaign-plan.md`** § 校验与创建、`references/google-ads/google-ads.md` § ad campaign-create。
+用户确认后**仅使用确认版 JSON**；命令与 batch 轮询/diff 见 **`references/google-ads/google-ads-campaign-plan.md`** § 校验与创建、`references/google-ads/google-ads-write.md` § ad campaign-create。
 
 **硬规则**（须已在 JSON 中体现）：仅 Google 搜索网络（`TargetGoogleSearch: true`，其余三个 `Target*Network: false`）；金额 JSON 填**元**；RSA 图钉/Lead Form 等 CLI 无法表达的项在创建成功后说明需后台补全。
 
@@ -351,7 +353,7 @@ Display URL：`{{domain}}/{{path1}}/{{path2}}`（Path1/Path2 各 ≤ 15 字符�
 | 出价策略（次月）   | **产品默认**：近 **30 天满 30 个**约定转化（如表单）后切换 **tCPA**；无足够数据则延续人工或 Max Clicks 并写明条件                                                                                                                                  |
 | 关键词（每广告组） | 数量与匹配块建议见 **`google-ads-keyword-taxonomy.md`**；组内意图一致；符号 `[完全]` / `"词组"` / 广泛；策略争议见 `google-ads-keyword-strategy.md`                                                                                                |
 | 否定词             | **账户级 5 类词包**填满模板表；系列级补充 5–10 条；上线后搜索词**每日**迭代                                                                                                                                                                        |
-| RSA                | **12–15** 标题、**4** 描述；**至少 H1、H2 与 D1** 在表中标注【固定📌】及目标位置与理由；字符合规见第十一章字数≤30                                                                                                                                  |
+| RSA                | **15** 标题、**4** 描述；先定 B2B/B2C 后按 `google-ads-creative-optimization.md` 1.2 / 1.3 占槽；**H1、H2 与 D1** 标注【固定📌】；字符合规见第十一章字数≤30                                                                                                                                  |
 | 附加信息           | Sitelink **6–8**（可含 OEM/验厂/报价/目录/联系）；Callout **6–8**；Snippet **≥1 组、每组 ≥4 值**；**Lead Form** 线索业务建议填标题与必填字段                                                                                                       |
 | 投放设备           | **默认全设备**；仅在用户明确要求时写侧策略，并与 `google-ads-campaign-optimization.md` 第五章一致                                                                                                                                                  |
 | 地域               | 助手侧先确认 Google 地域 ID（见「助手执行计划」第 1 步）；多数业务建议 Presence only 模式                                                                                                                                                          |

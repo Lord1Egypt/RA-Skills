@@ -1,40 +1,50 @@
-## Description: <br>
-Daily to Goal AI Coach provisions a Daily to Goal workspace through ClawHub/OpenClaw and supports conversational goal management, task tracking, contribution capture, daily summaries, weekly team reports, and team risk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily to Goal AI Coach installs a Daily to Goal workspace in ClawHub or OpenClaw and supports conversational goal management, task tracking, contribution capture, daily summaries, team weekly report drafts, and IM-based onboarding.
 
-## Publisher: <br>
-[xiaoke-bot](https://clawhub.ai/user/xiaoke-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoke-bot](https://clawhub.ai/user/xiaoke-bot)
 
-## Use Case: <br>
-External users, team leads, and workspace members use this skill to create a Daily to Goal workspace, manage goals and tasks through IM conversations, and receive daily digests, weekly report drafts, and risk reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may bind accounts through IM using API tokens or email codes without enough detail about credential scope, storage, access, or revocation. <br>
-Mitigation: Before binding credentials or team workspaces, verify the gateway service, token permissions, credential and work-data storage, access controls, automation pause controls, revocation steps, and workspace deletion process. <br>
+## Use Case:
 
+External ClawHub or OpenClaw users use this skill to set up a Daily to Goal workspace and manage personal or team goals through conversation. It helps create SMART goals, bind tasks to goals, capture completion contributions, send working-day digests, draft weekly team reports, and prepare team risk reminders.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoke-bot/daily-to-goal-ai-coach) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Conversational text and Markdown-style summaries, report drafts, reminders, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [After provisioning, automations can produce daily digests, weekly report drafts, and risk scan reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact/skill.json lists 0.1.0) <br>
+Risk: IM-based account binding may expose API tokens or verification codes if users interact in an unverified conversation, group chat, or forwarded message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only enter API tokens or verification codes in a verified official one-on-one bot conversation, avoid group chats or forwarded messages, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoke-bot/skills/daily-to-goal-ai-coach)
+- [Publisher profile](https://clawhub.ai/user/xiaoke-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Conversational text and Markdown-style summaries with setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include goal prompts, task-linking suggestions, contribution updates, daily digest text, weekly report drafts, and risk reminder guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

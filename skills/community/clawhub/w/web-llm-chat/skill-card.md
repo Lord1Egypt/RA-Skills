@@ -1,43 +1,58 @@
-## Description: <br>
-Chat with web-based LLMs through the Chrome Relay extension; currently supports Qwen AI for web search, deep research, multi-turn investigations, second opinions, response comparison, and delegated reasoning tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with web-based LLMs through Chrome Relay, currently supporting Qwen Chat for web search, RAG-style research, multi-turn investigations, and response extraction.
 
-## Publisher: <br>
-[godiao](https://clawhub.ai/user/godiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godiao](https://clawhub.ai/user/godiao)
 
-## Use Case: <br>
-Developers and agent users use this skill to send prompts to a browser-hosted Qwen Chat session, retrieve responses, and run multi-turn research workflows through a local Chrome Relay setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and control an attached Qwen browser tab through the local Chrome Relay. <br>
-Mitigation: Use a dedicated browser profile and attach only the intended Qwen tab before running the skill. <br>
-Risk: The read command can capture visible page text or conversation history from the attached tab. <br>
-Mitigation: Avoid using the skill with confidential prompts, private documents, unrelated sensitive tabs, or conversations that should not be copied into agent output. <br>
-Risk: Relay access depends on a derived local token from the OpenClaw gateway configuration. <br>
-Mitigation: Protect the gateway token, avoid sharing local configuration files, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to delegate search-backed questions, deep research, second-opinion checks, and multi-turn investigations to a web LLM through an attached Chrome Relay session.
 
-## Reference(s): <br>
-- [Chrome Relay Setup Reference](references/chrome-relay.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/godiao/web-llm-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown, or raw HTML responses, with command-line status and diagnostic output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an attached Chrome Relay session, a Qwen Chat tab, and the ws Node.js package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill controls an authenticated browser tab through a local Chrome Relay connection and may send prompts or page contents to the wrong place if the wrong tab is attached.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Attach only genuine https://chat.qwen.ai tabs and verify the relay status before sending prompts.
+
+Risk: Sensitive conversation content, secrets, or personal data could be exposed through prompts or read/html output modes.
+
+Mitigation: Avoid sending secrets or personal data to Qwen unless intentional, and avoid read or html output on sensitive conversations.
+
+Risk: Runtime behavior depends on the local Node.js dependency set.
+
+Mitigation: Pin and review dependencies before operational use.
+
+## Reference(s):
+
+- [Chrome Relay Setup Reference](references/chrome-relay.md)
+- [ClawHub skill page](https://clawhub.ai/godiao/skills/web-llm-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, Markdown, or HTML returned from the web LLM, plus command-line status and troubleshooting output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an attached Chrome Relay tab; read and HTML output modes can expose current page content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

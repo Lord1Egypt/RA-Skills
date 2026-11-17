@@ -1,38 +1,54 @@
-## Description: <br>
-Full Airbnb/short-term rental operations for hosts managing 1-20 properties. Guest messaging automation, pricing optimization alerts, cleaning schedule coordination, review management, listing optimization, and income tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full Airbnb/short-term rental operations for hosts managing 1-20 properties, including guest messaging, pricing alerts, cleaning coordination, review management, listing optimization, and income tracking.
 
-## Publisher: <br>
-[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit)
 
-## Use Case: <br>
-Self-managing short-term rental hosts use this skill to draft guest communications, review pricing and revenue signals, coordinate cleaning and maintenance, monitor reviews, and track compliance and finance reminders across 1-20 properties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may involve sensitive short-term rental operational details, including property addresses, listing URLs, contact information, permit requirements, and financial records. <br>
-Mitigation: Provide only the minimum information needed, use placeholders where practical, and review saved logs, drafted messages, vendor coordination, pricing suggestions, and tax reminders before acting on them. <br>
+## Use Case:
 
+Self-managing short-term rental hosts use this skill to coordinate day-to-day operations across 1-20 properties, including guest communication, turnover planning, pricing review, listing maintenance, compliance reminders, and finance tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joshbuildswithdoit/airbnb-host-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and structured plain text checklists, drafts, reminders, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing drafts and recommendations for host review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Rental operations details may include full addresses, vendor contacts, tax records, booking data, or other sensitive property information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the minimum information needed, avoid unnecessary personal contact details or secrets, and avoid storing sensitive records in shared workspaces.
+
+Risk: Compliance and tax reminders may be incomplete or stale for a specific jurisdiction.
+
+Mitigation: Confirm permit renewals, occupancy tax deadlines, and filing requirements against official jurisdiction records before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joshbuildswithdoit/skills/airbnb-host-ops)
+- [Publisher profile](https://clawhub.ai/user/joshbuildswithdoit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text operational guidance, drafts, checklists, reminders, and reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require property, listing, pricing, cleaning, vendor, permit, tax, and booking context supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

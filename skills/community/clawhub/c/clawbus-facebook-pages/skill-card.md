@@ -1,46 +1,57 @@
-## Description: <br>
-Publish and manage Facebook Page content through a preconfigured MyBrandMetrics API connection, including Page connection, account and Page listing, post and media publishing, feed and comment management, and Page or post insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish and manage Facebook Page posts, media, comments, feeds, and insights through a preconfigured MyBrandMetrics API connection.
 
-## Publisher: <br>
-[clawbus](https://clawhub.ai/user/clawbus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbus](https://clawhub.ai/user/clawbus)
 
-## Use Case: <br>
-External users, social media operators, and developers use this skill to publish Facebook Page posts, photos, and videos, read feeds and comments, moderate comments, and fetch insights through MyBrandMetrics. It is intended for workflows where the agent is authorized to use the user's MyBrandMetrics credentials and manage real Facebook Page content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real Facebook Page changes when used with the user's MyBrandMetrics credentials. <br>
-Mitigation: Install only if the publisher and MyBrandMetrics connection are trusted, use least-privilege credentials, and verify the target Page, content, post IDs, comment IDs, and intended visibility before publishing or moderating. <br>
-Risk: Access tokens, API keys, Page IDs, account IDs, and connection IDs are sensitive operational data. <br>
-Mitigation: Provide credentials through runtime arguments, environment variables, or a local config file, avoid committing them, and avoid echoing secrets in logs or terminal output. <br>
-Risk: Overriding the API base URL can send credentials and Page operations to an unintended service. <br>
-Mitigation: Use the default MyBrandMetrics API host unless a trusted alternate environment is explicitly required. <br>
+## Use Case:
 
+External users and developers use this skill to connect Facebook Pages through MyBrandMetrics, publish Page content, moderate comments, read feeds, and retrieve Page or post insights.
 
-## Reference(s): <br>
-- [Facebook Pages Skill Page](https://clawhub.ai/clawbus/clawbus-facebook-pages) <br>
-- [Configuration](references/configuration.md) <br>
-- [Examples](references/examples.md) <br>
-- [MyBrandMetrics](https://mybrandmetrics.com/) <br>
-- [Clawbus](https://www.clawbus.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and structured JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token or API-key authentication and returns the real MyBrandMetrics API response for script calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles powerful Facebook Pages publishing credentials and can publish, edit, hide, unhide, or delete Page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged or test credentials and require explicit confirmation of the target Page, content, IDs, and intended visibility before write or moderation actions.
+
+Risk: Credentials can be sent to an unintended API host if config.json, MBM_BASE_URL, or --base-url is set incorrectly.
+
+Mitigation: Verify config.json and any base URL override before use, and prefer the default MyBrandMetrics HTTPS API host.
+
+## Reference(s):
+
+- [Configuration](references/configuration.md)
+- [Examples](references/examples.md)
+- [Clawbus](https://www.clawbus.com/)
+- [MyBrandMetrics](https://mybrandmetrics.com/)
+- [MyBrandMetrics API Host](https://api.mybrandmetrics.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MyBrandMetrics credentials and Facebook Page, account, connection, post, object, or comment identifiers depending on the workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-WebGL性能调试与优化速查，帮助开发者在Canvas/WebGL渲染出现帧率低、GPU占用高、内存泄漏或渲染闪烁时定位瓶颈并选择优化方法。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebGL性能调试与优化速查，帮助在 Canvas/WebGL 渲染出现帧率低、GPU 占用高、内存泄漏或渲染闪烁时定位问题，并提供 Chrome DevTools GPU 分析、WebGL 状态检测、常见性能陷阱、shader 优化和纹理压缩方法。
 
-## Publisher: <br>
-[chenxiaoyu0124-web](https://clawhub.ai/user/chenxiaoyu0124-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxiaoyu0124-web](https://clawhub.ai/user/chenxiaoyu0124-web)
 
-## Use Case: <br>
-Developers and engineers use this skill as a WebGL and Three.js performance debugging reference for profiling GPU rendering, reducing draw calls, optimizing shaders, compressing textures, and checking memory leaks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example snippets may not match the exact Three.js or WebGL version used by a project. <br>
-Mitigation: Verify API compatibility and review code changes before applying the snippets to production code. <br>
-Risk: Performance thresholds and optimization advice are general guidance and may not reflect every device, browser, or scene workload. <br>
-Mitigation: Profile the target application with browser GPU tooling and validate improvements against project-specific frame time, memory, and visual correctness goals. <br>
+## Use Case:
 
+Developers and engineers use this skill as a Chinese-language WebGL and Three.js performance debugging reference when diagnosing low frame rates, high GPU or memory usage, shader issues, texture loading bottlenecks, and excessive draw calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenxiaoyu0124-web/webgl-perf-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with TypeScript and GLSL code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only reference output; no executable installer or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and clawhub.json) <br>
+Risk: Suggested WebGL, Three.js, TypeScript, or GLSL snippets may be incorrect or unsuitable for a specific project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test each snippet in the target application before adopting it, using profiling data to confirm the performance impact.
+
+Risk: Chinese-language guidance may be misunderstood by users who are not comfortable reading Chinese technical documentation.
+
+Mitigation: Use translation or peer review before applying recommendations when the user cannot confidently read the source guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenxiaoyu0124-web/skills/webgl-perf-debug)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with TypeScript and GLSL code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language WebGL and Three.js performance debugging reference; review code snippets before applying them to a project.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

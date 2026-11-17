@@ -1,41 +1,58 @@
-## Description: <br>
-Kite Agent Smart Wallet V3 lets an agent control a Kite AI testnet wallet through Telegram/OpenClaw commands for wallet creation, balance checks, transfers, session keys, and spending limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to control Kite AI testnet smart wallets through Telegram/OpenClaw commands for wallet creation, balance checks, transfers, session keys, and spending limits.
 
-## Publisher: <br>
-[nihaovand](https://clawhub.ai/user/nihaovand) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nihaovand](https://clawhub.ai/user/nihaovand)
 
-## Use Case: <br>
-External users operate a Kite AI testnet wallet through Telegram/OpenClaw. They use the skill to create wallets, check balances, send KITE, manage session keys, and set spending limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Chat commands can exercise powerful wallet authority with weak scoping and disclosure. <br>
-Mitigation: Review before installing, restrict who can issue /kite commands, and use only a testnet or low-value wallet key. <br>
-Risk: Session keys may grant broad wallet control when added without narrow function permissions. <br>
-Mitigation: Avoid adding session keys unless their authority and spending limits are understood and acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nihaovand/kite-agent-smart-wallet-v3) <br>
-- [Kite testnet RPC endpoint](https://rpc-testnet.gokite.ai) <br>
-- [Kite testnet faucet](https://faucet.gokite.ai) <br>
+## Use Case:
 
+External users and operators use this skill through Telegram/OpenClaw to manage Kite AI testnet wallet workflows, including creating wallets, checking balances, sending funds, managing session keys, and setting spending limits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, api calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-formatted command responses and Node.js module exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Telegram command text, a configured private key, Kite testnet RPC access, and an ethers.js dependency.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata; artifact skill.json and documentation report 3.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Telegram commands can exercise high-impact wallet authority without enough in-skill authorization or confirmation.
+
+Mitigation: Enforce authenticated owners and require explicit confirmations before transfers, permission changes, and spending-limit updates.
+
+Risk: Ordinary users may be exposed to operator wallet authority or balances if wallet actions are not scoped to the intended smart wallet.
+
+Mitigation: Use only a low-value testnet private key, hide operator wallet balances, and route user transfers through the intended smart wallet and its limits.
+
+Risk: Wildcard session-key permissions can grant broader authority than intended.
+
+Mitigation: Restrict session keys to specific function selectors and bounded per-session limits before granting access.
+
+## Reference(s):
+
+- [ClawHub Skill Release Page](https://clawhub.ai/nihaovand/skills/kite-agent-smart-wallet-v3)
+- [Kite Testnet RPC Endpoint](https://rpc-testnet.gokite.ai)
+- [Kite Testnet Faucet](https://faucet.gokite.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Telegram command responses in Markdown with on-chain transaction requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured low-value Kite testnet wallet key and access to the Kite testnet RPC endpoint.]
+
+## Skill Version(s):
+
+3.0.2 (source: server-resolved release metadata; artifact skill.json states 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

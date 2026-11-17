@@ -1,41 +1,60 @@
-## Description: <br>
-Generate professional weekly work reports for Feishu/Lark users and create formatted Markdown that can be pasted into Feishu documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional weekly work reports for Feishu/Lark users by collecting work data from available sources such as git commits and creating formatted Markdown compatible with Feishu documents.
 
-## Publisher: <br>
-[jiahui220](https://clawhub.ai/user/jiahui220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahui220](https://clawhub.ai/user/jiahui220)
 
-## Use Case: <br>
-Employees and developers use this skill to generate weekly work reports from date ranges, optional Git commit history, and report templates for sharing in Feishu or Lark. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Node.js script can build a shell command from user-supplied options, which may run unintended commands if untrusted repository paths or arguments are used. <br>
-Mitigation: Use trusted date and repository path arguments, avoid passing untrusted text into command options, choose output paths carefully, and review or redact generated reports before sharing. <br>
+## Use Case:
 
+Employees and developers use this skill to generate Feishu/Lark-compatible weekly work reports from a selected date range, optional git activity, and a chosen report template.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiahui220/feishu-weekly-generator) <br>
-- [standard.md](references/templates/standard.md) <br>
-- [detailed.md](references/templates/detailed.md) <br>
-- [minimal.md](references/templates/minimal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional shell command usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local weekly-report Markdown file using the selected date range, template, user name, department, and optional Git repository path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The bundled script has unsafe command execution behavior when collecting git history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use and avoid passing untrusted values to --git, --start, --end, or --output.
+
+Risk: The script can overwrite files at the requested output path.
+
+Mitigation: Write reports to a dedicated local working directory and inspect the output path before running.
+
+Risk: Generated reports may expose confidential commit messages or internal work details.
+
+Mitigation: Keep generated reports local until a reviewer has removed sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiahui220/skills/feishu-weekly-generator)
+- [standard.md template](references/templates/standard.md)
+- [detailed.md template](references/templates/detailed.md)
+- [minimal.md template](references/templates/minimal.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown weekly report and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may include git commit messages and internal work details; review content before sharing or uploading to Feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

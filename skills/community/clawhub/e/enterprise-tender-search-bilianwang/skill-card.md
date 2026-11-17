@@ -1,46 +1,62 @@
-## Description: <br>
-An enterprise procurement assistant that helps agents search tender, procurement, bid-award, company, supplier, competitor, market, brand, and pricing data through the Zhiliao Biaoxun/Bilianwang APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助采购与投标团队检索招标和中标公告、分析企业与供应商，并开展采购寻源和市场统计。
 
-## Publisher: <br>
-[zhiliaobiaoxun](https://clawhub.ai/user/zhiliaobiaoxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiliaobiaoxun](https://clawhub.ai/user/zhiliaobiaoxun)
 
-## Use Case: <br>
-Procurement, sales, and business-development teams use this skill to find tenders and awards, assess suppliers, identify potential bidders, analyze company relationships, and review procurement market trends. Agents may also use it to produce procurement research summaries backed by API results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill can silently register a device account and transmit device and user metadata to the provider when no API key is configured. <br>
-Mitigation: Install only when this provider data sharing is acceptable; prefer setting ZLBX_API_KEY manually to avoid the automatic registration path. <br>
-Risk: The security review says the skill can persist an API key under ~/.zlbx. <br>
-Mitigation: Review local ~/.zlbx/config.json handling, protect the file as a credential, and remove it when the account should no longer be used. <br>
-Risk: The security guidance highlights contact-data and recharge-link workflows that may affect privacy or account billing. <br>
-Mitigation: Review contact-data responses and any recharge or auto-login links before acting on them or sharing them with users. <br>
+## Use Case:
 
+采购与投标团队可用它按关键词、地区、金额和时间查找招标项目，查看企业资质与中标记录，并分析供应商、采购方和市场价格。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiliaobiaoxun/skills/enterprise-tender-search-bilianwang) <br>
-- [Tender search API reference](references/api-search.md) <br>
-- [Company analysis API reference](references/api-company.md) <br>
-- [Market analysis API reference](references/api-market.md) <br>
-- [Automatic registration flow](references/auto-register.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON API request and response details when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read ZLBX_API_KEY or ~/.zlbx/config.json, call provider APIs, and persist an API key under ~/.zlbx when auto-registration is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Optional automatic signup sends a reusable device identifier; the provider's server-side retention and deletion practices were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a manually obtained API key. Before automatic signup, ask the provider how it retains and deletes the device identifier.
+
+Risk: Business search terms are sent to Zhiliaobiaoxun, and some queries consume account credits.
+
+Mitigation: Tell the user what query will be sent and whether it may incur credits; make only the requested lookups and report applicable costs.
+
+Risk: A saved API key or generated login link could expose account access if shared or logged.
+
+Mitigation: Keep API keys and generated login links private; do not include them in user-facing results or logs.
+
+## Reference(s):
+
+- [标讯搜索接口说明](artifact/references/api-search.md)
+- [企业分析接口说明](artifact/references/api-company.md)
+- [工商信息查询说明](artifact/references/api-registry.md)
+- [市场分析接口说明](artifact/references/api-market.md)
+- [账户查询接口说明](artifact/references/api-account.md)
+- [知了标讯技能文档](https://ai.zhiliaobiaoxun.com/docs/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and tables, with links to matching notices when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some searches and company lookups consume account credits; the skill reports costs and limits when relevant.]
+
+## Skill Version(s):
+
+1.0.10 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

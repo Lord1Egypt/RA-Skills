@@ -1,45 +1,64 @@
-## Description: <br>
-A股每日新闻 helps agents research A-share market sentiment by querying Xiaohongshu, Douyin, and WeChat Official Accounts, filtering non-stock content, and producing cross-platform summaries with JSON and HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股每日新闻 searches Xiaohongshu, Douyin, and WeChat Official Accounts for A-share market discussions, filters non-stock content, compares cross-platform sentiment, and produces structured research reports with an optional interactive HTML view.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users, retail investors, financial researchers, and financial content creators use this skill to review A-share social sentiment, compare discussions across platforms, and prepare market research summaries. Outputs are research aids and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock research terms, watchlists, and market queries may be sent to RedFox and web search providers. <br>
-Mitigation: Use only data you are comfortable sharing externally, and avoid nonpublic portfolio or trading-plan details. <br>
-Risk: The skill uses local API credentials for RedFox requests. <br>
-Mitigation: Use a revocable API key, verify its scope and validity period, and do not hardcode or expose the key in prompts, logs, or output files. <br>
-Risk: The skill creates local JSON and HTML reports and its workflow may open generated HTML. <br>
-Mitigation: Review generated files before relying on them, and open HTML reports only in a trusted local browser session. <br>
+## Use Case:
 
+Retail investors, financial researchers, institutional analysts, and financial content creators use this skill to gather recent A-share sentiment signals across Chinese social and publishing platforms and turn them into concise market discussion reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/stock-feed-redfox) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk?source=clawhub) <br>
-- [Output rules and report templates](references/output-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with JSON data output and optional interactive HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; default query covers 17 A-share keywords across Xiaohongshu, Douyin, and WeChat Official Accounts for the past 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence; skill frontmatter reports 1.0.0) <br>
+Risk: The skill requires a RedFox API key and sends A-share query terms to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a scoped, revocable API key, avoid placing secrets in prompts or output files, and confirm that sending the intended query data to RedFox is acceptable.
+
+Risk: Generated HTML reports are local files built from external and user-influenced data.
+
+Mitigation: Review the generated HTML path and source content before opening or sharing the report, and avoid untrusted keywords, JSON files, or report inputs.
+
+Risk: Reports include built-in promotional subscription links.
+
+Mitigation: Treat subscription links as promotional material and separate them from the requested market analysis when reviewing outputs.
+
+Risk: The skill produces social-media sentiment analysis about securities, which can be incomplete or misleading.
+
+Mitigation: Use outputs as research context only, verify material claims against primary financial sources, and do not treat the report as investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/stock-feed-redfox)
+- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox Website](https://redfox.hk?source=clawhub)
+- [Output Rules and Report Template](references/output-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with clickable source links, JSON result files, and optional local HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RedFox API key for live data retrieval; default queries cover the past 7 days and can be adjusted up to 30 days.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

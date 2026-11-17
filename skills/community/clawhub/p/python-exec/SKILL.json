@@ -1,0 +1,11 @@
+{
+  "name": "python-exec",
+  "description": "Executes Python code locally via PowerShell",
+  "commands": {
+    "run": {
+      "arguments": {
+        "code": "string"
+      }
+    }
+  }
+}

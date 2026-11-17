@@ -1,41 +1,53 @@
-## Description: <br>
-Cn Text Summary summarizes provided Chinese text and extracts keywords using a local Python script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Text Summary summarizes Chinese text locally without an API key and can extract keywords with optional jieba support.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users and developers use this skill to summarize long Chinese text and extract keywords locally for articles, emails, product descriptions, and similar documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or private text submitted for summarization may be processed by the local agent environment. <br>
-Mitigation: Do not provide secrets or private text unless local processing in the agent environment is acceptable. <br>
-Risk: Promotional website links are outside the inspected local script. <br>
-Mitigation: Review external links separately before relying on them or sharing data through them. <br>
+## Use Case:
 
+Developers, content teams, and external users can use this skill to produce concise summaries and keywords from Chinese articles, emails, research notes, product copy, and similar long-form text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-text-summary) <br>
-- [AISoBrand](https://aisobrand.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing original length, summary length, summary text, and keyword list; agent-facing guidance may accompany use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally; optional jieba support improves Chinese keyword extraction when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence) <br>
+Risk: Confidential text supplied as a command-line argument may be exposed through shell history or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for non-sensitive text, or wrap it with stdin or another protected input path for private documents.
+
+Risk: The optional jieba dependency can affect keyword extraction behavior if installed without version control.
+
+Mitigation: Pin and review the jieba package version before installing it in shared or production environments.
+
+## Reference(s):
+
+- [Cn Text Summary on ClawHub](https://clawhub.ai/freedompixels/skills/cn-text-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object with original length, summary length, summary text, and keywords.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally; optional jieba support improves Chinese keyword extraction when installed.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

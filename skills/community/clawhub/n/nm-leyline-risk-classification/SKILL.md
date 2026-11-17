@@ -1,7 +1,7 @@
 ---
 name: risk-classification
 description: Classifies agent tasks into 4 risk tiers (GREEN/YELLOW/RED/CRITICAL)
-version: 1.9.8
+version: 1.10.3
 triggers:
   - risk
   - classification
@@ -14,19 +14,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [4-Tier Risk Model](#4-tier-risk-model)
-- [Hybrid Routing](#hybrid-routing)
-- [Task Metadata Extension](#task-metadata-extension)
-- [Module Reference](#module-reference)
-- [Integration Pattern](#integration-pattern)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Risk Classification
@@ -108,12 +96,26 @@ classification with required controls per tier:
 See `modules/readiness-levels.md` for full level definitions,
 selection decision tree, and integration guidance.
 
+## Graduated Autonomy
+
+Risk classification sets how carefully a change is verified.
+Automation tiers set how autonomously the agent acts and when it
+must hand control back. Each risk tier carries a default automation
+tier (GREEN to A3 autonomous, CRITICAL to A0 manual), and a
+pre-licensed downgrade trigger drops the agent one tier on repeated
+failure, confidence loss, a stakes spike, or repo-state mismatch
+rather than re-prompting at the same level. See
+`modules/automation-tiers.md` for the tier table and the downgrade
+trigger, and `imbue:assisted-mastery` for the explain/produce mode
+selection that reads from it.
+
 ## Module Reference
 
 - **tier-definitions.md**: Detailed tier criteria, boundaries, and override mechanism
 - **heuristic-classifier.md**: File-pattern rules for automated classification
 - **verification-gates.md**: Per-tier verification requirements and parallel safety matrix
 - **readiness-levels.md**: 4-tier risk system with required controls per level
+- **automation-tiers.md**: Per-tier autonomy defaults and the downgrade trigger
 
 ## Integration Pattern
 
@@ -142,7 +144,9 @@ if task.risk_tier in ["RED", "CRITICAL"]:
 
 ## Exit Criteria
 
-- Every task has a risk tier assigned (explicit or default GREEN)
-- RED/CRITICAL tasks have war-room-checkpoint RS scores
-- Verification gates passed for the assigned tier
-- No parallel execution of prohibited tier combinations
+- [ ] Every task has a risk tier assigned (explicit or default GREEN)
+- [ ] RED/CRITICAL tasks have war-room-checkpoint RS scores
+- [ ] Verification gates passed for the assigned tier
+- [ ] No parallel execution of prohibited tier combinations
+- [ ] Each task carries an automation tier; downgrades are recorded
+  with a reason when a trigger fires

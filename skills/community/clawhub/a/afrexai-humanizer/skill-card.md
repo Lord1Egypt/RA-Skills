@@ -1,43 +1,54 @@
-## Description: <br>
-Rewrites AI-generated content to sound natural, human, and undetectable. Removes robotic patterns, adds voice variety, and preserves meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites AI-generated content to sound natural, human, and undetectable. Removes robotic patterns, adds voice variety, and preserves meaning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External creators, professionals, and agent users use this skill to rewrite AI-generated drafts so they sound more natural while preserving the original meaning and adapting voice for blogs, email, sales copy, technical docs, or social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's undetectable framing can be misused to hide AI authorship where disclosure is required or to evade platform rules. <br>
-Mitigation: Use it for readability and voice editing only; do not use it to avoid required AI disclosure, impersonate someone, or bypass content policies. <br>
-Risk: Rewriting can unintentionally change exact wording, factual claims, legal meaning, or compliance-sensitive language. <br>
-Mitigation: Review the rewritten text against the source before using it where exact wording or factual accuracy matters. <br>
+## Use Case:
 
+Writers, marketers, and other external users use this skill to rewrite AI-generated drafts into more natural prose for emails, blog posts, LinkedIn posts, sales copy, technical docs, and social media while preserving the original meaning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-humanizer) <br>
-- [Context packs](https://afrexai-cto.github.io/context-packs) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Rewritten text, usually plain text or Markdown, with concise style guidance when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves factual meaning, removes robotic writing patterns, and calibrates voice to the provided or inferred audience and platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Rewriting may introduce factual drift, remove nuance, or change the intended tone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output against the original text before publishing or sending it.
+
+Risk: Requests for undetectable AI-style rewriting may be inappropriate in academic, hiring, legal, or disclosure-sensitive contexts.
+
+Mitigation: Confirm that the rewritten content is allowed for the intended context and disclose AI assistance when required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-humanizer)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text or Markdown rewrite of user-provided content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves stated factual meaning while changing tone, rhythm, and wording.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

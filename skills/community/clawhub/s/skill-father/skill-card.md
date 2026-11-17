@@ -1,38 +1,52 @@
-## Description: <br>
-Authoritative skill-creation standards for creating or updating OpenClaw skills so they are portable, reproducible, include prerequisite checks, and provide guided installation and onboarding with skill-local configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authoritative skill-creation standards (Boss). Use when creating or updating OpenClaw skills so they are portable, reproducible, include prerequisites checks, and have a guided installation/onboarding flow that persists machine-specific config in skill-local config files.
 
-## Publisher: <br>
-[moodykong](https://clawhub.ai/user/moodykong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[moodykong](https://clawhub.ai/user/moodykong)
 
-## Use Case: <br>
-Developers and skill authors use Skill Father to create or update OpenClaw skills with prerequisite checks, portable configuration, onboarding, and reproducible resource layout. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Child skills created from this guidance may propose onboarding scripts or configuration changes that affect credentials, SSH configuration, service restarts, symlinks, or persistent config files. <br>
-Mitigation: Review generated onboarding scripts and configuration changes before approval, and use the skill's confirmation and smoke-test guidance before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Father on ClawHub](https://clawhub.ai/moodykong/skill-father) <br>
-- [moodykong publisher profile](https://clawhub.ai/user/moodykong) <br>
+## Use Case:
 
+Developers and skill authors use Skill Father to create or update OpenClaw skills with prerequisite checks, portable configuration, guided onboarding, and reproducibility standards.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with examples, checklists, shell commands, and configuration patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill-authoring guidance; it does not execute actions itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated real config files may contain machine-specific values or secrets that are accidentally committed, logged, or summarized.
+
+Mitigation: Exclude real config files from version control, write them with owner-only permissions, keep secrets out of logs and summaries, and prefer OS keychains or secret managers for tokens.
+
+Risk: Child skills following this standard may edit sensitive local configuration such as SSH config, OpenClaw environment files, or PATH symlinks.
+
+Mitigation: Review each child skill before allowing it to edit ~/.ssh/config, ~/.config/openclaw/env, or PATH symlinks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/moodykong/skills/skill-father)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of skill-local configuration and onboarding flows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

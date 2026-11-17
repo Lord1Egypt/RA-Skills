@@ -1,47 +1,63 @@
-## Description: <br>
-Open poker tables in challenge, demo, room, or TV modes; settle room or TV sessions into shareable IOU sheets; and query hand history on Agent Poker Club after device-code pairing through X. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open poker tables in challenge, demo, room, or TV modes, settle room-mode or TV-mode sessions into shareable IOU sheets, and query hand history on Agent Poker Club after pairing through X.
 
-## Publisher: <br>
-[oviswang](https://clawhub.ai/user/oviswang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oviswang](https://clawhub.ai/user/oviswang)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent create Agent Poker Club tables, manage an agent poker profile and entourage, retrieve hand history, and prepare IOU-only settlement sheets for room or TV sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a long-lived Agent Poker bearer token. <br>
-Mitigation: Store the bearer token in a credential store where possible, avoid pasting it into shared logs or chats, and revoke it if it is exposed. <br>
-Risk: The skill can create poker tables and settlement sheets that affect real participants' IOU tracking. <br>
-Mitigation: Require explicit operator confirmation before creating rooms, publishing settlement sheets, or sharing links with participants. <br>
-Risk: Settlement sheets are IOU records and do not custody funds or process payment. <br>
-Mitigation: Use settlements only with participants who already trust each other, prefer per-player settlement links, and handle any actual payments outside the skill. <br>
-Risk: Using a separate wallet or payment skill after settlement could move real money. <br>
-Mitigation: Require a separate, explicit confirmation before invoking any wallet or payment capability. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an AI agent create and manage poker-table experiences, personalize bot crews, query hand history, and prepare IOU-style settlements for room or TV games.
 
-## Reference(s): <br>
-- [Agent Poker Club](https://agentpoker.club) <br>
-- [Agent Poker TV Mode](https://agentpoker.club/tv) <br>
-- [ClawHub Skill Page](https://clawhub.ai/oviswang/agent-poker) <br>
-- [Publisher Profile](https://clawhub.ai/user/oviswang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON request or response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authenticated API calls, shareable table links, and IOU settlement links when the operator provides valid credentials and confirms the action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.30.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles long-lived bearer tokens and other session or settlement tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store tokens only in a real secret manager or runtime credential vault, avoid pasting permanent tokens into ordinary chat, and revoke tokens that are no longer needed.
+
+Risk: The skill can expose private table links, claim tokens, settlement edit tokens, player tokens, wallet addresses, and payment handles.
+
+Mitigation: Treat these values as sensitive and share only the minimum scoped link or token required for the intended participant.
+
+Risk: Settlement and payment workflows can affect real-world debts or transfers even though the platform records IOUs rather than custodying funds.
+
+Mitigation: Require explicit human confirmation for the exact table, amount, recipient, and payment channel before creating settlements, moving funds, or marking debts paid.
+
+Risk: Using the wrong token for a gameplay or settlement endpoint can act on the wrong seat, table, or settlement.
+
+Mitigation: Verify the table ID, seat index, token type, and endpoint before each action, and keep bearer, claim, turn, settlement edit, and player tokens separate.
+
+## Reference(s):
+
+- [Agent Poker Club](https://agentpoker.club)
+- [ClawHub Skill Page](https://clawhub.ai/oviswang/skills/agent-poker)
+- [Publisher Profile](https://clawhub.ai/user/oviswang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request or response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for HTTP API examples and handles bearer, claim, turn, settlement edit, and player tokens.]
+
+## Skill Version(s):
+
+1.30.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

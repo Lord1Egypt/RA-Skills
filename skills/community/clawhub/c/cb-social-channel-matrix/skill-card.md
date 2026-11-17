@@ -1,42 +1,56 @@
-## Description: <br>
-Choose and operate the right social media channels for any overseas market in minutes, with market-channel fit scores, audience behavior maps, content cadence guidance, and governance rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams choose and operate social media channels for overseas markets using market-channel fit scores, audience behavior maps, content cadence guidance, resource allocation, and governance rules.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Social media managers, founders, growth teams, and brand operators use this skill to choose overseas social channels, define each channel's funnel role, set content cadence, allocate resources, and establish governance rules for international market entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Platform availability, advertising restrictions, content policies, commerce features, and market data may be outdated or vary by market. <br>
-Mitigation: Verify live platform rules, advertising restrictions, local laws, and current market data before launching paid or organic campaigns. <br>
-Risk: Strategic recommendations and audience claims may be incomplete for a specific category, region, language, or compliance environment. <br>
-Mitigation: Use the skill output as planning guidance and review it with local market, legal, language, and brand-safety experts before execution. <br>
+## Use Case:
 
+External marketing teams, founders, growth teams, and brand operators use this skill to plan international social channel strategy by market, audience, category, objective, team capacity, and budget. It produces channel ratings, funnel roles, cadence guidance, resource allocation, and governance rules for overseas expansion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/cb-social-channel-matrix) <br>
-- [README](artifact/README.md) <br>
-- [Acceptance criteria](artifact/ACCEPTANCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy guidance with channel matrices, behavior maps, cadence recommendations, resource allocation, and governance rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls or code execution; recommendations depend on user-provided markets, audience, category, objectives, budget, and team capacity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Platform availability, content policies, advertising restrictions, commerce features, and market metrics can change by country.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current platform rules, advertising restrictions, local compliance requirements, and market data before launching paid or organic campaigns.
+
+Risk: Channel recommendations can be misleading when inputs omit the target market, audience, category, objective, team capacity, or budget.
+
+Mitigation: Provide complete planning inputs and review each recommendation for rationale tied to audience behavior, category fit, and growth objective.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/cb-social-channel-matrix)
+- [Publisher Profile](https://clawhub.ai/user/harrylabsj)
+- [README](artifact/README.md)
+- [Acceptance Criteria](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown strategy guidance with matrices, maps, operating plans, and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API calls, code execution, credentials, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

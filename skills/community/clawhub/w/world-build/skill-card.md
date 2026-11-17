@@ -1,42 +1,55 @@
-## Description: <br>
-Creates immersive digital environments by defining world context, atmosphere, typography, animations, and thematic UI to evoke specific emotions and depth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates immersive digital environments by defining world context, atmosphere, typography, animations, and thematic UI to evoke specific emotions and depth.
 
-## Publisher: <br>
-[aa-on-ai](https://clawhub.ai/user/aa-on-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aa-on-ai](https://clawhub.ai/user/aa-on-ai)
 
-## Use Case: <br>
-Developers and creative builders use World Build when a user explicitly requests an immersive, atmospheric, or narrative digital experience, such as a portfolio, launch site, game UI, or interactive story. It helps define the world, metaphor, visual atmosphere, typography, animation choreography, loading sequence, and project showcase patterns before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be over-applied to utilitarian product UI, dashboards, forms, documentation, settings pages, or fast MVP prototypes where atmosphere would reduce scanability or speed. <br>
-Mitigation: Use it only when the user explicitly requests world-building, atmosphere, narrative arc, sensory design, or an immersive portfolio, launch, game UI, or interactive storytelling experience. <br>
-Risk: Custom cursors, loaders, animation, atmospheric effects, and layered visuals can harm accessibility or performance if used without review. <br>
-Mitigation: Keep effects purposeful, test the result, and adapt or remove effects when content must remain fast, readable, and task-focused. <br>
-Risk: The artifact includes team-specific workflow notes about sharing feedback with Aaron and updating recipes after feedback. <br>
-Mitigation: Treat those notes as local process context, not as instructions for unrelated users or teams. <br>
+## Use Case:
 
+Developers and designers use this skill when explicitly asked to create immersive websites, portfolios, launch pages, game UI, or interactive storytelling experiences with atmospheric world context, typography, animation, and themed UI.
 
-## Reference(s): <br>
-- [World Build on ClawHub](https://clawhub.ai/aa-on-ai/world-build) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with CSS and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; may include visual design checklists and implementation snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages agents to update the installed skill from later feedback, new URLs, and code snippets without clear approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval and review before modifying the skill, and review any new URLs or snippets before they are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aa-on-ai/skills/world-build)
+- [killianherzer.com](https://killianherzer.com)
+- [inflight.co](https://inflight.co)
+- [3d.killianherzer.com](https://3d.killianherzer.com)
+- [poolsuite.net](https://poolsuite.net)
+- [lusion.co](https://lusion.co)
+- [void.st](https://void.st)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with CSS and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

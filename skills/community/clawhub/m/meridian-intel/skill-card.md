@@ -1,47 +1,62 @@
-## Description: <br>
-Anti-FOMO AI intelligence for product leaders with landscape scanning, entity tracking, and product discovery modes that output sourced timeline narratives instead of link dumps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meridian provides anti-FOMO AI intelligence for product leaders through landscape scans, entity tracking, and product discovery, producing timeline narratives with real source links instead of link dumps.
 
-## Publisher: <br>
-[cheibjkb](https://clawhub.ai/user/cheibjkb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheibjkb](https://clawhub.ai/user/cheibjkb)
 
-## Use Case: <br>
-Product leaders and product teams use Meridian to research recent AI market activity, track people or companies, and discover breakout products in an ecosystem. The skill turns public-source findings into sourced timelines, quick reports, and decision-focused takeaways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to public services while researching recent AI market activity. <br>
-Mitigation: Avoid confidential internal names, sensitive strategy, and other private information in research prompts. <br>
-Risk: The skill writes generated reports under intel/ output paths. <br>
-Mitigation: Review the intended output path before allowing overwrites. <br>
-Risk: Generated intelligence reports may contain incomplete or uncertain public-source findings. <br>
-Mitigation: Review sourced links and date evidence before using the reports for product decisions. <br>
+## Use Case:
 
+Product leaders and strategy teams use Meridian to scan recent AI developments, track people or companies, and discover breakout products in a target ecosystem. It turns source-verified findings into concise timeline narratives, briefings, and product-decision takeaways.
 
-## Reference(s): <br>
-- [Meridian ClawHub page](https://clawhub.ai/cheibjkb/meridian-intel) <br>
-- [Briefing Template](references/briefing-template.md) <br>
-- [Entity Report Template](references/entity-report-template.md) <br>
-- [Product Discovery Template](references/product-discovery-template.md) <br>
-- [Search Playbook](references/search-playbook.md) <br>
-- [Storyline Template](references/storyline-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with sourced links, timelines, and decision-focused takeaways saved under intel/ paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include landscape briefings, entity tracking reports, product discovery reports, storylines, and quick hits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shell-based search examples may interpolate user-derived keywords into curl or Python snippets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in sandboxed or approval-gated environments, and prefer built-in web and API tools over copying shell snippets.
+
+Risk: Reports are saved by default and may retain researched entities, queries, and gathered links locally.
+
+Mitigation: Confirm output paths and retention expectations before allowing the skill to create files.
+
+Risk: AI intelligence reports can become misleading if source links, publication dates, or time windows are not checked.
+
+Mitigation: Keep only source-linked facts, enforce the requested date window, and downgrade unsupported findings instead of presenting them as storylines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cheibjkb/skills/meridian-intel)
+- [Briefing Template](artifact/references/briefing-template.md)
+- [Entity Report Template](artifact/references/entity-report-template.md)
+- [Product Discovery Template](artifact/references/product-discovery-template.md)
+- [Search Playbook](artifact/references/search-playbook.md)
+- [Storyline Template](artifact/references/storyline-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance, Files]
+
+**Output Format:** [Markdown intelligence reports and timeline narratives with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be written under intel/ paths when the agent is allowed to create files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

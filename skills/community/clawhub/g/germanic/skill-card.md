@@ -1,41 +1,59 @@
-## Description: <br>
-Validate JSON data against schemas and compile to binary .grm files for schema-enforced data contracts used by AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate JSON data against schemas and compile it to binary .grm files for schema-enforced data contracts for AI agents.
 
-## Publisher: <br>
-[porco-rs](https://clawhub.ai/user/porco-rs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[porco-rs](https://clawhub.ai/user/porco-rs)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate structured JSON, generate or apply schemas, compile JSON into .grm files, and configure the GERMANIC CLI or MCP server for schema-enforced agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The GERMANIC CLI and MCP server are third-party local tools, and the MCP server exposes the local tool surface over stdio. <br>
-Mitigation: Install only from a trusted germanic Homebrew tap or cargo package, verify the source or build when needed, and enable germanic serve-mcp only for trusted MCP clients. <br>
-Risk: Compiled .grm files preserve valid string field content as data, so typed structure does not make string content trustworthy instructions. <br>
-Mitigation: Treat validated fields as data in downstream agents and continue applying normal instruction-boundary and content-review controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GERMANIC ClawHub page](https://clawhub.ai/porco-rs/germanic) <br>
-- [GERMANIC workflow examples](artifact/references/examples.md) <br>
-- [GERMANIC schema types](artifact/references/schema-types.md) <br>
+## Use Case:
 
+Developers and agents use GERMANIC to validate structured JSON against built-in or custom schemas, produce .grm binaries, inspect compiled files, and configure the local MCP server when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may guide an agent to run a local CLI that reads JSON inputs and writes .grm files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.3 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an external germanic CLI installed from a package channel or source build.
+
+Mitigation: Install only from a trusted channel, prefer a pinned version or verified release artifact, and confirm `germanic --version` reports 0.2.3 before use.
+
+Risk: Enabling the MCP server makes germanic commands callable through the configured MCP client.
+
+Mitigation: Review MCP client configuration before enabling `germanic serve-mcp` and limit use to workspace data intended for validation or compilation.
+
+Risk: Valid string fields are stored as data in compiled output and may still contain user-controlled text.
+
+Mitigation: Treat compiled fields as typed data rather than instructions, and continue applying downstream content handling for string values.
+
+## Reference(s):
+
+- [GERMANIC ClawHub Skill Page](https://clawhub.ai/porco-rs/skills/germanic)
+- [GERMANIC GitHub Homepage](https://github.com/germanicdev/germanic)
+- [GERMANIC Workflow Examples](references/examples.md)
+- [GERMANIC Schema Types](references/schema-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and file-oriented workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or validation of JSON schemas, JSON inputs, .grm output files, and MCP client configuration.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

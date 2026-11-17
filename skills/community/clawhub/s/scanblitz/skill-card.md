@@ -1,47 +1,64 @@
-## Description: <br>
-Create dynamic, trackable QR codes and inspect scan analytics with the ScanBlitz API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scanblitz helps agents create dynamic, trackable QR codes, update QR destinations, and inspect scan analytics through the ScanBlitz API.
 
-## Publisher: <br>
-[whotookmylogin](https://clawhub.ai/user/whotookmylogin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whotookmylogin](https://clawhub.ai/user/whotookmylogin)
 
-## Use Case: <br>
-Developers, marketers, and operators use this skill to create dynamic QR links, update their destinations, and inspect scan analytics for campaigns, events, packaging, and landing pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ScanBlitz API key and can access QR destination and scan analytics data. <br>
-Mitigation: Store SCANBLITZ_API_KEY in a secrets manager or environment file, avoid printing it, and install the skill only when ScanBlitz is trusted with that data. <br>
-Risk: Update, delete, deactivate, and bulk-create commands can affect live QR campaigns. <br>
-Mitigation: Review command parameters, QR identifiers, and target destinations before executing write operations. <br>
-Risk: The optional QR image rendering workflow shares the ScanBlitz tracking URL with a third-party image service. <br>
-Mitigation: Use that renderer only when sharing the tracking URL with the service is acceptable, or use a trusted local QR renderer instead. <br>
-Risk: The optional MCP setup runs an external npm package. <br>
-Mitigation: Enable the MCP server only after reviewing and trusting the package and its dependency chain. <br>
+## Use Case:
 
+Developers and automation users use this skill when an agent needs to create, update, deactivate, delete, or analyze dynamic QR codes for campaigns, events, packaging, or landing pages.
 
-## Reference(s): <br>
-- [ScanBlitz](https://scanblitz.com) <br>
-- [ScanBlitz API Docs](https://scanblitz.com/api-docs) <br>
-- [ScanBlitz Agent Reference](https://scanblitz.com/llms-full.txt) <br>
-- [ClawHub Release Page](https://clawhub.ai/whotookmylogin/scanblitz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, JSON, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SCANBLITZ_API_KEY and optional SCANBLITZ_API_BASE environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: ScanBlitz API credentials may authorize QR creation, update, analytics, or deletion actions beyond the current task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use keys scoped to the needed account actions, keep them in trusted environment storage, and avoid printing or committing SCANBLITZ_API_KEY.
+
+Risk: An untrusted SCANBLITZ_API_BASE value could route credentials or QR data to an unintended endpoint.
+
+Mitigation: Use the documented default endpoint or another trusted endpoint, and do not accept base URL overrides from prompt or project context.
+
+Risk: The optional MCP setup uses unpinned npx package execution.
+
+Mitigation: Skip the MCP path unless the package has been verified and pinned to a trusted version.
+
+Risk: The optional qrserver.com rendering path sends campaign links to an additional third-party service.
+
+Mitigation: Avoid that rendering path for sensitive or unreleased campaign links; use a trusted QR renderer instead.
+
+## Reference(s):
+
+- [ScanBlitz homepage](https://scanblitz.com)
+- [ScanBlitz API docs](https://scanblitz.com/api-docs)
+- [ScanBlitz agent reference](https://scanblitz.com/llms-full.txt)
+- [ClawHub skill page](https://clawhub.ai/whotookmylogin/skills/scanblitz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, JSON, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes expected API response shapes and operational notes for ScanBlitz QR code workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

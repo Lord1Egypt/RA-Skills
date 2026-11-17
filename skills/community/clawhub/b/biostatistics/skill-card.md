@@ -1,41 +1,57 @@
-## Description: <br>
-Provides advanced biostatistical and computational analysis support, including Bayesian inference, Monte Carlo simulation, survival models, machine learning, actuarial modeling, and health economics methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides advanced actuarial-level biostatistical analysis guidance across Bayesian inference, Monte Carlo simulation, machine learning, survival modeling, health economics, and clinical statistical reporting.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-External users and developers use this skill to plan, implement, and report rigorous statistical analyses for clinical, biomedical, actuarial, and health economics datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may generate and run local Python analysis code on user-provided datasets. <br>
-Mitigation: Review proposed code and dataset handling before execution, and run analyses in an appropriate local environment. <br>
-Risk: The workflow may suggest optional package installation such as PyMC for full Bayesian MCMC. <br>
-Mitigation: Approve optional package installs only after confirming the package source, version, and environment impact. <br>
+## Use Case:
 
+External analysts, researchers, and healthcare data science teams use this skill to choose, execute, and report rigorous statistical workflows for clinical, biomedical, actuarial, and health economics analyses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CryptoReuMD/biostatistics) <br>
-- [Publisher profile](https://clawhub.ai/user/CryptoReuMD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include statistical assumptions, uncertainty intervals, diagnostics, limitations, and reproducible analysis steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Statistical outputs may be clinically invalid when data assumptions, diagnostics, or clinical relevance are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review model assumptions, uncertainty intervals, diagnostics, and clinical validity before relying on results.
+
+Risk: Sensitive health data may be exposed if users provide identifiable clinical records without appropriate controls.
+
+Mitigation: Use de-identified data where possible and apply the organization's privacy and access controls before analysis.
+
+Risk: Generated analyses could be mistaken for medical decision authority.
+
+Mitigation: Treat outputs as analytical support and require qualified clinical or statistical review before medical, regulatory, or reimbursement decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptoreumd/skills/biostatistics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Markdown]
+
+**Output Format:** [Markdown with Python code blocks, statistical interpretation, diagnostics, and limitations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reproducible Python snippets, assumption checks, interval estimates, convergence diagnostics, out-of-sample performance summaries, and clinical relevance notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

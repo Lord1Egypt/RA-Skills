@@ -1,42 +1,62 @@
-## Description: <br>
-Provides a local deployment guide for the TencentDB-Agent-Memory OpenClaw plugin, including SQLite-based memory storage and recall, cleanup, context protection, and installation verification steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and users through local installation, configuration, validation, and troubleshooting of the TencentDB-Agent-Memory plugin for OpenClaw.
 
-## Publisher: <br>
-[cloudcode-hans](https://clawhub.ai/user/cloudcode-hans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudcode-hans](https://clawhub.ai/user/cloudcode-hans)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, verify, and troubleshoot a local conversation-memory plugin that can persist and recall user preferences and dialogue context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured memory plugin can persist conversation content, including sensitive or regulated data if users place it in memory. <br>
-Mitigation: Avoid storing secrets or regulated data in memory and review retention, cleanup, and recall settings before deployment. <br>
-Risk: Remote embedding configuration may send memory content to an external provider if enabled. <br>
-Mitigation: Keep the default local embedding mode unless the remote provider and endpoint are trusted and approved. <br>
-Risk: The optional patch script can modify the local OpenClaw runtime behavior. <br>
-Mitigation: Inspect or skip the patch script when runtime changes are not desired; the artifact states base conversation recording can still work without it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to decide whether the memory plugin is already installed, install it when needed, configure local SQLite-backed memory and recall behavior, and verify that persistent memory works.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cloudcode-hans/local-tencentdb-agent-memory-flash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash command snippets and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install checks, restart commands, local memory configuration, verification prompts, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill directs users to install an unpinned third-party OpenClaw plugin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming trust in the publisher, prefer a pinned and verified package version, and review the package before deployment.
+
+Risk: The skill asks users to run a patch script that modifies OpenClaw behavior.
+
+Mitigation: Inspect the patch script before running it, avoid elevated privileges, and confirm how to disable the plugin if behavior is unexpected.
+
+Risk: The memory plugin stores conversation content, preferences, and tool-call results persistently.
+
+Mitigation: Confirm storage expectations before use and document how to delete stored memories and logs.
+
+Risk: Optional remote embedding configuration can send memory content to an external provider.
+
+Mitigation: Use remote embeddings only when the provider and endpoint are approved for the data being stored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cloudcode-hans/skills/local-tencentdb-agent-memory-flash)
+- [Publisher profile](https://clawhub.ai/user/cloudcode-hans)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with bash and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation checks, OpenClaw plugin commands, configuration examples, validation prompts, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Agentic framework for operating monday.com workspaces via the Monday MCP connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic framework for operating monday.com workspaces via the Monday MCP connector.
 
-## Publisher: <br>
-[sharoonsharif](https://clawhub.ai/user/sharoonsharif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharoonsharif](https://clawhub.ai/user/sharoonsharif)
 
-## Use Case: <br>
-External users and teams use this skill to operate monday.com boards, items, groups, columns, forms, updates, and project workflows through a connected monday.com account. It supports project setup, sprint summaries, triage, bulk status updates, and other workspace operations that require board schema discovery before changes are made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad changes in a user's real monday.com workspace, including bulk updates and destructive operations. <br>
-Mitigation: Explicitly name the target board or workspace, preview planned changes, and require user confirmation before bulk changes or deletions. <br>
-Risk: Dynamic GraphQL calls and integrations with Gmail, Google Calendar, or Fireflies may affect data outside the immediate monday.com task if used without clear boundaries. <br>
-Mitigation: Require previews and explicit consent before raw GraphQL calls, transcript imports, calendar event creation, or Gmail draft generation. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to manage monday.com boards, items, groups, columns, status reporting, triage, and project workflows through the Monday MCP connector.
 
-## Reference(s): <br>
-- [Monday MCP endpoint](https://mcp.monday.com/mcp) <br>
-- [Column value formats](references/column-formats.md) <br>
-- [Workflow templates](references/workflows.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sharoonsharif/monday-ops) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sharoonsharif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with structured plans, tables, tool-call guidance, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include monday.com board links, item IDs, column value JSON examples, and progress summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and frontmatter) <br>
+Risk: The skill can create and change persistent monday.com records, including boards, items, columns, groups, updates, and cross-service actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm board visibility, destructive operations, and any Calendar, Gmail, or Fireflies action with the user before execution.
+
+Risk: Workspace data may include confidential, personnel, customer, or launch information.
+
+Mitigation: Review the skill before installation in sensitive workspaces and limit use to data the user is authorized to expose to the connected agent session.
+
+Risk: Broad triggers and workflow automation can lead to unintended workspace changes.
+
+Mitigation: Use the discover, plan, execute pattern and ask for approval before applying multi-step, bulk, destructive, or dynamic GraphQL operations.
+
+## Reference(s):
+
+- [Monday MCP endpoint](https://mcp.monday.com/mcp)
+- [Column Value Formats](references/column-formats.md)
+- [Workflow Templates](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown with structured tables, summaries, and MCP tool-call plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify persistent monday.com workspace records when the connected tools are used.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

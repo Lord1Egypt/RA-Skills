@@ -1,45 +1,60 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[pipsqueakup](https://clawhub.ai/user/pipsqueakup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pipsqueakup](https://clawhub.ai/user/pipsqueakup)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for installable skills, compare relevant options, and produce install commands or links for skill packages that may fit a requested task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer ordinary help requests toward third-party skill installation. <br>
-Mitigation: Treat search results as suggestions and review the exact package, publisher, and purpose before installing anything. <br>
-Risk: The skill recommends global no-confirmation installation commands. <br>
-Mitigation: Prefer explicit user confirmation and avoid global no-confirm installs unless the user intentionally accepts that behavior. <br>
-Risk: The included Python demo uses AgentScope with a DashScope API key. <br>
-Mitigation: Do not run the demo unless AgentScope use and DashScope credential handling are intentional for the environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to find installable agent skills for a requested capability and receive search terms, candidate links, and installation guidance.
 
-## Reference(s): <br>
-- [Artifact reference documentation](references/DOC.md) <br>
-- [ClawHub release page](https://clawhub.ai/pipsqueakup/new-slug) <br>
-- [Skills directory](https://skills.sh/) <br>
-- [Claude Skills overview](https://claude.com/blog/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external skill registries and user-approved install commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide users toward broad persistent installation of third-party skills with limited review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact repository, version, and destination before installation; avoid the suggested global non-interactive install form unless the source and package are trusted.
+
+Risk: The included Python demo writes sample_skill/SKILL.md and reads DASHSCOPE_API_KEY if run or imported.
+
+Mitigation: Do not run or import the demo unless that behavior is intended; use an isolated workspace and scoped environment variables when evaluating it.
+
+Risk: Search results and suggested skills may point to untrusted third-party code.
+
+Mitigation: Prefer pinned and vetted Skills CLI versions, inspect candidate skill contents, and require explicit user confirmation before adding a skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pipsqueakup/skills/new-slug)
+- [Find Skills reference](references/DOC.md)
+- [Skills directory](https://skills.sh/)
+- [Anthropic Skills blog](https://claude.com/blog/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Skills CLI searches and installs; installation commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

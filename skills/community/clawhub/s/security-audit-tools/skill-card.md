@@ -1,44 +1,55 @@
-## Description: <br>
-Security Audit Tools helps agents inspect third-party skills, plugins, repositories, packages, shell installers, and GitHub Actions before download or installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Audit Tools helps agents inspect third-party skills, plugins, repositories, packages, shell installers, and GitHub Actions before download or installation.
 
-## Publisher: <br>
-[luojin520520](https://clawhub.ai/user/luojin520520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luojin520520](https://clawhub.ai/user/luojin520520)
 
-## Use Case: <br>
-Developers and engineers use this skill as an advisory review aid before installing or running third-party code. It guides source reputation checks, package and repository inspection, pattern scanning, and manual review reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence warns that the skill can overstate coverage and that LOW RISK results are only partial indicators. <br>
-Mitigation: Treat scan output as advisory, manually review critical files and non-JavaScript assets, and avoid using a LOW RISK score as automatic installation approval. <br>
-Risk: Helper scripts may fetch npm metadata, download packages, clone repositories, and persist audit material locally. <br>
-Mitigation: Run helper scripts only in an isolated temporary workspace with no secrets, and review downloaded material before trusting or executing it. <br>
-Risk: Pattern scanning can miss dynamic behavior, dependency risks, installers, workflows, and logic-level vulnerabilities. <br>
-Mitigation: Supplement scanner results with manual review of manifests, workflows, installers, dependencies, and any dynamic execution path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luojin520520/security-audit-tools) <br>
-- [README](artifact/README.md) <br>
-- [Findings Catalog](artifact/findings-catalog.md) <br>
-- [Report Template](artifact/report-template.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to triage third-party installs, run source/package/history checks, and generate quantified security review reports before deciding whether to proceed.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown audit guidance with shell commands and optional JSON scan reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts can create local audit directories and write JSON or text reports for follow-up review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can overstate scanner coverage or present LOW RISK/PASS outputs as stronger assurance than the evidence supports.
+
+Mitigation: Treat tool output as triage only; require manual review of relevant source, package metadata, and remaining limitations before approving installation.
+
+Risk: Helper scripts may fetch package metadata, download tarballs, clone repositories, or inspect untrusted content with insufficient argument validation.
+
+Mitigation: Run helper scripts only in an isolated workspace with no credentials, validate and quote package names, versions, tarball paths, and repository URLs, and prefer read-only review first.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luojin520520/skills/security-audit-tools)
+- [README](artifact/README.md)
+- [Findings Catalog](artifact/findings-catalog.md)
+- [Review Report Template](artifact/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, JSON]
+
+**Output Format:** [Markdown and text reports with shell command snippets and optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local audit directories or scanner report files when helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

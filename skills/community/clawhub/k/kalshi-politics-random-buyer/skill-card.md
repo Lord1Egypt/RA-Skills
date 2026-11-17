@@ -1,42 +1,58 @@
-## Description: <br>
-Dry-run Kalshi skill that finds politics-related markets, picks a valid candidate at random, runs Simmer context checks, and proposes a trade plan without placing a real order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dry-run Kalshi skill that finds politics-related markets, picks a valid candidate at random, runs Simmer context checks, and proposes a trade plan without placing a real order.
 
-## Publisher: <br>
-[skybinjf](https://clawhub.ai/user/skybinjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skybinjf](https://clawhub.ai/user/skybinjf)
 
-## Use Case: <br>
-Developers and trading-tool operators use this skill to create dry-run, manual-review trade plans for Kalshi politics markets. It can run on a managed schedule and requires a Simmer API key for market discovery, context checks, and sizing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is configured as a managed job that runs every 30 minutes while using a sensitive Simmer API key. <br>
-Mitigation: Review before installing, keep the Simmer API key scoped and protected, and disable the cron or automaton configuration if only manual dry runs are intended. <br>
-Risk: Generated logs and plans may expose bankroll, market-selection, and strategy details. <br>
-Mitigation: Treat output as sensitive, limit log sharing, and review generated trade plans before any manual market action. <br>
-Risk: The security verdict is suspicious because the instructions emphasize manual use while the configuration enables scheduled operation. <br>
-Mitigation: Confirm the managed schedule is intentional and verify the simmer-sdk dependency before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to scan Kalshi politics markets and generate a manual-review trade plan using Simmer market context and bankroll-aware sizing. It is intended for planning only; it does not place live orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skybinjf/kalshi-politics-random-buyer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with a pretty-printed JSON execution_plan object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The plan is marked manual_review_required and the script rejects live execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The package schedules recurring credentialed runs every 30 minutes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the cron automaton or explicitly opt into it only after reviewing the run cadence and expected account activity.
+
+Risk: The skill requires a Simmer API key and can perform Simmer-side market indexing during planning.
+
+Mitigation: Use a narrowly scoped, revocable Simmer key and rotate or revoke it after testing.
+
+Risk: The skill depends on the external simmer-sdk package for market context and sizing behavior.
+
+Mitigation: Pin or audit the SDK version before installation and review generated plans before taking any live trading action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skybinjf/skills/kalshi-politics-random-buyer)
+- [ClawHub publisher profile](https://clawhub.ai/user/skybinjf)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with a JSON execution_plan object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and optional environment variables for search terms, price bounds, edge threshold, slippage threshold, and random seed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

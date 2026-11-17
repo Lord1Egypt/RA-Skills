@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊卖点提炼 · 购买动因挖掘"
+  short_description: "从好评反推下单理由，按说服力排卖点"
+  default_prompt: "使用 $amazon-selling-point 从好评提炼一个 Amazon ASIN 的卖点与购买动因。"

@@ -1,0 +1,24 @@
+{
+  "slugs": {
+    "identity-check": {
+      "command": "python",
+      "args": ["identity_check.py", "--name", "{scope}", "--out", "{output}"],
+      "timeout_s": 900,
+      "deliver": "file",
+      "output": "{tmp}/dossier.pdf",
+      "content_type": "application/pdf",
+      "note": "Identity Check dossier for: {scope}"
+    },
+    "summarize": {
+      "command": "node",
+      "args": ["summarize.mjs"],
+      "timeout_s": 120,
+      "deliver": "stdout",
+      "content_type": "text/markdown"
+    }
+  },
+  "concurrency": 1,
+  "auto_receive": true,
+  "attempts": 3,
+  "retry_backoff_s": 5
+}

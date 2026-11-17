@@ -1,0 +1,3 @@
+interface:
+  display_name: "Coursework Technical Verification"
+  short_description: "Verify coursework code and numerical results with reproducible inputs, boundary tests, and honest measured reports."

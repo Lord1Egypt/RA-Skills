@@ -1,47 +1,65 @@
-## Description: <br>
-Share AI agent conversations as public web pages for external sharing, documentation, or publishing to a public URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Share AI agent conversations as public web pages. Use when the user wants to share a conversation externally, export conversation history for documentation, or publish a chat session to a public URL.
 
-## Publisher: <br>
-[imyelo](https://clawhub.ai/user/imyelo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imyelo](https://clawhub.ai/user/imyelo)
 
-## Use Case: <br>
-Developers and agent users use Clawpage to convert AI agent sessions into public web pages for sharing, documentation, or publication. The skill guides setup, session selection, conversion, metadata review, redaction, branch creation, commit creation, and optional pull-request publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported conversations can expose private reasoning, tool arguments, tool results, file paths, screenshots, raw images, secrets, or personal data in public pages. <br>
-Mitigation: Review the generated YAML before publishing, prefer messages-only export unless process details are intentionally public, and redact secrets and personal data before committing or opening a pull request. <br>
-Risk: The workflow changes exported chat visibility to public and can publish the result through a branch and pull request. <br>
-Mitigation: Publish only after an explicit user request, keep each chat export on a dedicated branch, and use pull-request review to inspect the final content before merge. <br>
+## Use Case:
 
+Developers and AI agent users use Clawpage to convert agent conversation sessions into reviewable, redacted clawpage YAML and publish them as public web pages when explicitly requested.
 
-## Reference(s): <br>
-- [Clawpage skill page](https://clawhub.ai/imyelo/clawpage) <br>
-- [Clawpage homepage](https://github.com/imyelo/clawpage) <br>
-- [OpenClaw platform profile](references/platforms/openclaw.md) <br>
-- [Unknown platform profile](references/platforms/unknown.md) <br>
-- [Output template](references/output-template.md) <br>
-- [Setup guide](references/setup.md) <br>
-- [Publish guide](references/publish.md) <br>
-- [Large file handling](references/large-file.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML output and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates a chat YAML file and may guide branch, commit, push, and pull-request steps after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Conversation exports can expose sensitive internals such as reasoning, tool outputs, images, local paths, event metadata, credentials, private URLs, or personal contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use messages-only export by default unless process content is explicitly needed, redact sensitive values with [REDACTED], and inspect the full generated YAML before committing or publishing.
+
+Risk: Public publishing can expose private or internal conversation content if a generated chat file is merged or deployed before review.
+
+Mitigation: Keep exports on a dedicated branch, commit only the intended chat file, require explicit user confirmation before publishing, and use pull request review before merging.
+
+Risk: Remote npm tooling invoked through npx can change behavior across versions.
+
+Mitigation: Prefer pinned or local versions of the clawpage CLI tools when converting sessions for publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imyelo/skills/clawpage)
+- [Clawpage project homepage](https://github.com/imyelo/clawpage)
+- [Output Template](references/output-template.md)
+- [Setup](references/setup.md)
+- [OpenClaw Agent Profile](references/platforms/openclaw.md)
+- [Unknown Platform Agent Profile](references/platforms/unknown.md)
+- [Large File Handling](references/large-file.md)
+- [Publish](references/publish.md)
+- [Protect Sensitive Info](https://clawpage.yelo.ooo/chats/how-to-protect-sensitive-info/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML output and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces clawpage YAML files, redaction guidance, git branch and commit steps, and optional publishing instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

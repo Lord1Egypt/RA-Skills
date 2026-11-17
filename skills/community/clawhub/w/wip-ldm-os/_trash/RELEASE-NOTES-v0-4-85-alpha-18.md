@@ -1,0 +1,1 @@
+Adds the hosted relay self-host guide to LDM OS. The public relay source remains under `src/hosted-mcp`, while the new docs explain what the relay does, how to run it with Postgres, nginx, TLS, PM2, and custom Codex Remote Control relay endpoints, and which WIP-specific production settings should not be copied.

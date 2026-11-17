@@ -1,41 +1,49 @@
-## Description: <br>
-Finds and formats recipe suggestions by ingredient, cuisine, or dietary preference using TheMealDB API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and suggest recipes by ingredients, cuisine, or dietary preferences using TheMealDB API with detailed meal information and instructions.
 
-## Publisher: <br>
-[harshasic](https://clawhub.ai/user/harshasic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harshasic](https://clawhub.ai/user/harshasic)
 
-## Use Case: <br>
-Users ask an agent for meal ideas or recipes based on ingredients, cuisine, or dietary preferences. The skill guides the agent to query TheMealDB and present concise recipe summaries with ingredients, cuisine, and brief instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recipe search terms may be sent to TheMealDB, so unrelated private information entered into a query could be exposed to that service. <br>
-Mitigation: Keep recipe queries limited to ingredients, cuisines, meal names, and dietary preferences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harshasic/recipe-finder) <br>
-- [TheMealDB ingredient filter API](https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}) <br>
-- [TheMealDB cuisine filter API](https://www.themealdb.com/api/json/v1/1/filter.php?a={cuisine}) <br>
-- [TheMealDB meal search API](https://www.themealdb.com/api/json/v1/1/search.php?s={query}) <br>
-- [TheMealDB meal lookup API](https://www.themealdb.com/api/json/v1/1/lookup.php?i={id}) <br>
+## Use Case:
 
+External users and agents use this skill to find meal ideas and recipe summaries from ingredients, cuisines, or dietary preferences. It is suited for quick recipe discovery using public TheMealDB results.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API calls] <br>
-**Output Format:** [Markdown recipe summaries with optional image thumbnails, category, cuisine, ingredients, and brief instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TheMealDB search and lookup results; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recipe-related prompts may be sent to TheMealDB for lookup.
+
+Mitigation: Avoid including sensitive personal information in meal requests that should not be shared with a public recipe API.
+
+## Reference(s):
+
+- [Recipe Finder ClawHub Skill Page](https://clawhub.ai/harshasic/skills/recipe-finder)
+- [TheMealDB API](https://www.themealdb.com/api.php)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recipe summaries with names, images when available, cuisine, ingredients, and brief instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include thumbnail image links and links or concise summaries from public recipe data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-依据需求概述，按明源定制开发设计要点输出可覆盖研发、测试的详细需求要点。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+依据需求概述，按明源定制开发设计要点输出覆盖研发和测试的详细需求要点。
 
-## Publisher: <br>
-[Mamamacb](https://clawhub.ai/user/Mamamacb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mamamacb](https://clawhub.ai/user/mamamacb)
 
-## Use Case: <br>
-Product managers, business analysts, developers, and testers use this skill to expand a short requirement summary into detailed Simplified Chinese requirement points for Ming Yuan Cloud customization work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated requirement details can be saved to WeCom or a local Markdown file, which may expose confidential business details if the destination is not intended. <br>
-Mitigation: Review the output destination and sharing permissions before saving; use inline or local Markdown output for sensitive requirements unless WeCom sharing is deliberate. <br>
-Risk: The expanded requirements may omit or misstate business-specific behavior when the initial summary is unclear. <br>
-Mitigation: Answer the skill's clarification questions and have product, development, and test stakeholders review the generated requirements before implementation. <br>
+## Use Case:
 
+业务分析师、产品经理和开发测试团队使用该技能，将简要需求扩写为结构化的需求类型、界面元素位置和需求规格要点，以便研发和测试评审。
 
-## Reference(s): <br>
-- [明源定制开发设计要点](reference/明源定制开发设计要点.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Mamamacb/req-expander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Simplified Chinese Markdown requirement outline or WeCom document content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask up to five clarification questions before producing the final requirement details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated requirement notes may be saved as a WeCom document or Markdown file in a destination that is not appropriate for confidential business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the storage destination before document creation and avoid including confidential business details unless that destination is appropriate.
+
+Risk: Requirement details may be incomplete or misleading when the initial demand summary lacks key information such as requirement type or UI location.
+
+Mitigation: Answer the skill's clarification questions and review the generated requirement notes before using them for development or testing.
+
+## Reference(s):
+
+- [明源定制开发设计要点](reference/明源定制开发设计要点.md)
+- [ClawHub skill page](https://clawhub.ai/mamamacb/skills/req-expander)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Simplified Chinese Markdown or WeCom document content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask up to five clarification questions before producing the requirement notes; may create a WeCom document when supported, otherwise a Markdown file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

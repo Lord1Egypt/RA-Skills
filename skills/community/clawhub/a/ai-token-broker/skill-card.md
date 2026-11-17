@@ -1,42 +1,58 @@
-## Description: <br>
-Routes AI API calls through a local TokenBroker gateway to choose cost-aware models, track budgets, and report usage costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TokenBroker routes AI API calls through a local gateway that manages model selection, budget checks, and usage cost statistics.
 
-## Publisher: <br>
-[wenrl2006](https://clawhub.ai/user/wenrl2006) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenrl2006](https://clawhub.ai/user/wenrl2006)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route LLM calls through a local TokenBroker service for cost-aware provider selection, budget tracking, usage summaries, and status or routing commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and register a persistent local TokenBroker service. <br>
-Mitigation: Review the initialization script, back up ${HOME}/supervisord.conf, confirm the service binds only to localhost, and know how to stop and remove the Supervisor entry before installing. <br>
-Risk: LLM calls may be routed through TokenBroker and included in usage logs. <br>
-Mitigation: Install only when gateway routing is intended and review the TokenBroker backend's logging and data-handling behavior first. <br>
-Risk: Initialization may install Node.js dependencies for the TokenBroker backend. <br>
-Mitigation: Review the backend dependency tree and run installation in a controlled workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route LLM calls through TokenBroker, monitor broker health, review API usage statistics, and coordinate routing with TokenBudget budgets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wenrl2006/ai-token-broker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose TokenBroker management commands and local service setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The installer may run npm install in an external token-broker project and execute that project's server code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit the external TokenBroker project and its dependencies before installation or run the service manually from a trusted checkout.
+
+Risk: The installer may append a persistent token-broker program to ~/supervisord.conf.
+
+Mitigation: Review Supervisor changes before use and remove or disable the token-broker entry if persistent startup is not desired.
+
+Risk: LLM calls are routed through a broker that records usage and cost statistics.
+
+Mitigation: Use the skill only where routing through TokenBroker and retaining usage records matches the user's privacy and operational expectations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wenrl2006/skills/ai-token-broker)
+- [Publisher Profile](https://clawhub.ai/user/wenrl2006)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with command-oriented guidance and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start or configure a local TokenBroker service on localhost:8766 when installed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

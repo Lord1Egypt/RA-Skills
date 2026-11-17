@@ -1,46 +1,66 @@
-## Description: <br>
-Generate AI videos using BytePlus Seedance API (International) from text prompts, images, first and last frames, or reference images, and query or manage video generation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos using BytePlus Seedance API (International). Use when the user wants to: (1) generate videos from text prompts, (2) generate videos from images (first frame, first+last frame, reference images), or (3) query/manage video generation tasks. Supports Seedance 1.5 Pro (with audio & draft mode), 1.0 Pro, 1.0 Pro Fast, and 1.0 Lite models.
 
-## Publisher: <br>
-[JackyCSer](https://clawhub.ai/user/JackyCSer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[jackycser](https://clawhub.ai/user/jackycser)
 
-## Use Case: <br>
-Developers and external users use this skill to create, monitor, download, and manage BytePlus Seedance video generation tasks from an agent or terminal workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts and selected local images or generated videos to external services including BytePlus and optionally Feishu. <br>
-Mitigation: Use it only when that external sharing is approved, and avoid confidential local paths, sensitive media, and sensitive prompts. <br>
-Risk: The scanner flags macOS auto-open behavior after downloads through an unsafe shell command. <br>
-Mitigation: Review or disable the auto-open behavior before use, especially in workflows that handle untrusted task IDs, file paths, or generated media. <br>
+## Use Case:
 
+Developers and creative operators use this skill to generate, monitor, download, and manage BytePlus Seedance video generation tasks from text prompts or image inputs. The skill also provides guidance for optional delivery of generated videos through Feishu/Lark workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JackyCSer/seedance-video-generation-byteplus) <br>
-- [BytePlus Video Generation API](https://docs.byteplus.com/en/docs/ModelArk/Video_Generation_API) <br>
-- [BytePlus API Key Management](https://console.byteplus.com/ark/region:ark+ap-southeast-1/apiKey) <br>
-- [BytePlus Model List and Pricing](https://docs.byteplus.com/en/docs/ModelArk/1330310) <br>
-- [BytePlus API Call Guide](https://docs.byteplus.com/en/docs/ModelArk/1366799) <br>
-- [BytePlus Prompt Guide](https://docs.byteplus.com/en/docs/ModelArk/1587797) <br>
-- [Feishu Video Sending Guide](how_to_send_video_via_feishu_app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with Python CLI commands, curl examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create asynchronous video tasks, poll status, download MP4 outputs, and optionally route generated videos to Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Prompts and selected images are sent to BytePlus, and generated videos may be sent through Feishu when that optional workflow is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved non-sensitive inputs, avoid confidential prompts or private images, and confirm Feishu delivery is appropriate for the content.
+
+Risk: The helper includes a local command-execution risk when downloaded videos are auto-opened on macOS.
+
+Mitigation: Do not use the macOS auto-open download path until the helper replaces os.system with a non-shell file-opening call; download to a reviewed directory and open files manually.
+
+Risk: The BytePlus API key grants access to video generation tasks and billing-relevant operations.
+
+Mitigation: Keep ARK_API_KEY scoped, stored outside source files, rotated periodically, and available only to trusted runtime environments.
+
+Risk: Generated video URLs expire and task history is temporary.
+
+Mitigation: Download generated videos promptly and keep local copies of assets that need to be retained.
+
+## Reference(s):
+
+- [BytePlus Video Generation API](https://docs.byteplus.com/en/docs/ModelArk/Video_Generation_API)
+- [BytePlus API Call Guide](https://docs.byteplus.com/en/docs/ModelArk/1366799)
+- [BytePlus Model List and Pricing](https://docs.byteplus.com/en/docs/ModelArk/1330310)
+- [BytePlus Prompt Guide](https://docs.byteplus.com/en/docs/ModelArk/1587797)
+- [Feishu Video Sending Guide](artifact/how_to_send_video_via_feishu_app.md)
+- [ClawHub Skill Page](https://clawhub.ai/jackycser/skills/seedance-video-generation-byteplus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python CLI commands, curl examples, JSON API payloads, and downloaded MP4 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARK_API_KEY. The optional Feishu workflow requires Feishu app credentials configured outside the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

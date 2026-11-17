@@ -2,7 +2,7 @@
 name: project-execution
 description: |
   Executes implementation plans with progress tracking, checkpoint validation, and quality gates. Use after planning is complete and tasks are ready to implement
-version: 1.9.8
+version: 1.10.3
 triggers:
   - execution
   - implementation
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## When To Use
@@ -36,10 +36,19 @@ source_plugin: attune
 ## Integration
 
 **With superpowers**:
-- Uses `Skill(superpowers:executing-plans)` for systematic execution
+- Uses `Skill(superpowers:executing-plans)` for Native execution: the
+  session implements every task itself, then one whole-branch review.
+  `Skill(superpowers:subagent-driven-development)` is the other mode,
+  with an implementer and a reviewer per task. attune's per-task
+  Delegation Check below decides which tasks leave the session
 - Uses `Skill(superpowers:systematic-debugging)` for issue resolution
 - Uses `Skill(superpowers:verification-before-completion)` for validation
 - Uses `Skill(superpowers:test-driven-development)` for TDD workflow
+
+**With imbue**:
+- Uses `Skill(imbue:graduated-implementation)` at the ramp gate so
+  each increment's ambition is earned by demonstrated understanding
+  of the prior one, not ramped on completion alone
 
 **Without superpowers**:
 - Standalone execution framework
@@ -86,14 +95,23 @@ source_plugin: attune
    - Code quality checks pass?
    - Documentation updated?
 
-4. CHECKPOINT
+4. RAMP GATE (before the next, more ambitious task)
+   - Invoke Skill(imbue:graduated-implementation)
+   - Demonstrate understanding of THIS increment, sized to stakes:
+     low-stakes on the evidence gate (green tests plus a recorded
+     tradeoff), high-stakes on the human explaining the diff unaided
+   - On a clean demonstration, record it in the ramp ledger and
+     mark the rung widened; below the band, hold and split the next
+     task smaller instead of ramping
+
+5. CHECKPOINT
    - Mark task complete IMMEDIATELY (do NOT batch)
    - Update execution state
    - Report progress
    - Identify blockers
 ```
 
-**Task Completion Discipline**: Always call `TaskUpdate(taskId: "X", status: "completed")` right after finishing each task—never defer completions to end of session.
+**Task Completion Discipline**: Always call `TaskUpdate(taskId: "X", status: "completed")` right after finishing each task. Never defer completions to end of session.
 
 **Verification:** Run `pytest -v` to verify tests pass.
 
@@ -105,12 +123,56 @@ source_plugin: attune
 3. Check code quality metrics
 4. Generate completion report
 5. Prepare for deployment/release
+6. Record lessons learned (see below)
+
+### Record Lessons Learned (decision journal)
+
+Implementation is where the honest lessons appear: the approach that had to be
+reworked, the blocker that cost a day, the assumption from planning that did
+not hold. Capture these in `docs/lessons-learned.md` now, blamelessly, instead
+of letting them vanish into "done." Draft and confirm one entry per
+substantive lesson:
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and follow
+  it to append a lesson entry: `what_happened`, `what_didnt_work`,
+  `root_cause`, and a concrete `action`. Set `phase` to `execute`. Show the
+  draft and append it on confirmation (status starts `open`).
+- Fallback (leyline absent): append to `docs/lessons-learned.md` by hand using
+  the in-file ENTRY TEMPLATE. Assign the next `LL-NNN` id.
+
+Trigger this whenever execution involved rework, a failed approach, or a
+blocker that exhausted the two-challenge / 3-attempt limit. A clean run with no
+surprises needs no entry.
 
 ### Terminal Phase Notice
 
 This is the **final phase** of the attune workflow. No auto-continuation occurs after execution completes. The workflow terminates here. Unlike brainstorming, specification, and planning phases, execution does NOT auto-invoke any subsequent phase.
 
 ## Task Execution Pattern
+
+### Delegation Check (First, Per Task)
+
+Before implementing a task, delegate it.
+`Skill(conjure:delegation-core)` is on by default, so the decision to
+make is whether a Keep Local clause holds.
+
+Keep the task local when it is design or trade-off work, when its
+context carries a secret, when it needs turn-by-turn iteration, or when
+its output cannot be validated afterward.
+Otherwise hand it to the delegator and validate what comes back through
+the same TDD workflow below.
+The tests are the validation: a delegated implementation that fails the
+RED test is rejected exactly like a local one.
+
+If the result's `fallback_reason` is `providers_exhausted`, no external
+model ran.
+Report which providers were tried, then hand the task to a subagent on the
+session's model, following `modules/subagent-fallback.md`.
+Take the same path when conjure is not installed and its skill cannot load.
+If the reason is `delegation_disabled`, implement the task here: the
+operator declined delegation, and a subagent is still a delegation.
+An exhausted chain is not a blocked task and does not belong in
+`docs/lessons-learned.md`.
 
 ### TDD Workflow
 
@@ -175,7 +237,7 @@ def authenticate(email: str, password: str) -> Optional[User]:
 make lint          # Linting passes
 make typecheck     # Type checking passes
 make test          # All tests pass
-make coverage      # Coverage threshold met
+uv run pytest --cov  # Coverage threshold met
 ```
 **Verification:** Run `pytest -v` to verify tests pass.
 
@@ -193,7 +255,7 @@ Save to `.attune/execution-state.json`:
   "current_sprint": "Sprint 1",
   "current_phase": "Phase 1",
   "tasks": {
-    "TASK-001": {
+    "T001": {
       "status": "complete",
       "started_at": "2026-01-02T10:05:00Z",
       "completed_at": "2026-01-02T10:50:00Z",
@@ -201,7 +263,7 @@ Save to `.attune/execution-state.json`:
       "acceptance_criteria_met": true,
       "tests_passing": true
     },
-    "TASK-002": {
+    "T002": {
       "status": "in_progress",
       "started_at": "2026-01-02T14:00:00Z",
       "progress_percent": 60,
@@ -300,7 +362,7 @@ When blocked, apply debugging framework:
 
 **Escalation format**:
 ```markdown
-## Blocker: [TASK-XXX] - [Issue]
+## Blocker: [TNNN] - [Issue]
 
 **Symptom**: [What's happening]
 
@@ -382,12 +444,25 @@ On track? = Estimated completion <= Sprint end date
 - Increase focus (reduce distractions)
 - Request help or extend timeline
 
+## Exit Criteria
+
+- [ ] All planned tasks are marked complete and the full test suite passes.
+- [ ] A completion report is generated.
+- [ ] Any rework, failed approach, or exhausted-retry blocker is recorded to
+  `docs/lessons-learned.md` as an `open` entry (a clean run needs none).
+- [ ] Every task was either delegated or held back by a named Keep Local
+  clause.
+- [ ] Delegated and fallback-subagent output passed the same tests a
+  local implementation would have.
+- [ ] No subsequent phase is auto-invoked (this is the terminal phase).
+
 ## Related Skills
 
 - `Skill(superpowers:executing-plans)` - Execution framework (if available)
 - `Skill(superpowers:systematic-debugging)` - Debugging (if available)
 - `Skill(superpowers:test-driven-development)` - TDD (if available)
 - `Skill(superpowers:verification-before-completion)` - Validation (if available)
+- `Skill(conjure:delegation-core)` - Default-on delegation of task execution
 - `Skill(attune:mission-orchestrator)` - Full lifecycle orchestration
 
 ## Related Agents

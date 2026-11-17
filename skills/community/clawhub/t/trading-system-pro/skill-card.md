@@ -1,39 +1,53 @@
-## Description: <br>
-Trading System Pro describes an algorithmic trading assistant for stocks, crypto, and options with market scanning, signals, backtesting, and automated execution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading System Pro supports algorithmic trading workflows for stocks, crypto, and options, including market scanning, technical analysis, automated trade execution, risk management, portfolio balancing, and backtesting.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Day traders, swing traders, and quantitative investors use this skill as trading-system guidance for market scanning, technical analysis, backtesting, risk management, and portfolio-balancing workflows. Review safeguards before using it with live accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release advertises automated real-money trading while the artifact provides only a high-level description and no explicit account-scope limits or safety controls. <br>
-Mitigation: Review carefully before installing or connecting accounts; require paper-trading defaults, scoped credentials, per-trade approvals, order and loss limits, audit logs, and a clear kill switch before live trading. <br>
+## Use Case:
 
+External traders, quant investors, and developers use this skill to guide agent-assisted trading workflows, including signal generation, broker integration, backtesting, and risk management for stocks, crypto, and options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/trading-system-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/ssidharhubble) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The submitted artifact contains only SKILL.md, so generated guidance should be reviewed before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill describes live automated trading capabilities that could affect real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper-trading defaults, require explicit per-order confirmation, and enforce broker-side permission and order-size limits before any live execution.
+
+Risk: Trading analysis and execution guidance may be treated as financial advice or acted on without adequate review.
+
+Mitigation: Keep analysis separate from execution, require human review of signals and strategy assumptions, and validate strategies through backtesting before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/trading-system-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading analysis, broker setup guidance, backtesting code, and risk-control recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

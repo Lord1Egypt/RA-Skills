@@ -1,43 +1,57 @@
-## Description: <br>
-Say 'lint my docs' to scan your markdown KB for broken links, orphan pages, and missing metadata, then auto-fix them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Say 'lint my docs' to scan your markdown KB for broken links, orphan pages, and missing metadata, then auto-fix them.
 
-## Publisher: <br>
-[singggggyee](https://clawhub.ai/user/singggggyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[singggggyee](https://clawhub.ai/user/singggggyee)
 
-## Use Case: <br>
-Developers, technical writers, and documentation maintainers use this skill to inspect Markdown knowledge bases for broken links, orphan pages, missing frontmatter, thin articles, inconsistent metadata, and filename issues. It can propose or apply fixes after showing changes and rerun checks to report the before-and-after score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and potentially edit Markdown files in a local workspace. <br>
-Mitigation: Run it in a backed-up or git-tracked workspace and review proposed changes before applying them. <br>
-Risk: Memory mode scans files under ~/.claude/. <br>
-Mitigation: Use memory mode only when the user is comfortable allowing the agent to inspect local Claude memory files. <br>
-Risk: The workflow depends on the external kb-lint package. <br>
-Mitigation: Install only when the package and publisher are trusted, and verify package behavior before use in sensitive repositories. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to scan Markdown knowledge bases, docs, wikis, notes, and Claude Code memory files for broken links, orphan pages, missing frontmatter, thin articles, filename issues, and inconsistent metadata. The skill can summarize issues, propose fixes, and help apply reviewed changes.
 
-## Reference(s): <br>
-- [Claude Doc Doctor on ClawHub](https://clawhub.ai/singggggyee/doc-doctor) <br>
-- [kb-lint homepage](https://github.com/SingggggYee/kb-lint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown summaries with inline shell commands and optional file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May consume kb-lint JSON output internally, but presents findings, proposed fixes, and verification results as concise agent-facing Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release evidence; artifact frontmatter lists 3.0.0) <br>
+Risk: The skill installs or runs the external `kb-lint` CLI without a pinned package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the package source or version before installation in managed environments.
+
+Risk: Memory mode can inspect files under `~/.claude/`, which may contain sensitive user or project context.
+
+Mitigation: Use memory mode only after reviewing the target files and limiting the scan scope to intended paths.
+
+Risk: Auto-fix behavior may rename files, edit frontmatter, or rewrite references.
+
+Mitigation: Require a preview or diff and explicit user confirmation before applying file changes.
+
+## Reference(s):
+
+- [kb-lint GitHub repository](https://github.com/SingggggYee/kb-lint)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell commands, issue summaries, and proposed file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include before/after lint scores, proposed renames, frontmatter edits, and reference rewrites.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

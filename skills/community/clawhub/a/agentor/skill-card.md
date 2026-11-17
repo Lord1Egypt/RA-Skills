@@ -1,40 +1,57 @@
-## Description: <br>
-Use agenTOR for Tor-routed browser sessions with receipts, HTML capture, screenshots, and compact research runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use agenTOR for Tor-routed browser sessions with receipts, HTML capture, screenshots, and compact research runs.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
 
-## Use Case: <br>
-Developers and agents use agenTOR when a browsing task should run through Tor or another proxy and leave local receipts, HTML capture, screenshots, summaries, or compact research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may overestimate anonymity from Tor or proxy routing. <br>
-Mitigation: Treat Tor routing as network-path privacy only; avoid logged-in browser state when privacy separation matters. <br>
-Risk: Captured pages, screenshots, receipts, and reports may preserve sensitive browsing evidence locally. <br>
-Mitigation: Review and control the configured artifact directory, and retain or delete receipts according to the task's evidence and privacy requirements. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tor-routed or proxy-routed browser sessions, capture page evidence, and produce compact local research artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/builtbyecho/agentor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and descriptions of generated local artifact files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can produce local receipts, HTML, text summaries, screenshots, and report.md files under an artifacts directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill relies on an external agentor CLI that is not bundled or verified by the skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or run the CLI only from a trusted source and verify the executable before use.
+
+Risk: Tor or proxy routing improves path hygiene but does not guarantee identity separation.
+
+Mitigation: Avoid authenticated browser state and sensitive accounts when separation matters.
+
+Risk: Browser receipts, HTML captures, screenshots, and reports can contain sensitive page content.
+
+Mitigation: Review the output directory before sharing artifacts and set an explicit output path when retention or access controls matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/builtbyecho/skills/agentor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, text]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce local receipt folders containing HTML, screenshots, summary text, receipt JSON, and report markdown.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

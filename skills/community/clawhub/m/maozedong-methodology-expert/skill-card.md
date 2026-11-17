@@ -1,49 +1,63 @@
-## Description: <br>
-Chinese-language agent skill that helps users apply reusable methods from Selected Works of Mao Zedong to modern structural problems through clarification, classification, method selection, risk checks, and text or HTML delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents translate Mao Zedong Selected Works methodology into a modern structured analysis workflow for work execution, collaboration, relationship boundaries, learning, life decisions, and team governance, with clarification before analysis and optional text or HTML reports.
 
-## Publisher: <br>
-[samadhifire](https://clawhub.ai/user/samadhifire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samadhifire](https://clawhub.ai/user/samadhifire)
 
-## Use Case: <br>
-External users and agent operators use this skill for Chinese-language structured analysis of work execution, collaboration, relationship boundaries, learning, life decisions, and team governance questions. It is intended for complex problems that need clarification before analysis, not quick advice or source quotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a rigid Chinese-language workflow and may be a poor fit for ordinary quick advice. <br>
-Mitigation: Use it only when the user wants this specific Mao methodology analysis workflow and expects structured clarification before analysis. <br>
-Risk: HTML report mode can preserve sensitive user-provided case details in generated output. <br>
-Mitigation: Review report contents and intended file location before saving, sharing, or publishing an HTML report. <br>
-Risk: Political or historical methodology language could be misapplied as labeling, manipulation, humiliation, or moral judgment. <br>
-Mitigation: Keep analysis framed as modern problem-structuring guidance and follow the artifact's misuse-boundary and translation-red-line references. <br>
+## Use Case:
 
+External users and agents use this skill to clarify broad personal, organizational, or work problems before receiving structured method-guided analysis and next steps. It is intended for complex situations where goals, stakeholders, constraints, and output format need to be made explicit before final guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samadhifire/maozedong-methodology-expert) <br>
-- [References coordination map](artifact/references/README.md) <br>
-- [Ambiguity gate](artifact/references/clarification/ambiguity-gate.md) <br>
-- [Problem taxonomy](artifact/references/categories/problem-taxonomy.md) <br>
-- [Method index](artifact/references/methods/method-index.md) <br>
-- [Misuse boundaries](artifact/references/risks/misuse-boundaries.md) <br>
-- [Output mode routing](artifact/references/routing/output-mode-routing.md) <br>
-- [Visual report specification](artifact/references/html-output/visual-report-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, HTML, guidance] <br>
-**Output Format:** [Chinese-language structured Markdown analysis or an HTML report after clarification and output-mode confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses staged clarification before analysis and may create an HTML report when the user selects that mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate too broadly and impose a fixed Chinese branded response structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit activation to requests that explicitly ask for this methodology or for complex structured analysis, and review outputs for tone, language fit, and concision before deployment.
+
+Risk: The methodology includes politically loaded concepts that could be misused for labeling, manipulation, shaming, or coercive advice.
+
+Mitigation: Apply the bundled misuse and translation risk references so outputs stay framed as modern analysis, require clarification, and avoid harmful labels or coercive recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samadhifire/skills/maozedong-methodology-expert)
+- [Publisher profile](https://clawhub.ai/user/samadhifire)
+- [Skill entrypoint](artifact/SKILL.md)
+- [References coordination map](artifact/references/README.md)
+- [Problem taxonomy](artifact/references/categories/problem-taxonomy.md)
+- [Scenario index](artifact/references/scenarios/scene-index.md)
+- [Method index](artifact/references/methods/method-index.md)
+- [Misuse boundaries](artifact/references/risks/misuse-boundaries.md)
+- [Translation red lines](artifact/references/risks/translation-red-lines.md)
+- [Output mode routing](artifact/references/routing/output-mode-routing.md)
+- [Visual report specification](artifact/references/html-output/visual-report-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Guidance]
+
+**Output Format:** [Structured Chinese-language Markdown or HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires clarification before final analysis and confirmation of text or HTML output mode before delivery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

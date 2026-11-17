@@ -1,39 +1,56 @@
-## Description: <br>
-Screens resumes for authenticity risk, packaging risk, and role fit, producing an evidence-based risk report and ATS-oriented JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for screening resumes for authenticity risk, packaging risk, and role fit.
 
-## Publisher: <br>
-[donotwannatry](https://clawhub.ai/user/donotwannatry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[donotwannatry](https://clawhub.ai/user/donotwannatry)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+HR teams and technical interviewers use this skill to screen candidate resume text for authenticity risks, packaging concerns, role fit, and follow-up interview questions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill processes resumes and contact details.
+
+Mitigation: Use only candidate data the reviewer is authorized to process, and handle generated outputs according to the organization's hiring-data policies.
+
+Risk: Risk labels may influence hiring decisions beyond their screening purpose.
+
+Mitigation: Treat the output as screening assistance and require human review before taking candidate-facing or employment decisions.
+
+Risk: Resume text can include prompt-injection attempts or non-resume content.
+
+Mitigation: Preserve the skill's injection and invalid-input checks, and review blocked or invalid cases instead of forcing a risk assessment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-HR staff and technical interviewers use this skill to batch-screen candidate resumes, OCR text, or public context for authenticity risk, inflated claims, timeline issues, role fit, and follow-up interview questions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Fixed Chinese-language behavior may limit usability for teams that need another output language. <br>
-Mitigation: Install and use the skill only when Chinese-language reporting fits the workflow. <br>
-Risk: Resume text is untrusted input and may contain prompt-injection attempts or non-resume content. <br>
-Mitigation: The skill directs the agent to block prompt override attempts, reject forced-evaluation instructions, and return INVALID_INPUT for non-resume text. <br>
+**Output Format:** [Markdown report followed by a JSON code block]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes candidate name/contact extraction when present, risk level, role classification, flags, usability status, and background-check focus arrays.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report followed by a JSON code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes candidate/contact extraction, risk flags, role classification, usability state, and background-check focus arrays.] <br>
+0.1.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

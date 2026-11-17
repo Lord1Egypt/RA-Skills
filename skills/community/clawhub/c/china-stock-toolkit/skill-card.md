@@ -1,40 +1,57 @@
-## Description: <br>
-China Stock Toolkit gives agents market dashboard commands for China A-shares and related global markets, including index quotes, watchlists, stock details, tax and fee calculations, and news sentiment summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Stock Toolkit provides an agent-facing market dashboard for A-share, Hong Kong, U.S., Japan and Korea indices, precious metals, watchlists, stock detail analysis, news sentiment, trading fee calculations, and configurable data sources.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darbling](https://clawhub.ai/user/darbling)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to ask an agent for market snapshots, stock details, watchlist updates, transaction cost estimates, and news sentiment summaries. Outputs are informational and should be checked against authoritative financial sources before trading or investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols, stock names, sector terms, and news queries may be sent to public financial and news services or user-configured data sources. <br>
-Mitigation: Use only trusted API keys, proxies, and custom endpoints, and avoid sending confidential portfolio or business-sensitive queries. <br>
-Risk: Quote data, fee calculations, and keyword-based sentiment labels may be delayed, incomplete, or misleading if used as trading signals. <br>
-Mitigation: Treat all results as informational, verify against authoritative market or brokerage data, and do not rely on the skill as investment advice. <br>
+## Use Case:
 
+Developers and external users use this skill to query China and global market snapshots, manage watchlists, fetch news sentiment, and calculate A-share trading fees. It is informational market tooling and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/darbling/china-stock-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with command examples and market/news summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use public or user-configured market and news data sources, optional API keys, proxies, and a local HTML dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata; artifact changelog also lists v3.0.0) <br>
+Risk: Remote news data rendered in the HTML dashboard may execute script if a provider or returned item is compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not expose or rely on the news dashboard until remote fields are rendered with textContent or sanitized HTML and all outbound links are validated.
+
+Risk: Market and news queries are sent to third-party providers.
+
+Mitigation: Review data-provider exposure before use and avoid submitting sensitive portfolio or account information through queries.
+
+Risk: Financial market data, sentiment labels, and fee calculations may be delayed, incomplete, or inaccurate.
+
+Mitigation: Use outputs as informational context only and verify prices, fees, and decisions against authoritative financial sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darbling/skills/china-stock-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON market data, Markdown guidance, shell command examples, configuration snippets, and a local HTML dashboard file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query third-party market and news data providers; some expanded markets require user-provided API keys or proxy configuration.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

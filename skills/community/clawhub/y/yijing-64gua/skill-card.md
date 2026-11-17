@@ -1,44 +1,63 @@
-## Description: <br>
-Yijing Upload helps agents perform I Ching hexagram lookup and interpretation from six-line numeric inputs, including classical text presentation, Zhu Xi and Nan Huaijin style readings, daily guidance, and simple statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides I Ching 64-hexagram divination analysis with six-line number decoding, classical text lookup, Zhu Xi and Nan Huaijin style interpretations, everyday advice, and usage statistics.
 
-## Publisher: <br>
-[qiuzijun-nm](https://clawhub.ai/user/qiuzijun-nm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuzijun-nm](https://clawhub.ai/user/qiuzijun-nm)
 
-## Use Case: <br>
-External users and agents use this skill to decode I Ching six-line numeric inputs, retrieve bundled hexagram texts, and generate cultural or entertainment-oriented readings and practical advice. It should not be treated as medical, legal, financial, safety, or other professional guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may record a user's question and reading result in a local log. <br>
-Mitigation: Avoid entering sensitive personal details, and review or clear the local reading log according to the deployment's retention expectations. <br>
-Risk: I Ching readings and daily advice can be mistaken for professional guidance. <br>
-Mitigation: Present outputs as cultural or entertainment-oriented interpretation, not as medical, legal, financial, safety, or other professional advice. <br>
+## Use Case:
 
+External users and developers can use this skill to generate or interpret I Ching readings, look up the 64 hexagrams and line texts, and receive cultural-study oriented advice across everyday topics. Outputs should be treated as cultural interpretation rather than professional medical, legal, financial, or personal advice.
 
-## Reference(s): <br>
-- [Yijing Upload on ClawHub](https://clawhub.ai/qiuzijun-nm/skills/yijing-64gua) <br>
-- [4096 hexagram lookup and interpretation table](references/yijing-4096.csv) <br>
-- [64 hexagram classical text table](references/yijing-full.csv) <br>
-- [2026 lunar calendar reference](references/yijing-2026-calendar.csv) <br>
-- [Reading statistics data](references/yijing-stats.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with explanatory sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled CSV and JSON reference data and may update a local reading log or statistics file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can keep a local divination history, which may contain personal questions or sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering highly private details, disable or clean local logging when privacy matters, and review retained log files before sharing the artifact.
+
+Risk: Reading subjects stored in CSV may be interpreted as formulas by spreadsheet software.
+
+Mitigation: Neutralize formula-like user subjects before opening logs in spreadsheet tools.
+
+Risk: Divination interpretations may be mistaken for professional advice.
+
+Mitigation: Present outputs as cultural interpretation and direct users to qualified professionals for medical, legal, financial, or similarly high-stakes decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuzijun-nm/skills/yijing-64gua)
+- [Publisher profile](https://clawhub.ai/user/qiuzijun-nm)
+- [yijing-4096.csv](references/yijing-4096.csv)
+- [yijing-full.csv](references/yijing-full.csv)
+- [yijing-2026-calendar.csv](references/yijing-2026-calendar.csv)
+- [yijing-log.csv](references/yijing-log.csv)
+- [yijing-stats.json](references/yijing-stats.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown-style narrative with lookup tables and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include classical Chinese excerpts, plain-language interpretation, topic-specific advice, and local reading statistics.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

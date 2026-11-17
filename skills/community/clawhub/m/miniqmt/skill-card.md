@@ -1,46 +1,59 @@
-## Description: <br>
-miniQMT is a lightweight quantitative trading terminal skill that helps agents use the xtquant SDK for market data access and programmatic trading from external Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+miniQMT helps agents provide Python guidance for market data access and programmatic trading through the xtquant SDK and a logged-in miniQMT brokerage terminal.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and trading-system operators use this skill to understand miniQMT setup, connect Python code to xtquant market-data and trading APIs, and draft examples for brokerage-enabled quantitative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward live brokerage trading, automated strategies, account-data export, and bank-linked account actions. <br>
-Mitigation: Use paper or test accounts first and require explicit human approval for every live order, automated strategy, transfer, or account-data export. <br>
-Risk: Examples and generated code may handle brokerage, bank, fund, or account credentials unsafely if copied into a live workflow. <br>
-Mitigation: Never hardcode bank, fund, or brokerage passwords; store secrets outside generated examples and review code before execution. <br>
-Risk: Trading examples may write account or market data to local paths that expose sensitive information. <br>
-Mitigation: Restrict export paths, avoid shared directories, and review any generated file output before running it with real account data. <br>
+## Use Case:
 
+Developers, quantitative trading users, and external agent users use this skill to configure xtquant, retrieve miniQMT market data, and draft Python examples for broker-connected trading workflows.
 
-## Reference(s): <br>
-- [ClawHub miniQMT skill page](https://clawhub.ai/coderwpf/miniqmt) <br>
-- [xtquant native API start guide](http://dict.thinktrader.net/nativeApi/start_now.html) <br>
-- [xtdata usage guide](http://dict.thinktrader.net/nativeApi/xtdata.html) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact quick reference](artifact/QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include examples for live trading, account queries, data export, and local miniQMT or xtquant setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill includes copy-ready examples for live trading, order cancellation, transfers, and bank-balance workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation, paper-trading checks, and position or transfer limits before running generated examples against a real account.
+
+Risk: The skill expects access to a logged-in miniQMT brokerage terminal and account-specific paths or identifiers.
+
+Mitigation: Keep credentials and account identifiers out of prompts and committed files, and run examples only in the intended brokerage environment.
+
+Risk: The security summary notes insufficient safety controls and confirmation guidance for financial operations.
+
+Mitigation: Add dependency pinning, error handling, and account-level safeguards before using the skill for production trading workflows.
+
+## Reference(s):
+
+- [ClawHub miniQMT Skill Page](https://clawhub.ai/coderwpf/skills/miniqmt)
+- [XtQuant Native API Documentation](http://dict.thinktrader.net/nativeApi/start_now.html)
+- [miniQMT xtdata Usage Guide](http://dict.thinktrader.net/nativeApi/xtdata.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include examples that call xtquant against a logged-in miniQMT terminal.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact files report 1.2.0 and 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

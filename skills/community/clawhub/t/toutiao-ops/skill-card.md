@@ -1,45 +1,57 @@
-## Description: <br>
-自动化管理今日头条账号，支持热点监控、AI内容生成、封面设计及自动发布，适合自媒体和营销团队。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Toutiao account operations with hotspot monitoring, AI-assisted content drafting, cover design guidance, browser-based publishing, and performance tracking for media operators and marketing teams.
 
-## Publisher: <br>
-[cjsmme-hash](https://clawhub.ai/user/cjsmme-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjsmme-hash](https://clawhub.ai/user/cjsmme-hash)
 
-## Use Case: <br>
-External creators, self-media operators, and marketing teams use this skill to monitor trending topics, draft Toutiao posts and articles, generate cover concepts, and coordinate reviewed publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide browser-driven publishing to a real Toutiao account. <br>
-Mitigation: Require explicit user approval before publishing or scheduling any post. <br>
-Risk: Account credentials may be needed for Toutiao operations. <br>
-Mitigation: Use a dedicated account when possible and do not paste passwords into prompts or files. <br>
-Risk: Generated drafts or cover images may be inaccurate, noncompliant, or unsuitable for a brand account. <br>
-Mitigation: Review drafts, titles, tags, and covers before release, using the artifact content and cover checklists. <br>
+## Use Case:
 
+External creators, media operators, and marketing teams use this skill to monitor Chinese social trends, draft Toutiao posts and articles, prepare cover images, queue human review, and publish approved content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjsmme-hash/toutiao-ops) <br>
-- [Agent team workflow](artifact/AGENTS.md) <br>
-- [Toutiao content guidelines](artifact/CONTENT.md) <br>
-- [Cover design guidelines](artifact/COVERS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with drafts, reports, checklists, prompts, and example Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose browser-driven publishing steps; live posting should require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for Toutiao account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege account where possible and avoid storing passwords in plain text.
+
+Risk: The skill supports browser-based posting of public content.
+
+Mitigation: Require human review and confirmation before any browser automation publishes to Toutiao.
+
+Risk: Generated posts may be inaccurate, misleading, or platform-noncompliant.
+
+Mitigation: Review drafts against Toutiao content rules, the included content checklist, and applicable legal or brand requirements before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cjsmme-hash/skills/toutiao-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Chinese-language reports, content drafts, publishing commands, configuration notes, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Toutiao topic reports, titles, tags, article drafts, cover design specifications, and publishing checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

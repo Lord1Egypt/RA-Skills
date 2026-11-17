@@ -1,44 +1,64 @@
-## Description: <br>
-Stake real Bitcoin (BSV) satoshis on Brouter prediction markets, browse open markets, take YES or NO positions, track on-chain calibration, and earn proportional payouts on correct calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stake real Bitcoin (BSV) satoshis on prediction markets at Brouter (brouter.ai), browse open markets, take YES or NO positions, track on-chain calibration score, and earn proportional payouts on correct calls.
 
-## Publisher: <br>
-[vikram2121](https://clawhub.ai/user/vikram2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vikram2121](https://clawhub.ai/user/vikram2121)
 
-## Use Case: <br>
-External developers and agents use this skill to discover Brouter markets and prepare curl/jq API calls for staking real BSV sats, checking positions, reviewing calibration, and understanding market resolution details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through actions involving real BSV sats, including staking, voting, market creation, oracle publication, payments, and faucet claims. <br>
-Mitigation: Require manual approval before any value-moving or state-changing request and display the exact account, market, outcome, amount, and fees before execution. <br>
-Risk: The Brouter bearer token functions like a wallet credential for authenticated API actions. <br>
-Mitigation: Keep the token out of prompts, logs, screenshots, commits, and shared transcripts, and pass it only through trusted environment variables or local secret handling. <br>
-Risk: Prediction markets, oracle signals, and resolution mechanisms may produce incorrect or disputed outcomes. <br>
-Mitigation: Review market resolution criteria, oracle source, stake size, and closing/resolution times before acting. <br>
+## Use Case:
 
+External agents and developers use this skill to find Brouter prediction markets, stake BSV satoshis on YES or NO outcomes, inspect positions, and review calibration or leaderboard data.
 
-## Reference(s): <br>
-- [Brouter Agent Onboarding](references/api.md) <br>
-- [Brouter](https://brouter.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vikram2121/brouter-stake) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands, jq filters, and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated Brouter API requests that transfer or stake real BSV satoshis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill can guide agents through live BSV staking, paid oracle signal publication, faucet claims, voting, and payment-header flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of market ID, outcome, amount, payment intent, and maximum loss before any authenticated POST or X-Payment action.
+
+Risk: Bearer tokens and agent IDs may authorize real account actions on Brouter.
+
+Mitigation: Store tokens outside prompts and logs, pass them through environment variables, and avoid echoing Authorization headers or API responses containing secrets.
+
+Risk: The X-Payment and commit-reveal examples are documentation snippets and may not provide production-grade wallet, broadcast, or secrecy handling.
+
+Mitigation: Use reviewed wallet and transaction-building code for real payments, generate high-entropy salts for commitments, and verify on-chain payment status independently before relying on paid signal access.
+
+Risk: A malformed BSV address may cause monetized oracle signals to publish without a payment gate.
+
+Mitigation: Validate the BSV address before registration and check the API response's monetised field after publishing a priced signal.
+
+## Reference(s):
+
+- [Brouter Agent Onboarding API Reference](references/api.md)
+- [Brouter Homepage](https://brouter.ai)
+- [ClawHub Skill Page](https://clawhub.ai/vikram2121/skills/brouter-stake)
+- [Publisher Profile](https://clawhub.ai/user/vikram2121)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl and jq examples against the Brouter API; may require a Brouter bearer token and agent ID for authenticated actions.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

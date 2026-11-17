@@ -1,0 +1,28 @@
+{
+  "name": "realmarsshot",
+  "version": "1.0.0",
+  "description": "Scientific multi-planetary exploration game skill. Earth analogs, machines, the Moon, biology, then humans. 真实火星计划 / Real Mars Shot.",
+  "keywords": [
+    "game",
+    "skill",
+    "mars",
+    "space",
+    "simulation",
+    "science",
+    "eclss",
+    "isru",
+    "火星",
+    "火种",
+    "太空"
+  ],
+  "author": "yumyumtum",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yumyumtum/real-mars-shot.git"
+  },
+  "homepage": "https://github.com/yumyumtum/real-mars-shot#readme",
+  "bugs": {
+    "url": "https://github.com/yumyumtum/real-mars-shot/issues"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "skill_name": "huawei-cloud-scm-cert-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "list SCM certificates (read-only)",
+      "command": "hcloud SCM ListCertificates --cli-region={region} --limit=10 --offset=0",
+      "expected": "GET /v3/scm/certificates returns certificates + total_count (or an empty list), rc=0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "fuzzy content filter (read-only)",
+      "command": "hcloud SCM ListCertificates --cli-region={region} --limit=10 --content=example",
+      "expected": "the API accepts --content (name/domain fuzzy search), rc=0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "pagination offset (read-only)",
+      "command": "hcloud SCM ListCertificates --cli-region={region} --limit=10 --offset=10",
+      "expected": "the API accepts --limit / --offset for paging, rc=0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "expiry window filter (read-only)",
+      "command": "hcloud SCM ListCertificates --cli-region={region} --limit=10 --expired_days_since=30",
+      "expected": "the API accepts --expired_days_since, rc=0",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

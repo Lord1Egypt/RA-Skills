@@ -1,41 +1,52 @@
-## Description: <br>
-Color usage guidelines and styling rules for HTML and CSS elements to ensure accessible, professional designs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides color usage guidelines and styling rules for HTML/CSS work so agents can choose accessible, professional backgrounds, text, buttons, cards, and gradients using the 60-30-10 rule.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and designers use this skill when creating or updating HTML/CSS styles, choosing accessible colors for web pages, and applying balanced color schemes to backgrounds, text, buttons, cards, and gradients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence visual style choices in generated HTML/CSS. <br>
-Mitigation: Review the resulting color choices against the product design system and accessibility requirements before shipping. <br>
+## Use Case:
 
+Developers and code-focused agents use this skill when creating or updating HTML/CSS styles to choose balanced, accessible color palettes for backgrounds, text, buttons, cards, and gradients.
 
-## Reference(s): <br>
-- [Color Tool](https://civicactions.github.io/uswds-color-tool/) <br>
-- [Government or Professional Color Standards](https://designsystem.digital.gov/design-tokens/color/overview/) <br>
-- [UI Color Palette Best Practices](https://www.interaction-design.org/literature/article/ui-color-palette) <br>
-- [Color Combination Resource](https://www.figma.com/resource-library/color-combinations/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with CSS color examples and styling recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides non-executable design guidance and does not create files, run commands, or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill contains broad color bans that may conflict with explicit user requirements, brand guidelines, or accessibility-tested designs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as style preference guidance and override it when user requirements, brand guidelines, or tested accessibility decisions support a different color choice.
+
+## Reference(s):
+
+- [Color Tool](https://civicactions.github.io/uswds-color-tool/)
+- [Government or Professional Color Standards](https://designsystem.digital.gov/design-tokens/color/overview/)
+- [UI Color Palette Best Practices](https://www.interaction-design.org/literature/article/ui-color-palette)
+- [Color Combination Resource](https://www.figma.com/resource-library/color-combinations/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code]
+
+**Output Format:** [Markdown, text, or HTML/CSS code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools, API calls, or shell commands are required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

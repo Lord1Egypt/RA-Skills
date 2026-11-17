@@ -1,44 +1,59 @@
-## Description: <br>
-Fetches Toutiao hot-board entries and can save, query, and visualize hot news rankings with titles, heat values, links, covers, labels, cluster IDs, and categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Toutiao hot-list and trending-news data, including ranked titles, heat values, cleaned detail links, optional cover images, labels, cluster IDs, and categories.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch current Chinese hot-news rankings from Toutiao, inspect the returned ranking data, and optionally persist or visualize it for trend review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: One helper script can execute code from an unrelated local OpenClaw skill path. <br>
-Mitigation: Use the documented package-local scripts that call the bundled scripts/toutiao.js, and avoid scripts/fetch-toutiao.py unless it is fixed to reference only package-local code. <br>
-Risk: Generated HTML reports render external news data unsafely. <br>
-Mitigation: Treat generated HTML as untrusted until external data is escaped and links are validated. <br>
-Risk: The skill can store fetched history in local SQLite and HTML report files. <br>
-Mitigation: Delete data/toutiao.db and data/index.html when stored history is no longer needed. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch current Toutiao hot-board rankings and optionally persist them to a local SQLite database or generate an HTML report for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noah-1106/toutiao-hot) <br>
-- [Toutiao hot-board endpoint](https://www.toutiao.com/hot-event/hot-board/) <br>
-- [Toutiao website](https://www.toutiao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files, shell commands, guidance] <br>
-**Output Format:** [JSON hot-list data, terminal text output, SQLite data files, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default hot-list limit is 50 items; command input can request a different top-N limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML reports may render remote or tampered data unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not open generated reports from untrusted or modified data until HTML output safely escapes remote content.
+
+Risk: scripts/fetch-toutiao.py can execute code from a hard-coded external local skill path.
+
+Mitigation: Avoid that script unless it is changed to call the bundled Toutiao script in this artifact.
+
+Risk: Normal documented commands write a local SQLite database and HTML report under data/.
+
+Mitigation: Review generated local files before sharing, publishing, or opening them in a browser.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noah-1106/skills/toutiao-hot)
+- [Toutiao hot-board endpoint](https://www.toutiao.com/hot-event/hot-board/)
+- [Toutiao website](https://www.toutiao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [JSON hot-list records, terminal text, Markdown usage guidance, local SQLite data, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal commands fetch public Toutiao data and may write local files under data/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

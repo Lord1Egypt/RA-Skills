@@ -1,0 +1,13 @@
+{
+  "name": "safe-execution",
+  "version": "1.1.0",
+  "description": "防工具循环烧钱的自律准则:'事不过三'循环检测 + 任务费用预估 + 异常通道保护,保护用户余额。",
+  "author": "minmax",
+  "license": "MIT",
+  "tags": ["safety", "cost-control", "loop-detection", "best-practice"],
+  "homepage": "https://clawhub.ai/skills/safe-execution",
+  "repository": "https://github.com/openclaw/skills/safe-execution",
+  "createdAt": "2026-07-05",
+  "incident": "飞书 session 中 openclaw status 命令触发工具循环,10 元余额耗尽",
+  "minOpenclawVersion": "2026.6"
+}

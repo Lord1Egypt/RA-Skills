@@ -1,0 +1,87 @@
+【背景】代码在python的exec环境中运行，常用的数据和函数已经配置好了，不需要额外的数据读取和import，直接写算法代码。
+数据是pd.DataFrame，每一列是一只股票的数据，为避免停牌问题，计算数据的nan置底处理了，行时间不对齐禁止axis=1的计算。
+结果由out=***带出，会自动恢复行时间对齐结构。所有技能使用同一代码环境。
+【Python exec环境】
+- d 是字典，key=字段名，value=pd.DataFrame,默认数据：close, open, high, low, vol, amount, adj_factor
+- col_attrs 是字典，key=属性名，value=pd.Series,数据为和股票属性相关的，是数值或字符串
+- 可用字段：由用户数据库决定，使用available_data查询
+- 复权价格 = d['close'] * d['adj_factor']
+- 可用自定义函数：hold_until, time_at, time_between, time_in, row_rank, row_top_n, row_bottom_n
+- 禁止：import / for/while循环 / df.apply() / lambda / 递归/ axis=1/ df.loc/df.iloc
+- 内置：np, pd
+【输出规则】
+out = 布尔DataFrame → True位置绘制短线/回测
+out = 数值DataFrame → 用于颜色/权重/平移控制/因子
+
+【自定义函数】
+1. hold_until(buy, sell) — 生成持仓矩阵
+   从买入信号开始持仓，直到遇到卖出信号。买卖同日则放弃该买点。
+   - buy: bool DataFrame，买入信号（仅取每段第一个）
+   - sell: bool DataFrame，或 list/tuple of DataFrame（多个卖点自动 OR 合并）
+   - 返回: bool DataFrame
+   示例：
+     # 单卖点
+     buy = (D.shift(1) <= 20) & (D > 20)
+     sell = (D.shift(1) >= 80) & (D < 80)
+     out = hold_until(buy, sell)
+     # 多卖点
+     out = hold_until(buy, [sell1, sell2])
+
+2. entry_check(window, conditions, mode="keep") — 买入窗口条件检测
+   在连续窗口内检测条件信号，输出指定区域。用于过滤买入机会。
+   - window: bool DataFrame，连续评估区间
+   - conditions: bool DataFrame 或 list，要检测的信号（多个自动 OR）
+   - mode: keep / discard / left / right / start / end / next
+   示例：
+     # 买入前10天内是否出现过放量，只保留末尾有效买点
+     window = buy.shift(10, fill_value=False).rolling(11).max().astype(bool)
+     volume_spike = d['vol'] > d['vol'].rolling(20).mean() * 2
+     out = entry_check(window, volume_spike, mode="end")
+
+【时间函数】
+
+3. get_time() — 返回 DataFrame，每个单元格为时间datetime64[us]
+4. get_time_id() — 返回 DataFrame，每个单元格为数据库内时间序号，需要按时间排序使用这个函数
+5. time_at(rq) — 匹配指定时间，rq 为整数或负数（如 time_at(-1) 最后一天）
+6. time_between(srq, erq) — 匹配时间区间（左闭右开）
+7. time_in(rqs) — 匹配多个指定时间
+
+【排名函数】
+
+8. row_rank(df, split=[]) — 按行截面排名，返回百分位值（0~1）
+   - split: 板块切分点，如 split=[400000, 700000] 按代码切为三组独立排名
+   示例：
+     rank_all = row_rank(d['vol'])
+     rank_by_board = row_rank(d['vol'], split=[400000, 700000])
+
+9. row_top_n(df, n) — 每行（同一时间截面）最大的 n 个为 True
+   - df: 数值 DataFrame
+   - n: 每行取前 n 个最大值
+   - 返回: bool DataFrame，True 位置为该时间截面值最大的 n 只股票
+   示例：
+     out = row_top_n(d['vol'], 3)       # 每天成交量最大的3只股票
+     out = row_top_n(d['总市值'], 10)    # 每天市值最大的10只股票
+
+10. row_bottom_n(df, n) — 每行（同一时间截面）最小的 n 个为 True
+    - df: 数值 DataFrame
+    - n: 每行取前 n 个最小值
+    - 返回: bool DataFrame，True 位置为该时间截面值最小的 n 只股票
+    示例：
+      out = row_bottom_n(d['vol'], 3)       # 每天成交量最小的3只股票
+      out = row_bottom_n(d['总市值'], 10)    # 每天市值最小的10只股票
+11. rolling_slope(df,n) → 说清返回原始斜率 beta（量纲=元/天），★明确"函数不含÷df"，若要无量纲（如 BETA_n=Slope/close）必须调用方自己 /ac，并给示例 rolling_slope(ac,n)/ac。
+12. rolling_rsquare(df,n) — df过去n日线性回归 R²（趋势线性度）
+13. rolling_resi(df,n) → 返回原始残差（最新真实值−拟合值，量纲=元），★同样"不含÷df"，要无量纲就调用方 /ac，示例 rolling_resi(ac,n)/ac。
+14. rolling_imax(df,n) — 过去n日最大值距今日天数/n
+15. rolling_imin(df,n) — 过去n日最小值距今日天数/n
+16. rolling_rank(df,n) — 过去n日内的排序值，建议用df.rolling(n).rank(pct=True, method='max').where(df.notna())
+17. rolling_decay_linear(df,n) — 过去n日的线性衰减，别名rolling_wma(df,n)加权移动平均线
+18. rolling_regbeta(df_X,df_Y,n) — 过去n日的回归贝塔
+19. get_stock_index(index_code, field='close',out_type='DataFrame') — 获取指数数据，并拷贝成和d['close']相同结构的二维矩阵
+    - index_code要和指数数据库symbol匹配，默认数据库的指数只存6为数值，如：get_index_matrix('399300')
+    - 默认获取可以直接参与计算的DataFrame，需要Series时out_type='Series'
+20. row_mean(df) ->pd.Series — 按相同日期求均值
+21. rolling_regbeta(Y:df, X:df, n) — 
+22. rolling_regresi(df, factors:list[pd.Series], window) — 
+23. row_scale(df, a=1) — 按行缩放 DataFrame，使得每行的绝对值之和等于 a。
+24. row_indneutralize(df, group_series) — 横截面组内中性化：每个元素减去其所在组在该时间截面的均值。

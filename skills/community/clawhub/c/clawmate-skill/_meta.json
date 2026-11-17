@@ -1,6 +1,46 @@
 {
-  "ownerId": "kn73h0b3vxspe7143ad7dk07xn822pwv",
-  "slug": "clawmate-skill",
-  "version": "2.7.2",
-  "publishedAt": 1782490306094
+  "name": "clawmate",
+  "version": "2.9.0",
+  "description": "ClawMate 文件管理 + 预览 + 反馈闭环 + 项目管理。GitHub: https://github.com/updatedb/clawmate",
+  "author": "openclaw",
+  "license": "MIT",
+  "security": {
+    "data_scope": "local_only",
+    "third_party_transmission": false,
+    "filesystem_modification": true,
+    "user_confirmation_required": [
+      "init",
+      "do"
+    ]
+  },
+  "homepage": "https://github.com/updatedb/clawmate",
+  "tags": [
+    "file-manager",
+    "preview",
+    "feedback",
+    "clawmate",
+    "agent"
+  ],
+  "capabilities": [
+    "clawmate_link",
+    "clawmate_init",
+    "clawmate_plan",
+    "clawmate_list",
+    "clawmate_feed",
+    "clawmate_do",
+    "clawmate_project"
+  ],
+  "commands": {
+    "clawmate link <filename>": "搜索文件并生成可点击的预览链接",
+    "clawmate init [root] <project>": "项目初始化与前期梳理（Phase I-V），含 project-harness 治理骨架",
+    "clawmate plan [root] <project>": "规划/更新分层项目计划（CLAWLIST）",
+    "clawmate list [root_id]": "列出指定 root 下所有项目",
+    "clawmate feed [status] [filename] [date]": "查询 feedback 列表",
+    "clawmate do [feedback_id]": "处理待处理 feedback",
+    "clawmate project <projectname>": "为项目创建新会话，切换 workspace 到项目目录，读取顶层介绍"
+  },
+  "dependencies": {
+    "clawmate": ">=1.5.0",
+    "openclaw": ">=2026.6.1"
+  }
 }

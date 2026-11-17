@@ -1,42 +1,54 @@
-## Description: <br>
-Searches text files or stdin for relevant lines, scores matches by keyword and phrase relevance, and returns matching excerpts with optional context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+text-scan helps agents quickly find and score relevant lines with surrounding context in local text files using keyword and phrase matching.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-Developers and agent operators use this skill to quickly locate relevant lines in large notes, logs, documents, or stdin before deciding whether to read the full file context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning private files can expose sensitive excerpts in terminal output or saved result files. <br>
-Mitigation: Run the skill only on files the agent is permitted to inspect, review output before sharing it, and avoid using --output for sensitive results unless the destination is controlled. <br>
-Risk: Line-level matches may omit surrounding context needed to interpret a result correctly. <br>
-Mitigation: Use the returned line numbers and context window as a triage aid, then read the full source file section before relying on the excerpt. <br>
+## Use Case:
 
+Developers and agents use this skill to search notes, logs, Markdown files, and other local text documents for relevant lines before deciding whether to read full file context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/indigas/text-scan) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact text-scan script](artifact/scripts/text-scan.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Plain text excerpts by default, brief line summaries when requested, or JSON arrays for programmatic use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes line numbers, scores, matched terms, and configurable surrounding context; can write results to stdout or a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scanning very large files or unbounded stdin may consume substantial memory because the script reads input into memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use bounded files where practical, limit result counts, and avoid unbounded stdin for very large inputs.
+
+Risk: The --output option can overwrite the specified output file.
+
+Mitigation: Choose output paths deliberately and avoid pointing --output at important existing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indigas/skills/text-scan)
+- [Publisher profile](https://clawhub.ai/user/indigas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text, brief line summaries, or JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include line numbers, relevance scores, matched terms, and surrounding context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

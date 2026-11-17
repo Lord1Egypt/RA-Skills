@@ -1,41 +1,53 @@
-## Description: <br>
-在 macOS 本机从本地壁纸文件夹中立即换壁纸，或安装 launchd 定时轮换任务的可执行技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs local macOS scripts to switch desktop wallpaper from a user-provided image folder immediately or install a launchd task for scheduled wallpaper rotation.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External macOS users use this skill to rotate desktop wallpaper from a trusted local image folder, either immediately or through a launchd schedule. It is intended for local desktop automation and does not fetch images from the Internet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Path expansion has a command-injection issue when handling user-provided paths. <br>
-Mitigation: Install only after the path-expansion bug is fixed by removing eval, and use trusted local wallpaper folders with ordinary names. <br>
-Risk: Installing automatic rotation creates a persistent macOS LaunchAgent that continues running until removed. <br>
-Mitigation: Install the LaunchAgent only with explicit user intent, disclose the plist path, and use the bundled uninstall script to remove ~/Library/LaunchAgents/com.openclaw.wallpaperrotator.plist. <br>
+## Use Case:
 
+External users and desktop automation agents use this skill on macOS to inspect a local wallpaper folder, switch to a random wallpaper, or install and remove a scheduled launchd rotation task.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/wallpaper-auto-switch-pro-executable) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text execution results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local macOS execution with bash, osascript, find, and gshuf/shuf-compatible random selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact CHANGELOG lists 3.0.0) <br>
+Risk: The scripts contain confirmed command-injection risks when handling user-provided paths or filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only trusted wallpaper directories and filenames, and avoid paths containing shell or XML metacharacters.
+
+Risk: Installing the automation creates a persistent user LaunchAgent that continues running on a schedule.
+
+Mitigation: Install the LaunchAgent only after confirming the schedule and directory, and use the provided uninstall command when automatic rotation is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/wallpaper-auto-switch-pro-executable)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report local directory paths, selected wallpaper file paths, launchd plist paths, command success, and explicit failure reasons.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

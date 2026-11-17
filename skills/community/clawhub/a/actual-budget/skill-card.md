@@ -1,40 +1,57 @@
-## Description: <br>
-Query and manage personal finances via the official Actual Budget Node.js API for budget queries, transaction imports and exports, account management, categorization, rules, schedules, and bank sync for self-hosted Actual Budget instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage personal finances through the official Actual Budget Node.js API for self-hosted Actual Budget instances.
 
-## Publisher: <br>
-[thisisjeron](https://clawhub.ai/user/thisisjeron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thisisjeron](https://clawhub.ai/user/thisisjeron)
 
-## Use Case: <br>
-External users and developers use this skill to query and manage a self-hosted Actual Budget instance through the official Node.js API while keeping credentials in the runtime environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change financial records when provided Actual Budget credentials. <br>
-Mitigation: Store credentials outside chat and repositories, back up the budget, and require clear confirmation before imports, account changes, rules, schedules, bank sync, or api.sync(). <br>
-Risk: Financial data and credentials may be exposed in agent responses or generated scripts. <br>
-Mitigation: Redact passwords, sync IDs, encryption passwords, raw account data, and full transaction exports unless the user explicitly requests sensitive output. <br>
+## Use Case:
 
+Developers and external users use this skill to help an agent query, import, export, categorize, and update data in self-hosted Actual Budget instances while keeping credentials in the runtime environment.
 
-## Reference(s): <br>
-- [Actual Budget ClawHub release](https://clawhub.ai/thisisjeron/actual-budget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only analysis, proposed mutations, and credential-handling guidance for Actual Budget workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can access sensitive Actual Budget credentials and financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private credentials file or environment wrapper with restrictive permissions, keep it out of repositories, and redact credentials and full transaction exports unless explicitly requested.
+
+Risk: Mutating operations can change accounts, transactions, categories, rules, schedules, budget amounts, or bank sync state.
+
+Mitigation: Confirm whether the task is mutating, summarize intended changes before applying them, sync only after intended writes, and shut down the API after use.
+
+Risk: Budget data may be cached locally through ACTUAL_DATA_DIR or the default cache path.
+
+Mitigation: Choose and protect the cache directory deliberately, and clean or restrict it according to the user's data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub Actual Budget skill page](https://clawhub.ai/thisisjeron/skills/actual-budget)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should redact credentials, minimize sensitive financial data, and summarize mutating actions before execution.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

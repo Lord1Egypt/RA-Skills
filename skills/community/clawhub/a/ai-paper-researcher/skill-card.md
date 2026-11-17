@@ -1,44 +1,57 @@
-## Description: <br>
-An arXiv paper search engine for scientific researchers that supports broad and top-tier-filtered search, relevance and date sorting, duplicate checks, PDF downloads, and local CSV library management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An arXiv paper search engine designed specifically for scientific researchers. Supports dual modes: "Broad Search" and "Top-Tier Strict Filtering", along with relevance and date sorting. Automatically checks for duplicates, downloads PDFs, and maintains a local CSV paper library.
 
-## Publisher: <br>
-[tartykisser](https://clawhub.ai/user/tartykisser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tartykisser](https://clawhub.ai/user/tartykisser)
 
-## Use Case: <br>
-Researchers, developers, and AI practitioners use this skill to search arXiv for AI papers, choose broad or top-tier-filtered retrieval, download selected PDFs, and maintain a local paper library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads external arXiv PDFs and writes them to the local workspace. <br>
-Mitigation: Use an isolated Python environment and workspace, and review candidate papers before download when storage or privacy matters. <br>
-Risk: The skill persists downloaded-paper history in paper_list.csv. <br>
-Mitigation: Periodically inspect or clear paper_list.csv if retained download history is not desired. <br>
-Risk: The skill depends on Python packages and network access to query arXiv and fetch PDFs. <br>
-Mitigation: Install dependencies in an isolated environment and review dependency versions before deployment. <br>
+## Use Case:
 
+Researchers, developers, and AI practitioners use this skill to search arXiv for AI papers, filter results by broad relevance or top-tier venue acceptance, download selected PDFs, and maintain a local deduplicated paper library.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tartykisser/ai-paper-researcher) <br>
-- [arxiv-mcp upstream acknowledgement](https://github.com/Ractorrr/arxiv-mcp) <br>
-- [Python downloads](https://www.python.org/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, API Calls, Guidance] <br>
-**Output Format:** [Markdown summaries with shell commands, JSON tool output, downloaded PDF files, and CSV records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads selected arXiv PDFs and records downloaded paper metadata in a local CSV library.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can contact arXiv, download PDFs, and create or append files in a local paper_list library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled workspace, monitor disk usage for large downloads, and review saved files before relying on them.
+
+Risk: Top-tier filtering depends on arXiv comment metadata and agent review of venue matches.
+
+Mitigation: Review selected papers and venue acceptance claims before using the results for formal research decisions.
+
+Risk: Runtime behavior depends on Python packages used for arXiv access and HTTP downloads.
+
+Mitigation: Pin and review dependencies before installation in shared or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tartykisser/skills/ai-paper-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown summary with shell command usage and JSON results from the arXiv CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or append local CSV records and save downloaded PDF files in a paper_list library.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

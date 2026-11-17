@@ -1,0 +1,25 @@
+{
+  "call_id": "test_005",
+  "userid": "zhaoliu",
+  "direction": "outbound",
+  "state": "speaking",
+  "confidence": 0.9,
+  "asr_text": "测试内容",
+  "pending_confirmation": "",
+  "history": [
+    {
+      "role": "agent",
+      "content": "测试",
+      "time": "2026-07-15T16:14:21.940032"
+    },
+    {
+      "role": "user",
+      "content": "测试内容",
+      "confidence": 0.9,
+      "time": "2026-07-15T16:14:21.941068"
+    }
+  ],
+  "start_time": 1784103261.9391968,
+  "last_activity": 1784103261.941067,
+  "turn_count": 1
+}

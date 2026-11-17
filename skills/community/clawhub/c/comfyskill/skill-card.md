@@ -1,42 +1,53 @@
-## Description: <br>
-Send prompts to a local ComfyUI instance to generate images based on user descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends prompts to a local ComfyUI instance to generate images based on user descriptions.
 
-## Publisher: <br>
-[edward-hsiao](https://clawhub.ai/user/edward-hsiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edward-hsiao](https://clawhub.ai/user/edward-hsiao)
 
-## Use Case: <br>
-Developers and creators use this skill to have an agent submit text-to-image prompts to a trusted ComfyUI endpoint and start image generation from a configured workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt and workflow data are sent to a ComfyUI endpoint. <br>
-Mitigation: Use only a local or otherwise trusted COMFYUI_ENDPOINT. <br>
-Risk: Generated images may be saved by ComfyUI according to the workflow. <br>
-Mitigation: Review WORKFLOW_PATH and the ComfyUI workflow output settings before use. <br>
-Risk: Network use is not formally permission-scoped. <br>
-Mitigation: Install only when endpoint access is intended and review the configured endpoint before execution. <br>
+## Use Case:
 
+Developers and agent users can use this skill to send a text prompt to a local ComfyUI service and receive a short status message after image generation is queued.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edward-hsiao/comfyskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [Plain text status message after submitting a JSON workflow to ComfyUI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submits prompt and workflow data to the endpoint configured by COMFYUI_ENDPOINT; generated images are saved by ComfyUI according to the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Prompts are sent to a configured ComfyUI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when sending prompts to ComfyUI is intended, check COMFYUI_ENDPOINT and WORKFLOW_PATH before use, and avoid prompts containing secrets or sensitive personal data.
+
+Risk: The current implementation appears brittle because prompt handling and workflow file shape are inconsistent.
+
+Mitigation: Review the workflow path and prompt substitution behavior before relying on the skill in a production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edward-hsiao/skills/comfyskill)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [String]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a short status message after posting the prompt to ComfyUI.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

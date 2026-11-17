@@ -1,41 +1,55 @@
-## Description: <br>
-Provides guidance and curl examples for using VCG's TranslateFlow API to translate text, documents, websites, and localized content across many languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for signing up for and calling VCG's TranslateFlow API to translate text, documents, websites, and localized content.
 
-## Publisher: <br>
-[Jbennett111](https://clawhub.ai/user/Jbennett111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbennett111](https://clawhub.ai/user/jbennett111)
 
-## Use Case: <br>
-External users and developers use this skill to prepare translation requests, manage API-key setup, and call TranslateFlow endpoints for text, batch, document, website, and domain-specific translation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can route user email addresses, text, documents, URLs, and CMS content to an external translation service without clear privacy or consent boundaries. <br>
-Mitigation: Have the agent ask before sending user content to the provider and confirm the provider's privacy and retention terms before use. <br>
-Risk: Legal, medical, confidential, or regulated material may require stricter handling than the skill documents. <br>
-Mitigation: Avoid using the skill for regulated or sensitive material unless the user has verified that the provider and workflow satisfy applicable requirements. <br>
-Risk: API keys used in curl commands could be exposed if pasted into shared logs, shell history, or generated files. <br>
-Mitigation: Store keys securely, avoid printing them in shared outputs, and use placeholders when showing commands back to the user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jbennett111/translateflow-api) <br>
+## Use Case:
 
+Developers and external users use this skill to route translation, localization, document translation, and language-detection requests through the TranslateFlow API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Text] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided TranslateFlow API key and may send user-provided content to an external API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private, regulated, proprietary, unpublished, or account-related content may be sent to the external TranslateFlow/VCG service.
+
+Mitigation: Review provider data handling and get appropriate approval before translating sensitive content; avoid submitting secrets or sensitive documents unless authorized.
+
+Risk: The skill asks for an email address to create an API key and includes API-key-based request examples.
+
+Mitigation: Confirm user consent before signup, store API keys securely, and avoid exposing keys in shared logs, prompts, or command history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jbennett111/skills/translateflow-api)
+- [TranslateFlow API key endpoint](https://translateflow.vosscg.com/v1/keys)
+- [TranslateFlow text translation endpoint](https://translateflow.vosscg.com/v1/translate)
+- [TranslateFlow language list endpoint](https://translateflow.vosscg.com/v1/languages)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API signup steps, curl requests, API key handling guidance, and translated content returned by the external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

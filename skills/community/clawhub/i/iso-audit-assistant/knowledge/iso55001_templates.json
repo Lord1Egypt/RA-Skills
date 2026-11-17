@@ -1,0 +1,23 @@
+{
+  "standard": "ISO 55001:2014 资产管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-AM-001", "name": "资产目标与规划程序", "name_en": "Asset Objectives & Planning", "clause": "6.2/6.3",
+     "meta": {"owner": "资产管理部门", "frequency": "年度"},
+     "sections": [
+       {"title": "1 目的", "content": "制定资产目标与配置规划，实现资产价值最大化。"},
+       {"title": "2 适用范围", "content": "适用于{org}关键实物资产的规划与管理。"},
+       {"title": "3 职责", "content": "3.1 资产管理部组织规划；3.2 使用部门提出需求；3.3 管理层审批。"},
+       {"title": "4 工作程序", "content": "4.1 明确资产组合与价值目标；4.2 制定资产配置策略；4.3 设定资产KPI（可用率/全寿命成本）；4.4 资源保障与实施。"}
+     ],
+     "high_voltage_check": ["hv-am-policy"]},
+    {"id": "SP-AM-002", "name": "资产生命周期控制程序", "name_en": "Asset Lifecycle Control", "clause": "8.2",
+     "meta": {"owner": "资产/运维部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "对资产全生命周期进行策划、运行与处置控制。"},
+       {"title": "2 适用范围", "content": "适用于{org}资产的获取、运行维护与退役。"},
+       {"title": "3 职责", "content": "3.1 资产部统筹；3.2 运维部执行；3.3 财务核定残值。"},
+       {"title": "4 工作程序", "content": "4.1 规划与采购（技术/经济评价）；4.2 验收与建账；4.3 运行维护策略（预防性/预测性）；4.4 退役与处置；4.5 更新资产信息。"}
+     ],
+     "high_voltage_check": ["hv-am-lifecycle"]}
+  ]
+}

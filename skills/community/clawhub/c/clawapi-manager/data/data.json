@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "timestamp": "",
+  "health": {
+    "nodes": {},
+    "gateway": {},
+    "status": "unknown"
+  },
+  "cost": {
+    "today": 0,
+    "month": 0,
+    "by_model": {}
+  },
+  "quota": {
+    "providers": {}
+  },
+  "alerts": []
+}

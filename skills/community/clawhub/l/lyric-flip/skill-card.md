@@ -1,42 +1,60 @@
-## Description: <br>
-Rewrite song lyrics with a new theme while preserving the original rhyme scheme, line structure, and rhythmic skeleton. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lyric Flip helps agents rewrite songs around new themes while preserving rhyme scheme, line structure, rhythmic skeleton, and singability.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External creators and developers use this skill to collect reference lyrics and a target theme, extract the original structure, generate constrained replacement lyrics, check rhyme alignment, and optionally submit approved lyrics to SenseAudio for song generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lyric prompts, structure details, approved lyrics, style choices, and song-generation parameters are sent to SenseAudio using the user's API key. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, avoid private or confidential material, and review the generated prompt before API submission. <br>
-Risk: Reference or rewritten lyrics may include copyrighted material the user is not allowed to share or transform. <br>
-Mitigation: Use only material the user is permitted to provide and review generated lyrics before submitting them for music generation. <br>
+## Use Case:
 
+External users and creators use this skill to transform reference lyrics into themed parody or replacement lyrics with controlled structure and rhyme. The agent can guide skeleton extraction, lyric generation, rhyme checking, and optional SenseAudio music creation.
 
-## Reference(s): <br>
-- [ClawHub Lyric Flip release](https://clawhub.ai/scikkk/lyric-flip) <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio API key page](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and a final lyrics, audio, cover, and duration summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY plus curl and jq when using the SenseAudio API workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Lyric prompts, approved lyrics, and style information are sent to SenseAudio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content you are comfortable sharing with SenseAudio, avoid sensitive or private lyrics, and review usage costs before running API calls.
+
+Risk: The artifact includes shell examples that interpolate user-controlled lyric and prompt text into JSON payloads.
+
+Mitigation: Build JSON payloads with a proper JSON encoder and review commands before execution.
+
+Risk: The workflow may proceed from lyric generation to full music generation.
+
+Mitigation: Ask for explicit user confirmation before submitting approved lyrics for music creation.
+
+## Reference(s):
+
+- [SenseAudio Homepage](https://senseaudio.cn)
+- [SenseAudio API Key Page](https://senseaudio.cn/platform/api-key)
+- [ClawHub Skill Page](https://clawhub.ai/scikkk/skills/lyric-flip)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/scikkk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with structured lyric text, command examples, and generated media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY plus curl and jq for SenseAudio API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Guides an agent to lead a chapter-by-chapter deep study of books, PDFs, long articles, or study material through structured explanation, dialogue, and comprehension checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Deep Study guides agents to help users study books, PDFs, long articles, or learning materials through chapter-by-chapter, dialog-based deep reading, while this deprecated release redirects to an external canonical skill path.
 
-## Publisher: <br>
-[tanjinlimkelvin-dot](https://clawhub.ai/user/tanjinlimkelvin-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanjinlimkelvin-dot](https://clawhub.ai/user/tanjinlimkelvin-dot)
 
-## Use Case: <br>
-External users and learning-focused agents use this skill to turn a book, PDF, chapter, screenshot, or excerpt into a staged study session that emphasizes the author's argument, key concepts, likely misunderstandings, and understanding checks before application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This release is deprecated and points to a canonical skill outside the packaged artifact. <br>
-Mitigation: Confirm the canonical skill location before relying on this release for active study workflows. <br>
-Risk: Book PDFs, screenshots, notes, or excerpts may contain private or sensitive information. <br>
-Mitigation: Only provide study material that the user is comfortable having an agent process. <br>
-Risk: The reference prompts are mostly Chinese-language, which may affect usability for non-Chinese readers. <br>
-Mitigation: Confirm the desired study language before use and translate or adapt prompts where needed. <br>
+## Use Case:
 
+External users and developers use this skill to turn reading material into a staged study dialogue that emphasizes chapter structure, core claims, key arguments, and understanding checks. Because this release is deprecated and redirects to an external canonical skill path, review that target before relying on the behavior.
 
-## Reference(s): <br>
-- [Book Deep Study release page](https://clawhub.ai/tanjinlimkelvin-dot/book-deep-study) <br>
-- [chapter-by-chapter.md](references/chapter-by-chapter.md) <br>
-- [patterns.md](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown study plans, chapter breakdowns, bullet-point explanations, and dialogue prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: release evidence) <br>
+Risk: The deprecated entry point redirects the agent to an absolute filesystem path outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or use this release only after reviewing and trusting the canonical skill at that path.
+
+Risk: The reviewed package may not contain the behavior users expect from the public skill summary.
+
+Mitigation: Treat this package as a deprecated pointer and validate the canonical skill before depending on its study workflow.
+
+## Reference(s):
+
+- [Chapter-by-Chapter Book Deep Study Prompt](references/chapter-by-chapter.md)
+- [Patterns for Book Deep Study](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/tanjinlimkelvin-dot/skills/book-deep-study)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown study guidance with structured sections and questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are conversational and chapter-scoped; the deprecated package points to a canonical skill outside the reviewed artifact.]
+
+## Skill Version(s):
+
+3.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

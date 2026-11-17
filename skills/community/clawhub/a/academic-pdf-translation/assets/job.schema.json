@@ -1,0 +1,414 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/academic-pdf-translation/job.schema.json",
+  "title": "Academic PDF Translation Job",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "job_id",
+    "status",
+    "source",
+    "translation",
+    "route",
+    "review",
+    "quality",
+    "files",
+    "integration"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "initialized",
+        "translated",
+        "candidate",
+        "accepted",
+        "finalized"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": ["original_path", "job_path", "sha256", "page_count"],
+      "properties": {
+        "original_path": {"type": "string"},
+        "job_path": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "page_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "translation": {
+      "type": "object",
+      "required": ["source_language", "target_language"],
+      "properties": {
+        "source_language": {"type": "string"},
+        "target_language": {"type": "string"},
+        "mapping_mode": {
+          "enum": [
+            "frozen-source-units-v1",
+            "legacy-manual"
+          ]
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "required": ["recommended", "selected", "decision_reason"],
+      "properties": {
+        "recommended": {
+          "enum": [
+            "standard-auto",
+            "hybrid-complex-pages",
+            "custom-layout",
+            "scan-custom"
+          ]
+        },
+        "selected": {
+          "type": ["string", "null"],
+          "enum": [
+            "standard-auto",
+            "hybrid-complex-pages",
+            "custom-layout",
+            "scan-custom",
+            null
+          ]
+        },
+        "decision_reason": {
+          "type": "string"
+        },
+        "complex_content": {
+          "type": "object",
+          "required": [
+            "classification_confirmed",
+            "review_scope",
+            "heuristic_candidate_pages",
+            "confirmed_pages",
+            "notes"
+          ],
+          "properties": {
+            "classification_confirmed": {"type": "boolean"},
+            "review_scope": {"const": "all-source-pages"},
+            "heuristic_candidate_pages": {
+              "type": "array",
+              "items": {"type": "integer", "minimum": 1},
+              "uniqueItems": true
+            },
+            "confirmed_pages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["page", "kind", "method", "reason"],
+                "properties": {
+                  "page": {"type": "integer", "minimum": 1},
+                  "kind": {
+                    "enum": [
+                      "structured-table",
+                      "chart-or-diagram",
+                      "figure-with-text",
+                      "form-or-scale",
+                      "formula-dense",
+                      "screenshot-or-interface",
+                      "scan-or-ocr",
+                      "rotated-or-mixed-size",
+                      "reading-order-risk",
+                      "mixed-complex",
+                      "other-complex"
+                    ]
+                  },
+                  "method": {
+                    "enum": [
+                      "structured-table-rebuild",
+                      "semantic-grid-rebuild",
+                      "vector-rebuild",
+                      "image-text-localization",
+                      "ocr-region-rebuild",
+                      "custom-page-reflow",
+                      "manual-reading-order-rebuild"
+                    ]
+                  },
+                  "reason": {"type": "string", "minLength": 1}
+                }
+              }
+            },
+            "notes": {"type": "string"}
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "mode",
+        "choice_recorded",
+        "producer_id",
+        "max_review_rounds",
+        "max_repair_rounds"
+      ],
+      "properties": {
+        "mode": {
+          "enum": ["independent", "none", "precise"]
+        },
+        "choice_recorded": {
+          "type": "boolean"
+        },
+        "producer_id": {
+          "type": ["string", "null"]
+        },
+        "max_review_rounds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "max_repair_rounds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "required": [
+        "profile",
+        "body_font_min_pt",
+        "body_font_target_pt",
+        "leading_target",
+        "leading_exception_min",
+        "selected_fonts"
+      ],
+      "properties": {
+        "profile": {"type": "string"},
+        "body_font_min_pt": {"type": "number", "exclusiveMinimum": 0},
+        "body_font_target_pt": {
+          "type": "array",
+          "prefixItems": [
+            {"type": "number"},
+            {"type": "number"}
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "leading_target": {
+          "type": "array",
+          "prefixItems": [
+            {"type": "number"},
+            {"type": "number"}
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "leading_exception_min": {"type": "number", "exclusiveMinimum": 0},
+        "table_font_min_pt": {"type": "number", "exclusiveMinimum": 0},
+        "typography_search": {
+          "type": ["object", "null"],
+          "properties": {
+            "body_font_range_pt": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "body_font_step_pt": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "leading_range": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "leading_step": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "selection_priority": {
+              "enum": [
+                "leading-then-font",
+                "font-then-leading"
+              ]
+            },
+            "paragraph_space_em": {
+              "type": "number",
+              "minimum": 0
+            },
+            "h1_ratio_range": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "h2_ratio_range": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "heading_ratio_step": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "heading_max_lines": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "page_bottom_reserve_pt": {
+              "type": "number",
+              "minimum": 0
+            },
+            "max_densest_fill_ratio": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "reference_font_range_pt": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "reference_font_step_pt": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "reference_leading_range": {
+              "type": "array",
+              "prefixItems": [
+                {"type": "number"},
+                {"type": "number"}
+              ],
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "reference_leading_step": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "reference_paragraph_space_em": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "body_width_retention_min": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "body_width_loss_trigger": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "selected_fonts": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "required": [
+        "source_manifest",
+        "translation",
+        "retained_source",
+        "figure_inventory",
+        "layout_overrides",
+        "candidate",
+        "candidate_page_map",
+        "candidate_provenance",
+        "qa",
+        "independent_review",
+        "post_repair_confirmation",
+        "review_rounds",
+        "run_metrics",
+        "work_checkpoint",
+        "finalization"
+      ],
+      "additionalProperties": {"type": "string"}
+    },
+    "integration": {
+      "type": "object",
+      "required": ["zotero_required"],
+      "properties": {
+        "zotero_required": {"type": "boolean"}
+      }
+    },
+    "workspace": {
+      "type": "object",
+      "required": [
+        "container",
+        "batch",
+        "input",
+        "output",
+        "work",
+        "jobs",
+        "manifest",
+        "title",
+        "source_count",
+        "job"
+      ],
+      "properties": {
+        "container": {"type": "string", "minLength": 1},
+        "batch": {"type": "string", "minLength": 1},
+        "input": {"type": "string", "minLength": 1},
+        "output": {"type": "string", "minLength": 1},
+        "work": {"type": "string", "minLength": 1},
+        "jobs": {"type": "string", "minLength": 1},
+        "manifest": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "source_count": {"type": "integer", "minimum": 1},
+        "job": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "review": {
+            "properties": {
+              "mode": {
+                "enum": ["independent", "precise"]
+              }
+            },
+            "required": ["mode"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "properties": {
+              "producer_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

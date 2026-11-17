@@ -18,6 +18,12 @@
       "name": "Post2Prompt",
       "description": "Agent that converts LinkedIn post text into detailed English prompts for professional text-to-image generation.",
       "model": "post2prompt-v2"
+    },
+    {
+      "id": "negotiation-coach",
+      "name": "Negotiation Coach",
+      "description": "Coach de negociação para executivos: dá opinião e estratégia sobre como conduzir negociações de contratos de alto impacto (preparação, frameworks psicológicos, táticas).",
+      "model": "executive-contract-negotiation-coach"
     }
   ]
 }

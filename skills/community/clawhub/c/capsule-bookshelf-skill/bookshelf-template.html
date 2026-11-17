@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{BOOKSHELF_TITLE}}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F5F0E8;">
+
+<div style="width:600px;margin:0 auto;">
+<center>
+
+<!-- ========== 书架视图 ========== -->
+<div id="shelf-view">
+
+  <!-- 页眉 -->
+  <div style="padding:40px 0 20px 0;">
+    <div style="font-size:13px;color:#B8A99A;letter-spacing:3px;margin-bottom:8px;">CAPSULE BOOKSHELF</div>
+    <div style="width:40px;height:2px;background:#C4B5A5;margin:0 auto 16px;"></div>
+    <div style="font-size:22px;font-weight:bold;color:#3A2E2A;letter-spacing:2px;">{{BOOKSHELF_TITLE}}</div>
+    <div style="font-size:14px;color:#8C7B6E;margin-top:8px;">{{BOOKSHELF_SUBTITLE}}</div>
+  </div>
+
+  <!-- 统计条 -->
+  <div style="background:#FFF;border-radius:8px;padding:16px 24px;margin:0 20px 28px 20px;display:flex;justify-content:space-around;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+    <div style="text-align:center;">
+      <div style="font-size:26px;font-weight:bold;color:#C4A882;" id="stat-books">{{TOTAL_BOOKS}}</div>
+      <div style="font-size:12px;color:#B8A99A;margin-top:4px;">已读好书</div>
+    </div>
+    <div style="width:1px;background:#EDE8E0;"></div>
+    <div style="text-align:center;">
+      <div style="font-size:26px;font-weight:bold;color:#C4A882;" id="stat-authors">{{TOTAL_AUTHORS}}</div>
+      <div style="font-size:12px;color:#B8A99A;margin-top:4px;">位作者</div>
+    </div>
+    <div style="width:1px;background:#EDE8E0;"></div>
+    <div style="text-align:center;">
+      <div style="font-size:12px;color:#B8A99A;margin-top:4px;">持续生长</div>
+      <div style="font-size:16px;font-weight:bold;color:#C4A882;">{{LAST_UPDATED}}</div>
+    </div>
+  </div>
+
+  <!-- 卡片区 -->
+  <div style="padding:0 20px;" id="card-list">
+{{#each CAPSULES}}
+{{/each}}
+  </div>
+
+  <!-- 页脚 -->
+  <div style="padding:36px 0 40px 0;">
+    <div style="width:30px;height:1px;background:#D0C5B8;margin:0 auto 12px;"></div>
+    <div style="font-size:12px;color:#C4B5A5;">书摘胶囊的归处</div>
+    <div style="font-size:11px;color:#D5CCC2;margin-top:4px;">{{GENERATE_DATE}} 更新</div>
+  </div>
+
+</div>
+
+<!-- ========== 阅读视图（默认隐藏） ========== -->
+<div id="reading-view" style="display:none;">
+
+  <!-- 返回栏 -->
+  <div style="padding:16px 20px;text-align:left;border-bottom:1px solid #EDE8E0;margin-bottom:8px;">
+    <button onclick="backToShelf()" style="background:none;border:none;color:#C4A882;font-size:14px;cursor:pointer;padding:4px 0;letter-spacing:1px;">&larr; 回到书架</button>
+  </div>
+
+  <!-- 胶囊内容容器 -->
+  <div id="capsule-content"></div>
+
+</div>
+
+</center>
+</div>
+
+<!-- ========== 胶囊内容存储（隐藏） ========== -->
+<div style="display:none;" id="capsule-store">
+{{CAPSULE_CONTENTS}}
+</div>
+
+<script>
+// 点击卡片打开阅读
+function openCapsule(n) {
+  var content = document.getElementById('capsule-' + n);
+  if (content) {
+    document.getElementById('capsule-content').innerHTML = content.innerHTML;
+    document.getElementById('shelf-view').style.display = 'none';
+    document.getElementById('reading-view').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+}
+
+// 返回书架
+function backToShelf() {
+  document.getElementById('reading-view').style.display = 'none';
+  document.getElementById('shelf-view').style.display = 'block';
+  document.getElementById('capsule-content').innerHTML = '';
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>

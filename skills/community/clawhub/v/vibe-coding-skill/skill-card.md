@@ -1,41 +1,51 @@
-## Description: <br>
-Guides AI-assisted development using a five-phase Vibe Coding workflow for requirements, architecture, code generation, debugging, and iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI-assisted development using the Vibe Coding 5-phase workflow: requirements, architecture, code generation, debugging, and iteration.
 
-## Publisher: <br>
-[shiiyyo](https://clawhub.ai/user/shiiyyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shiiyyo](https://clawhub.ai/user/shiiyyo)
 
-## Use Case: <br>
-Developers use this skill to guide AI-assisted software projects through a structured workflow: clarify requirements, design architecture, implement modules, debug issues, and plan later iterations. It is especially suited to users who want reusable Markdown development artifacts before and during coding. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow may create or update project documentation and implementation files during normal use. <br>
-Mitigation: Review proposed file paths and diffs before applying changes, and keep edits scoped to the phase and requirements the user confirmed. <br>
-Risk: The workflow may guide the agent to run normal project verification steps or suggest committing completed module work. <br>
-Mitigation: Inspect commands before execution, run them only in trusted project workspaces, and commit only after reviewing the generated changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiiyyo/vibe-coding-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+## Use Case:
+
+Developers use this skill in Cursor to structure AI-assisted software projects into confirmed phases for requirements, architecture, implementation, debugging, and iteration. It is most useful when a user wants a guided workflow that preserves Markdown development artifacts for later collaboration and reuse.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generic activation terms such as "vibe" or phase numbers may trigger the workflow when the user did not intend to use it.
+
+Mitigation: Confirm the current phase and user intent before applying the full workflow, or narrow activation wording before deployment.
+
+Risk: Generated requirements, architecture notes, code, or debugging guidance may be incomplete or incorrect for the user's project.
+
+Mitigation: Require user review at each phase boundary and validate generated code with project-specific tests or manual checks before relying on it.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists, architecture notes, interface contracts, Mermaid diagrams, code suggestions, and debugging summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow emphasizes user confirmation at phase boundaries and preserves key development artifacts as Markdown.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-oriented conversational guidance with code and shell-command suggestions when implementation or debugging phases require them]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow asks for user confirmation before moving between phases and encourages saving requirements, architecture notes, interface contracts, and debugging summaries as Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

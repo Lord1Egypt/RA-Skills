@@ -1,44 +1,73 @@
-## Description: <br>
-Guides an agent through CreditClaw-backed shopping, checkout, wallet, webhook, and sales-management workflows across Shopify and other merchants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to shop through CreditClaw payment rails, owner approval flows, and platform-specific checkout guides for Shopify and other merchants.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users and their agents use this skill to set up CreditClaw access, find products, request owner-approved spending, complete merchant checkout, and manage related payment or sales workflows. It is intended for agents that are explicitly authorized to spend money and handle checkout operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This is high-impact payment automation that can spend money across many merchants and manage checkout, webhook, and sales workflows. <br>
-Mitigation: Install only when that authority is intentional; use a dedicated low-limit wallet or card and keep approval_mode set to ask_for_everything unless a human owner explicitly changes it. <br>
-Risk: The skill handles sensitive payment data and a CreditClaw API key that can authorize spending. <br>
-Mitigation: Store credentials only in a secure secrets manager, never place raw card data or API keys in prompts or logs, and send the CreditClaw API key only to creditclaw.com. <br>
-Risk: Broad merchant access and webhook callback changes can route spending or payment events outside the intended scope. <br>
-Mitigation: Restrict merchant and domain permissions, review callback_url changes before use, and monitor the owner dashboard for purchase attempts and account activity. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent controlled shopping and seller-payment capabilities through CreditClaw, including merchant detection, checkout approval, card handoff, x402 signing, and store or payment-link management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TripleHippo/shopify-pay2) <br>
-- [CreditClaw Homepage](https://creditclaw.com) <br>
-- [CreditClaw API Base](https://creditclaw.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash commands, API request examples, JSON examples, and platform-specific checkout guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and produces operational instructions for payment, checkout, webhook, wallet, and sales-management tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can give an agent real payment authority, including purchases through CreditClaw rails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended payment use, keep approval set to ask-for-everything, and configure merchant restrictions and spending limits before use.
+
+Risk: The Shopify-facing label understates the broader shopping, selling, card-handling, and checkout-instruction scope.
+
+Mitigation: Review the full bundled skill scope before deployment, including shopping, checkout, x402 wallet, webhook, and store/payment-link files.
+
+Risk: Card-handling workflows and decryption steps can expose sensitive payment data if mishandled.
+
+Mitigation: Use only approved checkout flows, avoid logging or persisting decrypted card data, and verify deletion of any checkout sub-agent after completion.
+
+Risk: Seller, payment-link, and public-store APIs can create pages that collect money.
+
+Mitigation: Do not enable or use seller and public-store features unless money-collection behavior is explicitly desired and reviewed.
+
+Risk: Remote vendor Markdown or delivered decryption scripts may alter checkout behavior.
+
+Mitigation: Independently verify remote vendor instructions and scripts before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triplehippo/skills/shopify-pay2)
+- [CreditClaw homepage](https://creditclaw.com)
+- [CreditClaw API base](https://creditclaw.com/api/v1)
+- [Main skill evidence](artifact/SKILL.md)
+- [Checkout guide evidence](artifact/CHECKOUT-GUIDE.md)
+- [Shopping guide evidence](artifact/SHOPPING-GUIDE.md)
+- [OpenClaw checkout evidence](artifact/agents/OPENCLAW.md)
+- [Stripe x402 wallet evidence](artifact/STRIPE-X402-WALLET.md)
+- [Store and payment-link evidence](artifact/MY-STORE.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces purchase, checkout, wallet, webhook, merchant-routing, and store-management guidance for an agent; normal use requires CREDITCLAW_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

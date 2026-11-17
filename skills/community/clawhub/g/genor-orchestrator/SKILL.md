@@ -1,7 +1,7 @@
 ---
 name: "genor-orchestrator"
 description: "Unified orchestration: plugin-driven model routing, session hooks, project context automation, sidecar dashboard"
-homepage: "https://github.com/GenorTG/genor-orchestrator-skill"
+homepage: "https://clawhub.com/packages/genor-orchestrator"
 metadata:
   {
     "openclaw": {
@@ -90,7 +90,7 @@ Runs inside OpenClaw's plugin system — no separate process needed. Provides:
 
 The dashboard is a standalone Python HTTP server running as a PM2 process:
 
-**Start:** `pm2 start ./dashboard/server.py --name orchestration-dashboard --interpreter python3 -- 8766`
+**Start:** `pm2 start {baseDir}/dashboard/server.py --name orchestration-dashboard --interpreter python3 -- 8766`
 
 **Provides:**
 - Model inventory CRUD with sort, filter, search
@@ -240,17 +240,17 @@ Reproduce → Hypothesise (3-5 causes) → Instrument one variable → Fix → R
 
 | Script | Purpose |
 |--------|---------|
-| `bash/scripts/onboard.sh` | First-time setup |
-| `bash/scripts/init-project.sh <path> <name>` | Scaffold project |
-| `bash/scripts/log-session.sh ...` | Log session (legacy, plugin hooks preferred) |
-| `bash/scripts/log-decision.sh ...` | Log ADR (legacy, plugin tool preferred) |
-| `bash/scripts/check-prices.sh` | Price check |
-| `bash/scripts/discover-models.sh` | Probe providers |
-| `bash/scripts/test-model.sh <id>` | Test connectivity |
-| `bash/dashboard/serve.sh` | Start dashboard |
-| `bash/scripts/check-models.sh [project]` | MANDATORY: Check eligible models before routing |
-| `python3 ./scripts/auto-populate-models.py` | Auto-populate models from OpenClaw gateway config |
-| `bash/scripts/run-model-discovery.sh` | Wrapper for cron-based auto-population |
+| `bash {baseDir}/scripts/onboard.sh` | First-time setup |
+| `bash {baseDir}/scripts/init-project.sh <path> <name>` | Scaffold project |
+| `bash {baseDir}/scripts/log-session.sh ...` | Log session (legacy, plugin hooks preferred) |
+| `bash {baseDir}/scripts/log-decision.sh ...` | Log ADR (legacy, plugin tool preferred) |
+| `bash {baseDir}/scripts/check-prices.sh` | Price check |
+| `bash {baseDir}/scripts/discover-models.sh` | Probe providers |
+| `bash {baseDir}/scripts/test-model.sh <id>` | Test connectivity |
+| `bash {baseDir}/dashboard/serve.sh` | Start dashboard |
+| `bash {baseDir}/scripts/check-models.sh [project]` | MANDATORY: Check eligible models before routing |
+| `python3 {baseDir}/scripts/auto-populate-models.py` | Auto-populate models from OpenClaw gateway config |
+| `bash {baseDir}/scripts/run-model-discovery.sh` | Wrapper for cron-based auto-population |
 
 ## Conversational Triggers
 
@@ -275,11 +275,11 @@ Generate: CONTEXT.md (glossary), ADRs (decisions), summary.
 
 | Resource | Path |
 |----------|------|
-| Full documentation | `./references/README.md` |
-| Onboarding guide | `./references/ONBOARDING.md` |
-| Execution reference | `./references/EXECUTION.md` |
-| Debugging guide | `./references/DEBUGGING.md` |
-| Fallback tables | `./references/FALLBACKS.md` |
-| Routing table | `./ROUTING.md` |
+| Full documentation | `{baseDir}/references/README.md` |
+| Onboarding guide | `{baseDir}/references/ONBOARDING.md` |
+| Execution reference | `{baseDir}/references/EXECUTION.md` |
+| Debugging guide | `{baseDir}/references/DEBUGGING.md` |
+| Fallback tables | `{baseDir}/references/FALLBACKS.md` |
+| Routing table | `{baseDir}/ROUTING.md` |
 | Model catalog | `orchestrator-data/MODEL_CATALOG.md` |
 | Dashboard | `http://localhost:8766` (when running) |

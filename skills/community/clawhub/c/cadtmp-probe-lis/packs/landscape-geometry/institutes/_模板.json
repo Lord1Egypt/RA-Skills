@@ -1,0 +1,5 @@
+{
+  "name": "示例设计院",
+  "plant_block_aliases": {},
+  "description": "复制本文件为 <设计院>.json，填 block名->分类映射后，在 cad_landscape_geometry.sh 加 --institute <设计院> 即可生效"
+}

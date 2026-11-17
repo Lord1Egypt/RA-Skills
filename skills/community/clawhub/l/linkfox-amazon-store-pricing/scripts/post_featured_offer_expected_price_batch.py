@@ -25,8 +25,7 @@ from _spapi_pricing_common import (
     developer_proxy_post_json,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
 )
 
 PATH_BATCH = "batches/products/pricing/2022-05-01/offer/featuredOfferExpectedPrice"
@@ -92,12 +91,7 @@ def main() -> None:
     seller_id = str(params["sellerId"])
     region = str(params["region"])
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_post_json(region, PATH_BATCH, tokens["accessToken"], body_obj)
+    proxy = developer_proxy_post_json(region, PATH_BATCH, seller_id, body_obj)
     out: dict = {
         "developerProxy": proxy,
         "resolvedPath": PATH_BATCH,

@@ -1,47 +1,60 @@
-## Description: <br>
-An intellectual property expansion agent for pharma drug discovery and development teams that analyzes molecules, patent references, and portfolio data to support infringement, freedom-to-operate, prior-art, novelty, and claim-strategy workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pharmaclaw Ip Expansion Agent helps pharma drug discovery and development teams analyze molecules and patent context for portfolio tracking, infringement and FTO review, prior art novelty suggestions, and strategic claim recommendations.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Pharma IP, discovery, and portfolio teams use this skill to turn SMILES strings, therapeutic context, and patent/portfolio records into structured infringement, freedom-to-operate, novelty, and strategic claim recommendations. It is suited for agent workflows that need concise JSON or Markdown reports and generated molecular visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External patent and compound lookups may expose confidential SMILES, targets, therapeutic strategy, or portfolio context. <br>
-Mitigation: Run the skill only in controlled project directories and avoid third-party lookups unless organizational policy permits sharing that data. <br>
-Risk: Generated local files such as ip_portfolio.db, logs/ip_expansion.log, ip_report.md, and ip_viz.png may contain sensitive portfolio or molecule information. <br>
-Mitigation: Store generated files in approved locations, protect access to them, and remove or archive them according to the organization's data-handling rules. <br>
-Risk: Cron-style portfolio monitoring can repeatedly process or disclose sensitive portfolio data if enabled unintentionally. <br>
-Mitigation: Enable scheduled monitoring only with explicit operational intent and review the configured inputs, outputs, and retention settings first. <br>
+## Use Case:
 
+External users and developers can use this skill to support pharma IP portfolio analysis, patent/FTO triage, prior art review, and patentable molecule-derivative ideation from SMILES, keywords, or related agent outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Cheminem/pharmaclaw-ip-expansion-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/Cheminem) <br>
-- [Patent/Compound APIs](references/apis.md) <br>
-- [USPTO API Catalog](https://developer.uspto.gov/api-catalog) <br>
-- [EPO Open Patent Services](https://developers.epo.org/) <br>
-- [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/rest/pug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Structured JSON and Markdown reports with generated PNG or SVG molecular visualizations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local portfolio database, report, visualization, and log files when the bundled scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive molecule, patent, or strategy data may be sent to external patent and compound services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for disclosure to PatentsView and PubChem, and require explicit approval before any network lookup.
+
+Risk: Reports, database entries, visualizations, and logs may persist pharma IP analysis results locally.
+
+Mitigation: Run in an isolated environment, review output locations before execution, and require approval before report writes, database updates, logging, or scheduled portfolio checks.
+
+Risk: Unpinned or unverified dependencies can introduce environment and supply-chain risk.
+
+Mitigation: Pin and verify dependencies in a controlled Python environment before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cheminem/skills/pharmaclaw-ip-expansion-agent)
+- [Patent/Compound APIs](references/apis.md)
+- [USPTO API Catalog](https://developer.uspto.gov/api-catalog)
+- [EPO Open Patent Services](https://developers.epo.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON and Markdown reports with optional PNG or SVG visualization files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk findings, novelty suggestions, portfolio results, recommendations, and visualization paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

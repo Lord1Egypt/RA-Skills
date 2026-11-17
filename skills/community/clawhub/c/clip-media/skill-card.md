@@ -1,42 +1,58 @@
-## Description: <br>
-Extracts media such as videos, photos, GIFs, and audio from social media URLs using yt-dlp across supported platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract media such as videos, photos, GIFs, and audio from social media URLs using yt-dlp, returning local files, metadata, or an explicitly confirmed public upload link.
 
-## Publisher: <br>
-[jlacroix82](https://clawhub.ai/user/jlacroix82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlacroix82](https://clawhub.ai/user/jlacroix82)
 
-## Use Case: <br>
-External users and coding agents use Clip Media to inspect, download, or share media from URLs when the user has rights to the content and accepts the exposure risks of downloads, cookies, and optional uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public cloud uploads to tmpfiles.org or transfer.sh can expose downloaded media to anyone with the link. <br>
-Mitigation: Use local output or --no-upload for sensitive content, and require --confirm-upload before any public upload. <br>
-Risk: Browser cookie access can expose active session tokens for sites where the user is logged in. <br>
-Mitigation: Use browser cookies only with explicit user consent, prefer non-sensitive public content, and use the narrowest browser profile or credential source available. <br>
-Risk: Downloading private, paid, copyrighted, confidential, or regulated content can create account, legal, or privacy exposure. <br>
-Mitigation: Confirm the user has rights to the content and avoid private or sensitive sources unless the user intentionally accepts the risk. <br>
+## Use Case:
 
+Developers and agents use Clip Media to inspect or retrieve media from supported URLs and return metadata, local file paths, or temporary public links after explicit upload consent. It is intended for non-sensitive media where downloading and any external transmission are permitted.
 
-## Reference(s): <br>
-- [Clip Media on ClawHub](https://clawhub.ai/jlacroix82/clip-media) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, json, shell commands, guidance] <br>
-**Output Format:** [Plain text status, local file paths or public URLs, and optional JSON metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads save locally by default; public cloud upload requires explicit --confirm-upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release evidence) <br>
+Risk: Public upload paths can expose media through third-party temporary hosts and may not use the upload host the user selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-upload for sensitive files, require --confirm-upload for any public upload, and verify the actual returned host before sharing the link.
+
+Risk: Browser-wide cookie access can expose active authenticated sessions.
+
+Mitigation: Avoid --cookies-from-browser unless the user explicitly accepts the risk; prefer non-sensitive public URLs or narrowly scoped manual credentials.
+
+Risk: Private, paid, copyrighted, regulated, or confidential media can create legal, privacy, or policy exposure if downloaded or transmitted.
+
+Mitigation: Confirm the content is permitted for download and sharing before extraction, and keep regulated or confidential content local.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jlacroix82/skills/clip-media)
+- [Publisher Profile](https://clawhub.ai/user/jlacroix82)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON metadata, local file paths, and temporary public URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are saved locally by default; public uploads require explicit confirmation and may use third-party temporary hosts.]
+
+## Skill Version(s):
+
+0.3.5 (source: server release metadata and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

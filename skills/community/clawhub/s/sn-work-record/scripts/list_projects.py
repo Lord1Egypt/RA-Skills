@@ -9,7 +9,7 @@ from runtime_bootstrap import ensure_runtime
 
 ensure_runtime(["requests", "ddddocr", "PIL"])
 
-from oa_utils import REQ_TIMEOUT, build_session, load_credentials, login, resolve_base_url
+from oa_utils import OAAuth, REQ_TIMEOUT, load_credentials, resolve_base_url
 
 DEFAULT_CREDS = os.path.expanduser("~/.openclaw/workspace/memory/sn-work-record-credentials.md")
 
@@ -18,6 +18,7 @@ def main():
     parser = argparse.ArgumentParser(description="获取蜀宁 OA 项目列表")
     parser.add_argument("--credentials", default=DEFAULT_CREDS)
     parser.add_argument("--base-url", dest="base_url", default=None)
+    parser.add_argument("--token", default=None, help="复用已有 OA token，跳过登录（配合 sn_oa_login.py 的 agent 识别流程）")
     parser.add_argument("--json", action="store_true", help="输出原始 JSON")
     args = parser.parse_args()
 
@@ -27,15 +28,15 @@ def main():
         )
         base_url = resolve_base_url(base_url, args.base_url)
 
-        print("正在登录 OA 系统...", file=sys.stderr)
-        token = login(username, password, base_url)
+        auth = OAAuth(base_url, username, password, args.token)
 
         print("正在获取项目列表...", file=sys.stderr)
-        session = build_session(token)
-        r = session.post(
-            f"{base_url}/sn/project/timeFeeDropDownPageList",
-            json={"page": 1, "size": 8000},
-            timeout=REQ_TIMEOUT,
+        r = auth.call(
+            lambda s: s.post(
+                f"{base_url}/sn/project/timeFeeDropDownPageList",
+                json={"page": 1, "size": 8000},
+                timeout=REQ_TIMEOUT,
+            )
         )
         r.raise_for_status()
         result = r.json()

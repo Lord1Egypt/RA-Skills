@@ -13,12 +13,13 @@
 
 ## Yield Sources
 
-| Protocol | Current APY | Market |
-|----------|------------|--------|
-| Aave V3 | ~2.3% | USDC Supply |
-| Morpho Blue | ~13.4% | cbBTC/USDC (89% utilization) |
+Yield rates change continuously. Query the live MCP server instead of copying APY numbers from this file:
 
-Router automatically selects the highest APY.
+```bash
+{baseDir}/scripts/clicks.sh yield-info
+```
+
+The router selects from supported Base yield backends according to the live protocol state.
 
 ## SDK Quick Reference
 
@@ -31,11 +32,8 @@ await clicks.getAgentInfo(address);
 await clicks.simulateSplit('1000', address);
 await clicks.getYieldInfo();
 
-// Write (needs signer with USDC)
-const clicks = new ClicksClient(signer);
-await clicks.quickStart('1000', agentAddress);
-await clicks.receivePayment('500', agentAddress);
-await clicks.withdrawYield(agentAddress);
+// Write operations exist in the SDK but require a signer and explicit human approval.
+// Before signing, show chain, contract, method, asset, amount, recipient, fees, and expected state change.
 ```
 
 ## Fee Model

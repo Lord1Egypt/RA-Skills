@@ -1,44 +1,52 @@
-## Description: <br>
-Anchor Browser (anchorbrowser.io) helps an agent read Anchor Browser project billing and metadata, inspect live connector schemas, and start browser sessions through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anchor Browser (anchorbrowser.io). Use this skill for ANY Anchor Browser request — reading, creating, and updating data. Whenever a task involves Anchor Browser, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Anchor Browser through OOMOL's connector, including checking billing details, retrieving project metadata, and starting browser sessions with schema-validated payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start an Anchor Browser session, which changes Anchor Browser state. <br>
-Mitigation: Confirm the exact payload and effect with the user before running actions tagged as write. <br>
-Risk: First-time setup may execute remote installer scripts for the oo CLI. <br>
-Mitigation: Run installer commands only when the CLI is missing and only after the user trusts OOMOL and the installer source. <br>
-Risk: Connector writes depend on the live action schema and the user's connected OOMOL account. <br>
-Mitigation: Inspect the current connector schema before execution and review schema-derived payloads before writes. <br>
+## Use Case:
 
+Developers use this skill to retrieve Anchor Browser project and billing information and to start browser sessions through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Anchor Browser homepage](https://anchorbrowser.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return connector response data, execution IDs, browser CDP URLs, and live-view URLs from Anchor Browser actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Setup may execute downloaded installer code without separate user approval; the installer contents were unavailable for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a reviewed version-pinned CLI, and require separate approval for local setup. Review bundled-skill behavior before connecting accounts.
+
+## Reference(s):
+
+- [Anchor Browser homepage](https://anchorbrowser.io)
+- [Anchor Browser API documentation](https://docs.anchorbrowser.io/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI install guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes read-only project and billing lookups and browser session creation, which changes state.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

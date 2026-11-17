@@ -1,45 +1,55 @@
-## Description: <br>
-UI component design learning library with 165 curated CSS/Tailwind components from Uiverse Galaxy for browsing, searching, and adapting self-contained UI examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI component design learning library with 165 curated CSS/Tailwind components from Uiverse Galaxy for finding, studying, and adapting component examples.
 
-## Publisher: <br>
-[cmyang-it](https://clawhub.ai/user/cmyang-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cmyang-it](https://clawhub.ai/user/cmyang-it)
 
-## Use Case: <br>
-Developers and designers use this skill to find CSS and Tailwind UI component examples, study visual patterns, and adapt buttons, cards, loaders, inputs, forms, toggles, tooltips, notifications, and related patterns into application interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied form examples may include insecure or incomplete production behavior, especially around password fields. <br>
-Mitigation: Review and adapt form code before production use, including input handling, password behavior, validation, accessibility, and data-flow requirements. <br>
-Risk: The optional setup script replaces the reviewed bundled subset with live upstream GitHub content that may change over time. <br>
-Mitigation: Use the bundled offline examples by default; only run setup.sh after reviewing the script and accepting the risk of unpinned external content. <br>
-Risk: Component examples are visual references and may not meet project accessibility, security, or maintainability standards as copied. <br>
-Mitigation: Treat examples as starting points and review resulting UI code for accessibility, browser behavior, dependency assumptions, and project coding standards. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to search curated UI component examples and extract CSS, Tailwind, layout, animation, color, and interaction patterns for web interfaces.
 
-## Reference(s): <br>
-- [Uiverse Design skill page](https://clawhub.ai/cmyang-it/uiverse-design) <br>
-- [UI Design Patterns Reference](artifact/references/patterns.md) <br>
-- [Uiverse](https://uiverse.io/) <br>
-- [Uiverse Galaxy source archive used by setup.sh](https://github.com/uiverse-io/galaxy/archive/refs/heads/main.tar.gz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with component file paths, HTML/CSS/Tailwind snippets, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drawn from bundled offline examples unless the user explicitly runs the optional setup script to download live upstream content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence) <br>
+Risk: The optional setup script can replace reviewed local component examples with unverified content downloaded from GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the bundled curated examples by default; run scripts/setup.sh only after trusting the current upstream repository and accepting that reviewed local assets will be replaced.
+
+Risk: Copied UI snippets may be inappropriate for sensitive workflows such as login, payment, upload, or externally linked components.
+
+Mitigation: Review copied components before production use, especially for authentication, payment, upload, or external-link behavior.
+
+## Reference(s):
+
+- [UI Design Patterns Reference](references/patterns.md)
+- [Uiverse](https://uiverse.io/)
+- [ClawHub skill page](https://clawhub.ai/cmyang-it/skills/uiverse-design)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with component paths, search results, and CSS/Tailwind/HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local curated HTML component files and optional shell commands for searching or setup.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

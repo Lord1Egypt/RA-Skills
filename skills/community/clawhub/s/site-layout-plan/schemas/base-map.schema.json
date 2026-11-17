@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/site-layout-plan/base-map.schema.json",
+  "title": "base-map.json（reader 契约 → 出图底图，site-layout-base-map/v1）",
+  "description": "prepare_site.py 的输出：单位已归一为 mm、红线已串接、单位依据已留痕。只做适配，不重新识图、不判定合规。",
+  "type": "object",
+  "required": [
+    "schema",
+    "source_file",
+    "source_sha256",
+    "coord_unit",
+    "unit",
+    "redline",
+    "redline_closed",
+    "site_geometry",
+    "extents_mm",
+    "warnings"
+  ],
+  "properties": {
+    "schema": {
+      "const": "site-layout-base-map/v1"
+    },
+    "contract_id": {
+      "type": "string",
+      "description": "从 reader 契约透传；缺失时为空串，出图闸门会判缺失并只允许 --draft"
+    },
+    "source_file": {
+      "type": "string",
+      "description": "reader 生成的 *.site.json 绝对路径"
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_schema": {
+      "type": "string",
+      "description": "源契约 schema，如 cad-site-geometry/v1"
+    },
+    "reader_version": {
+      "type": "string"
+    },
+    "coord_unit": {
+      "const": "mm",
+      "description": "输出坐标单位固定 mm；源单位在 unit.source_unit 记录"
+    },
+    "unit": {
+      "type": "object",
+      "required": [
+        "basis",
+        "source_unit",
+        "mm_per_unit",
+        "evidence",
+        "confirmed_by"
+      ],
+      "properties": {
+        "basis": {
+          "type": "string",
+          "enum": [
+            "top",
+            "audit",
+            "geometry",
+            "reader",
+            "manual_confirmed"
+          ],
+          "description": "单位判定依据：top=顶层声明；audit=scale_unit_audit；geometry=逐条几何；manual_confirmed=人工 --unit"
+        },
+        "source_unit": {
+          "type": "string",
+          "enum": [
+            "mm",
+            "cm",
+            "m",
+            "ft"
+          ]
+        },
+        "mm_per_unit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "unit",
+              "source",
+              "evidence"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "confirmed_by": {
+          "type": "string",
+          "description": "人工确认人；自动取证时可为空"
+        }
+      }
+    },
+    "prepared_at": {
+      "type": "string"
+    },
+    "prepared_by": {
+      "type": "string"
+    },
+    "redline": {
+      "type": "array",
+      "description": "红线/用地边界顶点（mm），已去除重复首尾点",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "redline_closed": {
+      "type": "boolean"
+    },
+    "redline_gap_mm": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "首尾缺口（mm）；闭合时为 0"
+    },
+    "redline_area_m2": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "description": "仅闭合时给面积"
+    },
+    "fence": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "fence_closed": {
+      "type": "boolean"
+    },
+    "site_geometry": {
+      "type": "array",
+      "description": "换算为 mm 的底图线段（仅 site_geometry[] 中的直线段）",
+      "items": {
+        "type": "object",
+        "required": [
+          "geometry"
+        ],
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "system": {
+            "type": "string"
+          },
+          "geometry": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "number"
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "extents_mm": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "number"
+      },
+      "description": "[min_x, min_y, max_x, max_y]"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "boundary": {
+      "type": "string"
+    },
+    "boundary_selection": {
+      "type": "object",
+      "description": "边界图层筛选与串接留痕：只选一个权威层，不跨用地/建筑/道路红线混串",
+      "properties": {
+        "requested_layer": {
+          "type": "string"
+        },
+        "selected_layer": {
+          "type": "string"
+        },
+        "selected_segments": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selected_vertices": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selected_closed": {
+          "type": "boolean"
+        },
+        "selected_gap_mm": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "selected_gap_before_close_mm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "收口前首尾缺口（mm），保留原始证据"
+        },
+        "selected_closed_by_gap_snap": {
+          "type": "boolean",
+          "description": "是否由 --close-gap-mm 一次性收口闭合"
+        },
+        "selected_area_m2": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "annotation_segments_excluded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "annotation_layers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "tolerance_mm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "端点聚类容差"
+        },
+        "close_gap_mm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "允许一次性收口的缺口上限"
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "drawing_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reader_contract_id": {
+      "type": "string"
+    },
+    "buildings": {
+      "type": "array",
+      "description": "从底图建筑外轮廓层提取的候选建筑（mm）；每栋为未重复首点的闭合环，面积已换算 m²",
+      "items": {
+        "type": "object",
+        "required": [
+          "layer",
+          "footprint",
+          "area_m2"
+        ],
+        "properties": {
+          "layer": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "footprint": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "area_m2": {
+            "type": "number",
+            "minimum": 0
+          },
+          "status": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "gap_mm": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "structure_outline": {
+      "type": "array",
+      "description": "最终选用的主体结构外轮廓（mm），首尾可重复；施工电梯贴边、塔吊覆盖与道路避让均以它为准",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "building_selection": {
+      "type": "object",
+      "description": "建筑外轮廓筛选留痕：候选层、窗口、面积阈值与被拒原因；多栋/多环时须人工确认",
+      "properties": {
+        "requested_layer": {
+          "type": "string"
+        },
+        "window_mm": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "number"
+          }
+        },
+        "min_area_m2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "layers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "rejected_outside_window": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected_not_closed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected_too_small": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "buildings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selected_layer": {
+          "type": "string"
+        },
+        "selected_building": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "geometry_selection": {
+      "type": "object",
+      "description": "底图线段窗口过滤留痕：只保留红线外一定范围内的线，避免 1km 长线撑大图框",
+      "properties": {
+        "window_mm": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "number"
+          }
+        },
+        "margin_mm": {
+          "type": "number",
+          "minimum": 0
+        },
+        "kept": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected_outside_window": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

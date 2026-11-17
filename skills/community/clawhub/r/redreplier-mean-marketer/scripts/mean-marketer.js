@@ -12,6 +12,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const readline = require("readline");
 const os = require("os");
 
 const API_BASE = "https://ai.redreplier.com/ai-app";
@@ -34,8 +35,37 @@ function getApiKey() {
 }
 
 function saveApiKey(key) {
-  fs.mkdirSync(CONFIG_DIR, { recursive: true });
-  fs.writeFileSync(CONFIG_FILE, JSON.stringify({ apiKey: key }, null, 2));
+  fs.mkdirSync(CONFIG_DIR, { recursive: true, mode: 0o700 });
+  fs.writeFileSync(CONFIG_FILE, JSON.stringify({ apiKey: key }, null, 2), {
+    mode: 0o600,
+  });
+  fs.chmodSync(CONFIG_DIR, 0o700);
+  fs.chmodSync(CONFIG_FILE, 0o600);
+}
+
+function readSecret() {
+  return new Promise((resolve, reject) => {
+    if (!process.stdin.isTTY) {
+      let data = "";
+      process.stdin.setEncoding("utf8");
+      process.stdin.on("data", (chunk) => (data += chunk));
+      process.stdin.on("end", () => resolve(data.trim()));
+      process.stdin.on("error", reject);
+      return;
+    }
+    process.stderr.write("RedReplier API token (input hidden): ");
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stderr,
+      terminal: true,
+    });
+    rl._writeToOutput = () => {};
+    rl.question("", (answer) => {
+      rl.close();
+      process.stderr.write("\n");
+      resolve(answer.trim());
+    });
+  });
 }
 
 // ── HTTP ─────────────────────────────────────────────────────────────────────
@@ -44,7 +74,7 @@ async function request(method, endpoint, body = null) {
   const apiKey = getApiKey();
   if (!apiKey) {
     error(
-      "No API key found. Run: ./scripts/mean-marketer.js setup --key redreplier_xxxxx",
+      "No API key found. Run: ./scripts/mean-marketer.js setup",
     );
     error("Get your API key at: https://redreplier.com/api-tokens");
     process.exit(1);
@@ -102,13 +132,27 @@ function parseArgs(args) {
 const COMMANDS = {
   setup: async (args) => {
     const parsed = parseArgs(args);
-    const key = parsed.key || parsed["api-key"];
-    if (!key) {
-      error("Usage: ./scripts/mean-marketer.js setup --key redreplier_xxxxx");
+    if (parsed.key || parsed["api-key"]) {
+      error(
+        "Refusing to read the token from an argument: it would land in shell history and `ps`.",
+      );
+      error("Run `./scripts/mean-marketer.js setup` and paste it at the prompt,");
+      error("or pipe it: printf %s \"$TOKEN\" | ./scripts/mean-marketer.js setup");
       process.exit(1);
     }
+
+    const key = await readSecret();
+    if (!key) {
+      error("No token supplied.");
+      process.exit(1);
+    }
+    if (!key.startsWith("redreplier_")) {
+      error("RedReplier tokens start with `redreplier_`. Nothing was saved.");
+      process.exit(1);
+    }
+
     saveApiKey(key);
-    info("API key saved (shared with the redreplier skill).");
+    info(`API key saved to ${CONFIG_FILE} (mode 600, shared with the redreplier skill).`);
     output({ status: "configured" });
   },
 

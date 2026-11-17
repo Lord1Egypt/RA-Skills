@@ -1,98 +1,38 @@
 #!/bin/bash
-# Pollinations Model Listing
-# Usage: ./models.sh [--type text|image|audio|vision|video]
+# Pollinations Model Listing (single source: GET /v1/models)
+# Usage: ./models.sh [text|image|video|audio|vision|embedding|3d|all] [--free] [--json]
+# Prints: id  [aliases]  free|paid. Use an id or any alias as --model.
 
 set -e
 
-TYPE="${1:-all}"
-
-# Parse args
+TYPE="all"; FREE_ONLY=0; AS_JSON=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --type)
-      TYPE="$2"
-      shift 2
-      ;;
-    text|image|audio|vision|video|all)
-      TYPE="$1"
-      shift
-      ;;
-    *)
-      echo "Unknown option: $1"
-      exit 1
-      ;;
+    --type) TYPE="$2"; shift 2 ;;
+    --free) FREE_ONLY=1; shift ;;
+    --json) AS_JSON=1; shift ;;
+    text|image|video|audio|vision|embedding|3d|all) TYPE="$1"; shift ;;
+    *) echo "Usage: models.sh [text|image|video|audio|vision|embedding|3d|all] [--free] [--json]"; exit 1 ;;
   esac
 done
 
-fetch_text_models() {
-  local data
-  data=$(curl -s "https://gen.pollinations.ai/v1/models")
-  # Handle both array format and {data: [...]} format
-  echo "$data" | jq -r 'if type == "array" then .[].id else .data[].id end' 2>/dev/null
-}
+DATA=$(curl -s --max-time 30 ${POLLINATIONS_API_KEY:+-H "Authorization: Bearer $POLLINATIONS_API_KEY"} \
+  "https://gen.pollinations.ai/v1/models")
+if ! echo "$DATA" | jq -e '(.data // .) | length > 0' >/dev/null 2>&1; then
+  echo "Error: could not fetch models from gen.pollinations.ai/v1/models"; exit 1
+fi
 
-fetch_image_models() {
-  curl -s "https://gen.pollinations.ai/image/models" | jq -r '.[] | (.id // .name)' 2>/dev/null
-}
-
-fetch_vision_models() {
-  local data
-  data=$(curl -s "https://gen.pollinations.ai/text/models")
-  echo "$data" | jq -r '.[] | select(.input_modalities? // [] | index("image")) | (.id // .name)' 2>/dev/null
-  # Fallback if jq filter returns nothing
-  if [[ -z "$(echo "$data" | jq -r '.[] | select(.input_modalities? // [] | index("image")) | (.id // .name)' 2>/dev/null)" ]]; then
-    echo "gemini"
-    echo "gemini-large"
-    echo "claude"
-    echo "openai"
-  fi
-}
-
+# vision = text models that accept image input
+FILTER='(.data // .)[]'
 case "$TYPE" in
-  text)
-    echo "=== Text/Chat Models ==="
-    fetch_text_models
-    ;;
-  image)
-    echo "=== Image Models ==="
-    fetch_image_models
-    ;;
-  video)
-    echo "=== Video Models ==="
-    curl -s "https://gen.pollinations.ai/image/models" | jq -r '.[] | select(.output_modalities? // [] | index("video")) | (.id // .name)' 2>/dev/null
-    # Fallback
-    if [[ -z "$(curl -s "https://gen.pollinations.ai/image/models" | jq -r '.[] | select(.output_modalities? // [] | index("video")) | (.id // .name)' 2>/dev/null)" ]]; then
-      echo "veo"
-      echo "seedance"
-    fi
-    ;;
-  audio)
-    echo "=== Audio/TTS Models ==="
-    echo "openai-audio"
-    ;;
-  vision)
-    echo "=== Vision Models (image analysis) ==="
-    fetch_vision_models
-    ;;
-  all)
-    echo "=== Text/Chat Models ==="
-    fetch_text_models
-    echo ""
-    echo "=== Image Models ==="
-    fetch_image_models
-    echo ""
-    echo "=== Video Models ==="
-    echo "veo"
-    echo "seedance"
-    echo ""
-    echo "=== Audio/TTS ==="
-    echo "openai-audio"
-    echo ""
-    echo "=== Vision Models ==="
-    fetch_vision_models
-    ;;
-  *)
-    echo "Usage: models.sh [--type text|image|audio|vision|video|all]"
-    exit 1
-    ;;
+  all) ;;
+  vision) FILTER="$FILTER | select(.category==\"text\" and (.input_modalities|index(\"image\")))" ;;
+  *) FILTER="$FILTER | select(.category==\"$TYPE\")" ;;
 esac
+[[ $FREE_ONLY -eq 1 ]] && FILTER="$FILTER | select(.paid_only|not)"
+
+if [[ $AS_JSON -eq 1 ]]; then
+  echo "$DATA" | jq "[${FILTER}]"
+else
+  echo "$DATA" | jq -r "$FILTER | \"\(.category)\t\(.id)\t[\(.aliases|join(\",\"))]\t\(if .paid_only then \"paid\" else \"free\" end)\"" | sort
+fi

@@ -1,38 +1,54 @@
-## Description: <br>
-Reads reviewer comments, supervisor notes, or evaluation feedback from the clipboard and helps generate point-by-point responses, revision tasks, priorities, and risk notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads reviewer comments, advisor notes, or evaluation feedback from the clipboard and helps produce point-by-point response suggestions, a revision plan, and priority guidance.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Researchers, students, and authors use this skill to turn copied peer-review comments, thesis feedback, defense notes, or project review feedback into professional rebuttal guidance and a prioritized revision plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and prints the current clipboard, which may contain sensitive or unrelated private text. <br>
-Mitigation: Before invoking the skill, copy only the reviewer comments or feedback intended for processing and clear passwords, API keys, confidential drafts, or unrelated text from the clipboard. <br>
+## Use Case:
 
+Researchers, students, and project teams use this skill to turn copied review or feedback text into organized issue summaries, draft responses, revision tasks, priorities, and risk notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/reviewer-rebuttal-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with response suggestions, categorized issues, priorities, and task lists; the clipboard helper emits plain text markers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and pbpaste; processes the current clipboard contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and CHANGELOG) <br>
+Risk: The skill reads whatever text is currently on the macOS clipboard, which may include sensitive or unrelated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before invoking it, copy only the reviewer comments or feedback intended for analysis.
+
+Risk: Copied feedback can contain instruction-like text that should not control the agent.
+
+Mitigation: Treat clipboard contents as quoted source material and review generated responses before using them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/reviewer-rebuttal-coach)
+- [ClawHub publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown response with structured bullets and clipboard-reader command output when invoked]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and macOS pbpaste; reads the current clipboard text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

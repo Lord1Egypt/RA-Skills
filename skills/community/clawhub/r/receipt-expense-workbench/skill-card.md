@@ -1,45 +1,60 @@
-## Description: <br>
-Normalize receipts, reimbursement slips, and invoices into a clean expense ledger with category mapping and anomaly flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalize receipts, reimbursement slips, and invoices into a clean expense ledger with category mapping and anomaly flags.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, finance operators, and agents use this skill to turn receipt text, OCR output, invoices, or reimbursement slips into an expense ledger, category summary, anomaly report, and reimbursement checklist. It is best suited for first-pass organization and review before submitting or sharing expense records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt, invoice, and reimbursement data may contain sensitive financial records. <br>
-Mitigation: Provide only the fields needed for the task, use explicit input and output paths, and handle generated CSVs as sensitive files. <br>
-Risk: Generated expense ledgers may contain missing, uncertain, duplicate, or suspicious entries. <br>
-Mitigation: Review the ledger, anomaly report, and checklist before submitting, reimbursing, or sharing the results. <br>
+## Use Case:
 
+Employees and finance-facing teams use this skill to turn receipt text or OCR output into expense ledgers, category summaries, anomaly reports, and reimbursement packet checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/receipt-expense-workbench) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Expense ledger helper script](artifact/scripts/expense_ledger.py) <br>
-- [Expense categories resource](artifact/resources/expense_categories.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated CSV-style expense ledger content, category summaries, anomaly reports, and reimbursement checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper script writes a local CSV from a user-provided JSON list and explicit output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG; artifact frontmatter reports 1.1.0) <br>
+Risk: Generated CSV ledgers may carry spreadsheet formulas from untrusted receipt or invoice text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize cell values before opening generated ledgers in spreadsheet software and keep formula execution disabled for untrusted inputs.
+
+Risk: Receipt and reimbursement materials may contain personal, financial, or policy-sensitive details.
+
+Mitigation: Redact unnecessary details, use explicit input and output paths, and process only materials the user has intentionally provided.
+
+Risk: Expense categories, totals, tax fields, or reimbursement readiness may be incomplete or incorrect when source data is missing or ambiguous.
+
+Mitigation: Use preview outputs, keep uncertain fields marked, and review results against the applicable reimbursement policy before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/receipt-expense-workbench)
+- [Artifact README](artifact/README.md)
+- [Expense ledger helper script](artifact/scripts/expense_ledger.py)
+- [Expense category resource](artifact/resources/expense_categories.csv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, CSV files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional CSV files and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses explicit input and output paths; uncertain receipt fields should remain marked for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact CHANGELOG; artifact SKILL.md frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

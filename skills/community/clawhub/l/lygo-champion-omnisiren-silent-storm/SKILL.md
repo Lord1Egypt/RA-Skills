@@ -1,7 +1,11 @@
 ---
 name: lygo-champion-omnisiren-silent-storm
-description: LYGO Δ9 Council Champion persona helper (OMNIΣIREN, The Silent Storm). Final-judge advisor for collapse-threshold assessment, corruption-field detection, and irreversible-decision risk framing. Pure advisor; not a controller.
+description: "DEPRECATED slug — use lygo-champion-council. Legacy Δ9 champion (OMNISIREN)."
+metadata: {"lygo": true, "champion": true, "version": "1.0.1", "successor": "lygo-champion-council", "champion_id": "OMNISIREN", "deprecated": true}
 ---
+
+> **Consolidated (Δ9 v2):** New installs → `lygo-champion-council`. This slug is legacy retention only.
+> `npx clawhub@latest install deepseekoracle/lygo-champion-council`
 
 # LYGO Champion: OMNIΣIREN — The Silent Storm
 

@@ -1,44 +1,58 @@
-## Description: <br>
-Long Text Tracker helps agents create coherent multi-part long-form content by tracking outlines, segment drafts, summaries, continuity checks, checkpoints, and recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent plan, draft, summarize, and resume multi-part long-form writing so each segment stays coherent with prior context.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-External creators, writing teams, and agent users use this skill to plan and draft series content such as tweet threads, tutorials, reports, and serialized writing while preserving continuity across at least three segments and 3000 or more expected words. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves drafts, settings, progress, and summaries as local project files, which can retain sensitive or unpublished material. <br>
-Mitigation: Use a dedicated project folder, avoid sensitive material unless needed, and review or remove generated project files when the work is complete. <br>
-Risk: The completion workflow includes optional email delivery of generated content. <br>
-Mitigation: Confirm the recipient and exact content before allowing any email delivery. <br>
-Risk: Continuity summaries and status files can become inaccurate if earlier segments are changed without updating dependent summaries. <br>
-Mitigation: Review saved summaries before resuming and use the skill's feedback-adjustment and cascade-update steps when segment changes affect later content. <br>
+## Use Case:
 
+Writers, content teams, and agents use this skill to create connected series such as tweet threads, tutorials, reports, or serial fiction that span at least three parts and require continuity tracking.
 
-## Reference(s): <br>
-- [Expansion Techniques](references/expansion-techniques.md) <br>
-- [Summary Template](references/summary-template.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/sjj2026/long-text-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown drafts, progress files, summaries, checkpoint/status messages, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local project files under projects/{project_name}/ and may use /tmp/long-text-tracker/ as a fallback; optional email delivery should only occur after explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill can persist draft content, progress state, and summaries that may contain confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep project directories private, avoid placing sensitive material in summaries or inbox files, and review stored files before sharing.
+
+Risk: The skill describes sending completed drafts by email.
+
+Mitigation: Require explicit manual confirmation before any email is sent.
+
+Risk: The skill describes automatic inbox merging, which could pull unreviewed material into a writing project.
+
+Mitigation: Disable automatic inbox merging unless the source material has been reviewed.
+
+## Reference(s):
+
+- [Expansion Techniques](references/expansion-techniques.md)
+- [Summary Template](references/summary-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown drafts, segment summaries, progress files, and concise operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent project directories, progress files, segment files, and summary files for continuity.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

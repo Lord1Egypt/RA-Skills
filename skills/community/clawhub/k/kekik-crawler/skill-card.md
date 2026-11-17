@@ -1,47 +1,61 @@
-## Description: <br>
-Scrapling-only, deterministic web crawler with clean SRP architecture, presets, checkpointing, and JSONL/report outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapling-only, deterministic web crawler with clean SRP architecture, presets, checkpointing, and JSONL/report outputs.
 
-## Publisher: <br>
-[keyiflerolsun](https://clawhub.ai/user/keyiflerolsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[keyiflerolsun](https://clawhub.ai/user/keyiflerolsun)
 
-## Use Case: <br>
-Developers and researchers use Kekik Crawler to run deterministic crawls from seed URLs or search queries, extract page data through plugins, and save JSONL crawl results with JSON reports. It supports normal, wide, deep, person-research, and deep-research crawl modes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The crawler can access and store content from external sites, including search terms and page data in outputs, cache, reports, and checkpoints. <br>
-Mitigation: Run it only against targets you are allowed to crawl and handle generated files as retained crawl data that may need review, access controls, or deletion. <br>
-Risk: Research presets disable robots.txt checks, and the --no-robots option can bypass site crawl preferences. <br>
-Mitigation: Use robots.txt checks for routine crawling and reserve robots-bypassing modes for authorized research contexts. <br>
-Risk: Plugin loading depends on files from the configured plugin directory. <br>
-Mitigation: Use only trusted plugin directories and review custom extractors before running the crawler. <br>
-Risk: The --insecure option disables SSL verification. <br>
-Mitigation: Avoid --insecure except in controlled test environments with known certificate issues. <br>
-Risk: Dependencies are specified as lower bounds rather than exact pins. <br>
-Mitigation: Install in a virtual environment and pin or audit dependencies before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keyiflerolsun/kekik-crawler) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
+## Use Case:
 
+Developers and external users can use this skill to run deterministic Scrapling-based crawls from seed URLs or search queries, producing JSONL crawl data and summary reports for research and monitoring workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, JSONL files, JSON reports] <br>
-**Output Format:** [Command-line guidance and crawler outputs written as JSONL result files, JSON reports, SQLite cache, and checkpoint files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include crawled page content, extracted links, search terms, domain health summaries, cache entries, and checkpoint state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0-rc1 (source: server release metadata, pyproject.toml, CHANGELOG) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The crawler can follow untrusted links to arbitrary network locations.
+
+Mitigation: Run it only in an isolated environment with restricted network access, especially blocking localhost, private networks, and cloud metadata endpoints.
+
+Risk: Research presets disable robots.txt checks by default.
+
+Mitigation: Review or change preset settings before use so crawling respects robots.txt where required.
+
+Risk: Crawled content is stored locally in output files and the SQLite cache.
+
+Mitigation: Treat JSONL outputs, reports, checkpoints, and cache files as potentially sensitive and apply retention and access controls.
+
+Risk: Dependencies are range-based rather than pinned.
+
+Mitigation: Pin and review dependencies before operational deployment.
+
+## Reference(s):
+
+- [Kekik Crawler on ClawHub](https://clawhub.ai/keyiflerolsun/skills/kekik-crawler)
+- [Publisher profile](https://clawhub.ai/user/keyiflerolsun)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, JSON, Markdown guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; runtime outputs are JSONL crawl files, JSON reports, checkpoints, and a SQLite cache.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses seed URLs or search queries, optional presets, crawl limits, concurrency, robots.txt controls, SSL verification controls, and output path settings.]
+
+## Skill Version(s):
+
+0.1.0-rc1 (source: release metadata, pyproject.toml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

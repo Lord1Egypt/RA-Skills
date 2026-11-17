@@ -1,40 +1,56 @@
-## Description: <br>
-Helps agents craft Seedance 2.0 video-generation prompts with structured camera motion, stability constraints, bilingual prompt support, and explicit media reference tagging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expertly craft Seedance 2.0 prompts using precise micro-actions, stabilized motions, and correct @-tagged material assignments for video generation.
 
-## Publisher: <br>
-[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud)
 
-## Use Case: <br>
-Creators, prompt engineers, and AI video workflow builders use this skill to convert simple Seedance video ideas into precise prompts with camera motion, slow micro-actions, stability constraints, and @-tagged image, video, or audio assignments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts may reference images, video, or audio supplied by the user, which can expose private media if included unintentionally. <br>
-Mitigation: Use only media that is intended for the generated prompt and avoid private or sensitive files. <br>
-Risk: Prompt templates can still produce unsuitable or inaccurate video-generation instructions for a particular brand, subject, or workflow. <br>
-Mitigation: Review generated prompts before use and adjust motion, stability, and tagging details for the intended context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lumenclaw-cloud/seedance-filtrix-prompt) <br>
-- [Filtrix AI](https://filtrix.ai) <br>
+## Use Case:
 
+Content creators, social video producers, and agents assisting them use this skill to draft Seedance 2.0 video prompts with precise camera motion, micro-action, stabilization, and asset-tagging guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt guidance with structured Seedance prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include English and Chinese prompt variants and @-tagged media references supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated prompts may reference personal images, videos, or audio before submission to an external video service.
+
+Mitigation: Review prompt drafts and remove or replace sensitive asset references before submitting them outside the agent environment.
+
+Risk: Prompt drafts can still yield unstable camera motion or distorted subjects if the requested scene overloads motion combinations.
+
+Mitigation: Keep generated prompts to one or two motion combinations and retain stabilization and face or structure consistency constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lumenclaw-cloud/skills/seedance-filtrix-prompt)
+- [README](artifact/README.md)
+- [Seedance 2.0 Expert Skill](artifact/SKILL.md)
+- [God-Level Gameplay Library](artifact/examples/god_level_plays.md)
+- [Seedance 2.0 God-Level Playbooks](artifact/templates/god_level_plays.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt drafts and concise prompt-engineering guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual English and Chinese prompt text and @-tagged asset assignments when source media are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

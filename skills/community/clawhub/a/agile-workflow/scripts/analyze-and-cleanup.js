@@ -85,7 +85,7 @@ const KEEP_PATTERNS = [
   'workflow-config.js',
   
   // 新任务依赖模型
-  'task-dependency-generator.js',
+  'taREDACTED-SECRET.js',
   'repair-task-states.js'
 ];
 

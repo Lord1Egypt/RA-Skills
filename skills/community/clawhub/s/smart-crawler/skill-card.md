@@ -1,43 +1,58 @@
-## Description: <br>
-Smart Crawler helps agents perform web crawling and data extraction with static, batch, and dynamic browser-based crawling support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Crawler helps agents collect web data with static and dynamic crawling, extraction rules, batch crawling, and anti-detection controls.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and data engineers use this skill to fetch webpages, extract structured data with selectors, run batch crawls, and handle dynamic pages through browser automation. It is intended for authorized crawling workflows with conservative operating boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler may be used against sites where crawling or automated access is not authorized. <br>
-Mitigation: Use it only on sites where crawling is permitted, and enforce explicit scope, rate limits, and access-policy checks before running jobs. <br>
-Risk: Proxy and anti-detection behavior can bypass site controls or violate acceptable-use limits. <br>
-Mitigation: Disable proxy and anti-detection modes unless they are explicitly authorized for the target environment. <br>
-Risk: Dynamic browser automation and third-party dependencies increase execution and supply-chain risk. <br>
-Mitigation: Review scripted browser actions before execution and install dependencies in an isolated environment. <br>
+## Use Case:
 
+Developers and data engineers use this skill for authorized web data collection, including static pages, dynamic pages, batch jobs, and structured extraction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/smart-crawler) <br>
-- [Project Homepage](https://github.com/openclaw/smart-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce crawler configuration, extraction rules, usage guidance, and runnable code snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill enables broad scraping, anti-detection behavior, unrestricted URL fetching, and unrestricted local output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized targets in an isolated, low-privilege environment with target allowlists, private-network blocking, redirect controls, and output writes constrained to a dedicated directory.
+
+Risk: The dependency list uses broad version ranges.
+
+Mitigation: Pin and review dependencies before production use.
+
+Risk: Downloaded files and screenshots can be written to caller-provided paths.
+
+Mitigation: Validate or normalize output paths and restrict them to approved working directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/smart-crawler)
+- [Project homepage](https://github.com/openclaw/smart-crawler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Crawler code can produce fetched HTML, extracted data, screenshots, downloads, JSON, CSV, Excel files, and database writes when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

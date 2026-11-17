@@ -1,42 +1,52 @@
-## Description: <br>
-用于微博数据分析、微博热搜、微博内容研究、关键词观察、内容调研、竞品分析和趋势研究，覆盖 Weibo hot-search and post research，来自 SocialDataX 社媒数据助手。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports Weibo hot-search and post research for keyword discovery, content research, competitor analysis, and trend monitoring.
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Researchers, analysts, and content teams use this skill to review Weibo hot searches and posts, discover keyword signals, and study content, competitors, and trends.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: ClawScan reports medium confidence and incomplete coverage, and its guidance flags broad activation wording and an unpinned npx reference for review.
+
+Mitigation: Review the requested task and CLI command before execution, and check package references before running them.
+
+Risk: The skill documents saving an API key for CLI use.
+
+Mitigation: Keep SOCIALDATAX_API_KEY private and use the documented protected local credential storage; never include the key in outputs or logs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External researchers, analysts, and developers use this skill to fetch Weibo hot-search lists and keyword post results through SocialDataX for content research, competitor analysis, and trend scanning. The skill helps agents summarize observed rankings, authors, URLs, engagement counts, and publish times while keeping evidence separate from interpretation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may run a third-party npm package and send user queries plus SOCIALDATAX_API_KEY to SocialDataX for Weibo data access. <br>
-Mitigation: Use a dedicated API key when possible, configure only SOCIALDATAX_API_KEY for this skill, and review the npm package and publisher when stronger supply-chain assurance is required. <br>
-Risk: Weibo hot-search and keyword results are live social-media observations that may be incomplete, paginated, or change quickly. <br>
-Mitigation: Summarize visible evidence separately from interpretation and include IDs, URLs, counts, publish times, and pagination context when traceability matters. <br>
+**Output Format:** [Concise text or Markdown summaries, with JSON data available from search calls.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [SocialDataX API access](https://socialdatax.com/?from=clawhub) <br>
-- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/devinchen2014) <br>
+**Other Properties Related to Output:** [Keeps observed rankings and search results distinct from interpretation; includes IDs, URLs, authors, counts, and publish times when useful.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Weibo post IDs, URLs, author facts, interaction counts, publish times, and pagination tokens when traceability is needed.] <br>
+0.1.25 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

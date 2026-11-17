@@ -1,41 +1,51 @@
-## Description: <br>
-Helps developers and maintainers plan and evaluate considerations for migrating away from Bun. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps maintainers plan and evaluate considerations for migrating away from Bun.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers and maintainers use this skill to structure migration-away-from-Bun discussions into actionable plans, checklists, decision aids, or implementation support. It is intended for practical software-maintenance guidance where assumptions, risks, and follow-up work need to be explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill for unrelated coding or general-question prompts. <br>
-Mitigation: Review routing settings before installation; disable implicit invocation or narrow skill routing where the agent platform supports it. <br>
+## Use Case:
 
+Developers and maintainers use this skill to structure migration-away-from-Bun discussions into actionable plans, checklists, decision aids, code changes, and validation notes.
 
-## Reference(s): <br>
-- [Requirement Plan](artifact/references/requirement-plan.md) <br>
-- [Source GitHub Issue: Considerations about migrating away from bun?](https://github.com/ProtonDriveApps/sdk/issues/35) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/bun-migration-advisor-122817) <br>
-- [Publisher Profile](https://clawhub.ai/user/kyro-ma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with checklists, plans, analysis, code-oriented notes, and verification notes as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, limits, remaining risks, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Overly broad activation wording may invoke the skill for unrelated coding or productivity requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the user's request before applying the skill and tighten or disable implicit invocation if the use case is not about migrating away from Bun.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Considerations about migrating away from bun?](https://github.com/ProtonDriveApps/sdk/issues/35)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/bun-migration-advisor-122817)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown or plain text with optional code blocks, shell commands, checklists, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, remaining risks, and follow-up work when helpful.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

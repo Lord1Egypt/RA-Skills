@@ -1,43 +1,53 @@
-## Description: <br>
-Automates an isolated browser session to fetch and summarize publicly visible X posts from a specified user into a local Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a browser workflow to fetch publicly visible X posts from a specified user and generate a Markdown summary report.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-Developers and agent users use this skill to collect publicly visible posts from a specified X account and produce a local Markdown summary report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent-controlled browser access to X.com. <br>
-Mitigation: Use the isolated browser session, log in manually in the browser window, and avoid sending X credentials through chat. <br>
-Risk: Generated reports may include content that should not be shared broadly. <br>
-Mitigation: Review the local Markdown report before sharing it and avoid using the skill for private or protected content. <br>
-Risk: High-volume collection can create platform or account risk. <br>
-Mitigation: Use the skill for limited collection tasks and avoid high-volume scraping. <br>
+## Use Case:
 
+Developers and agent users use this skill to collect publicly visible X posts for a target account, summarize post activity, and save a local Markdown report for review.
 
-## Reference(s): <br>
-- [X](https://x.com) <br>
-- [ClawHub skill page](https://clawhub.ai/hitjcl/x-post-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Tool commands, Guidance] <br>
-**Output Format:** [Markdown report with browser automation tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports to the local workspace; relies on an isolated browser session and manual X login when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Login examples may expose X credentials if an agent is asked to type passwords or recovery details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the user enter credentials, MFA codes, and recovery details directly in the visible isolated browser window, and clear or revoke the isolated X session when finished.
+
+Risk: Collected post summaries may include sensitive or misleading content from X even when posts are publicly visible.
+
+Mitigation: Review generated Markdown reports before sharing or using them in downstream decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitjcl/skills/x-post-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with browser automation command examples and summarized post data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved to the user's local workspace; the skill uses an isolated browser session for X access.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

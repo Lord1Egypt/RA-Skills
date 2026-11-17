@@ -1,51 +1,62 @@
-## Description: <br>
-Apollo.io API integration with managed OAuth for searching and enriching people and companies, managing contacts and accounts, and supporting sales prospecting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search and enrich Apollo.io people and companies and manage sales contacts and accounts through a connected Maton account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and sales-operations developers use this skill to work with Apollo.io through Maton-managed authentication, including lead search, enrichment, contact and account management, and sequence workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses MATON_API_KEY and Maton connection URLs that can expose access to a connected Apollo account if shared. <br>
-Mitigation: Keep the API key and connection URLs private, and rotate credentials if they are exposed. <br>
-Risk: Requests can read or modify Apollo sales data, including contacts, accounts, opportunities, sequences, and email data. <br>
-Mitigation: Approve create, update, delete, or sequence actions only after checking the target resource, connection, and intended change. <br>
-Risk: When multiple Apollo connections exist, an action could target the wrong account. <br>
-Mitigation: Use the Maton-Connection header to select the intended connection before running account-specific requests. <br>
+## Use Case:
 
+Sales teams and developers use this skill to prospect, enrich leads, manage Apollo contacts and accounts, and set up approved sales workflows.
 
-## Reference(s): <br>
-- [Apollo Skill Page](https://clawhub.ai/byungkyu/apollo-api) <br>
-- [Publisher Profile](https://clawhub.ai/user/byungkyu) <br>
-- [Apollo API Overview](https://docs.apollo.io/reference/introduction) <br>
-- [Apollo People Search API](https://docs.apollo.io/reference/people-api-search.md) <br>
-- [Apollo People Enrichment API](https://docs.apollo.io/reference/people-enrichment.md) <br>
-- [Apollo Organization Search API](https://docs.apollo.io/reference/organization-search.md) <br>
-- [Apollo Organization Enrichment API](https://docs.apollo.io/reference/organization-enrichment.md) <br>
-- [Apollo Create Contact API](https://docs.apollo.io/reference/create-a-contact.md) <br>
-- [Apollo LLM Reference](https://docs.apollo.io/llms.txt) <br>
-- [Maton](https://maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with API endpoint examples and Python, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and an active Apollo connection through Maton.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Connecting Apollo may grant broader access than the task needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review OAuth scopes and prefer read-only access where possible.
+
+Risk: Contact changes or sequence actions may affect live sales records and outreach.
+
+Mitigation: Confirm each write or sequence action with the user before execution.
+
+Risk: Enrichment results and trigger destinations may expose personal or business data.
+
+Mitigation: Return only necessary fields and verify destinations before sending data.
+
+## Reference(s):
+
+- [Apollo API documentation](https://docs.apollo.io/reference)
+- [Maton](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Apollo skill release](https://clawhub.ai/byungkyu/skills/apollo-api)
+- [Time trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with commands, code snippets, and concise API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API results may contain personal or business data; return only fields needed for the task.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

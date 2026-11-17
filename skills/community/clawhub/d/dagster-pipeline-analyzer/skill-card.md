@@ -1,40 +1,48 @@
-## Description: <br>
-Analyze Dagster pipelines and software-defined assets for quality, scheduling, partitioning, IO managers, resource configuration, and observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Dagster pipelines and software-defined assets for quality, scheduling, partitioning, IO managers, resource configuration, and observability.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Data platform developers and engineers use this skill to review Dagster projects for asset graph quality, freshness, partitioning, IO manager durability, resource configuration, schedules, sensors, and observability gaps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill guides an agent to inspect local Dagster project code and configuration, which may include sensitive deployment details.
+
+Mitigation: Provide only the intended project path, keep access scoped to the review target, and review findings before applying any remediation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data platform engineers use this skill to review Dagster projects, audit asset graphs, analyze partitioning and scheduling patterns, and identify reliability, security, and observability gaps before deployment or during maintenance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides repository maintenance and audit tasks that may involve local commands or changes to project configuration. <br>
-Mitigation: Review proposed commands and remediation changes before execution or merge, and run normal code review and scanning before deployment. <br>
-Risk: Analysis findings may be incomplete or inaccurate if the provided Dagster project context is partial. <br>
-Mitigation: Provide the Dagster project root, dagster.yaml, workspace.yaml, and relevant version information, then validate recommendations against the actual deployment environment. <br>
+**Output Format:** [Markdown report with shell commands, findings, recommendations, and remediation code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Dagster Pipeline Analyzer on ClawHub](https://clawhub.ai/charlie-morrison/dagster-pipeline-analyzer) <br>
+**Other Properties Related to Output:** [Includes a health score, category breakdown, critical issue highlights, and remediation examples when supported by the analyzed Dagster project.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis report with command examples, health scoring, issue lists, and remediation code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include asset graph summaries, category scores, critical findings, warnings, and recommended Dagster configuration changes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

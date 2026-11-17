@@ -1,43 +1,56 @@
-## Description: <br>
-Generate 4-second videos from text prompts using Text to Video (Wan2.1) through the Dream/Newport API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos from text using the Text to Video (Wan2.1) API, producing 4-second videos from text descriptions.
 
-## Publisher: <br>
-[Hy-1990](https://clawhub.ai/user/Hy-1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hy-1990](https://clawhub.ai/user/hy-1990)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to turn short text prompts into 4-second videos through the Dream/Newport Text to Video API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text and generated-video requests are sent to the external Dream/Newport API provider. <br>
-Mitigation: Use the skill only when that provider is trusted, and avoid submitting confidential prompt text unless provider processing is acceptable. <br>
-Risk: The skill requires an API key that could incur quota or billing impact if overused or exposed. <br>
-Mitigation: Use a dedicated or limited API key where possible and monitor usage, quota, and billing. <br>
+## Use Case:
 
+External users and developers use this skill to configure DreamAPI credentials and generate short text-to-video outputs from prompts through NewportAI/DreamAPI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Hy-1990/dream-text-to-video) <br>
-- [Dreamface AI tools homepage](https://tools.dreamfaceapp.com/home) <br>
-- [Newport AI Text to Video Wan2.1 API reference](https://api.newportai.com/api-reference/text-to-video-wan2-1) <br>
-- [Newport AI get started](https://api.newportai.com/api-reference/get-started) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and API endpoint details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMTEXTTOVIDEO_API_KEY; prompts are documented with a 1500-character maximum and optional 480p or 720p resolution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts and generation requests are sent to NewportAI/DreamAPI, and those prompts may contain sensitive or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private personal data, or confidential material unless the user accepts the provider's handling of that data.
+
+Risk: The skill requires storing a DreamAPI key in OpenClaw configuration.
+
+Mitigation: Use a scoped API key where possible, keep it out of prompts and logs, and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [Dream Text to Video skill page](https://clawhub.ai/hy-1990/skills/dream-text-to-video)
+- [DreamAPI get started](https://api.newportai.com/api-reference/get-started)
+- [Text to Video Wan2.1 API reference](https://api.newportai.com/api-reference/text-to-video-wan2-1)
+- [Dreamface AI tools](https://tools.dreamfaceapp.com/home)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, API endpoint references, and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DREAMTEXTTOVIDEO_API_KEY; prompt max is 1500 characters; supported resolutions are 480p and 720p; generated videos are described as 4 seconds long.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

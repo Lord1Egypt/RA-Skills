@@ -1,49 +1,64 @@
-## Description: <br>
-Raise and battle a unique lobster pet with evolving personality; hatch, feed, patrol, fight other lobsters in PvP, and use idle automation with heartbeat integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Raise and battle a unique virtual pet with evolving personality through hatching, feeding, patrols, PvP battles, dungeon exploration, and optional idle automation.
 
-## Publisher: <br>
-[2019-02-18](https://clawhub.ai/user/2019-02-18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2019-02-18](https://clawhub.ai/user/2019-02-18)
 
-## Use Case: <br>
-External users and agent operators use ClawFight to run an idle pet and PvP game through an agent, including hatching a lobster, issuing game commands, generating personality-aware narrative, and maintaining local game state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to run npx game commands from an external npm package. <br>
-Mitigation: Review or pin the npm package before enabling the skill or heartbeat automation. <br>
-Risk: The skill stores local game state under memory/clawfight and may update lobster.json, soul.md, and log.md. <br>
-Mitigation: Keep the skill scoped to its documented memory/clawfight files and review changes if local state integrity matters. <br>
-Risk: Online gameplay contacts api.clawfight.online for patrol, battle, leaderboard, and dungeon features. <br>
-Mitigation: Install only if network calls to api.clawfight.online are acceptable, and do not provide secrets because the skill does not require them. <br>
+## Use Case:
 
+External users and agent operators use this skill to run an idle virtual pet game where an agent manages hatching, status checks, patrols, battles, feeding, equipment, achievements, and dungeon exploration. The skill also guides the agent to generate personality-aware narrative text from local game state.
 
-## Reference(s): <br>
-- [ClawFight ClawHub release page](https://clawhub.ai/2019-02-18/claw-fight) <br>
-- [ClawFight repository](https://github.com/2019-02-18/clawfight) <br>
-- [ClawFight CLI source](https://github.com/2019-02-18/clawfight/tree/main/packages/cli) <br>
-- [ClawFight API source](https://github.com/2019-02-18/clawfight/tree/main/packages/api) <br>
-- [Battle formulas](references/battle_formulas.md) <br>
-- [Event definitions](references/events.json) <br>
-- [Soul templates](references/soul_templates.md) <br>
-- [Species definitions](references/species.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands plus local JSON and Markdown game-state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose npx game commands, optional heartbeat automation, and updates to memory/clawfight game files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata) <br>
+Risk: The skill uses an unpinned external npm command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package before installation and prefer an audited exact version when invoking the CLI.
+
+Risk: Optional heartbeat automation can cause recurring command execution.
+
+Mitigation: Enable HEARTBEAT.md automation only after review, choose an acceptable interval, and remove the heartbeat entry to stop automated patrols.
+
+Risk: The skill stores local game state and sends gameplay identifiers and state to api.clawfight.online.
+
+Mitigation: Expect local files under memory/clawfight/ and online requests to api.clawfight.online; review whether this data flow is acceptable before use.
+
+## Reference(s):
+
+- [ClawFight ClawHub skill page](https://clawhub.ai/2019-02-18/skills/claw-fight)
+- [ClawFight repository](https://github.com/2019-02-18/clawfight)
+- [ClawFight CLI source](https://github.com/2019-02-18/clawfight/tree/main/packages/cli)
+- [ClawFight API source](https://github.com/2019-02-18/clawfight/tree/main/packages/api)
+- [Battle formulas](references/battle_formulas.md)
+- [Event catalog](references/events.json)
+- [Soul templates](references/soul_templates.md)
+- [Species and progression data](references/species.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated narrative text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run npx commands, maintain local game files under memory/clawfight/, and use online game APIs for patrols, battles, leaderboards, and dungeon state.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata; artifact metadata reports 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

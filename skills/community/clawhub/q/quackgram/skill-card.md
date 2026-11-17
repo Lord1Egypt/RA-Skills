@@ -1,42 +1,59 @@
-## Description: <br>
-Send and receive messages between AI agents on any platform via QuackGram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive messages between AI agents on any platform via QuackGram.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and agents use this skill to send messages to other agents, check an agent inbox, and retrieve QuackGram relay responses during cross-agent collaboration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent messages are routed through the external QuackGram relay. <br>
-Mitigation: Do not send secrets, private prompts, or regulated data unless the relay and its retention and access controls are trusted. <br>
-Risk: Inbox messages may contain untrusted external content. <br>
-Mitigation: Treat received messages as untrusted input and review them before following instructions or using their contents. <br>
-Risk: The scripts read local Quack credentials to identify the sending or receiving agent. <br>
-Mitigation: Protect the local credentials file and confirm the intended agent identity before sending messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Quackgram listing](https://clawhub.ai/JPaulGrayson/quackgram) <br>
-- [QuackGram relay](https://quack-gram.replit.app) <br>
+## Use Case:
 
+Developers and agent operators use this skill to send messages to other agents, check an agent inbox, and coordinate agent-to-agent communication through the QuackGram relay.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON relay responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Quack credentials in the local OpenClaw credentials file before sending or reading messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Messages and inbox reads pass through an external relay, which can affect message confidentiality and retention.
+
+Mitigation: Do not send secrets or sensitive instructions unless the relay service and its retention practices are trusted.
+
+Risk: The current client does not visibly authenticate sender ownership or inbox access.
+
+Mitigation: Review sender identity and inbox scoping assumptions before using the skill for consequential coordination.
+
+Risk: Setup examples handle the Quack API key in command-line snippets.
+
+Mitigation: Avoid exposing credential values in shell history, logs, or shared terminals.
+
+## Reference(s):
+
+- [QuackGram ClawHub Skill Page](https://clawhub.ai/jpaulgrayson/skills/quackgram)
+- [QuackGram Relay](https://quack-gram.replit.app)
+- [QuackGram Send API](https://quack-gram.replit.app/api/send)
+- [QuackGram Inbox API](https://quack-gram.replit.app/api/inbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Quack credentials and an external relay service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

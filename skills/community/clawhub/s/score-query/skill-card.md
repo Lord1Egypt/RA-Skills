@@ -1,43 +1,54 @@
-## Description: <br>
-学分查询技能用于按学生姓名和科目查询本地学生成绩记录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于查询学生各科目成绩的 OpenClaw 技能。
 
-## Publisher: <br>
-[bc96](https://clawhub.ai/user/bc96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bc96](https://clawhub.ai/user/bc96)
 
-## Use Case: <br>
-Students, educators, or support agents can use this skill to answer single-subject or all-subject score queries from a local sample score database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student score data may be sensitive if the bundled records are not sample data or if users are not authorized to view them. <br>
-Mitigation: Deploy only with sample data or authorized records, and verify access expectations before exposing query results. <br>
-Risk: Raw grade queries are written to console output, which may be retained in shared logs. <br>
-Mitigation: Avoid logging identifiable score queries in shared environments, or remove query logging before deployment. <br>
-Risk: The metadata declares an ffmpeg binary requirement even though the skill behavior is a local score lookup. <br>
-Mitigation: Review and remove the unused binary requirement so installers do not grant or install unnecessary runtime capability. <br>
+## Use Case:
 
+Students, educators, or support agents use this skill to look up a named student's score in one subject or all recorded subjects from a local score database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bc96/score-query) <br>
-- [Publisher profile](https://clawhub.ai/user/bc96) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Plain-language Chinese response with structured result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success or error status, a human-readable message, and score data when a match is found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata and package.json) <br>
+Risk: The skill can expose student grade data without clear authentication, per-user authorization, or log redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only placeholder data until authentication, per-user authorization, and log redaction are added and reviewed for the target environment.
+
+Risk: The release declares an ffmpeg binary requirement that is unrelated to score lookup behavior.
+
+Mitigation: Remove the ffmpeg requirement or document why it is needed before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bc96/skills/score-query)
+- [Publisher profile](https://clawhub.ai/user/bc96)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Chinese text response with optional structured data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success status, message text, and score data when a matching student and subject are found.]
+
+## Skill Version(s):
+
+0.0.2 (source: release evidence, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

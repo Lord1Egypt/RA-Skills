@@ -1,7 +1,7 @@
 ---
 name: subagent-testing
 description: Test skills via TDD in fresh subagents
-version: 1.9.8
+version: 1.10.3
 triggers:
   - testing
   - validation
@@ -14,26 +14,22 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Subagent Testing - TDD for Skills
 
 Test skills with fresh subagent instances to prevent priming bias and validate effectiveness.
 
-## Table of Contents
+## When NOT To Use
 
-1. [Overview](#overview)
-2. [Why Fresh Instances Matter](#why-fresh-instances-matter)
-3. [Testing Methodology](#testing-methodology)
-4. [Quick Start](#quick-start)
-5. [Detailed Testing Guide](#detailed-testing-guide)
-6. [Success Criteria](#success-criteria)
+- Writing the skill under test (use `abstract:skill-authoring`)
+- A static quality audit with no execution (use `abstract:skills-eval`)
 
 ## Overview
 
-**Fresh instances prevent priming:** Each test uses a new Claude conversation to verify
-the skill's impact is measured, not conversation history effects.
+**Fresh instances prevent priming:** Each test uses a new Claude conversation so the
+measurement reflects the skill and excludes conversation history effects.
 
 ## Why Fresh Instances Matter
 
@@ -96,5 +92,15 @@ For complete testing patterns, examples, and templates:
 ## See Also
 
 - **skill-authoring**: Creating effective skills
-- **bulletproof-skill**: Anti-rationalization patterns
 - **test-skill**: Automated skill testing command
+
+## Exit Criteria
+
+- [ ] Baseline (RED) phase documents at least 5 diverse scenarios run in fresh Claude instances
+  without the skill active, with full response text recorded.
+- [ ] With-skill (GREEN) phase uses identical prompts in new fresh instances (not continuations
+  of the baseline conversation) and shows >= 50% improvement on skill-related metrics.
+- [ ] Rationalization (REFACTOR) phase shows skill guardrails blocking >= 80% of rationalization
+  attempts tested across at least 3 pressure scenarios.
+- [ ] Results are reproducible: the same prompts in a new fresh instance produce consistent
+  outcomes, confirming the effect is not conversation-history priming.

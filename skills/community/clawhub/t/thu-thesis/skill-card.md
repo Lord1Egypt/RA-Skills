@@ -1,43 +1,58 @@
-## Description: <br>
-Converts Tsinghua University thesis Word documents into thuthesis-compatible LaTeX projects and PDFs, including chapter structure, abstracts, figures, tables, references, acknowledgements, resumes, lists, and evaluation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Tsinghua thesis Word DOCX documents into thuthesis LaTeX projects and compiled PDFs, with support for chapters, abstracts, figures, tables, references, acknowledgements, resumes, and AI-assisted quality review.
 
-## Publisher: <br>
-[chao1208](https://clawhub.ai/user/chao1208) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chao1208](https://clawhub.ai/user/chao1208)
 
-## Use Case: <br>
-External users and developers use this skill to convert Tsinghua thesis .docx files into a compilable thuthesis LaTeX/PDF project and to review formatting quality before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled output files contain identifiable personal and academic thesis data that is not required for the converter to run. <br>
-Mitigation: Review or remove bundled output/ files before installing, sharing, or storing the skill locally. <br>
-Risk: Generated citations, tables, figures, and LaTeX changes may be incorrect or incomplete for academic submission. <br>
-Mitigation: Review generated references and LaTeX changes against the source Word document before submission. <br>
-Risk: Setup and LaTeX compilation operate on local files and external template sources. <br>
-Mitigation: Run setup and compilation in a controlled workspace, using filesystem isolation where possible. <br>
+## Use Case:
 
+Students, researchers, and thesis support teams use this skill to normalize Tsinghua thesis DOCX drafts into a thuthesis-compatible LaTeX project and PDF. Developers or agent operators can also use it to extract document structure, build intermediate JSON, render LaTeX, and review conversion quality.
 
-## Reference(s): <br>
-- [thuthesis official template](https://github.com/tuna/thuthesis) <br>
-- [thu-thesis ClawHub release page](https://clawhub.ai/chao1208/thu-thesis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON, LaTeX project files, BibTeX, PDFs, and evaluation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local thesis conversion workspaces; generated citations, tables, figures, and LaTeX should be reviewed before academic submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.6 (source: server release evidence) <br>
+Risk: Setup can fetch or update a mutable remote thuthesis template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned thuthesis release or a reviewed local THUTHESIS_DIR, and review template changes before running conversion workflows.
+
+Risk: LaTeX compilation executes on user-controlled thesis content.
+
+Mitigation: Compile only in a contained workspace with restricted privileges, and avoid processing untrusted DOCX files.
+
+Risk: Packaged thesis samples and generated outputs may contain personal or student information.
+
+Mitigation: Remove private thesis documents, real student data, and generated outputs from public packages; use sanitized samples when examples are needed.
+
+## Reference(s):
+
+- [thu-thesis ClawHub Skill Page](https://clawhub.ai/chao1208/skills/thu-thesis)
+- [thuthesis GitHub Project](https://github.com/tuna/thuthesis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated JSON, LaTeX project files, PDF output, and evaluation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces intermediate raw, struct, and parsed JSON files; renders a thuthesis LaTeX project; compiles thesis.pdf when TeX tooling is available.]
+
+## Skill Version(s):
+
+1.5.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

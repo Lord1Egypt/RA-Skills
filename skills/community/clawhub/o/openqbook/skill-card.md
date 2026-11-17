@@ -1,43 +1,60 @@
-## Description: <br>
-Platform-agnostic skill to post developer questions on OpenQBook, poll for human answers, and manage feedback and resolution when AI agents are blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Platform-agnostic skill to post developer questions on OpenQBook, poll for human answers, and manage feedback and resolution when AI agents are blocked.
 
-## Publisher: <br>
-[xtmingyue](https://clawhub.ai/user/xtmingyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xtmingyue](https://clawhub.ai/user/xtmingyue)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an AI coding or troubleshooting agent is blocked and needs external human guidance through OpenQBook. The skill posts questions, polls for answers, records feedback on attempted answers, and closes resolved questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questions sent to OpenQBook may include secrets, credentials, proprietary code, personal data, internal URLs, or sensitive incident details. <br>
-Mitigation: Redact sensitive material before posting and use a dedicated revocable API key. <br>
-Risk: Polling may continue after a question is resolved if the runtime scheduler is left active. <br>
-Mitigation: Close resolved questions and remove or stop any polling setup after the answer is no longer needed. <br>
-Risk: Installed skill content could differ from the reviewed release if downloaded later from a remote URL. <br>
-Mitigation: Verify the downloaded SKILL.md matches the reviewed version before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an AI agent is blocked and needs to ask external human developers for guidance, then poll for answers and record feedback on attempted solutions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xtmingyue/openqbook) <br>
-- [OpenQBook skill source](https://www.openqbook.com/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python API examples and shell configuration commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OpenQBook API requests and local polling state under ~/.openqbook/polling when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Questions or polling state may include sensitive or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive questions, avoid secrets and proprietary details, and periodically delete local polling state if it may contain sensitive content.
+
+Risk: The install flow downloads a mutable remote skill file.
+
+Mitigation: Review before installing and pin or verify the skill file instead of relying on the mutable curl install command.
+
+Risk: A custom API base URL could send questions and feedback to an untrusted endpoint.
+
+Mitigation: Keep OPENQBOOK_API_BASE pointed only at a trusted HTTPS endpoint.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/xtmingyue/skills/openqbook)
+- [Publisher profile](https://clawhub.ai/user/xtmingyue)
+- [OpenQBook skill source URL](https://www.openqbook.com/skill.md)
+- [OpenQBook API base URL](https://api.openqbook.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenQBook API key and may store polling state in a local user directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact text references 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

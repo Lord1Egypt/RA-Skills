@@ -1,42 +1,55 @@
-## Description: <br>
-查询或随机返回中文歇后语，并通过即刻数据（jikeapi.cn）接口提供结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides keyword search and random retrieval for Chinese xiehouyu using the Jike API.
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-Agents and users working with Chinese language content use this skill to search xiehouyu by keyword or retrieve a random saying for explanation, recommendation, or writing support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends xiehouyu search terms and the configured Jike API key to the API service. <br>
-Mitigation: Avoid sensitive or private text, keep the API key scoped and protected, and install only when use of the Jike API service is acceptable. <br>
-Risk: The JIKE_API_BASE_URL environment variable can route requests to an alternate endpoint. <br>
-Mitigation: Leave JIKE_API_BASE_URL unset unless the alternate endpoint is intentionally configured and trusted. <br>
+## Use Case:
 
+External users and agents use this skill to search for Chinese xiehouyu by keyword or retrieve a random xiehouyu for Chinese-language writing, explanation, or recommendation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-xiehouyu-query) <br>
-- [Jike API homepage](https://www.jikeapi.cn/) <br>
-- [Jike xiehouyu query API endpoint](https://api.jikeapi.cn/v1/xiehouyu/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Terminal table text or JSON from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a Jike API key via JIKE_XIEHOUYU_QUERY_KEY or JIKE_APPKEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: A modified launch environment can redirect the API key and query text to another server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an environment you control and avoid setting JIKE_API_BASE_URL.
+
+Risk: The Jike AppKey may be exposed if an untrusted process can alter the environment or observe full request URLs.
+
+Mitigation: Use a dedicated API key, limit access to the execution environment, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-xiehouyu-query)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Jike xiehouyu query endpoint](https://api.jikeapi.cn/v1/xiehouyu/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Terminal table text by default, or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a Jike API key provided through JIKE_XIEHOUYU_QUERY_KEY or JIKE_APPKEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

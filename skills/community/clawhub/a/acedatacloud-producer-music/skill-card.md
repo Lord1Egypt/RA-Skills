@@ -1,41 +1,56 @@
-## Description: <br>
-Generate AI music with Producer via AceDataCloud API for creating songs, lyrics, covers, extensions, vocal or instrumental swaps, section replacements, and reference-audio workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in generating and editing AI music through AceDataCloud's Producer API.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and creators use this skill to ask an agent for AceDataCloud Producer API workflows that generate, edit, extend, cover, upload, and retrieve AI music assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts, lyrics, and reference audio are sent to AceDataCloud. <br>
-Mitigation: Do not submit confidential recordings, personal data, secrets, or content you do not have rights to use. <br>
-Risk: The workflow requires an ACEDATACLOUD_API_TOKEN. <br>
-Mitigation: Keep the token out of logs, screenshots, chats, generated examples, and source control. <br>
+## Use Case:
 
+Creators and developers use this skill to draft songs or lyrics, produce instrumentals, and edit existing audio using the Producer API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Germey/acedatacloud-producer-music) <br>
-- [AceDataCloud Producer audio endpoint](https://api.acedata.cloud/producer/audios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ACEDATACLOUD_API_TOKEN environment variable and may reference uploaded or existing audio IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, lyrics, audio IDs, and reference audio URLs are sent to AceDataCloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or rights-sensitive material unless approved, and confirm you trust the publisher before use.
+
+Risk: API calls can consume paid generation credits or expose an API key if mishandled.
+
+Mitigation: Use a dedicated key with only needed APIs, keep it out of prompts and commits, monitor billing, and poll an existing task rather than submitting it again.
+
+## Reference(s):
+
+- [Producer Music on ClawHub](https://clawhub.ai/acedatacloud/skills/producer)
+- [AceDataCloud API key setup](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud asynchronous task guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON API request examples]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio generation is asynchronous; check the returned task status before using results.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

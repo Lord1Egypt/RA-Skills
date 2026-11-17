@@ -1,47 +1,65 @@
-## Description: <br>
-Use the Nimrobo CLI for voice screening and matching network operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Nimrobo CLI for voice screening and matching network operations.
 
-## Publisher: <br>
-[virang-nimrobo](https://clawhub.ai/user/virang-nimrobo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[virang-nimrobo](https://clawhub.ai/user/virang-nimrobo)
 
-## Use Case: <br>
-Developers and operators use this skill to get guidance for installing and using the Nimrobo CLI for voice screening workflows, matching-network operations, organization and post management, applications, messaging, and JSON-based automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Credential-backed CLI commands can perform sensitive organization, hiring, messaging, onboarding, export, and batch operations. <br>
-Mitigation: Require explicit user confirmation before destructive or consequential actions, including deletes, role or member changes, message sends, application decisions, transcript or audio exports, onboarding, and batch operations. <br>
-Risk: Nimrobo usage depends on trusting the Nimrobo service, npm CLI package, and locally stored API key. <br>
-Mitigation: Install only from trusted sources, protect the API key file, and prefer least-privileged credentials when available. <br>
-Risk: Saved Net context can cause commands using current to target the wrong organization, post, channel, or user. <br>
-Mitigation: Review saved context before write actions and clear or reset context when switching tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nimrobo Skill Overview](artifact/SKILL.md) <br>
-- [Installation & Setup](artifact/installation.md) <br>
-- [Nimrobo CLI Documentation](artifact/core.md) <br>
-- [Nimrobo CLI Command Reference](artifact/commands.md) <br>
-- [Voice Commands - Detailed Reference](artifact/voice-commands.md) <br>
-- [Net Commands - Detailed Reference](artifact/net-commands.md) <br>
-- [Nimrobo CLI Workflow Guide](artifact/workflow.md) <br>
+## Use Case:
 
+Developers and operators use this skill to work with Nimrobo CLI workflows for voice interviews, screening sessions, user research, job posts, applications, organization management, and messaging.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce human-readable text or machine-readable JSON when the --json flag is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.17.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ambiguous global CLI installation can lead users to install the wrong package or version.
+
+Mitigation: Verify the official Nimrobo npm package and release version before installing or running commands.
+
+Risk: API keys may be exposed through shell history, logs, or the local `~/.nimrobo/config.json` file.
+
+Mitigation: Avoid pasting keys into shell history, protect the config file, and rotate credentials if exposure is suspected.
+
+Risk: The documented CLI workflows include high-impact operations such as deletes, membership changes, role changes, messages, applicant decisions, and bulk actions.
+
+Mitigation: Require explicit human confirmation before executing account, organization, applicant, messaging, or bulk operations.
+
+Risk: Transcripts, evaluations, and signed audio URLs may contain confidential personal data.
+
+Mitigation: Handle voice session outputs as confidential data and avoid sharing or storing them outside approved systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/virang-nimrobo/skills/nimrobo)
+- [Installation & Setup](artifact/installation.md)
+- [Nimrobo CLI - Command Reference](artifact/commands.md)
+- [Voice Commands - Detailed Reference](artifact/voice-commands.md)
+- [Net Commands - Detailed Reference](artifact/net-commands.md)
+- [Nimrobo CLI - Workflow Guide](artifact/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may propose authenticated Nimrobo CLI operations and JSON input/output patterns.]
+
+## Skill Version(s):
+
+0.17.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

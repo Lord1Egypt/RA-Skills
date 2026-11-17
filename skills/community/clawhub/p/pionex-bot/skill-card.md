@@ -1,41 +1,61 @@
-## Description: <br>
-Supports creating, querying, listing, adjusting, reducing, and cancelling Pionex bot orders for Futures Grid, Spot Grid, and Smart Copy workflows, including bulk listing and signal-provider publishing when credentials and permissions are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need to create, query, list, adjust, reduce, or cancel Pionex Futures Grid, Spot Grid, or Smart Copy bot orders, including bulk listing and pagination.
 
-## Publisher: <br>
-[pibrandon](https://clawhub.ai/user/pibrandon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pibrandon](https://clawhub.ai/user/pibrandon)
 
-## Use Case: <br>
-External developers and trading operators use this skill to manage Pionex trading bot lifecycles through CLI commands. It is intended for workflows that need bot reads, parameter validation, bot write actions, or signal-provider publishing with explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bot lifecycle and signal-platform write commands can affect trading positions or publish trading signals. <br>
-Mitigation: Use a dedicated least-privilege API key, prefer dry-run commands where supported, and require explicit confirmation before any non-dry-run write action. <br>
-Risk: Incorrect bot IDs, leverage, ranges, amounts, or signal UUIDs can produce unintended bot changes or signals. <br>
-Mitigation: Require explicit user-provided values, run parameter checks before create actions, and surface returned constraints or API errors before retrying. <br>
-Risk: The provided security summary flags the signal-publishing write action as high impact and not clearly declared in the top-level description. <br>
-Mitigation: Tell users that `bot signal listener` publishes a trading signal as a signal provider and review every generated command before execution. <br>
+## Use Case:
 
+External developers and Pionex users use this skill to manage Pionex trading bot lifecycle actions and push trading signals through the Pionex CLI with explicit confirmations for write actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Pionex API credentials, bot permissions, and review before non-dry-run write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Live bot create, adjust, reduce, cancel, profit extraction, and signal-publishing actions can affect trading positions or funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry runs first, require explicit user confirmation for live actions, and surface Pionex validation errors and constraints before retrying.
+
+Risk: API credentials with broad account permissions could increase the impact of misuse or compromise.
+
+Mitigation: Use a dedicated Pionex API key with only the required bot permissions and avoid withdrawal or unrelated account permissions.
+
+Risk: The npm executable dependency is unpinned in the release evidence.
+
+Mitigation: Pin the npm package version before deployment and review package updates before allowing live trading operations.
+
+Risk: The skill can push trading signals, but the security evidence notes that this capability is not disclosed in the frontmatter description.
+
+Mitigation: Disclose signal publishing in release metadata and confirm every signal-publishing action with the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pibrandon/skills/pionex-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Pionex API credentials, bot permissions, and the pionex-trade-cli executable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Calls the MiniMax text-to-speech API to generate speech from text, supporting system voices, cloned voices, and configurable audio output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese text-to-speech audio with the MiniMax TTS API, including system and cloned voices and command-line controls for model, voice, speed, output format, and output file.
 
-## Publisher: <br>
-[whille](https://clawhub.ai/user/whille) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whille](https://clawhub.ai/user/whille)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn Chinese or multilingual text into local audio files through MiniMax TTS. It is useful for voice generation workflows that need selectable voices, speech speed, output format, and voice-list discovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided text is sent to MiniMax for speech synthesis. <br>
-Mitigation: Do not submit secrets, private messages, regulated data, or confidential drafts unless the MiniMax account terms and data handling are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MiniMax Speech T2A API Documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http) <br>
-- [MiniMax Platform](https://platform.minimax.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/whille/minimax-tts-cn) <br>
+## Use Case:
 
+Developers and agent users use this skill to turn supplied text into audio files through MiniMax TTS, choose available voices, and configure speech model, speed, pause, format, and output path.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [Audio files with terminal status text and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and the Python requests package; outputs are saved to a caller-selected local file path or a default tts_output file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Synthesis text is sent to MiniMax to generate audio, which can expose private documents, secrets, or sensitive personal data.
+
+Mitigation: Use only text that is acceptable to share with MiniMax, and avoid passing secrets, private documents, or sensitive personal data as TTS input.
+
+Risk: The MiniMax API key must be available to the script through MINIMAX_API_KEY.
+
+Mitigation: Install and run the skill only in environments where exposing MINIMAX_API_KEY to this script is acceptable.
+
+## Reference(s):
+
+- [MiniMax speech T2A HTTP API documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http)
+- [MiniMax platform](https://platform.minimax.io)
+- [ClawHub skill page](https://clawhub.ai/whille/skills/minimax-tts-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated audio is written as an audio file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and sends synthesis text to the MiniMax API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

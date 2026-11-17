@@ -1,42 +1,53 @@
-## Description: <br>
-Uses a local free search engine to search the web with specified keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a local free search engine to find information on the web by fetching results with specified keywords.
 
-## Publisher: <br>
-[blue-sky-8](https://clawhub.ai/user/blue-sky-8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blue-sky-8](https://clawhub.ai/user/blue-sky-8)
 
-## Use Case: <br>
-Agents use this skill when a user asks to search the web, including requests using terms such as "search", "查一下", or "找找". The skill extracts search keywords and fetches JSON results from a local search service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to a fixed private-network HTTP address. <br>
-Mitigation: Install only when the operator controls or fully trusts the service at 192.168.199.100:8080, and avoid sensitive queries. <br>
-Risk: The skill places user-provided query text into a shell command. <br>
-Mitigation: Review generated commands before execution and prefer a version that safely URL-encodes the query. <br>
-Risk: The local search endpoint uses HTTP rather than a protected channel. <br>
-Mitigation: Prefer HTTPS or another trusted local channel before using the skill in sensitive environments. <br>
+## Use Case:
 
+External users and developers use this skill to run web searches through a local search service when prompts ask to search or look something up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blue-sky-8/zpw-mianfei-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with a curl command and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search terms are sent to a fixed private-network HTTP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Unsafe shell interpolation can allow a search query to become command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a structured HTTP client or curl with --get and --data-urlencode, and avoid interpolating untrusted query text into a shell command.
+
+Risk: Search queries are sent to an internal HTTP endpoint with little user control.
+
+Mitigation: Clearly disclose the endpoint and ask before sending sensitive queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blue-sky-8/skills/zpw-mianfei-web)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON]
+
+**Output Format:** [JSON search results returned from a curl command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries are sent to a configured local HTTP search endpoint.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

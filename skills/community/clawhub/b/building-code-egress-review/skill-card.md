@@ -1,39 +1,49 @@
-## Description: <br>
-Use this skill when an architect, code consultant, or AHJ plan-reviewer needs to check a building design against IBC 2024 Chapter 10 (Means of Egress) before permit submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a proposed building design against IBC 2024 Chapter 10 by computing occupant loads, egress widths, travel distances, and accessible means of egress, then producing a draft deficiency-focused analysis for licensed-professional and AHJ review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Architects, code consultants, junior architects, and AHJ plan-review staff use this skill to draft an IBC 2024 Chapter 10 means-of-egress analysis from user-supplied project, occupancy, space, exit, travel-distance, and accessibility data. The output is a draft checklist and deficiency review for registered design professional and AHJ verification, not a compliance certification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Life-safety code conclusions may be incomplete, incorrect, or inconsistent with local AHJ amendments if users rely on draft output without professional review. <br>
-Mitigation: Verify calculations, citations, amendments, assumptions, deficiency findings, and design conclusions with a registered design professional or code official before using the output for permits or construction. <br>
+## Use Case:
 
+Architects, code consultants, AHJ plan reviewers, and code-of-record reviewers use this skill to structure an early egress review, identify deficiencies, and prepare draft IBC Chapter 10 analysis for professional review.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with headings, tables, deficiency list, unresolved-information list, and advisory verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output with IBC section citations; no stamped, sealed, or for-construction deliverable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The security review reports a core egress-width rule conflict that could produce unsafe draft compliance results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct and independently verify the egress-capacity factor instructions before relying on outputs; treat all results as draft assistance for registered design professional and AHJ review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/building-code-egress-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tables, cited verdicts, deficiency lists, and unresolved-information notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft advisory output only; not a compliance certification, sealed deliverable, or AHJ determination.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

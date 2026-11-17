@@ -1,39 +1,49 @@
-## Description: <br>
-Learning Optimizer analyzes study patterns, identifies inefficiencies, suggests optimization steps, and can store local JSONL logs for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learning optimizer - analyze study patterns, identify inefficiencies, suggest optimizations for better learning outcomes.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Students and learning-support agents use this skill to analyze study schedules, distractions, subject priorities, and current methods, then produce efficiency analysis, optimization suggestions, time allocation plans, and focus guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Study schedules, priorities, distractions, and current learning methods entered by users are saved in local JSONL logs. <br>
-Mitigation: Set LEARNING_OPTIMIZER_HOME to an appropriate private directory, avoid shared storage for sensitive study data, and delete ~/.learning-optimizer when history should no longer be retained. <br>
-Risk: Optimization suggestions may be unsuitable for an individual learner and are not performance guarantees. <br>
-Mitigation: Treat suggestions as planning guidance, review them before use, and adjust them through gradual experimentation. <br>
+## Use Case:
 
+External users and students use this skill to analyze study schedules, identify learning inefficiencies, receive time allocation plans, and get focus-improvement suggestions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with command examples; command output may include JSON and local JSONL log files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally without network or API requirements; runtime logs are stored under ~/.learning-optimizer by default or LEARNING_OPTIMIZER_HOME when set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, skill.json, clawhub.json, release evidence) <br>
+Risk: Study schedules, subjects, learning problems, and allocation inputs are saved locally by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use LEARNING_OPTIMIZER_HOME to isolate data on shared machines, and delete local JSONL files when they are no longer needed.
+
+## Reference(s):
+
+- [Learning Optimizer on ClawHub](https://clawhub.ai/harrylabsj/skills/learning-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Console text and JSON for local data-directory reporting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSONL logs for analysis, optimization, and allocation activity.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
-name: brand-cog
-description: "AI brand identity design powered by CellCog. Brand kits, color palettes, typography, brand guidelines, logo design, visual identity, social media assets, web design, video — complete brand identity from a single brief."
+name: logo-brand-identity-cellcog
+description: "AI logo and brand identity design powered by CellCog. Brand kits, color palettes, typography, brand guidelines, logo design, visual identity, social media assets, web design, video — complete brand identity from a single brief."
 metadata:
   openclaw:
     emoji: "🏷️"
@@ -12,9 +12,9 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Brand Cog - Build Brands, Not Just Logos
+# Logo & Brand Identity - Build Brands, Not Just Logos
 
-**Other tools make logos. CellCog builds brands.** #1 on DeepResearch Bench (Apr 2026) for deep strategic reasoning + the widest modality coverage in AI.
+**Other tools make logos. CellCog builds brands.** #1 on DeepResearch Bench (October 2026) for deep strategic reasoning + the widest modality coverage in AI.
 
 Brand building demands two things: deep understanding of your positioning, audience, and competitors — and the ability to produce assets across every format. CellCog delivers both in one request: logos, color systems, typography, brand guidelines, social templates, web assets, and video, all cohesive from a single brief.
 
@@ -28,7 +28,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="creative",
 )
 ```
 
@@ -39,7 +39,7 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="creative",
 )
 print(result["message"])
 ```
@@ -170,16 +170,17 @@ A complete brand kit typically includes:
 
 ---
 
-## Chat Mode for Branding
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Logos, color palettes, individual brand assets | `"agent"` |
-| Complete brand systems, strategic brand development | `"agent team"` |
+**Use `chat_mode="creative"` for logo and brand work** — the craft-first mode tuned for design taste, visual polish, and voice.
 
-**Use `"agent"` for specific brand assets.** Logos, color palettes, and templates execute well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Logos, brand systems, identity packages | `chat_mode="creative"` (default tier `"core"`) |
+| Maximum craft on high-stakes pieces | `chat_mode="creative", chat_tier="max"` |
+| Quick disposable drafts | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for complete brand development** - when you need strategic thinking about positioning, comprehensive systems, and multiple creative directions explored.
+Note: Agent Team (`chat_mode="team"`) is reserved for deep research.
 
 ---
 
@@ -255,6 +256,7 @@ A complete brand kit typically includes:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

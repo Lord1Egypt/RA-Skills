@@ -1,41 +1,60 @@
-## Description: <br>
-AIPPT生成 helps agents create PowerPoint presentations from a topic by generating an outline, supporting outline edits and template selection, and returning a PPT download link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIPPT生成 helps agents create PowerPoint presentations by generating outlines, supporting outline edits and template selection, submitting asynchronous PPT jobs, and returning download links through external Mingyang/MindPPT services.
 
-## Publisher: <br>
-[luych888-design](https://clawhub.ai/user/luych888-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luych888-design](https://clawhub.ai/user/luych888-design)
 
-## Use Case: <br>
-External users and agents use this skill to produce slide decks for reports, presentations, year-end summaries, product launches, and similar PPT workflows. The process is interactive: users review the generated outline and choose a template before the PPT generation task is submitted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends PPT topics, generated outlines, reporter names, user and chat metadata, and a stable host-derived hashed identifier to ai.mingyangtek.com. <br>
-Mitigation: Use only when that data sharing is acceptable, get explicit privacy consent before the first API call, minimize metadata, and avoid sensitive presentation content. <br>
-Risk: Generated PPT files and previews are delivered through external OSS download links. <br>
-Mitigation: Review generated files and links before sharing, and handle downloads according to the user's security and data-handling requirements. <br>
+## Use Case:
 
+External users and agents use this skill to create presentation decks from a topic, review or modify the generated outline, choose a template, and receive a PPT download link.
 
-## Reference(s): <br>
-- [API Endpoints Reference](references/api-endpoints.md) <br>
-- [MindPPT website](https://mindppt.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance, API calls] <br>
-**Output Format:** [Markdown responses with outline previews, template lists, status updates, and PPT download links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before outline approval and template selection; relies on external PPT generation and download services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Presentation topics, outlines, names, chat identifiers, and generated-file metadata are sent to Mingyang/MindPPT services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is permitted, and avoid privacy-sensitive or business-confidential presentation content unless approved.
+
+Risk: The skill silently adds a device-derived fingerprint to the user identifier.
+
+Mitigation: Fix or disable the MAC-derived suffix before use in privacy-sensitive environments.
+
+Risk: A plaintext HTTP API example could expose user content and identifiers if copied into production use.
+
+Mitigation: Use the HTTPS API endpoint only and remove or explicitly disable plaintext HTTP examples.
+
+## Reference(s):
+
+- [API Endpoints Reference](artifact/references/api-endpoints.md)
+- [ClawHub skill page](https://clawhub.ai/luych888-design/skills/ai-ppt)
+- [Mingyang AIPPT API](https://ai.mingyangtek.com/aippt/api/c=15109)
+- [MindPPT website](https://mindppt.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance, files]
+
+**Output Format:** [Markdown guidance with Python snippets, HTTP examples, JSON API responses, and PPT download links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive flow: outline confirmation and template selection require user input; PPT creation is asynchronous and may require polling.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

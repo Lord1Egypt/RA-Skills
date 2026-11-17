@@ -1,43 +1,56 @@
-## Description: <br>
-Guides agents through opening ElevenLabs accounts for voice AI, TTS, agents, and API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through helping users open ElevenLabs accounts and obtain API keys for voice AI, text-to-speech, agents, and API access.
 
-## Publisher: <br>
-[the-TimeBeing](https://clawhub.ai/user/the-TimeBeing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[the-timebeing](https://clawhub.ai/user/the-timebeing)
 
-## Use Case: <br>
-External users and developers use this skill when they need agent-guided steps to create an ElevenLabs account, find API key settings, and connect ElevenLabs credentials to voice AI or bot workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The signup URL is an affiliate link, which may affect user expectations or disclosure requirements. <br>
-Mitigation: Disclose that the signup link is an affiliate link before directing users to create an account. <br>
-Risk: ElevenLabs API keys are sensitive credentials that could be exposed if pasted into chats, client-side code, or version control. <br>
-Mitigation: Create keys only on ElevenLabs, store them in environment variables or a secrets manager, avoid client-side use, and apply scopes or credit limits where available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill reference links](reference.md) <br>
-- [ElevenLabs documentation](https://elevenlabs.io/docs) <br>
-- [ElevenLabs API reference](https://elevenlabs.io/docs/api-reference) <br>
-- [ElevenLabs API key settings](https://elevenlabs.io/app/settings/api-keys) <br>
-- [ElevenLabs pricing](https://elevenlabs.io/pricing) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to walk through ElevenLabs account signup, account access, and API key setup for voice AI and related integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists, setup steps, and inline credential-handling examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes HTTPS reference links and API-key handling reminders; does not generate or store credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The signup workflow uses a disclosed affiliate link and leads to a third-party ElevenLabs account.
+
+Mitigation: Confirm the user understands the account relationship and check ElevenLabs pricing and plan limits before using paid features.
+
+Risk: ElevenLabs API keys can grant account access and may incur usage.
+
+Mitigation: Store API keys in environment variables or a secrets manager, keep them out of version control, and use them only server-side.
+
+## Reference(s):
+
+- [Skill reference links](artifact/reference.md)
+- [ElevenLabs API documentation](https://elevenlabs.io/docs)
+- [ElevenLabs API reference](https://elevenlabs.io/docs/api-reference)
+- [ElevenLabs pricing](https://elevenlabs.io/pricing)
+- [ElevenLabs signup link](https://try.elevenlabs.io/ipu2xmg9cwqu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides step-by-step account and API-key setup guidance; does not execute commands or modify local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

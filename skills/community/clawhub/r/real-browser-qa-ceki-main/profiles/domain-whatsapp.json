@@ -1,0 +1,78 @@
+{
+  "id": "domain-whatsapp",
+  "label": "WhatsApp Web — Messenger Browser",
+  "emoji": "💬",
+  "domain": "web.whatsapp.com",
+  "description": "React app with QR login, chat list sidebar (LHS), message pane (RHS), emoji/attachment panels. Works only with phone app connected. No persistent password login.",
+  "source_patterns": [
+    "QR scan login: phone camera scans web QR code — no manual credential entry",
+    "Chat list click: click conversation → 500-1500ms for message pane to load",
+    "Message scroll (upward pagination): scroll to top of message pane → older messages lazy-load",
+    "Composer input: focus contenteditable div, type message, press Enter to send",
+    "Media attach: click clip/plus → file picker → select → wait for upload → send",
+    "Emoji reaction: hover message → click emoji icon → select from picker",
+    "Voice message: hold mic icon → record → release to send",
+    "Group info / participant list: click group header → info panel slides in"
+  ],
+  "active_hours": {
+    "description": "Always-on messenger — peaks in morning commute, lunch break, and evening hours",
+    "peak": [8, 10, 12, 14, 18, 23],
+    "off_peak_min": 2
+  },
+  "typing": {
+    "wpm": { "min": 70, "max": 120 },
+    "profile": "conversational",
+    "think_prob": 0.01,
+    "think_ms": [200, 800],
+    "backspace_freq": 0.03,
+    "short_message_wpm": { "min": 80, "max": 130 },
+    "long_message_wpm": { "min": 55, "max": 85 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Chat list: short flick passes (list is compact). Message history: upward pagination — scroll to top to load older messages. Source: WhatsApp Web React rendering behavior",
+    "speed_px_per_ms": { "min": 20, "max": 50 },
+    "pause_between_passes_ms": { "min": 1000, "max": 3000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 },
+    "infinite_scroll_detection": "div[data-testid='conversation-panel-messages'] scrollHeight change",
+    "scroll_method": "gradual (upward for history)"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1500, "max": 3500 },
+    "pre_click_pause_ms": { "min": 200, "max": 700 },
+    "inter_action_pause_ms": { "min": 300, "max": 1200 },
+    "post_send_pause_ms": { "min": 500, "max": 1200 },
+    "post_media_upload_pause_ms": { "min": 2000, "max": 5000 }
+  },
+  "mouse": {
+    "speed": 1.0,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Conversational speed — natural, relaxed cursor movement between chat list and message pane"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "chat_list": "div[data-testid='chat-list']",
+      "compose_box": "div[data-testid='conversation-compose-box']",
+      "message_pane": "div[data-testid='conversation-panel-messages']",
+      "conversation_header": "span[data-testid='conversation-info-header']",
+      "message_incoming": "div.message-in",
+      "message_outgoing": "div.message-out",
+      "message_text": "span.selectable-text",
+      "chat_avatar": "img[data-testid='chat-image']",
+      "login_qr": "canvas[aria-label='Scan this QR code'], div[data-testid='qrcode']",
+      "emoji_reaction": "div[data-testid='emoji-reactions'], div[aria-label*='React']",
+      "attach_button": "div[data-testid='attach-media'], div[title*='Attach']",
+      "send_button": "span[data-testid='send']"
+    },
+    "requires_login": true,
+    "login": {
+      "description": "QR code scan from WhatsApp mobile app — no password or email flow on web",
+      "pre_login_pause_ms": 2000,
+      "qr_wait_poll_ms": 2000,
+      "qr_refresh_interval_s": 30,
+      "post_login_wait_ms": { "min": 5000, "max": 10000 }
+    },
+    "sequence_hint": "navigate to web.whatsapp.com → wait for QR → scan with phone → wait for session load → click chat in list → wait for messages → read/scroll history → type in composer → send → optionally attach media"
+  }
+}

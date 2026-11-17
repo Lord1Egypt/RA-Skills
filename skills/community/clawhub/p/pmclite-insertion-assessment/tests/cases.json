@@ -1,0 +1,101 @@
+{
+  "skill": "pmclite-insertion-assessment",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准插单：能不能插进去",
+      "category": "happy_path",
+      "input": {
+        "user_message": "这张急单能不能插进去，会影响哪些单"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "assess_insertion",
+          "preview_schedule"
+        ],
+        "output_contains": [
+          "顺延",
+          "影响"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "代价量化：顺延几天",
+      "category": "happy_path",
+      "input": {
+        "user_message": "插进去 WO-003 要推迟几天"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "assess_insertion",
+          "preview_schedule"
+        ],
+        "output_contains": [
+          "顺延天数"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "换线方案",
+      "category": "happy_path",
+      "input": {
+        "user_message": "能不能换条线塞进去，代价小一点"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "preview_schedule",
+          "estimate_hours"
+        ],
+        "output_contains": [
+          "换线",
+          "代价"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "边界：要求落库（不应触发）",
+      "category": "boundary",
+      "input": {
+        "user_message": "直接把这单插进去排好，写进系统"
+      },
+      "expected": {
+        "trigger_skill": false,
+        "calls_tool": [
+          "pmclite-scheduler"
+        ],
+        "output_contains": [
+          "分工"
+        ],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "降级：assess_insertion 失败",
+      "category": "fallback",
+      "input": {
+        "user_message": "评估一下插单影响"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": [
+          "preview_schedule"
+        ],
+        "output_contains": [
+          "未做插单专项评估"
+        ],
+        "uses_fallback": true
+      }
+    }
+  ]
+}

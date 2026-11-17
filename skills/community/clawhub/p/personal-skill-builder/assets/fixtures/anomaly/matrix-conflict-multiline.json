@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "checker": "check_conflict_retention.py",
+  "contract": "conflict-case-ml-good.json",
+  "mutants": [
+    {
+      "id": "end-line",
+      "class": "line-end-instead-of-start",
+      "file": "conflict-ml-good.csv",
+      "ops": [
+        {
+          "op": "shift_int",
+          "where": {
+            "id": "B01",
+            "source_line": "4"
+          },
+          "column": "source_line",
+          "delta": 1
+        }
+      ]
+    },
+    {
+      "id": "blank-ignored",
+      "class": "blank-line-ignored",
+      "file": "conflict-ml-good.csv",
+      "ops": [
+        {
+          "op": "shift_int",
+          "where": {
+            "id": "B01",
+            "source_line": "4"
+          },
+          "column": "source_line",
+          "delta": -1
+        }
+      ]
+    },
+    {
+      "id": "ordinal",
+      "class": "record-ordinal-as-line",
+      "file": "conflict-ml-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "B01",
+            "source_line": "4"
+          },
+          "column": "source_line",
+          "value": "2"
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    "source-line-physical"
+  ]
+}

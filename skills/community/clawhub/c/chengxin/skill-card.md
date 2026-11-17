@@ -1,46 +1,58 @@
-## Description: <br>
-同程程心 Skill - 基于同程旅行大模型（程心）的在线旅游搜索能力。提供更专业的机票、火车票、酒店、度假产品（自由行/跟团游）、旅游攻略、行程规划、特价机票、汽车票、长途汽车、景区、门票等的查询能力，基于同程官方数据，更加实时准确可靠，一键进入预订页面，让旅行更简单，更快乐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Tongcheng Chengxin travel search for flights, trains, hotels, buses, attractions, vacation products, itinerary planning, traffic options, and booking links using Tongcheng data.
 
-## Publisher: <br>
-[tongcheng-ai](https://clawhub.ai/user/tongcheng-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tongcheng-ai](https://clawhub.ai/user/tongcheng-ai)
 
-## Use Case: <br>
-External users and travel-assistant agents use this skill to search live Tongcheng travel resources for flights, trains, hotels, bus tickets, attractions, travel products, routes, and itinerary planning, then present result details and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Chengxin API key. <br>
-Mitigation: Store CHENGXIN_API_KEY in a secure environment-variable setting and avoid pasting keys into ordinary chat. <br>
-Risk: Travel details in user queries are sent to Tongcheng’s API to retrieve live results. <br>
-Mitigation: Tell users when live travel searches require sending trip details to Tongcheng and avoid submitting unnecessary sensitive details. <br>
+## Use Case:
 
+External-facing travel agents and developers use this skill to answer travel-search requests, compare transportation and lodging options, surface attractions or vacation products, and return booking-oriented results from Tongcheng Chengxin.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tongcheng-ai/chengxin) <br>
-- [Publisher profile](https://clawhub.ai/user/tongcheng-ai) <br>
-- [Tongcheng homepage](https://www.ly.com) <br>
-- [Configuration guide](references/config.md) <br>
-- [API examples](references/api-examples.md) <br>
-- [Error handling guide](references/error-handling.md) <br>
-- [Output format reference](references/output-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text travel search results with booking links, plus shell command examples and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses channel and surface options to choose table, card, Markdown-link, or plain-link output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server-resolved release evidence) <br>
+Risk: Returned travel content and booking links may be unsafe or misleading because remote links are not safely validated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned UGC, provider text, and links as untrusted, and verify destination domains before clicking.
+
+Risk: Travel queries and optional trip details are sent to Tongcheng's API.
+
+Mitigation: Avoid entering sensitive personal details in free-text travel queries unless this data sharing is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tongcheng-ai/skills/chengxin)
+- [Tongcheng homepage](https://www.ly.com)
+- [API examples](references/api-examples.md)
+- [Configuration](references/config.md)
+- [Error handling](references/error-handling.md)
+- [Output format](references/output-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel-search results with command guidance and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include remote travel content, UGC, promotional guidance, and provider booking links.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

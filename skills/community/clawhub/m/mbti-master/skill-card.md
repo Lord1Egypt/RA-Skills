@@ -1,45 +1,56 @@
-## Description: <br>
-Comprehensive MBTI personality analysis tool with quick testing, cognitive function analysis, compatibility matching, and trending MBTI games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive MBTI personality analysis tool with quick testing, cognitive function analysis, compatibility matching, and MBTI-themed games.
 
-## Publisher: <br>
-[shven273-design](https://clawhub.ai/user/shven273-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shven273-design](https://clawhub.ai/user/shven273-design)
 
-## Use Case: <br>
-External users and agents use this skill to explore MBTI-style personality types, run quick self-assessments, review cognitive-function summaries, compare compatibility, and generate entertainment-oriented MBTI games or daily readings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes exposed publishing credentials and publishing helpers that are unrelated to MBTI analysis. <br>
-Mitigation: Treat bundled credentials as compromised, do not reuse them, and avoid publishing scripts unless you intentionally publish with your own authenticated accounts. <br>
-Risk: Installation guidance includes a curl-to-bash pattern. <br>
-Mitigation: Review downloaded files before execution and prefer a manual install path for controlled environments. <br>
-Risk: The quick-test script stores result history under the user's home directory. <br>
-Mitigation: Tell users where local history is written and remove the saved file when local retention is not desired. <br>
-Risk: MBTI outputs can be mistaken for authoritative psychological or career advice. <br>
-Mitigation: Use the results for entertainment and self-reflection only, not as the sole basis for consequential personal, hiring, medical, or relationship decisions. <br>
+## Use Case:
 
+External users and developers use this skill to explore MBTI personality types, run quick terminal-based tests, review type descriptions and cognitive functions, and generate compatibility or entertainment-oriented MBTI outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shven273-design/mbti-master) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shven273-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text and Markdown guidance, often with inline bash commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive Bash scripts may ask questions, print MBTI summaries, and save quick-test history locally under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: The release evidence reports unsafe installation instructions, a plaintext ClawHub token, and publishing scripts with account and repository side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid the documented curl-to-bash installer, do not use the exposed token, and avoid publishing scripts unless you are the maintainer and have reviewed the target account, repository, branch, and release artifacts.
+
+Risk: MBTI analyses, compatibility scores, and daily horoscope outputs can be misleading if treated as authoritative guidance.
+
+Mitigation: Treat outputs as self-reflection or entertainment, and do not use them as the sole basis for judging people or making major personal, team, career, or relationship decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shven273-design/skills/mbti-master)
+- [Publisher profile](https://clawhub.ai/user/shven273-design)
+- [README](artifact/README.md)
+- [Installation guide](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with Bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local Bash scripts; interactive scripts may prompt for user input.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

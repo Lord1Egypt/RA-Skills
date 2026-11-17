@@ -1,0 +1,65 @@
+{
+  "schema": "samedaydesk.task-result.caller-pin.v1",
+  "package": "samedaydesk-caller-result",
+  "version": "0.1.1",
+  "origin": "https://neomorphic.io",
+  "npmRegistry": "https://registry.npmjs.org",
+  "npmPublished": false,
+  "registryPackageClaim": false,
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "@x402/mcp": "2.16.0"
+  },
+  "dataRoute": "@modelcontextprotocol/sdk@1.30.0",
+  "optionalProjection": "@x402/mcp@2.16.0",
+  "rejectedArchive": {
+    "version": "0.1.0",
+    "bytes": 24149,
+    "sha256": "3c134598697aadb038a98bfee4ad6e82472df34d3fa325e19507a33ed5dc974b"
+  },
+  "files": {
+    "provenance": {
+      "path": "/downloads/samedaydesk-caller-result/0.1.1/provenance.json",
+      "bytes": 1552,
+      "sha256": "fdcc880b190848385156b92625d0b93f12959d21317654e63a13646ef6e68dca"
+    },
+    "descriptor": {
+      "path": "/downloads/samedaydesk-caller-result/0.1.1/descriptor.json",
+      "bytes": 1422,
+      "sha256": "63e0249ee64cc287e586414db627d7224acfb25b81aa261e32505a33de5eaaac"
+    },
+    "license": {
+      "path": "/downloads/samedaydesk-caller-result/0.1.1/LICENSE",
+      "bytes": 1068,
+      "sha256": "c9e2795d29bf1008cbd36ac045bd3c77d537438a51d8dda34e158f4e82a6a27c"
+    },
+    "sourceNotice": {
+      "path": "/downloads/samedaydesk-caller-result/0.1.1/SOURCE-NOTICE.txt",
+      "bytes": 557,
+      "sha256": "45b2b240d5bbd8412a399b3bd5e93f38c3d30a8496e71693ab58a2177170e850"
+    },
+    "archive": {
+      "path": "/downloads/samedaydesk-caller-result/0.1.1/samedaydesk-caller-result-0.1.1.tar.gz",
+      "bytes": 32421,
+      "sha256": "693652564f9cd587e4c269ff4da4653c19b1c68f42c3debe5241f34f42bf9de3",
+      "uncompressedBytes": 143360
+    }
+  },
+  "members": [
+    {"path": "LICENSE", "bytes": 1068, "sha256": "c9e2795d29bf1008cbd36ac045bd3c77d537438a51d8dda34e158f4e82a6a27c"},
+    {"path": "README.md", "bytes": 3264, "sha256": "14a4b3c1e360bd7a04df518f4d6c9f008c4f6805fb8c521f16c487c365be6619"},
+    {"path": "SOURCE-NOTICE.txt", "bytes": 557, "sha256": "45b2b240d5bbd8412a399b3bd5e93f38c3d30a8496e71693ab58a2177170e850"},
+    {"path": "PIN.json", "bytes": 1190, "sha256": "a2efcd34564b3553c0265ce83403a35ea6943a2561508aba5eef5eb0ff23b234"},
+    {"path": "package.json", "bytes": 696, "sha256": "8da772ada757e9fe1084ac862aa2c833077bbd665a1157b6e00f9d0ab622c79c"},
+    {"path": "package-lock.json", "bytes": 44557, "sha256": "502cd589d8d45658678771aa36c5c7482d78b7bef3cbdce08d80ac2388f1c9f8"},
+    {"path": "src/contract.mjs", "bytes": 1953, "sha256": "59c40aafbcac837a99081c9345c84019807edfb3affe83ee2c1dc2e6960e96bc"},
+    {"path": "src/http-caller-result.mjs", "bytes": 12703, "sha256": "8fe3eee467a3326696d8a1bb7e52d16fe393fb536973e5378f5a6333aef5ee94"},
+    {"path": "src/mcp-caller-result.mjs", "bytes": 7664, "sha256": "286ef8adf64e089b8eb18930a1872c81cbb1d9155cd6add17aeeaa3ee89cef4b"},
+    {"path": "src/mcp-recovery.mjs", "bytes": 14274, "sha256": "749e5b3e9d904887cb4e77893fba6f8630b569b647a41527c35b339e96f00035"},
+    {"path": "src/index.mjs", "bytes": 703, "sha256": "2a4fc79cc999410c1f16b471c64a58e2f924cf74c53eeafeaa2f89c1e099325c"},
+    {"path": "bin/cold-consumer.mjs", "bytes": 14650, "sha256": "fec6953687d43443d37c0769ffdc600c67d8a84da9e83db4a22e6dac13478ca1"},
+    {"path": "bin/recover-mcp.mjs", "bytes": 2767, "sha256": "02d6da2ff46f5d81bcd2a2df5815db657b1f437b831cd430ad7a2eded70ea2ee"},
+    {"path": "test/client.test.mjs", "bytes": 5456, "sha256": "ccc6bc49f847f38d35e49749ef1282811dfdffce860cc22e161348f1ebfb4cb1"},
+    {"path": "test/recovery.test.mjs", "bytes": 15436, "sha256": "230e4815cd1ae23829c69e380ac92589b81bca89f99a057b1a8e92ff8690bbf3"}
+  ]
+}

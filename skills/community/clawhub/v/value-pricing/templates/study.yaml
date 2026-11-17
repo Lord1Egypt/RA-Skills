@@ -1,0 +1,94 @@
+# Configurable study template. Copy into the study workspace and configure fields needed by
+# the selected research methods. Placeholder values are not evidence; do not run dependent
+# analysis scripts until required inputs have been supplied.
+
+decision:
+  question: null                 # What pricing or packaging decision will this study inform?
+  constraints: []                 # e.g. timing, channel, regulation, strategic or operational limits
+
+offering:
+  id: configure_offering_id
+  name: null
+  description: null               # Factual, buyer-facing description without a price claim
+  business_model: null             # Define the model in the user's own terms
+  url: null
+
+# Compatibility fields read by optional analysis scripts. Keep these aligned with `offering`.
+product:
+  name: null
+  url: null
+  description: null
+
+market:
+  geography: null
+  target_market: null
+  alternatives: []                 # Existing solutions, status quo, or no-purchase option
+
+currency: null                     # Required when a selected method uses monetary values
+fx: {}                             # Optional conversion rates with source and date
+
+segments:
+  axis: null                       # Optional unit or dimension used to segment/model the market
+  axis_label: null
+  bands: []                        # Configure only if segmentation or simulation needs bands
+  # Band schema when needed: {id, range: [low, high], reference_volume, share}
+
+customer_segments: []              # User-defined segments; omit if not material to the decision
+buyer_archetypes: []               # Optional roles/context within segments; do not invent shares
+archetypes: []                     # Optional script-compatible form: id, label, roles and context
+
+value_drivers: []                  # Values buyers seek, with evidence, unit, and relationship
+units_of_value: []                 # Custom units that describe how value/use is measured
+alternatives: []                   # Add costs or outcomes only where sourced or explicitly estimated
+
+research:
+  methods: []                      # Select only methods justified by the decision and available data
+  # Method entries should record: method, enabled, rationale, required_inputs, limitations.
+  scenarios: []                    # Define relevant contexts and assumptions; no synthetic facts
+  sensitivity_assumptions: {}      # Explicit ranges and sources; leave unknowns unset
+  validation_requirements: []      # Evidence and decision rules for real-world validation
+
+scenarios:
+  n: null                           # Set for a simulation; this is computational size, not a research sample
+  seed: 1                           # Reproducibility default; not an empirical parameter
+  variables: {}                     # Configure distributions/expressions only from stated assumptions
+  feature_in_use: {}                # Optional gates; omit when feature-level modelling is irrelevant
+
+conjoint:
+  enabled: false                    # Optional; use only when buyers trade off configurable attributes
+  attributes: {}                    # Define price and offering attributes for this study
+  labels: {}
+  our_config: {}                    # Attribute-level indices, if applicable
+  versions: null
+  tasks: null
+  alternatives: null
+  anchors: []                       # Optional anchors; source and rationale belong in study notes
+  paraphrases: 1                    # Neutral computational default, not evidence
+  personas_per_segment: null        # Configure only for exploratory simulated panels
+  min_personas_per_archetype: null
+  model: null
+  frame_csv: null                   # Optional consented, minimized research frame; hashed IDs only
+
+methods:
+  market_references: {enabled: false, rationale: null, inputs: []}
+  offering_comparison: {enabled: false, rationale: null, inputs: []}
+  evc: {enabled: false, rationale: null, inputs: []}
+  value_scenarios: {enabled: false, rationale: null, inputs: []}
+  cost_contribution: {enabled: false, rationale: null, inputs: []}
+  price_sensitivity: {enabled: false, rationale: null, inputs: []}
+  van_westendorp: {enabled: false, rationale: null, inputs: []}
+  gabor_granger: {enabled: false, rationale: null, inputs: []}
+  choice_based_conjoint: {enabled: false, rationale: null, inputs: []}
+  simulated_buyer_research: {enabled: false, rationale: null, inputs: []}
+  customer_interviews_or_tests: {enabled: false, rationale: null, inputs: []}
+
+council:
+  personas: []                      # Optional user-defined perspectives, labelled as hypotheses
+
+cost:
+  margin_targets: []                 # Optional decision constraints, not universal defaults
+  candidate_prices: []               # Configure in study currency and chosen billing period/unit
+
+lenses:
+  calibration_ratio: null            # Use only if calibrated against relevant human data
+  evc_capture: null                   # Explicit assumption with sensitivity range and rationale

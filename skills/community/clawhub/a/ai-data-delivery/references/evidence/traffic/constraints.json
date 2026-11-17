@@ -1,0 +1,201 @@
+{
+  "status": "pass",
+  "records": [
+    {
+      "id": "pk_enterprise",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 15,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_vehicle",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 240,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_person",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 320,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_check_order",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 100,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_check_item",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 600,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_hazard",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 180,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_alert_event",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 220,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_supervise_flow",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 300,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_train_plan",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 150,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_train_person",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 500,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_alarm",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 900,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_monitor_daily",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 450,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_safety_ledger",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 200,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_meeting_duty",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 160,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "pk_org_staff",
+      "kind": "unique",
+      "status": "pass",
+      "checked_rows": 60,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "forbid",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "hazard_level_dict",
+      "kind": "allowed_values",
+      "status": "pass",
+      "checked_rows": 180,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "ignore",
+      "scan": "full_snapshot",
+      "detail": null
+    },
+    {
+      "id": "vehicle_ent_ref",
+      "kind": "referential",
+      "status": "pass",
+      "checked_rows": 240,
+      "null_rows": 0,
+      "violation_count": 0,
+      "null_policy": "ignore",
+      "scan": "full_snapshot",
+      "detail": null
+    }
+  ],
+  "scope": "declared constraints only; full SQLite snapshot; no row samples",
+  "evidence": {
+    "schema_version": "1.0",
+    "created_at": "2026-09-28T14:02:37+00:00",
+    "mode": "sqlite_snapshot",
+    "model_sha256": "ff711286e82bba77f065e6c3f21aeefb9b7db298a62712ebec7bbc7c0618df71",
+    "cases_sha256": null,
+    "data_snapshot_sha256": "edcf309e9fa1b7ee0dbd4404f33132f61365a488c0b8331ffba2463b1fffd48f"
+  }
+}

@@ -205,7 +205,7 @@ def main():
                 by_dim.setdefault(dim_key, []).append(r)
 
             highlights_lines = []
-            for dim_key in ["trending", "quality", "newcomers", "panorama"]:
+            for dim_key in ["trending", "quality", "newcomers", "panorama", "actively_maintained", "verified"]:
                 if dim_key not in by_dim:
                     continue
                 dim_recs = by_dim[dim_key]
@@ -214,6 +214,8 @@ def main():
                     "quality": ("⭐ 质量", "口碑"),
                     "newcomers": ("🚀 新星", "崛起"),
                     "panorama": ("🏆 全景", "热议"),
+                    "actively_maintained": ("🔧 活跃", "维护"),
+                    "verified": ("🛡️ 可信", "推荐"),
                 }.get(dim_key, (dim_key, ""))
                 for r in dim_recs:
                     highlights_lines.append(

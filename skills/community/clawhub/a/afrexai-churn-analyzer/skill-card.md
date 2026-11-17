@@ -1,39 +1,54 @@
-## Description: <br>
-Analyze customer data to score churn risk, categorize accounts, and recommend tailored retention actions for proactive customer success management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze customer usage, support, billing, and engagement signals to score churn risk and recommend retention actions.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Customer success and retention teams use this skill to prioritize accounts by churn risk, identify revenue at risk, and plan targeted retention outreach from CRM exports, usage data, support logs, or manual account descriptions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Customer churn analysis may involve personal details, billing information, support-ticket contents, or regulated customer data. <br>
-Mitigation: Redact unnecessary sensitive fields and use only data approved by the organization for this agent environment. <br>
-Risk: The artifact links to optional third-party AfrexAI marketing pages. <br>
-Mitigation: Treat those links as optional external resources and review them before relying on or purchasing related services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-churn-analyzer) <br>
+## Use Case:
 
+Customer success and revenue teams use this skill to prioritize at-risk accounts, understand revenue exposure, and plan retention outreach. It can work from CSV exports, CRM or billing data, support logs, usage analytics, or qualitative account descriptions.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown retention report with ranked churn scores, recommended actions, revenue-at-risk notes, and a 30/60/90 day retention calendar] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided customer data and qualitative descriptions when structured data is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Customer, support, billing, and revenue inputs may include confidential or regulated information.
+
+Mitigation: Use sanitized exports where possible and provide only the data needed for churn assessment.
+
+Risk: Retention recommendations may be incomplete or unsuitable if treated as automatic customer-action instructions.
+
+Mitigation: Use the report as decision support and have customer success or account owners review actions before outreach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-churn-analyzer)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown retention report with ranked churn-risk accounts, recommended actions, revenue-at-risk estimates, and a 30/60/90 day calendar]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include weighted risk scores from 0 to 100 and account categories from Thriving to Critical.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,63 @@
-## Description: <br>
-Build AI phone call reminders with ElevenLabs Conversational AI and Twilio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build AI phone call reminders with ElevenLabs Conversational AI + Twilio. Free starter guide.
 
-## Publisher: <br>
-[dAAAb](https://clawhub.ai/user/dAAAb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-External developers and technical users use this skill as a setup guide for creating outbound AI phone reminders with ElevenLabs Conversational AI and Twilio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound phone calls can create consent, disclosure, recording, and calling-rule compliance obligations. <br>
-Mitigation: Place calls only to recipients who have consented and confirm the use complies with applicable calling, disclosure, and recording rules. <br>
-Risk: ElevenLabs API keys and Twilio credentials could be exposed if committed, logged, or shared. <br>
-Mitigation: Protect API keys and auth tokens, avoid committing or logging secrets, and use a dedicated or restricted Twilio setup where possible. <br>
-Risk: Phone-number rental and outbound calling can create unexpected billing charges. <br>
-Mitigation: Monitor ElevenLabs and Twilio usage and billing, especially when enabling international calling. <br>
-Risk: The Lite guide omits scheduling, automation, retry, and error-handling examples. <br>
-Mitigation: Review and add production controls before relying on the setup for unattended reminders. <br>
+## Use Case:
 
+Developers and builders use this skill as a starter guide for configuring ElevenLabs Conversational AI with Twilio to place outbound AI reminder calls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dAAAb/elevenlabs-phone-reminder-lite) <br>
-- [ElevenLabs signup](https://try.elevenlabs.io/clawhub) <br>
-- [Twilio](https://twilio.com) <br>
-- [ElevenLabs create agent endpoint](https://api.elevenlabs.io/v1/convai/agents/create) <br>
-- [ElevenLabs phone number endpoint](https://api.elevenlabs.io/v1/convai/phone-numbers/create) <br>
-- [ElevenLabs outbound call endpoint](https://api.elevenlabs.io/v1/convai/twilio/outbound-call) <br>
-- [Virtuals ACP listing](https://app.virtuals.io/acp/agents/u34u4m317ot8z5tgll3jpjkl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential placeholders for ElevenLabs and Twilio; does not execute calls by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The guide involves sharing powerful Twilio credentials with ElevenLabs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Twilio subaccount or restricted credentials where possible, and rotate or revoke credentials after testing.
+
+Risk: Outbound AI calls can create consent, privacy, billing, robocall, telemarketing, and call-recording obligations.
+
+Mitigation: Only call recipients who have explicitly agreed to receive AI calls and check applicable rules for the deployment region before production use.
+
+Risk: The Lite guide does not provide full scheduling, automation, error-handling, retry, or production hardening examples.
+
+Mitigation: Review and extend the setup before operational deployment, including error handling, cost controls, and consent management.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daaab/skills/elevenlabs-phone-reminder-lite)
+- [ElevenLabs signup](https://try.elevenlabs.io/clawhub)
+- [Twilio](https://twilio.com)
+- [ElevenLabs Conversational AI create agent API](https://api.elevenlabs.io/v1/convai/agents/create)
+- [ElevenLabs Conversational AI phone number API](https://api.elevenlabs.io/v1/convai/phone-numbers/create)
+- [ElevenLabs Conversational AI outbound call API](https://api.elevenlabs.io/v1/convai/twilio/outbound-call)
+- [Virtuals ACP premium agent](https://app.virtuals.io/acp/agents/u34u4m317ot8z5tgll3jpjkl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires users to supply their own ElevenLabs and Twilio credentials.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

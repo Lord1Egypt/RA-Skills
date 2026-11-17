@@ -1,39 +1,53 @@
-## Description: <br>
-Create attractive, self-contained HTML slide decks for browser use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create attractive, self-contained HTML slide decks for browser use.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanbastias](https://clawhub.ai/user/juanbastias)
 
-## Use Case: <br>
-Developers, creators, educators, and business users use this skill to turn ideas, outlines, notes, reports, or existing content into polished browser-ready HTML slide decks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad presentation or visual-content requests when the user actually needs an editable design file, branded template workflow, collaboration tool, or specific export format. <br>
-Mitigation: Confirm the desired output format before building when those requirements materially affect the result. <br>
-Risk: Generated slide content or HTML may contain unsupported claims, invented references, or presentation choices unsuitable for public, investor-facing, medical, legal, financial, or other high-stakes use. <br>
-Mitigation: Review the generated HTML and factual claims before using the deck in public or high-stakes settings. <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to turn ideas, notes, outlines, documents, or existing deck content into polished browser-ready HTML slide presentations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown summary plus local self-contained HTML, CSS, and JavaScript file output when a deck is created] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local browser-ready presentations by default; may include embedded CSS and JavaScript for layout and slide navigation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may activate for presentation-like requests where the user actually needs a non-presentation visual, an editable design-tool file, or a specific export format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify output requirements when those details materially affect the result, and use a dedicated design tool when the requested workflow cannot be satisfied by a local HTML deck.
+
+Risk: Decks for public, investor-facing, medical, legal, financial, or other high-stakes contexts can contain unsupported claims if source material is incomplete.
+
+Mitigation: Use only provided or verified source material, avoid invented data or citations, and recommend a factual claim check for high-stakes presentations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/juanbastias/skills/visual-html-presentations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Self-contained HTML file with a Markdown summary, slide structure, result path, verification notes, and remaining gaps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local presentation files by default and avoids upload, publishing, or sharing unless explicitly requested and approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

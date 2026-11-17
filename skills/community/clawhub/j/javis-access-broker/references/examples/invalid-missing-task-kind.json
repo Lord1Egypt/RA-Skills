@@ -1,0 +1,6 @@
+{
+  "decision": "answer",
+  "kind": "summary",
+  "points": [ { "text": "The dentist appointment is at 3 pm on Nov 18.", "sources": ["s1"] } ],
+  "topic": "dentist appointment time"
+}

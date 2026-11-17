@@ -35,7 +35,7 @@ const DEFAULT_LOGS_DIR = (() => {
   const userPath = process.env.LOGS_DIR;
   const defaultPath = path.join(__dirname, '../runtime/logs');
   if (!userPath) return defaultPath;
-  
+
   try {
     return safePath(SKILL_ROOT, userPath);
   } catch (e) {
@@ -48,7 +48,7 @@ const DEFAULT_OUTPUT_DIR = (() => {
   const userPath = process.env.OUTPUT_DIR;
   const defaultPath = path.join(__dirname, 'data');
   if (!userPath) return defaultPath;
-  
+
   try {
     return safePath(SKILL_ROOT, userPath);
   } catch (e) {
@@ -61,7 +61,7 @@ const CONTACTS_FILE = (() => {
   const userPath = process.env.CONTACTS_FILE;
   const defaultPath = path.join(__dirname, 'contacts.json');
   if (!userPath) return defaultPath;
-  
+
   try {
     return safePath(SKILL_ROOT, userPath);
   } catch (e) {
@@ -331,7 +331,7 @@ function generateCallSummary(transcriptText, direction, outboundObjective) {
             /^how are you/i,
             /^nice to (meet|hear)/i
         ];
-        
+
         for (const line of callerLines) {
             // Check if this line should be skipped
             const shouldSkip = skipPatterns.some(pattern => pattern.test(line));
@@ -342,13 +342,13 @@ function generateCallSummary(transcriptText, direction, outboundObjective) {
             intent = line;
             break;
         }
-        
+
         // If we only got greetings/responses, look for the longest substantive line
         if (!intent && callerLines.length > 0) {
             const substantive = callerLines
                 .filter(line => !skipPatterns.some(pattern => pattern.test(line)))
                 .sort((a, b) => b.length - a.length);
-            
+
             if (substantive.length > 0) {
                 intent = substantive[0];
             } else {
@@ -414,6 +414,19 @@ function generateSampleCalls() {
                 { name: 'Alex', callback: '415-555-0123', message: "Please call me back about Tuesday's meeting." }
             ],
             hasCapturedMessage: true,
+            duration: 92000,
+            usage: {
+                totalTokens: 1840,
+                inputTokens: 1610,
+                outputTokens: 230,
+                textInputTokens: 1200,
+                audioInputTokens: 410,
+                cachedInputTokens: 0,
+                textOutputTokens: 70,
+                audioOutputTokens: 160,
+                responseCount: 3,
+                transcriptionCount: 2
+            },
             sourceFiles: { incoming: null, transcript: null, summary: null }
         },
         {
@@ -427,9 +440,88 @@ function generateSampleCalls() {
             transcriptSummary: 'Outbound follow-up; callee asks for details by text.',
             capturedMessages: [],
             hasCapturedMessage: false,
+            duration: 48000,
+            usage: {
+                totalTokens: 1260,
+                inputTokens: 1080,
+                outputTokens: 180,
+                textInputTokens: 820,
+                audioInputTokens: 260,
+                cachedInputTokens: 0,
+                textOutputTokens: 55,
+                audioOutputTokens: 125,
+                responseCount: 2,
+                transcriptionCount: 1
+            },
             sourceFiles: { incoming: null, transcript: null, summary: null }
         }
     ];
+}
+
+function addUsage(target, usage) {
+    if (!usage || typeof usage !== 'object') return;
+    target.totalTokens += Number(usage.total_tokens || 0);
+    target.inputTokens += Number(usage.input_tokens || 0);
+    target.outputTokens += Number(usage.output_tokens || 0);
+
+    const inputDetails = usage.input_token_details || {};
+    const outputDetails = usage.output_token_details || {};
+    target.textInputTokens += Number(inputDetails.text_tokens || 0);
+    target.audioInputTokens += Number(inputDetails.audio_tokens || 0);
+    target.cachedInputTokens += Number(inputDetails.cached_tokens || 0);
+    target.textOutputTokens += Number(outputDetails.text_tokens || 0);
+    target.audioOutputTokens += Number(outputDetails.audio_tokens || 0);
+}
+
+function parseJsonlStats(filePath) {
+    const stats = {
+        startedAt: null,
+        endedAt: null,
+        durationMs: null,
+        totalTokens: 0,
+        inputTokens: 0,
+        outputTokens: 0,
+        textInputTokens: 0,
+        audioInputTokens: 0,
+        cachedInputTokens: 0,
+        textOutputTokens: 0,
+        audioOutputTokens: 0,
+        responseCount: 0,
+        transcriptionCount: 0
+    };
+
+    if (!fs.existsSync(filePath)) return stats;
+
+    const lines = fs.readFileSync(filePath, 'utf8').split(/\r?\n/).filter(Boolean);
+    for (const line of lines) {
+        let row;
+        try {
+            row = JSON.parse(line);
+        } catch {
+            continue;
+        }
+
+        const ts = Date.parse(row.received_at || row.created_at || '');
+        if (Number.isFinite(ts)) {
+            if (stats.startedAt === null || ts < stats.startedAt) stats.startedAt = ts;
+            if (stats.endedAt === null || ts > stats.endedAt) stats.endedAt = ts;
+        }
+
+        const event = row.event || row;
+        if (event?.type === 'response.done' && event.response?.usage) {
+            stats.responseCount += 1;
+            addUsage(stats, event.response.usage);
+        } else if (event?.type === 'conversation.item.input_audio_transcription.completed' && event.usage) {
+            stats.transcriptionCount += 1;
+            addUsage(stats, event.usage);
+        }
+    }
+
+    if (stats.startedAt !== null && stats.endedAt !== null && stats.endedAt >= stats.startedAt) {
+        stats.durationMs = stats.endedAt - stats.startedAt;
+    }
+
+    return stats;
 }
 
 async function processLogs() {
@@ -458,7 +550,7 @@ async function processLogsWithOptions(options) {
 
     try {
         ensureDir(outputDir);
-        
+
         // Check if logs directory exists, if not just generate sample data
         let files = [];
         if (fs.existsSync(logsDir)) {
@@ -471,7 +563,7 @@ async function processLogsWithOptions(options) {
         // Process incoming call files for metadata
         const incomingFiles = files.filter(f => f.startsWith('incoming_'));
         const callMetadata = {};
-        
+
         for (const file of incomingFiles) {
             try {
                 const filePath = path.join(logsDir, file);
@@ -501,20 +593,23 @@ async function processLogsWithOptions(options) {
                 console.warn(`Failed to process incoming file ${file}:`, e);
             }
         }
-        
+
         // Process transcript files
         const transcriptFiles = files.filter(f => f.match(/^rtc_.*\.txt$/));
-        
+
         for (const file of transcriptFiles) {
             try {
                 const callId = file.replace('.txt', '');
                 const filePath = path.join(logsDir, file);
                 const transcriptText = fs.readFileSync(filePath, 'utf8');
-                
+                const jsonlFile = file.replace('.txt', '.jsonl');
+                const jsonlPath = path.join(logsDir, jsonlFile);
+                const jsonlStats = parseJsonlStats(jsonlPath);
+
                 // Check for corresponding summary file
                 const summaryFile = file.replace('.txt', '.summary.json');
                 let summaryData = null;
-                
+
                 if (files.includes(summaryFile)) {
                     try {
                         const summaryPath = path.join(logsDir, summaryFile);
@@ -524,10 +619,10 @@ async function processLogsWithOptions(options) {
                         console.warn(`Failed to read summary file ${summaryFile}:`, e);
                     }
                 }
-                
+
                 // Extract inline SUMMARY_JSON objects from transcript
                 const inlineSummaries = extractInlineSummaryJsonObjects(transcriptText);
-                
+
                 // Use metadata if available, otherwise infer from call ID
                 const metadata = callMetadata[callId] || {
                     timestamp: fs.statSync(filePath).mtimeMs,
@@ -586,7 +681,7 @@ async function processLogsWithOptions(options) {
                 const toName = (to === TWILIO_NUMBER) ? ASSISTANT_NAME : resolvePhoneName(to);
 
                 const callSummary = generateCallSummary(transcriptText, metadata.direction, outboundObjective);
-                
+
                 const call = {
                     id: callId,
                     timestamp: metadata.timestamp,
@@ -603,21 +698,34 @@ async function processLogsWithOptions(options) {
                     capturedMessages,
                     hasCapturedMessage: capturedMessages.length > 0,
                     callSummary,
-                    duration: null,
+                    duration: jsonlStats.durationMs,
+                    usage: {
+                        totalTokens: jsonlStats.totalTokens,
+                        inputTokens: jsonlStats.inputTokens,
+                        outputTokens: jsonlStats.outputTokens,
+                        textInputTokens: jsonlStats.textInputTokens,
+                        audioInputTokens: jsonlStats.audioInputTokens,
+                        cachedInputTokens: jsonlStats.cachedInputTokens,
+                        textOutputTokens: jsonlStats.textOutputTokens,
+                        audioOutputTokens: jsonlStats.audioOutputTokens,
+                        responseCount: jsonlStats.responseCount,
+                        transcriptionCount: jsonlStats.transcriptionCount
+                    },
                     sourceFiles: {
                         incoming: metadata.incomingFile || null,
                         transcript: file,
+                        events: files.includes(jsonlFile) ? jsonlFile : null,
                         summary: files.includes(summaryFile) ? summaryFile : null
                     }
                 };
-                
+
                 calls.push(call);
-                
+
             } catch (e) {
                 console.warn(`Failed to process transcript file ${file}:`, e);
             }
         }
-        
+
         // Sort by timestamp (newest first)
         calls.sort((a, b) => b.timestamp - a.timestamp);
 
@@ -641,9 +749,9 @@ async function processLogsWithOptions(options) {
 
         console.log(`Processed ${calls.length} calls`);
         console.log(`Data written to ${path.join(outputDir, 'calls.json')}`);
-        
+
         return calls;
-        
+
     } catch (e) {
         console.error('Error processing logs:', e);
         return [];

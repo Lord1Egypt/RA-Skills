@@ -1,42 +1,54 @@
-## Description: <br>
-Professional Ubuntu 22.04 LTS security configuration generator for STIG-compliant hardening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Ubuntu 22.04 LTS security configuration generator for STIG-compliant hardening.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security engineers, system administrators, and DevOps teams use this skill to generate Ubuntu 22.04 LTS hardening configurations for kernel, SSH, firewall, audit, account, file permission, and network controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardening choices and tracking identifiers are sent to the provider API. <br>
-Mitigation: Send only necessary identifiers and avoid personally identifying user IDs unless needed. <br>
-Risk: Generated hardening configurations may disrupt access or services if applied without review. <br>
-Mitigation: Review generated configurations, test outside production first, and keep rollback or console access available. <br>
+## Use Case:
 
+Security engineers, system administrators, and DevOps teams use this skill to generate Ubuntu 22.04 LTS hardening configuration files for selected kernel, SSH, firewall, audit, account, file-permission, network, and AppArmor controls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-ubuntu-hardening-v2) <br>
-- [Ubuntu Hardening API Docs](https://api.mkkpro.com:8129/docs) <br>
-- [Ubuntu Hardening API Route](https://api.mkkpro.com/hardening/ubuntu-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Shell commands, Guidance] <br>
-**Output Format:** [JSON containing generated hardening settings, file metadata, command entries, and a download URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hardeningOptions, sessionId, and timestamp; userId is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requests may include user identifiers when using the optional userId field.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending real user identifiers unless they are needed for audit or operational tracking.
+
+Risk: Generated hardening files can materially change Ubuntu host security behavior if applied without review.
+
+Mitigation: Have an administrator review generated configurations and test them outside production before applying them to systems.
+
+## Reference(s):
+
+- [API Docs](https://api.mkkpro.com:8129/docs)
+- [Ubuntu Hardening API Route](https://api.mkkpro.com/hardening/ubuntu-v2)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, text]
+
+**Output Format:** [JSON containing generated hardening configuration data, file names, settings, command entries, descriptions, and a download URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns category-specific Ubuntu hardening configurations based on the requested hardening options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

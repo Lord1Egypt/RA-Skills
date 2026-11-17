@@ -1,41 +1,56 @@
-## Description: <br>
-股票管理技能，支持股票订单管理、交易规则管理和股票信息获取。支持A股、港股、美股等多种股票类型，使用本地文本目录存储数据。Use when user wants to manage stock orders, trading rules or get stock information including adding, deleting, updating, and querying orders and rules, and fetching real-time stock data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages local stock orders, trading rules, logs, and market-data lookups for A-share, Hong Kong, and U.S. stocks.
 
-## Publisher: <br>
-[a925907195](https://clawhub.ai/user/a925907195) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[a925907195](https://clawhub.ai/user/a925907195)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to record stock orders, maintain trading rules, fetch stock information from public providers, and store the resulting records locally.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports that log deletion can remove files outside the intended log folder.
+
+Mitigation: Run the skill in a constrained workspace and restrict log deletion to approved log filenames before broad deployment.
+
+Risk: The security evidence reports that one market-data fallback uses unencrypted HTTP.
+
+Mitigation: Use the skill only where plaintext market-data requests are acceptable, or remove the HTTP fallback before deployment.
+
+Risk: The skill writes local JSON files, logs, and backups while contacting public market-data providers.
+
+Mitigation: Configure an approved data directory and review third-party data-sharing expectations before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to manage local stock orders, trading rules, quote snapshots, backups, and logs for A-share, Hong Kong, and U.S. stocks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores stock orders, rules, quantities, platforms, quote snapshots, logs, and backups as local plaintext files. <br>
-Mitigation: Use it only in a trusted local workspace and avoid storing sensitive trading data unless local file permissions and retention are acceptable. <br>
-Risk: Stock quote retrieval sends stock codes to third-party quote providers. <br>
-Mitigation: Confirm that the selected markets and stock codes can be shared with those providers before enabling quote lookups. <br>
-Risk: The log delete-by-file command can delete files outside the intended log directory if the filename is not constrained. <br>
-Mitigation: Avoid or restrict delete-by-file usage until path validation ensures the target remains inside the configured log directory. <br>
+**Output Format:** [Plain text responses, JSON data files, logs, and command-line examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Writes local order, rule, stock information, backup, and log files under the configured data directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local plaintext JSON data, backups, logs, and stock quote retrieval guidance.] <br>
+1.0.2 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

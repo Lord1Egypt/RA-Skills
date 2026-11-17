@@ -1,39 +1,52 @@
-## Description: <br>
-CCA Domain 4 is a study mentor for prompt engineering and structured output, covering prompt specificity, few-shot prompting, JSON Schema tool use, validation retries, batch processing, and multi-pass review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CCA Domain 4 study tutor for prompt engineering and structured output, covering prompt specificity, few-shot prompting, JSON Schema tool use, validation and retry loops, batch processing, and multi-pass review patterns.
 
-## Publisher: <br>
-[sawzhang](https://clawhub.ai/user/sawzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sawzhang](https://clawhub.ai/user/sawzhang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and certification learners use this skill as a Chinese-language tutor for CCA Domain 4 topics on prompt engineering and structured output. It provides concise knowledge explanations, practical exercises, and exam-style checks for structured extraction, validation, batching, and review workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad prompt-engineering requests beyond CCA Domain 4 study needs.
+
+Mitigation: Use it for CCA Domain 4, prompt engineering, structured output, or cca-domain4 study requests, and route unrelated prompt-engineering work to a more specific skill or workflow.
+
+Risk: The release declares broad coding tools even though the inspected instructions do not automatically execute commands or collect data.
+
+Mitigation: Review any suggested file edits, shell commands, or agent actions before execution and keep normal workspace permission controls enabled.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, learners, and certification candidates use this skill to study CCA Domain 4 concepts and practice structured-output workflows such as JSON Schema extraction, retry feedback loops, and batch-processing strategy. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares broad tool access and includes optional exercises involving file edits, shell commands, agent delegation, and batch API workflows. <br>
-Mitigation: Approve edits, commands, delegation, and batch submissions only when they are clearly part of the intended practice task. <br>
-Risk: Batch-processing and structured-extraction exercises may involve user-supplied documents. <br>
-Mitigation: Use sample or non-sensitive documents for practice unless the environment and data handling requirements are already approved. <br>
+**Output Format:** [Markdown with explanatory text, examples, practice tasks, and JSON Schema or code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language study guidance focused on CCA Domain 4; no external provenance references are available for this release.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with examples, exercises, and structured-output practice prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included; exercises may ask the agent to draft schemas, commands, or file edits for user approval.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

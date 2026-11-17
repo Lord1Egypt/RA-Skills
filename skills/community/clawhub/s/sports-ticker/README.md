@@ -241,7 +241,7 @@ python3 scripts/setup_crons.py 123456789 "America/New_York"
 python3 scripts/setup_crons.py --list
 ```
 
-> **Note (v3.0.5):** The script outputs JSON configurations that the agent uses with the OpenClaw cron tool. It does NOT create crons directly — the agent handles that via platform tools.
+> **Note (v3.0.5):** The script outputs JSON configurations that the agent applies via `openclaw automations`. It does NOT create crons directly — the agent handles that via platform tools.
 
 This generates 3 cron job configs:
 
@@ -291,6 +291,12 @@ If you prefer manual setup, here are the cron expressions:
   "message": "Run python3 scripts/live_monitor.py and send any new events (goals, cards, halftime, fulltime). Only message if there are updates."
 }
 ```
+
+### OpenClaw 2.0 Notes
+
+- The primary CLI command is `openclaw automations`. The old name `openclaw cron` still works as an alias.
+- The wake flag is `--wake`. There is no `--wake-mode` flag in 2.0.
+- Exec in automations requires an approval grant in 2.0. The ticker automations run `python3 scripts/live_monitor.py` via exec; without an approved grant they fail silently. Grant approvals through the Control UI — without it, there is no error message.
 
 ### Live Monitor Script
 
@@ -347,12 +353,12 @@ python3 scripts/auto_setup_crons.py --team spurs --days 14
 # ⏸ spurs-ticker-2026-02-07 (every 2 mins during match)
 ```
 
-> **Note (v3.0.5):** The script outputs JSON configurations instead of CLI commands. The agent processes these JSON configs and creates crons via the OpenClaw cron tool.
+> **Note (v3.0.5):** The script outputs JSON configurations instead of CLI commands. The agent processes these JSON configs and creates the automations via `openclaw automations`.
 
 ### Workflow
 1. Run `schedule.py` weekly to see upcoming fixtures
 2. Run `auto_setup_crons.py` to generate cron configs (JSON output)
-3. Agent processes the JSON and creates crons via OpenClaw
+3. Agent processes the JSON and creates the automations via `openclaw automations`
 4. Never miss a match again! 🎉
 
 ## 🌐 ESPN API Reference

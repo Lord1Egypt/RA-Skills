@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes declines in acceptance rate through staged attribution, first locating abnormal slices and then checking slice mix, funding-side capacity, asset dimensions, and sensitive funding-side contraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes declines in acceptance rate through staged attribution, first identifying abnormal slices and then checking capital-side, asset-dimension, and sensitive-funding-side explanations.
 
-## Publisher: <br>
-[mzhou1982](https://clawhub.ai/user/mzhou1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzhou1982](https://clawhub.ai/user/mzhou1982)
 
-## Use Case: <br>
-Business analysts and operations teams use this skill to investigate day-over-day or week-over-week acceptance-rate declines. It guides an agent through staged command execution and turns script outputs into concise business-facing root-cause analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill ships and can silently use powerful DataWorks credentials. <br>
-Mitigation: Remove the embedded credential, rotate any exposed token, and require an explicit least-privilege credential before installation or execution. <br>
-Risk: Metric queries and generated logs can contain sensitive business data. <br>
-Mitigation: Disable or redact debug logging by default, restrict log access, and treat generated outputs and log files as sensitive data. <br>
-Risk: The skill sends analytics queries to a DataWorks endpoint. <br>
-Mitigation: Pin or allowlist the approved endpoint and run the skill only in a controlled environment with expected network access. <br>
+## Use Case:
 
+Business analysts and operations teams use this skill to investigate why acceptance rates declined over day or week windows. It guides the agent through staged data queries and concise business-facing explanations without exposing internal routing fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzhou1982/acceptance-rate-analysis-new-2) <br>
-- [DataWorks metric query endpoint](https://dataworks-metric.jirongyunke.net/dataworks-metric/metric/data/query/agent/queryMetricData) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with staged business analysis and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces business-facing conclusions while avoiding internal route fields, debug field names, and raw JSON unless needed for execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Embedded and ambient credentials may be used during metric queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke or remove embedded tokens before installation and require explicit, approved credential injection for controlled environments.
+
+Risk: Metric requests may be sent to an unrestricted or unintended endpoint.
+
+Mitigation: Allowlist approved endpoint destinations and review endpoint overrides before running the skill.
+
+Risk: Raw business query payloads and responses may be persisted in debug logs.
+
+Mitigation: Disable raw query logging by default or redact sensitive payloads before logs are written or shared.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzhou1982/skills/acceptance-rate-analysis-new-2)
+- [Publisher profile](https://clawhub.ai/user/mzhou1982)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose and tables backed by JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses day or week granularity and staged stop conditions for attribution.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

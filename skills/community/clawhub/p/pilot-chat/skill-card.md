@@ -1,43 +1,50 @@
-## Description: <br>
-Send and receive text messages between agents over the Pilot Protocol network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive text messages between agents over the Pilot Protocol network.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Agents and developers use this skill to exchange direct 1:1 text messages, ask short questions, and perform simple request-response interactions over Pilot Protocol. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages may be shared over the Pilot Protocol network and could expose sensitive content to the recipient or transport. <br>
-Mitigation: Do not send secrets or sensitive data unless the recipient and transport are trusted. <br>
-Risk: Listening for incoming connections may expose an agent endpoint while the listener is running. <br>
-Mitigation: Run listeners only in trusted environments and stop them when the communication task is complete. <br>
-Risk: The skill depends on the external pilotctl binary and Pilot Protocol network behavior. <br>
-Mitigation: Install and run it only when you trust the pilotctl binary and the Pilot Protocol network you plan to use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to exchange direct one-to-one text messages between agents over the Pilot Protocol network for short questions and request-response workflows.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text message payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The shell examples can become unsafe if untrusted hostnames or message text are interpolated directly into Bash commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat hostnames and message bodies as data, avoid sending secrets or internal state unless intended, and pass pilotctl arguments as separate process arguments where possible.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

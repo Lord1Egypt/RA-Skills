@@ -1,43 +1,55 @@
-## Description: <br>
-Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
 
-## Publisher: <br>
-[15914355527](https://clawhub.ai/user/15914355527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15914355527](https://clawhub.ai/user/15914355527)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily web searches from a Node.js command-line script and receive LLM-oriented answer text, source snippets, relevance scores, metadata, or raw JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, domain filters, time ranges, and similar options are sent to Tavily under the configured API key. <br>
-Mitigation: Avoid submitting secrets or sensitive internal data, and use a dedicated Tavily API key where possible. <br>
-Risk: Returned web results may be incomplete, stale, or unsuitable for high-stakes decisions without review. <br>
-Mitigation: Verify important claims against the returned source URLs and use domain or time filters when precision or recency matters. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily web searches and return source results, snippets, relevance scores, optional answers, and metadata. It supports configurable result count, search depth, topic, time range, domain filters, raw content, and JSON output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/15914355527/liang-tavily-search-v2) <br>
-- [Publisher Profile](https://clawhub.ai/user/15914355527) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Search API Endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown summaries by default, or raw JSON when --json is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; supports result count, depth, topic, time range, domain filters, raw content, and JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries and selected filters are sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when sending those queries and filters to Tavily is acceptable.
+
+Risk: The skill requires a Tavily API key.
+
+Mitigation: Keep the key scoped and rotated according to Tavily account practices.
+
+## Reference(s):
+
+- [Tavily homepage](https://tavily.com)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [ClawHub skill page](https://clawhub.ai/15914355527/skills/liang-tavily-search-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown search results by default, or formatted JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output may include source URLs, snippets, relevance scores, optional Tavily answers, and response time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

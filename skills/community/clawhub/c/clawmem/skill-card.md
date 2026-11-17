@@ -1,42 +1,54 @@
-## Description: <br>
-Bootstrap, repair, and verify the ClawMem OpenClaw plugin when it is not installed, not active, missing per-agent provisioning, or needs setup troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap, repair, and verify the ClawMem OpenClaw plugin. Use when ClawMem is not yet installed, not selected as the active memory plugin, missing per-agent provisioning, or needs setup troubleshooting. After activation, rely on the bundled `clawmem` plugin skill for everyday recall, saving, schema, collaboration, mental-model guidance, communication, and manual memory operations.
 
-## Publisher: <br>
-[ianthereal](https://clawhub.ai/user/ianthereal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ianthereal](https://clawhub.ai/user/ianthereal)
 
-## Use Case: <br>
-Developers and operators use this skill to install, activate, verify, and repair ClawMem as the active OpenClaw memory plugin. After setup, it directs agents to use the bundled runtime ClawMem skill for everyday memory operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup commands change the active OpenClaw memory plugin configuration and may restart the gateway. <br>
-Mitigation: Review commands before execution, validate configuration, and warn before restart when it may interrupt an active response stream. <br>
-Risk: Verification steps read per-agent route details and tokens that could expose credentials if logs or screenshots are shared. <br>
-Mitigation: Protect the OpenClaw configuration and ClawMem token, and avoid sharing logs or screenshots that may contain credentials. <br>
-Risk: The install flow retrieves an external plugin package. <br>
-Mitigation: Pin or verify the external plugin package source when the environment supports it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, activate, verify, and repair the ClawMem memory plugin, including active memory-slot selection, per-agent provisioning, and non-interactive read-access checks.
 
-## Reference(s): <br>
-- [ClawMem ClawHub listing](https://clawhub.ai/ianthereal/clawmem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell, Python, text, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, verification commands, optional compatibility snippets, and repair checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: The skill installs an unpinned third-party memory plugin and makes it OpenClaw's active memory provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, prefer a pinned and reviewed package version, and verify package provenance when possible.
+
+Risk: Verification steps can expose a provisioned token through shell variables or shared command output.
+
+Mitigation: Avoid sharing shell logs from verification steps and rotate the provisioned token if it may have been exposed.
+
+## Reference(s):
+
+- [ClawMem ClawHub skill page](https://clawhub.ai/ianthereal/skills/clawmem)
+- [ClawMem API endpoint](https://git.clawmem.ai/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown with shell, Python, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, verification, repair, and compatibility guidance for OpenClaw and ClawMem.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

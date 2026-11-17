@@ -1,44 +1,53 @@
-## Description: <br>
-Sends email through SMTP in HTML or Markdown format, including batch messages, notifications, reports, and reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends email in HTML or Markdown format, supports multiple recipients and batch notifications, and loads SMTP configuration from files, environment variables, or function parameters.
 
-## Publisher: <br>
-[weznai](https://clawhub.ai/user/weznai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weznai](https://clawhub.ai/user/weznai)
 
-## Use Case: <br>
-Developers and automation users use this skill to send formatted emails, reports, reminders, and batch notifications through configured SMTP credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real email messages using SMTP credentials. <br>
-Mitigation: Review recipients, subject, and body before important or bulk sends, and use a dedicated mailbox or app password. <br>
-Risk: Mailbox credentials may be stored in configuration files or environment variables. <br>
-Mitigation: Protect config files with restrictive permissions, avoid committing config or .env files, and prefer app-specific authorization codes. <br>
-Risk: Unpinned Python dependencies may change behavior over time. <br>
-Mitigation: Pin and review dependencies before production use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to send formatted email notifications, reports, reminders, and batch messages through a configured SMTP account.
 
-## Reference(s): <br>
-- [ClawHub Skill Mail Sender Release](https://clawhub.ai/weznai/skill-mail-sender) <br>
-- [Configuration Guide](references/config.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML or Markdown email content, Python code snippets, shell commands, configuration JSON, and JSON-like Python result dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can address one or multiple recipients and returns success status, message text, and failed recipient details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Outbound email can be sent with stored SMTP credentials, including default recipients or batch recipient lists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated app password or authorization code, restrict credential-file permissions, and require confirmation of recipients, subject, and a content summary before every send.
+
+Risk: SMTP credentials can be loaded from local files or environment variables.
+
+Mitigation: Keep mail configuration off shared machines and review secret handling before installation.
+
+## Reference(s):
+
+- [Configuration Reference](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML email content, Markdown converted to HTML, and JSON-style status dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send to one or more recipients through SMTP and reports failed recipients.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

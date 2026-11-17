@@ -83,7 +83,7 @@ class ProfileDeliveryChart:
             '<?xml version="1.0" encoding="UTF-8"?>',
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{self.width}" height="{self.height}" viewBox="0 0 {self.width} {self.height}" role="img" aria-labelledby="title desc">',
             "<title id=\"title\">GitLab agent contribution performance</title>",
-            "<desc id=\"desc\">Monthly delivery chart for merged merge requests, direct owner commits to main, and a weighted contribution score.</desc>",
+            "<desc id=\"desc\">Monthly delivery chart for merged merge requests, direct owner commits to default branches, and a weighted contribution score.</desc>",
             "<defs>",
             "<linearGradient id=\"background\" x1=\"0\" x2=\"1\" y1=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f8fbfc\"/><stop offset=\"1\" stop-color=\"#eef4f2\"/></linearGradient>",
             "<filter id=\"shadow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"130%\"><feDropShadow dx=\"0\" dy=\"8\" stdDeviation=\"10\" flood-color=\"#1f2933\" flood-opacity=\"0.13\"/></filter>",
@@ -91,7 +91,7 @@ class ProfileDeliveryChart:
             f'<rect width="{self.width}" height="{self.height}" rx="22" fill="url(#background)"/>',
             f'<rect x="36" y="32" width="{self.width - 72}" height="{self.height - 70}" rx="18" fill="#ffffff" filter="url(#shadow)"/>',
             f'<text x="{self.margin_left}" y="68" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="{self.colors["text"]}">Contribution Performance</text>',
-            f'<text x="{self.margin_left}" y="100" font-family="Inter, Arial, sans-serif" font-size="15" fill="{self.colors["muted"]}">Merged work by {escape(self.owner)} and {escape(self.agent)}, plus direct owner commits to main</text>',
+            f'<text x="{self.margin_left}" y="100" font-family="Inter, Arial, sans-serif" font-size="15" fill="{self.colors["muted"]}">Merged work by {escape(self.owner)} and {escape(self.agent)}, plus direct owner commits to default branches</text>',
         ]
 
         for tick in range(0, 6):

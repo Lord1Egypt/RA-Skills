@@ -1,41 +1,60 @@
-## Description: <br>
-Provides Chinese web and AI search through the Bocha API via the Whalecloud gateway for fact checking, source-backed answers, and current Chinese internet information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese web search and AI search through the Bocha API proxied by Whalecloud.
 
-## Publisher: <br>
-[littlewangupup](https://clawhub.ai/user/littlewangupup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littlewangupup](https://clawhub.ai/user/littlewangupup)
 
-## Use Case: <br>
-External users and developers use this skill to run Chinese-language web or AI search from an agent, gather source-backed results, and support current-information answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the Whalecloud/Bocha search service. <br>
-Mitigation: Avoid confidential queries unless that provider relationship is acceptable for the user or organization. <br>
-Risk: The skill requires a Whalecloud token for search access. <br>
-Mitigation: Use a scoped or dedicated token when available and do not print, log, or share WHALECLOUD_API_KEY. <br>
+## Use Case:
 
+External users and agents use this skill to search Chinese web sources, verify current facts, cite sources, and request AI-summarized answers for news, policy, finance, company, product, and person information.
 
-## Reference(s): <br>
-- [Bocha API detailed specification](references/api-spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/littlewangupup/bocha-web-search-whalecloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON search results and Markdown guidance with citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WHALECLOUD_API_KEY and sends search queries to the Whalecloud/Bocha search service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Search queries are sent to Whalecloud's Bocha proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid searches containing secrets, credentials, or sensitive personal data.
+
+Risk: The skill requires WHALECLOUD_API_KEY in its environment.
+
+Mitigation: Store the token only in the configured skill environment and do not display, log, or share it.
+
+Risk: Broad activation could send unnecessary external searches.
+
+Mitigation: Use tighter activation rules when external search should be limited.
+
+## Reference(s):
+
+- [Bocha API detailed specification](references/api-spec.md)
+- [Whalecloud Bocha API proxy](https://lab.iwhalecloud.com/gpt-proxy/bocha/v1/)
+- [ClawHub skill page](https://clawhub.ai/littlewangupup/skills/bocha-web-search-whalecloud)
+- [Publisher profile](https://clawhub.ai/user/littlewangupup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON search results and source references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WHALECLOUD_API_KEY and sends search queries to Whalecloud's Bocha proxy.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

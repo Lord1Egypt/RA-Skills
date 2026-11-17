@@ -1,40 +1,53 @@
-## Description: <br>
-Bookreading helps learners study a book by searching for reliable chapter information, producing structured whole-book overviews, and explaining selected chapters with simple examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language book learning assistant that searches public book information to produce structured chapter overviews, core ideas, thinking tools, and follow-up chapter explanations grounded in found sources.
 
-## Publisher: <br>
-[wangzhanchao883](https://clawhub.ai/user/wangzhanchao883) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhanchao883](https://clawhub.ai/user/wangzhanchao883)
 
-## Use Case: <br>
-External learners use this skill to get a fact-based study path for a specified book, including chapter outlines, key ideas, concepts, cases, thinking tools, and focused explanations for selected chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Book outlines or chapter details may be incomplete or unreliable when public sources are sparse. <br>
-Mitigation: Use reliable public sources where possible, state when evidence is insufficient, and ask the user for edition or publisher details for obscure books. <br>
-Risk: Requests for detailed book content can lead to excessive copyrighted reproduction. <br>
-Mitigation: Summarize and explain in original wording, avoid long copyrighted passages, and use brief attributed excerpts only when necessary. <br>
+## Use Case:
 
+External learners use this skill to study a specific book by providing title and author, then receiving a fact-grounded full-book overview and deeper explanations of selected chapters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhanchao883/bookreading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown study summaries and explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite source confidence where available, report missing book data transparently, and avoid reproducing long copyrighted passages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Public search results may be incomplete or unreliable for obscure books.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to disclose insufficient evidence, suggest better identifiers, and avoid inventing chapter details or claims.
+
+Risk: Users may request long copyrighted excerpts from books.
+
+Mitigation: Keep quotations short, use summaries for copyrighted material, and avoid reproducing long passages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhanchao883/skills/bookreading)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Chinese Markdown with book overviews, chapter breakdowns, examples, and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source reliability labels and explicit statements when book data is missing or incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Granola archive: search, sync freshness, notes, transcripts, panels, SQL counts, and Graincrawl repo work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Granola archive: search, sync freshness, notes, transcripts, panels, SQL counts, and Graincrawl repo work.
 
-## Publisher: <br>
-[openclaw](https://clawhub.ai/user/openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclaw](https://clawhub.ai/user/openclaw)
 
-## Use Case: <br>
-Employees and developers use Graincrawl to search local Granola notes, transcripts, and panels, check archive freshness, refresh stale sources, and report exact date spans or source gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent access to local Granola meeting notes, transcripts, panels, and cache or API-derived content. <br>
-Mitigation: Install only for agents that should inspect and summarize that archive, and review outputs before sharing sensitive information. <br>
-Risk: The configured Go install uses a moving @latest module version. <br>
-Mitigation: Pin and review the upstream graincrawl version before use in sensitive or controlled environments. <br>
+## Use Case:
 
+Developers and external users with local Granola archives use this skill to search notes, transcripts, and panels, check archive freshness, refresh stale data when requested, and report exact date spans, source gaps, and availability.
 
-## Reference(s): <br>
-- [Graincrawl repository](https://github.com/openclaw/graincrawl) <br>
-- [ClawHub Graincrawl listing](https://clawhub.ai/openclaw/graincrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with inline shell commands, JSON snippets, and SQL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include absolute date spans, note titles, source gaps, exact counts, and transcript or panel availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can read local Granola notes and transcripts and sync from desktop-cache or private-api sources, which may expose sensitive meeting content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable with that local data access, use bounded reads, and report focused summaries such as date spans, titles, source gaps, and availability.
+
+Risk: The install metadata uses a mutable external Go module version, so the installed graincrawl binary can change between installs.
+
+Mitigation: Prefer a pinned, reviewed graincrawl version before deployment.
+
+Risk: Encrypted-source debugging may require Keychain or secrets access.
+
+Mitigation: Run explicit unlock and secrets checks only when intentionally requested, and avoid surprise Keychain prompts.
+
+## Reference(s):
+
+- [Graincrawl project homepage](https://github.com/openclaw/graincrawl)
+- [ClawHub Graincrawl skill page](https://clawhub.ai/openclaw/skills/graincrawl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON command output summaries, exact date spans, note titles, source gaps, and transcript or panel availability.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

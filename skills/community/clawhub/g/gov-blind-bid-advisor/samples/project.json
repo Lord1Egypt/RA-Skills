@@ -1,0 +1,19 @@
+{
+  "id": "demo_001",
+  "title": "某市级政务大模型运维服务项目",
+  "project_name": "某市级政务大模型运维服务项目",
+  "purchaser": "某市大数据管理局",
+  "budget": 180,
+  "bid_deadline": "2026-08-20",
+  "evaluation_method": "综合评分法",
+  "required_certifications": ["CMMI3", "ISO9001"],
+  "category": "C05",
+  "location": "广东省深圳市",
+  "sale_start": "2026-07-27",
+  "sale_end": "2026-07-29",
+  "notice_date": "2026-07-27",
+  "clarification_date": "2026-08-10",
+  "result_date": "2026-08-25",
+  "result_end_date": "2026-08-26",
+  "full_text": "本项目要求投标人须具有CMMI3及ISO9001证书，并提供近三年同类项目业绩。技术参数须与某厂商政务云方案完全一致，且须指定华为品牌服务器。本地注册企业优先。"
+}

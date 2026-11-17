@@ -1,0 +1,19 @@
+# 论衡流程真源 · 第二部分：节点 t6_critique（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t6_critique   # 别名：文档层「Phase 3.6」（v2.12.40：G14 迁出至 Phase 4.4 前置，本节点仅 T6）
+  phase: "Phase 3.6"
+  phase_seq: 12
+  kind: agent
+  verdict_scale: four_tier
+  agent: T6
+  role: T6
+  write_authority: owner   # v2.12.51 D-3：只读档报告由主控 write 落盘，本节点不授写权
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  degrade: skip_in_lite_tier   # P1-5 修复：轻量档 T6「必跳」在此声明（原键名 `t6_degrade`，v2.12.40 统一为标准键
+                               # `degrade`；真源缺声明时曾致各文件「必跳」/「可跳过」/「已声明为否」三种读法并存）
+  input: drafts/current_draft.md
+  output: analysis/批判报告-vN.md
+  output_chars_max: 12000   # 批判报告（**写盘**上限；回传另受平台 4096 字符硬上限约束，超出走分块协议）
+  next: t5_feedback_revision

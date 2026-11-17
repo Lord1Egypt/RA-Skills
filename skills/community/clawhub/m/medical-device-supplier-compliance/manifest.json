@@ -1,0 +1,24 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械供应商合规核查",
+  "version": "0.1.0",
+  "author": "注册老炮（MedXpert / 美达信医疗科技）",
+  "year": "2026",
+  "timestamp_utc": "2026-09-22T02:20:45.706860+00:00",
+  "timestamp_local": "2026-09-22T10:20:45.706879",
+  "package_fingerprint_sha256": "f10f4550c3068350faa15912b2f4e634cd9d341450e3c5165867164b1ec32897",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "129dafa2c3484fd21fbf16b25168321b9a3aac89041b72edfb7f280c763e353b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "7240bff5a9c834f5c65f599a95235f27632d0c6fec9b6f4360831b180924b40a"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "7281ea48e8197cf248ac748db965836b2f37316798802fbcce3372556aae6493"
+    }
+  ]
+}

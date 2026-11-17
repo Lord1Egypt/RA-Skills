@@ -10,6 +10,8 @@ Use this reference when setup, instrumentation, project context, or cross-projec
 
 Subdomains are usually surfaces. Localhost, staging, and previews are setup or QA surfaces. Separate products that need separate activation, lifecycle, or experiments should be separate projects under one portfolio.
 
+Customers define their own project and portfolio goals. Agents can propose goals from the repo and workflow context, but initial durable goals should be confirmed before storing them. Later goal or context updates can follow the user's working agreement with their agent.
+
 ## Consent-based instrumentation
 
 Install only for projects the user owns or manages. Treat the base snippet as the start of instrumentation, not the full plan.
@@ -17,12 +19,13 @@ Install only for projects the user owns or manages. Treat the base snippet as th
 Minimum workflow:
 
 1. Classify scope.
-2. Inspect product code when available.
-3. Login and create or identify the right project.
-4. Add the exact tracking snippet returned for that project.
-5. Choose the smallest meaningful custom event set.
-6. Explain what each event enables.
-7. Verify the first useful event.
+2. Ask for or propose the initial project/portfolio goal and get confirmation before storing it as durable context.
+3. Inspect product code when available.
+4. Login and create or identify the right project.
+5. Add the exact tracking snippet returned for that project.
+6. Choose the smallest meaningful custom event set tied to the confirmed goal.
+7. Explain what each event enables.
+8. Verify the first useful event.
 
 Good event candidates: named CTA clicks, signup intent, pricing interactions, checkout progress or completion, install/setup steps, activation milestones, and durable server-side outcomes such as signup, subscription, project creation, installation completion, or first useful product action.
 

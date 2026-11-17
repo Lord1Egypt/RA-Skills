@@ -1,44 +1,57 @@
-## Description: <br>
-Call the Kimi API (kimi-k2.6, kimi-k2.5) through RunAPI using the official OpenAI SDK or compatible clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call the Kimi API (kimi-k3, kimi-k2.7-code, kimi-k2.6, kimi-k2.5) through RunAPI using OpenAI-compatible Chat Completions.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure agents or applications to call Kimi chat models through RunAPI with OpenAI-compatible, Anthropic-compatible, or Gemini-compatible client surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RunAPI credentials could be exposed if copied into source files, prompts, shell history, or logs. <br>
-Mitigation: Store RunAPI-scoped API keys in environment variables or a secret manager and avoid committing or pasting secrets. <br>
-Risk: Prompts may send sensitive or regulated data to the provider flow. <br>
-Mitigation: Use this provider path only for data your organization has approved for RunAPI and Kimi processing. <br>
+## Use Case:
 
+Developers and agents use this skill to configure Kimi access through RunAPI for text chat, streaming responses, coding workloads, and compatibility clients that require Anthropic Messages or Gemini contents shapes.
 
-## Reference(s): <br>
-- [Kimi model overview](https://runapi.ai/models/kimi.md) <br>
-- [Kimi homepage](https://runapi.ai/models/kimi) <br>
-- [Moonshot AI provider page](https://runapi.ai/providers/moonshot-ai.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/skills/runapi-kimi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; requires OPENAI_API_KEY and OPENAI_BASE_URL for use with RunAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Requests may be sent with the wrong credential or endpoint, causing authentication failures or unintended provider routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped RunAPI key and confirm OPENAI_BASE_URL is set to https://runapi.ai/v1 for OpenAI-compatible Kimi clients.
+
+Risk: Unsupported request shapes, automatic model changes, or protocol hopping can produce unreliable behavior.
+
+Mitigation: Follow the documented stop boundaries: correct one rejected shape, retry transport once only when safe, and stop without changing model or protocol automatically.
+
+## Reference(s):
+
+- [Kimi model documentation](https://runapi.ai/models/kimi.md)
+- [Moonshot AI provider page](https://runapi.ai/providers/moonshot-ai.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [Kimi on RunAPI homepage](https://runapi.ai/models/kimi)
+- [Kimi compatibility protocols](references/compatibility-protocols.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline Python and endpoint configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenAI-compatible Chat Completions guidance plus conditional Anthropic Messages and Gemini compatibility notes.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

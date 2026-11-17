@@ -1,41 +1,54 @@
-## Description: <br>
-Summarize or extract text/transcripts from URLs, podcasts, and local files (great fallback for "transcribe this YouTube/video"). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize or extract text and transcripts from URLs, podcasts, and local files, including best-effort YouTube or video transcript extraction.
 
-## Publisher: <br>
-[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue)
 
-## Use Case: <br>
-External users and agents use this skill to summarize URLs, articles, podcasts, YouTube links, and local files, or to extract best-effort transcripts when a transcript is requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Content from confidential files, private URLs, or sensitive transcripts may be sent to the configured AI provider or optional Firecrawl and Apify services. <br>
-Mitigation: Use the skill only with trusted providers and avoid sensitive inputs unless the user is comfortable with those services processing the content. <br>
-Risk: The skill depends on the third-party summarize CLI and Homebrew tap. <br>
-Mitigation: Install only from a trusted tap and review the CLI behavior before using it in sensitive workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [summarize.sh](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/mh-summarize) <br>
-- [Publisher profile](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to summarize web pages, local files, podcasts, and YouTube or video links through the summarize CLI. It is useful when an agent needs concise summaries, extracted text, or best-effort transcripts from supported inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output from the summarize CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can summarize content at requested lengths and optionally produce machine-readable CLI output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: URLs, file contents, or transcript text may be sent to the selected model provider and, when enabled, to Firecrawl or Apify.
+
+Mitigation: Use the skill only with content whose external processing is acceptable, avoid confidential or authenticated inputs unless approved, and disable optional fallback services when they are not needed.
+
+Risk: The skill depends on the local summarize CLI and configured provider credentials.
+
+Mitigation: Install the expected summarize binary, configure only the required provider API keys, and review command output before relying on it for decisions.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/skills/mh-summarize)
+- [Publisher profile](https://clawhub.ai/user/mohdalhashemi98-hue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands and optional JSON output from the summarize CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports length controls, output token limits, extract-only mode, provider model selection, and optional Firecrawl or Apify fallback services.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

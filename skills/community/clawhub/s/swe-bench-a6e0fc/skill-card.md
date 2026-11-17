@@ -1,45 +1,60 @@
-## Description: <br>
-Provides video-learned notes and prompts for SWE-bench, Claude Code versus Codex comparisons, AI coding workflow selection, and related ASPICE template references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides video-learned guidance about SWE-bench, Claude Code versus Codex selection, concurrency, cost considerations, and related ASPICE workflow templates.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and AI coding practitioners can use this skill as a compact study aid for SWE-bench-related videos, Claude Code and Codex tradeoffs, and selected workflow notes. Reviewers should treat the content as video-derived guidance that needs confirmation before operational or compliance use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner found the topic and activation rules too muddled and broad to install without review. <br>
-Mitigation: Install only for intentional SWE-bench, AI coding comparison, or ASPICE study use, and narrow activation triggers before deployment. <br>
-Risk: Mixed duplicated material may produce unclear or misleading guidance. <br>
-Mitigation: Review the skill content before use, remove unrelated duplicated sections, and keep one clear purpose per release. <br>
-Risk: Video-derived workflow and tool-selection notes may be incomplete or outdated. <br>
-Mitigation: Confirm recommendations against authoritative documentation or project requirements before applying them to coding, evaluation, or compliance decisions. <br>
+## Use Case:
 
+Developers and technical evaluators use this skill for concise guidance when discussing SWE-bench, Claude Code, Codex-style workflows, concurrency and cost tradeoffs, and ASPICE template references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/swe-bench-a6e0fc) <br>
-- [Bilibili: SWE-bench dataset introduction](https://www.bilibili.com/video/BV18cfVBKEzQ) <br>
-- [Bilibili: SWE-bench and ToolBench agent evaluation](https://www.bilibili.com/video/BV1eQfgBeE1E) <br>
-- [Bilibili: ASPICE template reference](https://www.bilibili.com/video/BV1HqGL6jEEa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with brief prose, bullet lists, and inline command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May activate from broad SWE-bench, Claude, and AI coding comparison triggers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger terms such as Claude, Code, SWE-bench, and ASPICE may activate the skill in unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation triggers to explicit SWE-bench evaluation or AI coding workflow selection requests before deployment.
+
+Risk: The artifact contains repeated and mixed guidance from SWE-bench, Codex comparison, and ASPICE template topics.
+
+Mitigation: Deduplicate the content and separate unrelated ASPICE workflow guidance from SWE-bench and AI coding assistant selection guidance.
+
+Risk: Video-learned guidance may be incomplete or imprecise for production engineering decisions.
+
+Mitigation: Review recommendations against primary documentation and local engineering requirements before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/swe-bench-a6e0fc)
+- [Bilibili: SWE-bench dataset, paper and code introduction](https://www.bilibili.com/video/BV18cfVBKEzQ)
+- [Bilibili: SWE-bench and ToolBench agent evaluation](https://www.bilibili.com/video/BV1eQfgBeE1E)
+- [Bilibili: ASPICE templates and review materials](https://www.bilibili.com/video/BV1HqGL6jEEa)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown text with occasional inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or data access behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

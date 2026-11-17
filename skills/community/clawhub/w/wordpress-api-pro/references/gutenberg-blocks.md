@@ -63,7 +63,7 @@ WordPress Gutenberg uses HTML comments to define blocks.
 </tbody>
 </table>
 </figure>
-<!-- /wp:heading -->
+<!-- /wp:table -->
 ```
 
 ## Formatting

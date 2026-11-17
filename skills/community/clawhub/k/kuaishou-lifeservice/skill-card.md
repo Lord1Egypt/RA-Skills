@@ -1,46 +1,61 @@
-## Description: <br>
-Kuaishou Life Service merchant operations assistant for querying products, stores, staff, official accounts, sub-accounts, and business performance data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Kuaishou Life Service merchants and developers query merchant accounts, stores, staff, products, authorization status, and business operation data through Kuaishou merchant APIs.
 
-## Publisher: <br>
-[qingfeng9924](https://clawhub.ai/user/qingfeng9924) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingfeng9924](https://clawhub.ai/user/qingfeng9924)
 
-## Use Case: <br>
-External merchants and developers use this skill to configure authorized Kuaishou Life Service merchant accounts, query merchant entities, and generate operational reports for business review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles merchant app secrets, access tokens, and broad business data, and stores local credentials or tokens in plaintext under ./.kuaishou-localife-token/. <br>
-Mitigation: Install only from a trusted publisher, use least-privileged merchant credentials, keep the token directory out of synced or shared locations, delete it after use when possible, and rotate credentials if exposed. <br>
-Risk: Prompts or setup steps may encourage users to share app_secret or other merchant credentials in chat. <br>
-Mitigation: Prefer local environment or configuration flows, avoid pasting secrets into chat, and rotate any credential that has been shared accidentally. <br>
-Risk: The skill can retrieve and display merchant reports broader than the user's immediate question. <br>
-Mitigation: Use only with accounts authorized for the merchant data being requested and review generated reports before forwarding or publishing them. <br>
+## Use Case:
 
+External merchants and developers use this skill to configure Kuaishou merchant credentials, call Kuaishou Life Service merchant APIs, inspect product and store data, and generate merchant performance reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qingfeng9924/kuaishou-lifeservice) <br>
-- [Kuaishou Life Service Open Platform](https://open.kwailocallife.com/) <br>
-- [Kuaishou Life Service OpenAPI Reference](artifact/references/api-reference.md) <br>
-- [Merchant Diagnostic Report Notes](artifact/references/report-notes.md) <br>
-- [Kuaishou Life Service OpenAPI Documentation](https://docs.corp.kuaishou.com/d/home/fcABGZ7JGTqHnqn4WcaH8DkUp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line guidance; scripts may return JSON or Markdown business reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses authorized Kuaishou merchant credentials and API responses for merchant-specific outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill asks users to provide Kuaishou merchant app keys, merchant IDs, app secrets, and access tokens, which can expose merchant business data if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected secret store or disposable test credentials, avoid pasting production secrets into chat or shell history, and rotate any credential that may have been pasted or logged.
+
+Risk: The artifact stores merchant secrets and cached access tokens in plaintext files under .kuaishou-localife-token.
+
+Mitigation: Restrict workspace access, exclude .kuaishou-localife-token from source control and backups, and delete cached tokens when they are no longer needed.
+
+Risk: The authoritative security verdict is suspicious because the skill handles merchant credentials and business data in unsafe plaintext ways.
+
+Mitigation: Review credential-handling behavior before installation and grant access only in environments where this data exposure is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qingfeng9924/skills/kuaishou-lifeservice)
+- [Kuaishou Open Platform](https://open.kwailocallife.com/)
+- [Kuaishou Life Service OpenAPI Reference](references/api-reference.md)
+- [Merchant Diagnosis Report Notes](references/report-notes.md)
+- [Kuaishou Merchant API Base](https://lbs-open.kuaishou.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown, JSON, and command-line output from Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Kuaishou merchant credentials or an access token; some reports are limited to a maximum 31-day date range.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

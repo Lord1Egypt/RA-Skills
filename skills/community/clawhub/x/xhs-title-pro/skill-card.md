@@ -1,40 +1,57 @@
-## Description: <br>
-Generates Xiaohongshu-style title options for creator posts, grouped by click, save, comment, and recommended-title goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Xiaohongshu creators and operators turn note topics or draft content into ten platform-focused title options grouped by likely click, save, comment, and overall fit.
 
-## Publisher: <br>
-[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux)
 
-## Use Case: <br>
-Xiaohongshu bloggers, content creators, and social media operators use this skill to turn a post topic or draft into ten categorized title candidates with a recommended pick, posting-time guidance, tags, and brief usage tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad local Read/Write access, which may expose or alter files beyond the title-generation task. <br>
-Mitigation: Review before installing and prefer a version that limits file access to user-selected content and confirms any writes before they occur. <br>
-Risk: The skill describes ongoing personalization memory for content domains, audiences, and title preferences without clear limits. <br>
-Mitigation: Avoid sharing sensitive campaign, client, or audience details unless the stated personalization behavior is acceptable. <br>
+## Use Case:
 
+External content creators, Xiaohongshu bloggers, and social media operations teams use this skill to generate concise Chinese title candidates for Xiaohongshu notes, including recommended title types, posting-time suggestions, tags, and usage tips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/xhs-title-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with categorized title lists and brief recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 10 title candidates, a recommended title, rationale, suggested posting windows, tags, and short usage tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill includes memory-style personalization notes for creator niche, target audience, title style, and feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the host agent's memory settings before use and persist only user-approved, non-sensitive preferences.
+
+Risk: The skill declares file read and write tools even though normal title generation can be completed from chat input.
+
+Mitigation: Avoid granting file read/write access unless the user explicitly wants the skill to work with local draft files.
+
+Risk: Overbroad routing may call the skill for adjacent content-marketing requests where it is not the best fit.
+
+Mitigation: Use it for Chinese Xiaohongshu title assistance and route other platform, resume, or general chat tasks to more appropriate skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/skills/xhs-title-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Text]
+
+**Output Format:** [Markdown text with categorized title lists, recommendations, tags, and brief usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ten title candidates per request and may personalize suggestions from the user's content domain, target audience, and stated style preferences.]
+
+## Skill Version(s):
+
+2.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

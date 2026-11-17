@@ -1,21 +1,23 @@
 ---
 name: skill-provenance
 description: >
-  Version tracking for Agent Skills bundles and their associated files
-  across sessions, surfaces, and platforms. Use when creating, editing,
-  versioning, validating, packaging, or handing off a skill bundle; when
-  checking or updating MANIFEST.yaml, CHANGELOG.md, hashes, stale evals,
-  or frontmatter mode; and when keeping version identity with the bundle
-  instead of filenames. Compatible with the agentskills.io open standard.
+  Version, validate, package, verify, recover, and hand off Agent Skill
+  bundles across local folders, registries, platform uploads, and agent
+  sessions. Use for MANIFEST.yaml, CHANGELOG.md, bundle hashes, stale evals,
+  frontmatter portability, derived skill packages, or version identity that
+  must survive filename changes and cross-platform movement. Do not use for
+  ordinary Git version control that does not involve an Agent Skill bundle.
+  Compatible with the agentskills.io open standard.
+license: MIT
 metadata:
   skill_bundle: skill-provenance
   file_role: skill
-  version: 16
-  version_date: 2026-04-08
-  previous_version: 15
+  version: 25
+  version_date: 2026-08-28
+  previous_version: 24
   change_summary: >
-    No skill definition changes. Version bump for GitHub Pages site,
-    trust narrative reframe, new evals, and plugin system fix.
+    Added standalone verification and bootstrap routing for users who have
+    not installed the plugin while keeping validate.sh as the sole parser.
   author: PAICE.work PBC (paice.work)
   source: https://github.com/snapsynapse/skill-provenance
 ---
@@ -191,6 +193,15 @@ compatibility:
 dependencies: []
   # List skill names this bundle depends on. Omit or leave empty if none.
 
+validated_against:
+  # Optional attestation records, each bound to the exact bundle_version it
+  # validated. Informational only: validate.sh reports them, never gates on them.
+  - bundle_version: 5.1.0
+    harness: Anthropic Claude Code
+    model: Claude Opus 4.6
+    date: 2026-02-10
+    result: pass
+
 deployments:
   api:
     version: 1759178010641129
@@ -199,6 +210,17 @@ deployments:
     scope: user
   perplexity:
     package_format: zip
+
+origin:
+  source_kind: git-repo
+  source: owner/repo
+  resolved_ref: main@abc123
+  selected_source_path: skills/my-skill
+  ignored_duplicate_source_paths:
+    - examples/agent-skills/my-skill
+    - .well-known/agent-skills/my-skill
+  derived_from_bundle_version: 5.1.0
+  target_surface: codex
 
 files:
   - path: SKILL.md
@@ -242,7 +264,10 @@ not release identifiers.
 
 **hash** is sha256 of the file contents. This is how a new session verifies
 that the file it received matches what the manifest claims. Compute on save,
-verify on load.
+verify on load. Every tracked file must use either a complete lowercase
+`sha256:` value or an explicit `hash: null` opt-out. A missing or malformed
+hash is invalid. `validate.sh --update` repairs missing or malformed hashes
+when the corresponding file is present; it preserves explicit null opt-outs.
 
 **deployments** is optional. Use it to record deployed or installed copies
 of the same bundle when you want traceability across surfaces. Keep
@@ -250,10 +275,39 @@ of the same bundle when you want traceability across surfaces. Keep
 versions (for example API timestamps) stay in `deployments`, not in
 `bundle_version`.
 
+**validated_against** is optional. Each entry attests that a specific
+`bundle_version` was validated on a specific harness and model, with a
+`result` of pass, partial, or fail. This is a different claim from
+`compatibility.tested_on` (design-time compatibility, not bound to a
+release) and a different concern from `hash` (integrity). Integrity gates:
+a hash mismatch fails validation. Attestation informs: validate.sh reports
+entries matching the current `bundle_version` and flags staleness when none
+match, but never changes its exit code over attestation. The same pinned
+bytes can behave differently as harnesses and models move, so a stale
+attestation means re-validate, not reject.
+Each record requires `bundle_version`, `harness`, an ISO `YYYY-MM-DD` date,
+and `result: pass`, `partial`, or `fail`. Malformed records are reported but
+do not count as matching evidence.
+
+**origin** is optional. Use it in derived strict-platform copies, registry
+packages, settings exports, or installed copies when the selected source
+path matters. It records which source path crossed the boundary and which
+lookalike duplicate paths were intentionally ignored. Do not use it as a
+package-manager lockfile, installer state machine, or trust anchor.
+
 **version: null** for source files. They are tracked for completeness but
 not versioned by this system.
 
-**Paths are relative** to the bundle root. No absolute paths.
+**File paths use a constrained, fail-closed grammar.** The inventory must
+use a top-level `files:` line, entries formatted exactly as
+`  - path: <unquoted-relative-path>`, and hash fields formatted as
+`    hash: <value>`. Paths must be unique, normalized, and relative to the
+bundle root. Reject absolute paths, `.` or `..` components, empty path
+components, trailing slashes, backslashes, surrounding whitespace, inline
+comments, YAML quotes, anchors, aliases, or tags. Symlinks in any path
+component are invalid rather than followed. These rules intentionally define a small
+line-oriented YAML subset so the zero-dependency parser does not silently
+disagree with a general YAML implementation.
 
 **MANIFEST.yaml is not listed in `files`.** Self-hashing is recursive. Treat
 the manifest as the bundle's control file and verify it via git, transport
@@ -262,88 +316,68 @@ checksums, or the surrounding package when needed.
 
 ## The .skill Package Format
 
-Claude's settings UI exports and imports skills as `.skill` files. These
-are standard ZIP archives containing a directory named after the skill.
-The versioning artifacts (`MANIFEST.yaml`, `CHANGELOG.md`, `README.md`)
-live inside this directory at the same level as `SKILL.md`:
-
-```
-skill-name.skill (ZIP)
-└── skill-name/
-    ├── SKILL.md
-    ├── MANIFEST.yaml
-    ├── CHANGELOG.md
-    ├── README.md
-    ├── assets/
-    └── references/
-```
-
-Claude's settings importer only looks for `SKILL.md` and the directory
-structure it expects (references, assets). It ignores files it doesn't
-recognize. This means the versioning artifacts travel safely inside the
-`.skill` ZIP without affecting import/export behavior.
-
-When bootstrapping or updating a bundle, always include the versioning
-artifacts in the `.skill` ZIP so they survive round-trips through
-Claude's settings UI.
-
-Some uploaders only accept `.zip` or `.md`. In those cases, rename the
-archive from `.skill` to `.zip` without changing its contents.
-
-The spec recommends keeping SKILL.md under 500 lines and moving detailed
-reference material to separate files. Provenance artifacts fit naturally
-into that model: `MANIFEST.yaml` and `CHANGELOG.md` are load-on-demand
-resources, not always-loaded instructions.
-
-Claude Code provides a `${CLAUDE_SKILL_DIR}` variable for bundle-relative
-paths. Other platforms may not. Direct relative paths like
-`./validate.sh` work when the working directory is the bundle root.
-
-The `.skill` ZIP only carries the skill definition and its references.
-Bundles can still track evals, scripts, rendered outputs, and handoff
-notes outside the archive. The manifest remains the complete inventory,
-not just the package inventory.
+Treat `.skill` files as ZIP archives whose top-level directory is the skill
+name. Include every manifest-listed file in an authored package. A reduced
+install package is valid only when its own derived manifest exactly describes
+its reduced inventory. Read [references/packaging-and-changelog.md](references/packaging-and-changelog.md)
+when creating archives, derived packages, or changelog entries.
 
 
 ## Changelog
 
-The changelog is a file named `CHANGELOG.md` at the root of the skill
-bundle directory, alongside `SKILL.md` and `MANIFEST.yaml`. In the
-bundle, it carries recent history with newest entries at the top. If the
-canonical source lives in git, older entries can be archived in a
-repo-level changelog outside the bundle.
-
-```markdown
-# Changelog
-
-## 5.1.0 — 2026-02-10
-- SKILL.md: Rewrote Phase 5 layout rules. Removed per-section page breaks.
-  Added content flow check and a standalone validation checklist.
-- evals.json: Not yet updated (stale, needs alignment).
-
-## 5.0.0 — 2026-02-09
-- SKILL.md: Reworked body flow rules and added an optional appendix.
-- evals.json: Eval 3 expectations updated for content flow.
-```
-
-### Rules
-
-**Each entry names every file that changed** and what changed in it.
-
-**Files that are stale get called out.** If SKILL.md changes but evals.json
-was not updated to match, the changelog says so. This prevents the silent
-drift that caused the v4/v5 confusion.
-
-**Entries are human-written prose**, not auto-generated diffs. The point is
-to communicate intent, not enumerate line changes. Git diffs are available
-when the bundle is in git.
-
-**Bundle changelogs can be trimmed.** Keeping the last 5-15 entries in
-the bundle is reasonable if the source repository maintains a full
-append-only changelog elsewhere.
+Keep `CHANGELOG.md` beside `SKILL.md` and `MANIFEST.yaml`, newest entry first.
+Name every changed file, describe intent, and call out dependent files left
+stale. A source repository may preserve older append-only history outside the
+portable bundle. See [references/packaging-and-changelog.md](references/packaging-and-changelog.md)
+for the format and trimming rules.
 
 
 ## Session Protocol
+
+### Validating only
+
+When the user asks only to validate a bundle, run the hash and inventory
+check without doing the full open-session review or close-session update:
+
+1. Read `MANIFEST.yaml` and verify all listed files are present.
+2. Run `validate.sh` when available, or compute SHA-256 hashes for listed
+   files and compare them against the manifest.
+   When the plugin and local helper are both absent, read
+   [references/standalone-verification.md](references/standalone-verification.md)
+   and use its pinned standalone wrapper rather than recreating the parser.
+3. Report checked files, missing files, hash mismatches, skipped files,
+   and pass/fail status.
+   Treat only `hash: null` as an intentional skip; missing, malformed, or
+   duplicate hash fields are manifest errors.
+4. Identify whether the copy appears to be a canonical source bundle,
+   strict-platform install copy, registry package, or ambiguous copy based
+   on its own manifest and local contents.
+5. Do not update hashes, bump versions, edit the changelog, create a
+   handoff note, or run the close protocol unless the user explicitly asks
+   for a mutation.
+
+This is an integrity check, not a trust anchor.
+
+### Packaging derived copies
+
+Before building a strict-platform install copy, registry package, or
+settings ZIP, verify the canonical source bundle first. The included
+`package.sh` helper runs `validate.sh` against the canonical bundle at each
+derived-package boundary and must stop if the manifest reports invalid
+structure, unsafe paths, symlinks, duplicate paths, missing files, or hash
+mismatches. `validate.sh` remains the single parser and policy authority so
+validation and packaging cannot drift into separate grammars.
+
+Do not treat generated strict-loader, ClawHub, or `.skill` outputs as the
+canonical source bundle. They are derived artifacts whose own manifests
+must describe exactly the files they contain.
+
+When a derived copy is selected from a repo, registry package, archive, or
+platform export that contains multiple lookalike skills, preserve that
+selection in optional `origin` metadata if the user or installer provides
+the source facts. Record `selected_source_path` and any intentionally
+ignored duplicate paths, but leave consumer lockfile and update semantics
+to the package manager.
 
 ### Opening a session
 
@@ -351,14 +385,17 @@ When a skill bundle is loaded into a new session:
 
 1. Read `MANIFEST.yaml` first.
 2. Verify all listed files are present. Report any missing files.
-3. For files with hashes, verify hashes match. Flag mismatches. In
+3. Reject invalid inventory structure, unsafe or duplicate paths, and
+   symlinks in any path component before reading or hashing a listed file.
+4. For files with hashes, verify hashes match. Flag mismatches. In
    local environments, users can run `validate.sh` before uploading
    for reliable hash verification without LLM computation.
-4. Read `CHANGELOG.md` to understand recent changes.
-5. Check for staleness: if any file's version is lower than the bundle
-   version, or if `deployments` clearly show a deployed copy behind the
-   local bundle, flag it and ask the user whether it needs updating.
-6. If `MANIFEST.yaml` is missing, treat the bundle as unversioned. Offer
+5. Read `CHANGELOG.md` to understand recent changes.
+6. Check for staleness using hash drift, changelog dependency notes,
+   conflicting internal metadata, `validated_against`, and deployment
+   records. Never order per-file revision integers against bundle semver;
+   they are separate version domains.
+7. If `MANIFEST.yaml` is missing, treat the bundle as unversioned. Offer
    to create one by inventorying the files and asking the user for version
    context.
 
@@ -430,41 +467,12 @@ is to make conflicts visible.
 
 ## Cross-Surface and Cross-Platform Considerations
 
-Treat one skill as moving through three states:
-
-- **Canonical source bundle:** The working copy in git or local storage.
-  Keep `MANIFEST.yaml` and the active `CHANGELOG.md` here. This is the
-  author-side source of truth. If you maintain a full archive in git,
-  keep it at repo root or another repo-level path outside the bundle.
-- **Strict-platform install copy:** A derived copy for Codex, Gemini CLI,
-  Perplexity, or other loaders that only accept `name` and `description`.
-  Strip the `metadata` block from SKILL.md, set `frontmatter_mode:
-  minimal`, recompute hashes in that copy, and leave the canonical bundle
-  unchanged unless you intentionally promote the derived copy.
-- **Registry or settings package:** A consumer package such as a `.skill`
-  ZIP or ClawHub upload. It may omit development-only files, but its
-  `MANIFEST.yaml` must describe exactly what the package contains. Update
-  `deployments` only after a real publish, reinstall, or redeploy.
-
-Surface notes:
-- **Claude Chat:** Stateless upload/download boundary. Verify on open and
-  consider a handoff note.
-- **Claude Cowork / Claude Code / Claude Agent SDK:** Persistent
-  filesystem. The manifest and changelog live with the bundle.
-- **Claude API:** Deployment versions live in `deployments`, not in
-  `bundle_version`.
-- **Other agentskills clients:** Unknown files are ignored safely.
-  `.agents/skills/` can act as a neutral install path.
-
-General principle: the manifest and changelog stay authoritative, and
-transformed install or publish copies are derived artifacts, not silent
-edits to the canonical bundle.
-## Trust and Audit
-
-Use the manifest, changelog, hashes, and optional deployment metadata to
-verify what belongs in the bundle, whether files still match their
-recorded state, what changed, and which installed or deployed copies may
-now be stale. If a bundle comes from an untrusted source, verify it first.
+Keep the canonical source authoritative. Treat strict-loader copies, registry
+packages, settings archives, and platform deployments as derived state. Never
+turn package metadata or assistant-facing files into authority. Read
+[references/platforms-and-trust.md](references/platforms-and-trust.md) when
+choosing a target surface, recording origin or deployment state, or evaluating
+how this skill relates to registries and package managers.
 
 
 ## File Naming
@@ -486,19 +494,13 @@ canonical. Internal version identity must still match.
 
 ## Bootstrap
 
-To version an existing unversioned skill bundle:
-
-1. Inventory all files present — read the directory structure or uploaded
-   file list. Do not ask the user to list files; determine this yourself.
-2. Ask the user what version number to assign. If there's a handoff note
-   or other context, propose a number based on the history.
-3. Add internal version headers to files that can safely carry them and
-   record manifest-only versions for strict-format files.
-4. Generate `MANIFEST.yaml` with hashes.
-5. Create `CHANGELOG.md` with a single entry summarizing known history.
-6. Deliver the versioned bundle.
-
-This is a one-time operation per skill bundle.
+For an unversioned bundle, inventory files yourself, establish an initial
+version from available history or user direction, add safe internal headers,
+create `MANIFEST.yaml` with hashes, create the first changelog entry, validate,
+and deliver the complete bundle. This is a one-time operation per bundle.
+When the skill is not installed, use the portable prompt in
+[references/standalone-verification.md](references/standalone-verification.md)
+and keep the same manifest, changelog, validation, and authority boundaries.
 
 
 ## Origin

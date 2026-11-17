@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn7dme0ba5x69kb4m43z18veeh82fz24",
-  "slug": "bocha-search-momo",
+  "slug": "bocha-search",
+  "name": "Bocha Search",
   "version": "1.0.0",
-  "publishedAt": 1772900254737
+  "description": "博查 AI 搜索工具 - 调用 api.bocha.cn 进行网页搜索，返回带摘要的中文结果",
+  "author": {
+    "name": "Momo",
+    "contact": "telegram:8543840552"
+  },
+  "tags": ["search", "ai", "bocha", "chinese", "web-search"],
+  "requirements": {
+    "openclaw": ">=2025.1.0",
+    "tools": ["curl", "jq"]
+  },
+  "features": [
+    "AI 生成搜索摘要",
+    "返回中文结果",
+    "支持时间筛选",
+    "可配置 API Key"
+  ],
+  "config": {
+    "fields": [
+      {
+        "name": "apiKey",
+        "type": "string",
+        "label": "API Key",
+        "description": "博查 API Key，从 https://open.bocha.cn 获取",
+        "required": true
+      }
+    ]
+  },
+  "changelog": {
+    "1.0.0": "初始版本 - 支持基础搜索功能"
+  }
 }

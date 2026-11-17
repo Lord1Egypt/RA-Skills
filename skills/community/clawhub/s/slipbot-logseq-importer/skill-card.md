@@ -1,38 +1,53 @@
-## Description: <br>
-Import notes from pasted Logseq pages into a SlipBot slipbox by parsing page properties, extracting bullets as individual notes, adding parent context to nested bullets, and running SlipBot for each note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports Logseq pages into a slipbox by parsing page properties and bulleted notes, enriching nested bullets with parent context, and running slipbot for each note.
 
-## Publisher: <br>
-[jrswab](https://clawhub.ai/user/jrswab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jrswab](https://clawhub.ai/user/jrswab)
 
-## Use Case: <br>
-SlipBot users who keep notes in Logseq use this skill to convert pasted Logseq pages into persistent slipbox notes. It is intended for imports where the user can review a pre-import summary and note count before note creation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pasted Logseq content may become persistent SlipBot notes that are later tagged or linked in the slipbox graph. <br>
-Mitigation: Review the pre-import summary and note count carefully, and paste only content suitable for storage in the slipbox. <br>
-Risk: Logseq tags and tag metadata are intentionally ignored during import. <br>
-Mitigation: Confirm that SlipBot-generated tags are acceptable before proceeding with the import. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and knowledge-management users use this skill to turn pasted Logseq pages into individual slipbox notes while preserving useful source metadata and parent context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries, confirmations, import results, and per-note SlipBot import guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before creating notes; ignores Logseq tags and related tag metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Large Logseq pages can create many separate slipbox notes after import.
+
+Mitigation: Review the preview summary, note count, and source details before confirming the import.
+
+Risk: Logseq tags and block metadata are intentionally ignored, which may omit categorization users expected to retain.
+
+Mitigation: Confirm that slipbot-generated tags are acceptable before proceeding with the import.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jrswab/skills/slipbot-logseq-importer)
+- [Publisher profile](https://clawhub.ai/user/jrswab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with note-preview summaries and slipbot command-style note entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks for user confirmation before creating notes and reports the number of notes created plus any issues.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

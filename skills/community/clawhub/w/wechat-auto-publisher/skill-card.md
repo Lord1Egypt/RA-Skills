@@ -1,44 +1,66 @@
-## Description: <br>
-Generates WeChat public-account article drafts by monitoring AI and technology trends, filtering candidate topics, and creating review-ready Markdown drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates WeChat public-account article drafts by monitoring technology trends, filtering topics, and using an LLM to write review-ready Markdown drafts.
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-Content creators, social media operators, and marketing teams use this skill to monitor public trend sources and generate WeChat article drafts for human review. Treat it as a draft-generation workflow, not as a complete live WeChat publisher. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release implies live WeChat auto-publishing and requests WeChat credentials, while security evidence says publishing is not implemented. <br>
-Mitigation: Use the skill for draft generation only, leave autoPublish disabled, and do not add WeChat app secrets until publishing behavior is implemented and reviewed. <br>
-Risk: The skill makes outbound requests to public trend sources and DashScope for article generation. <br>
-Mitigation: Run it only where those network calls are expected, configure DASHSCOPE_API_KEY through a local environment file, and keep any .env file out of version control. <br>
-Risk: Generated drafts and scraped trend summaries can be inaccurate, stale, or unsuitable for publication. <br>
-Mitigation: Manually review generated drafts, verify important claims against sources, and check content rights before publication. <br>
+## Use Case:
 
+External content creators, media operators, and marketing teams use this skill to monitor technology topics and generate draft WeChat articles for manual review before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gdp6539/wechat-auto-publisher) <br>
-- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com/) <br>
-- [DashScope OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown article drafts, JSON topic data, and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drafts are intended for manual review; auto-publishing should remain disabled unless a reviewed publishing implementation is added.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Publishing behavior and credential guidance may be ahead of the implemented and reviewed capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auto-publish disabled and do not provide WeChat AppID or AppSecret until the publishing path has been implemented, reviewed, and tested.
+
+Risk: Generated drafts can include injected, misleading, or unsuitable content from external trend sources or LLM output.
+
+Mitigation: Manually review every generated draft before copying or publishing it to WeChat.
+
+Risk: Scheduled runs can create repeated network and LLM calls.
+
+Mitigation: Avoid cron or other scheduled execution unless repeated calls and related costs are intended.
+
+Risk: An auxiliary Zhihu script writes outside the normal skill workspace.
+
+Mitigation: Remove or fix scripts/zhihu-gen.js before running auxiliary scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gdp6539/skills/wechat-auto-publisher)
+- [ClawHub publisher profile](https://clawhub.ai/user/gdp6539)
+- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com/)
+- [DashScope OpenAI-compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+- [Hacker News API](https://hacker-news.firebaseio.com/v0/topstories.json)
+- [GitHub Trending](https://github.com/trending)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, JSON topic files, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts are intended for human review before publication.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Docs Improver is a local Python documentation helper that analyzes documentation quality, generates missing technical docs, checks consistency with code, and produces prioritized improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docs Improver helps agents assess technical documentation quality, generate missing project documents, check documentation-code consistency, and propose prioritized improvements across programming languages.
 
-## Publisher: <br>
-[jerry-guo-mys](https://clawhub.ai/user/jerry-guo-mys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jerry-guo-mys](https://clawhub.ai/user/jerry-guo-mys)
 
-## Use Case: <br>
-Developers and technical writers use this skill to audit project documentation, generate missing README, API, architecture, installation, contribution, and changelog files, check drift between docs and code, and plan improvements before releases or onboarding. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Write modes can replace or create project documentation files. <br>
-Mitigation: Prefer analysis or check modes for read-only review; when generating docs, use an explicit output directory or version control and review diffs before relying on changes. <br>
-Risk: Generated or suggested documentation may be incomplete or inaccurate for the target codebase. <br>
-Mitigation: Review generated reports and files, run the consistency check, and validate examples, API details, and architecture descriptions against the source code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Documentation Best Practices](references/best-practices.md) <br>
-- [Documentation Style Guides](references/style-guides.md) <br>
-- [Mermaid Diagram Templates](assets/diagrams/mermaid-templates.md) <br>
-- [Documentation Templates](scripts/templates/templates.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to audit project documentation, generate standard docs such as README and API references, check consistency with code, and plan documentation improvements before releases or onboarding.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, generated documentation files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some modes write documentation files; use an explicit output directory or version control for generated output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generation modes can overwrite existing README.md and docs files.
+
+Mitigation: Review before installation on important repositories; run from a clean git worktree or separate output directory, and avoid combined or generation modes unless replacements are expected.
+
+## Reference(s):
+
+- [Documentation Best Practices](references/best-practices.md)
+- [Documentation Style Guides](references/style-guides.md)
+- [Mermaid Diagram Templates](assets/diagrams/mermaid-templates.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, generated documentation files, command-line summaries, and prioritized guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or replace README.md and files under docs/ when generation modes are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Helps map the composite permission surface across AI agent skill dependency chains and identify emergent capabilities created by skill combinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps map composite permission surfaces across AI agent skill dependency chains by tracing individual skill capabilities and identifying emergent combined capabilities.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to analyze installed agent skills, map permission combinations, and identify risky emergent capabilities before deployment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Input manifests or configuration files may contain secrets or other unnecessary sensitive data. <br>
-Mitigation: Remove unnecessary secrets before providing manifests or configurations to the agent. <br>
-Risk: Privilege surface scores and flagged chains are review guidance rather than a complete security guarantee. <br>
-Mitigation: Validate findings against the actual skill manifests and manually review high-risk combinations before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Capability Graph Mapper release page](https://clawhub.ai/andyxinweiminicloud/capability-graph-mapper) <br>
+## Use Case:
+
+Developers and agent operators use this skill to review installed skill sets, map permission combinations, and identify emergent capability chains that need manual review before deployment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Overbroad inputs may expose unnecessary private skill or workspace context during review.
+
+Mitigation: Provide scoped skill manifests or specific skill names instead of broad private directories.
+
+Risk: Composite-risk scores may be misread as proof of a confirmed vulnerability.
+
+Mitigation: Treat scores as review guidance and manually confirm risky combinations before making deployment decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with a permission matrix, risk flags, privilege surface score, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include delta analysis when evaluating a new skill addition.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown report with permission matrices, risk summaries, scores, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3 according to ClawHub metadata; no credential environment variables are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

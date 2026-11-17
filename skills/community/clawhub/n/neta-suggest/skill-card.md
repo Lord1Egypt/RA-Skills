@@ -1,42 +1,58 @@
-## Description: <br>
-Neta API research and recommendation skill for keyword, tag, and category suggestions, taxonomy path validation, and multi-mode content feeds that support exploration from broad topics to precise filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neta API research and recommendation skill that provides keyword, tag, and category suggestions, validates taxonomy paths, and powers multi-mode content feeds for progressive exploration from broad topics to precise filters.
 
-## Publisher: <br>
-[huxiuhan](https://clawhub.ai/user/huxiuhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huxiuhan](https://clawhub.ai/user/huxiuhan)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to explore Neta content topics, discover related tags and categories, validate taxonomy paths, and retrieve recommendation, search, or exact-filter content feeds before creation or interaction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an external Neta CLI package and service. <br>
-Mitigation: Install only when the publisher and Neta CLI package are trusted; prefer a pinned package version when possible. <br>
-Risk: NETA_TOKEN is required and could be exposed through logs or shared prompts. <br>
-Mitigation: Keep NETA_TOKEN out of logs and prompts, and use a minimally scoped token. <br>
-Risk: Search terms, taxonomy filters, and recommendation requests may be sent to Neta. <br>
-Mitigation: Avoid submitting sensitive topics or private filtering criteria unless the service is approved for that data. <br>
+## Use Case:
 
+External users and developers use this skill to research Neta topics, discover keywords, tags, and categories, validate taxonomy paths, and retrieve recommendation, search, or exact content feeds before creation or community interaction.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/huxiuhan/neta-suggest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI command examples and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NETA_TOKEN and the Neta CLI; recommendation, search, taxonomy, and pagination inputs may be sent to the Neta service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill directs installation of a mutable global Neta CLI package, which can change behavior after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed package version and a project-local install before using generated commands.
+
+Risk: The skill requires NETA_TOKEN, which could be exposed if stored globally or logged.
+
+Mitigation: Scope NETA_TOKEN to the minimum permissions, keep it out of logs, and inject it only for trusted sessions.
+
+Risk: The skill is intended for Neta content discovery and may be misapplied to general web trends or open-ended brainstorming outside its data source.
+
+Mitigation: Use it only for Neta content discovery, taxonomy validation, and Neta feed filtering.
+
+## Reference(s):
+
+- [Neta Suggest ClawHub Skill Page](https://clawhub.ai/huxiuhan/skills/neta-suggest)
+- [huxiuhan ClawHub Publisher Profile](https://clawhub.ai/user/huxiuhan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NETA_TOKEN and the neta-cli package; command outputs are JSON from the Neta CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Manage AI agent workflows using concurrent process algebra patterns like parallel tasks, branch-fix loops, fan-out comparisons, and session status tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates OpenClaw agent tasks with parallel runs, branch-fix loops, model comparisons, retries, fallbacks, rollback workflows, and session status tracking.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multi-agent coding and review workflows, run tasks in parallel, recover from failures with branch-fix or saga patterns, compare model outputs, and inspect session status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and relies on the external cpa-agents npm package. <br>
-Mitigation: Review or pin the package before use and install it first in a development workspace. <br>
-Risk: Agent-driven orchestration can create branches, write files, merge changes, roll back work, or fan tasks out to multiple models. <br>
-Mitigation: Use explicit user approval for branch creation, file writes, merges, rollback, and model fan-out tasks. <br>
+## Use Case:
 
+Developers using OpenClaw can coordinate concurrent agent tasks, compare responses from selected models, recover from failures, and inspect the current session's workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jose-compu/cpa-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and TypeScript examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent commands accept task, model, and timeout inputs; status accepts an empty object.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: Branch-fix and rollback workflows can modify the current workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for repository changes, show planned steps, and keep edits in the current workspace.
+
+Risk: Model fan-out sends task text to every selected model provider.
+
+Mitigation: Require the user to name the models and exclude secrets and private file contents from the task text.
+
+Risk: Installing an unpinned dependency can run unreviewed package code.
+
+Mitigation: Install cpa-agents@0.4.0 with the stated integrity check and use the committed lockfile for reproducible installs.
+
+## Reference(s):
+
+- [Cpa Agents on ClawHub](https://clawhub.ai/jose-compu/skills/cpa-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Agent responses and structured workflow results; session trees can be displayed as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include traces and session trees.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved release metadata and skill document)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

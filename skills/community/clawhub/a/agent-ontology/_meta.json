@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dz0are44vk4ct393b9kxe4n8209wv",
-  "slug": "agent-ontology",
+  "name": "ontology",
   "version": "1.0.0",
-  "publishedAt": 1779131490039
+  "description": "Typed knowledge graph for structured agent memory and composable skills",
+  "author": "OpenClaw",
+  "license": "MIT"
 }

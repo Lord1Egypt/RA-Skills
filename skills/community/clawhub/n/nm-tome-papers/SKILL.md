@@ -1,7 +1,7 @@
 ---
 name: papers
 description: Searches academic literature via arXiv, Semantic Scholar, and open-access PDFs
-version: 1.9.8
+version: 1.10.3
 triggers:
   - arxiv
   - semantic-scholar
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: tome
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/tome](https://github.com/athola/claude-night-market/tree/master/plugins/tome). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/tome](https://github.com/athola/claude-night-market/tree/master/plugins/tome). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Academic Papers Search
@@ -26,8 +26,8 @@ source_plugin: tome
 
 ## When NOT To Use
 
-- Community opinions (use `/tome:discourse`)
-- Code implementations (use `/tome:code-search`)
+- Community opinions (use `Skill(tome:discourse)`)
+- Code implementations (use `Skill(tome:code-search)`)
 
 Search arXiv, Semantic Scholar, and open-access sources.
 
@@ -77,3 +77,18 @@ When a paper is paywalled and no open version exists:
 - DeepDyve article rental
 - Inter-library loan request
 - Direct author email template
+
+## Exit Criteria
+
+- [ ] At least one academic source queried in priority order
+      (arXiv first, then Semantic Scholar, then Unpaywall/CORE/PubMed)
+- [ ] PDF content converted via `leyline:document-conversion`
+      protocol: markitdown MCP attempted first, Read-tool fallback
+      used if markitdown is unavailable
+- [ ] Each paper result includes citation info (authors, year, venue)
+      and an abstract or key findings summary
+- [ ] Paywalled papers with no open version trigger the fallback
+      guidance (library, DeepDyve, ILL, author contact) rather than
+      returning an empty result
+- [ ] If all sources return zero results, this is stated explicitly
+      rather than generating fabricated paper entries

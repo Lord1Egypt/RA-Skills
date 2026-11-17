@@ -1,0 +1,28 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/run-manifest.schema.json",
+  "schemaVersion": "majia.koubo.run.v1",
+  "runId": "run-demo-stable",
+  "stage": "sample_ready",
+  "status": "waiting_user_approval",
+  "lastSafeStage": "sample_ready",
+  "project": {"projectRef": "logical:project-current", "timelineRef": "logical:timeline-current", "timelineRevision": "rev-current"},
+  "profile": {"id": "balanced-stable", "version": "1.0.0", "fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000"},
+  "briefRef": "project-brief.json",
+  "sourceInventoryRef": "source-inventory.json",
+  "sourceAssets": ["logical:aroll-main"],
+  "sampleBinding": {
+    "fingerprint": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "timelineRevision": "rev-current",
+    "scope": ["logical:sample-opening"],
+    "createdAt": "2026-08-10T00:11:00Z"
+  },
+  "approvals": [],
+  "checkpoints": ["cp-sample-ready-001"],
+  "reconciliations": [],
+  "lastSafeAction": "request_sample_approval",
+  "blockedReason": null,
+  "failureCounts": {},
+  "capability": {"status": "unverified", "buildFingerprint": null, "toolSchemaFingerprint": null, "observedAt": null},
+  "createdAt": "2026-08-10T00:00:00Z",
+  "updatedAt": "2026-08-10T00:12:00Z"
+}

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">OpenClaw Workspace Auditor</title>
+  <desc id="hero-desc">Read-only workspace health check: directory compliance, task PROGRESS.md health, memory-log gaps, knowledge-base index orphans, junk files. Zero-dependency Python script, graded report with fix suggestions. Shows a scan terminal with severity-graded findings and a summary.</desc>
+
+  <rect width="1200" height="360" rx="20" fill="#0d1117"/>
+
+  <!-- left: title block -->
+  <g id="title-block" transform="translate(56 40)">
+    <text x="0" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="4" fill="#8b949e">OPENCLAW · AGENT SKILL</text>
+
+    <text x="0" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">Workspace</text>
+    <text x="0" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">Auditor</text>
+
+    <text x="0" y="226" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" fill="#c9d1d9">目录合规 · 任务健康 · 知识库体检</text>
+    <text x="0" y="258" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" fill="#8b949e">read-only · zero-dependency · Win + macOS</text>
+
+    <text x="0" y="310" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1" fill="#8b949e">MIT LICENSE · SKILL FOR OPENCLAW · v1.0.0</text>
+  </g>
+
+  <!-- right: audit terminal panel -->
+  <g id="terminal-panel" transform="translate(700 44)">
+    <rect width="450" height="276" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+
+    <!-- terminal dots -->
+    <circle cx="18" cy="20" r="5" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="5" fill="#ffbd2e"/>
+    <circle cx="54" cy="20" r="5" fill="#27c93f"/>
+
+    <text x="78" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#8b949e">workspace-auditor · scan</text>
+
+    <!-- findings -->
+    <circle cx="30" cy="64" r="5" fill="#3fb950"/>
+    <text x="48" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8b949e">dirs   标准目录齐全</text>
+
+    <circle cx="30" cy="92" r="5" fill="#d29922"/>
+    <text x="48" y="98" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8b949e">tasks  2 个目录无 PROGRESS.md</text>
+
+    <circle cx="30" cy="120" r="5" fill="#3fb950"/>
+    <text x="48" y="126" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8b949e">memory 日志无空窗 · MEMORY.md ok</text>
+
+    <circle cx="30" cy="148" r="5" fill="#d29922"/>
+    <text x="48" y="154" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8b949e">knowledge 3 索引孤儿文件</text>
+
+    <circle cx="30" cy="176" r="5" fill="#d29922"/>
+    <text x="48" y="182" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#8b949e">junk   tmp 5 个文件超 30 天</text>
+
+    <!-- fix hint -->
+    <text x="24" y="214" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#58a6ff">$ python scan_workspace.py --report</text>
+
+    <!-- summary line -->
+    <text x="24" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#e6edf3">summary: 0 🔴 · 3 🟡 · 2 🟢</text>
+    <text x="24" y="270" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#3fb950">read-only · fixes need your confirm</text>
+  </g>
+</svg>

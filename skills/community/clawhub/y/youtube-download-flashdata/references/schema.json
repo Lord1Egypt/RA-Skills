@@ -1,0 +1,217 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "video_id": {
+      "type": "string",
+      "minLength": 11,
+      "maxLength": 11,
+      "pattern": "^[A-Za-z0-9_-]{11}$"
+    },
+    "download_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 11,
+      "default": "audio_video",
+      "enum": [
+        "audio_video",
+        "video",
+        "audio"
+      ]
+    },
+    "video_quality": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "default": "<=720",
+      "enum": [
+        "best",
+        "worst",
+        "<=144",
+        "==144",
+        ">=144",
+        "<=360",
+        "==360",
+        ">=360",
+        "<=480",
+        "==480",
+        ">=480",
+        "<=720",
+        "==720",
+        ">=720",
+        "<=1080",
+        "==1080",
+        ">=1080",
+        "<=1440",
+        "==1440",
+        ">=1440",
+        "<=2160",
+        "==2160",
+        ">=2160",
+        "<=4320",
+        "==4320",
+        ">=4320"
+      ]
+    },
+    "fps": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 6,
+      "pattern": "^(?:>=|<=|==)(?:[1-9]\\d?|1\\d\\d|2[0-3]\\d|240)$"
+    },
+    "audio_language": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8,
+      "default": "default",
+      "enum": [
+        "default",
+        "original"
+      ]
+    },
+    "audio_quality": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10,
+      "default": "best",
+      "enum": [
+        "best",
+        "320",
+        "256",
+        "192",
+        "128"
+      ]
+    },
+    "yt_dlp_format": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "upload_metadata": {
+      "type": "boolean",
+      "default": false
+    },
+    "output_format": {
+      "type": "string",
+      "enum": [
+        "mp4",
+        "webm",
+        "mkv",
+        "m4a",
+        "mp3",
+        "opus"
+      ],
+      "description": "Video defaults to mp4 (also webm/mkv); audio defaults to m4a (also mp3/opus)."
+    },
+    "start_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8,
+      "pattern": "^\\d{1,2}:[0-5]\\d:[0-5]\\d$"
+    },
+    "end_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8,
+      "pattern": "^\\d{1,2}:[0-5]\\d:[0-5]\\d$"
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "storage_type",
+        "storage_url"
+      ],
+      "description": "Customer-owned destination, using the same fields as Download API params.storage. Supply credentials from your configured storage; do not invent values or display secrets. GCS uses service_account; Azure uses account_name and a container SAS with write permission; other providers use access_key/secret_key and provider endpoint/region as needed.",
+      "properties": {
+        "storage_type": {
+          "type": "string",
+          "enum": [
+            "azure",
+            "bos",
+            "cos",
+            "gcs",
+            "oss",
+            "s3",
+            "s3_compatible",
+            "tos"
+          ]
+        },
+        "storage_url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024,
+          "description": "Bucket name (Azure: container name). Not a local path or a full object URL."
+        },
+        "object_prefix": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 513,
+          "description": "Optional object folder prefix. Use a distinct prefix when keeping multiple versions of a video."
+        },
+        "access_key": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "secret_key": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "endpoint_url": {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "Provider endpoint, required for S3-compatible storage. Must be reachable from the download Worker."
+        },
+        "region": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "account_name": {
+          "type": "string",
+          "pattern": "^[a-z0-9]{3,24}$"
+        },
+        "sas_token": {
+          "type": "string",
+          "maxLength": 4097,
+          "description": "Azure container SAS with write permission; never return this secret to the user in output."
+        },
+        "service_account": {
+          "type": "object",
+          "required": [
+            "project_id",
+            "client_email",
+            "private_key"
+          ],
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "client_email": {
+              "type": "string",
+              "minLength": 1
+            },
+            "private_key": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16384
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "async"
+      ],
+      "default": "async"
+    }
+  },
+  "required": [
+    "video_id",
+    "storage"
+  ]
+}

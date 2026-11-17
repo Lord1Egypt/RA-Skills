@@ -3,3 +3,10 @@ python-docx>=0.8.11
 openpyxl>=3.1.1
 Pillow>=9.0.0
 python-pptx>=0.6.21
+
+# 以下为可选依赖，需显式安装使用对应外部服务
+# Google Cloud Speech API（语音转写，可选）
+# pip install google-cloud-speech
+# 
+# Azure Cognitive Services Speech（语音转写，可选）
+# pip install azure-cognitiveservices-speech

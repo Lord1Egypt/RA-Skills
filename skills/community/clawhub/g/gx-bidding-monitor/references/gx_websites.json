@@ -1,0 +1,243 @@
+{
+  "version": "2.0",
+  "updated": "2026-06-21",
+  "description": "威能全平台招标信息监控网站清单（50+平台，含登录账号）",
+  "categories": {
+    "gov_public": {
+      "name": "政府公共资源交易中心",
+      "auth_required": false,
+      "sites": [
+        {"name": "南宁市公共资源交易中心", "url": "https://www.nnggzy.org.cn/gxnnzbw/default.aspx", "region": "南宁"},
+        {"name": "广西壮族自治区公共资源交易中心", "url": "http://202.103.240.162:8081/GgzyjySSO/login/oauth2login", "region": "广西"},
+        {"name": "广西河池公共资源交易中心", "url": "http://www.hcjyxxw.com/gxhczbw/default.aspx", "region": "河池"},
+        {"name": "环江毛南族自治县电子招投标交易平台", "url": "http://219.159.164.18:8211/TPBidder/memberLogin", "region": "环江"},
+        {"name": "全国平台(广西)", "url": "http://ggzy.jgswj.gxzf.gov.cn/gxggzy/", "region": "广西"},
+        {"name": "南宁交易中心", "url": "http://ggzy.nanning.gov.cn/nnzfcg/sjcggg/index.htm", "region": "南宁"},
+        {"name": "柳州交易中心", "url": "http://ggzy.liuzhou.gov.cn/", "region": "柳州"},
+        {"name": "桂林交易中心", "url": "https://ggzy.jgswj.gxzf.gov.cn/glggzy/jyxx/", "region": "桂林"},
+        {"name": "玉林交易中心", "url": "http://ggzy.jgswj.gxzf.gov.cn/ylggzy/jyxx/", "region": "玉林"}
+      ]
+    },
+    "power_grid": {
+      "name": "南方电网及电力平台",
+      "auth_required": false,
+      "sites": [
+        {"name": "中国南方电网电子商务系统", "url": "http://www.bidding.csg.cn/", "region": "全国"},
+        {"name": "南方电网电子采购交易平台", "url": "https://ecsg.com.cn/", "region": "全国"},
+        {"name": "电能e招采平台", "url": "https://ebid.espic.com.cn/bidweb/#/procurement/procurementDesktopSupplier", "region": "全国", "note": "需登录查看详细标讯"},
+        {"name": "中国华电集团电子商务平台", "url": "https://www.chdtp.com/pages/wzglS/homepage/index.jsp", "region": "全国"},
+        {"name": "大唐电子商务平台", "url": "http://www.cdt-ec.com", "region": "全国"}
+      ]
+    },
+    "energy": {
+      "name": "能源及央企平台",
+      "auth_required": false,
+      "sites": [
+        {"name": "国家能源e购", "url": "https://www.neep.shop/", "region": "全国", "note": "需登录查看详细标讯"},
+        {"name": "国家能源招标网", "url": "http://www.chnenergybidding.com.cn/bidhy/memberframe/FrameAll", "region": "全国", "note": "需登录查看详细标讯"},
+        {"name": "中国铁塔电子采购平台", "url": "https://ebid.chinatowercom.cn", "region": "全国"},
+        {"name": "国家网管采购管理子系统", "url": "https://iscm.pipechina.com.cn:8443/home/", "region": "全国"}
+      ]
+    },
+    "real_estate": {
+      "name": "房地产集团招采平台",
+      "auth_required": false,
+      "sites": [
+        {"name": "金科房地产入库账号", "url": "https://www.jinke.com/", "region": "全国"},
+        {"name": "彰泰招采平台", "url": "http://caigou.mingyuanyun.com/glztjt", "region": "广西"},
+        {"name": "万达采招平台", "url": "https://vendor.wanda.cn/", "region": "全国"},
+        {"name": "华润守正电子招标平台", "url": "http://szecp.crc.com.cn/", "region": "全国"},
+        {"name": "旭辉集团供应商门户", "url": "https://supplier.cifi.com.cn/out-sky//", "region": "全国"},
+        {"name": "奥园集团数智成本招采", "url": "https://ayjc.aoyuan.net/ierp/index.html?formId=resp_portal&userId=guest&needReset=true", "region": "全国"},
+        {"name": "广西保利置业阳光招采", "url": "http://polygx.julytech.cn", "region": "广西"},
+        {"name": "敏捷集团供应商平台", "url": "https://gys.nimble.cn:8443/sign-in", "region": "全国"},
+        {"name": "中南房地产", "url": "http://go.zoina.cn/reg/new", "region": "全国"},
+        {"name": "建发集团供应商门户", "url": "https://supplier.cndservice.com/app/hiam/user/info", "region": "全国"},
+        {"name": "联东U谷招采系统", "url": "http://sup.liando.cn/", "region": "全国"},
+        {"name": "联东U谷-供应商平台", "url": "http://gyswy.liando.cn/suppliers-portal/", "region": "全国"},
+        {"name": "南南铝集团招采平台", "url": "http://oms.alnan.com:8089/soms/buy/orderlist.html", "region": "广西"}
+      ]
+    },
+    "state_owned": {
+      "name": "国企/央企/大型集团",
+      "auth_required": false,
+      "sites": [
+        {"name": "广西北部湾投资集团有限公司", "url": "https://ebidding.bgigc.com/", "region": "广西"},
+        {"name": "广西交投集中采购平台", "url": "http://sp.jc.gxjttz.com/", "region": "广西"},
+        {"name": "广西路桥集团登录", "url": "https://client.lxyun.cn/#/home", "region": "广西"},
+        {"name": "荣耀集团", "url": "http://ec.gxry.cn/", "region": "广西"},
+        {"name": "广西交易所集团阳光采购平台", "url": "https://mh.gxcq.com.cn/#/index.html", "region": "广西"},
+        {"name": "广西联合产权交易所集团阳光采购服务平台", "url": "https://mh.gxcq.com.cn/#/", "region": "广西"},
+        {"name": "广西阳光采购服务平台", "url": "https://gxygcg.ejy365.com/#/register", "region": "广西"}
+      ]
+    },
+    "central_enterprises": {
+      "name": "央企及行业平台",
+      "auth_required": false,
+      "sites": [
+        {"name": "中国铁建供应链金融服务平台", "url": "https://yx.crcc.cn/scm-web/register/toRegister.htm", "region": "全国"},
+        {"name": "中交招采网（中交集团供应链管理）", "url": "https://zjzcw.iccec.cn/", "region": "全国"},
+        {"name": "中国电建承包商管理系统", "url": "https://bid.powerchina.cn/Contractor/register", "region": "全国"},
+        {"name": "中国通服采招门户", "url": "https://szyc.chinaccs.cn/portal/index", "region": "全国"},
+        {"name": "中国融通电子商务平台", "url": "https://www.ronghw.cn/eb/notice/", "region": "全国"},
+        {"name": "中航建设集团", "url": "https://scm.avicjs.com/", "region": "全国"},
+        {"name": "集采履约平台", "url": "https://scm.avicjs.com/", "region": "全国"}
+      ]
+    },
+    "industry": {
+      "name": "行业垂直平台",
+      "auth_required": false,
+      "sites": [
+        {"name": "政采云", "url": "https://www.zcygov.cn/", "region": "全国"},
+        {"name": "云筑网", "url": "https://auth.yzw.cn/login/v2", "region": "全国"},
+        {"name": "标桥", "url": "https://zhidao.bqpoint.com/", "region": "全国"},
+        {"name": "国铁采购平台", "url": "https://cg.95306.cn/", "region": "全国"},
+        {"name": "精彩纵横云采购平台", "url": "https://passport.yingcaicheng.com/register", "region": "全国"},
+        {"name": "京东企业网址", "url": "https://wcjt.jd.com", "region": "全国"},
+        {"name": "建行阳光集采平台(中国建设银行)", "url": "https://ibuy.ccb.com/cms/index.htm", "region": "全国"}
+      ]
+    },
+    "other": {
+      "name": "其他企业采购",
+      "auth_required": false,
+      "sites": [
+        {"name": "中国移动投标网", "url": "https://b2b.10086.cn/b2b/main/preIndex.html#1", "region": "全国"},
+        {"name": "大华供应商门户", "url": "http://cg.dahuahome.com/pc/#/", "region": "全国"},
+        {"name": "中国南方航空采购招标网", "url": "https://csbidding.csair.cn/cms/channel/czzngys/96540.htm", "region": "全国"},
+        {"name": "武汉武钢绿色城市技术发展有限公司（优必选）", "url": "https://www.obei.com.cn/obei-web-ec/MC/login/register.html", "region": "全国"},
+        {"name": "双胞胎集团", "url": "https://portal.us.bn.cloud.ariba.com/dashboard/appext/company-profile", "region": "全国"}
+      ]
+    }
+  },
+  "auth_required": {
+    "name": "需登录系统后查看标讯",
+    "description": "以下平台已注册账号，需登录后才能查看详细标讯。建议每日手动登录查看，或配置自动化登录流程。",
+    "sites": [
+      {
+        "name": "政采云",
+        "url": "https://www.zcygov.cn/",
+        "account": "WN141588",
+        "password": "wndl141588",
+        "note": "广西政府采购核心平台"
+      },
+      {
+        "name": "国家能源e购",
+        "url": "https://www.neep.shop/",
+        "account": "310150717",
+        "password": "Wndl717400!@!",
+        "contacts": [
+          {"role": "申请人", "name": "蓝庆武", "phone": "13667716933"},
+          {"role": "管理员", "name": "吴珍", "phone": "15994437537"}
+        ],
+        "note": "验证码登录"
+      },
+      {
+        "name": "国家能源招标网",
+        "url": "http://www.chnenergybidding.com.cn/bidhy/memberframe/FrameAll",
+        "account": "13667716933",
+        "password": "Gxwn141488.",
+        "note": "登录名即手机号"
+      },
+      {
+        "name": "云筑网",
+        "url": "https://auth.yzw.cn/login/v2",
+        "account": "WNDL1414",
+        "password": "wndl141588",
+        "note": "中建集团旗下"
+      },
+      {
+        "name": "联东U谷招采系统",
+        "url": "http://sup.liando.cn/",
+        "account": "GXWNDL",
+        "password": "wn123456",
+        "registrant": {"name": "曾升云", "email": "88069000@qq.com"}
+      },
+      {
+        "name": "广西交投宏冠",
+        "url": "http://jthg.zcjb.com.cn/ebidding/#/login",
+        "account": "15994437537",
+        "password": "wndl822825!"
+      },
+      {
+        "name": "中国铁建供应链金融服务平台",
+        "url": "https://yx.crcc.cn/scm-web/register/toRegister.htm",
+        "account": "15994437537",
+        "password": "Wndl717400!"
+      },
+      {
+        "name": "武汉武钢绿色城市技术发展有限公司（优必选）",
+        "url": "https://www.obei.com.cn/obei-web-ec/MC/login/register.html",
+        "account": "15994437537",
+        "password": "Wndl822825@"
+      },
+      {
+        "name": "交建云商",
+        "url": "https://emp.iccec.cn/",
+        "account": "15994437537",
+        "password": "e?Nf?U3X8"
+      },
+      {
+        "name": "标桥",
+        "url": "https://zhidao.bqpoint.com/",
+        "account": "15994437537",
+        "password": "WN822825"
+      },
+      {
+        "name": "南南铝集团招采平台",
+        "url": "http://oms.alnan.com:8089/soms/buy/orderlist.html",
+        "account": "广西威能电力有限公司",
+        "password": "wndl8866",
+        "registrant": {"name": "曾升云", "phone": "15278010524"},
+        "sub_accounts": [
+          {"account": "WNDL822825", "name": "WNDL1414", "phone": "13978962721", "contact": "庞艳", "password": "WNDL822825!"}
+        ]
+      },
+      {
+        "name": "电能e招采平台",
+        "url": "https://ebid.espic.com.cn/bidweb/#/procurement/procurementDesktopSupplier",
+        "account": "WNDL822",
+        "password": "Weineng13579!",
+        "phone": "19968289744",
+        "contact": "黄宁军",
+        "email": "934865592@qq.com",
+        "seal": {"provider": "数智签", "holder": "吴珍", "password": "822825"}
+      },
+      {
+        "name": "联东U谷-供应商平台",
+        "url": "http://gyswy.liando.cn/suppliers-portal/",
+        "account": "Wndl822",
+        "login_method": "手机验证码",
+        "phone": "15994437537"
+      },
+      {
+        "name": "中国电建承包商管理系统",
+        "url": "https://bid.powerchina.cn/Contractor/register",
+        "account": "广西威能电力有限公司",
+        "password": "Wn717400@",
+        "phone": "15994437537"
+      },
+      {
+        "name": "云城建项目全过程管理系统",
+        "url": "http://w.cloudcj.cn/",
+        "account": "吴珍",
+        "password": "Wndl822825",
+        "phone": "15994437537"
+      },
+      {
+        "name": "中铁鲁班商务网",
+        "url": "https://datasrvportal.crecgec.com/portal/#/pages/enterprise-maintenance",
+        "account": "WNDL",
+        "password": "WN717400！",
+        "phone": "15994437537"
+      },
+      {
+        "name": "双胞胎集团",
+        "url": "https://portal.us.bn.cloud.ariba.com/dashboard/appext/company-profile",
+        "account": "1286039045@qq.com",
+        "password": "WNdl7174!",
+        "business_id": "AN11245504346",
+        "admin": {"email": "1286039045@qq.com", "name": "李牟彪", "phone": "17776309367"}
+      }
+    ]
+  }
+}

@@ -1,48 +1,54 @@
-## Description: <br>
-Finds specific moments in online or local videos from a natural-language query and can export matching clips with aspect ratio, caption, hook, and reframing options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find specific moments in a video using a natural language query, with optional exported clips, aspect ratios, captions, and AI reframing for online URLs or local files.
 
-## Publisher: <br>
-[wayinvideo](https://clawhub.ai/user/wayinvideo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wayinvideo](https://clawhub.ai/user/wayinvideo)
 
-## Use Case: <br>
-External users and developers use this skill to locate specific scenes, topics, or events in long videos and optionally export matched clips with captions, hooks, and platform-specific aspect ratios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send local videos, online video URLs, natural-language queries, and processing settings to WayinVideo. <br>
-Mitigation: Use only with media and prompts that are appropriate for WayinVideo processing, and avoid private, regulated, or confidential content unless WayinVideo handling and retention terms have been reviewed. <br>
-Risk: Task metadata and API responses are stored locally in JSON result files. <br>
-Mitigation: Store results in an approved workspace path, review saved files for sensitive metadata or clip links, and delete them when no longer needed. <br>
-Risk: The skill depends on a WayinVideo API key and external API availability. <br>
-Mitigation: Provide WAYIN_API_KEY only through the environment or approved secret handling, and expect tasks to fail or remain incomplete if the external service is unavailable. <br>
+## Use Case:
 
+External users and developers use this skill to locate specific scenes, topics, or events in videos from a natural language search query, then retrieve matching moment metadata or generated clip links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wayinvideo/find-moments-in-the-video) <br>
-- [WayinVideo publisher profile](https://clawhub.ai/user/wayinvideo) <br>
-- [WayinVideo Find Moments API documentation](https://wayin.ai/api-docs/find-moments/) <br>
-- [WayinVideo API dashboard](https://wayin.ai/wayinvideo/api-dashboard) <br>
-- [Supported languages reference](artifact/assets/supported_languages.md) <br>
-- [Platform aspect ratio reference](artifact/assets/platform_ratio.md) <br>
-- [Caption style reference](artifact/assets/caption_style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON files, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with command snippets and saved JSON result files containing task metadata, API responses, matching moments, and clip links when export is enabled.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WAYIN_API_KEY. Export links are described by the artifact as valid for 24 hours, and project results as expiring after 3 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Videos, video URLs, natural language queries, and result metadata may be sent to WayinVideo or saved locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for material appropriate for third-party processing, prefer scoped or revocable WAYIN_API_KEY credentials, and review local api_results files before sharing or retaining them.
+
+Risk: Exported clip links and project results are time-limited.
+
+Mitigation: Use returned export links within 24 hours and rerun or refresh tasks according to the result metadata when links or projects expire.
+
+## Reference(s):
+
+- [WayinVideo Find Moments API documentation](https://wayin.ai/api-docs/find-moments/)
+- [ClawHub skill page](https://clawhub.ai/wayinvideo/skills/find-moments-in-the-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and locally saved JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project IDs, local api_results JSON files, moment metadata, and time-limited exported clip links.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

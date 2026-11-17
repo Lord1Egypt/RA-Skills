@@ -63,7 +63,7 @@ python3 doctor/emr-qc/pe-missing-negative/scripts/run.py \
 - `--input PATH`：**必填**。门诊病历文本文件路径（UTF-8）。
 - `--appkey STRING`：**必填**。调用内部医疗大模型的鉴权 key，由平台分配；**不得写入仓库**。
 - `--base URL`：大模型 base URL（默认：`https://maas-api.hivoice.cn/v1`）。
-- `--model STRING`：模型名称（默认：`u1-insuremed`）。
+- `--model STRING`：模型名称（默认：`u2-med`）。
 - `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待（默认：0）。
 - `--output PATH`：输出文件路径（默认：`../runs/med-emr-qc/pe-missing-negative.txt`）。
 

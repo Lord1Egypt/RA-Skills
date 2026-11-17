@@ -1,43 +1,57 @@
-## Description: <br>
-Trade on UniClaw prediction markets. Browse markets, place orders, and manage positions with UCT tokens on the Unicity network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on UniClaw prediction markets. Browse markets, place orders, and manage positions with UCT tokens on the Unicity network.
 
-## Publisher: <br>
-[jvsteiner](https://clawhub.ai/user/jvsteiner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jvsteiner](https://clawhub.ai/user/jvsteiner)
 
-## Use Case: <br>
-External agents and developers use this skill to register with UniClaw, inspect prediction markets, place and cancel yes/no orders, review balances and positions, and request UCT withdrawals on the Unicity network. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Unicity wallet identity for signing requests and handles private-key material directly. <br>
-Mitigation: Use a dedicated low-balance or testnet wallet and avoid connecting a primary wallet to this skill. <br>
-Risk: Trading, cancellation, deposit, and withdrawal commands can affect UCT balances without built-in confirmation or limits. <br>
-Mitigation: Require manual review of amount, price, market, side, order, and recipient before running value-moving commands. <br>
-Risk: A changed UniClaw server endpoint could receive signed requests. <br>
-Mitigation: Verify UNICLAW_SERVER before use and run the skill only against trusted UniClaw endpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [UniClaw API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jvsteiner/uniclaw-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/jvsteiner) <br>
+## Use Case:
 
+External agents and developers use this skill to interact with UniClaw prediction markets, including market discovery, registration, deposits, order placement, order cancellation, portfolio review, and withdrawals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, tsx, and a Unicity wallet identity.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.19 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a Unicity wallet to trade and request withdrawals.
+
+Mitigation: Use a testnet or limited-balance wallet and review trade amounts, market IDs, and withdrawal recipients before execution.
+
+Risk: Custom UNICLAW_SERVER values can route signed requests to an untrusted endpoint.
+
+Mitigation: Use only the default server or a trusted endpoint controlled by the user.
+
+Risk: The security evidence flags wallet secret handling, hardcoded credentials, and weak request signing as concerns.
+
+Mitigation: Prefer a release that removes raw private-key export, removes hardcoded credentials, and strengthens request signing before higher-value use.
+
+## Reference(s):
+
+- [UniClaw API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/jvsteiner/skills/uniclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npx, tsx, and an existing Unicity wallet configured outside this skill.]
+
+## Skill Version(s):
+
+0.1.19 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

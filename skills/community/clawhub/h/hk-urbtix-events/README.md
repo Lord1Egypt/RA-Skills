@@ -22,9 +22,10 @@ Answers natural language questions about URBTIX events by parsing the query, fet
 **Parameters:**
 - `question` (required): Natural language question about events, e.g., "When is Medea showing?", "Where is 美狄亞 on April 8?", "What performances are on 2026-04-10?"
 - `force_refresh` (optional): If true, ignore cached XML and re-download. Default: false.
+- `language` (optional): Response language - "en" for English, "zh" for Traditional Chinese. Default: "en".
 
 **Returns:** A dictionary with:
-- `answer`: Human-readable answer in **markdown table format** with columns: 時間 | 節目 | 場地 | 購票連結. Includes ticket links where available.
+- `answer`: Human-readable answer in **markdown table format** with columns: Time | Event | Venue | Ticket Link (English) or 時間 | 節目 | 場地 | 購票連結 (Traditional Chinese). Includes ticket links where available.
 - `matches`: List of matching events, each containing:
   - `event_name_en`: English event title
   - `event_name_tc`: Traditional Chinese event title
@@ -50,17 +51,35 @@ Answers natural language questions about URBTIX events by parsing the query, fet
 
 ## Version
 
-1.0.3 — Improved date filtering (performance-level), markdown table output format with ticket links, expanded stop words (events/event), bug fixes.
+1.0.4 — Security hardening: fixed dead code in download validation, corrected rate-limit logic, added language parameter (en/zh), cache purge notifications, timezone-aware datetime handling, atomic file writes.
 
 ## Security & Authenticity
 
 - The skill downloads batch XML files from the official URBTIX cloud distribution endpoint.
 - Upon download, it verifies the XML contains `<SYSTEM>URBTIX</SYSTEM>` to ensure the data is authentic.
+- Additional validation: SEND_DATE matching, TOTAL count verification, XML structure parsing.
+- Rate limiting: At most one download attempt per batch date per HK day (enforced via lock files with actual attempt date tracking).
+- Atomic writes: Downloads use temporary files renamed on success to prevent partial/corrupt cache.
 - Files are cached in `$OPENCLAW_WORKSPACE/urbtix_cache/` to minimize network calls.
 - No credentials are used; only environment variable `OPENCLAW_WORKSPACE` (standard).
+- Cache purging: Optional verbose notification when old files are removed (default silent for background use).
 
 ## Notes
 
 - Respectful polling: Do not call more than once per hour without `force_refresh`.
 - This skill uses the official URBTIX batch distribution endpoint; data is authoritative but may be delayed.
 - Event data is subject to change; always verify with official source before purchasing tickets.
+- Language support: Both English and Traditional Chinese output formats available via `language` parameter.
+
+## Fast CLI Tool
+
+A standalone CLI tool `urbtix_fast.py` is included for quick lookups:
+
+```bash
+cd /opt/data/.hermes/skills/hk-urbtix-events
+python3 urbtix_fast.py "Andy Lau"
+python3 urbtix_fast.py --lang zh "劉德華"
+python3 urbtix_fast.py "Leon Lai" "黎明"
+```
+
+The CLI tool auto-downloads today's XML batch to `~/.urbtix_cache/urbtix_cache/` on first run, then searches locally.

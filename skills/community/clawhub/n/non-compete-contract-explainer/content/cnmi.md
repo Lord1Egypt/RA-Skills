@@ -2,20 +2,22 @@
 jurisdiction: "Northern Mariana Islands"
 slug: cnmi
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/cnmi
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/cnmi
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/cnmi · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/cnmi · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in the Northern Mariana Islands[^about]
 
@@ -35,7 +37,7 @@ The CNMI has no non-compete statute; post-employment covenants are enforceable o
 | **Restriction extended during a breach?** | Silent — rely on an explicit tolling clause kept within § 188 reasonableness |
 | **Maximum length set by law** | No statutory limit |
 
-## Are employee non-compete agreements enforceable in the CNMI? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in the CNMI? {#employee-non-compete-enforceability}
 
 **Short answer.** Sometimes. The Commonwealth of the Northern Mariana Islands has no statute that governs non-competes. When local written law is silent, the Commonwealth's rules-of-decision statute makes the Restatements the rules of decision [^cmc-3401], so a post-employment covenant is enforceable only if it is reasonable under Restatement (Second) of Contracts § 188.
 
@@ -112,7 +114,7 @@ A preliminary injunction is the usual enforcement tool, and in federal court it 
 
 That outcome is narrow in two respects. The court found the employer had produced a signed non-compete for only one of the two employees and none for the other, so the denial did not rest solely on covenant reasonableness. And it is a single fact-specific federal order, not a CNMI appellate rule. Even so, the same public-interest logic would likely make a physician, nurse, or other specialist non-compete hard to enforce where the restraint would remove the only local provider — a strong inference to plan around, not settled law.
 
-## Does the restricted period toll or extend if the employee breaches? {#tolling}
+## Does the restricted period toll or extend if the employee breaches? {#extended-for-breach}
 
 **Short answer.** CNMI primary law is silent. No Commonwealth statute or decision approves or rejects pausing or extending a non-compete during a period of breach or pending litigation, so the question is genuinely open. A contractual tolling clause is the safer route, but any extension must still leave the total restraint reasonable under § 188 [^tolling-188].
 
@@ -135,7 +137,7 @@ Two widely publicized changes do not reach the CNMI on their own force. The fede
 
 The practical takeaway is stability with a thin margin. Because the framework is judge-made, the most reliable signal of change would be a new CNMI Supreme Court or federal decision deciding one of the open questions, consideration, reformation, or tolling, rather than a bill.
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Northern Mariana Islands. This article synthesizes Northern Mariana Islands primary law and is not legal advice from a Northern Mariana Islands-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Northern Mariana Islands. This article synthesizes Northern Mariana Islands primary law and is not legal advice from a Northern Mariana Islands-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in the Northern Mariana Islands*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/cnmi.
 
 [^cmc-3401]: **7 CMC § 3401** — "In all proceedings, the rules of the common law, as expressed in the restatements of the law approved by the American Law Institute and, to the extent not so expressed as generally understood and applied in the United States, shall be the rules of decision in the courts of the Commonwealth, in the absence of written law or local customary law to the contrary" *7 CMC § 3401.* <https://cnmilaw.org/pdf/cmc_section/T7/3401.pdf>
 

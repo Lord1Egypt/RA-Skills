@@ -1,40 +1,53 @@
-## Description: <br>
-Generates Xiaohongshu operations reports from Feishu Bitable data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu operations reports from Feishu Bitable data.
 
-## Publisher: <br>
-[huangfeng1995](https://clawhub.ai/user/huangfeng1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangfeng1995](https://clawhub.ai/user/huangfeng1995)
 
-## Use Case: <br>
-Marketing and operations teams use this skill to turn Xiaohongshu metrics from Feishu Bitable into a weekly performance report with overview metrics, high-performing post analysis, issue diagnosis, and optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Feishu Bitable data and may expose or analyze the wrong table if permissions or table selection are too broad. <br>
-Mitigation: Use a read-only Feishu app or token limited to the specific Xiaohongshu metrics table, and confirm the target table before generating a report. <br>
-Risk: Generated operations recommendations may be misleading when the source metrics are incomplete, stale, or incorrectly entered. <br>
-Mitigation: Review the Feishu source data and the generated report before using the recommendations for operational decisions. <br>
+## Use Case:
 
+External users and operations teams use this skill to read Xiaohongshu post metrics from Feishu Bitable and produce a weekly performance report with data overview, high-performing content analysis, issue diagnosis, and optimization suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangfeng1995/ai-report-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Xiaohongshu weekly operations metrics, high-performing post analysis, issue diagnosis, and optimization suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may access more Feishu Bitable data than needed if the connected app has broad read permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the Feishu app to read access for the specific Bitable and columns needed for Xiaohongshu reporting before installation.
+
+Risk: Report output may be in Chinese by default.
+
+Mitigation: Ask the agent to adapt the report language when a different audience language is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangfeng1995/skills/ai-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report content is based on Feishu Bitable fields for post title, publish time, views, likes, saves, comments, and shares.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

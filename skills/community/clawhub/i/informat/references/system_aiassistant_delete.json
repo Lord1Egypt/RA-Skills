@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_aiassistant_delete",
+    "description": "Delete AI agent module (designer agent configuration).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "AI agent module ID (unique identifier)"
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

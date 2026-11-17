@@ -1,42 +1,60 @@
-## Description: <br>
-Puppeteer-based Douyin Creator Platform automation for logging in, checking session status, and uploading or publishing videos from local command-line scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Puppeteer-based Douyin (TikTok China) video uploader that helps agents log in, upload videos, manage saved login state, and publish or draft content on the Douyin Creator Platform.
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Developers, creators, and agent operators use this skill to automate Douyin Creator Platform login management and video uploads with title, description, tag, draft, and publish controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved Douyin cookies and browser session data can allow account access if the skill directory is exposed. <br>
-Mitigation: Keep the skill directory private and run the clear command when the saved Douyin session is no longer needed. <br>
-Risk: Uploads publish by default, which can post unintended content to the connected Douyin account. <br>
-Mitigation: Use the draft option for review workflows and verify the video, title, description, and tags before publishing. <br>
+## Use Case:
 
+External creators, developers, and agent operators use this skill to automate Douyin Creator Platform login checks, video uploads, metadata entry, and publishing or draft creation from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chongjie-ran/douyin-automation) <br>
-- [Project homepage](https://github.com/lancelin111/douyin-mcp-server) <br>
-- [Publisher profile](https://clawhub.ai/user/chongjie-ran) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command-line examples and CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Douyin cookie and browser session files; upload defaults to publishing unless the draft option is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter; package.json reports 2.2.0) <br>
+Risk: The skill can automatically publish content to a public Douyin account by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-publish for review workflows and enable immediate publication only when the operator intentionally wants the video posted.
+
+Risk: The skill retains local Douyin login state in cookies and browser session data.
+
+Mitigation: Keep the skill directory private, do not commit douyin-cookies.json or chrome-user-data, and use the clear command to remove saved login data when it is no longer needed.
+
+Risk: The browser automation launches Chromium with sandboxing disabled.
+
+Mitigation: Run the skill as an unprivileged user in an isolated workspace and review or pin dependencies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chongjie-ran/skills/douyin-automation)
+- [Project homepage from ClawHub metadata](https://github.com/lancelin111/douyin-mcp-server)
+- [Douyin Creator Platform](https://creator.douyin.com)
+- [Douyin main site](https://www.douyin.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI argument guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for browser-based Douyin login, upload, draft, publish, and login-state management workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, target metadata, and SKILL.md frontmatter; package.json lists 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

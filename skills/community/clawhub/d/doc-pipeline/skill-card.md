@@ -1,45 +1,56 @@
-## Description: <br>
-Generates API documentation from Python source code through a multi-step pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates API documentation from Python source code through a multi-step pipeline.
 
-## Publisher: <br>
-[dapan0902](https://clawhub.ai/user/dapan0902) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dapan0902](https://clawhub.ai/user/dapan0902)
 
-## Use Case: <br>
-Developers use this skill to document Python modules by inventorying public APIs, proposing Google-style docstrings, assembling a Markdown API reference, and checking coverage and examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad documentation requests and process more code than intended. <br>
-Mitigation: Provide only the Python files that should be documented. <br>
-Risk: Generated docstrings or API references may be inaccurate or omit relevant behavior. <br>
-Mitigation: Review generated docstrings, examples, and final documentation before accepting changes. <br>
-Risk: Input code may contain secrets or unrelated proprietary content. <br>
-Mitigation: Remove secrets and unrelated code before asking the skill to generate documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn Python modules into structured API reference documentation, including public symbol inventories, Google-style docstrings, examples, and a quality check.
 
-## Reference(s): <br>
-- [Docstring 格式规范（Google 风格）](artifact/references/docstring-style.md) <br>
-- [API 文档质量检查清单](artifact/references/quality-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dapan0902/doc-pipeline) <br>
-- [Publisher Profile](https://clawhub.ai/user/dapan0902) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown API reference with Google-style Python docstring suggestions and quality-check results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks for user confirmation before moving from API inventory to docstring generation, and generated documentation should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The bundled documentation template and checklist are Chinese-language by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users needing English or multilingual API documentation should adjust the skill materials or explicitly request the desired language before generation.
+
+Risk: Generated API documentation can omit or misdescribe public symbols if the initial inventory is incomplete.
+
+Mitigation: Review and confirm the public API inventory before docstring generation and run the included quality checklist before accepting the final document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dapan0902/skills/doc-pipeline)
+- [API documentation template](artifact/assets/api-doc-template.md)
+- [Docstring style guide](artifact/references/docstring-style.md)
+- [API documentation quality checklist](artifact/references/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown API reference content with Python docstring examples and checklist results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged review output before the final documentation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

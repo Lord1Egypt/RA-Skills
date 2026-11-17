@@ -1,0 +1,1332 @@
+collection: PCE
+sort-by: 10
+shortname: pce
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mednafen_pce_fast_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: J联盟-伟大十一人
+file: J联盟-伟大十一人.pce
+assets.box_front: Imgs/J联盟-伟大十一人.png
+description: 《J联盟-伟大十一人》，由 Nichibutsu 出品，1993 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: Nichibutsu
+release: 1993
+genre: Sports
+players: 4
+game: PC原人1
+file: PC原人1.pce
+assets.box_front: Imgs/PC原人1.png
+description: 《PC原人1》，PC Engine 平台。
+game: PC原人1大冒险
+file: PC原人1大冒险.pce
+assets.box_front: Imgs/PC原人1大冒险.png
+description: 《PC原人1大冒险》，由 Hudson 出品，1990 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1990
+genre: Platform
+players: 1
+game: PC原人2
+file: PC原人2.pce
+assets.box_front: Imgs/PC原人2.png
+description: 《PC原人2》，PC Engine 平台。
+game: PC原人2复仇
+file: PC原人2复仇.pce
+assets.box_front: Imgs/PC原人2复仇.png
+description: 《PC原人2复仇》，由 NEC 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1991
+genre: Platform
+players: 1
+game: PC原人3
+file: PC原人3.pce
+assets.box_front: Imgs/PC原人3.png
+description: 《PC原人3》，由 Turbo Technologies, Inc. 出品，1993 年发行，平台跳跃类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: Turbo Technologies, Inc.
+release: 1993
+genre: Platform
+players: 5
+game: PC原人射击
+file: PC原人射击.pce
+assets.box_front: Imgs/PC原人射击.png
+description: 《PC原人射击》，由 Hudson 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: W指环-双重指环
+file: W指环-双重指环.pce
+assets.box_front: Imgs/W指环-双重指环.png
+description: 《W指环-双重指环》，由 Naxat Soft 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Naxat Soft
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 下载
+file: 下载.pce
+assets.box_front: Imgs/下载.png
+description: 《下载》，由 NEC 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 丧尸要塞
+file: 丧尸要塞.pce
+assets.box_front: Imgs/丧尸要塞.png
+description: 《丧尸要塞》，由 ASK Kodansha 出品，1990 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: ASK Kodansha
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 佩刀-超达因
+file: 佩刀-超达因.pce
+assets.box_front: Imgs/佩刀-超达因.png
+description: 《佩刀-超达因》，由 Radiance Software 出品，1989 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Radiance Software
+release: 1989
+genre: Action
+players: 1
+game: 偶像花札后援会
+file: 偶像花札后援会.pce
+assets.box_front: Imgs/偶像花札后援会.png
+description: 《偶像花札后援会》，由 Hacker International 出品，1991 年发行，Board类游戏，PC Engine 平台，单人游玩。
+publisher: Hacker International
+release: 1991
+genre: Board
+players: 1
+game: 兵蜂
+file: 兵蜂.pce
+assets.box_front: Imgs/兵蜂.png
+description: 《兵蜂》，PC Engine 平台。
+game: 兽王记
+file: 兽王记.pce
+assets.box_front: Imgs/兽王记.png
+description: 《兽王记》，由 NEC 出品，1989 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1989
+genre: Action
+players: 1
+game: 决胜球
+file: 决胜球.pce
+assets.box_front: Imgs/决胜球.png
+description: 《决胜球》，由 Data East 出品，1989 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: Data East
+release: 1989
+genre: Sports
+players: 4
+game: 凄狂传说
+file: 凄狂传说.pce
+assets.box_front: Imgs/凄狂传说.png
+description: 《凄狂传说》，由 Hudson 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1989
+genre: Role-playing (RPG)
+players: 2
+game: 力量十一人
+file: 力量十一人.pce
+assets.box_front: Imgs/力量十一人.png
+description: 《力量十一人》，由 Hudson 出品，1991 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1991
+genre: Sports
+players: 2
+game: 力量网球
+file: 力量网球.pce
+assets.box_front: Imgs/力量网球.png
+description: 《力量网球》，由 Hudson 出品，1993 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: Hudson
+release: 1993
+genre: Sports
+players: 4
+game: 力量联盟'93
+file: 力量联盟'93.pce
+assets.box_front: Imgs/力量联盟'93.png
+description: 《力量联盟'93》，由 Hudson 出品，1993 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1993
+genre: Sports
+players: 2
+game: 力量联盟
+file: 力量联盟.pce
+assets.box_front: Imgs/力量联盟.png
+description: 《力量联盟》，由 NEC 出品，1988 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1988
+genre: Sports
+players: 2
+game: 力量联盟2
+file: 力量联盟2.pce
+assets.box_front: Imgs/力量联盟2.png
+description: 《力量联盟2》，由 Hudson 出品，1989 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1989
+genre: Sports
+players: 2
+game: 力量联盟3
+file: 力量联盟3.pce
+assets.box_front: Imgs/力量联盟3.png
+description: 《力量联盟3》，由 Hudson 出品，1990 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: Hudson
+release: 1990
+genre: Sports
+players: 4
+game: 力量联盟4
+file: 力量联盟4.pce
+assets.box_front: Imgs/力量联盟4.png
+description: 《力量联盟4》，由 Hudson 出品，1991 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1991
+genre: Sports
+players: 2
+game: 力量联盟5
+file: 力量联盟5.pce
+assets.box_front: Imgs/力量联盟5.png
+description: 《力量联盟5》，由 Hudson 出品，1992 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: Hudson
+release: 1992
+genre: Sports
+players: 4
+game: 力量运动
+file: 力量运动.pce
+assets.box_front: Imgs/力量运动.png
+description: 《力量运动》，由 Hudson 出品，1992 年发行，体育类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: Hudson
+release: 1992
+genre: Sports
+players: 5
+game: 力量高尔夫
+file: 力量高尔夫.pce
+assets.box_front: Imgs/力量高尔夫.png
+description: 《力量高尔夫》，由 Hudson 出品，1989 年发行，体育类游戏，PC Engine 平台，支持 3-3 人游玩。
+publisher: Hudson
+release: 1989
+genre: Sports
+players: 3
+game: 功夫
+file: 功夫.pce
+assets.box_front: Imgs/功夫.png
+description: 《功夫》，PC Engine 平台。
+game: 卡达叙传说
+file: 卡达叙传说.pce
+assets.box_front: Imgs/卡达叙传说.png
+description: 《卡达叙传说》，由 Working Designs 出品，1991 年发行，Role-playing (RPG)类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Working Designs
+release: 1991
+genre: Role-playing (RPG)
+players: 2
+game: 双重地牢W
+file: 双重地牢W.pce
+assets.box_front: Imgs/双重地牢W.png
+description: 《双重地牢W》，由 Masaya Games 出品，1990 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Masaya Games
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 咚咚哐咚
+file: 咚咚哐咚.pce
+assets.box_front: Imgs/咚咚哐咚.png
+description: 《咚咚哐咚》，由 Taito 出品，1990 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Taito
+release: 1990
+genre: Action
+players: 2
+game: 哆啦A梦-迷宫大作战
+file: 哆啦A梦-迷宫大作战.pce
+assets.box_front: Imgs/哆啦A梦-迷宫大作战.png
+description: 《哆啦A梦-迷宫大作战》，由 NEC 出品，1989 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1989
+genre: Action
+players: 1
+game: 哆啦A梦-野比大雄的天方夜谭
+file: 哆啦A梦-野比大雄的天方夜谭.pce
+assets.box_front: Imgs/哆啦A梦-野比大雄的天方夜谭.png
+description: 《哆啦A梦-野比大雄的天方夜谭》，由 Hudson 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1991
+genre: Platform
+players: 1
+game: 城市猎人
+file: 城市猎人.pce
+assets.box_front: Imgs/城市猎人.png
+description: 《城市猎人》，由 Sunsoft 出品，1990 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+release: 1990
+genre: Action
+players: 2
+game: 基思的勇气-阿尔法区域
+file: 基思的勇气-阿尔法区域.pce
+assets.box_front: Imgs/基思的勇气-阿尔法区域.png
+description: 《基思的勇气-阿尔法区域》，由 NEC 出品，1989 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1989
+genre: Platform
+players: 1
+game: 塌下
+file: 塌下.pce
+assets.box_front: Imgs/塌下.png
+description: 《塌下》，由 NEC 出品，1990 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1990
+genre: Action
+players: 2
+game: 大流士-开端
+file: 大流士-开端.pce
+assets.box_front: Imgs/大流士-开端.png
+description: 《大流士-开端》，由 NEC 出品，1990 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Action
+players: 1
+game: 大相扑-平成版
+file: 大相扑-平成版.pce
+assets.box_front: Imgs/大相扑-平成版.png
+description: 《大相扑-平成版》，由 Naxat Soft 出品，1993 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Naxat Soft
+release: 1993
+genre: Sports
+players: 2
+game: 大逃杀
+file: 大逃杀.pce
+assets.box_front: Imgs/大逃杀.png
+description: 《大逃杀》，由 NEC 出品，1990 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: NEC
+release: 1990
+genre: Sports
+players: 4
+game: 天之声
+file: 天之声.pce
+assets.box_front: Imgs/天之声.png
+description: 《天之声》，PC Engine 平台。
+game: 太平记
+file: 太平记.pce
+assets.box_front: Imgs/太平记.png
+description: 《太平记》，由 NHK 出品，1992 年发行，策略类游戏，PC Engine 平台，单人游玩。
+publisher: NHK
+release: 1992
+genre: Strategy
+players: 1
+game: 太极球
+file: 太极球.pce
+assets.box_front: Imgs/太极球.png
+description: 《太极球》，PC Engine 平台。
+game: 太空入侵者
+file: 太空入侵者.pce
+assets.box_front: Imgs/太空入侵者.png
+description: 《太空入侵者》，由 Hudson 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 太空军舰
+file: 太空军舰.pce
+assets.box_front: Imgs/太空军舰.png
+description: 《太空军舰》，由 Hudson 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 太空哈利
+file: 太空哈利.pce
+assets.box_front: Imgs/太空哈利.png
+description: 《太空哈利》，由 NEC 出品，1990 年发行，射击类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Shooter
+players: 1
+game: 奇奇怪界
+file: 奇奇怪界.pce
+assets.box_front: Imgs/奇奇怪界.png
+description: 《奇奇怪界》，由 Taito 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 女武神传说
+file: 女武神传说.pce
+assets.box_front: Imgs/女武神传说.png
+description: 《女武神传说》，由 Namco 出品，1990 年发行，冒险类游戏，PC Engine 平台，单人游玩。
+publisher: Namco
+release: 1990
+genre: Adventure
+players: 1
+game: 妮可妮可俏皮话
+file: 妮可妮可俏皮话.pce
+assets.box_front: Imgs/妮可妮可俏皮话.png
+description: 《妮可妮可俏皮话》，由 NHK 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NHK
+release: 1991
+genre: Platform
+players: 1
+game: 定吉七号-秀吉的黄金
+file: 定吉七号-秀吉的黄金.pce
+assets.box_front: Imgs/定吉七号-秀吉的黄金.png
+description: 《定吉七号-秀吉的黄金》，由 Hudson 出品，1988 年发行，冒险类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1988
+genre: Adventure
+players: 1
+game: 宝伦大作战
+file: 宝伦大作战.pce
+assets.box_front: Imgs/宝伦大作战.png
+description: 《宝伦大作战》，PC Engine 平台。
+game: 彩虹岛2
+file: 彩虹岛2.pce
+assets.box_front: Imgs/彩虹岛2.png
+description: 《彩虹岛2》，由 Working Designs 出品，1991 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Working Designs
+release: 1991
+genre: Action
+players: 2
+game: 忍
+file: 忍.pce
+assets.box_front: Imgs/忍.png
+description: 《忍》，由 SEGA 出品，1989 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: SEGA
+release: 1989
+genre: Platform
+players: 1
+game: 忍者勇士
+file: 忍者勇士.pce
+assets.box_front: Imgs/忍者勇士.png
+description: 《忍者勇士》，由 Taito 出品，1989 年发行，清版动作类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1989
+genre: Beat'em Up
+players: 1
+game: 忍者战士
+file: 忍者战士.pce
+assets.box_front: Imgs/忍者战士.png
+description: 《忍者战士》，由 Taito 出品，1989 年发行，清版动作类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1989
+genre: Beat'em Up
+players: 1
+game: 忍者龙剑传
+file: 忍者龙剑传.pce
+assets.box_front: Imgs/忍者龙剑传.png
+description: 《忍者龙剑传》，由 Hudson 出品，1992 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Platform
+players: 1
+game: 快递员
+file: 快递员.pce
+assets.box_front: Imgs/快递员.png
+description: 《快递员》，由 Tonkin House 出品，1990 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Tonkin House
+release: 1990
+genre: Action
+players: 1
+game: 恐龙女战士
+file: 恐龙女战士.pce
+assets.box_front: Imgs/恐龙女战士.png
+description: 《恐龙女战士》，由 NCS Corporation 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NCS Corporation
+release: 1991
+genre: Platform
+players: 1
+game: 恶搞宇宙巡航机
+file: 恶搞宇宙巡航机.pce
+assets.box_front: Imgs/恶搞宇宙巡航机.png
+description: 《恶搞宇宙巡航机》，由 Konami 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1992
+genre: Shoot'em Up
+players: 2
+game: 恶魔粉碎-克沙特球
+file: 恶魔粉碎-克沙特球.pce
+assets.box_front: Imgs/恶魔粉碎-克沙特球.png
+description: 《恶魔粉碎-克沙特球》，由 NEC 出品，1990 年发行，弹珠台类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1990
+genre: Pinball
+players: 2
+game: 成龙功夫
+file: 成龙功夫.pce
+assets.box_front: Imgs/成龙功夫.png
+description: 《成龙功夫》，PC Engine 平台。
+game: 成龙功夫血_招式_必杀_命不减
+file: 成龙功夫血_招式_必杀_命不减.pce
+assets.box_front: Imgs/成龙功夫血_招式_必杀_命不减.png
+description: 《成龙功夫血_招式_必杀_命不减》，PC Engine 平台。
+game: 战士
+file: 战士.pce
+assets.box_front: Imgs/战士.png
+description: 《战士》，由 Accolade 出品，1991 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Accolade
+release: 1991
+genre: Action
+players: 1
+game: 战士之刃
+file: 战士之刃.pce
+assets.box_front: Imgs/战士之刃.png
+description: 《战士之刃》，由 Hudson 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 战士之刃特别版-大篷车舞台
+file: 战士之刃特别版-大篷车舞台.pce
+assets.box_front: Imgs/战士之刃特别版-大篷车舞台.png
+description: 《战士之刃特别版-大篷车舞台》，由 Hudson 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 戴维斯杯网球公开赛
+file: 戴维斯杯网球公开赛.pce
+assets.box_front: Imgs/戴维斯杯网球公开赛.png
+description: 《戴维斯杯网球公开赛》，由 NEC 出品，1991 年发行，体育类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: NEC
+release: 1991
+genre: Sports
+players: 4
+game: 托马英雄传说
+file: 托马英雄传说.pce
+assets.box_front: Imgs/托马英雄传说.png
+description: 《托马英雄传说》，由 Irem 出品，1993 年发行，平台跳跃类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Irem
+release: 1993
+genre: Platform
+players: 2
+game: 拉斯坦传奇2
+file: 拉斯坦传奇2.pce
+assets.box_front: Imgs/拉斯坦传奇2.png
+description: 《拉斯坦传奇2》，由 Taito 出品，1990 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1990
+genre: Platform
+players: 1
+game: 拳击冠军
+file: 拳击冠军.pce
+assets.box_front: Imgs/拳击冠军.png
+description: 《拳击冠军》，由 Naxat Soft 出品，1989 年发行，体育类游戏，PC Engine 平台。
+publisher: Naxat Soft
+release: 1989
+genre: Sports
+game: 推箱子
+file: 推箱子.pce
+assets.box_front: Imgs/推箱子.png
+description: 《推箱子》，由 Media Rings 出品，1990 年发行，益智类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Media Rings
+release: 1990
+genre: Puzzle
+players: 2
+game: 摔跤冠军
+file: 摔跤冠军.pce
+assets.box_front: Imgs/摔跤冠军.png
+description: 《摔跤冠军》，由 Taito 出品，1990 年发行，格斗类游戏，PC Engine 平台，支持 4-4 人游玩。
+publisher: Taito
+release: 1990
+genre: Fighting
+players: 4
+game: 摩托骑士
+file: 摩托骑士.pce
+assets.box_front: Imgs/摩托骑士.png
+description: 《摩托骑士》，由 NEC 出品，1989 年发行，动作类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: NEC
+release: 1989
+genre: Action
+players: 5
+game: 摩托骑士2
+file: 摩托骑士2.pce
+assets.box_front: Imgs/摩托骑士2.png
+description: 《摩托骑士2》，由 NCS Corporation 出品，1991 年发行，竞速类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: NCS Corporation
+release: 1991
+genre: Racing
+players: 5
+game: 改造町人
+file: 改造町人.pce
+assets.box_front: Imgs/改造町人.png
+description: 《改造町人》，由 Masaya Games 出品，1989 年发行，平台跳跃类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Masaya Games
+release: 1989
+genre: Platform
+players: 2
+game: 改造町人2
+file: 改造町人2.pce
+assets.box_front: Imgs/改造町人2.png
+description: 《改造町人2》，PC Engine 平台。
+game: 改造町人2新的敌人
+file: 改造町人2新的敌人.pce
+assets.box_front: Imgs/改造町人2新的敌人.png
+description: 《改造町人2新的敌人》，由 NCS Corporation 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NCS Corporation
+release: 1991
+genre: Platform
+players: 2
+game: 斗牛
+file: 斗牛.pce
+assets.box_front: Imgs/斗牛.png
+description: 《斗牛》，由 Cream 出品，1989 年发行，动作类游戏，PC Engine 平台，支持 8-8 人游玩。
+publisher: Cream
+release: 1989
+genre: Action
+players: 8
+game: 斧王传奇2
+file: 斧王传奇2.pce
+assets.box_front: Imgs/斧王传奇2.png
+description: 《斧王传奇2》，由 NEC 出品，1990 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Action
+players: 1
+game: 斯科维
+file: 斯科维.pce
+assets.box_front: Imgs/斯科维.png
+description: 《斯科维》，由 Victor Entertainment 出品，1991 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Victor Entertainment
+release: 1991
+genre: Action
+players: 1
+game: 旋转成对
+file: 旋转成对.pce
+assets.box_front: Imgs/旋转成对.png
+description: 《旋转成对》，由 Media Rings 出品，1990 年发行，益智类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Media Rings
+release: 1990
+genre: Puzzle
+players: 2
+game: 旋转飞机
+file: 旋转飞机.pce
+assets.box_front: Imgs/旋转飞机.png
+description: 《旋转飞机》，由 Namco 出品，1990 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Namco
+release: 1990
+genre: Action
+players: 1
+game: 旋风任务
+file: 旋风任务.pce
+assets.box_front: Imgs/旋风任务.png
+description: 《旋风任务》，由 Media Rings 出品，1991 年发行，射击类游戏，PC Engine 平台，单人游玩。
+publisher: Media Rings
+release: 1991
+genre: Shooter
+players: 1
+game: 日本职业摔角-未来之战
+file: 日本职业摔角-未来之战.pce
+assets.box_front: Imgs/日本职业摔角-未来之战.png
+description: 《日本职业摔角-未来之战》，由 Hudson 出品，1990 年发行，格斗类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1990
+genre: Fighting
+players: 2
+game: 暗夜生物
+file: 暗夜生物.pce
+assets.box_front: Imgs/暗夜生物.png
+description: 《暗夜生物》，PC Engine 平台。
+game: 最后一圈双人版
+file: 最后一圈双人版.pce
+assets.box_front: Imgs/最后一圈双人版.png
+description: 《最后一圈双人版》，由 Namco 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Namco
+release: 1989
+genre: Role-playing (RPG)
+players: 2
+game: 最后的忍道
+file: 最后的忍道.pce
+assets.box_front: Imgs/最后的忍道.png
+description: 《最后的忍道》，由 Irem 出品，1990 年发行，平台跳跃类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Irem
+release: 1990
+genre: Platform
+players: 2
+game: 机动劲旅
+file: 机动劲旅.pce
+assets.box_front: Imgs/机动劲旅.png
+description: 《机动劲旅》，由 Taito 出品，1989 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1989
+genre: Action
+players: 1
+game: 机器飞人
+file: 机器飞人.pce
+assets.box_front: Imgs/机器飞人.png
+description: 《机器飞人》，由 UPL 出品，1990 年发行，射击类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: UPL
+release: 1990
+genre: Shooter
+players: 2
+game: 机战兵团特别版
+file: 机战兵团特别版.pce
+assets.box_front: Imgs/机战兵团特别版.png
+description: 《机战兵团特别版》，由 Hudson 出品，1989 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1989
+genre: Shoot'em Up
+players: 1
+game: 机甲战士-战术角斗士
+file: 机甲战士-战术角斗士.pce
+assets.box_front: Imgs/机甲战士-战术角斗士.png
+description: 《机甲战士-战术角斗士》，由 NEC 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 机甲战士-机甲大会
+file: 机甲战士-机甲大会.pce
+assets.box_front: Imgs/机甲战士-机甲大会.png
+description: 《机甲战士-机甲大会》，由 Hudson 出品，1989 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1989
+genre: Shoot'em Up
+players: 1
+game: 机甲战士
+file: 机甲战士.pce
+assets.box_front: Imgs/机甲战士.png
+description: 《机甲战士》，由 NEC 出品，1989 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1989
+genre: Shoot'em Up
+players: 1
+game: 极乐中华大仙
+file: 极乐中华大仙.pce
+assets.box_front: Imgs/极乐中华大仙.png
+description: 《极乐中华大仙》，由 Taito 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 极速格斗
+file: 极速格斗.pce
+assets.box_front: Imgs/极速格斗.png
+description: 《极速格斗》，由 Nichibutsu 出品，1991 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Nichibutsu
+release: 1991
+genre: Action
+players: 2
+game: 桃太郎传说1
+file: 桃太郎传说1.pce
+assets.box_front: Imgs/桃太郎传说1.png
+description: 《桃太郎传说1》，由 Hudson 出品，1990 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 桃太郎传说2
+file: 桃太郎传说2.pce
+assets.box_front: Imgs/桃太郎传说2.png
+description: 《桃太郎传说2》，由 Hudson 出品，1990 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 桃太郎传说加速版
+file: 桃太郎传说加速版.pce
+assets.box_front: Imgs/桃太郎传说加速版.png
+description: 《桃太郎传说加速版》，由 Hudson 出品，1990 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 桃太郎传说外传
+file: 桃太郎传说外传.pce
+assets.box_front: Imgs/桃太郎传说外传.png
+description: 《桃太郎传说外传》，由 Hudson 出品，1992 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 桃太郎活剧
+file: 桃太郎活剧.pce
+assets.box_front: Imgs/桃太郎活剧.png
+description: 《桃太郎活剧》，由 Hudson 出品，1990 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1990
+genre: Platform
+players: 1
+game: 欧坦救美
+file: 欧坦救美.pce
+assets.box_front: Imgs/欧坦救美.png
+description: 《欧坦救美》，由 NEC 出品，1990 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1990
+genre: Action
+players: 2
+game: 武装刑事-网络交错
+file: 武装刑事-网络交错.pce
+assets.box_front: Imgs/武装刑事-网络交错.png
+description: 《武装刑事-网络交错》，由 FACE 出品，1989 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: FACE
+release: 1989
+genre: Platform
+players: 1
+game: 武装编队F
+file: 武装编队F.pce
+assets.box_front: Imgs/武装编队F.png
+description: 《武装编队F》，由 Pack In Video 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Pack In Video
+release: 1990
+genre: Shoot'em Up
+players: 2
+game: 死亡之月
+file: 死亡之月.pce
+assets.box_front: Imgs/死亡之月.png
+description: 《死亡之月》，由 Natsume 出品，1992 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Natsume
+release: 1992
+genre: Action
+players: 1
+game: 死灵战线
+file: 死灵战线.pce
+assets.box_front: Imgs/死灵战线.png
+description: 《死灵战线》，由 Victor Entertainment 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Victor Entertainment
+release: 1989
+genre: Role-playing (RPG)
+players: 1
+game: 水泡广场
+file: 水泡广场.pce
+assets.box_front: Imgs/水泡广场.png
+description: 《水泡广场》，由 Uni Post Company 出品，1991 年发行，益智类游戏，PC Engine 平台，单人游玩。
+publisher: Uni Post Company
+release: 1991
+genre: Puzzle
+players: 1
+game: 水滴管道
+file: 水滴管道.pce
+assets.box_front: Imgs/水滴管道.png
+description: 《水滴管道》，由 NEC 出品，1990 年发行，益智类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1990
+genre: Puzzle
+players: 2
+game: 汤姆历险记
+file: 汤姆历险记.pce
+assets.box_front: Imgs/汤姆历险记.png
+description: 《汤姆历险记》，由 Irem 出品，1993 年发行，平台跳跃类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Irem
+release: 1993
+genre: Platform
+players: 2
+game: 沙罗曼蛇
+file: 沙罗曼蛇.pce
+assets.box_front: Imgs/沙罗曼蛇.png
+description: 《沙罗曼蛇》，由 Konami 出品，1991 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1991
+genre: Shoot'em Up
+players: 2
+game: 沙罗曼蛇Q版
+file: 沙罗曼蛇Q版.pce
+assets.box_front: Imgs/沙罗曼蛇Q版.png
+description: 《沙罗曼蛇Q版》，由 Konami 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1992
+genre: Shoot'em Up
+players: 2
+game: 泡泡糖危机-骑士军刀2034
+file: 泡泡糖危机-骑士军刀2034.pce
+assets.box_front: Imgs/泡泡糖危机-骑士军刀2034.png
+description: 《泡泡糖危机-骑士军刀2034》，由 Naxat Soft 出品，1991 年发行，冒险类游戏，PC Engine 平台，单人游玩。
+publisher: Naxat Soft
+release: 1991
+genre: Adventure
+players: 1
+game: 泰坦
+file: 泰坦.pce
+assets.box_front: Imgs/泰坦.png
+description: 《泰坦》，由 Titus 出品，1991 年发行，策略类游戏，PC Engine 平台，单人游玩。
+publisher: Titus
+release: 1991
+genre: Strategy
+players: 1
+game: 浣熊超人
+file: 浣熊超人.pce
+assets.box_front: Imgs/浣熊超人.png
+description: 《浣熊超人》，PC Engine 平台。
+game: 淑女剑
+file: 淑女剑.pce
+assets.box_front: Imgs/淑女剑.png
+description: 《淑女剑》，由 Games Express 出品，1992 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Games Express
+release: 1992
+genre: Role-playing (RPG)
+players: 1
+game: 源平讨魔传
+file: 源平讨魔传.pce
+assets.box_front: Imgs/源平讨魔传.png
+description: 《源平讨魔传》，由 Namco 出品，动作类游戏，PC Engine 平台。
+publisher: Namco
+genre: Action
+game: 潘萨拳击
+file: 潘萨拳击.pce
+assets.box_front: Imgs/潘萨拳击.png
+description: 《潘萨拳击》，由 NEC 出品，1991 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1991
+genre: Sports
+players: 2
+game: 激摄男孩
+file: 激摄男孩.pce
+assets.box_front: Imgs/激摄男孩.png
+description: 《激摄男孩》，由 Irem 出品，1992 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: Irem
+release: 1992
+genre: Action
+players: 1
+game: 激烈战斗
+file: 激烈战斗.pce
+assets.box_front: Imgs/激烈战斗.png
+description: 《激烈战斗》，由 NEC 出品，1991 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 炮艇
+file: 炮艇.pce
+assets.box_front: Imgs/炮艇.png
+description: 《炮艇》，由 Accolade 出品，1992 年发行，模拟类游戏，PC Engine 平台，单人游玩。
+publisher: Accolade
+release: 1992
+genre: Simulation
+players: 1
+game: 炸弹人'93-特别版
+file: 炸弹人'93-特别版.pce
+assets.box_front: Imgs/炸弹人'93-特别版.png
+description: 《炸弹人'93-特别版》，由 Hudson 出品，1993 年发行，益智类游戏，PC Engine 平台。
+publisher: Hudson
+release: 1993
+genre: Puzzle
+game: 炸弹人'93
+file: 炸弹人'93.pce
+assets.box_front: Imgs/炸弹人'93.png
+description: 《炸弹人'93》，由 Hudson 出品，1993 年发行，动作类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: Hudson
+release: 1993
+genre: Action
+players: 5
+game: 炸弹人'94
+file: 炸弹人'94.pce
+assets.box_front: Imgs/炸弹人'94.png
+description: 《炸弹人'94》，由 Hudson 出品，1993 年发行，动作类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: Hudson
+release: 1993
+genre: Action
+players: 5
+game: 炸弹人-玩家之争
+file: 炸弹人-玩家之争.pce
+assets.box_front: Imgs/炸弹人-玩家之争.png
+description: 《炸弹人-玩家之争》，由 Hudson 出品，1990 年发行，动作类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: Hudson
+release: 1990
+genre: Action
+players: 5
+game: 炸弹人
+file: 炸弹人.pce
+assets.box_front: Imgs/炸弹人.png
+description: 《炸弹人》，由 Turbo Technologies, Inc. 出品，动作类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: Turbo Technologies, Inc.
+genre: Action
+players: 5
+game: 燃烧天使
+file: 燃烧天使.pce
+assets.box_front: Imgs/燃烧天使.png
+description: 《燃烧天使》，由 Naxat Soft 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Naxat Soft
+release: 1990
+genre: Shoot'em Up
+players: 2
+game: 牟庆外传
+file: 牟庆外传.pce
+assets.box_front: Imgs/牟庆外传.png
+description: 《牟庆外传》，由 Sunsoft 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Sunsoft
+release: 1989
+genre: Role-playing (RPG)
+players: 1
+game: 狂暴战士
+file: 狂暴战士.pce
+assets.box_front: Imgs/狂暴战士.png
+description: 《狂暴战士》，由 NEC 出品，1991 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 猎鹰
+file: 猎鹰.pce
+assets.box_front: Imgs/猎鹰.png
+description: 《猎鹰》，由 Spectrum Holobyte 出品，1992 年发行，模拟类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Spectrum Holobyte
+release: 1992
+genre: Simulation
+players: 2
+game: 琉球
+file: 琉球.pce
+assets.box_front: Imgs/琉球.png
+description: 《琉球》，由 ASCII 出品，1990 年发行，Gambling类游戏，PC Engine 平台，单人游玩。
+publisher: ASCII
+release: 1990
+genre: Gambling
+players: 1
+game: 电子骑士
+file: 电子骑士.pce
+assets.box_front: Imgs/电子骑士.png
+description: 《电子骑士》，由 Tonkin House 出品，1990 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Tonkin House
+release: 1990
+genre: Role-playing (RPG)
+players: 1
+game: 疯狂军队
+file: 疯狂军队.pce
+assets.box_front: Imgs/疯狂军队.png
+description: 《疯狂军队》，由 NEC 出品，1989 年发行，策略类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1989
+genre: Strategy
+players: 2
+game: 疯狂赛车
+file: 疯狂赛车.pce
+assets.box_front: Imgs/疯狂赛车.png
+description: 《疯狂赛车》，由 Sunsoft 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+release: 1989
+genre: Role-playing (RPG)
+players: 2
+game: 空中哈尼
+file: 空中哈尼.pce
+assets.box_front: Imgs/空中哈尼.png
+description: 《空中哈尼》，由 FACE 出品，1989 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: FACE
+release: 1989
+genre: Action
+players: 1
+game: 空中堡垒
+file: 空中堡垒.pce
+assets.box_front: Imgs/空中堡垒.png
+description: 《空中堡垒》，由 Hudson 出品，1990 年发行，动作类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1990
+genre: Action
+players: 2
+game: 空中火狐
+file: 空中火狐.pce
+assets.box_front: Imgs/空中火狐.png
+description: 《空中火狐》，PC Engine 平台。
+game: 空母骑兵-X数据
+file: 空母骑兵-X数据.pce
+assets.box_front: Imgs/空母骑兵-X数据.png
+description: 《空母骑兵-X数据》，由 NCS Corporation 出品，1990 年发行，策略类游戏，PC Engine 平台，单人游玩。
+publisher: NCS Corporation
+release: 1990
+genre: Strategy
+players: 1
+game: 童话迷宫
+file: 童话迷宫.pce
+assets.box_front: Imgs/童话迷宫.png
+description: 《童话迷宫》，由 Namco 出品，1990 年发行，射击类游戏，PC Engine 平台，单人游玩。
+publisher: Namco
+release: 1990
+genre: Shooter
+players: 1
+game: 续存
+file: 续存.pce
+assets.box_front: Imgs/续存.png
+description: 《续存》，由 Sunsoft 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Sunsoft
+release: 1989
+genre: Role-playing (RPG)
+players: 2
+game: 羚牛欢呼
+file: 羚牛欢呼.pce
+assets.box_front: Imgs/羚牛欢呼.png
+description: 《羚牛欢呼》，由 NEC 出品，1990 年发行，体育类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NEC
+release: 1990
+genre: Sports
+players: 2
+game: 肉体征服2-救性主
+file: 肉体征服2-救性主.pce
+assets.box_front: Imgs/肉体征服2-救性主.png
+description: 《肉体征服2-救性主》，由 Games Express 出品，1993 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Games Express
+release: 1993
+genre: Role-playing (RPG)
+players: 1
+game: 能量
+file: 能量.pce
+assets.box_front: Imgs/能量.png
+description: 《能量》，由 NCS Corporation 出品，1989 年发行，动作类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: NCS Corporation
+release: 1989
+genre: Action
+players: 5
+game: 腐尸之屋
+file: 腐尸之屋.pce
+assets.box_front: Imgs/腐尸之屋.png
+description: 《腐尸之屋》，由 NEC 出品，1990 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Action
+players: 1
+game: 自由战士
+file: 自由战士.pce
+assets.box_front: Imgs/自由战士.png
+description: 《自由战士》，由 Aicom 出品，1989 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Aicom
+release: 1989
+genre: Shoot'em Up
+players: 1
+game: 萨默突袭
+file: 萨默突袭.pce
+assets.box_front: Imgs/萨默突袭.png
+description: 《萨默突袭》，由 Atlus 出品，1992 年发行，射击类游戏，PC Engine 平台，单人游玩。
+publisher: Atlus
+release: 1992
+genre: Shooter
+players: 1
+game: 蝙蝠侠
+file: 蝙蝠侠.pce
+assets.box_front: Imgs/蝙蝠侠.png
+description: 《蝙蝠侠》，PC Engine 平台。
+game: 血狼
+file: 血狼.pce
+assets.box_front: Imgs/血狼.png
+description: 《血狼》，由 Data East 出品，1990 年发行，射击类游戏，PC Engine 平台，单人游玩。
+publisher: Data East
+release: 1990
+genre: Shooter
+players: 1
+game: 补燃器2
+file: 补燃器2.pce
+assets.box_front: Imgs/补燃器2.png
+description: 《补燃器2》，由 NEC 出品，1990 年发行，射击类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1990
+genre: Shooter
+players: 1
+game: 袋鼠-兔子乡的袋鼠赛跑
+file: 袋鼠-兔子乡的袋鼠赛跑.pce
+assets.box_front: Imgs/袋鼠-兔子乡的袋鼠赛跑.png
+description: 《袋鼠-兔子乡的袋鼠赛跑》，由 NCS Corporation 出品，1990 年发行，Sports with Animals类游戏，PC Engine 平台，单人游玩。
+publisher: NCS Corporation
+release: 1990
+genre: Sports with Animals
+players: 1
+game: 计算机骑士
+file: 计算机骑士.pce
+assets.box_front: Imgs/计算机骑士.png
+description: 《计算机骑士》，PC Engine 平台。
+game: 赌场之王
+file: 赌场之王.pce
+assets.box_front: Imgs/赌场之王.png
+description: 《赌场之王》，由 NEC 出品，1990 年发行，Gambling类游戏，PC Engine 平台，支持 5-5 人游玩。
+publisher: NEC
+release: 1990
+genre: Gambling
+players: 5
+game: 赛车魂
+file: 赛车魂.pce
+assets.box_front: Imgs/赛车魂.png
+description: 《赛车魂》，由 Irem 出品，1991 年发行，竞速类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Irem
+release: 1991
+genre: Racing
+players: 2
+game: 超空战机
+file: 超空战机.pce
+assets.box_front: Imgs/超空战机.png
+description: 《超空战机》，PC Engine 平台。
+game: 超绝伦人
+file: 超绝伦人.pce
+assets.box_front: Imgs/超绝伦人.png
+description: 《超绝伦人》，PC Engine 平台。
+game: 连锁解密
+file: 连锁解密.pce
+assets.box_front: Imgs/连锁解密.png
+description: 《连锁解密》，由 Taito 出品，1990 年发行，策略类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1990
+genre: Strategy
+players: 1
+game: 追踪HQ
+file: 追踪HQ.pce
+assets.box_front: Imgs/追踪HQ.png
+description: 《追踪HQ》，由 Taito 出品，1992 年发行，竞速类游戏，PC Engine 平台，单人游玩。
+publisher: Taito
+release: 1992
+genre: Racing
+players: 1
+game: 逆袭2
+file: 逆袭2.pce
+assets.box_front: Imgs/逆袭2.png
+description: 《逆袭2》，由 Nichibutsu 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Nichibutsu
+release: 1992
+genre: Shoot'em Up
+players: 1
+game: 通讯少年
+file: 通讯少年.pce
+assets.box_front: Imgs/通讯少年.png
+description: 《通讯少年》，由 NEC 出品，1991 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1991
+genre: Action
+players: 1
+game: 都市传送计划
+file: 都市传送计划.pce
+assets.box_front: Imgs/都市传送计划.png
+description: 《都市传送计划》，由 Naxat Soft 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Naxat Soft
+release: 1991
+genre: Platform
+players: 1
+game: 都留照人的实战
+file: 都留照人的实战.pce
+assets.box_front: Imgs/都留照人的实战.png
+description: 《都留照人的实战》，由 Intec Inc. 出品，1989 年发行，模拟类游戏，PC Engine 平台，单人游玩。
+publisher: Intec Inc.
+release: 1989
+genre: Simulation
+players: 1
+game: 铁板阵-传说
+file: 铁板阵-传说.pce
+assets.box_front: Imgs/铁板阵-传说.png
+description: 《铁板阵-传说》，由 Namco 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Namco
+release: 1990
+genre: Shoot'em Up
+players: 1
+game: 铁甲战车
+file: 铁甲战车.pce
+assets.box_front: Imgs/铁甲战车.png
+description: 《铁甲战车》，由 FACE 出品，1991 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: FACE
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 雷电
+file: 雷电.pce
+assets.box_front: Imgs/雷电.png
+description: 《雷电》，由 NEC 出品，1991 年发行，动作类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1991
+genre: Action
+players: 1
+game: 霹雳游侠-特别版
+file: 霹雳游侠-特别版.pce
+assets.box_front: Imgs/霹雳游侠-特别版.png
+description: 《霹雳游侠-特别版》，由 Pack In Video 出品，1989 年发行，竞速类游戏，PC Engine 平台，单人游玩。
+publisher: Pack In Video
+release: 1989
+genre: Racing
+players: 1
+game: 青色杜马
+file: 青色杜马.pce
+assets.box_front: Imgs/青色杜马.png
+description: 《青色杜马》，由 Hudson 出品，1990 年发行，平台跳跃类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Hudson
+release: 1990
+genre: Platform
+players: 2
+game: 飞机大战2
+file: 飞机大战2.pce
+assets.box_front: Imgs/飞机大战2.png
+description: 《飞机大战2》，由 I'Max 出品，1992 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: I'Max
+release: 1992
+genre: Shoot'em Up
+players: 2
+game: 飞机扫射
+file: 飞机扫射.pce
+assets.box_front: Imgs/飞机扫射.png
+description: 《飞机扫射》，由 Naxat Soft 出品，1990 年发行，Shoot'em Up类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: Naxat Soft
+release: 1990
+genre: Shoot'em Up
+players: 2
+game: 高尔夫公开赛
+file: 高尔夫公开赛.pce
+assets.box_front: Imgs/高尔夫公开赛.png
+description: 《高尔夫公开赛》，由 Naxat Soft 出品，1989 年发行，体育类游戏，PC Engine 平台，单人游玩。
+publisher: Naxat Soft
+release: 1989
+genre: Sports
+players: 1
+game: 高桥名人-新冒险岛
+file: 高桥名人-新冒险岛.pce
+assets.box_front: Imgs/高桥名人-新冒险岛.png
+description: 《高桥名人-新冒险岛》，由 Hudson 出品，1992 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Hudson
+release: 1992
+genre: Platform
+players: 1
+game: 鬼屋
+file: 鬼屋.pce
+assets.box_front: Imgs/鬼屋.png
+description: 《鬼屋》，PC Engine 平台。
+game: 魔兽大地
+file: 魔兽大地.pce
+assets.box_front: Imgs/魔兽大地.png
+description: 《魔兽大地》，由 NCS Corporation 出品，1988 年发行，策略类游戏，PC Engine 平台，支持 2-2 人游玩。
+publisher: NCS Corporation
+release: 1988
+genre: Strategy
+players: 2
+game: 魔境传说
+file: 魔境传说.pce
+assets.box_front: Imgs/魔境传说.png
+description: 《魔境传说》，由 NEC 出品，1988 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1988
+genre: Platform
+players: 1
+game: 魔法狩猎
+file: 魔法狩猎.pce
+assets.box_front: Imgs/魔法狩猎.png
+description: 《魔法狩猎》，由 NEC 出品，1993 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1993
+genre: Shoot'em Up
+players: 1
+game: 魔界八犬传
+file: 魔界八犬传.pce
+assets.box_front: Imgs/魔界八犬传.png
+description: 《魔界八犬传》，由 Data East 出品，1989 年发行，Role-playing (RPG)类游戏，PC Engine 平台，单人游玩。
+publisher: Data East
+release: 1989
+genre: Role-playing (RPG)
+players: 1
+game: 魔界王子
+file: 魔界王子.pce
+assets.box_front: Imgs/魔界王子.png
+description: 《魔界王子》，由 Naxat Soft 出品，1990 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: Naxat Soft
+release: 1990
+genre: Platform
+players: 1
+game: 魔神英雄传
+file: 魔神英雄传.pce
+assets.box_front: Imgs/魔神英雄传.png
+description: 《魔神英雄传》，由 NEC 出品，1988 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1988
+genre: Platform
+players: 1
+game: 龙宝宝
+file: 龙宝宝.pce
+assets.box_front: Imgs/龙宝宝.png
+description: 《龙宝宝》，由 Naxat Soft 出品，1991 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: Naxat Soft
+release: 1991
+genre: Shoot'em Up
+players: 1
+game: 龙蛋
+file: 龙蛋.pce
+assets.box_front: Imgs/龙蛋.png
+description: 《龙蛋》，由 NCS Corporation 出品，1991 年发行，平台跳跃类游戏，PC Engine 平台，单人游玩。
+publisher: NCS Corporation
+release: 1991
+genre: Platform
+players: 1
+game: 龙魂
+file: 龙魂.pce
+assets.box_front: Imgs/龙魂.png
+description: 《龙魂》，由 NEC 出品，1989 年发行，Shoot'em Up类游戏，PC Engine 平台，单人游玩。
+publisher: NEC
+release: 1989
+genre: Shoot'em Up
+players: 1
+game: 龟童
+file: 龟童.pce
+assets.box_front: Imgs/龟童.png
+description: 《龟童》，PC Engine 平台。

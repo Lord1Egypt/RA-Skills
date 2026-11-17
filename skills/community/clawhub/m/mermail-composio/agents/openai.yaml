@@ -1,0 +1,11 @@
+interface:
+  display_name: "Connect Mermail Composio"
+  short_description: "Connect and run third-party apps through Composio"
+  default_prompt: "Use $mermail-composio when this task needs GitHub, Slack, Apollo, Notion, Google Calendar, or another third-party app through Mermail Composio, not Gmail or Outlook email."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

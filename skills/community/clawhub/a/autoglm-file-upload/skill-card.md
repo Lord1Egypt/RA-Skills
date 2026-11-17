@@ -1,40 +1,58 @@
-## Description: <br>
-Use the AutoGLM Upload Mix API to upload local files such as images and documents, then obtain a file URL or resource ID for downstream API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the AutoGLM Upload Mix API to upload local files such as images and documents, then obtain a file URL or resource ID for downstream API calls.
 
-## Publisher: <br>
-[khurramjamil12](https://clawhub.ai/user/khurramjamil12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khurramjamil12](https://clawhub.ai/user/khurramjamil12)
 
-## Use Case: <br>
-Developers and agents use this skill to upload a selected local file to AutoGLM and capture the returned file URL or resource ID for downstream API workflows such as image recognition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads a user-specified local file to AutoGLM, which can expose sensitive file contents if the wrong path is supplied. <br>
-Mitigation: Confirm the exact file path before running the script and avoid using sensitive documents unless AutoGLM is trusted for that data. <br>
-Risk: The upload flow depends on an authorization token from a local service at 127.0.0.1:18432. <br>
-Mitigation: Use the skill only in environments where the local token provider is expected and trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to upload an intended local image or document to AutoGLM and reuse the returned URL or resource information in downstream API workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/khurramjamil12/autoglm-file-upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON API response output from the upload script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script prints the AutoGLM upload response, including the file URL when the API returns oss_info.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uploads local files to AutoGLM using a local bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for files intentionally selected for AutoGLM upload, and avoid sensitive documents unless the service and storage behavior are trusted.
+
+Risk: Returned file URLs may make uploaded content accessible to downstream workflows.
+
+Mitigation: Pass returned URLs only to tools and workflows that are allowed to access the uploaded content.
+
+Risk: The release security summary notes a hard-coded signing key and limited scoping or consent controls.
+
+Mitigation: Review before installing; prefer releases that add explicit consent checks, tighter file and path scoping, and remove or rotate the embedded signing key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khurramjamil12/skills/autoglm-file-upload)
+- [AutoGLM Upload Mix API endpoint](https://autoglm-api.autoglm.ai/agentdr/v1/assistant/upload-mix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns AutoGLM upload response data, including file URL or resource identifiers when the upload succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

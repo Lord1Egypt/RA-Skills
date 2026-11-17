@@ -1,38 +1,53 @@
-## Description: <br>
-小说家帮助中文网文作者完成世界观构筑、角色设计、剧情大纲、场景起草和文字润色。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language web fiction writing skill for worldbuilding, character design, plot outlining, scene drafting, and prose polishing.
 
-## Publisher: <br>
-[graysonli-cat](https://clawhub.ai/user/graysonli-cat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[graysonli-cat](https://clawhub.ai/user/graysonli-cat)
 
-## Use Case: <br>
-External writers and creators use this skill to plan and draft Chinese web-fiction projects, including setting design, chapter outlines, scene prose, plot tracking, and revision for a more natural narrative voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project ideas, drafts, character notes, and plot tracking may be saved under memory/{project name}/ for continuity. <br>
-Mitigation: Avoid storing highly sensitive personal or proprietary material unless you are prepared to inspect, edit, or delete those local files. <br>
+## Use Case:
 
+Chinese-language fiction writers and writing agents use this skill to plan serialized novels, maintain project continuity, draft scenes, and revise prose for genre-fiction pacing and style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/graysonli-cat/novelist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Chinese Markdown prose, outlines, revision notes, YAML-style plot tracking, and local memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for a project name and save continuity notes under memory/{project name}/ for later reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Project memory files may preserve prior drafts, character notes, or plot-tracking state and influence later writing sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete the relevant memory/{project_name}/ files when continuity from earlier work should not be reused.
+
+Risk: The skill can create and update local files for each writing project.
+
+Mitigation: Install and run it only in workspaces where local project-memory files are expected and acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/graysonli-cat/skills/novelist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and prose, with occasional YAML-style plot tracking snippets and local memory file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update per-project local memory files under memory/{project_name}/ for worldbuilding, character notes, outlines, and plot tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

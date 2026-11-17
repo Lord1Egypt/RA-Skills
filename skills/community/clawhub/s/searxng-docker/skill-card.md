@@ -1,43 +1,52 @@
-## Description: <br>
-Search the web through a local self-hosted SearXNG instance, with support for categories, language, time filters, selected engines, and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SearXNG Docker helps agents search the web through a local, self-hosted SearXNG instance with category, language, time-range, engine, and JSON-output options.
 
-## Publisher: <br>
-[triwinds](https://clawhub.ai/user/triwinds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[triwinds](https://clawhub.ai/user/triwinds)
 
-## Use Case: <br>
-Developers and agents use this skill to run web searches through a local SearXNG Docker service when they need metasearch results, news, images, videos, IT, science, language filters, or structured JSON results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires running a persistent local Docker search service. <br>
-Mitigation: Install only when that local service posture is acceptable and review the Docker Compose configuration before deployment. <br>
-Risk: Exposing the SearXNG service beyond localhost can broaden network access to the search endpoint. <br>
-Mitigation: Keep the default localhost binding unless deliberate exposure is required and protected. <br>
-Risk: The Docker Compose file uses the latest SearXNG image tag. <br>
-Mitigation: Pin the container image version for repeatable production deployments. <br>
-Risk: Search terms and results can be sent to configured search engines or a remote SearXNG instance. <br>
-Mitigation: Avoid sensitive search terms and use --base-url only with SearXNG instances you trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/triwinds/searxng-docker) <br>
+## Use Case:
 
+Developers and agents use this skill to run a local SearXNG service and query it for general web, news, image, video, IT, science, file, or social media search results without an API key.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include result titles, URLs, snippets, source engines, scores, and published dates when returned by SearXNG.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill starts a persistent local Dockerized SearXNG service and uses an unpinned container image.
+
+Mitigation: Pin the SearXNG container image to a reviewed version or digest before production use, and stop the Docker service when it is no longer needed.
+
+Risk: Search requests may still reach configured upstream search engines.
+
+Mitigation: Review the enabled engines and privacy expectations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triwinds/skills/searxng-docker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands, configuration files, and optional JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output can be human-readable text or compact JSON containing result title, URL, content, engines, score, and published date.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

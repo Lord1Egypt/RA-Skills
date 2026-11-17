@@ -1,0 +1,35 @@
+# Email Campaign Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+brand: ""
+sender_name: ""
+from_email: ""
+reply_to: ""
+postal_address:
+  street: ""
+  city_state_zip: ""
+audience: ""
+goal: ""
+offer: ""
+subject_line: ""
+preheader: ""
+body:
+  opener: ""
+  middle: ""
+  close: ""
+cta:
+  label: ""
+  url: ""
+footer:
+  unsubscribe_url: ""
+  why_you_are_receiving_this: ""
+disclosures:
+  endorsements: ""
+  offer_terms: ""
+tracking:
+  utm_source: ""
+  utm_campaign: ""
+working_limits:
+  subject_line: 45
+  preheader: 90
+  body: 1200
+  cta_label: 25

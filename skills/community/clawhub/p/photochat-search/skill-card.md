@@ -1,42 +1,52 @@
-## Description: <br>
-Search for photos in PhotoCHAT using natural language via the CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches a user's PhotoCHAT library for photos using natural language queries through the PhotoCHAT CLI.
 
-## Publisher: <br>
-[PhotoCHAT](https://clawhub.ai/user/PhotoCHAT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[photochat](https://clawhub.ai/user/photochat)
 
-## Use Case: <br>
-External users and agents use this skill to search a local PhotoCHAT photo library with natural language, parse JSON results, and present matching file paths or images when requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad local photo searches may expose private library contents, absolute file paths, or images. <br>
-Mitigation: Keep searches scoped to the user's request, limit returned results by default, and display images only when the user asks. <br>
-Risk: Ambiguous requests for pictures may refer to web image search instead of the local PhotoCHAT library. <br>
-Mitigation: Clarify whether the user wants local PhotoCHAT search or web image search when intent is unclear. <br>
-Risk: Ambiguous dates may be interpreted using DD/MM parsing. <br>
-Mitigation: Use the documented day-first option and clarify date intent when DD/MM format may not be what the user meant. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Search Examples](references/search-examples.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/PhotoCHAT/photochat-search) <br>
+## Use Case:
 
+External users and agents use this skill to find photos in a local PhotoCHAT library from natural language requests, then return parseable results with paths, match counts, filters, and scores.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with PowerShell commands and parsed JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include absolute local file paths, match counts, filters, and similarity scores from PhotoCHAT search results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generic image-search requests could trigger searches over private local photos and expose absolute file paths.
+
+Mitigation: Install only when PhotoCHAT should handle ordinary photo-finding requests, and review returned paths or images before sharing them.
+
+Risk: Ambiguous dates can retrieve unintended photos.
+
+Mitigation: Clarify ambiguous dates before searching and use the documented day-first parsing option when appropriate.
+
+## Reference(s):
+
+- [PhotoCHAT Search Examples](references/search-examples.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with PowerShell commands and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include absolute file paths, match counts, parsed filters, and optional similarity scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Umeng App Analysis helps agents query Umeng Open API data for mobile app statistics, including app lists, summary metrics, active and new users, launches, retention, session duration, channel or version breakdowns, and custom event analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Umeng+ Open API data for mobile app analytics, including app lists, summary metrics, active and new users, launches, retention, session duration, channel and version breakdowns, and custom event analysis.
 
-## Publisher: <br>
-[leowing](https://clawhub.ai/user/leowing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leowing](https://clawhub.ai/user/leowing)
 
-## Use Case: <br>
-Developers and operators with Umeng API credentials use this skill to retrieve mobile app analytics through documented CLI commands and inspect the returned JSON for reporting or troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Umeng API credentials that may expose analytics data or account actions. <br>
-Mitigation: Use least-privilege Umeng credentials, avoid broad production credentials, and provide secrets only through the documented environment variables. <br>
-Risk: The artifact includes write or admin-capable API wrappers beyond ordinary analytics querying. <br>
-Mitigation: Limit agent use to the documented CLI commands and require review before any create, edit, or back-report action is run. <br>
-Risk: Incorrect app keys, date ranges, channels, versions, or event identifiers can return misleading analytics or trigger unintended API calls. <br>
-Mitigation: Validate command parameters against the documented command reference before execution and review returned JSON before using it for decisions. <br>
+## Use Case:
 
+Developers and analytics engineers use this skill to fetch Umeng+ mobile app metrics and user behavior data from authenticated Open API endpoints. It supports operational analysis of app performance, channels, versions, retention, usage duration, and custom events.
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [Umeng Open API Signature Documentation](https://open.1688.com/api/sysSignature.htm) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leowing/umeng-app-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from CLI execution with Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires UMENG_API_KEY and UMENG_API_SECURITY environment variables; failed API calls return a JSON error object and exit with status 1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires Umeng analytics credentials for authenticated API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment, provide credentials only at runtime, and use least-privilege Umeng credentials.
+
+Risk: The package contains broader authenticated SDK wrappers than the documented commands, including account-changing capabilities.
+
+Mitigation: Review commands before execution and require explicit approval before account-changing API use such as creating apps or events.
+
+Risk: Dependency and API behavior may affect the integrity of analytics results or command execution.
+
+Mitigation: Pin dependencies, review JSON responses before using them in decisions, and handle API error objects explicitly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leowing/skills/umeng-app-analysis)
+- [Commands Reference](references/commands.md)
+- [SDK README](sdk/README.md)
+- [Umeng Open API Signature Documentation](https://open.1688.com/api/sysSignature.htm)
+- [Umeng App Daily Data API](https://open.1688.com/api/api.htm?ns=com.umeng.uapp&n=umeng.uapp.getDailyData&v=1&cat=default)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires UMENG_API_KEY and UMENG_API_SECURITY environment variables; failed calls return a JSON error object.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

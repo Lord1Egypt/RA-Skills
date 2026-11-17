@@ -1,47 +1,56 @@
-## Description: <br>
-Helps agents prepare PoYo GPT-5.5 chat completion requests, including OpenAI-compatible message payloads, curl examples, streaming choices, and response parsing notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GPT-5.5 chat completions on PoYo via the OpenAI-compatible `https://api.poyo.ai/v1/chat/completions` endpoint.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare server-side PoYo GPT-5.5 chat-completion payloads, curl calls, streaming handling, and integration notes for text generation, coding help, reasoning, summarization, and structured assistant output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, code, or user messages to PoYo when used for GPT-5.5 chat completions. <br>
-Mitigation: Review prompts and payloads before submission, avoid sending sensitive data unless policy allows it, and use the skill only when PoYo involvement is intended. <br>
-Risk: The PoYo API key is required for live calls and could be exposed if copied into client code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager and avoid logging authorization headers or raw request bodies. <br>
-Risk: Streaming responses require an SSE-aware client and may be mishandled by simple synchronous parsers. <br>
-Mitigation: Use streaming only when the caller can consume SSE; otherwise prepare a normal synchronous chat-completions request. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo GPT-5.5 chat-completion payloads, server-side curl requests, streaming options, and response parsing notes for text generation, coding help, reasoning, summarization, and workflow assistance.
 
-## Reference(s): <br>
-- [PoYo GPT-5.5 Chat Completions API Reference](references/api.md) <br>
-- [PoYo chat completions documentation](https://docs.poyo.ai/api-manual/chat-series/chat-completions) <br>
-- [PoYo GPT-5.5 model page](https://poyo.ai/models/gpt-5-5) <br>
-- [PoYo API key dashboard](https://poyo.ai/dashboard/api-key) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-gpt-5-5) <br>
-- [Publisher profile](https://clawhub.ai/user/coolhackboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, chat payload, synchronous or streaming handling, system prompt constraints, and response parsing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API keys or private prompts could be exposed through client-side use, logs, screenshots, chat output, or process arguments on shared systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep `POYO_API_KEY` in server-side environment variables or a backend secret manager, avoid logging prompts or authorization headers, and harden shell invocation on shared machines.
+
+Risk: The skill sends prompts to an external PoYo API endpoint.
+
+Mitigation: Use it only when the user intends to use PoYo GPT-5.5 and trusts PoYo with the submitted data.
+
+## Reference(s):
+
+- [PoYo GPT-5.5 Model Page](https://poyo.ai/models/gpt-5-5)
+- [PoYo Chat Completions API Docs](https://docs.poyo.ai/api-manual/chat-series/chat-completions)
+- [Local API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-gpt-5-5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payload examples and bash curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses `POYO_API_KEY` and `curl` for optional server-side submissions; supports synchronous and streaming chat-completion guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

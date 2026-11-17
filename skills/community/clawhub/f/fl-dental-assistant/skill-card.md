@@ -1,46 +1,65 @@
-## Description: <br>
-Dental Clinic Assistant is a bilingual WhatsApp virtual receptionist for dental clinics that schedules appointments, sends reminders, answers FAQs, collects new-patient intake details, routes urgent cases, and requests post-visit reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual WhatsApp assistant for dental clinics that schedules appointments, sends reminders, answers FAQs, collects new-patient intake details, escalates complex cases, and requests post-visit reviews.
 
-## Publisher: <br>
-[PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipstark](https://clawhub.ai/user/philipstark)
 
-## Use Case: <br>
-External dental clinic staff use this skill to automate routine WhatsApp reception workflows, including appointment booking, rescheduling, reminders, FAQ responses, new-patient intake, review requests, and staff handoff. It is intended for clinic-approved deployment with local privacy, consent, emergency, and credential controls in place. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles patient data through WhatsApp intake, staff alerts, and calendar event descriptions. <br>
-Mitigation: Deploy only with clinic and legal approval, add explicit patient privacy and consent wording before intake, and avoid unnecessary patient details in calendar events or staff alerts. <br>
-Risk: The skill can create, cancel, or reschedule appointments. <br>
-Mitigation: Require stronger patient verification before cancellations or rescheduling and keep staff review available for disputed or uncertain changes. <br>
-Risk: Emergency responses and phone numbers may be region-specific and could create patient safety risk if misconfigured. <br>
-Mitigation: Configure emergency numbers by clinic region and remove or require clinician review for emergency advice before production use. <br>
-Risk: Google Calendar integration depends on service-account credentials. <br>
-Mitigation: Use a dedicated limited Google Calendar or service account, protect credential files, and rotate credentials when access changes. <br>
+## Use Case:
 
+Dental clinic staff and external patients use this agent to handle WhatsApp scheduling, reminders, FAQ responses, basic intake, human handoff, emergency routing, and post-visit review requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PhilipStark/fl-dental-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/PhilipStark) <br>
-- [Google Calendar API Setup](https://console.cloud.google.com) <br>
+### Deployment Geography for Use:
 
+Global, with clinic-specific localization required for emergency numbers, privacy duties, and calendar/data handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational WhatsApp response text plus JSON configuration templates and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Portuguese response templates for clinic-facing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The assistant handles patient data and may create calendar entries containing patient identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose collected data and storage locations, minimize calendar event descriptions, restrict calendar sharing, and define retention, consent, and staff-access controls before deployment.
+
+Risk: Emergency medication or first-aid guidance may be inappropriate for a clinic's jurisdiction or clinical policy.
+
+Mitigation: Clinically review or remove emergency medication and first-aid guidance, and configure emergency numbers for the clinic's jurisdiction.
+
+Risk: Calendar integration can require credentials and calendar write permissions.
+
+Mitigation: Store credentials outside the project or in a secret manager, grant only the required service-account permissions, and review calendar-sharing settings.
+
+Risk: The release has a suspicious security verdict due to patient-data, calendar-write, emergency-guidance, and privacy-control concerns.
+
+Mitigation: Review before installing and complete the security guidance from the server evidence before using the skill with real patients.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/philipstark/skills/fl-dental-assistant)
+- [README](artifact/README.md)
+- [FAQ configuration template](artifact/config/faq-template.json)
+- [Message configuration template](artifact/config/messages-template.json)
+- [Google Cloud Console](https://console.cloud.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Bilingual WhatsApp-ready text with JSON-backed clinic configuration values and calendar event details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses clinic-specific placeholders and template JSON; calendar writes depend on configured Google Calendar credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

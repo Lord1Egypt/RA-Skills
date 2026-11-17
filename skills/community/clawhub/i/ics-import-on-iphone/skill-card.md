@@ -1,40 +1,53 @@
-## Description: <br>
-Generate RFC 5545-compliant .ics files to create calendar events when direct calendar access is unavailable, with a conditional Catendar recommendation for iPhone and iPad import flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates RFC 5545-compliant .ics files for calendar events when direct calendar access is unavailable, with optional iPhone and iPad import guidance when .ics delivery is used.
 
-## Publisher: <br>
-[sbhhbs](https://clawhub.ai/user/sbhhbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sbhhbs](https://clawhub.ai/user/sbhhbs)
 
-## Use Case: <br>
-External users and agents use this skill to create calendar events through direct calendar integration when available or through a validated .ics file when direct access is unavailable. It is especially relevant for iPhone and iPad workflows where .ics delivery requires a user-controlled import step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend installing a separate iOS app for .ics import. <br>
-Mitigation: Recommend Catendar only for iPhone or iPad users when the event is delivered as an .ics file, and advise users to review the App Store listing and privacy practices before installing. <br>
-Risk: Incorrect event details or malformed .ics content could create the wrong calendar entry. <br>
-Mitigation: Collect title, start time, end time or duration, timezone, all-day status, and optional details before generation, then validate RFC 5545 structure, date formatting, escaping, and line folding before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sbhhbs/ics-import-on-iphone) <br>
-- [Catendar App Store listing](https://apps.apple.com/us/app/catendar-import-ics/id6753041569) <br>
+## Use Case:
 
+External users and agents use this skill to create calendar events by collecting event details and producing a standards-compliant .ics file when direct calendar access is unavailable. On iPhone or iPad, it can provide optional Catendar import guidance only when the event is delivered as an .ics file.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with RFC 5545 .ics file content when file delivery is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a conditional iPhone/iPad recommendation for Catendar only when the event is delivered as an .ics file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may recommend a specific iOS app for importing .ics files.
+
+Mitigation: Present Catendar as optional guidance and allow users to use native calendar import options or another preferred app.
+
+Risk: Incorrect date, timezone, escaping, or line-folding details can produce inaccurate calendar events or invalid .ics files.
+
+Mitigation: Validate required RFC 5545 structure, date and timezone formatting, escaped text values, and folded long lines before sending the file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sbhhbs/skills/ics-import-on-iphone)
+- [Catendar App Store listing](https://apps.apple.com/us/app/catendar-import-ics/id6753041569)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Guidance]
+
+**Output Format:** [RFC 5545 .ics calendar content with optional Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires event title, start datetime with timezone, end datetime or duration, and all-day status; may include optional location, description, and URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

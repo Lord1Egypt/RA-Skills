@@ -59,8 +59,24 @@ class Citation:
     start_pos: int = 0                # 答案中的起始位置
     end_pos: int = 0                  # 答案中的结束位置
 
+    def to_document_unit(self) -> "DocumentUnit":
+        """转换为统一 DocumentUnit 格式（Phase 1 数据协议集成）"""
+        from document_unit import DocumentUnit
+        return DocumentUnit(
+            id=self.id,
+            content=self.answer_segment,
+            parent_paragraph=self.answer_segment,
+            metadata={
+                "matched_text": self.matched_text,
+                "match_type": self.match_type,
+                "confidence": self.confidence,
+                "start_pos": self.start_pos,
+                "end_pos": self.end_pos,
+            },
+        )
 
-@dataclass
+
+
 class CitedSegment:
     """带引用的答案片段"""
     text: str                         # 片段文本
@@ -81,48 +97,117 @@ class CredibilityScore:
 
 class CitationMatcher:
     """引用匹配器 - 将答案片段与源文档匹配"""
-    
+
     def __init__(self, llm_client=None, config: Dict = None):
-        self.llm = llm_client
+        # H12：llm_client 此前只是存进 self.llm 就再没人读过——构造签名承诺
+        # 支持 LLM 增强匹配，实际永远是规则匹配（死参数）。
+        # 现在统一走 wrap_llm 归一（H23 的单一职责点），并在 match() 的
+        # 规则三连失败后启用语义兜底判定。
+        from llm_client import wrap_llm
+        self.llm = wrap_llm(llm_client)
         self.config = config or {}
-        
+
         # 匹配阈值
         self.exact_threshold = self.config.get('exact_threshold', 0.95)
         self.fuzzy_threshold = self.config.get('fuzzy_threshold', 0.7)
         self.entity_threshold = self.config.get('entity_threshold', 0.5)
-    
+        # H12 配套：语义兜底开关。默认开启（仅当注入了 LLM 才会生效）；
+        # 传 False 可完全关闭，回到修复前的纯规则行为。
+        self.semantic_match_enabled = self.config.get('semantic_match', True)
+
     def match(self, answer_segment: str, sources: List[Source]) -> List[Citation]:
         """
         匹配答案片段与源文档
-        
+
         Args:
             answer_segment: 答案片段
             sources: 源文档列表
-        
+
         Returns:
             匹配的引用列表
         """
         citations = []
-        
+
         for source in sources:
             # 方法1: 精确匹配
             citation = self._exact_match(answer_segment, source)
             if citation:
                 citations.append(citation)
                 continue
-            
+
             # 方法2: 模糊匹配
             citation = self._fuzzy_match(answer_segment, source)
             if citation:
                 citations.append(citation)
                 continue
-            
+
             # 方法3: 实体匹配
             citation = self._entity_match(answer_segment, source)
             if citation:
                 citations.append(citation)
-        
+                continue
+
+            # 方法4（H12 兜底）: 语义匹配。
+            # 仅在注入了 LLM 且开关开启时生效；LLM 不可用 / 判定不相关 /
+            # 调用异常时返回 None，行为与修复前的纯规则路径完全一致。
+            citation = self._semantic_match(answer_segment, source)
+            if citation:
+                citations.append(citation)
+
         return citations
+
+    def _semantic_match(self, segment: str, source: Source) -> Optional[Citation]:
+        """
+        语义匹配（H12 兜底）：精确 / 模糊 / 实体三连失败后，由 LLM 判定
+        回答片段与来源文档是否存在语义支撑关系。
+
+        必须保证两条退路：
+          - 无 LLM → 直接 None（与修复前行为一致，不产生额外引用）；
+          - LLM 判定不相关 / 输出无法解析 / 调用异常 → None 并记日志，
+            绝不让兜底路径反过来污染既有输出。
+        """
+        if not self.llm or not self.semantic_match_enabled:
+            return None
+        if not segment or not source.content:
+            return None
+
+        prompt = (
+            "判断下面的回答片段是否由来源文档语义支撑（不要求字面重合）。\n"
+            f"回答片段：{segment[:500]}\n"
+            f"来源文档：{source.content[:1500]}\n"
+            '只输出 JSON：{"relevant": true 或 false, "confidence": 0到1的小数}'
+        )
+        try:
+            result = self.llm.extract_json(prompt)
+        except Exception as e:
+            logger.warning(f"语义引用判定调用失败，回落为规则行为（不产生引用）: {e}")
+            return None
+
+        if not isinstance(result, dict):
+            logger.warning("语义引用判定输出无法解析为 JSON，回落为规则行为")
+            return None
+
+        relevant = bool(result.get("relevant", False))
+        try:
+            confidence = float(result.get("confidence", 0.7))
+        except (TypeError, ValueError):
+            confidence = 0.7
+        confidence = max(0.0, min(1.0, confidence))
+
+        if not relevant or confidence < self.entity_threshold:
+            return None
+
+        # 语义命中也要给出可定位的文本锚点；锚点取最接近片段的位置
+        matched_text = self._find_best_match(segment, source.content)
+
+        return Citation(
+            id=f"cite_{source.id}_semantic",
+            source=source,
+            matched_text=matched_text,
+            match_type="semantic",
+            confidence=confidence,
+            answer_segment=segment
+        )
     
     def _exact_match(self, segment: str, source: Source) -> Optional[Citation]:
         """精确字符串匹配"""
@@ -282,9 +367,12 @@ class CitationFormatter:
         """行内引用格式"""
         result = answer
         
+        # 按 answer_segment 长度降序排列，避免短 segment 先替换
+        # 导致包含它的长 segment 后续匹配失败
+        sorted_citations = sorted(citations, key=lambda c: len(c.answer_segment), reverse=True)
+        
         # 为每个引用添加标记
-        for i, citation in enumerate(citations, 1):
-            # 在匹配位置添加引用标记
+        for i, citation in enumerate(sorted_citations, 1):
             if citation.answer_segment in result:
                 result = result.replace(
                     citation.answer_segment,
@@ -414,20 +502,42 @@ class CredibilityScorer:
         )
     
     def _calc_source_coverage(self, answer: str, citations: List[Citation]) -> float:
-        """计算有引用覆盖的内容占比"""
-        if not citations:
+        """计算有引用覆盖的内容占比
+        
+        Bug 8 修复：用位置区间并集去重，避免重叠 segment 重复统计。
+        R13 增强：当精确匹配失败时，使用模糊匹配（编辑距离）作为 fallback。
+        """
+        if not citations or not answer:
             return 0.0
-        
-        # 统计有引用的字符数
-        cited_chars = 0
-        seen_segments = set()
-        
+
+        # 收集所有 [start, end) 区间
+        intervals = []
         for citation in citations:
-            if citation.answer_segment and citation.answer_segment not in seen_segments:
-                cited_chars += len(citation.answer_segment)
-                seen_segments.add(citation.answer_segment)
-        
-        return min(1.0, cited_chars / len(answer))
+            if citation.answer_segment:
+                segment = citation.answer_segment
+                start = answer.find(segment)
+                if start >= 0:
+                    intervals.append((start, start + len(segment)))
+                else:
+                    # R13: 精确匹配失败时尝试模糊匹配（编辑距离 <= 3）
+                    fuzzy_start = self._fuzzy_find(answer, segment, max_dist=3)
+                    if fuzzy_start >= 0:
+                        intervals.append((fuzzy_start, fuzzy_start + len(segment)))
+
+        if not intervals:
+            return 0.0
+
+        # 按 start 排序，合并重叠区间
+        intervals.sort()
+        merged = [intervals[0]]
+        for s, e in intervals[1:]:
+            if s <= merged[-1][1]:
+                merged[-1] = (merged[-1][0], max(merged[-1][1], e))
+            else:
+                merged.append((s, e))
+
+        covered = sum(e - s for s, e in merged)
+        return min(1.0, covered / len(answer))
     
     def _calc_citation_density(self, answer: str, citations: List[Citation]) -> float:
         """计算引用密度"""
@@ -460,6 +570,47 @@ class CredibilityScorer:
         
         return total_score / total_weight if total_weight > 0 else 0
     
+    def _fuzzy_find(self, text: str, pattern: str, max_dist: int = 3) -> int:
+        """R13: 模糊查找子串（编辑距离 <= max_dist）
+        
+        当精确 str.find() 失败时，使用滑动窗口 + 编辑距离查找最接近的位置。
+        返回匹配的起始位置，或 -1（无匹配）。
+        """
+        if not pattern or not text:
+            return -1
+
+        # 窗口大小：允许 pattern 长度 ± max_dist
+        min_len = max(1, len(pattern) - max_dist)
+        max_len = min(len(text), len(pattern) + max_dist)
+
+        for window_size in range(min_len, max_len + 1):
+            for start in range(len(text) - window_size + 1):
+                window = text[start:start + window_size]
+                if self._edit_distance(window, pattern) <= max_dist:
+                    return start
+
+        return -1
+
+    @staticmethod
+    def _edit_distance(s1: str, s2: str) -> int:
+        """计算编辑距离（Levenshtein distance）"""
+        if len(s1) < len(s2):
+            return CitationTracker._edit_distance(s2, s1)
+        if len(s2) == 0:
+            return len(s1)
+
+        previous_row = list(range(len(s2) + 1))
+        for i, c1 in enumerate(s1):
+            current_row = [i + 1]
+            for j, c2 in enumerate(s2):
+                insertions = previous_row[j + 1] + 1
+                deletions = current_row[j] + 1
+                substitutions = previous_row[j] + (c1 != c2)
+                current_row.append(min(insertions, deletions, substitutions))
+            previous_row = current_row
+
+        return previous_row[-1]
+
     def _calc_overall(self, coverage: float, density: float, authority: float) -> float:
         """计算综合可信度"""
         # 权重

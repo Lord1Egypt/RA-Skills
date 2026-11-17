@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "revision": 0,
+  "project": {
+    "id": "{{PROJECT_ID}}",
+    "name": "{{PROJECT_NAME}}",
+    "customer": "{{CUSTOMER_OR_ANONYMOUS}}",
+    "scenario": "{{SCENARIO}}",
+    "profile": "mixed",
+    "mode": "end_to_end",
+    "status": "active",
+    "created_at": "{{ISO_DATETIME}}",
+    "updated_at": "{{ISO_DATETIME}}"
+  },
+  "current_stage": 1,
+  "stages": {},
+  "decisions": [],
+  "risks": [],
+  "next_action": {
+    "skill": "fde-problem-discovery",
+    "owner": "FDE",
+    "action": "Gather and verify evidence of customer issues",
+    "completion_condition": "Create a documented problem discovery package"
+  }
+}

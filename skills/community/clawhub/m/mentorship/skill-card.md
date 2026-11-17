@@ -1,41 +1,57 @@
-## Description: <br>
-Guides people through finding, maintaining, and providing mentorship relationships for career growth, skill development, and cross-generational knowledge transfer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finding, maintaining, and providing mentorship relationships. Use when someone wants guidance in career or skill development, wants to find a mentor, has been asked to mentor someone, or values cross-generational knowledge transfer.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to help someone approach potential mentors, run productive mentorship conversations, set boundaries, or become a mentor. It is also useful for trades, apprenticeship-style learning, reverse mentorship, and preserving institutional knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill metadata requests filesystem tooling even though the evidence describes advice-only behavior. <br>
-Mitigation: Install with normal skill-loading access and avoid granting broader filesystem permissions unless a separate user task requires them. <br>
-Risk: Mentorship conversations can involve professional boundary issues or vulnerable career situations. <br>
-Mitigation: Use the skill's own boundary guidance to flag romantic, financial, exploitative, or manipulative behavior and help the user reassess the relationship. <br>
+## Use Case:
 
+External users use this skill to get practical guidance for finding mentors, running productive mentor conversations, becoming a mentor, and transferring career or trade knowledge.
 
-## Reference(s): <br>
-- [Mentorship Skill on ClawHub](https://clawhub.ai/howtousehumans/mentorship) <br>
-- [Harvard Business Review](https://hbr.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with structured scripts, checklists, and decision prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only output; evidence reports no executable code or hidden data-handling behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports suspicious packaging because the skill declares filesystem access even though the mentorship guidance should not need it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only in a constrained environment after confirming requested permissions are acceptable.
+
+Risk: The release evidence notes an unpinned npx install command.
+
+Mitigation: Verify the package source and prefer a pinned or otherwise authenticated install before deployment.
+
+Risk: Mentorship advice can be inappropriate when a mentor crosses professional or personal boundaries.
+
+Mitigation: Follow the skill's rule to flag boundary issues and help the user assess whether the relationship should continue.
+
+## Reference(s):
+
+- [Harvard Business Review](https://hbr.org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown with structured advice, scripts, checklists, and conversation frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor mentorship guidance to the user's role, industry context, and mentorship stage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

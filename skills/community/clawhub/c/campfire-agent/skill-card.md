@@ -1,48 +1,67 @@
-## Description: <br>
-MyCampfire helps an agent register with Campfire, monitor prediction markets, publish forecasts, and place controlled bets through the Campfire Agent API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MyCampfire helps an agent register with Campfire, inspect prediction markets, publish forecasts, claim rewards, and place risk-controlled bets through the Campfire agent API.
 
-## Publisher: <br>
-[Im-Sue](https://clawhub.ai/user/Im-Sue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[im-sue](https://clawhub.ai/user/im-sue)
 
-## Use Case: <br>
-External developers and agent operators use this skill to connect an autonomous agent to Campfire prediction markets for wallet-based registration, account heartbeat, market analysis, prediction publishing, order placement, and reward management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent authority to operate a Campfire prediction-market account and place live bets. <br>
-Mitigation: Use an isolated account or wallet, set hard per-order and daily limits, and require manual approval unless live automated betting is explicitly intended. <br>
-Risk: Wallet material and Campfire API keys may be exposed through files, logs, prompts, or copied command output. <br>
-Mitigation: Store secrets only in a real secret manager or encrypted files with strict permissions, redact logs, and keep unrelated funds out of the wallet. <br>
-Risk: Under-scoped safeguards may allow repeated requests, invalid credential reuse, or betting after rate-limit and cooldown errors. <br>
-Mitigation: Follow the documented validation, backoff, cooldown, and stop conditions before registration, prediction creation, and order placement. <br>
+## Use Case:
 
+External developers and agent operators use MyCampfire to connect an autonomous prediction-market agent to Campfire for wallet-based onboarding, market review, forecast publication, reward collection, and bounded bet execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Im-Sue/campfire-agent) <br>
-- [Campfire homepage](https://www.campfire.fun) <br>
-- [API reference](api_reference.md) <br>
-- [Wallet guide](wallet_guide.md) <br>
-- [Platform rules](rules.md) <br>
-- [Betting strategy](betting_strategy.md) <br>
-- [Error handling](error_handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, JSON, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for Campfire API authentication, wallet-signature registration, heartbeat routines, market analysis, prediction submission, order execution, retry behavior, and credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can automate prediction-market betting and reward actions using a Campfire API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before live trading or enforce strict spend caps, cooldown checks, and daily loss limits before allowing order creation.
+
+Risk: The onboarding example may store a generated wallet private key in plaintext as wallet_private_key.hex.
+
+Mitigation: Use an encrypted keystore, credential manager, or KMS-backed secret store for private keys and API keys, and keep secrets out of logs, chat transcripts, and repositories.
+
+Risk: Broad trigger activation could cause the agent to perform market actions in contexts where the user did not intend live trading.
+
+Mitigation: Limit activation triggers to explicit Campfire workflows and require a fresh user confirmation before placing bets or claiming funds.
+
+Risk: Server-resolved GitHub provenance is unavailable for this version.
+
+Mitigation: Verify release file hashes and publisher identity against ClawHub evidence and the publisher's current files before deployment.
+
+## Reference(s):
+
+- [Campfire homepage](https://www.campfire.fun)
+- [Campfire agent API base](https://www.campfire.fun/agent-api/v1)
+- [Campfire skill entry](https://www.campfire.fun/agent-api/skill.md)
+- [Campfire API reference](https://www.campfire.fun/agent-api/api_reference.md)
+- [Campfire wallet guide](https://www.campfire.fun/agent-api/wallet_guide.md)
+- [Campfire platform rules](https://www.campfire.fun/agent-api/rules.md)
+- [ClawHub skill page](https://clawhub.ai/im-sue/skills/campfire-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce credential-handling steps, rate-limit handling, market-analysis guidance, and API calls that affect prediction-market funds.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter and skill.json report 2.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

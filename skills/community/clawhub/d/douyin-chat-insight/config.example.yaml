@@ -1,0 +1,17 @@
+# Copy to ~/.config/douyin-chat-insight/config.yaml or ./config.yaml
+# No secrets. No API keys.
+
+default_locale: zh
+output_dir: output/douyin-chat-insight
+owner_aliases: []
+report:
+  formats: [html, md, json]
+filters:
+  drop_system: true
+  drop_join_leave: true
+  min_demand_chars: 15
+limits:
+  inventory_top_senders: 12
+  demand_wall: 24
+  hard_fact_candidates: 12
+  contradiction_pairs: 8

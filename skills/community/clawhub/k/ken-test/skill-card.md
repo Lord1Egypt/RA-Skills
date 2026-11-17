@@ -1,42 +1,55 @@
-## Description: <br>
-Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.
 
-## Publisher: <br>
-[dtkien182](https://clawhub.ai/user/dtkien182) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dtkien182](https://clawhub.ai/user/dtkien182)
 
-## Use Case: <br>
-Developers and agents use this skill to perform live Baidu web searches for current information, documentation, or research topics from an OpenClaw environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu and may expose sensitive content if users submit private data. <br>
-Mitigation: Avoid searching for secrets, private documents, credentials, regulated personal data, or other sensitive material. <br>
-Risk: The skill requires a Baidu API key that could be misused if exposed. <br>
-Mitigation: Store BAIDU_API_KEY in OpenClaw configuration, avoid committing configuration files, restrict local file access where possible, and rotate the key if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent run live Baidu web searches for current information, documentation lookups, and research queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dtkien182/ken-test) <br>
-- [Baidu API key setup guide](references/apikey-fetch.md) <br>
-- [Baidu AI Search API key console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY and sends search queries to Baidu AI Search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to Baidu's AI Search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or confidential queries unless that data sharing is acceptable for the intended use.
+
+Risk: The skill requires a Baidu API key stored for agent execution.
+
+Mitigation: Keep the OpenClaw configuration private, do not commit the key, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [Baidu API Key Setup Guide](references/apikey-fetch.md)
+- [Baidu AI Search API key console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey)
+- [Baidu AI Search API endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON search results printed to stdout, with Markdown setup guidance in the artifact references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; result count is capped at 50 and freshness can filter by preset or explicit date ranges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

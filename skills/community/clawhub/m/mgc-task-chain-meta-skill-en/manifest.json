@@ -1,0 +1,48 @@
+{
+  "id": "mgc_task_chain_meta_skill",
+  "name": "Multi-Agent Safe-Cooperation (Single Device)",
+  "version": "1.1.0",
+  "description": "A single-device multi-Agent task chain collaboration methodology based on MGC. Provides prompt templates for Master Agent, Script Agent, and Executor Agent to achieve zero-exposure security collaboration for sensitive resources. Adapted to MGC 1.4.10 (mgc_find fuzzy search, ext02 auto-parsing, mgc_run blackbox execution).",
+  "author": "MirginCipher Team",
+  "tags": ["MGC", "multi-agent", "collaboration", "cooperation", "security", "task-chain", "zero-exposure"],
+  "runtime": "mgc",
+  "language": "en",
+  "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+  "repository": "https://github.com/zkeviny/MGC-Blackbox",
+  "license": "MIT",
+  "disclaimers": [
+    "This skill only provides collaboration methodology and prompt templates",
+    "This skill does not instruct agents to perform any sensitive operations; all sensitive operations are executed by MGC Blackbox",
+    "This skill requires MGC v1.4.9+ (1.4.10 recommended)",
+    "Permission differences between agents are implemented through prompt constraints, not MGC enforced control",
+    "Users must ensure sensitive resources are stored via MGC WebUI",
+    "ext02 must be a JSON array string (e.g. [\"--flag\",\"value\"]); never use dict-style JSON"
+  ],
+  "required_mgc_tools": [
+    "mgc_save",
+    "mgc_run",
+    "mgc_list",
+    "mgc_find",
+    "mgc_open_webui"
+  ],
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "changes": [
+        "Upgraded to adapt to MGC 1.4.10",
+        "Fixed mgc_run ext02 signature: must be a JSON array string (aligned with 1.4.10 argparse auto-parsing)",
+        "Added mgc_find fuzzy search tool support",
+        "Documented ext02 auto-parsing (1.4.10): Script Agent can omit ext02 after saving script",
+        "Documented that mgc_run returns only pid+status (no stdout)",
+        "Added 1.4.9 sandbox mode note",
+        "Updated MGC main skill doc reference to WebUI 'MGC Skills' button (1.4.7+)"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release with Master / Script / Executor Agent prompt templates"
+      ]
+    }
+  ]
+}

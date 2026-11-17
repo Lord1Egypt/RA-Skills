@@ -1,40 +1,53 @@
-## Description: <br>
-Show line-by-line differences between two text files using Python's difflib, with unified, context, and side-by-side comparison modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Show line-by-line differences between two text files using Python's difflib, with unified, context, and side-by-side comparison modes.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and engineers use Text Diff to compare two local text files, inspect line-level changes, and optionally save unified, context, or side-by-side diff output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation includes a scenario suggesting Word/PDF parsing and contract-specific semantic analysis, but the implementation reads UTF-8 text files with Python difflib. <br>
-Mitigation: Use plain text inputs or convert documents to text before comparison; review contract changes manually when semantic interpretation is required. <br>
-Risk: Saving diff output to a chosen local path can replace an existing file if the path is reused. <br>
-Mitigation: Choose a new output path or review the destination before using the output-file option. <br>
+## Use Case:
 
+Developers and other users use this skill to compare two local text files, inspect line-level changes, and produce unified, context, or side-by-side diff output.
 
-## Reference(s): <br>
-- [ClawHub Text Diff release page](https://clawhub.ai/harrylabsj/text-diff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or ANSI-colored diff output, including unified, context, or side-by-side layouts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write diff output to a local file and returns exit codes for identical files, changed files, file errors, and other errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter and _meta list 1.0.0) <br>
+Risk: Saved diff output can contain sensitive content from the compared files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid writing diffs with -o/--output when comparing sensitive material, or store and share the generated diff only in approved locations.
+
+Risk: Documentation mentions Word, PDF, and contract-clause analysis behavior that is not supported by the local text diff implementation.
+
+Mitigation: Use the skill only for local text-file comparison unless those document-analysis features are implemented and reviewed.
+
+## Reference(s):
+
+- [ClawHub Text Diff Skill Page](https://clawhub.ai/harrylabsj/skills/text-diff)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text diff output with optional ANSI color and optional saved text file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compares local UTF-8 text files and returns exit codes indicating identical files, differences, file errors, or other errors.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

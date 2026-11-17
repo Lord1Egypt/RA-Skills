@@ -1,41 +1,58 @@
-## Description: <br>
-Helps users make durable natural besom brooms by identifying local broom-making materials, calculating bundle and binding details, scheduling the work, and tracking progress while the user performs all physical steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in helping users plan and document traditional besom broom making from local broomcorn, heather, or flexible twigs, including material identification, bundle calculations, schedules, logs, and barter templates while the user performs all physical work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and craft-focused agents use this skill to plan beginner besom broom production from local broomcorn, heather, birch twigs, or similar flexible stalks. It supports material assessment, assembly scheduling, troubleshooting, maintenance tracking, and barter or inventory templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for photos, approximate location, and local progress files while helping identify materials and track broom-making progress. <br>
-Mitigation: Share only the minimum location detail needed, avoid sensitive photo metadata when possible, and store progress files in a workspace intended for this activity. <br>
-Risk: Plant identification, harvesting legality, and sharp-tool safety remain human responsibilities. <br>
-Mitigation: Verify plant safety and local harvesting rules independently, use protective equipment, follow sharp-tool precautions, and stop if irritation, injury, or strain occurs. <br>
+## Use Case:
 
+External users use this skill to plan handmade besom broom projects, calculate material quantities and binding ratios, schedule harvest-to-finish work, and maintain logs and barter templates. The agent provides guidance, calculations, reminders, and documentation while the user performs all harvesting, sorting, binding, trimming, and safety decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/besom-broom-making-basics) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, schedules, logs, templates, and short structured text blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user for photos, approximate location, and local progress details; may maintain progress and inventory files through the filesystem tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The installer command is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or verified ClawHub installer and run installation with least privilege.
+
+Risk: The skill may use user-provided photos, approximate location details, reminders, and filesystem logs.
+
+Mitigation: Share only the photos and approximate location details needed for plant identification, and keep generated logs or dashboards in a scoped project folder.
+
+Risk: Unsafe harvesting, unsuitable plants, polluted collection areas, sharp tools, or repetitive bundling can create physical safety risks.
+
+Mitigation: Follow the skill's safety notes: avoid polluted or sprayed areas, test unfamiliar materials with a small sample broom, keep hands clear of blades, stop on rash or wrist strain, and consult local foraging rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/besom-broom-making-basics)
+- [Publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline templates and shell command text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce schedules, reminders, logs, dashboards, inventory records, optimization reports, and barter templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

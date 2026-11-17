@@ -1,41 +1,53 @@
-## Description: <br>
-Collects customer-facing agent observations about pain points, service improvements, revenue opportunities, churn risk, and field insights, then writes a consolidated Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Insight helps collect customer-facing agent observations about pain points, service improvements, revenue opportunities, churn risk, and field insights, then produce a consolidated insight report.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Business operators and customer-success teams use this skill to periodically ask deployed agents for customer insight and turn the responses into a consolidated retention and opportunity report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and persist customer-sensitive operational insights without enough privacy controls. <br>
-Mitigation: Run it only in authorized workspaces, use private or access-controlled collection channels, avoid secrets and personal data, and summarize responses instead of storing raw conversation details. <br>
-Risk: Broadly sharing insight prompts may expose customer context to unintended recipients. <br>
-Mitigation: Confirm the channel, recipients, and retention rules before each run, and define deletion rules for stored reports. <br>
+## Use Case:
 
+Customer success and account-management teams can use this skill to ask deployed agents for recurring customer insights and summarize the responses into a monthly or on-demand report. It is intended for authorized customer review workflows where churn risk, product gaps, and upsell opportunities need to be surfaced.
 
-## Reference(s): <br>
-- [Agent Insight on ClawHub](https://clawhub.ai/mupengi-bot/agent-insight) <br>
-- [Sample Agent Insight Report](references/sample-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report and concise text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the consolidated report to memory/insights/YYYY-MM-DD-agent-insight.md when run in an authorized workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and release evidence) <br>
+Risk: The skill broadly collects and stores customer-specific conversation-derived insights without clear privacy limits or user controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an authorized customer-success or account-management context, restrict report access, and redact personal data, secrets, and unnecessary customer identifiers before saving reports.
+
+Risk: Channel-wide prompts or scheduled runs could request responses from more participants than intended.
+
+Mitigation: Require explicit confirmation before channel-wide prompts or scheduled runs, and restrict who can respond to the insight request.
+
+## Reference(s):
+
+- [Sample Insight Report](references/sample-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report and concise text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include customer-specific operational observations and should be reviewed for privacy before storage or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

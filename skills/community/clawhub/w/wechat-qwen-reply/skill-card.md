@@ -1,45 +1,58 @@
-## Description: <br>
-WeChat chat reader + auto-reply (Qwen-VL vision + AHK send). Supports fast/slow capture, group nickname labels, file/red-packet cards, and filtering system messages on Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat chat reader + auto-reply (Qwen-VL vision + AHK send). Supports fast/slow capture, group nickname labels, file/red-packet cards, and filtering system messages on Windows.
 
-## Publisher: <br>
-[chenxundaozu](https://clawhub.ai/user/chenxundaozu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxundaozu](https://clawhub.ai/user/chenxundaozu)
 
-## Use Case: <br>
-Developers and Windows automation users use this skill to capture WeChat chat screenshots, send them to Qwen-VL for transcription, and prepare chat text for reply workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private WeChat screenshots may be sent to DashScope/Qwen-VL. <br>
-Mitigation: Use the skill only on chats that are allowed to be shared with the external model provider. <br>
-Risk: Referenced PowerShell capture scripts and AHK send automation are not present in the artifact for review. <br>
-Mitigation: Inspect or obtain those scripts before installation or execution. <br>
-Risk: Message-sending automation could post unintended replies. <br>
-Mitigation: Require manual confirmation before any automated message is sent. <br>
-Risk: The script uses a hardcoded personal API-key path. <br>
-Mitigation: Replace it with a properly scoped secret path or environment-based secret handling before use. <br>
+## Use Case:
 
+Developers and automation users use this skill on Windows to capture WeChat chat screenshots, send them to Qwen-VL through DashScope, and return recognized chat text for review or reply workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenxundaozu/wechat-qwen-reply) <br>
-- [DashScope compatible-mode chat completions endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text chat transcript with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the latest recognized chat text and debug crop image to local files when run as documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Private WeChat screenshots are sent to DashScope for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with conversations appropriate for third-party processing, and avoid confidential personal, business, payment, or account chats.
+
+Risk: Recognized chat text and the latest cropped screenshot are saved in the local workspace.
+
+Mitigation: Review local retention expectations and remove saved outputs when they are no longer needed.
+
+Risk: The workflow depends on unbundled PowerShell and AHK scripts that can control capture or sending behavior.
+
+Mitigation: Verify those external scripts before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenxundaozu/skills/wechat-qwen-reply)
+- [DashScope Compatible Chat Completions Endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text chat transcript printed to stdout and saved to a local text file, with optional debug screenshot output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, WeChat PC, AHK v2, Python 3.12, a DashScope API key, and local capture scripts referenced by the package.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,256 @@
+# starter pack · 道路交通安全
+# 来源：真实项目回迁脱敏（v0.0.6 验证证据见 references/v0.0.6-validation.md）
+# 本体段为声明式事实清单；投影示例见 mocks/ 与 references/contract.md。
+pack:
+  id: traffic
+  name: 道路交通安全
+  version: '0.1'
+  source: 真实项目回迁脱敏（v0.0.6 验证证据见 references/v0.0.6-validation.md）
+  aligns:
+  - GB/T 48000.3 概念层可对齐
+  - schema.org/Organization
+  - schema.org/Vehicle
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml
+    --session session.json --pack starter_packs/traffic.yaml
+ontology:
+  entities:
+  - name: 企业
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 ent_id
+    note: 一行一企业（在册快照）
+    uid: ent_enterprise
+    evidence:
+      source: owner_confirmed
+  - name: 车辆
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 veh_id
+    note: 一行一车
+    uid: ent_vehicle
+    evidence:
+      source: user_provided
+  - name: 人员
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 person_id
+    note: 一行一人
+    uid: ent_personnel
+    evidence:
+      source: user_provided
+  - name: 检查单
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 order_id
+    note: 一行一检查单
+    uid: ent_inspection_order
+    evidence:
+      source: data_observed
+  - name: 检查项记录
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 id
+    note: 一行一检查项结果
+    uid: ent_inspection_item
+    evidence:
+      source: data_observed
+  - name: 隐患
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 hazard_id
+    note: 一行一隐患
+    uid: ent_hazard
+    evidence:
+      source: data_observed
+  - name: 预警事件
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 alert_id
+    note: 一行一预警事件
+    uid: ent_warning_event
+    evidence:
+      source: owner_confirmed
+  - name: 督办节点
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 flow_id
+    note: 一行一处置节点
+    uid: ent_supervision_node
+    evidence:
+      source: owner_confirmed
+  - name: 培训计划
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 plan_id
+    note: 一行一场培训计划
+    uid: ent_training_plan
+    evidence:
+      source: data_observed
+  - name: 培训参训记录
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 id
+    note: 一行一人参加一场培训
+    uid: ent_training_attendance
+    evidence:
+      source: data_observed
+  - name: 报警记录
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 alarm_id
+    note: 一行一报警
+    uid: ent_alarm_record
+    evidence:
+      source: data_observed
+  - name: 企业监控日汇总
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 id
+    note: 一行一企业一日
+    uid: ent_monitor_daily_summary
+    evidence:
+      source: model_inferred
+  - name: 安全台账
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 id
+    note: 一行一企业一事项一月
+    uid: ent_safety_ledger
+    evidence:
+      source: model_inferred
+  - name: 履职活动
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 id
+    note: 一行一活动或一文件
+    uid: ent_duty_activity
+    evidence:
+      source: data_observed
+  - name: 机构人员
+    attributes:
+    - name: 业务标识
+      value_type: string
+      note: 主键 id
+    note: 一行一账号/人员
+    uid: ent_agency_staff
+    evidence:
+      source: user_provided
+  - name: 重点营运车辆
+    is_a: 车辆
+    attributes:
+    - name: 车辆类别
+      value_type: enum
+      values:
+      - 客运
+      - 危货
+    unprojected_reason: 以概念 expand 宏承载（veh_class IN 客运/危货），无独立物理表
+    uid: ent_key_operating_vehicle
+    evidence:
+      source: owner_confirmed
+  relations:
+  - from: 企业
+    to: 车辆
+    predicate: 拥有
+    mapping: equi_key
+    id: rel_enterprise_vehicle
+  - from: 企业
+    to: 人员
+    predicate: 聘用
+    mapping: equi_key
+    id: rel_enterprise_personnel
+  - from: 企业
+    to: 检查单
+    predicate: 被检查
+    mapping: equi_key
+    id: rel_enterprise_inspection
+  - from: 企业
+    to: 隐患
+    predicate: 存在
+    mapping: equi_key
+    id: rel_enterprise_hazard
+  - from: 企业
+    to: 预警事件
+    predicate: 触发
+    mapping: equi_key
+    id: rel_enterprise_warning
+  - from: 企业
+    to: 培训计划
+    predicate: 组织
+    mapping: equi_key
+    id: rel_enterprise_training
+  - from: 企业
+    to: 培训参训记录
+    predicate: 含参训
+    mapping: equi_key
+    id: rel_enterprise_attendance
+  - from: 企业
+    to: 报警记录
+    predicate: 车辆产生
+    mapping: equi_key
+    id: rel_enterprise_alarm
+  - from: 企业
+    to: 企业监控日汇总
+    predicate: 有汇总
+    mapping: equi_key
+    id: rel_enterprise_summary
+  - from: 企业
+    to: 安全台账
+    predicate: 有台账
+    mapping: equi_key
+    id: rel_enterprise_ledger
+  - from: 企业
+    to: 履职活动
+    predicate: 参与
+    mapping: equi_key
+    id: rel_enterprise_duty
+  - from: 检查单
+    to: 检查项记录
+    predicate: 包含
+    mapping: equi_key
+    id: rel_inspection_item
+  - from: 检查单
+    to: 隐患
+    predicate: 发现
+    mapping: equi_key
+    id: rel_inspection_hazard
+  - from: 隐患
+    to: 预警事件
+    predicate: 上报转
+    mapping: equi_key
+    id: rel_hazard_warning
+  - from: 预警事件
+    to: 督办节点
+    predicate: 被督办
+    mapping: equi_key
+    id: rel_warning_supervision
+  - from: 车辆
+    to: 报警记录
+    predicate: 产生
+    mapping: equi_key
+    id: rel_vehicle_alarm
+  - from: 机构人员
+    to: 企业
+    predicate: 管辖
+    mapping: weak
+    note: 按 manage_area_code 与 企业.area_code 关联，非等值主键，慎用
+    id: rel_agency_enterprise
+  - from: 人员
+    to: 培训参训记录
+    predicate: 参加
+    mapping: weak
+    note: 缺 person_id，只能按 person_name 弱关联，不建议生成 SQL 时使用
+    id: rel_personnel_attendance

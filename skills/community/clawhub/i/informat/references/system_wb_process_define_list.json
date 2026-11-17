@@ -1,0 +1,12 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_process_define_list",
+		"description": "Get the list of workflow process definitions that the current user can initiate",
+		"parameters": {
+			"type": "object",
+			"properties": {},
+			"required": []
+		}
+	}
+}

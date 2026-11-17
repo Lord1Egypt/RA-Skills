@@ -1,36 +1,52 @@
-## Description: <br>
-Interactive terminal control via tmux for TUI apps, prompts, and long-running CLI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive terminal control via tmux for TUI apps, prompts, and long-running CLI workflows.
 
-## Publisher: <br>
-[ImBeasting](https://clawhub.ai/user/ImBeasting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imbeasting](https://clawhub.ai/user/imbeasting)
 
-## Use Case: <br>
-Developers and QA testers use this skill to drive interactive CLI and TUI workflows through tmux, capture terminal output, and manage long-running local processes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to control local terminal sessions, which can run unintended, privileged, or destructive commands if reviewed poorly. <br>
-Mitigation: Review commands before execution, avoid privileged or destructive terminal actions unless intended, and clean up detached tmux sessions when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and QA testers use this skill to operate interactive terminal sessions, capture TUI output, and manage long-running CLI or server processes with tmux.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Captured terminal output may expose sensitive data from interactive sessions.
+
+Mitigation: Review captured panes before sharing logs or reports, and avoid exposing secrets in terminal output.
+
+Risk: Long-running tmux sessions may leave background processes active after the agent workflow finishes.
+
+Mitigation: Stop processes with Ctrl-C where appropriate and kill tmux sessions after use.
+
+## Reference(s):
+
+- [tmux-terminal on ClawHub](https://clawhub.ai/imbeasting/skills/imbeasting-tmux-terminal)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Daily Log guides an agent to write or consolidate local daily Markdown work logs at memory/daily/YYYY-MM/YYYY-MM-DD.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Log helps an agent write structured Markdown daily work logs at memory/daily/YYYY-MM/YYYY-MM-DD.md after sessions or important tasks.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to have agents record session work, decisions, changed files, commands, command output, and errors in a structured daily journal for later memory review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated daily log files can preserve command output, file paths, errors, and other project details that may be sensitive. <br>
-Mitigation: Review generated memory/daily files periodically and avoid sharing or committing logs that contain sensitive project data. <br>
-Risk: Older releases used a different daily log path, which can lead to duplicate logs if agents follow stale conventions. <br>
-Mitigation: Use the v1.3.0 path convention memory/daily/YYYY-MM/YYYY-MM-DD.md and check for an existing daily log before writing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve detailed records of an agent's own work, decisions, changed files, commands, outputs, and errors for later memory review.
 
-## Reference(s): <br>
-- [Daily log specification](artifact/references/spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/daily-log) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown file at memory/daily/YYYY-MM/YYYY-MM-DD.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends or consolidates entries while preserving existing daily log content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent daily logs may retain tokens, credentials, private configuration, customer data, or other sensitive command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill after sensitive output unless a redaction, review, and deletion policy is in place.
+
+Risk: Path convention drift can create duplicate daily logs for the same date.
+
+Mitigation: Use the v1.3.0 path convention memory/daily/YYYY-MM/YYYY-MM-DD.md and check for an existing file before writing.
+
+## Reference(s):
+
+- [Daily Log Detailed Specification](references/spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/axelhu/skills/daily-log)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Guidance]
+
+**Output Format:** [Markdown daily log file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or updates persistent logs under memory/daily/YYYY-MM/YYYY-MM-DD.md while preserving existing entries.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

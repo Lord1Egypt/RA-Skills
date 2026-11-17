@@ -1,41 +1,50 @@
-## Description: <br>
-Assess DevOps maturity across CI/CD, infrastructure as code, observability, DevSecOps, culture, FinOps, and reliability, then produce a scored report with actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess DevOps maturity for cloud-native or cloud-migrating organizations through a guided seven-dimension questionnaire, scoring model, and recommendation report.
 
-## Publisher: <br>
-[kbakdev](https://clawhub.ai/user/kbakdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kbakdev](https://clawhub.ai/user/kbakdev)
 
-## Use Case: <br>
-DevOps, platform, SRE, cloud, and engineering leaders use this skill to assess organizational DevOps maturity, benchmark practices, identify critical gaps, and plan improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment conversations may include confidential architecture, security, incident, compliance, or cloud cost details. <br>
-Mitigation: Share only information approved for the assessment and redact sensitive operational or business details. <br>
-Risk: Generated recommendations may be incomplete or misaligned with an organization's constraints. <br>
-Mitigation: Have DevOps, SRE, security, and finance owners review recommendations before acting on them. <br>
+## Use Case:
 
+Developers, platform engineers, SREs, and technical leaders use this skill to assess organizational DevOps maturity across CI/CD, infrastructure as code, observability, DevSecOps, culture, FinOps, and reliability. It produces scored findings, highlights critical gaps, and recommends next steps for DevOps transformation planning.
 
-## Reference(s): <br>
-- [Assessment Dimensions - Questions & Scoring](references/dimensions.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kbakdev/devops-maturity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown assessment report with scores, visual bars, strengths, critical gaps, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores seven DevOps dimensions on a 0-6 maturity scale and recommends quarterly reassessment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Assessment responses may expose confidential operational details or secrets if users provide overly specific system information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Answer at the process and practice level, and avoid entering actual secrets or confidential system details unless intentionally sharing that context.
+
+## Reference(s):
+
+- [Assessment Dimensions - Questions & Scoring](references/dimensions.md)
+- [ClawHub Skill Page](https://clawhub.ai/kbakdev/skills/devops-maturity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with scored dimensions, visual bars, strengths, critical gaps, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive questionnaire output based on seven maturity dimensions and 0-6 scoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

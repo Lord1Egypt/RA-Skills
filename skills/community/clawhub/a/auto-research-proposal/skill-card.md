@@ -1,42 +1,53 @@
-## Description: <br>
-Multi-agent research war room where personas debate research ideas and draft proposals through ideation and proposal-writing phases with persona persistence and drift detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-agent research war room where personas debate in sequential turns across ideation and proposal-writing phases with persona persistence and drift detection enforced every turn.
 
-## Publisher: <br>
-[frankaging](https://clawhub.ai/user/frankaging) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankaging](https://clawhub.ai/user/frankaging)
 
-## Use Case: <br>
-Researchers, students, and research teams use this skill to run structured persona-based debate, converge on a research idea, and draft a concise research proposal with logs, snapshots, and checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may launch a local terminal monitor and read project memory files in real time. <br>
-Mitigation: Ask the agent to confirm before starting the monitor and verify that the monitor path resolves to this reviewed package. <br>
-Risk: The skill persistently records detailed discussion logs, persona memos, checkpoints, and result copies that may contain sensitive unpublished research. <br>
-Mitigation: Avoid putting secrets or sensitive unpublished material in the discussion, and delete memory/war-room, memory/.private, checkpoints, and results copies when no longer needed. <br>
+## Use Case:
 
+Researchers, research leads, and proposal-writing agents use this skill to run structured persona debates, converge on a research idea, and draft a concise proposal with logs, checkpoints, and final proposal outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankaging/auto-research-proposal) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Persona configuration](artifact/personas/agents.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists discussion logs, private persona memos, checkpoints, idea snapshots, proposal drafts, and copied results in the active project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional monitor launch uses unsafe shell command construction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not let the agent auto-run the monitor command as written; run it manually with safely quoted paths in an isolated Python environment with pinned dependencies.
+
+Risk: The workflow persistently records discussion logs and private persona memos.
+
+Mitigation: Use the skill only where persistent logs and private memos are acceptable, and avoid placing sensitive secrets in the war-room context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankaging/skills/auto-research-proposal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, discussion logs, checkpoints, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent memory files, private persona memos, and copied results under the active project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

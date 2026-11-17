@@ -1,0 +1,167 @@
+'''
+5国债逆回购实盘策略模板
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+#encoding:gbk
+'''
+国债逆回购实盘策略模板
+
+'''
+import pandas as pd
+import numpy as np
+import talib
+import math 
+from datetime import datetime
+def init(c):
+	'''
+	国债逆回购
+	'''
+	c.account='输入自己账户'
+	c.account_type='STOCK'
+	#测试代码
+	#######################测试代码
+	stats,text=reverse_repurchase_of_treasury_bonds_1(c)
+	print(text)
+	###################测试代码
+	print('等带逆回购********************************')
+	c.run_time("reverse_repurchase_of_treasury_bonds_1","1nDay","2024-07-25 14:57:00")  #每日14：47分触发
+	c.run_time("trader_log","3nSecond","2024-07-25 13:20:00")
+	reverse_repurchase_of_treasury_bonds_1(c)
+def trader_log(c):
+	'''
+	程序记录
+	'''
+	print('{}逆回购目前没有到交易时间'.format(datetime.now()))
+def adjust_stock(stock='600031.SH'):
+	'''
+	调整代码
+	'''
+	if stock[-2:]=='SH' or stock[-2:]=='SZ' or stock[-2:]=='sh' or stock[-2:]=='sz':
+		stock=stock.upper()
+	else:
+		if stock[:3] in ['600','601','603','688','510','511',
+			'512','513','515','113','110','118','501'] or stock[:2] in ['11']:
+			stock=stock+'.SH'
+		else:
+			stock=stock+'.SZ'
+		return stock
+def adjust_amount(stock='',amount=''):
+	'''
+	调整数量
+	'''           
+	if stock[:3] in ['110','113','123','127','128','111'] or stock[:2] in ['11','12']:
+		amount=math.floor(amount/10)*10
+	else:
+		amount=math.floor(amount/100)*100
+		return amount
+def balance(c,accounts=''):
+		'''
+		对接同花顺
+		'''
+		try:
+			accounts = get_trade_detail_data(c.account, c.account_type, 'account')
+		except:
+			accounts=accounts
+		df=pd.DataFrame()
+		for dt in accounts:
+			df['账号类型']=[dt.m_nBrokerType]
+			df['资金账户']=[dt.m_strAccountID]
+			df['可用金额']=[dt.m_dAvailable]
+			#df['冻结金额']=[dt.frozen_cash]
+			df['持仓市值']=[dt.m_dInstrumentValue]
+			df['总资产']=[dt.m_dBalance]
+		return df
+def position(c,positions=''):
+		'''
+		对接同花顺
+		持股
+		'''
+		try:
+			positions = get_trade_detail_data(c.account, c.account_type, 'position')
+		except :
+			positions=positions
+		data=pd.DataFrame()
+		if len(positions)>0:
+			print('持股数量{}'.format(len(positions)))
+			for dt in positions:
+				df=pd.DataFrame()
+				  #df['账号类型']=[positions[i].account_type]
+				df['资金账号']=[dt.m_strAccountID]
+				df['证券代码']=[dt.m_strInstrumentID]
+				df['证券代码']=df['证券代码'].apply(lambda x:adjust_stock(x))
+				#df['证券代码']=[dt.m_strProductID]
+				#df['证券代码']=df['证券代码'].apply(lambda x:str(x)[:6]) 
+				df['股票余额']=[dt.m_nVolume]
+				df['可用余额']=[dt.m_nCanUseVolume]
+				df['成本价']=[dt.m_dPositionCost]
+				df['参考成本价']=[dt.m_dOpenPrice]
+				df['市值']=[dt.m_dInstrumentValue]
+				data=pd.concat([data,df],ignore_index=True)
+			return data
+		else:
+			return data
+def get_spot_data(c,stock='600031.SH'):
+	'''
+	获取最新价格
+	'''
+	df=c.get_full_tick([stock])
+	price=df[stock]['lastPrice']
+	return price
+def buy(c,stock='159985.SZ',amount=100,price=2.045):
+	'''
+	自定义买入函数
+	stock,股票
+	amount,数量
+	price价格
+	'''
+	account=c.account
+	passorder(23,1101,account,stock,11,price,amount,1,c)
+	print('买入股票{} 数量{} 价格{}##############'.format(stock,amount,price))
+def sell(c,stock='159985.SZ',amount=100,price=2.045):
+	'''
+	自定义卖出函数
+	stock,股票
+	amount,数量
+	price价格
+	'''
+	account=c.account
+	passorder(24,1101,account,stock,11,price,amount,1,c)
+	print('卖出股票{} 数量{} 价格{}##############'.format(stock,amount,price))
+def reverse_repurchase_of_treasury_bonds_1(c,buy_ratio=1):
+	'''
+	国债逆回购1,新的函数
+	购买比例buy_ratio
+	'''
+	# 对交易回调进行订阅，订阅后可以收到交易主推，返回0表示订阅成功
+	account=balance(c)
+	print(account)
+	av_cash=account['可用金额'].tolist()[-1]
+	av_cash=float(av_cash)
+	av_cash=av_cash*buy_ratio
+	#stock_code_sh = '204001.SH'
+	#统一用深圳
+	stock_code_sh = '131810.SZ'
+	stock_code_sz = '131810.SZ'
+	price_sh = get_spot_data(c,stock_code_sh)
+	price_sz = get_spot_data(c,stock_code_sz)
+	bidPrice1 = max(price_sh,price_sz)
+	if price_sh >= price_sz:
+		stock_code = stock_code_sh
+	else:
+		stock_code = stock_code_sz
+	print(stock_code,bidPrice1)
+	price=bidPrice1
+	stock=stock_code
+	#下单的数量要是1000
+	amount = int(av_cash/1000)*10
+	#借出钱sell
+	print('开始逆回购***********')
+	if amount>0:
+		sell(c,stock=stock,amount=amount,price=price)
+		text='国债逆回购交易类型 代码{} 价格{} 数量{}'.format(stock,price,amount)
+		return '交易成功',text
+	else:
+		text='国债逆回购卖出 标的{} 价格{} 委托数量{}小于0有问题'.format(stock,price,amount)
+		print('账户没有可以的钱@@@@@@@@@@@@@@@@@@@')
+		return '交易失败',text
+	

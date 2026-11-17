@@ -1,0 +1,75 @@
+{
+  "messages": [
+    [
+      "info",
+      "Results exclude routes with very low visibility (less than 10 RIS full-feed peers seeing)."
+    ]
+  ],
+  "see_also": [],
+  "version": "1.2",
+  "data_call_name": "announced-prefixes",
+  "data_call_status": "supported",
+  "cached": true,
+  "query_id": "20260726160638-76971fc9-07b4-40bc-8794-fd22a8d25aae",
+  "process_time": 11,
+  "server_id": "app165",
+  "build_version": "v0.10.15-2-2026.07.22",
+  "pipeline": "1352857",
+  "status": "ok",
+  "status_code": 200,
+  "time": "2026-07-26T16:06:38.869808",
+  "data": {
+    "prefixes": [
+      {
+        "prefix": "152.65.214.0/23",
+        "timelines": [
+          {
+            "starttime": "2026-07-12T08:00:00",
+            "endtime": "2026-07-26T08:00:00"
+          }
+        ]
+      },
+      {
+        "prefix": "142.251.165.0/24",
+        "timelines": [
+          {
+            "starttime": "2026-07-12T08:00:00",
+            "endtime": "2026-07-26T08:00:00"
+          }
+        ]
+      },
+      {
+        "prefix": "34.0.234.0/24",
+        "timelines": [
+          {
+            "starttime": "2026-07-12T08:00:00",
+            "endtime": "2026-07-26T08:00:00"
+          }
+        ]
+      },
+      {
+        "prefix": "172.217.65.0/24",
+        "timelines": [
+          {
+            "starttime": "2026-07-12T08:00:00",
+            "endtime": "2026-07-26T08:00:00"
+          }
+        ]
+      },
+      {
+        "prefix": "34.4.48.0/20",
+        "timelines": [
+          {
+            "starttime": "2026-07-12T08:00:00",
+            "endtime": "2026-07-26T08:00:00"
+          }
+        ]
+      }
+    ],
+    "query_starttime": "2026-07-12T08:00:00",
+    "query_endtime": "2026-07-26T08:00:00",
+    "resource": "15169",
+    "latest_time": "2026-07-26T08:00:00",
+    "earliest_time": "2000-08-01T00:00:00"
+  }
+}

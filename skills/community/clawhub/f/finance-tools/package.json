@@ -1,0 +1,41 @@
+{
+  "name": "finance-tools",
+  "version": "1.1.0",
+  "description": "财务分析工具集 v1.1.0。7个子命令：analyze收支汇总、ratios财务比率(含毛利率/ROE/ROA/ROI)、trend趋势、category分类汇总、budget预算对比、yoy同比环比、forecast趋势预测。纯Python标准库。",
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "keywords": [
+    "finance", "financial-analysis", "财务分析", "数据分析",
+    "budgeting", "forecast", "trend-analysis", "ratios",
+    "个人理财", "企业财务"
+  ],
+  "files": [
+    "SKILL.md", "package.json", "requirements.txt",
+    "CHANGELOG.md", "README.md", "scripts/"
+  ],
+  "scripts": {
+    "analyze": "python3 scripts/finance_tools.py analyze --file",
+    "ratios": "python3 scripts/finance_tools.py ratios --file",
+    "trend": "python3 scripts/finance_tools.py trend --file",
+    "category": "python3 scripts/finance_tools.py category --file",
+    "budget": "python3 scripts/finance_tools.py budget --file",
+    "yoy": "python3 scripts/finance_tools.py yoy --file",
+    "forecast": "python3 scripts/finance_tools.py forecast --file"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "data-analysis",
+    "region": "global",
+    "dependencies": [],
+    "emoji": "💰"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cqdev-ai/finance-tools"
+  }
+}

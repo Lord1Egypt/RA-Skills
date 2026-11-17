@@ -1,40 +1,53 @@
-## Description: <br>
-Dm Outreach drafts personalized Instagram DM outreach messages for qualified leads and saves them as CSV drafts for manual sending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts personalized Instagram DMs for qualified leads with focused templates, saved as CSV files for manual review and sending.
 
-## Publisher: <br>
-[visualdeptcreative](https://clawhub.ai/user/visualdeptcreative) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[visualdeptcreative](https://clawhub.ai/user/visualdeptcreative)
 
-## Use Case: <br>
-Developers and outreach operators use this skill to draft short, personalized Instagram first-touch and follow-up messages for qualified leads, then review and send them manually. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may be incorrect, off-brand, or unsuitable for a lead. <br>
-Mitigation: Review every generated DM before sending and edit the message for accuracy, tone, and compliance. <br>
-Risk: Automating Instagram sending can trigger account enforcement or bans. <br>
-Mitigation: Use the skill only as a drafting aid and send messages manually through Instagram. <br>
-Risk: The generated CSV can contain lead and contact data. <br>
-Mitigation: Store, share, or delete the CSV according to the sensitivity of the lead data, and check whether the day's output file already exists before repeated runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Marketing and sales operators use this skill to draft short personalized Instagram first-touch and follow-up DMs for qualified leads, save them in a standardized CSV, and send them manually after review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [CSV file with drafted Instagram messages and profile links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are intended for manual review and manual sending; the skill does not send messages or access Instagram accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated outreach could be sent without sufficient review for platform rules, consent expectations, or spam standards.
+
+Mitigation: Review each generated DM before sending and confirm the outreach complies with Instagram rules and the sender's consent and spam standards.
+
+Risk: Automated Instagram sending can trigger account enforcement.
+
+Mitigation: Use the skill only to draft and save messages; send approved DMs manually through Instagram.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/visualdeptcreative/skills/dm-outreach)
+- [Publisher profile](https://clawhub.ai/user/visualdeptcreative)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown guidance and CSV draft rows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated DMs are limited to short, conversational copy with one clear call to action and no automated sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

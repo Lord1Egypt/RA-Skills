@@ -1,44 +1,59 @@
-## Description: <br>
-Generates instrumental music, songs with lyrics, and standalone lyrics through the MiniMax Music 2.5 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate instrumental music, songs with lyrics, and lyrics from prompts using the MiniMax Music 2.5 API.
 
-## Publisher: <br>
-[rexdong1](https://clawhub.ai/user/rexdong1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rexdong1](https://clawhub.ai/user/rexdong1)
 
-## Use Case: <br>
-Creators, operators, and agents use this skill to generate instrumental tracks, lyric-based songs, or standalone lyrics from style and theme prompts, with optional local download and Feishu sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and lyrics are sent to MiniMax using the user's API key, which can expose private or unpublished material to a remote service. <br>
-Mitigation: Avoid submitting sensitive material unless MiniMax's terms and data handling meet the user's requirements. <br>
-Risk: Generated audio can be shared through Feishu if the user chooses that workflow, which may expose files to unintended recipients or scopes. <br>
-Mitigation: Verify the recipient, token scope, and audio content before uploading or sending generated files through Feishu. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate music or lyrics from prompts, download generated audio, and optionally share audio through Feishu after generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rexdong1/minimax-music) <br>
-- [Publisher profile](https://clawhub.ai/user/rexdong1) <br>
-- [MiniMax API endpoint](https://api.minimaxi.com/v1) <br>
-- [Feishu file upload endpoint](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, generated lyrics text, optional JSON metadata, and downloaded audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; generated audio URLs should be downloaded promptly because they may expire.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, lyrics, and generated audio are sent to MiniMax, and may be sent to Feishu when sharing is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or proprietary prompts and lyrics, and use Feishu sharing only after confirming the recipient and token scope.
+
+Risk: Passing credentials with command-line arguments can expose the MiniMax API key in shell history or process listings.
+
+Mitigation: Prefer the MINIMAX_API_KEY environment variable instead of --api-key.
+
+Risk: Generated audio URLs and downloaded files may expose user-created content if shared or stored in unintended locations.
+
+Mitigation: Download only to intended directories and treat generated audio URLs and files as sensitive user content.
+
+## Reference(s):
+
+- [MiniMax API endpoint](https://api.minimaxi.com/v1)
+- [Feishu file upload endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Files, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; generated lyrics text, audio files, or JSON metadata when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can download MP3, WAV, or FLAC audio and can emit JSON metadata with audio URL and generation details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

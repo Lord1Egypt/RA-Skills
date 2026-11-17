@@ -1,47 +1,60 @@
-## Description: <br>
-Integrates n8n workflows with OpenClaw agents through authenticated webhooks, agent execution, result callbacks, and observability hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw agents with n8n workflows through webhook triggers, result callbacks, token validation, and observability hooks.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and automation teams use this skill to let n8n workflows trigger OpenClaw agent actions, receive execution results, and continue downstream workflow steps. It is suited to webhook-driven automation such as scheduled AI search, CRM enrichment, and social media monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook requests can trigger broad agent actions and callbacks. <br>
-Mitigation: Run the service only on localhost or a protected network, require a strong unique N8N_AUTH_TOKEN, and restrict allowed workflows and actions. <br>
-Risk: Example or default tokens could allow unintended access if reused. <br>
-Mitigation: Replace the example workflow token before use and rotate authentication tokens regularly. <br>
-Risk: Sensitive workflow parameters may be exposed through logs, traces, or callback payloads. <br>
-Mitigation: Disable or sanitize telemetry for sensitive parameters and allow callbacks only to trusted n8n URLs. <br>
-Risk: The n8n API key can grant broader workflow and credential API access. <br>
-Mitigation: Avoid setting N8N_API_KEY unless those API methods are required, and scope operational access as tightly as the deployment allows. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to let n8n workflows trigger OpenClaw agent actions and receive execution results for follow-on workflow steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/yuyonghao-n8n-integration) <br>
-- [n8n documentation](https://docs.n8n.io/) <br>
-- [Research notes](artifact/RESEARCH.md) <br>
-- [Example workflow](artifact/examples/workflow-example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON workflow configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces webhook setup guidance, n8n workflow examples, and Node.js integration patterns for agent execution and callbacks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and package.json) <br>
+Risk: Webhook callbacks can send execution results and the configured token to caller-supplied callback URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict callback URLs to trusted n8n endpoints and avoid forwarding authentication tokens to callback targets.
+
+Risk: The artifact documents and implements a default webhook token.
+
+Mitigation: Replace the default token with a strong unique secret stored in the environment before enabling the webhook server.
+
+Risk: The n8n client can access workflows, executions, and credentials when configured with an API key.
+
+Mitigation: Use least-privilege n8n API credentials and review permissions before enabling workflow deletion or credential access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-n8n-integration)
+- [n8n Documentation](https://docs.n8n.io/)
+- [n8n Webhook Node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/)
+- [n8n HTTP Request Node](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples plus JSON workflow configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include webhook endpoint settings, authentication token guidance, callback configuration, and n8n workflow JSON examples.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

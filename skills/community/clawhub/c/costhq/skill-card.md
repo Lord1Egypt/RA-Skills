@@ -1,43 +1,60 @@
-## Description: <br>
-Track agent session costs, file changes, git commits, local model usage, budgets, and audit activity with the CostHQ CLI and dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track agent session costs, file changes, and git commits with CostHQ, including budget limits, local model tracking, dashboard analytics, and Enterprise SOC2 audit trails.
 
-## Publisher: <br>
-[brian-mwirigi](https://clawhub.ai/user/brian-mwirigi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brian-mwirigi](https://clawhub.ai/user/brian-mwirigi)
 
-## Use Case: <br>
-Developers and agent operators use CostHQ to start, monitor, annotate, and end tracked work sessions while recording AI usage, file changes, git commits, budgets, and dashboard analytics. It is especially relevant for teams that need local model cost tracking, semantic caching controls, exports, or enterprise audit trails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CostHQ records session, file, git, and AI-traffic activity with under-specified privacy and retention controls. <br>
-Mitigation: Review what the npm package records, where sync features send data, how local data under ~/.costhq or ~/.CostHQ is purged, and whether the data handling fits the repository or regulatory environment before use. <br>
-Risk: The Semantic Caching Proxy can intercept and cache model traffic, which may include prompts, responses, or credentials. <br>
-Mitigation: Avoid enabling the proxy for secrets or confidential model traffic unless cache isolation, retention, and credential handling are clear. <br>
+## Use Case:
 
+Developers and engineering teams use CostHQ to track agent task sessions, log AI usage costs, review file and commit activity, manage budgets, and inspect activity through a local dashboard.
 
-## Reference(s): <br>
-- [CostHQ on ClawHub](https://clawhub.ai/brian-mwirigi/costhq) <br>
-- [CostHQ GitHub Repository](https://github.com/brian-mwirigi/costhq) <br>
-- [CostHQ npm Package](https://www.npmjs.com/package/costhq) <br>
-- [CostHQ Changelog](https://github.com/brian-mwirigi/costhq/blob/main/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash command blocks and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agents are instructed to use --json for parseable CostHQ command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata and skill body) <br>
+Risk: CostHQ can record agent activity, usage details, file changes, commits, and repository metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in repositories where this monitoring is acceptable, prefer a pinned reviewed npm package version, and review collected session data before using it for audit or reporting.
+
+Risk: The Semantic Caching Proxy intercepts API calls and may cache prompts or responses.
+
+Mitigation: Avoid routing secrets, customer data, or regulated prompts through the proxy until retention, cache purge, and access-control behavior are clear.
+
+Risk: Dashboard command controls can affect active tracked sessions and execute CostHQ CLI operations.
+
+Mitigation: Restrict dashboard access to trusted users and avoid running installation or CostHQ commands with elevated privileges unless required.
+
+## Reference(s):
+
+- [CostHQ ClawHub Listing](https://clawhub.ai/brian-mwirigi/skills/costhq)
+- [CostHQ GitHub Repository](https://github.com/brian-mwirigi/costhq)
+- [CostHQ npm Package](https://www.npmjs.com/package/costhq)
+- [CostHQ Changelog](https://github.com/brian-mwirigi/costhq/blob/main/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to use --json and may read or write local CostHQ session data.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata; artifact heading also states Latest v4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

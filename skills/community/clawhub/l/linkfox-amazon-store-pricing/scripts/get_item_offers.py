@@ -31,8 +31,7 @@ from _spapi_pricing_common import (
     developer_proxy_get,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     resolve_marketplace_id,
 )
 
@@ -98,12 +97,7 @@ def main() -> None:
     path = _path(asin)
     q = _query(marketplace_id, item_condition, ct)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_get(region, path, tokens["accessToken"], q)
+    proxy = developer_proxy_get(region, path, seller_id, q)
     out: dict = {"developerProxy": proxy, "resolvedPath": path, "queryString": q}
     if proxy.get("errcode") == 200 and proxy.get("httpStatus") == 200:
         raw = proxy.get("body") or "{}"

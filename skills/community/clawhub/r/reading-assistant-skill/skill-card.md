@@ -1,44 +1,65 @@
-## Description: <br>
-对话读书助理 helps users manage book excerpts as a local reading-notes knowledge base with tagging, search, import, export, and reading statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A reading assistant that helps users manage reading excerpts and a personal knowledge base with smart tags, full-text search, bulk import/export, and reading statistics.
 
-## Publisher: <br>
-[ludiansheng](https://clawhub.ai/user/ludiansheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ludiansheng](https://clawhub.ai/user/ludiansheng)
 
-## Use Case: <br>
-Readers, students, and knowledge workers use this skill to capture book excerpts, organize tags, search notes, import highlights, export reading records, and generate reading statistics in a local personal knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, display, import, export, and maintain personal reading notes in a local ./reading-notes knowledge base. <br>
-Mitigation: Use explicit reading-assistant commands, keep imports to trusted note-export files, and review search, view, and export results before sharing them. <br>
-Risk: Delete, import, export, and custom output-path workflows can overwrite or remove local note data. <br>
-Mitigation: Confirm destructive actions carefully, keep backups of ./reading-notes, and avoid custom export paths unless overwriting that destination is safe. <br>
+## Use Case:
 
+Readers, knowledge workers, and agents use this skill to capture book excerpts, organize them by book, chapter, and tag, search prior notes, import Kindle or WeChat Reading exports, and generate reading reports or note exports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ludiansheng/reading-assistant-skill) <br>
-- [Chapter recognition rules](references/chapter-rules.md) <br>
-- [Reading notes data structure](references/data-structure.md) <br>
-- [Import format specification](references/import-formats.md) <br>
-- [Export template guide](references/export-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text, Markdown or HTML exports, script-backed summaries, and local JSON note records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains a local ./reading-notes knowledge base and can import, export, display, overwrite, or delete note files when the user confirms those operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scripts can read or write outside the intended notes folder when custom paths are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained workspace, keep the default reading-notes location where possible, and review any file paths before execution.
+
+Risk: Exported HTML can include unsafe note content.
+
+Mitigation: Avoid opening or sharing HTML exports from untrusted imported notes until HTML escaping and path confinement are fixed; prefer Markdown for untrusted content.
+
+Risk: Imported note files may contain untrusted or malformed content.
+
+Mitigation: Import only trusted note files and review the import preview before saving records.
+
+Risk: Book deletion and bulk import workflows can modify the local reading-notes store.
+
+Mitigation: Require explicit user confirmation for destructive or bulk operations and keep backups of the reading-notes directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ludiansheng/skills/reading-assistant-skill)
+- [Data structure definition](references/data-structure.md)
+- [Chapter recognition rules](references/chapter-rules.md)
+- [Import format specification](references/import-formats.md)
+- [Export template guide](references/export-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Agent responses plus JSON note records, JSON search/statistics results, and Markdown or HTML exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local reading-notes JSON files and may write exported Markdown or HTML files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

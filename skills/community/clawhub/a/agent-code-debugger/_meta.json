@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn751cs05f46j016xa7q3519hs83gke6",
+  "name": "agent-code-debugger",
   "slug": "agent-code-debugger",
   "version": "1.0.0",
-  "publishedAt": 1774484005363
+  "description": "Debugging assistance for AI-generated code with pattern detection, common issue identification, and fix suggestions",
+  "author": "jpengcheng523-netizen",
+  "tags": ["debugging", "code", "ai", "development"],
+  "license": "MIT"
 }

@@ -1,41 +1,55 @@
-## Description: <br>
-Calculates a weighted composite score predicting adverse pregnancy outcomes in patients with SLE and/or APS to support risk stratification and management planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PREGNA-RISK calculates a weighted composite risk score for adverse pregnancy outcomes in patients with SLE and/or APS and returns risk categories, uncertainty estimates, and monitoring recommendations.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-Clinicians and clinical teams can use this skill as supervised decision support for estimating pregnancy risk in SLE and/or APS patients and planning monitoring intensity. It should not be used to make pregnancy, medication, monitoring, or delivery decisions without qualified MFM/rheumatology review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-stakes pregnancy, medication, monitoring, or delivery recommendations may be clinically inappropriate if used without specialist oversight. <br>
-Mitigation: Use only as clinician-supervised decision support and require qualified MFM/rheumatology review before acting on scores or recommendations. <br>
-Risk: Patient identifiers or clinical factors may expose health data when entered into the local tool or shared in generated reports. <br>
-Mitigation: Avoid real patient identifiers unless operating in an approved health-data environment; prefer anonymous IDs and control report storage. <br>
+## Use Case:
 
+Clinicians, medical developers, and reviewers can use this skill to inspect or run a pregnancy-risk stratification calculator for SLE/APS scenarios and produce risk scores, categories, uncertainty intervals, and monitoring-oriented guidance. Its outputs require qualified obstetric, maternal-fetal medicine, and rheumatology review before any clinical use.
 
-## Reference(s): <br>
-- [PREGNA-RISK ClawHub listing](https://clawhub.ai/CryptoReuMD/pregna-risk) <br>
-- [Artifact documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Clinical risk report text or JSON, with Markdown documentation and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a composite score, risk category, recommendation, monitoring timeline, and Monte Carlo confidence interval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be mistaken for validated medical decision support for pregnancy, medication, monitoring, hospitalization, or delivery decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as informational risk-calculator results that require qualified obstetric, maternal-fetal medicine, and rheumatology review before any clinical decision.
+
+Risk: The JSON mode may process patient identifiers or protected health information without explicit privacy safeguards.
+
+Mitigation: Use de-identified inputs by default, and process real patient data only in environments with approved privacy controls and logging safeguards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptoreumd/skills/pregna-risk)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [PREGNA-RISK Python implementation](artifact/pregna_risk.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, plus plain-text or JSON calculator output when the script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The calculator accepts boolean clinical risk factors and an optional patient identifier in JSON mode, then emits a composite score, risk category, recommendation, and Monte Carlo uncertainty estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,449 @@
+/* ========================================================================
+   EPUB Reader Optimizer — 通用基础 CSS 模板
+   适用：中英文对照 / 中文译本 EPUB
+   思路：白底黑字 + 纯色高对比 + 强制字体 + 双语段落分层
+   使用：复制为 stylesheet.css 覆盖原文件，按需调整变量值
+   ======================================================================== */
+
+/* ---------- 基础排版 ---------- */
+html, body { margin: 0; padding: 0; }
+
+body, body.calibre {
+  display: block;
+  font-size: 1em;
+  line-height: 1.85;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  word-wrap: break-word;
+  padding: 0.5em 0.75em;
+  margin: 0;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* ---------- 强制白底（解决"白字"问题的关键） ---------- */
+html, body, section, article, div, p, span,
+h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figure, figcaption {
+  background-color: #ffffff !important;
+}
+
+/* ---------- 强制黑字（容器级兜底） ---------- */
+html, body, section, article, div, p, span,
+h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figcaption,
+.calibre, .calibre1, .calibre2, .calibre3, .calibre4,
+.para, .para1, .para2, .para3, .para4, .para5, .para6, .para7,
+.simplepara, .simplepara1, .collaboratorsection {
+  color: #000000 !important;
+}
+
+/* ---------- 统一字体大小（正文/代码/表格 ~1em） ---------- */
+body { font-size: 1em !important; }
+
+p, li, td, th, caption, blockquote, dd, dt, figcaption,
+.normal, .Para, .para, .para1, .para2, .para3,
+.simplepara, .simplepara1 {
+  font-size: 1em !important;
+  line-height: 1.75;
+  margin: 0.4em 0;
+  text-align: justify;
+}
+
+/* ---------- 全局字体（按需替换字体栈） ---------- */
+body, p, div, span, h1, h2, h3, h4, h5, h6, li, td, th, caption,
+figcaption, dt, dd, blockquote, a, strong, em, i, b,
+.calibre, .calibre1, .calibre2, .calibre3, .calibre4,
+.para, .para1, .para2, .para3, .para4, .para5, .para6, .para7,
+.simplepara, .simplepara1,
+.chaptertitle, .chapterTitle, .chapterNumber,
+.heading, .heading1, .heading2, .heading3,
+.heading4, .heading5, .heading6, .heading7, .heading8, .heading9, .heading10,
+.heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6,
+.booktitle, .booksubtitle, .booknotestitle, .forewordtitle,
+.citation, .citationcontent, .citationcontent1,
+.captioncontent, .caption, .caption1, .captionnumber,
+.tocentry, .tocchapter, .tocsection,
+.collaboratorsection, .seriestitle, .seriestitle1, .seriestitle2,
+.tablestyle1, .tablestyle2, .tablestyle3, .tablestyle4,
+.tablestyle5, .tablestyle6, .tablestyle7 {
+  font-family:
+    "LXGW WenKai", "LXGW WenKai Screen", "LXGW WenKai GB",
+    "霞鹜文楷", "霞鹜文楷 GB",
+    "Source Han Serif SC", "Noto Serif CJK SC",
+    "Songti SC", "STSong", "SimSun", serif !important;
+}
+
+/* ---------- 段落 ---------- */
+p, .para, .para1, .para2, .para3, .para5, .para7,
+.simplepara, .simplepara1 {
+  display: block;
+  margin: 0.5em 0;
+  line-height: 1.85;
+  font-size: 1em !important;
+}
+.para4, .para6 { display: inline; text-indent: 0; }
+
+/* ---------- 双语段落：英文蓝色小字，中文黑色加左边线 ---------- */
+[lang="en"], [xml\:lang="en"] {
+  color: #0000cc !important;
+  font-size: 1em;
+}
+[lang="zh"], [xml\:lang="zh"] {
+  color: #000000 !important;
+  font-weight: 500;
+  font-size: 1em;
+}
+p[lang="zh"], p[xml\:lang="zh"],
+div.collaboratorsection[lang="zh"], div.collaboratorsection[xml\:lang="zh"],
+div.para2[lang="zh"], div.para2[xml\:lang="zh"] {
+  border-left: 3px solid #0000ff;
+  padding: 0.15em 0.6em 0.15em 0.8em;
+  margin: 0.4em 0 0.9em 0;
+}
+p[lang="en"] + p[lang="zh"],
+p[xml\:lang="en"] + p[xml\:lang="zh"],
+div[lang="en"] + div[lang="zh"],
+div[xml\:lang="en"] + div[xml\:lang="zh"] {
+  margin-top: 0.25em;
+}
+
+/* ---------- 标题（统一缩小，避免过大） ---------- */
+.chaptertitle, .calibre1, .chapterTitle {
+  font-size: 1.3em !important; font-weight: 700; line-height: 1.4;
+  margin: 1.2em 0 0.5em;
+  color: #000000 !important;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25em;
+  text-indent: 0; text-align: left;
+  page-break-after: avoid; break-after: avoid;
+}
+.chapterNumber {
+  font-size: 1.6em !important;
+  text-align: center;
+  color: #4a90d9 !important;
+  margin: 0.5em 0;
+}
+.chaptertitle[lang="zh"] {
+  margin-top: 0.2em; font-size: 1.2em !important;
+  border-bottom: none; padding-bottom: 0;
+  color: #000000 !important;
+}
+.heading2, .heading4, .heading5,
+.heading-2, .heading-3, .heading-4 {
+  font-size: 1.08em !important; font-weight: 700; line-height: 1.4;
+  margin: 1em 0 0.4em;
+  color: #000000 !important;
+  text-align: left; text-indent: 0;
+  page-break-after: avoid; break-after: avoid;
+}
+.heading2[lang="zh"], .heading4[lang="zh"], .heading5[lang="zh"] {
+  margin-top: 0.1em; font-size: 1.04em !important;
+  color: #000000 !important;
+}
+.heading1, .heading6, .heading8, .heading10,
+.heading-1 {
+  font-size: 1.15em !important; font-weight: 700; line-height: 1.4;
+  margin: 1em 0 0.3em;
+  color: #000000 !important;
+  text-align: left; text-indent: 0;
+  page-break-after: avoid; break-after: avoid;
+}
+.heading1[lang="zh"], .heading6[lang="zh"],
+.heading8[lang="zh"], .heading10[lang="zh"] {
+  margin-top: 0.1em; font-size: 1.08em !important;
+  color: #000000 !important;
+}
+.headingnumber {
+  display: inline-block; padding-right: 0.4em;
+  color: #0000ff;
+}
+
+/* 覆盖原 epub.css 中过大的标题字号 */
+h1 { font-size: 1.15em !important; }
+h2 { font-size: 1.08em !important; }
+h3 { font-size: 1.04em !important; }
+h4, h5, h6 { font-size: 1em !important; }
+
+/* ---------- 章首 © 信息条（缩小、淡化） ---------- */
+.chaptercontextinformation {
+  display: block;
+  font-size: 0.85em;
+  color: #000000;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 0.4em;
+  margin-bottom: 1em;
+}
+.chaptercontextinformation a { color: #0000ff; text-decoration: none; }
+
+/* ---------- 列表 ---------- */
+ul, ol { margin: 0.4em 0 0.7em 1.5em; padding-left: 0.4em; line-height: 1.8; }
+li { margin: 0.25em 0; font-size: 1em !important; }
+.unorderedlistmarkbullet, .unorderedlistmarkbullet1 {
+  display: block; list-style-type: disc; margin: 0.3em 0 0.5em 1.5em;
+}
+.unorderedlistmarkdash {
+  display: block; list-style-type: "— "; margin: 0.3em 0 0.5em 1.5em; text-indent: 0;
+}
+.listitem { display: list-item; list-style-position: outside; }
+.itemnumber {
+  display: inline-block; min-width: 1.6em; padding-right: 0.4em;
+  font-weight: 600; color: #0000ff;
+}
+.itemcontent { display: inline-block; vertical-align: top; }
+
+/* ---------- 图片：行内公式不换行，独立图片居中 ---------- */
+figure, .figure, .figure1,
+.mediaobject, .mediaobject1, .mediaobject2 {
+  display: block; text-align: center; margin: 1.2em auto;
+  text-indent: 0;
+  page-break-inside: avoid; break-inside: avoid;
+}
+
+/* 默认行内：段落内的图片跟随文字流，不单独换行 */
+p img, li img, td img, th img {
+  display: inline !important;
+  vertical-align: middle;
+  max-height: 1.3em;
+  width: auto;
+  height: auto;
+  margin: 0 0.1em;
+}
+
+/* 独立图片（居中段落、figure 内）保持块级 */
+p.center img, figure img, .figure img, .mediaobject img {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: none;
+  height: auto;
+  margin: 0.5em auto;
+}
+
+/* 全局 img 兜底 */
+img { max-width: 100%; height: auto; vertical-align: middle; }
+
+.imagestyle, .imagestyle1, .imagestyle2, .imagestyle3, .imagestyle4,
+.imagestyle5, .imagestyle6, .imagestyle7, .imagestyle8, .imagestyle9,
+.imagestyle10, .imagestyle11, .imagestyle12, .imagestyle13, .imagestyle14,
+.imagestyle15, .imagestyle16, .imagestyle17, .imagestyle18, .imagestyle19 {
+  width: auto !important; max-width: 100% !important; height: auto;
+  margin: 0.4em auto; padding: 0; border: 0;
+}
+.calibre14 { max-width: 100%; width: auto; margin: 0 auto; }
+
+/* 行内公式 SVG（Springer 风格） */
+img[src*="_TeX_IEq"] {
+  display: inline-block; height: 1em;
+  vertical-align: middle; margin: 0 0.15em;
+}
+
+/* 块公式 */
+.equation, .equation1, .equationwrapper, .equationcontent {
+  display: block; text-align: center; text-indent: 0;
+  margin: 0.7em 0; overflow-x: auto;
+}
+.equationcontent img { max-width: 95%; height: auto; }
+
+/* 图说 */
+figcaption, .caption, .caption1, .captioncontent {
+  display: block; font-size: 1em; color: #000000;
+  text-align: center; margin: 0.4em auto 0.8em; line-height: 1.5;
+}
+.captionnumber {
+  font-weight: 700; color: #0000ff;
+  padding-right: 0.4em; font-style: normal;
+}
+
+/* ---------- 代码块：方框 + 等宽字体（统一所有变体一个边框） ---------- */
+/* 覆盖所有 <pre> 和 programlisting 变体 */
+pre,
+pre.programlisting,
+pre.programlisting.code,
+pre.programlisting.con,
+pre.programlisting.gen,
+pre.programlisting.code-one,
+pre.programlisting.con-one,
+pre.programlisting.gen-one,
+.programcode, .programcode1 {
+  display: block;
+  background: #f8f9fb !important;
+  border: 1px solid #d4d8de !important;
+  border-left: 4px solid #4a90d9 !important;
+  border-radius: 6px;
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  font-family:
+    "LXGW WenKai Mono", "LXGW WenKai Mono Light",
+    "霞鹜文楷等宽", "霞鹜文楷 Mono",
+    "Source Code Pro", "JetBrains Mono",
+    "Consolas", "Menlo", "Courier New", monospace !important;
+  font-size: 1em !important;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #2d2d2d !important;
+  page-break-inside: avoid; break-inside: avoid;
+  text-indent: 0;
+}
+
+/* <pre> 内部的 <code> 不继承边框/背景，避免双边框 */
+pre code, pre .hljs-code,
+.programlisting code, .programlisting .hljs-code {
+  display: inline !important;
+  border: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 1em !important;
+  line-height: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #2d2d2d !important;
+}
+
+/* 行内 <code>（不在 <pre> 内部） */
+code:not(pre code):not(.hljs-code):not(pre .hljs-code) {
+  font-family:
+    "LXGW WenKai Mono", "霞鹜文楷等宽",
+    "Source Code Pro", "Consolas", monospace !important;
+  font-size: 0.93em !important;
+  background: #f0f2f5 !important;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  border: none !important;
+}
+
+.fixedline, .fixedline1 {
+  display: block;
+  font-family:
+    "LXGW WenKai Mono", "霞鹜文楷等宽",
+    "Source Code Pro", "Consolas", monospace !important;
+  font-size: 1em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-indent: 0; margin: 0;
+  color: #2d2d2d !important;
+  background: transparent !important;
+}
+/* Springer 坑：代码段被 .copyrightpageissns 包裹 */
+.programcode .copyrightpageissns,
+.programcode1 .copyrightpageissns {
+  display: block; padding: 0; margin: 0;
+}
+/* 行内代码（等宽类名） */
+.emphasisfontcategorynonproportional {
+  font-family:
+    "LXGW WenKai Mono", "霞鹜文楷等宽",
+    "Source Code Pro", "Consolas", monospace !important;
+  background: #f0f2f5;
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  font-size: 0.93em;
+  color: #cc0000;
+}
+
+/* ---------- 表格：booktabs 风格 ---------- */
+.table { display: block; overflow-x: auto; margin: 1em 0; text-indent: 0; }
+.tablestyle {
+  display: table; border-collapse: collapse;
+  margin: 0.5em auto; font-size: 1em !important;
+  width: auto; max-width: 100%;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+}
+.tablestyle1, .tablestyle2, .tablestyle3, .tablestyle4,
+.tablestyle5, .tablestyle6, .tablestyle7 {
+  display: table-cell;
+  padding: 0.45em 0.8em;
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.55;
+  font-size: 1em !important;
+}
+.tablestyle1, .tablestyle2, .tablestyle5 {
+  font-weight: 700;
+  color: #0000ff;
+  border-bottom: 1.5px solid #000000;
+  background: transparent;
+}
+.tablestyle3, .tablestyle4, .tablestyle6, .tablestyle7 {
+  border-bottom: 1px solid #cccccc;
+}
+.tablestyle .simplepara1 { display: block; margin: 0; text-indent: 0; }
+.caption1 {
+  display: table-caption; caption-side: top;
+  font-size: 1em; font-weight: 600;
+  text-align: left; margin-bottom: 0.4em;
+  color: #0000ff;
+}
+
+/* ---------- 分隔与链接 ---------- */
+.section {
+  margin-top: 1.2em;
+  border-top: 1px solid #000000;
+  padding-top: 0.5em;
+}
+a, a:link {
+  color: #0000ff;
+  text-decoration: none;
+  border-bottom: 1px dotted #0000ff;
+  font-size: 1em !important;
+}
+a:visited { color: #0000ff; }
+a:hover, a:active {
+  color: #cc0000;
+  border-bottom-color: #cc0000;
+}
+a[role="doc-biblioref"] {
+  font-size: 0.85em;
+  vertical-align: super;
+  line-height: 0;
+  padding: 0 0.15em;
+  border-bottom: none;
+  color: #0000ff;
+}
+
+/* ---------- 上下标 ---------- */
+sub, .calibre7 { vertical-align: sub; font-size: 0.72em; line-height: 0; }
+sup, .calibre5, .calibre9 { vertical-align: super; font-size: 0.72em; line-height: 0; }
+
+/* ---------- 引用 ---------- */
+.citationcontent, .citationcontent1 {
+  display: block;
+  padding: 0.2em 0.4em 0.2em 0.8em;
+  font-size: 1em;
+  color: #0000cc;
+  border-left: 2px solid #0000cc;
+  margin: 0.2em 0;
+}
+.citationcontent[lang="zh"], .citationcontent1[lang="zh"] {
+  color: #000000;
+  border-left-color: #0000ff;
+}
+
+/* ---------- 兼容旧类 ---------- */
+.emphasistypebold { font-weight: 700; }
+.emphasistypeitalic { font-style: italic; }
+.calibre2 { display: list-item; }
+.calibre3 { text-decoration: underline; }
+.calibre4 { display: block; }
+.collaboratorsection { display: block; }
+.clearboth { clear: both; display: block; height: 0.3em; line-height: 0; }
+
+/* ---------- 分页控制 ---------- */
+section { page-break-inside: auto; }
+.chaptertitle, .calibre1, .heading2, .heading4, .heading5, h1, h2 {
+  page-break-after: avoid; break-after: avoid;
+}
+figure, .figure, .figure1,
+pre, .programcode, .programcode1,
+.equation, .equation1,
+.table, .tablestyle {
+  page-break-inside: avoid; break-inside: avoid;
+}
+
+/* ---------- 注意：不写 @media (prefers-color-scheme: dark) ----------
+   原因：部分 EPUB 编辑器（Sigil、Calibre 编辑器）会误判为 dark
+   scheme，触发暗色规则把文字渲染成白色，导致白底白字看不见。
+   如果用户明确需要暗色模式，再单独追加。 */

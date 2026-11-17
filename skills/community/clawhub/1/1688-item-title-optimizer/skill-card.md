@@ -1,49 +1,67 @@
-## Description: <br>
-Optimizes 1688 product titles by generating rule-based hot-keyword suggestions and LLM rewrite suggestions for comparison before a user applies a title. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes 1688 product titles by generating rule-based hot-keyword suggestions and LLM-based rewrites with optional user preferences.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External 1688 sellers and operators use this skill to review alternative product-title optimizations, compare keyword-based and LLM-generated suggestions, and confirm a selected title before any live listing update. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 1688 access key and may store it in OpenClaw configuration or read it from environment variables. <br>
-Mitigation: Use a scoped or rotatable key when available, keep local configuration protected, and rotate the key if it is exposed. <br>
-Risk: The skill sends product IDs and title-related data to the 1688 skills gateway for optimization. <br>
-Mitigation: Install only when that data flow is acceptable and verify the configured gateway is trusted before use. <br>
-Risk: Generated title suggestions may be inaccurate, misleading, or unsuitable for a live listing. <br>
-Mitigation: Review the original and proposed title carefully and require explicit user confirmation before applying any listing update. <br>
+## Use Case:
 
+1688 merchants and commerce operators use this skill to compare rule-based and LLM-generated product title improvements, inspect keyword rationale, and confirm a selected title before applying it.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1688aiinfra/1688-item-title-optimizer) <br>
-- [1688aiinfra publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [Interaction specifications](artifact/references/interaction-specs.md) <br>
-- [Title optimizer Q&A](artifact/references/title_optimizer_qa.md) <br>
-- [LLM title optimizer reference](artifact/references/title_llm_SKILL.md) <br>
-- [Rule-based title optimizer reference](artifact/references/title_wo_llm_SKILL.md) <br>
-- [Optimize title capability](artifact/capabilities/optimize_title.md) <br>
-- [Optimize title LLM capability](artifact/capabilities/optimize_title_llm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON command results and CLI invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured 1688 AK and product IDs; title suggestions should be reviewed and confirmed before applying to a live listing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill uses a 1688 merchant access key for live product-title operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows where that credential use is expected, and review access-key handling before deployment.
+
+Risk: When no shop is specified, the skill defaults to running title optimization across every bound shop.
+
+Mitigation: Scope requests to a named shop or loginId when broad multi-shop changes are not intended.
+
+Risk: Generated titles may be applied externally after user confirmation.
+
+Mitigation: Review the selected title and confirm carefully before allowing any one-click title update.
+
+Risk: The skill contacts gateway.1688.com and retrieves bound-shop metadata.
+
+Mitigation: Confirm that these network and telemetry expectations match the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-item-title-optimizer)
+- [1688AiInfra publisher profile](https://clawhub.ai/user/1688aiinfra)
+- [Product selection interaction](https://air.1688.com/app/CSBC-modules/csbc-ai-component-loader/picture-optimize.html?mode=newton-select-offer&skillCode=1688-item-title-optimizer)
+- [interaction-specs.md](artifact/references/interaction-specs.md)
+- [title_llm_SKILL.md](artifact/references/title_llm_SKILL.md)
+- [title_wo_llm_SKILL.md](artifact/references/title_wo_llm_SKILL.md)
+- [title_optimizer_qa.md](artifact/references/title_optimizer_qa.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results with Markdown summaries and interactive selection payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and a configured 1688 merchant access key for live title and keyword operations.]
+
+## Skill Version(s):
+
+0.83.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

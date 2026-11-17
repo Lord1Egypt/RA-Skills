@@ -1,46 +1,65 @@
-## Description: <br>
-Calculates 20-day moving-average deviation and historical percentile references for supported Chinese ETF tickers using public Eastmoney market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates 20-day moving-average deviation and historical percentile references for four supported ETF tickers using public market data.
 
-## Publisher: <br>
-[lyonsli](https://clawhub.ai/user/lyonsli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyonsli](https://clawhub.ai/user/lyonsli)
 
-## Use Case: <br>
-External users and agents use this skill to calculate reference-only moving-average deviation, current price, 20-day average, and historical percentile information for a fixed set of ETF tickers. It supports single-ticker and batch analysis but is not a financial adviser and should not be used as the sole basis for trading or position-sizing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides market-data calculations that could be mistaken for investment advice. <br>
-Mitigation: Keep the output framed as reference-only data and require users to make their own investment decisions. <br>
-Risk: Eastmoney public market data may be delayed, unavailable, incomplete, or inaccurate. <br>
-Mitigation: Display the data source and timestamp, and advise users to verify important values with authoritative market-data sources. <br>
-Risk: Runtime logs may include the OpenClaw user ID and requested ticker symbols. <br>
-Mitigation: Avoid entering sensitive personal or portfolio information and review runtime log retention before deployment. <br>
+## Use Case:
 
+External users can ask an agent for Chinese-language ETF moving-average deviation analysis across the supported tickers. The skill returns reference data for portfolio review and explicitly does not provide investment advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lyonsli/position-deviation-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/lyonsli) <br>
-- [Artifact overview page](docs/index.html) <br>
-- [Eastmoney quote API endpoint used by artifact](https://push2.eastmoney.com/api/qt/stock/get) <br>
-- [Eastmoney historical K-line API endpoint used by artifact](https://push2his.eastmoney.com/api/qt/stock/kline/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON response containing a Markdown market-data report and metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include analyzed ticker count, ticker list, data source, and timestamp metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter and package.json use 2.0.0-free) <br>
+Risk: Users may mistake ETF deviation and percentile output for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the non-advice disclaimer visible and treat results only as reference data for user-directed review.
+
+Risk: Public market data may be delayed, incomplete, or unavailable.
+
+Mitigation: Tell users the data source can lag or fail and avoid making time-sensitive decisions from the output alone.
+
+Risk: Broad trigger wording may invoke the skill for finance questions outside its four supported tickers.
+
+Mitigation: Limit use to the documented ticker list or ask the publisher to narrow the trigger wording.
+
+Risk: The artifact includes an unused, unpinned Python dependency.
+
+Mitigation: Remove the unused dependency or pin it before deployment when Python dependencies are installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyonsli/skills/position-deviation-analysis)
+- [Publisher profile](https://clawhub.ai/user/lyonsli)
+- [Artifact documentation](docs/index.html)
+- [Eastmoney realtime quote API](https://push2.eastmoney.com/api/qt/stock/get)
+- [Eastmoney historical K-line API](https://push2his.eastmoney.com/api/qt/stock/kline/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown report with JSON-style status metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language ETF analysis for the supported tickers; data is for reference only and is not investment advice.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

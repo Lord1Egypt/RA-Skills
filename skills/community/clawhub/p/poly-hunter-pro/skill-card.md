@@ -1,43 +1,50 @@
-## Description: <br>
-Returns a paid snapshot of the three largest absolute price movers among active Polymarket markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors active Polymarket markets for major price movements and returns the top movers after SkillPay payment confirmation.
 
-## Publisher: <br>
-[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog)
 
-## Use Case: <br>
-Web3 investors and agent workflows use this skill to request a paid Polymarket market-mover snapshot and receive payment status, checkout details, or the resulting top-three mover data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The payment flow is real and the artifact embeds a payment API secret. <br>
-Mitigation: Review before installing, revoke the exposed key, remove secrets from source, and load payment credentials from a managed secret store. <br>
-Risk: The release claims whale or on-chain intelligence that is not supported by the implemented market-mover behavior. <br>
-Mitigation: Treat results as Polymarket price-mover data only unless the developer documents and implements the claimed data sources. <br>
-Risk: Payment API and web hosts are configurable. <br>
-Mitigation: Restrict payment hosts to trusted SkillPay endpoints before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/poly-hunter-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/xqw1377-prog) <br>
-- [Polymarket CLOB markets endpoint](https://clob.polymarket.com/markets) <br>
+## Use Case:
 
+Web3 investors and market analysts use this skill to request a paid snapshot of high-movement active Polymarket markets. It is intended to support market monitoring workflows, not to replace independent financial review.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, API response] <br>
-**Output Format:** [JSON response containing payment status, payment URL, charge ID, or market mover records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to three market records with title, current price, previous price, delta, absolute delta, volume, and status after payment confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact skill.yaml reports 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment handling exposes a built-in payment credential and does not safely scope charge IDs to a single paid invocation.
+
+Mitigation: Remove the embedded SkillPay key from source, rotate the credential, allowlist payment API hosts, and bind each charge ID to exactly one paid invocation before real billing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/skills/poly-hunter-pro)
+- [Publisher profile](https://clawhub.ai/user/xqw1377-prog)
+- [Polymarket markets endpoint](https://clob.polymarket.com/markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON API response with payment status and market-mover data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires payment confirmation before returning market data.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

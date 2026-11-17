@@ -1,42 +1,64 @@
-## Description: <br>
-Cursor Agent CLI integration - AI-powered coding agent for terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cursor Agent CLI integration - AI-powered coding agent for terminal.
 
-## Publisher: <br>
-[kailian](https://clawhub.ai/user/kailian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kailian](https://clawhub.ai/user/kailian)
 
-## Use Case: <br>
-Developers and engineers use this skill to invoke Cursor Agent CLI for terminal-based coding sessions, planning, code review, test generation, documentation, and automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cursor Agent CLI modes can modify local code, run unattended, or use credentials when the user enables those options. <br>
-Mitigation: Prefer plan or ask mode first, keep sandbox protections enabled, avoid force or trust modes in untrusted repositories, and review generated changes before merging or deploying. <br>
-Risk: Installation and authentication flows may expose users to pipe-to-shell installer risk or leaked API keys. <br>
-Mitigation: Verify Cursor's installer source before running it and keep API keys out of shell history, logs, and committed files. <br>
+## Use Case:
 
+Developers and engineers use this skill to run Cursor Agent CLI for terminal-based coding assistance, including planning, code review, refactoring, test generation, documentation, and CI-oriented analysis.
 
-## Reference(s): <br>
-- [Cursor CLI Documentation](https://cursor.com/docs/cli/overview) <br>
-- [Cursor Cloud Agents](https://cursor.com/agents) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kailian/cursor-agent-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cursor Agent may produce file changes or JSON output depending on the selected mode and flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill documents a pipe-to-shell installer for Cursor Agent CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify the official installer and source before execution, or use an installation method approved by the deployment environment.
+
+Risk: Cursor Agent CLI can modify files, run commands, persist sessions, and run in cloud/background execution.
+
+Mitigation: Use plan or ask mode first, review proposed changes before approval, and limit use to trusted workspaces.
+
+Risk: High-authority flags such as --force, --yolo, --trust, or disabled sandboxing can reduce review and isolation.
+
+Mitigation: Avoid these flags on untrusted code and keep sandboxing enabled unless there is a reviewed operational need.
+
+Risk: API keys may be exposed through command history, logs, or scripts.
+
+Mitigation: Use approved secret handling and avoid placing CURSOR_API_KEY values directly in shell commands or committed files.
+
+## Reference(s):
+
+- [Cursor CLI Overview](https://cursor.com/docs/cli/overview)
+- [Cursor Agents](https://cursor.com/agents)
+- [Cursor Community Forum](https://forum.cursor.com)
+- [ClawHub Skill Page](https://clawhub.ai/kailian/skills/cursor-agent-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and optional JSON output from Cursor Agent CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Cursor Agent CLI binaries `agent` and `cursor`; optional workflows may use `git` or `gh`.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

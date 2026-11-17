@@ -1,43 +1,56 @@
-## Description: <br>
-Publishes user-requested Pins to the Juejin community through browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes Juejin Pins through a logged-in browser session when a user asks to post content, club or topic selections, images, links, or code blocks.
 
-## Publisher: <br>
-[itcastWsy](https://clawhub.ai/user/itcastWsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itcastwsy](https://clawhub.ai/user/itcastwsy)
 
-## Use Case: <br>
-Juejin users use this skill to publish Pins with requested text, circles, topic tags, images, links, or code from an active logged-in browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish through the user's active Juejin session. <br>
-Mitigation: Before the final publish action, verify the active account and review the exact content, circle, topic, links, images, and code. <br>
-Risk: Frequent or sensitive posts may be limited or reviewed by Juejin. <br>
-Mitigation: Keep posts within platform limits, avoid sensitive content, and pause if Juejin shows rate-limit or review signals. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through publishing short-form Juejin community posts with optional circles, topics, images, links, and code snippets.
 
-## Reference(s): <br>
-- [Juejin Pins](https://juejin.cn/pins) <br>
-- [Juejin Clubs](https://juejin.cn/pin/clubs) <br>
-- [Juejin Topics](https://juejin.cn/pin/topics) <br>
-- [ClawHub Skill Page](https://clawhub.ai/itcastWsy/juejin-pins-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with browser automation steps and inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Juejin account and an OpenClaw Browser Relay-enabled Chrome session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can publish public Juejin posts from a logged-in browser session without enforcing a final confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the post text, selected club or topic, links, code, and images before allowing the final publish action.
+
+Risk: The skill depends on the user's active Juejin session to perform publishing actions.
+
+Mitigation: Install and use it only when the user is comfortable letting the agent operate within that logged-in browser session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itcastwsy/skills/juejin-pins-publish)
+- [Juejin Pins](https://juejin.cn/pins)
+- [Juejin Pin clubs](https://juejin.cn/pin/clubs)
+- [Juejin Pin topics](https://juejin.cn/pin/topics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline browser automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include post text, club and topic choices, image paths, links, or code snippets supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

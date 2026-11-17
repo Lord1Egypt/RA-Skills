@@ -1,41 +1,58 @@
-## Description: <br>
-Provides real-time NVIDIA GPU usage and memory stats, plus Ollama model layer GPU/CPU distribution via server.log parsing with live updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time NVIDIA GPU usage and memory stats, plus Ollama model layer GPU/CPU distribution via server.log parsing with live updates.
 
-## Publisher: <br>
-[tinkerjueberg](https://clawhub.ai/user/tinkerjueberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinkerjueberg](https://clawhub.ai/user/tinkerjueberg)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor local NVIDIA GPU memory, utilization, and temperature while running Ollama workloads, including GPU versus CPU model layer placement when Ollama server logs are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local GPU inspection commands and may read an Ollama server log path supplied by the user. <br>
-Mitigation: Run it only on systems where local GPU telemetry is expected, and provide only Ollama log paths that the agent is authorized to read. <br>
-Risk: The monitor runs continuously until interrupted. <br>
-Mitigation: Use an appropriate refresh interval and stop the process when monitoring is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor local NVIDIA GPU memory, utilization, and temperature while running workloads. Users running Ollama can also inspect model layer placement between GPU and CPU when a server.log path is configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tinkerjueberg/gpu-monitor) <br>
-- [Ollama framework](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Terminal text output with optional JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Continuously refreshed local status output; default interval is 2 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can run as a long-running local GPU monitor and repeatedly call nvidia-smi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment and choose an update interval that is appropriate for the host.
+
+Risk: When configured with an Ollama server.log path, the skill reads local log data.
+
+Mitigation: Point it only at the intended local Ollama log and avoid using logs that contain sensitive prompts, paths, or operational details.
+
+Risk: The artifact includes an entrypoint helper that can overwrite entry.py.
+
+Mitigation: Review or remove the create_entry_script behavior before using the skill in a managed environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tinkerjueberg/skills/gpu-monitor)
+- [Ollama](https://ollama.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text output and Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces live local monitoring updates; Ollama layer data is available only when a readable server.log path is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

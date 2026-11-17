@@ -1,44 +1,59 @@
-## Description: <br>
-Guides agents to query Jiimore product discovery data to find Amazon products by keyword using conversion, click growth, profitability, review, seller-origin, and marketplace filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiimore-商品发现 helps Amazon sellers discover keyword-matched products using Jiimore data, with filters for conversion, click growth, profitability, reviews, price, and listing age.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External Amazon sellers and e-commerce analysts use this skill to search Jiimore product discovery data for keyword-matched products and screen them by market, conversion, click growth, reviews, margin, listing age, and seller origin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with product-discovery queries limited to Amazon US, JP, and DE marketplaces. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon product-discovery queries and filters are sent to LinkFox services. <br>
-Mitigation: Use the skill only when external LinkFox processing is acceptable, and avoid entering sensitive business, customer, or confidential product-planning data. <br>
-Risk: The skill includes feedback behavior that can send user-derived feedback to a separate LinkFox endpoint. <br>
-Mitigation: Require explicit user approval before submitting feedback and include only the minimum necessary context. <br>
-Risk: Broad trigger language may route general product research requests into this integration. <br>
-Mitigation: Confirm the user wants Jiimore/LinkFox-backed Amazon product discovery before making API calls. <br>
+## Use Case:
 
+External Amazon sellers and e-commerce operators use this skill to query Jiimore product discovery data for keyword-driven product mining, opportunity validation, and competitive benchmarking across supported marketplaces.
 
-## Reference(s): <br>
-- [Jiimore Product Discovery API Reference](artifact/references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-jiimore-product-discovery) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown summaries and tables, JSON API request/response examples, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY; keyword is required; page size is capped at 100; supported marketplaces are US, JP, and DE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires a LinkFox API key and includes onboarding paths for account login, API-key issuance, and paid order creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when LinkFox account and billing access are acceptable, confirm any plan or payment selection before order commands, and store API keys with a secret manager or similarly protected environment mechanism.
+
+Risk: Product discovery calls consume paid compute credits and complete API responses are persisted locally.
+
+Mitigation: Use specific queries, avoid repeated high-frequency calls without user approval, and review the local linkfox session data and cache for retained product responses.
+
+Risk: The skill supports configurable LinkFox endpoints and automatic feedback reporting.
+
+Mitigation: Prefer the default LinkFox endpoints unless a trusted deployment requires otherwise, and review feedback reports before sending when they may include task context.
+
+## Reference(s):
+
+- [Jiimore Product Discovery API Reference](references/api.md)
+- [Authentication and Billing Onboarding Guide](references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-jiimore-product-discovery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples, shell commands, tabular product summaries, and saved JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full API responses are saved under a local linkfox session data directory; larger responses are summarized unless inline output is requested.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

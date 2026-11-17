@@ -1,45 +1,60 @@
-## Description: <br>
-Operate Docker Hub through an OOMOL-connected account for repository, image, organization, team, and access-token workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docker Hub (hub.docker.com). Use this skill for ANY Docker Hub request — reading, creating, updating, and deleting data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and platform operators use this skill to inspect Docker Hub repositories and tags, manage organization members and teams, and create repositories through a connected Docker Hub account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Docker Hub account and can administer Docker Hub resources. <br>
-Mitigation: Use a least-privileged Docker Hub connection and install only when agent access to that account is intended. <br>
-Risk: The skill can list organization access tokens and perform high-impact organization changes. <br>
-Mitigation: Review the requested scope and confirm exact write or destructive targets before running those actions. <br>
-Risk: First-time setup may require running the oo CLI installer. <br>
-Mitigation: Review the oo CLI installer before using the one-line installation command. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect and manage Docker Hub repositories, tags, images, organization members, teams, and access tokens through a connected OOMOL account.
 
-## Reference(s): <br>
-- [Docker Hub homepage](https://hub.docker.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-docker-hub) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Docker Hub data as JSON from oo CLI connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup may execute unverified remote installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer behavior before enabling the skill, use an independently reviewed CLI release, and disable startup skill synchronization with OO_SKILLS_SYNC_DISABLED=1 as documented in the oo CLI command reference.
+
+Risk: The CLI can silently install skills into other agent applications, and external installer contents and hosted connector behavior are unverified.
+
+Mitigation: Inspect the bundled artifact, review the CLI and connector behavior before use, and keep startup skill synchronization disabled.
+
+Risk: Docker Hub writes and deletions can change account or organization state.
+
+Mitigation: Connect only the permissions needed and retain user approval for write and destructive actions.
+
+## Reference(s):
+
+- [Docker Hub](https://hub.docker.com)
+- [Docker Hub API documentation](https://docs.docker.com/reference/api/hub/latest/)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance, Analysis]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples; connector results are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write and destructive actions require user confirmation; read actions may be run directly.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

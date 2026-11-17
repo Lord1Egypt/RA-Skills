@@ -1,45 +1,60 @@
-## Description: <br>
-Provides PostgreSQL database operation guidance and scripts for connection setup, schema inspection, SQL execution, CSV export, backup and restore workflows, and pgvector similarity queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides PostgreSQL database operation guidance for connection management, schema inspection, CRUD queries, backup and restore, CSV export and import, performance checks, and pgvector similarity queries.
 
-## Publisher: <br>
-[callxor](https://clawhub.ai/user/callxor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[callxor](https://clawhub.ai/user/callxor)
 
-## Use Case: <br>
-Developers and database operators use this skill to connect to PostgreSQL databases, inspect schemas, run SQL, export data, and manage backups for development and operations tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad database credential and raw SQL authority. <br>
-Mitigation: Use a least-privileged or read-only database user by default, and require manual approval for UPDATE, DELETE, DDL, restore, and other high-impact operations. <br>
-Risk: Credentials may be exposed if environment files or ~/.pgpass are stored or shared insecurely. <br>
-Mitigation: Keep .env and ~/.pgpass private, restrict file permissions, and avoid hardcoding passwords in scripts, logs, or prompts. <br>
-Risk: Backup and CSV export workflows can create sensitive local files. <br>
-Mitigation: Store exports and backups only in trusted directories, protect generated files, and apply a retention policy appropriate for the data. <br>
+## Use Case:
 
+Developers and database operators use this skill to generate PostgreSQL commands, SQL examples, backup and export workflows, and operational troubleshooting guidance for environments where database access has already been authorized.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/callxor/postgresql-db) <br>
-- [PostgreSQL documentation](https://www.postgresql.org/docs/) <br>
-- [pgvector documentation](https://github.com/pgvector/pgvector) <br>
-- [psql command reference](https://postgresmeta.com/docs/psql-commands) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline SQL and bash examples, plus shell scripts for query, CSV export, and backup workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PostgreSQL command-line tools and database credentials supplied through environment variables or ~/.pgpass.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill may use database credentials and execute user-supplied SQL against PostgreSQL instances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege database roles, require explicit authorization before running SQL, and avoid granting write or administrative privileges unless the task requires them.
+
+Risk: Backup and CSV export workflows can write sensitive database contents to local files.
+
+Mitigation: Review destination paths before execution, store exports and backups in approved locations, and apply retention and access controls for production data.
+
+Risk: Helper scripts load credentials from local environment sources such as .env or DB_PASSWORD.
+
+Mitigation: Prefer .pgpass or externally supplied environment variables, keep credentials out of source files and logs, and run scripts only from trusted directories.
+
+## Reference(s):
+
+- [PostgreSQL Official Documentation](https://www.postgresql.org/docs/)
+- [pgvector Documentation](https://github.com/pgvector/pgvector)
+- [psql Command Reference](https://postgresmeta.com/docs/psql-commands)
+- [ClawHub Skill Page](https://clawhub.ai/callxor/skills/postgresql-db)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline SQL and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that read database credentials, execute SQL, and write backup or export files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

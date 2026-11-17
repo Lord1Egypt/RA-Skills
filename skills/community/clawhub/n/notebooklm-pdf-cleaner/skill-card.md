@@ -1,43 +1,53 @@
-## Description: <br>
-Creates a presentation-ready copy of a NotebookLM-exported slide-deck PDF by masking the small visible NotebookLM footer badge at the bottom-right of each page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a presentation-ready copy of a NotebookLM-exported slide-deck PDF by masking the small visible NotebookLM footer badge at the bottom-right of each page.
 
-## Publisher: <br>
-[fudanjx](https://clawhub.ai/user/fudanjx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fudanjx](https://clawhub.ai/user/fudanjx)
 
-## Use Case: <br>
-External users and developers use this skill to create a cleaned copy of a NotebookLM slide-deck PDF for sharing, presenting, or emailing while preserving the original file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The mask can cover content if used on an unsuitable PDF or with incorrect coordinates. <br>
-Mitigation: Use the skill only for NotebookLM slide-deck PDFs with the expected footer badge, keep the original PDF, and spot-check the output before sharing. <br>
-Risk: Optional metadata or annotation stripping can remove authorship, comments, links, review history, or other information recipients should see. <br>
-Mitigation: Leave metadata and annotation stripping disabled unless removal is intentional and appropriate for the document. <br>
-Risk: Using --force can overwrite an existing output file. <br>
-Mitigation: Choose a distinct output path or review the existing output before rerunning with --force. <br>
+## Use Case:
 
+External users and developers use this skill to create a cleaned copy of a NotebookLM slide-deck PDF for sharing, presenting, or emailing while keeping the original PDF unchanged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fudanjx/notebooklm-pdf-cleaner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fudanjx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PDF file output with Markdown instructions and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a new *-clean.pdf by default; inspect mode emits text diagnostics instead of writing a file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Optional metadata or annotation stripping can remove document provenance or review information from the cleaned copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the original PDF and use --strip-metadata or --strip-annots only when that removal is intentional.
+
+Risk: The default mask is narrowly tuned to NotebookLM slide-deck footer badges and may cover the wrong area on unusual page layouts.
+
+Mitigation: Use --inspect and spot-check page 1 plus a later page; adjust mask values before sharing when needed.
+
+## Reference(s):
+
+- [NotebookLM PDF Cleaner on ClawHub](https://clawhub.ai/fudanjx/skills/notebooklm-pdf-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local PDF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a new *-clean.pdf copy by default; optional inspection, mask tuning, metadata stripping, and annotation stripping are available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Automates RustChain bounty workflows by analyzing bounty requirements, implementing code, adding tests, and preparing pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates RustChain bounty workflows by analyzing bounty requirements, implementing code changes, adding tests, and preparing PR-ready submission materials.
 
-## Publisher: <br>
-[santosparra651-arch](https://clawhub.ai/user/santosparra651-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[santosparra651-arch](https://clawhub.ai/user/santosparra651-arch)
 
-## Use Case: <br>
-Developers use this skill to work through RustChain bounty issues by generating implementation changes, tests, and pull request text for review. It is intended for users who want an agent-assisted coding workflow around selected bounties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to modify code and prepare pull request work, which can introduce unwanted or incorrect changes if run without review. <br>
-Mitigation: Require the agent to show planned files, branch, commit contents, and test results before relying on the changes. <br>
-Risk: The skill describes pushing work to a user fork, so repository changes could be published before the user has checked the destination. <br>
-Mitigation: Do not allow commits or pushes until the branch, fork, commit contents, and push destination have been explicitly approved. <br>
+## Use Case:
 
+Developers working on RustChain bounties use this skill to turn a selected issue into code changes, tests, and PR-ready writeups. It is intended for bounty workflow assistance where repository changes and submission materials must still be reviewed before remote actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/santosparra651-arch/rustchain-bounty-hunter-v2-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with implementation notes, test commands, code changes, and pull request text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or prepare repository changes that require user review before commit or push.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks an agent to make bounty-related code changes and prepare remote repository updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated branch, review the diff, run tests, and require explicit approval before any push or PR-related action.
+
+Risk: Autonomous bounty implementation may introduce incorrect code or incomplete test coverage.
+
+Mitigation: Review implementation choices against bounty requirements and project conventions before submitting the PR.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/santosparra651-arch/skills/rustchain-bounty-hunter-v2-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with code changes, test instructions, shell commands, and PR-ready descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare repository changes and PR text; user approval should gate pushes or PR actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

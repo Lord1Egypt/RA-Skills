@@ -1,40 +1,53 @@
-## Description: <br>
-Linux Security Scanner helps audit a Linux host by checking SSH configuration, listening ports, firewall rules, failed logins, sudoers permissions, world-writable files, and SUID binaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Security Scanner audits Linux hosts for SSH settings, listening ports, firewall rules, failed login attempts, sudoers permissions, world-writable files, and SUID binaries.
 
-## Publisher: <br>
-[laolaoqi](https://clawhub.ai/user/laolaoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laolaoqi](https://clawhub.ai/user/laolaoqi)
 
-## Use Case: <br>
-Developers, operators, and security administrators use this skill to run local Linux security posture checks and collect a formatted audit report for hardening or compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output may expose sensitive host details, including usernames, IP addresses, open services, sudo privileges, firewall rules, and SUID paths. <br>
-Mitigation: Run the scanner only on systems you own or administer, protect generated reports, and avoid sharing output publicly. <br>
-Risk: Some checks require elevated privileges to inspect local security state. <br>
-Mitigation: Use sudo only for checks that need it and review commands before running them on production systems. <br>
+## Use Case:
 
+Developers, system administrators, and security engineers use this skill to run local Linux security posture checks and collect a formatted audit report for hardening review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laolaoqi/linux-security-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Colorized terminal output and structured Markdown audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some checks require root or sudo access; unsupported local tools are skipped gracefully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Crafted SSH configuration values may be turned into shell commands by the audit script, which is risky during privileged execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the shell script before installation; avoid running it as sudo/root on systems where SSH configuration content might be attacker-controlled, and replace the dynamic bash -c SSH summary with fixed printf-style handling.
+
+Risk: Some checks read privileged system state such as failed-login logs and process details.
+
+Mitigation: Run the audit only on systems you are authorized to inspect, and handle generated reports as security-sensitive operational data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laolaoqi/skills/linux-security-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and a shell-script audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The audit script prints a colorized stdout report and stores a structured markdown report in the REPORT variable during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-05-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Agente Fisica is a Portuguese physics tutoring skill for FUVEST Computer Science preparation, covering mechanics, thermodynamics, electricity, electromagnetism, optics, and waves with phenomenon-first explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agente Fisica is a Portuguese-language physics tutoring skill for FUVEST Computer Science preparation, covering mechanics, energy, thermodynamics, electricity, electromagnetism, optics, and waves through phenomenon-first explanations.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External learners and tutoring agents use this skill to support FUVEST physics study for Computer Science candidates, with explanations that begin from observable phenomena before moving into equations and predictions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The activation guidance is broad and personal-context-specific, so the skill may activate during general physics-related conversations.
+
+Mitigation: Review and narrow the activation conditions before installing if it should only support a specific study workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External learners and tutoring agents use this skill to guide Portuguese FUVEST physics exam preparation for the Computer Science track, emphasizing intuition before equations, topic coverage, and review flashcards. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is tailored to Antonio and a FUVEST multi-agent study workflow, so broad trigger wording could activate it on casual physics mentions. <br>
-Mitigation: Narrow activation wording or routing rules when installing it outside that study workflow. <br>
-Risk: As an exam-prep tutor, it may provide incorrect or misleading physics explanations if used without review. <br>
-Mitigation: Verify explanations and calculations against course materials and official exam references. <br>
+**Output Format:** [Markdown or plain text tutoring guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/agente-fisica) <br>
+**Other Properties Related to Output:** [No executable code, tool calls, persistence, or credential use are described in the reviewed artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Portuguese tutoring guidance with structured topic lists, concept prompts, and flashcard-style review content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credentials, files, network access, or persistence requested.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

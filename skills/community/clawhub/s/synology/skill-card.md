@@ -1,51 +1,61 @@
-## Description: <br>
-Plan, harden, and recover Synology NAS and DSM setups with storage design, backup discipline, remote access, and Container Manager workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, harden, and recover Synology NAS and DSM setups with storage design, backup discipline, remote access, and Container Manager workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-NAS administrators, home-lab users, and small-business operators use this skill to plan DSM storage, backup, remote access, package, Container Manager, migration, and incident recovery work with explicit safety gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live NAS work can change storage, permissions, remote access, restores, or package state. <br>
-Mitigation: Confirm the exact NAS, affected volume or package, backup freshness, rollback plan, and whether each step is read-only or mutating before making changes. <br>
-Risk: Users may expose credentials, recovery secrets, serial numbers, or sensitive support data while troubleshooting. <br>
-Mitigation: Do not paste DSM passwords, OTP codes, private keys, recovery secrets, serial numbers, or secret-bearing support bundles into chat or local notes. <br>
-Risk: Remote access guidance can increase DSM, SSH, or package dashboard exposure if applied without guardrails. <br>
-Mitigation: Prefer private access paths such as VPN or approved QuickConnect workflows, and require explicit approval, MFA, current updates, and rollback documentation before public exposure. <br>
+## Use Case:
 
+External users, developers, and administrators use this skill to plan and triage Synology DSM and NAS work involving storage layout, backups, remote access, package health, Container Manager, upgrades, migrations, and incident recovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/synology) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill Homepage](https://clawic.com/skills/synology) <br>
-- [Synology Official Site](https://www.synology.com) <br>
-- [Synology Knowledge Center](https://kb.synology.com) <br>
-- [Backup and Recovery](backup-and-recovery.md) <br>
-- [Storage and Shares](storage-and-shares.md) <br>
-- [Remote Access and Networking](remote-access-and-networking.md) <br>
-- [Packages and Containers](packages-and-containers.md) <br>
-- [Troubleshooting](troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, execution records, configuration notes, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update optional local notes under ~/synology/ only after user confirmation; does not require credentials for planning or review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Synology NAS administration can affect sensitive storage, backups, permissions, packages, restore paths, and internet exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only inventory, confirm backups and rollback paths, and require explicit confirmation before destructive, mutating, restore, migration, package removal, or exposure-changing actions.
+
+Risk: Optional continuity notes under ~/synology/ could retain sensitive operational context if used carelessly.
+
+Mitigation: Use local memory only with user approval and do not store passwords, OTP codes, private keys, serial numbers, copied support bundles, or other secrets.
+
+Risk: Synology account, QuickConnect, and documentation lookups may send request, session, or connection metadata to Synology-owned services.
+
+Mitigation: Use external Synology services only for approved documentation, account, package, or remote-access tasks, and get explicit approval before involving third-party backup, VPN, DNS, or monitoring services.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/ivangdavila/skills/synology)
+- [Synology official site](https://www.synology.com)
+- [Synology Knowledge Center](https://kb.synology.com)
+- [Synology Account](https://account.synology.com)
+- [Synology QuickConnect](https://quickconnect.to)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, checklists, and concise execution records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local notes under ~/synology/ when the user wants continuity; requires explicit confirmation before destructive, restore, permission, package removal, migration, or internet-exposure changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

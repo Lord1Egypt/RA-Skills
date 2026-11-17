@@ -1,44 +1,59 @@
-## Description: <br>
-Estp Coach helps ESTP users work through growth, career, learning, focus, long-term thinking, and risk-control challenges through a coaching mode for reflection and an advisor mode for concrete action plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ESTP Coach helps ESTP users work through growth, career, learning, focus, and decision-making blocks through reflective coaching and concrete action planning.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as ESTP use this skill for personality-oriented coaching on impulsive decisions, long-term planning, focus, career or study direction, and actionable growth routines. The skill switches between reflective questioning and direct advice depending on the user's urgency and stated preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags an ESTP/INTP identity mismatch that can make personality-specific guidance unreliable. <br>
-Mitigation: Review the skill before installing and require the publisher to resolve the ESTP/INTP mismatch before relying on personality-specific advice. <br>
-Risk: The security summary notes default personal-profile archiving, which may retain personal coaching details across sessions. <br>
-Mitigation: Use the skill only when memory behavior is explicit, optional, minimal, and user-controlled. <br>
-Risk: The skill gives growth and coaching advice but is not a substitute for professional mental health support. <br>
-Mitigation: Keep the documented boundary that serious psychological concerns should be referred to qualified professionals. <br>
+## Use Case:
 
+External users who identify as ESTP use this skill for growth-oriented coaching around impulsive decisions, long-term thinking, focus, career direction, and learning plans. The skill switches between question-led coaching and direct advice when the user asks for concrete steps or appears stuck.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/lj22503-estp-coach) <br>
-- [ESTP Traits and Cognitive Functions](references/estp-traits.md) <br>
-- [INTP Insights Reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown with short questions, action steps, and coaching templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coach mode replies are intended to stay under 200 Chinese characters, while advisor mode replies are intended to stay under 400 Chinese characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: Package identity is inconsistent across the release metadata and artifact files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended package name, display name, install command, and included reference files before release.
+
+Risk: The artifact describes persistent coaching records for personal growth history.
+
+Mitigation: Make any stored coaching history opt-in and provide clear review and deletion controls.
+
+Risk: The skill provides growth coaching and may receive sensitive personal context.
+
+Mitigation: Keep the disclaimer that it is not professional mental-health advice and direct severe concerns to qualified professionals.
+
+## Reference(s):
+
+- [ESTP traits and cognitive functions](artifact/references/estp-traits.md)
+- [INTP insights reference included in package](artifact/references/intp-insights.md)
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-estp-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational coaching responses with questions, options, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coaching responses are intended to stay concise, with shorter question-led replies and longer direct-advice replies.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata; artifact frontmatter says 1.6.0 and clawhub.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

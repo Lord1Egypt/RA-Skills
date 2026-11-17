@@ -1,42 +1,54 @@
-## Description: <br>
-Audits Hermes Agent self-modification behavior, including skill changes, curator status, memory provider health, and configuration drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Regularly audits Hermes Agent self-improvement behavior, including skill changes, curator status, and memory-provider health, so users can spot unexpected agent evolution.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Hermes Agent operators, SREs, and teams concerned with agent self-change use this skill to generate scheduled or on-demand audit reports on skill changes, curator activity, memory provider status, and configuration drift. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports may be delivered to the wrong chat target and expose local agent configuration or change history. <br>
-Mitigation: Use a private delivery target and verify the chat destination before enabling a scheduled cron run. <br>
-Risk: Scheduled audits can continue after they are no longer wanted, producing recurring reports and local logs. <br>
-Mitigation: Remove the scheduled job or local log when automatic audit reporting is no longer needed. <br>
-Risk: The skill reports anomalies but does not remediate them. <br>
-Mitigation: Review reported changes and inspect Hermes state before taking corrective action. <br>
+## Use Case:
 
+Developers, SREs, and teams operating Hermes Agent use this skill to schedule or trigger read-only audits of skill changes, curator behavior, usage patterns, memory-provider health, and configuration drift. The reports help users review agent self-modification and decide whether manual investigation or rollback is needed.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/freepengyang/hermes-self-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown audit report with inline shell commands and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include chat-platform delivery instructions and a local audit log path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Scheduled audit reports may run weekly and send operational details to a chat destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cron schedule and use only trusted delivery targets before installing or enabling the skill.
+
+Risk: Audit output may reveal skill names, curator status, and memory-provider configuration.
+
+Mitigation: Limit report recipients to people authorized to view Hermes operational details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freepengyang/skills/hermes-self-audit)
+- [ClawHub homepage metadata](https://clawhub.ai/freepengyang/hermes-self-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or chat-platform formatted audit report with inline shell commands and configuration checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also save a local audit log at ~/.hermes/logs/audit.log when used in a Hermes environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

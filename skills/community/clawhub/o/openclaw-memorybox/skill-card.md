@@ -1,43 +1,54 @@
-## Description: <br>
-MemoryBox is a zero-dependency memory maintenance CLI for OpenClaw that keeps MEMORY.md lean with a 3-tier organization and works alongside Mem0, Supermemory, QMD, or standalone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemoryBox is a zero-dependency memory maintenance CLI for OpenClaw that keeps MEMORY.md lean with 3-tier hierarchical organization and can work alongside Mem0, Supermemory, QMD, or standalone.
 
-## Publisher: <br>
-[Ramsbaby](https://clawhub.ai/user/Ramsbaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ramsbaby](https://clawhub.ai/user/ramsbaby)
 
-## Use Case: <br>
-Developers and OpenClaw agent maintainers use MemoryBox to diagnose, reorganize, archive, and deduplicate persistent memory files so agent memory remains searchable and compact. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing the external CLI from a repository can execute code from a moving source. <br>
-Mitigation: Inspect the linked repository before installation and pin a trusted commit or release. <br>
-Risk: Memory maintenance commands can reorganize persistent MEMORY.md and memory directory contents. <br>
-Mitigation: Back up MEMORY.md and the memory directory before running split, archive, dedupe, or init. <br>
-Risk: Suggested AGENTS.md changes can influence future agent behavior. <br>
-Mitigation: Review any AGENTS.md changes before adopting them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MemoryBox GitHub repository](https://github.com/Ramsbaby/openclaw-memorybox) <br>
-- [OpenClaw Self-Healing companion repository](https://github.com/Ramsbaby/openclaw-self-healing) <br>
-- [MemoryBox ClawHub page](https://clawhub.ai/Ramsbaby/openclaw-memorybox) <br>
+## Use Case:
 
+Developers and OpenClaw users use MemoryBox to inspect, organize, archive, and reduce bloat in MEMORY.md-based agent memory directories.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance focuses on an external CLI that can inspect and reorganize OpenClaw memory files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented install flow clones code from GitHub and symlinks it into /usr/local/bin with sudo, making the command system-wide.
+
+Mitigation: Review the repository first, install from a pinned commit or signed release, and prefer a user-local path such as ~/.local/bin.
+
+Risk: The CLI is intended to read and modify agent memory directories.
+
+Mitigation: Run it only against memory directories you are comfortable letting the tool inspect and change, and keep backups for important MEMORY.md content.
+
+## Reference(s):
+
+- [MemoryBox ClawHub release](https://clawhub.ai/ramsbaby/skills/openclaw-memorybox)
+- [MemoryBox GitHub repository](https://github.com/Ramsbaby/openclaw-memorybox)
+- [OpenClaw Self-Healing companion repository](https://github.com/Ramsbaby/openclaw-self-healing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of a local CLI that can report diagnostics, health scores, duplicate content, stale content, archive actions, and memory-structure recommendations.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

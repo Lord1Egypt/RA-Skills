@@ -1,47 +1,61 @@
-## Description: <br>
-Generate deterministic 6-slide portrait PNG slideshow assets plus caption text for TikTok-style posting workflows, including reusable templates and a strict validation pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate deterministic 6-slide portrait PNG slideshow assets plus caption text for TikTok-style posting workflows, including reusable templates and a strict validation pipeline.
 
-## Publisher: <br>
-[JK-Archivist](https://clawhub.ai/user/JK-Archivist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-archivist](https://clawhub.ai/user/jk-archivist)
 
-## Use Case: <br>
-Developers, creators, and social content operators use this skill to generate six-slide portrait PNG slideshow packs, captions, review artifacts, and optional Postiz draft uploads for TikTok-style workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional Postiz mode sends rendered slides and captions to the configured Postiz API using account credentials and may create draft or private social posting artifacts. <br>
-Mitigation: Run local-only by omitting --postiz or using --no-upload; review generated slides and captions before enabling upload. <br>
-Risk: Generated slide or caption copy may be unsuitable for the intended TikTok workflow if the input spec or topic is inaccurate. <br>
-Mitigation: Use the preflight checks and review artifacts, then manually review the slides and caption before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TikTok Packager ClawHub Page](https://clawhub.ai/JK-Archivist/jk-archivist-tiktok-packager) <br>
-- [Setup](references/setup.md) <br>
-- [Spec Schema](references/spec-schema.md) <br>
-- [Renderer Spec](references/renderer-spec.md) <br>
-- [Outputs and Validation](references/outputs-and-validation.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
-- [Postiz Tool Notes](tools/postiz.tool.md) <br>
-- [TikTok Render Tool Notes](tools/tiktok_render.tool.md) <br>
+## Use Case:
 
+Developers, creators, and social content operators use this skill to generate deterministic six-slide portrait PNG carousels, captions, review artifacts, and optional Postiz draft uploads for TikTok-style posting workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Markdown, JSON, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [PNG images, plain-text captions, JSON metadata and logs, Markdown review artifacts, and optional Postiz draft API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exactly six 1024x1536 portrait slides; optional Postiz upload uses account credentials and can be disabled by omitting --postiz or using --no-upload.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata; artifact package.json and CHANGELOG report 1.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional Postiz upload can send generated media, captions, and API credentials to an endpoint controlled by POSTIZ_BASE_URL.
+
+Mitigation: Leave POSTIZ_BASE_URL unset unless you operate or trust the endpoint, use narrowly scoped Postiz credentials, and run without --postiz or with --no-upload unless upload is intended.
+
+Risk: Troubleshooting guidance includes a destructive cleanup command.
+
+Mitigation: Verify cleanup paths before running rm -rf and limit cleanup to generated output or temporary directories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jk-archivist/skills/jk-archivist-tiktok-packager)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Setup](artifact/references/setup.md)
+- [Spec Schema](artifact/references/spec-schema.md)
+- [Renderer Spec](artifact/references/renderer-spec.md)
+- [Outputs and Validation](artifact/references/outputs-and-validation.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [TikTok Render Tool Notes](artifact/tools/tiktok_render.tool.md)
+- [Postiz Tool Notes](artifact/tools/postiz.tool.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Markdown, JSON metadata, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts include PNG slides, caption text, JSON metadata, logs, and review materials.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs follow a six-slide 1024x1536 portrait contract and can include optional Postiz upload state and response files.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata; artifact package and changelog list 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,178 @@
 {
-  "ownerId": "kn72bhsja4d93jp25rksw1dz11845rkq",
-  "slug": "k8sskill",
-  "version": "1.0.1",
-  "publishedAt": 1775531427999
+    "name": "k8sskill",
+    "version": "1.0.0",
+    "description": "Kubernetes智能诊断助手 - IDE内自然语言诊断工具，支持21种资源分析",
+    "author": "chenzc",
+    "created_at": "2026-04-02",
+    "updated_at": "2026-04-03",
+    "source": "基于Kubernetes最佳实践和SRE经验设计",
+    "config": {
+        "kubeconfig_path": "~/.kube/config",
+        "default_namespace": "default",
+        "output_format": "markdown"
+    },
+    "architecture": {
+        "description": "模块化分析器架构 - 使用抽象基类和编排器模式",
+        "core_module": "core/base.py - 抽象基类、数据模型、工具函数",
+        "orchestrator": "orchestrator.py - AnalyzerOrchestrator分析器编排器",
+        "analyzers_dir": "analyzers/ - 20个独立分析器模块"
+    },
+    "analyzers": {
+        "workload": [
+            "pod",
+            "deployment",
+            "service",
+            "statefulset",
+            "job",
+            "cronjob",
+            "replicaset",
+            "hpa"
+        ],
+        "storage_network": [
+            "pvc",
+            "ingress",
+            "gateway",
+            "httproute",
+            "networkpolicy"
+        ],
+        "cluster": [
+            "node",
+            "event",
+            "storage",
+            "security",
+            "webhook"
+        ],
+        "config": [
+            "configmap",
+            "secret",
+            "pdb"
+        ]
+    },
+    "scripts": {
+        "entry_point": "scripts/__init__.py - 统一入口，导出所有公共API",
+        "orchestrator": "scripts/orchestrator.py - 分析器编排器",
+        "core": "scripts/core/base.py - 抽象基类和数据模型",
+        "analyzers": "scripts/analyzers/*.py - 20个独立分析器"
+    },
+    "dependencies": [
+        "kubernetes>=28.0.0",
+        "pyyaml>=6.0"
+    ],
+    "exports": [
+        "AnalyzerOrchestrator",
+        "analyze_cluster",
+        "BaseAnalyzer",
+        "AnalysisResult",
+        "Failure",
+        "Severity",
+        "verify_k8s_connection",
+        "PodAnalyzer",
+        "DeploymentAnalyzer",
+        "ServiceAnalyzer",
+        "StatefulSetAnalyzer",
+        "JobAnalyzer",
+        "CronJobAnalyzer",
+        "ReplicaSetAnalyzer",
+        "HPAAnalyzer",
+        "PVCAnalyzer",
+        "NodeAnalyzer",
+        "IngressAnalyzer",
+        "EventAnalyzer",
+        "ConfigMapAnalyzer",
+        "SecretAnalyzer",
+        "NetworkPolicyAnalyzer",
+        "PDBAnalyzer",
+        "StorageAnalyzer",
+        "SecurityAnalyzer",
+        "GatewayAnalyzer",
+        "HTTPRouteAnalyzer",
+        "WebhookAnalyzer"
+    ],
+    "usage_examples": {
+        "orchestrator": "cd scripts; from orchestrator import AnalyzerOrchestrator; orchestrator = AnalyzerOrchestrator(); results = orchestrator.analyze('检查Pod问题')",
+        "quick": "cd scripts; from orchestrator import analyze_cluster; report = analyze_cluster('检查集群问题')",
+        "single": "cd scripts; from analyzers import PodAnalyzer; analyzer = PodAnalyzer(); results = analyzer.analyze()",
+        "verify": "cd scripts; from core import verify_k8s_connection; success, msg = verify_k8s_connection()"
+    },
+    "changelog": [
+        {
+            "version": "0.1.0",
+            "date": "2026-04-02",
+            "changes": [
+                "初始版本发布",
+                "实现Pod/Deployment/Service分析器",
+                "支持自然语言意图识别",
+                "生成Markdown格式诊断报告"
+            ]
+        },
+        {
+            "version": "0.2.0",
+            "date": "2026-04-02",
+            "changes": [
+                "添加扩展分析器: PVC, Node, Ingress, Event",
+                "添加更多分析器: StatefulSet, Job, CronJob, HPA, ConfigMap",
+                "支持12种Kubernetes资源类型诊断",
+                "完善意图识别关键词映射",
+                "优化报告格式，避免编码问题"
+            ]
+        },
+        {
+            "version": "0.3.0",
+            "date": "2026-04-02",
+            "changes": [
+                "添加高级分析器: ReplicaSet, NetworkPolicy, PDB, Storage, Security",
+                "支持17种Kubernetes资源类型诊断",
+                "新增安全上下文和权限检查",
+                "新增存储类和持久卷分析",
+                "完善网络策略和驱逐保护检查"
+            ]
+        },
+        {
+            "version": "0.4.0",
+            "date": "2026-04-02",
+            "changes": [
+                "添加最终分析器: Secret, Gateway, HTTPRoute, Webhook",
+                "支持21种Kubernetes资源类型诊断",
+                "新增Gateway API支持（Gateway和HTTPRoute）",
+                "新增Secret和Webhook配置检查",
+                "完成核心分析器全覆盖"
+            ]
+        },
+        {
+            "version": "0.5.0",
+            "date": "2026-04-02",
+            "changes": [
+                "添加最终分析器: Secret, Gateway, HTTPRoute, Webhook",
+                "支持21种Kubernetes资源类型诊断",
+                "新增Gateway API支持（Gateway和HTTPRoute）",
+                "新增Secret和Webhook配置检查",
+                "完成核心分析器全覆盖"
+            ]
+        },
+        {
+            "version": "0.5.2",
+            "date": "2026-04-02",
+            "changes": [
+                "优化错误提示，增加中文友好提示",
+                "新增verify_k8s_connection()连接验证函数",
+                "完善文档和使用说明"
+            ]
+        },
+        {
+            "version": "1.0.0",
+            "date": "2026-04-03",
+            "changes": [
+                "【重大重构】模块化架构升级",
+                "提取抽象基类BaseAnalyzer，统一分析器接口",
+                "将5个臃肿文件拆分为21个独立分析器模块",
+                "新增core/目录存放基础组件",
+                "新增analyzers/目录存放具体分析器",
+                "新增orchestrator.py分析器编排器",
+                "使用模板方法模式统一分析流程",
+                "删除旧的analyzer*.py重复文件",
+                "更新SKILL.md文档反映新架构",
+                "提升代码可维护性和扩展性"
+            ]
+        }
+    ]
 }

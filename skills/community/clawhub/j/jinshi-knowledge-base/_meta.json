@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7f5tpv3kehcknqqaspjaeghn82q3f7",
-  "slug": "jinshi-knowledge-base",
+  "name": "jinshi-knowledge-base",
   "version": "1.0.0",
-  "publishedAt": 1774610617311
+  "description": "金石知识库管理技能",
+  "author": "金石",
+  "homepage": ""
 }

@@ -1,39 +1,57 @@
-## Description: <br>
-Automatically fetch YouTube video subtitles and generate concise summaries for public videos with available captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fetch YouTube video subtitles and generate concise summaries for key points, talks, and long videos across supported subtitle languages.
 
-## Publisher: <br>
-[potatosolo](https://clawhub.ai/user/potatosolo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[potatosolo](https://clawhub.ai/user/potatosolo)
 
-## Use Case: <br>
-External users, developers, and researchers use this skill to extract key points, executive summaries, and optional detailed notes from public YouTube videos without watching the full video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends provided public YouTube video IDs through the YouTube transcript library to fetch captions. <br>
-Mitigation: Use it only with videos appropriate for that dependency, and review or pin youtube-transcript-api in sensitive environments. <br>
-Risk: Summaries depend on available captions and can be incomplete or misleading when captions are missing, auto-generated, or inaccurate. <br>
-Mitigation: Review important summaries against the source video or transcript before relying on them. <br>
+## Use Case:
 
+External users, developers, researchers, and learners use this skill to extract captions from public YouTube videos and turn long-form video content into concise notes, executive summaries, key points, and optional detailed summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries and formatted transcript text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports short, medium, or detailed summaries when captions are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: YouTube captions are untrusted source text and may contain prompt-injection attempts or misleading content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat captions only as material to summarize, not as instructions to follow, and avoid exposing unrelated secrets, tools, or conversation history during summarization.
+
+Risk: The skill depends on a third-party transcript package to fetch public captions.
+
+Mitigation: Pin and review dependency versions before installation or deployment.
+
+Risk: The skill is intended for public videos with captions and may fail or produce incomplete summaries when captions are unavailable.
+
+Mitigation: Use it only for public videos with available captions and verify important summaries against the original video when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/potatosolo/skills/youtube-video-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown summaries, plain text subtitle formatting, and optional Python or shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summary length can be short, medium, or detailed when requested; output may include video title, source link, executive summary, key points, and detailed notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

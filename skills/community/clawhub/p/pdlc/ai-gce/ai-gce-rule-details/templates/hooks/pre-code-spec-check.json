@@ -1,0 +1,16 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Spec & Contract Check Before Code",
+  "version": "1.0.0",
+  "description": "Enforces spec-before-code: verifies requirements/spec and API contract exist before allowing implementation code to be written.",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check .compliance-state.json → currentPhase. This hook applies from Foundation phase onward. If Setup phase, skip silently.\n\nBefore writing implementation code, verify:\n\n1. REQUIREMENTS: Check if a requirements/spec document exists for the current feature (look in .kiro/specs/ or project docs).\n2. API CONTRACT: If writing controller/endpoint code, check if an API contract (OpenAPI spec) exists for this module.\n3. DOMAIN MODEL: If writing application/infrastructure layer code, check if the domain layer exists first.\n4. LAYER ORDER: Verify correct layer order: domain → application → infrastructure → presentation → tests.\n\nIf any are missing, issue a WARNING explaining what should exist first. Reference: design precedes implementation, contracts precede controllers.\n\nDo NOT block the operation. Warn only.\nIf all checks pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks above, append a JSON event to `compliance-log/events/{today-date}.jsonl` (create the file if it doesn't exist). Format:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"pre-code-spec-check\", \"trigger\": \"preToolUse\", \"ruleId\": \"{primary-rule-checked}\", \"ruleSeverity\": \"{severity}\", \"result\": \"{pass|fail|warn}\", \"message\": \"{one-line-finding}\"}\nLog ONE event per rule checked."
+  }
+}

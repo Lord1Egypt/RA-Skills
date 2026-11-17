@@ -1,40 +1,54 @@
-## Description: <br>
-Claim all Gougoubi rewards for one or more addresses, including winner rewards, governance rewards, and LP rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claims Gougoubi winner, governance, and LP rewards for one or more addresses through a one-click reward-claiming workflow.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External users and developers use this skill to claim winner, governance, and LP rewards for one or more Gougoubi addresses through a profile, quick, or full-scan claim path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct live on-chain reward-claim transactions through scripts that are not included or fully scoped in the package. <br>
-Mitigation: Require a dry run first, then review the exact network, addresses, signer, gas estimate, transaction details, and wallet approval before any claim is submitted. <br>
+## Use Case:
 
+External users and crypto operators use this skill to claim available Gougoubi reward classes for one or more wallet addresses. It is best suited for fast profile-style or quick reward collection when the user wants claim status and transaction hashes summarized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/gougoubi-claim-all-rewards) <br>
-- [Publisher profile](https://clawhub.ai/user/chinasong) <br>
-- [Gougoubi website](https://gougoubi.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON with concise procedural guidance and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes claim method, addresses, per-address reward status, transaction hashes, warnings, and retryable failure details when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill supports real crypto reward claiming and may trigger transactions with gas, signer, recipient, calldata, or contract-address effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before any non-dry-run claim, inspect the actual script source and verify the network, contract addresses, signer, gas, recipients, and calldata.
+
+Risk: The skill relies on unbundled local project scripts, so the behavior depends on separately installed code.
+
+Mitigation: Install only when the separate Gougoubi project scripts are trusted, verify they come from the intended repository or release, and run with a least-privilege wallet or environment with no unrelated secrets exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinasong/skills/gougoubi-claim-all-rewards)
+- [Gougoubi website](https://gougoubi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Structured JSON with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns per-address claim status, transaction hashes, warnings, and retryable failure details when available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

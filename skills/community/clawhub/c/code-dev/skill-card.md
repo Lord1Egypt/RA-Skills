@@ -1,43 +1,55 @@
-## Description: <br>
-Guides an agent through a disciplined Git development workflow for larger feature and bug-fix tasks, including branch creation, implementation, review, and pull request creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured Git development workflow for branch management, repository analysis, implementation, code review, and pull request creation while preventing direct pushes to main.
 
-## Publisher: <br>
-[luciuscao](https://clawhub.ai/user/luciuscao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luciuscao](https://clawhub.ai/user/luciuscao)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to manage substantial code changes through a Git workflow that starts from develop, scopes implementation, runs tests and review, and opens a pull request. It is intended for feature work and bug fixes that exceed simple single-file edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to edit a repository and create pull requests. <br>
-Mitigation: Use it only in the intended repository and review branch contents and pull request changes before remote actions. <br>
-Risk: GitHub credentials may be used when GitHub CLI authentication or GITHUB_TOKEN is available. <br>
-Mitigation: Limit credentials to the permissions required for the target repository and rotate or revoke them if no longer needed. <br>
-Risk: Incorrect workflow guidance or proposed edits could introduce defects into the target codebase. <br>
-Mitigation: Run the required tests, lint, type checks, and code review loop before merging any pull request. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to manage larger feature and bug-fix work through a develop-branch workflow, including codebase review, implementation, tests, automated review, branch push, and pull request creation.
 
-## Reference(s): <br>
-- [Code Dev on ClawHub](https://clawhub.ai/luciuscao/code-dev) <br>
-- [Conventional Commits](https://www.conventionalcommits.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, JavaScript snippets, and pull request templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository edits, git branch operations, GitHub CLI commands, tests, review steps, and pull request content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The workflow can modify repository files, create branches, push to GitHub, and open pull requests when used with git, gh, and GitHub authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in the intended project repository, review generated changes before pushing, and use a GitHub token with the minimum permissions needed for PR creation.
+
+Risk: The workflow assumes a develop-branch PR model, which may not match every repository.
+
+Mitigation: Confirm that the repository uses develop as the integration branch before applying the workflow or adapt the branch target during review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luciuscao/skills/code-dev)
+- [Source Repository](https://github.com/LuciusCao/openclaw-skills/tree/main/code-dev)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell, JavaScript, and pull request template blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose branch names, git and GitHub CLI commands, review prompts, and PR body content.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

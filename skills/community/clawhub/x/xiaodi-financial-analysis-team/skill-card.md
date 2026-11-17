@@ -1,46 +1,61 @@
-## Description: <br>
-A seven-role financial analysis team for stock analysis, fund recommendations, portfolio review, asset allocation, market sentiment monitoring, and investment decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaodi Financial Team coordinates finance-focused agents for stock and fund analysis, portfolio review, asset allocation, sentiment monitoring, and investment-style reports.
 
-## Publisher: <br>
-[mx6315909](https://clawhub.ai/user/mx6315909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mx6315909](https://clawhub.ai/user/mx6315909)
 
-## Use Case: <br>
-External users and financial-analysis agents use this skill to coordinate multiple specialist roles for stock research, portfolio diagnosis, asset allocation, technical signals, valuation, and sentiment-risk summaries. Outputs are for reference and should not be treated as personalized or guaranteed investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad command execution can run financial-analysis scripts or shell commands that have not been reviewed. <br>
-Mitigation: Disable or tightly restrict exec by default, and review any stock_analysis.py or other executable file before allowing it to run. <br>
-Risk: Memory-backed holdings or trading history can expose sensitive portfolio information. <br>
-Mitigation: Avoid sharing brokerage credentials or private account documents, and minimize stored portfolio details to only what is needed for the current analysis. <br>
-Risk: Financial recommendations, ratings, or trading signals may be incorrect, stale, or unsuitable for the user. <br>
-Mitigation: Treat outputs as reference material, verify market data and assumptions independently, and consult qualified financial professionals before acting. <br>
+## Use Case:
 
+External users and financial-analysis workflows use this skill to coordinate multiple analyst roles for stock research, fund screening, holding diagnostics, asset-allocation planning, and market sentiment checks. Outputs are informational and should be independently verified before investment decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mx6315909/xiaodi-financial-analysis-team) <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Agent Architecture](artifact/architecture.json) <br>
-- [Collaboration Guide](artifact/collaboration-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown reports with structured sections, ratings, tables, risk notes, and occasional JSON or shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web data sources and memory-backed portfolio context; financial outputs require independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill metadata) <br>
+Risk: The skill requests command execution and broad file access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, remove or tightly scope exec access, and confine file reads and writes to a dedicated report/output area.
+
+Risk: The skill can use memory around sensitive portfolio, trading-history, or risk-profile details.
+
+Mitigation: Disable memory by default or require explicit consent before storing personal financial details.
+
+Risk: The skill retrieves live market data from third-party finance sources and produces investment-style suggestions.
+
+Mitigation: Verify market data and recommendations independently, avoid entering sensitive account data, and treat outputs as informational rather than investment instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mx6315909/skills/xiaodi-financial-analysis-team)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Architecture](artifact/architecture.json)
+- [ClawHub metadata](artifact/clawhub.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with structured tables, ratings, recommendations, risk notes, and occasional JSON or command-oriented configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use live third-party market-data sources and user-provided portfolio details; outputs are advisory analysis, not execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence, artifact frontmatter, README, and ClawHub metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

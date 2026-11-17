@@ -1,0 +1,39 @@
+{
+  "name": "@bovinphang/fec-refactoring-catalog",
+  "version": "2.9.0",
+  "description": "Use when selecting or composing behavior-preserving refactoring techniques after structural evidence is known, especially when multiple candidate transformations, preconditions, or ordering choices must be compared.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-refactoring-catalog"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "refactoring",
+    "catalog",
+    "selection",
+    "composition"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,40 +1,59 @@
-## Description: <br>
-Set up and optimize RAG pipelines for large datasets with document chunking, embedding benchmarking, vector indexing, and retrieval tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and optimize RAG pipelines for large datasets with document chunking, embedding benchmarking, vector indexing, and retrieval tuning.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap and tune RAG pipelines over large document collections, including chunking choices, embedding comparisons, vector index operations, and retrieval parameter tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document chunks may contain sensitive data, and the security guidance notes privacy considerations if hosted embedding providers are wired in. <br>
-Mitigation: Use local embeddings for sensitive corpora or review provider privacy, consent, and redaction requirements before sending chunks to hosted services. <br>
-Risk: The artifact scripts use simplified or mock retrieval and embedding behavior, so benchmark results may not reflect production vector search quality. <br>
-Mitigation: Validate recommendations against real embedding models, vector stores, and representative test queries before relying on the output. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or improve local RAG pipelines for large document collections, including chunking, embedding selection, vector index management, and retrieval parameter tuning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhinas90/rag-pipeline-starter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON outputs from bundled helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analysis and recommendations; script results depend on user-provided documents, chunks, queries, and indexes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact skill.json) <br>
+Risk: The skill reads chosen document folders and writes derived chunks, results, and index files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in dedicated working directories and avoid pointing outputs at important folders.
+
+Risk: Using hosted embedding APIs in future extensions could send document chunks or queries to external providers.
+
+Mitigation: Treat hosted embedding use as a separate privacy decision and prefer local models for sensitive data.
+
+Risk: Retrieval and benchmark recommendations may be affected by simplified scoring paths and data-handling caveats.
+
+Mitigation: Validate recommendations with representative queries and reviewed evaluation data before relying on them in production.
+
+## Reference(s):
+
+- [RAG Pipeline Starter ClawHub page](https://clawhub.ai/abhinas90/skills/rag-pipeline-starter)
+- [Publisher profile](https://clawhub.ai/user/abhinas90)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples, console text, JSON results, and generated local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user-selected document folders and write derived chunks, benchmark results, tuning results, and vector index files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

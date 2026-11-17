@@ -5,7 +5,7 @@ description: Manage Reddit posts, comments, subreddits, users, moderation, and c
 
 # Reddit
 
-![Reddit](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/brand-logos/reddit.svg?v=2)
+![Reddit](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/reddit.png)
 
 Manage Reddit from chat — posts, comments, subreddits, users, moderation, and community workflows via the Reddit API.
 
@@ -15,8 +15,23 @@ This skill uses [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=
 
 | Step 1: Install | Step 2: Pair Account | Step 3: Connect Reddit |
 |:---:|:---:|:---:|
-| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/pairing/initialstep_1.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/approve_process.gif) | *App-specific connection GIF coming soon* |
+| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-install.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-pair.gif) | *App-specific connection GIF coming soon* |
 | Run the install command in OpenClaw | Sign in and approve the device | Open the dashboard and connect Reddit |
+
+## No Account Needed: Public Reddit Data
+
+Search all of Reddit, read any subreddit, post and comment thread, and see what is trending, without connecting a Reddit account. These tools work as soon as the plugin is paired: there is nothing to connect, and each call is paid from ClawLink credit (most cost a fraction of a cent; new accounts get $0.50 free).
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `redditdata_search_posts` | Search all of Reddit for posts about a topic, with title, text, score, comment count and subreddit | $0.00282 |
+| `redditdata_subreddit_posts` | Current posts in a subreddit (hot, new, top or rising) | $0.00282 |
+| `redditdata_post_comments` | One Reddit post by URL with its full text and its comment tree (author, text, score, replies) | $0.00282 |
+| `redditdata_search_comments` | Search Reddit comments by keyword across all subreddits: text, score, author, and the post each is on | $0.0015 |
+| `redditdata_user_profile` | Public Reddit user by username: post and comment karma, account creation date, post and comment counts, bio,… | $0.0015 |
+| `redditdata_trending_searches` | What people are searching for on Reddit today | $0.0015 |
+
+Use the connected-account tools above for the user's own Reddit; use these for anyone else's public content. More: [Transcribe Any Video](https://clawhub.ai/hith3sh/skills/transcribe-any-video).
 
 ## How It Works
 
@@ -102,7 +117,8 @@ If Reddit tools are missing or the connection shows an error:
 
 ## Security & Permissions
 
-- Access is scoped to the Reddit account's accessible data via the connected OAuth scopes.
+- Connected-account tools are scoped to the Reddit account's accessible data via the connected OAuth scopes.
+- The public-data tools under "No Account Needed" read other people's public Reddit content (profiles, posts, comments) without any connected account. They are read-only, never post or change anything, and each call is paid from the user's ClawLink credit.
 - **All write operations require explicit user confirmation.** Before executing any create, update, or delete call, confirm the target resource and intended effect with the user.
 - Destructive actions (delete post, remove comment, ban user) are marked as high-impact and must be confirmed.
 - Moderation actions affect community members — confirm before executing bulk or automated moderation.
@@ -187,8 +203,9 @@ If Reddit tools are missing or the connection shows an error:
 
 ## Related Skills
 
+- [Transcribe Any Video](https://clawhub.ai/hith3sh/skills/transcribe-any-video)
 - [Reddit Ads](https://clawhub.ai/hith3sh/reddit-ads-campaigns) — For Reddit advertising campaigns
 
 ---
 
-![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/logo/link_logo_black_small.png)
+![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/clawlink.png)

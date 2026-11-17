@@ -1,40 +1,61 @@
-## Description: <br>
-Optimizes and summarizes agent memory files to reduce token use, with self-improving preferences, multi-agent checks, and scheduled reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mem Optimizer scans workspace memory files, estimates token usage, summarizes long entries, reports memory statistics, and can run scheduled memory maintenance across active agents.
 
-## Publisher: <br>
-[doony15](https://clawhub.ai/user/doony15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doony15](https://clawhub.ai/user/doony15)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preview or run token statistics and compression for memory files, including scheduled daily summaries and optional multi-agent memory optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled or non-dry-run optimization can rewrite memory files and reduce retained detail. <br>
-Mitigation: Review dry-run output first, keep scheduled runs disabled until reviewed, and back up memory files before enabling writes. <br>
-Risk: Multi-agent and host-status reporting can expose activity from other agents or the runtime environment. <br>
-Mitigation: Use only in environments where cross-agent visibility is authorized and external reporting has been reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preview or perform memory-file compression, inspect token usage, and generate daily memory maintenance summaries for single-agent or multi-agent OpenClaw workspaces.
 
-## Reference(s): <br>
-- [ClawHub Mem Optimizer release](https://clawhub.ai/doony15/mem-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON tool responses and Markdown summary reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token counts, processed-file details, dry-run status, and optional multi-agent summary reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can rewrite memory files when dry-run mode is disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode enabled until reviewed results are acceptable, and maintain backups before allowing file writes.
+
+Risk: Scheduled global execution can run memory maintenance without a direct user prompt.
+
+Mitigation: Install only when daily scheduled memory maintenance is desired, and disable or remove the cron entry if automatic execution is not approved.
+
+Risk: Multi-agent mode can inspect and modify memory across agent workspaces.
+
+Mitigation: Use multi-agent mode only for authorized workspaces and confirm every target agent is in scope before disabling dry-run mode.
+
+Risk: Daily reports collect host and agent status.
+
+Mitigation: Review the report destination and limit deployment to environments where host and agent status collection is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doony15/skills/mem-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON tool results and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes token counts, processed-file details, dry-run status, multi-agent summaries, and daily report data.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

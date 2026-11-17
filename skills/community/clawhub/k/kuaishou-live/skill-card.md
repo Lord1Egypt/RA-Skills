@@ -1,41 +1,54 @@
-## Description: <br>
-Kuaishou Live helps plan livestream operations, fan engagement, ecommerce selling, and post-stream data review for Kuaishou creators and operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kuaishou live-streaming methodology for trust-based ecommerce, fan retention, private-domain repurchase strategy, livestream planning, data review, product selling, and platform-rule compliance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External creators, livestream operators, and ecommerce teams use this skill to draft Kuaishou livestream plans, selling scripts, fan-operation tactics, product-selection ideas, paid-promotion plans, and data review templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated livestream scripts or selling guidance could include outdated platform-rule assumptions or inaccurate promotional claims. <br>
-Mitigation: Review current Kuaishou rules and verify prices, deadlines, stock limits, sales figures, and product claims before public use. <br>
-Risk: Private-community or fan-operation suggestions could be applied in ways that conflict with platform policy or customer expectations. <br>
-Mitigation: Use the guidance as planning support and confirm private-community practices, consent, and transaction flows against current compliance requirements. <br>
+## Use Case:
 
+External creators, livestream operators, ecommerce teams, and agents use this skill to draft Kuaishou livestream scripts, plan product and fan operations, review livestream metrics, improve selling talk tracks, and avoid common platform-rule issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/kuaishou-live) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured plain text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory livestream operations content; it does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Platform rules, deposit amounts, commission rates, advertising budget ranges, and ecommerce operating requirements can change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Kuaishou policies and budget assumptions before spending money, changing account operations, or advising merchants.
+
+Risk: Generated ecommerce guidance could encourage misleading product claims, improper traffic manipulation, or off-platform transaction behavior if applied without review.
+
+Mitigation: Review generated scripts and operating plans against the skill's platform-rule red lines and applicable marketplace policies before use.
+
+## Reference(s):
+
+- [Kuaishou Live on ClawHub](https://clawhub.ai/zhangifonly/skills/kuaishou-live)
+- [zhangifonly ClawHub profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and structured prose with tables, checklists, scripts, and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; no executable code, persistence, credential access, or hidden authority.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

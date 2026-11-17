@@ -1,42 +1,58 @@
-## Description: <br>
-Generate images via fal.ai and BytePlus Seedream APIs, supporting single-image, batch parallel, and reference-guided generation from text prompts or reference images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through fal.ai and BytePlus Seedream APIs for single-image, batch, and reference-guided photo, poster, or visual-asset workflows.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, designers, and marketing teams use this skill to generate photo, poster, and visual assets through fal.ai or BytePlus Seedream models, including batch and reference-guided workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generation script is referenced by the skill but is not included in the bundle. <br>
-Mitigation: Review and trust the generate.py script before installing or running the skill. <br>
-Risk: Prompts, reference image URLs, and generated content may be sent to fal.ai or BytePlus and stored locally. <br>
-Mitigation: Avoid confidential prompts, private image URLs, secrets, and sensitive brand material unless third-party processing and local storage are acceptable. <br>
+## Use Case:
 
+Developers and content-production agents use this skill to generate photos, posters, and other visual assets from text prompts or reference images using fal.ai or BytePlus Seedream.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/fal-image-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Image files saved locally with MEDIA path lines and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FAL_API_KEY and optionally BYTEPLUS_API_KEY; supports text prompts, reference image URLs, model selection, aspect ratio, resolution, and batch JSON inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts, generated images, and reference images may be sent to fal.ai or BytePlus.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those inputs as external API data and avoid sending sensitive or restricted content unless approved for those services.
+
+Risk: The artifact references a generate.py script that is not included in the evidence package.
+
+Mitigation: Review any supplied generate.py script before installation or execution.
+
+Risk: The skill requires FAL_API_KEY and BYTEPLUS_API_KEY credentials.
+
+Mitigation: Use scoped API keys with appropriate usage limits and rotate them according to local credential policy.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/fal-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell command examples, environment variable configuration, JSON batch examples, and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under output/YYYY-MM-DD/ and emitted through MEDIA lines when the referenced generation script is available.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents to borrow principles from unrelated industries and translate them into concrete solution ideas for a user's problem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically borrow ideas from unrelated industries to solve problems.
 
-## Publisher: <br>
-[artyomx33](https://clawhub.ai/user/artyomx33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[artyomx33](https://clawhub.ai/user/artyomx33)
 
-## Use Case: <br>
-External users and developers use this skill to reframe product, service, or workflow problems by finding analogous solutions in unrelated industries, extracting reusable principles, and turning them into a synthesis and next step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggestions involving children, clients, patients, employees, or other sensitive people may imply new communication or data-sharing practices. <br>
-Mitigation: Treat outputs as brainstorming only and require consent, privacy review, and approved communication channels before implementation. <br>
-Risk: Borrowed ideas from unrelated industries may not fit the target context without adaptation. <br>
-Mitigation: Review recommendations with domain stakeholders and validate them with a small test before broader rollout. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cross-Pollination Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/artyomx33/cross-pollination-engine) <br>
+## Use Case:
 
+External users, developers, and operators use this skill to reframe a problem, identify industries that solve a similar core job, extract useful principles, and translate them into next-step proposals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured brainstorming template with problem, core job, industry analogies, synthesis, and next step.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; suggestions require human review before use in sensitive contexts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated ideas for childcare or other sensitive-data settings may involve personal information, recipient controls, or regulated communications.
+
+Mitigation: Require verified consent, secure channels, recipient controls, data minimization, and legal or privacy review before building or sending updates.
+
+Risk: Cross-industry analogies may produce proposals that sound actionable before they have been validated for the user's domain.
+
+Mitigation: Treat outputs as brainstorming guidance and review proposals with appropriate domain experts before implementation.
+
+## Reference(s):
+
+- [Cross-Pollination Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/artyomx33/skills/cross-pollination-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with problem, core job, source industries, synthesis, and next step.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable brainstorming output; concrete implementations require review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

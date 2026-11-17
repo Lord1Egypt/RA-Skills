@@ -1,6 +1,54 @@
 {
-  "ownerId": "kn76z0d562fbfhrgcak2wx0e2982e7ff",
   "slug": "id-emas-pro",
   "version": "1.3.0",
-  "publishedAt": 1774553615951
+  "displayName": "Indonesia Gold Price Pro",
+  "description": "Real-time harga emas Indonesia — Antam, Pegadaian, Treasury, Tamasia & more. Alert harga, compare brand, analisis AI via Kimi 2.5.",
+  "tags": [
+    "finance",
+    "indonesia",
+    "gold",
+    "emas",
+    "antam",
+    "pegadaian",
+    "treasury",
+    "alert",
+    "ai-analysis"
+  ],
+  "author": "",
+  "license": "MIT",
+  "changelog": {
+    "1.2.0": "Tambah scraper Pegadaian, Treasury, Tamasia, BRI. Cron job support.",
+    "1.1.0": "Cron job auto-check alert. Support --userId all.",
+    "1.0.0": "Initial release. Antam scraper, alert system, Kimi 2.5 AI.",
+    "1.3.0": "Cache+stale fallback, histori harga, health check, retry backoff, portfolio tracker, AI konteks histori, unit tests."
+  },
+  "openclaw": {
+    "minVersion": "1.0.0",
+    "requires": {
+      "node": ">=18"
+    }
+  },
+  "tiers": {
+    "free": {
+      "price": 0,
+      "brands": [
+        "antam",
+        "pegadaian",
+        "treasury"
+      ]
+    },
+    "pro": {
+      "price": 29,
+      "brands": [
+        "+ tamasia",
+        "bbri"
+      ]
+    },
+    "ai": {
+      "price": 49,
+      "brands": [
+        "semua"
+      ]
+    }
+  }
 }

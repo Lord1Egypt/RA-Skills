@@ -1,0 +1,21 @@
+# Instagram Reels Script Writer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+reel:
+  account: <handle>
+  idea: <one idea>
+  audience: <who it is for>
+  length_seconds: <number>
+  primary_action: <save | share | visit link | follow>
+  spoken_hook: <first line>
+  on_screen_hook: <text over the first three seconds>
+  beats:
+    - timecode: <00:03>
+      voiceover: <what is said>
+      on_screen: <overlay text>
+      shot: <what to film>
+  caption: <caption text>
+  hashtags:
+    - <hashtag>
+  disclosure: <partner or gifted line, or none>
+  music: <licensed track or none>
+  rights: <releases needed>

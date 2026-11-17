@@ -1,41 +1,54 @@
-## Description: <br>
-Semantic product search API using vector embeddings for natural language product queries with price filtering, pagination, and relevance scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic product search API using vector embeddings. Search products by natural language queries with price filtering, pagination, and relevance scoring. Use when the user wants to search products, browse a product catalog, or find items by description.
 
-## Publisher: <br>
-[gzipped](https://clawhub.ai/user/gzipped) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gzipped](https://clawhub.ai/user/gzipped)
 
-## Use Case: <br>
-Developers and agents use this skill to search and browse product catalogs from natural language requests, including optional price filters, pagination, and bulk product search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product search terms are sent to the disclosed external API at pbs-search-api-fp45p.ondigitalocean.app. <br>
-Mitigation: Avoid sending confidential, personal, medical, financial, or proprietary details unless the user trusts that service's data handling. <br>
+## Use Case:
 
+External users and agents use this skill to search a product catalog with natural language queries, optional price filters, pagination, and relevance scoring, then present matching products with prices, images, and store links.
 
-## Reference(s): <br>
-- [Products Browse Skill API Reference](artifact/reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gzipped/browse-products) <br>
-- [Product Search API](https://pbs-search-api-fp45p.ondigitalocean.app/api/v1/products/search) <br>
-- [Bulk Product Search API](https://pbs-search-api-fp45p.ondigitalocean.app/api/v1/products/search/bulk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with HTTP examples, curl commands, and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search query text is limited to 500 characters; bulk search supports up to 50 queries per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Product search queries are sent to the documented external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, account details, or sensitive personal information in search terms.
+
+Risk: Search results can include outbound or affiliate store links.
+
+Mitigation: Review destination links before acting on them and present store links clearly to users.
+
+## Reference(s):
+
+- [Products Browse Skill API Reference](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/gzipped/skills/browse-products)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with HTTP and cURL examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search queries are sent to an external product search API; query text is limited to 500 characters, page size to 100 results, and bulk search to 50 queries per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

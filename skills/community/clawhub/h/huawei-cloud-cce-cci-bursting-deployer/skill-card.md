@@ -1,50 +1,67 @@
-## Description: <br>
-Configure, deploy, and verify Huawei Cloud CCE to CCI 2.0 bursting for fast elastic capacity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure, deploy, and verify Huawei Cloud CCE to CCI 2.0 bursting with VPCEP dependencies, virtual-kubelet, a smoke workload, and readiness checks.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and cloud platform engineers use this skill to prepare Huawei Cloud CCE clusters for bursting workloads into CCI 2.0 capacity, including VPCEP dependencies, virtual-kubelet setup, smoke workload deployment, and readiness diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package exposes broader Huawei Cloud and Kubernetes authority than CCE-CCI bursting alone. <br>
-Mitigation: Install only with a least-privilege IAM user and grant only the cloud and Kubernetes permissions required for the intended workflow. <br>
-Risk: Sensitive Huawei Cloud AK/SK credentials may be exposed if passed directly in commands or persisted in files. <br>
-Mitigation: Use environment variables or approved secret handling, avoid command-line AK/SK parameters where possible, and never write credentials to reports, debug files, shell history, or skill files. <br>
-Risk: Infrastructure-changing actions can create billed endpoints, alter addons, resize node pools, or deploy workloads. <br>
-Mitigation: Run preview commands first and apply only after reviewing the plan and giving explicit confirm=true approval. <br>
-Risk: Incorrect subnet IDs or guessed OBS endpoint service names can break the bursting setup. <br>
-Mitigation: Use precheck output to distinguish cci_subnet_id from vpcep_subnet_id and obtain the exact OBS endpoint service name through the Huawei Cloud service ticket. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to prepare Huawei Cloud CCE clusters for CCI 2.0 bursting, validate networking and addon readiness, and run a controlled smoke workload after approval.
 
-## Reference(s): <br>
-- [CCE to CCI 2.0 Bursting Workflow](references/workflow.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [CCI 2.0 environment configuration](https://support.huaweicloud.com/intl/zh-cn/usermanual-cci2/cci_01_0024.html) <br>
-- [CCI 2.0 cloud bursting setup](https://support.huaweicloud.com/intl/zh-cn/usermanual-cci2/cci_01_0025.html) <br>
-- [CCE cloud native hybrid deployment addon](https://support.huaweicloud.com/usermanual-cce/cce_10_0135.html) <br>
-- [CCI image pulling FAQ](https://support.huaweicloud.com/intl/en-us/cci_faq/cci_faq_0095.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Analysis] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview-first workflow; infrastructure-changing actions require explicit confirm=true approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The shipped command wrapper exposes broader Huawei Cloud and Kubernetes capabilities than the bursting workflow needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the skill-profile actions for this release and review any off-profile dispatcher action separately before invocation.
+
+Risk: Broad AK/SK or root-level cloud credentials could expand the impact of mistakes or misuse.
+
+Mitigation: Use tightly scoped IAM credentials, prefer IAM users over root accounts, and avoid persisting AK/SK values in files, reports, shell history, or Kubernetes Secrets.
+
+Risk: Some mutating operations can create or alter cloud and cluster resources.
+
+Mitigation: Run preview steps first and require explicit user approval with confirm=true before VPCEP creation, addon setup, node-pool changes, or smoke workload deployment.
+
+Risk: Kubeconfig or Kubernetes Secret data exposure could disclose sensitive cluster access material.
+
+Mitigation: Remove or gate kubeconfig and Secret-data export paths before deployment, and review generated outputs for sensitive values.
+
+## Reference(s):
+
+- [Workflow](artifact/references/workflow.md)
+- [Risk Rules](artifact/references/risk-rules.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [CCI 2.0 environment configuration](https://support.huaweicloud.com/intl/zh-cn/usermanual-cci2/cci_01_0024.html)
+- [CCI 2.0 cloud bursting setup](https://support.huaweicloud.com/intl/zh-cn/usermanual-cci2/cci_01_0025.html)
+- [CCE cloud native hybrid deployment addon](https://support.huaweicloud.com/usermanual-cce/cce_10_0135.html)
+- [CCI image pulling FAQ](https://support.huaweicloud.com/intl/en-us/cci_faq/cci_faq_0095.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview-first workflow; mutating cloud or cluster actions require explicit confirmation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence, released 2026-06-16T09:46:22Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

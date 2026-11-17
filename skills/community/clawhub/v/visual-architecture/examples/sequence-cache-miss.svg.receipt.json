@@ -1,0 +1,59 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:51.866270+00:00",
+  "input": {
+    "bytes": 1391,
+    "path": "examples/sequence-cache-miss.json",
+    "sha256": "7f9f6bcc66a9920d23a918a0e728d63497a83eeec680b65bc88b76bd237bac66"
+  },
+  "mode": "sequence",
+  "output": {
+    "bytes": 8865,
+    "path": "examples/sequence-cache-miss.svg",
+    "sha256": "51dff874551182b89bb6cd34221c6d3fe186e6957748caafed6105af4a1bd202"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "sequence",
+      "nodeKinds": [
+        "memory",
+        "service"
+      ],
+      "nodes": 5,
+      "quality": {
+        "checks": [
+          {
+            "code": "quality.node.spacing",
+            "level": "warn",
+            "subjects": [
+              "api",
+              "response"
+            ]
+          }
+        ],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 92
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

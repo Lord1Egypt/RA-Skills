@@ -1,43 +1,52 @@
-## Description: <br>
-Executes AIVideoMaker API workflows for text-to-video and image-to-video generation, including task creation, status polling, task detail retrieval, and cancellation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, quote, monitor, retrieve, and cancel AI videos through the AI Video Maker API. Use when a user asks an agent to create text-to-video, image-to-video, frame-guided, or reference-guided video; estimate video cost before spending; check API setup or balance; resume an existing generation; or automate AI Video Maker workflows.
 
-## Publisher: <br>
-[husu](https://clawhub.ai/user/husu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[husu](https://clawhub.ai/user/husu)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate AIVideoMaker text-to-video and image-to-video jobs, monitor task status, retrieve completed outputs, and cancel submitted tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image inputs, task IDs, and the AIVIDEO_API_KEY are sent to AIVideoMaker. <br>
-Mitigation: Use a dedicated API key, avoid sensitive media, rotate credentials when needed, and monitor provider account usage. <br>
-Risk: Video generation requests may consume provider credits or encounter upstream rate limits. <br>
-Mitigation: Confirm model and duration choices before execution, monitor credit usage, and use the built-in retry/backoff behavior for idempotent task queries. <br>
+## Use Case:
 
+Developers and AI agents use this skill to check account setup, estimate video-generation costs, and create or manage AI video tasks through the AI Video Maker API. It guides the agent to obtain approval before paid generation and to return task status and the resulting video link.
 
-## Reference(s): <br>
-- [AIVideoMaker API Reference](references/api-reference.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [AIVideoMaker](https://aivideomaker.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/husu/ai-video-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses with command-line workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normalized task results include ok, status, taskId, data, errorCode, errorMessage, and retryAfter when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server evidence, SKILL.md frontmatter, _meta.json, clawhub.manifest.json) <br>
+Risk: ClawScan rates the skill suspicious with medium confidence because of privacy and permission-scope concerns, and the artifact review was incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, review how credentials, environment and shell access are used, and decide whether prompts or media may be sent to the external AI Video Maker service.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [Usage Examples](references/examples.md)
+- [AI Video Maker service](https://aivideomaker.ai)
+- [ClawHub skill listing](https://clawhub.ai/husu/skills/ai-video-maker)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Video links, Task status and cost details]
+
+**Output Format:** [Markdown summaries and video URLs; workflow command output is JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video-generation requests can incur API credit charges; outputs include task identifiers and a video link with a 24-hour retention window.]
+
+## Skill Version(s):
+
+1.0.15 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

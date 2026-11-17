@@ -1,55 +1,73 @@
-## Description: <br>
-Designs complete, rigorous research plans for medicinal plant / TCM molecular mechanism studies against diseases (colorectal cancer, liver cancer, diabetes, etc.). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs complete, rigorous research plans for medicinal plant / TCM molecular mechanism studies against diseases, translating broad herbal medicine or network pharmacology directions into structured, executable, methodologically defensible study plans.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, biomedical analysts, and agent users use this skill to turn broad TCM or herbal medicine mechanism questions into structured, executable computational study plans. It focuses on network pharmacology, multi-omics integration, molecular docking, validation strategy, and clear separation between computational associations and causal experimental evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Biomedical research plans may be mistaken for clinical, dosing, regulatory, or patient-care advice. <br>
-Mitigation: Use the skill only for computational research planning, keep the mandatory disclaimer, and redirect clinical, dosing, regulatory, or prescriptive requests to qualified professionals. <br>
-Risk: Computational network pharmacology, immune deconvolution, and docking results can be overinterpreted as causal mechanism evidence. <br>
-Mitigation: Require explicit language that computational findings suggest associations or hypotheses only, and reserve causal claims for experimental validation such as knockdown, rescue, in vivo, or organoid studies. <br>
-Risk: Biomedical databases, target predictions, and thresholds can be incomplete, inconsistent, or unsuitable for a specific herb-disease pair. <br>
-Mitigation: Independently verify biomedical sources and methods, document assumptions and thresholds, run sensitivity checks, and use fallback data sources when primary data are sparse. <br>
+## Use Case:
 
+External researchers and developers use this skill to turn a herb, TCM formula, disease, and optional mechanism focus into an 11-section computational biomedical research plan covering network pharmacology, multi-omics prioritization, docking, validation, milestones, and feasibility boundaries.
 
-## Reference(s): <br>
-- [Analytical Plan Steps](references/analytical_plan_steps.md) <br>
-- [Critical Design Thinking](references/critical_design_thinking.md) <br>
-- [Data Sources Reference](references/data_sources.md) <br>
-- [Implementation Outline](references/implementation_outline.md) <br>
-- [Milestones and Deliverables](references/milestones_deliverables.md) <br>
-- [Minimal Executable Version](references/minimal_executable_version.md) <br>
-- [Validation Strategy](references/validation_strategy.md) <br>
-- [TCMSP](https://tcmsp-e.com) <br>
-- [HERB](http://herb.ac.cn) <br>
-- [Swiss Target Prediction](http://www.swisstargetprediction.ch) <br>
-- [GeneCards](https://www.genecards.org) <br>
-- [DisGeNET](https://www.disgenet.org) <br>
-- [GEO](https://www.ncbi.nlm.nih.gov/geo) <br>
-- [TCGA](https://portal.gdc.cancer.gov) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown research plan with tables, phased outlines, tool commands or code sketches when relevant, and a mandatory research-only disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should mark uncertain assumptions, avoid clinical or prescriptive claims, and distinguish computational association from causal validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can generate biomedical mechanism hypotheses that may be mistaken for medical or clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only for computational research planning and hypothesis generation; require experimental validation before any clinical application.
+
+Risk: Public web databases and target-prediction services may contain stale, incomplete, or inconsistent scientific records.
+
+Mitigation: Record retrieval dates, verify important database entries and scientific claims independently, and preserve source annotations in generated plans.
+
+Risk: Using public web tools may expose sensitive or unpublished research data.
+
+Mitigation: Avoid uploading sensitive or unpublished data to public services unless their security and privacy controls have been reviewed.
+
+## Reference(s):
+
+- [Analytical Plan Step Reference](references/analytical_plan_steps.md)
+- [Data Sources Reference](references/data_sources.md)
+- [Validation Strategy Template](references/validation_strategy.md)
+- [Milestones and Deliverables](references/milestones_deliverables.md)
+- [Implementation Outline](references/implementation_outline.md)
+- [Critical Design Thinking](references/critical_design_thinking.md)
+- [Minimal Executable Version](references/minimal_executable_version.md)
+- [TCMSP](https://tcmsp-e.com)
+- [HERB](http://herb.ac.cn)
+- [Swiss Target Prediction](http://www.swisstargetprediction.ch)
+- [GeneCards](https://www.genecards.org)
+- [DisGeNET](https://www.disgenet.org)
+- [NCBI GEO](https://www.ncbi.nlm.nih.gov/geo)
+- [GDC Data Portal](https://portal.gdc.cancer.gov)
+- [STRING](https://string-db.org)
+- [RCSB PDB](https://www.rcsb.org)
+- [PubChem](https://pubchem.ncbi.nlm.nih.gov)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Code, Shell commands]
+
+**Output Format:** [Markdown with structured sections, tables, numbered workflows, and inline code or command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an 11-section computational research plan with explicit validation boundaries and a required non-clinical disclaimer.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

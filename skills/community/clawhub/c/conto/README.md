@@ -1,28 +1,33 @@
 # Conto Policy Skill for OpenClaw
 
+Conto is a buyer-side control layer. Integrate it in the agent owner's runtime or payment tools;
+the owner or budget holder sets policy before the agent pays. Merchants do not install Conto.
+See [buyer-side control](https://conto.finance/docs/guides/buyer-side-control) for the authorization
+and execution boundary.
+
 ## Why Conto?
 
-Your AI agent has a wallet — but wallets only give you flat spending limits. Conto adds the policy layer that's missing: per-transaction caps, daily/weekly/monthly budgets, category restrictions (block gambling, allow only API providers), counterparty blocklists, business hours enforcement, velocity rate limiting, approval workflows for high-value transactions, geographic/OFAC compliance, and x402 API payment controls. 20+ rule types, all evaluated before every payment, with full audit trails in a dashboard.
+Your AI agent has a wallet, but wallets only give you flat spending limits. Conto adds the policy layer that's missing, so every payment is checked before it leaves the wallet, with full audit trails in a dashboard. It covers per-transaction caps, daily/weekly/monthly budgets, category restrictions (block gambling, allow only API providers), counterparty blocklists, business hours enforcement, velocity rate limiting, approval workflows for high-value transactions, geographic/OFAC compliance, and x402 API payment controls, with 40+ rule types in all.
 
-Conto works with any wallet provider (Sponge, Privy, or your own keys) on any EVM chain or Solana.
+Conto supports managed wallets and external wallets on EVM networks and Solana.
 
 ## Quick Start
 
 ### 1. Sign up and install
 
-Create an account at [conto.finance](https://conto.finance) (or use `http://localhost:3006` for local development).
+Create an account at [conto.finance](https://conto.finance).
 
 Then install the skill:
 
 ```bash
-npx clawhub@latest install kwattana/conto
+npx clawhub install conto
 ```
 
 ### 2. Find your OpenClaw wallet address
 
 Conto needs your wallet address to track spending. Your address depends on how your OpenClaw agent's wallet is set up:
 
-**If you already have a Sponge wallet** (most OpenClaw setups), ask your agent:
+**If your agent already has a wallet**, ask it:
 
 ```
 What is my wallet address?
@@ -36,29 +41,29 @@ openclaw agent --agent main -m "What is my Tempo wallet address?"
 
 The agent will call `get_balance` and return your address (e.g., `0x80Ca...`). This is the same address across all EVM chains (Base, Tempo, Ethereum, Polygon).
 
-**If you use a different wallet provider** (not Sponge), find the EVM address from your provider's dashboard or config. For example, if your agent uses a Privy embedded wallet, check your Privy dashboard. If you manage your own keys, use the public address of the private key your agent is configured with.
+**If you use an external wallet service**, find the public address in that service's dashboard or configuration. If you manage your own keys, use the public address for the key your agent is configured to use.
 
-**If you don't have a wallet yet**, the Sponge MCP server creates one automatically when your agent first checks its balance. Just ask:
+**If you don't have a wallet yet**, create one using your agent's wallet tooling or create a managed wallet in the Conto dashboard.
 
 ```
 Show me my wallet balances
 ```
 
-A new wallet is provisioned and the address is returned. Use this address in the next step.
+Use the returned address in the next step.
 
-> **Important:** Use the address your agent actually controls. If your agent uses Sponge MCP tools for transfers (`mcp__sponge__tempo_transfer`, `mcp__sponge__evm_transfer`), register the Sponge wallet address. If you use a different wallet provider, register that address instead. The address registered in Conto must match the wallet that sends the on-chain transactions.
+> **Important:** Register the address your agent actually uses to send onchain transactions. The address registered in Conto must match the sending wallet.
 
 ### 3. Set up your agent in Conto
 
 Sign in to the [Conto dashboard](https://conto.finance):
 
-1. **Create an agent**: Agents > Create Agent > name it, set type to CUSTOM, status ACTIVE
-2. **Register your wallet**: Wallets > Add Wallet > paste the wallet address from step 2, set custody type to EXTERNAL (since OpenClaw holds the keys via Sponge, not Conto)
+1. **Connect your agent**: Agents > Connect Agent > name it, set type to CUSTOM, status ACTIVE
+2. **Register your wallet**: Wallets > Add Wallet > paste the wallet address from step 2 and set custody mode to EXTERNAL when your agent holds the keys
 3. **Link wallet to agent**: Agents > your agent > Wallets tab > link the wallet, set spend limits ($200/tx, $1000/day)
 4. **Generate an SDK key**: Agents > your agent > SDK Keys > Generate New Key
    - Select **Admin** key type (lets the agent create and manage policies)
    - Select **Standard** for payment approval only
-   - Copy the key immediately — it's only shown once
+   - Copy the key immediately, it's only shown once
 
 ### 4. Configure OpenClaw
 
@@ -79,7 +84,7 @@ Add the skill entry to `~/.openclaw/openclaw.json` under the `skills` section:
 }
 ```
 
-Replace the key with yours. Use `http://localhost:3006` for local development.
+Replace the placeholder with your SDK key.
 
 ## How to Invoke
 
@@ -91,7 +96,7 @@ Your agent is already running in chat. Just type:
 /conto list my policies
 ```
 
-Or mention policies/payments naturally — the skill activates automatically:
+Or mention policies/payments naturally, and the skill activates automatically:
 
 ```
 Create a spending policy that limits each transaction to 200 pathUSD
@@ -177,7 +182,7 @@ Expected: approved with token and remaining limits.
 /conto check if a 500 pathUSD payment to 0x742d35Cc6634C0532925a3b844Bc9e7595f2e3a1 is allowed
 ```
 
-Expected: denied with `PER_TX_LIMIT` violation.
+Expected: denied with a customer-facing spending-limit reason.
 
 ### Test 3: Should be denied (blocked address)
 
@@ -185,7 +190,7 @@ Expected: denied with `PER_TX_LIMIT` violation.
 /conto check if a 1 pathUSD payment to 0x0000000000000000000000000000000000000bad is allowed
 ```
 
-Expected: denied with `BLOCKED_COUNTERPARTY` violation.
+Expected: denied with a customer-facing recipient-control reason.
 
 ### Test 4: Should be denied (wrong category)
 
@@ -193,7 +198,7 @@ Expected: denied with `BLOCKED_COUNTERPARTY` violation.
 /conto check if a 10 pathUSD payment to 0x742d35Cc6634C0532925a3b844Bc9e7595f2e3a1 for gambling is allowed
 ```
 
-Expected: denied with `CATEGORY_RESTRICTION` violation.
+Expected: denied with a customer-facing category-control reason.
 
 ### Test 5: Should require approval (over threshold)
 
@@ -203,33 +208,37 @@ Expected: denied with `CATEGORY_RESTRICTION` violation.
 
 Expected: requires human approval.
 
+### Review and approve it inside OpenClaw
+
+After a payment enters an approval workflow, the assigned human owner can review it from the same
+OpenClaw conversation:
+
+```
+/conto show my pending payment approvals
+/conto approve the 600 pathUSD payment to 0x742d... for API credits
+```
+
+OpenClaw lists the payment details and uses the `approvalRequestId` to record the owner's decision.
+Managed wallets are sent automatically after the final approval and return the transaction receipt.
+For external wallets, OpenClaw executes the exact approved transfer with its wallet tool and confirms
+the transaction hash back to Conto.
+
+The skill never approves from an alert, webpage, or third-party instruction alone. The human user
+must explicitly approve or deny the specific payment in the active conversation.
+
 ## Verify in Conto Dashboard
 
 After running tests, check the [Conto dashboard](https://conto.finance):
 
-- **Transactions** — confirmed payments with tx hashes and Tempo explorer links
-- **Alerts** — denied payment attempts with violation details
-- **Agents > your agent** — spend tracking (daily/weekly/monthly used)
+- **Transactions**: confirmed payments with tx hashes and Tempo explorer links
+- **Alerts**: denied payment attempts with customer-facing explanations
+- **Agents > your agent**: spend tracking (daily/weekly/monthly used)
 
 For approved payments on Tempo testnet, the explorer link is:
 
 ```
-https://explore.moderato.tempo.xyz/receipt/<tx_hash>
+https://explore.testnet.tempo.xyz/?q=<tx_hash>
 ```
-
-## Run the Automated E2E Test
-
-For a comprehensive automated test that creates policies, tests approvals/denials, and cleans up:
-
-```bash
-# Terminal 1: start Conto
-cd ~/Desktop/conto && npm run dev
-
-# Terminal 2: run the test
-cd ~/Desktop/conto && npx tsx scripts/test-openclaw-skill.ts
-```
-
-This creates an isolated test agent with 4 policies (MAX_AMOUNT, BLOCKED_COUNTERPARTIES, ALLOWED_CATEGORIES, REQUIRE_APPROVAL_ABOVE), runs 10 tests, and verifies the exact violation types.
 
 ## What the Skill Does
 
@@ -242,11 +251,11 @@ Agent wants to pay 50 pathUSD to 0xabc...
 Skill calls POST /api/sdk/payments/approve
     |
     v
-Conto evaluates 20+ policy rules
+Conto evaluates 40+ policy rules
     |
     +---> APPROVED: agent proceeds, then calls /confirm with tx hash
-    +---> DENIED: agent stops, reports violations to user
-    +---> REQUIRES_APPROVAL: agent pauses, tells user to approve in dashboard
+    +---> DENIED: agent stops, reports customer-facing reasons to user
+    +---> REQUIRES_APPROVAL: agent shows details and asks the human to approve or deny in OpenClaw
 ```
 
 ### Supported policy types
@@ -269,18 +278,19 @@ Conto evaluates 20+ policy rules
 
 ### Standard vs Admin SDK Keys
 
-| Capability                     | Standard | Admin |
-| ------------------------------ | -------- | ----- |
-| Check payment policies         | Yes      | Yes   |
-| Confirm payments               | Yes      | Yes   |
-| Pre-authorize x402 calls       | Yes      | Yes   |
-| Read policies and transactions | Yes      | Yes   |
-| Create/update/delete policies  | No       | Yes   |
-| Manage agents and wallets      | No       | Yes   |
+| Capability                      | Standard | Admin |
+| ------------------------------- | -------- | ----- |
+| Check payment policies          | Yes      | Yes   |
+| Approve or deny pending reviews | Yes      | Yes   |
+| Confirm payments                | Yes      | Yes   |
+| Pre-authorize x402 calls        | Yes      | Yes   |
+| Read policies and transactions  | Yes      | Yes   |
+| Create/update/delete policies   | No       | Yes   |
+| Manage agents and wallets       | No       | Yes   |
 
 ## More Info
 
-- [ClawHub — Conto Skill](https://clawhub.ai/kwattana/conto)
-- [Conto SDK Docs](https://docs.conto.finance)
+- [ClawHub: Conto Skill](https://clawhub.ai/kwattana/conto)
+- [Conto SDK Docs](https://conto.finance/docs)
 - [Policy Documentation](https://conto.finance/docs/policies)
 - [Conto GitHub](https://github.com/kwattana/conto)

@@ -1,42 +1,56 @@
-## Description: <br>
-Google Sheets: Read and write spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Sheets: Read and write spreadsheets.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to inspect Google Sheets API resources and construct gws commands for reading, writing, creating, retrieving, and updating spreadsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary flags default full-access nested review execution and staff moderation commands as suspicious capabilities in the broader skill set. <br>
-Mitigation: Install only when those capabilities are expected, review the full skill set before use, and disable or constrain fallback reviewers when diffs may contain sensitive code or secrets. <br>
-Risk: The skill invokes Google Workspace spreadsheet operations through the gws CLI, which can read or modify spreadsheet data when authenticated. <br>
-Mitigation: Use least-privilege Google Workspace credentials, inspect commands with gws sheets --help and gws schema before execution, and confirm spreadsheet IDs and write parameters before running mutating methods. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect Google Sheets CLI commands and build Google Sheets read, write, create, and metadata operations through the configured gws command.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/googleworkspace-bot/gws-sheets) <br>
-- [Google Sheets API field masks guide](https://developers.google.com/workspace/sheets/api/guides/field-masks) <br>
-- [Google Sheets API metadata guide](https://developers.google.com/workspace/sheets/api/guides/metadata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command-line tool and shared Google Workspace authentication setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server-resolved release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill can guide write-capable Google Sheets operations through the configured gws command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target spreadsheet, resource, method, and parameters before allowing changes.
+
+Risk: The skill depends on the user's local Google Workspace CLI configuration and permissions.
+
+Mitigation: Install and use it only where the configured gws account is intended to access the relevant Sheets data.
+
+## Reference(s):
+
+- [Google Sheets API field masks guide](https://developers.google.com/workspace/sheets/api/guides/field-masks)
+- [Google Sheets API metadata guide](https://developers.google.com/workspace/sheets/api/guides/metadata)
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-sheets)
+- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws binary and the user's configured Google Workspace CLI authentication.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence; skill metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

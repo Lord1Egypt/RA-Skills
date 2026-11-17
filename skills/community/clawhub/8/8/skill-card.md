@@ -1,42 +1,52 @@
-## Description: <br>
-Provides entertainment-gossip prompts and analysis centered on the number 8, including celebrity connections, gossip rankings, event interpretation, and entertainment numerology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供围绕数字8的明星八卦、娱乐新闻、事件分析、排行榜和娱乐数字含义解读。
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hgta23](https://clawhub.ai/user/hgta23)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External ClawHub users can use this Chinese-language skill to explore entertainment gossip and numerology-themed analysis related to the number 8. It is best treated as entertainment content, especially for rankings, predictions, and current celebrity claims.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Celebrity gossip, rankings, and predictions can be inaccurate or misleading if treated as factual news.
+
+Mitigation: Present them as entertainment content and verify current claims with reliable sources before relying on them.
+
+Risk: The artifact describes real-time updates but provides no data-source guarantee.
+
+Mitigation: Use reputable current sources for time-sensitive entertainment news and distinguish sourced facts from number-8-themed interpretation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill for entertainment-oriented gossip exploration, themed celebrity discussion, and speculative trend analysis related to the number 8. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Gossip rankings, number symbolism, real-time claims, and future predictions may be mistaken for verified reporting. <br>
-Mitigation: Treat outputs as entertainment or speculation and verify claims with reliable sources before relying on them. <br>
-Risk: Personalized entertainment recommendations could invite users to share unnecessary personal information. <br>
-Mitigation: Avoid sharing sensitive personal information when asking for personalization. <br>
+**Output Format:** [Markdown or plain text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/8) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Chinese-language entertainment content; current factual claims should be independently verified.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text entertainment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content may include speculative gossip rankings, entertainment numerology, and personalized recommendations.] <br>
+1.0.0 (source: server release evidence and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

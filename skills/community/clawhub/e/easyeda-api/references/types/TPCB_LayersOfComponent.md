@@ -1,6 +1,6 @@
 # TPCB\_LayersOfComponent type
 
-器件所属层
+Layers of the device
 
 ## Signature
 
@@ -8,6 +8,5 @@
 type TPCB_LayersOfComponent = EPCB_LayerId.TOP | EPCB_LayerId.BOTTOM;
 ```
 ## References
-
 
 [EPCB\_LayerId.TOP](../enums/EPCB_LayerId.md)<!-- -->, [EPCB\_LayerId.BOTTOM](../enums/EPCB_LayerId.md)

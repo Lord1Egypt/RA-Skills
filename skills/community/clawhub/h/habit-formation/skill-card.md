@@ -1,40 +1,58 @@
-## Description: <br>
-Evidence-based techniques for building habits and changing behavior for users who want to start a healthy habit, stop an unwanted habit, build a daily practice, or make behavior change stick. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evidence-based techniques for building habits and changing behavior, including starting exercise, quitting unwanted habits, building a daily practice, and making repeated change attempts stick.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to provide habit coaching, behavior-change planning, environment design suggestions, implementation intentions, and fallback guidance when habit attempts fail. It is general habit support, not medical or addiction treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general habit coaching as medical or addiction treatment. <br>
-Mitigation: Use the skill as general coaching only, and rely on qualified medical, addiction, or crisis support for substance dependence, withdrawal risk, severe impairment, self-harm, or urgent safety concerns. <br>
-Risk: Habit recommendations may be unrealistic for users with limited resources, irregular schedules, cultural constraints, or low technology access. <br>
-Mitigation: Adapt plans to the user's actual environment, use event-based triggers when schedules are irregular, and prefer low-cost tracking such as paper calendars when apps are unsuitable. <br>
+## Use Case:
 
+External users use this skill to get structured habit coaching for building healthy routines, breaking unwanted habits, designing environments, and setting realistic expectations for behavior change. Agents use it to produce practical, evidence-based guidance tailored to the user's habit, constraints, and risk context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/habit-formation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; outputs may include habit plans, replacement routines, environment changes, implementation intentions, and tracking suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests filesystem access even though release evidence does not show a clear need for that capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in a sandboxed environment, or remove or deny filesystem access unless a reviewed deployment explicitly requires it.
+
+Risk: The install command is unpinned and server-resolved provenance is unavailable.
+
+Mitigation: Use a version-pinned, provenance-checked install path and verify the release hash before deployment.
+
+Risk: Habit coaching can be insufficient when a user describes addiction, compulsive use, or substance withdrawal risk.
+
+Mitigation: Use the skill's referral posture: treat habit techniques as supplementary and direct the user to appropriate professional or crisis support resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/habit-formation)
+- [Publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured explanations, examples, action plans, and referral language when habit coaching may be insufficient.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No generated files or external API calls are described by the skill; it provides conversational coaching content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

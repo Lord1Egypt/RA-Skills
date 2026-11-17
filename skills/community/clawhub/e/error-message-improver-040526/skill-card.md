@@ -1,41 +1,53 @@
-## Description: <br>
-Rewrite vague application, API, CLI, and support errors into diagnostic messages that explain what failed, why it likely failed, and the next safe action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite vague application, API, CLI, and support errors into diagnostic messages that explain what failed, why it likely failed, and the next safe action.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Product engineers, platform teams, support leads, technical writers, and SaaS operators use this skill to turn unclear errors into actionable user-facing messages, support notes, structured payloads, and review checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logs or original error text may contain secrets, stack traces, or internal implementation details that should not be exposed in user-facing messages. <br>
-Mitigation: Remove secrets, irrelevant stack traces, and sensitive internals before producing or publishing rewritten error text. <br>
-Risk: Broad invocation wording may cause the skill to be applied to general debugging or support prompts where a direct fix is expected instead of copy improvement. <br>
-Mitigation: Use explicit invocation when error-message rewriting is desired and confirm the intended output before changing diagnostic guidance. <br>
+## Use Case:
 
+Product engineers, platform teams, support leads, technical writers, and SaaS operators use this skill to turn technically correct but vague failure states into actionable user-facing messages, structured payloads, support notes, and review checklists.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/error-message-improver-040526) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown, structured text, or code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include before-and-after rewrites, structured error payloads, telemetry fields, support notes, and checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may be invoked broadly around debugging, support, validation, or troubleshooting language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for rewriting user-facing error messages and review outputs before applying them to production copy, API responses, CLI text, or support workflows.
+
+Risk: Troubleshooting inputs can include secrets, stack traces, sensitive logs, or internal implementation details.
+
+Mitigation: Share only the context required for the rewrite and remove unnecessary secrets, raw stack traces, and sensitive logs before invoking the skill.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with before-and-after rewrites, structured payload patterns, implementation notes, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rationale, telemetry or support fields, localization or tone constraints, and validation notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

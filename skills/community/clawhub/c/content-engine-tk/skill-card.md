@@ -1,43 +1,56 @@
-## Description: <br>
-Blog writing, social media, SEO, newsletter curation, brand-aware content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blog writing, social media, SEO, newsletter curation, brand-aware content.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External creators, content agencies, marketing teams, and founders use this skill to turn a single brief or existing content piece into platform-specific blog, social, newsletter, and SEO drafts with consistent brand voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential client work, private brand materials, or sensitive personal data as voice-training samples. <br>
-Mitigation: Use public or sanitized writing samples and remove confidential or sensitive personal data before prompting the skill. <br>
-Risk: Generated marketing copy may be inaccurate, off-brand, or unsuitable for a target platform. <br>
-Mitigation: Review and edit generated drafts, SEO metadata, scheduling recommendations, and platform formatting before publishing or scheduling. <br>
+## Use Case:
 
+External content teams, agencies, solo creators, marketers, and founders use this skill to turn a brief or existing content into platform-ready blogs, social posts, newsletters, ad copy, and content calendars with a consistent brand voice.
 
-## Reference(s): <br>
-- [Voice Training Guide](references/voice-training-guide.md) <br>
-- [Platform Specifications](references/platform-specs.md) <br>
-- [Content Calendar Template](references/content-calendar.md) <br>
-- [Content Engine Tk on ClawHub](https://clawhub.ai/tktk-ai/content-engine-tk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown drafts, structured content outlines, platform-specific post copy, SEO metadata, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces marketing drafts for review before publishing or scheduling; may use user-provided brand voice samples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Brand voice samples and content briefs may contain private client material, confidential strategy, or unpublished campaign details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or generalize sensitive details before providing samples or briefs, and use only material appropriate for the chat environment.
+
+Risk: Generated marketing drafts may include inaccurate, off-brand, or unsuitable claims if published without review.
+
+Mitigation: Review, edit, and approve every draft before publication; the skill evidence explicitly calls for review and does not autonomously post content.
+
+## Reference(s):
+
+- [Content Engine Tk ClawHub Skill Page](https://clawhub.ai/tktk-ai/skills/content-engine-tk)
+- [Voice Training Guide](artifact/references/voice-training-guide.md)
+- [Platform Specifications](artifact/references/platform-specs.md)
+- [Content Calendar Template](artifact/references/content-calendar.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured content drafts, platform sections, checklists, and scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft marketing content for user review before publishing; it does not autonomously post or schedule content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

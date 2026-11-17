@@ -1,38 +1,54 @@
-## Description: <br>
-Generate structured implementation spec documents for coding projects or features before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured implementation spec documents for coding projects or features before implementation begins.
 
-## Publisher: <br>
-[lgYanami](https://clawhub.ai/user/lgYanami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgyanami](https://clawhub.ai/user/lgyanami)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn feature ideas, bug reports, requirements, or GitHub issues into structured Markdown implementation specs before coding begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated specs may include incorrect assumptions, incomplete implementation details, or sensitive internal project context. <br>
-Mitigation: Review the generated spec before approving the save path, and remove sensitive internal details before sharing it outside the workspace. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn requirements, feature ideas, bug reports, or GitHub issues into structured implementation specs with objectives, user stories, technical plans, boundaries, verification criteria, and task breakdowns.
 
-## Reference(s): <br>
-- [Spec Template](references/spec-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown spec document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May be saved as SPEC.md or spec/<name>.md after user review and confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read relevant project files and referenced GitHub issues or documentation while gathering context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories and linked resources the agent is permitted to inspect, and review included context before relying on the resulting spec.
+
+Risk: A generated spec can set incorrect implementation boundaries or verification criteria.
+
+Mitigation: Review and confirm the spec boundaries, task breakdown, and verification criteria before using it to guide implementation.
+
+## Reference(s):
+
+- [Spec Template](references/spec-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/lgyanami/skills/spec-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown spec document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output path is SPEC.md or spec/<name>.md after user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

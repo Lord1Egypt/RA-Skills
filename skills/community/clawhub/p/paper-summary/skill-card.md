@@ -1,40 +1,53 @@
-## Description: <br>
-Paper Summary helps agents summarize academic papers and research articles from PDF files, links, or pasted text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Summary helps agents summarize academic papers and research articles from uploaded PDFs, paper links, or pasted text into structured reading reports.
 
-## Publisher: <br>
-[Ray1012](https://clawhub.ai/user/Ray1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ray1012](https://clawhub.ai/user/ray1012)
 
-## Use Case: <br>
-Researchers, students, and academic readers use this skill to turn papers into structured summaries that cover background, methods, findings, contributions, limitations, and reading guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad summary requests may invoke the skill and cause the agent to read supplied PDFs, URLs, local paths, or pasted text. <br>
-Mitigation: Provide only documents and paths that are appropriate for the agent to read and summarize. <br>
-Risk: Generated summaries can omit nuance or misstate details from dense academic papers. <br>
-Mitigation: Use the summary for triage and verify important claims, citations, and numerical results against the original paper. <br>
+## Use Case:
 
+External users, researchers, students, and analysts use this skill to screen papers, understand cross-field research, prepare literature reviews, and create academic presentation notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ray1012/paper-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an overview, keywords, detailed analysis, key takeaways, and reading recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate for broad article-summary requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants paper-style academic summarization before applying the skill to general articles.
+
+Risk: Users may provide sensitive unpublished papers or private PDFs.
+
+Mitigation: Confirm authorization and data-handling expectations before asking the agent to fetch, extract, or summarize sensitive papers.
+
+## Reference(s):
+
+- [Paper Summary ClawHub skill page](https://clawhub.ai/ray1012/skills/paper-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown summary report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a one-line overview, keywords, detailed analysis, key takeaways, and reading recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

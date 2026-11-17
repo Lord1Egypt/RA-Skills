@@ -1,0 +1,81 @@
+{
+  "name": "infoseek",
+  "version": "2.6.1",
+  "description": "端到端内容智能采集与调研工作流：多源嗅探→四维评分门控→4级深度抓取→键控事实槽矛盾检测（GA11）→网络边界门控（GA12）→跨源融合→结构化 Markdown 报告。DeepSeek Harness (dsh) skill bundle.",
+  "main": "SKILL.md",
+  "exports": {
+    ".": "./index.mjs",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "SKILL.md",
+    "index.mjs",
+    "cordis.patch.yml",
+    "manifest.yaml",
+    "README.md",
+    "CHANGELOG.md",
+    "RELEASE_NOTES.md",
+    "PRIVACY.md",
+    "LICENSE",
+    "install.sh",
+    "icon.png",
+    "icon.svg",
+    "capabilities/",
+    "core/",
+    "deps/",
+    "dist/",
+    "domains/",
+    "ecosystem/",
+    "extensions/",
+    "references/",
+    "scripts/",
+    "requirements.txt",
+    "requirements-extra.txt",
+    "!**/tests/**",
+    "!**/__pycache__/**",
+    "!**/.pytest_cache/**",
+    "!**/retrain_out/**",
+    "!**/*.bak",
+    "!**/*.bak-*",
+    "!references/compliance-audit-report.json",
+    "!references/compliance-audit-report.md",
+    "!references/human-fingerprint-feasibility-report.md",
+    "!references/real-env-evidence-log.md"
+  ],
+  "keywords": [
+    "infoseek",
+    "research",
+    "skill",
+    "clawhub",
+    "openclaw",
+    "content-collection",
+    "web-scraping",
+    "llm",
+    "dsh",
+    "dsh-plugin",
+    "dsh-skill",
+    "deepseek-harness",
+    "mcp",
+    "workflow",
+    "agent"
+  ],
+  "license": "MIT",
+  "author": "GYINT",
+  "homepage": "https://github.com/GYINT/infoseek",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GYINT/infoseek.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GYINT/infoseek/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

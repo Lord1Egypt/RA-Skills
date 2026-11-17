@@ -1,46 +1,66 @@
-## Description: <br>
-HubStudio OpenAPI skill for full endpoint lookup, request/response field explanation, and parameter constraint checking. Use when querying HubStudio API interfaces, validating request payloads, or building automation against openapi.yaml. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HubStudio OpenAPI skill for full endpoint lookup, request/response field explanation, and parameter constraint checking.
 
-## Publisher: <br>
-[hubstudio-Max](https://clawhub.ai/user/hubstudio-Max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hubstudio-max](https://clawhub.ai/user/hubstudio-max)
 
-## Use Case: <br>
-Developers and operators use this skill to look up HubStudio OpenAPI endpoints, validate request and response fields, and assemble local API or CLI calls for browser, cloud phone, account, and group automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over HubStudio browsers, cloud phones, cookies, accounts, files, and local API operations. <br>
-Mitigation: Use a test HubStudio account first, scope actions to intended resources, and review generated request bodies before execution. <br>
-Risk: Shell execution, ADB, cookie import/export, file upload, account changes, cache clearing, delete, and stop-all operations can change or expose user resources. <br>
-Mitigation: Require explicit human approval before running commands for these operations and avoid using production data unless the action has been reviewed. <br>
-Risk: Batch and testAll workflows can touch many endpoints or resources at once. <br>
-Mitigation: Avoid running broad tests against production environments and prefer narrow endpoint checks with known safe inputs. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to look up HubStudio local API endpoints, validate request and response fields, and generate CLI or curl calls for browser environment, cloud phone, account, and group automation.
 
-## Reference(s): <br>
-- [HubStudio API Docs](https://api-docs.hubstudio.cn/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hubstudio-Max/hubstudio) <br>
-- [Full Generated API Reference](reference.md) <br>
-- [ADB Connection Guide](ADB_CONNECTION_GUIDE.md) <br>
-- [OpenClaw Agent Browser Tutorial](OPENCLAW_AGENT_BROWSER_TUTORIAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, curl examples, and Node.js command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HubStudio API request bodies and local CLI commands; require human review before executing state-changing operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can trigger privileged HubStudio browser, cloud phone, account, cookie, and destructive testing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended HubStudio administration workflows and require human review before executing generated commands.
+
+Risk: The testAll command can exercise many endpoints against the configured HubStudio service.
+
+Mitigation: Do not run testAll on a real account or production workspace; use isolated test data when endpoint coverage is required.
+
+Risk: Misconfigured HUBSTUDIO_BASE_URL could direct commands to an unintended service.
+
+Mitigation: Keep HUBSTUDIO_BASE_URL pinned to the trusted local HubStudio service before allowing agent-driven calls.
+
+Risk: Automation outputs may expose or manipulate secrets, cookies, or account data.
+
+Mitigation: Avoid exporting secrets or cookies through the skill and review generated payloads before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hubstudio-max/skills/hubstudio)
+- [HubStudio API Docs](https://api-docs.hubstudio.cn/)
+- [OpenClaw Getting Started](https://docs.openclaw.ai/start/getting-started)
+- [Generated API Reference](reference.md)
+- [ADB Connection Guide](ADB_CONNECTION_GUIDE.md)
+- [OpenAPI Definition](openapi.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, JavaScript, curl, Node.js, ADB, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce HubStudio API payloads, generated CLI command suggestions, request validation notes, troubleshooting steps, and local automation examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, package.json, openapi.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

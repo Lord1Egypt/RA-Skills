@@ -1,40 +1,53 @@
-## Description: <br>
-会话日志分析 - 搜索和分析历史会话日志，查找之前的对话内容和结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+会话日志分析 - 搜索和分析历史会话日志，查找之前的对话内容和结果。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect recent OpenClaw session logs, search for keywords, and summarize relevant historical prompts, commands, and results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local session logs may contain private prompts, commands, secrets, or customer data. <br>
-Mitigation: Limit searches to the needed time range and review returned snippets before sharing or storing them. <br>
-Risk: Search results can expose sensitive context from previous agent sessions. <br>
-Mitigation: Redact sensitive values and avoid broad keyword searches on logs that may contain confidential information. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect recent local session logs, search prior conversations, extract key information, and filter results by time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-session-logs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown summaries with optional Python code examples and log-result snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include local session filenames, timestamps, line numbers, and truncated log excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: The skill handles sensitive local session history and may expose private conversation content or secrets in returned snippets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before log searches and redact secrets or sensitive values before presenting results.
+
+Risk: The sample behavior can read more history or files than users would reasonably expect.
+
+Mitigation: Enforce date limits, restrict searches to known log files, reject traversal and absolute paths, and limit result counts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-session-logs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown summaries with optional Python code examples, tables, and search-result lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results should be scoped, limited, and redacted before returning session-log snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

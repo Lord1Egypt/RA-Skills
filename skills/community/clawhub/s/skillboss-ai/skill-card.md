@@ -1,52 +1,72 @@
-## Description: <br>
-Swiss-knife for AI agents. 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS — with smart routing for cost saving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skillboss gives agents access to 50+ AI models for image, video, audio, chat, search, document parsing, email, and SMS workflows, with smart routing for cost and quality preferences.
 
-## Publisher: <br>
-[yshuolu](https://clawhub.ai/user/yshuolu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshuolu](https://clawhub.ai/user/yshuolu)
 
-## Use Case: <br>
-Developers and agents use SkillBoss to route prompts, files, and task requests through a single API for chat, image, video, audio, search, document parsing, email, SMS, embeddings, and presentation generation. It supports both direct model calls by ID and smart routing by task with price, quality, or balanced preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, files, URLs, generated outputs, and local audio files may be sent to SkillBoss and downstream model providers. <br>
-Mitigation: Use the skill only with data appropriate for those providers, avoid secrets and regulated data, and review outbound inputs before execution. <br>
-Risk: API keys can be read from the environment or saved config, and the auth flow can write credentials to config.json. <br>
-Mitigation: Prefer SKILLBOSS_API_KEY from a secure environment, avoid committing config.json with real credentials, and use logout or secret rotation when needed. <br>
-Risk: Email and SMS models can send messages, including batch sends, through remote providers. <br>
-Mitigation: Require explicit human review and approval before invoking email or SMS models, especially for batch operations. <br>
+## Use Case:
 
+Developers and external agent users use Skillboss to call or route across hosted AI models for chat, image, video, audio, search, document processing, email, and SMS tasks. It is useful when an agent needs one command-line wrapper for direct model calls, model discovery, or cost and quality based task routing.
 
-## Reference(s): <br>
-- [ClawHub SkillBoss Release](https://clawhub.ai/yshuolu/skillboss-ai) <br>
-- [SkillBoss Publisher Profile](https://clawhub.ai/user/yshuolu) <br>
-- [SkillBoss Website](https://www.skillboss.co) <br>
-- [API Integration](artifact/api-integration.md) <br>
-- [Error Handling](artifact/error-handling.md) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Plain text, JSON, Markdown, generated media files, and saved local output files depending on the selected model or task.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write image, video, and audio outputs to user-specified paths; speech-to-text and chat results are printed to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, files, URLs, and generated outputs may be sent through SkillBoss and its providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved data, avoid sensitive audio or documents unless authorized, and confirm that the selected providers are acceptable for the task.
+
+Risk: The SkillBoss API key is a secret and auth commands may expose it through stdout if logs are captured.
+
+Mitigation: Store the key in a secret environment variable, avoid running auth commands in logged shells, and rotate the key if exposure is suspected.
+
+Risk: Using --output can fetch returned media URLs automatically.
+
+Mitigation: Save outputs only for trusted requests, review destination paths before execution, and inspect generated files before reuse.
+
+Risk: Remote API responses are handled by the wrapper and may be incomplete, unexpected, or unsuitable for direct use.
+
+Mitigation: Review generated text, files, and API responses before using them in downstream decisions or publishing workflows.
+
+## Reference(s):
+
+- [ClawHub Skillboss listing](https://clawhub.ai/yshuolu/skills/skillboss-ai)
+- [Publisher profile](https://clawhub.ai/user/yshuolu)
+- [SkillBoss website](https://www.skillboss.co)
+- [SkillBoss API base](https://api.heybossai.com/v1)
+- [API Integration](api-integration.md)
+- [Error Handling](error-handling.md)
+- [Chat Models](chat-models.md)
+- [Image Models](image-models.md)
+- [Audio Models](audio-models.md)
+- [Video Models](video-models.md)
+- [Search and Scraping Models](search-models.md)
+- [Tool Models](tools-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance, shell commands, JSON API responses, text responses, and optional saved media or document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and SKILLBOSS_API_KEY; model outputs may include remote media URLs that can be downloaded when --output is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

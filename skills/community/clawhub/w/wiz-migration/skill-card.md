@@ -1,40 +1,58 @@
-## Description: <br>
-为知笔记迁移辅助技能，提供自动检测存储目录、导出操作引导、附件批量迁移等完整迁移流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps migrate WizNote data by detecting local storage directories, guiding HTML export, and copying exported attachments.
 
-## Publisher: <br>
-[awamwang](https://clawhub.ai/user/awamwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awamwang](https://clawhub.ai/user/awamwang)
 
-## Use Case: <br>
-External users and developers use this skill to migrate Wiz Note data by detecting local data folders, generating an export guide, and copying attachment directories into a target location. It is intended for user-supervised note migration where original data is backed up before copying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Windows batch-script path can execute caller-supplied scripts with user privileges. <br>
-Mitigation: Prefer the Python copy path without script_path; inspect and trust any batch script before running it. <br>
-Risk: Incorrect source or destination folders can produce incomplete or misplaced note attachments during migration. <br>
-Mitigation: Choose precise Wiz source and destination folders and keep a backup of the original notes until the migration is verified. <br>
+## Use Case:
 
+Developers, engineers, and note-system users use this skill to plan a WizNote export, generate migration guidance, and move attachment folders into a target note archive.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/awamwang/wiz-migration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python API responses, and shell or batch command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a generated Markdown export guide and copy attachment files when the migration helper is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact frontmatter, and skill.json) <br>
+Risk: The security review notes that an optional Windows batch-script path can execute arbitrary local commands if an unreviewed script_path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the pure-Python migration path with source and target directories chosen by the user, and pass script_path only after reviewing the batch file.
+
+Risk: Migration helpers may write local paths or notes to migration_log.json.
+
+Mitigation: Review generated logs before sharing them outside the local migration environment.
+
+Risk: File migration can fail or copy incomplete data if the wrong source or export directory is selected.
+
+Mitigation: Back up the original WizNote data and validate the exported HTML and attachment folders before and after migration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/awamwang/skills/wiz-migration)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional generated migration log JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate wiz_export_guide.md and migration_log.json when invoked by an agent or local workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

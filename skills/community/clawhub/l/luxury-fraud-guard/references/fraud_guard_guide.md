@@ -4,7 +4,7 @@ Quick reference for the `luxury-fraud-guard` skill. Load when the agent needs si
 
 ## Contents
 
-- [Risk signal quick reference](#risk-signal-quick-reference)
+- [Risk signal quick reference](#riREDACTED-SECRET)
 - [Scoring tier template](#scoring-tier-template)
 - [Review workflow steps](#review-workflow-steps)
 - [Prevention policy checklist](#prevention-policy-checklist)

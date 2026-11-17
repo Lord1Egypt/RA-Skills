@@ -1,43 +1,61 @@
-## Description: <br>
-Analyzes Amazon category and keyword opportunities through the ClawEC API, including opportunity scores, search-rank trends, 30-day sales metrics, and radar scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the ClawEC API to analyze Amazon category and keyword opportunities, including opportunity scores, search ranking trends, 30-day sales and revenue signals, and radar-style multidimensional scoring.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External ecommerce sellers, operators, and agents use this skill to evaluate Amazon category or keyword opportunities and produce a Chinese market opportunity report with ranked keywords, trends, sales metrics, and radar-score interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon keyword, category, and market choices are sent to ClawEC with the user's API key. <br>
-Mitigation: Avoid submitting confidential product plans or sensitive business research unless ClawEC's data handling and retention practices meet the user's requirements. <br>
-Risk: The output depends on external ClawEC API availability, credentials, and returned market data. <br>
-Mitigation: Check the API key, keyword, region code, and response status before relying on the generated opportunity analysis. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and agent users use this skill to evaluate Amazon keyword and category opportunities across supported regional marketplaces. It helps summarize opportunity rankings, trend movement, sales signals, and radar score strengths or weaknesses in a Chinese analysis report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-amazon-category-opportunity) <br>
-- [Response schema](references/response-schema.md) <br>
-- [ClawEC API base](https://www.clawec.com/api) <br>
-- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown report with ranked keyword tables, trend summaries, radar-score interpretation, and optional raw API JSON from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWEC_API_KEY and sends the requested keyword, Amazon marketplace region, and table flag to ClawEC.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends search keywords, Amazon region, table option, and the ClawEC bearer token to clawec.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated ClawEC API key, avoid confidential product terms, and run the skill only when external ClawEC API processing is acceptable.
+
+Risk: The helper script executes a curl request with the provided keyword and credentials.
+
+Mitigation: Review the generated curl command or scripts/analyze.sh before running it, and keep CLAWEC_API_KEY in the environment rather than hardcoding it.
+
+Risk: Opportunity scores and trends are third-party ecommerce analysis signals and may not be sufficient for final business decisions.
+
+Mitigation: Treat the report as decision support and compare recommendations with marketplace data, supply constraints, and product economics before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-amazon-category-opportunity)
+- [Amazon category opportunity response schema](references/response-schema.md)
+- [ClawEC API base](https://www.clawec.com/api)
+- [ClawEC product search v2 endpoint](https://www.clawec.com/api/aigc/ec/product_search_v2)
+- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables and concise Chinese narrative; may include shell commands or raw JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses keyword, Amazon region, and optional table flag; reports are sorted and interpreted from the returned keywordList.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

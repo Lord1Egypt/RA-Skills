@@ -1,41 +1,53 @@
-## Description: <br>
-Activate different high-agency thinking modes to unlock better reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activate different high-agency thinking modes to unlock better reasoning for brainstorming, plan review, decisions, and precedent checks.
 
-## Publisher: <br>
-[artyomx33](https://clawhub.ai/user/artyomx33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[artyomx33](https://clawhub.ai/user/artyomx33)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent apply named reasoning personas for brainstorming, plan review, decision support, code review, risk assessment, and system integration analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persona-driven responses may become more contrarian, critical, or precedent-focused than expected. <br>
-Mitigation: Ask the agent to label the active persona or switch to neutral reasoning for sensitive conversations. <br>
-Risk: The skill may run silently without naming the active persona. <br>
-Mitigation: Request explicit persona labels when transparency about reasoning posture matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Persona Details](references/persona-details.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/artyomx33/reasoning-personas) <br>
-- [Publisher Profile](https://clawhub.ai/user/artyomx33) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to apply persona-based reasoning modes for brainstorming, code review, architecture decisions, risk assessment, and integration analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text reasoning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally label the active reasoning persona in the response.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic persona activation can make an agent's response more critical, contrarian, or precedent-focused than the user expected.
+
+Mitigation: Configure the agent or workflow to disclose active persona modes when that context matters, and ask for a neutral synthesis before making final decisions.
+
+Risk: Broad triggers such as brainstorming, code review, and architecture decisions may activate the skill in contexts where a narrower reasoning style would be preferred.
+
+Mitigation: Limit activation triggers where needed, or require an explicit user request before applying persona-based reasoning in sensitive workflows.
+
+## Reference(s):
+
+- [Persona Details](references/persona-details.md)
+- [ClawHub Skill Page](https://clawhub.ai/artyomx33/skills/reasoning-personas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language responses, optionally with a short persona mode label.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool use, or data access is defined by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

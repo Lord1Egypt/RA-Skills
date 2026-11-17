@@ -1,40 +1,57 @@
-## Description: <br>
-Converts bank statement Excel and CSV exports from different banks into a standardized nine-column regulatory reporting format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts bank statement Excel and CSV exports into a 9-column regulatory reporting workbook package.
 
-## Publisher: <br>
-[qiqikuaidianpao](https://clawhub.ai/user/qiqikuaidianpao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiqikuaidianpao](https://clawhub.ai/user/qiqikuaidianpao)
 
-## Use Case: <br>
-Finance, accounting, and operations users use this skill to batch standardize bank-statement spreadsheets across banks and accounts, then produce reporting-ready Excel outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank statements contain financial transaction data, and the generated ZIP contains standardized copies of that data. <br>
-Mitigation: Run the converter only in a trusted local environment and handle the output ZIP as sensitive financial data. <br>
-Risk: Pointing the converter at a broad folder can include unintended statement files in the output. <br>
-Mitigation: Use a narrow input folder containing only the intended bank statement files before running the command. <br>
+## Use Case:
 
+Finance, compliance, and operations users use this skill to batch-normalize bank statement exports from multiple banks and accounts into a standard reporting package. It is intended for Excel and CSV bank statement conversion, not for repairing encrypted or damaged files or analyzing transaction trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiqikuaidianpao/crc-bank-statement-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated ZIP containing standardized XLSX spreadsheets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python3, pip, openpyxl, and xlrd; processes local XLS, XLSX, and CSV statement files from a selected folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: server release evidence) <br>
+Risk: The skill processes sensitive financial spreadsheets, and server security evidence flags material safety issues for this use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment with a narrow workspace, avoid privileged execution, and process only files the user is authorized to handle.
+
+Risk: Generated spreadsheets may be unsafe to open or share until formula sanitization is added.
+
+Mitigation: Treat generated workbooks as untrusted output and review or sanitize them before opening in privileged spreadsheet environments or distributing them.
+
+Risk: Temporary-file handling is called out by server security guidance as needing safer implementation.
+
+Mitigation: Avoid shared-machine execution for sensitive statements and run one conversion job at a time in a private workspace until safer temporary-file handling is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiqikuaidianpao/skills/crc-bank-statement-converter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with bash commands; generated ZIP containing Excel workbooks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a summary workbook and one 9-column .xlsx workbook per source statement.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

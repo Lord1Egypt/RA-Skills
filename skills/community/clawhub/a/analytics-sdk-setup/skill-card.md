@@ -1,42 +1,58 @@
-## Description: <br>
-Guides repo-aware coding agents through auditing, installing, reconciling, aligning, or fixing TikTok Pixel and Meta Pixel integrations, with attention to duplicate initialization, event drift, consent, CSP, LDU, privacy gating, and analytics ownership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever a user wants a coding agent to audit, install, reconcile, align, or fix TikTok Pixel and/or Meta Pixel code in a real repo, especially for duplicate init, tracking drift, event mapping, consent/CSP/LDU/privacy gating, or unclear analytics ownership.
 
-## Publisher: <br>
-[peter-wf](https://clawhub.ai/user/peter-wf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peter-wf](https://clawhub.ai/user/peter-wf)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when they want an agent to inspect a real repository, choose the right execution mode, and produce questions, plans, shell commands, configuration guidance, or code changes for TikTok and Meta Pixel tracking work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changes may add or alter third-party tracking behavior, including Pixel identifiers, consent handling, CSP allowlists, or Advanced Matching. <br>
-Mitigation: Review proposed changes before deployment and require privacy or legal approval before enabling identifiers, Advanced Matching, or new tracking behavior. <br>
-Risk: Incorrect event mapping or duplicate initialization can create misleading analytics or duplicate conversion reporting. <br>
-Mitigation: Verify per-platform initialization, event timing, deduplication, and cross-platform consistency in the target repository before relying on analytics results. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit, install, compare, align, and repair TikTok Pixel and Meta Pixel integrations in real repositories. It helps classify whether to implement directly, plan first, or ask blocking questions before changing tracking, privacy, consent, CSP, LDU, or identifier behavior.
 
-## Reference(s): <br>
-- [Analytics SDK Setup README](README.md) <br>
-- [Install and event details](references/install-and-events.md) <br>
-- [Privacy, CSP, and data handling](references/privacy-and-csp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mode selection, questions, implementation plans, repository findings, patches, event mappings, and verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Installing or enabling the skill from a mutable or unreviewed source can expose users to unexpected instruction changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed local copy or pin the skills CLI and repository source to an immutable version, and prefer project-scoped installation.
+
+Risk: Tracking changes can alter consent handling, CSP behavior, limited data use, or identifier collection.
+
+Mitigation: Confirm consent handling, CSP changes, LDU requirements, and whether identifiers or Advanced Matching are explicitly approved before enabling or changing tracking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peter-wf/skills/analytics-sdk-setup)
+- [README](README.md)
+- [Canonical skill specification](SKILL.md)
+- [Install and event details](references/install-and-events.md)
+- [Privacy, CSP, and data handling](references/privacy-and-csp.md)
+- [Evaluation prompts](evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, questions, plans, implementation summaries, and code or shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode-dependent output for questions-first, plan-first, or direct implementation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

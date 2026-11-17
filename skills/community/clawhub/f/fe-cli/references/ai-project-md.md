@@ -95,7 +95,7 @@ pnpm typecheck    # TypeScript type check
 │   ├── services/               # API layer
 │   │   ├── request.ts          # fetch wrapper — interceptors, error handling, auth header
 │   │   ├── logger.ts           # Structured logger — levels, rotation, file persistence
-│   │   ├── log-export.ts        # Log export (download) + submit (endpoint TBD)
+│   │   ├── log-export.ts        # Log export (local download)
 │   │   └── api/
 │   │       └── index.ts        # API endpoint functions
 │   │
@@ -151,4 +151,3 @@ pnpm typecheck    # TypeScript type check
 | `VITE_APP_TITLE` | `{ProjectName} (Dev)` | `{ProjectName} (Test)` | `{ProjectName}` | App title |
 | `VITE_APP_ENV` | `development` | `test` | `production` | Current environment |
 | `VITE_LOG_LEVEL` | `info` | `info` | `warn` | Min log level (debug/info/warn/error) |
-| `VITE_LOG_SUBMIT_URL` | — | — | — | Log submit endpoint (TBD) |

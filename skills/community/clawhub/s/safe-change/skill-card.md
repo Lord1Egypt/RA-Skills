@@ -1,44 +1,56 @@
-## Description: <br>
-Map blast radius before shipping by surfacing importers, affected API routes, test gaps, environment variables, and recent migrations when editing shared TypeScript code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map blast radius before shipping — run when editing a service, controller, hook, or shared utility to surface all importers, affected API routes, test gaps, ENV vars, and recent migrations.
 
-## Publisher: <br>
-[brasco05](https://clawhub.ai/user/brasco05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brasco05](https://clawhub.ai/user/brasco05)
 
-## Use Case: <br>
-Developers and engineering agents use Safe Change before modifying shared TypeScript services, controllers, hooks, routes, or utilities to understand impact, test gaps, configuration risk, and whether to proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The verification gate runs the target repository's own package scripts. <br>
-Mitigation: Review package.json scripts before running the gate and use the narrowest applicable project root. <br>
-Risk: The static scanner can miss dynamic imports, barrel re-exports, decorator aliases, path aliases, and non-TypeScript files. <br>
-Mitigation: Treat a low score as advisory on complex codebases and manually check the documented blind spots when they apply. <br>
-Risk: The skill does not require credentials, purchase authority, or crypto-related access. <br>
-Mitigation: Do not grant credentials, spending permission, or crypto access when using this skill. <br>
+## Use Case:
 
+Developers and coding agents use Safe Change before modifying shared TypeScript, NestJS, or Next.js code to map affected importers, API routes, tests, environment variables, and recent migrations. The skill presents a risk score and checkpoint before edits proceed, then runs the repository verification gate after changes.
 
-## Reference(s): <br>
-- [Usage Guide](references/usage.md) <br>
-- [Limitations](references/limitations.md) <br>
-- [Example Impact Report](references/example-impact-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with JSON-derived risk details and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a Low, Medium, or High risk score and a mandatory go/no-go checkpoint before edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and package.json) <br>
+Risk: The verify gate can execute repository-defined typecheck, lint, test, and build scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/verify-gate.sh and the target repository's package scripts before running the gate, and use a workspace without secrets or untrusted package scripts.
+
+Risk: Regex-based static analysis can miss dynamic imports, barrel re-exports, decorator aliases, path aliases, and non-TypeScript files.
+
+Mitigation: Treat low risk scores as advisory and manually check the known blind spots listed in references/limitations.md before approving high-impact changes.
+
+## Reference(s):
+
+- [Usage Guide](references/usage.md)
+- [Limitations](references/limitations.md)
+- [Example Impact Report](references/example-impact-report.md)
+- [Safe Change on ClawHub](https://clawhub.ai/brasco05/skills/safe-change)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with risk score, affected files, API routes, test coverage, environment variables, migrations, and a go/no-go checkpoint.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scanner emits JSON for agent interpretation; the verify gate returns shell output and exits non-zero on the first failed check.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

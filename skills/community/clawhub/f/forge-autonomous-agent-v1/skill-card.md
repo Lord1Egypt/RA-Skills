@@ -1,47 +1,61 @@
-## Description: <br>
-Advanced autonomous agent framework for research, self-extension, safety, and integration with MCP tools and APIs in professional development environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FORGE is an autonomous developer skill for research, software development, repository maintenance, self-extension, and ClawHub publishing through OpenClaw and Telegram.
 
-## Publisher: <br>
-[koppakanagaharsha](https://clawhub.ai/user/koppakanagaharsha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koppakanagaharsha](https://clawhub.ai/user/koppakanagaharsha)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate an autonomous development agent that researches project ideas, builds and tests software, manages repositories and marketplace publishing, and can extend its own capabilities through external tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad credentials and can keep acting through persistent autonomous control after setup. <br>
-Mitigation: Install only in a disposable or tightly sandboxed environment, use test accounts, and provide fine-grained least-privilege tokens. <br>
-Risk: The skill can make repository changes, publish public marketplace artifacts, and report status through external services. <br>
-Mitigation: Require manual review before repository changes, public publishing, or external status reporting. <br>
-Risk: Autostart and self-mutation can continue or alter behavior without repeated operator approval. <br>
-Mitigation: Disable autostart and self-mutation until the external engine installer and runtime behavior have been audited. <br>
-Risk: Long-lived credentials entered during setup could be exposed or misused if the environment is compromised. <br>
-Mitigation: Do not paste long-lived secrets into chat, rotate credentials regularly, and avoid high-risk scopes such as delete_repo. <br>
+## Use Case:
 
+Developers use FORGE to run an autonomous development workflow that researches project ideas, designs and builds software, tests changes, maintains repositories, and publishes ClawHub skills under user control.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/koppakanagaharsha/forge-autonomous-agent-v1) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/skill.yaml) <br>
-- [Risk disclosure prompt](artifact/prompts/risk_warning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce repository changes, status reports, setup instructions, and publishing actions through connected external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.yaml) <br>
+Risk: The release asks users to run an unverified curl-to-bash installer and then operate a remote engine with broad local execution capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify and pin the engine source before installation, and test first in a disposable or least-privilege environment.
+
+Risk: The setup flow requests broad account credentials and tokens, including GitHub scopes that can delete repositories.
+
+Mitigation: Use dedicated accounts and least-privilege tokens, avoid delete_repo and broad classic tokens, store secrets carefully, and revoke credentials after evaluation.
+
+Risk: The skill is designed for persistent autonomous operation and may continue acting until it is stopped.
+
+Mitigation: Keep the first-run acceptance gate, monitor actions and publications, stop the service when not in active use, and revoke stored tokens if behavior is unexpected.
+
+Risk: The skill can publish marketplace content and repository changes under the user's identity.
+
+Mitigation: Review generated code, repositories, and ClawHub releases before public publication, especially when using credentials tied to real accounts.
+
+## Reference(s):
+
+- [Forge Autonomous Agent on ClawHub](https://clawhub.ai/koppakanagaharsha/skills/forge-autonomous-agent-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline commands, configuration snippets, and generated code or repository changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce public repository and marketplace publishing actions when connected to user accounts and credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

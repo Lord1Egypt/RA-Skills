@@ -1,39 +1,48 @@
-## Description: <br>
-Expert Kubernetes specialist mastering container orchestration, cluster management, and cloud-native architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Kubernetes specialist mastering container orchestration, cluster management, and cloud-native architectures. Specializes in production-grade deployments, security hardening, and performance optimization with focus on scalability and reliability.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, platform engineers, SREs, and security engineers use this skill to assess, design, harden, operate, and optimize Kubernetes clusters and workloads.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated manifests, kubectl commands, GitOps changes, RBAC policies, and storage or networking changes can affect production availability and security.
+
+Mitigation: Review all proposed Kubernetes changes before applying them to live clusters, especially security, storage, networking, and access-control changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, platform engineers, SREs, and Kubernetes operators use this skill to assess clusters, design production-grade architectures, harden security, optimize resource usage, and plan Kubernetes operational workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad production Kubernetes administration, including changes that may affect cluster availability, security, or workload behavior. <br>
-Mitigation: Use least-privilege, namespace-scoped credentials where possible, require explicit approval before apply/delete/Helm/cloud/GitOps sync actions, and review diffs or dry-runs before making changes. <br>
-Risk: The included success metrics and delivery notification are example targets and may not reflect the user's actual environment. <br>
-Mitigation: Validate any claimed uptime, workload count, cost reduction, or compliance result against your own monitoring, audit, and operational systems. <br>
+**Output Format:** [Markdown with command, manifest, configuration, and operational guidance examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Review generated Kubernetes changes before applying them to live clusters.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Kubernetes commands and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose cluster changes, security controls, GitOps workflows, and operational checklists for human review before execution.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

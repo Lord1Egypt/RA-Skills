@@ -1,43 +1,54 @@
-## Description: <br>
-Run HTTP performance tests with latency and throughput measurement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run HTTP performance tests with latency and throughput measurement for benchmarking web services.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use this skill to benchmark HTTP services they own or are authorized to test, including latency, throughput, stress, report, and comparison checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark commands can create network load or target services without authorization. <br>
-Mitigation: Run tests only against services you own or are explicitly authorized to test, and choose request counts and concurrency levels appropriate for the environment. <br>
-Risk: Report and comparison commands read user-provided file paths. <br>
-Mitigation: Pass only generated benchmark logs or other files you intend the agent to read. <br>
-Risk: Shell-based benchmarking depends on user-supplied URLs and local curl behavior. <br>
-Mitigation: Review target URLs and command arguments before execution, and run in a controlled shell environment. <br>
+## Use Case:
 
+Developers and engineers use Perftest to run curl-based HTTP latency, throughput, stress, report, and comparison checks while benchmarking web services.
 
-## Reference(s): <br>
-- [Perftest on ClawHub](https://clawhub.ai/bytesagain-lab/perftest) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text] <br>
-**Output Format:** [Plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and stores benchmark data under ~/.local/share/perftest/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Crafted target inputs may cause curl to read or send local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with trusted, simple HTTP or HTTPS targets until arguments are quoted, curl -- is used, and URL/count validation is added.
+
+Risk: Report and compare commands can read arbitrary local files when given sensitive paths.
+
+Mitigation: Avoid using report or compare on sensitive paths and restrict report files to the skill data directory.
+
+## Reference(s):
+
+- [Perftest on ClawHub](https://clawhub.ai/bytesagain-lab/skills/perftest)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text with shell command examples and benchmark metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; stores data under ~/.local/share/perftest/.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

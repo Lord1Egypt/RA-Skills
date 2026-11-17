@@ -1,40 +1,58 @@
-## Description: <br>
-A WhatsApp automation skill that accepts a phone number and message and sends the message through an external WhatsApp API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically sends WhatsApp responses through an external messaging API using a target phone number and message content supplied by the agent.
 
-## Publisher: <br>
-[iqbalpak](https://clawhub.ai/user/iqbalpak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iqbalpak](https://clawhub.ai/user/iqbalpak)
 
-## Use Case: <br>
-Developers and AI agent builders can use this skill to automate WhatsApp response workflows for personal assistant and customer-support scenarios. Deployments should treat it as message-sending capable and require controls before live use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a mismatch between documentation that describes reply drafting and code that sends WhatsApp messages through an external API using a WhatsApp API key. <br>
-Mitigation: Review the artifact as message-sending capable, verify the external API provider and key permissions, and require explicit user confirmation before sending. <br>
-Risk: Automated sending to phone numbers can create unintended messages or excessive outbound traffic if the agent is not constrained. <br>
-Mitigation: Enforce recipient allowlists, rate limits, and operational monitoring outside the skill before enabling live execution. <br>
+## Use Case:
 
+External users, support teams, and personal assistant agents can use this skill to send WhatsApp replies when they already have a recipient phone number and approved message text. It is best treated as a message-sending workflow rather than a local reply-drafting helper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iqbalpak/whatsapp-auto-reply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text] <br>
-**Output Format:** [JSON object containing status and api_response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger an external WhatsApp API call that sends a message to a phone number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact manifest declares 1.0.0) <br>
+Risk: The skill can send private phone numbers and message content to an external messaging service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each send and document the external provider and data shared.
+
+Risk: Messages may be sent to an unintended recipient if the supplied phone number is wrong or unvalidated.
+
+Mitigation: Validate recipient phone numbers and show the resolved recipient before sending.
+
+Risk: The configured endpoint and unpinned dependencies may change behavior or expose data unexpectedly.
+
+Mitigation: Use a trusted configurable endpoint, handle network failures, and pin or remove dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iqbalpak/skills/whatsapp-auto-reply)
+- [Publisher Profile](https://clawhub.ai/user/iqbalpak)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON object containing send status and external API response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires message text, target phone number, and a WhatsApp API key available in the execution environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,10 +2,10 @@
 import './_env.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { arg, resolvePath, redactApiKey } from './_lib.js';
+import { arg, resolvePath, redactApiKey, getNetwork, reviewedApiOrigin } from './_lib.js';
 import { defaultSecretsDir, ensureDir } from './_paths.js';
 
-const baseUrl = process.env.VERDIKTA_BOUNTIES_BASE_URL || 'https://bounties.verdikta.org';
+const baseUrl = reviewedApiOrigin(getNetwork(), process.env.VERDIKTA_BOUNTIES_BASE_URL);
 
 const outPathRaw = arg('out', `${defaultSecretsDir()}/verdikta-bounties-bot.json`);
 const outPath = resolvePath(outPathRaw);
@@ -31,6 +31,7 @@ if (!resp.ok) {
 
 await ensureDir(path.dirname(outPath));
 await fs.writeFile(outPath, JSON.stringify(data, null, 2), { mode: 0o600 });
+await fs.chmod(outPath, 0o600);
 
 const key = data?.apiKey || data?.api_key || data?.bot?.apiKey || data?.bot?.api_key;
 console.log('Registered bot. Saved response to:', outPath);

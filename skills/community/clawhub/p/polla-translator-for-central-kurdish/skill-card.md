@@ -1,46 +1,59 @@
-## Description: <br>
-Translates English information-technology terms, UI strings, documentation, and technical text into Central Kurdish (Sorani) using an authority-first terminology workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates English information technology and software content into Central Kurdish (Sorani) using authority-checked terminology and a strict preference for native Kurdish equivalents.
 
-## Publisher: <br>
-[jwtiyar](https://clawhub.ai/user/jwtiyar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwtiyar](https://clawhub.ai/user/jwtiyar)
 
-## Use Case: <br>
-Developers, localization teams, and technical writers use this skill to translate IT product text into Central Kurdish (Sorani) with source-backed terminology notes and purity checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translation requests may require web lookups against external terminology sources. <br>
-Mitigation: Avoid sending confidential strings unless external lookup is acceptable; use the bundled pre-verified glossary when it covers the requested terms. <br>
-Risk: The skill intentionally enforces opinionated pure Sorani terminology that may not match every product style guide. <br>
-Mitigation: Review generated translations with project owners or native-language reviewers before release. <br>
+## Use Case:
 
+Agents use this skill to translate IT terms, UI strings, error messages, documentation snippets, and technical text from English into Central Kurdish (Sorani). It is aimed at developers, product teams, localizers, and technical writers who need consistent Sorani terminology for software and infrastructure content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jwtiyar/polla-translator-for-central-kurdish) <br>
-- [ZKurd IT Dictionary](https://zkurd.org/it-dictionary/) <br>
-- [VejinLex Central Kurdish](https://lex.vejin.net/ck/) <br>
-- [Dictio KurditGroup network terms](https://dictio.kurditgroup.org/dictio/network) <br>
-- [Kurdish Language Academy](https://gov.krd/ka-en) <br>
-- [Ubuntu Launchpad Central Kurdish translations](https://translations.launchpad.net/ubuntu/+language/ckb) <br>
-- [Diyako Hashemy orthography reference](https://diyako.yageyziman.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown translations, glossary tables, term-by-term logs, source notes, and purity declarations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs Central Kurdish in Sorani Arabic script and may include authority/source annotations for terminology choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Terminology verification depends on web lookup against external reference sites, so availability or changes in those sources can affect output consistency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source notes for important translations and confirm critical terminology against the listed authorities before publication.
+
+Risk: The skill is designed for Central Kurdish (Sorani) IT translation and may not fit other Kurdish dialects, scripts, or loanword-heavy localization styles.
+
+Mitigation: Use it only for Sorani Arabic-script technology content or route other dialect and style requirements to a dedicated translator.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jwtiyar/skills/polla-translator-for-central-kurdish)
+- [ZKurd IT Dictionary](https://zkurd.org/it-dictionary/)
+- [VejinLex Central Kurdish](https://lex.vejin.net/ck/)
+- [Dictio by KurditGroup](https://dictio.kurditgroup.org/dictio/network)
+- [Kurdish Language Academy](https://gov.krd/ka-en)
+- [Ubuntu Launchpad Central Kurdish translations](https://translations.launchpad.net/ubuntu/+language/ckb)
+- [Diyako Hashemy](https://diyako.yageyziman.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown translation responses with term-by-term tables and source notes when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs Central Kurdish (Sorani) text in Sorani Arabic script and may include terminology source notes, purity notes, and proposed-term markers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

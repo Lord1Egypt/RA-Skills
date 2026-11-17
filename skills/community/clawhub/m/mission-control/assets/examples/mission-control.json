@@ -10,7 +10,7 @@
     "debugLog": "data/.webhook-debug.log"
   },
   "slack": {
-    "botToken": "xoxb-YOUR-BOT-TOKEN",
+    "botToken": "REDACTED-SECRET",
     "channel": "C0123456789"
   },
   "secrets": {

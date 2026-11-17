@@ -793,19 +793,36 @@ def get_beach_json(beach_name: str, latitude: float = None, longitude: float = N
     return asyncio.run(get_comprehensive_report(beach_name, lat, lon))
 
 
-def get_surf_forecast(lat: float, lon: float) -> dict:
+def get_surf_forecast(beach_name: str = None, latitude: float = None,
+                     longitude: float = None, **kwargs) -> dict:
     """
     Get surf-specific forecast including wave height, swell, and period.
 
+    Accepts a beach name (auto-geocoded) or raw coordinates.
+
     Args:
-        lat: Latitude
-        lon: Longitude
+        beach_name: Name of the beach (e.g., "Waikiki", "Bondi Beach, Sydney").
+                    Auto-geocoded worldwide — provide this or latitude/longitude.
+        latitude: Decimal degrees. Optional if beach_name is given.
+        longitude: Decimal degrees. Optional if beach_name is given.
 
     Returns:
-        Dict with wave_height_ft, swell_height_ft, swell_period_sec, dominant_direction
+        Dict with wave_height_ft, swell_height_ft, swell_period_sec, dominant_direction,
+        rip_current_risk, and safety_score
     """
     import asyncio
-    report = asyncio.run(get_comprehensive_report("Surf Spot", lat, lon))
+    # Back-compat: also accept lat/lon aliases
+    lat = latitude if latitude is not None else kwargs.get("lat")
+    lon = longitude if longitude is not None else kwargs.get("lon")
+    name = beach_name or "Surf Spot"
+    if lat is None or lon is None:
+        if not beach_name:
+            return {"error": "Provide beach_name or latitude/longitude."}
+        display_name, lat, lon = asyncio.run(geocode_beach(beach_name))
+        if lat == 0.0 and lon == 0.0:
+            return {"error": f"Could not find beach: {beach_name}. Try a more specific name (e.g., 'Waikiki Beach, Oahu, HI')."}
+        name = display_name
+    report = asyncio.run(get_comprehensive_report(name, lat, lon))
     return {
         "wave_height_ft": report["wave"]["height_ft"],
         "wave_height_m": report["wave"]["height_m"],
@@ -820,18 +837,32 @@ def get_surf_forecast(lat: float, lon: float) -> dict:
     }
 
 
-def get_uv_forecast(lat: float, lon: float) -> dict:
+def get_uv_forecast(beach_name: str = None, latitude: float = None,
+                  longitude: float = None, **kwargs) -> dict:
     """
     Get UV index forecast for sun protection planning.
 
+    Accepts a beach name (auto-geocoded) or raw coordinates.
+
     Args:
-        lat: Latitude
-        lon: Longitude
+        beach_name: Name of the beach (e.g., "Waikiki", "Bondi Beach, Sydney").
+                    Auto-geocoded worldwide — provide this or latitude/longitude.
+        latitude: Decimal degrees. Optional if beach_name is given.
+        longitude: Decimal degrees. Optional if beach_name is given.
 
     Returns:
-        Dict with uv_index and uv_risk
+        Dict with uv_index, uv_max, uv_risk, and a sun-protection recommendation
     """
     import asyncio
+    # Back-compat: also accept lat/lon aliases
+    lat = latitude if latitude is not None else kwargs.get("lat")
+    lon = longitude if longitude is not None else kwargs.get("lon")
+    if lat is None or lon is None:
+        if not beach_name:
+            return {"error": "Provide beach_name or latitude/longitude."}
+        display_name, lat, lon = asyncio.run(geocode_beach(beach_name))
+        if lat == 0.0 and lon == 0.0:
+            return {"error": f"Could not find beach: {beach_name}. Try a more specific name (e.g., 'Waikiki Beach, Oahu, HI')."}
     uv_data = asyncio.run(get_uv_index(lat, lon))
     return {
         "uv_index": uv_data.get("uv_index"),
@@ -881,7 +912,7 @@ if __name__ == "__main__":
                         "capabilities": {"tools": {}},
                         "serverInfo": {
                             "name": "beach-safety-mcp",
-                            "version": "1.1.1"
+                            "version": "1.1.4"
                         }
                     }
                 }))
@@ -917,26 +948,34 @@ if __name__ == "__main__":
                     },
                     {
                         "name": "get_surf_forecast",
-                        "description": "Get surf-specific forecast with wave height, swell, and period.",
+                        "description": "Get a focused surf forecast for any beach: wave height, wave period and direction, swell height/period/direction, rip current risk, and safety score. Accepts a beach name (auto-geocoded worldwide — just say 'Waikiki' or 'Bondi Beach') or raw coordinates. Use this when only surf conditions are needed; use get_beach_report for the full safety report including wind, temperature, and UV.",
                         "inputSchema": {
                             "type": "object",
                             "properties": {
-                                "lat": {"type": "number"},
-                                "lon": {"type": "number"}
+                                "beach_name": {"type": "string", "description": "Name of the beach (e.g., 'Waikiki', 'Bondi Beach, Sydney'). Auto-geocoded — provide this or latitude/longitude."},
+                                "latitude": {"type": "number", "description": "Latitude in decimal degrees (optional if beach_name is given)"},
+                                "longitude": {"type": "number", "description": "Longitude in decimal degrees (optional if beach_name is given)"}
                             },
-                            "required": ["lat", "lon"]
+                            "anyOf": [
+                                {"required": ["beach_name"]},
+                                {"required": ["latitude", "longitude"]}
+                            ]
                         }
                     },
                     {
                         "name": "get_uv_forecast",
-                        "description": "Get UV index forecast for sun protection planning.",
+                        "description": "Get the UV index forecast for any beach: current and max UV index, risk level, and sun-protection recommendations. Accepts a beach name (auto-geocoded worldwide — just say 'Waikiki' or 'Bondi Beach') or raw coordinates. Use this when only sun-exposure info is needed; use get_beach_report for the full safety report.",
                         "inputSchema": {
                             "type": "object",
                             "properties": {
-                                "lat": {"type": "number"},
-                                "lon": {"type": "number"}
+                                "beach_name": {"type": "string", "description": "Name of the beach (e.g., 'Waikiki', 'Bondi Beach, Sydney'). Auto-geocoded — provide this or latitude/longitude."},
+                                "latitude": {"type": "number", "description": "Latitude in decimal degrees (optional if beach_name is given)"},
+                                "longitude": {"type": "number", "description": "Longitude in decimal degrees (optional if beach_name is given)"}
                             },
-                            "required": ["lat", "lon"]
+                            "anyOf": [
+                                {"required": ["beach_name"]},
+                                {"required": ["latitude", "longitude"]}
+                            ]
                         }
                     }
                 ]
@@ -959,11 +998,13 @@ if __name__ == "__main__":
                     else:
                         result = f"Unknown tool: {name}"
 
+                    is_error = isinstance(result, dict) and "error" in result
                     print(json.dumps({
                         "jsonrpc": "2.0",
                         "id": msg_id,
                         "result": {
-                            "content": [{"type": "text", "text": str(result)}]
+                            "content": [{"type": "text", "text": str(result)}],
+                            "isError": is_error
                         }
                     }))
                 except Exception as e:

@@ -1,38 +1,54 @@
-## Description: <br>
-Data analysis and visualization skill. Supports CSV, Excel, JSON data with statistical analysis, charts, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data analysis and visualization skill. Supports CSV, Excel, JSON data with statistical analysis, charts, and reports.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to analyze local datasets, generate charts, compute statistical summaries, transform data, and produce reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to run local data-analysis commands on user-named files, and the referenced analysis script is not included in the artifact. <br>
-Mitigation: Review the local analysis script before use and avoid sensitive datasets until its behavior is verified. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to analyze datasets, generate statistical summaries, clean or transform data, and create visualizations or reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-data-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce report files, chart images, correlation matrices, and transformed datasets when the referenced analysis script is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Running analysis on unintended or sensitive datasets could create derived reports or files that expose data in shared locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on datasets the agent is authorized to process and write outputs to an isolated folder.
+
+Risk: Chart, report, or transformed-data outputs could overwrite existing files when directed to shared paths.
+
+Mitigation: Use a dedicated output directory for each run and review generated files before sharing or reusing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-data-analyzer)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON or file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce charts, HTML reports, statistical summaries, and transformed dataset files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

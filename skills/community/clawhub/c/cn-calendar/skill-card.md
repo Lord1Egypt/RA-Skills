@@ -1,51 +1,62 @@
-## Description: <br>
-cn-calendar helps agents query mainland China statutory holidays, workdays, adjusted workdays, and business tax filing calendars, with local 2025-2026 data and public-source fetching for unsupported years. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer questions about mainland China public holidays, adjusted workdays, workday calculations, and enterprise tax filing calendar dates using bundled 2025-2026 data and referenced government sources.
 
-## Publisher: <br>
-[linweibin6992-blip](https://clawhub.ai/user/linweibin6992-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linweibin6992-blip](https://clawhub.ai/user/linweibin6992-blip)
 
-## Use Case: <br>
-Developers, operations teams, and assistants use this skill to answer mainland China workday and holiday questions, calculate workday offsets, and look up tax filing deadlines. Tax and compliance answers should be checked against the relevant tax authority for the user's jurisdiction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for mainland China calendar and tax-date questions. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that unsupported future-year queries may fetch public data and modify files inside the skill, including Python source. <br>
-Mitigation: Review generated reference updates and script changes before use; run the scripts in a controlled workspace and keep versioned backups of trusted calendar data. <br>
-Risk: The security evidence warns that tax-deadline guidance is under-scoped and that Beijing-only reference data may not match every jurisdiction. <br>
-Mitigation: Verify tax deadlines with the relevant tax authority for the user's jurisdiction, and avoid relying on computed deadline output for compliance decisions. <br>
-Risk: Future-year holiday or tax data may be unavailable or unconfirmed before official notices are published. <br>
-Mitigation: Clearly label unconfirmed dates and verify them against State Council or tax authority publications before operational use. <br>
+## Use Case:
 
+Developers and agents use this skill to answer user questions about China workdays, public holidays, adjusted workdays, business-day arithmetic, and tax filing deadline calendars. Tax deadline answers should prefer the bundled year-specific filing calendar or official sources over inferred date calculations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linweibin6992-blip/cn-calendar) <br>
-- [2025 mainland China holiday reference](references/holidays-2025.md) <br>
-- [2026 mainland China holiday reference](references/holidays-2026.md) <br>
-- [General tax filing calendar reference](references/tax-filing-calendar.md) <br>
-- [2026 tax filing calendar reference](references/tax-filing-calendar-2026.md) <br>
-- [NateScarlet holiday-cn data index](https://github.com/NateScarlet/holiday-cn) <br>
-- [State Council 2025 holiday notice](https://www.gov.cn/zhengce/zhengceku/202411/content_6986383.htm) <br>
-- [State Council 2026 holiday notice](https://www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm) <br>
-- [State Taxation Administration](https://www.chinatax.gov.cn/) <br>
-- [12366 tax calendar API](https://12366.chinatax.gov.cn/bsfw/calendar/getCalendarListForMonth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local reference files, run Python query scripts, and fetch public holiday or tax calendar data when local yearly data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security assessment flags that the skill can persistently rewrite executable query code when adding newly fetched calendar data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review and approval before remote fetches or persistent updates, and prefer storing newly validated calendar data as data files rather than modifying Python source.
+
+Risk: Tax filing deadline guidance is compliance-sensitive, and the security assessment warns against relying on inferred deadline commands for tax compliance.
+
+Mitigation: Use year-specific official filing calendar references or official tax sources for deadline answers, and avoid using inferred workday-only deadline calculations as authoritative tax advice.
+
+## Reference(s):
+
+- [ClawHub cn-calendar release page](https://clawhub.ai/linweibin6992-blip/skills/cn-calendar)
+- [2025 mainland China public holidays and adjusted workdays](references/holidays-2025.md)
+- [2026 mainland China public holidays and adjusted workdays](references/holidays-2026.md)
+- [China enterprise tax filing calendar](references/tax-filing-calendar.md)
+- [2026 enterprise tax filing calendar](references/tax-filing-calendar-2026.md)
+- [NateScarlet holiday-cn data index](https://github.com/NateScarlet/holiday-cn)
+- [State Taxation Administration of China](https://www.chinatax.gov.cn/)
+- [12366 tax calendar endpoint](https://12366.chinatax.gov.cn/bsfw/calendar/getCalendarListForMonth)
+- [2026 State Council holiday notice](https://www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm)
+- [2025 State Council holiday notice](https://www.gov.cn/zhengce/zhengceku/202411/content_6986383.htm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional shell commands or JSON-like command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read bundled reference files and propose or run local Python scripts for calendar lookups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

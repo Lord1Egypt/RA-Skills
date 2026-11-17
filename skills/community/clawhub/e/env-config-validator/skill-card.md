@@ -1,41 +1,54 @@
-## Description: <br>
-Validates .env files against schemas, compares environment files, detects common configuration mistakes, generates schemas, and reports results in text, JSON, or markdown with CI-friendly exit codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate .env files against schemas, compare environments, detect common mistakes, auto-generate schemas, and type-check values with text, JSON, and markdown output plus CI-friendly exit codes.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to audit environment configuration before deployment, enforce required variables and value types, compare environments, and generate reusable schema files for CI checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads explicitly selected .env files that may contain credentials or other sensitive values. <br>
-Mitigation: Run it only against intended files and avoid sharing raw validation output from secret-bearing environments. <br>
-Risk: Generated schemas and JSON diff reports can persist real example values from .env files. <br>
-Mitigation: Review and redact generated schemas or reports before saving them to a repository, uploading them, or sending them to others. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate environment configuration files, compare environments before deployment, generate schema files, and produce CI-friendly validation reports.
 
-## Reference(s): <br>
-- [Schema Format Reference](references/schema-format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/env-config-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, JSON, markdown, and schema JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write validation reports or generated schemas to an output file; exits with 0 for no issues, 1 for warnings or environment differences, and 2 for errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Generated schemas, JSON reports, CI logs, or diff artifacts can expose secrets from .env files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized .env.example files for schema generation, inspect generated outputs before sharing or committing them, and keep reports out of public logs unless secrets have been removed.
+
+Risk: The skill reads local environment files that may contain sensitive configuration values.
+
+Mitigation: Run it only on env files you are authorized to inspect and handle all output as sensitive until reviewed.
+
+## Reference(s):
+
+- [Schema Format Reference](references/schema-format.md)
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/env-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Text, JSON, or Markdown reports with optional generated JSON schema files and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CI-oriented exit codes: 0 for no issues, 1 for warnings or diffs, and 2 for errors.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Provides a Deep Memory workflow for maintaining a structured, long-term workspace knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Deep Memory workflow for maintaining structured long-term knowledge files and keyword indexes.
 
-## Publisher: <br>
-[qshfu](https://clawhub.ai/user/qshfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qshfu](https://clawhub.ai/user/qshfu)
 
-## Use Case: <br>
-Agents use this skill to look up, add, and maintain structured long-term workspace notes for libraries, tools, and technical knowledge before falling back to web search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may capture workspace knowledge without clear consent. <br>
-Mitigation: Require explicit confirmation before saving and review new or modified memory entries. <br>
-Risk: Stored memory may include secrets or confidential material. <br>
-Mitigation: Do not store secrets or confidential content; review memory files before relying on them. <br>
-Risk: Referenced setup scripts may create workspace files. <br>
-Mitigation: Inspect setup scripts before running them and confirm the intended file changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to query, add, and maintain durable workspace knowledge in a structured Deep Memory index. It is intended for reusable notes about tools, libraries, documentation, and learned procedures.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace memory files such as DEEP-MEMORY.md and deep-memory/*.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Persistent memory files may store sensitive, private, or stale information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before every write, avoid saving secrets or private material, and periodically review or delete stale memory files.
+
+Risk: Broad user or internet-derived content may be retained without enough context or trust checks.
+
+Mitigation: Summarize instead of saving full source content and treat internet-derived entries as untrusted references until reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qshfu/skills/dob)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent workspace memory files and indexes when used by an agent.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

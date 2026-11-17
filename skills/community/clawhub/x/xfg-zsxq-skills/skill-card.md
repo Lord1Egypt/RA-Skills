@@ -1,48 +1,70 @@
-## Description: <br>
-Automates ZSXQ posting, replies, browsing, notification checks, scheduled checks, and browser-assisted reply workflows using locally stored group configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ZSXQ knowledge community workflows including posting, replies, browsing posts, notification checks, article drafts, and scheduled checks using saved account session configuration.
 
-## Publisher: <br>
-[fuzhengwei](https://clawhub.ai/user/fuzhengwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzhengwei](https://clawhub.ai/user/fuzhengwei)
 
-## Use Case: <br>
-Developers and creators who manage ZSXQ communities use this skill to post content, review activity, reply to topics, and configure recurring notification checks from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles full ZSXQ cookies and access tokens and can use them for authenticated account actions. <br>
-Mitigation: Treat cookies and tokens as passwords, avoid pasting them into visible logs, rotate them if exposed, and keep local credential files private. <br>
-Risk: Posting, replying, notification checks, and scheduled tasks can create recurring or unintended account activity. <br>
-Mitigation: Verify the target group and message content before execution, remove hard-coded defaults, and enable scheduled checks or auto-replies only when recurring actions are intended. <br>
-Risk: The server security verdict is suspicious because the skill performs unofficial ZSXQ account automation with weak guardrails. <br>
-Mitigation: Install only when the publisher is trusted and this specific account automation behavior is desired. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage ZSXQ community posting, replies, article drafts, notification review, and recurring checks from local session configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzhengwei/xfg-zsxq-skills) <br>
-- [ZSXQ web app](https://wx.zsxq.com) <br>
-- [ZSXQ API reference](references/api.md) <br>
-- [Usage guide](references/usage.md) <br>
-- [Token configuration](references/token-config.md) <br>
-- [Browser automation guide](references/puppeteer.md) <br>
-- [Puppeteer documentation](https://pptr.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and JavaScript automation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authenticated ZSXQ API calls, browser automation steps, local configuration files, and cron setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill handles full ZSXQ session cookies or tokens that can read account data and publish as the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account or least-privileged session where possible, keep cookies out of shell history and shared files, and rotate any token that may have been exposed.
+
+Risk: Saved credentials can be used to post, reply, or publish article drafts without re-entering the cookie.
+
+Mitigation: Review the configured target group before each publishing action and remove saved credentials when automation is no longer needed.
+
+Risk: Recurring checks create persistent access patterns that may continue after initial setup.
+
+Mitigation: Enable scheduled jobs only when recurring access is intended, review the generated schedule, and disable or remove the job when it is no longer required.
+
+Risk: Documentation includes a real-looking token example that could encourage unsafe credential copying.
+
+Mitigation: Replace example tokens with placeholders before distribution and rotate any credential copied into logs, documentation, or command history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzhengwei/skills/xfg-zsxq-skills)
+- [Publisher profile](https://clawhub.ai/user/fuzhengwei)
+- [ZSXQ web app](https://wx.zsxq.com)
+- [Puppeteer documentation](https://pptr.dev)
+- [API reference](references/api.md)
+- [Usage guide](references/usage.md)
+- [Signature reference](references/signature.md)
+- [Token configuration](references/token-config.md)
+- [Browser automation reference](references/puppeteer.md)
+- [FAQ](references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated API request behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local ZSXQ configuration files and scheduled-job configuration when the user runs the provided scripts.]
+
+## Skill Version(s):
+
+2.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

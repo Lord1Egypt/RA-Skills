@@ -1,42 +1,56 @@
-## Description: <br>
-Academic Literature Search Tool enables the retrieval of both Chinese and English literature, covering various types of literature such as academic journals, conference papers, and dissertations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Literature Search Tool enables the retrieval of both Chinese and English literature, covering various types of literature such as academic journals, conference papers, and dissertations.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and researchers use this skill to search Chinese and English academic literature through a credentialed SkillBoss API wrapper for Baidu Scholar-style results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and the SkillBoss API key are sent to SkillBoss API Hub rather than directly to Baidu Scholar. <br>
-Mitigation: Use a limited, revocable API key and avoid sensitive unpublished research terms unless that data sharing is acceptable. <br>
-Risk: The skill depends on a configured SKILLBOSS_API_KEY and curl, so it will fail in environments where either requirement is unavailable. <br>
-Mitigation: Confirm the environment variable and curl binary are present before relying on the skill in an agent workflow. <br>
+## Use Case:
 
+External developers and researchers use this skill to submit academic literature search keywords and retrieve Chinese and English scholarly literature results through the SkillBoss API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-baidu-scholar-search) <br>
-- [Baidu Scholar homepage](https://xueshu.baidu.com/) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls] <br>
-**Output Format:** [JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and SKILLBOSS_API_KEY; response results are documented under .result.results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Search terms and the SkillBoss API key are sent to the SkillBoss API, and sensitive research terms may be exposed to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive or confidential queries and install only when sending search terms to SkillBoss is acceptable.
+
+Risk: The shell script interpolates the query into JSON without safe JSON encoding.
+
+Mitigation: Prefer a fixed release that JSON-encodes the query before sending it, especially for user-provided or untrusted search strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-baidu-scholar-search)
+- [Baidu Scholar](https://xueshu.baidu.com/)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss API endpoint](https://api.skillboss.co/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON response from a shell-based API call, with setup and usage guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and SKILLBOSS_API_KEY; expected results are under .result.results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

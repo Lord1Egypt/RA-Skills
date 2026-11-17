@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn70rh2kxzkygcsqjf4e155gcd809v0v",
-  "slug": "openclaw-tokenapi-qiehuan-skills",
-  "version": "0.1.0",
-  "publishedAt": 1774298220444
+  "name": "openclaw-model-switcher",
+  "version": "1.0.0",
+  "description": "OpenClaw 模型切换工具 - WebUI + 命令行快速切换 AI 模型",
+  "author": "PeterZX",
+  "homepage": "https://github.com/peter-zx/openclaw_tokenapi_qiehuan",
+  "tags": ["openclaw", "model", "switcher", "webui", "ai"],
+  "license": "MIT",
+  "platform": "windows",
+  "dependencies": {
+    "python": ">=3.10",
+    "fastapi": ">=0.104.1",
+    "uvicorn": ">=0.24.0"
+  },
+  "minOpenClaw": "2025.1.0"
 }

@@ -1,41 +1,53 @@
-## Description: <br>
-Find water parks - epic water slides, wave pools, lazy rivers, and splash zones - and support related travel services such as flights, hotels, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, and car rental through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds water parks and related travel services by directing agents to use the flyai CLI and format booking-centered results.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search for water parks and related travel options by collecting city and optional attraction parameters, running the FlyAI CLI, and formatting provider-backed booking results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to install an unpinned global third-party FlyAI CLI before answering travel queries. <br>
-Mitigation: Ask for explicit confirmation before installation, verify the npm package source and version, and prefer a controlled environment for CLI execution. <br>
-Risk: Returned booking links and travel results come from the provider-backed CLI rather than an independent survey of all available options. <br>
-Mitigation: Present booking links as provider-backed results and encourage users to compare critical travel purchases against other sources before booking. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find water parks, compare options, and produce concise Markdown responses with booking links from the configured travel provider.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/water-park) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on FlyAI CLI results and include provider booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to install and run an unpinned global travel-booking CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve installation manually, pin or verify the package before use, and run the CLI in a restricted environment.
+
+Risk: The skill relies on one travel provider as the source of water park and booking data.
+
+Mitigation: Treat returned listings as provider-sourced travel data and review booking details before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/water-park)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires results to come from flyai CLI output and include provider booking links.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

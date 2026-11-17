@@ -1,47 +1,59 @@
-## Description: <br>
-Whale Alert Monitor 大户监控 helps agents monitor crypto whale wallets, large transfers, exchange flows, holdings, and alert notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors cryptocurrency whale wallets, large transfers, exchange flows, and holding changes, with configurable alerts and reports.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users and developers use this skill to configure and run crypto whale-wallet monitoring workflows, including large-transfer alerts, exchange-flow summaries, holding analysis, and notification setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill presents random simulated data as live whale-alert intelligence. <br>
-Mitigation: Treat alerts, balances, exchange-flow reports, and PnL output as prototype data unless the publisher replaces simulated generators with verified live data sources. <br>
-Risk: The security guidance flags under-scoped billing behavior for a paid crypto-monitoring skill. <br>
-Mitigation: Require explicit billing confirmation before any charge, verify the SkillPay user identifier, and do not run paid calls from shared or anonymous environments. <br>
-Risk: Notification features can send wallet and transaction details to Telegram, Discord, or custom webhooks. <br>
-Mitigation: Use disposable notification credentials during testing, verify webhook destinations, and avoid sensitive wallet targets. <br>
-Risk: Crypto monitoring output may be mistaken for trading, compliance, or security advice. <br>
-Mitigation: Use the output only for informational monitoring and independently verify chain data before making trading, compliance, or security decisions. <br>
+## Use Case:
 
+External users and developers use this skill to monitor selected crypto wallets, define large-transfer thresholds, analyze exchange inflows, exchange outflows, and holdings, and produce notification-ready whale activity reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-whale-alert-monitor-2025) <br>
-- [shenmeng publisher profile](https://clawhub.ai/user/shenmeng) <br>
-- [API data source configuration guide](artifact/references/api-configuration.md) <br>
-- [Whale wallet label library](artifact/references/wallet-labels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console-oriented text with inline shell commands, Python script outputs, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include alert messages, JSON history exports, webhook payloads, payment prompts, and crypto monitoring reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The release is paid and the security evidence reports a hardcoded billing credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit consent before charges and rotate or remove the embedded billing key before installation.
+
+Risk: The security evidence says the skill presents simulated crypto-monitoring data as real-time monitoring.
+
+Mitigation: Do not rely on alerts or reports until live data sources are connected and synthetic outputs are clearly labeled.
+
+Risk: The skill can route notification content to Telegram, Discord, or custom webhooks.
+
+Mitigation: Review notification destinations and keep API keys, bot tokens, and webhook URLs in managed secrets.
+
+## Reference(s):
+
+- [API data source configuration](artifact/references/api-configuration.md)
+- [Whale wallet label library](artifact/references/wallet-labels.md)
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/shenmeng-whale-alert-monitor-2025)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples, configuration snippets, alert text, and monitoring report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce paid billing prompts and externally routed notification content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

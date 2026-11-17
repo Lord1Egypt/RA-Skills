@@ -1,45 +1,57 @@
-## Description: <br>
-Miaoji Asin Clinic Pro helps Amazon operators turn ASIN health checks into competitor benchmarks, weekly 90-day action plans, monthly follow-up templates, and seasonal optimization calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Asin Clinic Pro helps Amazon operators produce ASIN health diagnostics, competitor benchmarks, 90-day action plans, weekly task cards, monthly review templates, and seasonal optimization calendars.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon marketplace operators and cross-border ecommerce teams use this skill to assess ASIN listing health across compliance, advertising, reviews, visuals, and content, then plan competitive improvements over a 90-day cycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategy recommendations may be incomplete or stale because the artifact states it does not collect live marketplace or competitor data. <br>
-Mitigation: Validate recommendations against current Amazon Seller Central data, advertising metrics, and trusted competitor research before acting. <br>
-Risk: The artifact describes planning guidance only and does not execute account changes, so users may overestimate its operational effect. <br>
-Mitigation: Treat outputs as planning material, assign human owners for each action item, and review compliance-sensitive listing changes before implementation. <br>
-Risk: The security evidence notes powerful but disclosed local development automation in the inspected release context. <br>
-Mitigation: Install only in a trusted workspace and review commands before running any local automation. <br>
+## Use Case:
 
+External Amazon marketplace operators and cross-border commerce teams use this skill to turn user-supplied ASIN, category, lifecycle stage, and optional competitor ASINs into structured planning guidance. It is intended for strategy and reporting, not live marketplace monitoring or automated account changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/miaoji-asin-clinic-pro) <br>
-- [README](README.md) <br>
-- [Publisher homepage](https://xiaping.coze.site) <br>
-- [Publisher skill page](https://xiaping.coze.site/skills/miaoji-asin-clinic-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style strategy reports with tables, checklists, and optional CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on user-provided ASIN context and embedded benchmark assumptions; the artifact states it does not connect to external APIs or collect live competitor data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Recommendations may be incomplete or stale because the bundled behavior uses sample data and does not fetch live Amazon or competitor metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory and validate them against current marketplace, advertising, review, inventory, and account data before making operational decisions.
+
+Risk: The skill may be unsuitable for newly listed products, products with insufficient review history, or teams that already have a complete annual operating plan.
+
+Mitigation: Use it only when there is enough product history to support diagnosis, and reconcile its weekly and seasonal plans with existing operating plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-asin-clinic-pro)
+- [Publisher profile](https://clawhub.ai/user/wangm-a3)
+- [README](artifact/README.md)
+- [Skill homepage](https://xiaping.coze.site)
+- [Skill repository](https://xiaping.coze.site/skills/miaoji-asin-clinic-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown-style reports, tables, task cards, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory strategy artifacts from user-supplied inputs and bundled benchmark examples; it does not fetch live Amazon or competitor data.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

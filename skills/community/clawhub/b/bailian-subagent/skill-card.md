@@ -1,39 +1,58 @@
-## Description: <br>
-Spawn a bailian (百炼 DashScope) subagent to handle token-heavy or compute-intensive tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawns a Bailian (DashScope) subagent to handle token-heavy or compute-intensive work such as data processing, batch operations, SQL execution, news fetching, code generation, and document analysis.
 
-## Publisher: <br>
-[samuelhsin](https://clawhub.ai/user/samuelhsin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samuelhsin](https://clawhub.ai/user/samuelhsin)
 
-## Use Case: <br>
-Developers and agents use this skill to delegate large, repetitive, or token-heavy work to a Bailian subagent, including data processing, code generation, document analysis, news fetching, and DataWorks or MaxCompute SQL tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells users to pass cloud credentials, production-like DataWorks details, and potentially privileged SQL authority into a fresh subagent prompt. <br>
-Mitigation: Avoid pasting long-lived Alibaba Cloud keys or privileged production access into prompts; use short-lived, least-privilege, runtime-bound secret handling and narrow when sensitive cloud work may be delegated. <br>
-Risk: Delegated DataWorks or MaxCompute tasks may include destructive or state-changing SQL operations. <br>
-Mitigation: Review generated SQL and subagent outputs before execution, especially for DROP, CREATE, INSERT, or other operations that affect production data. <br>
+## Use Case:
 
+Developers and agents use this skill to delegate large, repetitive, or token-heavy tasks to a Bailian model while keeping final decisions, sensitive judgment, and user-facing conversation with the main agent.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces subagent tasking guidance and example invocation patterns; delegated work should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts may include raw access keys, session tokens, passwords, or production database authority when delegating work to Bailian.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials out of model text and use short-lived, read-only, scoped credentials handled outside the prompt.
+
+Risk: Delegated database work may include SQL writes, schema changes, or destructive operations without clear safeguards.
+
+Mitigation: Require explicit review before any SQL write, schema change, or destructive operation.
+
+Risk: Subagent output may be incorrect or incomplete for final user-facing decisions.
+
+Mitigation: Use the main agent to review delegated results before acting on them or presenting final guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samuelhsin/skills/bailian-subagent)
+- [Publisher profile](https://clawhub.ai/user/samuelhsin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with optional code and command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegated subagent output should be reviewed by the main agent before final use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

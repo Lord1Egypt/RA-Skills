@@ -1,42 +1,59 @@
-## Description: <br>
-从淄博公共资源交易网站收集指定日期范围内的招标公告和中标公示，并将项目地点、项目名称和发布时间整理为 Excel 文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公共资源交易信息收集 helps an agent collect project announcements from the Zibo public-resource trading website for a specified date range and export the results to Excel.
 
-## Publisher: <br>
-[n1ke9yd](https://clawhub.ai/user/n1ke9yd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n1ke9yd](https://clawhub.ai/user/n1ke9yd)
 
-## Use Case: <br>
-External users and agents use this skill to collect public resource trading project listings from the Zibo site for a chosen date range and export the results for review or reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write Excel files locally, so an existing target file could be overwritten. <br>
-Mitigation: Use a trusted output path and check whether the target file already exists before generating or overwriting the workbook. <br>
-Risk: Collected listings may be incomplete or inaccurate if page navigation, loading, or date filtering is not checked. <br>
-Mitigation: Review the collected project rows and publication dates before relying on the exported Excel file. <br>
+## Use Case:
 
+External users and developers use this skill to collect project location, project name, and publication date records for Zibo public-resource trading notices, then save the collected list as an Excel spreadsheet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n1ke9yd/ggzy-collect) <br>
-- [Zibo public resource trading site](http://ggzyjy.zibo.gov.cn:8082/) <br>
-- [Zibo construction project listings](http://ggzyjy.zibo.gov.cn:8082/jyxx/002001/gonggongziyuan.html?Paging=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, files] <br>
-**Output Format:** [Markdown guidance with JavaScript/Node.js snippets and Excel workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local .xlsx files to a user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Excel export may overwrite an existing local file if the same path is reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose an explicit output path and confirm it does not replace a file you need before running the export.
+
+Risk: The skill may use a connected browser profile while visiting the target public website.
+
+Mitigation: Use a separate browser profile when you do not want the agent operating in an existing Chrome session.
+
+Risk: Incomplete page loads or incorrect date filtering can produce missing or out-of-range records.
+
+Mitigation: Wait for each page to load and verify publication dates before exporting the collected list.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n1ke9yd/skills/ggzy-collect)
+- [Zibo public-resource trading website](http://ggzyjy.zibo.gov.cn:8082/)
+- [Zibo construction-engineering public-resource listing](http://ggzyjy.zibo.gov.cn:8082/jyxx/002001/gonggongziyuan.html?Paging=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript or shell command snippets and an Excel file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local Excel file at a user-selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

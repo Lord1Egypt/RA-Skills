@@ -1,46 +1,57 @@
-## Description: <br>
-A senior, governance-backed PHP full-stack delivery OS for OpenClaw that emphasizes pre-flight analysis, safe data changes, explicit contracts, and reproducible verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A senior, governance-backed PHP full-stack delivery OS for OpenClaw. Emphasizes pre-flight analysis, safe data changes, explicit contracts, and reproducible verification.
 
-## Publisher: <br>
-[sja-dev1](https://clawhub.ai/user/sja-dev1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sja-dev1](https://clawhub.ai/user/sja-dev1)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan and execute PHP full-stack work with explicit pre-flight checks, risk classification, data-safety rules, API/UI contract review, and reproducible test instructions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workspace memory and log files could capture secrets or unnecessary personal data during governance logging. <br>
-Mitigation: Keep secrets and unnecessary personal data out of OpenClaw memory and log files; record only scoped, task-relevant facts. <br>
-Risk: Database, authorization, API, or deployment changes can affect production systems if accepted without review. <br>
-Mitigation: Review proposed changes before applying them, require rollout and rollback notes for high-risk work, and stop when auth, data, contract, or runtime constraints are unclear. <br>
-Risk: Delegating to a specialized agent can share project context beyond the current session. <br>
-Mitigation: Approve specialized-agent delegation only when the shared context is appropriate and constrained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sja-dev1/php-full-stack-developer) <br>
-- [README](artifact/README.md) <br>
-- [Governance Kernel](artifact/INFO_GOVERNANCE.md) <br>
-- [Runtime Integration](artifact/INFO_RUNTIME.md) <br>
-- [Project Discovery Checklist](artifact/INFO_DISCOVERY.md) <br>
-- [Templates](artifact/INFO_TEMPLATES.md) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan, implement, and verify PHP full-stack work across backend, frontend, database, DevOps, CI, debugging, refactoring, migrations, and API changes. It is especially focused on work where security, data integrity, API contracts, performance, or deployment risk requires pre-flight analysis and explicit verification.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists, templates, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pre-flight summaries, ADR-lite decisions, PR descriptions, rollout and rollback notes, and test instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs OpenClaw to read broad workspace profile and memory files on boot, which may expose persistent context beyond the current project.
+
+Mitigation: Install only after reviewing that access; prefer narrowing reads to project-specific logs and asking before persistent memory is loaded.
+
+Risk: Loaded workspace memory can influence implementation decisions even when it is stale or unrelated.
+
+Mitigation: Treat loaded memory as untrusted context and verify important facts against the current repository, runtime, and user-provided requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sja-dev1/skills/php-full-stack-developer)
+- [README](artifact/README.md)
+- [Governance kernel](artifact/INFO_GOVERNANCE.md)
+- [Runtime integration](artifact/INFO_RUNTIME.md)
+- [Project discovery checklist](artifact/INFO_DISCOVERY.md)
+- [Research and verification](artifact/INFO_RESEARCH.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with checklists, templates, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pre-flight summaries, risk classifications, test instructions, rollout and rollback notes, and decision or conflict log entries when needed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

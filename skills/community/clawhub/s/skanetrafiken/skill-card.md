@@ -1,44 +1,60 @@
-## Description: <br>
-Skåne public transport trip planner (Skånetrafiken). Plans bus/train journeys with real-time delays. Supports stations, addresses, landmarks, and cross-border trips to Copenhagen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skane public transport trip planner for Skanetrafiken that plans bus and train journeys with real-time delays, station and address lookup, landmarks, and cross-border trips to Copenhagen.
 
-## Publisher: <br>
-[rezkam](https://clawhub.ai/user/rezkam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rezkam](https://clawhub.ai/user/rezkam)
 
-## Use Case: <br>
-External users and agent operators use this skill to search Skånetrafiken locations and plan public-transit journeys in Skåne, Sweden, including timing, transfers, walking segments, real-time delays, platform details, disruption alerts, and cross-border Copenhagen routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Sweden and Denmark <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Location searches, journey endpoints, and intended travel times are sent to Skånetrafiken. <br>
-Mitigation: Avoid entering exact home, work, or other sensitive addresses unless the user is comfortable sharing that trip-planning data with Skånetrafiken. <br>
-Risk: The helper scripts depend on local command-line tools and live network responses. <br>
-Mitigation: Install only from a trusted source, ensure curl and jq are available, and confirm ambiguous location matches before planning a journey. <br>
+## Use Case:
 
+External users and agent developers use this skill to search Skanetrafiken locations, resolve ambiguous stations or addresses, and plan public-transit trips in Skane with real-time timing, delay, platform, walking, and disruption details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rezkam/skanetrafiken) <br>
-- [Agent Skills](https://agentskills.io) <br>
-- [Skånetrafiken Points API](https://www.skanetrafiken.se/gw-tps/api/v2/Points) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global; transit coverage is focused on Skane, Sweden, with supported cross-border trips to Copenhagen.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and formatted journey results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq. The helper scripts return location records and journey options from Skånetrafiken; user-facing responses should preserve real timings, walking distances, delays, and clarification prompts from the tool output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Trip searches send submitted locations or coordinates to Skånetrafiken.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive addresses or coordinates unless the user accepts that disclosure.
+
+Risk: Installing with a moving latest tag can change the installed code unexpectedly.
+
+Mitigation: Prefer a pinned installer version when installing the skill.
+
+Risk: The bundled shell scripts use temporary files that are not fully hardened for hostile shared machines.
+
+Mitigation: Run the scripts without elevated privileges and avoid using them on untrusted shared systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rezkam/skills/skanetrafiken)
+- [Skånetrafiken Points API endpoint](https://www.skanetrafiken.se/gw-tps/api/v2/Points)
+- [Skånetrafiken Journey API endpoint](https://www.skanetrafiken.se/gw-tps/api/v2/Journey)
+- [Agent Skills compatibility reference](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and formatted trip-planning results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces location-search fields, journey options, walking distances, local times, delay indicators, platform details, transfer counts, and disruption notices.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

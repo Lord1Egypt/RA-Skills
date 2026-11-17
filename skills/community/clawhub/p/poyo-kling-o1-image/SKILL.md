@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-o1-image
 description: Kling O1 image editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-o1-image-edit`, reference-image editing, element descriptors, character or object control, 1K, 2K output, aspect ratio, output format, image count, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/image-series/kling-o1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-o1-image","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling O1 Image Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-o1-image>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/kling-o1>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling O1 image editing jobs on PoYo. It helps agents prepare reference-image editing payloads with optional element descriptors, submit async tasks, and explain polling or webhook follow-up.
 

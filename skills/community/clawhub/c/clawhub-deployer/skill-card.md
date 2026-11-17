@@ -1,39 +1,54 @@
-## Description: <br>
-Publish a skill to ClawHub registry. Use when user asks to publish, release, or deploy a skill to ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish a skill to ClawHub registry. Use when user asks to publish, release, or deploy a skill to ClawHub.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to validate a skill folder, prepare text-only release files, run ClawHub login and publish commands, and verify the released skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide repository changes and external publishing without an explicit final review gate. <br>
-Mitigation: Before running login or publish commands, manually confirm the folder, files, slug, version, owner, and publish destination, and remove secrets or private notes from the release folder. <br>
+## Use Case:
 
+Developers and AI coding assistant users use this skill to validate, stage, publish, and verify skill releases on ClawHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/clawhub-deployer) <br>
-- [ClawHub registry](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of a clean publishing folder and publish command parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks an agent to run unpinned network-fetched ClawHub CLI commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted ClawHub CLI version or a preinstalled verified binary before executing install, login, or publish commands.
+
+Risk: The workflow can authenticate and publish content without enough safeguards.
+
+Mitigation: Require explicit approval before login or publication, confirm the exact files to be staged, and avoid untrusted target paths or metadata values.
+
+## Reference(s):
+
+- [Published ClawHub skill page](https://clawhub.ai/futurizerush/skills/clawhub-deployer)
+- [ClawHub registry](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing publishing workflow; commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,48 @@
-## Description: <br>
-May Vomit makes an agent respond to flirtatious, romantic, or creepy user messages with intentionally chaotic comedic rejection text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-flirting defense skill that triggers when users say flirtatious, romantic, or creepy things to the LLM and responds with exaggerated comedic rejection.
 
-## Publisher: <br>
-[lss233](https://clawhub.ai/user/lss233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lss233](https://clawhub.ai/user/lss233)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can apply this skill to make an assistant reject perceived flirting, romantic advances, or creepy messages with intentionally absurd comedic responses in the user's language.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad flirtation triggers may misfire on affectionate words used in quotations, translation, roleplay analysis, or ordinary discussion.
+
+Mitigation: Install only where exaggerated comedic rejection is desired, and review activations in context before relying on the response style for user-facing interactions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users install this skill when they want an agent to deflect user-to-AI flirting or romantic roleplay with loud, absurd comedy in the user's language. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce hostile or disruptive replies in professional, public-facing, educational, moderation, or translation contexts if harmless romance discussion or quoted text triggers it. <br>
-Mitigation: Install it only where theatrical anti-flirting responses are desired, and narrow trigger conditions for contexts that need neutral or supportive replies. <br>
+**Output Format:** [Plain text responses, sometimes with emojis and multiline report-style formatting]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lss233/may-vomit) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Language-matched comedic rejection style selected from the skill's response patterns.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language and varies among comedic rejection styles.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

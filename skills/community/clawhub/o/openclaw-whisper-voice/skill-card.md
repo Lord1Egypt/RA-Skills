@@ -1,43 +1,59 @@
-## Description: <br>
-Local Whisper speech-to-text for audio files and inbound voice notes on the OpenClaw Gateway host. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Whisper speech-to-text for audio files and inbound voice notes on the OpenClaw Gateway host.
 
-## Publisher: <br>
-[sabyaghosh](https://clawhub.ai/user/sabyaghosh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sabyaghosh](https://clawhub.ai/user/sabyaghosh)
 
-## Use Case: <br>
-Developers and operators use this skill to install a local Whisper transcription path on an OpenClaw Gateway host, then transcribe audio files or configure inbound WhatsApp and Telegram voice notes through a CLI media tool fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer adds user-local Python packages and ~/.local/bin launchers and may download Whisper models on first use. <br>
-Mitigation: Review the shell scripts before installation, run them in an isolated or virtual environment when supply-chain controls require it, and plan for model cache storage under ~/.cache/whisper. <br>
-Risk: The transcription wrapper processes local audio files that may contain sensitive voice content. <br>
-Mitigation: Run transcription only on trusted Gateway hosts with appropriate access controls and avoid sending sensitive audio to unapproved environments. <br>
+## Use Case:
 
+Developers and operators use this skill to install and run local Whisper transcription for audio files, WhatsApp voice notes, Telegram voice notes, and other inbound audio attachments on an OpenClaw Gateway host.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sabyaghosh/openclaw-whisper-voice) <br>
-- [Publisher profile](https://clawhub.ai/user/sabyaghosh) <br>
-- [PyTorch CPU wheel index](https://download.pytorch.org/whl/cpu) <br>
-- [pip bootstrap script URL used by installer](https://bootstrap.pypa.io/get-pip.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON5 configuration snippets; transcription output can be txt, srt, vtt, or json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Whisper model, language, task, format, and stdout-only options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer modifies the user-level Python environment and command path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated virtual environment or disposable host before installing on a shared gateway.
+
+Risk: The installer downloads unpinned dependencies.
+
+Mitigation: Pin and hash dependencies before operational deployment.
+
+Risk: The installer may overwrite common ~/.local/bin/whisper or ~/.local/bin/ffmpeg launchers.
+
+Mitigation: Check for existing launchers before running the installer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sabyaghosh/skills/openclaw-whisper-voice)
+- [PyTorch CPU Wheel Index](https://download.pytorch.org/whl/cpu)
+- [Python Packaging get-pip Bootstrap](https://bootstrap.pypa.io/get-pip.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcription wrapper can emit plain transcript text for agent workflows or txt, srt, vtt, and json files for standalone use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

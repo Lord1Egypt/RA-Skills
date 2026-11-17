@@ -1,39 +1,52 @@
-## Description: <br>
-Create and deploy Model Context Protocol (MCP) servers for AI agents. MCP enables AI models to interact with external tools and services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and deploy Model Context Protocol (MCP) servers for AI agents. MCP enables AI models to interact with external tools and services.
 
-## Publisher: <br>
-[ChinaKingKong](https://clawhub.ai/user/ChinaKingKong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chinakingkong](https://clawhub.ai/user/chinakingkong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create MCP server templates, connect AI agents to external APIs and services, and prepare deployments for agent integrations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated MCP servers may access external APIs, databases, filesystems, or command execution.
+
+Mitigation: Review generated server code before use, scope credentials and filesystem or database access, and require explicit confirmation for deployments, writes, file management, and command execution.
+
+Risk: Agent integrations may connect deployed servers to privileged external services.
+
+Mitigation: Use least-privilege API keys and confirm deployment settings before connecting the MCP server to an agent.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to create MCP servers that connect AI agents to APIs, databases, file systems, and custom tool integrations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running an unverified MCP server command could introduce untrusted code or dependencies. <br>
-Mitigation: Verify the source of any mcp-server command before installation or execution. <br>
-Risk: MCP servers connected to databases, file systems, APIs, or agents can expose sensitive resources if configured too broadly. <br>
-Mitigation: Test with non-production resources first, use least-privilege API keys, and avoid broad file-system or database access without authentication, monitoring, and rollback controls. <br>
+**Output Format:** [Markdown with command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include generated server templates, deployment commands, and configuration steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes template, deployment, and connectivity guidance for MCP servers; generated commands should be reviewed before use.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

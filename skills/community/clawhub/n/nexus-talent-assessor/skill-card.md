@@ -1,40 +1,53 @@
-## Description: <br>
-HR talent assessment agent. Performs competency-based evaluations, skill gap analysis, 360-feedback processing, and career path recommendations with AI coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HR talent assessment agent. Performs competency-based evaluations, skill gap analysis, 360-feedback processing, and career path recommendations with AI coaching.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-HR teams and managers use this skill to evaluate competencies, analyze skill gaps and 360-feedback, and produce career path and development-plan recommendations with confidence scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive personnel information provided by users. <br>
-Mitigation: Provide only files or text intended for analysis, and apply appropriate privacy controls before use. <br>
-Risk: Assessment outputs could influence hiring, promotion, compensation, or disciplinary decisions. <br>
-Mitigation: Require qualified human review and do not use the skill output as the sole basis for employment decisions. <br>
+## Use Case:
 
+HR practitioners and organizational leaders use this skill to assess competencies, analyze skill gaps and 360 feedback, and draft career path or development recommendations. Outputs are intended to support human review, not replace accountable HR decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuwanito/nexus-talent-assessor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured findings, confidence scores, severity labels, citations, and recommendation scoring.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include severity, priority, impact, effort, and confidence scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence) <br>
+Risk: The skill requests broad local file and web access for sensitive employee-related HR work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define which employee records the skill may read, minimize sensitive data exposure, and require explicit approval before any HR content is used with external web sources or citations.
+
+Risk: Assessment findings and career recommendations could be incorrect, incomplete, or misleading if source data is poor or context is missing.
+
+Mitigation: Require qualified human review before using outputs in performance, career, compensation, or employment decisions, and verify cited sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuwanito/skills/nexus-talent-assessor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with findings, severity classifications, confidence scores, citations, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include impact, effort, and priority scores for proposals.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

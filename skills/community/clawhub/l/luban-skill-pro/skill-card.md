@@ -1,54 +1,69 @@
-## Description: <br>
-鲁班.Skill helps an agent evaluate, optimize, test, and maintain other agent skills through scoring rubrics, checkpoints, rollback guidance, and maintenance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+鲁班.Skill is an industrial agent-skill optimizer that evaluates, improves, validates, audits, hardens, and streamlines agent skills through repeatable review workflows.
 
-## Publisher: <br>
-[ebandao777-oss](https://clawhub.ai/user/ebandao777-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ebandao777-oss](https://clawhub.ai/user/ebandao777-oss)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to review skill quality, generate test prompts, propose targeted improvements, record score changes, and keep skill repositories healthy over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct broad repository-scale inspection, editing, testing, and maintenance of many skills. <br>
-Mitigation: Use it only in a version-controlled workspace, scope each run to explicit target skills, review diffs before accepting edits, and require user confirmation before every write. <br>
-Risk: Automatic or periodic maintenance, web refresh, child-agent testing, and bulk optimization can change behavior beyond the immediate user request. <br>
-Mitigation: Treat these flows as opt-in review actions and disable or decline them unless the user explicitly requests that mode. <br>
-Risk: Repair and testing workflows may expose confidential prompts, skill content, or other sensitive workspace context. <br>
-Mitigation: Avoid providing secrets or confidential prompts during repair and testing, and sanitize examples before using generated test prompts or child-agent evaluations. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess and improve agent skill quality with structured scoring, test prompts, review checkpoints, regression checks, and optimization logs. It is intended for skill-maintenance workflows such as evaluating all skills, optimizing a specific skill, checking skill health, updating references, and reviewing optimization history.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ebandao777-oss/luban-skill-pro) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [Scenario-Adaptive Dual-Mode Architecture reference](artifact/references/SA-DM.md) <br>
-- [Baseline skill reference](artifact/references/baseline-skill.md) <br>
-- [EvoSkill paper](https://arxiv.org/abs/2603.02766) <br>
-- [SkillOps paper](https://arxiv.org/abs/2605.13716) <br>
-- [CASCADE paper](https://arxiv.org/abs/2512.23880) <br>
-- [Skill Distill paper](https://arxiv.org/abs/2604.01608) <br>
-- [HASP paper](https://arxiv.org/abs/2605.17734) <br>
-- [MUSE-Autoskill paper](https://arxiv.org/abs/2605.27366) <br>
-- [SkillLens paper](https://arxiv.org/abs/2605.23899) <br>
-- [SkillOpt paper](https://arxiv.org/abs/2605.23904) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, score tables, proposed edits, test prompts, patch guidance, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce repository-maintenance artifacts such as results.tsv, test-prompts.json, tests.yaml, rejected_edits.md, backup files, and git branch or commit guidance when the user confirms write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad repository edits and Git writes can alter skill behavior or history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a sandboxed skill repository and require explicit approval of exact files and diffs before writes to Git, references, tests.yaml, or generated prompt files.
+
+Risk: Scheduled maintenance, CASCADE web updates, and automatic MUSE test persistence can introduce ongoing changes without clear review.
+
+Mitigation: Disable scheduled runs, CASCADE web updates, and automatic MUSE test persistence until the release is reviewed and governance controls are in place.
+
+Risk: The security scan verdict is suspicious because approval boundaries are not consistently clear.
+
+Mitigation: Review before installing and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ebandao777-oss/skills/luban-skill-pro)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Agent智能体技能进化方法论](artifact/references/SA-DM.md)
+- [baseline-skill](artifact/references/baseline-skill.md)
+- [EvoSkill](https://arxiv.org/abs/2603.02766)
+- [SkillOps](https://arxiv.org/abs/2605.13716)
+- [CASCADE](https://arxiv.org/abs/2512.23880)
+- [Skill Distill](https://arxiv.org/abs/2604.01608)
+- [HASP](https://arxiv.org/abs/2605.17734)
+- [MUSE-Autoskill](https://arxiv.org/abs/2605.27366)
+- [SkillLens](https://arxiv.org/abs/2605.23899)
+- [SkillOpt](https://arxiv.org/abs/2605.23904)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, scoring tables, proposed diffs, inline shell commands, and file artifacts such as results.tsv, test-prompts.json, tests.yaml, and rejected_edits.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform skill-file and Git changes when the workflow reaches confirmed edit stages; read-only scans produce reports without edits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

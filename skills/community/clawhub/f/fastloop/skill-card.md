@@ -1,42 +1,56 @@
-## Description: <br>
-Trades Polymarket BTC/ETH/SOL 5-minute and 15-minute fast markets using CEX momentum, optional funding and order book confirmation, time-of-day filtering, volatility-adjusted sizing, win-rate calibration, and fee-aware EV math. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through configuring and operating a Polymarket fast-market trading loop for BTC, ETH, and SOL using momentum, funding, order book, timing, sizing, calibration, and fee-aware EV filters.
 
-## Publisher: <br>
-[oryselias](https://clawhub.ai/user/oryselias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oryselias](https://clawhub.ai/user/oryselias)
 
-## Use Case: <br>
-External traders and agent operators use this skill to configure and run a paper-first or live Polymarket fast-market trading loop with calibration, position sizing, and market-filtering controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release declares a live-trading entrypoint, but the implementation file is not included in the artifact evidence. <br>
-Mitigation: Install only when you already have and trust the exact fastloop_improved.py implementation, and review it before any live execution. <br>
-Risk: The skill includes commands for unattended real-money trading loops. <br>
-Mitigation: Start in paper mode, verify daily budget and position limits, add monitoring and a stop plan, and use a low-balance or limited-scope API key where possible. <br>
-Risk: Fast prediction markets and fees can make small signal errors costly. <br>
-Mitigation: Use the documented calibration flow before going live and review win-rate, P&L, signal breakdown, and market liquidity behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oryselias/fastloop) <br>
-- [Publisher profile](https://clawhub.ai/user/oryselias) <br>
+## Use Case:
 
+External agents and users use this skill to configure paper-mode or live Polymarket fast-market trading workflows, tune signal and risk filters, and review calibration commands before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and the simmer-sdk Python package; live execution depends on a trusted fastloop_improved.py implementation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter declares 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release is for live automated trading, but the reviewed artifact does not include the referenced fastloop_improved.py trading script.
+
+Mitigation: Do not run live or scheduled examples unless the missing script is independently obtained, audited, and matched to the documented behavior.
+
+Risk: Persistent live execution can place real trades and create financial loss exposure.
+
+Mitigation: Use paper mode first, configure narrowly scoped and revocable trading credentials, and enforce external spend and loss limits before any live run.
+
+Risk: Dependencies and trading behavior were not fully reviewable from the provided artifact.
+
+Mitigation: Pin and verify dependencies, review scanner output from the complete package, and keep live credentials separate from broader account access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oryselias/skills/fastloop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash command blocks and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; live trading requires explicit --live usage.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

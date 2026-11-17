@@ -1,37 +1,56 @@
-## Description: <br>
-Conducts source-code security reviews focused on concrete vulnerabilities such as hardcoded secrets, access control flaws, insecure data handling, injection risks, authentication weaknesses, LLM safety issues, and privacy violations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security code review guides agents through read-only source-code security audits focused on direct, actionable evidence of vulnerabilities.
 
-## Publisher: <br>
-[kylehuan](https://clawhub.ai/user/kylehuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kylehuan](https://clawhub.ai/user/kylehuan)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to guide agent-assisted source-code audits and produce actionable reports for vulnerabilities that can be fixed in the reviewed code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security review reports and optional .shield_security/ artifacts may expose real vulnerabilities, file paths, or secrets found during review. <br>
-Mitigation: Install only for repositories the agent is allowed to inspect, treat generated reports as sensitive, and restrict sharing to appropriate reviewers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kylehuan/securityreview) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to direct an agent through structured SAST-style code review and produce clear vulnerability reports with severity, evidence, impact, and remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown security report with vulnerability findings, severity, source locations, impact descriptions, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scoped local report artifacts under .shield_security/ when explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to inspect repository files during security reviews.
+
+Mitigation: Use it only in workspaces where read-only repository inspection is authorized.
+
+Risk: Some workflows may create security report artifacts under .shield_security/.
+
+Mitigation: Confirm that report artifact creation is acceptable before invoking artifact-producing workflows.
+
+Risk: The artifact contains vulnerable code snippets and risky-looking strings as examples.
+
+Mitigation: Treat examples as review guidance only; do not execute sample vulnerable snippets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kylehuan/skills/securityreview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with vulnerability findings, evidence, severity, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include read-only inspection commands and, when explicitly requested by the user, report artifacts under .shield_security/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-A prompt engineering helper that guides users in creating structured AI prompts, improving role setup and context, and controlling output format for higher-quality model responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI提示词生成器 helps users create, analyze, optimize, and template structured AI prompts for higher-quality model outputs.
 
-## Publisher: <br>
-[hikaruhuimin](https://clawhub.ai/user/hikaruhuimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hikaruhuimin](https://clawhub.ai/user/hikaruhuimin)
 
-## Use Case: <br>
-AI tool users use this skill to design, improve, and adapt prompts for writing, code generation, data analysis, medical documentation, and academic research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises an external paid medical-analysis toolkit that is outside this release's reviewed artifact. <br>
-Mitigation: Review the external toolkit and any Python scripts separately before downloading, running, or relying on them. <br>
-Risk: Generated prompts may be used with sensitive personal or health data in medical-documentation workflows. <br>
-Mitigation: Avoid placing sensitive personal or health data into prompts unless appropriate privacy, consent, and data-handling safeguards are in place. <br>
+## Use Case:
 
+External users and developers use this skill to generate structured AI prompts, improve existing prompts, and choose prompt templates for writing, coding, data analysis, medical documentation, and academic work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hikaruhuimin/hikaru-ai-prompt-gen) <br>
-- [External medical data analysis toolkit advertised by the skill](https://hikaruzhang.lemonsqueezy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text prompt-writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable output is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompt guidance may be applied in high-stakes domains such as medical documentation, academic work, data analysis, or code generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and resulting model outputs with appropriate human or domain expert oversight before relying on them.
+
+Risk: The artifact includes a promotional external link to a separate medical data analysis toolkit outside the reviewed skill.
+
+Mitigation: Treat external resources as separate, unreviewed material and assess them independently before use.
+
+Risk: The reviewed documentation is primarily in Chinese.
+
+Mitigation: Use the skill only when users can understand the documentation or have it accurately translated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hikaruhuimin/skills/hikaru-ai-prompt-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or credential access is described in the reviewed evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

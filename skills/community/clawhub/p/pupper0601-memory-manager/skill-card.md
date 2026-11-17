@@ -1,48 +1,60 @@
-## Description: <br>
-OpenClaw memory-management skill for temporary, long-term, and permanent memories with vector semantic search, automatic compression, user identity handling, and cross-device synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Manager gives OpenClaw agents a three-layer memory system for temporary, long-term, and permanent memories with semantic search, compression, identity resolution, and cross-device sync.
 
-## Publisher: <br>
-[pupper0601](https://clawhub.ai/user/pupper0601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pupper0601](https://clawhub.ai/user/pupper0601)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to maintain structured personal and shared AI memory, search prior context semantically, summarize activity, and synchronize memory content across devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and index private memory files and synchronize memory content through GitHub. <br>
-Mitigation: Use a private dedicated repository, review the remote URL before syncing, and avoid storing secrets or highly sensitive personal data in the memory repository. <br>
-Risk: Installation and configuration may persist environment variables or other settings in shell startup files. <br>
-Mitigation: Prefer manual installation or the no-shell-rc option, and manage API keys outside shell startup files when possible. <br>
-Risk: One-line curl-to-bash installation executes downloaded code immediately. <br>
-Mitigation: Download and inspect the installer before running it, or install dependencies and configuration manually. <br>
-Risk: Embedding backends may send memory text to external API providers. <br>
-Mitigation: Use only trusted providers and switch to keyword-only or local workflows for sensitive memories. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to initialize, search, update, summarize, compress, and synchronize personal or shared AI memory repositories across sessions and devices.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pupper0601/pupper0601-memory-manager) <br>
-- [Publisher Profile](https://clawhub.ai/user/pupper0601) <br>
-- [README](README.md) <br>
-- [Memory Style Guide](MEMORY_STYLE_GUIDE.md) <br>
-- [Reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples and memory-file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files, invoke embedding providers, and synchronize memory content through Git-backed workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.5.5 (source: server release metadata; artifact SKILL.md and pyproject.toml report 3.5.0) <br>
+Risk: The skill handles private memory content and may send selected memory text to the configured embedding provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved embedding providers, avoid storing secrets in memories, and review memory scope before embedding or syncing.
+
+Risk: Installation and setup can modify shell startup files and persist API keys or GitHub tokens.
+
+Mitigation: Prefer a reviewed local install with --no-shell-rc, keep credentials out of shell startup files, and use narrowly scoped tokens.
+
+Risk: GitHub sync can commit or push personal or shared memory files.
+
+Mitigation: Review changed files and remote settings before syncing, and confirm exactly what will be committed before pushing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupper0601/skills/pupper0601-memory-manager)
+- [README](artifact/README.md)
+- [Technical reference](artifact/reference.md)
+- [Memory style guide](artifact/MEMORY_STYLE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python command invocations, and memory-file templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local memory files, update vector indexes, call configured embedding APIs, and run Git sync when directed.]
+
+## Skill Version(s):
+
+v3.5.5 (source: ClawHub release metadata; artifact frontmatter and pyproject.toml report 3.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

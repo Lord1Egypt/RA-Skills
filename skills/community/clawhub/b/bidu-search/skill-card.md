@@ -1,42 +1,55 @@
-## Description: <br>
-Perform web searches using the Baidu API, with a focus on Chinese-language content and configurable result counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform web searches using the Baidu API with a focus on Chinese content, customizable result counts, and OpenClaw integration.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Developers and agents use this skill to query Baidu Search from Python or the command line, especially for Chinese-language web, news, research, product, and local search tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search topics, generated requests, and configured API credentials may be sent to external services. <br>
-Mitigation: Review provider configuration before use, avoid confidential queries, and install only in environments where external Baidu API use is acceptable. <br>
-Risk: Dependencies are specified with minimum versions rather than exact pins. <br>
-Mitigation: Pin and review dependency versions before running the skill in sensitive or production environments. <br>
+## Use Case:
 
+Developers and agents use this skill to run Baidu web searches, especially for Chinese-language queries, from Python or CLI workflows and return formatted search results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leohuang8688/bidu-search) <br>
-- [Baidu AI Open Platform](https://ai.baidu.com/) <br>
-- [Baidu Search API Reference](https://ai.baidu.com/ai-doc/SEARCH) <br>
+### Deployment Geography for Use:
 
+Global, subject to Baidu API availability and regional restrictions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown-style formatted search results, Python return strings, and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY and returns titles, URLs, and snippets from an external Baidu search API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence) <br>
+Risk: Baidu API key material may be exposed in returned error text when HTTP exception strings include request details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing when the API key has billing, quota, or account privileges; redact the ak parameter from errors or use safer provider-supported authentication.
+
+Risk: Runtime behavior depends on external Baidu API access, credentials, quota, and regional availability.
+
+Mitigation: Install in an isolated environment, pin dependencies, and verify API account permissions, quotas, and regional terms before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leohuang8688/skills/bidu-search)
+- [Baidu AI Open Platform](https://ai.baidu.com/)
+- [Baidu Search API Reference](https://ai.baidu.com/ai-doc/SEARCH)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown-formatted text with result titles, URLs, and snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; result count is caller-configurable.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

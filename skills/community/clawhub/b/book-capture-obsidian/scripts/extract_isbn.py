@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -91,26 +91,99 @@ def _decode_with_pyzbar(image_path: str) -> Tuple[List[str], List[str]]:
     return sorted(values), []
 
 
-def _run_ocr(image_path: str, lang: str, tesseract_cmd: str) -> Tuple[List[str], List[str]]:
-    """Run OCR and return extracted text variants."""
-    warnings: List[str] = []
-    try:
-        from PIL import Image, ImageOps
-    except Exception as exc:
-        return [], [f"Pillow unavailable for OCR: {exc}"]
+def _dedupe_texts(texts: List[str]) -> List[str]:
+    unique_texts: List[str] = []
+    seen = set()
+    for text in texts:
+        normalized = text.strip()
+        if normalized and normalized not in seen:
+            seen.add(normalized)
+            unique_texts.append(normalized)
+    return unique_texts
 
+
+def _get_pytesseract_module() -> Optional[Any]:
     try:
         import pytesseract
-    except Exception as exc:
-        return [], [f"pytesseract unavailable: {exc}"]
+    except Exception:
+        return None
+    return pytesseract
+
+
+def _run_ocr_cli(
+    image_path: str,
+    lang: str,
+    tesseract_cmd: str,
+    timeout_sec: int,
+) -> Tuple[List[str], List[str]]:
+    """Invoke tesseract without a shell when the Python wrapper is unavailable."""
+    binary = tesseract_cmd or "tesseract"
+    configurations = [[], ["--oem", "3", "--psm", "6"], ["--oem", "3", "--psm", "11"]]
+    texts: List[str] = []
+    warnings: List[str] = []
+
+    for config in configurations:
+        try:
+            run = subprocess.run(
+                [binary, image_path, "stdout", "-l", lang, *config],
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=timeout_sec,
+            )
+        except FileNotFoundError:
+            return [], ["tesseract binary not found"]
+        except subprocess.TimeoutExpired:
+            warnings.append(f"tesseract timed out after {timeout_sec}s")
+            continue
+        except Exception:
+            warnings.append("tesseract execution failed")
+            continue
+
+        if run.returncode != 0:
+            warnings.append(f"tesseract returned code {run.returncode}")
+            continue
+        if run.stdout and run.stdout.strip():
+            texts.append(run.stdout)
+
+    return _dedupe_texts(texts), sorted(set(warnings))
+
+
+def _run_ocr(
+    image_path: str,
+    lang: str,
+    tesseract_cmd: str,
+    timeout_sec: int = 20,
+) -> Tuple[List[str], List[str]]:
+    """Run OCR through pytesseract or its direct CLI fallback."""
+    pytesseract = _get_pytesseract_module()
+    if pytesseract is None:
+        texts, warnings = _run_ocr_cli(
+            image_path=image_path,
+            lang=lang,
+            tesseract_cmd=tesseract_cmd,
+            timeout_sec=timeout_sec,
+        )
+        return texts, ["pytesseract unavailable; tesseract CLI fallback attempted", *warnings]
+
+    try:
+        from PIL import Image, ImageOps
+    except Exception:
+        texts, warnings = _run_ocr_cli(
+            image_path=image_path,
+            lang=lang,
+            tesseract_cmd=tesseract_cmd,
+            timeout_sec=timeout_sec,
+        )
+        return texts, ["Pillow unavailable; tesseract CLI fallback attempted", *warnings]
 
     if tesseract_cmd:
         pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
 
     try:
         image = Image.open(image_path)
-    except Exception as exc:
-        return [], [f"could not open image for OCR: {exc}"]
+    except Exception:
+        return [], ["could not open image for OCR"]
 
     variants = [
         image,
@@ -119,26 +192,23 @@ def _run_ocr(image_path: str, lang: str, tesseract_cmd: str) -> Tuple[List[str],
     configs = ["", "--oem 3 --psm 6", "--oem 3 --psm 11"]
 
     texts: List[str] = []
+    warnings: List[str] = []
     for img in variants:
         for cfg in configs:
             try:
-                text = pytesseract.image_to_string(img, lang=lang, config=cfg)
-            except Exception as exc:
-                warnings.append(f"OCR call failed ({cfg or 'default'}): {exc}")
+                text = pytesseract.image_to_string(
+                    img,
+                    lang=lang,
+                    config=cfg,
+                    timeout=timeout_sec,
+                )
+            except Exception:
+                warnings.append(f"OCR call failed ({cfg or 'default'})")
                 continue
             if text and text.strip():
                 texts.append(text)
 
-    # Dedupe while preserving first appearance.
-    unique_texts: List[str] = []
-    seen = set()
-    for text in texts:
-        normalized = text.strip()
-        if normalized and normalized not in seen:
-            seen.add(normalized)
-            unique_texts.append(normalized)
-
-    return unique_texts, warnings
+    return _dedupe_texts(texts), warnings
 
 
 def extract_isbn_from_image(image_path: str) -> dict:
@@ -186,7 +256,15 @@ def extract_isbn_from_image(image_path: str) -> dict:
     if enable_ocr:
         ocr_lang = get_env_str("BOOK_CAPTURE_OCR_LANG", "eng")
         tesseract_cmd = get_env_str("BOOK_CAPTURE_TESSERACT_CMD", "")
-        texts, warn = _run_ocr(image_path=image_path, lang=ocr_lang, tesseract_cmd=tesseract_cmd)
+        tesseract_timeout_sec = get_env_int(
+            "BOOK_CAPTURE_TESSERACT_TIMEOUT_SECONDS", 20, minimum=1
+        )
+        texts, warn = _run_ocr(
+            image_path=image_path,
+            lang=ocr_lang,
+            tesseract_cmd=tesseract_cmd,
+            timeout_sec=tesseract_timeout_sec,
+        )
         warnings.extend(warn)
         for text in texts:
             ocr_candidates.extend(extract_isbn_candidates_from_text(text))

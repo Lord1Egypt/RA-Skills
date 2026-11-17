@@ -1,43 +1,59 @@
-## Description: <br>
-Provides real-time A-share stock and index quotes from Tencent Finance using Shanghai and Shenzhen stock codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time A-share stock and index quote lookups for Shanghai and Shenzhen stock codes using a free finance data endpoint.
 
-## Publisher: <br>
-[ra1nzzz](https://clawhub.ai/user/ra1nzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ra1nzzz](https://clawhub.ai/user/ra1nzzz)
 
-## Use Case: <br>
-Developers and agent users use this skill to query current A-share stock and index quotes from the command line by providing Shanghai or Shenzhen stock symbols. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried stock symbols are sent to Tencent Finance when the skill retrieves quotes. <br>
-Mitigation: Use the skill only when sending requested symbols to Tencent Finance is acceptable. <br>
-Risk: The documented symlink installation writes a global command under /usr/local/bin. <br>
-Mitigation: Run the Python script directly from the skill directory when a global command entry is not needed. <br>
-Risk: Quotes depend on a free public finance endpoint and may be delayed, unavailable, or unsuitable for trading decisions. <br>
-Mitigation: Verify market data with an authoritative financial source before acting on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ra1nzzz/a-stock-market) <br>
-- [Publisher profile](https://clawhub.ai/user/ra1nzzz) <br>
-- [Tencent Finance quote endpoint](https://qt.gtimg.cn/q={stock_code}) <br>
+## Use Case:
 
+Developers and agent users can query current A-share stock and index prices by providing Shanghai or Shenzhen ticker symbols. The skill is useful for quick market lookups and simple quote checks from an agent or command-line workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one or more stock symbols prefixed with sh or sz; contacts Tencent Finance over HTTPS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional installation step can create or overwrite a global /usr/local/bin/a-stock symlink with sudo.
+
+Mitigation: Prefer running the script directly unless a global command is needed, and verify the symlink target before creating it.
+
+Risk: Ticker symbols entered by the user are sent to Tencent Finance over the network.
+
+Mitigation: Treat queried symbols as shared with the external data provider and avoid using the skill for sensitive or confidential watchlists.
+
+Risk: The artifact documentation and metadata do not consistently name the market data provider.
+
+Mitigation: Verify the data source disclosure before release or before relying on provider-specific behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ra1nzzz/skills/a-stock-market)
+- [Tencent Finance quote endpoint](https://qt.gtimg.cn/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text quote output with command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports one or more stock or index symbols per invocation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

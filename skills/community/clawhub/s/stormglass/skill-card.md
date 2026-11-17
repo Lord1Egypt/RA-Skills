@@ -1,42 +1,56 @@
-## Description: <br>
-Fetches surf-relevant ocean conditions from Stormglass by spot name or coordinates, including current snapshots and 1-3 day forecast windows with tides, gusts, and water temperature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches surf-relevant ocean conditions from Stormglass by spot name or coordinates, including current conditions and 1-3 day forecast windows with tides, gusts, and water temperature.
 
-## Publisher: <br>
-[dgorissen](https://clawhub.ai/user/dgorissen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dgorissen](https://clawhub.ai/user/dgorissen)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current and forecast surf conditions for a beach or surf spot, then feed the stable JSON into cron jobs, downstream summaries, or surf-window analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Surf spot names or coordinates are sent to Stormglass and may be sent to Google or OpenStreetMap when location lookup is used. <br>
-Mitigation: Use direct coordinates or mock mode for privacy-sensitive workflows, and install only when this data sharing is acceptable. <br>
-Risk: The optional Google geocoding API key can be exposed in error output or cron logs. <br>
-Mitigation: Store API keys in environment-backed secrets and avoid the Google geocoding path in cron logs until URL and key redaction is confirmed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stormglass API documentation](https://docs.stormglass.io/#/) <br>
-- [Project homepage](https://github.com/dgorissen/stormglass-skill) <br>
-- [Skill reference](reference.md) <br>
-- [Skill examples](examples.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to fetch machine-readable surf reports for beach or surf spot workflows. It supports cron-style pipelines and downstream summaries of waves, swell, wind, water temperature, and tide timing.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON or human-readable terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stable top-level JSON keys include meta, location, now, forecast, and tides; unavailable metrics are represented as null.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Location queries may be sent to Stormglass and a geocoding provider.
+
+Mitigation: Use direct coordinates when practical, avoid sending sensitive location strings, and cache results to reduce repeated external lookups.
+
+Risk: Google geocoding API keys can be exposed in error logs.
+
+Mitigation: Restrict the Google key in Google Cloud, avoid persistent stderr logging until URL redaction is fixed, and rotate the key if logs may contain key values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dgorissen/skills/stormglass)
+- [Project Homepage](https://github.com/dgorissen/stormglass-skill)
+- [Stormglass API Documentation](https://docs.stormglass.io/#/)
+- [Skill Reference](artifact/reference.md)
+- [Skill Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON or human-readable terminal text, with Markdown command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STORMGLASS_API_KEY for live Stormglass requests; GOOGLE_GEOCODING_API_KEY is optional for location geocoding; mock mode runs without API keys.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

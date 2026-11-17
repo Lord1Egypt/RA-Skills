@@ -1,40 +1,56 @@
-## Description: <br>
-Businessmap (businessmap.io). Use this skill for Businessmap requests that read, create, update, or delete workspace, board, and card data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Businessmap (businessmap.io). Use this skill for ANY Businessmap request — reading, creating, updating, and deleting data. Whenever a task involves Businessmap, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Businessmap schemas, list and retrieve workspaces, boards, and cards, and perform confirmed board or card changes through the oo CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-businessmap) <br>
-- [Businessmap Homepage](https://businessmap.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+External users use this skill to read and manage Businessmap workspaces, boards, and cards through their connected account. It guides the agent to inspect each action's schema and obtain confirmation before changes or destructive operations.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill runs Businessmap connector actions through the oo CLI; write actions require payload review, and destructive card deletion requires explicit target confirmation.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The setup fallback downloads and runs an installer whose code was not available for inspection.
+
+Mitigation: Install a verified CLI release independently and require separate approval before future installation changes.
+
+Risk: The connected Businessmap key can be used for actions that change or delete workspace data.
+
+Mitigation: Use a narrowly scoped Businessmap key, confirm write payloads before running them, and explicitly approve destructive actions.
+
+## Reference(s):
+
+- [Businessmap](https://businessmap.io)
+- [Businessmap REST API documentation](https://knowledgebase.businessmap.io/hc/en-us/articles/360012393692-Businessmap-REST-API)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON action payloads and Businessmap data responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action payloads are based on the live connector schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

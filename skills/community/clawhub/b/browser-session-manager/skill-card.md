@@ -1,43 +1,54 @@
-## Description: <br>
-Manage Jimeng browser sessions with Playwright by importing cookies and browser storage so agents can access and automate Jimeng video generation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage browser sessions for jimeng.jianying.com with Playwright by importing cookies and browser storage to automate Jimeng video generation workflows.
 
-## Publisher: <br>
-[flyingzl](https://clawhub.ai/user/flyingzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flyingzl](https://clawhub.ai/user/flyingzl)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to restore a saved Jimeng browser session, load Jimeng pages, capture screenshots, and automate video generation tasks that require authenticated browser state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses password-equivalent browser session data and can act inside a logged-in Jimeng account. <br>
-Mitigation: Keep session JSON files out of source control, restrict file permissions, and delete session files after use. <br>
-Risk: Automated browser actions may spend account credits or perform unintended actions if used outside the intended Jimeng workflow. <br>
-Mitigation: Review the target URL and configured actions before running the helper, and scope use to the intended Jimeng pages. <br>
-Risk: Screenshots and saved session artifacts may expose account or project information. <br>
-Mitigation: Store screenshots and session files in controlled temporary locations and remove them when they are no longer needed. <br>
-Risk: High-volume automation may trigger rate limiting or account restrictions. <br>
-Mitigation: Use conservative delays, avoid proxy or rate-limit bypass behavior, and stop automation if the service challenges or blocks access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jimeng Session Data Usage Guide](references/jimeng-usage.md) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to preserve and replay Jimeng browser sessions for authenticated video generation workflows, including image upload, prompt entry, and page-state checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots and browser page information when the included Playwright helpers are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles raw Jimeng login session data that can function like account credentials.
+
+Mitigation: Store session JSON locally with restricted access, keep it out of shared temporary paths and source control, and rotate or delete it when no longer needed.
+
+Risk: The automation can submit authenticated account actions, including uploads and generation requests that may spend credits.
+
+Mitigation: Run the browser in a contained environment and review each generation request before allowing it to upload private inputs or consume account credits.
+
+## Reference(s):
+
+- [Jimeng Session Data Usage Guide](references/jimeng-usage.md)
+- [Browser Session Manager ClawHub Page](https://clawhub.ai/flyingzl/skills/browser-session-manager)
+- [Jimeng Web Application](https://jimeng.jianying.com/ai-tool/home?type=video)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Playwright automation steps, session JSON handling guidance, and screenshot or troubleshooting instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-GSD provides a complete workflow for taking projects from idea to execution through systematic planning, research, phase-based development, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get Shit Done - Full project planning and execution workflow. Handles project initialization with deep context gathering, automated research, roadmap creation, phase planning, and execution with verification.
 
-## Publisher: <br>
-[oleg-schmidt](https://clawhub.ai/user/oleg-schmidt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oleg-schmidt](https://clawhub.ai/user/oleg-schmidt)
 
-## Use Case: <br>
-Developers and agent users use GSD to initialize projects, gather context, run research, create roadmaps and phase plans, execute implementation work, and verify results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct broad project changes, including automated file edits and commits. <br>
-Mitigation: Use a dedicated branch or disposable workspace, review diffs before accepting changes, and require explicit approval before commits in shared repositories. <br>
-Risk: The skill can propose package installs, global CLI installs, process kills, service starts, or deployments. <br>
-Mitigation: Require explicit approval for installs, process management, deployments, and other environment-changing commands. <br>
-Risk: The workflow may handle API keys or other secrets during setup and verification. <br>
-Mitigation: Do not paste production API keys into chat; use local environment files or a secret manager and keep secrets out of generated documents. <br>
-Risk: Generated plans, research, and verification notes can contain incorrect or misleading guidance. <br>
-Mitigation: Review generated plans and verification evidence before execution, especially where the skill reports that runtime or manual testing is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oleg-schmidt/glittercowboy) <br>
-- [GSD skill definition](artifact/SKILL.md) <br>
-- [Planning configuration](artifact/references/planning-config.md) <br>
-- [Checkpoint execution](artifact/references/checkpoint-execution.md) <br>
-- [Git integration](artifact/references/git-integration.md) <br>
-- [Verification patterns](artifact/references/verification-patterns.md) <br>
-- [UI principles](artifact/references/ui-principles.md) <br>
+## Use Case:
 
+Developers and coding agents use GSD to initialize projects, gather requirements, research implementation options, create roadmaps, execute phase plans, and verify completed work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, configuration snippets, and generated project planning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create .planning documents, modify project files, run commands, and produce verification notes depending on the selected workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Highly autonomous project execution can make broad code, planning, or git changes.
+
+Mitigation: Disable or tightly gate autopilot and YOLO behavior, and review plans before execution on private or production projects.
+
+Risk: Workflows may involve secrets or external service credentials.
+
+Mitigation: Avoid pasting live secrets into chat; prefer secret stores, masked environment configuration, or interactive authentication.
+
+Risk: Deployment commands, destructive git operations, external-service changes, and global tool installs can affect production resources or the local environment.
+
+Mitigation: Require explicit confirmation before these actions and review any global tool installs such as CCR.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oleg-schmidt/skills/glittercowboy)
+- [Checkpoint execution reference](references/checkpoint-execution.md)
+- [Checkpoint types reference](references/checkpoint-types.md)
+- [Planning configuration reference](references/planning-config.md)
+- [Git integration reference](references/git-integration.md)
+- [Verification patterns reference](references/verification-patterns.md)
+- [CCR integration reference](references/ccr-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, generated planning files, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project planning artifacts and propose repository changes when invoked by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

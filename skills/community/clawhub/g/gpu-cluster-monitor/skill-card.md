@@ -1,44 +1,48 @@
-## Description: <br>
-This release is listed as gpu-cluster-monitor, but the reviewed artifact implements a Docker and Playwright web-scraping skill for YouTube and arbitrary public URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Release metadata identifies this skill as gpu-cluster-monitor, but the artifact implements a Docker-based browser scraper for YouTube and dynamic web pages.
 
-## Publisher: <br>
-[SounderLiu](https://clawhub.ai/user/SounderLiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sounderliu](https://clawhub.ai/user/sounderliu)
 
-## Use Case: <br>
-Agents can use this artifact to run a containerized Playwright/Crawlee scraper against a supplied public URL and receive extracted page text, YouTube transcript text, or video description JSON. Users seeking GPU cluster monitoring should not rely on this release because the reviewed files do not implement that function. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The listing describes GPU cluster monitoring, but the reviewed artifact implements web scraping. <br>
-Mitigation: Do not install it for GPU cluster monitoring; review the artifact and proceed only if a web-scraping skill is intended. <br>
-Risk: The skill accepts arbitrary public URLs and runs browser automation that can collect page text, YouTube transcripts, or video descriptions. <br>
-Mitigation: Run it in an isolated environment and use it only for public URLs you are authorized to scrape, after checking legal and site-policy constraints. <br>
-Risk: The artifact expects a Docker image named clawd-crawlee, but the provided files do not include the Docker build setup referenced by the instructions. <br>
-Mitigation: Verify the Docker build context and image contents before execution. <br>
+## Use Case:
 
+Developers and agents can use the artifact to collect text or transcript-like content from authorized public URLs, especially YouTube pages and dynamic sites. Review the release-name mismatch before presenting this as a GPU cluster monitoring skill.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/SounderLiu/gpu-cluster-monitor) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact package metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can browse arbitrary targets from inside Docker with weak isolation and unclear safeguards.
+
+Mitigation: Use only on authorized public URLs, run in an isolated container and network, make mounts read-only where possible, and review or pin the Docker image and dependencies before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration] <br>
-**Output Format:** [JSON printed to stdout, with Markdown setup guidance and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker and a locally built clawd-crawlee image; handlers truncate scraped text to bounded stdout payloads.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact/package.json declares 1.0.0) <br>
+**Output Type(s):** [Text, JSON]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON printed to stdout with status, content type, source identifiers, and scraped text fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact truncates extracted transcript or page text before output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact package.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

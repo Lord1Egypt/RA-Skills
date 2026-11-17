@@ -1,4 +1,4 @@
-"""Feishu (Lark) notification channel for Kaipai AI skill."""
+"""Optional Feishu (Lark) delivery for image and video results."""
 
 import json
 import os
@@ -6,6 +6,25 @@ import sys
 from typing import Dict, Any, Optional, Tuple
 
 import requests
+from .base import MissingCredentialsError, validate_duration_ms
+import shlex
+from pathlib import Path
+
+
+def delivery_instructions(base_dir, recipient, *, is_video):
+    """Generate Feishu worker steps only when this provider is bundled."""
+    script = Path(base_dir) / "scripts" / ("feishu_send_video.py" if is_video else "feishu_send_image.py")
+    target = shlex.quote(recipient)
+    if not is_video:
+        return f"  2. Send the image via Feishu: python3 {shlex.quote(str(script))} --image '<result_url>' --to {target}"
+    return (
+        "  2. Download and send the native video via Feishu:\n"
+        "     curl -fL -o /tmp/vmake_result.mp4 '<primary_result_url_or_output_urls[0]>'\n"
+        f"     python3 {shlex.quote(str(script))} --video /tmp/vmake_result.mp4 --to {target} "
+        "--video-url '<primary_result_url_or_output_urls[0]>' "
+        "[--cover-url '<optional_thumb_url>'] [--duration <milliseconds>]\n"
+        "     --video-url sends a second text message with the result link. See docs/feishu-send-video.md."
+    )
 
 
 class FeishuNotifier:
@@ -34,7 +53,10 @@ class FeishuNotifier:
             app_id = feishu.get("appId", "")
             app_secret = feishu.get("appSecret", "")
         if not app_id or not app_secret:
-            raise ValueError("Feishu credentials not found in ~/.openclaw/openclaw.json")
+            raise MissingCredentialsError(
+                "Feishu credentials not found in ~/.openclaw/openclaw.json",
+                '未找到飞书凭证，请配置 channels.feishu.accounts.main.appId 和 appSecret',
+            )
         return app_id, app_secret
 
     def _get_token(self) -> str:
@@ -45,6 +67,7 @@ class FeishuNotifier:
         resp = requests.post(
             "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",
             json={"app_id": app_id, "app_secret": app_secret},
+            timeout=(15, 30),
         )
         resp.raise_for_status()
         self._token = resp.json()["tenant_access_token"]
@@ -217,9 +240,18 @@ class FeishuNotifier:
         cover_url: str = "",
         duration: int = 0,
         caption: str = "",
+        *,
+        duration_ms: Optional[int] = None,
     ) -> Dict[str, Any]:
-        """Send video notification."""
+        """Send video; legacy duration and explicit duration_ms both use milliseconds."""
+        validate_duration_ms(duration, duration_ms)
+        if duration_ms is not None:
+            duration = duration_ms
+        video_url = (video_url or "").strip()
         receive_id, receive_id_type = self._normalize_recipient(recipient)
+
+        # Match the legacy sender: credential failures precede upload progress output.
+        self._get_token()
 
         # Upload video
         print(f"[feishu] Uploading video: {video_path}", file=sys.stderr)
@@ -249,7 +281,7 @@ class FeishuNotifier:
         text_message_id = None
         text_error = None
         if video_url:
-            link_text = f"视频下载：[链接]({video_url})"
+            link_text = f"Video download: [link]({video_url})"
             if caption:
                 link_text = f"{caption}\n\n{link_text}"
             try:

@@ -1,46 +1,58 @@
-## Description: <br>
-Organizes receipts and expense records by period, category, and receipt completeness, and highlights missing documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes receipts and expense records by period, category, and receipt completeness, with reminders for missing documents.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, finance operations teams, and administrators use this skill to prepare reimbursement packets, archive expense materials, and coordinate review by turning receipt lists with dates, amounts, and categories into structured Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt and expense materials may contain personal or financial information. <br>
-Mitigation: Provide only files or text intended for processing, redact sensitive details where practical, and review the generated Markdown before saving or sharing it. <br>
-Risk: Generated reimbursement organization may be incomplete or unsuitable for a formal finance workflow. <br>
-Mitigation: Treat outputs as review drafts and reminders, verify missing items against the source materials, and use the appropriate reimbursement system for final submission. <br>
-Risk: The optional local Python helper reads input files and can write an output file. <br>
-Mitigation: Run it only on intended local materials and use dry-run or stdout output when checking results before writing files. <br>
+## Use Case:
 
+Employees, external users, and finance-operations teams use this skill to prepare reimbursement materials, organize receipt lists, identify missing supporting documents, and produce reviewable submission notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/receipt-expense-sorter) <br>
-- [README.md](artifact/README.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
-- [examples/example-output.md](artifact/examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Structured Markdown or JSON, with optional local Python command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include period grouping, category grouping, missing document reminders, naming suggestions, submission order, notes, and items needing confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Receipt and reimbursement inputs may contain personal, financial, or sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide files intended for expense organization, redact sensitive details when practical, and keep generated drafts within the appropriate finance review process.
+
+Risk: Generated groupings, missing-document reminders, or submission notes may be incomplete or incorrect if the input records are incomplete.
+
+Mitigation: Review the structured report before using it in any reimbursement or finance workflow and resolve listed confirmation items.
+
+Risk: The optional --output path may create or overwrite a local report file.
+
+Mitigation: Use stdout or --dry-run for review-first workflows, and choose an explicit output path when writing a file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/receipt-expense-sorter)
+- [ClawHub publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown reports or JSON report objects, with optional file output when --output is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local draft/report generation for user-provided receipt and expense materials; no network access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

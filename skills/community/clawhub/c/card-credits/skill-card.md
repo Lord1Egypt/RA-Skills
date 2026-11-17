@@ -1,40 +1,54 @@
-## Description: <br>
-Return statement credits and cash-like credits for one major-US credit card - amount, cadence, trigger rules, enrollment requirements, and restrictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Returns statement credits and cash-like credits for one major-U.S. credit card, including trigger rules, cadence, enrollment requirements, restrictions, and practical usage notes.
 
-## Publisher: <br>
-[jiahongc](https://clawhub.ai/user/jiahongc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahongc](https://clawhub.ai/user/jiahongc)
 
-## Use Case: <br>
-External users and agents use this skill to research statement credits and cash-like credits for one specific major U.S. credit card, including amounts, cadence, trigger rules, enrollment requirements, restrictions, confidence notes, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vague prompts such as "perks" may activate the skill when the user did not intend to research card credits. <br>
-Mitigation: Use explicit prompts that name the card or issuer, and ask a clarification question when the card identity is ambiguous. <br>
-Risk: Credit-card credits, enrollment requirements, and restrictions can change or conflict across sources. <br>
-Mitigation: Prefer issuer pages, use only approved secondary sources for details, and flag uncertain or conflicting claims in confidence notes. <br>
+## Use Case:
 
+Cardholders, credit-card researchers, and agents use this skill to summarize the credits picture for one exact major-U.S. credit card variant, including credit amounts, cadence, trigger rules, enrollment requirements, restrictions, and practical usage notes.
 
-## Reference(s): <br>
-- [ClawHub - Card Credits](https://clawhub.ai/jiahongc/card-credits) <br>
+### Deployment Geography for Use:
 
+Global; content scope is major-U.S. credit cards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Condensed Markdown report with overview, numbered credit details, usage rules, confidence notes, and source links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask a clarification question for ambiguous card names; uses web search and fetched issuer or approved secondary sources when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Credit-card benefits, enrollment requirements, and restrictions can change or be misstated by secondary sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify final credit details against issuer terms and approved sources before relying on the result.
+
+## Reference(s):
+
+- [Card Credits ClawHub skill page](https://clawhub.ai/jiahongc/skills/card-credits)
+- [Card identity resolver](../card-identity/SKILL.md)
+- [Card shared source policy](../card-shared/source-policy.yaml)
+- [Card shared command contracts](../card-shared/command-contracts.yaml)
+- [Card shared confidence rules](../card-shared/confidence-rules.md)
+- [Card shared normalization rules](../card-shared/normalization-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with compact numbered credit lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on statement credits, cash-back rebates, and complimentary subscriptions with concrete dollar values.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-AI agent skill that helps startups raise venture capital by evaluating venture-scale potential, preparing pitch narratives, identifying top-tier investors, and structuring investor outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps startups evaluate venture-scale potential, prepare VC fundraising narratives, identify and rank relevant investors, and plan structured investor outreach.
 
-## Publisher: <br>
-[willisian](https://clawhub.ai/user/willisian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willisian](https://clawhub.ai/user/willisian)
 
-## Use Case: <br>
-Startup founders, operators, and their agents use this skill to assess venture-scale potential, shape fundraising narratives, rank relevant venture investors, plan outreach, and track fundraising progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investor outreach may be sent to the wrong recipients or with wording the startup has not approved. <br>
-Mitigation: Require the user to confirm recipient lists and approve every outreach message before connecting the agent to email, CRM, calendar, or file-sharing tools. <br>
-Risk: The included investor contact may be outdated, incorrect, or interpreted as an endorsement. <br>
-Mitigation: Treat named contacts as examples and verify each contact independently before use. <br>
-Risk: Pitch decks or attachments may disclose sensitive startup information. <br>
-Mitigation: Have the user review every attachment and confirm sharing permissions before sending investor materials. <br>
+## Use Case:
 
+Startup founders, operators, and their agents use this skill to assess fundraising readiness, shape investor-facing narratives, prioritize top-tier VC targets, and coordinate outreach for seed or Series A fundraising.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willisian/aifundraisingagent) <br>
-- [Publisher profile](https://clawhub.ai/user/willisian) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, ranked lists, outreach templates, and fundraising progress guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Investor outreach, recipient lists, message wording, contacts, and attachments should be reviewed and approved by the user before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can drive investor outreach and pitch deck sharing without clear approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for every outreach message and deck share before sending.
+
+Risk: Fundraising materials may contain confidential metrics, customer data, strategy, or financing details.
+
+Mitigation: Redact confidential information before sharing any deck, email, or fundraising summary externally.
+
+Risk: Investor recipient data may be inappropriate, stale, or not sourced through approved channels.
+
+Mitigation: Verify recipients through approved and lawful contact sources before outreach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willisian/skills/aifundraisingagent)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with evaluation criteria, fundraising narrative structure, investor ranking criteria, outreach sequencing, and email templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human review before investor outreach or external sharing of fundraising materials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Creates original algorithmic art philosophies and self-contained p5.js interactive generative art artifacts with seeded randomness and parameter controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration.
 
-## Publisher: <br>
-[zhaoM0](https://clawhub.ai/user/zhaoM0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaom0](https://clawhub.ai/user/zhaom0)
 
-## Use Case: <br>
-Developers, designers, and creative agents use this skill to turn art requests into original algorithmic philosophies and browser-ready p5.js generative-art artifacts with reproducible seeds and adjustable parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may use Anthropic-styled template branding even though the skill is third-party and user-created. <br>
-Mitigation: Review generated artifacts before sharing and avoid presenting the output as official or endorsed by Anthropic. <br>
-Risk: The viewer template loads p5.js and fonts from external browser resources. <br>
-Mitigation: For offline or stricter deployments, replace external CDN and font links with local or integrity-pinned resources. <br>
-Risk: Generated art guidance could unintentionally resemble existing artists or copyrighted works if prompts ask for imitation. <br>
-Mitigation: Keep outputs focused on original algorithmic processes and review prompts or generated text for direct style-copying requests. <br>
+## Use Case:
 
+Developers, creative technologists, and external users use this skill to turn art prompts into an original algorithmic philosophy and an interactive p5.js generative-art artifact with seeded variation controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoM0/feifei) <br>
-- [Publisher profile](https://clawhub.ai/user/zhaoM0) <br>
-- [p5.js CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code] <br>
-**Output Format:** [Markdown plus self-contained HTML/JavaScript artifact code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize original generative-art concepts, seeded reproducibility, browser execution, and interactive parameter exploration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML may load p5.js and fonts from external CDNs, which can affect offline use and introduce third-party dependency considerations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated artifacts for external resource loading and replace CDN assets with approved local copies when offline operation or stricter dependency control is required.
+
+Risk: Outputs are steered toward an Anthropic-branded viewer template, which may be inappropriate for neutral, customer, or NVIDIA-branded deployments.
+
+Mitigation: Modify the viewer template branding before deployment when brand neutrality or specific presentation requirements apply.
+
+Risk: The skill asks for original generative art, but user-provided references or prompts could still lead to outputs that resemble protected work too closely.
+
+Mitigation: Review generated philosophies and artifacts for originality and rights concerns before publication or commercial use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaom0/skills/feifei)
+- [p5.js runtime dependency](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js)
+- [Viewer template](artifact/templates/viewer.html)
+- [Generator template](artifact/templates/generator_template.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown philosophy plus a self-contained HTML artifact with inline JavaScript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts use seeded randomness for reproducible p5.js variations and may include browser controls for parameters, seeds, colors, reset, regeneration, and PNG export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

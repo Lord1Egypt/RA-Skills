@@ -1,41 +1,58 @@
-## Description: <br>
-Query the X2C personal dashboard to get real-time KPI data, earnings trends, platform views, recent transactions, and earning projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the X2C personal dashboard to get real-time KPI data, earnings trends, platform views, recent transactions, and earning projects.
 
-## Publisher: <br>
-[luoyalab](https://clawhub.ai/user/luoyalab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoyalab](https://clawhub.ai/user/luoyalab)
 
-## Use Case: <br>
-External X2C users and agents use this skill to query personal dashboard metrics such as revenue, ROI, mining status, platform performance, recent transactions, and earning projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an X2C API key and can access private dashboard data. <br>
-Mitigation: Store X2C_API_KEY as a secret and do not commit configuration files containing the key. <br>
-Risk: Skill outputs may include earnings, transaction records, project performance, and platform metrics. <br>
-Mitigation: Review outputs before sharing them outside the account or workspace. <br>
+## Use Case:
 
+External users and their agents use this skill to answer X2C dashboard questions about earnings, ROI, mining status, platform performance, recent activity, and earning project lists.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luoyalab/x2c-real-dashboard) <br>
-- [X2C Open API endpoint](https://eumfmgwxwjyagsvqloac.supabase.co/functions/v1/open-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X2C_API_KEY and returns private account, earnings, transaction, project, and platform metrics from the X2C dashboard API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends authenticated requests to the X2C dashboard API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the X2C API endpoint is trusted and use a scoped or revocable X2C_API_KEY where possible.
+
+Risk: Returned dashboard data may include sensitive earnings, transaction, project, and platform-view information.
+
+Mitigation: Invoke the skill only for X2C dashboard questions and avoid exposing returned financial details beyond the user's requested scope.
+
+Risk: Failed API calls can return error JSON instead of dashboard data.
+
+Mitigation: Check for success: true before presenting results, as the artifact instructs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoyalab/skills/x2c-real-dashboard)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Text]
+
+**Output Format:** [JSON responses from shell scripts, summarized as text or Markdown by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X2C_API_KEY. Numeric script arguments are bounded for trend days, activity limit, and page size.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

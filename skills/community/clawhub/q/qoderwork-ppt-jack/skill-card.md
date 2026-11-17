@@ -1,47 +1,62 @@
-## Description: <br>
-Generate QoderWork-style presentations. Automatically matches 14 templates based on your topic and outputs an editable .pptx file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QoderWork-style presentations, automatically match 14 templates based on the user's topic, and output an editable .pptx file.
 
-## Publisher: <br>
-[Jackwang2999](https://clawhub.ai/user/Jackwang2999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackwang2999](https://clawhub.ai/user/jackwang2999)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to turn a requested topic, audience, and key points into a structured QoderWork-style PowerPoint deck with editable slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs npm/Puppeteer tooling and writes presentation artifacts into the current project's output directory. <br>
-Mitigation: Install and run it only in a trusted project environment, review generated files, and run it from the intended working directory. <br>
-Risk: Optional image search or image generation can contact external services and may expose sensitive presentation topics. <br>
-Mitigation: Use local images or non-sensitive topics when external image sourcing is not appropriate. <br>
-Risk: The pipeline clears output/filled during generation. <br>
-Mitigation: Keep important generated slide HTML outside output/filled or back it up before re-running the pipeline. <br>
+## Use Case:
 
+External users and developers use this skill to turn a presentation topic and requirements into a structured QoderWork-style PowerPoint deck. The agent plans slide content, maps it to built-in templates, fills HTML slides, and converts them into an editable PPTX file.
 
-## Reference(s): <br>
-- [QoderWork PPT skill instructions](artifact/SKILL.md) <br>
-- [QoderWork PPT README](artifact/pptx/README.md) <br>
-- [Content generation rules](artifact/pptx/rules/content-rules.md) <br>
-- [Template matching rules](artifact/pptx/rules/template-matching.md) <br>
-- [Template manifest](artifact/pptx/templates/manifest.json) <br>
-- [Lucide icons](https://lucide.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, JSON slide data, filled HTML files, downloaded or generated image files, and editable PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates project-root output files including output/content.md, output/slides.json, output/images/, output/filled/*.html, and output/presentation.pptx or timestamped presentation files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, frontmatter, package.json) <br>
+Risk: Slide JSON, prompts, web content, or shared documents may influence rich text rendered in Chromium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content before conversion and run the skill only in a restricted workspace.
+
+Risk: The conversion pipeline may read arbitrary local files through image paths or fetch arbitrary URLs.
+
+Mitigation: Avoid arbitrary local image paths, keep sensitive files out of the workspace, and disable or tightly control outbound network access.
+
+Risk: Dependencies and browser-based rendering increase exposure if the package stack is stale.
+
+Mitigation: Update and review the dependency stack before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackwang2999/skills/qoderwork-ppt-jack)
+- [README](artifact/pptx/README.md)
+- [Content Rules](artifact/pptx/rules/content-rules.md)
+- [Template Matching Rules](artifact/pptx/rules/template-matching.md)
+- [Template Manifest](artifact/pptx/templates/manifest.json)
+- [Lucide Icons](https://lucide.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON slide data, HTML intermediate files, generated assets, and editable PPTX output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces intermediate content.md, slides.json, filled HTML files, optional images, and a timestamped presentation .pptx in the output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

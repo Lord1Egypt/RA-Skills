@@ -1,40 +1,53 @@
-## Description: <br>
-Execute US and HK stock trades via Tiger Brokers API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiger Trade helps agents provide Tiger Brokers API setup guidance and example code for checking prices, managing portfolio context, and placing US or Hong Kong stock orders.
 
-## Publisher: <br>
-[esanle](https://clawhub.ai/user/esanle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[esanle](https://clawhub.ai/user/esanle)
 
-## Use Case: <br>
-External traders and portfolio managers can use this skill to guide an agent through Tiger Brokers account checks and US or Hong Kong stock order workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to place live financial orders through Tiger Brokers. <br>
-Mitigation: Use sandbox mode first, replace all example order values, and require explicit user confirmation before every order. <br>
-Risk: The skill depends on Tiger Brokers account credentials and private key material. <br>
-Mitigation: Store the private key with strict file permissions or a secret manager and avoid exposing real credentials in prompts or shared files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tiger Brokers 02800 quote page](https://www.itiger.com/hant/stock/02800) <br>
-- [Tiger Brokers AAPL quote page](https://www.itiger.com/hant/stock/AAPL) <br>
+## Use Case:
 
+External users and developers use this skill to configure Tiger Brokers API access, check stock prices, and prepare buy or sell order code for US or Hong Kong stocks. Because the sample can operate on a live brokerage account, users should add review, confirmation, and credential safeguards before use.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tiger Brokers account configuration and private key material before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe live-trading instructions could cause accidental real-money orders.
+
+Mitigation: Add sandbox defaults, explicit order review and confirmation, trade limits, and contract verification before use.
+
+Risk: Brokerage credentials are stored in a local plaintext configuration file.
+
+Mitigation: Use secure credential storage with restrictive file permissions or a secret manager.
+
+## Reference(s):
+
+- [Tiger Brokers 02800 stock page](https://www.itiger.com/hant/stock/02800)
+- [Tiger Brokers AAPL stock page](https://www.itiger.com/hant/stock/AAPL)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live-trading sample code and credential configuration guidance that require review before execution.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

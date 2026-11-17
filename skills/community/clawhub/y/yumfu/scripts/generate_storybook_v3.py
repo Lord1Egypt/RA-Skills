@@ -32,6 +32,8 @@ WORLD_LABELS = {
     "lotr": {"zh": "中土宇宙", "en": "Middle-earth Universe"},
     "game-of-thrones": {"zh": "冰与火之歌宇宙", "en": "A Song of Ice and Fire Universe"},
     "journey-to-west": {"zh": "西游记宇宙", "en": "Journey to the West Universe"},
+    "ramayana": {"zh": "罗摩衍那宇宙", "en": "Ramayana Universe"},
+    "xuanzang": {"zh": "大唐西域记", "en": "The Great Tang Records on the Western Regions"},
 }
 
 WORLD_TITLES = {
@@ -41,6 +43,8 @@ WORLD_TITLES = {
     "lotr": {"zh": "中土战记", "en": "A Chronicle of Middle-earth"},
     "game-of-thrones": {"zh": "冰火编年", "en": "A Chronicle of Ice and Fire"},
     "journey-to-west": {"zh": "西游异闻", "en": "Journey to the West"},
+    "ramayana": {"zh": "罗摩衍那传奇", "en": "A Ramayana Chronicle"},
+    "xuanzang": {"zh": "西行札记", "en": "A Journey West"},
 }
 
 ZH_LABELS = {

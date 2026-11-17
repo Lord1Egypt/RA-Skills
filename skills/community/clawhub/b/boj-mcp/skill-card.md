@@ -1,40 +1,49 @@
-## Description: <br>
-Access Bank of Japan (BOJ) statistical data, including price indices, flow of funds, balance of payments, BIS statistics, interest rates, money supply, and exchange rates, with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Bank of Japan (BOJ/日本銀行) statistical data — price indices (CGPI, SPPI), flow of funds, balance of payments, BIS statistics, interest rates, money supply, exchange rates.
 
-## Publisher: <br>
-[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp)
 
-## Use Case: <br>
-Developers, analysts, and agents use Boj Mcp to discover, search, and retrieve public Bank of Japan time-series datasets for monetary policy, prices, interest rates, and financial statistics analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing an unintended package or version could run code outside the expected boj-mcp release. <br>
-Mitigation: Verify that the uv or PyPI package name and version match the intended boj-mcp release before installation. <br>
-Risk: Downloaded public BOJ datasets may remain cached locally after retrieval. <br>
-Mitigation: Review cache location and retention behavior for the runtime environment and clear cached files when local persistence is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bank of Japan Statistical Data Search](https://www.stat-search.boj.or.jp/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajtgjmdjp/boj-mcp) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to browse, search, and retrieve Bank of Japan statistical datasets for monetary-policy and financial analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands; referenced CLI output may be tabular text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the boj-mcp CLI to access public BOJ flat-file datasets and may rely on local caching after first download.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing and running the unpinned external boj-mcp package may introduce supply-chain risk under the user's local permissions.
+
+Mitigation: Verify the package identity before installation, prefer a pinned reviewed version, and run it with least-privilege precautions.
+
+## Reference(s):
+
+- [Bank of Japan Time-Series Statistics Search](https://www.stat-search.boj.or.jp/)
+- [ClawHub skill page](https://clawhub.ai/ajtgjmdjp/skills/boj-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide use of boj-mcp CLI commands that return tabular or JSON BOJ statistics data.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+---
+description: >
+  SendPulse marketplace integration UI rules — apply when working on an integration's
+  settings/connection screen, widget or embedded page built on the CDN design-system
+  stylesheet sp-marketplace-app-ui.min.css: forms, buttons, panels, modals, tables,
+  dropdowns, badges, sp_icons, colour tokens, dark theme, layout inside the host iframe.
+globs:
+alwaysApply: false
+---
+
+# SendPulse Marketplace UI
+
+Full skill lives in `docs/sendpulse-marketplace-ui-cdn/` (adjust the path if cloned elsewhere).
+Read `docs/sendpulse-marketplace-ui-cdn/SKILL.md` first; load `references/components.md` for the
+markup of whatever you are building and `references/gaps.md` when a class misbehaves. Cursor has a
+shell, so the Step 7 checkers work here — use them.
+
+Non-negotiable rules when writing SendPulse integration UI:
+
+1. Link `https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css` ahead of app CSS. Never
+   vendor a copy: icon fonts resolve against the stylesheet's origin, so a copy breaks every glyph.
+2. Load order: CDN bundle → `references/tokens.css` → `references/bundle-fixes.css` → app CSS last.
+   Copy both files into the app; they are the bundle's missing foundation, not optional extras.
+3. Every class must exist in `references/classes.txt` (icons in `references/icons.txt`) — grep
+   before you write a name. No re-implemented components, no competing `font-family`, no second
+   icon set, no Bootstrap `glyphicon-*`.
+4. The bundle references 28 custom properties and defines none. Those 28 are the only `var()` names
+   app CSS may use; nine are defined nowhere, so use the literal value there.
+5. The app fills the host iframe: the app root gets no margin, no padding, no `max-width`, no
+   centring and no `overflow`. Cap each control's wrapper at 364px (420px or 540px by exception).
+6. Dark is `?theme=dark` from the host — read at boot, mirrored as `ma-dark` on `<html>`, carried
+   through every URL the app constructs (with `lang` and `access`). Never ship a theme switcher.
+7. Paint `body` yourself; declare `color-scheme: light` / `dark`. Neither build does either.
+8. The CDN ships no JS — `.modal`, `.dropdown-menu`, `.collapse`, tabs and tooltips are styling
+   alone; toggle `.open` / `.in` / `.active` yourself.
+9. Restraint is a rule: no decorative icons, one primary button per view, one signal per state, no
+   panel inside a panel, text-first empty states. The plainest markup that reads correctly wins.
+10. Before delivering: `references/check-build.sh`, `references/check-classes.sh --app-prefix app-`
+    over the templates, and `node references/verify.mjs <url> --app-prefix app-` where Playwright is
+    installed. Clean output is a floor, not a verdict — look at the screen in both themes.

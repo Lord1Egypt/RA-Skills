@@ -1,0 +1,633 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-baidu-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:44.916Z",
+  "entry": {
+    "url": "https://www.baidu.com/gaoji/advanced.html",
+    "final_url": "https://www.baidu.com/gaoji/advanced.html",
+    "title": "高级搜索",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:44.916Z",
+    "identity": {
+      "declared_name": "百度高级搜索",
+      "hostname": "www.baidu.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "帮助",
+        "href": "http://help.baidu.com/question",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q1",
+      "id": "keyword",
+      "css": "#keyword",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#keyword"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "百度一下",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": null,
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q2",
+      "id": "",
+      "css": "input[name=\"q2\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "input[name=\"q2\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q3",
+      "id": "",
+      "css": "input[name=\"q3\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "input[name=\"q3\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q4",
+      "id": "",
+      "css": "input[name=\"q4\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "input[name=\"q4\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "每页显示10条\n每页显示20条\n每页显示50条",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "rn",
+      "id": "",
+      "css": "select[name=\"rn\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "select[name=\"rn\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "全部时间\n最近一天\n最近一周\n最近一月\n最近一年",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "lm",
+      "id": "",
+      "css": "select[name=\"lm\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "select[name=\"lm\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "全部语言",
+      "label": "全部语言",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "ct",
+      "id": "ct_0",
+      "css": "#ct_0",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#ct_0"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "仅在简体中文中",
+      "label": "仅在简体中文中",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "ct",
+      "id": "ct_1",
+      "css": "#ct_1",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#ct_1"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "仅在繁体中文中",
+      "label": "仅在繁体中文中",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "ct",
+      "id": "ct_2",
+      "css": "#ct_2",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#ct_2"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "所有网页和文件\nAdobe Acrobat PDF (.pdf)\n微软 Word (.doc)\n微软 Excel (.xls)\n微软 Powerpoint (.ppt)\nRTF 文件 （.rtf)\n所有格式",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "ft",
+      "id": "",
+      "css": "select[name=\"ft\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "select[name=\"ft\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "网页的任何地方",
+      "label": "网页的任何地方",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q5",
+      "id": "q5_0",
+      "css": "#q5_0",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#q5_0"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "仅网页的标题中",
+      "label": "仅网页的标题中",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q5",
+      "id": "q5_1",
+      "css": "#q5_1",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#q5_1"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "仅在网页的URL中",
+      "label": "仅在网页的URL中",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q5",
+      "id": "q5_2",
+      "css": "#q5_2",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "#q5_2"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "q6",
+      "id": "",
+      "css": "input[name=\"q6\"]",
+      "role": null,
+      "form_action": "https://www.baidu.com/s",
+      "locator": {
+        "css": "input[name=\"q6\"]"
+      },
+      "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+      "observed_at": "2026-10-09T09:06:44.769Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-baidu-com:record-lookup",
+      "source_id": "quiz-baidu-com",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.baidu.com/gaoji/advanced.html",
+      "controls": [
+        {
+          "tag": "input",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q1",
+          "id": "keyword",
+          "css": "#keyword",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#keyword"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q2",
+          "id": "",
+          "css": "input[name=\"q2\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "input[name=\"q2\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q3",
+          "id": "",
+          "css": "input[name=\"q3\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "input[name=\"q3\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q4",
+          "id": "",
+          "css": "input[name=\"q4\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "input[name=\"q4\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "每页显示10条\n每页显示20条\n每页显示50条",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "rn",
+          "id": "",
+          "css": "select[name=\"rn\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "select[name=\"rn\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "全部时间\n最近一天\n最近一周\n最近一月\n最近一年",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "lm",
+          "id": "",
+          "css": "select[name=\"lm\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "select[name=\"lm\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "全部语言",
+          "label": "全部语言",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "ct",
+          "id": "ct_0",
+          "css": "#ct_0",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#ct_0"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "仅在简体中文中",
+          "label": "仅在简体中文中",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "ct",
+          "id": "ct_1",
+          "css": "#ct_1",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#ct_1"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "仅在繁体中文中",
+          "label": "仅在繁体中文中",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "ct",
+          "id": "ct_2",
+          "css": "#ct_2",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#ct_2"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "所有网页和文件\nAdobe Acrobat PDF (.pdf)\n微软 Word (.doc)\n微软 Excel (.xls)\n微软 Powerpoint (.ppt)\nRTF 文件 （.rtf)\n所有格式",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "ft",
+          "id": "",
+          "css": "select[name=\"ft\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "select[name=\"ft\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "网页的任何地方",
+          "label": "网页的任何地方",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q5",
+          "id": "q5_0",
+          "css": "#q5_0",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#q5_0"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "仅网页的标题中",
+          "label": "仅网页的标题中",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q5",
+          "id": "q5_1",
+          "css": "#q5_1",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#q5_1"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "仅在网页的URL中",
+          "label": "仅在网页的URL中",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q5",
+          "id": "q5_2",
+          "css": "#q5_2",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "#q5_2"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "q6",
+          "id": "",
+          "css": "input[name=\"q6\"]",
+          "role": null,
+          "form_action": "https://www.baidu.com/s",
+          "locator": {
+            "css": "input[name=\"q6\"]"
+          },
+          "observed_url": "https://www.baidu.com/gaoji/advanced.html",
+          "observed_at": "2026-10-09T09:06:44.769Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-125"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:44.916Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-baidu-com-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-baidu-com-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

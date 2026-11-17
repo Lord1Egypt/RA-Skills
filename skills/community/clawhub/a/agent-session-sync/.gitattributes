@@ -1,0 +1,6 @@
+# 换行规则：bash 脚本必须 LF（Windows autocrlf 检出 CRLF 会让 bash 报 $'\r' 错）
+*.sh   text eol=lf
+*.py   text eol=lf
+*.mjs  text eol=lf
+*.ps1  text eol=crlf
+*.cmd  text eol=crlf

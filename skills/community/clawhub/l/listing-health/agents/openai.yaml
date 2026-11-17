@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing 健康检查"
+  short_description: "检查页面完整度、误解风险与评论证据"
+  default_prompt: "使用 $amazon-listing-health-check 检查一个 Amazon ASIN 的 Listing 健康度并列出证据充分的问题。"

@@ -1,42 +1,54 @@
-## Description: <br>
-Convert PDF files to Markdown with table recognition for extracting text, converting tables, summarizing documents, and fixing formatting issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF files to Markdown with table recognition. Use when extracting text, converting tables, summarizing documents, fixing formatting issues.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External developers and document operators use this skill to convert local PDF files into Markdown, plain text, or JSON outputs, including table extraction, header extraction, metadata inspection, and batch conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe filename handling may mishandle untrusted or unusually named PDFs. <br>
-Mitigation: Use simple trusted filenames and avoid untrusted PDFs until path handling is fixed. <br>
-Risk: Converted text, JSON exports, configuration, and history logs may be retained locally and could contain confidential document content. <br>
-Mitigation: Treat the configured data directory as sensitive and delete retained outputs when they are no longer needed. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to extract text from PDF files, convert PDFs or copied PDF text into Markdown, identify headings, convert table-like regions, inspect PDF metadata, and export local conversion results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/pdf-to-markdown) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Markdown Syntax Reference](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files, plain text extraction, JSON exports, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and may retain converted outputs, JSON exports, configuration, and history logs under the configured PDF_TO_MARKDOWN_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: release evidence and frontmatter) <br>
+Risk: Crafted filenames can be expanded into Python code during fallback PDF processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the fallback path handling so file paths are passed into Python as data; avoid processing untrusted filenames until that is addressed.
+
+Risk: Converted document content and command history are stored on the local machine.
+
+Mitigation: Use an appropriate PDF_TO_MARKDOWN_DIR for sensitive work and review or clear generated outputs and history according to local data-handling requirements.
+
+## Reference(s):
+
+- [Markdown Syntax Reference](artifact/tips.md)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, JSON, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write converted output, export files, configuration, and command history to a local data directory.]
+
+## Skill Version(s):
+
+3.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

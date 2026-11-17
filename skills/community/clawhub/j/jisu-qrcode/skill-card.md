@@ -1,39 +1,55 @@
-## Description: <br>
-Generates styled QR codes from text as base64, reads QR code contents from image URLs or base64 images, and lists available JisuAPI QR templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates styled QR codes from text or URLs, reads QR code contents from image URLs or base64 input, and lists available QR templates through JisuAPI.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers and agents use this skill to create QR code images, decode QR code contents, and retrieve template samples through the JisuAPI QR code service. QR contents and images are sent to the external JisuAPI provider, so avoid private, login, payment, or otherwise sensitive QR data unless external processing is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/jisu-qrcode) <br>
-- [JisuAPI QR Code API](https://www.jisuapi.com/api/qrcode/) <br>
-- [JisuAPI home](https://www.jisuapi.com/) <br>
+Developers and agents use this skill to create QR code images for text or URLs, decode QR contents from supplied images, and retrieve QR template examples. It is suited for workflows that can send QR payloads and image data to JisuAPI for processing.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, and JISU_API_KEY; generated QR codes are returned as base64 and decoded QR contents are returned as text.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: QR text, QR image URLs, base64 QR images, logo URLs, and the JisuAPI key are sent to JisuAPI for processing.
+
+Mitigation: Use the skill only when that disclosure is acceptable, and avoid QR codes that contain secrets, credentials, tokens, internal links, or private customer data.
+
+Risk: API-key use can expose quota and account access if the key is over-privileged or mishandled.
+
+Mitigation: Use a dedicated least-privileged JISU_API_KEY and monitor quota usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-qrcode)
+- [JisuAPI QR Code API](https://www.jisuapi.com/api/qrcode/)
+- [JisuAPI](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Configuration instructions]
+
+**Output Format:** [JSON responses containing base64 QR image data, decoded text, template URLs, or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends QR text, QR image URLs, base64 QR images, logo URLs, and the API key to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

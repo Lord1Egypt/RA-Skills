@@ -1,42 +1,56 @@
-## Description: <br>
-Monitor X/Twitter accounts for new tweets and send notifications to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor X/Twitter accounts for new tweets and send notifications to Telegram.
 
-## Publisher: <br>
-[mmmuffin](https://clawhub.ai/user/mmmuffin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mmmuffin](https://clawhub.ai/user/mmmuffin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to run a continuous monitor for selected X/Twitter accounts and receive Telegram notifications when new tweets appear.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles live X/Twitter session cookies and Telegram bot credentials.
+
+Mitigation: Use a dedicated or low-risk X/Twitter session, treat AUTH_TOKEN, CT0, and Telegram bot tokens as secrets, and rotate them if exposed.
+
+Risk: The monitor sends account names and tweet text to the configured Telegram chat while it runs.
+
+Mitigation: Confirm the destination chat is appropriate before running the monitor and avoid using shared machines for sensitive sessions.
+
+Risk: The script depends on an external xreach binary to fetch tweets.
+
+Mitigation: Confirm the xreach binary source before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to monitor a selected X/Twitter account and receive Telegram notifications when new tweets appear. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive X/Twitter session cookies and a Telegram bot token. <br>
-Mitigation: Store AUTH_TOKEN, CT0, and Telegram credentials outside source control and logs, rotate them if exposed, and prefer a dedicated or low-risk X/Twitter account. <br>
-Risk: Tweet retrieval depends on an undeclared local `xreach` command that receives the X/Twitter credentials. <br>
-Mitigation: Install and run the skill only after verifying that the local `xreach` binary is trusted and expected. <br>
-Risk: The monitor runs continuously and sends outbound Telegram messages. <br>
-Mitigation: Run it in an environment where the process can be monitored and stopped, and limit Telegram bot and chat access to the intended destination. <br>
+**Output Format:** [Markdown with inline shell commands and environment variable names]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmmuffin/x-tweet-monitor) <br>
+**Other Properties Related to Output:** [Produces guidance for configuring credentials and running a Python monitor that sends tweet notifications to Telegram.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Notifications, Guidance] <br>
-**Output Format:** [Markdown with environment variable setup and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X/Twitter session cookies, a Telegram bot token, a Telegram chat ID, and a local xreach command.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

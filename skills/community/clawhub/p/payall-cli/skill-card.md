@@ -1,43 +1,57 @@
-## Description: <br>
-Operate the Payall crypto card CLI tool for card browsing, card management, USDT-funded top-ups and withdrawals, wallet balances, and on-chain USDT transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the Payall crypto card CLI tool for managing crypto debit cards, checking balances and fees, applying for cards, topping up cards, withdrawing card funds, and sending USDT across BSC, Ethereum, and TRON.
 
-## Publisher: <br>
-[c0ldsmi1e](https://clawhub.ai/user/c0ldsmi1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c0ldsmi1e](https://clawhub.ai/user/c0ldsmi1e)
 
-## Use Case: <br>
-External users and agents use this skill to operate the Payall CLI for crypto debit card discovery, card account operations, USDT top-ups and withdrawals, wallet balance checks, and USDT transfers across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through wallet authentication and operations that involve private keys. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid using a main wallet private key, and review the skill before installation. <br>
-Risk: The skill can expose full card numbers, CVV values, and billing details when reveal commands are used. <br>
-Mitigation: Reveal full card or CVV data only when necessary for a user-approved task and avoid storing or sharing the revealed data. <br>
-Risk: The skill documents confirmation-skipping flags for transfers, card applications, top-ups, and withdrawals. <br>
-Mitigation: Require explicit human confirmation for every amount, chain, destination, card application, top-up, withdrawal, or transfer before running commands. <br>
+## Use Case:
 
+External users and agents use this skill to operate the Payall CLI for crypto card management, card recommendations, wallet balance checks, card top-ups, withdrawals, and USDT transfers. It is most relevant when a user wants terminal guidance for Payall card or wallet workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/c0ldsmi1e/payall-cli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/c0ldsmi1e) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command sequences for Payall CLI authentication, card operations, wallet checks, top-ups, withdrawals, and transfers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill supports financial automation involving wallet signing, card details, and transaction commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted Payall CLI installations and publisher trust, verify destination addresses and amounts manually, and avoid pasting private keys into chat or command arguments.
+
+Risk: Some CLI flags can skip confirmation prompts for transfers, withdrawals, top-ups, or card applications.
+
+Mitigation: Avoid confirmation-skipping flags such as --yes for transfers or withdrawals unless the user has explicitly reviewed the destination, chain, amount, and fees.
+
+Risk: Card detail commands can reveal full card number, CVV, expiry, and billing details.
+
+Mitigation: Reveal full card details only when strictly necessary for the user-requested task and avoid sharing or retaining sensitive card information beyond that workflow.
+
+## Reference(s):
+
+- [PayAll CLI ClawHub skill page](https://clawhub.ai/c0ldsmi1e/skills/payall-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command flags, wallet or card workflow steps, fee comparison guidance, and safety reminders for sensitive financial actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

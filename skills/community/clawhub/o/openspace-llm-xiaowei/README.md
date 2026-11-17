@@ -257,7 +257,7 @@ python openspace_llm.py test
 # MiniMax API 配置（必填）
 OPENSPACE_MODEL=minimax/MiniMax-M2.7
 OPENSPACE_API_BASE=https://api.minimax.chat/v1
-OPENSPACE_API_KEY=sk-cp-MaMBLuaFp3MYYpki0XWxiT7iTrQ9Qz-uTadEpqmsPXO5YMlTvZv4MOAIOiN-DUl42IRXdBH4TBGMsSWitHMIVHTz8RMlADIC8l__MNgvznaxUBhz3AYckoI
+OPENSPACE_API_KEY=REDACTED-SECRET
 
 # 代理配置（可选）
 HTTP_PROXY=http://127.0.0.1:10810

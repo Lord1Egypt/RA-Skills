@@ -1,43 +1,58 @@
-## Description: <br>
-Tmp Soul Evolver analyzes agent memory and learning files with the MiniMax API, then appends updates to workspace identity files such as SOUL.md, USER.md, and IDENTITY.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tmp Soul Evolver analyzes agent memory files with MiniMax and proposes or applies incremental updates to workspace identity and guidance files.
 
-## Publisher: <br>
-[relunctance](https://clawhub.ai/user/relunctance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relunctance](https://clawhub.ai/user/relunctance)
 
-## Use Case: <br>
-Developers and agent operators use this skill to periodically review accumulated memory, learning, and error records and maintain long-lived agent identity/profile files. It is intended for scheduled or manual memory evolution, not one-shot task execution or real-time responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory, learning, and profile excerpts can be sent to MiniMax during analysis. <br>
-Mitigation: Use a dedicated MiniMax API key, avoid processing sensitive workspaces, review memory sources before execution, and disable hawk-bridge unless vector memory is required. <br>
-Risk: Scheduled operation can persistently change long-lived agent identity and profile files. <br>
-Mitigation: Run with --dry-run first, review proposed changes before writes, keep backups enabled, and use restore only after confirming the selected backup. <br>
-Risk: Target-file and path guardrails are limited in the provided evidence. <br>
-Mitigation: Restrict target files through configuration, run in an isolated workspace, and avoid unattended scheduled use until allowlisting and path validation are confirmed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review accumulated memory, learnings, and preferences, then maintain files such as SOUL.md, USER.md, IDENTITY.md, MEMORY.md, AGENTS.md, and TOOLS.md. It is suited for scheduled or manual memory review workflows where identity-file changes are inspected before adoption.
 
-## Reference(s): <br>
-- [Architecture reference](references/ARCHITECTURE.md) <br>
-- [ClawHub skill page](https://clawhub.ai/relunctance/soul-evolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration snippets; runtime updates are appended as Markdown blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and MINIMAX_API_KEY; includes dry-run, status, cron, and restore workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Private memory, learning, or conversation content may be sent to an external MiniMax API during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run only, restrict the workspace and API environment, and do not run it on memory files that may contain secrets or confidential conversations until redaction and endpoint validation are added.
+
+Risk: The scheduled hook can persist model-generated changes into identity or control files without enough approval controls.
+
+Mitigation: Avoid enabling the scheduled hook and require explicit approval for each proposed update before writing to SOUL.md, AGENTS.md, or similar files.
+
+Risk: Generated identity-file updates may introduce incorrect, stale, or unsafe behavioral guidance.
+
+Mitigation: Review proposed diffs before adoption, keep target-file allowlists narrow, and rely on backups for recovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/relunctance/skills/soul-evolver)
+- [SoulForge Architecture](references/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output, Markdown update blocks, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append generated update blocks to workspace identity files; dry-run mode previews changes without writing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

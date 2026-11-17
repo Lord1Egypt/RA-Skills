@@ -1,40 +1,64 @@
-## Description: <br>
-Generate images using Coze AI platform with automatic Base64 encoding for inline preview from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using Coze AI platform with text-to-image generation and automatic Base64 encoding for inline preview.
 
-## Publisher: <br>
-[pgyppp](https://clawhub.ai/user/pgyppp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pgyppp](https://clawhub.ai/user/pgyppp)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to send text prompts to a configured Coze image project and receive generated images as inline Base64 data URIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, request metadata, and a bearer token can be sent to an external Coze endpoint, including a caller-configured URL without host validation. <br>
-Mitigation: Use a limited Coze token, configure a trusted endpoint, project ID, and session ID, and avoid allowing untrusted callers to override api_url. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to call a Coze image project from text prompts and receive generated images as inline Base64 data URIs.
 
-## Reference(s): <br>
-- [Coze Image Skill Payload](references/payload-shape.md) <br>
-- [ClawHub skill page](https://clawhub.ai/pgyppp/coze-image) <br>
-- [Repository listed in skill metadata](https://github.com/openclaw/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Image data URI, Error object] <br>
-**Output Format:** [JSON object containing a Base64 image data URI, MIME type, filename, source URL, optional answer text, or structured error fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include debug fields with endpoint, project ID, and session ID when debug mode is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, package.json, and skill metadata) <br>
+Risk: Unrestricted endpoint configuration can let untrusted callers direct requests to unexpected services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict who can pass api_url, prefer an approved IMAGE_API_URL, and add endpoint allowlisting before broader deployment.
+
+Risk: Coze API tokens and prompts may be exposed through unsafe runtime configuration or sensitive prompt content.
+
+Mitigation: Use a least-privilege token, keep tokens in environment configuration, and avoid submitting sensitive prompts.
+
+Risk: Generated image URLs are fetched automatically, which can increase exposure to untrusted remote content.
+
+Mitigation: Run the skill in an isolated environment and add image-download size and content limits before allowing untrusted use.
+
+Risk: Implicit invocation and automatic updates can run or change the skill with limited user review.
+
+Mitigation: Require confirmation for invocation where possible, pin dependencies, and consider disabling auto-update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pgyppp/skills/coze-image)
+- [Publisher profile](https://clawhub.ai/user/pgyppp)
+- [Payload shape reference](references/payload-shape.md)
+- [Skill metadata repository](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; runtime responses are JSON objects containing an image data URI or structured error fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful responses include image, mime_type, filename, and source_url; debug mode can include api_url, project_id, and session_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

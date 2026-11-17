@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn7fk6twcw733nbszvhn1enayh83qrvw",
-  "slug": "yilian-ppt-generator",
-  "version": "1.0.0",
-  "publishedAt": 1776306837763
+  "category": "productivity",
+  "description": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS (cover, TOC, content, section divider, summary slides), edit existing PPTX via XML workflows, or extract text with markitdown. Triggers: PPT, PPTX, PowerPoint, presentation, slide, deck, slides.",
+  "id": 380181436600765,
+  "license": "MIT",
+  "name": "pptx-generator",
+  "platform": "minimax",
+  "skill_id": 69001,
+  "sources": [
+    "https://gitbrent.github.io/PptxGenJS/",
+    "https://github.com/microsoft/markitdown"
+  ],
+  "updated_at": 1774375983481,
+  "version": "1.0.0"
 }

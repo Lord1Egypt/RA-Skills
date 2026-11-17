@@ -1,0 +1,715 @@
+{
+  "schemaVersion": 1,
+  "kind": "parameterized-placement-example",
+  "exam": "260919-at32f415-learning-board",
+  "status": "partial-live-verified",
+  "purpose": "第一轮现场参数化布局样例：保留通过项、独立反证和下一轮修正参数；不是完成态布局答案",
+  "source": [
+    "考试说明.pdf p2-p4（板框、固定器件、机械/使用/核心外围布局）",
+    "原理图.pdf p1（15个功能区及连接关系）",
+    "物料清单.xlsx BOM!3:29（69个展开位号）",
+    "bom-instances.json、source-connectivity.json、source-manifest.json"
+  ],
+  "startState": {
+    "project": "ceshi",
+    "schematicDocumentUuid": "f4351c9ef51e8321",
+    "pcbDocumentUuid": "2e719e9419653c72",
+    "condition": "两层PCB已有69个唯一位号；板框、显示原点和六个固定件已建立；尚未布线/铺铜"
+  },
+  "parameters": [
+    {
+      "name": "boardSize",
+      "value": [
+        90,
+        50
+      ],
+      "unit": "mm",
+      "modifiable": false
+    },
+    {
+      "name": "coordinateSemantic",
+      "value": "footprint-anchor",
+      "unit": "semantic",
+      "modifiable": false
+    },
+    {
+      "name": "componentPositions",
+      "value": "placements[]",
+      "unit": "mil/deg",
+      "modifiable": true
+    },
+    {
+      "name": "fixedRefs",
+      "value": [
+        "SCREW1",
+        "SCREW2",
+        "SCREW3",
+        "SCREW4",
+        "U6",
+        "CARD1"
+      ],
+      "unit": "reference",
+      "modifiable": false
+    },
+    {
+      "name": "cn1FreeAxis",
+      "value": "x",
+      "unit": "axis",
+      "modifiable": true
+    }
+  ],
+  "commands": [
+    "easyeda pcb list --include-bbox --include-pads --doc <PCB_DOC_UUID> --project ceshi",
+    "逐位号解析本轮 primitiveId；按 placements[] 调用 easyeda pcb modify，固定件随后 pcb lock",
+    "easyeda pcb save --doc <PCB_DOC_UUID> --project ceshi",
+    "easyeda pcb save → bounded easyeda doc reload → typed readback；若对象不可读则停止写入并标 incomplete",
+    "easyeda pcb list --include-bbox --include-pads --doc <PCB_DOC_UUID> --project ceshi",
+    "easyeda pcb layout-lint --doc <PCB_DOC_UUID> --project ceshi --json"
+  ],
+  "observations": [
+    "整页刷新后69件/69唯一位号，目标位置差异0",
+    "器件bbox重叠0，小于6mil间隙0，layout-lint off-board/tight均为0",
+    "六个固定件坐标、角度和锁定保持；CN1只固定题定y/角度，x未锁定"
+  ],
+  "knownErrorsAndFixes": [
+    {
+      "error": "保存重开时Web持续显示加载动画",
+      "fix": "停止循环 reload 和现场写入；保存故障证据，修复 typed reload/open 后重新验证"
+    },
+    {
+      "error": "Board重绑后文档显示名变化",
+      "fix": "参数和命令优先使用PCB UUID，不把Board名称当持久身份"
+    },
+    {
+      "error": "CN1在题定y/180°时rendered bbox约超板框1.17mil",
+      "fix": "保留题目约束，单列本体/courtyard核查；不静默改y"
+    },
+    {
+      "error": "复制上轮primitiveId",
+      "fix": "每批写入前按位号读取并解析当前primitiveId"
+    }
+  ],
+  "evidence": {
+    "summary": "live-validation.json",
+    "localRunArtifacts": [
+      "/tmp/260919-pcb-placement-plan.json",
+      "/tmp/260919-pcb-list-after-placement-reload.json",
+      "/tmp/260919-pcb-layout-lint-after-placement-reload.json"
+    ],
+    "placementPlanSha256": "064d986c79d9d43d54547c6a542adb6b319e335fc9238fbd44eee85087cabede"
+  },
+  "notClaimed": [
+    "第一轮初始布局不是考试完成态：LED板边、若干去耦/晶振/CAN关系需再迭代",
+    "初始布局只证明已列通过的机械/空间事实，不证明关键网络已经可布通",
+    "LCD封装禁放区、LDO/去耦真实铜路径、完整布线、铺铜、泪滴、丝印和最终PCB DRC未在本文件声明完成"
+  ],
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "board": {
+    "widthMil": 3543.31,
+    "heightMil": 1968.5,
+    "widthMm": 90,
+    "heightMm": 50
+  },
+  "ordering": [
+    "board-outline-and-origin",
+    "fixed-parts",
+    "mechanical-spaces",
+    "critical-route-corridors",
+    "core-peripherals",
+    "remaining-modules"
+  ],
+  "moduleStrategies": {
+    "type-c": "底边接口，数据/CC焊盘朝板内",
+    "rgb-led": "邻近USB，远离光敏区",
+    "ldo": "输入电容→VIN，VOUT/TAB→输出电容，保留顶层GND回流",
+    "lcd": "U3完整实测bbox先作为机械禁放区",
+    "buttons": "板边等距，中心间距475mil",
+    "usb-uart": "位于USB和MCU之间，保留USB/PA9/PA10顶层通道",
+    "photoresistor": "靠顶边且远离RGB",
+    "can": "U5→ESD/120Ω→CN1通道，CN1只固定y和角度",
+    "mcu": "U6固定，三只去耦按对应电源脚放置",
+    "boot": "靠近U6对应脚并保持两网独立",
+    "buzzer": "驱动件成组，声孔区域不放其他器件",
+    "micro-sd": "CARD1固定，外围沿焊盘侧排列",
+    "crystal": "靠U6且不贴板边，OSC两线保留顶层短路径",
+    "swd": "顶边接口，靠近PA13/PA14",
+    "mounting": "四角M3按题面坐标锁定"
+  },
+  "placements": [
+    {
+      "ref": "BUZZER1",
+      "module": "buzzer",
+      "xMil": 1250,
+      "yMil": 1370,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C1",
+      "module": "rgb-led",
+      "xMil": 1080,
+      "yMil": 830,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C10",
+      "module": "usb-uart",
+      "xMil": 1680,
+      "yMil": 620,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C11",
+      "module": "photoresistor",
+      "xMil": 1430,
+      "yMil": 1760,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C12",
+      "module": "can",
+      "xMil": 2400,
+      "yMil": 1120,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C13",
+      "module": "can",
+      "xMil": 2580,
+      "yMil": 1180,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C14",
+      "module": "mcu",
+      "xMil": 1615,
+      "yMil": 930,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "C15",
+      "module": "mcu",
+      "xMil": 1930,
+      "yMil": 900,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C16",
+      "module": "mcu",
+      "xMil": 1827,
+      "yMil": 1141,
+      "rotationDeg": 90,
+      "locked": false
+    },
+    {
+      "ref": "C17",
+      "module": "buzzer",
+      "xMil": 1050,
+      "yMil": 1500,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C18",
+      "module": "micro-sd",
+      "xMil": 2780,
+      "yMil": 1180,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C19",
+      "module": "micro-sd",
+      "xMil": 2780,
+      "yMil": 1280,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C2",
+      "module": "rgb-led",
+      "xMil": 1220,
+      "yMil": 830,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C20",
+      "module": "crystal",
+      "xMil": 1580,
+      "yMil": 750,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "C21",
+      "module": "crystal",
+      "xMil": 1940,
+      "yMil": 820,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C22",
+      "module": "swd",
+      "xMil": 2150,
+      "yMil": 1810,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C3",
+      "module": "ldo",
+      "xMil": 1570,
+      "yMil": 300,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "C4",
+      "module": "ldo",
+      "xMil": 1720,
+      "yMil": 300,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "C5",
+      "module": "ldo",
+      "xMil": 2050,
+      "yMil": 600,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C6",
+      "module": "ldo",
+      "xMil": 2050,
+      "yMil": 700,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C7",
+      "module": "lcd",
+      "xMil": 1000,
+      "yMil": 1200,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C8",
+      "module": "buttons",
+      "xMil": 2350,
+      "yMil": 600,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "C9",
+      "module": "usb-uart",
+      "xMil": 1300,
+      "yMil": 500,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "CARD1",
+      "module": "micro-sd",
+      "xMil": 3129.921,
+      "yMil": 984.252,
+      "rotationDeg": 90,
+      "locked": true
+    },
+    {
+      "ref": "CN1",
+      "module": "can",
+      "xMil": 2716.535,
+      "yMil": 1653.543,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "D1",
+      "module": "can",
+      "xMil": 2550,
+      "yMil": 1515,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "D2",
+      "module": "buzzer",
+      "xMil": 1250,
+      "yMil": 1170,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "H1",
+      "module": "swd",
+      "xMil": 1800,
+      "yMil": 1810,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "LED1",
+      "module": "rgb-led",
+      "xMil": 1150,
+      "yMil": 650,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "Q1",
+      "module": "lcd",
+      "xMil": 1150,
+      "yMil": 1050,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "Q2",
+      "module": "buzzer",
+      "xMil": 1450,
+      "yMil": 1300,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R1",
+      "module": "type-c",
+      "xMil": 1300,
+      "yMil": 430,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R10",
+      "module": "photoresistor",
+      "xMil": 1300,
+      "yMil": 1760,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R11",
+      "module": "photoresistor",
+      "xMil": 1100,
+      "yMil": 1780,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R12",
+      "module": "can",
+      "xMil": 2700,
+      "yMil": 1530,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R13",
+      "module": "boot",
+      "xMil": 1550,
+      "yMil": 1050,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "R14",
+      "module": "boot",
+      "xMil": 1980,
+      "yMil": 1040,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R15",
+      "module": "buzzer",
+      "xMil": 1050,
+      "yMil": 1370,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R16",
+      "module": "buzzer",
+      "xMil": 1550,
+      "yMil": 1170,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "R17",
+      "module": "buzzer",
+      "xMil": 1420,
+      "yMil": 1170,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R18",
+      "module": "micro-sd",
+      "xMil": 2600,
+      "yMil": 1100,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R19",
+      "module": "micro-sd",
+      "xMil": 2600,
+      "yMil": 1010,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R2",
+      "module": "type-c",
+      "xMil": 1100,
+      "yMil": 430,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "R20",
+      "module": "micro-sd",
+      "xMil": 2600,
+      "yMil": 920,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R21",
+      "module": "micro-sd",
+      "xMil": 2600,
+      "yMil": 830,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R22",
+      "module": "micro-sd",
+      "xMil": 2600,
+      "yMil": 740,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R23",
+      "module": "micro-sd",
+      "xMil": 2600,
+      "yMil": 650,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R3",
+      "module": "rgb-led",
+      "xMil": 1450,
+      "yMil": 900,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "R4",
+      "module": "lcd",
+      "xMil": 1450,
+      "yMil": 970,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "R5",
+      "module": "lcd",
+      "xMil": 1300,
+      "yMil": 1050,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R6",
+      "module": "lcd",
+      "xMil": 1000,
+      "yMil": 1000,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "R7",
+      "module": "buttons",
+      "xMil": 2200,
+      "yMil": 600,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R8",
+      "module": "buttons",
+      "xMil": 2780,
+      "yMil": 600,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "R9",
+      "module": "buttons",
+      "xMil": 3260,
+      "yMil": 600,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "SCREW1",
+      "module": "mounting",
+      "xMil": 118.11,
+      "yMil": 1850.394,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SCREW2",
+      "module": "mounting",
+      "xMil": 3425.197,
+      "yMil": 1850.394,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SCREW3",
+      "module": "mounting",
+      "xMil": 118.11,
+      "yMil": 118.11,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SCREW4",
+      "module": "mounting",
+      "xMil": 3425.197,
+      "yMil": 118.11,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "SW1",
+      "module": "buttons",
+      "xMil": 2350,
+      "yMil": 400,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "SW2",
+      "module": "buttons",
+      "xMil": 2825,
+      "yMil": 400,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "SW3",
+      "module": "buttons",
+      "xMil": 3300,
+      "yMil": 400,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "U1",
+      "module": "rgb-led",
+      "xMil": 1400,
+      "yMil": 780,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "U2",
+      "module": "ldo",
+      "xMil": 1950,
+      "yMil": 400,
+      "rotationDeg": 180,
+      "locked": false
+    },
+    {
+      "ref": "U3",
+      "module": "lcd",
+      "xMil": 650,
+      "yMil": 900,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "U4",
+      "module": "usb-uart",
+      "xMil": 1500,
+      "yMil": 550,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "U5",
+      "module": "can",
+      "xMil": 2350,
+      "yMil": 1350,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "U6",
+      "module": "mcu",
+      "xMil": 1771.654,
+      "yMil": 984.252,
+      "rotationDeg": 0,
+      "locked": true
+    },
+    {
+      "ref": "USB1",
+      "module": "type-c",
+      "xMil": 1250,
+      "yMil": 250,
+      "rotationDeg": 0,
+      "locked": false
+    },
+    {
+      "ref": "X1",
+      "module": "crystal",
+      "xMil": 1750,
+      "yMil": 793,
+      "rotationDeg": 180,
+      "locked": false
+    }
+  ],
+  "verification": {
+    "webEditorVersion": "3.2.203",
+    "componentCount": 69,
+    "uniqueDesignators": 69,
+    "placementDiffCountAfterFullBrowserReload": 0,
+    "bboxCollisionCount": 0,
+    "sub6MilBBoxPairCount": 0,
+    "layoutLintOutsideOutlineCount": 0,
+    "layoutLintTightSpacingCount": 0,
+    "buttonPitchMil": [
+      475,
+      475
+    ],
+    "fixedRefs": [
+      "SCREW1",
+      "SCREW2",
+      "SCREW3",
+      "SCREW4",
+      "U6",
+      "CARD1"
+    ]
+  }
+}

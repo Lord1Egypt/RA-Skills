@@ -1,43 +1,59 @@
-## Description: <br>
-Extracts Java Spring Boot Controller-layer API definitions into JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts Java Spring Boot Controller API definitions into standardized JSON data.
 
-## Publisher: <br>
-[snowzhouj](https://clawhub.ai/user/snowzhouj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowzhouj](https://clawhub.ai/user/snowzhouj)
 
-## Use Case: <br>
-Developers and API platform teams use this skill to scan Java Spring Boot projects, extract Controller endpoints, and prepare standardized JSON API definitions for documentation or downstream review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist extracted API metadata outside the chosen output path. <br>
-Mitigation: Run local-only extraction first, use --no-backup when backup copies are not needed, and review generated JSON before sharing it. <br>
-Risk: The documentation includes external publishing workflows that may send API metadata to a product platform. <br>
-Mitigation: Do not use --push, Git hook, or CI publishing examples until the destination, authorization, and data classification rules have been confirmed. <br>
-Risk: Scanning a project may expose internal endpoint names, parameters, and response structures. <br>
-Mitigation: Limit runs to approved Java projects and treat the generated API definition file according to the source project's data handling requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan Java Spring Boot projects, extract Controller-layer endpoint definitions, and prepare standardized JSON API documentation for downstream documentation or product data workflows.
 
-## Reference(s): <br>
-- [API definition standard](references/api-definition-standard.md) <br>
-- [Usage examples](references/usage-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API definition files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated API metadata may be printed to stdout, written to a JSON file, and optionally backed up or passed to a publishing workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Scanning Java source trees can expose internal API structure in generated outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run extraction locally first and review generated JSON before sharing or uploading it.
+
+Risk: The scripts create extra local backup copies by default.
+
+Mitigation: Use --no-backup when duplicate retained files are not desired, or manage the backup directory under approved retention controls.
+
+Risk: The optional --push or --prdid flow can run a neighboring upload script.
+
+Mitigation: Use push options only after reviewing the neighboring push script and approving the destination and uploaded contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snowzhouj/skills/java-api-extractor)
+- [API definition standard](references/api-definition-standard.md)
+- [Usage examples](references/usage-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and generated JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The extraction scripts can write an output JSON file and create a backup copy unless the user passes --no-backup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

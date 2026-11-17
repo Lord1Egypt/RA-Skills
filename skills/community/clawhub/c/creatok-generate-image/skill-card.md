@@ -1,45 +1,55 @@
-## Description: <br>
-This skill generates AI images from prompts through CreatOK's image generation API and can recover interrupted image generation tasks from an existing task ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through CreatOK's image generation API and can recover interrupted image generation flows from an existing task id.
 
-## Publisher: <br>
-[newt0n](https://clawhub.ai/user/newt0n) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newt0n](https://clawhub.ai/user/newt0n)
 
-## Use Case: <br>
-External users and developers use this skill to generate images or product visuals from prompts, optionally with reference images, and to check or resume existing image generation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts, task IDs, generated image URLs, and optional reference images are sent to CreatOK and may be written to local artifacts. <br>
-Mitigation: Use the skill only when you trust CreatOK for the supplied content, use a dedicated API key where possible, and delete local .artifacts outputs when task IDs or image URLs are sensitive. <br>
-Risk: Image generation may consume credits or incur cost. <br>
-Mitigation: Review the model, resolution, image count, and estimated credits before confirming generation; the skill includes a confirmation gate before submission. <br>
-Risk: A missing or invalid CreatOK API key prevents the skill from running. <br>
-Mitigation: Configure CREATOK_API_KEY before use and rotate the key if authorization errors occur. <br>
+## Use Case:
 
+External users and developers use this skill to request AI-generated images or product images, optionally with reference images, and to resume or check existing generation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newt0n/creatok-generate-image) <br>
-- [CreatOK API keys](https://www.creatok.ai/app/workspace/api-keys) <br>
-- [CreatOK agent skills](https://www.creatok.ai/agent-skills) <br>
-- [Common CreatOK skill rules](references/common-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [User-facing text plus persisted result.json and result.md artifact files containing task status and generated image URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns final image URLs verbatim when generation succeeds and records task IDs so interrupted runs can be recovered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Malformed run_id values can write result files outside the intended .artifacts folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only with trusted or sandboxed run IDs, and review generated artifact paths before using it in less controlled environments.
+
+Risk: Prompts, selected reference images, and generation metadata are sent to CreatOK, and result details are stored locally.
+
+Mitigation: Avoid submitting sensitive prompts or images unless the CreatOK workspace and local artifact storage meet the user's data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newt0n/skills/creatok-generate-image)
+- [Publisher profile](https://clawhub.ai/user/newt0n)
+- [Common Rules](references/common-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, api calls, files, guidance]
+
+**Output Format:** [Markdown responses with image URLs, plus local JSON and Markdown result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes task status, image URLs, raw response details, and errors under the skill artifact output directory.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

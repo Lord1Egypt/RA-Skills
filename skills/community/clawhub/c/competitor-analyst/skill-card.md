@@ -1,42 +1,53 @@
-## Description: <br>
-Analyzes competitors using web research and structured frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes competitors using web research and structured frameworks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External users and business teams use this skill to research competitors, compare positioning and go-to-market strategy, and produce evidence-backed strategic recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Competitor research may rely on stale, low-quality, or biased public sources. <br>
-Mitigation: Check source quality, cite claims, distinguish facts from inferences, and note when information was last verified. <br>
-Risk: Strategic analysis may expose confidential internal plans if users provide sensitive context. <br>
-Mitigation: Avoid sharing confidential internal strategy unless it is intentionally needed as analysis context. <br>
-Risk: Competitive claims and recommendations can be misleading if gaps are filled with assumptions. <br>
-Mitigation: State when evidence is unavailable and avoid guessing; label opinions and strategic inferences clearly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/competitor-analyst) <br>
-- [Context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business users, product teams, marketers, and strategy teams use this skill to research competitors, compare positioning and product capabilities, and produce evidence-backed strategic recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with summaries, competitor profiles, comparison matrix, citations, and strategic recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web research and asks users for product category, known competitors, and competitors they lose deals to.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Confidential deal or strategy details could be exposed if supplied as context for public competitor research.
+
+Mitigation: Avoid sharing confidential deal details unless the user is comfortable with the agent using that context to guide web research.
+
+Risk: Competitive analysis may be incomplete or skewed when public source quality is weak, especially for private companies or social-review claims.
+
+Mitigation: Review cited sources, note unavailable information, and treat claims from reviews or social channels as evidence-limited.
+
+## Reference(s):
+
+- [Competitor Analyst on ClawHub](https://clawhub.ai/1kalin/skills/competitor-analyst)
+- [Context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report with summaries, competitor profiles, comparison matrix, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires source citations, dates for verification, and clear separation of facts from inferences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

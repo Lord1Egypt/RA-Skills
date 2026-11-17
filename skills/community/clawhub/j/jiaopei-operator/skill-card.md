@@ -1,40 +1,55 @@
-## Description: <br>
-Jiaopei Skill helps education and training businesses plan operations across site selection, course design, enrollment, parent communication, renewals, staffing, and financial analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiaopei Skill helps education and training business operators plan sites, design courses, acquire students, communicate with families, improve renewals, and analyze finances.
 
-## Publisher: <br>
-[katherine0325](https://clawhub.ai/user/katherine0325) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherine0325](https://clawhub.ai/user/katherine0325)
 
-## Use Case: <br>
-External education-business founders, principals, and operators use this skill to generate operational guidance, templates, and analysis for opening, marketing, managing, and retaining students in training institutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, pricing, employment, marketing, licensing, and education-operations suggestions may not match local rules or a user's specific business context. <br>
-Mitigation: Treat outputs as general business templates and verify local education, advertising, labor, prepayment, and licensing requirements before relying on them. <br>
+## Use Case:
 
+Owners and managers of tutoring, arts, vocational, and enrichment education organizations use this skill to plan and operate a training business across launch, marketing, parent communication, renewals, staffing, and finance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/katherine0325/jiaopei-operator) <br>
-- [招生话术参考](references/招生话术参考.md) <br>
-- [家校沟通模板](references/家校沟通模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, tables, calculations, and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language business operations content; no code execution, credentials, persistence, or hidden behavior identified by evidence.security.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Parent communication templates may involve children's names, photos, videos, classroom screenshots, or other identifying information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require parent or guardian consent, share only through approved private channels, avoid faces and names where unnecessary, and remove identifying details from images or screenshots.
+
+Risk: Education-business, licensing, prepaid-course, and financial guidance may vary by jurisdiction and business model.
+
+Mitigation: Confirm local education licensing, advertising, privacy, and prepaid-funds requirements with qualified advisors before acting on operational recommendations.
+
+## Reference(s):
+
+- [Jiaopei Skill on ClawHub](https://clawhub.ai/katherine0325/skills/jiaopei-operator)
+- [Admissions Script Reference](references/招生话术参考.md)
+- [Parent-School Communication Templates](references/家校沟通模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown responses with checklists, scoring models, tables, and reusable templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill content; no code execution, persistence, credentials, MCP tools, or API-key requirements were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

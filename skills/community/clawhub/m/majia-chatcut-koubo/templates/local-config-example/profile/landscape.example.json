@@ -1,0 +1,51 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json",
+  "$comment": "个人版式实测档示例。从 templates/operating-profile.template.json 复制起模,在你的素材上验证后把数字填进来;status 改 validated、provenance 填真实项目/时间线 ID 后 validator 才放行。presenterWindow/screenStates 等键与 assets/compositions.json 同名键冲突时,以本文件为准(本地层覆盖包内快照)。",
+  "schemaVersion": "2.0.0",
+  "policyVersion": "1.2.0",
+  "profileId": "your-name-landscape-yourtheme",
+  "profileVersion": "1.0.0",
+  "status": "untested-template",
+  "provenance": {
+    "projectId": "REPLACE-你的项目ID(仅追溯,勿跨项目硬编码)",
+    "validatedTimelineIds": [],
+    "note": "记录这组数字在哪条时间线验证过"
+  },
+  "timeline": { "width": 1920, "height": 1080, "fps": 30 },
+  "theme": {
+    "$note": "你冻结的主题;色值以 assets/theme-kit/tokens/themes.json 为源",
+    "paletteId": "sea-salt-cyan",
+    "paletteVersion": "1.1.0",
+    "mode": "light"
+  },
+  "captions": {
+    "sourceVariant": "original",
+    "font": "Smiley Sans, PingFang SC, sans-serif",
+    "sizePx": 42,
+    "weight": 700,
+    "color": "#07554F",
+    "backgroundColor": "#F7FFFD",
+    "maxLines": 2,
+    "maxCharactersPerLine": 22,
+    "layout": { "left": 180, "top": 860, "width": 1560, "height": 112 },
+    "shortCardPolicy": { "approvedTerms": ["AI", "BI", "CLI", "ETL", "LLM"] },
+    "displayOverridePolicy": { "maxReplacementCharacters": 4 }
+  },
+  "presenterWindow": {
+    "$note": "你的实测构图数字:圆窗直径/位置/放大率;与 compositions.json 同名版式键冲突时以本文件为准",
+    "circleDiameterPx": 330,
+    "magnificationBaseline": 0.30
+  },
+  "screenStates": {
+    "$note": "各执行状态的录屏 rect 实测值(示例键,按你的状态表填)",
+    "B": { "rect": [0, 0, 0, 0], "borderRadius": 24 },
+    "C": { "rect": [0, 0, 0, 0], "borderRadius": 24 },
+    "S": { "rect": [0, 0, 0, 0], "borderRadius": 26 }
+  },
+  "audio": {
+    "anchorGainDb": 2,
+    "duplicateTrackPolicy": "mute-or-disable",
+    "fallbackDecibelAdjustment": -60
+  },
+  "terminologyFile": "../terminology.json"
+}

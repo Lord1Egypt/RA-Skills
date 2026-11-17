@@ -1,44 +1,54 @@
-## Description: <br>
-AI-powered email subject line generator. Create subject lines that get opened. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered email subject line generator. Create subject lines that get opened.
 
-## Publisher: <br>
-[icepopma](https://clawhub.ai/user/icepopma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[icepopma](https://clawhub.ai/user/icepopma)
 
-## Use Case: <br>
-Marketing teams, founders, and developers use this skill to generate multiple email subject line options for launches, newsletters, sales outreach, and announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Normal runs may trigger automatic 0.001 USDT SkillPay billing. <br>
-Mitigation: Use --test when a charge is not intended and only expose SKILLPAY_MERCHANT_KEY in environments where paid usage is approved. <br>
-Risk: Dependency lockfile entries reference HTTP mirror URLs. <br>
-Mitigation: Verify dependency provenance and integrity before installing or deploying the skill in controlled environments. <br>
-Risk: Generated subject lines may be unsuitable, misleading, or off-brand for a campaign. <br>
-Mitigation: Review generated subject lines before sending and apply campaign, legal, and deliverability checks. <br>
+## Use Case:
 
+External users and marketers use this skill to generate multiple email subject line options for launches, newsletters, sales, and announcements through the OpenClaw Sloan agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icepopma/email-subject-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/icepopma) <br>
-- [Project support repository](https://github.com/icepopma/email-subject-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text subject line list from a command-line agent run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 10 subject line options and supports a purpose parameter plus test mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and package.json) <br>
+Risk: Normal invocations attempt a SkillPay charge unless test mode is used, and the source includes a shared-looking merchant key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment flow before use, avoid relying on the embedded key, and run in test mode or a controlled environment until billing behavior is confirmed.
+
+Risk: The documented install path is mutable and dependencies resolve through an HTTP mirror in the lockfile.
+
+Mitigation: Prefer pinned package and dependency sources, verify package integrity, and review dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/icepopma/skills/email-subject-generator)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Numbered plain text subject-line options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically returns 10 subject lines; normal invocation attempts a pay-per-use charge unless test mode is used.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and package.json; SKILL.md frontmatter says 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

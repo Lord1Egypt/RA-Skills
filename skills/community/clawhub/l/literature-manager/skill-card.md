@@ -1,44 +1,58 @@
-## Description: <br>
-Search, download, convert, organize, and audit academic literature collections for paper libraries, references, PDFs, Markdown conversions, categories, audits, and code or dataset links mentioned in papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, download, convert, organize, and audit academic literature collections.
 
-## Publisher: <br>
-[IsonaEi](https://clawhub.ai/user/IsonaEi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isonaei](https://clawhub.ai/user/isonaei)
 
-## Use Case: <br>
-Researchers, developers, and research teams use this skill to build and maintain academic literature collections, including paper search, PDF download, PDF-to-Markdown conversion, indexing, resource collection, and audit checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform automated external paper lookups and downloads, including Sci-Hub access. <br>
-Mitigation: Require explicit user permission before external downloads, and avoid Sci-Hub unless the user confirms the legal and policy implications for their jurisdiction and use case. <br>
-Risk: Cron-monitored sub-agent work can continue longer than expected. <br>
-Mitigation: Use cron monitoring only with explicit user approval and confirm the monitor is removed after the task completes. <br>
-Risk: Auditing untrusted or unusually named directories may expose path-handling issues. <br>
-Mitigation: Run audit checks only on trusted literature directories until path handling has been reviewed and fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Literature Manager release page](https://clawhub.ai/IsonaEi/literature-manager) <br>
-- [Google Scholar search](https://scholar.google.com/scholar?q=QUERY&as_ylo=YEAR) <br>
-- [Europe PMC PDF service](https://europepmc.org/backend/ptpmcrender.fcgi) <br>
-- [arXiv API](http://export.arxiv.org/api/query) <br>
+## Use Case:
 
+External users and developers use this skill to build and maintain academic literature collections by finding papers, downloading PDFs, converting them to markdown, organizing reference folders, collecting related resources, and auditing collection consistency.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or validate PDF, Markdown, README.md, index.json, RESOURCES.md, and resources.json files in a literature collection.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes a Sci-Hub paywall-bypass path that can create legal, terms-of-service, or policy exposure.
+
+Mitigation: Prefer open-access and publisher sources, and avoid the Sci-Hub path unless the user has confirmed the legal right and policy approval for that use.
+
+Risk: Helper scripts perform network downloads and write files based on user-supplied inputs.
+
+Mitigation: Run the scripts in a restricted working directory without sensitive files or credentials, and review DOI, URL, filename, and reference-directory inputs before execution.
+
+Risk: The PDF conversion fallback can fetch runtime packages through uvx.
+
+Mitigation: Pin or preinstall conversion dependencies in a managed environment before use.
+
+## Reference(s):
+
+- [Google Scholar search](https://scholar.google.com/scholar?q=QUERY&as_ylo=YEAR)
+- [NCBI E-utilities PMC DOI lookup](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=${DOI}&retmode=xml)
+- [arXiv API DOI search](http://export.arxiv.org/api/query?search_query=doi:${DOI}&max_results=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update PDF, markdown, README, RESOURCES, index.json, and resources.json files in a user-provided references directory.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

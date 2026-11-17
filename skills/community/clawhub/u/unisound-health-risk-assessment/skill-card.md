@@ -1,41 +1,55 @@
-## Description: <br>
-Assesses health-exam report text across cardiovascular, metabolic, cancer, liver, kidney, and thyroid risk dimensions, then produces structured risk stratification and a health-management plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses health-exam reports across cardiovascular, glucose metabolism, tumor, metabolic syndrome, liver, kidney, and thyroid risk dimensions and produces a JSON risk profile plus a health risk report.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Health management organizations and exam centers can use this skill to turn physical-exam reports into multidimensional risk classifications, time-bound health plans, lifestyle guidance, and referral suggestions. The output is health-management guidance and does not replace diagnosis or treatment by a clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health-exam report text is sent to a remote LLM service without implemented de-identification or a clear runtime consent step. <br>
-Mitigation: Remove names, IDs, phone numbers, addresses, employer details, and other identifiers before use, and run only where sending report contents to the configured service is approved. <br>
-Risk: The skill can produce health-management recommendations that may be mistaken for medical diagnosis or treatment. <br>
-Mitigation: Treat results as health-management guidance only and require qualified clinical review for diagnosis, treatment, or urgent-care decisions. <br>
+## Use Case:
 
+Health management teams and medical-service developers use this skill to assess de-identified health examination reports, classify major health risks, and draft time-bound management plans for qualified clinical review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-health-risk-assessment) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON followed by a natural-language health risk report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print to stdout or write to a file; depends on a configured remote LLM service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive medical-report content and API keys may be sent to a configurable remote LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use de-identified reports, keep the default trusted HTTPS endpoint unless an alternate endpoint is verified, and provide credentials through channels that do not expose them in shell history or logs.
+
+Risk: Generated health recommendations can be incomplete, misleading, or clinically inappropriate.
+
+Mitigation: Treat output as advisory health-risk support and require review by qualified medical professionals before patient-facing or care-management use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-health-risk-assessment)
+- [Publisher profile: unisound-llm](https://clawhub.ai/user/unisound-llm)
+- [Unisound MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON followed by a plain-text health risk report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be printed to stdout or saved to a file; requires a health-exam report input and an appkey.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

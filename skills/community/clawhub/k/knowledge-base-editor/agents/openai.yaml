@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识库总编"
+  short_description: "通过聊天确认需求，研究后出大纲，逐篇写作并维护知识库引用与进度"
+  default_prompt: "使用 $knowledge-base-editor，先读取已有知识库简报与进度；新主题通过聊天确认需求，研究后提出大纲，确认后逐篇撰写并维护相关引用。"

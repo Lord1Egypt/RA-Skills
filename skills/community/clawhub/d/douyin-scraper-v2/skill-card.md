@@ -1,42 +1,58 @@
-## Description: <br>
-Retrieves Douyin hot-search topics and search suggestions, supports keyword matching against hot lists, and can run without login for supported endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+爬取抖音热榜和搜索建议数据，支持关键词搜索、热榜获取、搜索建议等功能。无需登录即可使用。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, operators, and content research agents use this skill to fetch Douyin hot-search topics, search suggestions, and keyword-matched trend summaries from command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can download Playwright and Chromium, and runtime commands contact Douyin APIs. <br>
-Mitigation: Install only when those downloads and network calls are acceptable for the environment; prefer the documented install path or official sources. <br>
-Risk: The optional --output argument writes results to a user-specified path. <br>
-Mitigation: Review the requested output path before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to fetch Douyin hot-search topics, match keywords against the hot list, and retrieve search suggestions for trend monitoring or content research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/douyin-scraper-v2) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [CLI text summaries with optional JSON file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports hot-list, suggestion, and keyword search modes; optional --output writes JSON results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Setup can download mutable Python, Playwright, browser, mirror-hosted, and Docker assets that are broader than the API-only scraper normally needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the API-only Node.js or Python scripts when possible, pin and review dependencies before installation, and run browser or Docker setup only in an isolated environment.
+
+Risk: Frequent Douyin API requests can fail or trigger IP controls.
+
+Mitigation: Throttle usage, follow the artifact guidance to keep requests at least five seconds apart, and stop or retry later if responses indicate rate limiting.
+
+Risk: Full Douyin search may require a logged-in browser session or cookie outside the default no-login workflow.
+
+Mitigation: Use the hot-list and suggestion modes by default; provide login cookies only when necessary and handle them as sensitive credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-scraper-v2)
+- [Douyin web service](https://www.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save hot-search, search, and suggestion results as JSON when an output file is provided.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

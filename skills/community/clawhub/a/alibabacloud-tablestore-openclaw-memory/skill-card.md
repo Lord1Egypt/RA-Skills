@@ -1,45 +1,65 @@
-## Description: <br>
-This skill installs and configures the Tablestore Mem0 plugin for OpenClaw, using Alibaba Cloud Tablestore as a persistent vector store backend for AI agent memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill installs and configures the Tablestore Mem0 plugin for OpenClaw, using Alibaba Cloud Tablestore as a persistent vector backend for agent long-term memory.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw long-term memory to Alibaba Cloud Tablestore, install the required plugin, configure OpenClaw, and verify that the memory backend loads correctly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provision a new Alibaba Cloud Tablestore instance and incur cloud charges. <br>
-Mitigation: Require explicit confirmation before creating an instance and have the user verify existing resources in the Tablestore console. <br>
-Risk: The setup asks for broad Tablestore control and may enable public internet access when a VPC endpoint is unreachable. <br>
-Mitigation: Prefer an ECS RAM role or custom least-privilege RAM policy, and require explicit approval before any public internet exposure. <br>
-Risk: The workflow handles cloud credentials and an external npm package. <br>
-Mitigation: Use environment variables instead of pasting long-lived secrets into chat, verify the npm package separately, and request consent before installation. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw memory workflows to Alibaba Cloud Tablestore through the Tablestore Mem0 plugin. It guides credential collection, plugin installation, OpenClaw configuration, restart, and verification.
 
-## Reference(s): <br>
-- [RAM Permissions Declaration](references/ram-policies.md) <br>
-- [Alibaba Cloud ECS RAM Role Documentation](https://help.aliyun.com/zh/ecs/user-guide/attach-an-instance-ram-role-to-an-ecs-instance) <br>
-- [Alibaba Cloud Tablestore RAM Access Reference](https://help.aliyun.com/zh/tablestore/developer-reference/access-tablestore-by-ram-user) <br>
-- [Tablestore OpenClaw Mem0 npm Package](https://registry.npmjs.org/@tablestore%2fopenclaw-mem0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user confirmation prompts for external package installation and cloud resource provisioning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill asks for powerful Alibaba Cloud credentials and may provision cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an ECS RAM role or short-lived, least-privilege credentials, and require explicit approval before provisioning resources.
+
+Risk: The skill installs external npm package code.
+
+Mitigation: Verify the package source, version, and integrity before installation, and install only after user consent.
+
+Risk: The skill may expand Tablestore public internet access when VPC access is unavailable.
+
+Mitigation: Do not allow public access changes unless the user accepts the cost and exposure tradeoffs.
+
+Risk: Credential handling during setup can expose AccessKey or DashScope secrets.
+
+Mitigation: Prefer environment variables, avoid pasting secrets into chat, and never commit credentials to version control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-tablestore-openclaw-memory)
+- [RAM Permissions Declaration](references/ram-policies.md)
+- [Attach an ECS RAM Role](https://help.aliyun.com/zh/ecs/user-guide/attach-an-instance-ram-role-to-an-ecs-instance)
+- [Access Tablestore by RAM User](https://help.aliyun.com/zh/tablestore/developer-reference/access-tablestore-by-ram-user)
+- [Tablestore OpenClaw Mem0 npm Package](https://registry.npmjs.org/@tablestore%2fopenclaw-mem0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before external package installation and cloud resource provisioning.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

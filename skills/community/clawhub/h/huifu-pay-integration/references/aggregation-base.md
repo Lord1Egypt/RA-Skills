@@ -22,7 +22,7 @@ shared-overview
 
 | 项目 | 当前值 |
 | --- | --- |
-| Java SDK | `dg-lightning-sdk 1.0.5` |
+| Java SDK | `dg-lightning-sdk 1.0.6` |
 | PHP 覆盖范围 | 下单、扫码交易查询、关单、关单查询、退款、退款查询、对账 |
 | `HUIFU_SKILL_SOURCE` 最终值 | `<skill_source>` |
 

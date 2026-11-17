@@ -1,6 +1,41 @@
 {
-  "ownerId": "kn7c5me6c5246ff5p0cz7422bn81x9v6",
-  "slug": "cursor-agent-cli",
+  "name": "cursor-agent-cli",
   "version": "1.0.0",
-  "publishedAt": 1772703462137
+  "description": "Cursor Agent CLI integration skill for AI-powered coding in terminal",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "cursor",
+    "cursor-agent",
+    "ai",
+    "coding",
+    "agent",
+    "cli",
+    "terminal",
+    "refactoring",
+    "code-generation",
+    "automation"
+  ],
+  "homepage": "https://cursor.com/docs/cli/overview",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "requires": {
+    "cursor-agent": ">=2026.02.27"
+  },
+  "category": "development",
+  "tags": [
+    "cursor",
+    "cursor-agent",
+    "ai-coding",
+    "automation",
+    "developer-tools"
+  ],
+  "scripts": {
+    "agent": "./scripts/cursor-agent.sh interactive",
+    "plan": "./scripts/cursor-agent.sh plan",
+    "print": "./scripts/cursor-agent.sh print",
+    "test": "./scripts/test.sh"
+  }
 }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#ffffff"/>
+  <text x="640" y="50" text-anchor="middle" font-size="24" font-weight="700" fill="#1e293b" font-family="Microsoft YaHei, Arial, sans-serif">{{TITLE}}</text>
+  <!-- TIME_AXIS: horizontal line with arrow -->
+  <!-- PERIOD_LABELS: text markers along axis -->
+  <!-- TASKS: colored rect bars above/below axis -->
+  <!-- MILESTONES: diamond or circle markers -->
+</svg>

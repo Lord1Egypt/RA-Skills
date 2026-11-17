@@ -1,37 +1,56 @@
-## Description: <br>
-Execute database migrations across ORMs and platforms with zero-downtime strategies, data transformation, and rollback procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute database migrations across ORMs and platforms with zero-downtime strategies, data transformation, and rollback procedures.
 
-## Publisher: <br>
-[emiltsoi](https://clawhub.ai/user/emiltsoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[emiltsoi](https://clawhub.ai/user/emiltsoi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for planning database schema changes, data transformations, ORM migrations, rollback procedures, and zero-downtime deployment strategies across Sequelize, TypeORM, and Prisma.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: High-impact destructive migration and rollback examples may cause data loss if applied directly to production systems.
+
+Mitigation: Use this skill as general reference, test plans in staging, require verified backups, and obtain explicit approval before destructive changes.
+
+Risk: The checkpoint rollback example drops a live table during exception handling.
+
+Mitigation: Avoid that pattern for live systems and use vetted recovery procedures or transaction-based rollback where appropriate.
+
+Risk: Migration commands may run unexpected tooling versions if project dependencies are not pinned.
+
+Mitigation: Pin migration tooling in project dependencies and run commands through lockfile-controlled local binaries.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to plan schema changes, data transformations, ORM migrations, rollback procedures, and zero-downtime database deployments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration plans or commands can change schemas or data in ways that affect production systems. <br>
-Mitigation: Review every migration, run dry runs where available, verify backups or restore paths, and require explicit confirmation before production deploy or data-changing commands. <br>
+**Output Format:** [Markdown guidance with code blocks and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces migration guidance and examples; it does not execute database commands directly.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated migration plans and commands before applying them to shared or production databases.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

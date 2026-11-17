@@ -1,41 +1,59 @@
-## Description: <br>
-Interact with the BudgetBakers Wallet API for personal finance data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the BudgetBakers Wallet API to query accounts, categories, transactions, budgets, templates, and user details from a Wallet account using a WALLET_API_TOKEN.
 
-## Publisher: <br>
-[andresubri](https://clawhub.ai/user/andresubri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andresubri](https://clawhub.ai/user/andresubri)
 
-## Use Case: <br>
-External Wallet users and agents use this skill to query personal finance accounts, categories, transactions, budgets, and templates from the BudgetBakers Wallet REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses personal financial data through a Wallet API token. <br>
-Mitigation: Use it only with trusted publishers and accounts where the agent should read Wallet data. <br>
-Risk: WALLET_API_TOKEN exposure could allow unauthorized access to Wallet API data. <br>
-Mitigation: Keep the token out of chats, logs, screenshots, and committed files; set it only in the runtime environment and rotate or revoke it when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BudgetBakers Wallet API Reference](references/api-reference.md) <br>
-- [BudgetBakers Wallet OpenAPI UI](https://rest.budgetbakers.com/wallet/openapi/ui) <br>
-- [ClawHub Skill Page](https://clawhub.ai/andresubri/wallet-api) <br>
+## Use Case:
 
+External users and developers use this skill to query personal finance data from BudgetBakers Wallet through authenticated REST API calls. It supports account, category, transaction, budget, template, and current-user lookups with filtering and pagination guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WALLET_API_TOKEN and a BudgetBakers Wallet Premium plan; list endpoints support limit, offset, and documented filters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Wallet API token can grant access to personal finance data if exposed.
+
+Mitigation: Store WALLET_API_TOKEN only in a protected environment variable and do not paste it into prompts, chat history, logs, or shared files.
+
+Risk: Broad transaction queries can return sensitive financial history.
+
+Mitigation: Use narrow date ranges, filters, and pagination limits when retrieving records.
+
+Risk: Repeated or unbounded requests can hit the documented 500 requests per hour rate limit.
+
+Mitigation: Use limit and offset parameters, request only the needed endpoints, and monitor rate-limit responses before retrying.
+
+## Reference(s):
+
+- [BudgetBakers Wallet API Reference](references/api-reference.md)
+- [BudgetBakers Wallet OpenAPI UI](https://rest.budgetbakers.com/wallet/openapi/ui)
+- [BudgetBakers API Token Settings](https://web.budgetbakers.com/settings/apiTokens)
+- [ClawHub Skill Page](https://clawhub.ai/andresubri/skills/wallet-api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WALLET_API_TOKEN; list endpoints support limit and offset pagination.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Interact with GitHub using the `gh` CLI for issues, pull requests, CI runs, workflow logs, API queries, JSON output, and jq filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub using the `gh` CLI for issues, pull requests, CI runs, and advanced GitHub API queries.
 
-## Publisher: <br>
-[hucy](https://clawhub.ai/user/hucy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hucy](https://clawhub.ai/user/hucy)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for GitHub CLI commands and guidance for inspecting pull requests, workflow runs, logs, and API responses. Users should verify the active GitHub account and repository target before running commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public release identity is logo-generator, but the artifact behaves as a GitHub CLI helper, which could mislead users before it uses their local GitHub access. <br>
-Mitigation: Install only if a GitHub CLI helper is intended, and review the artifact behavior before enabling the skill. <br>
-Risk: Suggested gh commands may operate with the user's currently authenticated GitHub account and may target the wrong repository if context is ambiguous. <br>
-Mitigation: Verify `gh` authentication, use explicit `--repo owner/repo` targets, and manually review any command that writes, deletes, merges, dispatches workflows, or uses raw `gh api`. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for GitHub CLI commands and guidance for repository tasks such as inspecting pull requests, checking CI status, viewing workflow runs, and querying GitHub API fields.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hucy/logo-generator-12) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include gh CLI commands that can read or change GitHub resources depending on the command selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide use of an existing GitHub CLI login, including access to private or organization repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access pattern is acceptable, and ensure the active `gh` account and repository target are correct before running commands.
+
+Risk: Mutating GitHub CLI actions could affect issues, pull requests, CI workflows, or repository data.
+
+Mitigation: Review commands before execution and use explicit `--repo owner/repo` targets or direct URLs to avoid acting on the wrong repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hucy/skills/logo-generator-12)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on the user's existing GitHub CLI authentication and repository access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

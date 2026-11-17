@@ -1,44 +1,61 @@
-## Description: <br>
-AI时代职业规划助手 evaluates a user's career profile, estimates AI automation risk, analyzes skill gaps, recommends AI-era career paths, and generates a 12-month transition plan as an interactive HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI时代职业规划助手基于用户职业画像评估AI自动化风险、分析能力差距、推荐转型路径，并生成包含12个月行动计划的交互式HTML报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Employees and individual career changers use this skill to assess AI-era job risk, compare skill gaps, explore upgrade or transition paths, and receive a concrete 12-month action plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for career details and may include optional city or salary information in a generated local HTML report. <br>
-Mitigation: Share only information suitable for inclusion in the report, and treat city and salary as optional. <br>
-Risk: Automation risk scores, salary outlooks, and career recommendations are estimates based on self-reported data. <br>
-Mitigation: Use the output as planning guidance and validate important career or compensation decisions with trusted human advisors and current market data. <br>
+## Use Case:
 
+External users use this skill to assess AI automation exposure, identify AI-era competency gaps, compare career transition options, and receive a 12-month action plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/ai-career-planner) <br>
-- [Project homepage](https://github.com/bettermen/ai-career-planner) <br>
-- [AI-era job catalog](references/ai_jobs_catalog.md) <br>
-- [Automation risk framework](references/risk_factors.md) <br>
-- [AI-era competency framework](references/competency_framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Chinese conversational guidance plus a self-contained HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a local HTML report from user-provided career details; no credential use or hidden persistence was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated HTML reports may execute unsafe user-derived content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review report content before opening or sharing; prefer a version that escapes user input and avoids generated JavaScript.
+
+Risk: The report template loads Chart.js from a remote source without integrity protection.
+
+Mitigation: Use a bundled or integrity-pinned Chart.js dependency before relying on generated reports in sensitive environments.
+
+Risk: Career details, salary, and location can be sensitive personal information.
+
+Mitigation: Collect only needed details and avoid entering salary or location unless required for the planning task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/ai-career-planner)
+- [Project Homepage](https://github.com/bettermen/ai-career-planner)
+- [AI-Era Job Catalog](references/ai_jobs_catalog.md)
+- [Automation Risk Framework](references/risk_factors.md)
+- [AI-Era Competency Framework](references/competency_framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Files]
+
+**Output Format:** [Chinese conversational guidance, Markdown summaries, and an interactive HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may contain sensitive career details and should be reviewed before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

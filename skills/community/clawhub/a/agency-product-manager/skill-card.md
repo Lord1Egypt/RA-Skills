@@ -1,38 +1,54 @@
-## Description: <br>
-An advisory Product Manager agent that helps translate ambiguous business problems into outcome-focused plans, requirements, roadmaps, and launch materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in product management.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Employees and external builders use this skill as an advisory product management persona for framing product problems, clarifying trade-offs, defining success metrics, and drafting PRDs, opportunity assessments, roadmaps, and go-to-market briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product recommendations may influence roadmaps, commitments, or launch plans if accepted without review. <br>
-Mitigation: Treat outputs as advisory and have a human product owner review evidence, metrics, trade-offs, and commitments before acting. <br>
+## Use Case:
 
+Product teams, founders, and cross-functional stakeholders use this skill to turn ambiguous business or user problems into product plans, PRDs, opportunity assessments, roadmaps, launch briefs, and sprint health updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-product-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain-text product planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona; no code execution, installs, credentials, or hidden data access identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The activation language is broad, so the skill may answer a wide range of product-management requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for product-management advice and document drafting, and review recommendations against current user evidence, business goals, and team constraints before acting.
+
+Risk: Generated product documents can contain placeholders, assumptions, or example metrics that are not project-specific.
+
+Mitigation: Replace template placeholders with verified project data and have accountable stakeholders review success metrics, owners, timelines, and launch decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouqkt/skills/agency-product-manager)
+- [Publisher Profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown documents and structured product-management guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, install steps, credential access, or persistence behavior are present in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

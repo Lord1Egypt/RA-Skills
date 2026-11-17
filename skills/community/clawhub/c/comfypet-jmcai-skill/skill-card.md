@@ -1,46 +1,58 @@
-## Description: <br>
-JMCAI Comfypet lets an agent query and run configured ComfyUI image, video, audio, and file workflows through the JMCAI Comfypet desktop application. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses workflows already configured in the JMCAI Comfypet desktop app to discover options, submit runs, and check results.
 
-## Publisher: <br>
-[allen-jmc](https://clawhub.ai/user/allen-jmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allen-jmc](https://clawhub.ai/user/allen-jmc)
 
-## Use Case: <br>
-Developers and creators use this skill to select an exposed JMCAI Comfypet workflow, provide only its published alias parameters, submit generation jobs, and retrieve local output paths for generated media or files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote bridge mode can copy local workflow input assets to another machine. <br>
-Mitigation: Keep bridge_url on localhost for sensitive work, use only trusted remote bridge endpoints, and avoid passing confidential media or documents. <br>
-Risk: Downloaded workflow outputs may come from remote bridge URLs and should not be assumed trustworthy. <br>
-Mitigation: Treat downloaded outputs as untrusted files and inspect them before opening or sharing. <br>
-Risk: File inputs can include media, subtitles, text, CSV, TSV, and PDF assets when exposed by a workflow schema. <br>
-Mitigation: Use only alias parameters returned by registry --agent and pass the minimum necessary files for the selected workflow. <br>
+## Use Case:
 
+External users of JMCAI Comfypet Desktop use this skill to discover and run configured ComfyUI workflows for image, video, audio, or file-based tasks, then retrieve generated outputs.
 
-## Reference(s): <br>
-- [Workflow Bridge reference](references/bridge.md) <br>
-- [Image, video, and asset workflow usage](references/usage.md) <br>
-- [JMCAI Comfypet skill pack homepage](https://github.com/allen-Jmc/comfypet-jmcai-skill-pack) <br>
-- [JMCAI Comfypet desktop application](https://github.com/allen-Jmc/comfypet-jmcai-Dist) <br>
-- [ClawHub skill listing](https://clawhub.ai/allen-jmc/comfypet-jmcai-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns workflow status and output file paths; remote bridge outputs may be downloaded to the current machine before paths are reported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: release evidence and script VERSION) <br>
+Risk: A remote bridge may save files outside its download folder and contact unrelated network services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the default local desktop connection. If remote access is essential, use a trusted endpoint, restrict filesystem and network permissions, and ensure downloads are confined to a private folder with URLs and redirects limited to that bridge.
+
+Risk: Remote mode uploads selected input files and automatically saves results.
+
+Mitigation: Use remote mode only with a trusted bridge and provide only intended input assets; limit filesystem and network permissions.
+
+## Reference(s):
+
+- [Publisher profile](https://clawhub.ai/user/allen-jmc)
+- [JMCAI Comfypet skill release](https://clawhub.ai/allen-jmc/skills/comfypet-jmcai-skill)
+- [JMCAI Comfypet skill pack](https://github.com/allen-Jmc/comfypet-jmcai-skill-pack)
+- [JMCAI Comfypet desktop app](https://github.com/allen-Jmc/comfypet-jmcai-Dist)
+- [Workflow usage examples](references/usage.md)
+- [Workflow Bridge reference](references/bridge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Guidance]
+
+**Output Format:** [Workflow status data and local paths to generated image, video, audio, or other files, with concise text guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files and available modalities depend on the selected desktop workflow.]
+
+## Skill Version(s):
+
+1.2.6 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

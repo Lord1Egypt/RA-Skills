@@ -56,7 +56,7 @@ def process_task(task_file: Path):
         # 调用 Claude Code 执行任务
         # 复制当前环境并添加 Claude Code 所需的环境变量
         env = os.environ.copy()
-        env["ANTHROPIC_AUTH_TOKEN"] = "sk-sp-5cec1d99ac9f4848b2dc625406bea113"
+        env["ANTHROPIC_AUTH_TOKEN"] = "REDACTED-SECRET"
         env["ANTHROPIC_BASE_URL"] = "https://coding.dashscope.aliyuncs.com/apps/anthropic"
         env["ANTHROPIC_MODEL"] = "qwen3.5-plus"
         env["ANTHROPIC_DEFAULT_HAIKU_MODEL"] = "qwen3.5-plus"

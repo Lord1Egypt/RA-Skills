@@ -1,42 +1,55 @@
-## Description: <br>
-解析微信公众号文章，提取核心要点和干货。当用户发送公众号文章链接时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses WeChat Official Account article links and helps an agent extract key points, context, details, source links, and caveats without inventing unsupported content.
 
-## Publisher: <br>
-[oldjie](https://clawhub.ai/user/oldjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oldjie](https://clawhub.ai/user/oldjie)
 
-## Use Case: <br>
-External users and developers use this skill in supported agents to fetch WeChat Official Account articles and produce concise, detail-preserving summaries. It is intended to preserve key points, context, links, prices, examples, data, and author viewpoints when they appear in the article. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup may clone code and install Node.js, Playwright, and browser dependencies. <br>
-Mitigation: Review the artifact and lockfiles before installation, approve dependency and browser downloads explicitly, and install in a normal user account or sandbox where possible. <br>
-Risk: The fetch script opens a user-provided WeChat article URL in headless Chromium and processes page content. <br>
-Mitigation: Use only intended mp.weixin.qq.com article URLs, avoid entering credentials in the browser session, and review extracted content before relying on summaries. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent fetch and summarize WeChat Official Account articles while preserving important context, examples, data, links, prices, and author concerns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oldjie/wechat-article-parser-oldjie) <br>
-- [Node.js](https://nodejs.org) <br>
-- [Playwright](https://playwright.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown summary plus extracted article metadata and body text from the fetch script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The fetch script accepts a WeChat Official Account article URL and prints title, author, publish time, and article text for the agent to summarize.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill runs browser automation against user-provided WeChat article URLs, and server security evidence flags URL handling and installation guidance as broader than users should accept without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or executing, run only on trusted WeChat article URLs, and avoid automatic execution from arbitrary chat messages.
+
+Risk: Dependency installation and URL handling may be less controlled than desired for routine use.
+
+Mitigation: Use a fixed install that pins playwright and cheerio; publishers should replace substring URL checks with strict URL parsing and block redirects or subresources outside mp.weixin.qq.com.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oldjie/skills/wechat-article-parser-oldjie)
+- [Node.js](https://nodejs.org)
+- [Playwright](https://playwright.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary guidance plus plain text article metadata and body content from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided WeChat Official Account article URL and may use headless browser automation to retrieve article content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

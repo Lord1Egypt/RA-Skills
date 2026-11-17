@@ -1,43 +1,51 @@
-## Description: <br>
-CLI for AI agents to search and lookup anime info for their humans. Uses Jikan (unofficial MyAnimeList API). No auth required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for AI agents to search and lookup anime info for their humans. Uses Jikan (unofficial MyAnimeList API). No auth required.
 
-## Publisher: <br>
-[jeffaf](https://clawhub.ai/user/jeffaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffaf](https://clawhub.ai/user/jeffaf)
 
-## Use Case: <br>
-External users and AI agents use this skill to search anime titles, retrieve MyAnimeList details by MAL ID, and browse current, upcoming, or top-ranked anime through the Jikan API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Anime search queries are sent to the Jikan API. <br>
-Mitigation: Avoid including private or sensitive information in anime search queries. <br>
-Risk: Installation or use may rely on an external anime CLI script. <br>
-Mitigation: Confirm any external CLI script comes from the intended repository before installing or executing it. <br>
+## Use Case:
 
+AI agents assisting users use this skill to search for anime, retrieve MyAnimeList details by ID, and browse current, upcoming, seasonal, or top-ranked anime through Jikan data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffaf/anime) <br>
-- [Jikan](https://jikan.moe) <br>
-- [Jikan v4 API Documentation](https://docs.api.jikan.moe/) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs anime search results, rankings, seasonal lists, details, synopsis text, and trailer URLs when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The reviewed package does not include the executable script the skill tells agents to run, and its manual install path points to mutable external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or install only from a pinned, trusted release that includes the anime script; inspect any manually cloned script before exposing it as a persistent local command.
+
+## Reference(s):
+
+- [ClawHub Anime Skill](https://clawhub.ai/jeffaf/skills/anime)
+- [Jikan](https://jikan.moe)
+- [Jikan API Documentation](https://docs.api.jikan.moe/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text CLI output with anime IDs, titles, scores, metadata, synopsis text, and links when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, and jq. Uses the unauthenticated Jikan v4 API with documented rate limits.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

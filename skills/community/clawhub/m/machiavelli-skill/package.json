@@ -1,8 +1,7 @@
 {
   "name": "machiavelli-skill",
-  "version": "1.0.0",
-  "description": "> **v1.7.0** — 让马基雅维利的思维方式和分析能力成为你的日常工具。 > Turn Machiavelli's way of thinking into your everyday tool.",
-  "main": "index.js",
+  "version": "1.8.3",
+  "description": "> **v1.8.3** — 让马基雅维利的思维方式和分析能力成为你的日常工具。 > Turn Machiavelli's way of thinking into your everyday tool.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,8 +10,8 @@
     "url": "git+https://github.com/niflhum/machiavelli-skill.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Niko",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/niflhum/machiavelli-skill/issues"
   },

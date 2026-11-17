@@ -1,41 +1,54 @@
-## Description: <br>
-Daily Decision Making helps users structure personal life and career choices through a decision database, weighted comparisons, risk checks, and retrospective records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language structured personal decision database skill that helps users analyze complex life and career choices, compare options, and record decisions for later review.
 
-## Publisher: <br>
-[ChenChen913](https://clawhub.ai/user/ChenChen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-Individuals and external users use this skill to clarify values, compare options, document reasoning, and review outcomes for complex life, career, financial, health, or relationship decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision records may contain sensitive personal details about finances, health, relationships, career plans, or third parties. <br>
-Mitigation: Confirm the storage folder before creating records, minimize unnecessary sensitive details, and review generated files before keeping or syncing them. <br>
-Risk: Structured decision guidance can appear more authoritative than the underlying user-provided information supports. <br>
-Mitigation: Treat the skill's matrices and prompts as decision support, and have the user review assumptions, tradeoffs, and final reasoning before acting. <br>
+## Use Case:
 
+External users use this skill to structure personal decisions such as career changes, relocation, major purchases, and relationships. It guides values clarification, information gathering, option comparison, decision recording, execution tracking, and retrospective review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChenChen913/daily-decision-making) <br>
-- [Decision record template](artifact/templates/decision-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown decision records and structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local decision-journal records when the user requests persistent documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Decision records may contain sensitive personal, financial, career, health, or relationship information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, unnecessary identifying details, or private information about other people, and periodically delete or archive records that are no longer needed.
+
+Risk: Structured decision guidance can make uncertain options appear more definitive than the available evidence supports.
+
+Mitigation: Use the skill as a decision-support journal, review assumptions and scores before acting, and seek qualified advice for high-stakes financial, legal, medical, or employment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchen913/skills/daily-decision-making)
+- [Decision record template](templates/decision-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown decision records and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create user-approved local decision journal records from the included Markdown template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

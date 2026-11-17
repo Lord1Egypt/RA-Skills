@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents plan, map, or restructure website page hierarchy, navigation, URL structure, visual sitemaps, and internal linking while distinguishing site architecture work from technical SEO tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan website page hierarchy, navigation, URL structure, visual sitemaps, and internal linking for new or restructured sites.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-External users, website strategists, marketers, designers, and developers use this skill to turn business context and content inventory into page hierarchies, URL maps, navigation specs, visual sitemap diagrams, and internal linking plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read a local product marketing context file when available, which could expose sensitive or stale marketing strategy to the agent workflow. <br>
-Mitigation: Review `.agents/product-marketing-context.md` or `.claude/product-marketing-context.md` before use and remove secrets, confidential strategy, or outdated positioning. <br>
-Risk: Site architecture recommendations can affect navigation, URL changes, redirects, and internal linking, so incorrect guidance may create findability or SEO regressions. <br>
-Mitigation: Have stakeholders review the proposed hierarchy, URL map, and redirect plan before implementation, especially for existing sites. <br>
+## Use Case:
 
+External users, developers, designers, and site owners use this skill to organize website pages, navigation, URLs, visual sitemap diagrams, and internal links before building or restructuring a site.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/mariokarras/abm-site-architecture) <br>
-- [Mermaid Diagram Templates](references/mermaid-templates.md) <br>
-- [Navigation Patterns](references/navigation-patterns.md) <br>
-- [Site Type Templates](references/site-type-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with ASCII trees, Mermaid diagrams, URL map tables, navigation specifications, and internal linking plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommended page hierarchy, URL patterns, header and footer navigation, breadcrumb guidance, redirects to preserve moved URLs, and cross-section linking opportunities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill may read local product-marketing context files if present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those context files before use and avoid placing sensitive credentials or restricted information there unless the agent environment is approved for that data.
+
+Risk: The skill can plan page hierarchy, navigation, URLs, and visual sitemaps, but it is not a technical SEO or structured-data implementation tool.
+
+Mitigation: Use a dedicated SEO audit or schema markup workflow for XML sitemaps, crawl errors, and schema implementation before making production changes.
+
+## Reference(s):
+
+- [Site Type Templates](references/site-type-templates.md)
+- [Navigation Patterns](references/navigation-patterns.md)
+- [Mermaid Diagram Templates](references/mermaid-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with ASCII trees, Mermaid diagrams, tables, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local product marketing context files when present before asking follow-up questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

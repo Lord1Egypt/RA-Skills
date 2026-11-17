@@ -1,41 +1,58 @@
-## Description: <br>
-Synchronizes video shots with dialogue audio using Kling lip sync, and skips shots that have no dialogue audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes mouth movement in video shots to dialogue audio with Kling lip-sync, and copies shots unchanged when no dialogue audio is available.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and video-production agents use this skill to batch-process scene videos and dialogue audio into lip-synced MP4 outputs for comic or short-form video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video clips and dialogue audio are sent to Kling for processing and may incur API costs. <br>
-Mitigation: Use a dedicated KLING_API_KEY where possible, test on a small directory first, and confirm expected cost before processing a larger batch. <br>
-Risk: The security guidance notes that the documented --no-lipsync option is not implemented by the included script. <br>
-Mitigation: Do not rely on --no-lipsync for cost control; limit input size, use the cost guard behavior, or skip running the script when lip sync is not needed. <br>
+## Use Case:
 
+Content creators and developers use this skill to process short comic or drama video shots so dialogue audio is reflected in the speaker's mouth movement. It is intended for batch lip-sync workflows that read local video and audio directories and write processed video files.
 
-## Reference(s): <br>
-- [Kling lip-sync API endpoint](https://api.kling.com/v1/videos/lip-sync) <br>
-- [Kling API base used by script](https://api.klingai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [MP4 video files plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KLING_API_KEY; videos without dialogue audio are copied to the output directory unchanged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill uploads local media to external paid APIs, which can expose confidential video or audio if sensitive inputs are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive input directories unless the external provider account and data handling terms are approved for the media.
+
+Risk: The external account can incur meaningful charges, and the built-in cost tracking should not be treated as a hard spending cap.
+
+Mitigation: Set tight account-level budget limits with the external provider and review expected per-shot costs before batch processing.
+
+Risk: The skill downloads generated media from external URLs after task completion.
+
+Mitigation: Run in a controlled workspace and review downloaded outputs before using them in downstream publishing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-comic-lipsync)
+- [Kling lip-sync API endpoint](https://api.kling.com/v1/videos/lip-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with command examples; generated MP4 video files on disk]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KLING_API_KEY and local video and audio input directories.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

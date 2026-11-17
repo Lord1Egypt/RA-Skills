@@ -1,0 +1,5 @@
+version: "9.2.2"
+interface:
+  display_name: "Skills Summarize Audit"
+  short_description: "技能审查 → 中文说明精炼·项目画像·技能插件证据推荐"
+  default_prompt: "使用 $skills-summarize-audit 做技能审查：结合当前项目与可核验证据，给出技能/插件优化建议、操作步骤、执行 Agent、验证与回滚方法；需要翻译时只处理当前 UI 可见集合。"

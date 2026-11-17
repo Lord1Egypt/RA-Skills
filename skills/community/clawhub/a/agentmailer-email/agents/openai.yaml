@@ -1,0 +1,13 @@
+interface:
+  display_name: "AgentMailer Email Router"
+  short_description: "Route legacy mixed email workflows safely"
+  default_prompt: "Use $agentmailer-email to route this mixed email request to the focused read or send workflow."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentmailer"
+      description: "Read, draft, and send AgentMailer email"
+      transport: "streamable_http"
+      url: "https://api.agentmailer.ai/mcp"
+policy:
+  allow_implicit_invocation: false

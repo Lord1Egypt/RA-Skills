@@ -1,42 +1,61 @@
-## Description: <br>
-AgentMail Email helps agents create and manage dedicated AgentMail inboxes, send and receive email programmatically, and handle email workflows through webhooks and real-time events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentMail Email helps agents create and manage dedicated AgentMail inboxes, send and receive email, and configure webhook-based email workflows.
 
-## Publisher: <br>
-[davidsteelerose](https://clawhub.ai/user/davidsteelerose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidsteelerose](https://clawhub.ai/user/davidsteelerose)
 
-## Use Case: <br>
-Developers and agent builders use this skill to give agents email identities, send status updates or documents, poll inboxes, and connect incoming email to webhook-driven workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents with AgentMail access can expose private communications, recipients, attachments, or API credentials if email actions are not reviewed. <br>
-Mitigation: Store AGENTMAIL_API_KEY as a protected secret, confirm recipients and attachments before sending, and redact sensitive email content before forwarding it into shared systems. <br>
-Risk: Incoming email and webhook payloads can carry untrusted instructions that may prompt-inject an agent workflow or trigger unintended automation. <br>
-Mitigation: Verify webhook signatures, scope webhooks to trusted endpoints, allowlist trusted senders before triggering agent actions, and route untrusted messages to review. <br>
+## Use Case:
 
+Developers and agents use this skill to provision AgentMail inboxes, send and receive messages, and build webhook-driven email workflows for support, task intake, document processing, or agent identity.
 
-## Reference(s): <br>
-- [AgentMail API Reference](references/API.md) <br>
-- [AgentMail Webhooks Guide](references/WEBHOOKS.md) <br>
-- [AgentMail Usage Examples](references/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use AgentMail API calls through bundled Python helper scripts when AGENTMAIL_API_KEY is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Webhook examples and test servers can expose email data or trigger authenticated email actions from unverified inbound requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify webhook signatures, keep test receivers local unless intentionally exposed, and require human review before inbound emails create issues, tasks, replies, or other external actions.
+
+Risk: Inbound email content can carry prompt injection or untrusted instructions into an agent workflow.
+
+Mitigation: Use sender and inbox allowlists, mark email content as untrusted input, and isolate review workflows before delivering email content to an agent.
+
+Risk: Email payloads may contain sensitive message bodies, attachments, addresses, or API-related metadata.
+
+Mitigation: Avoid logging full payloads, protect AGENTMAIL_API_KEY, and review examples before installing or copying them into production handlers.
+
+## Reference(s):
+
+- [AgentMail Skill Page](https://clawhub.ai/davidsteelerose/skills/k2ljl-agentmail)
+- [AgentMail Console](https://console.agentmail.to)
+- [AgentMail API Reference](references/API.md)
+- [AgentMail Webhooks Guide](references/WEBHOOKS.md)
+- [AgentMail Usage Examples](references/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AgentMail API key for live API operations.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

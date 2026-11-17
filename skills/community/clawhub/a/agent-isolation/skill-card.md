@@ -1,42 +1,56 @@
-## Description: <br>
-Agent Isolation provides boundary-rule templates and operating guidance for separating multiple AI agents' workspaces, memory, sessions, and explicit shared directories on a shared runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Isolation provides workspace-boundary guidance for multi-agent runtimes, including per-agent workspaces, explicitly declared shared directories, boundary-rule templates, exception clauses, and migration steps.
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-Developers and operators use this prompt skill to add explicit workspace boundaries for multi-agent environments that share runtime infrastructure. It helps them define private agent workspaces, controlled shared directories, and user-directed exceptions for cross-agent actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example workspace paths or shared directories could be copied without matching the user's actual agent layout. <br>
-Mitigation: Replace example paths with the real workspace and shared-directory paths before applying the rules. <br>
-Risk: Overly strict boundary rules could block legitimate collaboration between agents. <br>
-Mitigation: Review AGENT.md changes before use and keep explicit exception clauses for user-directed cross-agent work. <br>
+## Use Case:
 
+Developers and engineers use this skill to define durable workspace, memory, and session boundaries when multiple agents share a runtime. It helps teams prevent accidental cross-agent file access while preserving explicit shared directories and user-approved exceptions.
 
-## Reference(s): <br>
-- [Server-resolved source import](https://github.com/Sheyuy/agent-skills/tree/main/skills/agent-isolation) <br>
-- [Publisher homepage](https://www.botlearn.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/sheyuy/agent-isolation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with rule templates and step-by-step review instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; produces operating rules and review guidance, not automatic actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Example workspace paths or shared directories may not match the user's actual multi-agent layout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt all paths, shared folders, and exception clauses before adding the rules to persistent AGENT.md files.
+
+Risk: Strict isolation can block workflows that require frequent direct collaboration between agents.
+
+Mitigation: Use explicit shared directories or a message-queue style coordination pattern for intended cross-agent collaboration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sheyuy/skills/agent-isolation)
+- [Publisher Profile](https://clawhub.ai/user/sheyuy)
+- [Server-Resolved Source Repository](https://github.com/Sheyuy/agent-skills/tree/main/skills/agent-isolation)
+- [Botlearn Homepage](https://www.botlearn.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with AGENT.md rule templates and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only; does not include executable code, hidden access, or network behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

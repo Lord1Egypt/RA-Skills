@@ -1,39 +1,51 @@
-## Description: <br>
-Provides date and time manipulation operations for working with dates. Use when you need to format, parse, compare, or manipulate dates and times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides date and time manipulation operations for formatting, parsing, comparing, and manipulating dates and times.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to format, parse, compare, and manipulate dates and times in local JavaScript workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Date parsing, timezone offsets, and calendar arithmetic may be wrong for critical scheduling, billing, legal, or timezone-sensitive workflows. <br>
-Mitigation: Validate parsing patterns, timezone behavior, and boundary cases against the workflow's required date and time rules before relying on the utility. <br>
+## Use Case:
 
+Developers and agents use this skill to format, parse, compare, and manipulate dates and times in JavaScript workflows, including date arithmetic, calendars, relative time, duration calculations, and basic timezone offset handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-date-utils) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, guidance] <br>
-**Output Format:** [JavaScript utility functions and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local date and time helper operations; no network, persistence, or sensitive-access behavior identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Timezone-sensitive ISO timestamp output may be mistaken for a standard UTC ISO string.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review toISOString behavior before relying on it for logs, audit records, or API timestamps; use native Date.toISOString or an explicit timezone-aware formatter when UTC semantics are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-date-utils)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/package.json](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [code, guidance]
+
+**Output Format:** [JavaScript module exports with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local date and time utility behavior; no hidden access, persistence, network activity, or destructive behavior identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

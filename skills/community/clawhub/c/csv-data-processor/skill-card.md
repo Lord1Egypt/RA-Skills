@@ -1,41 +1,57 @@
-## Description: <br>
-CSV and delimited data processing toolkit for transforming, filtering, merging, validating, and converting data files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes, filters, merges, cleans, converts, and analyzes CSV or delimited data files using local Python command-line tools.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect, filter, sort, merge, join, clean, convert, and summarize CSV, TSV, and other delimited data files with Python standard-library utilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The --where option is interpreted as Python expression syntax. <br>
-Mitigation: Use only trusted filter strings; avoid filter text from downloaded files, prompts, or automation; prefer a release that replaces expression evaluation with a restricted comparison parser. <br>
-Risk: The security verdict is suspicious because one helper evaluates filter text as Python code. <br>
-Mitigation: Review the helper scripts before installation and restrict use to trusted local data-processing workflows. <br>
+## Use Case:
 
+Developers and data analysts use this skill to inspect, clean, filter, join, merge, convert, and summarize CSV, TSV, and other delimiter-separated datasets from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/csv-data-processor) <br>
-- [Publisher profile](https://clawhub.ai/user/ericlooi504) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated CSV, JSON, SQL, or text output from the helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local file paths, delimiter and encoding options, optional output files, and filter or transformation arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Filtering can evaluate user-supplied --where expressions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted filter expressions, and do not let web pages, documents, or untrusted users choose the expression.
+
+Risk: SQL export may produce statements that require review before database import.
+
+Mitigation: Review generated SQL before importing it into any database.
+
+Risk: The toolkit is intended for trusted CSV or delimited data.
+
+Mitigation: Install and run it only on trusted data, and inspect outputs before using them downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericlooi504/skills/csv-data-processor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON, SQL, Files]
+
+**Output Format:** [Markdown guidance with bash commands; script outputs include terminal tables, CSV files, JSON, and SQL text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be printed to stdout or written to a requested output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

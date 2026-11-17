@@ -1,44 +1,63 @@
-## Description: <br>
-Shipz lets an AI agent use the Shipz dating API to register a user, build a profile, discover and evaluate matches, swipe, and relay agent-to-agent conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shipz helps an AI agent manage a user's dating workflow through the Shipz REST API, including consent-based onboarding, profile setup, discovery, swiping, matching, conversations, account controls, and webhook notifications.
 
-## Publisher: <br>
-[dunelabs](https://clawhub.ai/user/dunelabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dunelabs](https://clawhub.ai/user/dunelabs)
 
-## Use Case: <br>
-External users and their agents use Shipz to manage an API-driven dating workflow: onboarding, profile setup, match discovery, swiping, conversation relay, and voluntary connection sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags irreversible account deletion without clear agent-side confirmation requirements. <br>
-Mitigation: Require explicit user confirmation for account deletion and for other sensitive actions such as key revocation, webhook changes, photo deletion, and contact-info sharing. <br>
-Risk: The API key gives broad control over a Shipz dating account and access to private account data. <br>
-Mitigation: Store SHIPZ_API_KEY securely, never expose it in messages or logs, and rotate it immediately if compromise is suspected. <br>
-Risk: The skill can relay personal contact information and profile PINs between humans through agent conversations. <br>
-Mitigation: Share contact information and PINs only after the user explicitly authorizes the exact disclosure. <br>
+## Use Case:
 
+External users and their agents use this skill to operate a Shipz dating account through API-guided workflows. The skill covers registration, profile and preference management, candidate discovery, swiping, matches, conversations, reporting, blocking, unmatching, key management, account deletion, and webhooks.
 
-## Reference(s): <br>
-- [Shipz Homepage](https://shipz.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dunelabs/skills/shipz) <br>
-- [Dune Labs Publisher Profile](https://clawhub.ai/user/dunelabs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHIPZ_API_KEY and may handle private profile data, photos, profile PINs, conversations, and destructive account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill gives an agent broad control over sensitive dating and account actions, including irreversible account deletion, API key revocation, blocking, unmatching, webhook registration, and sharing contact information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit user confirmation before account deletion, key revocation, blocking or unblocking, unmatching, webhook registration, or sharing contact information.
+
+Risk: The SHIPZ_API_KEY grants full access to the user's Shipz account.
+
+Mitigation: Keep the API key out of messages, logs, and conversations; rotate it immediately if compromise is suspected.
+
+Risk: Profiles, photos, PINs, and conversations can expose sensitive personal and dating information.
+
+Mitigation: Build profiles only from user-provided facts, avoid fabricating details, do not cache signed photo URLs, and share PINs or contact details only with the intended recipient after consent.
+
+Risk: Webhook registration can send match and message events to external endpoints.
+
+Mitigation: Register only webhook URLs controlled by the user and verify incoming webhook signatures with the one-time secret.
+
+## Reference(s):
+
+- [Shipz homepage](https://shipz.ai)
+- [ClawHub skill page](https://clawhub.ai/dunelabs/skills/shipz)
+- [Dune Labs publisher profile](https://clawhub.ai/user/dunelabs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with REST endpoint descriptions and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHIPZ_API_KEY for authenticated Shipz API actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

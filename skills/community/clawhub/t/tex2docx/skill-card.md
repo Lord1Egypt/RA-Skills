@@ -1,43 +1,54 @@
-## Description: <br>
-Convert LaTeX (.tex) academic papers to Word (.docx) with editable OMML equations, native Word tables, embedded figures, IEEE two-column format, and bibliography. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert LaTeX (.tex) academic papers to Word (.docx) with editable OMML equations, native Word tables, embedded figures, IEEE two-column format, and bibliography.
 
-## Publisher: <br>
-[wsyummy](https://clawhub.ai/user/wsyummy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wsyummy](https://clawhub.ai/user/wsyummy)
 
-## Use Case: <br>
-Developers, researchers, and academic authors use this skill to convert LaTeX manuscripts into editable Word documents while preserving supported display equations, tables, figures, bibliography entries, and IEEE-style formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter adds a fixed company affiliation and Gmail address to generated documents without user control. <br>
-Mitigation: Review or edit the converter before use, and inspect generated DOCX files to remove unwanted affiliation or email text before sharing, submitting, or publishing. <br>
-Risk: Document conversion can change formatting or content in ways that are hard to notice before distribution. <br>
-Mitigation: Run the verification script, compare the generated DOCX against the source document, and use the skill only on copies of source files. <br>
-Risk: The workflow depends on local pandoc and Python packages. <br>
-Mitigation: Install dependencies in a virtual environment and confirm pandoc is available before converting documents. <br>
+## Use Case:
 
+Developers, researchers, and academic authors use this skill to convert LaTeX papers into editable Word documents while preserving equations, tables, figures, references, and IEEE-style formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wsyummy/tex2docx) <br>
-- [Pandoc documentation](https://pandoc.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Guidance] <br>
-**Output Format:** [DOCX file with terminal progress and verification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local pandoc plus python-docx, lxml, and pypandoc_binary; supported display math is converted to editable OMML while inline math is plain text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated DOCX files may include an unrelated fixed company, location, and email block.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or replace the fixed affiliation block in the conversion script and review generated DOCX content before sharing.
+
+Risk: Dependency installation can introduce package integrity or reproducibility risk.
+
+Mitigation: Install dependencies in a virtual environment and prefer pinned package versions.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/wsyummy/skills/tex2docx)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and generated DOCX file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local DOCX conversion and verification workflows; generated documents should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

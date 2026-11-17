@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF水印工具</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", sans-serif; background: #0f111a; color: #e0e0e0; display: flex; height: 100vh; }
+.panel { padding: 24px; overflow-y: auto; }
+.left { width: 360px; min-width: 360px; background: #161822; border-right: 1px solid #2a2d3a; }
+.right { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+h1 { font-size: 20px; color: #ffb800; margin-bottom: 20px; font-weight: 600; }
+.param { margin-bottom: 16px; }
+.param label { display: block; font-size: 13px; color: #8890a4; margin-bottom: 4px; }
+.param .row { display: flex; align-items: center; gap: 8px; }
+.param input[type="text"], .param select { width: 100%; padding: 8px 12px; background: #1e2030; border: 1px solid #2a2d3a; border-radius: 6px; color: #e0e0e0; font-size: 14px; outline: none; }
+.param input[type="text"]:focus, .param select:focus { border-color: #009bd5; }
+.param input[type="range"] { flex: 1; accent-color: #009bd5; height: 6px; }
+.param .val { min-width: 44px; text-align: right; font-size: 13px; color: #009bd5; font-weight: 500; }
+.param input[type="color"] { width: 48px; height: 32px; border: none; background: none; cursor: pointer; }
+.preview-box { width: 420px; height: 594px; background: #fafafa; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
+.preview-box canvas { width: 100%; height: 100%; }
+.btn { display: block; width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 12px; transition: opacity 0.2s; }
+.btn:hover { opacity: 0.85; }
+.btn-primary { background: #009bd5; color: #fff; }
+.btn-secondary { background: #2a2d3a; color: #e0e0e0; }
+.status { margin-top: 12px; font-size: 13px; color: #4ec9b0; min-height: 20px; }
+.section { font-size: 12px; color: #555c70; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #2a2d3a; }
+</style>
+</head>
+<body>
+
+<div class="panel left">
+  <h1>PDF 水印参数配置</h1>
+
+  <div class="section">基本设置</div>
+
+  <div class="param">
+    <label>水印文字</label>
+    <input type="text" id="text" value="内部资料 请勿外传" oninput="updatePreview()">
+  </div>
+
+  <div class="param">
+    <label>布局模式</label>
+    <select id="pattern" onchange="updatePreview()">
+      <option value="diagonal">对角线（经典）</option>
+      <option value="grid">网格平铺</option>
+      <option value="center">居中单个</option>
+    </select>
+  </div>
+
+  <div class="section">文字样式</div>
+
+  <div class="param">
+    <label>字号 (pt)</label>
+    <div class="row">
+      <input type="range" id="fontSize" min="12" max="120" value="60" oninput="updatePreview()">
+      <span class="val" id="fontSizeVal">60</span>
+    </div>
+  </div>
+
+  <div class="param">
+    <label>透明度</label>
+    <div class="row">
+      <input type="range" id="opacity" min="2" max="80" value="15" oninput="updatePreview()">
+      <span class="val" id="opacityVal">15%</span>
+    </div>
+  </div>
+
+  <div class="param">
+    <label>旋转角度</label>
+    <div class="row">
+      <input type="range" id="rotation" min="-90" max="90" value="45" oninput="updatePreview()">
+      <span class="val" id="rotationVal">45&deg;</span>
+    </div>
+  </div>
+
+  <div class="param">
+    <label>颜色</label>
+    <div class="row">
+      <input type="color" id="color" value="#808080" oninput="updatePreview()">
+      <span class="val" id="colorVal">#808080</span>
+    </div>
+  </div>
+
+  <div class="section">布局参数</div>
+
+  <div class="param">
+    <label>水平重复数 (网格模式)</label>
+    <div class="row">
+      <input type="range" id="repeatX" min="1" max="8" value="3" oninput="updatePreview()">
+      <span class="val" id="repeatXVal">3</span>
+    </div>
+  </div>
+
+  <div class="param">
+    <label>垂直重复数 (网格模式)</label>
+    <div class="row">
+      <input type="range" id="repeatY" min="1" max="8" value="3" oninput="updatePreview()">
+      <span class="val" id="repeatYVal">3</span>
+    </div>
+  </div>
+
+  <div class="param">
+    <label>偏移间距 (对角线模式)</label>
+    <div class="row">
+      <input type="range" id="offset" min="50" max="400" value="200" oninput="updatePreview()">
+      <span class="val" id="offsetVal">200</span>
+    </div>
+  </div>
+
+  <div class="section">操作</div>
+  <button class="btn btn-primary" onclick="exportConfig()">导出配置并加水印</button>
+  <button class="btn btn-secondary" onclick="resetDefaults()">恢复默认值</button>
+  <div class="status" id="status"></div>
+</div>
+
+<div class="panel right">
+  <div style="margin-bottom: 16px; font-size: 14px; color: #8890a4;">实时预览（模拟 A4 页面）</div>
+  <div class="preview-box">
+    <canvas id="preview" width="420" height="594"></canvas>
+  </div>
+</div>
+
+<script>
+function getConfig() {
+  const hex = document.getElementById('color').value;
+  const r = parseInt(hex.slice(1,3), 16) / 255;
+  const g = parseInt(hex.slice(3,5), 16) / 255;
+  const b = parseInt(hex.slice(5,7), 16) / 255;
+  return {
+    text: document.getElementById('text').value || 'WATERMARK',
+    fontSize: parseInt(document.getElementById('fontSize').value),
+    opacity: parseInt(document.getElementById('opacity').value) / 100,
+    rotation: parseInt(document.getElementById('rotation').value),
+    color: [r, g, b],
+    pattern: document.getElementById('pattern').value,
+    repeatX: parseInt(document.getElementById('repeatX').value),
+    repeatY: parseInt(document.getElementById('repeatY').value),
+    offsetX: parseInt(document.getElementById('offset').value),
+    offsetY: parseInt(document.getElementById('offset').value)
+  };
+}
+
+function updatePreview() {
+  // Update display values
+  document.getElementById('fontSizeVal').textContent = document.getElementById('fontSize').value;
+  document.getElementById('opacityVal').textContent = document.getElementById('opacity').value + '%';
+  document.getElementById('rotationVal').innerHTML = document.getElementById('rotation').value + '&deg;';
+  document.getElementById('colorVal').textContent = document.getElementById('color').value;
+  document.getElementById('repeatXVal').textContent = document.getElementById('repeatX').value;
+  document.getElementById('repeatYVal').textContent = document.getElementById('repeatY').value;
+  document.getElementById('offsetVal').textContent = document.getElementById('offset').value;
+
+  const cfg = getConfig();
+  const canvas = document.getElementById('preview');
+  const ctx = canvas.getContext('2d');
+  const W = 420, H = 594;
+
+  ctx.clearRect(0, 0, W, H);
+  // Page background
+  ctx.fillStyle = '#fafafa';
+  ctx.fillRect(0, 0, W, H);
+  // Simulated content lines
+  ctx.fillStyle = '#ddd';
+  ctx.font = '10px sans-serif';
+  ctx.fillText('Sample document content - Line 1', 30, 80);
+  ctx.fillText('Sample document content - Line 2', 30, 100);
+  ctx.fillText('Sample document content - Line 3', 30, 120);
+  ctx.fillText('...', 30, 140);
+
+  // Watermark
+  const scale = 420 / 595; // scale from PDF points to canvas pixels
+  const fs = cfg.fontSize * scale;
+  ctx.fillStyle = `rgba(${Math.round(cfg.color[0]*255)}, ${Math.round(cfg.color[1]*255)}, ${Math.round(cfg.color[2]*255)}, ${cfg.opacity})`;
+  ctx.font = `bold ${fs}px sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  if (cfg.pattern === 'center') {
+    ctx.save();
+    ctx.translate(W/2, H/2);
+    ctx.rotate(cfg.rotation * Math.PI / 180);
+    ctx.fillText(cfg.text, 0, 0);
+    ctx.restore();
+  } else if (cfg.pattern === 'grid') {
+    for (let iy = 0; iy < cfg.repeatY; iy++) {
+      for (let ix = 0; ix < cfg.repeatX; ix++) {
+        const x = (ix + 1) * W / (cfg.repeatX + 1);
+        const y = (iy + 1) * H / (cfg.repeatY + 1);
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(cfg.rotation * Math.PI / 180);
+        ctx.fillText(cfg.text, 0, 0);
+        ctx.restore();
+      }
+    }
+  } else { // diagonal
+    const ox = cfg.offsetX * scale;
+    const oy = cfg.offsetY * scale;
+    ctx.save();
+    ctx.translate(W/2, H/2);
+    ctx.rotate(cfg.rotation * Math.PI / 180);
+    ctx.fillText(cfg.text, 0, 0);
+    ctx.fillText(cfg.text, -ox, oy);
+    ctx.fillText(cfg.text, ox, -oy);
+    ctx.fillText(cfg.text, -2*ox, 2*oy);
+    ctx.fillText(cfg.text, 2*ox, -2*oy);
+    ctx.restore();
+  }
+}
+
+function exportConfig() {
+  const cfg = getConfig();
+  const json = JSON.stringify(cfg, null, 2);
+  // Copy to clipboard
+  navigator.clipboard.writeText(json).then(() => {
+    document.getElementById('status').textContent = '配置已复制到剪贴板，发给你的 AI 助手即可应用';
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = json;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    document.getElementById('status').textContent = '配置已复制到剪贴板';
+  });
+  document.getElementById('status').textContent += ' | JSON: ' + json.substring(0, 80) + '...';
+}
+
+function resetDefaults() {
+  document.getElementById('text').value = '内部资料 请勿外传';
+  document.getElementById('fontSize').value = 60;
+  document.getElementById('opacity').value = 15;
+  document.getElementById('rotation').value = 45;
+  document.getElementById('color').value = '#808080';
+  document.getElementById('pattern').value = 'diagonal';
+  document.getElementById('repeatX').value = 3;
+  document.getElementById('repeatY').value = 3;
+  document.getElementById('offset').value = 200;
+  updatePreview();
+  document.getElementById('status').textContent = '已恢复默认值';
+}
+
+// Init
+updatePreview();
+</script>
+</body>
+</html>

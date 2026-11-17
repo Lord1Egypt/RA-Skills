@@ -1,47 +1,68 @@
-## Description: <br>
-Unified crosschain USDC balance via Circle Gateway and Circle Programmable Wallets: deposit USDC on supported testnet chains, check a unified balance, and mint USDC on a destination chain without raw private keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nexwave Gateway helps OpenClaw agents use Circle Gateway and Circle Programmable Wallets to check unified testnet USDC balances, deposit USDC, and mint USDC across supported EVM testnets without raw private keys.
 
-## Publisher: <br>
-[botmechanic](https://clawhub.ai/user/botmechanic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[botmechanic](https://clawhub.ai/user/botmechanic)
 
-## Use Case: <br>
-External developers and agent operators use this skill to set up Circle Gateway testnet workflows for unified USDC balance checks, deposits, and cross-chain transfers through Circle Programmable Wallets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scripts can create wallets, sign typed data, and submit transactions using Circle credentials. <br>
-Mitigation: Use testnet-only, least-privilege Circle credentials and inspect the fixed amounts, chains, and recipient before running deposit.js or transfer.js. <br>
-Risk: Circle API keys and entity secrets can authorize sensitive wallet operations if exposed. <br>
-Mitigation: Keep CIRCLE_API_KEY and CIRCLE_ENTITY_SECRET out of logs and source control, and rotate credentials if exposure is suspected. <br>
-Risk: Production use would lack confirmation gates, transaction limits, and explicit wallet-creation controls. <br>
-Mitigation: Do not connect production wallet sets or credentials until those controls are added. <br>
+## Use Case:
 
+External developers and agent builders use this skill to give OpenClaw agents a unified USDC workflow across supported Circle Gateway testnets. It provides setup guidance and scripts for balance checks, deposits, burn-intent signing, attestation requests, and testnet minting.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/botmechanic/nexwave-gateway) <br>
-- [Circle Gateway Documentation](https://developers.circle.com/gateway) <br>
-- [Circle Programmable Wallets](https://developers.circle.com/wallets) <br>
-- [Gateway Unified Balance EVM Quickstart](https://developers.circle.com/gateway/quickstarts/unified-balance-evm) <br>
-- [Arc Testnet Documentation](https://docs.arc.network) <br>
-- [Circle Wallet Skill](https://clawhub.ai/eltontay/circle-wallet) <br>
-- [Circle Gateway API Reference](https://gateway-api-testnet.circle.com/v1/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and execution guidance for scripts that use Circle credentials, testnet chain settings, typed-data signing, and Gateway API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill requires Circle API and entity secrets that can authorize wallet and transaction operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited testnet Circle account, restrict wallet sets to the intended chains, and keep credentials out of shared terminals and logs.
+
+Risk: The setup flow installs unpinned npm dependencies before running the gateway scripts.
+
+Mitigation: Review dependencies and pin them with a lockfile before using the setup output in a persistent environment.
+
+Risk: Wallet initialization can create missing Circle wallets in the configured wallet set.
+
+Mitigation: Run balance checks only against wallet sets where automatic testnet wallet creation is acceptable.
+
+Risk: The deposit and transfer scripts approve, deposit, sign burn intents, request attestations, and mint hardcoded testnet USDC amounts.
+
+Mitigation: Inspect configured amounts, source chains, destination chains, and recipient addresses before running transaction scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/botmechanic/skills/nexwave-gateway)
+- [Circle Gateway Docs](https://developers.circle.com/gateway)
+- [Circle Programmable Wallets](https://developers.circle.com/wallets)
+- [Gateway Quickstart](https://developers.circle.com/gateway/quickstarts/unified-balance-evm)
+- [Gateway Quickstart Code](https://github.com/circlefin/evm-gateway-contracts/tree/master/quickstart)
+- [Arc Testnet Docs](https://docs.arc.network)
+- [Circle Wallet Skill](https://clawhub.ai/eltontay/circle-wallet)
+- [Gateway API Reference](https://gateway-api-testnet.circle.com/v1/info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash and JavaScript examples; runtime scripts print console text and transaction hashes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Circle API credentials, a Circle wallet set, Node.js dependencies, and testnet USDC/gas on the supported networks.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,4 @@
-# SEOwlsClaw — Schema Markup Reference (v0.6)
+# SEOwlsClaw — Schema Markup Reference (v0.8)
 
 ## Purpose
 **Note:** This file uses JSON-LD syntax for Schema.org structured data (SEO markup). `@context`, `@type`, and related fields are standard HTML metadata — not cryptocurrency, blockchain, or financial tokens of any kind.
@@ -837,5 +837,5 @@ Run this mental checklist before finalizing any output:
 
 ---
 
-*Last updated: 2026-04-04 (v0.6)*
+*Last updated: 04-05-2026 (v0.8)*
 *Maintainer: Chris — schema-markup.md is part of SEOwlsClaw SEO_CHECKS module*

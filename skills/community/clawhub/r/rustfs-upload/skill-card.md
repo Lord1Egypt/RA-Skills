@@ -1,42 +1,58 @@
-## Description: <br>
-Uploads images or files to RustFS or S3-compatible object storage and returns a public access URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads selected images or files to RustFS-compatible object storage and returns a public access URL.
 
-## Publisher: <br>
-[wzwei1990](https://clawhub.ai/user/wzwei1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzwei1990](https://clawhub.ai/user/wzwei1990)
 
-## Use Case: <br>
-Developers and agents use this skill to upload a selected local file to RustFS or compatible object storage and return a JSON result containing the public URL, bucket, object key, file size, and endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local files may be uploaded to RustFS or S3-compatible storage and exposed through a public URL. <br>
-Mitigation: Run only with files intended for publication and verify the endpoint, bucket, and public domain before use. <br>
-Risk: Storage credentials may be persisted through the rc alias used for uploads. <br>
-Mitigation: Use least-privilege credentials and remove or rotate the rustfs-temp alias after use if credentials should not remain configured. <br>
-Risk: The skill may create a storage bucket, and file expiration is not guaranteed by the upload script. <br>
-Mitigation: Confirm bucket creation is acceptable and rely only on independently configured bucket lifecycle policies for expiration. <br>
+## Use Case:
 
+Developers and operators use this skill to upload a selected local file to RustFS or compatible S3-style object storage and receive a shareable URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzwei1990/rustfs-upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration] <br>
-**Output Format:** [JSON result with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires rc, jq, RustFS endpoint and bucket settings, storage credentials, and a public domain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can publish selected local files to object storage and return public links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each file is intended for upload and verify the public domain, bucket, and object path before sharing the returned URL.
+
+Risk: The skill may change persistent RustFS CLI configuration by setting the rustfs-temp alias.
+
+Mitigation: Use narrowly scoped credentials and review the local rc alias configuration before and after use.
+
+Risk: The skill can create a storage bucket automatically when the target bucket is missing.
+
+Mitigation: Pre-create and authorize the intended bucket, or confirm automatic bucket creation is acceptable for the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzwei1990/skills/rustfs-upload)
+- [ClawHub publisher profile](https://clawhub.ai/user/wzwei1990)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, text]
+
+**Output Format:** [JSON result with upload status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires rc, jq, RustFS endpoint credentials, bucket, and public domain configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

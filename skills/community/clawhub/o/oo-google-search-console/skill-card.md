@@ -1,43 +1,56 @@
-## Description: <br>
-Google Search Console connector skill for reading, creating, updating, and deleting Google Search Console data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use an OOMOL-connected Google Search Console account to inspect properties, search performance, URLs, and sitemaps, and to manage sites and sitemaps.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, site owners, and SEO operators use this skill to manage Search Console properties and sitemaps, inspect URL indexing status, and query search analytics through an OOMOL-connected Google account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and destructive actions can change or remove Google Search Console properties or submitted sitemaps. <br>
-Mitigation: Confirm the exact action, target property or sitemap, payload, and expected effect with the user before running tagged write or destructive commands. <br>
-Risk: The skill depends on an OOMOL account, the oo CLI, and a connected Google Search Console credential. <br>
-Mitigation: Use first-time setup only after an authentication or connection failure, and do not ask the user to provide raw Google tokens. <br>
+## Use Case:
 
+External users and developers can use the skill to retrieve Search Console performance and indexing information, inspect sites and URLs, and manage sites or sitemaps through their connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-google-search-console) <br>
-- [Google Search Console](https://search.google.com/search-console) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL Google Search Console connection](https://console.oomol.com/app-connections?provider=google_search_console) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches the live connector schema before building payloads; write and destructive actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, SKILL.md metadata) <br>
+Risk: Automatic setup can run downloaded code that may change between releases without separate approval or integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, version-pinned CLI installation and control automatic skill synchronization.
+
+Risk: Search Console actions can modify or delete account data.
+
+Mitigation: Review the Google account permissions granted through OOMOL and retain the skill's confirmation requirements for write and destructive actions.
+
+## Reference(s):
+
+- [Google Search Console](https://search.google.com/search-console)
+- [Google Search Console API reference](https://developers.google.com/webmaster-tools/v1/api_reference_index)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-google-search-console)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON action results and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read and write actions are available; the skill requires confirmation for writes and destructive changes.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

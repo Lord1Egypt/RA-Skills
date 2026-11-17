@@ -1,38 +1,48 @@
-## Description: <br>
-Evaluate LLM outputs systematically by running test suites, scoring responses for accuracy, relevance, safety, and consistency, comparing models, and detecting regressions in AI applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate LLM outputs systematically - run test suites, score responses for accuracy/relevance/safety, compare models, and detect regressions in AI applications.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and AI product teams use this skill to design evaluation datasets, score model outputs, compare model performance, detect prompt regressions, and produce concise evaluation reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or evaluated code may be unsafe to execute on a sensitive host.
+
+Mitigation: Run candidate code in an isolated sandbox with limited filesystem and network access before trusting results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and AI product teams use this skill to design and run evaluation suites, compare model behavior, detect prompt regressions, and produce concise quality reports for LLM applications. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to execute model-generated code during coding evaluations without detailed safety boundaries. <br>
-Mitigation: Run coding evaluations only in a disposable sandbox or container with no sensitive credentials, minimal filesystem access, restricted network access, and explicit approval before execution. <br>
+**Output Format:** [Markdown with YAML examples, rubrics, comparison tables, and evaluation report templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/llm-eval-harness) <br>
+**Other Properties Related to Output:** [May include scoring rubrics, test-suite structures, model comparison summaries, regression findings, and recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with examples, tables, YAML snippets, and report outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces evaluation rubrics, dataset structures, model-comparison summaries, regression notes, and recommendations.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

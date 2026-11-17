@@ -1,0 +1,10 @@
+{
+  "action": "audit",
+  "file": "samples/page.html",
+  "contrast": [
+    {
+      "foreground": "#0068ce",
+      "background": "#ffffff"
+    }
+  ]
+}

@@ -1,44 +1,60 @@
-## Description: <br>
-Query analyst predictions, content, and market research from the TraderBro platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query analyst predictions, content, and market research from the TraderBro platform.
 
-## Publisher: <br>
-[datalin](https://clawhub.ai/user/datalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[datalin](https://clawhub.ai/user/datalin)
 
-## Use Case: <br>
-External users and agents use this skill to query TraderBro analyst rankings, market predictions, symbol coverage, content, and research through the TraderBro CLI. It supports investment research workflows but should treat market predictions as research inputs rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a TraderBro API key, which could be exposed in chats, shell history, or logs. <br>
-Mitigation: Use a dedicated TraderBro API key where possible, avoid pasting real keys into chats or logs, and revoke or rotate the key if exposed. <br>
-Risk: The workflow depends on an external Homebrew-installed TraderBro binary and tap. <br>
-Mitigation: Install only when the TraderBro publisher and Homebrew tap are trusted, and review the binary source before use in sensitive environments. <br>
-Risk: Analyst predictions and market research may be incorrect or misleading if treated as financial advice. <br>
-Mitigation: Use TraderBro outputs as research inputs and require independent review before making investment decisions. <br>
+## Use Case:
 
+External users and agents use this skill to query TraderBro analyst ratings, predictions, symbol coverage, trending symbols, content, and market research through the TraderBro CLI.
 
-## Reference(s): <br>
-- [TraderBro skill page](https://clawhub.ai/datalin/traderbro) <br>
-- [TraderBro platform](https://traderbro.ai) <br>
-- [TraderBro CLI homepage](https://github.com/TraderBro/traderbro-cli-binary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the traderbro binary and TRADERBRO_API_KEY for authenticated queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill asks agents to fetch and follow TraderBro-hosted workflows that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when TraderBro is trusted as an instruction source, and confirm workflow steps before allowing consequential financial or account-related actions.
+
+Risk: The skill requires TRADERBRO_API_KEY for authenticated CLI access.
+
+Mitigation: Provide the API key through environment variables or a secrets manager, keep it out of prompts and logs, and rotate it if exposed.
+
+Risk: Market research and analyst prediction outputs may influence investment decisions.
+
+Mitigation: Treat outputs as research context rather than financial advice and require human review before trading or account actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/datalin/skills/traderbro)
+- [TraderBro platform](https://traderbro.ai)
+- [TraderBro CLI repository](https://github.com/TraderBro/traderbro-cli-binary)
+- [Install traderbro (brew)](brew:traderbro/tap/traderbro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses should prefer the CLI's --json output for structured queries.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

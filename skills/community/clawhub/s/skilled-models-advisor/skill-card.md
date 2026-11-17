@@ -1,40 +1,53 @@
-## Description: <br>
-Consult the tool-models agent for model selection, cost estimation, capability queries, and provider comparisons when choosing models, comparing costs, checking availability, or answering which model to use for a task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consult the tool-models agent for model selection, cost estimation, capability queries, and provider comparisons.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanford](https://clawhub.ai/user/seanford)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query current model availability, capabilities, provider limits, cost estimates, and task-fit recommendations before selecting or configuring an AI model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model-selection prompts and workload estimates may include sensitive business context. <br>
-Mitigation: Ask only for the model-selection details needed to answer the task, and remove unnecessary confidential customer, product, pricing, or volume details before querying the model advisor. <br>
-Risk: Model prices, availability, context windows, and provider limits change over time. <br>
-Mitigation: Query the model database or tool-models sub-agent at decision time instead of relying on static model knowledge. <br>
+## Use Case:
 
+Developers and agent operators use this skill to query current model availability, capabilities, provider limits, and costs before selecting models or changing model configurations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/seanford/skilled-models-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JavaScript and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are based on the queried model database rather than static model knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Model recommendations may become outdated or reflect only currently accessible provider data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Query the tool-models helper at decision time and review recommendations before applying production or cost-sensitive changes.
+
+Risk: Provider limits and pricing can affect cost estimates and deployment fit.
+
+Mitigation: Compare provider-specific limits and costs before committing to high-volume or recurring workloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanford/skills/skilled-models-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with command examples and structured model comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations depend on current model database access and provider data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

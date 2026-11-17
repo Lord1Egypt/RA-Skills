@@ -1,43 +1,59 @@
-## Description: <br>
-Bumble session, auth, matches, messages, sending, and profile-photo export via Remote Browser Service for an operator's own Bumble web account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates an operator-owned Bumble web session through a Remote Browser Service to resume sessions, authenticate with SMS, inspect matches and messages, send permitted messages, unmatch, and export visible profile photos.
 
-## Publisher: <br>
-[vasyaod](https://clawhub.ai/user/vasyaod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vasyaod](https://clawhub.ai/user/vasyaod)
 
-## Use Case: <br>
-External users and developers use this skill to operate their own Bumble web session through a trusted Remote Browser Service, including inspecting state, listing matches, reading or sending permitted messages, and exporting profile photos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform sensitive Bumble account actions, including auth, sending messages, unmatching, location changes, debugging, and photo export. <br>
-Mitigation: Use it only with the operator's own Bumble account and explicitly approve each sensitive action before execution. <br>
-Risk: The Remote Browser Service can observe Bumble activity and may store or access the active session. <br>
-Mitigation: Use only a trusted Remote Browser Service and clear or log out of the stored session when finished. <br>
-Risk: The skill automatically changes the account location to San Francisco after session start. <br>
-Mitigation: Confirm that the location change is acceptable before running session actions. <br>
+## Use Case:
 
+External users and agent operators use this skill to manage their own Bumble web account through a remote browser, including session recovery, match review, message handling, and profile-photo export for content already visible to the account.
 
-## Reference(s): <br>
-- [ClawHub Bumble skill page](https://clawhub.ai/vasyaod/bumble) <br>
-- [Bumble web app](https://bumble.com/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; command outputs are JSON or downloaded image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires operator-supplied phone/SMS inputs and trusted Remote Browser Service access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can operate a logged-in Bumble account through the configured Remote Browser Service, including reading messages, sending messages, changing geolocation, exporting photos, and unmatching people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only with a trusted Remote Browser Service endpoint, avoid overriding RBS_BASE_URL unless the endpoint is trusted and uses HTTPS, and confirm sensitive account actions before execution.
+
+Risk: Debug, content, snapshot, message, screenshot, and photo-export commands can expose personal profile data and private messages.
+
+Mitigation: Do not run inspection commands in shared logs, store exported photos only in intended directories, and treat exported files and command output as sensitive personal data.
+
+Risk: Location changes and unmatching are user-visible or potentially irreversible account actions.
+
+Mitigation: Use the skill only for the operator's own account, review the target match and action before execution, and avoid unattended use for destructive actions.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Security & Scope](artifact/SECURITY.md)
+- [Bumble Web App](https://bumble.com/app)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON command responses, and downloaded photo files when export is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require operator-supplied phone number, SMS code, match name, message text, and output directory.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

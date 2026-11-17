@@ -1,43 +1,54 @@
-## Description: <br>
-Guides Chinese-speaking users through generating steering-gear CAD drawings by collecting design parameters, calling the JXT mechanical parts workflow, and tracking guest production-sheet results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users in Chinese through selecting a steering gear product, collecting design parameters, calculating values, and creating a jixietools.com guest drawing order for CAD output.
 
-## Publisher: <br>
-[realsanyu](https://clawhub.ai/user/realsanyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realsanyu](https://clawhub.ai/user/realsanyu)
 
-## Use Case: <br>
-External users and mechanical-design agents use this skill to collect steering-gear parameters, review calculated values, create a guest production sheet, and monitor generated CAD output from jixietools.com. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends steering-gear design parameters to jixietools.com. <br>
-Mitigation: Proceed only when sharing those design parameters with jixietools.com is acceptable. <br>
-Risk: Guest production-sheet URLs and codes can expose production progress and output links to anyone who has them. <br>
-Mitigation: Treat guest codes and sheet URLs as private links and avoid sharing them publicly. <br>
-Risk: Production-sheet creation depends on the user's reviewed calculated parameters. <br>
-Mitigation: Review calculated input, debug, coefficient, and output parameters before creating the production sheet. <br>
+## Use Case:
 
+External users and engineering teams use this skill to generate steering gear CAD drawing requests by choosing a product, entering parameters step by step, reviewing calculated results, and tracking drawing generation through jixietools.com.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/realsanyu/steering-gear) <br>
-- [JXT mechanical parts API](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Chinese Markdown with tables and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user prompts, parameter review tables, API request commands, guest production-sheet links, and status updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The workflow sends steering-gear design inputs to jixietools.com and creates a guest production sheet there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using confidential or sensitive engineering parameters unless sharing them with that service is acceptable.
+
+Risk: The workflow polls a third-party guest status endpoint and returns generated drawing links.
+
+Mitigation: Review service links and generated drawing outputs before relying on them for engineering, purchasing, or manufacturing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realsanyu/skills/steering-gear)
+- [jixietools.com API base](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API calls]
+
+**Output Format:** [Chinese Markdown with tables, inline shell commands, JSON examples, progress updates, and service links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides one parameter at a time, preserves calculation filenames for incremental updates, and polls the guest production sheet status every 5 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

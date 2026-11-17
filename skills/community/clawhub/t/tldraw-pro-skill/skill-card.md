@@ -1,45 +1,56 @@
-## Description: <br>
-Use when user requests diagrams, flowcharts, architecture charts, or visualizations, and generate .tldr JSON files that can be exported to PNG or SVG locally with @kitschpatrol/tldraw-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates tldraw whiteboard diagrams as .tldr JSON files and exports them to PNG or SVG using @kitschpatrol/tldraw-cli.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to turn natural-language requests into whiteboard-style architecture diagrams, flowcharts, sequence sketches, ML diagrams, ERDs, and UML-style class diagrams. It is suited for explainers, internal documentation, and iterative diagram drafting where .tldr source plus PNG or SVG exports are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently self-update from Git once every 24 hours. <br>
-Mitigation: Disable or remove the silent git pull step for controlled environments, and pin reviewed skill versions before deployment. <br>
-Risk: The skill may install a global npm CLI dependency if tldraw is missing. <br>
-Mitigation: Install @kitschpatrol/tldraw-cli manually from a trusted source and use normal dependency review before enabling the skill. <br>
-Risk: Vision self-checks may process confidential architecture or business diagrams. <br>
-Mitigation: Skip vision self-checks or use an approved local/private vision model for sensitive diagrams. <br>
+## Use Case:
 
+Developers, technical writers, and agent users use this skill to turn architecture, flowchart, sequence, ML, ERD, and UML requests into editable whiteboard-style diagrams with exported image files.
 
-## Reference(s): <br>
-- [Tldraw Skill on ClawHub](https://clawhub.ai/agents365-ai/tldraw-pro-skill) <br>
-- [Project homepage](https://github.com/Agents365-ai/tldraw-skill) <br>
-- [tldraw editor](https://tldraw.com) <br>
-- [Agent Skills format](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON file content and shell commands; generated artifacts are .tldr JSON plus PNG or SVG exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and tldraw CLI on PATH; optional vision self-check reads exported PNGs when a vision-capable model is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can silently self-update and can install a global npm tool without explicit user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove the auto-update step, require explicit approval for git pulls, and install @kitschpatrol/tldraw-cli manually or as a pinned local dependency.
+
+Risk: Diagram outputs may be written outside the intended workspace when a user-supplied path is accepted.
+
+Mitigation: Keep exports in a known workspace directory and review output paths before running file creation or export commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agents365-ai/skills/tldraw-pro-skill)
+- [tldraw](https://tldraw.com)
+- [Agent Skills format](https://agentskills.io)
+- [Skill homepage](https://github.com/Agents365-ai/tldraw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [.tldr JSON files, PNG/SVG exports, and Markdown progress or file-path summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the tldraw CLI; vision-based self-check is skipped when the active model lacks image input.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

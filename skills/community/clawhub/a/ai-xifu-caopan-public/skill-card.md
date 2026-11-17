@@ -1,44 +1,66 @@
-## Description: <br>
-Ai Xifu Caopan Public helps agents generate structured educational trading-analysis plans for stocks, futures, funds, and market-risk signals. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Generates structured educational finance and market-analysis trading-plan reports for stocks, futures, funds, and market risk signals.
 
-## Publisher: <br>
-[xgs-520](https://clawhub.ai/user/xgs-520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xgs-520](https://clawhub.ai/user/xgs-520)
 
-## Use Case: <br>
-External users use this skill to draft educational trading-analysis plans, market-risk summaries, and watchlist-oriented research for stocks, futures, funds, and macro market scenarios. It may fetch market data with user-provided credentials and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; users are responsible for complying with local financial-services and trading regulations. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated finance and trading analysis can be incorrect, incomplete, or misleading. <br>
-Mitigation: Treat all output as unverified educational material, verify market data independently, and consult a licensed financial professional before making trading decisions. <br>
-Risk: The skill may use configured market-data credentials and execute local helper scripts. <br>
-Mitigation: Review and restrict environment variables before running the skill, use only trusted market-data credentials, and run helper scripts in a controlled workspace. <br>
-Risk: The skill can create local DOCX, watchlist, and tracking files. <br>
-Mitigation: Confirm file writes before allowing them, review generated files before sharing, and clear watchlist or tracker data when it is no longer needed. <br>
+## Use Case:
 
+Finance-focused users can ask an agent to prepare educational market-analysis and trading-plan reports for stocks, futures, funds, and related economic context. Outputs rely on public or user-configured market data and should be treated as unverified educational material, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xgs-520/ai-xifu-caopan-public) <br>
-- [Tushare API](https://tushare.pro) <br>
-- [Guosen Securities](https://www.guosen.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, console text or JSON from helper scripts, and generated DOCX trading-plan files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided market-data credentials for some data sources and may create local DOCX, watchlist, and tracker files after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.3.7 (source: server release evidence, skill.json, package.json, and SKILL.md changelog) <br>
+Risk: Generated trading plans may be mistaken for financial advice or may rely on stale financial defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat every generated plan as educational material, independently verify data and assumptions, and consult qualified financial professionals before making trading decisions.
+
+Risk: Subprocess-based market-data calls can expose environment secrets to another skill.
+
+Mitigation: Review and limit subprocess environments before installation, and avoid running the skill where valuable credentials are available.
+
+Risk: The skill can write generated reports and local watchlist or tracking files.
+
+Mitigation: Require explicit user confirmation for saves, sends, watchlist updates, and tracking behavior; run the skill only in workspaces where these writes are expected.
+
+Risk: Unsafe filename handling or automatic write behavior could create unexpected files.
+
+Mitigation: Review filename containment and output paths before deployment, and keep automatic file persistence disabled unless the user confirms it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xgs-520/skills/ai-xifu-caopan-public)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+- [Usage instructions](artifact/instructions.md)
+- [Tushare](https://tushare.pro)
+- [Guosen Securities](https://www.guosen.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance and generated .docx trading-plan report files, with helper scripts returning text or JSON status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs require user verification of market data, API credentials, and any file save, send, or watchlist update.]
+
+## Skill Version(s):
+
+5.3.7 (source: server release metadata, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

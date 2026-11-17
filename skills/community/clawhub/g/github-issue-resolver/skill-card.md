@@ -1,44 +1,58 @@
-## Description: <br>
-GitHub Issue Resolver discovers, analyzes, and fixes open GitHub issues, then helps test and prepare draft pull requests under repository, branch, path, command, and approval guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous GitHub Issue Resolver Agent with guardrails for discovering, analyzing, and fixing open GitHub issues from issue selection through draft pull request preparation.
 
-## Publisher: <br>
-[Ashwinhegde19](https://clawhub.ai/user/Ashwinhegde19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ashwinhegde19](https://clawhub.ai/user/ashwinhegde19)
 
-## Use Case: <br>
-Developers and maintainers use this skill to discover, analyze, fix, test, and prepare draft pull requests for open GitHub issues while applying repository, branch, path, command, and approval guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through local git and an authenticated GitHub CLI account, including pushing branches and opening pull requests. <br>
-Mitigation: Use only with repositories you intend to grant access to, review the target repository and branch before each run, and keep push and pull request creation under explicit user approval. <br>
-Risk: The included pull request helper may push code and create pull requests without fully matching the documented approval and draft safeguards. <br>
-Mitigation: Review, fix, or disable scripts/create_pr.py before relying on it; require shell-free subprocess argument lists, input validation, explicit confirmation, and draft pull requests by default. <br>
-Risk: Audit logs may contain sensitive repository context or diffs from private codebases. <br>
-Mitigation: Review and clear local audit logs after use on private repositories, especially when logs may contain sensitive diffs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ashwinhegde19/github-issue-resolver) <br>
-- [Guardrails guide](references/guardrails-guide.md) <br>
-- [Quick reference](references/quick-reference.md) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
+## Use Case:
 
+Developers and engineers use this skill to discover open GitHub issues, analyze issue context, plan fixes, make scoped code changes, run tests, and prepare draft pull requests for review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON from helper scripts, code changes, commits, and draft pull request links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a one-issue-at-a-time workflow with approval gates for code changes, commits, pushes, pull request creation, dependency installation, and dangerous commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intended to fix GitHub issues, but the server security summary says its safety wrappers are under-enforced.
+
+Mitigation: Use only after repo, branch, path, command, and approval checks are enforced at execution time.
+
+Risk: The server security guidance warns that some scripts can run unsafe shell commands while using GitHub credentials.
+
+Mitigation: Run it only in a disposable checkout with a tightly scoped GitHub account or token, and do not grant private repository or broad local file access.
+
+Risk: PR creation and repository mutation can affect upstream projects if approvals are bypassed.
+
+Mitigation: Require verified user approval before code changes, commits, pushes, or draft PR creation.
+
+## Reference(s):
+
+- [Guardrails Guide](references/guardrails-guide.md)
+- [GitHub Issue Resolver Quick Reference](references/quick-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/ashwinhegde19/skills/github-issue-resolver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown status updates with inline shell commands, JSON issue analysis, code changes, test results, and draft PR content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local audit records and pull request metadata when the user approves those actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and guardrails.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-每日简报生成器自动收集新闻、热点和行业动态，生成结构化中文简报，适合每天早上获取当日信息摘要。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日简报生成器自动收集新闻、热点和行业动态，并生成结构化中文简报，适合每天早上获取当日信息摘要。
 
-## Publisher: <br>
-[wwfqls3w-cmd](https://clawhub.ai/user/wwfqls3w-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwfqls3w-cmd](https://clawhub.ai/user/wwfqls3w-cmd)
 
-## Use Case: <br>
-Chinese-speaking users and teams use this skill to collect current public news and developer information, classify it by topic, and produce a concise Markdown briefing for daily reading or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to public news and developer sites when a briefing is requested. <br>
-Mitigation: Run it only in environments where those public network requests are acceptable. <br>
-Risk: Generated briefings can contain incomplete, stale, or misleading summaries from upstream sources. <br>
-Mitigation: Verify important items against original sources before using them for decisions. <br>
-Risk: The fetch script can save generated Markdown reports locally. <br>
-Mitigation: Review the output path and stored reports if local persistence is sensitive. <br>
+## Use Case:
 
+External users and teams use this skill to gather current news, technology, business, finance, and industry items into a concise Chinese Markdown briefing for personal review or team sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwfqls3w-cmd/cn-daily-briefing) <br>
-- [Skill homepage](https://clawhub.ai/skills/cn-daily-briefing) <br>
-- [Hacker News top stories API](https://hacker-news.firebaseio.com/v0/topstories.json) <br>
-- [36Kr RSS feed](https://36kr.com/feed) <br>
-- [V2EX hot feed](https://www.v2ex.com/feed/tab/hot.xml) <br>
-- [InfoQ Chinese feed](https://www.infoq.cn/feed) <br>
-- [GitHub Trending daily](https://github.com/trending?since=daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefing with categorized headlines, summaries, source links, and optional shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated Markdown reports locally when the bundled fetch script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: Fetched article text and links may contain inaccurate, misleading, or untrusted public web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated briefings as untrusted news data and verify important stories against the original source before relying on them.
+
+Risk: Remote article fields are not escaped or URL-validated before appearing in the generated briefing.
+
+Mitigation: Use caution when opening links from generated briefings and inspect unfamiliar URLs before clicking.
+
+Risk: Network source availability can affect briefing completeness and quality.
+
+Mitigation: Run the skill in an environment with access to the configured public sources and treat missing or sparse sections as incomplete coverage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwfqls3w-cmd/skills/cn-daily-briefing)
+- [ClawHub homepage metadata](https://clawhub.ai/skills/cn-daily-briefing)
+- [Hacker News API top stories](https://hacker-news.firebaseio.com/v0/topstories.json)
+- [36Kr RSS feed](https://36kr.com/feed)
+- [V2EX hot feed](https://www.v2ex.com/feed/tab/hot.xml)
+- [InfoQ China feed](https://www.infoq.cn/feed)
+- [GitHub Trending](https://github.com/trending?since=daily)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown briefing with source links and optional local Markdown file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch public web content and save generated briefings under the user's daily-briefings directory or a user-specified output path.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

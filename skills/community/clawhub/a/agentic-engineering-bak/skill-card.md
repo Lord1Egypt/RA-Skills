@@ -1,39 +1,49 @@
-## Description: <br>
-Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate as an agentic engineer using eval-first execution, decomposition, and cost-aware model routing.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure agent-led software work around completion criteria, decomposition, eval loops, model routing, review focus, and cost tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-led engineering work may receive broader repository, tool, or credential access than the task needs. <br>
-Mitigation: Scope repository, tool, and credential permissions to the specific work the agent is intended to perform. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure agent-led implementation work around completion criteria, task decomposition, eval-first execution, model routing, review focus, and cost discipline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/agentic-engineering-bak) <br>
-- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces process guidance for engineering agents; no executable code or credentials are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users could treat workflow guidance as permission for broad autonomous code or environment changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as planning and review guidance, and require normal human approval, evals, regression checks, and security review before deploying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/agentic-engineering-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides process guidance only; it does not require code execution, data access, persistence, or external tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

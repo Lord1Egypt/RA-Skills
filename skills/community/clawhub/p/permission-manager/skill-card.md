@@ -1,40 +1,59 @@
-## Description: <br>
-审批权限管理技能 - 快速切换不同审批模式（白名单/完整权限/免审批） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Permission Manager helps OpenClaw users view and switch command approval modes, including allowlist, full, no-approval, and strict settings.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to inspect and switch command approval modes, including allowlist, full access, no-approval, and strict approval settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently weaken or disable OpenClaw command approvals. <br>
-Mitigation: Install only when approval-policy management is intended, prefer default or strict mode, and avoid no-approval mode except temporarily in an isolated trusted environment. <br>
-Risk: Configuration changes affect ~/.openclaw/openclaw.json and may require a Gateway restart to fully apply. <br>
-Mitigation: Back up or manually verify the configuration file before use, then confirm the active approval settings after changes. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inspect and change command approval policy for daily work, development, trusted demonstrations, or stricter operating environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jirboy/permission-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can report current approval mode, propose configuration changes, and provide success or failure messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can persistently disable OpenClaw command approval prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit two-step confirmation before switching to full or no-approval mode, and verify ~/.openclaw/openclaw.json after changes.
+
+Risk: Broad natural-language triggers may change approval policy unintentionally.
+
+Mitigation: Use narrow trigger phrases and require the agent to restate the exact target mode before applying configuration changes.
+
+Risk: Less restrictive approval settings can remain active beyond the immediate task.
+
+Mitigation: Prompt users to restore allowlist or strict mode after temporary use and confirm the active setting with the view command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jirboy/skills/permission-manager)
+- [README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with command examples and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify persistent OpenClaw approval configuration when its helper script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter, package.json, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

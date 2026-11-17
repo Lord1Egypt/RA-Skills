@@ -1,6 +1,6 @@
 ---
 name: gladia-audio-intelligence
-description: "Configure and use Gladia audio intelligence features: speaker diarization, translation, sentiment analysis, named entity recognition (NER), PII redaction, subtitles (SRT/VTT), summarization, chapterization, custom vocabulary, and audio-to-LLM. Use when the user asks about any audio intelligence feature, enabling features on pre-recorded or live transcription, understanding which features are available in each mode, or combining multiple features. Always prefer the official SDK; fall back to raw REST only when SDK cannot satisfy the requirement."
+description: "Configure and use Gladia audio intelligence features: speaker diarization, translation, sentiment analysis, named entity recognition (NER), PII redaction, subtitles (SRT/VTT), summarization, custom vocabulary, and audio-to-LLM. Use when the user asks about any audio intelligence feature, enabling features on pre-recorded or live transcription, understanding which features are available in each mode, or combining multiple features. Always prefer the official SDK; fall back to raw REST only when SDK cannot satisfy the requirement."
 license: MIT
 ---
 
@@ -32,20 +32,19 @@ Consult these resources as needed:
 
 ## Feature Availability
 
-| Feature                  | Pre-recorded | Live | Config key                      |
-| ------------------------ | :----------: | :--: | ------------------------------- |
-| Speaker diarization      |     Yes      |  No  | `diarization`                   |
-| Translation              |     Yes      | Yes  | `translation`                   |
-| Sentiment analysis       |     Yes      | Yes  | `sentiment_analysis`            |
-| Named entity recognition |     Yes      | Yes  | `named_entity_recognition`      |
-| Subtitles (SRT/VTT)      |     Yes      |  No  | `subtitles`                     |
-| Custom vocabulary        |     Yes      | Yes  | `custom_vocabulary`             |
-| PII redaction            |     Yes      |  No  | `pii_redaction`                 |
-| Chapterization           |     Yes      | Yes  | `chapterization` (post-process) |
-| Summarization            |     Yes      | Yes  | `summarization` (post-process)  |
-| Audio-to-LLM             |     Yes      |  No  | `audio_to_llm`                  |
-| Custom spelling          |     Yes      | Yes  | `custom_spelling`               |
-| Custom metadata          |     Yes      | Yes  | `custom_metadata`               |
+| Feature                  | Pre-recorded | Live | Config key                     |
+| ------------------------ | :----------: | :--: | ------------------------------ |
+| Speaker diarization      |     Yes      |  No  | `diarization`                  |
+| Translation              |     Yes      | Yes  | `translation`                  |
+| Sentiment analysis       |     Yes      | Yes  | `sentiment_analysis`           |
+| Named entity recognition |     Yes      | Yes  | `named_entity_recognition`     |
+| Subtitles (SRT/VTT)      |     Yes      |  No  | `subtitles`                    |
+| Custom vocabulary        |     Yes      | Yes  | `custom_vocabulary`            |
+| PII redaction            |     Yes      |  No  | `pii_redaction`                |
+| Summarization            |     Yes      | Yes  | `summarization` (post-process) |
+| Audio-to-LLM             |     Yes      |  No  | `audio_to_llm`                 |
+| Custom spelling          |     Yes      | Yes  | `custom_spelling`              |
+| Custom metadata          |     Yes      | Yes  | `custom_metadata`              |
 
 Live features split into two groups: **real-time** (results stream during the session) and **post-processing** (results arrive after `stopRecording()`). See [./references/live-audio-intelligence.md](./references/live-audio-intelligence.md) for details.
 
@@ -150,6 +149,7 @@ For full per-feature config options and response structures, see:
 - **`code_switching: true` with empty `languages`**: triggers evaluation across 100+ languages and causes frequent misdetections. Always provide 3-5 expected languages.
 - **Custom vocabulary `intensity` above 0.6**: values over 0.6 cause false positives where unrelated words get replaced. Keep at 0.4-0.6 and use `pronunciations` for better results.
 - **Expecting diarization, PII redaction, subtitles, or audio-to-LLM in live mode**: these four features are pre-recorded only.
+- **Enabling `chapterization`**: the feature is discontinued. The API still accepts the flag but ignores it and returns no chapters. For chapter-style output on pre-recorded audio, use `audio_to_llm` with a prompt that asks for chapters.
 - **Enabling many features simultaneously without considering cost/latency**: each enabled feature adds processing time. Enable only what you need; combine `diarization + summarization + translation` only when all are required.
 
 For the full gotcha list, see [gladia-troubleshooting](../gladia-troubleshooting/SKILL.md).
@@ -164,6 +164,5 @@ For the full gotcha list, see [gladia-troubleshooting](../gladia-troubleshooting
 - [PII redaction](https://docs.gladia.io/chapters/audio-intelligence/pii-redaction)
 - [Custom vocabulary](https://docs.gladia.io/chapters/audio-intelligence/custom-vocabulary)
 - [Summarization](https://docs.gladia.io/chapters/audio-intelligence/summarization)
-- [Chapterization](https://docs.gladia.io/chapters/audio-intelligence/chapterization)
 - [Audio-to-LLM](https://docs.gladia.io/chapters/audio-intelligence/audio-to-llm)
 - [Live audio intelligence](https://docs.gladia.io/chapters/live-stt/audio-intelligence)

@@ -1,47 +1,62 @@
-## Description: <br>
-Searches Baidu Scholar and arXiv for academic papers, sorts results, summarizes core contributions and innovations, and downloads PDFs for research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键搜索学术论文，自动下载PDF，智能总结核心工作与创新点。支持百度学术+arXiv，按引用量排序，科研必备工具。
 
-## Publisher: <br>
-[weiliuah](https://clawhub.ai/user/weiliuah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiliuah](https://clawhub.ai/user/weiliuah)
 
-## Use Case: <br>
-Researchers, students, and agent operators use this skill to find papers on Baidu Scholar or arXiv, review citation-oriented search results, summarize paper contributions, and save PDFs into organized local folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes academic-site network requests and downloads remote PDFs. <br>
-Mitigation: Use it only in environments where outbound academic search and PDF downloads are permitted. <br>
-Risk: The skill runs Poppler PDF utilities such as pdftotext and pdfimages. <br>
-Mitigation: Install patched system packages and process PDFs in a contained workspace when handling untrusted documents. <br>
-Risk: The skill automatically saves downloaded PDFs under Desktop paper folders. <br>
-Mitigation: Run searches from an expected user account and review the output folder to avoid unwanted files on the main Desktop. <br>
+## Use Case:
 
+External researchers, students, and developers use this skill to search Baidu Scholar and arXiv, rank papers by citation or relevance signals, summarize core contributions and novelty, and download PDFs into organized local folders.
 
-## Reference(s): <br>
-- [Baidu Scholar](https://xueshu.baidu.com) <br>
-- [arXiv API](https://export.arxiv.org/api/query) <br>
-- [arXiv](https://arxiv.org) <br>
-- [Semantic Scholar](https://www.semanticscholar.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/weiliuah/baidu-scholar-helper) <br>
-- [Publisher Profile](https://clawhub.ai/user/weiliuah) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown-style research report with search results, summaries, links, download status, and local PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create folders and save downloaded PDFs under ~/Desktop/papers/<query>/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and frontmatter) <br>
+Risk: The skill downloads remote PDF files to the user's Desktop papers folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when automatic PDF downloads are acceptable, and validate downloaded PDFs before opening files from unfamiliar sources.
+
+Risk: The security evidence says the skill may contact Semantic Scholar or PDF hosts that are broader than the formal manifest clearly covers.
+
+Mitigation: Review network permissions before deployment and run it only in environments where outbound access to academic sites and PDF hosts is permitted.
+
+Risk: Installation guidance includes privileged package-manager commands for Poppler utilities.
+
+Mitigation: Review system install commands before execution and install Poppler from trusted operating-system package sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weiliuah/skills/baidu-scholar-helper)
+- [Baidu Scholar](https://xueshu.baidu.com)
+- [arXiv API endpoint](https://export.arxiv.org/api/query)
+- [Semantic Scholar](https://www.semanticscholar.org)
+- [Google Scholar](https://scholar.google.com)
+- [Citation feature documentation](docs/CITATION_FEATURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown search reports with inline command examples and downloaded PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write PDFs under ~/Desktop/papers/ and temporary extracted figure assets under /tmp/ when invoked.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

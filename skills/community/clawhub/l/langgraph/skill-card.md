@@ -1,41 +1,57 @@
-## Description: <br>
-LangGraph Tutor guides agents in architecting, building, and deploying stateful LangGraph pipelines with typed state, graph nodes, conditional routing, human-in-the-loop checkpoints, persistence, and streaming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents in designing and implementing LangGraph pipelines with state schemas, graph nodes, conditional routing, human-in-the-loop workflows, persistence, and streaming.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and agent builders use this skill to guide an AI agent through LangGraph pipeline architecture, implementation patterns, and troubleshooting for stateful graph-based workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying generated LangGraph patterns to agents with sensitive tools or database-backed checkpoints can create approval, isolation, or secret-handling risks. <br>
-Mitigation: Require approval before sensitive tool execution, isolate memory by user or task, and avoid storing secrets in graph state. <br>
-Risk: Instructional code and architecture guidance may need adaptation before production use. <br>
-Mitigation: Review generated graph structure, routing exit conditions, state reducers, and persistence configuration before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to have an agent produce LangGraph architecture guidance, code patterns, and troubleshooting advice for stateful agent pipelines.
 
-## Reference(s): <br>
-- [LangGraph Tutor on ClawHub](https://clawhub.ai/DuanC-Chao/langgraph) <br>
-- [DuanC-Chao publisher profile](https://clawhub.ai/user/DuanC-Chao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; generated guidance should be reviewed before applying to production agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated LangGraph designs may include sensitive ToolNode actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose scoped tools and require human approval before sensitive ToolNode actions are executed.
+
+Risk: Persistent checkpointers or databases may retain conversation state.
+
+Mitigation: Be deliberate about what state is stored, and limit persisted data to what the application requires.
+
+Risk: Documentation-only coding guidance can be misapplied when adapted into a real agent pipeline.
+
+Mitigation: Review generated architecture, code, routing logic, and persistence choices before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duanc-chao/skills/langgraph)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable integration is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

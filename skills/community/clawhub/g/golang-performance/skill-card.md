@@ -1,47 +1,66 @@
-## Description: <br>
-Golang Performance helps agents diagnose Go performance bottlenecks and choose optimization patterns for allocations, CPU efficiency, memory layout, garbage collection, pooling, caching, and hot paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang performance optimization patterns and methodology - if X bottleneck, then apply Y. Covers allocation reduction, CPU efficiency, memory layout, GC tuning, pooling, caching, and hot-path optimization.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when profiling or benchmarks identify a Go performance bottleneck, or when reviewing Go code for likely allocation, CPU, memory, runtime, caching, I/O, or observability improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release as suspicious and advises review before enabling it outside a trusted maintainer environment. <br>
-Mitigation: Review the skill and allowed tools before installation, enable it only in trusted workspaces, and use stricter sandboxing or reduced tool authority where available. <br>
-Risk: Performance recommendations or code edits can degrade correctness, shift bottlenecks, or produce misleading gains if applied without measurement. <br>
-Mitigation: Require profiling, tests, baseline benchmarks, one change at a time, and benchstat comparison before relying on any proposed optimization. <br>
+## Use Case:
 
+Developers and engineers use this skill to review and optimize Go services after profiling or benchmarking identifies a performance bottleneck. It guides allocation reduction, CPU efficiency, runtime tuning, caching, I/O optimization, observability, and benchmark comparison workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-performance) <br>
-- [Project homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Caching Patterns](references/caching.md) <br>
-- [CPU Optimization](references/cpu.md) <br>
-- [I/O & Networking Optimization](references/io-networking.md) <br>
-- [Memory Optimization](references/memory.md) <br>
-- [Production Observability for Performance](references/observability.md) <br>
-- [Runtime Tuning](references/runtime.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Go code examples, shell commands, and optional YAML configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations should be validated with profiling, tests, benchmarks, and benchstat comparisons before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill requests authority to read and edit Go code, run Go performance tools, and use outbound network capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in repositories where those actions are acceptable, use sandboxing for untrusted code, and review proposed code or command changes before applying them.
+
+Risk: Profiling and production build examples can expose sensitive runtime data or affect production systems if used without controls.
+
+Mitigation: Do not expose pprof publicly, avoid production SSH build workflows outside controlled CI or staging environments, and follow the release security guidance.
+
+Risk: Installing benchstat with an unpinned latest version can change tool behavior over time.
+
+Mitigation: Pin benchstat to a reviewed version when reproducibility or supply-chain control is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/golang-performance)
+- [Publisher Profile](https://clawhub.ai/user/samber)
+- [Project Homepage](https://github.com/samber/cc-skills-golang)
+- [Caching Patterns](references/caching.md)
+- [CPU Optimization](references/cpu.md)
+- [I/O & Networking Optimization](references/io-networking.md)
+- [Memory Optimization](references/memory.md)
+- [Production Observability for Performance](references/observability.md)
+- [Runtime Tuning](references/runtime.md)
+- [Example Prometheus Alerts](assets/prometheus-alerts.yml)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Go code changes, benchmark commands, profiler commands, configuration changes, and review findings.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

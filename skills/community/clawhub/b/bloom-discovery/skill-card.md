@@ -1,46 +1,65 @@
-## Description: <br>
-Bloom Discovery analyzes local OpenClaw context to generate a MentalOS profile, match use cases and skills, verify configuration, and support SBT claims with opt-in usage metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bloom Discovery analyzes a user's MentalOS and local OpenClaw context to match use cases, verify installed skills, support SBT proof claiming, and report opt-in usage metrics.
 
-## Publisher: <br>
-[bloomprotocol](https://clawhub.ai/user/bloomprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bloomprotocol](https://clawhub.ai/user/bloomprotocol)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to turn local conversation history, USER.md context, and installed-skill information into a builder profile, personalized use case matches, configuration checks, and proof-claiming guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads recent OpenClaw session history and USER.md, which can include sensitive personal or work context. <br>
-Mitigation: Install only when this local access is acceptable, review the bundled session reader and wrapper behavior, and run it in a workspace whose session history is appropriate for profiling. <br>
-Risk: The skill sends derived profile and recommendation data to Bloom's API after local analysis. <br>
-Mitigation: Review the security guidance and privacy wording before use, and confirm that opt-in controls and transmitted fields match the user's expectations. <br>
-Risk: The scanner summary calls out under-disclosed or broad network, install, and credential-adjacent behavior. <br>
-Mitigation: Review the npm install path, wrapper, token/admin/test scripts, and prefer a pinned bundled release before deployment. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to generate a local personality and intent profile, discover matching skill-based use cases, verify their installed skill setup, and claim portable proof of verified configuration.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bloomprotocol/bloom-discovery) <br>
-- [Bloom Protocol publisher profile](https://clawhub.ai/user/bloomprotocol) <br>
-- [Bloom Protocol homepage](https://bloomprotocol.ai) <br>
-- [Architecture Diagram: Conversation-Driven Recommendations](docs/ARCHITECTURE-DIAGRAM.md) <br>
-- [Skills Pipeline - Agent Instructions](docs/agent-skills-pipeline-instructions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or text response with profile details, use case matches, verification status, recommendations, and a dashboard URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also write local discovery or identity state files when invoked by the skill runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: server release metadata; artifact frontmatter and package.json report 4.0.1) <br>
+Risk: The skill reads sensitive local conversation and USER.md profile data for local analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested local file and conversation permissions before installation, and run it only in environments where this data access is acceptable.
+
+Risk: The security summary reports that derived identity data uploaded to Bloom may be broader than the privacy text suggests.
+
+Mitigation: Inspect the outbound identity payload before upload and prefer a release that clearly previews or documents all fields sent to Bloom.
+
+Risk: The security guidance notes an invocation path that can download and run remote code.
+
+Mitigation: Avoid first-run wrapper execution in shared environments unless remote code is pinned to an immutable commit and reviewed before execution.
+
+Risk: Installation and wrapper setup expose users to npm and GitHub supply-chain risk, including vulnerable dependencies noted by the security guidance.
+
+Mitigation: Install from a reviewed lockfile, audit dependencies, and update to a version that fixes known vulnerable packages.
+
+## Reference(s):
+
+- [Bloom Discovery on ClawHub](https://clawhub.ai/bloomprotocol/skills/bloom-discovery)
+- [Bloom Protocol Publisher Profile](https://clawhub.ai/user/bloomprotocol)
+- [Bloom Protocol Homepage](https://bloomprotocol.ai)
+- [Architecture Diagram](artifact/docs/ARCHITECTURE-DIAGRAM.md)
+- [Skills Pipeline Agent Instructions](artifact/docs/agent-skills-pipeline-instructions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured text with local analysis results, matched use cases, verification status, recommendations, and dashboard links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personality type, MentalOS spectrum scores, generated tagline and description, interest categories, use case match results, SBT claim guidance, and opt-in usage metrics status.]
+
+## Skill Version(s):
+
+4.0.2 (source: server release evidence; artifact frontmatter and package metadata show 4.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

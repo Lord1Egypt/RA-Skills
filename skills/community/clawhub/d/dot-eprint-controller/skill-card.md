@@ -1,43 +1,58 @@
-## Description: <br>
-Controls Dot e-ink display devices by checking status, listing content, pushing text or images, and switching displayed content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Dot. e-paper devices by checking status, listing content, pushing text or images, and switching the displayed content.
 
-## Publisher: <br>
-[johnqxu](https://clawhub.ai/user/johnqxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnqxu](https://clawhub.ai/user/johnqxu)
 
-## Use Case: <br>
-External Dot e-ink display users use this skill to check device status, manage display content, push text or processed images, and advance to the next content item through the Dot API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses DOT_API_KEY to query and update a user's Dot display. <br>
-Mitigation: Treat DOT_API_KEY as a credential, keep it out of shared logs or prompts, and install the skill only when device control is intended. <br>
-Risk: Text, images, and links sent through the Dot API may be displayed on the device or transmitted to the Dot service. <br>
-Mitigation: Confirm the intended content before asking the agent to push or switch display items, and avoid private content that should not be displayed or transmitted. <br>
-Risk: Image pushes depend on local image conversion before the API request. <br>
-Mitigation: Use trusted local image files and a trusted ImageMagick installation when preparing images for the display. <br>
+## Use Case:
 
+Developers and device operators use this skill to manage a Dot. e-paper display through the Dot. API, including status checks, text or image updates, content listing, and manual content switching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnqxu/dot-eprint-controller) <br>
-- [Dot API service](https://dot.mindreset.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DOT_API_KEY, DOT_DEVICE_ID, curl, and ImageMagick convert for image pushes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends the Dot API key and device content to dot.mindreset.tech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the user trusts that service with the API key and displayed content.
+
+Risk: Text, image, and next-content commands can immediately alter the e-paper display.
+
+Mitigation: Confirm the intended device ID and avoid sending sensitive text or images unless they are meant to appear on the device.
+
+Risk: Image pushes depend on local image preprocessing with ImageMagick convert.
+
+Mitigation: Verify ImageMagick is installed and inspect the selected image before uploading it to the device.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnqxu/skills/dot-eprint-controller)
+- [Dot. API service](https://dot.mindreset.tech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash commands and user-facing status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DOT_API_KEY and DOT_DEVICE_ID; image pushes require ImageMagick convert for local preprocessing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

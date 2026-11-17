@@ -1,40 +1,49 @@
-## Description: <br>
-Provides recommendation lists, route plans, and visit guidance for trending barbecue restaurants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides recommendation lists, routes, and planning guidance for popular barbecue restaurants.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users use this skill to find trending barbecue restaurants, compare practical filters such as city, budget, reservation availability, queue time, dietary needs, accessibility, and plan multi-stop routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restaurant hours, reservation rules, queue times, prices, and ratings may change after the recommendation is generated. <br>
-Mitigation: Verify current venue details before visiting or making plans. <br>
-Risk: Some venues may have photography limits, minimum spend requirements, or other on-site restrictions. <br>
-Mitigation: Check the venue's current rules and booking terms before arrival. <br>
+## Use Case:
 
+External users and agents use this skill to shortlist popular barbecue restaurants, compare practical visit details, and plan walking or transit-friendly food routes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/bbq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with restaurant lists, route suggestions, and visit notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include venue names, highlights, budget, ratings, wait times, addresses, hours, booking methods, delivery availability, popularity, best visit times, and cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Restaurant popularity, hours, prices, queue times, and reservation details may change after the skill produces a recommendation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current details against public sources or the venue before traveling, booking, or making purchase decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/bbq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include restaurant names, highlights, budget, rating, wait time, address, hours, reservation method, popularity, best visit time, route suggestions, and visit cautions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

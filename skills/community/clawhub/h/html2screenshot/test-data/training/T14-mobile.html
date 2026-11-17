@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T14 - 移动端 viewport</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, -apple-system, BlinkMacSystemFont, sans-serif; background: #fff; color: #333; }
+
+    /* Mobile-first styles */
+    .mobile-header { background: linear-gradient(135deg, #007AFF, #5856D6); color: white; padding: 40px 20px; text-align: center; }
+    .mobile-header h1 { font-size: 24px; margin-bottom: 8px; }
+    .mobile-header p { font-size: 14px; opacity: 0.9; }
+
+    .mobile-card { margin: 16px; background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid #eee; }
+    .mobile-card h2 { font-size: 18px; margin-bottom: 12px; color: #007AFF; }
+    .mobile-card p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 12px; }
+
+    .stat-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-label { font-size: 13px; color: #999; }
+    .stat-value { font-size: 16px; font-weight: 600; color: #333; font-family: 'SF Mono', monospace; }
+
+    .btn-group { display: flex; gap: 12px; margin-top: 16px; }
+    .btn { flex: 1; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; }
+    .btn-primary { background: #007AFF; color: white; }
+    .btn-secondary { background: #f0f0f0; color: #333; }
+
+    .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #eee; display: flex; justify-content: space-around; padding: 12px 0; }
+    .nav-item { text-align: center; font-size: 10px; color: #999; }
+    .nav-item.active { color: #007AFF; }
+    .nav-icon { font-size: 20px; display: block; margin-bottom: 2px; }
+
+    @media (min-width: 768px) {
+      body { max-width: 390px; margin: 0 auto; border: 1px solid #ddd; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-header">
+    <h1>📱 T14 - 移动端截图测试</h1>
+    <p>Viewport: 390×844 (iPhone 14)</p>
+  </div>
+
+  <div class="mobile-card">
+    <h2>👤 账户信息</h2>
+    <div class="stat-row"><span class="stat-label">用户名</span><span class="stat-value">Alaric</span></div>
+    <div class="stat-row"><span class="stat-label">会员等级</span><span class="stat-value">Gold</span></div>
+    <div class="stat-row"><span class="stat-label">积分</span><span class="stat-value">12,345</span></div>
+    <div class="stat-row"><span class="stat-label">最后登录</span><span class="stat-value">2026-06-02</span></div>
+  </div>
+
+  <div class="mobile-card">
+    <h2>📊 数据统计</h2>
+    <div class="stat-row"><span class="stat-label">今日浏览</span><span class="stat-value">156</span></div>
+    <div class="stat-row"><span class="stat-label">本周新增</span><span class="stat-value">+23</span></div>
+    <div class="stat-row"><span class="stat-label">累计访问</span><span class="stat-value">8,912</span></div>
+    <div class="stat-row"><span class="stat-label">转化率</span><span class="stat-value">3.2%</span></div>
+  </div>
+
+  <div class="mobile-card">
+    <h2>⚙️ 操作选项</h2>
+    <p>移动端布局测试：按钮应自适应屏幕宽度，文字应清晰可读。</p>
+    <div class="btn-group">
+      <div class="btn btn-primary">主要操作</div>
+      <div class="btn btn-secondary">次要操作</div>
+    </div>
+  </div>
+
+  <div class="mobile-card">
+    <h2>📝 内容区块</h2>
+    <p>这是移动端内容区块。测试长页面在 mobile viewport 下的滚动和截图效果。</p>
+    <p>如果底部导航栏出现在截图中，说明 fixed 元素在 mobile 模式下正常工作。</p>
+    <p>继续添加内容以测试页面高度...</p>
+    <p>更多内容...</p>
+    <p>更多内容...</p>
+    <p>更多内容...</p>
+    <p>✅ 如果能看到这个段落和底部导航栏，说明移动端长截图功能正常！</p>
+  </div>
+
+  <div class="nav-bar">
+    <div class="nav-item active"><span class="nav-icon">🏠</span>首页</div>
+    <div class="nav-item"><span class="nav-icon">🔍</span>搜索</div>
+    <div class="nav-item"><span class="nav-icon">📊</span>数据</div>
+    <div class="nav-item"><span class="nav-icon">👤</span>我的</div>
+  </div>
+</body>
+</html>

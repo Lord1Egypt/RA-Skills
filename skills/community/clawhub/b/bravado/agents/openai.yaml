@@ -1,0 +1,15 @@
+interface:
+  display_name: Bravado
+  short_description: Turn a project link into a choreographed motion film
+  default_prompt: Use Bravado to inspect this project URL, create a sourced seven-scene
+    story, and deliver a polished video with animated typography, diagrams, and synchronized
+    original sound.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

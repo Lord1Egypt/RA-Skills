@@ -1,0 +1,62 @@
+{
+  "skill_name": "huawei-cloud-vpn-connection-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "VPN ListVgws — VPN gateway list (read-only GET /v5/{project_id}/vpn-gateways)",
+      "command": "hcloud VPN ListVgws --cli-region={region}",
+      "expected": "JSON with vpn_gateways[] (or a VPN.0007 authorization envelope when the credential lacks vpn:vpnGateways:list)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "VPN ListVpnConnections — IPSec connection list (read-only GET /v5/{project_id}/vpn-connection)",
+      "command": "hcloud VPN ListVpnConnections --cli-region={region} --limit=10",
+      "expected": "JSON with vpn_connections[] + page_info (or a VPN.0007 authorization envelope)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "VPN ListVpnConnections filtered by gateway (server-side vgw_id)",
+      "command": "hcloud VPN ListVpnConnections --cli-region={region} --limit=10 --vgw_id=d0a1b2c3-4d5e-6f70-8192-a3b4c5d6e7f8",
+      "expected": "connections of that gateway, or an empty vpn_connections[]",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "own script help (offline)",
+      "command": "python3 $PWD/scripts/list_vpn_connections.py --help",
+      "expected": "argparse help with --table / --json / --name / --fuzzy / --gateway-id / --status / --limit",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "offline unit tests (mocked hcloud + fake SDK)",
+      "command": "python3 -m unittest discover -s tests",
+      "expected": "all offline unit tests pass",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "quality-CLI installer syntax check",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "exit 0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-07",
+      "name": "quality-CLI manual installer syntax check",
+      "command": "bash -n $PWD/scripts/install_cli.sh",
+      "expected": "exit 0",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

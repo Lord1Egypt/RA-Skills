@@ -1,44 +1,62 @@
-## Description: <br>
-Automatically syncs local and cloud OpenClaw configuration files through a private GitHub Gist with workspace detection, previews, backups, and token-based setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically syncs local and cloud OpenClaw configuration through a private GitHub Gist with token-based setup, previews, backups, and overwrite synchronization.
 
-## Publisher: <br>
-[JayShna](https://clawhub.ai/user/JayShna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayshna](https://clawhub.ai/user/jayshna)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to synchronize OpenClaw identity, user, tool, and skill files across local and cloud environments while previewing changes and keeping backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill syncs sensitive OpenClaw identity, user, tool, and skill files through a GitHub Gist. <br>
-Mitigation: Review diffs before pulling or pushing, and only pull from a Gist fully controlled by the user. <br>
-Risk: The GitHub token is stored locally with weak protection. <br>
-Mitigation: Use a minimally scoped gist-only GitHub token, protect or revoke the token if the machine is shared, and rotate it if exposure is suspected. <br>
-Risk: Pipe-to-shell installation can execute installer behavior before review. <br>
-Mitigation: Prefer manual installation and inspect the artifact files before running the installer. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure GitHub Gist-backed synchronization for OpenClaw workspace files across machines. It supports setup, push, pull, diff, status, and backup workflows with interactive confirmation.
 
-## Reference(s): <br>
-- [OpenClaw Sync Bridge ClawHub Page](https://clawhub.ai/JayShna/openclaw-sync-bridge) <br>
-- [JayShna ClawHub Publisher Profile](https://clawhub.ai/user/JayShna) <br>
-- [GitHub Personal Access Tokens](https://github.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and sync guidance for an agent; the installed bridge writes local configuration files and synchronizes selected OpenClaw files with a GitHub Gist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Pipe-to-shell install commands can execute remote code before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download and inspect the artifact locally before running installation commands.
+
+Risk: Synced OpenClaw profile and skill files are uploaded to GitHub Gist and may contain private data.
+
+Mitigation: Review the configured sync list and exclude any directory or file that may contain secrets or sensitive content.
+
+Risk: GitHub tokens are stored in local sync configuration.
+
+Mitigation: Use a minimal token limited to Gist access, protect the local configuration file, and rotate the token if exposure is suspected.
+
+Risk: Pull operations can overwrite local workspace files.
+
+Mitigation: Use the diff and preview steps first, keep automatic backups enabled, and pull only from Gists you control and trust.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jayshna/skills/openclaw-sync-bridge)
+- [GitHub Token Settings](https://github.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and interactive CLI text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local configuration, backup files, synced workspace files, and private GitHub Gist contents when the user runs the provided commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and openclaw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

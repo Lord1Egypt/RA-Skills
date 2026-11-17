@@ -1,40 +1,58 @@
-## Description: <br>
-Skill for agents managing terminal Python scripts by requiring end-of-file summaries, generating script documentation, and recording common pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pyscripts-org helps agents organize terminal Python scripts by requiring end-of-file summary blocks, generating script documentation, and maintaining a pitfall log.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-Developers and agents use this skill to organize reusable local Python scripts, consult generated documentation before creating new scripts, and log recurring failures in a pitfall file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may lead an agent to run or edit existing local Python scripts. <br>
-Mitigation: Install only in workspaces where local script management is intended, and review unfamiliar scripts before execution. <br>
-Risk: The bundled helper writes py_docs.md while the skill text refers to pyscripts_docs.md. <br>
-Mitigation: Confirm the expected documentation filename before relying on generated script indexes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage reusable Python utility scripts: check script documentation before adding new scripts, run or adapt existing scripts when appropriate, update summaries, and record recurring errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/pyscripts-org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples; generated documentation files are Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update local Markdown documentation files and Python script summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact documentation and bundled summary script describe different summary markers and documentation filenames, so generated documentation may be incomplete or unexpectedly named.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated documentation before committing it and align the marker format and output filename before relying on the generated index.
+
+Risk: Pitfall notes may capture secrets, local paths, or sensitive error details.
+
+Mitigation: Redact sensitive values from pitfall entries before committing, sharing, or publishing them.
+
+Risk: The workflow can encourage running existing local Python scripts, which may execute arbitrary local code.
+
+Mitigation: Inspect scripts and understand their side effects before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/pyscripts-org)
+- [Publisher profile](https://clawhub.ai/user/kaibazax-dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown documentation, Python code changes, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update script documentation and pitfall notes in the working directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

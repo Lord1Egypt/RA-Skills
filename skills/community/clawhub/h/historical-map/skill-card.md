@@ -1,41 +1,59 @@
-## Description: <br>
-Generate beautiful vintage-style historical maps from GeoJSON data with multiple projections, color palettes, timelines, compass roses, parchment overlays, and vignette effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vintage-style historical map images from GeoJSON data with configurable projections, palettes, timelines, decorative elements, and post-processing.
 
-## Publisher: <br>
-[muxueqingze](https://clawhub.ai/user/muxueqingze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muxueqingze](https://clawhub.ai/user/muxueqingze)
 
-## Use Case: <br>
-Content creators, history bloggers, educators, and developers use this skill to generate vintage-style historical map images from local GeoJSON data for articles, videos, lessons, and agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill adds Python geospatial and image-processing dependencies. <br>
-Mitigation: Install only in an environment where the listed packages are acceptable and review dependency versions before deployment. <br>
-Risk: Local GeoJSON, event JSON, basemap, and texture files determine what the renderer reads and what appears in generated maps. <br>
-Mitigation: Use trusted local input files, inspect paths before running commands, and validate map data accuracy for publication-quality output. <br>
+## Use Case:
 
+External content creators, educators, developers, and agents use this skill to turn historical GeoJSON basemaps and optional texture or event inputs into map images for articles, videos, blogs, and educational material.
 
-## Reference(s): <br>
-- [Historical Map on ClawHub](https://clawhub.ai/muxueqingze/historical-map) <br>
-- [historical-basemaps data source](https://github.com/aourednik/historical-basemaps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and Python code snippets; generated artifacts are PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local GeoJSON data and optional local event, basemap, or texture files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Untrusted GeoJSON, event JSON, basemap images, or parchment textures may affect local processing behavior or resource use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated Python environment, and process only GeoJSON, JSON, and image files from trusted sources.
+
+Risk: Extremely large basemap or parchment images can consume significant memory and CPU during cropping, resizing, and post-processing.
+
+Mitigation: Use runtime memory and CPU limits, and downsample large texture inputs before generation.
+
+Risk: Historical boundaries may be approximate or contain regional gaps, which can make generated maps unsuitable for publication without review.
+
+Mitigation: Review the source GeoJSON boundary precision, manually edit important regions, or use commercial data for publication-quality maps.
+
+## Reference(s):
+
+- [ClawHub Historical Map Skill](https://clawhub.ai/muxueqingze/skills/historical-map)
+- [historical-basemaps Data Source](https://github.com/aourednik/historical-basemaps)
+- [Publisher Profile](https://clawhub.ai/user/muxueqingze)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples; generated output is a PNG image file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on provided GeoJSON, optional event JSON, optional texture images, projection, palette, region, and DPI settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

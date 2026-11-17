@@ -1,43 +1,61 @@
-## Description: <br>
-Turn an already-written script into a video with voiceover, auto-cut stock visuals, and captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn an already-written script into a video with voiceover, auto-cut stock visuals, and captions.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-Developers and creators use this skill to turn a finished script into a Revid-generated video with voiceover, captions, stock visuals, music, and render polling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Script text and rendering options are sent to Revid for external video rendering. <br>
-Mitigation: Do not submit secrets, confidential business material, personal data, or regulated content unless Revid's privacy and retention terms have been reviewed. <br>
-Risk: The workflow requires a Revid API key. <br>
-Mitigation: Store REVID_API_KEY securely and avoid exposing it in prompts, logs, examples, or shared shell history. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to turn a prepared script into a Revid video workflow with voiceover, stock visuals, captions, music, and rendering status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/api00/revid-script-to-video) <br>
-- [Revid render API endpoint](https://www.revid.ai/api/public/v3/render) <br>
-- [Example video payload](examples/honey-script.json) <br>
-- [Example run script](examples/run.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTTP, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY and sends script text plus rendering options to Revid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: User-provided script text and the Revid API key are sent to Revid's service for rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with scripts approved for third-party processing and avoid confidential, regulated, or proprietary content unless organizational policy permits it.
+
+Risk: Long scripts may exceed practical rendering limits or need summarization.
+
+Mitigation: Keep scripts within the documented practical limit or split them into smaller render jobs.
+
+Risk: Generated stock visuals, captions, or voiceover may not match niche topics, brand pronunciations, or audio balance expectations.
+
+Mitigation: Review rendered output before publication and adjust script wording, voice settings, media workflow, or music settings as needed.
+
+## Reference(s):
+
+- [Script to Video ClawHub Page](https://clawhub.ai/api00/skills/revid-script-to-video)
+- [Revid Render API Endpoint](https://www.revid.ai/api/public/v3/render)
+- [Revid Status API Endpoint](https://www.revid.ai/api/public/v3/status?pid=$PID)
+- [Example payload](artifact/examples/honey-script.json)
+- [Example run script](artifact/examples/run.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVID_API_KEY and sends user-provided script text to Revid for video rendering.]
+
+## Skill Version(s):
+
+1.4.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

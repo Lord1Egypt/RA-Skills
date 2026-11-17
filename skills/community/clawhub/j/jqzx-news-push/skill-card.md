@@ -1,42 +1,56 @@
-## Description: <br>
-Automates daily technology news delivery by fetching the latest Machine Heart hot list, sending it to Feishu, and saving it to Get Note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates daily technology news retrieval from Jiqizhixin, pushes the results to Feishu, and saves them to GetNote.
 
-## Publisher: <br>
-[bqcldz](https://clawhub.ai/user/bqcldz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bqcldz](https://clawhub.ai/user/bqcldz)
 
-## Use Case: <br>
-External users and developers use this skill to configure an automated daily workflow that retrieves technology news, sends it to a Feishu recipient or group, and saves a copy in Get Note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles service credentials for Machine Heart, Get Note, and Feishu. <br>
-Mitigation: Use masked or presence-only checks for credentials, avoid printing secrets in terminal output or logs, and store credentials only in the user's controlled environment. <br>
-Risk: The skill can configure a recurring scheduled job that sends Feishu messages and creates Get Note entries. <br>
-Mitigation: Before enabling cron, verify the script path, target recipient, log location, schedule, and removal process. <br>
+## Use Case:
 
+External users and operators use this skill to configure credentials, fetch the latest Jiqizhixin technology headlines, send them through Feishu, save them to GetNote, and optionally schedule a daily push.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bqcldz/jqzx-news-push) <br>
-- [Machine Heart MCP/RSS service](https://mcp.applications.jiqizhixin.com/) <br>
-- [Get Note OpenAPI](https://www.biji.com/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided service credentials and may configure a recurring cron job.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, _meta.json) <br>
+Risk: Credential checks in the skill documentation may print full secrets to the terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use presence-only checks for required environment variables and avoid echoing token or API key values.
+
+Risk: The recurring cron setup may run with broad privileges or write sensitive logs to a shared location.
+
+Mitigation: Run scheduled jobs as an unprivileged user, write logs to a private user-owned file, and keep a clear cron removal command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bqcldz/skills/jqzx-news-push)
+- [Publisher profile](https://clawhub.ai/user/bqcldz)
+- [Jiqizhixin MCP/RSS service](https://mcp.applications.jiqizhixin.com/)
+- [GetNote OpenAPI](https://www.biji.com/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Jiqizhixin, Feishu, and GetNote credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

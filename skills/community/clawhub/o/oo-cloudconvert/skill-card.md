@@ -1,44 +1,59 @@
-## Description: <br>
-CloudConvert helps agents operate CloudConvert through an OOMOL-connected account by inspecting live connector schemas and running CloudConvert actions with the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CloudConvert (cloudconvert.com). Use this skill for ANY CloudConvert request — reading, creating, updating, and deleting data. Whenever a task involves CloudConvert, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage CloudConvert jobs, tasks, conversion types, and account information from an agent workflow. It supports read actions, state-changing actions, and destructive delete actions with confirmation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The evidence security verdict is suspicious and notes powerful maintainer or moderation workflows. <br>
-Mitigation: Install only when the intended workflow matches the release purpose, review the skill before use, and run production-affecting commands only with the correct account and confirmed target. <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected CloudConvert account. <br>
-Mitigation: Use server-side credential injection, avoid handling raw tokens directly, and confirm write or destructive CloudConvert actions before execution. <br>
+## Use Case:
 
+Developers and other CloudConvert users can manage conversion jobs and tasks through an OOMOL-connected account. The skill provides guidance for inspecting action schemas and running read, write, and destructive operations with the oo CLI.
 
-## Reference(s): <br>
-- [CloudConvert homepage](https://cloudconvert.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-cloudconvert) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute CloudConvert connector actions through the oo CLI when the user has configured the required account connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: CLI setup can run downloaded installation code without asking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, using a pinned and verified release.
+
+Risk: Additional agent skills may be synchronized during setup.
+
+Mitigation: Review whether skill synchronization is appropriate; the documented OO_SKILLS_SYNC_DISABLED setting disables it.
+
+Risk: Write and destructive actions can change or delete CloudConvert data.
+
+Mitigation: Inspect the action schema and exact payload, then obtain user approval before running write or destructive actions.
+
+## Reference(s):
+
+- [CloudConvert](https://cloudconvert.com)
+- [CloudConvert API documentation](https://cloudconvert.com/api/v2)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with oo CLI commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

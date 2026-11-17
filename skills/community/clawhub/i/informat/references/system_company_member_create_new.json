@@ -1,0 +1,58 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_create_new",
+    "description": "Create a new account and add it as a company member. Unlike _company_member_create, this method creates a brand new account.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string",
+          "description": "Username for the new account (login name, must be unique)."
+        },
+        "password": {
+          "type": "string",
+          "description": "Login password for the new account."
+        },
+        "name": {
+          "type": "string",
+          "description": "Member display name (optional)."
+        },
+        "mobileNo": {
+          "type": "string",
+          "description": "Mobile phone number (optional)."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address (optional)."
+        },
+        "leaderIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Leader account ID list for this member."
+        },
+        "roleIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Role ID list to assign to this member."
+        },
+        "departmentIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Department ID list for this member (optional)."
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number (optional). Smaller number means higher position."
+        }
+      },
+      "required": ["userName", "password", "leaderIdList", "roleIdList"]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "confirmed_status": "已确认（可发布到飞书）",
+  "required_phrases": [
+    "示例业务术语",
+    "示例默认值"
+  ],
+  "forbidden_phrases": [
+    "TBD",
+    "TODO",
+    "待补充"
+  ],
+  "required_role_ids": ["ROLE-01"],
+  "required_story_ids": ["US-01"],
+  "required_req_ids": ["REQ-01"],
+  "required_exception_ids": ["EX-01"],
+  "required_ac_ids": ["AC-01"],
+  "required_urls": ["https://example.com/path"]
+}

@@ -1,39 +1,57 @@
-## Description: <br>
-AI assistant for China investment-banking compliance reviews covering IPO sponsorship, M&A advisory, bond issuance, private-equity investment, AML/KYC screening, cross-border transaction checks, and regulatory monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides investment banking compliance review frameworks for IPO sponsorship, M&A, bond issuance, private equity, AML/KYC, and regulatory monitoring in China.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Investment-banking compliance officers, in-house counsel, and deal teams use this skill to draft compliance checklists, review frameworks, risk assessments, remediation suggestions, and monitoring prompts for China-market securities work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat regulatory summaries, checklist outputs, or sample AML/KYC code as final legal, sanctions, or compliance determinations. <br>
-Mitigation: Require review by qualified compliance or legal professionals and confirm decisions against current official regulatory sources. <br>
-Risk: Users may enter real client, counterparty, or transaction data while asking for compliance analysis. <br>
-Mitigation: Use redacted or minimized data unless organizational policy explicitly permits sharing the information with the agent. <br>
+## Use Case:
 
+Investment banking compliance officers, in-house counsel, and deal teams use it to prepare review checklists, transaction compliance frameworks, and regulatory monitoring plans for China-related work. Outputs are drafts for qualified staff to review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China, including cross-border transaction scenarios
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with checklists, tables, prompt templates, and illustrative code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are reference material and should be reviewed by qualified compliance or legal professionals before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The security scan verdict is benign with medium confidence; Skillspector inspected only part of the skill and raised a Unicode-related flag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the complete skill and investigate the Unicode flag before use.
+
+Risk: Compliance work may involve sensitive identity, ownership, and transaction information.
+
+Mitigation: Provide only the minimum necessary public or de-identified information, and keep records within approved institutional systems.
+
+Risk: Regulatory guidance can become outdated and the skill does not provide authoritative legal conclusions.
+
+Mitigation: Check current requirements against official sources and have qualified compliance staff review conclusions before acting.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gechengling/skills/security-ib-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown checklists, tables, timelines, templates, and illustrative code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory drafts require verification against current official rules and review by qualified compliance staff.]
+
+## Skill Version(s):
+
+3.0.4 (source: release evidence, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

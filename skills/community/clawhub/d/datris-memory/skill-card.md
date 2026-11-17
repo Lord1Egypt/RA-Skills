@@ -1,41 +1,57 @@
-## Description: <br>
-Use the Datris Platform as a long-term semantic memory layer through the Datris MCP server, with local markdown memory files as the canonical source and Datris as the retrieval index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Datris MCP server as a long-term semantic memory layer by syncing local markdown memory files into a Datris vector retrieval index.
 
-## Publisher: <br>
-[datris](https://clawhub.ai/user/datris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[datris](https://clawhub.ai/user/datris)
 
-## Use Case: <br>
-Developers and agents use this skill to ingest, synchronize, and retrieve long-term memory from local markdown notes through Datris. It is intended for memory bootstrap, incremental sync, semantic search, and recall workflows where local files remain the source of truth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory notes may contain secrets or sensitive personal data before they are indexed for recall. <br>
-Mitigation: Review MEMORY.md and memory/*.md before ingestion, remove sensitive content, and use the skill only with a trusted Datris MCP server and storage account. <br>
-Risk: A memory pipeline bootstrapped from consolidated uploads can break per-file provenance and incremental sync behavior. <br>
-Mitigation: Use one upload per canonical memory file, verify source filenames in retrieval results, and reset/re-ingest if consolidated corpus filenames appear. <br>
+## Use Case:
 
+Developers and agents use this skill to bootstrap, sync, and query long-term memory while keeping local markdown files canonical. It supports memory-shaped requests such as saving, recalling, ingesting, syncing, and searching notes through Datris.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datris/datris-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/datris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with operational steps and command-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Datris MCP operations for upload, polling, search, and sync workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Local long-term memory files may be uploaded to Datris for persistent indexing and recurring synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Datris endpoint and tenant before use, decide which memory files may be uploaded, and exclude sensitive notes, credentials, and secrets.
+
+Risk: Broad or repeated sync can run without clear per-file consent controls.
+
+Mitigation: Require an explicit sync scope before bootstrap or recurring sync, and keep an audit of files uploaded, deleted, and verified.
+
+Risk: Indexed memory may remain available after sync unless deletion and disablement paths are confirmed.
+
+Mitigation: Verify there is a way to disable sync and delete indexed Datris data before using the skill with private memory.
+
+## Reference(s):
+
+- [Datris Memory ClawHub release](https://clawhub.ai/datris/skills/datris-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Datris MCP workflow steps and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Datris MCP operations for uploads, deletes, job polling, vector search, and sync audit entries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

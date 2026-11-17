@@ -1,43 +1,60 @@
-## Description: <br>
-三峰智能 controls SUFN smart-home accounts by logging in, syncing homes, listing devices and scenes, and issuing real API calls for device control and scene execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+三峰智能 uses the Sufn smart-home open platform to log in, switch homes, sync devices, query device status, control supported switches, lights, curtains, and air conditioners, and run existing scenes.
 
-## Publisher: <br>
-[lingguyuan](https://clawhub.ai/user/lingguyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingguyuan](https://clawhub.ai/user/lingguyuan)
 
-## Use Case: <br>
-External users use this skill to operate SUFN smart-home devices and scenes through an agent, including account login, household switching, device synchronization, device listing, scene listing, device control, and scene execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store a reusable home-control token in state.json. <br>
-Mitigation: Use only in a trusted local workspace, limit access to the saved state file, and clear the saved state or revoke the session when the skill is no longer needed. <br>
-Risk: Ambiguous scene or mode phrases can trigger broad real-world device changes. <br>
-Mitigation: Prefer exact device or scene names, review matched scenes before high-impact actions, and avoid vague commands when multiple devices or scenes could match. <br>
-Risk: The server security verdict is suspicious because the skill controls real smart-home devices through live API calls. <br>
-Mitigation: Review before installing, test with low-impact commands first, and monitor returned API results rather than assuming an action succeeded. <br>
+## Use Case:
 
+External smart-home users use this skill to manage supported 三峰 devices through natural-language requests after authenticating with their account. It supports home switching, synchronization, state queries, device control, and execution of existing scenes, but not scene creation or editing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lingguyuan/sufn-smart-home) <br>
-- [SUFN Open API Base URL](https://open.aibasis.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with PowerShell, bash, JSON, and concise status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces state JSON for local persistence and concise success or failure messages based on live API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The request helper can send an authentication token to a caller-controlled URL path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and restrict helper calls to the five documented platform paths before using an active account token.
+
+Risk: The skill controls real smart-home devices and can affect the user's physical environment.
+
+Mitigation: Require an authenticated session, uniquely match devices or scenes before acting, and only confirm completion after the platform reports success.
+
+Risk: Smart-home credentials and tokens are sensitive.
+
+Mitigation: Use encrypted local token storage, avoid logging or disclosing credentials or tokens, and require re-login if protected state cannot be decrypted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingguyuan/skills/sufn-smart-home)
+- [API reference](artifact/references/api-reference.md)
+- [Control mappings](artifact/references/control-mappings.md)
+- [Device capabilities](artifact/references/device-capabilities.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language user replies with PowerShell execution guidance and local state configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Controls real smart-home devices and must avoid disclosing tokens, internal identifiers, request details, raw responses, logs, or local state.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

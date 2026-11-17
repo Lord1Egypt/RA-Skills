@@ -1,49 +1,72 @@
-## Description: <br>
-面向 iOS 工程的 MobTech MobLink 集成 skill。默认先扫描工程，优先使用 CocoaPods，以最小改动完成场景还原依赖接入、Info.plist 配置、隐私合规、getMobId 制作场景、恢复代理回调和项目内说明文档落地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向 iOS 工程的 MobTech MobLink 集成 skill。默认先扫描工程，优先使用 CocoaPods，以最小改动完成场景还原依赖接入、Info.plist 配置、隐私合规、getMobId 制作场景、恢复代理回调和项目内说明文档落地。
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Developers and iOS engineers use this skill to integrate or troubleshoot MobTech MobLink in existing iOS projects. It helps scan project structure, plan minimal CocoaPods or manual SDK changes, configure Info.plist and privacy consent flow, connect MobId creation, and wire scene restoration callbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles privacy-sensitive SDK setup and can add MobLink configuration to an iOS app. <br>
-Mitigation: Install it only for projects that intentionally need MobTech MobLink, review the proposed file changes, and complete App Store and privacy disclosures before release. <br>
-Risk: MOBAppSecret is written to Info.plist as client-exposed app configuration. <br>
-Mitigation: Treat MOBAppSecret as exposed mobile app configuration rather than a server secret, and avoid reusing it for unrelated confidential systems. <br>
-Risk: Calling MobLink before user consent can create privacy compliance issues. <br>
-Mitigation: Confirm the privacy-consent callback carefully and call uploadPrivacyPermissionStatus only after the user accepts the privacy policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or troubleshoot MobTech MobLink in iOS projects with minimal project changes. It guides project scanning, CocoaPods or manual SDK integration, Info.plist configuration, privacy-consent placement, scene creation, scene restoration callbacks, and project documentation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mobsupport/ios-moblink-integration) <br>
-- [MobTech documentation center](https://www.mob.com/wiki/list) <br>
-- [MobLink product overview](https://www.mob.com/wiki/detailed?wiki=161&id=34) <br>
-- [MobLink backend and project configuration](https://www.mob.com/wiki/detailed?wiki=527&id=34) <br>
-- [MobLink iOS integration guide](https://www.mob.com/wiki/detailed?wiki=83&id=34) <br>
-- [MobLink iOS SDK API](https://www.mob.com/wiki/detailed?wiki=553&id=34) <br>
-- [MobLink iOS compliance guide](https://www.mob.com/wiki/detailed?wiki=220&id=34) <br>
-- [MobLink Web integration](https://www.mob.com/wiki/detailed?wiki=525&id=34) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks, configuration snippets, shell commands, and generated project documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate an Excel configuration template and a MobLink_README.md file when used in a target iOS project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can modify iOS project files and dependency state while adding MobTech MobLink.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: It requires project scanning, presents a minimum-change plan, and gates dependency installation or build commands behind user confirmation.
+
+Risk: Filled MobLink configuration and Info.plist values may contain app-identifying or sensitive configuration.
+
+Mitigation: Review the generated Excel workbook and Info.plist changes before committing, and avoid committing filled configuration workbooks.
+
+Risk: Incorrect privacy-consent placement or optional collection of IDFA, location, WiFi, or IP data can create compliance risk.
+
+Mitigation: Confirm privacy-consent placement and extended data collection settings with the app owner and legal or compliance process before enabling those flows.
+
+Risk: Dependency updates may resolve to unexpected CocoaPods versions.
+
+Mitigation: Review the resolved CocoaPods version and Podfile.lock before accepting dependency changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mobsupport/skills/ios-moblink-integration)
+- [MobTech documentation center](https://www.mob.com/wiki/list)
+- [MobLink product overview](https://www.mob.com/wiki/detailed?wiki=161&id=34)
+- [MobTech app creation workflow](https://www.mob.com/wiki/detailed?wiki=478&id=34)
+- [MobLink dashboard and project configuration](https://www.mob.com/wiki/detailed?wiki=527&id=34)
+- [MobLink iOS integration guide](https://www.mob.com/wiki/detailed?wiki=83&id=34)
+- [MobLink iOS SDK API](https://www.mob.com/wiki/detailed?wiki=553&id=34)
+- [MobLink iOS compliance guide](https://www.mob.com/wiki/detailed?wiki=220&id=34)
+- [MobLink extended business feature settings](https://www.mob.com/wiki/detailed?wiki=673&id=34)
+- [MobLink web integration](https://www.mob.com/wiki/detailed?wiki=525&id=34)
+- [App Store Connect privacy data configuration](https://www.mob.com/wiki/detailed?wiki=574&id=34)
+- [Other app data collection controller configuration](https://www.mob.com/wiki/detailed?wiki=675&id=714)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and generated project files such as an Excel configuration template and MobLink_README.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default response language is Chinese; code, configuration keys, class names, and command names remain in their original form.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

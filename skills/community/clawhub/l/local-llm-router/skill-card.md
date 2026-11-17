@@ -1,47 +1,58 @@
-## Description: <br>
-Local LLM Router helps developers route OpenAI-compatible local LLM requests across multiple Ollama instances using scoring, context protection, VRAM-aware fallback, and retry behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local LLM Router helps agents route OpenAI-compatible and Ollama local LLM requests across multiple devices using fleet scoring, context protection, VRAM-aware fallback, and retry behavior.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, operate, inspect, and troubleshoot a self-hosted local LLM routing service across macOS, Linux, and Windows machines running Ollama. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unverified package could introduce unwanted code into the local environment. <br>
-Mitigation: Verify the `ollama-herd` PyPI package and repository before running installation commands. <br>
-Risk: The local dashboard and API expose fleet status, traces, settings, and model management endpoints. <br>
-Mitigation: Keep the localhost dashboard and API private and avoid exposing them beyond the intended local network. <br>
-Risk: Pulling or deleting local LLM models can consume substantial storage or remove needed models. <br>
-Mitigation: Require explicit user confirmation before pull or delete actions. <br>
-Risk: Router logs and latency databases may contain operational history needed for troubleshooting. <br>
-Mitigation: Do not delete or modify files under `~/.fleet-manager/` unless the user explicitly requests that change. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up, inspect, and operate a self-hosted Ollama routing layer across local machines. It provides setup commands, local API checks, dashboard and analytics queries, and guarded guidance for model-management actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/local-llm-router) <br>
-- [ollama-herd Repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [ollama-herd PyPI Package](https://pypi.org/project/ollama-herd/) <br>
-- [Twin Geeks Publisher Profile](https://clawhub.ai/user/twinsgeeks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service endpoints, operational checks, SQL inspection commands, and guardrails for model and router management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and frontmatter) <br>
+Risk: Installing and running the router package may execute local software with access to the user's machine and local model fleet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, avoid running pip or the router as root or administrator, and review or pin the package source where possible.
+
+Risk: Model pull and delete actions can download very large files or remove locally available models.
+
+Mitigation: Require explicit user approval before changing settings or pulling or deleting models.
+
+Risk: The skill references local latency, trace, and log files that may contain operational data.
+
+Mitigation: Inspect those files read-only and do not delete or modify files under ~/.fleet-manager/ unless the user explicitly approves.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/local-llm-router)
+- [ollama-herd package](https://pypi.org/project/ollama-herd/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, curl, and SQLite command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local setup, diagnostic, API, analytics, and guarded model-management guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Guides content, crawlability, distribution, and measurement strategy for improving AI search visibility across ChatGPT, Claude, Perplexity, Google AI Overviews, Bing Copilot, and Yandex AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides GEO/AEO strategy for improving AI search visibility and earning citations in AI-generated answers from platforms such as ChatGPT, Claude, Perplexity, Google AI Overviews, Bing Copilot, and Yandex AI.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, SEO, content, and developer teams use this skill to plan AI-search visibility work, including answer-first content structure, entity signals, crawler accessibility, distribution channels, and measurement approaches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party publishing, forum participation, or encyclopedia-style link placement could violate platform rules if used in a spammy or manipulative way. <br>
-Mitigation: Apply the strategy only to genuinely useful content and review each target platform's rules before publishing or suggesting link placement. <br>
-Risk: The skill routes users to related third-party strategy skills that may have their own risk profile. <br>
-Mitigation: Review related skills before relying on their recommendations. <br>
+## Use Case:
 
+External marketers, content strategists, and developers use this skill to plan content structure, crawlability, distribution, and measurement tactics for AI-search citation visibility.
 
-## Reference(s): <br>
-- [Geneo: ChatGPT vs Perplexity vs Google AI Overview GEO comparison](https://geneo.app/blog/chatgpt-vs-perplexity-vs-google-ai-overview-geo-comparison/) <br>
-- [GEO AIO: How Bing Copilot selects sources compared to Perplexity](https://geoaiomarketing.com/how-bing-copilot-selects-sources-compared-to-perplexity/) <br>
-- [Vercel: The rise of the AI crawler](https://vercel.com/blog/the-rise-of-the-ai-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, bullet lists, and strategy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credential use, persistence, or hidden data access according to evidence.security.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: skill frontmatter metadata.version and server release.version) <br>
+Risk: Marketing and platform-visibility recommendations may rely on claims that change over time or may not fit a specific business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited platform claims and strategy recommendations against current business requirements before relying on them for decisions.
+
+## Reference(s):
+
+- [Geneo: ChatGPT vs. Perplexity vs. Google AI Overview GEO comparison](https://geneo.app/blog/chatgpt-vs-perplexity-vs-google-ai-overview-geo-comparison/)
+- [GEO AIO Marketing: How Bing Copilot selects sources compared to Perplexity](https://geoaiomarketing.com/how-bing-copilot-selects-sources-compared-to-perplexity/)
+- [Vercel: The rise of the AI crawler](https://vercel.com/blog/the-rise-of-the-ai-crawler)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential handling, persistence, or sensitive access requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: artifact frontmatter metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

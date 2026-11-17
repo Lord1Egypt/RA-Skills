@@ -1,43 +1,59 @@
-## Description: <br>
-Nex Ghostwriter helps an agent turn meeting notes into client follow-up emails or internal recaps, track drafts and contacts, search meeting history, view statistics, and export locally stored meeting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Ghostwriter helps an agent log meeting notes, draft client follow-up emails or internal recaps in selectable tones, track draft status, manage contacts, search meeting history, and export records.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Employees, consultants, freelancers, sales teams, account managers, project managers, and founders use this skill to draft meeting follow-up emails and internal recaps from notes, action items, next steps, and contact details. It also helps agents manage local meeting records, draft status, contact greetings, search, statistics, and CSV or JSON exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes, client emails, contacts, action items, and generated drafts are retained locally. <br>
-Mitigation: Only log information you are comfortable storing under ~/.nex-ghostwriter/, and avoid regulated secrets unless local retention practices allow them. <br>
-Risk: Generated follow-up drafts may omit nuance or reflect incomplete meeting notes. <br>
-Mitigation: Review each draft before sending, especially action owners, deadlines, commitments, client names, and tone. <br>
-Risk: CSV or JSON exports can expose accumulated meeting history outside the local database. <br>
-Mitigation: Export only when needed and handle exported files according to the sensitivity of the underlying meeting records. <br>
+## Use Case:
 
+Employees, external professionals, and teams use this skill to turn meeting notes into follow-up emails, internal recaps, action-item records, and searchable meeting history. It is aimed at agencies, consultants, freelancers, sales teams, account managers, project managers, founders, and other users who need repeatable meeting follow-up workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nexaiguy/nex-ghostwriter) <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style email or recap drafts, with CLI command guidance and CSV or JSON export files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores meeting notes, contacts, drafts, and exports locally under ~/.nex-ghostwriter/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The export command can overwrite user-writable files outside the skill's data folder when given unsafe output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted export filenames and keep exports under ~/.nex-ghostwriter/exports until path validation is fixed.
+
+Risk: CSV exports may contain spreadsheet-interpreted formulas from stored meeting content.
+
+Mitigation: Review or neutralize CSV cells before opening exports in spreadsheet software.
+
+Risk: Meeting notes, contacts, drafts, and exports may contain sensitive business or personal information stored on the local machine.
+
+Mitigation: Install and use the skill only where local storage under ~/.nex-ghostwriter is acceptable, and protect or delete exported files according to the user's data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nexaiguy/skills/nex-ghostwriter)
+- [Publisher Profile](https://clawhub.ai/user/nexaiguy)
+- [Nex AI Homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-ready email or recap content with CLI command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores meeting notes, contacts, drafts, and exports locally under ~/.nex-ghostwriter.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

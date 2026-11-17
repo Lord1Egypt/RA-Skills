@@ -1,41 +1,62 @@
-## Description: <br>
-Automatic graph layout using dagre with React Flow (@xyflow/react). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic graph layout using Dagre with React Flow (@xyflow/react) for auto-layout, hierarchical layouts, tree structures, and programmatic node arrangement.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers use this skill to implement automatic Dagre layouts in React Flow applications, including hierarchical graphs, tree structures, and programmatic node arrangement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following the quick start adds @dagrejs/dagre as a project dependency. <br>
-Mitigation: Add it intentionally through the project package manager and review it like any other dependency. <br>
-Risk: Incorrect node dimensions, center-to-top-left conversion, stale React Flow state, or early fitView calls can produce misleading layouts. <br>
-Mitigation: Apply the artifact's hard gates before treating a generated layout as correct. <br>
+## Use Case:
 
+Developers building React Flow interfaces use this skill to add Dagre-based automatic graph layout, configure layout direction and spacing, and avoid common coordinate-conversion and state-update mistakes.
 
-## Reference(s): <br>
-- [Dagre Configuration Reference](artifact/reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/anderskev/dagre-react-flow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, TSX, CSS, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples require the user to add and review @dagrejs/dagre as a project dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Generated layout code may place nodes incorrectly if Dagre center coordinates are used directly in React Flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Convert Dagre center coordinates to React Flow top-left positions using the same node width and height values passed to Dagre.
+
+Risk: React Flow may not update if programmatic layout reuses previous node or edge array references.
+
+Mitigation: Commit newly created node and edge arrays after layout and run fitView after React Flow has received the updated nodes.
+
+Risk: Large graphs can make synchronous Dagre layout slow in the browser.
+
+Mitigation: For larger graphs, debounce layout calls, use faster Dagre rankers where acceptable, and consider running layout work in a Web Worker.
+
+Risk: Adding @dagrejs/dagre may be unsuitable for projects with dependency, license, or bundle-size constraints.
+
+Mitigation: Install the package only where that dependency is acceptable, and review generated layout code as normal application code before deployment.
+
+## Reference(s):
+
+- [Dagre Configuration Reference](reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/dagre-react-flow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with TypeScript, TSX, CSS, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pass/fail layout checks, configuration tables, troubleshooting guidance, and performance guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

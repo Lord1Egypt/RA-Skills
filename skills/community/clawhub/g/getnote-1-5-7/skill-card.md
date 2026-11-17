@@ -1,51 +1,67 @@
-## Description: <br>
-Getnote helps an agent save, search, and manage personal notes and knowledge bases through Get笔记. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Getnote 1.5.7 lets an agent save, search, list, update, delete, and organize a user's Get笔记 notes and knowledge bases through the Get笔记 OpenAPI.
 
-## Publisher: <br>
-[jackie2010](https://clawhub.ai/user/jackie2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackie2010](https://clawhub.ai/user/jackie2010)
 
-## Use Case: <br>
-External users use this skill to let an agent capture links, images, and text as notes, search saved notes semantically, and organize notes with knowledge bases and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access privacy-sensitive remote note content, links, images, and searches through biji.com. <br>
-Mitigation: Install only when the user trusts Get笔记/biji.com with that data, avoid showing private note content in shared chats, and configure GETNOTE_OWNER_ID in shared contexts. <br>
-Risk: The skill can perform sensitive note-management actions such as deleting, moving, or changing notes. <br>
-Mitigation: Use explicit /note commands for sensitive operations and confirm destructive or reorganizing changes before executing them. <br>
-Risk: Stored API credentials authorize access to the user's notes. <br>
-Mitigation: Store credentials in configuration or environment variables rather than chat, and revoke the provider API key when the skill is no longer used. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Get笔记 so it can capture links, text, and images, then retrieve or organize private notes and knowledge-base content on request.
 
-## Reference(s): <br>
-- [Getnote ClawHub Page](https://clawhub.ai/jackie2010/getnote-1-5-7) <br>
-- [Get笔记 Homepage](https://biji.com) <br>
-- [Get笔记 Open Platform](https://www.biji.com/openapi) <br>
-- [Get笔记 API Details](references/api-details.md) <br>
-- [OAuth Authorization Configuration](references/oauth.md) <br>
-- [Save Notes](references/save.md) <br>
-- [Semantic Search](references/search.md) <br>
-- [Note Lists and Details](references/list.md) <br>
-- [Knowledge Base Management](references/knowledge.md) <br>
-- [Tag Management](references/tags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with API request guidance and occasional shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Getnote API credentials and may return or modify user note data through biji.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata); package version 1.5.7 (source: package.json) <br>
+Risk: The skill handles private Get笔记 notes and long-lived credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable granting access to private notes, keep OAuth and API output secret, and configure GETNOTE_OWNER_ID before use in shared or group chats.
+
+Risk: Helper scripts may be used with sensitive local paths or credential-bearing parameters.
+
+Mitigation: Avoid sensitive local paths, review script arguments and output before sharing, and prefer ClawHub installation over raw GitHub curl installation.
+
+Risk: The skill can write notes and may encounter API membership, quota, or rate-limit failures.
+
+Mitigation: Review requested write actions before execution, preserve the documented owner checks, and honor API error and rate-limit guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackie2010/skills/getnote-1-5-7)
+- [Get笔记 homepage](https://biji.com)
+- [Get笔记 Open Platform](https://www.biji.com/openapi)
+- [Get笔记 OpenAPI base URL](https://openapi.biji.com)
+- [Get笔记 API details](references/api-details.md)
+- [Save notes](references/save.md)
+- [Semantic search](references/search.md)
+- [Note list and details](references/list.md)
+- [Knowledge base management](references/knowledge.md)
+- [OAuth authorization configuration](references/oauth.md)
+- [Tag management](references/tags.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command snippets and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to call the Get笔记 OpenAPI when configured with user credentials.]
+
+## Skill Version(s):
+
+1.5.7 (source: package.json); ClawHub release 1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

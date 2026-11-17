@@ -1,45 +1,60 @@
-## Description: <br>
-Event watcher skill for OpenClaw. Use when you need to subscribe to event sources (Redis Streams + webhook JSONL) and wake an agent only when matching events arrive. Covers filtering, dedupe, retry, and session routing via sessions_send/agent_gate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Event-Watcher subscribes to Redis Streams and webhook JSONL sources, filters and deduplicates events, retries delivery, and wakes OpenClaw sessions through sessions_send or agent_gate when matching events arrive.
 
-## Publisher: <br>
-[solitaire2015](https://clawhub.ai/user/solitaire2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[solitaire2015](https://clawhub.ai/user/solitaire2015)
 
-## Use Case: <br>
-Developers and operators use this skill to configure background event watchers that monitor Redis Streams or webhook JSONL input, filter and deduplicate matching events, and wake or message the correct OpenClaw session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configured watchers can automatically wake or message OpenClaw sessions from Redis or webhook events. <br>
-Mitigation: Keep the source safety preamble enabled for untrusted payloads, use narrow filters, and restrict reply targets to intended channels or users. <br>
-Risk: Default session routing may read local OpenClaw session metadata to resolve the latest session. <br>
-Mitigation: Set wake.disable_session_store_lookup to true or provide an explicit session_id or session_key when local session-store lookup is not desired. <br>
-Risk: Event logs, state files, dead-letter files, and message previews may contain event payloads or routing details. <br>
-Mitigation: Protect and rotate runtime files, avoid sending sensitive payloads when possible, and review log locations before running the watcher in production. <br>
-Risk: Runtime behavior depends on redis and pyyaml packages. <br>
-Mitigation: Pin and review dependencies before production deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Event Watcher configuration spec](references/CONFIG.md) <br>
-- [Redis Stream watcher example](examples/event_watcher.yaml) <br>
-- [Webhook watcher example](examples/webhook_watcher.yaml) <br>
+## Use Case:
 
+Developers and operators use this skill to configure long-lived watchers that listen to event sources, apply filters and deduplication, and wake an OpenClaw session only when relevant events arrive.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples and Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python packages redis and pyyaml; outputs setup guidance for watcher configuration, routing, filtering, deduplication, retry, and background execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted event payloads can be routed into OpenClaw sessions and may contain prompt-injection content.
+
+Mitigation: Keep wake.add_source_preamble enabled, avoid templates that pass raw payloads wholesale, and disable the preamble only for fully trusted sources.
+
+Risk: Automatic session routing may read broad local session metadata or deliver to unintended chat targets.
+
+Mitigation: Prefer explicit wake.session_id or a scoped OPENCLAW_SESSION_STORE, set wake.disable_session_store_lookup: true when practical, and restrict reply_channel and reply_to to approved destinations.
+
+Risk: Watcher logs, state, webhook JSONL, and dead-letter files can contain sensitive event data in plaintext.
+
+Mitigation: Store log and state files in private directories, redact payload data before ingestion where possible, and control file permissions and retention.
+
+Risk: Python dependencies are declared without pinned versions.
+
+Mitigation: Pin reviewed redis and pyyaml versions before production deployment.
+
+## Reference(s):
+
+- [CONFIG.md](references/CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, code]
+
+**Output Format:** [Markdown guidance with YAML and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include watcher configuration, filter rules, session routing guidance, and runtime commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

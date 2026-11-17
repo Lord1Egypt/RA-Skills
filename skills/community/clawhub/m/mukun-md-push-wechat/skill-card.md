@@ -1,45 +1,62 @@
-## Description: <br>
-Converts Markdown into WeChat-compatible HTML, can create WeChat draft articles, and can push Markdown content to Juejin drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown into WeChat-compatible HTML and can help create WeChat or Juejin drafts with configurable article and news styles.
 
-## Publisher: <br>
-[ysdhb](https://clawhub.ai/user/ysdhb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysdhb](https://clawhub.ai/user/ysdhb)
 
-## Use Case: <br>
-Developers, writers, and content operators use this skill to convert Markdown articles into WeChat-ready HTML, prepare WeChat drafts, and create or update Juejin drafts from Markdown content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat AppSecret and Juejin cookie values as account credentials. <br>
-Mitigation: Keep config.yaml private, restrict file permissions, and do not commit or share credential-bearing configuration files. <br>
-Risk: Push commands can send Markdown content and referenced local images to WeChat or Juejin services. <br>
-Mitigation: Review the Markdown, generated HTML, and referenced local images before running any push command. <br>
+## Use Case:
 
+Developers and content publishers use this skill to convert Markdown articles or news digests into WeChat-ready HTML, then optionally prepare drafts for WeChat Official Accounts or Juejin.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ysdhb/mukun-md-push-wechat) <br>
-- [README](README.md) <br>
-- [WeChat credential configuration guide](how_to_config_wechat.md) <br>
-- [Default article style configuration](references/article_default.yaml) <br>
-- [Modern article style configuration](references/article_modern.yaml) <br>
-- [Scholar article style configuration](references/article_scholar.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated HTML files and draft-publishing actions when scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local HTML files, read local Markdown and image files, and send article content or images to WeChat or Juejin when push commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill uses WeChat and Juejin publishing credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when credentialed publishing is acceptable, store the local config file with restrictive permissions, and avoid using it with private or proprietary content unless publishing is intended.
+
+Risk: Generated drafts may include hard-coded author or promotional footer content.
+
+Mitigation: Review generated HTML and draft metadata before publishing, and remove or override default ending_lines and hard-coded author behavior where inappropriate.
+
+Risk: The ClawHub security verdict is suspicious.
+
+Mitigation: Treat draft publishing actions as sensitive, review outputs before submission, and limit use to trusted Markdown files and images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysdhb/skills/mukun-md-push-wechat)
+- [README](README.md)
+- [WeChat credential configuration guide](how_to_config_wechat.md)
+- [Default article style preset](references/article_default.yaml)
+- [Modern article style preset](references/article_modern.yaml)
+- [News and article configuration example](examples/config_example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are HTML files and publishing draft metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local Python scripts and external publishing APIs when the user requests draft creation.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

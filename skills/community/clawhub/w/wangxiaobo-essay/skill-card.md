@@ -1,39 +1,49 @@
-## Description: <br>
-Assist in writing Chinese essays emulating Wang Xiaobo's style using logical deduction, reductio ad absurdum, concrete scenes, and deadpan humor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with writing Chinese essays in a Wang Xiaobo-inspired style using logical deduction, reductio ad absurdum, concrete scenes, and deadpan humor.
 
-## Publisher: <br>
-[roberning](https://clawhub.ai/user/roberning) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roberning](https://clawhub.ai/user/roberning)
 
-## Use Case: <br>
-External users and writers use this skill to draft or transform Chinese prose in a Wang Xiaobo-inspired essay style, especially when they want logical argument, concrete scenes, and deadpan humor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may apply Wang Xiaobo-inspired style or Chinese-output assumptions to ambiguous writing tasks. <br>
-Mitigation: State the desired language, style, and whether the Wang Xiaobo-inspired transformation should be used before asking for prose. <br>
+## Use Case:
 
+External users and writing assistants use this skill to draft or transform Chinese prose into a Wang Xiaobo-inspired essay style, especially when the request calls for logical, engaging, and dryly humorous writing.
 
-## Reference(s): <br>
-- [Wang Xiaobo Style Analysis](references/analysis.md) <br>
-- [ClawHub skill page](https://clawhub.ai/roberning/wangxiaobo-essay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese writing-style assistance; no tool calls or code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad activation can steer Chinese prose requests toward a Wang Xiaobo-style voice when that style was not explicitly requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger scope before installation and activate the skill only for explicit Wang Xiaobo or logical Chinese prose style requests when narrower behavior is needed.
+
+## Reference(s):
+
+- [Wang Xiaobo Style Analysis](references/analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces writing guidance and generated prose; no code execution, credential access, persistence, or hidden data handling is indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

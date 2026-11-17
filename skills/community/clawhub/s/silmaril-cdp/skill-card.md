@@ -1,45 +1,61 @@
-## Description: <br>
-Browser automation, DOM inspection, page mutation, wait orchestration, flow execution, and local proxy override work through the Silmaril Chrome DevTools Protocol toolkit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation, DOM inspection, page mutation, wait orchestration, flow execution, and local proxy override work through the Silmaril Chrome DevTools Protocol toolkit.
 
-## Publisher: <br>
-[Malac12](https://clawhub.ai/user/Malac12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malac12](https://clawhub.ai/user/malac12)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect and automate Chrome pages through CDP, extract structured page data, orchestrate waits, run repeatable browser flows, and manage local proxy overrides when page response mutation is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JavaScript evaluation and page mutation commands can change live page state or execute untrusted code in the browser session. <br>
-Mitigation: Validate selectors and intent before mutation, require explicit action flags, and use unsafe JavaScript only in trusted local sessions. <br>
-Risk: Proxy override workflows can intercept or alter web responses during local browsing. <br>
-Mitigation: Use narrow URL matching, keep proxy listeners on loopback, require explicit MITM acknowledgement, and keep overrides temporary unless persistence is requested. <br>
-Risk: Installing a missing external toolkit introduces remote code into the user's environment. <br>
-Mitigation: Fetch or install the toolkit only after the user explicitly approves that action. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect and automate local Chrome-family browser pages through CDP, including DOM extraction, selector validation, page actions, waits, repeatable flow execution, and local proxy override workflows.
 
-## Reference(s): <br>
-- [Command Patterns](references/command-patterns.md) <br>
-- [Flow Runner](references/flows.md) <br>
-- [Proxy Workflow](references/proxy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Malac12/silmaril-cdp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown with inline PowerShell commands, JSON command examples, and concise procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to request explicit approval before fetching or installing remote toolkit code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can direct agents to install and run an unpinned external browser automation toolkit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before fetching remote code, install from a pinned and reviewed revision, and prefer the expected local toolkit path over PATH fallback.
+
+Risk: Page-script execution can alter or inspect sensitive browser state.
+
+Mitigation: Use eval-js only in trusted local sessions, require the documented unsafe-JavaScript acknowledgement, and avoid authenticated or sensitive pages unless the user explicitly requests that work.
+
+Risk: MITM proxy workflows can intercept or override local browser traffic.
+
+Mitigation: Require the documented MITM acknowledgement, keep listeners on loopback, use narrow temporary override rules, and avoid sensitive sessions unless explicitly needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/malac12/skills/silmaril-cdp)
+- [Command Patterns](references/command-patterns.md)
+- [Flow Runner](references/flows.md)
+- [Proxy Workflow](references/proxy.md)
+- [Silmaril CDP Toolkit Repository](https://github.com/Malac12/CDP-tools.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples, JSON flow snippets, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers JSON-producing browser automation commands and may direct creation of flow files or proxy override configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

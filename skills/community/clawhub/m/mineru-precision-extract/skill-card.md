@@ -1,45 +1,64 @@
-## Description: <br>
-MinerU precision extract converts PDFs, scanned documents, images, Word, PowerPoint, and HTML files into Markdown, HTML, LaTeX, DOCX, or JSON with table recognition, formula recognition, OCR, batch processing, and web crawling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MinerU Precision Extract helps agents convert PDFs, scanned documents, images, office documents, HTML files, and URLs into Markdown, HTML, LaTeX, DOCX, or JSON with table recognition, formula recognition, OCR, batch processing, and web crawling.
 
-## Publisher: <br>
-[mineru-extract](https://clawhub.ai/user/mineru-extract) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mineru-extract](https://clawhub.ai/user/mineru-extract)
 
-## Use Case: <br>
-Developers, researchers, data engineers, and document-processing teams use this skill to guide high-accuracy extraction, OCR, table recognition, formula recognition, batch conversion, and web-to-Markdown workflows through the MinerU CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a MinerU API token and can expose credentials if tokens are copied into logs, screenshots, shared scripts, or source control. <br>
-Mitigation: Use the documented auth flow or environment variable handling, keep tokens out of command transcripts and repositories, and rotate any token that may have been exposed. <br>
-Risk: Documents, remote files, and crawled URLs may be processed by an external MinerU service. <br>
-Mitigation: Only process confidential documents, private URLs, or internal web pages when MinerU/OpenDataLab and the deployment are approved for that data. <br>
-Risk: Wildcard, batch, or list-based commands can process more files or URLs than intended. <br>
-Mitigation: Review expanded inputs and file lists before execution, especially when using wildcards, batch directories, or URL lists. <br>
+## Use Case:
 
+Developers, data engineers, researchers, and document-processing teams use this skill to guide high-accuracy extraction, OCR, table parsing, formula recognition, batch conversion, and web-page conversion workflows through the MinerU Open API CLI.
 
-## Reference(s): <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU precision extract source](https://github.com/MinerU-Extract/mineru-precision-extract) <br>
-- [MinerU Ecosystem CLI](https://github.com/opendatalab/MinerU-Ecosystem/tree/main/cli) <br>
-- [MinerU document extractor](https://github.com/MinerU-Extract/mineru-document-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to produce MinerU CLI commands and configuration steps; the CLI can produce Markdown, HTML, LaTeX, DOCX, or JSON outputs from supported documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Local documents may be sent to an external MinerU API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or proprietary documents unless the processing location, service terms, and data handling are approved.
+
+Risk: Authentication tokens can be supplied through environment variables or stored in local configuration.
+
+Mitigation: Protect MINERU_TOKEN and ~/.mineru/config.yaml, remove unused tokens, and avoid exposing token values in logs or shared shells.
+
+Risk: Global installation of the CLI package trusts the selected package source.
+
+Mitigation: Install only from trusted package sources and consider pinning or separately verifying the CLI package before deployment.
+
+Risk: Extraction outputs may include sensitive document content and extracted images on disk.
+
+Mitigation: Use an explicit output directory with appropriate access controls and clean up generated files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mineru-extract/skills/mineru-precision-extract)
+- [MinerU Homepage](https://mineru.net)
+- [Metadata-Listed Source](https://github.com/MinerU-Extract/mineru-precision-extract)
+- [MinerU Open API CLI](https://github.com/opendatalab/MinerU-Ecosystem/tree/main/cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides document extraction to stdout or output files; multi-format and binary outputs require an explicit output path.]
+
+## Skill Version(s):
+
+0.2.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

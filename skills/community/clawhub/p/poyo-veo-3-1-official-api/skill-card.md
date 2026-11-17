@@ -1,44 +1,60 @@
-## Description: <br>
-Veo 3.1 Official video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `veo3.1-fast-official`, `veo3.1-lite-official`, `veo3.1-quality-official`, text-to-video, image-to-video, first/last-frame video, reference video, audio control, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Veo 3.1 Official video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `veo3.1-fast-official`, `veo3.1-lite-official`, `veo3.1-quality-official`, text-to-video, image-to-video, first/last-frame video, reference video, audio control, polling, and webhooks.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo Veo 3.1 Official video-generation payloads, submit trusted requests, and explain polling or webhook follow-up. It supports text-to-video, image-guided, first/last-frame, and reference-guided video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo may receive prompts, image or video URLs, callback URLs, and generation requests that can incur generated-content costs. <br>
-Mitigation: Use the skill only when the user trusts PoYo for the supplied content and understands any cost implications. <br>
-Risk: The POYO_API_KEY secret could be exposed through chat, logs, browser code, public repositories, or screenshots. <br>
-Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager and avoid echoing or logging it. <br>
-Risk: Live API calls submit generation jobs to an external service. <br>
-Mitigation: Do not make live API calls unless the user explicitly asks and a safe server-side environment is available. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare, submit, and follow up on PoYo Veo 3.1 Official video-generation jobs, including text-to-video, image-guided, first/last-frame, reference-guided, polling, and webhook workflows.
 
-## Reference(s): <br>
-- [PoYo Veo 3.1 Official API Reference](references/api.md) <br>
-- [PoYo Veo 3.1 Official Docs](https://docs.poyo.ai/api-manual/video-series/veo-3-1-official) <br>
-- [PoYo Veo 3.1 Official Model Page](https://poyo.ai/models/veo-3-1-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and curl/bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the returned PoYo task_id when a request is explicitly submitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The PoYo API key could be exposed through browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid logging or displaying the key.
+
+Risk: Prompts, source media URLs, or callback URLs may contain confidential information that would be sent to PoYo or a webhook receiver.
+
+Mitigation: Review payload JSON before submission and avoid confidential prompts, private media URLs, or sensitive callback URLs unless the user trusts PoYo and the callback receiver.
+
+Risk: A live request to PoYo may submit user-prepared video-generation payloads before they are ready.
+
+Mitigation: Submit only when the user explicitly requests a live API call from a trusted shell, and report the returned task_id for follow-up polling or webhook handling.
+
+## Reference(s):
+
+- [PoYo Veo 3.1 Official API Reference](references/api.md)
+- [PoYo Veo 3.1 Official Model Page](https://poyo.ai/models/veo-3-1-official)
+- [PoYo Veo 3.1 Official API Docs](https://docs.poyo.ai/api-manual/video-series/veo-3-1-official)
+- [PoYo API Key Page](https://poyo.ai/dashboard/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a PoYo task_id when the user explicitly requests submission.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

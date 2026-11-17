@@ -1,41 +1,54 @@
-## Description: <br>
-Career Decision Skills helps users evaluate career direction, company choice, and role fit through a structured industry-company-role framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language career decision framework that helps users evaluate career direction, company choice, and role fit through a structured industry-company-position sequence.
 
-## Publisher: <br>
-[nlpplus](https://clawhub.ai/user/nlpplus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nlpplus](https://clawhub.ai/user/nlpplus)
 
-## Use Case: <br>
-Individuals evaluating offers, career changes, or annual career reviews use this skill to compare industry outlook, company quality, and role value before deciding next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career assessments may be incomplete or misleading if public research is stale, unavailable, or not specific to the user's situation. <br>
-Mitigation: Review cited public information, supplement it with the user's own context, and treat the traffic-light decision as decision support rather than a guarantee. <br>
-Risk: Using search or task tools during offer and employer analysis may expose confidential employer details, private offer terms, or sensitive personal information. <br>
-Mitigation: Avoid entering confidential or sensitive personal details into enabled tools unless the user accepts those tools' processing of that information. <br>
+## Use Case:
 
+Employees, job seekers, and career changers use this skill to structure offer reviews, annual career checkups, and direction exploration. The agent researches or asks for evidence about industry growth, company quality, and role value before producing a decision summary and 30-day action plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nlpplus/career-decision-skills) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured checklists, decision tables, summaries, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public-research prompts, user Q&A prompts, traffic-light decisions, and a 30-day action plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may ask the agent to research public industry, company, and role information, which can be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited public information and confirm important career decisions with current, reliable sources before acting.
+
+Risk: Users may provide confidential offer terms, internal company details, or sensitive personal career information during analysis.
+
+Mitigation: Avoid sharing confidential or proprietary details unless the session environment is approved for that information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nlpplus/skills/career-decision-skills)
+- [Publisher profile](https://clawhub.ai/user/nlpplus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown career assessment with checklists, decision tables, summaries, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public research summaries when search tools are available; otherwise relies on structured user-provided information.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

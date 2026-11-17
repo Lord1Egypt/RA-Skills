@@ -1,44 +1,61 @@
-## Description: <br>
-Sleep and recovery protocols specifically for shift workers who work nights, rotating shifts, doubles, or irregular schedules and are struggling with sleep, energy, health, or mental clarity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sleep and recovery protocols specifically for shift workers. Use when someone works nights, rotating shifts, doubles, or irregular schedules and is struggling with sleep, energy, health, or mental clarity.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to provide practical sleep, light exposure, nap, caffeine, meal timing, and recovery guidance for night, rotating, double, and irregular shift workers. It also helps users recognize when persistent fatigue or sleep disruption should be discussed with a qualified health professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports a verification gap because the actual skill files were not available to verify during scanning. <br>
-Mitigation: Review the supplied artifact files and scan the skill before installation or deployment. <br>
-Risk: The skill provides health-adjacent sleep, fatigue, melatonin, and clinical-screening guidance that could be misapplied as personalized medical advice. <br>
-Mitigation: Keep recommendations framed as general guidance and direct users to a doctor, sleep specialist, or local occupational health resource for persistent symptoms, medication questions, safety incidents, or clinical concerns. <br>
+## Use Case:
 
+External users and agents use this skill to tailor sleep, light exposure, caffeine, meal timing, recovery, and escalation guidance for people working nights, doubles, rotating shifts, or irregular schedules.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/howtousehumans/shift-work-recovery) <br>
-- [National Sleep Foundation](https://www.sleepfoundation.org) <br>
-- [CDC NIOSH Work Schedules](https://www.cdc.gov/niosh/topics/workschedules/) <br>
-- [American Academy of Sleep Medicine](https://aasm.org) <br>
-- [OSHA Fatigue Resources](https://www.osha.gov/fatigue) <br>
+### Deployment Geography for Use:
 
+Global, with jurisdiction-specific localization for workplace rules, occupational health resources, and melatonin availability.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown conversational guidance with checklists, timing protocols, and user-specific recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shift-pattern assessment, sleep and light schedules, caffeine and meal timing, relationship communication templates, and prompts to seek professional evaluation when indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests filesystem access that the security evidence describes as unnecessary for its shift-work recovery purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the permission request, or prefer a version that removes filesystem access.
+
+Risk: The skill provides specific supplement and medication-related health guidance.
+
+Mitigation: Review the guidance before use and ensure users are directed to qualified medical professionals for medication, supplement, or clinical concerns.
+
+Risk: The release evidence does not include server-resolved GitHub provenance for this version.
+
+Mitigation: Treat provenance as unavailable and rely on the server release evidence and artifact contents during review.
+
+## Reference(s):
+
+- [National Sleep Foundation](https://www.sleepfoundation.org)
+- [CDC NIOSH Work Schedules and Fatigue](https://www.cdc.gov/niosh/topics/workschedules/)
+- [American Academy of Sleep Medicine](https://aasm.org)
+- [OSHA Fatigue Resources](https://www.osha.gov/fatigue)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured checklists, timing protocols, and user-facing scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations to the user's shift pattern, sleep window, location, and primary fatigue symptoms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

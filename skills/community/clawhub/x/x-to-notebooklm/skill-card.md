@@ -1,43 +1,62 @@
-## Description: <br>
-Parse X (Twitter) articles with r.jina.ai and upload the extracted content to Google NotebookLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse X (Twitter) articles with r.jina.ai, then create or reuse a NotebookLM notebook and upload the parsed article as a source.
 
-## Publisher: <br>
-[nicoxia](https://clawhub.ai/user/nicoxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicoxia](https://clawhub.ai/user/nicoxia)
 
-## Use Case: <br>
-Developers and agents use this skill to capture public X article content, place it into NotebookLM, and return notebook/source identifiers for follow-up reading and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted URL, notebook name, or notebook ID values may reach shell commands. <br>
-Mitigation: Use only trusted public URLs and simple notebook names or IDs; review the script before running it in an environment with sensitive credentials. <br>
-Risk: Fetched page content and uploaded files may contain sensitive or unintended data. <br>
-Mitigation: Use the skill only with non-sensitive public content, and assume fetched content is sent to r.jina.ai and Google NotebookLM. <br>
-Risk: Temporary uploaded-content files may remain on disk after some execution paths. <br>
-Mitigation: Inspect and remove relevant temporary files manually after running the skill until cleanup behavior is fixed. <br>
+## Use Case:
 
+Developers and external users use this skill to move public X article content into NotebookLM for reading, organization, and analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicoxia/x-to-notebooklm) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nicoxia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and Markdown-oriented command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports article title, original URL, Notebook ID, Source ID, and processing status when execution succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Crafted URL, notebook name, notebook ID, or environment values could cause unintended local shell command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix command construction before use; pass only trusted, non-private values until the script safely invokes subprocesses without shell interpolation.
+
+Risk: Fetched or uploaded article content may remain in local temporary files after a successful run.
+
+Mitigation: Avoid sensitive content and confirm temporary files are removed after execution.
+
+Risk: NotebookLM uploads store provided content outside the local workspace.
+
+Mitigation: Upload only content that is appropriate to store in NotebookLM under the user's account and organization policies.
+
+Risk: X content requiring login may not be available through r.jina.ai.
+
+Mitigation: Use public URLs or a reviewed alternative workflow for authenticated content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicoxia/skills/x-to-notebooklm)
+- [Publisher profile](https://clawhub.ai/user/nicoxia)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Console text with identifiers, status messages, and Markdown source content uploaded through NotebookLM CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, curl, network access to r.jina.ai, and an authenticated NotebookLM CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

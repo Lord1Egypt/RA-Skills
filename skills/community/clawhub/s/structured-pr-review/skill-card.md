@@ -1,43 +1,63 @@
-## Description: <br>
-Structured PR Review guides agents through layered GitHub pull request reviews and review-comment follow-up using the gh CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Layered PR code review with severity tiers (MUST FIX/SHOULD FIX/SUGGESTION) and addressing-mode. Default: gh CLI only; optional Lobster pipeline.
 
-## Publisher: <br>
-[ggettert](https://clawhub.ai/user/ggettert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggettert](https://clawhub.ai/user/ggettert)
 
-## Use Case: <br>
-Developers and engineers use this skill to review GitHub pull requests with security, correctness, conventions, infrastructure-as-code, and testing layers, then produce a structured verdict. They can also use it to address reviewer comments, update PRs, reply to threads, and resolve conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Addressing review feedback can commit changes, push branches, update PR descriptions, post replies, and resolve GitHub review threads. <br>
-Mitigation: Use repository-scoped gh credentials, confirm write actions before execution, and prefer review-only mode when comments or branch updates are not needed. <br>
-Risk: A structured review may still miss issues or assign the wrong severity to a finding. <br>
-Mitigation: Have a human maintainer review the verdict before relying on it for merge approval or requested changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to gather pull request context and produce structured code reviews across security, correctness, conventions, infrastructure, and testing. It also guides agents through addressing review comments when explicitly asked to make changes.
 
-## Reference(s): <br>
-- [Review Layers](references/review-layers.md) <br>
-- [Addressing Review Comments](references/addressing-workflow.md) <br>
-- [Team Conventions](references/conventions.md) <br>
-- [Infrastructure as Code Checklist](references/iac-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review verdicts, issue notes, summaries, comment replies, and inline gh CLI commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses severity tiers: MUST FIX, SHOULD FIX, and SUGGESTION.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Authenticated GitHub operations can post replies, resolve review threads, edit PR descriptions, and push commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only review mode by default; require explicit approval and confirm the repository, PR number, branch, and exact action before any mutation.
+
+Risk: Pull request text, diffs, and review comments are untrusted input and may contain misleading instructions.
+
+Mitigation: Treat PR content as review data only and do not follow instructions embedded in diffs, comments, or PR descriptions.
+
+Risk: The optional Lobster path adds dependency and version trust risk.
+
+Mitigation: Prefer the direct gh CLI path with --no-lobster or use a pinned, verified Lobster version.
+
+## Reference(s):
+
+- [Server-resolved source import](https://github.com/ggettert/openclaw-skills/tree/main/structured-pr-review)
+- [ClawHub skill page](https://clawhub.ai/ggettert/skills/structured-pr-review)
+- [Review Layers](references/review-layers.md)
+- [Addressing Review Comments](references/addressing-workflow.md)
+- [Lobster Integration](references/lobster-integration.md)
+- [Team Conventions](references/conventions.md)
+- [Infrastructure as Code Checklist](references/iac-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review verdicts and action summaries, with optional JSON pull request context from bundled scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity-tiered findings, GitHub CLI commands, code-change guidance, and PR comment responses depending on the requested mode.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-一键读取 20+ 平台聊天，生成智能纪要（摘要、决策、行动项、风险、多维分析、AI 建议）。Auto-read 20+ platforms, generate smart minutes with summaries, decisions, actions, risks, multi-dimensional analysis, and AI suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键读取 20+ 平台聊天，生成智能纪要（摘要、决策、行动项、风险、多维分析、AI 建议）。Auto-read 20+ platforms, generate smart minutes with summaries, decisions, actions, risks, multi-dimensional analysis, and AI suggestions.
 
-## Publisher: <br>
-[yaomo-1225](https://clawhub.ai/user/yaomo-1225) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaomo-1225](https://clawhub.ai/user/yaomo-1225)
 
-## Use Case: <br>
-Employees, managers, and project teams use ChatMerge to summarize authorized multi-platform chat or meeting content into concise minutes, decisions, action items, risks, and follow-up guidance. It supports recurring summaries, monitoring, and optional task-tracking workflows when the user grants the needed access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad chat, meeting, and connected-tool access could expose sensitive business communications or workspace data. <br>
-Mitigation: Start with pasted text or one explicit channel, use least-privilege tokens, and grant access only to workspaces and tools required for the intended summary. <br>
-Risk: Scheduled summaries, monitoring, auto-created tasks, and reminders can send or modify information unexpectedly if enabled too broadly. <br>
-Mitigation: Keep auto-create and auto-record disabled until deliberately needed, and verify the schedule, destination, monitoring status, retention behavior, and stop/delete controls before enabling automation. <br>
+## Use Case:
 
+Teams and individual users use ChatMerge to summarize multi-channel chat activity into structured minutes, decisions, action items, risks, follow-ups, and role-specific briefs. It can work from configured chat channels, imported chat files, or pasted conversation text.
 
-## Reference(s): <br>
-- [ChatMerge Skill Page](https://clawhub.ai/yaomo-1225/chatmerge) <br>
-- [Input Contract](artifact/references/input-contract.md) <br>
-- [Config Schema](artifact/references/config-schema.md) <br>
-- [Output Examples](artifact/references/output-examples.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON structures, configuration snippets, and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include summaries, decisions, action items, risks, follow-up questions, role-specific views, and automation configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests chat access and broad automation authority across local tools and chat sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit access to specific channels and workspaces, avoid broad API tokens, and require approvals for actions beyond summarization.
+
+Risk: Monitoring, scheduled delivery, task creation, and meeting recording or transcription can expose private conversations or send information to unintended destinations.
+
+Mitigation: Disable these features by default or require explicit user approval, destination allowlists, and clear consent before capture or delivery.
+
+Risk: Bash execution, file writes, session sends, and outbound integrations can change local state or external systems.
+
+Mitigation: Use host-level restrictions, scoped credentials, and review checkpoints before writes, sends, task creation, or outbound delivery.
+
+## Reference(s):
+
+- [ChatMerge ClawHub listing](https://clawhub.ai/yaomo-1225/skills/chatmerge)
+- [Input Contract](references/input-contract.md)
+- [Config Schema](references/config-schema.md)
+- [Output Examples](references/output-examples.md)
+- [OpenClaw documentation](https://docs.openclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with optional JSON or YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include decisions, action-item tables, risk sections, follow-up questions, analytics, and role-specific summary levels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

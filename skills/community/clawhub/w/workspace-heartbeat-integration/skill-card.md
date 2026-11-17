@@ -1,42 +1,53 @@
-## Description: <br>
-Synchronizes workspace heartbeat state with memory logs, work-session entries, and daily heartbeat reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes workspace heartbeat state with memory logs and generates heartbeat reports for ongoing work tracking.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers and agents maintaining OpenClaw workspaces use this skill to log work sessions, synchronize heartbeat state, and generate summaries from workspace memory and task files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled installer can publish the package through the user's ClawHub account during what appears to be a local install. <br>
-Mitigation: Install through the normal ClawHub flow when possible, and review install.sh before running the bundled installer. <br>
-Risk: Heartbeat logs are persistent workspace memory and may capture sensitive work details. <br>
-Mitigation: Avoid logging secrets and periodically review files written under the workspace memory directory. <br>
-Risk: The installer creates or overwrites local configuration. <br>
-Mitigation: Review the generated configuration path and contents before relying on automated heartbeat syncing. <br>
+## Use Case:
 
+Developers and agents use this skill to automate recurring workspace heartbeat checks, append structured work-session logs, synchronize heartbeat state, and produce status reports from workspace memory files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/utopiabenben/workspace-heartbeat-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Command-line text, Markdown reports, JSON reports, and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes heartbeat state, daily memory logs, and optional user configuration in local workspace paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The installer can publish the package using the user's ClawHub credentials without a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before installation and remove or disable the clawhub publish command unless publishing this package is intentional.
+
+Risk: The skill persists heartbeat state, daily work logs, and configuration in workspace paths.
+
+Mitigation: Back up existing workspace-heartbeat-integration configuration and memory files, then test with --dry-run or inspect target paths before enabling routine syncs.
+
+## Reference(s):
+
+- [Workspace Heartbeat Integration on ClawHub](https://clawhub.ai/utopiabenben/skills/workspace-heartbeat-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [CLI output, Markdown reports, JSON reports, and workspace memory or configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write heartbeat-state.json, daily memory logs, and config.json in user workspace paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

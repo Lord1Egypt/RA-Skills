@@ -1,44 +1,61 @@
-## Description: <br>
-Sends images, files, and audio to Feishu by guiding an agent to use curl against Feishu APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书发送图片/文件/语音。用 curl 调用飞书 API 发送，比 message 工具更可靠。用于需要发送图片、文件、语音到飞书时触发。
 
-## Publisher: <br>
-[AxelHu](https://clawhub.ai/user/AxelHu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to upload selected local media or files and send them to a Feishu chat or user. It is suited for workflows that require direct Feishu API calls instead of a generic messaging tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload selected local files or media to Feishu. <br>
-Mitigation: Verify each file path and recipient before sending, and use the skill only when file or media upload to Feishu is intended. <br>
-Risk: Feishu app credentials are read from local configuration. <br>
-Mitigation: Treat app credentials as secrets, use a least-privileged Feishu app or account, and set AGENT_NAME deliberately so the expected account is used. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare shell-based Feishu API calls for sending images, files, and audio messages to Feishu chats or users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AxelHu/feishu-send) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu image upload API](https://open.feishu.cn/open-apis/im/v1/images) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Feishu app credentials and caller-provided file paths, chat IDs, user IDs, and optional audio duration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Broad credential-backed uploads could send unintended files or media to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped Feishu credentials, known recipient IDs, and explicit user approval for each file or media item sent.
+
+Risk: The account fallback can silently use the main Feishu account when the requested account is unavailable.
+
+Mitigation: Remove the fallback or require an explicit authorized choice before using the main account.
+
+Risk: The credential lookup snippets interpolate AGENT_NAME into Python source.
+
+Mitigation: Rewrite the lookup to pass AGENT_NAME as data and only accept trusted account names.
+
+## Reference(s):
+
+- [Feishu Send on ClawHub](https://clawhub.ai/axelhu/skills/feishu-send)
+- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Image Upload API](https://open.feishu.cn/open-apis/im/v1/images)
+- [Feishu File Upload API](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu Message Send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces credential lookup, upload, and message-send command patterns for Feishu media delivery.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

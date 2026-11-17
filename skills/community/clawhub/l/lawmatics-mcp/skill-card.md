@@ -1,41 +1,59 @@
-## Description: <br>
-MCP server for the Lawmatics legal CRM API. Exposes Lawmatics' REST API as read-only MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server for the Lawmatics legal CRM API. Exposes Lawmatics' REST API as read-only MCP tools.
 
-## Publisher: <br>
-[mjquinlan2000](https://clawhub.ai/user/mjquinlan2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjquinlan2000](https://clawhub.ai/user/mjquinlan2000)
 
-## Use Case: <br>
-Developers and agents use this MCP server to list and call read-only tools for the Lawmatics legal CRM API through mcporter over stdio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced npm package is third-party software outside the submitted artifact. <br>
-Mitigation: Confirm trust in the npm package before installing or running the MCP server. <br>
-Risk: Lawmatics CRM records may include sensitive client or matter data. <br>
-Mitigation: Use a Lawmatics API key with the narrowest available read-only permissions and inspect available tools with mcporter before calling them. <br>
+## Use Case:
 
+Developers and legal operations teams use this skill to let an agent list and call read-only Lawmatics CRM API tools through mcporter over stdio.
 
-## Reference(s): <br>
-- [Lawmatics MCP npm package](https://www.npmjs.com/package/@mjquinlan2000/lawmatics-mcp) <br>
-- [Lawmatics API MCP ClawHub release](https://clawhub.ai/mjquinlan2000/lawmatics-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only MCP tools require mcporter, lawmatics-mcp, and NODE_MCP_SECRET_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose Lawmatics CRM data returned by read-only tools to the active agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent access to Lawmatics CRM data is intended, and use a dedicated least-privilege or read-only credential where possible.
+
+Risk: The skill depends on external mcporter and lawmatics-mcp binaries or packages.
+
+Mitigation: Verify the package or binary source before trusting it in an agent environment.
+
+Risk: The NODE_MCP_SECRET_KEY credential is required for authentication.
+
+Mitigation: Store the secret outside prompts and source files, scope it narrowly, and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjquinlan2000/skills/lawmatics-mcp)
+- [npm package @mjquinlan2000/lawmatics-mcp](https://www.npmjs.com/package/@mjquinlan2000/lawmatics-mcp)
+- [Publisher profile](https://clawhub.ai/user/mjquinlan2000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Lawmatics CRM API access via stdio; requires NODE_MCP_SECRET_KEY, mcporter, and lawmatics-mcp.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, created 2026-03-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

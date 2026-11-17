@@ -1,42 +1,59 @@
-## Description: <br>
-Publish posts to Instagram, including photos, carousels, Reels, and scheduled posts for Instagram Business or Creator accounts through Boring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish posts to Instagram. Use when the user says 'post to Instagram', 'publish on IG', 'schedule Instagram post', 'create Instagram carousel', 'post a Reel', or wants to publish photos, carousels, or Reels to their Instagram Business account.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users, creators, and social media operators use this skill to prepare Instagram media, publish posts, schedule posts, and manage scheduled Instagram content through a Boring MCP connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP connector URL contains an embedded authentication token that grants publish access to connected Instagram accounts. <br>
-Mitigation: Treat the MCP URL like a password, avoid sharing it publicly, connect only accounts the agent should use, and revoke or regenerate the token if exposure is suspected. <br>
-Risk: The skill can upload media and create, schedule, or cancel public Instagram posts. <br>
-Mitigation: Require the agent to show the final account, media, caption, and schedule or cancellation details before taking publishing actions. <br>
+## Use Case:
 
+External users and social media operators use this skill to publish or schedule Instagram photos, carousels, and Reels through a connected Instagram Business or Creator account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/instagram-publisher) <br>
-- [Boring MCP Connector Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring Documentation](https://boring-doc.aiagent-me.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown with tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce publishing or scheduling instructions that require a credential-bearing MCP connector URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The MCP connector URL contains an embedded token that grants publish access to connected social media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the connector URL private, treat it like a password, and revoke or regenerate it if exposed or no longer needed.
+
+Risk: The skill can publish or schedule Instagram content through a third-party service.
+
+Mitigation: Review media, captions, destination account, and scheduled time before confirming publication.
+
+Risk: Using the skill requires trusting Boring with publishing access to the connected Instagram Business or Creator account.
+
+Mitigation: Install only when that trust is acceptable for the account and workflow being connected.
+
+## Reference(s):
+
+- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring API documentation](https://boring-doc.aiagent-me.com)
+- [Instagram Publisher on ClawHub](https://clawhub.ai/snoopyrain/skills/instagram-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown guidance with MCP tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Instagram publishing or scheduling confirmations, including post IDs and scheduled times.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

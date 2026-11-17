@@ -1,40 +1,53 @@
-## Description: <br>
-通过思考、执行和复盘三步，系统分析和优化所有类型的沟通，提高交流效果和目标达成率。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过思考、执行和复盘三步，系统分析和优化所有类型的沟通，提高交流效果和目标达成率。
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-External users and agents use this skill to structure everyday communication into thinking, response, and review steps. It is useful when a repeatable process is needed to interpret intent, choose a reply, and identify improvements for the next interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a seven-day trial and may require a provider API key for continued use. <br>
-Mitigation: Use an API key intended only for this provider, review the subscription terms, and remove the API_KEY value and local .ttl file when uninstalling or resetting the skill. <br>
-Risk: Heuristic communication analysis can misread intent or suggest replies that are unsuitable for sensitive conversations. <br>
-Mitigation: Review generated communication guidance before sending it, especially for high-stakes, private, or emotionally sensitive exchanges. <br>
+## Use Case:
 
+External users and agents use this skill to structure communication into thinking, execution, and review steps so messages, responses, and follow-up improvements are handled consistently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markma84/three-steps-comm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON-compatible structured results with short text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: The paid-license flow requires placing an API key in main.py and may send it to the publisher's verification endpoint after the trial expires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid committing or sharing the modified source file, and install only if the remote licensing check is acceptable.
+
+Risk: The skill stores local hidden TTL state for its trial and renewal behavior.
+
+Mitigation: Review the local state behavior before deployment and remove local TTL files when uninstalling or rotating access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/three-steps-comm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata, released 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

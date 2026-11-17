@@ -8,10 +8,70 @@ Pure stdlib, no deps.
 """
 from __future__ import annotations
 
+import json
+import shlex
+
 from dataclasses import dataclass
 
-from .catalog import FAIL, UNKNOWN, WARN, Finding
+from .catalog import ACTIONABLE_STATUSES, BY_ID, FAIL, FAIL_WEIGHT_STATUSES, WARN, Finding
+from .invocation import cmd, machine_command_prefix
+from .layers import LAYER_LIVE_BEHAVIOUR
 from .scoring import ScoreResult
+from .textnorm import asciify
+
+# B-873: the CLI's own `--home`/`--data-dir` defaults (cli.py's `--home` argparse default,
+# and the `~/.clawseccheck` literal `cli.py` already uses at its `--data-dir`-or-default
+# call sites, e.g. the --cron-recipe branch). Duplicated here rather than imported -
+# `invocation.py`/`guide.py` sit BELOW `cli.py` in the layering (see CLAUDE.md §3's
+# dependency-flow line) and must not import it. Every other module that needs one of
+# these two defaults (`__init__.py.audit`/`build_context`, `collector.collect`,
+# `history.DEFAULT_HISTORY`, ...) already carries its own copy for the same reason -
+# there is no shared leaf constant to import instead.
+_DEFAULT_HOME = "~/.openclaw"
+_DEFAULT_DATA_DIR = "~/.clawseccheck"
+
+
+def _quote_cli_path(value: str) -> str:
+    """Shell-quote *value* for splicing into a printed command line.
+
+    A bare `shlex.quote` on a `~/...` string quotes the tilde too, which turns it into a
+    literal directory named `~` instead of the shell's home-expansion - the same trap
+    `invocation._display_path` documents and avoids for the same reason. Only the
+    remainder after a leading `~/` (or `~` alone) needs quoting; some other absolute or
+    relative path is quoted whole. This does not resolve or expand *value* - the caller
+    already decided this is the exact string the user typed (or the tool's own default),
+    and byte-for-byte fidelity is the point (B-873: --home/--data-dir on their own already
+    describe a location; this only makes the composed command safe to paste as one line).
+    """
+    if value == "~":
+        return value
+    if value.startswith("~/"):
+        rest = value[2:]
+        return "~/" + shlex.quote(rest) if rest else "~"
+    return shlex.quote(value)
+
+
+def _state_flags(home: "str | None", data_dir: "str | None", *,
+                  wants_home: bool, wants_data_dir: bool) -> str:
+    """The trailing `--home ...`/`--data-dir ...` fragment for one emitted command.
+
+    B-873: every "what you can do next" command used to run against the DEFAULT
+    `~/.openclaw`/`~/.clawseccheck`, even when the audit that produced the finding list
+    looked at a different `--home` and/or `--data-dir` - so the printed follow-up command
+    quietly re-targeted the user's setup. Appends a flag only when the caller says this
+    particular command actually reads or writes state gated by it (`wants_home`/
+    `wants_data_dir` - not every emitted command does, see each call site below) AND the
+    resolved value differs from the tool's own default, so a default-path run's emitted
+    text stays byte-identical to before this fix. `home`/`data_dir` of `None` means "the
+    caller did not resolve one" (every pre-existing caller of `suggest_actions`/
+    `render_json`) and is treated the same as "equals the default" - never as "differs".
+    """
+    parts = []
+    if wants_home and home is not None and home != _DEFAULT_HOME:
+        parts.append("--home " + _quote_cli_path(home))
+    if wants_data_dir and data_dir is not None and data_dir != _DEFAULT_DATA_DIR:
+        parts.append("--data-dir " + _quote_cli_path(data_dir))
+    return (" " + " ".join(parts)) if parts else ""
 
 
 @dataclass
@@ -27,26 +87,119 @@ def _by_id(findings: list[Finding]) -> dict[str, Finding]:
     return {f.id: f for f in findings}
 
 
-def suggest_actions(findings: list[Finding], score: ScoreResult) -> list[Action]:
+def _layer_already_ran(score: ScoreResult, layer: str) -> bool:
+    """True only when *layer* is POSITIVELY known, via a ledger this run actually
+    built, to have completed.
+
+    B-779: ``score.missing_layers`` reads identically empty both when every ledger
+    layer ran AND when no ledger was ever built at all (``ledger=None`` - the
+    default the overwhelming majority of call sites still use; see
+    ``ScoreResult.ledger_present``'s own docstring). Reading ``missing_layers``
+    alone would make every one of those non-ledger call sites agree that
+    live-behaviour "ran", which would silently suppress advice to run it on a
+    run that never attempted it. ``ledger_present`` is the field that tells the
+    two apart, so an absent ledger returns False here - "we don't know" must
+    never read as "it ran".
+    """
+    if not getattr(score, "ledger_present", False):
+        return False
+    missing = {name for name, _status in getattr(score, "missing_layers", ())}
+    return layer not in missing
+
+
+def _surface_failed(findings: list[Finding], surface: str) -> bool:
+    """True when any check belonging to *surface* reported FAIL (B-566).
+
+    Derived from the catalog's own `surface` slug rather than from a list of check ids.
+    The id-keyed rules this supplements see 7 of 188 checks, so a FAIL on any other check
+    produced no next step at all, and the trigger set could not help falling further
+    behind - every new check needed a new rule to become visible here. Keying on the
+    surface means a new skills-surface check inherits its next step for free.
+
+    FAIL only, deliberately, and this is the whole calibration. Measured over 40 fixtures:
+    the current B13-keyed trigger fires on 22; adding every skills-surface FAIL *or* WARN
+    takes it to 35, which makes the action near-universal and costs it the signal a
+    prioritised list exists to carry. FAIL alone takes it to 24. The filed defect was a
+    FAIL that produced no next step, so FAIL is what closes it.
+
+    A suppressed finding does not count: the user has already said they do not want to be
+    told about it, and re-surfacing it as a recommended action would route around that.
+    """
+    for f in findings or []:
+        if getattr(f, "suppressed", False):
+            continue
+        meta = BY_ID.get(f.id)
+        # B-751: FAIL-weight, not the literal - a confirmed zip-slip could drop the whole
+        # surface block, not just one line.
+        if meta is not None and meta.surface == surface and f.status in FAIL_WEIGHT_STATUSES:
+            return True
+    return False
+
+
+def suggest_actions(
+    findings: list[Finding],
+    score: ScoreResult,
+    *,
+    home: "str | None" = None,
+    data_dir: "str | None" = None,
+) -> list[Action]:
     """Build a list of recommended next steps from the audit result.
 
-    All trigger logic is deterministic — no network, no side effects.
+    All trigger logic is deterministic - no network, no side effects.
     Returns actions sorted by (priority, id).
+
+    *home*/*data_dir* (B-873): the `--home`/`--data-dir` THIS run was actually pointed
+    at, as the caller's own CLI flag strings (not `Path.expanduser()`d - printed back
+    verbatim, same convention `render_cron_recipe`'s `data_dir` param already uses).
+    Both default to `None`, which every pre-existing caller still gets and which reads as
+    "unresolved, add nothing" - so an old caller's output is unchanged. Each `Action`
+    below decides FOR ITSELF, via `_state_flags`'s `wants_home`/`wants_data_dir`, whether
+    its own command actually reads or writes state gated by one, the other, both or
+    neither - see the comment on each.
     """
     idx = _by_id(findings)
     actions: list[Action] = []
     # Reports-only doctrine (F-074): every suggestion below is a further CHECK
-    # (vet, monitor, live test, trend) — never remediation. `score` stays in the
-    # signature for API stability even though no current rule reads it.
-    _ = score
+    # (vet, monitor, live test, trend) - never remediation. `score` is read below
+    # (the `graded`/ledger-derived branches; B-779 added the live-test gate).
 
-    # vet_skills: B13 is FAIL or WARN
+    # vet_skills: ANY skills-surface check is FAIL or WARN.
+    #
+    # B-566: this used to key on B13 alone, so a run could carry a skills-surface FAIL and
+    # produce no next step at all. The measured case was B181 ("installed skill files no
+    # longer match the SHA-256 digests ClawHub recorded") - a possible-compromise
+    # indicator that the command whose whole job is "what should I do now" had nothing to
+    # say about. B181 and B13 share surface="skills"; there was never a reason for one to
+    # reach this action and the other not.
+    #
+    # Derived from the catalog's own `surface`, deliberately NOT from a list of ids. A
+    # per-id rule set is what froze this trigger at 7 of 188 checks in the first place,
+    # and it would need a new rule every time a check is added. This way a new
+    # skills-surface check inherits the next step for free.
+    #
+    # Still inside the reports-only doctrine (F-074): the suggestion is to run a further
+    # CHECK (--vet), never to remediate. For B181 specifically the honest next step is to
+    # vet the skill, not "reinstall it".
+    #
+    # B13's own FAIL-or-WARN trigger is kept as it was, so nothing that reached this
+    # action before stops reaching it; the surface term only ADDS the FAILs that reached
+    # nothing. See _surface_failed for why that term is FAIL-only.
     b13 = idx.get("B13")
-    if b13 is not None and b13.status in (FAIL, WARN):
+    # B-751: B13 is the SOLE producer of SKILL_ARCHIVE_PATH_TRAVERSAL, so this was False
+    # exactly when B13 convicted: the guide advised on a hardcoded temp-file path and said
+    # nothing about a confirmed zip-slip (measured against that WARN as a positive control).
+    b13_hit = b13 is not None and (b13.status in ACTIONABLE_STATUSES)
+    if b13_hit or _surface_failed(findings, "skills"):
         actions.append(Action(
             id="vet_skills",
             title="Double-check your installed skills for malware",
-            command="clawseccheck --vet <skill-folder>",
+            # B-873: EXEMPT, explicitly (not silently skipped) - `<skill-folder>` is a
+            # placeholder for a path the user/agent supplies themselves, and vetting that
+            # folder's content does not depend on which OpenClaw `--home` or ClawSecCheck
+            # `--data-dir` is in effect (the coverage-ledger bookkeeping write under
+            # --data-dir is a side effect of running the tool, not part of the vet
+            # verdict this command exists to reproduce).
+            command=cmd("--vet <skill-folder>"),
             why="Installed skills run with your agent's full permissions.",
             priority=1,
         ))
@@ -57,7 +210,12 @@ def suggest_actions(findings: list[Finding], score: ScoreResult) -> list[Action]
         actions.append(Action(
             id="setup_monitoring",
             title="Turn on ongoing monitoring so you're alerted if something changes",
-            command="clawseccheck --monitor",
+            # B-873: needs BOTH. --monitor keys its baseline/journal by --data-dir alone
+            # and refuses to compare across a --home mismatch (B-781, above in this same
+            # file's history) -- printing the bare default command would either watch the
+            # wrong setup outright or trip that refusal on the very next run.
+            command=cmd("--monitor" + _state_flags(
+                home, data_dir, wants_home=True, wants_data_dir=True)),
             why="An agent with no monitoring won't warn you if it's compromised.",
             priority=3,
         ))
@@ -69,50 +227,111 @@ def suggest_actions(findings: list[Finding], score: ScoreResult) -> list[Action]
     a1_trifecta = a1 is not None and len(getattr(a1, "evidence", [])) >= 2
     b17_hit = b17 is not None and b17.status in (FAIL, WARN)
     b21_hit = b21 is not None and b21.status in (FAIL, WARN)
-    if a1_trifecta or b17_hit or b21_hit:
+    # B-779: don't offer a live-behaviour test this run's own ledger already shows
+    # as `ran` - the graded card used to print this unconditionally, so a run that
+    # had just submitted a `--judged-bundle` `liveTest` verdict (layer 5 complete,
+    # `missing_layers` empty) still told the user to go run one, implying the
+    # layer the grade already depends on was still missing.
+    if (a1_trifecta or b17_hit or b21_hit) and not _layer_already_ran(
+            score, LAYER_LIVE_BEHAVIOUR):
         actions.append(Action(
             id="live_test",
             title="Run a live prompt-injection test to see if your agent actually resists",
-            command="clawseccheck --canary   (then --dryrun / --redteam)",
+            # B-873: --data-dir only. --canary/--dryrun/--redteam are seeded synthetic
+            # scenarios (canary.py/dryrun.py/redteam.py) that never read the audited
+            # `--home` config at all, so --home would be noise here; each still records
+            # its run to the coverage ledger under --data-dir (`_record_run("self_test",
+            # args)` in cli.py). The parenthetical "(then --dryrun / --redteam)" stays a
+            # note, not a second command, same as before this fix -- B-873's own DoD
+            # scopes the broader "make every emitted line independently runnable" guard
+            # (B-759) out of this task.
+            command=cmd("--canary" + _state_flags(
+                home, data_dir, wants_home=False, wants_data_dir=True)
+                + "   (then --dryrun / --redteam)"),
             why="Passive checks tell you the config; this tests real behavior.",
             priority=4,
         ))
 
-    # review_mcp: B15 status not UNKNOWN, or B24 status not UNKNOWN
+    # review_mcp: B15/B24 "active" means MCP surface may exist or we simply can't
+    # tell (blind pass) - silent only once not_applicable has POSITIVELY confirmed
+    # no MCP surface. B15/B24 status is ALWAYS UNKNOWN (that never changes; status
+    # is not a proxy for "is there MCP surface" - not_applicable is orthogonal to
+    # status), so the old `status != UNKNOWN` gate never fired regardless of
+    # whether MCP surface actually existed (F-139/B2 semantic-bug fix).
     b15 = idx.get("B15")
     b24 = idx.get("B24")
-    b15_active = b15 is not None and b15.status != UNKNOWN
-    b24_active = b24 is not None and b24.status != UNKNOWN
+    b15_active = b15 is not None and not getattr(b15, "not_applicable", False)
+    b24_active = b24 is not None and not getattr(b24, "not_applicable", False)
     if b15_active or b24_active:
         actions.append(Action(
             id="review_mcp",
             title="Vet your connected MCP servers for supply-chain risk",
-            command="clawseccheck --vet-mcp",
+            # B-873: needs BOTH -- vet_mcp(target, home=args.home) reads the MCP server
+            # list out of the audited `--home` config, and the run is recorded to the
+            # coverage ledger under --data-dir the same as --vet/--vet-mcp's other route.
+            command=cmd("--vet-mcp" + _state_flags(
+                home, data_dir, wants_home=True, wants_data_dir=True)),
             why="MCP servers can inject prompts or reach internal services.",
             priority=5,
         ))
 
-    # track_trend: ALWAYS
-    actions.append(Action(
-        id="track_trend",
-        title="Track your security score over time",
-        command="clawseccheck --trend",
-        why="See if you're getting safer or drifting.",
-        priority=8,
-    ))
+    # C-428: both of these actions promised a grade. On an ungraded run (fewer than five
+    # layers ran) `--trend` plots nothing for it and the badge renders "no grade yet".
+    # C-428 reworded them; C-704 drops them: advice that cannot work on this run is
+    # noise on the first screen. A graded run keeps both, in the same order.
+    graded = bool(getattr(score, "graded", True))
 
-    # share_grade: ALWAYS
-    actions.append(Action(
-        id="share_grade",
-        title="Share your grade (safe — findings stay private)",
-        command="clawseccheck --badge grade.svg",
-        why=(
-            "Only the grade + score is shared, never your findings. This writes a real "
-            "SVG file — attach grade.svg itself, do not redraw or regenerate the badge "
-            "image yourself."
-        ),
-        priority=9,
-    ))
+    if graded:
+        # track_trend: graded runs only
+        actions.append(Action(
+            id="track_trend",
+            title="Track your security score over time",
+            # B-873: --data-dir only. --trend reads history.jsonl (and prints/records
+            # against it), which --data-dir moves; --home plays no part in which rows are
+            # shown (each row already carries its own recorded `home` as metadata, and the
+            # baseline/history store is keyed by --data-dir alone -- same B-781 fact
+            # setup_monitoring's comment above cites).
+            command=cmd("--trend" + _state_flags(
+                home, data_dir, wants_home=False, wants_data_dir=True)),
+            why="See if you're getting safer or drifting.",
+            priority=8,
+        ))
+
+        # share_grade: graded runs only
+        actions.append(Action(
+            id="share_grade",
+            title="Share your grade (safe \u2014 findings stay private)",
+            # B-873: needs BOTH, and more than the others above -- the `why` text right
+            # below already explains that this command STARTS A FRESH AUDIT (badge export
+            # never rides the run that produced `score`; see B-586/C-428 in that text). A
+            # fresh audit means the bare command re-targets the DEFAULT --home outright,
+            # not just a side write, which is the sharpest version of this whole bug: a
+            # badge for a setup the user never asked about. --data-dir alongside it for
+            # the same reason setup_monitoring's command carries it -- this also records a
+            # history point.
+            command=cmd("--badge grade.svg" + _state_flags(
+                home, data_dir, wants_home=True, wants_data_dir=True)),
+            why=(
+                # C-428 follow-up: C-428 fixed the ungraded branch's PROSE and left the
+                # graded branch's COMMAND promising what it cannot deliver. A grade needs
+                # all five layers, and per B-586 an export never honours `--full` on its
+                # own - it rides the run that genuinely completed those layers. So the
+                # bare command below opens a NEW, ungraded audit: on a run that had just
+                # earned "Grade A · 96/100" it wrote aria-label="OpenClaw Security: no
+                # grade yet" (measured). The wording deliberately does not quote the
+                # ungraded badge's own text here: tests/test_b604_dashboard_next_actions.py
+                # discriminates the two blocks by that phrase, and it is right to - a
+                # graded block that quotes it reads like an ungraded one to a user
+                # skimming.
+                "Only the grade + score is shared, never your findings. As written this "
+                "command starts a fresh audit that will not complete all five layers, so "
+                "its badge would not carry this grade \u2014 add `--badge grade.svg` to the "
+                "same command that produced it. "
+                "This writes a real SVG file \u2014 attach grade.svg itself, do not redraw "
+                "or regenerate the badge image yourself."
+            ),
+            priority=9,
+        ))
 
     actions.sort(key=lambda a: (a.priority, a.id))
     return actions
@@ -130,7 +349,12 @@ def render_next_actions(
     *ascii_only* avoids unicode.
     """
     if not actions:
-        return "You're in good shape — re-run anytime to stay safe.\n"
+        # C-216 (PASS-semantics doctrine): "good shape"/"stay safe" overstates what a clean
+        # result means - reframed to what's actually true (no known pattern matched).
+        return (
+            "No further action suggested \u2014 nothing here matched a known attack"
+            " pattern. Re-run after any change to your setup.\n"
+        )
 
     header = "What you can do next:"
     run_label = "run:"
@@ -146,5 +370,249 @@ def render_next_actions(
 
     out = "\n".join(lines).rstrip() + "\n"
     if ascii_only:
-        out = out.encode("ascii", "replace").decode("ascii")
+        out = asciify(out)
     return out
+
+
+# -- F-172: a native OpenClaw cron job, printed for the agent to create ------------
+#
+# "Watch continuously and tell me when something is wrong" needs periodicity and delivery.
+# This tool supplies neither and must not: a resident daemon breaks the skill shape, and
+# any delivery of our own would be a network call. OpenClaw already provides both.
+#
+# GROUNDED against the installed dist, because Golden Rule #4 forbids inventing a field's
+# contract. Job schema: cron-tool-C9qaFGtt.js:830-875. `schedule.kind` is one of
+# at|every|cron|on-exit; `payload.kind` is systemEvent|agentTurn; `delivery.mode` is
+# none|announce|webhook.
+#
+# WHY THERE IS NO `trigger` BLOCK, recorded so the next attempt starts from an answer:
+# `trigger.script` exists and would be the better design - it polls headlessly and wakes
+# the agent only when it returns {fire: true}, i.e. zero token cost while nothing is wrong.
+# Traced: the script is passed as `code` to `runCodeModeScriptHeadless`
+# (server-cron-Cwg2hJro.js:3714), which runs it in a **QuickJS/WASI sandbox**
+# (agents/code-mode.worker.js imports `quickjs-wasi`) - so it is JavaScript, not shell and
+# not Python. It must return a boolean `fire`, may return `message`/`state`, and is bounded
+# to 30s wall clock, 5 tool calls and 16KB of persisted state
+# (server-cron-Cwg2hJro.js:3461-3464).
+#
+# What is NOT established is whether that sandbox's tool catalog can execute an external
+# binary and read its exit status. Without that a trigger cannot consult
+# `clawseccheck --exit-code`, which is the whole point of using one. A full monitor run
+# measures 7.7-7.9s on a real machine, so the 30s ceiling is not the obstacle - the exec
+# route is. Until someone grounds it, this emits the plain `every` + `agentTurn` variant,
+# which is fully grounded today.
+
+_CRON_JOB_NAME = "clawseccheck-watch"
+_CRON_EVERY_MS = 21_600_000        # six hours
+
+# B-658: the severity the emitted job pages on, named ONCE so the flag in the command and
+# the sentence describing exit 0 cannot drift apart. They did: the recipe said "Exit 0
+# means nothing changed" while a bare `--exit-code` pages only at HIGH and above, and the
+# arm that reports a check leaving PASS emits at MEDIUM unconditionally. Measured on this
+# tree: `gateway.auth.mode` token -> none printed `1 change(s) detected` on screen and
+# exited 0, so an agent following this very recipe stayed silent about the gateway losing
+# authentication - which is the case B-273's own source comment names as its
+# reason for existing.
+#
+# MEDIUM, not HIGH, because HIGH excludes the entire PASS->WARN/UNKNOWN regression arm, and
+# that arm is where a config edit lands when it degrades a control rather than removing it.
+# Not LOW: INFO and LOW carry routine advisories (a counter moving, a skill version bump)
+# and paging on those is what gets a scheduled check switched off, which the epic this
+# recipe belongs to counts as 0% coverage.
+#
+# It does NOT change what a bare `--exit-code` does - that stays at HIGH, documented and
+# depended on. This only sets the threshold for the job we hand the agent.
+_CRON_FAIL_ON = "medium"
+
+#: How often the low-latency job POLLS. The probe measures 13.1-13.8 s on a real
+#: machine against OpenClaw's 30 s trigger deadline (HEADLESS_TRIGGER_WALL_CLOCK_MS),
+#: so five minutes keeps the duty cycle near one twenty-fifth and leaves better than
+#: 2x headroom on the deadline.
+_CRON_POLL_MS = 300000
+
+#: The trigger script. OpenClaw runs it in an isolated quickjs-wasi sandbox with a
+#: budget of 5 tool calls and a 30 s wall clock. Grounded against the installed dist,
+#: not invented: `runHeadless` resolves to `runCodeModeScriptHeadless`
+#: (server-cron-Cwg2hJro.js:3647), whose own tool description states that Node modules
+#: and require/import are NOT available and that any shell action must go through
+#: `tools.search` / `tools.describe` / `tools.call` (code-mode-D5mNEiYV.js:731). It must
+#: return an object carrying a boolean `fire` (server-cron:3572).
+#:
+#: THE EXIT CODE IS READ OUT OF THE COMMAND'S OWN OUTPUT, not out of a result field.
+#: What `tools.call` hands back for an exec tool is a shape we have NOT pinned, and
+#: guessing a field name is the kind of invention that fails silently. `echo CSC_RC=$?`
+#: puts the answer in stdout, which every exec tool returns in some readable form, and
+#: the script greps the stringified result for it.
+#:
+#: The one guess left is the exec tool's INPUT field (`command`). It is the common
+#: name, and a wrong one throws, which the catch turns into fire:true with an explicit
+#: message -- loud, not silent. That is the whole reason the error paths fire.
+_CRON_TRIGGER_JS = r"""// ClawSecCheck drift probe. Runs on every poll; the agent turn below runs only if
+// this returns fire:true. --probe means the check reports drift WITHOUT recording it,
+// so the turn it wakes still sees the same drift and is the run that records it.
+// This fails OPEN on purpose: anything it cannot determine returns fire:true, because
+// OpenClaw treats a trigger error or timeout as fire:false, and a watch that goes
+// quiet on error is worse than one that occasionally wakes you for nothing.
+const CMD = "__CSCCMD__ --monitor --probe --exit-code --fail-on __FAILON____STATE__ >/dev/null 2>&1; echo CSC_RC=$?";
+try {
+  const hits = await tools.search("run a shell command");
+  if (!hits || !hits.length) {
+    return { fire: true, message: "ClawSecCheck watch: no shell tool is available to this job, so it could not check for drift." };
+  }
+  const raw = JSON.stringify(await tools.call(hits[0].id, { command: CMD }));
+  const m = raw.match(/CSC_RC=(\d+)/);
+  if (!m) {
+    return { fire: true, message: "ClawSecCheck watch: the drift probe returned no exit code, so this run could not tell whether anything changed." };
+  }
+  const rc = Number(m[1]);
+  if (rc === 0) return { fire: false };
+  if (rc === 3) return { fire: true, message: "ClawSecCheck: drift was found and deliberately NOT recorded. The run below reports and records it." };
+  return { fire: true, message: "ClawSecCheck watch: the drift probe exited " + rc + ", which is not a normal result for a probe." };
+} catch (e) {
+  return { fire: true, message: "ClawSecCheck watch: the drift probe could not run (" + String(e) + ")." };
+}"""
+
+
+def _json_inner(value: str) -> str:
+    """*value* escaped for embedding INSIDE a hand-built JSON string literal.
+
+    `_json_str` returns a quoted JSON string; these recipe fields are assembled by hand and
+    need the escaped body without the quotes. Not cosmetic: B-679 puts a resolved
+    filesystem path in there, and on Windows that path carries backslashes, which are a
+    JSON escape character - `C:\\Users\\...` unescaped makes the emitted job unparseable.
+    """
+    return json.dumps(value)[1:-1]
+
+
+def _json_str(value: str) -> str:
+    """JSON-encode a string for embedding in the hand-built recipe.
+
+    The trigger script is multi-line JavaScript going into a JSON string field, so it
+    needs real JSON escaping rather than a hand-rolled replace. `json.dumps` on a bare
+    string is exactly that and nothing more.
+    """
+    return json.dumps(value)
+
+
+def render_cron_recipe(ascii_only: bool = False,
+                       data_dir: str = "~/.clawseccheck",
+                       home: "str | None" = None) -> str:
+    """A copy-paste OpenClaw cron job that runs the drift check on a schedule.
+
+    Prints only. This never writes a file, never edits openclaw.json and never invokes
+    `openclaw cron` - creating the job is the agent's or the user's act, and a security
+    tool that installs a recurring job as a side effect of being asked how to install one
+    has helped itself to a decision that was not offered.
+
+    Deterministic: no clock, no randomness, so the same input always prints the same text.
+
+    C-622: the job must watch the setup the user asked about, so a non-default *home* is
+    written into every `--monitor` command (`--home` is omitted at the tool default, which
+    keeps the default output byte-identical). *data_dir* is always named - consent needs
+    the real store path (F-172) - and both values are shell-quoted, then JSON-escaped for
+    the hand-built message fields and the JS literal they land in.
+    """
+    # `_state_flags` is used for --home only: it drops --data-dir at the default, which
+    # would delete `--data-dir ~/.clawseccheck` from the default recipe.
+    state = (_state_flags(home, None, wants_home=True, wants_data_dir=False)
+             + " --data-dir " + _quote_cli_path(data_dir))
+    job = (
+        '{\n'
+        f'  "name": "{_CRON_JOB_NAME}",\n'
+        f'  "schedule": {{ "kind": "every", "everyMs": {_CRON_EVERY_MS} }},\n'
+        '  "payload": {\n'
+        '    "kind": "agentTurn",\n'
+        f'    "message": "Run: {_json_inner(machine_command_prefix())} --monitor --exit-code --fail-on {_CRON_FAIL_ON}'
+        f'{_json_inner(state)}\\nExit 0 means nothing at {_CRON_FAIL_ON} severity or above '
+        'was recorded \u2014 say nothing and stop; anything below that is advisory and is '
+        f'counted by `{_json_inner(machine_command_prefix())} --brief{_json_inner(state)}`. '
+        'Exit 3 means drift was '
+        'recorded: report what '
+        'changed, quoting the tool\'s own output. Exit 1 means monitoring is NOT established '
+        '(the run could not write its state) \u2014 say so, it is more urgent than drift. '
+        'Exit 2 is a usage error in this job, not a finding."\n'
+        '  },\n'
+        '  "delivery": { "mode": "announce", "channel": "<your-channel>", "to": "<you>" },\n'
+        '  "sessionTarget": "isolated"\n'
+        '}'
+    )
+    # F-181: the low-latency half. `trigger.script` polls headlessly and the agent turn --
+    # the part that costs tokens and sends you a message -- runs only when the probe finds
+    # drift. The interval is the alert latency, so this is what takes it from six hours to
+    # minutes without a resident process and without writing anything into openclaw.json.
+    # B-679: the machine form -- absolute interpreter, absolute script. A cron job
+    # inherits neither the user's PATH nor their cwd, and the bare console-script name
+    # does not exist at all on a ClawHub install (measured: rc=127). The trigger maps any
+    # code outside {0, 3} to fire:true, so a command that cannot be found became a
+    # wake-up every five minutes, forever.
+    trigger_script = (_CRON_TRIGGER_JS
+                      .replace("__CSCCMD__", machine_command_prefix())
+                      .replace("__FAILON__", _CRON_FAIL_ON)
+                      # Keep this LAST: it is the only replacement carrying user-controlled
+                      # text, so nothing after it can re-scan that text for a placeholder.
+                      .replace("__STATE__", _json_inner(state)))
+    fast_job = (
+        '{\n'
+        f'  "name": "{_CRON_JOB_NAME}-now",\n'
+        f'  "schedule": {{ "kind": "every", "everyMs": {_CRON_POLL_MS} }},\n'
+        f'  "trigger": {{ "script": {_json_str(trigger_script)}, "once": false }},\n'
+        '  "payload": {\n'
+        '    "kind": "agentTurn",\n'
+        f'    "message": "Run: {_json_inner(machine_command_prefix())} --monitor --exit-code --fail-on {_CRON_FAIL_ON}'
+        f'{_json_inner(state)}\\nThe probe that woke you already saw drift but did NOT '
+        'record it, so this run is the one that reports and records it. Exit 3 means drift: '
+        "report what changed, quoting the tool's own output. Exit 1 means monitoring is NOT "
+        'established \u2014 say so, it is more urgent than drift. Exit 0 here means the change '
+        'was resolved between the probe and this run; say that plainly rather than nothing."\n'
+        '  },\n'
+        '  "delivery": { "mode": "announce", "channel": "<your-channel>", "to": "<you>" },\n'
+        '  "sessionTarget": "isolated"\n'
+        '}'
+    )
+    lines = [
+        "Watch this setup on a schedule",
+        "",
+        "OpenClaw runs the schedule and delivers the message; this tool only checks. Ask",
+        "your agent to create these jobs with its own `cron` tool \u2014 nothing here is created",
+        "for you.",
+        "",
+        "TWO jobs, and you want both. The first tells you quickly; the second is the one",
+        "that cannot fail quietly.",
+        "",
+        "1. Tell me quickly (polls, wakes you only when something changed):",
+        "",
+        fast_job,
+        "",
+        "2. The backstop (runs whatever the poll did or did not do):",
+        "",
+        job,
+        "",
+        "Why both, and this is the part worth reading:",
+        "",
+        "  - OpenClaw treats a trigger script that errors or times out as 'do not fire'.",
+        "    So if the probe ever fails to run, job 1 goes SILENT rather than loud \u2014 and a",
+        "    security watch that goes quiet on error looks exactly like one with nothing to",
+        "    report. The script itself fires on anything it cannot determine, which covers",
+        "    the errors it can see; it cannot cover being killed or timing out. Job 2 is",
+        "    what covers that, which is why it runs unconditionally.",
+        "  - The probe takes about 13 s against OpenClaw's 30 s trigger deadline. That is",
+        "    comfortable on an idle machine and not guaranteed on a loaded one.",
+        "",
+        "Before you agree to them:",
+        "",
+        "  - Job 1 polls every 5 minutes; that interval IS your alert latency. Job 2 runs",
+        "    every 6 hours. Change either everyMs.",
+        f"  - It messages you at {_CRON_FAIL_ON} severity and above. Change --fail-on to",
+        "    widen or narrow that; changes below the line are still recorded, and --brief",
+        "    counts them. Nothing at all is silently discarded.",
+        f"  - It writes three local files under {data_dir} \u2014 the drift baseline, the event",
+        "    journal and the score history. Nothing leaves the machine.",
+        "  - Replace <your-channel> and <you>. Delivery is OpenClaw's, not this tool's; set",
+        '    "mode": "none" if you would rather read the result in the session.',
+        '  - "sessionTarget": "isolated" keeps the check out of your working conversation.',
+        "",
+        "The first run records a baseline and reports nothing. Every run after it compares",
+        "against that baseline.",
+    ]
+    out = "\n".join(lines).rstrip() + "\n"
+    return asciify(out) if ascii_only else out

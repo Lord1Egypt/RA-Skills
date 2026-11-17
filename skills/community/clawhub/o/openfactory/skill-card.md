@@ -1,41 +1,59 @@
-## Description: <br>
-Build, test, and deploy custom Linux ISOs with OpenFactory. Create VMs, run compliance tests, manage recipes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, test, and deploy custom Linux ISOs with OpenFactory by creating VMs, running compliance tests, and managing recipes.
 
-## Publisher: <br>
-[ziegenbalg](https://clawhub.ai/user/ziegenbalg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziegenbalg](https://clawhub.ai/user/ziegenbalg)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to build custom Linux ISOs, deploy them into VMs, run compliance-oriented tests, and manage recipes through OpenFactory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create, start, stop, or delete VMs and retrieve ISO download or console URLs. <br>
-Mitigation: Require explicit confirmation before destructive VM actions and protect console URLs, session tokens, API keys, and ISO download links. <br>
-Risk: Build recipes and git deployment workflows may include untrusted repositories, weak example passwords, or unrelated secrets. <br>
-Mitigation: Use trusted repositories, replace example passwords, validate recipes before builds, and avoid placing unrelated secrets in recipes. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to create custom Linux ISO recipes, build images, launch VMs, run validation or compliance tests, and retrieve deployable artifacts through OpenFactory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziegenbalg/openfactory) <br>
-- [OpenFactory homepage](https://openfactory.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON examples and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include build recipes, VM and test workflow steps, API authentication guidance, and ISO download or console handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Example credentials or privileged administrative settings could be copied into real infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace example passwords with SSH keys or unique secrets and review recipes before building deployable images.
+
+Risk: VM controls can stop instances, force power off systems, or delete disks.
+
+Mitigation: Require explicit user confirmation before deleting VM disks, force-stopping VMs, or stopping active test environments.
+
+Risk: Images that auto-deploy services can introduce vulnerable or unintended infrastructure.
+
+Mitigation: Use trusted OpenFactory accounts and endpoints, validate recipes, and review auto-deployed services before use.
+
+## Reference(s):
+
+- [OpenFactory homepage](https://openfactory.tech)
+- [OpenFactory ClawHub skill page](https://clawhub.ai/ziegenbalg/skills/openfactory)
+- [OpenFactory MCP endpoint](https://build.openfactory.tech/api/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and API call plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include build recipes, VM operation steps, test workflows, and deployment guidance for OpenFactory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

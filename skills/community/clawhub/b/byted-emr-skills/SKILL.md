@@ -1,6 +1,6 @@
 ---
 name: byted-emr-skills
-description: byted-emr-skills提供管理火山引擎EMR（火山引擎 E-MapReduce（简称“EMR”）是开源Hadoop生态的企业级大数据分析系统，完全兼容开源）的技能，包括管理EMR on ECS集群、EMR on VKE集群、EMR serverless队列、计算组、作业模板/实例、日志、监控并提供 EMR Agent 智能诊断与知识问答能力。当用户提及“EMR on ECS集群”、“EMR on VKE集群”、“Serverless 队列”、“Serverless 作业”、“SparkSQL/PrestoSQL/Ray/PySpark/SparkJar 作业”、“作业日志”、“作业监控”、“作业诊断”等需求时，应优先使用此技能。
+description: byted-emr-skills提供管理火山引擎EMR（火山引擎 E-MapReduce（简称“EMR”）是开源Hadoop生态的企业级大数据分析系统，完全兼容开源）的技能，包括管理EMR on ECS集群、EMR on VKE集群、EMR serverless队列、计算组、作业模板/实例并提供 EMR Agent 智能诊断与知识问答能力。当用户提及“EMR on ECS集群”、“EMR on VKE集群”、“Serverless 队列”、“Serverless 作业”、“SparkSQL/PrestoSQL/Ray/PySpark/SparkJar 作业”、“作业诊断”等需求时，应优先使用此技能。
 ---
 
 # EMR Skills
@@ -26,6 +26,7 @@ description: byted-emr-skills提供管理火山引擎EMR（火山引擎 E-MapRed
   - 计算组：创建/修改/启动/停止/删除、查询可选规格与镜像、外部元数据连通性测试
   - 作业模板：创建/更新/查询详情/列表查询/运行
   - 作业实例：提交（SparkSQL/PrestoSQL/SparkJar/PySpark/RayJob）、查询状态与详情、取消、列表查询、重跑、结果分批拉取
+  - 监控：队列/计算组/作业监控数据查询，按指标清单逐项拉取并汇总报告
 - EMR Agent
   - 交互式诊断与知识问答
   - 会话与报告管理
@@ -94,12 +95,10 @@ export VOLCENGINE_REGION="cn-beijing"
 - 所有作业实例的详细操作指南，请严格按照`references/emr_serverless/job_instance/emr_serverless_job_instance_guide.md`中的说明进行操作。
 ### 如何管理计算组（Serverless 资源单元）
 - 创建/修改计算组配置。
-- 查询计算组监控数据，支持监控总结和巡检。
 ### 如何查询操作日志
 - 功能列表
   - 全局操作日志页面以及队列、计算组的操作列表查询
 - 所有的操作日志查询，请严格按照`references/emr_serverless/operation_audit/emr_serverless_operation_audit_guide.md`中的说明进行操作。
-
 
 ## 2. EMR Agent（EMR AI 助手）
 ### 如何进行交互式问题诊断和知识助手
@@ -111,7 +110,9 @@ export VOLCENGINE_REGION="cn-beijing"
   - 查看报告详情：获取已有报告内容。
   - 会话列表：获取分析诊断和问答历史会话列表。
   - 查看会话详情：获取会话的详细信息，包括问题描述、回答内容、会话状态等。
-- 所有分析诊断会话和报告操作，请严格按照`references/emr_agent/emr_agent_guide.md`中的说明进行操作。
+- 所有分析诊断会话、报告和实例状态查询操作，请严格按照`references/emr_agent/emr_agent_guide.md`中的说明进行操作。
+### EMR Agent开通
+- 如果没有开通EMR Agent，请务必按照返回的URL或者访问链接https://console.volcengine.com/emr进行开通后使用
 
 ## 3. EMR on ECS 集群管理
 - 支持对基于 ECS 的传统 Hadoop 集群进行全生命周期管理。
@@ -170,7 +171,7 @@ export VOLCENGINE_REGION="cn-beijing"
 - `scripts/on_serverless/emr_serverless_manager.py`：统一的 EMR Serverless OpenAPI 调用入口（manage_emr_serverless），用于队列/作业实例/计算组等运维类接口调用。
 - `scripts/config/config.py`: 封装EMR所用到的配置、SDK Client构造等。
 - `scripts/emr_agent/expert.py`：与 EMR Agent 交互，实现智能诊断和知识问答。
-- `scripts/emr_agent/emr_agent_manager.py`：获取EMR Agent的会话列表，报告列表等。
+- `scripts/emr_agent/emr_agent_manager.py`：获取EMR Agent的会话列表、报告列表、实例状态等。
 - `scripts/bin/install_serverless_sdk.sh`：安装 EMR on Serverless 形态的 Python SDK，用于 Serverless 队列管理、作业提交等操作。
 - `scripts/on_ecs/emr_on_ecs_manager.py`：统一的 EMR on ECS 形态的 OpenAPI 调用入口（manage_emr_on_ecs），用于集群/节点组/应用等运维类接口调用。
 - `scripts/on_ecs/emr_on_ecs_cli.py`：EMR on ECS 形态的命令行工具，用于集群/节点组/应用等运维类接口调用。

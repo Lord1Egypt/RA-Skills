@@ -1,41 +1,53 @@
-## Description: <br>
-GLM V Model helps agents call Zhipu GLM-4V and GLM-4.6V vision models for image and video understanding, multimodal dialogue, and chart analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Zhipu GLM-4V and GLM-4.6V vision models for image understanding, video analysis, multimodal conversation, and chart interpretation tasks.
 
-## Publisher: <br>
-[baokui](https://clawhub.ai/user/baokui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baokui](https://clawhub.ai/user/baokui)
 
-## Use Case: <br>
-Developers and external users can use this skill to prepare prompts, image inputs, and example API calls for Zhipu GLM vision-model workflows such as image description, OCR, object recognition, chart analysis, multi-image comparison, and video understanding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provided images, video URLs, and prompts are sent to Zhipu's API. <br>
-Mitigation: Do not send confidential images, documents, screenshots, videos, or prompts unless Zhipu's data handling terms are acceptable for the use case. <br>
-Risk: Using the skill requires a Zhipu API key and may consume API quota or incur billing. <br>
-Mitigation: Provide ZHIPU_API_KEY deliberately, install zai-sdk from a trusted source, and monitor API usage under the relevant Zhipu account. <br>
+## Use Case:
 
+Developers and agents use this skill to call Zhipu vision models for image and video understanding, OCR-style extraction, object or scene recognition, chart analysis, and multi-image comparison.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/baokui/glm-v-model) <br>
-- [Zhipu AI Open Platform](https://open.bigmodel.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown with Python code examples and plain-text model output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY and sends supplied prompts, images, and video URLs to Zhipu's API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Images, screenshots, charts, video URLs, and prompts provided to the skill are sent to Zhipu's external vision API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data may be shared with the provider, and avoid submitting confidential or restricted media without approval.
+
+Risk: The skill requires a Zhipu API key in the execution environment.
+
+Mitigation: Set ZHIPU_API_KEY only in environments where that credential should be available, and manage it as a secret.
+
+## Reference(s):
+
+- [Zhipu AI Open Platform](https://open.bigmodel.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API Calls, Guidance]
+
+**Output Format:** [Markdown with Python code examples and model response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ZHIPU_API_KEY environment variable and sends supplied images, video URLs, and prompts to Zhipu's external vision API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Access Apple WeatherKit REST API for detailed weather forecasts using JWT authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Apple WeatherKit REST API for detailed weather forecasts using JWT authentication.
 
-## Publisher: <br>
-[jimmcq](https://clawhub.ai/user/jimmcq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jimmcq](https://clawhub.ai/user/jimmcq)
 
-## Use Case: <br>
-Developers and automation agents use this skill to retrieve current and forecast weather data from Apple WeatherKit for a latitude and longitude. It is useful when workflows need detailed weather fields such as UV index, humidity, wind, sunrise and sunset times, or multi-day forecasts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a WeatherKit-specific Apple private key. <br>
-Mitigation: Keep the .p8 key outside shared folders, restrict file permissions, and rotate the key if exposure is suspected. <br>
-Risk: Forecast requests and debug output can expose sensitive location information. <br>
-Mitigation: Avoid sharing stderr logs when queried locations are sensitive and review logs before disclosure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple WeatherKit REST API Documentation](https://developer.apple.com/documentation/weatherkitrestapi/) <br>
-- [ClawHub WeatherKit Skill Page](https://clawhub.ai/jimmcq/weatherkit) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch current weather and daily forecasts for specified coordinates and date ranges through Apple WeatherKit.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON forecast data, with command-line usage guidance and stderr diagnostics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Apple WeatherKit credentials in environment variables and sends latitude/longitude requests to Apple WeatherKit.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Precise coordinates and full WeatherKit responses may be written to logs.
+
+Mitigation: Remove debug logging or make it opt-in with redaction before use in shared, hosted, CI, or centrally logged environments.
+
+Risk: The skill depends on Apple Developer identifiers and a WeatherKit private key file.
+
+Mitigation: Store credentials in a secret manager or protected environment variables, restrict private key file permissions, and avoid committing key material.
+
+## Reference(s):
+
+- [Apple WeatherKit REST API Documentation](https://developer.apple.com/documentation/weatherkitrestapi/)
+- [WeatherKit Skill on ClawHub](https://clawhub.ai/jimmcq/skills/weatherkit)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON forecast payloads printed to stdout, with operational errors and debug details printed to stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Apple WeatherKit credentials in environment variables and latitude/longitude inputs for location-specific forecasts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

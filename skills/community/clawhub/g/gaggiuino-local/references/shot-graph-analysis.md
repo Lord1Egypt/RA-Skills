@@ -266,6 +266,7 @@ If flow remains too low for the family, ask whether:
 ## Step 3: Read temperature third
 
 Temperature is often less visually dramatic than pressure or flow, but it can explain a lot of taste.
+For Gaggiuino specifically, remember that active-shot temperature behavior is governed by predictive feed-forward / Brew Delta heating, not a traditional reactive PID loop.
 
 ## What to look for
 
@@ -285,12 +286,17 @@ Thermal sag can contribute to:
 - underdevelopment,
 - a weird fade from promising to dull.
 
-### C. Overshoot
-If temperature is meaningfully too high, the cup may become:
-- bitter,
-- harsh,
-- sharp in a bad way,
-- or less transparent.
+For Gaggiuino, persistent sag below the intended target during a long or high-flow extraction is usually more diagnostically important than a temporary recorded spike above target.
+
+### C. Recorded overshoot / feed-forward heating
+On Gaggiuino, a rapid recorded temperature rise during flow is often normal Brew Delta behavior: the machine is adding heat predictively to offset incoming cold water.
+
+Do **not** diagnose a normal intra-shot temperature spike as:
+- PID overshoot,
+- poor PID tuning,
+- or a hardware failure.
+
+Only treat high temperature as a likely flavor issue when the evidence points to a sustained or profile-relevant high-temperature condition, not just a brief feed-forward spike.
 
 ### D. Family context again matters
 A filter-style or soup-ish extraction may expose thermal instability differently from a short straight shot.

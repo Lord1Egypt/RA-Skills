@@ -1,39 +1,53 @@
-## Description: <br>
-Exports A-share stock and index daily, weekly, or monthly market data from the Tushare API to CSV, Excel, or JSON for quantitative analysis and backtesting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports A-share stock and index daily, weekly, or monthly data from Tushare API to Excel, CSV, or JSON for quantitative analysis and backtesting.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Developers, analysts, and quantitative researchers use this skill to prepare A-share stock and index datasets for backtesting, portfolio analysis, and data export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires a Tushare API token, which could be exposed if pasted into unrelated chats or files. <br>
-Mitigation: Use a token with only the access needed for market-data retrieval and keep it in trusted configuration only. <br>
-Risk: Installing the Tushare dependency from an untrusted package source could introduce unwanted code. <br>
-Mitigation: Install Tushare from an official package source before running export workflows. <br>
+## Use Case:
 
+Developers, analysts, and quantitative researchers can use this skill to prepare A-share stock or index time-series exports for backtesting, portfolio analysis, and related financial workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with command examples; generated datasets as CSV, Excel, or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Tushare API token and supports daily, weekly, and monthly stock or index exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The workflow requires a Tushare API token for market data export.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should provide tokens only in trusted agent environments and avoid sharing exported credentials or configuration.
+
+Risk: The documentation is primarily Chinese, which may make setup and review harder for non-Chinese readers.
+
+Mitigation: Review the skill behavior and configuration requirements before deployment, and add bilingual metadata or locale notes when distributing to broader audiences.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingze00000/skills/stock-data-export)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides exports to CSV, Excel, or JSON using a user-provided Tushare API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

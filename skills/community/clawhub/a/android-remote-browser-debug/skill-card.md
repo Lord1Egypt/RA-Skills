@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents remotely debug Android Chrome or Edge browser tabs over USB using ADB port forwarding and the Chrome DevTools Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through remote debugging Android Chromium-based browsers such as Edge and Chrome by using ADB port forwarding and the Chrome DevTools Protocol to inspect console logs, network requests, DOM snapshots, JavaScript evaluation, and screenshots.
 
-## Publisher: <br>
-[sougannkyou](https://clawhub.ai/user/sougannkyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sougannkyou](https://clawhub.ai/user/sougannkyou)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent to Android browser debugging sessions, inspect console and network behavior, capture DOM or screenshots, and run reviewed JavaScript diagnostics through CDP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ADB forwarding and CDP access can expose browser tabs on connected Android devices. <br>
-Mitigation: Use the skill only with devices and tabs you control, close unrelated sensitive pages, and remove ADB forwards after debugging. <br>
-Risk: Runtime.evaluate examples can execute JavaScript in the target page and may read or change page data. <br>
-Mitigation: Review JavaScript expressions before running them and avoid using the skill on sensitive pages. <br>
-Risk: Temporary scripts, screenshots, and captured output may contain private page data. <br>
-Mitigation: Delete temporary scripts and captured output after the debugging session. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect an authorized Android device to a local debugging session, inspect browser state, run diagnostic JavaScript, capture page data, and troubleshoot mobile web issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sougannkyou/android-remote-browser-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown guidance with bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ADB and CDP setup steps, diagnostic expressions, troubleshooting notes, and cleanup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and frontmatter) <br>
+Risk: Remote debugging can expose sensitive live browser state, including console logs, DOM content, network data, screenshots, and evaluated JavaScript results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with owned or explicitly authorized Android browser sessions, treat captured data as sensitive, and keep temporary outputs in a private per-run directory.
+
+Risk: JavaScript evaluation through the Chrome DevTools Protocol can change page state or trigger unintended actions.
+
+Mitigation: Prefer read-only diagnostic expressions and review any state-changing JavaScript before execution.
+
+Risk: ADB port forwarding can leave a local debugging endpoint available after the task is complete.
+
+Mitigation: Remove the specific forwarded port or all ADB forwards after debugging and delete temporary debug scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sougannkyou/skills/android-remote-browser-debug)
+- [Publisher profile](https://clawhub.ai/user/sougannkyou)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands and scripts that expose live browser state through local ADB and Chrome DevTools Protocol sessions.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

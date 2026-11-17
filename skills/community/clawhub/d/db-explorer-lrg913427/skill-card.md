@@ -1,44 +1,62 @@
-## Description: <br>
-Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis). Run queries, inspect schemas, export data. Use when user wants to query a database, explore schema, check data, export results, or debug database issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to and explore databases (PostgreSQL, MySQL, SQLite, MongoDB, Redis). Run queries, inspect schemas, export data. Use when user wants to query a database, explore schema, check data, export results, or debug database issues.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect to PostgreSQL, MySQL, SQLite, MongoDB, or Redis databases from the terminal, inspect schemas and row counts, run diagnostic queries, and export selected results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use database credentials and run database commands in the user's environment. <br>
-Mitigation: Use read-only or least-privilege non-production credentials when possible and review every command before execution. <br>
-Risk: Restore, import, migration, or write operations could change database state. <br>
-Mitigation: Require explicit approval for any restore, import, migration, or write operation, and show the exact command before running it. <br>
-Risk: Exports and backups may contain sensitive data. <br>
-Mitigation: Limit exports to the needed data and delete exported or backup files when they are no longer required. <br>
-Risk: Broad scans or unrestricted queries can stress production systems. <br>
-Mitigation: Avoid broad production scans and use limited, targeted queries by default. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect to relational, document, and key-value databases, inspect schemas, run diagnostic queries, export results, and troubleshoot database issues from terminal tools.
 
-## Reference(s): <br>
-- [Db Explorer ClawHub release](https://clawhub.ai/lrg913427-dot/db-explorer-lrg913427) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell and database command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose database CLI commands, query examples, export paths, and environment variable usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Examples may place database passwords in command lines or connection strings where they can be exposed through shell history or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables, prompt-based credential entry, or secret-managed connection profiles, and avoid echoing or logging credentials.
+
+Risk: Restore, import, migration, or write commands can overwrite or corrupt data if run against the wrong database or without preparation.
+
+Mitigation: Use least-privilege read-only accounts by default, create backups first, show the exact command, and require explicit confirmation before execution.
+
+Risk: Unbounded Redis key listing with KEYS "*" can degrade production Redis performance.
+
+Mitigation: Use bounded SCAN-style inspection with limits and sampling instead of full keyspace scans.
+
+Risk: Schema exploration and exports can expose sensitive production data.
+
+Mitigation: Limit query results, export only the minimum necessary fields, and route outputs to approved secure locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrg913427-dot/skills/db-explorer-lrg913427)
+- [ClawHub publisher profile](https://clawhub.ai/user/lrg913427-dot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should favor read-only inspection, bounded query results, and explicit confirmation before write, restore, import, or migration operations.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

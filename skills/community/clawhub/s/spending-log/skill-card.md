@@ -1,41 +1,59 @@
-## Description: <br>
-Tracks personal expenses from natural-language entries, automatically categorizes spending, checks budgets, answers monthly spending questions, and generates monthly reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spending Log helps an OpenClaw agent record personal expenses from natural language, categorize entries, compute monthly spending, check budgets, and generate monthly reports.
 
-## Publisher: <br>
-[baoxinwen](https://clawhub.ai/user/baoxinwen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baoxinwen](https://clawhub.ai/user/baoxinwen)
 
-## Use Case: <br>
-External OpenClaw users use this skill to record personal spending, query totals by month or category, monitor a monthly budget, and generate HTML or CSV spending reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal financial records stored in local JSON, HTML, and CSV files. <br>
-Mitigation: Treat generated data and reports as sensitive records, restrict file access, and keep a user-controlled backup before relying on the data. <br>
-Risk: The artifact describes automatic monthly report delivery and a fixed backup path. <br>
-Mitigation: Review and change the backup location before installation, and enable scheduled report delivery only after explicit user approval. <br>
+## Use Case:
 
+External OpenClaw users use this skill to maintain a local personal spending log, query totals by month, category, or date range, receive budget reminders, and generate monthly HTML or CSV expense reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baoxinwen/spending-log) <br>
-- [Publisher profile](https://clawhub.ai/user/baoxinwen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Plain text or Markdown responses with Python script commands, plus generated HTML and CSV report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local JSON expense records and can generate report files for delivery through OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and server release metadata) <br>
+Risk: The skill handles private spending data and can create, edit, delete, export, or back up financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before write, delete, export, or backup actions, and review destination folders before sharing reports.
+
+Risk: Recurring monthly report delivery can be scheduled through an OpenClaw cron task.
+
+Mitigation: Inspect or disable the scheduled task unless the user has clearly opted in to recurring report generation and delivery.
+
+Risk: Generated reports may be backed up to /volume2/Download/OpenClaw/reports/, which could be shared or synchronized.
+
+Mitigation: Change the backup location or restrict folder permissions when spending data is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baoxinwen/skills/spending-log)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration]
+
+**Output Format:** [Plain text confirmations and summaries, JSON command output, and generated HTML or CSV report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON expense and configuration files; report generation can create local HTML/CSV files and backup copies.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

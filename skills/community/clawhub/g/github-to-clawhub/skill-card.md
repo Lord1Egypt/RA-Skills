@@ -1,43 +1,62 @@
-## Description: <br>
-Helps an agent convert a GitHub repository into an OpenClaw skill and publish it to ClawHub, including README analysis, duplicate search, SKILL.md drafting, local file creation, publishing, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a GitHub open-source project into an OpenClaw skill package and guides publishing it to ClawHub.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to package suitable GitHub projects as OpenClaw skills and publish them to ClawHub with a repeatable review, drafting, and release flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing with a user token can expose credentials or authorize unintended releases. <br>
-Mitigation: Use the skill only for explicit target repositories, avoid storing tokens in persistent chats, and require user confirmation before any publish command runs. <br>
-Risk: The skill describes patching installed ClawHub CLI files to work around publish errors. <br>
-Mitigation: Do not allow automatic CLI patching; review any proposed file modification and prefer updating the CLI or using a supported publish flow. <br>
-Risk: Generated SKILL.md content may inaccurately represent a source repository or its license. <br>
-Mitigation: Review the draft skill, source README, duplicate-search results, and license evidence before writing files or publishing. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to turn suitable GitHub projects into OpenClaw skills, including README analysis, duplicate checks, SKILL.md drafting, release metadata preparation, publishing, and basic error handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antonia-sz/github-to-clawhub) <br>
-- [Publisher profile](https://clawhub.ai/user/antonia-sz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated SKILL.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local skill files and propose ClawHub publish commands when explicitly authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill handles ClawHub tokens during publishing workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged temporary token, avoid pasting long-lived or broad-scope tokens into chat, and rotate or revoke the token after use.
+
+Risk: The skill can publish content remotely to ClawHub.
+
+Mitigation: Require an explicit GitHub-to-ClawHub publishing request and a final confirmation before publishing.
+
+Risk: The artifact documents a workaround that patches a system-wide ClawHub CLI file and auto-accepts license terms.
+
+Mitigation: Do not allow the skill to patch /usr/local/lib or auto-accept license terms; prefer an official CLI update or a reviewed local fix.
+
+Risk: The security verdict is suspicious because safeguards around remote publishing, token handling, and CLI patching are insufficient.
+
+Mitigation: Review before installing, use a dedicated workspace, and scan generated skill files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antonia-sz/skills/github-to-clawhub)
+- [Publisher profile](https://clawhub.ai/user/antonia-sz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated SKILL.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include publishing status, slug, release URL, and remediation guidance for common ClawHub CLI errors.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

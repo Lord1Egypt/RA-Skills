@@ -100,11 +100,11 @@ Both agents can be reached via email:
 
 ```bash
 # Hannah API key
-export HANNAH_API_KEY=sk-sumike-your-hannah-key-here
+export HANNAH_API_KEY=REDACTED-SECRET
 export HANNAH_API_BASE_URL=https://hannah.sumike.ai
 
 # Elena API key
-export ELENA_API_KEY=sk-sumike-your-elena-key-here
+export ELENA_API_KEY=REDACTED-SECRET
 export ELENA_API_BASE_URL=https://elena.sumike.ai
 
 # Optional: Email addresses (if different from defaults)

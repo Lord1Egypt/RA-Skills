@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import shutil
 import uuid
@@ -8,10 +9,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
-import fitz
+import pymupdf
 
-from .config import Config
+from .config import Config, estimate_text, make_private_dir
 from .db import db, json_dumps, row_to_dict
+from .provenance import processed_by_for
 
 
 ALLOWED_UPLOAD_EXTS = {"pdf", "png", "jpg", "jpeg", "tiff", "webp"}
@@ -68,6 +70,78 @@ def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
+def validate_input_file(src_path: str, cfg: Config, original_name: str | None = None) -> tuple[str, str]:
+    """Validate a file before ingesting it, without copying it anywhere.
+
+    Returns (ext, sniffed_mime). Raises FileNotFoundError / ValueError with a
+    user-facing message. Same rules as web uploads: existing regular file,
+    size <= max_upload_bytes, extension allowlist, magic bytes must match.
+    PDFs must also open (not corrupt, not password-protected) and have at most
+    ``max_pages`` pages.
+    """
+
+    src = Path(src_path)
+    if not src.exists():
+        raise FileNotFoundError(f"file not found: {src_path}")
+    if not src.is_file():
+        raise ValueError(f"not a regular file: {src_path}")
+
+    size = src.stat().st_size
+    if size > int(cfg.max_upload_bytes):
+        raise ValueError(f"file too large ({size} bytes) — max is {int(cfg.max_upload_bytes)}")
+    if size == 0:
+        raise ValueError("file is empty")
+
+    safe_original_name = Path(original_name or src.name).name
+    ext = Path(safe_original_name).suffix.lower().lstrip(".") or src.suffix.lower().lstrip(".")
+    ext = {"jpg": "jpeg", "tif": "tiff"}.get(ext, ext)
+    if ext not in ALLOWED_UPLOAD_EXTS:
+        raise ValueError(f"unsupported file type: .{ext} (allowed: {', '.join(sorted(ALLOWED_UPLOAD_EXTS))})")
+
+    sniffed = sniff_mime_type(src)
+    expected = {
+        "pdf": "application/pdf",
+        "jpeg": "image/jpeg",
+        "png": "image/png",
+        "tiff": "image/tiff",
+        "webp": "image/webp",
+    }[ext]
+    if sniffed != expected:
+        raise ValueError(f"file extension .{ext} does not match detected type")
+    if ext == "pdf":
+        check_pdf(src, cfg)
+    return ext, sniffed
+
+
+def check_pdf(path: Path, cfg: Config) -> int:
+    """Open the PDF once: readable, not encrypted, within max_pages. Returns the page count."""
+
+    try:
+        doc = pymupdf.open(str(path), filetype="pdf")
+    except Exception:  # noqa: BLE001  (pymupdf.FileDataError and friends)
+        raise ValueError("not a readable PDF (the file is damaged or not really a PDF)") from None
+    try:
+        if doc.needs_pass:
+            raise ValueError("password-protected PDF: remove the password first")
+        try:
+            pages = int(doc.page_count)
+            if pages > 0:
+                doc.load_page(0)
+        except Exception:  # noqa: BLE001
+            raise ValueError("not a readable PDF (the file is damaged or not really a PDF)") from None
+        if pages <= 0:
+            raise ValueError("not a readable PDF (it has no pages)")
+    finally:
+        doc.close()
+    limit = int(cfg.max_pages or 0)
+    if limit > 0 and pages > limit:
+        raise ValueError(
+            f"PDF has {pages} pages; the limit is {limit} (max_pages). At {estimate_text(pages, cfg)}. "
+            "Split the PDF into smaller files, or raise max_pages in ~/.config/taxclaw/config.yaml"
+        )
+    return pages
+
+
 def ingest_file(src_path: str, cfg: Config, original_name: str | None = None) -> tuple[str, str, str, str]:
     """Copy to data_dir/files/{sha256}.{ext} and return (dest_path, file_hash, original_filename, mime_type).
 
@@ -93,6 +167,8 @@ def ingest_file(src_path: str, cfg: Config, original_name: str | None = None) ->
     ext = Path(safe_original_name).suffix.lower().lstrip(".") or src.suffix.lower().lstrip(".")
     if ext == "jpg":
         ext = "jpeg"
+    if ext == "tif":
+        ext = "tiff"
 
     if ext not in ALLOWED_UPLOAD_EXTS:
         raise ValueError(f"unsupported file type: .{ext}")
@@ -113,7 +189,7 @@ def ingest_file(src_path: str, cfg: Config, original_name: str | None = None) ->
     file_hash = sha256_file(str(src))
 
     files_dir = cfg.data_path / "files"
-    files_dir.mkdir(parents=True, exist_ok=True)
+    make_private_dir(files_dir)
 
     dest_path = files_dir / f"{file_hash}.{ext}"
 
@@ -149,8 +225,8 @@ def create_document_record(
             """INSERT INTO documents (
                 id, file_path, file_hash, original_filename, mime_type,
                 tax_year, doc_type, filer,
-                page_count, status, classification_confidence
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'processing', ?)""",
+                page_count, status, classification_confidence, processed_by
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'processing', ?, ?)""",
             (
                 doc_id,
                 file_path,
@@ -162,6 +238,7 @@ def create_document_record(
                 filer,
                 page_count,
                 classification_confidence,
+                json.dumps(processed_by_for(cfg), separators=(",", ":")),
             ),
         )
     return doc_id
@@ -177,6 +254,65 @@ def get_document(doc_id: str) -> dict[str, Any] | None:
     with db() as con:
         r = con.execute("SELECT * FROM documents WHERE id = ?", (doc_id,)).fetchone()
         return row_to_dict(r)
+
+
+def has_extraction(doc_id: str) -> bool:
+    with db() as con:
+        r = con.execute("SELECT 1 FROM form_extractions WHERE document_id=? LIMIT 1", (doc_id,)).fetchone()
+        return r is not None
+
+
+def is_retryable(doc: dict[str, Any]) -> bool:
+    """An earlier ingest of this file never finished, so ingesting it again should re-run extraction.
+
+    ``processing``: the run was killed (client timeout, closed terminal, sleep, Ollama died).
+    ``error``: the web UI's hard-failure state. ``needs_review`` with no stored extraction:
+    extraction raised (the CLI/MCP exit-1 path), so there is nothing to review.
+    """
+
+    status = doc.get("status")
+    if status in ("processing", "error", "received"):
+        return True
+    return status == "needs_review" and not has_extraction(doc["id"])
+
+
+_DERIVED_TABLES = ("extracted_fields", "form_sections", "form_extractions", "transactions_1099da", "transactions_1099b", "review_queue")
+
+
+def reset_document_for_retry(
+    *,
+    cfg: Config,
+    doc_id: str,
+    file_path: str,
+    doc_type: str,
+    page_count: int,
+    classification_confidence: float | None,
+    filer: str | None,
+    tax_year: int | None,
+) -> None:
+    """Reuse an existing row for a fresh classify/extract run: drop prior results, back to ``processing``."""
+
+    with db() as con:
+        for table in _DERIVED_TABLES:
+            con.execute(f"DELETE FROM {table} WHERE document_id=?", (doc_id,))
+        con.execute(
+            """UPDATE documents
+               SET file_path=?, doc_type=?, page_count=?, classification_confidence=?,
+                   filer=COALESCE(?, filer), tax_year=COALESCE(?, tax_year),
+                   status='processing', needs_review=0, overall_confidence=NULL,
+                   extracted_at=NULL, notes=NULL, processed_by=?
+               WHERE id=?""",
+            (
+                file_path,
+                doc_type,
+                page_count,
+                classification_confidence,
+                filer,
+                tax_year,
+                json.dumps(processed_by_for(cfg), separators=(",", ":")),
+                doc_id,
+            ),
+        )
 
 
 def list_documents(
@@ -235,8 +371,26 @@ def _walk_fields(obj: Any, prefix: str = "") -> Iterable[tuple[str, Any]]:
         yield prefix, obj
 
 
-def store_extracted_fields(*, doc_id: str, section_id: str | None, data: Any) -> None:
-    rows: list[tuple[str, str, str | None]] = []
+def _confidence_for(path: str, confidences: dict[str, float] | None) -> float | None:
+    """Exact path match, else the closest parent path (e.g. "other_deductions" for "other_deductions.13W")."""
+
+    if not confidences:
+        return None
+    cur = path
+    while cur:
+        if cur in confidences:
+            return confidences[cur]
+        cut = max(cur.rfind("."), cur.rfind("["))
+        if cut <= 0:
+            break
+        cur = cur[:cut]
+    return None
+
+
+def store_extracted_fields(
+    *, doc_id: str, section_id: str | None, data: Any, confidences: dict[str, float] | None = None
+) -> None:
+    rows: list[tuple[str, str, str | None, float | None]] = []
     for path, value in _walk_fields(data):
         if not path:
             continue
@@ -246,16 +400,16 @@ def store_extracted_fields(*, doc_id: str, section_id: str | None, data: Any) ->
             v = str(value)
         else:
             v = json_dumps(value)
-        rows.append((str(uuid.uuid4()), path, v))
+        rows.append((str(uuid.uuid4()), path, v, _confidence_for(path, confidences)))
 
     with db() as con:
         # delete prior extracted fields for doc (v0.1 keeps only latest)
         con.execute("DELETE FROM extracted_fields WHERE document_id=?", (doc_id,))
-        for row_id, path, v in rows:
+        for row_id, path, v, conf in rows:
             con.execute(
                 """INSERT INTO extracted_fields (id, document_id, section_id, field_path, field_value, confidence)
-                   VALUES (?, ?, ?, ?, ?, NULL)""",
-                (row_id, doc_id, section_id, path, v),
+                   VALUES (?, ?, ?, ?, ?, ?)""",
+                (row_id, doc_id, section_id, path, v, conf),
             )
 
 
@@ -312,6 +466,75 @@ def store_1099da_transactions(*, doc_id: str, extraction: dict[str, Any]) -> Non
                     json_dumps(t),
                 ),
             )
+
+
+def store_1099b_lots(*, doc_id: str, lots: list[dict[str, Any]]) -> None:
+    """Replace the stored per-sale rows of a 1099-B / consolidated 1099."""
+
+    with db() as con:
+        con.execute("DELETE FROM transactions_1099b WHERE document_id=?", (doc_id,))
+        for i, t in enumerate(lots):
+            if not isinstance(t, dict):
+                continue
+            con.execute(
+                """INSERT INTO transactions_1099b (
+                    id, document_id, lot_index, page, description, cusip, quantity, date_acquired, date_sold,
+                    proceeds, cost_basis, accrued_market_discount, wash_sale_loss_disallowed, gain_loss, term,
+                    basis_reported_to_irs, form_8949_box, raw_json
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                (
+                    str(uuid.uuid4()),
+                    doc_id,
+                    i,
+                    t.get("page"),
+                    _text_or_none(t.get("description")),
+                    _text_or_none(t.get("cusip")),
+                    _text_or_none(t.get("quantity")),
+                    _text_or_none(t.get("date_acquired")),
+                    _text_or_none(t.get("date_sold")),
+                    _text_or_none(t.get("proceeds")),
+                    _text_or_none(t.get("cost_basis")),
+                    _text_or_none(t.get("accrued_market_discount")),
+                    _text_or_none(t.get("wash_sale_loss_disallowed")),
+                    _text_or_none(t.get("gain_loss")),
+                    _text_or_none(t.get("term")),
+                    _bool_to_int(t.get("basis_reported_to_irs")),
+                    _text_or_none(t.get("form_8949_box")),
+                    json_dumps(t),
+                ),
+            )
+
+
+def extract_and_store_1099b_lots(
+    *, doc_id: str, file_path: str, doc_type: str, cfg: Config
+) -> tuple[int | None, str | None]:
+    """Best-effort per-lot pass for 1099-B / consolidated 1099s.
+
+    Returns (lot_count, note). lot_count is None when the type has no lots or
+    the pass failed; note is a short message for the document's review notes.
+    Never raises: the main extraction is already stored and must not be lost
+    because the lot table failed.
+    """
+
+    from .extract import CAPITAL_LOT_DOC_TYPES, extract_capital_lots
+
+    if doc_type not in CAPITAL_LOT_DOC_TYPES:
+        return None, None
+    try:
+        lots = extract_capital_lots(file_path, cfg)
+    except Exception as e:  # noqa: BLE001
+        return None, f"1099-B lot extraction failed: {' '.join(str(e).split())[:200]}"
+    store_1099b_lots(doc_id=doc_id, lots=lots)
+    return len(lots), None
+
+
+def _text_or_none(v: Any) -> str | None:
+    if v is None:
+        return None
+    if isinstance(v, bool):
+        return "true" if v else "false"
+    s = str(v).strip()
+    return s or None
 
 
 def mark_processed(
@@ -435,21 +658,37 @@ def set_display_name_if_empty(*, doc_id: str, display_name: str | None) -> None:
         )
 
 
-def delete_document(doc_id: str) -> None:
+def delete_document(doc_id: str, cfg: Config | None = None) -> bool:
+    """Delete a document, everything extracted from it and TaxClaw's stored copy of the file.
+
+    Returns False when there is no such document. The user's original file is never touched:
+    only a copy inside ``data_dir`` is removed.
+    """
+
     with db() as con:
         r = con.execute("SELECT file_path FROM documents WHERE id=?", (doc_id,)).fetchone()
-        file_path = r[0] if r else None
+        if r is None:
+            return False
+        file_path = r[0]
+        for table in _DERIVED_TABLES:
+            con.execute(f"DELETE FROM {table} WHERE document_id=?", (doc_id,))
         con.execute("DELETE FROM documents WHERE id=?", (doc_id,))
 
     if file_path and os.path.exists(file_path):
-        try:
-            os.remove(file_path)
-        except Exception:
-            pass
+        if cfg is None:
+            from .config import load_config
+
+            cfg = load_config(create_dirs=False)
+        if Path(file_path).resolve().is_relative_to(cfg.data_path.resolve()):
+            try:
+                os.remove(file_path)
+            except Exception:
+                pass
+    return True
 
 
 def page_count_for_pdf(path: str) -> int:
-    doc = fitz.open(path)
+    doc = pymupdf.open(path)
     try:
         return doc.page_count
     finally:

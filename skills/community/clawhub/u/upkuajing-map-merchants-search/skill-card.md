@@ -1,47 +1,73 @@
-## Description: <br>
-Search UpKuaJing map merchant data by region, nearby location, industry, contact availability, or shop name, and retrieve geographic lists for country, province, and city parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pull bulk Google Maps business data with radius-based filters to gather merchant contact information, analyze market density, and find distributors or overseas buyers for offline business expansion.
 
-## Publisher: <br>
-[upkuajing](https://clawhub.ai/user/upkuajing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upkuajing](https://clawhub.ai/user/upkuajing)
 
-## Use Case: <br>
-External field sales, distributor, brand, and market intelligence teams use this skill to find geo-targeted merchants, analyze regional business presence, and prepare offline-to-online lead lists through UpKuaJing APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an UpKuaJing API key and sends merchant-search queries to a paid third-party API. <br>
-Mitigation: Install only when the publisher is trusted, keep the API key protected or rotated, and confirm billable searches before execution. <br>
-Risk: Large merchant searches can incur fees and may produce local result files containing sensitive business leads. <br>
-Mitigation: Require explicit confirmation before large queries and periodically remove local task_data files that are no longer needed. <br>
+## Use Case:
 
+External business development, field sales, distributor, brand operations, and regional management teams use this skill to search global merchant data by geography, radius, industry, keyword, and contact availability for B2B lead generation and territory planning.
 
-## Reference(s): <br>
-- [UpKuaJing skill page](https://clawhub.ai/upkuajing/upkuajing-map-merchants-search) <br>
-- [UpKuaJing homepage](https://www.upkuajing.com) <br>
-- [UpKuaJing Open Platform](https://developer.upkuajing.com/) <br>
-- [UpKuaJing OpenAPI pricing](https://www.upkuajing.com/web/openapi/price.html) <br>
-- [Merchants Search API](references/merchants-search-api.md) <br>
-- [Country List API](references/country-list-api.md) <br>
-- [Province List API](references/province-list-api.md) <br>
-- [City List API](references/city-list-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API results from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Merchant search results may be stored locally as task data for large or resumed queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence and frontmatter metadata) <br>
+Risk: Merchant searches use a paid API service and may consume account balance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current pricing and expected call volume before paid searches, especially for bulk queries.
+
+Risk: The skill reads or writes an UpKuaJing API key in ~/.upkuajing/.env.
+
+Mitigation: Restrict local permissions on the credential file and avoid sharing the key in prompts, logs, or reports.
+
+Risk: Search results and task metadata may contain business contact data in local files.
+
+Mitigation: Limit access to generated task_data and geography output files, and delete them when they are no longer needed.
+
+Risk: Error reports can include request context and response details.
+
+Mitigation: Review report content before submission and avoid including sensitive business data.
+
+Risk: The skill performs a version-check request when API helpers run.
+
+Mitigation: Review network access expectations before installation and operation.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/upkuajing/skills/upkuajing-map-merchants-search)
+- [UpKuaJing Homepage](https://www.upkuajing.com)
+- [UpKuaJing Open Platform](https://developer.upkuajing.com/)
+- [Detailed Price Description](https://www.upkuajing.com/web/openapi/price.html)
+- [Merchants Search API](references/merchants-search-api.md)
+- [Country List API](references/country-list-api.md)
+- [Province List API](references/province-list-api.md)
+- [City List API](references/city-list-api.md)
+- [Skill Error Report API](references/skill-error-report-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON results from the helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Merchant searches can produce local JSONL result files and task metadata; geography lookups can produce local JSON files.]
+
+## Skill Version(s):
+
+1.0.6 (source: server evidence release and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

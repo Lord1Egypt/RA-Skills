@@ -1,45 +1,64 @@
-## Description: <br>
-Refreshes Codex CLI auth.json from a local ChatGPT web session for users behind firewalls, in WSL, in containers, or on remote desktops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refreshes Codex CLI auth.json from a local ChatGPT web session for users whose normal OAuth flow is blocked by firewalls, WSL, containers, or remote desktops.
 
-## Publisher: <br>
-[zcz-user](https://clawhub.ai/user/zcz-user) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcz-user](https://clawhub.ai/user/zcz-user)
 
-## Use Case: <br>
-Developers and engineers use this skill to refresh Codex CLI authentication from an existing local ChatGPT browser session when standard OAuth flows are blocked or unreliable, especially on Windows, WSL, containers, and remote desktop setups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live ChatGPT browser session credentials and writes Codex authentication tokens to local files. <br>
-Mitigation: Use only on a trusted machine or dedicated browser profile, keep browser-profile, backups, logs, and auth.json out of shared storage and backups, and revoke sessions if these files are exposed. <br>
-Risk: Automatic refresh can preserve credential access beyond a single manual run. <br>
-Mitigation: Review any scheduled-task setup before enabling it and disable the task when persistent refresh is no longer needed. <br>
-Risk: Backups and logs may contain sensitive authentication metadata even when raw tokens are masked. <br>
-Mitigation: Restrict filesystem permissions, avoid committing generated state, and delete backups and logs during incident response. <br>
+## Use Case:
 
+Developers who use Codex CLI on Windows use this skill to refresh auth.json from an existing ChatGPT browser session when browser-based OAuth is unreliable in proxied, containerized, WSL, or remote desktop environments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zcz-user/codex-auth-session) <br>
-- [Codex CLI](https://github.com/openai/codex) <br>
-- [README](references/README.md) <br>
-- [Security Policy](references/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or refresh of local Codex auth files and scheduled refresh setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill handles live ChatGPT and Codex credentials and writes authentication data to the local filesystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted machines, keep browser profiles and auth backups private, and delete stored session artifacts when they are no longer needed.
+
+Risk: Browser profiles, logs, and backups may retain sensitive session metadata or historical authentication state.
+
+Mitigation: Protect and periodically remove browser-profile, logs, and backups directories according to the bundled security guidance.
+
+Risk: Automatic refresh through a scheduled task can extend the lifetime of local credential material.
+
+Mitigation: Enable scheduled refresh only when ongoing automatic credential refresh is necessary and review the task configuration before use.
+
+Risk: Install-time scripts from a mutable remote repository may change after this release evidence was captured.
+
+Mitigation: Review the scripts before execution and prefer a pinned release or commit when installing outside ClawHub.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcz-user/skills/codex-auth-session)
+- [README](references/README.md)
+- [Security Policy](references/SECURITY.md)
+- [Codex CLI](https://github.com/openai/codex)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline Bash and PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-focused workflow requiring Node.js 18+, Chrome or Microsoft Edge, and Playwright Core.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Infers an MBTI-style personality type by analyzing local prompt histories from Claude Code, Codex, Gemini, OpenCode, and OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infers MBTI personality types by analyzing user prompts across Claude Code, Codex, Gemini, OpenCode, and OpenClaw.
 
-## Publisher: <br>
-[xmanrui](https://clawhub.ai/user/xmanrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xmanrui](https://clawhub.ai/user/xmanrui)
 
-## Use Case: <br>
-Developers and AI-tool users use this skill to generate a local MBTI-style profile from their own prompt history and review communication, information-processing, decision-making, and work-style patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local AI prompt histories that may contain secrets, client data, personal details, or confidential work. <br>
-Mitigation: Review or redact local histories before use, and invoke the skill only intentionally in an environment where that local analysis is acceptable. <br>
-Risk: MBTI-style behavioral inference can be inaccurate and is not a professional psychological assessment. <br>
-Mitigation: Treat results as personal reference only and avoid using them for employment, medical, legal, or other consequential decisions. <br>
+## Use Case:
 
+Developers and AI tool users use this skill to analyze local prompt histories and receive an MBTI-style personality inference with dimension-level notes and caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xmanrui/mbticlaude) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style analysis report with an MBTI type, data counts, dimension analysis, and cautions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local prompt-history analysis; evidence does not disclose uploading prompt data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill reads local AI prompt histories that may contain secrets, code, personal notes, or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release before installation, use a pinned version, and limit or clean local history files before running it.
+
+Risk: MBTI inference from work prompts can be misleading and is not a professional psychological assessment.
+
+Mitigation: Use the output as informal guidance only and avoid employment, medical, or other consequential decisions.
+
+Risk: Low or unrepresentative prompt history can reduce analysis quality.
+
+Mitigation: Run the skill only when there is sufficient relevant history and treat sparse-data results as inconclusive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xmanrui/skills/mbticlaude)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/xmanrui)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an MBTI type estimate, dimension-level analysis, data-count summary, and cautionary notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

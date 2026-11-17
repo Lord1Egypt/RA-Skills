@@ -1,41 +1,51 @@
-## Description: <br>
-Identify publicly accessible S3 buckets, dangerous ACLs, and misconfigured bucket policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify publicly accessible S3 buckets, dangerous ACLs, and misconfigured bucket policies.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Security engineers and cloud administrators use this skill to audit exported AWS S3 bucket data for public exposure, weak access controls, missing encryption, and preventive control gaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided AWS exports could include credentials, secrets, or unrelated sensitive data. <br>
-Mitigation: Review exported outputs before sharing them, remove credentials or unrelated secrets, and provide only the bucket data needed for the audit. <br>
-Risk: Suggested AWS CLI collection commands may be run with broader access than needed. <br>
-Mitigation: Use a least-privileged read-only AWS role when collecting audit data. <br>
-Risk: Generated hardened policies and findings may be incorrect or incomplete for a specific AWS environment. <br>
-Mitigation: Review recommendations before applying them and validate changes against the intended bucket access model. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/s3-exposure-auditor) <br>
+## Use Case:
+
+Security engineers, cloud administrators, and developers use this skill to review exported AWS S3 configuration data for public exposure, risky ACLs, misconfigured bucket policies, missing encryption, and missing preventive controls.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Pasted AWS outputs may accidentally include credentials, keys, or sensitive object data.
+
+Mitigation: Share only exported S3 configuration and policy data, and review pasted outputs for accidental secrets or sensitive object data before analysis.
+
+Risk: Incomplete user-provided S3 data can limit the audit and cause exposure issues to be missed.
+
+Mitigation: Provide account-level S3 Block Public Access settings, bucket ACLs, bucket policies, bucket public access block settings, and Security Hub S3 findings when available.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with findings tables, JSON policy snippets, and AWS command or configuration recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes user-provided read-only AWS S3 and Security Hub outputs; does not request credentials or directly access AWS accounts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with findings tables, policy JSON, AWS CLI command examples, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only analysis based on user-provided exported AWS S3 configuration and policy data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Generate flowcharts, infographics, Gantt charts, and mind maps from natural-language prompts using EdrawMax AI APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate flowcharts, infographics, Gantt charts, and mind maps from natural language using EdrawMax AI APIs.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-External users and developers use this skill to turn written descriptions into EdrawMax flowchart, infographic, Gantt, or mind-map outputs, then download PNG/SVG files and source code for review or editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary Software License
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram prompts are sent to EdrawMax's external API and may contain sensitive information. <br>
-Mitigation: Avoid secrets, private customer data, and confidential plans in prompts before using the skill. <br>
-Risk: Generated PNG and SVG files are downloaded and saved locally, normally under ./edrawmax_output. <br>
-Mitigation: Use the bundled downloader's HTTPS and trusted-host validation, choose an appropriate output directory, and review saved files before sharing. <br>
+## Use Case:
 
+Developers and external users use this skill to turn natural language prompts into diagrams, including process flows, infographics, project timelines, and mind maps. The skill calls EdrawMax-operated services and presents generated image files plus editable source code.
 
-## Reference(s): <br>
-- [EdrawMax AI Skills API Reference](references/api-reference.md) <br>
-- [EdrawMax AI API](https://api.edrawmax.cn/api/ai) <br>
-- [ClawHub Release Page](https://clawhub.ai/wondershare-boop/edrawmax-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, api calls, guidance] <br>
-**Output Format:** [Markdown with JSON snippets, source-code blocks, image links, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns PNG/SVG diagram links and local downloaded file paths; flowcharts include Mermaid code, while infographics, Gantt charts, and mind maps include source_code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact skill metadata says 2.0.0) <br>
+Risk: Diagram prompts and generated artifacts are sent to EdrawMax-operated remote services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, customer, roadmap, or other sensitive content unless the deployment has explicit approval for this data flow.
+
+Risk: The skill automatically downloads remote PNG and SVG files after generation.
+
+Mitigation: Review or harden downloader behavior before sensitive use, including redirect handling, exact host allowlisting, file size limits, and PNG/SVG validation.
+
+## Reference(s):
+
+- [EdrawMax AI Skills API Reference](references/api-reference.md)
+- [ClawHub skill listing](https://clawhub.ai/wondershare-boop/skills/edrawmax-skills)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with local PNG/SVG file paths and diagram source code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads generated PNG and SVG artifacts locally when EdrawMax returns trusted HTTPS URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

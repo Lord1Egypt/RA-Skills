@@ -1,41 +1,54 @@
-## Description: <br>
-Chrome Devtools Axi guides agents in using the chrome-devtools-axi CLI for Chrome DevTools Protocol browser automation, including accessibility snapshots, stale-ref-safe interactions, screenshots, console and network inspection, Lighthouse, and performance traces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents using chrome-devtools-axi for Chrome DevTools Protocol browser automation, accessibility snapshots, stale-ref-safe interactions, screenshots, console and network inspection, Lighthouse, and performance traces.
 
-## Publisher: <br>
-[tmchow](https://clawhub.ai/user/tmchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmchow](https://clawhub.ai/user/tmchow)
 
-## Use Case: <br>
-Developers and agents use this skill when a task requires terminal-driven Chrome DevTools automation, browser interaction through accessibility refs, or diagnostics from console, network, screenshot, Lighthouse, performance, or heap tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect an agent to Chrome DevTools, including existing browser sessions or profiles that may expose private browsing state. <br>
-Mitigation: Prefer fresh isolated browser sessions, connect to normal logged-in profiles only when the user authorizes that scope, and stop the bridge when persistent state is no longer needed. <br>
-Risk: Authenticated WebSocket headers or other DevTools connection values may contain secrets. <br>
-Mitigation: Keep WebSocket header values private and avoid printing or publishing raw secret-bearing environment variables. <br>
+## Use Case:
 
+Developers and engineers use this skill when an agent needs terminal-driven Chrome automation for inspecting, interacting with, and debugging web pages through chrome-devtools-axi.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/kunchenguid/chrome-devtools-axi) <br>
-- [ClawHub skill page](https://clawhub.ai/tmchow/chrome-devtools-axi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes privacy-sensitive browser session handling and verification practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill can lead agents to run mutable, unpinned npm code that attaches to Chrome sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed chrome-devtools-axi version and avoid latest-version npx execution for sensitive work.
+
+Risk: Existing Chrome profiles, authenticated DevTools endpoints, and WebSocket headers may expose private browsing state or secrets.
+
+Mitigation: Use fresh isolated browser sessions by default, connect to existing profiles or endpoints only with explicit need, and never print raw CHROME_DEVTOOLS_AXI_WS_HEADERS values.
+
+## Reference(s):
+
+- [chrome-devtools-axi GitHub repository](https://github.com/kunchenguid/chrome-devtools-axi)
+- [Chrome Devtools Axi ClawHub page](https://clawhub.ai/tmchow/skills/chrome-devtools-axi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes browser-session verification steps and privacy-sensitive environment-variable handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

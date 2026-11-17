@@ -1,27 +1,68 @@
-# 尉缭子分析法 Skill
+# 尉缭子分析法 · Wei Liaozi Analysis Framework
 
-An English-described structured analysis skill using the Wei Liaozi five-lens framework — a synthesis of pre-Qin strategic thought from Huangdi, Jiang Ziya, Sun Wu, Wu Qi, and Duke Huan of Qi. Framework: Essence → Conditions → Gains-Losses → Sequence → Opponent.
+<p align="center">
+  <img src="https://img.shields.io/badge/version-2.2.1-blue" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/github/last-commit/phoenixlucky/weiliaozi-skill" alt="Last Commit">
+  <img src="https://img.shields.io/github/repo-size/phoenixlucky/weiliaozi-skill" alt="Repo Size">
+</p>
 
-Version: 2.2.0
+<p align="center">
+  <b>融汇黄帝、太公望、孙武、吴起、齐桓公五位先贤思想的五栏结构化分析框架</b><br>
+  <i>Essence → Conditions → Gains-Losses → Sequence → Opponent</i>
+</p>
 
-License: MIT
+---
 
-![alt text](weiliaozi.png)
+## 能解决什么问题
 
-这不是一个“多想一点”的 Skill。
-这是一个“按顺序想”的 Skill。
+很多决策问题，错不在信息太少，而在**顺序错了**：
 
-It is designed for high-stakes decisions where leaders need clearer structure, sharper tradeoff analysis, and a better read on opponents, institutions, and timing.
+| 常见错误 | 五栏框架如何拦住 |
+|----------|------------------|
+| ❌ 还没看清本质，就急着下结论 | **本质栏**：先拆底层结构 |
+| ❌ 还没检查条件，就开始谈方案 | **条件栏**：先查可行性基础 |
+| ❌ 还没算清得失，就先投入资源 | **得失栏**：先算值不值得 |
+| ❌ 还没排好先后，就想一步到位 | **先后栏**：先定节奏路径 |
+| ❌ 还没模拟对手，就假设对方不会动 | **对手栏**：先推演博弈反应 |
 
-很多决策问题，错不在信息太少，而在顺序错了:
+> **这套方法的核心不是"多想"，而是"按顺序想"。** 顺序就是方法本身。
 
-- 还没看清本质，就急着下结论
-- 还没检查条件，就开始谈方案
-- 还没算清得失，就先投入资源
-- 还没排好先后，就想一步到位
-- 还没模拟对手，就假设对方不会动
+适用场景：商业决策、战略定位、竞争分析、谈判准备、组织治理、项目取舍、政策研判、历史分析——任何"值不值得做、能不能做、先做什么"的问题。
 
-`尉缭子分析法 Skill` 的目标，就是把这些错误前置拦住。
+![尉缭子分析法项目介绍图，展示五栏分析框架及适用场景](weiliaozi.png)
+
+---
+
+## 思想渊源
+
+《尉缭子》是先秦兵家思想的集大成之作，融汇了五位先贤的核心洞见，将它们提炼为一套可操作的理性分析框架。
+
+> **黄帝** · 尉缭子借黄帝之口说"先稽我智"（先审视自己的智慧），将战略从占卜迷信转向人间事理——理性分析之始。→ 本质栏
+
+> **太公望（姜太公）** · 提出"官分文武，惟王之二术也"，文武兼治是统御框架之基；"不战而服"是最高胜战理念。→ 条件栏 + 对手栏
+
+> **孙武（孙子）** · "胜兵似水"、"奇正相生"、"知己知彼"——尉缭子继承其核心概念，但更强调制度与组织而非战术奇巧。→ 得失栏 + 先后栏 + 对手栏
+
+> **吴起** · 尉缭子三次引述吴起事迹：与士卒同甘苦、不为个人勇武所动、军纪先于战功——治军与自律之极则。→ 条件栏 + 先后栏
+
+> **齐桓公（管仲改革）** · "王国富民，伯国富士，谨存之国富大夫，亡国富食府"——分层治理逻辑为系统分析提供结构视角。→ 得失栏（系统分析）
+
+这五位先贤的思想不是装饰，而是每一栏分析背后的判断依据。运用本框架时，你有意或无意地站在他们的肩膀上。
+
+### 与现代分析框架的对应
+
+为方便理解，每个古人视角都可以映射到一个现代分析工具：
+
+| 五栏 | 先贤渊源 | 现代对应 |
+|------|----------|----------|
+| **本质** | 黄帝「先稽我智」——祛魅，回归人事 | 第一性原理、根因分析 |
+| **条件** | 太公望文武兼治 + 吴起纪律三问 | SWOT 中的资源与约束、组织能力评估 |
+| **得失** | 孙武知己知彼 + 齐桓公分层次得 | 成本收益分析、利益相关者分析 |
+| **先后** | 孙武胜兵似水 + 吴起先令后战 | 项目管理的优先级与路径设计、瓶颈分析 |
+| **对手** | 孙武诡道 + 太公望不战而服 | 博弈论、竞争情报、情景推演 |
+
+> 这个对应只是帮助理解，不是替代原方法。尉缭子框架的历史价值在于：**它把散落在不同学科中的分析工具，按一个固定的认知顺序串了起来**——先看本质才不会跑偏，再查条件才能务实，算清得失再动手，排好顺序再行动，最后才考虑对手的反应。顺序本身就是方法。
 
 ## What It Does
 
@@ -44,11 +85,11 @@ It helps turn complex questions into structured analysis across:
 
 核心原则只有一句：
 
-> 先看结构，再看约束，再算利弊，最后定顺序与对抗策略。
+> 先看结构，再看约束，再算利弊，最后定顺序与应对逻辑。
 
 English:
 
-> See the structure first, then constraints, then gains and losses, then sequence and opposition strategy.
+> See the structure first, then constraints, then gains and losses, then sequence and response logic.
 
 ## Language Behavior
 
@@ -210,15 +251,6 @@ This is especially important in high-stakes questions involving markets, policy,
 
 你进攻，对方可能撤退、反击或联合他人。
 
-## 和现代分析框架的对应
-
-- 本质 ≈ 第一性原理
-- 条件 ≈ SWOT 中的资源与约束
-- 得失 ≈ 成本收益分析
-- 先后 ≈ 项目管理里的优先级与路径
-- 对手 ≈ 博弈论
-
-这个对应只是帮助理解，不是替代原方法。
 
 ## 局限
 
@@ -317,9 +349,13 @@ This keeps the answer normative, accurate, and decision-useful rather than merel
 
 ```text
 weiliaozi-skill/
-├── SKILL.md
-├── README.md
+├── .gitignore
 ├── CHANGELOG.md
+├── LICENSE
+├── package.json
+├── README.md
+├── SKILL.md
+├── weiliaozi.png
 └── references/
     ├── examples.md
     └── tone-guide.md
@@ -330,6 +366,10 @@ weiliaozi-skill/
 - `SKILL.md`: Skill 主定义与工作规范
 - `README.md`: 本说明文档
 - `CHANGELOG.md`: 版本变更历史
+- `package.json`: 包元数据与发布文件清单
+- `LICENSE`: MIT 许可证
+- `weiliaozi.png`: README 项目介绍图
+- `.gitignore`: 本地与生成文件忽略规则
 - `references/examples.md`: 分析示例
 - `references/tone-guide.md`: 输出风格与压缩规则
 
@@ -361,8 +401,10 @@ git status
 
 ### 2. 提交本次更新
 
+`git add -A` 会暂存整个工作区的改动；提交前先检查 `git status`，确认暂存内容都属于本次更新。
+
 ```bash
-git add SKILL.md README.md CHANGELOG.md references/ package.json
+git add -A
 git commit -m "docs: convert skill to weiliaozi analysis"
 ```
 
@@ -400,7 +442,14 @@ git push -u origin main
 
 ## 变更日志
 
-最新版本：`2.2.0`（2026-04-28）
+最新版本：`2.2.1`（2026-09-24）
+
+- **v2.2.1 安全与打包修复**：移除不必要的无限制 Bash 配置，将本地运行状态加入忽略规则，调整对抗情景分析指引，并确保项目介绍图片包含在发布包中。
+
+- **v2.2.0 思想溯源**：将五位先贤（黄帝、太公望、孙武、吴起、齐桓公）思想系统融入五栏框架。
+  - 新增「思想渊源」章节，展示各栏对应的先贤渊源
+  - 每栏增加渊源批注和 2-3 个先贤视角的追问
+  - 新增「与现代分析框架的对应」对照表
 
 - **v2.0.0 重构**：为满足 ClawHub 合规要求进行整体调整。
   - 运行方式改为 subagent 模式，工具列表限定为只读工具（read_file, search_content, search_files, get_symbols, web_search, web_fetch）
@@ -415,6 +464,10 @@ git push -u origin main
 
 | 版本 | 日期 | 主要变更 |
 |------|------|----------|
+| **2.2.1** | 2026-09 | 安全与打包修复，更新对抗情景分析指引 |
+| 2.2.0 | 2026-07 | 思想渊源章节、五栏框架融入五位先贤核心概念，README 专业化改版 |
+| 2.1.0 | 2026-06 | 统一版本号 2.1.0 |
+| 2.0.0 | 2026-04 | 整体重构：subagent 模式、合规调整、系统分析框架 |
 | 1.5.x | 2026-04 | 移除旧版字段名、修正语言跟随规则 |
 | 1.4.x | 2026-04 | 历史视角触发规则扩展、人物设定与传说谱系 |
 | 1.3.0 | 2026-04 | 统一版本号 |

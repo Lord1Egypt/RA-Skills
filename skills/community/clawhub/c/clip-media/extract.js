@@ -2,6 +2,12 @@
 'use strict';
 
 /**
+ * SAFETY: Uses execFileSync (no shell) with hardcoded binary name `yt-dlp`
+ * and array args to prevent command injection. Never passes user-controlled
+ * strings as the command argument.
+ */
+
+/**
  * clip — Extract media from social media URLs
  * Uses yt-dlp to download images, videos, and GIFs from 1000+ sites
  * Handles large files via cloud storage fallback

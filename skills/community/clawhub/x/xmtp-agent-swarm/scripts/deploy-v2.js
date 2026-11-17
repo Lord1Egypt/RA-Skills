@@ -11,8 +11,9 @@ if (!PRIVATE_KEY) { console.error('Set WALLET_PRIVATE_KEY'); process.exit(1); }
 const provider = new ethers.JsonRpcProvider(RPC);
 const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
-const abi = JSON.parse(readFileSync('build/contracts_TaskEscrowV2_sol_TaskEscrowV2.abi', 'utf8'));
-const bytecode = '0x' + readFileSync('build/contracts_TaskEscrowV2_sol_TaskEscrowV2.bin', 'utf8').trim();
+const BUILD = '/home/oryx/.openclaw/workspace/build';
+const abi = JSON.parse(readFileSync(`${BUILD}/contracts_TaskEscrowV2_sol_TaskEscrowV2.abi`, 'utf8'));
+const bytecode = '0x' + readFileSync(`${BUILD}/contracts_TaskEscrowV2_sol_TaskEscrowV2.bin`, 'utf8').trim();
 
 async function main() {
   console.log('Deployer:', wallet.address);

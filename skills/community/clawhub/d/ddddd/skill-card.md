@@ -1,39 +1,53 @@
-## Description: <br>
-Provides guidance for answering OpenAI product and API questions with current official OpenAI developer documentation and citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations, prioritizing OpenAI docs MCP tools and restricting fallback browsing to official OpenAI domains.
 
-## Publisher: <br>
-[lichaohui007](https://clawhub.ai/user/lichaohui007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lichaohui007](https://clawhub.ai/user/lichaohui007)
 
-## Use Case: <br>
-Developers and technical agents use this skill to look up OpenAI platform, Codex, ChatGPT Apps SDK, Realtime API, Agents SDK, and related product documentation before producing concise implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to modify local Codex MCP configuration and retry MCP setup with elevated permissions. <br>
-Mitigation: Manually review and approve MCP configuration changes, and allow elevated-permission retries only when the local configuration change is understood. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer OpenAI product and API implementation questions with current official documentation and citations. It covers Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime API, gpt-oss, and related model capability or limit questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lichaohui007/ddddd) <br>
-- [OpenAI Developer Docs MCP server](https://developers.openai.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with citations, inline code, and fenced code blocks when supported by the referenced documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP setup commands and official documentation citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can cause persistent MCP tool configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before running `codex mcp add` or making persistent agent-tool configuration changes.
+
+Risk: The skill text directs the agent to retry with elevated permissions if MCP installation fails.
+
+Mitigation: Require explicit approval before any elevated-permission retry and explain what persistent change will be made.
+
+## Reference(s):
+
+- [OpenAI Developer Docs MCP](https://developers.openai.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with citations and optional code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses official OpenAI documentation as the source of truth when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Memory Graph provides SQLite-backed entity and relationship storage with add_entity, add_relation, query, traverse, get_path, and stats operations for agent memory workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQLite-based entity-relationship graph storage that provides add_entity, add_relation, query, traverse, get_path, and stats operations for agent memory workflows.
 
-## Publisher: <br>
-[sipoon](https://clawhub.ai/user/sipoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipoon](https://clawhub.ai/user/sipoon)
 
-## Use Case: <br>
-Developers and agent builders use this skill to persist local knowledge graph entities and relationships, then query, traverse, and inspect paths in that graph. It is intended for agent memory and skill-compounding workflows that need structured project, decision, technology, person, tool, or skill records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain sensitive project or personal details. <br>
-Mitigation: Avoid storing sensitive information unless retention and deletion practices are defined before use. <br>
-Risk: The artifact uses a hard-coded database path for graph storage. <br>
-Mitigation: Change the database location to a user-controlled workspace path before installing or running the skill. <br>
-Risk: The security review marks the release suspicious due to under-scoped persistence and memory-use controls. <br>
-Mitigation: Review the storage behavior and scan the skill before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to persist and query an entity-relationship knowledge graph for agent memory, including entities, weighted relationships, graph traversal, path lookup, and graph statistics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sipoon/sipoon-memory-graph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance] <br>
-**Output Format:** [Python API calls returning strings, lists, and dictionaries backed by a local SQLite database] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or opens a persistent local graph database and returns entity IDs, edge IDs, query results, traversal results, path results, and graph statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 0.2.0) <br>
+Risk: The module persistently writes graph data to a hard-coded, user-specific database path on import.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and modify the skill to use a documented, configurable, skill-owned database path, and initialize storage only when explicitly invoked.
+
+Risk: Stored graph contents act as persistent memory and may retain sensitive personal, credential, or private project data.
+
+Mitigation: Avoid storing sensitive data unless the storage location, access controls, and retention behavior are acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sipoon/skills/sipoon-memory-graph)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python API examples and structured graph operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance and code-oriented outputs for creating, querying, traversing, and inspecting a local SQLite knowledge graph.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

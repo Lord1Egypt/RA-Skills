@@ -124,12 +124,12 @@ pip install aiohttp
 
 ## Models Available
 
-Any model running on LM Studio (`<lm-studio-url>/v1`). Recommended:
+Any model running on LM Studio (`http://127.0.0.1:1234/v1`). Recommended:
 - Small/fast (QA, routing): `qwen3.5-9b`, `glm-4.7-flash`, `nerdsking-3b`
 - Medium (analysis): `huihui-qwen3.5-27b-abliterated`, `huihui-mistral-small-24b-abliterated`
 - Heavy (complex tasks): `qwen3.5-35b-uncensored-hauhaucs`, `holo3-35b`
 
-Use `curl <lm-studio-url>/v1/models` to list what's loaded.
+Use `curl http://127.0.0.1:1234/v1/models` to list what's loaded.
 
 ## God Mode Integration
 
@@ -151,8 +151,3 @@ Before using a censored model in council, test it:
 1. Send a borderline request directly
 2. Note: refuses? → needs god-mode wrapper
 3. Document in MODEL-CATALOG.md
-
----
-
-If this saved you time: [☕ PayPal.me/nerudek](https://www.paypal.me/nerudek)
-GitHub: [github.com/nerua1](https://github.com/nerua1)

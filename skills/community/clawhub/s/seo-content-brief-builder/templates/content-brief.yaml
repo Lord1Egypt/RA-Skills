@@ -1,0 +1,27 @@
+# SEO Content Brief Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+content_brief:
+  page_url: <https://yourdomain.com/page>
+  target_keyword: <primary keyword>
+  secondary_keywords:
+    - <secondary keyword>
+  search_intent: <informational or commercial or transactional>
+  funnel_stage: <top or middle or bottom>
+  reader_question: <the question this page answers>
+  title_tag: <under 60 characters>
+  meta_description: <under 155 characters>
+  slug: <url slug>
+  h2_outline:
+    - <section heading>
+  must_mention:
+    - <entity or term>
+  internal_links:
+    - <path on this site>
+  proof_points:
+    - <statistic and its source>
+  cta: <one call to action>
+  word_target: <number of words>
+  forbidden_claims:
+    - <claim the writer may not make>
+  approver: <name or role>
+  due_date: <YYYY-MM-DD>

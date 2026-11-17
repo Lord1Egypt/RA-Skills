@@ -1,43 +1,58 @@
-## Description: <br>
-Binance Pro helps agents query Binance balances and market data and prepare spot and futures trading commands, including leveraged positions, stop-loss orders, take-profit orders, cancellations, and trade-history checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Binance integration for checking balances, viewing prices and positions, managing spot and futures orders, setting stop loss and take profit orders, checking PnL, and changing futures leverage.
 
-## Publisher: <br>
-[totaleasy](https://clawhub.ai/user/totaleasy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[totaleasy](https://clawhub.ai/user/totaleasy)
 
-## Use Case: <br>
-External users and developers use this skill when they intentionally want an agent to assist with Binance account queries, portfolio checks, spot trades, futures positions, order management, and trading history. It is suited to workflows where every authenticated account action is reviewed and confirmed before execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated commands can place spot or futures orders, cancel orders, close positions, or change leverage on a Binance account. <br>
-Mitigation: Require explicit user confirmation before every order, leverage change, cancellation, or position close, and review symbol, side, quantity, leverage, and order type before execution. <br>
-Risk: Binance API keys can expose account access if over-permissioned or leaked. <br>
-Mitigation: Use a dedicated Binance API key with withdrawals disabled, minimum permissions, IP restrictions, and small limits; prefer read-only or testnet access unless live trading is explicitly needed. <br>
-Risk: Leveraged crypto trading can amplify losses, especially when broad routing and limited safeguards are present. <br>
-Mitigation: Use low or no leverage unless the user explicitly requests otherwise, set stop-loss controls for leveraged trades, and keep position sizes within predefined limits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/totaleasy/binance-pro) <br>
-- [Binance API Documentation](https://binance-docs.github.io/apidocs/) <br>
-- [Binance Testnet](https://testnet.binance.vision/) <br>
+## Use Case:
 
+External users and trading-oriented agent operators use this skill to generate Binance API calls for account checks, spot trading, futures position management, order cancellation, trade history review, and risk controls.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uses Binance API credentials and may generate authenticated account or trading API commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce commands for live Binance spot trading, futures trading, leverage changes, cancellations, and account access.
+
+Mitigation: Require explicit confirmation before every trade, leverage change, cancellation, or other account-changing action.
+
+Risk: Binance API keys can expose funds or account data if over-permissioned or reused.
+
+Mitigation: Use a dedicated Binance API key with the minimum permissions needed, disable withdrawals, restrict by IP where available, and prefer read-only keys for account checks.
+
+Risk: Leveraged futures operations can cause rapid financial loss if pair, quantity, side, leverage, stop loss, or take profit values are wrong.
+
+Mitigation: Use testnet where possible and verify symbol, position, quantity, side, leverage, stop loss, and take profit before execution.
+
+## Reference(s):
+
+- [Binance API Documentation](https://binance-docs.github.io/apidocs/)
+- [Binance Testnet](https://testnet.binance.vision/)
+- [ClawHub Skill Page](https://clawhub.ai/totaleasy/skills/binance-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl and jq; examples require Binance API credentials and may perform live account or trading operations when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

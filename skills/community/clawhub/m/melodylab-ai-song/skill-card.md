@@ -1,42 +1,57 @@
-## Description: <br>
-ZeeLin Music helps an agent generate complete AI songs from a short prompt, including vocal or instrumental tracks across styles such as pop, rock, folk, and electronic music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeeLin Music helps users generate complete AI songs from a short prompt, with support for vocal or instrumental music and styles such as pop, rock, and folk.
 
-## Publisher: <br>
-[dongjiangliu9-tech](https://clawhub.ai/user/dongjiangliu9-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongjiangliu9-tech](https://clawhub.ai/user/dongjiangliu9-tech)
 
-## Use Case: <br>
-External users use this skill to create AI-generated songs from creative prompts, selected styles, moods, lyrics, or instrumental requests. The workflow requires the user's ZeeLin App-Key for balance checks and paid music generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to paste a reusable ZeeLin billing App-Key into the agent flow and sends that key to MelodyLab for charge handling. <br>
-Mitigation: Use a low-balance or easily revocable key, confirm the 200-credit charge before generation, and rotate the key when the skill is no longer needed. <br>
-Risk: Creative prompts, lyrics, style preferences, and generated-song requests are sent to MelodyLab and downstream music-generation services. <br>
-Mitigation: Avoid sensitive personal content in prompts or lyrics, and review the service privacy terms before using the skill with confidential material. <br>
+## Use Case:
 
+External users use this skill to create songs from prompts, lyrics, style preferences, and vocal or instrumental choices. The skill guides the agent through ZeeLin App-Key validation, lyric generation, music generation, status polling, and presenting generated audio links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dongjiangliu9-tech/melodylab-ai-song) <br>
-- [MelodyLab Homepage](https://melodylab.top) <br>
-- [ZeeLin Skill Platform](https://skills.zeelin.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown with generated lyrics, status updates, billing summaries, and external audio links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audio and image URLs returned by MelodyLab or Suno.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence and frontmatter) <br>
+Risk: The skill asks users to provide a ZeeLin billing App-Key and sends that key to MelodyLab for billing-related operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only if comfortable sharing that key with MelodyLab; prefer a dedicated, revocable, low-balance key if supported and monitor charges.
+
+Risk: The server security summary notes that the privacy policy does not clearly disclose the App-Key credential flow.
+
+Mitigation: Review the privacy and billing disclosures before installation, and avoid entering personal or sensitive content into song prompts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongjiangliu9-tech/skills/melodylab-ai-song)
+- [MelodyLab Homepage](https://melodylab.top)
+- [ZeeLin Skill Platform](https://skills.zeelin.cn)
+- [README](artifact/README.md)
+- [Privacy Policy](artifact/PRIVACY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, markdown, configuration]
+
+**Output Format:** [Markdown conversation with API request instructions and generated audio links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated lyrics, task status updates, remaining balance notices, and links to generated audio files.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release evidence, README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

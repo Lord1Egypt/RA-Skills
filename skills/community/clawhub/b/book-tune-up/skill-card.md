@@ -1,40 +1,52 @@
-## Description: <br>
-Book Tune Up helps users search for and book tune-up services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book tune-up services through Lokuli MCP. Use when user needs to find and book tune-up. Triggers on requests like "book a tune-up", "find tune-up near me", or any tune-up service request.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to find tune-up service providers, check available appointment times, and create bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests may send personal contact information and appointment details to Lokuli. <br>
-Mitigation: Confirm the provider, service, date, time, name, email, phone number, ZIP code, and appointment details before creating a booking. <br>
-Risk: A booking could be created with the wrong provider, service, date, or time if the user has not reviewed the selected option. <br>
-Mitigation: Present the selected booking details for user confirmation before calling the booking tool. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-tune-up) <br>
+## Use Case:
 
+External users can use this skill to search for tune-up services through Lokuli, check provider availability, and prepare a booking request. It is intended for service discovery and booking workflows where the user confirms provider, service, time, and contact details before a reservation is submitted.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Text guidance and JSON-RPC MCP tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, date, time slot, and customer contact details needed to complete a booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details to an external booking service.
+
+Mitigation: Only provide contact details when the user intends to create a booking and has confirmed the data sharing.
+
+Risk: The skill can create reservations without explicit consent or confirmation instructions in the source.
+
+Mitigation: Confirm provider, service, time slot, customer details, and booking intent before submitting any reservation.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an external MCP service for tune-up search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

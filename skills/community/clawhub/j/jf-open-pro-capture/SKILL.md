@@ -299,15 +299,10 @@ your-device-sn-03，客厅摄像头
 
 | 文件 | 说明 |
 |------|------|
-| `jf-open-pro-capture-skill.md` | 技能文档 |
+| `SKILL.md` | 技能文档 |
 | `scripts/capture.py` | Python 执行脚本 |
 | `scripts/crypto.py` | 签名/时间戳加密工具（复用） |
 
 ## 参考文档
 
-- [杰峰开放平台](https://developer.jftech.com)
-- [设备云抓图](/xm-workspace/xm-webs/openapi/设备云抓图.md)
-- [获取设备接口访问令牌](/xm-workspace/xm-webs/openapi/smart-alarm/获取设备接口访问令牌.md)
-- [杰峰云抓拍定价](https://aops.jftech.com/#/pricing?lang=zh&tab=MEDIA_PROCESSING)
-- [签名算法](/xm-workspace/xm-webs/openapi/smart-alarm/签名算法.md)
-- [时间戳算法](/xm-workspace/xm-webs/openapi/smart-alarm/时间戳算法.md)
+- [杰峰开放平台](https://docs.jftech.com)

@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents through a three-step Copilot interaction flow that maps natural language requests into structured confirmation cards, implicit validation, highlighted form filling, and user-controlled submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent interaction design workflow for compressing conversational confirmation into a three-step flow: natural language input, implicit validation with highlighted form fields, and user-confirmed submission.
 
-## Publisher: <br>
-[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art)
 
-## Use Case: <br>
-Developers, product designers, and agent builders use this skill to design efficient Agent or Copilot interaction flows. It focuses on reducing confirmation loops, adding implicit validation, defining confirmation-card behavior, and mapping state transitions, quick actions, templates, and collaboration awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on page context, operation logs, templates, and team-sharing data that may include sensitive product or user information. <br>
-Mitigation: Apply the application's privacy, approval, and access-control rules before adopting these patterns in a real product. <br>
-Risk: Interaction proposals could be incomplete or misleading if used without product, engineering, or compliance review. <br>
-Mitigation: Review confirmation-card content, validation checks, highlighted form fields, and final submission behavior before deployment. <br>
+## Use Case:
 
+Product designers, agent builders, and workflow owners use this skill to design Copilot-style interaction flows with structured confirmation cards, implicit validation, field highlighting, quick actions, templates, and collaboration awareness.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mistyhuqwq-art/workflow-dlc-agent-interaction) <br>
-- [Agent lessons reference](../../lessons/by-role/agent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with structured tables, state-machine text, checklists, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces interaction-design guidance for confirmation cards, implicit validation, form highlighting, quick actions, templates, collaboration awareness, and workflow logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Implementations of page-context access, operation-log checks, template sharing, or submit flows may exceed the active product workflow if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep integrations scoped to the active workflow and require user confirmation before applying or submitting changes.
+
+Risk: The source skill is written for Chinese-language Agent interaction design work, so applying it outside that domain may produce a poor fit.
+
+Mitigation: Confirm the language, product context, and intended interaction model before installing or adapting the skill.
+
+Risk: Dynamic generation of quick action controls can create inconsistent or delayed user interactions.
+
+Mitigation: Use deterministic product rules for quick actions and templates, and reserve model output for guidance and parameter interpretation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/mistyhuqwq-art/skills/workflow-dlc-agent-interaction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured checklists, state-machine text, confirmation card templates, and JSON log examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; guidance is intended to be reviewed and adapted before implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Log workouts, track progress, compute PRs, edit/delete sessions via a local CLI. Local-first, JSON storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs workouts, retrieves training history, estimates personal records, and summarizes exercise volume using a local CLI.
 
-## Publisher: <br>
-[dsdevq](https://clawhub.ai/user/dsdevq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dsdevq](https://clawhub.ai/user/dsdevq)
 
-## Use Case: <br>
-External users and agents use this skill to log local workout sessions, query training history, calculate estimated PRs, and summarize muscle volume through the workout-claw CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads, writes, edits, and deletes local workout logs that may contain personal health data. <br>
-Mitigation: Install only when the local workout-claw CLI is trusted, and treat workout notes and logs as personal health data. <br>
-Risk: The documented delete command has no confirmation prompt. <br>
-Mitigation: Confirm the exact session ID with the user before issuing any delete command. <br>
-Risk: The edit command opens an interactive editor and may not work in chat-only or Telegram-style agent sessions. <br>
-Mitigation: Avoid invoking interactive edit flows in remote chat sessions; provide the session ID or use delete plus log again when appropriate. <br>
+## Use Case:
 
+People and their agents use this skill to record gym sessions, review workout history and volume, estimate lifting records, and correct or remove sessions stored locally.
 
-## Reference(s): <br>
-- [Workout Claw ClawHub Page](https://clawhub.ai/dsdevq/workout-claw) <br>
-- [Publisher Profile](https://clawhub.ai/user/dsdevq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and readable summaries of CLI YAML output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on local JSON workout logs under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on a separately installed global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the CLI package before installing or running it.
+
+Risk: Deleting a session has no confirmation prompt and may be irreversible; editing changes saved records.
+
+Mitigation: Confirm the user's intent and session ID before destructive changes, and back up important workout records.
+
+Risk: Broad workout-related triggers may match ambiguous requests.
+
+Mitigation: Clarify whether the user wants to view or change records before acting.
+
+## Reference(s):
+
+- [workout-claw on ClawHub](https://clawhub.ai/dsdevq/skills/workout-claw)
+- [fitdown input notation](https://github.com/datavis-tech/fitdown)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain-language workout summaries and CLI command guidance; CLI responses are YAML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workout records are stored locally as JSON; personal records are estimated from logged sets.]
+
+## Skill Version(s):
+
+0.4.0 (source: server-resolved ClawHub release; bundled SKILL.md still says 0.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Professional LaTeX writing assistant. Capabilities include: scanning existing LaTeX templates, reading reference materials (Word/Text), drafting content strictly following templates, and compiling PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional LaTeX writing assistant for scanning existing LaTeX templates, reading reference materials, drafting content that follows template requirements, and compiling PDFs.
 
-## Publisher: <br>
-[dayunyan](https://clawhub.ai/user/dayunyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[dayunyan](https://clawhub.ai/user/dayunyan)
 
-## Use Case: <br>
-Students, researchers, and technical authors use this skill to analyze LaTeX templates, load reference materials, draft LaTeX content, maintain citation handoffs, and compile academic PDFs in a Linux or WSL2 project workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local reference files, modify LaTeX project files, and run local LaTeX compilation. <br>
-Mitigation: Use it in a dedicated trusted project folder, avoid absolute or parent-directory paths unless intentional, and review diffs or backups before accepting overwrites. <br>
-Risk: Compiling untrusted TeX templates or project files can expose the user to unsafe local behavior. <br>
-Mitigation: Compile only trusted templates and TeX files, and inspect unfamiliar inputs before running the compilation workflow. <br>
+## Use Case:
 
+External academic authors and developers use this skill to analyze LaTeX templates, read reference material, draft template-conforming LaTeX content, and compile PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dayunyan/academic-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with LaTeX code, shell commands, and file-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read reference files, write LaTeX project files, and report PDF compilation results when its local helper script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The helper can read and overwrite arbitrary paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain read_reference, scan_template, write_latex, and compile_pdf to trusted project files and require confirmation before overwriting files.
+
+Risk: The setup asks for privileged host package installation.
+
+Mitigation: Install only in an isolated project workspace or container/VM and review any sudo package installation separately.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin Python and LaTeX-related dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dayunyan/skills/academic-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with LaTeX snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write LaTeX files and trigger PDF compilation in the user's project workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

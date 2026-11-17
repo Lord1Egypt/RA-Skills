@@ -1,48 +1,65 @@
-## Description: <br>
-通用页面原型设计技能，帮助 agents build complex business-system HTML prototypes with standard page structures, statistics cards, filters, data tables, modals, detail pages, and selectable design-system styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+原型设计技能 helps agents build complex business-system HTML prototypes using a default Figma style and 58 built-in design-system references for page layouts, statistics cards, filters, tables, modals, detail views, and kanban or list workflows.
 
-## Publisher: <br>
-[contsun](https://clawhub.ai/user/contsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[contsun](https://clawhub.ai/user/contsun)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to create management-console and business-system HTML prototypes from requirements, including dashboards, table workflows, detail views, dialogs, and kanban or tabbed layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt an agent to run local tooling, start local servers, or use browser automation. <br>
-Mitigation: Require explicit approval before running commands, starting servers, or opening browser automation sessions. <br>
-Risk: The skill may prompt an agent to write memory notes or commit repository changes. <br>
-Mitigation: Instruct the agent not to write memory files or create commits unless those actions are specifically approved for the current task. <br>
-Risk: The release carries crypto and purchase-related capability tags that are not clearly explained by the prototype-design workflow. <br>
-Mitigation: Review the capability tags before installation and restrict use to prototype generation unless those capabilities are justified. <br>
+## Use Case:
 
+Developers and product or design teams use this skill to create management-console and business workflow prototypes from requirements, including HTML/CSS/JS pages, modals, data tables, dashboard views, and kanban or list views.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/contsun/prototype-design) <br>
-- [Publisher profile](https://clawhub.ai/user/contsun) <br>
-- [Field norms](references/field-norms.md) <br>
-- [Page template](references/page-template.html) <br>
-- [Figma design-system reference](references/design-systems/figma-DESIGN.md) <br>
-- [Linear design-system reference](references/design-systems/linear-DESIGN.md) <br>
-- [Vercel design-system reference](references/design-systems/vercel-DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with HTML, CSS, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to create or update local prototype files, run local tooling, start a local server, use browser automation, write memory notes, and commit repository changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security review warns that the skill normalizes broad repository commits and persistent memory writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated file operations and allow repository commits or memory-file updates only when the user explicitly requests those side effects.
+
+Risk: The security review warns about unpinned npx server execution.
+
+Mitigation: Pin or approve package versions before running development servers and prefer local project scripts when available.
+
+Risk: The security review flags an active captured HTML reference file.
+
+Mitigation: Inspect and sanitize references/design-systems/linear.app-DESIGN.md before using or redistributing the bundled references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/contsun/skills/prototype-design)
+- [README](README.md)
+- [Field norms](references/field-norms.md)
+- [Page template](references/page-template.html)
+- [Figma design system](references/design-systems/figma-DESIGN.md)
+- [Linear design system](references/design-systems/linear-DESIGN.md)
+- [Vercel design system](references/design-systems/vercel-DESIGN.md)
+- [Notion design system](references/design-systems/notion-DESIGN.md)
+- [Stripe design system](references/design-systems/stripe-DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local prototype files when the user asks the agent to implement a prototype.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

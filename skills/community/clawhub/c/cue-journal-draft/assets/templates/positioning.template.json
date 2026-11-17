@@ -1,0 +1,59 @@
+{
+  "_note": "刊物定位卡。与 stylespec.json 平级：stylespec 管『长什么样』，positioning 管『写给谁、为什么写、用什么调子说』。模板里 <...> 是待填占位，填完删掉 _note 与 _how 字段。完整取值口径见 references/audience-value.md。",
+
+  "publisher": "<出刊机构名，如：启明律师事务所>",
+  "title": "<刊名，如：区域观察>",
+  "industry": "<行业，如：律所/专业服务>",
+
+  "purpose": {
+    "_how": "六选一作主目的，只能一个。副目的不得推翻主目的的取舍。A=品牌心智 B=获客转化 C=客户留存 D=合规传达 E=员工凝聚 F=投资者关系",
+    "primary": "<A|B|C|D|E|F>",
+    "secondary": ["<可空>"],
+    "not_for": "<明确不做的事，例：不做产品推介、不做同行比较>",
+    "success_looks_like": "<可验证的一句话，例：读者带着具体问题来询，而非读完就过>"
+  },
+
+  "audience": {
+    "_how": "追到岗位与处境，不要写『客户』『员工』这类词。专业水平 1-5（1=外行 5=同行专家）；time_budget_min 是读者肯给这本刊的分钟数。",
+    "role": "<岗位，例：外资制造业的区域法务总监>",
+    "situation": "<处境，例：一个人对接三个省份的合规，没有专职团队>",
+    "expertise_level": 4,
+    "time_budget_min": 10,
+    "decision_power": "<他能决定什么，例：能决定要不要启动自查，但决定不了预算>"
+  },
+
+  "value_promise": {
+    "_how": "value_promise 是本期只留的那一句；reader_action 必须是一个动词短语，且正文里真有内容兑现它——覆盖率 <50% 会被 audit_editorial.py 判 FAIL。",
+    "promise": "<一句话，例：告诉你哪些新规真的会影响你的三条产品线>",
+    "reader_action": "<动词短语，例：核对自家基金的附带权益条款>",
+    "not_value": "<明确不是的价值，例：不是法规全文汇编>"
+  },
+
+  "tone": {
+    "_how": "调性是前三项的结果，不是起点。三个刻度各 1-5，直接换算字数带与句长，见 audience-value.md §四。",
+    "authority": 4,
+    "density": 3,
+    "stance": 4,
+    "derived": {
+      "_how": "由上面三个刻度自动派生，audit_editorial.py 按这些值校验；手改会被覆盖。",
+      "unit_chars_min": 200,
+      "unit_chars_max": 320,
+      "sentence_len_median_max": 40,
+      "second_person": "optional",
+      "must_state_non_action": true
+    }
+  },
+
+  "industry_rules": {
+    "_how": "合规禁止项见 references/journal-types.md §四（那一层是硬约束、必须过）；这里只补编辑口径。",
+    "jargon_ceiling_per_1k": 20,
+    "taboo_words": ["<例：领先>", "<例：权威认可>"],
+    "must_cite": "<什么必须标出处，例：排名与数据必须标机构+年份>"
+  },
+
+  "voice_examples": {
+    "_how": "给 2-3 句『照着这个调子写』的样句，比任何形容词都管用。执行时优先模仿样句的句式长度与人称。",
+    "good": ["<例：贵司现有出境链路里，有三类数据要在 90 天内重做评估。>"],
+    "bad": ["<例：本次修订意义重大，值得业界高度关注。>"]
+  }
+}

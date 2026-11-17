@@ -1,44 +1,61 @@
-## Description: <br>
-小程序变现助手 helps mini-program developers plan and implement monetization through WeChat Pay integration, memberships, advertising, pricing strategy, and revenue analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小程序变现助手 helps mini-program developers plan monetization through WeChat Pay integration, memberships, advertising, pricing, and analytics.
 
-## Publisher: <br>
-[15673123779](https://clawhub.ai/user/15673123779) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15673123779](https://clawhub.ai/user/15673123779)
 
-## Use Case: <br>
-External mini-program developers use this skill to choose monetization models, integrate WeChat Pay, implement membership subscriptions, add advertising, set prices, and monitor revenue metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment credentials, certificates, and API keys could be exposed if implementation examples are copied into chat logs, source control, or unprotected files. <br>
-Mitigation: Keep live WeChat Pay keys and certificates out of chat and Git; use protected environment variables or a secrets manager. <br>
-Risk: Payment callbacks, refunds, and admin actions can affect real transactions if examples are used directly in production. <br>
-Mitigation: Test with sandbox payments, verify payment notifications, and require explicit authorization for refunds and administrative actions. <br>
-Risk: Monetization, advertising, subscriptions, refunds, privacy, tax, and platform rules may vary by deployment context. <br>
-Mitigation: Review applicable privacy, refund, tax, advertising, and WeChat platform compliance obligations before release. <br>
+## Use Case:
 
+External developers and mini-program operators use this skill to evaluate monetization models and draft implementation guidance for WeChat Pay, membership subscriptions, ads, pricing, and revenue metrics.
 
-## Reference(s): <br>
-- [微信支付接入详细教程](references/wechat-pay-guide.md) <br>
-- [会员系统实现方案](references/membership-implementation.md) <br>
-- [广告变现优化技巧](references/ad-monetization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, SQL snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not execute tools or APIs directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact footer) <br>
+Risk: Payment and membership examples may mishandle paid access or revenue if used as production-ready code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require server-authoritative pricing, verified payment callbacks, order locking, amount and currency reconciliation, idempotent fulfillment, and authenticated user identity before production use.
+
+Risk: WeChat Pay examples reference callbacks, certificates, and payment state changes that need security review.
+
+Mitigation: Review callback signature verification, certificate handling, dependency pinning, and fulfillment logic with someone familiar with WeChat Pay security.
+
+Risk: Monetization guidance could lead to platform or legal compliance issues if applied without local review.
+
+Mitigation: Validate refund, privacy, tax, advertising, and WeChat mini-program platform requirements before launch.
+
+## Reference(s):
+
+- [微信支付接入详细教程](references/wechat-pay-guide.md)
+- [会员系统实现方案](references/membership-implementation.md)
+- [广告变现优化技巧](references/ad-monetization.md)
+- [WeChat Pay JSAPI endpoint](https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi)
+- [ClawHub skill page](https://clawhub.ai/15673123779/skills/miniprogram-monetization)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code blocks, tables, and implementation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include payment, membership, advertising, pricing, analytics, and compliance recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

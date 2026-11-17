@@ -1,43 +1,53 @@
-## Description: <br>
-Webpage to PDF and Markdown converter that saves URLs, especially WeChat articles, as offline-readable files with images, layout, and styles preserved. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts webpages, especially WeChat articles, into offline-readable PDF and Markdown files while preserving images, layout, and styles.
 
-## Publisher: <br>
-[qinkaizhou](https://clawhub.ai/user/qinkaizhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinkaizhou](https://clawhub.ai/user/qinkaizhou)
 
-## Use Case: <br>
-Developers and content operators use this skill to archive single URLs or batches of URLs as PDF and Markdown files for offline reading, review, or retention. It is especially oriented toward WeChat article capture while also supporting regular webpages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default browser mode can control a real logged-in Chrome profile and access cookies or active sessions. <br>
-Mitigation: Prefer --isolated or HTTP mode for public pages, and reserve default browser mode for trusted pages that require login. <br>
-Risk: The CDP proxy can open a local port and write temporary state files under cdp-proxy-<user>. <br>
-Mitigation: Run as a normal user, keep browser automation limited to trusted content, and clean or stop CDP proxy state after handling private content. <br>
-Risk: Broad Chrome DevTools Protocol utilities require review before installation. <br>
-Mitigation: Review and scan the skill before deployment, and run browser mode in a VM or sandbox when handling sensitive sessions. <br>
+## Use Case:
 
+Developers and content-operations users use this skill to archive single webpages or batches of URLs as local PDF and Markdown documents for offline reading and recordkeeping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinkaizhou/url2pdf-mk) <br>
-- [Publisher profile](https://clawhub.ai/user/qinkaizhou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated agent workflow may create PDF and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser mode can produce PDF and Markdown; HTTP mode produces Markdown only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md changelog, released 2026-04-14) <br>
+Risk: Default browser mode reuses the user's Chrome profile and can expose cookies or logged-in sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer --isolated or HTTP mode for public content; use a disposable browser profile, VM, or sandbox when login-required pages must be archived.
+
+Risk: The local CDP proxy opens a localhost port and may leave temporary state files.
+
+Mitigation: Validate input URLs before use, stop the proxy after the task, and clean cdp-proxy state files from the temp directory if cleanup does not complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qinkaizhou/skills/url2pdf-mk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is local PDF and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser mode can access logged-in sessions; HTTP mode produces Markdown only.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+{
+  "source_dir": "assets/source",
+  "dest_dir": "/var/www/public/mv",
+  "url_base": "https://your-static-host.example.com/public/mv",
+  "keep_root": true,
+  "skip_hidden": true,
+  "keep_source": false,
+  "purge_project": true,
+  "keep_src_dir": false,
+  "overwrite_dir": true,
+  "manifest_name": "素材外网路径",
+  "_说明_落点映射": "dest_dir 是磁盘目录，url_base 是它对外暴露的 URL，二者指向同一处：/var/www/public/mv ⇄ https://your-static-host.example.com/public/mv。上传落点必须是 dest_dir/<命名空间>/...，不要在 prefix 里重复目录名。传全量前先跑 --probe。",
+  "_说明_编码": "外链默认百分号编码（中文路径必编码）；需要裸中文路径时显式加 --no-url-encode。"
+}

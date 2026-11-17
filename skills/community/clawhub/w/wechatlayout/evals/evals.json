@@ -1,0 +1,223 @@
+{
+  "skill_name": "wechat-layout",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我排一下这篇 Markdown 文章到公众号，主题用翡翠绿。文章讲的是如何用 Python 做数据分析的教程。",
+      "expected_output": "路由到 Mode A 排版，选 Blueprint 蓝图（emerald）行业模板，读 theme-emerald.md + common-components.md，把 Markdown 转为内联样式 HTML，所有文字用 <span leaf=\"\"> 包裹，跑 validate_output.py 严重问题=0",
+      "files": [
+        "fixtures/tutorial_python.md",
+        "fixtures/tutorial_python_golden.html"
+      ],
+      "expectations": [
+        "路由到 Mode A 排版，不路由到 Mode B",
+        "读取 references/theme-emerald.md 和 references/common-components.md",
+        "封面使用 Blueprint 结构：等宽 Kicker + 版本药丸 + 元信息条（非简单色条封面）",
+        "章节使用连接线步骤节点（编号方块 + 垂直连接线 + 等宽英文标签）",
+        "目录使用清单式（Checklist 勾选框），不用数字方块",
+        "所有样式内联 style=\"\"，无 <style>/<script>/<div>/class/id",
+        "所有中文文字节点用 <span leaf=\"\"> 包裹",
+        "每段正文有 1-3 个关键词下划线",
+        "validate_output.py 严重问题=0",
+        "对照 golden fixture（tutorial_python_golden.html）回归：python3 scripts/run_evals.py 全绿（严重=0）",
+        "Step 3.5 配图建议：占位符带角色标签（【插入图片：封面头图】）",
+        "产物存 output/ 目录；正文末尾含版权脚注「©2026 Qomob.AI 由WeChatLayout微信公众号排版引擎驱动」"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "公众号排版，直接排，不用问我，石墨灰风格。下面是我的文章内容...",
+      "expected_output": "全自动模式，跳过提问，用 Editorial 杂志（graphite）模板自动排版，交付时附决策说明",
+      "files": [],
+      "expectations": [
+        "识别为全自动模式（'直接排'/'不用问'），不向用户提问",
+        "选择 Editorial 杂志（graphite）模板",
+        "读取 references/theme-graphite.md 和 references/common-components.md",
+        "交付时附决策说明（为什么选这个模板、做了哪些智能处理）",
+        "validate_output.py 严重问题=0"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我有一个 PDF 文件想排成公众号文章，怎么弄？",
+      "expected_output": "路由到 Mode A，先读 format-normalize.md 把 PDF 转成 Markdown 草稿，展示推断结构让用户确认，再选主题排版",
+      "files": [],
+      "expectations": [
+        "识别为非 Markdown 输入，先读 references/format-normalize.md",
+        "将 PDF 内容转为 Markdown 草稿",
+        "向用户展示推断的标题层级和章节结构，等待确认",
+        "确认后进入正常排版流程",
+        "不是直接拒绝或说不能处理 PDF"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "帮我从这篇公众号文章提取风格 https://mp.weixin.qq.com/s/abc123def456",
+      "expected_output": "路由到 Mode B 风格提取，用 style_extractor.py 从 URL 抓取 HTML，提取颜色/排版/间距，生成主题组件库",
+      "files": [],
+      "expectations": [
+        "路由到 Mode B 风格提取",
+        "调用 scripts/style_extractor.py 抓取 URL",
+        "URL 通过 mp.weixin.qq.com 白名单校验",
+        "提取颜色调色板（主色、背景色、文字色）",
+        "提取排版规则（字号、行高、字重）",
+        "生成 references/theme-{name}.md 标准组件库格式",
+        "提示用户在 theme-index.md 中登记"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "我想自定义一套公众号主题，主色是暖橙色 #EA580C，适合美食生活类文章",
+      "expected_output": "路由到主题生成器，收集偏好后生成区块库预览页面，用户确认后转为标准主题库格式",
+      "files": [],
+      "expectations": [
+        "识别为自定义主题生成需求",
+        "读取 references/theme-generator.md 工作流",
+        "用 AskUserQuestion 一次问全偏好（不逐条追问）",
+        "生成预览页面让用户确认风格",
+        "确认后转为标准 theme-{name}.md 格式",
+        "在 theme-index.md 登记新主题",
+        "跑 component_lint.py 确认 0 严重问题"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "排版的时候帮我注意全角标点，之前排出来都是半角的",
+      "expected_output": "Vibe test — 检查输出 HTML 的正文是否使用中文全角标点（，。！？：；），代码块内保持半角原样",
+      "files": [],
+      "eval_type": "vibe-test",
+      "vibe_dimensions": [
+        "punctuation:full-width-chinese",
+        "punctuation:code-block-preserved",
+        "compliance:span-leaf-wrapping"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "帮我模仿这个公众号的排版风格，然后把我自己的文章排成一样的风格",
+      "expected_output": "先路由到 Mode B 提取风格，生成主题组件库，再路由到 Mode A 用提取的主题排版文章",
+      "files": [],
+      "expectations": [
+        "识别为复合需求（先提取风格再用提取的主题排版）",
+        "先执行 Mode B 风格提取流程",
+        "生成主题组件库并登记",
+        "然后执行 Mode A 排版流程，使用刚提取的主题",
+        "两步之间有明确的衔接说明"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "这篇文章有代码块和表格，排成公众号",
+      "expected_output": "Vibe test — 检查代码块用通用库组件（每行一个 <p style=\"margin:0\">，不用 white-space:pre），表格用 flex 布局模拟",
+      "files": [],
+      "eval_type": "vibe-test",
+      "vibe_dimensions": [
+        "component:code-block-no-pre",
+        "component:table-flex-layout",
+        "component:image-max-width",
+        "compliance:no-div-no-class"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "排一篇 2600 字的 Python 教程到公众号，翡翠绿主题，顺便给配图建议",
+      "expected_output": "Mode A 排版 + Step 3.5 配图建议：按内容判定配图点（封面头图 + 章节过渡图），生成文生图 prompt 清单（含主题主色 #059669），占位符带角色标签，总量 ≤3 张",
+      "files": [],
+      "expectations": [
+        "路由到 Mode A，选 emerald 主题",
+        "执行 Step 3.5 配图建议（读 references/image-suggestion.md）",
+        "按内容特征判定配图点（2600 字 → 2-3 张：封面 + 章节过渡）",
+        "每个配图点生成文生图 prompt，主色取自主题 #059669",
+        "HTML 占位符带角色标签（如【插入图片：封面头图】）",
+        "配图建议总量 ≤3 张",
+        "用户说不用配图时可跳过（本用例未关闭）"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "把这篇 Python 教程排成公众号，石墨灰风格",
+      "expected_output": "Mode A 排版用 Editorial 杂志（graphite）模板，结构与 emerald 版完全不同：居中报头 + 衬线字体 + 罗马数字章节 + Pull Quote",
+      "files": [
+        "fixtures/tutorial_python.md",
+        "fixtures/tutorial_python_graphite_golden.html"
+      ],
+      "expectations": [
+        "路由到 Mode A，选 Editorial 杂志（graphite）模板",
+        "读取 references/theme-graphite.md 和 references/common-components.md",
+        "封面使用居中报头结构（masthead：报眉 + 衬线大字标题 + byline），非 emerald 左对齐",
+        "章节使用罗马数字 I./II./III. + 发丝线，非 01/02/03",
+        "正文使用衬线字体（Georgia/Songti），无彩色",
+        "色值使用 graphite 主色 #374151 / 正文色 #4b5563 / 下划线色 #9ca3af",
+        "所有文字节点用 <span leaf=\"\"> 包裹",
+        "validate_output.py 严重问题=0",
+        "对照 golden fixture 回归：python3 scripts/run_evals.py 全绿"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "把这篇 Python 教程排成公众号，暖橙风格",
+      "expected_output": "Mode A 排版用 Kitchen 厨房手帐（sunset）模板，结构与 emerald 版不同：图片优先色带封面 + 圆形序号章节 + 暖色手帐感",
+      "files": [
+        "fixtures/tutorial_python.md",
+        "fixtures/tutorial_python_sunset_golden.html"
+      ],
+      "expectations": [
+        "路由到 Mode A，选 Kitchen 厨房手帐（sunset）模板",
+        "封面使用暖色带 + 评分 + 元信息结构，非左对齐色条",
+        "章节使用圆形序号徽章（40px 圆），非连接线步骤节点",
+        "色值使用 sunset 主色 #ea580c / 浅底色 #fff7ed / 下划线色 #fb923c",
+        "validate_output.py 严重问题=0",
+        "对照 golden fixture 回归：python3 scripts/run_evals.py 全绿"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "把这篇 Python 教程排成公众号，海蓝风格",
+      "expected_output": "Mode A 排版用 Report 研报（ocean）模板，结构与 emerald 版不同：报告页眉（编号+部门+日期）+ 执行摘要 + KPI 数据导向",
+      "files": [
+        "fixtures/tutorial_python.md",
+        "fixtures/tutorial_python_ocean_golden.html"
+      ],
+      "expectations": [
+        "路由到 Mode A，选 Report 研报（ocean）模板",
+        "封面使用报告页眉结构（等宽编号 RPT-xxx + 部门 + 日期 + 标签），非色条封面",
+        "开头引言映射为执行摘要（EXECUTIVE SUMMARY）",
+        "色值使用 ocean 主色 #2563eb / 浅底色 #eff6ff / 下划线色 #93c5fd",
+        "validate_output.py 严重问题=0",
+        "对照 golden fixture 回归：python3 scripts/run_evals.py 全绿"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "把这篇 Python 教程排成公众号，胭红风格",
+      "expected_output": "Mode A 排版用 Campaign 大秀（rose）模板，结构与 emerald 版不同：黑底超大标题封面 + LOOK 编号章节 + 高对比",
+      "files": [
+        "fixtures/tutorial_python.md",
+        "fixtures/tutorial_python_rose_golden.html"
+      ],
+      "expectations": [
+        "路由到 Mode A，选 Campaign 大秀（rose）模板",
+        "封面使用黑底超大标题 + 标语 + 渐变条结构",
+        "章节使用 LOOK 01 编号 + 发丝线，非 01/02/03",
+        "色值使用 rose 主色 #e11d48 / 浅底色 #fff1f2 / 下划线色 #fb7185",
+        "validate_output.py 严重问题=0",
+        "对照 golden fixture 回归：python3 scripts/run_evals.py 全绿"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "我上传了品牌手册 PDF 和 logo 图片，帮我生成一套我们公司的公众号排版模板",
+      "expected_output": "路由到 Mode C 品牌模板生成，读 mode-c-brand.md，用 style_extractor.py --pdf/--image 提取品牌元素，AI 补充气质描述，生成 theme-{brand}.md 并登记",
+      "files": [],
+      "expectations": [
+        "识别为 Mode C 品牌模板生成需求，读 references/mode-c-brand.md",
+        "按输入类型调用 style_extractor.py（--pdf 提取文本色值+首页提色 / --image 提色 / --doc 提取明文 hex）",
+        "AI/人工补充品牌气质描述（圆角/字体/版式/情绪）",
+        "用 AskUserQuestion 一次确认主色板、气质、骨架基座",
+        "生成 references/theme-{brand}.md 并含品牌专属组件（品牌色板卡/Logo 区/Slogan 卡）",
+        "在 theme-index.md 登记，跑 component_lint.py 0 严重问题",
+        "品牌模板与内置模板同权，Mode A 可选"
+      ]
+    }
+  ]
+}

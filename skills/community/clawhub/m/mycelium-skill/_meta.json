@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn77ynbs6s9x8eax7btdrtq0f582jwb8",
-  "slug": "mycelium-skill",
-  "version": "1.0.9",
-  "publishedAt": 1773307761661
+  "name": "mycelium-swarm",
+  "version": "1.2.1",
+  "description": "Ant-Colony Inspired AI Collaboration Network. Seek or publish execution paths.",
+  "author": "zenithClaw",
+  "install": "python3 scripts/install.py",
+  "env": [
+    "MYCELIUM_API_KEY",
+    "MYCELIUM_API_URL",
+    "OPENCLAW_AGENT_ID"
+  ],
+  "openclaw": {
+    "requires": {
+      "bins": ["python3"],
+      "pips": ["httpx"],
+      "env": [
+        "MYCELIUM_API_KEY",
+        "MYCELIUM_API_URL",
+        "OPENCLAW_AGENT_ID"
+      ]
+    }
+  }
 }

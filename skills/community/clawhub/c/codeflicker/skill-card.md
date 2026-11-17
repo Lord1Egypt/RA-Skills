@@ -1,46 +1,62 @@
-## Description: <br>
-CodeFlicker is a Kuaishou-focused CLI programming assistant skill that helps OpenClaw users install, configure, and invoke flickcli for coding tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeFlicker CLI programming assistant for Kuaishou employees that helps agents install, configure, and delegate coding tasks to flickcli.
 
-## Publisher: <br>
-[LeeGoDamn](https://clawhub.ai/user/LeeGoDamn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leegodamn](https://clawhub.ai/user/leegodamn)
 
-## Use Case: <br>
-Kuaishou developers and OpenClaw users use this skill to run CodeFlicker/flickcli for code generation, debugging, refactoring, code review, session continuation, git-worktree workspace management, and natural-language shell command generation. It assumes access to Kuaishou internal network resources, SSO, and the CodeFlicker npm package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can configure or use auto-execution modes for coding and shell tasks. <br>
-Mitigation: Keep approvalMode at default for normal work, review generated shell commands before execution, and reserve yolo-style automation for disposable sandboxes. <br>
-Risk: Installation and login depend on an internal npm package, Kuaishou network access, and SSO. <br>
-Mitigation: Install only if you are an intended CodeFlicker/Kuaishou user and trust the internal npm registry and SSO flow. <br>
-Risk: Workspace commands can merge or delete git-worktree changes. <br>
-Mitigation: Check repository status and review pending changes before running workspace complete, delete, or forced delete operations. <br>
-Risk: The skill exposes skill and MCP server management paths that can extend tool access. <br>
-Mitigation: Add only trusted skills and MCP servers, and review requested capabilities before enabling them. <br>
+## Use Case:
 
+Developers and coding agents use this skill to check, configure, and run Kuaishou's CodeFlicker CLI for implementation, debugging, refactoring, code review, session continuation, and git-worktree workspace workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeeGoDamn/codeflicker) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with bash command examples and CLI wrapper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke flickcli to edit files, run shell commands, continue sessions, configure global CLI settings, and manage git-worktree workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact _meta.json reports 1.1.0) <br>
+Risk: The skill delegates development work to CodeFlicker under the user's Kuaishou account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when delegation to CodeFlicker under that account is intended.
+
+Risk: Persistent global auto-execute mode can allow broad unattended edits or command execution.
+
+Mitigation: Keep approvalMode at default for normal work and reserve yolo mode for disposable, isolated workspaces.
+
+Risk: Workspace completion, workspace deletion, MCP additions, and natural-language shell execution are high-impact actions.
+
+Mitigation: Review those actions before execution and avoid running them against important repositories without isolation.
+
+Risk: The CLI package is installed from an internal npm registry.
+
+Mitigation: Pin or otherwise verify the CLI package where possible before installing or updating it.
+
+## Reference(s):
+
+- [ClawHub Codeflicker release page](https://clawhub.ai/leegodamn/skills/codeflicker)
+- [Publisher profile](https://clawhub.ai/user/leegodamn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegates requested coding work to flickcli and may create, edit, merge, or delete workspace files depending on CodeFlicker configuration.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

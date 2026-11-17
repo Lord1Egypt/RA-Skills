@@ -1,0 +1,4 @@
+interface:
+  display_name: "DeFi Governance"
+  short_description: "Research proposals, voting and treasury execution"
+  default_prompt: "Use $galleon-defi-governance to prepare a sourced plan and verify its required permissions."

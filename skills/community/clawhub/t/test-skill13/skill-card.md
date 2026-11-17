@@ -1,39 +1,49 @@
-## Description: <br>
-test skill offers a high-contrast, light-themed UI with clear typography and precise data console elements for organized, approachable information display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+test skill provides a Hugging Face-inspired light UI style reference with design tokens, component guidance, and prompt examples for agents generating interfaces.
 
-## Publisher: <br>
-[davidquicast](https://clawhub.ai/user/davidquicast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidquicast](https://clawhub.ai/user/davidquicast)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill as a UI styling reference for high-contrast, light-themed interfaces with organized data-console layouts, clear typography, compact spacing, and reusable visual tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent's UI design choices toward this visual style even though it is non-executable. <br>
-Mitigation: Review generated UI recommendations for project fit, accessibility, brand requirements, and user needs before applying them. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to apply a high-contrast, light-themed interface style with precise typography, compact spacing, CSS tokens, and component guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidquicast/test-skill13) <br>
-- [Publisher profile](https://clawhub.ai/user/davidquicast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown style guidance with design tokens, component descriptions, CSS custom properties, and Tailwind theme configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable reference material; no code execution, credential access, persistence, network access, or broad data access identified by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated interfaces may diverge from the intended visual style because the security guidance notes that some design guidance is slightly inconsistent with the exported CSS tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI against the included tokens and adjust styling before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidquicast/skills/test-skill13)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with CSS and Tailwind code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes design tokens, component guidance, do's and don'ts, and prompt examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

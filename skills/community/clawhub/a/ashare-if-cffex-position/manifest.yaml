@@ -1,0 +1,31 @@
+name: "A股(机构主力)股指期货持仓统计-中金所"
+slug: ashare-if-cffex-position
+version: "1.0.0"
+author: FangXing
+category: finance
+tags:
+  - A股
+  - 股指期货
+  - 中金所
+  - 持仓排名
+  - 机构主力
+  - 中信期货
+  - 量化
+  - 金融数据
+description: >-
+  从中金所官网下载并解析会员持仓排名 XML，按“中信期货(代客)”与“全市场前20名会员合并”
+  两维度统计股指期货(IF/IH/IC/IM)绝对持仓与净增对比，生成 HTML 报告。
+  固化了 datatypeid 的正确字段映射（1=多单/2=空单/0=套利排除）与官方的
+  “比上交易日增减”(varvolume) 净增口径，规避把套利当多单的经典错误。
+triggers:
+  - "统计今日股指持仓"
+  - "跑一下中信期货(代客)净增"
+  - "对比 8/10 和 8/7 的股指持仓"
+  - "股指期货席位持仓统计"
+  - "中金所持仓排名"
+  - "机构主力股指期货净多空"
+requires_api_key: false
+license: MIT
+homepage: ""
+changelog:
+  - "1.0.0: 初始版本，固化 datatypeid 映射与 varvolume 净增口径、中信代客过滤、−2,932 校验锚点"

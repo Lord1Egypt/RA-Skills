@@ -1,40 +1,59 @@
-## Description: <br>
-Searches, browses, and opens local Chrome bookmarks from the Chrome Bookmarks JSON file through a Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, browse, and open Chrome bookmarks via an AI assistant by reading the local Chrome Bookmarks JSON file directly, without browser extensions or external services.
 
-## Publisher: <br>
-[truesnow](https://clawhub.ai/user/truesnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[truesnow](https://clawhub.ai/user/truesnow)
 
-## Use Case: <br>
-Agents use this skill when a user asks to find, browse, or open Chrome bookmarks. It helps present bookmark names, URLs, folder paths, and tree summaries before opening a selected bookmark. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Chrome bookmark names, folder paths, and URLs. <br>
-Mitigation: Install it only when that local browser data access is acceptable, and avoid sharing command output that contains sensitive bookmark information. <br>
-Risk: The open command can launch the first matching bookmark, including URLs with file, javascript, data, or custom app schemes. <br>
-Mitigation: Use search or list first, confirm the exact URL with the user, and be cautious before opening unusual URL schemes. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to search local Chrome bookmarks, browse bookmark folders, inspect bookmark tree structure, and open a selected bookmarked URL from an assistant workflow.
 
-## Reference(s): <br>
-- [Chrome Bookmarks on ClawHub](https://clawhub.ai/truesnow/chrome-bookmarks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and list commands return JSON arrays; open returns JSON status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Bookmark names, URLs, and folder paths may reveal sensitive personal or internal resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable granting bookmark-read access, and present search results before opening or sharing bookmark details.
+
+Risk: A vague open request can launch the first fuzzy match, which may be the wrong or sensitive bookmark.
+
+Mitigation: Search first for ambiguous names, ask the user to choose an exact result, and avoid broad open commands when bookmarks include sensitive or non-http URLs.
+
+Risk: Opening a bookmark delegates behavior to the operating system and browser for the selected URL scheme.
+
+Mitigation: Confirm the selected URL before opening when the scheme is unusual or when bookmarks may contain internal links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/truesnow/skills/chrome-bookmarks)
+- [Skill instructions](artifact/SKILL.md)
+- [Chrome Bookmarks CLI script](artifact/scripts/chrome_bookmarks.py)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and list commands return bookmark objects; open commands return an opened flag with the selected URL and bookmark name.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

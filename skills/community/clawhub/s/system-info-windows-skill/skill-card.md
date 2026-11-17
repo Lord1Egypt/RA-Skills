@@ -1,41 +1,55 @@
-## Description: <br>
-Query local operating system, CPU, memory, and disk information, with table or JSON output for Windows, Linux, and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query system information including OS, CPU, memory, and disk usage for system configuration, resource usage, performance diagnostics, and basic system information tasks.
 
-## Publisher: <br>
-[liujintao-2021](https://clawhub.ai/user/liujintao-2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liujintao-2021](https://clawhub.ai/user/liujintao-2021)
 
-## Use Case: <br>
-Developers and technical users can use this skill to inspect basic local system configuration and resource usage for diagnostics, troubleshooting, or environment reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release has inconsistent naming between the ClawHub listing and artifact files. <br>
-Mitigation: Confirm the intended system-info skill before installing or running it. <br>
-Risk: The script can reveal local machine details such as OS version, CPU architecture, memory totals, and disk usage. <br>
-Mitigation: Avoid sharing the generated table or JSON output publicly when those system details are sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local host operating system, CPU, memory, and disk information during diagnostics or environment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujintao-2021/system-info-windows-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/liujintao-2021) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; the script itself emits table text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reveal local machine details such as OS version, CPU architecture, memory totals, and disk usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can expose basic local host details to the active agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when sharing OS, CPU, memory, and disk details with the agent is acceptable.
+
+Risk: The documentation contains inconsistent install names: system-info-skill and system-info.
+
+Mitigation: Confirm the intended ClawHub package name and use a pinned or otherwise verified installer before running install commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liujintao-2021/skills/system-info-windows-skill)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script output can be table text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No additional dependencies; requires Python 3.6+.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

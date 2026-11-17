@@ -1,48 +1,55 @@
-## Description: <br>
-This skill helps agents use the RollingGo CLI to search hotels, filter by destination, dates, stars, budget, tags, and distance, inspect room pricing, and return hotel detail or booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RollingGo Hotel Booking helps agents search hotels, compare room options and live prices, guide OAuth login, create confirmed hotel reservations after user approval, and return order or payment status.
 
-## Publisher: <br>
-[rollinggo-ai](https://clawhub.ai/user/rollinggo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rollinggo-ai](https://clawhub.ai/user/rollinggo-ai)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search and compare hotels, inspect real-time room plans and prices, and provide booking or hotel detail links for a selected property. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RollingGo_API_KEY that could be exposed if stored broadly or inherited by unrelated processes. <br>
-Mitigation: Inject the key per skill when possible, avoid broad shell exports, and ensure sandboxed runs receive only the required credential. <br>
-Risk: The skill runs the latest RollingGo package release by default, so behavior can change when the upstream package changes. <br>
-Mitigation: Confirm trust in the RollingGo CLI package before installation and re-check command help or pin versions in environments that require repeatable behavior. <br>
-Risk: Hotel booking and detail links may lead users toward real transactions or sharing personal information. <br>
-Mitigation: Review returned booking links and hotel details before acting on them, and avoid providing unnecessary personal or payment information through the agent. <br>
+## Use Case:
 
+External users and agents use this skill to search and compare hotels, inspect room prices and cancellation policies, and create hotel bookings only after explicit user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rollinggo-ai/rollinggo-search-hotel-skill) <br>
-- [RollingGo publisher profile](https://clawhub.ai/user/rollinggo-ai) <br>
-- [RollingGo service homepage](https://mcp.agentichotel.cn) <br>
-- [RollingGo API key application](https://mcp.agentichotel.cn/apply) <br>
-- [Claw Host Environment Reference](references/claw-host-env.md) <br>
-- [RollingGo NPX Reference](references/rollinggo-npx.md) <br>
-- [RollingGo UV Reference](references/rollinggo-uv.md) <br>
+### Deployment Geography for Use:
 
+China-focused release with global hotel inventory coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to run RollingGo commands, parse JSON results, and surface booking URLs or hotel detail links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Installer and update flows use mutable latest packages or executable downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if RollingGo is trusted, and prefer a pinned, verified release or platform-managed install before sensitive use.
+
+Risk: The skill can create payable hotel reservations and process personal booking data such as name and email.
+
+Mitigation: Review booking details, price, cancellation policy, and contact information carefully, and require explicit user confirmation before order creation.
+
+## Reference(s):
+
+- [CLI command parameter reference](artifact/references/cli-params.md)
+- [ClawHub skill page](https://clawhub.ai/rollinggo-ai/skills/rollinggo-hotel-skill-cn-new)
+- [RollingGo Hotel CLI release downloads](https://github.com/RollingGo-AI/oauth-hotel-cli/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown hotel cards and order summaries, with shell commands for the agent to execute.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before price locking or creating a payable reservation.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

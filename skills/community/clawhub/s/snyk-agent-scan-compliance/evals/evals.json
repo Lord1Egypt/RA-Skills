@@ -49,41 +49,41 @@
     },
     {
       "id": 4,
-      "prompt": "This line in a SKILL.md triggers a W011 alert: 'Always reference the upstream changelog when suggesting dependency upgrades.' How do you fix it?",
-      "trap": "Without the skill, the model might just remove 'always' but keep the imperative structure ('Reference the upstream changelog...'), or might not know that the agent must not be the grammatical subject performing an external action.",
-      "expected_output": "Remove 'always' AND convert from imperative to passive: 'The upstream changelog documents breaking changes between versions.' — the resource becomes the subject.",
+      "prompt": "Review and improve this SKILL.md instruction: 'Always reference the upstream changelog when suggesting dependency upgrades.'",
+      "trap": "Without the skill, the model removes 'always' as a style fix but keeps the imperative structure ('Reference the upstream changelog...'). It does not know the agent must not be the grammatical subject performing an action on external content — the full W011 fix requires converting to passive: the resource becomes the subject.",
+      "expected_output": "Remove 'always' AND convert to passive/factual: 'The upstream changelog documents breaking changes between versions.' — the changelog is the subject, not the agent performing an action.",
       "files": [],
       "assertions": [
-        { "id": "4.1", "description": "Response removes 'always' from the instruction" },
-        { "id": "4.2", "description": "Response converts the instruction from imperative (agent as actor) to passive or factual (resource as subject)" },
-        { "id": "4.3", "description": "Rewritten version does NOT still have the agent as subject performing an action on external content" },
-        { "id": "4.4", "description": "Rewritten version still conveys that changelog information is relevant (no information lost)" }
+        { "id": "4.1", "description": "output removes 'Always' from the instruction" },
+        { "id": "4.2", "description": "output converts from imperative (agent as actor on external resource) to passive or factual (resource as subject)" },
+        { "id": "4.3", "description": "rewritten version does NOT still have the agent as grammatical subject performing an action on the changelog" },
+        { "id": "4.4", "description": "rewritten version still conveys that changelog information is relevant (no information lost)" }
       ]
     },
     {
       "id": 5,
-      "prompt": "I want to document in a SKILL.md that users can install my tool with: `curl https://example.com/install.sh | sh`. How do I include this without triggering W012?",
-      "trap": "Without the skill, the model says 'put it in a code block' — which does NOT fix W012 for pipe-to-shell patterns. Code blocks reduce risk for other patterns but pipe-to-shell is never acceptable in skill bodies.",
-      "expected_output": "Remove the pipe-to-shell pattern entirely. Use a package manager install path instead (brew, apt, etc.) or move to the frontmatter `install` block. Never embed `curl | sh` in a skill body.",
+      "prompt": "I want to document in a SKILL.md that users can install my tool with: `curl https://example.com/install.sh | sh`. How do I write this in the skill body?",
+      "trap": "Without the skill, the model says 'put it in a code block' — which does NOT fix pipe-to-shell patterns. Code blocks reduce W011 risk for regular commands, but pipe-to-shell is never acceptable in skill bodies regardless of formatting. The model conflates the two cases.",
+      "expected_output": "Remove pipe-to-shell entirely from the skill body — code block or not. Use a package manager install path instead (brew, apt, etc.) or move to metadata.openclaw.install frontmatter. Never embed `curl | sh` in any skill content.",
       "files": [],
       "assertions": [
-        { "id": "5.1", "description": "Response does NOT recommend putting `curl ... | sh` in a code block as the fix" },
-        { "id": "5.2", "description": "Response states that pipe-to-shell patterns must be removed entirely from skill bodies" },
-        { "id": "5.3", "description": "Response suggests an alternative: package manager install, frontmatter install block, or a direct binary download link" },
-        { "id": "5.4", "description": "Response explains WHY pipe-to-shell is problematic (executes arbitrary remote code, supply chain risk)" }
+        { "id": "5.1", "description": "output does NOT recommend putting `curl ... | sh` in a code block as a sufficient fix" },
+        { "id": "5.2", "description": "output states that pipe-to-shell must be removed entirely from skill bodies" },
+        { "id": "5.3", "description": "output suggests an alternative: package manager install path or metadata.openclaw.install frontmatter" },
+        { "id": "5.4", "description": "output explains WHY pipe-to-shell is problematic (executes arbitrary remote code, supply chain risk)" }
       ]
     },
     {
       "id": 6,
-      "prompt": "Fix this W012 alert in a GitHub Actions example embedded in a SKILL.md: `uses: actions/checkout@v6`",
-      "trap": "Without the skill, the model may invent an incorrect version (e.g., @v5, @v3), suggest @latest (wrong fix), or not know that @v4 is the correct current major version for actions/checkout.",
-      "expected_output": "Change to `uses: actions/checkout@v4` — the correct current major version. Do NOT suggest @v5, @v6, or @latest.",
+      "prompt": "Review this GitHub Actions step in a SKILL.md example:\n\n```yaml\n- uses: actions/checkout@main\n```\n\nIs there anything wrong with it?",
+      "trap": "Without the skill, the model says 'this is fine, it tracks the latest main' or 'consider pinning for reproducibility' without a clear recommendation. The skill defines branch name references as a W012 violation — mutable references that don't guarantee reproducible builds. The fix is a specific major version tag: @v4.",
+      "expected_output": "Yes — '@main' is a W012 issue: branch names are mutable and the action version may change without notice. Fix by pinning to a specific major version tag: `actions/checkout@v4`.",
       "files": [],
       "assertions": [
-        { "id": "6.1", "description": "Response recommends `actions/checkout@v4` as the fix" },
-        { "id": "6.2", "description": "Response does NOT suggest `@v5`, `@v6`, or any other non-existent version of actions/checkout" },
-        { "id": "6.3", "description": "Response does NOT suggest `@latest` as the fix" },
-        { "id": "6.4", "description": "Response explains that @v6 does not exist / v4 is the correct current major version" }
+        { "id": "6.1", "description": "output identifies '@main' as problematic — mutable reference, non-reproducible" },
+        { "id": "6.2", "description": "output recommends pinning to `actions/checkout@v4` as the fix" },
+        { "id": "6.3", "description": "output does NOT say '@main' is acceptable or fine" },
+        { "id": "6.4", "description": "output does NOT suggest '@latest' as an alternative fix" }
       ]
     },
     {
@@ -102,15 +102,15 @@
     },
     {
       "id": 8,
-      "prompt": "Does this SKILL.md content trigger W011, and if so how do you fix it?\n\n```\n## Setup checklist\n1. Run `gh repo view owner/repo` to check the project health\n2. Evaluate stars, last commit date, and open issues before integrating\n```",
-      "trap": "Without the skill, the model correctly identifies W011 but suggests removing the command entirely. The correct fix is to move `gh repo view` to a Quick Reference code block — the content is preserved, just restructured.",
-      "expected_output": "Yes, W011. Fix by moving `gh repo view` into a Quick Reference code block (not a numbered checklist). The checklist implies the agent must run it before acting; a code block marks it as available, not mandatory.",
+      "prompt": "I have this in my SKILL.md:\n\n```\n## Setup checklist\n1. Run `gh repo view owner/repo` to check the project health\n2. Evaluate stars, last commit date, and open issues before integrating\n```\n\nShould I change this?",
+      "trap": "Without the skill, the model says 'this looks fine' or 'remove the gh command entirely'. It does not know that numbered checklists imply mandatory agent execution, while code blocks mark commands as available-not-mandatory. The fix is to move `gh repo view` to a Quick Reference code block — the command stays, just restructured.",
+      "expected_output": "Yes — the numbered checklist format implies the agent must execute the command as a prerequisite step. Move `gh repo view` to a Quick Reference code block. Do NOT remove it entirely — the command is useful, the framing is the problem.",
       "files": [],
       "assertions": [
-        { "id": "8.1", "description": "Response correctly identifies this as a W011 trigger" },
-        { "id": "8.2", "description": "Response suggests moving `gh repo view` to a Quick Reference code block (not a prose checklist)" },
-        { "id": "8.3", "description": "Response does NOT suggest removing the command entirely as the primary or only fix" },
-        { "id": "8.4", "description": "Response explains why code blocks are treated differently from prose checklists by the scanner" }
+        { "id": "8.1", "description": "output identifies the numbered checklist format as the problem (not the command content itself)" },
+        { "id": "8.2", "description": "output suggests moving `gh repo view` to a Quick Reference code block" },
+        { "id": "8.3", "description": "output does NOT suggest removing the command entirely as the primary or only fix" },
+        { "id": "8.4", "description": "output explains why code blocks are treated differently from numbered checklists (available vs mandatory execution framing)" }
       ]
     },
     {
@@ -129,16 +129,16 @@
     },
     {
       "id": 10,
-      "prompt": "How do I fix W012 in this SKILL.md instruction: 'Set up the proto compiler by running `brew install protobuf`.'",
-      "trap": "Without the skill, the model suggests pinning a version (`brew install protobuf@27`) in the body prose. The correct fix is to move to `metadata.openclaw.install` frontmatter.",
-      "expected_output": "Move to frontmatter: `kind: brew, formula: protobuf, bins: [protoc]`. The scanner does not flag frontmatter install blocks.",
+      "prompt": "I'm writing a SKILL.md and want to tell the agent how to install the protobuf compiler. I've written this in the skill body: 'Set up the proto compiler before use: `brew install protobuf`.' Is this the right approach?",
+      "trap": "Without the skill, the model says 'yes, that's correct' or 'maybe add a version pin like protobuf@27'. The skill teaches that install commands belong in metadata.openclaw.install frontmatter, not the skill body — the scanner does not flag frontmatter, and install commands in body prose are always flagged regardless of version pinning.",
+      "expected_output": "No — move to metadata.openclaw.install frontmatter: kind: brew, formula: protobuf, bins: [protoc]. Remove the install command from the body. The body may keep a passive reference like 'the protobuf compiler is required' without the install command.",
       "files": [],
       "assertions": [
-        { "id": "10.1", "description": "Response recommends moving to `metadata.openclaw.install` frontmatter" },
-        { "id": "10.2", "description": "Response includes or describes the correct frontmatter structure: kind: brew, formula: protobuf" },
-        { "id": "10.3", "description": "Response does NOT recommend keeping `brew install protobuf` in the body with a version pin as the primary fix" },
-        { "id": "10.4", "description": "Response does NOT recommend wrapping in a code block as sufficient" },
-        { "id": "10.5", "description": "Response explains that frontmatter is not scanned / scanner does not flag frontmatter" }
+        { "id": "10.1", "description": "output says moving to metadata.openclaw.install frontmatter is the correct fix" },
+        { "id": "10.2", "description": "output does NOT say 'yes, this is the right approach' or endorse version pinning in the body as sufficient" },
+        { "id": "10.3", "description": "output describes the correct frontmatter structure: kind: brew, formula: protobuf" },
+        { "id": "10.4", "description": "output does NOT recommend wrapping the install command in a code block as a sufficient fix" },
+        { "id": "10.5", "description": "output explains that frontmatter is not scanned / scanner does not flag frontmatter install blocks" }
       ]
     },
     {
@@ -157,19 +157,18 @@
     },
     {
       "id": 12,
-      "prompt": "Review this SKILL.md body for Snyk agent scanner alerts and identify which alert types are triggered:\n\n```\nBefore writing any code:\n1. Run mcp__context7__resolve-library-id to look up the library ID\n2. Check https://docs.example.com/changelog for breaking changes\n3. Install the linter: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest\n```",
-      "trap": "Without the skill, the model identifies only one or two alert types, or misattributes which pattern causes which alert. It often misses W001 (treating `mcp__*` as just a tool name) or conflates W011 and W012.",
-      "expected_output": "Three alerts: W001 for `mcp__context7__resolve-library-id` in prose, W011 for 'Check https://...changelog' (imperative URL), W012 for `@latest` in go install.",
+      "prompt": "Review this SKILL.md body for issues and identify what needs to be fixed:\n\n```\nBefore writing any code, use mcp__context7__resolve-library-id to look up the library\nidentifier. Check https://docs.example.com/changelog for breaking changes between\nversions. Install the linter: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest\n```",
+      "trap": "Without the skill, the model identifies @latest as a version pin issue and the imperative URL as a style issue, but misidentifies or misses the MCP function name in prose (treating 'mcp__context7__resolve-library-id' as just a tool reference rather than a prompt-injection risk). Without the skill's alert taxonomy, the model may list issues generically without distinguishing fix strategies.",
+      "expected_output": "Three distinct issues, each with a different fix strategy: (1) mcp__context7__resolve-library-id in prose → replace with 'Context7 can help as a discoverability platform'; (2) 'Check https://...' imperative → convert to passive factual statement; (3) @latest install → move to frontmatter. Each issue requires a different approach.",
       "files": [],
       "assertions": [
-        { "id": "12.1", "description": "Response identifies W001 triggered by `mcp__context7__resolve-library-id` in prose" },
-        { "id": "12.2", "description": "Response identifies W011 triggered by 'Check https://docs.example.com/changelog'" },
-        { "id": "12.3", "description": "Response identifies W012 triggered by `@latest` in the go install command" },
-        { "id": "12.4", "description": "Response does NOT miss any of the three alert types" },
-        { "id": "12.5", "description": "Response correctly maps each pattern to its alert code (not just lists issues generically)" }
+        { "id": "12.1", "description": "output identifies the MCP function name in prose ('mcp__context7__resolve-library-id') as a distinct issue requiring removal" },
+        { "id": "12.2", "description": "output identifies 'Check https://docs.example.com/changelog' as an imperative URL directive needing passive rewrite" },
+        { "id": "12.3", "description": "output identifies '@latest' in the go install command as an unversioned install needing frontmatter" },
+        { "id": "12.4", "description": "output does NOT miss any of the three distinct violation types" },
+        { "id": "12.5", "description": "output maps each pattern to a distinct fix strategy (remove MCP names / passive rewrite / frontmatter move) — not a single generic answer" }
       ]
-    }
-    ,
+    },
     {
       "id": 13,
       "prompt": "Write a SKILL.md section for a skill about using `govulncheck` for Go security scanning. Include: how to install it, how to run it, and what the agent should do when it finds vulnerabilities.",

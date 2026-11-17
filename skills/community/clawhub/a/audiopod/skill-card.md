@@ -1,43 +1,58 @@
-## Description: <br>
-AudioPod helps agents use AudioPod AI APIs for music generation, stem separation, text-to-speech, noise reduction, transcription, speaker separation, and media extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AudioPod guides agents in using AudioPod AI's API for music generation, stem separation, text-to-speech, noise reduction, transcription, speaker separation, media extraction, and wallet management.
 
-## Publisher: <br>
-[Rakesh1002](https://clawhub.ai/user/Rakesh1002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rakesh1002](https://clawhub.ai/user/rakesh1002)
 
-## Use Case: <br>
-Developers, creators, and audio workflow agents use this skill to create or process audio through AudioPod AI, including generated music, separated stems, speech, cleaned recordings, transcripts, and extracted media. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An AudioPod API key can create billable jobs and access usage, balance, jobs, or voices. <br>
-Mitigation: Store the key in AUDIOPOD_API_KEY or another secret store, keep wallet exposure limited, and review billable requests before execution. <br>
-Risk: Audio files, URLs, transcripts, and voice samples may include sensitive or third-party content. <br>
-Mitigation: Submit only media the user has permission to process and avoid sending confidential or unauthorized material to AudioPod. <br>
-Risk: Provider SDK or endpoint differences may cause failed or unintended text-to-speech requests. <br>
-Mitigation: Follow the reference notes for raw HTTP TTS requests, including form data and the input_text field, when reliability matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AudioPod ClawHub listing](https://clawhub.ai/Rakesh1002/audiopod) <br>
-- [Stem Separation Reference](references/stems.md) <br>
-- [Text to Speech Reference](references/tts.md) <br>
+## Use Case:
 
+Developers and external users use this skill to generate and process audio through AudioPod AI APIs, including creating music or speech, separating stems or speakers, transcribing media, cleaning noisy audio, and checking wallet usage.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python, JavaScript, cURL, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API requests, job IDs, output URLs, transcript formats, and wallet or usage checks through AudioPod.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.3 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Audio, URLs, text, lyrics, transcripts, voice samples, and job metadata may be sent to AudioPod for remote processing.
+
+Mitigation: Submit only material the user is authorized to process, and avoid confidential, regulated, copyrighted, or third-party voice material unless use is permitted.
+
+Risk: The skill relies on an AudioPod API key for authenticated requests.
+
+Mitigation: Store AUDIOPOD_API_KEY in an environment variable or secret manager, avoid hardcoding it in prompts or files, and do not expose it in logs.
+
+Risk: AudioPod jobs can consume wallet credits.
+
+Mitigation: Use wallet balance, pricing, and cost-estimate endpoints before submitting long or high-volume processing jobs.
+
+## Reference(s):
+
+- [AudioPod Skill on ClawHub](https://clawhub.ai/rakesh1002/skills/audiopod)
+- [Stem Separation Reference](artifact/references/stems.md)
+- [Text to Speech Reference](artifact/references/tts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python, Node.js, cURL, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AUDIOPOD_API_KEY; AudioPod API operations may return job IDs, status JSON, and output URLs.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

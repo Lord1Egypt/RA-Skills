@@ -1,44 +1,60 @@
-## Description: <br>
-Guides agents in building GreenHelix-based carbon credit trading and CBAM compliance workflows covering credit discovery, MRV verification, escrow-protected trading, portfolio management, and dispute resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-Powered Carbon Credit Trading & CBAM Compliance helps developers build autonomous carbon credit trading agents for credit discovery, MRV verification, escrow-protected trading, CBAM compliance automation, multi-agent portfolios, and dispute resolution.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and compliance teams use this guide to design agent-assisted carbon credit discovery, verification, trading, retirement, and CBAM compliance automation with GreenHelix APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production-style trading, escrow, retirement, dispute, and procurement examples can affect real funds or compliance workflows if connected to live accounts. <br>
-Mitigation: Use sandbox or test accounts first, require explicit approval for every financial or compliance action, and add spend limits, monitoring, and emergency stop controls before using real funds. <br>
-Risk: The skill requires sensitive GreenHelix credentials for authenticated API access. <br>
-Mitigation: Use least-privilege API keys, keep credentials out of committed files, and rotate or revoke keys if exposure is suspected. <br>
-Risk: The security evidence flags a mismatch between sandbox-oriented framing and production financial automation guidance. <br>
-Mitigation: Review the guide carefully before following examples and validate all workflows against organizational finance, legal, and compliance controls. <br>
+## Use Case:
 
+Developers and external teams use this guide to design OpenClaw-compatible agents that discover, verify, trade, retire, and audit carbon credits while supporting CBAM compliance workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/mirni/greenhelix-agent-carbon-credit-trading) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guide with Python code examples and environment variable configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; authenticated production examples require GREENHELIX_API_KEY, and sandbox testing should come first.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Examples can create wallets, initiate trades, move funds, release escrow, or retire credits when pointed at production APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox endpoints and test credentials first, require explicit human approval for state-changing actions, and enforce transaction limits before any production use.
+
+Risk: Escrow release or retirement workflows may rely on incorrect, stale, or incomplete carbon registry and verifier data.
+
+Mitigation: Verify credit status, retirement confirmation, and MRV claims against authoritative registries and accredited verifier records before releasing escrow or reporting compliance.
+
+Risk: The guide references both sandbox onboarding and production API behavior, which can confuse implementation posture.
+
+Mitigation: Document the selected endpoint per deployment, separate sandbox and production credentials, and add dry-run checks for every trading workflow.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/mirni/skills/greenhelix-agent-carbon-credit-trading)
+- [Publisher profile](https://clawhub.ai/user/mirni)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guide with inline Python code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GREENHELIX_API_KEY for authenticated GreenHelix API usage.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

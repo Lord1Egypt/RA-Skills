@@ -291,10 +291,10 @@ Swiss 主题额外使用一个三级灰（secondary text），不在 6 变量体
 | 副标题 | `.h-sub` | 16-18px | 400 italic | normal | serif-en | 观点/辅助主张 |
 | 引用 | `.pullquote` | 28-32px | 500 italic | normal | serif-zh | 观点/引用 |
 | 导语 | `.lead` | 16-18px | 400 | normal | serif-zh | 信息/导语 |
-| 正文 | `.body` | 14-16px | 400 | normal | serif-zh | 信息/正文 |
-| 分类标签 | `.kicker` | 11-12px | 500 | +0.22em | mono | 元数据/分类标签 |
-| 来源日期 | `.meta` | 10-11px | 500 | +0.20em | mono | 元数据/来源日期 |
-| 标注 | `.label` | 10-11px | 500 | +0.20em | mono | 元数据/标注 |
+| 正文 | `.body` | 16-18px | 400 | normal | serif-zh | 信息/正文 |
+| 分类标签 | `.kicker` | 13-14px | 500 | +0.22em | mono | 元数据/分类标签 |
+| 来源日期 | `.meta` | 12-13px | 500 | +0.20em | mono | 元数据/来源日期 |
+| 标注 | `.label` | 12-13px | 500 | +0.20em | mono | 元数据/标注 |
 
 ### Swiss 字体类 (640px 画布)
 
@@ -307,9 +307,9 @@ Swiss 主题额外使用一个三级灰（secondary text），不在 6 变量体
 | 超大数字 | `.num-mega` | 40-48px | 200-300 | sans | 信息/大数字 |
 | 大数字 | `.num-xl` | 32-36px | 200-300 | sans | 信息/数据 |
 | 导语 | `.lead` | 16-18px | 400 | sans-zh | 信息/导语 |
-| 正文 | `.body` | 14-16px | 400 | sans-zh | 信息/正文 |
-| 分类 | `.t-cat` | 12-13px | 600 | sans | 元数据/分类 |
-| 来源 | `.t-meta` | 10-11px | 500 | mono | 元数据/来源 |
+| 正文 | `.body` | 16-18px | 400 | sans-zh | 信息/正文 |
+| 分类 | `.t-cat` | 14-15px | 600 | sans | 元数据/分类 |
+| 来源 | `.t-meta` | 12-13px | 500 | mono | 元数据/来源 |
 
 ### Font Stacks (字体栈)
 
@@ -359,8 +359,8 @@ Swiss 主题额外使用一个三级灰（secondary text），不在 6 变量体
 |------|-------|------|------|------|--------|
 | 封面标题 | `.h-display` | 44-52px | 300-400 | +0.03em | serif-zh / sans |
 | 封面副标题 | `.h-sub` | 15-18px | 400 | normal | serif-en / sans |
-| 封面元数据 | `.meta` | 11-13px | 500 | +0.15em | mono |
-| 封面眉标 | `.kicker` | 12-13px | 500 | +0.20em | mono |
+| 封面元数据 | `.meta` | 13-15px | 500 | +0.15em | mono |
+| 封面眉标 | `.kicker` | 14-15px | 500 | +0.20em | mono |
 
 **硬规则**: 封面标题最小 44px · 封底标题最小 28px · 封面/封底必须照片背景
 
@@ -413,7 +413,7 @@ Swiss 主题额外使用一个三级灰（secondary text），不在 6 变量体
 
 ```
 🚫 如果标题仍然放不下，缩短文案，不要缩小字号
-🚫 正文最小可读字号：640px 画布 14px，900px 画布 15px
+🚫 正文最小可读字号：640px 画布 16px，900px 画布 17px
 🚫 禁止为迁就长标题而缩小正文字号
 ```
 
@@ -439,6 +439,50 @@ Swiss 模式提供 4 种互斥卡片类。**同一节点上禁止组合使用。
 🚫 Editorial 模板不提供卡片类。Editorial 通过字体、标线、
    账本行和分栏结构表达层级——不是卡片背景
 ```
+
+---
+
+## Chart Component Classes (结构化图表组件)
+
+10 类结构化图表（C01-C10）的专用 CSS class。所有 Chart Recipe 使用 Swiss 模式。
+
+| Class | 用途 | 样式 |
+|-------|------|------|
+| `.chart-node` | 图表节点 | `padding: 10px 16px; border-radius: 4px; background: var(--grey-1); border: 1px solid var(--grey-2); font-size: 13px; font-weight: 400; color: var(--ink); text-align: center;` |
+| `.chart-node.highlight` | 高亮节点 | `background: var(--accent); color: var(--accent-on); border-color: var(--accent);` |
+| `.chart-node.start` | 开始/结束节点 | `border-radius: 20px; padding: 8px 20px;` |
+| `.chart-arrow` | SVG 箭头连线 | `stroke: var(--grey-2); stroke-width: 1.5; fill: none; marker-end: url(#arrowhead);` |
+| `.chart-arrow.highlight` | 高亮连线 | `stroke: var(--accent); stroke-width: 2;` |
+| `.chart-label` | 连线标签 | `font-family: 'IBM Plex Mono', monospace; font-size: 10px; fill: #737373;` |
+| `.chart-grid` | 网格容器 | `display: grid; gap: 2px;` |
+| `.chart-cell` | 网格单元格 | `padding: 16px; background: var(--grey-1); border-radius: 4px;` |
+| `.chart-cell.header` | 网格表头 | `background: var(--accent); color: var(--accent-on); font-weight: 500;` |
+| `.chart-timeline` | 时间线容器 | `display: flex; gap: 0; position: relative;` |
+| `.chart-phase` | 时间线阶段 | `flex: 1; padding: 16px; border-left: 2px solid var(--accent);` |
+| `.chart-tree` | 树形结构 | `display: flex; flex-direction: column; align-items: center; gap: 16px;` |
+| `.chart-branch` | 树形分支 | `display: flex; gap: 16px; justify-content: center;` |
+
+**SVG Arrow Marker（每个 Chart HTML 必须包含）：**
+```html
+<svg style="position:absolute;width:0;height:0">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--grey-2)"/>
+    </marker>
+    <marker id="arrowhead-accent" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--accent)"/>
+    </marker>
+  </defs>
+</svg>
+```
+
+**Chart 通用规则：**
+- 所有 Chart Recipe 使用 Swiss 模式（无衬线 + IKB Blue accent）
+- 节点文字 ≤15 字，标签 ≤8 字
+- 连线必须带箭头（SVG marker）
+- 颜色通过 CSS 变量引用
+- 节点 >12 个时自动建议拆图
+- Chart Recipe 不与 Editorial/Swiss Recipe 混用（同一套配图中，Chart 是独立的版式类别）
 
 ---
 
@@ -590,7 +634,7 @@ Four-layer priority resolution for visual identity:
 | Layout | Content Type | When to Use |
 |--------|-------------|-------------|
 | **hero-center** | 封面/封底/宣言 | Article cover, manifesto, section divider |
-| **single-focus** | 金句/判断 | Key quote, single assertion, judgment |
+| **single-focus** | 判断 | Single assertion, judgment |
 | **grid-cards** | 规则/案例 | 3-12 parallel items, equal weight |
 | **vertical-list** | 清单 | Checklist, ordered items, red-lines |
 | **dense-grid** | 速查表 | Compact reference, number+name+example |
@@ -615,7 +659,6 @@ User phrases auto-map to Layout × Mode combinations:
 | "知识卡片" / "干货" | grid-cards | Editorial | 墨水经典 |
 | "杂志风" / "排版" | hero-center | Editorial | 莫兰迪 or 墨水经典 |
 | "纸墨风" / "Kami" / "雅致" | grid-cards | Editorial | 墨水经典 |
-| "金句" / "引述" | single-focus | Editorial | 自动匹配 |
 | "速查表" / "cheatsheet" | dense-grid | Swiss | 克莱因蓝 |
 | "清单" / "红线" | vertical-list | Editorial | 墨水经典 |
 | "森林" / "自然" | hero-center | Editorial | 森林墨 |

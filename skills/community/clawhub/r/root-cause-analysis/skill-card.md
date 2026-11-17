@@ -1,39 +1,55 @@
-## Description: <br>
-Guides an agent through logic-tree root cause analysis for diagnosing business problems, performance issues, process failures, and customer behavior patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use logic tree approach to identify root causes of business problems.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Employees, external users, and analysts use this skill to decompose business problems into MECE logic trees, validate likely causes with data, and prioritize actionable remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Root cause analysis may involve confidential company, customer, or incident data. <br>
-Mitigation: Share only the data needed for the analysis and avoid unnecessary confidential details unless the runtime and data handling path are approved. <br>
-Risk: The skill's hypotheses and prioritization can be wrong if the user supplies incomplete data or treats brainstorming as validation. <br>
-Mitigation: Validate each major branch with relevant metrics, interviews, or operational evidence before acting on recommendations. <br>
+## Use Case:
 
+Business analysts, operators, and strategy teams use this skill to structure investigations into performance issues, process failures, or customer behavior changes and turn them into prioritized corrective actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured root cause analysis with a problem statement, logic tree, root cause table, prioritized actions, and validation plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Business analysis may expose sensitive operational, customer, or performance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the data needed for the specific problem being analyzed.
+
+Risk: Root-cause hypotheses and prioritized actions may be incorrect without supporting evidence.
+
+Mitigation: Validate each branch with relevant data before acting on recommendations.
+
+## Reference(s):
+
+- [Minto, Barbara. The Pyramid Principle. 1973.](artifact/SKILL.md)
+- [Ishikawa, Kaoru. Guide to Quality Control. 1968.](artifact/SKILL.md)
+- [Ohno, Taiichi. Toyota Production System. 1988.](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with logic tree, tables, prioritized actions, and validation plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured root-cause analysis from the user's problem statement.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,23 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "competitorName": "广东城服科技有限公司",
+        "winningCount": 4,
+        "winningAmount": 1800000,
+        "competitivenessLevel": "中级"
+      },
+      {
+        "competitorName": "广州市智勤物业服务有限公司",
+        "winningCount": 2,
+        "winningAmount": 940000,
+        "competitivenessLevel": "低级"
+      }
+    ]
+  },
+  "success": true
+}

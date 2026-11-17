@@ -1,0 +1,119 @@
+meta:
+  source: https://wiki.plateupgame.com/Cards
+  retrieved: 2026-11-05
+  game_version: 1.5.x
+  key: "type + name + prerequisite where duplicate names exist"
+  note: "Food recipe cards and their preparation workflows are in recipes.yaml."
+
+group_cards:
+  Individual Dining: {blocked_by: Medium Groups, group_size: "maximum -1", total_customers: unchanged}
+  Medium Groups: {blocked_by: Individual Dining, group_size: "minimum +1; maximum +2", total_customers: unchanged}
+  Large Groups: {prerequisite: Medium Groups, group_size: "minimum +2; maximum +2", total_customers: unchanged}
+  Flexible Dining: {prerequisite: Medium Groups, group_size: "minimum -1; maximum +1", total_customers: unchanged}
+
+customer_cards:
+  - {id: morning_rush, name: Morning Rush, effect: "+15% Expected Groups; wave at morning rush", blocked_by: Turbo}
+  - {id: lunch_rush, name: Lunch Rush, effect: "+15% Expected Groups; wave at lunch rush", blocked_by: Turbo}
+  - {id: dinner_rush, name: Dinner Rush, effect: "+15% Expected Groups; wave at dinner rush", blocked_by: Turbo}
+  - {id: herd_mentality, name: Herd Mentality, effect: "All customers arrive in three rush waves; no added customers"}
+  - {id: advertising_1, name: Advertising, effect: "+25% customers", stacks: true}
+  - {id: advertising_2, name: Advertising, prerequisite: Advertising, effect: "+25% customers", stacks: true}
+  - {id: all_you_can_eat, name: All You Can Eat, effect: "25% chance per group to repeat a course once; -30% Expected Groups"}
+  - {id: double_helpings, name: Double Helpings, prerequisite: All You Can Eat, effect: "more repeat orders and starter/side/dessert orders; +3 coins per dish"}
+  - {id: blindfolded_chefs, name: Blindfolded Chefs, effect: "Hides process progress bars; desks excluded"}
+  - {id: closing_time, name: "Closing Time?", effect: "Additional customers may arrive after closing if customers remain"}
+  - {id: discounts, name: Discounts, effect: "Earn 25% less money"}
+  - {id: empathy, name: Empathy, effect: "Hides patience gauges; queue still indicates low patience"}
+  - {id: health_and_safety, name: Health and Safety, effect: "Customers are slowed by messes"}
+  - {id: high_expectations, name: High Expectations, effect: "-20% patience duration; excludes Hosting Stand Waiting for Table patience"}
+  - {id: high_quality, name: High Quality, effect: "All processes 20% slower; excludes chopping/kneading and desks per wiki card notes"}
+  - {id: high_standards, name: High Standards, prerequisite: Salad, effect: "Burnable food burns 2x faster"}
+  - {id: instant_service, name: Instant Service, blocked_by: Coffee Shop, effect: "Removes Service phase"}
+  - {id: leisurely_eating, name: Leisurely Eating, effect: "Eating duration +300%; customer mess increases accordingly"}
+  - {id: personalised_waiting, name: Personalised Waiting, effect: "May change order during Waiting for Food; max once per course; patience resets"}
+  - {id: picky_eaters, name: Picky Eaters, effect: "Customers leave food that must be discarded manually; non-plated dishes excluded"}
+  - {id: photographic_memory, name: Photographic Memory, effect: "Orders hidden unless player is within 4-tile square centered on head table"}
+  - {id: relaxed_atmosphere, name: Relaxed Atmosphere, effect: "Increases customer mess"}
+  - {id: sedate_atmosphere, name: Sedate Atmosphere, effect: "Player movement -50% within 3 tiles of customers in same room; does not stack"}
+  - {id: simplicity, name: Simplicity, effect: "Each research/discount/copy desk may affect one cabinet per day"}
+  - {id: splash_zone, name: Splash Zone, effect: "Mess generation area expands (3x3 to 5x5); affects sink wet spots"}
+  - {id: tipping_culture, name: Tipping Culture, effect: "Lost Waiting for Food patience reduces dish payment"}
+  - {id: victorian_standards, name: Victorian Standards, effect: "Players in customer sight cone and same room cause +300% depletion of Waiting for Table, Service, and Waiting for Food patience"}
+
+theme_cards:
+  Affordable:
+    levels:
+      1: "Eating and Thinking duration -50%"
+      2: "50% chance each table consumable is not used up after a group leaves"
+      3: "Waiting for Food patience -50%; merges Delivery into Waiting for Food"
+  Charming:
+    levels:
+      1: "Service patience +50%"
+      2: "Table patience +50% while a player is nearby"
+      3: "Customers sit before table is cleared"
+  Exclusive:
+    levels:
+      1: "Queue patience +33%"
+      2: "+1 coin per item delivered"
+      3: "Table patience does not decrease while any customers queue"
+  Formal:
+    levels:
+      1: "Less customer mess; cooking-appliance mess excluded"
+      2: "+500% patience boost per delivery increment"
+      3: "Customers create no mess"
+
+franchise_cards:
+  - {id: bootstrapping, name: Bootstrapping, effect: "Two random free starting appliances"}
+  - {id: grabber, name: Grabber, effect: "Start with a Grabber"}
+  - {id: wash_basin, name: Wash Basin, effect: "Start with a Wash Basin"}
+  - {id: coffee_tables, name: Coffee Tables, effect: "Coffee Tables added to Staple Pool"}
+  - {id: conveyors, name: Conveyors, effect: "Conveyors added to Staple Pool"}
+  - {id: floor_protectors, name: Floor Protectors, effect: "Floor Protectors added to Staple Pool"}
+  - {id: flower_pots, name: Flower Pots, effect: "Flower Pots added to Staple Pool"}
+  - {id: metal_table, name: Metal Table, effect: "Metal Tables added to Staple Pool"}
+  - {id: simple_cloth_table, name: Simple Cloth Table, effect: "Simple Cloth Tables added to Staple Pool"}
+  - {id: loyal_customer, name: Loyal Customer, effect: "Purchasing a blueprint grants another blueprint; excludes Copying Desk copies"}
+  - {id: second_helpings, name: Second Helpings, effect: "50% chance purchased blueprints can be bought again"}
+  - {id: careful_accounting, name: Careful Accounting, effect: "Earn 50% more money"}
+  - {id: catalogue, name: Catalogue, effect: "One additional shop blueprint each day"}
+  - {id: coupons, name: Coupons, effect: "Blueprints cost 25% less"}
+  - {id: double_homework, name: Double Homework, effect: "Desks produce two copies; copies are additional to normal shop stock"}
+  - {id: high_tech_suppliers, name: High Tech Suppliers, effect: "25% chance shop and reroll blueprints are upgraded"}
+  - {id: mandatory_tips, name: Mandatory Tips, effect: "+2 coins per customer served"}
+  - {id: preparation_time, name: Preparation Time, effect: "Customers start arriving later"}
+  - {id: reincarnation, name: Reincarnation, effect: "Lost Extra Lives regenerate each day"}
+  - {id: savings, name: Savings, effect: "Start with 50 coins"}
+  - {id: supplier_error, name: Supplier Error, effect: "Random blueprint prices from 0 to 250 coins"}
+  - {id: variety, name: Variety, effect: "Add a recipe to future franchise runs; can be selected multiple times"}
+
+setting_cards:
+  Community: {setting: Autumn, effect: "-15% Expected Groups; group size +1 every 3 days (10 in overtime); third-day card choices favor Food Cards"}
+  Flower Pots: {setting: Romantic, effect: "Shops offer flower pots regularly"}
+  Turbo: {setting: Turbo, effect: "Two extra shop blueprints, -50% blueprint cost, starts with 25% upgraded-blueprint chance; rush cards active; choose a card daily"}
+  Coffee Shop: {setting: Coffee Shop, effect: "Less patience, instant ordering, less mess"}
+  Banquet Dining: {setting: Banquet Hall, effect: "Customers order without waiting"}
+  Enchantment: {setting: Witch Hut, effect: "Enchant appliances instead of upgrading"}
+  Christmas Treats: {setting: Elf Banquet, effect: "Buffet-focused setting; customers order without waiting"}
+
+heat_cards:
+  - {level: 1, name: Shaky Foundations, effect: "Starting appliances are worse", xp_multiplier: 1.1}
+  - {level: 2, name: Second Bite, effect: "Food Card after Day 2; +15% customers", xp_multiplier: 1.1}
+  - {level: 3, name: Elephant Queues, effect: "Queue patience resets only between days; queue patience total and increases halved", xp_multiplier: 1.1}
+  - {level: 4, name: Health Concerns, effect: "Customers eat very slowly when large messes are in room", xp_multiplier: 1.1}
+  - {level: 5, name: Customer Crowds, effect: "Maximum group size +1; +15% customers", xp_multiplier: 1.1}
+  - {level: 6, name: Flaming Knives, effect: "Chop progress lost when stopping; overchopping destroys items; food burns 300% faster", xp_multiplier: 1.1}
+  - {level: 7, name: Rented Restaurants, effect: "Pay 1 coin per 10 floor tiles daily; customers pay 25% less", xp_multiplier: 1.1}
+  - {level: 8, name: Soft Touch, effect: "All processes 25% slower", xp_multiplier: 1.1}
+  - {level: 9, name: Popularity Crisis, effect: "Customers +25%, then +5% per day", xp_multiplier: 1.1}
+  - {level: 10, name: Ends and Beginnings, effect: "Choose starter or dessert after Day 1; +30% customers", xp_multiplier: 1.1}
+  - {level: 11, name: Overheating, effect: "Customer messes flammable; fire spreads faster and through doors/hatches; +15% customers", xp_multiplier: 1.1}
+  - {level: 12, name: Hot Desking, effect: "Using desks can set cabinets on fire; +15% customers", xp_multiplier: 1.1}
+  - {level: 13, name: Friction Burns, effect: "Overcooking and overchopping start fires; +15% customers", xp_multiplier: 1.1}
+  - {level: 14, name: Hotheads, effect: "Low-patience customers may set table on fire; +15% customers", xp_multiplier: 1.1}
+  - {level: 15, name: Overheat 5, effect: "Placeholder/unavailable in vanilla per wiki snapshot", xp_multiplier: 1.1}
+  - {level: 16, name: Overheat 6+, effect: "No vanilla card/effect listed; wiki notes level display may be incorrect", xp_multiplier: null}
+
+chill_cards:
+  - {level: 1, name: Easy Street, effect: "+100% extra shop blueprints"}
+  - {level: 2, name: Friendly Faces, effect: "Patience doubled; customers -30%"}
+  - {level: 3, name: Purrvana, effect: "Customers are cats; restaurant cannot be shut down by customer failure"}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pushman"
+  short_description: "Safely send and inspect Pushman notifications."
+  default_prompt: "Use $pushman to send me a notification when this task finishes."

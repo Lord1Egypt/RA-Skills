@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="ink-classic">
+<head>
+  <meta charset="utf-8">
+  <title>被封面图折磨了一周，终于找到解法</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root, [data-theme="ink-classic"] {
+      --paper: #f3f0e8; --paper-2: #ebe6da; --ink: #0a0a0b; --muted: #68625a;
+      --line: rgba(10,10,11,.22); --accent: #111111; --accent-soft: #d8d2c6;
+      --ink-rgb: 10,10,11; --paper-rgb: 243,240,232; --accent-rgb: 17,17,17;
+    }
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1a1a1a; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+    .poster { position: relative; width: 1080px; height: 1440px; overflow: hidden; isolation: isolate; background: var(--paper); }
+    .content { position: relative; width: 100%; height: 100%; padding: 96px 88px; display: flex; flex-direction: column; z-index: 2; }
+
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--accent); border: 1px solid var(--line);
+      padding: 6px 14px; margin-bottom: 28px; align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 88px; font-weight: 900;
+      line-height: 1.1; color: var(--ink); margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 24px; font-weight: 400;
+      font-style: italic; color: var(--muted); margin-bottom: 48px;
+    }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 28px; line-height: 1.8; color: var(--ink);
+    }
+    .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .pain-list { list-style: none; margin-bottom: 48px; }
+    .pain-list li {
+      font-family: var(--sans-zh); font-size: 26px; line-height: 1.6; color: var(--ink);
+      padding: 16px 0; border-bottom: 1px solid var(--line);
+    }
+    .pain-list li:last-child { border-bottom: none; }
+    .pain-icon { color: var(--muted); margin-right: 12px; }
+    .pull-quote {
+      font-family: var(--serif-zh); font-size: 36px; font-weight: 700;
+      line-height: 1.5; color: var(--ink); border-left: 3px solid var(--accent);
+      padding-left: 28px; margin-top: auto;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      padding: 6px 14px; border: 1px solid var(--accent); color: var(--accent);
+    }
+    .footer-band {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 88px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line); background: var(--paper); z-index: 10;
+    }
+    .footer-text { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- 封面页：痛点引入 -->
+  <div class="poster" id="poster-1">
+    <div class="content">
+      <div class="label-tag">工具分享 · 效率</div>
+      <h1 class="hero-title">被封面图<br>折磨了一周</h1>
+      <div class="hero-sub">Finally found a solution.</div>
+
+      <div class="section-label">你是不是也这样</div>
+      <ul class="pain-list">
+        <li><span class="pain-icon">→</span>找模板，千篇一律</li>
+        <li><span class="pain-icon">→</span>自己设计，配色永远不对</li>
+        <li><span class="pain-icon">→</span>用 AI 生图，出来的图总感觉哪里怪怪的</li>
+        <li><span class="pain-icon">→</span>字体糊了，排版乱了，颜色脏了</li>
+      </ul>
+
+      <div class="pull-quote">
+        「上周试了好几个工具，<br>出来的封面要么像 2015 年的淘宝详情页，<br>要么就是那种一看就是 AI 生成的感觉。」
+      </div>
+
+      <div class="tag-row">
+        <div class="tag">封面设计</div>
+        <div class="tag">小红书</div>
+        <div class="tag">公众号</div>
+        <div class="tag">效率工具</div>
+      </div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">工具分享 · 封面设计救星</div>
+      <div class="footer-text">01 / 05</div>
+    </div>
+  </div>
+
+</body>
+</html>

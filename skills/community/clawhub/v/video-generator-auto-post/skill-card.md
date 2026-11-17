@@ -1,45 +1,59 @@
-## Description: <br>
-Generate videos using local AI models such as ComfyUI and Stable Video Diffusion, then prepare automated social media posting workflows for Twitter/X, LinkedIn, Instagram, TikTok, and YouTube Shorts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos using local AI models (ComfyUI/Stable Video Diffusion) and auto-publish to social media platforms. Supports text-to-video, image-to-video, batch processing, and automated posting to Twitter, LinkedIn, Instagram, TikTok.
 
-## Publisher: <br>
-[954215110](https://clawhub.ai/user/954215110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[954215110](https://clawhub.ai/user/954215110)
 
-## Use Case: <br>
-Developers and content automation teams use this skill to set up local AI video generation workflows and prepare generated videos for social media publishing. It also provides prompt guidance, platform constraints, and a draft posting script for multi-platform distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the skill as suspicious because it appears to be an incomplete draft for video generation and social posting. <br>
-Mitigation: Treat the skill as draft material and review the missing implementation paths before using it as an automation tool. <br>
-Risk: The skill asks users to prepare social-media API keys without enough scoping or safety guidance. <br>
-Mitigation: Document required API scopes, secure .env handling, and avoid adding real API keys until posting behavior has been reviewed. <br>
-Risk: Automated posting could publish content unexpectedly once real platform integrations are added. <br>
-Mitigation: Keep posting in dry-run mode or require explicit confirmation before publishing to any social media platform. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to set up local AI video generation workflows and prepare or automate publishing of generated videos across social platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/954215110/video-generator-auto-post) <br>
-- [Publisher profile](https://clawhub.ai/user/954215110) <br>
-- [ComfyUI](https://comfyui.org) <br>
-- [Video Prompt Guide](references/prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python automation code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local setup guidance, platform-specific posting notes, and a draft Python posting script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Automated public posting can publish unintended videos, captions, or hashtags through connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated videos, captions, and selected platforms before posting; use manual approval or dry-run behavior before connecting production accounts.
+
+Risk: The skill asks for social-media posting credentials without enough least-privilege setup guidance.
+
+Mitigation: Use scoped test credentials where possible, store secrets outside shared files, rotate keys after testing, and avoid real account keys until setup safeguards are confirmed.
+
+Risk: The posting script describes platform uploads but its platform API integrations are placeholders.
+
+Mitigation: Confirm actual platform implementation and error handling before relying on the script for scheduled or production posting.
+
+## Reference(s):
+
+- [Video Prompt Guide](references/prompt-guide.md)
+- [ComfyUI](https://comfyui.org)
+- [ClawHub Skill Page](https://clawhub.ai/954215110/skills/video-generator-auto-post)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, command examples, configuration snippets, and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local video files, model setup steps, platform-specific caption guidance, and social-media credential names.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

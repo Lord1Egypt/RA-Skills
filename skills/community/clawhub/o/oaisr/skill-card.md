@@ -1,41 +1,54 @@
-## Description: <br>
-OAISR assesses occupational AI displacement risk by producing a bilingual four-step exposure analysis for a job title or profession. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OAISR helps an agent produce bilingual occupational AI displacement risk assessments for named professions using a four-step exposure-estimation workflow.
 
-## Publisher: <br>
-[silent404](https://clawhub.ai/user/silent404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silent404](https://clawhub.ai/user/silent404)
 
-## Use Case: <br>
-Employees, external users, and career advisors use this skill to estimate how much AI may affect a profession by comparing theoretical and practical exposure, decomposing core tasks, and summarizing confidence and coping strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead to sensitive financial or workplace decisions based on job-loss or AI displacement guidance. <br>
-Mitigation: Keep the agent in an advisory role and require explicit user approval before any financial, workplace, calendar, publication, or employer-communication action. <br>
-Risk: Exposure estimates may be mistaken for raw labor-market data or definitive predictions. <br>
-Mitigation: Label estimates as methodology-based, cite the basis for each estimate, and encourage users to verify against current labor-market and workplace-specific information. <br>
+## Use Case:
 
+External users and developers can use this skill to ask for a job title or occupation and receive a concise risk analysis that separates theoretical AI exposure from observed practical exposure. The skill is intended for methodology-based estimates, not guaranteed source data.
 
-## Reference(s): <br>
-- [Anthropic Labor Market Impacts](https://www.anthropic.com/research/labor-market-impacts) <br>
-- [OAISR Reference Materials](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report with progress bars, task breakdown tables, exposure estimates, confidence notes, and optional coping strategies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English structure; estimates should cite whether they come from report text, analogy, or an experience coefficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill can activate on simple profession mentions, which may produce an assessment when the user expected a narrower answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants an AI displacement or exposure assessment when the surrounding context is ambiguous.
+
+Risk: Numeric exposure values are methodology-based estimates and may be mistaken for guaranteed source data.
+
+Mitigation: Label each estimate as sourced, analogized, or heuristic, and include the stated confidence level and scope.
+
+## Reference(s):
+
+- [OAISR reference notes](references/README.md)
+- [Anthropic: Labor market impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with progress bars, tables, estimates, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include methodology-based numeric estimates and confidence labels; estimates should disclose whether values are sourced, analogized, or heuristic.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

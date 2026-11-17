@@ -1,42 +1,54 @@
-## Description: <br>
-Monthly health check for an agent stack that audits crons, scripts, API keys, skills, memory files, tools, and subscriptions, then produces a ranked cleanup brief for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monthly health check for an agent stack that inspects scheduled tasks, scripts, API usage, skills, memory files, tools, and subscriptions, then classifies findings into a ranked cleanup brief.
 
-## Publisher: <br>
-[pingukim225](https://clawhub.ai/user/pingukim225) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pingukim225](https://clawhub.ai/user/pingukim225)
 
-## Use Case: <br>
-Developers, operators, and agent-stack maintainers use this skill to identify unused, redundant, outdated, or risky automation assets and decide what to clean up. It is intended for recurring maintenance when automation reliability drops, costs increase, or scheduled jobs and API usage need review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require broad visibility into automation directories, scheduled tasks, API inventories, subscriptions, and memory files. <br>
-Mitigation: Define the exact in-scope directories, cron sources, accounts, API inventories, subscription records, and memory files before running it. <br>
-Risk: Audit output may expose secrets or sensitive operational details from API keys, subscription records, or memory files. <br>
-Mitigation: Require secrets and sensitive account details to be masked in reports before sharing or storing the output. <br>
-Risk: The skill includes a narrow script-editing exception for confirmed dead API calls. <br>
-Mitigation: Do not permit cleanup or script edits unless you explicitly approve a diff and have a rollback path. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit automation stacks for stale jobs, unused services, duplicate tools, and outdated local context before deciding what to remove, merge, or upgrade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pingukim225/04-agent-stack-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit reports with ranked findings, classification tables, recommended actions, and optional cleanup summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces state/stack_audit_YYYY-MM-DD.md for full audits and state/cron_health_YYYY-MM-DD.md for quick cron health scans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may inspect sensitive local operational context, including scheduled tasks, local scripts, API configuration, installed skills, and memory or context files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with explicit directory and data-category boundaries, and redact secrets or private project context from generated reports.
+
+Risk: Cleanup recommendations may affect active automations if acted on without review.
+
+Mitigation: Treat findings as recommendations, require explicit user approval before deletion, and classify uncertain items as needing user input.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pingukim225/skills/04-agent-stack-audit)
+- [Publisher Profile](https://clawhub.ai/user/pingukim225)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit report with ranked findings, tables, recommended actions, and optional shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposed cleanup actions for user review and may write dated audit or cleanup reports under state/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

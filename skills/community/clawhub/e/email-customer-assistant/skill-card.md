@@ -1,46 +1,59 @@
-## Description: <br>
-Email Customer Assistant reads IMAP mailboxes, classifies customer emails, generates multilingual AI reply suggestions, and pushes email summaries or urgent alerts to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Customer Assistant reads IMAP mailboxes, classifies customer emails, generates multilingual reply suggestions, and can push summaries or urgent alerts to Feishu.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Customer support teams and operators use this skill to monitor IMAP inboxes, prioritize customer messages, draft response suggestions, and route summaries or urgent alerts to Feishu for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles mailbox credentials and customer email contents. <br>
-Mitigation: Use a dedicated mailbox or app password, limit mailbox folders and message volume, and avoid deploying it on regulated or production inboxes until review is complete. <br>
-Risk: Email subjects, snippets, bodies, summaries, and reply drafts may be sent to configured AI providers and Feishu recipients. <br>
-Mitigation: Configure approved AI endpoints and Feishu recipients only, disclose external data flows to operators, and restrict notifications to channels authorized for customer data. <br>
-Risk: The security guidance notes that dry-run behavior may not provide a true preview-only mode. <br>
-Mitigation: Avoid relying on --dry-run for safety-critical previews until the behavior is fixed or independently verified. <br>
-Risk: Dependency and token-validation behavior require clarification before broader deployment. <br>
-Mitigation: Pin and review dependencies, and clarify or remove token-validation behavior before use in production workflows. <br>
+## Use Case:
 
+Customer support operators and small business teams use this skill to triage incoming mailbox messages, draft human-reviewed replies, and route urgent or summarized email information to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/qiji0802/email-customer-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/qiji0802) <br>
-- [YK-Global](https://yk-global.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain-text reports, JSON email result lists, Markdown-style notification content, Python command examples, and YAML-style configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include email subjects, snippets, classifications, summaries, reply suggestions, and Feishu delivery status messages] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Mailbox content may be sent to third-party AI or Feishu services when those features are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable AI and Feishu processing only for approved mailboxes, document data-sharing expectations, and restrict Feishu recipients or webhooks to the minimum audience.
+
+Risk: Credential boundaries may be unclear because license validation can use environment-provided API keys.
+
+Mitigation: Use a dedicated 91Skillhub license token for licensing, do not rely on OPENAI_API_KEY for license validation, and rotate any credential that may have been sent to the validation endpoint.
+
+Risk: Scheduled execution can repeatedly process mailbox data before dry-run behavior and data-sharing controls are reviewed.
+
+Mitigation: Run manual dry-runs first, validate configuration and disclosure settings, and enable cron only after the deployment owner approves recurring processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiji0802/skills/email-customer-assistant)
+- [Publisher profile](https://clawhub.ai/user/qiji0802)
+- [YK-Global website](https://yk-global.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration examples, shell commands, console reports, JSON output, Feishu card payloads, and draft reply text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces AI-assisted classifications, summaries, and reply suggestions from mailbox content; replies are intended for user review before sending.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

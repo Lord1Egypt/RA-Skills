@@ -1,43 +1,57 @@
-## Description: <br>
-Automatic privacy proxy for AI conversations that redacts sensitive data from documents before sending them to cloud LLMs, then restores originals in the response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CloakClaw redacts sensitive entities from documents or pasted text before cloud LLM use, then restores originals in the model response.
 
-## Publisher: <br>
-[canonflip-git](https://clawhub.ai/user/canonflip-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonflip-git](https://clawhub.ai/user/canonflip-git)
 
-## Use Case: <br>
-Developers and external users use CloakClaw to cloak sensitive document or pasted-text content before asking a cloud LLM to analyze it, then decloak the model response for local delivery. It is intended for privacy-sensitive workflows involving legal, financial, HR, medical, code, or general documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically process highly sensitive documents or pasted text through broad trigger rules. <br>
-Mitigation: Use explicit opt-in before cloaking, confirm the selected profile, and review cloaked output before sending it to a cloud model. <br>
-Risk: The wrapper depends on an external globally installed cloakclaw CLI package. <br>
-Mitigation: Install only from a trusted npm package source and verify the installed package and version before use. <br>
-Risk: Temporary plaintext files may be created while wrapping raw text for CLI processing. <br>
-Mitigation: Run the skill only on trusted local machines, enable password protection where available, and purge sessions after use. <br>
+## Use Case:
 
+Developers and AI users use this skill to cloak sensitive documents or pasted text before sending content to cloud LLMs and to decloak model responses afterward.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonflip-git/cloakclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/canonflip-git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cloaking output includes a session identifier, cloaked text, entity count, and profile; decloaking returns restored text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The security evidence flags broad automatic handling of sensitive documents by a globally installed external executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit opt-in, verify and pin the installed cloakclaw version, and consider disabling network access while processing sensitive files.
+
+Risk: Reversible local mappings may retain original sensitive values beyond the immediate model interaction.
+
+Mitigation: Review the external tool's storage behavior, enable password protection where appropriate, and purge sessions after use.
+
+Risk: The artifact states that CloakClaw is not HIPAA, GDPR, SOC 2, PCI-DSS, or CCPA compliant.
+
+Mitigation: Do not rely on this skill for regulated or highly confidential data without independent compliance and security review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonflip-git/skills/cloakclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reversible cloaked and decloaked text through a locally invoked CLI; session mappings are retained by the external tool until expiry.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

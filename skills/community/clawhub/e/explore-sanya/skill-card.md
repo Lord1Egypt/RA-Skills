@@ -1,46 +1,61 @@
-## Description: <br>
-Plan Sanya travel by using flyai CLI results for flights, hotels, attractions, itinerary options, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore Sanya helps agents plan Sanya travel with real-time flight, hotel, attraction, itinerary, and booking-link results through the flyai CLI.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travel-planning users and agent developers use this skill to retrieve current Sanya flight, hotel, attraction, and itinerary options through flyai and present concise Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install a global third-party CLI. <br>
-Mitigation: Treat npm global installation as a manual setup step and avoid letting an agent run npm i -g automatically. <br>
-Risk: Travel queries may be retained in a local .flyai-execution-log.json file. <br>
-Mitigation: Review, disable, or delete local execution logging before entering personal travel details. <br>
-Risk: Results rely on flyai/Fliggy as the travel data provider and may include booking links. <br>
-Mitigation: Install only if that provider and booking-link workflow are acceptable for the deployment context. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search and compare Sanya flights, hotels, attractions, and trip options with current booking links. It is intended for Sanya and Hainan travel requests that require live travel data rather than static destination advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/explore-sanya) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the required data source and avoids raw JSON in user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata) <br>
+Risk: The skill can install and use an unpinned third-party global travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the flyai CLI package version before installation, and review CLI behavior before using it for live travel searches.
+
+Risk: The skill may persist raw travel queries in a hidden local execution log.
+
+Mitigation: Disable or remove the hidden execution log behavior before deployment, or avoid entering sensitive personal, payment, or itinerary details.
+
+Risk: The skill produces booking links for live travel services.
+
+Mitigation: Review returned booking links and pricing before acting, and avoid sharing highly sensitive personal or payment information through the agent workflow.
+
+## Reference(s):
+
+- [Explore Sanya skill page](https://clawhub.ai/dingtom336-gif/skills/explore-sanya)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links when travel options are returned.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

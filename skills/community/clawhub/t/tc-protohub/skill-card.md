@@ -1,46 +1,58 @@
-## Description: <br>
-Manages ProtoHub prototypes by helping an agent package directories or ZIP files, publish or update prototypes, list existing prototypes, and retrieve preview links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages ProtoHub prototypes by packaging directories or ZIP files, validating an index.html entry point, uploading or updating prototypes, listing existing prototypes, and retrieving preview links.
 
-## Publisher: <br>
-[airclear](https://clawhub.ai/user/airclear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airclear](https://clawhub.ai/user/airclear)
 
-## Use Case: <br>
-Developers and prototype builders use this skill when they want an agent to publish, update, discover, or retrieve links for ProtoHub prototypes from local folders or ZIP archives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing or updating the wrong prototype could overwrite a live ProtoHub entry. <br>
-Mitigation: Confirm the target prototype ID or a single matched prototype name before running an update. <br>
-Risk: Using an unintended ProtoHub server could publish prototype files to the wrong environment. <br>
-Mitigation: Verify PROTOHUB_URL or the --url argument before running publish, list, or get-link commands. <br>
-Risk: A broad API key could allow more access than this workflow requires. <br>
-Mitigation: Use a scoped ProtoHub API key and avoid placeholder credentials. <br>
-Risk: Publishing from a dirty or incorrect build folder could expose unintended files. <br>
-Mitigation: Publish only from a clean output folder or vetted ZIP file that contains the intended index.html entry point. <br>
+## Use Case:
 
+Developers and agents use this skill to publish, update, find, and share web prototype builds in a ProtoHub private sandbox. It is intended for workflows where prototype folders or ZIP files need to be packaged, checked for an entry point, and sent to a configured ProtoHub server.
 
-## Reference(s): <br>
-- [tc-protohub on ClawHub](https://clawhub.ai/airclear/tc-protohub) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Evaluation scenarios](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May package user-selected prototype files, call the configured ProtoHub API, and return prototype IDs, preview links, share links, or validation errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prototype packaging and upload may include unintended files, especially when publishing untrusted folders or folders containing symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the prototype directory before upload, avoid untrusted folders and symlinks, and publish only the files intended for the prototype.
+
+Risk: API credentials may be sent over non-local HTTP when the ProtoHub URL is configured to a remote insecure endpoint.
+
+Mitigation: Use HTTPS for any non-local ProtoHub URL and verify the server configuration before providing PROTOHUB_API_KEY.
+
+Risk: Updating by prototype ID overwrites remote prototype content.
+
+Mitigation: Confirm the prototype ID or perform a name lookup before updates, and ask for clarification when matches are ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airclear/skills/tc-protohub)
+- [Publisher profile](https://clawhub.ai/user/airclear)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with command examples, API results, prototype IDs, and preview or share links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PROTOHUB_API_KEY and a ProtoHub server URL; update actions can overwrite remote prototype content.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

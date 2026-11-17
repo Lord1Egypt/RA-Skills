@@ -1,42 +1,55 @@
-## Description: <br>
-Performs structured risk assessments for business operations, projects, and strategic decisions by identifying, scoring, prioritizing, and mitigating risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a structured business risk assessment that identifies, scores, prioritizes, and mitigates risks for operations, projects, and strategic decisions.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business leaders, project teams, and operators use this skill to turn a business, project, vendor, compliance, or strategic decision description into a prioritized risk register with owners, deadlines, cost estimates, and residual risk scoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business context shared with the agent may include confidential strategy, financial, compliance, or incident details. <br>
-Mitigation: Limit inputs to information approved for the agent environment and redact sensitive data before running an assessment. <br>
-Risk: Generated risk scores and mitigation plans may be incomplete or unsuitable for regulated or high-impact decisions. <br>
-Mitigation: Have qualified business, legal, security, or compliance owners review outputs before board reporting or operational use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-risk-assessment) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI revenue calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent setup wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Business leaders, operators, project teams, and advisors use this skill to convert business, project, or strategic uncertainty into a prioritized risk register with mitigation owners, deadlines, costs, and residual-risk scoring.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown risk register with scoring table, heat map, mitigation plan, and residual risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a 1-5 likelihood and impact matrix to classify risks as Critical, High, Medium, or Low.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Useful assessments may require sensitive business, financial, operational, or regulatory context.
+
+Mitigation: Share only appropriate information with the agent and review outputs before distributing them beyond the intended audience.
+
+Risk: Legal, compliance, financial, or regulatory conclusions may be incomplete or incorrect for a specific organization.
+
+Mitigation: Have qualified reviewers validate conclusions and mitigation plans before relying on them for board, investor, insurance, or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-risk-assessment)
+- [AI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown risk register, risk heat map, mitigation plan, and residual-risk summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a 1-5 Likelihood x Impact scoring matrix with Critical, High, Medium, and Low priority bands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

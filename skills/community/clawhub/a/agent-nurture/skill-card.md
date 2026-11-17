@@ -1,42 +1,54 @@
-## Description: <br>
-Provides an OpenClaw-oriented framework for agents to organize learning, crystallize reusable skills, review sessions, and maintain memory over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents through a knowledge crystallization loop for learning, verification, skill extraction, memory maintenance, and growth planning.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide an OpenClaw agent through structured study, validation, skill extraction, session review, and memory maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory deletion, archiving, or skill merging could remove useful context or change agent behavior unexpectedly. <br>
-Mitigation: Review proposed cleanup and consolidation actions before allowing changes, especially deletions and merges. <br>
-Risk: Learning notes or extracted skills could preserve incorrect, unverified, or overly narrow patterns. <br>
-Mitigation: Require the skill's validation checklist, origin labels, and phase-appropriate evidence before crystallizing knowledge. <br>
-Risk: File maintenance guidance could affect content outside the intended agent workspace if applied too broadly. <br>
-Mitigation: Keep file changes scoped to the OpenClaw workspace and inspect paths before executing shell commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help OpenClaw agents structure learning, turn repeated experience into reusable skills, maintain durable memory, and plan capability growth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/agent-nurture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, YAML templates, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recurring review and maintenance checklists for OpenClaw workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: The skill can lead an agent to preserve durable memories or propose future skill changes without a consistently mandatory review step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for every memory write, MEMORY.md change, skill creation, skill update, archive action, or deletion action.
+
+Risk: Persistent learning records may accidentally contain secrets or sensitive session details.
+
+Mitigation: Review memory content before persistence and avoid storing secrets, credentials, personal data, or sensitive session details in durable memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/agent-nurture)
+- [ClawHub publisher profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance, checklists, templates, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent memory records, skill updates, archival actions, or deletion actions that require human review.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

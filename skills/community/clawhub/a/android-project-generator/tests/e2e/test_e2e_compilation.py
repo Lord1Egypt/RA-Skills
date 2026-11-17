@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 """
-端到端集成测试
+端到端测试：项目脚手架生成 + 构建流程状态判定
 
-测试完整的 Android 项目生成和编译流程
-注意：这些测试需要完整的 Android 开发环境
+覆盖范围：
+- 生成最小项目脚手架（Gradle 配置、AndroidManifest、源码、资源）
+- 校验生成的配置（wrapper 版本、国内镜像仓库）
+- 校验构建流程状态判定（占位 wrapper 必须被判为 scaffolding_only）
+
+真实的 `gradlew assembleDebug` 编译只在外部提供真实 Gradle Wrapper 与
+Android SDK 时执行（见 test_stable_profile_compiles）；前置条件缺失时该用例
+跳过，不会伪装成通过。本文件默认不产出 APK。
 """
 
+import os
 import pytest
 import subprocess
 import shutil
@@ -105,6 +112,58 @@ def run_gradle_build(project_path: Path, timeout: int = 300) -> Tuple[int, str, 
         return -1, "", "Build timed out"
     except Exception as e:
         return -1, "", str(e)
+
+
+WRAPPER_FILES = (
+    "gradlew",
+    "gradlew.bat",
+    "gradle/wrapper/gradle-wrapper.properties",
+    "gradle/wrapper/gradle-wrapper.jar",
+)
+
+# 真实构建的前置条件必须由外部环境提供，仓库内不内置真实 wrapper
+_WRAPPER_TEMPLATE = os.environ.get("E2E_WRAPPER_TEMPLATE")
+_ANDROID_SDK = os.environ.get("ANDROID_HOME") or os.environ.get("ANDROID_SDK_ROOT")
+
+
+def missing_real_build_prerequisites() -> list:
+    """返回缺失的真实构建前置条件；空列表代表具备真实编译条件。"""
+    missing = []
+    if not _WRAPPER_TEMPLATE or not Path(_WRAPPER_TEMPLATE).is_dir():
+        missing.append("E2E_WRAPPER_TEMPLATE (a directory containing a real Gradle Wrapper)")
+    if not _ANDROID_SDK or not Path(_ANDROID_SDK).is_dir():
+        missing.append("ANDROID_HOME or ANDROID_SDK_ROOT")
+    return missing
+
+
+def real_build_skip_reason() -> str:
+    """生成跳过原因，明确缺少哪些前置条件。"""
+    return "Real build prerequisites missing: " + "; ".join(missing_real_build_prerequisites())
+
+
+def install_real_wrapper(template_dir: Path, project_dir: Path) -> None:
+    """从模板目录复制真实 Gradle Wrapper，覆盖 create_minimal_project 的占位脚本。"""
+    template_dir = Path(template_dir)
+    project_dir = Path(project_dir)
+
+    for relative_path in WRAPPER_FILES:
+        source = template_dir / relative_path
+        if not source.exists():
+            raise FileNotFoundError(f"wrapper template is missing {relative_path}: {source}")
+        destination = project_dir / relative_path
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
+
+    if sys.platform != "win32":
+        (project_dir / "gradlew").chmod(0o755)
+
+
+def write_local_properties(project_dir: Path, sdk_dir: Path) -> None:
+    """写入 local.properties，使 CLI 构建不依赖 SDK 路径的环境变量推断。"""
+    escaped_sdk = str(Path(sdk_dir)).replace("\\", "\\\\")
+    (Path(project_dir) / "local.properties").write_text(
+        f"sdk.dir={escaped_sdk}\n", encoding="utf-8"
+    )
 
 
 def create_minimal_project(project_path: Path, config: E2ETestConfig) -> None:
@@ -354,37 +413,66 @@ class TestEndToEndCompilation:
             cleanup_workspace_temp_dir(path)
     
     @pytest.mark.slow
-    @pytest.mark.skipif(
-        check_jdk_version() is None or check_jdk_version() < 17,
-        reason="Requires JDK 17+ for stable profile"
-    )
-    def test_stable_profile_compiles(self, temp_project_dir):
-        """E2E-001: stable 配置编译成功"""
+    def test_stable_profile_scaffolds_project(self, temp_project_dir):
+        """E2E-001a: stable 配置生成完整项目脚手架（不执行 Gradle 构建）"""
         config = E2ETestConfig(
             project_name="TestApp",
             package_name="com.example.testapp",
             config_profile="stable",
             jdk_version=17
         )
-        
+
         project_path = temp_project_dir / "TestApp"
         create_minimal_project(project_path, config)
-        
-        # 检查项目创建成功
+
         assert (project_path / "settings.gradle.kts").exists()
         assert (project_path / "app" / "build.gradle.kts").exists()
-        
-        # 注意：实际编译测试需要完整的 Android SDK 和 Gradle Wrapper
-        # 这里只验证项目结构完整性
-        # 在 CI 环境中可以取消注释以下代码进行真实编译测试
-        
-        # returncode, stdout, stderr = run_gradle_build(project_path)
-        # assert returncode == 0, f"Build failed: {stderr}"
-        # assert (project_path / "app/build/outputs/apk/debug/app-debug.apk").exists()
-    
+        assert (project_path / "app" / "src" / "main" / "AndroidManifest.xml").exists()
+        assert (
+            project_path / "app" / "src" / "main" / "java" / "com" / "example"
+            / "testapp" / "MainActivity.kt"
+        ).exists()
+
+    @pytest.mark.slow
+    @pytest.mark.skipif(
+        check_jdk_version() is None or check_jdk_version() < 17,
+        reason="Requires JDK 17+ for stable profile"
+    )
+    @pytest.mark.skipif(
+        bool(missing_real_build_prerequisites()),
+        reason=real_build_skip_reason()
+    )
+    def test_stable_profile_compiles(self, temp_project_dir):
+        """E2E-001b: stable 配置在真实 toolchain 下编译成功并产出 debug APK
+
+        仓库内的 create_minimal_project 只写占位 wrapper，因此真实构建必须由
+        外部环境补齐前置条件，缺一即跳过：
+          - E2E_WRAPPER_TEMPLATE: 含真实 gradlew / gradlew.bat / gradle-wrapper.jar 的目录
+          - ANDROID_HOME 或 ANDROID_SDK_ROOT: 已安装的 Android SDK
+        skip 状态与"编译通过"明确区分，不会伪装成成功。
+        """
+        config = E2ETestConfig(
+            project_name="TestApp",
+            package_name="com.example.testapp",
+            config_profile="stable",
+            jdk_version=17
+        )
+
+        project_path = temp_project_dir / "TestApp"
+        create_minimal_project(project_path, config)
+
+        install_real_wrapper(Path(_WRAPPER_TEMPLATE), project_path)
+        write_local_properties(project_path, Path(_ANDROID_SDK))
+
+        returncode, _stdout, stderr = run_gradle_build(project_path)
+        assert returncode == 0, f"assembleDebug failed:\n{stderr}"
+
+        apk_path = project_path / "app" / "build" / "outputs" / "apk" / "debug" / "app-debug.apk"
+        assert apk_path.exists(), f"assembleDebug succeeded but no APK at {apk_path}"
+
     @pytest.mark.slow
     def test_legacy_profile_compiles(self, temp_project_dir):
-        """E2E-002: legacy 配置编译成功"""
+        """E2E-002: legacy 配置生成（校验 wrapper 指向 gradle-7.5，不执行构建）"""
         config = E2ETestConfig(
             project_name="LegacyApp",
             package_name="com.example.legacyapp",
@@ -401,7 +489,7 @@ class TestEndToEndCompilation:
     
     @pytest.mark.slow
     def test_china_mirror_compiles(self, temp_project_dir):
-        """E2E-003: 国内镜像编译成功"""
+        """E2E-003: 国内镜像配置生成（校验仓库指向 aliyun 镜像，不执行构建）"""
         config = E2ETestConfig(
             project_name="ChinaMirrorApp",
             package_name="com.example.chinamirrorapp",

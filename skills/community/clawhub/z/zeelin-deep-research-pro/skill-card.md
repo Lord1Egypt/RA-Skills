@@ -1,41 +1,65 @@
-## Description: <br>
-ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径，从快速信息梳理、系统分析到超万字专家报告全流程覆盖，帮助完成企业分析、市场洞察、招商研究等复杂任务。
 
-## Publisher: <br>
-[zhushanwei](https://clawhub.ai/user/zhushanwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhushanwei](https://clawhub.ai/user/zhushanwei)
 
-## Use Case: <br>
-External users and developers use this skill to submit research prompts to ZeeLin, choose a deep or major research mode, and receive a completed PDF research report link through their configured message channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts, task titles, and generated report links are sent to ZeeLin and to the configured message channel. <br>
-Mitigation: Install only if you trust ZeeLin and the configured channel; use a limited ZeeLin API key where possible and confirm target_user/channel before running. <br>
-Risk: Generated research reports may be used for business, market, policy, technical, or investment decisions. <br>
-Mitigation: Review the PDF report and source assumptions before relying on it for decisions or sharing it outside the intended audience. <br>
+## Use Case:
 
+External users and research teams use this skill to submit research topics to ZeeLin and receive generated PDF research reports for market, company, policy, product, and investment analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhushanwei/zeelin-deep-research-pro) <br>
-- [ZeeLin API key console](https://skills.zeelin.cn/console/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown instructions with shell commands and message text containing a PDF report link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, a ZeeLin API key, and a configured target message channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research prompts and topics are sent to ZeeLin's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content approved for that provider and avoid submitting sensitive prompts unless an appropriate data-sharing review is complete.
+
+Risk: The ZeeLin API key is stored in the local config.json file.
+
+Mitigation: Use a dedicated low-privilege API key and restrict local file permissions for config.json.
+
+Risk: Completed PDF report links are automatically sent through OpenClaw messaging.
+
+Mitigation: Confirm target_user and channel routing before use, or review and disable automatic notification behavior when report recipient control matters.
+
+Risk: Temporary watcher logs may contain task titles, status details, or notification output.
+
+Mitigation: Review temporary logs after use and avoid sensitive task titles where local log retention is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill listing: ZeeLin Deep Research 深度研究](https://clawhub.ai/zhushanwei/skills/zeelin-deep-research-pro)
+- [Publisher profile: zhushanwei](https://clawhub.ai/user/zhushanwei)
+- [ZeeLin API key console](https://skills.zeelin.cn/console/apps)
+- [ZeeLin recharge console](https://skills.zeelin.cn/console/recharge)
+- [ZeeLin Deep Research service endpoint](https://desearch.zeelin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style agent guidance with shell command examples and PDF report links sent through OpenClaw messaging]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates ZeeLin research tasks, polls task status, and sends a generated PDF report link when the task completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

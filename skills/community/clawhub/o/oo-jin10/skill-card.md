@@ -1,43 +1,56 @@
-## Description: <br>
-Jin10 helps agents search and read Jin10 market quotes, economic calendar items, flash news, and news articles through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access to Jin10 data for search and retrieval.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External developers and agents use this skill to retrieve Jin10 financial market data and news through the oo CLI after the user has connected a Jin10 account in OOMOL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Jin10 account and may consume account access or credits. <br>
-Mitigation: Install and use it only when Jin10 access through OOMOL is intended, and review connection status and billing before repeated queries. <br>
-Risk: First-time setup may require installing or authenticating the oo CLI. <br>
-Mitigation: Review the OOMOL CLI installer and authentication flow before setup, and only run setup commands when the connector fails for installation, authentication, or connection reasons. <br>
+## Use Case:
 
+Users can ask an agent to search and retrieve Jin10 news, flash updates, economic calendar items, quotes, and minute-level market data.
 
-## Reference(s): <br>
-- [Jin10 homepage](https://www.jin10.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-jin10) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads or responses from oo CLI actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Jin10 connector actions return structured data and an execution ID when run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup may execute remote code and make persistent changes to the agent's available skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before enabling the skill, install a verified and pinned CLI separately, and approve environment changes explicitly.
+
+Risk: Use may rely on OOMOL account permissions and incur service costs.
+
+Mitigation: Check the connected account's permissions and applicable service costs before use.
+
+## Reference(s):
+
+- [Jin10](https://www.jin10.com)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Jin10 skill release](https://clawhub.ai/oomol/skills/oo-jin10)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Jin10 data returned as JSON and summarized in agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the requested Jin10 action and available account access.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

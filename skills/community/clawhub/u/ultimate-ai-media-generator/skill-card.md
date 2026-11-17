@@ -1,48 +1,67 @@
-## Description: <br>
-Generate AI images and videos with CyberBara models, including text-to-image, text-to-video, image-to-video, and video-to-video workflows with prompt optimization, credit estimation, task polling, and media output handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images and videos through CyberBara models such as Sora 2, Kling 2.6, Seedance 2.0, Nano Banana Pro, and Veo 3.1, with prompt optimization, credit estimates, task polling, and media output handling.
 
-## Publisher: <br>
-[ZeroLu](https://clawhub.ai/user/ZeroLu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zerolu](https://clawhub.ai/user/zerolu)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to generate images and videos through CyberBara, prepare visual assets for articles, presentations, social media, marketing, anime, product photography, and storyboard-style workflows, and inspect credits before submitting generation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent credential handling stores a CyberBara API key on disk. <br>
-Mitigation: Use environment variables or a dedicated low-privilege API key where possible, protect the local credential file, and rotate the key if it may have been exposed. <br>
-Risk: Reference images and generation payloads can be uploaded to CyberBara. <br>
-Mitigation: Avoid uploading sensitive images or prompts unless CyberBara retention and URL access controls are acceptable for the data. <br>
-Risk: Generated files may be saved and opened automatically. <br>
-Mitigation: Use --no-open, --no-save, or a controlled output directory when reviewing generated media or running in shared environments. <br>
-Risk: The raw command can call authenticated CyberBara API endpoints directly. <br>
-Mitigation: Review raw endpoint paths and payloads before execution and limit use to trusted operators. <br>
+## Use Case:
 
+Developers, creators, and agent users use this skill to generate images and videos, quote CyberBara credit costs before submission, poll generation tasks, and save resulting media for content, presentation, SEO, social, and storyboard workflows.
 
-## Reference(s): <br>
-- [Ultimate AI Media Generator Skill Page](https://clawhub.ai/ZeroLu/ultimate-ai-media-generator) <br>
-- [CyberBara API Reference](references/cyberbara-api-reference.mdx) <br>
-- [AI PPT Workflow](workflows/ai-ppt-skill.md) <br>
-- [AI SEO Article Workflow](workflows/ai-seo-article-skill.md) <br>
-- [AI Comic Drama Workflow](workflows/ai-comic-drama-skill.md) <br>
-- [Curated Prompt Library](workflows/curated-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, CLI commands, JSON API responses, and locally saved generated media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload local reference images, store a CyberBara API key on disk, wait for remote tasks, save generated media under a local output directory, and auto-open saved files unless disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The documented installer path may install moving code if the source revision is not pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installation and pin the installer input to a trusted repository revision.
+
+Risk: API keys can be provided on the command line or saved to a local cache file.
+
+Mitigation: Prefer CYBERBARA_API_KEY or a secret manager, restrict permissions on saved keys, and rotate keys if exposure is suspected.
+
+Risk: Generated media files are saved and opened by default, which may launch untrusted local files.
+
+Mitigation: Use --no-open unless the generated output source and file type are trusted.
+
+Risk: The raw command can call arbitrary CyberBara API endpoints.
+
+Mitigation: Avoid raw unless the exact endpoint, method, and payload have been reviewed.
+
+## Reference(s):
+
+- [CyberBara API Reference](references/cyberbara-api-reference.mdx)
+- [AI PPT Workflow](workflows/ai-ppt-skill.md)
+- [AI SEO Article Workflow](workflows/ai-seo-article-skill.md)
+- [AI Comic Drama Workflow](workflows/ai-comic-drama-skill.md)
+- [Curated Prompt Library](workflows/curated-prompts.md)
+- [CyberBara](https://cyberbara.com)
+- [CyberBara Credit Costs](https://cyberbara.com/credit-costs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task, status, URL, and saved-file outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated image or video files to media_outputs/ and auto-open them unless disabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; changelog source: user, released 2026-03-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

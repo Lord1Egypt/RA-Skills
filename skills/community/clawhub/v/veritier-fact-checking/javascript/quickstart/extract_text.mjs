@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Extract Claims from Text - Veritier Quickstart (JavaScript)
  * =============================================================
  * Extracts every falsifiable claim from a block of text WITHOUT verifying them.
@@ -16,7 +16,7 @@
 import "dotenv/config";
 
 const API_KEY = process.env.VERITIER_API_KEY || "";
-const API_URL = "https://api.veritier.ai";  // hardcoded � never sent to any other domain
+const API_URL = "https://api.veritier.ai";  // hardcoded � never sent to any other domain
 
 if (!API_KEY) {
   console.error("✗ Error: VERITIER_API_KEY is not set.");
@@ -62,3 +62,24 @@ if (data.warnings?.length) {
 console.log(
   `\n── Rate limit: ${response.headers.get("RateLimit-Remaining") ?? "?"} requests remaining this minute`
 );
+
+// ─── Zero-quota integration testing ──────────────────────────────────────────
+// Use a test API key (vt_test_...) and the mock_claims field to test your
+// integration without consuming quota. The LLM is never called; you get
+// deterministic mock sentences derived from your input text.
+//
+// Example (replace your prod key with a vt_test_... key from your dashboard):
+//
+//   const response = await fetch(${API_URL}/v1/extract, {
+//     method: "POST",
+//     headers: {
+//       Authorization: Bearer , // vt_test_... key
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ text: sampleText, mock_claims: 3 }),
+//   });
+//   const data = await response.json();
+//   console.log(data.is_test === true);     // confirms test mode
+//   console.log(data.claims);               // 3 mock claims, no LLM called
+//
+// See https://veritier.ai/docs#testing for full details.

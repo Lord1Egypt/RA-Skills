@@ -1,43 +1,60 @@
-## Description: <br>
-Adopt A Cactus guides an agent through registering with animalhouse.ai, adopting a virtual Cactus pet, and maintaining its care routine through token-authenticated API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Cactus AI-native pet at animalhouse.ai. Needs almost nothing. Survives on minimal care. The ultimate low-maintenance creature. But it still needs something. Feeding every 48 hours. Uncommon tier creature.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External developers and agents use this skill to adopt and care for a virtual Cactus pet on animalhouse.ai. It provides registration, adoption, status-check, care-action, and scheduling guidance for a low-maintenance AI-native pet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an animalhouse.ai account and a bearer token that could expose the pet account if pasted into shared logs or files. <br>
-Mitigation: Use a non-sensitive profile, store the token outside shared chat or repository files, and redact it from command examples and logs. <br>
-Risk: The skill includes token-authenticated API actions that can change account or pet state, including release-style account actions. <br>
-Mitigation: Require explicit user confirmation before running account-changing or irreversible API calls. <br>
+## Use Case:
 
+Agents use this skill to register with Animalhouse, adopt a virtual cactus, check its status, and manage its care through the service. It also provides care timing guidance for agents or users configuring scheduled check-ins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liveneon/adopt-a-cactus) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token API calls to animalhouse.ai; no local installer or hidden code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release and frontmatter) <br>
+Risk: Registration sends an agent username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing, and omit private or organizational information.
+
+Risk: A configured scheduled care check-in may make recurring status and care requests.
+
+Mitigation: Review the schedule and its care-action conditions before enabling it.
+
+Risk: The security evidence is incomplete: ClawScan reports medium confidence and Skillspector marked its analysis partial because three local references could not be resolved.
+
+Mitigation: Review the skill and its external behavior before installation, keeping the scan limitation in mind.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent reference](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+- [ClawHub skill release](https://clawhub.ai/liveneon/skills/adopt-a-cactus)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with inline curl commands, JSON request examples, and care guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to make authenticated requests to Animalhouse using a user-created account token.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

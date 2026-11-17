@@ -1,46 +1,63 @@
-## Description: <br>
-GPTSportswriter generates sports betting research reports from live odds, matchup context, and public or news sources, with premium API-backed and free public-source workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GPTSportswriter generates sports betting research reports from live odds, matchup context, and public or news sources, with premium API-backed and free public-source modes.
 
-## Publisher: <br>
-[normandmickey](https://clawhub.ai/user/normandmickey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[normandmickey](https://clawhub.ai/user/normandmickey)
 
-## Use Case: <br>
-External users and developers use this skill to produce structured betting research, matchup breakdowns, and sportsbook-style summaries from current odds and public or news context. It is intended for research and summaries, not for placing bets or claiming guaranteed outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The email helper can send a generated betting report to a fixed personal Gmail recipient after loading the workspace environment. <br>
-Mitigation: Review or disable scripts/send_daily_report.sh before installing; prefer a version that asks for the recipient and loads only required secrets. <br>
-Risk: Generated betting reports can be misleading if users treat stale odds, source disagreement, or line movement as guaranteed outcomes. <br>
-Mitigation: Require current odds checks, include uncertainty and line-sensitivity notes, and avoid claims of guaranteed wins. <br>
+## Use Case:
 
+External users and agents use this skill to assemble current sports betting research reports, matchup breakdowns, and cautious best-bet summaries. It is for research summaries, not bet placement or guaranteed outcomes.
 
-## Reference(s): <br>
-- [GPTSportswriter on ClawHub](https://clawhub.ai/normandmickey/gptsportswriter) <br>
-- [The Odds API sports endpoint](https://api.the-odds-api.com/v4/sports) <br>
-- [Covers MLB matchups](https://www.covers.com/sport/baseball/mlb/matchups) <br>
-- [Covers NBA matchups](https://www.covers.com/sport/basketball/nba/matchups) <br>
-- [Covers NHL matchups](https://www.covers.com/sport/hockey/nhl/matchups) <br>
-- [Covers EPL matchups](https://www.covers.com/sport/soccer/england-premier-league/matchups) <br>
-- [wttr.in weather service](https://wttr.in/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown betting research report with optional JSON outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some workflows require odds or news API credentials; free mode uses public sources and may be less current.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The email helper can send generated reports to a fixed external Gmail address while loading broad workspace environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run scripts/send_daily_report.sh until the recipient, message content, and available environment variables have been reviewed and restricted.
+
+Risk: Sports betting recommendations can become misleading when odds, injuries, weather, or public-source snapshots are stale.
+
+Mitigation: Re-run data collection close to the event, compare current lines across sources, and keep uncertainty and line sensitivity visible in the report.
+
+Risk: Free-mode public-source extraction can be incomplete when pages change or paid API keys are unavailable.
+
+Mitigation: Treat free-mode output as research context, verify current odds before use, and avoid forcing picks when source coverage is thin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/normandmickey/skills/gptsportswriter)
+- [The Odds API sports endpoint](https://api.the-odds-api.com/v4/sports)
+- [Covers MLB matchups](https://www.covers.com/sport/baseball/mlb/matchups)
+- [Covers NBA matchups](https://www.covers.com/sport/basketball/nba/matchups)
+- [Covers NHL matchups](https://www.covers.com/sport/hockey/nhl/matchups)
+- [Covers Premier League matchups](https://www.covers.com/sport/soccer/england-premier-league/matchups)
+- [wttr.in weather service](https://wttr.in/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown reports, JSON data payloads, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on current odds, news context, configured API keys, and public-source availability; free-mode odds may be stale or incomplete.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

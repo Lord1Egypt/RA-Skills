@@ -1,43 +1,64 @@
-## Description: <br>
-See exactly what's eating your context window. Analyzes prompts, conversations, and system instructions to show where every token goes. Actionable compression suggestions. All local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Slim profiles prompts, conversations, and system instructions to estimate token use, diagnose context-window pressure, and suggest local compression opportunities.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, prompt engineers, and agent builders use Context Slim to profile token usage in prompts, conversations, and system instructions, identify truncation risk, and review compression opportunities before deployment or reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports can render untrusted conversation labels as HTML or script. <br>
-Mitigation: Use trusted input files for HTML report generation, treat generated reports as sensitive local files, and prefer text or JSON output for untrusted conversation exports until report labels are escaped. <br>
-Risk: Token counts are heuristic estimates and may be inaccurate for exact billing, hard context-limit enforcement, non-English text, code-heavy content, or multimodal inputs. <br>
-Mitigation: Use Context Slim for profiling and planning, then validate critical counts with the target provider's tokenizer and keep a buffer for context-limit decisions. <br>
+## Use Case:
 
+Developers, prompt engineers, and agent builders use Context Slim to inspect token usage, diagnose truncation risk, and identify compression opportunities before sending or deploying text-only prompts and conversations.
 
-## Reference(s): <br>
-- [Context Slim ClawHub listing](https://clawhub.ai/TheShadowRose/context-slim) <br>
-- [TheShadowRose ClawHub profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](artifact/README.md) <br>
-- [Limitations](artifact/LIMITATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with inline shell commands, Python examples, JSON snippets, and optional local HTML or JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard library only; token counts are estimates and should be validated with provider tokenizers for exact billing or hard limit decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Generated HTML reports can include unescaped content from conversation files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated reports only from trusted or sanitized inputs until HTML escaping is confirmed fixed.
+
+Risk: The skill analyzes prompts and conversations that may contain sensitive information.
+
+Mitigation: Run it only on files intended for local analysis and choose report output paths deliberately.
+
+Risk: Token counts are heuristic estimates and do not cover multimodal inputs.
+
+Mitigation: Use provider tokenizers for billing or exact context-limit decisions, and add provider-documented costs for images, audio, video, or embedded files.
+
+Risk: Compression recommendations can remove context that is important to the user.
+
+Mitigation: Review suggestions manually before applying them to production prompts or agent instructions.
+
+## Reference(s):
+
+- [Context Slim ClawHub Listing](https://clawhub.ai/theshadowrose/skills/context-slim)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; the included tools can emit plain text, JSON, and HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local processing; text-only analysis; token estimates are approximate and compression suggestions require human review.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

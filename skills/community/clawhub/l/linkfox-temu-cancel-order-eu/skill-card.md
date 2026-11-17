@@ -1,45 +1,69 @@
-## Description: <br>
-Temu Cancel Order EU helps agents guide and run LinkFox gateway scripts for Temu Partner EU buyer and seller order-cancellation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Temu Europe cancellation skill for buyer after-sales cancellations and seller appeal or out-of-stock cancellation workflows through LinkFox and Temu Partner EU APIs.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operators, and developers use this skill to list and agree buyer cancellation requests, submit seller cancellation appeals or out-of-stock cancellations, and check cancellation results for Temu Partner EU orders through LinkFox. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Europe (Temu Partner EU workflows) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad authenticated Temu gateway, proxy, and file-download capabilities beyond the narrow EU cancel-order workflow. <br>
-Mitigation: Install only when that authority is intended, prefer the six dedicated cancellation scripts, and avoid generic proxy or file-download helpers unless the Temu API call is understood. <br>
-Risk: The workflow handles sensitive LinkFox and Temu tokens, and the artifact supports saving Temu access tokens in a local plaintext store. <br>
-Mitigation: Avoid plaintext token storage on shared, backed-up, or synced machines, keep credentials out of logs, prompts, shell history, and shared files, and rotate any token that may have been exposed. <br>
+## Use Case:
 
+External Temu sellers and support operators use this skill to list buyer cancellation requests, agree to cancellations, submit seller cancellation appeals, submit out-of-stock cancellations, and check cancellation results for European site orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/linkfox-temu-cancel-order-eu) <br>
-- [API reference](references/api.md) <br>
-- [Partner EU cancel order catalog](references/partner-eu-catalog.md) <br>
-- [Access token guide](references/access-token.md) <br>
-- [Authorization flow](references/authorization-flow.md) <br>
-- [Per-interface API documents](references/apis/README.md) <br>
+### Deployment Geography for Use:
 
+Europe
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct users to provide LinkFox and Temu credentials before running API helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review reports suspicious behavior because the skill combines Temu cancellation support with broader proxy, payment, and credential-storage behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if LinkFox is trusted and Temu cancellation through its gateway is required.
+
+Risk: Endpoint override variables and broad proxy behavior can route requests outside the intended Temu EU cancellation workflow.
+
+Mitigation: Avoid endpoint override environment variables and do not invoke arbitrary proxy types or non-EU sites.
+
+Risk: LinkFox and Temu tokens may be exposed through shared workspaces, logs, or local token-store files.
+
+Mitigation: Keep tokens out of shared workspaces and logs, and restrict permissions on LinkFox output and token-store files.
+
+Risk: The onboarding flow can initiate payment or credit purchase actions.
+
+Mitigation: Use payment and onboarding commands only when the user explicitly intends to buy LinkFox credits.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-cancel-order-eu)
+- [API reference](references/api.md)
+- [Partner EU cancel order catalog](references/partner-eu-catalog.md)
+- [API documentation index](references/apis/README.md)
+- [Temu access token guide](references/access-token.md)
+- [Authorization flow](references/authorization-flow.md)
+- [Onboarding and billing guidance](references/onboarding.md)
+- [Temu Partner EU documentation](https://partner-eu.temu.com/documentation?menu_code=dbd3d395963a408984b8ae7dbc5f64f9)
+- [Temu EU OpenAPI router](https://openapi-b-eu.temu.com/openapi/router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, API calls, JSON files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses saved to local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Small responses may be printed inline; larger responses are summarized after the full JSON response is saved.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
